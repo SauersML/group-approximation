@@ -79,11 +79,10 @@ algebra $L_{\F_2}(1,2)$ is a finitely generated simple
 property-\textup{(T)} group with no nontrivial MF image, so its reduced
 $C^*$-algebra is separable and stably finite but not MF\@.  More
 generally, for a countable purely infinite simple ring the largest MF
-quotient of $\GL_n(R)$ is $K_1(R)$.  We also construct finitely
-presented sofic groups that are not MF\@: one with an exactly computed
-MF radical, whose canonical trace is amenable but not quasidiagonal, and
-one whose MF quotients are exactly its cyclic quotients.  A further
-construction is torsion-free.
+quotient of $\GL_n(R)$ is $K_1(R)$.  We also construct a sofic group
+that is not MF and whose canonical trace on the maximal group
+$C^*$-algebra is amenable but not quasidiagonal, and a torsion-free
+one.
 \end{abstract}
 
 \maketitle
@@ -277,95 +276,36 @@ built in Section~\ref{sec:torsion-free} from Fournier-Facio's
 group~\cite[\S2]{FFF} and Hull's small cancellation
 theorem~\cite{Hull}.
 
-\begin{mainthm}[a finitely presented sofic group with exact MF radical]
-\label{thm:fp-sofic-radical}
-There is a finitely presented, centerless, sofic group $E$ in a split
-exact sequence
-\[
- 1\longrightarrow B\longrightarrow E\longrightarrow V\longrightarrow1,
- \qquad B\cong\mathop{*}_{j\ge1}(A_5)^8,
-\]
-where $V$ is residually finite and
-\[
- \operatorname{Rad}_{\mathrm{MF}}(E)
- =\bigcap_{\substack{N\trianglelefteq E\\{}[E:N]<\infty}}N=B\ne1.
-\]
-The subgroup $B$ is perfect and residually finite, and any nonidentity
-element of one coordinate $A_5$ normally generates it in $E$.
-Moreover, $E=J\rtimes\mathbb Z$ with $J$ locally residually finite.
-The canonical trace on $C^*_{\max}(J)$ is quasidiagonal, while the
-canonical trace on $C^*_{\max}(E)$ is amenable and not quasidiagonal.
+\begin{mainthm}[an amenable nonquasidiagonal trace]
+\label{thm:amenable-trace}
+There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually
+finite, that is not MF\@.  The canonical trace on $C^*_{\max}(K)$ is
+quasidiagonal, and the canonical trace on $C^*_{\max}(W)$ is amenable
+and not quasidiagonal.
+\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace}
 \end{mainthm}
 
-Section~\ref{sec:finite-blocks} gives a finite presentation and computes
-the radical.  Thus both the kernel $B$ and the quotient $V$ are
-residually finite, although $E$ is not MF.  The construction uses
-commuting lamps within blocks of eight sites.  Keeping different blocks
-in a free product makes finite presentability possible.  The analytic
-step is Theorem~\ref{thm:finite-algebra-transport}: a finite-dimensional
-invariant algebra has the same fixed points under a Kazhdan subgroup
-and its conjugate compressed copy.
-
-The trace on $C^*_{\max}(E)$ answers the question of
+Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group
+$\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.  The group
+$W$ is sofic because locally residually finite groups are sofic and
+soficity passes to extensions with amenable
+quotient~\cite[Theorem~1]{ElekSzabo}.  The trace answers the question of
 Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
 Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
-amenable trace is quasidiagonal.  Tikuisis, White and Winter proved
+amenable trace is quasidiagonal.
+\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptWSoficFromLocallyRFExtension}
+Tikuisis, White, and Winter proved
 that faithful traces on separable nuclear $C^*$-algebras satisfying the
 universal coefficient theorem are quasidiagonal~\cite{TWW}; here
-$C^*_{\max}(E)$ is not nuclear, since $E$ contains a Kazhdan subgroup
-and is not amenable.  The canonical trace of $C^*_{\max}(J)$ is
-quasidiagonal, so the crossed product by $\mathbb Z$ destroys
-quasidiagonality of the canonical trace.  Since $J$ is a direct limit
-of residually finite groups it is MF~\cite[Corollary~10 and
-Proposition~13]{Korchagin}, so MF groups are not closed under
-semidirect products with $\mathbb Z$, which answers a question of
+$C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  The canonical
+trace of $C^*_{\max}(K)$ is quasidiagonal, so the crossed product by
+$\mathbb Z$ destroys quasidiagonality of the canonical trace.  Since $K$ is a direct limit of
+residually finite groups, it is MF~\cite[Corollary~10 and
+Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
+products with $\mathbb Z$, which answers a question of
 Korchagin~\cite[remark following Proposition~12]{Korchagin}.
+\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptShiftKernelIsOperatorMF}
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect}
-
-The finite-block example also permits an exact calculation after one
-HNN extension.  In the next theorem, the radical has no nontrivial MF
-images even when considered as a group in its own right.
-
-\begin{mainthm}[a sofic group with exactly cyclic MF quotients]
-\label{thm:sofic-cyclic-mf}
-There is a finitely presented, sofic, acylindrically hyperbolic group $P$
-with a split epimorphism $\chi\colon P\to\mathbb Z$ and an explicit
-infinite-order element $d$ such that
-\[
- N:=\ker\chi=\normal{d}_P
-   =\operatorname{Rad}_{\mathrm{MF}}(P)
-   =\bigcap_{\substack{R\trianglelefteq P\\{}[P:R]<\infty}}R,
- \qquad \operatorname{Rad}_{\mathrm{MF}}(N)=N\ne1.
-\]
-The kernel $N$ is perfect and is not finitely generated.  For every
-normal subgroup $R\trianglelefteq P$,
-\[
- \operatorname{Rad}_{\mathrm{MF}}(P/R)=NR/R,
- \qquad
- P/R\text{ is MF}\ \Longleftrightarrow\ d\in R
-       \ \Longleftrightarrow\ P/R\text{ is cyclic}.
-\]
-Every homomorphism from $P$ to an MF group factors uniquely through
-$\chi$, and $\widehat P\cong\widehat{\mathbb Z}$.  The group $P$ is a
-Powers group; in particular, $C^*_{\mathrm r}(P)$ is simple, has a
-unique tracial state, has stable rank one, and is not MF.
-\end{mainthm}
-
-Section~\ref{sec:cyclic-mf} constructs $P$ by adding one generator and
-one relator to the presentation of $E$.  The relation identifies a
-normal generator of the quotient $V$ with an infinite-order word in
-$B$.  The two examples differ intrinsically:
-\[
- \operatorname{Rad}_{\mathrm{MF}}(E)=B,\quad
- \operatorname{Rad}_{\mathrm{MF}}(B)=1,
- \qquad
- \operatorname{Rad}_{\mathrm{MF}}(P)=N,\quad
- \operatorname{Rad}_{\mathrm{MF}}(N)=N,
-\]
-since $B$ is residually finite while $N$ has no nontrivial MF image at
-all.  The added relation forces all MF maps to kill $E$, while soficity is preserved
-by the cyclic HNN extension theorem of Collins and
-Dykema~\cite[Corollary~3.6]{CollinsDykema}.
 
 \subsection*{Related work}
 
@@ -621,8 +561,8 @@ Put $U=\widetilde\sigma(u)$.  Since $uLu^{-1}\le L$,
 $U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L)$, so $U^*PU\le P$
 by Lemma~\ref{lem:kazhdan-projection-order}, and $U^*PU=P$ by
 Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
-equivalent.  So $[U,P]=0$ and
-$\opnorm{[\operatorname{Ad}(V_n(u)),P_n]}\to0$.  For
+equivalent.  So $UP=PU$, and correspondingly
+$\opnorm{\operatorname{Ad}(V_n(u))P_n-P_n\operatorname{Ad}(V_n(u))}\to0$.  For
 $(x_n)\in\mathcal C_2(V,L)$,
 \[
 \begin{aligned}
@@ -983,8 +923,10 @@ $[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives the second identity.
 Let $R$ be a countable unital associative ring.  Suppose that $s,t\in R$
 satisfy
 \[
- ts=1,\qquad R(1-st)R=R.
+ ts=1,\qquad R(1-st)R=R;
 \]
+that is, $1-st$ is a \emph{full} idempotent, so that
+$1=\sum_{j}a_j(1-st)b_j$ for finitely many $a_j,b_j\in R$.
 For every $n\ge2$, every homomorphism from $\EL_n(R)$ to an MF group is
 trivial.  Every homomorphism from $\EL_4(\mathcal C)$ to an MF group is
 trivial; that group is finitely generated and has
@@ -1166,7 +1108,8 @@ $e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and
 commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all
 $a\in R$.  So $\lambda$ lies in
 $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, and $N=1$.  So $H$ is
-simple, and in particular not MF\@.
+simple.  It is nontrivial, and every homomorphism from it to an MF
+group is trivial, so $H$ is not MF\@.
 
 Since $R\ne0$ satisfies the hypothesis of
 Theorem~\ref{thm:full-defect-ring}, Corollary~\ref{cor:one-sided-ring-maximal}
@@ -1478,6 +1421,65 @@ homomorphism from $W$ to an MF group is trivial on $\varepsilon$.  In
 particular, $W$ is not MF\@.
 \end{proof}
 
+\begin{proposition}[the locally residually finite case]
+\label{prop:clifford-locally-rf}
+Suppose in addition that $\Gamma$ is residually finite and that
+$[\Gamma:\alpha(\Gamma)]<\infty$.  Then
+\[
+ W\cong K\rtimes\mathbb Z,
+ \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
+\]
+where $K$ is locally residually finite.  Consequently $W$ is sofic but not
+MF, the canonical trace on $C^*_{\max}(K)$ is quasidiagonal, and the
+canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
+\leanverified{Sofic/CliffordWitnessSoficPrinted}{GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF}
+\end{proposition}
+
+\begin{proof}
+Reassociating the semidirect products yields
+\[
+ W\cong K\rtimes\mathbb Z,
+ \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
+\]
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt}
+For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
+copy of $\Gamma$ in $T_\alpha$.  Since $[\Gamma:\alpha(\Gamma)]<\infty$,
+each $\Gamma_n$ has finite index in $\Gamma_{n+1}$; every element of
+$T_\alpha$ lies in some $\Gamma_m$, and conjugation by $t$ maps
+$\Gamma_{m+1}$ onto $\Gamma_m$, so $\Gamma$ is commensurated by $V$.
+Hence the stabilizer in $\Gamma_n$ of every point of $X=V/\Gamma$ has
+finite index, and every $\Gamma_n$-orbit in $X$ is finite.
+
+A finite subset of $K$ involves only finitely many lamps $c_x$, and its
+$T_\alpha$-coordinates lie in one $\Gamma_n$.  Let $Y$ be the union of
+the $\Gamma_n$-orbits of these finitely many $x$.  Then $Y$ is finite
+and $\Gamma_n$-invariant, and the finite subset is contained in
+\[
+ C_Y\rtimes\Gamma_n,
+\]
+where $C_Y=\langle\varepsilon,c_y:y\in Y\rangle$ is finite by the
+normal form above.  This semidirect product is
+residually finite.  Indeed, an element with nontrivial $\Gamma_n$-component
+survives in a finite quotient of $\Gamma_n$.  For a nontrivial element of
+$C_Y$, let $J$ be the kernel of the action
+$\Gamma_n\to\operatorname{Aut}(C_Y)$.  The quotient $\Gamma_n/J$ is finite,
+and the element has nontrivial image in the finite group
+$C_Y\rtimes(\Gamma_n/J)$.  Therefore every finitely generated subgroup of $K$ is residually
+finite.
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite}
+
+Each finitely generated subgroup of $K$ is residually finite and hence
+sofic.  The group $K$ is their directed union, and $W/K\cong\mathbb Z$
+is amenable.  Soficity passes to directed unions and to extensions with
+amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
+Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
+By Proposition~\ref{prop:locally-rf-by-z-trace}, applied to the
+extension $1\to K\to W\to\mathbb Z\to1$, the canonical trace of
+$C^*_{\max}(K)$ is quasidiagonal and that of $C^*_{\max}(W)$ is
+amenable; by Theorem~\ref{thm:factorization-nonmf-trace} the latter is
+not quasidiagonal.
+\end{proof}
+
 For a concrete instance, take
 \[
  \bar\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)
@@ -1503,468 +1505,12 @@ $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.  Translation $a$ by the first
 standard basis vector lies outside $\alpha(\bar\Gamma)$.  So the preceding
 construction applies to $\bar\Gamma$, $\alpha$ and $a$.
 
-The lamp group $\operatorname{Cl}(X)$ is locally finite, so this
-example locates $\operatorname{Rad}_{\mathrm{MF}}(W)$ only between
-$\langle\varepsilon\rangle$ and $\operatorname{Cl}(X)$.
-Section~\ref{sec:finite-blocks} keeps $\bar\Gamma$, $\alpha$ and $a$
-and replaces the lamps by perfect finite blocks.  The resulting group is
-finitely presented, its MF radical is computed exactly, and
-Proposition~\ref{prop:locally-rf-by-z-trace} together with
-Theorem~\ref{thm:factorization-nonmf-trace} then supplies the amenable
-nonquasidiagonal trace of Theorem~\ref{thm:fp-sofic-radical}.
-
-\section{Finitely presented sofic groups with exact MF radical}
-\label{sec:finite-blocks}
-
-The normal Kazhdan subgroup in Theorem~\ref{thm:compression-criterion}
-provides a central corner on which to upgrade Hilbert--Schmidt collapse.
-A finite-dimensional invariant algebra permits a different upgrade:
-normalize one orbit of central summands by its relative rank, which
-leaves the covariance error small without correcting it.  This will allow finite perfect lamp groups whose
-normal closure in the ambient group is itself residually finite.
-
-\subsection{Finite-dimensional fixed points}
-
-For a subalgebra $A$ normalized by a unitary representation $\rho(L)$,
-write $A^L=\{a\in A:\rho(g)a\rho(g)^*=a\text{ for all }g\in L\}$.
-
-\begin{theorem}[finite-dimensional fixed-point transport]
-\label{thm:finite-algebra-transport}
-Let $G$ be countable, let $L\le G$ have property~\textup{(T)}, and let
-$tLt^{-1}\le L$.  If $\rho\colon G\to\U(\mathcal Q_{\mathbf d})$ is a
-homomorphism and $A\le\mathcal Q_{\mathbf d}$ is a finite-dimensional
-unital $C^*$-subalgebra normalized by $\rho(L)$, then
-\[
- A^{tLt^{-1}}=A^L.
-\]
-In particular, if a finite subgroup $F\le G$ is normalized by $L$ and
-$f\in F$ centralizes $tLt^{-1}$, every homomorphism from $G$ to an MF
-group sends $f$ to an element centralizing the image of $L$.
-\end{theorem}
-
-\begin{proof}
-A unital homomorphism from $A\cong\bigoplus_iM_{r_i}(\mathbb C)$ to a
-norm matrix corona lifts, on a cofinite set of coordinates, to unital
-$*$-homomorphisms $\phi_n\colon A\to M_{d_n}(\mathbb C)$.  Lift its
-diagonal matrix units and round them successively to orthogonal
-projections, using the complement of their sum for the last one; the
-corrections tend to zero.  In each summand compress a lift of $e_{j1}$
-between the chosen projections $p_j,p_1$; on a common tail its polar
-partial isometry $v_j$ has precisely these final and initial
-projections, and the $v_jv_k^*$ are exact matrix units lifting
-$e_{jk}$.  A summand may vanish at some coordinates, and injectivity of
-$\phi_n$ is not required.  Lift $\rho$ to an operator norm asymptotic
-representation $U=(U_n)$ of $G$.  For $g\in L$ the automorphism
-$\beta_g=\operatorname{Ad}(\rho(g))|_A$ of $A$ is defined, because
-$\rho(L)$ normalizes $A$, and
-\begin{equation}\label{eq:finite-algebra-covariance}
- \opnorm{U_n(g)\phi_n(a)U_n(g)^*-\phi_n(\beta_g(a))}
- \longrightarrow0\qquad(a\in A,\ g\in L).
-\end{equation}
-
-Let $q$ be the sum of one $L$-orbit of minimal central projections of
-$A$.  The maps $\beta_g$, $g\in L$, carry the corresponding summands
-onto one another, so these are isomorphic.  Applying
-\eqref{eq:finite-algebra-covariance} to a finite generating set of $L$
-and to each minimal central projection $e\le q$, the projections
-$U_n(g)\phi_n(e)U_n(g)^*$ and $\phi_n(\beta_g(e))$ are eventually at
-distance less than $1$, hence eventually of equal rank: the summands of
-$qA$ occur in $\phi_n$ with equal multiplicity.  Discard the
-coordinates where $q_n=\phi_n(q)$ vanishes and put
-$\mu_n=\tr_{d_n}(q_n)>0$.  On $qA$ the traces
-$\mu_n^{-1}\tr_{d_n}\circ\phi_n$ are then all equal to the single
-faithful trace $\tau_0$ that averages the normalized traces of those
-summands, so
-\begin{equation}\label{eq:orbit-normalization}
- \hsnorm{\phi_n(b)}=\sqrt{\mu_n}\,\lVert b\rVert_{2,\tau_0},
- \qquad \lVert b\rVert_{2,\tau_0}=\tau_0(b^*b)^{1/2}
- \qquad(b\in qA).
-\end{equation}
-
-Fix $b\in qA$ and $g\in L$ and put
-$D_n=U_n(g)\phi_n(b)U_n(g)^*-\phi_n(\beta_g(b))$.  Each of the two
-terms has rank at most $\operatorname{rank}q_n=\mu_nd_n$, so
-$\operatorname{rank}D_n\le2\mu_nd_n$ and therefore
-\begin{equation}\label{eq:rank-normalized}
- \frac{\hsnorm{D_n}}{\sqrt{\mu_n}}
- \le\sqrt2\,\opnorm{D_n}\longrightarrow0 .
-\end{equation}
-This rank bound is what makes the argument uniform.  It compensates
-exactly for a summand whose relative size $\mu_n$ tends to zero, so no
-correction of the covariance is required; an appeal to equivalence of
-norms on the finite-dimensional algebra would not survive that case.
-
-Now take $b\in A^{tLt^{-1}}$.  The orbit sums $q$ are $L$-invariant,
-hence $tLt^{-1}$-invariant, so it is enough to treat $b\in qA$.  The
-matrices $x_n=\phi_n(b)/\sqrt{\mu_n}$ have the constant normalized
-Hilbert--Schmidt norm $\lVert b\rVert_{2,\tau_0}$ by
-\eqref{eq:orbit-normalization}, and \eqref{eq:rank-normalized}, applied
-to $h\in tLt^{-1}$, gives
-$\hsnorm{\operatorname{Ad}(U_n(h))x_n-x_n}\to0$; so
-$x\in\mathcal C_2(U,tLt^{-1})$.  Conjugation by $U_n(t)$ carries
-$\mathcal C_2(U,L)$ onto $\mathcal C_2(U,tLt^{-1})$, so
-Theorem~\ref{thm:transport} gives
-$\mathcal C_2(U,tLt^{-1})=\mathcal C_2(U,L)$ and $x$ is asymptotically
-fixed by $L$.  For $g\in L$ the number
-$\lVert\beta_g(b)-b\rVert_{2,\tau_0}$ equals
-$\hsnorm{\phi_n(\beta_g(b))-\phi_n(b)}/\sqrt{\mu_n}$ for every $n$ by
-\eqref{eq:orbit-normalization}, and that tends to zero by
-\eqref{eq:rank-normalized} together with
-$\hsnorm{\operatorname{Ad}(U_n(g))x_n-x_n}\to0$.  So $\beta_g(b)=b$ by
-faithfulness of $\tau_0$, and $b\in A^L$.  The reverse containment
-follows from $tLt^{-1}\le L$.
-
-For the last assertion use $A=C^*(\rho(F))$, which is finite
-dimensional and normalized by $\rho(L)$, and apply the result to
-$a=\rho(f)$.  Homomorphisms to MF groups reduce to this case by
-Lemma~\ref{prop:mf-residual-calculus}.
+\begin{proof}[Proof of Theorem~\ref{thm:amenable-trace}]
+Apply Proposition~\ref{prop:clifford-locally-rf} to $\bar\Gamma$,
+$\alpha$, and $a$.
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
+\leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
 \end{proof}
-
-The normalization in that proof is by the relative size $\mu_n$ of a
-single central orbit, and the rank bound~\eqref{eq:rank-normalized} is
-what keeps the covariance error small after dividing by
-$\sqrt{\mu_n}$.  Some such bound is needed: a rank-one projection in
-$M_d(\mathbb C)$ has operator norm $1$ and normalized
-Hilbert--Schmidt norm $d^{-1/2}$, so on a summand whose relative size
-tends to zero, equivalence of norms on a fixed finite-dimensional
-algebra gives nothing uniform.
-
-\subsection{Perfect finite blocks}
-
-Let $\Gamma$ be finitely presented with property~(T), let
-$\alpha\colon\Gamma\to\Gamma$ be injective of finite index $m>1$,
-and suppose the ascending HNN extension
-\[
- V=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)
-                         \ (\gamma\in\Gamma)\rangle
-\]
-is residually finite.  For a finite group $K$ put
-\[
- \Omega=\Gamma/\alpha(\Gamma),\qquad
- F=K^{\Omega},\qquad
- \Lambda=F\rtimes\Gamma,
-\]
-where $\Gamma$ permutes the $m$ coordinates of $F$ through its left
-action on $\Omega$, and define
-\begin{equation}\label{eq:finite-block-group}
- E_K=\langle\Lambda,t\mid t\gamma t^{-1}=\alpha(\gamma)
-        \ (\gamma\in\Gamma)\rangle .
-\end{equation}
-This is an HNN extension of $\Lambda$ with associated subgroups
-$\Gamma$ and $\alpha(\Gamma)$, both proper in $\Lambda$.  Killing $F$
-leaves $V$, and $\langle\Gamma,t\rangle$ is a copy of $V$ by Britton's
-lemma, so the quotient map splits.  Write $B_K$ for its kernel, the
-normal closure of $F$.
-
-\begin{lemma}[block structure]\label{lem:block-structure}
-$B_K$ is the free product of the conjugates of $F$, one for each coset
-in $V/\Gamma$:
-\[
- B_K\cong\mathop{*}_{v\Gamma\in V/\Gamma}F_{v},
- \qquad F_v\cong K^m .
-\]
-\end{lemma}
-
-\begin{proof}
-Let $T$ be the Bass--Serre tree of~\eqref{eq:finite-block-group}, with
-vertices $E_K/\Lambda$ and edges $E_K/\alpha(\Gamma)$, the edge
-$g\alpha(\Gamma)$ joining $g\Lambda$ to $gt\Lambda$.  Since $B_K$ is
-normal with quotient $V$, its orbits on vertices and on edges are
-$V/\Gamma$ and $V/\alpha(\Gamma)$, and its stabilizers are
-$g(B_K\cap\Lambda)g^{-1}=gFg^{-1}$ at a vertex and
-$g(B_K\cap\alpha(\Gamma))g^{-1}=1$ at an edge, because $\Gamma$ meets
-$B_K$ trivially.  In the quotient graph the edge $\bar v\alpha(\Gamma)$
-runs from $\bar v\Gamma$ to $\bar vt\Gamma$.  That is precisely the
-incidence of the Bass--Serre tree of the ascending HNN extension $V$,
-whose vertices are $V/\Gamma$ and whose edges are $V/\alpha(\Gamma)$,
-and the two graphs have the same vertex and edge sets because $B_K$ is
-normal with quotient $V$.  The quotient graph is therefore a tree, and a graph of groups with
-trivial edge groups over a tree has the displayed free product as its
-fundamental group, with no free factor.
-\end{proof}
-
-\begin{theorem}[perfect finite-block radical]
-\label{thm:perfect-block-radical}
-If $K$ is a nontrivial finite perfect group, then $E_K$ is finitely
-presented and sofic, and
-\[
- \operatorname{Rad}_{\mathrm{MF}}(E_K)
- =\bigcap_{\substack{N\trianglelefteq E_K\\{}[E_K:N]<\infty}}N
- =B_K\ne1.
-\]
-The subgroup $B_K$ is perfect and residually finite, and
-$E_K/B_K\cong V$.  Also $E_K=J_K\rtimes\mathbb Z$ with $J_K$
-locally residually finite, and the canonical trace on
-$C^*_{\max}(E_K)$ is amenable and not quasidiagonal.  If $K$ is
-nonabelian simple, any nonidentity element of a single coordinate of
-$F$ normally generates $B_K$ in $E_K$.
-\end{theorem}
-
-\begin{proof}
-The group $\Lambda$ is finitely presented, since $F$ is finite and
-$\Gamma$ is finitely presented, and~\eqref{eq:finite-block-group} adds
-one generator and finitely many relations; so $E_K$ is finitely
-presented.
-
-Let $\rho$ be a corona homomorphism from $E_K$.  The finite subgroup
-$F$ is normalized by $\Gamma$, and the coordinate of $F$ at the point
-$\alpha(\Gamma)\in\Omega$ is centralized by the stabilizer of that
-point, which is $\alpha(\Gamma)=t\Gamma t^{-1}$.  By the last assertion
-of Theorem~\ref{thm:finite-algebra-transport}, applied with $L=\Gamma$,
-the image of that coordinate centralizes $\rho(\Gamma)$.  For $k\in K$
-and $\gamma\in\Gamma$ the conjugate $\gamma k\gamma^{-1}$ is the copy
-of $k$ at $\gamma\alpha(\Gamma)$, so
-\[
- \rho(k_{\omega})=\rho(k_{\alpha(\Gamma)})
- \qquad(\omega\in\Omega).
-\]
-Since $m>1$, two distinct coordinates of $F$ commute, so this common
-image is an abelian image of $K$ and is trivial by perfection.  Thus
-$\rho$ kills $F$ and hence $B_K$, and all MF homomorphisms kill $B_K$
-by Lemma~\ref{prop:mf-residual-calculus}.  Conversely the residually
-finite quotient $V$ is MF and separates every element outside $B_K$,
-which proves $\operatorname{Rad}_{\mathrm{MF}}(E_K)=B_K$.  Finite
-groups are MF, and the finite quotients of $V$ give the same two
-containments for the intersection of finite-index normal subgroups.
-
-By Lemma~\ref{lem:block-structure}, $B_K$ is a free product of copies
-of $K^m$, so it is perfect, and every nontrivial element survives the
-retraction onto a free product of finitely many factors.  A free
-product of finitely many finite groups acts on its Bass--Serre tree
-with finite stabilizers, so it is virtually free; free groups are
-residually finite, and so is any group containing one with finite
-index.  So $B_K$ is residually finite.
-
-Write $\Gamma_n=t^{-n}\Gamma t^n$ and
-$T_\alpha=\bigcup_{n\ge0}\Gamma_n$, so that
-\[
- V=T_\alpha\rtimes\mathbb Z,
- \qquad E_K=J_K\rtimes\mathbb Z,
- \qquad J_K=B_K\rtimes T_\alpha .
-\]
-Each $\Gamma_n$ has finite index in $\Gamma_{n+1}$ because
-$[\Gamma:\alpha(\Gamma)]=m$, and conjugation by $t$ carries
-$\Gamma_{n+1}$ onto $\Gamma_n$; so $\Gamma$ is commensurated by $V$
-and every $\Gamma_n$-orbit in $V/\Gamma$ is finite.  A finite subset of $J_K$
-uses finitely many blocks and lies in one $\Gamma_n$; saturating those
-blocks gives a finite $\Gamma_n$-invariant set $I\subseteq V/\Gamma$
-and puts the subset in $M_I\rtimes\Gamma_n$ with
-$M_I=\mathop{*}_{v\Gamma\in I}K^m$ finite in the sense of finitely
-many factors.  The action of $\Gamma_n$ on $M_I$ permutes the $m|I|$
-labeled coordinates, so its kernel has finite index and centralizes
-$M_I$; the product of $M_I$ with that kernel is a residually finite
-subgroup of finite index.  So $J_K$ is locally residually finite, and
-soficity follows from the directed-union and amenable-extension
-permanence theorems~\cite[Theorem~1]{ElekSzabo}.
-Proposition~\ref{prop:locally-rf-by-z-trace} makes the canonical trace
-amenable, and Theorem~\ref{thm:factorization-nonmf-trace} makes it
-nonquasidiagonal, since $B_K\ne1$ and $E_K$ is not MF.
-
-Finally, for nonabelian simple $K$ the normal closure of a nonidentity
-$k$ in one coordinate contains that coordinate, then all its
-$V$-conjugates, and hence $B_K$; the reverse containment is normality
-of $B_K$.
-\end{proof}
-
-\subsection{The centerless affine example}
-
-\begin{proof}[Proof of Theorem~\ref{thm:fp-sofic-radical}]
-Take $\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$,
-$\alpha(v,A)=(2v,A)$, and $K=A_5$ in
-Theorem~\ref{thm:perfect-block-radical}.  This is the group
-$\bar\Gamma$ and the endomorphism of Section~\ref{sec:amenable-nonqd};
-it has property~(T) and is finitely presented, by a finite presentation of $\mathrm{SL}_3(\mathbb Z)$
-together with its action on the three commuting translation
-generators.  Here $m=8$, and the faithful matrix model for $V$ displayed after
-Proposition~\ref{prop:max-infinite} is residually finite by reduction
-modulo odd integers.  The height map $V\to\mathbb Z$ vanishes on
-$\Gamma$, so $V/\Gamma$ is countably infinite.  Hence
-$B_{A_5}\cong\mathop{*}_{j\ge1}(A_5)^8$, and all the claimed
-properties except centerlessness follow from the theorem.
-
-In the affine matrix model, an element of $Z(V)$ commuting with
-all translations has $2^hA=I_3$.  Taking determinants gives $h=0$
-and $A=I_3$.  Its translation vector must then be fixed by every
-integral elementary matrix, so is zero.  Thus $Z(V)=1$.  A central
-element of $E_{A_5}$ consequently lies in $B_{A_5}$, whose center
-is trivial by the normal form for a free product of at least two
-nontrivial groups.  Therefore $E=E_{A_5}$ is centerless.
-\end{proof}
-
-The radical in this example is an MF group in its own right, since
-it is residually finite.  Every MF representation of the ambient
-finitely presented group nevertheless annihilates it.  No central
-marked element or normal property-(T) subgroup is needed in this
-construction.
-
-\section{A sofic group with exactly cyclic MF quotients}
-\label{sec:cyclic-mf}
-
-The algebraic step is a general HNN construction.  For a countable
-group $G$, write $\operatorname{Res}_{\mathrm{fin}}(G)$ for the
-intersection of its finite-index normal subgroups.
-
-\begin{proposition}[cyclic HNN absorption]
-\label{prop:cyclic-hnn-absorption}
-Let $E$ be countable and let $B\trianglelefteq E$ be annihilated by
-every homomorphism from $E$ to an MF group.  Suppose $r\in E$ and
-$d\in B$ have infinite order, the image of $r$ normally generates
-$E/B$, and $\normal{d}_E=B$.  Put
-\[
- P=\langle E,s\mid srs^{-1}=d\rangle,
- \qquad \chi\colon P\longrightarrow\mathbb Z,
- \quad \chi(E)=0,\quad\chi(s)=1.
-\]
-Then $N:=\ker\chi=\normal{d}_P$ satisfies
-\[
- \operatorname{Rad}_{\mathrm{MF}}(N)=N,
- \qquad
- \operatorname{Rad}_{\mathrm{MF}}(P)
-   =\operatorname{Res}_{\mathrm{fin}}(P)=N.
-\]
-For every $R\trianglelefteq P$, one has
-$\operatorname{Rad}_{\mathrm{MF}}(P/R)=NR/R$; moreover $P/R$ is MF
-if and only if $d\in R$, if and only if $P/R$ is cyclic.
-\end{proposition}
-
-\begin{proof}
-The infinite-order assumption makes $r^k\mapsto d^k$ an isomorphism
-of the two cyclic edge groups, so Britton's lemma embeds $E$ in $P$.
-The map $\chi$ is well defined and split by $k\mapsto s^k$.
-Writing a word of total $s$-exponent zero as a product of conjugates
-of elements of $E$ shows that
-\[
- N=\langle E_i:i\in\mathbb Z\rangle,
- \qquad E_i=s^iEs^{-i}.
-\]
-Use analogous notation for $B_i,r_i,d_i$.  The defining relation gives
-\begin{equation}\label{eq:cyclic-kernel-relations}
- r_{i+1}=d_i\qquad(i\in\mathbb Z).
-\end{equation}
-Let $f\colon N\to M$ be a homomorphism to an MF group.  Its
-restriction to every $E_i\cong E$ kills $B_i$, and hence $d_i$.
-Equation~\eqref{eq:cyclic-kernel-relations} then kills $r_{i+1}$.
-Since $r$ normally generates $E/B$, the restriction to $E_{i+1}$
-is trivial.  This holds for every integer $i$, so $f=1$ and
-$\operatorname{Rad}_{\mathrm{MF}}(N)=N$.
-
-Every MF map out of $P$ consequently kills $N$ and factors uniquely
-through $\chi$.  Conversely, the quotient $\mathbb Z$ is MF and
-its finite cyclic quotients separate all elements outside $N$.
-Finite groups are MF, so the two asserted radicals of $P$ equal $N$.
-Killing $d$ kills $B$ inside $E$ and then kills $r$ by the HNN
-relation.  Normal generation of $E/B$ kills the rest of $E$.
-The resulting presentation has the single generator $s$ and no
-relators.  Thus $P/\normal{d}_P\cong\mathbb Z$ via $\chi$,
-and $\normal{d}_P=N$.
-
-For an arbitrary normal $R$, the image $NR/R$ of $N$ has no
-nontrivial MF image.  It is therefore contained in the MF radical
-of $P/R$.  The quotient $P/NR$ is cyclic and hence MF, giving
-the reverse inclusion.  Since $N=\normal{d}_P$, this radical is
-trivial precisely when $d\in R$.  In that case $P/R$ is cyclic;
-the converse holds because cyclic groups are MF.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:sofic-cyclic-mf}]
-Use the concrete group $E=B\rtimes V$ from
-Theorem~\ref{thm:fp-sofic-radical}, and write $(A_5)_0$ for one
-coordinate of its base block $F$.  Choose
-\[
- x=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix}
-       \in\mathrm{SL}_3(\mathbb Z),
- \qquad a=(12)(34),\quad b=(123)\in(A_5)_0,
-\]
-and set
-\begin{equation}\label{eq:sofic-cyclic-presentation}
- r=tx^{-1},\qquad d=atbt^{-1},\qquad
- P=\langle E,s\mid s(tx^{-1})s^{-1}=atbt^{-1}\rangle.
-\end{equation}
-Thus $P$ is given by the finite presentation of $E$ with one
-additional generator and one additional relator.
-
-We first prove that $r$ normally generates $V$.  In the quotient
-by $r$, one has $t=x$.  Since $t$ commutes with
-$\mathrm{SL}_3(\mathbb Z)$, the image of $x$ is central in the
-image of that linear group.  Writing $e_{ij}=I+E_{ij}$, conjugation
-by $x$ cycles $e_{12},e_{31},e_{23}$, so their images are equal.
-The elementary identity $[e_{12},e_{23}]=e_{13}$ kills $e_{13}$.
-Conjugating by determinant-one signed permutation matrices kills
-every elementary generator (inverting when necessary).
-Integral elementary row reduction shows that these generate
-$\mathrm{SL}_3(\mathbb Z)$, so the linear group dies.
-Then $t=x$ dies.  Each translation generator satisfies
-$tv_it^{-1}=v_i^2$; hence $v_i=v_i^2$ and it dies as well.
-These elements generate $V$, proving $\normal{r}_V=V$.
-
-Let $h\colon E\to\mathbb Z$ be the original height map, with
-$h(t)=1$ and $h(B)=h(\Gamma)=0$.  Since $h(r)=1$, the element
-$r$ has infinite order.  The two letters $a$ and $tbt^{-1}$ lie
-in different free-product blocks of $B$: the block labels
-$\Gamma$ and $t\Gamma$ have different heights.  Thus $d$
-is cyclically reduced of length two and $d^n$ has reduced length
-$2n$ for $n\ge1$.  In particular $d$ has infinite order.
-In the quotient $E/\normal{d}_E$, the images of $a$ and
-$tbt^{-1}$ are inverse, with orders dividing $2$ and $3$.
-Both are therefore trivial.  Since $a$ normally generates $B$
-by Theorem~\ref{thm:fp-sofic-radical}, this gives
-$\normal{d}_E=B$.
-
-Proposition~\ref{prop:cyclic-hnn-absorption} now gives all radical
-and quotient assertions, with $N\ne1$ because $E$ embeds in $P$.
-The kernel is perfect: its abelianization is MF, since characters
-separate points of a countable abelian group, whereas every MF
-image of $N$ is trivial.  Every finite quotient of $P$ factors
-through $\chi$, and every finite cyclic quotient of $\mathbb Z$
-occurs.  These identifications respect quotient maps, proving
-$\widehat P\cong\widehat{\mathbb Z}$.
-
-The base $E$ is sofic and the edge groups are infinite cyclic,
-so Collins--Dykema's HNN theorem~\cite[Corollary~3.6]{CollinsDykema}
-proves that $P$ is sofic.  Its hypothesis is monotileable amenability
-of the edge subgroup, supplied here by intervals tiling $\mathbb Z$.
-For $p\le q$, write $N_{[p,q]}=\langle E_i:p\le i\le q\rangle$.
-HNN normal form identifies $N_{[p,q]}$ with the iterated amalgam of
-these vertex groups along~\eqref{eq:cyclic-kernel-relations}, and gives
-\[
- N_{[p,q+1]}\cong
- N_{[p,q]}*_{\langle d_q\rangle=\langle r_{q+1}\rangle}E_{q+1}.
-\]
-The edge subgroup is proper in $E_{q+1}$, which contains $A_5$.
-Thus every $N_{[p,q]}$ is a proper subgroup of $N$.  Every finite
-subset of $N$ lies in such an interval, proving that $N$ is not
-finitely generated.
-
-Finally, the two associated cyclic subgroups have trivial intersection
-inside $E$.  Indeed $r^k=d^\ell$ implies $k=0$ by height and
-then $\ell=0$ by the infinite order of $d$.  Both are proper in $E$.
-The kernel of the Bass--Serre tree action is contained in the
-intersection of these two edge stabilizers, and is therefore trivial.
-Bryder--Ivanov--Omland's criterion~\cite[Proposition~4.12]{BIO}
-for a nonascending HNN extension with finite intersection of the
-associated subgroups proves that $P$ is a Powers group and that
-$C^*_{\mathrm r}(P)$ is simple with a unique trace.
-Moreover $s\langle r\rangle s^{-1}=\langle d\rangle$ makes
-$\langle r\rangle$ weakly malnormal in $P$, so
-Minasyan--Osin's HNN criterion~\cite[Corollary~2.3]{MinasyanOsin}
-proves acylindrical hyperbolicity.  An MF embedding of
-$C^*_{\mathrm r}(P)$ would restrict to an MF embedding of $P$,
-contradicting $N\ne1$.  Thus this reduced algebra is not MF.
-\end{proof}
-
-A nontrivial finite normal subgroup of $P$ would make the average of
-its canonical unitaries a nontrivial central projection of the simple
-algebra $C^*_{\mathrm r}(P)$, so the finite radical of $P$ is trivial,
-and $C^*_{\mathrm r}(P)$ has stable rank one by Gerasimova and
-Osin~\cite[Theorem~1.1]{GO}.
-
-The canonical faithful trace makes $C^*_{\mathrm r}(P)$ stably
-finite.  At the level of the maximal algebra, every unital
-$*$-homomorphism from $C^*_{\max}(P)$ to an MF $C^*$-algebra
-factors through the quotient $C^*(\mathbb Z)\cong C(\mathbb T)$:
-restrict to the generating group unitaries and apply
-Theorem~\ref{thm:sofic-cyclic-mf}.  Thus the same group has a
-simple reduced algebra and a cyclic universal MF quotient.
 
 \section{A torsion-free finitely presented example}
 \label{sec:torsion-free}
@@ -2118,9 +1664,7 @@ Lemma~\ref{prop:mf-residual-calculus}, since $Q$ is not MF
 Corollary~\ref{cor:defect-hs} makes every element of
 $\mathfrak D_G(L)$ invisible in normalized Hilbert--Schmidt norm.
 Theorem~\ref{thm:normal-kazhdan} upgrades that to triviality in a
-corona when the normal subgroup has property~\textup{(T)}, and
-Theorem~\ref{thm:finite-algebra-transport} when it acts on a
-finite-dimensional invariant subalgebra.
+corona when the normal subgroup has property~\textup{(T)}.
 
 \begin{enumerate}
 \item Is the upgrade available for a locally finite normal subgroup
@@ -2139,7 +1683,7 @@ the first question settles this case, and every ring in which $1-st$
 has finite additive order.
 
 \item Is every amenable trace on a separable nuclear $C^*$-algebra
-quasidiagonal?  The trace of Theorem~\ref{thm:fp-sofic-radical} lives on
+quasidiagonal?  The trace of Theorem~\ref{thm:amenable-trace} lives on
 a non-nuclear algebra, and for faithful traces on algebras satisfying
 the universal coefficient theorem the answer is
 positive~\cite{TWW}.
@@ -2151,8 +1695,7 @@ Theorem~\ref{thm:torsion-free}: every homomorphism to an MF group
 kills the first factor, while the projection to $\mathbb Z$ realizes
 the quotient, so
 $\operatorname{Rad}_{\mathrm{MF}}(Q\times\mathbb Z)=Q\times\{1\}$.
-The exact radicals of Theorems~\ref{thm:fp-sofic-radical}
-and~\ref{thm:sofic-cyclic-mf} contain torsion.
+The radical of Theorem~\ref{thm:amenable-trace} contains torsion.
 \end{enumerate}
 
 \section*{Origin and authorship}
@@ -2271,24 +1814,11 @@ N.~P. Brown,
 Mem. Amer. Math. Soc. \textbf{184} (2006), no.~865, viii+105,
 \doi{10.1090/memo/0865}.
 
-\bibitem[BIO]{BIO}
-R.~S. Bryder, N.~A. Ivanov, and T.~Omland,
-\emph{$C^*$-simplicity of HNN extensions and groups acting on trees},
-Ann. Inst. Fourier \textbf{70} (2020), no.~4, 1497--1543,
-\doi{10.5802/aif.3378}.
-
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
-
-\bibitem[CD]{CollinsDykema}
-B.~Collins and K.~J. Dykema,
-\emph{Free products of sofic groups with amalgamation over
-monotileably amenable groups},
-M\"unster J. Math. \textbf{4} (2011), 101--118,
-\href{https://arxiv.org/abs/1003.1675}{arXiv:1003.1675}.
 
 \bibitem[DGO]{DGO}
 F.~Dahmani, V.~Guirardel, and D.~Osin,
@@ -2400,12 +1930,6 @@ P.~Menal and J.~Moncasi,
 J. Pure Appl. Algebra \textbf{33} (1984), no.~3, 295--312,
 \doi{10.1016/0022-4049(84)90064-1}.
 
-\bibitem[MO]{MinasyanOsin}
-A.~Minasyan and D.~Osin,
-\emph{Acylindrical hyperbolicity of groups acting on trees},
-Math. Ann. \textbf{362} (2015), nos.~3--4, 1055--1105,
-\doi{10.1007/s00208-014-1138-z}.
-
 \bibitem[OAI]{OAI}
 OpenAI,
 \emph{Nonsofic groups exist},
@@ -2433,12 +1957,6 @@ products of groups},
 Groups Geom. Dyn. \textbf{20} (2026), no.~2, 607--615,
 \doi{10.4171/GGD/826},
 \href{https://arxiv.org/abs/2306.02498}{arXiv:2306.02498}.
-
-\bibitem[So]{Soule}
-C.~Soul\'e,
-\emph{The cohomology of $\mathrm{SL}_3(\mathbb Z)$},
-Topology \textbf{17} (1978), no.~1, 1--22,
-\doi{10.1016/0040-9383(78)90009-5}.
 
 \bibitem[STW]{STW}
 C.~Schafhauser, A.~Tikuisis, and S.~White,
