@@ -90,9 +90,10 @@ finite-dimensional invariant $C^*$-subalgebras.  A single cyclic HNN
 extension then gives a finitely presented sofic group whose MF quotients
 are exactly its cyclic quotients, while its reduced $C^*$-algebra is
 simple with a unique trace, has stable rank one, and is not MF\@.  One
-amalgamation of that group realizes any finitely presented sofic group
-as the largest MF quotient of a finitely presented sofic non-MF group,
-preserving its profinite completion and its rational cohomology.  Finally, we construct
+amalgamation of that group realizes any finitely presented sofic MF
+group with an element of infinite order as the largest MF quotient of a
+finitely presented sofic non-MF group, preserving its profinite
+completion and its rational cohomology.  Finally, we construct
 a two-generated, finitely presented, torsion-free, acylindrically
 hyperbolic property-\textup{(T)} group with no nontrivial homomorphism
 to an MF group.
@@ -1818,86 +1819,75 @@ group sends $f$ to an element centralizing the image of $L$.
 \end{theorem}
 
 \begin{proof}
-We first give the finite-dimensional lifting and correction used in the
-proof.  A unital homomorphism from
-$A\cong\bigoplus_iM_{r_i}(\mathbb C)$ to a norm matrix corona lifts,
-on a cofinite set of coordinates, to unital $*$-homomorphisms
-$\phi_n\colon A\to M_{d_n}(\mathbb C)$.  Indeed, lift its diagonal
-matrix units and round them successively to orthogonal projections,
-using the complement of their sum for the last one.  The corrections
-tend to zero.  In each summand, compress a lift of $e_{j1}$ between
-the chosen projections $p_j,p_1$.  Its products with its adjoint tend
-to $p_j,p_1$, so, on a common tail, its polar partial isometry $v_j$
-has precisely these final and initial projections.  Then $v_jv_k^*$
-are exact matrix units lifting $e_{jk}$.  A summand may be zero at
-some coordinates; injectivity of $\phi_n$ is not required.
-
-Suppose $\beta\in\operatorname{Aut}(A)$ and unitaries $U_n$ satisfy
-$\operatorname{Ad}(U_n)\phi_n(a)-\phi_n(\beta(a))\to0$ in norm for
-every $a\in A$.  Put $f_n=\operatorname{Ad}(U_n)\phi_n$ and
-$g_n=\phi_n\beta$.  Finite dimensionality gives uniform convergence
-of $f_n-g_n$ on the unit ball.  With normalized Haar measure on
-$\U(A)$, the matrices
-\[
- T_n=\int_{\U(A)}g_n(u)f_n(u)^*\,du
-\]
-satisfy $\opnorm{T_n-1}\to0$ and $T_nf_n(a)=g_n(a)T_n$.
-The latter identity follows first for unitaries by left invariance
-of Haar measure and then for all $a$ by linearity.  The polar unitary
-$Z_n=T_n(T_n^*T_n)^{-1/2}$ has the same intertwining property and
-$\opnorm{Z_n-1}\to0$.  Thus $Z_nU_n$ implements $\beta$ exactly on
-$\phi_n(A)$ while differing from $U_n$ by a norm-null sequence.
-
-Lift $\rho$ to an operator norm asymptotic representation $U_n$ of
-$G$.  Choose a finite symmetric generating Kazhdan set $S$ for $L$
-with constant $\kappa>0$, and put
-$\beta_g=\operatorname{Ad}(\rho(g))|_A$.  Apply the correction just
-proved to each $s\in S$, obtaining unitaries $V_n(s)$ with
-\[
- V_n(s)\phi_n(a)V_n(s)^*=\phi_n(\beta_s(a)),\qquad
- \opnorm{V_n(s)-U_n(s)}\longrightarrow0.
-\]
-On a common tail, $\ker\phi_n$ and the trace
-$\tr_{d_n}\phi_n$ are invariant under each $\beta_s$, hence under
-$L$.  Therefore
-\[
- \pi_n(g)\phi_n(a)=\phi_n(\beta_g(a))
-\]
-is a genuine unitary representation of $L$ on the finite-dimensional
-Hilbert space $A_n=\phi_n(A)$ with normalized Hilbert--Schmidt inner
-product.  For a fixed $g\in L$, a word in $S$ supplies a unitary
-$V_n(g)$ implementing $\pi_n(g)$ on $A_n$.  Asymptotic
-multiplicativity gives $\opnorm{V_n(g)-U_n(g)}\to0$, so
+A unital homomorphism from $A\cong\bigoplus_iM_{r_i}(\mathbb C)$ to a
+norm matrix corona lifts, on a cofinite set of coordinates, to unital
+$*$-homomorphisms $\phi_n\colon A\to M_{d_n}(\mathbb C)$.  Lift its
+diagonal matrix units and round them successively to orthogonal
+projections, using the complement of their sum for the last one; the
+corrections tend to zero.  In each summand compress a lift of $e_{j1}$
+between the chosen projections $p_j,p_1$; on a common tail its polar
+partial isometry $v_j$ has precisely these final and initial
+projections, and the $v_jv_k^*$ are exact matrix units lifting
+$e_{jk}$.  A summand may vanish at some coordinates, and injectivity of
+$\phi_n$ is not required.  Lift $\rho$ to an operator norm asymptotic
+representation $U=(U_n)$ of $G$ and put
+$\beta_g=\operatorname{Ad}(\rho(g))|_A$, so that
 \begin{equation}\label{eq:finite-algebra-covariance}
- \hsnorm{\operatorname{Ad}(U_n(g))x-\pi_n(g)x}
- \le2\opnorm{U_n(g)-V_n(g)}\,\hsnorm{x}
- \qquad(x\in A_n).
+ \opnorm{U_n(g)\phi_n(a)U_n(g)^*-\phi_n(\beta_g(a))}
+ \longrightarrow0\qquad(a\in A,\ g\in G).
 \end{equation}
 
-Put $L'=tLt^{-1}$ and suppose $a\in A^{L'}\setminus A^L$.
-Let $P_n$ be the orthogonal projection in $A_n$ onto its
-$\pi_n(L)$-fixed vectors.  Infinitely many
-$b_n=\phi_n(a)-P_n\phi_n(a)$ are nonzero; otherwise every
-$\phi_n(\beta_g(a)-a)$ would eventually be zero, making $a$ fixed
-by $L$ in the corona.  Retain those coordinates and set
-$x_n=b_n/\hsnorm{b_n}$.  Then $\hsnorm{x_n}=1$, the vector $x_n$
-is orthogonal to the $L$-fixed subspace, and $\pi_n(h)x_n=x_n$ for
-$h\in L'$.  Equation~\eqref{eq:finite-algebra-covariance} gives
-\[
- \hsnorm{\operatorname{Ad}(U_n(h))x_n-x_n}\longrightarrow0
- \qquad(h\in L').
-\]
-Consequently $y_n=U_n(t)^*x_nU_n(t)$ is asymptotically $L$-fixed.
-Theorem~\ref{thm:transport} transports $y_n$ forward by $t$, so
-$x_n$ is asymptotically $L$-fixed as well.  By
-\eqref{eq:finite-algebra-covariance},
-\[
- \max_{s\in S}\hsnorm{\pi_n(s)x_n-x_n}\longrightarrow0.
-\]
-The Kazhdan inequality bounds this maximum below by $\kappa$, since
-$x_n$ is a unit vector orthogonal to the fixed subspace.  This
-contradiction proves $A^{L'}\subseteq A^L$; the reverse containment
-follows from $L'\le L$.
+Let $q$ be the sum of one $L$-orbit of minimal central projections of
+$A$.  The maps $\beta_g$, $g\in L$, carry the corresponding summands
+onto one another, so these are isomorphic.  Applying
+\eqref{eq:finite-algebra-covariance} to a finite generating set of $L$
+and to each minimal central projection $e\le q$, the projections
+$U_n(g)\phi_n(e)U_n(g)^*$ and $\phi_n(\beta_g(e))$ are eventually at
+distance less than $1$, hence eventually of equal rank: the summands of
+$qA$ occur in $\phi_n$ with equal multiplicity.  Discard the
+coordinates where $q_n=\phi_n(q)$ vanishes and put
+$\mu_n=\tr_{d_n}(q_n)>0$.  On $qA$ the traces
+$\mu_n^{-1}\tr_{d_n}\circ\phi_n$ are then all equal to the single
+faithful trace $\tau_0$ that averages the normalized traces of those
+summands, so
+\begin{equation}\label{eq:orbit-normalization}
+ \hsnorm{\phi_n(b)}=\sqrt{\mu_n}\,\lVert b\rVert_{2,\tau_0},
+ \qquad \lVert b\rVert_{2,\tau_0}=\tau_0(b^*b)^{1/2}
+ \qquad(b\in qA).
+\end{equation}
+
+Fix $b\in qA$ and $g\in G$ and put
+$D_n=U_n(g)\phi_n(b)U_n(g)^*-\phi_n(\beta_g(b))$.  Each of the two
+terms has rank at most $\operatorname{rank}q_n=\mu_nd_n$, so
+$\operatorname{rank}D_n\le2\mu_nd_n$ and therefore
+\begin{equation}\label{eq:rank-normalized}
+ \frac{\hsnorm{D_n}}{\sqrt{\mu_n}}
+ \le\sqrt2\,\opnorm{D_n}\longrightarrow0 .
+\end{equation}
+This rank bound is what makes the argument uniform.  It compensates
+exactly for a summand whose relative size $\mu_n$ tends to zero, so no
+correction of the covariance is required; an appeal to equivalence of
+norms on the finite-dimensional algebra would not survive that case.
+
+Now take $b\in A^{tLt^{-1}}$.  The orbit sums $q$ are $L$-invariant,
+hence $tLt^{-1}$-invariant, so it is enough to treat $b\in qA$.  The
+matrices $x_n=\phi_n(b)/\sqrt{\mu_n}$ have the constant normalized
+Hilbert--Schmidt norm $\lVert b\rVert_{2,\tau_0}$ by
+\eqref{eq:orbit-normalization}, and \eqref{eq:rank-normalized}, applied
+to $h\in tLt^{-1}$, gives
+$\hsnorm{\operatorname{Ad}(U_n(h))x_n-x_n}\to0$; so
+$x\in\mathcal C_2(U,tLt^{-1})$.  Conjugation by $U_n(t)$ carries
+$\mathcal C_2(U,L)$ onto $\mathcal C_2(U,tLt^{-1})$, so
+Theorem~\ref{thm:transport} gives
+$\mathcal C_2(U,tLt^{-1})=\mathcal C_2(U,L)$ and $x$ is asymptotically
+fixed by $L$.  For $g\in L$ the number
+$\lVert\beta_g(b)-b\rVert_{2,\tau_0}$ equals
+$\hsnorm{\phi_n(\beta_g(b))-\phi_n(b)}/\sqrt{\mu_n}$ for every $n$ by
+\eqref{eq:orbit-normalization}, and that tends to zero by
+\eqref{eq:rank-normalized} together with
+$\hsnorm{\operatorname{Ad}(U_n(g))x_n-x_n}\to0$.  So $\beta_g(b)=b$ by
+faithfulness of $\tau_0$, and $b\in A^L$.  The reverse containment
+follows from $tLt^{-1}\le L$.
 
 For the last assertion use $A=C^*(\rho(F))$, which is finite
 dimensional and normalized by $\rho(L)$, and apply the result to
@@ -1979,9 +1969,13 @@ commutes with $\sigma(t\bar\Gamma t^{-1})=\sigma(\alpha(\bar\Gamma))$.
 The translation by $e_1$ carries $h_0$ to $h_{e_1}$, and these are
 orthogonal and nonzero, so $h_0\notin\mathcal A^{\bar\Gamma}$.  This
 proves~(1), the relevant elements lying in the span of the unit and the
-eight generators.  The $\bar\Gamma$-action on the eight generators is
-the affine action on $\mathbb F_2^3$, through
-$\bar\Gamma\to\bar\Gamma/\alpha(\bar\Gamma)$.
+eight generators.  The $\bar\Gamma$-action on the eight generators is the affine action on
+$\mathbb F_2^3$, through the reduction
+$\bar\Gamma\to\mathbb F_2^3\rtimes\mathrm{SL}_3(\mathbb F_2)$.  Note that
+$\alpha(\bar\Gamma)$ is not normal in $\bar\Gamma$: conjugating $(0,A)$
+by a translation $w$ has translation part $w-Aw$, which need not be
+even.  So $\bar\Gamma/\alpha(\bar\Gamma)$ is a coset space, not a
+quotient group.
 
 For~(2), double the dimensions, replace $\sigma_q$ by
 $\sigma_q\otimes I_2$, and set
@@ -2025,10 +2019,12 @@ Theorem~\ref{thm:finite-algebra-transport} by a finitely generated
 virtually abelian one, even when the element has order two and a finite
 orbit.
 
-The order of correction and normalization matters: the error in
-\eqref{eq:finite-algebra-covariance} is proportional to the norm of
-$x$, so it remains small for the normalized vectors even when the
-original $b_n$ have vanishing Hilbert--Schmidt mass.
+The normalization in that proof is by the relative size $\mu_n$ of a
+single central orbit, and the rank bound~\eqref{eq:rank-normalized} is
+what keeps the covariance error small after dividing by
+$\sqrt{\mu_n}$.  The example above is the reason some such bound is
+needed: on a summand whose relative size tends to zero, equivalence of
+norms on a fixed finite-dimensional algebra gives nothing uniform.
 
 \subsection{Perfect finite blocks}
 
@@ -2728,10 +2724,15 @@ a non-nuclear algebra, and for faithful traces on algebras satisfying
 the universal coefficient theorem the answer is
 positive~\cite{TWW}.
 
-\item Is there a torsion-free group whose MF radical is nontrivial and
-proper?  The exact radicals of Theorems~\ref{thm:fp-sofic-radical}
-and~\ref{thm:sofic-cyclic-mf} contain torsion, while the group of
-Theorem~\ref{thm:torsion-free} has full MF radical.
+\item Is there a finitely presented \emph{sofic} torsion-free group
+whose MF radical is nontrivial and proper?  Without soficity the
+question is already settled by $Q\times\mathbb Z$, for $Q$ as in
+Theorem~\ref{thm:torsion-free}: every homomorphism to an MF group
+kills the first factor, while the projection to $\mathbb Z$ realizes
+the quotient, so
+$\operatorname{Rad}_{\mathrm{MF}}(Q\times\mathbb Z)=Q\times\{1\}$.
+The exact radicals of Theorems~\ref{thm:fp-sofic-radical}
+and~\ref{thm:sofic-cyclic-mf} contain torsion.
 \end{enumerate}
 
 \section*{Origin and authorship}
