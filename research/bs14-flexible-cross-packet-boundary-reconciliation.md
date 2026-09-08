@@ -24,7 +24,9 @@ which the normalized-HS displacement tends to zero as `E/d tends to 0`,
 with one modulus independent of all fourth-power orbit lengths, scalar
 return phases, and multiplicities.
 
-Equivalently, after decomposing the exact BS core into scalar packets
+A stronger form -- **not** equivalent, and false if read as retaining the old
+representation type (see `scalar-phase-core-retention-forces-full-padding`):
+after decomposing the exact BS core into scalar packets
 `(O,v)`, the two cubic residuals must pay for an added nonnegative
 multiplicity vector `b` such that the old multiplicity data plus `b` lies in
 the restriction semigroup of exact Iwahori representations:
@@ -46,10 +48,22 @@ The quadratic scale is forced by the normalized form of `(FBR2)`.  If
 k/(d+k)=O(epsilon^2).                                 (FBR3)
 ```
 
-It is not yet known whether `(FBR2)` holds for arbitrary mixtures.  In
-particular, the statement is deliberately stronger than merely permitting
-unspecified `o(d)` padding and is the sharp flexible target suggested by the
-compressed Weil packets.
+`(FBR2)` must be read with a **moving** core.  Read literally, with the old
+multiplicity data retained and only augmented by `b`, it is FALSE: the scalar
+tuple `X=T=1`, `R=e^(i theta)1_d` of
+`scalar-phase-core-retention-forces-full-padding` has `E/d=13 theta^2+O(theta^4)`
+while every completion retaining its multiplicity data must add `k>=d`
+dimensions, by the inverse-pair count of
+`inverse-conjugacy-padding-equals-multiplicity-defect`.  Under the intended
+reading, in which the reconciliation may first move the core by `o(1)` in
+normalized HS and then add `b`, that example is repaired with `k=0` (move `R`
+to `1_d`, displacement `2 sin(theta/2)`) and says nothing; that is also the
+reading used by the attempts below and by the phase/multiplicity-mismatch test
+at the end of this node.  With the core allowed to move it is still not known
+whether `(FBR2)` holds for arbitrary mixtures.  In particular the statement is
+deliberately stronger than merely permitting unspecified `o(d)` padding and is
+the sharp flexible target suggested by the compressed Weil packets -- but no
+proof of it may assume the old representation type survives.
 
 By `iwahori-square-free-bs14-presentation`, the same target can be stated
 without the half-parabolic `S`.  Set `T=S^2`; then
@@ -651,3 +665,24 @@ the cross-packet multiplicity boundary for one `X`.
   `o(k)`, while every exact enlargement requires at least `k` new
   dimensions.  This is the precise phase/multiplicity-mismatch test left by
   the one-block calculation.
+
+- **The retained-core reading is refuted, the moving one is not (2026-09-08).**
+  `scalar-phase-core-retention-forces-full-padding` supplies the
+  phase/multiplicity-mismatch input asked for in the preceding bullet, in its
+  simplest possible form: one scalar packet, `X=1`, no heterogeneous mixing.
+  Both cubic energies are `O(d theta^2)` and every completion that keeps `R`
+  as a reducing summand needs `k>=d`, because `x^2=(xr)^2=1` already forces
+  `X~R~X~=R~^(-1)` and therefore equal multiplicities on each inverse pair
+  (`inverse-conjugacy-padding-equals-multiplicity-defect`).  What it does not
+  refute is the moving-core target: that example is exactly repaired by
+  `R -> 1_d`.  So the mismatch test at the end of this node cannot be met by
+  spectral counting alone -- any genuine refutation must also block every
+  small-displacement motion of the core, which the scalar family does not.
+- **Rank-only reconciliation is too weak, independently of padding
+  (2026-09-08).**  `commuting-repair-forces-half-dimension-rank` shows on the
+  clock-shift pair that a vanishing normalized defect can force
+  `rank` change at least `d/2` in any commuting repair, at every padding, while
+  a normalized-HS repair of size `O(1/q)` exists that moves `d-q` directions.
+  So a boundary reconciliation confined to the added block plus a sublinear
+  surgery subspace cannot be the general mechanism; the semigroup step has to
+  be compatible with corrections of high rank and small norm.
