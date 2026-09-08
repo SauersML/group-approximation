@@ -2,9 +2,9 @@
 rg: 2
 id: boone-higman-via-ck-maximal-kernel
 kind: route
-title: Compose the two envelope theorems and finitely normally generate one maximal kernel
+title: Build the marked Steinberg cover and finitely normally generate one maximal kernel
 target: boone-higman-conjecture
-requires: [boone-higman-thompson-simple-envelope, chatterji-kassabov-normal-generator-embedding, proper-normal-subgroups-miss-the-normally-generating-core, ck-envelope-has-a-finitely-normally-generated-maximal-kernel, fp-quotient-iff-kernel-finitely-normally-generated]
+requires: [boone-higman-thompson-simple-envelope, clapham-fp-embedding-preserves-word-problem, fp-group-embeds-in-fp-derived-subgroup, ck-steinberg-marked-cover, proper-normal-subgroups-miss-the-normally-generating-core, ck-envelope-has-a-finitely-normally-generated-maximal-kernel, fp-quotient-iff-kernel-finitely-normally-generated]
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
 ---
@@ -13,10 +13,14 @@ Let `G` be finitely generated with solvable word problem.
 
 By `boone-higman-thompson-simple-envelope`, applied to `G × Z` so that the
 core comes out infinite, embed `G <= S` with `S` finitely generated,
-computably presented, infinite and simple.  Pick `1 != s in S`.  Since `S`
-is finitely generated and recursively presented,
-`chatterji-kassabov-normal-generator-embedding` applies and gives a finitely
-presented `Gamma >= S` with property (T) and `Gamma = <<s>>_Gamma`.
+computably presented, infinite and simple. Pick `1 != s in S`. Its word
+problem is decidable by dovetailing enumeration of relator consequences
+with witnesses that a fixed nonidentity word lies in the normal closure
+of the tested word. Clapham embeds `S` in a finitely presented group `H`.
+By `fp-group-embeds-in-fp-derived-subgroup`, embed `H` in `[T,T]` with
+`T` finitely presented. Apply `ck-steinberg-marked-cover` with this marking
+and `g=s`. This gives a finitely presented `Gamma >= H >= S` with
+property (T) and `Gamma = <<s>>_Gamma`, as a marked cover of `EL_4(U)`.
 
 By `ck-envelope-has-a-finitely-normally-generated-maximal-kernel` choose a
 maximal proper normal `M <| Gamma` that is finitely normally generated.
@@ -30,9 +34,10 @@ So `G` embeds in a finitely presented simple group.
 
 ## Why every prerequisite is genuinely used
 
-Drop the Thompson envelope and there is no simple core, so the quotient can
-kill `G`.  Drop the Chatterji--Kassabov envelope and there is no finitely
-presented ambient group, so there is nothing to take a quotient of.  Drop the
+The Thompson envelope supplies the simple core. Clapham and the finite
+derived-subgroup embedding supply the finitely presented marking needed by
+the Steinberg-cover construction. That construction supplies the finitely
+presented ambient group and normal generator. Drop the
 core-survival lemma and a maximal quotient is simple but possibly trivial on
 `G`.  Drop the kernel claim and the quotient is simple but not finitely
 presented — that is exactly the dead route
@@ -40,9 +45,12 @@ presented — that is exactly the dead route
 the Tietze equivalence and finite normal generation of `M` does not convert
 into a finite presentation of the quotient.
 
-Four of the five are established.  The route is one open claim wide, and that
-claim is a statement about the normal lattice of an explicitly presented
-elementary matrix group.
+All prerequisites except the maximal-kernel claim are established.
+The route is one open claim wide, and that
+claim is a statement about the normal lattice of a finitely presented
+marked cover. [[ck-steinberg-marked-cover]] supplies an explicit Steinberg
+source for that cover. Finite presentation of the elementary image itself
+has not been established, so it cannot replace the cover in this criterion.
 
 ## What the route does not deliver
 

@@ -113,25 +113,25 @@ needed for finite presentability.
 
 ## 3. Exact strength of the CK maximal-kernel leaf
 
-Fix one direct CK envelope `Gamma = EL_4(U)` containing the simple core `S`.
-For a maximal proper normal subgroup `M`, the following are equivalent:
+Fix a **finitely presented marked CK cover** Gamma containing the simple
+core S. For a maximal proper normal subgroup M, the following are equivalent:
 
-1. `M` is finitely normally generated in `Gamma`;
-2. `Gamma/M` is finitely presented;
-3. `Gamma/M` is a finitely presented simple property-(T) group containing
-   `S` via the given quotient map.
+1. M is finitely normally generated in Gamma;
+2. Gamma/M is finitely presented;
+3. Gamma/M is a finitely presented simple property-(T) group containing S.
 
-Proof: (1) iff (2) is the Tietze kernel criterion already formalized in the
-repository.  Maximality gives simplicity; property (T) passes to quotients;
-and the normal-generator/simple-core lemma gives `M cap S = 1`.  Conversely,
-(3) implies (2), hence (1).
+The Tietze kernel criterion proves (1) iff (2); maximality, the
+normal-generator/simple-core lemma, and inheritance of property (T) give
+the remaining assertions.
 
-This exposes a hidden strengthening: the CK lane does not merely seek an
-arbitrary finitely presented simple envelope.  It seeks one that is a
-property-(T) quotient of this particular matrix envelope.  That observation
-does not refute the lane--CK already shows arbitrary recursively presented
-groups embed in property-(T) groups--but it prevents treating the leaf as a
-routine normal-lattice compactness statement.
+**September 8 correction:** the previous text replaced Gamma with
+EL_4(U) without establishing its finite presentation. The cited theorem
+applies to St_4(U). [The corrected cover construction](boone-higman-steinberg-cover-correction-2026-09-08.md)
+retains a finitely presented marked cover. Applying (1) iff (2) directly to
+EL_4(U) requires an additional finite-presentation argument.
+
+The CK lane still seeks a property-(T) simple quotient of a specific
+finitely presented cover. It does not yet control any maximal kernel.
 
 ## 4. New matrix-level screen
 
@@ -146,8 +146,10 @@ If `M` is proper, the fullness of every `1-s` (`1 != s in S`) proves that
 
 The full proof is in `ck-envelope-level-ideal-screen.md`.
 
-This is the honest surviving sharp statement: any candidate maximal kernel
-has a canonical proper, core-separating ring level.  A complete proof still
+This is a statement about proper normal subgroups of the **matrix group**.
+It cannot automatically be transferred to maximal kernels of the finitely
+presented marked cover: their images in the matrix group have not been
+shown proper. For a proper matrix kernel, a complete proof still
 needs a theorem controlling the subgroup above that level--in particular,
 finite generation of the level ideal and finite normal generation of the
 possible noncongruence/central part.  No such theorem was found for the

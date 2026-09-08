@@ -35,16 +35,18 @@ subgroups and over the freedom in the construction, which is why this is not
 a restatement of the conjecture: it is a question about the normal lattice of
 a specific, explicitly presented matrix group.
 
-That group can now be taken to be
+The coefficient ring can be the explicit finitely presented ring
 
-    Gamma = EL_4(U),    U = Z[G~]<p,q>/(p(1-g)q - 1)
+    U = Z[G~]<p,q>/(p(1-g)q - 1).
 
-by `universal-sandwich-ring-is-finitely-presented-and-injective`, with `U` an
-explicit finitely presented ring.  Anyone attacking this claim should attack
-the normal subgroup structure of that elementary group directly; the auxiliary
-Shalom cover that the original construction interposed is no longer in the
-way, so there is no longer an uncontrolled kernel between the statement and
-the matrices.
+**September 8 correction:** this does not establish finite presentation
+of `EL_4(U)`. The verified finite-presentation theorem applies to
+`St_4(U)`. By [[ck-steinberg-marked-cover]], one can use a finitely
+presented marked quotient `Gamma` of `St_4(U)` mapping onto `EL_4(U)`.
+The covering kernel remains uncontrolled. This open claim concerns the
+finitely presented cover; its normal subgroups must not be identified
+with the normal subgroups of the elementary image without an additional
+argument.
 
 ## Attempts
 

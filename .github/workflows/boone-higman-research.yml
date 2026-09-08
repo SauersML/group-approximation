@@ -12,6 +12,10 @@ on:
       - 'research/rank-four-*.md'
       - 'research/decidable-group-ring-has-fp-projective-simple-host.md'
       - 'research/finite-fullness-simulation-theorem-for-rings.md'
+      - 'research/steinberg-finite-presentation-and-kazhdan-theorem.md'
+      - 'research/steinberg-finiteness-kazhdan-citation.md'
+      - 'research/finite-marking-normal-generator-cover*.md'
+      - 'research/ck-steinberg-marked-cover*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
 
@@ -51,6 +55,8 @@ jobs:
           bin/cairn why rank-four-elementary-center-obstructs-simplicity --json > bh-ring-center.json
           bin/cairn why finite-fullness-simulation-theorem-for-rings --json > bh-ring-refuted-premise.json
           bin/cairn why decidable-group-ring-has-fp-projective-simple-host --json > bh-ring-open-host.json
+          bin/cairn why ck-steinberg-marked-cover --json > bh-steinberg-cover.json
+          bin/cairn why finite-marking-normal-generator-cover --json > bh-marking-cover.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -60,3 +66,5 @@ jobs:
             bh-goal.json
             bh-quotient-obstruction.json
             bh-ring-*.json
+            bh-steinberg-cover.json
+            bh-marking-cover.json
