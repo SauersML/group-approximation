@@ -58,3 +58,44 @@ arguments, not Lean certificates. No novelty claim is made. Cairn's
 structural checks validate dependency and refutation bookkeeping; they
 do not mechanically verify these proofs. No local code or build was run
 for this work. No GPU computation contributed to this result.
+
+## Remote validation
+
+The mathematical changes were committed as `147b04cb9`; the redundant,
+incorrectly typed `invalidates` edge was removed in `1ccbfe33d`. The
+claim's `refuted_by` edge supplies the refutation. The first workflow run
+`34287709316` caught that schema mistake before exporting results.
+
+The corrected integration at main commit
+`14f4b79fbc4799ead2219ffc9adac35f19e68d0a` passed
+[research check 34287804077](https://github.com/SauersML/group-approximation/actions/runs/34287804077).
+Downloaded outputs are retained under
+`.cairn/bh-automorphism-check-20260908/`. The inspected `node_status`
+fields, distinct from the CLI's generic `status: ok`, are:
+
+| Node | Cairn status |
+| --- | --- |
+| relative-automorphism-fp-host-reflects-base-presentation | ESTABLISHED |
+| regular-cyclic-twisted-core-is-decidable-mif-non-fp | ESTABLISHED |
+| bffhz-computable-core-fp-upgrade-is-false | ESTABLISHED |
+| bffhz-action-image-is-finitely-presented | REFUTED |
+| boone-higman-via-bffhz-action-image | INVALIDATED |
+| boone-higman-conjecture | OPEN |
+
+These statuses confirm the intended graph bookkeeping, not independent
+mathematical or Lean verification. Existing exact finite controls also
+passed; they do not test the new infinite-group arguments.
+
+## Follow-up literature located
+
+A fresh search located Almeida--Dantas--de Oliveira-Tosti,
+[arXiv:2609.01868v1](https://arxiv.org/html/2609.01868v1), submitted
+September 1, 2026, which was not yet cited in the research directory.
+Theorem D gives finitely presented simple envelopes for specified
+permutational wreath products with free abelian lamps and a non-torsion
+contracting self-similar actor, subject to Theorem A's subgroup conditions.
+The introduction and theorem statement were inspected. The proof and
+precise applicability to our remaining constructions have not been audited,
+so this source is a follow-up candidate, not a new established Cairn
+premise or a universal embedding theorem. In particular, its own
+Question 1.1 leaves a specified wreath product over PSL_2(Z[1/2]) open.
