@@ -27,6 +27,7 @@ artifacts:
   - research/artifacts/gottschalk-tarski-operand-reversal-exclusions-2026-09-08.md
   - research/artifacts/gottschalk-exact-quadratic-derivative-collision-criterion-2026-09-08.md
   - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md
+  - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -203,3 +204,13 @@ and identity on the other coordinates. This conjugacy preserves
 composition and decoder identities. Finite central blocks also encode
 arbitrary matrix rules on enlarged groups. The all-odd-cycle result
 is recorded in `central-odd-norm-quadratic-ca-are-conjugate-to-linear`.
+
+For an arbitrary order-three element, the feedback preserving the
+invariant triple subspace is surjunctive exactly when the corner
+eF_2[G]e, e=1+t+t^2, is directly finite. When <t> is normal, all
+linear feedback qualifies and the corner is F_2[G/<t>]. This is
+recorded in `order-three-axis-feedback-surjunctivity-iff-corner-finiteness`.
+For nonnormal <t>, injectivity on the linear axis alone does not
+justify compressing it back to that axis: a finite order-18 control
+disproves that intermediate inference. The control itself is
+noninjective; the unrestricted nonnormal case remains unresolved.

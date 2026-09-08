@@ -4,6 +4,13 @@ Date: 2026-09-08. Exact formulas and a proved whole-family obstruction.
 No computation is used. These results do not construct a group-ring
 split or settle Kaplansky's conjecture.
 
+The later [positive-shear control](kaplansky-complete-exterior-injective-positive-shear-control-2026-09-08.md)
+does pass this complete natural exterior test, while a separate finite
+representation still rules out its group-ring split. The
+[Laurent and amenable-support obstruction](kaplansky-laurent-adjugate-and-amenable-tail-kernels-2026-09-08.md)
+and the [creation-deletion certificate](kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md)
+give further exclusions beyond the relative character test below.
+
 Use the chart, projectors, and binary boundary module from
 [the first-field-coordinate kernel artifact](kaplansky-first-field-coordinate-transporter-kernel-2026-09-08.md).
 Write `B_4=F_4⊗_(F_2)B`, and let `sigma` conjugate scalar coefficients

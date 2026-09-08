@@ -21,6 +21,10 @@ artifacts:
   - research/artifacts/kaplansky-first-field-coordinate-transporter-kernel-2026-09-08.md
   - research/artifacts/kaplansky-full-two-sector-relative-transporter-obstruction-2026-09-08.md
   - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md
+  - research/artifacts/kaplansky-laurent-adjugate-and-amenable-tail-kernels-2026-09-08.md
+  - research/artifacts/kaplansky-complete-exterior-injective-positive-shear-control-2026-09-08.md
+  - research/artifacts/kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md
+  - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
 ---
 
@@ -235,8 +239,9 @@ gives a source kernel; relative semilinearity needs cancellation
 between the two source sectors. This exclusion survives any shared
 left change of the two coordinate operators. It is recorded in
 `relative-character-kernels-forbid-projective-splits`. Both relative
-blocks being injective remains only necessary; no actor has yet
-been proved to pass the full exterior-square test in this new family.
+blocks being injective remains only necessary. A subsequent positive
+shear pair now passes the entire natural exterior-square source,
+as described below.
 
 A separate exact bridge transports any linear inverse pair to a
 Boolean quadratic pair on an enlarged group. The central odd-cycle
@@ -253,6 +258,36 @@ directly finite. The converse to the norm reduction uses a local
 involution and two-block elimination; stable direct finiteness is
 not assumed. This is an equivalence, with neither a direct-finiteness
 proof for arbitrary Gamma nor a counterexample supplied.
+
+The complete exterior test now separates three cases. Laurent
+coefficient actors always have an explicit adjugate tensor kernel;
+amenable coefficient groups have a finite-support rank deficit,
+without requiring an invariant finite-dimensional tail space.
+These results are recorded in
+`amenable-coefficient-transporters-have-exterior-kernels`.
+
+The positive shears a=[[1,s_0],[0,1]], b=[[1,s_1],[0,1]] pass the
+entire natural exterior test. A finite-prefix-support proof rules
+out every tensor kernel in both source sectors. Their group-ring
+split is nevertheless impossible: the free positive coefficient
+algebra has an augmentation giving a finite representation with
+f_0 nonzero and P_0 zero. This paired control is recorded in
+`positive-shear-passes-exterior-test-without-projective-split`.
+
+Adding deletion coefficients in the pair a=[[1,s_0],[t_0,0]],
+b=[[1,s_1],[t_1,0]] removes that creator-to-zero specialization.
+The pair still fails: the two periodic tails (01)^infinity and
+(10)^infinity supply a four-term binary exterior kernel, recorded
+in `deletion-shear-pair-has-period-two-exterior-kernel`. Its explicit
+algebraic proof closes this actor; no full group-ring split has
+been obtained.
+
+The quadratic bridge also extends to order-three feedback preserving
+the invariant triple subspace, with an exact criterion in eF_2[G]e.
+For a normal subgroup of order three this covers arbitrary linear
+feedback and identifies the corner with the quotient group algebra.
+The nonnormal unrestricted case still lacks a justified treatment
+of the linear axis outside that subspace.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**

@@ -15,6 +15,12 @@ the general odd-cycle argument concerns the norm subclass. No claim
 about direct finiteness over all characteristics is made. No computation
 was used.
 
+The later [order-three corner theorem](gottschalk-noncentral-order-three-axis-corner-2026-09-08.md)
+removes centrality when feedback preserves the invariant triple
+subspace. For a normal subgroup of order three, it covers arbitrary
+feedback and gives an equivalence with direct finiteness of the
+quotient group algebra. The unrestricted nonnormal case remains open.
+
 ## The central norm family
 
 Let Gamma be any group, let n>=3 be odd, and put
