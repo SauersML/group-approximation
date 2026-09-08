@@ -747,6 +747,14 @@ do not establish injectivity on the nonlinear zero-parity fiber.
 
 ## Guard extensions beyond cyclic subgroups
 
+The [quadratic flux family proof](gottschalk-tarski-common-factor-residual-controls-2026-09-08.md)
+also settles `F=x+(1+R_t)R_s(x R_t x)` for every group and every s,t.
+If t has infinite or even order, the operand graph is bipartite.
+For finite odd t, explicit two-coset collisions force an injective
+rule to have abelian memory subgroup. In particular the displayed
+Tarski-group instance is noninjective despite passing the six
+subgroup-mask tests and both coloring criteria failing.
+
 The [off-guard elimination theorem](gottschalk-off-guard-quadratic-elimination-2026-09-08.md)
 requires no group property of H when each quadratic monomial has
 exactly one operand in H. A compact space of separately colored

@@ -189,3 +189,27 @@ subgroups equal M. This is an additional necessary condition, not an
 injectivity certificate or an assertion that such a nonsurjunctive
 memory group has been constructed. A known surjunctive guard also
 excludes a candidate by the separate surjunctive-guard transfer theorem.
+
+## Higher-degree exact-one-guard corollary
+
+The same proof applies to
+
+    F(x)(g)=x(g)+sum_i lambda_i x(gh_i) prod_j x(gs_(i,j)),
+    h_i in H,   every s_(i,j) outside H,   each product nonempty.
+
+Thus each displayed nonlinear monomial has exactly one guard
+occurrence; arbitrary degree among the other factors is allowed.
+Repeated foreign addresses do not affect the argument. Injectivity
+again implies surjectivity without any assumption on H.
+
+To see this, the colored block lemma needs only that P_i is homogeneous
+linear in X_i, with coefficients that are arbitrary local functions
+of the other blocks, and that P_i=X_i when all other blocks are zero.
+These properties survive restriction of any blocks to zero. They give
+the same injective L_(c,Y), and finite Y support still makes L_(c,Y)
+equal to identity outside finitely many output coordinates. Every
+subsequent step uses only these facts, locality, and the previously
+proved zero-block inverse. The compact color space, fixed-color data
+modifications, and uniform inverse argument are unchanged. For the
+displayed polynomial, each foreign operand lies in a different coset
+from the recipient, so its coefficients have exactly these properties.

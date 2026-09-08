@@ -20,6 +20,7 @@ artifacts:
   - research/artifacts/gottschalk-polycyclic-guard-rank-extension-2026-09-08.md
   - research/artifacts/gottschalk-surjunctive-guard-finite-intersection-proof-2026-09-08.md
   - research/artifacts/gottschalk-off-guard-quadratic-elimination-2026-09-08.md
+  - research/artifacts/gottschalk-tarski-common-factor-residual-controls-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -126,3 +127,11 @@ the coloring fixed and proves uniform locality of each inverse.
 For `x+x_r x_(rt)+x_s x_(st)`, a strict candidate must consequently
 have every one-from-each-pair guard generate the whole memory group.
 Satisfying that condition is not an injectivity proof.
+
+The full family `F=x+(1+R_t)R_s(x R_t x)` is now excluded over every
+group: injectivity implies surjectivity. Infinite or even-order t
+gives a bipartite operand graph; finite odd order gives an explicit
+coset collision unless the memory subgroup is abelian. The Tarski
+instance passes the earlier mask and coloring controls and still
+has a finite collision. This closes that specified nonlinear family,
+without asserting surjunctivity of the Tarski group or arbitrary CA.
