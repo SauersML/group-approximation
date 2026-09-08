@@ -29,6 +29,7 @@ on:
       - 'scripts/check_palomar_statement_match.sh'
       - 'scripts/PalomarChallengeType.lean'
       - 'scripts/PalomarSolutionType.lean'
+      - 'scripts/PalomarAxioms.lean'
       - 'formalization.yaml'
       - 'lakefile.toml'
       - 'lean-toolchain'
@@ -122,3 +123,10 @@ jobs:
       # The check that reproduces Comparator's comparison.
       - name: Palomar statement match
         run: bash scripts/check_palomar_statement_match.sh
+
+      # The third of Comparator's three verdicts, and the only one nothing
+      # else here reproduced: the axiom closure of the solution's proof.  The
+      # driver is not a library root, so a failure stops this step and not
+      # anyone's `lake build`.
+      - name: Palomar axiom closure
+        run: lake env lean scripts/PalomarAxioms.lean
