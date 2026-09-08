@@ -89,11 +89,8 @@ canonical trace on $C^*_{\max}(E)$ is amenable but not quasidiagonal.  Its proof
 finite-dimensional invariant $C^*$-subalgebras.  A single cyclic HNN
 extension then gives a finitely presented sofic group whose MF quotients
 are exactly its cyclic quotients, while its reduced $C^*$-algebra is
-simple with a unique trace, has stable rank one, and is not MF\@.  One
-amalgamation of that group realizes any finitely presented sofic MF
-group with an element of infinite order as the largest MF quotient of a
-finitely presented sofic non-MF group, preserving its profinite
-completion and its rational cohomology.  Finally, we construct
+simple with a unique trace, has stable rank one, and is not MF\@.
+Finally, we construct
 a two-generated, finitely presented, torsion-free, acylindrically
 hyperbolic property-\textup{(T)} group with no nontrivial homomorphism
 to an MF group.
@@ -155,10 +152,7 @@ Some groups admit no such approximation.  We construct groups for which
 every homomorphism to an MF group is trivial, as well as a sofic group
 with a nontrivial element killed by every MF homomorphism.  The proof
 uses a property-\textup{(T)} subgroup conjugated into a proper subgroup
-of itself.  For finitely generated groups, a separate tensor argument
-shows that each element killed by all MF homomorphisms has a finite
-linear certificate in operator
-norm (Theorem~\ref{thm:word-linear-certificate}).
+of itself.
 
 Our first counterexample is the group
 \[
@@ -399,12 +393,6 @@ $\chi$, and $\widehat P\cong\widehat{\mathbb Z}$.  The group $P$ is a
 Powers group; in particular, $C^*_{\mathrm r}(P)$ is simple, has a
 unique tracial state, has stable rank one, and is not MF.
 \end{mainthm}
-
-Theorem~\ref{thm:realization} makes $P$ a device: amalgamating it with
-any finitely presented sofic group $A$ along an infinite-order element
-produces a finitely presented sofic non-MF group whose largest MF
-quotient is $A$, with the profinite completion and the rational
-cohomology of $A$ unchanged.
 
 Section~\ref{sec:cyclic-mf} constructs $P$ by adding one generator and
 one relator to the presentation of $E$.  The relation identifies a
@@ -890,135 +878,6 @@ and reduction modulo odd integers separates its elements, so $V$ is
 residually finite and MF~\cite[Corollary~10]{Korchagin}.  So the lamps
 of Section~\ref{sec:amenable-nonqd} are necessary for the non-MF
 conclusion there.
-
-\subsection{Finite certificates for individual words}
-\label{subsec:word-certificates}
-
-The obstruction has a finite, quantitative form even when it kills only
-part of the group.  For a finite set $\mathcal R$ of words in $F_m$ put
-\[
- \delta_{\mathcal R}(U)=\max_{r\in\mathcal R}\opnorm{r(U)-1},
-\]
-an empty maximum being zero.
-
-\begin{theorem}[linear certificates for MF-invisible words]
-\label{thm:word-linear-certificate}
-Let $G=F_m/N$ be a finitely generated group and let $w\in F_m$.  The
-image of $w$ lies in $\operatorname{Rad}_{\mathrm{MF}}(G)$ if and only
-if there are a finite set $\mathcal R\subseteq N$ and a constant $C$
-with
-\begin{equation}\label{eq:word-linear-certificate}
- \opnorm{w(U)-1}\le C\,\delta_{\mathcal R}(U)
-\end{equation}
-for every unitary tuple $U=(U_1,\ldots,U_m)$ in every dimension.  If
-$G$ is finitely presented, $\mathcal R$ may be taken to be a set of
-defining relators.  No numerical value of $C$ is asserted.
-\end{theorem}
-
-\begin{proof}
-First a tensor estimate.  Let $A\in\U(d)$ with $t=\opnorm{A-1}>0$.
-Since $A-1$ is normal, some eigenvalue $e^{i\theta}$ of $A$, with
-$0<|\theta|\le\pi$, has $|e^{i\theta}-1|=t$.  Put
-$k=\lceil\pi/2|\theta|\rceil$.  Then $k|\theta|\ge\pi/2$, and
-$k|\theta|\le\pi$ as well: if $|\theta|>\pi/2$ then $k=1$, and
-otherwise $k|\theta|<\pi/2+|\theta|\le\pi$.  So $k\theta/2$ lies in
-$[\pi/4,\pi/2]$ up to sign, and tensoring an eigenvector for
-$e^{i\theta}$ gives
-\begin{equation}\label{eq:tensor-amplification}
- \opnorm{A^{\otimes k}-1}\ge\bigl|e^{ik\theta}-1\bigr|
- =2\bigl|\sin(k\theta/2)\bigr|\ge\sqrt2,
- \qquad kt\le k|\theta|\le\pi,
-\end{equation}
-the last bound because $t=2|\sin(\theta/2)|\le|\theta|$.  Telescoping
-the tensor factors gives
-$\opnorm{A^{\otimes k}-B^{\otimes k}}\le k\opnorm{A-B}$ for unitaries
-$A,B$, and $A\mapsto A^{\otimes k}$ is a group homomorphism, so
-$r(U^{\otimes k})=r(U)^{\otimes k}$ for every word $r$.
-
-Suppose no finite $\mathcal R\subseteq N$ and constant satisfy
-\eqref{eq:word-linear-certificate}.  Exhaust $N$ by finite increasing
-sets $\mathcal R_n$ and choose unitary tuples $U^{(n)}$ with
-\[
- t_n=\opnorm{w(U^{(n)})-1}>n\,\delta_{\mathcal R_n}(U^{(n)}).
-\]
-Amplify $U^{(n)}$ by the exponent $k_n\le\pi/t_n$ that
-\eqref{eq:tensor-amplification} supplies for $A=w(U^{(n)})$.  The
-amplified tuple displaces $w$ by at least $\sqrt2$, while
-\[
- \delta_{\mathcal R_n}\bigl((U^{(n)})^{\otimes k_n}\bigr)
- \le k_n\,\delta_{\mathcal R_n}(U^{(n)})
- <\frac{\pi}{t_n}\cdot\frac{t_n}{n}=\frac{\pi}{n}.
-\]
-Each fixed element of $N$ lies in $\mathcal R_n$ for large $n$, so its
-defect along the amplified tuples tends to zero, and the generator
-classes define a corona homomorphism of $G$ that does not kill $w$.
-By Lemma~\ref{prop:mf-residual-calculus} the image of $w$ is outside
-the MF radical.
-
-Conversely, lift the generator images of a corona homomorphism to
-unitary matrices as in Lemma~\ref{lem:stable-finite}.  Their defects
-on $\mathcal R$ tend to zero, so \eqref{eq:word-linear-certificate}
-sends the displacement of $w$ to zero, and the corona homomorphism
-kills $w$; Lemma~\ref{prop:mf-residual-calculus} gives the assertion
-for MF targets.  For the last sentence, write each $r\in\mathcal R$ as
-a product of $a_r$ conjugates of defining relators and their inverses;
-unitary conjugation preserves the norm, so telescoping bounds
-$\opnorm{r(U)-1}$ by $a_r$ times the defect of the defining relators.
-\end{proof}
-
-Invisible relations are therefore quantitatively redundant: imposing
-them changes neither the matrix representations of a group nor, up to
-one constant, the defect that measures how far a tuple is from being
-one.
-
-\begin{corollary}[adding invisible relations]
-\label{cor:invisible-relations}
-Let $G=\langle x_1,\ldots,x_m\mid\mathcal R\rangle$ be finitely
-presented, let $\mathcal W$ be a finite set of words whose images lie
-in $\operatorname{Rad}_{\mathrm{MF}}(G)$, and put
-$A=\langle x_1,\ldots,x_m\mid\mathcal R,\mathcal W\rangle$.  Then
-there is a constant $C\ge1$ with
-\[
- \delta_{\mathcal R}(U)\le\delta_{\mathcal R\cup\mathcal W}(U)
- \le C\,\delta_{\mathcal R}(U)
-\]
-for every unitary tuple in every dimension, and $G$ and $A$ have the
-same homomorphisms into $\U(d)$ for every $d$.  So they have the same
-operator norm stability, up to rescaling the defect by $C$.
-\end{corollary}
-
-\begin{proof}
-The first inequality is a maximum over a larger set; the second is
-Theorem~\ref{thm:word-linear-certificate} applied to each of the
-finitely many words of $\mathcal W$.  A homomorphism $G\to\U(d)$ has
-finite-dimensional, hence MF, image, so it kills
-$\operatorname{Rad}_{\mathrm{MF}}(G)$ and factors through $A$; the
-quotient map gives the converse.  The distance from a tuple to that
-common set of representations is thus the same for both groups, while
-their defect functions differ by at most the factor $C$.
-\end{proof}
-
-Applied to the generator words, the theorem gives the linear collapse
-of a group with no nontrivial MF image: if every homomorphism from
-$G=\langle g_1,\ldots,g_m\rangle$ to an MF group is trivial, then
-there are finitely many relations $r_1,\ldots,r_s$ of $G$ and a
-constant $C$ with
-\[
- \max_i\opnorm{U_i-1}
- \le C\max_j\opnorm{r_j(U_1,\ldots,U_m)-1}
-\]
-for all $U_1,\ldots,U_m\in\U(d)$ and all $d\ge1$; conversely such an
-inequality forces every MF image of $G$ to be trivial.  The finitely
-presented group $\langle x_1,\ldots,x_m\mid r_1,\ldots,r_s\rangle$
-then has the same property and maps onto $G$, and the $m$-marked
-groups satisfying $r_1=\cdots=r_s=1$ form a clopen set all of whose
-members have it; so the property is open in the space of marked
-groups.  For the two-generated group $Q$ of
-Theorem~\ref{thm:torsion-free} the inequality bounds
-$\max\{\opnorm{U-1},\opnorm{V-1}\}$ by the defects of finitely many
-words in two unitary matrices, uniformly in the matrix size, while the
-left regular representation solves the same equations exactly with
-$U,V\ne1$.
 
 \section{One-sided inverses and elementary groups}
 \label{sec:one-sided-inverses}
@@ -2121,190 +1980,6 @@ factors through the quotient $C^*(\mathbb Z)\cong C(\mathbb T)$:
 restrict to the generating group unitaries and apply
 Theorem~\ref{thm:sofic-cyclic-mf}.  Thus the same group has a
 simple reduced algebra and a cyclic universal MF quotient.
-
-\subsection{Prescribed MF quotients}
-\label{subsec:realization}
-
-One amalgamation turns $P$ into a device that installs a prescribed
-universal MF quotient on a group of one's choosing.  The kernel it
-attaches is invisible to MF groups and to rational homology at the same
-time.
-
-\begin{lemma}[the invisible kernel is rationally acyclic]
-\label{lem:rationally-acyclic}
-$H_j(N;\mathbb Q)=0$ for every $j>0$, and $\chi$ induces an isomorphism
-on rational homology.
-\end{lemma}
-
-\begin{proof}
-The group $B$ is a free product of finite groups, so its rational
-homology vanishes in positive degrees, and the Lyndon--Hochschild--Serre
-spectral sequence for $B\to E\to V$ makes $E\to V$ a rational homology
-isomorphism.  Write $L=\mathbb Z[1/2]^3$ for the translation subgroup of
-$V$, so that $V/L\cong\mathrm{SL}_3(\mathbb Z)\times\langle t\rangle$.
-Then $H_j(L;\mathbb Q)=\bigwedge^j\mathbb Q^3$, and $t$ acts on it by
-$2^j$; for $1\le j\le3$ the map $2^j-1$ is invertible over $\mathbb Q$,
-so both the invariants and the coinvariants of $\langle t\rangle$ in
-$H_j(L;\mathbb Q)$ vanish, and the spectral sequence leaves only the
-row $j=0$.  The positive-degree rational homology of
-$\mathrm{SL}_3(\mathbb Z)$ vanishes~\cite{Soule}, so
-$H_*(V;\mathbb Q)\cong H_*(\mathbb Z;\mathbb Q)$ through the height map.
-
-For $N$, use the graph of groups of~\eqref{eq:cyclic-kernel-relations}:
-vertex groups $E_i$ indexed by $\mathbb Z$, infinite cyclic edge groups
-$\langle d_i\rangle=\langle r_{i+1}\rangle$, and a line as underlying
-graph.  In the resulting Mayer--Vietoris sequence the vertex and edge
-groups have rational homology only in degrees $0$ and $1$.  In degree
-one the edge generator $d_i=r_{i+1}$ has height $0$ in $E_i$ and height
-$1$ in $E_{i+1}$, so the edge-to-vertex map is
-\[
- \bigoplus_{i\in\mathbb Z}\mathbb Q
- \longrightarrow\bigoplus_{i\in\mathbb Z}\mathbb Q,
- \qquad e_i\longmapsto e_{i+1},
-\]
-up to sign, an isomorphism; and in degree zero it is injective because
-the graph is a tree.  Exactness gives $H_j(N;\mathbb Q)=0$ for $j>0$,
-and then the spectral sequence for $N\to P\to\mathbb Z$ gives the last
-assertion.
-\end{proof}
-
-\begin{theorem}[prescribed MF quotients]\label{thm:realization}
-Let $A$ be a finitely presented sofic group and let $a\in A$ have
-infinite order.  Amalgamate the infinite cyclic subgroups generated by
-$s$ and $a$,
-\[
- G_A=P*_{\langle s\rangle=\langle a\rangle}A,
-\]
-and let $q\colon G_A\to A$ be the identity on $A$ and $p\mapsto
-a^{\chi(p)}$ on $P$.  Then $G_A$ is finitely presented and sofic,
-it contains $P$, and it is not MF\@.  Moreover:
-\begin{enumerate}
-\item composition with $q$ is a bijection from the homomorphisms
-$A\to M$ to the homomorphisms $G_A\to M$, for every MF group $M$; so
-$\operatorname{Rad}_{\mathrm{MF}}(G_A)=q^{-1}(\operatorname{Rad}_{\mathrm{MF}}(A))$,
-and $A$ is the largest MF quotient of $G_A$ whenever $A$ is MF;
-\item $\ker q\cong\mathop{*}_{A/\langle a\rangle}N$ is nontrivial,
-perfect, rationally acyclic, and equal to its own MF radical;
-\item $q$ induces an isomorphism of profinite completions, and
-$H_j(G_A;q^*M)\cong H_j(A;M)$ and $H^j(A;M)\cong H^j(G_A;q^*M)$ for
-every $\mathbb QA$-module $M$ and every $j$;
-\item $G_A$ is acylindrically hyperbolic with trivial finite radical,
-and $C^*_{\mathrm r}(G_A)$ is simple with a unique tracial state, has
-stable rank one, and is stably finite but not MF\@.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-If $A=\langle a\rangle$ then $G_A=P$ and everything has been proved, so
-assume $\langle a\rangle\ne A$.  The amalgamated subgroups are infinite
-cyclic and proper in both factors, so normal form embeds $P$ and $A$,
-and a presentation of $G_A$ is the union of finite presentations of $P$
-and $A$ together with $s=a$.  Soficity is the amalgamation theorem of
-Collins and Dykema over the monotileably amenable group $\mathbb
-Z$~\cite[Theorem~3.4]{CollinsDykema}.  The retraction $q$ is well
-defined because $\chi(s)=1$, and it splits the inclusion of $A$.
-
-(1)  Let $f\colon G_A\to M$ with $M$ an MF group.  Its restriction to
-$P$ factors through $\chi$ by Theorem~\ref{thm:sofic-cyclic-mf}, so it
-is determined by $f(s)=f(a)$, and $f=(f|_A)\circ q$.  Conversely every
-homomorphism from $A$ arises this way, and $q$ is surjective, so the
-correspondence is bijective.  The radical formula and the statement
-about the largest MF quotient follow, as does $G_A$ not being MF, since
-$P\le G_A$ is not.
-
-(2)  In the Bass--Serre tree of the amalgam, $\ker q$ meets $A$
-trivially and meets $P$ in $\ker\chi=N$, and it meets the edge group
-trivially.  Its quotient graph is a star: one vertex of $A$-type with
-trivial stabilizer, one vertex of $P$-type for each coset in
-$A/\langle a\rangle$ with stabilizer a conjugate of $N$, and one edge
-from the centre to each of them.  A star is a tree, so $\ker q$ is the
-free product of those conjugates.  A homomorphism from a free product to
-an MF group is trivial as soon as it is trivial on each factor, so
-$\operatorname{Rad}_{\mathrm{MF}}(\ker q)=\ker q$ by
-Theorem~\ref{thm:sofic-cyclic-mf}; the remaining properties come from
-Lemma~\ref{lem:rationally-acyclic}, since rational homology of a free
-product is the sum of the rational homologies of its factors.
-
-(3)  Finite groups are MF, so~(1) makes the finite quotients of $G_A$
-and of $A$ correspond, which gives the profinite completions.  For the
-rest, $\ker q$ acts trivially on $q^*M$ and, being rationally acyclic,
-has $H_j(\ker q;q^*M)=H_j(\ker q;\mathbb Q)\otimes M=0$ for $j>0$; both
-Lyndon--Hochschild--Serre spectral sequences of $\ker q\to G_A\to A$
-therefore collapse onto a single row.
-
-(4)  Pick a nonidentity element $z$ of finite order in one coordinate
-$A_5$ of $B\le P$.  If $s^k=zs^\ell z^{-1}$ then $k=\ell$ by $\chi$, and
-$k\ne0$ would give $s^kzs^{-k}=z$, which Britton's lemma forbids in the
-HNN extension $P$ because $z$ lies in neither associated subgroup, both
-of which are infinite cyclic while $z$ has finite order.  So
-$\langle s\rangle\cap z\langle s\rangle z^{-1}=1$ and $\langle s\rangle$
-is weakly malnormal in $G_A$.  Minasyan--Osin's amalgam
-criterion~\cite[Corollary~2.2]{MinasyanOsin} then makes $G_A$ either
-virtually cyclic or acylindrically hyperbolic, and the first is excluded
-because $G_A$ contains $P$.  A finite normal subgroup fixes a vertex of
-the Bass--Serre tree, hence fixes the whole tree by minimality, hence
-lies in $\langle s\rangle\cap z\langle s\rangle z^{-1}=1$.  Simplicity
-and uniqueness of the trace now follow
-from~\cite[Theorem~2.35]{DGO}, stable rank one
-from~\cite[Theorem~1.1]{GO}, stable finiteness from the faithful
-canonical trace, and failure of MF from
-Lemma~\ref{prop:mf-residual-calculus}.
-\end{proof}
-
-\begin{corollary}\label{cor:torus-quotients}
-For every $m\ge1$ there is a finitely presented sofic group $G_m$ that
-is not MF, whose largest MF quotient is $\mathbb Z^m$, whose profinite
-completion is $\widehat{\mathbb Z}^{\,m}$, and whose rational cohomology
-ring is that of the $m$-torus, and for which
-$C^*_{\mathrm r}(G_m)$ is simple with a unique tracial state, has stable
-rank one, and is stably finite but not MF\@.
-\end{corollary}
-
-\begin{proof}
-Take $A=\mathbb Z^m$ and $a$ a basis vector in
-Theorem~\ref{thm:realization}; the cohomology isomorphism of~(3)
-respects cup products because it is induced by a group homomorphism.
-\end{proof}
-
-The finite certificate of Section~\ref{subsec:word-certificates} turns
-this into a statement about every matrix model of $P$.
-
-\begin{proposition}[approximate models of $P$ are nearly cyclic]
-\label{prop:linear-stability}
-Write $P=\langle x_1,\ldots,x_m,s\mid\mathcal R\rangle$ for the finite
-presentation obtained from~\eqref{eq:sofic-cyclic-presentation} by
-expanding a finite presentation of $E$, so that $x_1,\ldots,x_m$
-generate $E$ and $\chi(s)=1$.  There is a constant $C$, independent of
-the dimension, such that every tuple
-$(X_1,\ldots,X_m,S)\in\U(d)^{m+1}$ satisfies
-\[
- \max_i\opnorm{X_i-1}
- \le C\max_{r\in\mathcal R}\opnorm{r(X_1,\ldots,X_m,S)-1}.
-\]
-Moreover the distance from that tuple to the set of homomorphisms
-$P\to\U(d)$, measured by the maximum over the generators, is exactly
-$\max_i\opnorm{X_i-1}$.
-\end{proposition}
-
-\begin{proof}
-Each $x_i$ lies in $N$, so every homomorphism from $P$ to an MF group
-kills it, and Theorem~\ref{thm:word-linear-certificate} supplies a
-finite set of relations of $P$ and a linear bound for $x_i$ in terms of
-their defects.  Each of those relations is a product of conjugates of
-elements of $\mathcal R^{\pm1}$, so bounding its defect by a multiple
-of $\max_{r\in\mathcal R}\opnorm{r(X)-1}$ changes only the constant;
-take the largest constant over $i$.
-
-For the second assertion, a homomorphism $P\to\U(d)$ has MF image, so
-it kills every $x_i$ and sends the generators to $(1,\ldots,1,S')$ for
-some unitary $S'$; conversely $\chi$ followed by $1\mapsto S$ is such a
-homomorphism for every $S\in\U(d)$.  The distance is therefore at least
-$\max_i\opnorm{X_i-1}$, and the tuple $(1,\ldots,1,S)$ attains it.
-\end{proof}
-
-So the approximate matrix representations of $P$ are linearly close to
-honest representations, all of which factor through $\chi$, while $P$
-itself is sofic and not MF\@.
 
 \section{A torsion-free finitely presented example}
 \label{sec:torsion-free}
