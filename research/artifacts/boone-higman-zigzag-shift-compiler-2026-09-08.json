@@ -1,0 +1,28 @@
+{
+  "origin": "exact remote CPU calculation; no GPU",
+  "translation_vectors": [
+    [
+      1,
+      -1,
+      1,
+      -1
+    ],
+    [
+      0,
+      1,
+      0,
+      -1
+    ],
+    [
+      1,
+      0,
+      -1,
+      0
+    ]
+  ],
+  "translation_lattice_index": 2,
+  "ambient_mod_2_order": 192,
+  "generated_mod_2_order": 16,
+  "four_ray_index": 12,
+  "scope": "finite germ quotient and lattice; infinite-group identification is in the proof"
+}

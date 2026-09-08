@@ -81,3 +81,13 @@ already known independently of this construction.
 These are prose proofs with an exact arithmetic cross-check. They have
 not been replayed in Lean. No GPU inference ran and no Civo resources
 were provisioned for this work.
+
+## Verification record
+
+[Run 34285394067](https://github.com/SauersML/group-approximation/actions/runs/34285394067)
+passed at commit `03cf57cb02c4bd2bae64e0b561c9e92fc5f74a69`. Its
+arithmetic step returned the [retained exact result](boone-higman-zigzag-shift-compiler-2026-09-08.json).
+Cairn reported the cyclic construction, enumeration countability and
+finite-prefix claims ESTABLISHED, with both the universal compiler and
+the Boone-Higman goal OPEN. Those graph statuses record the submitted
+prose derivations; they are not an independent formal proof check.
