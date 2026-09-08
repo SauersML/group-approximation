@@ -2228,6 +2228,46 @@ restrict to the generating group unitaries and apply
 Theorem~\ref{thm:sofic-cyclic-mf}.  Thus the same group has a
 simple reduced algebra and a cyclic universal MF quotient.
 
+The finite certificate of Section~\ref{subsec:word-certificates} turns
+this into a statement about every matrix model of $P$.
+
+\begin{proposition}[approximate models of $P$ are nearly cyclic]
+\label{prop:linear-stability}
+Write $P=\langle x_1,\ldots,x_m,s\mid\mathcal R\rangle$ for the finite
+presentation obtained from~\eqref{eq:sofic-cyclic-presentation} by
+expanding a finite presentation of $E$, so that $x_1,\ldots,x_m$
+generate $E$ and $\chi(s)=1$.  There is a constant $C$, independent of
+the dimension, such that every tuple
+$(X_1,\ldots,X_m,S)\in\U(d)^{m+1}$ satisfies
+\[
+ \max_i\opnorm{X_i-1}
+ \le C\max_{r\in\mathcal R}\opnorm{r(X_1,\ldots,X_m,S)-1}.
+\]
+Moreover the distance from that tuple to the set of homomorphisms
+$P\to\U(d)$, measured by the maximum over the generators, is exactly
+$\max_i\opnorm{X_i-1}$.
+\end{proposition}
+
+\begin{proof}
+Each $x_i$ lies in $N$, so every homomorphism from $P$ to an MF group
+kills it, and Theorem~\ref{thm:word-linear-certificate} supplies a
+finite set of relations of $P$ and a linear bound for $x_i$ in terms of
+their defects.  Each of those relations is a product of conjugates of
+elements of $\mathcal R^{\pm1}$, so bounding its defect by a multiple
+of $\max_{r\in\mathcal R}\opnorm{r(X)-1}$ changes only the constant;
+take the largest constant over $i$.
+
+For the second assertion, a homomorphism $P\to\U(d)$ has MF image, so
+it kills every $x_i$ and sends the generators to $(1,\ldots,1,S')$ for
+some unitary $S'$; conversely $\chi$ followed by $1\mapsto S$ is such a
+homomorphism for every $S\in\U(d)$.  The distance is therefore at least
+$\max_i\opnorm{X_i-1}$, and the tuple $(1,\ldots,1,S)$ attains it.
+\end{proof}
+
+So the approximate matrix representations of $P$ are linearly close to
+honest representations, all of which factor through $\chi$, while $P$
+itself is sofic and not MF\@.
+
 \section{A torsion-free finitely presented example}
 \label{sec:torsion-free}
 
