@@ -194,7 +194,7 @@ Gamma x C_3, with arbitrary scalar linear A, is exactly equivalent
 to direct finiteness of F_2[Gamma]. A local parity-majority involution
 and two-block elimination prove sufficiency using only scalar direct
 finiteness. The norm subclass proves necessity. This is recorded in
-`central-three-cycle-quadratic-surjunctivity-iff-direct-finiteness`;
+`central-c3-quadratic-surjunctivity-iff-direct-finiteness`;
 neither side is established for arbitrary Gamma.
 
 For any odd n>=3, the narrower central norm rules F_B=x+(B-I)E Q_t

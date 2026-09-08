@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: central-three-cycle-block-elimination-proves-direct-finiteness-equivalence
+id: central-c3-block-elimination-proves-direct-finiteness-equivalence
 kind: route
 title: Split cyclic parity and eliminate two blocks to obtain the full central three-cycle equivalence
-target: central-three-cycle-quadratic-surjunctivity-iff-direct-finiteness
+target: central-c3-quadratic-surjunctivity-iff-direct-finiteness
 requires: []
 artifacts:
   - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md

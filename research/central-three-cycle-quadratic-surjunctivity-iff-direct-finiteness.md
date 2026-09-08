@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: central-three-cycle-quadratic-surjunctivity-iff-direct-finiteness
+id: central-c3-quadratic-surjunctivity-iff-direct-finiteness
 kind: claim
 title: Full central three-cycle quadratic surjunctivity is equivalent to characteristic-two direct finiteness
 artifacts:
