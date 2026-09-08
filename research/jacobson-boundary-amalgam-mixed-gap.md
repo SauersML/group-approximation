@@ -44,3 +44,11 @@ claim.
   exact dimension lower bound to 147 and extending the same numerical
   gap through dimension 146. Three-dimensional fibers and the other
   nonzero root-character orbits remain unresolved.
+- `jacobson-165-seed-fails-full-root-intersection` excludes the
+  specified 147-dimensional carrier with a
+  `chi_6,Q tensor sigma_3,P` complement, even with additional
+  head-trivial, root-trivial spectators. Three boundary profiles match
+  its entire smaller overlap, but one stabilizer character disagrees
+  on the full root intersection. This excludes that seed rather than
+  every representation of dimension 165; the general lower bound
+  remains 147 and the unrestricted gap is still open.
