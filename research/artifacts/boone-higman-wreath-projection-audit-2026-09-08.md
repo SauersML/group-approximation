@@ -99,3 +99,18 @@ There is no assertion here that the paper's target groups fail finite
 presentation or fail Boone--Higman. No author or provider was contacted.
 The new kernel lemma is a written proof; no GPU or local computation was
 used to establish it.
+
+## Remote structural validation
+
+The mathematical audit and graph changes are commit `010203a9f`, pushed
+through main integration `c44909373e882b6b022d51af7fb03858b173859d`.
+[Research run 34288738250](https://github.com/SauersML/group-approximation/actions/runs/34288738250)
+completed successfully. The downloaded evidence is retained in
+`.cairn/bh-cantor-kernel-check-20260908/`.
+
+The inspected Cairn `node_status` is ESTABLISHED for
+`cantor-prefix-subgroup-detects-every-normal-kernel` and OPEN for
+`boone-higman-conjecture`. The earlier universal automorphism premise is
+still REFUTED and its route INVALIDATED. No theorem from the audited
+paper was promoted to ESTABLISHED. These are dependency-graph checks,
+not machine verification of the infinite-group proofs.
