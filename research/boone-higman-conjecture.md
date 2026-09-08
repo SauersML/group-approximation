@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/boone-higman-gpu-pilot-2026-09-08.md
   - research/artifacts/boone-higman-ring-route-repair-2026-09-08.md
   - research/artifacts/boone-higman-steinberg-cover-correction-2026-09-08.md
+  - research/artifacts/boone-higman-cover-kernel-dichotomy-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -234,3 +235,13 @@ arbitrary maximal kernels. The quotient-and-cover double-coset obstruction
 still applies in its stated scope, independently of finite presentation
 of the matrix group. No finite normal generating set for a maximal kernel
 has been supplied.
+
+## September 8: a coset repair must come from the covering kernel
+
+`ck-cover-quotient-kernel-dichotomy` settles the scope of quotients that
+escape the matrix map. Write `K=ker(Gamma->EL_4(U))`. Any proper quotient
+`Gamma/M` in which the inherited core has finite bi-index must satisfy
+`Gamma=MK`; equivalently K surjects onto the whole quotient. For maximal
+M this is the alternative to containing K and descending to a simple
+matrix quotient. No suitable quotient of K has been constructed, and no
+finite normal generating set for M follows from this dichotomy.

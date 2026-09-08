@@ -81,3 +81,11 @@ argument.
    clean criterion "proper iff misses `S`" is not effective in the direction
    required.  Recorded here rather than as a node because it is a different
    target, not a route into this one.
+5. **Transfer every maximal kernel to the matrix image.** The exact
+   alternative is [[ck-cover-quotient-kernel-dichotomy]]. A maximal kernel
+   either contains the covering kernel and descends to a proper matrix
+   kernel, or maps onto the whole matrix group while the covering kernel
+   surjects onto the simple quotient. The second case cannot be excluded
+   by assuming stable K_2 properties for the unstable kernel. Neither
+   branch currently supplies finite normal generators for the maximal
+   kernel upstairs.

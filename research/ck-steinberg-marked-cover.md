@@ -27,3 +27,8 @@ in place of an unspecified Shalom cover, not a removal of all covers.
 For the Boone--Higman application take a finitely presented H containing
 the computably presented simple core, and then embed H in [T,T] using
 Chatterji--Kassabov Lemma 6. The simple core survives in Gamma.
+
+For the simple-core marking, [[ck-cover-quotient-kernel-dichotomy]] now
+describes the missing quotient case: if a proper quotient gives that core
+finite bi-index, the covering kernel must surject onto the whole quotient.
+No such quotient or structural simplification of the kernel is established.

@@ -16,6 +16,7 @@ on:
       - 'research/steinberg-finiteness-kazhdan-citation.md'
       - 'research/finite-marking-normal-generator-cover*.md'
       - 'research/ck-steinberg-marked-cover*.md'
+      - 'research/ck-cover-quotient-kernel-dichotomy*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
 
@@ -57,6 +58,7 @@ jobs:
           bin/cairn why decidable-group-ring-has-fp-projective-simple-host --json > bh-ring-open-host.json
           bin/cairn why ck-steinberg-marked-cover --json > bh-steinberg-cover.json
           bin/cairn why finite-marking-normal-generator-cover --json > bh-marking-cover.json
+          bin/cairn why ck-cover-quotient-kernel-dichotomy --json > bh-cover-kernel-dichotomy.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -68,3 +70,4 @@ jobs:
             bh-ring-*.json
             bh-steinberg-cover.json
             bh-marking-cover.json
+            bh-cover-kernel-dichotomy.json

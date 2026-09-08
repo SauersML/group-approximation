@@ -80,3 +80,9 @@ tools.
    as commuting subgroups. Finite-index enlargement of the stabilizer
    also preserves infinite bi-index. An infinite enlargement or a
    genuinely different marking is necessary for this kind of repair.
+6. **Take a quotient of the marked cover whose map no longer descends to
+   a nontrivial matrix quotient.** This remaining possibility is constrained
+   by [[ck-cover-quotient-kernel-dichotomy]]: the entire new quotient must
+   be the image of the covering kernel. If that kernel were solvable or
+   locally finite, no proper quotient could repair the canonical coset
+   action. These kernel properties are not established for the construction.
