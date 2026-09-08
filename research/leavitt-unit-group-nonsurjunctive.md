@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/conservative-ca-literature-and-trace-scope-2026-09-07.md
   - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
   - research/artifacts/gottschalk-four-track-finite-chart-collision-2026-09-08.md
+  - research/artifacts/forward-memory-cover-and-native-prefix-test-2026-09-08.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton
@@ -58,6 +59,16 @@ dynamical twin of `direct-finiteness-not-inherited-by-quotients`, and both
 kill the same shortcut.
 
 ## Attempts: a computer that preserves its malformed certificates
+
+The forward-cover theorem
+`forward-memory-lifts-exclude-strict-cellular-sections` strengthens the
+memory test: for a genuine surjunctive cover, matching the decoder-after-
+encoder table alone excludes strictness. Reverse-table collisions cannot
+rescue it. A forward prefix chain can force the native twelve-letter
+Leavitt relation into the table presentation, but its six positive-root
+letters alone generate a finite subgroup. A viable rule must both read
+an infinite actor and use forward identifications that escape every
+surjunctive marked cover; neither condition supplies its local inverse.
 
 The direct nonlinear seed check of 2026-09-08 excludes two proposed
 memory pairs for every finite alphabet. Their two composition product

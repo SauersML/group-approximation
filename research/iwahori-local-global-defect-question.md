@@ -7,6 +7,9 @@ artifacts:
   - research/artifacts/two-paper-ingestion-2026-08-19.md
   - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
   - notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
+  - research/artifacts/modular-vertex-admissible-charts-2026-09-08.md
+  - research/artifacts/iwahori-dilution-moment-obstruction-2026-09-08.md
+  - research/artifacts/modular-stratum-coordinate-coverage-2026-09-08.md
 distinct_from:
   iwahori-outlier-repair: that is this repository's proposed sufficient condition -- a full-rank repair theorem in the one sector its own analysis leaves open; this is the published question in Dogon-Vigdorovich's own local-defect/global-defect form, which the repair theorem is an attack on.
   iwahori-fractional-transport-integralization: that is one intermediate step of the attack, converting a fractional transport plan into orthogonal blocks; this is the whole question the attack is aimed at.
@@ -66,6 +69,25 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
 
 ## Attempts
 
+- **Exact coordinates are available, but universally flat repair fails.**
+  `modular-vertex-charts-have-uniform-schatten-control` constructs exact
+  vertex parameterizations, a uniformly bounded lift of every cocycle, and
+  mixed-Schatten derivative bounds. The dilution theorem then tests what
+  those coordinates can accomplish: one incompatible character diluted
+  by trivial blocks requires fixed operator-norm movement despite local
+  defect `2/sqrt(n)`. Sixth-flat square-root parameters in the explicit
+  charts cannot perform a superlinear repair. The same example is exactly
+  repairable at linear HS cost by changing its one bad coordinate. Thus
+  the obstruction is to forbidding concentrated corrections, while the
+  clock-shift rank obstruction separately rules out limiting all repair
+  to small-rank surgery. Neither refutes this flexible stability question.
+  Positively, `modular-strata-have-linear-coordinates-and-rank-splits`
+  reaches every supplied endpoint in the same generator-multiplicity
+  stratum with coordinates of size at most
+  `pi(1+pi)/sqrt(3)` times its HS distance. Spectral truncation gives an
+  exact intermediate vertex pair with small operator movement from one
+  endpoint and small rank difference from the other. This does not find
+  the compatible endpoint or reconcile different multiplicities.
 - **The cross-dimension metric step is now justified in both directions.**
   `flexible-hs-metric-controls-words-and-padding` proves the word-defect
   Lipschitz estimate using the actual generalized metric, correcting the

@@ -9,6 +9,8 @@ distinct_from:
   iwahori-outlier-repair: that proposes to convert a low-energy operator space into an exact invertible edge intertwiner after sublinear padding; this proposes a differential-geometric correction step and asks only for the direction, not for the intertwiner.
 artifacts:
   - research/artifacts/pde-transfer-quadratic-repair-2026-09-08.md
+  - research/artifacts/modular-vertex-admissible-charts-2026-09-08.md
+  - research/artifacts/iwahori-dilution-moment-obstruction-2026-09-08.md
 ---
 
 **OPEN.** This asks for both a neutral direction and a uniformly controlled
@@ -46,10 +48,15 @@ near the segment `tv`, `0<=t<=1`, and that
 max_s d_0(Psi(v)_s, pi_tilde_s) <= C (||xi||_2+||eta||_2).           (NQ2)
 ```
 
-These chart, derivative, and padding-defect requirements are part of the
-open problem. Smoothness in each dimension does not supply them uniformly.
-Independent generator exponentials need not preserve the vertex relations,
-and arbitrary inexact padding need not keep defect `O(e)`.
+The chart and correction data must hold together. The explicit
+parameterization of `modular-vertex-charts-have-uniform-schatten-control`
+now satisfies the derivative and movement requirements uniformly and
+preserves all vertex relations. However,
+`dilution-obstructs-flat-quadratic-iwahori-repair` proves that this
+particular parameterization cannot supply the displayed flat correction
+budgets for every small-defect input. Existence of a controlled chart
+alone therefore does not prove the present claim. Arbitrary inexact
+padding also need not keep defect `O(e)`.
 
 Flatness is not decoration.  `D^2F` and `D^3F` have no dimension-free bounds in
 normalized Hilbert-Schmidt norm at all
@@ -63,6 +70,17 @@ By `second-order-step-beats-a-blocked-linearization` this yields the repair step
 
 ## Attempts
 
+- **The natural-chart specialization fails on a diluted character.**
+  An exact vertex pair with one incompatible character and `n-1` trivial
+  coordinates has defect `e=2/sqrt(n)` and a fixed operator-norm mismatch.
+  In the explicit modular charts, sixth-flat parameters of sizes
+  `O(sqrt(e))` and `O(e)` have operator norm `O(n^(-1/12))` and cannot
+  reduce that mismatch to HS defect `O(e^(3/2))`, even after the allowed
+  padding. The input itself has an exact repair of HS cost `e`, using a
+  concentrated change. A viable modification must allow such changes;
+  a different map `Psi` in this broader formulation must explain how it
+  handles them. The obstruction does not establish that every arbitrary
+  parameterization with `(NQ2)` fails.
 - **Exact-point screen.**
   `iwahori-second-order-repair-space-is-empty` proves the projected quadratic
   form vanishes identically on `ker L` at every compatible pair, and that
@@ -92,8 +110,9 @@ By `second-order-step-beats-a-blocked-linearization` this yields the repair step
   coboundary, whose HS norm may be much smaller. Away from the exact locus
   a construction has to
   produce both properties at once.
-- **Deferred:** no construction is attempted here.  The bet is recorded because
-  the first-order theory has a proved uniform floor only in the near sector,
-  the far sector has resisted every linear method in this lane, and the
-  second-order mechanism is a proposed additional degree of freedom. The
-  screen above evaluates it only at exact compatible points.
+- **Remaining construction.** The admissible modular parameterization is
+  explicit, but its universally flat quadratic step is excluded above.
+  No residual-canceling construction for a different admissible map, or a
+  preliminary treatment of concentrated errors with the necessary budgets,
+  is supplied here. The exact-point screen and the dilute-input obstruction
+  concern different limitations and must both be respected.
