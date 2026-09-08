@@ -55,6 +55,19 @@ nonhyperlinear group.
   coefficients. It does not yield a normalized-HS gap for arbitrary
   complex relative unitaries. Constructing an appropriate additive
   coefficient receiver inside such models remains missing.
+- **Tracial moment relaxations cannot supply the bound, at any level.**
+  `tracial-moment-relaxations-cannot-certify-the-leavitt-gap` proves that
+  `y_w = 1_(q(w)=1)` is feasible at every finite level of the ordinary
+  tracial moment relaxation in these four generators, satisfies traciality,
+  every true relation of `H` and the prescribed regular characters on both
+  frozen factors, and makes the squared defect energy exactly zero. So every
+  level has optimum zero, and no sum-of-squares certificate whose only
+  premises are positivity, traciality, the group relations and those
+  character values can give a positive `eta`. The dead route is
+  `leavitt-uniform-gap-via-tracial-moment-certificate`. A proof must use a
+  genuine finite-dimensionality input, as
+  `leavitt-24k-models-avoid-blockwise-error-basis-normalizers` does inside
+  its restricted class.
 - **The unrestricted lower bound remains open.** A mechanism must survive
   amplification, since the criterion's models are closed under tensoring
   with the identity. The packet is a finite test set, not a claimed
