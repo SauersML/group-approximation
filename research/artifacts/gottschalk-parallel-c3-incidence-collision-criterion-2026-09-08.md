@@ -228,3 +228,61 @@ criterion (2)-(3) is the appropriate next test.
 
 Related exact atlas collisions are recorded in
 `research/artifacts/gottschalk-parallel-order-three-five-point-collision-2026-09-08.md`.
+
+## The five-actor automaton itself has an explicit collision
+
+The preceding odd cycle obstructs one four-bit construction, but
+the actual five-actor automaton on G=A4 x C3 is noninjective. Two
+inputs of support 18 have the same output of support 9. This is
+an exact quotient calculation, with no enumeration.
+
+Write G_0=V semidirect_R C3 and let pi:G -> G_0 forget the final
+central coordinate. On configurations x=pi^*(X), the b correction
+vanishes because each b-coset has a constant pattern. The other
+four corrections descend to the four distinct C3 subgroups of
+G_0. Their nonidentity elements with middle coordinate one are
+
+    (0,1), (R^2e,1), (Re,1), (e,1),
+
+so they exhaust those four subgroups. Consequently
+
+    F(pi^*X)=pi^*(F_0(X)),
+
+where F_0 is the parallel sum of all four C3 corrections on G_0.
+
+Let N_0={(v,0):v in V}, a subgroup of order four. For any of the
+four C3 subgroups H of G_0, define
+
+    X_H=1_(N_0 union (H minus {1})).
+
+Each selected C3 coset contains exactly one point of N_0, because
+projection onto the middle coordinate maps that subgroup onto
+C3. The only selected coset containing both additional occupied
+points H minus {1} is H itself: two distinct points determine
+their C3 coset. Thus every selected coset has weight one or two,
+except H, which has weight three. Its correction is zero, and
+all other coset corrections are one. Summing the four corrections
+therefore gives precisely 1_H, since four copies of the constant
+one configuration cancel. Hence
+
+    F_0(X_H)=X_H+1_H=1_(N_0 minus {1}),
+
+independently of H.
+
+For completely explicit inputs in the coordinates above, put
+
+    N={(v,0,z):v in V, z in C3},
+    S_g=N union {(0,1,z),(0,2,z):z in C3},
+    S_a=N union {(e,1,z),(R^2e,2,z):z in C3},
+    O={(v,0,z):v in V minus {0}, z in C3}.
+
+The two sets S_g,S_a are distinct, both have size 18, and their
+symmetric difference has size 12. The output set O has size 9.
+The literal collision is
+
+    F(1_(S_g))=1_O=F(1_(S_a)).
+
+Thus the short odd-cycle obstruction neither supplies a strict
+encoder nor rescues this finite candidate. It prevents one
+background construction, while an invariant central-coordinate
+restriction supplies a different exact collision.

@@ -489,3 +489,116 @@ inverses has even length, so word length modulo two is well-defined
 and supplies chi. This character need not extend to the full memory
 subgroup <a,b,c,d>. This is a condition on the **operand graph**, not
 on the directed graph from each output g to its input addresses.
+
+## Complement collisions and finite 2-group quotients
+
+For (14), Boolean expansion gives
+
+    F(1+x)+F(x)=1+(R_a+R_b+R_c+R_d)x.                    (15)
+
+Thus a solution of Lx=1, where L=R_a+R_b+R_c+R_d, gives an exact
+collision between x and its complement. By compactness and finite
+linear duality, failure of solvability is equivalent to a finite odd
+set S of output sites satisfying
+
+    Sa symmetric-difference Sb symmetric-difference Sc
+       symmetric-difference Sd = empty.
+
+Indeed, an inconsistent finite subsystem has a sum of rows with zero
+left side and odd right side, and conversely any such row sum obstructs
+a solution. Failure of this complement test does not prove injectivity.
+
+In particular, let P be any finite 2-group quotient of the memory
+subgroup. If alpha=a+b+c+d has nonzero image in F_2[P], then Lx=1
+has a solution on P. Otherwise the preceding finite duality would give
+f alpha=0 with augmentation(f)=1. Every augmentation-one element of
+F_2[P] is a unit, contradicting alpha nonzero. To see this unit fact
+directly, induct on |P|: choose a central element z of order two, pass
+to F_2[P/<z>], and lift an inverse modulo the ideal (1+z). This ideal
+has square zero, so an inverse modulo it corrects to an actual inverse.
+The trivial-group base case is immediate.
+
+Pulling the solution back from P gives a complement collision on the
+original group. Therefore injectivity forces the four operand images
+to occur with even multiplicity in every finite 2-group quotient.
+If distinct elements of the memory subgroup can be separated by finite
+2-group quotients and a,b,c,d are pairwise distinct, a finite product
+of separating 2-group quotients
+keeps them distinct. The resulting nonzero alpha forces noninjectivity.
+
+## Acyclic output dependencies
+
+There is also a direct sufficient condition for surjectivity of (14),
+without any injectivity assumption: suppose no nonempty positive word
+in a,b,c,d represents 1. The directed graph with edges g -> gs, for
+s in {a,b,c,d}, is then acyclic. For any finite set of prescribed output
+sites, fix all exterior input coordinates arbitrarily. The induced
+finite dependency graph is acyclic, so solve its equations
+x(g)=y(g)+x(ga)x(gb)+x(gc)x(gd) in reverse topological order. This
+satisfies all prescribed output coordinates. Compactness supplies a
+preimage of every full target.
+
+This is a condition on directed output dependencies, separate from
+bipartiteness of the undirected operand graph. A candidate outside both
+positive criteria must have an odd operand cycle and a nonempty positive
+memory relation. To avoid a complement collision it must additionally
+have alpha zero in every finite 2-group quotient; none of these necessary
+filters alone supplies injectivity.
+
+## Spatial target triangles with three colors
+
+For the general quadratic rule (13), form the graph whose edges make
+every triple {g,ga_i,gb_i} a triangle. Suppose this graph has a proper
+3-coloring. Then injectivity of F implies surjectivity. This is a
+different condition from bipartiteness of the operand graph, and can
+hold when that operand graph has odd cycles.
+
+Use the compact invariant subshift of all such proper colorings and
+hold a coloring fixed throughout. Its three coordinate blocks satisfy
+
+    F_0=x_0+B_0(x_1,x_2),
+    F_1=x_1+B_1(x_2,x_0),
+    F_2=x_2+B_2(x_0,x_1).
+
+Each B_i is local and bilinear. Make the local reversible input shear
+
+    x_0=z_0-B_0(x_1,x_2).
+
+The transformed first output is z_0. On its zero fiber the second
+output is x_1-B_1(x_2,B_0(x_1,x_2)), homogeneous linear in x_1 for
+fixed x_2. Both axes are fixed. The finite-x_2 perturbation argument,
+followed by the finite-x_1 argument using the uniformly local inverse,
+is exactly the two-block proof above and makes this zero fiber
+bijective. All intermediate maps are taken over the compact coloring
+subshift, so their equivariant inverses have uniform finite memory.
+
+For finitely supported z_0, the transformed map on the remaining two
+blocks differs from the bijective zero-z_0 fiber at only finitely many
+output coordinates. Its injectivity therefore makes it bijective by
+finite coordinate-fiber counting. Density and compactness handle every
+z_0. Undo the input shear to obtain surjectivity of F. As in the binary
+coloring proof, the coloring itself is never finitely modified.
+
+An exact scope control is the disjoint-pair rule on C_3 times Z,
+with t of order three and s generating Z,
+
+    F(x)=x+(R_t x)(R_(t^2) x)
+          +(R_(st) x)(R_(st^2) x).                       (16)
+
+Its four operand addresses are distinct and different from 1. Coloring
+t^i s^n by i modulo three properly colors all target triangles, while
+the operand graph contains triangles on the t-cosets. It also has a
+positive memory relation t^3=1, and its alpha=(1+s)(t+t^2) vanishes in
+every finite 2-group quotient because t has trivial image there.
+
+Passing those earlier filters does not give injectivity. In fact (16)
+has this explicit collision: the t-triples of x alternate 000,100 at
+even and odd s-levels, while those of x' alternate 011,111. Put
+Q(X)_i=X_(i+1)X_(i+2), with indices modulo three. Then
+
+    Q(000)=Q(100)=000,   Q(011)=100,   Q(111)=111.
+
+At each level F adds Q of that level and of the next. Therefore both
+x and x' have output alternating 000,100. This is an exact periodic
+collision in a family satisfying the new 3-color criterion, rather
+than evidence for an injective nonsurjective rule.
