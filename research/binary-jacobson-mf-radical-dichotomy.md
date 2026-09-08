@@ -41,3 +41,15 @@ the Jacobson endpoint has no intermediate outcome:
 x_13(1-ST) is MF-visible  <=>  St_5(J)=E is operator-MF,
 x_13(1-ST) is MF-invisible <=> Rad_MF(E)=L.             (JRD3)
 ```
+
+**The MF side has one obvious published route, and it does not apply
+(2026-09-08).**  The symbol sequence puts an amenable-looking kernel over a
+residually finite quotient, which is the input shape of Theorem 1.1 of
+Gao--Kunnawalkam Elayavalli--Mj, `arXiv:2607.29571v1`: a finitely generated
+residually finite amenable base semidirect an exact MF group is MF.  Its
+hypotheses fail on the kernel -- `L` is amenable, being locally finite, but is
+neither residually finite nor finitely generated, both forced by its being
+infinite simple locally finite -- and no splitting of the sequence is
+established.  See `binary-jacobson-gkm-semidirect-hypotheses-fail`.  The
+amenability of `L` is the hypothesis a reader expects to be the obstacle and
+it is the one that holds, so the check is worth having on record.
