@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: prefix-support-and-augmentation-separate-exterior-injection-from-splitting
+id: prefix-support-exterior-injection-and-nonsplitting-proof
 kind: route
 title: Prove full tensor injection by finite prefix support and exclude splitting by augmentation
 target: positive-shear-passes-exterior-test-without-projective-split
