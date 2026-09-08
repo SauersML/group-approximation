@@ -240,4 +240,79 @@ S={1ξ,2ξ,30α,30β}
 
 contains one source chart pair, while both `gS` and `g²S` contain exactly three chart points. Its degree-four wedge is therefore a common nonzero source kernel for `P_0[g]f_0` and `P_0[g²]f_0`. Replacing `30α,30β` by `310α,310β` gives the same certificate for `(g,g⁻¹)`.
 
-The proved scope is one macro-prefix double coset plus the finite chart, together with the stated necessary condition for several double cosets. General sums passing that condition, general linear Leavitt units, and arbitrary bit-level prefix permutations relative to the original `F_2` chart remain outside these conclusions.
+## 9. A chart moved entirely outside cannot be repaired by constant matrices
+
+There is a further whole-family obstruction, including a pair that passes the joint central-character test. This statement also allows linear Leavitt units satisfying the following explicit hypothesis.
+
+Work in three coordinates over `L_2(F_4)`, put `C_0=GL_3(F_4)`, and let
+
+```
+p_C=e_11+e_22,       p_3=e_33.
+```
+
+Suppose an invertible matrix `g∈GL_3(L_2(F_4))` satisfies
+
+```
+e′=g⁻¹p_Cg,       p_3e′=e′=e′p_3.
+```
+
+Thus the conjugate finite chart `g⁻¹Kg` acts entirely in the outside coordinate. Then every element
+
+```
+Z=P_0(A+sum_j C_j[g]B_j)f_0,
+A∈F_2[C_0],       B_j,C_j∈F_2[K],
+```
+
+has no left inverse on `f_0`.
+
+To prove this, use the natural boundary module from Section 2. Choose a nonzero tail basis vector `ξ`. The vectors `g⁻¹(e_1ξ),g⁻¹(e_2ξ)` lie in the third coordinate by the corner-support hypothesis; write them as `e_3α,e_3β`. Their tails `α,β` are linearly independent because `g` is invertible. The six-dimensional space
+
+```
+W=span{e_iα,e_iβ : i=1,2,3}
+```
+
+is invariant under `C_0` and `g⁻¹Kg`. Constant matrices act on the root-coordinate index, while the conjugate chart acts naturally on `span{e_3α,e_3β}` and fixes the other four vectors. Therefore
+
+```
+W restricted to K       ≅ 2V⊕2·1,
+W restricted to g⁻¹Kg   ≅ V⊕4·1.
+```
+
+Use the exact identity `Λ⁵W≅det(W)⊗W*`. For the first restriction, this gives two copies of `det·V` and two copies of `det²`. The former have trivial central `C_3` character, while `f_0` acts as one and `P_0` as zero on each `det²`. For the second restriction it gives `V⊕4det`; `P_0` has rank one on `V` and zero on each determinant character. Consequently, writing `Q=[g⁻¹]P_0[g]`,
+
+```
+rank_(Λ⁵W)(f_0)=2,       P_0|_(Λ⁵W)=0,
+rank_(Λ⁵W)(Q)=1.
+```
+
+Every constant-matrix term `P_0Af_0` therefore vanishes on this entire module. Multiplying the other term by `[g⁻¹]` identifies it with
+
+```
+Q sum_j C_j^g B_j f_0,
+```
+
+an operator on the same finite module with image dimension at most one. It has a nonzero kernel on the two-dimensional `f_0` image. The full boundary exterior-power representation turns this into a nonzero source vector killed by `Z`. Conditional expectation onto `F_2[〈C_0,g〉]` handles an unrestricted proposed left inverse, exactly as in Section 7.
+
+The same proof works with `m≥3` coordinates and arbitrary constant `GL_m(F_4)` corrections, provided the conjugate chart is supported in one outside coordinate. The `2m` root copies of `α,β` give, on `Λ^(2m−1)`, source rank `2m−4`, `P_0=0`, and conjugate target rank one. Thus adding constant coordinates does not repair this family. Support spread across several outside coordinates is not covered by this argument alone.
+
+For macro-prefix permutations, the hypothesis holds whenever `g⁻¹(C)` lies entirely in the outside root `3`; equivalently no original chart point is sent back into the chart in this three-coordinate setting. The general linear-unit statement requires the displayed two-sided corner-support identity; a single zero matrix block is not being substituted for it.
+
+The concrete two-transporter example is
+
+```
+g_1: 1↔3, with 2 fixed,
+g_2: 1↔30 and 2↔31,
+Z=P_0([g_1]+[g_2])f_0.
+```
+
+It passes the joint central test: on a chart pair the counts are `(n_1,n_2)=(1,0)`, while on an external singleton they are `(1,1)`, so `a=n_1−n_2`. Nevertheless the theorem applies with `A=[g_1]` and `g=g_2`.
+
+For this literal pair an explicit kernel is
+
+```
+v=e_1(s_0ξ)∧e_1(s_1ξ)∧e_2(s_0ξ)∧e_2(s_1ξ)∧e_3(s_0ξ).
+```
+
+Its source line has character `det²`, so `f_0v=v≠0`. The image under `g_1` has exactly three chart rays and hence trivial central `C_3` character. The image under `g_2` has four outside rays and only the coordinate-one ray `e_1ξ`, which the natural `P_0` kills. Thus both summands kill `v`, and `(LZ-f_0)v=v` for every proposed `L`.
+
+The proved scope includes one macro-prefix double coset plus the finite chart, the joint necessary condition for several double cosets, and the outside-corner family in Section 9. Arbitrary two nontrivial double cosets passing these controls, general linear Leavitt units outside the stated corner hypothesis, and arbitrary bit-level prefix permutations relative to the original `F_2` chart remain unresolved here.

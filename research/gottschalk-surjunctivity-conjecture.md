@@ -14,6 +14,7 @@ artifacts:
   - notes/GOTTSCHALK_RESEARCH_2026-09-07.md
   - research/artifacts/gottschalk-information-transport-pinning-control-2026-09-08.md
   - research/artifacts/gottschalk-row-column-deficit-measure-control-2026-09-08.md
+  - research/artifacts/gottschalk-injective-image-uniform-gibbs-bridge-2026-09-08.md
   - research/artifacts/gottschalk-quadratic-block-elimination-2026-09-08.md
   - research/artifacts/gottschalk-virtually-abelian-guard-stratification-2026-09-08.md
   - research/artifacts/gottschalk-polycyclic-guard-rank-extension-2026-09-08.md
@@ -81,6 +82,15 @@ transposed rectangles in the two pin densities. Their total difference
 is exactly the still-unproved percolative-entropy lower bound. The new
 control excludes assigning each local deficit a favorable sign; it does
 not refute a possible global comparison using cancellation or transport.
+
+The Gibbs bridge proves that the image of an injective CA carries a
+unique uniform Gibbs measure, finite dependence, and exact completion
+counts `N_Y(E,c)=|A|^|I_E| b_E(c)`. The residual integer counts input
+boundary assignments. An overlapping-pair encoding gives a proper
+image with all these properties when the output alphabet is larger.
+At equal alphabet, no argument removes the boundary loss or licenses
+replacement by a forbidden output pattern. This bridge therefore
+leaves the headline surjunctivity question open.
 
 The quadratic-feedback attack proves positive exclusions for arbitrary
 bipartite operand graphs, target-multiplicative systems without same-track

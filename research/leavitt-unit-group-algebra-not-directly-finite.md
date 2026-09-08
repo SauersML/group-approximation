@@ -187,6 +187,14 @@ Two arbitrary double cosets passing that test, general linear units,
 and prefix permutations that mix the binary coordinates encoding
 `F_4` remain unresolved. The unrestricted Kaplansky target remains open.
 
+The focused note also excludes constant-matrix corrections when an
+arbitrary linear Leavitt unit moves the conjugate chart into one
+outside coordinate. A finite module has source rank two, zero rank
+for the original target, and rank one for the conjugate target.
+The explicit two-transporter pair passing the mod-three test has
+a five-vector wedge kernel. The hypothesis does not cover conjugate
+charts spread across several outside coordinates.
+
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**
 
