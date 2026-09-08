@@ -307,6 +307,22 @@ Korchagin~\cite[remark following Proposition~12]{Korchagin}.
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptShiftKernelIsOperatorMF}
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect}
 
+Every example above carries torsion, and in each of them the torsion does
+real work.  The last construction removes it.
+
+\begin{mainthm}[a torsion-free example]
+\label{thm:torsion-free}
+There is a two-generated, finitely presented, torsion-free, acylindrically
+hyperbolic group $Q$ with property~\textup{(T)} such that every
+homomorphism from $Q$ to an MF group is trivial.  In particular, no
+nontrivial quotient of $Q$ is MF\@.
+\end{mainthm}
+
+Section~\ref{sec:torsion-free} builds $Q$ from Fournier-Facio's
+torsion-free property-\textup{(T)} group~\cite[\S2]{FFF} and Hull's small
+cancellation theorem~\cite{Hull}.  Its reduced $C^*$-algebra is simple,
+has a unique tracial state and stable rank one, and is not MF\@.
+
 \subsection*{Related work}
 
 Blackadar and Kirchberg introduced the notions of MF and NF algebras in a
@@ -1584,15 +1600,7 @@ over $S$, so $[S,S]\le\mathfrak D_{G_0}(\Gamma)$, and $S$ is perfect, so
  S\le\mathfrak D_{G_0}(\Gamma).
 \]
 
-\begin{theorem}[a torsion-free finitely presented example]
-\label{thm:torsion-free}
-There is a two-generated, finitely presented, torsion-free, acylindrically
-hyperbolic group $Q$ with property~\textup{(T)} such that every
-homomorphism from $Q$ to an MF group is trivial.  In particular, no
-nontrivial quotient of $Q$ is MF\@.
-\end{theorem}
-
-\begin{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:torsion-free}]
 Let $N$ be the normal closure of $S$ in $G_0$; it is nontrivial because
 $S$ is.  By Lemma~\ref{lem:saturation} applied to $G_0$, $N$, and
 $\Omega=\varnothing$, there is a surjective homomorphism
