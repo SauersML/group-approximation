@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.GCellCutSourceModel
 import GroupApproximation.GGT.VanKampen.SurgeryGCellCutSections
+import GroupApproximation.GGT.VanKampen.SurgeryGCellCutContiguity
 import GroupApproximation.GGT.VanKampen.SurgeryReclosedPlanarity
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryEnumeration
 
 /-!
 # An actual cell-dropping cut that needs the repaired shelling
@@ -44,15 +46,25 @@ def actualBoundary : BoundaryCycle M outside where
   cycle_mem_iff := by intro d; rw [List.mem_singleton]; exact (boundary_iff d).symm
 
 theorem actualBoundary_follows : actualBoundary.FollowsBoundary := by
-  apply BoundaryCycle.followsBoundary_of_chain
-  · exact List.isChain_singleton _
-  · have h76 : Relation.ReflTransGen
-        (fun x y : M.Dart => InternalDart M outside x ∧ M.sigma x = y) 7 6 :=
-      .single ⟨(internal_iff 7).mpr (Or.inr rfl), rfl⟩
-    have h65 : Relation.ReflTransGen
-        (fun x y : M.Dart => InternalDart M outside x ∧ M.sigma x = y) 6 5 :=
-      .single ⟨(internal_iff 6).mpr (Or.inl rfl), rfl⟩
-    exact h76.trans h65
+  intro d
+  have heq : actualBoundary.boundaryPerm d = FaceSetCircuits.boundaryPerm M outside d := by
+    apply Subtype.ext
+    exact ((boundary_iff _).mp (actualBoundary.boundaryPerm d).2).trans
+      ((boundary_iff _).mp (FaceSetCircuits.boundaryPerm M outside d).2).symm
+  rw [heq]
+  exact FaceSetCircuits.boundaryPerm_walk M outside d
+
+/-- The general circuit producer constructs the region directly from its
+face set; its boundary walk is no longer a model-specific input. -/
+theorem exists_constructed_region : Nonempty (IsDiscRegion M outside) := by
+  let b : BoundaryDart M outside := ⟨5, (boundary_iff 5).mpr rfl⟩
+  let c : FaceSetCircuits.Component M outside := Quotient.mk'' b
+  have hall : ∀ d : BoundaryDart M outside,
+      (Quotient.mk'' d : FaceSetCircuits.Component M outside) = c := by
+    intro d
+    have hd : d = b := Subtype.ext ((boundary_iff _).mp d.2)
+    rw [hd]
+  exact ⟨FaceSetCircuits.toDiscRegion M outside c hall planar⟩
 
 noncomputable def region : IsDiscRegion M outside :=
   actualBoundary.toDiscRegion_of_followsBoundary M outside actualBoundary_follows planar
@@ -152,6 +164,44 @@ theorem cut_cell_count : cut.diagram.rCellCount = 1 :=
 theorem cut_outer_walk : (outerDarts cut.diagram).map Subtype.val = [(4 : Fin 8)] :=
   cut.diagram_outerDarts_map_val
 
+noncomputable def retainedIndex : Fin cut.diagram.rCellCount :=
+  ⟨0, by rw [cut_cell_count]; decide⟩
+
+/-- The retained cell was second in the source, so its inclusion is not
+the identity on positions. -/
+theorem retainedIndex_source : cut.cellInclusion retainedIndex =
+    (⟨1, by change 1 < 2; decide⟩ : Fin diagram.rCellCount) := by
+  apply Fin.ext
+  rfl
+
+theorem actual_retained_carrier :
+    (cellDarts cut.diagram retainedIndex).map cut.inclusion.darts =
+      [(0 : Fin 8), 2, 1] := by
+  change (cellDarts cut.diagram retainedIndex).map Subtype.val = _
+  rw [← cut.cellDarts_eq, retainedIndex_source]
+  exact boundary_face_darts 0
+
+noncomputable def cutExteriorArc : CyclicArc (targetDarts cut.diagram none) where
+  start := ⟨0, Nat.zero_lt_succ _⟩
+  length := (targetDarts cut.diagram none).length
+  length_le := le_rfl
+
+/-- The cut's exterior is the second dart of the original exterior. -/
+def ambientExteriorArc : CyclicArc (targetDarts diagram none) where
+  start := ⟨1, by decide⟩
+  length := 1
+  length_le := by decide
+
+/-- The exact oriented arc premise of ambient transport is inhabited on
+the actual reduced two-to-one cut. -/
+theorem actual_exterior_arc_match :
+    targetBoundaryDarts diagram none ambientExteriorArc =
+      (targetBoundaryDarts cut.diagram none cutExteriorArc).map cut.inclusion.darts := by
+  change [(4 : Fin 8)] = cutExteriorArc.darts.map cut.inclusion.darts
+  simp only [CyclicArc.darts, CyclicArc.rotated, cutExteriorArc,
+    List.drop_zero, List.take_zero, List.append_nil, List.take_length]
+  exact cut_outer_walk.symm
+
 theorem section_quasi : IsLambdaCQuasiGeodesicWord D 1 1 (dartWord diagram [4]) := by
   refine ⟨?_, ?_⟩
   · change GroupApproximation.HullSC.RelWord.IsAdmissible D [RelLetter.base a]
@@ -186,3 +236,7 @@ end GroupApproximation.GGT.VanKampen.GCellCutModel
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.no_historical_cut_shelling
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.exists_lemma65_cut
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_reduced_cut
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.retainedIndex_source
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_retained_carrier
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.actual_exterior_arc_match
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GCellCutModel.exists_constructed_region

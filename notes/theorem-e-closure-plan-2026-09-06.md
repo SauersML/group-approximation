@@ -2,7 +2,9 @@
 
 Baseline: 2026-09-06, proof tip `02d72c87f78aca950507f38483f740e28908e0c2`,
 based on main `0767babffd2d32e5745a6bc49b3ba6ebddd21c8a`.
-Working draft: [PR #195](https://github.com/SauersML/group-approximation/pull/195).
+Working draft: [PR #211](https://github.com/SauersML/group-approximation/pull/211).
+Its predecessor [PR #195](https://github.com/SauersML/group-approximation/pull/195)
+merged on 2026-09-07. The four direct assembly admissions remain open.
 This plan covers the entire Theorem E dependency chain, called Theorem C in Lean.
 It does not claim that the formalization is complete.
 
@@ -699,6 +701,69 @@ The outstanding proofs are:
 A package accepting the missing partition or face-drop oracle as a hypothesis
 is an intermediate reduction only. The milestone is the actual producer and
 its audited geometric consumer.
+
+### Actual cut inclusion and the remaining ambient transport gap
+
+Issue [#210](https://github.com/SauersML/group-approximation/issues/210) records
+that `Lemma65CutData` forgets the source inclusion, while its ambient transport
+consumer quantifies over arbitrary O-equivalent replacements. The current
+record's cell-count and boundary-word data do not supply that gluing. This is
+an interface gap, not a closed refutation of the universal statement.
+
+`SurgeryGCellCutInclusion` constructs the actual dart and inner-face inclusion
+of `RegionCutWithGCells` into its source, and transports inner G-region
+boundaries and shellings. `SurgeryGCellCutIndices` constructs the order-preserving
+injection of retained relator positions, retaining exact cell words and cyclic
+carriers and accounting for the common change of basepoint in their values.
+`SurgeryGCellCutContiguity` uses these constructions to transport actual
+contiguity geometry, side bounds, arc lengths, and degree when the exact
+oriented ambient target arc is supplied. These three modules build and their
+audits use only the three permitted axioms.
+
+The reduced two-to-one model in `GCellCutModel` also exhibits the nontrivial
+index shift (cut position zero returns to source position one), retains the
+literal source relator carrier, and supplies the exact exterior-arc match
+inside the longer source boundary. These are closed model checks of those
+specific inputs, not a claim that all required cuts or contiguities exist.
+
+This removes the inclusion and cell-identification inputs for an actual cut.
+It does not construct the ambient target arc, the enclosing boundary used to
+select that cut, or the gluing after an arbitrary O-equivalent replacement.
+The Lemma 6.5 induction still needs those constructions; none of the four
+assembly admissions has been discharged by this checkpoint.
+
+Validation after rebasing onto main `67f1db2a8`: the combined cut-model and
+unchanged theorem-assembly build passes. The strict non-MF source scan still
+fails at precisely the four listed placeholders. The repository-wide source
+scan has additional existing findings outside this lane, so this checkpoint
+does not claim that the global root or its certification gates are green.
+
+### Boundary circuits constructed from a face set
+
+`FaceSetBoundaryCircuits` now constructs the actual boundary successor for
+every face set, without a supplied cyclic ordering. On selected face darts
+it crosses internal edges and advances around faces; the proved first-return
+construction returns to the boundary. Every intervening step is proved to
+cross an internal edge, so the result follows the source map's boundary walk.
+
+`FaceSetBoundaryEnumeration` constructs the finite family of nonempty,
+duplicate-free circuit lists. Each oriented boundary dart belongs to exactly
+one circuit; distinct circuits are disjoint, all follow and close along the
+actual boundary walk, and their total length equals the boundary-dart count.
+When all boundary darts lie in one orbit, it constructs `BoundaryCycle` and,
+for a planar source, `IsDiscRegion`, including the walk and topology proofs.
+The reduced cut model now consumes this general walk producer in place of
+its former explicit internal-edge path, and has a closed constructed-region
+witness. The general constructors and model audits use only the permitted
+three axioms.
+
+Thus boundary enumeration and walk correctness are proved constructions.
+The two-contiguity argument still has to select its enclosed face set, show
+that the relevant boundary is one circuit, identify the four source arcs,
+and provide the shelling and retained-cell data. The finite circuit partition
+also supplies perimeter accounting for complementary regions, but does not
+yet produce their cutting systems or the `53n` arc bound. All four assembly
+admissions remain open.
 
 ## Hull 4.4: discharge the additional geometry, not just the wrapper
 
