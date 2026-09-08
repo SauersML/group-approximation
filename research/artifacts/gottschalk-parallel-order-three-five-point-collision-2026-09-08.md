@@ -1,5 +1,10 @@
 # Parallel order-three nonlinear gates: exact collisions
 
+The subsequent [incidence criterion](gottschalk-parallel-c3-incidence-collision-criterion-2026-09-08.md)
+proves that two distinct orbit-complement corrections always collide,
+and identifies exactly when extra corrections obstruct the canonical
+four-bit construction.
+
 Date: 2026-09-08. The specified scalar parallel encoder is not
 injective. Its collision is finite and exact; no calculation was run.
 

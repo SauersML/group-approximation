@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/gottschalk-consecutive-chart-dual-boundary-collision-2026-09-08.md
   - research/artifacts/gottschalk-parallel-order-three-five-point-collision-2026-09-08.md
   - research/artifacts/gottschalk-quadratic-block-elimination-2026-09-08.md
+  - research/artifacts/gottschalk-parallel-c3-incidence-collision-criterion-2026-09-08.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton

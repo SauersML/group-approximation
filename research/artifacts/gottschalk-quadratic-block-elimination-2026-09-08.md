@@ -417,3 +417,75 @@ it applies to every scalar rule x(g)+x(gb)P(x), where P is any local
 polynomial. This closes the entire single-cyclic-guard construction
 family, including the infinite-b and noncommensurated cases; it does
 not settle Gottschalk's conjecture for arbitrary cellular automata.
+
+## Spatial bipartitions need not be periodic
+
+There is a second whole-family positive theorem. Over a finite field k,
+consider a scalar quadratic CA
+
+    F(x)(g)=x(g)+sum_i lambda_i x(ga_i)x(gb_i),             (13)
+
+where the nonzero coefficients and address pairs form a finite list.
+Its spatial operand graph has vertex set G and an undirected edge
+{ga_i,gb_i} for every g and i. If this graph is bipartite, injectivity
+of F implies surjectivity. The coloring need not be periodic and need
+not come from a finite-index subgroup of G.
+
+Let C be the nonempty compact invariant subshift of all proper binary
+colorings of this graph. Fix c in C and divide the input coordinates
+into X, on color 0 sites, and Y, on color 1 sites. Every quadratic term
+has one operand in each block. Hence F fixes both axes and has the form
+
+    F_c(X,Y)=(L_(c,Y)X, V_c(X,Y)),
+
+with L_(c,Y) homogeneous linear. If L_(c,Y)X=0, then
+
+    F_c(X,Y)=(0,V_c(X,Y))=F_c(0,V_c(X,Y)).
+
+Injectivity gives X=0, so every L_(c,Y) is injective. Thus the local
+equivariant map E on C times k^G, defined by
+
+    E(c,X,Y)=(c,L_(c,Y)X,Y),
+
+is injective. For fixed c and finitely supported Y, the map L_(c,Y)
+differs from the identity at only finitely many output sites. The finite
+coordinate-fiber argument above makes it bijective. Finitely supported
+Y are dense in the fixed-c Y space, so compactness makes L_(c,Y)
+surjective for every Y. This proves E bijective on C times k^G.
+
+Its inverse is uniformly local on this compact invariant subshift.
+Indeed, its output coordinate at 1 is continuous into a finite set, so
+compactness gives a finite determining set; equivariance translates
+that same finite set to every other coordinate. Consequently changing
+finitely many data coordinates while holding c fixed changes only
+finitely many coordinates of E^-1.
+
+Now D_c=F_c E_c^-1 preserves X and is the identity on the X=0 fiber.
+For finitely supported X, its map on the Y fiber differs from the
+identity at only finitely many output sites, by the locality just
+proved. Injectivity and finite coordinate-fiber counting make that
+fiber map bijective. Density of finitely supported X and compactness
+then make every Y fiber surjective. Thus D_c, and hence F, is
+surjective.
+
+This proof never modifies the coloring certificate. All density and
+finite-perturbation steps change only X or Y at a fixed proper coloring.
+It therefore does not apply a full-shift certificate theorem to the
+constrained coloring subshift without checking its hypotheses.
+
+For the disjoint-pair Boolean family
+
+    F(x)(g)=x(g)+x(ga)x(gb)+x(gc)x(gd),                    (14)
+
+put u=a^-1 b, v=c^-1 d, and H=<u,v>. The operand graph has components
+the cosets gH, with edges given by right multiplication by u and v.
+It is bipartite exactly when there is a homomorphism
+
+    chi:H -> F_2,   chi(u)=chi(v)=1.
+
+One direction colors gH by chi after choosing a representative. For
+the converse, bipartiteness says every relation in u,v and their
+inverses has even length, so word length modulo two is well-defined
+and supplies chi. This character need not extend to the full memory
+subgroup <a,b,c,d>. This is a condition on the **operand graph**, not
+on the directed graph from each output g to its input addresses.
