@@ -107,3 +107,64 @@ automation:
 
 review:
   status: self-assessed
+
+repository:
+  role: substantive-development
+
+related_formalizations: []
+
+status:
+  # Scope note.  This repository is a large development with open work in it;
+  # the single result offered for mechanical verification is the Palomar
+  # challenge theorem, and that is what `main_results` describes.  The axiom
+  # closure of that theorem is decided by `leanprover/comparator` against
+  # `Palomar/comparator.json`, which permits only propext, Quot.sound and
+  # Classical.choice; it is recorded by the `Palomar Comparator` workflow run
+  # that precedes a submission and is deliberately not asserted here, because
+  # nothing in this file is in a position to have checked it.  `sorry_count`
+  # is omitted from the entry for the same reason: Palomar/Solution.lean
+  # contains no `sorry` lexically, but the field asks about the closure of the
+  # proved declaration, which reaches into the development and is settled by
+  # the same Comparator run rather than by reading one file.
+  scope: >-
+    A Lean 4 development over Mathlib of the one-sided Kazhdan compression
+    criterion and its MF-radical consequences, together with a self-contained
+    Comparator submission surface. Palomar/Challenge.lean states, in a
+    Mathlib-only module carrying its own copies of the three approximation
+    notions it mentions, that one explicitly presented eight-generator group is
+    sofic in normalized Hamming distance and not MF in the sequential
+    operator-norm sense; Palomar/Solution.lean proves that statement from the
+    development. The rest of the repository is not offered as certified by this
+    entry.
+  main_results:
+    - declaration: ExplicitNonMF.explicit_sofic_not_MF
+      file: Palomar/Solution.lean
+      comparator_config: Palomar/comparator.json
+
+fidelity:
+  divergences: >-
+    The certified proposition is about one explicitly presented group, not the
+    general theorem the manuscript states, and both approximation notions in it
+    are rendered rather than imported. The registry recompiles the challenge
+    against a frozen canonical Mathlib and rejects any project-local source in
+    its import closure, so Palomar/Challenge.lean carries its own definitions of
+    normalized Hamming distance, of soficity, and of the MF property; those
+    definitions are copied into the module and are not the development's own.
+    Soficity is rendered as approximation by permutations of finite carriers in
+    normalized Hamming distance. The MF side is rendered in the sequential
+    operator-norm form and negated, rather than in the norm-matrix-corona form
+    the manuscript uses; the equivalence of the formulations is proved inside
+    the development and is not part of the compared statement. No quantitative
+    defect bound, and no statement about any other group, is certified by this
+    result.
+
+alignment:
+  statements:
+    - source: >-
+        There is an explicitly presented finitely generated group which is
+        sofic and not MF.
+      lean: ExplicitNonMF.explicit_sofic_not_MF
+      module: Palomar.Challenge
+      status: proved
+
+acknowledgements: "Built on Lean 4 and Mathlib."
