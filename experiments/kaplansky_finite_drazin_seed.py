@@ -28,6 +28,19 @@ def matrix_product(left, right):
     return tuple(columns)
 
 
+def field_product(left, right):
+    """F_4=F_2[w]/(w^2+w+1), in the basis 1,w."""
+    out = 0
+    while right:
+        if right & 1:
+            out ^= left
+        left <<= 1
+        if left & 4:
+            left ^= 7
+        right >>= 1
+    return out
+
+
 def polynomial_divmod(left, right):
     assert right
     quotient = 0
@@ -183,6 +196,60 @@ def main():
     assert ranks["e"] == ranks["h"] + ranks["f_plus"]
     assert ranks["f_plus"] == ranks["P"] > 0
 
+    # Explicit center-trivial Steinberg block, not a search for a common
+    # summand. The SL_2(F_4) factor has 20 order-three and 24 order-five
+    # elements. Its integral character projector reduces to their sum.
+    special = []
+    character_sum = 0
+    order_counts = {}
+    for i, columns in enumerate(elements):
+        determinant = (field_product(columns[0] & 3, columns[2] >> 2)
+                       ^ field_product(columns[2] & 3, columns[0] >> 2))
+        if determinant != 1:
+            continue
+        special.append(i)
+        power, order = i, 1
+        while power != 0:
+            power = table[power][i]
+            order += 1
+            assert order <= 5
+        order_counts[order] = order_counts.get(order, 0) + 1
+        if order in (3, 5):
+            character_sum ^= 1 << i
+    assert len(special) == 60
+    assert order_counts == {1: 1, 2: 15, 3: 20, 5: 24}
+    center_norm = (1 ^ basis(scalar)
+                   ^ basis(matrix_product(scalar, scalar)))
+    steinberg = multiply(center_norm, character_sum)
+    assert steinberg.bit_count() == 132
+    assert multiply(steinberg, steinberg) == steinberg
+    assert all(multiply(steinberg, basis(g)) == multiply(basis(g), steinberg)
+               for g in generators)
+    assert natural(steinberg) == [0, 0, 0, 0]
+    f_common = multiply(f, steinberg)
+    p_common = multiply(projector, steinberg)
+    f_reduced, p_reduced = f ^ f_common, projector ^ p_common
+    conjugator = (13, 6, 9, 14)  # [[I,I],[G^2,G]], over F_2
+    conjugator_index = index[conjugator]
+    inverse_index = table[conjugator_index].index(0)
+    common_forward = multiply(basis(conjugator), f_common)
+    common_backward = multiply(f_common, 1 << inverse_index)
+    assert multiply(common_backward, common_forward) == f_common
+    assert multiply(common_forward, common_backward) == p_common
+    assert multiply(p_common, common_forward) == common_forward
+    assert multiply(common_forward, f_common) == common_forward
+    assert multiply(f_reduced, f_reduced) == f_reduced
+    assert multiply(p_reduced, p_reduced) == p_reduced
+    assert multiply(f_common, f_reduced) == 0
+    assert multiply(p_common, p_reduced) == 0
+    assert natural(f_reduced) == [0, 0, 0, 0]
+    assert natural(p_reduced) == natural(projector)
+    reduced_ranks = {name: regular_rank(value) for name, value in (
+        ("E", steinberg), ("f_common", f_common), ("P_common", p_common),
+        ("f_reduced", f_reduced), ("P_reduced", p_reduced))}
+    assert reduced_ranks == {"E": 16, "f_common": 8, "P_common": 8,
+                             "f_reduced": 32, "P_reduced": 32}
+
     def record(value):
         return {
             "support_size": value.bit_count(),
@@ -213,6 +280,21 @@ def main():
             "finite_group_module_isomorphism_excluded":
                 "f_plus acts as zero and P as a rank-two projector on the natural module",
         },
+        "steinberg_reduction": {
+            "scope": "A sufficient rank-32 target; cancellation over the full group ring is not asserted.",
+            "SL2_order_counts": order_counts,
+            "E_support_size": steinberg.bit_count(),
+            "E_formula": "(1+z+z^2) times the sum of SL2(F4) elements of order 3 or 5",
+            "conjugator_columns": conjugator,
+            "conjugator_inverse_columns": elements[inverse_index],
+            "common_forward_formula": "[conjugator] f_plus E",
+            "common_backward_formula": "f_plus E [conjugator^-1]",
+            "common_inverse_identities_checked": True,
+            "regular_ranks": reduced_ranks,
+            "common_reduced_lifted_trace": str(Fraction(32, len(elements))),
+            "f_reduced": record(f_reduced),
+            "P_reduced": record(p_reduced),
+        },
         "all_exact_checks_passed": True,
         "elapsed_seconds": time.monotonic() - start,
     }
@@ -224,6 +306,9 @@ def main():
     print(json.dumps({name: result[name]["support_size"]
                       for name in ("e", "T", "h", "v", "f", "P")}), flush=True)
     print(json.dumps(result["projector_comparison"]), flush=True)
+    print(json.dumps({"steinberg_ranks": reduced_ranks,
+                      "reduced_support_sizes": [f_reduced.bit_count(),
+                                                p_reduced.bit_count()]}), flush=True)
 
 
 if __name__ == "__main__":

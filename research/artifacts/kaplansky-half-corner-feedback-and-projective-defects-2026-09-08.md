@@ -237,4 +237,221 @@ The exact certificate gives:
 
 Consequently `τ(f)=τ(f_+)=τ(P)=40/180=2/9`. On the natural four-dimensional representation, `f_+` acts as zero and `P` acts as `diag(0,0,1,1)`. They are thus not isomorphic projectives over this finite group algebra despite their equal regular ranks. The exact comparison in Section 5 can equivalently use `f_+` after conjugating its source by `U`.
 
+## 7. An optional sufficient rank-32 target
+
+There is an explicit common finite summand that can be removed when designing a sufficient comparison. This does **not** prove that every split embedding over the full group ring can be cancelled down to the reduced comparison.
+
+Write `K=GL_2(F_4)=A×〈z〉`, where `A=SL_2(F_4)≅A_5` and `z=ωI` has order three. Define
+
+```
+E=(1+z+z²) · sum_{a∈A, ord(a)∈{3,5}} a.
+```
+
+This has 132 terms and is a central idempotent in `F_2[K]`. Its block is `M_4(F_2)`: it is the center-trivial Steinberg block.
+
+For an elementary verification, let `V` be the sum-zero submodule of the five-point permutation module of `A_5` over `F_2`. Its dimension is four. Every nonzero vector has weight two or four, and each such `A_5` orbit spans `V`, so `V` is irreducible. Two-transitivity of the permutation action, together with `F_2^5=1⊕V`, gives `End_A(V)=F_2`; the module is absolutely irreducible. A Sylow two-subgroup acts regularly on four points and fixes the fifth; the basis `e_i+e_5` identifies the restriction of `V` with its regular module. Thus `V` is projective and supplies a simple matrix block.
+
+The corresponding ordinary deleted permutation character has values `4,0,1,−1,−1` on the identity, involutions, three-cycles, and the two five-cycle classes. Its central idempotent is
+
+```
+(1/15)(4·1 + sum_ord3 a − sum_ord5 a).
+```
+
+This is integral at two and reduces to the 44-term sum in the definition of `E`; the central norm selects the trivial center character.
+
+On the Steinberg module one may instead use the four-dimensional model `ρ(g)=g⊗g^(2)` over `F_4`. In the basis `A=11,B=12,C=21,D=22`, the child idempotent kills `A,D` and fixes `B,C`, while the parent image is `span{A+B+C,A+D}`. Both triple compressions `E_child E_parent E_child` and `E_parent E_child E_parent` are zero. Therefore `f_+E` and `PE` each have rank two in `M_4(F_2)`, and hence regular rank eight. They are equivalent inside the finite group algebra.
+
+Set
+
+```
+f_0=f_+(1+E),       P_0=P(1+E).
+```
+
+These have regular rank 32 and lifted trace `8/45`. The block `E` evaluates to zero, so `ev(f_0)=0` and `ev(P_0)=p_01`.
+
+The updated finite certificate checks `E` has support 132 and regular rank 16, while `f_0,P_0` have supports 56 and 72. It also authenticates a literal finite-block inverse. Over `F_4`, take
+
+```
+b=[[1,1],[ω²,ω]] ∈ SL_2(F_4).
+```
+
+Then `b diag(ω²,ω)b⁻¹=G`. Since `diag(ω²,ω)=z·child` and the block has trivial center, `b(E_child E)b⁻¹=E_parent E`. Consequently
+
+```
+Z_c=[b] f_+ E,       L_c=f_+ E[b⁻¹]
+```
+
+satisfy `L_cZ_c=f_+E` and `Z_cL_c=PE`. In the binary basis the columns of `b` are `(13,6,9,14)`; these products were checked coefficient by coefficient by the finite script.
+
+If `Z_0∈P_0 S f_0` and `L_0∈f_0 S P_0` satisfy `L_0Z_0=f_0`, add a finite-block isomorphism `Z_c,L_c` between `f_+E` and `PE`. Orthogonality of the finite source and target splits gives
+
+```
+(L_0+L_c)(Z_0+Z_c)=f_+.
+```
+
+Conjugating the source back by `U` supplies the comparison from Section 5 and therefore its scalar inverse construction. This is a concrete sufficient rank-32 construction target. The reverse implication would require cancelling a common projective summand after induction to `S`, which has not been proved.
+
+## 8. What the remaining actor must transfer
+
+The reduced idempotents lie entirely in the nontrivial central `C_3` block, which is `F_4[A_5]`. Write `V,V^(2)` for the natural two-dimensional `SL_2(F_4)` module and its Frobenius twist, and `St=V⊗V^(2)` for the four-dimensional Steinberg module. These, together with `1`, are the four absolutely simple modules. The standard classification and the Steinberg defect-zero statement are recorded in [Rouquier, Theorem 4.1](https://www.math.ucla.edu/~rouquier/papers/ias.pdf); the projector calculations below are explicit. On these modules the reduced projectors have ranks
+
+| Simple module | `f_0` | `P_0` |
+| --- | ---: | ---: |
+| `1` | 1 | 0 |
+| `V` | 0 | 1 |
+| `V^(2)` | 0 | 1 |
+| `St` | 1 | 0 |
+
+These ranks follow directly from the matrices above, including the nontrivial determinant twists. For example on a nontrivial determinant twist of `St`, the child idempotent is `diag(1,1,0,1)` or `diag(1,0,1,1)`; the compression has stable rank two, leaving source rank one and target rank zero. In the trivial center block, only the common Steinberg summand survives, and it has already been removed. An idempotent annihilating every simple module of that finite block is zero, since its radical is nilpotent.
+
+Here is an explicit check of the four ranks, requiring only matrices of sizes one, two, and four. Choose the central character `z↦ω`, and use the representations
+
+```
+ρ_1(g)=det(g)²,
+ρ_V(g)=g,
+ρ_V2(g)=det(g) g^(2),
+ρ_St(g)=det(g)² (g⊗g^(2)).
+```
+
+All four send `z` to scalar `ω`. The parent matrix is `G`, of determinant one, and the child is `diag(ω,1)`, of determinant `ω`. Their idempotent images are respectively
+
+| Representation | `E_parent` | `E_child` |
+| --- | --- | --- |
+| `ρ_1` | `0` | `1` |
+| `ρ_V` | `I_2` | `diag(1,0)` |
+| `ρ_V2` | `I_2` | `diag(0,1)` |
+| `ρ_St` | `H` | `D=diag(1,0,1,1)` |
+
+For the last row, use the ordered basis `A,B,C,D_0` of the tensor square, and define the matrix `H` by
+
+```
+HA=A+B+C,  HB=A+D_0,  HC=A+D_0,  HD_0=B+C+D_0.
+```
+
+The projector `D` kills `B` and fixes the other three basis vectors. For `T_D=DHD`, its square sends `A,C,D_0` to `C+D_0,A+D_0,A+C`, respectively, and kills `B`. Therefore `D+T_D²` sends each of `A,C,D_0` to `A+C+D_0` and kills `B`, giving rank one. Meanwhile `S_D=HDH` preserves `im(H)=span{A+D_0,A+B+C}`; on this basis it sends the first vector to itself and the second to their sum. Hence `S_D²=H`, so `H+S_D⁴=0`. The first three rows give the other ranks immediately. The common block `E` vanishes in all four representations because their central character is nontrivial, so these computations already apply to `f_0,P_0`.
+
+Consequently, writing `P(W)` for a projective cover,
+
+```
+f_0 F_4[A_5] ≅ P(1) ⊕ St,
+P_0 F_4[A_5] ≅ P(V) ⊕ P(V^(2)).
+```
+
+The dimensions over `F_4` are `12+4=8+8=16`. A useful exact tensor description is
+
+```
+St⊗V       ≅ P(V^(2)),
+St⊗V^(2)   ≅ P(V),
+St⊗St      ≅ P(1)⊕St.
+```
+
+For verification, `V⊗V` has composition factors `1,1,V^(2)`. Tensoring with the projective `St` gives projectives. Self-duality and tensor adjunction show that `St⊗V` has the sole simple top `V^(2)`, once; the Frobenius-conjugate statement follows similarly. The single Steinberg composition factor of `St⊗St` splits off because it is projective-injective. The remaining projective has the trivial module as its sole simple top, once. This derives the displayed projective identities without presupposing a Cartan table.
+
+There is a global obstruction for an important control class. Let `N=N_Q(K)`, `A=F_2[K]`, and `J=Jac(A)`. The radical is invariant under `N`, and `J F_2[N]` is nilpotent. Modulo this ideal, the source occupies only the one- and four-dimensional `A_5` types, while the target occupies the two-dimensional types. Normalizer automorphisms, including semilinear `F_4` actions and Frobenius interchange, preserve these disjoint sets. Therefore
+
+```
+P_0 F_2[N] f_0 ⊆ J F_2[N].
+```
+
+No element `Z` in this corner can have `LZ=f_0`, even with unrestricted `L∈S`: conditional expectation onto `F_2[N]` would give the same equation inside the nilpotent ideal, contradicting the nonzero idempotency of `f_0`. In particular actors merely centralizing or normalizing the finite chart cannot solve the comparison. This argument does not exclude actors transporting between distinct conjugate charts.
+
+## 9. Torus weights do not remove the root-product error
+
+There is an exact finite control for a proposed construction from torus-weighted root differences. Work over `F_4` in the Heisenberg subgroup of `SL_3(F_4)`, with
+
+```
+A(a)=x_12(a),   B(b)=x_23(b),   C(c)=x_13(c),
+t=diag(ω,1,ω²).
+```
+
+Normal forms are uniquely `B(b)A(a)C(c)t^k`, and `A(a)B(b)=B(b)A(a)C(ab)`. Define
+
+```
+X_ij=sum_{a∈F_4^×} a⁻¹[x_ij(a)],
+ε_j=sum_{k=0}^2 ω^(−jk)[t^k],       j∈Z/3.
+```
+
+The weighted root sum is unchanged if basis elements are replaced by root differences, because the coefficient sum is zero. Conjugation by `t` gives `X_12,X_23` weight `ω` and `X_13` weight `ω²`. Hence the error
+
+```
+D=X_12X_23+X_23X_12+X_13
+```
+
+has exactly the desired highest-root weight `ω²`. Its explicit support is
+
+```
+D=sum_{a,b≠0} (ab)⁻¹[B(b)A(a)](1+[C(ab)])
+  +sum_{c≠0} c⁻¹[C(c)].
+```
+
+The first sum has eighteen distinct normal forms with `a,b≠0`; the second has three disjoint central normal forms. In particular the coefficient of `[B(1)A(1)C(1)]` is one. Unique `U·〈t〉` normal forms keep the coefficient of `[B(1)A(1)C(1)t^0]` equal to one in `Dε_j` for every `j`. Since `D` has weight `ω²`,
+
+```
+ε_(j+2) D ε_j=Dε_j≠0.
+```
+
+Thus every compatible torus-character corner retains an explicit error term. Torus weights alone do not promote the augmentation-level root commutator to the proposed exact root multiplication identity.
+
+The error also survives projection onto the **central Steinberg block**, for each character of the chosen torus `〈t〉`. Equivalently, for the full diagonal torus these are precisely the characters trivial on the center of `SL_3(F_4)`; a nontrivial central character annihilates the Steinberg module and is not covered by this assertion.
+
+To verify the claim, in the flag permutation module take the apartment vector `η=sum_{w∈S_3}[wB]`. The torus fixes `η`, and the vectors `uη`, for `u` in the upper unipotent group, are independent: their distinct open Bruhat-cell terms `u w_0 B` do not occur in the other Weyl terms. These give the standard unipotent basis of the Steinberg module. Thus `Dε_0η=Dη≠0`. For `j=1,2`,
+
+```
+ε_j A(1)η=X_A^(j)η,
+X_A^(j)=sum_{a≠0} a^(−j)[A(a)].
+```
+
+The product `D X_A^(j)` contains nine distinct terms with `b=0` and `a,c≠0`, coming from `X_13 X_A^(j)`. Every commutator term retains `b≠0`, so none cancels them. Hence `Dε_j` acts nontrivially on the Steinberg module for both remaining characters. This excludes central Steinberg projection plus torus weights as a correction-removal device; it does not exclude every additional primitive Steinberg sandwich.
+
+Redefining the highest-root operator as the commutator does not supply the reverse zero product either: `X_23X_12` has nine distinct normal forms `B(b)A(a)`, all with the same weight `ω²`, and remains nonzero in every compatible torus corner. An additional non-torus block identity would be needed to kill it.
+
+For comparison, a single additive root group does have exact weighted nilpotents. If `X=sum a⁻¹δ_x(a)` and `Y=sum a⁻²δ_x(a)`, then `X²=Y²=0`, whereas `XY=sum_{a∈F_4}[x(a)]` is a nonzero torus-invariant term. The finite support obstruction above is therefore compatible with the elementary square-zero root control. No approximation or computational test is used in this section.
+
+## 10. A finite-specialization control for literal comparison words
+
+The following exclusion concerns this particular typed comparison, not direct finiteness of arbitrary groups.
+
+Suppose a candidate `Z∈P_0 F_2[H] f_0` has support in a subgroup `H` containing the finite chart `K`. Assume there is a homomorphism
+
+```
+π:H→F⊂GL_n(F_4)
+```
+
+onto a finite matrix group such that `π` is injective on `K` and the natural matrix representation satisfies `ρπ(f_0)=0`, `ρπ(P_0)≠0`. Then no `L∈F_2[Q]` satisfies `LZ=f_0`.
+
+Indeed replace `L` by `f_0 L P_0`, preserving `LZ=f_0`. Conditional expectation onto `F_2[H]` then supplies `L_H Z=f_0` with `L_H∈f_0 F_2[H] P_0`. In the finite group algebra `F_2[F]`, the images of `f_0,P_0` have equal regular rank, because their ranks over `K` are equal and `K` embeds in `F`. Thus the idempotent `π(Z)π(L_H)≤π(P_0)` has the full rank of `π(P_0)`, forcing equality. Applying the natural matrix representation gives a contradiction: `ρπ(Z)=0` because `Z=Zf_0`, whereas `ρπ(P_0)≠0`.
+
+Crucially, this proof does not infer that an unknown source defect vanishes merely because its finite-quotient image vanishes. Its image is forced to survive by the additional natural representation: `ρπ(P_0−ZL_H)=ρπ(P_0)≠0`. Injectivity on `K` alone would not provide this argument.
+
+In particular the control excludes all comparison words confined to constant finite matrices and a single Jacobson coefficient pair `s,t` with `ts=1`. The coefficient specialization `s=t=1` gives the required finite matrix image and preserves the constant chart. The one-pair algebra embeds in the Leavitt algebra: its shift action on the basis `0^k1ξ` is faithful, since successive values of `k` recover the coefficients of the basis monomials `s^i t^j`. Thus this specialization is well-defined on the matrix subgroup in question.
+
+## 11. Packed Cuntz actors: the first literal control is still finite
+
+Place the original constant `K=GL_2(F_4)` on coordinates one and two of four, and consider two packed unipotents
+
+```
+R=I+E_13 s_0+E_14 s_1,
+S=I+E_31 t_0+E_41 t_1.
+```
+
+Both square to the identity. A direct attempt such as `Z=P_0 d_R f_0`, `L=f_0 d′_R P_0`, using finite natural-block matrix units from `〈R,S〉`, cannot work. More strongly, every comparison word using only `K,R,S` is excluded by a finite matrix control.
+
+For proof, define rectangular matrices
+
+```
+A=diag(I_2, [s_0 s_1]),
+B=diag(I_2, [t_0 t_1]^T).
+```
+
+The Cuntz relations give `AB=I_3`, `BA=I_4`. Hence `X↦AXB` is a ring isomorphism from `M_4(L_2(F_4))` to `M_3(L_2(F_4))`. It sends `K` to `diag(K,1)`, `R` to `I+E_13`, and `S` to `I+E_31`. Their generated group is therefore a finite subgroup of `GL_3(F_4)` (in fact the full group). Its natural representation restricts to the required natural chart plus a trivial summand, so Section 10 applies.
+
+The first mixed selectors missing from this finite three-coordinate interpretation are
+
+```
+[R,x_32(1)]=x_12(s_0),    [R,x_42(1)]=x_12(s_1),
+[x_23(1),S]=x_21(t_0),    [x_24(1),S]=x_21(t_1).
+```
+
+Under the rectangular isomorphism, the selector roots themselves carry the four separate parameters. Using only one selector pair returns to the Jacobson specialization excluded above. A construction must use both pairs and their shared Cuntz partition `s_0t_0+s_1t_1=1`, not merely the finite `S_3` relation between the packed actors. These mixed identities have not yet been assembled into a valid `Z,L` pair.
+
 Prediction: the primitive split is conclusively impossible; the stable-image split solves the first half exactly. Keeping all comparison coefficients in the amenable source subgroup remains impossible. The unresolved mechanism is an explicit split embedding `fS→PS` using essential full-group relations, despite equal positive lifted trace and unequal evaluated support. Neither full actor support nor a root square-zero factor establishes such an embedding.
