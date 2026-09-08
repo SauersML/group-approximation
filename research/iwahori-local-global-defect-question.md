@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/modular-multiplicity-rank-reconciliation-2026-09-08.md
   - research/artifacts/strict-iwahori-stratum-neighborhood-obstruction-2026-09-08.md
   - research/artifacts/iwahori-mixed-surgery-and-polynomial-step-2026-09-08.md
+  - research/artifacts/commuting-iwahori-repair-and-stationary-points-2026-09-08.md
 distinct_from:
   iwahori-outlier-repair: that is this repository's proposed sufficient condition -- a full-rank repair theorem in the one sector its own analysis leaves open; this is the published question in Dogon-Vigdorovich's own local-defect/global-defect form, which the repair theorem is an attack on.
   iwahori-fractional-transport-integralization: that is one intermediate step of the attack, converting a fractional transport plan into orthogonal blocks; this is the whole question the attack is aimed at.
@@ -117,6 +118,18 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   have not been shown to produce the two residual conditions from small
   HS defect or preserve them under iteration; that is the remaining
   sufficient construction, not a consequence of the polynomial formula.
+- **Commuting capture is explicit, but its smooth gradient is zero.**
+  `commuting-iwahori-pairs-have-quadratic-rank-repair` selects the joint
+  residual support when all four input generators commute. Its rank is
+  `O(def^2 d)`, and replacing the supported generators by identities
+  constructs a strict compatible endpoint at linear HS cost. At every
+  such input, the residual is orthogonal to every chart derivative.
+  Explicit balanced examples approach compatible points in the same
+  stratum while every finite Landweber update is zero. The required
+  action is the supplied discrete support surgery. For general inputs
+  that spectral support need not reduce either vertex; extending this
+  capture construction requires controlling the new errors from making
+  it reducing.
 - **The cross-dimension metric step is now justified in both directions.**
   `flexible-hs-metric-controls-words-and-padding` proves the word-defect
   Lipschitz estimate using the actual generalized metric, correcting the
