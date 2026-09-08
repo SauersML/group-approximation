@@ -76,11 +76,24 @@ does) but is a different design.
 
 Analyzed dead space.
 
-- **Covers.**  Non-MF does not pass down along surjections: free groups are
-  residually finite, hence MF, and surject onto every finitely generated
-  group, including `E`.  A torsion-free group mapping onto `E` therefore
-  carries no obstruction unless the mark itself lifts, which is the
-  infinite-order central mark route and not a cover argument.
+- **Covers, in general.**  Non-MF does not pass down along surjections: free
+  groups are residually finite, hence MF, and surject onto every finitely
+  generated group, including `E`.  A torsion-free group mapping onto `E`
+  therefore carries no obstruction unless the mark itself lifts; for the free
+  cover that is the infinite-order central mark route, not a cover argument.
+- **Covers, canonically (amended 2026-09-08).**  That verdict kills the
+  general principle, not every cover.  `free-abelianized-cover-is-torsion-free`
+  gives, over any `G = F/R`, a torsion-free cover `F/[R,R]` of the same rank
+  whose kernel `R/[R,R]` is free ABELIAN, where the free cover's kernel `R` is
+  free of infinite rank; and the recorded quotient-nonclosure witness
+  `mf-quotient-nonclosure` is exactly the free cover `F_8 -> E`, with
+  non-amenable kernel.  Whether the mark lifts along the abelianized cover is
+  the isolated open implication `free-abelianized-cover-reflects-mf`; a proof
+  of it would settle `torsion-free-countable-non-mf` with no Property `(T)`
+  input, and a refutation would be the first quotient-nonclosure witness with
+  abelian kernel.  Note also `torsion-free-central-cover-forces-abelian-finite-subgroups`:
+  no cover with CENTRAL kernel can work universally, since `G_0 x S_3` is
+  non-MF and has a nonabelian finite subgroup.
 - **Embeddings of the existing witness.**  Non-MF does pass **up**:
   subgroups of MF groups are MF (`mf-positive-controls`).  But `E` and the
   Clifford witness contain an involution, so no torsion-free group contains
