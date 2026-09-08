@@ -60,3 +60,13 @@ finite iterate does not bound the optimum at dimension 24, much
 less uniformly over every `24k`. The finite-coefficient rank theorem
 is logically independent of this unrestricted complex-unitary
 pilot. Both global feasibility alternatives remain open.
+
+An exact construction now resolves the optimum for these four rows:
+`leavitt-four-word-packet-24-point-countermodel-2026-09-08.md`
+gives the relative permutation
+`U=(9 17)(10 18)(12 20)(15 23)` in zero-based coordinates.
+All four residuals are exactly zero at dimension 24. Thus the
+positive residual above reflects this bounded optimization run,
+not an obstruction of the packet. The exact control was verified
+separately by integer permutation calculations and literal-word
+replay; the original numerical history is retained unchanged.

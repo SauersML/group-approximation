@@ -1,0 +1,125 @@
+{
+  "schema": "leavitt-24k-packet-exact-control-v1",
+  "script_sha256": "658552963de0a7ea7822b3ee0fcc0ddb34b050f1bfdc2119ebc072df748aa770",
+  "dimension": 24,
+  "k": 1,
+  "permutation_convention": "image tuples; (p q)[i]=p[q[i]]; matrices act on columns",
+  "coordinate_convention": "index=8*a+x, a in C3, x in C2^3",
+  "C_formula": "C(a,x)=(a+1,x)",
+  "D_formula": "D_i(a,x)=(a,x+e_i)",
+  "U_formula": "U(a,x)=((-1)^parity(x)*a,x)",
+  "B_formula": "B_i(a,x)=(-a,x+e_i)",
+  "search_performed": false,
+  "checks": {
+    "U_is_permutation": true,
+    "U_squared_identity": true,
+    "U_is_exactly_the_four_stated_swaps": true,
+    "C_cubed_identity": true,
+    "C_factor_is_regular_with_multiplicity_eight": true,
+    "D_involutions": true,
+    "D_pairwise_commuting": true,
+    "B_has_the_stated_coordinate_formula": true,
+    "B_involutions": true,
+    "B_pairwise_commuting": true,
+    "B_factor_is_regular_with_multiplicity_three": true,
+    "all_nine_cross_commutators_are_C_squared": true,
+    "shared_intermediates_match_analytic_values": true,
+    "expanded_word_lengths_match": true,
+    "direct_replay_equals_shared_evaluator": true,
+    "all_four_packet_words_are_identity": true,
+    "omitted_d_squared_is_C": true,
+    "omitted_word_moves_every_point": true
+  },
+  "checks_passed": true,
+  "U": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    17,
+    18,
+    11,
+    20,
+    13,
+    14,
+    23,
+    16,
+    9,
+    10,
+    19,
+    12,
+    21,
+    22,
+    15
+  ],
+  "U_swaps_zero_based": [
+    [
+      9,
+      17
+    ],
+    [
+      10,
+      18
+    ],
+    [
+      12,
+      20
+    ],
+    [
+      15,
+      23
+    ]
+  ],
+  "packet_word_lengths": {
+    "r_star": 166,
+    "R_v": 16,
+    "R_0": 172,
+    "R_sum": 108
+  },
+  "packet_moved_counts": {
+    "r_star": 0,
+    "R_v": 0,
+    "R_0": 0,
+    "R_sum": 0
+  },
+  "omitted_native_relation": {
+    "word": "d^2",
+    "length": 16,
+    "permutation": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "moved_count": 24,
+    "squared_normalized_HS_defect": 2.0,
+    "normalized_HS_defect": 1.4142135623730951
+  },
+  "conclusion": "The exact degree-24 model makes all four packet relations identity with the finite factors regular, so this finite packet has no positive 24k feasibility gap. It is not a model of the full Leavitt group: the native relation d^2=1 has squared normalized-HS defect exactly 2.",
+  "verification_seconds": 0.0014589840002372512
+}

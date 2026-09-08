@@ -1,0 +1,39 @@
+---
+rg: 2
+id: leavitt-has-an-explicit-finite-c-killing-certificate
+kind: claim
+title: Nine explicit native Leavitt words kill the coordinate cycle in every exact finite-dimensional unitary model
+distinct_from:
+  binary-leavitt-hyperlinear-iff-24k-feasible: That uses a computable exhaustion of the whole marked kernel to characterize hyperlinearity; this displays one fixed nine-word subset excluding exact finite-dimensional models, with no uniform bound for approximate models.
+  leavitt-24k-kernel-packet-excludes-scalar-field-models: That four-word packet excludes specified elementary scalar-field models but has other exact finite models; this different packet kills the marked cycle in all exact finite-dimensional unitary models.
+  thompson-v-has-no-nontrivial-fd-unitary-representation: That is the abstract representation theorem for V; this explicitly compiles its finite presentation into the fixed four Leavitt generators and links a killed swap to the coordinate cycle.
+artifacts:
+  - research/artifacts/leavitt-explicit-thompson-c-killing-certificate-2026-09-08.md
+---
+
+Let `q:P=C_3*C_2^3 -> EL_3(L_(F_2)(1,2))` be the marked Leavitt
+epimorphism, with generators `c,b_1,b_2,b_3` as in
+`binary-leavitt-units-generated-by-c3-and-c2-cubed`.
+
+There is the explicit set of nine words
+
+```text
+T_V={r_*,rho_1,rho_2,rho_3,rho_4,rho_5,rho_6,rho_7,rho_8}
+```
+
+defined by the finite straight-line formulas in Sections 1 and 3 of the
+artifact, such that `T_V` is contained in `ker q` and every word has length
+at most `52920` in `c,c^(-1),b_1,b_2,b_3`. For every positive integer `n`
+and every homomorphism `pi:P -> U(n)`,
+
+```text
+pi(T_V)=I  ==>  pi(c)=I.
+```
+
+Consequently the same holds for every homomorphism from `P` to a finite
+group. These words may be adjoined to the existing four-word coefficient
+packet or to the computable kernel exhaustion. In every fixed dimension
+the frozen regular-factor model has positive minimum `T_V` defect.
+
+No lower bound uniform in dimension is asserted. This certificate does
+not settle normalized-HS feasibility, hyperlinearity, or nonhyperlinearity.

@@ -49,7 +49,14 @@ normalization, its coefficient is `t v s (ts)^2`, which is nonzero
 in a field under those assumptions.
 
 This finite packet is not asserted to present the Leavitt unit group.
-Excluding literal scalar-field elementary assignments does not exclude
+The scalar-field argument alone does not exclude
 arbitrary finite-group models, arbitrary block-matrix coefficient models,
 or all relative unitaries in the 24k problem. No dimension-uniform
 normalized-HS gap is proved.
+
+The abstract finite-model question for this packet is now settled by
+`leavitt-four-word-packet-has-an-exact-24-dimensional-model`: all four
+words vanish in an explicit frozen permutation model of dimension 24,
+whose image is `S_3 x C_2^2`. Its derived word `d` has order three
+instead of the native order two. The separate finite-coefficient
+rank-gap theorem remains valid for its stated realization class.
