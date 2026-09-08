@@ -2,25 +2,56 @@
 rg: 2
 id: lambda-exact-face-closes-at-p-three
 kind: claim
-title: Open p-three Lambda-exact closure from metaplectic flux
+title: The p-three exact lattice face closes by positive Kirillov measures and coprime reduction
 distinct_from:
-  lambda-exact-face-of-the-collapse-closes: that closed the regular-type sectors at p = 2 and drove the enemy to the unique flat profile with the flux as the terminal decision; this decides the flux for p = 3 (mod 4) and closes the WHOLE Lambda-exact face for the (SL_3(Z), SL_3(Z[1/3])) pair, flat profile included.
-  odd-congruence-lambda-exact-sector-collapses: that closes levels coprime to p by the Weyl slot evaluation; this closes the complementary p-power and mixed levels at p = 3 by the Weil-Rao flux obstruction — the two mechanisms partition all levels for the p = 3 pair.
-  sl3-pair-relative-commutant-route: that is the p = 2 instance of the collapse; this moves the lane's decided face to the p = 3 instance, where the metaplectic arithmetic is favorable, and leaves p = 2 as the constructive-side probe (trivial flux there, exact Gauss-sum computation).
+  lambda-exact-face-of-the-collapse-closes: That covers regular-type exact sectors; this closes arbitrary exact congruence multiplicities and unbounded conductor mixtures at p = 3, through a proof valid at every prime.
+  odd-congruence-lambda-exact-sector-collapses: That closes coprime levels; the new primary reduction removes all complementary p-power and mixed factors before applying it.
+  sl3-pair-relative-commutant-route: That seeks unrestricted relative commutant collapse; this establishes only its exact congruence lattice face and leaves approximate lattice tuples without genuine corrections unresolved.
+artifacts:
+  - research/artifacts/sl3-primary-exact-sector-kirillov-tightness-2026-09-08.md
+  - research/artifacts/independent-kirillov-primary-sector-audit-2026-09-08.md
 ---
 
-OPEN CLAIM. For `p = 3 (mod 4)` and the pair
-`Lambda = SL_3(Z) <= Gamma = SL_3(Z[1/p])`, there is NO enemy of the
-collapse `(RC3)` with `Lambda`-exact microstates at ANY levels: the
-`Lambda`-exact face of `(RC3)` is closed for the `p = 3` pair.
+**THEOREM (2026-09-08).** For `p=3`, and more generally every prime,
+put `Lambda=SL_3(Z)` and `Gamma=SL_3(Z[1/p])`. Let
+`pi:Gamma -> U(prod_omega M_n)` be a homomorphism whose lattice
+restriction has genuine coordinate representatives factoring through
+finite congruence quotients. Then
 
-The current assembly does not prove this claim. Its fixed-shift-to-flat
-step is invalidated by
-`fixed-shift-invariance-does-not-force-flat-profile`, and the independent
-identification of the actual parahoric transport loop with the normalized
-Weil--Maslov loop remains open. The flux computation below is therefore a
-candidate terminal obstruction after those two seams are closed, not a
-completed closure theorem.
+```text
+pi(Lambda)' intersect prod_omega M_n
+  = pi(Gamma)' intersect prod_omega M_n.
+```
+
+This closes the entire prescribed exact congruence lattice face,
+including arbitrary primary and mixed levels and isotypic weights.
+The coordinates may be arbitrary finite tracial von Neumann algebras.
+No regular limiting character is needed. In particular the matrix
+statement `(P3F3)` below follows whenever the ambient fixed group
+relations hold: every bounded lattice-central sequence commutes
+asymptotically with the denominator coordinate.
+
+The new route `lambda-exact-p-three-face-closes-by-kirillov` first
+uses `sl3-primary-exact-congruence-mass-vanishes-at-every-prime`
+to replace every exact lattice sequence uniformly by a coprime one.
+The established coprime commutant collapse then applies to the same
+actor. Positive Fourier character measures on fixed uniform pro-p
+groups, including the square-restriction formula at two, replace
+the failed conductor-profile and flux inference.
+
+The unrestricted `(RC3)` target and the existence of a nonhyperlinear
+group remain open here. Arbitrary approximate lattice tuples have
+not been shown to admit genuine corrections.
+
+## Historical failed flux assembly and preserved audits
+
+Everything below records earlier attempts and their historical
+status, not dependencies of the theorem just proved. Statements that
+call the exact primary face unresolved or assert a completed flux
+closure are superseded by the theorem above. The old flux routes
+remain invalid: fixed-shift invariance does not imply flatness, and
+unrestricted multiplicity gauges cancel the proposed scalar flux.
+The new proof neither repairs nor uses those inferences.
 
 There is now a sharper repair and a sharper obstruction.  Full flatness is
 unnecessary: `one-shift-folner-mass-is-depth-parity-balanced` proves that
