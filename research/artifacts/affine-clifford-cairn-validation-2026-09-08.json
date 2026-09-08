@@ -1,0 +1,159 @@
+{
+  "status": "ok",
+  "scope": "The four-node direct non-MF proof: native Cairn parsing, artifact/reference lint, compiled statuses, exact prerequisite lists, and duplicate checks against the loaded research corpus. Every new proof artifact is supplied in the uploaded source archive. This is research-graph validation, not Lean proof-kernel verification. A clean check of the whole shared workspace is not claimed.",
+  "errors": [],
+  "warnings": [],
+  "broader_snapshot_findings": [
+    [
+      "error",
+      "ref",
+      "research/affine-orientation-glue-lemma.md: refuted_by: unknown node noisy-affine-selector-defeats-bounded-hitting"
+    ],
+    [
+      "error",
+      "ref",
+      "research/affine-orientation-triangle-defect-is-small.md: refuted_by: unknown node noisy-affine-selector-defeats-bounded-hitting"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/finite-ball-permutations-realize-word-orbits-proof.md: artifact not found: notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/finite-ball-permutations-realize-word-orbits.md: artifact not found: notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "ref",
+      "research/fp-simple-nonhyperlinearity-is-one-word-domination-proof.md: requires: unknown node hyperlinear-radical-has-linear-word-certificate"
+    ],
+    [
+      "error",
+      "ref",
+      "research/higman-bs-cycle-equivalence-proof.md: requires: unknown node higman-hs-word-coefficient-exceeds-nine-fifths"
+    ],
+    [
+      "error",
+      "ref",
+      "research/higman-bs-cycle-equivalence-proof.md: requires: unknown node higman-hs-word-coefficient-exceeds-sixteen"
+    ],
+    [
+      "error",
+      "ref",
+      "research/higman-bs-cycle-equivalence-proof.md: requires: unknown node higman-u2-word-energy-bound"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/leavitt-unit-group-algebra-not-directly-finite.md: artifact not found: notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "ref",
+      "research/non-hyperlinear-from-hs-relator-defect-gap.md: requires: unknown node fixed-hs-word-gap-is-linear-domination"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/non-residually-finite-hyperbolic-group.md: artifact not found: notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/non-rf-hyperbolic-via-persistent-central-extension.md: artifact not found: notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "ref",
+      "research/non-rf-hyperbolic-via-persistent-central-extension.md: requires: unknown node finite-hyperbolic-residual-iff-persistent-class"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/nonhyperlinear-property-t-free-explicit-mf-witness.md: artifact not found: notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/nontrivial-word-energy-domination-no-go-proof.md: artifact not found: notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/nontrivial-words-have-no-relation-energy-domination.md: artifact not found: notes/PROPERTY_T_FREE_FINITE_BALL_LIMIT_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/persistent-degree-two-class-on-hyperbolic-group.md: artifact not found: notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-unit-group-max-mf-quotient-is-k1.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-unit-group-max-mf-quotient-is-k1.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "ref",
+      "research/rounder-from-local-ports-and-exactifier.md: requires: unknown node amplifier-has-compatible-local-syndrome-effects"
+    ],
+    [
+      "error",
+      "ref",
+      "research/rounder-from-local-ports-and-exactifier.md: requires: unknown node local-syndrome-synthesis-has-an-exact-sdp-test"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/stw59-lean-witness-simple-unital-not-k1-injective-proof.md: artifact not found: notes/lix-lane-reports/lix-lemma-two-lean-closure-2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/stw59-lean-witness-simple-unital-not-k1-injective.md: artifact not found: notes/lix-lane-reports/lix-lemma-two-lean-closure-2026-09-07.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "ref",
+      "research/triangle-reduces-dv-to-unbounded-congruence-capture.md: requires: unknown node flexible-hs-metric-controls-words-and-padding"
+    ]
+  ],
+  "broader_snapshot_scope": "Tracked-file manifest plus the new proof. Other concurrent untracked nodes and some older non-research artifacts are absent from this snapshot; findings outside the four-node proof are retained here and are not treated as findings about the complete current workspace.",
+  "duplicates": [],
+  "claims": 7152,
+  "routes": 7301,
+  "nodes": {
+    "affine-seven-generator-distance-estimate": "ESTABLISHED",
+    "affine-seven-generator-distance-from-rational-factor": "COMPLETE",
+    "affine-clifford-non-mf-from-rational-certificate": "ESTABLISHED",
+    "affine-clifford-non-mf-direct-proof": "COMPLETE"
+  },
+  "derivation": [
+    "affine-clifford-non-mf-from-rational-certificate \u2713 via affine-clifford-non-mf-direct-proof",
+    "  affine-seven-generator-distance-estimate \u2713 via affine-seven-generator-distance-from-rational-factor  (direct proof)"
+  ],
+  "stronger_goals": {
+    "property-t-free-manuscript-results": "OPEN",
+    "property-t-free-leavitt-full-mf-radical": "OPEN"
+  },
+  "source_sha256": {
+    "research/affine-seven-generator-distance-estimate.md": "1d868aa144f6d93006d6e131c361b7fb19c8cb0803618a7e80c1b1cb7852e16d",
+    "research/affine-seven-generator-distance-from-rational-factor.md": "fab5f3cef1ca74365e935a4bf4624677b16ad39801aa328110b70490e2fddc23",
+    "research/affine-clifford-non-mf-from-rational-certificate.md": "40123d2f72e4644b0bf8e76bb4e0723fc9350f234fa13ecb01b7711cbd6dc3ce",
+    "research/affine-clifford-non-mf-direct-proof.md": "f1ff0aef72e0c776cf0b865b03a6755963e471d69b3e0f2328112b9fc335ee23",
+    "experiments/verify_affine_hodge_certificate.py": "e5b3ad332b69e5f14a7cb76100c1e2e4dc225efb9aa07cf98dfd5fc3e3bf05aa",
+    "experiments/sl3-sos-radius0-certificate.npz": "5b83dc59e55b89a8f48e115e06ce72deaac2bccd5c3f1ded1ead3837c26b021b",
+    "research/artifacts/affine-clifford-direct-non-mf-proof-2026-09-08.md": "df819a2a8945d1552086f9affd3d75d42beac363b702e86893361da5be80553a",
+    "research/artifacts/affine-seven-generator-distance-estimate-2026-09-08.md": "20c171a764d49eb1de716bf625f359a02d7f7916e091012040ef76d6ba84fb84",
+    "research/artifacts/p13-rational-certificate-audit-2026-09-08.md": "3ac9949886e56786c054bd98a601ed65f52012bbaf6d7fb0c58fb93c83942d10",
+    "research/artifacts/affine-hodge-integer-check-2026-09-08.json": "c7f5cae89d4acd66e08abf10953287989be88735a865b55a75f8cb84418493e7"
+  },
+  "elapsed_seconds": 7.189
+}

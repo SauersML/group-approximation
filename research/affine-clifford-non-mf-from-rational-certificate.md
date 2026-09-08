@@ -47,3 +47,9 @@ is not a claim that spectral rigidity is absent, nor a solution of the
 separate Leavitt and whole-manuscript goals. The new argument is a written
 Cairn proof with an independently checked finite certificate; no new
 Lean endpoint verification is claimed.
+
+The all-representations estimate implies property (T) for `B`. Thus this
+proof explicitly derives that rigidity; independence from it remains
+unproved. It satisfies the requirement that the proof can be written
+without mentioning the property, rather than the stronger requirement
+that no equivalent spectral estimate be used.

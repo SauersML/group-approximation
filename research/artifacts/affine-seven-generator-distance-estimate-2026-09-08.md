@@ -35,32 +35,51 @@ integral row operations, and Hilbert-space convexity. The deductions in this
 note are written mathematical proofs; no additional Lean verification claim
 is made.
 
-## 1. The precise finite certificate and its matrix specialization
+## 1. The precise finite certificate in the concrete matrix group
 
-Let \(G_{13}\) be the group on the ordered generators
+Let \(L=\operatorname{SL}_3(\mathbb Z)\), and order its six elementary
+generators as
 
 \[
-a_{12},a_{13},a_{21},a_{23},a_{31},a_{32}
+a_{12},a_{13},a_{21},a_{23},a_{31},a_{32},\qquad a_{ij}=I+E_{ij}.
 \]
 
-with these thirteen relations, using \([a,b]=aba^{-1}b^{-1}\):
+The following thirteen identities hold in \(L\), using
+\([a,b]=aba^{-1}b^{-1}\):
 
 \[
 \begin{aligned}
 [a_{12},a_{23}]&=a_{13},& [a_{13},a_{32}]&=a_{12},\\
 [a_{21},a_{13}]&=a_{23},& [a_{23},a_{31}]&=a_{21},\\
-[a_{31},a_{12}]&=a_{32},& [a_{32},a_{21}]&=a_{31},             \tag{2}\\
-[a_{12},a_{13}]&=1,& [a_{12},a_{32}]&=1,\\
-[a_{13},a_{23}]&=1,& [a_{21},a_{23}]&=1,\\
-[a_{21},a_{31}]&=1,& [a_{31},a_{32}]&=1,                    \tag{3}\\
-(a_{12}a_{21}^{-1}a_{12})^4&=1.                            \tag{4}
-\end{aligned}
+[a_{31},a_{12}]&=a_{32},& [a_{32},a_{21}]&=a_{31}.
+\end{aligned}                                               \tag{2}
 \]
 
-In the rational group ring of \(G_{13}\), let \(D\) be the column with
+\[
+\begin{aligned}
+[a_{12},a_{13}]&=1,& [a_{12},a_{32}]&=1,\\
+[a_{13},a_{23}]&=1,& [a_{21},a_{23}]&=1,\\
+[a_{21},a_{31}]&=1,& [a_{31},a_{32}]&=1.
+\end{aligned}                                               \tag{3}
+\]
+
+\[
+(a_{12}a_{21}^{-1}a_{12})^4=1.                               \tag{4}
+\]
+
+Identities (2)--(3) follow directly from
+\(E_{ij}E_{kl}=\delta_{jk}E_{il}\). On coordinates \(1,2\), the matrix
+\(a_{12}a_{21}^{-1}a_{12}\) is
+\(\begin{pmatrix}0&1\\-1&0\end{pmatrix}\), and it fixes coordinate
+\(3\); this proves (4).
+
+In the rational group ring \(\mathbb Q[L]\), let \(D\) be the column with
 entries \(a_{ij}-1\), and let \(F\) be the \(13\times6\) Fox boundary
-matrix of the displayed relators. The certificate consists of the identities
-and bounds
+matrix of the displayed relation words. Its entries are the signed prefixes
+specified explicitly in
+[the finite certificate appendix](p13-rational-certificate-audit-2026-09-08.md).
+The prefix telescoping identity gives \(FD=0\). The fixed integer table
+and its computed residual give
 
 \[
 FD=0,\qquad
@@ -76,32 +95,28 @@ r_0=\frac{11670886519714}{10^{16}}<\frac1{500}.             \tag{6}
 \]
 
 Here the involution in the group ring sends \(g\) to \(g^{-1}\) and fixes
-rational coefficients. The entries of \(Q\) are specified by the exact
-\(102\times6\times22\) integer coefficient table with denominator
-\(10^8\) in
-[LiteralP13HodgeData.lean](../../GroupApproximation/Sofic/LiteralP13HodgeData.lean).
-The support reductions, residual coefficients, and identities are provided by
-[LiteralP13HodgeReplay.lean](../../GroupApproximation/Sofic/LiteralP13HodgeReplay.lean),
-[LiteralP13HodgeResidual.lean](../../GroupApproximation/Sofic/LiteralP13HodgeResidual.lean),
-and the declarations `exactCertificate` and `cleanP13Certificate` in
-[LiteralP13HodgeCertificate.lean](../../GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean).
-Thus (5)--(6) refer to fixed finite rational data, not an existence assumption
-about an unspecified certificate or a numerical approximation.
-
-These identities can be evaluated in every unitary representation of
-\(\operatorname{SL}_3(\mathbb Z)\). Indeed, the substitutions
+rational coefficients. More precisely, let \(A_{r,i,k}\) be the integer in
+row \(r\), column \(22i+k\), of the array `factor_numerators` in
+[sl3-sos-radius0-certificate.npz](../../experiments/sl3-sos-radius0-certificate.npz).
+This is a \(102\times132\) table. The ordered support
+\(h_0,\ldots,h_{21}\subset L\) is the explicit list of twenty-two
+matrix words in the certificate appendix. Define
 
 \[
-a_{ij}\longmapsto I+E_{ij}
+Q_{r,i}=10^{-8}\sum_{k=0}^{21}A_{r,i,k}h_k,\qquad
+R=F^*F+DD^*-\frac1{250}I_6-Q^*Q.
 \]
 
-satisfy (2)--(3) by \(E_{ij}E_{kl}=\delta_{jk}E_{il}\). On coordinates
-\(1,2\), the matrix \((I+E_{12})(I-E_{21})(I+E_{12})\) is
-\(\begin{pmatrix}0&1\\-1&0\end{pmatrix}\), and it fixes coordinate
-\(3\); this proves (4). Hence the universal property of the displayed
-presentation gives a homomorphism
-\(G_{13}\to\operatorname{SL}_3(\mathbb Z)\), through which any such
-representation pulls back. No injectivity of this homomorphism is needed.
+Every coefficient of \(R\) is an explicitly computed integer divided by
+\(10^{16}\). The appendix gives the coefficient formula and all six row
+totals, whose maximum is \(11670886519714\); inversion symmetry gives
+the same column totals. The independent standard-library checker
+[verify_affine_hodge_certificate.py](../../experiments/verify_affine_hodge_certificate.py)
+reconstructs the Fox rows, support words and products, and every residual
+coefficient using integer matrix multiplication and arbitrary-precision
+integer arithmetic. Thus (5)--(6) are a fixed finite coefficient calculation
+in \(\mathbb Q[L]\). They evaluate in every unitary representation of
+\(L\).
 
 For completeness, the six matrices \(I+E_{ij}\) generate
 \(\operatorname{SL}_3(\mathbb Z)\): their integral powers perform all
