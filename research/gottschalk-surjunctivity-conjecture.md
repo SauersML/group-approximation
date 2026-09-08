@@ -25,6 +25,7 @@ artifacts:
   - research/artifacts/gottschalk-stable-three-factor-reduction-2026-09-08.md
   - research/artifacts/gottschalk-recipient-affine-normal-form-and-fiber-obstruction-2026-09-08.md
   - research/artifacts/gottschalk-tarski-operand-reversal-exclusions-2026-09-08.md
+  - research/artifacts/gottschalk-exact-quadratic-derivative-collision-criterion-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -175,3 +176,14 @@ excludes two of the four residual mechanisms. At most two actors
 remain for fixed noncommuting s,t, with exact subgroup relations in
 the new artifact. They are necessary cases still to be tested, not
 injective maps or counterexamples.
+
+The quadratic difference equation now has an exact criterion for
+every shared shift t, including orders one, two, and infinity.
+For F=x+A(x R_t x) with arbitrary linear CA A, a collision exists
+exactly when a configuration q yields nonzero delta=Aq and satisfies
+the stated local compatibility and finite-cycle parity conditions.
+Orbit recurrences then construct the two inputs. The criterion
+also proves that the simplest one-subgroup mask cannot work in one
+remaining Tarski case. An admissible nonzero q for either unresolved
+case has not been constructed. The proved criterion is recorded in
+`quadratic-shift-differences-have-exact-orbit-criterion`.

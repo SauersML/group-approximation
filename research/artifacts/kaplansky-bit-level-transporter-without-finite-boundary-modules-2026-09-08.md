@@ -1,8 +1,11 @@
 # A bit-level transporter with no finite-dimensional boundary submodules
 
 Date: 2026-09-08. This gives an explicit transporter outside the scope
-of the proved macro-prefix obstruction. It does not construct a split
-`L P_0[g]f_0=f_0`, rule out such a split, or solve Kaplansky's conjecture.
+of the proved macro-prefix obstruction. The finite-submodule theorem
+below remains valid, but a separate
+[direct exterior-kernel proof](kaplansky-first-field-coordinate-transporter-kernel-2026-09-08.md)
+now excludes the split `L P_0[g]f_0=f_0` for this actor and its entire
+first-field-coordinate family. Kaplansky's conjecture is not solved.
 No computation is used.
 
 ## The chart and the transporter
@@ -137,7 +140,7 @@ of the two coordinate projections. Exterior powers commute with
 this scalar extension. Thus extending coefficients does not restore
 the finite exterior submodules used in the macro-prefix proof.
 
-## What remains open
+## Scope of the method and the separate kernel
 
 The [macro-prefix theorem](kaplansky-single-macro-prefix-transporter-obstruction-2026-09-08.md)
 uses a finite module inside the natural boundary representation and
@@ -146,9 +149,14 @@ exists for this transporter in the displayed binary representation.
 Repeating that particular finite-submodule construction cannot decide
 this case.
 
-The result does not exclude finite-dimensional quotients, other
+The absence theorem does not exclude finite-dimensional quotients, other
 representations of `H`, kernels in an infinite-dimensional exterior
 power, or other group-algebra obstructions. It does not assert that
-the relevant group is amenable or nonamenable. In particular it gives
-no injectivity certificate for `P_0[g]f_0` and no proposed left inverse.
-The comparison equation remains unresolved for this explicit actor.
+the relevant group is amenable or nonamenable.
+
+The later direct calculation supplies a nonzero finite-support
+vector w with f_0w=w and P_0[g]f_0w=0, proving that the comparison
+equation has no solution for this actor. Such a vector need not lie
+in a finite-dimensional submodule invariant under both charts.
+It therefore does not contradict the theorem here. Arbitrary
+transporters outside the proved families remain unresolved.

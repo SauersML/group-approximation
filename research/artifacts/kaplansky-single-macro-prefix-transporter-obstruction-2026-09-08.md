@@ -5,7 +5,9 @@ Status: scoped obstruction proved below. No Kaplansky counterexample or surjunct
 The [bit-level control](kaplansky-bit-level-transporter-without-finite-boundary-modules-2026-09-08.md)
 gives an explicit actor outside this macro-prefix scope for which the
 two charts have no nonzero finite-dimensional submodules in positive
-boundary exterior powers. Its comparison equation remains unresolved.
+boundary exterior powers. A separate
+[direct kernel](kaplansky-first-field-coordinate-transporter-kernel-2026-09-08.md)
+now excludes its comparison equation despite that absence.
 
 ## 1. Exact scope and statement
 

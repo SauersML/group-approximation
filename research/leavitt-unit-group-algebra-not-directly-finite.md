@@ -18,6 +18,7 @@ artifacts:
   - research/artifacts/kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md
   - research/artifacts/kaplansky-single-macro-prefix-transporter-obstruction-2026-09-08.md
   - research/artifacts/kaplansky-bit-level-transporter-without-finite-boundary-modules-2026-09-08.md
+  - research/artifacts/kaplansky-first-field-coordinate-transporter-kernel-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
 ---
 
@@ -212,7 +213,18 @@ power of the natural binary boundary module, even after extending
 scalars to F_4. This is recorded in
 `bit-level-chart-pair-has-no-finite-boundary-submodules`.
 The earlier finite-submodule construction therefore cannot decide
-this actor. No left inverse or injectivity certificate is supplied.
+this actor. A separate direct exterior-square calculation now
+excludes it and every binary-linear unit confined to the first
+field coordinate: the source is nonzero while the target becomes
+an alternating form evaluated on two equal vectors. This is recorded
+in `first-field-coordinate-transporters-have-no-split`.
+
+For block-diagonal actors changing both field coordinates, the same
+calculation excludes every case in which either block preserves or
+reverses field characters. Mixing both characters in both blocks is
+still not sufficient: opposite bit compressors a,a^-1 have a two-term
+binary exterior kernel. Arbitrary mixed actors and arbitrary chart
+coefficients around them remain unresolved.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**

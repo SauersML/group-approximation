@@ -23,3 +23,8 @@ obstruction for a specified actor outside its macro-prefix scope.
 It neither supplies nor excludes a left inverse for P_0[g]f_0.
 Other representations, quotients, and infinite-dimensional kernels
 remain possible.
+
+The separate direct-kernel theorem in
+`first-field-coordinate-transporters-have-no-split` now excludes this
+actor. Its finite-support kernel vector need not belong to a finite
+invariant submodule, so the present absence result still holds.
