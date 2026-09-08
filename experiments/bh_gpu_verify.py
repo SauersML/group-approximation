@@ -49,11 +49,48 @@ def tactic_body(text):
     return body
 
 
+def preflight_rows():
+    """Authored calibration, explicitly separate from neural proposals."""
+    finish = """
+have hK : y * x⁻¹ ∈ K := K.mul_mem hy (K.inv_mem hx)
+have hi : y * x⁻¹ ∈ H ⊓ K := ⟨hH, hK⟩
+rw [hdis] at hi
+have hone : y * x⁻¹ = 1 := hi
+exact (mul_inv_eq_one.mp hone).symm
+"""
+    normalizer = """have hH : y * x⁻¹ ∈ H := by
+  rw [heq]
+  simpa only [mul_assoc] using H.mul_mem ha (hnorm x hx b hb)
+""" + finish
+    commuting = """have hbx : x * b * x⁻¹ = b := by
+  rw [← hcomm b hb x hx, mul_assoc, mul_inv_cancel, mul_one]
+have hH : y * x⁻¹ ∈ H := by
+  have hm : a * (x * b * x⁻¹) ∈ H := by
+    rw [hbx]
+    exact H.mul_mem ha hb
+  rw [heq]
+  simpa only [mul_assoc] using hm
+""" + finish
+    cases = [
+        ("commuting_control", commuting, True),
+        ("normalizer_extension", normalizer, True),
+        ("missing_hypothesis_control", "exact hx", False),
+        ("commuting_control", "sorry", False),
+        ("commuting_control", "exact hx", False),
+        ("normalizer_extension", "axiom fabricated : False", False),
+    ]
+    return [{"probe": name, "text": "```lean4\n" + body + "\n```",
+             "expected_accepted": expected, "origin": "assistant-authored preflight"}
+            for name, body, expected in cases]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("run_dir", type=Path)
     parser.add_argument("--project", type=Path, required=True)
     parser.add_argument("--lean", type=Path, required=True)
+    parser.add_argument("--preflight", action="store_true",
+                        help="Check authored positive/negative controls; no GPU proposals")
     args = parser.parse_args()
     if not str(args.run_dir.resolve()).startswith("/projects/standard/"):
         raise ValueError("Verification must run on MSI shared storage")
@@ -66,7 +103,11 @@ def main():
     # LEAN_PATH is Lean's required library interface. Do not invoke Lake or build.
     lean_env = dict(os.environ, LEAN_PATH=":".join(str(path) for path in libraries))
     (checked / "false-control-witness.json").write_text(json.dumps(false_control_witness(), indent=2) + "\n")
-    rows = [json.loads(line) for line in (args.run_dir / "output/proposals.jsonl").read_text().splitlines()]
+    if args.preflight:
+        rows = preflight_rows()
+        (checked / "authored-controls.json").write_text(json.dumps(rows, indent=2) + "\n")
+    else:
+        rows = [json.loads(line) for line in (args.run_dir / "output/proposals.jsonl").read_text().splitlines()]
 
     def verify(item):
         number, row = item
@@ -109,6 +150,11 @@ def main():
     print(json.dumps(summary, indent=2))
     if summary["missing_hypothesis_control"]["accepted"]:
         raise RuntimeError("False control accepted: invalidate this entire verification run")
+    if args.preflight:
+        mismatches = [r["index"] for r in results
+                      if r["accepted"] != rows[r["index"]]["expected_accepted"]]
+        if mismatches:
+            raise RuntimeError(f"Authored preflight failed at control indices {mismatches}")
 
 
 if __name__ == "__main__":

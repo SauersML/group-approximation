@@ -19,6 +19,11 @@ on:
       - 'research/ck-cover-quotient-kernel-dichotomy*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
+    inputs:
+      lean_preflight:
+        description: Replay authored Lean controls using existing caches only
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -28,6 +33,39 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  lean-preflight:
+    if: github.event_name == 'workflow_dispatch' && inputs.lean_preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Restore existing Lean toolchain
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+          fail-on-cache-miss: true
+      - name: Restore existing compiled dependencies
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          fail-on-cache-miss: true
+      - name: Replay authored positive and negative controls without building
+        run: |
+          set -euo pipefail
+          sudo install -d -o "$(id -u)" -g "$(id -g)" /projects/standard/bh-preflight
+          bh_lean="$("$HOME/.elan/bin/elan" which lean)"
+          test -x "$bh_lean"
+          "$bh_lean" --version
+          python3 experiments/bh_gpu_verify.py /projects/standard/bh-preflight \
+            --project "$GITHUB_WORKSPACE" --lean "$bh_lean" --preflight
+      - name: Retain authored controls and Lean diagnostics
+        if: always()
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
+        with:
+          name: boone-higman-lean-preflight
+          path: /projects/standard/bh-preflight/verification
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 3
