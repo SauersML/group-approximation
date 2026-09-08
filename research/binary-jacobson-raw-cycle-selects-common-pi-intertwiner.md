@@ -226,9 +226,11 @@ The braid fence now includes the entire finite packet: projection to the
 head factor followed by `GL_3(2)<=GL_4(2)`, with `h=w_24`, is a marked finite
 model of the braid quotient.  That model fails the cyclic controlled-swap
 cell by exactly the residual Weyl factor `w_14`; the controlled-swap
-retraction, in the other direction, fails the braid.  Their **joint** quotient
-is therefore the first finite-holonomy package not covered by either explicit
-marked model.
+retraction, in the other direction, fails the braid. Their **joint** quotient
+is now ruled out as a marked obstruction as well:
+`jacobson-two-braid-infimum-is-zero` gives an amenable seven-ray quotient
+retaining the full finite packet. Its matrix infimum is zero. A further
+mixed incidence must exclude this model before a positive gap is possible.
 
 No carrier-density theorem is requested.  If `(JPI1)` holds on even a
 rank-one nonzero `P`, `opnorm-common-intertwiner-pi-gap-is-sparse-terminal`

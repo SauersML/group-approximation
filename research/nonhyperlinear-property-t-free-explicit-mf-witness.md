@@ -32,13 +32,12 @@ source-specific route through a central sign is isolated at
 
 ## Attempts
 
-- The joint Jacobson candidate now has an explicit two-braid presentation
-  and an elementary three-ray proof that its head mark survives. The exact
-  finite-packet infimum in `jacobson-two-braid-gap-characterizes-mark-collapse`
-  is positive precisely when that mark is corona-invisible. Its positivity
-  for arbitrary mixed representation types remains open at
-  `jacobson-two-braid-mixed-packet-gap`; the proved separated-factor gap
-  does not supply that missing step.
+- The joint Jacobson two-braid route is refuted:
+  `jacobson-two-braid-infimum-is-zero` constructs an amenable quotient
+  retaining its entire finite packet. Consequently its matrix infimum is
+  zero, even after imposing the tail braid exactly. A Jacobson proof must
+  use additional mixed relations beyond that presentation; the full
+  Jacobson group and the independent existence goal are not refuted.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map

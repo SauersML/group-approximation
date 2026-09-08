@@ -14,5 +14,7 @@ Take the explicit finitely presented joint group `Gamma` and nontrivial
 head mark `w` in the first prerequisite. A positive value of the
 infimum in the third prerequisite makes every norm-corona homomorphism
 kill `w`, by the second prerequisite. Thus `Gamma` would be non-MF.
-The positivity prerequisite is open; this route is not a completed
-existence proof and does not import a Kazhdan-based Jacobson theorem.
+**Invalidated:** `jacobson-two-braid-infimum-is-zero` disproves the
+positivity prerequisite by constructing a marked amenable quotient.
+This particular presentation and head mark cannot establish the requested
+non-MF existence theorem. The independent existence goal remains open.

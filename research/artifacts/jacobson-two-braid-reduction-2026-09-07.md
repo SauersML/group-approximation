@@ -1,8 +1,10 @@
 # The joint Jacobson candidate as a two-braid matrix problem
 
 2026-09-07. The reductions and restrictions below have complete elementary
-proofs. The number `gamma` defined in Section 4 is not proved positive.
-Consequently this note does not yet prove a non-MF existence theorem.
+proofs. Update 2026-09-08: the
+[amenable seven-ray countermodel](jacobson-two-braid-seven-ray-countermodel-2026-09-08.md)
+proves that the number `gamma` defined in Section 4 is zero. This
+presentation therefore does not give the proposed marked non-MF obstruction.
 It uses no property-(T) input and claims neither literature priority nor
 Lean verification.
 
@@ -328,12 +330,14 @@ also checked. This packet is not asserted to extend to an `H`
 satisfying the two braids. It proves that the rank restrictions alone
 do not establish a positive value of (10).
 
-The unresolved step is therefore an all-dimensions positive lower bound
-in (10), allowing representations with both factors acting on the same
-summands. A finite unsuccessful search cannot establish that bound.
+The proposed next step was an all-dimensions positive lower bound in (10).
+The [seven-ray countermodel](jacobson-two-braid-seven-ray-countermodel-2026-09-08.md)
+now disproves that bound: it supplies an amenable quotient retaining the
+entire finite packet, and consequently `gamma=0`.
 
 A subsequent [exact cyclotomic construction](jacobson-mixed-packet-certificate-2026-09-07.md)
 improves the mixed-type check: it supplies an actual admissible involution
 on dimension twelve with both defects strictly below two and marked rank
 eight. Thus `0<=gamma<2`, and the necessary rank divisibility is sharp.
-It does not determine whether `gamma` is positive or zero.
+That construction alone did not determine whether `gamma` is positive or
+zero; the later amenable quotient settles this with `gamma=0`.

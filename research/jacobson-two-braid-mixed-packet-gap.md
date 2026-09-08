@@ -3,6 +3,8 @@ rg: 2
 id: jacobson-two-braid-mixed-packet-gap
 kind: claim
 title: The marked Jacobson two-braid infimum is positive over arbitrary packet multiplicities
+refuted_by:
+  - jacobson-two-braid-infimum-is-zero
 artifacts:
   - research/artifacts/jacobson-two-braid-reduction-2026-09-07.md
 distinct_from:
@@ -10,9 +12,14 @@ distinct_from:
   binary-jacobson-joint-shortest-cells-have-a-finite-marked-model: that asks for one exact finite marked quotient; this asks for a uniform obstruction even to approximate finite-dimensional unitary models and would contradict that finite-model claim.
 ---
 
-**OPEN.** Prove that `gamma>0` for the exact packet infimum defined in
+The proposed statement is that `gamma>0` for the exact packet infimum defined in
 `jacobson-two-braid-gap-characterizes-mark-collapse`, without any
 Property-(T) input.
+
+The [amenable seven-ray countermodel](jacobson-two-braid-infimum-is-zero.md)
+refutes this statement: the full finite packet embeds in a marked MF
+quotient, so the infimum is zero. The restrictions below record the
+earlier attempts and remain valid within their stated classes.
 
 ## Attempts
 
@@ -24,12 +31,12 @@ Property-(T) input.
   `jacobson-joint-cells-are-two-braids`. A 56-point packet satisfies
   these necessary constraints with `k=2`, so rank balance alone does
   not close this claim.
-- The infimum still ranges over unbounded multiplicities of arbitrary
-  representations where both factors act on the same summand. No
-  positive lower bound for that remaining class has been proved.
+- The infimum ranges over unbounded multiplicities of arbitrary
+  representations where both factors act on the same summand. The
+  countermodel proves that their defects can approach zero.
 - The stronger exact mixed example
   `jacobson-mixed-packet-attains-rank-eight-below-two` supplies an
   overlap-central involution on dimension twelve with marked rank eight
   and both braid defects strictly below two. Thus the infimum is strictly
-  less than two and the rank-eight restriction is sharp. Positivity of
-  the infimum remains undecided.
+  less than two and the rank-eight restriction is sharp. The subsequent
+  amenable countermodel proves that the full infimum is zero.
