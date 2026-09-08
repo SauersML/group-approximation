@@ -79,6 +79,14 @@ source-specific route through a central sign is isolated at
 - Conditional perfect-LCS and selected signed-Hecke corners do not establish
   this claim: the first lacks an instance, while the second does not
   authenticate its chosen finite-subgroup type in every corona map.
+- The user-supplied compression-centralizer criterion, recorded as
+  `locally-finite-centralizer-derived-subgroup-is-mf-invisible`,
+  passes mathematical review and gives ordinary perfect-lamp
+  applications without a normal Kazhdan subgroup. Its compression
+  lemma explicitly uses the Kazhdan spectral projection of `L`.
+  It therefore does not satisfy this goal's proof restriction,
+  even when the resulting ambient group itself maps onto `Z`
+  and fails property `(T)`.
 - The independent finite relation-energy attempt has an exact boundary:
   `finite-context-energy-certificate-iff-word-trivial` shows that allowing any
   fixed finite word contexts still certifies only ordinary word triviality.

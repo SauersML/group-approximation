@@ -70,3 +70,15 @@ full-idempotent hypothesis `R(1-st)R=R` of the manuscript's ring theorem
 in positive characteristic.  It also decomposes
 `binary-jacobson-steinberg-head-root-is-mf-invisible`, currently a
 frontier hole with no live routes.
+
+## Attempts
+
+- `locally-finite-centralizer-derived-subgroup-is-mf-invisible`
+  proves collapse for the derived subgroup of a locally finite
+  centralizer when two specified compressed conjugates commute.
+  It removes normality of that centralizer and handles arbitrarily
+  small support proportions by an actual rank-at-most-twice-support
+  commutator estimate. Normality and membership in `D_G(L)` do not
+  supply its extra commuting-conjugate relation, so this criterion
+  leaves the present unrestricted claim open. Its conclusion is
+  vacuous on an abelian centralizer.
