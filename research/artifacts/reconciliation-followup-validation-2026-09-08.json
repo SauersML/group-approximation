@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-08",
+  "baseline": "03d498d31cae57be570aead2546e2ae65a0f3f7e",
+  "scope": "Complete combined Cairn graph on MSI acn112; duplicate checks cover the follow-up additions. Written proof audits, not Lean kernel verification. The prior reconciliation report records the earlier merge validation.",
+  "commands": [
+    "timeout 60s /usr/bin/python3.11 tools/cairn.py check --changed --json",
+    "timeout 60s /usr/bin/python3.11 tools/cairn.py preview --json"
+  ],
+  "check": {
+    "status": "ok",
+    "claims": 7229,
+    "routes": 7387,
+    "findings": [
+      {
+        "severity": "warning",
+        "rule": "cycle",
+        "message": "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
+      }
+    ]
+  },
+  "preview": {
+    "status": "ok",
+    "added": [
+      "jacobson-head-type-leakage-frobenius-proof",
+      "jacobson-small-braid-defect-forces-head-type-leakage",
+      "jacobson-tail-braid-exactification-and-standard-carrier",
+      "jacobson-tail-braid-exactification-and-standard-carrier-proof",
+      "periodic-finitary-rank-compression-counterexample-proof",
+      "uniform-finitary-rank-compression-is-mf-compatible"
+    ],
+    "removed": [],
+    "status_changed": [],
+    "dup_warnings": [],
+    "direct_proof_assertions": [],
+    "frontier_added": [],
+    "frontier_removed": []
+  },
+  "source_sha256": {
+    "research/artifacts/jacobson-all-head-braid-multiplicity-and-leakage-2026-09-08.md": "cac46bacee81bb75afaf97976a3936507112aa3c1c54819e881e94eab3eba91c",
+    "research/artifacts/jacobson-tail-braid-exactification-2026-09-08.md": "75a278ac62a4accccde618a610d080d9ba9fb705986456f2c1902b171f2f243d",
+    "research/artifacts/uniform-finitary-rank-compression-counterexample-2026-09-08.md": "7df62174cc8cf1bace6cdfb97842a2357544adbaea4c4ecb6ed270b1f9b1e298",
+    "research/jacobson-head-type-leakage-frobenius-proof.md": "9efda0458f3db4c648e707ffe25e2769872570b1a844359472707ab6e528bec4",
+    "research/jacobson-small-braid-defect-forces-head-type-leakage.md": "e5b7ac6e7f71695c67c00a6da22f1c76b0fb22b4db4d2955590c86389c84bceb",
+    "research/jacobson-tail-braid-exactification-and-standard-carrier-proof.md": "53435737010431f4c85620ebfd44271fcb3b42b1cff3633e0d415928866799f5",
+    "research/jacobson-tail-braid-exactification-and-standard-carrier.md": "ff7364d215a482a84a93e10551a3767fe6193addbb3bd3c93c7aa2a92537248d",
+    "research/periodic-finitary-rank-compression-counterexample-proof.md": "fd44c97ba9e2cfaf5d76edb31a85812f361eeecc528091a4dcb905dcc34dd664",
+    "research/uniform-finitary-rank-compression-is-mf-compatible.md": "0c6762cddeefa40b32033ee78b1d9f84c517612f8a65a476d30361dd06007c5a"
+  }
+}
