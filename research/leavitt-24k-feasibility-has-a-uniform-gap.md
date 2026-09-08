@@ -1,0 +1,46 @@
+---
+rg: 2
+id: leavitt-24k-feasibility-has-a-uniform-gap
+kind: claim
+title: Some 24k relation set has a dimension-uniform normalized-HS gap
+distinct_from:
+  leavitt-24k-feasibility-vanishes: that is the opposite branch, vanishing of every infimum; exactly one of the two holds and neither is proved.
+  binary-leavitt-hyperlinear-iff-24k-feasible: that is the proved equivalence connecting these branches to hyperlinearity; this is one of the two matrix alternatives it leaves open.
+  leavitt-24k-first-relation-has-exact-finite-model: that proves the first relation is NOT such a set, by exhibiting an exact GL_3(F_8) solution of it; this asks for some other set that is.
+artifacts:
+  - research/artifacts/leavitt-24k-relative-unitary-reduction-2026-09-08.md
+---
+
+**OPEN.**  In the notation of `binary-leavitt-hyperlinear-iff-24k-feasible`,
+exhibit `m` and `eta > 0` with
+
+```text
+max_(r in T_m) || pi_(k,U)(r) - I ||_(2,24k) >= eta
+```
+
+for every `k >= 1` and every `U in U(24k)`.  By that criterion this is
+equivalent to nonhyperlinearity of the binary Leavitt unit group, which is
+nonsofic (`openai-leavitt-unit-nonsofic`), and so would produce the first
+nonhyperlinear group.
+
+## Attempts
+
+- **The operator-norm analogue is already true, and does not transfer.**  If
+  every operator-norm infimum vanished, a diagonal choice would embed `H` in
+  the unitary group of a matrix norm quotient with `c` nontrivial
+  (`||C_k - I||_op = sqrt 3`), and such an image is MF, contradicting the
+  supplied obstruction.  So some operator-norm gap exists.  The norms are not
+  comparable in the needed direction: `diag(-1,1,...,1)` is at operator
+  distance `2` and normalized-HS distance `2/sqrt d` from the identity.
+- **One relation is not enough, provably.**  The necessary bound `(LR2)`
+  forces a commutator of size `1/sqrt 2 - o(1)`, but
+  `leavitt-24k-first-relation-has-exact-finite-model` gives an exact
+  `GL_3(F_8)` solution of that relation, so `m` must be large enough to see
+  genuinely more of `ker q`.
+- **Fixed-dimension gaps exist and are not uniform.**  The compactness
+  argument recorded in `leavitt-24k-feasibility-vanishes` gives, for each `k`,
+  an `m(k)` with a positive minimum; a uniform statement needs one `m` working
+  for all `k` at once, which is precisely the missing content.
+- **Deferred:** no candidate relation set and no lower-bound mechanism is
+  proposed here.  A mechanism would have to survive amplification, since the
+  criterion's models are closed under tensoring with the identity.
