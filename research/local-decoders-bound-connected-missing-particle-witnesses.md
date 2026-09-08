@@ -44,8 +44,11 @@ Conservation of particle number is not needed for this theorem. If tau
 is also binary particle-number-conserving, the earlier conservative
 audit shows that the zero-, one-, and two-particle sectors are all
 attained. Any missing witness above must then have between 3 and K
-particles. The proof does not automatically supply the connected lifts
-in that remaining finite range.
+particles if one uses only the gluing argument. The separate theorem
+`finite-injective-conservative-binary-automata-are-surjective` now
+supplies every particle-sector lift under conservation, so no such
+missing witness exists in that special case. The finite witness
+criterion here still applies without any conservation assumption.
 
 A nontrivial example is the binary rule on Z which simultaneously swaps
 

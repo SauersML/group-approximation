@@ -89,7 +89,10 @@ missing n-particle configuration is connected at scale D and belongs
 to finitely many translation orbits. This does not by itself force
 surjectivity on the n-particle sector, whose entire orbit set can still
 be infinite. The argument supplies no zero-index theorem for the action
-on that larger orbit set. Its positive content is the explicit gluing
+on that larger orbit set. The separate collision-polynomial trace
+argument in `finite-injective-conservative-binary-automata-are-surjective`
+now closes the conservative case. The gluing proof's independent content
+is the explicit gluing
 of separated attained components and the finite decoder-dependent bound
 on the connected witnesses still needing correction.
 

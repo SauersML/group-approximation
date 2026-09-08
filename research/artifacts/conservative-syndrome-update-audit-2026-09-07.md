@@ -6,6 +6,16 @@ below does not prove Gottschalk's conjecture, construct a strict embedding,
 or establish surjunctivity of all conservative cellular automata. No novelty
 claim is made.
 
+Update later on 2026-09-07: the higher-particle gap in this exploratory
+argument has been closed by the separate
+[collision-algebra proof](../cluster-hall-matching-and-collision-transpose-proof.md).
+Its theorem proves surjectivity from conservation and injectivity on
+finite configurations over arbitrary groups. The still stronger
+[positive-charge nonincrease theorem](../finite-injective-charge-noncreation-forces-surjectivity.md)
+allows general finite alphabets and positive real charges. The original
+expectation and two-particle arguments below remain valid, but their
+unresolved higher-sector status is historical.
+
 Let G be any group. Write 0 for the all-zero binary configuration, and let
 tau:{0,1}^G->{0,1}^G be a cellular automaton with tau(0)=0. Assume that
 for every finitely supported binary configuration x,

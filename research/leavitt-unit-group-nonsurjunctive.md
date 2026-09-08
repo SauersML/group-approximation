@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
   - research/artifacts/conservative-syndrome-update-audit-2026-09-07.md
+  - research/artifacts/conservative-ca-literature-and-trace-scope-2026-09-07.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton
@@ -179,13 +180,28 @@ updates lies outside this theorem; no such counterexample is currently
 constructed. This reduction supplies neither a strict CA on Q nor a
 general surjunctivity proof.
 
-The attached conservative-syndrome audit examines one data-dependent
-update strategy. Exact particle-number conservation on finite binary
-configurations preserves the one-site expectation under every invariant
-probability measure, by a finite-pattern coefficient calculation. For
-an injective such rule, every two-particle configuration is attained.
-Neither statement supplies surjectivity on arbitrary configurations:
-the higher-particle induction does not close, and conserving one-site
-expectation does not preserve the whole Bernoulli measure. The audit
-records this gap and the relevant stronger post-surjectivity hypothesis
-instead of treating conservation as a completed full-shift decoder.
+The conservative-syndrome strategy now has a complete positive result.
+`finite-injective-conservative-binary-automata-are-surjective` proves
+that exact particle conservation and injectivity on finite configurations
+force surjectivity over EVERY group. It attains every particle sector,
+closing the higher-particle gap recorded in the earlier attached audit.
+The proof uses bounded cluster matchings, an ordered-particle lift, and
+the partition-polynomial trace of
+`finite-collision-operator-algebras-are-stably-finite`. Conservation
+of one-site expectation alone is not used as a surjectivity argument.
+
+The stronger result
+`finite-injective-charge-noncreation-forces-surjectivity` permits any
+finite alphabet with one quiescent state and strictly positive real
+charges on all other states. Merely requiring charge not to increase
+on finite configurations already forces conservation and surjectivity.
+Lower charge sectors are filled first; an actual charge drop would then
+contradict injectivity. A colored collision corner fills each new level.
+
+Thus a strict self-verifying encoder cannot be implemented entirely
+by conserving or destroying a positive amount of material. With a
+quiescent state, it must increase each chosen positive charge somewhere
+on finite input. This requirement does not itself yield a strict CA:
+reversible rules can also grow finite particle supports. Unrestricted
+data-dependent computation and arbitrary full-shift injective rules
+remain outside the proved positive class. This root remains open.
