@@ -1,10 +1,12 @@
-# A period-two exterior kernel for the deletion-containing shear pair
+# An exterior kernel for incomparable-prefix creation-deletion pairs
 
 Date: 2026-09-08. Exact four-term binary source certificate.
 The kernel was found by a bounded MSI probe that completed in
 0.411 seconds. The proof below consists of explicit algebraic
 identities and requires no computation. No Kaplansky counterexample
-or group-ring split is constructed.
+or group-ring split is constructed. The same certificate excludes
+the whole family obtained from any two nonempty incomparable
+binary prefix words, as proved below.
 
 Use the binary root encoding of `K=GL_2(F_4)` and the reduced
 projectors `f_0,P_0` from
@@ -143,16 +145,63 @@ This is an exact source kernel in the genuine boundary exterior
 representation, using the two distinct periodic tails without
 identifying them or replacing them by a quotient model.
 
+## Arbitrary incomparable prefix words
+
+Let `alpha,beta` be any two nonempty binary words such that neither
+is a prefix of the other. Write `s_alpha` for prepending the whole
+word `alpha`, and `t_alpha` for deleting that word when it matches,
+with zero on the other prefix cylinders; define `s_beta,t_beta`
+in the same way. Replace the two blocks by
+
+```
+a_alpha=[[1,s_alpha],[t_alpha,0]],
+b_beta =[[1,s_beta ],[t_beta ,0]],
+g_alpha,beta=diag(a_alpha,b_beta).
+```
+
+They are invertible by the same displayed inverse formula, since
+`t_alpha s_alpha=t_beta s_beta=1`. Set
+
+```
+zeta=(alpha beta)(alpha beta)...,
+eta =(beta alpha)(beta alpha)...,
+chi =alpha zeta.
+```
+
+The two prefix cylinders are disjoint, so `zeta!=eta`, and
+
+```
+zeta=s_alpha eta,       eta=s_beta zeta,
+t_alpha zeta=eta,       t_beta zeta=0,
+t_alpha eta=0.
+```
+
+Also `chi!=eta` by the disjoint prefix cylinders. If `chi=zeta`,
+then `s_alpha zeta=zeta=s_alpha eta`, contradicting injectivity of
+`s_alpha` and `zeta!=eta`; hence all three tails are distinct.
+
+With these tails, the same four-term vector (1) is nonzero and
+fixed by `f_0`. The four actor identities preceding (3) hold
+literally with `g_alpha,beta`, so the five-term expansion (3) and
+its `P_0` cancellation are unchanged. Thus (4) holds for every
+such pair, independently of the two word lengths.
+
+Each pair still forbids a creator-to-zero algebra specialization,
+because `t_alpha s_alpha=t_beta s_beta=1`. For longer words this
+does not assert that the displayed coefficients generate the
+entire binary Leavitt algebra.
+
 ## Consequence and scope
 
-Let `H=〈K,g〉`. The natural boundary action and its exterior square
-are representations of `H`. Equation (4) contradicts
+Let `g` be the original actor or any member of the family above,
+and let `H=〈K,g〉`. The boundary action and its exterior square are
+representations of `H`. Equation (4) contradicts
 `LZ=f_0` in `F_2[H]`. If `L` is allowed in a larger ambient group
 algebra, conditional expectation onto `F_2[H]` preserves that
 proposed identity and gives the same contradiction.
 
-Thus this explicit deletion-containing pair cannot solve the
-projective comparison. The kernel is a certificate for this actor;
-passing other finite probe domains supplies no general injectivity
-conclusion, and no assertion about every deletion-containing or
-fully mixed transporter follows from the displayed calculation.
+Thus none of these incomparable-prefix creation-deletion pairs
+can solve the projective comparison. Passing other finite probe
+domains supplies no general injectivity conclusion, and the
+calculation does not cover every deletion-containing or fully
+mixed transporter.

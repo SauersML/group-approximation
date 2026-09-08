@@ -28,6 +28,7 @@ artifacts:
   - research/artifacts/gottschalk-exact-quadratic-derivative-collision-criterion-2026-09-08.md
   - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
+  - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -214,3 +215,15 @@ For nonnormal <t>, injectivity on the linear axis alone does not
 justify compressing it back to that axis: a finite order-18 control
 disproves that intermediate inference. The control itself is
 noninjective; the unrestricted nonnormal case remains unresolved.
+
+The nonnormal norm-feedback subclass x+aE Q_t now has an exact
+criterion without assuming preservation of the invariant subspace.
+Injectivity forces the compressed corner map B=e+eae to be injective.
+If B is bijective, a shortest-cycle or finite-path argument forces
+the off-axis map (1-e)ae to vanish, making the quadratic rule
+conjugate to B plus identity. Consequently any strict injective
+norm rule explicitly produces the strict injective scalar linear
+rule I+EaE on the same group. This is recorded in
+`noncentral-norm-feedback-surjunctivity-iff-corner-finiteness`.
+The missing mechanism for unrestricted nonnormal feedback must
+involve its additional action on the even-parity subspace.

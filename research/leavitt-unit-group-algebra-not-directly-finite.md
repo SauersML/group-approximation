@@ -25,6 +25,7 @@ artifacts:
   - research/artifacts/kaplansky-complete-exterior-injective-positive-shear-control-2026-09-08.md
   - research/artifacts/kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
+  - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
 ---
 
@@ -278,16 +279,27 @@ Adding deletion coefficients in the pair a=[[1,s_0],[t_0,0]],
 b=[[1,s_1],[t_1,0]] removes that creator-to-zero specialization.
 The pair still fails: the two periodic tails (01)^infinity and
 (10)^infinity supply a four-term binary exterior kernel, recorded
-in `deletion-shear-pair-has-period-two-exterior-kernel`. Its explicit
-algebraic proof closes this actor; no full group-ring split has
-been obtained.
+in `deletion-shear-pair-has-period-two-exterior-kernel`. The same
+four-term certificate excludes every such pair built from nonempty
+incomparable prefix words, using their two periodic concatenations.
+No full group-ring split has been obtained.
 
 The quadratic bridge also extends to order-three feedback preserving
 the invariant triple subspace, with an exact criterion in eF_2[G]e.
 For a normal subgroup of order three this covers arbitrary linear
 feedback and identifies the corner with the quotient group algebra.
 The nonnormal unrestricted case still lacks a justified treatment
-of the linear axis outside that subspace.
+of the linear axis outside that subspace when non-norm feedback
+is present.
+
+For arbitrary order-three norm feedback x+aE Q_t, that axis issue
+is now resolved conditionally and exactly. Injectivity makes the
+corner map B=e+eae injective. When B is bijective, a local-inverse
+argument on chordless directed paths forces (1-e)ae=0. Therefore
+a strict injective norm rule would explicitly yield the strict
+injective scalar linear rule I+EaE on the original group. This
+two-way reduction to the corner leaves direct finiteness itself
+unresolved; no nonlinear norm rule bypasses that requirement.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**

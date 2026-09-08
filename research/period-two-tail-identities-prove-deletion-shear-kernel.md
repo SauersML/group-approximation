@@ -17,3 +17,9 @@ entirely in the first field coordinate and are annihilated by P_0.
 The other two terms are e_3 zeta wedge e_1 eta and
 e_3 eta wedge e_1 zeta. Their projections cancel because both J
 forms are symmetric in the tail arguments in characteristic two.
+
+For incomparable nonempty prefix words alpha,beta, their two periodic
+concatenations satisfy zeta=s_alpha eta and eta=s_beta zeta. The
+cross deletions vanish because the prefix cylinders are disjoint.
+Substituting these identities gives exactly the same five-term image
+and cancellation for every such pair.

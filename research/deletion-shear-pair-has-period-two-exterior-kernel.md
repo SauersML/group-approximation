@@ -2,7 +2,7 @@
 rg: 2
 id: deletion-shear-pair-has-period-two-exterior-kernel
 kind: claim
-title: The creation-deletion shear pair has a four-term binary exterior kernel
+title: Incomparable-prefix creation-deletion shear pairs have four-term binary exterior kernels
 artifacts:
   - research/artifacts/kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md
 ---
@@ -19,3 +19,9 @@ group-ring splitting identity has no left inverse, even with
 unrestricted ambient support. The conclusion follows from the
 explicit certificate, independently of the bounded numerical probe
 that discovered it.
+
+The same certificate excludes every replacement of (s_0,t_0) and
+(s_1,t_1) by (s_alpha,t_alpha) and (s_beta,t_beta), where alpha,beta
+are nonempty incomparable binary words. Use zeta=(alpha beta)^infinity
+and eta=(beta alpha)^infinity. Their disjoint prefix cylinders give
+the same four prefix/deletion identities, so the proof is unchanged.

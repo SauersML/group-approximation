@@ -15,6 +15,14 @@ below disproves that inference, even over a stably directly finite
 group algebra. The example is itself noninjective and is not a
 counterexample to Gottschalk's conjecture. No computation was used.
 
+The later [norm-feedback rigidity theorem](gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md)
+handles all feedback of the form A=aE without assuming it preserves
+W. In that subclass, injectivity forces the corner compression to
+be injective; when it is bijective, a finite-path argument forces
+the off-axis part to vanish. Thus the whole norm subclass reduces
+exactly to the corner, including when <t> is nonnormal. The gap for
+arbitrary A with A(1-E) nonzero remains.
+
 ## Coordinates without centrality
 
 Put R=F_2[G], write R_a x(g)=x(ga), and identify each group-ring
