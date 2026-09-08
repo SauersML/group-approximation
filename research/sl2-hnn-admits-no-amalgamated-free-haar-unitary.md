@@ -4,9 +4,9 @@ id: sl2-hnn-admits-no-amalgamated-free-haar-unitary
 kind: claim
 title: No regular-trace matrix model of SL2(Z[1/2]) carries a Haar unitary in the SL2(Z)-centraliser that is free from the lattice factor with amalgamation over L(SL2(Z))
 distinct_from:
-  relative-commutant-collapse-for-sl2-pair: that forbids every subgroup-central unitary that is not ambient-central; this forbids only the ones with the amalgamated-free joint distribution an embedding of the HNN factor would supply, and is implied by the collapse.
-  sl3-hnn-admits-no-amalgamated-free-haar-unitary: that is the rank-two pair, where property (T) of the subgroup makes the centraliser coordinatewise; this is the Dogon--Vigdorovich pair SL2(Z) in SL2(Z[1/2]), whose subgroup is only virtually free, so neither the interchange formula nor any spectral gap of the subgroup is available.
-  no-exact-quasi-regular-leak: that forbids every subgroup-central unitary whose commutator profile is exactly the quasi-regular indicator 1_C; an amalgamated-free unitary has that profile and satisfies strictly more (all alternating-word expectations vanish), so this hole is strictly weaker and is implied by it.
+  relative-commutant-collapse-for-sl2-pair: that quantifies over all commutant elements; this specifies the HNN distribution. Arithmetic maximality and tensor extraction make the global exclusions equivalent.
+  sl3-hnn-admits-no-amalgamated-free-haar-unitary: that uses SL3, whose integral subgroup has property (T); this uses the virtually free integral subgroup SL2. Neither group's arbitrary approximate subgroup tuple is declared exact by this distinction.
+  no-exact-quasi-regular-leak: that specifies only the subgroup-indicator coefficient. The free distribution has more moments in a fixed model, but arithmetic maximality proves the two global exclusions equivalent.
   sl2-half-stability-excludes-hnn-hyperlinearity: that is the dichotomy between non-hyperlinearity of the HNN group and failure of flexible stability; this names the operator-algebraic statement equivalent to the first horn.
 ---
 
@@ -26,6 +26,15 @@ Hilbert--Schmidt stability of `SL_2(Z[1/2])` together with the co-dense
 `(tau)` pair (`sl2-amalgamated-free-exclusion-from-stability`), and it
 feeds the goal through `non-hyperlinear-from-sl2-amalgamated-free-exclusion`.
 
+The implication from full collapse is reversible by
+`arithmetic-hnn-nonhyperlinearity-equals-global-collapse`: Smith
+maximality makes the stabilizer of any subgroup-central projection
+leak exactly `C`, and tensor extraction builds a new canonical HNN
+model. Full collapse, exact quasi-regular exclusion, scalar
+non-relative-embeddability, and this free-Haar exclusion therefore
+have the same truth value. This does not construct a Haar unitary
+from the leaked projection inside its original model.
+
 ## Attempts
 
 - **Standard model.**  In `L(A)^omega` no leak exists at all
@@ -38,11 +47,14 @@ feeds the goal through `non-hyperlinear-from-sl2-amalgamated-free-exclusion`.
   `SL_2(Z[1/2])`, far from every congruence representation, can carry a
   candidate (`sl2-half-stability-excludes-hnn-hyperlinearity`).  The
   subgroup `SL_2(Z)` is same-dimension HS-stable
-  (`sl2-z-same-dimension-hs-stable`), so the restriction of any model to
-  `C` is near an exact representation `sigma_n`, and `k_n` may be taken in
-  the honest commutant `sigma_n(C)'`, a direct sum of multiplicity
-  algebras; the enemy is then the position of `pi_n(h)` relative to that
-  isotypic decomposition.
+  (`sl2-z-same-dimension-hs-stable`), so its restriction can be replaced
+  by exact representations `sigma_n` with pointwise small HS error.
+  This preserves approximate commutation of `k_n` on each fixed
+  generator. Putting `k_n` in the honest commutant `sigma_n(C)'`
+  additionally requires a suitable uniform spectral estimate; it does
+  not follow just from exactifying the subgroup tuple. Congruence
+  spectral gap does not automatically cover arbitrary noncongruence
+  subgroup constituents.
 - **Popa's theorem does not apply** (`B` non-amenable), and the entropy
   fence of `hnn-hyperlinearity-is-amalgamated-free-haar-unitary` shows no
   1-bounded-entropy count can decide it.

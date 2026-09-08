@@ -6,6 +6,10 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/commutation-stabilizer-relative-embedding-2026-09-07.md
+  - research/artifacts/smith-prime-localization-maximality-audit-2026-09-07.md
+  - research/artifacts/prescribed-kazhdan-rcc-transfer-audit-2026-09-07.md
+  - research/artifacts/sep7-padded-heat-linear-seed-self-improvement-2026-09-07.md
   - research/artifacts/tensor-swap-expectation-repair-2026-09-07.md
   - research/artifacts/centralizer-hnn-relative-embedding-audit-2026-09-07.md
   - research/artifacts/coset-hyperlinearity-equivalence-literature-2026-09-07.md
@@ -41,6 +45,32 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+**September 7, arbitrary projection leaks and arithmetic maximality.**
+In a canonical CE actor model, the exact commutation stabilizer of
+any projection is a scalar relatively embeddable subgroup. Tensor
+averaging only requires a strictly positive commutator at each
+outside group element; no uniform gap or indicator coefficient is
+needed. Countable weighted sums combine different witnesses, giving
+a least scalar-RE overgroup of every subgroup of a hyperlinear actor.
+Smith normal form proves `SL_n(Z)` is maximal in `SL_n(Z[1/p])` for
+all `n>=2` and prime `p`, so every arithmetic projection leak already
+has exactly the required stabilizer. Consequently HNN exclusion,
+global RCC, scalar non-relative-embeddability, and exact quasi-regular
+exclusion are equivalent. In higher rank these are also equivalent to
+full projective transfer; its subgroup-energy coefficient can be fixed
+at `4/kappa^2`, with a qualitative defect modulus, and every strictly
+larger coefficient admits a linear defect term. The equivalences
+do not establish collapse for an actual arithmetic pair.
+
+The independent logarithmic-extraction audit also found a converse:
+any sufficiently close padded exact correction starts rectangular heat
+with full source mass and forces a linear first-vector bound in the
+universal finite host. Therefore uniform linear seed, uniform
+logarithmic seed, and flexible HS stability of the **fixed group
+SL5(Z)** are equivalent. The existential stability claim for some
+rank is not used to infer stability in rank five. These seed bounds
+remain OPEN, as does this root.
 
 **September 7, coset-candidate equivalence.** For every countable pair
 `C<=A`, the ordinary binary coset wreath, free binary coset wreath,

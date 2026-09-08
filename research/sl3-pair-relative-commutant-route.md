@@ -2,16 +2,31 @@
 rg: 2
 id: sl3-pair-relative-commutant-route
 kind: claim
-title: The higher-rank pair SL3(Z) in SL3(Z[1/2]) gives the commutant-collapse route a genuine property (T) spectral gap and avoids the pi1 obstruction
+title: Every canonical matrix-ultraproduct model of SL3(Z[1/2]) has equal integral-subgroup and actor commutants
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 distinct_from:
-  relative-commutant-collapse-for-sl2-pair: that is the SL_2 pair, where the subgroup has only the Haagerup property so L(C) has no spectral gap; this uses SL_3(Z), which has property (T), so L(C) is rigid in M, and it avoids the infinite-pi1 condition that forces Dogon--Vigdorovich to SL_2.
-  hnn-over-codense-kazhdan-subgroup-not-hyperlinear: that consumes flexible HS-stability of the base, which is VACUOUS for SL_3(Z[1/2]) (an infinite hyperlinear (T) group is not stable); this uses the relative-commutant form, which does not reference stability.
+  relative-commutant-collapse-for-sl2-pair: that asks for collapse in rank two; this uses the Kazhdan integral subgroup in rank three. Property (T) gives a gap relative to its fixed vectors, but does not prove those vectors are fixed by the actor.
+  hnn-over-codense-kazhdan-subgroup-not-hyperlinear: that consumes flexible HS-stability; this states the relative-commutant target directly. Strict HS-instability of infinite hyperlinear Kazhdan groups does not rule out flexible stability.
 ---
 
-Take `C = SL_3(Z)`, `A = SL_3(Z[1/2])`, `a_1 = diag(2, 1, 1/2)`, and
-`G = <A, t | [t, C] = 1>`.  Then:
+OPEN. Take `C = SL_3(Z)`, `A = SL_3(Z[1/2])`,
+`h = diag(2, 1, 1/2)`, and `G = <A, t | [t, C] = 1>`.
+For every canonical trace-preserving embedding `pi:L(A)->M` into
+a tracial matrix ultraproduct, the proposed conclusion is
+
+```text
+pi(L(C))' cap M = pi(L(A))' cap M.                                    (RC3)
+```
+
+By `arithmetic-hnn-nonhyperlinearity-equals-global-collapse`, `(RC3)`
+is equivalent to nonhyperlinearity of `G`, the plain double, and the
+ordinary binary coset wreath; to scalar non-relative-embeddability;
+and to the full projective transfer inequality. Smith maximality and
+tensor extraction prove the substantive reverse implication from HNN
+exclusion to collapse in every canonical actor embedding.
+
+The relevant unconditional structure is:
 
 1. `C = SL_3(Z)` has property (T) (higher rank), with a uniform Kazhdan
    constant; so `L(C)` has spectral gap in every tracial `M supseteq L(C)`
@@ -24,14 +39,10 @@ Take `C = SL_3(Z)`, `A = SL_3(Z[1/2])`, `a_1 = diag(2, 1, 1/2)`, and
    (`a_1` conjugates `C` to a commensurable copy; Schlichting completion
    `SL_3(Q_2) supseteq SL_3(Z_2)`).
 
-By `hnn-route-is-relative-commutant-collapse` (whose proof only used
-co-density and Britton, not stability), `G` is not hyperlinear as soon as
-
-```text
-pi(SL_3(Z))' cap M  =  pi(SL_3(Z[1/2]))' cap M                          (RC3)
-```
-
-in the matrix ultraproduct carrying `G`'s regular trace.
+The Kazhdan gap controls distance to `pi(C)' cap M`; it does not
+identify that space with `pi(A)' cap M`. Co-density controls exact
+finite-dimensional representations, which does not identify arbitrary
+approximate actor tuples with exact ones.
 
 **Why this pair is better.**
 - **Property (T) of the subgroup.**  `SL_3(Z)` is Kazhdan, so `k in
@@ -59,9 +70,9 @@ in the matrix ultraproduct carrying `G`'s regular trace.
   point is now sharp: show `k = k^h`, i.e. the single expanding automorphism
   `h` fixes the `(T)`-rigid relative commutant `pi(C)' cap M` pointwise.
   Property (T) of `C` supplies the rigidity of that space; what remains is
-  triviality of the one automorphism, a spectral-gap/mixing statement for
-  the `h`-action, which is where Popa deformation/rigidity or a mixing
-  criterion for the Hecke inclusion must enter.
+  triviality of this displacement. Conjugation by `h` need not preserve
+  `pi(C)' cap M`, so it should not be called an automorphism of that
+  commutant before invariance has been proved.
 - **Possible obstruction.**  If `A` itself has (T) and is hyperlinear, one
   must check `(RC3)` is not FALSE for a structural reason (a genuine
   `a_1`-non-fixed `k`), which would make `G` hyperlinear and kill this pair
@@ -78,39 +89,23 @@ in the matrix ultraproduct carrying `G`'s regular trace.
 - **Tool.**  Peterson--Thom / Bekka character rigidity holds for
   `SL_3(Z[1/2])` too (higher rank), giving hyperfinite HS-stability by the
   same DV Prop 8.3; the residual non-hyperfinite gap is again `(RC3)`.
-- **1-bounded entropy (the modern handle, added 2026-08-21).**  Property (T)
-  implies the group factor is strongly 1-bounded, `h(L(SL_3(Z))) = 0` and
-  `h(L(SL_3(Z[1/2]))) = 0` (Jung, "Strongly 1-bounded von Neumann
-  algebras"; Hayes, arXiv:1505.06682).  By Hayes' monotonicity
-  (`h(M) <= h(N)` when `N`'s singular subspace generates `M`, Thm 1.5) the
-  relative commutant `A' cap M` and the normalizer `N_M(A)''` of
-  `A = L(SL_3(Z))` lie in an `h = 0` algebra, so they cannot contain a free
-  group factor and are strongly constrained -- this is exactly the rigidity
-  the Haagerup subgroup `SL_2(Z)` could not provide.  The precise target is:
-  `h = 0` for both `A` and `B = L(SL_3(Z[1/2]))`, plus the commensuration
-  `Ad(h)`, forces `A' cap M = B' cap M`, i.e. the expanding automorphism
-  `h` fixes the (necessarily `h = 0`, hence amenable-or-rigid) space
-  `A' cap M`.  This reframes `(RC3)` as a 1-bounded-entropy absorption
-  statement, the class of results Hayes--Jekel--Kunnawalkam Elayavalli have
-  been proving for property (T) inclusions in ultraproducts, and is the most
-  concrete available line of attack on the goal.
-- **What the tool gives, precisely, and where it stops (2026-08-21, worked
-  out).**  Since `SL_3(Z)` is commensurated by `SL_3(Z[1/2])`, both `B` and
-  the relative commutant `A' cap M` lie in the wq-normalizing algebra
-  `W^*(wqN_M(A))` (Hayes arXiv:1505.06682: `u in A' cap M` gives
-  `u^* A u = A` diffuse, so `u` wq-normalizes `A`; and every `g in
-  SL_3(Z[1/2])` wq-normalizes `SL_3(Z)` by commensuration).  By Hayes'
-  monotonicity `h(W^*(wqN_M(A)) : M) <= h(A : M) = 0`.  So `A' cap M` is
-  contained in a strongly 1-bounded (`h = 0`) algebra and, in particular,
-  contains no free-group-factor as a regular piece -- the rigidity the
-  Haagerup `SL_2(Z)` cannot give.  BUT `h = 0` alone does NOT force
-  `A' cap M subseteq B' cap M`: an amenable extension `B <= <B, k>` with
-  `k in A' cap M \ B' cap M` also has `h = 0`, so it is consistent with the
-  entropy bound.  Closing `(RC3)` therefore needs more than 1-bounded
-  entropy -- it needs the commensuration dynamics (the expanding `h`) to act
-  trivially on the `h = 0` space `A' cap M`, an absorption that the bare
-  entropy invariant does not deliver.  This is the precise, honest boundary
-  of the current tool.
+- **Entropy does not exclude a free factor in the commutant.** The
+  earlier claim that containment in an entropy-zero extension forbids
+  free-group-factor subalgebras was unjustified. The CE model
+  `L(A) tensor L(F_2)`, with actor in the first factor, has
+  `1 tensor L(F_2)` in both commutants. Thus neither a free factor in
+  the subgroup commutant nor an entropy bound alone yields a leak or
+  collapse. The target concerns whether subgroup-central elements
+  are moved by the actor, not their abstract algebra type.
+- **A prescribed finite-matrix target.** The theorem
+  `kazhdan-rcc-has-prescribed-projective-transfer-slope` equates
+  `(RC3)` with ordinary contraction transfer or projective unitary
+  transfer with coefficient `4/kappa^2` for any fixed Kazhdan
+  constant of the subgroup generators. Its defect modulus tends to
+  zero by compactness conditional on `(RC3)`. It does not prove that
+  modulus exists without the collapse hypothesis. Tensor amplification
+  permits a linear defect term at any strictly larger coefficient;
+  this remains equivalent to, and conditional on, the same collapse.
 - **The closed root-gallery strengthening is already the full actor.**  The
   four integral positive/negative simple roots generate `C`, and inverse
   powers of `h` followed by Weyl conjugacy generate every

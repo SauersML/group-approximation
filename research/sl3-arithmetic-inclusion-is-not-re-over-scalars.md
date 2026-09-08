@@ -25,6 +25,15 @@ such that `pi(N) subset prod_omega B_k` and the resulting square is a
 commuting square.  This is the coefficient-free form of the exact
 arithmetic-double terminal.
 
+By `arithmetic-hnn-nonhyperlinearity-equals-global-collapse`, this is
+also equivalent to global commutant collapse `(RC3)` in every
+canonical actor embedding and to the full projective trace-square
+transfer inequality. Maximality is the extra group-theoretic input
+that turns any projection leak into a scalar relative embedding;
+the negative statement itself remains OPEN.
+
+## Attempts
+
 `gao-hyperfinite-carriers-do-not-give-popa-compactness` rules out the naive
 deformation-rigidity shortcut: coordinate hyperfiniteness does not yield a
 compact deformation on the ultraproduct.  The precise sufficient missing

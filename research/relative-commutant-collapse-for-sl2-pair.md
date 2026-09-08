@@ -19,10 +19,13 @@ L(SL_2(Z[1/2]))`.  Then
 pi(SL_2(Z))' cap M  =  pi(SL_2(Z[1/2]))' cap M.                         (RCC)
 ```
 
-Equivalently, `L(SL_2(Z))` has spectral gap inside `M` relative to the
-overalgebra: no unitary of `M` commutes with `L(SL_2(Z))` but not with
-`L(SL_2(Z[1/2]))`.  By `non-hyperlinear-from-relative-commutant-collapse`
-this produces an explicit non-hyperlinear group.
+Equivalently, no unitary of `M` commutes with `L(SL_2(Z))` but fails to
+commute with `L(SL_2(Z[1/2]))`. This commutant equality does not itself
+assert a quantitative spectral gap. By
+`arithmetic-hnn-nonhyperlinearity-equals-global-collapse`, it is
+equivalent to nonhyperlinearity of the centralizer HNN group, scalar
+non-relative-embeddability, and exact quasi-regular leak exclusion.
+These assertions remain OPEN.
 
 ## Attempts
 
@@ -30,11 +33,12 @@ this produces an explicit non-hyperlinear group.
   Schlichting completion `SL_2(Q_2) supseteq SL_2(Z_2)`; the inclusion
   `L(SL_2(Z)) subseteq L(SL_2(Z[1/2]))` is the associated Hecke inclusion.
   Popa's spectral-gap/mixing criteria for such inclusions are the tool.
-- **Character rigidity input.**  Peterson--Thom character rigidity of
-  `SL_2(Z[1/2])` and the resulting HYPERFINITE HS-stability (Dogon--
-  Vigdorovich Thm 6.2 + Prop 8.3) give `(RCC)` when the ambient piece is
-  amenable; the open case is a non-amenable commutant, i.e. exactly when
-  `L(SL_2(Z[1/2]))` fails to have spectral gap in `M`.
+- **Character rigidity boundary.** The known hyperfinite stability
+  statements concern representations whose limiting actor algebra is
+  amenable. The canonical actor algebra here is nonamenable. They
+  therefore do not correct arbitrary tuples in this claim. The
+  amenability of the auxiliary commutant alone does not decide which
+  actor representations those stability theorems cover.
 - **Relation to flexible stability.**  Flexible HS-stability of
   `SL_2(Z[1/2])` implies `(RCC)` (correct microstates, then co-density);
   `(RCC)` may be strictly weaker since it only asks about the commutant of a
@@ -46,24 +50,22 @@ this produces an explicit non-hyperlinear group.
   -- its centralizer is the `Z`-points of a proper Zariski-closed subgroup
   and `SL_n(Z)` is Borel dense, see `arithmetic-pair-ultrapower-no-leak-proof`
   Step 2 -- so infinite conjugacy class; the earlier "finite centralizer"
-  was false, e.g. `e_12(1)` centralizes `e_12(Z)`; corrected 2026-08-21).  Hence `A' cap B = C`, i.e. `L(SL_n(Z))` is an
-  IRREDUCIBLE subfactor of `L(SL_n(Z[1/p]))`.  So `(RCC)`
-  `A' cap M = B' cap M` is exactly a **commutant-absorption**: the relative
-  commutant of the (T) subalgebra `A`, on passing from `B` to the ambient
+  was false, e.g. `e_12(1)` centralizes `e_12(Z)`; corrected 2026-08-21).
+  The exact identity is `L(C)' cap L(A)=L(Z(A))`; rank two has the
+  nontrivial center `{I,-I}`, so these full group algebras are not
+  irreducible II_1 subfactors. `(RCC)` asks that the relative
+  commutant, on passing from the actor algebra to the ambient
   matrix ultraproduct `M`, must not acquire anything outside `B' cap M`.
-  Caution (a wrong turn ruled out): one cannot argue `A' cap M = C` -- in the
-  hyperlinear scenario `A' cap M` necessarily contains `L(<t>) = L(Z)` (the
-  HNN letter centralizes `SL_n(Z)`, so `C_G(SL_n(Z)) = <t>`), so `A' cap M`
-  is genuinely nontrivial; the content is only the INCLUSION
-  `A' cap M subseteq B' cap M`, which the extra element `k = u_t` violates
-  iff `G` is hyperlinear.
-- **1-bounded entropy.**  For the higher-rank pair
-  (`sl3-pair-relative-commutant-route`) both group factors have property (T)
-  hence 1-bounded entropy zero (Jung; Hayes arXiv:1505.06682), which
-  constrains the relative commutants to `h = 0` algebras (no free-group-
-  factor content); for the `SL_2` pair the subgroup is only Haagerup and
-  this tool does not apply on the subgroup side, so the `SL_3` pair is the
-  one where 1-bounded-entropy absorption has a chance to prove `(RCC)`.
+  In a canonical HNN embedding the subgroup commutant contains the
+  stable letter and is nontrivial. The content is its inclusion in
+  the actor commutant, which that stable letter violates. No assertion
+  about the complete group centralizer is needed.
+- **Entropy boundary.** Entropy bounds on extensions do not by
+  themselves exclude free-group-factor subalgebras in a commutant.
+  The CE model `L(A) tensor L(F_2)` contains such a factor in both
+  commutants and has no leak from that factor. The corrected
+  discussion in `sl3-pair-relative-commutant-route` keeps the focus
+  on the actor's action on the commutant.
 - **Proper proximality.**  `SL_2(Z)` (and `SL_3(Z)`) are properly proximal
   (Boutonnet--Ioana--Peterson, arXiv:1809.01881), so `L(SL_2(Z))` is
   solid/rigid and its commutants are controlled; a properly-proximal

@@ -5,7 +5,7 @@ kind: claim
 title: Projective trace-square transfer for the co-dense SL3 arithmetic pair
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that forces an actual subgroup-central unitary into the ambient commutant; this asks only that its commutator with the one ambient generator become scalar in normalized Hilbert--Schmidt norm.
-  no-spherical-leak-in-matrix-ultraproducts: that excludes every nontrivial spherical component and is equivalent to full relative-commutant collapse; this permits a leak whenever its ambient commutator is scalar, because scalarity already suffices for the HNN trace contradiction.
+  no-spherical-leak-in-matrix-ultraproducts: that formulates global commutant collapse through spherical components; this is its equivalent dimension-free projective matrix estimate, as proved by the regular-RCC transfer theorem.
   no-exact-quasi-regular-leak: that excludes only the exact HNN coefficient profile and contains no quantitative transfer inequality; this proposes a dimension-free projective energy inequality for all approximate representations of the fixed arithmetic presentation, with no trace-profile restriction.
 ---
 
@@ -44,6 +44,15 @@ Hilbert--Schmidt norm on `M_(d^2)`,
 The claim is projective: `(PTS1)` concludes that `[U,rho(h)]` is close to
 *some scalar*, not necessarily to `1`.  This phase quotient is exactly the
 weakening consumed by the HNN marked word.
+
+Globally this is not a weaker exclusion: the established
+`rf-perfect-pair-transfer-equals-regular-rcc` makes `(PTS1)` equivalent
+to canonical RCC, and
+`arithmetic-hnn-nonhyperlinearity-equals-global-collapse` makes both
+equivalent to nonhyperlinearity of the arithmetic HNN group and its
+plain double. The phase quotient changes the finite expression, but
+does not add a further open rate problem or weaken the final group
+target. These equivalent assertions remain OPEN.
 
 ## Attempts
 
