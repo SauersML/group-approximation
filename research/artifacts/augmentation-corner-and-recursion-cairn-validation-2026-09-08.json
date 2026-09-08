@@ -1,0 +1,338 @@
+{
+  "status": "ok",
+  "scope": "Native Cairn parsing, artifact/reference lint, compiled statuses, exact route prerequisites and duplicate checks for the nonnormal finite-augmentation endgame, explicit local affine matrix packets, involution-width restriction, and two exact boundaries on Jacobson finite-packet recursion. The written mathematical arguments were reviewed; the new recursive affine model was independently checked from its displayed finite group law. This is not Lean kernel verification or a clean whole-workspace audit. The global BCS corner map, unrestricted mixed matrix gap, and property-(T)-free non-MF existence goal must remain OPEN.",
+  "nodes": {
+    "nonhyperlinear-finite-augmentation-corner-kills-mf": "ESTABLISHED",
+    "nonnormal-augmentation-corner-intrinsic-rank-proof": "COMPLETE",
+    "matrix-corona-projection-ideal-and-corner-calculus": "ESTABLISHED",
+    "agent-leavitt-not-torsion-corner-noce-forces-mf-radical": "ESTABLISHED",
+    "lin-explicit-fixed-bcs-gap-via-generic-conversion": "ESTABLISHED",
+    "nonhyperlinear-bloop-finite-augmentation-corner": "OPEN",
+    "nonhyperlinear-bloop-finite-augmentation-route": "OPEN",
+    "nonhyperlinear-bloop-central-sign-corner": "OPEN",
+    "nonhyperlinear-property-t-free-manuscript-route": "OPEN",
+    "noncentral-frobenius-negative-corner-is-rational-matrix-algebra": "ESTABLISHED",
+    "noncentral-frobenius-fourier-matrix-unit-proof": "COMPLETE",
+    "finite-translation-augmentation-corner-has-every-matrix-width": "ESTABLISHED",
+    "finite-field-augmentation-fourier-matrix-proof": "COMPLETE",
+    "finite-involution-corner-width-is-power-of-two": "ESTABLISHED",
+    "finite-involution-corner-sylow-permutation-proof": "COMPLETE",
+    "jacobson-full-boundary-packets-have-compatible-regular-models": "ESTABLISHED",
+    "jacobson-full-packet-regular-intersection-proof": "COMPLETE",
+    "jacobson-full-boundary-forces-six-coordinate-packet": "ESTABLISHED",
+    "jacobson-recursive-affine-cells-do-not-force-boundary": "ESTABLISHED",
+    "jacobson-vector-valued-quadratic-affine-countermodel-proof": "COMPLETE",
+    "jacobson-boundary-amalgam-mixed-gap": "OPEN",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN"
+  },
+  "prerequisites": {
+    "nonnormal-augmentation-corner-intrinsic-rank-proof": [
+      "matrix-corona-projection-ideal-and-corner-calculus"
+    ],
+    "nonhyperlinear-bloop-finite-augmentation-route": [
+      "lin-explicit-fixed-bcs-gap-via-generic-conversion",
+      "nonhyperlinear-bloop-finite-augmentation-corner",
+      "nonhyperlinear-finite-augmentation-corner-kills-mf"
+    ],
+    "noncentral-frobenius-fourier-matrix-unit-proof": [],
+    "finite-field-augmentation-fourier-matrix-proof": [],
+    "finite-involution-corner-sylow-permutation-proof": [],
+    "jacobson-full-packet-regular-intersection-proof": [
+      "jacobson-full-boundary-forces-six-coordinate-packet"
+    ],
+    "jacobson-vector-valued-quadratic-affine-countermodel-proof": [
+      "jacobson-full-boundary-forces-six-coordinate-packet"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "broader_snapshot_findings": [
+    [
+      "error",
+      "artifact",
+      "research/affine-long-code-soundness-counterexample-proof.md: artifact not found: scripts/check_unique_games_affine_soundness.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/affine-long-code-test-has-no-uniform-soundness.md: artifact not found: scripts/check_unique_games_affine_soundness.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/affine-shift-games-have-vanishing-value.md: artifact not found: scripts/check_unique_games_affine_soundness.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/affine-shift-games-value-proof.md: artifact not found: scripts/check_unique_games_affine_soundness.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/cyclic-affine-direction-decoder-proof.md: artifact not found: scripts/check_unique_games_affine_soundness.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/finite-syndrome-cost-is-a-kernel-support-cone-test.md: artifact not found: scripts/check_qpcp_kernel_resolution.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/fixed-term-chain-defeats-bounded-syndrome-neighborhoods.md: artifact not found: scripts/check_qpcp_chain_obstruction.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/identical-flag-marginals-can-disagree-on-exactifiability.md: artifact not found: scripts/check_qpcp_syndrome_support.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/kernel-resolutions-and-local-spectra-bound-rounder-cost.md: artifact not found: scripts/check_qpcp_kernel_resolution.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/local-syndrome-synthesis-has-an-exact-sdp-test.md: artifact not found: scripts/check_qpcp_syndrome_sdp.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/noisy-affine-direction-decoding-over-cyclic-alphabets.md: artifact not found: scripts/check_unique_games_affine_soundness.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/noisy-affine-selector-counterexample-proof.md: artifact not found: scripts/check_unique_games_noisy_direction.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/noisy-affine-selector-defeats-bounded-hitting.md: artifact not found: scripts/check_unique_games_noisy_direction.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsPeirce.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsReductionProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsMatrixReduction.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient-proof.md: artifact not found: GroupApproximation/Algebra/PurelyInfiniteSimpleMatrix.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsMatrixReduction.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsPeirce.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsReductionProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-all-rank-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsStepOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-canonical-k1-all-ranks.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/KappaFiniteWitness.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-canonical-k1-all-ranks.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-canonical-k1-all-ranks.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-canonical-k1-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/KappaFiniteWitness.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-canonical-k1-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-canonical-k1-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-k1-from-all-rank-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-k1-from-all-rank-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-k1-from-canonical-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-k1-from-canonical-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientMatrices.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/KOne/RankNElimination.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/KOne/BlockWhitehead.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/KOne/UnstableKOneAbelian.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/Algebra/PurelyInfiniteSandwich.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/Algebra/PurelyInfiniteWholeRingCornerUnits.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient-proof.md: artifact not found: GroupApproximation/Algebra/FinitelyGeneratedAbelianResiduallyFinite.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-matrix-mf-quotient.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientMatrices.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-unit-group-max-mf-quotient-is-k1.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/purely-infinite-unit-group-max-mf-quotient-is-k1.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/qubit-pairs-have-half-gap-and-unbounded-rounder-cost-proof.md: artifact not found: scripts/check_qpcp_rounding.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/qubit-pairs-have-half-gap-and-unbounded-rounder-cost.md: artifact not found: scripts/check_qpcp_rounding.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/range-cover-deficit-certifies-no-finite-syndrome-cost.md: artifact not found: scripts/check_qpcp_chain_obstruction.py (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/supported-unit-commutators-lie-in-corner-units.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsStepOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/supported-unit-corner-proof.md: artifact not found: GroupApproximation/Manuscript/OneSidedMFRadical/MFQuotientUnitsStepOne.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/supported-unit-corner-proof.md: artifact not found: GroupApproximation/Algebra/PurelyInfiniteMatrixEmbedding.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/supported-unit-corner-proof.md: artifact not found: GroupApproximation/Algebra/CornerUnitExtension.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/supported-unit-corner-proof.md: artifact not found: GroupApproximation/KOne/BlockWhitehead.lean (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
+    ]
+  ],
+  "source_sha256": {
+    "research/agent-leavitt-not-torsion-corner-noce-forces-mf-radical.md": "e5b50487887880265dff8dc381c01533ab3f2f3f7a7f519f7f3634c5d7a4e63d",
+    "research/artifacts/finite-involution-corner-width-is-power-of-two-2026-09-08.md": "ba41fe1ab486b13f027cd54f501e242683ad4dd9d64af31907942052f6c00fc7",
+    "research/artifacts/jacobson-full-boundary-opposite-roots-and-gl6-packet-2026-09-08.md": "923ee651c58af142649773485ce9d9a94c8168072b1eab5c768a0e5ea87b55b1",
+    "research/artifacts/jacobson-gl6-boundary-compatible-regular-profiles-2026-09-08.md": "34a6949be6838ce4d39511c6274376b9710f78260a6531c3f5e86ad1de028999",
+    "research/artifacts/jacobson-recursive-affine-cell-countermodel-2026-09-08.md": "eff89d8befe0bfc39f685e3e372edebe9f382df96903ce725669198eace0d0fe",
+    "research/artifacts/noncentral-frobenius-negative-rational-matrix-corner-2026-09-08.md": "f4bbb6c500de2c29d710cb98ad7d0b18c027977faa8beb5f676722f5b4d6c343",
+    "research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md": "5ff6500bfa233b788062a3e196ec80eba717570d168d8c29618cdd6753e87ae6",
+    "research/artifacts/nonnormal-finite-augmentation-corner-endgame-2026-09-08.md": "342c42ad0dbb76b7a25ebd3adf632743b703573e6b9dda9f030951a16b0ccdd8",
+    "research/finite-field-augmentation-fourier-matrix-proof.md": "0e772e3a364401f19694a93c71610c7c508dcb0211d2a794bd45dddf5970e37f",
+    "research/finite-involution-corner-sylow-permutation-proof.md": "0e409e5ca1827ed536d8fdecd0a1db5d11050853b8a693130ddf92bc4cd04dfc",
+    "research/finite-involution-corner-width-is-power-of-two.md": "3815c5f0de416580e44e2f4fec37fd6568c01570884aa6ad0fff2f53e9d5323d",
+    "research/finite-translation-augmentation-corner-has-every-matrix-width.md": "064608c978760b3062b8ddb801bd2de03d8a0d4baa9b0688550379662502fc65",
+    "research/jacobson-boundary-amalgam-mixed-gap.md": "16d8cd9a8b3b6df527fcb9c319d9b580f11ed7d55c7c0f97a00dadbbab23c756",
+    "research/jacobson-full-boundary-forces-six-coordinate-packet.md": "af1bcb94c8d377db6e375db9cf3fb6b82964d4bc82319037be185067a94c7d5c",
+    "research/jacobson-full-boundary-packets-have-compatible-regular-models.md": "bcdf6855e0e5c6d397109359633fb706ef59b99f83d51bcc7ff0e6d8a4828614",
+    "research/jacobson-full-packet-regular-intersection-proof.md": "6a48b200413a0b6d5b492a885dddb90afc194aedb0b16a9e82c3daace93c8334",
+    "research/jacobson-recursive-affine-cells-do-not-force-boundary.md": "2c5723bd87b68d3270f78e39f90019e1f620b6ecff1dcfeb78c2b2138805e4ef",
+    "research/jacobson-vector-valued-quadratic-affine-countermodel-proof.md": "0d7a052070697b796fe00a380aec464d76162181fb60a9db809b604b492864a9",
+    "research/lin-explicit-fixed-bcs-gap-via-generic-conversion.md": "5c5a8aa0a6c9bcf30cc18dde57a0b1a821c1b46ee0b827bcac811f3a67bdfc6b",
+    "research/matrix-corona-projection-ideal-and-corner-calculus.md": "e212d706dda9c38d0178ddda86ce384cb5c87ab89a3f7ad42ec1b3503b9d5b20",
+    "research/noncentral-frobenius-fourier-matrix-unit-proof.md": "74aef8b44a7fd4245270b901ef3dbdb8283e0e1b222f0b2fe836d732eadd2813",
+    "research/noncentral-frobenius-negative-corner-is-rational-matrix-algebra.md": "17973bd91c3c793cb5eaaabcc49b6c2bf400707634ea466c61b653f2374e2c7b",
+    "research/nonhyperlinear-bloop-central-sign-corner.md": "00e6f280db434b389cf200d6727a5a74c5aa8eaece1f72a5ab53745399405455",
+    "research/nonhyperlinear-bloop-finite-augmentation-corner.md": "78e929f26d9f6db9673c526b72ba9374683d6c8aa8f09d78cd107e2a68f12b05",
+    "research/nonhyperlinear-bloop-finite-augmentation-route.md": "b6f17d6fa0c047d0723ee7eea98bfa7533b8690d45098d1d8d62568c1e2ac895",
+    "research/nonhyperlinear-finite-augmentation-corner-kills-mf.md": "8e8b78b1dca3fe8b5c4306b8898a0300cd08908b66db0ccda0734f8bfc1a1fc1",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "8a386fd5083c6afa24ff9bf35c5c01368c8a739ef1363c13419c8992f62f9863",
+    "research/nonhyperlinear-property-t-free-manuscript-route.md": "dbb26c8eed783c88be26bf12915233d9ed84d780cb06f4c9b065659fd12407d9",
+    "research/nonnormal-augmentation-corner-intrinsic-rank-proof.md": "cf00c8db2848f1fb59ad4f9332cf4813c2a28f4ee60c10d4dbd317199e937a1d",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "validator_sha256": "fb260ea3349c07960438472a0e74259b40c5b2be1050cad492f0f034e5fc14e2",
+  "claims": 7334,
+  "routes": 7494,
+  "elapsed_seconds": 4.005
+}

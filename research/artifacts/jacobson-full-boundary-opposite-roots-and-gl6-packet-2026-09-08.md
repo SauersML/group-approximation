@@ -412,6 +412,23 @@ is not isolated by (24), which contains the product
 `tau(r)delta(r)`. That distinction is the remaining recursive
 coherence requirement.
 
+The stronger affine family obtained by conjugating (24) with the
+whole `C_0=GL_5` does not suffice by itself. The explicit finite
+model in
+[the recursive affine-cell audit](jacobson-recursive-affine-cell-countermodel-2026-09-08.md)
+satisfies all 31 such cells and an exact `GL_6 x GL_3` packet
+while keeping the individual boundary defect nontrivial. It does
+not certify the remaining shifted-packet identifications or the
+first braid, so it is not a countermodel to `Theta`.
+
+Separately,
+[the full-intersection regular-profile proof](jacobson-gl6-boundary-compatible-regular-profiles-2026-09-08.md)
+computes `B intersect C=C_0 x delta(K_P)` and supplies faithful
+regular matrix models of both packets agreeing there. Their
+finite-subgroup fixed-space and conjugation-commutant dimensions
+are compatible; the mixed operator words must supply further
+information beyond those profiles.
+
 No membership of `h` in the finite group (21), reconstruction at
 every higher level, simultaneous operator-norm correction of all
 these packets, or positive mixed gap is asserted. Those are further
