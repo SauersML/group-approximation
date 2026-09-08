@@ -82,7 +82,7 @@ generally, for a countable purely infinite simple ring the largest MF
 quotient of $\GL_n(R)$ is $K_1(R)$.  We also construct a sofic group
 that is not MF and whose canonical trace on the maximal group
 $C^*$-algebra is amenable but not quasidiagonal, and a torsion-free
-one.
+group with no nontrivial homomorphism to an MF group.
 \end{abstract}
 
 \maketitle
@@ -266,8 +266,8 @@ the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
 
 \begin{mainthm}[an amenable nonquasidiagonal trace]
 \label{thm:amenable-trace}
-There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually
-finite, that is not MF\@.  The canonical trace on $C^*_{\max}(K)$ is
+There is a sofic group $W=W_0\rtimes\mathbb Z$, with $W_0$ locally residually
+finite, that is not MF\@.  The canonical trace on $C^*_{\max}(W_0)$ is
 quasidiagonal, and the canonical trace on $C^*_{\max}(W)$ is amenable
 and not quasidiagonal.
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace}
@@ -286,8 +286,8 @@ Tikuisis, White, and Winter proved
 that faithful traces on separable nuclear $C^*$-algebras satisfying the
 universal coefficient theorem are quasidiagonal~\cite{TWW}; here
 $C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  The canonical
-trace of $C^*_{\max}(K)$ is quasidiagonal, so the crossed product by
-$\mathbb Z$ destroys quasidiagonality of the canonical trace.  Since $K$ is a direct limit of
+trace of $C^*_{\max}(W_0)$ is quasidiagonal, so the crossed product by
+$\mathbb Z$ destroys quasidiagonality of the canonical trace.  Since $W_0$ is a direct limit of
 residually finite groups, it is MF~\cite[Corollary~10 and
 Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
 products with $\mathbb Z$, which answers a question of
@@ -295,8 +295,9 @@ Korchagin~\cite[remark following Proposition~12]{Korchagin}.
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptShiftKernelIsOperatorMF}
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect}
 
-Every example above carries torsion, and in each of them the torsion does
-real work.  The last construction removes it.
+Every example above has torsion, and in the lamp construction the
+obstruction is itself a torsion element.  The last construction has
+none.
 
 \begin{mainthm}[a torsion-free example]
 \label{thm:torsion-free}
@@ -1430,11 +1431,11 @@ particular, $W$ is not MF\@.
 Suppose in addition that $\Gamma$ is residually finite and that
 $[\Gamma:\alpha(\Gamma)]<\infty$.  Then
 \[
- W\cong K\rtimes\mathbb Z,
- \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
+ W\cong W_0\rtimes\mathbb Z,
+ \qquad W_0=\operatorname{Cl}(X)\rtimes T_\alpha,
 \]
-where $K$ is locally residually finite.  Consequently $W$ is sofic but not
-MF, the canonical trace on $C^*_{\max}(K)$ is quasidiagonal, and the
+where $W_0$ is locally residually finite.  Consequently $W$ is sofic but not
+MF, the canonical trace on $C^*_{\max}(W_0)$ is quasidiagonal, and the
 canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
 \leanverified{Sofic/CliffordWitnessSoficPrinted}{GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF}
 \end{proposition}
@@ -1442,8 +1443,8 @@ canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
 \begin{proof}
 Reassociating the semidirect products yields
 \[
- W\cong K\rtimes\mathbb Z,
- \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
+ W\cong W_0\rtimes\mathbb Z,
+ \qquad W_0=\operatorname{Cl}(X)\rtimes T_\alpha.
 \]
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt}
 For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
@@ -1454,7 +1455,7 @@ $\Gamma_{m+1}$ onto $\Gamma_m$, so $\Gamma$ is commensurated by $V$.
 Hence the stabilizer in $\Gamma_n$ of every point of $X=V/\Gamma$ has
 finite index, and every $\Gamma_n$-orbit in $X$ is finite.
 
-A finite subset of $K$ involves only finitely many lamps $c_x$, and its
+A finite subset of $W_0$ involves only finitely many lamps $c_x$, and its
 $T_\alpha$-coordinates lie in one $\Gamma_n$.  Let $Y$ be the union of
 the $\Gamma_n$-orbits of these finitely many $x$.  Then $Y$ is finite
 and $\Gamma_n$-invariant, and the finite subset is contained in
@@ -1468,18 +1469,18 @@ survives in a finite quotient of $\Gamma_n$.  For a nontrivial element of
 $C_Y$, let $J$ be the kernel of the action
 $\Gamma_n\to\operatorname{Aut}(C_Y)$.  The quotient $\Gamma_n/J$ is finite,
 and the element has nontrivial image in the finite group
-$C_Y\rtimes(\Gamma_n/J)$.  Therefore every finitely generated subgroup of $K$ is residually
+$C_Y\rtimes(\Gamma_n/J)$.  Therefore every finitely generated subgroup of $W_0$ is residually
 finite.
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite}
 
-Each finitely generated subgroup of $K$ is residually finite and hence
-sofic.  The group $K$ is their directed union, and $W/K\cong\mathbb Z$
+Each finitely generated subgroup of $W_0$ is residually finite and hence
+sofic.  The group $W_0$ is their directed union, and $W/W_0\cong\mathbb Z$
 is amenable.  Soficity passes to directed unions and to extensions with
 amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
 Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
 By Proposition~\ref{prop:locally-rf-by-z-trace}, applied to the
-extension $1\to K\to W\to\mathbb Z\to1$, the canonical trace of
-$C^*_{\max}(K)$ is quasidiagonal and that of $C^*_{\max}(W)$ is
+extension $1\to W_0\to W\to\mathbb Z\to1$, the canonical trace of
+$C^*_{\max}(W_0)$ is quasidiagonal and that of $C^*_{\max}(W)$ is
 amenable; by Theorem~\ref{thm:factorization-nonmf-trace} the latter is
 not quasidiagonal.
 \end{proof}
