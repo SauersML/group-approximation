@@ -54,3 +54,14 @@ hypothesis and weakens none. A second instance of the criterion is
 
 DERIVATION
 locally-finite-centralizer-support-rank-proof
+
+**Why this criterion and not the Kazhdan one (2026-09-08).**  In the finitary
+permutation family where this is used -- `dyadic-perturbation-group-is-sofic`
+and its radical computation -- the alternative was not merely harder, it was
+unavailable.  `kazhdan-criterion-is-inert-on-finitary-permutation-extensions`
+proves that in `Sym_fin(X) x| V` with `V` MF, no subgroup at all contains a
+nontrivial normal property-(T) subgroup of a compression defect, so
+`normal-kazhdan-defect-non-mf` has no instance there, and passing to subgroups
+does not help.  Replacing the kernel by a finitary linear group over `F_2`
+restores it, because a binary transvection is an involution:
+`finitary-linear-extension-kazhdan-defect-kills-kernel`.
