@@ -561,8 +561,8 @@ Put $U=\widetilde\sigma(u)$.  Since $uLu^{-1}\le L$,
 $U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L)$, so $U^*PU\le P$
 by Lemma~\ref{lem:kazhdan-projection-order}, and $U^*PU=P$ by
 Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
-equivalent.  So $[U,P]=0$ and
-$\opnorm{[\operatorname{Ad}(V_n(u)),P_n]}\to0$.  For
+equivalent.  So $UP=PU$, and correspondingly
+$\opnorm{\operatorname{Ad}(V_n(u))P_n-P_n\operatorname{Ad}(V_n(u))}\to0$.  For
 $(x_n)\in\mathcal C_2(V,L)$,
 \[
 \begin{aligned}
@@ -923,8 +923,10 @@ $[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives the second identity.
 Let $R$ be a countable unital associative ring.  Suppose that $s,t\in R$
 satisfy
 \[
- ts=1,\qquad R(1-st)R=R.
+ ts=1,\qquad R(1-st)R=R;
 \]
+that is, $1-st$ is a \emph{full} idempotent, so that
+$1=\sum_{j}a_j(1-st)b_j$ for finitely many $a_j,b_j\in R$.
 For every $n\ge2$, every homomorphism from $\EL_n(R)$ to an MF group is
 trivial.  Every homomorphism from $\EL_4(\mathcal C)$ to an MF group is
 trivial; that group is finitely generated and has
@@ -1106,7 +1108,8 @@ $e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and
 commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all
 $a\in R$.  So $\lambda$ lies in
 $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, and $N=1$.  So $H$ is
-simple, and in particular not MF\@.
+simple.  It is nontrivial, and every homomorphism from it to an MF
+group is trivial, so $H$ is not MF\@.
 
 Since $R\ne0$ satisfies the hypothesis of
 Theorem~\ref{thm:full-defect-ring}, Corollary~\ref{cor:one-sided-ring-maximal}
@@ -1802,24 +1805,11 @@ N.~P. Brown,
 Mem. Amer. Math. Soc. \textbf{184} (2006), no.~865, viii+105,
 \doi{10.1090/memo/0865}.
 
-\bibitem[BIO]{BIO}
-R.~S. Bryder, N.~A. Ivanov, and T.~Omland,
-\emph{$C^*$-simplicity of HNN extensions and groups acting on trees},
-Ann. Inst. Fourier \textbf{70} (2020), no.~4, 1497--1543,
-\doi{10.5802/aif.3378}.
-
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
-
-\bibitem[CD]{CollinsDykema}
-B.~Collins and K.~J. Dykema,
-\emph{Free products of sofic groups with amalgamation over
-monotileably amenable groups},
-M\"unster J. Math. \textbf{4} (2011), 101--118,
-\href{https://arxiv.org/abs/1003.1675}{arXiv:1003.1675}.
 
 \bibitem[DGO]{DGO}
 F.~Dahmani, V.~Guirardel, and D.~Osin,
@@ -1931,12 +1921,6 @@ P.~Menal and J.~Moncasi,
 J. Pure Appl. Algebra \textbf{33} (1984), no.~3, 295--312,
 \doi{10.1016/0022-4049(84)90064-1}.
 
-\bibitem[MO]{MinasyanOsin}
-A.~Minasyan and D.~Osin,
-\emph{Acylindrical hyperbolicity of groups acting on trees},
-Math. Ann. \textbf{362} (2015), nos.~3--4, 1055--1105,
-\doi{10.1007/s00208-014-1138-z}.
-
 \bibitem[OAI]{OAI}
 OpenAI,
 \emph{Nonsofic groups exist},
@@ -1964,12 +1948,6 @@ products of groups},
 Groups Geom. Dyn. \textbf{20} (2026), no.~2, 607--615,
 \doi{10.4171/GGD/826},
 \href{https://arxiv.org/abs/2306.02498}{arXiv:2306.02498}.
-
-\bibitem[So]{Soule}
-C.~Soul\'e,
-\emph{The cohomology of $\mathrm{SL}_3(\mathbb Z)$},
-Topology \textbf{17} (1978), no.~1, 1--22,
-\doi{10.1016/0040-9383(78)90009-5}.
 
 \bibitem[STW]{STW}
 C.~Schafhauser, A.~Tikuisis, and S.~White,
