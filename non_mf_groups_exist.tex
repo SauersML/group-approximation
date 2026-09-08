@@ -77,13 +77,12 @@ $L_{\F_2}(1,2)$ is a finitely generated simple
 property-\textup{(T)} group that is not MF, and $C^*_{\mathrm r}(H)$ is
 separable, stably finite, and not MF.  For a countable purely infinite
 simple ring the MF radical of $\GL_n(R)$ is its commutator subgroup and
-the largest MF quotient is $K_1(R)$.  We also construct a sofic non-MF
-group $W=K\rtimes\mathbb Z$ with $K$ locally residually finite, whose
-canonical trace on $C^*_{\max}(W)$ is amenable but not quasidiagonal.
-A finite-block construction gives a finitely presented, centerless,
-sofic group whose MF radical is exactly its perfect, residually finite
-lamp subgroup $\mathop{*}_{j\ge1}(A_5)^8$, with residually finite
-quotient.  Its proof extends Kazhdan transport to fixed points in
+the largest MF quotient is $K_1(R)$.  A finite-block construction gives a
+finitely presented, centerless, sofic group $E$ whose MF radical is
+exactly its perfect, residually finite block subgroup
+$\mathop{*}_{j\ge1}(A_5)^8$, with residually finite quotient; it splits
+as $J\rtimes\mathbb Z$ with $J$ locally residually finite, so its
+canonical trace on $C^*_{\max}(E)$ is amenable but not quasidiagonal.  Its proof extends Kazhdan transport to fixed points in
 finite-dimensional invariant $C^*$-subalgebras.  A single cyclic HNN
 extension then gives a finitely presented sofic group whose MF quotients
 are exactly its cyclic quotients, while its reduced $C^*$-algebra is
@@ -314,37 +313,6 @@ kernels of all homomorphisms from $\GL_n(R)$ to MF groups with the
 commutator subgroup, and the quotient with $K_1(R)$, which is MF\@.  For
 the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
 
-\begin{mainthm}[an amenable nonquasidiagonal trace]
-\label{thm:amenable-trace}
-There is a sofic group $W=K\rtimes\mathbb Z$, with $K$ locally residually
-finite, that is not MF\@.  The canonical trace on $C^*_{\max}(K)$ is
-quasidiagonal, and the canonical trace on $C^*_{\max}(W)$ is amenable
-and not quasidiagonal.
-\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace}
-\end{mainthm}
-
-Section~\ref{sec:amenable-nonqd} constructs $W$ from the affine group
-$\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$ and Clifford lamps.  The group
-$W$ is sofic because locally residually finite groups are sofic and
-soficity passes to extensions with amenable
-quotient~\cite[Theorem~1]{ElekSzabo}.  The trace answers the question of
-Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
-Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
-amenable trace is quasidiagonal.
-\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptWSoficFromLocallyRFExtension}
-Tikuisis, White, and Winter proved
-that faithful traces on separable nuclear $C^*$-algebras satisfying the
-universal coefficient theorem are quasidiagonal~\cite{TWW}; here
-$C^*_{\max}(W)$ is not nuclear, since $W$ is not amenable.  The canonical
-trace of $C^*_{\max}(K)$ is quasidiagonal, so the crossed product by
-$\mathbb Z$ destroys quasidiagonality of the canonical trace.  Since $K$ is a direct limit of
-residually finite groups, it is MF~\cite[Corollary~10 and
-Proposition~13]{Korchagin}.  So MF groups are not closed under semidirect
-products with $\mathbb Z$, which answers a question of
-Korchagin~\cite[remark following Proposition~12]{Korchagin}.
-\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptShiftKernelIsOperatorMF}
-\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect}
-
 \begin{mainthm}[a torsion-free finitely presented example]
 \label{thm:torsion-free}
 There is a two-generated, finitely presented, torsion-free, acylindrically
@@ -373,7 +341,8 @@ where $V$ is residually finite and
 The subgroup $B$ is perfect and residually finite, and any nonidentity
 element of one coordinate $A_5$ normally generates it in $E$.
 Moreover, $E=J\rtimes\mathbb Z$ with $J$ locally residually finite.
-The canonical trace on $C^*_{\max}(E)$ is amenable and not quasidiagonal.
+The canonical trace on $C^*_{\max}(J)$ is quasidiagonal, while the
+canonical trace on $C^*_{\max}(E)$ is amenable and not quasidiagonal.
 \end{mainthm}
 
 Section~\ref{sec:finite-blocks} gives a finite presentation and computes
@@ -384,6 +353,22 @@ in a free product makes finite presentability possible.  The analytic
 step is Theorem~\ref{thm:finite-algebra-transport}: a finite-dimensional
 invariant algebra has the same fixed points under a Kazhdan subgroup
 and its conjugate compressed copy.
+
+The trace on $C^*_{\max}(E)$ answers the question of
+Brown~\cite[discussion preceding Proposition~3.5.1]{Brown} and of
+Schafhauser, Tikuisis and White~\cite[Problem~X(1)]{STW} whether every
+amenable trace is quasidiagonal.  Tikuisis, White and Winter proved
+that faithful traces on separable nuclear $C^*$-algebras satisfying the
+universal coefficient theorem are quasidiagonal~\cite{TWW}; here
+$C^*_{\max}(E)$ is not nuclear, since $E$ contains a Kazhdan subgroup
+and is not amenable.  The canonical trace of $C^*_{\max}(J)$ is
+quasidiagonal, so the crossed product by $\mathbb Z$ destroys
+quasidiagonality of the canonical trace.  Since $J$ is a direct limit
+of residually finite groups it is MF~\cite[Corollary~10 and
+Proposition~13]{Korchagin}, so MF groups are not closed under
+semidirect products with $\mathbb Z$, which answers a question of
+Korchagin~\cite[remark following Proposition~12]{Korchagin}.
+\leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect}
 
 The finite-block example also permits an exact calculation after one
 HNN extension.  In the next theorem, the radical has no nontrivial MF
@@ -456,15 +441,17 @@ infinite simple
  & (Theorem~\ref{thm:mf-quotient-units})
  & example\\[2pt]
 $W$
- & all kill $\varepsilon$ (Theorem~\ref{thm:amenable-trace})
- & sofic, with an amenable trace\\
- & & that is not quasidiagonal\\[2pt]
+ & all kill $\varepsilon$
+ & lamps over a proper\\
+ & (Proposition~\ref{prop:clifford-self-embedding})
+ & self-embedding\\[2pt]
 $E$
  & factor through $V$, radical $B$
- & finitely presented and sofic;\\
+ & finitely presented, with radical\\
  & (Theorem~\ref{thm:fp-sofic-radical})
- & radical and quotient both\\
- & & residually finite\\[2pt]
+ & and quotient both residually\\
+ & & finite, and an amenable trace\\
+ & & that is not quasidiagonal\\[2pt]
 $P$
  & factor through $\mathbb Z$, radical $N$
  & the radical has no nontrivial\\
@@ -972,7 +959,7 @@ tensor estimate turns a single separation threshold into a linear bound.
 
 \begin{lemma}[tensor amplification]\label{lem:linear-tensor-amplification}
 If $A\in\U(d)$ and $t=\opnorm{A-1}>0$, there is an integer
-$1\le k\le6/t$ with $\opnorm{A^{\otimes k}-1}>1$.
+$1\le k\le\pi/t$ with $\opnorm{A^{\otimes k}-1}\ge\sqrt2$.
 For any $A,B\in\U(d)$ and $k\ge1$,
 \[
  \opnorm{A^{\otimes k}-B^{\otimes k}}\le k\opnorm{A-B}.
@@ -980,17 +967,18 @@ For any $A,B\in\U(d)$ and $k\ge1$,
 \end{lemma}
 
 \begin{proof}
-Choose an eigenvalue $z$ of $A$ with $|z-1|=t$, and put
-$N=\lfloor4/t\rfloor+1$.  If $|z^j-1|\le1$ for every
-$1\le j\le N$, then $\operatorname{Re}(z^j)\ge\tfrac12$.
-Consequently $S=z+\cdots+z^N$ satisfies
+Since $A-1$ is normal, some eigenvalue $e^{i\theta}$ of $A$, with
+$0<|\theta|\le\pi$, has $|e^{i\theta}-1|=t$.  Put
+$k=\lceil\pi/2|\theta|\rceil$.  Then $k|\theta|\ge\pi/2$, and
+$k|\theta|\le\pi$ as well: if $|\theta|>\pi/2$ then $k=1$, and
+otherwise $k|\theta|<\pi/2+|\theta|\le\pi$.  So
+$k\theta/2\in[\pi/4,\pi/2]$ up to sign and
 \[
- \frac N2\le\operatorname{Re}S\le|S|,
- \qquad t|S|=|(1-z)S|=|z-z^{N+1}|\le2,
+ |e^{ik\theta}-1|=2\bigl|\sin(k\theta/2)\bigr|\ge\sqrt2 .
 \]
-contrary to $Nt>4$.  Thus some $1\le k\le N$ has $|z^k-1|>1$.
-Tensoring an eigenvector for $z$ shows that $z^k$ is an eigenvalue of
-$A^{\otimes k}$, and $kt\le Nt\le4+t\le6$.
+Tensoring an eigenvector for $e^{i\theta}$ shows that $e^{ik\theta}$
+is an eigenvalue of $A^{\otimes k}$.  Finally
+$t=2|\sin(\theta/2)|\le|\theta|$, so $kt\le k|\theta|\le\pi$.
 For the second assertion, telescope the tensor factors:
 \[
  A^{\otimes k}-B^{\otimes k}
@@ -1019,7 +1007,7 @@ $\mathcal R\subseteq N$ and $\eta>0$ satisfy
  \quad\Longrightarrow\quad \opnorm{w(U)-1}<1
 \end{equation}
 in every dimension, then the same $\mathcal R$ satisfies
-\eqref{eq:word-linear-certificate} with $C=6/\eta$.
+\eqref{eq:word-linear-certificate} with $C=\pi/\eta$.
 \end{theorem}
 
 \begin{proof}
@@ -1035,7 +1023,7 @@ Lemma~\ref{prop:mf-residual-calculus}.
 Fix a threshold $(\mathcal R,\eta)$ and a tuple $U$, and put
 $t=\opnorm{w(U)-1}$.  If $t=0$, the required inequality is immediate.
 Otherwise Lemma~\ref{lem:linear-tensor-amplification} supplies
-$1\le k\le6/t$ with $\opnorm{w(U)^{\otimes k}-1}>1$.
+$1\le k\le\pi/t$ with $\opnorm{w(U)^{\otimes k}-1}>1$.
 The map $A\mapsto A^{\otimes k}$ is a group homomorphism, so every
 word $r$ satisfies
 \[
@@ -1047,7 +1035,7 @@ $k\delta_{\mathcal R}(U)$.  It follows that
 \[
  \eta\le\delta_{\mathcal R}(U^{\otimes k})
  \le k\delta_{\mathcal R}(U)
- \le\frac6t\delta_{\mathcal R}(U),
+ \le\frac\pi t\delta_{\mathcal R}(U),
 \]
 which proves \eqref{eq:word-linear-certificate}.
 
@@ -1089,8 +1077,8 @@ unitaries $U_1,\ldots,U_m\in\U(d)$, for every $d\ge1$, satisfy
 \[
  \max_i\opnorm{U_i-1}\le C\max_j\opnorm{r_j(U_1,\ldots,U_m)-1}.
 \]
-Conversely, if such words and such a constant exist and $G$ is
-countable, then every homomorphism from $G$ to an MF group is trivial.
+Conversely, if such words and such a constant exist, then every
+homomorphism from $G$ to an MF group is trivial.
 \leanverified{Manuscript/OneSidedMFRadical/QuantitativeCollapse}{GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapse}
 \leanverified{Manuscript/OneSidedMFRadical/QuantitativeCollapse}{GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapseConverse}
 \end{proposition}
@@ -1100,8 +1088,7 @@ Apply Theorem~\ref{thm:word-linear-certificate} to each generator word,
 take the union of the resulting finite relation sets, and take the
 maximum of their positive constants.  Conversely, the displayed
 inequality and the converse of that theorem kill every generator in
-every homomorphism to an MF group.  The trivial group with an empty
-generating set has the empty certificate.
+every homomorphism to an MF group.
 \end{proof}
 
 With $r_1,\ldots,r_s$ as in Proposition~\ref{prop:linear-collapse},
@@ -1547,7 +1534,7 @@ For $d=2$ the quotient is trivial for every countable field $k$, so
 every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial.
 For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
 
-\section{An amenable nonquasidiagonal trace}
+\section{Amenable traces and Clifford lamps}
 \label{sec:amenable-nonqd}
 
 Brown observed that it was unknown whether every amenable trace on a
@@ -1590,7 +1577,7 @@ $\Phi\colon C^*_{\max}(G)\to\mathcal Q_{\mathbf d}$.  If $\Phi(u_g)=1$,
 then $\opnorm{\phi_n(u_g)-1}\to0$, so $\tr_{d_n}(\phi_n(u_g))\to1$,
 while $\tr_{d_n}(\phi_n(u_g))\to\tau_G(u_g)$; so $g=1$.  Hence
 $g\mapsto\Phi(u_g)$ is a corona homomorphism injective on $G$, and $G$
-is MF, contrary to the hypothesis.  The last assertion follows.
+is MF, contrary to the hypothesis.
 \end{proof}
 
 A group $N$ is \emph{locally residually finite} if each of its finitely
@@ -1653,11 +1640,11 @@ and their traces vanish on $E\setminus\{1\}$; the same limits give
 quasidiagonality.
 \end{proof}
 
-We now construct $W$.  For $W$ to be non-MF, $\Gamma$ may be any
-countable property-\textup{(T)} group with a proper self-embedding;
-residual finiteness of $\Gamma$ and finiteness of the index of the
-self-embedding are needed only for the trace
-(Proposition~\ref{prop:clifford-locally-rf}).  Let $\Gamma$ be a
+We now construct the simplest group to which
+Theorem~\ref{thm:compression-criterion} applies: its intrinsic defect
+subgroup is generated by a single commutator and contains a central
+involution.  Here $\Gamma$ may be any countable
+property-\textup{(T)} group with a proper self-embedding.  Let $\Gamma$ be a
 countable group with property~\textup{(T)}, let
 $\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose
 $a\in\Gamma\setminus\alpha(\Gamma)$.  Put
@@ -1735,65 +1722,6 @@ homomorphism from $W$ to an MF group is trivial on $\varepsilon$.  In
 particular, $W$ is not MF\@.
 \end{proof}
 
-\begin{proposition}[the locally residually finite case]
-\label{prop:clifford-locally-rf}
-Suppose in addition that $\Gamma$ is residually finite and that
-$[\Gamma:\alpha(\Gamma)]<\infty$.  Then
-\[
- W\cong K\rtimes\mathbb Z,
- \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
-\]
-where $K$ is locally residually finite.  Consequently $W$ is sofic but not
-MF, the canonical trace on $C^*_{\max}(K)$ is quasidiagonal, and the
-canonical trace on $C^*_{\max}(W)$ is amenable and not quasidiagonal.
-\leanverified{Sofic/CliffordWitnessSoficPrinted}{GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF}
-\end{proposition}
-
-\begin{proof}
-Reassociating the semidirect products yields
-\[
- W\cong K\rtimes\mathbb Z,
- \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
-\]
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt}
-For $n\ge0$, write $\Gamma_n=t^{-n}\Gamma t^n$ for the image of the $n$th
-copy of $\Gamma$ in $T_\alpha$.  Since $[\Gamma:\alpha(\Gamma)]<\infty$,
-each $\Gamma_n$ has finite index in $\Gamma_{n+1}$; every element of
-$T_\alpha$ lies in some $\Gamma_m$, and conjugation by $t$ maps
-$\Gamma_{m+1}$ onto $\Gamma_m$, so $\Gamma$ is commensurated by $V$.
-Hence the stabilizer in $\Gamma_n$ of every point of $X=V/\Gamma$ has
-finite index, and every $\Gamma_n$-orbit in $X$ is finite.
-
-A finite subset of $K$ involves only finitely many lamps $c_x$, and its
-$T_\alpha$-coordinates lie in one $\Gamma_n$.  Let $Y$ be the union of
-the $\Gamma_n$-orbits of these finitely many $x$.  Then $Y$ is finite
-and $\Gamma_n$-invariant, and the finite subset is contained in
-\[
- C_Y\rtimes\Gamma_n,
-\]
-where $C_Y=\langle\varepsilon,c_y:y\in Y\rangle$ is finite by the
-normal form above.  This semidirect product is
-residually finite.  Indeed, an element with nontrivial $\Gamma_n$-component
-survives in a finite quotient of $\Gamma_n$.  For a nontrivial element of
-$C_Y$, let $J$ be the kernel of the action
-$\Gamma_n\to\operatorname{Aut}(C_Y)$.  The quotient $\Gamma_n/J$ is finite,
-and the element has nontrivial image in the finite group
-$C_Y\rtimes(\Gamma_n/J)$.  Therefore every finitely generated subgroup of $K$ is residually
-finite.
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite}
-
-Each finitely generated subgroup of $K$ is residually finite and hence
-sofic.  The group $K$ is their directed union, and $W/K\cong\mathbb Z$
-is amenable.  Soficity passes to directed unions and to extensions with
-amenable quotient~\cite[Theorem~1]{ElekSzabo}, so $W$ is sofic.
-Proposition~\ref{prop:clifford-self-embedding} shows that it is not MF.
-By Proposition~\ref{prop:locally-rf-by-z-trace}, applied to the
-extension $1\to K\to W\to\mathbb Z\to1$, the canonical trace of
-$C^*_{\max}(K)$ is quasidiagonal and that of $C^*_{\max}(W)$ is
-amenable; by Theorem~\ref{thm:factorization-nonmf-trace} the latter is
-not quasidiagonal.
-\end{proof}
-
 For a concrete instance, take
 \[
  \bar\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)
@@ -1819,12 +1747,15 @@ $[\bar\Gamma:\alpha(\bar\Gamma)]=8$.  Translation $a$ by the first
 standard basis vector lies outside $\alpha(\bar\Gamma)$.  So the preceding
 construction applies to $\bar\Gamma$, $\alpha$ and $a$.
 
-\begin{proof}[Proof of Theorem~\ref{thm:amenable-trace}]
-Apply Proposition~\ref{prop:clifford-locally-rf} to $\bar\Gamma$,
-$\alpha$, and $a$.
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace}
-\leanverified{Manuscript/NinetyNineProblems/ProblemXCliffordWitness}{GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal}
-\end{proof}
+The lamp group $\operatorname{Cl}(X)$ is locally finite, so this
+example locates $\operatorname{Rad}_{\mathrm{MF}}(W)$ only between
+$\langle\varepsilon\rangle$ and $\operatorname{Cl}(X)$.
+Section~\ref{sec:finite-blocks} keeps $\bar\Gamma$, $\alpha$ and $a$
+and replaces the lamps by perfect finite blocks.  The resulting group is
+finitely presented, its MF radical is computed exactly, and
+Proposition~\ref{prop:locally-rf-by-z-trace} together with
+Theorem~\ref{thm:factorization-nonmf-trace} then supplies the amenable
+nonquasidiagonal trace of Theorem~\ref{thm:fp-sofic-radical}.
 
 \section{Finitely presented sofic groups with exact MF radical}
 \label{sec:finite-blocks}
@@ -2113,15 +2044,11 @@ $V/\Gamma$ and $V/\alpha(\Gamma)$, and its stabilizers are
 $g(B_K\cap\Lambda)g^{-1}=gFg^{-1}$ at a vertex and
 $g(B_K\cap\alpha(\Gamma))g^{-1}=1$ at an edge, because $\Gamma$ meets
 $B_K$ trivially.  In the quotient graph the edge $\bar v\alpha(\Gamma)$
-runs from $\bar v\Gamma$ to $\bar vt\Gamma$.  The cosets of
-$\alpha(\Gamma)$ inside $w\Gamma t^{-1}=wt^{-1}\alpha(\Gamma)$ form a
-single one, so every vertex has exactly one incoming edge, while
-$\bar v\Gamma$ has the $m$ outgoing edges $\bar v\gamma\alpha(\Gamma)$.
-A cycle with $k$ edges would have $k$ distinct heads among its $k$
-vertices, hence would be consistently oriented, and would give
-$wt^{-k}\Gamma=w\Gamma$ for some $k\ge1$; the homomorphism
-$V\to\mathbb Z$ killing $\Gamma$ and sending $t$ to $1$ forbids that.
-The quotient graph is therefore a tree, and a graph of groups with
+runs from $\bar v\Gamma$ to $\bar vt\Gamma$.  That is precisely the
+incidence of the Bass--Serre tree of the ascending HNN extension $V$,
+whose vertices are $V/\Gamma$ and whose edges are $V/\alpha(\Gamma)$,
+and the two graphs have the same vertex and edge sets because $B_K$ is
+normal with quotient $V$.  The quotient graph is therefore a tree, and a graph of groups with
 trivial edge groups over a tree has the displayed free product as its
 fundamental group, with no free factor.
 \end{proof}
@@ -2187,9 +2114,10 @@ $T_\alpha=\bigcup_{n\ge0}\Gamma_n$, so that
  \qquad E_K=J_K\rtimes\mathbb Z,
  \qquad J_K=B_K\rtimes T_\alpha .
 \]
-Finite index of $\alpha(\Gamma)$ makes $\Gamma$ commensurated by $V$,
-as in Proposition~\ref{prop:clifford-locally-rf}, so every
-$\Gamma_n$-orbit in $V/\Gamma$ is finite.  A finite subset of $J_K$
+Each $\Gamma_n$ has finite index in $\Gamma_{n+1}$ because
+$[\Gamma:\alpha(\Gamma)]=m$, and conjugation by $t$ carries
+$\Gamma_{n+1}$ onto $\Gamma_n$; so $\Gamma$ is commensurated by $V$
+and every $\Gamma_n$-orbit in $V/\Gamma$ is finite.  A finite subset of $J_K$
 uses finitely many blocks and lies in one $\Gamma_n$; saturating those
 blocks gives a finite $\Gamma_n$-invariant set $I\subseteq V/\Gamma$
 and puts the subset in $M_I\rtimes\Gamma_n$ with
@@ -2215,9 +2143,9 @@ of $B_K$.
 \begin{proof}[Proof of Theorem~\ref{thm:fp-sofic-radical}]
 Take $\Gamma=\mathbb Z^3\rtimes\mathrm{SL}_3(\mathbb Z)$,
 $\alpha(v,A)=(2v,A)$, and $K=A_5$ in
-Theorem~\ref{thm:perfect-block-radical}.  The affine group $\Gamma$
-has property~(T)~\cite[Example~1.7.4(i)]{BHV} and is finitely
-presented.  For the latter fact one may use a finite presentation
+Theorem~\ref{thm:perfect-block-radical}.  This is the group
+$\bar\Gamma$ and the endomorphism of Section~\ref{sec:amenable-nonqd};
+it has property~(T) and is finitely presented.  For the latter fact one may use a finite presentation
 of $\mathrm{SL}_3(\mathbb Z)$ and its action on the three commuting
 translation generators; an explicit twenty-relator presentation
 and its identification with this affine group are also proved in
@@ -2371,14 +2299,9 @@ The base $E$ is sofic and the edge groups are infinite cyclic,
 so Collins--Dykema's HNN theorem~\cite[Corollary~3.6]{CollinsDykema}
 proves that $P$ is sofic.  Its hypothesis is monotileable amenability
 of the edge subgroup, supplied here by intervals tiling $\mathbb Z$.
-One can also read this permanence argument from the kernel.
 For $p\le q$, write $N_{[p,q]}=\langle E_i:p\le i\le q\rangle$.
 HNN normal form identifies $N_{[p,q]}$ with the iterated amalgam of
-these vertex groups along~\eqref{eq:cyclic-kernel-relations}.
-Each finite amalgam is sofic~\cite[Theorem~3.4]{CollinsDykema};
-their directed union is $N$, and $P=N\rtimes\mathbb Z$ is sofic
-by the sofic-by-amenable extension theorem~\cite[Theorem~1]{ElekSzabo}.
-The same normal form gives
+these vertex groups along~\eqref{eq:cyclic-kernel-relations}, and gives
 \[
  N_{[p,q+1]}\cong
  N_{[p,q]}*_{\langle d_q\rangle=\langle r_{q+1}\rangle}E_{q+1}.
@@ -2769,7 +2692,7 @@ the first question settles this case, and every ring in which $1-st$
 has finite additive order.
 
 \item Is every amenable trace on a separable nuclear $C^*$-algebra
-quasidiagonal?  The trace of Theorem~\ref{thm:amenable-trace} lives on
+quasidiagonal?  The trace of Theorem~\ref{thm:fp-sofic-radical} lives on
 a non-nuclear algebra, and for faithful traces on algebras satisfying
 the universal coefficient theorem the answer is
 positive~\cite{TWW}.
