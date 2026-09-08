@@ -4,9 +4,10 @@ id: boone-higman-via-projective-ring-host
 kind: route
 title: Embed the simple core as elementary diagonal matrices and pass to a finitely presented simple projective host
 target: boone-higman-conjecture
-requires: [boone-higman-thompson-simple-envelope, clapham-fp-embedding-preserves-word-problem, decidable-group-ring-has-fp-projective-simple-host]
+requires: [boone-higman-thompson-simple-envelope, clapham-fp-embedding-preserves-word-problem, decidable-group-ring-has-fp-projective-simple-host, projective-elementary-fp-kernel-criterion]
 artifacts:
   - research/artifacts/boone-higman-ring-route-repair-2026-09-08.md
+  - research/artifacts/boone-higman-projective-finiteness-gate-2026-09-08.md
 ---
 
 Given a finitely generated group G with solvable word problem, apply the
@@ -38,8 +39,12 @@ central, it commutes with every d(t), so s in Z(S)=1. Hence
 
     G <= S <= PEL_4(L).
 
-The final group is finitely presented and simple by the explicitly open
-host hypothesis. This proves the conditional route, without assuming that
+The open host hypothesis supplies finite normal generators of the
+Steinberg kernel and finite generators of the elementary group's center.
+By projective-elementary-fp-kernel-criterion, these make the final
+projective group finitely presented. Its simplicity is the remaining
+explicit clause of the host hypothesis. This proves the conditional route,
+without assuming that
 ring simplicity implies group simplicity or that the center is finitely
 generated. No sandwich extension, and no decidability claim for one, is
 needed in this reduction.

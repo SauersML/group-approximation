@@ -21,6 +21,7 @@ artifacts:
   - research/artifacts/boone-higman-steinberg-cover-correction-2026-09-08.md
   - research/artifacts/boone-higman-cover-kernel-dichotomy-2026-09-08.md
   - research/artifacts/boone-higman-lean-preflight-2026-09-08.md
+  - research/artifacts/boone-higman-projective-finiteness-gate-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -248,3 +249,16 @@ escape the matrix map. Write `K=ker(Gamma->EL_4(U))`. Any proper quotient
 M this is the alternative to containing K and descending to a simple
 matrix quotient. No suitable quotient of K has been constructed, and no
 finite normal generating set for M follows from this dichotomy.
+
+## September 8: projectivization retains the presentation requirement
+
+`projective-elementary-fp-kernel-criterion` gives an exact version of the
+ring host's finite-presentation clause. It requires finite normal
+generation of the unstable Steinberg kernel and finite generation of the
+elementary center. A finitely generated group with finitely presented
+central quotient is itself finitely presented, so passing to the
+projective group does not repair failure of elementary-group finite
+presentation. The ring-host route now uses the equivalent generating-data
+formulation. Projective simplicity also forces the ring itself to be
+simple. Neither the required generating data nor a universal host has
+been constructed.

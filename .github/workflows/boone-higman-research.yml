@@ -18,6 +18,8 @@ on:
       - 'research/ck-steinberg-marked-cover*.md'
       - 'research/ck-cover-quotient-kernel-dichotomy*.md'
       - 'research/normalizing-subgroups-*.md'
+      - 'research/fg-central-extension-*.md'
+      - 'research/projective-elementary-*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
     inputs:
@@ -99,6 +101,9 @@ jobs:
           bin/cairn why finite-marking-normal-generator-cover --json > bh-marking-cover.json
           bin/cairn why ck-cover-quotient-kernel-dichotomy --json > bh-cover-kernel-dichotomy.json
           bin/cairn why normalizing-subgroups-separate-double-cosets --json > bh-normalizer-separation.json
+          bin/cairn why fg-central-extension-of-fp-group-is-fp --json > bh-projective-central-extension.json
+          bin/cairn why projective-elementary-fp-kernel-criterion --json > bh-projective-finiteness.json
+          bin/cairn why projective-elementary-simplicity-forces-simple-ring --json > bh-projective-simple-ring.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -112,3 +117,4 @@ jobs:
             bh-marking-cover.json
             bh-cover-kernel-dichotomy.json
             bh-normalizer-separation.json
+            bh-projective-*.json
