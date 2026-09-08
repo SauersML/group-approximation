@@ -3,7 +3,6 @@ rg: 2
 id: bffhz-computable-core-fp-upgrade-is-false
 kind: claim
 title: A decidable simple MIF core refutes the universal computable-core finite-presentation upgrade of the BFFHZ action
-invalidates: [bffhz-action-image-is-finitely-presented]
 artifacts:
   - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
 ---
