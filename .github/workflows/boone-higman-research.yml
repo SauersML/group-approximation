@@ -31,6 +31,10 @@ on:
       - 'research/cantor-prefix-*.md'
       - 'research/contracting-srn-*.md'
       - 'research/boundary-orbit-*.md'
+      - 'research/rational-homeomorphism-*.md'
+      - 'research/rational-transducer-*.md'
+      - 'research/decidable-fp-groups-need-not-embed-in-rational-group.md'
+      - 'research/kms-complexity-*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
     inputs:
@@ -132,6 +136,8 @@ jobs:
           bin/cairn why contracting-srn-rational-stabilizers-are-fp --json > bh-boundary-wreath-stabilizers.json
           bin/cairn why boundary-orbit-cyclic-wreath-has-fp-simple-envelope --json > bh-boundary-wreath-envelope.json
           bin/cairn why boundary-orbit-wreath-actor-has-infinite-abelianization --json > bh-boundary-wreath-charge.json
+          bin/cairn why rational-homeomorphism-subgroups-have-exponential-wp --json > bh-finite-state-word-problem.json
+          bin/cairn why decidable-fp-groups-need-not-embed-in-rational-group --json > bh-finite-state-nonembedding.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -150,3 +156,4 @@ jobs:
             bh-automorphism-*.json
             bh-cantor-*.json
             bh-boundary-wreath-*.json
+            bh-finite-state-*.json

@@ -106,6 +106,13 @@ finite. Thus these input wreath products alone are not universal
 hosts. The simple envelopes are larger groups, and nothing here
 classifies all their subgroups or proves them universal either.
 
+A subsequent complexity argument in
+`research/artifacts/boone-higman-finite-state-and-shell-germ-limits-2026-09-08.md`
+rules out universality of the intermediate rational actors E themselves:
+some decidable finitely presented residually finite groups admit no
+rational embedding. The argument does not assert that the final
+twisted Brin--Thompson envelopes have rational actions.
+
 This is mathematical proof text in Cairn, not a Lean certificate.
 No GPU computation establishes these results. The previously attempted
 Civo provisioning did not create an instance; recorded GPU spending

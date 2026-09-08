@@ -27,6 +27,7 @@ artifacts:
   - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
   - research/artifacts/boone-higman-wreath-projection-audit-2026-09-08.md
   - research/artifacts/boone-higman-boundary-wreath-germ-construction-2026-09-08.md
+  - research/artifacts/boone-higman-finite-state-and-shell-germ-limits-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -66,6 +67,14 @@ germ extension. It supplies an additional positive family, not a
 universal route: no reduction from arbitrary solvable-word-problem
 inputs to that construction has been established. The attached
 artifact explains the residual-finiteness limit on its input family.
+
+There is a stronger limit on finite-state realizations:
+`decidable-fp-groups-need-not-embed-in-rational-group` combines an
+explicit single-exponential transducer word-problem algorithm with
+the Kharlampovich--Myasnikov--Sapir hardness theorem. Some decidable
+finitely presented residually finite inputs embed in no rational
+homeomorphism group. Thus a universal proof cannot require every
+input to act by finite-state Cantor homeomorphisms.
 
 ## What a certificate must contain
 
