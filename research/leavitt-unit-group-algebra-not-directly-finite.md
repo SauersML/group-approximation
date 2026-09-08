@@ -179,9 +179,13 @@ excluded: two conjugate charts have a finite dihedral boundary orbit
 whose exterior powers give an incompatible source and target rank.
 An explicit order-six transporter passes the entire exterior-square
 source test and fails in degree three. This rules out the specified
-single-transporter class; sums, general linear units, and prefix
-permutations that mix the binary coordinates encoding `F_4` remain
-outside the theorem. The unrestricted Kaplansky target remains open.
+single-transporter class. The same finite orbit now excludes every
+element supported in the finite chart plus one prefix double coset,
+with arbitrary finite-chart coefficients. For several double cosets,
+a mod-three orbit-pattern test gives a further necessary condition.
+Two arbitrary double cosets passing that test, general linear units,
+and prefix permutations that mix the binary coordinates encoding
+`F_4` remain unresolved. The unrestricted Kaplansky target remains open.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**

@@ -405,3 +405,10 @@ For literature context, Austin and Podder's
 entropy comparison from finite models, and obtains equality under strong
 spatial mixing. Neither input is an unconditional lower-bound argument
 for an arbitrary group here.
+
+The [local deficit-measure control](gottschalk-row-column-deficit-measure-control-2026-09-08.md)
+also rules out universal domination of the row and column singular
+deficit measures on the pin-density square. Opposite signs occur on
+transposed rectangles even for a reversible iid control. Their total
+comparison remains exactly the unproved percolative-entropy lower
+bound; the local counterexample does not decide that integrated sign.
