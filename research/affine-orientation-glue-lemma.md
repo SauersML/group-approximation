@@ -3,16 +3,25 @@ rg: 2
 id: affine-orientation-glue-lemma
 kind: claim
 title: Heavy restricted cosets in a positive density of affine directions are hit by a dimension-free bounded set
+refuted_by:
+  - noisy-affine-selector-defeats-bounded-hitting
 distinct_from:
   affine-orientation-triangle-defect-is-small: that is the local analytic estimate on triples of affine directions inside one F_2^2 plane; this is the global list-decoding conclusion, and it is what the soundness decoder consumes.
   triangle-defect-globalizes-to-a-bounded-label-list: that is the conditional globalization step (small defect implies a bounded list); this is the unconditional target statement, which needs the defect estimate as well.
-  glue-lemma-holds-for-quadratic-functions: that is the proved special case at ambient degree two, where the conclusion holds with gamma = 1 and no density hypothesis; this is the open general statement for arbitrary bounded f.
+  glue-lemma-holds-for-quadratic-functions: that is the proved special case at ambient degree two, where the conclusion holds with gamma = 1 and no density hypothesis; this is the refuted general statement for arbitrary bounded f.
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
+  - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
 ---
 
-**OPEN.**  This is the missing analytic ingredient of the
-`rich-2to1-games-conjecture` attack on `F_lin` instances.
+**REFUTED (2026-09-07).** `noisy-affine-selector-defeats-bounded-hitting`
+constructs a folded Boolean function whose ambient-noisy restrictions have
+a heavy coset in every direction, but any `L` labels hit at most
+`2L/(N-1)` of those cosets. The parameters are fixed at
+`rho=1/2,d=1,delta=1/16,alpha=1/2`; only `N` grows. The proposed analytic
+ingredient of the `F_lin` attack is therefore false. UGC remains open.
+
+The original statement and earlier attempts are retained below as history.
 
 Fix `Omega = F_2^k`, `N = |Omega|`.  For `b != 0` let
 
@@ -30,7 +39,7 @@ let `0 < rho < 1` be fixed, and put `g = T_rho f`.  Call a coset `C` of
 Inf^{<=d}_C ( g|_{D_b} ) >= delta.
 ```
 
-**Statement.**  For every fixed `rho, d, delta, alpha > 0` there exist
+**Refuted statement.**  For every fixed `rho, d, delta, alpha > 0` there exist
 constants `L = L(rho, d, delta, alpha)` and `gamma = gamma(rho,d,delta,alpha) > 0`,
 **independent of k**, such that: whenever a set `B subset Omega \ {0}` of
 density at least `alpha` admits a heavy coset `C_b = q_b + <b>` for every
@@ -64,7 +73,7 @@ form above, ambient influential coordinates reappear where they belong --
 as one admissible choice of `Q`, which is exactly how the proved case
 `glue-lemma-holds-for-quadratic-functions` produces them.
 
-**What is known about the shape of any proof.**
+**Constraints recorded before the refutation.**
 
 * **Ambient degree two is done, and it is sharp.**
   `glue-lemma-holds-for-quadratic-functions` proves the conclusion for
@@ -78,8 +87,8 @@ as one admissible choice of `Q`, which is exactly how the proved case
   `d` and not `rho`.
 * **It cannot come from ambient influence transfer in general.**
   `linear-pairing-memorizer-restricts-to-a-dictator` gives a bounded,
-  low-degree, noise-*invariant* `f` that restricts to an exact dictator on
-  `D_b` while every ambient low-degree influence tends to zero.
+  homogeneous `f` whose noisy restriction is a fixed nonzero multiple of a
+  dictator on `D_b` while every ambient low-degree influence tends to zero.
 * **It cannot come from counting the heavy directions.**  By
   `dictator-is-heavy-in-every-affine-direction`, `f = X_p` is heavy in all
   `N-1` directions at level `rho^2` while spending one unit of `L^2`.  The
@@ -90,11 +99,12 @@ as one admissible choice of `Q`, which is exactly how the proved case
   directions independently addressable inside ambient `L^2` mass
   `Theta(N^(1-r))`.
 
-What survives is that any proof must use **bounded range**, **noise
-smoothing**, and **higher-order compatibility across directions**
-simultaneously, and by
-`restricted-influence-transfer-holds-below-degree-three` it must act on the
-tail of
+These observations motivated seeking a proof using **bounded range**,
+**noise smoothing**, and **higher-order compatibility across directions**
+simultaneously. The noisy direction decoder now shows that the first two
+do not force the third. The identity underlying
+`restricted-influence-transfer-holds-below-degree-three` isolates the
+uncontrolled tail:
 
 ```text
 hat{g|_{D_b}}({C}) = [ hat g(q) + hat g(q+b) ]
@@ -102,9 +112,9 @@ hat{g|_{D_b}}({C}) = [ hat g(q) + hat g(q+b) ]
                          [ hat g({q} union R) + hat g({q+b} union R) ],
 ```
 
-since the leading bracket is precisely the part the degree-two argument
-already controls.  The compatibility half is isolated as
-`affine-orientation-triangle-defect-is-small`.
+The leading bracket is precisely the part the degree-two argument
+already controls. The proposed compatibility claim
+`affine-orientation-triangle-defect-is-small` is also refuted.
 
 ## Attempts
 
@@ -112,8 +122,8 @@ already controls.  The compatibility half is isolated as
   `glue-lemma-via-ambient-influence-transfer`, killed by
   `linear-pairing-memorizer-restricts-to-a-dictator`.  The kill is robust in
   a way that is easy to underrate -- the memorizer is homogeneous of degree
-  `2r+1`, so `T_rho` multiplies it by the constant `rho^(2r+1)` and damps
-  nothing.  Boundedness, low degree and noise *together* still do not stop a
+  `2r+1`, so `T_rho` multiplies it by `rho^(2r+1)`, a nonzero constant
+  independent of dimension. Boundedness, low degree and noise still do not stop a
   single direction from being memorized.  **But the route is not dead
   below degree three**, and
   `restricted-influence-transfer-holds-below-degree-three` says exactly
@@ -135,11 +145,16 @@ already controls.  The compatibility half is isolated as
   can be fully coherent, so a Cauchy--Schwarz over the fibre loses
   everything at the first step and there is no induction hypothesis on
   `deg <= D` that survives to `D+1` by counting alone.
-* **Local-to-global via affine stars.**  The live route
+* **Local-to-global via affine stars.** The former route
   `glue-lemma-from-small-triangle-defect`: bound the product-uniform density
   of pairs without a concurrency certificate, then globalize.  The
   globalization half is now established, sharply, by
   `triangle-defect-globalizes-to-a-bounded-label-list`: a maximum
-  star-degree affine pair is itself a two-label hitting set.  The analytic
-  star-density estimate remains open and is the only unresolved premise of
-  this route.
+  star-degree affine pair is itself a two-label hitting set. The analytic
+  star-density estimate is now refuted, so this route is invalidated.
+* **Nonlinear direction decoding.** Successful refutation: estimate all
+  direction autocorrelations, then output a coordinate chosen for the
+  estimated direction. Concentration makes every selected coset heavy after
+  fixed noise, while a triangle selector has point incidence two. This
+  supplies the nonlinear counterexample that the earlier linear-span
+  obstruction left possible.

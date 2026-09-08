@@ -6,7 +6,7 @@ title: The three-term Weyl relation collapses the whole odd-congruence Lambda-ex
 distinct_from:
   odd-congruence-exact-sector-is-one-inner-action: that reduced the sector to the triviality of one inner action and killed only translation-type correctors; this closes the sector outright — the corrector is forced to be exactly 1 by the three-term Weyl-orbit relation, for EVERY admissible W.
   odd-congruence-vertex-sector-admits-no-exact-leak: that closes the odd sector for the exact SL_2 profile via the normal-closure squeeze in the amalgam; this is the SL_3 statement, proved by a mechanism (rank-two Weyl rigidity) that does not exist at SL_2, and it yields the FULL collapse in the sector, not one profile's exclusion.
-  single-hecke-average-isometry-for-lambda-central-unitaries: that is the full collapse over all regular-trace models; this proves it on the Lambda-exact odd-congruence sector, so the surviving enemy must have Lambda-microstates at uniform distance from every exact representation — the uniform-outlier sector shared with the Iwahori and HS-Dehn far-sector residues.
+  single-hecke-average-isometry-for-lambda-central-unitaries: That is the full collapse over all regular-trace models; this proves it only on the exact lattice sector at levels coprime to the localization prime, leaving other primary sectors and uncorrected lattice tuples untreated.
 ---
 
 Let `Gamma = SL_3(Z[1/p])`, `Lambda = SL_3(Z)`, `h = diag(p, 1,
@@ -28,9 +28,9 @@ pi(Lambda)' cap M = pi(Gamma)' cap M,                            (OS1)
 with no regular-trace hypothesis and no restriction on the
 multiplicities of `sigma_m`.  Consequently no leak, no enemy
 character and no failure of the single-average isometry can live over
-`Lambda`-exact odd-congruence microstates, and the surviving enemy
-sector for `(RC3)` is exactly: `Lambda`-restrictions at UNIFORM
-positive distance from every exact representation of `SL_3(Z)`.
+`Lambda`-exact coprime-congruence microstates. This conclusion does
+not cover exact representations at arbitrary primary levels or general
+approximate lattice representations.
 
 Mechanism (rank two is essential).  The exact slot `V'` (the
 congruence image of `h`) commutes with the full commutant tower; the
@@ -53,18 +53,15 @@ independent maps in Furstenberg-type measure rigidity
 
 ## Attempts
 
-- **Why this does not close the wall.**  `SL_3(Z)` is an infinite
-  property (T) hyperlinear group, hence not flexibly HS-stable, so
-  approximate representations of `Lambda` far from every exact one
-  EXIST and the sector is proper.  The theorem converts the open
-  collapse into: no leak over uniformly-non-correctable
-  `Lambda`-microstates — aligning the last open sector of this lane
-  exactly with the uniform-outlier residues of
-  `iwahori-outlier-repair` and the HS-Dehn far sector, and giving
-  the outlier sector a new necessary feature: the obstruction to
-  correcting the enemy's `Lambda`-microstates must survive the
-  property (T) conjugation-lifting used here, i.e. it is a
-  representation-variety outlier, not a commutant artifact.
+- **Why this does not close the wall.** Infinite hyperlinear
+  property-(T) groups fail strict HS stability; this does not imply
+  failure of flexible HS stability. Flexible stability of `SL_3(Z)`
+  remains the separate open claim `sl3-z-weakly-ucp-stable`.
+  The present theorem starts with exact coprime lattice coordinates.
+  It supplies no correction of arbitrary lattice microstates and
+  leaves the other primary exact sectors subject to their own
+  partial results. It therefore does not identify the full residual
+  with flexible-stability outliers.
 - **Mixed levels: what survives is a two-adic Iwahori intertwining
   (2026-08-21 analysis).**  For `Lambda`-exact microstates at MIXED
   levels `n = 2^a q` (`q` odd), `G_n = SL_3(Z/2^a) x SL_3(Z/q)` and
@@ -84,11 +81,9 @@ independent maps in Furstenberg-type measure rigidity
 - **Interaction with the probes.**  The probe floor
   (`experiments/hecke42_average_probe.py`: everything collapses to
   the isometry) is now half-explained by theorem rather than
-  evidence: warm starts on exact `Lambda`-models sit INSIDE the
-  closed sector, where no enemy exists at all; only searches that
-  hold the `Lambda`-part at definite distance from all exact models
-  probe the live sector, which is the correct design for the next
-  probe generation.
+  evidence: warm starts on exact coprime `Lambda`-models sit inside
+  the closed sector. Other primary exact models and general
+  approximate lattice tuples require their separate analyses.
 - **The p-adic tower residue is now quantitatively bounded (2026-08-25).**
   `lambda-exact-p-divisible-sector-is-ultra-deep-or-negligible` proves, for
   every prime `p`, that a `Lambda`-exact microstate of level `p^D m'` with
@@ -102,3 +97,13 @@ independent maps in Furstenberg-type measure rigidity
   prime `2` as well (with the weakest constant, `c_2 = 2/21`), and the
   constants improve with `p` -- the pair is prime-generic, so the lane is not
   pinned to `p = 2` by this residue.
+- **Arbitrary matrix carriers on the coprime face are now excluded
+  (2026-09-08).** `sl3-re-coprime-face-from-kazhdan-carrier-control`
+  uses the exact slot together with uniform Kazhdan control of its
+  distance to any matrix subalgebra. The independent route
+  `sl3-re-coprime-face-closes-by-jones-kazhdan` applies the same gap
+  on the Jones basic construction. Both close
+  `sl3-re-lambda-exact-coprime-face-is-unfaithful` without the earlier
+  logarithmic containment-rate assumption. The false identification
+  of the moving slot with an element of `pi(Lambda)''` remains
+  withdrawn.

@@ -1,6 +1,7 @@
 import Mathlib.Algebra.Divisibility.Basic
 import Mathlib.Algebra.Ring.Defs
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The square-zero hypothesis, supplied by a square-zero class
@@ -52,6 +53,20 @@ theorem squareZero_of_dvd_squareZero (c p : ℕ → A) {z : A} (hz : z * z = 0)
   obtain ⟨b, hb⟩ := hp j hj
   rw [ha, hb]
   exact mul_eq_zero_of_mem_squareZero hz
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms mul_eq_zero_of_mem_squareZero
+#audit_axioms squareZero_of_dvd_squareZero
+
 
 end AlgTop
 end GroupApproximation

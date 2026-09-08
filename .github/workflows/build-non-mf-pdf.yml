@@ -173,11 +173,11 @@ jobs:
             --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-graded metadata/NON_MF_SENTENCE_MAP.tsv \
             --require-verified \
-              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
-              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline \
+              Manuscript/OneSidedMFRadical/UnitGroupHeadline \
+              GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline \
             --require-verified \
-              Manuscript/OneSidedMFRadical/ReducedCStarConsequence \
-              GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF
+              Manuscript/OneSidedMFRadical/UniversalGroupSigma \
+              GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
             --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \

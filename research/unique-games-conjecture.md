@@ -4,12 +4,15 @@ id: unique-games-conjecture
 kind: claim
 title: For every eps > 0 there is an alphabet size making it NP-hard to tell unique games of value >= 1-eps from value <= eps
 root: true
+goal: true
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
+  - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
+  - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
 ---
 
-**OPEN.**  Khot's Unique Games Conjecture: for every `eps > 0` there is an
+**OPEN.** Khot's Unique Games Conjecture: for every `0 < eps < 1/2` there is an
 alphabet size `K = K(eps)` such that, given a two-prover one-round game
 whose every constraint is a permutation of a `K`-letter alphabet, it is
 NP-hard to distinguish
@@ -33,28 +36,43 @@ perfect classical labeling; that rigidity is the mechanism behind
 `unique-constraints-orient-at-most-half-of-a-fiber` below, and it is why no
 quantum relaxation of the unique-constraint alphabet evades the wall.
 
-The live decomposition here goes through
+The live equivalence route here goes through
 `rich-2to1-games-conjecture`, which is *equivalent* to this claim by
-Braverman--Khot--Minzer.  The proposed `F_lin` attack still has two explicit
-commitments: the analytic `affine-orientation-glue-lemma` and the separate
-soundness endgame `glue-lemma-implies-rich-2to1-hardness`.  The former now has
-only its product-uniform star-density estimate open; its conditional
-globalization half is established by two-point star-degree averaging.
+Braverman--Khot--Minzer. The proposed `F_lin` attack was closed on
+2026-09-07: `noisy-affine-selector-defeats-bounded-hitting` refutes both
+`affine-orientation-glue-lemma` and its proposed star-density input.
+The conditional globalization theorem remains valid. A new analytic
+formulation and an explicit hardness reduction are needed; the prior
+two-hole plan is no longer usable. Neither UGC nor Rich 2-to-1 hardness
+is proved or refuted by that counterexample.
 
 ## Attempts
 
+* **Direct affine soundness of the published folded noise test.**
+  `affine-long-code-test-has-no-uniform-soundness` supplies an explicit
+  source family with vanishing value and folded output labelings with
+  high acceptance. The complete proof includes all three noise layers,
+  a finite-field incidence bound, and the conversion to permutation
+  constraints. It closes this test under only `F_lin` richness; it is
+  neither a UGC proof nor a UGC counterexample.
 * **Structured 2-to-1 instances.**  Attack the equivalent Rich 2-to-1
   formulation on the `F_lin` instances whose fibers are affine pairs
   `{x, x+b}` -- the instances the presently known hardness machinery
-  already produces.  Reduces the problem to producing *richness*, i.e. to
-  an alphabet-independent list-decoding step.  This is the live route
-  (`ugc-from-rich-2to1-via-bkm-equivalence`).
+  already produces. The published equivalence remains a live route
+  (`ugc-from-rich-2to1-via-bkm-equivalence`), but the repository's proposed
+  alphabet-independent list lemma is false. Richness is a distributional
+  condition on pairings, not a synonym for that lemma.
+* **Noisy direction decoding.** A complete counterexample to the proposed
+  analytic bridge is recorded in
+  `noisy-affine-selector-defeats-bounded-hitting`, with exact finite replay.
+  The adversarial function is Boolean and folded and survives every fixed
+  positive noise parameter. Those conditions alone cannot repair the bridge.
 * **Naive influence transfer.**  Hope that a coordinate with large
   influence after restriction to an affine-pair subcube has large ambient
   influence, so that the ambient influential coordinates form the bounded
   label list.  **Dead**: `linear-pairing-memorizer-restricts-to-a-dictator`
-  exhibits a bounded, low-degree, noise-invariant function that is an exact
-  dictator on the quotient while every ambient influence tends to 0.
+  exhibits a bounded homogeneous function whose noisy restriction stays a
+  fixed multiple of a dictator while every ambient influence tends to 0.
 * **Manufacturing richness by randomizing constraints.**  **Dead**:
   `edge-conjugation-of-2to1-constraints-is-pure-gauge`.
 * **Padding the alphabet with random dummy labels.**  **Dead**:

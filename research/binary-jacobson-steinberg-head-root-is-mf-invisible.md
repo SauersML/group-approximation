@@ -10,19 +10,32 @@ distinct_from:
   binary-jacobson-mf-radical-dichotomy: that proves the elementary group is MF or has exactly the finitary symbol kernel as radical; this asks which side of that exact dichotomy occurs.
 ---
 
-**OPEN.**  Let
+**ESTABLISHED (2026-09-08, mathematical proof using property (T)).** Let
 
 ```text
 J=F_2<S,T | TS=1>,          Gamma_T=St_5(J),
 Q=1-ST,                     w_T=x_13(Q).
 ```
 
-Prove that every homomorphism from `Gamma_T` to a norm matrix corona kills
+Every homomorphism from `Gamma_T` to a norm matrix corona kills
 `w_T`; equivalently
 
 ```text
 w_T in Rad_MF(Gamma_T).                                  (JMF1)
 ```
+
+The route `jacobson-head-collapses-by-rank-weighted-transport` proves
+this using uniformly bounded finite-subgroup active ranks and positive
+cutoffs in rescaled Hilbert spaces. Together with the radical dichotomy,
+it gives `Rad_MF(Gamma_T)=L`, the finitary symbol kernel. No Lean
+certification of this new proof is asserted.
+
+## Previous reductions and attempts
+
+The paragraphs below describe the former alternatives and decoder
+approaches. The rank-weighted proof settles the ordinary mathematical
+claim through a different mechanism; the property-(T)-free proof
+obligation is now `property-t-free-jacobson-head-collapse`.
 
 There is no longer a cover ambiguity.  By
 `binary-jacobson-steinberg-cover-is-elementary`, `Gamma_T=EL_5(J)`.  By
@@ -64,7 +77,8 @@ not another rank inequality.  The rank, Hall, branching, Atomic Leavitt and
 coarse-to-fine leakage endpoints are already terminal once such a selector
 has been produced.
 
-A proof of `(JMF1)` would already prove the full binary-Leavitt
-Property-`(T)`-free MF-radical theorem.  No classification of the remaining
+A proof of `(JMF1)` **without property (T)** would prove the full binary-Leavitt
+Property-`(T)`-free MF-radical theorem. The weighted proof uses property (T)
+and does not supply that conclusion. No classification of the remaining
 Leavitt coefficients, diagonal compressors, or invariant measures would be
 needed.

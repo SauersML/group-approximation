@@ -1,0 +1,19 @@
+{
+  "boundary": "The fixed-term chain obstruction has an all-size mathematical proof and finite exact certificate replays. The chain has vanishing combinatorial gap. Neither the amplifier construction nor quantum PCP is proved. Cairn validation is graph validation; no Lean or Wolfram check is claimed.",
+  "certificate_replay": "research/artifacts/qpcp-fixed-term-chain-replay-2026-09-07.json",
+  "certificate_source_hashes_verified": 5,
+  "check_command": "bin/cairn check --changed",
+  "check_exit_code": 0,
+  "checked_base_commit": "282b5a4e917bf141187f1ce8582d8e530c31b719",
+  "checked_on": "2026-09-07",
+  "claim_statuses": {
+    "amplifier-admits-a-uniform-local-kernel-resolution": "OPEN",
+    "fixed-term-chain-defeats-bounded-syndrome-neighborhoods": "ESTABLISHED",
+    "kernel-resolutions-and-local-spectra-bound-rounder-cost": "ESTABLISHED",
+    "quantum-pcp-constant-gap-local-hamiltonian": "OPEN",
+    "range-cover-deficit-certifies-no-finite-syndrome-cost": "ESTABLISHED"
+  },
+  "preview_command": "bin/cairn preview",
+  "preview_exit_code": 0,
+  "replay_status": "passed"
+}

@@ -5,6 +5,7 @@ import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
 import Mathlib.Analysis.SpecificLimits.Normed
 import Mathlib.Topology.Connected.Clopen
 import Mathlib.Topology.Order.IntermediateValue
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus I: projections up to unitary conjugation
@@ -144,23 +145,23 @@ theorem unitaryConj_of_norm_sub_lt_one {p q : A}
   have hzz : star z * z = a := by
     rw [hzs, hzdef, hadef]
     simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+      hqq, hp2, hq2]
     try abel
   have hzz' : z * star z = a := by
     rw [hzs, hzdef, hadef]
     simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+      hpp, hp2, hq2]
     try abel
   have hzp : z * p = q * z := by
     rw [hzdef]
     simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+      hqq, hp2, hq2]
     try abel
   have hap : Commute a p := by
     refine (commute_iff_eq _ _).mpr ?_
     rw [hadef]
-    simp only [sub_mul, mul_sub, add_mul, mul_add, one_mul, mul_one, mul_assoc,
-      hpp, hqq, hp2, hq2]
+    simp only [sub_mul, mul_sub, one_mul, mul_one, mul_assoc,
+      hpp, hp2, hq2]
     try abel
   -- `z` is normal, so `a` commutes with `z` and with `z*`.
   have haz : Commute a z := by
@@ -283,7 +284,6 @@ theorem unitaryConj_of_preconnected {Y : Type*} [TopologicalSpace Y] [Preconnect
   have hne : ({y : Y | UnitaryConj (f y₀) (f y)}).Nonempty := by
     refine ⟨y₀, ?_⟩
     rw [Set.mem_setOf_eq]
-    exact UnitaryConj.refl _
   have huniv : {y : Y | UnitaryConj (f y₀) (f y)} = Set.univ :=
     IsClopen.eq_univ ⟨⟨hcompl⟩, hopen⟩ hne
   have hmem : y₁ ∈ {y : Y | UnitaryConj (f y₀) (f y)} := by
@@ -314,6 +314,22 @@ theorem murrayVonNeumannEquiv_of_path {f : ℝ → A} (hf : Continuous f)
     (hproj : ∀ t : ℝ, IsStarProjection (f t)) :
     MurrayVonNeumannEquiv (f 0) (f 1) :=
   (unitaryConj_of_path hf hproj).murrayVonNeumannEquiv (hproj 0)
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms murrayVonNeumannEquiv_of_path
+#audit_axioms unitaryConj_of_norm_sub_lt_one
+#audit_axioms unitaryConj_of_preconnected
+#audit_axioms UnitaryConj.murrayVonNeumannEquiv
+
 
 end CStar
 

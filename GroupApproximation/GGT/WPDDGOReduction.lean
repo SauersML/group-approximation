@@ -5,7 +5,7 @@ import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
 
 `GGT.WPDAcylindricalHyperbolicity` carries four named literature propositions.
 Two of them are the citations of Osin's Lemma 5.12: `DGOCorollary612` and
-`DGOTheorem614`.  This module reduces both, from
+`FreeRankTwoAtNonDegenerate`.  This module reduces both, from
 Dahmani--Guirardel--Osin, *Hyperbolically embedded subgroups and rotating
 families in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245
 (2017), arXiv:1111.7048.
@@ -27,7 +27,7 @@ is a corollary of two other results, and this module proves it from them.
 > finite normal subgroup `K(G)`; (b) `K(G) ≤ H` for every infinite `H ↪_h G`;
 > (c) for any `n` there is `H ≤ G` with `H ↪_h G` and `H ≅ Fₙ × K(G)`.
 
-The repository's `DGOTheorem614` records only the consequence Osin's Lemma 5.12
+The repository's `FreeRankTwoAtNonDegenerate` records only the consequence Osin's Lemma 5.12
 uses --- `PingPong.FreeRankTwo G`, from (c) at `n = 2` --- but even that costs
 the whole of §6.2: Lemmas 6.15--6.2x, on top of Corollary 6.12, Theorem 6.8 and
 Propositions 4.14 and 4.33.
@@ -88,7 +88,7 @@ against it.  The reduction to state is 4.33 and 6.11 *over*
   `relativeCayleyNonElementary_of_612_of_infiniteOrder` does not apply and
   Theorem 6.14 is still needed.  That case does not arise in the chain above.
 
-So `DGOCorollary612` and `DGOTheorem614` are both retired as *primitive*
+So `DGOCorollary612` and `FreeRankTwoAtNonDegenerate` are both retired as *primitive*
 citations: the first becomes a corollary, the second becomes unnecessary, and
 the debt moves to `DGOTheorem611` and `DGOProposition433` --- with
 Proposition 4.14 the single obstruction behind both.
@@ -337,7 +337,7 @@ theorem actsNonElementarily_of_isLoxodromic_of_infiniteOrder_mem_fam
 end NoFreeSubgroup
 
 /-- **Osin's Lemma 5.12 from Corollary 6.12 alone**, when the peripheral
-subgroup has an element of infinite order.  `DGOTheorem614` does not appear, and
+subgroup has an element of infinite order.  `FreeRankTwoAtNonDegenerate` does not appear, and
 neither does any free subgroup. -/
 theorem relativeCayleyNonElementary_of_612_of_infiniteOrder
     (h612 : DGOCorollary612.{u}) (G : Type u) [Group G] (D : RelGenSet G Unit)
@@ -353,7 +353,7 @@ theorem relativeCayleyNonElementary_of_612_of_infiniteOrder
     hg hh hhinf
 
 /-- **The free subgroup, when it is wanted anyway.**  Once the action is
-non-elementary, ping-pong produces `F₂`; so the conclusion of `DGOTheorem614`
+non-elementary, ping-pong produces `F₂`; so the conclusion of `FreeRankTwoAtNonDegenerate`
 follows from Corollary 6.12 and ping-pong in the infinite-order case, without
 any of §6.2.
 
@@ -382,7 +382,7 @@ loxodromic, so it has infinite order by
 `HullGeometry.not_isOfFinOrder_of_isLoxodromic`.  `OsinAH4ToAH1` forgets it
 between there and `RelativeCayleyNonElementary`, which is the only reason
 Lemma 5.12 has to be proved for a possibly-torsion peripheral subgroup and hence
-the only reason `DGOTheorem614` is cited at all.  Keeping the datum costs one
+the only reason `FreeRankTwoAtNonDegenerate` is cited at all.  Keeping the datum costs one
 hypothesis and is discharged at the call site by
 `infiniteOrder_of_dgoTheorem68`. -/
 def OsinAH4ToAH1WithInfiniteOrder : Prop :=
@@ -411,7 +411,7 @@ already carries properness and infinitude.
 The result is `OsinTheorem12` --- the implication Minasyan--Osin cite as their
 Theorem 3.3, and what `GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin`
 consumes --- from `DGOTheorem68`, `OsinTheorem54` and `DGOCorollary612`.
-`DGOTheorem614` does not appear. -/
+`FreeRankTwoAtNonDegenerate` does not appear. -/
 
 /-- **`(AH₄) ⇒ (AH₁)` with the infinite-order datum kept, and no free
 subgroup.**  Osin's Theorem 5.4 supplies the alphabet, its clause (a) the
@@ -456,7 +456,7 @@ theorem osinTheorem12_of_infiniteOrder (h68 : DGOTheorem68.{u, v})
 `OsinTheorem54` and `DGOCorollary612` --- and the last of these is itself a
 corollary of `DGOTheorem611` and `DGOProposition433` by `dgoCorollary612_of`, so
 the standing debt of this chain is four named statements, none of them
-`DGOTheorem614`. -/
+`FreeRankTwoAtNonDegenerate`. -/
 theorem osinTheorem12_of_612 (h68 : DGOTheorem68.{u, v})
     (h54 : OsinTheorem54.{u}) (h612 : DGOCorollary612.{u}) : OsinTheorem12.{u, v} :=
   osinTheorem12_of_infiniteOrder h68 (osinAH4ToAH1WithInfiniteOrder_of h54 h612)

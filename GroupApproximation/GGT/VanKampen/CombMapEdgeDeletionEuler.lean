@@ -136,12 +136,18 @@ theorem sigma_ne_of_neFace (hface : M.faceOf a ≠ M.faceOf (M.alpha a)) :
     rw [hp] at hf
     exact hface hf.symm
 
-/-- A deleted edge between different faces retains every old vertex, unless
-it was the entire connected map. A retained dart excludes that exception. -/
-theorem vertexCount_eq_of_neFace (hM : M.IsConnected) (d : Dart M a)
-    (hface : M.faceOf a ≠ M.faceOf (M.alpha a)) :
+/-- **Deleting an edge with no degree-one endpoint retains every old vertex.**
+
+This is the general form: `vertexCount_eq_of_neFace` below consumed
+`hface` *only* through `sigma_ne_of_neFace`, so the two non-fixedness
+facts are the actual hypotheses and the face condition was incidental.
+
+Stating it this way matters because `neFace` is exactly what a
+non-bridge argument has to *prove*, and deriving it needs the vertex
+count to be preserved first — with the old signature that is circular. -/
+theorem vertexCount_eq_of_sigma_ne (hM : M.IsConnected) (d : Dart M a)
+    (ha : M.sigma a ≠ a) (hb : M.sigma (M.alpha a) ≠ M.alpha a) :
     (toCombMap M a).vertexCount = M.vertexCount := by
-  obtain ⟨ha, hb⟩ := sigma_ne_of_neFace M a hface
   have hb' : erase M.sigma a (reverseDart M a) ≠ reverseDart M a := by
     intro h
     have hv := congrArg Subtype.val h
@@ -156,6 +162,17 @@ theorem vertexCount_eq_of_neFace (hM : M.IsConnected) (d : Dart M a)
       exact hb hv
   exact (orbit_card_of_not_fixed (erase M.sigma a) (reverseDart M a) hb').trans
     (orbit_card_of_not_fixed M.sigma a ha)
+
+/-- A deleted edge between different faces retains every old vertex, unless
+it was the entire connected map. A retained dart excludes that exception.
+
+Unchanged in statement; now a corollary of `vertexCount_eq_of_sigma_ne`, which
+carries the hypotheses the proof actually used. -/
+theorem vertexCount_eq_of_neFace (hM : M.IsConnected) (d : Dart M a)
+    (hface : M.faceOf a ≠ M.faceOf (M.alpha a)) :
+    (toCombMap M a).vertexCount = M.vertexCount :=
+  let ⟨ha, hb⟩ := sigma_ne_of_neFace M a hface
+  vertexCount_eq_of_sigma_ne M a hM d ha hb
 
 theorem euler_eq_of_neFace (hM : M.IsConnected) (d : Dart M a)
     (hface : M.faceOf a ≠ M.faceOf (M.alpha a)) :
@@ -180,6 +197,7 @@ end EdgeDeletion
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexCount_loss_le_one
+#audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexCount_eq_of_sigma_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexCount_eq_of_neFace
 #audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.euler_eq_of_neFace
 #audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.eulerCharacteristic_le_deleted

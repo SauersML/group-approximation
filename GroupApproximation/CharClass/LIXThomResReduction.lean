@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.LIXThomClassTerm
 import GroupApproximation.CharClass.LIXBaseConnected
 import GroupApproximation.CharClass.LIXRestrictionMap
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `hres` is one nonvanishing statement
@@ -124,9 +125,10 @@ theorem ne_zero_of_injective_lixRes (hGc : Continuous G)
   intro h0
   exact lixThomClassTerm_ne_zero hGc hGu (hinj (h0.trans (map_zero _).symm))
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms injective_lixRes_of_ne_zero
+#audit_axioms injective_lixRes_of_ne_zero
 
 end ThomChernDeg
 

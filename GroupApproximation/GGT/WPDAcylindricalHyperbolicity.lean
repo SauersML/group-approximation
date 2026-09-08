@@ -40,13 +40,13 @@ the implication the manuscript needs, `(AH₃) ⇒ (AH₁)`, factors as
 * `(AH₄) ⇒ (AH₁)`: Osin, Theorem 5.4, here `OsinTheorem54`, together with his
   Lemma 5.12, here `RelativeCayleyNonElementary`.  Lemma 5.12 is in turn
   assembled by `relativeCayleyNonElementary_of` from `DGOCorollary612`,
-  `DGOTheorem614`, and the two facts of Osin's §6 that `GGT.Elementary`
+  `FreeRankTwoAtNonDegenerate`, and the two facts of Osin's §6 that `GGT.Elementary`
   records.  Its appeal to Osin's Theorem 1.1 is *proved* here, not cited.
 
 `osinAH4ToAH1_of` proves `OsinAH4ToAH1` from Theorem 5.4 and Lemma 5.12, and
 `osinTheorem12_of` assembles `OsinTheorem12`.  Nothing in this development
 inhabits the named literature propositions, and exactly four remain:
-`DGOTheorem68`, `OsinTheorem54`, `DGOCorollary612` and `DGOTheorem614`.  The
+`DGOTheorem68`, `OsinTheorem54`, `DGOCorollary612` and `FreeRankTwoAtNonDegenerate`.  The
 two facts of Osin's §6 that the argument rests on are no longer among them —
 `ElementaryMorse.independentOfNoCommonZpow_cayley_of_hyperbolic` and
 `centralizerOrbitNearAxis_cayley_of_hyperbolic` prove them at a bare alphabet
@@ -357,6 +357,16 @@ nonzero power that the argument below consumes is extracted from it by
 `not_isVirtuallyCyclic_of_no_common_power`.  Neither derivation belongs in the
 citation, so the citation states what the theorem states.
 
+**This is not DGO's Theorem 6.14.**  It is the single consequence of it that
+Osin's Lemma 5.12 consumes — that `G` contains a free subgroup of rank two.
+DGO's Theorem 6.14 additionally builds the maximal finite normal subgroup
+`K(G)` (its clause (a)) and produces a hyperbolically embedded
+`H ≅ F_n × K(G)` (its clause (c)); neither is available here, and DGO's
+Theorem 2.35 needs 6.14(c) at `n = 1`, an infinite *cyclic* hyperbolically
+embedded subgroup, which this proposition does not give.  The proposition was
+called `DGOTheorem614` until it was renamed for exactly that reason: the name
+asserted a theorem the declaration does not state.
+
 **This proposition is off the chain's critical path and should not be proved
 on its account.**  `GGT.WPDDGOReduction` obtains Lemma 5.12 from
 `DGOCorollary612` alone whenever the peripheral subgroup contains an element
@@ -368,7 +378,7 @@ returns a subgroup containing the loxodromic `D.elt` — so Theorem 6.14 is
 needed here only for an infinite *torsion* peripheral subgroup, a case that
 does not arise.  The proposition is kept rather than deleted because that case
 is real in general. -/
-def DGOTheorem614 : Prop :=
+def FreeRankTwoAtNonDegenerate : Prop :=
   ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
     IsNonDegenerate (D.fam ()) → PingPong.FreeRankTwo G
 
@@ -482,9 +492,9 @@ This is Osin's own route and is kept for that reason, but it is not the
 cheapest one: `GGT.WPDDGOReduction.relativeCayleyNonElementary_of_612_of_infiniteOrder`
 reaches the same conclusion from `DGOCorollary612` alone, given an
 infinite-order element of the peripheral subgroup, and the chain always has
-one.  Prefer that route; see the note on `DGOTheorem614`. -/
+one.  Prefer that route; see the note on `FreeRankTwoAtNonDegenerate`. -/
 theorem relativeCayleyNonElementary_of (h612 : DGOCorollary612.{u})
-    (h614 : DGOTheorem614.{u}) : RelativeCayleyNonElementary.{u} := by
+    (h614 : FreeRankTwoAtNonDegenerate.{u}) : RelativeCayleyNonElementary.{u} := by
   intro G _ D hemb hacy hnd
   obtain ⟨δ, hδ⟩ := hemb.hyperbolic
   obtain ⟨g, hg⟩ := h612 G D hemb hnd

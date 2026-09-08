@@ -5,6 +5,8 @@ kind: claim
 title: Produce the manuscript's explicit corona-invisible group element without Property T
 artifacts:
   - research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md
+  - notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md
+  - research/artifacts/jacobson-two-braid-reduction-2026-09-07.md
 distinct_from:
   property-t-free-manuscript-results: that also demands binary-Leavitt full collapse, the full radical calculus, and a torsion-free finitely presented endpoint; this is exactly its first explicit-group obligation.
   perfect-lcs-gap-implies-weak-non-mf: that is a conditional theorem for a hypothetical perfect LCS gap; this asks for an unconditional explicitly specified group and element.
@@ -30,9 +32,25 @@ source-specific route through a central sign is isolated at
 
 ## Attempts
 
+- The joint Jacobson candidate now has an explicit two-braid presentation
+  and an elementary three-ray proof that its head mark survives. The exact
+  finite-packet infimum in `jacobson-two-braid-gap-characterizes-mark-collapse`
+  is positive precisely when that mark is corona-invisible. Its positivity
+  for arbitrary mixed representation types remains open at
+  `jacobson-two-braid-mixed-packet-gap`; the proved separated-factor gap
+  does not supply that missing step.
+
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map
   `nonhyperlinear-bloop-central-sign-corner`.
 - Conditional perfect-LCS and selected signed-Hecke corners do not establish
   this claim: the first lacks an instance, while the second does not
   authenticate its chosen finite-subgroup type in every corona map.
+- The independent finite relation-energy attempt has an exact boundary:
+  `finite-context-energy-certificate-iff-word-trivial` shows that allowing any
+  fixed finite word contexts still certifies only ordinary word triviality.
+  Polynomial contexts do not repair this for a nontrivial mark. This does
+  not exclude a global scalar operator-norm estimate or a matrix-dependent
+  construction, and leaves the existence target open. The sharper fixed-list
+  criterion and linear counterexample-size bound are proved in
+  `word-energy-domination-is-free-subgroup-membership`.

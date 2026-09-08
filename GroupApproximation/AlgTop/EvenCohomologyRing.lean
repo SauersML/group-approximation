@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.CupAssoc
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The even part of `H^*(X; R)`, reindexed, and where its ring structure comes from
@@ -63,7 +64,7 @@ variable {R : Type} [CommRing R] {X : TopCat.{0}}
 /-- The even part of the cohomology of `X`, reindexed so that `Ev R X n` is
 `H^{2n}(X; R)`.  The reindexing is what turns the `ℕ`-graded cup product into a
 grading whose total degree is additive on the *reindexed* degrees. -/
-abbrev Ev (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) : ModuleCat.{0} R :=
+noncomputable abbrev Ev (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) : ModuleCat.{0} R :=
   cohomology R X (2 * n)
 
 /-- The product on the even part.  This is the **only** degree cast in the Chern
@@ -134,7 +135,19 @@ theorem evenCup_assoc {m n p : ℕ} (a : Ev R X m) (b : Ev R X n) (c : Ev R X p)
     (cup_assoc a b c).symm
   simp only [evenCup]
   rw [cohCast_cup_left, cohCast_cup_right, hassoc, cohCast_comp, cohCast_comp,
-    cohCast_comp]
+    cohCast_comp, cohCast_comp]
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms evenCup_assoc
 
 end EvenCohomology
 end AlgTop

@@ -5,6 +5,9 @@ kind: claim
 title: Higman HS microstates are exactly near-glued cycles of exact Baumslag--Solitar packets
 artifacts:
   - research/artifacts/higman-cycle-bs-stability-gate-2026-08-21.md
+  - research/artifacts/higman-hs-word-coefficient-lower-bound.md
+  - research/artifacts/higman-qutrit-coefficient-bound.md
+  - research/artifacts/higman-u2-bound.md
 distinct_from:
   split-higman-cycle-has-haar-marginals-and-maximal-role-gap: that exhibits exact independent edge packets whose occurrence seams stay maximally large; this proves the quantitative equivalence after the seams tend to zero.
   one-product-holonomy-does-not-sew-four-bs-clocks: that refutes one scalar replacement for the four seams; this identifies the full four-seam problem with marked HS collapse for the actual Higman group.
@@ -83,3 +86,29 @@ spectral matchers `P -> D` have ordered product one.  In the homogeneous
 choice it is the single residual term `||[H^4,P]||_2`.  Thus no proper
 subcycle uncertainty estimate can prove collapse; the fourfold matcher
 holonomy is the narrowed terminal.
+
+The exact coefficient test in
+`higman-hs-word-coefficient-exceeds-nine-fifths` rules out the proposed
+bound `e_(g_0)<=C sum_i e_(r_i)` whenever
+`C<2748800041/1512087866`, already on rational 2-by-2 matrices.
+This includes C=9/5. No valid larger coefficient is established. These
+are positive-defect tuples; identity padding makes their marked energy
+vanish too, so they do not solve either side of the seam problem.
+
+The three-dimensional continuation
+`higman-hs-word-coefficient-exceeds-sixteen` gives explicit rational
+matrices with `e_(g_0)>16/7` and `sum_i e_(r_i)<1/7`. Every valid
+all-dimensions coefficient must therefore exceed sixteen. In particular,
+the earlier finite search at coefficient two missed a counterexample
+in dimension three. These are still positive-defect tuples, with no
+separating zero-defect limit.
+
+The complete polynomial certificate `higman-u2-word-energy-bound`
+proves coefficient two for every U(2) tuple and every common direct sum
+of blocks of size at most two. Thus three is the smallest dimension
+in which that coefficient fails. Any canonical Higman microstate
+sequence must remain a positive HS distance from this common-block
+class, and the lower limit of its dimension fraction in larger blocks
+must be at least one half, as made precise in the artifact. The proof
+places no energy bound on those larger blocks and leaves the four-seam
+collapse question open.

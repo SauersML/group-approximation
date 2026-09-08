@@ -13,6 +13,10 @@ artifacts:
   - research/artifacts/tensor-swap-expectation-repair-2026-09-07.md
   - research/artifacts/centralizer-hnn-relative-embedding-audit-2026-09-07.md
   - research/artifacts/coset-hyperlinearity-equivalence-literature-2026-09-07.md
+  - research/artifacts/higman-qutrit-coefficient-bound.md
+  - research/artifacts/higman-u2-bound.md
+  - research/artifacts/hs-word-gap-linearization-2026-09-07.md
+  - research/artifacts/hyperlinear-word-certificate-2026-09-07.md
   - research/artifacts/parallel-arithmetic-holonomy-2026-09-04.md
   - research/artifacts/parallel-group-word-2026-09-04.md
   - research/artifacts/parallel-ui-iteration-audit-2026-09-04.md
@@ -88,6 +92,27 @@ change the embedding, so the fixed-model abelian/free distinction does
 not imply different existence problems. Non-relative-embeddability for
 an actual candidate remains open; no nonhyperlinear group is established
 by the equivalence alone.
+The exact Higman coefficient attack now rules out even sixteen:
+a rational three-dimensional tuple has marked energy above 16/7 and
+total relator energy below 1/7. This refutes the proposed coefficient
+two that survived the earlier bounded search in dimensions at most two.
+It supplies no valid all-dimensions upper bound and leaves this root open.
+The complementary complete rational certificate proves coefficient two
+on all of U(2)^4, so dimension three is minimal for its failure.
+Common sums of one- and two-dimensional blocks obey that same bound;
+arbitrary higher-dimensional blocks remain uncontrolled.
+
+The September 7 scalar-sensitive amplification proves that a fixed
+distance-one HS word gap implies a global linear bound, with constant
+2/eta. Combined with radical compactness, one finite relator list and
+one integer multiplying its squared HS energy characterize a killed
+hyperlinear-radical word. These are reductions: no nontrivial word with
+the required matrix-only inequality has been supplied. Its candidate
+energy polynomial has trace -2 in the canonical group representation,
+so universal tracial SOS or moment reasoning cannot prove that
+inequality. The saturated-group HS gap and this existence goal remain
+open. See the two linked September 7 artifacts for the proof, exact
+finite replay, and the remaining obligation.
 
 The September 5 audits leave this target open. Hilbert `H^2` vanishing
 now gives uniform fixed-tolerance correction concentrating arbitrary

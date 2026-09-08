@@ -19,12 +19,20 @@ artifacts:
 OPEN.  Pestov, *Hyperlinear and sofic groups: a brief guide* (arXiv:0804.3968),
 Open Question 4.10: is every one-relator group `G = <X | w>` sofic?
 
-Two live routes and two dead ones are recorded below.  As of 2026-08-17 the
-question is unresolved in both directions; the negative answer is the separate
+Live reductions and failed approaches are recorded below. As of the
+2026-09-07 update, this repository has no resolution in either direction;
+the negative answer is the separate
 claim [[nonsofic-one-relator-group]].
 
 ## What is already settled
 
+- [[berlai-mixed-conjugator-example-is-sofic]] — a cyclic-amalgam
+  construction now proves the asymmetric example `w=b^(-1)ab^2` sofic.
+  [[single-block-conjugator-one-relator-groups-are-sofic]] covers every
+  `w=b^p a^s b^q`, and
+  [[one-sided-conjugator-one-relator-groups-are-sofic]] permits arbitrary
+  words with strictly one-sided indexed support. These are written proofs
+  with explicit subgroup and presentation checks, not Lean certificates.
 - [[one-relator-soficity-is-torsion-free-two-generator-case]] — the full
   question is exactly equivalent to the torsion-free two-generator case.
   Torsion one-relator groups are residually finite, and every torsion-free
@@ -63,7 +71,11 @@ claim [[nonsofic-one-relator-group]].
    is a nonamenable free group and no permanence theorem applies; worse, a
    finite window of the chain is a **staggered multi-relator** group, not a
    smaller one-relator group, so the induction hypothesis is not available
-   either.  The repair is isolated as [[magnus-staggered-chain-sofic]] and
+   either. The new [[triangular-conjugate-bs-chains-are-sofic]] construction
+   closes a subclass even with rank-two or larger standard overlaps by
+   proving an alternative sequence of cyclic attachments. It does not
+   supply such a construction for every chain. The remaining repair is
+   isolated as [[magnus-staggered-chain-sofic]] and
    routed by `one-relator-sofic-via-magnus-staggered-amalgam`.
 3. **Recent graph-of-groups soficity theorems.**  *Dies on hypothesis
    mismatch.*  Gao--Kunnawalkam Elayavalli--Mj (arXiv:2408.11724) cover doubles

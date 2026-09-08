@@ -1,5 +1,10 @@
 # Unique Games / affine-orientation ingestion — audit, 2026-08-24
 
+**Update, 2026-09-07:** the general glue lemma and its star-density input
+have been refuted by the [noisy direction construction](unique-games-noisy-direction-counterexample-2026-09-07.md).
+The earlier computations and restricted special cases below remain useful;
+descriptions of the analytic bridge as open record the earlier state.
+
 External dossier delivered by the user: an attack on the Unique Games
 Conjecture run against the `F_lin`-rich 2-to-1 instances, together with a
 linear-pairing "memorizer" obstruction, a conjectured Affine

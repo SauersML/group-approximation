@@ -9,7 +9,9 @@ distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that exhibits a BCS on which classical unsatisfiability and tracial forbidden mass point in opposite directions; this is a two-sided identity between the least rounder constant, the exact combinatorial defect, and the ground energy of one fixed Hamiltonian.
 ---
 
-**ESTABLISHED.**  Let `H = (1/m) sum_a h_a` with `0 <= h_a <= I`.
+**ESTABLISHED (ordinary mathematical proof; not a Lean certificate).**
+Let `H = (1/m) sum_a h_a` on a nonzero finite-dimensional Hilbert space,
+with `m >= 1` and `0 <= h_a <= I`. Rounder constants satisfy `C >= 0`.
 
 **Combinatorial gap.**  `H` has combinatorial gap at least `beta` if every
 normalized `sigma` and every `S` with `Tr(h_a sigma) = 0` for all `a not in S`
@@ -24,7 +26,8 @@ every `a not in S`, and
 E |S| <= C sum_a Tr(h_a rho).                                   (CR1)
 ```
 
-**Forward direction.**  Combinatorial gap `beta` plus a `C`-rounder gives
+**Forward direction.**  Combinatorial gap `beta > 0` plus a `C`-rounder
+forces `C > 0` and gives
 
 ```text
 lambda_min(H) >= beta / C.                                      (CR2)
@@ -39,21 +42,35 @@ s* = min{ |S| : some normalized sigma has Tr(h_a sigma)=0, a not in S }. (CR3)
 Then the least admissible rounder constant is exactly
 
 ```text
-inf{C : a C-rounder for H exists} = s* / (m lambda_min(H)),     (CR4)
+min{C >= 0 : a C-rounder for H exists}
+  = 0                           if lambda_min(H) = 0,
+  = s* / (m lambda_min(H))       if lambda_min(H) > 0.         (CR4)
 ```
 
-with the convention that the right side is `+infinity` when
-`lambda_min(H) = 0`.  So for a fixed Hamiltonian, **"a constant-cost rounder
-exists" is logically equivalent to "the energy gap is constant"**.
+In finite dimension, `lambda_min(H) = 0` holds exactly when `s* = 0`:
+a ground state then satisfies every positive term. Discarding the input and
+preparing that state with the empty fault set is a `0`-rounder. There is no
+`+infinity` case under these hypotheses. This corrects the previous `0/0`
+convention (2026-09-07).
+
+For a **family with combinatorial gap bounded below by a positive constant**,
+a uniform `O(1)` rounder constant is equivalent to a uniform positive
+normalized ground-energy lower bound. Indeed `beta <= s*/m <= 1`.
+The family and positive-gap qualifiers are essential: on one fixed finite
+instance a finite rounder constant always exists, and frustration-free
+families have zero-cost rounders and zero ground energy. This equivalence
+concerns the NO-side energy floor, not the full QMA-hardness reduction or
+its YES-side promise.
 
 Definition (CR1) imposes no locality, no efficiency, and no
-closeness-to-input requirement on the instrument, and without one of those
-(CR2) renames its own conclusion.  Any route which supplies a rounder by
-bare existence is a restatement.  The content of the attack therefore lies
-entirely in the *structure* demanded of the rounder by
+closeness-to-input requirement on the instrument. Bare existence supplies
+no uniform cost bound: using the minimizing constant instrument requires
+exactly the energy floor one is trying to establish. A successful argument
+must prove a uniform bound, for example through the structure demanded by
 `commuting-syndrome-domination-gives-a-rounder`: the fault set must be the
 outcome of a joint measurement of commuting local projectors of bounded
-overlap.  That structured statement is
-`local-syndrome-port-domination-at-each-gadget`, and it is the only node in
-this region whose truth is not already equivalent to
-`quantum-pcp-constant-gap-local-hamiltonian`.
+overlap. The relevant construction problems are
+`local-syndrome-port-domination-at-each-gadget` and
+`syndrome-conditioned-exactifier-exists`. This identity does not prove
+those statements equivalent to QPCP, nor does it discharge the separate
+amplifier and completeness obligations.

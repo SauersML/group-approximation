@@ -1,4 +1,5 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AlexanderWhitneyChainMap
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The signed Alexander–Whitney Leibniz identity
@@ -260,5 +261,21 @@ theorem cochainCup_coboundary_right {R : Type} [CommRing R] {X : TopCat.{0}} {p 
   rw [hφ, cochainCup_zero_left, cochainCast_zero, zero_add,
     cochainCast_self (aw_degree_right_succ p m)] at h
   exact h.symm
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms sum_split_signed
+#audit_axioms aw_cochain_leibniz
+#audit_axioms cochainCup_cocycle
+#audit_axioms cochainCup_coboundary_right
+
 
 end GroupApproximation.AlgTop

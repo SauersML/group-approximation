@@ -2,105 +2,74 @@
 rg: 2
 id: sl3-re-lambda-exact-coprime-face-is-unfaithful
 kind: claim
-title: No relative-embeddability witness of the SL3 lattice pair has coprime-level lambda-exact microstates
+title: No relative matrix embedding of the SL3 lattice pair has coprime-level exact lattice microstates
 distinct_from:
-  arithmetic-pair-is-not-relatively-embeddable: that is the full non-RE/C statement over all microstate sectors; this closes exactly the coprime-to-p lambda-exact face of it, for the SL3 pair only, by citation to the sector collapse.
-  odd-congruence-lambda-exact-sector-collapses: that is the relative-commutant collapse (RC3) on the coprime lambda-exact sector; this reads its exact W=1 evaluation as a statement about relative embeddability, showing the same sector carries no RE/C witness.
+  arithmetic-pair-is-not-relatively-embeddable: That is the full non-relative-embedding statement over all microstate sectors; this closes the coprime exact lattice face among matrix-form witnesses for the SL3 pair.
+  odd-congruence-lambda-exact-sector-collapses: That proves relative-commutant collapse on the coprime exact lattice sector; this combines it with uniform Kazhdan control of arbitrary matrix carriers to exclude relative matrix witnesses without a rate assumption.
+artifacts:
+  - research/artifacts/kazhdan-carrier-uniformization-2026-09-08.md
 ---
 
-Let `Lambda = SL_3(Z) <= Gamma = SL_3(Z[1/p])`, `B = L(Lambda)`,
-`h = diag(p, 1, p^-1)`.  A candidate witness of `RE/C`
-(`relatively-embeddable-pair-makes-the-hnn-group-hyperlinear`) is a
-regular-trace embedding `pi : Gamma -> M = prod_U M_(d_k)` with subalgebras
-`B_k subset M_(d_k)` such that `dist_2(pi_k(g), B_k) -> 0` for `g in Lambda`
-and `||E_(B_k)(pi_k(a))||_2 -> 0` for `a in Gamma - Lambda`.  Call it
-**`Lambda`-exact of coprime type** if its `Lambda`-restriction has genuine
-finite-dimensional microstates `sigma_m` factoring through
-`SL_3(Z/n_m)` with `gcd(n_m, p) = 1`.
+Let `Lambda=SL_3(Z)<=Gamma=SL_3(Z[1/p])`, with `p` prime, and
+`h=diag(p,1,p^-1)`. A relative matrix witness consists of a canonical
+trace embedding `pi:Gamma->prod_omega M_(d_k)` with unitary
+representatives `pi_k(g)` and unital subalgebras `B_k subset M_(d_k)`
+satisfying
 
-**THEOREM.**  No `RE/C` witness of the `SL_3` pair is `Lambda`-exact of
-coprime type.  Equivalently, the coprime-to-`p` `Lambda`-exact face of
-`arithmetic-pair-is-not-relatively-embeddable` is closed.
+    dist_2(pi_k(c),B_k)->0                 (c in Lambda),
+    ||E_(B_k)(pi_k(g))||_2->0             (g outside Lambda).
 
-**Proof.**  On this face `odd-congruence-lambda-exact-sector-collapses`
-(coprimality-only form) proves, via the Weyl three-term relation
-`h h''^-1 = h'`, that the corrector `W = V'^* pi(h)` equals `1` exactly,
-where `V' = [sigma_m(lambda_(h,m))]` is the congruence slot of `h`
-(`lambda_(h,m) in Lambda`, `= h mod n_m`).  Thus
+Call the witness **lattice-exact of coprime type** if the restriction
+`pi|_Lambda` has exact coordinate representatives `sigma_k` factoring
+through `SL_3(Z/n_k)` with `gcd(n_k,p)=1`.
 
-```text
-pi(h) = V' in pi(Lambda)'' subseteq M.                          (RECF1)
-```
+No such witness exists, regardless of the levels, multiplicities, or
+the rate at which the source containment defects vanish.
 
-`V'` is a `||.||_2`-limit of image elements of `Lambda`, so it lies in
-`pi(Lambda)''`.  Near-containment is exact containment in the ultraproduct:
-`dist_2(pi_k(g), B_k) -> 0` and `B = prod_U B_k` is `||.||_2`-closed, so
-`pi(Lambda) subset B`, hence `pi(Lambda)'' subseteq B`.  With `(RECF1)`,
-`pi(h) in B`.  Since `Gamma = <Lambda, h>` (conjugating elementary
-matrices of `Lambda` by powers of `h` scales the off-diagonal entry by
-powers of `p`, generating every `e_ij(p^k)`), and `pi(h), pi(Lambda) in B`
-with `B` an algebra,
+The proof combines the exact congruence-slot identity from
+`odd-congruence-lambda-exact-sector-collapses` with
+`kazhdan-generators-control-matrix-algebra-distance`. For a fixed
+Kazhdan generating set `S` with constant `kappa`, it gives
 
-```text
-pi(Gamma) subset B,   so   ||E_(B_k)(pi_k(a))||_2 -> 1   (a != e),   (RECF2)
-```
+    dist_2(pi_k(h),B_k)
+      <= ||pi_k(h)-sigma_k(h mod n_k)||_2
+         +(2/kappa)sqrt(sum_(s in S)dist_2(sigma_k(s),B_k)^2)
+      ->0.
 
-contradicting `||E_(B_k)(pi_k(a))||_2 -> 0` for `a notin Lambda`.  So no
-such witness exists. ∎
+Thus `||E_(B_k)(pi_k(h))||_2->1`, a contradiction. No factor
+`log n_k` occurs. Equivalently, Haar averaging in `U(B_k')`
+would turn the vanishing outside expectation into a lattice-central
+unitary moved by `pi(h)` in the same actor embedding, contradicting
+established sector collapse.
 
-**Why `SL_3` and coprime.**  The exact `W = 1` uses the rank-two three-term
-Weyl relation; at `SL_2` only `W^2 = 1` survives
-(`two-power-sector-conjugator-dichotomy`, the Iwahori involution seed), so
-the `SL_2` coprime face is NOT closed this way.  Coprimality is what makes
-`sigma_m` factor through a quotient in which `h` has a congruence value; at
-`p`-power levels `h` is not defined mod `n_m` and the argument stops
-(`odd-congruence-lambda-exact-sector-collapses`, mixed-level analysis).
+The rank-three arithmetic input uses two independent Weyl directions;
+the argument does not establish the rank-two counterpart. Coprimality
+is needed to define the congruence slot of `h`. The theorem does not
+eliminate arbitrary approximate lattice tuples or unresolved primary
+sectors, and does not prove the full non-relative-embedding target.
 
-**Consequence.**  Combined with the peer confinement
-`kazhdan-subgroup-weak-ucp-exactifies-microstates` (which, under
-`sl3-z-weakly-ucp-stable`, moves every `RE/C` candidate to the
-`Lambda`-exact face) and `lambda-exact-face-of-the-collapse-closes`
-(regular-type `p`-power towers), the residual enemy sector of
-`arithmetic-pair-is-not-relatively-embeddable` at `n = 3` is exactly the
-residual enemy sector of the collapse `(RC3)`: non-regular-type `p`-primary
-`Lambda`-exact towers plus the uniformly-inexact `Lambda`-outliers.  The
-host-only weakest target and the RCC face are then one problem.  For the
-`p = 3` pair the coprime-to-3 face includes every `2`-power level, so this
-theorem closes strictly more of the `RE/C` question there.
+The named target has the displayed matrix witness scope. The independent
+Jones-projection proof, `sl3-re-coprime-face-closes-by-jones-kazhdan`,
+also excludes finite tracial coordinates carrying the same prescribed
+exact finite congruence images, with the sharper bound
+`dist_2(pi_k(h),B_k)<=eta_k+2 max_s dist_2(sigma_k(s),B_k)/kappa`.
+Gao's general definition allows QWEP coordinates and hyperfinite carriers;
+neither proof makes an arbitrary Gao witness coordinate-exact on the
+lattice.
 
-## Attempts
+## Proof history
 
-- **DEMOTED TO OPEN (2026-08-21 adversarial audit).**  The step `(RECF1)`
-  `pi(h) = V' in pi(Lambda)''` is false: `V'` is a limit of image elements
-  `[sigma_m(mu_m)]` with VARYING `mu_m`, which lie in
-  `prod_U sigma_m(Lambda)''`, not in `pi(Lambda)''`.
-  `congruence-slot-escapes-ultraproduct-lambda-algebra` exhibits the
-  counterexample inside these hypotheses (regular representations of
-  `SL_3(Z/n_m)`, coprime levels: `W = 1` on the nose, `pi_m(h)` in every
-  coordinate subgroup algebra, yet `E_(pi(Lambda)'')(pi(h)) = 0`), and
-  invalidates the route.  The sector collapse
-  `odd-congruence-lambda-exact-sector-collapses` is unaffected -- it is a
-  statement about commutants, where the coordinatewise/ultraproduct
-  distinction does no harm.
-- **What survives: the logarithmic-rate theorem.**  Put
-  `delta_k(u) = || u - E_(B_k)(u) ||_2` and `eps_k = max_(s in S) delta_k(pi_k(s))`
-  for a fixed finite generating set `S` of `Lambda`.  Since `|| E_(B_k) ||_op <= 1`,
-  `delta_k(uv) <= || (u - E u) v ||_2 + || (E u)(v - E v) ||_2 <= delta_k(u) + delta_k(v)`,
-  so `delta_k(pi_k(mu)) <= |mu|_S eps_k` for every word `mu`.  `SL_3(Z)` has
-  property `(tau)`, so its congruence quotients are expanders and the slot
-  `lambda_(h,k)` can be chosen with `|lambda_(h,k)|_S = O(log n_k)`.  With
-  `W = 1`, `pi_k(h) = pi_k(lambda_(h,k))` up to `o(1)`, hence
-  `|| E_(B_k)(pi_k(h)) ||_2 >= 1 - o(1) - O(eps_k log n_k)`.  THEREFORE: no
-  `RE/C` witness of the `SL_3` pair is `Lambda`-exact of coprime type with
-  `eps_k log n_k -> 0`.  Nothing in Gao's definition constrains the rates,
-  so a witness with `eps_k -> 0` slower than `1 / log n_k` is the surviving
-  enemy shape on this face: huge `pi_k(Lambda)''` with slow near-containment.
-  This conditional statement is a theorem by the above; it has not yet been
-  promoted to its own claim.
-- **Scope caveat.**  The witness format used here (matrix coordinates,
-  `B_k subset M_(d_k)`) is the sufficient form `(CF1)` of
-  `relatively-embeddable-pair-makes-the-hnn-group-hyperlinear`; Gao's
-  Definition 1.1 allows QWEP coordinates with HYPERFINITE `B_k`.  Even a
-  repaired theorem closes the coprime face only among matrix-form
-  witnesses.
+The 2026-08-21 audit correctly invalidated
+`sl3-re-coprime-face-unfaithful-proof`: a moving congruence slot need
+not belong to the constant-sequence algebra `pi(Lambda)''`.
+`congruence-slot-escapes-ultraproduct-lambda-algebra` remains valid,
+and that route remains invalidated. The logarithmic-rate theorem
+was a valid partial repair.
 
+The 2026-09-08 route
+`sl3-re-coprime-face-from-kazhdan-carrier-control` closes the entire
+matrix face by controlling the full coordinate algebra uniformly.
+The independently supplied Jones-projection route proves the same
+exclusion through uniform containment of the group unitaries.
+It does not revive the false algebra identification. Slow source
+containment is therefore no longer an unresolved coprime sector.

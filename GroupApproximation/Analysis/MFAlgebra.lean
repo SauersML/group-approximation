@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.CDEOperatorMF
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Analysis.CStarAlgebra.Hom
 import Mathlib.Topology.Bases
 
@@ -171,6 +172,30 @@ theorem nonUnitalStarAlgHomUnitaryMap_injective
   have h := congrArg Subtype.val hab
   exact add_right_cancel h
 
+/-- A faithful group homomorphism into a unital C-star algebra, followed by
+a faithful possibly nonunital star homomorphism into a matrix corona, gives
+the literal CDE group property.  The positive matrix sizes need not increase.
+This is the representation hypothesis in Lemma `prop:mf-residual-calculus`. -/
+theorem isCDEOperatorMF_of_faithful_corona_map :
+    ∀ {G : Type u} [Group G] [Countable G]
+    {A : Type v} [CStarAlgebra A]
+    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+    (_hX : ∀ n, 0 < Fintype.card (X n))
+    (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
+    (_he : Function.Injective e)
+    (rho : G →* unitary A) (_hrho : Function.Injective rho),
+    IsCDEOperatorMF G := by
+  intro G _ _ A _ X _ hX e he rho hrho
+  let rhoCStar : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
+    (nonUnitalStarAlgHomUnitaryMap e).comp rho
+  let rhoSequence : G →* NormMatrixCoronaUnitary X :=
+    (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rhoCStar
+  have hop : IsOperatorMF G :=
+    ⟨X, hX, rhoSequence,
+      (normMatrixCoronaUnitaryEquiv X).symm.injective.comp
+        ((nonUnitalStarAlgHomUnitaryMap_injective he).comp hrho)⟩
+  exact (isCDEOperatorMF_iff_isOperatorMF G).mpr hop
+
 /-- A faithful group embedding into the unitary group of an algebra with a
 bare MF embedding gives the literal CDE group property. -/
 theorem HasMFEmbedding.isCDEOperatorMF
@@ -181,15 +206,7 @@ theorem HasMFEmbedding.isCDEOperatorMF
     IsCDEOperatorMF G := by
   rcases hA with ⟨X, hne, hX, _hmono, e, he⟩
   letI : ∀ n, Nonempty (X n) := hne
-  let rhoCStar : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
-    (nonUnitalStarAlgHomUnitaryMap e).comp rho
-  let rhoSequence : G →* NormMatrixCoronaUnitary X :=
-    (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rhoCStar
-  have hop : IsOperatorMF G :=
-    ⟨X, hX, rhoSequence,
-      (normMatrixCoronaUnitaryEquiv X).symm.injective.comp
-        ((nonUnitalStarAlgHomUnitaryMap_injective he).comp hrho)⟩
-  exact (isCDEOperatorMF_iff_isOperatorMF G).mpr hop
+  exact isCDEOperatorMF_of_faithful_corona_map X hX e he rho hrho
 
 /-- The corresponding implication to the internal group-theoretic MF
 predicate. -/
@@ -246,3 +263,5 @@ theorem hasMFAlgebraUnitaryEmbedding_iff_isOperatorMF
     IsCDEOperatorMF.hasMFAlgebraUnitaryEmbedding⟩
 
 end GroupApproximation
+
+#audit_axioms GroupApproximation.isCDEOperatorMF_of_faithful_corona_map

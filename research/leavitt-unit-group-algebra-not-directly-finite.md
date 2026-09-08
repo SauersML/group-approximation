@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
   - research/artifacts/leavitt-packet-trace-and-compression-2026-08-24.md
   - research/artifacts/kaplansky-cross-atlas-affine-lift-2026-09-07.md
+  - notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md
 ---
 
 *Marked `root` because Kaplansky's conjecture is a top-level question in its
@@ -57,6 +58,21 @@ and nothing else, and this node is kept out of the goal's route structure for
 that reason.
 
 ## The lanes
+
+An exact obstruction filter is available in
+`finite-precision-lifted-trace-obstruction`: polynomial idempotent lifting
+modulo p^k turns a nonzero trace residue into a finite rejection certificate,
+with a sufficient precision for finite-subgroup defects. The sharp cyclic
+examples in `no-fixed-trace-precision-detects-all-idempotents` show why one
+fixed modulus cannot replace the full invariant. Passing a finite trace
+check supplies no inverse pair and leaves this target open.
+
+The [full-proof gap audit](../notes/KAPLANSKY_FULL_PROOF_GAP_AUDIT_2026-09-07.md)
+records the exact projective cancellation assertion needed for the positive
+direction and proves that injectivity of lifted trace on all of K_0 is false
+already for F_3[C_2]. This does not refute trace detection on nonzero actual
+projectives. It supplies neither a proof of the full conjecture nor a
+counterexample to it; the present negative target remains open.
 
 The all-field positive result for the Kun--Thom wreath family now extends
 to a recursive hierarchy at

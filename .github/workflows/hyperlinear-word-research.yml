@@ -1,0 +1,65 @@
+name: Hyperlinear word research replay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hyperlinear-word-research.yml'
+      - 'experiments/hs_word*'
+      - 'experiments/test_hs_word*'
+      - 'experiments/higman_*'
+      - 'experiments/test_higman_u2_certificate.py'
+      - 'research/artifacts/hs-word-*'
+      - 'research/artifacts/hyperlinear-word-certificate-*'
+      - 'research/artifacts/higman-*'
+      - 'research/higman-*.md'
+      - 'research/hyperlinear-radical-*word-certificate*.md'
+      - 'research/non-hyperlinear-group.md'
+      - 'tools/cairn.py'
+      - 'bin/cairn'
+  pull_request:
+    paths:
+      - '.github/workflows/hyperlinear-word-research.yml'
+      - 'experiments/hs_word*'
+      - 'experiments/test_hs_word*'
+      - 'experiments/higman_*'
+      - 'experiments/test_higman_u2_certificate.py'
+      - 'research/artifacts/hs-word-*'
+      - 'research/artifacts/hyperlinear-word-certificate-*'
+      - 'research/artifacts/higman-*'
+      - 'research/higman-*.md'
+      - 'research/hyperlinear-radical-*word-certificate*.md'
+      - 'research/non-hyperlinear-group.md'
+      - 'tools/cairn.py'
+      - 'bin/cairn'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hyperlinear-word-replay-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CAIRN_STATE: ${{ github.workspace }}/.cairn/state
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Cairn verifies historical artifact pins throughout the graph.
+          fetch-depth: 0
+      - name: Compile and validate the research graph
+        run: bin/cairn check
+      - name: Check exact arithmetic and reject malformed certificates
+        run: |
+          python3 -m unittest discover -s experiments -p test_hs_word_certificate.py -v
+          python3 -m unittest discover -s experiments -p test_higman_u2_certificate.py -v
+      - name: Replay the amplifier and both dimension-specific certificates
+        run: |
+          python3 experiments/hs_word_gap_amplification_check.py
+          python3 experiments/higman_qutrit_witness.py
+          python3 experiments/higman_u2_certificate.py verify --graph .cairn/cache/graph.json

@@ -1,5 +1,6 @@
 import GroupApproximation.AlgTop.ChernSeries
 import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Vieta and Newton for a split total Chern class
@@ -100,6 +101,19 @@ theorem newton_of_split {ι : Type*} [Fintype ι] (a : ι → A) (k : ℕ) :
   have hmain := congrArg (MvPolynomial.aeval a) (MvPolynomial.mul_esymm_eq_sum ι A k)
   simp only [map_mul, map_sum, map_pow, map_neg, map_one, map_natCast, hes, hps] at hmain
   exact hmain
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms newton_of_split
+
 
 end
 

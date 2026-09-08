@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectivePuncture
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `ℂP^{d+1} ∖ {basePoint} ≃ ℂP^d`
@@ -132,7 +133,8 @@ def scaleHomotopy (d : ℕ) :
 
 theorem retractMap_comp_inclPMap (d : ℕ) :
     (retractMap d).comp (inclPMap d) = ContinuousMap.id (CP d) := by
-  ext z
+  apply ContinuousMap.ext
+  intro z
   exact retract_inclP z
 
 /-- **`ℂP^{d+1}` with its base point removed is homotopy equivalent to `ℂP^d`.**
@@ -148,10 +150,22 @@ def punctureHomotopyEquiv (d : ℕ) :
     exact h.symm
   right_inv := by
     rw [retractMap_comp_inclPMap d]
-    exact ContinuousMap.Homotopic.refl _
 
 @[simp] theorem punctureHomotopyEquiv_apply (d : ℕ) (x : ↥(punctured d)) :
     punctureHomotopyEquiv d x = retract x := rfl
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms punctureHomotopyEquiv_apply
+
 
 end CPn
 

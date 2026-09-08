@@ -1,3 +1,6 @@
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKappaProof
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientCanonicalKOne
+import GroupApproximation.Manuscript.OneSidedMFRadical.KappaFiniteWitness
 import GroupApproximation.Algebra.CoweightCoinvariants
 import GroupApproximation.Algebra.FaithfulRadicalCocycle
 import GroupApproximation.Algebra.MappingTelescope
@@ -3415,6 +3418,47 @@ import GroupApproximation.GGT.VanKampen.WordSegmentConnectors
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXWitness
 import GroupApproximation.Analysis.STW22NegativeSolution
 import GroupApproximation.Analysis.STW22DesignatedTraces
+import GroupApproximation.Analysis.STW22FactorialCore
+import GroupApproximation.Analysis.STW22TraciallyCompletePair
+import GroupApproximation.Analysis.STW22AntipodalGaugeFactorial
+import GroupApproximation.Analysis.STW22AntipodalFactorialPair
+import GroupApproximation.Analysis.STW22ProblemXXIIFactorialEndpoint
+-- wave 2026-09-07: K_1 (lane nonmf-formalize) and the compiling non-AlgTop
+-- orphans (lane lix-wire, notes/orphan-buildtest-rest-2026-09-07.md WIRE bucket).
+-- The five Topology.Tautological* modules are deliberately NOT wired: duplicated
+-- by CONTENT against the already-wired STW22 route, on their own docstrings.
+import GroupApproximation.Algebra.CountableMatrixUnits
+import GroupApproximation.KOne.StableWhitehead
+import GroupApproximation.KOne.AlgebraicKOne
+import GroupApproximation.KOne.AlgebraicKOneFunctor
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsUnconditional
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOne
+import GroupApproximation.Analysis.FiniteDimensionalFactorialTraceCore
+import GroupApproximation.Analysis.CuntzPedersenJordanModelTest
+import GroupApproximation.Analysis.CuntzPedersenJordanMatrixTest
+import GroupApproximation.Analysis.STW22CounterexampleAssemblyModelTest
+import GroupApproximation.KTheory.Basic
+import GroupApproximation.KTheory.Functorial
+import GroupApproximation.KTheory.Spaces
+-- STW/: repaired and moved under GroupApproximation/ by lane lix-meta (50b93fef7);
+-- the root-level copies were deleted in 7301acbec.  Wired so the tree is inside
+-- scripts/Audit.lean's classical-axioms guarantee, whose scope is exactly this
+-- import closure.
+import GroupApproximation.STW.Actual
+import GroupApproximation.STWProblems
+-- wave 2026-09-07 (lane nonmf-formalize): AGP Corollary 1.7 for matrix rings,
+-- and the sandwich <-> idempotent purely-infinite-simple bridge.
+import GroupApproximation.Algebra.PurelyInfiniteSimpleMatrix
+import GroupApproximation.Algebra.PurelyInfiniteBridge
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsMatrixReduction
+import GroupApproximation.Manuscript.OneSidedMFRadical.BinaryLeavittPurelyInfiniteIdempotent
+import GroupApproximation.Leavitt.LeavittPurelyInfinite
+-- orphan repairs landed 2026-09-07 (lanes lix-wire, xxii-fix): four modules that
+-- had never compiled, plus the respelling witness.
+import GroupApproximation.Analysis.SequentialGroupColimitDirectLimit
+import GroupApproximation.GGT.DGOLemma421FourGon
+import GroupApproximation.GGT.KazhdanHypGirthEightGeodesicWord
+import GroupApproximation.GGT.HullSCLemma44RespellingWitness
 -- orphan sweep 2026-09-07: WIRE bucket of notes/orphan-module-sweep-2026-09-07.md
 -- (KTheory/{Basic,Functorial,Spaces} deliberately NOT wired: their own commit
 --  says "UNPROBED, do not import yet")
@@ -4129,6 +4173,74 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.FactorizationTraceSentenc
 import GroupApproximation.Sofic.CliffordConstructionSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.CompressionCriterionSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.MaxInfiniteConverseRemark
+import GroupApproximation.Algebra.PurelyInfiniteComparability
+import GroupApproximation.Algebra.PurelyInfiniteCornerSandwich
+import GroupApproximation.Algebra.PurelyInfiniteSandwich
+import GroupApproximation.AlgTop.BundleCalculusInvariant
+import GroupApproximation.AlgTop.BundleCalculusModelBridge
+import GroupApproximation.AlgTop.BundleCalculusProjection
+import GroupApproximation.AlgTop.BundleCalculusPullback
+import GroupApproximation.AlgTop.BundleCalculusTransport
+import GroupApproximation.AlgTop.BundleCalculusUnitSection
+import GroupApproximation.AlgTop.ChernEvenTopClass
+import GroupApproximation.AlgTop.ChernLineRoots
+import GroupApproximation.AlgTop.ChernMap
+import GroupApproximation.AlgTop.ChernNewtonDischarge
+import GroupApproximation.AlgTop.ChernNewtonIdentity
+import GroupApproximation.AlgTop.ChernNewtonSquareZero
+import GroupApproximation.AlgTop.ChernParityCoefficient
+import GroupApproximation.AlgTop.ChernPolynomialModel
+import GroupApproximation.AlgTop.ChernPowerSums
+import GroupApproximation.AlgTop.ChernSeries
+import GroupApproximation.AlgTop.ChernSplitNewton
+import GroupApproximation.AlgTop.ChernSquareZeroIdeal
+import GroupApproximation.AlgTop.CochainLeibniz
+import GroupApproximation.AlgTop.ComplexProjectiveChart
+import GroupApproximation.AlgTop.ComplexProjectiveCover
+import GroupApproximation.AlgTop.ComplexProjectiveHyperplane
+import GroupApproximation.AlgTop.ComplexProjectiveProduct
+import GroupApproximation.AlgTop.ComplexProjectivePuncture
+import GroupApproximation.AlgTop.ComplexProjectivePunctureRetract
+import GroupApproximation.AlgTop.ComplexProjectiveSphere
+import GroupApproximation.AlgTop.CrossProduct
+import GroupApproximation.AlgTop.CupAssoc
+import GroupApproximation.AlgTop.CupCommutativitySign
+import GroupApproximation.AlgTop.CupProduct
+import GroupApproximation.AlgTop.EulerLocalModel
+import GroupApproximation.AlgTop.EulerParityBridge
+import GroupApproximation.AlgTop.EvenCohomologyRing
+import GroupApproximation.AlgTop.FreeSubmodulePID
+import GroupApproximation.AlgTop.Kronecker
+import GroupApproximation.AlgTop.ManuscriptSectionZeroCount
+import GroupApproximation.AlgTop.MappingTorusParity
+import GroupApproximation.AlgTop.MappingTorusParityCore
+import GroupApproximation.AlgTop.MappingTorusSectionZeros
+import GroupApproximation.AlgTop.OddDegreeOfHomeomorphism
+import GroupApproximation.AlgTop.SingularChainFree
+import GroupApproximation.AlgTop.SingularCohomology
+import GroupApproximation.AlgTop.Spheres
+import GroupApproximation.AlgTop.SteenrodCut
+import GroupApproximation.AlgTop.UniversalCoefficients
+import GroupApproximation.AlgTop.WuBinomialGap
+import GroupApproximation.Analysis.ChernCommonZeroBridge
+import GroupApproximation.Analysis.LIXObstructionContradiction
+import GroupApproximation.Analysis.LIXObstructionLowPowerSums
+import GroupApproximation.Analysis.ShulmanFillNormingTheorem4Unconditional
+import GroupApproximation.GGT.HullSCCommonQuotientPrinted
+import GroupApproximation.GGT.KazhdanHypGirthEightGenericProducers
+import GroupApproximation.GGT.VanKampen.Estimating.InteriorIncidenceComponentRealization
+import GroupApproximation.Leavitt.AryKillWord
+import GroupApproximation.Leavitt.AryNormalForm
+import GroupApproximation.Leavitt.AryWords
+import GroupApproximation.Manuscript.NonMF.FournierFacioParagraphFromSimpleFactor
+import GroupApproximation.Manuscript.NonMF.OsinTheorem12NonDegenerate
+import GroupApproximation.Manuscript.NonMF.TorsionFreeSectionCitations
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKappaResidue
+import GroupApproximation.Topology.AntipodalObstructionFromOddDegree
+import GroupApproximation.Topology.OddMapNormalization
+import GroupApproximation.Topology.TautologicalAntipodal
+import GroupApproximation.Topology.TautologicalCommonZero
+import GroupApproximation.Topology.TautologicalLineWinding
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

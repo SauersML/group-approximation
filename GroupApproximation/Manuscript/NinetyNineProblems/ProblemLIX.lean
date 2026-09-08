@@ -38,10 +38,17 @@ the simple separable nuclear class; injectivity is the direction STW call open.
 * **simple** --- `IsSimpleCStar A`, every closed two-sided ideal is `⊥` or
   `⊤` (`Analysis/CStarSimple`).  Not Mathlib's `IsSimpleRing`, which asks the
   same of *algebraic* two-sided ideals.  The two agree for a unital
-  C⋆-algebra, because a proper two-sided ideal of a unital Banach algebra
-  contains no unit and `nonunits` is closed, so the closure stays proper ---
-  but that agreement is landed as `isSimpleCStar_iff_isSimpleRing` rather than
-  assumed, and the endpoint says what the problem says.
+  **nontrivial** C⋆-algebra, because a proper two-sided ideal of a unital
+  Banach algebra contains no unit and `nonunits` is closed, so the closure
+  stays proper --- but that agreement is landed as
+  `isSimpleCStar_iff_isSimpleRing` rather than assumed, and the endpoint says
+  what the problem says.  The nontriviality is not decoration:
+  `isSimpleCStar_iff_isSimpleRing` carries `[Nontrivial A]`
+  (`Analysis/CStarSimple.lean:158`) and needs it, because at the zero algebra
+  `IsSimpleCStar` holds vacuously while `IsSimpleRing` fails --- Mathlib's
+  `IsSimpleOrder` extends `Nontrivial`.  So the two notions do *not* agree at
+  the zero algebra, which is one more reason `ProblemLIX` asks `Nontrivial`
+  separately rather than folding it into simplicity.
 * **`K₁`-injective** --- `K1Inj A`, injectivity of the canonical
   `U(A)/U₀(A) → K₁(A)`.  `U₀(A)` is the path component of `1` in the unitary
   group (`unitaryComponentOne`, built on Mathlib's `Subgroup.pathComponentOne`),

@@ -5,6 +5,7 @@ import Mathlib.Data.Nat.Factorial.Basic
 
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 /-!
 # Newton's identity for a total Chern class, discharged
 
@@ -87,7 +88,7 @@ theorem chernChar_div (W V : TotalChern A) (q : ℕ) :
 the parity chain states it, for every total Chern class over a
 `ℚ`-algebra — including a virtual one.  No splitting principle and no topology:
 it is the coefficientwise form of `c · N(c) = X c'`. -/
-theorem newton_identity_range (c : TotalChern A) (q : ℕ) (hq : 0 < q) :
+theorem newton_identity_range (c : TotalChern A) (q : ℕ) (_hq : 0 < q) :
     (∑ i ∈ Finset.range q,
         (-1 : A) ^ i * c.chernClass i * (((q - i)! : ℕ) : A) * c.chernChar (q - i))
       + (-1 : A) ^ q * (q : A) * c.chernClass q = 0 := by
@@ -113,6 +114,19 @@ theorem newton_identity_range (c : TotalChern A) (q : ℕ) (hq : 0 < q) :
     rw [← pow_add, hexp, pow_add, pow_mul, neg_one_sq, one_pow, one_mul, pow_succ]
     ring
   linear_combination (c.chernClass i * c.powerSum (q - i)) * hsign
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms newton_identity_range
+
 
 end
 

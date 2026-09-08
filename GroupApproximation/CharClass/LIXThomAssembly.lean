@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LIXThomLH
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The degreewise Thom data from the pair sequence
@@ -120,9 +121,10 @@ theorem thomData_of_absToSub {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ}
     coeff.injective hab
   exact (lhTopEquiv L).symm.injective h1
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms thomData_of_absToSub
+#audit_axioms thomData_of_absToSub
 
 end
 

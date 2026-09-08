@@ -6,6 +6,17 @@ locality-preserving *combinatorial* gap amplifier with this repository's
 exactification technology.  This file records what was verified, what was
 corrected, and what was deliberately not imported.
 
+**Corrections appended 2026-09-07.** Section 2's quotient formula applies
+only when `lambda_min(H) > 0`. In finite dimension, zero ground energy
+implies `s* = 0` and the least rounder constant is **zero**. The canonical
+claim and proof now include this case and restrict the equivalence of
+uniform bounds to families of positive constant combinatorial gap.
+Also, the official
+[FOCS 2026 accepted-paper list](https://focs.computer.org/2026/accepted-papers/)
+now confirms Bafna--Nguyen--Zhang as the authors of the combinatorial
+amplification paper. This resolves the attribution question in section 1;
+it does not supply the missing iterated-alphabet theorem.
+
 ## 1. Citations checked against primary sources
 
 | source | status |

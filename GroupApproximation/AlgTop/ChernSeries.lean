@@ -1,4 +1,5 @@
 import Mathlib.RingTheory.PowerSeries.Inverse
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Total Chern classes as normalized power series
@@ -264,6 +265,22 @@ theorem chernClass_eq_sum_div (W V : TotalChern A) (n : ℕ) :
     W.chernClass n = ∑ p ∈ antidiagonal n, V.chernClass p.1 * (W / V).chernClass p.2 := by
   conv_lhs => rw [← mul_div_cancel_virtual W V]
   rw [chernClass_mul]
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms chernClass_mul
+#audit_axioms chernClass_eq_sum_div
+#audit_axioms chernClass_mul_top
+#audit_axioms chernClass_prod_line_pow_top
+
 
 end TotalChern
 

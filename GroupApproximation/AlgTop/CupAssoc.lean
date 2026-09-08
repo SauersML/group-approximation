@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.CupProduct
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Strict associativity and left unitality of the cup product
@@ -133,7 +134,9 @@ theorem backFace_zero_eq (q : ℕ) : backFace 0 q = awCastZeroAdd q := by
   ext x : 3
   apply Fin.ext
   have hL : (((backFace 0 q).toOrderHom x : Fin (0 + q + 1)) : ℕ) = x.val := by
-    rw [backFace_apply]
+    -- `backFace_apply` leaves `↑x + 0`, and `rw`'s closing `rfl` runs at reducible
+    -- transparency, which does not reduce `HAdd.hAdd ↑x 0`.
+    rw [backFace_apply, Nat.add_zero]
   have hR : (((awCastZeroAdd q).toOrderHom x : Fin (0 + q + 1)) : ℕ) = x.val :=
     awCastZeroAdd_val q x
   omega
@@ -292,5 +295,17 @@ theorem one_cup' {X : TopCat.{0}} {q : ℕ} (b : cohomology R X q) :
   exact cohCast_self_apply R X _ _
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms cup_assoc
 
 end GroupApproximation.AlgTop

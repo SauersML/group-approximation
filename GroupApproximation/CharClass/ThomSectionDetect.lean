@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ThomStepCSection
 import GroupApproximation.CharClass.ThomSphereSubspace
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Closing the section predicate
@@ -96,9 +97,10 @@ theorem topChernClass_ne_zero_of_chartInjective (hacyclic : PuncturedAcyclic N t
   topChernClass_ne_zero_of_section hacyclic j i hexact absLine exc chartIso sRel
     (sectionDetectsThom_of_injective sRel t hinj hu) hgamma
 
-/-! Printed on every build. -/
+/-! Audited on every build: `#audit_axioms` prints the closure **and fails the
+build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
-#print axioms topChernClass_ne_zero_of_chartInjective
+#audit_axioms topChernClass_ne_zero_of_chartInjective
 
 end
 

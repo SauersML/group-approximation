@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.SingularChainFree
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Kronecker map `Hⁿ(X; R) → Hom(Hₙ(X; R), R)`
@@ -36,9 +37,13 @@ noncomputable section
 abbrev homologyOf (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) : ModuleCat.{0} R :=
   (chainCx R X).homology n
 
-/-- In the chain-complex shape the previous index of `n` is `n + 1`. -/
+/-- In the chain-complex shape the previous index of `n` is `n + 1`.
+
+`ComplexShape.prev_eq` is the *structure field* `Rel i j → Rel i' j → i = i'`,
+so it takes two `Rel` arguments and cannot compute `prev`; the lemma that reads
+a `Rel` off into a `prev` is `ComplexShape.prev_eq'`. -/
 theorem down_prev (n : ℕ) : (ComplexShape.down ℕ).prev n = n + 1 :=
-  (ComplexShape.down ℕ).prev_eq (by simp [ComplexShape.down_Rel])
+  (ComplexShape.down ℕ).prev_eq' (by simp [ComplexShape.down_Rel])
 
 /-! ## 1. Evaluation of a single cocycle -/
 
@@ -104,20 +109,27 @@ def kronCycleMor (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
     { toFun := fun c => (kronOfCocycle R X n (((cochainCx R X).iCycles n).hom c)
         (cochainCoboundary_iCycles R X n c)).hom
       map_add' := fun c c' => by
-        have h := kronOfCocycle_add R X n (((cochainCx R X).iCycles n).hom c)
-          (((cochainCx R X).iCycles n).hom c') (cochainCoboundary_iCycles R X n c)
-          (cochainCoboundary_iCycles R X n c')
-          (by rw [← map_add]; exact cochainCoboundary_iCycles R X n (c + c'))
-        rw [← map_add] at h
-        rw [show (((cochainCx R X).iCycles n).hom (c + c')) = _ from map_add _ c c']
-        exact congrArg ModuleCat.Hom.hom h
+        -- Do *not* rewrite `iCycles (c + c')` inside `kronOfCocycle`: its second
+        -- argument is a proof whose type mentions the first, so the motive is not
+        -- type correct.  Move along `kronOfCocycle_congr` instead.
+        have hsum : ((cochainCx R X).iCycles n).hom (c + c')
+            = ((cochainCx R X).iCycles n).hom c + ((cochainCx R X).iCycles n).hom c' :=
+          map_add _ _ _
+        have hcoc : IsCocycle R X n (((cochainCx R X).iCycles n).hom c
+            + ((cochainCx R X).iCycles n).hom c') := by
+          rw [← hsum]; exact cochainCoboundary_iCycles R X n (c + c')
+        exact congrArg ModuleCat.Hom.hom
+          ((kronOfCocycle_congr R X n hsum _ hcoc).trans
+            (kronOfCocycle_add R X n _ _ (cochainCoboundary_iCycles R X n c)
+              (cochainCoboundary_iCycles R X n c') hcoc))
       map_smul' := fun s c => by
-        have h := kronOfCocycle_smul R X n s (((cochainCx R X).iCycles n).hom c)
-          (cochainCoboundary_iCycles R X n c)
-          (by rw [← map_smul]; exact cochainCoboundary_iCycles R X n (s • c))
-        rw [← map_smul] at h
-        rw [show (((cochainCx R X).iCycles n).hom (s • c)) = _ from map_smul _ s c]
-        exact congrArg ModuleCat.Hom.hom h }
+        have hsmul : ((cochainCx R X).iCycles n).hom (s • c)
+            = s • ((cochainCx R X).iCycles n).hom c := map_smul _ _ _
+        have hcoc : IsCocycle R X n (s • ((cochainCx R X).iCycles n).hom c) := by
+          rw [← hsmul]; exact cochainCoboundary_iCycles R X n (s • c)
+        exact congrArg ModuleCat.Hom.hom
+          ((kronOfCocycle_congr R X n hsmul _ hcoc).trans
+            (kronOfCocycle_smul R X n s _ (cochainCoboundary_iCycles R X n c) hcoc)) }
 
 @[simp] theorem kronCycleMor_hom (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ)
     (c : (cochainCx R X).cycles n) :
@@ -128,27 +140,29 @@ def kronCycleMor (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
 /-- The evaluation map kills cochain coboundaries. -/
 theorem kronCycleMor_toCycles (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
     (cochainCx R X).toCycles ((ComplexShape.up ℕ).prev n) n ≫ kronCycleMor R X n = 0 := by
-  apply ModuleCat.hom_ext; apply LinearMap.ext; intro η
-  show (kronOfCocycle R X n (((cochainCx R X).iCycles n).hom
-      (((cochainCx R X).toCycles ((ComplexShape.up ℕ).prev n) n).hom η)) _).hom = _
-  have heq : ((cochainCx R X).iCycles n).hom
-        (((cochainCx R X).toCycles ((ComplexShape.up ℕ).prev n) n).hom η)
-      = ((cochainCx R X).d ((ComplexShape.up ℕ).prev n) n).hom η := by
-    rw [← ModuleCat.comp_apply, (cochainCx R X).toCycles_i]
-  have hzero : kronOfCocycle R X n (((cochainCx R X).d ((ComplexShape.up ℕ).prev n) n).hom η)
-      (by rw [← heq]; exact cochainCoboundary_iCycles R X n _) = 0 := by
-    by_cases hrel : (ComplexShape.up ℕ).Rel ((ComplexShape.up ℕ).prev n) n
-    · obtain ⟨m, hm⟩ : ∃ m, m + 1 = n := ⟨(ComplexShape.up ℕ).prev n, hrel⟩
-      subst hm
-      exact kronOfCocycle_coboundary R X _ η _
-    · have hz : ((cochainCx R X).d ((ComplexShape.up ℕ).prev n) n).hom η = 0 := by
-        rw [(cochainCx R X).shape _ _ hrel]; simp
-      rw [kronOfCocycle_congr R X n hz _ (cochainCoboundary_zero R X n)]
-      apply (cancel_epi ((chainCx R X).homologyπ n)).mp
-      rw [homologyπ_kronOfCocycle, comp_zero, comp_zero]
-  rw [kronOfCocycle_congr R X n heq _
-    (by rw [← heq]; exact cochainCoboundary_iCycles R X n _), hzero]
-  rfl
+  -- Split on the shape *before* introducing the element: after `subst` the
+  -- source index is literally `m`, so `η` never acquires a type mentioning
+  -- `(ComplexShape.up ℕ).prev`, whose value is an opaque `Exists.choose` that
+  -- no arithmetic tactic can identify with `m`.
+  by_cases hrel : (ComplexShape.up ℕ).Rel ((ComplexShape.up ℕ).prev n) n
+  · obtain ⟨m, hm⟩ : ∃ m, m + 1 = n := ⟨(ComplexShape.up ℕ).prev n, hrel⟩
+    subst hm
+    rw [show (ComplexShape.up ℕ).prev (m + 1) = m from (ComplexShape.up ℕ).prev_eq' rfl]
+    apply ModuleCat.hom_ext; apply LinearMap.ext; intro η
+    show (kronOfCocycle R X (m + 1) (((cochainCx R X).iCycles (m + 1)).hom
+        (((cochainCx R X).toCycles m (m + 1)).hom η)) _).hom = _
+    have heq : ((cochainCx R X).iCycles (m + 1)).hom
+          (((cochainCx R X).toCycles m (m + 1)).hom η)
+        = cochainCoboundary R X m η :=
+      ConcreteCategory.congr_hom ((cochainCx R X).toCycles_i m (m + 1)) η
+    rw [kronOfCocycle_congr R X (m + 1) heq _
+        (by rw [← heq]; exact cochainCoboundary_iCycles R X (m + 1) _),
+      kronOfCocycle_coboundary R X m η _]
+    rfl
+  · have hzero : (cochainCx R X).toCycles ((ComplexShape.up ℕ).prev n) n = 0 := by
+      rw [← cancel_mono ((cochainCx R X).iCycles n), (cochainCx R X).toCycles_i, zero_comp]
+      exact (cochainCx R X).shape _ _ hrel
+    rw [hzero, zero_comp]
 
 /-- **The Kronecker map** `Hⁿ(X; R) → Hom(Hₙ(X; R), R)`. -/
 def kronecker (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ) :
@@ -168,16 +182,31 @@ theorem kronecker_cocycleClass (R : Type) [CommRing R] (X : TopCat.{0}) (n : ℕ
     (φ : singularCochainGroup R X n) (hφ : IsCocycle R X n φ) :
     (kronecker R X n).hom (cocycleClass R X n φ hφ)
       = (kronOfCocycle R X n φ hφ).hom := by
-  rw [cocycleClass,
-    show (kronecker R X n).hom
-          (((cochainCx R X).homologyπ n).hom
-            ((cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ))
-        = ((cochainCx R X).homologyπ n ≫ kronecker R X n).hom
-            ((cochainCx R X).cyclesMk φ (n + 1) (by simp [ComplexShape.next]) hφ) from rfl,
+  -- Go through `cyclesMk'`, which already carries the `next`-index proof: written
+  -- out here, `by simp [ComplexShape.next]` unfolds `next` to its `dif` and stalls
+  -- on the bare `Exists.choose`, which no arithmetic tactic can identify with `n + 1`.
+  show (kronecker R X n).hom (((cochainCx R X).homologyπ n).hom (cyclesMk' R X n φ hφ))
+      = (kronOfCocycle R X n φ hφ).hom
+  rw [show (kronecker R X n).hom (((cochainCx R X).homologyπ n).hom (cyclesMk' R X n φ hφ))
+        = ((cochainCx R X).homologyπ n ≫ kronecker R X n).hom (cyclesMk' R X n φ hφ) from rfl,
     homologyπ_kronecker, kronCycleMor_hom]
   exact congrArg ModuleCat.Hom.hom
-    (kronOfCocycle_congr R X n (iCycles_cyclesMk R X n φ hφ) _ hφ)
+    (kronOfCocycle_congr R X n (iCycles_cyclesMk' R X n φ hφ) _ hφ)
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms homologyπ_kronOfCocycle
+#audit_axioms kronOfCocycle_coboundary
+#audit_axioms kronecker_cocycleClass
 
 end GroupApproximation.AlgTop

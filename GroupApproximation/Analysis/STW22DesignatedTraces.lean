@@ -18,12 +18,41 @@ CCEGSTW Question 1.1** -- the inclusion `X ⊆ T(M)` is an equality -- is false.
 That form is exactly non-surjectivity of the canonical extension map, which is
 what the counterexample establishes.
 
-What is deliberately *not* claimed here is `IsFactorialTraciallyCompletePair X`.
-Four of its six fields need work that is not yet in the repository:
-`isCompact` and `isConvex` need continuity and affineness of
-`canonicalExtension`, and `faithful` and `unitBallComplete` are the substance
-of calling `M` a completion at all.  Naming that Prop without proving it is
-exactly what this campaign forbids, so it is absent rather than assumed.
+`IsFactorialTraciallyCompletePair X` is not claimed here either, but the reason
+has changed and the note that used to stand in this place is no longer true.  It
+recorded four of the six fields as work "not yet in the repository":
+`isCompact` and `isConvex` waiting on continuity and affineness of
+`canonicalExtension`, `faithful` and `unitBallComplete` on the substance of
+calling `M` a completion at all.  All four are now proved, and the Prop itself
+is a theorem for exactly the `X` this file names:
+
+* `GroupApproximation.STW22FactorialCore.isCompact_designatedTraces`,
+  `GroupApproximation.STW22FactorialCore.isConvexTraceSet_designatedTraces`,
+  `GroupApproximation.STW22FactorialCore.isClosed_designatedTraces` and
+  `GroupApproximation.STW22FactorialCore.isFaceTraceSet_designatedTraces`, in
+  `Analysis/STW22FactorialCore` -- compactness through weak-star compactness of
+  the trace space, and the face condition through CCEGSTW Proposition 3.23(iv)
+  at `X = T(A)`;
+* `GroupApproximation.STW22FactorialCore.isFaithfulTraceSet_designatedTraces`
+  and
+  `GroupApproximation.STW22FactorialCore.unitBallUniformTwoComplete_designatedTraces`,
+  which live in `Analysis/STW22TraciallyCompletePair` -- the namespace is
+  `STW22FactorialCore` but the file is not.  Faithfulness turned out to need no
+  extra hypothesis, because the coordinate norm comparison already forces a
+  gauge-null element to vanish coordinatewise;
+* `GroupApproximation.STW22.antipodal_isFactorialTraciallyCompletePair`, in
+  `Analysis/STW22AntipodalFactorialPair` -- the assembled Prop, for
+  `antipodalDesignatedTraces` as defined below.
+
+So the Prop is absent from this file because it belongs upstream of it, not
+because it is open.  This file's job is to name `X`.
+
+Each carrier is written in full rather than short, so that
+`scripts/check_prose_decl_names.py` resolves it.  That script skips any name
+whose prefix is not a namespace this development declares into, and
+`STW22FactorialCore` is not one -- only `GroupApproximation.STW22FactorialCore`
+is -- so the short forms this list first carried were invisible to it.  Do not
+shorten them back.
 -/
 
 namespace GroupApproximation

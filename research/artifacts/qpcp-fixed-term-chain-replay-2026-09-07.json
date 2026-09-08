@@ -1,0 +1,259 @@
+{
+  "all_size_scalar_bounds": [
+    {
+      "L": 1,
+      "R": 1,
+      "delta": "1/128",
+      "energy_upper_bound": "1/256",
+      "n": 513,
+      "range_mass_upper_bound": "1/2",
+      "scope": "Scalar bound replay; all-size operator estimates use the analytic proof."
+    },
+    {
+      "L": 2,
+      "R": 1,
+      "delta": "1/648",
+      "energy_upper_bound": "1/1296",
+      "n": 2593,
+      "range_mass_upper_bound": "1/2",
+      "scope": "Scalar bound replay; all-size operator estimates use the analytic proof."
+    },
+    {
+      "L": 3,
+      "R": 2,
+      "delta": "1/2048",
+      "energy_upper_bound": "1/8192",
+      "n": 16385,
+      "range_mass_upper_bound": "1/2",
+      "scope": "Scalar bound replay; all-size operator estimates use the analytic proof."
+    },
+    {
+      "L": 5,
+      "R": 4,
+      "delta": "1/10368",
+      "energy_upper_bound": "1/82944",
+      "n": 165889,
+      "range_mass_upper_bound": "1/2",
+      "scope": "Scalar bound replay; all-size operator estimates use the analytic proof."
+    }
+  ],
+  "arithmetic": "exact rational",
+  "constant_combinatorial_gap_proved_for_chain": false,
+  "explicit_dual_replays": [
+    {
+      "X_formula": "X_a=t(I-h_a)",
+      "Y_formula": "rho-sum_a h_a rho h_a-epsilon I",
+      "all_singleton_slacks_checked": 3,
+      "dense_Y": [
+        [
+          "-1/16",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "11/16",
+          "1/4",
+          "0"
+        ],
+        [
+          "0",
+          "1/4",
+          "-5/16",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "-1/16"
+        ]
+      ],
+      "dual_denominator": "0",
+      "epsilon": "1/16",
+      "eta": "1/2",
+      "invalid_dual_rejected": "singleton dual slack 0: matrix is not positive semidefinite",
+      "n": 2,
+      "neighborhoods": "singleton terms; P_a=h_a",
+      "site_density_matrices": [
+        [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      ],
+      "t": "66",
+      "trace_Y": "1/4"
+    },
+    {
+      "X_formula": "X_a=t(I-h_a)",
+      "Y_formula": "rho-sum_a h_a rho h_a-epsilon I",
+      "all_singleton_slacks_checked": 4,
+      "dual_denominator": "0",
+      "epsilon": "1/32",
+      "eta": "1/2",
+      "invalid_dual_rejected": "singleton dual slack 0: matrix is not positive semidefinite",
+      "n": 3,
+      "neighborhoods": "singleton terms; P_a=h_a",
+      "site_density_matrices": [
+        [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "1/2",
+            "1/2"
+          ],
+          [
+            "1/2",
+            "1/2"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      ],
+      "t": "130",
+      "trace_Y": "1/4"
+    },
+    {
+      "X_formula": "X_a=t(I-h_a)",
+      "Y_formula": "rho-sum_a h_a rho h_a-epsilon I",
+      "all_singleton_slacks_checked": 5,
+      "dual_denominator": "0",
+      "epsilon": "31/1600",
+      "eta": "31/50",
+      "invalid_dual_rejected": "singleton dual slack 0: matrix is not positive semidefinite",
+      "n": 4,
+      "neighborhoods": "singleton terms; P_a=h_a",
+      "site_density_matrices": [
+        [
+          [
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        [
+          [
+            "4/5",
+            "2/5"
+          ],
+          [
+            "2/5",
+            "1/5"
+          ]
+        ],
+        [
+          [
+            "1/5",
+            "2/5"
+          ],
+          [
+            "2/5",
+            "4/5"
+          ]
+        ],
+        [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1"
+          ]
+        ]
+      ],
+      "t": "6462/31",
+      "trace_Y": "31/100"
+    }
+  ],
+  "lean_checked": false,
+  "local_subset_replays": [
+    {
+      "L": 2,
+      "all_subsets_up_to_L_checked": 7,
+      "delta": "1/648",
+      "energy_upper_bound": "2",
+      "minimum_fault_cardinality": 1,
+      "n": 2,
+      "trial_energy": "1/2"
+    },
+    {
+      "L": 3,
+      "all_subsets_up_to_L_checked": 15,
+      "delta": "1/2048",
+      "energy_upper_bound": "1",
+      "minimum_fault_cardinality": 1,
+      "n": 3,
+      "trial_energy": "1/2"
+    },
+    {
+      "L": 3,
+      "all_subsets_up_to_L_checked": 26,
+      "delta": "1/2048",
+      "energy_upper_bound": "2/3",
+      "minimum_fault_cardinality": 1,
+      "n": 4,
+      "trial_energy": "19/50"
+    },
+    {
+      "L": 3,
+      "all_subsets_up_to_L_checked": 42,
+      "delta": "1/2048",
+      "energy_upper_bound": "1/2",
+      "minimum_fault_cardinality": 1,
+      "n": 5,
+      "trial_energy": "3/10"
+    }
+  ],
+  "negative_controls": {
+    "false_spectral_bound_rejected": "local spectral slack 0: matrix is not positive semidefinite",
+    "frustration_free_case_rejected": "The empty fault set is feasible; frustration is required"
+  },
+  "quantum_pcp_proved": false,
+  "scope": "Exact finite matrix certificates plus scalar threshold checks; the artifact proves the all-size theorem.",
+  "source_sha256": {
+    "check_qpcp_chain_obstruction.py": "c4fd4d20909d8096feca66675d2ac3de7424db6a38377c6f0ceee34c2f9268b8",
+    "check_qpcp_kernel_resolution.py": "660c606549c7bce23b04b5f402d10d30e7adf1a84066315a71c1e965b72cf6e7",
+    "check_qpcp_rounding.py": "c5d35a004737a328e0908947489594e8d388134af74a7eb3910ea60b7b687b5b",
+    "check_qpcp_syndrome_sdp.py": "e399b6f52083419af80142103ca7cc5a6e5b2208d26189affa23855388a35dcc",
+    "check_qpcp_syndrome_support.py": "9a98cd2a295d3a5e1909146b55f9342e34e4eb363c00fdded77b9bc493edf94b"
+  },
+  "status": "passed",
+  "wolfram_checked": false
+}

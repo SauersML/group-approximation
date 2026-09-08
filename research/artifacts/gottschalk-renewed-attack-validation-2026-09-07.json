@@ -1,0 +1,49 @@
+{
+  "cairn": {
+    "claims": 7167,
+    "command": "bin/cairn check --json",
+    "findings": [],
+    "routes": 7313,
+    "status": "ok"
+  },
+  "checked_combined_main": "d48408dcfec2585fa7b72d01f9e7400b586e843d",
+  "date": "2026-09-07",
+  "evidence": "The published written arguments establish conditional structural results. Exact replays verify finite computations; Cairn verifies graph consistency. Neither is a Lean proof of Gottschalk.",
+  "general_conjecture_proved": false,
+  "general_goal_status": "OPEN",
+  "generated_dashboard_contains": [
+    "gottschalk-via-countable-transitive-decoder-fiber",
+    "split-decoders-have-generic-cantor-fibers",
+    "gottschalk-via-matrix-observable-extension",
+    "split-ca-quantization-has-sharp-defect"
+  ],
+  "generated_dashboard_verified_at": "c2d5f6518d7aa2e03236b7399ac9f01baa9cc2aa",
+  "lean_verified": false,
+  "open_bridges": [
+    "injective-ca-admit-countable-transitive-decoder-fiber",
+    "injective-ca-pullbacks-extend-to-matrix-observables"
+  ],
+  "publication_source_fingerprints_verified": 16,
+  "published_research_commits": [
+    "d172a111ab52487ad5b751fc5e79a3ce32356f7a",
+    "d48408dcfec2585fa7b72d01f9e7400b586e843d"
+  ],
+  "source_sha256": {
+    "notes/GOTTSCHALK_RESEARCH_2026-09-07.md": "5b1665aad141801bd50a16e1c79bd920acfcb162ea0e18c38f2c32bbc73e3502",
+    "research/artifacts/check-gottschalk-decoder-fibers-2026-09-07.py": "04273d448ccf7a70377aa4e8b0ffca3c2f45f540e96fe7d244491c32ad5155a9",
+    "research/artifacts/check-gottschalk-quantum-compression-2026-09-07.py": "7da999f2465564cb38c6c82a86d7500adc3b813e9513f1c2e713b8f9ee1eb7f5",
+    "research/artifacts/gottschalk-decoder-fibers-2026-09-07.md": "e5e9599c9e5f48ae16bec779f5f9ff8383de384ad58a4d9f788c4a941db74170",
+    "research/artifacts/gottschalk-decoder-fibers-replay-2026-09-07.json": "7ffcb45a6720c0cc1888baf131d4e2f50aa16d2ff90565b380133affcb0213e2",
+    "research/artifacts/gottschalk-quantum-compression-2026-09-07.md": "db348bad1531d449f9e46855a991bb5b000beaa72c1c2e0d4d09ba3c0bb00bc7",
+    "research/artifacts/gottschalk-quantum-compression-replay-2026-09-07.json": "dc58a50a65f67514d58f3a38b111fb22be74c5c0ecdb586a3f4502a5244fcc20",
+    "research/gottschalk-surjunctivity-conjecture.md": "f6093f9bb29094c379a8c5d2a1a3e0336a1077415e54479308a632f120b5d3e5",
+    "research/gottschalk-via-countable-transitive-decoder-fiber.md": "6191dbe3d01f8d59eff3ec217b2b33498886c11d884283c67d1d5a63f4c85a5f",
+    "research/gottschalk-via-matrix-observable-extension.md": "8edf116878563d4d34ad4910ceb075cb066172a053766c23458a1671d59de3eb",
+    "research/injective-ca-admit-countable-transitive-decoder-fiber.md": "c1a6425df5337499937787cc4fd3e1c15fc7db3556f4993619258481aaf1a929",
+    "research/injective-ca-pullbacks-extend-to-matrix-observables.md": "d85ec4fa2d227b6b6ba475378972d16172355db94a4018953e4522a2b2c11736",
+    "research/split-ca-quantization-has-sharp-defect.md": "e123b4664c718103442f2474e97f7b0602da751fcfc44ab1523d3f158520b427",
+    "research/split-ca-quantum-defect-proof.md": "3958c653c23365a6600a70d44dc184d775427a2705fce3a8dd6339c5d27c9345",
+    "research/split-decoder-cantor-fiber-proof.md": "09900299904d33d94c72f9292f73f6034a41f35f49d05e4ba433f8820a3f5501",
+    "research/split-decoders-have-generic-cantor-fibers.md": "315ec07696f3cffcaeb4a71b323a612d78e4c6320df2ac4eef5850940b7f021a"
+  }
+}

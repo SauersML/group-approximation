@@ -5,7 +5,20 @@ kind: claim
 title: The affine orientation-glue lemma would supply the missing richness in the F_lin 2-to-1 reduction
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
+  - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
+  - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
 ---
+
+**Inactive reduction proposal (2026-09-07).** The antecedent
+`affine-orientation-glue-lemma` has been refuted. As a bare material
+implication the display below is now vacuous; certifying it by contradiction
+would provide no hardness reduction. The original research task was an
+explicit construction with completeness, soundness, and parameter bounds.
+No such construction is supplied, and Cairn retains this historical record
+without a direct-proof route. The route requiring both it and the false
+glue lemma is invalidated. A replacement must state a usable hypothesis.
+
+## Original proposal
 
 **OPEN.**  The implication -- not the analytic lemma, the *use* of it:
 
@@ -25,8 +38,10 @@ reduces to one analytic lemma *plus an unwritten reduction*.
 What the implication has going for it: the glue lemma's conclusion is
 exactly the object a soundness analysis consumes -- a list `Q` of at most
 `L` candidate global labels, with `L` independent of the alphabet, hitting
-a `gamma`-fraction of the heavy cosets.  Richness is the property that this
-list exists.  `dummy-padding-cannot-beat-the-random-guessing-floor` shows
+a `gamma`-fraction of the heavy cosets. This was a proposed analytic
+consequence, not the definition of richness: the latter requires the
+uniform distribution on all perfect pairings at each left vertex.
+`dummy-padding-cannot-beat-the-random-guessing-floor` shows
 independence of the alphabet is the whole content, so a lemma delivering it
 is delivering the right thing.
 
@@ -39,14 +54,16 @@ the reduction uses.  None of that is written down here.
 
 * **Read it off the published Rich 2-to-1 framework.**  The natural move is
   to take the reduction of Braverman--Khot--Minzer and substitute the
-  bounded list for the alphabet-sized one.  Not carried out; the point at
-  which the published argument uses list size is not identified in this
-  repository, and asserting the substitution works is exactly the trap this
-  node exists to avoid.
+  bounded list for the alphabet-sized one. The direct affine version of
+  its Section 5 test is now explicitly ruled out as a uniform soundness
+  argument by `affine-long-code-test-has-no-uniform-soundness`. The new
+  artifact specifies the exact test and constructs low-value source
+  games with high-value outputs. It does not prove or refute the vacuous
+  historical implication above, nor does it rule out another construction.
 * **Route through the multi-slice invariance machinery.**  Braverman, Khot,
   Lifshitz and Minzer (Adv. Math. 480 (2025), Art. 110460) prove a
   dictatorship-test-implies-hardness paradigm with perfect completeness
   **assuming** Rich 2-to-1.  So that work consumes the conclusion rather
   than producing it, and cannot supply this implication.
-* Deferred until `affine-orientation-glue-lemma` is closer, since the
-  precise form of `L` and `gamma` a reduction can afford is not yet fixed.
+* Closed as an active endgame after the glue lemma's refutation; any new
+  route must provide different hypotheses and an explicit reduction.

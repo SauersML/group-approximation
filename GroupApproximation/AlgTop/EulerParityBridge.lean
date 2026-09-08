@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The Euler-parity bridge: what is still owed, stated exactly
@@ -86,5 +87,18 @@ theorem lemmaTwo_contradiction {eulerNumber : ℤ} {zeroCount : ℕ}
   refine false_of_parity_mismatch hbridge hEven ?_
   rw [hcount]
   exact Nat.not_even_one
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms lemmaTwo_contradiction
+
 
 end GroupApproximation.AlgTop

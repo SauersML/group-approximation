@@ -216,7 +216,22 @@ Cayley-graph form and Osin's abstract form (a non-elementary acylindrical action
 on *some* hyperbolic space) define the same class of groups, and it is that
 identification, not the choice of `A`, which is the literature input.  Stating
 the definition in the form the manuscript consumes keeps the citation out of the
-proof graph entirely. -/
+proof graph entirely.
+
+**Checked, not merely assumed harmless (2026-09-07): the identification is
+never spent as a black box anywhere in this repository's proof pipeline.**
+Every concrete `IsAcylindricallyHyperbolic` instance that this development
+actually builds is constructed directly in the Cayley-graph form above, never
+by first establishing Osin's abstract form and then invoking Theorem 3.12 to
+extract a concrete generating set: the free-group base case
+(`GGT.HyperbolicFreeGroupAH.instIsAcylindricallyHyperbolicFreeGroupFinTwo`) and
+every Hull-quotient closure (`GGT.HullSC`, the instance at line 377 there) are
+both built in Cayley-graph form from the start. So the reduction Theorem 3.12
+supplies in the literature is genuinely unneeded by the Lean development as it
+stands, and `exists_hullGeneratingSet` closes the citation completely for this
+repository's purposes -- this is a citation-list correction for the printed
+manuscript (the same genre as the Corollary 5.7 / Lemma 5.8 note carried by
+`Manuscript.NonMF.Saturation`), not an open Lean proof obligation. -/
 theorem exists_hullGeneratingSet (G : Type u) [Group G]
     [h : IsAcylindricallyHyperbolic G] : Nonempty (HullGeneratingSet G) := by
   obtain ⟨A, δ, hδ, hacy, hne⟩ := h.out

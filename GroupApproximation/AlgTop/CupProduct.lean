@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.SingularCohomology
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The cup product on `H^*(X; R)`
@@ -236,8 +237,8 @@ theorem cocycleClass_cup_d_left_zero (X : TopCat.{0}) (q i p : ℕ)
     exact cocycleClass_cup_coboundary_left_zero R X i q η ψ hψ hcoc
   · have hz : cochainCup p q (((cochainCx R X).d i p).hom η) ψ = 0 := by
       rw [(cochainCx R X).shape i p h]; simp
-    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc (by simp)
-      (cocycleClass_zero R X (p + q) (by simp))
+    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc rfl
+      (cocycleClass_zero R X (p + q) rfl)
 
 /-- The cup of a cocycle with an element in the image of a differential (right
 factor) has zero class, for any source index. -/
@@ -250,8 +251,8 @@ theorem cocycleClass_cup_d_right_zero (X : TopCat.{0}) (p i q : ℕ)
     exact cocycleClass_cup_coboundary_right_zero R X p i φ hφ η hcoc
   · have hz : cochainCup p q φ (((cochainCx R X).d i q).hom η) = 0 := by
       rw [(cochainCx R X).shape i q h]; simp
-    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc (by simp)
-      (cocycleClass_zero R X (p + q) (by simp))
+    exact cocycleClass_eq_zero_of_eq R X (p + q) hz hcoc rfl
+      (cocycleClass_zero R X (p + q) rfl)
 
 /-- The cup-with-right-cocycle map kills coboundaries (cokernel condition). -/
 theorem cupLeftMor_toCycles (X : TopCat.{0}) (p q : ℕ)
@@ -468,5 +469,20 @@ theorem cohPullback_cup {X Y : TopCat.{0}} (f : X ⟶ Y) (p q : ℕ)
   rw [cochainPullback_eval, cochainOne_eval, cochainOne_eval]
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms cup_add_left
+#audit_axioms cup_smul_right
+#audit_axioms cup_one
+#audit_axioms cohPullback_cup
 
 end GroupApproximation.AlgTop

@@ -2,6 +2,7 @@ import Mathlib.Algebra.Ring.Parity
 import Mathlib.Data.Nat.Factorial.Basic
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The parity core of Lemma 3 of the STW LIX manuscript
@@ -184,6 +185,21 @@ theorem even_map_of_two_dvd {S A : Type*} [CommRing S] [AddCommGroup A]
     (φ : S →+ A) {x : S} (h : (2 : S) ∣ x) : Even (φ x) := by
   obtain ⟨y, rfl⟩ := h
   exact ⟨φ y, by rw [two_mul, map_add]⟩
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms two_dvd_of_clearedNewton
+#audit_axioms powerSum_eq_of_chernChar
+#audit_axioms even_map_of_two_dvd
+
 
 end MappingTorusParity
 end AlgTop

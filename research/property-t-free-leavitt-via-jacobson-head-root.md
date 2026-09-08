@@ -5,7 +5,7 @@ kind: route
 title: Embed the one-branch Jacobson Steinberg cover and normally saturate its head root
 target: property-t-free-leavitt-full-mf-radical
 requires:
-  - binary-jacobson-steinberg-head-root-is-mf-invisible
+  - property-t-free-jacobson-head-collapse
   - full-leavitt-idempotent-defect-saturation
 ---
 
@@ -33,3 +33,7 @@ Restrict any norm-corona homomorphism of `St_20(R)` along this map.  The
 first prerequisite kills `z`.  The second prerequisite says that `z`
 normally generates the full Steinberg target, so the original homomorphism
 is trivial and its MF radical is the whole group.
+
+The first prerequisite explicitly requires a proof without property (T).
+The rank-weighted proof of the ordinary Jacobson head claim uses Kazhdan
+transport and cannot discharge this provenance requirement.

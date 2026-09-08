@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Submodules of free modules over a principal ideal domain are free
@@ -289,5 +290,20 @@ theorem projective_of_submodule_of_pid {R : Type*} [CommRing R] [IsDomain R]
     (N : Submodule R M) : Module.Projective R N :=
   haveI := free_of_submodule_of_pid N
   Module.Projective.of_basis (Module.Free.chooseBasis R N)
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms free_of_submodule_finsupp
+#audit_axioms free_of_submodule_of_pid
+#audit_axioms projective_of_submodule_of_pid
+
 
 end GroupApproximation.AlgTop.PID

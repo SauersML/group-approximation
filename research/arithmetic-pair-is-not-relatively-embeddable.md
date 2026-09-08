@@ -186,27 +186,24 @@ statement would give each of them as a witness.
   and the regular-type `p`-power closure is genuinely the NON-regular-type
   `p`-primary `Lambda`-exact towers (plus the weak-ucp outliers), the same
   live enemy as `(RC3)`; regular trace does not shortcut it.
-- **What property (T) buys for `n = 3`.**  `W^*(pi_k(C))'` is the exact
-  coordinate commutant of the microstate image, and by Peterson's
-  interchange formula the ultraproduct of these commutants is
-  `L(C)' cap M`; faithfulness `(CF1)` with `B_k = W^*(pi_k(C))` says the
-  coset images are orthogonal to the bicommutant of the `C`-image in each
-  coordinate.  No mechanism is known that forces a positive overlap.
-- **Correction (2026-08-21 audit): the coprime closure is CONDITIONAL.**
-  `sl3-re-lambda-exact-coprime-face-is-unfaithful` has been demoted to
-  OPEN: its step `pi(h) = V' in pi(Lambda)''` is false
-  (`congruence-slot-escapes-ultraproduct-lambda-algebra` -- regular
-  representations of `SL_3(Z/n_m)` at coprime levels have `W = 1` on the
-  nose and `E_(pi(Lambda)'')(pi(h)) = 0`).  What is proved is the
-  logarithmic-rate form: no matrix-form `RE/C` witness is `Lambda`-exact of
-  coprime type with `eps_k log n_k -> 0` (`eps_k` the generator
-  near-containment defect, `n_k` the level; subadditivity of
-  `dist_2(. , B_k)` plus `(tau)`-expander diameter).  So the residual
-  enemy sector on this face ALSO contains coprime-level `Lambda`-exact
-  witnesses whose near-containment decays slower than `1 / log n_k`, in
-  addition to the non-regular-type `p`-primary towers and the outliers
-  described above; the sentence "after the coprime closure" above should
-  be read with that hypothesis.  Separately, the title of this claim
+- **What property (T) buys for `n = 3`.** For genuine coordinate
+  representations of `C`, Kazhdan projection identifies their coordinate
+  commutant ultraproduct with the relative commutant of `pi(C)`. This
+  argument cannot be applied directly to arbitrary approximate coordinate
+  tuples. On the exact face, the new carrier-containment inequalities
+  also control the distance of moving group elements to arbitrary `B_k`.
+- **Coprime matrix face repaired without a rate condition (2026-09-08).**
+  The 2026-08-21 audit correctly invalidated the identification
+  `pi(h)=V' in pi(Lambda)''`; the congruence-slot counterexample and
+  the invalidation of the old proof remain valid. New routes
+  `sl3-re-coprime-face-from-kazhdan-carrier-control` and
+  `sl3-re-coprime-face-closes-by-jones-kazhdan` establish
+  `sl3-re-lambda-exact-coprime-face-is-unfaithful` by uniform Kazhdan
+  containment in the coordinate carriers. They require no condition
+  on `eps_k log n_k`: slow containment is no longer a remaining
+  coprime matrix sector. General approximate lattice tuples and the
+  primary sectors outside the existing exact-face theorems still
+  require new arguments. Separately, the title of this claim
   ("with respect to ANY Connes-embeddable algebra") is stronger than the
   three `N_1 = C` forms in the body: `RE/C` implies `RE/N_1` for every
   `N_1`, not conversely.

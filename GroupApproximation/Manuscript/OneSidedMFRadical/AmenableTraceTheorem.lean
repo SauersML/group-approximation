@@ -17,17 +17,11 @@ corollary `cor:affine-clifford-trace`, since merged into the theorem's own
 proof; see `AffineCliffordTrace.lean`.)
 
 The theorem is the concrete affine--Clifford instance, repackaged as the
-existential statement the manuscript prints.  Like `prop:clifford-locally-rf`
-itself, it is reduced to the still-open half of `prop:locally-rf-by-z-trace`
-(`AmenableTraceTheorem.PrintedLocallyRFCanonicalTraceQuasidiagonal`,
-`Sofic/CliffordWitnessSoficPrinted.lean`; lane `ring-b-alg`,
-`Analysis/LocallyRFQuasidiagonalTrace.lean`).  Once that lands, closing
-`manuscriptAmenableNonquasidiagonalTrace` unconditionally is one line:
-
-```
-theorem manuscriptAmenableNonquasidiagonalTrace : PrintedAmenableNonquasidiagonalTrace :=
-  manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal hQD
-```
+existential statement the manuscript prints.  The quasidiagonality of the
+locally residually finite kernel's canonical trace is proved by
+`AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`.
+`manuscriptAmenableNonquasidiagonalTrace` supplies that theorem to the
+explicit reduction below, so this trace input is discharged.
 
 Also carried here are the two remarks that follow the theorem in the text:
 
@@ -41,7 +35,7 @@ and the soficity mechanism sentence "the group `W` is sofic because locally
 residually finite groups are sofic and soficity passes to extensions with
 amenable quotient" (`manuscriptWSoficFromLocallyRFExtension`), citing
 Elek--Szabó, Theorem 1, through `SoficByAmenablePermanence.isSofic_int_semidirectProduct`.
-Neither remark, nor the soficity sentence, depends on the open trace clause.
+Neither remark, nor the soficity sentence, depends on the kernel-trace argument.
 -/
 
 namespace GroupApproximation
@@ -68,13 +62,12 @@ def PrintedAmenableNonquasidiagonalTrace : Prop :=
         (fun a : MaximalGroupCStar W ↦ canonicalMaximalTrace W a)
 
 /-- Closed, binder-free form of the reduction of Theorem `thm:amenable-trace`
-to the still-open half of `prop:locally-rf-by-z-trace`. -/
+to the quasidiagonal-trace clause of `prop:locally-rf-by-z-trace`. -/
 def PrintedAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal : Prop :=
   PrintedLocallyRFCanonicalTraceQuasidiagonal → PrintedAmenableNonquasidiagonalTrace
 
-/-- **Reduction of Theorem `thm:amenable-trace` to the still-open half of
-`prop:locally-rf-by-z-trace`.**  A closed, unconditional theorem: the open
-content is entirely inside the hypothesis
+/-- **Reduction of Theorem `thm:amenable-trace` to the quasidiagonal-trace clause of
+`prop:locally-rf-by-z-trace`.**  A closed, unconditional theorem: the trace input is explicit in the hypothesis
 `PrintedLocallyRFCanonicalTraceQuasidiagonal`. -/
 theorem manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal :
     PrintedAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal := by
@@ -94,8 +87,8 @@ theorem manuscriptAmenableNonquasidiagonalTrace :
   manuscriptAmenableNonquasidiagonalTraceFromLocallyRFTraceQuasidiagonal
     AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal
 
-/-- **The three conclusions that do not depend on the still-open trace
-clause**, proved directly and unconditionally: `WitnessGroup ≅ ShiftKernel ⋊
+/-- **The conclusions that do not use the kernel-trace
+argument**, proved directly and unconditionally: `WitnessGroup ≅ ShiftKernel ⋊
 ℤ` with `ShiftKernel` locally residually finite, `WitnessGroup` sofic and
 not operator-MF, and its canonical maximal trace amenable but not
 quasidiagonal. -/

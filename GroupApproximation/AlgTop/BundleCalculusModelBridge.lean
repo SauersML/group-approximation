@@ -1,4 +1,6 @@
 import GroupApproximation.AlgTop.BundleCalculusTransport
+import GroupApproximation.KTheory.MatrixProjection
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Bundle calculus V: the two ambient models are one algebra
@@ -69,38 +71,44 @@ theorem continuousMap_sum_apply {ι' : Type*} (s : Finset ι') (f : ι' → C(X,
 function.  Continuity is entrywise because the topology on `CStarMatrix` *is*
 the product topology -- `CStarMatrix.ofMatrixL` is a continuous linear
 equivalence whose forward map is `continuous_id`. -/
-def toSection (M : Matrix ι ι C(X, ℂ)) : C(X, CStarMatrix ι ι ℂ) where
+noncomputable def toSection (M : Matrix ι ι C(X, ℂ)) : C(X, CStarMatrix ι ι ℂ) where
   toFun x := fun i j => M i j x
   continuous_toFun :=
     continuous_pi fun i => continuous_pi fun j => map_continuous (M i j)
 
+omit [Fintype ι] [DecidableEq ι] in
 @[simp]
 theorem toSection_apply (M : Matrix ι ι C(X, ℂ)) (x : X) (i j : ι) :
     toSection M x i j = M i j x := rfl
 
 /-- A continuous matrix-valued function, read as a matrix of continuous
 functions. -/
-def ofSection (P : C(X, CStarMatrix ι ι ℂ)) : Matrix ι ι C(X, ℂ) := fun i j =>
+noncomputable def ofSection (P : C(X, CStarMatrix ι ι ℂ)) : Matrix ι ι C(X, ℂ) := fun i j =>
   ⟨fun x => P x i j,
     (continuous_apply j).comp ((continuous_apply i).comp (map_continuous P))⟩
 
+omit [Fintype ι] [DecidableEq ι] in
 @[simp]
 theorem ofSection_apply (P : C(X, CStarMatrix ι ι ℂ)) (i j : ι) (x : X) :
     ofSection P i j x = P x i j := rfl
 
+omit [Fintype ι] [DecidableEq ι] in
 theorem ofSection_toSection (M : Matrix ι ι C(X, ℂ)) : ofSection (toSection M) = M := by
   ext i j x
   rfl
 
+omit [Fintype ι] [DecidableEq ι] in
 theorem toSection_ofSection (P : C(X, CStarMatrix ι ι ℂ)) : toSection (ofSection P) = P := by
   ext x i j
   rfl
 
+omit [DecidableEq ι] in
 theorem toSection_add (M N : Matrix ι ι C(X, ℂ)) :
     toSection (M + N) = toSection M + toSection N := by
   ext x i j
   rfl
 
+omit [DecidableEq ι] in
 theorem toSection_star (M : Matrix ι ι C(X, ℂ)) :
     toSection (star M) = star (toSection M) := by
   ext x i j
@@ -111,6 +119,7 @@ theorem toSection_smul (c : ℂ) (M : Matrix ι ι C(X, ℂ)) :
   ext x i j
   rfl
 
+omit [Fintype ι] in
 theorem toSection_one : toSection (1 : Matrix ι ι C(X, ℂ)) = 1 := by
   ext x i j
   rw [toSection_apply]
@@ -119,8 +128,9 @@ theorem toSection_one : toSection (1 : Matrix ι ι C(X, ℂ)) = 1 := by
     simp [Matrix.one_apply_eq, CStarMatrix.one_apply_eq]
   · simp [Matrix.one_apply_ne h, CStarMatrix.one_apply_ne h]
 
-/-- Multiplicativity is the only field that is not definitional: it is
-`Matrix.mul_apply` on both sides with evaluation pushed through the sum. -/
+-- Multiplicativity is the only field that is not definitional: it is
+-- `Matrix.mul_apply` on both sides with evaluation pushed through the sum.
+omit [DecidableEq ι] in
 theorem toSection_mul (M N : Matrix ι ι C(X, ℂ)) :
     toSection (M * N) = toSection M * toSection N := by
   ext x i j
@@ -209,9 +219,23 @@ theorem murrayVonNeumannEquiv_of_path_block {P : ℝ → Matrix ι ι C(X, ℂ)}
     (hproj : ∀ t : ℝ, IsStarProjection (P t)) :
     MurrayVonNeumannEquiv (P 0) (P 1) := by
   have h : MurrayVonNeumannEquiv (toSection (P 0)) (toSection (P 1)) :=
-    murrayVonNeumannEquiv_of_path hP fun t => isStarProjection_toSection (hproj t)
+    murrayVonNeumannEquiv_of_path (f := fun t => toSection (P t)) hP
+      fun t => isStarProjection_toSection (hproj t)
   have h' := murrayVonNeumannEquiv_ofSection h
   rwa [ofSection_toSection, ofSection_toSection] at h'
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms murrayVonNeumannEquiv_of_path_block
+
 
 end HomotopyInBlockModel
 

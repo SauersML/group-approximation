@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveBasic
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The affine chart of `ℂP^d`
@@ -77,7 +78,7 @@ theorem rankOneProj_normalize {n : Type*} [Fintype n] {u : n → ℂ} (hu : sqNo
   have hs : ((Real.sqrt (sqNorm u) : ℝ) : ℂ) * ((Real.sqrt (sqNorm u) : ℝ) : ℂ)
       = ((sqNorm u : ℝ) : ℂ) := by
     rw [← Complex.ofReal_mul, Real.mul_self_sqrt hpos.le]
-  rw [rankOneProj_apply, normalize, star_div₀, Complex.star_def, Complex.conj_ofReal,
+  rw [rankOneProj_apply, normalize, normalize, star_div₀, Complex.star_def, Complex.conj_ofReal,
     div_mul_div_comm, hs]
 
 /-! ## 2. The chart map -/
@@ -205,7 +206,8 @@ theorem chartAt_chartInv (x : CP d) (hx : entry x 0 0 ≠ 0) : chartAt (chartInv
     show (∑ c, ‖chartVec (chartInv x) c‖ ^ 2) = 1 / r
     have hterm : ∀ c, ‖chartVec (chartInv x) c‖ ^ 2 = ‖entry x c 0‖ ^ 2 / (r * r) := by
       intro c
-      rw [hvec c, Complex.norm_div, Complex.norm_of_nonneg hrnn, div_pow, sq]
+      rw [hvec c, Complex.norm_div, Complex.norm_of_nonneg hrnn, div_pow]
+      ring
     rw [Finset.sum_congr rfl fun c _ => hterm c, ← Finset.sum_div, ← hrdef]
     field_simp
   refine ext fun a b => ?_
@@ -260,6 +262,19 @@ theorem chartAt_zero (d : ℕ) : chartAt (0 : Fin d → ℂ) = basePoint d := by
       rfl
   rw [hv a, hv b]
   simp
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms chartAt_zero
+
 
 end CPn
 

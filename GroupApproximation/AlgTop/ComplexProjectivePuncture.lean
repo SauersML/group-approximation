@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveHyperplane
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Pushing `ℂP^{d+1}` off its base point onto the hyperplane
@@ -56,7 +57,7 @@ variable {d : ℕ}
 
 theorem exists_diag_ne_zero (x : CP d) : ∃ j, entry x j j ≠ 0 := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have h := trace_coe x
   simp only [Matrix.trace, Matrix.diag_apply] at h
   rw [Finset.sum_eq_zero fun j (_ : j ∈ Finset.univ) => hcon j] at h
@@ -100,7 +101,6 @@ theorem weighted_sum (x : CP d) (δ : Fin (d + 1) → ℂ) (a b : Fin (d + 1)) :
   have hR : entry x j j * entry x j j * ((∑ c, δ c * entry x c c) * entry x a b)
       = ∑ c, entry x j j * entry x j j * (δ c * entry x c c * entry x a b) := by
     rw [Finset.sum_mul, Finset.mul_sum]
-    exact Finset.sum_congr rfl fun c _ => by ring
   refine mul_left_cancel₀ (mul_ne_zero hj hj) ?_
   rw [hL, hR]
   exact Finset.sum_congr rfl fun c _ => hmul c
@@ -261,12 +261,10 @@ theorem scaleMat_mem {t : ℝ} {x : CP (d + 1)}
       intro c
       rw [scaleMat_apply, scaleMat_apply]
       field_simp
-      ring
     rw [Finset.sum_congr rfl fun c _ => hterm c, ← Finset.mul_sum,
       weighted_sum x (fun c => ((scaleVec (d := d) t c : ℝ) : ℂ) ^ 2) a b,
       sum_scaleVec_sq_diag t x, scaleMat_apply]
     field_simp
-    ring
   · simp only [Matrix.trace, Matrix.diag_apply]
     have hterm : ∀ a : Fin (d + 2), scaleMat (d := d) t x a a
         = (((scaleVec (d := d) t a : ℝ) : ℂ) ^ 2 * entry x a a)
@@ -347,7 +345,8 @@ theorem continuous_rad : Continuous (rad (d := d)) := continuous_diagR 0
 theorem continuous_scaleVec (a : Fin (d + 2)) :
     Continuous fun t : ℝ => scaleVec (d := d) t a := by
   refine Fin.cases ?_ ?_ a
-  · simpa only [scaleVec_zero] using continuous_const.sub continuous_id
+  · simp only [scaleVec_zero]
+    fun_prop
   · intro i
     simpa only [scaleVec_succ] using continuous_const
 
@@ -375,6 +374,19 @@ theorem continuous_scale : Continuous (scale (d := d)) := by
           (Complex.continuous_ofReal.comp ((continuous_scaleVec b).comp hfst)))
   · intro p
     exact scaleTrace_ne_zero p.2.2
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms continuous_scale
+
 
 end CPn
 

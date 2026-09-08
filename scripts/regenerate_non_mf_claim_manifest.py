@@ -26,9 +26,9 @@ REPO = Path(__file__).resolve().parent.parent
 # declaration is also printed in the environment.
 EXACT_TARGETS: dict[str, tuple[str, str]] = {
     "prop:mf-residual-calculus": (
-        "Manuscript/OneSidedMFRadical/LiteralMFClosure",
+        "Manuscript/OneSidedMFRadical/PrintedDefinitions",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptMFResidualCalculusLiteral"),
+        "allMFTargetsKill_iff_allCoronasKill"),
     "thm:compression-criterion": (
         "Manuscript/OneSidedMFRadical/PrintedCriterion",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -61,9 +61,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/NormalKazhdanPrintedRoute",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute"),
-    "lem:proper-isometry": (
-        "Analysis/ProperIsometryStrictOrder",
-        "GroupApproximation.manuscriptProperIsometryStrictOrder"),
     "prop:max-infinite": (
         "Analysis/StrictCompressionFromPrinted",
         "GroupApproximation.MaximalCStarPrintedHypotheses."
@@ -122,6 +119,30 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means there is no
 # additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
+    # The spectral tensor argument and the wordwise compactness theorem
+    # have complete written proofs, without new Lean verification badges.
+    "lem:linear-tensor-amplification": (),
+    "thm:word-linear-certificate": (),
+    # The finite-block theorem has a full written proof. Its new analytic
+    # step is not yet a compiled Lean endpoint; do not inherit older badges.
+    "thm:finite-algebra-transport": (
+        "Finite-dimensional C*-algebra structure and compact Haar integration",),
+    "thm:perfect-block-radical": (
+        "Free-product normal form, free tree actions, and residual finiteness of free groups",
+        "Elek--Szabo, Theorem 1"),
+    "thm:fp-sofic-radical": (
+        "Bekka--de la Harpe--Valette, Example 1.7.4(i)",
+        "LiteralBaseCompleteness.baseAffineEquiv (existing in-repository base presentation)",
+        "Simplicity and perfection of A_5; free-product center theorem"),
+    "prop:cyclic-hnn-absorption": (
+        "Britton's lemma and the HNN normal form theorem",),
+    "thm:sofic-cyclic-mf": (
+        "Elementary generation of SL_3(Z); characters separate points of abelian groups",
+        "Amalgam normal form and Bass--Serre theory",
+        "Collins--Dykema, Theorem 3.4 and Corollary 3.6",
+        "Elek--Szabo, Theorem 1",
+        "Bryder--Ivanov--Omland, Proposition 4.12",
+        "Minasyan--Osin, Corollary 2.3"),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -175,15 +196,16 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
 # Their declarations are recorded as collective, with no claim that one
 # declaration is a complete wrapper.
 COLLECTIVE_CLAIMS: set[str] = {
+    # Kernel equivalence and the faithful C-star/group embedding implication
+    # are separate exact statements. Neither alone is all of Lemma 2.1.
+    "prop:mf-residual-calculus",
     "prop:clifford-self-embedding",
     "thm:factorization-nonmf-trace",
-    # `thm:full-defect-ring` prints three badges: the n>=4 statement
-    # (manuscriptFullComplementaryIdempotentsAllCharacteristics), the
-    # n>=2 rank-two descent (manuscriptFullComplementaryIdempotentsRankTwoAll
-    # Characteristics), together covering the printed n>=2 conclusion, and
+    # `thm:full-defect-ring` prints two badges: the n>=2 rank-two descent
+    # (manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics), and
     # the "group B" sentence (UniversalGroupSigma.manuscriptFullComplementary
     # IdempotentsUniversal: property (T), MF-triviality, finite generation,
-    # normal generation by an element of order four, and the homomorphism to
+    # normal generation by an involution, and the homomorphism to
     # EL_n(R) with normally generating image, for every n>=2).
     "thm:full-defect-ring",
     # `prop:linear-collapse` prints one badge per direction of its "Then ...
@@ -226,9 +248,9 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:rank-two": [],
     "thm:mf-quotient-units": ["thm:full-defect-ring"],
     "cor:leavitt-mf-quotient": ["thm:mf-quotient-units"],
-    "lem:proper-isometry": [],
-    "prop:max-infinite": [
-        "lem:kazhdan-projection-order", "lem:proper-isometry"],
+    # The proper-isometry construction is now inside this proposition's
+    # proof, not a separate numbered lemma in the manuscript.
+    "prop:max-infinite": ["lem:kazhdan-projection-order"],
     "thm:factorization-nonmf-trace": [],
     "prop:locally-rf-by-z-trace": [],
     "prop:clifford-self-embedding": ["thm:compression-criterion"],
@@ -236,11 +258,24 @@ DEPENDENCIES: dict[str, list[str]] = {
         "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
         "thm:factorization-nonmf-trace"],
     "thm:amenable-trace": ["prop:clifford-locally-rf"],
+    "thm:finite-algebra-transport": [
+        "thm:transport", "prop:mf-residual-calculus"],
+    "thm:perfect-block-radical": [
+        "thm:finite-algebra-transport", "prop:mf-residual-calculus",
+        "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
+    "thm:fp-sofic-radical": ["thm:perfect-block-radical"],
+    "prop:cyclic-hnn-absorption": ["prop:mf-residual-calculus"],
+    "thm:sofic-cyclic-mf": [
+        "thm:fp-sofic-radical", "prop:cyclic-hnn-absorption"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "thm:torsion-free": [
         "thm:compression-criterion", "lem:saturation"],
-    "prop:linear-collapse": ["prop:mf-residual-calculus"],
+    "lem:linear-tensor-amplification": [],
+    "thm:word-linear-certificate": [
+        "lem:linear-tensor-amplification", "prop:mf-residual-calculus",
+        "lem:stable-finite"],
+    "prop:linear-collapse": ["thm:word-linear-certificate"],
     "cor:relative-quotient": ["thm:torsion-free", "thm:hull"],
     "cor:regular-nonmf-algebra": ["thm:torsion-free"],
 }

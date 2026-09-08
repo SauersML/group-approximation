@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # A punctured normed space is homotopy equivalent to its unit sphere
@@ -80,5 +81,18 @@ def complexPuncturedHomotopyEquivSphere (d : ℕ) :
       ↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (2 * (d + 1)))) 1) :=
   ((complexPuncturedHomeo (d + 1)).toHomotopyEquiv).trans
     (puncturedHomotopyEquivSphere (EuclideanSpace ℝ (Fin (2 * (d + 1)))))
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms complexToEuclidean_eq_zero_iff
+
 
 end GroupApproximation.AlgTop

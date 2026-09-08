@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.CupProduct
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The external (cross) product in singular cohomology
@@ -149,5 +150,19 @@ cast appears, since `p + 0` reduces to `p`. -/
   rw [cohPullback_one, cup_one]
 
 end
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line that the landing gate checks
+by name -- without a directive that check has nothing to look for and passes
+vacuously. `#audit_closed_axioms` is not usable here: it rejects any declaration
+whose type begins with a binder, and every statement below quantifies over the
+coefficient ring and the space. -/
+
+#audit_axioms cross_add_left
+#audit_axioms cross_natural
+#audit_axioms cross_one_right
 
 end GroupApproximation.AlgTop

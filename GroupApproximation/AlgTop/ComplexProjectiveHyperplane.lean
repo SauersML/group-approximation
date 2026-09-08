@@ -1,4 +1,5 @@
 import GroupApproximation.AlgTop.ComplexProjectiveChart
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The hyperplane `ℂP^d ⊂ ℂP^{d+1}`
@@ -184,6 +185,19 @@ theorem basePoint_notMem_range_incl : basePoint (d + 1) ∉ Set.range (incl (d :
   have h1 : entry (basePoint (d + 1)) 0 0 = 0 := h
   rw [basePoint_entry_zero_zero] at h1
   exact one_ne_zero h1
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms basePoint_notMem_range_incl
+
 
 end CPn
 

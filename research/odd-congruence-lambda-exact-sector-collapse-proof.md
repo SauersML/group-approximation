@@ -17,7 +17,7 @@ to `p`, with `pi|_Lambda = [sigma_m]` in `M = prod_U M_(d_m)`, and
 `R_m = sigma_m(G_m)' subseteq M_(d_m)` and `R_U = prod_U R_m
 subseteq M`.  Since `Lambda -> G_m` is onto, `sigma_m(Lambda)` and
 `sigma_m(Lambda_-)` (`Lambda_- = Lambda cap h^(-1) Lambda h`, which
-contains the principal congruence subgroup `Lambda(4)` and hence
+contains the principal congruence subgroup `Lambda(p^2)` and hence
 still surjects onto `G_m` by strong approximation and coprimality)
 generate the same algebra, with common commutant `R_m`.
 
@@ -44,7 +44,8 @@ regularity or multiplicity hypothesis is needed.)
 in Lambda` with `lambda_(h,m) = h mod n_m` and set `V' =
 [sigma_m(lambda_(h,m))]`, well defined because `sigma_m` factors
 through `G_m`.  As in `odd-congruence-exact-sector-is-one-inner-action`:
-`V'` is a limit of image elements, so it commutes with `R_U`; both
+`V'` lies in the ultraproduct of the coordinate image algebras, so
+it commutes with `R_U`; this does not put it in `pi(Lambda)''`. Both
 `V` and `V'` implement `lambda -> h lambda h^(-1)` on `pi(Lambda_-)`,
 so `W := V'^* V` commutes with `pi(Lambda_-)`, hence by `(OSP1)`
 

@@ -292,7 +292,7 @@ theorem dgoCorollary612 : DGOCorollary612.{u} := by
   exact exists_isLoxodromic_of_isHyperbolicallyEmbedded D hemb hnd
 
 /-- **`OsinTheorem12` costs two citations.**  `DGOTheorem68` and
-`OsinTheorem54` remain; `DGOCorollary612` and `DGOTheorem614` do not. -/
+`OsinTheorem54` remain; `DGOCorollary612` and `FreeRankTwoAtNonDegenerate` do not. -/
 theorem osinTheorem12_of_two (h68 : DGOTheorem68.{u, v}) (h54 : OsinTheorem54.{u}) :
     OsinTheorem12.{u, v} :=
   osinTheorem12_of_612 h68 h54 dgoCorollary612

@@ -1,6 +1,7 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AlexanderWhitneyChainMap
 import Mathlib.Data.Finset.Sort
 import Mathlib.Data.Finset.Powerset
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The combinatorics of Steenrod's cup-`i` products: `i`-cuts
@@ -175,6 +176,19 @@ def cutFrontFace {i p q : ℕ} {S : Finset (Fin (p + q + i + 1))} (hS : S ∈ cu
 def cutBackFace {i p q : ℕ} {S : Finset (Fin (p + q + i + 1))} (hS : S ∈ cuts i p q) :
     (⦋q + i⦌ : SimplexCategory) ⟶ ⦋p + q + i⦌ :=
   faceOfFinset (cutV S) (cutV_card_of_mem_cuts hS)
+
+/-! ## Axiom audit
+
+`#audit_axioms` reports the transitive axiom closure and **fails the build** if
+anything outside `propext`/`Classical.choice`/`Quot.sound` reaches it, and it
+emits the per-declaration `depends on axioms` line the landing gate checks by
+name -- without a directive that check has nothing to look for and passes
+vacuously. What is certified is the *closure*; unconditionality is not claimed,
+and `#audit_closed_axioms` is not usable here because it rejects any
+declaration whose type begins with a binder. -/
+
+#audit_axioms cutV_card_of_mem_cuts
+
 
 end AlgTop
 end GroupApproximation
