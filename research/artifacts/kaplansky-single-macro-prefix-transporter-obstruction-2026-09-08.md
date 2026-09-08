@@ -2,6 +2,11 @@
 
 Status: scoped obstruction proved below. No Kaplansky counterexample or surjunctivity theorem is claimed.
 
+The [bit-level control](kaplansky-bit-level-transporter-without-finite-boundary-modules-2026-09-08.md)
+gives an explicit actor outside this macro-prefix scope for which the
+two charts have no nonzero finite-dimensional submodules in positive
+boundary exterior powers. Its comparison equation remains unresolved.
+
 ## 1. Exact scope and statement
 
 Use the finite chart `K=GL_2(F_4)` and reduced projectors `f_0,P_0` from Sections 7–8 of [the half-corner artifact](kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md). Work in the same embedded matrix group over `L_2(F_4)` used in its Sections 11–15. The constant chart acts on coordinates one and two and fixes the remaining coordinates.

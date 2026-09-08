@@ -23,6 +23,8 @@ artifacts:
   - research/artifacts/gottschalk-tarski-common-factor-residual-controls-2026-09-08.md
   - research/artifacts/gottschalk-common-factor-coset-collisions-2026-09-08.md
   - research/artifacts/gottschalk-stable-three-factor-reduction-2026-09-08.md
+  - research/artifacts/gottschalk-recipient-affine-normal-form-and-fiber-obstruction-2026-09-08.md
+  - research/artifacts/gottschalk-tarski-operand-reversal-exclusions-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -156,3 +158,20 @@ polynomial version. The prerequisite
 `three-factor-finite-alphabet-ca-are-surjunctive` is still open;
 the existing block elimination theorems do not cover this universal
 class. The reduction therefore does not close the headline goal.
+
+The further universal normal form `H(x,u)=(x+u,F(x)-x-u)` puts
+every output's nonlinearity on the opposite block while giving it
+constant coefficient +1 or -1 on its own recipient track. The exact
+fiber identity `H^-1(z,w) ~= F^-1(z+w)` shows that these properties
+retain the full problem. Isolating a preserved certificate gives
+fibers that are translates of F; none is known bijective independently.
+The new prerequisite `recipient-affine-three-factor-ca-are-surjunctive`
+is open. The artifact also excludes obtaining an invariant coordinate
+fiber by constant linear two-track changes while retaining recipient
+affinity for a non-affine rule.
+
+In the conditional Tarski common-factor example, operand reversal
+excludes two of the four residual mechanisms. At most two actors
+remain for fixed noncommuting s,t, with exact subgroup relations in
+the new artifact. They are necessary cases still to be tested, not
+injective maps or counterexamples.

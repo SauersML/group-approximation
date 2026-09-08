@@ -11,6 +11,11 @@ These results exclude construction families; they do not solve
 Gottschalk's conjecture or assert injectivity of any residual rule.
 No computation was used.
 
+The later [operand-reversal proof](gottschalk-tarski-operand-reversal-exclusions-2026-09-08.md)
+excludes two of the four final Tarski cases below, leaving at most two
+actors for fixed noncommuting s,t. No injectivity claim is made for
+either remaining case.
+
 Write R_a x(g)=x(ga), T=R_t, U=R_s, V=R_u, and Q(x)=xTx.
 Thus R_a R_b=R_(ab). The expanded quadratic operands in (1) are
 (us,ust,s,st). Coincident addresses are allowed.
