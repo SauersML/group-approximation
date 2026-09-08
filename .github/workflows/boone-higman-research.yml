@@ -35,6 +35,10 @@ on:
       - 'research/rational-transducer-*.md'
       - 'research/decidable-fp-groups-need-not-embed-in-rational-group.md'
       - 'research/kms-complexity-*.md'
+      - 'research/shell-cantor-*.md'
+      - 'research/shell-prefix-germ-*.md'
+      - 'research/shell-near-index-*.md'
+      - 'research/decidable-inputs-have-fp-shell-stabilizers.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
     inputs:
@@ -138,6 +142,10 @@ jobs:
           bin/cairn why boundary-orbit-wreath-actor-has-infinite-abelianization --json > bh-boundary-wreath-charge.json
           bin/cairn why rational-homeomorphism-subgroups-have-exponential-wp --json > bh-finite-state-word-problem.json
           bin/cairn why decidable-fp-groups-need-not-embed-in-rational-group --json > bh-finite-state-nonembedding.json
+          bin/cairn why shell-cantor-embeddings-are-finite-germ-extensions --json > bh-shell-realization.json
+          bin/cairn why shell-prefix-germ-is-not-normal-or-finite-index --json > bh-shell-germ-obstruction.json
+          bin/cairn why decidable-inputs-have-fp-shell-stabilizers --json > bh-shell-open-stabilizers.json
+          bin/cairn why boone-higman-via-shell-germ-stabilizers --json > bh-shell-open-route.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -157,3 +165,4 @@ jobs:
             bh-cantor-*.json
             bh-boundary-wreath-*.json
             bh-finite-state-*.json
+            bh-shell-*.json

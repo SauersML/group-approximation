@@ -76,6 +76,13 @@ finitely presented residually finite inputs embed in no rational
 homeomorphism group. Thus a universal proof cannot require every
 input to act by finite-state Cantor homeomorphisms.
 
+The route `boone-higman-via-shell-germ-stabilizers` retains arbitrary
+Cantor shell homeomorphisms and therefore avoids that restriction.
+Its universal faithful finite-germ realization is proved; its OPEN
+clause is `decidable-inputs-have-fp-shell-stabilizers`, finite
+presentation of three explicitly specified one- and two-point
+singularity stabilizers for a suitable enumeration of the input.
+
 ## What a certificate must contain
 
 *Proof.*  It suffices to close any one of the live routes.  The shortest

@@ -67,3 +67,9 @@ Proposition 3.27, Theorem 3.28, and Example 3.31 (p. 194).  Source checked
   A square-spiral two-dimensional attempt is recorded in the boundary
   artifact; its slide does not have a finite cubical-orthant partition,
   so the cubical piecewise-isometry finiteness results do not apply.
+- **Cantor-shell alternative.** The separate route
+  [[boone-higman-via-shell-germ-stabilizers]] replaces the permutation
+  envelope on N with a group containing V on a Cantor space. Its
+  missing clauses are the three groups in
+  [[decidable-inputs-have-fp-shell-stabilizers]]. The shared regular
+  enumeration does not identify the two finite-presentation problems.
