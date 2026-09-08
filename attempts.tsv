@@ -302,3 +302,4 @@
 34233404151	2026-09-08T13:40:59Z	GroupApproximation/Analysis/STW22ProblemXXIIFactorialEndpoint.lean	factorialNegativeSolutionToProblemXXII
 34257815123	2026-09-08T17:34:47Z	GroupApproximation/Sofic/CliffordLampNormalForm.lean	zmod2_eq_zero_or_one
 34274093118	2026-09-08T20:20:01Z	GroupApproximation/Sofic/CliffordLampNormalFormSplice.lean	lamp_sq_mul_self
+34288601406	2026-09-08T23:00:48Z	GroupApproximation/Sofic/CliffordLampOrderFormula.lean	mem_supportedModel_iff
