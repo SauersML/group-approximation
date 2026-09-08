@@ -5,7 +5,7 @@ kind: claim
 title: For a faithful 2-transitive action the type (A) conditions collapse to finite presentation of the group and finite generation of one point stabilizer
 distinct_from:
   type-a-action-gives-boone-higman-for-subgroups: that is the imported corollary saying what a type (A) action buys; this is an elementary reduction of the four type (A) clauses to two under an extra transitivity hypothesis, and buys nothing on its own.
-  relative-automorphism-action-is-highly-transitive: that is an imported statement about one specific action being highly transitive with finitely generated stabilizers; this is the general observation that high transitivity discharges the pair-orbit clause, and explains why that route has only one open leaf.
+  relative-automorphism-action-is-highly-transitive: that supplies high transitivity and finitely generated stabilizers for a specific action; this is the general reduction of the type-A hypotheses, independent of whether the remaining presentation requirement holds.
   fiber-product-conjugation-action-lemma: that computes the pair orbits of a two-sided translation action and finds conjugacy classes, which are generally many; this observes that a 2-transitive action has exactly one pair orbit, which is the opposite extreme and needs no computation.
   simple-core-bi-index-counts-coset-action-pair-orbits: that counts pair orbits of a coset action by double cosets, so its pair-orbit clause is a real hypothesis; this is the case where the count is 1 for free.
 artifacts:
@@ -37,9 +37,11 @@ acting group, which is the clause every route in this region gets stuck on.
 
 That is exactly the shape of `boone-higman-via-bffhz-action-image`: its
 action is highly transitive with finitely generated stabilizers by
-`relative-automorphism-action-is-highly-transitive`, so its only open leaf is
-`bffhz-action-image-is-finitely-presented`, a finite-presentation claim.  It
-is also the shape a sharply 2-transitive construction would have -- sharp
+`relative-automorphism-action-is-highly-transitive`, so finite presentation
+was its remaining prerequisite. That universal prerequisite,
+`bffhz-action-image-is-finitely-presented`, is now refuted; the reduction
+of hypotheses remains valid. It is also the shape a sharply 2-transitive
+construction would have -- sharp
 2-transitivity gives the single pair orbit and a trivial point stabilizer,
 which is finitely generated for free, leaving finite presentation of the
 acting group as the whole problem.  No such construction is claimed here, and

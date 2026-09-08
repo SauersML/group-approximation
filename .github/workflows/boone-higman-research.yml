@@ -25,6 +25,9 @@ on:
       - 'research/cyclic-shift-finite-prefix-*.md'
       - 'research/finite-ray-*.md'
       - 'research/regular-enumeration-*.md'
+      - 'research/relative-automorphism-*.md'
+      - 'research/regular-cyclic-twisted-*.md'
+      - 'research/bffhz-*.md'
       - '.github/workflows/boone-higman-research.yml'
   workflow_dispatch:
     inputs:
@@ -117,6 +120,11 @@ jobs:
           bin/cairn why infinite-shift-higman-compiler --json > bh-shift-open-compiler.json
           bin/cairn why finite-ray-shift-envelopes-require-virtually-cyclic-input --json > bh-shift-finite-ray.json
           bin/cairn why regular-enumeration-displacement-bounds-growth --json > bh-shift-displacement.json
+          bin/cairn why relative-automorphism-fp-host-reflects-base-presentation --json > bh-automorphism-fp-reflection.json
+          bin/cairn why regular-cyclic-twisted-core-is-decidable-mif-non-fp --json > bh-automorphism-counterexample-core.json
+          bin/cairn why bffhz-computable-core-fp-upgrade-is-false --json > bh-automorphism-obstruction.json
+          bin/cairn why bffhz-action-image-is-finitely-presented --json > bh-automorphism-refuted-premise.json
+          bin/cairn why boone-higman-via-bffhz-action-image --json > bh-automorphism-disabled-route.json
       - name: Retain structural validation and exact finite witness
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         with:
@@ -132,3 +140,4 @@ jobs:
             bh-normalizer-separation.json
             bh-projective-*.json
             bh-shift-*.json
+            bh-automorphism-*.json

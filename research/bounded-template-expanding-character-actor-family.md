@@ -147,6 +147,8 @@ The best current fp-envelope formulation is
 image is highly transitive, has finitely generated point stabilizers, and
 contains the André--Guirardel simple property-`(T)` group acting freely.
 Finite presentation of that faithful image would therefore give the exact
-lamp host and its two-point seed.  This is precisely the existing open claim
-`bffhz-action-image-is-finitely-presented`; no new analytic PVM assertion is
-being folded into it.
+lamp host and its two-point seed. This remains a question for the specified
+actor. The universal computable-core assertion
+`bffhz-action-image-is-finitely-presented` is now refuted by
+`bffhz-computable-core-fp-upgrade-is-false`, so it cannot supply that
+hypothesis. No new analytic PVM assertion is being folded into it.

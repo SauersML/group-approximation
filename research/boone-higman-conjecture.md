@@ -24,6 +24,7 @@ artifacts:
   - research/artifacts/boone-higman-projective-finiteness-gate-2026-09-08.md
   - research/artifacts/boone-higman-zigzag-shift-compiler-2026-09-08.md
   - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
+  - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -285,3 +286,23 @@ by merely increasing the number of periodic rays. Its regular enumeration
 also has unbounded generator displacement, as quantified by
 `regular-enumeration-displacement-bounds-growth`. The shift route remains
 open with these construction restrictions recorded explicitly.
+
+## September 8: the universal computable-core automorphism upgrade fails
+
+`relative-automorphism-fp-host-reflects-base-presentation` proves that a
+finitely presented subgroup of Aut_G(G*F_n) containing the canonical
+translation copy of a finitely generated G forces G itself to be finitely
+presented. The proof lifts finitely many automorphisms, their inverses,
+and their presentation relators using only finitely many base relators.
+
+For MIF simple cores the evaluation action is faithful. Thus its action
+image is finitely presented exactly when the core already is. The regular
+cyclic twisted Brin--Thompson group supplies an infinite, decidable,
+finitely generated simple MIF core which is not finitely presented.
+This refutes `bffhz-action-image-is-finitely-presented` as universally
+stated here and disables `boone-higman-via-bffhz-action-image`.
+
+The published BFFHZ Question 3.2 assumes a finitely presented core and is
+not answered by this counterexample. Selecting special non-MIF cores or
+using other actions is not excluded. No proof or disproof of Boone--Higman
+follows from this obstruction.

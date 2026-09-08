@@ -2,6 +2,7 @@
 rg: 2
 id: bffhz-action-image-is-finitely-presented
 kind: claim
+refuted_by: [bffhz-computable-core-fp-upgrade-is-false]
 title: The automorphism group of S free-producted with a free group, modulo its action kernel, is finitely presented for a computably presented simple S
 distinct_from:
   torsion-free-finitely-presented-non-mf: that asserts the existence of a torsion-free finitely presented group failing MF in the norm-matrix-corona sense; this asks whether one specific automorphism-action quotient is finitely presented, and carries no approximation property, no torsion hypothesis and no existence quantifier over groups.
@@ -9,18 +10,21 @@ distinct_from:
   finitely-presented-nonsofic-group-exists: that is an existence statement about soficity failing in some finitely presented group; this is about finite presentability of one named quotient and says nothing about soficity.
   finitely-presented-sofic-non-mf: that is about the literal forty-one-relator group E and its approximation properties; this is about Aut_S(S*F_n) modulo an action kernel, and the two share only the words "finitely presented".
   literal-group-not-sofic: that is a refuted claim about soficity of the literal group E; this is an open finite-presentation question about a different group and has no approximation content.
-  relative-automorphism-action-is-highly-transitive: that establishes the transitivity and stabilizer properties of the action, and is imported; this asks for finite presentability of the quotient by the action kernel, which is the one property that analysis does not supply and which the source paper poses as an open question in a weaker form.
-  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that is a finiteness statement about a maximal normal subgroup of an elementary matrix group; this is a finite-presentation statement about the image of an automorphism group acting on a homomorphism set. Both would close the conjecture, by different routes, and neither is known to bear on the other.
+  relative-automorphism-action-is-highly-transitive: that establishes the transitivity and stabilizer properties of the action; this universal finite-presentation upgrade is refuted for a computably presented MIF core, while the published question assumes a finitely presented core.
+  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that remains an open finiteness statement about a maximal kernel of a marked Steinberg cover; this universal claim about an automorphism action image has an explicit counterexample.
   twisted-brin-thompson-finite-presentation-criterion: that is the imported criterion this claim would feed; this is the missing hypothesis of that criterion for one specific action.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
 ---
 
 Let `S` be an infinite, finitely generated, computably presented simple
 group and `n >= 2`.  Put `A = Aut_S(S * F_n)`, `X = Hom_S(S * F_n, S)`, and
 `K = ker(A` acting on `X)`.  Then `A/K` is finitely presented.
 
-Open.
+False. The regular cyclic twisted Brin--Thompson group gives an infinite
+finitely generated decidable simple MIF core for which K=1 and A is not
+finitely presented. See `bffhz-computable-core-fp-upgrade-is-false`.
 
 ## Relation to the published question, which is NOT the same statement
 
@@ -35,9 +39,10 @@ Two differences, and both matter.
 
 1. **Their `G` is finitely presented; this claim's `S` is only computably
    presented.**  That is a strictly stronger demand, and it is the whole
-   point: the simple core produced by
-   `boone-higman-thompson-simple-envelope` is not finitely presented, and if
-   it were, `boone-higman-conjecture` would already be proved for that input.
+   point: finite presentation of the simple core produced by
+   `boone-higman-thompson-simple-envelope` is not guaranteed. If it were
+   guaranteed, `boone-higman-conjecture` would already follow. The present
+   universal claim includes cores which provably are not finitely presented.
 2. **The stated payoff is different.**  A positive answer to Question 3.2
    would show finitely presented simple twisted Brin--Thompson groups are
    universal among finitely presented simple groups — their words: "if the
@@ -50,19 +55,26 @@ So a reader must not conclude that a single published open question stands
 between this repository and the conjecture.  The published question is a
 special case of this claim, and the case it omits is exactly the hard one.
 
-## Why the claim is nevertheless worth carrying
+## Why the proposed upgrade fails
 
-Because the target is so sharply specified.  By
-`relative-automorphism-action-is-highly-transitive`, the
-quotient `A/K` already acts faithfully and highly transitively on `X` with
-finitely generated point stabilizers, and the translation copy of `S` meets
-`K` trivially so the core survives.  Finite presentability is the only
-missing hypothesis of
-`twisted-brin-thompson-finite-presentation-criterion`.  And the quotient is a
-much larger permutation group than `S`, so it is not absurd to hope the
-infinitely many relators of `S` are absorbed by the automorphism structure.
+The action and stabilizer conclusions remain true. However,
+`relative-automorphism-fp-host-reflects-base-presentation` proves that a
+finitely presented subgroup of A containing the canonical translations
+would force S to be finitely presented. For an MIF core the action kernel
+is trivial, so the faithful action image cannot absorb the missing base
+relators. `regular-cyclic-twisted-core-is-decidable-mif-non-fp` supplies
+an explicit core meeting every hypothesis of the claim and contradicting
+its conclusion. This refutes the universal upgrade, not the published
+question with its finitely presented-core hypothesis.
+
+The possibility of selecting a suitable non-MIF core for each input is
+not excluded. It would require a different, restricted existence claim;
+the universal premise recorded here cannot be used to justify it.
 
 ## Attempts
+
+The first four entries record the earlier proposed approaches. The
+universal statement they were intended to prove is now refuted.
 
 1. **Higman-embed `A` and induce the action.**  *Dies at oligomorphy and at
    the kernel.*  `A` is finitely generated and computably presented (see the
@@ -101,3 +113,7 @@ infinitely many relators of `S` are absorbed by the automorphism structure.
    the abstract group is finitely presented, its canonical simple quotient is
    finitely presented **if and only if** `A/K` is.  Relative simplicity is a
    genuine new tool, but it cannot compress this kernel for free.
+5. **Choose an MIF core to eliminate the kernel.** This exposes the
+   finite-presentation obstruction instead: A is finitely presented exactly
+   when the finitely generated simple MIF core already is. The regular
+   cyclic twisted core supplies the counterexample used for refutation.

@@ -52,6 +52,8 @@ into the BFFHZ relative-automorphism action.  That action is highly
 transitive with finitely generated stabilizers and retains a free embedded
 copy of the property-`(T)` simple group.  If its faithful action image is
 finitely presented, `bffhz-envelope-closes-exact-actor-host` constructs the
-exact finitely presented two-point-seed group.  This identifies the existing
-claim `bffhz-action-image-is-finitely-presented` as the sharpest current
-finite-groupification gate for this actor.
+exact finitely presented two-point-seed group. Finite presentation for
+this particular actor image remains a required hypothesis. The universal
+computable-core claim `bffhz-action-image-is-finitely-presented` was
+refuted on September 8 by `bffhz-computable-core-fp-upgrade-is-false`;
+that example does not settle the restricted question for this actor.

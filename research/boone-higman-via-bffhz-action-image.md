@@ -2,15 +2,19 @@
 rg: 2
 id: boone-higman-via-bffhz-action-image
 kind: route
-title: Quotient the relative automorphism group by its action kernel and take the twisted Brin-Thompson group
+title: Excluded universal computable-core upgrade through the relative automorphism action image
 target: boone-higman-conjecture
 requires: [boone-higman-thompson-simple-envelope, relative-automorphism-action-is-highly-transitive, bffhz-action-image-is-finitely-presented, twisted-brin-thompson-finite-presentation-criterion]
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
 ---
 
-The one route in this region that does not pass through
-`chatterji-kassabov-normal-generator-embedding`.
+This conditional implication has a refuted universal prerequisite and is
+not a live route. `bffhz-computable-core-fp-upgrade-is-false` supplies a
+decidable simple core whose evaluation action is faithful but whose
+relative automorphism group is not finitely presented. The implication
+below records what the proposed prerequisite would have supplied.
 
 Let `G` be finitely generated with solvable word problem.  By
 `boone-higman-thompson-simple-envelope`, applied to `G × Z`, embed
@@ -28,7 +32,7 @@ faithful by construction, still highly transitive — hence in particular has
 finitely many orbits on pairs — and still has finitely generated point
 stabilizers.
 
-By `bffhz-action-image-is-finitely-presented`, `Abar` is finitely presented.
+If `bffhz-action-image-is-finitely-presented` held, `Abar` would be finitely presented.
 The three hypotheses of
 `twisted-brin-thompson-finite-presentation-criterion` now hold for
 `Abar` acting on `X`, so `SV_Abar` is finitely presented, and faithfulness
@@ -38,7 +42,7 @@ makes it simple.  It contains `Abar`, hence `S`, hence `G`.
 
 The envelope theorem supplies the simple core.  The imported action analysis
 supplies transitivity, stabilizers, and the freeness that keeps the core
-alive in the quotient.  The open claim supplies the only missing hypothesis.
+alive in the quotient. The now-refuted claim was intended to supply finite presentation.
 The criterion supplies the conclusion.  Removing the quotient by `K` and
 working with `A` directly is not an option: faithfulness is what makes the
 twisted Brin--Thompson group simple, and `A` is faithful only under a
@@ -51,18 +55,17 @@ is not known to satisfy.
 question it resembles.  Belk--Fournier-Facio--Hyde--Zaremsky Question 3.2
 asks the same thing for a *finitely presented* simple `G` and its payoff is
 universality of twisted Brin--Thompson groups, not Boone--Higman.  Here the
-core is only computably presented — because if it were finitely presented the
-conjecture would already hold for that input — so this route needs strictly
-more than the published question.  The distinction is recorded on the claim
+core is only guaranteed computably presented — a finitely presented simple
+core would already settle that input — so this route required strictly
+more than the published question. That stronger assertion is now refuted.
+The distinction is recorded on the claim
 node and repeated here because the two statements differ by one adjective and
 that adjective is the whole problem.
 
-## What is genuinely appealing about it anyway
+## Scope of the obstruction
 
-`Abar` is a very large permutation group compared with `S`.  Route A and
-Route B both ask a finiteness question about the envelope's lattice or its
-double cosets; this one asks whether a *bigger* group can be finitely
-presented than the one whose relators are infinite in number.  That is a
-different kind of hope — compression by enlargement rather than by selection
-— and it is the reason the route is kept despite needing more than a
-published question.
+For MIF simple cores, `relative-automorphism-fp-host-reflects-base-presentation`
+shows that the faithful action image is finitely presented exactly when
+the core is. A selective construction using non-MIF cores, or a different
+action, remains outside this refutation. No such construction has been
+supplied here, and the published finite-presentation question remains open.

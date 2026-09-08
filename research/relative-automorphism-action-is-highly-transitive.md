@@ -10,6 +10,7 @@ distinct_from:
   countable-group-embeds-in-two-generator-simple-group: that embeds arbitrary countable groups into simple groups; this takes a simple group as given and studies an action built from it.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/boone-higman-relative-automorphism-fp-obstruction-2026-09-08.md
 ---
 
 Let `S` be an infinite finitely generated simple group and `n >= 2`.  Put
@@ -45,6 +46,12 @@ still embeds in `Abar`.  Every hypothesis of
 `twisted-brin-thompson-finite-presentation-criterion` therefore holds for
 `Abar` acting on `X` **except** finite presentability of `Abar`, which is
 `bffhz-action-image-is-finitely-presented`.
+
+That universal computable-core upgrade was refuted on September 8 by
+`bffhz-computable-core-fp-upgrade-is-false`. The present action theorem
+remains valid. For an MIF core, finite presentation of its faithful action
+image forces finite presentation of the core itself. The transitivity
+and stabilizer conclusions alone cannot supply the missing finiteness.
 
 ## One effectivity remark that is easy to over-read
 

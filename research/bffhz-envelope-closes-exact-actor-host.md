@@ -4,7 +4,7 @@ id: bffhz-envelope-closes-exact-actor-host
 kind: claim
 title: A finitely presented BFFHZ action image closes the exact expanding-character actor host
 distinct_from:
-  bffhz-action-image-is-finitely-presented: that asks only for finite presentation of the faithful automorphism-action image; this proves that a positive answer supplies the exact groupification half of the expanding-character route.
+  bffhz-action-image-is-finitely-presented: that universal computable-core claim is refuted; this remains a conditional theorem assuming finite presentation for a specified property-T core's action image.
   sharp-two-t-actor-gives-fp-host: that asks the property-T group itself to be finitely presented and sharply two-transitive; this permits a larger finitely presented highly transitive envelope containing the property-T group.
 ---
 
@@ -62,10 +62,13 @@ The resulting group is finitely presented, `J!=1` in the
 character-translation representation, and every exact finite-dimensional
 representation kills `J` by `infinite-character-actor-kills-fd-mark`.
 
-Therefore the already-isolated claim
-`bffhz-action-image-is-finitely-presented`, applied to an effective
-André--Guirardel property-`(T)` simple group, is a precise algebraic closure
-of the actor-word lane.  It does not prove normalized-HS same-basis rounding.
+Thus finite presentation of the action image for a specified effective
+André--Guirardel property-`(T)` simple core would close this actor-word
+lane. The universal assertion `bffhz-action-image-is-finitely-presented`
+is now refuted by `bffhz-computable-core-fp-upgrade-is-false` and cannot
+supply that premise. The counterexample there does not establish failure
+for this particular property-`(T)` core. This conditional construction
+does not prove normalized-HS same-basis rounding.
 
 ## Attempts
 
@@ -75,6 +78,6 @@ of the actor-word lane.  It does not prove normalized-HS same-basis rounding.
 - **Use the direct André--Guirardel lamp action.**  This dies by
   `direct-sharp-actor-wreath-forces-actor-fp`: killing the root lamp would
   finitely present an actor for which no finite presentation is known.
-- **Deferred gate.**  Proving `bffhz-action-image-is-finitely-presented`, or
+- **Deferred gate.** Proving finite presentation for this particular action image, or
   finding another fp faithful action envelope with finite pair orbits and
   finitely generated stabilizers, is exactly the remaining algebraic attack.

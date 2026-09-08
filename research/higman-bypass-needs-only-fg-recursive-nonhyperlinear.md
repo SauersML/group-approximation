@@ -5,7 +5,7 @@ kind: claim
 title: A finitely generated recursively presented nonhyperlinear group already yields a finitely presented one
 distinct_from:
   direct-sharp-actor-wreath-forces-actor-fp: that obstructs finite presentation of the direct lamp host; this shows that direct finite presentation is unnecessary once the host is recursively presented.
-  bffhz-action-image-is-finitely-presented: that seeks a finitely presented actor envelope; this bypasses that actor-level requirement by applying Higman only after the nonhyperlinear marked host has been constructed.
+  bffhz-action-image-is-finitely-presented: that refuted universal claim sought a finitely presented actor envelope; this bypasses that actor-level requirement by applying Higman only after the nonhyperlinear marked host has been constructed.
 ---
 
 ESTABLISHED.

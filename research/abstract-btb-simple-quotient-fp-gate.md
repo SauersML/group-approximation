@@ -5,7 +5,7 @@ kind: claim
 title: The canonical simple quotient of a finitely presented abstract twisted Brin-Thompson group is finitely presented exactly when the faithful action image is
 distinct_from:
   twisted-brin-thompson-finite-presentation-criterion: that characterizes finite presentability of the possibly nonfaithful ABSTRACT group from finiteness properties of the original actor and action; this characterizes finite presentability of its canonical SIMPLE quotient and shows that passing through the abstract group does not remove the action-image finite-presentation hole.
-  bffhz-action-image-is-finitely-presented: that asks whether one particular faithful automorphism-action image is finitely presented; this is a general theorem saying the abstract twisted Brin-Thompson construction cannot make its canonical simple quotient finitely presented unless that particular input question already has a positive answer.
+  bffhz-action-image-is-finitely-presented: that universal computable-core upgrade is refuted; this is a general conditional equivalence for a specified action and remains valid independently of that failed upgrade.
   boone-higman-conjecture: that asks for finitely presented simple envelopes of all finitely generated solvable-word-problem groups; this is a structural equivalence inside one nonfaithful Thompson-like construction and supplies no envelope by itself.
 ---
 
@@ -26,4 +26,7 @@ SV_{G/K} is finitely presented  iff  G/K is finitely presented.
 Consequently, for the BFFHZ action the maneuver "form the finitely presented
 abstract twisted group first, then divide by its canonical kernel" does not
 bypass `bffhz-action-image-is-finitely-presented`: finite presentability of
-the resulting simple quotient is equivalent to that very missing input.
+the resulting simple quotient is equivalent to finite presentation of the
+specified action image. The universal computable-core assertion is now
+refuted by `bffhz-computable-core-fp-upgrade-is-false`; this conditional
+equivalence neither supplies it nor assumes that it holds universally.
