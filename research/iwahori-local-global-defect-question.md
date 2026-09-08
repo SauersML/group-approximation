@@ -14,6 +14,9 @@ artifacts:
   - research/artifacts/strict-iwahori-stratum-neighborhood-obstruction-2026-09-08.md
   - research/artifacts/iwahori-mixed-surgery-and-polynomial-step-2026-09-08.md
   - research/artifacts/commuting-iwahori-repair-and-stationary-points-2026-09-08.md
+  - research/artifacts/one-vertex-abelian-iwahori-capture-2026-09-08.md
+  - research/artifacts/iwahori-support-erasure-and-linear-leakage-2026-09-08.md
+  - research/artifacts/iwahori-spectral-threshold-leakage-counterexample-2026-09-08.md
 distinct_from:
   iwahori-outlier-repair: that is this repository's proposed sufficient condition -- a full-rank repair theorem in the one sector its own analysis leaves open; this is the published question in Dogon-Vigdorovich's own local-defect/global-defect form, which the repair theorem is an attack on.
   iwahori-fractional-transport-integralization: that is one intermediate step of the attack, converting a fractional transport plan into orthogonal blocks; this is the whole question the attack is aimed at.
@@ -130,6 +133,33 @@ dependencies. Definition 1.2 distinguishes flexible from strict stability.
   that spectral support need not reduce either vertex; extending this
   capture construction requires controlling the new errors from making
   it reducing.
+- **One nearly commuting vertex already gives a constructed endpoint.**
+  `one-almost-abelian-iwahori-vertex-has-linear-capture` removes the joint
+  commutation hypothesis for this control. The two edge errors and the
+  first internal commutator force approximate orders fifteen and
+  twenty-four for the second upper unipotent, hence order three. Rounding
+  that one unitary gives an exact cyclic endpoint with generator cost
+  at most `320(def+commutator)` in every Schatten norm, simultaneously.
+  Neither a cross-vertex commutator bound nor central matching is an
+  assumption. The first internal commutator can be nonzero at exact
+  nonabelian endpoints, so its general control remains additional input.
+- **Support erasure has a precise leakage budget; raw spectral cuts
+  need not meet it.**
+  `iwahori-support-erasure-has-linear-commutator-leakage` makes a supplied
+  positive-central projection reducing, preserving exact modular
+  relations and the negative sector. After trivializing that block, the
+  new residual differs from the original retained compression by at
+  most `4L` times the HS commutator leakage. A corresponding operator
+  estimate holds for the same construction, and generator movement pays
+  at most three times the supplied rank. This is a half-contraction if
+  retained residual plus leakage is at most half the original defect.
+  `iwahori-spectral-cuts-need-independent-leakage-control` explicitly
+  tests the raw high residual-energy cut near a three-dimensional
+  compatible endpoint. Its relative leakage grows as the inverse square
+  root of the selected small threshold and survives dilution. Thus that
+  cut does not automatically satisfy the small-constant budget. Enlarging
+  the cut or undoing the supplied perturbation repairs the example;
+  selection for general noncommuting inputs remains unresolved.
 - **The cross-dimension metric step is now justified in both directions.**
   `flexible-hs-metric-controls-words-and-padding` proves the word-defect
   Lipschitz estimate using the actual generalized metric, correcting the
