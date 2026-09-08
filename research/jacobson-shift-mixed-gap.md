@@ -55,3 +55,16 @@ TS error, and the remaining stable-letter error involving `h`.
   in an amenable MF group whose exact finite-dimensional representations
   kill the head. A proof here must therefore use additional finite
   linear packet or mixed-word information, not those properties alone.
+- The additional linear packet information now gives full abstract
+  interval groups, by `jacobson-shift-has-full-finite-linear-intervals`.
+  Their union is the simple locally finite normal closure of the
+  head, as proved in `jacobson-shift-head-generates-normal-finitary-kernel`.
+  Thus a corona map retaining the head must be faithful on that
+  whole kernel. The finite-group corrections for successively larger
+  intervals still provide no uniform matrix-gap estimate.
+- `jacobson-shift-head-dies-in-amenable-targets` now rules out every
+  amenable quotient retaining the head, including ones using arbitrary
+  finite-packet representation types. Simplicity and normality force
+  any head-retaining image to surject onto the nonamenable literal
+  image. This eliminates the amenable-countermodel route, while
+  leaving nonamenable MF targets and the unrestricted gap unresolved.
