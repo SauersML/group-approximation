@@ -15,6 +15,10 @@ artifacts:
   - research/artifacts/kaplansky-two-shear-attempt-2026-09-08.md
   - research/artifacts/gottschalk-four-track-finite-chart-collision-2026-09-08.md
   - research/artifacts/forward-memory-cover-and-native-prefix-test-2026-09-08.md
+  - research/artifacts/gottschalk-information-transport-pinning-control-2026-09-08.md
+  - research/artifacts/gottschalk-consecutive-chart-dual-boundary-collision-2026-09-08.md
+  - research/artifacts/gottschalk-parallel-order-three-five-point-collision-2026-09-08.md
+  - research/artifacts/gottschalk-quadratic-block-elimination-2026-09-08.md
 ---
 
 Exhibit a finite alphabet `A` and a cellular automaton
@@ -238,3 +242,23 @@ vanishes on that mask; see
 This excludes that concrete encoder, including every cyclic track
 count using its same bilinear operation. It does not decide this
 headline target or unrestricted nonlinear feedback architectures.
+
+The positive information-transport attack also has an explicit limitation:
+its exact row-accounting identity fails for a reversible degree-64 parity
+shear with fully iid source and output pins. Conditional entropy has an
+atomic jump for an interval of source-pin densities, and finite-exhaustion
+reveal accounting misses that contribution. A second local recoding,
+with an immediate decoder, strictly increases percolative entropy. These
+controls rule out vanishing singular mass and general entropy invariance;
+they supply neither a nonsurjunctive automaton nor the still-needed lower
+bound comparing singular row and column contributions.
+
+The consecutive-chart alternating encoder is also noninjective: coefficient
+parity in the contragredient boundary representation supplies a common mask
+and a literal collision. Both proposed constant-control left ideals are
+proper. Parallel order-three scalar gates have separate finite collisions,
+including the first cubic conflict correction and the nonconservative
+orbit-complement gate. These are exact rejections of specified constructions.
+The positive quadratic artifact additionally rules out all nearest-two
+cyclic bilinear feedback and all scalar two-term selectors as possible
+strict encoders over any group. The headline construction remains open.

@@ -12,6 +12,8 @@ distinct_from:
   leavitt-unit-group-nonsurjunctive: that seeks one counterexample and would refute this universal positive goal; it is not a positive proof prerequisite.
 artifacts:
   - notes/GOTTSCHALK_RESEARCH_2026-09-07.md
+  - research/artifacts/gottschalk-information-transport-pinning-control-2026-09-08.md
+  - research/artifacts/gottschalk-quadratic-block-elimination-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -57,3 +59,23 @@ would give it a norm-one multiplicative defect and put its range
 projection at distance 1/2 from the quasilocal algebra. The universal
 extension to a unital homomorphism on full matrix observables remains
 an open prerequisite. Locality alone does not supply multiplicativity.
+
+The information-transport attack's proposed exact row identity is false,
+even for a reversible two-track involution. A degree-64 tree parity shear
+with fully iid source and output pins has a discontinuous conditional
+entropy for an interval of source-pin densities; finite-exhaustion reveal
+accounting misses a uniformly positive atomic contribution. The artifact
+gives the exact posterior reduction and proof. This rules out eliminating
+all singular information mass as the universal positive argument. A
+comparison of the missing row and column contributions remains open and
+does not establish surjunctivity here.
+
+The quadratic-feedback attack proves positive exclusions for arbitrary
+bipartite operand graphs, target-multiplicative systems without same-track
+quadratic terms, and nearest-two cyclic feedback of every length. A
+generalized two-block lemma supplies the common argument. The artifact
+also excludes every scalar two-term selector by explicit collision or
+reduction to a finite memory subgroup, and gives mixed-triangle controls, including
+a track-shift conjugate with distinct spatial pairs that resists the
+specified initial elimination moves. The unrestricted conjecture remains
+open; escaping those moves is not an injectivity or strictness proof.
