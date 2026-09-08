@@ -35,3 +35,23 @@ TS error, and the remaining stable-letter error involving `h`.
 - The earlier affine-cell countermodel concerns a selected subset
   of the old recursive equations. It neither realizes these new
   stable-letter relations nor refutes this positivity claim.
+- Every exact finite-dimensional representation of this candidate
+  kills its head, by `jacobson-shift-exact-representations-kill-head`.
+  This uses arbitrarily many commuting conjugate heads and supplies
+  no dimension-independent estimate for approximate matrices.
+- `jacobson-shift-monomial-models-have-a-uniform-gap` proves the
+  explicit bound `delta+6a>=sqrt(2)`, where `a` is simultaneous
+  distance of the full finite packets and stable letter from
+  monomial matrices in a common basis. Thus low-error models must
+  lie outside a fixed neighborhood of every such basis model.
+- `jacobson-shift-block-permutation-models-have-a-gap` excludes
+  models permuting arbitrarily many fibers of any fixed bounded
+  dimension. Its constant can depend on that dimension; models with
+  unbounded fiber dimension, including all unrestricted candidates,
+  remain unresolved.
+- `finitely-generated-recursive-centralization-is-mf-compatible`
+  realizes a perfect head, exact recursive centralization, finite
+  generation of the compressed base, and the finite head-tail split
+  in an amenable MF group whose exact finite-dimensional representations
+  kill the head. A proof here must therefore use additional finite
+  linear packet or mixed-word information, not those properties alone.
