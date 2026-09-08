@@ -89,6 +89,29 @@ input.  That is `torsion-free-countable-non-mf-from-abelianized-cover`.
   from the collapse to non-MF is refuted, inside the torsion-free class and in
   exactly the shape the cover produces.  Everything in this attempt is exact;
   the missing operation is still one on matrix models.
+- **Passing to the commutator subgroup sharpens the attempt and does not
+  rescue it (2026-09-08).**  The cover's commutator subgroup `T = Ecover'` is
+  a strictly better candidate than `Ecover`: it is finitely generated with
+  `d(T) <= r + s + r^2`, torsion-free, **perfect**, and every homomorphism
+  `T -> U(d)` is trivial, so the collapse is total rather than merely abelian
+  (`abelianized-cover-commutator-is-finitely-generated-perfect`).  That is the
+  strongest finite-dimensional profile the construction can produce.  It is
+  still not enough: `perfect-torsion-free-mf-group-has-no-fd-representations`
+  exhibits a countable group with **every one** of those properties except
+  finite generation -- the finitely supported upper unitriangular matrices
+  over `Q` indexed by the ordered set `Q` -- which is operator MF.  So the
+  refutation above survives the upgrade to perfectness and total collapse, and
+  the only hypothesis it does not yet match is finite generation.
+- **Two construction families are closed off, without touching `(D)`.**
+  `integral-group-ring-congruence-groups-are-torsion-free-mf` proves that
+  `{U in GL_d(Z[G]) : U = I mod 3}` is torsion-free and locally residually
+  finite, hence MF, for **every** countable `G`: the `3`-adic filtration that
+  supplies torsion-freeness is the same one that supplies local residual
+  finiteness, so no construction landing inside such a congruence group can
+  work.  And `rationalizing-an-abelian-kernel-restores-torsion` shows that
+  enlarging the cover's abelian kernel to a rational vector space gives every
+  finite-order element of the base a lift of the same order, so that repair
+  destroys torsion-freeness.
 - **Deferred:** no attempt at a proof or a counterexample is made here.  A
   counterexample would be as informative as a proof: it would be the first
   quotient-nonclosure witness with abelian kernel.
