@@ -9,6 +9,8 @@ requires:
   - binary-jacobson-first-alternating-ts-closure-relation
 artifacts:
   - research/artifacts/jacobson-ts-cell-after-seven-ray-countermodel-2026-09-08.md
+  - experiments/verify_jacobson_seven_ray_countermodel.py
+  - research/artifacts/jacobson-seven-ray-exact-check-2026-09-08.json
 ---
 
 Use the explicit seven-ray quotient supplied by the first prerequisite.
@@ -26,3 +28,9 @@ of this quotient retaining the head.
 The second prerequisite supplies the literal `TS=1` calculation killing
 the same word in `EL_3(J)`. The literal head action remains nontrivial,
 which establishes the strengthened presentation's marked consistency.
+
+The independent sparse F_2 verifier confirms the complete formula for `W`,
+the relation `[(I+E_12)_Q,W]=w` in the seven-ray quotient, and `W=1`
+in the literal three-ray action. Its symbolic tail calculation covers all
+levels beyond the explicitly checked boundary region. The recorded MSI
+replay is exact case-check evidence, not a non-MF or formal Lean proof.

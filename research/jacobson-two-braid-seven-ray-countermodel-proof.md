@@ -11,6 +11,8 @@ requires:
   - jacobson-tail-braid-exactification-and-standard-carrier
 artifacts:
   - research/artifacts/jacobson-two-braid-seven-ray-countermodel-2026-09-08.md
+  - experiments/verify_jacobson_seven_ray_countermodel.py
+  - research/artifacts/jacobson-seven-ray-exact-check-2026-09-08.json
 ---
 
 The first prerequisite supplies the exact two-braid presentation. The
@@ -30,3 +32,8 @@ makes `A_7` operator-MF; the third yields `gamma=0`, and the fourth yields
 The artifact also verifies that the same quotient satisfies
 `[h (I+E_13)_P h,(I+E_23)_P]=1`. Thus this additional literal mixed
 commutation still retains the full packet in an amenable quotient.
+
+The independent stdlib verifier checks the matrix identities on every
+boundary level and a symbolic generic tail level. The recorded MSI replay
+passed all 102 identities; this supplements the proof and is not Lean
+verification or a replacement for the amenable-to-MF literature input.

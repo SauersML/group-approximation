@@ -197,3 +197,19 @@ projection, polar decomposition, or common square carrier has been
 constructed from these additional relations. This explicit finite
 presentation records a testable next relation without treating its
 independence as the missing non-MF theorem.
+
+## 5. Exact replay
+
+The independent [stdlib verifier](../../experiments/verify_jacobson_seven_ray_countermodel.py)
+checks (7), (7a), and the literal identity `W=1` from primitive sparse
+`F_2` actions. Every boundary level is tested, and a formal `N+k`
+calculation covers all remaining levels. The checker also confirms the
+overlap and both braids in each action, `R=1` in each action, and the
+nontrivial head mark.
+
+The [MSI result](jacobson-seven-ray-exact-check-2026-09-08.json) records
+102 passing identities in 0.165710 seconds on one CPU. See the
+[countermodel replay section](jacobson-two-braid-seven-ray-countermodel-2026-09-08.md#7-independent-exact-replay)
+for the all-level coverage argument and replay command. This evidence
+checks the stated algebraic identities without claiming a matrix gap,
+Lean verification, or non-MF existence.

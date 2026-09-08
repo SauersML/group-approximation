@@ -269,3 +269,37 @@ interaction: (15) folds the conjugated `T` root onto the tail `P`
 root. Its conclusion concerns these stated finite presentations. It
 does not decide MF of `Gamma` or `Gamma_1`, the full Jacobson
 head-collapse claim, or the independent non-MF existence objective.
+
+## 7. Independent exact replay
+
+The stdlib-only [verifier](../../experiments/verify_jacobson_seven_ray_countermodel.py)
+implements the primitive head matrices, the seven-point tail permutation
+action, the literal three-ray tail action, and the two involutions directly.
+Vectors are finite sets of basis indices, with addition given by symmetric
+difference over `F_2`; levels are unbounded integers or formal `N+k`.
+
+For each expanded word of length `L`, it checks every ray at each level
+`0,...,L` and again at the formal level `N>=L+1`. Each primitive changes
+a level by at most one. Therefore every intermediate formal level stays
+positive, and the formal calculation applies to every remaining integer
+level. This covers the infinite tail without a finite truncation.
+
+The [recorded MSI run](jacobson-seven-ray-exact-check-2026-09-08.json)
+passed 102 identity checks, using 3,407 concrete boundary basis cases and
+514 symbolic tail cases. It also checked all 28,224 multiplication pairs
+of `GL_3(F_2)`, faithfulness of the seven-point permutation action, and
+generation by the six elementary roots. The identities include both
+braids, all six overlap elements, the extra raw commutation, the marked
+head action, and the [additional TS-word formulas](jacobson-ts-cell-after-seven-ray-countermodel-2026-09-08.md).
+
+The run used one CPU on MSI and took 0.165710 seconds, with an external
+20-second timeout and an 18-second CPU limit. To replay from the repository
+root on MSI:
+
+```sh
+timeout 20 /usr/bin/python3.11 experiments/verify_jacobson_seven_ray_countermodel.py --output research/artifacts/jacobson-seven-ray-exact-check-2026-09-08.json
+```
+
+The record includes the verifier's SHA-256. This is exact case-check
+evidence for the algebraic identities; it is not Lean verification, a
+proof of the amenable-to-MF theorem, or a non-MF existence proof.
