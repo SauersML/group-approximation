@@ -65,6 +65,13 @@ source-specific route through a central sign is isolated at
   exact head-retaining representation has dimension at least 98. The
   resulting gap in dimensions at most 97 does not establish the
   unrestricted positivity premise.
+  The doubled-fiber obstruction
+  `jacobson-double-rank-one-root-orbit-cannot-extend` strengthens the
+  lower bound to 147 and gives an explicit error bound through
+  dimension 146. With the additional full boundary packet, the
+  separate candidate `Theta` has an embedded `GL_6(F_2) x GL_3(F_2)`
+  by `jacobson-full-boundary-forces-six-coordinate-packet`; neither
+  finite reconstruction settles the unrestricted matrix gap.
 
 - The fixed no-CE BCS and the operator-norm endgame are established.  The
   remaining input on this route is the exact central-sign corner map

@@ -39,3 +39,8 @@ claim.
   compactness. Coherent correction of both root packets strengthens
   this to the explicit bound `1/(8192*2,228,976)` on that dimension
   range. It does not control the remaining unbounded dimensions.
+- The next fiber size is excluded by
+  `jacobson-double-rank-one-root-orbit-cannot-extend`, raising the
+  exact dimension lower bound to 147 and extending the same numerical
+  gap through dimension 146. Three-dimensional fibers and the other
+  nonzero root-character orbits remain unresolved.
