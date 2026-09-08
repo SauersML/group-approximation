@@ -454,4 +454,56 @@ The first mixed selectors missing from this finite three-coordinate interpretati
 
 Under the rectangular isomorphism, the selector roots themselves carry the four separate parameters. Using only one selector pair returns to the Jacobson specialization excluded above. A construction must use both pairs and their shared Cuntz partition `s_0t_0+s_1t_1=1`, not merely the finite `S_3` relation between the packed actors. These mixed identities have not yet been assembled into a valid `Z,L` pair.
 
+## 12. A literal two-pair comparison has a nonzero exterior-square residual
+
+Here is an explicit attempted comparison using both Cuntz pairs. In three matrix coordinates, keep `K` on coordinates one and two and put
+
+```
+A_i=x_13(s_i),        B_i=x_32(t_i),        i=0,1,
+δA_i=1+[A_i],         δB_i=1+[B_i],
+Z=P_0(δA_0 δB_0+δA_1 δB_1)f_0,
+L=f_0(δB_0 δA_0+δB_1 δA_1)P_0.
+```
+
+This pair fails. Its residual `LZ-f_0` has rank at least one in an explicit ten-dimensional representation. In fact no choice of `L`, even with unrestricted full-group support, can be a left inverse of this `Z`.
+
+To construct the representation, expand each of the first two coordinates into its two Cuntz children and leave the third coordinate alone. The mutually inverse rectangular matrices are
+
+```
+C = [[s_0,s_1,0,0,0],
+     [0,0,s_0,s_1,0],
+     [0,0,0,0,1]],
+D = [[t_0,0,0],
+     [t_1,0,0],
+     [0,t_0,0],
+     [0,t_1,0],
+     [0,0,1]],
+CD=I_3,              DC=I_5.
+```
+
+The ring isomorphism `X↦DXC` sends every `A_i,B_i` to a constant elementary matrix: `A_i` connects child `i` of coordinate one to coordinate five, and `B_i` connects coordinate five to child `i` of coordinate two. It sends the constant `K` to two copies of its natural representation plus one trivial coordinate. Consequently the subgroup `H=〈K,A_0,A_1,B_0,B_1〉` is finite, inside `GL_5(F_4)`. Write its natural space restricted to `K` as `W=V⊕V⊕1`.
+
+There is a particularly small rank certificate on
+
+```
+Λ²W = det(V) ⊕ det(V) ⊕ (V⊗V) ⊕ V ⊕ V.
+```
+
+On `det(V)`, the parent and child idempotents act as `0,1`, so the ranks of `(f_0,P_0)` are `(1,0)`. On `V` they are `(0,1)`. On `V⊗V` they are `(2,1)`, as follows directly. Use the tensor basis `A,B,C,D_0` from Section 8. The parent idempotent is the same `H` displayed there; the child idempotent is now `C_0=diag(1,1,1,0)`. For `T_0=C_0HC_0`,
+
+```
+T_0 A=A+B+C,       T_0 B=T_0 C=A,       T_0 D_0=0.
+```
+
+Therefore `C_0+T_0²` has image `span{B+C,A+C}`, of dimension two. On `im(H)=span{u=A+D_0,v=A+B+C}`, the operator `S_0=HC_0H` sends both `u,v` to `v`. It is idempotent there and vanishes on `ker(H)`, so `H+S_0⁴` has rank one. All five summands have nontrivial central `C_3` character, so the removed center-trivial block `E` acts as zero. These are already the ranks of the reduced projectors.
+
+Adding the five summands gives
+
+```
+rank_(Λ²W)(f_0)=1+1+2+0+0=4,
+rank_(Λ²W)(P_0)=0+0+1+1+1=3.
+```
+
+Since every proposed `LZ` factors through the image of `P_0`, it has rank at most three in this representation; hence `rank(LZ-f_0)≥1`. If `L` is allowed outside `F_2[H]`, conditional expectation onto `F_2[H]` preserves a hypothetical identity `LZ=f_0` and gives the same contradiction. Thus the literal two-pair formula fails independently of support size or numerical search. Both Cuntz pairs can still admit a finite coordinate interpretation when every selector has this orientation. Additional actors must prevent this simultaneous expansion; their mere presence as two pairs is insufficient.
+
 Prediction: the primitive split is conclusively impossible; the stable-image split solves the first half exactly. Keeping all comparison coefficients in the amenable source subgroup remains impossible. The unresolved mechanism is an explicit split embedding `fS→PS` using essential full-group relations, despite equal positive lifted trace and unequal evaluated support. Neither full actor support nor a root square-zero factor establishes such an embedding.

@@ -79,3 +79,11 @@ reduction to a finite memory subgroup, and gives mixed-triangle controls, includ
 a track-shift conjugate with distinct spatial pairs that resists the
 specified initial elimination moves. The unrestricted conjecture remains
 open; escaping those moves is not an injectivity or strictness proof.
+
+The same artifact proves a stronger support-preservation criterion:
+injectivity forces surjectivity when configurations supported in unions
+of cosets of a virtually cyclic subgroup stay in those unions. The proof
+uses commensurator blocks and finite output perturbations. It covers every
+scalar finite-field rule `x(g)+x(gb)P(x)`, for arbitrary local polynomial P,
+including all four-address shared-operand quadratic rules. It leaves
+unrestricted cellular automata open.

@@ -311,3 +311,109 @@ injectivity implies surjectivity whenever b has finite order. This covers
 the seemingly more coupled choice u=a^-1 c of finite odd order together
 with b=a u a^-1: its guard subgroup <b> is still finite. The argument does
 not require the other two addresses to lie in that subgroup.
+
+## Commensurated surjunctive guard subgroups
+
+More generally, let the finite alphabet A have a distinguished symbol 0,
+and suppose F preserves configurations supported in every union of
+cosets gH. Equivalently, F(x)(g)=0 whenever x vanishes on gH. If H is
+surjunctive and commensurated in a subgroup M containing H and the memory,
+injectivity of
+F forces surjectivity. The polynomial guard condition above implies
+this support-preservation hypothesis, but polynomial form is unnecessary.
+Here surjunctive means that every injective CA
+on every finite-alphabet full shift over H is surjective; commensurated
+means that H intersect gHg^-1 has finite index in both H and gHg^-1
+for every g in M. Only the guard subgroup is assumed surjunctive.
+
+First restrict to M, since the original rule acts independently on its
+cosets. Let V be a finite union of distinct cosets g_i H in M, including
+H itself. Configurations vanishing outside V again form an invariant
+compact space A^V. Put
+
+    H_0=intersection_i g_i H g_i^-1.
+
+Commensuration makes H_0 finite index in every g_i H g_i^-1, and g_1=1
+makes H_0 a subgroup of H. Surjunctivity passes to subgroups: extend a
+CA on a subgroup independently to its cosets, apply surjunctivity of
+the larger group, and restrict back. Thus H_0 is surjunctive.
+
+The set V is a finite disjoint union of free left H_0-orbits. Identifying
+these orbits with tracks turns the restriction to A^V into a CA on H_0
+with a finite alphabet. Left H_0-equivariance is inherited from F, and
+only finitely many orbit representatives and memory addresses occur;
+addresses outside V are fixed at zero. Injectivity of F makes this
+restricted CA injective, and surjunctivity of H_0 makes it surjective.
+Every finitely supported target is contained in some V, so compactness
+gives surjectivity on A^M and then on the original full shift.
+
+In particular, amenable guard subgroups are surjunctive by the Myhill
+theorem, a special case of [Ceccherini-Silberstein and Coornaert, The
+Myhill property for cellular automata on amenable
+semigroups](https://arxiv.org/abs/1302.5965). For the four-address scalar
+rule this covers infinite-order b whenever <b> is commensurated in
+<a,b,c>. Without commensuration, V can have infinitely many left
+H_0-orbits, so this argument alone does not supply a finite-alphabet CA
+over a known surjunctive group. The following finite-intersection
+argument removes that restriction for cyclic guards.
+
+## Finite intersections outside the commensurator
+
+Keep the support-preservation hypothesis and suppose H is surjunctive.
+Let C=Comm_M(H), the subgroup of elements commensurating H. Assume
+
+    H intersect sHs^-1 is finite for every s in M outside C.          (11)
+
+Then every injective F is surjective. This includes every virtually
+cyclic H: an infinite subgroup of an infinite virtually cyclic group
+has finite index, so an infinite intersection would put s in C. Such
+H is amenable and therefore surjunctive. Finite H is already covered.
+
+To prove the assertion, take any finite union V of H-cosets and partition
+it into its intersections V_j with distinct C-cosets. On V_j define
+B_j by applying F with all other coordinates fixed to zero. This is a
+map into V_j by support preservation, and is injective by injectivity
+of F. Translate one H-coset representative in V_j to 1. The resulting
+finite union lies in C and contains H. Since H is commensurated in C,
+the finite left-orbit argument of the preceding section proves that
+this exact restriction B_j is bijective. This uses the restriction to
+the finite union of H-cosets, not only surjectivity on the whole C-coset.
+Consequently the product map B=product_j B_j is a bijection on A^V.
+
+The actual restriction F_V differs from B at only finitely many output
+coordinates. A difference can occur only at a site g in V_j for which
+some memory address gs lies in a different V_k. Necessarily s lies
+outside C. For two original H-cosets g_iH and g_lH, the sites at which
+such a dependency occurs form the set
+
+    {g in g_iH : gs in g_lH}.
+
+If this set contains g_0, it is exactly
+
+    g_0 (H intersect sHs^-1).
+
+It is finite by (11). There are only finitely many pairs of H-cosets
+and finitely many memory addresses, so the union E of all possible
+cross-block output sites is finite.
+
+The injective map F_V B^-1 fixes every coordinate outside E. For each
+fixed configuration on V minus E, it therefore induces an injective
+self-map of the finite set A^E, which is bijective. Thus F_V B^-1 and
+F_V are surjective. This is the elementary finite-output perturbation
+argument also used in
+[finite-output-perturbation-proves-nonlinear-fiber-rigidity](../finite-output-perturbation-proves-nonlinear-fiber-rigidity.md).
+Every finitely supported target belongs to some V. Compactness now
+proves surjectivity of F on the entire full shift.
+
+In particular, the scalar Boolean family
+
+    F(x)(g)=x(g)+x(gb)[x(ga)+x(gc)]                         (12)
+
+satisfies injectivity implies surjectivity for **every** group and
+every choice of a,b,c, with no distinctness or order assumptions. Its
+support is preserved on unions of cosets of the cyclic guard subgroup
+<b>, and the theorem applies. More generally, over any finite field,
+it applies to every scalar rule x(g)+x(gb)P(x), where P is any local
+polynomial. This closes the entire single-cyclic-guard construction
+family, including the infinite-b and noncommensurated cases; it does
+not settle Gottschalk's conjecture for arbitrary cellular automata.
