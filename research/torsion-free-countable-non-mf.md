@@ -21,8 +21,18 @@ this claim and the root are equivalent modulo
 `torsion-free-higman-embedding`.
 
 The same heredity is what kills the naive repair strategies for the root,
-recorded there: covers do not work (non-MF does not pass down to a group
-that surjects onto a non-MF group — free groups are residually finite,
-hence MF, and surject onto everything), and embeddings of the existing
-witness do not work (it contains an involution, so no torsion-free group
-contains it).
+recorded there: an ARBITRARY cover does not work (non-MF does not pass down
+to a group that surjects onto a non-MF group — free groups are residually
+finite, hence MF, and surject onto everything), and embeddings of the
+existing witness do not work (it contains an involution, so no torsion-free
+group contains it).
+
+**Amendment, 2026-09-08.**  The cover verdict is about arbitrary covers.  The
+canonical torsion-free cover `F/[R,R]` of
+`free-abelianized-cover-is-torsion-free` has free ABELIAN kernel, while the
+free cover that supplies the counterexample (`mf-quotient-nonclosure`, the map
+`F_8 -> E`) has non-amenable kernel; whether non-MF descends along the
+abelianized cover is the open `free-abelianized-cover-reflects-mf`, and
+`torsion-free-countable-non-mf-from-abelianized-cover` is the route it would
+complete.  Covers with CENTRAL kernel are excluded universally by
+`torsion-free-central-cover-forces-abelian-finite-subgroups`.
