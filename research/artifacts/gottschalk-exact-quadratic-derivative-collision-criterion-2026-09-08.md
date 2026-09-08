@@ -8,6 +8,13 @@ The common-factor rule is included. It does not prove that an admissible nonzero
 witness exists. No injectivity, counterexample, novelty, or solution
 of Gottschalk's conjecture is claimed. No computation was used.
 
+The [central three-cycle equivalence](gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md)
+shows that surjunctivity of the full unrestricted-linear-feedback
+family on Gamma x C_3 is equivalent to direct finiteness of
+F_2[Gamma]. The norm subclass is reversibly conjugate to arbitrary
+scalar linear CA. The collision criterion does not settle either
+side of that equivalence for arbitrary Gamma.
+
 Throughout, G is any group, R_a x(g)=x(ga), T=R_t, and configurations
 take values in F_2. The element t may have any finite order, including
 one or two, or infinite order.

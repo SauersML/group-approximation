@@ -19,6 +19,8 @@ artifacts:
   - research/artifacts/kaplansky-single-macro-prefix-transporter-obstruction-2026-09-08.md
   - research/artifacts/kaplansky-bit-level-transporter-without-finite-boundary-modules-2026-09-08.md
   - research/artifacts/kaplansky-first-field-coordinate-transporter-kernel-2026-09-08.md
+  - research/artifacts/kaplansky-full-two-sector-relative-transporter-obstruction-2026-09-08.md
+  - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
 ---
 
@@ -225,6 +227,32 @@ reverses field characters. Mixing both characters in both blocks is
 still not sufficient: opposite bit compressors a,a^-1 have a two-term
 binary exterior kernel. Arbitrary mixed actors and arbitrary chart
 coefficients around them remain unresolved.
+
+The complete exterior-square operator for two binary coordinate
+changes is now explicit on both full source character sectors.
+For c=b^-1a, a nonzero kernel in either relative character block
+gives a source kernel; relative semilinearity needs cancellation
+between the two source sectors. This exclusion survives any shared
+left change of the two coordinate operators. It is recorded in
+`relative-character-kernels-forbid-projective-splits`. Both relative
+blocks being injective remains only necessary; no actor has yet
+been proved to pass the full exterior-square test in this new family.
+
+A separate exact bridge transports any linear inverse pair to a
+Boolean quadratic pair on an enlarged group. The central odd-cycle
+norm rules F_B are reversibly conjugate to the original linear rule
+plus unchanged coordinates, and satisfy F_B F_C=F_(BC). Finite
+S_3 blocks include matrix coefficients. This does not construct a
+group-ring pair for Q; it shows that the corresponding quadratic
+norm family retains the characteristic-two direct-finiteness question
+exactly, including any failed reverse identity.
+
+For each fixed Gamma, the full family x+A Q_t on Gamma x C_3 with
+arbitrary scalar linear A is surjunctive exactly when F_2[Gamma] is
+directly finite. The converse to the norm reduction uses a local
+involution and two-block elimination; stable direct finiteness is
+not assumed. This is an equivalence, with neither a direct-finiteness
+proof for arbitrary Gamma nor a counterexample supplied.
 
 **Every lane runs out at the same place, and it is worth seeing that they run
 out for different reasons.**

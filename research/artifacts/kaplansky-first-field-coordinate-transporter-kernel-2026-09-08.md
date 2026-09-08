@@ -3,6 +3,11 @@
 Date: 2026-09-08. Exact obstruction, with an explicit binary certificate.
 No computation is used. No Kaplansky counterexample is constructed.
 
+The later [complete two-sector calculation](kaplansky-full-two-sector-relative-transporter-obstruction-2026-09-08.md)
+gives a stronger relative test for block-diagonal actors: both
+character blocks of b^-1a must be injective for a split. This
+includes shared left changes and relative semilinearity.
+
 ## 1. Whole-family statement
 
 Use the chart `K=GL_2(F_4)` and reduced projectors `f_0,P_0` from

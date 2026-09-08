@@ -26,6 +26,7 @@ artifacts:
   - research/artifacts/gottschalk-recipient-affine-normal-form-and-fiber-obstruction-2026-09-08.md
   - research/artifacts/gottschalk-tarski-operand-reversal-exclusions-2026-09-08.md
   - research/artifacts/gottschalk-exact-quadratic-derivative-collision-criterion-2026-09-08.md
+  - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -187,3 +188,18 @@ also proves that the simplest one-subgroup mask cannot work in one
 remaining Tarski case. An admissible nonzero q for either unresolved
 case has not been constructed. The proved criterion is recorded in
 `quadratic-shift-differences-have-exact-orbit-criterion`.
+
+For each fixed Gamma, surjunctivity of the full family x+A Q_t on
+Gamma x C_3, with arbitrary scalar linear A, is exactly equivalent
+to direct finiteness of F_2[Gamma]. A local parity-majority involution
+and two-block elimination prove sufficiency using only scalar direct
+finiteness. The norm subclass proves necessity. This is recorded in
+`central-three-cycle-quadratic-surjunctivity-iff-direct-finiteness`;
+neither side is established for arbitrary Gamma.
+
+For any odd n>=3, the narrower central norm rules F_B=x+(B-I)E Q_t
+on Gamma x C_n are explicitly conjugate to B on the parity coordinate
+and identity on the other coordinates. This conjugacy preserves
+composition and decoder identities. Finite central blocks also encode
+arbitrary matrix rules on enlarged groups. The all-odd-cycle result
+is recorded in `central-odd-norm-quadratic-ca-are-conjugate-to-linear`.
