@@ -43,26 +43,26 @@ def _reduced_key(canonical_terms):
     # every complete binary sibling pair; the resulting reduced prefix table
     # is independent of prior expansion depth.
     terms = set(canonical_terms)
-    changed = True
-    while changed:
-        changed = False
-        parents = {}
-        for mu, nu in terms:
-            if mu and nu and mu[-1] == nu[-1]:
-                parents.setdefault((mu[:-1], nu[:-1]), set()).add(mu[-1])
-        for parent, bits in sorted(parents.items()):
-            if bits == {"0", "1"}:
-                child0 = (parent[0] + "0", parent[1] + "0")
-                child1 = (parent[0] + "1", parent[1] + "1")
-                if child0 in terms and child1 in terms:
-                    terms.remove(child0)
-                    terms.remove(child1)
-                    if parent in terms:
-                        terms.remove(parent)
-                    else:
-                        terms.add(parent)
-                    changed = True
-                    break
+    pending = list(terms)
+    while pending:
+        term = pending.pop()
+        if term not in terms:
+            continue
+        mu, nu = term
+        if not mu or not nu or mu[-1] != nu[-1]:
+            continue
+        parent = (mu[:-1], nu[:-1])
+        sibling_bit = "1" if mu[-1] == "0" else "0"
+        sibling = (parent[0] + sibling_bit, parent[1] + sibling_bit)
+        if sibling not in terms:
+            continue
+        terms.remove(term)
+        terms.remove(sibling)
+        if parent in terms:
+            terms.remove(parent)
+        else:
+            terms.add(parent)
+            pending.append(parent)
     return tuple(sorted(terms))
 
 
