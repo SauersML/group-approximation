@@ -28,9 +28,11 @@ ker(pi) ~= ker(kappa),
 [ker(pi),t]=1.
 ```
 
-The proof does not identify the abstract group `Lambda` with
-`SL_3(R)` and does not show that `ker(pi)` is central in all of
-`Gamma`. The unrestricted marked matrix gap remains unresolved.
+The later affine countermodel in
+`jacobson-laurent-kernel-surjects-natural-affine-module` proves
+that `ker(kappa)` and `ker(pi)` are infinite and noncentral.
+In particular this specified Laurent map is not an isomorphism.
+The unrestricted marked matrix gap remains unresolved.
 
 DERIVATION
 jacobson-shift-positive-symbol-and-kernel-proof

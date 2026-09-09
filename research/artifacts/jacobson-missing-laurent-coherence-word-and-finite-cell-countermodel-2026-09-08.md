@@ -11,8 +11,12 @@ explicit permutation model on 168 points satisfies that selected
 cell and violates the word. In fact it realizes both complete
 `GL_3` factors and their common positive root; precisely the
 identification of their common opposite root fails. It is not a
-countermodel to `Lambda`, `Theta`, or `Theta_shift`. The missing
-word is not proved trivial or nontrivial in those groups.
+countermodel to `Lambda`, `Theta`, or `Theta_shift`. The later
+[full affine countermodel](jacobson-laurent-cover-has-a-noncentral-affine-quotient-2026-09-08.md)
+does identify the entire common subgroup and proves `e!=1` in
+`Lambda`, hence `E!=1` in `Theta_shift`. The identities below
+remain valid, and adjoining the missing word defines a proper
+new quotient.
 
 Use the presentation in
 [the stable-letter artifact](jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md),
@@ -287,8 +291,7 @@ E_perm(q)=q h != q.                                    (17)
 
 Permutation matrices give the same exact selected-cell model in
 `U(168)`. No computation or search is required. This demonstrates
-that a proof of `e=1` must use more than the isolated relations
-(13).
+that the isolated relations (13) do not imply `e=1`.
 
 There is a stronger description of exactly what the model satisfies.
 Let `c=x_13=d` and `k=x_31` in the finite group `B`. Use
@@ -406,8 +409,8 @@ kappa(t_0)=diag(z^(-1),z^2,z^(-1)).                    (21)
 
 Its matching first and third diagonal entries explain the Laurent
 centralization of `x_13(1)`. They do not prove the abstract
-commutation in (20): that is exactly the word whose status is being
-tested.
+commutation in (20). The subsequent full affine countermodel
+proves that this abstract commutation fails.
 
 Some accompanying translation relations do hold abstractly. Set
 
@@ -438,8 +441,8 @@ Since `t_0=D_12^(-1)D_23`, it follows that
 ```
 
 Thus the exact translation word already centralizes the common
-Weyl element `s`. What remains in (20) is its centralization of
-the common elementary root `c`; (22) does not supply that equation.
+Weyl element `s`. Its commutator with the common elementary root
+`c` is nevertheless nonidentity by the subsequent affine model.
 
 ## 5. What adjoining the word would complete
 
@@ -493,8 +496,9 @@ finite root packet includes `q v q=d`, so it requires the word
 `e=1`.
 
 This identifies exactly the finite packet that the word would
-complete. It does not prove that the word follows from the present
-relations of `Lambda`. Nor does it identify the entire abstract
+complete. The subsequent affine countermodel proves that the word
+does not follow from the present relations of `Lambda`. The
+conditional completion does not identify the entire abstract
 Laurent cover, prove faithfulness of `pi` on `Gamma`, or establish
 the positive operator-norm gap needed for the requested non-MF
 conclusion.

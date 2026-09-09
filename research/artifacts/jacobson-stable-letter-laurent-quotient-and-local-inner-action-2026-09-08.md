@@ -231,9 +231,12 @@ Together with the previously established
 `C_Gamma(L)=ker(pi)`, this locates the remaining ambiguity
 precisely: the literal kernel centralizes `L` and `t`, and is
 isomorphic to the kernel of the specific surjection `kappa` in
-(7). We have not proved that `kappa` is injective, that its kernel
-is central in `Lambda`, or that `ker(pi)` is central in the whole
-group `Gamma`. None of (6)--(9) gives a positive lower bound for
+(7). The subsequent
+[affine quotient proof](jacobson-laurent-cover-has-a-noncentral-affine-quotient-2026-09-08.md)
+shows that `ker(kappa)` maps onto the infinite natural module
+`R^3` and is noncentral. Consequently `kappa` is not injective,
+and `ker(pi)` is infinite and noncentral in the whole group
+`Gamma`. None of (6)--(9) gives a positive lower bound for
 the unrestricted matrix-gap problem.
 
 ## 4. The action on each finite core packet is exactly inner

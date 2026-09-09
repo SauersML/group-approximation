@@ -80,21 +80,30 @@ TS error, and the remaining stable-letter error involving `h`.
 - `jacobson-shift-literal-quotient-is-laurent-times-z` identifies
   the literal quotient by its finitary subgroup as
   `SL_3(F_2[z,z^(-1)]) x Z` and locates the abstract literal kernel
-  in the specified Laurent cover. This does not prove the abstract
-  cover is trivial. `jacobson-shift-finite-core-actions-are-locally-inner`
+  in the specified Laurent cover.
+  `jacobson-shift-finite-core-actions-are-locally-inner`
   gives exact regular matrix models of all finite core covariance
   diagrams. The actor relator words in those models need only
   centralize the inspected core; their equality to identity is
   precisely additional information not supplied by that construction.
-- The next finite presentation ambiguity is now a specific word:
+- The finite presentation ambiguity was isolated as a specific word:
   `jacobson-coherence-defect-is-an-orthogonal-translation` identifies
   a literal-kernel word `E` whose vanishing is equivalent to one
   translation commuting with the common elementary root in `Lambda`.
-  Its vanishing would complete the third finite root packet; it is
-  not yet proved. `jacobson-positive-root-gluing-misses-laurent-coherence`
+  Its vanishing would complete the third finite root packet.
+  `jacobson-positive-root-gluing-misses-laurent-coherence`
   gives a 168-point model satisfying both complete finite packets,
   their shared positive root, and both mixed cells, but violating
-  the shared opposite-root equation and this coherence word. Thus
-  the full common opposite root must be used in any such derivation.
+  the shared opposite-root equation and this coherence word.
   This selected countermodel does not refute the actual matrix-gap
   claim, which requires the entire finite intersection exactly.
+- `jacobson-laurent-kernel-surjects-natural-affine-module` now
+  satisfies the actual full quotient presentation and proves
+  `e!=1`, hence `E!=1`. The Laurent cover surjects onto
+  `R^3 semidirect SL_3(R)`, with its kernel mapping onto all
+  translations. This disproves both the proposed coherence
+  identity and centrality of the literal kernel. The quotient
+  kills `L`, so it neither proves nor refutes this marked gap.
+  Imposing `E=1` would define a proper new quotient with the
+  literal head still nontrivial; it cannot be treated as a
+  consequence of the current presentation.
