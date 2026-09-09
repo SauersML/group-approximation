@@ -66,10 +66,12 @@
 \addtolength{\leftskip}{1.5pc}\addtolength{\rightskip}{1.5pc}
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 Some groups are not MF\@.  The obstruction is a property-\textup{(T)}
-subgroup conjugated into a proper subgroup of itself.  The unit group of
-the binary Leavitt algebra is a finitely generated simple
-property-\textup{(T)} group with no nontrivial homomorphism to an MF
-group, and its reduced $C^*$-algebra is separable and stably finite but
+subgroup conjugated into a proper subgroup of itself, together with a
+normal property-\textup{(T)} subgroup of the resulting commutator defect.
+The unit group of the binary Leavitt algebra $L_{\F_2}(1,2)$ is a finitely
+generated simple property-\textup{(T)} group with no nontrivial
+homomorphism to an MF group, and its reduced $C^*$-algebra is separable
+and stably finite but
 not MF\@.  We also construct a sofic group that is not MF, whose canonical
 trace on the maximal group $C^*$-algebra is amenable but not
 quasidiagonal, and a torsion-free group with no nontrivial homomorphism
@@ -997,11 +999,12 @@ normally generates
 $\EL_n(R)$.
 \end{proof}
 
-The hypothesis passes up from corners: if a nonzero idempotent $p\in R$
-is such that the ring $pRp$, with unit $p$, satisfies the hypothesis, then
-$A\mapsto A+(1-p)I_n$ embeds $\EL_n(pRp)$ in $\EL_n(R)$, and restricting
-models shows that MF passes to subgroups, so $\EL_n(R)$ is not MF for
-every $n\ge2$, although its homomorphisms to MF groups need no longer be
+The non-MF conclusion passes up from corners: if a nonzero idempotent
+$p\in R$ is such that the ring $pRp$, with unit $p$, satisfies the
+hypothesis, then $A\mapsto A+(1-p)I_n$ embeds $\EL_n(pRp)$ in $\EL_n(R)$,
+and restricting models shows that MF passes to subgroups, so $\EL_n(R)$ is
+not MF for every $n\ge2$.  The full-defect hypothesis itself need not pass
+to $R$, nor need every homomorphism from $\EL_n(R)$ to an MF group be
 trivial.
 
 \begin{corollary}\label{cor:simple-infinite-ring}
@@ -1158,7 +1161,7 @@ $1$, $m\ge4$, such that $e_1,\dots,e_{m-1}$ are pairwise equivalent and
 $e_m$ is equivalent to an idempotent $f\le e_1$.  Then $R$ is the ring
 of $m\times m$ matrices over $T=e_1Re_1$ whose last column has entries
 in $Tf$ and whose last row has entries in $fT$, and every unit $u$ of
-$R$ factors as $u=PvQ$ with $P$ and $Q$ products of elementary matrices
+$R$ factors as $u=gvh$ with $g$ and $h$ products of elementary matrices
 $e_{ij}(x)$ of this matrix ring and $v=e_1+(1-e_1)v(1-e_1)$.
 \item[(b)] For a nonzero idempotent $e$ and $n\ge2$ there are an
 idempotent $f<e$ equivalent to $e$ and orthogonal idempotents
@@ -1169,7 +1172,7 @@ to $(1-e)v(1-e)+f+r_2+\dots+r_n$ for every unit
 $v=e+(1-e)v(1-e)$.
 \end{enumerate}
 
-Let $u\in\ker\kappa$ and write $u=PvQ$ as in (a).  The elementary
+Let $u\in\ker\kappa$ and write $u=gvh$ as in (a).  The elementary
 matrices with $i,j\le m-1$ form $\EL_{m-1}(T)$ inside
 $(1-e_m)R(1-e_m)\cong M_{m-1}(T)$, so they lie in $N$
 by~\eqref{eq:corner-units}; for distinct $i,j\le m-1$,
@@ -1191,7 +1194,8 @@ by~\eqref{eq:corner-units}.  Hence $\ker\kappa\le N$.
 
 \begin{corollary}[Leavitt unit groups]\label{cor:leavitt-mf-quotient}
 Let $k$ be a countable field, let $d\ge2$, let $R=L_k(1,d)$, and let
-$H=R^\times$.  Then $H\cong\GL_d(R)$, $\Rad_{\mathrm{MF}}(H)=[H,H]=\EL_d(R)$, and
+$H=R^\times$.  Then $H\cong\GL_d(R)$, and under this identification
+$\Rad_{\mathrm{MF}}(H)=[H,H]=\EL_d(R)$ and
 \[
  H/\EL_d(R)\cong K_1(R)\cong k^\times/(k^\times)^{d-1}.
 \]
