@@ -48,3 +48,17 @@ dichotomy recorded on
 `finitary-linear-extension-kazhdan-defect-kills-kernel`, with the ingestion
 record in
 `research/artifacts/finitary-linear-vs-permutation-kazhdan-criterion-2026-09-08.md`.
+
+**A Kazhdan-free proof exists in finite dimensions, and stops there
+(2026-09-08).**  `uniform-root-kernel-invariance-kills-one-sided-defect`
+kills the same defect roots in every exact finite-dimensional unitary
+representation of `E_n(R)`, `n >= 3`, using only a spectral gap at the
+`m`-th roots of unity and the fact that a left-invertible endomorphism of a
+finite abelian group is invertible -- no property (T), no
+Ershov--Jaikin-Zapirain, no simplicity or fullness.  What it needs is
+uniformity over coefficients at a single coordinate, and
+`root-kernel-invariance-is-not-pointwise-obtainable` proves that pointwise
+corona data does not supply it, with every fixed test eventually exact and
+the invariance failing at distance `2` at every coordinate.  So the
+statement above still consumes property (T), and this is a recorded dead
+route to removing it rather than a second proof.
