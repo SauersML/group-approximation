@@ -203,7 +203,8 @@ limiting trace is the trivial character of $K$, which takes the value $1$
 on that projection (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
 Hilbert--Schmidt bound on the multiplicative defect does not give an
 operator norm bound on the conjugation maps, so this argument does not
-apply to sofic or hyperlinear approximations.}
+apply to sofic or hyperlinear approximations; the sofic group of
+Section~\ref{sec:amenable-nonqd} shows that its conclusion fails there.}
 
 The stable letter of an ascending HNN extension of a property-\textup{(T)}
 group along a proper self-embedding is a compressor.  For a unital ring
@@ -1517,6 +1518,18 @@ $C^*_{\max}(W_0)$ is quasidiagonal and that of $C^*_{\max}(W)$ is
 amenable; by Theorem~\ref{thm:factorization-nonmf-trace} the latter is
 not quasidiagonal.
 \end{proof}
+
+Soficity also shows where operator norm enters.  The permutation
+matrices $V_n$ of a sofic approximation of $W$ satisfy
+$\hsnorm{V_n(gh)-V_n(g)V_n(h)}\to0$, while
+$\hsnorm{V_n(\varepsilon)-1}\to\sqrt2$, because $\varepsilon\ne1$ moves
+almost every point.  So the collapse of Corollary~\ref{cor:defect-hs}
+fails for asymptotic representations in normalized Hilbert--Schmidt
+norm, although $\varepsilon$ is a central involution of $W$ inside
+$\mathfrak D_W(\Gamma)$: Theorem~\ref{thm:transport} needs operator norm
+control of the conjugation maps, and no version of
+Theorem~\ref{thm:compression-criterion} for sofic or hyperlinear
+approximation follows from these hypotheses.
 
 For a concrete instance, take
 \[
