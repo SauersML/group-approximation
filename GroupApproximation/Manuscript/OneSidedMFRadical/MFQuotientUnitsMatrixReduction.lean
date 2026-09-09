@@ -37,9 +37,14 @@ assert anything about the constructed algebraic K₁.
 explicit Peirce operations. `MFQuotientMatrices` also provides a separate
 direct elementary-group proof at every rank at least two.
 
-The canonical `AGPUnitKappa` and general `MoritaKOne` remain separate
-obligations. `AlgebraicK.moritaKOne_of_selfSimilar` closes Morita invariance
-for the self-similar rings the manuscript uses.
+Neither of the two obligations this module once listed as remaining is one now:
+the canonical `AGPUnitKappa` is proved by `agpUnitKappa` in
+`MFQuotientUnitsKappaProof.lean`, and general `MoritaKOne` by
+`AlgebraicK.morita_algebraicKOne` in `KOne/MoritaKOne.lean`, discharged by
+`MFQuotientUnitsKOneMorita.moritaKOne` — which also restates
+`printedMFQuotientUnitsKOneAtBaseRing_of_agpThree` below without its Morita
+hypothesis. `AlgebraicK.moritaKOne_of_selfSimilar` remains the short route for
+the self-similar rings the manuscript uses.
 -/
 
 namespace GroupApproximation

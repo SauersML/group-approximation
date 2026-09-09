@@ -35,20 +35,25 @@ for an arbitrary ring, so both can be stated as printed.
 * `PrintedMFQuotientUnitsKOneAllRanks` — the same at every `n ≥ 1`, with the
   quotient identified with `K_1(M_n(R))`.
 
-## The one printed step that remains a citation
+## The printed Morita step
 
 The printed proof reduces `n ≥ 2` to `n = 1` by two moves: `M_n(R)` is again
-countable purely infinite simple (`AGPMatrixReduction`, cited), and
-`K_1(M_n(R)) ≅ K_1(R)` **by Morita invariance**.  The second is `MoritaKOne`
-below, and it is stated, not proved.  It is not out of reach — `K₁(M_n(R))` is
-the colimit of `GL_m(M_n(R)) ≅ GL_{mn}(R)`, a cofinal subsystem of the colimit
-defining `K₁(R)`, and the flattening `StableWhitehead.twoBlockUnitEquiv` is the
-`m = 2` case of the isomorphism that argument needs — but it is a cofinality
-argument about direct limits and it is not attempted here.
+countable purely infinite simple (`AGPMatrixReduction`, discharged by
+`agpMatrixReduction` in `MFQuotientUnitsMatrixReduction.lean`), and
+`K_1(M_n(R)) ≅ K_1(R)` **by Morita invariance**, which is `MoritaKOne` below.
 
-Because the ranks are only ever compared through that citation, this module
-states the general-rank theorem at `K_1(M_n(R))` and keeps `MoritaKOne` as a
-separate named hypothesis of the version that says `K_1(R)`.  Stating the
+`MoritaKOne` is a hypothesis *of this module* and a theorem elsewhere.  The
+cofinality argument it needs — `K₁(M_n(R))` is the colimit of
+`GL_m(M_n(R)) ≅ GL_{mn}(R)`, a cofinal subsystem of the colimit defining
+`K₁(R)`, whose `m = 2` case is the flattening
+`StableWhitehead.twoBlockUnitEquiv` — is carried out in `KOne/MoritaKOne.lean`
+for an arbitrary unital ring and every `n ≥ 1`, and
+`MFQuotientUnitsKOneMorita.moritaKOne` discharges the hypothesis with it.
+
+Because this module compares the ranks only through that step, it states the
+general-rank theorem at `K_1(M_n(R))` and keeps `MoritaKOne` as a separate named
+hypothesis of the version that says `K_1(R)`;
+`MFQuotientUnitsKOneMorita.lean` restates that version without it.  Stating the
 general-rank theorem at `K_1(M_n(R))` and calling it the printed statement would
 be a weakening dressed as a proof: the printed conclusion says `K_1(R)`.
 -/
@@ -177,14 +182,17 @@ theorem printedMFQuotientUnitsKOneAllRanks_of_agp
       (Matrix (Fin n) (Fin n) R) (hMat R hR n hn)
   exact ⟨hMF, hcomm, hiso⟩
 
-/-! ### The remaining printed citation -/
+/-! ### The printed Morita step, as a hypothesis of this module -/
 
 /-- **Morita invariance**, the printed "`K_1(M_n(R)) ≅ K_1(R)` by Morita
 invariance".
 
-Stated, not proved.  See the module docstring for why it is the only printed
-step of `thm:mf-quotient-units` that this development still cites rather than
-carries, and for the shape a proof would take. -/
+Stated here as a hypothesis, and proved in `KOne/MoritaKOne.lean`:
+`AlgebraicK.morita_algebraicKOne` gives the isomorphism for an arbitrary unital
+ring and every `n ≥ 1`, with no countability, simplicity or purely infinite
+assumption, and `MFQuotientUnitsKOneMorita.moritaKOne` inhabits this
+proposition.  That module also restates the two theorems below that take it,
+without it. -/
 def MoritaKOne : Prop :=
   ∀ (R : Type) [Ring R] (n : ℕ), 1 ≤ n →
     Nonempty (AlgebraicKOne (Matrix (Fin n) (Fin n) R) ≃* AlgebraicKOne R)
