@@ -29,6 +29,7 @@ artifacts:
   - research/artifacts/boone-higman-boundary-wreath-germ-construction-2026-09-08.md
   - research/artifacts/boone-higman-finite-state-and-shell-germ-limits-2026-09-08.md
   - research/artifacts/boone-higman-shell-normal-core-criterion-2026-09-08.md
+  - research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -95,6 +96,13 @@ the universal presentation nor a lift back to all three stabilizers
 has been supplied.
 
 ## What a certificate must contain
+
+The shell route has an additional effective consequence:
+`shell-recursive-presentations-compute-enumerations` extracts the
+regular enumeration from a recursive presentation of its one-point
+stabilizer. A successful enumeration must therefore be computable.
+The finite-prefix obstruction for shell groups shows why finite point
+samples do not certify a successful presentation, even for Z.
 
 *Proof.*  It suffices to close any one of the live routes.  The shortest
 is `boone-higman-via-ck-maximal-kernel`: by

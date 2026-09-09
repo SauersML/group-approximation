@@ -8,6 +8,7 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-finite-state-and-shell-germ-limits-2026-09-08.md
   - research/artifacts/boone-higman-shell-normal-core-criterion-2026-09-08.md
+  - research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md
 ---
 
 For every infinite finitely presented group P with decidable word
@@ -27,9 +28,13 @@ isotropy germ group do not prove these finite-presentation clauses.
 The route `boone-higman-via-shell-germ-stabilizers` proves that the
 three clauses would suffice for the full conjecture.
 
-No uniformity or computability of nu is included in the assertion.
-An effective choice with a proof of the three clauses would suffice,
-but finite tables of values of nu are not a certificate of them.
+No uniform construction of nu from P is included in the assertion.
+Computability of every successful nu now follows from
+`shell-recursive-presentations-compute-enumerations`: the presentation
+of A_1 computes nu by comparing conjugates of localized prefix flips.
+Thus requiring nu to be computable would give an equivalent assertion.
+Finite tables of its values remain insufficient, as
+`shell-finite-prefix-cannot-certify-presentation` proves even for Z.
 
 `virtually-cyclic-inputs-have-fp-shell-stabilizers` supplies all three
 clauses for virtually cyclic inputs. Its normal-core proof cannot

@@ -46,6 +46,11 @@ on:
       - 'research/shell-germ-fp-*.md'
       - 'research/shell-germ-ascending-*.md'
       - 'research/shell-parity-*.md'
+      - 'research/shell-recursive-*.md'
+      - 'research/shell-localized-*.md'
+      - 'research/shell-finite-prefix-*.md'
+      - 'research/shell-finite-perturbation-*.md'
+      - 'research/cantor-punctured-*.md'
       - 'research/virtually-cyclic-inputs-have-fp-shell-stabilizers.md'
       - 'research/decidable-inputs-have-fp-shell-stabilizers.md'
       - '.github/workflows/boone-higman-research.yml'
@@ -158,6 +163,9 @@ jobs:
           bin/cairn why virtually-cyclic-inputs-have-fp-shell-stabilizers --json > bh-shell-virtually-cyclic-control.json
           bin/cairn why shell-germ-group-has-index-two-fiber-product --json > bh-shell-germ-fiber-product.json
           bin/cairn why shell-germ-fp-is-an-ascending-hnn-gate --json > bh-shell-germ-ascending-hnn.json
+          bin/cairn why shell-recursive-presentations-compute-enumerations --json > bh-shell-computable-enumerations.json
+          bin/cairn why cantor-punctured-prefix-groups-detect-word-problem --json > bh-shell-recursive-word-problem.json
+          bin/cairn why shell-finite-prefix-cannot-certify-presentation --json > bh-shell-finite-prefix-limit.json
           bin/cairn why decidable-inputs-have-fp-shell-stabilizers --json > bh-shell-open-stabilizers.json
           bin/cairn why boone-higman-via-shell-germ-stabilizers --json > bh-shell-open-route.json
       - name: Retain structural validation and exact finite witness
