@@ -168,11 +168,11 @@ source.  Rank three is not settled (`SL_3(Z) <= EL_3`).
 
 ## 7. Manuscript status
 
-Nothing from this note is in `non_mf_groups_exist.tex`.  Candidate for
-the manuscript, on reader merits: the binary-field exactness
-`Rad_MF(EL_n(F_2<s,t | ts = 1>)) = SL_fin(F_2)` for `n >= 4` (no
-`K`-theory needed, the symbol kernel is already `SL_fin(F_2)`) together
-with the rank-two inertness, as one short remark after
-`prop:torsion-defect-ring`.  The `K_2(Z/4)` detector, the `A_m` radical
-for `m > 2`, and the integral dichotomy are recorded here and in the
-graph, not proposed for the manuscript.
+Landed in `non_mf_groups_exist.tex` on 2026-09-09, as the paragraph
+following `prop:torsion-defect-ring`: the binary-field exactness
+`Rad_MF(EL_n(F_2<s,t | ts = 1>)) = EL_n(J, JeJ) = union SL_N(F_2)` for
+`n >= 4` (no `K`-theory needed, the symbol kernel is already
+`SL_fin(F_2)`), and the rank-two inertness via GHW Theorem 4 explaining
+the rank four as three plus one.  The `K_2(Z/4)` detector, the `A_m`
+radical for `m > 2`, and the integral dichotomy are recorded here and in
+the graph, not in the manuscript.
