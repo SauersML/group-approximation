@@ -22,6 +22,8 @@ This is OPEN. The Gamma/K action is an extension in the sense
 that it contains the original shell orbit as one E_nu orbit;
 E_nu need not be transitive on the enlarged set.
 
+## Attempts
+
 The retained-stabilizer host hypothesis implies this by taking
 K=(E_nu)_p. The digit-fiber theorem supplies these data for every
 fixed-base shell action, including the arithmetic A5*A5 example,

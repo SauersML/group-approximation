@@ -14,6 +14,8 @@ word problem, there exist an enumeration nu and an abstract embedding
 E_nu<=Gamma in a finitely presented group such that H=(E_nu)_p has
 finite bi-index in Gamma. This is OPEN.
 
+## Attempts
+
 The older finitely presented shell-envelope hypothesis would imply
 this by taking Gamma=E_nu, where H has exactly two double cosets.
 The present statement allows E_nu not to be finitely presented.
