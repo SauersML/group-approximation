@@ -91,7 +91,7 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "FullDefectRingEJZUnconditional."
-        "manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics"),
+        "manuscriptOneSidedRingMaximalIsometryAllCharacteristics"),
     "lem:two-copies": (
         "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
@@ -100,6 +100,13 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
         "manuscriptRankTwoNormalGeneration"),
+    "thm:amenable-trace": (
+        "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
+        "GroupApproximation.AmenableTraceTheorem."
+        "manuscriptAmenableNonquasidiagonalTrace"),
+    "prop:clifford-locally-rf": (
+        "Sofic/CliffordWitnessSoficPrinted",
+        "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF"),
 }
 
 
@@ -111,31 +118,27 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # Two steps extracted from longer proofs; both are complete in the
     # manuscript and carry no badge.
     "lem:ring-compression-cell": (),
-    "lem:block-structure": (
-        "Bass--Serre theory: the tree of an HNN extension, and a graph of "
-        "groups with trivial edge groups over a tree",),
-    # The finite-block theorem has a full written proof. Its analytic step
-    # is not a compiled Lean endpoint; do not inherit older badges.  The
-    # covariance correction was replaced by a rank bound on 2026-09-08.
-    "thm:finite-algebra-transport": (
-        "Finite-dimensional C*-algebra structure and rank bounds for the "
-        "normalized Hilbert--Schmidt norm",),
-    "thm:perfect-block-radical": (
-        "Free-product normal form, free tree actions, and residual finiteness of free groups",
-        "Elek--Szabo, Theorem 1"),
-    "thm:fp-sofic-radical": (
-        "Bekka--de la Harpe--Valette, Example 1.7.4(i)",
-        "LiteralBaseCompleteness.baseAffineEquiv (existing in-repository base presentation)",
-        "Simplicity and perfection of A_5; free-product center theorem"),
-    "prop:cyclic-hnn-absorption": (
-        "Britton's lemma and the HNN normal form theorem",),
-    "thm:sofic-cyclic-mf": (
-        "Elementary generation of SL_3(Z); characters separate points of abelian groups",
-        "Amalgam normal form and Bass--Serre theory",
-        "Collins--Dykema, Theorem 3.4 and Corollary 3.6",
-        "Elek--Szabo, Theorem 1",
-        "Bryder--Ivanov--Omland, Proposition 4.12",
-        "Minasyan--Osin, Corollary 2.3"),
+    # `lem:block-structure`, `thm:finite-algebra-transport`,
+    # `thm:perfect-block-radical`, `thm:fp-sofic-radical`,
+    # `prop:cyclic-hnn-absorption`, `thm:sofic-cyclic-mf` and
+    # `cor:relative-quotient` were cut as printed environments in the
+    # 2026-09-08 rewrite (no `\label` for any of them remains in the tex);
+    # their PAPER_PROOFS/DEPENDENCIES entries were dropped 2026-09-09 to
+    # match.  Their Lean declarations, where any existed, are simply no
+    # longer cited by the manuscript.
+    #
+    # `thm:amenable-trace` and `prop:clifford-locally-rf` were themselves
+    # cut on 2026-09-08 (their content folded into `thm:fp-sofic-radical`)
+    # but are BACK as printed environments as of 2026-09-09, each with its
+    # own single exact badge; both moved to EXACT_TARGETS.
+    # `prop:torsion-defect-ring` is a new printed proposition as of
+    # 2026-09-09 (the torsion-defect complement to `thm:full-defect-ring`);
+    # its proof is written out in the manuscript with no margin badge, so
+    # it is a paper-proof claim.  Its only literature input is property (T)
+    # of `EL_3(S)`; its internal dependencies
+    # (`thm:compression-criterion`, `lem:ring-compression-cell`) are
+    # recorded in DEPENDENCIES, not here.
+    "prop:torsion-defect-ring": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -145,13 +148,6 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # now unconditional.  `cor:simple-infinite-ring` and
     # `cor:one-sided-ring-maximal` moved to EXACT_TARGETS the same day, once
     # badge batch 3 gave both hypothesis-free n>=2 carriers.
-    # `thm:amenable-trace`, `prop:clifford-locally-rf`,
-    # `prop:linear-collapse`, `lem:linear-tensor-amplification` and
-    # `thm:word-linear-certificate` were removed as printed environments on
-    # 2026-09-08: the trace statement was folded into
-    # `thm:fp-sofic-radical`, whose witness is finitely presented, and the
-    # quantitative subsection was cut.  Their Lean declarations still exist
-    # and are simply no longer cited by the manuscript.
     # `cor:affine-clifford-trace` and `lem:commutator-in-defect` were
     # removed as separate numbered environments in the 2026-09-07 rewrite:
     # the trace corollary's content moved into `thm:amenable-trace`'s own
@@ -170,7 +166,9 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # `prop:linear-collapse` moved to EXACT_TARGETS 2026-09-07 (badges
     # landed: QuantitativeCollapse.manuscriptLinearCollapse /
     # .manuscriptLinearCollapseConverse, one per direction -- collective).
-    "cor:relative-quotient": ("Hull, Corollary 7.4",),
+    # `cor:relative-quotient` (was `("Hull, Corollary 7.4",)`) was cut as a
+    # printed environment in the 2026-09-08 rewrite; see the note above
+    # `lem:ring-compression-cell`.
     "cor:regular-nonmf-algebra": (
         "Osin, Theorem 1.2", "Dahmani--Guirardel--Osin, Theorem 2.35",
         "Gerasimova--Osin, Theorem 1.1"),
@@ -207,9 +205,10 @@ COLLECTIVE_CLAIMS: set[str] = {
     # (manuscriptSimpleInfiniteRingRankTwoAllCharacteristics /
     # manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics).
     "cor:simple-infinite-ring",
-    # `cor:one-sided-ring-maximal` prints four badges: the n>=4 isometry
-    # clause, the n>=2 isometry clause, the n>=2 reduced-C*-algebra clause,
-    # and the unit-group-not-MF clause; no single one is the whole
+    # `cor:one-sided-ring-maximal` prints three badges as of 2026-09-09
+    # (the separate n>=2 isometry clause was cut from the printed
+    # statement): the n>=4 isometry clause, the n>=2 reduced-C*-algebra
+    # clause, and the unit-group-not-MF clause; no single one is the whole
     # corollary.
     "cor:one-sided-ring-maximal",
 }
@@ -244,24 +243,18 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:factorization-nonmf-trace": [],
     "prop:locally-rf-by-z-trace": [],
     "prop:clifford-self-embedding": ["thm:compression-criterion"],
-    "thm:finite-algebra-transport": [
-        "thm:transport", "prop:mf-residual-calculus"],
-    "lem:block-structure": [],
-    "thm:perfect-block-radical": [
-        "lem:block-structure",
-        "thm:finite-algebra-transport", "prop:mf-residual-calculus",
-        "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
-    "thm:fp-sofic-radical": ["thm:perfect-block-radical"],
-    "prop:cyclic-hnn-absorption": ["prop:mf-residual-calculus"],
-    "thm:sofic-cyclic-mf": [
-        "thm:fp-sofic-radical", "prop:cyclic-hnn-absorption"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "thm:torsion-free": [
         "thm:compression-criterion", "lem:saturation"],
     "lem:ring-compression-cell": [],
-    "cor:relative-quotient": ["thm:torsion-free", "thm:hull"],
     "cor:regular-nonmf-algebra": ["thm:torsion-free"],
+    "prop:torsion-defect-ring": [
+        "thm:compression-criterion", "lem:ring-compression-cell"],
+    "prop:clifford-locally-rf": [
+        "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
+        "thm:factorization-nonmf-trace"],
+    "thm:amenable-trace": ["prop:clifford-locally-rf"],
 }
 
 

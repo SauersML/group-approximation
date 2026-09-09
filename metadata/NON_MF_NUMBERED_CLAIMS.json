@@ -27,43 +27,42 @@
       ]
     },
     {
-      "id": "thm:fp-sofic-radical",
+      "id": "thm:amenable-trace",
       "environment": "mainthm",
-      "title": "a finitely presented sofic group with exact MF radical",
-      "statement_sha256": "30dcc9392714fbc6227a42feee255e1c676a78f6273431e91fc6f366532d4888",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "title": "an amenable nonquasidiagonal trace",
+      "statement_sha256": "fd5e8e843bdc16bb85fdb6edb78ff62c4b1b4265499f968ad61e79a1cfb55ac7",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:perfect-block-radical"
+        "prop:clifford-locally-rf"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Bekka--de la Harpe--Valette, Example 1.7.4(i)",
-        "LiteralBaseCompleteness.baseAffineEquiv (existing in-repository base presentation)",
-        "Simplicity and perfection of A_5; free-product center theorem"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
+          "declaration": "GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
-      "id": "thm:sofic-cyclic-mf",
+      "id": "thm:torsion-free",
       "environment": "mainthm",
-      "title": "a sofic group with exactly cyclic MF quotients",
-      "statement_sha256": "d1edb3d6a5342dfa1926037442064a1ef7b10c4c9bb70d7821baa06c8e588911",
+      "title": "a torsion-free example",
+      "statement_sha256": "0f22bdbc41845388688686999b9e05e6c3fac43b3e1710f3e6fccbf871c17b3c",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
-        "thm:fp-sofic-radical",
-        "prop:cyclic-hnn-absorption"
+        "thm:compression-criterion",
+        "lem:saturation"
       ],
       "extra_assumptions": [],
       "external_inputs": [
-        "Elementary generation of SL_3(Z); characters separate points of abelian groups",
-        "Amalgam normal form and Bass--Serre theory",
-        "Collins--Dykema, Theorem 3.4 and Corollary 3.6",
-        "Elek--Szabo, Theorem 1",
-        "Bryder--Ivanov--Omland, Proposition 4.12",
-        "Minasyan--Osin, Corollary 2.3"
+        "Fournier-Facio, Section 2",
+        "Hull, Corollary 7.4"
       ],
       "coverage_gap": "",
       "lean": []
@@ -189,7 +188,7 @@
       "id": "lem:central-corona-corner",
       "environment": "lemma",
       "title": "central corona corners",
-      "statement_sha256": "614df5f41a8af65c0a0ef802463c51cd6e1dbded03d3aae67bc0c5330b802a23",
+      "statement_sha256": "9e5172a5a3b3c9049644b6f784fbc1142c02304ee77dc2229887de6ed2576ec4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -360,7 +359,7 @@
       "id": "thm:full-defect-ring",
       "environment": "theorem",
       "title": "full complementary idempotents",
-      "statement_sha256": "293fd35293923856434c55ff6f91c9954354dddb4472e284fdf62544e7c43ebf",
+      "statement_sha256": "e63470727eea78cf357965dee92e0e77930a6b2ca9974aa2c41e50a05ea36cdf",
       "status": "exact",
       "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
@@ -418,7 +417,7 @@
       "id": "cor:one-sided-ring-maximal",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "33ccb99cc4171b3553f2a904b4ad423fa7da89dc5c1a56d861b4449b57428484",
+      "statement_sha256": "33d0d2e3fd62a8c12c9e1e32ddbcb46f2ba1443b4362a0614e4be008adcaf0e4",
       "status": "exact",
       "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
@@ -438,12 +437,6 @@
         {
           "role": "exact",
           "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics",
-          "covers": "one printed clause; the listed declarations are collective"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics",
           "covers": "one printed clause; the listed declarations are collective"
         },
@@ -456,10 +449,28 @@
       ]
     },
     {
+      "id": "prop:torsion-defect-ring",
+      "environment": "proposition",
+      "title": "torsion complementary idempotents",
+      "statement_sha256": "9a8a7b086e9576e66407e6b3d76b9a38d75d75f6cc4c1aeb38044b9f38767883",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:compression-criterion",
+        "lem:ring-compression-cell"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "thm:mf-quotient-units",
       "environment": "theorem",
       "title": "MF quotients of unit groups",
-      "statement_sha256": "7aff136e09122dc832df600290614d7e111d7492cba7580582e7986ad109acf8",
+      "statement_sha256": "9a3d230f944e9c9537fcdc546e518a5a20cd4965273af643819ef988b23cdb25",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
@@ -478,7 +489,7 @@
       "id": "cor:leavitt-mf-quotient",
       "environment": "corollary",
       "title": "Leavitt unit groups",
-      "statement_sha256": "9c1e325c0346c35b0eb57faecc55af5c9f5d58996b2fad6b3b589faa01cdae4c",
+      "statement_sha256": "e86f121406d4b4adb79c4eab43175a009cff6609f51545b101a20e469b3a14ab",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
@@ -566,82 +577,34 @@
       ]
     },
     {
-      "id": "thm:finite-algebra-transport",
-      "environment": "theorem",
-      "title": "finite-dimensional fixed-point transport",
-      "statement_sha256": "1766d4d6fd8238bab6a56feff3b1a86c0ab09cd9ac4042fa68e48a803f7a4448",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "id": "prop:clifford-locally-rf",
+      "environment": "proposition",
+      "title": "the locally residually finite case",
+      "statement_sha256": "c75afeb8d4778221b99345af645441124f475b94d43aa94233446819c87c0999",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:transport",
-        "prop:mf-residual-calculus"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Finite-dimensional C*-algebra structure and rank bounds for the normalized Hilbert--Schmidt norm"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "lem:block-structure",
-      "environment": "lemma",
-      "title": "block structure",
-      "statement_sha256": "6248f08106038cfd5d06d1ddd81cf77fc01fbce15cd5c07855cda092ff4174eb",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Bass--Serre theory: the tree of an HNN extension, and a graph of groups with trivial edge groups over a tree"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "thm:perfect-block-radical",
-      "environment": "theorem",
-      "title": "perfect finite-block radical",
-      "statement_sha256": "0eca26ffa5b14512261a9e52126fe6cc81c78d7e3eae5391194358eb9e1397eb",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [
-        "lem:block-structure",
-        "thm:finite-algebra-transport",
-        "prop:mf-residual-calculus",
+        "prop:clifford-self-embedding",
         "prop:locally-rf-by-z-trace",
         "thm:factorization-nonmf-trace"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Free-product normal form, free tree actions, and residual finiteness of free groups",
-        "Elek--Szabo, Theorem 1"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "prop:cyclic-hnn-absorption",
-      "environment": "proposition",
-      "title": "cyclic HNN absorption",
-      "statement_sha256": "847780f74e2ea30ceb56c2ad936cecb0622f7086c05b20e0035270c0472d8a32",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [
-        "prop:mf-residual-calculus"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Britton's lemma and the HNN normal form theorem"
-      ],
-      "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CliffordWitnessSoficPrinted",
+          "declaration": "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:hull",
       "environment": "theorem",
       "title": "Hull's small cancellation theorem",
-      "statement_sha256": "868a36ff2b66712b0c4c4e0454e02a6b289fcc5e8ec95b26a16d8eff023fbbef",
+      "statement_sha256": "9ecfd1cb0869511a9431a1ace3972417c069e0346daabd2c13c27e86747f7560",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [],
@@ -656,7 +619,7 @@
       "id": "lem:saturation",
       "environment": "lemma",
       "title": "saturation",
-      "statement_sha256": "7960b5e69ad604b48f291694828a334aa2bc7232e7efe8317bf7b5b870e84077",
+      "statement_sha256": "2f55113239cea07fdf12f82e5e27406ffdd70eeeccc86bfa4e134c6f6dd94b44",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
@@ -667,43 +630,6 @@
         "Osin, Lemma 7.1",
         "Hull, Theorem 3.12",
         "Hull, Corollary 5.7 and Lemma 5.8"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "thm:torsion-free",
-      "environment": "theorem",
-      "title": "a torsion-free finitely presented example",
-      "statement_sha256": "0f22bdbc41845388688686999b9e05e6c3fac43b3e1710f3e6fccbf871c17b3c",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [
-        "thm:compression-criterion",
-        "lem:saturation"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Fournier-Facio, Section 2",
-        "Hull, Corollary 7.4"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "cor:relative-quotient",
-      "environment": "corollary",
-      "title": "",
-      "statement_sha256": "58288837e6046fbf6c22013d7f9e992956966b043fb3731e6668b714a9c52599",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [
-        "thm:torsion-free",
-        "thm:hull"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Hull, Corollary 7.4"
       ],
       "coverage_gap": "",
       "lean": []
