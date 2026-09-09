@@ -123,8 +123,9 @@ $G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is again MF, and hence the largest
 MF quotient of $G$: enumerate its nontrivial elements and separate each by
 an MF model, and at stage $n$ take the direct sum of the first $n$ models,
 each carried far enough along its own sequence to have multiplicative
-defect below $1/n$ on the first $n$ elements.  This family is
-asymptotically multiplicative and separates every element.
+defect below $1/n$ on the first $n$ elements while still separating its
+own element.  This family is asymptotically multiplicative and separates
+every nontrivial element.
 
 Some groups admit no such approximation.  We construct groups for which
 every homomorphism to an MF group is trivial, as well as a sofic group
@@ -613,8 +614,9 @@ unitary in the matrix corners.
 \begin{lemma}[central corona corners]\label{lem:central-corona-corner}
 Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
 countable group, and let \(q\in\mathcal Q_{\mathbf d}\) be a nonzero
-projection commuting with \(\rho(G)\).  After passing to an infinite
-subsequence of coordinates, there are ranks \(r_n\ge1\), an
+projection commuting with \(\rho(G)\).  Discard the coordinates on which
+a fixed projection lift of \(q\) vanishes; infinitely many remain, and on
+them there are ranks \(r_n\ge1\), an
 identification of the corner \(q\mathcal Q_{\mathbf d}q\) with the norm
 matrix corona \(\mathcal Q_{\mathbf r}\), and an operator norm asymptotic
 representation \(W_n\colon G\to\U(r_n)\) whose corona homomorphism is
