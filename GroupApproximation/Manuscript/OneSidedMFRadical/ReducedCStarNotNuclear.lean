@@ -84,6 +84,22 @@ endpoint if it were pointed at it.
 A premise cooked up for `H` alone cannot meet
 `TranslationCPAPReductionInput`: it is the general reduction or nothing.
 
+**Correction, 2026-09-09: the reduction is now proved, and this row is no
+longer conditional.**  Both facts listed above landed after this docstring was
+written — finite-dimensional injectivity as
+`BlackadarKirchberg.exists_matrix_ucp_retraction_of_finiteDimensionalCStar`
+(`Analysis/FiniteDimensionalCStarMatrixCPRetract`), and the
+contractive-to-unital repair as `additiveUnitalization`
+(`Analysis/LanceCPContractiveUnitalization`), which is additive rather than the
+conjugation by `(α 1 + δ)^{-1/2}` anticipated here and costs a factor four.
+`Analysis/LanceForward.nuclearReducedCPAP_of_isNuclearCStarAlgebra` proves the
+reduction for every discrete group with no hypothesis, and
+`Manuscript/OneSidedMFRadical/MaximalCStarWNotNuclear.translationCPAPReduction`
+inhabits `TranslationCPAPReductionInput`; that module's
+`manuscriptRankTwelveReducedCStarNotNuclear` is the endpoint below with the
+binder discharged.  The declarations here are left exactly as they are, since
+the conditional forms remain correct and are what the discharge is applied to.
+
 ## What this module does not say
 
 It does not identify the repository's nuclearity predicates with one another.

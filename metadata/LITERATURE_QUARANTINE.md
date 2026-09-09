@@ -208,6 +208,70 @@ would weaken the manuscript's non-nuclearity conclusion by exactly those two
 facts, which is the badge-claim-strength defect this repository exists to
 catch.
 
+### Correction, 2026-09-09: both facts have since been proved, and the reduction is now a theorem
+
+The two items above are **no longer missing**, and the paragraph before them —
+"what is *not* proved, and why it is not stated either" — no longer describes
+the tree.  Each was landed by a different lane after this section was written:
+
+1. *Finite-dimensional injectivity.*
+   `Analysis/FiniteDimensionalCStarMatrixCPRetract.exists_matrix_ucp_retraction_of_finiteDimensionalCStar`:
+   a nontrivial finite-dimensional complex C⋆-algebra carries a unital
+   ⋆-embedding into a full matrix algebra together with a unital, completely
+   positive, **contractive** retraction, fully unpacked.  The Wedderburn step
+   is `FiniteProductCorrectedStarEquiv`, the block retract is
+   `FiniteDirectSumMatrixCPRetract`.
+2. *The contractive-to-unital repair.*
+   `Analysis/LanceCPContractiveUnitalization.additiveUnitalization`, with the
+   quantitative estimate `norm_additiveUnitalization_comp_sub_le_four_mul`.
+   The repair is **additive** — `φ + ω(·)(1 - φ 1)` for any state `ω` of the
+   source — not the conjugation by `(α 1 + δ)^{-1/2}` predicted above, and it
+   costs a factor four rather than a tolerance shift.  The prediction was the
+   more delicate construction, and it was not the one that worked.
+
+`Analysis/LanceForward` therefore proves, with no hypothesis and for every
+discrete group,
+
+> `nuclearReducedCPAP_of_isNuclearCStarAlgebra : IsNuclearCStarAlgebra (C⋆_λ Γ) → NuclearReducedCPAP Γ`
+> `isAmenable_of_isNuclearCStarAlgebra_reducedGroupCStar : IsNuclearCStarAlgebra (C⋆_λ Γ) → IsAmenable Γ` ,
+
+and `Manuscript/OneSidedMFRadical/MaximalCStarWNotNuclear.translationCPAPReduction`
+discharges the `TranslationCPAPReductionInput` binder of
+`ReducedCStarNotNuclear.lean` outright.  `check_non_mf_unconditional.py
+--audit-corpus` should stop listing `TranslationCPAPReductionInput` and
+`NuclearImpliesAmenableInput`; that is the honest kind of discharge, because
+the dependency is gone rather than hidden.
+
+**What this does not license.**  `reducedGroupCStar_not_nuclear` may now be
+*accompanied* by an `IsNuclearCStarAlgebra` statement, but the two predicates
+are still not identified: nothing proves `IsNuclearCStar` (`min = max`)
+equivalent to either, and `Analysis/CStarNuclearity`'s warning stands
+unchanged.
+
+**And it does not reach the maximal algebra.**  The manuscript's printed
+sentence at `non_mf_groups_exist.tex:271` is about `C*_max(W)`, and the step
+from `C*_λ(W)` to `C*_max(W)` is *quotients of nuclear C⋆-algebras are
+nuclear*, which is **not** either of the two facts above and is not in the
+tree.  It is recorded as `CStarExactness.NuclearCStarQuotientInput`
+(`Analysis/NuclearQuotient.lean`).  Two things about it are worth writing down
+so they are not rediscovered:
+
+* The Choi--Effros **lifting** theorem does not give it.  Lifting needs the
+  *source* of the completely positive map to be nuclear, and building the
+  approximation property of `A/J` needs maps *out of* `A/J`, which is the
+  algebra whose nuclearity is in question.  The one map that would settle it,
+  a completely positive contractive section `A/J → A`, is a lift of
+  `id_{A/J}` and so needs `A/J` nuclear already.
+* The route that does reach it runs at the *other* predicate: at `min = max`,
+  quotient permanence follows from maximal exactness
+  (`(A/J) ⊗_max C = (A ⊗_max C)/closure(J ⊙ C)`, a universal-property
+  argument, and `Analysis/CStarMaxTensorNorm.maxTensorProduct_existsUnique_lift`
+  plus the now-unconditional C⋆-quotient of
+  `Analysis/CStarIdealApproximateUnit` are exactly what it needs) together
+  with nuclear ⟹ exact.  Using it for the manuscript sentence then also costs
+  the *easy* half of Choi--Effros/Kirchberg (`IsNuclearCStarAlgebra ⟹
+  IsNuclearCStar`) and Lance's theorem restated at `min = max`.
+
 ## `UCPContractive`, discharged — and what it cost to see why it was stuck
 
 `Analysis/QuasidiagonalTrace` recorded this input as dischargeable, missing only
