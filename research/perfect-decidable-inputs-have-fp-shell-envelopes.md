@@ -8,6 +8,7 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-perfect-shell-route-2026-09-08.md
   - research/artifacts/boone-higman-arithmetic-shell-benchmark-2026-09-08.md
+  - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
 ---
 
 For every infinite perfect finitely presented group P with decidable
@@ -47,3 +48,10 @@ At the recursive-presentation level,
 envelope word problem to its one-singularity stabilizer and forces
 the germ quotient Q to be recursively presented. It does not upgrade
 that consequence to finite presentation of A_1 or Q.
+
+The generic free-product near action is ruled out even for E itself
+by `free-shift-shell-envelopes-are-not-finitely-presented`. Its
+effective construction gives decidable simple envelopes for perfect
+inputs, but proves those same envelopes are not finitely presented.
+The existential search must therefore use additional mixed near
+relations; no sufficiency result for those relations is claimed.

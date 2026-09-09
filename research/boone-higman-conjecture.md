@@ -32,6 +32,7 @@ artifacts:
   - research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md
   - research/artifacts/boone-higman-perfect-shell-route-2026-09-08.md
   - research/artifacts/boone-higman-arithmetic-shell-benchmark-2026-09-08.md
+  - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a

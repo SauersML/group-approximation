@@ -25,6 +25,11 @@ on:
       - 'research/cyclic-shift-finite-prefix-*.md'
       - 'research/finite-ray-*.md'
       - 'research/regular-enumeration-*.md'
+      - 'research/regular-enumerations-can-*.md'
+      - 'research/regular-free-shift-*.md'
+      - 'research/free-shift-*.md'
+      - 'research/effective-free-shift-*.md'
+      - 'research/decidable-inputs-have-computable-non-fp-shell-envelopes.md'
       - 'research/relative-automorphism-*.md'
       - 'research/regular-cyclic-twisted-*.md'
       - 'research/bffhz-*.md'
@@ -194,6 +199,10 @@ jobs:
           bin/cairn why rational-regular-shell-actions-require-virtually-cyclic-input --json > bh-shell-rational-action-boundary.json
           bin/cairn why arithmetic-shell-envelopes-have-decidable-word-problem --json > bh-shell-arithmetic-word-problem.json
           bin/cairn why shell-envelope-and-one-singularity-wp-are-equivalent --json > bh-shell-local-global-word-problem.json
+          bin/cairn why regular-enumerations-can-make-near-shift-free-product --json > bh-shell-generic-free-shift.json
+          bin/cairn why free-shift-shell-relations-are-finitely-certified --json > bh-shell-generic-finite-certificates.json
+          bin/cairn why free-shift-shell-envelopes-are-not-finitely-presented --json > bh-shell-generic-presentation-obstruction.json
+          bin/cairn why decidable-inputs-have-computable-non-fp-shell-envelopes --json > bh-shell-computable-presentation-failure.json
           bin/cairn why a5-free-product-has-simple-arithmetic-shell-envelope --json > bh-shell-a5-arithmetic-action.json
           bin/cairn why a5-arithmetic-shell-envelope-is-finitely-presented --json > bh-shell-open-a5-presentation.json
           bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json

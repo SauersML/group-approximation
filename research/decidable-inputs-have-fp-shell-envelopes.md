@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md
   - research/artifacts/boone-higman-perfect-shell-route-2026-09-08.md
+  - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
 ---
 
 For every infinite finitely presented group P with decidable word
@@ -43,3 +44,11 @@ generation, and the point-stabilizer condition. The independent-germ
 proof does not make the neighborhood kernel finitely generated and
 does not establish a finite presentation of any general S(M,F).
 No finite presentation of E_nu for all decidable inputs has been found.
+
+There is now a necessary condition directly on E_nu:
+`free-shift-shell-envelopes-are-not-finitely-presented` excludes every
+enumeration for which the canonical near group is P*<s>. A successful
+enumeration must impose an additional mixed near relation. Such free
+near actions can be constructed computably for every decidable input,
+and their envelopes have decidable word problem, so these effective
+properties alone do not address the finite-presentation requirement.
