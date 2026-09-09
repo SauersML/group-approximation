@@ -2,6 +2,7 @@
 rg: 2
 id: a5-arithmetic-shell-envelope-is-finitely-presented
 kind: claim
+root: true
 title: The specified bijective-base A5 free-product shell envelope is finitely presented
 distinct_from:
   perfect-decidable-inputs-have-fp-shell-envelopes: that allows an arbitrary suitable enumeration for every perfect input; this fixes one explicit enumeration of one perfect input. Failure of this benchmark would not refute the existential universal route.
@@ -12,6 +13,10 @@ artifacts:
 The particular E_nu defined in
 `a5-free-product-has-simple-arithmetic-shell-envelope` is finitely
 presented. This is OPEN.
+
+This is an independent finite-presentation benchmark. Resolving this
+one prescribed envelope would not by itself settle the universal
+perfect-input shell-envelope assertion.
 
 ## Attempts
 

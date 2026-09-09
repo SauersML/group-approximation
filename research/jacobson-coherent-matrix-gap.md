@@ -29,3 +29,21 @@ The literal-group identification in
 the MF decision for one explicitly represented group. It does not decide
 the sign of the infimum. No proof using property T or an infinite-group
 almost-invariant-vector transport estimate qualifies for this route.
+
+## Attempts
+
+- The [four-word criterion](jacobson-coherent-quotient-has-four-word-gap-criterion.md)
+  uses finite-group correction and finite intertwiner averaging to make
+  positivity equivalent to marked norm-corona collapse. It establishes
+  the variational problem on a nonempty domain, but supplies no positive
+  lower bound uniform over dimensions and representation types.
+- Completing the third finite packet adds exact algebraic information.
+  The [two-edge counterexample](jacobson-third-packet-correction-must-move-an-edge.md)
+  shows that its correction cannot freeze both prescribed rank-one
+  restrictions. That example kills the head; it neither refutes the
+  marked gap nor supplies a simultaneous correction allowing the old
+  packets to move with controlled operator-norm error.
+- The [faithful literal-group identification](jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy.md)
+  proves that zero and positive infimum are exactly the MF and non-MF
+  alternatives for this group. The identification does not decide which
+  alternative holds; the unrestricted four-error inequality remains open.

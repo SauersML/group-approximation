@@ -3,6 +3,8 @@ rg: 2
 id: deletion-pair-has-no-left-chart-coefficient-split
 kind: claim
 title: Every left finite-chart coefficient of the literal deletion pair has an exterior kernel
+distinct_from:
+  deletion-pair-has-no-right-chart-coefficient-split: That varies the coefficient in P_0[g]d f_0 and reduces input-sector maps to four normalized cases involving Psi_b; this varies the coefficient in P_0 c[g]f_0 and reduces target-sector maps to five pencils involving Psi_a. These are different one-sided coefficient families, and neither exclusion covers simultaneous left and right coefficients.
 artifacts:
   - research/artifacts/kaplansky-lower-block-and-left-chart-exterior-formulas-2026-09-08.md
 ---
