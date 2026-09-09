@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: contragredient-period-two-wedge-excludes-corrected-deletion-splits
+id: contragredient-period-two-wedge-excludes-deletion-splits
 kind: route
 title: Apply the inverse-adjoint automorphism and verify a binary period-two kernel
 target: omega-corrected-deletion-has-contragredient-kernel
