@@ -41,10 +41,25 @@ product B wr C_2, adjoining (s,1)*omega to F_B gives an index-two
 finitely presented extension D. Its conjugation and square formulas
 match those of the full shell germ group Q, yielding Q<=D.
 
+## A necessary parity restriction sharpens the ambient group
+
+Because 59 is odd, leaf-permutation parity epsilon is invariant
+under table refinements: an expansion inserts 58 entries and its
+odometer child permutation is an even 59-cycle power. Hence
+epsilon:B->Z/2 is a homomorphism. The perfect input has parity
+zero, while s has both parity and charge one. Consequently R_nu
+lies in B_0=ker(epsilon-(chi mod 2)), an index-two subgroup of B.
+A pure prefix transposition is excluded, so R_nu is not all of B.
+
+B_0 is finitely presented and still has a surjective charge with
+finitely generated kernel. Using B_0 instead of B gives a smaller
+finitely presented fiber-product germ host. Whether R_nu equals
+B_0 has not been proved.
+
 ## What remains unresolved
 
-No equality or finite-index assertion R_nu<=B or Q<=D has been
-proved. A finitely generated subgroup of a finitely presented group
+No finite-index assertion for R_nu in B_0, or Q in its ambient,
+has been proved. A finitely generated subgroup of a finitely presented group
 need not be finitely presented. Even finite presentation of Q would
 leave the one-singularity stabilizer's neighborhood kernel to handle;
 the whole E_nu is not embedded in D by this construction.

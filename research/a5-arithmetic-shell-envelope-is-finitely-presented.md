@@ -42,3 +42,7 @@ explicit finitely presented odometer ambient groups, by
 `a5-arithmetic-germs-embed-in-fp-odometer-host`. Neither equality
 with those ambient groups nor finite presentation of the subgroups
 has been proved. The construction is not an embedding of E_nu.
+More precisely, `a5-arithmetic-near-group-obeys-parity-charge-constraint`
+excludes equality with the full odometer ambient B and places R_nu
+in its index-two parity-charge subgroup B_0. Equality with B_0,
+or finite index in B_0, is unresolved.

@@ -45,6 +45,8 @@ on:
       - 'research/arithmetic-shift-conjugacy-*.md'
       - 'research/odometer-prefix-*.md'
       - 'research/a5-arithmetic-germs-*.md'
+      - 'research/a5-arithmetic-near-group-*.md'
+      - 'research/odd-odometer-*.md'
       - 'research/a5-residue-charts-*.md'
       - 'research/shell-affine-germ-*.md'
       - 'research/shell-envelope-and-one-singularity-*.md'
@@ -211,6 +213,7 @@ jobs:
           bin/cairn why arithmetic-near-shift-actions-have-mixed-relations --json > bh-shell-arithmetic-mixed-relation.json
           bin/cairn why odometer-prefix-groups-have-fg-index-kernels --json > bh-shell-odometer-index-kernel.json
           bin/cairn why a5-arithmetic-germs-embed-in-fp-odometer-host --json > bh-shell-odometer-germ-host.json
+          bin/cairn why a5-arithmetic-near-group-obeys-parity-charge-constraint --json > bh-shell-odometer-parity-constraint.json
           bin/cairn why a5-free-product-has-simple-arithmetic-shell-envelope --json > bh-shell-a5-arithmetic-action.json
           bin/cairn why a5-arithmetic-shell-envelope-is-finitely-presented --json > bh-shell-open-a5-presentation.json
           bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json
