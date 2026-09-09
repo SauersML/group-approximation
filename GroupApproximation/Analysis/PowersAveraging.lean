@@ -24,10 +24,21 @@ first.
 **(C) is the analytic core of Powers' theorem and it is NAMED HERE, NOT PROVED.**
 `PowersAveragingEstimate` is a hypothesis of everything below.  Nobody should
 read this module as Powers being done: what is done is the C⋆-algebra argument
-*around* the estimate.  What (C) needs and this repository does not have:
-projections of `ℓ²(G)` onto the subsets of a partition, the almost-orthogonality
-of the translates `gᵢD`, and the Cauchy--Schwarz bound that converts the two into
-a `1/√n` gain.
+*around* the estimate.
+
+**Where (C) is proved.**  Not here, but downstream, and unconditionally on
+(B): `Analysis/GroupHilbertSubsetProjection` builds the projections of `ℓ²(G)`
+onto the subsets of a partition (as the landed `CStarExactness.mulOp` at an
+indicator symbol), `Analysis/OrthogonalProjectionSumEstimate` supplies the
+`1/√n` gain from almost-orthogonality (as the landed
+`ShulmanFill.norm_sum_sq_le_of_almostOrthogonal` at off-diagonal size zero),
+`Analysis/PowersAveragingFromPartition` assembles the two into the estimate at a
+fixed partition, and `Analysis/PowersAveragingFromPowersProperty` closes the
+density and identity-coefficient bookkeeping.  What is left is (B) alone.
+
+**Also proved downstream:** the estimate gives the *unique trace* as well as
+simplicity — `Analysis/PowersAveragingUniqueTrace` — so a route carrying the
+estimate does not need Breuillard--Kalantar--Kennedy--Ozawa.
 
 ## Why (A) and (B) do not appear as hypotheses
 
@@ -63,6 +74,8 @@ everything.
 namespace GroupApproximation
 namespace ReducedGroupCStarTrace
 
+open scoped ComplexOrder
+
 universe u
 
 variable (G : Type u) [Group G]
@@ -86,11 +99,23 @@ def PowersAveragingEstimate : Prop :=
 
 /-! ## Averaging fixes the unit -/
 
-/-- Each `λ(g)` is a unitary of `C*_r(G)`: `λ(g) λ(g)* = 1`. -/
+/-- Each `λ(g)` is a unitary of `C*_r(G)`: `λ(g) λ(g)* = 1`.
+
+Proved from `star_reducedLeftRegular` and multiplicativity rather than by
+projecting the `unitary` membership of `reducedLeftRegularUnitary`, whose two
+conjuncts are `star u * u = 1` first and `u * star u = 1` second at this Mathlib
+pin — reading them the other way round is what made an earlier version of this
+module red. -/
 theorem reducedLeftRegular_mul_star (g : G) :
     reducedLeftRegular G g * star (reducedLeftRegular G g) = 1 := by
-  have h := (reducedLeftRegularUnitary G g).2
-  exact h.1
+  rw [star_reducedLeftRegular, ← reducedLeftRegular_mul, mul_inv_cancel,
+    reducedLeftRegular_one]
+
+/-- The companion identity `λ(g)* λ(g) = 1`. -/
+theorem star_reducedLeftRegular_mul (g : G) :
+    star (reducedLeftRegular G g) * reducedLeftRegular G g = 1 := by
+  rw [star_reducedLeftRegular, ← reducedLeftRegular_mul, inv_mul_cancel,
+    reducedLeftRegular_one]
 
 /-- **Averaging fixes `1`.**  Conjugating the unit by unitaries and averaging
 returns the unit; this is what makes `avg(c) - 1 = avg(c - 1)`. -/
@@ -103,9 +128,10 @@ theorem average_one (n : ℕ) (hn : 0 < n) (g : Fin n → G) :
         star (reducedLeftRegular G (g i)) = 1 := by
     intro i
     rw [mul_one, reducedLeftRegular_mul_star]
+  have hne : (n : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hn.ne'
   rw [Finset.sum_congr rfl fun i _ => hterm i, Finset.sum_const, Finset.card_univ,
-    Fintype.card_fin, nsmul_eq_mul, mul_one, smul_eq_mul, inv_mul_cancel₀]
-  exact Nat.cast_ne_zero.mpr hn.ne'
+    Fintype.card_fin, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul, inv_mul_cancel₀ hne,
+    one_smul]
 
 /-- **Averaging is additive**, in the form the argument uses: the average of
 `c - 1` is the average of `c`, less `1`. -/
@@ -132,9 +158,14 @@ theorem average_mem_ideal {I : Ideal (ReducedGroupCStar G)} [I.IsTwoSided]
     (n : ℕ) (g : Fin n → G) {c : ReducedGroupCStar G} (hc : c ∈ I) :
     ((n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * c * star (reducedLeftRegular G (g i))) ∈ I := by
-  refine Ideal.smul_mem _ _ (Ideal.sum_mem _ fun i _ => ?_)
-  exact Ideal.mul_mem_right _ _ (Ideal.mul_mem_left _ _ hc)
+  have hsum : (∑ i : Fin n,
+      reducedLeftRegular G (g i) * c * star (reducedLeftRegular G (g i))) ∈ I :=
+    Submodule.sum_mem _ fun i _ =>
+      Ideal.mul_mem_right _ _ (Ideal.mul_mem_left _ _ hc)
+  rw [Algebra.smul_def]
+  exact Ideal.mul_mem_left _ _ hsum
 
+set_option maxHeartbeats 1000000 in
 /-- **Component (D), proved: Powers' averaging estimate makes `C*_r(G)`
 simple.**
 
@@ -156,18 +187,20 @@ theorem isSimpleCStar_of_powersAveragingEstimate
   have hne : τ (star x * x) ≠ 0 := fun hz =>
     hx0 (τ.eq_zero_of_map_star_mul_self_eq_zero hz)
   set t : ℂ := τ (star x * x) with ht
-  have him : t.im = 0 := ((Complex.le_def.mp hnn).2).symm
+  have him : t.im = 0 := ((Complex.nonneg_iff.mp hnn).2).symm
   have hre : 0 < t.re := by
-    rcases lt_or_eq_of_le (Complex.le_def.mp hnn).1 with hlt | heq
+    rcases lt_or_eq_of_le (Complex.nonneg_iff.mp hnn).1 with hlt | heq
     · exact hlt
     · exact absurd (Complex.ext heq.symm him) hne
   have htre : t = (t.re : ℂ) := by
     apply Complex.ext <;> simp [him]
   -- Normalise so the trace is `1`.
   set c : ReducedGroupCStar G := ((t.re : ℂ))⁻¹ • (star x * x) with hc
-  have hcI : c ∈ I := Ideal.smul_mem _ _ hxxI
+  have hcI : c ∈ I := by
+    rw [hc, Algebra.smul_def]
+    exact Ideal.mul_mem_left _ _ hxxI
   have hτc : τ c = 1 := by
-    rw [hc, map_smul, ← ht, htre, smul_eq_mul, inv_mul_cancel₀]
+    rw [hc, map_smul, ← ht, htre, smul_eq_mul, Complex.ofReal_re, inv_mul_cancel₀]
     exact_mod_cast hre.ne'
   have hτa : τ (c - 1) = 0 := by
     rw [map_sub, hτc, τ.map_one, sub_self]
