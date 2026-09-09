@@ -86,3 +86,15 @@ TS error, and the remaining stable-letter error involving `h`.
   diagrams. The actor relator words in those models need only
   centralize the inspected core; their equality to identity is
   precisely additional information not supplied by that construction.
+- The next finite presentation ambiguity is now a specific word:
+  `jacobson-coherence-defect-is-an-orthogonal-translation` identifies
+  a literal-kernel word `E` whose vanishing is equivalent to one
+  translation commuting with the common elementary root in `Lambda`.
+  Its vanishing would complete the third finite root packet; it is
+  not yet proved. `jacobson-positive-root-gluing-misses-laurent-coherence`
+  gives a 168-point model satisfying both complete finite packets,
+  their shared positive root, and both mixed cells, but violating
+  the shared opposite-root equation and this coherence word. Thus
+  the full common opposite root must be used in any such derivation.
+  This selected countermodel does not refute the actual matrix-gap
+  claim, which requires the entire finite intersection exactly.
