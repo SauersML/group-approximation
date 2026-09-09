@@ -93,3 +93,26 @@ These are written proofs in Cairn. Structural validation checks their
 dependencies, not the mathematical arguments themselves. No GPU ran,
 no local code or build was executed, and no Civo resource was created.
 No finite presentation of the perfect-input shell benchmark is claimed.
+
+## Remote validation record
+
+The rational-shell classification was committed as `9d89a3e48`;
+the arithmetic decision algorithm and A5 benchmark as `c5d5b4ecf`;
+the general one-singularity reduction as `022f5b5bd`.
+All three are integrated into main at
+`da3d723fb0f5e3c1ae8c9544f134c4c925d561ed`.
+
+[Remote research check 34298912845](https://github.com/SauersML/group-approximation/actions/runs/34298912845)
+passed for that exact integration commit. It ran source syntax checks,
+the exact finite negative control, the exact cyclic-shift control, and
+global Cairn graph validation. The optional Lean preflight was skipped;
+none of these new mathematical proofs was checked by Lean or a GPU.
+The downloaded record is `.cairn/bh-arithmetic-shell-check-20260908/`.
+
+The actual `node_status` fields, rather than merely CLI success, were
+inspected. The rational-shell characterization, virtually cyclic
+rational-action boundary, arithmetic envelope word problem, explicit
+A5 arithmetic envelope, and local/global word-problem equivalence
+are `ESTABLISHED` in the written-proof graph. The specified A5 envelope's
+finite presentation, the universal perfect-input finite-presentation
+claim, and `boone-higman-conjecture` remain `OPEN`.
