@@ -46,6 +46,12 @@ by the regular input action on N and the cofinite shift as near
 permutations. Neither this fiber-product condition nor its sufficiency
 for the three global stabilizers has been proved universally.
 
+The equivalent structural form of the germ presentation requirement
+is `shell-germ-fp-is-an-ascending-hnn-gate`. It specifies the subgroup,
+shift direction, and exhaustion that a proposed construction must
+supply, while retaining the separate finite-presentation clause for
+R_nu. These requirements and the lift to global stabilizers remain open.
+
 ## Attempts
 
 The shell construction gives an exact Cantor realization, but its

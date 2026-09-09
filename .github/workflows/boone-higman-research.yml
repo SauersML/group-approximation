@@ -43,6 +43,8 @@ on:
       - 'research/shell-prefix-core-*.md'
       - 'research/shell-finite-ray-*.md'
       - 'research/shell-germ-group-*.md'
+      - 'research/shell-germ-fp-*.md'
+      - 'research/shell-germ-ascending-*.md'
       - 'research/shell-parity-*.md'
       - 'research/virtually-cyclic-inputs-have-fp-shell-stabilizers.md'
       - 'research/decidable-inputs-have-fp-shell-stabilizers.md'
@@ -155,6 +157,7 @@ jobs:
           bin/cairn why shell-prefix-core-detects-finite-ray-enumerations --json > bh-shell-prefix-core.json
           bin/cairn why virtually-cyclic-inputs-have-fp-shell-stabilizers --json > bh-shell-virtually-cyclic-control.json
           bin/cairn why shell-germ-group-has-index-two-fiber-product --json > bh-shell-germ-fiber-product.json
+          bin/cairn why shell-germ-fp-is-an-ascending-hnn-gate --json > bh-shell-germ-ascending-hnn.json
           bin/cairn why decidable-inputs-have-fp-shell-stabilizers --json > bh-shell-open-stabilizers.json
           bin/cairn why boone-higman-via-shell-germ-stabilizers --json > bh-shell-open-route.json
       - name: Retain structural validation and exact finite witness

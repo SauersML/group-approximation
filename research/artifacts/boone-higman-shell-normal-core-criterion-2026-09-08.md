@@ -93,6 +93,15 @@ the missing uniform relation argument. Merely evaluating these words
 as permutations gives no evidence for it: all of them vanish there
 by the disjoint even/odd supports, with or without a finite presentation.
 
+The subsequent node `shell-germ-fp-is-an-ascending-hnn-gate` replaces
+this relation test by an equivalent structural condition. Its source
+was checked in the primary arXiv v2 PDF, Proposition 3.8 (the published
+version numbers the corresponding result 3.6). The node states the
+remaining data explicitly and retains finite presentation of R_nu
+as a separate requirement. No such data have been constructed for
+general inputs. Even supplying them would still leave the lift from
+germ presentations to the three global shell stabilizers unresolved.
+
 ## Verification boundary
 
 These are written mathematical proofs recorded in Cairn, not Lean
