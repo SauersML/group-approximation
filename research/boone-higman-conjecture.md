@@ -425,7 +425,7 @@ host, while its finitely presented simple embedding remains valid.
 The next construction enlarges the stabilizer in that same digit
 host. `terminated-digit-fiber-stabilizer-repairs-shell-action`
 proves that the full setwise fiber stabilizer K is finitely
-generated and core-free, with at most h^3 double cosets. Its
+generated and core-free, with exactly h+3 double cosets. Its
 intersection with the shell envelope is the original point
 stabilizer S, and [K:S] is infinite. Thus the obstruction for S
 is bypassed by an actual larger stabilizer in this restricted model.

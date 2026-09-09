@@ -8,12 +8,16 @@ artifacts:
 ---
 
 Let H=H_(h,r), F=union_i i*{1,...,h}^N, and K=Stab_H(F).
-Then K is finitely generated, core_H(K)=1, and K has at most
-h^3 double cosets in H. Hence the H action on its orbit of F,
+Then K is finitely generated, core_H(K)=1, and K has exactly
+h+3 double cosets in H. Hence the H action on its orbit of F,
 equivalently H/K, has type (A).
 
 This orbit is exactly the set of nonempty finite unions of boundary
 tiles whose tile count is r modulo h-1.
+
+There are exactly h+1 H orbits of two-element subsets of this
+orbit: disjointness, proper containment without an orientation,
+and h-1 partial-overlap classes.
 
 For every fixed-base shell embedding E_nu<=H supplied by the
 terminated-digit construction,

@@ -46,9 +46,39 @@ fixes A_2. Thus v*u(S_1)=S_2.
 
 The labels are also invariant under K, because its elements
 preserve F setwise and preserve boundary residues. They therefore
-classify K orbits among the translates of F. There are at most
-h^3 such orbits, hence at most h^3 K double cosets in H. This
-bound does not assert that every possible triple is realized.
+classify K orbits among the translates of F.
+
+## The exact count
+
+The residues satisfy a+b=r and a+c=r modulo m. The possible
+triples have the following forms:
+
+* A empty: S and F are disjoint, giving one orbit.
+* B and C empty: S=F, giving one orbit.
+* B empty and C nonempty: S properly contains F, with b(C)=0,
+  giving one orbit.
+* C empty and B nonempty: S is properly contained in F, with
+  b(B)=0, giving one orbit.
+* A,B,C all nonempty: a is any residue modulo m and b=c=r-a,
+  giving at most m further orbits.
+
+All these forms occur. Disjointness is realized by a union of r
+tiles off F. Equality is F itself. For proper containment, add
+m tiles off F; for proper inclusion, refine F to r+m leaves
+and remove m of them. For an all-nonempty triple, choose a positive
+integer A_count of residue a, then a sufficiently large leaf
+partition of F with r+k*m leaves so that the remaining B_count
+is positive. Let A consist of A_count leaves. Choose B_count
+tiles off F as C, and set S=A union C. This has residue r and
+the desired triple, so the global transport theorem makes it
+a translate of F.
+
+There are therefore m+4=h+3 double cosets. Inverting a double
+coset exchanges the two proper-containment orbits and fixes each
+other orbit: on partial overlaps it preserves the residue of the
+intersection, since H preserves boundary residues. Removing the
+diagonal and identifying reversed ordered pairs gives exactly
+h+1 orbits of two-element subsets.
 
 ## Faithfulness of the action on fiber images
 

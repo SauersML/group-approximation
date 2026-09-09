@@ -5,7 +5,7 @@ explicit digit model by enlarging the stabilizer. For H=H_(h,r),
 let F be the initial nonterminating digit fiber and K its full
 setwise stabilizer. The written proofs in this batch show
 
-    K finitely generated,   core_H(K)=1,   |K\H/K| <= h^3.
+    K finitely generated,   core_H(K)=1,   |K\H/K| = h+3.
 
 Thus H has a concrete type (A) action on its orbit of F. For
 any lifted fixed-base shell envelope E, the intersection K intersect E
@@ -65,8 +65,14 @@ labels in total.
 Matching labels on the two regions inside F gives a boundary
 prefix map, which lifts to K. The remaining region off F can
 then be matched by supported prefix transport fixing F. Thus
-equal triples give the same K orbit, and there are at most h^3
-double cosets. Not every label triple is asserted to occur.
+equal triples give the same K orbit. The residues of the three
+regions satisfy a+b=a+c=r modulo h-1. This leaves exactly h+3
+realized triples: disjointness, equality, the two directions of
+proper containment, and h-1 all-nonempty overlap classes.
+The proof explicitly constructs every class. Forgetting the
+orientation of distinct pairs gives h+1 pair orbits. For the
+arithmetic A5 model, h=59 gives 62 double cosets and 60 orbits
+of two-element subsets.
 
 Translates of F also separate the dense set of paths with finitely
 many terminators: a translate can lie in any prescribed clopen
