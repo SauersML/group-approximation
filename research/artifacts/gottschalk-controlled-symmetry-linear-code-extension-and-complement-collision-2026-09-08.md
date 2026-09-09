@@ -9,9 +9,11 @@ injective on the full shift.
 
 This establishes linear-span membership after the stated group
 enlargement. It does not establish membership for the original
-group, uniqueness of the extension, or an injective full-shift
-extension. Other coefficients, including linear operators that
-vanish on Q_s of the code, remain possible correction directions.
+group, uniqueness of the extension, or an injective extension in
+the linear-feedback family. A subsequent
+[finite-block completion](gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md)
+does give a nonlinear reversible full-shift extension. Other
+linear-feedback coefficients remain possible correction directions.
 No computation or resolution of Gottschalk's conjecture is claimed.
 
 The source, observable, original group Lambda, and invariant code
@@ -194,6 +196,7 @@ observable after adjoining K. It makes no assertion that the same
 representation already exists over the original Lambda. Nor does
 the collision exclude other extensions over Lambda_tilde or
 further groups: another linear operator can agree on Q_s C_tilde
-and act differently elsewhere. Finding an injective or reversible
-ambient extension, by such corrections or another construction,
-remains unresolved.
+and act differently elsewhere. An injective extension constrained
+to x+B' Q_s remains unresolved. General nonlinear reversible
+extension is now proved by the finite-block completion, using
+the finite memory subgroup of this particular rule.

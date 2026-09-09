@@ -8,6 +8,7 @@ requires: []
 artifacts:
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
+  - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
 ---
 
 View the source as a countable product of finite A_4 components,
@@ -29,9 +30,9 @@ u in both inputs. Place these two components in the observable's
 reading positions to distinguish the chosen bit. This proves
 injectivity of L. Compactness makes its image closed and its
 inverse continuous; equivariance makes that image invariant.
-Conjugating F_A gives reversible code dynamics. Ambient full-shift
-injectivity requires a further argument and does not follow from
-this construction.
+Conjugating F_A gives reversible code dynamics. A subsequent
+finite-block completion supplies a nonlinear reversible full-shift
+extension; this does not follow from local extension alone.
 
 For an exact linear-feedback extension, let a be the component
 swap after the prefix map. Then psi=phi a reads y_0 whenever
@@ -49,6 +50,9 @@ It also has an exact collision. The subgroup <s,K> is A_4, and
 r commutes with s. Orient the tetrahedron with one sink and a
 cycle on the other three vertices to obtain z with
 (1+R_K)z=1 and (1+R_s+R_s^2)z=0. Extend z on left subgroup
-cosets. Then x=R_{r^-1}R_s z and x+1 collide. Other coefficients
-agreeing on Q_s of the code, or other ambient constructions,
-remain possible; no span claim for the original Lambda is made.
+cosets. Then x=R_{r^-1}R_s z and x+1 collide. The memory subgroup
+has at most 192 elements, so completing the projected code
+involution by the identity on unused blocks gives a nonlinear
+reversible full-shift extension. An injective extension in the
+linear-feedback family remains open; no span claim for the
+original Lambda is made.

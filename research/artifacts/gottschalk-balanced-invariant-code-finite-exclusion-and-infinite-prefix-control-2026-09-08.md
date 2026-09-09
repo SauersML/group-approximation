@@ -15,8 +15,11 @@ It is not itself a scalarization construction. The subsequent
 [infinite-code construction](gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md)
 combines these maps with component permutations to obtain an
 actual continuous Q-encoding with reversible dynamics on a proper
-invariant scalar code. Injective or reversible full-shift extension
-remains unresolved.
+invariant scalar code. A subsequent
+[finite-block completion](gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md)
+also provides a nonlinear reversible full-shift extension. An
+injective extension in the special linear-feedback family remains
+unproved.
 
 This complements the full-conjugacy, affine-code, and unbalanced
 nonlinear-code obstructions in
@@ -191,6 +194,7 @@ The prefix homeomorphism alone is a countercontrol to extending
 the finite fiber-extremum proof. The subsequent
 [orbit construction](gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md)
 does provide a continuous injective Q-encoding with reversible
-dynamics on an invariant scalar code. The remaining issue is an
-injective or reversible ambient full-shift extension, particularly
-one in the scalar linear-feedback family x+B Q_s.
+dynamics on an invariant scalar code. Finite-block completion
+now extends it reversibly to the full scalar shift. The remaining
+issue is an injective extension in the restricted scalar
+linear-feedback family x+B Q_s.

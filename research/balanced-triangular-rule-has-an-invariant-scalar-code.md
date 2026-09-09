@@ -6,6 +6,7 @@ title: An infinite balanced triangular rule admits a continuous invariant scalar
 artifacts:
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
+  - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
 ---
 
 For G=A_4 x Z, t=(123), h=(12)(34), and A=I+R_h,
@@ -18,9 +19,10 @@ has nonzero (I-E)AE, with E=I+R_t+R_t^2.
 
 This is an actual infinite-source encoding and is compatible
 with the finite-source exclusion. The code excludes the scalar
-all-zero configuration. Its local rule admits a zero-preserving
-extension to the full scalar shift, but injectivity or
-reversibility of such an extension is not established.
+all-zero configuration. Over the controlled enlargement below,
+a finite-block completion gives a zero-preserving nonlinear
+reversible extension to the entire scalar full shift; see
+`balanced-invariant-code-has-a-reversible-full-shift-extension`.
 
 An order-preserving extension is impossible, including any
 coordinate permutation. Adjoining one controlled source symmetry
@@ -31,7 +33,7 @@ A_4, r commutes with s, and a tetrahedral orientation produces
 complementary colliding configurations. This does not establish
 linear-span membership over the original Lambda.
 
-An injective or reversible full-shift extension remains unresolved,
+An injective extension constrained to x+B Q_s remains unresolved,
 potentially through different coefficients or linear operators
-that vanish on Q_s of the code. The code construction and the
-noninjective extension do not resolve Gottschalk's conjecture.
+that vanish on Q_s of the code. The nonlinear completion has
+memory in a finite subgroup and is not a Gottschalk counterexample.

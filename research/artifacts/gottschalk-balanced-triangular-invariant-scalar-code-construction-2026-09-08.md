@@ -8,14 +8,16 @@ map on that code is a reversible scalar cellular automaton.
 The source has nonzero off-axis component (I-E)AE.
 
 Thus nonlinear invariant codes really can accommodate this
-infinite balanced control. The remaining issue is extending its
-code involution to an injective or reversible cellular automaton
-on the entire scalar full shift. A subsequent
+infinite balanced control. A subsequent
 [controlled enlargement](gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md)
 does produce an exact two-term extension x+B Q_s over an enlarged
 group, but an explicit complement collision proves it noninjective.
 It does not establish linear-span membership over the original
-Lambda. An arbitrary local extension need not be injective.
+Lambda. A further
+[finite-block completion](gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md)
+gives a nonlinear zero-preserving reversible full-shift extension.
+Only an injective extension in the restricted linear-feedback
+family remains unproved.
 
 The finite-source exclusion and the prefix homeomorphisms used
 below are proved in
@@ -202,12 +204,12 @@ Nor does it make its feedback linear in Q_s.
 
 The achieved conclusion is a continuous Q-preserving encoding
 into a proper invariant scalar code with reversible dynamics
-on that code. The unresolved step is an injective or reversible
-full-shift extension. The subsequent controlled enlargement gives
-one exact linear-feedback extension and an explicit collision for
-it; other coefficients or extensions remain open. The code alone
-is not a Gottschalk counterexample and does not establish an
-outside-axis injective scalar feedback rule.
+on that code. The controlled enlargement gives one exact
+linear-feedback extension and an explicit collision for it.
+Finite-block completion now provides a nonlinear reversible
+full-shift extension. Other coefficients giving an injective
+extension specifically of the form x+B Q_s remain open. These
+constructions are not Gottschalk counterexamples.
 
 There is an exact obstruction to any order-preserving extension,
 including a coordinate permutation or pure right shift. Every encoded coordinate satisfies
@@ -223,4 +225,5 @@ T(Q_s Lz)<=T(Lz), contradicting the displayed values at the
 identity coordinate. In particular, a coordinate permutation
 cannot extend F_C. Also no Q-centralizing source symmetry
 h can satisfy phi h^-1=phi F_A. This excludes the proposed shift
-extension but leaves nonlinear reversible full-shift extension open.
+extension. The finite-block completion provides a nonlinear
+reversible extension that is necessarily not order-preserving.

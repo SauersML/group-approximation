@@ -34,6 +34,7 @@ artifacts:
   - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
+  - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -273,9 +274,15 @@ centralizers and component permutations; see
 Adjoining one controlled symmetry gives an enlarged group and an
 exact two-term scalar linear-feedback extension, but a tetrahedral
 complement collision proves that extension noninjective. This is
-not a linear-span claim for the original group. An injective or
-reversible full-shift extension remains unresolved, using other
-coefficients that agree on Q_s of the code or another construction.
+not a linear-span claim for the original group. The support group
+has at most 192 elements; completing its projected code involution
+by the identity on unused blocks now gives a zero-preserving
+nonlinear reversible full-shift extension, recorded in
+`balanced-invariant-code-has-a-reversible-full-shift-extension`.
+An injective extension specifically of the form x+B Q_s remains
+open. No finite-support-group rule can refute surjunctivity, since
+injectivity makes each finite coset block map bijective; a headline
+counterexample must have memory generating an infinite subgroup.
 Independently, continuous affine Q-intertwiners only copy triples or make them
 constant. Their proper nonempty globally fixed-coordinate set
 excludes affine full and invariant-code encodings of the unbalanced

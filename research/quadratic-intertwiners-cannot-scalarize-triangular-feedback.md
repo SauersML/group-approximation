@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
+  - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
 ---
 
 On arbitrary products of directed three-cycles, every continuous
@@ -74,10 +75,12 @@ an enlarged group and an exact two-term extension
 x+(R_r+R_{Kr})Q_s of its code dynamics. This extension is
 explicitly noninjective by a tetrahedral complement collision.
 No linear-span claim for the original Lambda is inferred.
-The remaining gap is an injective or reversible full-shift
-extension, potentially using other coefficients or linear operators
-that vanish on Q_s of the code. The finite exclusion and the
-balanced full-conjugacy exclusion remain intact.
+A finite-block completion now gives a nonlinear zero-preserving
+reversible full-shift extension. The remaining gap is an injective
+extension specifically of the form x+B Q_s, potentially using
+other coefficients or operators vanishing on Q_s of the code.
+The finite exclusion and balanced full-conjugacy exclusion remain
+intact: the encoding uses an infinite source and a proper code.
 
 Thus nonlinear encodings preserving Q are excluded in the stated
 full-conjugacy and finite-source scopes, but the infinite-code

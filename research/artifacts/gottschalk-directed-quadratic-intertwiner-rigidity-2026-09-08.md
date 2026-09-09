@@ -378,8 +378,11 @@ sizes. That artifact also gives an infinite prefix homeomorphism
 showing why the same distinguished-point argument does not extend
 unchanged. An [infinite scalar-code construction](gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md)
 now gives a continuous Q-preserving encoding with reversible
-dynamics on a proper invariant code. An injective or reversible
-extension to the entire scalar full shift remains unresolved.
+dynamics on a proper invariant code. A subsequent
+[finite-block completion](gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md)
+gives a nonlinear zero-preserving reversible extension to the
+entire scalar full shift. An injective extension constrained to
+x+B Q_s with B linear remains unresolved.
 
 ## Commuting order-three feedback must be trivial
 
