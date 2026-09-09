@@ -107,6 +107,21 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
     "prop:clifford-locally-rf": (
         "Sofic/CliffordWitnessSoficPrinted",
         "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF"),
+    # `thm:mf-quotient-units` prints two badges: `manuscriptMFQuotientUnitsKOne`
+    # (the universal-property/MF/radical=commutator conjunction, quantified at
+    # R itself) and `manuscriptMFQuotientUnitsKOneAtBaseRing` (the "Equivalently"
+    # radical=commutator/quotient=K_1(R) reformulation, quantified over every
+    # n>=1).  Neither alone covers every clause at every printed n, so this is
+    # collective; see COLLECTIVE_CLAIMS.
+    "thm:mf-quotient-units": (
+        "Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof",
+        "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne"),
+    # `lem:ring-compression-cell` moved to EXACT_TARGETS 2026-09-09: badge
+    # landed (commit b9ee08b1d, module on origin at b46935710).
+    "lem:ring-compression-cell": (
+        "Manuscript/OneSidedMFRadical/RankFourCompressionCellPrinted",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell"),
 }
 
 
@@ -115,9 +130,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means there is no
 # additional external input beyond the listed manuscript dependencies.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
-    # Two steps extracted from longer proofs; both are complete in the
-    # manuscript and carry no badge.
-    "lem:ring-compression-cell": (),
     # `lem:block-structure`, `thm:finite-algebra-transport`,
     # `thm:perfect-block-radical`, `thm:fp-sofic-radical`,
     # `prop:cyclic-hnn-absorption`, `thm:sofic-cyclic-mf` and
@@ -177,10 +189,11 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # .manuscriptRankTwoNormalGeneration).
     # `thm:leavitt-mf-quotient` was replaced 2026-09-07 by the general
     # `thm:mf-quotient-units` plus the Leavitt-specific `cor:leavitt-mf-quotient`.
-    "thm:mf-quotient-units": (
-        "Ara--Goodearl--Pardo, Corollary 1.7, Proposition 1.5, and Theorem 2.4",
-        "Menal--Moncasi, proof of Theorem 2.2 and the remark after Corollary 2.3",
-        "Blackadar--Kirchberg"),
+    # `thm:mf-quotient-units` moved to EXACT_TARGETS 2026-09-09: two badges
+    # landed (MFQuotientUnitsKappaProof.manuscriptMFQuotientUnitsKOne and
+    # MFQuotientCanonicalKOne.manuscriptMFQuotientUnitsKOneAtBaseRing), so the
+    # AGP/Menal-Moncasi/Blackadar-Kirchberg inputs below are now internal to
+    # those proofs rather than boundary citations.
     "cor:leavitt-mf-quotient": ("Khanh--Thanh, proof of Theorem 7.2",),
 }
 
@@ -211,6 +224,9 @@ COLLECTIVE_CLAIMS: set[str] = {
     # clause, and the unit-group-not-MF clause; no single one is the whole
     # corollary.
     "cor:one-sided-ring-maximal",
+    # `thm:mf-quotient-units` prints two badges as of 2026-09-09: see the
+    # comment at its EXACT_TARGETS entry.
+    "thm:mf-quotient-units",
 }
 
 

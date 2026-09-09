@@ -347,13 +347,20 @@
       "environment": "lemma",
       "title": "a rank-four compression cell",
       "statement_sha256": "767343a3e934b030578b6499ad35f1b8cb324d1e217cbb1edbb79d48afb3c0cc",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankFourCompressionCellPrinted",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:full-defect-ring",
@@ -471,19 +478,28 @@
       "environment": "theorem",
       "title": "MF quotients of unit groups",
       "statement_sha256": "9a3d230f944e9c9537fcdc546e518a5a20cd4965273af643819ef988b23cdb25",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
       "dependencies": [
         "thm:full-defect-ring"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Ara--Goodearl--Pardo, Corollary 1.7, Proposition 1.5, and Theorem 2.4",
-        "Menal--Moncasi, proof of Theorem 2.2 and the remark after Corollary 2.3",
-        "Blackadar--Kirchberg"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof",
+          "declaration": "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne",
+          "declaration": "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOneAtBaseRing",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
     },
     {
       "id": "cor:leavitt-mf-quotient",
