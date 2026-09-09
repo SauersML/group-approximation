@@ -87,3 +87,25 @@ These are written proofs, with finite-certificate algorithms described
 mathematically. Cairn structural checks do not replace verification of
 the arguments. No new local code, build, GPU job, or Civo resource was
 used to derive them.
+
+## Remote validation record
+
+The generic construction, finite certificates, and presentation
+obstruction were committed as `ce3c5f735`; the arithmetic mixed
+relations as `7c869b81c`. Both are integrated into main at
+`4ac35cd0c65003576ce073a2ef554360186f703e`.
+
+[Remote research check 34299979301](https://github.com/SauersML/group-approximation/actions/runs/34299979301)
+passed for that exact commit. It checked pilot source syntax, the
+existing exact finite negative and cyclic-shift controls, and global
+Cairn graph structure. The optional Lean preflight was skipped.
+There was no machine verification of these new mathematical proofs.
+The downloaded record is `.cairn/bh-free-shift-check-20260908/`.
+
+The actual `node_status` fields and dependency derivations were
+inspected. The effective generic near action, finite relation
+certificates, non-finite-presentation obstruction, computable bad
+envelopes, and arithmetic mixed relations are `ESTABLISHED` in the
+written-proof graph. The arithmetic A5 envelope's finite presentation,
+both universal shell presentation hypotheses, and Boone--Higman itself
+remain `OPEN`. A successful graph check does not settle those claims.
