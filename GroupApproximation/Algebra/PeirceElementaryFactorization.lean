@@ -1,4 +1,4 @@
-import GroupApproximation.Algebra.PeirceUnitFactorization
+import GroupApproximation.Algebra.PeirceBlockFactorization
 
 /-!
 # Item (a) of the printed proof, in full
@@ -28,11 +28,10 @@ and every `m ≥ 4`.
   the isometry that witnesses `e_1 ~ 1`.
 * **The matrix identification.**  `Algebra/PeirceTwistedMatrixRing.lean`, applied
   to exactly this data.
-* **The factorisation.**  `Algebra/PeirceUnitFactorization.lean`, instantiated
-  at `N = peirceElementarySubgroup`.  The two transvection families it asks for
-  are `Algebra/PeirceElementaryUnits.lean`'s `peirceOneAdd_of_left` and
-  `peirceOneAdd_of_right`: a transvection along a whole block row is already a
-  product of single-block elementary matrices.
+* **The factorisation.**  `Algebra/PeirceBlockFactorization.lean`'s
+  `printedItemAShape`, which proves that clause at *every* decomposition meeting
+  item (a)'s hypotheses, so it applies to the one built here with nothing extra
+  to check.
 
 ## The one place this is stronger than printed
 
@@ -199,15 +198,6 @@ theorem printedItemA : PrintedItemA := by
   have horth := peirceBlocks_orthogonal r hridem hrorth
   have hsum := peirceBlocks_sum r
   have hpair := peirceBlocks_pairwise_equivalent r hridem hrequiv
-  -- the two frame indices, and the frame
-  have hidx : ∀ i j : Fin 2, i ≠ j →
-      r (Fin.castLE h2 i) * r (Fin.castLE h2 j) = 0 := fun i j hij =>
-    hrorth _ _ fun h => hij (Fin.castLE_injective h2 h)
-  obtain ⟨F, hF⟩ := exists_frame_of_two (fun i => r (Fin.castLE h2 i))
-    (fun i => hridem _) hidx (fun i => hrequiv _)
-  have hFe : ∀ i : Fin 2,
-      F.e i = peirceBlocks r (Fin.castSucc (Fin.castLE h2 i)) := fun i =>
-    (hF i).trans (peirceBlocks_castSucc r (Fin.castLE h2 i)).symm
   -- the distinguished indices
   have hne : Fin.castSucc (Fin.castLE h2 (1 : Fin 2)) ≠ Fin.last n :=
     ne_of_lt (Fin.castSucc_lt_last _)
@@ -254,25 +244,13 @@ theorem printedItemA : PrintedItemA := by
             rw [hLL]
         _ = s * peirceBlocks r (Fin.last n) * (peirceBlocks r (Fin.last n) * t) := by
             noncomm_ring
-  -- the two transvection families, at the printed elementary subgroup
-  have hupper : UpperFamily F (peirceElementarySubgroup (peirceBlocks r)) := by
-    intro i x hx hxx
-    rw [hFe i] at hx hxx
-    exact peirceOneAdd_of_left (peirceBlocks r) hidem horth hsum _ hx hxx
-  have hlower : LowerFamily F (peirceElementarySubgroup (peirceBlocks r)) := by
-    intro i x hx hxx
-    rw [hFe i] at hx hxx
-    exact peirceOneAdd_of_right (peirceBlocks r) hidem horth hsum _ hxx hx
   refine ⟨peirceBlocks r, hidem, Fin.castSucc (Fin.castLE h2 (1 : Fin 2)),
     Fin.last n, s * peirceBlocks r (Fin.last n) * t, hfi, hfle, hne, horth,
     hsum, fun i j hi hj => hpair i j hi hj, hlastequiv,
     exists_ringEquiv_twistedMatrixCorner (peirceBlocks r) hidem horth hsum _ _
-      hne (fun i j hi hj => hpair i j hi hj) _ hfi hfle hlastequiv _, ?_⟩
-  intro u
-  obtain ⟨v, hfac, hsupp⟩ := exists_supported_factorization F hR hupper hlower u
-  refine ⟨v, hfac, ?_⟩
-  rw [← hFe 1]
-  exact hsupp
+      hne (fun i j hi hj => hpair i j hi hj) _ hfi hfle hlastequiv _,
+    fun u => printedItemAShape R hR (n + 1) hm (peirceBlocks r) hidem horth
+      hsum _ _ hne (fun i j hi hj => hpair i j hi hj) _ hfi hfle hlastequiv u⟩
 
 end MFQuotientUnits
 end GroupApproximation
