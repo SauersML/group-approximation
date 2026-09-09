@@ -36,6 +36,7 @@ artifacts:
   - research/artifacts/boone-higman-arithmetic-odometer-model-2026-09-08.md
   - research/artifacts/boone-higman-terminated-digit-resolution-2026-09-08.md
   - research/artifacts/boone-higman-spatial-overgroup-and-coset-gate-2026-09-08.md
+  - research/artifacts/boone-higman-enlarged-digit-fiber-stabilizer-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -420,3 +421,16 @@ constructs infinitely many double cosets in H_(h,r), distinguished
 by the number of collapsed fibers met by the image of the fiber
 over p. The obstruction persists in larger groups containing that
 host, while its finitely presented simple embedding remains valid.
+
+The next construction enlarges the stabilizer in that same digit
+host. `terminated-digit-fiber-stabilizer-repairs-shell-action`
+proves that the full setwise fiber stabilizer K is finitely
+generated and core-free, with at most h^3 double cosets. Its
+intersection with the shell envelope is the original point
+stabilizer S, and [K:S] is infinite. Thus the obstruction for S
+is bypassed by an actual larger stabilizer in this restricted model.
+
+The route `boone-higman-via-enlarged-shell-stabilizers` permits such
+enlargements for arbitrary perfect decidable inputs. Its universal
+permutation-extension hypothesis is still OPEN; the arithmetic
+example does not make a rational host available for all inputs.

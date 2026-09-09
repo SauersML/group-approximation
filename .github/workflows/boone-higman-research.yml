@@ -87,8 +87,7 @@ on:
       - 'research/perfect-input-shell-*.md'
       - 'research/shell-perfect-input-*.md'
       - 'research/perfect-decidable-inputs-*.md'
-      - 'research/perfect-shell-pairs-*.md'
-      - 'research/perfect-shell-presentations-*.md'
+      - 'research/perfect-shell-*.md'
       - 'research/general-shell-*.md'
       - 'research/virtually-cyclic-inputs-have-fp-shell-stabilizers.md'
       - 'research/decidable-inputs-have-fp-shell-stabilizers.md'
@@ -211,6 +210,11 @@ jobs:
           bin/cairn why shell-coset-induction-preserves-core-freeness --json > bh-shell-induced-action.json
           bin/cairn why shell-finite-biindex-hosts-require-large-intersections --json > bh-shell-host-intersections.json
           bin/cairn why terminated-digit-host-has-infinite-shell-biindex --json > bh-shell-digit-host-biindex.json
+          bin/cairn why terminated-digit-boundary-sets-have-prefix-transport --json > bh-shell-digit-boundary-transport.json
+          bin/cairn why terminated-digit-fiber-stabilizer-is-finitely-generated --json > bh-shell-digit-full-stabilizer.json
+          bin/cairn why terminated-digit-fiber-stabilizer-repairs-shell-action --json > bh-shell-digit-enlarged-action.json
+          bin/cairn why perfect-shell-actions-have-fp-permutation-extensions --json > bh-shell-open-permutation-extension.json
+          bin/cairn why boone-higman-via-enlarged-shell-stabilizers --json > bh-shell-open-enlarged-route.json
           bin/cairn why perfect-shell-pairs-have-finite-biindex-fp-hosts --json > bh-shell-open-overgroup-host.json
           bin/cairn why boone-higman-via-shell-stabilizer-overgroups --json > bh-shell-open-overgroup-route.json
           bin/cairn why decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-envelope.json
