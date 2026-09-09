@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-arithmetic-shell-benchmark-2026-09-08.md
   - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
+  - research/artifacts/boone-higman-arithmetic-odometer-model-2026-09-08.md
 ---
 
 The particular E_nu defined in
@@ -35,3 +36,9 @@ The free-near-shift obstruction does not apply to this action:
 relation [lambda_a*s^118*lambda_a^-1,s^6962]=1 for every nonidentity
 factor element a. This proves its near group is not P*<s>, but
 does not establish finite presentation of either group.
+
+The near group R_nu and the full germ group Q now embed in
+explicit finitely presented odometer ambient groups, by
+`a5-arithmetic-germs-embed-in-fp-odometer-host`. Neither equality
+with those ambient groups nor finite presentation of the subgroups
+has been proved. The construction is not an embedding of E_nu.
