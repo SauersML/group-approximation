@@ -126,8 +126,6 @@ open-predicate GroupApproximation.IsStronglyOperatorMF.isOperatorMF  -- the proj
 # (both packaged as closed Props the manuscript cites, not reductions this
 # repository is closing), and cor:relative-quotient additionally on Hull's
 # common quotient theorem (Corollary 7.4).
-conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem  -- thm:torsion-free over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs; a literature citation, not a reduction this repository is closing
-conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient  -- cor:relative-quotient over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs (same as thm:torsion-free); a literature citation, not a reduction this repository is closing
 #
 # cor:regular-nonmf-algebra, along the printed proof
 # (Manuscript/NonMF/RegularNonMFAlgebra.lean), adds two more citations on top
@@ -135,7 +133,6 @@ conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscri
 # Guirardel-Osin's Theorem 2.35 and Gerasimova-Osin's Theorem 1.1, both
 # packaged as closed Props the manuscript cites.
 open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- cor:regular-nonmf-algebra over the same Fournier-Facio construction (FournierFacioParagraph), Dahmani-Guirardel-Osin's Theorem 2.35 (DGOTheorem235Printed), and Gerasimova-Osin's Theorem 1.1 (GerasimovaOsinTheorem11Printed); literature citations, not reductions this repository is closing
-conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- cor:regular-nonmf-algebra over Hull's Theorem 7.1 with Osin's Lemma 7.1, packaged as HullPrintedInputs (same as thm:torsion-free); a literature citation, not a reduction this repository is closing
 #
 # thm:mf-quotient-units, along the printed proof (Manuscript/OneSidedMFRadical/
 # MFQuotientUnits.lean), is conditional on four Props quoted from Ara-
@@ -161,7 +158,6 @@ conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscri
 # cor:regular-nonmf-algebra's printed proofs
 # (Manuscript/NonMF/TorsionFreePrintedSentences.lean), one citation of each
 # already-registered literature Prop, one sentence at a time.
-conditional-data GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremApplySaturation  -- sentence 2 of thm:torsion-free's printed proof, over HullPrintedInputs (Hull Theorem 7.1 with Osin Lemma 7.1); a literature citation, not a reduction this repository is closing
 open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraSimpleUniqueTraceStableRank  -- sentence 2 of cor:regular-nonmf-algebra's printed proof, over DGOTheorem235Printed (Dahmani-Guirardel-Osin Theorem 2.35) and GerasimovaOsinTheorem11Printed (Gerasimova-Osin Theorem 1.1); literature citations, not reductions this repository is closing
 #
 # `manuscriptSentence_theoremQuotientTrivial` takes "every homomorphism from Q
@@ -183,8 +179,6 @@ inlined-statement GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentence
 # an external citation.  Per the lane: unconditional proof-modularization,
 # gated by #audit_axioms rather than #audit_closed_axioms because the
 # hypothesis is a genuine printed binder, not a stand-in for an unproved step.
-inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_presentedCover  -- same as manuscriptSentence_perfect
-inlined-statement GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapseSentences.manuscriptSentence_markedGroupsSatisfyingRelations  -- same as manuscriptSentence_perfect
 #
 # cor:leavitt-mf-quotient's general-d clause (Manuscript/OneSidedMFRadical/
 # LeavittMFQuotientGeneral.lean, rank-four lane) is conditional on

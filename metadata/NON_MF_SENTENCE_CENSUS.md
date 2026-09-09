@@ -8,17 +8,17 @@ This census records source assignments for individual **sentences**, not just nu
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 291 |
-| `definition` | 51 |
-| `structural` | 43 |
-| `unassigned` | 27 |
-| `partial` | 25 |
+| `formalized` | 278 |
+| `definition` | 49 |
+| `structural` | 41 |
+| `partial` | 39 |
+| `unassigned` | 30 |
 | `attribution` | 19 |
 | `provenance` | 19 |
 | `open` | 7 |
 | **total** | **482** |
 
-Completely formalized or definitional: **342/482** (71.0%).
+Completely formalized or definitional: **327/482** (67.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -26,6 +26,12 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 `partial` records incomplete or conditional formal coverage; `unassigned` means no current assignment is recorded. Neither status by itself refutes the mathematical sentence. `open` records an explicitly open mathematical claim.
 
+* **`partial`**, line 121 --- for the \emph{MF radical} of $G$.
+  * AUDIT: cited declaration is in IntroSentences.lean, which is untracked (not on origin/main). Was graded `definition`; correct once landed, not before.
+* **`partial`**, line 121 --- For countable $G$ the quotient $G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is again MF, and hence the largest MF quotient of $G$: enumerate its nontrivial elements and separate each by an MF model, and at stage $n$ take the direct sum of the first $n$ models, each carried far enough along its own sequence to have multiplicative defect below $1/n$ on the first $n$ elements while still separating its own element.
+  * AUDIT: cited declaration is in IntroSentences.lean, untracked, not on origin/main. Downgrade from `formalized` until landed; content read and looks correct (unconditional, matches the printed sentence).
+* **`partial`**, line 121 --- This family is asymptotically multiplicative and separates every nontrivial element.
+  * AUDIT: same declaration/file as 07de7e8a943a (this row is the paragraph's closing sentence, same carrier). Downgrade from `formalized` until landed.
 * **`partial`**, line 152 --- the unit group of the binary Leavitt algebra, because $H$ is simple and every homomorphism from $H$ to an MF group is trivial. The right module $R_R$ over $R=L_{\F_2}(1,2)$ satisfies $R_R\cong R_R\oplus R_R$, and $H$ is its automorphism group; Khanh--Thanh show that $H\cong\GL_n(R)=\EL_n(R)$ for every $n\ge2$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
   * LANDED (s-intro finding, verified: BinaryLeavitt module is part of the already-audited Leavitt tree). GL_n=EL_n clause proved for every n>=2; the simplicity/triviality/general-n identification clauses are not independently carried for general n (only at the specific n=4 instance used later).
 * **`partial`**, line 245 --- For a countable purely infinite simple ring $R$ and $n\ge1$, Theorem~\ref{thm:mf-quotient-units} identifies $\Rad_{\mathrm{MF}}(\GL_n(R))$ with the commutator subgroup, and the largest MF quotient of $\GL_n(R)$ with $K_1(R)$.
@@ -38,6 +44,8 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
   * reconfirm, LANDED, matches the ORIGINAL grading exactly (strength-audit task 1). Conditional on FournierFacioParagraph + HullPrintedInputs. NOTE: o-hull71 has IN-FLIGHT work (TorsionFreeSaturationFromCorrected.lean, NOT on origin) that would reduce the Hull half of this debt to four named admissions; not yet landed.
 * **`partial`**, line 294 --- Its reduced $C^*$-algebra is simple, has a unique tracial state and stable rank one, and is not MF\@.
   * OUT OF SCOPE per the lead: belongs to o-hull71/o-cstar-reg ("simple, unique trace, stable rank one, not MF" summary of cor:regular-nonmf-algebra). Underlying decls already tracked as f2bf6328169e/9930780730b1/b7b49212cd37 below.
+* **`partial`**, line 301 --- A positive answer would make every countable group MF, because the reduced group $C^*$-algebra is separable and stably finite; Lubotzky--Oppenheim and, separately, Thom noted this when they listed operator norm approximation of groups among the open approximation problems~\cite{LubotzkyOppenheim,Thom}.
+  * AUDIT: cited declaration is in IntroSentences.lean, untracked, not on origin/main. Downgrade from `formalized` until landed; content read and looks correct (a faithful conditional formalization of the printed conditional sentence).
 * **`open`**, line 351 --- In particular, this applies to the canonical group homomorphisms into $\U(C^*_{\max}(G))$ and $\U(C^*_{\mathrm r}(G))$.
   * prop:mf-residual-calculus statement sentence 3, "In particular, this applies to the canonical group homomorphisms into U(C*_max(G)) and U(C*_r(G))"; needs injectivity of the canonical map G -> U(C*_max(G)) and G -> U(C*_r(G)) for arbitrary countable G (standard facts: max map injective because it factors the reduced map, reduced map injective via left-regular representation) instantiated into isCDEOperatorMF_of_faithful_corona_map; no C*_r(G)/general injective-canonical-map infrastructure found in the tree; deferred, needs new construction. Lane s-sec2a-draft-batch1, resolved by s-census from its LINE:354-356 submission.
 * **`partial`**, line 620 --- Since \(q\ne0\), infinitely many \(q_n\) are nonzero; retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).
@@ -91,6 +99,29 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 * **`unassigned`**, line 1126 --- Every countable subgroup of $\mathrm{GL}_2$ over a field has the Haagerup property~\cite[Theorem~4]{GHW}, and the kernel of $\mathrm{GL}_2(J)\to\mathrm{GL}_2(\F_2[z,z^{-1}])$ is locally finite, so a Kazhdan subgroup of $\mathrm{GL}_2(J)$ has finite image in $\mathrm{GL}_2(\F_2(z))$ and a locally finite subgroup of finite index, and is finite: Theorem~\ref{thm:compression-criterion} has no Kazhdan subgroup to act on at rank two.
 * **`unassigned`**, line 1126 --- Three coordinates carry property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, and the fourth makes the compression by $s$ invertible.
 * **`unassigned`**, line 1126 --- The two results are complementary: fullness gives trivial MF images at every rank $n\ge2$, torsion of the defect gives non-MF at rank four with no fullness.
+* **`unassigned`**, line 1141 --- Put $R=L_{\F_2}(1,2)$ and $H=R^\times$.
+* **`partial`**, line 1141 --- By~\eqref{eq:leavitt}, the maps $x\mapsto(t_0x,t_1x)$ and $(y,z)\mapsto s_0y+s_1z$ are mutually inverse isomorphisms of right $R$-modules between $R$ and $R\oplus R$, and $H\cong\GL_4(R)=\EL_4(R)$~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}.
+  * AUDIT: same file, same reason.
+* **`unassigned`**, line 1141 --- We identify $H$ with $\EL_4(R)$.
+* **`partial`**, line 1148 --- The relations give $t_0s_0=1$ and $t_1(1-s_0t_0)s_1=1$, so $R$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, and every homomorphism from $H$ to an MF group is trivial. The ring $R$ is finitely generated, so $H$ has property~\textup{(T)} by~\cite[Theorem~1.1]{EJZ}, and hence is finitely generated~\cite[Theorem~1.3.1]{BHV}.
+  * AUDIT: 4 of 5 cited decls confirmed on origin/main (HeadlineCitationSentences.lean IS landed); the 5th, BinaryExampleSentences.manuscriptSentence_relationsGiveTrivialHomomorphisms, is untracked. Downgrade from `formalized` until that file lands.
+* **`partial`**, line 1148 --- Since $e_{12}(1)\ne1$, the group $H$ is nontrivial.
+  * AUDIT: BinaryExampleSentences.lean is untracked, not on origin/main. Downgrade from `formalized` until landed.
+* **`unassigned`**, line 1156 --- Let $N$ be a normal subgroup of $H$.
+* **`partial`**, line 1156 --- The ring $R$ is purely infinite simple~\cite{AbramsAranda} and therefore an exchange ring~\cite{AraExchange}, so by Preusser's sandwich theorem~\cite[Theorem~3]{Preusser} there is an ideal $I$ of $R$ with
+  * AUDIT: 9 of 10 cited decls confirmed on origin/main; the 10th, BinaryExampleSentences.manuscriptSentence_purelyInfiniteExchangePreusserSandwich, is untracked. Downgrade from `formalized` until that file lands; the 9 landed decls listed here may already cover the sentence on their own -- not independently re-verified this pass.
+* **`partial`**, line 1163 --- Since $R$ is simple, either $I=R$, and then $N\ge\EL_4(R)=H$, or $I=0$, and then every $g\in N$ is central in $\GL_4(R)$.
+  * AUDIT: both decls in BinaryExampleSentences.lean, untracked, not on origin/main. Downgrade from `formalized` until landed.
+* **`partial`**, line 1163 --- In the second case, commuting with each $e_{ij}(1)$ forces $g=\lambda I_4$ with $\lambda\in R^\times$, and commuting with each $e_{ij}(a)$ then gives $\lambda a=a\lambda$ for all $a\in R$.
+  * AUDIT: all decls in BinaryExampleSentences.lean, untracked, not on origin/main. Downgrade from `formalized` until landed.
+* **`partial`**, line 1163 --- So $\lambda$ lies in $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, and $N=1$.
+  * AUDIT: 4 of 5 cited decls confirmed on origin/main; the 5th, BinaryExampleSentences.manuscriptSentence_centerEqF2GivesGEqOne, is untracked. Downgrade from `formalized` until that file lands; the 4 landed decls listed here may already cover the sentence on their own -- not independently re-verified this pass.
+* **`partial`**, line 1163 --- So $H$ is simple.
+  * AUDIT: 2 of 4 cited decls confirmed on origin/main; the other 2 (BinaryExampleSentences.manuscriptSentence_thusNTrivial, manuscriptSentence_HIsSimple) are untracked. Downgrade from `formalized` until that file lands.
+* **`partial`**, line 1163 --- It is nontrivial, and every homomorphism from it to an MF group is trivial, so $H$ is not MF\@.
+  * AUDIT: same file, same reason.
+* **`partial`**, line 1175 --- Since $R\ne0$ satisfies the hypothesis of Theorem~\ref{thm:full-defect-ring}, Corollary~\ref{cor:one-sided-ring-maximal} shows that $C^*_{\mathrm r}(H)$ is separable, stably finite, and not MF, and that $C^*_{\max}(H)$ contains a proper isometry.
+  * AUDIT: same file, same reason.
 * **`partial`**, line 1206 --- The ring $M_n(R)$ is again countable, purely infinite, and simple~\cite[Corollary~1.7]{AGP}, and $K_1(M_n(R))\cong K_1(R)$ by Morita invariance, so it suffices to treat $n=1$.
   * thm:mf-quotient-units proof. AGP Corollary 1.7 half is PROVED (agpMatrixReduction, from Algebra/PurelyInfiniteSimpleMatrix.isPurelyInfiniteSimpleRing_matrix); the carrier is unconditional as of e3349b77d, having taken AGPMatrixReduction as a binder before. PARTIAL only for the Morita clause "K_1(M_n(R)) = K_1(R) by Morita invariance", which is MFQuotientUnitsKOne.MoritaKOne, stated and unproved (lane o-morita). Not load-bearing: MFQuotientCanonicalKOne.manuscriptMFQuotientUnitsKOneAtBaseRing already delivers the printed conclusion at K_1(R) for every rank through the stable group, with no Morita input.
 * **`partial`**, line 1259 --- are products of an element of $\EL_{m-1}(T)$ and a conjugate of its inverse, so they lie in the normal subgroup $N$ as well.
@@ -130,7 +161,7 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 | From Hilbert--Schmidt to operator norm | 36 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 15 | 0 |
 | One-sided inverses and elementary groups | 113 | 27 |
-| The binary example | 49 | 0 |
+| The binary example | 49 | 3 |
 | Amenable traces and Clifford lamps | 83 | 0 |
 | A torsion-free finitely presented example | 29 | 0 |
 | Origin and authorship | 20 | 0 |
