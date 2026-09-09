@@ -128,10 +128,19 @@ structure LiteratureInputs where
   parameter between `1/3` and `1/2` gives a torsion-free hyperbolic group with
   property (T). -/
   kotowskiOllivier : KotowskiOllivierStatement
-  /-- **Fournier-Facio et al., Proposition 2.3** together with **Osin**,
+  /-- **Fournier-Facio**, *Stability, approximable quotients, and higher
+  property (T)*, arXiv:2512.09180, **Proposition 2.3** together with **Osin**,
   *Small cancellations over relatively hyperbolic groups and embedding
   theorems*, **Theorem 2.4(5)**: small cancellation over `(U * H₀, U)` embeds
-  `U` in a finitely presented torsion-free quotient `P` of `H₀`. -/
+  `U` in a finitely presented torsion-free quotient `P` of `H₀`.
+
+  The Proposition 2.3 cited here is **not** in arXiv:2608.02025, the
+  single-author note whose §2 the manuscript cites for the configuration.
+  That note's §2 says *"see [FF25, Proposition 2.3] for a precise statement"*,
+  and its bibliography gives `[FF25]` as the paper named above.  An earlier
+  version of this docstring read "Fournier-Facio et al.", which is wrong on
+  both counts: the paper is single-author, and it is a different paper from the
+  one `[FFF]` names elsewhere in this development. -/
   smallCancellationQuotient : FournierFacioQuotientStatement
   /-- **Minasyan--Osin**: acylindrical hyperbolicity of groups acting on trees,
   applied to the Bass--Serre tree of the double HNN extension `E`. -/
