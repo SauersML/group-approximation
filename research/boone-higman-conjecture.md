@@ -104,6 +104,13 @@ stabilizer. A successful enumeration must therefore be computable.
 The finite-prefix obstruction for shell groups shows why finite point
 samples do not certify a successful presentation, even for Z.
 
+The shorter route `boone-higman-via-fp-shell-envelopes` now asks only
+for a finitely presented E_nu. Finite generation of its point stabilizers
+holds for every enumeration of every finitely generated input, by
+`shell-finite-point-stabilizers-are-finitely-generated`. The three
+stronger stabilizer presentation clauses remain sufficient, but the
+new route does not assume them or finite presentation of the germ group.
+
 *Proof.*  It suffices to close any one of the live routes.  The shortest
 is `boone-higman-via-ck-maximal-kernel`: by
 `boone-higman-thompson-simple-envelope` and

@@ -36,6 +36,13 @@ Thus requiring nu to be computable would give an equivalent assertion.
 Finite tables of its values remain insufficient, as
 `shell-finite-prefix-cannot-certify-presentation` proves even for Z.
 
+There is now a weaker sufficient target,
+`decidable-inputs-have-fp-shell-envelopes`. The claim
+`shell-finite-point-stabilizers-are-finitely-generated` supplies the
+point-stabilizer condition for every enumeration, so proving E_nu
+itself finitely presented suffices. The present three clauses imply
+that envelope hypothesis, but their necessity has not been proved.
+
 `virtually-cyclic-inputs-have-fp-shell-stabilizers` supplies all three
 clauses for virtually cyclic inputs. Its normal-core proof cannot
 handle other inputs: `shell-prefix-core-detects-finite-ray-enumerations`

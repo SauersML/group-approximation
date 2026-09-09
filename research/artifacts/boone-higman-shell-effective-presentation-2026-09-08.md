@@ -67,12 +67,39 @@ countable and dense; the non-recursively-presentable locus is dense
 and comeagre. This concerns finite point samples, not finite proofs
 about an entire enumeration formula.
 
+## Finite generation of point stabilizers is automatic
+
+The independent-germ argument supplies more than an obstruction.
+For all finite M subset F subset Omega, the joint germ map of
+S(M,F) surjects onto the product of Q_x at singular points and
+cyclic prefix germs at the other points. To prescribe a germ at
+one point, take its one-singularity representative and cancel its
+prefix germs near the other points by a finite V correction.
+
+The product is finitely generated whenever P is. Its neighborhood
+kernel lies in the finitely generated prefix stabilizer Fix_V(F).
+Lifts of finitely many germ generators together with generators of
+Fix_V(F) therefore generate S(M,F). Applying the finite-germ theorem
+at n=1 to E_F proves that every finite point stabilizer of E_nu is
+finitely generated, for every enumeration of every finitely generated P.
+
+This yields the shorter route `boone-higman-via-fp-shell-envelopes`.
+It only needs a finitely presented E_nu: its action already meets
+the point-stabilizer requirement of the twisted Brin--Thompson
+construction. The three stronger stabilizer clauses remain one
+sufficient way to prove E_nu finitely presented. Their necessary
+germ and ascending HNN conditions have not been shown necessary
+for this shorter route. In particular, Q need not be assumed
+finitely presented in the new open envelope hypothesis.
+
 ## Remaining work and verification boundary
 
 The previous fiber-product and ascending HNN tests concern the germ
-quotient. This record adds an effective restriction on any lift to
-global stabilizers. It does not show that the germ tests suffice,
-nor construct a successful enumeration for arbitrary decidable P.
+quotient. This record adds an effective restriction on any successful
+envelope presentation and removes the point-stabilizer finite-generation
+condition as a separate construction problem. It does not show that
+the germ tests suffice, nor construct a successful enumeration for
+arbitrary decidable P.
 No example with finitely presented Q but non-recursively-presentable
 A_1 has been constructed here; the implications have not been reversed.
 
