@@ -18,10 +18,18 @@ central units handle the diagonal case.
 
 The canonical level ideal and lower half of Preusser's sandwich are also
 formalized in `CongruenceSubgroups`; below they give the independent
-unconditional fact that every proper normal subgroup has level zero.  The
-upper Preusser inclusion remains absent as a literal formalization of the
-manuscript's cited route, but it is no longer needed for simplicity because
-the direct extraction proof produces a nonzero root.
+unconditional fact that every proper normal subgroup has level zero.
+
+The manuscript's cited route is now formalized as well, so the direct
+extraction proof below is a second, independent proof rather than a
+replacement for a missing step.  The upper Preusser inclusion is
+`PreusserAssembly.map_le_congruenceSubgroup_normalLevel`, and the sandwich it
+completes is `PreusserAssembly.preusser_sandwich`, with uniqueness of the level
+ideal in `PreusserLevel.manuscriptPreusserNormalSubgroupTheorem` and the
+subgroup-normalized-by form of Preusser's Theorem 3 in
+`PreusserNormalizedBy.manuscriptPreusserNormalizedByTheorem`.  Simplicity along
+that route is `PreusserAssembly.isSimpleGroup_elementaryGroup_binaryLeavitt_via_preusser`,
+at every rank `n ≥ 3`.
 -/
 
 namespace GroupApproximation
