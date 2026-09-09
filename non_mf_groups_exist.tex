@@ -119,11 +119,12 @@ Write
  =\bigcap\{\ker f:f\colon G\to M,\ M\text{ an MF group}\}
 \]
 for the \emph{MF radical} of $G$.  For countable $G$ the quotient
-$G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is again MF, because countably many
-homomorphisms to MF groups separate the elements outside the radical and
-the direct sums of their models along a common sequence of matrix sizes
-remain asymptotically multiplicative; so it is the largest MF quotient
-of $G$.
+$G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is again MF, and hence the largest
+MF quotient of $G$: enumerate its nontrivial elements and separate each by
+an MF model, and at stage $n$ take the direct sum of the first $n$ models,
+each carried far enough along its own sequence to have multiplicative
+defect below $1/n$ on the first $n$ elements.  This family is
+asymptotically multiplicative and separates every element.
 
 Some groups admit no such approximation.  We construct groups for which
 every homomorphism to an MF group is trivial, as well as a sofic group
@@ -1537,10 +1538,12 @@ The subgroup $N$ is normal, and it is infinite because $G$ is
 torsion-free and $N\ne1$, so it acts non-elementarily on
 $\operatorname{Cay}(G,A)$ by Osin~\cite[Lemma~7.1]{Osin}; since $G$ is torsion-free,
 $N$ normalizes no nontrivial finite subgroup, so $N$ is suitable.  By Hull~\cite[Corollary~5.7 and Lemma~5.8]{Hull}, $N$ contains
-two elements $h_1,h_2$ such that $N_0=\langle h_1,h_2\rangle$ is again
-suitable, possibly with respect to a larger generating set
-$A'\supseteq A$, and Theorem~\ref{thm:hull} holds for $A'$ as well,
-since every finite subset of $G$ lies in a ball of $\operatorname{Cay}(G,A')$.  Apply
+two elements $h_1,h_2$ such that $N_0=\langle h_1,h_2\rangle$ is suitable
+with respect to a generating set $A'\supseteq A$ to which Hull's small
+cancellation theorem again applies.  Theorem~\ref{thm:hull} therefore
+holds for $N_0$ and $A'$; as with $A$, passing from injectivity on a ball
+to injectivity on $\Omega$ uses that every finite subset of $G$ lies in a
+ball of $\operatorname{Cay}(G,A')$.  Apply
 Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a
 finite generating set of $G$ and with the set $\Omega$.  Then
 $Q=\langle\varphi(g_1),\dots,\varphi(g_m)\rangle\le\varphi(N_0)\le\varphi(N)\le Q$,
