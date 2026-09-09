@@ -47,6 +47,10 @@ on:
       - 'research/a5-arithmetic-germs-*.md'
       - 'research/a5-arithmetic-near-group-*.md'
       - 'research/odd-odometer-*.md'
+      - 'research/terminated-digit-*.md'
+      - 'research/fixed-base-shells-*.md'
+      - 'research/shell-digit-resolution-*.md'
+      - 'research/a5-even-shell-charts-*.md'
       - 'research/a5-residue-charts-*.md'
       - 'research/shell-affine-germ-*.md'
       - 'research/shell-envelope-and-one-singularity-*.md'
@@ -214,6 +218,9 @@ jobs:
           bin/cairn why odometer-prefix-groups-have-fg-index-kernels --json > bh-shell-odometer-index-kernel.json
           bin/cairn why a5-arithmetic-germs-embed-in-fp-odometer-host --json > bh-shell-odometer-germ-host.json
           bin/cairn why a5-arithmetic-near-group-obeys-parity-charge-constraint --json > bh-shell-odometer-parity-constraint.json
+          bin/cairn why terminated-digit-carries-form-finite-injection-nucleus --json > bh-shell-digit-nucleus.json
+          bin/cairn why fixed-base-shells-embed-in-contracting-rsg --json > bh-shell-digit-faithful-lift.json
+          bin/cairn why a5-arithmetic-shell-envelope-embeds-in-fp-simple-group --json > bh-shell-digit-a5-simple-host.json
           bin/cairn why a5-free-product-has-simple-arithmetic-shell-envelope --json > bh-shell-a5-arithmetic-action.json
           bin/cairn why a5-arithmetic-shell-envelope-is-finitely-presented --json > bh-shell-open-a5-presentation.json
           bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json

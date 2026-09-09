@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/boone-higman-arithmetic-shell-benchmark-2026-09-08.md
   - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
   - research/artifacts/boone-higman-arithmetic-odometer-model-2026-09-08.md
+  - research/artifacts/boone-higman-terminated-digit-resolution-2026-09-08.md
 ---
 
 The particular E_nu defined in
@@ -46,3 +47,10 @@ More precisely, `a5-arithmetic-near-group-obeys-parity-charge-constraint`
 excludes equality with the full odometer ambient B and places R_nu
 in its index-two parity-charge subgroup B_0. Equality with B_0,
 or finite index in B_0, is unresolved.
+
+The separate claim
+`a5-arithmetic-shell-envelope-embeds-in-fp-simple-group` now gives
+a finitely presented simple OVERGROUP of the entire envelope,
+via a terminated-digit action and a contracting RSG. It preserves
+the neighborhood kernels. This does not prove the present claim
+that E_nu itself is finitely presented.
