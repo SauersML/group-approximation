@@ -254,13 +254,13 @@ The two hypotheses are the section's Hull citation and a paragraph that asks for
 `TorsionFreePrinted.manuscriptTorsionFreeTheorem`, which takes
 `FournierFacioParagraph` in place of the first, and whose only route to an
 inhabitant runs through `FinitelyPresentedInfiniteSimpleStatement`. -/
-theorem printedTorsionFreeTheorem_of_paragraphFreeWitness
+theorem printedTorsionFreeTheorem_of_paragraphFreeWitness_of_corrected
     (h : FournierFacioParagraphFreeWitness)
-    (hHull : TorsionFreePrinted.HullPrintedInputs.{0}) :
+    (hHull : HullCorrectedInputs.HullInputsCorrected.{0}) :
     TorsionFreePrinted.PrintedTorsionFreeTheorem := by
   obtain ⟨cfg⟩ := nonempty_configuration_of_paragraph h
   obtain ⟨Q, instQ, h2, hfp, htf, hah, hT, hrad, -, -⟩ :=
-    printedTorsionFreeFullMFRadical_of_configuration cfg hHull.toCorrected
+    printedTorsionFreeFullMFRadical_of_configuration cfg hHull
   letI := instQ
   haveI : Group.IsFinitelyPresented Q := hfp
   haveI : Countable Q := ChiodoBelegradek.countable_of_isFinitelyPresented Q
@@ -273,6 +273,16 @@ theorem printedTorsionFreeTheorem_of_paragraphFreeWitness
   letI := instL
   haveI := hL
   exact quotient_not_isOperatorMF_of_killsMFTargets hkills r hr
+
+/-- **The same over `HullPrintedInputs`**, which is what `sec:torsion-free`
+prints as its Hull citation.  `HullPrintedInputs.toCorrected` is the only door,
+and it goes one way. -/
+theorem printedTorsionFreeTheorem_of_paragraphFreeWitness
+    (h : FournierFacioParagraphFreeWitness)
+    (hHull : TorsionFreePrinted.HullPrintedInputs.{0}) :
+    TorsionFreePrinted.PrintedTorsionFreeTheorem :=
+  printedTorsionFreeTheorem_of_paragraphFreeWitness_of_corrected h
+    hHull.toCorrected
 
 /-! ## What inhabits the weak paragraph -/
 
@@ -300,6 +310,21 @@ theorem printedTorsionFreeTheorem_of_literatureInputs (I : LiteratureInputs)
   printedTorsionFreeTheorem_of_paragraphFreeWitness
     (paragraphFreeWitness_of_literatureInputs I) hHull
 
+/-- **`thm:torsion-free` over the two bundles the corpus actually produces.**
+
+This is the form in which the printed theorem rests on the five admissions of
+`Manuscript/NonMF/TheoremCAssembly.lean` **and on nothing else**.  Both
+hypotheses have producers there: `TheoremC.literatureInputs` and
+`TorsionFree.hullInputs`, the latter assembled from Hull's four §5/§6 leaves.
+`TorsionFreePrinted.HullPrintedInputs`, which the printed section cites, has no
+producer anywhere in the corpus, so the version above is strictly the more
+conditional one. -/
+theorem printedTorsionFreeTheorem_of_corrected (I : LiteratureInputs)
+    (hHull : HullCorrectedInputs.HullInputsCorrected.{0}) :
+    TorsionFreePrinted.PrintedTorsionFreeTheorem :=
+  printedTorsionFreeTheorem_of_paragraphFreeWitness_of_corrected
+    (paragraphFreeWitness_of_literatureInputs I) hHull
+
 end FFFFreeWitness
 end NonMF
 end Manuscript
@@ -314,3 +339,7 @@ end GroupApproximation
 #audit_axioms GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_paragraphFreeWitness
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_literatureInputs
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_paragraphFreeWitness_of_corrected
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_corrected
