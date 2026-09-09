@@ -102,3 +102,29 @@ so the existence of H_(h,r) cannot be used as a universal compiler.
 The outstanding task is to construct such a permutation extension
 without that arithmetic hypothesis. No proof of that existence
 statement, Lean certificate, or GPU result is claimed.
+
+## Remote validation
+
+The construction was committed in `9cdc67b6d`; the exact rank
+calculation was committed in `510e8fb7b`. The initial integration
+check stopped on an unrelated overlong Cairn route identifier.
+Commit `e9b41d14b` shortened that identifier and its filename,
+preserving the route content. The repaired initial batch passed
+[run 34305379132](https://github.com/SauersML/group-approximation/actions/runs/34305379132).
+
+The final batch, including the exact h+3 count, passed
+[run 34305539722](https://github.com/SauersML/group-approximation/actions/runs/34305539722)
+at exact head `4db89e387277b7c44d1faead8cea564533f68187`.
+Exports were downloaded to `.cairn/bh-enlarged-fiber-check-20260908/`.
+
+The boundary-transport, full-stabilizer finite-generation, and
+enlarged-action claims are `ESTABLISHED` through their written
+routes. The older infinite-bi-index claim for the smaller stabilizer
+remains `ESTABLISHED`, consistently with the infinite index [K:S].
+The universal permutation-extension claim, its Boone--Higman route,
+and Boone--Higman itself remain `OPEN`.
+
+These remote checks cover source syntax, the existing exact finite
+controls, and Cairn graph structure. They do not independently
+verify the mathematical proofs. Lean preflight was skipped and
+no GPU computation was performed.
