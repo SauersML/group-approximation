@@ -41,6 +41,68 @@ open Peirce
 
 variable {R : Type} [Ring R]
 
+/-! ### The clearing step -/
+
+/-- **Clearing a corner that is already the identity.**  If the `Q`-corner of a
+unit is the identity `Q` of that corner, then one transvection on each side at
+`Q` makes it supported off `Q`.
+
+No frame, no decomposition and no pure infiniteness enter: this is the last of
+the three reduction steps, and it is the one that is pure idempotent algebra.
+Both the frame reduction below and the block reduction of
+`Algebra/PeirceBlockFactorization.lean` finish with it. -/
+theorem exists_clearing_factorization {N : Subgroup Rˣ} {Q : R} (hQ : Q * Q = Q)
+    (hupperQ : ∀ {x : R}, Q * x = x → x * Q = 0 → ∃ w ∈ N, (w : R) = 1 + x)
+    (hlowerQ : ∀ {x : R}, Q * x = 0 → x * Q = x → ∃ w ∈ N, (w : R) = 1 + x)
+    (v : Rˣ) (hfvf : Q * (v : R) * Q = Q) :
+    ∃ v' : Rˣ, FactorsThrough N v v' ∧
+      (v' : R) = Q + (1 - Q) * (v' : R) * (1 - Q) := by
+  let x := -(Q * (v : R) * (1 - Q))
+  have hfx : Q * x = x := by
+    calc Q * x = -((Q * Q) * (v : R) * (1 - Q)) := by dsimp [x]; noncomm_ring
+      _ = x := by rw [hQ]
+  have hxf : x * Q = 0 := by
+    calc x * Q = -(Q * (v : R) * (Q - Q * Q)) := by dsimp [x]; noncomm_ring
+      _ = 0 := by rw [hQ, sub_self]; simp
+  obtain ⟨w, hw, hwval⟩ := hupperQ hfx hxf
+  let d := v * w
+  have hfd : Q * (d : R) = Q := by
+    change Q * ((v * w : Rˣ) : R) = Q
+    rw [Units.val_mul, hwval]
+    calc Q * ((v : R) * (1 + x))
+        = Q * (v : R) - (Q * (v : R) * Q) * (v : R) * (1 - Q) := by
+          dsimp [x]; noncomm_ring
+      _ = Q * (v : R) - Q * (v : R) * (1 - Q) := by rw [hfvf]
+      _ = Q * (v : R) * Q := by noncomm_ring
+      _ = Q := hfvf
+  let y := -((1 - Q) * (d : R) * Q)
+  have hfy : Q * y = 0 := by
+    calc Q * y = -((Q - Q * Q) * (d : R) * Q) := by dsimp [y]; noncomm_ring
+      _ = 0 := by rw [hQ, sub_self]; simp
+  have hyf : y * Q = y := by
+    calc y * Q = -((1 - Q) * (d : R) * (Q * Q)) := by dsimp [y]; noncomm_ring
+      _ = y := by rw [hQ]
+  obtain ⟨z, hz, hzval⟩ := hlowerQ hfy hyf
+  let result := z * d
+  have hfr : Q * (result : R) = Q := by
+    change Q * ((z * d : Rˣ) : R) = Q
+    rw [Units.val_mul, hzval, ← mul_assoc, mul_add, mul_one, hfy, add_zero, hfd]
+  have hrf : (result : R) * Q = Q := by
+    change ((z * d : Rˣ) : R) * Q = Q
+    rw [Units.val_mul, hzval]
+    calc ((1 + y) * (d : R)) * Q
+        = (d : R) * Q - (1 - Q) * (d : R) * (Q * (d : R)) * Q := by
+          dsimp [y]; noncomm_ring
+      _ = (d : R) * Q - (1 - Q) * (d : R) * Q * Q := by rw [hfd]
+      _ = (d : R) * Q - (1 - Q) * (d : R) * Q := by
+          rw [mul_assoc ((1 - Q) * (d : R)), hQ]
+      _ = Q * (d : R) * Q := by noncomm_ring
+      _ = Q := by rw [hfd, hQ]
+  refine ⟨result, (FactorsThrough.right N v w hw).trans
+    (FactorsThrough.left N d z hz), ?_⟩
+  have hfrf : Q * (result : R) * Q = Q := by rw [hfr, hQ]
+  noncomm_ring [hfr, hrf, hfrf, hQ]
+
 section Reduction
 
 variable (F : Frame R) {N : Subgroup Rˣ}
@@ -166,54 +228,9 @@ theorem exists_supported_factorization (hupper : UpperFamily F N)
       (v : R) = F.e 1 + (1 - F.e 1) * (v : R) * (1 - F.e 1) := by
   obtain ⟨v, huv, hfvf⟩ :=
     exists_identityCorner_factorization F hR hupper hlower u
-  let f := F.e 1
-  have hf : f * f = f := F.e_idem 1
-  let x := -(f * (v : R) * (1 - f))
-  have hfx : f * x = x := by
-    calc f * x = -((f * f) * (v : R) * (1 - f)) := by dsimp [x]; noncomm_ring
-      _ = x := by rw [hf]
-  have hxf : x * f = 0 := by
-    calc x * f = -(f * (v : R) * (f - f * f)) := by dsimp [x]; noncomm_ring
-      _ = 0 := by rw [hf, sub_self]; simp
-  obtain ⟨w, hw, hwval⟩ := hupper 1 hfx hxf
-  let d := v * w
-  have hfd : f * (d : R) = f := by
-    change f * ((v * w : Rˣ) : R) = f
-    rw [Units.val_mul, hwval]
-    calc f * ((v : R) * (1 + x))
-        = f * (v : R) - (f * (v : R) * f) * (v : R) * (1 - f) := by
-          dsimp [x]; noncomm_ring
-      _ = f * (v : R) - f * (v : R) * (1 - f) := by rw [hfvf]
-      _ = f * (v : R) * f := by noncomm_ring
-      _ = f := hfvf
-  let y := -((1 - f) * (d : R) * f)
-  have hfy : f * y = 0 := by
-    calc f * y = -((f - f * f) * (d : R) * f) := by dsimp [y]; noncomm_ring
-      _ = 0 := by rw [hf, sub_self]; simp
-  have hyf : y * f = y := by
-    calc y * f = -((1 - f) * (d : R) * (f * f)) := by dsimp [y]; noncomm_ring
-      _ = y := by rw [hf]
-  obtain ⟨z, hz, hzval⟩ := hlower 1 hfy hyf
-  let result := z * d
-  have hfr : f * (result : R) = f := by
-    change f * ((z * d : Rˣ) : R) = f
-    rw [Units.val_mul, hzval, ← mul_assoc, mul_add, mul_one, hfy, add_zero, hfd]
-  have hrf : (result : R) * f = f := by
-    change ((z * d : Rˣ) : R) * f = f
-    rw [Units.val_mul, hzval]
-    calc ((1 + y) * (d : R)) * f
-        = (d : R) * f - (1 - f) * (d : R) * (f * (d : R)) * f := by
-          dsimp [y]; noncomm_ring
-      _ = (d : R) * f - (1 - f) * (d : R) * f * f := by rw [hfd]
-      _ = (d : R) * f - (1 - f) * (d : R) * f := by
-          rw [mul_assoc ((1 - f) * (d : R)), hf]
-      _ = f * (d : R) * f := by noncomm_ring
-      _ = f := by rw [hfd, hf]
-  refine ⟨result, huv.trans ((FactorsThrough.right N v w hw).trans
-    (FactorsThrough.left N d z hz)), ?_⟩
-  change (result : R) = f + (1 - f) * (result : R) * (1 - f)
-  have hfrf : f * (result : R) * f = f := by rw [hfr, hf]
-  noncomm_ring [hfr, hrf, hfrf, hf]
+  obtain ⟨v', hvv', hsupp⟩ := exists_clearing_factorization (F.e_idem 1)
+    (fun hx hxx => hupper 1 hx hxx) (fun hx hxx => hlower 1 hx hxx) v hfvf
+  exact ⟨v', huv.trans hvv', hsupp⟩
 
 end Reduction
 
@@ -222,6 +239,7 @@ end GroupApproximation
 
 /-! ### Axiom audit -/
 
+#audit_axioms GroupApproximation.MFQuotientUnits.exists_clearing_factorization
 #audit_axioms GroupApproximation.MFQuotientUnits.root_mem_of_upperFamily
 #audit_axioms GroupApproximation.MFQuotientUnits.exists_pivot_factorization
 #audit_axioms GroupApproximation.MFQuotientUnits.exists_identityCorner_factorization
