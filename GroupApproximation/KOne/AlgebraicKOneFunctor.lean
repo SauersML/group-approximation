@@ -9,10 +9,10 @@ import GroupApproximation.KOne.AlgebraicKOne
 > `K_1(M_n(R)) ≅ K_1(R)` by Morita invariance, so it suffices to treat `n = 1`.
 
 `Manuscript/OneSidedMFRadical/MFQuotientUnitsKOne.lean` states that Morita step
-as the hypothesis `MoritaKOne` and does not prove it: in general it is a
-cofinality argument about direct limits, since `K₁(M_n(R))` is the colimit of
-`GL_m(M_n(R)) ≅ GL_{mn}(R)`, a cofinal subsystem of the colimit defining
-`K₁(R)`.
+as the hypothesis `MoritaKOne`: in general it is a cofinality argument about
+direct limits, since `K₁(M_n(R))` is the colimit of `GL_m(M_n(R)) ≅ GL_{mn}(R)`,
+a cofinal subsystem of the colimit defining `K₁(R)`.  That argument is carried
+out in `KOne/MoritaKOne.lean`; this module predates it and does not use it.
 
 This module proves the case the manuscript actually consumes, by a different and
 much shorter route.  Where `R ≅ M_n(R)` **as a ring** — which is exactly the
@@ -37,11 +37,15 @@ Three compatibilities, each with its ingredient already in the tree:
 For an isomorphism the two directions are mutually inverse, so the induced map
 of colimits is an isomorphism carrying `E_∞` onto `E_∞`, and it descends.
 
-## What is not proved
+## What is not proved here
 
-Morita invariance for a general ring: `MoritaKOne` remains open.  Only the
-self-similar case is closed here, and `moritaKOne_of_selfSimilar` says exactly
-that.
+Morita invariance for a general ring.  Only the self-similar case is closed in
+this module, and `moritaKOne_of_selfSimilar` says exactly that.  The general
+statement is no longer open: `KOne/MoritaKOne.lean` proves
+`K_1(M_n(R)) ≅ K_1(R)` for an arbitrary unital ring and every `n ≥ 1`, by the
+cofinality argument sketched above, and
+`Manuscript/OneSidedMFRadical/MFQuotientUnitsKOneMorita.lean` discharges
+`MoritaKOne` with it.
 -/
 
 namespace GroupApproximation
