@@ -103,7 +103,27 @@ arbitrary decidable P.
 No example with finitely presented Q but non-recursively-presentable
 A_1 has been constructed here; the implications have not been reversed.
 
-These are written proofs in Cairn. Remote structural checks will
-validate the graph wiring, not formally verify the mathematics.
+These are written proofs in Cairn. Remote structural checks validate
+the graph wiring, not formally verify the mathematics.
 No GPU ran, no local code or build was executed, and no Civo resource
 was created for this step. The conjecture remains open.
+
+The extraction, discriminator, and finite-prefix proofs were committed
+as `7bbd4bdb7`; their first remote check
+[34295704038](https://github.com/SauersML/group-approximation/actions/runs/34295704038)
+passed at integration `7d5e77ce7158eb400fcfa1c80a277e83b4a3eb62`.
+The independent-germ proof and shorter envelope route were committed
+as `eec154671`.
+
+The combined check
+[34296071285](https://github.com/SauersML/group-approximation/actions/runs/34296071285)
+passed at main integration `8c9d22ed495d23730d503ad6e158ea187d4a338d`.
+Its downloaded evidence is in `.cairn/bh-shell-effective-check-20260908/`.
+The inspected `node_status` fields are ESTABLISHED for the four new
+claims: computable enumeration extraction, the punctured-prefix
+word-problem discriminator, the finite-prefix obstruction, and finite
+generation of all finite point stabilizers. They remain OPEN for
+`decidable-inputs-have-fp-shell-envelopes`, its new Boone--Higman route,
+the older three-stabilizer hypothesis, and the Boone--Higman root.
+Source-syntax checks and the existing exact finite controls also passed.
+No Lean proof of these new results was run or claimed.

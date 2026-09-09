@@ -102,6 +102,16 @@ as a separate requirement. No such data have been constructed for
 general inputs. Even supplying them would still leave the lift from
 germ presentations to the three global shell stabilizers unresolved.
 
+The subsequent effective-presentation record proves that all finite
+point stabilizers of E_nu are finitely generated for every finitely
+generated input and every enumeration. This supplies the shorter
+route `boone-higman-via-fp-shell-envelopes`, which only requires a
+finitely presented E_nu. The germ and ascending HNN tests in this
+record remain necessary for the stronger A_1 presentation clause;
+they have not been proved necessary for E_nu itself to be finitely
+presented. See
+`research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md`.
+
 ## Verification boundary
 
 These are written mathematical proofs recorded in Cairn, not Lean
