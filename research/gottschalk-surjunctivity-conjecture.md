@@ -35,6 +35,7 @@ artifacts:
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
   - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
+  - research/artifacts/gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -280,9 +281,17 @@ by the identity on unused blocks now gives a zero-preserving
 nonlinear reversible full-shift extension, recorded in
 `balanced-invariant-code-has-a-reversible-full-shift-extension`.
 An injective extension specifically of the form x+B Q_s remains
-open. No finite-support-group rule can refute surjunctivity, since
-injectivity makes each finite coset block map bijective; a headline
-counterexample must have memory generating an infinite subgroup.
+open as a reversible-control question. The stronger group audit now
+closes the entire current prefix/permutation/controlled-diagonal
+construction as a counterexample route: its source symmetry group
+is elementary amenable, even when memory generates an infinite
+subgroup. Faithful restrictions to finitely many non-u labels embed
+each finitely generated subgroup into a known elementary amenable
+orthant permutation group; see
+`current-prefix-symmetry-group-is-elementary-amenable`.
+Thus every finite-alphabet full-shift cellular automaton using
+addresses from this group is surjunctive. Other source symmetries
+are not classified, and the headline conjecture remains unresolved.
 Independently, continuous affine Q-intertwiners only copy triples or make them
 constant. Their proper nonempty globally fixed-coordinate set
 excludes affine full and invariant-code encodings of the unbalanced

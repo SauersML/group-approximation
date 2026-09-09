@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
   - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
+  - research/artifacts/gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md
 ---
 
 For G=A_4 x Z, t=(123), h=(12)(34), and A=I+R_h,
@@ -35,5 +36,10 @@ linear-span membership over the original Lambda.
 
 An injective extension constrained to x+B Q_s remains unresolved,
 potentially through different coefficients or linear operators
-that vanish on Q_s of the code. The nonlinear completion has
-memory in a finite subgroup and is not a Gottschalk counterexample.
+that vanish on Q_s of the code. Such an extension could provide
+a reversible control. The entire current source symmetry group
+is now proved elementary amenable, so every full-shift cellular
+automaton over it is surjunctive, even with an infinite memory
+subgroup. See `current-prefix-symmetry-group-is-elementary-amenable`.
+Neither the code nor an extension within this group can refute
+Gottschalk's conjecture.

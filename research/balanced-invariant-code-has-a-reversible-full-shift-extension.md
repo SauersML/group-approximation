@@ -5,6 +5,7 @@ kind: claim
 title: The infinite balanced scalar code has a nonlinear reversible full-shift extension
 artifacts:
   - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
+  - research/artifacts/gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md
 ---
 
 The invariant scalar code for the balanced triangular rule on
@@ -24,5 +25,8 @@ not excluded.
 
 Any full-shift cellular automaton supported in a finite subgroup
 is surjunctive by finite block counting. Thus this construction
-is not a Gottschalk counterexample; a counterexample must have
-memory generating an infinite group.
+is not a Gottschalk counterexample. A subsequent group audit
+proves the entire current source symmetry group elementary
+amenable, excluding a counterexample even with memory generating
+an infinite subgroup; see
+`current-prefix-symmetry-group-is-elementary-amenable`.

@@ -7,6 +7,7 @@ target: balanced-invariant-code-has-a-reversible-full-shift-extension
 requires: []
 artifacts:
   - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
+  - research/artifacts/gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md
 ---
 
 The swap after the prefix map has order four. Its inverse r
@@ -31,3 +32,8 @@ complement but is nonidentity. This proves that the completion
 is nonlinear. The same annihilator, used as a linear feedback
 correction, preserves all complement collisions of the two-term
 rule, leaving other linear-feedback corrections unresolved.
+
+The unresolved correction question concerns a reversible control.
+The full current prefix and controlled-diagonal source group is
+elementary amenable, so no choice of finite memory from that group
+can turn this construction into a Gottschalk counterexample.

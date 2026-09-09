@@ -19,6 +19,13 @@ gives a nonlinear zero-preserving reversible full-shift extension.
 Only an injective extension in the restricted linear-feedback
 family remains unproved.
 
+The subsequent
+[elementary-amenability theorem](gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md)
+shows that all full-shift cellular automata over the current
+generated source symmetry group are surjunctive. Thus a restricted
+injective extension could be a reversible control, but no extension
+or larger memory inside this group can be a Gottschalk counterexample.
+
 The finite-source exclusion and the prefix homeomorphisms used
 below are proved in
 [the finite-code and infinite-prefix artifact](gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md).

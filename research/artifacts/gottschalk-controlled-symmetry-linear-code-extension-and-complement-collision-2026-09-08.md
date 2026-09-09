@@ -1,5 +1,11 @@
 # A two-term linear code extension and its explicit complement collision
 
+The subsequent
+[elementary-amenability theorem](gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md)
+excludes every Gottschalk counterexample over the current generated
+source symmetry group. The positive linear-feedback extension
+question below remains a reversible-control question.
+
 Date: 2026-09-08. Adjoining one controlled symmetry to the group
 of the infinite scalar-code construction makes its reversible
 code map extend to a scalar rule of the exact form x+B Q_s,

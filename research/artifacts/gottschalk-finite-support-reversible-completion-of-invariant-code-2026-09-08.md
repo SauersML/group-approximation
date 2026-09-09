@@ -21,6 +21,14 @@ control is not such a counterexample; a headline counterexample
 would require memory generating an infinite group. All arguments
 below are analytic and require no computation.
 
+The subsequent
+[group audit](gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md)
+proves the entire current prefix and controlled-diagonal symmetry
+group elementary amenable. It therefore excludes a counterexample
+even after adding addresses that generate an infinite subgroup
+inside this group. The linear-feedback extension question remains
+only a reversible-control question within this construction.
+
 We use the code C in F_2^{Lambda_tilde}, source symmetry group,
 and linear-feedback extension from
 [the controlled-extension artifact](gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md).
@@ -177,5 +185,7 @@ any corrected linear-feedback rule whose added addresses remain
 in H. Such a rule could supply a reversible control for the
 restricted feedback question, but cannot refute Gottschalk's
 conjecture. A counterexample would need memory generating an
-infinite subgroup. The proven code and reversible completion do
-not settle that headline problem.
+infinite subgroup, and the subsequent elementary-amenability
+theorem excludes every subgroup of the current generated source
+symmetry group. The proven code and reversible completion do not
+settle the headline problem.
