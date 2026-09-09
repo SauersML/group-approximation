@@ -68,3 +68,21 @@ TS error, and the remaining stable-letter error involving `h`.
   any head-retaining image to surject onto the nonamenable literal
   image. This eliminates the amenable-countermodel route, while
   leaving nonamenable MF targets and the unrestricted gap unresolved.
+- `jacobson-shift-surviving-head-has-a-tracial-core` converts any
+  surviving norm-corona representation into a tracial matrix model
+  whose head has active density at least `1/4`, using the uniform
+  finite-interval support bound and rank-sensitive spectral coarea.
+  It preserves all ambient relations in normalized Hilbert--Schmidt
+  norm. It neither preserves their operator-norm errors on that
+  corner nor rules out the resulting tracial model. A surjection
+  from its image onto the literal image does not imply a faithful
+  tracial embedding of that quotient.
+- `jacobson-shift-literal-quotient-is-laurent-times-z` identifies
+  the literal quotient by its finitary subgroup as
+  `SL_3(F_2[z,z^(-1)]) x Z` and locates the abstract literal kernel
+  in the specified Laurent cover. This does not prove the abstract
+  cover is trivial. `jacobson-shift-finite-core-actions-are-locally-inner`
+  gives exact regular matrix models of all finite core covariance
+  diagrams. The actor relator words in those models need only
+  centralize the inspected core; their equality to identity is
+  precisely additional information not supplied by that construction.
