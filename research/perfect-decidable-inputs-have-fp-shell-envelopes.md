@@ -41,3 +41,9 @@ The explicit nonrational but arithmetic action in
 decidable simple benchmark. Its finite-presentation question is
 separate and open. It is not an added requirement on the universal
 route, which is free to choose another enumeration.
+
+At the recursive-presentation level,
+`shell-envelope-and-one-singularity-wp-are-equivalent` reduces the
+envelope word problem to its one-singularity stabilizer and forces
+the germ quotient Q to be recursively presented. It does not upgrade
+that consequence to finite presentation of A_1 or Q.

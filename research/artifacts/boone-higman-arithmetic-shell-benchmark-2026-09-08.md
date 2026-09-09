@@ -64,6 +64,29 @@ bit length grows linearly in word length. No such complexity restriction
 is available for arbitrary decidable inputs. The universal presentation
 problem remains intact.
 
+## A reduction beyond arithmetic data
+
+The general envelope E and its one-singularity stabilizer A_1 have
+equivalent recursive-presentability and word-problem-decidability
+conditions. The new proof avoids assuming a word-problem algorithm
+for the germ quotient. Inside A_1, identity on a specified cone is
+equivalent to centralizing a finite generating set of the copy of
+Fix_V(p) supported on that cone. This is a finite word-problem test.
+
+Normalize a general word near each of its finitely many candidate
+singularities and retain an explicit cone of agreement with a word
+in A_1. Test identity on that cone by the commutators, then handle
+the compact complement by prefix tables. A_1 decidability itself
+computes the enumeration, so the equivalence also covers enumerations
+not initially assumed computable. The proof assumes correct finite
+markings and supplies no recognition procedure for them.
+
+Consequently recursive presentability of E forces recursive
+presentability of its germ quotient Q: first obtain it for A_1,
+then kill the simple neighborhood kernel with one relator. Finite
+presentation of E is not shown to imply finite presentation of A_1
+or Q. These distinctions preserve the outstanding universal gap.
+
 ## Verification boundary
 
 These are written proofs in Cairn. Structural validation checks their

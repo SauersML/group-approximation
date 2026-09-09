@@ -37,6 +37,8 @@ on:
       - 'research/rational-regular-shell-*.md'
       - 'research/arithmetic-shell-*.md'
       - 'research/shell-affine-germ-*.md'
+      - 'research/shell-envelope-and-one-singularity-*.md'
+      - 'research/shell-localized-centralizer-*.md'
       - 'research/a5-free-product-has-simple-arithmetic-shell-envelope.md'
       - 'research/free-product-bijective-base-*.md'
       - 'research/a5-arithmetic-shell-*.md'
@@ -191,6 +193,7 @@ jobs:
           bin/cairn why rational-shell-permutations-are-eventually-periodic --json > bh-shell-rational-permutations.json
           bin/cairn why rational-regular-shell-actions-require-virtually-cyclic-input --json > bh-shell-rational-action-boundary.json
           bin/cairn why arithmetic-shell-envelopes-have-decidable-word-problem --json > bh-shell-arithmetic-word-problem.json
+          bin/cairn why shell-envelope-and-one-singularity-wp-are-equivalent --json > bh-shell-local-global-word-problem.json
           bin/cairn why a5-free-product-has-simple-arithmetic-shell-envelope --json > bh-shell-a5-arithmetic-action.json
           bin/cairn why a5-arithmetic-shell-envelope-is-finitely-presented --json > bh-shell-open-a5-presentation.json
           bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json
