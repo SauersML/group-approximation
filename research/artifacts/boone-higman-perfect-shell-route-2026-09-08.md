@@ -75,6 +75,21 @@ finiteness argument, not finite presentation of E_nu itself.
 
 The normal-form and Schreier arguments are written proofs in Cairn.
 The simplicity step is an application of the cited primary theorem.
-Remote checks will validate the dependency graph and existing finite
+Remote checks validate the dependency graph and existing finite
 controls; they do not formally verify these new infinite-group proofs.
 No GPU ran or Civo resource was created for this work.
+
+The perfect-envelope proof and direct route were committed as
+`fcbf3f659`. A transient shared Git index lock cleared without
+intervention before the commit. The subsequent
+[research run 34297009358](https://github.com/SauersML/group-approximation/actions/runs/34297009358)
+passed at main integration `ff7f34cef7bcf8e80d8fc8206575731bf7830ce7`.
+Downloaded evidence is in `.cairn/bh-perfect-shell-check-20260908/`.
+
+The inspected `node_status` fields are ESTABLISHED for
+`decidable-fp-groups-embed-in-perfect-decidable-fp-groups` and
+`perfect-input-shell-envelopes-are-simple`. They remain OPEN for
+the perfect-input finite-presentation hypothesis, its direct
+Boone--Higman route, the general shell-envelope hypothesis, and
+the Boone--Higman root. Source syntax and the existing exact finite
+controls passed as well. No new Lean formalization was run or claimed.
