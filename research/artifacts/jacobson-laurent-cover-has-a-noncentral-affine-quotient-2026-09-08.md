@@ -209,7 +209,10 @@ independent. A finitely generated group cannot surject onto this
 infinitely generated abelian group. Thus `ker(kappa)` is infinite
 and is not finitely generated as an abstract group. Equation (L5)
 also proves that it is not central in `Lambda`. The image of `e`
-has order two, but no order for `e` itself has been established.
+has order two. The later
+[integral-twist calculation](jacobson-third-packet-cannot-be-corrected-with-both-edges-fixed-2026-09-08.md)
+maps `e` to a nonzero integral lattice vector and proves that
+`e` itself has infinite order.
 
 ## 3. The concrete eight-point specialization
 
@@ -433,8 +436,8 @@ The last two equations come from (13), and are compatible with the
 first two. The literal kernel centralizes the finitary subgroup and
 the stable letter, but it is not central in the entire group.
 Its quotient `R^3` also proves that it is infinite and not finitely
-generated as an abstract group. This does not assert that `E`
-itself has infinite order.
+generated as an abstract group. The later integral-twist calculation
+also proves that `E` itself has infinite order.
 
 ## 8. Scope
 

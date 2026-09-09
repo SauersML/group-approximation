@@ -1,0 +1,192 @@
+{
+  "status": "ok",
+  "scope": "Exact finite GL3/rank-one packet and integer-phase replay of the continuous eight-dimensional family; integral augmentation quotient and fixed-edge obstruction. Written audits establish the decorated third packet, four-word corona equivalence, affine colimit maps and normal-closure transfer, faithful-head criterion and MF radical dichotomy. The two algebraic external inputs were checked in Allcock Corollary 2 and Capdeboscq--Kirkina--Rumynin Section 6 page 31. Native Cairn parsing, reference/artifact lint, exact prerequisites, compiled statuses and scoped duplicate/cycle checks. Both unrestricted matrix gaps and the full non-MF objective remain open. This is not Lean kernel verification or a clean whole-workspace audit.",
+  "algebra_replay": {
+    "status": "PASS",
+    "exact_checks": 170723,
+    "gl3_order": 168,
+    "natural_action_degree": 8,
+    "rank_one_edge_orders": [
+      6,
+      6
+    ],
+    "rank_one_intersection_order": 1,
+    "common_gl2_order": 6,
+    "staggered_boundary_basis": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ]
+    ],
+    "integral_e_coefficients_indexed_by_nonzero_bit_vectors": [
+      0,
+      0,
+      0,
+      1,
+      -1,
+      0,
+      0
+    ],
+    "augmentation_difference_orbit_size": 42,
+    "augmentation_lattice_rank": 6,
+    "e_phase_counts": {
+      "-2": 2,
+      "0": 4,
+      "2": 2
+    },
+    "piecewise_entry_phase_bound": 2,
+    "piecewise_table_phase_bound": 2,
+    "nonzero_piecewise_table_defects": 1944,
+    "first_piecewise_table_defect": {
+      "left_columns": [
+        1,
+        2,
+        5
+      ],
+      "right_columns": [
+        1,
+        3,
+        4
+      ],
+      "phase_exponents": [
+        0,
+        2,
+        0,
+        -2,
+        0,
+        2,
+        0,
+        -2
+      ]
+    },
+    "scope": "finite symbolic identities only; no marked non-MF gap is proved"
+  },
+  "nodes": {
+    "jacobson-coherent-quotient-has-four-word-gap-criterion": "ESTABLISHED",
+    "jacobson-coherent-packet-and-corona-lifting-proof": "COMPLETE",
+    "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy": "ESTABLISHED",
+    "jacobson-affine-colimit-and-faithful-head-proof": "COMPLETE",
+    "jacobson-third-packet-correction-must-move-an-edge": "ESTABLISHED",
+    "jacobson-integral-twist-and-two-edge-counterexample-proof": "COMPLETE",
+    "jacobson-coherent-matrix-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-coherent-gap": "OPEN",
+    "jacobson-laurent-kernel-surjects-natural-affine-module": "ESTABLISHED",
+    "jacobson-affine-laurent-countermodel-proof": "COMPLETE",
+    "jacobson-positive-root-gluing-misses-laurent-coherence": "ESTABLISHED",
+    "jacobson-168-point-coset-twist-countermodel-proof": "COMPLETE",
+    "jacobson-coherence-defect-is-an-orthogonal-translation": "ESTABLISHED",
+    "jacobson-finite-weyl-and-boundary-splitting-proof": "COMPLETE",
+    "jacobson-stable-letter-closes-boundary-recursion": "ESTABLISHED",
+    "jacobson-shift-head-generates-normal-finitary-kernel": "ESTABLISHED",
+    "jacobson-shift-literal-quotient-is-laurent-times-z": "ESTABLISHED",
+    "jacobson-shift-head-dies-in-amenable-targets": "ESTABLISHED",
+    "jacobson-shift-surviving-head-has-a-tracial-core": "ESTABLISHED",
+    "jacobson-shift-gap-characterizes-mark-collapse": "ESTABLISHED",
+    "jacobson-shift-mixed-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-shift-gap": "OPEN",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN"
+  },
+  "prerequisites": {
+    "jacobson-coherent-packet-and-corona-lifting-proof": [
+      "jacobson-laurent-kernel-surjects-natural-affine-module",
+      "jacobson-coherence-defect-is-an-orthogonal-translation",
+      "jacobson-shift-gap-characterizes-mark-collapse"
+    ],
+    "jacobson-affine-colimit-and-faithful-head-proof": [
+      "jacobson-coherent-quotient-has-four-word-gap-criterion",
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "jacobson-shift-head-generates-normal-finitary-kernel",
+      "jacobson-shift-head-dies-in-amenable-targets"
+    ],
+    "jacobson-integral-twist-and-two-edge-counterexample-proof": [
+      "jacobson-coherent-quotient-has-four-word-gap-criterion",
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "jacobson-coherence-defect-is-an-orthogonal-translation"
+    ],
+    "property-t-free-existence-via-jacobson-coherent-gap": [
+      "jacobson-coherent-quotient-has-four-word-gap-criterion",
+      "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy",
+      "jacobson-coherent-matrix-gap"
+    ],
+    "jacobson-affine-laurent-countermodel-proof": [
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "jacobson-coherence-defect-is-an-orthogonal-translation"
+    ],
+    "jacobson-168-point-coset-twist-countermodel-proof": [],
+    "jacobson-finite-weyl-and-boundary-splitting-proof": [
+      "jacobson-stable-letter-closes-boundary-recursion",
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "jacobson-shift-head-dies-in-amenable-targets"
+    ],
+    "property-t-free-existence-via-jacobson-shift-gap": [
+      "jacobson-stable-letter-closes-boundary-recursion",
+      "jacobson-shift-gap-characterizes-mark-collapse",
+      "jacobson-shift-mixed-gap"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "broader_findings_count": 1527,
+  "broader_findings_by_kind": {
+    "artifact": 1526,
+    "id": 1
+  },
+  "broader_findings_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-triangle-broader-findings-2026-09-08.json",
+  "broader_findings_sha256": "9e162d9f06608666435ef75ce4b189f8da50c7b100651801388e1a4ccae62f3e",
+  "source_sha256": {
+    "notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md": "ce348d8a52fdf1a68d47312d6291f74d0bc273e45e3a24824de9f0f78b9970ed",
+    "research/artifacts/jacobson-coherent-quotient-and-four-word-matrix-gap-2026-09-08.md": "7c9cc211ad15e5ab58d9cc656c47fb4f98120e2943fa9689435d4f0c2355e0a3",
+    "research/artifacts/jacobson-coherent-quotient-is-the-faithful-literal-group-2026-09-08.md": "92789ed4cf989ad277e3705518631701df590b1b8fe4884b7128a9077c487fa2",
+    "research/artifacts/jacobson-laurent-cover-has-a-noncentral-affine-quotient-2026-09-08.md": "b6b5f409adf28743576384f13a0a2c36c882124b702a45531401b6079ba4778b",
+    "research/artifacts/jacobson-missing-laurent-coherence-word-and-finite-cell-countermodel-2026-09-08.md": "6fb8d4aed3f81deada56c33bf3f12f5f48b73f4d3cdb7cbbcabe59a371d9d6fa",
+    "research/artifacts/jacobson-recursive-head-dies-in-amenable-targets-2026-09-08.md": "3c82e5942fab2b51a12fd331097c13c85aa25b38c360d6ecc1bbac641e80f0e2",
+    "research/artifacts/jacobson-recursive-packets-generate-finitary-linear-kernel-2026-09-08.md": "542f4b4f42788ef61e5545a29b8f4e94e44a728d06ddbd55c746f5e3a147f550",
+    "research/artifacts/jacobson-stable-letter-laurent-quotient-and-local-inner-action-2026-09-08.md": "6c3e2118e3fb415fb01298713712c183cf8a15945be15cba4ecc7c9be051620f",
+    "research/artifacts/jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md": "fd96a26c27ebd22fe670e1f47a2241da3ceb3ffe2b3b78e9197646d2efa1e3d6",
+    "research/artifacts/jacobson-surviving-head-has-a-tracial-core-2026-09-08.md": "32680d0c291fffbca2853eae51eceb58711d05f4a8f1016601145a37d224f807",
+    "research/artifacts/jacobson-third-packet-cannot-be-corrected-with-both-edges-fixed-2026-09-08.md": "ca3cb165a53c290cf3f028339755859f7bdaa6298df1b1975c3e505b8ada4184",
+    "research/artifacts/jacobson-two-braid-reduction-2026-09-07.md": "dfdac49afa4d5c1e7a11760149bd7bf50087d6231f770b496c77dbd1d8b0380e",
+    "research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md": "5ff6500bfa233b788062a3e196ec80eba717570d168d8c29618cdd6753e87ae6",
+    "research/jacobson-168-point-coset-twist-countermodel-proof.md": "eaf527dc2fc20ab29b301fea40dad68d4741e569ba5f4eb765388beec727a842",
+    "research/jacobson-affine-colimit-and-faithful-head-proof.md": "90ba46f298c81a5288546ca5879c57a4c299c44ed895c754cc27115ff46ef07f",
+    "research/jacobson-affine-laurent-countermodel-proof.md": "4fdf08442488ef0b247944998053f75e2c7fdf9ffcbaa559bf2b4db62ea802e4",
+    "research/jacobson-coherence-defect-is-an-orthogonal-translation.md": "fea8947f3adc8941c1457add8a294c8580baa75714b92467ba2b98ad394b0091",
+    "research/jacobson-coherent-matrix-gap.md": "4044d5ee2fc2da875a2edb6b81574c0f0aca30e919e20f1aca9995a027a764de",
+    "research/jacobson-coherent-packet-and-corona-lifting-proof.md": "56a0993701282bc08dbfda644c7fd3c706562709ed6bb74f21a36d5d7520ad70",
+    "research/jacobson-coherent-quotient-has-four-word-gap-criterion.md": "d4d6d3d4c8d069593a1dbac165ecfde5dcfdc5c2acb1c1892305c0dca55e2512",
+    "research/jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy.md": "cc4fe0e295c7456cf31cb491fd41de8af2def63f0b5ed7d0a1b3f65db843f362",
+    "research/jacobson-finite-weyl-and-boundary-splitting-proof.md": "a3dc804072799cc540dbd9320e1778c0dbe9a60ce5e3531f492d26c583da1d6b",
+    "research/jacobson-integral-twist-and-two-edge-counterexample-proof.md": "b13ef1399a1e6728767c817b4203f6219a740adae6bda2bbd35dc56275e71dce",
+    "research/jacobson-laurent-kernel-surjects-natural-affine-module.md": "e12c56255817e96779b37587cd207e8ad5a5f6fbdd0f806447a58e9c289e1613",
+    "research/jacobson-positive-root-gluing-misses-laurent-coherence.md": "a7a67639c6231b62f3d0d57f8501463a63c3cca61030008c7b0222c928ea3c74",
+    "research/jacobson-shift-gap-characterizes-mark-collapse.md": "09d987a96285bce63eca5e434fa436a597ce9031a66af1d778d278b1643d8467",
+    "research/jacobson-shift-head-dies-in-amenable-targets.md": "2bab2edfc57d693fd7a3e9e6938154415f0eb4bb345f5d30b97833e1a4feb810",
+    "research/jacobson-shift-head-generates-normal-finitary-kernel.md": "125d408525cb7bf39ff59d1e4157caec755ca3ce58e3c6e216caaf0e6749b272",
+    "research/jacobson-shift-literal-quotient-is-laurent-times-z.md": "eb36089bae81bf9469fd65e41ac054b349f8d1fd0b92686101e7dde778c1c93a",
+    "research/jacobson-shift-mixed-gap.md": "85b306fe2c4ae206837fe85214efcc68a1e69c57eaaa9cd7c4cc6ef7f389fd9d",
+    "research/jacobson-shift-surviving-head-has-a-tracial-core.md": "39a1b0825547ce95f56bcc369f3916c886edf451f9ad5b25b11f0890a8639f76",
+    "research/jacobson-stable-letter-closes-boundary-recursion.md": "badead6db12ffdab4d9ce3cf71f246943decbd488268cad98cb9998ed5ed914e",
+    "research/jacobson-third-packet-correction-must-move-an-edge.md": "837fc943216c901818c42f3a8e36225e2697cbe6ba3c8cf238caeaadba471684",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "f9064cd2e79ecf496e217fb3d36314b4738048613ba795bf1b56aa638defeb0d",
+    "research/property-t-free-existence-via-jacobson-coherent-gap.md": "f0442c43edb2016dc19de3312e5ebbf782c740964dc4b1d52f5b3fa41aaf33ad",
+    "research/property-t-free-existence-via-jacobson-shift-gap.md": "00476c7dcd685a3a7b3a5768f581cc14fa1c3ebbcd65f1eb7e460190277a4ecf",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "archive_sha256": "34129bdb32b3e606d25855137dcbb28dd86e2370bbb43d6fc1f052131600a455",
+  "validator_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/tools/validate_nonmf_triangle_20260908.py",
+  "validator_sha256": "444d1e616a9eb8814dd747be0cb7d0d8aadee804c2d4d5298c7ab638c9e9585c",
+  "replay_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/tools/nonmf_triangle_replay_snapshot.py",
+  "replay_sha256": "627571c39d46900989ee833c56e633106a771a122d2e4cca1cae6efa734dfd5b",
+  "claims": 7465,
+  "routes": 7627,
+  "elapsed_seconds": 5.248
+}

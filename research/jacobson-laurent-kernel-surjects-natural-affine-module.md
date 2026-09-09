@@ -41,8 +41,10 @@ E!=1,  [E,k_P]!=1,  [E,L]=[E,t]=1.
 
 The literal kernel consequently has the same infinite natural
 module quotient. These statements identify a quotient of the
-kernel; they do not identify the entire kernel or the order of
-the abstract word `e`. Every displayed affine map factors through
+kernel; they do not identify the entire kernel. The later
+`jacobson-third-packet-correction-must-move-an-edge` proves that
+the abstract word `e` has infinite order. Every displayed affine
+map factors through
 `Gamma/L`, so it kills the head. The marked matrix gap remains open.
 
 DERIVATION

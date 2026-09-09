@@ -86,6 +86,20 @@ The older central-sign route is a sufficient special case.
   factor 1337. This establishes a dimension-independent reduction,
   not the required positive lower bound.
 
+  The original literal kernel is now known to be normally generated
+  by the nontrivial coherence word `E`. Adding that word gives a
+  proper quotient with the same faithful literal head. The claims
+  `jacobson-coherent-quotient-has-four-word-gap-criterion` and
+  `jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy`
+  identify its entire presentation with the explicit bilateral
+  operator group and make its four-word infimum exactly an MF
+  decision. The required positivity is the open claim
+  `jacobson-coherent-matrix-gap`. Separately correcting its three
+  finite groups cannot freeze both overlaps of the third group,
+  by `jacobson-third-packet-correction-must-move-an-edge`; a
+  simultaneous correction or another unrestricted argument is
+  still required.
+
 - The fixed no-CE BCS and the operator-norm endgame are established.
   The general remaining construction is
   `nonhyperlinear-bloop-finite-augmentation-corner`: an exact map

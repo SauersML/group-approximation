@@ -107,3 +107,11 @@ TS error, and the remaining stable-letter error involving `h`.
   Imposing `E=1` would define a proper new quotient with the
   literal head still nontrivial; it cannot be treated as a
   consequence of the current presentation.
+- That proper quotient is now explicit in
+  `jacobson-coherent-quotient-has-four-word-gap-criterion` and is
+  identified with the full literal group by
+  `jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy`.
+  Its separate frontier is `jacobson-coherent-matrix-gap`.
+  The new fourth word is not automatically norm-small in models
+  of the old presentation, and no equality of the two infima
+  is asserted.
