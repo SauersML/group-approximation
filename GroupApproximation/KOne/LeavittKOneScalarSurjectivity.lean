@@ -20,16 +20,26 @@ Khanh--Thanh sentence above and nothing else.
 
 `LeavittKOneFormula.scalarSurjective_of_scalarReduction` derives the same
 conclusion from `MatrixDiagonalization.ScalarReduction` **plus**
-`CentralUnitsAreScalars`, i.e. `Z(L_k(1,d)) = k`.  That second hypothesis is
-out of reach at every arity: forcing a central element to be a scalar needs the
-reduced basis of the Leavitt algebra, which the tree carries only as a cited
-input, and the module's own docstring records that generalising the normal form
-would not move it.
+`CentralUnitsAreScalars`, i.e. `Z(L_k(1,d)) = k`.
 
-The decomposition route needs no centre computation, because the scalars are
-supplied by the decomposition itself: `D_d(k)` has entries in `k^×` by
-hypothesis.  It also needs no countability of `k` and no perfectness of
-`EL_d(R)`.
+The second of those is **no longer** the obstruction this docstring originally
+recorded: `Leavitt/LeavittCenter.center_eq_bot` computes the centre and
+`KOne/AryCentralUnitsAreScalars.lean` draws the consequence for units, so the
+centre route is open and `ScalarReduction` is what remains of it.  The claim
+that the centre was out of reach at every arity was true when this module was
+written and is false now; it is corrected here rather than left standing.
+
+The decomposition route is still worth having beside it, because it needs no
+centre computation at all: the scalars are supplied by the decomposition
+itself, since `D_d(k)` has entries in `k^×` by hypothesis.  It also needs no
+countability of `k` and no perfectness of `EL_d(R)`, so the two routes have
+genuinely different inputs.
+
+`Manuscript/OneSidedMFRadical/KhanhThanhDiagonalDecomposition.PrintedKhanhThanhDecomposition`
+is the same proposition as `PrintedKhanhThanhDiagonalDecomposition` below, and
+that module's `printedKhanhThanhDecomposition_iff` and
+`printedKhanhThanhDecomposition_of_diagAt` reduce it further; either name may be
+fed to `scalarSurjective_of_khanhThanh`.
 
 ## The mechanism
 
