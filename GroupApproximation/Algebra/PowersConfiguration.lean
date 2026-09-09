@@ -40,6 +40,11 @@ proximality hypothesis, produce the whole configuration with `gᵢ = hⁱ`.  Any
 construction — free-group cones by reduced words, or cones around the fixed
 points of a loxodromic in a hyperbolic space — meets the interface here.
 
+`isPowersConfig_of_action` is the same criterion with the wandering region
+living on a `G`-set instead of on `G`: a base point pulls it back.  That is the
+form a geometric construction meets, since the cones there are subsets of the
+space, not of the group.
+
 `isPowersConfig_of_mulEquiv` transports a configuration along a group
 isomorphism, so an instance proved on a concrete model applies to every group
 isomorphic to it.
@@ -101,6 +106,36 @@ theorem isPowersConfig_of_cone {F : Finset G} {n : ℕ} (C : Set G) (h : G)
   refine disjoint_smul_compl C ?_
   rw [hpow]
   exact hprox _ (by omega) (by omega)
+
+/-! ## The criterion on a `G`-set -/
+
+/-- The orbit map of a base point intertwines translation in `G` with the
+action on `X`. -/
+theorem preimage_orbit_smul {X : Type v} [MulAction G X] (x₀ : X) (a : G)
+    (S : Set X) :
+    a • ((fun g : G => g • x₀) ⁻¹' S) = (fun g : G => g • x₀) ⁻¹' (a • S) := by
+  ext y
+  simp only [Set.mem_preimage, Set.mem_smul_set_iff_inv_smul_mem, smul_eq_mul,
+    mul_smul]
+
+/-- **Powers' configuration from an action on a set.**  The wandering region
+and the proximality live on `X`; the base point pulls them back to `G`.
+
+This is the form a geometric construction meets: `X` is the space acted on,
+`W` the union of two neighbourhoods of the fixed points of `h`, and `x₀` the
+base point.  Nothing about subsets of `G` is needed at the geometric end. -/
+theorem isPowersConfig_of_action {X : Type v} [MulAction G X] (x₀ : X)
+    (W : Set X) (h : G) {F : Finset G} {n : ℕ}
+    (hwander : ∀ f ∈ F, Disjoint (f • W) W)
+    (hprox : ∀ m : ℤ, m ≠ 0 → m.natAbs < n → (h ^ m) • Wᶜ ⊆ W) :
+    IsPowersConfig F n := by
+  refine isPowersConfig_of_cone ((fun g : G => g • x₀) ⁻¹' W) h ?_ ?_
+  · intro f hf
+    rw [preimage_orbit_smul]
+    exact (hwander f hf).preimage _
+  · intro m hm hmn
+    rw [← Set.preimage_compl, preimage_orbit_smul]
+    exact Set.preimage_mono (hprox m hm hmn)
 
 /-! ## Transport along an isomorphism -/
 
