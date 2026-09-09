@@ -305,3 +305,4 @@
 34288601406	2026-09-08T23:00:48Z	GroupApproximation/Sofic/CliffordLampOrderFormula.lean	mem_supportedModel_iff
 34298514646	2026-09-09T01:16:57Z	GroupApproximation/Sofic/CoveringWitness.lean	iteratedToFreeLamp_iteratedDisplacement
 34317556512	2026-09-09T06:06:17Z	GroupApproximation/Sofic/CurvatureAssembly.lean	length_lt_of_piece_infix
+34345911744	2026-09-09T11:31:16Z	GroupApproximation/Sofic/CurvatureStemThreshold.lean	stems_defeat_the_count
