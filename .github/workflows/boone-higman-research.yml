@@ -33,6 +33,8 @@ on:
       - 'research/boundary-orbit-*.md'
       - 'research/rational-homeomorphism-*.md'
       - 'research/rational-transducer-*.md'
+      - 'research/rational-shell-*.md'
+      - 'research/rational-regular-shell-*.md'
       - 'research/decidable-fp-groups-need-not-embed-in-rational-group.md'
       - 'research/kms-complexity-*.md'
       - 'research/shell-cantor-*.md'
@@ -181,6 +183,8 @@ jobs:
           bin/cairn why boone-higman-via-fp-shell-envelopes --json > bh-shell-open-envelope-route.json
           bin/cairn why decidable-fp-groups-embed-in-perfect-decidable-fp-groups --json > bh-shell-perfect-wrapper.json
           bin/cairn why perfect-input-shell-envelopes-are-simple --json > bh-shell-perfect-simplicity.json
+          bin/cairn why rational-shell-permutations-are-eventually-periodic --json > bh-shell-rational-permutations.json
+          bin/cairn why rational-regular-shell-actions-require-virtually-cyclic-input --json > bh-shell-rational-action-boundary.json
           bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json
           bin/cairn why boone-higman-via-perfect-shell-envelopes --json > bh-shell-open-perfect-route.json
           bin/cairn why decidable-inputs-have-fp-shell-stabilizers --json > bh-shell-open-stabilizers.json
