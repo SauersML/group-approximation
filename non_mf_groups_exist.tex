@@ -1109,9 +1109,32 @@ The Toeplitz--Jacobson algebra $J=\F_2\langle s,t\mid ts=1\rangle$ has
 $1-st\ne0$ of order two, while $J/J(1-st)J\cong\F_2[z,z^{-1}]\ne0$, so
 $1-st$ is not full and Theorem~\ref{thm:full-defect-ring} does not apply;
 Proposition~\ref{prop:torsion-defect-ring} shows that $\EL_n(J)$ is not MF
-for $n\ge4$.  The two results are complementary: fullness gives trivial MF
-images at every rank $n\ge2$, torsion of the defect gives non-MF at rank
-four with no fullness.
+for $n\ge4$.  Here the inclusion is an equality.  The algebra $J$ acts
+faithfully on $V=\F_2^{(\mathbb N)}$ by the shift, $e=1-st$ is the
+projection onto the first basis vector, and $JeJ$ is the ring of finite
+matrices, so the kernel of $\EL_n(J)\to\EL_n(\F_2[z,z^{-1}])$ consists of
+the finitary automorphisms of $V^n$.  Over $\F_2$ these are products of
+transvections, and each transvection is a relative root $e_{ij}(f_{uv})$
+or, inside one coordinate, the commutator
+$[e_{ik}(f_{uw}),e_{ki}(f_{wv})]$ of two.  So $\EL_n(J,JeJ)$ is this
+kernel; the quotient $\EL_n(\F_2[z,z^{-1}])$ is residually finite, so
+MF, and
+\[
+ \Rad_{\mathrm{MF}}(\EL_n(J))=\EL_n(J,JeJ)\cong\bigcup_N\mathrm{SL}_N(\F_2)
+ \qquad(n\ge4),
+\]
+an infinite simple locally finite group.  The rank four is three plus
+one.  Every countable subgroup of $\mathrm{GL}_2$ over a field has the
+Haagerup property~\cite[Theorem~4]{GHW}, and the kernel of
+$\mathrm{GL}_2(J)\to\mathrm{GL}_2(\F_2[z,z^{-1}])$ is locally finite, so a
+Kazhdan subgroup of $\mathrm{GL}_2(J)$ has finite image in
+$\mathrm{GL}_2(\F_2(z))$ and a locally finite subgroup of finite index,
+and is finite: Theorem~\ref{thm:compression-criterion} has no Kazhdan
+subgroup to act on at rank two.  Three coordinates carry
+property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, and the fourth makes the
+compression by $s$ invertible.  The two results are complementary:
+fullness gives trivial MF images at every rank $n\ge2$, torsion of the
+defect gives non-MF at rank four with no fullness.
 
 \subsection{The binary example}
 
@@ -1834,6 +1857,12 @@ D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
 \emph{A new source of purely finite matricial fields},
 preprint, 2026,
 \href{https://arxiv.org/abs/2603.24502}{arXiv:2603.24502}.
+
+\bibitem[GHW]{GHW}
+E.~Guentner, N.~Higson, and S.~Weinberger,
+\emph{The Novikov conjecture for linear groups},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{101} (2005), 243--268,
+\doi{10.1007/s10240-005-0030-5}.
 
 \bibitem[GO]{GO}
 M.~Gerasimova and D.~Osin,
