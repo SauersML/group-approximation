@@ -680,3 +680,17 @@ the group relations of `EL_D(R)` exact enough.  That is the same tension
 **Negative branch.** The open uniform-gap claim and the now isolated
 bad-character claim both concern this exact group. Neither the finite
 packet reductions nor the character classification proves that branch.
+
+**Transport the compression criterion to normalized 2-norm.** Dead as
+stated (2026-09-09): `hs-analogue-of-normal-kazhdan-criterion-is-false`.
+The sofic models of the manuscript's group `W` are 2-norm asymptotic
+representations satisfying every group hypothesis of the criterion
+(Kazhdan core, central order-two witness in the defect) and keep the
+witness at 2-norm distance `sqrt 2`.  So compression plus a normal
+Kazhdan subgroup of the defect obstructs nothing in normalized
+Hilbert--Schmidt norm, and a 2-norm obstruction for `H` must use
+information the criterion does not: conjugation by the compressor is
+not 2-norm controlled (`||Ad(diag(-1,1,..,1)) - 1|| = 2` while the
+matrix is 2-norm close to `1`).  Independently, Kirchberg's theorem
+(`binary-leavitt-unit-group-fails-factorization-property`) means a
+positive answer would not make the canonical trace of `H` amenable.

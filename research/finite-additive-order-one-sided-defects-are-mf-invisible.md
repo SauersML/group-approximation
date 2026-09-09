@@ -11,6 +11,9 @@ artifacts:
   - research/artifacts/rank-weighted-locally-finite-compression-2026-09-08.md
   - research/artifacts/composite-jacobson-uniform-rank-and-normality-2026-09-08.md
   - research/artifacts/finite-order-one-sided-defect-mf-collapse-2026-09-08.md
+  - research/artifacts/jacobson-unit-group-and-rank-four-recheck-2026-09-08.md
+  - research/artifacts/finite-rank-compression-defect-dichotomy-2026-09-09.md
+  - non_mf_groups_exist.tex
 ---
 
 Let R be a countable unital ring, s,t in R satisfy ts=1, and let
@@ -76,11 +79,31 @@ finite witness, leaving three for the Kazhdan subgroup, with
 witness `z = I + set^2 E_44`, and extraction
 `[z, x_41(s^2e)] = x_41(se)`, `[x_24(t), x_41(se)] = x_21(e)`.  Those
 identities were rechecked here in the normal form `s^i t^j`.  Nothing in
-the statement is gained, so no route is wired from it; the compressor is
-recorded in
-`research/artifacts/jacobson-unit-group-and-rank-four-recheck-2026-09-08.md`
-in case a later lane needs a rank-four configuration with only one
-auxiliary coordinate.
+the statement is gained, but the derivation is wired as its own route,
+`torsion-defect-one-auxiliary-coordinate-proof` (2026-09-09): it is the
+proof printed in the manuscript as `prop:torsion-defect-ring`, and it
+consumes only `normal-kazhdan-defect-non-mf` inside a subgroup plus
+Ershov--Jaikin-Zapirain property (T), whereas the first route runs
+through the rank-weighted transport lineage that the manuscript excludes
+on provenance grounds.  The compressor is also recorded in
+`research/artifacts/jacobson-unit-group-and-rank-four-recheck-2026-09-08.md`.
+
+**Exactness, and the characteristic-zero boundary (2026-09-09).**  For
+the universal rings `A_m = Z<s,t | ts = 1, m(1-st) = 0>` the inclusion
+is an equality, `Rad_MF(E_n(A_m)) = E_n(A_m, A_m e A_m) = SL_fin(Z/m)`
+for `n >= 4` (`universal-torsion-defect-rings-have-exact-mf-radical`);
+for `m > 2` the symbol kernel exceeds the radical by a central sign that
+survives in a finite quotient.  Over `J_Z = Z<s,t | ts = 1>` itself the
+same configuration gives an infinite cyclic central `z`, and no
+compression defect of any subgroup of `GL_n(J_Z)`, at any rank, contains
+a nontrivial normal Kazhdan subgroup
+(`integral-jacobson-defect-has-no-normal-kazhdan-subgroup`): the finite
+additive order hypothesis is exactly what makes the witness finite and
+hence Kazhdan.  At rank two the criterion is inert over every `A_m` and
+every finite-field Jacobson algebra, because those rank-two groups have
+no infinite Kazhdan subgroup at all
+(`rank-two-jacobson-groups-have-no-infinite-kazhdan-subgroup`); rank
+three is open.
 
 The same note's unit-group half was **already weaker than this archive**:
 its "full torsion defect implies `R^x` non-MF" is
