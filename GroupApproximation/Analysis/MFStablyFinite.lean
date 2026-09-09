@@ -60,35 +60,32 @@ algebra containing a proper isometry is not MF.  That is
 `ProperProjectionCompression.not_hasMFEmbedding` with the compression data
 stripped away.
 
-## What is not proved, and exactly why
+## Stable finiteness: closed, and the isomorphism was not needed
 
-Stable finiteness is finiteness of `M_k(A)` for every `k`, in the shape the
-manuscript's `lem:faithfultrace` states it and this repository spells
-`CStarMatrix I I A`.  The reduction is immediate and is recorded as
-`mul_star_eq_one_of_matrixHasMFEmbedding`: *if* every matrix amplification of
-`A` again has an MF embedding, `A` is stably finite.  The missing input is
-therefore a single named C-star fact and nothing else:
+An earlier version of this file recorded stable finiteness as one named C-star
+lemma short, namely
+`CStarMatrix I I (NormMatrixCStarCorona X) ≃⋆ NormMatrixCStarCorona (I × X)`,
+and set out why that isomorphism is real analytic work.  Both halves of that
+assessment are now out of date.
 
-> `M_I(Q_X)` is again a norm-matrix corona — concretely
-> `CStarMatrix I I (NormMatrixCStarCorona X) ≃⋆ NormMatrixCStarCorona (I × X)`.
+`MatrixCoronaDedekindFinite.cstarMatrix_mul_star_eq_one_of_hasMFEmbedding`
+proves the amplified statement outright, and it does so **without** identifying
+`M_I(Q_X)` with a corona: the MF embedding `e` is applied entrywise, which is a
+non-unital `⋆`-homomorphism into `M_I(Q_X)`, so `E 1` is a projection there and
+the same `σ = v + (1 - E 1)` computation runs in its corner.  The only fact the
+corner computation needs about the target is that every isometry of the matrix
+corona is a unitary, which is proved in that module.  Nothing is assumed about
+the index type beyond finiteness.
 
-That is not a formality in Lean.  `NormMatrixCStarCorona X` is
-`ℓ∞(M_{X n}) / c₀(M_{X n})`, and the isomorphism needs (i) the `CStarMatrix`
-norm over an `ℓ∞` product to be identified with the supremum of the coordinate
-matrix norms, and (ii) `M_I` of the `c₀` ideal to be exactly the `c₀` ideal of
-the amplified sequence.  Neither is in Mathlib and neither is in this
-repository.  It cannot be dodged by rerunning KT.06 one level up: that proof is
-quantitative *and finite-dimensional* — its coordinate step is
-`Matrix.mul_eq_one_comm` — and the corresponding norm estimate is false in a
-general Banach algebra, as the unilateral shift shows.
+`MatrixCoronaFinite.mfAlgebra_isStablyFinite` then packages the conclusion as
+the closed proposition `MFAlgebraIsStablyFinite`, and the printed sentence "MF
+algebras are stably finite, and a separable residually finite-dimensional
+`C*`-algebra is MF" (`non_mf_groups_exist.tex`, proof of `prop:max-infinite`)
+is carried by it together with `ResiduallyFiniteDimensionalMF.isMFAlgebra`.
 
-So the honest status of the quoted sentence is: **not a live literature
-input**.  Its only inferential use in the manuscript is the `k = 1` half, that
-half is proved here unconditionally (and was already proved at the instance
-where the manuscript uses it), and the remaining `k > 1` half is used nowhere.
-Should anyone want the full sentence formalized anyway, it is **one named
-C-star lemma short** — not research-scale, and not comparable to the genuinely
-open external inputs of this development.
+What this file still contributes is the `k = 1` statement in its own right and
+the reduction `mul_star_eq_one_of_matrixHasMFEmbedding`, whose amplification
+hypothesis is now discharged rather than open.
 -/
 
 namespace GroupApproximation
@@ -235,15 +232,16 @@ theorem not_hasMFEmbedding_of_isometry_ne_unitary {A : Type u} [CStarAlgebra A]
 The manuscript's stable finiteness — `lem:faithfultrace`(2), "for every
 `k ≥ 1`, every isometry in `M_k(A)` is a unitary" — follows from
 `mul_star_eq_one_of_hasMFEmbedding` the moment one knows that every matrix
-amplification of `A` is again MF.  That single implication is taken as an
-explicit hypothesis rather than hidden in a predicate, because it is precisely
-what this repository cannot currently supply: it reduces to
-`M_I(NormMatrixCStarCorona X) ≃⋆ NormMatrixCStarCorona (I × X)`, and the
-module docstring records why that isomorphism is real analytic work rather
-than bookkeeping.
+amplification of `A` is again MF.  That single implication is kept as an
+explicit hypothesis rather than hidden in a predicate, so that the reduction
+can be read off the statement.
 
-Stating the reduction is the point: it converts "every MF algebra is stably
-finite" from a literature citation into one named, unproved C-star lemma. -/
+The hypothesis is no longer open: `MatrixCoronaDedekindFinite`'s
+`cstarMatrix_mul_star_eq_one_of_hasMFEmbedding` proves the amplified
+conclusion directly, by running the corner computation inside `M_I(Q_X)`
+rather than identifying that algebra with a corona, and
+`MatrixCoronaFinite.mfAlgebra_isStablyFinite` packages the result as a closed
+proposition. -/
 theorem mul_star_eq_one_of_matrixHasMFEmbedding
     {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
     (hamp : ∀ (I : Type) [Fintype I] [DecidableEq I],
