@@ -78,3 +78,21 @@ not establish finite presentation of its simple commutator subgroup.
 The terminated-digit embedding uses the published contracting-RSG
 theorem instead. These arguments are written proofs, not Lean
 certificates or GPU results.
+
+## Remote validation
+
+The written claims and routes were committed in `4720da4e7` and
+integrated into main at `2bf6d9341b14c6694eb804b35a50d8d0a40a13aa`.
+[GitHub Actions run 34302815969](https://github.com/SauersML/group-approximation/actions/runs/34302815969)
+passed on that exact integration commit. Its checks covered source
+syntax, the existing exact finite controls, and Cairn graph validation.
+The downloaded exports are in
+`.cairn/bh-digit-resolution-check-20260908/`.
+
+The nucleus, faithful lift, and A5 simple-host nodes are all
+`ESTABLISHED` through the written routes displayed in their `why`
+exports. The A5 envelope's own finite presentation, the universal
+perfect-input envelope claim, and Boone--Higman remain `OPEN`.
+These statuses record dependencies on written proofs and imported
+theorems; they are not independent proof verification. No Lean
+proof of this construction or GPU computation was run.
