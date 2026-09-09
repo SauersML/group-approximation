@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnits
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsAGPProof
 
 /-!
 # `thm:mf-quotient-units`, sentence by sentence
@@ -9,15 +9,23 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnits
 printed sentence, each quoting its sentence verbatim and each proved from the
 pieces already landed.
 
-Three kinds of carrier appear, and the docstrings say which is which.
+Every carrier is unconditional.  The sentences the printed proof *quotes* from
+Ara--Goodearl--Pardo were once carried conditionally on the corresponding named
+proposition, which was honest while those propositions were assumptions; they
+are theorems now (`MFQuotientUnitsAGPProof.manuscriptAGPInputs` lists all six),
+and Theorem `thm:full-defect-ring` in its rank-two form is
+`FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics`,
+so no carrier below takes a literature package as a binder.  The remaining
+binders are the ordinary mathematical ones: the ring, its countability, and
+pure infiniteness.
 
-* Sentences the proof *proves* are carried unconditionally: the
-  countable-abelian clause, the containment `N ≤ ker κ`, the normal-subgroup
-  absorption, and the printed display `eq:corner-units`.
-* Sentences the proof *quotes* from Ara--Goodearl--Pardo are carried
-  conditionally on the corresponding named proposition, which is the honest
-  shape: the sentence holds exactly as far as its citation does.
-* One printed sentence is not separately carried, and is named as such below.
+Two carriers are stated at the canonical `κ : Rˣ → K₁(R)` of
+`KOne/AlgebraicKOne.lean` rather than at an abstract countable abelian target,
+because that is the map the printed paragraph before the theorem defines.  The
+abstract reading follows from the canonical one and is
+`MFQuotientUnitsKOne.agpUnitK1_of_kappa`.
+
+One printed sentence is not separately carried, and is named as such below.
 
 The `n ≥ 2` reduction is the printed one but shorter: the printed sentence also
 invokes Morita invariance to identify `K_1(M_n R)` with `K_1(R)`, and the
@@ -41,17 +49,17 @@ noncomputable section
 > \[AGP, Corollary 1.7\], and `K_1(M_n(R)) ≅ K_1(R)` by Morita invariance, so
 > it suffices to treat `n = 1`.
 
-Carried conditionally on `AGPMatrixReduction`, which is the citation.  The
-Morita clause has no carrier: the formalized conclusion states the quotient as
-an unnamed countable abelian MF group, so nothing has to identify
-`K_1(M_n R)` with `K_1(R)`, and the reduction goes through the unit group of
-`M_n(R)`, which *is* `GL_n(R)`. -/
+Carried unconditionally: `agpMatrixReduction` proves the citation.  The Morita
+clause has no carrier: the formalized conclusion states the quotient as an
+unnamed countable abelian MF group, so nothing has to identify `K_1(M_n R)`
+with `K_1(R)`, and the reduction goes through the unit group of `M_n(R)`, which
+*is* `GL_n(R)`. -/
 theorem manuscriptSentence_matrixRingAgainPurelyInfinite
-    (hMat : AGPMatrixReduction) (R : Type) [Ring R] [Countable R]
+    (R : Type) [Ring R] [Countable R]
     (hR : IsPurelyInfiniteSimpleRing R) (n : ℕ) (hn : 1 ≤ n) :
     Countable (Matrix (Fin n) (Fin n) R) ∧
       IsPurelyInfiniteSimpleRing (Matrix (Fin n) (Fin n) R) := by
-  refine ⟨?_, hMat R hR n hn⟩
+  refine ⟨?_, agpMatrixReduction R hR n hn⟩
   show Countable (Fin n → Fin n → R)
   infer_instance
 
@@ -62,15 +70,28 @@ theorem manuscriptSentence_matrixRingAgainPurelyInfinite
 > Write `H = Rˣ` and `N = N_1`.  Ara, Goodearl, and Pardo show that `κ` is
 > surjective with kernel `[H,H]` \[AGP, Theorem 2.4\].
 
-Carried conditionally on `AGPUnitK1`, which is the citation.  `K_1(R)` is
-supplied by that proposition as an abstract countable abelian group rather than
-constructed. -/
+Carried unconditionally, and at the canonical `κ : Rˣ → K₁(R)` that the printed
+paragraph before the theorem defines, rather than at an abstract countable
+abelian target: `MFQuotientUnitsKOne.agpUnitKappa` proves the citation for that
+map.  `manuscriptSentence_kappaSurjectiveKernelCommutatorAbstract` records the
+weaker existential reading, which is what the rest of the printed proof
+consumes. -/
 theorem manuscriptSentence_kappaSurjectiveKernelCommutator
-    (hK1 : AGPUnitK1) (R : Type) [Ring R] [Countable R]
+    (R : Type) [Ring R] [Countable R]
+    (hR : IsPurelyInfiniteSimpleRing R) :
+    Function.Surjective (AlgebraicK.kappa R) ∧
+      (AlgebraicK.kappa R).ker = commutator Rˣ :=
+  MFQuotientUnitsKOne.agpUnitKappa R hR
+
+/-- **Printed sentence 2, with the target supplied abstractly.**  The reading
+the rest of the printed proof uses: some countable abelian group carries a
+surjection from `Rˣ` with kernel `[H,H]`. -/
+theorem manuscriptSentence_kappaSurjectiveKernelCommutatorAbstract
+    (R : Type) [Ring R] [Countable R]
     (hR : IsPurelyInfiniteSimpleRing R) :
     ∃ (A : Type) (_ : CommGroup A) (_ : Countable A) (κ : Rˣ →* A),
       Function.Surjective κ ∧ κ.ker = commutator Rˣ :=
-  hK1 R hR
+  MFQuotientUnitsKOne.agpUnitK1_of_kappa MFQuotientUnitsKOne.agpUnitKappa R hR
 
 /-- **Printed sentence 3.**
 
@@ -111,16 +132,17 @@ theorem manuscriptSentence_radicalLeKerKappa {R : Type} [Ring R] {A : Type}
 The final clause is the one the rest of the proof consumes, and it is carried
 here for an arbitrary countable ring with a one-sided inverse pair whose
 complementary idempotent is full --- which is what the earlier clauses say of
-`eRe`.  Conditional on Theorem `thm:full-defect-ring` in its rank-two form,
-which is where that theorem enters this proof. -/
+`eRe`.  Unconditional: Theorem `thm:full-defect-ring` in its rank-two form,
+which is where that theorem enters this proof, is
+`FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics`. -/
 theorem manuscriptSentence_cornerElementaryKillsMFTargets
-    (hB : FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo)
     (S : Type) [Ring S] [Countable S] (s t : S) (hts : t * s = 1)
     (hfull : ∃ (m : ℕ) (a b : Fin m → S), ∑ k, a k * (1 - s * t) * b k = 1)
     (m : ℕ) (hm : 2 ≤ m) (M : Type) [Group M] (hM : IsOperatorMF M)
     (f : elementaryGroup (Fin m) S →* M) (x : elementaryGroup (Fin m) S) :
     f x = 1 :=
-  hB S s t hts hfull m hm M hM f x
+  FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics
+    S s t hts hfull m hm M hM f x
 
 /-- **Printed sentence 6, the display `eq:corner-units`.**
 
@@ -134,9 +156,10 @@ content, and it is general: the image of a group with no nontrivial
 homomorphism to an MF group lies in the intersection of the kernels of all of
 them.  Neither the corner ring nor `θ` has to be constructed. -/
 theorem manuscriptSentence_cornerUnitsLieInRadical
-    (hB : FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo)
     (R : Type) [Ring R] : cornerUnitSubgroup R ≤ mfHomKernel Rˣ :=
-  cornerUnitSubgroup_le_mfHomKernel hB R
+  cornerUnitSubgroup_le_mfHomKernel
+    FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics
+    R
 
 /-! ## `ker κ ≤ N` -/
 
@@ -150,18 +173,18 @@ theorem manuscriptSentence_cornerUnitsLieInRadical
 > `diag(1, ∗)`.  So `u = PvQ`, where `P` and `Q` are products of elementary
 > matrices `e_{ij}(x)` of this matrix ring and `v = e_1 + (1-e_1)v(1-e_1)`.
 
-Carried conditionally on `AGPMenalMoncasiReduction`, which is the citation.  The
-idempotent decomposition and the twisted matrix ring are internal to that
-proposition and are not named separately. -/
+Carried unconditionally, and for *every* unit rather than only for one in
+`ker κ`: `unit_reduces_to_supported` proves the citation by explicit Peirce
+operations, and the argument never looks at `κ`.  The idempotent decomposition
+and the twisted matrix ring are internal to that proof and are not named
+separately. -/
 theorem manuscriptSentence_menalMoncasiReduction
-    (hMM : AGPMenalMoncasiReduction) (R : Type) [Ring R] [Countable R]
-    (hR : IsPurelyInfiniteSimpleRing R) (A : Type) [CommGroup A]
-    (κ : Rˣ →* A) (hsurj : Function.Surjective κ)
-    (hker : κ.ker = commutator Rˣ) {u : Rˣ} (hu : u ∈ κ.ker) :
+    (R : Type) [Ring R] [Countable R]
+    (hR : IsPurelyInfiniteSimpleRing R) (u : Rˣ) :
     ∃ (v : Rˣ) (e : R), e ≠ 0 ∧ IsIdempotentElem e ∧
       (v : R) = e + (1 - e) * (v : R) * (1 - e) ∧
       u * v⁻¹ ∈ cornerUnitSubgroup R :=
-  hMM R hR A κ hsurj hker u hu
+  unit_reduces_to_supported hR u
 
 /-- **Printed sentence 8.**
 
@@ -208,34 +231,49 @@ theorem manuscriptSentence_kappaVEqOne {R : Type} [Ring R] {A : Type}
 > `v = 1 - P + θ(diag(v,1,…,1)) ∈ N` by `eq:corner-units`.  Hence
 > `ker κ ≤ N`.
 
-The body is carried conditionally on `AGPStepOne`, which is the citation; the
-final clause `ker κ ≤ N`, and with it the whole theorem, is unconditional given
-the quoted propositions and is
-`MFQuotientUnits.mfHomKernel_units_eq_commutator`. -/
+Carried unconditionally by `agpStepOne`, at the canonical
+`κ : Rˣ → K₁(R)`; the final clause `ker κ ≤ N`, and with it the whole theorem,
+is `manuscriptSentence_conclusion` below. -/
 theorem manuscriptSentence_stepOneGivesKerKappaLeRadical
-    (hS1 : AGPStepOne) (R : Type) [Ring R] [Countable R]
-    (hR : IsPurelyInfiniteSimpleRing R) (A : Type) [CommGroup A]
-    (κ : Rˣ →* A) (hsurj : Function.Surjective κ)
-    (hker : κ.ker = commutator Rˣ) (v : Rˣ) (e : R) (hene : e ≠ 0)
+    (R : Type) [Ring R] [Countable R]
+    (hR : IsPurelyInfiniteSimpleRing R) (v : Rˣ) (e : R) (hene : e ≠ 0)
     (hidem : IsIdempotentElem e)
-    (hvform : (v : R) = e + (1 - e) * (v : R) * (1 - e)) (hkv : κ v = 1) :
+    (hvform : (v : R) = e + (1 - e) * (v : R) * (1 - e))
+    (hkv : AlgebraicK.kappa R v = 1) :
     v ∈ cornerUnitSubgroup R :=
-  hS1 R hR A κ hsurj hker v e hene hidem hvform hkv
+  agpStepOne R hR (AlgebraicK.AlgebraicKOne R) (AlgebraicK.kappa R)
+    (MFQuotientUnitsKOne.agpUnitKappa R hR).1
+    (MFQuotientUnitsKOne.agpUnitKappa R hR).2 v e hene hidem hvform hkv
 
 /-- **The printed conclusion of the proof.**
 
 > Hence `ker κ ≤ N`.
 
 Together with sentence 4 this is the equality `N = ker κ = [H,H]`, which with
-the reduction of sentence 1 is the theorem. -/
+the reduction of sentence 1 is the theorem.  Unconditional. -/
 theorem manuscriptSentence_conclusion
-    (hB : FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo)
-    (hK1 : AGPUnitK1) (hMM : AGPMenalMoncasiReduction) (hS1 : AGPStepOne)
     (R : Type) [Ring R] [Countable R] (hR : IsPurelyInfiniteSimpleRing R) :
     mfHomKernel Rˣ = commutator Rˣ :=
-  (mfHomKernel_units_eq_commutator hB hK1 hMM hS1 countableAbelianMF R hR).1
+  (MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne R hR).2.2.1
 
 end
 
 end MFQuotientUnitsSentences
 end GroupApproximation
+
+/-! ### Axiom audit -/
+
+open GroupApproximation.MFQuotientUnitsSentences
+
+#audit_axioms manuscriptSentence_matrixRingAgainPurelyInfinite
+#audit_axioms manuscriptSentence_kappaSurjectiveKernelCommutator
+#audit_axioms manuscriptSentence_kappaSurjectiveKernelCommutatorAbstract
+#audit_axioms manuscriptSentence_countableAbelianIsMF
+#audit_axioms manuscriptSentence_radicalLeKerKappa
+#audit_axioms manuscriptSentence_cornerElementaryKillsMFTargets
+#audit_axioms manuscriptSentence_cornerUnitsLieInRadical
+#audit_axioms manuscriptSentence_menalMoncasiReduction
+#audit_axioms manuscriptSentence_normalAbsorbsConjugateOfInverse
+#audit_axioms manuscriptSentence_kappaVEqOne
+#audit_axioms manuscriptSentence_stepOneGivesKerKappaLeRadical
+#audit_axioms manuscriptSentence_conclusion
