@@ -1,4 +1,4 @@
-# An exterior kernel for incomparable-prefix creation-deletion pairs
+# Exterior kernels for prefix creation-deletion pairs and triangular changes
 
 Date: 2026-09-08. Exact four-term binary source certificate.
 The kernel was found by a bounded MSI probe that completed in
@@ -6,7 +6,9 @@ The kernel was found by a bounded MSI probe that completed in
 identities and requires no computation. No Kaplansky counterexample
 or group-ring split is constructed. The same certificate excludes
 the whole family obtained from any two nonempty incomparable
-binary prefix words, as proved below.
+binary prefix words. It also survives every shared left binary
+change, including arbitrary upper off-diagonal mixing with the
+same invertible diagonal blocks, as proved below.
 
 Use the binary root encoding of `K=GL_2(F_4)` and the reduced
 projectors `f_0,P_0` from
@@ -191,17 +193,128 @@ because `t_alpha s_alpha=t_beta s_beta=1`. For longer words this
 does not assert that the displayed coefficients generate the
 entire binary Leavitt algebra.
 
+## Relation to the existing two-sector criterion
+
+The word-pair certificate is a concrete instance of
+[the relative-character kernel theorem](kaplansky-full-two-sector-relative-transporter-obstruction-2026-09-08.md).
+Write `p=s_alpha`, `q=s_beta`, `r=t_alpha`, `s=t_beta`.
+Incomparability gives `s p=0`, so
+
+```
+c=b_beta^-1 a_alpha=[[1+q(s+r),p],[s+r,0]].
+```
+
+On the tail `eta`, one has `r eta=0`, `s eta=zeta`,
+`q zeta=eta`, and `p eta=zeta`. Therefore
+
+```
+c u_+(eta)=(omega zeta,zeta)=u_-(omega zeta).
+```
+
+If `R,T` are the relative plus-to-plus and plus-to-minus blocks,
+this says `R eta=0` and `T eta=omega zeta`. The theorem's
+two-sector source is exactly
+`omega^2 k_+(zeta,eta)+omega k_-(zeta,eta)=w`.
+Replacing `(a_alpha,b_beta)` by `(h a_alpha,h b_beta)` leaves
+`c` unchanged, so the shared-left case below also follows from
+that existing criterion. The additional upper off-diagonal
+mixing is covered by the direct invariant-subspace proof below.
+
+## Shared left changes with arbitrary upper triangular mixing
+
+Let `B` be the free binary boundary module, and write
+
+```
+V=U direct_sum j(U),       U=B direct_sum B,
+```
+
+where `U` consists of binary roots `1,2`, and `j` copies these
+coordinates to roots `3,4`. Define `N` inside `Lambda^2 V` by
+the generators
+
+```
+Lambda^2 U,
+j(p) wedge q+j(q) wedge p       (p,q in U),
+j(p) wedge p                   (p in U).
+```
+
+The diagonal generators are explicitly included: in
+characteristic two, diagonal tensors belong to the kernel of
+alternation, and need not be sums of off-diagonal symmetric
+tensors. The projector satisfies `P_0 N=0`.
+
+To verify this last claim, extend scalars to `F_4` and write
+`p=u_+(p_+)+u_-(p_-)`, and similarly for `q`. The first-field
+wedges and all mixed-character wedges are killed as before.
+The remaining image of a symmetric cross generator is
+
+```
+J_+(p_+,q_+)+J_+(q_+,p_+)
+  +J_-(p_-,q_-)+J_-(q_-,p_-)=0.
+```
+
+The diagonal generator maps to
+`J_+(p_+,p_+)+J_-(p_-,p_-)=0`. This proves the claim over `F_4`
+and hence over `F_2`.
+
+Let `h:U->U` be any invertible binary-linear operator and
+`k:U->U` any binary-linear operator. Set
+
+```
+M=[[h,k],[0,h]],
+M(p)=h p,       M(j(p))=k p+j(h p).
+```
+
+Then `M N` is contained in `N`. First-field wedges stay in the
+first field coordinate. A symmetric cross generator maps to
+
+```
+k p wedge h q+k q wedge h p
+  +j(h p) wedge h q+j(h q) wedge h p,
+```
+
+and a diagonal generator maps to
+`k p wedge h p+j(h p) wedge h p`. Both expressions belong to
+`N`. No preservation of the two `F_4` character sectors by `h`
+or `k` is assumed.
+
+Equation (3) places `g_alpha,beta w` in `N`: three terms are
+first-field wedges, and the other two are
+`j(a_1) wedge b_1+j(b_1) wedge a_1`. Consequently the same source
+certificate gives
+
+```
+P_0[M g_alpha,beta]f_0 w=0,       f_0 w=w!=0.         (5)
+```
+
+This holds for every `h,k` above, not only a collection of tested
+vectors or coefficient choices. If `h,k` have binary Leavitt
+entries and `h` is invertible over that algebra, then `M` is a
+genuine ambient unit with
+
+```
+M^-1=[[h^-1,h^-1 k h^-1],[0,h^-1]].
+```
+
+Thus (5) excludes every shared left binary repair `diag(h,h)`
+and also the larger four-by-four family with an arbitrary upper
+off-diagonal block `k`. It uses no coefficient-augmentation
+hypothesis.
+
 ## Consequence and scope
 
-Let `g` be the original actor or any member of the family above,
-and let `H=〈K,g〉`. The boundary action and its exterior square are
-representations of `H`. Equation (4) contradicts
-`LZ=f_0` in `F_2[H]`. If `L` is allowed in a larger ambient group
-algebra, conditional expectation onto `F_2[H]` preserves that
-proposed identity and gives the same contradiction.
+Let `g'` be any genuine unit actor covered by (4) or (5), and set
+`H=〈K,g'〉`. The boundary action and its exterior square are
+representations of `H`. The displayed source kernel contradicts
+`L P_0[g']f_0=f_0` in `F_2[H]`. If `L` is allowed in a larger
+ambient group algebra, conditional expectation onto `F_2[H]`
+preserves that proposed identity and gives the same contradiction.
 
 Thus none of these incomparable-prefix creation-deletion pairs
 can solve the projective comparison. Passing other finite probe
 domains supplies no general injectivity conclusion, and the
-calculation does not cover every deletion-containing or fully
-mixed transporter.
+calculation does not cover unequal diagonal left changes, a
+nonzero lower off-diagonal block, or arbitrary four-by-four
+transporters. It does not identify `N` with the entire kernel of
+`P_0`, or assert a kernel for arbitrary group-ring coefficients
+inserted between the projectors and the actor.

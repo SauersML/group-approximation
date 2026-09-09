@@ -29,6 +29,7 @@ artifacts:
   - research/artifacts/gottschalk-central-odd-norm-conjugacy-direct-finiteness-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
+  - research/artifacts/gottschalk-unrestricted-order-three-odd-parity-obstructions-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -227,3 +228,16 @@ rule I+EaE on the same group. This is recorded in
 `noncentral-norm-feedback-surjunctivity-iff-corner-finiteness`.
 The missing mechanism for unrestricted nonnormal feedback must
 involve its additional action on the even-parity subspace.
+
+For unrestricted scalar feedback, the odd-parity subshift now
+has an exact collision criterion. If EAE=0, a directed-path
+argument forces AE=0 under injectivity, and then proves
+surjectivity without any ring hypothesis. On A_4, 2-transitivity
+gives an explicit collision for every feedback with (I-E)AE
+nonzero. These are recorded in
+`unrestricted-zero-compression-feedback-is-surjunctive`.
+For arbitrary A, injectivity also forces every fixed-parity
+linear map v -> v+A((1+c)R_t^2 v) from ker E into the full
+output space to be injective. Compressing those maps back to
+one parity component is not justified. No theorem covers the
+remaining unrestricted nonnormal feedback.

@@ -24,6 +24,7 @@ artifacts:
   - research/artifacts/kaplansky-laurent-adjugate-and-amenable-tail-kernels-2026-09-08.md
   - research/artifacts/kaplansky-complete-exterior-injective-positive-shear-control-2026-09-08.md
   - research/artifacts/kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md
+  - research/artifacts/kaplansky-lower-block-and-left-chart-exterior-formulas-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
@@ -283,6 +284,16 @@ in `deletion-shear-pair-has-period-two-exterior-kernel`. The same
 four-term certificate excludes every such pair built from nonempty
 incomparable prefix words, using their two periodic concatenations.
 No full group-ring split has been obtained.
+
+The same prefix-pair kernel survives all shared triangular left
+changes [[h,k],[0,h]], with arbitrary binary-linear k and
+invertible h. For the literal deletion pair, the complete
+left-chart calculation now excludes every coefficient c in
+F_2[K] in P_0 c[g]f_0. All such maps reduce to five projective
+parameters over F_4, each with an exact exterior kernel.
+This is recorded in `deletion-pair-has-no-left-chart-coefficient-split`.
+It does not cover arbitrary right chart coefficients or general
+four-by-four transporters. The headline target remains open.
 
 The quadratic bridge also extends to order-three feedback preserving
 the invariant triple subspace, with an exact criterion in eF_2[G]e.

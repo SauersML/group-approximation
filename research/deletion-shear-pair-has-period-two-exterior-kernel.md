@@ -2,7 +2,7 @@
 rg: 2
 id: deletion-shear-pair-has-period-two-exterior-kernel
 kind: claim
-title: Incomparable-prefix creation-deletion shear pairs have four-term binary exterior kernels
+title: Incomparable-prefix deletion pairs retain exterior kernels under shared triangular changes
 artifacts:
   - research/artifacts/kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md
 ---
@@ -25,3 +25,15 @@ The same certificate excludes every replacement of (s_0,t_0) and
 are nonempty incomparable binary words. Use zeta=(alpha beta)^infinity
 and eta=(beta alpha)^infinity. Their disjoint prefix cylinders give
 the same four prefix/deletion identities, so the proof is unchanged.
+
+The same w remains a kernel after every left change
+M=[[h,k],[0,h]], with h any invertible binary-linear operator
+on a field-coordinate pair and k any binary-linear operator.
+The image gw lies in a P_0-null subspace invariant under all
+such M. This includes arbitrary upper off-diagonal mixing;
+unequal diagonal blocks and general lower mixing are not covered.
+
+For the literal words 0 and 1, the separate claim
+`deletion-pair-has-no-left-chart-coefficient-split` excludes
+every left coefficient from F_2[K], with kernels depending on
+the coefficient.
