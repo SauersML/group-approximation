@@ -245,13 +245,26 @@ remaining unrestricted nonnormal feedback.
 
 A direct encoding of the reversible two-track control is now
 excluded in `quadratic-intertwiners-cannot-scalarize-triangular-feedback`.
-Every continuous affine map preserving the order-three quadratic
-operation only copies triples or makes them constant. Every
-injective such encoding retains a proper nonempty set of coordinates fixed by
-the triangular rule, preventing scalar equivariance under a
-transitive coordinate action. This also covers invariant encoded
-subshifts. It leaves nonlinear encodings and coordinate changes
-that alter the quadratic operation unaddressed.
+The unbalanced triangular rule moves the unique Q-fixed point with
+a singleton preimage fiber. Every injective zero-preserving scalar
+binary cellular automaton fixes it, excluding arbitrary nonlinear
+Q-preserving conjugacies. The argument also excludes injective
+Q-preserving encodings into invariant codes when the transitive
+target coordinate action commutes with Q.
+
+For balanced triangular feedback F_A(x,y)=(x+A Q_t(y),y), A1=0,
+the condition AE != 0 excludes full Q-preserving scalar conjugacies:
+the intrinsic stratum of Q-fixed points with four preimages has a
+proper nonempty fixed subset for F_A, while scalar shifts act
+transitively on the corresponding target stratum. This balanced
+argument does not yet cover arbitrary invariant codes. Independently,
+continuous affine Q-intertwiners only copy triples or make them
+constant. Their proper nonempty globally fixed-coordinate set
+excludes affine full and invariant-code encodings of the unbalanced
+control even for arbitrary equivariant targets, without target
+injectivity or zero preservation. Encodings that alter Q and
+encodings into non-invariant codes remain outside the stated
+obstructions.
 
 Preserving Q is not itself incompatible with nonlinear scalar
 reversibility: a conditional triple rotation on C_3 x C_2 is

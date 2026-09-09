@@ -33,3 +33,9 @@ source: its highest creator layer kills (X,Y)=(omega^2 Y,Y)
 for every flip-symmetric Y. The generated subgroup <K,g> also
 contains an explicit Z^2, excluding a virtually-free shortcut.
 Neither observation resolves direct finiteness of that subgroup.
+
+A separate full-operator contraction proof now reduces every
+possible exterior kernel to purely periodic support and proves
+injectivity when both source tensors are flip-symmetric; see
+`two-sided-exterior-kernels-must-be-periodic-and-asymmetric`.
+Asymmetric tensors on periodic cores remain unresolved.

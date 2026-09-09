@@ -1,4 +1,4 @@
-# Rigidity of linear and affine directed quadratic intertwiners
+# Directed quadratic intertwiners and a nonlinear scalarization obstruction
 
 Date: 2026-09-08. Let the source permutation T have no cycles of
 length one or two. Every nonzero row of a continuous linear map
@@ -14,14 +14,24 @@ of source triples and constant 000 or 111 target triples; a linear
 intertwiner only permits the constant 000. Infinite target orbits
 require a weaker, forward-closed statement specified below.
 
-This rules out a direct scalar encoding of the reversible two-track
-triangular feedback by a Q-intertwining linear or affine change of
-coordinates. It also rules out injective encodings of this kind
-into a code invariant under a transitive target coordinate action.
-The result does not exclude nonlinear encodings, changes that fail
-to intertwine Q, or encodings into non-invariant codes. It is a
-structural restriction on this route, not a resolution of Gottschalk's
-conjecture. The index sets below may be infinite; no computation or
+The affine classification excludes scalarizing the displayed
+triangular control into any equivariant target map, including
+through invariant codes, without target injectivity or zero
+preservation. An independent obstruction allows more general
+encodings: it rules out encoding the
+displayed reversible two-track triangular feedback into any
+injective zero-preserving scalar binary cellular automaton by
+even a nonlinear Q-intertwining bijection. It also excludes
+Q-intertwining injections into invariant codes. A second intrinsic
+stratum excludes full Q-preserving conjugacies for balanced
+triangular feedback with nonzero action on im E; its invariant-code
+extension is not proved here. The first proof uses a point uniquely
+characterized by Q, and needs neither continuity nor finiteness.
+Encodings that do not intertwine Q and encodings
+into non-invariant codes remain outside that conclusion. Other
+nonlinear Q-intertwiners can exist, as an explicit control below
+shows. These are structural restrictions on this route, not a
+resolution of Gottschalk's conjecture. No computation or
 measure-preservation argument is used.
 
 For context, Phung's
@@ -191,58 +201,175 @@ Thus even allowing noninvertible continuous linear intertwiners
 does not permit matrix combinations of coordinates: the condition
 of preserving Q already restricts them to copies and zeros.
 
-## Obstruction to scalarizing the two-track triangular control
+## Affine invariant-code obstruction with arbitrary equivariant targets
+
+For the two-track triangular rule
+
+    F_tri(x,y)=(x+R_h Q_t(y),y),
+
+let L be a continuous affine injective intertwiner from the
+source product of three-cycles to a scalar target product of
+three-cycles. Suppose its image C is invariant under a group
+Lambda acting transitively on target coordinates. There is no
+Lambda-equivariant target map F' satisfying F'L=L F_tri.
+No injectivity, continuity, or zero-preservation assumption on
+F' is needed for this assertion.
+
+Indeed every row of L is a source-coordinate copy or a constant,
+and injectivity requires every source coordinate to be copied
+somewhere. Let J_fix consist of target coordinates j for which
+F'(z)(j)=z(j) for every z in C. Constant rows and copies of y
+coordinates belong to J_fix, whereas copies of x coordinates
+do not: the corresponding coordinate of R_h Q_t(y) can be one.
+Thus J_fix is nonempty and proper. Equivariance of F' and
+invariance of C make J_fix invariant under Lambda, contradicting
+transitivity. This proves both the full-conjugacy and invariant-code
+obstructions for affine encodings. Unlike the nonlinear code
+argument below, this proof does not require the target action
+to commute with Q.
+
+## A point distinguished by the order-three quadratic map
+
+On any product of three-cycles, the all-one configuration is the
+unique fixed point of Q whose Q-preimage is a singleton. Indeed,
+a fixed triple is either 000 or 111. If a fixed configuration
+has a 000 triple, varying that triple over
+{000,100,010,001} gives at least four preimages, while leaving
+all other triples unchanged. The all-one configuration has only
+itself as a preimage.
+
+This characterization works for infinite products as well. Any
+bijective Q-intertwiner sends fixed points to fixed points and
+induces bijections of their preimage fibers. It must therefore
+send the all-one source configuration to the all-one target
+configuration, regardless of linearity or continuity.
+
+## Nonlinear obstruction to scalarizing the triangular control
 
 Take any group G, t of order three, and h in G. On two independent
 tracks define
 
     F_tri(x,y)=(x+R_h Q_t(y),y).                     (5)
 
-This is a reversible involution. Its globally fixed output
-coordinates are exactly those on the second track: every y
-coordinate is unchanged for all inputs, whereas taking y=1
-changes every x coordinate. This is a nonempty proper subset of
-the source coordinate set.
+This reversible involution moves the all-one configuration:
 
-Any group of coordinate permutations commuting with a map
-preserves its globally fixed-coordinate set. Therefore no
-transitive coordinate-permutation group can commute with (5),
-or with any coordinate relabelling of it. Since a bijective
-continuous linear or affine Q-intertwiner is only such a
-relabelling, it cannot conjugate (5) into a scalar cellular
-automaton for a transitive target coordinate action.
+    F_tri(1,1)=(0,1) != (1,1).
+
+By contrast, every injective zero-preserving scalar binary
+cellular automaton F' fixes the all-one configuration. More
+generally this holds for an injective zero-preserving map
+equivariant under any transitive coordinate action. Equivariance
+maps a constant input to a constant output, so F'(1) is 0 or 1;
+injectivity and F'(0)=0 exclude the first choice.
+
+Suppose L is any bijection intertwining the source and target
+order-three quadratic maps and satisfying
+
+    F' L=L F_tri.
+
+The preceding characterization gives L(1,1)=1. Evaluating this
+identity there makes its left side 1, but its right side differs
+from 1 because F_tri(1,1) differs from (1,1) and L is injective.
+This is a contradiction. Thus no such Q-preserving conjugacy
+exists, even if L is nonlinear and discontinuous. The target
+F' need not belong to the particular family x+A Q.
 
 This is relevant in particular when h does not normalize <t>:
 the two-track control then has bijective compressed B and nonzero
 off-axis K, as shown in
 [the unrestricted-feedback artifact](gottschalk-unrestricted-order-three-odd-parity-obstructions-2026-09-08.md).
-The obstruction here explains why its direct Q-preserving linear
-scalarization cannot supply a scalar example.
+The obstruction here explains why its direct Q-preserving
+scalarization cannot supply a scalar example, even through a
+nonlinear change of coordinates.
 
-## The same obstruction for invariant linear or affine codes
+## The same obstruction for nonlinear invariant-code encodings
 
-More generally, suppose L is an injective continuous linear or
-affine Q-intertwiner from the two-track space into a scalar target
-configuration space. Write C=im L. Suppose a group Lambda acts
-transitively on target coordinates, preserves C, and a target map
-F' is Lambda-equivariant with
+More generally, let L be any injective Q-intertwiner from the
+two-track space into a scalar binary target configuration space,
+and write C=im L. Suppose a group Lambda acts transitively on
+target coordinates, preserves C, and commutes with the target
+Q. Suppose also that F' is injective, zero-preserving and
+Lambda-equivariant, with
 
     F' L=L F_tri.                                   (6)
 
-The classification shows that target coordinates are constants or
-copies of source coordinates. Injectivity ensures that coordinates
-from both source tracks are copied somewhere. On C, every constant
-coordinate and every copied y coordinate is fixed by F'. No
-copied x coordinate is fixed for all points of C, since y=1 in
-(5) changes it. Thus the coordinates fixed by F' on every point
-of C again form a nonempty proper subset.
+The map L is a bijection from the source onto C, and intertwining
+makes Q restricted to C conjugate to the source quadratic map.
+Consequently p=L(1,1) is its unique fixed point with a singleton
+preimage fiber, where the fiber is taken inside C.
 
-Because Lambda preserves C and commutes with F', this subset is
-Lambda-invariant, contradicting transitivity. Hence no encoding
-satisfying all these hypotheses exists. The code-invariance
-assumption is explicit and necessary for this argument; the
-conclusion does not extend here to non-invariant codes, nonlinear
-encodings, or linear changes that do not intertwine Q.
+Since Lambda preserves C and commutes with Q, its action preserves
+this unique characterization and fixes p. Transitivity on the
+binary target coordinates makes p a constant configuration,
+either 0 or 1. The preceding argument shows that F' fixes both
+constants, so F'(p)=p. But (6) gives
+
+    F'(p)=L F_tri(1,1) != L(1,1)=p,
+
+a contradiction. No linearity, affinity, continuity, or finite
+cardinality of the configuration spaces is used. Code invariance
+and commutation of the target action with Q are explicit
+hypotheses; they hold for a scalar cellular automaton's shift
+action and an invariant code. Non-Q-preserving encodings and
+encodings into non-invariant codes are not excluded here.
+
+## Balanced triangular feedback and the one-defect stratum
+
+The all-one argument has a specific hypothesis: the displayed
+triangular control (5) moves that configuration. A balanced
+triangular involution instead has the form
+
+    F_A(x,y)=(x+A Q_t(y),y),       A1=0,
+
+where A is a continuous linear cellular automaton. It fixes the
+all-one configuration. For example A=I+R_h gives such a map.
+A different invariant excludes its full Q-preserving
+scalarization whenever
+
+    AE != 0,       E=I+T+T^2.                       (7)
+
+Among fixed points of Q on products of three-cycles, those with
+exactly four preimages are precisely the all-one configurations
+with a single zero triple. Call this the one-defect stratum.
+There is one such point per triple. A zero-free fixed point has
+one preimage; one zero triple gives four; two or more zero triples
+give at least sixteen by varying two factors. This proves the
+characterization also for infinite products.
+
+Every bijective Q-intertwiner maps this stratum bijectively onto
+the target's one-defect stratum. For a scalar group shift, the
+group acts transitively on the stratum, since it acts transitively
+on the right-t orbits. Hence an equivariant target map either
+fixes every point of the stratum or fixes none: its fixed-point
+subset is invariant under that transitive action.
+
+The source F_A has a proper nonempty fixed-point subset there.
+It fixes every one-defect state whose zero triple is in the x
+track, because y=1 and A1=0. Condition (7) supplies a block
+indicator e_i with A e_i nonzero: these indicators span a dense
+subspace of im E, and A is continuous. At the state with the
+zero triple in that y block, the update of x is
+
+    A(1+e_i)=A e_i != 0.
+
+So some y-track defect is moved. A Q-preserving conjugacy would
+transport this proper nonempty fixed subset to the scalar target's
+transitive stratum, a contradiction. Thus no such full conjugacy
+exists. This argument does not require zero preservation of the
+target map; equivariance suffices for the fixed-subset contradiction.
+
+In particular, A=I+R_h with h not normalizing <t> has nonzero
+(I-E)AE and therefore AE nonzero, so it is covered. Together
+with the all-one argument, this excludes full Q-preserving
+scalarizations of the balanced outside-axis controls and the
+displayed unbalanced control (5).
+
+The balanced argument does not yet extend to arbitrary invariant
+codes. Four preimages inside a code need not mean four ambient
+preimages, and the resulting intrinsic stratum inside the code
+need not be a transitive target-group orbit. Thus the invariant-code
+obstruction proved above applies to the unbalanced control (5);
+no corresponding balanced-code conclusion is asserted here.
 
 ## Commuting order-three feedback must be trivial
 
@@ -251,7 +378,7 @@ Let A be any continuous linear endomorphism of the configuration
 space. Neither equivariance nor injectivity is needed for the
 following assertion:
 
-    F=x+A Q and FQ=QF imply A=0.                    (7)
+    F=x+A Q and FQ=QF imply A=0.                    (8)
 
 Fix a source unit configuration q. Then Qq=0, and q belongs to
 the image of Q: its active triple has a unique weight-two
@@ -271,7 +398,7 @@ vector, adding a different unit vector produces a weight-two
 state outside S_0. Thus v=0. Projecting the fiber inclusion onto
 each triple therefore gives Aq=0. This holds for every source
 unit q, so A vanishes on finitely supported configurations and,
-by continuity and density, on the entire space. This proves (7).
+by continuity and density, on the entire space. This proves (8).
 
 In particular, a nonidentity scalar rule in the feedback family
 x+A Q_t cannot itself be a Q_t-centralizer. This conclusion does
@@ -288,7 +415,7 @@ Write T=R_t and define the indicator of an all-one triple by
 The mask m is constant on each t-triple and records whether the
 other triple is 111. Define the scalar G-equivariant local map
 
-    H(x)=(1+m(x))x+m(x)Tx.                           (8)
+    H(x)=(1+m(x))x+m(x)Tx.                           (9)
 
 It rotates a triple precisely when the other triple is 111.
 Every selected rotation preserves each triple's M value, so
@@ -307,5 +434,5 @@ The map is nonlinear. Let p be a unit vector in the first triple
 and z be 111 on the other triple and zero on the first. Then
 H(p)=p and H(z)=z, but H(p+z)=Tp+z, which differs from p+z.
 Since H(0)=0, it is not affine either. Thus nonlinear
-scalar reversible Q-centralizers exist. By (7), this H cannot
+scalar reversible Q-centralizers exist. By (8), this H cannot
 be written x+A Q for any continuous linear A.

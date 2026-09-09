@@ -27,6 +27,7 @@ artifacts:
   - research/artifacts/kaplansky-lower-block-and-left-chart-exterior-formulas-2026-09-08.md
   - research/artifacts/kaplansky-right-chart-coefficient-natural-kernel-transfer-2026-09-08.md
   - research/artifacts/kaplansky-two-sided-scalar-conjugate-natural-injections-2026-09-08.md
+  - research/artifacts/kaplansky-exterior-kernels-reduce-to-pure-periodic-tails-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
@@ -319,6 +320,15 @@ The highest creator layer has a symmetric-tensor kernel, so
 the natural height proof does not extend directly. An explicit
 Z^2 subgroup also rules out classifying <K,g> as virtually free
 to dismiss every candidate at once.
+
+The full exterior question has now been reduced to asymmetric
+tensors on finite unions of purely periodic cores, as recorded
+in `two-sided-exterior-kernels-must-be-periodic-and-asymmetric`.
+Two successive outside-prefix contractions eliminate all
+aperiodic and positive-preperiod support. On the remaining cores,
+the same equations prove injectivity when both source tensors
+are flip-symmetric. They leave the asymmetric periodic case and
+the subsequent literal group-ring splitting requirement open.
 
 The quadratic bridge also extends to order-three feedback preserving
 the invariant triple subspace, with an exact criterion in eF_2[G]e.
