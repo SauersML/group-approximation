@@ -69,3 +69,17 @@ almost-invariant-vector transport estimate qualifies for this route.
   Every such cut still has a fixed positive operator-norm error.
   This rules out that norm-promotion step without deciding the full
   coherent presentation's gap.
+- The [whole-column normalizer cover](jacobson-whole-column-normalizer-has-marked-lef-models.md)
+  is a genuine finitely generated MF group in which every exact
+  finite-dimensional representation kills the head. It realizes the
+  whole column covariance, so that covariance alone cannot close the
+  gap. Its abstract actors omit the explicit literal relation
+  `[u,h v h]^2=1` and the full three-row packet; imposing the missing
+  actor relations remains essential.
+- The [exact-base centralizer example](jacobson-corona-centralizer-does-not-lift-to-base-commutants.md)
+  has all coherent base relations and finite intertwining exact, and
+  stable-letter error tending to zero. Its stable letters still lie at
+  distance one from the full coordinate base commutants, even after a
+  fixed number of finite-packet averaging steps. It kills the head and
+  therefore excludes only a head-independent correction with the base
+  fixed, not the marked gap or joint correction.
