@@ -5,6 +5,10 @@ The conclusion is natural-module injectivity only. No full
 exterior injection, Leavitt inverse, group-ring split, or
 Kaplansky counterexample is constructed.
 
+Subsequent status: the [period-four exterior kernel](kaplansky-two-sided-omega-square-period-four-kernel-2026-09-08.md)
+excludes the actual z=omega^2 candidate, despite its natural
+injectivity proved here. The z=omega candidate remains unresolved.
+
 Use the literal deletion blocks
 
 ```

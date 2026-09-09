@@ -371,6 +371,16 @@ need not be a transitive target-group orbit. Thus the invariant-code
 obstruction proved above applies to the unbalanced control (5);
 no corresponding balanced-code conclusion is asserted here.
 
+A separate [finite-source invariant-code theorem](gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md)
+now excludes balanced codes whenever the source group is finite
+and A is nonzero. Its three distinguished points use Q^2-fiber
+sizes. That artifact also gives an infinite prefix homeomorphism
+showing why the same distinguished-point argument does not extend
+unchanged. An [infinite scalar-code construction](gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md)
+now gives a continuous Q-preserving encoding with reversible
+dynamics on a proper invariant code. An injective or reversible
+extension to the entire scalar full shift remains unresolved.
+
 ## Commuting order-three feedback must be trivial
 
 Return to a product of three-cycles and its map Q(x)=xTx.

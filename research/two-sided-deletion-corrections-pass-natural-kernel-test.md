@@ -25,8 +25,11 @@ invertible source and target changes, to the genuine candidate
 Both ell_z and n_z belong to K=GL_2(F_4). These simultaneous
 choices therefore escape the natural-kernel transfer mechanism
 that excluded all right corrections with the left projector fixed.
-Their full exterior maps and the group-ring splitting question
-remain unresolved. The auxiliary H_z is not asserted to be a unit.
+The auxiliary H_z is not asserted to be a unit. The full
+exterior map and group-ring splitting question remain unresolved
+for z=omega. The z=omega^2 candidate is now excluded by an exact
+period-four exterior kernel, recorded in
+`two-sided-omega-square-deletion-candidate-has-no-split`.
 
 The height argument does not extend directly to the exterior
 source: its highest creator layer kills (X,Y)=(omega^2 Y,Y)
@@ -38,4 +41,5 @@ A separate full-operator contraction proof now reduces every
 possible exterior kernel to purely periodic support and proves
 injectivity when both source tensors are flip-symmetric; see
 `two-sided-exterior-kernels-must-be-periodic-and-asymmetric`.
-Asymmetric tensors on periodic cores remain unresolved.
+The period-four witness for z=omega^2 lies in this remaining
+asymmetric class. The z=omega case remains unresolved.

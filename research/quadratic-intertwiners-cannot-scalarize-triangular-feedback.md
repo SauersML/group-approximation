@@ -5,6 +5,8 @@ kind: claim
 title: Nonlinear quadratic intertwiners obstruct scalarization of triangular feedback
 artifacts:
   - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
+  - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
+  - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
 ---
 
 On arbitrary products of directed three-cycles, every continuous
@@ -51,10 +53,31 @@ E=I+R_t+R_t^2 also excludes full bijective Q-preserving conjugacies
 to scalar equivariant maps. This uses a different intrinsic
 stratum and does not require target zero preservation. It includes
 every balanced control with nonzero (I-E)AE. Arbitrary nonlinear
-invariant-code encodings for balanced controls remain unresolved here.
+invariant-code encodings are also excluded when the source group
+is finite and A != 0: three points distinguished by Q^2-fiber
+sizes would have to map to distinct scalar constant configurations.
+This finite-code theorem only requires target equivariance and a
+transitive code-preserving action commuting with Q, without target
+injectivity or zero preservation.
 
-Thus nonlinear encodings preserving Q are excluded in these
-stated scopes. Encodings that do not intertwine Q and encodings
+For an infinite source, a code construction does exist. On
+A_4 x Z with A=I+R_h and h outside the normalizer of <t>,
+prefix-rewriting centralizers, component permutations, and diagonal
+A_4 shifts give a countable symmetry group Lambda. The orbit of
+an explicit two-component Boolean observable separates every source
+pair and respects Q. It yields a continuous injection into a proper
+scalar Lambda-invariant code, with a reversible scalar code map.
+
+The remaining gap is extending that code involution to an injective
+or reversible cellular automaton on the entire scalar full shift,
+particularly one of the form x+B Q_s with B linear. An arbitrary
+local extension, even a zero-preserving one, supplies neither
+injectivity nor reversibility. The finite exclusion and the
+balanced full-conjugacy exclusion remain intact.
+
+Thus nonlinear encodings preserving Q are excluded in the stated
+full-conjugacy and finite-source scopes, but the infinite-code
+construction escapes those exclusions. Encodings that do not intertwine Q and encodings
 into non-invariant codes remain outside the conclusions. No scalar
 counterexample or proof of Gottschalk's conjecture is supplied.
 

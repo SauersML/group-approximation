@@ -7,6 +7,8 @@ target: quadratic-intertwiners-cannot-scalarize-triangular-feedback
 requires: []
 artifacts:
   - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
+  - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
+  - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
 ---
 
 For a nonzero row ell of a continuous linear intertwiner, let eta
@@ -63,8 +65,40 @@ triple indicator e_i with A e_i != 0, so it moves a defect in the
 y track. Its proper nonempty fixed subset cannot correspond to
 the fixed subset of an equivariant map on a transitive stratum.
 This excludes full conjugacies without assuming target zero
-preservation. The balanced invariant-code extension is unresolved:
-four preimages inside C do not ensure a transitive ambient stratum.
+preservation. Four preimages inside C do not ensure a transitive
+ambient stratum, so this argument alone does not cover codes.
+
+For finite source groups, a separate argument excludes balanced
+invariant codes whenever A != 0. A Q-fixed point with k zero
+triples has 7^k preimages under Q^2, distinguishing (0,0) and
+(1,1) by the largest and smallest fibers. The Q-fixed points
+whose entire Q^2-fiber is fixed by F_A are exactly (m,1), with
+m block-constant. Within that intrinsic set, (0,1) has the unique
+largest fiber. Every code symmetry induced by target shifts must
+fix all three points, impossible in a scalar binary target with
+only two constant configurations.
+
+For infinite sources this particular extension fails. A finite-prefix
+homeomorphism on components with a common fixed symbol u uses
+UU->UU, UZU->UZ, UZZ->ZZ, Z->ZU, where Z means a symbol other
+than u. If both operations preserve this mask, the homeomorphism
+commutes with them while moving any constant non-u configuration.
+The hypotheses hold for balanced triangular feedback over A_4 x Z
+with nonzero (I-E)AE. These finite fiber extrema do not extend
+to that infinite system.
+
+Indeed an infinite code can be built. Generate Lambda by component
+permutations, tail versions of the prefix map, and diagonal A_4
+shifts. A two-component observable reads x from the first component
+if the second is u, reads y from the second if only the first is u,
+and outputs 1 if both are non-u. Its orbit respects Q and separates
+pairs: preserve a component with a differing bit, create a common
+u control in both inputs using the prefix map, and position the
+component and control to read the differing track. The resulting
+orbit map is a continuous injection into a closed invariant scalar
+code, and the triangular involution induces a reversible code map.
+An injective/reversible full-shift extension, especially x+B Q_s
+with linear B, is still unproved; local extension alone is insufficient.
 
 For a separate constraint, every fiber Q^-1(q) with q a single
 source unit vector has trivial translation stabilizer. If x+A Q

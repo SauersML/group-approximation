@@ -31,6 +31,8 @@ artifacts:
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/gottschalk-unrestricted-order-three-odd-parity-obstructions-2026-09-08.md
   - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
+  - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
+  - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -256,9 +258,21 @@ For balanced triangular feedback F_A(x,y)=(x+A Q_t(y),y), A1=0,
 the condition AE != 0 excludes full Q-preserving scalar conjugacies:
 the intrinsic stratum of Q-fixed points with four preimages has a
 proper nonempty fixed subset for F_A, while scalar shifts act
-transitively on the corresponding target stratum. This balanced
-argument does not yet cover arbitrary invariant codes. Independently,
-continuous affine Q-intertwiners only copy triples or make them
+transitively on the corresponding target stratum. A separate
+finite-source argument excludes arbitrary invariant-code encodings
+for every nonzero balanced A: three intrinsically distinguished
+Q-fixed points cannot all map to distinct scalar constants. In
+contrast, an explicit infinite-source construction for A_4 x Z
+with nonzero off-axis component gives a continuous Q-preserving
+injection into a proper invariant scalar code over a countable
+group Lambda, with reversible dynamics on that code. A separating
+orbit of a two-component observable is obtained using prefix
+centralizers and component permutations; see
+`balanced-triangular-rule-has-an-invariant-scalar-code`.
+What remains unresolved
+is an injective or reversible extension to the entire scalar full
+shift, particularly one of the form x+B Q_s with B linear.
+Independently, continuous affine Q-intertwiners only copy triples or make them
 constant. Their proper nonempty globally fixed-coordinate set
 excludes affine full and invariant-code encodings of the unbalanced
 control even for arbitrary equivariant targets, without target
