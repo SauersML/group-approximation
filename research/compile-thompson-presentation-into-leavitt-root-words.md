@@ -2,12 +2,13 @@
 rg: 2
 id: compile-thompson-presentation-into-leavitt-root-words
 kind: route
-title: Compile the eight Thompson presentation relations and kill the native coordinate swap
+title: Compile the Thompson relations and remove one exact marked-word consequence
 target: leavitt-has-an-explicit-finite-c-killing-certificate
 requires:
   - binary-leavitt-units-generated-by-c3-and-c2-cubed
   - thompson-v-has-no-nontrivial-fd-unitary-representation
 artifacts:
+  - research/artifacts/leavitt-eight-word-reduction-and-s3-repair-2026-09-08.md
   - research/artifacts/leavitt-explicit-thompson-c-killing-certificate-2026-09-08.md
   - research/artifacts/leavitt-nine-word-dag-verification-2026-09-08.json
 ---
@@ -39,3 +40,11 @@ the defect is a continuous function on a compact unitary group; a zero
 would contradict the nontrivial regular `C_3` factor. Its minimum is
 therefore positive in that dimension. This last argument supplies no
 uniform minimum as the dimension varies.
+
+The new reduction artifact proves the literal free-product identity
+`rho_4=[((A c)^(-1)c^(-1))^2,r_*]`. Thus `r_*` already implies
+`rho_4=1`. It also proves `rho_1=a c d^2 c^(-1)a^(-1)`.
+Consequently killing the eight words
+`r_*,d^2,rho_2,rho_3,rho_5,rho_6,rho_7,rho_8` kills the entire
+nine-word packet used above, proving the strengthened target. The same
+identities give `E_8<=E_9<=2 E_8` for all unitary evaluations.

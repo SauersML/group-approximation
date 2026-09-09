@@ -1,0 +1,27 @@
+AlgTop: record the cyclesMk_smul/cocycleClass_smul gap in SingularCohomology's header
+
+Docstring-only change, no Lean semantics touched -- restores cyclesMk_smul
+and cocycleClass_smul (an earlier exploratory deletion is reverted; this
+file is byte-for-byte origin/main plus this note) and instead documents,
+in the module header, exactly what the lead asked recorded: these two
+declarations do not typecheck because HomologicalComplex.cycles surfaces
+its carrier through forget₂ (ModuleCat R) Ab at this pin, losing the
+R-scalar action, so `s • cyclesMk ...` has no HSMul instance -- the
+STATEMENT fails to elaborate, not just the proof. States precisely what
+this blocks (CupProduct.cup_smul_right, hence CupAssoc/CrossProduct/
+EvenCohomologyRing -- confirmed by grep, not asserted) and what it does not
+(every other declaration in the file, and SingularChainFree/
+UniversalCoefficients/Spheres, which transit this file without touching
+either declaration).
+
+This file has never been in the root import closure and remains an orphan;
+landing this note changes nothing about what origin/main's actual build
+covers. Landed via ccland2.sh directly rather than the axiom-gated
+ccland-ax4.sh, since the gate requires a green probe log and this file is
+deliberately left with its two known-failing declarations rather than
+excised -- a lexical scan (no sorry/admit/axiom token; the "declaration
+uses sorry" the compiler reports is elaborator-inserted recovery from the
+instance-synthesis failure, not an authored token) and a dup-name scan are
+the checks that actually apply to a docstring change.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

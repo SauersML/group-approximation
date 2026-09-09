@@ -9,6 +9,7 @@ distinct_from:
   binary-leavitt-units-generated-by-c3-and-c2-cubed: that is the group theory -- two finite abelian subgroups generate -- with no analysis; this is the analytic equivalence built on it, including the recovery of uniform separation.
 artifacts:
   - research/artifacts/leavitt-24k-relative-unitary-reduction-2026-09-08.md
+  - research/artifacts/leavitt-single-c-trace-certificate-2026-09-08.md
 ---
 
 **ESTABLISHED.**  Let `q : P = C_3 * C_2^3 -> H` be the surjection of
@@ -61,6 +62,12 @@ ultraproduct is nontrivial because `tr(C_k) = 0`, hence
 (`binary-leavitt-elementary-group-is-simple`).  Finite models with the single
 separation constant `1` for every finite subset are then produced explicitly
 by the amplification `V -> (I (+) V)^(tensor r)`.
+
+**Stronger trace recovery, 2026-09-08.** The finite certificate in
+`leavitt-single-cycle-trace-controls-finite-sets` proves that the
+original feasible tuples already have canonical traces on every
+nonidentity word. No subsequent amplification is needed for that
+conclusion. This strengthens the recovery step, not feasibility.
 
 Both finite factors are frozen in advance, so the only unknown is one
 relative unitary.  Nothing here decides `(LK4)`; the two branches are

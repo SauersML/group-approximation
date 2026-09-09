@@ -4,6 +4,7 @@ id: degree-zero-leavitt-core-characters-are-dirac-haar-mixtures
 kind: claim
 title: Every character of the degree-zero Leavitt core is a mixture of the trivial and the regular character, so every MF character of the Leavitt group is Dirac--Haar on the core
 artifacts:
+  - research/artifacts/leavitt-full-character-classification-2026-09-08.md
   - research/degree-zero-core-dirac-haar-proof.md
   - research/artifacts/leavitt-character-transfer-audit-2026-09-05.md
 distinct_from:
@@ -100,6 +101,13 @@ two-generator abelian subgroup of `EL_3` whose character cannot extend
 tracially because ambient conjugacy identifies elements it distinguishes.
 These delimit restriction and extension arguments; they do not exclude a
 future full-group theorem using the Leavitt group's additional structure.
+
+**September 8 update.** Such a full-group theorem is now proved in
+`binary-leavitt-full-character-simplex`, using proper diagonal corners
+and localized conjugacy orbits. It has a written, independently audited
+proof and no new Lean verification claim. The remaining character-route
+obligation is an actual nonembeddable character of H, not a further
+extension of this core classification.
 
 No Property `(T)`, spectral gap, or stability theorem is used; the only
 literature input is the finite-group character bound cited in

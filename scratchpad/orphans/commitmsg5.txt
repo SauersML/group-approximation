@@ -1,0 +1,28 @@
+notes: orphan sweep -- sorry-is-bit-rot confirmed by build log; DGOLemma421FourGon likely a build-graph artifact
+
+Lead checked my hypothesis against the actual build log: grep -c sorry over
+GenericProducers.lean is 0 (matching my hand-read), and the log's line
+ordering confirms the mechanism -- type errors at 63/78 precede the
+declaration-uses-sorry diagnostics at 84/87 (plus a pair at 160), all inside
+the same two theorems. Lean's elaborator synthesized sorryAx to recover from
+a genuine type error; nobody wrote sorry. Upgraded this from hypothesis to
+confirmed finding in the report, with the log-ordering evidence, and added
+the general rule as its own stated principle: "declaration uses sorry" does
+not imply anyone wrote sorry, and neither a source grep nor a build
+diagnostic alone tells you which kind of debt you have -- both together with
+the error list do.
+
+Also chased DGOLemma421FourGon.lean, which the lead's build reported as
+failing alongside the two real Kazhdan failures. Computed its full transitive
+import closure (837 local files): zero overlap with the modules the two real
+failures actually touch (VanKampen.CombMapReduction/CombMapGluing,
+KazhdanHypGirthEightTorsionExtraction/Primitives2/VKInterface). Its only
+shared touchpoint is OsinGeodesicWord, itself an already-landed, unbroken,
+direct root import. Zero sorry anywhere in its closure; its own dependency
+chain is stable (dated 2026-08-29 to 09-06). Flagged this as very likely a
+build-graph reporting artifact rather than an independent content bug, and
+recommended an isolated confirmation build to close it out -- noted I cannot
+run that build myself.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

@@ -268,6 +268,41 @@ More precisely, it is enough that the single subgroup <S intersect H>
 is virtually abelian. No claim about the structure of the rest of H
 is then required.
 
+## The coset-mask hypothesis cannot be replaced by amenability
+
+There is an exact control showing why uniform local recoverability
+alone does not make nonuniform local maps on amenable sets surjective.
+Take a finite alphabet A with at least two symbols and distinguished
+zero, and define P:A^Z -> A^Z by
+
+    P(x)(n)=x(n)       for n<=0,
+    P(x)(1)=0,
+    P(x)(n)=x(n-1)     for n>=2.
+
+This has finite spatial memory {0,-1}. The local map
+
+    J(y)(n)=y(n)       for n<=0,
+    J(y)(n)=y(n+1)     for n>=1
+
+satisfies J composed with P=Id and has finite memory {0,1}.
+Thus P is uniformly injective in precisely the sense used above.
+Nevertheless every output has value zero at coordinate 1, so P
+is not surjective.
+
+The obstruction to applying the stratification theorem is exact:
+P's half-line coefficient pattern is not determined by finitely many
+cosets of subgroups of Z. Every such coset is either a singleton or
+a two-sided arithmetic progression. A Boolean combination of finitely
+many of them is periodic outside a finite set, with the same residue
+pattern on both tails. The identity rule on the negative tail and
+the shift rule on the positive tail cannot have this form. These
+rules differ as functions on the full local input alphabet because
+A has at least two symbols.
+
+This control preserves both amenability of the coordinate group and
+a uniform local decoder. It rejects dropping the finite-coset-mask
+condition from the nonuniform statement.
+
 ## Uniform recoverability alone does not imply surjectivity
 
 The finite-coset coefficient hypothesis is substantive. On a finite

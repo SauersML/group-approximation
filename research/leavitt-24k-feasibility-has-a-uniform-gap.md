@@ -8,6 +8,7 @@ distinct_from:
   binary-leavitt-hyperlinear-iff-24k-feasible: that is the proved equivalence connecting these branches to hyperlinearity; this is one of the two matrix alternatives it leaves open.
   leavitt-24k-first-relation-has-exact-finite-model: that proves the first relation is NOT such a set, by exhibiting an exact GL_3(F_8) solution of it; this asks for some other set that is.
 artifacts:
+  - research/artifacts/leavitt-eight-word-reduction-and-s3-repair-2026-09-08.md
   - research/artifacts/leavitt-24k-relative-unitary-reduction-2026-09-08.md
 ---
 
@@ -38,14 +39,20 @@ nonhyperlinear group.
   `GL_3(F_8)` solution of that relation, so `m` must be large enough to see
   genuinely more of `ker q`.
 - **One explicit packet now has a positive minimum in every fixed
-  dimension.** The nine native words of
+  dimension.** The eight native words of
   `leavitt-has-an-explicit-finite-c-killing-certificate` compile the
   Bleak--Quick presentation of Thompson's `V` and force `c=1` in every
   exact finite-dimensional unitary model. Their maximum expanded length
-  is `52920`. Thus this single packet has positive minimum at each
+  is `9880`. Thus this single packet has positive minimum at each
   fixed `24k`; the remaining issue is a positive bound independent of
   `k`. The earlier compactness argument only supplied a possibly
-  dimension-dependent relation stage `m(k)`.
+  dimension-dependent relation stage `m(k)`. The reduction artifact
+  removes `rho_4` by an exact commutator identity and replaces `rho_1`
+  by `d^2`, proving `E_8<=E_9<=2 E_8` on all unitary tuples. It also
+  repairs the abstract `S_3` pair with `C` unchanged and proves
+  `||d-I||_2^2 >= 4/3-2 E_8^2`. Lifting that pair repair to
+  the original three simultaneously conjugated involutions remains
+  unproved; the estimate is not a positive lower bound on `E_8`.
 - **The four-word coefficient packet has an exact countermodel.** The claim
   `leavitt-24k-kernel-packet-excludes-scalar-field-models` supplies
   `r_*`, `R_v`, `R_0`, and `R_sum` in the marked kernel. Two new rows

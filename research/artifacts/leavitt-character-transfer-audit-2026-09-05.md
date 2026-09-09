@@ -3,6 +3,14 @@
 Analytic audit, 2026-09-05. No computation. This audit does not prove
 nonhyperlinearity of an elementary Leavitt group.
 
+**Update, 2026-09-08.** The
+[full character proof](leavitt-full-character-classification-2026-09-08.md)
+now establishes `(CT1)` for the entire binary Leavitt unit group. It uses
+proper-corner row conjugacy, prefix localization, and the global invariant
+core projection. The missing bad-character construction remains open.
+Sections 2 and 5 below distinguish the earlier restriction theorem from
+this new full-group result; the extension counterexamples remain valid.
+
 ## 1. The valid terminal implication
 
 Let G be countable. Suppose every normalized positive-definite class
@@ -34,7 +42,8 @@ For R=L_2(F_2), the current Cairn claim
 `degree-zero-leavitt-core-characters-are-dirac-haar-mixtures` establishes
 (CT1) for K=EL_n(R_0), n>=3. Here R_0 is the degree-zero matrix tower.
 Consequently every character of EL_n(R) restricts to such a mixture on K.
-It does not establish (CT1) on EL_n(R).
+That core theorem alone does not establish (CT1) on EL_n(R). The new
+September 8 proof linked above supplies the additional full-group step.
 
 The monomial-root conclusion now holds in EL_3(R) itself. The proof in
 `monomial-root-conjugacy-proof`, Step 6, transports its original
@@ -134,13 +143,14 @@ come entirely from M even when G is finite.
 
 ## 5. Remaining concrete obligation
 
-A character route can close by proving a full-group statement such as
-(CT1) and constructing a compatible nonembeddable character of that same
-group. Current core rigidity, monomial conjugacy, absence of finite-
-dimensional representations, and hyperfinite stability provide neither
-the full classification nor the trace construction. Sections 3 and 4
-show why dropping either obligation is invalid.
+A character route can close by combining (CT1) with an actual compatible
+nonembeddable character of that same group. The September 8 full-group
+proof now supplies (CT1); it supplies no such trace. Its subgroup
+extension corollary strengthens Section 3: precisely the trivial-regular
+mixtures extend, so a bad character of a hyperlinear subgroup cannot
+serve as the missing input. Section 4 remains a valid counterexample
+to using core rigidity alone for arbitrary overgroups.
 
-The new rank-three transport does not change these two obligations.
-In particular all its identities hold for the regular character with
-a=0; it supplies no finite-unitary marked-collapse inequality.
+The rank-three transport and the full classification are both consistent
+with an embeddable regular character. A finite-unitary marked-collapse
+inequality or a bad trace of this exact H remains unproved.

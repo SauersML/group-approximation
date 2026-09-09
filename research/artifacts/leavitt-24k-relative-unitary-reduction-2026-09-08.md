@@ -166,3 +166,189 @@ group) and `leavitt-24k-feasibility-has-a-uniform-gap` (route to
 `non-hyperlinear-group`, the program goal).  Exactly one holds; the archive now
 carries both as explicit finite-dimensional optimization statements over one
 `24k`-dimensional unknown.
+
+## 7. Scalar phases can be removed by tensoring with the conjugate tuple
+
+There is an equivalent version of the same criterion in which every selected
+relator need only approach a scalar unitary. This is a direct matrix
+consequence of the established criterion, not a construction of feasible
+tuples or a decision of hyperlinearity.
+
+Write `P=C_3*C_2^3`, and on the basis `|a,b,j>` of
+`C^3 tensor C^8 tensor C^k` use the frozen representations
+
+```text
+C_k |a,b,j> = |a+1,b,j>,
+D_(i,k) |a,b,j> = |a,b+e_i,j>,
+pi_(k,U)(c)=C_k,       pi_(k,U)(b_i)=U D_(i,k) U^*.
+```
+
+Here `a` is read modulo three and `b` lies in `F_2^3`. Each `pi_(k,U)` is
+an exact representation of the free product. For the finite relation sets
+`T_m` from Section 3, define
+
+```text
+Delta_m = inf_(k>=1, U in U(24k)) max_(r in T_m)
+              ||pi_(k,U)(r)-I||_2,
+
+Delta_m^sc = inf_(k>=1, U in U(24k)) max_(r in T_m)
+              min_(|zeta|=1) ||pi_(k,U)(r)-zeta I||_2.
+```
+
+All norms and traces below are normalized in the displayed matrix dimension.
+Then, for every `m`,
+
+```text
+Delta_m^sc <= Delta_m <= sqrt(2) Delta_m^sc.              (SP1)
+```
+
+Consequently
+
+```text
+H is hyperlinear  <=>  Delta_m^sc=0 for every m.         (SP2)
+```
+
+**The exact norm identity.** For a unitary `V` in `M_d(C)`, write
+`z=tr_d(V)` and let `bar V` mean entrywise complex conjugation. Minimizing
+over the scalar phase gives
+
+```text
+min_(|zeta|=1) ||V-zeta I||_(2,d)^2 = 2-2|z|.
+```
+
+Since the normalized trace of `V tensor bar V` is `|z|^2`,
+
+```text
+||V tensor bar V-I||_(2,d^2)^2
+  = 2-2|z|^2
+  = (1+|z|) min_(|zeta|=1) ||V-zeta I||_(2,d)^2.         (SP3)
+```
+
+In particular the norm increases by at most `sqrt(2)` relative to the best
+scalar defect. Formula `(SP3)` also covers zero defect: an exact scalar
+unitary becomes the identity.
+
+**Restoring the frozen finite factors.** Given a tuple `pi=pi_(k,U)` in
+dimension `d=24k`, form the exact free-product representation
+
+```text
+rho(g)=pi(g) tensor bar(pi(g)).
+```
+
+Entrywise conjugation preserves multiplication, so the same formula holds
+for every evaluated word, including inverses. Its dimension is
+
+```text
+d^2=(24k)^2=24K,             K=24k^2.                    (SP4)
+```
+
+For either finite factor `F=C_3` or `C_2^3`, the restriction of `pi` is a
+multiple of the regular representation. Thus its normalized character is
+one at the identity and zero elsewhere. The normalized character of
+`rho|_F` is the squared modulus of that character, hence is again the regular
+character. Finite-group character theory therefore makes `rho|_F` exactly
+a regular multiple, of multiplicity `d^2/|F|`.
+
+Choose one global unitary conjugation taking `rho(c)` to `C_K`. After this
+conjugation the second factor is still an exact regular multiple; matching
+its simultaneous character eigenspaces with those of the frozen `D_(i,K)`
+gives a unitary `U'` such that all three generators are
+`U' D_(i,K) U'^*`. The conjugated tuple is therefore exactly
+`pi_(K,U')`. Word defects are unchanged by this global conjugation.
+
+Applying `(SP3)` to every `pi(r)`, `r in T_m`, now gives
+
+```text
+max_(r in T_m) ||pi_(K,U')(r)-I||_2
+  <= sqrt(2) max_(r in T_m) min_(|zeta|=1)
+                                     ||pi_(k,U)(r)-zeta I||_2.
+```
+
+Taking infima proves the second inequality in `(SP1)`; the first follows
+by allowing the phase `zeta=1`. Section 3 then proves `(SP2)`. In particular,
+the original trace-zero generator stays trace zero after tensoring, so this
+operation retains the nontriviality used in the separation argument.
+
+**Scope of the phase freedom.** The minimizing phases may be chosen
+independently for different relators and different stages. No cocycle
+compatibility condition is required: the single representation
+`pi tensor bar pi` cancels every scalar phase at once. The hypothesis is
+proximity to scalar matrices on the whole space, however, not proximity to
+the center of a proper matrix subalgebra. For example,
+`V=diag(I_l,-I_l)` is central in `M_l(C) direct-sum M_l(C)`, but
+`tr(V)=0` and `||V tensor bar V-I||_2=sqrt(2)`. Merely central relators
+therefore do not satisfy the needed scalar condition.
+
+This section is a written matrix argument only; no code or Lean was run.
+
+### 7.1. Arbitrary scalar phases on common permutation coordinates do not suffice
+
+The scalar freedom in `(SP2)` does not make a permutation construction viable.
+Using the established simplicity, perfectness, and nonsoficity of `H`, every
+homomorphism from `H` into a normalized-HS metric ultraproduct of monomial
+unitary groups is trivial. In particular, a sequence of regular-factor
+tuples whose defects tend to zero on every `T_m` cannot be jointly monomial
+in one common basis at each stage; neither can full canonical microstates.
+That basis may vary with the stage, and all nonzero matrix entries may have
+arbitrary phases in the unit circle.
+
+Here is the metric argument. In a fixed basis write a monomial unitary as
+`U=D P_sigma`, with `D` diagonal unitary, and let `p(U)=sigma`. The map `p`
+is a group homomorphism. If the permutations underlying two monomial
+unitaries differ on a basis vector, their images of that vector are
+orthogonal. Summing these column contributions gives
+
+```text
+d_H(p(U),p(V)) <= (1/2) ||U-V||_2^2.                    (SP5)
+```
+
+Consequently projection to the permutations is well defined on metric
+ultraproducts. Given a homomorphism `rho` from `H` to the monomial
+ultraproduct, its permutation projection has kernel either all of `H` or
+the identity, by simplicity. The latter case would make `H` sofic. To see
+that no uniform separation assumption is missing, an injective permutation
+ultraproduct map gives each nonidentity element a positive limiting Hamming
+distance from the identity. On a finite set, take a common positive lower
+bound and pass to the diagonal action on a fixed Cartesian power: a moved
+fraction `h` becomes `1-(1-h)^r`, while multiplication errors increase by
+at most `r`. This produces the usual sofic separation on that finite set.
+Nonsoficity therefore forces the permutation projection of `rho` to be
+trivial.
+
+The kernel left after that projection is abelian. Indeed, for each
+monomial representative `U=D P_sigma`,
+
+```text
+||U-D||_2^2 = ||P_sigma-I||_2^2 = 2 d_H(sigma,I).       (SP6)
+```
+
+If the permutation class is trivial, `(SP6)` replaces `U` by a diagonal
+unitary without changing its HS ultraproduct class. All these diagonal
+classes commute. Thus `rho(H)` is abelian, and perfectness of `H` forces
+`rho` itself to be trivial. A regular-factor tuple contradicts this because
+its generator `c` has trace zero and distance `sqrt(2)` from the identity.
+
+The same exclusion holds if the images of a fixed finite generating set
+are asymptotically close to monomial unitaries in one common basis per
+stage. Choose such monomial approximants for the generators. Telescoping
+changes every fixed word by a vanishing HS error, so the approximants
+retain the relations and the trace-zero separator in the ultraproduct.
+They would give precisely the forbidden nontrivial monomial homomorphism.
+
+Finally, this also excludes monomial or asymptotically monomial tuples
+whose relators only become scalar as in `(SP2)`. Tensoring with the entrywise
+conjugate tuple preserves monomiality in the tensor-product basis and, by
+`(SP3)`, makes those relators approach the identity. If the original
+generators are merely close to monomial matrices, the tensor products remain
+close, since
+`||U tensor bar U-V tensor bar V||_2 <= 2||U-V||_2`.
+The preceding contradiction then applies. Individual diagonalizability
+of each generator supplies no such restriction: the common basis for the
+whole tuple is essential.
+
+The archive's signed-monomial and uniformly discrete finite-label criteria
+use additional restrictions on the phases or labels. The argument here
+permits arbitrary circle phases and uses the specific group properties of
+`H`; it does not assert that arbitrary monomial HS images of other groups
+are sofic. This rules out the stated construction class, not arbitrary
+unitary models of `H`.

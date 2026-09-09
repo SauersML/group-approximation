@@ -123,10 +123,15 @@ a subsequence along which all of them hold as ordinary limits; continuity of
 `A`.  Along that subsequence `phi_n` witnesses that `tau` is a hyperlinear
 trace.
 
-A third route avoids both: `tau` is an amenable trace because `L(G)` is Connes
-embeddable, and amenable traces are hyperlinear by inspection of the
-definitions.  That one replaces the section by Brown's characterization of
-amenable traces.
+Amenability is a separate input. Connes embeddability of `L(G)` does
+not imply amenability of the canonical trace on `C^*(G)`; see
+`hyperlinear-groups-have-factorization-property` and its refutation by
+Thom's examples. For the Clifford witness `W`, the manuscript proves
+amenability from its locally residually finite kernel and amenable
+quotient in Section `sec:amenable-nonqd`. That independent proof can
+also supply hyperlinearity of its trace. It does not apply to the
+Leavitt unit group `H`, whose canonical maximal trace is nonamenable
+by `binary-leavitt-unit-group-fails-factorization-property`.
 
 ### `tau` is not MF
 

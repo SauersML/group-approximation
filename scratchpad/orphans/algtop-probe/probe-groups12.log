@@ -1,0 +1,62 @@
+changed modules: 6
+AlgTop/BundleCalculusInvariant.lean
+AlgTop/BundleCalculusModelBridge.lean
+AlgTop/BundleCalculusPullback.lean
+GGT/VanKampen/Estimating/InteriorIncidenceComponentRealization.lean
+Leavitt/AryNormalForm.lean
+Leavitt/AryWords.lean
+== lake build GroupApproximation.AlgTop.ComplexProjectiveChart GroupApproximation.AlgTop.ComplexProjectiveCover GroupApproximation.AlgTop.ComplexProjectiveHyperplane GroupApproximation.AlgTop.ComplexProjectivePuncture GroupApproximation.AlgTop.ComplexProjectivePunctureRetract GroupApproximation.AlgTop.ComplexProjectiveSphere GroupApproximation.AlgTop.SteenrodCut GroupApproximation.AlgTop.CupProduct GroupApproximation.AlgTop.CupAssoc GroupApproximation.AlgTop.ManuscriptSectionZeroCount GroupApproximation.AlgTop.CochainLeibniz GroupApproximation.AlgTop.Kronecker  [acn112 14:02:11]
+✖ [8674/8684] Building GroupApproximation.AlgTop.SingularCohomology (8.8s)
+error: GroupApproximation/AlgTop/SingularCohomology.lean:181:8: failed to synthesize instance of type class
+  HSMul R ↑((forget₂ (ModuleCat R) Ab).obj (HomologicalComplex.cycles (cochainCx R X) n)) ?m.56
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/AlgTop/SingularCohomology.lean:195:8: declaration uses `sorry`
+error: Lean exited with code 1
+✖ [8683/8684] Building GroupApproximation.AlgTop.ComplexProjectiveCover (16s)
+error: GroupApproximation/AlgTop/ComplexProjectiveCover.lean:126:2: Type mismatch
+  h
+has type
+  ∑ x_1, ↑x x_1 x_1 = 1
+but is expected to have type
+  entry x 0 0 = 1
+error: GroupApproximation/AlgTop/ComplexProjectiveCover.lean:125:46: This simp argument is unused:
+  Fin.sum_univ_one
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.trace, Matrix.diag_apply,̵ ̵F̵i̵n̵.̵s̵u̵m̵_̵u̵n̵i̵v̵_̵o̵n̵e̵] at h
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/AlgTop/ComplexProjectiveCover.lean:130:21: failed to synthesize instance of type class
+  Subsingleton (Fin (0 + 1))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/AlgTop/ComplexProjectiveCover.lean:131:21: failed to synthesize instance of type class
+  Subsingleton (Fin (0 + 1))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.AlgTop.SingularCohomology
+- GroupApproximation.AlgTop.ComplexProjectiveCover
+error: build failed
+LAKE_EXIT=1
+?? AXIOM CHECK VACUOUS: 0 'depends on axioms' lines in the log -- no #print axioms/#audit_axioms reached, so 'sorryAx: none' would prove NOTHING
+axiom lines seen: 0
+-- axioms declared in GroupApproximation/AlgTop/ComplexProjectiveChart.lean:
+-- axioms declared in GroupApproximation/AlgTop/ComplexProjectiveCover.lean:
+-- axioms declared in GroupApproximation/AlgTop/ComplexProjectiveHyperplane.lean:
+-- axioms declared in GroupApproximation/AlgTop/ComplexProjectivePuncture.lean:
+-- axioms declared in GroupApproximation/AlgTop/ComplexProjectivePunctureRetract.lean:
+-- axioms declared in GroupApproximation/AlgTop/ComplexProjectiveSphere.lean:
+-- axioms declared in GroupApproximation/AlgTop/SteenrodCut.lean:
+-- axioms declared in GroupApproximation/AlgTop/CupProduct.lean:
+-- axioms declared in GroupApproximation/AlgTop/CupAssoc.lean:
+-- axioms declared in GroupApproximation/AlgTop/ManuscriptSectionZeroCount.lean:
+-- axioms declared in GroupApproximation/AlgTop/CochainLeibniz.lean:
+-- axioms declared in GroupApproximation/AlgTop/Kronecker.lean:
+-- per-target axiom section joins Lean MULTI-LINE axiom lists in full; the RAW remote log is still the authority
+sorryAx: none
+PROBE FAILED
+jobs line: 
+SENTINEL=0

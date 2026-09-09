@@ -6,6 +6,8 @@ title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
 artifacts:
+  - research/artifacts/leavitt-full-character-classification-2026-09-08.md
+  - research/artifacts/leavitt-packet-perfect-kernel-and-finite-amalgam-obstruction-2026-09-08.md
   - research/artifacts/commutation-stabilizer-relative-embedding-2026-09-07.md
   - research/artifacts/smith-prime-localization-maximality-audit-2026-09-07.md
   - research/artifacts/prescribed-kazhdan-rcc-transfer-audit-2026-09-07.md
@@ -49,6 +51,17 @@ artifacts:
 The primary target of the program (AGENDA.md header): an explicit group that
 is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices
 with the normalized Hilbert-Schmidt metric.
+
+**September 8, full Leavitt character classification.** The written
+proof `binary-leavitt-full-character-simplex` establishes that every
+character of `H=L_(F_2)(1,2)^x` is a trivial-regular mixture, on all
+of H rather than only the locally finite core. It uses split row
+shears and proper prefix corners and has passed independent written
+proof review. Thus the character route now needs an actual bad trace
+of this same H; that input remains open. The exact subgroup-extension
+criterion also excludes sourcing it from a bad character of a
+hyperlinear subgroup. This progress does not settle this existence
+goal or hyperlinearity of H, and has no new Lean verification claim.
 
 **September 7, arbitrary projection leaks and arithmetic maximality.**
 In a canonical CE actor model, the exact commutation stabilizer of
