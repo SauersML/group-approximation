@@ -35,6 +35,7 @@ artifacts:
   - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
   - research/artifacts/boone-higman-arithmetic-odometer-model-2026-09-08.md
   - research/artifacts/boone-higman-terminated-digit-resolution-2026-09-08.md
+  - research/artifacts/boone-higman-spatial-overgroup-and-coset-gate-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -393,3 +394,22 @@ that source. Its finite-presentation conclusion has not been imported as
 an established premise. A repair would need to derive cancellation of all
 lamp coordinates from the finite relations directly. No such repair has
 been supplied here.
+
+## September 8: retain the shell stabilizer in a larger presented group
+
+`shell-coset-induction-preserves-core-freeness` allows an abstract
+finitely presented overgroup Gamma of E_nu: keeping H=(E_nu)_p
+gives a faithful Gamma/H action with finitely generated point
+stabilizers. The remaining type (A) condition is finite bi-index
+of H in Gamma. The route `boone-higman-via-shell-stabilizer-overgroups`
+therefore permits E_nu itself to remain non-finitely-presented.
+Its universal host hypothesis remains OPEN.
+
+Ordinary presentation embedding theorems do not settle that
+hypothesis. `shell-finite-biindex-hosts-require-large-intersections`
+forces the shell envelope to meet every conjugate infinitely;
+proper almost malnormal hosts fail. Separately,
+`cantor-prefix-markings-compute-clopen-action` reconstructs an
+existing spatial overgroup action from a recursive presentation
+and a marked standard V. This supplies an effective action test
+once the action exists, not an existence theorem for such a host.
