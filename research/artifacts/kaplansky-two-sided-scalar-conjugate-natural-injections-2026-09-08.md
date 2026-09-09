@@ -7,7 +7,10 @@ Kaplansky counterexample is constructed.
 
 Subsequent status: the [period-four exterior kernel](kaplansky-two-sided-omega-square-period-four-kernel-2026-09-08.md)
 excludes the actual z=omega^2 candidate, despite its natural
-injectivity proved here. The z=omega candidate remains unresolved.
+injectivity proved here. The subsequent
+[full exterior-square proof](kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md)
+establishes injectivity for z=omega on every finite boundary
+source. Its literal group-ring splitting problem remains unresolved.
 
 Use the literal deletion blocks
 
@@ -260,10 +263,11 @@ transfer theorem cannot exclude them by producing a kernel
 of that block. This is a proved limitation of that mechanism,
 not a claim that their full exterior maps are injective.
 
-The next unresolved test is the complete exterior source map
-in (5), including both central sectors and arbitrary finite
-tensors. No conclusion about a literal group-ring split follows
-from the natural injectivity proved here.
+The complete exterior source map in (5), including both central
+sectors and arbitrary finite tensors, is a separate requirement.
+Subsequent work proves it injective for z=omega and produces a
+kernel for z=omega^2, as linked above. No conclusion about a
+literal group-ring split follows from natural injectivity.
 
 ## Bounded exterior probe, separate from the proof
 

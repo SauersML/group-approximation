@@ -6,9 +6,11 @@ the full exterior map is injective. The remaining possible
 kernels are asymmetric tensors on finite periodic cores.
 
 Subsequent status: an [exact asymmetric period-four kernel](kaplansky-two-sided-omega-square-period-four-kernel-2026-09-08.md)
-now excludes the actual z=omega^2 candidate. The reduction
-proved below remains valid for both parameters; the z=omega
-case remains unresolved.
+now excludes the actual z=omega^2 candidate. The subsequent
+[endpoint and full-target proof](kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md)
+establishes complete exterior-square injectivity for z=omega.
+The reduction proved below remains valid for both parameters.
+The literal group-ring split for z=omega remains unresolved.
 
 Use the two simultaneous candidates and the proved natural
 injectivity from
@@ -241,8 +243,8 @@ statement also holds for the original map `Phi_g`.
 
 This excludes a global kernel lying wholly in the symmetric
 leading-cancellation subspace. It does not exclude a general
-asymmetric source whose different terms cancel. The unresolved
-case is an asymmetric finite source on one or more actual
+asymmetric source whose different terms cancel. The case left
+by this reduction is an asymmetric finite source on one or more actual
 periodic cores, satisfying (2), (3), and the remaining core
 target equations. No group-ring splitting conclusion is
 drawn from this reduction.
@@ -693,7 +695,10 @@ The constant-zero self-component was already excluded by
 the symmetric-source theorem; the constant-one self-component
 has zero columns from (2).
 
-Thus any remaining full omega kernel is supported entirely
+Thus any possible full omega kernel is supported entirely
 on mixed periodic cores and is subject to (7)--(9) and the
-stable endpoint restriction. The inside-core target equations
-on that remaining domain are still unresolved.
+stable endpoint restriction. The subsequent
+[complete exterior-square proof](kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md)
+uses these restrictions to solve the inside-core target equations
+and proves that the source is zero. The literal group-ring
+splitting problem remains open.

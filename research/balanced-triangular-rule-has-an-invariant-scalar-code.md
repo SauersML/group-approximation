@@ -5,6 +5,7 @@ kind: claim
 title: An infinite balanced triangular rule admits a continuous invariant scalar code
 artifacts:
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
+  - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
 ---
 
 For G=A_4 x Z, t=(123), h=(12)(34), and A=I+R_h,
@@ -22,7 +23,15 @@ extension to the full scalar shift, but injectivity or
 reversibility of such an extension is not established.
 
 An order-preserving extension is impossible, including any
-coordinate permutation. A nonlinear reversible full-shift
-extension, particularly one of the form x+B Q_s with B linear,
-remains unresolved. The code construction does not resolve
-Gottschalk's surjunctivity conjecture.
+coordinate permutation. Adjoining one controlled source symmetry
+K gives an enlarged group Lambda_tilde and an exact two-term
+linear-feedback extension x+(R_r+R_{Kr})Q_s of the enlarged
+code map. This extension is explicitly noninjective: <s,K> is
+A_4, r commutes with s, and a tetrahedral orientation produces
+complementary colliding configurations. This does not establish
+linear-span membership over the original Lambda.
+
+An injective or reversible full-shift extension remains unresolved,
+potentially through different coefficients or linear operators
+that vanish on Q_s of the code. The code construction and the
+noninjective extension do not resolve Gottschalk's conjecture.

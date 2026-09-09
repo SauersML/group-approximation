@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
   - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
+  - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
 ---
 
 For a nonzero row ell of a continuous linear intertwiner, let eta
@@ -97,8 +98,11 @@ u control in both inputs using the prefix map, and position the
 component and control to read the differing track. The resulting
 orbit map is a continuous injection into a closed invariant scalar
 code, and the triangular involution induces a reversible code map.
-An injective/reversible full-shift extension, especially x+B Q_s
-with linear B, is still unproved; local extension alone is insufficient.
+A controlled enlargement of the symmetry group gives an exact
+two-term linear-feedback extension. Its A_4 subgroup produces a
+tetrahedral complement collision, so injectivity fails. Different
+coefficients or ambient extensions remain unresolved; the result
+does not settle linear-span membership over the original group.
 
 For a separate constraint, every fiber Q^-1(q) with q a single
 source unit vector has trivial translation stabilizer. If x+A Q

@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
   - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
+  - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
 ---
 
 On arbitrary products of directed three-cycles, every continuous
@@ -68,11 +69,14 @@ an explicit two-component Boolean observable separates every source
 pair and respects Q. It yields a continuous injection into a proper
 scalar Lambda-invariant code, with a reversible scalar code map.
 
-The remaining gap is extending that code involution to an injective
-or reversible cellular automaton on the entire scalar full shift,
-particularly one of the form x+B Q_s with B linear. An arbitrary
-local extension, even a zero-preserving one, supplies neither
-injectivity nor reversibility. The finite exclusion and the
+Adjoining one controlled Q,F_A-centralizing involution K gives
+an enlarged group and an exact two-term extension
+x+(R_r+R_{Kr})Q_s of its code dynamics. This extension is
+explicitly noninjective by a tetrahedral complement collision.
+No linear-span claim for the original Lambda is inferred.
+The remaining gap is an injective or reversible full-shift
+extension, potentially using other coefficients or linear operators
+that vanish on Q_s of the code. The finite exclusion and the
 balanced full-conjugacy exclusion remain intact.
 
 Thus nonlinear encodings preserving Q are excluded in the stated

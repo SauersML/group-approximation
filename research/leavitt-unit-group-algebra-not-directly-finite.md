@@ -29,6 +29,7 @@ artifacts:
   - research/artifacts/kaplansky-two-sided-scalar-conjugate-natural-injections-2026-09-08.md
   - research/artifacts/kaplansky-exterior-kernels-reduce-to-pure-periodic-tails-2026-09-08.md
   - research/artifacts/kaplansky-two-sided-omega-square-period-four-kernel-2026-09-08.md
+  - research/artifacts/kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
@@ -315,8 +316,10 @@ module, by a tail-height and periodic-coefficient proof. They
 correspond to explicit simultaneous chart choices after invertible
 source and target changes. This is recorded in
 `two-sided-deletion-corrections-pass-natural-kernel-test`.
-For z=omega, the next unresolved requirement is the full exterior
-source map, followed by a literal group-ring split; neither is proved.
+For z=omega, the complete exterior-square source map is now
+proved injective; see
+`omega-corrected-deletion-passes-full-boundary-exterior-test`.
+A literal group-ring split remains unproved.
 The z=omega^2 choice is excluded by an exact period-four exterior
 kernel in `two-sided-omega-square-deletion-candidate-has-no-split`.
 The highest creator layer has a symmetric-tensor kernel, so
@@ -324,23 +327,27 @@ the natural height proof does not extend directly. An explicit
 Z^2 subgroup also rules out classifying <K,g> as virtually free
 to dismiss every candidate at once.
 
-The full exterior question has now been reduced to asymmetric
+The support reduction restricts possible exterior kernels to asymmetric
 tensors on finite unions of purely periodic cores, as recorded
 in `two-sided-exterior-kernels-must-be-periodic-and-asymmetric`.
 Two successive outside-prefix contractions eliminate all
 aperiodic and positive-preperiod support. On the remaining cores,
 the same equations prove injectivity when both source tensors
 are flip-symmetric. The asymmetric class contains the verified
-period-four kernel for z=omega^2. For z=omega, the asymmetric
-periodic case and subsequent literal group-ring split remain open.
+period-four kernel for z=omega^2. For z=omega, a subsequent
+endpoint and full-target proof excludes that asymmetric class too.
 
-For that remaining omega choice, constant-core components have
-also been eliminated. On mixed periodic cores the outside
-equations reduce to one scalar tensor satisfying two explicit
-cycle equations. Nilpotence removes interior zero-run vertices,
-and another projection removes the last vertices of zero runs
-of length at least three. The inside-core target equations on
-the surviving endpoint subspace are not yet solved.
+For the omega choice, constant-core components are eliminated.
+On mixed periodic cores the outside equations reduce to a scalar
+tensor on zero-run endpoints. An adjoint-idempotence argument
+removes the bridges and forces this tensor to be symmetric.
+The exact inside-core target projections then leave only the
+primitive 011 and 00111 cores, where explicit nonzero residual
+wedges exclude the remaining coefficients. This proves injectivity
+on every finite boundary exterior-square source. It supplies no
+element L with L T_omega=f_0. Higher exterior powers, other
+representations, and the actual group-ring split remain unresolved;
+Kaplansky's direct-finiteness conjecture is not resolved.
 
 The quadratic bridge also extends to order-three feedback preserving
 the invariant triple subspace, with an exact criterion in eF_2[G]e.

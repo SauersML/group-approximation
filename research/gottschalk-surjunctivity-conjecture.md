@@ -33,6 +33,7 @@ artifacts:
   - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
   - research/artifacts/gottschalk-balanced-invariant-code-finite-exclusion-and-infinite-prefix-control-2026-09-08.md
   - research/artifacts/gottschalk-balanced-triangular-invariant-scalar-code-construction-2026-09-08.md
+  - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -269,9 +270,12 @@ group Lambda, with reversible dynamics on that code. A separating
 orbit of a two-component observable is obtained using prefix
 centralizers and component permutations; see
 `balanced-triangular-rule-has-an-invariant-scalar-code`.
-What remains unresolved
-is an injective or reversible extension to the entire scalar full
-shift, particularly one of the form x+B Q_s with B linear.
+Adjoining one controlled symmetry gives an enlarged group and an
+exact two-term scalar linear-feedback extension, but a tetrahedral
+complement collision proves that extension noninjective. This is
+not a linear-span claim for the original group. An injective or
+reversible full-shift extension remains unresolved, using other
+coefficients that agree on Q_s of the code or another construction.
 Independently, continuous affine Q-intertwiners only copy triples or make them
 constant. Their proper nonempty globally fixed-coordinate set
 excludes affine full and invariant-code encodings of the unbalanced

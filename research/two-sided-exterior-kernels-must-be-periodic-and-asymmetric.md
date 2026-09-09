@@ -25,14 +25,17 @@ columns and rows satisfy the explicit weighted natural-matrix
 equation in the artifact. An exact asymmetric period-four kernel
 has since excluded z=omega^2; see
 `two-sided-omega-square-deletion-candidate-has-no-split`.
-The z=omega core equations remain unresolved. These restrictions
-do not establish full exterior
-injectivity or a group-ring split, and do not resolve Kaplansky's
+The z=omega core equations are now solved in
+`omega-corrected-deletion-passes-full-boundary-exterior-test`:
+no nonzero source satisfies them. The support restrictions proved
+here are a premise of that complete exterior-square proof. Neither
+result establishes a group-ring split or resolves Kaplansky's
 direct-finiteness conjecture.
 
 For z=omega, constant-zero and constant-one components are now
 excluded too. Every remaining kernel is described on mixed
 periodic cores by a scalar tensor satisfying the artifact's
 exact outside equations, with both factors restricted to the
-stable endpoint subspace of its cycle operator. The inside-core
-target coefficients remain to be imposed.
+stable endpoint subspace of its cycle operator. The subsequent
+proof imposes the inside-core target coefficients and eliminates
+the entire remaining source.

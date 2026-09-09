@@ -26,5 +26,8 @@ the actual candidate, not just an auxiliary natural map.
 
 The auxiliary natural map H_z remains injective. Thus natural
 injectivity does not suffice for the full exterior test.
-The other simultaneous choice z=omega remains unresolved;
-Kaplansky's direct-finiteness conjecture remains open.
+The other simultaneous choice z=omega now passes the full
+boundary exterior-square test, as recorded in
+`omega-corrected-deletion-passes-full-boundary-exterior-test`.
+Its group-ring split and Kaplansky's direct-finiteness conjecture
+remain open.

@@ -10,9 +10,12 @@ The source has nonzero off-axis component (I-E)AE.
 Thus nonlinear invariant codes really can accommodate this
 infinite balanced control. The remaining issue is extending its
 code involution to an injective or reversible cellular automaton
-on the entire scalar full shift, particularly one of the form
-x+B Q_s with B linear. No such extension is established here.
-An arbitrary local extension need not be injective.
+on the entire scalar full shift. A subsequent
+[controlled enlargement](gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md)
+does produce an exact two-term extension x+B Q_s over an enlarged
+group, but an explicit complement collision proves it noninjective.
+It does not establish linear-span membership over the original
+Lambda. An arbitrary local extension need not be injective.
 
 The finite-source exclusion and the prefix homeomorphisms used
 below are proved in
@@ -200,9 +203,11 @@ Nor does it make its feedback linear in Q_s.
 The achieved conclusion is a continuous Q-preserving encoding
 into a proper invariant scalar code with reversible dynamics
 on that code. The unresolved step is an injective or reversible
-full-shift extension, particularly an extension x+B Q_s with B
-linear. The code alone is not a Gottschalk counterexample and
-does not establish an outside-axis injective scalar feedback rule.
+full-shift extension. The subsequent controlled enlargement gives
+one exact linear-feedback extension and an explicit collision for
+it; other coefficients or extensions remain open. The code alone
+is not a Gottschalk counterexample and does not establish an
+outside-axis injective scalar feedback rule.
 
 There is an exact obstruction to any order-preserving extension,
 including a coordinate permutation or pure right shift. Every encoded coordinate satisfies
