@@ -28,4 +28,15 @@ Finite sets of radical words admit a common window and constant. For a
 specified finite presentation, a constant exists using its listed relators
 themselves, by finite normal-closure expressions.
 
+**The estimate does not upgrade to a vector inequality (2026-09-08).**  It
+bounds `w` by the largest relator error on the whole space, and that is
+essential: `linear-norm-certificate-has-no-vector-form` shows that for every
+nontrivial presented group, every word with nonidentity image, and **every**
+finite `S` inside the normal subgroup, there are a finite unitary tuple and a
+unit vector with `(s(U)-I)xi = 0` for all `s in S` and
+`||(w(U)-I)xi|| = sqrt 2`.  So squaring the certificate into a
+positive-operator inequality is false.  The same witness shows a common fixed
+vector cannot be compressed into a finite-dimensional model of the quotient,
+because the compressions are not unitary.
+
 The proof is written mathematics; no new Lean verification is asserted.
