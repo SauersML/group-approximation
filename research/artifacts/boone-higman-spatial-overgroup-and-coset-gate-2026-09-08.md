@@ -92,3 +92,25 @@ criterion for the retained A5 shell stabilizer. This does not
 conflict with the existing finitely presented simple embedding;
 it demonstrates that the retained-stabilizer condition asks for
 more structure than a simple overgroup alone.
+
+## Remote validation
+
+The reconstruction, induced-action, and intersection proofs were
+committed in `92d4d0708`. The first integration
+`1b34292123f1cf1172365da0c2e67d4c3f059d32` passed
+[run 34303946953](https://github.com/SauersML/group-approximation/actions/runs/34303946953).
+The additional fiber-count proof was committed in `c347e963e`.
+The complete batch passed
+[run 34304220316](https://github.com/SauersML/group-approximation/actions/runs/34304220316)
+at exact head `7d52abdc9433fa5cde0fd879cedf6445955b760e`.
+
+The downloaded exports in `.cairn/bh-spatial-overgroup-check-20260908/`
+record the four new proved claims as `ESTABLISHED` through their
+written routes. The finite-bi-index host hypothesis, its universal
+Boone--Higman route, and the conjecture itself remain `OPEN`. The
+earlier A5 simple-host claim remains `ESTABLISHED`.
+
+The workflow checks source syntax, existing exact finite controls,
+and the Cairn graph. Its success is structural validation, not
+independent verification of these mathematical arguments. Lean
+preflight was skipped; no GPU computation was run.
