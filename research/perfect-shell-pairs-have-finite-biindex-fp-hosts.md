@@ -28,3 +28,10 @@ Computability of a successful nu follows automatically: E_nu is
 a finitely generated subgroup of a finitely presented group, hence
 recursively presented, and the existing shell extraction theorem
 computes nu from such a correctly marked presentation.
+
+The explicit contracting digit host does not close this claim
+for the arithmetic A5 example either. The fiber-count theorem
+proves infinite bi-index of the retained stabilizer in H_(59,4)
+and every overgroup containing that host, despite the valid simple
+overgroup embedding of the envelope. A different embedding or
+stabilizer construction would be needed.

@@ -210,6 +210,7 @@ jobs:
           bin/cairn why cantor-prefix-markings-compute-clopen-action --json > bh-shell-spatial-reconstruction.json
           bin/cairn why shell-coset-induction-preserves-core-freeness --json > bh-shell-induced-action.json
           bin/cairn why shell-finite-biindex-hosts-require-large-intersections --json > bh-shell-host-intersections.json
+          bin/cairn why terminated-digit-host-has-infinite-shell-biindex --json > bh-shell-digit-host-biindex.json
           bin/cairn why perfect-shell-pairs-have-finite-biindex-fp-hosts --json > bh-shell-open-overgroup-host.json
           bin/cairn why boone-higman-via-shell-stabilizer-overgroups --json > bh-shell-open-overgroup-route.json
           bin/cairn why decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-envelope.json

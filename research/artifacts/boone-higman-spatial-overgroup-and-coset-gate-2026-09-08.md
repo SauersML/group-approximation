@@ -71,3 +71,24 @@ cosets, or extend the spatial action with a different finitely
 generated stabilizer. Neither construction is provided here. All
 arguments in this artifact are written proofs with the cited
 imports; no Lean certificate or GPU result is asserted.
+
+## The existing contracting host also fails the retained-stabilizer test
+
+The terminated-digit model has a continuous equivariant collapse
+pi onto the original binary Cantor space: each final infinite digit
+block becomes an infinite binary zero tail. Let F_p be the fiber
+over p and S the lifted original point stabilizer. Left and right
+multiplication by S preserve the number of fibers met by gamma(F_p).
+
+Partition F_p by its first L digits and root edge, giving r*h^L
+pieces. Canonical prefix swaps move those pieces into distinct
+fibers with binary labels 1*0^(n_j)*1*0^infinity. The swaps have
+disjoint clopen domains and ranges, so they define explicit
+involutions in H_(h,r). Their image-fiber counts r*h^L give
+infinitely many S double cosets.
+
+Thus H_(59,4) and every larger host containing it fail the new
+criterion for the retained A5 shell stabilizer. This does not
+conflict with the existing finitely presented simple embedding;
+it demonstrates that the retained-stabilizer condition asks for
+more structure than a simple overgroup alone.

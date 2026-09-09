@@ -413,3 +413,10 @@ proper almost malnormal hosts fail. Separately,
 existing spatial overgroup action from a recursive presentation
 and a marked standard V. This supplies an effective action test
 once the action exists, not an existence theorem for such a host.
+
+The positive terminated-digit embedding does not supply this
+retained-stabilizer host either: `terminated-digit-host-has-infinite-shell-biindex`
+constructs infinitely many double cosets in H_(h,r), distinguished
+by the number of collapsed fibers met by the image of the fiber
+over p. The obstruction persists in larger groups containing that
+host, while its finitely presented simple embedding remains valid.
