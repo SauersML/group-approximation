@@ -72,3 +72,24 @@ Boone--Higman objective by that benchmark.
 These are written mathematical arguments with imported finiteness
 theorems identified above. They were not checked by Lean or a GPU.
 No local computation, build, or cloud resource was used.
+
+## Remote validation record
+
+The odometer index kernel and germ ambient constructions were
+committed as `d832e46c3`; the parity restriction as `4bfa78d74`.
+Both are integrated into main at
+`7629daf11535a1170e33cbd0540275f275990a1a`.
+
+[Remote research check 34301242813](https://github.com/SauersML/group-approximation/actions/runs/34301242813)
+passed for that exact commit. It ran source syntax checks, the
+existing exact finite negative and cyclic-shift controls, and Cairn
+graph validation. The optional Lean preflight was skipped. No new
+mathematical argument here was checked by Lean or by GPU computation.
+The downloaded record is `.cairn/bh-odometer-model-check-20260908/`.
+
+The actual `node_status` fields and derivations were inspected:
+the finitely generated odometer index kernel, the finitely presented
+germ ambient groups, and the parity-charge constraint are
+`ESTABLISHED` in the written-proof graph. The A5 shell envelope's
+finite presentation, the universal perfect-input presentation claim,
+and Boone--Higman remain `OPEN`.
