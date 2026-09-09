@@ -35,3 +35,9 @@ There is also a precise finite-state boundary:
 rules out rationality of the specified regular shell action for
 every non-virtually-cyclic finitely generated input, including
 A_5 * A_5. Other rational actions of such an input are not excluded.
+
+The explicit nonrational but arithmetic action in
+`a5-free-product-has-simple-arithmetic-shell-envelope` provides a
+decidable simple benchmark. Its finite-presentation question is
+separate and open. It is not an added requirement on the universal
+route, which is free to choose another enumeration.
