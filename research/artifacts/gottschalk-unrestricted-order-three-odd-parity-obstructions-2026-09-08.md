@@ -305,3 +305,11 @@ axis rigidity from the remaining hypotheses alone. A linear
 group-algebra matrix-block isomorphism also does not by itself
 identify the pointwise products used to define Q_t, so it does
 not automatically turn this two-track control into a scalar one.
+
+The later [intertwiner-rigidity theorem](gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md)
+makes this restriction exact: every continuous affine encoding
+preserving Q on directed triples consists only of coordinate
+copies and constant triples. It cannot scalarize this triangular
+control, even into a code invariant under a transitive target
+coordinate action. Changes that do not intertwine Q and nonlinear
+encodings remain outside that obstruction.

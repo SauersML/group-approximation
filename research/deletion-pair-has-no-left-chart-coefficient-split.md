@@ -23,3 +23,8 @@ kernel may depend on c. The statement does not cover arbitrary
 right coefficients between [g] and f_0, arbitrary incomparable
 prefix pairs, or arbitrary transporters. No Kaplansky inverse
 pair is supplied.
+
+The right-coefficient family alone is separately excluded by
+`deletion-pair-has-no-right-chart-coefficient-split`. Combining
+the two statements does not exclude simultaneous left and
+right corrections.

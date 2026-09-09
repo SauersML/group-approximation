@@ -25,6 +25,8 @@ artifacts:
   - research/artifacts/kaplansky-complete-exterior-injective-positive-shear-control-2026-09-08.md
   - research/artifacts/kaplansky-deletion-shear-period-two-exterior-kernel-2026-09-08.md
   - research/artifacts/kaplansky-lower-block-and-left-chart-exterior-formulas-2026-09-08.md
+  - research/artifacts/kaplansky-right-chart-coefficient-natural-kernel-transfer-2026-09-08.md
+  - research/artifacts/kaplansky-two-sided-scalar-conjugate-natural-injections-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
@@ -294,6 +296,29 @@ parameters over F_4, each with an exact exterior kernel.
 This is recorded in `deletion-pair-has-no-left-chart-coefficient-split`.
 It does not cover arbitrary right chart coefficients or general
 four-by-four transporters. The headline target remains open.
+
+The separate right-coefficient family P_0[g]d f_0 is now also
+excluded for every d in F_2[K], as recorded in
+`deletion-pair-has-no-right-chart-coefficient-split`. A source
+flip normalization reduces it to four cases. Three have exact
+natural-module kernels which transfer to the full exterior
+source; the fourth is the original periodic-tail case. Neither
+one-sided coefficient exclusion settles simultaneous left and
+right coefficients, or sums with independently chosen factors.
+
+Two concrete simultaneous choices now escape the natural-kernel
+transfer mechanism. For z=omega,omega^2, the maps
+H_z=a+m_z^-1 b m_z are injective on the entire free boundary
+module, by a tail-height and periodic-coefficient proof. They
+correspond to explicit simultaneous chart choices after invertible
+source and target changes. This is recorded in
+`two-sided-deletion-corrections-pass-natural-kernel-test`.
+The next unresolved requirement is their full exterior source
+map, followed by a literal group-ring split; neither is proved.
+The highest creator layer has a symmetric-tensor kernel, so
+the natural height proof does not extend directly. An explicit
+Z^2 subgroup also rules out classifying <K,g> as virtually free
+to dismiss every candidate at once.
 
 The quadratic bridge also extends to order-three feedback preserving
 the invariant triple subspace, with an exact criterion in eF_2[G]e.

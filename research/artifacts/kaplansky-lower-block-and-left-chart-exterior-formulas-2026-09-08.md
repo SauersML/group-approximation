@@ -465,6 +465,12 @@ The all-coefficient conclusion (6) concerns the literal
 result for every incomparable word pair or for arbitrary right
 coefficients between `[g]` and `f_0`.
 
+The later [right-coefficient theorem](kaplansky-right-chart-coefficient-natural-kernel-transfer-2026-09-08.md)
+separately excludes every `P_0[g]d f_0`, `d in F_2[K]`, with
+the left projector fixed. Neither result implies the same
+conclusion for simultaneous independent left and right
+coefficients in `P_0 c[g]d f_0`.
+
 Formula (5) still leaves open whether this actor has a nonzero
 common kernel for all left `K` changes; the individual pencil
 kernels do not establish that stronger statement. Even an

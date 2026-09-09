@@ -30,6 +30,7 @@ artifacts:
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/gottschalk-unrestricted-order-three-odd-parity-obstructions-2026-09-08.md
+  - research/artifacts/gottschalk-directed-quadratic-intertwiner-rigidity-2026-09-08.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -241,3 +242,21 @@ linear map v -> v+A((1+c)R_t^2 v) from ker E into the full
 output space to be injective. Compressing those maps back to
 one parity component is not justified. No theorem covers the
 remaining unrestricted nonnormal feedback.
+
+A direct encoding of the reversible two-track control is now
+excluded in `quadratic-intertwiners-cannot-scalarize-triangular-feedback`.
+Every continuous affine map preserving the order-three quadratic
+operation only copies triples or makes them constant. Every
+injective such encoding retains a proper nonempty set of coordinates fixed by
+the triangular rule, preventing scalar equivariance under a
+transitive coordinate action. This also covers invariant encoded
+subshifts. It leaves nonlinear encodings and coordinate changes
+that alter the quadratic operation unaddressed.
+
+Preserving Q is not itself incompatible with nonlinear scalar
+reversibility: a conditional triple rotation on C_3 x C_2 is
+an explicit countercontrol. However, no nontrivial rule x+A Q
+can commute with Q, as the same artifact proves using the
+translation stabilizers of its fibers. A proposed nonlinear
+encoding therefore still needs a separate argument that its
+conjugated rule has the required linear-feedback form.
