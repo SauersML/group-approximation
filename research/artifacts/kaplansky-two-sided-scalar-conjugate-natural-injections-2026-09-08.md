@@ -10,7 +10,10 @@ excludes the actual z=omega^2 candidate, despite its natural
 injectivity proved here. The subsequent
 [full exterior-square proof](kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md)
 establishes injectivity for z=omega on every finite boundary
-source. Its literal group-ring splitting problem remains unresolved.
+source. An [exact contragredient period-two kernel](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md)
+now excludes its group-ring split as well. Both natural
+injectivity statements, and the ordinary omega exterior
+injectivity, remain valid representation controls.
 
 Use the literal deletion blocks
 

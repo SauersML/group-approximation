@@ -8,6 +8,11 @@ binary-boundary representation. This is a representation
 test, not a group-ring splitting theorem. No element `L`
 satisfying `L T_omega=f_0` is constructed or asserted.
 
+Subsequent status: the [contragredient period-two certificate](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md)
+proves that no such group-ring left inverse exists. The
+ordinary exterior-square injectivity proved here remains
+valid; the obstruction uses a different representation.
+
 ## Setup and the previously proved support reduction
 
 Work over `F_4`, where `omega^2=omega+1`; all tail vectors
@@ -431,7 +436,7 @@ The distinct prefixes `100` and `1100` certify the final
 inequality. Thus `W_2=0`, and (10) gives `W=0`.
 Reconstruction (2) now forces `U=V=0`, hence `X=Y=0`.
 
-## Exact conclusion and the remaining group-ring gap
+## Exact conclusion and the distinct group-ring obstruction
 
 The complete map `F_omega` is injective on the full
 natural-boundary exterior-square source. By the established
@@ -441,9 +446,11 @@ This statement covers every finitely supported exterior
 source, not a chosen collection of periodic windows.
 
 It does not imply a group-ring identity `L T_omega=f_0`.
-Other representations, higher exterior powers, quotient
-obstructions, or the exact coefficient equations may still
-exclude such an identity. The previously proved period-four
-kernel for the omega-square correction remains a separate
-negative control. No headline conjecture is resolved by
-passing this representation test.
+The subsequent [contragredient certificate](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md)
+excludes that identity by an exact kernel in a different
+representation. Together with the period-four omega-square
+kernel and the inverse-adjoint automorphism, it excludes
+all four literal parameter/orientation choices. The
+ordinary injectivity theorem here remains a valid example
+of a necessary test that an impossible split can pass.
+No headline conjecture is resolved.

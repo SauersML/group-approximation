@@ -30,6 +30,7 @@ artifacts:
   - research/artifacts/kaplansky-exterior-kernels-reduce-to-pure-periodic-tails-2026-09-08.md
   - research/artifacts/kaplansky-two-sided-omega-square-period-four-kernel-2026-09-08.md
   - research/artifacts/kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md
+  - research/artifacts/kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-order-three-axis-corner-2026-09-08.md
   - research/artifacts/gottschalk-noncentral-norm-feedback-rigidity-and-corner-equivalence-2026-09-08.md
   - research/artifacts/kaplansky-finite-drazin-seed-2026-09-08.json
@@ -319,7 +320,9 @@ source and target changes. This is recorded in
 For z=omega, the complete exterior-square source map is now
 proved injective; see
 `omega-corrected-deletion-passes-full-boundary-exterior-test`.
-A literal group-ring split remains unproved.
+Its literal group-ring split is now impossible: an exact
+contragredient period-two kernel excludes it, as recorded in
+`omega-corrected-deletion-has-contragredient-kernel`.
 The z=omega^2 choice is excluded by an exact period-four exterior
 kernel in `two-sided-omega-square-deletion-candidate-has-no-split`.
 The highest creator layer has a symmetric-tensor kernel, so
@@ -344,10 +347,17 @@ removes the bridges and forces this tensor to be symmetric.
 The exact inside-core target projections then leave only the
 primitive 011 and 00111 cores, where explicit nonzero residual
 wedges exclude the remaining coefficients. This proves injectivity
-on every finite boundary exterior-square source. It supplies no
-element L with L T_omega=f_0. Higher exterior powers, other
-representations, and the actual group-ring split remain unresolved;
-Kaplansky's direct-finiteness conjecture is not resolved.
+on every finite boundary exterior-square source. The subsequent
+contragredient representation has a nine-wedge binary kernel on
+the actual period-two core, so no element L can satisfy
+L T_omega=f_0. The unit-group automorphism theta(q)=(q^-1)^*
+fixes f_0,P_0 and exchanges (z,epsilon) with (z^2,-epsilon).
+Together with the earlier omega-square certificate, it excludes
+all four literal corrected choices using g or g^-1 and either
+field parameter. Ordinary exterior-square injectivity remains
+valid and demonstrates the limitation of that necessary test.
+Arbitrary simultaneous coefficients and other actors remain
+unresolved; Kaplansky's direct-finiteness conjecture is not resolved.
 
 The quadratic bridge also extends to order-three feedback preserving
 the invariant triple subspace, with an exact criterion in eF_2[G]e.

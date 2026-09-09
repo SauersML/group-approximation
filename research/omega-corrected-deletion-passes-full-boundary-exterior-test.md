@@ -27,8 +27,11 @@ symmetric. Full target projections then leave only the primitive
 nonzero. Thus the normalized full source is zero, and the
 invertible normalization transfers injectivity to T_omega.
 
-This is a necessary representation test for a proposed
-group-ring split. It does not provide an element L with
-L T_omega=f_0, does not establish the corresponding result
-in higher exterior powers or other representations, and does
-not resolve Kaplansky's direct-finiteness conjecture.
+This necessary representation test is now an exact positive
+control for an impossible split: the different contragredient
+representation has a finite period-two source kernel, proved in
+`omega-corrected-deletion-has-contragredient-kernel`. Consequently
+no L satisfies L T_omega=f_0. The ordinary exterior-square
+injectivity above remains valid and does not establish the
+corresponding assertion in other representations. Kaplansky's
+direct-finiteness conjecture remains unresolved.

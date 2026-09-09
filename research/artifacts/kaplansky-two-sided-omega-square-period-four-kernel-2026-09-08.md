@@ -5,6 +5,11 @@ This excludes one concrete simultaneous chart correction. It
 does not settle Kaplansky's direct-finiteness conjecture or
 exclude the remaining omega correction.
 
+Subsequent status: the [contragredient period-two certificate](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md)
+excludes the omega correction too. The inverse-adjoint
+automorphism and the two certificates exclude all four
+literal parameter/orientation choices.
+
 Use the operators and source parametrization from
 [the simultaneous-candidate artifact](kaplansky-two-sided-scalar-conjugate-natural-injections-2026-09-08.md)
 and the support reduction from
@@ -221,9 +226,10 @@ same witness on the union with the `(011)^infinity` and
 proof is the explicit algebra above and does not depend on
 the finite rank computation.
 
-The `z=omega` candidate remains unresolved. Its passing
-finite windows establish no global injectivity statement.
+The `z=omega` candidate subsequently received a complete
+ordinary exterior-square injectivity proof and was then
+excluded by the [contragredient certificate](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md).
 The earlier natural injectivity of both `H_z` remains valid;
-this certificate shows concretely why natural injectivity
-does not imply injectivity of the full projected exterior
-map. No Kaplansky conjecture resolution is claimed.
+this certificate shows why natural injectivity does not
+imply injectivity of the full projected exterior map.
+No Kaplansky conjecture resolution is claimed.

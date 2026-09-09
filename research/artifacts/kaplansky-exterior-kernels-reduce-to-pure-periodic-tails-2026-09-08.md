@@ -10,7 +10,10 @@ now excludes the actual z=omega^2 candidate. The subsequent
 [endpoint and full-target proof](kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md)
 establishes complete exterior-square injectivity for z=omega.
 The reduction proved below remains valid for both parameters.
-The literal group-ring split for z=omega remains unresolved.
+The [contragredient period-two certificate](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md)
+now excludes the literal group-ring split for z=omega in a
+different representation. The ordinary support and
+injectivity statements remain valid.
 
 Use the two simultaneous candidates and the proved natural
 injectivity from
@@ -700,5 +703,7 @@ on mixed periodic cores and is subject to (7)--(9) and the
 stable endpoint restriction. The subsequent
 [complete exterior-square proof](kaplansky-omega-corrected-deletion-full-exterior-injectivity-2026-09-08.md)
 uses these restrictions to solve the inside-core target equations
-and proves that the source is zero. The literal group-ring
-splitting problem remains open.
+and proves that the source is zero. The later
+[contragredient certificate](kaplansky-contragredient-period-two-kernel-excludes-omega-split-2026-09-08.md)
+excludes the literal group-ring split while preserving
+that ordinary exterior-square injectivity theorem.

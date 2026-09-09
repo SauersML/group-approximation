@@ -42,5 +42,7 @@ core. There the target is c wedge d, which is nonzero.
 Reconstruction therefore gives a zero full source.
 
 The conclusion is complete injectivity in this exterior-square
-boundary representation. The literal group-ring coefficient
-equations for a split remain a separate problem.
+boundary representation. A subsequent different representation
+excludes the literal group-ring split, as recorded in
+`omega-corrected-deletion-has-contragredient-kernel`. This route's
+ordinary injectivity theorem remains valid.

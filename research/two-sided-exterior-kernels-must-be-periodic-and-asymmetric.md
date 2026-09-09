@@ -39,3 +39,9 @@ exact outside equations, with both factors restricted to the
 stable endpoint subspace of its cycle operator. The subsequent
 proof imposes the inside-core target coefficients and eliminates
 the entire remaining source.
+
+A subsequent contragredient period-two kernel excludes the
+literal omega group-ring split in a different representation;
+see `omega-corrected-deletion-has-contragredient-kernel`.
+The ordinary support and injectivity statements here remain
+valid.

@@ -28,7 +28,9 @@ that excluded all right corrections with the left projector fixed.
 The auxiliary H_z is not asserted to be a unit. The complete
 exterior-square map for z=omega is now proved injective in
 `omega-corrected-deletion-passes-full-boundary-exterior-test`;
-its group-ring splitting question remains unresolved.
+its group-ring split is now excluded by an exact contragredient
+period-two kernel in
+`omega-corrected-deletion-has-contragredient-kernel`.
 The z=omega^2 candidate is excluded by an exact
 period-four exterior kernel, recorded in
 `two-sided-omega-square-deletion-candidate-has-no-split`.
@@ -46,4 +48,6 @@ injectivity when both source tensors are flip-symmetric; see
 The period-four witness for z=omega^2 lies in this remaining
 asymmetric class. The subsequent endpoint and full-target proof
 excludes every such source for z=omega. This representation
-result does not establish a group-ring split or resolve Kaplansky.
+result remains valid despite the contragredient obstruction.
+Neither literal simultaneous choice gives a group-ring split;
+Kaplansky's conjecture remains unresolved.

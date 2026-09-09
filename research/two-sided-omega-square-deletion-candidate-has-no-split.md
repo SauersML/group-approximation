@@ -29,5 +29,9 @@ injectivity does not suffice for the full exterior test.
 The other simultaneous choice z=omega now passes the full
 boundary exterior-square test, as recorded in
 `omega-corrected-deletion-passes-full-boundary-exterior-test`.
-Its group-ring split and Kaplansky's direct-finiteness conjecture
-remain open.
+Its group-ring split is nevertheless excluded by the distinct
+contragredient representation, as recorded in
+`omega-corrected-deletion-has-contragredient-kernel`. Together
+with the inverse-adjoint automorphism, these two certificates
+exclude all four literal parameter/orientation choices.
+Kaplansky's direct-finiteness conjecture remains open.
