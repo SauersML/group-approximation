@@ -62,3 +62,31 @@ corona data does not supply it, with every fixed test eventually exact and
 the invariance failing at distance `2` at every coordinate.  So the
 statement above still consumes property (T), and this is a recorded dead
 route to removing it rather than a second proof.
+
+**A THIRD derivation arrived, again at a worse-or-equal rank
+(2026-09-08).**  The same dossier lane returned with a rank-four proof,
+presented as improving its own rank-six one.  It lands exactly here: same
+hypotheses, same conclusion `E_n(R,ReR) <= Rad_MF(EL_n(R))` for `n >= 4`,
+same positive-characteristic corollary.  Its compressor is genuinely
+different and is the reason it reaches four in one step -- the ring's own
+matrix units `f_(ij) = s^i e t^j` let ONE auxiliary coordinate hold every
+finite witness, leaving three for the Kazhdan subgroup, with
+`u = U diag(1,1,1,r)`, `U` carrying `s,s,s,t^3` and last column
+`e, et, et^2`, inverted by `e + set + s^2et^2 = 1 - s^3t^3`, central
+witness `z = I + set^2 E_44`, and extraction
+`[z, x_41(s^2e)] = x_41(se)`, `[x_24(t), x_41(se)] = x_21(e)`.  Those
+identities were rechecked here in the normal form `s^i t^j`.  Nothing in
+the statement is gained, so no route is wired from it; the compressor is
+recorded in
+`research/artifacts/jacobson-unit-group-and-rank-four-recheck-2026-09-08.md`
+in case a later lane needs a rank-four configuration with only one
+auxiliary coordinate.
+
+The same note's unit-group half was **already weaker than this archive**:
+its "full torsion defect implies `R^x` non-MF" is
+`properly-infinite-unit-group-is-not-mf` without any torsion or
+characteristic hypothesis, and its "properly infinite corner in positive
+characteristic" is `properly-infinite-corner-forces-non-mf-from-rank-two`
+without the characteristic hypothesis and at rank two.  Its one new
+result is `jacobson-unit-group-is-locally-finite-and-mf`, which shows the
+rank-one statement is false and so bounds this line from below.
