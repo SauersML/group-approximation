@@ -28,6 +28,7 @@ artifacts:
   - research/artifacts/boone-higman-wreath-projection-audit-2026-09-08.md
   - research/artifacts/boone-higman-boundary-wreath-germ-construction-2026-09-08.md
   - research/artifacts/boone-higman-finite-state-and-shell-germ-limits-2026-09-08.md
+  - research/artifacts/boone-higman-shell-normal-core-criterion-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -82,6 +83,16 @@ Its universal faithful finite-germ realization is proved; its OPEN
 clause is `decidable-inputs-have-fp-shell-stabilizers`, finite
 presentation of three explicitly specified one- and two-point
 singularity stabilizers for a suitable enumeration of the input.
+
+`virtually-cyclic-inputs-have-fp-shell-stabilizers` closes these clauses
+for virtually cyclic inputs. The normal-core criterion used there is
+unavailable for every other input, as the prefix-core classification
+proves. For arbitrary inputs the germ group instead has the exact
+index-two fiber-product description in
+`shell-germ-group-has-index-two-fiber-product`. Finite presentation
+of that fiber product is necessary for the open shell clauses; neither
+the universal presentation nor a lift back to all three stabilizers
+has been supplied.
 
 ## What a certificate must contain
 
