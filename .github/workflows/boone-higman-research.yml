@@ -54,6 +54,12 @@ on:
       - 'research/shell-independent-*.md'
       - 'research/three-shell-*.md'
       - 'research/cantor-punctured-*.md'
+      - 'research/decidable-fp-groups-embed-in-perfect-decidable-fp-groups.md'
+      - 'research/mitosis-and-virtually-free-*.md'
+      - 'research/perfect-input-shell-*.md'
+      - 'research/shell-perfect-input-*.md'
+      - 'research/perfect-decidable-inputs-*.md'
+      - 'research/general-shell-*.md'
       - 'research/virtually-cyclic-inputs-have-fp-shell-stabilizers.md'
       - 'research/decidable-inputs-have-fp-shell-stabilizers.md'
       - 'research/decidable-inputs-have-fp-shell-envelopes.md'
@@ -173,6 +179,10 @@ jobs:
           bin/cairn why shell-finite-point-stabilizers-are-finitely-generated --json > bh-shell-point-stabilizers.json
           bin/cairn why decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-envelope.json
           bin/cairn why boone-higman-via-fp-shell-envelopes --json > bh-shell-open-envelope-route.json
+          bin/cairn why decidable-fp-groups-embed-in-perfect-decidable-fp-groups --json > bh-shell-perfect-wrapper.json
+          bin/cairn why perfect-input-shell-envelopes-are-simple --json > bh-shell-perfect-simplicity.json
+          bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json
+          bin/cairn why boone-higman-via-perfect-shell-envelopes --json > bh-shell-open-perfect-route.json
           bin/cairn why decidable-inputs-have-fp-shell-stabilizers --json > bh-shell-open-stabilizers.json
           bin/cairn why boone-higman-via-shell-germ-stabilizers --json > bh-shell-open-route.json
       - name: Retain structural validation and exact finite witness

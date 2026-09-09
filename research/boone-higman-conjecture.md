@@ -30,6 +30,7 @@ artifacts:
   - research/artifacts/boone-higman-finite-state-and-shell-germ-limits-2026-09-08.md
   - research/artifacts/boone-higman-shell-normal-core-criterion-2026-09-08.md
   - research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md
+  - research/artifacts/boone-higman-perfect-shell-route-2026-09-08.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a
@@ -110,6 +111,14 @@ holds for every enumeration of every finitely generated input, by
 `shell-finite-point-stabilizers-are-finitely-generated`. The three
 stronger stabilizer presentation clauses remain sufficient, but the
 new route does not assume them or finite presentation of the germ group.
+
+There is also the direct route `boone-higman-via-perfect-shell-envelopes`.
+An explicit HNN and amalgam construction embeds every finitely
+presented decidable input in an infinite perfect one while preserving
+decidable word problem. Its shell envelope is simple for every
+enumeration. The remaining OPEN task is finite presentation of that
+envelope for a suitable enumeration; this route needs no additional
+twisted Brin--Thompson construction.
 
 *Proof.*  It suffices to close any one of the live routes.  The shortest
 is `boone-higman-via-ck-maximal-kernel`: by
