@@ -146,4 +146,9 @@ route, and `boone-higman-conjecture`. Existing source-syntax checks
 and finite controls also passed. This validates dependency wiring
 and finite controls, not the infinite-group proofs. The necessary
 presentation test above is additional proof text in this artifact;
-it has not been promoted to a separately checked theorem.
+at that run it had not been promoted to a separately checked theorem.
+The subsequent
+`research/artifacts/boone-higman-shell-normal-core-criterion-2026-09-08.md`
+records that promotion, its remote structural validation, and the exact
+fiber-product and ascending HNN descriptions of the germ presentation
+problem. The universal shell-stabilizer claim remains open.

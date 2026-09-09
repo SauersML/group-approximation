@@ -105,7 +105,22 @@ germ presentations to the three global shell stabilizers unresolved.
 ## Verification boundary
 
 These are written mathematical proofs recorded in Cairn, not Lean
-formalizations. The existing remote workflow will check their dependency
-wiring and retain their status exports. That structural check cannot
-certify the infinite-group arguments. No GPU ran and no Civo resource was
-created for this work. The Boone--Higman conjecture remains open here.
+formalizations. Structural checks cannot certify the infinite-group
+arguments. No GPU ran and no Civo resource was created for this work.
+The Boone--Higman conjecture remains open here.
+
+The normal-core and fiber-product proofs were committed as `ae97ca291`.
+[Research run 34294270410](https://github.com/SauersML/group-approximation/actions/runs/34294270410)
+passed at main integration `2cc79e7803c524c108f016828d1c68de3bcdea90`.
+Its downloaded evidence is in `.cairn/bh-shell-normal-core-check-20260908/`.
+
+The primary-source ascending HNN refinement was committed as `bd79c944b`.
+[Research run 34294564087](https://github.com/SauersML/group-approximation/actions/runs/34294564087)
+passed at main integration `c46dcf296ddbb500db689ab70b5e9a7236d25cb3`.
+Its downloaded evidence is in `.cairn/bh-shell-ascending-check-20260908/`.
+The inspected `node_status` fields are ESTABLISHED for all five new
+claims: the necessary germ presentation, prefix-core classification,
+virtually cyclic positive control, parity fiber product, and ascending
+HNN criterion. The fields remain OPEN for the universal shell-stabilizer
+claim, its route, and the Boone--Higman root. Source syntax and the existing
+exact finite controls also passed. No new Lean proof was run or claimed.
