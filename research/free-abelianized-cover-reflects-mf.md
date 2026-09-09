@@ -128,6 +128,20 @@ input.  That is `torsion-free-countable-non-mf-from-abelianized-cover`.
   No reduction preserving MF from an arbitrary cover to this presentation
   is asserted here; this construction leaves the dummy-generator case
   untouched.
+- **The linear relator certificate does not descend, and its vector form is
+  false (2026-09-08).**  `full-mf-radical-linear-relator-inequality` gives, for
+  a strong base, a dimension-free `max_i ||U_i - I|| <= C max_j ||r_j(U) - I||`.
+  It does not transfer to the cover: in `E = F/[R,R]` the elements represented
+  by the `r_j` lie in the free abelian kernel and are **not** set to the
+  identity, so a matrix model of `E` must make commutators between their
+  conjugates small but need not make `r_j(U) - I` small.  Applying the
+  inequality to a prospective separating model of `E` therefore only forces
+  some kernel relator to stay quantitatively visible, which is compatible with
+  injectivity of the cover's corona representation.  The natural repair — find
+  a common fixed vector for the relators and compress — is refuted outright by
+  `linear-norm-certificate-has-no-vector-form`: such a vector always exists,
+  for every finite relator set and every nontrivial word, and the compressions
+  are not unitary.
 - **Deferred:** no attempt at a proof or a counterexample is made here.  A
   counterexample would be as informative as a proof: it would be the first
   quotient-nonclosure witness with abelian kernel.
