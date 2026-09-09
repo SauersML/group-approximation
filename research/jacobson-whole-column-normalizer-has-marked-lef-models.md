@@ -35,8 +35,12 @@ This is a proper cover of the literal column normalizer. If
 `u=x_12(1), v=x_21(1)` in the constant actor, then
 `r=[u,eta v eta]` has infinite order in the abstract free product,
 while its literal image is the nonidentity involution `x_12(SQ)`.
-Thus the models omit the specific actor relation `r^2=1`, as well
-as the full three-row packet. They do not refute the coherent matrix gap.
+Thus faithful models of this cover omit the specific actor relation
+`r^2=1`, as well as the full three-row packet. A subsequent result,
+`jacobson-column-first-actor-quotient-retains-full-column`, shows that
+the affine windows without the independent actor separators can satisfy
+`r^2=1` in every size while retaining the whole column. Neither result
+refutes the coherent matrix gap.
 
 DERIVATION
 jacobson-finite-linear-extension-models-proof

@@ -75,7 +75,15 @@ almost-invariant-vector transport estimate qualifies for this route.
   whole column covariance, so that covariance alone cannot close the
   gap. Its abstract actors omit the explicit literal relation
   `[u,h v h]^2=1` and the full three-row packet; imposing the missing
-  actor relations remains essential.
+  actor relations remains essential. The subsequent
+  [quotient column models](jacobson-column-first-actor-quotient-retains-full-column.md)
+  satisfy this first actor relation exactly in every size and retain
+  all nonzero translations in the corona. Therefore this one relation
+  alone does not close the gap. A second explicit literal actor
+  relation has error exactly `2` in every window of size at least five,
+  so this family still does not model the literal normalizer. Faithful
+  models of the full actor quotient or the coherent group have not
+  been established.
 - The [exact-base centralizer example](jacobson-corona-centralizer-does-not-lift-to-base-commutants.md)
   has all coherent base relations and finite intertwining exact, and
   stable-letter error tending to zero. Its stable letters still lie at
