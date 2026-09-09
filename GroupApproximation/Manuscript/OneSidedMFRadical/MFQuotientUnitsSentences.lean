@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsAGPProof
+import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKOneMorita
 
 /-!
 # `thm:mf-quotient-units`, sentence by sentence
@@ -27,10 +28,13 @@ abstract reading follows from the canonical one and is
 
 One printed sentence is not separately carried, and is named as such below.
 
-The `n ≥ 2` reduction is the printed one but shorter: the printed sentence also
-invokes Morita invariance to identify `K_1(M_n R)` with `K_1(R)`, and the
-formalized statement does not name that group, so the Morita half has no
-carrier and needs none.
+The `n ≥ 2` reduction is now the printed one in full, Morita clause included:
+`KOne/MoritaKOne.lean` proves `K_1(M_n(R)) ≅ K_1(R)` for an arbitrary unital
+ring, so `manuscriptSentence_matrixRingAgainPurelyInfinite` carries all three
+clauses of the printed sentence rather than two.  An earlier version of this
+docstring said the Morita half needed no carrier, on the ground that the
+formalized conclusion never names `K_1(M_n R)`.  That was true of the
+conclusion and false of the sentence, which is what this module is for.
 -/
 
 namespace GroupApproximation
@@ -49,17 +53,29 @@ noncomputable section
 > \[AGP, Corollary 1.7\], and `K_1(M_n(R)) ≅ K_1(R)` by Morita invariance, so
 > it suffices to treat `n = 1`.
 
-Carried unconditionally: `agpMatrixReduction` proves the citation.  The Morita
-clause has no carrier: the formalized conclusion states the quotient as an
-unnamed countable abelian MF group, so nothing has to identify `K_1(M_n R)`
-with `K_1(R)`, and the reduction goes through the unit group of `M_n(R)`, which
-*is* `GL_n(R)`. -/
+All three clauses, carried unconditionally.  `agpMatrixReduction` proves the
+Ara--Goodearl--Pardo citation, countability of a matrix ring over a countable
+ring is automatic, and `MFQuotientUnitsKOne.moritaKOne` proves the Morita
+isomorphism `K_1(M_n(R)) ≅ K_1(R)` for an arbitrary unital ring and every
+`n ≥ 1`.
+
+The Morita clause was uncarried until `KOne/MoritaKOne.lean` landed, and the
+docstring here said so.  It is worth recording why nothing downstream had to
+wait for it: `MFQuotientCanonicalKOne.manuscriptMFQuotientUnitsKOneAtBaseRing`
+reaches the printed conclusion at `K_1(R)` by a different route, comparing
+`GL_n(R)` with `K_1(R)` through the rank-`n` map `matrixKappa` rather than
+through `K_1(M_n(R))`.  What was missing was the printed *sentence*, not the
+printed *theorem*.  `MFQuotientUnitsKOne.moritaKOneEquiv_matrixKappa` shows the
+two routes agree. -/
 theorem manuscriptSentence_matrixRingAgainPurelyInfinite
     (R : Type) [Ring R] [Countable R]
     (hR : IsPurelyInfiniteSimpleRing R) (n : ℕ) (hn : 1 ≤ n) :
     Countable (Matrix (Fin n) (Fin n) R) ∧
-      IsPurelyInfiniteSimpleRing (Matrix (Fin n) (Fin n) R) := by
-  refine ⟨?_, agpMatrixReduction R hR n hn⟩
+      IsPurelyInfiniteSimpleRing (Matrix (Fin n) (Fin n) R) ∧
+      Nonempty (AlgebraicK.AlgebraicKOne (Matrix (Fin n) (Fin n) R)
+        ≃* AlgebraicK.AlgebraicKOne R) := by
+  refine ⟨?_, agpMatrixReduction R hR n hn,
+    MFQuotientUnitsKOne.moritaKOne R n hn⟩
   show Countable (Fin n → Fin n → R)
   infer_instance
 
