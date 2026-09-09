@@ -67,6 +67,22 @@ additional near relations. The older ascending-HNN obstruction was a
 necessary condition for A_1 to be finitely presented; the new argument
 restricts finite presentation of E directly.
 
+## The arithmetic benchmark avoids this obstruction
+
+If lambda(m*k+r)=a_r*k+b_r with positive a_r, then
+lambda*s^m*lambda^-1 translates each image progression by a_r.
+It therefore commutes near infinity with s^A, where A is the least
+common multiple of all a_r. This is an additional mixed near relation
+which is nontrivial in the abstract free product when lambda comes
+from a nonidentity input element.
+
+For the bijective-base A5*A5 action the source modulus is 118, the
+coefficients are 6962, 118, and 2, and A=6962. Thus every nonidentity
+factor element a satisfies [lambda_a*s^118*lambda_a^-1,s^6962]=1.
+The earlier arithmetic candidate passes this necessary test. Its
+finite-presentation question stays open; the displayed relation
+does not purport to present the near group or the Cantor envelope.
+
 These are written proofs, with finite-certificate algorithms described
 mathematically. Cairn structural checks do not replace verification of
 the arguments. No new local code, build, GPU job, or Civo resource was

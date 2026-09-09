@@ -41,6 +41,8 @@ on:
       - 'research/rational-shell-*.md'
       - 'research/rational-regular-shell-*.md'
       - 'research/arithmetic-shell-*.md'
+      - 'research/arithmetic-near-shift-*.md'
+      - 'research/arithmetic-shift-conjugacy-*.md'
       - 'research/shell-affine-germ-*.md'
       - 'research/shell-envelope-and-one-singularity-*.md'
       - 'research/shell-localized-centralizer-*.md'
@@ -203,6 +205,7 @@ jobs:
           bin/cairn why free-shift-shell-relations-are-finitely-certified --json > bh-shell-generic-finite-certificates.json
           bin/cairn why free-shift-shell-envelopes-are-not-finitely-presented --json > bh-shell-generic-presentation-obstruction.json
           bin/cairn why decidable-inputs-have-computable-non-fp-shell-envelopes --json > bh-shell-computable-presentation-failure.json
+          bin/cairn why arithmetic-near-shift-actions-have-mixed-relations --json > bh-shell-arithmetic-mixed-relation.json
           bin/cairn why a5-free-product-has-simple-arithmetic-shell-envelope --json > bh-shell-a5-arithmetic-action.json
           bin/cairn why a5-arithmetic-shell-envelope-is-finitely-presented --json > bh-shell-open-a5-presentation.json
           bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json
