@@ -27,7 +27,10 @@ property of `H_1`, or models of all literal Jacobson relations. In fact
 the artifact exhibits a second fixed actor relation that is literally
 trivial but has permutation-unitary error exactly `2` in these windows
 for every `n>=5`. Thus `H_1` remains a proper cover and this particular
-corona map does not descend to the literal column normalizer.
+corona map does not descend to the literal column normalizer. Different
+even-cycle models do descend, as established subsequently in
+`jacobson-literal-column-normalizer-is-lef`; the failure just described
+concerns the specific windows of this artifact.
 
 DERIVATION
 jacobson-column-boundary-table-kills-first-actor-relator-proof

@@ -81,9 +81,14 @@ almost-invariant-vector transport estimate qualifies for this route.
   all nonzero translations in the corona. Therefore this one relation
   alone does not close the gap. A second explicit literal actor
   relation has error exactly `2` in every window of size at least five,
-  so this family still does not model the literal normalizer. Faithful
-  models of the full actor quotient or the coherent group have not
-  been established.
+  so that family does not model the literal normalizer. The subsequent
+  [even-cycle construction](jacobson-literal-column-normalizer-is-lef.md)
+  handles every actual two-row actor relation and proves that the literal
+  whole-column normalizer is LEF and MF, with a nontrivial perfect locally
+  finite exact finite-dimensional residual. It therefore rules out
+  marked collapse from that entire subgroup. The additional third-row
+  relations remain necessary for this route; the coherent group's gap
+  is still open.
 - The [exact-base centralizer example](jacobson-corona-centralizer-does-not-lift-to-base-commutants.md)
   has all coherent base relations and finite intertwining exact, and
   stable-letter error tending to zero. Its stable letters still lie at
