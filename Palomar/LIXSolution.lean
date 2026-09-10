@@ -43,12 +43,14 @@ in the unitary group.
 
 `K₁(A)` is the direct limit of the groups `U(Mₙ(A))/U₀(Mₙ(A))` along the
 stabilisation maps `u ↦ diag (u, 1)`, so the class of a unitary `u ∈ U(A)`
-vanishes in `K₁(A)` exactly when `diag (u, 1, …, 1) ∈ U₀(Mₙ(A))` for some `n`,
-and a group homomorphism is injective exactly when its kernel is trivial.  The
-definition records precisely that: every unitary of `A` whose stabilisation is
-connected to `1` in some matrix algebra over `A` is already connected to `1`
-in `U(A)`.  The stabilised unitary is described by its underlying matrix, so
-that no unitarity proof has to be packaged inside the statement.
+vanishes in `K₁(A)` exactly when `diag (u, 1, …, 1) ∈ U₀(Mₙ(A))` for some
+`n ≥ 1`, and a group homomorphism is injective exactly when its kernel is
+trivial.  The definition records precisely that: every unitary of `A` whose
+stabilisation is connected to `1` in some matrix algebra over `A` is already
+connected to `1` in `U(A)`.  `U₀` is written as `pathComponent 1`, the path
+component of `1` in the unitary group with its norm topology; the stabilised
+unitary is described by its underlying matrix, so that no unitarity proof has
+to be packaged inside the statement.
 
 Mathlib's C⋆-structure on `Mₙ(A)`, `CStarMatrix.instCStarAlgebra`, asks for a
 partial order on `A` making it a `StarOrderedRing`.  A unital C⋆-algebra has
@@ -58,10 +60,10 @@ def IsK1Injective (A : Type) [CStarAlgebra A] : Prop :=
   letI : PartialOrder A := CStarAlgebra.spectralOrder A
   letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
   ∀ u : unitary A,
-    (∃ n : ℕ,
-      ∃ w ∈ Subgroup.pathComponentOne (unitary (CStarMatrix (Fin (n + 1)) (Fin (n + 1)) A)),
-        (w : CStarMatrix (Fin (n + 1)) (Fin (n + 1)) A) = cornerDiag A (n + 1) (u : A)) →
-    u ∈ Subgroup.pathComponentOne (unitary A)
+    (∃ n : ℕ, 0 < n ∧
+      ∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin n) (Fin n) A)),
+        (w : CStarMatrix (Fin n) (Fin n) A) = cornerDiag A n (u : A)) →
+    u ∈ pathComponent (1 : unitary A)
 
 -- END SHARED BLOCK
 
@@ -73,43 +75,45 @@ as a matrix, is the underlying matrix of an element of `U₀(M₂(A))`. -/
 theorem lixLimit_stage_two_witness :
     letI : PartialOrder LIX.LIXLimit := CStarAlgebra.spectralOrder LIX.LIXLimit
     letI : StarOrderedRing LIX.LIXLimit := CStarAlgebra.spectralOrderedRing LIX.LIXLimit
-    ∃ u : unitary LIX.LIXLimit, u ∉ Subgroup.pathComponentOne (unitary LIX.LIXLimit) ∧
-      ∃ w ∈ Subgroup.pathComponentOne (unitary (CStarMatrix (Fin 2) (Fin 2) LIX.LIXLimit)),
+    ∃ u : unitary LIX.LIXLimit, u ∉ pathComponent (1 : unitary LIX.LIXLimit) ∧
+      ∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) LIX.LIXLimit)),
         (w : CStarMatrix (Fin 2) (Fin 2) LIX.LIXLimit)
           = cornerDiag LIX.LIXLimit 2 (u : LIX.LIXLimit) := by
   letI : PartialOrder LIX.LIXLimit := CStarAlgebra.spectralOrder LIX.LIXLimit
   letI : StarOrderedRing LIX.LIXLimit := CStarAlgebra.spectralOrderedRing LIX.LIXLimit
   obtain ⟨u, hu, hdiag⟩ := LIX.lixLimit_hasK1InjWitness_of CharClass.lemmaTwoHolds
-  refine ⟨u, hu, diagOne u, hdiag, ?_⟩
+  -- `unitaryComponentOne B` is `Subgroup.pathComponentOne (unitary B)`, whose carrier is
+  -- `pathComponent 1`; both memberships below are that carrier's, by unfolding.
+  refine ⟨u, fun h => hu h, diagOne u, hdiag, ?_⟩
   ext i j
   rw [coe_diagOne_apply]
   fin_cases i <;> fin_cases j <;> simp [cornerDiag]
 
 /-- A unitary that is not connected to `1` in `U(A)` but whose `diag (u, 1)`
-is connected to `1` in `U(M₂(A))` refutes `K₁`-injectivity, with `n = 1`. -/
+is connected to `1` in `U(M₂(A))` refutes `K₁`-injectivity, with `n = 2`. -/
 theorem not_isK1Injective_of_stage_two_witness (A : Type) [CStarAlgebra A]
     (h : letI : PartialOrder A := CStarAlgebra.spectralOrder A
          letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
-         ∃ u : unitary A, u ∉ Subgroup.pathComponentOne (unitary A) ∧
-           ∃ w ∈ Subgroup.pathComponentOne (unitary (CStarMatrix (Fin 2) (Fin 2) A)),
+         ∃ u : unitary A, u ∉ pathComponent (1 : unitary A) ∧
+           ∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
              (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (u : A)) :
     ¬ IsK1Injective A := by
   intro hinj
   obtain ⟨u, hu, w, hw, heq⟩ := h
-  exact hu (hinj u ⟨1, w, hw, heq⟩)
+  exact hu (hinj u ⟨2, by norm_num, w, hw, heq⟩)
 
 /-- **The sharp form**: a separable simple unital C⋆-algebra `A` carrying a
 unitary `u` that is not connected to `1` in `U(A)`, although `diag (u, 1)` is
 connected to `1` in `U(M₂(A))`.  The class of `u` therefore vanishes already at
-the first stabilisation step, which refutes `K₁`-injectivity of `A` with `n = 1`
+the first stabilisation step, which refutes `K₁`-injectivity of `A` with `n = 2`
 in `IsK1Injective`. -/
 theorem exists_separable_simple_stage_two_witness :
     ∃ (A : Type) (_ : CStarAlgebra A),
       TopologicalSpace.SeparableSpace A ∧ IsSimpleRing A ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
-       ∃ u : unitary A, u ∉ Subgroup.pathComponentOne (unitary A) ∧
-         ∃ w ∈ Subgroup.pathComponentOne (unitary (CStarMatrix (Fin 2) (Fin 2) A)),
+       ∃ u : unitary A, u ∉ pathComponent (1 : unitary A) ∧
+         ∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
            (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (u : A)) :=
   ⟨LIX.LIXLimit, inferInstance, LIX.lixLimit_separableSpace,
     (isSimpleCStar_iff_isSimpleRing LIX.LIXLimit).mp LIX.lixLimit_isSimpleCStar,

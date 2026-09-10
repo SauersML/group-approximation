@@ -150,6 +150,7 @@ jobs:
       - name: Palomar axiom closure (non-MF)
         id: axioms-nonmf
         continue-on-error: true
+        if: always()
         run: lake env lean scripts/PalomarAxioms.lean
 
       - name: Palomar axiom closure (LIX)
