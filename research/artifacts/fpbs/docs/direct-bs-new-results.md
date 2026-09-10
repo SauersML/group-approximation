@@ -1,8 +1,8 @@
-# Direct Benjamini--Schramm: checking the new isoperimetric inputs
+# Direct Benjamini--Schramm: checking isoperimetry and two-cluster inputs
 
 September 10, 2026. The target is p_c(G)<p_u(G) for every prescribed
-nonamenable locally finite Cayley graph. The deductions below check two
-proposed uses of recent literature. They do not prove that target and
+nonamenable locally finite Cayley graph. The deductions below check several
+proposed uses of the literature. They do not prove that target and
 are not claims of novelty, referee review, or formal verification.
 
 ## 1. What the September theorem supplies
@@ -132,12 +132,105 @@ This left-limit argument gives no interval of hyperfiniteness or
 nonuniqueness to the right of p_c. The sparse-separator deductions in
 [sparse base surgery](sparse-base-surgery.md) likewise do not supply it.
 
-## 5. Effect on the direct proof search
+## 5. The finite-cluster restriction in the two-ghost inequality
+
+Easo--Hutchcroft, *The critical percolation probability is local*,
+[arXiv:2310.10983v1, Theorem 2.5](https://arxiv.org/pdf/2310.10983),
+recall the following bound on a unimodular transitive graph of degree d.
+For an edge e and n>=1, let S_(e,n) mean that its endpoints belong to
+distinct clusters of size at least n, **at least one of them finite**.
+The edge is necessarily closed. For p in (0,1],
+
+    P_p(S_(e,n)) <= C_d sqrt((1-p)/(p n)).                (5)
+
+Their Lemma 2.6 extends a related estimate to two specified vertices
+under p<p_c, when all clusters are finite. Neither statement bounds the
+probability that two infinite clusters are distinct in the supercritical
+regime. Dropping the finite-cluster restriction from (5) is false.
+
+Here is the precise distinction. Let A_(e,n) require distinct global
+clusters of size at least n with no finiteness restriction, and let D_e
+require distinct infinite clusters. Then, disjointly,
+
+    A_(e,n) = S_(e,n) union D_e.                         (6)
+
+Thus (5) controls the error in approximating P_p(D_e) by P_p(A_(e,n));
+it supplies no positive lower bound on either quantity. A_(e,n) still
+tests connectivity in the entire graph, despite its finite size cutoff.
+
+This is also visible in an exact finite-volume limit. Fix an increasing
+finite vertex exhaustion V_R containing the endpoints of e. Let A_(R,n)
+mean that the endpoints lie in distinct clusters of size at least n in
+the induced open graph on V_R, with free boundary. For each fixed n,
+
+    lim_(R->infinity) 1_(A_(R,n)) = 1_(A_(e,n)).          (7)
+
+**Proof.** If the global clusters coincide, a finite open path joins the
+endpoints and lies in V_R for all sufficiently large R. If they differ,
+they remain distinct in every V_R. Each cluster with at least n vertices
+contains a finite connected witness of n vertices, eventually contained
+in V_R; a smaller global cluster cannot acquire n vertices in V_R. These
+cases prove eventual equality in (7). QED.
+
+Bounded convergence, followed by continuity from above in n, gives
+
+    lim_(n->infinity) lim_(R->infinity) P_p(A_(R,n))
+      = P_p(D_e),
+    lim_(R->infinity) lim_(n->infinity) P_p(A_(R,n)) = 0.  (8)
+
+The second equality holds because V_R is finite. Consequently, applying
+(5) to every finite induced ball with a constant depending only on the
+ambient degree would wrongly force P_p(D_e)=0. Such balls need not be
+transitive, and the theorem does not authorize that application.
+
+For an explicit check, on the d-regular tree with d>=3 and
+p in (1/(d-1),1), delete e and let a be the probability that its endpoint
+has an infinite cluster in its remaining rooted half-tree. A branching
+process gives a>0. The two half-tree configurations and the state of e
+are independent, so
+
+    P_p(D_e)=(1-p)*a^2>0.                                (9)
+
+Thus the two limits in (8) really differ within the class in our goal.
+The issue is not resolved by observing that every finite-volume cluster
+is finite: the required estimate must survive the volume limit, where
+two distinct infinite clusters can remain.
+
+## 6. Small intrinsic growth does not settle uniqueness
+
+Hutchcroft, *Slightly supercritical percolation on nonamenable graphs II*,
+[arXiv:2207.00701v2, Section 2](https://arxiv.org/html/2207.00701v2#S2),
+proves the universal upper bound, for p>=p_c,
+
+    gamma_int(p) <= (p-p_c)/p_c,
+
+where gamma_int is the exponential rate of the expected size of an
+intrinsic ball, measured using open-path distance. Theorem 1.5 identifies
+this with the almost-sure intrinsic growth rate on infinite clusters.
+These statements do not require the L2 condition. In contrast, the
+two-sided near-critical growth and quantitative anchored-isoperimetry
+theorems in that paper assume p_c<p_(2->2). That assumption is an OPEN
+premise in this Cairn graph and cannot be imported as a universal fact.
+
+Uniqueness and FKG would give a positive lower bound theta(p)^2 on
+P_p(o connected to x), hence exponential growth of the expected cluster
+mass inside *ambient* balls. This is compatible with a small intrinsic
+growth rate: a connecting open path can be much longer than the ambient
+distance. No uniform comparison of those distances is supplied by the
+growth theorem. The existing [query strong converse](../query-strong-converse.md)
+also supplies a necessary search cost, not an upper bound on path length
+or exploration cost. Therefore these inputs do not yet close that route.
+
+## 7. Effect on the direct proof search
 
 The elementary proposition rules out direct use of the new weighted
 profile criterion on the critical quotient at weak sprinkling. Equation
 (4) identifies the information lost by replacing free connections with
 wired ones. Neither assertion rules out a stronger use of cohesive cuts
 that controls two infinite components while retaining the exact bond law.
+The two-ghost estimate removes finite-cluster errors but does not bound
+the two-infinite-cluster term from below. Finite-volume replacements must
+also control connections that first appear outside the inspected volume;
+equation (8) prevents an interchange of limits from supplying that control.
 No such estimate or construction is proved here, and no new OPEN premise
 is introduced merely to rename the original threshold-separation problem.
