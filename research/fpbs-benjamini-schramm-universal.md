@@ -132,6 +132,18 @@ content in that region.
 
 ## Attempts
 
+* **Compare adaptive exploration transcripts (2026-09-10).**
+  `fpbs-adaptive-exploration-relative-entropy` gives exact information
+  cost k(q,c)E_q N for fresh edge queries. Combined with critical spectral
+  decay and the fixed-supercritical finite-cluster tail theorem,
+  `fpbs-uniqueness-exploration-query-lower-bound` forces conditional
+  query cost at least order (q-c)^(-2) per random-walk step under
+  uniqueness. **What remains:** a target-directed balanced exhaustive
+  search with a strictly smaller proved cost under hypothetical collapse.
+  Breadth-first search may have exponential cost in walk length, so its
+  finite correctness tests do not provide this upper bound. This is a
+  new necessary condition and attack direction, not a completed route.
+
 * **Contract the critical clusters and sprinkle independently (2026-09-09).**
   `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond
   law, infinite-component counts, and a uniform weighted expansion bound.

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "arithmetic": "exact rational",
+  "scope": "Finite transcript likelihoods, Wald identities and stopping bounds; not an infinite proof",
+  "target_distance_weights": [
+    0,
+    1,
+    2
+  ],
+  "cases": 288,
+  "configurations": 7344,
+  "terminal_transcripts": 2918
+}
