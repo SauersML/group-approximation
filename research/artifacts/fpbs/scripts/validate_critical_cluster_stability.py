@@ -106,6 +106,7 @@ def main():
         'fpbs-cycle-retraction-contractive-transport': 'ESTABLISHED',
         'fpbs-finite-fiber-cost-bound': 'ESTABLISHED',
         'fpbs-infinite-contact-zero-relative-cost': 'ESTABLISHED',
+        'fpbs-cost-subgraph-rank-obstruction': 'ESTABLISHED',
         'fpbs-relative-cycle-block-localization': 'OPEN',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
