@@ -25,15 +25,14 @@ The three theorems below answer **no**, in increasing strength:
   **separable** simple unital C⋆-algebra;
 * `exists_separable_simple_stage_two_witness` gives the sharpest form: a
   separable simple unital C⋆-algebra `A` with a unitary `u` that is not
-  connected to `1` inside `U(A)`, while `diag (u, 1)` is already connected to
-  `1` inside `U(M₂(A))`.  So the class of `u` dies at the very first
-  stabilisation step, which is more than non-injectivity of
-  `U(A)/U₀(A) → K₁(A)` asks.
+  connected to `1` in `U(A)` although `diag (u, 1)` is connected to `1` in
+  `U(M₂(A))`.  So the class of `u` vanishes at the first stabilisation, which
+  is stronger than failure of injectivity of `U(A)/U₀(A) → K₁(A)`.
 
 ## Vocabulary
 
 Every notion is Mathlib's.  `CStarAlgebra A` is a *unital* C⋆-algebra
-(`CStarAlgebra` extends `NormedRing`), so "unital" carries no separate
+(`CStarAlgebra` extends `NormedRing`), so unitality is not a separate
 hypothesis.  `IsSimpleRing A` is Mathlib's simplicity: the only two-sided
 ideals are `⊥` and `⊤`.  For a unital C⋆-algebra this agrees with C⋆-simplicity
 (only the *closed* two-sided ideals are asked about), because a proper
@@ -43,9 +42,9 @@ has proper closure.  `TopologicalSpace.SeparableSpace A` is separability.
 the path component of `1` in it, and `CStarMatrix (Fin n) (Fin n) A` is
 `Mₙ(A)` with Mathlib's C⋆-norm.  The only definitions made here are the
 corner matrix `diag (a, 1, …, 1)` and `K₁`-injectivity itself, documented
-below.  All algebras are quantified over `Type`; the counterexample is a
-concrete separable algebra built from matrices over `C(X, ℂ)`, so it lives
-there, and `Type 0` is what the printed problem means.
+below.  All algebras are quantified over `Type`; the counterexample is built
+from matrices over `C(X, ℂ)`, so it is in `Type`, and `Type` is what the
+printed problem means.
 -/
 
 namespace ProblemLIX
