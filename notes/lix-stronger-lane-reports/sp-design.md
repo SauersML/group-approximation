@@ -488,7 +488,11 @@ exact universal `E_{i+1}`).
 Cases checked, **ALL LEMMAS OK in every one**, no exceptions:
 `(2,2,[2]), (2,2,[4]), (2,2,[2,4]), (3,3,[3]), (3,3,[6]), (3,3,[3,6]), (4,2,[4]),
 (4,2,[8]), (4,2,[4,8]), (5,5,[5]), (6,2,[6]), (6,2,[12]), (6,3,[6]), (6,3,[12]),
-(7,7,[7]), (9,3,[9]), (10,2,[10]), (10,5,[10]), (11,11,[11]), (12,2,[12]), (12,3,[12])`.
+(7,7,[7]), (9,3,[9]), (10,2,[10]), (10,5,[10]), (11,11,[11]), (12,2,[12]), (12,3,[12]),
+(15,5,[15]), (4,2,[2,4,8]), (6,2,[6,12])` — twenty-four cases, including a three-stage
+tower and one with `135` unknowns, with no exception.  The remaining deeper towers were
+still running after two and a half hours and I stopped them: the theorem is proved and
+the marginal case adds nothing.
 
 And the **`ParityData`-shaped statement of §3.2 itself** — hypotheses (A), (I), (W) checked
 against the exact universal `E_{i+1}` computed by Newton's identities, the `z`-part shown to
@@ -1292,3 +1296,432 @@ is real: `joinPow` is `planeSub`-based and wants `InnerProductSpace ℝ E`, whic
 Note the index shift: their `Ψ_k` (degree `k+1`) is my `Ψ_{k+1}`, and their exponent-facing
 statement is about `k+1`, so at `F₂` the arithmetic condition `((k+1 : ℕ) : K) ≠ 0` is "the
 exponent is odd", matching the existing `n = 2` theorem.
+
+## κ(1,1), and `c_2` computed directly (2026-09-10, second pass)
+
+The lead held the `c_2 = c_1²` ruling on the ground that nothing computed so far touches the
+Cartan comparison's coefficient at the top splitting — the reduced coproduct coefficient is
+only one factor of it, the riffle shuffle's Koszul sign and the evaluation reordering are the
+others.  **That is correct.**  Rather than assemble those signs, I built the equivariant
+diagonal `Φ` itself on the models and read both constants off, which answers the same
+question with strictly less bookkeeping and produces `c_1` a second time, by different
+machinery, as a cross-check on the descent.  Tool `tools/phi_models.py`, node log
+`scratch/phi.log`.
+
+### The construction
+
+`Φ : W ⊗ C_*(X) → C_*(X)^{⊗p}`, natural and equivariant with `Φ(e_0 ⊗ −)` the iterated
+Alexander–Whitney diagonal, is determined on the models by
+
+```text
+   ∂ Φ(e_a ⊗ ι_n) = α_a·Φ(e_{a−1} ⊗ ι_n) + (−1)^a ∑_j (−1)^j (δ_j)_# Φ(e_a ⊗ ι_{n−1}) ,
+```
+
+`α_a = s = T−1` for `a` odd and `N` for `a` even.  `C_*(Δ^n)` has the cone contraction
+`s(σ) = [0,σ]` (zero if `0 ∈ σ`) with `∂s + s∂ = 1 − ηε`, and the **full** tensor
+contraction `S = ∑_l (ηε)^{⊗(l−1)} ⊗ s ⊗ 1^{⊗(p−l)}` satisfies `∂S + S∂ = 1 − (ηε)^{⊗p}`
+with no Koszul signs (the `l`-th term is nonzero only when the prefix slots are vertices).
+Since `(ηε)^{⊗p}` is supported in degree `0`, `Φ(e_a ⊗ ι_n) = S(rhs)` solves the recursion
+exactly for `n + a ≥ 1`.  The chain-map identity is **asserted at every step** and holds.
+*(Trap: the one-slot contraction `s ⊗ 1^{⊗(p−1)}` is not enough — it leaves the
+`(ηε)⊗1` residual, which is what the first run failed on.)*
+
+### Reading the constants off
+
+> **Do not formalise this route** — the one-dimensionality of the top degree is simplicial
+> and fails for singular chains.  The values transfer, the route does not.  See "The descent
+> needs no cone operator".
+
+`Φ(e_a ⊗ ι_n)` has degree `n + a`; at `a = n(p−1)` that is `np`, the **top** degree of
+`C_*(Δ^n)^{⊗p}`, whose only basis element is `[0..n]^{⊗p}`.  So
+`Φ(e_{n(p−1)} ⊗ ι_n) = λ_n·[0..n]^{⊗p}`, and for a degree-`n` cocycle `w` and an `n`-cycle
+`c`, `⟨D_{n(p−1)}(w), c⟩ = ±λ_n·⟨w,c⟩^p`.  On the minimal torus (one vertex, edges `a,b,c`,
+triangles `U, L`, fundamental cycle `U − L`, `w = u ∪ v` with `⟨w,U⟩ = 1`, `⟨w,L⟩ = 0`) this
+gives `c_2 = ±λ_2`; `Δ¹` gives `c_1 = ±λ_1`.
+
+**Why the cycle matters, and why the answer does not depend on the choice of `Φ`.**  Two
+diagonals differ by an equivariant chain homotopy, `Φ' − Φ = DH + HD`.  Pairing with
+`w^{⊗p}`, the first term dies because `w` is a cocycle.  The second is
+`⟨w^{⊗p}, H(D(e_a ⊗ c))⟩` and `D(e_a ⊗ c) = (d_W e_a) ⊗ c ± e_a ⊗ ∂c`; the second summand
+dies because `c` is a **cycle** (this is exactly what fails on `Δ^q`, `q ≥ 2`, and is why
+the `Δ²` descent of the first pass was ill defined), and the first is
+`⟨w^{⊗p}, α_a·H(e_{a−1} ⊗ c)⟩ = ⟨(α_a)^*w^{⊗p}, H(e_{a−1} ⊗ c)⟩ = 0` because `w^{⊗p}` is
+`T`-invariant and both `s = T−1` and `N` annihilate an invariant functional (`N` gives
+`p·(−) = 0`).  That is `sp-steenrod`'s §3.3(2), used here for well-definedness.
+
+### The numbers
+
+| `p` | `c_1 = λ_1` | `((p−1)/2)!` | `c_2 = λ_2` | `κ(1,1) = c_2/c_1²` | `(−1)^{(p−1)/2}` |
+|---|---|---|---|---|---|
+| 3 | 1 | 1 | **−1** | **−1** | −1 |
+| 5 | 2 | 2 | **−1** | **+1** | +1 |
+| 7 | −1 | −1 | **−1** | **−1** | −1 |
+| 11 | −1 | −1 | **−1** | **−1** | −1 |
+| 13 | 5 | 5 | *(running)* | | +1 |
+
+VERIFIED (model).  Four things at once:
+
+1. **`κ(1,1) ≠ 0` at every prime computed**, so the lead's ruling stands.  Its value is
+   `(−1)^{(p−1)/2}`, a unit, which is all that was asked.
+2. **`c_2 = −1` for every odd `p`**, computed directly.  So the Cartan bridge is not needed
+   for `c_2 ≠ 0` at all — it is a cross-check rather than a prerequisite.
+3. **`c_1` agrees with the `Δ¹` cochain descent at every prime** (`1, 2, −1, −1, 5`).  Two
+   independent computations, chain-level `Φ` versus cochain-level descent, of the same
+   number by different machinery.  That validates both.
+4. The three numbers are arithmetically consistent: by Wilson `(((p−1)/2)!)² ≡ (−1)^{(p+1)/2}`,
+   so `κ(1,1)·c_1² = (−1)^{(p−1)/2}·(−1)^{(p+1)/2} = (−1)^p = −1 = c_2` ✓.
+
+**And it matches the sign I derived by hand** before running anything: on the surviving
+terms of the evaluation every slot has degree `1`, so the riffle sign
+`ε = ∑_j |y_j|·∑_{l>j}|x_l|` is `∑_{j=1}^{p}(p−j) = p(p−1)/2`, giving
+`(−1)^{p(p−1)/2} = (−1)^{(p−1)/2}` for `p` odd, and the evaluation reordering sign is the
+same on both sides of the comparison and cancels.  Derivation and computation agree at
+`p = 3, 5, 7, 11`.
+
+**What this changes.**  `c_2 = −1` is now a computed number rather than a consequence of a
+bridge, so `sp-steenrod` may take the shortest route available to them: prove `c_2 ≠ 0`
+however is cheapest, knowing the answer.  Their unconditional even × even argument then
+gives every even constant, and the `c_2 = c_1²` bridge survives as an independent check —
+`(−1)^{(p−1)/2}·(((p−1)/2)!)² = −1` is a Wilson identity, so if the two routes ever disagree
+the fault is in the chain-map identity, exactly where they said they would look.
+
+## κ_top(q, q') in closed form, and the even constants
+
+Follow-up for the lead after `sp-steenrod` retracted their even-degree multiplicativity
+lemma (it evaluated at the bottom corner, the counit case; the constants live at the top
+corner).  Tools `tools/phi_higher.py`, `tools/wtop.py`; node logs `scratch/phi3.log`,
+`scratch/phi5.log`.
+
+### The formula
+
+> **κ_top(q, q') = (−1)^{q q'·p(p−1)/2} = (−1)^{q q'·(p−1)/2}** for `p` odd.
+> In particular **κ_top = 1 whenever `q` or `q'` is even**, so `c_{q+q'} = c_q·c_{q'}` on
+> even degrees and `c_{2k} = c_2^k = (−1)^k`.
+
+Three ingredients, and the last two are why only the first needs a computation:
+
+1. **The reduced coproduct coefficient at the top corner is `1`.**  The corner is
+   `(a,b) = (q(p−1), q'(p−1))`, and both are **even** because `p−1` is even — for any `q`,
+   `q'` whatever.  So it falls in the `(even,even)` case of C1, where `c̄_{a,b} = 1`.
+   VERIFIED (model), `tools/wtop.py`: `c̄_{q(p−1),q'(p−1)} = 1` at every
+   `(p,q,q')` tested — `p = 3` for `(1,1),(2,2),(2,4),(4,4),(2,6)`, `p = 5` for the same,
+   `p = 7` for `(1,1),(2,2),(2,4)` — i.e. up to `n = 36`, and the full pattern
+   (`a` odd ⟹ `0`, `a` even ⟹ `1`) holds at every one.
+2. **The riffle shuffle's Koszul sign.**  On the surviving terms of the evaluation every
+   `x`-slot has degree `q` and every `y`-slot degree `q'` (otherwise `⟨u,x_l⟩` or
+   `⟨v,y_j⟩` vanishes), so
+   `ε = ∑_{j=1}^{p} |y_j|·∑_{l>j}|x_l| = q q'·∑_{j=1}^{p}(p−j) = q q'·p(p−1)/2`.
+3. **The evaluation reordering cancels.**  Its sign depends only on the degree sequence of
+   the `2p` slots, which is `(q,q',q,q',…)` on **both** sides of the comparison.
+
+### The numbers
+
+> **Do not formalise this route.**  The step "the top degree has one basis element" is a
+> statement about the **simplicial** chain complex of `Δ^n`.  It is false for singular
+> chains, where the top-degree group of a simplex is enormous.  The pairing **values** below
+> transfer (they are pairings, and the operations are the same); the **route** does not.  The
+> Lean chain uses the descent for `c_1` and `κ_top` for the rest, both model-free — see "The
+> descent needs no cone operator" below.
+
+`Φ(e_{n(p−1)} ⊗ ι_n)` sits in the top degree `np` of `C_*(Δ^n)^{⊗p}`, whose only basis
+element is `[0..n]^{⊗p}`; write it `λ_n·[0..n]^{⊗p}`.  Then for a degree-`n` cocycle `w` and
+**any** `n`-cycle `c = ∑ n_s s`,
+
+```text
+   ⟨D_{n(p−1)}(w), c⟩ = λ_n·(−1)^K·∑_s n_s⟨w,s⟩^p = λ_n·(−1)^K·⟨w,c⟩   (mod p, Fermat),
+```
+
+`K = n²·p(p−1)/2`, so `c_n = (−1)^K λ_n`.  **No torus has to be built**: products of circles
+are needed only to certify that some closed `n`-manifold carries a degree-`n` class with
+nonzero fundamental evaluation, not for the number.  (The `x^p = x` step is where a cycle
+with values outside `{0,1}` is handled, and it is Fermat.)
+
+| `p` | `c_1` | `c_2` | `c_4` | `c_6` | `κ_top(1,1)` | `κ_top(2,2)` | `κ_top(2,4)` |
+|---|---|---|---|---|---|---|---|
+| 3 | −1 | −1 | +1 | −1 | −1 ✓ | +1 ✓ | +1 ✓ |
+| 5 | +2 | −1 | +1 | — | +1 ✓ | +1 ✓ | — |
+| 7 | −1 | −1 | — | — | −1 ✓ | — | — |
+| 11 | −1 | −1 | — | — | −1 ✓ | — | — |
+
+VERIFIED (model); ✓ marks agreement with `(−1)^{q q'(p−1)/2}`, and every one of the five
+available `(p,q,q')` combinations matches.  `c_{2k} = (−1)^k` holds at `p = 3` for
+`k = 1,2,3` and at `p = 5` for `k = 1,2`.  `λ_1 = ((p−1)/2)!` throughout, so
+`c_1 = (−1)^{(p−1)/2}((p−1)/2)!`; the `Δ¹` cochain descent computes `λ_1`, in its own
+convention, and agrees at every prime.
+
+### What this settles
+
+* **Every even constant is a unit**, `c_{2k} = (−1)^k`, which is what the normalisation
+  needs and is stronger than "nonzero".
+* **`sp-steenrod`'s retracted lemma is recovered at the right corner**, and inside the
+  Cartan deliverable rather than beside it: multiplicativity on even degrees is
+  `κ_top = 1`, which is ingredient 2 with `q q'` even.
+* The odd × odd case is not `1` but `(−1)^{(p−1)/2}`, which is exactly the discrepancy that
+  made the `c_2 = c_1²` bridge look suspicious; it is a unit, so nothing is lost.
+
+## Endpoint statements (for `sp-endpoint`)
+
+Drafted at the lead's request so the lane starts from statements.  Nothing here is
+model-tested; it is reading plus statement-writing.  The challenge side mirrors
+`Palomar/LIXChallenge.lean` exactly: Mathlib-only vocabulary, `Type` (not universe
+polymorphic), the spectral order supplied by `letI`, `U₀` as `pathComponent (1 : unitary _)`,
+the stabilisation in `CStarMatrix (Fin 2) (Fin 2) A`, and `cornerDiag` from the shared block.
+**The shared block is reused unchanged** — `cornerDiag` and `IsK1Injective` are already what
+the stronger statements need, and a second copy of either would be a second term.
+
+### (1) The general theorem, Mathlib-only
+
+```lean
+/-- **The stronger theorem.**  For every `n ≥ 2` there is a separable simple unital
+C⋆-algebra carrying a unitary `v` whose stabilisation `diag (v, 1)` is connected to `1` in
+`U(M₂(A))` — so its `K₁`-class dies at the first stabilisation — and whose powers stay
+outside `U₀(A)` unless the exponent is divisible by every prime dividing `n`.
+
+The `Fintype (Fin 2)` instance is pinned to `Fin.fintype 2` so that the statement elaborates
+to the same term in every environment; `n` occurs only as a natural number, never as a
+matrix index, so no instance on `Fin n` is involved. -/
+theorem exists_simple_separable_powers_outside_U0 (n : ℕ) (hn : 2 ≤ n) :
+    ∃ (A : Type) (_ : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (letI : PartialOrder A := CStarAlgebra.spectralOrder A
+       letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+       letI : Fintype (Fin 2) := Fin.fintype 2
+       ∃ v : unitary A,
+         (∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
+            (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (v : A)) ∧
+         ∀ k : ℕ, v ^ k ∈ pathComponent (1 : unitary A) →
+           ∀ p : ℕ, p.Prime → p ∣ n → p ∣ k) := by
+  sorry
+```
+
+Two deliberate choices.  The stabilisation clause is written **exactly** as in
+`exists_separable_simple_stage_two_witness` (an existential over `w` in the path component
+whose underlying matrix is `cornerDiag`), not as `diagOne v ∈ …`, because `diagOne` is
+development vocabulary.  And `v ∉ pathComponent 1` is **not** a separate conjunct: it is the
+`k = 1` case of the power clause, since `p ∣ n` holds for some prime (as `2 ≤ n`) and `p ∣ 1`
+is false.  `sp-endpoint` should record that derivation rather than add the conjunct, so the
+statement has no redundant clause.
+
+### (2) The headline instance, `n = 6`
+
+```lean
+/-- **The `n = 6` instance.**  A separable simple unital C⋆-algebra with a unitary whose
+class dies at the first stabilisation and whose powers leave `U₀` unless the exponent is
+divisible by `6`: an element of `U(A)/U₀(A)` of order divisible by `6`, or infinite, that is
+trivial in `K₁`. -/
+theorem exists_simple_separable_order_six_witness :
+    ∃ (A : Type) (_ : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (letI : PartialOrder A := CStarAlgebra.spectralOrder A
+       letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+       letI : Fintype (Fin 2) := Fin.fintype 2
+       ∃ v : unitary A,
+         (∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
+            (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (v : A)) ∧
+         ∀ k : ℕ, v ^ k ∈ pathComponent (1 : unitary A) → 6 ∣ k) := by
+  sorry
+```
+
+Proof shape: instantiate (1) at `n = 6`, then from `2 ∣ k` and `3 ∣ k` conclude `6 ∣ k` by
+`Nat.Coprime.mul_dvd_of_dvd_of_dvd (by norm_num) h2 h3`.
+
+### (3) Every squarefree order
+
+```lean
+/-- **Every squarefree order is realised.**  For squarefree `N ≥ 2` there is a separable
+simple unital C⋆-algebra with a unitary trivial in `K₁` whose powers leave `U₀` unless `N`
+divides the exponent. -/
+theorem exists_simple_separable_squarefree_witness (N : ℕ) (hN : 2 ≤ N) (hsq : Squarefree N) :
+    ∃ (A : Type) (_ : CStarAlgebra A),
+      Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (letI : PartialOrder A := CStarAlgebra.spectralOrder A
+       letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+       letI : Fintype (Fin 2) := Fin.fintype 2
+       ∃ v : unitary A,
+         (∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
+            (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (v : A)) ∧
+         ∀ k : ℕ, v ^ k ∈ pathComponent (1 : unitary A) → N ∣ k) := by
+  sorry
+```
+
+Proof shape: instantiate (1) at `n = N`, so `p ∣ k` for every prime `p ∣ N`.  Then
+`N ∣ k` by factorisations: dispose of `k = 0` first (`dvd_zero`), and otherwise
+`Nat.factorization_le_iff_dvd` reduces it to `N.factorization ≤ k.factorization`, which holds
+pointwise because `hsq` gives `N.factorization p ≤ 1` (`Nat.Squarefree.factorization_le_one`)
+while `p ∣ k` gives `1 ≤ k.factorization p` (`Nat.Prime.factorization_pos_of_dvd`).  **State
+that arithmetic step as its own lemma** — `squarefree_dvd_of_forall_prime_dvd` — because it
+is pure `ℕ` and belongs nowhere near the C⋆-side.
+
+### (4) The development-side theorem
+
+Repo vocabulary, in the `LIXEndpointStatement` idiom, with the same two local instances
+re-registered rather than redeclared (that file's own warning: a fresh pair is definitionally
+equal but not the same term, and `rw` matches instances syntactically).
+
+```lean
+attribute [local instance] GroupApproximation.instSpectralPartialOrder
+                           GroupApproximation.instSpectralStarOrderedRing
+
+variable (A) in
+/-- **The witness condition, generalised to powers.**  `A` carries a unitary whose
+stabilisation is null-homotopic in `U(M₂(A))` and whose powers leave `U₀(A)` unless the
+exponent is divisible by every prime dividing `n`.  At `n = 2` and with the power clause read
+at `k = 1` this is `HasK1InjWitness A`. -/
+def HasK1InjPowerWitness (n : ℕ) : Prop :=
+  ∃ v : unitary A, diagOne v ∈ unitaryComponentOne (CStarMat 2 A) ∧
+    ∀ k : ℕ, v ^ k ∈ unitaryComponentOne A → ∀ p : ℕ, p.Prime → p ∣ n → p ∣ k
+
+/-- **The theorem the solution proves.**  The limit algebra at rank `n` carries the power
+witness, given the topological input at every prime dividing `n` and every exponent that
+prime does not divide. -/
+theorem lixLimit_hasK1InjPowerWitness_of (n : ℕ) [NeZero n]
+    (h : ∀ p : ℕ, p.Prime → p ∣ n → ∀ k : ℕ, ¬ p ∣ k → LIX.LemmaTwoHolds n p k) :
+    HasK1InjPowerWitness (LIX.Gen.LIXLimit n) n := by
+  sorry
+```
+
+`LemmaTwoHolds n p k` is the program note §1.6 generalisation: at every stage `j`,
+`¬ ContinuousMvNEquiv (FHmat_k) EHmat` over `M = S^{2n+1} × ∏_{i<j} ℂP^{d_i}` with
+`d_i = Gen.stageRank n i = 2 ^ i * n`, `FHmat_k` built from `b = x ∘ Ψ_k` and `a = e₁`.
+
+### The chain each step consumes
+
+Read downwards; every name is from a lane report or the tree.
+
+| step | statement | consumes |
+|---|---|---|
+| the algebra | `Gen.LIXLimit n` is a separable, simple, nontrivial unital C⋆-algebra | `sp-tower`: `Gen.lixTower n`, `Gen.lixIota`, `Gen.instCStarAlgebraStageAlgebraPi n`, `Gen.lixLimit_separableSpace`, `Gen.lixLimit_isSimpleCStar n` (both `#audit_closed_axioms`), and `Nontrivial (Gen.LIXLimit n)` which carries `[NeZero n]`; then `isSimpleCStar_iff_isSimpleRing` for the challenge's `IsSimpleRing` |
+| the generator | the seam unitary at rank `n`, with `diag (u,1) ≃ 1` | `sp-tower`: `Gen.ePole n = Pi.single (Fin.last n) 1`, `Gen.genU n x = seamGen (ePole n) x`, both hemisphere trivialisations, `seamPath (ePole n)`; then `Gen.genUnitary` and `hdiag_genUnitary` |
+| powers ↦ composition | `u^{k+1}` and `u ∘ ψ_k` are homotopic through unitaries | `sp-powers`: `Powers.joinC`, `Powers.IsRadialMap`, `isRadialMap_joinPow`, `normGen` with `isBallUnitary_normGen` and `normGen_wall`, `pinchIdentification_angleRepar`, and **the primary export** `exists_homotopy_pow_comp_normGen` (no hypothesis on the generator beyond ball-unitarity) |
+| into `CharClass` | the clutched projections at the `k`-th power | `sp-powers`: `Analysis/LIXPowersExport.lean` — `clutchEquiv_iff_continuousMvNEquiv` (`Iff.rfl`), `continuousMvNEquiv_pow_pullback_map` |
+| Corollary 4, powers | the climbed generator's `k`-th power is outside `U₀` when `p ∤ k` | the generalisation `climb_genUnitary_pow_notMem n p k (hk : ¬ p ∣ k)` of `LIX.climb_genUnitary_notMem`, over `LemmaTwoHolds n p k`, through `false_of_path` and `hasGeneratorShape_climb` at rank `n` |
+| Lemma 2 at `(n,p,k)` | `¬ ContinuousMvNEquiv FHmat_k EHmat` at every stage | Step A: `CharClass.HasStepAUnitary` via `LemmaTwoUnitary`, with the constant unitary `P`, `P e₁ = e₃`, of §1.3.  Step C: `sp-oddside`'s `lixK_topClass_ne_zero` / `lixK_topClass_ne_zero_odd` over `LocalSplit`, `LocalClassesAgree`, `KLocalNonzero`.  Step D: `sp-evenside`'s `ParityPData.gamma_top_eq_zero_of_slice` at `p ∣ n` |
+| the endpoint | `¬ K1Inj` and the three challenge theorems | `not_k1Inj_of_hasWitness` (the `k = 1` reading of the power witness), then the assembly of `Palomar/LIXSolution.lean` with `cornerDiag` and the `Fin 2` pinning |
+
+### What the Comparator's shared block must pin
+
+The `n = 2` surface needed one pin this morning; the stronger surface needs the same one and
+no more, but for a reason worth writing down.
+
+* **`Fintype (Fin 2)` — pin it, `letI : Fintype (Fin 2) := Fin.fintype 2`.**  `CStarMatrix`
+  carries a `Fintype` on the index type and Lean can find more than one term for `Fin 2`;
+  this is the pin the Comparator forced.  Keep it inside the `letI` block of every statement
+  that mentions `CStarMatrix (Fin 2) (Fin 2) A`.
+* **The spectral order pair — pin it, as now.**  `CStarMatrix.instCStarAlgebra` asks for
+  `[PartialOrder A] [StarOrderedRing A]`, and `CStarAlgebra.spectralOrder` /
+  `CStarAlgebra.spectralOrderedRing` are the unique choice.  On the solution side
+  re-register `GroupApproximation.instSpectralPartialOrder` and
+  `instSpectralStarOrderedRing` rather than declaring a fresh pair.
+* **`Fin n` — nothing to pin, and this is the point.**  The rank `n` enters the Mathlib-only
+  statements only as a natural number, in `p ∣ n`.  It is never a matrix index and never an
+  index type, so no `Fintype (Fin n)` instance appears in the statement at all.  The whole
+  rank-`n` machinery is on the solution side of the wall.  Do not be tempted to state the
+  algebra as `CStarMatrix (Fin n) (Fin n) _` anywhere in the challenge.
+* **The `CStarAlgebra` instance on the limit — do NOT pin it, and do not let a second one
+  exist.**  On the challenge side the instance is existentially bound, `(_ : CStarAlgebra A)`,
+  so there is nothing to fix.  On the solution side the witness is `⟨Gen.LIXLimit n,
+  inferInstance, …⟩` and `inferInstance` must find exactly the instance the tower builds
+  through `Gen.instCStarAlgebraStageAlgebraPi n`.  `sp-tower` flags that this is a **data**
+  class and that they deliberately made the `n = 2` instance resolve *through* the generic
+  one rather than declaring an independent second: keep it that way.  A second pi-instance
+  would be definitionally equal and a different term, and the two environments would then
+  disagree on a statement that looks identical.
+* **`NeZero n` is a solution-side obligation, not a binder.**  `Nontrivial (Gen.LIXLimit n)`
+  carries `[NeZero n]`, and the challenge hypothesis is `2 ≤ n`.  The solution supplies
+  `haveI : NeZero n := ⟨by omega⟩`; the challenge must not mention `NeZero`.
+* **Nothing new for the powers.**  `v ^ k` is `Monoid.npow` in `unitary A`, which the group
+  structure already gives; `pathComponent` needs only the topology induced from `A`.
+
+### The third Comparator configuration
+
+```json
+{
+  "challenge_module": "Palomar.LIXStrongChallenge",
+  "solution_module": "Palomar.LIXStrongSolution",
+  "theorem_names": [
+    "ProblemLIXStrong.exists_simple_separable_powers_outside_U0",
+    "ProblemLIXStrong.exists_simple_separable_order_six_witness",
+    "ProblemLIXStrong.exists_simple_separable_squarefree_witness"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}
+```
+
+A **new namespace** `ProblemLIXStrong`, not an extension of `ProblemLIX`: the existing
+surface is a verified artifact and must keep building unchanged, and two namespaces cannot
+collide on `cornerDiag`.  The shared block is copied byte-identically into both new files, as
+the existing pair does, and it should be the *same* bytes as the `n = 2` pair's so a reader
+can diff the four files and see one block.
+
+## The descent needs no cone operator (answer to `sp-steenrod`, 2026-09-10)
+
+Two questions from `sp-steenrod` before they author: is my contraction simplicial or the dual
+of a singular cone, and is the primitive-independence a theorem or an observation.  Answers:
+**simplicial, and it does not matter**; and **a theorem, two lines**.
+
+### The descent never leaves a two-letter complex
+
+Let `E` be the two-term complex `E⁰ = K·f`, `E¹ = K·g`, `δf = g`, `δg = 0`.  A map
+`E → C^*(X)` is *any* `0`-cochain `f` — singular, simplicial, whatever — and it is a chain map
+for free.  Now observe what the descent touches: `D` replaces one `f` by `δf` with a Koszul
+sign, `T` and `N` permute slots, `H` acts on one slot.  **Every one of these preserves
+`E^{⊗p}`.**  So the whole descent is finite-dimensional linear algebra over `F_p` in `2^p`
+words, and it maps into `C^*(X)^{⊗p}` by functoriality of `E → C^*(X)` — no injectivity, no
+comparison of models, no cone.
+
+On `E` the contraction is `h(g) = f`, `h(f) = 0`, and `δh + hδ = 1` **with no `ηε` term**,
+because `E` is exact (`δ : E⁰ → E¹` is an isomorphism).  That is why `h ⊗ 1^{⊗(p−1)}` suffices
+here, for exactly the reason it sufficed on the resolution and failed on chains: there is
+nothing in the bottom degree for a residual to leak into.
+
+Concretely on `Δ¹`: take `f` = the affine coordinate (the barycentric coordinate of vertex
+`1`), a singular `0`-cochain; then `g = δf` has `g(σ) = f(σ(1)) − f(σ(0))`.  The final
+Alexander–Whitney evaluation is unchanged: `f(σ(0)) = 0` kills every term but the one with the
+`g` in slot `0`.
+
+**My `h` was simplicial face-removal**, `h(τ^*) = (τ ∖ {0})^*` — `sp-steenrod` read it right —
+but that spelling is only how the two-letter complex happened to be presented in a model where
+I could also build `Φ`.  The descent itself needs only `E`.
+
+VERIFIED (read): Mathlib has no cone or star operator on singular chains at the pin.  I
+grepped `Mathlib/AlgebraicTopology/` and `Mathlib/Topology/Homotopy/` for
+`coneOperator`/`singularCone`/`starOperator`/`prismOperator` and for a convex straight-line
+contraction, and `SingularHomology/HomologyZero.lean` has nothing usable.  Their check was
+right; the cost is real and now avoidable.
+
+### Primitive-independence is a theorem
+
+Perturb `Y_k` by `z` with `D z = 0`.  By exactness `z = D(ζ)`, so `A_{k+1}` changes by
+`op(D ζ) = D(op ζ)`, a coboundary; `Y_{k+1}` absorbs it, and
+
+```text
+   A_{k+2}  changes by  op'(op(ζ)) = 0 ,
+```
+
+because consecutive operators are `N` and `T−1` and `N(T−1) = (T−1)N = T^p − 1 = 0`.  **So a
+perturbation introduced at any level but the last dies within two steps.**  At the last step
+the answer changes by `⟨D(ξ), AW(σ)⟩ = ⟨ξ, AW(∂σ)⟩`, which vanishes on `Δ¹` by the point lemma
+and does not on `Δ²` — exactly the pattern the two runs showed.
+
+`op ∘ op' = 0` is the invariance engine, and it is the same fact as `sp-steenrod`'s "`N e_i` is
+a boundary in every degree".  My exhaustive test was in fact complete rather than a sample:
+enumerating `D(w)` over all basis words `w` one degree up spans `im D = ker D`, and the
+descent's dependence on the perturbation is linear, so invariance on a spanning set is
+invariance.
+
+### What does not survive to the singular setting, and what replaces it
+
+`sp-steenrod` is right that my shortcut for the higher constants — reading the coefficient off
+the top degree because it is one dimensional — is simplicial and fails singularly, where the
+top-degree chain group is enormous.  It does not affect the numbers, which are pairings, but
+it is not a Lean route.  **It does not have to be**, because nothing in the Lean chain needs
+it:
+
+* `c_1` comes from the descent, which §above shows is model-free;
+* `κ_top(q,q') = (−1)^{q q'(p−1)/2}` comes from the coproduct's reduced coefficients (a purely
+  algebraic statement about `W ⊗ W`) and the riffle Koszul sign (a sign on degrees) — both
+  model-free;
+* `c_2 = κ_top(1,1)·c_1²` and `c_{2k} = c_2^k` follow.
+
+So the `Φ`-on-models computation was corroboration and a prediction of the values, not a route
+to be formalised.

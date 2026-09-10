@@ -203,8 +203,31 @@ all stages.
   coefficient parameter `K` (a field, or `ZMod p` with `[Fact p.Prime]`) through the layers
   that never use `1 = -1`: cohomology basic/assoc/pull, Mayer–Vietoris, relative pairs and
   excision, Leray–Hirsch, Chern classes via Leray–Hirsch, projective bundles, Thom class,
-  Gysin.  Graded commutativity is not provided at `F₂` and must not be assumed at `F_p`;
-  Chern classes have even degree and commute regardless.  The `F₂` instance must keep
+  Gysin.  Correction (sp-coeff, 2026-09-10 12:20): graded commutativity IS provided at `F₂` (`SteenrodCupOne.cup_comm`,
+  unsigned, all degrees; `ChernTotalRing`'s `GCommRing` instance rests on it) but is FALSE at odd `p`
+  without the sign `(−1)^{|a||b|}`, so `TotalH` over `K` is a graded RING (`DirectSum.GRing`, dropping
+  exactly the `mul_comm` field) and over `F₂` a graded commutative ring; any lemma that commutes two
+  classes over `K` carries an even-degree hypothesis.  Chern classes have even degree, so every
+  commutation the even side performs is sign-free under that hypothesis.  **Owned item (2026-09-10 12:35; reassigned 12:45 to the new lane `sp-cupone`, since twelve files
+  consume `cup_comm` and it gates LerayHirsch*/Chern*/Projective*/the chart tower):** the
+  signed cup-1 coboundary formula over `K` (the 2-fold case of `sp-steenrod`'s tuple model; align sign
+  conventions with their `OddP*` files) and `cup_comm_of_even` — two classes commute when one has even
+  degree — also in `TotalH` vocabulary (`IsEven` predicate closed under `+`, `*`, `map`).  This is the
+  only commutativity the program consumes: Step D needs exactly `z ⌣ ι(r) = ι(r) ⌣ z` (both even);
+  `sp-evenside` weakens `ParityPData` to `[Ring H]` plus one field `z_comm` after the batch lands, and
+  `R = H^*(Y)` is even-concentrated (`CohomologyProjectiveParity`), so a `CommRing` on its even
+  subring suffices there.  Split (12:50): `sp-coeff` owns the generic `TotalH` over `K`, the `IsEven`
+  predicate and its bookkeeping lemmas (closure under `*` needs no commutativity: in odd total degree
+  every term of a product has an odd factor); `sp-cupone` owns the signed coboundary formula,
+  `cup_comm` signed, `cup_comm_of_even`, and the one declaration `TotalH.mul_comm_of_even`.  Even-
+  concentration of `H^*(∏ CP^{d_i}; K)` is ring-free (its 53-module closure never reaches `cup_comm`),
+  so once even elements commute the total ring of `Y` is commutative outright: no even subring needed.
+  **Inter-lane sign contract (sp-steenrod, 12:50):** the tensor differential carries the LEFT factor's
+  degree as its sign; the transposition carries the product of the degrees; evaluating a tensor of
+  cochains against a tensor of chains carries no sign.  The signed cup-1 formula is NOT a by-product
+  of the odd-primary tuple model (that diagonal is abstract; the cut construction is retired there),
+  so `sp-cupone` ports the cut-index combinatorics with signs; calibrate with both degrees one and cut
+  index one on a 3-simplex, where all four terms of the coboundary formula are distinguishable.  The `F₂` instance must keep
   building at every landing: the LIX answer is a verified artifact and stays green.
 * The odd-primary Steenrod powers `P^i` at cochain level, with naturality, `P^0 = id`,
   Cartan formula (total `P` multiplicative), instability (`P^i = 0` below degree `2i`,
@@ -227,11 +250,39 @@ all stages.
   primitive is `H(A)`, final pairing with the Alexander–Whitney diagonal), and `c_2 = κ(1,1)·c_1²` from
   the Cartan comparison on the torus, where `κ(1,1)` is the Cartan coefficient at the top splitting
   (both `W`-indices `p−1`, twist summed) — NOT pinned by the degree-0 agreement (that is the counit and
-  fixes only the empty top-index case).  `sp-steenrod` proves unconditionally that the coefficient
-  is `1` in even degrees, so every even constant is a power of `c_2`.  **Settled 2026-09-10 ~11:50 CDT:**
+  fixes only the empty top-index case).  (`sp-steenrod`'s "coefficient 1 in even degrees" lemma was RETRACTED
+  the same day: it evaluated at the bottom corner, the counit case; the constants live at the top
+  corner, so the higher even constants come from the Cartan identity at the top corner with the
+  explicit coproduct, `c_{q+q'} = κ_top(q,q')·c_q·c_{q'}` with **`κ_top(q,q') = (−1)^{q q' (p−1)/2}`** (derived and verified
+  2026-09-10 12:30: the reduced coproduct coefficient at that corner is always 1 since both `W`-indices
+  `q(p−1)`, `q'(p−1)` are even, and the rest is the riffle sign; the evaluation reordering cancels),
+  so even-degree multiplicativity holds (`κ_top = 1` when `q` or `q'` is even), the odd×odd case is
+  `(−1)^{(p−1)/2}`, and **`c_{2k} = (−1)^k`**, a unit in every even degree.  Moreover `c_n = (−1)^K λ_n`
+  with `λ_n` the coefficient of `[0..n]^{⊗p}` in `Φ(e_{n(p−1)} ⊗ ι_n)` (Fermat on any `n`-cycle), so
+  every constant is read off the model simplex; `λ_1 = ((p−1)/2)!`.)  **Model caveat (sp-steenrod,
+  12:55):** sp-design's descent contraction is written on the simplicial (face) model; the tower is
+  SINGULAR.  Only the pairing VALUES transfer, not the top-degree-is-one-dimensional route.  Ruling: if
+  "the final pairing is independent of the choice of primitives" is a theorem on singular cochains, use
+  the abstract contraction from the splitting lemma; otherwise build the singular cone operator
+  (`(t₀,t') ↦ (1−t₀)σ(t'/(1−t₀)) + t₀ v` on a convex target, `∂c + c∂ = id − ηε`), ~250 lines, absent
+  from Mathlib at the pin, reusable by every contractible-model argument — approved in advance.  **Resolved (sp-design, 12:55): no cone needed.** The descent never leaves the two-letter complex
+  `E⁰ = ⟨f⟩, E¹ = ⟨g⟩, δf = g`; a map from it into any cochain complex (singular or simplicial) is a
+  choice of 0-cochain and is a chain map for free, and the differential, the cyclic action and the
+  one-slot contraction all preserve its `p`-fold tensor power, so the computation is finite linear
+  algebra in `2^p` words landing in the singular tensor power by functoriality.  Primitive-independence
+  is a THEOREM (a perturbation changes the next element by a coboundary the following step absorbs and
+  the `N·(T−1) = 0` step kills; only the last step's boundary term survives, which vanishes on `Δ¹`).
+  The top-degree route is retracted; `c_1` comes from the model-free descent and the higher constants
+  from the multiplicativity factor.
+  **Settled 2026-09-10 ~11:50 CDT:**
   `sp-design` solved the resolution's coproduct in closed form (three cases, verified block by block) and
-  `κ(1,1) = 1` at `p = 3, 5, 7, 11, 13` (the integral pair count `p(p−1)/2` dies mod `p` because `p`
-  is odd), so `c_2 = c_1² = (((p−1)/2)!)² = ±1` by Wilson, a unit.  `sp-steenrod` therefore takes the
+  the reduced (odd,odd) coproduct coefficient is `1` (the integral pair count `p(p−1)/2` dies mod `p`);
+  with the riffle Koszul sign the full Cartan coefficient is `κ(1,1) = (−1)^{(p−1)/2}`, and building the
+  equivariant diagonal `Φ` itself on the models (iterated Alexander–Whitney at `e_0`, chain-map
+  recursion solved by the FULL tensor contraction) and evaluating on the fundamental class of the
+  torus gives **`c_2 = −1` directly** for every odd `p` computed (3, 5, 7, 11), Wilson-consistent with
+  `c_1 = ((p−1)/2)!`: `κ·c_1² = (−1)^{(p−1)/2}(−1)^{(p+1)/2} = −1`.  The constant is well defined on a
+  CYCLE (torus), not on a simplex, which is why `Δ²` failed.  `sp-steenrod` therefore takes the
   coproduct EXPLICITLY (the abstract route creates the unknown, the explicit one retires it and also
   discharges the vanishing below the bottom of the range), states the bridge with its Künneth
   prerequisite (two distinct degree-one classes with nonzero product, a torus), and still runs the
@@ -250,6 +301,16 @@ C*-side bridge `LIXLemmaSixCor4.climb_genUnitary_notMem` becomes
 (`¬ ContinuousMvNEquiv (FHmat_k) EHmat` at every stage, `FHmat_k` built from `x ∘ Σψ_k`).
 The Palomar surface is a third configuration `Palomar/comparator-lix-strong.json` with a
 Mathlib-only challenge stating the `n = 6` corollary and the general theorem.
+**Ratified 2026-09-10 12:40 (sp-design's draft, in their report under "Endpoint statements"):** new
+namespace `ProblemLIXStrong`, new files `Palomar/LIXStrongChallenge.lean`/`LIXStrongSolution.lean`,
+the shared block byte-identical to the existing surface (`cornerDiag`, `IsK1Injective` reused, not
+copied); "`v ∉ U₀`" is the `k = 1` case of the power clause, not a separate conjunct; the stabilisation
+clause is the existential over a path-component element whose matrix is `cornerDiag` (no `diagOne`);
+the rank `n` enters the challenge only as a natural number in `p ∣ n` (never `Fin n`, no instance to
+pin); pin `Fintype (Fin 2)` and the spectral order pair as now; do NOT pin the `CStarAlgebra` instance
+on the limit and never let a second pi-instance exist (`Gen.instCStarAlgebraStageAlgebraPi n` must be
+the one `inferInstance` finds); `NeZero n` is solution-side from `2 ≤ n`; land
+`squarefree_dvd_of_forall_prime_dvd` separately (pure ℕ).
 
 ## 2. Lanes (all `model: opus`, named; resume with SendMessage to the name)
 
@@ -262,7 +323,8 @@ Mathlib-only challenge stating the `n = 6` corollary and the general theorem.
 | `sp-powers` | cs-simplicity / 80-87 | §1.3 items 1–3 | Eckmann–Hilton over `U(n)`, gauge lemma, clutching naturality along `Σψ_k` |
 | `sp-evenside` | spare1 / 96-103 | Step D mod p: `CharClass/ParityP*`, `StepDModP*` | the uniform theorem of sp-design §3.2 as pure algebra generic in p (`ParityData` shape); later the bridge to real objects over sp-coeff's Chern classes and sp-steenrod's export |
 | `sp-oddside` | spare2 / 104-111 | Step C with k zeros: `CharClass/LIXK*` | the F₂, n = 2 instance first (constant section at e₁, k equatorial zeros, excision splitting, `γ_r = k·c₀`); later over F_p (needs sp-coeff's relative homotopy invariance and generic sphere/contractible) and general n (needs sp-tower's Gen shape layer) |
-| later: `sp-endpoint` | | §1.6 | after both sides are green |
+| `sp-cupone` | thm-e / 112-119 | signed cup-1 product over `K`: `CharClass/CupOne*` | the cup-1 coboundary formula with signs over any commutative ring (2-fold case of sp-steenrod's tuple model, same sign conventions), `cup_comm` signed and `cup_comm_of_even`, `TotalH.IsEven`/`mul_comm_of_even`; unblocks LerayHirsch*/Chern*/Projective*/Chart tower over `K` (12 files consume `SteenrodCupOne.cup_comm`) |
+| later: `sp-endpoint` | | §1.6 | after both sides are green; statements drafted by `sp-design` ("Endpoint statements") |
 
 Ownership is by file: a lane creates files under its own prefix and edits existing files
 only when the table says it owns them.  Two lanes never edit one file; ask the lead.
@@ -277,7 +339,9 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   there on the lane's 8-core range under `nice`.  Never build locally.  Never use another
   lane's clone.  Never use `/tmp` on the node.  Do not start a second probe while one runs
   (the helper serialises with `flock`; queueing is wasted wall-clock).  A probe that takes
-  more than 15 minutes is a signal to cut the import closure, not to wait.
+  more than 15 minutes is a signal to cut the import closure, not to wait.  Grep
+  `notes/lix-lane-reports/FLEET_TRAPS.md` BEFORE the first probe (deprecation traps cost a whole
+  probe for zero mathematical content), not only before a second failed one.
 * **Built, never Replayed (fleet rule, 2026-09-10).**  Every module you are CLAIMING green must show
   `✔ [k/N] Built GroupApproximation.X (Ns)` in the log you cite; a `Replayed` line on a module you
   edited is a false green and the probe is FAILED; lake prints nothing for an up-to-date target, so
@@ -299,6 +363,16 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   green when the stale olean still elaborates).  So: absence of a module you touched from the log
   is a FAILURE, not "not yet reached"; preserving copies preserve the problem; and the definitive
   reset is to clear every artifact of the directory you are rewriting before the probe.
+  Never purge or delete artifacts while a probe is running in that clone (sp-oddside): lake keeps
+  building the other jobs and the log fills with `failed to open file '….olean'` on modules that are fine.
+  **The purge is TRANSITIVE (sp-oddside, 13:00):** a module whose own source is untouched but whose
+  IMPORT was rebuilt today is replayed from an olean compiled against the old import (SteenrodCupOne
+  from 09-05 over a CohomologyBasic rebuilt at 12:10 produced the `cup_comm a b : cup = cohCast` red
+  that looked like sp-coeff's code).  `laneprobe.sh` now runs `cc_clones/purge_stale.py` under the
+  lock before every build: to a fixpoint, delete every artifact set whose source is newer than its
+  olean, or whose olean predates the olean of any `GroupApproximation` module it imports, or whose
+  import has no olean; bounded to the library.  First use costs one large rebuild per clone
+  (spare1 dry run: 2876 of 4823 oleans); that is the price of a green that means something.
 * **No `sorry` lands.**  Author with `sorry` only inside a file that is not imported by
   anything, and say so in the report.  `#print axioms` on every endpoint-facing theorem:
   `[propext, Classical.choice, Quot.sound]`, nothing else, ever.

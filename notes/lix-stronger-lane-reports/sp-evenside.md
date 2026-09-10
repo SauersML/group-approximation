@@ -16,11 +16,53 @@ real objects, the mod-`p` analogue of `LemmaTwoStepD.lean`.
 
 ## GREEN (with job counts)
 
-Nothing yet.  `spare1` was being filled with a real copy of the main tree's artifacts, and
-the MSI wrapper's SSH master was down with an auth cooldown to roughly 12:10 CDT, so no
-probe has been run.  Both files below are authored and read-audited only.
+Clone `spare1`, log `.lake/laneprobe-20260910-121116.log`, **PROBE GREEN at 1619 jobs**,
+empty error index.  Every module is `Built`, none `Replayed` (the fleet rule of 2026-09-10);
+the preceding probe purged 234 stale artifact sets, so this one purged 0.
+
+| module | line | time |
+|---|---|---|
+| `CharClass.ParityPData` | `✔ [1616/1619] Built` | 33s |
+| `CharClass.ParityPTwo` | `✔ [1617/1619] Built` | 62s |
+| `CharClass.ParityPSlice` | `✔ [1618/1619] Built` | 63s |
+| `CharClass.ParityPAxiomCheck` | `ℹ [1619/1619] Built` | 66s |
+
+A second probe, log `.lake/laneprobe-20260910-122632.log`, is **PROBE GREEN at 1630 jobs**
+with the axiom check extended over the two L4a modules, which are themselves green at 1505
+jobs (log `.lake/laneprobe-20260910-122315.log`):
+
+| module | line | time |
+|---|---|---|
+| `CharClass.ParityPSymmetric` | `✔ [1504/1505] Built` | 42s |
+| `CharClass.ParityPWuCartan` | `✔ [1505/1505] Built` | 45s |
+| `CharClass.ParityPAxiomCheck` (extended) | `ℹ [1630/1630] Built` | 46s |
+
+Two further L4a modules are green and sit **outside the ~13:00 landing batch**, as new
+leaves nothing in the batch imports: `CharClass.ParityPNewton` at **1335 jobs**
+(`✔ [1335/1335] Built`, 34s) and `CharClass.ParityPNewtonValue` at **1336 jobs**
+(`✔ [1336/1336] Built`, 48s).
+
+**Axioms.**  All 24 endpoint-facing declarations report a subset of
+`[propext, Classical.choice, Quot.sound]` and nothing else.  Twenty report exactly that
+list; `ParityP.IsDecomposable.sum`, `ParityP.pR_b_succ_of_instability` and
+`ParityData.gamma_zero` report `[propext, Quot.sound]`, and `ParityP.IsDecomposable.pair`
+reports `[propext]`.  The seven L4a declarations
+(`wuRHSP_eq_sum_wuMonomialP`, `PowerData.p_one_eq_zero`, `p_prod`, `p_gamma_succ`,
+`p_gamma_succ_eq_smul`, `eCoeff_esymmSub_self`, `eCoeff_mul_eq_zero`) all report the full
+list and nothing else.  `CharClass/ParityPAxiomCheck.lean` is the check, and it is a leaf that
+nothing imports.
+
+Three of the seventeen lines wrap in the log — `[propext,` on the declaration's line and
+`Classical.choice,` / `Quot.sound]` on the next two — so a one-line grep under-reports them
+as `[propext,`.  This is the known multi-line axiom-list trap and it bit the extraction, not
+the proof.
 
 ## AUTHORED, UNVERIFIED
+
+Nothing.  Every file this lane owns is in a green probe with a `Built` line.  What remains
+of L4a is stated in its own section below and is not yet written.
+
+## What each file contains
 
 ### `GroupApproximation/CharClass/ParityPData.lean` (~470 lines)
 
@@ -92,7 +134,61 @@ Hypothesis **(A)** from the tower, and the top index.  This is sp-design §3.3's
 Only this file needs a characteristic hypothesis, and it takes the weakest one that names
 the Frobenius: `[ExpChar R p]`.
 
-### `GroupApproximation/CharClass/ParityPTwo.lean` (~130 lines) — the calibration case
+### `GroupApproximation/CharClass/ParityPWuCartan.lean` (386 lines) — L4a, the Cartan half
+
+**GREEN** (1505 jobs, `Built`).  `ParityP.PowerData` is the odd-primary `SqData`, and
+`PowerData.p_gamma_succ_eq_smul` computes `P^i(e_{i+1}(y)) = κ^i · m_{(p^i,1)}(y)`.  It
+needs no characteristic hypothesis and no primality.  `ParityP.wuRHSP_eq_sum_wuMonomialP`
+is `WuSymmetric.esymmWuRHS_eq_sum_powersetCard_succ` with the factor `y_l^2` replaced by an
+arbitrary `g l` — the bijection never looks at the factor, which is exactly why the mod-2
+combinatorics transfers to an arbitrary prime unchanged.  Restated rather than shared,
+because `WuSymmetric.lean` belongs to the verified mod-2 answer and this program does not
+edit it; `wuMonomialOn C y c = wuMonomialP C (fun l => y l ^ 2) y c` by `rfl` if the lead
+later wants them merged.
+
+### `GroupApproximation/CharClass/ParityPSymmetric.lean` (~140 lines) — L4a, the coefficient functional
+
+**GREEN** (1505 jobs, `Built`).  `ParityP.eExpand` is the `e`-expansion of a symmetric polynomial
+(the inverse of `MvPolynomial.esymmAlgEquiv`), and `ParityP.eCoeff` is the coefficient of
+one `e` in it, read off through the dual numbers `DualNumber R = TrivSqZeroExt R R`.  That
+choice is the point: `eCoeff` kills a product of two symmetric polynomials with vanishing
+constant term by one application of `TrivSqZeroExt.snd_mul`, with no `Finsupp` antidiagonal,
+no ideal and no grading.  What remains of L4a is the *value* of `eCoeff` on
+`m_{(p^i,1)}`, plus the fact that a weight-`N`-homogeneous symmetric polynomial is
+`eCoeff · e_N` plus decomposables.
+
+### `GroupApproximation/CharClass/ParityPNewton.lean` (~160 lines) — L4a, the calculus
+
+**GREEN** (1335 jobs, `Built`), outside the landing batch.  Two algebra-homomorphism facts
+plus the linearity of `eCoeff`.  The load-bearing one is `eLin_fst`: the `fst` of `eLin` is
+`aeval 0` of the **symmetric polynomial itself**, not of its `e`-expansion.  That is what
+makes the hypothesis of `eCoeff_mul_eq_zero` checkable in practice, because it reduces
+"vanishing constant term" to a statement about `esymm` and `psum` directly
+(`eLin_fst_esymm`, `eLin_fst_psum`).  Both are proved by one `MvPolynomial.algHom_ext`:
+`aeval 0` and `aeval 0 ∘ esymmAlgHom` agree on the variables because `e_{i+1}` has no
+constant term.  With `eCoeff_add`, `eCoeff_sub` and `eCoeff_sum` in hand, Newton's
+`psum_eq_mul_esymm_sub_sum` can now be pushed through `eCoeff` term by term.
+
+### `GroupApproximation/CharClass/ParityPNewtonValue.lean` (~125 lines) — L4a, Newton
+
+**GREEN** (1336 jobs, `Built`), outside the landing batch.  `eCoeff_psumSub` is Newton
+modulo decomposables:
+
+```text
+  eCoeff j (p_M)  =  (−1)^{M+1} · M · eCoeff j (e_M)          for M ≥ 1.
+```
+
+Every term of the subtracted sum in `MvPolynomial.psum_eq_mul_esymm_sub_sum` is `e_a · p_b`
+with `a > 0` and `b = M − a > 0`, so both factors have vanishing constant term and `eCoeff`
+kills the sum.  This is the step `sp-design`'s proof calls "Newton on the indecomposables",
+and it is the only place Newton is used anywhere in the lane.
+
+The cost was the lift from `MvPolynomial (Fin n) R`, where Mathlib states the identity, to
+`symmetricSubalgebra (Fin n) R`, where `eCoeff` lives.  It is done once, by `Subtype.ext`,
+with the scalars carried as `R`-smuls rather than as ring elements — that is what lets
+`eCoeff_smul` apply directly instead of needing an `algebraMap`-times-element lemma.
+
+### `GroupApproximation/CharClass/ParityPTwo.lean` (~135 lines) — the calibration case
 
 `ParityData.toParityPData : ParityPData 2 R H`, field by field, plus the two `F₂`
 conclusions re-derived from the general theorem (`b_odd_eq_zero'`, `gamma_top_eq_zero'`).
@@ -141,6 +237,44 @@ For deliverable 2, the mod-`p` `LemmaTwoStepD.lean` (`WuStepDData`, `stepD_of_wu
   one genuinely new ingredient.  It is a symmetric-function statement with no cohomology
   in it, so it can be formalised in parallel with everything else.  I can take it if the
   lead wants it in this lane; it is not part of deliverable 1 as scoped.
+
+## The one commutation the bridge needs (2026-09-10, after the lead's TotalH ruling)
+
+`TotalH` over `K` will be a graded **Ring**, not `GCommRing`, because at odd `p` the cup
+product commutes only up to `(−1)^{|a||b|}`.  `ParityPData` currently asks for
+`[CommRing H]`, so I audited what commutativity of `H` is actually used.  It is used in
+exactly two places, the two `ring` calls in `ParityPData.lean`, and in both the only
+reordering is moving `z` past an `ι`-image:
+
+```text
+  z * ι r  =  ι r * z          for every r : R.
+```
+
+Nothing else in the file reorders a product.  Products of `ι`-images commute for free,
+with no hypothesis, because `ι` is a ring hom out of a commutative ring:
+`ι r * ι r' = ι (r r') = ι (r' r) = ι r' * ι r`.
+
+**Planned generalisation, deliberately NOT made before the ~13:00 landing batch.**  Weaken
+`ParityPData` to `[Ring H]` and add one field `z_comm : ∀ r : R, z * ι r = ι r * z`,
+rewriting the two `ring` calls by hand (`z_comm_mul : ι r * (z * u) = z * (ι r * u)`, then
+`add_mul`/`mul_add`/`mul_assoc` and `simp only [..., mul_add]`).  `R` stays a `CommRing`:
+`H^*(Y)` for `Y` a product of projective spaces is genuinely even-concentrated, whereas
+`H^*(N)` genuinely is not, so the asymmetry is the mathematics and not an accident.  The
+change is ~25 lines in a file that is green and about to land, and it is only needed when
+deliverable 2 starts, which is blocked on `sp-coeff` regardless; landing a green tree state
+is worth more than landing the more general version half an hour earlier.
+
+**Told to `sp-coeff` by name** (2026-09-10): `TotalH.mul_comm_of_even` in the per-degree
+form, or better a predicate `TotalH.IsEven` with `mul_comm_of_isEven` plus closure under
+`+`, `*` and `TotalH.map`; and either a `CommRing` instance for `TotalH K Y` derived from
+"no odd cohomology" (`CohomologyProjectiveParity.lean`) or an even subring, for `R`.
+
+**The honest warning, raised with them and with the lead.**  All of these reduce to graded
+commutativity at odd `p`, which is the same Alexander–Whitney / cup-one chain homotopy that
+gives `SteenrodCupOne.cup_comm` at `F₂`, now carrying signs.  If nobody is proving the
+signed commutativity, my one commutation is not available and the bridge is blocked on it.
+That would be a hidden `F₂`-only dependency of exactly the kind `sp-design` found for
+relative homotopy invariance (their §4.4), and it is better found now.
 
 ## L4a (deliverable 3, assigned 2026-09-10)
 
@@ -200,6 +334,17 @@ specialisation, and the transport of the universal identity to the Chern roots.
 Estimate: 800–1500 lines.  Nothing in it is cohomological, so it runs in parallel with
 `sp-coeff` and `sp-steenrod`.
 
+**Progress as of 2026-09-10, 13:00 CDT.**  Steps (1) and (2)'s infrastructure are green:
+`ParityPWuCartan` (the Cartan half, `P^i(e_{i+1}) = κ^i·m_{(p^i,1)}`), `ParityPSymmetric`
+(the functional and that it kills constant-term-free products) and `ParityPNewton` (the
+`fst`-is-evaluation-at-zero lemma and the linearity of `eCoeff`).  Newton is now green too
+(`ParityPNewtonValue.eCoeff_psumSub`).  What is left is exactly three things: `φ_κ` on
+power sums by the binomial theorem; the division by `i+1`, performed on integer
+coefficients in the domain `ℤ[κ]` where it is ordinary cancellation; and the
+weight-homogeneity that turns the coefficient into an element-level membership in
+`IsDecomposable`.  The third is the piece I still expect to dominate, and it is the only
+one that needs `esymmAlgEquiv`'s surjectivity rather than its injectivity.
+
 **Not to be attempted**, on sp-design's evidence (`tools/diag_wu_shape.py`): a closed form
 for the odd-`p` diagonal Wu polynomial in the two-factor shape `WuSymmetric.lean` has at
 `p = 2`.  At `p = 3`, `i = 1` it is already `e_2e_1² + e_2² + 2e_3e_1 + e_4`; at `p = 7` it
@@ -207,6 +352,38 @@ runs to hundreds of terms of length up to `p`.  The closure predicate is the rig
 and stays even if a formula were found.
 
 ## TRAPS
+
+* **I walked into a trap this file already records.**  `push_neg` is deprecated at the pin
+  and therefore a hard error under `-DwarningAsError`; `notes/lix-lane-reports/FLEET_TRAPS.md`
+  has said so at line 11 since 2026-09-06, and I read only the tail of that file before my
+  first probe because the launch message says to read it "before a second failed probe on
+  the same error".  That is the wrong reading of the rule: the deprecation traps are exactly
+  the ones that cost a full probe cycle for zero mathematical content, so the file has to be
+  grepped for every tactic name *before* the first probe.  Substitutes that dodge the class
+  entirely: `by_contra h` then `omega` for a negated `Nat` inequality, and `by_contra` plus
+  an anonymous constructor for a negated bounded `∀`.
+* **`simp only` that closes the goal strands the next tactic.**  `simp only [...]` followed
+  by `ring` failed with `No goals to be solved`, reported at the innocent `ring` line.  This
+  is the mirror of the known "`rw`'s closing `rfl` runs at reducible transparency" trap:
+  `rw` chains need a closer, `simp only` chains must not have one.  I had reasoned about
+  exactly this before probing and applied the rule in four places, then left one `ring`
+  standing.  The mechanical form of the rule is: make the simp the sole tactic of its block.
+* **`Overlapping instance parameters in <decl>`** is the error for repeating a binder the
+  section already supplies.  I ported three declarations out of `WuDiagonal.lean`, where
+  `[DecidableEq σ]` sits on the declarations because that file's section does not provide
+  it, into a section of mine that does.  The message names the declaration, not the
+  duplicated class.  When porting, diff the enclosing `variable` blocks, not just the
+  statement.
+* **`self_eq_add_left` does not exist at the pin**, so the mod-2 idiom for "`x = x + x`
+  implies `x = 0`" has no direct successor.  `(add_right_cancel h0).symm` with
+  `h0 : 0 + x = x + x` needs no search and no characteristic hypothesis — which is the
+  point, since `WuDiagonal.lean` reaches for `add_self_eq_zero_of_two_eq_zero` there and so
+  hides that `Sq^n 1 = 0` never needed `2 = 0`.
+* **A hand-picked minimal import set costs a probe on the names you assume are ambient.**
+  `dvd_add` is not in the closure of `Mathlib.Algebra.Ring.Hom.Defs` plus the two
+  `BigOperators.Group` modules plus `Mathlib.Tactic.Ring`, and the error is a bare
+  `Unknown identifier`.  For a two-line arithmetic fact, proving it inline from the
+  definition of `∣` is cheaper than guessing which module exports it.
 
 * **`-DwarningAsError=true` on the `GroupApproximation` lib** (lakefile.toml, line 13).
   Any linter warning is a hard error, so an unused case binder from

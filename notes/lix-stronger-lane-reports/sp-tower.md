@@ -147,7 +147,7 @@ script made that check necessary (see TRAPS).
 
 ## AUTHORED, UNVERIFIED
 
-Only one item remains here.  Everything else this lane wrote is in the GREEN section above.
+Everything else this lane wrote is in the GREEN section above.
 
 * `Analysis/LIXLemmaSixCor4.lean` — the `stageEval_def` fix in it is authored and its file
   cannot be compiled while `CharClass` is red for `sp-coeff`'s reasons.  Its sibling
@@ -258,6 +258,59 @@ real copies, no hard links, my modules' artifacts deleted before the first of th
 | `LIXConnectingMapFullnessTower` | Built 64s | 11:44 |
 | `LIXLimitSimple` | Built 46s | 11:56 |
 
+## The generic equator, 2026-09-10 12:15 (cs-stages, **PROBE GREEN, 2386 jobs**)
+
+`Analysis/LIXGenericEquator.lean`, a **new file imported by nothing**, probed on its own so
+that a red in it could not redden the `n = 2` closure:
+
+```text
+✔ [2386/2386] Built GroupApproximation.Analysis.LIXGenericEquator (57s)
+```
+
+It carries `Gen.equatorEmb n : ℝ^{2n+1} → ℂ^{n+1}`, built over the index equivalence
+`Gen.eqIdx n : (Fin n × Fin 2) ⊕ Unit ≃ Fin (2n+1)`, and the two facts the whole power
+chain rests on — both holding for **every** `a`, with no norm hypothesis:
+
+* `Gen.re_equatorEmb_last` — the last complex coordinate is purely imaginary, so the image
+  is always on the equator, `x (Fin.last n)` is never `±1`, and *both* hemisphere frames
+  are defined at every point.  This is the reason a usable formula exists at all.
+* `Gen.sum_norm_sq_equatorEmb` — the embedding is an isometry, so a unit vector of `E n`
+  goes to a unit vector of `ℂ^{n+1}`.
+
+Together they say the **norm is the only hypothesis that fails off the sphere**, which is
+what makes radial normalisation the right and sufficient repair.
+
+The gate found five defects on the first pass, all mechanical and all fixed: two `dif_pos`
+patterns that could not match because the `Fin` coercion had not been reduced (fixed by
+publishing `eqFwd_inl_val` / `eqFwd_inr_val` as `rfl` simp lemmas), a `Finset.sum_const`
+applied to a sum over `Unit` whose body mentions the bound variable, and two `simpa`
+continuity steps that normalised the *term* into `Pi.mul` shape while the goal stayed a
+lambda (fixed by `simp only [equatorEmb_last]` and `exact`).
+
+**Extended and green again at 12:25, 2386 jobs** (`✔ … Built … (52s)`), with the interface
+lane `sp-powers` consumes:
+
+```text
+Gen.genSphere n y := Gen.genU2 n (Gen.equatorEmb n (‖y‖⁻¹ • y))
+Gen.continuousOn_genSphere (n) : ContinuousOn (genSphere n) {y | y ≠ 0}
+Gen.genSphere_conjTranspose_mul_self (n) {y} (hy : y ≠ 0) : (genSphere n y)ᴴ * genSphere n y = 1
+Gen.genSphere_mul_conjTranspose      (n) {y} (hy : y ≠ 0) : genSphere n y * (genSphere n y)ᴴ = 1
+```
+
+`ContinuousOn` on the punctured space is the shape `sp-powers` asked for, and unitarity is
+hypothesised on `y ≠ 0` rather than `‖y‖ = 1`, which is what the radial normalisation
+actually gives and is strictly stronger than their `IsSphereUnitary` fields.  With them:
+`Gen.incl n` and `Gen.incl_mul_conjTranspose : incl n * (incl n)ᴴ = 1 - rk1 (ePole n)
+(ePole n)`, `Gen.genU2 n` with unitarity and continuity, and a **rank-generic
+`Gen.conjTranspose_mul_self_of_comm`** replacing `LIXLemmaSixGenerator`'s `Fin 3`/`Fin 2`
+version: compressing a unitary that commutes with `s sᴴ` by an isometry `s` gives a
+unitary, with no rank argument and no determinant.
+
+I had cut these three before the first probe rather than ship proofs I could not stand
+behind; writing them properly took two more probe cycles, and both rounds of errors were
+the same missed rewrite — a `dif_pos`/`Finset.sum` pattern that could not match because a
+`Fin` coercion or a `ᴴ` had not been reduced first.
+
 ## The first fresh-clone run, 2026-09-10 11:29 (cs-stages, 9357 jobs)
 
 Run on the lead's rebuilt clone (real copies, no hard links), with **my fourteen modules'
@@ -298,6 +351,153 @@ behind the miss above, and `LIXLemmaSixCor4` cannot build while `CharClass` is r
 (`CoeffField:53` fails to synthesize an instance; `CohomologyAssoc:93,:103` follow).
 **Nothing of mine is implicated there**, so the seven-importer gate cannot go green today
 and the narrow CharClass-free gate is the strongest verdict available.
+
+## The rank-generic shape layer, 2026-09-10 12:40 (cs-stages) — AUTHORED, one probe round done
+
+Item 7 of the plan, the lead's ruling of 2026-09-10 ("you own the RANK parameter in the
+`CharClass/LIX*` shape layer as well").  Two new files, both **leaves — imported by
+nothing**, so neither can redden anything while they are in flight.
+
+**`GroupApproximation/CharClass/LIXShapeGeneric.lean`** (380 lines, import closure 16).
+`Gen.VIdx n dd = Fin (n+1) ⊕ HIdx dd`, `Gen.baseM n dd = ↥(unitVectors (Fin (n+1))) ×
+baseY dd`, `Gen.Vmat n`, `Gen.eLast n = Pi.single (Fin.last n) 1`, `Gen.aVec/bVec/cVec`,
+`Gen.sProj/eProj/FHmat/EHmat n`, and the two theorems that carry the content —
+`Gen.isMTSectionData_manuscriptData n` (the manuscript's pair is section data for `W_g` at
+every rank) and `Gen.manuscriptSection_eq_zero_iff_concrete n` (**exactly one zero, at
+every rank**).  Plus `Gen.HasStepAUnitary n dd`.
+
+Three decisions worth writing down.
+
+* **Purely additive.**  Not one line of `LIXSectionManuscript.lean` or
+  `LemmaTwoStatement.lean` changed.  Those two names are consumed by 83 `CharClass` files;
+  rewriting them as `n = 2` specialisations the way the `Analysis` side was done would put
+  every one of those files at risk for zero mathematical gain, because the rank-two
+  spellings are already definitionally the generic ones.  §7 of the new file proves
+  exactly that, fourteen bridges, every one `rfl`: `VIdx`, `baseM`, `Hmat`, `Vmat`,
+  `eThree`, `aVec`, `bVec`, `cVec`, `negEThree`, `sProj`, `eProj`, `FHmat`, `EHmat`,
+  `HasStepAUnitary`.  **All fourteen elaborated on the first probe.**  `Fin 3` really is
+  `Fin (2 + 1)` and `(2 : Fin 3)` really is `Fin.last 2` at default transparency, so no
+  `cast` and no `Equiv` stands between the fixed-rank layer and the generic one.
+* **`H` and `c` are re-indexed by the point of `Y` alone**, not by the pair `(x, y) ∈ M`,
+  because at general rank the first factor of `M` moves and `H` does not.  `Hmat_eq` and
+  `cVec_eq` record that this too is a `rfl`.  This is bookkeeping on the coefficient side,
+  not a generalisation of it: the coefficient parameter `dd` is untouched and stays
+  `sp-coeff`'s.
+* **The constant section is the generator's pole, and that is now a theorem.**
+  `Gen.eLast n` and `LIX.Gen.ePole n` are the *same term*, `Pi.single (Fin.last n) 1`, so
+  `eLast_eq_ePole` and `eThree_eq_ePole` are `rfl`.  That is the mechanical content of the
+  lead's "do not move the constant section off `e_last`": the analysis side's Householder
+  frames are built around `Fin.last n`, and any other choice inserts a permutation between
+  the two sides of Step A for no gain.  The bridge costs three modules of import closure
+  (16 against `LemmaTwoStatement`'s 13) because `LIXGeneratorUnitary`'s own closure is 2.
+
+**`GroupApproximation/Analysis/LIXLemmaTwoPropGeneric.lean`** (131 lines).
+`Gen.lixDD n j = fun i => STW59.Gen.stageRank n i`, with `even_lixDD` now taking
+`Even n` as a hypothesis (at rank two it was automatic; at rank `n` it is a condition on
+`n`, and it is the condition Step D consumes), `lixDD_pos` under `[NeZero n]`, and
+`dvd_lixDD` from `STW59.Gen.dvd_stageRank` — the shape the mod-`p` argument wants, and the
+reason the rank carries the prime rather than the stage.
+
+**Where `k` enters, and why it is the section rather than the winding.**  `LemmaTwoHolds`
+compares two complements inside one `V = 𝟏^{n+1} ⊕ H`, and uses nothing about the
+tautological section beyond its being a continuous unit section of the trivial block.  So
+the seam is stated for an arbitrary such section,
+
+```
+Gen.LemmaTwoFor n dd b  :=  ¬ ContinuousMvNEquiv (Gen.FHmatOf n b) (CharClass.Gen.EHmat n)
+Gen.LemmaTwoHolds n     :=  ∀ j, Gen.LemmaTwoFor n (Gen.lixDD n j) (CharClass.Gen.bVec n)
+```
+
+with `Gen.FHmatOf_bVec : FHmatOf n (bVec n) m = CharClass.Gen.FHmat n m := rfl`.  When
+`sp-powers`' `exists_homotopy_pow_comp_normGen` lands, the `k`-indexed seam is
+`LemmaTwoFor n (lixDD n j) b_k` — **no statement in this file changes and no step of the
+reduction changes**.  Naming the section rather than the winding is what makes this layer
+independent of how the degree-`k` section is built, which is the only reason it could be
+written before that lane is green.
+
+### Probe round 1 (12:40, cs-stages, 8671 jobs, `purged 0`) — RED, one cause
+
+`✖ Building GroupApproximation.CharClass.LIXShapeGeneric (87s)` with **two errors, both
+the same one**: `Unknown identifier LIX.Gen.ePole`, written `STW59.Gen.ePole`.  The
+generator file lives in `GroupApproximation.LIX`, not `GroupApproximation.STW59` — the two
+halves of my own lane sit in different namespaces and I had assumed one.  Everything else
+in 380 lines, including all fourteen `rfl` bridges and both content theorems, elaborated.
+
+### Probe round 2 (13:0x, cs-stages, **PROBE GREEN, 8676 jobs**, `purged 0`)
+
+```
+✔ [8675/8676] Built GroupApproximation.CharClass.LIXShapeGeneric (110s)
+✔ [8676/8676] Built GroupApproximation.Analysis.LIXLemmaTwoPropGeneric (159s)
+Build completed successfully (8676 jobs).
+EXIT=0
+```
+
+Both modules **`Built`, neither `Replayed`, and neither absent** — the three-way check, not
+the two-way one.  What the green establishes, beyond the two files compiling:
+
+* **All fourteen rank-two spellings are definitionally their `n = 2` instances.**  `Fin 3`
+  is `Fin (2 + 1)`, `(2 : Fin 3)` is `Fin.last 2`, and the `Fintype`/`TopologicalSpace`
+  instances synthesised on either side are defeq, since `Iff.rfl` had to check them.
+* **`eThree = LIX.Gen.ePole 2` is a `rfl`.**  The manuscript's constant section and the
+  Householder generator's pole are one term.  This is the mechanical justification for the
+  lead's "do not move the constant section off `e_last`", and it now survives review
+  without anyone re-deriving it.
+* **`LemmaTwoHolds ↔ Gen.LemmaTwoHolds 2` is an `Iff.rfl`.**  The endpoint's single
+  topological input at rank two *is* the rank-`n` input at `n = 2`, so nothing that
+  consumes `LemmaTwoHolds` — `not_problemLIX_of_lemmaTwo` included — has to change for the
+  generic seam to exist.
+* The rank-`n` "exactly one zero" theorem
+  (`Gen.manuscriptSection_eq_zero_iff_concrete`) is proved, not assumed: over
+  `S¹ × S^{2n+1} × Y` the manuscript's section vanishes at exactly one point at **every**
+  rank, with no characteristic class and no counting.
+
+## The rank-generic H-index bridge, 2026-09-10 13:1x — AUTHORED, UNVERIFIED
+
+`GroupApproximation/Analysis/LIXLemmaSixHIdxGeneric.lean` (296 lines, leaf).  The rank-`n`
+form of `LIXLemmaSixHIdx`: `Gen.hMatY n j`, `Gen.hIdxTo/hIdxFrom/hIdxEquiv n j`, and the
+two theorems that matter, `Gen.hMatY_hIdxTo` and `Gen.hMatY_reindex` — **the manuscript's
+`H` is the tower's `H`, at every rank**, entrywise and as matrices.
+
+Why this one is safe to write before the renormalised generator exists: the redesign
+changes the **trivial block** — the section, the generator, the winding — and touches `H`
+nowhere.  So this identification is needed by the Corollary-4 chain in either form and
+cannot be invalidated by the `k`-indexed rebuild.  It is also the piece that lets the chain
+cross into `CharClass` at general rank, and it needs nothing from `sp-powers`.
+
+Two simplifications fell out of `LIXShapeGeneric` re-indexing `Hmat` by the point of `Y`
+alone: `hMatY` is `CharClass.Gen.Hmat` outright, so it needs no `Classical.arbitrary` point
+of the sphere and no `Nonempty` instance; and `continuous_hMatY` is
+`CharClass.Gen.continuous_Hmat` outright, with no composition against a constant first
+factor.
+
+**One bridge deliberately not written.**  `hIdxTo`, `hIdxFrom` and `hIdxEquiv` get no
+`n = 2` bridge, unlike all fourteen in `LIXShapeGeneric`.  They would not be `rfl`: the
+rank-two file compiles its own structural recursion on `j`, so identifying it with this
+file's is a theorem **by induction on `j`**.  The induction is four lines, but its closing
+step lands on the reducible-transparency `rfl` that `rw` inserts, across `lixDD j` versus
+`Gen.lixDD 2 j` — exactly the shape that costs a probe round.  Nothing consumes it: the
+only consumer would be a port of the Corollary-4 chain, which will restate the reindexing
+at rank `n` outright.  Writing a declaration into a leaf file to see whether it elaborates
+is a probe cycle spent on a decoration, so it waits for a consumer.
+
+## The landing set, as of 2026-09-10 13:15
+
+Fifteen modified, four new, all mine, nothing else in `Analysis/LIX*` or
+`CharClass/LIXShape*` touched by this lane.
+
+Modified (these are what the seven-importer gate covers): `LIXBlockProjections`,
+`LIXConnectingMap`, `LIXConnectingMapFullness`, `LIXConnectingMapFullnessSum`,
+`LIXConnectingMapFullnessTower`, `LIXConnectingMapPoints`, `LIXGeneratorUnitary`,
+`LIXLemmaSixClimb`, `LIXLemmaSixCor4`, `LIXLemmaSixDiagEnd`, `LIXLemmaSixStageZero`,
+`LIXLimitAlgebra`, `LIXLimitSimple`, `LIXStageAlgebra`, `LIXStageAlgebraSeparable`.
+
+New, all leaves imported by nothing: `Analysis/LIXGenericEquator`,
+`Analysis/LIXLemmaTwoPropGeneric`, `Analysis/LIXLemmaSixHIdxGeneric`,
+`CharClass/LIXShapeGeneric`.
+
+**The seven-importer gate does not test the four new files**, precisely because nothing
+imports them.  The landing probe must name them explicitly alongside the seven, or they
+land unverified.  That is a trap in the gate design, not in the files.
 
 ## PLAN for the remaining layers
 
@@ -379,13 +579,20 @@ the only thing that is *not* mechanical.
 
 ## NEEDS
 
-* **`CharClass.VIdx`/`baseM` are `Fin 3`-bound** (`CharClass/LIXSectionManuscript.lean:82,
-  88).  The Corollary-4 chain (`LIXLemmaSixCor4`, `LIXLemmaSixField`, `LIXLemmaSixHIdx`)
-  crosses into `CharClass.FHmat`/`EHmat` over `VIdx dd = Fin 3 ⊕ HIdx dd`, so that chain
-  cannot go generic in `n` until `CharClass` does.  `CharClass` belongs to `sp-coeff` by
-  the note's table, but the *rank* generalisation of `VIdx`/`baseM` is not a coefficient
-  question; the lead should say who owns it.  Until then this lane keeps the Cor-4 chain
-  abstract over the `LemmaTwoHolds` `Prop` and leaves the `k`-indexed seam there.
+* ~~**`CharClass.VIdx`/`baseM` are `Fin 3`-bound.**~~  **Resolved 2026-09-10.**  The lead
+  ruled the rank parameter in the `CharClass/LIX*` shape layer mine, and
+  `CharClass/LIXShapeGeneric.lean` supplies `Gen.VIdx n`, `Gen.baseM n` and everything
+  built on them additively, with all fourteen rank-two spellings proved to be the `n = 2`
+  instances by `rfl`.  The Corollary-4 chain can now cross into `CharClass` at general
+  rank.
+* **The `k`-indexed Corollary-4 chain is input-blocked, not design-blocked.**  Its two
+  inputs are `sp-powers`' `exists_homotopy_pow_comp_normGen` and the renormalised
+  generator's `wallRetract`, neither of which is green yet (`sp-powers` reported
+  `LIXPowersAngle` red at 12:2x).  What did not have to wait is the seam itself:
+  `Gen.LemmaTwoFor n dd b` is stated over the section, so the `k`-indexed instance is a
+  choice of `b` and costs no new statement here.  I am not authoring the degree-`k`
+  geometry ahead of their signature — that is exactly the class of guess that costs a
+  probe cycle and lands wrong.
 * Nothing else is blocking.
 
 ## TRAPS

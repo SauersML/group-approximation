@@ -355,6 +355,28 @@ theorem tupT_pow_card (hr : r = p ∨ …) : (tupT K X r k) ^ r = 1
   cancel — one computation, `r` free, no induction on `r`.  This is strictly
   easier in the flat model than in an iterated binary one, which is the second
   reason to be flat.
+  **Confirmed independently, and the sign worry resolves trivially (2026-09-10).**
+  `sp-design` built this operator for the chain-level diagonal and reports two
+  things this section needs.
+
+  * The **full** operator `Σ_l (ηε)^{⊗(l-1)} ⊗ s ⊗ 1^{⊗(p-l)}` is required;
+    the one-slot version leaves an `(ηε) ⊗ 1` residual and their first run died
+    on it.  The defect of the full one is `1 - (ηε)^{⊗p}`, supported in degree
+    `0` only, which is exactly what §3.4(A) wants.  Note that the one-slot
+    operator **does** suffice on the resolution `W ⊗ W`, because a resolution has
+    nothing in negative degrees for the residual to leak into; on chains it does
+    not.  Two claims about two complexes, not to be conflated.
+  * **No Koszul signs appear.**  The `l`-th term is nonzero only when the prefix
+    slots are vertices, since `ηε` kills positive degrees, so the input prefix
+    degrees are `0` on the support and the sign is `+1`.  The operator can be
+    written sign-free.
+
+  That last point supersedes the convention warning below in the best possible
+  way: the two readings I was guarding against agree, because both are `0` on the
+  support.  **The warning stays**, because it is the reason one has to check, and
+  the check is what produced the simplification rather than a bookkeeping
+  exercise.
+
   **The sign convention, settled before writing (2026-09-10, on `sp-design`'s
   instruction).**  The contraction is
   `S(x_1 ⊗ ⋯ ⊗ x_r) = Σ_j ± (ηε)x_1 ⊗ ⋯ ⊗ (ηε)x_{j-1} ⊗ s x_j ⊗ x_{j+1} ⊗ ⋯`,
@@ -666,16 +688,45 @@ Cartan identity at index `2(p-1)` for two degree-1 cocycles, `a + b` is even so
 competing terms `(p, p-2)` and `(p-2, p)`.  Both even with `a ≠ p-1` forces one
 of the two factors into a negative cochain degree, where the group is zero.  And
 `p - 1` is even, so the surviving term is exactly `(p-1, p-1)`, with `c̄ = 1`.
-Hence
+**SUPERSEDED within the hour, and the superseded version was false.**  `C = 1`
+is the reduced **coproduct** coefficient alone.  It is not the Cartan
+coefficient: the riffle Koszul sign and the reordering of the evaluation
+contribute the other factors, and the true value is
 
 ```text
-c_2 = c_1² = (((p-1)/2)!)²  =  (-1)^{(p+1)/2}   (Wilson),
+κ(1,1) = (-1)^{(p-1)/2} ,     c_2 = κ(1,1) · c_1² = -1   for every odd prime,
 ```
 
-a unit.  I verified the values against `sp-design`'s computed `c_1` at
-`p = 3, 5, 7, 11, 13`; all five agree.  **The bridge is unblocked**, and the
-`P^s = 0` for `s < 0` statement I had flagged as not free never arises on this
-route.
+`c_2 = -1` having also been computed **directly**, from the equivariant diagonal
+on the models evaluated on the fundamental class of the torus, at
+`p = 3, 5, 7, 11`.  Wilson reconciles the two routes:
+`κ · c_1² = (-1)^{(p-1)/2}·(-1)^{(p+1)/2} = (-1)^p = -1`.
+
+**So `c_2 = c_1²` is false**, and not marginally: I checked it and it fails at
+`p = 3, 7, 11` and holds at `p = 5` only by coincidence.
+
+| `p` | `c_1` | `c_1²` | `κ(1,1)` | `c_2` |
+|---|---|---|---|---|
+| 3 | 1 | 1 | −1 | −1 |
+| 5 | 2 | 4 | +1 | −1 |
+| 7 | −1 | 1 | −1 | −1 |
+| 11 | −1 | 1 | −1 | −1 |
+
+Had the earlier version been adopted it would have put a false statement into the
+tree.  The endpoint would have survived, since the value never enters Step D, but
+anything later reading the constant would have broken.  My objection reached only
+half of this: I argued the counit pins the wrong corner of the splitting range.
+The other half, that even the right corner's coproduct coefficient is not the
+whole Cartan coefficient, `sp-design` found themselves.  **The general lesson is
+the lane's own and now has three instances: a constant is not known until it is
+computed end to end, and a partial computation that stops at one of its factors
+looks exactly like the whole answer.**
+
+**Consequences for this lane.**  `c_2 ≠ 0` no longer depends on the bridge at
+all, since `c_2 = -1` is computed directly; the bridge becomes the independent
+cross-check on the chain-map identity that I said I would run anyway, which is
+now its best use.  The route to `c_2 ≠ 0` should be whichever is cheapest in Lean
+*knowing* the answer.
 
 **Prerequisite to name now, not at the end**: the identity needs two degree-1
 classes with nonzero product, and at an odd prime a degree-1 class squares to
@@ -683,9 +734,68 @@ zero, so they must be distinct.  The space is `S¹ × S¹`, reached through
 `CharClass/CohomologyKunnethSphere.lean` rather than through sphere cohomology
 alone.
 
-### 6.2a The even-degree Cartan coefficient is `1` (accepted by the lead, 2026-09-10)
+### 6.2a RETRACTED — the even-degree lemma pins the opposite corner
 
-A lemma of this lane, unconditional and independent of the coproduct.
+**Struck 2026-09-10, by me, hours after the lead accepted it.**  The derivation
+below is correct and its stated consequence is false, for exactly the reason I
+had raised against the earlier bridge argument.
+
+The index dictionary, which is what I should have written down first:
+
+```text
+Cartan, in D-form:   D_i(u ⌣ v)  =  Σ_{a+b=i}  c̄_{a,b} · (D_a(u) ⌣ D_b(v))
+Dictionary:          Q^s(u) := [D_{(q-2s)(p-1)}(u)]
+                     s = 0    ↔  a = q(p-1)     the TOP resolution index
+                     s = q/2  ↔  a = 0          the BOTTOM
+c_q is defined at the TOP end, by Q^0_q = c_q · id.
+```
+
+*Multiplicativity of the constants* is read at `i = (q+q')(p-1)`, where the
+ranges force `a = q(p-1)` and `b = q'(p-1)`, so it involves `c̄` at the
+**top-top** corner.  *The lemma below* is read at `i = 0`, where instability
+forces `a = b = 0`, so it pins `c̄` at the **bottom-bottom** corner — which is the
+counit case, already known.  Opposite corners; nothing connects them.
+
+So `c_{q+q'} = c_q c_{q'}` does **not** follow, and the claim that the programme
+rests on a single number is not established by this argument.  Both are struck.
+
+That is the second corner confusion in this lane in one day and the first one of
+mine.  The cure is mechanical rather than attentional: the two ends of the
+splitting range read alike in prose, so the dictionary above now lives in the
+plan and every coefficient claim must name which end it is about.
+
+**Unaffected**: `c_2 = -1`, computed directly on the torus, goes through none of
+this.
+
+**The replacement, ruled by the lead, and it is better than what it replaces**
+because it sits inside the Cartan deliverable rather than beside it.  Read the
+Cartan identity at the **top** resolution index, where the ranges force both
+split indices to their maxima `q(p-1)` and `q'(p-1)`.  Since `p - 1` is even,
+both are even **for every `q`**, so `sp-design`'s reduced coefficient is `1`
+there and the whole coefficient is the riffle Koszul sign — a closed form in
+`(q, q')`.  Hence
+
+```text
+c_{q+q'} = κ_top(q,q') · c_q · c_{q'} ,   κ_top an explicit unit,
+```
+
+every even constant is a computed unit times a product of `c_2`s, and the
+normalisation making `P̃` multiplicative on even classes is the classical
+`ν(q) = (-1)^{m q(q-1)/2}(m!)^q` up to this lane's sign convention.  Three
+deliverables, all inside §6: the Cartan identity with the explicit coproduct
+coefficients; the closed form of `κ_top` for even `q, q'`; the normalisation and
+its multiplicativity on even classes, which is all Step D consumes.
+`sp-design` is deriving `κ_top` and cross-checking `c_4`, `c_6` on products of
+circles.
+
+### The degree-one constant now has two independent derivations
+
+`sp-design`'s chain-level construction of the diagonal on the models and the
+`Δ¹` cochain descent are different machinery, and they agree on `c_1` at every
+prime tested.  Recorded because **the descent is the part this lane will
+formalise**, and it now has corroboration that does not share its method.
+
+The retracted derivation, kept because it is the evidence for the rule:
 
 ```lean
 theorem cartanCoeff_even_eq_one (q q' : ℕ) (hq : Even q) (hq' : Even q') :
@@ -929,21 +1039,49 @@ that the closed form in `p` can be recognised or ruled out.
 
 ## GREEN (with job counts)
 
-> **Caveat entered 2026-09-10, to be discharged by the next probe.**  The lead
-> reports fleet-wide that the artifacts copied into every clone include oleans
-> **older than their sources**, which `lake` replays silently with **no line in
-> the log**, so the usual `Built`-not-`Replayed` check cannot see them.  This
-> lane's own modules were never at risk, since they exist nowhere but this clone.
-> Its *imports* were: the vendored cochain layer, `CartanDiagonalModule`,
-> `CartanSourceFunctor`, `CartanSourceBoundary`.  So a `Built` line below could
-> rest on an import whose olean does not match its source.  `laneprobe.sh` now
-> purges every such artifact set under the lock before building.  **The seven
-> greens below are therefore provisional until one probe under the purging
-> helper reconfirms them**, which is the next action.  I am not restating them as
-> confirmed on the strength of logs taken before the fix.
+> **Caveat DISCHARGED 2026-09-10, and the hazard was real here.**  The purging
+> helper's first run on `cs-limit` reported **`purged 234 stale artifact sets
+> (source newer than olean)`**, so this clone did carry stale imports and the
+> earlier greens were resting on some of them.  All seven rebuilt green under the
+> purge, together with three of the six new modules, in one probe:
+> **`purged 234`, ten of thirteen targets built, `2180` jobs.**  The three that
+> failed did so on their own errors, listed under AUTHORED below.
+>
+> Worth stating plainly because it nearly went the other way: a replayed stale
+> olean leaves **no line in the log**, so the `Built`-not-`Replayed` discipline
+> cannot see it.  Marking the greens provisional and re-running was the only
+> thing that would have caught it, and the count says it was not a theoretical
+> risk.
 
-**All five §2 modules build together: `Build completed successfully (2010 jobs)`,
-`LAKE_EXIT=0`, `PROBE GREEN`** on `cs-limit`, 2026-09-10.  The two maximal
+**ALL THIRTEEN OWNED MODULES BUILD TOGETHER, FROM DELETED ARTIFACTS, UNDER THE
+PURGING HELPER**: `cs-limit`, 2026-09-10, `Build completed successfully (2181
+jobs)`, `EXIT=0`.  Every one of the thirteen has its own `✔ … Built …` line in
+that single log and **not one `Replayed` line**, counted mechanically:
+`grep -c Built … = 13`, `grep -c Replayed … = 0`, `purged 0`.  The artifacts were
+deleted first precisely so the count would mean something.
+
+| module | build |
+|---|---|
+| `OddPSign` | 19s |
+| `OddPGroupRing` | 22s |
+| `OddPFrobenius` | 23s |
+| `OddPModule` | 23s |
+| `OddPResolution` | 25s |
+| `OddPTuple` | 28s |
+| `OddPNorm` | 22s |
+| `OddPSource` | 26s |
+| `OddPSourceComplex` | 53s |
+| `OddPSourceDD` | 44s |
+| `OddPSourceFunctor` | 29s |
+| `OddPSourceFree` | 30s |
+| `OddPSingular` | 34s |
+
+So §7 steps 0 and 1 are closed and step 2's carrier is landed: the group ring,
+the alternating resolution, the source functor with its differential, `d ∘ d = 0`,
+functoriality, freeness on the models, the concrete signed boundary, and the
+flat arity-generic tuple carrier.  No `sorry`; nothing reachable from the root.
+
+The earlier, superseded green:  The two maximal
 elements are named in the log as freshly `Built` (`OddPResolution` 20s,
 `OddPSource` 25s); the other three are separate targets of the same green build,
 and none of them exists in the node-side tree, so none can be a replayed stale
@@ -1027,8 +1165,44 @@ section flags.
 
 ## AUTHORED, UNVERIFIED
 
-Written during the 2026-09-10 network outage, unprobed because the MSI wrapper's
-auth cooldown runs to about 12:10 CDT:
+**Nothing.**  Everything this lane has written is in the thirteen-module green
+above.
+
+### What the six outage-written files cost to green, and why
+
+They were authored without a compiler during the network outage and needed three
+probe rounds.  Every failure was a spelling, an import or a tactic detail; not
+one was mathematical.  The five that recurred are worth naming because four of
+them are the *same* failure wearing different messages.
+
+* **A name that exists in a module you have not imported.**  Twice, and the
+  message points away from the cause both times.  `faceSimplex` reported as
+  `Unknown identifier`, which reads as a missing `open`; it is in
+  `AlexanderWhitneyFaceMaps.lean`, which `CupProduct.lean` does not import.
+  `Field (ZMod p)` reported as `failed to synthesize IsRightCancelMulZero
+  (ZMod p)[X]`, an error naming the polynomial ring and never mentioning `ZMod`;
+  the instance is in `Mathlib/Algebra/Field/ZMod.lean`, not in
+  `Mathlib/Data/ZMod/Basic.lean`.  Adding an `open`, or supplying the instance by
+  `haveI := inferInstance`, fixes neither, and the second attempt fails *at the
+  `haveI` line*, which is the tell.
+* **A file or directory that no longer exists at the pin.**  `Mathlib/Algebra/GroupPower/`
+  and `Mathlib/Algebra/CharP/Polynomial.lean`.  Caught before probing, by
+  checking imports against the pin rather than from memory.
+* **A number spelled two ways inside a type.**  Already in the traps section;
+  it recurred here as a `0` typed at a `ModuleCat` carrier rather than at the
+  `Finsupp`, where `rw [Finsupp.mapDomain_zero]` cannot match and the term
+  `exact Finsupp.mapDomain_zero` closes it.
+* **`rw`'s trailing `rfl` not firing** on a goal whose two sides print
+  identically.
+* **An orientation slip**: `exact h.symm` where the goal wanted `h`.
+
+The lesson I am keeping: *before treating an unknown identifier as a namespace
+problem, grep for the declaration and check whether its file is in your import
+closure.*  Checking names against the pin during the outage caught six errors for
+free; the two that still got through were both about which module a known name
+lives in, which a name-existence check does not test.
+
+### Superseded record: the outage batch as it stood before those fixes
 
 * `GroupApproximation/CharClass/OddPSourceFunctor.lean` — `oddSrcComplex`,
   `oddSrcComplex_d`, `lmapDomain_oddDiffW`, `lmapDomain_oddDiffS`,
@@ -1130,6 +1304,98 @@ fails.
    outputs have degree `0` after `ηε`.  Settle that convention before writing
    the telescoping contraction, not during.
 
+## 11b. The `Δ¹` descent at lemma precision, and the one thing that is not settled
+
+Next in the lead's order.  Writing it out before authoring, per §3 of the program
+note, because reading the numerics carefully turned up a model question that
+decides the shape.
+
+### The chain, in Lean statements
+
+```lean
+-- (1) the contraction of the relative cochains on the 1-simplex
+h        : Ccoch (Δ¹, {0}) n+1 →ₗ Ccoch (Δ¹, {0}) n
+h_delta  : δ (h u) + h (δ u) = u
+-- (2) its one-slot extension to the p-fold tensor power
+H_D      : D (H y) + H (D y) = y
+-- (3) each level's input is a D-cocycle
+A_cocycle : D (A k) = 0                        -- because N·(T-1) = 0 in Λ
+-- (4) the descent, and the endpoint
+Y k      : Y k = H (A k),      A (k+1) = op k (Y k)
+lambda_1 : ⟨ A_final , AW(ι₁) ⟩ = ((p-1)/2)!
+```
+
+`(3)` is `grNorm_mul_grS`, already green.  `(2)` is a one-slot sign computation.
+`(1)` and `(4)` are the work.
+
+### The unsettled point, and why I am not authoring past it yet
+
+`sp-design`'s contraction is written `h(τ*) = (τ∖{0})*`, which is **simplicial**
+notation: it removes a vertex from a face.  That makes sense on the finitely many
+faces of the simplicial `Δ^n` and does not typecheck on singular cochains, where
+a cochain is a function on *all* maps `Δ^n → Δ¹`.  This lane's whole tower is
+singular (`singularSimplices`, `singFreeR`, the `TupIdx` carrier).  Three
+readings, and they cost very different amounts:
+
+* **(a) the singular cone operator.**  `Δ¹` is convex, so the straight-line cone
+  from vertex `0` contracts its singular chains, and `h` is its dual.  Explicit,
+  elementary, and **not in Mathlib** — I checked the pin, there is no cone or
+  star operator in `Mathlib/AlgebraicTopology/`, only homotopy invariance.  It is
+  also the object cc-cartan's report boasts of never having had to build.  New
+  work, bounded, maybe 250 lines.
+* **(b) an abstract contraction.**  `AcyclicModelsSplitting.splitHomotopy` gives
+  one over a field from `ker ≤ range`, already green and generic.  Free — but it
+  computes nothing, so it can only work if the descent's *value* does not depend
+  on the choice.  `sp-design` reports exactly that, tested exhaustively over
+  single-word perturbations at every level.  If that is a theorem rather than an
+  observation, this route needs no cone operator at all and the endpoint is
+  reached by proving invariance and then evaluating one explicit choice.
+* **(c) transfer from a simplicial model.**  Correct, and it needs the
+  equivariant diagonals compared across the two models, which is another acyclic
+  models argument.  Most expensive; mentioned only to be ruled out.
+
+**Question sent to `sp-design`**: which complex is their `h` on, and is the
+independence of the value from the primitive a theorem they can state, or an
+observed invariance over the perturbations they happened to test.  The first
+answer selects (b) and makes this cheap; the second forces (a).
+
+Not authoring past this point until it comes back.  The rest of §7 step 2 — the
+tuple differential's `d ∘ d = 0`, the cyclic action, acyclicity — is unaffected
+and is where I go meanwhile.
+
+## 11a. Sign conventions — the inter-lane contract (2026-09-10)
+
+`sp-coeff` needs the signed two-fold cup-`i` coboundary formula and asked to
+match this lane rather than choose independently.  Three conventions are fixed
+here, all standard Koszul with no twists, and the third is the one that usually
+goes unwritten.
+
+1. **Tensor differential.**  `d(x ⊗ y) = dx ⊗ y + (-1)^{|x|} x ⊗ dy`.  This is
+   what `tupD` specialises to at `r = 2`, the prefix sign being the total degree
+   of the slots strictly before the differentiated one.
+2. **Transposition.**  `T(x ⊗ y) = (-1)^{|x||y|} y ⊗ x`, which is what `tupT`
+   specialises to at `r = 2`.
+3. **Evaluation carries no sign.**  `⟨u_1 ⊗ ⋯ ⊗ u_r, t⟩ = ∏_j u_j(t_j)`, slot by
+   slot.  `tupEval` is defined this way and nothing in the lane compensates for
+   it elsewhere.
+
+**The two-fold formula is not a by-product of this lane and `sp-coeff` owns it.**
+Their framing, and the lead's, was that their `r = 2` case is what the tuple
+model does `p`-fold.  It is not: `cochainCupI` is the pairing against the
+**explicit cut** diagonal, and this lane's diagonal is abstract, from acyclic
+models, with the explicit interval-cut construction deliberately retired.
+Extracting `cochainCupI` here would first require proving the abstract diagonal
+equals the explicit one, which is the work the lane exists to avoid.  Told them
+to schedule it.
+
+**The calibration warning given with it**, because it is this lane's own rule
+turned outward: the cut-index-zero case of their formula collapses to the signed
+Leibniz rule they have already landed, so it will pass and it pins only two of
+the four terms.  The two terms that *lower* the cut index are exactly the ones it
+cannot see, and are where an overall reindexing hides.  They need both degrees
+`1` and cut index `1` on a `3`-simplex, where all four terms are present and
+distinguishable.
+
 ## 12. The descent numerics (2026-09-10, `sp-design`), and where `c_2` now stands
 
 **The constant at degree one is `((p-1)/2)!`**, computed at `p = 3, 5, 7, 11, 13`
@@ -1159,6 +1425,14 @@ simplex; on `Δ¹` that boundary is a sum of **points**, where every word carrie
 factor that is the zero cochain, and on `Δ²` it is a sum of **edges**, where
 nothing kills it.  Only `q = 1` has a boundary of points, so no `Δ^q` descent can
 be made well defined for `q ≥ 2`.
+
+**The clean statement of the same fact, which arrived later and is worth having
+instead:** the constant is well defined on a **cycle**, because the `∂c` term of
+the homotopy dies there and the `T`-invariance of `w^{⊗p}` kills the `d_W` term.
+A simplex is not a cycle, which is why `Δ²` fails; the torus's fundamental class
+is one, which is why the direct computation of `c_2` on the torus works.  That
+formulation says what to look for next time — find a cycle — where the
+points-versus-edges version only says which case happened to work.
 
 ### The bridge from `c_1` to `c_2`, and the gap in it
 
@@ -1227,13 +1501,12 @@ lead reports nothing lost.  For this lane the state at the cut was:
 * an artifact-deleting rebuild of all seven in flight, started so that one log
   would carry seven `Built` lines, which may have died on the node.
 
-So the **remote clone may currently be missing this lane's oleans**, since the
-deletion certainly ran and the rebuild may not have.  That is a clone state, not
-a source state: every file is intact locally and no green claim above rests on
-the interrupted probe.  When the wrapper returns, check for a live `lake` in
-`cs-limit` before starting anything, then re-run the seven-module probe.
-`cs-limit` is also scheduled for a de-hardlinking copy of its build directory
-under the probe lock; a probe that queues behind it is harmless.
+At the time that meant the clone might be missing this lane's oleans, since the
+deletion certainly ran and the rebuild may not have.  **All of it is moot now**:
+the wrapper returned, the clone was de-hardlinked, and the thirteen-module
+from-scratch build above supersedes every artifact question raised here.  Kept
+only as the record of what an outage costs a lane, which was: nothing in the
+sources, and one probe cycle.
 
 ### The spelling trap, three times in one lane
 

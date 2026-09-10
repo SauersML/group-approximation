@@ -413,6 +413,132 @@ pin, the fallback is to prove (3) directly from the concrete description of
 `SSet.chainComplexMap` on generators rather than through `μ`.  I will say so
 rather than fight it.
 
+## Deliverable 2b (assessment): the Relative layer is mostly already generic
+
+Read-only survey of all 14 `Relative*.lean` files, 2091 lines.  **Five of them
+(`RelativeBundleNonempty`, `RelativeCochains` 320 lines, `RelativeFunctorial` 255
+lines, `RelativeLES`, `RelativeRangeKer`, `RelativeLocal`, `RelativeProdContractible`)
+never name `ZMod 2` in a way that is not already an argument to a generic
+function** — `relCohomology (R)`, `relPullback (R)`, `relToAbs (R)`, `absToSub (R)`,
+`relDelta (R)`, `relDeltaIso (R)`, `excisionShortExact (R)`, `absToSub_naturality (R)`,
+`relLES_exact_abs (R)`, `dualMap (R)` and the rest all carry `(R : Type) [CommRing R]`
+already.  So most of this layer is the substitution `(ZMod 2) ↦ K`.
+
+Exactly three files carry real work:
+
+| file | what | status |
+|---|---|---|
+| `RelativeDual` | `moduleInjective_ZMod2` | **already solved** — `moduleInjective_of_field` is written and probe-green |
+| `RelativeLineHomotopy` | `∀ x y : ZMod 2, x ≠ 0 → y ≠ 0 → x = y` (l.72) and the line hypotheses | `CoeffLine.exists_ne_zero_smul_of_line` for the algebra; the real replacement is deliverable 3, relative homotopy invariance |
+| `RelativeLocalModel` | `≃ₗ[ZMod 2] ZMod 2` hypotheses | formal — becomes `Line K` |
+
+So the Relative deliverable is: substitution across eleven files, one lemma
+already in hand, and deliverable 3 (relative homotopy invariance over any `R`)
+as the only new mathematics.
+
+## Naming, fixed (binding for `sp-cupone` and `sp-evenside`)
+
+The lead delegated this; there was already a divergence, so it is settled here.
+`sp-evenside` asked for `mul_comm_of_isEven`, the lead wrote `mul_comm_of_even`.
+**Both names exist and they are different statements.**  Do not merge them.
+
+| name | about | on | owner |
+|---|---|---|---|
+| `cup_comm_of_even` | the **degrees**: `p` or `q` even | `Hmod K X n` | `sp-cupone` |
+| `TotalH.mul_comm_of_isEven` | the **predicate** `IsEven` | `TotalH K X` | `sp-cupone`, against my type |
+
+Lean's convention derives the suffix from the hypothesis, so a lemma whose
+hypothesis is `IsEven a` is `_of_isEven` and one whose hypothesis is `Even p` is
+`_of_even`.  Keeping them distinct also stops the two being confused: the first
+is a statement about two classes in fixed degrees, the second about two arbitrary
+elements of the total ring, and the second is proved *from* the first by
+decomposing into components.
+
+**Split, approved by the lead 2026-09-10.**  Mine: `TotalH` over `K` as a graded
+ring (`DirectSum.GRing`, `mul_comm` dropped), `TotalH.of`, `component`,
+`of_eq_zero_iff`, `map`, the `IsEven` predicate, the criterion
+`isEven_of_odd_component_eq_zero`, and the seven closure lemmas
+(`isEven_of`, `IsEven.zero/one/add/neg/mul/map`).  All unblocked today.
+`sp-cupone`'s: the signed cup-1 coboundary formula, signed `cup_comm`,
+`cup_comm_of_even`, and `TotalH.mul_comm_of_isEven`.  That is exactly one blocked
+declaration, which is the property `sp-evenside` asked for.
+
+`IsEven.mul` needs no commutativity: the degree-`m` component of a product is a
+sum over `i + j = m`, and if `m` is odd then every term has an odd factor.  **That
+reasoning goes in the docstring** (`sp-evenside`'s request): otherwise someone
+will assume the lemma inherits the `mul_comm_of_isEven` block and re-derive it
+once that lands.
+
+`isEven_of_odd_component_eq_zero` **stays a named lemma even though it is
+definitional**, and this is a standing decision, not an oversight to optimise away
+later.  `sp-evenside` obtains `IsEven` for an arbitrary element of `TotalH K Y`
+from `Y`'s even-concentration, never from how the element was built, so every use
+site would otherwise carry a definitional unfolding — and those rot.
+
+## Even-concentration is ring-free (verified)
+
+`CohomologyProjectiveParity.noOddCohomology_prod_CP` — a product of projective
+spaces has no odd cohomology — has a 53-module transitive closure that **never
+reaches `SteenrodCupOne`**.  So even-concentration comes with the Mayer–Vietoris
+and chart layer, not with the commutativity theorem.  Consequence for
+`sp-evenside`'s `R`: once `TotalH.mul_comm_of_isEven` exists, `TotalH K Y` for `Y`
+a product of projective spaces is commutative **outright**, because every element
+of it is even.  No even subring, and no dependence on `ProjectiveSpaceRing`, whose
+route to commutativity is circular (it reaches `cup_comm` through
+`ProjectiveSpaceGenHyp`).
+
+## Deliverable 4 (design): signed graded commutativity over `K`
+
+Assigned by the lead 2026-09-10 after `sp-evenside` flagged it.  This is **not** a
+convenience: `cup_comm` is consumed by **twelve in-scope files** — `ChernRelation`,
+`ChernTotalRing`, `CohomologyChartFreeness`, `CohomologyChartGenBridge`,
+`CohomologyChartInduction`, `CohomologyChartRankTwoInterface`,
+`CohomologyChartTower`, `CohomologyChartTowerTop`, `CohomologyLHRingComponent`,
+`LerayHirschAlgebra`, `LerayHirschShiftTerm`, `ProjectiveSpaceGenHyp` — and
+`LerayHirschAlgebra.lean:107` records that the projective-bundle structure itself
+waits on it.  So `LerayHirsch*`, `Chern*` and `Projective*` over `K` are all
+downstream of one formula.
+
+**The good news, and it halves the job.**  `cochainCupI` is **already generic**:
+`SteenrodCochain.lean:210` is `def cochainCupI {R : Type} [CommRing R] …`, and its
+evaluation is a plain sum over `cutIndex` with no coefficient assumption.  The
+`F₂` pinning is entirely in the **coboundary formula**,
+`SteenrodCoboundary.lean:198`, and char 2 enters there in exactly two lines:
+`h2 : ∀ x : ZMod 2, x + x = 0` (l.208) cancelling duplicated terms, and
+`neg_one_pow_zmod2` (l.216) stripping the coboundary sign.  The other ~300 lines
+are `cutIndex` combinatorics indifferent to the ring.  Same idiom `sp-steenrod`
+described: prove it signed, collapse at the end.
+
+**Why the even case is not cheaper than the general one.**  The Alexander–Whitney
+product is non-commutative at cochain level in every characteristic, so
+even-degree classes do not commute for free — they commute because `(-1)^{pq}` is
+`+1` once you have the signed theorem.  And the escape in §1.5 of the program
+note ("classes from different factors commute by naturality") does **not** hold:
+on a simplex, `p₁^*a ⌣ p₂^*b` is `a(front(p₁σ))·b(back(p₂σ))` while the reverse is
+`b(front(p₂σ))·a(back(p₁σ))`.  Different cochains; still needs a homotopy.
+
+**Lemma list.**
+
+1. `cochainCupI_coboundary_signed {R} [CommRing R] (i a b n) (α β)` — the signed
+   2-fold formula.  Owner to be settled with `sp-steenrod`: if their tuple model
+   yields it `p`-fold, I consume theirs; otherwise I prove it in a new file under
+   my prefix, reusing their generic `cochainCupI` and `cutIndex` lemmas and
+   touching none of their files.
+2. `cup_comm_signed {K} [CommRing K] (a : Hmod K X p) (b : Hmod K X q) :
+   cup a b = (-1 : K)^(p*q) • cohCast (Nat.add_comm q p) (cup b a)` — from (1) at
+   `i = 0` with both classes cocycles, exactly as the `F₂` proof descends.
+3. `cup_comm_of_even` — the corollary when `p` or `q` is even; this is all the
+   program consumes.
+4. `TotalH` vocabulary for `sp-evenside`: `TotalH.IsEven` (all odd components
+   vanish), `TotalH.mul_comm_of_isEven`, and `IsEven` closed under `+`, `*`,
+   `TotalH.of` at even degree, and `TotalH.map`.
+
+**Convention.**  Must agree with `sp-steenrod`'s tuple model; `OddPSource.lean:25`
+fixes the Koszul convention on the tensor half as
+`d(e_i ⊗ σ) = d_W e_i ⊗ σ + (-1)^i (e_i ⊗ ∂σ)`.  Asked them to confirm the
+two-variable placement before I author, so the two formulas cannot differ by a
+sign nobody can find later.
+
 ## Touched outside my lane
 
 `SqDataInstance.lean:94` (prefix `Sq*`, owner `sp-steenrod`).  One line, four

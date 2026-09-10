@@ -123,14 +123,66 @@ binder for the split.
 
 ## GREEN (with job counts)
 
-Nothing yet.  `spare2`'s real-copy warm is queued behind the other lanes and the MSI
-wrapper was on an auth cooldown until ~12:10 CDT (lead, 2026-09-10).
+**Five of the six files, in one log**: `cc_clones/spare2/.lake/laneprobe-20260910-120446.log`,
+job count `8877`.  Every line below is `Built`, never `Replayed`, and every `#audit_axioms`
+in the same log printed exactly `[propext, Classical.choice, Quot.sound]`.
+
+| module | line in that log |
+|---|---|
+| `CharClass.LIXKCount` | `ℹ [8828/8877] Built … (54s)` |
+| `CharClass.LIXKMap` | `ℹ [8837/8877] Built … (172s)` |
+| `CharClass.LIXKSection` | `ℹ [8843/8877] Built … (194s)` |
+| `CharClass.LIXKPunctured` | `ℹ [8862/8877] Built … (111s)` |
+| `CharClass.LIXKStepC` | `ℹ [8876/8877] Built … (84s)` |
+
+The marker is `ℹ` rather than `✔` only because each of these modules emits `info:` lines
+(the axiom audits); the verb is `Built`, which is what the fleet rule is about.  The eleven
+audited endpoints are `map_eq_nsmul_of_localSplit`, `map_ne_zero_of_localSplit`,
+`psiVec_eq_neg_eOne_iff`, `kRoot_injective`, `psiVec_kRot`, `lixKSection_eq_zero_iff`,
+`lixKZero_injective`, `isZero_inter_of_cover`, `isZero_punctured_finite`,
+`topChernClass_ne_zero_kzero`, `topChernClass_ne_zero_kzero_naturality`.
+
+So the first deliverable is green except for the wiring file:
+
+* **the `k+1` zeros** — `psiVec_eq_neg_eOne_iff`, `lixKSection_eq_zero_iff`,
+  `lixKZero_injective`: the section with `a = e₁` and `b = Ψ_k ∘ x` vanishes at exactly the
+  `k+1` distinct points `(southPole, (ζ_j e₁, basePoint))`, all on the equator;
+* **the punctured vanishing** — `isZero_punctured_finite`, and with it the missing
+  Mayer–Vietoris direction `isZero_inter_of_cover`;
+* **the count** — `map_eq_nsmul_of_localSplit`, over an arbitrary field;
+* **the `k`-zero Step C, abstractly** — `topChernClass_ne_zero_kzero_naturality`;
+* **the rotation and the free orbit** — `psiVec_kRot`, `kRot_kZeroVec_zero`.
+
+### The one that did not build, and why it is not mine
+
+`CharClass.LIXKStepCWired` was **never attempted**: it appears zero times in the log.  The
+build failed at job `8834` on a **foreign** red,
+
+```text
+error: GroupApproximation/CharClass/ChernTotalRing.lean:94:63: Application type mismatch:
+  the argument `cup_comm a b` has type `cup = cohCast`
+  but is expected to have type `a ⌣ b = cohCast ⋯ (b ⌣ a)`
+```
+
+which is `cup_comm` being partially applied after a coefficient generalisation — an
+in-flight edit in `sp-coeff`'s scope, not a stale artifact (the purge had already run and
+reported `purged 0`).  `ChernTotalRing` is in `LIXKStepCWired`'s closure through
+`LIXStepCOddRelative → LIXBundlePair → LemmaTwoStepC → LemmaTwoTopClass`, and `lake` aborts
+the whole build when any required target fails.  Note that `LIXKStepC` built **after** that
+failure, at job 8876, so `ThomStepCEuler`'s side of the ladder is unaffected: only the
+LIX-object wiring is blocked.
+
+`LIXKStepCWired` is therefore **AUTHORED, UNVERIFIED** and is the first thing to re-probe
+when `ChernTotalRing` is green.
 
 ## AUTHORED, UNVERIFIED
 
-Six new files, none imported by anything outside this lane, no `sorry` anywhere.  Written
-blind (no compiler); the mathematics of each is settled in §0 above, so the expected
-defects are in tactic steps, not statements.
+`CharClass/LIXKStepCWired.lean` only — blocked by the foreign red above, never compiled.
+The other five files in the table below are GREEN; the table is kept because it is the
+inventory of what each file contains.
+
+No `sorry` in any of the six (lexical scan: 0 hits), and none is imported by anything
+outside this lane.
 
 | file | contents |
 |---|---|
@@ -234,6 +286,13 @@ which the tree has.
 
 ## NEEDS
 
+* **`sp-coeff` (BLOCKING, and the only thing between this lane and a complete first
+  deliverable)**: `CharClass/ChernTotalRing.lean` is red at line 94 —
+  `cup_comm a b` elaborates against a different `cup` than the `⌣` in the goal, which is
+  the coefficient generalisation half-landed.  It is in `LIXKStepCWired`'s closure through
+  `LIXStepCOddRelative → LIXBundlePair → LemmaTwoStepC → LemmaTwoTopClass`, and `lake`
+  aborts the whole build on it, so my sixth file cannot be compiled at all.  Everything
+  below `ThomStepCEuler` is unaffected — `LIXKStepC` built at job 8876, after the failure.
 * **`sp-powers`**: `Analysis/LIXPowersGauge`, `LIXPowersNaturality`, `LIXPowersJoinPower`
   to stay green — my `CharClass/LIXKMap.lean` imports the third for `Powers.joinC`.  If you
   rename or move `joinC`, tell me; I use `joinC`, `joinC_zero`, `joinC_id`, `norm_joinC`,
@@ -255,6 +314,18 @@ which the tree has.
 * **`sp-tower`**: the `Gen` shape layer for `VIdx`/`baseM` at general `n`.  Not blocking:
   I write against the `n = 2` shape layer as it is, but never against `e₃` or the south
   pole of the sphere — the zeros are `−e₁`'s rotates, on the equator.
+
+### Owed cleanup
+
+`set_option linter.unusedSimpArgs false` is set at file scope in `LIXKMap`, `LIXKSection`,
+`LIXKPunctured` and `LIXKStepCWired`.  It is a **deliberate, temporary** guard, not a
+finding: under `-DwarningAsError=true` an unused `simp` argument is a hard error, the first
+probe of `LIXKMap` failed on exactly one (`mul_assoc` in a three-element list), and without
+a compiler I cannot tell which of the remaining `simp only` lists are redundant.  Once the
+files are green the suppression comes out and the flagged arguments get deleted.  Two
+shapes to look for when doing that: a lemma already carrying `@[simp]` passed explicitly,
+and `fin_cases i <;> simp [a, b, c]`, which is *three* `simp` calls and is flagged if any
+branch does not use all three.
 
 ## TRAPS
 

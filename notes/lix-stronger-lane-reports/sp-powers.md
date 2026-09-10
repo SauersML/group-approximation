@@ -273,55 +273,41 @@ genuine continuous self-map *and* the identification is a formula.
 
 ## GREEN (with job counts)
 
-**Status of this section under the fleet `Built`-not-`Replayed` rule (lead, 2026-09-10):
-GREEN, but the evidence is spread across three logs, not one, and one single-log
-re-confirmation is owed.**  Read the next four paragraphs before quoting this section.
-
-Every one of the four modules has a `✔ [k/N] Built GroupApproximation.Analysis.<module>`
-line in a `cs-simplicity` log, at the source content it has now:
-
-| module | `Built` line | log |
-|---|---|---|
-| `LIXPowersGauge` | `✔ [2375/2375] Built … (24s)` | `laneprobe-20260910-095…` |
-| `LIXPowersNaturality` | `✔ [2376/2377] Built … (58s)` | `laneprobe-20260910-101631` |
-| `LIXPowersEH` | `✔ [2377/2378] Built … (25s)` | `laneprobe-20260910-102922` |
-| `LIXPowersJoinPower` | `✔ [2378/2378] Built … (25s)` | `laneprobe-20260910-102922` |
-
-In the last log (`102922`) `LIXPowersGauge` and `LIXPowersNaturality` produce **no line at
-all** — not `Built`, not `Replayed`; they were up to date from the earlier probes in the
-same clone and lake is silent about them.  Their sources have not changed since their own
-`Built` lines (`LIXPowersGauge` has not been edited since its first green; the node copies
-are `md5sum`-identical to the local files, below).  The job count moved monotonically
-`2375 → 2377 → 2378` as the modules were added, which is the lead's second tell.
-
-**Why a stale hard-linked artifact cannot be the explanation here**, unlike for a lane
-editing existing modules: all four are *new* files that exist nowhere but this lane's
-working copy, so the main tree has never produced an olean for them and there was nothing
-to hard-link.  The only oleans in the clone are the ones these probes made.
-
-**Owed, when the lead releases `cs-simplicity`:** delete the remote
-`.olean`/`.ilean`/`.trace` for all four modules and re-probe, so that a *single* log carries
-four `Built` lines.  Until that is done this section should be read as "green on three logs
-plus an md5 check", which is weaker than the fleet rule asks for.
-
-Job count at the last probe: `Build completed successfully (2378 jobs)`, `EXIT=0`,
-`PROBE GREEN`, empty error index.  The clone's copies were checked `md5sum`-identical to the
-local files after that probe (see the first TRAP below for why that check is not optional
-here):
+**Single-log confirmation, DISCHARGED.**  Probe `cs-simplicity`, 2026-09-10, after the
+clone was wiped and re-copied fresh and after I deleted every artifact of my own modules
+(they were absent in the fresh clone anyway, so all ten had to build from source).  One log,
+four `Built` lines, no `Replayed` on any module of mine:
 
 ```text
-ad50e1d1b5df5823c3e966e12cec8c77  LIXPowersGauge.lean
-09412f4b9ba8ed57abb4d0b7909cba17  LIXPowersNaturality.lean
-a0f9c186c0c2c1b41026fef2466673b0  LIXPowersEH.lean
-34f6693d82ba2d8112aba9bfccd03676  LIXPowersJoinPower.lean
+✔ [7099/7131] Built GroupApproximation.Analysis.LIXPowersGauge       (51s)
+✔ [8671/8679] Built GroupApproximation.Analysis.LIXPowersNaturality  (31s)
+✔ [8672/8679] Built GroupApproximation.Analysis.LIXPowersEH          (30s)
+✔ [8673/8679] Built GroupApproximation.Analysis.LIXPowersJoinPower   (30s)
 ```
 
-| module | in that probe |
-|---|---|
-| `Analysis/LIXPowersGauge.lean` | ✔ |
-| `Analysis/LIXPowersNaturality.lean` | ✔ |
-| `Analysis/LIXPowersEH.lean` | ✔ |
-| `Analysis/LIXPowersJoinPower.lean` | ✔ |
+**PENDING RE-CONFIRMATION (lead, fleet-wide, 2026-09-10).**  That probe predates the
+`laneprobe.sh` purge patch.  `sp-oddside` found that the artifacts copied into every clone
+include oleans OLDER than their sources (233 of 5478 modules in one clone), and lake replays
+those **silently, with no line in the log at all**, so the symptom is a red or an
+inconsistency in a file that is itself correct.  My closure imports `Analysis/LIXClutching`,
+which `sp-tower` may have edited today, so the four `Built` lines above could have been
+compiled against a stale dependency even though the modules themselves genuinely built.
+The helper now purges every artifact set whose `.lean` is newer than its `.olean` before
+building.  **Do not cite the block above until it is reproduced under the patched helper**;
+that re-run is queued.
+
+Once reproduced, that is the evidence the fleet rule asks for, and it replaces the
+three-log account this section used to carry.  The same probe stopped at `LIXPowersAngle`, so `Pinch`, `Normalise`,
+`Homotopy`, `Chain` and `Export` were never reached and remain unverified.
+
+**On hard links, since the release note said zero.**  `find <clone>/.lake/build -type f
+-links +1` returns 3418 files, and the first one I sampled *is* shared by inode with the
+main tree — but it is in `Audit/`, link count 21, dated three weeks earlier.  Checking the
+dependencies that actually matter, `LIXClutching`, `LIXBlockProjections` and
+`CharClass/LemmaTwoStatement` are all **distinct copies with link count 1**.  So
+`GroupApproximation` is clean and the residue is elsewhere; "zero hard links" and "hard
+links exist" are both true of this clone, of different subtrees.  My own modules are the
+easy case regardless, being new files with no main-tree olean to alias.
 
 Contents, by deliverable:
 
