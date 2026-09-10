@@ -211,10 +211,150 @@ operator, and eventual removal of every finite cycle. It does not
 rule out a different adaptive choice of graphings, exchanges that
 add edges, or a proof of Fixed Price by another method.
 
-## 5. What has and has not been advanced
+## 5. Adding edges with their full cost charged
+
+The decreasing edge-set hypothesis can be removed from the exchange
+framework, provided additions are accounted for before each deletion.
+
+Let H already generate an aperiodic p.m.p. relation R. Add a measurable
+set A of previously absent edges of R, and write H^+=H union A.
+Assume H^+ has bounded degree and set a=m_(H^+)(A), so
+c(H^+)=c(H)+a. Let P and P^+ project onto Z(H) and Z(H^+), using
+the enlarged edge module and extending P by zero.
+
+Since these cycle spaces are nested, Q=P^+-P is an orthogonal
+projection. Both graphings generate the same relation, so the
+cost--Betti dimension identity gives
+
+    Tr(Q)=z(H^+)-z(H)=c(H^+)-c(H)=a.                       (9)
+
+For 0<=K<=P, define
+
+    K^+=K+Q.
+
+The summands act on orthogonal subspaces. Hence
+
+    0<=K^+<=P^+,
+    Tr(K^+)=Tr(K)+a,
+    c(H^+)-Tr(K^+)=c(H)-Tr(K).                            (10)
+
+No bounded-path assumption is needed for this addition step. Every
+added edge already has a finite path in H because H generates R,
+but such paths need not have uniform length. Equation (9) uses the
+dimension identity rather than an unjustified bounded routing map.
+
+Now choose a bounded path retraction from H^+ onto a generating
+retained graphing J and apply Section 2 to K^+. If W is its kernel,
+the resulting contraction K' satisfies
+
+    c(J)-Tr(K')=c(H)-Tr(K)-eta,
+    eta=Tr(P_W(I-K^+))>=0.                                (11)
+
+Thus additions preserve the cost-minus-trace quantity exactly, and
+deletions can only decrease it. The added edges are charged in both
+the graphing cost and the certificate; they are not free repairs.
+
+### Nonmonotone iteration
+
+Starting from a relative certificate with
+c(H_0)-Tr(K_0)=c(Phi), alternate these additions and bounded
+connected deletions. Then every resulting graphing H_n generates
+the original relation, every K_n remains a positive contraction on
+Z(H_n), and
+
+    c(H_n)-Tr(K_n)=c(Phi)-sum_{i<n} eta_i,
+    C(X)<=c(H_n)<=c(Phi)+Tr(K_n).                          (12)
+
+Trace itself need not decrease across an entire add-then-delete
+step. If the added edge cost at step n is a_n and the deletion
+captures t_n=Tr(P_W K_n^+), then
+
+    Tr(K_(n+1))=Tr(K_n)+a_n-t_n.                          (13)
+
+Consequently a claim of decay must control t_n against both the
+current trace and the new cost a_n. When sum a_n is finite, (13)
+implies that the nonnegative traces converge: their total positive
+variation is bounded by sum a_n. It does not imply that their limit
+is zero. No general construction providing the needed capture is
+proved here.
+
+This extension permits changes of the retained edge set in both
+directions. It does not prove that any chosen exchange rule escapes
+the obstruction in Section 4.
+
+## 6. Why a forest limit cannot be treated as a generating intermediate stage
+
+The common-relation hypothesis in (9) is essential. In the example
+G=T_4 x Z, let F be the free minimal spanning forest and write
+c(F)=1+delta_G with delta_G>0. Its finite-cycle space is zero, but
+its components define a subrelation that need not be the original
+orbit relation. In fact it cannot be the full relation here: a
+generating treeing would attain the action cost, which is one.
+
+[Lyons--Peres--Schramm, Theorem 3.22](https://arxiv.org/pdf/math/0412263)
+proves that F union omega_epsilon is connected almost surely, where
+omega_epsilon is independent Bernoulli edge percolation of any
+positive parameter epsilon. Realize the two independent label
+fields together and put H_epsilon=F union omega_epsilon. If
+a_epsilon is the expected edge measure actually added outside F,
+independence gives
+
+    a_epsilon=epsilon(c(G)-c(F))->0,
+    c(H_epsilon)=1+delta_G+a_epsilon.
+
+This new graphing generates the full F_2 x Z orbit relation, whose
+first L2 Betti number is zero. Its finite-cycle dimension is therefore
+
+    z(H_epsilon)=delta_G+a_epsilon.                       (14)
+
+It would be wrong to apply (9) with H=F and conclude that the new
+cycle dimension is only a_epsilon. The generated relation changed.
+The additional delta_G in (14) is exactly the drop of the first
+Betti number from the forest subrelation to the full relation.
+All F-components are infinite: the least-priority edge across any
+finite vertex cut is retained by the free minimal spanning forest.
+The forest treeing has beta_1=c(F)-1=delta_G, whereas the full
+relation has beta_1=0.
+
+Sprinkling therefore gives a connected graph at arbitrarily small
+added cost, but its total cost remains at least 1+delta_G. An argument
+must still remove that excess. Regenerating finite cycles does not
+by itself supply a cost-reducing choice among them. This calculation
+uses the stated spanning-forest theorem and dimension identities;
+it is not a new connectivity theorem or a universal descent bound.
+
+## 7. A finite exchange cannot lower the edge count of a forest
+
+There is also an elementary restriction on what a finite exchange
+can accomplish. Let F be any forest, remove a finite set D of its
+edges, add a finite set A of new edges, and set J=(F minus D) union A.
+Suppose every original F-component is contained in a J-component.
+Then
+
+    |D|<=|A|.                                            (15)
+
+To prove this, consider the k original F-components meeting endpoints
+of D or A. Deleting D splits them into k+|D| pieces, since a finite
+number of cuts in a tree increases its component count by that
+number. In the graph on these pieces, adding A must leave at most k
+components: each original F-component has to be reconnected, though
+different original components may also be merged. Each added edge
+reduces component count by at most one, proving (15).
+
+This is a finite-support statement. It does not extend automatically
+to infinitely many simultaneous measurable exchanges, and it gives
+no lower bound on the cost of a superrelation of the forest relation.
+In particular, the full relation in Section 6 has cost one despite
+the forest subrelation's larger cost. A proposed algorithm based on
+finite local exchanges must identify how its globally coordinated
+operations go beyond the finite counting argument, rather than
+assume that a single finite improving move always exists.
+
+## 8. What has and has not been advanced
 
 The iteration now has a valid positive-contraction invariant and an
-exact cost identity. Its definition no longer loses a hypothesis
+exact cost identity, including fully charged edge additions. Its
+definition no longer loses a hypothesis
 after the first exchange. The original source graphing need not be
 reconstructed at each step, and the retained graphing stays connected
 by its explicit finite paths.
