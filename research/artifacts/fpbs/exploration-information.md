@@ -200,7 +200,15 @@ the balanced stopping bound, exact terminal-cylinder probabilities,
 likelihood ratios, and the exact identities E_p(open queries)=p E_p N.
 The replay includes the target-directed schedule (3a) for beta=0,1,2.
 All 288 cases passed on MSI, covering 7,344 edge configurations and
-2,918 terminal transcripts with exact rational arithmetic. Its output is
+2,274 terminal transcripts with exact rational arithmetic after immediate
+two-frontier exhaustion checks were added. The shared engine is
+`scripts/exploration_search.py`; it is also used by the bounded implicit
+graph pilot. Its output is
 `exploration-information-replay.json`. Cairn validation is recorded in
 `exploration-information-validation.json`. These checks do not formally
 verify the infinite theorems or supply the missing algorithmic upper bound.
+
+The next investigation is `search-geometry.md`: a deterministic ellipse
+bound, an all-open geodesic-tie obstruction at beta=1, a linear all-open
+bound at beta>1, and a censored T_4 x Z pilot. These choose a more precise
+algorithmic candidate while leaving the near-critical expected cost open.

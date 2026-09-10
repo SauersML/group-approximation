@@ -143,6 +143,14 @@ content in that region.
   Breadth-first search may have exponential cost in walk length, so its
   finite correctness tests do not provide this upper bound. This is a
   new necessary condition and attack direction, not a completed route.
+  The follow-up `fpbs-unit-target-search-ellipse-bound` controls where
+  unit-weight search queries edges, but the ellipse can grow exponentially
+  with open-path excess. `fpbs-target-search-geodesic-tie-calibration`
+  shows unit-weight insertion-order search can already be quadratic in
+  distance when all edges are open; weights greater than one avoid that
+  particular failure. The censored pilot in `search-geometry.md` supports
+  investigating the latter schedules, without providing the needed
+  expected-cost bound or a phase determination.
 
 * **Contract the critical clusters and sprinkle independently (2026-09-09).**
   `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond

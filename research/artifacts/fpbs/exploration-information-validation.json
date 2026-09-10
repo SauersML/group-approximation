@@ -4,11 +4,11 @@
   "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "aa0286005e2dee4bdccdc90db6d8ff51342820f678a522cf58a545a0842facf7",
-  "claims": 7763,
-  "routes": 7932,
-  "task_claims": 225,
-  "task_routes": 230,
+  "overlay_archive_sha256": "393e7ec4b536ac1759f394eafd177eb4dac7c483c1c69277b2fbe5a66fd348bf",
+  "claims": 7765,
+  "routes": 7934,
+  "task_claims": 227,
+  "task_routes": 232,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": false,
@@ -172,6 +172,14 @@
       null,
       "ESTABLISHED"
     ],
+    "fpbs-target-search-geodesic-tie-calibration": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-target-search-geodesic-tie-proof": [
+      null,
+      "COMPLETE"
+    ],
     "fpbs-unimodular-critical-quotients-can-have-zero-pu-proof": [
       null,
       "COMPLETE"
@@ -185,6 +193,14 @@
       "ESTABLISHED"
     ],
     "fpbs-uniqueness-exploration-query-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-unit-target-search-ellipse-bound": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-unit-target-search-ellipse-proof": [
       null,
       "COMPLETE"
     ],
@@ -209,20 +225,26 @@
     "notes/fpbs-critical-quotient-environment-gap-2026-09-09.md": "7866c26ece1c8fbd3e99751d5084c0dbd3d4b98bfb5c2924affcbca0ee1ffd66",
     "research/artifacts/fpbs/critical-quotient-replay.json": "d25e2f6dbcd662b8ead46f994fb0b618bdeb6a554e7791db565679e84bf3c0e3",
     "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
-    "research/artifacts/fpbs/exploration-information-replay.json": "63c099f630a06521e19fca56c08d76ff20ece7f996c0fa3238259356e63c638f",
-    "research/artifacts/fpbs/exploration-information.md": "5959b5ded207df790cd0a595f2806d5da626b0b0c1162bb44e50a7621130cfa9",
+    "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
+    "research/artifacts/fpbs/exploration-information.md": "5f7525550bc14cb2cf3d6f6cbfff9ceedf7b667183096e9da9737427624d6507",
+    "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
     "research/artifacts/fpbs/projection-resolvent-replay.json": "295befdf08e7328e5e9b066c6b8c2f4bd065e36a7d85d38a5424c5a3a5d9ce29",
     "research/artifacts/fpbs/projection-resolvent.md": "a6dbed6dcfd8c39dc38896b074a38b2fb56cdb8c3d8840332741a236b924f9f1",
     "research/artifacts/fpbs/quotient-environment-gap-replay.json": "a60b5784825cef71ce67ce9cce63995fd53edb2395062ec6712d69cfb375a084",
     "research/artifacts/fpbs/quotient-environment-gap.md": "0028626945649a5824ade70565ed89b34634320cbfa0ac705d160582239bc745",
+    "research/artifacts/fpbs/scripts/exploration_search.py": "db7eb58fd1d6d07d5895488e805b1e5ab9d83664b89411dd70e7543bad7f6f0b",
+    "research/artifacts/fpbs/scripts/pilot_exploration_search.py": "cf96316042f00d7d2163a22281acdd28ea858c0b3776c46b86184e1f8bdb1d28",
     "research/artifacts/fpbs/scripts/replay_critical_quotient.py": "25f9990ec72a7210b07094953fcb8d8efb08baa95a5a5444bdf9b801b28d800d",
-    "research/artifacts/fpbs/scripts/replay_exploration_information.py": "9b607996142e41500ab3735a7e8a5129e761f062be95c699de4c347424d4ecd6",
+    "research/artifacts/fpbs/scripts/replay_exploration_information.py": "6e16aefe057174068f648f57abf1348d0b637edb733ebfa35ca2f21c6f776aaa",
     "research/artifacts/fpbs/scripts/replay_projection_resolvent.py": "9f0e19845044a7d13d62f2be4aaf2973d7040062e91ae45acc4cb0a20def641f",
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
+    "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
     "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "94f3cbc8e80ecfe781d2b61c0bda27cdc3237b76e50dc9e60e208bf1fb77b695",
+    "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
+    "research/artifacts/fpbs/search-geometry.md": "ec3522da1b86cea58dc20cae77789000aa8dc23d7cbf7122312d829854d5b7ed",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "f80532789d8b6df3fc946655d3d27eaa49362ff9eea68cca47154d678aadfa06",
+    "research/fpbs-benjamini-schramm-universal.md": "5c44df228a19199a6b37d8ddf1dd55460bbc6bee478fa1b91066cfa7a6dea8a6",
     "research/fpbs-bernoulli-projection-resolvent-bound.md": "ebde9f62674dea3b17d4fb033976d7656d1c20a5a304cb5aacfa6e1a402b3824",
     "research/fpbs-bernoulli-projection-resolvent-proof.md": "e72e810b30246b55c02f785fefdbba652bda073b3d536ff468e6a47ca4858083",
     "research/fpbs-critical-dyadic-projection-estimate.md": "4a1234c7e9f24908ecea76efae35058b08e64ee1f9bde139bb2d46739ca42cf1",
@@ -241,10 +263,14 @@
     "research/fpbs-quotient-sprinkling-spectral-atom-proof.md": "1b06ee5a9d6cbcc26a09d67cd1e3e948f5f7dffcd60cb648abf19113a519633c",
     "research/fpbs-quotient-sprinkling-spectral-atom.md": "e403c13838076ee0726acc16de6dcd6c7bc616a83a25b9b04154aba48c598035",
     "research/fpbs-supercritical-finite-susceptibility.md": "7adcc28a2c89e060c6c7c9a388b5b669b0f0c67b3f87ff253c0f2fc66dc89246",
+    "research/fpbs-target-search-geodesic-tie-calibration.md": "8657701478c96caa57c7a9e4a18869793a250e3fc279504c911829c1b0984fbd",
+    "research/fpbs-target-search-geodesic-tie-proof.md": "348e3367427324126e428f3a544beeed7fc00c0a17fc028db4a280a77277f32a",
     "research/fpbs-unimodular-critical-quotients-can-have-zero-pu-proof.md": "c96e9a413a4829122b0097377c26bd6a9159334450a12624214a6b77fac2d474",
     "research/fpbs-unimodular-critical-quotients-can-have-zero-pu.md": "1eabf8ea8c6b520fd17d3c2813738345ebde767c6cc24cfbca25c81eb972c5d1",
     "research/fpbs-uniqueness-exploration-query-lower-bound.md": "7a7ea7aaec27b3e5f33806f8498752d1e25e9a7cebe824c5a5a72bfaaf86369c",
     "research/fpbs-uniqueness-exploration-query-proof.md": "fb01181f51d5d6447be981047a4ad20200c5fe9bbc1885537b470a53c7b627a5",
+    "research/fpbs-unit-target-search-ellipse-bound.md": "381e82508de2d61718df699630734e272a9b5e077c09f591b65af186cfe4f6db",
+    "research/fpbs-unit-target-search-ellipse-proof.md": "412278b90e2825c3926aee5db5a30d116c944989532c0c5a85e3af3dac10a45d",
     "research/fpbs-weighted-expansion-allows-zero-uniqueness-proof.md": "8e5719206605c8487c15786b0cd3bda09d0b91ea63786626de820534c91a1c4e",
     "research/fpbs-weighted-expansion-allows-zero-uniqueness.md": "f85b72f7c7672981a6480586f5128d533bf9ec720ace56143170a6ce88d3dd31"
   },
@@ -275,7 +301,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "f80532789d8b6df3fc946655d3d27eaa49362ff9eea68cca47154d678aadfa06",
+    "research/fpbs-benjamini-schramm-universal.md": "5c44df228a19199a6b37d8ddf1dd55460bbc6bee478fa1b91066cfa7a6dea8a6",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-reuse-removal.md": "b7825e31d4bb90802729486ab91dd0c3a52cf74e83dd15ebbe96371aee924456",
     "research/fpbs-bernoulli-maximal-cost-reference.md": "c3c8734186562b033633c0e5268b64d3953904237f27f1fbbd4b72750be50938",
@@ -634,6 +660,8 @@
     "research/fpbs-suchkova-shunkov-input.md": "a29e253d99d8f8d5dc9c4adb7668a81670d7cb033eb6760d322ba66547b88ee4",
     "research/fpbs-suchkova-shunkov-reference.md": "b4a2e75e957b7280be056e894e88d3b5c746f9fbf96517da409c0b72c61ce637",
     "research/fpbs-supercritical-finite-susceptibility.md": "7adcc28a2c89e060c6c7c9a388b5b669b0f0c67b3f87ff253c0f2fc66dc89246",
+    "research/fpbs-target-search-geodesic-tie-calibration.md": "8657701478c96caa57c7a9e4a18869793a250e3fc279504c911829c1b0984fbd",
+    "research/fpbs-target-search-geodesic-tie-proof.md": "348e3367427324126e428f3a544beeed7fc00c0a17fc028db4a280a77277f32a",
     "research/fpbs-tfl-algebra-proof.md": "bb42b05c7af37241b49c91e21811eb86deb81d731316d27f8c26f3ddd675124d",
     "research/fpbs-tfl-algebra.md": "e526733ea1416c0fc75f48ad277d7636df0ddd86766c406f22375c3f6455b7ec",
     "research/fpbs-tfl-continuum-proof.md": "1eb94f5decf0ac8b237904c69d805ce159d149cdf4bd03168b8a6fab1fb2e40c",
@@ -685,6 +713,8 @@
     "research/fpbs-uniqueness-spectral-atom-decomposition.md": "5283b98d35c5d436367ddb4fdb297e92b399a76f025576a8baef3149ecbd85f6",
     "research/fpbs-uniqueness-spectrum-critical-remainder-proof.md": "538056cb02152b0879177f2204f8ebb44857ad2ba43efd15f184298f277f0779",
     "research/fpbs-uniqueness-spectrum-critical-remainder.md": "b7640eafeccaa2c2885ffe3297c5800aaef1abd051443f9cf1c2a517000c1e4c",
+    "research/fpbs-unit-target-search-ellipse-bound.md": "381e82508de2d61718df699630734e272a9b5e077c09f591b65af186cfe4f6db",
+    "research/fpbs-unit-target-search-ellipse-proof.md": "412278b90e2825c3926aee5db5a30d116c944989532c0c5a85e3af3dac10a45d",
     "research/fpbs-universal-connectivity-operator-route.md": "dccbc8906c95e860950ad3dc16bbb9ea821f592564b69e9abccd86432c235dc7",
     "research/fpbs-universal-dyadic-route.md": "4c4a5d690f749ae83cc69d039604b150576cffb9cd4217aff7a894d7e4a5d08c",
     "research/fpbs-universal-integrated-pivotal-route.md": "3d13f23722fb020d3feef9babef6e7768f80e387f568623a09a8b355e996e8ea",
@@ -705,5 +735,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 12.933
+  "elapsed_seconds": 15.113
 }

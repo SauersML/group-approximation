@@ -5,61 +5,35 @@ from collections import defaultdict, deque
 from fractions import Fraction as F
 import itertools
 import json
-import heapq
 
 from replay_critical_quotient import blocks
+from exploration_search import balanced_search, verify_certificate
 
 
 def explore(n, edges, bits, source, target, reverse=False, direction=0):
-    if source == target:
-        return True, ()
     adjacency = [[] for _ in range(n)]
-    for index, (u, v) in enumerate(edges):
-        adjacency[u].append((u, v, index))
-        adjacency[v].append((v, u, index))
-    if reverse:
-        adjacency = [list(reversed(row)) for row in adjacency]
-    distances = []
-    for goal in (target, source):
+    edge_indices = {tuple(sorted(edge)): i for i, edge in enumerate(edges)}
+    for u, v in edges:
+        adjacency[u].append(v)
+        adjacency[v].append(u)
+    distances = {}
+    for goal in {target, source}:
         dist, pending = {goal: 0}, deque([goal])
         while pending:
             u = pending.popleft()
-            for _, v, _ in adjacency[u]:
+            for v in adjacency[u]:
                 if v not in dist:
                     dist[v] = dist[u]+1
                     pending.append(v)
         assert len(dist) == n
-        distances.append(dist)
-    seen = [{source}, {target}]
-    depths = [{source: 0}, {target: 0}]
-    queues = [[], []]
-    order = itertools.count()
-
-    def enqueue(side, u):
-        for _, v, edge in adjacency[u]:
-            priority = depths[side][u]+1+direction*distances[side][v]
-            heapq.heappush(queues[side], (priority, next(order), u, v, edge))
-
-    enqueue(0, source)
-    enqueue(1, target)
-    cache, transcript, side = {}, [], 0
-    while True:
-        if not queues[side]:
-            return False, tuple(transcript)
-        _, _, u, v, edge = heapq.heappop(queues[side])
-        assert u in seen[side]
-        fresh = edge not in cache
-        if fresh:
-            cache[edge] = bits[edge]
-            transcript.append((edge, bits[edge]))
-        if cache[edge] and v not in seen[side]:
-            seen[side].add(v)
-            depths[side][v] = depths[side][u]+1
-            enqueue(side, v)
-        if seen[0] & seen[1]:
-            return True, tuple(transcript)
-        if fresh:
-            side = 1-side
+        distances[goal] = dist
+    result = balanced_search(source, target, lambda u: adjacency[u],
+                             lambda u, goal: distances[goal][u],
+                             lambda edge: bits[edge_indices[edge]],
+                             direction=direction, query_limit=len(edges), reverse=reverse)
+    verify_certificate(result, source, target, lambda u: adjacency[u])
+    assert result["status"] != "censored"
+    return result["status"] == "connected", result["trace"]
 
 
 def check(n, edges, source, target, reverse, direction, c, q):
@@ -98,6 +72,17 @@ def check(n, edges, source, target, reverse, direction, c, q):
 
 
 def main():
+    path_neighbors = lambda v: [w for w in range(3) if abs(v-w) == 1]
+    for cap in (0, 1, 2):
+        result = balanced_search(0, 2, path_neighbors, lambda u, v: abs(u-v),
+                                 lambda edge: True, direction=2, query_limit=cap)
+        verify_certificate(result, 0, 2, path_neighbors)
+        assert result["status"] == ("connected" if cap == 2 else "censored")
+        assert len(result["trace"]) == cap
+    isolated = balanced_search(0, 2, path_neighbors, lambda u, v: abs(u-v),
+                               lambda edge: False, direction=2, query_limit=1)
+    verify_certificate(isolated, 0, 2, path_neighbors)
+    assert isolated["status"] == "disconnected"
     configurations = transcripts = cases = 0
     graphs = [(3, [(0, 1), (1, 2)]),
               (3, [(0, 1), (1, 2), (0, 2)]),
