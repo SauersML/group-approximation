@@ -9,11 +9,11 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "526aa4c6a2057effa42cf6fdbdbb3b50b889890a85dfe8175a5fcbebacf6cacb",
-  "claims": 7784,
-  "routes": 7953,
-  "task_claims": 246,
-  "task_routes": 251,
+  "overlay_archive_sha256": "1655e2240afa1b951373b2acf1f5dcbf1375265983f184a2a08c21a2b88b2ee4",
+  "claims": 7786,
+  "routes": 7955,
+  "task_claims": 248,
+  "task_routes": 253,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": false,
@@ -310,6 +310,22 @@
       null,
       "ESTABLISHED"
     ],
+    "fpbs-cluster-contact-merger-balance-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-cluster-contact-merger-balance": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-contact-dispersion-sign-obstruction-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-contact-dispersion-sign-obstruction": [
+      null,
+      "ESTABLISHED"
+    ],
     "fpbs-cost-subgraph-rank-obstruction-proof": [
       null,
       "COMPLETE"
@@ -545,6 +561,8 @@
     "fpbs-infinite-contact-zero-relative-cost": "ESTABLISHED",
     "fpbs-cost-subgraph-rank-obstruction": "ESTABLISHED",
     "fpbs-pulled-back-graphing-isoperimetry": "ESTABLISHED",
+    "fpbs-cluster-contact-merger-balance": "ESTABLISHED",
+    "fpbs-contact-dispersion-sign-obstruction": "ESTABLISHED",
     "fpbs-relative-cycle-block-localization": "OPEN",
     "fpbs-reduced-circulation-tail-bounds-cost-excess": "ESTABLISHED",
     "fpbs-optimistic-search-certified-growth": "ESTABLISHED",
@@ -555,6 +573,7 @@
     "notes/fpbs-critical-quotient-environment-gap-2026-09-09.md": "7866c26ece1c8fbd3e99751d5084c0dbd3d4b98bfb5c2924affcbca0ee1ffd66",
     "research/artifacts/fpbs/critical-quotient-replay.json": "d25e2f6dbcd662b8ead46f994fb0b618bdeb6a554e7791db565679e84bf3c0e3",
     "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
+    "research/artifacts/fpbs/docs/cluster-contact-mergers.md": "f2c7c9955b3e77ea3a6055a87ac8dd525a3be86aa92d112fd5e981fc818f9e9a",
     "research/artifacts/fpbs/docs/cost-cycle-structure.md": "2a3ae1b7f7f35e1b818a4a5f971215fd058f825b39599e06f3dd0e7f203dcc55",
     "research/artifacts/fpbs/docs/cost-rank-duality.md": "859f566c0fa350a2f891974b8248e857b320738f9d1356015324c86ca9d19003",
     "research/artifacts/fpbs/docs/finite-fiber-cost-descent.md": "fa4e0d875646f9cc51161f399b08044e2df4bc9521d0afe8620afeb63a6dcf24",
@@ -577,6 +596,7 @@
     "research/artifacts/fpbs/quotient-environment-gap.md": "0028626945649a5824ade70565ed89b34634320cbfa0ac705d160582239bc745",
     "research/artifacts/fpbs/scripts/exploration_search.py": "e1515940226b7188333303b6dd6c188bc5a6e234eb6377e302460efe3ec8550a",
     "research/artifacts/fpbs/scripts/pilot_exploration_search.py": "cf96316042f00d7d2163a22281acdd28ea858c0b3776c46b86184e1f8bdb1d28",
+    "research/artifacts/fpbs/scripts/replay_cluster_contact_mergers.py": "fb16fae48ec3e6320b2bdab8eb84e2b248316ac3724e80ee32fe68356868083e",
     "research/artifacts/fpbs/scripts/replay_critical_quotient.py": "25f9990ec72a7210b07094953fcb8d8efb08baa95a5a5444bdf9b801b28d800d",
     "research/artifacts/fpbs/scripts/replay_exploration_information.py": "6e16aefe057174068f648f57abf1348d0b637edb733ebfa35ca2f21c6f776aaa",
     "research/artifacts/fpbs/scripts/replay_optimistic_search.py": "e40db4bd213d24bae9e9561735c78edb381054beb6568b6187c02fd0727ae80a",
@@ -585,14 +605,14 @@
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
-    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "837f153b1c0aaeb8b7efd7164f23aa0bf5202c1c33f2971c4f5c37d221c87809",
+    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "00885d50598d29e7046f5addd3d9410d46e7df9a4be8a6aea741b09bb9fc1549",
     "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
     "research/artifacts/fpbs/search-barriers.md": "9e85c9b4d985a2a1fdbf3f1a7cd9a1818f9896d7328ea840a1b43686f0155281",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
     "research/artifacts/fpbs/search-geometry.md": "7b783609ac2f1c37c5e7b16a5059ff2d8f47cb611a6aa3279d7de1751040c7b5",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "ab601090727572aa89056cd7c7ba815199617a3d8b3819d88dd3ecba3d3c2060",
+    "research/fpbs-benjamini-schramm-universal.md": "9fb72a3e75f1a98c858b1352301df63e51ae243eaee2be6726584f97262fc72e",
     "research/fpbs-bernoulli-cycle-tail-compactness.md": "35162c4c633b12c30f1e8b92fd056a14529ff7193b53d6b477cdca3c11e7e19b",
     "research/fpbs-bernoulli-lower-bound-from-block-localization.md": "922fef4f8b8d03363d37e9f3d50c8afc8655cc228bf023d5b180ec38a12480f9",
     "research/fpbs-bernoulli-lower-bound-from-cycle-tails.md": "5aa7d836c7bfba32824e71fabc41c8fa0812460462d6b95c2bd4cde669917df6",
@@ -605,8 +625,12 @@
     "research/fpbs-bounded-query-connection-strong-converse.md": "8da4160daa479a93c23d7aef047bf44c2a75f2462c92e90c67e860670504a17e",
     "research/fpbs-closed-wall-forces-exponential-search-proof.md": "aa791456c6bd1d659bab9b459a0ae33b888f3019cc74a8553cfee43c691515e9",
     "research/fpbs-closed-wall-forces-exponential-search.md": "7e01bd78a17e916016a514b7811b71986e4ef977c7801792a279a66f8ca2e0a2",
+    "research/fpbs-cluster-contact-merger-balance-proof.md": "b39bf4566d1229a0740c95c4c8d3a0b94a8ef092c78e646b48df9656f2801f7e",
+    "research/fpbs-cluster-contact-merger-balance.md": "7785e33777d5a3be5821dd605572b9a48143e9f866d9f1020732baeca0a55e8f",
     "research/fpbs-conditional-traffic-descent-bound-proof.md": "b1c2e85c913bd9106f47e4d5c5088f4c546e96c99b38b86080b5991ea78cc144",
     "research/fpbs-conditional-traffic-descent-bound.md": "c39b13e4d4b4d656fd7589b3ba79b26847d3fdbf3303b66ba465b2e72bed6e2e",
+    "research/fpbs-contact-dispersion-sign-obstruction-proof.md": "9e8ba513d7dbbbc8b4adf2ffe118811e7e9027383e33dee4f3ebf13fa8cc9a76",
+    "research/fpbs-contact-dispersion-sign-obstruction.md": "dbdfaba32780e118c1560979b4536404d70fc94efab7b370383548609d8dea23",
     "research/fpbs-correlated-reuse-flags-removable.md": "204b701c9d7df36ef22324d3e27d9b17ef6c6d3a229290823526f5a09bc606c0",
     "research/fpbs-cost-subgraph-rank-obstruction-proof.md": "b0484eb3ebba1635b5a933690b90a1029e4bb977d98840be6ce48d050d3faa22",
     "research/fpbs-cost-subgraph-rank-obstruction.md": "332a91be5221e523add8b15397a4383b3648adbd7e398873bd7b3b1fae7c66c4",
@@ -697,7 +721,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "ab601090727572aa89056cd7c7ba815199617a3d8b3819d88dd3ecba3d3c2060",
+    "research/fpbs-benjamini-schramm-universal.md": "9fb72a3e75f1a98c858b1352301df63e51ae243eaee2be6726584f97262fc72e",
     "research/fpbs-bernoulli-cycle-tail-compactness.md": "35162c4c633b12c30f1e8b92fd056a14529ff7193b53d6b477cdca3c11e7e19b",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-block-localization.md": "922fef4f8b8d03363d37e9f3d50c8afc8655cc228bf023d5b180ec38a12480f9",
@@ -763,6 +787,8 @@
     "research/fpbs-centralizer-transversal-proof.md": "0ff1c2e41dc408d133fc0ca38e65d71a801803ec39cc8329b5518068eb4072f1",
     "research/fpbs-closed-wall-forces-exponential-search-proof.md": "aa791456c6bd1d659bab9b459a0ae33b888f3019cc74a8553cfee43c691515e9",
     "research/fpbs-closed-wall-forces-exponential-search.md": "7e01bd78a17e916016a514b7811b71986e4ef977c7801792a279a66f8ca2e0a2",
+    "research/fpbs-cluster-contact-merger-balance-proof.md": "b39bf4566d1229a0740c95c4c8d3a0b94a8ef092c78e646b48df9656f2801f7e",
+    "research/fpbs-cluster-contact-merger-balance.md": "7785e33777d5a3be5821dd605572b9a48143e9f866d9f1020732baeca0a55e8f",
     "research/fpbs-cluster-merger-block-proof.md": "1b531bd73ac9e58f5848b17073832efebc152523e17854bdc5114a3973997803",
     "research/fpbs-cluster-merger-projections.md": "1ba7f72b532b6f628033c3791c9b97ae61b21a763fa60a46451e91b8c30533b0",
     "research/fpbs-collapse-concentration-proof.md": "752c280a745a58602cf7afc04478901b8e7ea3e693317342127786e2cfac6fdd",
@@ -770,6 +796,8 @@
     "research/fpbs-compact-limit-attainment-proof.md": "86fd79866f2983874da498c8d25e030c8df04b47a92df4b7786e29187c6b1d73",
     "research/fpbs-conditional-traffic-descent-bound-proof.md": "b1c2e85c913bd9106f47e4d5c5088f4c546e96c99b38b86080b5991ea78cc144",
     "research/fpbs-conditional-traffic-descent-bound.md": "c39b13e4d4b4d656fd7589b3ba79b26847d3fdbf3303b66ba465b2e72bed6e2e",
+    "research/fpbs-contact-dispersion-sign-obstruction-proof.md": "9e8ba513d7dbbbc8b4adf2ffe118811e7e9027383e33dee4f3ebf13fa8cc9a76",
+    "research/fpbs-contact-dispersion-sign-obstruction.md": "dbdfaba32780e118c1560979b4536404d70fc94efab7b370383548609d8dea23",
     "research/fpbs-correlated-reuse-flags-removable.md": "204b701c9d7df36ef22324d3e27d9b17ef6c6d3a229290823526f5a09bc606c0",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable-proof.md": "84d8017dfef45c50443f2c84e13d67bc61e4174773a68124f5395047717b836e",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable.md": "425be66d604fc68c0db22976592b7404d24cfdea37ca8d0669b1ebf6b852b20e",
@@ -1169,5 +1197,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 26.281
+  "elapsed_seconds": 23.58
 }
