@@ -3,11 +3,26 @@ rg: 2
 id: fpbs-integrated-sensitivity-universal
 kind: claim
 title: Every nonamenable Cayley graph has vanishing integrated sensitivity at criticality
+artifacts:
+  - research/artifacts/fpbs/critical-cluster-stability.md
 ---
 
 OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity must tend to zero as the parameter interval shrinks. Equivalently lambda(p) tends down to rho as p decreases to pc. Neither universal proof nor counterexample is supplied. This is a stronger sufficient target than merely ruling out saturation at -log rho.
 
 ## Attempts
+
+* **Couple the critical clusters and control the entire finite spectral
+  measure (2026-09-09).** `fpbs-critical-cluster-stability-modulus` gives
+  the exact probability that a critical cluster changes under sprinkling.
+  `fpbs-finite-spectrum-total-variation-continuity` strengthens fixed-time
+  continuity to total variation convergence and uniform rho-normalized
+  continuity of finite-cluster moments. **Where it dies:**
+  `fpbs-uniqueness-spectrum-critical-remainder` shows that even the full
+  uniqueness-phase measure can converge in total variation while a
+  vanishing atom at 1 changes its moment growth rate. Section 5 of the
+  cited artifact supplies an exact two-atom control. Applying the finite
+  moment estimate to full connectivity would omit the infinite-cluster
+  term. The universal (IS) hypothesis remains OPEN.
 
 * **Read it off the exact rate identity.** `fpbs-integrated-pivotal-rate-identity`
   proves that the iterated limit of the normalized integrated sensitivity
