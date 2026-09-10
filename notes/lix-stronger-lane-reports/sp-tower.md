@@ -496,7 +496,7 @@ is a probe cycle spent on a decoration, so it waits for a consumer.
 
 ## The landing set, as of 2026-09-10 13:15
 
-Fifteen modified, four new, all mine, nothing else in `Analysis/LIX*` or
+Fifteen modified, five new, all mine, nothing else in `Analysis/LIX*` or
 `CharClass/LIXShape*` touched by this lane.
 
 Modified (these are what the seven-importer gate covers): `LIXBlockProjections`,
@@ -507,7 +507,9 @@ Modified (these are what the seven-importer gate covers): `LIXBlockProjections`,
 
 New, all leaves imported by nothing: `Analysis/LIXGenericEquator`,
 `Analysis/LIXLemmaTwoPropGeneric`, `Analysis/LIXLemmaSixHIdxGeneric`,
-`CharClass/LIXShapeGeneric`.
+`Analysis/LIXLemmaSixFieldGeneric`, `CharClass/LIXShapeGeneric`.
+
+**Twenty files, every one green under a `Built` line in a log from this afternoon.**
 
 **The seven-importer gate does not test the four new files**, precisely because nothing
 imports them.  The landing probe must name them explicitly alongside the seven, or they
@@ -567,8 +569,27 @@ four new leaves — `LIXGenericEquator` 64s, `CharClass/LIXShapeGeneric` 187s,
 `LIXLemmaTwoPropGeneric` 262s, `LIXLemmaSixHIdxGeneric` 268s.  Eleven more of the
 `LIXLemmaSix*` chain came with them.
 
-The nineteenth is `LIXLemmaSixCor4`, which imports `CharClass` and is therefore not in a
-`CharClass`-free gate.  It is the only file of mine still unverified.
+### The nineteenth, 2026-09-10 13:41 — `LIXLemmaSixCor4` GREEN
+
+`LIXLemmaSixCor4` imports `CharClass` and so cannot appear in a `CharClass`-free gate.
+Probed on its own after the artifact deletion: **PROBE GREEN, 8711 jobs**, `purged 0
+(source-newer=0, import-newer=0) of 1971 oleans`, zero errors, zero `sorryAx`, with
+`✔ Built GroupApproximation.Analysis.LIXLemmaSixCor4 (266s)` and `LIXLemmaSixCompare`
+(212s) beside it.  Built = 2, Replayed = 5.
+
+**So all nineteen of my files are green under fresh elaboration.**  Read the Replayed = 5
+honestly, though: the `CharClass` modules in Cor-4's closure were replayed from artifacts
+the purge judged consistent, not rebuilt.  That is fine for *my* file, whose own
+elaboration is what the `Built` line certifies, and it is not evidence about `sp-coeff`'s
+layer — the seven-importer gate is what tests that, and it reaches cohomology modules this
+probe never touches.
+
+One gap found and deliberately not fixed yet: `LIXLemmaSixCor4` carries **no**
+`#audit_axioms` line, so `lixLimit_hasK1InjWitness_of` — the endpoint the C⋆-side consumes
+— has never had its axiom closure printed.  It cannot use `#audit_closed_axioms`, which
+rejects a leading hypothesis by design, but `#audit_axioms` applies.  Adding it now would
+edit a file in the landing batch and invalidate the green it just earned, so it waits until
+after the batch lands.
 
 The axiom lines, now genuinely computed rather than replayed:
 
@@ -588,6 +609,63 @@ every long axiom list in the repository.
 **So: the counterexample algebra is simple and separable at every rank, unconditionally, on
 exactly the classical allowlist — and this time the run that says so is a run that
 happened.**
+
+## The rank-generic extension layer, 2026-09-10 14:0x — AUTHORED, one probe round
+
+`GroupApproximation/Analysis/LIXLemmaSixFieldGeneric.lean` (307 lines, leaf).  §3 of
+`LIXLemmaSixField` — "the corner, its ambient, and the extension" — at rank `n`: the
+null-homotopy lives in the corner `𝟏^n ⊕ P` inside `M_{Fin n ⊕ H}`, the unitary field has
+to live in `M_{Fin (n+1) ⊕ H}`, and `Gen.extAmb n` crosses between them.  `Gen.cornerE`,
+`Gen.bigE`, `Gen.bigF`, `Gen.jIncl`, `Gen.IsCornerUnit`, and the four results that carry
+the weight: `extAmb_conjTranspose_mul_self`, `extAmb_mul_conjTranspose` (**the extension of
+a corner unitary is unitary, at every rank**), `extAmb_mul`, `extAmb_fromBlocks`.
+
+The port needed **no new geometry**.  Everything the extension wants from the isometry is
+`inclᴴ incl = 1` and `incl inclᴴ = 1 − e eᴴ`, and both were already proved at every rank in
+`LIXGenericEquator` for `sp-powers`.  The section was already abstract in the block bundle
+`P : Y → Matrix HI HI ℂ` and in the base `Y`, so the rank was the only thing left to
+generalise.
+
+This one also survives the renormalised generator by inspection: the redesign changes
+*which* corner unitary gets extended, not the corner, the ambient, the isometry, or any
+identity in the section.
+
+### Probe round 1 — RED, and the interesting failure
+
+Four errors, two causes, both in the rank-two bridge section; the entire generic layer
+elaborated.  `cornerE_eq_gen`, `bigE_eq_gen` and `bigF_eq_gen` were `rfl` as expected —
+which incidentally re-confirms `e₃ = ePole 2` from the other side of the repository.
+`jIncl_eq_gen` and `ext3_eq_gen` were not, with
+
+```text
+Not a definitional equality: the left-hand side
+  jIncl HI
+is not definitionally equal to the right-hand side
+  Gen.jIncl 2 HI
+```
+
+a message that names the wrapper and never the cause.  The cause is two spellings of one
+isometry: rank-two `incl` is `if (i : ℕ) = (j : ℕ) then 1 else 0`, through `Nat.decEq` on
+the coerced values, and `Gen.incl n` is `if i = j.castSucc then 1 else 0`, through
+`instDecidableEqFin`.  **Every entry agrees; `rfl` sees the instances, not the entries.**
+
+This is the first place in the whole rank generalisation where a bridge was not free, and
+it is worth being precise about why it is not a counterexample to the others: the fourteen
+`rfl`s in `CharClass/LIXShapeGeneric.lean` all cross `Fin 3` versus `Fin (2+1)` and
+`(2 : Fin 3)` versus `Fin.last 2`, which are literal-arithmetic questions the kernel
+settles; this one crosses a `Decidable` instance, which it does not.  Repair is one
+`ext`/`fin_cases`/`rfl` lemma plus two `rw`s.  In `FLEET_TRAPS`, with the rule: when a
+generic definition must stay `rfl`-compatible with a fixed-size one, copy the original's
+decidable condition verbatim rather than writing the more natural one.
+
+### Probe round 2 — **PROBE GREEN, 2988 jobs**
+
+```
+✔ [2988/2988] Built GroupApproximation.Analysis.LIXLemmaSixFieldGeneric (156s)
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 1973 oleans
+```
+
+`Built`, not `Replayed`, not absent.
 
 ## PLAN for the remaining layers
 

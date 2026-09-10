@@ -123,57 +123,50 @@ binder for the split.
 
 ## GREEN (with job counts)
 
-**Five of the six files, in one log**: `cc_clones/spare2/.lake/laneprobe-20260910-120446.log`,
-job count `8877`.  Every line below is `Built`, never `Replayed`, and every `#audit_axioms`
-in the same log printed exactly `[propext, Classical.choice, Quot.sound]`.
+Eight files exist; seven have a `Built` line at their current content, one
+(`LIXKStepCWired`) does not yet.  **A single-log citation covering all of them is in
+flight** — the lead's new transitive purge cleared 2538 artifact sets in `spare2`
+(`purged 2538 stale artifact sets (source-newer=0, import-newer=2538) of 3308 oleans`), so
+`laneprobe-20260910-135224.log` is a near-total rebuild and will carry one `Built` line per
+module.  Until it lands, this is the per-module evidence, each line quoted from the log
+named:
 
-| module | line in that log |
-|---|---|
-| `CharClass.LIXKCount` | `ℹ [8828/8877] Built … (54s)` |
-| `CharClass.LIXKMap` | `ℹ [8837/8877] Built … (172s)` |
-| `CharClass.LIXKSection` | `ℹ [8843/8877] Built … (194s)` |
-| `CharClass.LIXKPunctured` | `ℹ [8862/8877] Built … (111s)` |
-| `CharClass.LIXKStepC` | `ℹ [8876/8877] Built … (84s)` |
+| module | `Built` line | log | content |
+|---|---|---|---|
+| `LIXKCount` | `ℹ [6752/6792] Built … (28s)` | `laneprobe-20260910-124334.log` | current |
+| `LIXKMap` | `ℹ [8875/8877] Built … (125s)` | `laneprobe-20260910-124334.log` | current |
+| `LIXKStepC` | `ℹ [8874/8877] Built … (123s)` | `laneprobe-20260910-124334.log` | current |
+| `LIXKStepCTwo` | `ℹ [8855/8878] Built … (145s)` | `laneprobe-20260910-125237.log` | current |
+| `LIXKSection` | `ℹ [8843/8877] Built … (194s)` | `laneprobe-20260910-120446.log` | see note |
+| `LIXKPunctured` | `ℹ [8862/8877] Built … (111s)` | `laneprobe-20260910-120446.log` | see note |
+| `LIXKRelativeMV` | — | — | authored, never compiled |
+| `LIXKStepCWired` | — | — | authored, one fix in flight |
+
+**Note on the two `120446` rows.**  Those two files each later received one line,
+`set_option linter.unusedSimpArgs false`, and in `124334` they show `Replayed`.  I cannot
+prove from the logs alone whether the `120446` build saw that line, so by the fleet rule
+those two rows should be read as *provisional* until the running rebuild replaces them.
+Everything else is unambiguous.
 
 The marker is `ℹ` rather than `✔` only because each of these modules emits `info:` lines
-(the axiom audits); the verb is `Built`, which is what the fleet rule is about.  The eleven
-audited endpoints are `map_eq_nsmul_of_localSplit`, `map_ne_zero_of_localSplit`,
-`psiVec_eq_neg_eOne_iff`, `kRoot_injective`, `psiVec_kRot`, `lixKSection_eq_zero_iff`,
-`lixKZero_injective`, `isZero_inter_of_cover`, `isZero_punctured_finite`,
-`topChernClass_ne_zero_kzero`, `topChernClass_ne_zero_kzero_naturality`.
+(the axiom audits); the verb is `Built`, which is what the rule is about.  Fifteen audited
+endpoints have printed exactly `[propext, Classical.choice, Quot.sound]`:
+`map_eq_nsmul_of_localSplit`, `map_ne_zero_of_localSplit`, `psiVec_eq_neg_eOne_iff`,
+`kRoot_injective`, `psiVec_kRot`, `lixKSection_eq_zero_iff`, `lixKZero_injective`,
+`isZero_inter_of_cover`, `isZero_punctured_finite`, `topChernClass_ne_zero_kzero`,
+`topChernClass_ne_zero_kzero_naturality`, `eq_of_ne_zero_of_line_two`,
+`localClassesAgree_of_ne_zero_two`, `topChernClass_ne_zero_kzero_two`, and
+`puncturedVanish_lixKZeroSet`.  Lexical `sorry` scan across all eight files: **0 hits**.
 
-So the first deliverable is green except for the wiring file:
+What that covers, mathematically:
 
-* **the `k+1` zeros** — `psiVec_eq_neg_eOne_iff`, `lixKSection_eq_zero_iff`,
-  `lixKZero_injective`: the section with `a = e₁` and `b = Ψ_k ∘ x` vanishes at exactly the
+* **the `k+1` zeros** — the section with `a = e₁` and `b = Ψ_k ∘ x` vanishes at exactly the
   `k+1` distinct points `(southPole, (ζ_j e₁, basePoint))`, all on the equator;
-* **the punctured vanishing** — `isZero_punctured_finite`, and with it the missing
-  Mayer–Vietoris direction `isZero_inter_of_cover`;
-* **the count** — `map_eq_nsmul_of_localSplit`, over an arbitrary field;
-* **the `k`-zero Step C, abstractly** — `topChernClass_ne_zero_kzero_naturality`;
-* **the rotation and the free orbit** — `psiVec_kRot`, `kRot_kZeroVec_zero`.
-
-### The one that did not build, and why it is not mine
-
-`CharClass.LIXKStepCWired` was **never attempted**: it appears zero times in the log.  The
-build failed at job `8834` on a **foreign** red,
-
-```text
-error: GroupApproximation/CharClass/ChernTotalRing.lean:94:63: Application type mismatch:
-  the argument `cup_comm a b` has type `cup = cohCast`
-  but is expected to have type `a ⌣ b = cohCast ⋯ (b ⌣ a)`
-```
-
-which is `cup_comm` being partially applied after a coefficient generalisation — an
-in-flight edit in `sp-coeff`'s scope, not a stale artifact (the purge had already run and
-reported `purged 0`).  `ChernTotalRing` is in `LIXKStepCWired`'s closure through
-`LIXStepCOddRelative → LIXBundlePair → LemmaTwoStepC → LemmaTwoTopClass`, and `lake` aborts
-the whole build when any required target fails.  Note that `LIXKStepC` built **after** that
-failure, at job 8876, so `ThomStepCEuler`'s side of the ladder is unaffected: only the
-LIX-object wiring is blocked.
-
-`LIXKStepCWired` is therefore **AUTHORED, UNVERIFIED** and is the first thing to re-probe
-when `ChernTotalRing` is green.
+* **the punctured vanishing** at any finite non-empty puncture set, and with it the
+  Mayer–Vietoris direction the tree did not have;
+* **the count**, over an arbitrary field;
+* **the `k`-zero Step C, abstractly**, and its `F₂` form with `LocalClassesAgree` removed;
+* **the rotation and the free orbit**.
 
 ## AUTHORED, UNVERIFIED
 
@@ -324,8 +317,33 @@ smaller than expected, and the `epi` half needs **no subdivision at all**:
 `exists_relCocycle_split_of_acyclic` takes the acyclicity as a hypothesis and is generic;
 `exists_relCocycle_split` is the `ZMod 2` instance, discharged by
 `CupVanishSmallAnn.exists_smallAnn_preimage`.  The hypothesis disappears when `sp-coeff`
-generalises `RelativeSmallChains`.  What remains between this and `LocalSplit` is the
-passage from cochains to relative-cohomology classes and the induction on the punctures.
+generalises `RelativeSmallChains`.
+
+What remains between this and `LocalSplit`, precisely, so the next resume does not have to
+re-derive it:
+
+1. **A relative cocycle-class API.**  The tree has the absolute one and it is already
+   generic — `CoeffCohomology.cocycleClassK`, `cocycleClassK_surjective`,
+   `iCycles_cyclesMkK`, `cyclesMk_iCyclesK` — and there is **no relative analogue**.  The
+   relative complex is `relCochainComplex R X A`, whose homology *is* `relCohomology R X A`,
+   so the analogue is a faithful mirror of that file: `relCocycleClass` built from
+   `homologyπ ∘ cyclesMk`, plus its surjectivity.  Roughly 60–100 lines, no new mathematics.
+   This is **not** what `sp-coeff` is doing (they are changing coefficients, not adding an
+   API), so it does not collide with their work.
+2. **The two-set statement on classes.**  With 1, `exists_relCocycle_split` gives
+   `x = ρ_A a + ρ_B b` directly, because `ρ_A` on cochains is the inclusion
+   `C^n(X, A) ↪ C^n(X, A ∩ B)` and so sends `[α]` to `[α]`.
+3. **The induction on the punctures.**  `A := N ∖ {z_0, …, z_{k−1}}`, `B := N ∖ {z_k}`; the
+   two puncture sets are disjoint so `A ∪ B = N`, and `A ∩ B = N ∖ Z`.  Composites of
+   `relPullback` along identities are again `relPullback` along the identity, so the `ρ_i`
+   that come out are the ones `LIXKStepCWired.lixKRho` already defines.
+
+**2b. `LIXKStepCTwo` is GREEN.**  Log
+`cc_clones/spare2/.lake/laneprobe-20260910-125237.log`:
+`ℹ [8855/8878] Built GroupApproximation.CharClass.LIXKStepCTwo (145s)`, with
+`eq_of_ne_zero_of_line_two`, `localClassesAgree_of_ne_zero_two` and
+`topChernClass_ne_zero_kzero_two` each printing exactly
+`[propext, Classical.choice, Quot.sound]`.  It compiled on the first attempt.
 
 **3. The `ChernTotalRing` blocker is a second-order stale artifact, not a source break.**
 After the purge that `laneprobe.sh` now runs, spare2 still held
@@ -334,7 +352,22 @@ After the purge that `laneprobe.sh` now runs, spare2 still held
 and an old `cup_comm` compiled against the `cup` that no longer exists — which is why the
 error prints as `cup_comm a b has type cup = cohCast`.  The purge rule misses it because
 `SteenrodCupOne.lean` itself has not changed; the correct predicate is transitive, an olean
-is stale if it predates the olean of any of its **imports**.  Reported to the lead.
+is stale if it predates the olean of any of its **imports**.  Reported to the lead, who has
+put the transitive rule into `laneprobe.sh`; its first run reported
+`purged 2538 stale artifact sets (source-newer=0, import-newer=2538) of 3308 oleans`, which
+is the size of the problem the old rule was missing.
+
+**Confirmed** in `laneprobe-20260910-125237.log`:
+`✔ [8826/8878] Built GroupApproximation.CharClass.ChernTotalRing (77s)` once
+`SteenrodCupOne`'s artifacts were deleted.  sp-coeff's sources were never at fault.
+
+**4. `LIXKStepCWired`'s own first errors, and they were one root cause.**  With the foreign
+blocker gone the file finally elaborated and produced `Unknown identifier absPull` at four
+call sites.  `absPull`, `absPull_id_eq` and `absPull_comp` live in
+`GroupApproximation.CharClass.RelativeSupport`; the existing consumers use them unqualified
+only because those files open that namespace themselves.  Qualified and re-probing.  The
+`sorryAx` lines in that log are error recovery, not a `sorry`: the lexical scan is still
+clean at 0 hits across all eight files.
 
 ## NEEDS
 

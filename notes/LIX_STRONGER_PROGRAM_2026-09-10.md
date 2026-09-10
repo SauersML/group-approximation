@@ -322,7 +322,19 @@ the one `inferInstance` finds); `NeZero n` is solution-side from `2 ≤ n`; land
 | `sp-evenside` | spare1 / 96-103 | Step D mod p: `CharClass/ParityP*`, `StepDModP*` | the uniform theorem of sp-design §3.2 as pure algebra generic in p (`ParityData` shape); later the bridge to real objects over sp-coeff's Chern classes and sp-steenrod's export |
 | `sp-oddside` | spare2 / 104-111 | Step C with k zeros: `CharClass/LIXK*` | the F₂, n = 2 instance first (constant section at e₁, k+1 equatorial zeros, the single equation `x = Σ ρ_i(x_i)` via relative Mayer–Vietoris, `γ_r = (k+1)·c`); later over F_p (needs sp-coeff's relative homotopy invariance and generic sphere/contractible) and general n (needs sp-tower's Gen shape layer) |
 | `sp-cupone` | thm-e / 112-119 | signed cup-1 product over `K`: `CharClass/CupOne*` | the cup-1 coboundary formula with signs over any commutative ring (2-fold case of sp-steenrod's tuple model, same sign conventions), `cup_comm` signed and `cup_comm_of_even`, `TotalH.IsEven`/`mul_comm_of_even`; unblocks LerayHirsch*/Chern*/Projective*/Chart tower over `K` (12 files consume `SteenrodCupOne.cup_comm`) |
-| later: `sp-endpoint` | | §1.6 | after both sides are green; statements drafted by `sp-design` ("Endpoint statements") |
+| `sp-descent` | thm-d / 0-5 (acn112) | `CharClass/OddPDescent*` | `λ_1 = ((p−1)/2)!` by the descent in the two-letter complex inside sp-steenrod's tuple model, generic in `p`; the constant is a unit |
+| `sp-lh` | stw-fix / 6-11 | LerayHirsch*, Chern*, Projective*, CohomologyChart* over `K` | the coefficient parameter through those layers, `cup_comm_of_even` at the fifteen consumer sites, F₂ names as abbrevs |
+| `sp-thom` | ring-b-alg / 12-17 | Thom*, Gysin*, Bundle*, Slice*, RelativeSupport, ThomStepCEuler over `K` | same recipe; sequenced behind sp-coeff's Relative port where the closure reaches it |
+| `sp-relhomotopy` | ring-b-end / 18-23 | `CharClass/RelHomotopy*` | relative homotopy invariance over any `R` via Mathlib's `toChainHomotopy` (sp-coeff's six-lemma design); replaces `RelativeLineHomotopy` everywhere |
+| `sp-evenside-n` | rank-four / 24-29 | `CharClass/LIXStepDGen*` | the F₂ Step D bridge (`WuStepDData`, `stepD_of_wu`) at general even rank `n` over sp-tower's shape layer, with rfl bridges to the rank-two statements |
+| `sp-oddside-n` | quant-collapse / 30-35 | `CharClass/LIXKGen*` | the F₂ k-zero Step C at general rank `n` (charts on `S^{2n+1}`, local model, punctured vanishing with `S^{2n+1}` a parameter, assembly) |
+| `sp-endpoint` | xxii-fix / 36-41 | `Palomar/LIXStrong*`, `comparator-lix-strong.json`, `Manuscript/NinetyNineProblems/ProblemLIXStrong.lean`, the ℕ lemma, scripts/workflows/yaml extensions | the Mathlib-only challenge green against Mathlib alone; the assembly over named Props, sorry-free; root wiring proposed, not applied |
+| `sp-cupone` (re-tasked) | thm-e / 112-119 | after `TotalH.mul_comm_of_even`: the Kronecker/UCT + sphere port over `K` | unlocks CohomologySphere/CohomologyContractible over `K` for the odd side at odd `p` |
+
+**Swarm relaunch (2026-09-10 14:35 CDT, user order "finish asap with swarm"):** fifteen lanes on acn112
+(acn116 is not reachable through the wrapper); the seven new clones are COLD (empty `GroupApproximation`
+build dirs; Mathlib packages present), so a lane's first probe builds its closure once; 6 cores per new
+lane, 8 per old lane, 98 cores total for the fleet, cores 42-63 left for landing builds and other users.
 
 Ownership is by file: a lane creates files under its own prefix and edits existing files
 only when the table says it owns them.  Two lanes never edit one file; ask the lead.
