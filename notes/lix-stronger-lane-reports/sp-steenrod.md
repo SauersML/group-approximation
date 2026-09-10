@@ -1,0 +1,814 @@
+# Lane `sp-steenrod` — odd-primary Steenrod reduced powers
+
+Program note: `notes/LIX_STRONGER_PROGRAM_2026-09-10.md` §1.5, second bullet.
+Clone: `cs-limit`, cores 72–79.  Owns `GroupApproximation/CharClass/OddP*.lean`
+(new prefix, chosen so that nothing collides with `Steenrod*`, `Cartan*`,
+`Acyclic*`, which stay mod-2 and stay green).
+
+This file is **the construction plan**, deliverable one.  No Lean has been
+authored.  Nothing in the shared tree has been edited by this lane.
+
+---
+
+## 0. What the plan says, in one page
+
+**The route.**  The `ℤ/p`-equivariant diagonal `Δ : W ⊗ C(X) → C(X)^{⊗p}` exists
+and is unique up to equivariant homotopy **by the acyclic-models theorem the tree
+already has**, which is stated over an arbitrary commutative ring `Λ`, an
+arbitrary category and an arbitrary family of models.  Instantiating it at
+`Λ = F_p[ℤ/p]` is not a new theorem; it is the existing theorem with a different
+`Λ`.  That is the single largest asset in the tree and it makes the lane
+possible.
+
+**What has to be built** is the two functors the theorem is applied to, and the
+evaluation layer on top:
+
+* the resolution `W` over `Λ = F_p[ℤ/p]` — cheap, and cheaper than expected
+  because `F_p[ℤ/p] ≅ F_p[s]/(s^p)` with `s = T − 1`, so the two alternating
+  differentials are multiplication by `s` and by `s^{p-1}`, and `d ∘ d = 0` is
+  `s^p = 0`;
+* the source `W ⊗ C(X)` — cc-cartan's design transfers with one sign added;
+* the target `C(X)^{⊗p}` as a **flat `p`-tuple `Finsupp` model with explicit
+  Koszul signs**, arity `r` a free parameter (so the Cartan target `C^{⊗2p}` is
+  the same construction at `r = 2p`, not a second one);
+* the evaluation of `u^{⊗p}` against it, and the class-level operations.
+
+**The one thing the acyclic-models route cannot deliver is the normalisation
+constant, and that is the lane's crux.**  Everything else — naturality,
+well-definedness, independence of the choice of `Δ`, additivity, instability,
+`P^{q/2} = p`-th cup power, and the Cartan formula — comes out of an *abstract*
+`Δ`.  `P^0 = id` does not: it is equivalent to knowing the value of a universal
+constant `c_q ∈ F_p`, and no property of an abstract `Δ` pins it.  §4 explains
+why, gives the two routes to it, and asks `sp-design` for one cheap model test
+that may make the value irrelevant.
+
+**Size.**  About 5000–6500 lines in 34–40 modules if the constant comes from the
+cheap route, plus 1500–2500 lines and high risk if it needs the explicit
+diagonal.  This is bigger than any other lane in the program and it is the
+critical path.  §7 gives the landing order so that partial progress is usable.
+
+---
+
+## 1. Inventory: what exists, what is characteristic-two only, what is new
+
+### 1.1 Reusable **as is**, with no coefficient work
+
+| file | declaration | why it transfers |
+|---|---|---|
+| `CharClass/AcyclicModels.lean` | `FreeOnModels`, `AcyclicOnModels`, `acyclicModelsHomotopy`, `NaturalHomotopy`, `NaturalHomotopy.homotopy` | stated over `{Λ : Type} [CommRing Λ]`, arbitrary `C`, arbitrary `M : ι → C`; the module docstring says in as many words that `Λ` is never assumed to be a field or to have characteristic two.  `ZMod 2` occurs once, in prose. |
+| `CharClass/AcyclicModelsExistence.lean` | `Augmentation`, `AcyclicZeroOnModels`, `acyclicModelsMap`, `acyclicModelsMap_zero`, `amMap_naturality`, `amMap_comm` | zero occurrences of `ZMod 2`.  This is the **existence** half and it is what produces `Δ`. |
+| `CharClass/AcyclicModelsContraction.lean`, `AcyclicModelsHomology.lean` | the two routes into `AcyclicOnModels` | zero occurrences of `ZMod 2`. |
+| `CharClass/AcyclicModelsSplitting.lean` | `splitHomotopy`, `splitAlpha`, `PositiveContraction`, `ker_le_range_of_positiveContraction`, `acyclicOnModels_of_ker_le_range` | stated over `{F : Type} [Field F]`.  `ZMod 2` occurs twice, both in prose.  `F := ZMod p` needs only `[Fact p.Prime]`. |
+| `CharClass/AcyclicModelsTensor.lean` | `tensorCx`, `tensorPositiveContraction`, `tensorCx_exists_preimage` | over `[CommRing Λ]`; `tensorCx` is Mathlib's `HomologicalComplex.mapBifunctor`, i.e. the **signed** total complex.  Used here only as a fallback route to acyclicity (§3.4). |
+
+### 1.2 Reusable after a mechanical `ZMod 2 ↦ K` substitution
+
+| file | what it gives | the substitution |
+|---|---|---|
+| `CharClass/CartanSingular.lean` | `singFreeSimplicial`, `singFree`, `singFree_obj_X` | the composite `TopCat.toSSet ⋙ free R ⋙ alternatingFaceMapComplex` is generic in `R`, and `∂∂ = 0` comes from `AlternatingFaceMapComplex.d_squared`.  The only characteristic-two lemmas in the file (`ModuleCatZMod2.hom_add_self`, `neg_eq_self`, `neg_one_pow_zsmul`, `singFree_d_single`) exist **to drop the alternating signs**.  This lane keeps the signs, so those four are not ported and not needed. |
+| `CharClass/CartanSimplexContractible.lean` | `homZMod2_isZero_of_contractible`, `homZMod2_isZero_stdSimplexTop` | built on Mathlib's `AlgebraicTopology.singularHomologyFunctor (ModuleCat R) k` applied to `ModuleCat.of R R`, which is generic in the coefficient object; the file pins `ZMod 2` in the abbreviation only. |
+| `CharClass/AcyclicModelsResolution.lean` | `periodicDiff`, `periodicResolution`, `periodicResolutionBasis` | genuinely mod-2: one repeated differential, because `1 − T = 1 + T`.  §2.2 replaces it with a **two-differential** version that has the mod-2 file as its `a = b = 1 + T` instance. |
+| `CharClass/CartanGroupRing.lean` | `GroupRingZ2`, `groupRingGen`, `galEnd`, `galAlgHom`, `moduleOfInvolution`, `moduleOfInvolution_smul` | the shape transfers; `galEnd`'s `if toAdd a = 0 then 1 else τ` becomes `τ ^ (ZMod.val a)`, and the `by decide` case analysis on `ZMod 2` becomes one `ZMod.natCast_self`-style computation.  See §2.1. |
+| `CharClass/CartanSimplexExact.lean` | the degreewise iso between Mathlib's coproduct carrier and the `Finsupp` carrier, hence "over a standard simplex every positive-degree cycle is a boundary" | the file's chain-map proof "collapses the alternating signs in characteristic two".  At odd `p` the iso is between two complexes that **both** carry the signs, so the sign-collapsing step is deleted rather than replaced; expect this port to be shorter than the original. |
+
+### 1.3 **Not** reusable
+
+`CharClass/CartanFreeCx*.lean` (`CartanFreeCx`, `Aug`, `Hom`, `Swap`,
+`TensorAug`, 1236 lines) is a hand-rolled tensor product of index-presented free
+modules with a **sign-free** differential; `tensorD_tensorD` works because "the
+two mixed terms are equal and cancel because two is zero".  Every one of those
+cancellations is false at odd `p`.  The flat tuple model of §3 replaces the whole
+group and is **not** a port of it: it is arity-generic, which the binary `FreeCx`
+is not, and arity-genericity is what makes `C^{⊗2p}` free.
+
+`CharClass/Steenrod*.lean` (29 modules) is the cup-`i` construction.  There is no
+cup-`i` at odd `p` and none of it transfers.  Its **design** transfers, and that
+is worth more than the code: see the recipes in §8.
+
+### 1.4 What this lane needs from `sp-coeff`
+
+Exactly two things, both already on their plan (`notes/lix-stronger-lane-reports/sp-coeff.md`):
+
+1. `CharClass/CoeffLeibniz.lean` — the **signed** Leibniz rule
+   `δ(φ ⌣ ψ) = δφ ⌣ ψ + (-1)^{|φ|}(φ ⌣ δψ)` over `[CommRing R]`, replacing the
+   mod-2 `aw_cochain_leibniz_zmod2`.  This lane consumes it for "the `p`-fold cup
+   product of a cocycle is a cocycle" and for the evaluation layer.
+2. `CharClass/CoeffCohomology.lean` + `CohomologyBasic.lean` — `Hmod K X n`,
+   `cocycleClassK`, `cupK`, `oneK`, `cohPullbackK`, `cohCast` over a field `K`.
+
+Nothing else.  In particular this lane does **not** need Leray–Hirsch, Chern
+classes, Thom, Gysin or Mayer–Vietoris over `K`; those are `sp-evenside`'s
+consumers.  Until (1) and (2) land, everything below is authored against the
+vendored generic layer directly: `singularCochainGroup K X n`, `cochainEval`,
+`cochainCup`, `cochainPullback`, `cochainCoboundary K` are already
+`{R : Type} [CommRing R]` in
+`ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/CupProduct.lean` and
+`AlexanderWhitneyChainMap.lean`.  **Name coordination sent to `sp-coeff`: this
+lane will use `Hmod K`, `cocycleClassK`, `cupK`, `cohCast` verbatim and will
+define no cohomology vocabulary of its own.**
+
+---
+
+## 2. The algebra: `Λ`, `W`, and the source functor
+
+### 2.1 `Λ = F_p[ℤ/p]`, and the one structural fact that pays for itself
+
+```lean
+abbrev GroupRingZMod (p : ℕ) : Type := MonoidAlgebra (ZMod p) (Multiplicative (ZMod p))
+noncomputable def grGen (p : ℕ) : GroupRingZMod p := MonoidAlgebra.single (Multiplicative.ofAdd 1) 1
+theorem grGen_pow_card (p : ℕ) : grGen p ^ p = 1
+noncomputable def grS (p : ℕ) : GroupRingZMod p := grGen p - 1
+theorem grS_pow_card (p : ℕ) [Fact p.Prime] : grS p ^ p = 0
+theorem grNorm_eq (p : ℕ) [Fact p.Prime] : ∑ j ∈ Finset.range p, grGen p ^ j = grS p ^ (p - 1)
+```
+
+`grS_pow_card` is `(T − 1)^p = T^p − 1 = 0`, i.e. the Frobenius `add_pow_char`
+in the commutative `F_p`-algebra `Λ`.  It is one line and it is the reason
+everything below is cheap:
+
+* `d ∘ d = 0` for the resolution is `s · s^{p-1} = s^p = 0`;
+* the norm `N = Σ_j T^j` equals `s^{p-1}` (`grNorm_eq`: multiply
+  `Σ T^j` by `T − 1` and telescope), so `N` is **not** a separate element with
+  separate lemmas — every `N`-fact is an `s`-fact;
+* `N e_i` is a boundary in `W` in **every** degree `i` — for odd `i` because
+  `d e_{i+1} = N e_i` by definition, for even `i` because
+  `N = s·s^{p-2}` and `d e_{i+1} = s e_i`.  This is what makes additivity of
+  `P^i` (§5.3) a two-line argument instead of a parity case split.
+
+`Λ` is commutative because `ℤ/p` is abelian, so `AcyclicModels.lean`'s
+`[CommRing Λ]` is satisfied — the same reason the mod-2 instance works.
+
+The module bridge, generalising `moduleOfInvolution`:
+
+```lean
+noncomputable def galEndP (τ : Module.End (ZMod p) V) (hτ : τ ^ p = 1) :
+    Multiplicative (ZMod p) →* Module.End (ZMod p) V           -- a ↦ τ ^ (ZMod.val a)
+noncomputable def galAlgHomP … : GroupRingZMod p →ₐ[ZMod p] Module.End (ZMod p) V
+noncomputable abbrev moduleOfOrderP … : Module (GroupRingZMod p) V
+theorem moduleOfOrderP_smul … : grGen p • v = τ v
+```
+
+`galEndP`'s `map_mul'` is where `hτ` is spent: `τ^(val a + val b)` versus
+`τ^(val (a+b))`, which differ by `τ^p = 1` exactly when the addition wraps.  The
+clean spelling is to build the additive hom `ZMod p →+ Additive (Module.End …)`
+with `ZMod.lift p ⟨zmultiplesHom _ (Additive.ofMul τ), _⟩` and transport, rather
+than to case-split on `ZMod.val`; the side condition `ZMod.lift` wants is
+literally `hτ`.
+
+### 2.2 The resolution, with two differentials
+
+`AcyclicModelsResolution.lean` is generalised, **not edited**, into
+`OddPResolution.lean`:
+
+```lean
+variable {Λ : Type} [CommRing Λ] (a b : Λ)
+noncomputable def altDiff (i : ℕ) : ModuleCat.of Λ Λ ⟶ ModuleCat.of Λ Λ   -- mulLeft (if Even i then b else a)
+noncomputable def altResolution (hab : a * b = 0) : ChainComplex (ModuleCat.{0} Λ) ℕ
+theorem altResolution_d_odd  (k) : (altResolution a b hab).d (2*k+1) (2*k) = mulLeft a
+theorem altResolution_d_even (k) : (altResolution a b hab).d (2*k+2) (2*k+1) = mulLeft b
+noncomputable def altResolutionBasis (k) : Module.Basis Unit Λ ((altResolution a b hab).X k)
+```
+
+with `W p := altResolution (grS p) (grS p ^ (p-1)) (by rw [← pow_succ']; exact grS_pow_card p)`.
+The mod-2 file is the instance `a = b = 1 + T`; it is **not** replaced, because
+`Cartan*.lean` consumes it and the `F₂` LIX answer must stay green.
+
+Both differentials are `mulLeft` of a fixed scalar, so the parity split lives in
+one `if` inside `altDiff` and is discharged once, by `Nat.even_or_odd`, in the
+two `_d_` lemmas.  Do not index the resolution by "even/odd degree" as two
+families; that reintroduces the transports cc-cartan's `CartanMidFour` post-mortem
+warns about ("never let a degree be an expression in the inputs").
+
+### 2.3 The source functor
+
+cc-cartan's design, unchanged except for one sign.  Degree `k` carrier indexed
+**by the simplex dimension, not by the `W`-index**:
+
+```lean
+abbrev WSIdx (X : TopCat.{0}) (k : ℕ) : Type := Σ n : Fin (k+1), singularSimplices X n.val
+abbrev srcMod (p) (X) (k) : Type := WSIdx X k →₀ GroupRingZMod p
+```
+
+so that the `W`-index is the derived quantity `k − n`.  The differential is
+`d(e_i ⊗ σ) = (d_W e_i) ⊗ σ + (-1)^i (e_i ⊗ ∂σ)`, written as two `Fin`
+eliminators exactly as cc-cartan prescribes (`Fin.lastCases` for the resolution
+half, `Fin.cases` for the boundary half), so that no simplex is ever transported.
+`d ∘ d = 0` is four groups: `a·b = 0` and `b·a = 0` for the resolution half,
+`∂∂ = 0` for the boundary half, and the two mixed terms, which now cancel
+**because of the sign `(-1)^i` against `(-1)^{i-1}`** rather than because two is
+zero.  That is the one place where the mod-2 proof is replaced rather than
+copied, and it is three lines.
+
+Freeness on the models is cc-cartan's `srcFree` verbatim: the index
+`FreeOnModels` wants is `WSIdx X k` on the nose, the basis is
+`Finsupp.basisSingleOne`, and `basis_apply` is `Category.id_comp`, modulo the one
+`ULift` reindex their traps section flags (`singularSimplices X n` is
+`ULift (Δ^n ⟶ X)`, and `Module.Basis.reindex` is spent in the `basis`/`basis_apply`
+fields and nowhere else).
+
+Estimated: `OddPGroupRing` 180, `OddPResolution` 160, `OddPSource` 380,
+`OddPSourceFree` 200 lines.
+
+---
+
+## 3. The target: a flat `r`-tuple model with explicit signs
+
+### 3.1 Why flat and arity-generic
+
+Three candidates were considered.
+
+* **Mathlib's iterated `tensorCx`.**  Rejected: the cyclic permutation of `r`
+  factors needs a braiding, and cc-cartan's traps record that Mathlib has
+  `MonoidalCategory` for `HomologicalComplex` at this pin but **no**
+  `BraidedCategory`/`SymmetricCategory`; the graded-object braiding is not
+  transported to complexes.  Building a `p`-cycle out of associators for a
+  *variable* `p` is not affordable.
+* **A signed port of `CartanFreeCx` (binary, iterated).**  Rejected: the cyclic
+  shift on `((C ⊗ C) ⊗ C) ⊗ …` is a composite of `p − 1` adjacent transpositions
+  with `p` variable, and every degree becomes an expression in the inputs.
+* **A flat `r`-tuple `Finsupp` model.**  Chosen.  One construction, arity `r`
+  free, so `C^{⊗p}` and the Cartan target `C^{⊗2p}` are the same object at two
+  values of `r` and share every lemma.  The cyclic shift is a permutation of the
+  index type with one scalar sign.
+
+### 3.2 The objects
+
+```lean
+/-- A degree-tagged singular simplex. -/
+abbrev TagSimp (X : TopCat.{0}) : Type := Σ n : ℕ, singularSimplices X n
+/-- `r`-tuples of tagged simplices whose degrees sum to `k`.  An `abbrev`, not a
+`def`: cc-steenrod lost six rewrites in one probe to a `def` index type. -/
+abbrev TupIdx (X : TopCat.{0}) (r k : ℕ) : Type := { t : Fin r → TagSimp X // ∑ j, (t j).1 = k }
+abbrev tupMod (K) [CommRing K] (X) (r k) : Type := TupIdx X r k →₀ K
+```
+
+The degree data is carried **as data with the sum as a `Prop`**, which is
+cc-steenrod's `PairIdx`/`PairDeg` recipe and is what removed every degree cast
+from their lane.  The flat spelling `Fin r → TagSimp X` is preferred over
+`Σ d : {d : Fin r → ℕ // ∑ d = k}, ∀ j, singularSimplices X (d.1 j)` because the
+latter's dependent function makes the pushforward along `f : X ⟶ Y` a dependent
+rewrite.
+
+Partial degrees and the two signs:
+
+```lean
+def pre (t : Fin r → TagSimp X) (j : Fin r) : ℕ := ∑ l ∈ Finset.filter (· < j) Finset.univ, (t l).1
+def tupD  (K) (X) (r k) : tupMod K X r (k+1) →ₗ[K] tupMod K X r k        -- Σ_j (-1)^{pre t j} Σ_i (-1)^i ⟨t with slot j faced⟩
+def tupT  (K) (X) (r k) : tupMod K X r k →ₗ[K] tupMod K X r k            -- (-1)^{(t last).1 * (k - (t last).1)} • cyclic shift
+```
+
+`tupD`'s summand is **totalised** in cc-steenrod's sense: the face of slot `j`
+returns `0` unless the resulting tuple has total degree `k`, which it always
+does, so no sum ever carries a cardinality hypothesis and no face map appears
+with a proof argument.  Write the face of slot `j` through a named function
+`faceSlot X r j i t` whose *result type* does not mention `j` or `i`; that is the
+junction recipe from cc-steenrod's composite-B post-mortem and it is what makes
+`congrArg` apply with no dependent motive.
+
+### 3.3 The three sign lemmas, and where `p` odd is used
+
+```lean
+theorem tupD_tupD : tupD K X r k ∘ₗ tupD K X r (k+1) = 0
+theorem tupT_tupD : tupT K X r k ∘ₗ tupD K X r k = tupD K X r k ∘ₗ tupT K X r (k+1)
+theorem tupT_pow_card (hr : r = p ∨ …) : (tupT K X r k) ^ r = 1
+```
+
+* `tupD_tupD`: within one slot it is `∂∂ = 0`; across two slots `j < j'` the
+  term "face `j` then face `j'`" and the term "face `j'` then face `j`" carry
+  signs `(-1)^{pre j + pre j'}` and `(-1)^{pre j + (pre j' - 1)}` — the second
+  slot's prefix has dropped by one — and cancel.  This is the standard
+  computation and it is the honest replacement for
+  `CartanFreeCx.tensorD_tensorD`'s characteristic-two cancellation.
+* `tupT_pow_card`: `r` applications of the shift multiply the signs to
+  `(-1)^{k² − Σ_j n_j²}`, and `x² ≡ x (mod 2)` gives `k² − Σ n_j² ≡ k − Σ n_j = 0`.
+  So `tupT^r = 1` **for every `r`**, with no hypothesis on `r` at all.  Record
+  this: it is the fact that lets `moduleOfOrderP` apply at both `r = p` and
+  `r = 2p`, and it costs one parity lemma.
+
+`p` odd enters this lane in exactly **two** places, and nowhere else:
+
+1. `tupEval` is `tupT`-invariant on the nose (§5.1), because the sign is
+   `(-1)^{q²(p-1)}` and `p − 1` is even.  At `p = 2` that sign is `(-1)^{q²}`
+   and the mod-2 tree needs no invariance argument because `−1 = 1`.
+2. `⟨u^{⊗p}, N y⟩ = p·⟨u^{⊗p}, y⟩ = 0` — the norm dies against an invariant
+   functional.  This is the odd-`p` replacement for "the `(1 + t)` half dies
+   because `2 = 0`", and it is *stronger*: **both** halves of the source
+   differential die (§5.2), so the coboundary formula has no parity case split.
+
+### 3.4 Acyclicity on the models
+
+`AcyclicOnModels stdSimplexTop Λ tgt` is what the theorem consumes, and
+`acyclicOnModels_of_ker_le_range` reduces it to `ker d ≤ range d` for
+`tupCx (Δ^n) r` in every positive degree.  Two routes; the first is recommended.
+
+* **(A) Direct telescoping contraction, arity-generic.**  `C(Δ^n; K)` has a
+  contraction `s` with `d s + s d = 1 − ηε` (from `CartanSimplexContractible` at
+  `K`, plus `AcyclicModelsSplitting.splitHomotopy`, which is over an arbitrary
+  field and needs only `ker ≤ range`).  On tuples set
+  `S(t) = Σ_j (-1)^{pre t j} (ηε)^{⊗(j)} ⊗ s ⊗ 1^{⊗(r-j-1)} (t)`.
+  Then `dS + Sd = 1 − (ηε)^{⊗r}` by a telescoping sum in which consecutive terms
+  cancel — one computation, `r` free, no induction on `r`.  This is strictly
+  easier in the flat model than in an iterated binary one, which is the second
+  reason to be flat.
+* **(B) Fallback: transport along an isomorphism to the iterated `tensorCx`**,
+  and use `tensorCx_ker_le_range` by induction on `r`.  Costs a degreewise iso
+  `tupCx C r ≅ tensorCx (tupCx C (r-1)) C` compatible with both differentials,
+  which is `finsuppTensorFinsupp` plus a bidegree bookkeeping argument.  Take
+  this only if (A)'s telescoping fights the `Finset.filter (· < j)` prefix sums.
+
+Estimated: `OddPTuple` 300, `OddPTupleSign` 260, `OddPTupleD` 320,
+`OddPTupleAction` 280, `OddPTupleFunctor` 200, `OddPTupleAcyclic` 380 lines.
+
+---
+
+## 4. The normalisation constant — the crux, stated honestly
+
+### 4.1 Where it comes from
+
+For `u ∈ C^q(X; F_p)` a cocycle, put
+
+```
+D_j(u) ∈ C^{pq - j}(X; F_p),     D_j(u)(σ) = ⟨ u^{⊗p} , Δ(e_j ⊗ σ) ⟩
+```
+
+and the operation with `i` given by `j = (q − 2i)(p − 1)`, so that `D_j(u)` has
+degree `q + 2i(p−1)`.  The two ends of the range are
+
+| `i` | `j` | degree | what it should be |
+|---|---|---|---|
+| `q/2` (`q` even) | `0` | `pq` | `u^p` |
+| `0` | `q(p−1)` | `q` | `u` |
+
+The classical operation is `P^i(u) = (-1)^i ν(q) D_{(q-2i)(p-1)}(u)` with
+`ν(q) = (-1)^{mq(q-1)/2}(m!)^q`, `m = (p−1)/2`.  **Why it is a unit mod `p` is
+trivial and needs no citation:** `m! = 1·2⋯m` with `m = (p−1)/2 < p`, a product
+of integers prime to `p`, so `m! ∈ F_p^×`; and `(-1)^k ∈ F_p^×`.  (For the
+record, Wilson gives `(m!)^2 = (-1)^{m+1}` in `F_p`, so `m!` is a square root of
+`±1`; this is not needed anywhere.)  **Why it has that particular value is the
+problem.**
+
+### 4.2 The `i = q/2` end is free; the `i = 0` end is not
+
+`j = 0` is easy and needs no constant.  `Δ(e_0 ⊗ −) : C(X) → C(X)^{⊗p}` is a
+natural chain map agreeing in degree `0` with `x ↦ x^{⊗p}`.  So is the iterated
+Alexander–Whitney diagonal
+`Φ₀^{(p)}(σ) = Σ_{n_1+⋯+n_p = n} σ|_{[0..n_1]} ⊗ σ|_{[n_1..n_1+n_2]} ⊗ ⋯`.
+By the **non-equivariant** uniqueness half (`acyclicModelsHomotopy` at
+`Λ = F_p`, not the group ring) the two are naturally homotopic, so
+`[D_0(u)] = [⟨u^{⊗p}, Φ₀^{(p)}(−)⟩] = [u ⌣ u ⌣ ⋯ ⌣ u] = [u]^p`, the last step
+being the definition of the vendored `cochainCup` iterated.  **No constant.**
+
+`j = q(p−1)` is the problem.  Write `Q^i(u) := [D_{(q-2i)(p-1)}(u)]`
+(unnormalised).  What an abstract `Δ` gives:
+
+* `Q^0_q(u) = c_q · u` for a universal `c_q ∈ F_p` — **not provable abstractly**;
+* even granting it, `c_q` is not determined by any other property.  Concretely:
+  `c_0 = 1` (degree `0` is `Δ(e_0 ⊗ x) = x^{⊗p}` and `t^p = t` in `F_p`);
+  the Cartan formula at `k = 0` forces `c_{q+q'} = κ(q,q') c_q c_{q'}`; and the
+  `p`-th power property at the top forces `κ ≡ 1` on even degrees, hence
+  `c_{2k} = c_2^k`.  **Every one of these is satisfied for any value of `c_2`,
+  including `c_2 = 0`.**  So no combination of naturality, additivity,
+  instability, the `p`-th power property and Cartan pins `c_2`.  At `p = 2` the
+  question does not arise because the explicit cup-`i` formula gives
+  `Sq^0(u) = u ⌣_q u = u` on the nose (`cochainCupI_self`), constant `1`.
+
+Two further dead ends, recorded so they are not re-explored:
+
+* *"The off-diagonal terms die against the norm."*  True and useful — for a
+  `(q,…,q)`-component, tuples with unequal entries have free `ℤ/p`-orbits and
+  `⟨u^{⊗p}, N w⟩ = p⟨u^{⊗p}, w⟩ = 0`.  But it applies only to a `T`-invariant
+  element, and `Δ(e_{q(p-1)} ⊗ ι_q)` is not one: `T e_j ≠ e_j`.  Chasing
+  `(T−1)Δ(e_j ⊗ ι)` through the chain-map identity reproduces the coboundary
+  formula and yields no information about the constant.
+* *"Rescale the classes."*  `P^0 = id` and `P^{q/2} = p`-th power are two
+  normalisations and there is one degree of freedom; substituting `y ↦ λy` moves
+  the constant by `λ^{p-1} = 1`, so it cannot be moved.
+
+### 4.3 The two routes, and the one cheap question that may kill the problem
+
+**Route 1 (cheap, contingent).**  Keep the constant symbolic.  Define
+`P̃^i := c_q^{-1} Q^i`, which satisfies `P̃^0 = id`, is multiplicative
+(the rescaling is consistent precisely because `c_{q+q'} = κ c_q c_{q'}`), and
+satisfies `P̃^{q/2}(u) = c_q^{-1} u^p`.  On a degree-2 class this reads
+**`P̃(h) = h + κ h^p` with `κ = c_2^{-1} ∈ F_p^×` unknown**, and the Wu relations
+become `P̃(γ_j) = e_j(y_i + κ y_i^p)`.
+
+> **Ask to `sp-design` (blocking nothing, but it decides this lane's shape):
+> re-run the §1.4 model test with `P(h) = h + κ h^p` for every `κ ∈ F_p^×`, and
+> report whether the "forced ⟹ `γ_r(W) = 0`" column of the table in §1.4 is
+> independent of `κ`.**  If it is, this lane never has to compute the constant
+> and the plan drops §4 Route 2 entirely; the remaining obligation is only
+> `c_q ≠ 0`, and `c_q = c_2^{q/2}` reduces that to `c_2 ≠ 0`.
+
+Route 1 still owes `Q^0_q = c_q · id` (the *shape*, not the value) and `c_2 ≠ 0`.
+The shape is available on the classes §1.4 actually uses, at no cost: every class
+in `H^*(Y; F_p) = F_p[y_1,…]/(…)` is a polynomial in degree-2 Euler classes,
+each pulled back from `ℂP^N` where `H^2` is one-dimensional, so `Q^0` on it is a
+scalar by naturality and the scalar is `N`-independent by naturality along
+`ℂP^N ↪ ℂP^{N+1}`; `t` and `x` are pulled back from spheres, same argument; and
+everything else is generated from those by sums and products, where Cartan and
+additivity carry `Q^0` along.  **`c_2 ≠ 0` is not available this way and remains
+owed under Route 1 too.**
+
+**Route 2 (expensive, unconditional).**  Construct `Δ` explicitly — the
+`p`-fold "interval cut" formula generalising cc-steenrod's `cochainCupI`, with
+signs and with two families for the two parities of the `W`-degree — and read the
+constant off the top component, where the only surviving cut is the one that
+assigns the whole vertex set to every slot.  This makes `P^0 = id`, instability
+*and* the constant cochain-level facts, exactly as at `p = 2`.  Cost: cc-steenrod
+spent ten modules (`SteenrodCut`, `SteenrodCutCancel`, `SteenrodCochain`,
+`SteenrodCupEdge`, `SteenrodCoboundary`, …) on the sign-free binary case, whose
+core `cut_coboundary_master` is already a telescoping argument valued in an
+abelian group of exponent two.  Estimate 1500–2500 lines, and it is the single
+highest-risk item in the whole program.
+
+**Recommendation:** author Routes 0–5 of §7 (everything except the constant)
+first; they are unconditional and they are what every other lane is waiting for.
+Start Route 2 only if `sp-design`'s κ-sweep says the value matters, and even then
+consider restricting the explicit construction to the top component alone.
+
+> **Superseded by the lead's ruling of 2026-09-10; see §10.**  Route 1 is
+> approved, the scoping is approved, Route 2 is forbidden for now, and a third
+> route to `c_2 ≠ 0` — a descent on a small model — is to be evaluated first.
+> §4.1 and §4.2 stand unchanged: they are why the question exists.
+
+---
+
+## 5. The operations, from an abstract `Δ`
+
+### 5.1 The evaluation layer
+
+```lean
+def tupEval (K) (X) (r) (q : Fin r → ℕ) (u : ∀ j, singularCochainGroup K X (q j)) (k) :
+    tupMod K X r k →ₗ[K] K                              -- t ↦ ∏ j, u j (t j) when degrees match, else 0
+theorem tupEval_tupT (u : constant tuple) : tupEval … ∘ₗ tupT … = tupEval …
+theorem tupEval_tupD  : tupEval … ∘ₗ tupD … = Σ_j ± tupEval (… δ(u j) …)
+```
+
+`tupEval` is **totalised**: it vanishes off its bidegree, so no degree hypothesis
+survives anywhere downstream.  cc-cartan's finding that "no degree hypothesis
+survives in composite B's evaluation, because the cup-`i` product of two cochains
+of the wrong degrees is zero and that is the *same condition* as the pairing's
+bidegree selection" is the same phenomenon and the same design.
+
+`tupEval_tupT` for a **constant** tuple `u_j = u` is the invariance of §3.3 and it
+is where `p` odd is used.  `tupEval_tupD` with every `u_j` a cocycle gives
+`δ(u^{⊗p}) = 0`.
+
+### 5.2 The operations and their well-definedness
+
+```lean
+noncomputable def oddD (p) (X) (q j : ℕ) (u : singularCochainGroup (ZMod p) X q) :
+    singularCochainGroup (ZMod p) X (p*q - j)
+theorem oddD_cocycle  (hu : δu = 0) : δ (oddD p X q j u) = 0
+theorem oddD_natural (f : X ⟶ Y) : cochainPullback f _ (oddD p Y q j u) = oddD p X q j (cochainPullback f q u)
+theorem oddD_coboundary (hu : δu = 0) (w) : oddD p X q j (u + δw) - oddD p X q j u = δ (…)
+noncomputable def redPow (p) (i : ℕ) {q} (x : Hmod (ZMod p) X q) : Hmod (ZMod p) X (q + 2*i*(p-1))
+```
+
+`oddD_cocycle` is the calculation of §3.3 item 2 and has **no parity case
+split**: `d_W e_j` is `s e_{j-1}` or `s^{p-1} e_{j-1}`, `Δ` is `Λ`-linear, and the
+functional is `Λ`-linear into a trivial-action module, so `⟨u^{⊗p}, s·y⟩ =
+(1 − 1)⟨u^{⊗p}, y⟩ = 0` and `⟨u^{⊗p}, s^{p-1}·y⟩ = ⟨u^{⊗p}, N y⟩ = p⟨…⟩ = 0`.
+That both halves die at once is the odd-`p` simplification and it should be
+stated as one lemma `tupEval_smul_grS`.
+
+**Instability is free.**  `redPow p i` for `2i > q` has `j = (q − 2i)(p−1) < 0`,
+so there is no `e_j`; define `redPow p i x = 0` there, by the same `dite` the
+degree forces.  `P^i = 0` for `2i > q` is then `rfl`.  The mod-2 tree got
+instability from `cochainCupI_of_degree_ne`; here it is definitional.  What must
+be checked is that the Cartan formula produces zeros in that range, which it does
+because the comparison only ever mentions `e_a` with `a ≥ 0`.
+
+**Independence of the choice of `Δ`** is `acyclicModelsHomotopy` plus the fact
+that the functional annihilates boundaries when `u` is a cocycle — cc-cartan's
+`fourEvalMor`/`fourEval_compA_eq_compB` pattern, where "two of the three terms of
+the homotopy identity die".  Here the `d ∘ s` term dies because the functional
+annihilates boundaries and the source-differential term dies by
+`tupEval_smul_grS`.
+
+### 5.3 Additivity
+
+`(u+v)^{⊗p} = Σ_{S ⊆ Fin p} u^S v^{S^c}`.  The `2^p − 2` mixed terms are
+permuted freely by `ℤ/p`, so summing over an orbit gives
+`⟨mixed, N·Δ(e_j ⊗ σ)⟩ = ⟨mixed, Δ(N e_j ⊗ σ)⟩`, and **`N e_j` is a boundary in
+`W` for every `j`** (§2.1) — so each orbit contributes `⟨mixed, dΔ(w ⊗ σ)⟩ ±
+⟨mixed, Δ(w ⊗ ∂σ)⟩`, i.e. a coboundary.  Hence `redPow` is additive on classes.
+This is the classical argument; the only input that is not already needed
+elsewhere is `grNorm_eq` together with `N = s·s^{p-2}`.
+
+Estimated: `OddPEval` 300, `OddPDiagonal` 260, `OddPCochain` 320,
+`OddPClasses` 380, `OddPAdditive` 240, `OddPTopPower` 300 lines.
+
+---
+
+## 6. The Cartan formula
+
+### 6.1 The route, and why the target is `C^{⊗2p}` and not `C^{⊗p²}`
+
+The mod-2 internal route compares two natural equivariant chain maps
+`W ⊗ C(X) → C(X)^{⊗4}`.  The `4` is `2 · 2` = (number of tensor slots of `Φ`) ×
+(number of cochains being multiplied), **not** `2²` in the sense of `p²`.  So at
+odd `p` the target is `C(X)^{⊗2p}`, which in the flat model of §3 is the same
+object at `r = 2p` and inherits every lemma.  No new construction.
+
+```
+A = (slotwise Φ₀) ∘ Φ                        : W ⊗ C → C^{⊗p} → C^{⊗2p}
+B = shuffle ∘ (Φ ⊗ Φ) ∘ regroup ∘ (ψ_W ⊗ Φ₀) : W ⊗ C → C^{⊗2p}
+```
+
+* `slotwise Φ₀` carries **no Koszul sign**, because `Φ₀` has degree `0`.  This is
+  a real saving and should be stated as such.
+* `A` intertwines `T` with the **block shift by two** on `2p` slots; `B` naked
+  intertwines `T` with the shift-by-one-inside-each-block; the riffle shuffle
+  `x_1…x_p y_1…y_p ↦ x_1y_1x_2y_2…x_py_p` conjugates one to the other.  At
+  `p = 2` this is cc-cartan's `(13)(24)` versus `(12)(34)` and `midSwap`; the
+  general statement is the same conjugation and the index-level proof is again
+  `rfl` plus the riffle's Koszul sign
+  `ε = Σ_j |y_j| · Σ_{l>j} |x_l|`.
+* The evaluating functional is `u ⊗ v ⊗ u ⊗ v ⊗ ⋯` (`2p` slots), invariant under
+  the block shift by the parity lemma of §3.3, **not** invariant under the naked
+  action — which is the same forcing cc-cartan records ("under `(12)(34)` the
+  evaluation step does not typecheck at all").
+* `A` and `B` are defined **by their values on the `Λ`-basis of the free source
+  and extended with `Module.Basis.constr`**, never assembled as tensor products
+  of maps, because `ψ_W` and `Φ₀` are individually not `Λ`-linear.  cc-cartan's
+  instruction, and it applies verbatim.
+
+### 6.2 `ψ_W`, the resolution's coproduct
+
+`B` needs `ψ : W → W ⊗_{F_p} W` (diagonal action), `Λ`-linear, counital.  Two
+options:
+
+* **Explicit.**  Over `Λ = F_p[s]/(s^p)` the classical formula has the shape
+  `ψ(e_{2i}) = Σ_{a+b=i} e_{2a} ⊗ e_{2b} + Σ_{a+b=i-1} Σ_{0≤σ<τ<p} T^σ e_{2a+1} ⊗ T^τ e_{2b+1}`
+  and a companion in odd total degree.  **I will not write this from memory.**
+  The deliverable is: solve the chain-map recursion symbolically, confirm the
+  closed form, and only then state it.  This is a numeric obligation and it goes
+  to MSI (§9), not to this laptop.
+* **Abstract.**  `W` is free over `Λ` and `W ⊗ W` is positive-degree acyclic
+  (Künneth over a field, or the §3.4 telescoping at `r = 2`), so
+  `acyclicModelsMap` over a **one-object category** — the comparison theorem for
+  projective resolutions is the acyclic-models theorem with `C := Unit` — gives
+  `ψ` with no formula.  Cheaper, but then `B`'s value carries unknown
+  coefficients `c_{a,b,σ} ∈ F_p` and the Cartan formula comes out with an
+  unknown constant `κ`, which folds into §4's problem rather than adding to it.
+
+**Recommendation:** abstract `ψ` first (it unblocks the whole comparison and
+costs one module), explicit `ψ` only if `sp-design`'s κ-sweep says the constants
+matter.  Note the pleasant consequence: if the κ-sweep comes back "independent of
+κ", then *neither* the normalisation constant *nor* `ψ_W`'s coefficients ever
+have to be computed, and this lane's two hardest items both evaporate.
+
+### 6.3 What the comparison then gives
+
+`A` and `B` agree in degree `0` (both send `e_0 ⊗ x` to `x^{⊗2p}` for a
+`0`-simplex `x`), so `acyclicModelsHomotopy` applies; evaluating against
+`u⊗v⊗u⊗v⊗⋯` kills two of the three terms of the homotopy identity and leaves the
+Cartan formula as an identity of cochains, then of classes.  The reindexing of
+the sum into `P^i` shape must happen **after** passing to classes — cc-cartan's
+hardest-won finding, twice restated in their report: at cochain level it needs one
+number spelled two ways inside the *type* of a cochain, and no lemma can bridge
+that; in the total ring degrees are plain naturals and `of_cohCast` absorbs
+everything.  So the published shape is theirs:
+
+```lean
+def CartanOfP (p) (X : TopCat.{0}) : Prop :=
+  ∀ (n a b : ℕ) (x : Hmod (ZMod p) X a) (y : Hmod (ZMod p) X b),
+    TotalH.of X _ (redPow p n (cupK x y)) = ∑ i ∈ Finset.range (n+1), … * …
+```
+
+Estimated: `OddPWDiagonal` 220, `OddPCompA` 380, `OddPCompB` 900,
+`OddPCompBChain` 700, `OddPShuffle` 300, `OddPCartanEval` 500,
+`OddPCartanClasses` 400 lines.  The `CompB` chain-map identity is the one genuine
+computation, as it was at `p = 2`, and cc-steenrod's post-mortem says its
+cancellation is **not uniform across bidegrees** — three bidegrees, three proofs,
+and the degenerate ones are not mirror images.  Budget for that.
+
+---
+
+## 7. Landing order
+
+Each step is a probe on its own; nothing below is authored before `sp-design`
+signs off on this plan.
+
+| # | modules | unblocks |
+|---|---|---|
+| 0 | `OddPGroupRing`, `OddPResolution` | everything; also the cheapest possible smoke test that `Λ` elaborates |
+| 1 | `OddPSource`, `OddPSourceFree` | the `FreeOnModels` side of both comparisons |
+| 2 | `OddPTuple`, `OddPTupleSign`, `OddPTupleD`, `OddPTupleAction` | the target carrier, arity-generic |
+| 3 | `OddPTupleFunctor`, `OddPTupleAcyclic` | `AcyclicOnModels`; **`Δ` exists after this** |
+| 4 | `OddPDiagonal`, `OddPEval`, `OddPCochain` | `D_j`, cocycle, naturality |
+| 5 | `OddPClasses`, `OddPAdditive`, `OddPTopPower` | `redPow`, additive, natural, instability (free), `P^{q/2} = p`-th power |
+| 6 | `OddPWDiagonal`, `OddPCompA`, `OddPShuffle` | the two composites' easy halves |
+| 7 | `OddPCompB`, `OddPCompBChain` | the comparison's hypothesis |
+| 8 | `OddPCartanEval`, `OddPCartanClasses` | `CartanOfP` |
+| 9 | `OddPZero` (constant) — Route 1 or Route 2 of §4 | `P^0 = id`, hence `P(h) = h + h^p` |
+
+Steps 0–5 are unconditional and are what `sp-evenside` needs first.  A usable
+partial export exists after step 5: natural additive operations with instability
+and the top `p`-th power, everything except multiplicativity and `P^0`.
+
+---
+
+## 8. Design rules adopted wholesale from the mod-2 lanes
+
+These are not restatements for their own sake; each one cost the `F₂` lanes
+probe rounds and each applies verbatim here.
+
+* **Totalise.**  Output degree a free parameter, value `0` off the diagonal.
+  Removes every cast.  (`faceVal`, `padIdx`, `padTen` at `F₂`; `tupD`, `tupEval`
+  here.)
+* **Never let a degree be an expression in the inputs.**  `a + 1 + b` and
+  `(a+b)+1` are propositionally but not definitionally equal for variable `b`.
+* **Index types must be `abbrev`.**  `rw` checks type-correctness at `instances`
+  transparency and will not unfold a plain `def`; `attribute [local reducible]`
+  cannot be set for an imported declaration, so the fix must be at the
+  definition.
+* **Junction lemmas.**  Where one number arrives spelled two ways, state the
+  reconciliation as a one-line lemma with the degrees free and the equation as a
+  hypothesis, on an abstraction whose *result* type does not mention the index,
+  and cross it with `congrArg` before any block lemma fires.
+* **Cross definitional junctions with terms, never rewrites**, wherever an
+  instance is pinned by an `@`-application.
+* **A definition is pinned down only by the first property that distinguishes it
+  from its plausible neighbours.**  cc-steenrod's `compBTerm` was wrong for four
+  green probes because linearity, the degree-zero value and the Leibniz rule all
+  hold of the wrong map too.  Here the analogous hazard is the **riffle sign**
+  and the **block-shift convention**: every property except the chain-map
+  condition holds of the unshuffled grouping.  Write the shuffle in, do not
+  promise to inline it later.
+* **Grep for uses, not declarations**, and re-check a negative claim about the
+  tree before repeating it.
+
+---
+
+## 9. Model tests owed (all on MSI, never locally)
+
+Per the standing orders, nothing runs on this laptop.  Three numeric obligations,
+in priority order:
+
+1. **The κ-sweep** (§4.3) — `sp-design`'s script, one extra parameter.  Decides
+   whether §4 Route 2 and §6.2's explicit `ψ` are needed at all.  Highest value
+   per minute in the whole lane.
+2. **`ψ_W`'s closed form** — solve `dψ = ψd` degree by degree over `F_p[s]/(s^p)`
+   for `p = 3,5,7` and confirm the closed formula before it is stated in Lean.
+3. **The riffle sign and the conjugation** `sh ∘ (shift-in-block) = (shift-by-2) ∘ sh`
+   — check on explicit small tuples for `p = 3,5` and degrees up to `4`, because
+   a sign convention that is wrong by `(-1)^{something even}` survives every
+   small test and dies at the chain-map condition.
+
+---
+
+## 10. The lead's ruling (2026-09-10), and what it changed
+
+Received after the plan was routed.  Recorded here in full effect, with my
+evaluation of the part I was asked to check.
+
+**(a) The κ-sweep is decided by a scaling symmetry, so I am not waiting for it.**
+The lead's argument: if `P` satisfies the axioms with `P(h) = h + h^p`, then
+`P'^i := κ^i P^i` satisfies every axiom (the total `P'` is still a ring
+homomorphism because `κ^{a+b} = κ^a κ^b`) with `P'(h) = h + κ h^p`, and the
+universal polynomial for `P'(e_j)` in weight `j + i(p−1)` is `κ^i` times the one
+for `P`.  So the per-`j` Wu relations of the κ-family are the `κ = 1` relations
+rescaled by nonzero scalars, the solution space is identical, and §1.4's verdict
+is κ-independent.  I have checked this and agree; it is cleaner than the
+numerical sweep and it makes §4's Route 2 unnecessary **provided `c_2 ≠ 0`**.
+`sp-design` confirms numerically for the record.
+
+**(b) Scope approved, and it is exactly Step D's reach.**  `Q^0 = c_q · id` is to
+be delivered on the subring generated by degree-2 Euler classes of line bundles,
+the sphere classes `t` and `x`, and their pullbacks, with `c_{q+q'} = c_q c_{q'}`
+on even degrees and naturality; `P̃ := c_q^{-1} Q` is normalised on **even
+degrees only**.  The lead's justification, which I am recording because it is the
+thing a later reader will want: `H^*(N) = Λ(t) ⊗ Λ(x) ⊗ H^*(Y)` with `H^*(Y)`
+generated by Euler classes, and the splitting-principle towers over `N` are
+generated over `H^*(N)` by tautological Euler classes via Leray–Hirsch.  So the
+subring is everything Step D touches, and `P(z) = z` comes out as
+`c_{2n+2} = c_2^{n+1}` rather than needing an odd-degree case.
+
+**(c) `c_2 ≠ 0` is a theorem I owe, on the critical path, and Route 2 is
+forbidden.**  Route 3, to be evaluated first: a descent on `Δ^1` using only the
+chain-map property of the abstract `Δ` and its degree-0 component.
+
+### My check of the Route 3 descent — three findings
+
+I have worked the lead's sketch through.  Two of its steps check out exactly as
+stated; the third has a discrepancy at one endpoint, and there is a growth risk
+that the sketch does not mention.
+
+**Checks that pass.**
+
+* `(δf)^{⊗p} = δ_tot(f ⊗ (δf)^{⊗(p−1)})` on the nose, with **no sign**: the
+  Koszul sign for differentiating slot `0` is `(-1)^0`, and every other slot
+  carries `δ(δf) = 0`.
+* The point terms genuinely vanish, and for a slightly sharper reason than
+  "every word carries a `δf` factor".  On a point, `δf` is not merely zero on
+  non-degenerate simplices — it is the zero cochain, because the restriction of
+  `f` to a point is constant and `δ` of a constant `0`-cochain is `0`.  So the
+  vanishing survives the degenerate `1`-simplices of a point, which is the case
+  a "dimension" argument would miss.  Worth stating as its own lemma.
+
+**The discrepancy.**  With `w_i := (δf)^{⊗i} ⊗ f ⊗ f ⊗ (δf)^{⊗(p−2−i)}` and
+`v_m :=` the word with `f` in slot `m`, the Koszul signs give
+
+```text
+    δ_tot w_i = (-1)^i (v_i + v_{i+1})
+```
+
+— both slots carry prefix degree `i`, because the first `f` has degree `0`.  So
+the coefficient family `λ_i = i + 1` the lead proposes yields, for the interior
+indices, coefficient `(j+1)(-1)^j + j(-1)^{j-1} = (-1)^j` on `v_j`, which is the
+alternating pattern and is right.  The two ends are not interior: `j = 0` gives
+`+1`, matching, but `j = p−1` gives `λ_{p-2}(-1)^{p-2} = (p−1)(-1)^{p-1} = −1`
+with `p` odd, where the alternating pattern wants `+1`.  So the telescoping
+produces `Σ_j (-1)^j v_j − 2 v_{p-1}`, not `Σ_j (-1)^j v_j`.
+
+Either the coefficients need an endpoint correction, or — more likely — the sign
+pattern of `N^*` on this bidegree is not `(-1)^j`.  I computed the first two
+terms directly: `v ∘ T^0 = v_0` with sign `+1`, `v ∘ T^1 = v_{p-1}` with sign
+`+1` (the moved factor has degree `0`, so the Koszul sign is trivial), and
+`v ∘ T^2 = −v_{p-2}` (the moved factor now has degree `1` and passes `p−2`
+factors of degree `1`, and `p−2` is odd).  So the pattern is `+, +, −, …`, which
+is **not** `(-1)^j` and is exactly the kind of endpoint irregularity that makes
+the two ends behave differently.  This is the same shape of hazard cc-steenrod
+recorded for composite B: the cancellation is not uniform, and the degenerate
+indices are not mirror images of each other.
+
+**The growth risk, which is the real one.**  The descent has `p − 1` levels, and
+at level `k` the cochains are words with `k` copies of `f` and `p − k` copies of
+`δf`, so the coefficient vector at level `k` is indexed by the `C(p, k)`
+placements.  Level `1` is the lead's `w_i` family; level `p − 1` is the single
+word `δf ⊗ f^{⊗(p−1)}` the answer is read off from.  A Lean proof generic in `p`
+needs a **closed form for the coefficient vector at every level**, not just the
+first, and nothing in the sketch supplies one.  If the recursion has no closed
+form the descent proves `c_2 ≠ 0` for each fixed small `p` and not in general,
+which would leave the general theorem short.  The lead's staging (`p = 3` first,
+then generic) already assumes two computations rather than one; I am flagging
+that the second may not exist in closed form, and that this should be settled by
+`sp-design`'s numerics **before** any Lean, since it decides whether the lane can
+close the general statement at all.
+
+### What I therefore asked `sp-design` to compute
+
+Beyond the `c_1`, `c_2` values for `p = 3, 5, 7, 11, 13` the lead has already
+requested: the **sign vector** `ε_m` of `N^*` on the bidegree `(0,1,…,1)`, and
+the coefficient vectors at **every** level of the descent for those primes, so
+that the closed form in `p` can be recognised or ruled out.
+
+## GREEN (with job counts)
+
+Probe of `CharClass.OddPGroupRing`, `CharClass.OddPModule`,
+`CharClass.OddPResolution` on `cs-limit` launched 2026-09-10; result pending,
+recorded here on completion.
+
+## AUTHORED, UNVERIFIED
+
+Three modules, all new files, no existing file edited, no `sorry` anywhere:
+
+* `GroupApproximation/CharClass/OddPGroupRing.lean` — `GroupRingZMod`, `grGen`,
+  `grGen_pow_card`, the `CharP` instance, `grS`, `grNorm`, `grNorm_mul_grS`,
+  `grS_mul_grNorm`, `grS_pow_card`.
+* `GroupApproximation/CharClass/OddPModule.lean` — `pow_mod_of_pow_card_eq_one`,
+  `galEndP`, `galAlgHomP`, `moduleOfOrderP`, `moduleOfOrderP_smul`.
+* `GroupApproximation/CharClass/OddPResolution.lean` — `altCoeff`, `altDiff`,
+  `altCoeff_mul_succ`, `altDiff_comp`, `altResolution`, `altResolutionBasis`,
+  `Wodd`.
+
+None is imported by `GroupApproximation.lean` and none is imported by any
+existing module, so no root build can be affected by them.
+
+## NEEDS
+
+* **`sp-design`:** the descent numerics of §10 — the sign vector of `N^*` on the
+  bidegree `(0,1,…,1)`, and the coefficient vector at *every* level of the
+  descent for `p = 3, 5, 7, 11, 13`, not only the first.  Whether a closed form
+  in `p` exists decides whether `c_2 ≠ 0` can be proved in general or only prime
+  by prime.  No Lean on the constant until those numbers are in this report, per
+  the lead's ruling.
+* **`sp-design`, review of §3 and §6** (the flat arity-generic tuple model and
+  the sign conventions).  §2 is authored on the lead's authorisation, being pure
+  algebra with no design risk; §3 waits on the sign-convention answer.
+* **`sp-coeff`:** `CoeffLeibniz.lean`'s signed Leibniz rule, and `Hmod K` /
+  `cocycleClassK` / `cupK` / `cohCast`.  Nothing else.  Names confirmed from
+  their report; this lane defines no cohomology vocabulary.
+
+## TRAPS
+
+New, this lane's own, not yet in `FLEET_TRAPS.md` (they go there once a probe
+confirms them):
+
+* **The mod-2 tree's `FreeCx` layer is a trap for a reader, not an asset.**
+  `CartanFreeCx.tensorD_tensorD` reads like a general tensor-of-complexes lemma;
+  its proof is "the two mixed terms are equal and cancel because two is zero".
+  Anyone porting it to odd `p` by substituting the coefficient ring gets a false
+  theorem with a proof that still compiles for a while.
+* **`CartanSingular.lean`'s sign-dropping lemmas are load-bearing for `Cartan*`
+  and must not be touched.**  This lane wants the signed complex, which is the
+  same `singFree` *before* `singFree_d_single` is applied.  Do not "fix"
+  the mod-2 file.
+* `p` odd is used in exactly two places (§3.3).  If a proof anywhere else seems
+  to need it, the sign convention is wrong.
+* The Koszul sign of the cyclic shift on an `r`-tuple is `+1` after `r`
+  applications **for every `r`**, by `x² ≡ x (mod 2)` — not only for `r` prime.
+  A proof that case-splits on `r` is doing unnecessary work.
