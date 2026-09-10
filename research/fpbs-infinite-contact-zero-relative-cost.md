@@ -28,3 +28,17 @@ nonempty finite cut. A recursive parallel-path graph shows that
 this weaker property alone does not guarantee connection by a
 positive-density independent sprinkling. No assertion about a
 universal rounding rule or a resolution of Fixed Price is made.
+
+Sections 6--7 show that the contact hypothesis is not necessary.
+On F_2 x Z, FUSF=WUSF and sufficiently sparse independent bond
+sprinkling fails to connect it by BLPS Theorem 13.7. On the free
+action formed from its forest law times a Bernoulli action, its
+aperiodic forest subrelation nevertheless has zero relative cost:
+both relation costs are one and the established relative-cost
+formula applies. A separate explicit repair adds rare whole
+vertical columns and horizontal layers on an enlarged space.
+Every infinite forest tree meets their connected union almost
+surely, at added cost tending to zero. Its marking law has a
+nontrivial Z-invariant event, so it cannot be reproduced as a
+Bernoulli factor. Neither the cheap-repair conclusion nor this
+specific product construction is asserted for arbitrary groups.
