@@ -8,9 +8,17 @@ name: Palomar check
 # agents pushing continuously, a completed verdict on the Palomar surface can
 # be a long time coming, and it is coupled to breakage in modules that have
 # nothing to do with the submission.  This job restores the build cache the
-# prover workflow saves, builds ONLY the two Palomar libraries and whatever of
+# prover workflow saves, builds ONLY the four Palomar libraries and whatever of
 # the development they pull in, and runs the checks that decide whether the
-# submission is coherent.
+# submissions are coherent.
+#
+# TWO SUBMISSIONS.  A Palomar submission is exactly one Comparator
+# configuration, and this repository offers two: `Palomar/comparator.json` for
+# the sofic-not-MF group and `Palomar/comparator-lix.json` for the three STW
+# Problem LIX theorems.  So there are four libraries, two axiom drivers, and
+# two statement-match pairs, and every check below runs for both surfaces.  A
+# step that covered only the first would leave the second submission ungated
+# while looking exactly like a green gate.
 #
 # WHAT IT DOES NOT DO.  It does not run Comparator; that is
 # `palomar-comparator.yml`, manual, and slow because it exports and
@@ -30,6 +38,9 @@ on:
       - 'scripts/PalomarChallengeType.lean'
       - 'scripts/PalomarSolutionType.lean'
       - 'scripts/PalomarAxioms.lean'
+      - 'scripts/PalomarLIXChallengeType.lean'
+      - 'scripts/PalomarLIXSolutionType.lean'
+      - 'scripts/PalomarLIXAxioms.lean'
       - 'formalization.yaml'
       - 'lakefile.toml'
       - 'lean-toolchain'
@@ -118,15 +129,45 @@ jobs:
         run: lake exe cache get
 
       - name: Build the Palomar modules
-        run: lake build PalomarChallenge PalomarSolution
+        run: lake build PalomarChallenge PalomarSolution PalomarLIXChallenge PalomarLIXSolution
 
-      # The check that reproduces Comparator's comparison.
+      # The check that reproduces Comparator's comparison, for both pairs; the
+      # script loops over the two configurations and fails if either differs.
       - name: Palomar statement match
         run: bash scripts/check_palomar_statement_match.sh
 
       # The third of Comparator's three verdicts, and the only one nothing
       # else here reproduced: the axiom closure of the solution's proof.  The
-      # driver is not a library root, so a failure stops this step and not
+      # drivers are not library roots, so a failure stops this step and not
       # anyone's `lake build`.
-      - name: Palomar axiom closure
+      #
+      # Both drivers run even if the first fails, so that one dispatch tells
+      # the whole story: `lake env lean` exits nonzero on a `logError`, and
+      # without the `if: always()` a bad closure on the non-MF side would hide
+      # whatever the LIX side does.  The final step turns either failure into
+      # the job's verdict, because a step that is allowed to fail and is never
+      # read is a step that certifies nothing.
+      - name: Palomar axiom closure (non-MF)
+        id: axioms-nonmf
+        continue-on-error: true
         run: lake env lean scripts/PalomarAxioms.lean
+
+      - name: Palomar axiom closure (LIX)
+        id: axioms-lix
+        continue-on-error: true
+        if: always()
+        run: lake env lean scripts/PalomarLIXAxioms.lean
+
+      - name: Reject a run whose axiom closures were not both clean
+        if: always()
+        run: |
+          nonmf='${{ steps.axioms-nonmf.outcome }}'
+          lix='${{ steps.axioms-lix.outcome }}'
+          echo "non-MF closure: $nonmf"
+          echo "LIX closure: $lix"
+          # `skipped` counts as a failure: the closure was not computed, and a
+          # check that did not run must not read like one that passed.
+          if [ "$nonmf" != success ] || [ "$lix" != success ]; then
+            echo "::error::an axiom-closure driver did not report success"
+            exit 1
+          fi

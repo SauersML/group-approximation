@@ -2,26 +2,88 @@
 version: "v0.4"
 
 project:
-  name: "Non-MF Groups"
+  name: "Non-MF Groups and a Simple C*-Algebra That Is Not K1-Injective"
   description: >-
     The project formalizes the one-sided Kazhdan compression criterion, its
     normal property-(T) MF-radical consequence, the rank-four Leavitt
     compression, the resulting non-MF group, and exact pullback formulas for
     MF radicals and MF quotients in the Carrión-Dadarlat-Eckhardt
-    operator-norm sense.
+    operator-norm sense. It also answers Problem LIX of Schafhauser, Tikuisis
+    and White, "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902) --- "Are
+    all unital simple C*-algebras K1-injective?" --- negatively. The
+    counterexample is a separable simple unital C*-algebra, an inductive limit
+    of corner algebras of matrices over C(X, ℂ), carrying a unitary u that is
+    not connected to 1 inside its unitary group while diag(u, 1) is already
+    connected to 1 inside the unitary group of M2 over the algebra; so the
+    class of u dies at the first stabilisation step, which is more than
+    failure of injectivity of U(A)/U0(A) -> K1(A) requires.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
 
 classification:
   arxiv: [math.OA, math.GR]
-  msc2020: ["46L05"]
+  msc2020: ["46L05", "46L80", "19K56"]
 
 sources:
   - title: "Non-MF Groups"
     type: original-proof
     relationship: other
-    note: "The selected theorem is first presented in this project."
+    note: >-
+      Every selected theorem is first presented in this project: the
+      sofic-not-MF group of Palomar/comparator.json, and the negative answer to
+      STW Problem LIX of Palomar/comparator-lix.json.
+
+  # The four entries below fix what the LIX counterexample had to avoid, and
+  # what was already known.  They are background: none of them is formalized
+  # here and none of them proves the result.
+  - title: "Nuclear C*-algebras: 99 problems"
+    authors: [Christopher Schafhauser, Aaron Tikuisis, Stuart White]
+    year: 2025
+    type: paper
+    id: https://arxiv.org/abs/2506.10902
+    relationship: background
+    note: >-
+      Problem LIX, "Are all unital simple C*-algebras K1-injective?", printed
+      as open; the LIX result of this project answers it negatively.
+
+  - title: The homotopy groups of the unitary groups of noncommutative tori
+    authors: [Marc A. Rieffel]
+    year: 1987
+    type: paper
+    relationship: background
+    note: >-
+      J. Operator Theory 17(2):237-254. STW cite its Theorem 2.10 for stable
+      rank one implying K1-injectivity, so the counterexample cannot have
+      stable rank one. Rieffel's earlier "Dimension and stable rank in the
+      K-theory of C*-algebras" (Proc. London Math. Soc. (3) 46(2):301-333,
+      1983) introduced stable rank and is what STW cite for cancellation; the
+      K1-injectivity theorem number they give belongs to the 1987 paper.
+
+  - title: >-
+      Approximation by normal elements with finite spectra in C*-algebras of
+      real rank zero
+    authors: [Huaxin Lin]
+    year: 1996
+    type: paper
+    id: https://doi.org/10.2140/pjm.1996.173.443
+    relationship: background
+    note: >-
+      Pacific J. Math. 173(2):443-489. STW cite its Lemma 2.1 for
+      K1-injectivity at real rank zero, so the counterexample cannot have real
+      rank zero either.
+
+  - title: Comparison of projections and unitary elements in simple C*-algebras
+    authors: [Jesper Villadsen]
+    year: 2002
+    type: paper
+    id: https://doi.org/10.1515/crll.2002.065
+    relationship: background
+    note: >-
+      J. Reine Angew. Math. 549:23-45. Its Theorem 12 gives simple separable
+      unital nuclear algebras that are not K1-surjective, which is the
+      surjectivity analogue; STW record injectivity as the open direction, and
+      that is the direction this project settles.
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
@@ -115,8 +177,12 @@ related_formalizations: []
 
 status:
   # Scope note.  This repository is a large development with open work in it;
-  # the single result offered for mechanical verification is the Palomar
-  # challenge theorem, and that is what `main_results` describes.
+  # the results offered for mechanical verification are the Palomar challenge
+  # theorems, and that is what `main_results` describes.  There are two
+  # Comparator configurations and a submission is exactly one of them, so this
+  # tree is submitted twice; this file is per repository, which is why one
+  # `main_results` list carries the rows of both submissions, each naming its
+  # own `comparator_config`.
   #
   # The axiom list below is not asserted from reading a file.  It is the
   # closure `Lean.collectAxioms` reports for the declaration, computed by
@@ -130,20 +196,54 @@ status:
   # it.  `leanprover/comparator` checks the same thing at submission.
   scope: >-
     A Lean 4 development over Mathlib of the one-sided Kazhdan compression
-    criterion and its MF-radical consequences, together with a self-contained
-    Comparator submission surface. Palomar/Challenge.lean states, in a
-    Mathlib-only module carrying its own copies of the three approximation
-    notions it mentions, that one explicitly presented eight-generator group is
-    sofic in normalized Hamming distance and not MF in the sequential
-    operator-norm sense; Palomar/Solution.lean proves that statement from the
-    development. The rest of the repository is not offered as certified by this
-    entry.
+    criterion and its MF-radical consequences, and of a negative answer to STW
+    Problem LIX, together with two self-contained Comparator submission
+    surfaces. Palomar/Challenge.lean states, in a Mathlib-only module carrying
+    its own copies of the three approximation notions it mentions, that one
+    explicitly presented eight-generator group is sofic in normalized Hamming
+    distance and not MF in the sequential operator-norm sense;
+    Palomar/Solution.lean proves that statement from the development.
+    Palomar/LIXChallenge.lean states, in a second Mathlib-only module carrying
+    its own copies of the corner matrix diag(a, 1, ..., 1) and of
+    K1-injectivity, three things: that not every nontrivial simple unital
+    C*-algebra is K1-injective, that the counterexample can be taken separable,
+    and that it can be taken to fail K1-injectivity already at the first
+    stabilisation step; Palomar/LIXSolution.lean proves those three statements
+    from the development. Each configuration is one submission. The rest of the
+    repository is not offered as certified by these entries.
   main_results:
     - declaration: ExplicitNonMF.explicit_sofic_not_MF
       file: Palomar/Solution.lean
       sorry_count: 0
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator.json
+
+    # The three LIX rows deliberately carry no `sorry_count` and no `axioms`.
+    # Both fields ask about the closure of the proved declaration, which
+    # reaches into the development, and the only thing that settles either is a
+    # run of `scripts/PalomarLIXAxioms.lean` under `lake env lean`.  No such run
+    # has completed for these three declarations yet, so the fields are absent
+    # rather than filled in from reading a file: an absent field is a gap, a
+    # wrong one is a false certificate.  The lead fills them in from the first
+    # green `palomar-check` run, citing its run id and commit exactly as the
+    # entry above does.  The development's own LIX endpoints --
+    # `not_problemLIX` and `exists_separable_simple_unital_not_k1Inj` in
+    # GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIX.lean -- close
+    # over the three classical axioms, so [propext, Classical.choice,
+    # Quot.sound] is the expected value.  Expected, not asserted: the compared
+    # declarations here are assembled in Palomar/LIXSolution.lean and their own
+    # closure is what the field is about.
+    - declaration: ProblemLIX.not_all_simple_unital_k1Injective
+      file: Palomar/LIXSolution.lean
+      comparator_config: Palomar/comparator-lix.json
+
+    - declaration: ProblemLIX.exists_separable_simple_not_k1Injective
+      file: Palomar/LIXSolution.lean
+      comparator_config: Palomar/comparator-lix.json
+
+    - declaration: ProblemLIX.exists_separable_simple_stage_two_witness
+      file: Palomar/LIXSolution.lean
+      comparator_config: Palomar/comparator-lix.json
 
 fidelity:
   divergences: >-
@@ -162,6 +262,29 @@ fidelity:
     defect bound, and no statement about any other group, is certified by this
     result.
 
+    For the LIX surface the same constraint applies and produces four further
+    divergences. Simplicity is rendered as Mathlib's IsSimpleRing, which asks
+    that the only ALGEBRAIC two-sided ideals be zero and the whole algebra,
+    rather than the only closed ones as C*-simplicity does; the two agree for a
+    nontrivial unital C*-algebra, because a proper two-sided ideal of a unital
+    Banach algebra misses a neighbourhood of the unit and so has proper closure,
+    and that agreement is proved in the development
+    (isSimpleCStar_iff_isSimpleRing) rather than assumed. K1-injectivity is
+    rendered elementwise: the challenge asks that every unitary whose
+    stabilisation diag(u, 1, ..., 1) is null-homotopic in some Mn over the
+    algebra be null-homotopic in the algebra itself. That is the direct-limit
+    description of the kernel of U(A)/U0(A) -> K1(A), and it is not a
+    construction of K1; no K1 group is built in the compared statement, so
+    nothing about the value of K1(A) is certified. Mathlib's C*-structure on Mn
+    over A needs a partial order on A making it a star-ordered ring, and the
+    challenge fixes that order to the spectral order rather than quantifying
+    over it; a star-ordered ring order is determined by the star operation, so
+    there is only one such order, but the compared statement pins it instead of
+    proving that. All algebras range over Type 0; K1-injectivity is
+    universe-polymorphic, so quantifying over Type 0 is weaker as a universal
+    and correspondingly stronger as a negation, and the counterexample is a
+    concrete separable algebra that lives there.
+
 alignment:
   statements:
     - source: >-
@@ -169,6 +292,30 @@ alignment:
         sofic and not MF.
       lean: ExplicitNonMF.explicit_sofic_not_MF
       module: Palomar.Challenge
+      status: proved
+
+    - source: >-
+        STW Problem LIX: Are all unital simple C*-algebras K1-injective? No:
+        it is not the case that every nontrivial simple unital C*-algebra is
+        K1-injective.
+      lean: ProblemLIX.not_all_simple_unital_k1Injective
+      module: Palomar.LIXChallenge
+      status: proved
+
+    - source: >-
+        STW Problem LIX, with the counterexample separable: there is a
+        separable simple unital C*-algebra that is not K1-injective.
+      lean: ProblemLIX.exists_separable_simple_not_k1Injective
+      module: Palomar.LIXChallenge
+      status: proved
+
+    - source: >-
+        STW Problem LIX, sharp form: there is a separable simple unital
+        C*-algebra carrying a unitary u not connected to 1 in its unitary
+        group although diag(u, 1) is connected to 1 in the unitary group of M2
+        over it, so the class of u dies at the first stabilisation step.
+      lean: ProblemLIX.exists_separable_simple_stage_two_witness
+      module: Palomar.LIXChallenge
       status: proved
 
 acknowledgements: "Built on Lean 4 and Mathlib."

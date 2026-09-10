@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
-"""Gate the Palomar submission surface.
+"""Gate the Palomar submission surfaces.
+
+A Palomar submission is exactly ONE Comparator configuration path, so a
+repository offering two results is submitted twice, once per configuration
+(PalomarRegistry's CONTRIBUTING rules; the kim-em/PalomarSubmission README).
+This repository offers two, listed in `PALOMAR_CONFIGS`, and every check below
+that is about a submission surface runs once per configuration with the
+configuration path on its finding.  The challenge and solution paths are not
+written down here: they are read out of each configuration's
+`challenge_module` and `solution_module`, so a rename that updates the lakefile
+and the JSON cannot leave this gate silently checking a file that no longer
+participates in any submission.
 
 Five defects are invisible in a green `lake build`, and each of them makes the
 registry submission certify something other than what it appears to:
@@ -38,7 +49,11 @@ registry submission certify something other than what it appears to:
 6. **`formalization.yaml` drifts out of the registry's mechanical minimum** --
    at most two arXiv classes, a nonempty `project.description` (which is the
    published abstract), and a source list declaring exactly one result origin.
-   Checked only when PyYAML is importable; skipped, loudly, when it is not.
+   It must also publish, in `status.main_results`, every theorem every
+   configuration submits, against that configuration: a submission surface the
+   metadata never mentions describes a different repository from the one being
+   submitted.  Checked only when PyYAML is importable; skipped, loudly, when it
+   is not.
 
 This is deliberately NOT a reimplementation of Palomar's verifier.  It checks
 the rules this repository can plausibly break by accident, in the shape the
@@ -135,20 +150,92 @@ class Findings:
         print(f"palomar: NOTE -- {message}")
 
 
-def challenge(root: Path) -> Path:
-    return root / "Palomar" / "Challenge.lean"
+# Every Comparator configuration this repository offers.  One configuration is
+# one submission; the registry has no notion of a repository submitting two
+# results at once, so the two entries below are two submissions of the same
+# tree and each has to hold on its own.
+PALOMAR_CONFIGS = (
+    "Palomar/comparator.json",      # ExplicitNonMF.explicit_sofic_not_MF
+    "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
+)
+
+# The files `copy_surface` copies and `--self-test` plants defects into.  The
+# gate itself never names a challenge or a solution -- it derives both from a
+# configuration -- so this list exists only so that a planter can corrupt a
+# file without first parsing the configuration that names it.
+SURFACE_FILES = (
+    "Palomar/Challenge.lean", "Palomar/Solution.lean", "Palomar/comparator.json",
+    "Palomar/LIXChallenge.lean", "Palomar/LIXSolution.lean",
+    "Palomar/comparator-lix.json",
+    "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
+    "formalization.yaml",
+)
 
 
-def solution(root: Path) -> Path:
-    return root / "Palomar" / "Solution.lean"
+class Pair:
+    """One Comparator configuration together with the two files it names.
+
+    `challenge` and `solution` are `None` when the configuration does not name
+    a well-formed dotted module.  The finding for that is raised once, where
+    the shape of the configuration is checked; every check that needs the file
+    then does not run, rather than reporting the same defect a second time in
+    a different vocabulary.
+    """
+
+    def __init__(self, root: Path, config_rel: str, cfg: dict) -> None:
+        self.root = root
+        self.config_rel = config_rel
+        self.config = root / config_rel
+        self.cfg = cfg
+        self.challenge = self._module_path(cfg.get("challenge_module"))
+        self.solution = self._module_path(cfg.get("solution_module"))
+
+    def _module_path(self, module: object) -> Path | None:
+        if not (isinstance(module, str) and MODULE_RE.match(module)):
+            return None
+        return self.root.joinpath(*module.split(".")).with_suffix(".lean")
+
+    def rel(self, path: Path) -> str:
+        return str(path.relative_to(self.root))
+
+    def say(self, f: Findings, message: str) -> None:
+        """Report `message` against this configuration.
+
+        Every per-configuration finding carries the configuration path.  With
+        two surfaces in one tree a bare `shared block diverges` does not say
+        which submission is broken, and the reader would have to guess.
+        """
+        f.add(f"{self.config_rel}: {message}")
 
 
-def config_path(root: Path) -> Path:
-    return root / "Palomar" / "comparator.json"
+def load_pairs(root: Path, f: Findings) -> list[Pair]:
+    """Parse every configuration in `PALOMAR_CONFIGS`.
+
+    A configuration that cannot be read is reported and dropped.  Everything
+    downstream is a statement about what the configuration names, so there is
+    nothing left to check once it is unreadable -- and saying so once beats
+    reporting the same unreadable file under six different rules.
+    """
+    pairs: list[Pair] = []
+    for rel in PALOMAR_CONFIGS:
+        path = root / rel
+        if not path.is_file():
+            f.add(f"{rel}: missing")
+            continue
+        try:
+            cfg = json.loads(path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            f.add(f"{rel}: is not valid UTF-8 JSON")
+            continue
+        if not isinstance(cfg, dict):
+            f.add(f"{rel}: must contain one JSON object")
+            continue
+        pairs.append(Pair(root, rel, cfg))
+    return pairs
 
 
 # --------------------------------------------------------------------------
-# 1-4: the two files and the configuration
+# 1-4: the two files and the configuration, once per configuration
 # --------------------------------------------------------------------------
 
 def shared_block(path: Path) -> list[str] | None:
@@ -162,11 +249,20 @@ def shared_block(path: Path) -> list[str] | None:
 
 
 def signature(path: Path, short: str) -> list[str] | None:
-    """The compared theorem's signature: its `theorem` line through `:= by`.
+    """The compared theorem's signature: its `theorem` line through `:=`.
 
     Everything after that is the proof, which is supposed to differ.  Up to it,
     the two files must agree exactly: that text is the statement Comparator
     compares.
+
+    The terminator is normalised: `:= by` is reported as `:=`.  A challenge
+    always ends its statement with `:= by` and a `sorry`, while a solution may
+    end it with a bare `:=` and give a term-mode proof -- two of the three LIX
+    theorems in `Palomar/LIXSolution.lean` do.  That is a choice of proof MODE,
+    not a difference in the statement; Comparator never sees it, because it
+    compares elaborated `ConstantVal`s.  Keeping it would make this gate demand
+    tactic mode on both sides, which is a rule the registry does not have and
+    which would push a solution towards `:= by exact e` to satisfy a checker.
     """
     lines = path.read_text(encoding="utf-8").splitlines()
     start = next((i for i, l in enumerate(lines)
@@ -175,61 +271,42 @@ def signature(path: Path, short: str) -> list[str] | None:
         return None
     for j in range(start, len(lines)):
         stripped = lines[j].rstrip()
-        if stripped.endswith(":= by") or stripped.endswith(":="):
-            return lines[start : j + 1]
+        if stripped.endswith(":= by"):
+            return lines[start:j] + [stripped[: -len(" by")]]
+        if stripped.endswith(":="):
+            return lines[start:j] + [stripped]
     return None
 
 
-def check_files(root: Path, f: Findings) -> None:
-    for path in (challenge(root), solution(root), config_path(root)):
-        if not path.is_file():
-            f.add(f"{path.relative_to(root)}: missing")
-            return
+def check_files(root: Path, pairs: list[Pair], f: Findings) -> None:
+    for pair in pairs:
+        check_pair(root, pair, f)
 
-    a, b = shared_block(challenge(root)), shared_block(solution(root))
-    if a is None or b is None:
-        f.add("shared-block markers not found in both files; the copy cannot be "
-              "checked, which is the same as it being wrong")
-    elif a != b:
-        for i, (x, y) in enumerate(zip(a, b)):
-            if x != y:
-                f.add(f"shared block diverges at block line {i + 1}: "
-                      f"challenge {x!r} vs solution {y!r}")
-                break
-        else:
-            f.add(f"shared block is {len(a)} lines in the challenge and {len(b)} "
-                  "in the solution")
 
-    for n, line in enumerate(
-            challenge(root).read_text(encoding="utf-8").splitlines(), 1):
-        if IMPORT.match(line) and not ALLOWED_CHALLENGE_IMPORT.match(line):
-            f.add(f"Palomar/Challenge.lean:{n}: {line.strip()} -- the challenge "
-                  "may import Mathlib only; a project-local import fails "
-                  "mechanical verification at the registry")
+def check_pair(root: Path, pair: Pair, f: Findings) -> None:
+    """Everything that is about ONE submission surface.
 
-    try:
-        cfg = json.loads(config_path(root).read_text(encoding="utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        f.add("comparator.json is not valid UTF-8 JSON")
-        return
-    if not isinstance(cfg, dict):
-        f.add("comparator.json must contain one JSON object")
-        return
+    The configuration is read first, because the two files are whatever it
+    names; if it names them badly there is nothing further to check on this
+    surface, and the loop moves to the next configuration rather than
+    reporting a missing file the reader would have to trace back.
+    """
+    cfg = pair.cfg
     missing = COMPARATOR_REQUIRED_KEYS - cfg.keys()
     if missing:
-        f.add(f"comparator.json is missing {', '.join(sorted(missing))}")
+        pair.say(f, f"is missing {', '.join(sorted(missing))}")
     unknown = cfg.keys() - COMPARATOR_ALLOWED_KEYS
     if unknown:
-        f.add(f"comparator.json has unknown keys: {', '.join(sorted(unknown))}")
+        pair.say(f, f"has unknown keys: {', '.join(sorted(unknown))}")
     if cfg.get("challenge_module") == cfg.get("solution_module"):
-        f.add("comparator.json names the same module twice")
+        pair.say(f, "names the same module twice")
     permitted = cfg.get("permitted_axioms")
     if not isinstance(permitted, list) or not set(permitted) <= STANDARD_AXIOMS:
-        f.add(f"comparator.json permitted_axioms is {permitted!r}; the registry "
-              "accepts only the three classical axioms")
+        pair.say(f, f"permitted_axioms is {permitted!r}; the registry accepts "
+                    "only the three classical axioms")
     names = cfg.get("theorem_names") or []
     if not names:
-        f.add("comparator.json theorem_names is empty")
+        pair.say(f, "theorem_names is empty")
 
     # Shape checks for the optional keys.  They were allowed but unvalidated,
     # so `"enable_nanoda": "true"` -- a string, which is truthy in JSON-loading
@@ -237,86 +314,130 @@ def check_files(root: Path, f: Findings) -> None:
     # silently turning the second kernel off.  Each check is guarded on the key
     # being present, so a configuration omitting them is unaffected.
     if "enable_nanoda" in cfg and not isinstance(cfg["enable_nanoda"], bool):
-        f.add(f"comparator.json enable_nanoda is {cfg['enable_nanoda']!r}; "
-              "Comparator reads a JSON boolean, and a string here disables the "
-              "second kernel without failing anything")
+        pair.say(f, f"enable_nanoda is {cfg['enable_nanoda']!r}; Comparator "
+                    "reads a JSON boolean, and a string here disables the "
+                    "second kernel without failing anything")
     if "external_kernels" in cfg:
         ext = cfg["external_kernels"]
         if not isinstance(ext, dict) or not ext:
-            f.add(f"comparator.json external_kernels is {ext!r}; it must be a "
-                  "nonempty object mapping a kernel name to its argv array")
+            pair.say(f, f"external_kernels is {ext!r}; it must be a nonempty "
+                        "object mapping a kernel name to its argv array")
         else:
             for kernel, argv in ext.items():
                 if not (isinstance(argv, list) and argv
                         and all(isinstance(a, str) for a in argv)):
-                    f.add(f"comparator.json external_kernels[{kernel!r}] is "
-                          f"{argv!r}; it must be a nonempty array of strings")
+                    pair.say(f, f"external_kernels[{kernel!r}] is {argv!r}; it "
+                                "must be a nonempty array of strings")
     if "definition_names" in cfg:
         holes = cfg["definition_names"]
         if not (isinstance(holes, list)
                 and all(isinstance(h, str) for h in holes)):
-            f.add(f"comparator.json definition_names is {holes!r}; it must be "
-                  "an array of declaration names")
+            pair.say(f, f"definition_names is {holes!r}; it must be an array "
+                        "of declaration names")
 
     for key in ("challenge_module", "solution_module"):
         module = cfg.get(key, "")
         if not isinstance(module, str) or not MODULE_RE.match(module):
-            f.add(f"comparator.json {key} is {module!r}, which is not a dotted "
-                  "Lean module name")
+            pair.say(f, f"{key} is {module!r}, which is not a dotted Lean "
+                        "module name")
             continue
         expected = root.joinpath(*module.split(".")).with_suffix(".lean")
         if not (expected.is_file() and not expected.is_symlink()):
-            f.add(f"{key} {module} does not resolve to a regular file at "
-                  f"{expected.relative_to(root)}")
+            pair.say(f, f"{key} {module} does not resolve to a regular file at "
+                        f"{expected.relative_to(root)}")
+
+    challenge, solution = pair.challenge, pair.solution
+    if challenge is None or solution is None \
+            or not challenge.is_file() or not solution.is_file():
+        return
+
+    a, b = shared_block(challenge), shared_block(solution)
+    if a is None or b is None:
+        pair.say(f, "shared-block markers not found in both files; the copy "
+                    "cannot be checked, which is the same as it being wrong")
+    elif a != b:
+        for i, (x, y) in enumerate(zip(a, b)):
+            if x != y:
+                pair.say(f, f"shared block diverges at block line {i + 1}: "
+                            f"{pair.rel(challenge)} {x!r} vs "
+                            f"{pair.rel(solution)} {y!r}")
+                break
+        else:
+            pair.say(f, f"shared block is {len(a)} lines in "
+                        f"{pair.rel(challenge)} and {len(b)} in "
+                        f"{pair.rel(solution)}")
+
+    for n, line in enumerate(
+            challenge.read_text(encoding="utf-8").splitlines(), 1):
+        if IMPORT.match(line) and not ALLOWED_CHALLENGE_IMPORT.match(line):
+            pair.say(f, f"{pair.rel(challenge)}:{n}: {line.strip()} -- the "
+                        "challenge may import Mathlib only; a project-local "
+                        "import fails mechanical verification at the registry")
 
     for name in names:
         short = str(name).split(".")[-1]
         sigs = {}
-        for label, path in (("challenge", challenge(root)),
-                            ("solution", solution(root))):
+        for label, path in (("challenge", challenge), ("solution", solution)):
             if not re.search(rf"^theorem {re.escape(short)}\b",
                              path.read_text(encoding="utf-8"), re.MULTILINE):
-                f.add(f"{path.relative_to(root)}: does not declare `{short}`, "
-                      f"which comparator.json selects as {name}")
+                pair.say(f, f"{pair.rel(path)}: does not declare `{short}`, "
+                            f"which the configuration selects as {name}")
             else:
                 sigs[label] = signature(path, short)
         if len(sigs) != 2:
             continue
         sc, ss = sigs["challenge"], sigs["solution"]
         if sc is None or ss is None:
-            f.add(f"`{short}`: could not delimit the signature in both files "
-                  "(no line ending in `:= by`), so it cannot be compared")
+            pair.say(f, f"`{short}`: could not delimit the signature in both "
+                        "files (no line ending in `:=` or `:= by`), so it "
+                        "cannot be compared")
         elif sc != ss:
             for i, (x, y) in enumerate(zip(sc, ss)):
                 if x != y:
-                    f.add(f"`{short}`: the compared signature diverges at line "
-                          f"{i + 1}: challenge {x!r} vs solution {y!r}")
+                    pair.say(f, f"`{short}`: the compared signature diverges at "
+                                f"line {i + 1}: challenge {x!r} vs "
+                                f"solution {y!r}")
                     break
             else:
-                f.add(f"`{short}`: the compared signature is {len(sc)} lines in "
-                      f"the challenge and {len(ss)} in the solution")
+                pair.say(f, f"`{short}`: the compared signature is {len(sc)} "
+                            f"lines in the challenge and {len(ss)} in the "
+                            "solution")
 
 
 # --------------------------------------------------------------------------
 # 5: the registry's intake rules, as far as the tree shows them
 # --------------------------------------------------------------------------
 
-def check_mechanical(root: Path, f: Findings) -> None:
-    path = challenge(root)
-    if path.is_file():
-        data = path.read_bytes()
-        lines = len(data.decode("utf-8", "replace").splitlines())
-        if len(data) > MAX_CHALLENGE_BYTES:
-            f.add(f"Palomar/Challenge.lean is {len(data)} bytes; the hard cap is "
-                  f"{MAX_CHALLENGE_BYTES}")
-        if lines > MAX_CHALLENGE_LINES:
-            f.add(f"Palomar/Challenge.lean is {lines} lines; the hard cap is "
-                  f"{MAX_CHALLENGE_LINES}")
-        if len(data) > PREFERRED_CHALLENGE_BYTES or lines > PREFERRED_CHALLENGE_LINES:
-            f.note(f"the challenge is {lines} lines / {len(data)} bytes, over the "
-                   f"registry's preferred {PREFERRED_CHALLENGE_LINES}-line review "
-                   "surface, so the mechanical report carries an advisory warning")
+def check_mechanical(root: Path, pairs: list[Pair], f: Findings) -> None:
+    # Per-configuration.  The caps are on the challenge and the configuration
+    # of the submission being made, so each surface is measured on its own; a
+    # second submission does not get to spend the first one's budget.
+    for pair in pairs:
+        if pair.challenge is not None and pair.challenge.is_file():
+            data = pair.challenge.read_bytes()
+            rel = pair.rel(pair.challenge)
+            lines = len(data.decode("utf-8", "replace").splitlines())
+            if len(data) > MAX_CHALLENGE_BYTES:
+                pair.say(f, f"{rel} is {len(data)} bytes; the hard cap is "
+                            f"{MAX_CHALLENGE_BYTES}")
+            if lines > MAX_CHALLENGE_LINES:
+                pair.say(f, f"{rel} is {lines} lines; the hard cap is "
+                            f"{MAX_CHALLENGE_LINES}")
+            if len(data) > PREFERRED_CHALLENGE_BYTES \
+                    or lines > PREFERRED_CHALLENGE_LINES:
+                f.note(f"{rel} is {lines} lines / {len(data)} bytes, over the "
+                       f"registry's preferred {PREFERRED_CHALLENGE_LINES}-line "
+                       "review surface, so the mechanical report carries an "
+                       "advisory warning")
+        if pair.config.is_file() \
+                and pair.config.stat().st_size > MAX_CONFIGURATION_BYTES:
+            pair.say(f, "exceeds the 1 MiB cap")
 
+    # Repo-level from here down: one licence, one toolchain, one lakefile, one
+    # dependency manifest.  These are properties of the tree, not of a
+    # submission, so they are checked once however many configurations there
+    # are -- reporting the same bad `lean-toolchain` twice would only make the
+    # second finding look like a second defect.
     licences = sorted(p for p in root.iterdir()
                       if p.is_file() and not p.is_symlink()
                       and LICENSE_FILE_RE.match(p.name))
@@ -350,9 +471,6 @@ def check_mechanical(root: Path, f: Findings) -> None:
     elif lakefiles[0].stat().st_size > MAX_CONFIGURATION_BYTES:
         f.add(f"{lakefiles[0].name} exceeds the 1 MiB cap")
 
-    if config_path(root).is_file() and \
-            config_path(root).stat().st_size > MAX_CONFIGURATION_BYTES:
-        f.add("comparator.json exceeds the 1 MiB cap")
     metadata = root / "formalization.yaml"
     if metadata.is_file() and metadata.stat().st_size > MAX_FORMALIZATION_BYTES:
         f.add("formalization.yaml exceeds the 256 KiB cap")
@@ -378,13 +496,20 @@ def check_mechanical(root: Path, f: Findings) -> None:
 
     # A symbolic link is refused only in these roles.  The registry does not
     # reject links elsewhere -- it excludes them from the size total -- so this
-    # does not invent a rule the registry does not have.
-    for role, p in (("comparator configuration", config_path(root)),
-                    ("challenge source", challenge(root)),
-                    ("solution source", solution(root)),
-                    ("lake-manifest.json", manifest),
-                    ("formalization.yaml", metadata),
-                    ("lean-toolchain", toolchain_path)):
+    # does not invent a rule the registry does not have.  The three
+    # tree-level roles are joined by each configuration's own three.
+    roles: list[tuple[str, Path]] = [
+        ("lake-manifest.json", manifest),
+        ("formalization.yaml", metadata),
+        ("lean-toolchain", toolchain_path),
+    ]
+    for pair in pairs:
+        roles.append((f"{pair.config_rel} comparator configuration", pair.config))
+        if pair.challenge is not None:
+            roles.append((f"{pair.config_rel} challenge source", pair.challenge))
+        if pair.solution is not None:
+            roles.append((f"{pair.config_rel} solution source", pair.solution))
+    for role, p in roles:
         if p.is_symlink():
             f.add(f"the {role} is a symbolic link; the registry requires a "
                   "regular file there")
@@ -442,7 +567,7 @@ def check_git_shapes(root: Path, f: Findings) -> None:
 # 6: the metadata contract
 # --------------------------------------------------------------------------
 
-def check_metadata(root: Path, f: Findings) -> None:
+def check_metadata(root: Path, pairs: list[Pair], f: Findings) -> None:
     try:
         import yaml  # noqa: PLC0415
     except ModuleNotFoundError:
@@ -501,6 +626,30 @@ def check_metadata(root: Path, f: Findings) -> None:
         f.add(f"formalization.yaml: classification.msc2020 is {msc!r}; the "
               "registry accepts one to eight distinct MSC2020 codes")
 
+    # Every theorem every configuration submits has to be published in
+    # `status.main_results` against THAT configuration.  `formalization.yaml`
+    # is one file per repository while a submission is one configuration, so
+    # the correspondence between them is exactly the thing no single file
+    # states; a second surface whose results were never added here submits a
+    # metadata record describing a different repository.  This runs before the
+    # `sources` block because that block returns early on a malformed list, and
+    # an unrelated defect there must not silently take this check with it.
+    published: dict[str, set[str]] = {}
+    for i, row in enumerate((data.get("status") or {}).get("main_results") or []):
+        if not isinstance(row, dict):
+            f.add(f"formalization.yaml: status.main_results[{i}] is not a mapping")
+            continue
+        declaration, config = row.get("declaration"), row.get("comparator_config")
+        if isinstance(declaration, str) and isinstance(config, str):
+            published.setdefault(config, set()).add(declaration)
+    for pair in pairs:
+        for name in pair.cfg.get("theorem_names") or []:
+            if str(name) not in published.get(pair.config_rel, set()):
+                f.add(f"formalization.yaml: {name} is not listed in "
+                      f"status.main_results with comparator_config "
+                      f"{pair.config_rel}; the metadata must publish every "
+                      "theorem the configuration submits")
+
     sources = data.get("sources")
     if not (isinstance(sources, list) and sources):
         f.add("formalization.yaml: sources must be a nonempty list")
@@ -553,25 +702,39 @@ def check_metadata(root: Path, f: Findings) -> None:
 # calibration
 # --------------------------------------------------------------------------
 
+# The marker is a substring of the expected finding, and for a defect planted
+# on one surface it names that surface: with two configurations in the tree, a
+# marker like `shared block diverges` would be reported by whichever detector
+# happened to fire, and a LIX planter satisfied by the non-MF detector is a
+# calibration that certifies nothing.
 CALIBRATION: tuple[tuple[str, str], ...] = (
     ("challenge over the line cap", "hard cap is 1000"),
     ("challenge with a project-local import", "may import Mathlib only"),
-    ("shared block edited on one side", "shared block diverges"),
+    ("shared block edited on one side",
+     "Palomar/comparator.json: shared block diverges"),
     ("signature edited on one side", "compared signature diverges"),
+    ("LIX challenge with a project-local import",
+     "Palomar/LIXChallenge.lean:1:"),
+    ("LIX shared block edited on one side",
+     "Palomar/comparator-lix.json: shared block diverges"),
     ("second licence file at the root", "exactly one licence file"),
     ("toolchain below the minimum", "below the registry minimum"),
     ("dependency pinned to a branch", "not a full"),
     ("dependency hosted off github", "only a credential-free public"),
     ("comparator naming a missing module", "does not resolve to a regular file"),
     ("comparator permitting a fourth axiom", "only the three classical axioms"),
+    ("LIX comparator permitting a fourth axiom",
+     "Palomar/comparator-lix.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("three arXiv classes", "one or two distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
+    ("LIX result dropped from the metadata", "is not listed in status.main_results"),
 )
 
 YAML_CALIBRATIONS = {
     "three arXiv classes",
     "original result with a substantive source",
+    "LIX result dropped from the metadata",
 }
 
 
@@ -584,21 +747,44 @@ def yaml_available() -> bool:
 
 
 def plant(name: str, root: Path) -> None:
-    """Introduce exactly one defect into a copy of the submission surface."""
+    """Introduce exactly one defect into a copy of the submission surface.
+
+    Planters name files literally rather than resolving them through a
+    configuration: a planter that read the configuration would stop planting
+    the moment the configuration broke, which is the one case where the
+    calibration matters most.
+    """
     if name == "challenge over the line cap":
-        path = challenge(root)
+        path = root / "Palomar" / "Challenge.lean"
         path.write_text(path.read_text() + "\n" * 1200)
     elif name == "challenge with a project-local import":
-        path = challenge(root)
+        path = root / "Palomar" / "Challenge.lean"
         path.write_text("import GroupApproximation.Sofic.Sofic\n" + path.read_text())
     elif name == "shared block edited on one side":
-        path = solution(root)
+        path = root / "Palomar" / "Solution.lean"
         path.write_text(path.read_text().replace(
             "structure FiniteCarrier where", "structure FiniteCarrier' where", 1))
     elif name == "signature edited on one side":
-        path = solution(root)
+        path = root / "Palomar" / "Solution.lean"
         path.write_text(path.read_text().replace(
             "    IsSoficGroup E ∧ ¬", "    IsSoficGroup E ∧ True ∧ ¬", 1))
+    elif name == "LIX challenge with a project-local import":
+        path = root / "Palomar" / "LIXChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX\n"
+            + path.read_text())
+    elif name == "LIX shared block edited on one side":
+        path = root / "Palomar" / "LIXSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def cornerDiag (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :",
+            "def cornerDiag' (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :", 1))
+    elif name == "LIX comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-lix.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "LIX result dropped from the metadata":
+        _edit_metadata(root,
+                       "    - declaration: ProblemLIX.not_all_simple_unital_k1Injective",
+                       "    - declaration: ProblemLIX.renamed_and_not_republished")
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":
@@ -608,9 +794,11 @@ def plant(name: str, root: Path) -> None:
     elif name == "dependency hosted off github":
         _edit_manifest(root, lambda p: p.update({"url": "https://gitlab.com/a/b"}))
     elif name == "comparator naming a missing module":
-        _edit_config(root, lambda c: c.update({"solution_module": "Palomar.Nope"}))
+        _edit_config(root, "Palomar/comparator.json",
+                     lambda c: c.update({"solution_module": "Palomar.Nope"}))
     elif name == "comparator permitting a fourth axiom":
-        _edit_config(root, lambda c: c["permitted_axioms"].append("sorryAx"))
+        _edit_config(root, "Palomar/comparator.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "tracked compiled artifact":
         (root / "Palomar" / "Challenge.olean").write_bytes(b"\0")
         subprocess.run(["git", "add", "Palomar/Challenge.olean"], cwd=root,
@@ -635,8 +823,8 @@ def _edit_manifest(root: Path, mutate) -> None:
     path.write_text(json.dumps(data))
 
 
-def _edit_config(root: Path, mutate) -> None:
-    path = config_path(root)
+def _edit_config(root: Path, config_rel: str, mutate) -> None:
+    path = root / config_rel
     data = json.loads(path.read_text())
     mutate(data)
     path.write_text(json.dumps(data))
@@ -652,14 +840,23 @@ def _edit_metadata(root: Path, old: str, new: str, count: int = 1) -> None:
 def copy_surface(destination: Path) -> None:
     destination.mkdir(parents=True, exist_ok=True)
     (destination / "Palomar").mkdir(exist_ok=True)
-    for rel in ("Palomar/Challenge.lean", "Palomar/Solution.lean",
-                "Palomar/comparator.json", "LICENSE", "lean-toolchain",
-                "lakefile.toml", "lake-manifest.json", "formalization.yaml"):
+    for rel in SURFACE_FILES:
         (destination / rel).write_bytes((REPO / rel).read_bytes())
     subprocess.run(["git", "init", "-q"], cwd=destination, capture_output=True,
                    check=False)
     subprocess.run(["git", "add", "-A"], cwd=destination, capture_output=True,
                    check=False)
+
+
+def run_all(root: Path, f: Findings) -> None:
+    """Every check, in one place, so the gate and both self-test arms cannot
+    drift apart: a calibration that exercises a check the real run does not
+    perform, or the reverse, is worse than no calibration."""
+    pairs = load_pairs(root, f)
+    check_files(root, pairs, f)
+    check_mechanical(root, pairs, f)
+    check_git_shapes(root, f)
+    check_metadata(root, pairs, f)
 
 
 def self_test() -> int:
@@ -671,10 +868,7 @@ def self_test() -> int:
         root = Path(clean)
         copy_surface(root)
         f = Findings()
-        check_files(root, f)
-        check_mechanical(root, f)
-        check_git_shapes(root, f)
-        check_metadata(root, f)
+        run_all(root, f)
         if f.rows:
             print("::error::[palomar] self-test: the CLEAN copy reported "
                   f"{len(f.rows)} finding(s); the gate is not calibrated")
@@ -693,10 +887,7 @@ def self_test() -> int:
             copy_surface(root)
             plant(name, root)
             f = Findings()
-            check_files(root, f)
-            check_mechanical(root, f)
-            check_git_shapes(root, f)
-            check_metadata(root, f)
+            run_all(root, f)
             if any(marker in row for row in f.rows):
                 print(f"self-test: {name} -> reported")
             else:
@@ -716,16 +907,14 @@ def main(argv: list[str]) -> int:
     if "--self-test" in argv:
         return self_test()
     f = Findings()
-    check_files(REPO, f)
-    check_mechanical(REPO, f)
-    check_git_shapes(REPO, f)
-    check_metadata(REPO, f)
+    run_all(REPO, f)
     if f.rows:
         print(f"palomar: {len(f.rows)} finding(s)")
         return 1
-    print("palomar: shared block and compared signature identical, challenge "
-          "imports Mathlib only, configuration resolves, tree and metadata meet "
-          "the registry minimum")
+    print(f"palomar: {len(PALOMAR_CONFIGS)} configuration(s) "
+          f"({', '.join(PALOMAR_CONFIGS)}) each resolve, with shared block and "
+          "every compared signature identical and the challenge importing "
+          "Mathlib only; tree and metadata meet the registry minimum")
     return 0
 
 

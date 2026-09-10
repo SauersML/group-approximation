@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution"]
 
 [[require]]
 name = "mathlib"
@@ -48,3 +48,19 @@ roots = ["Palomar.Challenge"]
 [[lean_lib]]
 name = "PalomarSolution"
 roots = ["Palomar.Solution"]
+
+# The second Comparator configuration, `Palomar/comparator-lix.json`: STW
+# Problem LIX (a simple unital C*-algebra that is not K_1-injective).  Same
+# protocol as above -- `Palomar/LIXChallenge.lean` imports Mathlib only and
+# states the theorems with deliberate holes; `Palomar/LIXSolution.lean`
+# repeats the shared block byte-for-byte and proves them from the development.
+# The registry takes exactly one configuration per submission, so this pair is
+# submitted separately from the one above.
+
+[[lean_lib]]
+name = "PalomarLIXChallenge"
+roots = ["Palomar.LIXChallenge"]
+
+[[lean_lib]]
+name = "PalomarLIXSolution"
+roots = ["Palomar.LIXSolution"]

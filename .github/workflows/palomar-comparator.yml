@@ -18,6 +18,19 @@ name: Palomar Comparator
 # ("GLIBC_2.29 not found"), so `lean4export` and `comparator` cannot be built.
 # A GitHub runner has both a current kernel and a current glibc.
 #
+# WHICH CONFIGURATION.  A submission is exactly one Comparator configuration,
+# and this repository offers two, so this workflow is dispatched once per
+# submission.  The `config` input takes either:
+#
+#   Palomar/comparator.json       the sofic-not-MF group (the default)
+#   Palomar/comparator-lix.json   the three STW Problem LIX theorems
+#
+# The two values are the entries of `PALOMAR_CONFIGS` in
+# `scripts/check_palomar_submission.py`, which is what keeps this list from
+# going stale silently.  Nothing else here is per-configuration: the build step
+# below builds all four Palomar libraries whichever value is dispatched, so a
+# LIX run does not depend on remembering to change a second field.
+#
 # WHY MANUAL ONLY.  It builds two extra toolchains and a Rust kernel checker,
 # and the answer only changes when the Palomar surface changes.  Run it before
 # a submission, not on every push.  It restores the build cache the prover
@@ -114,10 +127,16 @@ jobs:
       - name: Fetch precompiled Mathlib
         run: lake exe cache get
 
-      # Only the two Palomar libraries and whatever of the development they
-      # pull in.  With a warm cache this is minutes.
+      # Only the Palomar libraries and whatever of the development they pull
+      # in.  With a warm cache this is minutes.  All four are built rather than
+      # the pair the dispatched `config` names: Comparator loads the modules the
+      # configuration selects out of the environment, so a LIX dispatch against
+      # a tree where only the non-MF pair was built fails on a missing module
+      # rather than on anything about the submission.  Building all four keeps
+      # the step independent of the input, at the cost of minutes on a warm
+      # cache.
       - name: Build the Palomar modules
-        run: lake build PalomarChallenge PalomarSolution
+        run: lake build PalomarChallenge PalomarSolution PalomarLIXChallenge PalomarLIXSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is
