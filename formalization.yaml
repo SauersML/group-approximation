@@ -351,9 +351,8 @@ automation:
     The LIX problem was solved by Astra, using a custom proof tool. All prose
     of the submission was written by Claude Fable 5.1: the registry abstract,
     the narrative fields of this file and the docstrings of the Palomar
-    modules. The Lean
-    formalisation was produced by Claude Opus 5, Claude Sonnet 5 and GPT-5.6
-    Sol agents under the author's direction.
+    modules. The Lean formalisation was produced by Claude Opus 5, Claude
+    Sonnet 5 and GPT-5.6 Sol agents under the author's direction.
 
 review:
   status: self-assessed

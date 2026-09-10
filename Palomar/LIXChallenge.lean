@@ -53,7 +53,7 @@ namespace ProblemLIX
 
 noncomputable section
 
--- BEGIN SHARED BLOCK (kept byte-identical with `Palomar/LIXSolution.lean`)
+-- BEGIN SHARED BLOCK (kept byte-identical in `Palomar/LIXChallenge.lean` and `Palomar/LIXSolution.lean`)
 
 /-- `diag (a, 1, …, 1)`: the `n × n` matrix over `A` whose top-left entry is
 `a`, whose remaining diagonal entries are `1`, and whose off-diagonal entries
