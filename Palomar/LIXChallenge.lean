@@ -45,6 +45,8 @@ unitary group, `pathComponent (1 : unitary A)` is `U₀(A)`, the path component
 of `1` in it, and `CStarMatrix (Fin n) (Fin n) A` is `Mₙ(A)` with Mathlib's
 C⋆-norm.  All algebras are quantified over `Type`, where the counterexample
 lives.
+
+The prose of this module was written by Claude Fable 5.1.
 -/
 
 namespace ProblemLIX

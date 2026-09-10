@@ -21,6 +21,8 @@ development proves it separable (`LIX.lixLimit_separableSpace`), C⋆-simple
 `isSimpleCStar_iff_isSimpleRing`), and with a unitary `u ∉ U₀(A)` such that
 `diag (u, 1) ∈ U₀(M₂(A))` (`LIX.lixLimit_hasK1InjWitness_of` applied to
 `CharClass.lemmaTwoHolds`, the bundle obstruction).
+
+The prose of this module was written by Claude Fable 5.1.
 -/
 
 namespace ProblemLIX

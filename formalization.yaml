@@ -2,25 +2,21 @@
 version: "v0.4"
 
 project:
-  name: "Non-MF Groups and a Simple C*-Algebra That Is Not K1-Injective"
+  name: "A Simple C*-Algebra That Is Not K1-Injective, and Non-MF Groups"
   description: >-
     This project formalizes two results in Lean 4 over Mathlib. The first is
-    an explicitly presented finitely generated group that is sofic and not MF.
-    It is obtained from a one-sided Kazhdan compression criterion, the
-    consequence of that criterion for the MF radical of a group with normal
-    property (T), and a rank-four Leavitt compression; exact pullback formulas
-    for MF radicals and MF quotients, in the operator-norm sense of Carrión,
-    Dadarlat and Eckhardt, are proved along the way. The second is a negative
-    answer to the question whether every unital simple C*-algebra is
-    K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
+    a negative answer to the question whether every unital simple C*-algebra
+    is K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
     records as open and which Schafhauser, Tikuisis and White pose as Problem
     LIX of "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902). The
-    counterexample is a
-    separable simple unital C*-algebra A, an inductive limit of corner
-    algebras of matrices over C(X), with a unitary u that is not in the
-    connected component of 1 in U(A) although diag(u, 1) is in the connected
-    component of 1 in U(M2(A)). So the class of u vanishes already at the
-    first stabilisation.
+    counterexample is a separable simple unital C*-algebra A, an inductive
+    limit of corner algebras of matrices over C(X), with a unitary u that is
+    not in the connected component of 1 in U(A) although diag(u, 1) is in the
+    connected component of 1 in U(M2(A)). So the class of u vanishes already
+    at the first stabilisation. The second is an explicitly presented finitely
+    generated group that is sofic and not MF, obtained from a one-sided
+    Kazhdan compression criterion, its consequence for the MF radical of a
+    group with normal property (T), and a rank-four Leavitt compression.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
@@ -37,7 +33,9 @@ sources:
       - name: Astra
         role: solved the problem, using a custom proof tool
       - name: Claude Fable 5.1
-        role: wrote the paper, the registry abstract and the narrative fields of this file
+        role: >-
+          wrote all the prose: the paper, the registry abstract, the narrative
+          fields of this file and the docstrings of the Palomar modules
     note: >-
       The negative answer to Problem LIX of Palomar/comparator-lix.json is
       first presented in this project. The argument was committed to this
@@ -356,9 +354,10 @@ automation:
         Astra, a custom proof tool, for the mathematics; Claude Code and Codex
         agents for the Lean development.
   notes: >-
-    The LIX problem was solved by Astra, using a custom proof tool. The prose
-    of k1_injectivity_counterexample.tex, the registry abstract and the
-    narrative fields of this file were written by Claude Fable 5.1. The Lean
+    The LIX problem was solved by Astra, using a custom proof tool. All prose
+    of the submission was written by Claude Fable 5.1: the paper
+    k1_injectivity_counterexample.tex, the registry abstract, the narrative
+    fields of this file and the docstrings of the Palomar modules. The Lean
     formalisation was produced by Claude Opus 5, Claude Sonnet 5 and GPT-5.6
     Sol agents under the author's direction.
 
@@ -374,19 +373,13 @@ status:
   # Axiom closures computed by scripts/PalomarAxioms.lean and
   # scripts/PalomarLIXAxioms.lean, checked by .github/workflows/palomar-check.yml.
   scope: >-
-    Palomar/Challenge.lean states that one explicitly presented eight-generator
-    group is sofic and not MF, and Palomar/Solution.lean proves it.
     Palomar/LIXChallenge.lean states that not every nontrivial simple unital
     C*-algebra is K1-injective, that the counterexample can be taken separable,
     and that it can be taken to fail K1-injectivity at the first
     stabilisation; Palomar/LIXSolution.lean proves these.
+    Palomar/Challenge.lean states that one explicitly presented eight-generator
+    group is sofic and not MF, and Palomar/Solution.lean proves it.
   main_results:
-    - declaration: ExplicitNonMF.explicit_sofic_not_MF
-      file: Palomar/Solution.lean
-      sorry_count: 0
-      axioms: [propext, Classical.choice, Quot.sound]
-      comparator_config: Palomar/comparator.json
-
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
       sorry_count: 0
@@ -405,16 +398,14 @@ status:
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-lix.json
 
+    - declaration: ExplicitNonMF.explicit_sofic_not_MF
+      file: Palomar/Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator.json
+
 fidelity:
   divergences: >-
-    The certified statement concerns one explicitly presented group, not the
-    general theorem of the manuscript. Palomar/Challenge.lean defines soficity
-    and the MF property itself. Soficity is approximation by permutations of
-    finite sets in normalized Hamming distance. The MF property is stated in
-    the sequential operator-norm form and negated; the manuscript uses the
-    norm-matrix-corona form, and the equivalence of the two forms is proved in
-    the development but is not part of the compared statement.
-
     In the LIX challenge, simplicity is Mathlib's IsSimpleRing, which asks
     that the only two-sided ideals be zero and the whole algebra, while
     C*-simplicity asks this of closed ideals only; for a unital C*-algebra the
@@ -430,15 +421,17 @@ fidelity:
     statement fixes it and does not prove uniqueness. All algebras range over
     Type 0, and the counterexample is in Type 0.
 
+    In the non-MF challenge, the certified statement concerns one explicitly
+    presented group, not the general theorem of the manuscript.
+    Palomar/Challenge.lean defines soficity and the MF property itself.
+    Soficity is approximation by permutations of finite sets in normalized
+    Hamming distance. The MF property is stated in the sequential
+    operator-norm form and negated; the manuscript uses the norm-matrix-corona
+    form, and the equivalence of the two forms is proved in the development
+    but is not part of the compared statement.
+
 alignment:
   statements:
-    - source: >-
-        There is an explicitly presented finitely generated group which is
-        sofic and not MF.
-      lean: ExplicitNonMF.explicit_sofic_not_MF
-      module: Palomar.Challenge
-      status: proved
-
     - source: >-
         Problem LIX (are all unital simple C*-algebras K1-injective?): no,
         not every nontrivial simple unital C*-algebra is K1-injective.
@@ -485,6 +478,13 @@ alignment:
         the projections are not Murray-von Neumann equivalent.
       lean: GroupApproximation.CharClass.lemmaTwoHolds
       module: GroupApproximation.CharClass.LemmaTwoOfHsqHresHclass
+      status: proved
+
+    - source: >-
+        There is an explicitly presented finitely generated group which is
+        sofic and not MF.
+      lean: ExplicitNonMF.explicit_sofic_not_MF
+      module: Palomar.Challenge
       status: proved
 
 acknowledgements: "Built on Lean 4 and Mathlib."
