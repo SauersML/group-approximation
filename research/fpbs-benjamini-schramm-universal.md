@@ -148,6 +148,11 @@ content in that region.
   finite mean mass and independent sprinkling still does not suffice.
   The unresolved task needs further structure inherited from the FIXED
   Cayley graph; the moment calculation is not a proof of nonuniqueness.
+  `fpbs-critical-quotient-environment-gap` now retains one such property:
+  the stationary quotient environment inherits the original Bernoulli
+  spectral gap. However, `fpbs-quotient-sprinkling-spectral-atom` shows
+  that applying this gap to connectivity still permits a small
+  uniqueness atom at 1. That comparison does not close the argument.
 
 * **Bound pivotal edges rather than route lengths (response 4,
   `creative-branches.md`, Sections 1.1--1.4).** The finite-volume Russo
