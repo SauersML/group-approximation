@@ -147,8 +147,15 @@ script made that check necessary (see TRAPS).
 
 ## AUTHORED, UNVERIFIED
 
-Probes are held by the lead while the clones are converted to real copies; everything in
-this section is in the shared tree and waits for the gate.
+Only one item remains here.  Everything else this lane wrote is in the GREEN section above.
+
+* `Analysis/LIXLemmaSixCor4.lean` — the `stageEval_def` fix in it is authored and its file
+  cannot be compiled while `CharClass` is red for `sp-coeff`'s reasons.  Its sibling
+  `LIXLemmaSixStageZero`, which carries the identical `stageProj_def` fix, **is** green, so
+  the fix itself is verified; what is unverified is only that this one file still elaborates
+  once `CharClass` builds again.
+
+### What the gate proved, file by file (kept for the record)
 
 * The `stageProj_def` / `stageEval_def` fix and its two call sites
   (`LIXLemmaSixStageZero:38`, `LIXLemmaSixCor4:133`).  A probe holding **exactly** this
@@ -213,7 +220,45 @@ localises a failure there.
   Householder/frame engine above it is already generic, so this is a 150-line
   transcription with `Fin 3 ↦ Fin (n+1)` and `x 2 ↦ x (Fin.last n)`.
 
-## The fresh-clone gate, 2026-09-10 11:29 (cs-stages, 9357 jobs)
+## THE C*-SIDE GATE IS GREEN — 2026-09-10 11:56 (cs-stages, **PROBE GREEN, 3040 jobs**)
+
+Target: the seven `CharClass`-free maximal elements of my closure — `LIXLemmaSixField`,
+`LIXLemmaSixClimb`, `LIXLemmaSixDiagEnd`, `LIXLimitSimple`, `LIXStageAlgebraSeparable`,
+`LIXConnectingMapFullnessTower`, `LIXLimitSectionMatrix`.  That set covers every file this
+lane touched except `LIXLemmaSixCor4`, which cannot build while `CharClass` is red for
+`sp-coeff`'s reasons.  **The whole C*-side of the LIX tower is now generic in the rank `n`
+and green.**
+
+The two headline axiom lines from that run:
+
+```text
+'GroupApproximation.LIX.lixLimit_isSimpleCStar'     depends on axioms: [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.Gen.lixLimit_isSimpleCStar' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+so **the counterexample algebra is simple at every rank, unconditionally**, on exactly the
+classical allowlist — and so is `lixLimit_separableSpace`.
+
+Every file's `Built` line, with the run that produced it (all on the lead's rebuilt clone,
+real copies, no hard links, my modules' artifacts deleted before the first of them):
+
+| module | | run |
+|---|---|---|
+| `LIXBlockProjections` | Built 67s | 11:29 |
+| `LIXStageAlgebra` | Built 51s | 11:29 |
+| `LIXConnectingMapPoints` | Built 35s | 11:29 |
+| `LIXGeneratorUnitary` | Built 32s | 11:29 |
+| `LIXConnectingMap` | Built 44s | 11:29 |
+| `LIXStageAlgebraSeparable` | Built 42s | 11:29 |
+| `LIXLimitAlgebra` | Built 39s | 11:29 |
+| `LIXConnectingMapFullness` | Built 39s | 11:29 |
+| `LIXLemmaSixStageZero`, `LIXLemmaSixClimb` | Built (41s) | 11:29 |
+| `LIXLemmaSixDiagEnd` | Built 46s | 11:44 |
+| `LIXConnectingMapFullnessSum` | Built 160s | 11:44 |
+| `LIXConnectingMapFullnessTower` | Built 64s | 11:44 |
+| `LIXLimitSimple` | Built 46s | 11:56 |
+
+## The first fresh-clone run, 2026-09-10 11:29 (cs-stages, 9357 jobs)
 
 Run on the lead's rebuilt clone (real copies, no hard links), with **my fourteen modules'
 `.olean`/`.ilean`/`.trace`/`.c` deleted first**, so every line below is a genuine compile.
@@ -281,10 +326,43 @@ the only thing that is *not* mechanical.
 5. **`LIXLimitSimple`.**  Two delegating theorems once (3) and (4) are generic.
    `LIXSimplicityInstance` needs **no change**: it is already abstract over
    `A : ℕ → Type u`.
-6. **The Corollary-4 chain** (`LIXLemmaSixHIdx/Field/Compare/Cor4`) stays abstract over
-   the `LemmaTwoHolds` `Prop`, with the seam left where the `k`-index will enter:
-   `LemmaTwoHolds` becomes `LemmaTwoHolds n p k` and `climb_genUnitary_notMem` becomes
-   `climb_genUnitary_pow_notMem k (hk : ¬ p ∣ k)`.  This chain cannot move until (7).
+6. **The `k`-indexed Corollary-4 chain, around the renormalised generator.**  Lead's
+   design decision of 2026-09-10, which *replaces* the abstract seam this lane had been
+   keeping.  The endpoint witness stops being `u` and becomes
+
+   > `ũ := Aᴴ u` with `A := U ∘ wallRetract` (`sp-powers`' `LIXPowersNormalise`), `U` the
+   > seam generator as a ball unitary and `wallRetract` the radial retraction onto the
+   > wall, so `A` is a ball unitary and **`ũ` is identically `1` on the wall**.
+
+   What this lane carries:
+   * the stage-zero unitary and everything climbing the tower are built from `ũ ⊕ 1_H`,
+     not `u ⊕ 1_H`;
+   * `diag(ũ ⊕ 1_H, 1) ∈ U₀` needs **no new geometry**: it follows from this lane's
+     existing contraction of `u ⊕ 1` (`Gen.seamPath_ePole_zero/_one/_unitary`) together
+     with `A ⊕ 1` extending over the ball, a product of two contractible maps;
+   * the frames for the power chain are the hemisphere frames gauged by `A` on one
+     hemisphere (seam `ũ`, still `pole ↦ x`), pulled back along `Σψ_k` for the `k`-th
+     power (seam `ũ ∘ ψ_k`, `pole ↦ x ∘ Σψ_k`);
+   * the input consumed from `sp-powers` is `exists_homotopy_pow_comp_normGen`: for a
+     ball-unitary generator that is `1` on the wall, an explicit unitary homotopy from
+     `W^{k+1}` to `W ∘ ψ_k`.
+   Then "`v^k ∈ U₀(A_j)` ⇒ a unitary field conjugating `EHmat` onto `FHmat_k`" is
+   `LIXLemmaSixField`'s existing construction with the substituted frames.  **No clutching
+   layer anywhere and no path in `U(n)` anywhere** — the live Corollary 4 never used the
+   clutching layer, and the power version does not either.  `FHmat_k` is `FHmat` with
+   `b = x ∘ Σψ_k`, which is `CharClass`-side and `sp-oddside`'s.
+
+   The generator's domain, settled for `sp-powers` on 2026-09-10: what this lane can
+   supply is **not** a ball unitary but `Gen.genSphere n y := Gen.genU2 n (Gen.equatorEmb n
+   (‖y‖⁻¹ • y))`, continuous and unitary at every `y ≠ 0`, hence on any shell and on the
+   sphere.  The ball is impossible, not merely unproved: `midNorm p x =
+   sqrt (2 + 2 Re⟨p,x⟩)` is the length of `p + x` *only for unit vectors* and hits zero on
+   the whole half-space `Re⟨p,x⟩ ≤ -1`, and `transPhase a b = ⟨a,b⟩/‖⟨a,b⟩‖` is
+   discontinuous where `⟨a,b⟩ = 0`.  What makes the sphere case work is that
+   `equatorEmb`'s last complex coordinate is purely imaginary **for every** `a ∈ E`, not
+   just on the sphere, so the image always lies on the equator and both hemisphere frames
+   are always defined; the norm is the only hypothesis that fails, and `‖y‖⁻¹ • y` repairs
+   it.  Still to write: `Gen.equatorEmb n`, `Gen.incl n`, `Gen.genU2 n`, `Gen.genSphere n`.
 7. **The `CharClass/LIX*` shape layer** (mine by the lead's ruling of 2026-09-10).  The
    only things pinning `Fin 3` on the definitional side are two lines:
    `LIXSectionManuscript:82` `VIdx dd = Fin 3 ⊕ HIdx dd` and `:88`

@@ -929,12 +929,28 @@ that the closed form in `p` can be recognised or ruled out.
 
 ## GREEN (with job counts)
 
+> **Caveat entered 2026-09-10, to be discharged by the next probe.**  The lead
+> reports fleet-wide that the artifacts copied into every clone include oleans
+> **older than their sources**, which `lake` replays silently with **no line in
+> the log**, so the usual `Built`-not-`Replayed` check cannot see them.  This
+> lane's own modules were never at risk, since they exist nowhere but this clone.
+> Its *imports* were: the vendored cochain layer, `CartanDiagonalModule`,
+> `CartanSourceFunctor`, `CartanSourceBoundary`.  So a `Built` line below could
+> rest on an import whose olean does not match its source.  `laneprobe.sh` now
+> purges every such artifact set under the lock before building.  **The seven
+> greens below are therefore provisional until one probe under the purging
+> helper reconfirms them**, which is the next action.  I am not restating them as
+> confirmed on the strength of logs taken before the fix.
+
 **All five §2 modules build together: `Build completed successfully (2010 jobs)`,
 `LAKE_EXIT=0`, `PROBE GREEN`** on `cs-limit`, 2026-09-10.  The two maximal
 elements are named in the log as freshly `Built` (`OddPResolution` 20s,
 `OddPSource` 25s); the other three are separate targets of the same green build,
 and none of them exists in the node-side tree, so none can be a replayed stale
-olean.
+olean.  As of 2026-09-10 that argument has a second leg: the lead has
+de-hardlinked `cs-limit`'s build directory in place, so it holds real copies with
+zero hard links to the main tree or to any other clone, and a `Replayed` line
+there can now only replay an artifact this clone built from these sources.
 
 * `GroupApproximation/CharClass/OddPGroupRing.lean` — `GroupRingZMod`, `grGen`,
   `grGen_pow_card`, `grS`, `grNorm`, `grNorm_mul_grS`, `grS_mul_grNorm`.
@@ -1184,15 +1200,13 @@ sign-off; proceed with §7 steps 0–5, then the descent lemmas, then Cartan.  A
 adopted.  §2.1 is already replaced, by the polynomial-ring route rather than the
 binomial one.
 
-The ruling's justification for `c_2 = c_1²` is the same one questioned above, and
-our messages crossed, so it does not address the objection.  **This is recorded
-as a claim to verify, not as an open dispute, because it checks itself and blocks
-nothing.**  The bridge is the last step in the order the lead set; by the time it
-is reached, the coproduct will have been pinned down in order to prove Cartan at
-all, so `C_{p-1,p-1}` will be a computed quantity rather than an assumption and
-the check costs nothing extra.  If it is a unit the bridge closes as ruled; if it
-vanishes we learn so before anything rests on it.  Nothing is built on it in the
-meantime.
+The ruling's justification for `c_2 = c_1²` was the one questioned above, and our
+messages crossed.  **RESOLVED the same day**: the lead held the ruling, `sp-design`
+withdrew the overstated sentence by name, and the coefficient was *computed*
+rather than asserted — `C = 1` at `p = 3, 5, 7, 11, 13`, with the mechanism given
+in §6.2 and both of its arithmetic claims re-checked here independently.  So the
+bridge closes as the lead ruled, but on a computation rather than on the
+justification originally offered.  Nothing was built on it in the interval.
 
 ### What this lane can prove unconditionally, which narrows it to one number
 
@@ -1287,8 +1301,9 @@ line is cited from now on rather than inferred.
 
 ## TRAPS
 
-New, this lane's own, not yet in `FLEET_TRAPS.md` (they go there once a probe
-confirms them):
+New, this lane's own.  All of the confirmed ones are now appended to
+`FLEET_TRAPS.md`; the ones below that a probe has not yet exercised are marked as
+such.
 
 * **The mod-2 tree's `FreeCx` layer is a trap for a reader, not an asset.**
   `CartanFreeCx.tensorD_tensorD` reads like a general tensor-of-complexes lemma;

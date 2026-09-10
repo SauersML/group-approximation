@@ -203,12 +203,34 @@ gives `x = ∑_i ρ_i(x_i)` with the `ρ_i` exactly the ones already built here
 (`lixKRho`), and the composition of two `relPullback`s along identities is again one.
 **No balls, no metric, no disjoint-union splitting, no geometry at all.**
 
-What it costs is one genuinely new piece of infrastructure: relative Mayer–Vietoris, and
-only its surjectivity half.  At cochain level that is `C^*(X, A) + C^*(X, B) = C^*(X, A∩B)`
-up to coboundaries, which is the same small-simplices input
-`RelativeExcision.smallAnnComplex_acyclic` already supplies for excision — so it should be
-built beside `CharClass/RelativeExcision.lean` and reused, not re-derived.  It is generic
-in the coefficient ring, so `sp-coeff` gets it for free.
+What it costs is one genuinely new piece of infrastructure: relative Mayer–Vietoris.  Having
+read `CharClass/RelativeExcision.lean` in full, it is a **faithful mirror of that file** with
+a biproduct in the middle, and it needs no new geometry at all:
+
+```text
+   0 ⟶ smallAnn(X; {A,B}) ⟶ C^*(X,A) ⊕ C^*(X,B) ⟶ C^*(X, A∩B) ⟶ 0
+```
+
+* **mono** — the first map is `(ι, −ι)`; injectivity is `Subtype.ext`, as in
+  `excisionShortComplex_degreewise_shortExact`'s middle bullet.
+* **exact** — the kernel of `(α, β) ↦ α + β` is `{(α, −α) : α ∈ C(X,A) ∩ C(X,B)}`, and a
+  cochain vanishing on the `A`-simplices *and* the `B`-simplices is exactly one vanishing on
+  all `{A,B}`-small chains.  The one lemma needed is
+  `RelativeExcision.subordinate_or_of_isSmallSimplex`, which is already there and already
+  used for the same purpose.
+* **epi** — and this is the pleasant surprise: **no subdivision**.  Split `φ` on basis
+  simplices by `α(σ) := if IsSubordinate A σ then 0 else φ(σ)`, `β := φ − α`.  Then `α`
+  kills the `A`-simplices by construction, and `β` kills the `B`-simplices in both cases:
+  if `σ ⊆ A ∩ B` then `φ(σ) = 0` and `α(σ) = 0`; if `σ ⊆ B` but `σ ⊄ A` then
+  `α(σ) = φ(σ)`.  Same shape as `excisionCochainMap_preimage`'s `by_cases`.
+* **acyclicity of the kernel** is `isZero_smallAnnComplex_homology`, already in the tree and
+  already the only geometric input excision consumes — and it is where `A ∪ B = X` enters.
+
+So the file is `CharClass/RelativeMayerVietoris.lean` beside `RelativeExcision.lean`,
+about the same length, generic in `[CommRing R]`, and `sp-coeff` gets it for free.  It also
+retires `sp-design` §4.2's "excision to `k+1` disjoint balls", which would have needed a
+metric, a disjointness argument and a relative splitting over a disjoint union — none of
+which the tree has.
 
 ## NEEDS
 

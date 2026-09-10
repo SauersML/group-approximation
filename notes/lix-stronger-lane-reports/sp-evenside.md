@@ -41,8 +41,15 @@ cohomology, no `Y`, no rank, no stage.
   induction in the file: strip factors off the list, carrying a counter for the multiples
   of `p` already removed, and use `a_q = 0` for `p ∤ q` to kill every branch in which the
   surviving `b`-index is not `≡ N (mod p)` and at most `N − p`.
-* `ParityPData p R H` — the hypotheses as a structure, 17 fields, each with a docstring
-  naming who discharges it.
+* `ParityPData p R H` — the hypotheses as a structure, 19 fields, each with a docstring
+  naming who discharges it.  **(W) carries a unit**, not the coefficient `1`: the field is
+  `c : ℕ → R` with `c_isUnit`, and the relation is
+  `P^i(γ_{i+1}) − ι(c i)·γ_{ip+1} ∈ IsDecomposable`.  This is sp-design's correction of
+  2026-09-10, ratified by the lead: under sp-steenrod's approved normalisation
+  `P(h) = h + κ·h^p` on a degree-two class, the diagonal coefficient is `(−1)^{i(p−1)}·κ^i`,
+  and hard-coding `1` would make the even side hostage to a normalisation constant nobody
+  intends to pin.  The induction only ever cancels the coefficient, so a unit is exactly
+  the right strength; `ParityPTwo.lean` sets it to `1`.
 * `ParityPData.b_step` — the inductive step, the `z`-component of the Wu relation at index
   `i`.
 * `ParityPData.b_eq_zero` — **`b_{ip+1} = 0` for every `i`**; `b_eq_zero_of_mod` restates
@@ -85,6 +92,21 @@ Hypothesis **(A)** from the tower, and the top index.  This is sp-design §3.3's
 Only this file needs a characteristic hypothesis, and it takes the weakest one that names
 the Frobenius: `[ExpChar R p]`.
 
+### `GroupApproximation/CharClass/ParityPTwo.lean` (~130 lines) — the calibration case
+
+`ParityData.toParityPData : ParityPData 2 R H`, field by field, plus the two `F₂`
+conclusions re-derived from the general theorem (`b_odd_eq_zero'`, `gamma_top_eq_zero'`).
+`ParityEven.lean` is **not** edited.  This is the check that the general statement really
+is a generalisation rather than a lookalike; a design that failed here would be wrong even
+if it compiled.
+
+The only step with content is the Wu field: the `j = i` term of the `F₂` diagonal relation
+is `γ_0 · γ_{2i+1}`, and `γ_0 = 1` is not a field of `ParityData` — it has to be derived
+(`ParityData.gamma_zero`, from instability at index `0` plus `Sq⁰ = id`) before that term
+can be recognised as the distinguished `γ_{ip+1}` of hypothesis (W).  The remaining
+`j < i` terms are two-factor monomials, which is what `ParityP.IsDecomposable.pair` and
+`IsDecomposable.sum` are for.
+
 ### Why it is uniform in the stage
 
 Nothing in either file mentions the stage, `m`, the number of projective factors, or `Y`.
@@ -120,6 +142,70 @@ For deliverable 2, the mod-`p` `LemmaTwoStepD.lean` (`WuStepDData`, `stepD_of_wu
   in it, so it can be formalised in parallel with everything else.  I can take it if the
   lead wants it in this lane; it is not part of deliverable 1 as scoped.
 
+## L4a (deliverable 3, assigned 2026-09-10)
+
+**The statement, diagonal case only**, which is all `ParityPData`'s field (W) consumes.
+Over `ℤ`, modulo the ideal of decomposables (products of two positive-weight symmetric
+polynomials), with `φ_κ` the ring endomorphism induced by `y ↦ y + κ·y^p`:
+
+```text
+  φ_κ(e_{i+1})  ≡  (−1)^{i(p−1)} · (1 + p·i) · κ^i · e_{ip+1}   (mod decomposables)
+```
+
+so mod `p` the coefficient is the unit `(−1)^{i(p−1)}·κ^i`.  sp-design's proof: `φ_κ` is a
+ring endomorphism, hence descends to the indecomposables `Q(Λ)`; there Newton gives
+`p_M ≡ (−1)^{M−1}·M·e_M`, and `φ_κ(p_b) = Σ_j C(b,j)·κ^j·p_{b+j(p−1)}` by the binomial
+theorem; combining and dividing by `N` exactly gives the coefficient
+`(−1)^{i(p−1)}[C(N−1,i) + p·C(N−1,i−1)]·κ^i`, and at the diagonal `N = i+1`, `j = i` that
+is `(1 + p·i)·κ^i`.
+
+**The two Mathlib assets that make it formalisable** (both present at pin `81a5d257`, both
+checked by reading the file, not by name alone):
+
+* `Mathlib/RingTheory/MvPolynomial/Symmetric/NewtonIdentities.lean` —
+  `MvPolynomial.mul_esymm_eq_sum`, `MvPolynomial.psum_eq_mul_esymm_sub_sum`,
+  `MvPolynomial.sum_antidiagonal_card_esymm_psum_eq_zero`.
+* `Mathlib/RingTheory/MvPolynomial/Symmetric/FundamentalTheorem.lean` —
+  `MvPolynomial.esymmAlgEquiv (hn : Fintype.card σ = n) : MvPolynomial (Fin n) R ≃ₐ[R]
+  symmetricSubalgebra σ R`, plus `esymmAlgHom_injective` / `esymmAlgHom_surjective`.
+
+The fundamental theorem is what makes "modulo decomposables" a well-behaved *free*
+quotient: it is why the exact division by `N` in sp-design's proof can be performed in the
+quotient rather than only in `ℚ ⊗ Λ`.  Without it the division step has nothing to land in.
+
+**The formalisation plan, after reading both Mathlib files.**  Do not build a quotient
+ring.  `esymmAlgEquiv σ R hn : MvPolynomial (Fin n) R ≃ₐ[R] symmetricSubalgebra σ R` sends
+`X i` to `esymm σ R (i+1)`, so "the coefficient of `e_N` modulo decomposables" is a plain
+**linear functional**
+
+```text
+  lam N : symmetricSubalgebra σ R →ₗ[R] R,
+  lam N f  :=  ((esymmAlgEquiv σ R hn).symm f).coeff (Finsupp.single ⟨N-1⟩ 1)
+```
+
+with three properties, each cheap: it is `R`-linear (an `AlgEquiv.symm` composed with
+`coeff`); it kills a product of two constant-term-free symmetric polynomials, because the
+linear coefficient of a product of two such polynomials is `0`; and `lam N (e_M) = δ_{MN}`.
+That replaces steps (1) and (4) of the naive plan — no ideal, no quotient, and no
+cancellation lemma, because the division by `N` in sp-design's argument is performed once,
+on integer coefficients, before it ever meets a ring element.
+
+Then: (2) Newton mod decomposables, i.e. `lam N (psum M) = (−1)^{M+1}·M·δ_{MN}`, straight
+from `psum_eq_mul_esymm_sub_sum` — every term of its subtracted sum is
+`esymm a * psum (k−a)` with `0 < a < k`, hence a product of two constant-term-free
+symmetric polynomials, hence killed by `lam`.  (3) `φ_κ` as an `AlgHom` with
+`φ_κ(psum b) = Σ_j C(b,j)·κ^j·psum (b+j(p−1))`, by the binomial theorem.  (5) the diagonal
+specialisation, and the transport of the universal identity to the Chern roots.
+
+Estimate: 800–1500 lines.  Nothing in it is cohomological, so it runs in parallel with
+`sp-coeff` and `sp-steenrod`.
+
+**Not to be attempted**, on sp-design's evidence (`tools/diag_wu_shape.py`): a closed form
+for the odd-`p` diagonal Wu polynomial in the two-factor shape `WuSymmetric.lean` has at
+`p = 2`.  At `p = 3`, `i = 1` it is already `e_2e_1² + e_2² + 2e_3e_1 + e_4`; at `p = 7` it
+runs to hundreds of terms of length up to `p`.  The closure predicate is the right response
+and stays even if a formula were found.
+
 ## TRAPS
 
 * **`-DwarningAsError=true` on the `GroupApproximation` lib** (lakefile.toml, line 13).
@@ -128,6 +214,13 @@ For deliverable 2, the mod-`p` `LemmaTwoStepD.lean` (`WuStepDData`, `stepD_of_wu
   The two non-recursive hypotheses of an `add`/`neg` closure constructor are exactly the
   ones a closure induction never uses; they must be written `_hu`, `_hv`.  Cost me nothing
   only because I checked the lakefile before the first probe.
+* **A leading coefficient of `1` is an over-commitment, not a simplification.**  My first
+  draft hard-coded the `γ_{ip+1}` coefficient at `1` because that is what the `F₂` diagonal
+  Wu relation has.  It is `κ^i` at odd `p` under any normalisation that fixes `P^0 = id`,
+  and the induction never needs more than cancellation, so a unit field costs one
+  multiplication and buys independence from another lane's constant.  Caught by sp-design
+  in review, not by me: the `F₂` template silently supplies `κ = 1` and nothing in the
+  mod-2 file records that a constant was ever there.
 * **`omega` abstracts `i * p` and `c * p` as unrelated atoms**, which is what makes the
   index arithmetic here workable at all — but `(i' + c) * p` is a *third* atom, so every
   step that needs distributivity has to `rw [add_mul]` first and only then call `omega`.

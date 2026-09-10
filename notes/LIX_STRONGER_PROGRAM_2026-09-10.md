@@ -60,6 +60,15 @@ the differences are stated here.
   clutched by `u` is `Fproj`.  No `π_{2n}(U(n))` anywhere.
 * `V = 1^{n+1} ⊕ H`, rank `r = n + 1 + m`, `m = Σ d_i`, over `M = S^{2n+1} × Y`; the two
   projections are `FHmat = V − s sᴴ` and `EHmat = V − e eᴴ`.
+* **Status 2026-09-10 11:56 CDT (`sp-tower`, PROBE GREEN 3040 jobs on cs-stages):** the whole C*-side is
+  generic in `n` (`STW59.Gen.*`, every old name kept as the `n = 2` specialisation, `stageRank n i :=
+  2 ^ i * n` so `n = 2` is a `rfl`): block projections, connecting maps, stage algebras with the
+  pi-shaped `CStarAlgebra` instance, separability, the tower and limit, fullness, and
+  `Gen.lixLimit_isSimpleCStar n` — **the counterexample algebra is simple at every rank, on axioms
+  exactly `[propext, Classical.choice, Quot.sound]`**.  Only `Nontrivial (Gen.LIXLimit n)` carries
+  `[NeZero n]`.  Four defects the gates caught were all of one family (a generalisation changes how a
+  name unfolds or what it needs: `stageProj`/`stageEval`/`connectMatrix` became abbrevs, so
+  unfold-by-name sites now cite `*_def` rfl lemmas); two repository-wide checkers now guard them.
 
 ### 1.2 The constant section moves to the equator (design, owner `sp-design`, then `sp-oddside`)
 
@@ -277,6 +286,19 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   Built line.  Second tell: an unmoved job count across a structural change means no rebuild.
   Clones hold REAL copies of artifacts (never hard links: lake writes in place and shared inodes
   corrupt every other tree); warming is artifacts-only and holds the probe lock.
+  **Stale oleans (sp-oddside, 2026-09-10 12:05):** the main tree's copied artifacts include oleans
+  OLDER than their sources (233 of 5478 modules) and lake replays them with no log line, so a probe
+  can build against an import whose olean does not match its source (the symptom is a red in a
+  correct file, e.g. names defined in a new import "unknown").  `laneprobe.sh` therefore purges,
+  under the lock and before every build, every artifact set whose `.lean` is newer than its
+  `.olean`, and prints `purged N stale artifact sets`; a probe run before this patch whose closure
+  imports a module edited today must be re-run before it is cited.
+  The dangerous case is a module that is SILENT in the log (neither `Built` nor `Replayed`): lake
+  trusted a trace over a stale olean, and the importers elaborated against an environment that
+  does not match the sources.  It cuts both ways (a false red when a new name is missing, a false
+  green when the stale olean still elaborates).  So: absence of a module you touched from the log
+  is a FAILURE, not "not yet reached"; preserving copies preserve the problem; and the definitive
+  reset is to clear every artifact of the directory you are rewriting before the probe.
 * **No `sorry` lands.**  Author with `sorry` only inside a file that is not imported by
   anything, and say so in the report.  `#print axioms` on every endpoint-facing theorem:
   `[propext, Classical.choice, Quot.sound]`, nothing else, ever.

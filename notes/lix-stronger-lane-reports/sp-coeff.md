@@ -462,6 +462,51 @@ accounted for — my own two intentional leaf files (`CoeffAxiomCheck`, `CoeffLi
 and `sp-steenrod`'s three new `OddP*` files.  Do the subtraction; do not trust the
 top computation on its own.
 
+## Tree state for the landing batch (2026-09-10, 12:00 CDT)
+
+`CharClass` is **frozen** in its current state until the lead has landed.  The
+Relative layer goes into new files or the scratchpad; no existing `CharClass`
+file will be touched.
+
+Working tree: 28 modified `CharClass` files (4 layer rewrites, 24 carrying only
+ambiguity pins) and 5 new `Coeff*.lean`.  All 5 are **untracked**, which matters
+for anyone cloning: a git-based clone gets none of them and the modified files
+without their dependencies.
+
+`sp-tower`'s gate on a fresh clone reported three errors in my in-flight files.
+One was real and is fixed: `CoeffField.lean` and `CoeffLine.lean` need
+`import Mathlib.Algebra.Field.ZMod`, because `Mathlib.Data.ZMod.Basic` supplies
+the type and its `CommRing` but **not** `Field (ZMod p)`.  The other two,
+`CohomologyAssoc.lean:93` and `:103`, are the exact signature of a truncated
+`CoeffCohomology.lean`: `autoImplicit` turns the undefined `cocycleClassK` into a
+variable, its application reads as "Function expected", and the enclosing
+`cohCast_cocycleClassOf` then reads as an unknown identifier eleven lines later.
+I verified the rename is **not** half-applied by checking every `Of`/`K`-suffixed
+identifier across my nine files against everything declared in `CharClass`;
+nothing dangles.
+
+**My guess at the cause was wrong, and `sp-tower` disproved it with evidence.**
+I proposed a torn read from a non-atomic in-place rewrite.  In fact
+`CoeffCohomology.lean` in their clone was byte-identical to mine and *built green
+in that very run*.  The cause was a **fresh `.trace` over a five-day-old
+`.olean`** for `CohomologyBasic`: lake trusts the trace, so the module appears in
+the log neither as `Built` nor as `Replayed` but is simply **absent**, and every
+importer is handed an environment predating `cocycleClassK`.  My causal chain
+from the missing identifier to the two errors was right; only its first link was
+wrong.
+
+That matters for this lane's own greens: "Built, never Replayed" is necessary and
+**not sufficient** — a silent module is the dangerous case, and a stale olean that
+still elaborates yields a false green.  So the 12:12 run now clears every
+`CharClass` build artifact in `cs-endpoint` (`.olean`, `.ilean`, `.trace`,
+`.olean.hash`, `ir/*.c`) before probing.  The `.trace` is the one that must go.
+Clearing the whole directory rather than just my 33 modules costs nothing here,
+because rewriting `CohomologyMayerVietoris` forces a rebuild of nearly the whole
+tree anyway.
+
+Probes are queued for 12:13 CDT (wrapper cooldown): leaf files alone first, then
+the 20 tops.  Expected consistent green ≈ 13:00 CDT.
+
 ## GREEN (with job counts)
 
 Clone `cs-endpoint`, probes of 2026-09-10.
