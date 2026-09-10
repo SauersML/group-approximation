@@ -100,6 +100,7 @@ def main():
         'fpbs-graphing-cost-betti-cycle-dimension-identity': 'ESTABLISHED',
         'fpbs-relative-cycle-operator-descent': 'ESTABLISHED',
         'fpbs-relative-cycle-dpp-disconnects': 'ESTABLISHED',
+        'fpbs-finite-block-forest-cost-normal-form': 'ESTABLISHED',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
         'fpbs-optimistic-search-linear-wall-cost': 'ESTABLISHED',

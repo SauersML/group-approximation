@@ -211,6 +211,99 @@ identity supplies the target amount; it does not supply that
 construction. No new open Cairn premise is introduced merely to
 rename the existing comparison.
 
+## 5. A common finite-block forest can be imposed at no infimum cost
+
+The finite normal subgroup in Section 3 is not needed to create a common
+collection of connected blocks. What it supplied there was an explicitly
+solvable quotient. The following normal form separates these two issues.
+
+Let R be an aperiodic countable p.m.p. equivalence relation of finite cost
+on (X,mu). Let E be any Borel subequivalence relation of R whose classes
+are finite almost surely, and prescribe a Borel tree F in each E-class.
+Choose a Borel transversal A for E and put q=mu(A)>0. Graphings in this
+section can be countable; no uniform degree or group-label bound is
+part of the assertion.
+
+### Theorem 5.1: prescribed finite-forest normal form
+
+With the normalized measure mu_A on A,
+
+    C(R) = inf_{J generates R|A} c_mu(F union J)
+         = 1-q + q C_mu_A(R|A).                            (7)
+
+In particular, for every eta>0 there is a generating graphing containing
+the entire prescribed F whose cost is less than C(R)+eta. The prescribed
+trees need not come from subgroup orbits or be chosen optimally.
+
+**Proof.** Orient F toward its representative in A. Every point outside
+A has exactly one outgoing edge and every representative has none.
+The oriented edge relation splits into countably many partial p.m.p.
+isomorphisms, so c_mu(F)=mu(X minus A)=1-q. Equivalently, mass transport
+gives q=integral 1/|[x]_E| dmu(x), which also proves q>0.
+
+For any generating graphing J of R|A, F union J generates R: join each
+endpoint to its E-representative along F, and join those representatives
+using J. No F-edge has both endpoints in A. After omitting loops in J,
+the edge sets are disjoint and their costs add:
+
+    c_mu(F union J)=1-q+q c_mu_A(J).
+
+Taking the infimum and using Gaboriau's complete-section induction
+formula, Proposition 2.33 of the cited lectures, proves (7). For the
+eta assertion choose J within eta/q of its infimum. This uses the
+standard induction theorem, not a new deletion theorem. QED.
+
+### Corollary 5.2: simultaneous normal form through a free factor
+
+Let pi:Y->X be as in Section 1 and suppose both action costs are finite.
+Lift E and F orbitwise to E_Y and F_Y. Orbitwise bijectivity implies that
+each lifted block is finite of exactly the same size as its base block,
+and B=pi^{-1}(A) meets it exactly once. Also nu(B)=mu(A)=q.
+
+Theorem 5.1 applies on both spaces. Thus the cost infima of both actions
+can be computed while requiring the common forest F and its lift F_Y,
+respectively. This supplies a common prescribed part of their graphings
+without assuming either action has a generating treeing.
+
+Let
+
+    D = C_mu(R_X)-C_nu(R_Y),
+    D_A = C_mu_A(R_X|A)-C_nu_B(R_Y|B).
+
+Subtracting the two induction identities gives the exact scaling
+
+    D = q D_A.                                             (8)
+
+The two restricted relations are still linked by an orbitwise
+bijective p.m.p. factor, with their normalized measures. They are not
+automatically free actions of one common subgroup of Gamma; treating
+them as such would introduce an extra, unproved hypothesis.
+
+Equation (8) controls what a block argument must prove. A sequence with
+q_n->0 only yields D=0 if it also yields D_(A_n)=o(1/q_n).
+A positive original gap would instead give D_(A_n)=D/q_n exactly.
+The existence of arbitrarily large finite blocks is therefore
+insufficient on its own. The common forest is free to impose at the
+cost infimum, but the unresolved comparison survives in the relation
+between its representatives.
+
+The finite-cost assumptions prevent subtraction of infinities. In
+particular this argument does not address an extension of finite cost
+over a base of infinite cost, a possibility that a universal proof must
+also exclude. No finite-generation or ergodicity assumption is used in
+(7)--(8).
+
+### Consequence for the next construction
+
+It is legitimate to begin a relative exchange construction with a
+chosen finite-block forest included on both spaces at arbitrarily
+small cost excess. The remaining work is to compare their connector
+graphings on the representatives, including any repair edges. Section
+3 completes that work because its quotient graph is a tree with one
+available bridge per quotient edge. For general R, equation (7) does
+not construct an optimal quotient connector graphing, and (8) prevents
+us from mistaking a small transversal for a small comparison gap.
+
 ## Sources and certificate boundary
 
 Repository reconnaissance covered the existing cycle-dimension identity,
@@ -234,6 +327,11 @@ artifacts on September 10, 2026.
   the imports recorded in `cost-cycle-structure.md`, Sections 1 and 3.
   Optimality of treeings is the classical Gaboriau theorem, also
   recorded in the existing cost artifacts.
+* [Gaboriau, Measure Equivalence, Cost, and L2 Betti numbers](https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf),
+  Proposition 2.33 and its proof: restriction to a complete section
+  scales cost minus one by its measure. Section 5 is a deduction from
+  that classical formula, rechecked September 10, 2026. It does not
+  invoke a multiplicativity theorem for finite-index subrelations.
 * The general problem remains open in our work; its current literature
   status was rechecked September 10 against the references in
   `fpbs-fixed-price-universal`, including the July 2026

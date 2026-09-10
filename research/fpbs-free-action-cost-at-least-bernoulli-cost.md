@@ -27,6 +27,16 @@ deletion-minus-repair bill still needed in general. That bill is not
 proved by its operator trace; no new premise is introduced just to
 rename this comparison.
 
+Impose common finite blocks before exchanging edges. The established
+`fpbs-finite-block-forest-cost-normal-form` permits any prescribed
+finite-block forest on the base and its lift on the source to be
+included at arbitrarily small cost excess. This removes a special
+finite-group hypothesis from the preparation step. It does not solve
+the connector comparison: Section 5 of the relative-exchange artifact
+proves D=q D_A for the original and normalized restricted cost gaps.
+Making the block transversal small without a new estimate on D_A
+therefore retains the entire possible gap.
+
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
 open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti
