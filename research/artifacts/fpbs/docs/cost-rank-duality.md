@@ -149,3 +149,10 @@ constructed here. In particular, this audit does not establish
 C(X)<=C(Y), the missing reverse inequality in the live route.
 It eliminates the restriction-consistent cost-rank shortcut and
 keeps ambient-dependent duality available for further work.
+
+The subsequent [isoperimetric test-descent argument](isoperimetric-test-descent.md)
+does remove source information from all finite symmetric-vertex
+tests for a fixed pulled-back graphing. It uses finite-set kernels
+and approximate measurable edge coloring, rather than the failed
+rank assignment. Its Section 6 isolates the still open comparison
+between the two classes of graphings over which one optimizes.

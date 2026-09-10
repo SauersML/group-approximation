@@ -4,6 +4,7 @@ id: fpbs-free-action-cost-at-least-bernoulli-cost
 kind: claim
 title: Every free action of a finitely generated group has cost at least its Bernoulli cost
 artifacts:
+  - research/artifacts/fpbs/docs/isoperimetric-test-descent.md
   - research/artifacts/fpbs/docs/relative-cycle-iteration.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
@@ -14,6 +15,17 @@ artifacts:
 **OPEN.** For every infinite finitely generated group, every free p.m.p. action a and a nontrivial Bernoulli shift b, prove C(a) >= C(b). With Abert-Weiss maximality, which supplies C(a) <= C(b), this is the missing half of fixed price in the finitely generated case. The comparison has already been sharpened to C(a x b) = C(a) <= C(b), so the whole question is the projection a x b -> b, which forgets the entire a-process.
 
 ## Attempts
+
+Descend isoperimetric boundary tests. The written proof of
+`fpbs-pulled-back-graphing-isoperimetry` removes all source
+information from symmetric-vertex tests for a fixed bounded-degree
+graphing pulled back from an ergodic base. It uses averaging of
+finite-set kernels and approximate measurable edge coloring.
+The remaining distinction is the infimum over pulled-back graphings
+versus the infimum over all source-dependent graphings. By the
+Pichot--Vassout cost identity their difference is exactly twice
+the possible cost gap. The test-descent theorem does not remove
+this distinction or prove the reverse comparison.
 
 Descend only the relative cycle surplus. The established
 `fpbs-relative-cycle-operator-descent` gives a base positive contraction
