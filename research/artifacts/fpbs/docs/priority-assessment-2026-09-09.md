@@ -6,6 +6,15 @@ research judgment of the session that produced that archive, and it fixes the
 relative priority of the two universal goals `fpbs-benjamini-schramm-universal`
 and `fpbs-fixed-price-universal`. Verbatim below.
 
+Editorial note (integration lane, 2026-09-09): Section 3 below credits
+arXiv:1804.10191 with both the hyperbolic and the nonunimodular results and the
+tree-times-lattice example. The nonunimodular theorem and that example are
+Hutchcroft, arXiv:1711.02590 ("Non-uniqueness and mean-field criticality for
+percolation on nonunimodular transitive graphs"); arXiv:1804.10191 is the
+hyperbolic paper. Both are recorded on
+`fpbs-hyperbolic-and-nonunimodular-nonuniqueness`. The text is otherwise
+reproduced as forwarded.
+
 ---
 
 **Between Fixed Price and Benjamini–Schramm, I would prioritize Benjamini–Schramm for a full affirmative solution.** That is a research judgment—not a known ordering of their difficulty. My confidence is moderate: Fixed Price could yield to a new structural idea, but percolation currently has a more concrete route from an estimate to the complete conclusion.
