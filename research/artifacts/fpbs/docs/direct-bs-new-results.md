@@ -221,7 +221,102 @@ growth theorem. The existing [query strong converse](../query-strong-converse.md
 also supplies a necessary search cost, not an upper bound on path length
 or exploration cost. Therefore these inputs do not yet close that route.
 
-## 7. Effect on the direct proof search
+## 7. Thinning gives a lower bound on connecting-path length
+
+The subsequent attempt to control detours by thinning also did not
+discharge a universal premise. Here is the exact calculation, without
+an algorithmic or finite-moment assumption.
+
+Put c=p_c(G), fix q in (c,1), and let X_n be the independent lazy-walk
+endpoint from o. Write rho<1 for its operator norm. The
+[critical correlation bound](../spectral-spike.md) gives
+P_c(o connected to X_n)<=rho^n. Let D_q be the open-path distance
+between these endpoints, with value infinity when they are disconnected.
+For every nonnegative integer L,
+
+    P_q(D_q<=L) <= rho^n (q/c)^L.                       (10)
+
+**Proof.** Sample the q-configuration and independently retain each of
+its open edges with probability c/q. The resulting edge states are
+independent Bernoulli(c). On D_q<=L, choose a simple open path of length
+at most L using a fixed enumeration of finite paths. Conditional on the
+q-configuration and the walk, this selected path survives with probability
+at least (c/q)^L. Survival implies connection in the thinned configuration.
+Thus (c/q)^L P_q(D_q<=L)<=P_c(o connected to X_n)<=rho^n. QED.
+
+For L=floor(b n) with b<(-log rho)/log(q/c), (10) decays exponentially
+in n. Under uniqueness, conditioning on both endpoints being infinite
+costs at most the factor theta(q)^(-2), by FKG. This excludes short
+connections; it does not furnish the upper bound on path length or search
+cost needed by the attempted route. The two are different tasks, since
+finding a path can require queries outside that path.
+
+The published distance-control theorem checked in this attempt is
+Hutchcroft, *The L2 boundedness condition in nonamenable percolation*,
+[arXiv:1904.05804v2, Theorem 3.3](https://arxiv.org/html/1904.05804#S3).
+It controls intrinsic detours under p<p_(2->2). To use it at parameters
+strictly above c requires the L2 threshold separation that is still OPEN
+in Cairn. This is not an unconditional replacement for that premise.
+
+## 8. Free-energy regularity does not supply the missing merger estimate
+
+Hutchcroft, *Continuity of the Ising phase transition on nonamenable
+groups*, [arXiv:2007.15625v1, Corollary 1.14](https://arxiv.org/html/2007.15625#S1.SS4),
+proves that the percolation free energy
+
+    kappa(p)=E_p[1/|C_o|], with 1/infinity=0,
+
+is twice continuously differentiable at p_c on transitive nonamenable
+graphs. Its proof uses uniform control of truncated logarithmic moments
+of finite clusters. Section 1.4 also records analyticity away from p_c.
+
+This is not, by itself, control of mergers between infinite clusters.
+Deterministically, opening a single edge between two infinite components
+leaves 1/|C_v| unchanged for every vertex v: it is zero on both components
+before and after their merger, and all other components are unchanged.
+This observation does not prove that free-energy methods can never help;
+it identifies the additional connection estimate that this attempt lacks.
+
+The finite-graph derivative identities in
+[cluster-contact mergers](cluster-contact-mergers.md) concern
+E_p[number of clusters]/|V|. On a nonamenable exhaustion, this average
+must not be identified with kappa(p) without a separate argument. An
+explicit calibration already fails on the d-regular tree, d>=3.
+Every finite induced ball is a tree, so its mean cluster count per vertex
+is 1-p(|V|-1)/|V|, tending to 1-p. In the infinite tree, for
+0<p<1/(d-1), all clusters are finite and
+
+    kappa(p)=1-d p/2.                                   (11)
+
+For completeness, in a finite tree cluster C the average open degree is
+2-2/|C|. Mass transport makes the expected open degree at the original
+root equal to the expected cluster-average open degree: let each vertex
+send its open degree divided by |C| to every vertex of C. Its expected
+outgoing mass is d p, while its incoming mass is 2-2/|C_o|. Taking
+expectations proves (11). The two limits differ for d>=3 and p>0.
+The boundary-weighted finite-ball average therefore does not transfer
+the finite merger identities to the desired rooted observable.
+
+## 9. Nonuniqueness at the uniqueness threshold can mean no percolation
+
+The final literature check was Hutchcroft--Pan, *Percolation at the
+uniqueness threshold via subgroup relativization*,
+[arXiv:2409.12283v1, Definition 1.11 and Theorems 1.13--1.15](https://arxiv.org/html/2409.12283#S1.SS2).
+For a subgroup H, a cluster is H-infinite when its intersection with H
+is infinite. An obstacle to uniqueness rules out exactly one H-infinite
+cluster at the relative uniqueness threshold. The definition explicitly
+permits either zero or infinitely many such clusters.
+
+The paper proves this property for several classes, including groups
+with suitable amenable wq-normal subgroups of exponential growth,
+nonamenable products, and property (T) groups. These are hypotheses on
+the group, not a classification of all nonamenable groups. Moreover,
+even a universal exclusion of exactly one infinite cluster at p_u would
+not alone exclude p_c=p_u: zero infinite clusters at that common value
+is consistent with critical finiteness. No general positive lower bound
+on percolation at p_u, or threshold separation, was extracted here.
+
+## 10. Effect on the direct proof search
 
 The elementary proposition rules out direct use of the new weighted
 profile criterion on the critical quotient at weak sprinkling. Equation
@@ -234,3 +329,13 @@ also control connections that first appear outside the inspected volume;
 equation (8) prevents an interchange of limits from supplying that control.
 No such estimate or construction is proved here, and no new OPEN premise
 is introduced merely to rename the original threshold-separation problem.
+
+The thinning, free-energy, and subgroup-threshold follow-ups were three
+consecutive attempts without progress toward a complete proof. The
+session's research goal was consequently marked blocked on September 10,
+2026. This is a status of the attempted research, not a mathematical
+refutation or a claim that further research is impossible. Cairn's
+universal Benjamini--Schramm claim remains OPEN, with the same eight live
+conditional routes and their unproved premises. The subsequent request
+to archive everything is fulfilled by recording those attempts here and
+linking them from the root claim, without adding artificial proof edges.
