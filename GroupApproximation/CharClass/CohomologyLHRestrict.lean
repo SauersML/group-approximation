@@ -140,7 +140,7 @@ theorem bijective_pull_of_graded {Q : TopCat.{0}} (f : Q ⟶ P)
     (ξ : Hmod2 P 2) (ξ' : Hmod2 Q 2) (hξ : pull f 2 ξ = ξ')
     (r : ℕ) (hr : 1 ≤ r)
     (L : LerayHirschGraded π ξ (r + 1)) (L' : LerayHirschGraded π' ξ' r) :
-    Function.Bijective (pull f (2 * r - 1)) := by
+    Function.Bijective (pull (K := ZMod 2) f (2 * r - 1)) := by
   have hF : Function.Bijective
       (fun a : (i : Fin r) → Hmod2 X (2 * r - 1 - 2 * (i : ℕ)) =>
         ∑ i : Fin r, lhTerm π ξ (2 * r - 1) (i : ℕ) (a i)) :=

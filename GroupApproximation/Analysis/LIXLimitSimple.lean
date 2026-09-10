@@ -33,21 +33,39 @@ noncomputable section
 attribute [local instance 100000] GroupApproximation.LIX.instSpectralPartialOrder
                                   GroupApproximation.LIX.instSpectralStarOrderedRing
 
+
+namespace Gen
+
+/-- **Simplicity of the counterexample algebra at rank `n`**, reduced to stage-wise fullness
+of nonzero elements.  The order instances that `isSimpleCStar_limit_of_ne_zero` needs are
+discharged here from `CStarAlgebra.spectralOrder`, so the remaining hypothesis is order-free. -/
+theorem lixLimit_isSimpleCStar_of_full (n : ℕ) [NeZero n]
+    (hfull : ∀ (k : ℕ) (a : STW59.Gen.StageAlgebra n k), a ≠ 0 →
+      ∃ j, k ≤ j ∧ IsFull ((lixTower n).climb j k a)) :
+    IsSimpleCStar (LIXLimit n) :=
+  (lixTower n).isSimpleCStar_limit_of_ne_zero hfull
+
+/-- **The counterexample algebra at rank `n` is simple.**  Unconditional: the fullness
+hypothesis is discharged by `STW59.Gen.isFull_climb_of_ne_zero`, whose tower argument is
+matched to `Gen.lixTower n` by `Gen.lixTower_succHom`, which holds by `rfl`. -/
+theorem lixLimit_isSimpleCStar (n : ℕ) [NeZero n] : IsSimpleCStar (LIXLimit n) :=
+  lixLimit_isSimpleCStar_of_full n fun k a hne =>
+    STW59.Gen.isFull_climb_of_ne_zero n (lixTower_succHom n) k a hne
+
+end Gen
+
+/-! ### The `n = 2` instance -/
+
 /-- **Simplicity of the counterexample algebra**, reduced to stage-wise fullness of nonzero
-elements.  The order instances that `isSimpleCStar_limit_of_ne_zero` needs are discharged here
-from `CStarAlgebra.spectralOrder`, so the remaining hypothesis is order-free. -/
+elements. -/
 theorem lixLimit_isSimpleCStar_of_full
     (hfull : ∀ (k : ℕ) (a : STW59.StageAlgebra k), a ≠ 0 →
       ∃ j, k ≤ j ∧ IsFull (lixTower.climb j k a)) :
     IsSimpleCStar LIXLimit :=
-  lixTower.isSimpleCStar_limit_of_ne_zero hfull
+  Gen.lixLimit_isSimpleCStar_of_full 2 hfull
 
-/-- **The counterexample algebra is simple.**  Unconditional: the fullness hypothesis is
-discharged by `cs-stages`' `STW59.isFull_climb_of_ne_zero`, whose tower argument is matched to
-`lixTower` by `lixTower_succHom`, which holds by `rfl`. -/
-theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit :=
-  lixLimit_isSimpleCStar_of_full fun k a hne =>
-    STW59.isFull_climb_of_ne_zero lixTower_succHom k a hne
+/-- **The counterexample algebra is simple.** -/
+theorem lixLimit_isSimpleCStar : IsSimpleCStar LIXLimit := Gen.lixLimit_isSimpleCStar 2
 
 /-! ### Axiom audit
 
@@ -56,6 +74,13 @@ Simplicity of the counterexample algebra is unconditional, so it takes the stron
 conditional theorem from passing for an endpoint merely by having a clean closure. -/
 
 #audit_closed_axioms lixLimit_isSimpleCStar
+
+/-! The generic theorem takes the rank as a leading input, so it gets the plain audit:
+`#audit_closed_axioms` rejects any leading argument by design, and that rejection is the
+gate doing its job, not a defect to work around.  The `n = 2` instance above is the closed
+proposition and keeps the stronger gate. -/
+
+#audit_axioms Gen.lixLimit_isSimpleCStar
 
 end
 

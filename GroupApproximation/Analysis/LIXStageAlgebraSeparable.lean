@@ -43,6 +43,26 @@ instance instSecondCountableSectionAlgebra (X : Type*) [TopologicalSpace X]
     [DecidableEq ι] : SecondCountableTopology (SectionAlgebra X ι) :=
   inferInstanceAs (SecondCountableTopology C(X, CStarMatrix ι ι ℂ))
 
+namespace Gen
+
+instance instSecondCountableBaseX (n i : ℕ) : SecondCountableTopology (baseX n i) :=
+  inferInstance
+
+/-- **The stage algebras are separable**, at every rank.  This is the hypothesis of
+`LIX.CStarTower.separableSpace_limit`. -/
+instance instSeparableSpaceStageAlgebra (n i : ℕ) :
+    TopologicalSpace.SeparableSpace (StageAlgebra n i) :=
+  inferInstance
+
+/-- The family form, for the tower. -/
+instance instSeparableSpaceStageAlgebraPi (n : ℕ) :
+    ∀ i : ℕ, TopologicalSpace.SeparableSpace (StageAlgebra n i) := fun _ => inferInstance
+
+end Gen
+
+/-! ### The `n = 2` instance.  `SecondCountableTopology` and `SeparableSpace` are `Prop`
+classes, so these live happily beside the generic ones above. -/
+
 instance instSecondCountableBaseX (i : ℕ) : SecondCountableTopology (baseX i) :=
   inferInstance
 

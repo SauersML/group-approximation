@@ -69,7 +69,7 @@ def cpIncl (d : ℕ) : CPtop d ⟶ CPtop (d + 1) := cpInclP d ≫ punctIncl d
 
 /-- Pullback along `ℂP^d ⊆ ℂP^{d+1} ∖ {pt}` is bijective in every degree: it is
 the inverse of the homotopy equivalence given by the retraction. -/
-theorem bijective_pull_cpInclP (d n : ℕ) : Function.Bijective (pull (cpInclP d) n) :=
+theorem bijective_pull_cpInclP (d n : ℕ) : Function.Bijective (pull (K := ZMod 2) (cpInclP d) n) :=
   (pullEquivOfHomotopyEquiv (punctOpenHomotopyEquiv d) n).symm.bijective
 
 /-- The Mayer–Vietoris restriction to the punctured space is a pullback. -/
@@ -92,7 +92,7 @@ theorem bijective_resV_two (d : ℕ) (hd : 1 ≤ d) :
   · exact fun w => (hasSphereCohomology_interSpace d).2.2 2 (by omega) (by omega) w
 
 theorem bijective_pull_punctIncl_two (d : ℕ) (hd : 1 ≤ d) :
-    Function.Bijective (pull (punctIncl d) 2) := by
+    Function.Bijective (pull (K := ZMod 2) (punctIncl d) 2) := by
   have hb := bijective_resV_two d hd
   have heq : ⇑((mvSequence (chartOpen d) (punctOpen d) (chartOpen_sup_punctOpen d)).resV 2)
       = pull (punctIncl d) 2 :=
@@ -101,8 +101,8 @@ theorem bijective_pull_punctIncl_two (d : ℕ) (hd : 1 ≤ d) :
 
 /-- **The hyperplane inclusion is bijective on `H^2`**, for `d ≥ 1`. -/
 theorem bijective_pull_cpIncl (d : ℕ) (hd : 1 ≤ d) :
-    Function.Bijective (pull (cpIncl d) 2) := by
-  have hfun : pull (cpIncl d) 2
+    Function.Bijective (pull (K := ZMod 2) (cpIncl d) 2) := by
+  have hfun : pull (K := ZMod 2) (cpIncl d) 2
       = (pull (cpInclP d) 2) ∘ (pull (punctIncl d) 2) :=
     funext fun a => pull_comp _ _ 2 a
   rw [hfun]

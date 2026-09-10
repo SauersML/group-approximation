@@ -94,7 +94,7 @@ theorem diagOne_genUnitary_entry (i j : Fin 2) (w : STW59.baseX 0) (a b : Fin 2)
   rw [coe_diagOne_apply]
   by_cases hi : (i : ℕ) = 0 <;> by_cases hj : (j : ℕ) = 0 <;>
     simp [hi, hj, coe_genUnitary, coe_genStage, STW59.blockUnitary_def,
-      STW59.coe_stageAlgebra_one, STW59.stageProj, Eproj_zero_eq_one, Matrix.one_apply,
+      STW59.coe_stageAlgebra_one, STW59.stageProj_def, Eproj_zero_eq_one, Matrix.one_apply,
       genMat, apply_ite (fun f : C(STW59.baseX 0, ℂ) => f w)]
 
 /-- **`hdiag`.**  The transported unitary is `diag(u, 1)` on the nose, so the

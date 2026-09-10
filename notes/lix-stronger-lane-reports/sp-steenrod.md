@@ -299,8 +299,37 @@ Partial degrees and the two signs:
 ```lean
 def pre (t : Fin r → TagSimp X) (j : Fin r) : ℕ := ∑ l ∈ Finset.filter (· < j) Finset.univ, (t l).1
 def tupD  (K) (X) (r k) : tupMod K X r (k+1) →ₗ[K] tupMod K X r k        -- Σ_j (-1)^{pre t j} Σ_i (-1)^i ⟨t with slot j faced⟩
-def tupT  (K) (X) (r k) : tupMod K X r k →ₗ[K] tupMod K X r k            -- (-1)^{(t last).1 * (k - (t last).1)} • cyclic shift
+def tupT  (K) (X) (r k) : tupMod K X r k →ₗ[K] tupMod K X r k            -- slot 0 to the END, sign (-1)^{(t 0).1 * (k - (t 0).1)}
 ```
+
+**The direction of `tupT` is not free, corrected 2026-09-10 on `sp-descent`'s
+finding.**  The plan originally read the sign off the **last** slot, i.e. moved
+the last slot to the front — the *inverse* of the shift the descent uses.  Both
+are legitimate cyclic generators and both give a unit, so nothing in the
+programme breaks either way; but `λ₁ = ((p-1)/2)!` is a theorem about one
+direction only.  `sp-descent` re-ran the descent with the generator inverted and
+got `2, 2, 1, 1` at `p = 3, 5, 7, 11` against `1, 2, 6, 10` for the factorial.
+
+The asymmetry is real, not bookkeeping: the contraction acts on slot `0` and the
+Alexander–Whitney evaluation also singles out slot `0`, so the two directions are
+not exchanged by any symmetry of the problem.  Had I landed the last-slot
+version, every transcription of `(T - 1)` from the descent into the tuple model
+would have needed silent inversion — the kind of mismatch that surfaces as a
+wrong constant three layers downstream.
+
+I verified before adopting: `grep -rn tupT GroupApproximation/` finds the symbol
+only inside `sp-descent`'s docstring describing my plan, so nothing was landed
+and nothing needs rewriting.  **Adopted: slot `0` to the end.**  Their `eT` in
+`CharClass/OddPDescentShift.lean` is then the same operator as my `tupT` at the
+two-letter alphabet, and `(T - 1)` transcribes with no inversion.
+
+Two corroborations from them, both matching claims already in this report:
+`eT ^ p = 1` needs no hypothesis on `p` at all, by the parity argument of §3.3
+(their letters have degrees in `{0,1}`, so `n² = n` and the accumulated sign is
+`(-1)^{k(k-1)}`); and the evaluation sign is `+1` with no factor owed, since the
+`p`-fold diagonal of `ι₁` has exactly one term free of a vertex-`0` factor.  The
+`(-1)^{(p-1)/2}` in circulation is `κ(1,1)`, the Cartan coefficient at the top
+corner, **not** a sign on `c₁`.
 
 `tupD`'s summand is **totalised** in cc-steenrod's sense: the face of slot `j`
 returns `0` unless the resulting tuple has total degree `k`, which it always
@@ -1196,8 +1225,69 @@ section flags.
 
 ## AUTHORED, UNVERIFIED
 
-**Nothing.**  Everything this lane has written is in the thirteen-module green
-above.
+**`OddPTuple.lean` and `OddPTupleSign.lean` are GREEN with the slot boundary
+redefined categorically** — `✔ Built … OddPTuple (139s)`,
+`✔ Built … OddPTupleSign (146s)` — so the design the lead approved is landed and
+the degree drop and square-zero of a slot are true by construction wherever the
+tuple differential needs them.
+
+`GroupApproximation/CharClass/OddPTupleSlot.lean` — **RED after six rounds,
+parked, imported by nothing.**  It packages that construction as the named lemma
+`tagBdL_tagBdL`.  Two errors survive and they are the *same two* that defeated
+the bridge file, which tells us they are not artifacts of either design.  One is
+a stuck `Module` metavariable in `tagBdL_single`, which I now believe is
+introduced by `Finsupp.linearCombination_single` rather than by `one_smul`, so
+the module should be pinned in the *statement* of `tagBdL`, not in the proof.
+The other is a rewrite that still misses after I fixed one genuine cause in it.
+
+**The one round that worked, and why the other five did not.**  Rounds three
+through six fixed one visible symptom at a time from error text.  The single
+round in which I printed the full goals found a real bug immediately: the goal
+spelled a degree `n + 1 + 1` where my lemma said `n + 2`, equal by definition and
+not as terms, with the number inside the type of a `ModuleCat` object.  That is
+the fourth appearance of that trap today and the first time I caught it by
+reading rather than guessing.  The instruction left in the file, and the one I
+should have followed at round three, is: print both goals in one round before
+editing anything.
+
+### Superseded: the bridge file
+
+`GroupApproximation/CharClass/OddPTupleBd.lean` — **RED after four probe rounds,
+and I am handing it off in that state rather than guessing at a fifth.**
+
+*What it is for.*  The square-zero law of the tuple differential splits three
+ways: the two mixed terms, which cancel by the prefix asymmetry proved green in
+`OddPTupleSign.lean`, and the diagonal terms, which need `∂ ∘ ∂ = 0` **within one
+slot**.  This file was to make that third group free by identifying the explicit
+alternating face sum `tagBd` with `singFreeR`'s differential and borrowing
+`HomologicalComplex.d_comp_d`, the same move that paid for `OddPSingular.lean`.
+The design is right and I still believe it; the file is not.
+
+*Where it stands.*  Two errors, both diagnosed, neither fixed:
+
+* the parity branch of `tagBd_eq` reports `typeclass instance problem is stuck`
+  on a `Module` whose arguments are all metavariables.  Naming the ring in the
+  `neg_one_pow` rewrites did not clear it, so the stuck instance is probably in
+  the `one_smul`/`one_zsmul` step rather than in the sign lemma, and I am
+  guessing rather than reading, which is the point at which to stop.
+* the degree-`n+2` branch's final rewrite still does not match, after both the
+  all-arguments-explicit form and cc-cartan's `let F := …` ascription.  The
+  `ModuleCat` carrier and the raw `Finsupp` are defeq and not syntactically
+  equal, and I have not found the spelling that makes the pattern fire.
+
+*Why this is not blocking.*  Nothing imports it.  The fourteen green modules are
+unaffected, and `OddPTupleSign.lean`, which carries the genuinely odd-primary
+content of the square-zero law, is among them.
+
+*What I would try next, for whoever picks it up.*  Read the full goal at the
+first error rather than inferring it from the message, since the two rounds I
+spent inferring both missed.  And consider whether the bridge is worth it at all:
+proving `tagBdL_tagBdL` directly from the simplicial identity is the thing
+`CartanSingular.lean` exists to avoid, but *this* file has now cost four rounds,
+which is the same order, and the direct route has no defeq-versus-syntactic
+hazard in it.
+
+## Superseded: earlier AUTHORED entries
 
 ### What the six outage-written files cost to green, and why
 

@@ -47,7 +47,7 @@ theorem projMapOf_eq_isoHom (q : Bundle X ι) (hq : ∀ x, (q x).trace = 1) :
 
 /-- **At rank one the projection is bijective on cohomology.** -/
 theorem bijective_pull_projMapOf_rankOne (q : Bundle X ι) (hq : ∀ x, (q x).trace = 1)
-    (n : ℕ) : Function.Bijective (pull (projMapOf q) n) := by
+    (n : ℕ) : Function.Bijective (pull (K := ZMod 2) (projMapOf q) n) := by
   rw [projMapOf_eq_isoHom q hq]
   exact bijective_pull_iso _ n
 

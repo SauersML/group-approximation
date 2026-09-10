@@ -77,7 +77,7 @@ an isomorphism on cohomology in every degree.
 presented as a subset; until then it is named rather than assumed silently. -/
 theorem bridgeHyperplane (p : Bundle X ι)
     (hsub : ∀ k : ℕ,
-      Function.Bijective (pull (subInclusion (range_projIncl_subset_notZero p)) k))
+      Function.Bijective (pull (K := ZMod 2) (subInclusion (range_projIncl_subset_notZero p)) k))
     (n : ℕ) :
     Function.Bijective
       (relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
@@ -99,9 +99,9 @@ theorem incl_comp_eq_invFun [CompactSpace X] [T2Space X] (p : Bundle X ι) :
 homotopy equivalence because it is the homotopy inverse composed with a
 homeomorphism, so its pullback is bijective in every degree. -/
 theorem hyperplane_hsub [CompactSpace X] [T2Space X] (p : Bundle X ι) (k : ℕ) :
-    Function.Bijective (pull (subInclusion (range_projIncl_subset_notZero p)) k) := by
+    Function.Bijective (pull (K := ZMod 2) (subInclusion (range_projIncl_subset_notZero p)) k) := by
   have hcomp : ∀ a, pull (cmap (Bundle.projInclHomeoRange p).toHomotopyEquiv.toFun) k
-      (pull (subInclusion (range_projIncl_subset_notZero p)) k a)
+      (pull (K := ZMod 2) (subInclusion (range_projIncl_subset_notZero p)) k a)
       = pull (cmap (Bundle.notZeroOpensHomotopyEquivProj p).symm.toFun) k a := by
     intro a
     rw [← pull_comp]

@@ -153,7 +153,7 @@ variable {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ} (L : LerayHirschGraded π ξ 
 Leray–Hirsch that the splitting principle runs on: pulling back to the flag
 bundle loses nothing. -/
 theorem pull_injective (L : LerayHirschGraded π ξ r) (hr : 0 < r) (n : ℕ) :
-    Function.Injective (pull π n) := by
+    Function.Injective (pull (K := ZMod 2) π n) := by
   have hcard : 0 < lhDomainCard r n := lt_min hr (Nat.succ_pos _)
   intro a b hab
   have h : lhMap π ξ r n (concentrated r n a) = lhMap π ξ r n (concentrated r n b) := by

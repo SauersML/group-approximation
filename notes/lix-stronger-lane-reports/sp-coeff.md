@@ -20,13 +20,21 @@ coefficient ring, and most `CharClass` files simply instantiate them at
 `CupProduct.lean` all take `(R : Type) [CommRing R]`.  In those files the port is
 the substitution `(ZMod 2) ↦ K`, nothing more.
 
-Classification of the 340 in-scope files:
+**Every number below carries the predicate that produced it** (`sp-lh`'s
+practice, adopted 15:40).  A bare count invites no challenge; a count with its
+predicate attached invites someone to ask what the predicate cannot see, which is
+how the three floors in this report were found — each by a reader other than the
+one who ran the scan.
+
+Classification of the 340 in-scope files, by the predicate
+"does the file name `ZMod 2` in code, outside a docstring, in a position that is
+not an argument to an already-generic declaration":
 
 | class | count | what it means |
 |---|---|---|
 | **downstream-only** | 234 | never names `ZMod 2` in code; speaks `Hmod2`/`cup`/`pull` only, and follows for free once `Hmod2` is `Hmod (ZMod 2)` |
 | **formal** | ~86 | names `ZMod 2` only as a coefficient argument to an already-generic function, a `ModuleCat`/`→ₗ[·]`/`Module` ascription, or a `≃ₗ[ZMod 2] ZMod 2` "this group is a line" hypothesis.  Mechanical substitution. |
-| **uses characteristic 2** | 25 | four distinct mechanisms; see §0 and the correction in §0b |
+| **uses characteristic 2** | ≥25 | predicate: names one of `two_smul`, `(2 : ZMod 2)`, `(1 : ZMod 2) + 1`, `add_self_eq_zero_two`, `∀ z : ZMod 2 …`, `decide` on a `ZMod 2` goal.  **A floor, not a count.**  It cannot see char-2 content carried in the SHAPE of a statement (§0d), nor a service lemma nobody has named — `add_cancel_pair` was one, exported and consumed once from a file with no token in it.  The better predicate is consumer CLOSURE (not direct consumers) over the known service lemmas, and that is a floor too, one level up. |
 
 The 20 files that genuinely use characteristic 2, grouped by mechanism:
 
@@ -184,6 +192,27 @@ Two consequences worth knowing before you author:
 2. A leaf file that mentions `ZMod p` needs `import Mathlib.Data.ZMod.Basic`
    explicitly.  `autoImplicit` reports the missing import as
    `Function expected at ZMod`, pointing at the application rather than the import.
+
+## 0d. The token census is a floor (sp-lh, 15:15)
+
+`sp-lh` found a mechanism-(a) site my census could not have seen.
+`LerayHirschShift`'s `add_cancel_pair` reads `w + x + (y + x) = w + y`: no
+arithmetic token, no `ZMod 2`, nothing to grep.  Its characteristic-two content
+is one call away in `LH.add_self`, and over `K` the repair is not a sign on a map
+— it is a *different element* in the change of basis, `-cup b u` where the mod-2
+file has `+cup b u`, the same element at `F₂` and the wrong one over `K`.
+
+This is the same failure mode as the vendored `singular_d_ι` that `sp-tower`
+corrected me on: an unsigned sum standing where an alternating one belongs, with
+the characteristic hidden in the shape rather than in a token.  Two independent
+instances make it a rule.
+
+**So the reliable scan is by CONSUMER CLOSURE of the `F₂` service lemmas**, not by
+arithmetic tokens: `LH.add_self`, `LH.add_eq_zero_iff_eq`,
+`MayerVietorisBiproduct.add_self_eq_zero_two` and its three corollaries,
+`SteenrodCupOne.cup_comm`, and the vendored `neg_one_pow_zmod2`,
+`sum_split_char2`, `singular_d_ι`.  My figure of 25 in-scope char-2 files is a
+**floor**; I will re-derive it that way rather than repeat the token number.
 
 ## 1. The parametrisation
 
@@ -645,6 +674,46 @@ tree anyway.
 
 Probes are queued for 12:13 CDT (wrapper cooldown): leaf files alone first, then
 the 20 tops.  Expected consistent green ≈ 13:00 CDT.
+
+## Landed additively into the live tree (unverified until the next probe)
+
+The lead replaced the freeze with content-based landing: a lane edits what it
+owns at any time, and only bytes that a citable log verified are landed.  That
+model has an asymmetry this lane now works to:
+
+**Additive declarations go into the shared tree immediately; rewrites of files
+with live consumers do not.**  A new declaration beside an existing one cannot
+break whoever syncs it.  A rewrite can, and at today's rebuild rate that costs
+them over an hour.  So `ChernTotalRing` (staged in scratchpad) and
+`CohomologyBridge` (designed) wait for a probe slot; the sixteen below went in at
+once.
+
+Excision and the chain under it — eight, because `excisionIso` needs `[Field K]`
+and four of its inputs did not exist:
+
+| file | added |
+|---|---|
+| `RelativeDual` | `dualFunctorOf_preservesEpimorphisms`, `dualFunctorOf_preservesHomology`, `dualMapOf_quasiIso` (all `[Field K]`) |
+| `RelativeSmallChains` | `smallAnnComplexOf_acyclic`, `isZero_smallAnnComplexOf_homology` (`[Field K]`) |
+| `RelativeExcision` | `isIso_excisionOf`, `excisionIsoOf` (`[Field K]`) |
+| `RelativeLocal` | `relCohomologyCongrOf` (`[CommRing K]`) |
+| `RelativeLES` | `absToSub_eq_cohPullbackOf` (`[CommRing K]`) |
+
+The relative long exact sequence — eight more, all `[CommRing K]`:
+`comp_apply_eq_zeroOf`, `exact_of_comp_of_mem_rangeOf`, `linearMap_comp_of_squareOf`
+(coefficient implicit — the `ModuleCat` arguments determine it), `absPullOf`,
+`subPullOf`, `exact_absToSub_relDeltaOf`, `exact_relDelta_relToAbsOf`,
+`exact_relToAbs_absToSubOf` (explicit).
+
+**The field boundary is structural, not a porting artefact**, and it is worth
+stating once: excision → small-annihilator acyclicity → dual of a quasi-iso is a
+quasi-iso → the coefficient is injective over itself.  Over a general commutative
+ring the dualizing functor is not exact and excision by this route is *false*.
+The hazard is that the surrounding functor lemmas are all generic, so a file can
+look coefficient-clean and still rest on injectivity through one instance
+argument — which is how the dependency reached `RelativeDual`,
+`CohomologyMayerVietoris` and `RelativeSmallChains` without any of them naming a
+field.
 
 ## GREEN (with job counts)
 

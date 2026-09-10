@@ -55,7 +55,7 @@ theorem hasGeneratorShape_connect {j : ℕ} {a : STW59.StageAlgebra j}
     (h : HasGeneratorShape j a) : HasGeneratorShape (j + 1) (STW59.connect j a) := by
   obtain ⟨c, hc⟩ := h
   show ∃ _, _
-  rw [toFunctionMatrix_connect, STW59.connectMatrix]
+  rw [toFunctionMatrix_connect, STW59.connectMatrix_def]
   generalize STW59.compressMat j
       (STW59.toFunctionMatrix (a : STW59.SectionAlgebra (STW59.baseX j) (STW59.EIdx j))) = N
   refine ⟨Matrix.fromBlocks (STW59.pullMat (STW59.baseYtrunc j) c) 0 0

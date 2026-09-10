@@ -138,13 +138,140 @@ theorem toFunctionMatrix_smul (c : ℂ) (a : SectionAlgebra X ι) :
 
 end Bridge
 
-/-! ### The stage algebras -/
+/-! ### The stage algebras, generic in the rank `n` -/
+
+namespace Gen
 
 /-- `E_i` as a projection of the ambient homogeneous algebra `M_{E_i}(C(X_i))`. -/
-def stageProj (i : ℕ) : SectionAlgebra (baseX i) (EIdx i) := ofFunctionMatrix (Eproj i)
+def stageProj (n i : ℕ) : SectionAlgebra (baseX n i) (EIdx n i) :=
+  ofFunctionMatrix (Eproj n i)
+
+theorem isStarProjection_stageProj (n i : ℕ) : IsStarProjection (stageProj n i) :=
+  isStarProjection_ofFunctionMatrix (isStarProjection_Eproj n i)
+
+@[simp]
+theorem sectionEval_stageProj (n i : ℕ) (w : baseX n i) :
+    sectionEval w (stageProj n i) = matEval w (Eproj n i) := rfl
+
+@[simp]
+theorem toFunctionMatrix_stageProj (n i : ℕ) :
+    toFunctionMatrix (stageProj n i) = Eproj n i := rfl
+
+/-- **`A_i = Γ(X_i, End E_i)`** at rank `n`, the `i`-th stage of the AH tower of the
+manuscript's (4.1), as the corner `E_i · M_{E_i}(C(X_i)) · E_i`. -/
+abbrev StageAlgebra (n i : ℕ) : Type :=
+  Corner (stageProj n i) (isStarProjection_stageProj n i)
+
+section Instances
+
+example (n i : ℕ) : CStarAlgebra (StageAlgebra n i) := inferInstance
+
+example (n i : ℕ) : Ring (StageAlgebra n i) := inferInstance
+
+example (n i : ℕ) : StarRing (StageAlgebra n i) := inferInstance
+
+example (n i : ℕ) : NormedAlgebra ℂ (StageAlgebra n i) := inferInstance
+
+end Instances
+
+/-- The unit of `A_i` is `E_i`. -/
+@[simp]
+theorem coe_stageAlgebra_one (n i : ℕ) :
+    ((1 : StageAlgebra n i) : SectionAlgebra (baseX n i) (EIdx n i)) = stageProj n i := rfl
+
+/-- Membership in the stage algebra, at the level of matrices of functions. -/
+theorem mem_stageAlgebra_iff {n i : ℕ} {a : SectionAlgebra (baseX n i) (EIdx n i)} :
+    a ∈ cornerAlgebra (stageProj n i) (isStarProjection_stageProj n i) ↔
+      stageProj n i * a * stageProj n i = a := Iff.rfl
+
+/-- Evaluation of a section of `End E_i` in the fibre over `w`. -/
+def stageEval (n i : ℕ) (w : baseX n i) (a : StageAlgebra n i) :
+    Matrix (EIdx n i) (EIdx n i) ℂ :=
+  sectionEval w (a : SectionAlgebra (baseX n i) (EIdx n i))
+
+theorem stageEval_mul (n i : ℕ) (w : baseX n i) (a b : StageAlgebra n i) :
+    stageEval n i w (a * b) = stageEval n i w a * stageEval n i w b := rfl
+
+theorem stageEval_add (n i : ℕ) (w : baseX n i) (a b : StageAlgebra n i) :
+    stageEval n i w (a + b) = stageEval n i w a + stageEval n i w b := rfl
+
+theorem stageEval_star (n i : ℕ) (w : baseX n i) (a : StageAlgebra n i) :
+    stageEval n i w (star a) = (stageEval n i w a)ᴴ := rfl
+
+theorem stageEval_zero (n i : ℕ) (w : baseX n i) :
+    stageEval n i w (0 : StageAlgebra n i) = 0 := rfl
+
+@[simp]
+theorem stageEval_one (n i : ℕ) (w : baseX n i) :
+    stageEval n i w (1 : StageAlgebra n i) = matEval w (Eproj n i) := rfl
+
+/-- **A section of `End E_i` is zero exactly when all of its fibre values are.** -/
+theorem stageAlgebra_eq_zero_iff {n i : ℕ} {a : StageAlgebra n i} :
+    a = 0 ↔ ∀ w, stageEval n i w a = 0 := by
+  constructor
+  · intro h w
+    rw [h, stageEval_zero]
+  · intro h
+    refine corner_ext ?_
+    rw [coe_corner_zero]
+    exact sectionAlgebra_eq_zero_iff.mpr h
+
+/-- The fibre value of a section lies in the fibre corner of `E_i`. -/
+theorem stageEval_mem_corner {n i : ℕ} (w : baseX n i) (a : StageAlgebra n i) :
+    matEval w (Eproj n i) * stageEval n i w a * matEval w (Eproj n i) = stageEval n i w a := by
+  have h := coe_corner_mem a
+  have h' := congrArg (sectionEval w) h
+  rw [sectionEval_mul, sectionEval_mul, sectionEval_stageProj] at h'
+  exact h'
+
+/-- The fibre rank of `E_i` is `r_i`, so a frame of the fibre has `r_i` columns. -/
+theorem trace_stageEval_one (n i : ℕ) (w : baseX n i) :
+    (stageEval n i w (1 : StageAlgebra n i)).trace = ((stageRank n i : ℕ) : ℂ) :=
+  trace_matEval_Eproj n i w
+
+/-- The membership condition of `StageAlgebra n i`, read back at the
+`Matrix (EIdx n i) (EIdx n i) C(baseX n i, ℂ)` level. -/
+theorem toFunctionMatrix_mem_corner {n i : ℕ} (a : StageAlgebra n i) :
+    Eproj n i * toFunctionMatrix (a : SectionAlgebra (baseX n i) (EIdx n i)) * Eproj n i
+      = toFunctionMatrix (a : SectionAlgebra (baseX n i) (EIdx n i)) := by
+  have h := coe_corner_mem a
+  have h' := congrArg toFunctionMatrix h
+  rwa [toFunctionMatrix_mul, toFunctionMatrix_mul, toFunctionMatrix_stageProj] at h'
+
+/-- **`A_i` is nontrivial**: its unit `E_i` is a nonzero projection (it has rank
+`r_i > 0`, which is where `n ≠ 0` enters), so `1 ≠ 0` in the corner. -/
+theorem stageAlgebra_one_ne_zero (n i : ℕ) [NeZero n] : (1 : StageAlgebra n i) ≠ 0 := by
+  intro h
+  have h' : stageEval n i (stagePoint n i) (1 : StageAlgebra n i)
+      = stageEval n i (stagePoint n i) (0 : StageAlgebra n i) :=
+    congrArg (stageEval n i (stagePoint n i)) h
+  rw [stageEval_one, stageEval_zero] at h'
+  have htrace : (matEval (stagePoint n i) (Eproj n i)).trace
+      = (0 : Matrix (EIdx n i) (EIdx n i) ℂ).trace := congrArg Matrix.trace h'
+  rw [trace_matEval_Eproj, Matrix.trace_zero] at htrace
+  exact (Nat.cast_ne_zero.mpr (stageRank_pos n i).ne') htrace
+
+instance instNontrivialStageAlgebra (n i : ℕ) [NeZero n] : Nontrivial (StageAlgebra n i) :=
+  nontrivial_of_ne 1 0 (stageAlgebra_one_ne_zero n i)
+
+/-- The stage algebras as a *family*: `LIX.CStarTower` binds `[∀ i, CStarAlgebra (A i)]`,
+and instance search does not assemble that pi-instance from the per-stage one on its own.
+
+This is a **data** class, so there must not be a second, independent instance at `n = 2`:
+`STW59.instCStarAlgebraStageAlgebraPi` below is `fun _ => inferInstance`, which resolves
+*through* this one, so the two are the same term after unfolding. -/
+noncomputable instance instCStarAlgebraStageAlgebraPi (n : ℕ) :
+    ∀ i : ℕ, CStarAlgebra (StageAlgebra n i) := fun _ => inferInstance
+
+end Gen
+
+/-! ### The `n = 2` instance -/
+
+/-- `E_i` as a projection of the ambient homogeneous algebra `M_{E_i}(C(X_i))`. -/
+abbrev stageProj (i : ℕ) : SectionAlgebra (baseX i) (EIdx i) := Gen.stageProj 2 i
 
 theorem isStarProjection_stageProj (i : ℕ) : IsStarProjection (stageProj i) :=
-  isStarProjection_ofFunctionMatrix (isStarProjection_Eproj i)
+  Gen.isStarProjection_stageProj 2 i
 
 @[simp]
 theorem sectionEval_stageProj (i : ℕ) (w : baseX i) :
@@ -153,9 +280,14 @@ theorem sectionEval_stageProj (i : ℕ) (w : baseX i) :
 @[simp]
 theorem toFunctionMatrix_stageProj (i : ℕ) : toFunctionMatrix (stageProj i) = Eproj i := rfl
 
+/-- The defining equation of `stageProj`.  `stageProj` is now an `abbrev` for
+`Gen.stageProj 2`, so `rw [stageProj]` unfolds to the generic name rather than to this
+right-hand side; a consumer that wants the right-hand side must name this lemma. -/
+theorem stageProj_def (i : ℕ) : stageProj i = ofFunctionMatrix (Eproj i) := rfl
+
 /-- **`A_i = Γ(X_i, End E_i)`**, the `i`-th stage of the AH tower of the manuscript's
 (4.1), as the corner `E_i · M_{E_i}(C(X_i)) · E_i`. -/
-abbrev StageAlgebra (i : ℕ) : Type := Corner (stageProj i) (isStarProjection_stageProj i)
+abbrev StageAlgebra (i : ℕ) : Type := Gen.StageAlgebra 2 i
 
 section Instances
 
@@ -181,7 +313,11 @@ theorem mem_stageAlgebra_iff {i : ℕ} {a : SectionAlgebra (baseX i) (EIdx i)} :
 
 /-- Evaluation of a section of `End E_i` in the fibre over `w`. -/
 def stageEval (i : ℕ) (w : baseX i) (a : StageAlgebra i) : Matrix (EIdx i) (EIdx i) ℂ :=
-  sectionEval w (a : SectionAlgebra (baseX i) (EIdx i))
+  Gen.stageEval 2 i w a
+
+/-- The defining equation of `stageEval`, for the same reason as `stageProj_def`. -/
+theorem stageEval_def (i : ℕ) (w : baseX i) (a : StageAlgebra i) :
+    stageEval i w a = sectionEval w (a : SectionAlgebra (baseX i) (EIdx i)) := rfl
 
 theorem stageEval_mul (i : ℕ) (w : baseX i) (a b : StageAlgebra i) :
     stageEval i w (a * b) = stageEval i w a * stageEval i w b := rfl
@@ -200,57 +336,34 @@ theorem stageEval_one (i : ℕ) (w : baseX i) :
 
 /-- **A section of `End E_i` is zero exactly when all of its fibre values are.** -/
 theorem stageAlgebra_eq_zero_iff {i : ℕ} {a : StageAlgebra i} :
-    a = 0 ↔ ∀ w, stageEval i w a = 0 := by
-  constructor
-  · intro h w
-    rw [h, stageEval_zero]
-  · intro h
-    refine corner_ext ?_
-    rw [coe_corner_zero]
-    exact sectionAlgebra_eq_zero_iff.mpr h
+    a = 0 ↔ ∀ w, stageEval i w a = 0 := Gen.stageAlgebra_eq_zero_iff
 
 /-- The fibre value of a section lies in the fibre corner of `E_i`. -/
 theorem stageEval_mem_corner {i : ℕ} (w : baseX i) (a : StageAlgebra i) :
-    matEval w (Eproj i) * stageEval i w a * matEval w (Eproj i) = stageEval i w a := by
-  have h := coe_corner_mem a
-  have h' := congrArg (sectionEval w) h
-  rw [sectionEval_mul, sectionEval_mul, sectionEval_stageProj] at h'
-  exact h'
+    matEval w (Eproj i) * stageEval i w a * matEval w (Eproj i) = stageEval i w a :=
+  Gen.stageEval_mem_corner w a
 
 /-- The fibre rank of `E_i` is `r_i`, so a frame of the fibre has `r_i` columns. -/
 theorem trace_stageEval_one (i : ℕ) (w : baseX i) :
     (stageEval i w (1 : StageAlgebra i)).trace = ((stageRank i : ℕ) : ℂ) :=
-  trace_matEval_Eproj i w
+  Gen.trace_stageEval_one 2 i w
 
 /-- The membership condition of `StageAlgebra i`, read back at the `Matrix (EIdx i) (EIdx i)
 C(baseX i, ℂ)` level: `Analysis/LIXConnectingMap.lean` needs exactly this shape to check that
 the connecting map lands in the next corner. -/
 theorem toFunctionMatrix_mem_corner {i : ℕ} (a : StageAlgebra i) :
     Eproj i * toFunctionMatrix (a : SectionAlgebra (baseX i) (EIdx i)) * Eproj i
-      = toFunctionMatrix (a : SectionAlgebra (baseX i) (EIdx i)) := by
-  have h := coe_corner_mem a
-  have h' := congrArg toFunctionMatrix h
-  rwa [toFunctionMatrix_mul, toFunctionMatrix_mul, toFunctionMatrix_stageProj] at h'
+      = toFunctionMatrix (a : SectionAlgebra (baseX i) (EIdx i)) :=
+  Gen.toFunctionMatrix_mem_corner a
 
-/-- **`A_i` is nontrivial**: its unit `E_i` is a nonzero projection (it has rank `r_i > 0`),
-so `1 ≠ 0` in the corner. -/
-theorem stageAlgebra_one_ne_zero (i : ℕ) : (1 : StageAlgebra i) ≠ 0 := by
-  intro h
-  have h' : stageEval i (stagePoint i) (1 : StageAlgebra i)
-      = stageEval i (stagePoint i) (0 : StageAlgebra i) := congrArg (stageEval i (stagePoint i)) h
-  rw [stageEval_one, stageEval_zero] at h'
-  have htrace : (matEval (stagePoint i) (Eproj i)).trace
-      = (0 : Matrix (EIdx i) (EIdx i) ℂ).trace := congrArg Matrix.trace h'
-  rw [trace_matEval_Eproj, Matrix.trace_zero] at htrace
-  exact (Nat.cast_ne_zero.mpr (stageRank_pos i).ne') htrace
+/-- **`A_i` is nontrivial.** -/
+theorem stageAlgebra_one_ne_zero (i : ℕ) : (1 : StageAlgebra i) ≠ 0 :=
+  Gen.stageAlgebra_one_ne_zero 2 i
 
 /-- The stage algebras as a *family*: `LIX.CStarTower` binds `[∀ n, CStarAlgebra (A n)]`, and
 instance search does not assemble that pi-instance from the per-stage one on its own. -/
 noncomputable instance instCStarAlgebraStageAlgebraPi :
     ∀ n : ℕ, CStarAlgebra (StageAlgebra n) := fun _ => inferInstance
-
-instance instNontrivialStageAlgebra (i : ℕ) : Nontrivial (StageAlgebra i) :=
-  nontrivial_of_ne 1 0 (stageAlgebra_one_ne_zero i)
 
 end
 

@@ -73,7 +73,7 @@ degree follows from pullback being bijective below degree two together with
 existence and uniqueness of the two-term form above it.  This is what a
 projective-factor Künneth has to supply, and nothing else. -/
 theorem bijective_lhSum_two (π : P ⟶ X) (ξ : Hmod2 P 2)
-    (hlow : ∀ n : ℕ, n < 2 → Function.Bijective (pull π n))
+    (hlow : ∀ n : ℕ, n < 2 → Function.Bijective (pull (K := ZMod 2) π n))
     (hsurj : ∀ (n : ℕ) (z : Hmod2 P (n + 2)),
       ∃ (a : Hmod2 X (n + 2)) (b : Hmod2 X n),
         z = pull π (n + 2) a + cup (pull π n b) ξ)
@@ -108,7 +108,7 @@ theorem bijective_lhSum_two (π : P ⟶ X) (ξ : Hmod2 P 2)
 
 /-- **The interface, over a trivialising open set.** -/
 theorem LHOver_two_of_decomposition (f : P ⟶ X) (ξ : Hmod2 P 2) (U : Opens X)
-    (hlow : ∀ n : ℕ, n < 2 → Function.Bijective (pull (opensRestrict f U) n))
+    (hlow : ∀ n : ℕ, n < 2 → Function.Bijective (pull (K := ZMod 2) (opensRestrict f U) n))
     (hsurj : ∀ (n : ℕ) (z : Hmod2 (opSpace (opensComap f U)) (n + 2)),
       ∃ (a : Hmod2 (opSpace U) (n + 2)) (b : Hmod2 (opSpace U) n),
         z = pull (opensRestrict f U) (n + 2) a

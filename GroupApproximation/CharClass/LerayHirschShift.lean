@@ -78,7 +78,7 @@ theorem huniq_of_shift (π : P ⟶ X) (κ : Hmod2 P 2) (u : Hmod2 X 2)
 
 /-- **Rank-two Leray–Hirsch for a class shifted by a pullback.** -/
 theorem bijective_lhSum_two_of_shift (π : P ⟶ X) (κ : Hmod2 P 2) (u : Hmod2 X 2)
-    (hlow : ∀ n : ℕ, n < 2 → Function.Bijective (pull π n))
+    (hlow : ∀ n : ℕ, n < 2 → Function.Bijective (pull (K := ZMod 2) π n))
     (hsurj : ∀ (n : ℕ) (z : Hmod2 P (n + 2)), ∃ (a : Hmod2 X (n + 2)) (b : Hmod2 X n),
       z = pull π (n + 2) a + cup (pull π n b) κ)
     (huniq : ∀ (n : ℕ) (a : Hmod2 X (n + 2)) (b : Hmod2 X n),

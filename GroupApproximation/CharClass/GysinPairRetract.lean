@@ -58,10 +58,10 @@ theorem bijective_pair_cpTaut (d m : ℕ) (hm : m < d) :
         (rChart (cpTaut d) (2 * m + 2) z,
           rNotZero (cpTaut d) (trace_cpTaut d) (2 * m + 2) z)) := by
   have hf : Function.Bijective
-      (pull (cmap (chartEquivBase (cpTaut d)).invFun) (2 * m + 2)) :=
+      (pull (K := ZMod 2) (cmap (chartEquivBase (cpTaut d)).invFun) (2 * m + 2)) :=
     (pullEquivOfHomotopyEquiv (chartEquivBase (cpTaut d)) (2 * m + 2)).symm.bijective
   have hg : Function.Bijective
-      (pull (cmap (notZeroEquivBase (cpTaut d) (trace_cpTaut d)).invFun) (2 * m + 2)) :=
+      (pull (K := ZMod 2) (cmap (notZeroEquivBase (cpTaut d) (trace_cpTaut d)).invFun) (2 * m + 2)) :=
     (pullEquivOfHomotopyEquiv (notZeroEquivBase (cpTaut d) (trace_cpTaut d))
       (2 * m + 2)).symm.bijective
   have hcomp : ∀ z : Hmod2 (TopCat.of (Bundle.Proj (cpTaut d).plusOne)) (2 * m + 2),

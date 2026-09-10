@@ -123,50 +123,87 @@ binder for the split.
 
 ## GREEN (with job counts)
 
-Eight files exist; seven have a `Built` line at their current content, one
-(`LIXKStepCWired`) does not yet.  **A single-log citation covering all of them is in
-flight** — the lead's new transitive purge cleared 2538 artifact sets in `spare2`
-(`purged 2538 stale artifact sets (source-newer=0, import-newer=2538) of 3308 oleans`), so
-`laneprobe-20260910-135224.log` is a near-total rebuild and will carry one `Built` line per
-module.  Until it lands, this is the per-module evidence, each line quoted from the log
-named:
+**The first deliverable is complete.**  Seven of the eight files are `Built` — never
+`Replayed` — in **one log**, `cc_clones/spare2/.lake/laneprobe-20260910-135224.log`, job
+count **8880**, which was a near-total rebuild after the lead's new transitive purge
+cleared 2538 artifact sets (`purged 2538 stale artifact sets (source-newer=0,
+import-newer=2538) of 3308 oleans`).  The eighth, `LIXKStepCTwo`, is not in that log's
+target closure and is cited from the probe that built it.
 
-| module | `Built` line | log | content |
-|---|---|---|---|
-| `LIXKCount` | `ℹ [6752/6792] Built … (28s)` | `laneprobe-20260910-124334.log` | current |
-| `LIXKMap` | `ℹ [8875/8877] Built … (125s)` | `laneprobe-20260910-124334.log` | current |
-| `LIXKStepC` | `ℹ [8874/8877] Built … (123s)` | `laneprobe-20260910-124334.log` | current |
-| `LIXKStepCTwo` | `ℹ [8855/8878] Built … (145s)` | `laneprobe-20260910-125237.log` | current |
-| `LIXKSection` | `ℹ [8843/8877] Built … (194s)` | `laneprobe-20260910-120446.log` | see note |
-| `LIXKPunctured` | `ℹ [8862/8877] Built … (111s)` | `laneprobe-20260910-120446.log` | see note |
-| `LIXKRelativeMV` | — | — | authored, never compiled |
-| `LIXKStepCWired` | — | — | authored, one fix in flight |
-
-**Note on the two `120446` rows.**  Those two files each later received one line,
-`set_option linter.unusedSimpArgs false`, and in `124334` they show `Replayed`.  I cannot
-prove from the logs alone whether the `120446` build saw that line, so by the fleet rule
-those two rows should be read as *provisional* until the running rebuild replaces them.
-Everything else is unambiguous.
+| module | line | log |
+|---|---|---|
+| `LIXKCount` | `ℹ [8805/8880] Built … (119s)` | `laneprobe-20260910-135224.log` |
+| `LIXKMap` | `ℹ [8822/8880] Built … (406s)` | same |
+| `LIXKSection` | `ℹ [8840/8880] Built … (301s)` | same |
+| `LIXKPunctured` | `ℹ [8866/8880] Built … (241s)` | same |
+| `LIXKStepC` | `ℹ [8874/8880] Built … (273s)` | same |
+| `LIXKStepCWired` | `ℹ [8880/8880] Built … (239s)` | same |
+| `LIXKStepCTwo` | `ℹ [8855/8878] Built … (145s)` | `laneprobe-20260910-125237.log` |
+| `LIXKRelativeMV` | one `include hUV in` away; **re-probe blocked**, see below | — |
 
 The marker is `ℹ` rather than `✔` only because each of these modules emits `info:` lines
-(the axiom audits); the verb is `Built`, which is what the rule is about.  Fifteen audited
-endpoints have printed exactly `[propext, Classical.choice, Quot.sound]`:
-`map_eq_nsmul_of_localSplit`, `map_ne_zero_of_localSplit`, `psiVec_eq_neg_eOne_iff`,
+(the axiom audits); the verb is `Built`, which is what the fleet rule is about.  **Nineteen
+audited endpoints** printed exactly `[propext, Classical.choice, Quot.sound]` in those two
+logs: `map_eq_nsmul_of_localSplit`, `map_ne_zero_of_localSplit`, `psiVec_eq_neg_eOne_iff`,
 `kRoot_injective`, `psiVec_kRot`, `lixKSection_eq_zero_iff`, `lixKZero_injective`,
 `isZero_inter_of_cover`, `isZero_punctured_finite`, `topChernClass_ne_zero_kzero`,
 `topChernClass_ne_zero_kzero_naturality`, `eq_of_ne_zero_of_line_two`,
-`localClassesAgree_of_ne_zero_two`, `topChernClass_ne_zero_kzero_two`, and
-`puncturedVanish_lixKZeroSet`.  Lexical `sorry` scan across all eight files: **0 hits**.
+`localClassesAgree_of_ne_zero_two`, `topChernClass_ne_zero_kzero_two`, `lixK_hcompat`,
+`puncturedVanish_lixKZeroSet`, `lixK_topClass_ne_zero`, `lixK_topClass_ne_zero_odd`, and
+(in the failing `LIXKRelativeMV`) `splitDrop_mem` and `splitKeep_mem`.  Lexical `sorry`
+scan across all eight files: **0 hits**.
 
-What that covers, mathematically:
+What is green, mathematically:
 
-* **the `k+1` zeros** — the section with `a = e₁` and `b = Ψ_k ∘ x` vanishes at exactly the
-  `k+1` distinct points `(southPole, (ζ_j e₁, basePoint))`, all on the equator;
-* **the punctured vanishing** at any finite non-empty puncture set, and with it the
-  Mayer–Vietoris direction the tree did not have;
-* **the count**, over an arbitrary field;
-* **the `k`-zero Step C, abstractly**, and its `F₂` form with `LocalClassesAgree` removed;
-* **the rotation and the free orbit**.
+* **the `k+1` zeros** — with the constant section moved from `e₃` to `e₁` and the
+  transported section precomposed with `Ψ_k`, the section of `W_g` vanishes at exactly the
+  `k+1` distinct points `(southPole, (ζ_j e₁, basePoint))`, all on the equator, and is
+  nonzero off that set;
+* **the punctured vanishing** `H^m(N ∖ S; F₂) = 0` for any finite non-empty `S` and
+  `m ≥ d`, and with it `isZero_inter_of_cover`, the Mayer–Vietoris direction the tree did
+  not have;
+* **the count** `j(x) = k • c`, over an arbitrary field, with the parity entering in
+  exactly one place;
+* **the `k`-zero Step C**, abstractly and wired to the LIX objects, in the shape
+  `LIXStepCOddWired.lix_topClass_ne_zero_of_three` has, with `k` explicit and an
+  exponent-facing wrapper `lixK_topClass_ne_zero_odd` over `Odd (k+1)`;
+* **the `F₂` form** with `LocalClassesAgree` removed entirely, per `sp-design`'s review;
+* **the rotation and the free orbit**, which is what makes the `k+1` local contributions
+  equal without computing a local degree.
+
+What remains open, each an explicit binder of `lixK_topClass_ne_zero` with a named owner:
+`hsplit` (the splitting — `LIXKRelativeMV` is its cochain half), `hx` and the line data
+`exc`/`chartIso` (the one-zero local computation at `−e₁` rather than `−e₃`), and `hclass`
+(the Thom class, exactly as at one zero).
+
+### `LIXKRelativeMV`: what is green in it already, and why the last probe is blocked
+
+In `laneprobe-20260910-135224.log` the file failed with **exactly two errors**, both
+`Unknown identifier hUV` in the `ZMod 2` corollary, and the whole generic cochain-level core
+compiled and audited clean in that same log:
+
+```text
+info: …LIXKRelativeMV.lean:265:14: 'LIXKRelMV.splitDrop_mem'  depends on axioms: [propext, Classical.choice, Quot.sound]
+info: …LIXKRelativeMV.lean:266:14: 'LIXKRelMV.splitKeep_mem'  depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+So `relKeep`, the split, and both membership theorems — the mathematics of the file — are
+verified.  The fix is `include hUV in` before `exists_relCocycle_split`, applied and synced.
+
+The confirming probe (`laneprobe-20260910-154834.log`) cannot run: the shared tree is
+**mid-landing** for `sp-coeff`'s coefficient generalisation and four `CharClass` files are
+transiently red in my closure —
+
+```text
+EulerLocalNonvanishing.lean:90  Invalid field notation: `PuncturedAcyclicOf.subsingleton_punctured_top`
+RelativeDual.lean:83            Unknown identifier `moduleInjective_of_field`
+RelativeLES.lean:50             Function expected at
+ThomKunnethSphere.lean:51       Invalid field notation: `KunnethFactorOf.mono`
+```
+
+These are renames in flight (`PuncturedAcyclic → PuncturedAcyclicOf`,
+`KunnethFactor → KunnethFactorOf`), not my code and not stale artifacts.  Re-probe when the
+landing settles; nothing in this lane depends on the outcome except that one corollary.
 
 ## AUTHORED, UNVERIFIED
 
@@ -369,15 +406,170 @@ only because those files open that namespace themselves.  Qualified and re-probi
 `sorryAx` lines in that log are error recovery, not a `sorry`: the lexical scan is still
 clean at 0 hits across all eight files.
 
+## Landing state (2026-09-10, late afternoon)
+
+**Batch 2, behind batch 1.**  The lead's rule for a citable log now has two clauses: one
+`EXIT=0` log naming every claimed module on the `lake build` line, and a verifying clone
+holding **origin/main bytes for every non-batch file in the closure**, because
+`laneprobe.sh` syncs the whole working tree and an unlanded peer edit inside the closure
+makes the log certify a tree state that landing does not produce.  Their check on `spare2`
+found 227 files in my closure, of which **11 non-batch files differ from origin/main**:
+`ProjectiveSpaceCohomology`, `RelativeDual`, `RelativeExcision`,
+`RelativeHomotopyInvariance`, `RelativeLES`, `RelativeLocal`, `RelativeSmallChains`,
+`ThomEulerNaturality`, `ThomFieldTwo`, `ThomPuncturedPi`, `ThomPuncturedRecursion`.  None
+is mine.  The lead restores those in the clone only, then runs a no-sync lock-held probe
+with a checksum snapshot; that log plus the snapshot is the citation.
+
+**I have stopped syncing `spare2`.**  All eight files are final in the working tree.
+
+### Why `LIXKRelativeMV` could not be finished today
+
+Three of those peer files are **red**, not merely unlanded, as of the 15:48 sync
+(`laneprobe-20260910-154834.log`):
+
+```text
+RelativeDual.lean:83        Unknown identifier `moduleInjective_of_field`
+RelativeLES.lean:50         Function expected at
+ThomKunnethSphere.lean:51   Invalid field notation: `KunnethFactorOf.mono`
+EulerLocalNonvanishing:90   Invalid field notation: `PuncturedAcyclicOf.subsingleton_punctured_top`
+```
+
+`moduleInjective_of_field` is referenced by `RelativeDual` and `KroneckerMap`, and my first
+diagnosis — "defined nowhere in the tree" — was **wrong**.  It is defined, at
+`CoeffField.lean:41`.  What was missing was the *import*: `RelativeDual` did not reach
+`CoeffField`, and `RelativeLES` did not reach `CoeffCohomology` for `cohPullbackK`.  Under
+`autoImplicit` a missing import reports as an unknown identifier, or as "Function expected"
+once the phantom variable is applied, which is exactly why it read as missing mathematics.
+`sp-thom` computed the two closures and settled it in seconds; the general rule is that
+"unknown identifier" **plus** "the declaration is there when I grep" is almost always an
+import, and a `git grep` for the definition is not enough to distinguish the two.  The last two are
+`sp-thom`'s `PuncturedAcyclicOf` / `KunnethFactorOf` rename, whose `export` aliases covered
+the qualified spellings but broke **dot notation**, which is the commoner form in consumers.
+The mechanism, which is theirs and worth restating: dot notation takes the head constant of
+the type *as written*, finds the alias, and then demands a parameter headed by the old name,
+which the aliased declaration does not have — whereas with **no** alias it simply works,
+because Lean unfolds the reducible abbrev and finds the `…Of` declaration itself.  The alias
+added for compatibility is precisely what destroyed compatibility.
+`RelativeLES` red takes out `relCohomology` and `relToAbs`, hence most of `CharClass`.
+Iterating under that would only produce logs the new rule forbids, so I asked the lead to
+fold `LIXKRelativeMV` into the restore probe: the restore is exactly what unblocks it, and
+if it is still red there the other seven land without it.  Nothing in the lane depends on
+it — it is the cochain half of `LocalSplit`, an open binder either way.
+
+### Both blockers fixed, and the lane resumed (16:13)
+
+`sp-coeff` added the two import lines; `sp-thom` removed the `export` aliases at 16:04 and
+replaced the three qualified spellings (`PuncturedAcyclic.prod`, `.congr`, `.congr'`) with
+real wrapper theorems whose binders are written with the `F₂` abbrevs, so both notations
+work on those and everything reached only by dot notation resolves by unfolding.  With that,
+step (a) became possible again and I ran one probe naming all eight modules explicitly —
+`laneprobe-20260910-161327.log`.  It is also the first thing in the fleet to build against
+`sp-thom`'s new scheme.
+
+**Audit of my own exposure to that rename**, done before the probe rather than after.  The
+three types appear **19 times in binder positions**, which are safe under a reducible
+abbrev, and in exactly **three dot-notation spellings**:
+
+```text
+(hac a).puncturedVanish m hm            LIXKPunctured:124, :141
+(hac a).vanish (m + 1) (by omega)       LIXKPunctured:142
+cohomologyToolkit.homeo _ _ …           LIXKPunctured:101
+```
+
+`sp-thom` confirmed the first two are unaliased.  **`.homeo` is in neither of their
+categories** — they listed `T.mv` but not `T.homeo`, `T.homotopy` or `T.contractible` — so I
+have asked them to confirm it.  If it is aliased, `isZero_cohomology_setCongr` is where it
+breaks, and that sits under `isZero_punctured_finite`, which `sp-oddside-n` reuses verbatim
+at rank `n`.  I use no `.pos`, no `.prod`, no `.mono` and no `PuncturedAcyclic.congr'`.
+
+### Rulings received, and what changed because of them
+
+* **`sp-coeff`: the acyclicity hypothesis is permanent, not scaffolding.**  The generic
+  discharge carries `[Field K]`, because the dual of a quasi-isomorphism is one only when
+  the coefficient is injective over itself (`dualFunctorZMod2_preservesEpimorphisms` is
+  where that hides).  So `LIXKRelativeMV` stays at `[CommRing R]` with the acyclicity as an
+  argument, and they will supply `smallAnnComplexOf_acyclic (K) [Field K]` beside my `F₂`
+  discharge.  Their warning is worth repeating: the field hides in **one instance argument**
+  and every surrounding functor lemma is generic, so "the file names no field" proves
+  nothing.  What proves it is elaborating at `[CommRing R]` and watching it succeed, which
+  `laneprobe-20260910-135224.log` did for every declaration in the file.
+* **`sp-oddside-n`: chart at `z_j` so that `Ψ_k` is the identity in charts.**  This retires
+  the hardest remaining item, `KLocalNonzero`, and it is better than anything I had.
+  `joinC k` has an explicit continuous local section on `{Re w < 0}`,
+  `κ_j(w) = |w|·exp(i(arg(−w) + π + 2πj)/(k+1))`, with `κ_j(−1) = ζ_j = kRoot k j` and
+  `joinC k (κ_j w) = w`.  Charting the sphere at `z_j` by the existing chart at `−e₁`
+  post-composed with `κ_j` in the zeroth coordinate gives `Ψ_k ∘ chart_j = sphereChartVec`,
+  so **the section read in `chart_j` is literally `trivialBlockChart`, the same map at every
+  `j`**.  Neither `Ψ_k` nor `κ_j` is ever differentiated, the derivative is computed once at
+  `−e₁`, and the branch cut is dodged because `arg` is evaluated at `−w`.  This is the
+  Lean-level reason my model test's D1 and their B1 both report one local model rather than
+  `k+1` conjugate ones.  Independent cross-check of the two coordinate systems: I measure
+  `det J = −(k+1)/32` at rank two, they measure `−(k+1)/2^{2n+1}` at rank `n`.
+* **`sp-thom`: `PuncturedAcyclic`, `KunnethFactor`, `CohomologyToolkit` are now reducible
+  `abbrev`s at `ZMod 2` over `…Of K` structures.**  My binders and `hacyclic.puncturedVanish`
+  / `.vanish` uses are designed to be byte-invisible, and were Built before that landing,
+  so the `135224` evidence is about the old names.  Also useful for the second deliverable:
+  `PuncturedAcyclicOf K` is the shape Step C over `F_p` needs, and `ThomFieldTwo` now has
+  `injective_of_surjective_of_line` and `ne_zero_of_surjective_of_line` over an abstract
+  `[Field K]` with no `Finite` hypothesis — the existing `…_of_linearEquiv` needs `Finite R`,
+  which fails at an abstract field.
+* **`sp-oddside-n` reuses four of my files verbatim** at rank `n` — `LIXKCount`,
+  `LIXKStepC`, `LIXKPunctured`, `LIXKStepCTwo` — because all four are abstract in the space
+  and the rank.  Confirmed to them that none carries a rank-two hypothesis.  My finite
+  puncture induction being rank-generic means their punctured layer supplies only
+  `∀ z, PuncturedAcyclic (S¹ × S^{2n+1} × Y) (2·lixRank) z`.
+
+### `KLocalNonzero`, specified (not yet authored)
+
+`sp-oddside-n`'s chart construction turns the last hard item into a short file.  Written in
+`LIXKMap`'s vocabulary so it can be transcribed without re-deriving anything.  **Not
+authored**: the two continuity steps sit on `Complex.arg`, which `sp-powers` records as the
+one genuinely risky proof in their lane, and the tree cannot be probed today.
+
+```text
+def kSect (k : ℕ) (j : Fin (k+1)) (w : ℂ) : ℂ :=
+  (‖w‖ : ℂ) * Complex.exp (Complex.I * ((Complex.arg (-w) + Real.pi + 2*Real.pi*j) / (k+1)))
+
+kSect_neg_one : kSect k j (-1) = kRoot k j
+joinC_kSect   : ∀ w, w ≠ 0 → Complex.arg (-w) ≠ Real.pi → joinC k (kSect k j w) = w
+```
+
+Both are one line of algebra.  For the first, `arg 1 = 0`, so the exponent is
+`iπ(2j+1)/(k+1)` and the value is `exp(iπ(2j+1)/(k+1))`, which is the closed form my model
+test B2 checked against `kUnity k ^ j * kBase k`.  For the second, `|w|·e^{i·arg(−w)} = −w`
+and the extra `e^{iπ}` flips the sign back; the `(k+1)` in the denominator cancels the
+`(k+1)` in `joinC`'s exponent, with no root-of-unity bookkeeping at all.
+
+The chart at the `j`-th zero is then the existing chart at `−e₁` post-composed with `kSect`
+in the zeroth coordinate,
+
+```text
+chart_j w := Function.update (sphereChartVec w) 0 (kSect k j (sphereChartVec w 0)),
+```
+
+and `Ψ_k ∘ chart_j = sphereChartVec` on its domain.  **So the section read in `chart_j` is
+literally `trivialBlockChart`** — the existing `k = 1` file, unchanged, at every one of the
+`k+1` zeros.  Neither `Ψ_k` nor `kSect` is ever differentiated; `kSect` is needed only to be
+a homeomorphism onto a neighbourhood of `z_j`, for which continuity of `arg` off the cut
+plus the two identities above suffice.  The `arg` is evaluated at `−w`, so the cut is
+avoided exactly where `w` is near `−1`, which is where the chart lives.
+
+This is the Lean-level reason both lanes' model tests report **one** local model rather
+than `k+1` conjugate ones: my D1 (spread `≤ 1e−12` over the `k+1` zeros at rank two) and
+`sp-oddside-n`'s B1 (spread `≤ 1.9e−10` at ranks 2, 3, 4, smallest singular value `0.5000`
+at every rank).
+
 ## NEEDS
 
-* **`sp-coeff` (BLOCKING, and the only thing between this lane and a complete first
-  deliverable)**: `CharClass/ChernTotalRing.lean` is red at line 94 —
-  `cup_comm a b` elaborates against a different `cup` than the `⌣` in the goal, which is
-  the coefficient generalisation half-landed.  It is in `LIXKStepCWired`'s closure through
-  `LIXStepCOddRelative → LIXBundlePair → LemmaTwoStepC → LemmaTwoTopClass`, and `lake`
-  aborts the whole build on it, so my sixth file cannot be compiled at all.  Everything
-  below `ThomStepCEuler` is unaffected — `LIXKStepC` built at job 8876, after the failure.
+* ~~**`sp-coeff` (BLOCKING)**: `ChernTotalRing.lean` red at line 94.~~  **RESOLVED, and it
+  was never sp-coeff's**: a stale `SteenrodCupOne.olean` from 09-05 beside a
+  `CohomologyBasic.olean` rebuilt today.  `✔ [8826/8878] Built …ChernTotalRing (77s)` once
+  that artifact was deleted.  See "Since the first green" item 3.
+* **`sp-coeff`, non-blocking**: `RelativeSmallChains.smallAnnComplex_acyclic` is pinned at
+  `ZMod 2`.  `LIXKRelativeMV.exists_relCocycle_split_of_acyclic` takes it as a hypothesis so
+  the file is generic today; the hypothesis disappears the moment that file is generalised.
+  Name reserved so you do not duplicate it: `CharClass/LIXKRelativeMV.lean`, namespace
+  `GroupApproximation.CharClass.LIXKRelMV`.
 * **`sp-powers`**: `Analysis/LIXPowersGauge`, `LIXPowersNaturality`, `LIXPowersJoinPower`
   to stay green — my `CharClass/LIXKMap.lean` imports the third for `Powers.joinC`.  If you
   rename or move `joinC`, tell me; I use `joinC`, `joinC_zero`, `joinC_id`, `norm_joinC`,
@@ -411,6 +603,31 @@ files are green the suppression comes out and the flagged arguments get deleted.
 shapes to look for when doing that: a lemma already carrying `@[simp]` passed explicitly,
 and `fin_cases i <;> simp [a, b, c]`, which is *three* `simp` calls and is flagged if any
 branch does not use all three.
+
+### Two `Unknown identifier` traps, both from namespaces and neither from mathematics
+
+Both cost a probe round and both are recorded in `notes/lix-lane-reports/FLEET_TRAPS.md`.
+
+1. **`absPull` is in `RelativeSupport`, not in `CharClass`.**  So are `absPull_id_eq`,
+   `absPull_comp` and `subPull`.  Every existing consumer uses them unqualified because
+   those files open that namespace themselves; a new file in plain
+   `namespace GroupApproximation.CharClass` does not.  The failure does not read like a
+   namespace problem: `autoImplicit` swallows the name, and what you see is four different
+   error shapes — `Unknown identifier`, `unsolved goals`, a spurious
+   `declaration uses 'sorry'`, and `depends on axioms outside the classical allowlist:
+   [sorryAx]` on three downstream theorems.  Fix the identifier, not the axioms.
+   `relToAbs`, `absToSub`, `relPullback`, `relCohomology` and `relLES_range_eq_ker` *are* in
+   `CharClass`, so half the relative API needs a prefix and half does not.
+   The same shape caught `chainGenerator`, `singularChainMap` and
+   `singularChainMap_generator` in `LIXKRelativeMV` before a probe: they are in
+   `…SphereOddDegree.AffineBarycentricSubdivision`, and mirroring `RelativeExcision.lean`'s
+   `open` list exactly is the cheap prophylactic.
+2. **A section `variable` is bound only when the *statement* mentions it.**
+   `LIXKRelativeMV.exists_relCocycle_split`'s statement never mentions `hUV`, only `U` and
+   `V`, so `hUV` was not a binder and the proof body referred to a name out of scope —
+   `Unknown identifier hUV`, again with a `sorryAx` audit failure trailing it.  `include hUV
+   in` fixes it.  This will bite any lane that states a corollary whose hypotheses are all
+   implicit in the general version.
 
 ## TRAPS
 

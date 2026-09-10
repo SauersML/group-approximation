@@ -1281,65 +1281,221 @@ end NullHomotopy
 
 end Frames
 
-/-! ## The instantiation over `S⁵ ⊆ ℂ³`
+
+/-! ## The instantiation over `S^{2n+1} ⊆ ℂ^{n+1}`
 
 Everything above is stated for an abstract index type and an abstract pole.
-Here it is read at `Fin 3` with the pole `e₃`, against `STW59.unitVectors
-(Fin 3)`, which is `cs-stages`' `sphereFive` unfolded.  The payoff is
-`frameNorth_conj_eq_compl` and `frameSouth_conj_eq_compl`: over each closed
-hemisphere -- in fact over the whole of `S⁵` minus the opposite pole -- an
-explicit unitary carries the CONSTANT projection `1 - e₃ e₃ᴴ` onto
-`1 - x xᴴ`, which is `STW59.Fproj` read at `x`.  That is the hemisphere
-trivialisation of `F`, and the manuscript's "by the usual hemisphere clutching
-description" is discharged.
+Here it is read at `Fin (n+1)` with the pole `e_{n+1} = Pi.single (Fin.last n) 1`, against
+`STW59.unitVectors (Fin (n+1))`, which is `STW59.Gen.sphereOdd n` unfolded.  The payoff is
+`Gen.frameNorth_conj_eq_compl` and `Gen.frameSouth_conj_eq_compl`: over each closed
+hemisphere -- in fact over the whole of `S^{2n+1}` minus the opposite pole -- an explicit
+unitary carries the CONSTANT projection `1 - e eᴴ` onto `1 - x xᴴ`, which is
+`STW59.Gen.Fproj n` read at `x`.  That is the hemisphere trivialisation of `F`, and the
+manuscript's "by the usual hemisphere clutching description" is discharged at every rank.
 
 The final identification with the *name* `Fproj` is left to the consumer, one
 `rfl`-level step through `Fproj_def`, `matEval_hopfProj` and `rk1_self`, so
 that this module keeps its short import list and does not go red when
-`LIXBlockProjections` does. -/
+`LIXBlockProjections` does.
+
+The `SU(2)`/`hopfSuspension` block at the top of this file is the `n = 2` generator written
+as a closed quaternionic formula.  Nothing in the repository consumes it; it is kept as
+documentation of what the seam generator is at `n = 2`, and it plays no part in the rank
+generalisation. -/
+/-! ## The instantiation over `S^{2n+1} ⊆ ℂ^{n+1}`
+
+Everything above is stated for an abstract index type and an abstract pole.  Here it is
+read at `Fin (n+1)` with the pole `e_{n+1} = Pi.single (Fin.last n) 1`, against
+`STW59.unitVectors (Fin (n+1))`, which is `STW59.Gen.sphereOdd n` unfolded.  The payoff is
+`Gen.frameNorth_conj_eq_compl` and `Gen.frameSouth_conj_eq_compl`: over each closed
+hemisphere an explicit unitary carries the CONSTANT projection `1 - e eᴴ` onto `1 - x xᴴ`,
+which is `STW59.Gen.Fproj n` read at `x`. -/
+
+namespace Gen
+
+/-- The pole of the chart on `S^{2n+1}`: the last standard basis vector of `ℂ^{n+1}`. -/
+def ePole (n : ℕ) : Fin (n + 1) → ℂ := Pi.single (Fin.last n) 1
+
+theorem star_ePole_dotProduct (n : ℕ) (x : Fin (n + 1) → ℂ) :
+    star (ePole n) ⬝ᵥ x = x (Fin.last n) := by
+  show (∑ i, star (ePole n i) * x i) = x (Fin.last n)
+  rw [Finset.sum_eq_single (Fin.last n)]
+  · rw [ePole, Pi.single_eq_same, star_one, one_mul]
+  · intro b _ hb
+    rw [ePole, Pi.single_eq_of_ne hb, star_zero, zero_mul]
+  · intro hb
+    exact absurd (Finset.mem_univ (Fin.last n)) hb
+
+theorem unit_ePole (n : ℕ) : star (ePole n) ⬝ᵥ ePole n = 1 := by
+  rw [star_ePole_dotProduct, ePole, Pi.single_eq_same]
+
+theorem unit_neg_ePole (n : ℕ) : star (-ePole n) ⬝ᵥ (-ePole n) = 1 := by
+  rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, unit_ePole]
+
+theorem star_neg_ePole_dotProduct (n : ℕ) (x : Fin (n + 1) → ℂ) :
+    star (-ePole n) ⬝ᵥ x = -x (Fin.last n) := by
+  rw [star_neg_dotProduct, star_ePole_dotProduct]
+
+theorem unit_of_mem_unitSphere {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) : star x ⬝ᵥ x = 1 :=
+  STW59.sum_star_mul_self hx
+
+/-- Over `S^{2n+1}`, the northern frame is defined away from the south pole. -/
+theorem isFrameDatum_ePole {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (h : x (Fin.last n) ≠ -1) :
+    IsFrameDatum (ePole n) x where
+  unit_p := unit_ePole n
+  unit_x := unit_of_mem_unitSphere hx
+  not_antipodal := by rw [star_ePole_dotProduct]; exact h
+
+/-- Over `S^{2n+1}`, the southern frame is defined away from the north pole. -/
+theorem isFrameDatum_neg_ePole {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (h : x (Fin.last n) ≠ 1) :
+    IsFrameDatum (-ePole n) x where
+  unit_p := unit_neg_ePole n
+  unit_x := unit_of_mem_unitSphere hx
+  not_antipodal := by
+    rw [star_neg_ePole_dotProduct]
+    intro hc
+    exact h (by linear_combination -hc)
+
+/-- **The northern hemisphere trivialisation of `F`.** -/
+theorem frameNorth_conj_eq_compl {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (h : x (Fin.last n) ≠ -1) :
+    frameNorth (ePole n) x * (1 - rk1 (ePole n) (ePole n)) * (frameNorth (ePole n) x)ᴴ
+      = 1 - rk1 x x :=
+  conj_one_sub_rk1 (frameNorth_mul_conjTranspose (isFrameDatum_ePole hx h))
+    (frameNorth_mul_rk1 (isFrameDatum_ePole hx h))
+
+/-- **The southern hemisphere trivialisation of `F`**, with the *same* constant
+projection on the left, which is what makes the two frames comparable on the equator. -/
+theorem frameSouth_conj_eq_compl {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (h : x (Fin.last n) ≠ 1) :
+    frameSouth (ePole n) x * (1 - rk1 (ePole n) (ePole n)) * (frameSouth (ePole n) x)ᴴ
+      = 1 - rk1 x x :=
+  conj_one_sub_rk1 (frameSouth_mul_conjTranspose (unit_ePole n) (isFrameDatum_neg_ePole hx h))
+    (frameSouth_mul_rk1 (unit_ePole n) (isFrameDatum_neg_ePole hx h))
+
+/-- **The generator.**  On the equator `{x : (x (Fin.last n)).re = 0}` both frames are
+defined, and `genU n` is their discrepancy: a unitary of `ℂ^{n+1}` fixing the pole, i.e.
+`diag(u, 1)` for a unitary `u` of `pole^⊥ ≅ ℂ^n`. -/
+def genU (n : ℕ) (x : Fin (n + 1) → ℂ) : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ :=
+  seamGen (ePole n) x
+
+theorem genU_mul_rk1 {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (hN : x (Fin.last n) ≠ -1)
+    (hS : x (Fin.last n) ≠ 1) (v : Fin (n + 1) → ℂ) :
+    genU n x * rk1 (ePole n) v = rk1 (ePole n) v :=
+  seamGen_mul_rk1 (unit_ePole n) (isFrameDatum_ePole hx hN) (isFrameDatum_neg_ePole hx hS) v
+
+theorem genU_conjTranspose_mul_self {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (hN : x (Fin.last n) ≠ -1)
+    (hS : x (Fin.last n) ≠ 1) : (genU n x)ᴴ * genU n x = 1 :=
+  seamGen_conjTranspose_mul_self (unit_ePole n) (isFrameDatum_ePole hx hN)
+    (isFrameDatum_neg_ePole hx hS)
+
+theorem genU_mul_conjTranspose {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (hN : x (Fin.last n) ≠ -1)
+    (hS : x (Fin.last n) ≠ 1) : genU n x * (genU n x)ᴴ = 1 :=
+  seamGen_mul_conjTranspose (unit_ePole n) (isFrameDatum_ePole hx hN)
+    (isFrameDatum_neg_ePole hx hS)
+
+theorem continuous_genU {n : ℕ} {X : Type*} [TopologicalSpace X] {ξ : X → Fin (n + 1) → ℂ}
+    (hξ : Continuous ξ) (hmem : ∀ s, ξ s ∈ STW59.unitVectors (Fin (n + 1)))
+    (hN : ∀ s, ξ s (Fin.last n) ≠ -1) (hS : ∀ s, ξ s (Fin.last n) ≠ 1) :
+    Continuous fun s => genU n (ξ s) :=
+  continuous_seamGen hξ (fun s => isFrameDatum_ePole (hmem s) (hN s))
+    (fun s => isFrameDatum_neg_ePole (hmem s) (hS s))
+
+/-- `genU n` commutes with the rank-one projection onto the pole, so it is block-diagonal
+for the splitting `ℂ^{n+1} = pole^⊥ ⊕ ℂ·pole`. -/
+theorem rk1_ePole_mul_genU {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (hN : x (Fin.last n) ≠ -1)
+    (hS : x (Fin.last n) ≠ 1) :
+    rk1 (ePole n) (ePole n) * genU n x = rk1 (ePole n) (ePole n) := by
+  have h1 := genU_mul_rk1 hx hN hS (ePole n)
+  have h2 := genU_conjTranspose_mul_self hx hN hS
+  have h3 : (genU n x)ᴴ * rk1 (ePole n) (ePole n) = rk1 (ePole n) (ePole n) := by
+    calc (genU n x)ᴴ * rk1 (ePole n) (ePole n)
+        = (genU n x)ᴴ * (genU n x * rk1 (ePole n) (ePole n)) := by rw [h1]
+      _ = (genU n x)ᴴ * genU n x * rk1 (ePole n) (ePole n) := by rw [Matrix.mul_assoc]
+      _ = rk1 (ePole n) (ePole n) := by rw [h2, Matrix.one_mul]
+  have h4 := congrArg Matrix.conjTranspose h3
+  rwa [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, rk1_conjTranspose] at h4
+
+theorem genU_comm_compl {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (hN : x (Fin.last n) ≠ -1)
+    (hS : x (Fin.last n) ≠ 1) :
+    genU n x * (1 - rk1 (ePole n) (ePole n))
+      = (1 - rk1 (ePole n) (ePole n)) * genU n x := by
+  rw [mul_sub, sub_mul, Matrix.mul_one, Matrix.one_mul, genU_mul_rk1 hx hN hS (ePole n),
+    rk1_ePole_mul_genU hx hN hS]
+
+/-- On the equator both hemisphere frames are defined. -/
+theorem isEquator_ePole {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (h : (x (Fin.last n)).re = 0) :
+    IsEquator (ePole n) x where
+  unit_x := unit_of_mem_unitSphere hx
+  perp := by rw [star_ePole_dotProduct]; exact h
+
+/-- **The generator is null-homotopic.**  `seamPath (ePole n) · x` runs from `genU n x` at
+`t = 0` to the identity at `t = 1`, through unitaries, continuously.  This is
+`diag(u,1) ≃ 1` in `U(n+1)`, with no appeal to `π_{2n}(U(n+1)) = 0`. -/
+theorem seamPath_ePole_zero {n : ℕ} {x : Fin (n + 1) → ℂ} :
+    seamPath (ePole n) 0 x = genU n x := seamPath_zero (unit_ePole n) x
+
+theorem seamPath_ePole_one {n : ℕ} {x : Fin (n + 1) → ℂ} : seamPath (ePole n) 1 x = 1 :=
+  seamPath_one (unit_ePole n) x
+
+theorem seamPath_ePole_unitary {n : ℕ} {x : Fin (n + 1) → ℂ}
+    (hx : x ∈ STW59.unitVectors (Fin (n + 1))) (h : (x (Fin.last n)).re = 0)
+    {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
+    (seamPath (ePole n) t x)ᴴ * seamPath (ePole n) t x = 1 ∧
+      seamPath (ePole n) t x * (seamPath (ePole n) t x)ᴴ = 1 :=
+  ⟨seamPath_conjTranspose_mul_self (unit_ePole n) (isEquator_ePole hx h) ht0 ht1,
+    seamPath_mul_conjTranspose (unit_ePole n) (isEquator_ePole hx h) ht0 ht1⟩
+
+end Gen
+
+/-! ### The `n = 2` instance: the chart on `S⁵ ⊆ ℂ³` with pole `e₃`
+
+`e3` and `genU` keep their own one-line definitions rather than becoming `abbrev`s for
+`Gen.ePole 2` and `Gen.genU 2`.  They are the same terms (`e3_eq_ePole`, `genU_eq`, both
+`rfl`), and spelling them out is what keeps the consumers working unchanged: two of them
+unfold these names with `rw`/`simp` (`LIXLemmaSixGenerator.incl_mul_conjTranspose` does
+`simp [incl, e3, …]`, `LIXLemmaSixField` does `rw [genU, seamGen, …]`), and `rw [f]` uses
+`f`'s equation lemma, which for an `abbrev` would unfold to the generic name and leave the
+next rewrite with no pattern.  Every *theorem* below is the generic one applied at `2`. -/
 
 section SphereFive
 
 /-- The pole of the chart on `S⁵`, the third standard basis vector. -/
 def e3 : Fin 3 → ℂ := Pi.single 2 1
 
-theorem star_e3_dotProduct (x : Fin 3 → ℂ) : star e3 ⬝ᵥ x = x 2 := by
-  show (∑ i, star (e3 i) * x i) = x 2
-  rw [Finset.sum_eq_single (2 : Fin 3)]
-  · rw [e3, Pi.single_eq_same, star_one, one_mul]
-  · intro b _ hb
-    rw [e3, Pi.single_eq_of_ne hb, star_zero, zero_mul]
-  · intro hb
-    exact absurd (Finset.mem_univ (2 : Fin 3)) hb
+/-- `e₃` is the general pole at `n = 2`.  Definitional: `Fin.last 2` and `(2 : Fin 3)` are
+the same element. -/
+theorem e3_eq_ePole : e3 = Gen.ePole 2 := rfl
 
-theorem unit_e3 : star e3 ⬝ᵥ e3 = 1 := by
-  rw [star_e3_dotProduct, e3, Pi.single_eq_same]
+theorem star_e3_dotProduct (x : Fin 3 → ℂ) : star e3 ⬝ᵥ x = x 2 :=
+  Gen.star_ePole_dotProduct 2 x
 
-theorem unit_neg_e3 : star (-e3) ⬝ᵥ (-e3) = 1 := by
-  rw [star_neg_dotProduct, star_dotProduct_neg, neg_neg, unit_e3]
+theorem unit_e3 : star e3 ⬝ᵥ e3 = 1 := Gen.unit_ePole 2
 
-theorem star_neg_e3_dotProduct (x : Fin 3 → ℂ) : star (-e3) ⬝ᵥ x = -x 2 := by
-  rw [star_neg_dotProduct, star_e3_dotProduct]
+theorem unit_neg_e3 : star (-e3) ⬝ᵥ (-e3) = 1 := Gen.unit_neg_ePole 2
+
+theorem star_neg_e3_dotProduct (x : Fin 3 → ℂ) : star (-e3) ⬝ᵥ x = -x 2 :=
+  Gen.star_neg_ePole_dotProduct 2 x
 
 theorem unit_of_mem_unitSphere {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3)) :
     star x ⬝ᵥ x = 1 := STW59.sum_star_mul_self hx
 
 /-- Over `S⁵`, the northern frame is defined away from the south pole. -/
 theorem isFrameDatum_e3 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3)) (h : x 2 ≠ -1) :
-    IsFrameDatum e3 x where
-  unit_p := unit_e3
-  unit_x := unit_of_mem_unitSphere hx
-  not_antipodal := by rw [star_e3_dotProduct]; exact h
+    IsFrameDatum e3 x := Gen.isFrameDatum_ePole hx h
 
 /-- Over `S⁵`, the southern frame is defined away from the north pole. -/
 theorem isFrameDatum_neg_e3 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3)) (h : x 2 ≠ 1) :
-    IsFrameDatum (-e3) x where
-  unit_p := unit_neg_e3
-  unit_x := unit_of_mem_unitSphere hx
-  not_antipodal := by
-    rw [star_neg_e3_dotProduct]
-    intro hc
-    exact h (by linear_combination -hc)
+    IsFrameDatum (-e3) x := Gen.isFrameDatum_neg_ePole hx h
 
 /-- **The northern hemisphere trivialisation of `F`.**  The right-hand side is
 `STW59.Fproj` read at `x`: `STW59.matEval x Fproj = 1 - STW59.rankOneProj x`
@@ -1348,74 +1504,56 @@ by `Fproj_def` and `matEval_hopfProj`, and `rk1 x x = rankOneProj x` is
 module does not depend on `LIXBlockProjections`. -/
 theorem frameNorth_conj_eq_compl {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
     (h : x 2 ≠ -1) :
-    frameNorth e3 x * (1 - rk1 e3 e3) * (frameNorth e3 x)ᴴ = 1 - rk1 x x := by
-  have hd := isFrameDatum_e3 hx h
-  exact conj_one_sub_rk1 (frameNorth_mul_conjTranspose hd) (frameNorth_mul_rk1 hd)
+    frameNorth e3 x * (1 - rk1 e3 e3) * (frameNorth e3 x)ᴴ = 1 - rk1 x x :=
+  Gen.frameNorth_conj_eq_compl hx h
 
 /-- **The southern hemisphere trivialisation of `F`**, with the *same*
 constant projection on the left, which is what makes the two frames comparable
 on the equator. -/
 theorem frameSouth_conj_eq_compl {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
     (h : x 2 ≠ 1) :
-    frameSouth e3 x * (1 - rk1 e3 e3) * (frameSouth e3 x)ᴴ = 1 - rk1 x x := by
-  have hd := isFrameDatum_neg_e3 hx h
-  exact conj_one_sub_rk1 (frameSouth_mul_conjTranspose unit_e3 hd)
-    (frameSouth_mul_rk1 unit_e3 hd)
+    frameSouth e3 x * (1 - rk1 e3 e3) * (frameSouth e3 x)ᴴ = 1 - rk1 x x :=
+  Gen.frameSouth_conj_eq_compl hx h
 
 /-- **The generator.**  On the equator `{x : (x 2).re = 0}` both frames are
 defined, and `genU` is their discrepancy: a unitary of `ℂ³` fixing `e₃`, i.e.
 `diag(u, 1)` for a unitary `u` of `e₃^⊥ ≅ ℂ²`. -/
 def genU (x : Fin 3 → ℂ) : Matrix (Fin 3) (Fin 3) ℂ := seamGen e3 x
 
+/-- `genU` is the general seam generator at `n = 2`. -/
+theorem genU_eq (x : Fin 3 → ℂ) : genU x = Gen.genU 2 x := rfl
+
 theorem genU_mul_rk1 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
     (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) (v : Fin 3 → ℂ) :
-    genU x * rk1 e3 v = rk1 e3 v :=
-  seamGen_mul_rk1 unit_e3 (isFrameDatum_e3 hx hN) (isFrameDatum_neg_e3 hx hS) v
+    genU x * rk1 e3 v = rk1 e3 v := Gen.genU_mul_rk1 hx hN hS v
 
 theorem genU_conjTranspose_mul_self {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
     (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) :
-    (genU x)ᴴ * genU x = 1 :=
-  seamGen_conjTranspose_mul_self unit_e3 (isFrameDatum_e3 hx hN)
-    (isFrameDatum_neg_e3 hx hS)
+    (genU x)ᴴ * genU x = 1 := Gen.genU_conjTranspose_mul_self hx hN hS
 
 theorem genU_mul_conjTranspose {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
     (hN : (x : Fin 3 → ℂ) 2 ≠ -1) (hS : (x : Fin 3 → ℂ) 2 ≠ 1) :
-    genU x * (genU x)ᴴ = 1 :=
-  seamGen_mul_conjTranspose unit_e3 (isFrameDatum_e3 hx hN) (isFrameDatum_neg_e3 hx hS)
+    genU x * (genU x)ᴴ = 1 := Gen.genU_mul_conjTranspose hx hN hS
 
 theorem continuous_genU {X : Type*} [TopologicalSpace X] {ξ : X → Fin 3 → ℂ}
     (hξ : Continuous ξ) (hmem : ∀ s, ξ s ∈ STW59.unitVectors (Fin 3))
     (hN : ∀ s, ξ s 2 ≠ -1) (hS : ∀ s, ξ s 2 ≠ 1) :
-    Continuous fun s => genU (ξ s) :=
-  continuous_seamGen hξ (fun s => isFrameDatum_e3 (hmem s) (hN s))
-    (fun s => isFrameDatum_neg_e3 (hmem s) (hS s))
+    Continuous fun s => genU (ξ s) := Gen.continuous_genU hξ hmem hN hS
 
 /-- `genU` commutes with the rank-one projection onto the pole, so it is
 block-diagonal for the splitting `ℂ³ = e₃^⊥ ⊕ ℂ e₃`. -/
 theorem rk1_e3_mul_genU {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
-    (hN : x 2 ≠ -1) (hS : x 2 ≠ 1) : rk1 e3 e3 * genU x = rk1 e3 e3 := by
-  have h1 := genU_mul_rk1 hx hN hS e3
-  have h2 := genU_conjTranspose_mul_self hx hN hS
-  have h3 : (genU x)ᴴ * rk1 e3 e3 = rk1 e3 e3 := by
-    calc (genU x)ᴴ * rk1 e3 e3
-        = (genU x)ᴴ * (genU x * rk1 e3 e3) := by rw [h1]
-      _ = (genU x)ᴴ * genU x * rk1 e3 e3 := by rw [Matrix.mul_assoc]
-      _ = rk1 e3 e3 := by rw [h2, Matrix.one_mul]
-  have h4 := congrArg Matrix.conjTranspose h3
-  rwa [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, rk1_conjTranspose] at h4
+    (hN : x 2 ≠ -1) (hS : x 2 ≠ 1) : rk1 e3 e3 * genU x = rk1 e3 e3 :=
+  Gen.rk1_ePole_mul_genU hx hN hS
 
 theorem genU_comm_compl {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
     (hN : x 2 ≠ -1) (hS : x 2 ≠ 1) :
-    genU x * (1 - rk1 e3 e3) = (1 - rk1 e3 e3) * genU x := by
-  rw [mul_sub, sub_mul, Matrix.mul_one, Matrix.one_mul, genU_mul_rk1 hx hN hS e3,
-    rk1_e3_mul_genU hx hN hS]
+    genU x * (1 - rk1 e3 e3) = (1 - rk1 e3 e3) * genU x := Gen.genU_comm_compl hx hN hS
 
 /-- On the equator, `Re (x 2) = 0`, so `x 2` is neither `1` nor `-1` and both
 hemisphere frames are defined. -/
 theorem isEquator_e3 {x : Fin 3 → ℂ} (hx : x ∈ STW59.unitVectors (Fin 3))
-    (h : ((x 2).re) = 0) : IsEquator e3 x where
-  unit_x := unit_of_mem_unitSphere hx
-  perp := by rw [star_e3_dotProduct]; exact h
+    (h : ((x 2).re) = 0) : IsEquator e3 x := Gen.isEquator_ePole hx h
 
 theorem ne_one_of_re_eq_zero {z : ℂ} (h : z.re = 0) : z ≠ 1 := by
   intro hc

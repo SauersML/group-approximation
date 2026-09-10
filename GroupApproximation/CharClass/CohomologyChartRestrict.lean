@@ -67,7 +67,7 @@ theorem mvResWV_mvResV_cp (m : ℕ) (z : Hmod2 (cpProdTop U d) m) :
 /-! ## 3. The projection of the intersection is injective -/
 
 theorem pull_cpPrSub_inter_injective (m : ℕ) :
-    Function.Injective (pull (cpPrSub U d (interUSet U d)) m) := by
+    Function.Injective (pull (K := ZMod 2) (cpPrSub U d (interUSet U d)) m) := by
   intro c₁ c₂ hc
   refine pull_knPrY_injective U (2 * d + 1) (spherePoint (2 * d + 1)) m ?_
   refine (interPullEquiv U d m).injective ?_

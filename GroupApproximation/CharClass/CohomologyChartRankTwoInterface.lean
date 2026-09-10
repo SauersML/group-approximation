@@ -41,7 +41,7 @@ theorem cpTop_zero_eq_cpTaut : cpTop U 0 = cpTaut U :=
 /-! ## 1. The projection is bijective below degree two -/
 
 theorem pull_cpPrSub_punct_zero_injective (k : ℕ) :
-    Function.Injective (pull (cpPrSub U 0 (punctUSet U 0)) k) := by
+    Function.Injective (pull (K := ZMod 2) (cpPrSub U 0 (punctUSet U 0)) k) := by
   intro c₁ c₂ hc
   refine (cohProdContractible U (CP 0) k).injective ?_
   refine (punctPullEquiv U 0 k).injective ?_
@@ -60,7 +60,7 @@ def cpSlice (p : CP 1) : TopCat.of U ⟶ cpProdTop U 0 :=
 theorem cpSlice_comp_cpPrU (p : CP 1) :
     cpSlice U p ≫ cpPrU U 0 = 𝟙 (TopCat.of U) := rfl
 
-theorem pull_cpPrU_injective (k : ℕ) : Function.Injective (pull (cpPrU U 0) k) := by
+theorem pull_cpPrU_injective (k : ℕ) : Function.Injective (pull (K := ZMod 2) (cpPrU U 0) k) := by
   obtain ⟨p⟩ := nonempty_CPtop 1
   intro c₁ c₂ hc
   have h := congrArg (pull (cpSlice U p) k) hc
@@ -93,7 +93,7 @@ theorem exists_pull_cpPrU_of_lt (k : ℕ) (hk : k < 2)
   have := congrArg (fun y => y + pull (cpPrU U 0) k a) hzero
   simpa only [add_assoc, add_self_eq_zero_two, add_zero, zero_add] using this
 
-theorem lhLow (n : ℕ) (hn : n < 2) : Function.Bijective (pull (cpPrU U 0) n) :=
+theorem lhLow (n : ℕ) (hn : n < 2) : Function.Bijective (pull (K := ZMod 2) (cpPrU U 0) n) :=
   ⟨pull_cpPrU_injective U n, fun z => by
     obtain ⟨a, ha⟩ := exists_pull_cpPrU_of_lt U n hn z
     exact ⟨a, ha.symm⟩⟩

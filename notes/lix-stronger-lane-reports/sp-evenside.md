@@ -218,6 +218,44 @@ forward direction to each, and using uniqueness of the homogeneous decomposition
 injectivity of `esymmAlgHom`.  That is the remaining step, and it is the only place in the
 lane where `esymmAlgEquiv`'s surjectivity is used rather than its injectivity.
 
+### `GroupApproximation/CharClass/ParityPHomogConverse.lean` (~130 lines) — **the crux**
+
+**GREEN** (1612 jobs, `Built`), outside the landing batch.
+`eExpand_isWeightedHomogeneous`: the `e`-expansion of a symmetric polynomial homogeneous of
+degree `w` is weighted-homogeneous of weight `w`.  This is the crux of L4a and the last
+piece of genuine mathematics in it.
+
+The argument decomposes the `e`-expansion into weighted-homogeneous components, maps each
+to something homogeneous of the corresponding degree by the forward direction, kills every
+component but one by uniqueness of the homogeneous decomposition of the image, and carries
+that back by injectivity.  It is the only place in the lane that uses `esymmAlgEquiv`'s
+surjectivity — through `eExpand`, its inverse — and the only place any decomposition into
+components is taken.
+
+**What is not in it, and is the next piece of work**: the bridge
+`eCoeff a f = coeff (single a 1) (eExpand f)`.  `eCoeff` is defined through the dual
+numbers, and its equality with the linear coefficient of the `e`-expansion has to be checked
+on monomials — a genuine lemma with a three-way case split on the exponent vector, not
+bookkeeping.  Until it exists the crux is a statement about `eExpand` and the Newton
+computation is a statement about `eCoeff`, and nothing connects them.
+
+### `GroupApproximation/CharClass/ParityPCoeffBridge.lean` (~140 lines) — L4a, the bridge
+
+**GREEN** (1613 jobs, `Built`), outside the landing batch.  `eLin_snd_eq_coeff` and
+`eCoeff_eq_coeff_eExpand`: `eCoeff a f = coeff (single a 1) (eExpand f)`.  This is the
+identification I had been assuming and had not proved, and it is what connects the crux
+(a statement about `eExpand`) to the Newton computation (a statement about `eCoeff`).
+`eCoeff_eq_zero_of_degree_ne` is the consequence the assembly wants: `eCoeff a` annihilates
+a symmetric polynomial homogeneous of degree other than `a + 1`.
+
+**The trap `sp-design` flagged, and why this construction avoids it.**  The identification
+would be *false* in a ring of independent dual numbers `ε_i` with only `ε_i² = 0`: the
+cross terms `ε_i ε_j` with `i ≠ j` survive, so a length-two monomial would not die — while
+the lemma would still hold on every monomial one would test first.  This construction has a
+**single** `ε` and sends every other variable to `0`, so a cross term dies because one
+factor is literally `0`.  Only the `X_a^{≥2}` case uses `ε² = 0`.  Worth stating, because
+"dual numbers" names both rings.
+
 ### `GroupApproximation/CharClass/ParityPTwo.lean` (~135 lines) — the calibration case
 
 `ParityData.toParityPData : ParityPData 2 R H`, field by field, plus the two `F₂`
@@ -305,6 +343,81 @@ gives `SteenrodCupOne.cup_comm` at `F₂`, now carrying signs.  If nobody is pro
 signed commutativity, my one commutation is not available and the bridge is blocked on it.
 That would be a hidden `F₂`-only dependency of exactly the kind `sp-design` found for
 relative homotopy invariance (their §4.4), and it is better found now.
+
+## The sign automorphism `h ↦ −h`, and what survived of the morning's ruling
+
+The convention itself is **not** restated here — see the section below, and the program
+note.  What is recorded here is only what this lane checked or is owed, all of which
+outlived the retirement of the morning's ruling.
+
+**The covariance, verified rather than accepted.**  Under `φ : h ↦ −h` we get
+`c'_j = (−1)^j c_j`, since `e_j(−y) = (−1)^j e_j(y)`.  A monomial of `E_j` at total weight
+`j + i(p−1)` scales by `(−1)^{j+i(p−1)}`, because the sign is multiplicative in the *total*
+index; with `p−1` even that is `(−1)^j` uniformly across weight components.  Since
+`P(c'_j) = (−1)^j P(c_j)` too, the relation is covariant term by term.
+
+**The sentence to ship in `ChernRelation.lean`**, `sp-design`'s after my correction and
+their tightening.  Their first draft justified the covariance by "`p − 1` is even", which is
+**false at `p = 2`**; there `p − 1 = 1` is odd and `φ` is the *identity*, so there is no
+change of convention to justify at all.  The sentence being replaced ("signs are invisible")
+and the sentence replacing it were each true at exactly the primes the other was false at.
+That matters here because `ParityPData` is generic in `p` and `ParityPTwo` instantiates it
+at `p = 2`.
+
+> The change of Chern-root convention is the ring automorphism `φ : h ↦ −h` of `H^*(Y)`.  It
+> commutes with the total power `P`, for two different reasons: at odd `p` because `p − 1` is
+> even, so every weight component of `E_j` scales by the same `(−1)^j`; at `p = 2` because
+> `φ` is the identity.  Both are needed; neither covers the primes this file is stated at.
+
+**A retraction, `sp-design`'s, verified, correcting an earlier line of this report.**  I had
+recorded that under `φ` the leading coefficient "picks up `(−1)^{ip+1} = −1` and stays a
+unit", so the `wu` field's unit was justified twice over.  Wrong.  Applying `φ` to
+`P^i(γ_{i+1}) = u_i·γ_{ip+1} + D` gives `(−1)^{i+1}` on the left and `(−1)^{ip+1}` on the
+right; their ratio is `(−1)^{i(p−1)}`, which is `1` for odd `p`, and `φ = id` at `p = 2`.
+**The coefficient is invariant.**  The unit stays, from `sp-steenrod`'s `κ` alone, and gets
+no second justification.
+
+**Where the convention is consumed in this lane**: exactly one field, `PowerData.p_y_one` in
+`ParityPWuCartan.lean`, which will point at `ChernRelation.lean` and restate nothing.
+`(p−1)` appears in no statement and no proof of the green files, only in prose — an abstract
+layer that never mentions the weight arithmetic cannot see a sign.
+
+## A gap in the calibration claim, found by sp-evenside-n (2026-09-10)
+
+`ParityPTwo.gamma_top_eq_zero'` states `P.γ (2 + 1 + m) = 0`.  The landed
+`ParityData.gamma_top_eq_zero` states `P.γ (m + 3) = 0`.  Those are propositionally equal
+and **not definitionally** equal: `Nat.add` recurses on its second argument, so `m + 3`
+whnf-reduces to `succ (succ (succ m))` while `3 + m` is stuck for a variable `m`.  So my
+claim that `gamma_top_eq_zero'` "re-derives the two `F₂` conclusions" is weaker than I
+wrote it: it derives a conclusion equal to the landed one, but never produces the landed
+*form*, and any consumer wanting `m + 3` pays an `add_comm` rewrite.
+
+`ParityPData.gamma_rank_eq_zero` has the same shape, `D.γ (n + 1 + m) = 0`, and it is the
+one that matters, because it is the interface a bridge consumes.  **Queued fix**: restate
+both as `m + (n + 1)` and `m + 3` respectively.  Then the `n = 2` instance is a `rfl`
+against the landed theorem instead of a rewrite.
+
+Credit where due: `sp-evenside-n` flagged the convention from the rank-generic side before
+either of us had a consumer, which is the only time it is cheap to fix.  Their
+`Gen.gamma_top_rank_eq_zero` already reads `γ (m + (n+1))` for exactly this reason.
+
+## The Chern-root convention — one sentence, and a pointer
+
+**Ruled by the lead in the program note, §1.5 "Ruling on the roots" (2026-09-10, 15:50).**
+With `ξ = e(O(1))` and `∏(ξ + y_l) = 0`, the `y_l` are the classical Chern roots,
+`γ_k = e_k(y) = c_k` on the nose, and `sliceClass = ∏_j (1 + h_j X)^{d_j}` is the total
+Chern class of `⊕_j L_j^{d_j}` as written.  Read the note, not this paragraph.
+
+That is deliberately all this report says about it.  The morning's "negatives of the usual
+roots" belonged to the old relation and is retired; I had recorded it here, and then written
+a long correction to it, and both were restatements of a convention that lives in one place.
+The lesson is `sp-design`'s own rule turned on its author and on me: **when the single
+source changes, every restatement of it is wrong**, so the only safe amount to restate is
+none.  What this lane needed from the ruling was two facts, both checked and both now
+recorded where they are consumed rather than here — `ParityPSlice`'s `sliceClass` is the
+total Chern class as written, and `PowerData.gamma j = esymmOn s y j` is `c_j` with no sign.
+`PowerData` itself is unaffected by the choice, since it asks only `P¹ y = κ·y^p`, which
+holds under either reading.
 
 ## L4a (deliverable 3, assigned 2026-09-10)
 

@@ -67,7 +67,7 @@ degree. -/
   rw [← pull_comp, knSlice_comp_prY, pull_id]
 
 theorem pull_knPrY_injective (p : Sphere n) (k : ℕ) :
-    Function.Injective (pull (knPrY Y n) k) := by
+    Function.Injective (pull (K := ZMod 2) (knPrY Y n) k) := by
   intro u u' h
   have h2 := congrArg (pull (knSlice Y n p) k) h
   rwa [pull_knSlice_knPrY, pull_knSlice_knPrY] at h2

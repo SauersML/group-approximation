@@ -117,7 +117,7 @@ theorem cupPowE_ne_zero_of_pieces (proj : P ⟶ X) (taut : Hmod2 P 2)
         z = pull proj (n + 2) a + cup (pull proj n b) taut)
     (lh_uniq : ∀ (n : ℕ) (a : Hmod2 X (n + 2)) (b : Hmod2 X n),
       pull proj (n + 2) a + cup (pull proj n b) taut = 0 → a = 0 ∧ b = 0)
-    (hone : (one X) ≠ 0) {m : ℕ} (hm : m ≤ N) : cupPowE e m ≠ 0 :=
+    (hone : (one X : Hmod2 X 0) ≠ 0) {m : ℕ} (hm : m ≤ N) : cupPowE e m ≠ 0 :=
   cupPowE_ne_zero_of_bijective N
     (fun j hj => bijective_cupRight_of_pieces proj taut rA rB rA_pull rB_pull
       rA_taut rB_taut (2 * j) (hpair j hj) (lh_surj (2 * j)) (lh_uniq (2 * j)))

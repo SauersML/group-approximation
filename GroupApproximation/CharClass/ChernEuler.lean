@@ -73,7 +73,7 @@ inclusion `ℂP^d ⊆ ℂP^{d+1}` — for which restriction is an isomorphism on
 as soon as `d ≥ 1` — this is the compatibility of `h_d` with `h_{d+1}`. -/
 theorem pull_lineGen {X Y : TopCat.{0}} (j : X ⟶ Y)
     (eX : Hmod2 X 2 ≃ₗ[ZMod 2] ZMod 2) (eY : Hmod2 Y 2 ≃ₗ[ZMod 2] ZMod 2)
-    (hinj : Function.Injective (pull j 2)) :
+    (hinj : Function.Injective (pull (K := ZMod 2) j 2)) :
     pull j 2 (lineGen eY) = lineGen eX := by
   refine eq_lineGen_of_ne_zero eX ?_
   intro hzero

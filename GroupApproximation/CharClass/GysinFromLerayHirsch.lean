@@ -141,7 +141,7 @@ Gysin data exists.  Same walk up the even degrees as `cupPowE_ne_zero`, but
 taking the bijectivity directly rather than through a `GysinSequence`. -/
 theorem cupPowE_ne_zero_of_bijective {X : TopCat.{0}} {e : Hmod2 X 2} (N : ℕ)
     (hbij : ∀ m : ℕ, m < N → Function.Bijective (cupRightE e (2 * m)))
-    (hone : (one X) ≠ 0) {m : ℕ} (hm : m ≤ N) : cupPowE e m ≠ 0 := by
+    (hone : (one X : Hmod2 X 0) ≠ 0) {m : ℕ} (hm : m ≤ N) : cupPowE e m ≠ 0 := by
   induction m with
   | zero => simpa using hone
   | succ m ih =>

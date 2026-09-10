@@ -83,7 +83,7 @@ theorem injective_relToAbs_zero (R : Type) [CommRing R] (X : TopCat.{0}) (S : Se
   exact (ModuleCat.mono_iff_injective _).1 inferInstance
 
 theorem relPullback_id_bijective_zero {A B : Set X} (hAB : A ⊆ B)
-    (hsub : ∀ k : ℕ, Function.Bijective (pull (subInclusion hAB) k)) :
+    (hsub : ∀ k : ℕ, Function.Bijective (pull (K := ZMod 2) (subInclusion hAB) k)) :
     Function.Bijective (relPullback (ZMod 2) (𝟙 X) (fun _ hx => hAB hx) 0).hom := by
   have hf : ∀ x ∈ A, (ConcreteCategory.hom (𝟙 X)) x ∈ B := fun _ hx => hAB hx
   -- the three squares, as equations between linear maps
@@ -135,7 +135,7 @@ inclusion `A ↪ B` induces bijections on cohomology in every degree, then the
 inclusion of pairs `(X, A) → (X, B)` induces bijections on relative cohomology in
 every degree. -/
 theorem relPullback_id_bijective_of_subspace_iso {A B : Set X} (hAB : A ⊆ B)
-    (hsub : ∀ k : ℕ, Function.Bijective (pull (subInclusion hAB) k)) (n : ℕ) :
+    (hsub : ∀ k : ℕ, Function.Bijective (pull (K := ZMod 2) (subInclusion hAB) k)) (n : ℕ) :
     Function.Bijective (relPullback (ZMod 2) (𝟙 X) (fun _ hx => hAB hx) n).hom := by
   cases n with
   | zero => exact relPullback_id_bijective_zero hAB hsub

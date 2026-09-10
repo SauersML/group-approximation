@@ -41,7 +41,7 @@ variable {X Y P Q : TopCat.{0}}
 The absent summands are filled with zero rather than with a chosen preimage, which
 is what keeps the result inside the subgroup. -/
 theorem bijective_colPull_of_bijective (f : Y ⟶ X) (r n : ℕ)
-    (hb : ∀ m : ℕ, Function.Bijective (pull f m)) :
+    (hb : ∀ m : ℕ, Function.Bijective (pull (K := ZMod 2) f m)) :
     Function.Bijective (colPull f r n) := by
   constructor
   · intro c c' h
@@ -86,8 +86,8 @@ square that commutes in cohomology.  A homotopy equivalence of situations is the
 case this exists for. -/
 theorem bijective_lhSum_of_htpy {X X' P P' : TopCat.{0}}
     (f : P ⟶ X) (f' : P' ⟶ X') (eX : X ⟶ X') (eP : P ⟶ P')
-    (hbX : ∀ m : ℕ, Function.Bijective (pull eX m))
-    (hbP : ∀ m : ℕ, Function.Bijective (pull eP m))
+    (hbX : ∀ m : ℕ, Function.Bijective (pull (K := ZMod 2) eX m))
+    (hbP : ∀ m : ℕ, Function.Bijective (pull (K := ZMod 2) eP m))
     (hsq : ∀ (m : ℕ) (a : Hmod2 X' m), pull eP m (pull f' m a) = pull f m (pull eX m a))
     (ξ : Hmod2 P 2) (ξ' : Hmod2 P' 2) (hξ : pull eP 2 ξ' = ξ) (r n : ℕ)
     (h : Function.Bijective (lhSum f' ξ' r n)) :
@@ -107,7 +107,7 @@ theorem bijective_lhSum_of_htpy {X X' P P' : TopCat.{0}}
 /-- A homotopy equivalence is bijective on cohomology in every degree. -/
 theorem bijective_pull_of_homotopyEquiv {A B : Type} [TopologicalSpace A]
     [TopologicalSpace B] (e : ContinuousMap.HomotopyEquiv A B) (n : ℕ) :
-    Function.Bijective (pull (cmap e.toFun) n) :=
+    Function.Bijective (pull (K := ZMod 2) (cmap e.toFun) n) :=
   (pullEquivOfHomotopyEquiv e n).bijective
 
 end

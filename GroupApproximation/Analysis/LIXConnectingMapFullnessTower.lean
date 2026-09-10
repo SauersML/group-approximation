@@ -37,28 +37,32 @@ open scoped Matrix ComplexOrder CStarAlgebra
 
 noncomputable section
 
+namespace Gen
+
+variable (n : ℕ)
+
 /-- The fibre value of a section depends continuously on the point. -/
-theorem continuous_stageEval (k : ℕ) (a : StageAlgebra k) :
-    Continuous fun w : baseX k => stageEval k w a := by
+theorem continuous_stageEval (k : ℕ) (a : StageAlgebra n k) :
+    Continuous fun w : baseX n k => stageEval n k w a := by
   refine continuous_matrix fun s t => ?_
-  exact ((toFunctionMatrix (a : SectionAlgebra (baseX k) (EIdx k))) s t).continuous
+  exact ((toFunctionMatrix (a : SectionAlgebra (baseX n k) (EIdx n k))) s t).continuous
 
 /-- The set of points at which a section does not vanish is open. -/
-theorem isOpen_stageEval_ne_zero (k : ℕ) (a : StageAlgebra k) :
-    IsOpen ((fun w : baseX k => stageEval k w a) ⁻¹'
-      {(0 : Matrix (EIdx k) (EIdx k) ℂ)}ᶜ) :=
-  IsOpen.preimage (continuous_stageEval k a) isOpen_compl_singleton
+theorem isOpen_stageEval_ne_zero (k : ℕ) (a : StageAlgebra n k) :
+    IsOpen ((fun w : baseX n k => stageEval n k w a) ⁻¹'
+      {(0 : Matrix (EIdx n k) (EIdx n k) ℂ)}ᶜ) :=
+  IsOpen.preimage (continuous_stageEval n k a) isOpen_compl_singleton
 
 /-- **Nonvanishing travels up the tower.**  The `(1,1)` block of `φ_i` is `π_i^*`, so if `a`
 does not vanish at `π_{k,i}(w)` then `φ_{k,i}(a)` does not vanish at `w`.
 
-Both `basePr h w = w` for `h : k ≤ k` and `basePr h' (baseProj i w) = basePr h w` are `rfl`,
-because `Fin.castLE` of a proof of `k ≤ k` is the identity up to structure eta; that is why
-no transport appears anywhere below. -/
-theorem stageEval_climb_ne_zero {T : LIX.CStarTower StageAlgebra}
-    (hT : ∀ i, T.succHom i = connect i) {k : ℕ} {a : StageAlgebra k} :
-    ∀ (i : ℕ) (h : k ≤ i) (w : baseX i),
-      stageEval k (basePr h w) a ≠ 0 → stageEval i w (T.climb i k a) ≠ 0 := by
+Both `basePr n h w = w` for `h : k ≤ k` and `basePr n h' (baseProj n i w) = basePr n h w` are
+`rfl`, because `Fin.castLE` of a proof of `k ≤ k` is the identity up to structure eta; that is
+why no transport appears anywhere below. -/
+theorem stageEval_climb_ne_zero {T : LIX.CStarTower (StageAlgebra n)}
+    (hT : ∀ i, T.succHom i = connect n i) {k : ℕ} {a : StageAlgebra n k} :
+    ∀ (i : ℕ) (h : k ≤ i) (w : baseX n i),
+      stageEval n k (basePr n h w) a ≠ 0 → stageEval n i w (T.climb i k a) ≠ 0 := by
   intro i
   induction i with
   | zero =>
@@ -71,11 +75,50 @@ theorem stageEval_climb_ne_zero {T : LIX.CStarTower StageAlgebra}
       rcases Nat.lt_or_ge k (i + 1) with hlt | hge
       · have hki : k ≤ i := Nat.lt_succ_iff.mp hlt
         rw [T.climb_succ hki, hT i]
-        refine stageEval_connect_ne_zero_of_pull i w ?_
-        exact ih hki (baseProj i w) ha
+        refine stageEval_connect_ne_zero_of_pull n i w ?_
+        exact ih hki (baseProj n i w) ha
       · obtain rfl : k = i + 1 := le_antisymm h hge
         rw [T.climb_self]
         exact ha
+
+/-- **Stagewise fullness.**  For every nonzero `a ∈ A_k` there is `j ≥ k` with `φ_{k,j}(a)`
+full in `A_j`. -/
+theorem isFull_climb_of_ne_zero {T : LIX.CStarTower (StageAlgebra n)}
+    (hT : ∀ i, T.succHom i = connect n i) (k : ℕ) (a : StageAlgebra n k) (hne : a ≠ 0) :
+    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (T.climb j k a) := by
+  obtain ⟨w₀, hw₀⟩ : ∃ w : baseX n k, stageEval n k w a ≠ 0 := by
+    by_contra hcon
+    refine hne (stageAlgebra_eq_zero_iff.mpr fun w => ?_)
+    by_contra hw
+    exact hcon ⟨w, hw⟩
+  obtain ⟨i, h, hmem⟩ := exists_stagePoint_mem_of_isOpen n (isOpen_stageEval_ne_zero n k a)
+    ⟨w₀, hw₀⟩
+  refine ⟨i + 1, h.trans (Nat.le_succ i), ?_⟩
+  have hb : stageEval n i (stagePoint n i) (T.climb i k a) ≠ 0 :=
+    stageEval_climb_ne_zero n hT i h (stagePoint n i) hmem
+  rw [T.climb_succ h, hT i]
+  exact isFull_connect_of_stageEval_ne_zero n i hb
+
+end Gen
+
+/-! ### The `n = 2` instance -/
+
+/-- The fibre value of a section depends continuously on the point. -/
+theorem continuous_stageEval (k : ℕ) (a : StageAlgebra k) :
+    Continuous fun w : baseX k => stageEval k w a := Gen.continuous_stageEval 2 k a
+
+/-- The set of points at which a section does not vanish is open. -/
+theorem isOpen_stageEval_ne_zero (k : ℕ) (a : StageAlgebra k) :
+    IsOpen ((fun w : baseX k => stageEval k w a) ⁻¹'
+      {(0 : Matrix (EIdx k) (EIdx k) ℂ)}ᶜ) :=
+  Gen.isOpen_stageEval_ne_zero 2 k a
+
+/-- **Nonvanishing travels up the tower.** -/
+theorem stageEval_climb_ne_zero {T : LIX.CStarTower StageAlgebra}
+    (hT : ∀ i, T.succHom i = connect i) {k : ℕ} {a : StageAlgebra k} :
+    ∀ (i : ℕ) (h : k ≤ i) (w : baseX i),
+      stageEval k (basePr h w) a ≠ 0 → stageEval i w (T.climb i k a) ≠ 0 :=
+  Gen.stageEval_climb_ne_zero 2 hT
 
 /-- **Stagewise fullness.**  For every nonzero `a ∈ A_k` there is `j ≥ k` with `φ_{k,j}(a)`
 full in `A_j`.
@@ -85,19 +128,8 @@ shape: `(k : ℕ) (a : StageAlgebra k)`, then `a ≠ 0`, then `∃ j, k ≤ j �
 stated over the raw recursion `T.climb` with the target index first. -/
 theorem isFull_climb_of_ne_zero {T : LIX.CStarTower StageAlgebra}
     (hT : ∀ i, T.succHom i = connect i) (k : ℕ) (a : StageAlgebra k) (hne : a ≠ 0) :
-    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (T.climb j k a) := by
-  obtain ⟨w₀, hw₀⟩ : ∃ w : baseX k, stageEval k w a ≠ 0 := by
-    by_contra hcon
-    refine hne (stageAlgebra_eq_zero_iff.mpr fun w => ?_)
-    by_contra hw
-    exact hcon ⟨w, hw⟩
-  obtain ⟨i, h, hmem⟩ := exists_stagePoint_mem_of_isOpen (isOpen_stageEval_ne_zero k a)
-    ⟨w₀, hw₀⟩
-  refine ⟨i + 1, h.trans (Nat.le_succ i), ?_⟩
-  have hb : stageEval i (stagePoint i) (T.climb i k a) ≠ 0 :=
-    stageEval_climb_ne_zero hT i h (stagePoint i) hmem
-  rw [T.climb_succ h, hT i]
-  exact isFull_connect_of_stageEval_ne_zero i hb
+    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (T.climb j k a) :=
+  Gen.isFull_climb_of_ne_zero 2 hT k a hne
 
 end
 

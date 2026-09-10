@@ -91,7 +91,7 @@ theorem totalH_component_map {X Y : TopCat.{0}} (f : X ⟶ Y) (n : ℕ) (c : Tot
 /-- **`cc-projective`'s Leray–Hirsch injectivity, on the ring.**  Degreewise
 injectivity of `pull π n` gives injectivity of the ring map `TotalH.map π`. -/
 theorem totalH_map_injective {X Y : TopCat.{0}} (f : X ⟶ Y)
-    (h : ∀ n : ℕ, Function.Injective (pull f n)) :
+    (h : ∀ n : ℕ, Function.Injective (pull (K := ZMod 2) f n)) :
     Function.Injective (TotalH.map f) := by
   intro c c' hcc
   ext n

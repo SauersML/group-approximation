@@ -179,7 +179,7 @@ vanishing hypotheses hold because `2m+1` and `2m+2` are neither `0` nor `2N+1`
 once `m < N`. -/
 theorem cupPowE_ne_zero {X S : TopCat.{0}} {e : Hmod2 X 2} (g : GysinSequence X S e)
     (N : ℕ) (hS : HasSphereCohomology S (2 * N + 1))
-    (hone : (one X) ≠ 0) {m : ℕ} (hm : m ≤ N) : cupPowE e m ≠ 0 := by
+    (hone : (one X : Hmod2 X 0) ≠ 0) {m : ℕ} (hm : m ≤ N) : cupPowE e m ≠ 0 := by
   induction m with
   | zero => simpa using hone
   | succ m ih =>
@@ -204,7 +204,7 @@ theorem cupPowE_eq_zero_of_gt {X : TopCat.{0}} (e : Hmod2 X 2) (N : ℕ)
 `H^{2m}` with `m ≤ N` is `{0, h^m}`, and `h^{N+1} = 0`. -/
 theorem eq_zero_or_eq_cupPowE {X S : TopCat.{0}} {e : Hmod2 X 2} (g : GysinSequence X S e)
     (N : ℕ) (hX : HasCPCohomology X N) (hS : HasSphereCohomology S (2 * N + 1))
-    (hone : (one X) ≠ 0) {m : ℕ} (hm : m ≤ N) (a : Hmod2 X (2 * m)) :
+    (hone : (one X : Hmod2 X 0) ≠ 0) {m : ℕ} (hm : m ≤ N) (a : Hmod2 X (2 * m)) :
     a = 0 ∨ a = cupPowE e m :=
   eq_zero_or_eq_of_line (hX.1 m hm).some (cupPowE_ne_zero g N hS hone hm) a
 

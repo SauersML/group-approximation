@@ -58,7 +58,7 @@ variable (U : Type) [TopologicalSpace U] (d : ℕ)
 /-- **The floor of the ladder at the index `cpSplit_closed` uses.**  This is
 `lhLow_general` at `d + 1`; the two projections are the same morphism, since
 `cpProdTop U d` is `U × ℂP^{d+1}`. -/
-theorem lhLow_gen (n : ℕ) (hn : n < 2) : Function.Bijective (pull (cpPrU U d) n) :=
+theorem lhLow_gen (n : ℕ) (hn : n < 2) : Function.Bijective (pull (K := ZMod 2) (cpPrU U d) n) :=
   lhLow_general U (d + 1) n hn
 
 /-! ## 2. The slice through the fibre is constant -/

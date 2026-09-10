@@ -667,7 +667,146 @@ purged 0 stale artifact sets (source-newer=0, import-newer=0) of 1973 oleans
 
 `Built`, not `Replayed`, not absent.
 
+## THE SEVEN-IMPORTER LANDING GATE, 2026-09-10 14:11 (cs-stages, 9362 jobs)
+
+Run on all seven maximal importers plus my five leaves, after deleting 80 artifact files
+across my twenty modules so that every one of them had to elaborate.
+
+### My twenty: **all `Built`, none `Replayed`, none absent**
+
+| module | | module | |
+|---|---|---|---|
+| `LIXBlockProjections` | 100s | `LIXLimitAlgebra` | 96s |
+| `LIXConnectingMap` | 98s | `LIXLimitSimple` | 81s |
+| `LIXConnectingMapFullness` | 94s | `LIXStageAlgebra` | 122s |
+| `LIXConnectingMapFullnessSum` | 165s | `LIXStageAlgebraSeparable` | 96s |
+| `LIXConnectingMapFullnessTower` | 59s | `LIXGenericEquator` | 102s |
+| `LIXConnectingMapPoints` | 90s | `LIXLemmaTwoPropGeneric` | 236s |
+| `LIXGeneratorUnitary` | 78s | `LIXLemmaSixHIdxGeneric` | 293s |
+| `LIXLemmaSixClimb` | 55s | `LIXLemmaSixFieldGeneric` | 97s |
+| `LIXLemmaSixCor4` | 364s | `CharClass/LIXShapeGeneric` | 256s |
+| `LIXLemmaSixDiagEnd` | 71s | `LIXLemmaSixStageZero` | 98s |
+
+### The gate is RED on two modules, neither mine, and the red is uninterpretable
+
+`CharClass/ProjectiveSpaceComputation` and `CharClass/ThomHyperSquare`, both locally
+modified, both in another lane's hands.  The errors read like broken code —
+`Invalid argument name K for function lineGen`, `Unknown identifier MVSequenceOf`,
+`Unknown identifier Line`, `exists_smul_of_line` — and I checked before saying anything:
+`CoeffLine` and `ProjectiveSpaceCohomology`, which define all four names, **are** in
+`ProjectiveSpaceComputation`'s import closure, so this is not the missing-import trap.
+The `sorry` and `sorryAx` lines are downstream of the earlier errors, not literal `sorry`s;
+both files contain zero.
+
+The actual cause is a **race in the probe helper**, and it is worth more than the verdict.
+`laneprobe.sh` rsyncs the local tree *before* taking `.lake/laneprobe.lock`; the flock
+guards only `purge_stale.py; lake build`.  My gate synced at **14:11:42** and ran ninety
+minutes.  In the clone afterwards:
+
+```text
+ProjectiveSpaceComputation.lean   14:52:31        (41 min after my sync)
+ThomHyperSquare.lean              14:47:29        (36 min after)
+ProjectiveSpaceCohomology.lean    14:43:03   olean 14:19:16
+```
+
+That last line is the tell: a source newer than the olean built from it, inside one run.
+So the run elaborated a caller from one moment against a definition from another, and
+"`lineGen` does not take a named `K`" is exactly what a half-applied refactor looks like
+from the far side.  **A long gate's verdict is a statement about a tree state, and it means
+nothing unless the tree held still.**  Recorded in `FLEET_TRAPS` with the check — `stat` the
+source of any module you do not own against your run's start time before believing a red
+that names it — and with the structural fix, which is the lead's call: move the rsync
+inside the flock.
+
+**What this run does establish, and it is the part the landing needs:** every one of my
+twenty files elaborates against the whole `CharClass` closure, including all seven maximal
+importers' dependencies, with `LIXLemmaSixCor4` rebuilt from nothing in 364s.  Nothing in
+my lane is implicated in either failure.
+
+## The three shared declarations, 2026-09-10 16:00 — AUTHORED, UNVERIFIED
+
+The lead's priority item: `sp-design`'s lemma lists for `sp-oddside-n` and `sp-evenside-n`
+both end at the same three names, with "**one lane must own each**, and the natural owner is
+`sp-tower`'s `Gen` shape layer".  They are the numeral dictionary of the whole Step C and
+Step D chain and the only place the sphere rank enters either side arithmetically.
+
+`GroupApproximation/CharClass/LIXShapeGenericRank.lean` (148 lines, leaf), in
+`CharClass.Gen`:
+
+```text
+   lixRank n dd      = (∑ⱼ dⱼ) + (n+1)          was  (∑ⱼ dⱼ) + 3
+   lixTopDegree n dd = 2·(∑ⱼ dⱼ) + 2·(n+1)      was  2·(∑ⱼ dⱼ) + 6
+   trace_Vmat n m    : Matrix.trace (Vmat n m) = ((∑ⱼ dⱼ) + (n+1) : ℕ)
+```
+
+with `trace_Hmat` over the point of `Y` alone, `lixTopDegree_eq_two_mul_lixRank`,
+`trace_Vmat_eq_lixRank`, and the positivity the Step C chain consumes — `le_lixRank`,
+`one_le_lixRank`, `lixRank_pos`, `two_le_two_mul_lixRank`, `two_le_lixTopDegree`.  Both
+rank-two bridges are `rfl`, so `LemmaTwoTopClass` and `LIXSectionLocalHomeo` stay untouched
+under their consumers, exactly as `LIXSectionManuscript` did.
+
+**Two ranks, and they are not the same number.**  `n` is the sphere rank: the base is
+`S^{2n+1}` and the trivial block has `n+1` columns.  `r = lixRank n dd` is the bundle rank,
+the pointwise rank of `V`.  The file's docstring says so, because the two were the same
+symbol in the mod-two chain and will not be again.
+
+**The spelling is load-bearing, and only half of it.**  The sum goes first,
+`(∑ⱼ dⱼ) + (n+1)` and never `(n+1) + (∑ⱼ dⱼ)`: `Nat.add` recurses on its second argument, so
+only the first is definitionally the landed `+ 3` for a *variable* sum.  `sp-evenside-n`
+reached the same convention independently for the top index, which is the agreement worth
+recording.  For the doubled index the argument does **not** apply and both lanes may write
+what they like: `Nat.mul` also recurses on its second argument, so `2·(n+1)` and `2·n+2` are
+the same term by `Nat.mul_succ`.  `sp-oddside-n` had asked to write the second and needs no
+change.
+
+## The padded frames, 2026-09-10 16:10 — AUTHORED, UNVERIFIED
+
+`GroupApproximation/Analysis/LIXLemmaSixFrameGeneric.lean` (134 lines, leaf).  §4 of
+`LIXLemmaSixField` at rank `n`: `Gen.frameAmb n HI σ = σ ⊕ 𝟏_H`,
+`Gen.coframeAmb n HI D = 𝟏^{n+1} ⊕ D`, their unitarity and commutation, and the one
+statement with content, `Gen.frameAmb_conj_bigE` — a frame carries the constant complement
+to the moving one.
+
+The lead cleared this against `sp-powers`' **landed** `normGen`, `isBallUnitary_normGen`,
+`normGen_wall`.  What makes it safe to write before the `k`-th-power frames exist is that
+`σ` is a parameter throughout: the redesign substitutes the hemisphere frames gauged by `A`,
+and for the `k`-th power pulls them back along `Σψ_k`, which changes *what is fed to*
+`frameAmb n HI` and moves no statement in the section.  It is the padding that is being
+generalised, not the frame.
+
+**Why this went in a new file rather than into `LIXLemmaSixFieldGeneric`.**  That file is one
+of the twenty-one the lead is landing, and its `Built` line is in the 14:12 gate log.  The
+lead's replacement probe replays those artifacts against a checksum snapshot; editing a
+batch file now would certify a version that is not the version that lands.  New leaves are
+free — they are simply not in the batch — so from here until the batch lands, **nothing in
+the twenty-one gets touched**, including the missing `#audit_axioms` on
+`lixLimit_hasK1InjWitness_of`.
+
+## The race, traced to its rsync
+
+`laneprobe-20260910-150608.log` on cs-stages was created at 15:06:09 and is still empty,
+waiting on the lock.  That invocation rsynced at 15:06 — **outside** the lock, since the
+helper's two `rsync` calls precede the `flock` — while my 14:12 build held the lock and was
+still elaborating.  That is what delivered `sp-lh`'s `ProjectiveSpaceComputation` and
+`sp-thom`'s `ThomHyperSquare` into the clone mid-run, and it explains the working-tree
+mtimes of 14:43, 14:47 and 14:52 arriving after a 14:11:42 sync: `rsync -t` carries the
+source mtime across.
+
+The consequence is not only for my gate.  A no-sync probe with a checksum snapshot taken
+under the lock is the right instrument, and it is sound **only** if no other laneprobe
+invocation targets the clone in the meantime, because every invocation rsyncs before it
+queues.  One already did.  Reported to the lead with the structural fix, which is to move
+the rsync inside the flock.
+
 ## PLAN for the remaining layers
+
+**Status as of 2026-09-10 15:30: items 1–5 and 7 are done and green; item 6, the
+`k`-indexed Corollary-4 chain, is input-blocked on `sp-powers` and is the only thing left
+in this lane's original assignment.  Two layers not in the original plan were added on the
+way and are also green: the rank-generic H-index bridge and the rank-generic extension
+layer.  What remains unwritten, deliberately, is `LIXLemmaSixField`'s padded frames and
+cone — the one part of the port the renormalised-generator redesign could invalidate,
+since the frames are exactly what it substitutes.**
 
 Scoped by reading, in dependency order.  Every one is the same recipe — a `Gen` namespace
 with `n` first, the old names kept as the `n = 2` specialisation — and for each I record

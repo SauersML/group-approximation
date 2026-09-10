@@ -52,6 +52,70 @@ uses, so no transport lemma is needed anywhere. -/
 attribute [local instance 100000] GroupApproximation.LIX.instSpectralPartialOrder
                                   GroupApproximation.LIX.instSpectralStarOrderedRing
 
+/-! ### The tower and the limit, generic in the rank `n`
+
+The `2` in `CStarMat 2 (…)` below is the matrix size of the `K₁`-injectivity witness and has
+nothing to do with the rank `n`; it stays `2` at every rank. -/
+
+namespace Gen
+
+example (n k : ℕ) : CStarAlgebra (STW59.Gen.StageAlgebra n k) := inferInstance
+example (n k : ℕ) : PartialOrder (STW59.Gen.StageAlgebra n k) := inferInstance
+example (n k : ℕ) : StarOrderedRing (STW59.Gen.StageAlgebra n k) := inferInstance
+example (n k : ℕ) : CStarAlgebra (CStarMat 2 (STW59.Gen.StageAlgebra n k)) := inferInstance
+
+/-- **The LIX tower at rank `n`**: the stage algebras of `Analysis/LIXStageAlgebra` with the
+connecting maps of `Analysis/LIXConnectingMap`.  Unitality is free (`→⋆ₐ[ℂ]` is unital by
+definition) and isometry is derived from injectivity, so `STW59.Gen.connect_injective` is the
+only input. -/
+def lixTower (n : ℕ) : CStarTower (STW59.Gen.StageAlgebra n) :=
+  CStarTower.ofInjective (STW59.Gen.connect n) (STW59.Gen.connect_injective n)
+
+@[simp] theorem lixTower_succHom (n i : ℕ) :
+    (lixTower n).succHom i = STW59.Gen.connect n i := rfl
+
+/-- **The counterexample algebra at rank `n`**: the inductive limit of the tower. -/
+abbrev LIXLimit (n : ℕ) : Type := (lixTower n).Limit
+
+example (n : ℕ) : CStarAlgebra (LIXLimit n) := inferInstance
+
+/-- Nontriviality is the one place the rank has to be nonzero: it comes from
+`STW59.Gen.instNontrivialStageAlgebra`, whose `[NeZero n]` says `rank E_i = 2^i · n > 0`. -/
+example (n : ℕ) [NeZero n] : Nontrivial (LIXLimit n) := inferInstance
+
+/-- The canonical map of the `i`-th stage into the counterexample algebra. -/
+def lixIota (n i : ℕ) : STW59.Gen.StageAlgebra n i →⋆ₐ[ℂ] LIXLimit n := (lixTower n).limIota i
+
+theorem lixIota_injective (n i : ℕ) : Function.Injective (lixIota n i) :=
+  (lixTower n).limIota_injective i
+
+@[simp] theorem norm_lixIota (n i : ℕ) (a : STW59.Gen.StageAlgebra n i) :
+    ‖lixIota n i a‖ = ‖a‖ := (lixTower n).norm_limIota i a
+
+@[simp] theorem lixIota_connect (n i : ℕ) (a : STW59.Gen.StageAlgebra n i) :
+    lixIota n (i + 1) (STW59.Gen.connect n i a) = lixIota n i a :=
+  (lixTower n).limIota_succHom i a
+
+theorem dense_iUnion_lixStage (n : ℕ) :
+    Dense (⋃ i, (((lixTower n).stage i : StarSubalgebra ℂ (LIXLimit n)) : Set (LIXLimit n))) :=
+  (lixTower n).dense_iUnion_stage
+
+/-- **The `K₁`-non-injectivity witness for the counterexample algebra at rank `n`.** -/
+theorem lixLimit_hasK1InjWitness (n : ℕ) {k : ℕ} (u : unitary (STW59.Gen.StageAlgebra n k))
+    (hstage : ∀ (j : ℕ) (hj : k ≤ j),
+      unitaryHom ((lixTower n).climbHom hj) u ∉
+        unitaryComponentOne (STW59.Gen.StageAlgebra n j))
+    (hdiag : diagOne u ∈ unitaryComponentOne (CStarMat 2 (STW59.Gen.StageAlgebra n k))) :
+    HasK1InjWitness (LIXLimit n) :=
+  CStarTower.hasK1InjWitness_limit (lixTower n) u hstage hdiag
+
+theorem lixLimit_separableSpace (n : ℕ) :
+    TopologicalSpace.SeparableSpace (LIXLimit n) := inferInstance
+
+end Gen
+
+/-! ### The `n = 2` instance -/
+
 example (k : ℕ) : CStarAlgebra (STW59.StageAlgebra k) := inferInstance
 example (k : ℕ) : PartialOrder (STW59.StageAlgebra k) := inferInstance
 example (k : ℕ) : StarOrderedRing (STW59.StageAlgebra k) := inferInstance
@@ -60,8 +124,7 @@ example (k : ℕ) : CStarAlgebra (CStarMat 2 (STW59.StageAlgebra k)) := inferIns
 /-- **The LIX tower**: the stage algebras of `Analysis/LIXStageAlgebra` with the connecting maps
 of `Analysis/LIXConnectingMap`.  Unitality is free (`→⋆ₐ[ℂ]` is unital by definition) and
 isometry is derived from injectivity, so `STW59.connect_injective` is the only input. -/
-def lixTower : CStarTower STW59.StageAlgebra :=
-  CStarTower.ofInjective STW59.connect STW59.connect_injective
+abbrev lixTower : CStarTower STW59.StageAlgebra := Gen.lixTower 2
 
 @[simp] theorem lixTower_succHom (i : ℕ) : lixTower.succHom i = STW59.connect i := rfl
 
@@ -73,21 +136,19 @@ example : CStarAlgebra LIXLimit := inferInstance
 example : Nontrivial LIXLimit := inferInstance
 
 /-- The canonical map of the `i`-th stage into the counterexample algebra. -/
-def lixIota (i : ℕ) : STW59.StageAlgebra i →⋆ₐ[ℂ] LIXLimit := lixTower.limIota i
+abbrev lixIota (i : ℕ) : STW59.StageAlgebra i →⋆ₐ[ℂ] LIXLimit := Gen.lixIota 2 i
 
-theorem lixIota_injective (i : ℕ) : Function.Injective (lixIota i) :=
-  lixTower.limIota_injective i
+theorem lixIota_injective (i : ℕ) : Function.Injective (lixIota i) := Gen.lixIota_injective 2 i
 
 @[simp] theorem norm_lixIota (i : ℕ) (a : STW59.StageAlgebra i) : ‖lixIota i a‖ = ‖a‖ :=
-  lixTower.norm_limIota i a
+  Gen.norm_lixIota 2 i a
 
 @[simp] theorem lixIota_connect (i : ℕ) (a : STW59.StageAlgebra i) :
-    lixIota (i + 1) (STW59.connect i a) = lixIota i a :=
-  lixTower.limIota_succHom i a
+    lixIota (i + 1) (STW59.connect i a) = lixIota i a := Gen.lixIota_connect 2 i a
 
 theorem dense_iUnion_lixStage :
     Dense (⋃ i, ((lixTower.stage i : StarSubalgebra ℂ LIXLimit) : Set LIXLimit)) :=
-  lixTower.dense_iUnion_stage
+  Gen.dense_iUnion_lixStage 2
 
 /-- **The `K₁`-non-injectivity witness for the counterexample algebra.**  The two hypotheses are
 exactly `cs-clutching`'s Corollary 4 with Lemma 6, and the null-homotopy of `diag (u, 1)` over
@@ -97,7 +158,7 @@ theorem lixLimit_hasK1InjWitness {k : ℕ} (u : unitary (STW59.StageAlgebra k))
       unitaryHom (lixTower.climbHom hj) u ∉ unitaryComponentOne (STW59.StageAlgebra j))
     (hdiag : diagOne u ∈ unitaryComponentOne (CStarMat 2 (STW59.StageAlgebra k))) :
     HasK1InjWitness LIXLimit :=
-  CStarTower.hasK1InjWitness_limit lixTower u hstage hdiag
+  Gen.lixLimit_hasK1InjWitness 2 u hstage hdiag
 
 /-! ### Separability
 
@@ -114,6 +175,9 @@ these lines are gates, not log output.  `lixLimit_hasK1InjWitness` is conditiona
 consumes `cs-clutching`'s two facts about the generator — so it gets the plain audit rather than
 `#audit_closed_axioms`. -/
 
+#audit_axioms Gen.lixTower
+#audit_axioms Gen.lixIota
+#audit_axioms Gen.lixLimit_hasK1InjWitness
 #audit_axioms lixTower
 #audit_axioms lixIota
 #audit_axioms lixLimit_hasK1InjWitness

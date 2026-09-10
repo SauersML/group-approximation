@@ -308,7 +308,22 @@ the rank `n` enters the challenge only as a natural number in `p ∣ n` (never `
 pin); pin `Fintype (Fin 2)` and the spectral order pair as now; do NOT pin the `CStarAlgebra` instance
 on the limit and never let a second pi-instance exist (`Gen.instCStarAlgebraStageAlgebraPi n` must be
 the one `inferInstance` finds); `NeZero n` is solution-side from `2 ≤ n`; land
-`squarefree_dvd_of_forall_prime_dvd` separately (pure ℕ).
+`squarefree_dvd_of_forall_prime_dvd` separately (pure ℕ).  Two corrections to the draft found by sp-endpoint and confirmed by sp-design
+(14:50): the prime does NOT belong in the named topological Prop (it enters only in the discharge: Step C
+needs `p ∤ k`, Step D needs `p ∣ n`), so the quantifier over primes sits in the hypothesis of the witness
+theorem; and the suspension applies to the sphere vector, not the base point.  **Hazard, not a task:** the
+tree carries TWO declarations of the spectral order pair (the one `LIXEndpointStatement`'s docstring names
+and the one everything uses), which that file's own warning forbids; it has not bitten because consumers
+only need definitional equality, and the Palomar surfaces use an inline instance and are immune; sp-endpoint
+matches what the tree uses; the duplicate is to be retired after the batches land.  Nontriviality stays an
+explicit conjunct in the challenge (a challenge is read against the printed problem).  Sign convention:
+keep the mod-2 Chern-root convention at odd `p`; the change of convention is the automorphism `h ↦ −h`,
+which commutes with `P` and under which the Wu relations are covariant because `p − 1` is even at odd `p`
+(the weight components scale uniformly), while at `p = 2` the automorphism IS the identity, so there is no
+change of convention to justify — write both clauses in the docstring, not "signs are invisible"; the Wu
+leading coefficient is invariant under the change (the two sides pick up signs whose ratio is one), so the
+unit field of the Wu hypothesis is required by the normalisation constant alone.  Single source of the
+root convention: the Chern-relation file (splitting principle), owned over `K` by `sp-lh`.
 
 ## 2. Lanes (all `model: opus`, named; resume with SendMessage to the name)
 
@@ -335,11 +350,22 @@ the one `inferInstance` finds); `NeZero n` is solution-side from `2 ≤ n`; land
 (acn116 is not reachable through the wrapper); the seven new clones are COLD (empty `GroupApproximation`
 build dirs; Mathlib packages present), so a lane's first probe builds its closure once; 6 cores per new
 lane, 8 per old lane, 98 cores total for the fleet, cores 42-63 left for landing builds and other users.
+Rulings of 14:45 from sp-design's lemma lists: `sp-evenside-n` INSTANTIATES sp-evenside's uniform theorem
+at `p = 2` (no re-derivation) and builds only the rank-`n` bridge, with `Even n` as the hypothesis (the
+total rank must be odd: the first appearance of the divisibility condition in the mod-2 world); the three
+declarations shared by `sp-evenside-n` and `sp-oddside-n` are owned by `sp-tower` (their `Gen` block), as a
+leaf ahead of the frames/cone port; at `p = 2` the odd side carries no rotation, isotopy or homotopy
+invariance, its local-classes obligation being one separate lemma about a two-element line.
 
 Ownership is by file: a lane creates files under its own prefix and edits existing files
 only when the table says it owns them.  Two lanes never edit one file; ask the lead.
 
 ## 3. Protocol (binding)
+
+**False reds (sp-lh, sp-coeff, sp-design, 15:55).** Every rule below guards against a false GREEN. A caution
+is checked to the same standard: in what ring, at which prime, against which statement. A sign check in
+the integers where the classes live in `F_p` is a check of a different claim, and it survives because a
+colleague being careful is never pushed back on. State a scan's predicate next to its number.
 
 * **Lean only after solving.**  No Lean is authored for a statement whose proof is not
   written in this note or in the lane's report at the precision of a lemma list, and
@@ -396,6 +422,20 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   elaborated (lake replays the recorded `info` lines of `#audit_axioms` word for word).  After any gate
   you intend to land on, `grep -c Built` on the log must be at least the number of modules you changed.
   Axiom lists wrap across lines; a line-oriented allowlist check reports false reds.
+  **A dependency census is perishable in a shared tree (sp-thom, 15:00):** with fifteen lanes landing
+  generic names continuously, a blocker list is stale within the hour; re-run the import-closure scan
+  immediately before acting on it and immediately before reporting it, never quote an earlier read.
+  **Longest pole of the odd-primary side (sp-lh, 15:05):** every Chern class over `F_p`, hence Step D over
+  `F_p`, waits on the Kronecker/universal-coefficients layer (`kroneckerEquiv` without a coefficient
+  parameter, `H1ClassifierZMod2`, `KroneckerNaturality`, `CoefficientReduction`), through which
+  `H^*(CP^d; K)` is a line in each even degree; the abstract Leray–Hirsch/Chern machinery ports cleanly
+  down to that concrete input.  Assigned to `sp-cupone` as its immediate task (a port, not a reproof).
+  Two lessons from the same census: a file inherits a coefficient through a NAME (`HasCPCohomology`), so
+  the test is "is `CohomologyBasic` in the import closure", not a token grep; and two lanes had defined
+  the same `lineGen` (`e.symm 1`) five days apart with no error because one file was an unimported leaf
+  — the duplicate scan cannot see two correct definitions in two green files; the landed name wins.
+  `MVSequence`'s five maps now carry linearity as fields (the F₂ promotion "every additive map is
+  linear" via `decide` is false over `K` and was the only reason it was ever a hypothesis).
 * **No `sorry` lands.**  Author with `sorry` only inside a file that is not imported by
   anything, and say so in the report.  `#print axioms` on every endpoint-facing theorem:
   `[propext, Classical.choice, Quot.sound]`, nothing else, ever.
@@ -408,6 +448,64 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   other lane's gate red in its own directory.  So a lane keeps the shared tree in a consistent
   state between its own probes (do renames in one step; stage a new layer in new files), and
   the lead lands the union of the lanes whose closures were gated green together.
+  **Superseded 2026-09-10 15:10 — land by VERIFIED CONTENT, not by tree state.**  With fifteen lanes
+  the tree cannot be frozen (sp-lh edited four of sp-coeff's batch files during the "freeze", for good
+  reasons).  Each lane's clone holds the exact snapshot its citable log was built from, so the landing
+  takes a file only if its working-tree bytes equal the bytes in the verifying clone (`sp/clone_md5.sh`
+  on the node, `sp/verify_batch.py` locally), and holds every mismatch for the gate that verifies the
+  new content.  Lanes may edit anything they own at any time; what lands is what was verified.
+  **Refined 2026-09-10 15:40 — the verifying clone must hold the LANDED tree state, not the working
+  tree.**  A gate certifies the clone's content within the gate's import closure; landing produces
+  `origin/main` + the batch bytes and nothing else.  `laneprobe.sh` syncs the whole working tree into the
+  clone, so every unlanded peer edit inside the closure rides along, and the gate then certifies a tree
+  state that landing does not produce.  Measured at 15:35: cs-stages carried 21 such files inside the
+  seven-importer gate's closure (sp-thom's eight `Thom*`, sp-lh's `LerayHirsch{Column,Induction,Squares}`,
+  `ProjectiveSpace{Cohomology,Computation}`, `GysinPair`, `ChernEulerBundle`, `MayerVietorisSequence`,
+  and sp-coeff's five additive `Relative*`), and 24 batch files depend on them, so that gate is evidence
+  for the Analysis side only (whose closure is free of them).  Rule: before citing a gate for a batch,
+  checksum every source in the clone under the probe lock (`sp/lockprobe.sh` — no sync, transitive
+  purge, build, `md5sum` snapshot to `.lake/snapshot-<tag>.md5`) and require that every non-batch file
+  in the closure equals its `origin/main` blob and every batch file equals the bytes to be landed
+  (`sp/land2.sh` lands a path from the snapshot copy when the working tree has moved on).  A clone that
+  fails the check is not a verifier, whatever its log says.  cs-endpoint passed it for batch 1's
+  CharClass side (639 closure files at `origin/main`, 33 at the verified bytes, none other) and its
+  12:18 twenty-importer build is being re-certified there under the transitive purge.
+  **Torn builds (sp-lh, 16:00): `laneprobe.sh` syncs BEFORE it takes the lock.**  A probe queued into a
+  clone that is already building overwrites the sources under the running build the moment it is launched;
+  lake then elaborates whichever file it reaches next against oleans compiled from the old imports, and the
+  red lands on the most recently edited file, reading as a missing import (ProjectiveSpaceComputation in
+  the 14:12 gate, torn by the lead's 15:06 queued probe).  `purge_stale.py` cannot see it: it runs once,
+  under the lock, before the overwrite.  Superseded by `sp/laneprobe2.sh`: stage the sync into
+  `.lake/stage-<tag>/`, apply it UNDER the lock, purge, build, md5 snapshot; a queued probe builds the tree
+  as of its own launch.  Until a lane has switched: never launch a probe into a clone that is building.
+  **Dual tautological class (sp-lh, 15:15; approved provisionally, sp-evenside to confirm):** over `K` the
+  Grothendieck factor `tautEuler + pull lineEuler` no longer vanishes on the locus (that was `x + x = 0`),
+  so take `ξ := −tautEulerOf p` (the Euler class of `O(1)`, the classical choice): `∏(ξ + y_l) = 0` holds
+  over any ring by `neg_add_cancel`, `ChernRelation` stays byte-unchanged, `γ_k = e_k(y)` with no sign
+  (the even side's Frobenius step is untouched), and at `F₂` it is the same element up to the
+  PROPOSITIONAL equality `−x = x` (not syntactic): name it `tautEulerDual p := −tautEulerOf p` with the
+  `F₂` lemma `tautEulerDual_eq_tautEulerOf` beside it and spend the rewrite exactly twice (split
+  relation, bridge); the other mechanism-(b) site (`ChernGammaBridge:78`) is one negation absorbed into
+  `LerayHirschDegree`'s coefficient definition.  (Recorded twice today: a later write clobbered the first.)
+  **Ruling on the roots (lead, 15:50, on sp-evenside's confirmation):** with `ξ = e(O(1))` and the
+  relation `∏(ξ + y_l) = 0`, the `y_l` ARE the classical Chern roots and `γ_k = e_k(y) = c_k` on the nose;
+  `sliceClass = ∏(1 + h_j X)^{d_j}` is the total Chern class of `⊕ L_j^{d_j}` as written.  The morning's
+  description "the `y` are the negatives of the usual roots" belonged to the old relation
+  `∏(tautEuler + y_l) = 0` and is retired; every restatement of it (sp-design's "Two rulings (third
+  pass)", sp-evenside's report, `ChernRelation.lean`'s docstring) is to be corrected to this sentence and
+  nothing else.  Over `F₂` the two readings coincide (`−h = h`), so no existing file can tell them apart;
+  the first place they diverge is a mod-`p` Wu relation, which is why the convention lives here once.
+  **Kronecker/UCT port, where the field enters (sp-cupone, 15:45):** `chainCxOf`, `homologyOf`,
+  `kroneckerFunctionalOf`, `kroneckerMapOf` and the cycle-level lemmas all live over `[CommRing K]`
+  (explicit `K` first, six `rfl` bridges to the vendored `ZMod 2` objects); `[Field K]` is needed at
+  exactly one place, the splitting of the cycle inclusion (`moduleInjective_of_field`), so only
+  `kroneckerMapOf_surjective` and everything above it is a field statement.  Steps 1–2 of 4
+  (`KroneckerClassifier`, `KroneckerMap`) green in batch 1; `kroneckerEquivOf`, the contractible
+  vanishing and the sphere computation (a Mayer–Vietoris suspension tower with no mod-2 occurrence) follow.
+  One asymmetry to respect (sp-coeff, 15:00): purely ADDITIVE work (new declarations, new files) goes
+  into the shared tree immediately, since a mistake in it cannot break anyone who does not use it;
+  a REWRITE of an existing file with live consumers stays staged in the lane's scratchpad until the
+  lane can probe it at once, because a broken rewrite costs every lane that syncs it a full cycle.
 * **Reports.**  `notes/lix-stronger-lane-reports/<lane>.md`, four sections (GREEN with job
   counts / AUTHORED, UNVERIFIED / NEEDS / TRAPS), kept current.  Cross-lane traps go to
   `notes/lix-lane-reports/FLEET_TRAPS.md` (append only).  Read it before a second failed

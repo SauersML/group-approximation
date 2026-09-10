@@ -35,7 +35,7 @@ theorem Eproj_zero_eq_one : STW59.Eproj 0 = 1 := by
 
 /-- The unit of the stage-zero algebra is the unit of the section algebra. -/
 theorem stageProj_zero_eq_one : STW59.stageProj 0 = 1 := by
-  rw [STW59.stageProj, Eproj_zero_eq_one, STW59.ofFunctionMatrix_one]
+  rw [STW59.stageProj_def, Eproj_zero_eq_one, STW59.ofFunctionMatrix_one]
 
 /-- `1 * a * 1 = a`, stated at an abstract monoid.  Stating it here and
 crossing by application is the documented cure for the section algebra, whose

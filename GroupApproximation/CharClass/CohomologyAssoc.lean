@@ -1,7 +1,7 @@
 import GroupApproximation.CharClass.CohomologyBasic
 
 /-!
-# Associativity and left unitality of the mod-2 cup product
+# Associativity and left unitality of the cup product
 
 The Alexander–Whitney cup product of `CupProduct.lean` is **strictly**
 associative and **strictly** unital at the cochain level; the only friction is
@@ -87,13 +87,20 @@ theorem cochainCast_eval {R : Type} [CommRing R] {X : TopCat.{0}} {m m' : ℕ} (
   rw [cochainCast_rfl, simplexRelabel_rfl]
 
 /-- Compatibility of the degree cast on classes with the degree cast on cochains. -/
+theorem cohCast_cocycleClassOf (K : Type) [CommRing K] {X : TopCat.{0}} {m m' : ℕ} (h : m = m')
+    (φ : singularCochainGroup K X m) (hφ : cochainCoboundary K X m φ = 0)
+    (hφ' : cochainCoboundary K X m' (cochainCast h φ) = 0) :
+    cohCast h (cocycleClassK K X m φ hφ) = cocycleClassK K X m' (cochainCast h φ) hφ' := by
+  subst h
+  rw [cohCast_rfl]
+  exact cocycleClassK_congr K X m (cochainCast_rfl φ).symm hφ hφ'
+
+/-- The mod-2 instance, in the vendored vocabulary. -/
 theorem cohCast_cocycleClass {X : TopCat.{0}} {m m' : ℕ} (h : m = m')
     (φ : singularCochainGroup (ZMod 2) X m) (hφ : cochainCoboundary (ZMod 2) X m φ = 0)
     (hφ' : cochainCoboundary (ZMod 2) X m' (cochainCast h φ) = 0) :
-    cohCast h (cocycleClass X m φ hφ) = cocycleClass X m' (cochainCast h φ) hφ' := by
-  subst h
-  rw [cohCast_rfl]
-  exact cocycleClass_congr X m (cochainCast_rfl φ).symm hφ hφ'
+    cohCast h (cocycleClass X m φ hφ) = cocycleClass X m' (cochainCast h φ) hφ' :=
+  cohCast_cocycleClassOf (ZMod 2) h φ hφ hφ'
 
 /-! ## 3. The three vertex computations -/
 
@@ -230,13 +237,13 @@ theorem backSimplex_zero_left (X : TopCat.{0}) (p : ℕ) (σ : singularSimplices
 /-! ## 5. Associativity and left unitality -/
 
 /-- Casting along `h` and then back along `h.symm` is the identity. -/
-@[simp] theorem cohCast_symm_cohCast {X : TopCat.{0}} {m m' : ℕ} (h : m = m')
-    (a : Hmod2 X m) : cohCast h.symm (cohCast h a) = a := by
+@[simp] theorem cohCast_symm_cohCast {K : Type} [CommRing K] {X : TopCat.{0}} {m m' : ℕ}
+    (h : m = m') (a : Hmod K X m) : cohCast h.symm (cohCast h a) = a := by
   subst h; rfl
 
 /-- Casting along `h.symm` and then back along `h` is the identity. -/
-@[simp] theorem cohCast_cohCast_symm {X : TopCat.{0}} {m m' : ℕ} (h : m = m')
-    (a : Hmod2 X m') : cohCast h (cohCast h.symm a) = a := by
+@[simp] theorem cohCast_cohCast_symm {K : Type} [CommRing K] {X : TopCat.{0}} {m m' : ℕ}
+    (h : m = m') (a : Hmod K X m') : cohCast h (cohCast h.symm a) = a := by
   subst h; rfl
 
 /-- **Associativity of the cochain cup product**, up to the degree cast
@@ -261,42 +268,42 @@ theorem cochainCup_one_left {R : Type} [CommRing R] {X : TopCat.{0}} (p : ℕ)
   rw [cochainCup_eval, cochainOne_eval, one_mul, cochainCast_eval, backSimplex_zero_left]
 
 /-- **Associativity of the cup product on cohomology**, with the cast on the right. -/
-theorem cup_assoc' {X : TopCat.{0}} {p q r : ℕ}
-    (a : Hmod2 X p) (b : Hmod2 X q) (c : Hmod2 X r) :
+theorem cup_assoc' {K : Type} [CommRing K] {X : TopCat.{0}} {p q r : ℕ}
+    (a : Hmod K X p) (b : Hmod K X q) (c : Hmod K X r) :
     cup (cup a b) c = cohCast (Nat.add_assoc p q r).symm (cup a (cup b c)) := by
-  obtain ⟨φ, hφ, rfl⟩ := exists_cocycle a
-  obtain ⟨ψ, hψ, rfl⟩ := exists_cocycle b
-  obtain ⟨χ, hχ, rfl⟩ := exists_cocycle c
-  have hcc : cochainCoboundary (ZMod 2) X (p + q + r)
+  obtain ⟨φ, hφ, rfl⟩ := exists_cocycleOf a
+  obtain ⟨ψ, hψ, rfl⟩ := exists_cocycleOf b
+  obtain ⟨χ, hχ, rfl⟩ := exists_cocycleOf c
+  have hcc : cochainCoboundary K X (p + q + r)
       (cochainCast (Nat.add_assoc p q r).symm
         (cochainCup p (q + r) φ (cochainCup q r ψ χ))) = 0 := by
     rw [← cochainCup_assoc]
-    exact cochainCupZMod2_respects_cocycles (p + q) r _ χ
-      (cochainCupZMod2_respects_cocycles p q φ ψ hφ hψ) hχ
-  rw [cup_mk, cup_mk, cup_mk, cup_mk,
-    cohCast_cocycleClass (Nat.add_assoc p q r).symm _ _ hcc]
-  exact cocycleClass_congr X (p + q + r) (cochainCup_assoc p q r φ ψ χ) _ _
+    exact cochainCup_respects_cocycles (p + q) r _ χ
+      (cochainCup_respects_cocycles p q φ ψ hφ hψ) hχ
+  rw [cup_mkOf, cup_mkOf, cup_mkOf, cup_mkOf,
+    cohCast_cocycleClassOf K (Nat.add_assoc p q r).symm _ _ hcc]
+  exact cocycleClassK_congr K X (p + q + r) (cochainCup_assoc p q r φ ψ χ) _ _
 
 /-- **Left unitality on cohomology**, with the cast on the right. -/
-theorem one_cup' {X : TopCat.{0}} {p : ℕ} (a : Hmod2 X p) :
+theorem one_cup' {K : Type} [CommRing K] {X : TopCat.{0}} {p : ℕ} (a : Hmod K X p) :
     cup (one X) a = cohCast (Nat.zero_add p).symm a := by
-  obtain ⟨φ, hφ, rfl⟩ := exists_cocycle a
-  have hcc : cochainCoboundary (ZMod 2) X (0 + p)
+  obtain ⟨φ, hφ, rfl⟩ := exists_cocycleOf a
+  have hcc : cochainCoboundary K X (0 + p)
       (cochainCast (Nat.zero_add p).symm φ) = 0 := by
     rw [← cochainCup_one_left]
-    exact cochainCupZMod2_respects_cocycles 0 p _ φ (cochainCoboundary_cochainOne X) hφ
-  rw [one_eq_cocycleClass, cup_mk, cohCast_cocycleClass (Nat.zero_add p).symm _ _ hcc]
-  exact cocycleClass_congr X (0 + p) (cochainCup_one_left p φ) _ _
+    exact cochainCup_respects_cocycles 0 p _ φ (cochainCoboundary_cochainOneK K X) hφ
+  rw [one_eq_cocycleClassOf K, cup_mkOf, cohCast_cocycleClassOf K (Nat.zero_add p).symm _ _ hcc]
+  exact cocycleClassK_congr K X (0 + p) (cochainCup_one_left p φ) _ _
 
 /-- **Associativity of the cup product**, with the cast on the left: this is the
 form the even total ring of `cc-projective` consumes. -/
-theorem cup_assoc {X : TopCat.{0}} {p q r : ℕ}
-    (a : Hmod2 X p) (b : Hmod2 X q) (c : Hmod2 X r) :
+theorem cup_assoc {K : Type} [CommRing K] {X : TopCat.{0}} {p q r : ℕ}
+    (a : Hmod K X p) (b : Hmod K X q) (c : Hmod K X r) :
     cohCast (Nat.add_assoc p q r) (cup (cup a b) c) = cup a (cup b c) := by
   rw [cup_assoc', cohCast_cohCast_symm]
 
 /-- **Left unitality**, with the cast on the left. -/
-theorem one_cup {X : TopCat.{0}} {p : ℕ} (a : Hmod2 X p) :
+theorem one_cup {K : Type} [CommRing K] {X : TopCat.{0}} {p : ℕ} (a : Hmod K X p) :
     cohCast (Nat.zero_add p) (cup (one X) a) = a := by
   rw [one_cup', cohCast_cohCast_symm]
 

@@ -130,7 +130,7 @@ theorem evalW_one (j : ℕ) {f : ℝ → STW59.StageAlgebra j} {a : STW59.StageA
   have h1 : STW59.stageEval j (v, y) (f 1)
       = Matrix.fromBlocks (genU2 (equatorEmb (v : EuclideanSpace ℝ (Fin 5)))) 0 0
         (STW59.matEval y c) := by
-    rw [hf1, STW59.stageEval, ← STW59.matEval_toFunctionMatrix, hc, matEval_fromBlocks,
+    rw [hf1, STW59.stageEval_def, ← STW59.matEval_toFunctionMatrix, hc, matEval_fromBlocks,
       STW59.matEval_pullMat, matEval_genMatAt]
     rfl
   rw [evalW, h1, eIdxEquiv, reindex_fromBlocks_diag, evalC]

@@ -74,7 +74,7 @@ theorem mvResWV_mvResV (k : ℕ) (z : Hmod2 (prodTop Y n) k) :
 /-! ## 3. The projection of the band is injective on cohomology -/
 
 theorem pull_prSub_band_injective (k : ℕ) :
-    Function.Injective (pull (prSub Y n (bandSet Y n)) k) := by
+    Function.Injective (pull (K := ZMod 2) (prSub Y n (bandSet Y n)) k) := by
   intro c₁ c₂ hc
   refine pull_knPrY_injective Y n (spherePoint n) k ?_
   refine pull_bandHE_injective Y n k ?_

@@ -50,7 +50,7 @@ theorem cpSliceGen_comp_cpFst (p : CP d) :
 
 /-- **Pullback along the projection is injective in every degree**, at any rank.
 This is a section, not a Künneth statement, so it costs nothing. -/
-theorem pull_cpFst_injective (k : ℕ) : Function.Injective (pull (cpFst U d) k) := by
+theorem pull_cpFst_injective (k : ℕ) : Function.Injective (pull (K := ZMod 2) (cpFst U d) k) := by
   obtain ⟨p⟩ := nonempty_CPtop d
   intro c₁ c₂ hc
   have h := congrArg (pull (cpSliceGen U d p) k) hc
@@ -93,7 +93,7 @@ theorem exists_pull_cpFst_of_lt (k : ℕ) (hk : k < 2) :
 along `U × ℂP^d → U` is bijective in the two degrees below two, for every base
 and every rank.  This is `lhLow` with `ℂP^1` replaced by `ℂP^d`, and it uses no
 Künneth statement: both halves are fibre connectivity. -/
-theorem lhLow_general (n : ℕ) (hn : n < 2) : Function.Bijective (pull (cpFst U d) n) :=
+theorem lhLow_general (n : ℕ) (hn : n < 2) : Function.Bijective (pull (K := ZMod 2) (cpFst U d) n) :=
   ⟨pull_cpFst_injective U d n, fun z => by
     obtain ⟨a, ha⟩ := exists_pull_cpFst_of_lt U d n hn z
     exact ⟨a, ha.symm⟩⟩

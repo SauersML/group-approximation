@@ -33,7 +33,7 @@ noncomputable section
 /-! ## 1. Pullback along an isomorphism -/
 
 theorem bijective_pull_iso {X Y : TopCat.{0}} (e : X ≅ Y) (n : ℕ) :
-    Function.Bijective (pull e.hom n) := by
+    Function.Bijective (pull (K := ZMod 2) e.hom n) := by
   constructor
   · intro a b h
     have h' := congrArg (pull e.inv n) h

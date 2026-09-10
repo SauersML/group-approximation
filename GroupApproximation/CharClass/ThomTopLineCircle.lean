@@ -116,7 +116,7 @@ theorem finrank_band_circle (hA : HasTopLine A p) :
 /-- **A slice retracts the projection**, so pulling back from `A` to the band of
 `A × S¹` is injective. -/
 theorem pullLinear_prSub_band_injective (k : ℕ) :
-    Function.Injective (pullLinear (KnHemi.prSub A 0 (KnHemi.bandSet A 0)) k) := by
+    Function.Injective (pullLinear (K := ZMod 2) (KnHemi.prSub A 0 (KnHemi.bandSet A 0)) k) := by
   obtain ⟨s⟩ := nonempty_sphereZeroPos
   intro u u' h
   have h2 : pull (cmap (KnHemi.bandHomotopyEquiv A 0).toFun) k (pull (knPrY A 0) k u)
@@ -134,7 +134,7 @@ through the projection; the other is the same computation of `mvResWU` run
 forwards, with the second piece contributing nothing. -/
 theorem ker_mvDelta_circle :
     LinearMap.ker (mvDelta (KnHemi.hemiU A 0) (KnHemi.hemiV A 0) (KnHemi.hemi_sup A 0) p).hom
-      = LinearMap.range (pullLinear (KnHemi.prSub A 0 (KnHemi.bandSet A 0)) p) := by
+      = LinearMap.range (pullLinear (K := ZMod 2) (KnHemi.prSub A 0 (KnHemi.bandSet A 0)) p) := by
   apply le_antisymm
   · intro w hw
     rw [LinearMap.mem_ker] at hw

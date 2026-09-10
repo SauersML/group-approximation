@@ -44,7 +44,7 @@ def HasPeel (π : P ⟶ X) (ξ : Hmod2 P 2) : Prop :=
 
 /-- The floor: below degree two the pullback is already onto. -/
 def HasLowSurj (π : P ⟶ X) : Prop :=
-  ∀ n : ℕ, n < 2 → Function.Surjective (pull π n)
+  ∀ n : ℕ, n < 2 → Function.Surjective (pull (K := ZMod 2) π n)
 
 /-- Cupping with the class and transporting the degree pass through a sum. -/
 theorem cohCast_cup_sum (ξ : Hmod2 P 2) (m : ℕ) (s : Finset ℕ)
