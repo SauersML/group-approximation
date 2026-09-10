@@ -4,19 +4,21 @@ version: "v0.4"
 project:
   name: "Non-MF Groups and a Simple C*-Algebra That Is Not K1-Injective"
   description: >-
-    The project formalizes the one-sided Kazhdan compression criterion, its
-    normal property-(T) MF-radical consequence, the rank-four Leavitt
-    compression, the resulting non-MF group, and exact pullback formulas for
-    MF radicals and MF quotients in the Carrión-Dadarlat-Eckhardt
-    operator-norm sense. It also answers Problem LIX of Schafhauser, Tikuisis
-    and White, "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902) --- "Are
-    all unital simple C*-algebras K1-injective?" --- negatively. The
-    counterexample is a separable simple unital C*-algebra, an inductive limit
-    of corner algebras of matrices over C(X, ℂ), carrying a unitary u that is
-    not connected to 1 inside its unitary group while diag(u, 1) is already
-    connected to 1 inside the unitary group of M2 over the algebra; so the
-    class of u dies at the first stabilisation step, which is more than
-    failure of injectivity of U(A)/U0(A) -> K1(A) requires.
+    This project formalizes two results in Lean 4 over Mathlib. The first is
+    an explicitly presented finitely generated group that is sofic and not MF.
+    It is obtained from a one-sided Kazhdan compression criterion, the
+    consequence of that criterion for the MF radical of a group with normal
+    property (T), and a rank-four Leavitt compression; exact pullback formulas
+    for MF radicals and MF quotients, in the operator-norm sense of Carrión,
+    Dadarlat and Eckhardt, are proved along the way. The second is a negative
+    answer to Problem LIX of Schafhauser, Tikuisis and White ("Nuclear
+    C*-algebras: 99 problems", arXiv:2506.10902), which asks whether every
+    unital simple C*-algebra is K1-injective. The counterexample is a
+    separable simple unital C*-algebra A, an inductive limit of corner
+    algebras of matrices over C(X), with a unitary u that is not in the
+    connected component of 1 in U(A) although diag(u, 1) is in the connected
+    component of 1 in U(M2(A)). So the class of u vanishes already at the
+    first stabilisation, and the map U(A)/U0(A) -> K1(A) is not injective.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
@@ -36,10 +38,10 @@ sources:
       on 2026-09-07 (https://x.com/Sauers_/status/2096961149770043897), and
       its Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148). The
       informal account is k1_injectivity_counterexample.tex in this
-      repository: Theorem A is the compared result and Lemma 2 the bundle
-      obstruction it rests on, and each printed statement carries a
-      leanverified marker naming its Lean carrier. That account presents the
-      mod-2 route that is formalised; the earlier integral route is
+      repository: Theorem A is the compared result and Lemma 4.1 the bundle
+      obstruction it rests on, and each printed statement is followed by a
+      marker naming its Lean declaration. That account presents the mod-2
+      argument that is formalised; the earlier integral argument is
       research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md.
 
   - title: Non-MF Groups
@@ -394,14 +396,14 @@ status:
     A Lean 4 development over Mathlib of the one-sided Kazhdan compression
     criterion and its MF-radical consequences, and of a negative answer to STW
     Problem LIX, together with two self-contained Comparator submission
-    surfaces. Palomar/Challenge.lean states, in a Mathlib-only module carrying
-    its own copies of the three approximation notions it mentions, that one
+    surfaces. Palomar/Challenge.lean states, in a Mathlib-only module with its
+    own definitions of the three approximation notions it uses, that one
     explicitly presented eight-generator group is sofic in normalized Hamming
     distance and not MF in the sequential operator-norm sense;
     Palomar/Solution.lean proves that statement from the development.
-    Palomar/LIXChallenge.lean states, in a second Mathlib-only module carrying
-    its own copies of the corner matrix diag(a, 1, ..., 1) and of
-    K1-injectivity, three things: that not every nontrivial simple unital
+    Palomar/LIXChallenge.lean states, in a second Mathlib-only module with its
+    own definitions of the corner matrix diag(a, 1, ..., 1) and of
+    K1-injectivity, three statements: that not every nontrivial simple unital
     C*-algebra is K1-injective, that the counterexample can be taken separable,
     and that it can be taken to fail K1-injectivity already at the first
     stabilisation step; Palomar/LIXSolution.lean proves those three statements
@@ -531,10 +533,10 @@ alignment:
       status: proved
 
     - source: >-
-        k1_injectivity_counterexample.tex, Lemma 2: for even positive
-        d_0, ..., d_{l-1} and M = S^5 x prod_i CP^{d_i}, the projections
-        F + H and 1^2 + H over M, both of pointwise rank 2 + m, are not
-        Murray-von Neumann equivalent as continuous fields.
+        k1_injectivity_counterexample.tex, Lemma 4.1: for even positive
+        d_0, ..., d_{l-1} and M = S^5 x prod_i CP^{d_i}, the bundles F + H
+        and 1^2 + H over M, both of rank 2 + m, are not isomorphic, that is,
+        the projections are not Murray-von Neumann equivalent.
       lean: GroupApproximation.CharClass.lemmaTwoHolds
       module: GroupApproximation.CharClass.LemmaTwoOfHsqHresHclass
       status: proved

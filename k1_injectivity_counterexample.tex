@@ -54,20 +54,22 @@
 
 \begin{document}
 \begin{abstract}
-We answer Problem LIX of Schafhauser--Tikuisis--White negatively: there is a
-unital simple separable C*-algebra $A$ and a unitary $v \in \U(A)$ with
+We answer Problem LIX of Schafhauser, Tikuisis and White: there is a unital
+simple separable C*-algebra $A$ and a unitary $v \in \U(A)$ with
 $v \notin \Uz(A)$ and $\operatorname{diag}(v,1) \in \Uz(M_2(A))$, so the
 canonical map $\U(A)/\Uz(A) \to K_1(A)$ is not injective.  The algebra is an
 inductive limit of homogeneous algebras over products of a sphere with complex
-projective spaces, and the obstruction that makes $v$ nontrivial is a
-statement about vector bundles which we prove mod~$2$, through Wu classes,
-Steenrod squares and a Thom--Gysin argument.  The whole proof is formalised in
-Lean~4; we cite the formal carriers rather than reproving what they carry.
+projective spaces, with twisted point evaluations as connecting maps.  The
+unitary $v$ comes from the nonzero element of $\pi_4(\U(2)) \cong \mathbb Z/2$,
+and the proof that $v$ is not null-homotopic in $A$ reduces to the
+non-isomorphism of two vector bundles of the same rank, which we prove by
+computing the top mod-2 Chern class of a mapping torus in two ways.  The proof
+is formalised in Lean~4.
 \end{abstract}
 
 \maketitle
 
-\section{The problem and the answer}
+\section{Introduction}
 \label{sec:intro}
 
 A unital C*-algebra $A$ is \emph{$K_1$-injective} when the canonical map
@@ -75,12 +77,28 @@ A unital C*-algebra $A$ is \emph{$K_1$-injective} when the canonical map
   \kappa_A \colon \U(A)/\Uz(A) \longrightarrow K_1(A)
 \]
 is injective, where $\Uz(A)$ is the connected component of the identity in the
-unitary group.  Injectivity of $\kappa_A$ says that a unitary which becomes
-trivial after stabilisation was already trivial before it: if
-$\operatorname{diag}(v,1,\dots,1)$ can be connected to the identity in some
-matrix amplification, then $v$ can be connected to the identity in $A$ itself.
-Schafhauser, Tikuisis and White ask, as Problem LIX of their list, whether
-every unital simple C*-algebra is $K_1$-injective.  The answer is no.
+unitary group $\U(A)$.  Since $K_1(A)$ is the direct limit of the groups
+$\U(M_n(A))/\Uz(M_n(A))$ along $u \mapsto \operatorname{diag}(u,1)$, the map
+$\kappa_A$ is injective when every unitary $v \in \U(A)$ with
+$\operatorname{diag}(v,1,\dots,1) \in \Uz(M_n(A))$ for some $n$ already lies in
+$\Uz(A)$.
+
+Injectivity fails for some nonsimple algebras.  Blackadar
+\cite[8.1.2(d)]{Bl} gives the classical example, which rests on a theorem of
+Araki, James and Thomas \cite{AJT}: for $A = C(\U(2) \times \U(2), M_2)$ and
+the two coordinate unitaries $u$ and $v$, the products $uv$ and $vu$ lie in
+different components of $\U(A)$, while $\operatorname{diag}(uv,1)$ and
+$\operatorname{diag}(vu,1)$ lie in the same component of $\U(M_2(A))$.  For
+simple algebras the map is injective in every regularity class where it has
+been computed: purely infinite simple algebras \cite{Cu}, algebras of stable
+rank one \cite{Ri}, algebras of real rank zero \cite{Li}, and
+$\mathcal Z$-stable algebras \cite{Ji}.  Blackadar wrote in 1998 that for
+simple unital $A$ the map is expected to be an isomorphism, ``although this
+remains an open problem'' \cite[\S 8.1]{Bl}.  Villadsen \cite{Vi02} then showed
+that surjectivity can fail for simple separable unital nuclear algebras.
+Schafhauser, Tikuisis and White record injectivity as the open direction and
+ask, as Problem LIX of their list \cite{STW}, whether every unital simple
+C*-algebra is $K_1$-injective.  The answer is no.
 
 \begin{mainthm}
 \label{thm:main}
@@ -88,80 +106,62 @@ There is a unital simple separable C*-algebra $A$ that is not
 $K_1$-injective.  Explicitly, there is a unitary $v \in \U(A)$ with
 $v \notin \Uz(A)$ and $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.
 \leanverified{thm:main}{GroupApproximation.NinetyNineProblems.not\_problemLIX}
+\leanverified{thm:main-separable}{GroupApproximation.NinetyNineProblems.exists\_separable\_simple\_unital\_not\_k1Inj}
 \end{mainthm}
 
-Simplicity is meant in the C*-sense that the problem asks for: every closed
-two-sided ideal of $A$ is $0$ or $A$.  For a unital C*-algebra this agrees with
-simplicity as a ring, but the endpoint is stated in the form that was asked.
+Simplicity means that every closed two-sided ideal of $A$ is $0$ or $A$; for
+a unital C*-algebra this is the same as simplicity as a ring.
 
-\subsection{What is proved, and where}
+The algebra $A$ is an inductive limit of homogeneous algebras
+$A_j = E_j\, M(C(X_j))\, E_j$, where $X_j = S^4 \times \prod_{i<j} \CP^{d_i}$
+and $E_j$ is the direct sum of a trivial rank-two bundle with multiples of the
+tautological line bundles of the projective factors.  The connecting maps are
+twisted point evaluations $a \mapsto a \oplus a(x_j) \otimes 1_{L}$, with $L$
+the tautological line bundle of the new factor.  Inductive limits of this kind
+were introduced by Villadsen \cite{Vi98,Vi99}.  Point evaluations at a sequence
+of points with dense tails make the limit simple, and the twist by $L$ is
+necessary: a simple inductive limit of this shape with untwisted point
+evaluations has stable rank one \cite{EHT}, so is $K_1$-injective by
+\cite{Ri}, and is even $K$-stable \cite{Se}.
 
-The result is a theorem of Lean~4, unconditionally: it depends on no hypothesis
-and on no axiom beyond the three that Lean's own logic supplies, namely
-\textsf{propext}, \textsf{Classical.choice} and \textsf{Quot.sound}.  The
-statement quantified over is
-\[
-  \textsf{ProblemLIX} \;:=\;
-  \forall A,\ \textsf{Nontrivial}\ A \to \textsf{IsSimpleCStar}\ A \to
-  \textsf{K1Inj}\ A ,
-\]
-with $\textsf{K1Inj}\ A$ the injectivity of $\kappa_A$ and
-$\textsf{IsSimpleCStar}\ A$ the condition that every closed two-sided ideal is
-$\bot$ or $\top$.  Its negation is
-\textsf{NinetyNineProblems.\allowbreak not\_\allowbreak problemLIX}, and the
-separable strengthening of Theorem~\ref{thm:main} is
-\textsf{NinetyNineProblems.\allowbreak exists\_\allowbreak separable\_%
-\allowbreak simple\_\allowbreak unital\_\allowbreak not\_\allowbreak k1Inj},
-\[
-  \exists\, A,\ \textsf{SeparableSpace}\ A \wedge \textsf{Nontrivial}\ A
-  \wedge \textsf{IsSimpleCStar}\ A \wedge \neg\, \textsf{K1Inj}\ A .
-\]
-\leanverified{thm:main-separable}{GroupApproximation.NinetyNineProblems.exists\_separable\_simple\_unital\_not\_k1Inj}
-Both are proved from \textsf{CharClass.lemmaTwoHolds}, the statement of
-Lemma~\ref{lem:two} at every stage of the tower, and both are hypothesis-free.
+The unitary $v$ is the image in $A$ of the clutching function
+$u \colon S^4 \to \U(2)$ of the rank-two bundle $F = x^{\perp}$ over
+$S^5 \subset \C^3$; it represents the nonzero element of
+$\pi_4(\U(2)) \cong \mathbb Z/2$ \cite{Bo}.  Since $\operatorname{diag}(u,1)$
+is null-homotopic in $\U(3)$, $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.  The
+content of the theorem is $v \notin \Uz(A)$.  A null-homotopy of $v$ in $A$
+gives one at a finite stage $A_j$, and a null-homotopy at stage $j$ gives an
+isomorphism of vector bundles $F \oplus H \cong \mathbf 1^2 \oplus H$ over
+$S^5 \times \prod_{i<j} \CP^{d_i}$, where $H$ is the sum of the twisted line
+bundles.  Lemma~\ref{lem:two} says that no such isomorphism exists.  Its proof
+is a mod-2 computation: from an isomorphism one builds a bundle of rank $r$
+over the manifold $S^1 \times S^5 \times \prod_{i<j} \CP^{d_i}$ of dimension
+$2r$, whose top mod-2 Chern class is nonzero because the bundle has a section
+with a single nondegenerate zero, and zero by the Wu formula because the
+dimensions $d_i$ are even.
 
-This note states the mathematics and cites the formal carriers.  It does not
-reproduce the proofs those carriers contain, and where the argument formalised
-differs from the argument one might expect, we say so: the divergences are
-collected in Section~\ref{sec:divergences} and the most important of them,
-concerning Lemma~\ref{lem:two}, is the subject of Section~\ref{sec:modtwo}.
-
-\subsection{The shape of the construction}
-
-Everything exists to produce one unitary in one algebra.  The algebra is an
-inductive limit $A = \varinjlim A_i$ of homogeneous C*-algebras, each a corner
-of a matrix algebra over a compact space, with the spaces growing by one
-complex projective factor at each stage.  The unitary $v$ is the image in the
-limit of a single explicit unitary $u$ over a four-sphere, and the two halves
-of Theorem~\ref{thm:main} are proved by quite different means:
-
-\begin{itemize}
-\item $\operatorname{diag}(v,1) \in \Uz(M_2(A))$ is nearly free.  The
-  generator $u$ takes values in $\U(2)$ and $\operatorname{diag}(u,1)$
-  contracts already inside $\U(3)$, before any limit is taken; the contraction
-  is transported along the inclusion of the first stage.
-\item $v \notin \Uz(A)$ is the whole content.  A null-homotopy of $v$ in the
-  limit would produce one at a finite stage, and a null-homotopy at a finite
-  stage would make two explicit vector bundles isomorphic.  That they are not
-  isomorphic is Lemma~\ref{lem:two}, and it is where all of the topology sits.
-\end{itemize}
+The whole proof is formalised in Lean~4 over Mathlib, in the repository
+\href{https://github.com/SauersML/group-approximation}{SauersML/group-approximation};
+the argument given here is the one formalised.  Independently, Toms \cite{To}
+has given a different solution of Problem LIX, starting from the same class in
+$\pi_4(\U(2))$ but trapping it with higher-rank matrices and a spin bordism
+obstruction.
 
 \section{The algebra}
 \label{sec:algebra}
 
+\subsection{Bundles as projections}
+
+Write $\CP^d$ for the space of rank-one projections in $M_{d+1}(\C)$, $S^4$
+for the four-sphere and $S^5$ for the unit sphere of $\C^3$.  A complex vector
+bundle over a compact Hausdorff space $X$ is a continuous projection-valued
+map, that is, a projection $p \in M_K(C(X))$; an isomorphism of bundles is a
+Murray--von Neumann equivalence of projections, and the algebra of sections of
+the endomorphism bundle of $p$ is the corner $p\, M_K(C(X))\, p$.
+
 \subsection{The tower}
 
-Write $\CP^d$ for the space of rank-one self-adjoint idempotents in
-$M_{d+1}(\C)$, and let $S^4$ and $S^5$ be the four- and five-spheres, the
-latter realised as the unit vectors of $\C^3$.  A complex vector bundle over a
-compact Hausdorff space $X$ is taken throughout to be a continuous
-projection-valued map, that is, a projection in $M_K(C(X))$; an isomorphism of
-bundles is a Murray--von Neumann equivalence of projections, and the algebra of
-sections of the endomorphism bundle of $p$ is the corner $p M_K(C(X)) p$.  No
-bundle library and no Serre--Swan theorem is used, and the model is the one the
-formalisation works in.
-
-Set $d_i = 2^{\,i+1}$, and at stage $j$
+Set $d_i = 2^{\,i+1}$ and, for $j \geq 0$,
 \[
   Y_j \;=\; \prod_{i<j} \CP^{d_i},
   \qquad
@@ -174,630 +174,405 @@ pulled back to $Y_j$.  Put $E_j = \mathbf 1^2 \oplus H_j$ and
 \[
   A_j \;=\; E_j \, M(C(X_j)) \, E_j .
 \]
-The dimensions $d_i$ are even, which is the hypothesis Step~D of
-Lemma~\ref{lem:two} runs on, and they are positive; both are recorded formally
-as \textsf{GroupApproximation.LIX.even\_lixDD} and
-\textsf{GroupApproximation.LIX.lixDD\_pos}.
-
-Two arithmetic checks are worth having in view, because they say why the
-construction is tight rather than merely available.  Since $L_i$ has rank one
-and appears with multiplicity $d_i$,
-\[
-  \rank E_j \;=\; 2 + \sum_{i<j} d_i \;=\; 2^{\,j+1},
-  \qquad
-  \dim X_j \;=\; 4 + 2\sum_{i<j} d_i \;=\; 2^{\,j+2} ,
-\]
-so the rank of the bundle and the dimension of the base grow together, the
-second always exactly twice the first.
-
-The same balance, for a different pair of objects, is what makes
-Section~\ref{sec:modtwo} work.  There the space is not $X_j$ but
-$N = S^1 \times S^5 \times \prod_i \CP^{d_i}$ and the bundle is not $E_j$ but
-$V$ of rank $r = 3+m$, and one has $\dim N = 6 + 2m = 2r$ again.  The two
-computations are parallel instances rather than the same one -- the $S^4$ of
-the tower is replaced by the $S^1 \times S^5$ of the mapping torus, and the
-rank goes up by one -- but in both the top Chern class of a rank-$r$ bundle
-lands in the top cohomology of a $2r$-dimensional space, where there is room
-for it to be nonzero and nothing above it to obstruct.
+The bundle $E_j$ has rank $2 + \sum_{i<j} d_i = 2^{\,j+1}$ and the base $X_j$
+has dimension $4 + 2\sum_{i<j} d_i = 2^{\,j+2}$, twice the rank.  The
+dimensions $d_i$ are even; Step~D in Section~\ref{sec:modtwo} uses this.
 
 \subsection{The connecting maps and the limit}
 
-The connecting map $\varphi_j \colon A_j \to A_{j+1}$ is a twisted point
-evaluation,
+Since $X_{j+1} = X_j \times \CP^{d_j}$ and $E_{j+1} = E_j \oplus L_j^{\oplus
+d_j}$, and since the multiplicity $d_j$ equals the rank of $E_j$, an element
+$a(x_j)$ of the fibre of $E_j M E_j$ at a point $x_j \in X_j$ acts on
+$L_j \otimes \C^{d_j} = L_j^{\oplus d_j}$.  The connecting map
+$\varphi_j \colon A_j \to A_{j+1}$ is
 \[
-  \varphi_j(a)(x,z) \;=\; a(x) \,\oplus\, \bigl(a(x_j) \otimes 1_{L_{j+1},\,z}\bigr),
+  \varphi_j(a)(x,z) \;=\; a(x) \,\oplus\, \bigl(a(x_j) \otimes 1_{L_j,\,z}\bigr),
+  \qquad x \in X_j,\ z \in \CP^{d_j},
 \]
-where $x_j \in X_j$ is a fixed base point chosen so that every tail of the
-sequence of its images is dense in the corresponding stage.  Each $\varphi_j$
-is an injective unital $*$-homomorphism, and $A$ is the inductive limit, with
-injective unital maps $\iota_j \colon A_j \to A$ whose images have dense union.
+where the base points $x_j \in X_j$ are chosen so that, for every $k$, the
+images of $x_j$ for $j \geq k$ under the coordinate projections $X_j \to X_k$
+are dense in $X_k$.  Each $\varphi_j$ is an injective unital $*$-homomorphism.
+Let $A$ be the inductive limit, with injective unital maps
+$\iota_j \colon A_j \to A$ whose images have dense union.  The algebra $A$ is
+separable, since each $A_j$ is.
 
-Simplicity comes from the choice of base point and nothing else.  For
-$0 \neq a \geq 0$ in $A_k$ one picks $i \geq k$ with the image of $x_i$ inside
-the open set where $a$ does not vanish; then the point-evaluation summand of
-$\varphi_{k,i+1}(a)$ is nonzero at every point of $X_{i+1}$, and a section that
-is nonzero in every fibre generates the whole corner, the fibres being full
-matrix algebras.  So every nonzero closed two-sided ideal of the limit is
-everything.
+$A$ is simple.  Let $0 \neq a \geq 0$ in $A_k$ and pick $i \geq k$ such that
+the image of $x_i$ in $X_k$ lies in the open set where $a$ does not vanish.
+Then the point-evaluation summand of $\varphi_{k,i+1}(a)$ is nonzero at every
+point of $X_{i+1}$.  A section that is nonzero in every fibre generates the
+corner as a closed ideal, because the fibres are full matrix algebras.  So
+every nonzero closed two-sided ideal of $A$ contains $1$.
 
 \subsection{The generator}
 
-Over $S^5$, realised as the unit vectors $x$ of $\C^3$, the projection
-$F = \mathbf 1_3 - x x^{*}$ has rank two.  Two Householder reflections through
-the normalised midpoint of $p$ and $x$ give an explicit continuous frame
-$\sigma_p$ on the complement of the antipode of $p$, with
-$\sigma_p(x) e_3 = x$, and the two frames obtained from the two poles differ,
-on the equatorial $S^4$, by a unitary
+Over $S^5$, the projection $F(x) = \mathbf 1_3 - x x^{*}$ has rank two.  For
+each pole $p = \pm e_3$, two Householder reflections through the normalised
+midpoint of $p$ and $x$ give a continuous unitary-valued map $\sigma_p$ on the
+complement of the antipode of $p$ with $\sigma_p(x)\, e_3 = x$, so
+$\sigma_p(x)$ maps $e_3^{\perp}$ onto $F(x)$.  On the equatorial $S^4$ the two
+frames differ by the unitary
 \[
-  u \colon S^4 \longrightarrow \U(2), \qquad u(x) = \sigma_+(x)^{*}\sigma_-(x) .
+  u \colon S^4 \longrightarrow \U(2), \qquad u(x) = \sigma_+(x)^{*}\sigma_-(x),
 \]
-This $u$ is the generator.  It is the clutching function of $F$ over $S^5$, it
-takes values in the corner addressed by $\mathbf 1_3 - e_3 e_3^{*}$, and
-$\operatorname{diag}(u,1)$ is null-homotopic in $\U(3)$ by construction.  The
-witness of Theorem~\ref{thm:main} is $v = \iota_0(u \oplus 1_{H_0})$.
+which fixes $e_3$ and so takes values in the unitary group of $e_3^{\perp}$.
+Thus $u$ is the clutching function of $F$: $F$ is obtained from the trivial
+rank-two bundles $\sigma_{\pm}(e_3^{\perp})$ over the two closed hemispheres by
+gluing along $u$.  Since $\sigma_+$ extends over the northern hemisphere and
+$\sigma_-$ over the southern one, $\operatorname{diag}(u,1) = \sigma_+^{*}
+\sigma_-$ is null-homotopic in $\U(3)$.
 
-\section{Corollary 4, and why there is no Lemma 6}
-\label{sec:cor4}
+At stage $0$ we have $H_0 = 0$ and $A_0 = M_2(C(S^4))$, so $u \in \U(A_0)$.
+The witness of Theorem~\ref{thm:main} is $v = \iota_0(u)$.
 
-The unitary that has to be shown nontrivial at stage $j$ is not $u$ itself but
-the image of $u$ under the tower's connecting maps.  In the source manuscript
-this is handled by a separate lemma comparing that image with $u \oplus 1$ up
-to homotopy.  Here it is an equality and the lemma is not needed.
+\section{Reduction to a statement about bundles}
+\label{sec:reduction}
 
-Because the block that $\varphi_j$ adds is constant in the $S^4$ coordinate --
-it is a point evaluation at the fixed $x_j$, tensored with a line bundle over
-the new projective factor -- the climb of $u$ through the tower satisfies
+Write $u_j$ for the image of $u$ in $A_j$.  Each connecting map adds a block
+evaluated at a fixed point, so
 \[
-  \textsf{climb}_j(u) \;=\; u \oplus c_j
+  u_j \;=\; u \oplus c_j
 \]
-on the nose, for a unitary $c_j$ of $H_j$ over $Y_j$ alone.  The
-generalisation of Corollary~4 that one then needs is that $u \oplus c \notin
-\Uz(A_j)$ for \emph{every} unitary $c$ of $H_j$ over $Y_j$, and that is the
-same hemisphere gluing argument with $c$ carried on the northern side.
+for a unitary $c_j$ of $H_j$ over $Y_j$; in particular $c_j$ does not depend
+on the $S^4$ coordinate.
 
-So no homotopy is required at this step.  The consequence is worth recording,
-because it removes a dependency rather than merely shortening an argument: the
-homotopy route would have needed path-connectedness of the unitary group of
-$M_r(\C)$, which is not available in the ambient library at the pinned
-revision.  The load-bearing constraint is that the connecting map must be
-evaluated at the fixed stage point and never reindexed through anything
-depending on the $S^4$ coordinate.
+\begin{lemma}
+\label{lem:stage}
+If $u_j \in \Uz(A_j)$, then $F \oplus H_j \cong \mathbf 1^2 \oplus H_j$ over
+$S^5 \times Y_j$.
+\end{lemma}
 
-\section{The obstruction}
-\label{sec:lemma2}
+\begin{proof}
+A unitary $g$ of $\mathbf 1^2 \oplus H_j$ over $S^4 \times Y_j$ determines a
+bundle over $S^5 \times Y_j$, obtained by gluing the restrictions of
+$\mathbf 1^2 \oplus H_j$ to the two closed hemispheres along $g$.  Homotopic
+unitaries give isomorphic bundles, a unitary that extends over one hemisphere
+gives $\mathbf 1^2 \oplus H_j$, and gluing along $u \oplus 1$ gives
+$F \oplus H_j$.  Since $c_j$ does not depend on the sphere coordinate,
+$1 \oplus c_j$ extends over a hemisphere, so gluing along
+$u \oplus c_j = (u \oplus 1)(1 \oplus c_j)$ still gives $F \oplus H_j$.  If
+$u \oplus c_j$ is null-homotopic, this bundle is isomorphic to
+$\mathbf 1^2 \oplus H_j$.
+\end{proof}
 
-Everything above reduces Theorem~\ref{thm:main} to a statement about vector
-bundles, with no C*-algebra in it.
+\begin{lemma}
+\label{lem:limit}
+If $v \in \Uz(A)$, then $u_j \in \Uz(A_j)$ for some $j$.
+\end{lemma}
 
-\begin{lemma}[Lemma 2]
+\begin{proof}
+A path from $v$ to $1$ in $\U(A)$ is compact, so for some $j$ it lies within
+distance $\tfrac12$ of $\iota_j(A_j)$.  Choose finitely many points along the
+path, consecutive ones within distance $\tfrac12$ of each other, and
+approximate each by an element of $A_j$ within $\tfrac12$.  Each approximant
+is invertible and close to its unitary part, and consecutive unitary parts are
+at distance less than $2$, so the spectrum of the product of one with the
+adjoint of the next avoids $-1$ and the functional calculus joins them by a
+path in $\U(A_j)$.  The path starts at $u_j$ and ends at $1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} from Lemma~\ref{lem:two}]
+If $v \in \Uz(A)$, Lemma~\ref{lem:limit} gives $u_j \in \Uz(A_j)$ for some
+$j$, and Lemma~\ref{lem:stage} gives $F \oplus H_j \cong \mathbf 1^2 \oplus
+H_j$ over $S^5 \times Y_j$, contradicting Lemma~\ref{lem:two} with $l = j$.
+So $v \notin \Uz(A)$.  On the other hand
+$\operatorname{diag}(u,1) \in \Uz(M_2(A_0))$, since it is null-homotopic
+already in $\U(3)$, and applying $\iota_0 \otimes \mathrm{id}_{M_2}$ gives
+$\operatorname{diag}(v,1) \in \Uz(M_2(A))$.
+\end{proof}
+
+\section{The bundle obstruction}
+\label{sec:modtwo}
+
+\begin{lemma}
 \label{lem:two}
-Let $d_0,\dots,d_{l-1}$ be even and positive and let
+Let $d_0,\dots,d_{l-1}$ be even and positive, and let
 \[
   M \;=\; S^5 \times \prod_{i<l} \CP^{d_i},
-  \qquad m = \sum_{i<l} d_i .
+  \qquad m = \sum_{i<l} d_i ,
+  \qquad H = \bigoplus_{i<l} L_i^{\oplus d_i}.
 \]
-Over $M$ the projections $F \oplus H$ and $\mathbf 1^2 \oplus H$, both of
-pointwise rank $2+m$, are not Murray--von Neumann equivalent as continuous
-fields.
+Over $M$ the bundles $F \oplus H$ and $\mathbf 1^2 \oplus H$, both of rank
+$2+m$, are not isomorphic.
 \leanverified{lem:two}{GroupApproximation.LIX.LemmaTwoHolds}
 \end{lemma}
 
-Two features of the statement deserve emphasis.  First, the two projections
-have the same pointwise rank, so no trace or dimension count can separate them;
-this is the genuinely hard statement and it is the only input the C*-side
-takes.  Second, the ambient bundle in which both sit is
-$V = \mathbf 1^3 \oplus H$, of rank $3+m$ and not $2+m$ -- a one-character
-difference from the rank of the two projections, and one that has to be kept
-straight throughout.  Formally the lemma is stated inside the single algebra
-over the index set of $V$, as the failure of
-\textsf{ContinuousMvNEquiv} between
-\[
-  \textsf{FHmat} = V - s s^{*}
-  \qquad\text{and}\qquad
-  \textsf{EHmat} = V - e e^{*},
-\]
-where $e$ and $s$ are the unit sections corresponding to $e_3$ and to $x$.
-Writing it this way, rather than as a pair of block matrices over different
-index sets, is what makes it type-correct: Murray--von Neumann equivalence
-needs both elements in one algebra.
+Both bundles are subbundles of $V = \mathbf 1^3 \oplus H$, of rank $r = 3+m$:
+with $e$ the constant section $e_3$ of $\mathbf 1^3$ and $s$ the section
+$x \mapsto x$, we have $F \oplus H = V - ss^{*}$ and
+$\mathbf 1^2 \oplus H = V - ee^{*}$.  Since the two bundles have the same rank,
+no dimension count separates them.
 
-\section{The mod-2 proof of Lemma 2}
-\label{sec:modtwo}
-
-\subsection{What is proved here, and what is not}
-\label{sec:modtwo-divergence}
-
-A reader who knows the source argument should be warned at once.  Lemma
-\ref{lem:two} is proved there by an integral computation, with Chern classes
-and a Künneth decomposition over $\mathbb Z$.  \emph{That is not the argument
-formalised, and it is not the argument below.}  What is proved here is a mod-2
-statement throughout: the characteristic classes are the mod-2 Chern classes
-$\gamma_i$, the cohomology is singular cohomology with $\F_2$ coefficients, and
-the step that kills the even side runs on the Wu formula and the instability of
-Steenrod squares, neither of which has an integral counterpart in this shape.
-A reader who goes looking for the integral computation in the formal
-development will not find it.
-
-The re-cutting was not a matter of taste.  Working mod~2 removes every sign and
-every torsion consideration from the obstruction, and it replaces the Künneth
-theorem over $\mathbb Z$ -- which the formalisation does not have, since it
-would need Eilenberg--Zilber -- with a decomposition over a field.  It also
-makes the evenness of the dimensions $d_i$ do visible work, through the
-Frobenius endomorphism of an $\F_2$-algebra, where in the integral argument
-that hypothesis enters less directly.
+The argument is a mod-2 characteristic class computation.  We write
+$\gamma_i$ for the mod-2 Chern classes and $\gamma = \sum_i \gamma_i$ for the
+total class, and all cohomology has coefficients in $\F_2$.  The source
+manuscript proves the lemma integrally, by a Chern number computation with a
+K\"unneth decomposition over $\mathbb Z$; the argument below, which is the one
+formalised, works mod~$2$ throughout.  Working mod~$2$ removes signs and
+torsion, replaces the K\"unneth theorem over $\mathbb Z$ by one over a field,
+and makes the evenness of the $d_i$ enter through the Frobenius endomorphism
+of an $\F_2$-algebra.
 
 \subsection{The setting}
 
 Fix even positive $d_0,\dots,d_{l-1}$, put $m = \sum_i d_i$ and $r = 3+m$, and
-let $M = S^5 \times \prod_i \CP^{d_i}$ as in Lemma~\ref{lem:two}.  The ambient
-bundle is $V = \mathbf 1^3 \oplus H$, of rank $r$.  Everything happens over
+let $M$, $H$ and $V$ be as above.  Everything happens over the closed manifold
 \[
-  N \;=\; S^1 \times M ,
+  N \;=\; S^1 \times M
 \]
-a closed manifold of dimension $1 + 5 + 2m = 2r$.  So the top mod-2 cohomology
-$H^{2r}(N;\F_2)$ is the one place where a rank-$r$ bundle over $N$ can have a
-top Chern class at all, and it is one-dimensional over $\F_2$.  The proof
-consists of computing $\gamma_r$ of one particular bundle over $N$ in two ways
-and getting different answers.
+of dimension $1 + 5 + 2m = 2r$.  So $H^{2r}(N)$ is the top cohomology group of
+$N$, it is one-dimensional over $\F_2$, and it is the only group in which a
+rank-$r$ bundle over $N$ can have a nonzero top Chern class.  We compute
+$\gamma_r$ of one bundle over $N$ in two ways and get different answers.
 
-\subsection{Step A: from an equivalence to a unitary}
+\subsection{Step A: from an isomorphism to a unitary}
 
-Suppose the two projections of Lemma~\ref{lem:two} were equivalent.  Both are
-written inside the single algebra of $V$, as $V - s s^{*}$ and $V - e e^{*}$
-for the unit sections $s$ and $e$ corresponding to $x \in S^5$ and to the
-constant $e_3$.  An equivalence between them extends, by sending $e$ to $s$, to
-a unitary $g$ of the corner cut out by $V$ with $g e = s$.  This is pure
-algebra and it is what turns a statement about two subprojections into a
-statement about one unitary of the ambient bundle.  Formally the conclusion is
-the predicate \textsf{HasStepAUnitary}: a continuous $G$ on the base, unitary
-in the corner of $V$ at each point, carrying the one section to the other.
+Suppose $F \oplus H \cong \mathbf 1^2 \oplus H$, that is, $V - ss^{*}$ and
+$V - ee^{*}$ are Murray--von Neumann equivalent.  Extending an equivalence by
+$e \mapsto s$ gives a continuous unitary $g$ of the corner of $V$ with
+$g e = s$.
 
 \subsection{Step B: the mapping torus}
 
-From $g$ one builds a rank-$r$ bundle $W_g$ over $N = S^1 \times M$ which
-restricts to $V$ on a slice $\{\ast\} \times M$.  The construction is a
-clutching over the two-point equator of $S^1$: the identity at one seam and $g$
-at the other.
+Cut $S^1$ at two points into two arcs and let $W_g$ be the bundle over
+$N = S^1 \times M$ obtained from $V \times \mathrm{arc}$ on each arc by gluing
+with the identity at one seam and with $g$ at the other.  Then $W_g$ has rank
+$r$ and restricts to $V$ on each slice $\{t\} \times M$.
 
-The obvious alternative does not work, and it is worth saying why, because it
-is the natural first attempt.  One would like to run the Whitehead path from
-the identity to $g$ around the circle.  That model does not descend to $S^1$:
-run over the whole circle the rotation returns to the identity, and the bundle
-it produces is trivial, so it carries no obstruction at all.  The clutched
-model is used instead, and it has the further advantage that the restriction to
-the northern slice is $V \oplus 0$ \emph{on the nose} rather than up to
-equivalence, so no Murray--von Neumann transport is needed later.
+The rotation model, in which one runs a path from the identity to $g$ around
+the circle, does not work here: the rotation returns to the identity, so the
+bundle it produces is trivial.
 
-\subsection{Step C: the odd side}
+\subsection{Step C: $\gamma_r(W_g) \neq 0$}
 
-The manuscript's section of $V$, transported into $W_g$, has exactly one zero
-$z$, and near $z$ it is a local homeomorphism onto a neighbourhood of the
-origin in $\C^r$ -- the derivative there is an isomorphism, and the inverse
-function theorem is applied on an explicit chart.  From this,
+The bundle $V$ has the section $e$, and $H$ has a continuous section with a
+single nondegenerate zero, obtained by choosing, on each factor $\CP^{d_i}$,
+$d_i$ sections of $L_i$ that vanish simultaneously at one point only.
+Interpolating between $e$ and $s$ along the arc, and switching the section of
+$H$ on in the middle of it, gives a section $\sigma$ of $W_g$ with exactly one
+zero $z \in N$.  The zero is nondegenerate: in a chart at $z$, the section is a
+local homeomorphism onto a neighbourhood of the origin in $\C^r$, by the
+inverse function theorem.
+
+Let $U \in H^{2r}(W_g, W_g \setminus 0)$ be the Thom class of $W_g$.  Pulling
+back along $\sigma$, viewed as a map of pairs $(N, N \setminus z) \to
+(W_g, W_g \setminus 0)$, gives $\sigma^{*}U \in H^{2r}(N, N \setminus z)$, and
+by the Gysin identity of Lemma~\ref{lem:hclass} the image of $\sigma^{*}U$
+in $H^{2r}(N)$ is $\sigma^{*}\pi^{*}\gamma_r(W_g) = \gamma_r(W_g)$.  Since
+$\sigma$ has a single nondegenerate zero, $\sigma^{*}U$ is the generator of
+$H^{2r}(N, N \setminus z) \cong \F_2$ (Lemmas~\ref{lem:hres} and
+\ref{lem:hsq}), and the map $H^{2r}(N, N \setminus z) \to H^{2r}(N)$ is an
+isomorphism, by a Mayer--Vietoris computation for the punctured manifold
+$N \setminus z$.  So $\gamma_r(W_g) \neq 0$.
+
+\subsection{Step D: $\gamma_r(W) = 0$}
+
+Let $W$ be any rank-$r$ bundle over $N$ that restricts to $V$ on a slice, and
+let $p \colon N \to M$ be the projection.  By the K\"unneth theorem over
+$\F_2$,
 \[
-  \gamma_r(W_g) \;=\; j^{*}\bigl(\sigma^{*} U\bigr) \;\neq\; 0
-  \qquad\text{in } H^{2r}(N;\F_2),
+  H^{*}(N) \;=\; \Lambda(t) \otimes \Lambda(x) \otimes H^{*}(Y),
 \]
-where $U$ is the Thom class of the bundle pair, $\sigma^{*}U$ its pullback
-along the section, which lies in the relative group $H^{2r}(N, N \setminus z)$
-and is the local generator there, and $j^{*}$ the map to the absolute group.
-That $j^{*}$ is an isomorphism is a computation about the punctured space:
-$H^{2r}(N \setminus z;\F_2) = 0$, by a Mayer--Vietoris recursion over the
-product structure of $N$.  No degree computation is used anywhere; the local
-generator is identified by excision to a chart together with a homeomorphism.
-
-The three named residues of this step are the subject of
-Section~\ref{sec:residues}.
-
-\subsection{Step D: the even side}
-
-Step D is a statement about \emph{every} rank-$r$ bundle over $N$ that
-restricts to $V$ on the slice, with no reference to $g$:
+with $t$ the class of $S^1$, $x$ the class of $S^5$ and
+$Y = \prod_i \CP^{d_i}$.  Because $W$ restricts to $V$ on a slice,
 \[
-  \gamma_r(W) \;=\; 0 .
+  \gamma(W) \;=\; \gamma(p^{*}V)\,(1 + z\,b),
+  \qquad z = t x,\quad b = \sum_n b_n \in H^{*}(Y),
 \]
-Over $\F_2$ the cohomology of $N$ decomposes as
-$H^{*}(N;\F_2) = \Lambda(t) \otimes \Lambda(x) \otimes H^{*}(Y;\F_2)$ with $t$
-the circle class, $x$ the class of $S^5$ and $Y$ the projective part, so one
-may write $\gamma(W) = \gamma(p^{*}V)\,(1 + z b)$ with $z = t x$ and
-$b \in H^{*}(Y;\F_2)$; the slice condition is what forces this shape.  Three
-things then finish it.
+with $b_n \in H^{2n}(Y)$.  Three facts finish the computation.
 
-First, $\gamma(V) = \prod_i (1+h_i)^{d_i}$ is supported in degrees divisible by
-four, because each $d_i$ is even and squaring is additive over $\F_2$.  This is
-the only place the evenness hypothesis is used, and it is used as the Frobenius
-endomorphism rather than as a parity count.
+First, $\gamma(V) = \prod_i (1+h_i)^{d_i}$, where $h_i \in H^2(\CP^{d_i})$ is
+the mod-2 Chern class of $L_i$.  Since each $d_i$ is even and
+$(1+h)^2 = 1 + h^2$ over $\F_2$, this is a polynomial in the $h_i^2$, so
+$\gamma_k(V) = 0$ for every odd $k$.  This is the only place where the
+evenness of the $d_i$ is used.
 
-Second, the Wu relation
+Second, the Wu formula for mod-2 Chern classes \cite{MS},
 \[
   \Sq^{2i}\gamma_{i+1} \;=\; \sum_{s=0}^{i} \gamma_{i-s}\,\gamma_{i+1+s},
 \]
-read on the $z$-part and combined with the instability of Steenrod squares --
-$\Sq^{2k}$ vanishes on classes of degree below $2k$ -- kills every
-even-indexed coefficient $b_n$.
+applied to $\gamma(W)$ and read on the $z$-part, together with the
+instability of the Steenrod squares ($\Sq^{2k}$ vanishes on classes of degree
+below $2k$), gives $b_n = 0$ for every even $n$.
 
-Third, assembling, $\gamma_r(W) = \sum_k A_{m-k}\, b_k$ with every surviving
-term zero.
+Third, $\gamma(V)$ lives in degrees at most $2m < 2r$, so the degree-$2r$
+part of $\gamma(W)$ is
+\[
+  \gamma_r(W) \;=\; z \sum_{k} \gamma_{m-k}(V)\, b_k .
+\]
+Since $m$ is even, $\gamma_{m-k}(V) \neq 0$ forces $k$ even, and then
+$b_k = 0$.  So $\gamma_r(W) = 0$.
 
-\subsection{The contradiction}
+\subsection{Conclusion}
 
-Steps C and D are about the same bundle and give opposite answers, so no such
-$g$ exists, and by Step A no Murray--von Neumann equivalence exists either.
-Formally the contradiction is a single schema: given a top-class functional,
-a Step C that makes it nonzero for every admissible $G$ and a Step D that makes
-it zero for every admissible $G$, together with Step A to produce a $G$ from an
-equivalence, one concludes the failure of \textsf{ContinuousMvNEquiv}.
+Step~D applies to $W_g$, which restricts to $V$ on a slice, and gives
+$\gamma_r(W_g) = 0$, while Step~C gives $\gamma_r(W_g) \neq 0$.  So no
+unitary $g$ as in Step~A exists, and $F \oplus H$ and $\mathbf 1^2 \oplus H$
+are not isomorphic.  This proves Lemma~\ref{lem:two}.
 \leanverified{lem:two}{GroupApproximation.CharClass.lemmaTwo\_of\_stepC\_stepD}
-The two sides are genuinely independent: Step D quantifies over all bundles
-with the right restriction and never sees $g$, while Step C is about the one
-bundle $g$ builds.
 
-\section{Step C's odd side and the three residues}
-\label{sec:residues}
+\section{Three lemmas used in Step C}
+\label{sec:stepc}
 
-\subsection{The relative Euler class survives restriction}
-\label{sec:hres}
+Throughout this section $E = W_g$ is the rank-$r$ bundle of Step~B over the
+$2r$-manifold $N$, $\pi \colon E \to N$ is the projection, $U$ is its Thom
+class, $\sigma$ is the section of Step~C and $z$ is its zero.  The Thom class
+is constructed on the projective completion $P(E \oplus \mathbf 1)$: by the
+Leray--Hirsch theorem, $H^{*}(P(E \oplus \mathbf 1))$ is a free module over
+$H^{*}(N)$ with basis $1, \xi, \dots, \xi^{r}$, where $\xi$ is the mod-2 Chern
+class of the tautological line bundle, and $U$ is the class whose
+Leray--Hirsch coordinates are $(\gamma_r, \gamma_{r-1}, \dots, \gamma_1, 1)$.
+The total space $E$ sits in $P(E \oplus \mathbf 1)$ as the affine chart, the
+complement of $P(E)$, and $\xi$ restricts to zero on it.
 
-Step~C produces a section of the mapping-torus bundle with exactly one zero,
-and identifies the top mod-2 Chern class with the image of the Thom class under
-restriction to that zero.  One of the maps in that identification is the
-restriction
-\[
-  \textsf{lixRes} \colon
-  H^{2r}(E,\,E \setminus 0;\F_2) \longrightarrow
-  H^{2r}\bigl(E|_B,\,E|_B \setminus 0;\F_2\bigr)
-\]
-of the bundle pair to the part lying over a trivialising neighbourhood $B$ of
-the section's zero, and what Step~C needs of it is injectivity.
-
-The source of that map is a line.  The degreewise Thom algebra identifies the
-relative group of the bundle pair with $H^0$ of the base, and the base
-$S^1 \times S^5 \times \prod_i \CP^{d_i}$ is path-connected, so that group is
-one-dimensional over $\F_2$, with the Thom class as generator.  A linear map
-out of a line is injective exactly when it does not kill the generator, so the
-whole of the required injectivity is the single nonvanishing
-\[
-  \textsf{lixRes}\,(\textsf{lixThomClassTerm}) \;\neq\; 0 .
-\]
-Both directions of that reduction are formal, so nothing is lost in it.
-
-\subsection*{The neighbourhood cannot be computed in}
-
-It is tempting to finish by transporting both sides through Thom isomorphisms
-and reading the map as the restriction of $H^0$ from the base to $B$, which is
-injective because the base is connected.  That is a correct description of the
-mathematics and it is not a route that exists here.  The Thom isomorphism in
-question is the coordinate map that names the Thom class, and it is built from
-a bridge which requires a \emph{compact Hausdorff} base; $B$ is an open ball
-and is neither.  There is no Thom isomorphism over $B$ to transport anything
-through.  The same obstruction appears from the other side in the statement
-that over a contractible base only the top Leray--Hirsch column survives at the
-top degree: that statement is true, but applying it to a restricted class needs
-a Leray--Hirsch presentation over the neighbourhood, and a ball has none.
-
-Connectedness of the base is still used, and it is what makes the source a
-line; it does not give the nonvanishing.
-
-\subsection*{The fibre over the zero}
-
-So the class is followed one step further, to the fibre over the section's zero
-$z$.  The set $\{z\}$ is a single point of the base: compact, Hausdorff and
-nonempty for free, and over a one-point base the Leray--Hirsch presentation
-exists with nothing added and the coordinates are computable.
-
-Because $z$ lies in $B$, restricting to the fibre factors through restricting
-to $B$.  The direction in which that factorisation is used is the whole
-argument and is easy to state backwards, so we state it forwards: a class
-killed by $\textsf{lixRes}$ is killed over the point, and therefore surviving
-over the point \emph{suffices}.  It is not claimed that the two restrictions
-have the same kernel, that the restriction to the fibre is injective, or that
-it detects every class.
-
-Over the point the computation is a coordinate computation and nothing else.
-The Leray--Hirsch coordinates of a class restrict coordinatewise; the top
-coordinate of the Thom class is the unit of $H^0$ of the base; and the unit
-restricts to the unit, which is nonzero because a point is nonempty.  So the
-restricted class is nonzero, and $\textsf{lixRes}$ spares the generator.
-\leanverified{sec:hres}{GroupApproximation.CharClass.injective\_lixRes}
-
-Only linearity of the coordinate map is used, never its injectivity over the
-point, which is why the detour costs one lemma rather than a second copy of the
-Thom machinery.  No positivity of the $d_i$ enters this argument, no projective
-factor is peeled and nothing inducts over the index family, so the empty family
-$l = 0$ -- the first stage of the tower, where the base is $S^1 \times S^5$ and
-any hypothesis of the form $0 < d_i$ is vacuous -- is not a special case.
-
-\subsection{The Gysin identity}
-\label{sec:hclass}
-
-The second residue identifies the image of the Thom class in the absolute
-cohomology of the total space with the pullback of the top mod-2 Chern class:
-\[
-  j_E(U) \;=\; \pi^{*}\gamma_r .
-\]
-
-The obstacle is that the Thom class is \emph{named} on the vector-bundle pair
-while its Leray--Hirsch coordinates are \emph{read} on the projectivisation
-pair, so the two relative-to-absolute maps have to be compared before anything
-can be computed.  They differ by restriction to the affine chart.  On the
-projectivisation the image of the Thom class is by construction the
-Leray--Hirsch combination $\sum_i \pi^{*}(a_i) \smile \xi^{i}$ of its
-coordinates, and those coordinates are known: the top one is the unit and the
-$i$-th is the Chern coefficient $\gamma_{r-i}$.  Restricting to the chart kills
-$\xi$, so every column except $i = 0$ dies and the surviving one is
-$\pi^{*}(1 \smile \gamma_r) = \pi^{*}\gamma_r$.
+\begin{lemma}[Gysin identity]
+\label{lem:hclass}
+The image of $U$ under $H^{2r}(E, E \setminus 0) \to H^{2r}(E)$ is
+$\pi^{*}\gamma_r(E)$.
 \leanverified{sec:hclass}{GroupApproximation.CharClass.lixHclass}
+\end{lemma}
 
-The chart here \emph{is} the total space: the map in question includes $E$ into
-$P(E \oplus \mathbf 1)$ as the affine chart, so restricting to the chart and
-restricting to $E$ are one operation, and the argument has returned to where it
-started.
+\begin{proof}
+The image of $U$ in $H^{2r}(P(E \oplus \mathbf 1))$ is
+$\sum_{i=0}^{r} \pi^{*}(\gamma_{r-i}) \smile \xi^{i}$.  Restricting to the
+affine chart $E$ kills $\xi$, so only the term $i = 0$ survives, and it is
+$\pi^{*}\gamma_r$.
+\end{proof}
 
-It is worth saying that the identity is not a formal consequence of naturality
-and splitting alone.  For arbitrary maps satisfying only those two conditions
-it is false, so it has to be proved at the concrete $j_E$ and $\pi^{*}$ rather
-than at a general pair, and a reader who tries to state this subsection
-abstractly will lose time discovering that.
-
-Three things this does not say, all three worth stating because the argument
-invites the opposite reading.  It proves nothing about the \emph{section}: the
-class compared here is the one the projection pulls back, not the one the
-section detects.  It does not on its own make $\gamma_r$ nonzero -- that is the
-consumer's conclusion, from this identity together with
-Section~\ref{sec:hres}, and not from this identity alone.  And it says nothing
-about $\xi$ away from the chart: on the complement of the zero section $\xi$
-does not vanish, which is where the Gysin sequence lives, so the slogan above
-must not be read as making $\xi$ zero -- that would trivialise the whole
-argument.  In the other direction, the identity holds for \emph{every}
-continuous corner-unitary $G$ and not only for the clutching one, so nothing in
-it is special to the construction.
-
-\subsection{The compatibility square}
-\label{sec:hsq}
-
-The third residue is the square saying that sectioning and then charting agrees
-with restricting and then trivialising.  Both outer legs are relative
-pullbacks, but the charting side contains an \emph{inverse} excision, so the
-square cannot be checked pointwise from end to end.  Composing that excision's
-forward map onto both sides removes the inverse.  One then restricts to a
-smaller neighbourhood of the zero, and that restriction does two things: it
-brings the two legs, which reach the local model through \emph{different}
-neighbourhoods of the zero, onto a common one; and it puts the comparison
-inside the region where the chart genuinely reads the section, which its clamps
-guarantee only near the zero.  Only injectivity of that restriction is used,
-never that it is an isomorphism.  What remains are two pullbacks along explicit
-maps of pairs: on the left, a point goes to the section at its chart image; on
-the right, to the point of the fibre over the section's zero with the given
-frame coordinate.
-
-The two are joined by a homotopy through maps of pairs, whose far end is the
-right leg precomposed with a \emph{real}-linear automorphism of $\C^{r}$.  Real
-and not complex: it factors through a coordinate identification produced by the
-real dimension count $6 + 2m = 2r$, and its bijectivity follows from
-injectivity by finite-dimensionality over $\R$, so a reader who takes it for a
-complex-linear map will not be able to reconstruct that step.  The homotopy is
-then cut at either end because the relative cohomology of the small
-neighbourhood punctured at the origin is a line over $\F_2$, and separately the
-automorphism's own pullback is the identity because the relative cohomology of
-the local model $\C^{r}$ punctured at the origin is a line over $\F_2$ as well.
-Those are two different groups at two different stages of the argument, lines
-for the same reason but not the same fact used twice.  That cut is
-not a shortcut through relative homotopy invariance -- it is a substitute for
-it.  This development has no prism operator, so relative homotopy invariance is
-not available as a tool at all, and cutting a homotopy over a line is what
-takes its place.  The mod-2 coefficients are load-bearing here: over any other
-field two isomorphisms between lines differ by a scalar and the argument fails.
-\leanverified{sec:hsq}{GroupApproximation.CharClass.lixHsq}
-
-What keeps this honest is that the two legs are shown \emph{equal}, not both
-nonzero.  Equality would also follow from both being nonzero, since both are
-maps between $\F_2$-lines, and that route exists; it was not taken.  On the
-right, ``nonzero'' is exactly the conclusion of Section~\ref{sec:hres}, a map
-out of a line being nonzero precisely when it is injective.  On the left,
-``nonzero'' is not Step~C's conclusion -- that is the nonvanishing of
-$\gamma_r$ -- but the injectivity hypothesis which Step~C's odd side
-\emph{consumes}, which is to say the very thing this square together with
-Section~\ref{sec:hres} exists to produce.  So an argument establishing the two
-legs separately would have had to supply the reduction's own output by
-independent means: not a circular proof, but a reduction assuming what it was
-introduced to give.
-
-Four things not to infer.  The section is not linear in the base point; what is
-linear is the reconstruction in the chart's \emph{value} at a fixed point, and
-the far end of the homotopy, where the base is pinned at the zero.  The chart
-itself is the local homeomorphism supplied by the inverse function theorem, and
-only its derivative at the zero is linear.  Nondegeneracy of the section's zero
-is not proved here; it is paid for once, upstream, by the product chart being a
-partial homeomorphism.  Nothing here is naturality of excision, which is not
-proved anywhere in the development -- the design avoids crossing the inverse
-excision by composing it away instead.
-
-\section{What is formalised}
-\label{sec:formal}
-
-Everything above is a theorem of Lean~4.  This section says which declaration
-carries which statement, and what was actually checked about them.
-
-Two commits are named below and they answer different questions, so we keep
-them apart.  Every line number was verified against
-\textsf{da630c335}, and that is the commit to open if one wants to find a
-declaration.  The axiom readings reported at the end of this section were taken
-at \textsf{7e8bc3221}, an earlier commit at which the two endpoint statements
-stand at the same lines, and that is the commit to rebuild if one wants to
-reproduce them.  Declaration names are stable under both; line numbers are not
-stable under anything, and are given only to save a search.
-
-\subsection{The carriers}
-
-All declarations live in the \textsf{GroupApproximation} namespace, under the
-further namespace shown.
-
-\begin{itemize}\raggedright
-\item Theorem~\ref{thm:main}:
-  \textsf{NinetyNineProblems.\allowbreak not\_\allowbreak problemLIX},
-  \textsf{ProblemLIX.lean:346}.
-\item Theorem~\ref{thm:main}, separable form:
-  \textsf{NinetyNineProblems.\allowbreak exists\_\allowbreak separable\_%
-  \allowbreak simple\_\allowbreak unital\_\allowbreak not\_\allowbreak k1Inj},
-  \textsf{ProblemLIX.lean:352}.
-\item Lemma~\ref{lem:two} as a statement:
-  \textsf{LIX.\allowbreak LemmaTwoHolds},
-  \textsf{LIXLemmaTwoProp.lean:82}; as a theorem:
-  \textsf{CharClass.\allowbreak lemmaTwoHolds},
-  \textsf{LemmaTwoOfHsqHresHclass.lean:84}.
-\item The Step C / Step D contradiction:
-  \textsf{CharClass.\allowbreak lemmaTwo\_\allowbreak of\_\allowbreak
-  stepC\_\allowbreak stepD}, \textsf{LemmaTwoStepA.lean:217}.
-\item Step B, restriction to the slice:
-  \textsf{CharClass.\allowbreak mappingTorus\_\allowbreak north},
-  \textsf{MappingTorusProjection.lean:513}.
-\item Evenness of the tower dimensions:
-  \textsf{LIX.\allowbreak even\_\allowbreak lixDD},
-  \textsf{LIXLemmaTwoProp.lean:62}.
-\item Section~\ref{sec:hres}:
-  \textsf{CharClass.\allowbreak injective\_\allowbreak lixRes},
-  \textsf{LIXResFibre.lean:251}.
-\item Section~\ref{sec:hclass}:
-  \textsf{CharClass.\allowbreak lixHclass}, \textsf{LIXHclass.lean:175}; and
-  its four inputs, in dependency order --
-  \textsf{CharClass.LH.\allowbreak pull\_\allowbreak bridgeChartIncl\_%
-  \allowbreak tautEulerOf}, \textsf{ThomChartTautZero.lean:169}, that $\xi$
-  dies on the chart;
-  \textsf{CharClass.\allowbreak relToAbs\_\allowbreak bridgeTotal},
-  \textsf{ThomBridgeRelToAbs.lean:68}, that the two relative-to-absolute maps
-  differ by that restriction;
-  \textsf{CharClass.\allowbreak pull\_\allowbreak bridgeChartIncl\_%
-  \allowbreak lhSum}, \textsf{LIXHclass.lean:132}, the column collapse; and
-  \textsf{CharClass.\allowbreak lixChern\_\allowbreak top\_\allowbreak
-  eq\_\allowbreak gamma}, \textsf{LIXChernTopGamma.lean:58}.  The last of these
-  is not bookkeeping: it identifies two \emph{different} definitions of the top
-  Chern class, the degree-$2r$ component of a ring-level class and the top
-  degreewise coefficient of the Leray--Hirsch presentation.  Where this note
-  writes $\gamma_r$ and means ``the top Chern class'', that lemma is what makes
-  the two agree.
-\item Section~\ref{sec:hsq}:
-  \textsf{CharClass.\allowbreak lixHsq}, \textsf{LIXHsq.lean:278}; the cut of a
-  homotopy over a line, which stands in for the relative homotopy invariance
-  this development does not have, is
-  \textsf{RelativeSupport.\allowbreak relPullback\_\allowbreak
-  eq\_\allowbreak of\_\allowbreak homotopy\_\allowbreak of\_\allowbreak line},
-  \textsf{RelativeLineHomotopy.lean:112}.
-\item Thom coordinates under a base restriction:
-  \textsf{CharClass.\allowbreak thomJmTotal\_\allowbreak restrict},
-  \textsf{ThomJmNatural.lean:153}; naturality of the Thom bridge in the base:
-  \textsf{CharClass.\allowbreak bridgeTotalRestrict},
-  \textsf{ThomChartSquare.lean:103}.
-\end{itemize}
-
-The two endpoint statements are the only ones in the corpus carrying
-\textsf{\#audit\_\allowbreak closed\_\allowbreak axioms};
-\textsf{CharClass.\allowbreak lemmaTwoHolds} carries the weaker
-\textsf{\#audit\_\allowbreak axioms}, and does so deliberately.  The reason is not
-that the closed gate rejects the internal form.  It is that the gate checks a
-syntactic shape without unfolding, so the internal form would pass it on a
-technicality, and the single point of certification was placed at the
-reader-facing endpoint instead of being spread over the assembly.
-
-There is exactly one declaration named \textsf{not\_problemLIX} in the corpus.
-An earlier internal duplicate in the \textsf{CharClass} namespace was deleted
-rather than aliased, because wiring the endpoint to depend on the assembly
-while the assembly depended on the endpoint closed a genuine import cycle.
-
-\subsection{What was checked, and in what order}
-
-The claim that these declarations prove what they say rests on four conditions,
-and they are ordered rather than independent -- a point worth stating because
-the natural reading of them as a checklist is wrong.
-
-\begin{enumerate}
-\item The build succeeds.  Nothing below means anything without this.  A failed
-  build still emits an axiom report, assembled from whatever modules compiled
-  before the failure, and that report can be entirely clean while proving
-  nothing about the module one is interested in.
-\item No declaration in the build depends on \textsf{sorryAx}.  Lean closes an
-  unsolved goal with that axiom and still writes an object file, and a file
-  can contain no literal \textsf{sorry} token while its theorems depend on it,
-  so a textual scan for the token does not answer this question.
-\item The axiom report is non-empty.  A count of zero means no axiom line was
-  emitted at all, which is indistinguishable from cleanliness if one only asks
-  whether any line is bad.
-\item The declaration one cares about appears in that report \emph{by name},
-  with its own axiom list.
-\end{enumerate}
-
-For the two endpoint statements, condition~(4) reads
+\begin{lemma}
+\label{lem:hres}
+Let $B$ be a trivialising open neighbourhood of $z$ in $N$.  The restriction
 \[
-  [\textsf{propext},\ \textsf{Classical.choice},\ \textsf{Quot.sound}] ,
+  H^{2r}(E,\,E \setminus 0) \longrightarrow
+  H^{2r}\bigl(E|_B,\,E|_B \setminus 0\bigr)
 \]
-the three axioms of Lean's own logic and nothing else.  This was read three
-times independently, on two different clones, by three different readers, each
-from a forced fresh compile with build artifacts cleared rather than from a
-replay, and from a clean export of the commit rather than from a working tree.
-All three readings were taken from the raw build log, not from any tool's
-summary of it.  They agree.
+is injective.
+\leanverified{sec:hres}{GroupApproximation.CharClass.injective\_lixRes}
+\end{lemma}
 
-That last point is provenance rather than pedantry, and it tells a later reader
-which artefact to re-derive the claim from.  A summary that truncates its own
-report is indistinguishable from a complete one: in the run behind this
-section, the summarising tool omitted precisely the two endpoint declarations
-while reporting a plausible and truthful count of the lines it had gathered.
-The failure that invites is not a reader who sees nothing and stops.  It is a
-reader who sees nothing for the endpoint, concludes that the build did not
-reach it, and then finds one row above it the clean-looking axiom line of
-\textsf{not\_\allowbreak problemLIX\_\allowbreak of\_\allowbreak lemmaTwo} --
-a different theorem, and a conditional one -- and cites that instead.  A
-truncated report does not produce an obvious absence; it produces a plausible
-wrong answer.
+\begin{proof}
+The Thom isomorphism identifies $H^{2r}(E, E \setminus 0)$ with $H^0(N)$,
+which is one-dimensional because $N$ is connected, with generator $U$.  So it
+suffices to show that $U$ restricts to a nonzero class over $B$.  Since
+$z \in B$, restriction to the fibre over $z$ factors through restriction over
+$B$, so it suffices that $U$ restricts to a nonzero class over the point $z$.
+Leray--Hirsch coordinates restrict coordinatewise, and the last coordinate of
+$U$ is $1 \in H^0(N)$, which restricts to $1 \in H^0(\{z\}) \neq 0$.
+\end{proof}
 
-\section{Divergences and non-claims}
-\label{sec:divergences}
+\begin{lemma}
+\label{lem:hsq}
+Let $\phi$ be a chart of $N$ at $z$ in which $\sigma$ is a local
+homeomorphism onto a neighbourhood of the origin in $\C^r$.  The class
+$\sigma^{*}U \in H^{2r}(N, N \setminus z)$, read in the chart $\phi$, agrees
+with the restriction of $U$ to the fibre $(E_z, E_z \setminus 0)$, read in a
+trivialisation of $E$ near $z$.  In particular $\sigma^{*}U$ generates
+$H^{2r}(N, N \setminus z) \cong \F_2$.
+\leanverified{sec:hsq}{GroupApproximation.CharClass.lixHsq}
+\end{lemma}
 
-We list the places where this account or the formal development departs from
-what a reader may expect, and the things that are not claimed.
+\begin{proof}
+Both sides are pullbacks of $U$ along maps of pairs into
+$(E, E \setminus 0)$, but reading $\sigma^{*}U$ in the chart involves the
+inverse of an excision isomorphism, so the two sides cannot be compared
+pointwise.  Composing both with the excision itself removes the inverse.  We
+then restrict to a small neighbourhood of $z$, on which the chart reads the
+section; only injectivity of this restriction is used.  What remains are two
+pullbacks along explicit maps of pairs: on one side a point goes to the value
+of the section at its chart image, on the other to the point of the fibre over
+$z$ with the given coordinates.  These maps are homotopic through maps of
+pairs, up to composing one of them with a real-linear automorphism of
+$\C^{r} = \R^{2r}$ coming from the derivative of the section at $z$; the
+automorphism is real-linear because the identification of the tangent space
+with $\C^r$ comes from the real dimension count $6 + 2m = 2r$.  The relative
+cohomology groups involved, that of the punctured neighbourhood and that of
+$(\C^r, \C^r \setminus 0)$, are one-dimensional over $\F_2$, so any two
+isomorphisms between them coincide.  Hence the homotopy can be replaced by
+its two ends and the automorphism induces the identity, and the two pullbacks
+agree.  The second statement follows from Lemma~\ref{lem:hres}.
+\end{proof}
 
-\emph{The proof of Lemma~\ref{lem:two} is not the source's.}  The source argues
-integrally, with Chern classes and a Künneth decomposition over $\mathbb Z$;
-what is formalised is a mod-2 argument through Wu classes and Steenrod squares.
-Section~\ref{sec:modtwo-divergence} states this at length.  It is the single
-most important divergence, because both arguments prove the same statement and
-only one of them is present.
+The last step is specific to $\F_2$: over any other field two isomorphisms
+between lines differ by a scalar.
 
-\emph{Bundles are projections.}  A vector bundle is a projection-valued map
-throughout, an isomorphism of bundles is a Murray--von Neumann equivalence, and
-no Serre--Swan theorem is invoked.  This is a modelling choice, and statements
-about ``vector bundles'' below should be read in it.
+\begin{thebibliography}{STW}
+\raggedright
 
-\emph{Lemma 6 of the source is absent.}  It is not that it was proved
-differently; it is not needed, for the reason in Section~\ref{sec:cor4}.
+\bibitem{AJT}
+S. Araki, I. M. James and E. Thomas,
+Homotopy-abelian Lie groups,
+\emph{Bull. Amer. Math. Soc.} \textbf{66} (1960), 324--326.
 
-\emph{$K_1(A) = 0$ is not claimed.}  Theorem~\ref{thm:main} says the map
-$\kappa_A$ is not injective.  It says nothing about what $K_1(A)$ is.
+\bibitem{Bl}
+B. Blackadar,
+\emph{K-Theory for Operator Algebras}, 2nd ed.,
+Math. Sci. Res. Inst. Publ. 5, Cambridge University Press, 1998.
 
-\emph{No claim about the order of the kernel.}  In particular it is not claimed
-that $\ker \kappa_A$ has order exactly two, and no such statement is
-formalised.
+\bibitem{Bo}
+R. Bott,
+The stable homotopy of the classical groups,
+\emph{Ann. of Math. (2)} \textbf{70} (1959), 313--337.
 
-\emph{Section~\ref{sec:hres} claims one implication, not an equivalence.}  It
-is shown that a class killed by the restriction to the trivialising
-neighbourhood is killed over the fibre at the section's zero, so that surviving
-over the fibre suffices.  It is not shown that the two restrictions have the
-same kernel, that the restriction to the fibre is injective, or that it detects
-every class.
+\bibitem{Cu}
+J. Cuntz,
+K-theory for certain C*-algebras,
+\emph{Ann. of Math. (2)} \textbf{113} (1981), 181--197.
 
-\emph{Nothing is computed over the trivialising neighbourhood.}  There is no
-Thom isomorphism over it in the development, and none is used or claimed; see
-Section~\ref{sec:hres}.
+\bibitem{EHT}
+G. A. Elliott, T. M. Ho and A. S. Toms,
+A class of simple C*-algebras with stable rank one,
+\emph{J. Funct. Anal.} \textbf{256} (2009), 307--322.
 
-\emph{Relative homotopy invariance is not available.}  The development has no
-prism operator, so the tool does not exist in it; where an argument appears to
-use it, what is used instead is the cut of a homotopy over an $\F_2$-line
-described in Section~\ref{sec:hsq}.  Nor is naturality of excision proved
-anywhere, and nothing relies on it.
+\bibitem{Ji}
+X. Jiang,
+Nonstable K-theory for $\mathcal Z$-stable C*-algebras,
+arXiv:math/9707228 (1997).
 
-\emph{The mod-2 coefficients are not a convenience.}  Besides
-Section~\ref{sec:modtwo}, where they replace an integral Künneth theorem the
-development does not have, they are load-bearing in
-Section~\ref{sec:hsq}: over a field other than $\F_2$ two isomorphisms between
-lines differ by a scalar and that argument fails.
+\bibitem{Li}
+H. Lin,
+Approximation by normal elements with finite spectra in C*-algebras of real
+rank zero,
+\emph{Pacific J. Math.} \textbf{173} (1996), 443--489.
+
+\bibitem{MS}
+J. W. Milnor and J. D. Stasheff,
+\emph{Characteristic Classes},
+Ann. of Math. Stud. 76, Princeton University Press, 1974.
+
+\bibitem{Ri}
+M. A. Rieffel,
+The homotopy groups of the unitary groups of non-commutative tori,
+\emph{J. Operator Theory} \textbf{17} (1987), 237--254.
+
+\bibitem{STW}
+C. Schafhauser, A. Tikuisis and S. White,
+Nuclear C*-algebras: 99 problems,
+arXiv:2506.10902 (2025).
+
+\bibitem{Se}
+A. Seth,
+Tensorial permanence of $K$-stability for diagonal AH-algebras,
+\emph{Bull. Lond. Math. Soc.} \textbf{58} (2026), \doi{10.1112/blms.70398}.
+
+\bibitem{To}
+A. S. Toms,
+A simple C*-algebra which is not $K_1$-injective,
+arXiv:2609.09535 (2026).
+
+\bibitem{Vi98}
+J. Villadsen,
+Simple C*-algebras with perforation,
+\emph{J. Funct. Anal.} \textbf{154} (1998), 110--116.
+
+\bibitem{Vi99}
+J. Villadsen,
+On the stable rank of simple C*-algebras,
+\emph{J. Amer. Math. Soc.} \textbf{12} (1999), 1091--1102.
+
+\bibitem{Vi02}
+J. Villadsen,
+Comparison of projections and unitary elements in simple C*-algebras,
+\emph{J. Reine Angew. Math.} \textbf{549} (2002), 23--45.
+
+\end{thebibliography}
 
 \end{document}
