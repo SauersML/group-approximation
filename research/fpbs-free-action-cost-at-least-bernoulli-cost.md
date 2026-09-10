@@ -89,6 +89,19 @@ This avoids imposing annihilation of all residual spectrum, but
 the signed change is exactly added edge cost minus deleted edge
 cost. A general geometric choice achieving it is still missing.
 
+Check whether the allowed moves exclude the optimum. Section 11 of
+the iteration artifact proves that one charged addition and bounded
+connected deletion can approximate any supplied base competitor.
+The supremal net saving is exactly c(H)-C(X); bounded replacements
+therefore do not themselves exclude optimal costs. The missing step
+is to obtain the competitor on the base from source information.
+Section 12 verifies a successful choice on the sprinkled-forest
+T_4 x Z benchmark: coherent marked crossings give an explicit
+geometric tail, a bounded retraction at each stage, and cost and
+trace tending to one and zero respectively. This escapes the
+priority obstruction using the product geometry already available
+in that known family. It does not descend an arbitrary source.
+
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
 open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti

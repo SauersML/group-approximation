@@ -7,6 +7,7 @@ target: fpbs-cycle-retraction-contractive-transport
 requires:
   - fpbs-relative-cycle-operator-descent
   - fpbs-graphing-cost-betti-cycle-dimension-identity
+  - fpbs-priority-deletion-density-above-action-cost
 artifacts:
   - research/artifacts/fpbs/docs/relative-cycle-iteration.md
 ---
@@ -61,3 +62,26 @@ target; it does not prove a positive cost--Betti gap exists.
 
 Section 10 obtains the signed stopping criterion by rearranging
 the already proved ledger, retaining all accumulated eta terms.
+
+Section 11 proves completeness relative to a supplied generating
+competitor Psi. Retain the old edges lacking a Psi-path of length
+at most L; their measure decreases to zero. Bounded degree supplies
+finite congestion for the other edges' selected short paths.
+Truncation and repair using H also show that bounded-degree
+competitors approach C(X), proving the net-saving supremum.
+
+Section 12 supplies the explicit product-group selection. Route each
+deleted horizontal edge up at most k levels to the next q-marked
+crossing and back down. At most four sets of k such paths use a
+vertical edge; at most k use a marked crossing, in each case plus
+the retained edge itself. The unrepaired horizontal cost is at most
+2(1-q)^(k+1). Using the same uniform labels with q_n=2^(-n) and
+k_n=n 2^n keeps the graphings nested after the first addition and
+bounds their cost by 1+2^(1-n)+2 exp(-n). The required dimension
+identity then bounds every transported trace by c(H_n)-1, which
+tends to zero. The positive forest excess used for comparison is
+the required priority-obstruction claim; the sprinkled forest's
+generation is [Lyons--Peres--Schramm, Theorem 3.22](https://arxiv.org/pdf/math/0412263).
+The sparse-column construction is rederived in the artifact, and
+is already used in cost-cycle-structure.md, Section 8. No analogous
+geometry for an arbitrary group is assumed.

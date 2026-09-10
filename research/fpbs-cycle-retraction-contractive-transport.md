@@ -56,5 +56,23 @@ Section 10 retains the weaker sufficient stopping condition from
 the exact identity: Tr(K_n)-sum_{i<n} eta_i<=delta gives
 C(X)<=c(Phi)+delta. It proves no general selection achieving it.
 
+The allowed exchanges are complete relative to supplied competitors
+(Section 11). For bounded-degree generating H and Psi on the same
+base, add Psi minus H and retain just the old edges whose Psi-distance
+exceeds L. This gives a bounded path retraction and an output of cost
+c(Psi)+m(E_L), with m(E_L)->0. Consequently the supremal net saving
+over single allowed exchanges is c(H)-C(X). This does not supply a
+base competitor of cost at most that of a different source action.
+
+Section 12 gives a quantitative successful selection on T_4 x Z.
+Shared vertical paths through iid q-marked crossings give retained
+cost at most 1+2q+2(1-q)^(k+1), with path length at most 2k+1 and
+congestion at most 4k+1. One initial addition followed by nested
+bounded connected deletions has cost tending to one and transported
+trace tending to zero. This works on the sprinkled-forest benchmark
+where the independent-priority scheme fails. It uses the explicit
+product geometry of a known fixed-price-one group, not a universal
+construction of competitors.
+
 The result is a written deduction from standard finite-trace
 operator theory, not a novelty claim or universal Fixed Price proof.
