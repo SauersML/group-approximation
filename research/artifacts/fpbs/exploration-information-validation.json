@@ -9,7 +9,7 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "4a3bd38e6a45d2b3067653d59de812202459ff72045171e5efbe8c3907c7791c",
+  "overlay_archive_sha256": "b155ef09fc7e773dfac964b8e6e53911b04c044872d8fbc5645d4846b69a5bd0",
   "claims": 7790,
   "routes": 7961,
   "task_claims": 252,
@@ -1732,7 +1732,7 @@
     "research/artifacts/fpbs/docs/relative-cycle-exchange.md": "10e6d655a01622958da4830b7a182c9b5d1e986745a786fcd0fe5b9642c2e8df",
     "research/artifacts/fpbs/docs/relative-cycle-iteration.md": "0834be69ef0cd891814f503b770e57704949b530a7257ade73e06a3dc66c3874",
     "research/artifacts/fpbs/docs/shared-component-repair.md": "5b9d492b4d734f3b400b5f0276c2c17db0e8a7271ac352eff21d32302679b148",
-    "research/artifacts/fpbs/docs/sparse-base-surgery.md": "f626d8c0548ab598fe19ff1ef5a31f990c099b7791ecd2f51961bdd677dac104",
+    "research/artifacts/fpbs/docs/sparse-base-surgery.md": "81e8b05ad8245896b1f30f42a9dfd1408fe712988b3ca4f423dda36f2ce1cdc7",
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
@@ -1782,7 +1782,7 @@
     "research/fpbs-conditional-traffic-descent-bound.md": "c39b13e4d4b4d656fd7589b3ba79b26847d3fdbf3303b66ba465b2e72bed6e2e",
     "research/fpbs-contact-dispersion-sign-obstruction-proof.md": "9e8ba513d7dbbbc8b4adf2ffe118811e7e9027383e33dee4f3ebf13fa8cc9a76",
     "research/fpbs-contact-dispersion-sign-obstruction.md": "dbdfaba32780e118c1560979b4536404d70fc94efab7b370383548609d8dea23",
-    "research/fpbs-correlated-reuse-flags-removable.md": "204b701c9d7df36ef22324d3e27d9b17ef6c6d3a229290823526f5a09bc606c0",
+    "research/fpbs-correlated-reuse-flags-removable.md": "2635a6baa572be21e603ea5fcf3ec3e8526384ee1a234b5d9370538e797d9ec9",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable-proof.md": "5392d6eeb38c13ceb0e9abc8337eb6ca7ebcdb7b9771176b9db48428cc1de1d8",
     "research/fpbs-cost-subgraph-rank-obstruction-proof.md": "b0484eb3ebba1635b5a933690b90a1029e4bb977d98840be6ce48d050d3faa22",
     "research/fpbs-cost-subgraph-rank-obstruction.md": "332a91be5221e523add8b15397a4383b3648adbd7e398873bd7b3b1fae7c66c4",
@@ -1964,7 +1964,7 @@
     "research/fpbs-conditional-traffic-descent-bound.md": "c39b13e4d4b4d656fd7589b3ba79b26847d3fdbf3303b66ba465b2e72bed6e2e",
     "research/fpbs-contact-dispersion-sign-obstruction-proof.md": "9e8ba513d7dbbbc8b4adf2ffe118811e7e9027383e33dee4f3ebf13fa8cc9a76",
     "research/fpbs-contact-dispersion-sign-obstruction.md": "dbdfaba32780e118c1560979b4536404d70fc94efab7b370383548609d8dea23",
-    "research/fpbs-correlated-reuse-flags-removable.md": "204b701c9d7df36ef22324d3e27d9b17ef6c6d3a229290823526f5a09bc606c0",
+    "research/fpbs-correlated-reuse-flags-removable.md": "2635a6baa572be21e603ea5fcf3ec3e8526384ee1a234b5d9370538e797d9ec9",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable-proof.md": "5392d6eeb38c13ceb0e9abc8337eb6ca7ebcdb7b9771176b9db48428cc1de1d8",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable.md": "425be66d604fc68c0db22976592b7404d24cfdea37ca8d0669b1ebf6b852b20e",
     "research/fpbs-cost-one-backbone-fixes-completion-bill-proof.md": "711e471ea9f6e701b275d7ceec206bc0b03637855dadf387679019889786191e",
@@ -2372,5 +2372,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 40.12
+  "elapsed_seconds": 22.164
 }

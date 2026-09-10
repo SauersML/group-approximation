@@ -4,6 +4,7 @@ id: fpbs-correlated-reuse-flags-removable
 kind: claim
 title: Group-correlated reuse flags can be removed without increasing completed cost
 artifacts:
+  - research/artifacts/fpbs/docs/sparse-base-surgery.md
   - research/artifacts/fpbs/docs/cost-rank-duality.md
   - research/artifacts/fpbs/docs/finite-fiber-cost-descent.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
@@ -17,6 +18,15 @@ artifacts:
 This is the isolated remaining step of the reuse programme. The savings to be preserved are those of a connection used many times and paid for once, and the question is whether they can depend irreducibly on group-correlated information of the source action. No route establishes it.
 
 ## Attempts
+
+Apply sparse-region derandomization directly to a cheap source
+graphing. Section 7 of the sparse-base-surgery artifact shows why
+its boundary cannot be substituted for the ambient boundary required
+by Fraczyk's Theorem 3.10. On F_2 x Z, fixed-label generating graphings
+of cost tending to one admit finite-component cuts of vanishing cost,
+but every finite-component cut of the full product Cayley graphing
+costs at least one. The theorem can still cut sparse BASE regions;
+it does not choose a cost-preserving base graphing from a source one.
 
 Dualize optimized subgraph cost as a matroid rank. The proved
 `fpbs-cost-subgraph-rank-obstruction` rules out a monotone or
