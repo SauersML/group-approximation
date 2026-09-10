@@ -141,6 +141,18 @@ content in that region.
 
 ## Attempts
 
+* **Final thinning, free-energy, and subgroup checks (2026-09-10).**
+  Sections 7--9 of `docs/direct-bs-new-results.md` record the remaining
+  follow-ups. Thinning bounds the probability of short connections from
+  above; the available detour theorem assumes the OPEN L2 threshold
+  separation. Free-energy regularity does not directly detect mergers
+  of infinite clusters, and finite-ball mean cluster counts need not
+  converge to the infinite rooted free energy. The subgroup-relativization
+  theorem's exclusion of uniqueness at p_u explicitly permits zero
+  infinite clusters. None of these checks discharges a root premise.
+  After three consecutive unsuccessful attempts the session research goal
+  was marked blocked; the mathematical claim remains OPEN, not refuted.
+
 * **Test two-cluster and intrinsic-growth inputs (2026-09-10).**
   Sections 5--6 of `docs/direct-bs-new-results.md` retain the finite-cluster
   restriction in the two-ghost inequality and prove the exact order of
