@@ -11,7 +11,7 @@ artifacts:
 
 If q>c has a unique infinite cluster, its walk-connectivity spectral
 measure is theta(q)^2 Dirac_1+nu_q with
-||nu_q-mu_c||_TV<=K(q)+theta(q)(1-theta(q)). Equivalently the corresponding
+||nu_q-mu_c||_TV<=K(q)+theta(q)(1-theta(q)). Consequently the corresponding
 moment difference has this upper bound times rho^n, as in (8).
 These bounds tend to zero along any uniqueness sequence approaching c,
 if one exists. They do not exclude that sequence: Section 5 supplies
