@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "arithmetic": "exact rational",
+  "scope": "Finite normalization and contraction gap checks; not an infinite proof",
+  "graphs": [
+    {
+      "graph": "four_cycle",
+      "partitions": 11,
+      "original_gap": "1"
+    },
+    {
+      "graph": "complete_four",
+      "partitions": 14,
+      "original_gap": "4/3"
+    },
+    {
+      "graph": "complete_bipartite_three_three",
+      "partitions": 127,
+      "original_gap": "1"
+    },
+    {
+      "graph": "three_cube",
+      "partitions": 957,
+      "original_gap": "2/3"
+    }
+  ],
+  "total_partitions": 1109
+}

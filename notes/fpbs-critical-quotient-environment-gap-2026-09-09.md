@@ -1,7 +1,10 @@
 # Next calculation: the stationary quotient environment
 
-This is a research calculation to audit, not an established Cairn route
-and not a proof of Benjamini--Schramm. It follows the obstruction in
+The calculation below was proposed for audit. Its written proof is now
+`research/artifacts/fpbs/quotient-environment-gap.md`, wired through
+`fpbs-critical-quotient-environment-gap`. Section 4 also proves that its
+connectivity consequence retains the small uniqueness-atom obstruction.
+It is not a proof of Benjamini--Schramm. It follows the obstruction in
 `research/artifacts/fpbs/critical-quotient-sprinkling.md`: generic
 unimodularity and expansion lose essential information about the fixed
 Cayley graph.

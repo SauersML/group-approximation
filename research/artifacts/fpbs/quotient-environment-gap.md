@@ -146,7 +146,8 @@ obstruction already identified for the original Cayley walk.
 spectral comparison on all nontrivial connected-cell partitions of four
 small regular graphs. It uses exact rational arithmetic and a Schur
 complement positive-semidefiniteness check, with known original gaps.
-Its output is `quotient-environment-gap-replay.json`. These finite
+All 1,109 partitions passed on MSI. Its output is
+`quotient-environment-gap-replay.json`. These finite
 checks do not verify the infinite probability-space argument. Cairn's
 parser, linter and dependency compilation are recorded separately in
 `quotient-environment-gap-validation.json`.
