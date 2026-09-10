@@ -1,0 +1,18 @@
+---
+rg: 2
+id: fpbs-free-action-cost-at-least-bernoulli-cost
+kind: claim
+title: Every free action of a finitely generated group has cost at least its Bernoulli cost
+artifacts:
+  - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
+  - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
+  - research/artifacts/fpbs/responses/55_0909-215618.md
+---
+
+**OPEN.** For every infinite finitely generated group, every free p.m.p. action a and a nontrivial Bernoulli shift b, prove C(a) >= C(b). With Abert-Weiss maximality, which supplies C(a) <= C(b), this is the missing half of fixed price in the finitely generated case. The comparison has already been sharpened to C(a x b) = C(a) <= C(b), so the whole question is the projection a x b -> b, which forgets the entire a-process.
+
+## Attempts
+
+Descend through the product. By the variational identities, C(b) = C(a x b) would follow from finite routing plans on a x b whose budgets approach C(a x b) and whose conditional traffic defect for the projection onto b tends to zero. The two probability-space coordinates are independent, but the orbit observations inside the a-coordinate are not, so the finite conditional-noise simulation that settles the other projection does not apply in reverse. The localization theorem reduces what must be transported to finitely many binary reuse flags, and the argument then stops at exactly that point (reuse-localization artifact, Sections 4 and 7; response 55, Sections 4 and 6).
+
+Optimise a canonical graphing instead. Replacing the comparison by an action-independent cycle optimiser fails: the universal priority-deletion scheme converges to the free minimal spanning forest, whose density stays above the cost of a fixed-price-one group (response 47, Section 3, recorded in `fpbs-priority-deletion-density-above-action-cost`).

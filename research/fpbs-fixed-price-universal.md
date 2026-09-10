@@ -55,10 +55,25 @@ the distinction is load-bearing in every item below.
   implication in this graph running from cost to
   `fpbs-benjamini-schramm-universal`.
 
-**Decomposition supplied by the 2026-09-08/09 archive.** As of 2026-09-09 no
-route in this graph targets this claim, and the archive does not claim one.
-What it supplies is class-level theorems and constructive targets, all of
-which leave the universal quantifier untouched:
+**Decomposition supplied by the 2026-09-08/09 archive.** One live route
+targets this claim: `fpbs-fixed-price-from-bernoulli-cost-equality` sandwiches
+every free action of a finitely generated group between the Abert--Weiss upper
+bound `fpbs-bernoulli-maximal-cost` and the missing reverse inequality
+`fpbs-free-action-cost-at-least-bernoulli-cost`, then transfers to countable
+groups through `fpbs-fixed-price-countable-from-finitely-generated`. Only the
+upper bound is in hand. Four further routes are recorded and dead, each killed
+by an established obstruction: `fpbs-dead-copy-source-correlations`
+(`fpbs-source-statistics-not-reproducible-in-bernoulli`),
+`fpbs-dead-fusf-connected-betti-descent`
+(`fpbs-fusf-not-connected-on-some-cayley-graphs`),
+`fpbs-dead-limit-graphing-connectivity`
+(`fpbs-cost-one-routes-cannot-be-uniformly-tight` and
+`fpbs-reciprocal-shortest-route-obstruction`), and
+`fpbs-fixed-price-via-priority-deletion-optimality`
+(`fpbs-priority-deletion-density-above-action-cost`).
+
+The rest of what the archive supplies is class-level theorems and constructive
+targets, all of which leave the universal quantifier untouched:
 
 * fixed price one for whole classes -- `fpbs-amen2-fixed-price-one` (all
   two-generated subgroups amenable), `fpbs-bounded-exponent-two-groups-fixed-price`

@@ -64,9 +64,15 @@ the difficulty.
   groups of fixed price one, and a counterexample to this goal would have to
   come from that class.
 
-**Decomposition supplied by the 2026-09-08/09 archive.** Seven routes target
-this claim; every one of them is conditional on an OPEN estimate, and none
-asserts more.
+**Decomposition supplied by the 2026-09-08/09 archive.** Seven live routes
+target this claim; every one of them is conditional on an OPEN estimate, and
+none asserts more. Two further routes are recorded and dead:
+`fpbs-dead-inverse-laplacian-expansion`, killed by
+`fpbs-inverse-connectivity-matrix-not-laplacian` (the four-cycle gives a
+positive off-diagonal entry of the inverse), and
+`fpbs-dead-uniform-tight-routes-contradiction`, killed by
+`fpbs-cost-one-routes-cannot-be-uniformly-tight` and
+`fpbs-quantitative-routing-tail-bound`.
 
 * `fpbs-benjamini-schramm-two-cost-cases` splits on whether the group has
   fixed price one: the negative case is closed by Lyons, the positive case is

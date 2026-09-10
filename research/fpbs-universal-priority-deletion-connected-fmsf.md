@@ -5,6 +5,7 @@ kind: claim
 title: Universal short-cycle priority deletion stays connected and retains the free minimal spanning forest
 distinct_from:
   fpbs-priority-finite-rank: that records the bare induction principle for the earlier construction's selected relator supports; this one is the universal scheme H_{R,M} on every locally finite Cayley graph, with the explicit replacement-distance bound and the spanning-forest inclusion
+  fpbs-fusf-not-connected-on-some-cayley-graphs: that is the disconnectedness of the free UNIFORM spanning forest, an obstruction to forest-based deletion schemes; this one concerns the free MINIMAL spanning forest, asserts only that it sits inside every finite stage, and makes no connectivity claim about it
   fpbs-tfl-metric: that is the replacement-distance formula for the specific torsion-free relator family and its finite-radius iid sparsifier; this one is the parameter-free bound for independent uniform edge labels quantised to M levels
 artifacts:
   - research/artifacts/fpbs/responses/47_0909-191353.md
