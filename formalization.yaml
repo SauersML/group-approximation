@@ -11,9 +11,11 @@ project:
     property (T), and a rank-four Leavitt compression; exact pullback formulas
     for MF radicals and MF quotients, in the operator-norm sense of Carrión,
     Dadarlat and Eckhardt, are proved along the way. The second is a negative
-    answer to Problem LIX of Schafhauser, Tikuisis and White ("Nuclear
-    C*-algebras: 99 problems", arXiv:2506.10902), which asks whether every
-    unital simple C*-algebra is K1-injective. The counterexample is a
+    answer to the question whether every unital simple C*-algebra is
+    K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
+    records as open and which Schafhauser, Tikuisis and White pose as Problem
+    LIX of "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902). The
+    counterexample is a
     separable simple unital C*-algebra A, an inductive limit of corner
     algebras of matrices over C(X), with a unitary u that is not in the
     connected component of 1 in U(A) although diag(u, 1) is in the connected
@@ -31,6 +33,11 @@ sources:
   - title: A simple C*-algebra that is not K1-injective
     type: original-proof
     relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude Fable 5.1
+        role: wrote the paper, the registry abstract and the narrative fields of this file
     note: >-
       The negative answer to STW Problem LIX of Palomar/comparator-lix.json is
       first presented in this project. The argument was committed to this
@@ -362,8 +369,17 @@ sources:
 automation:
   methods:
     - method: agent
-      models: [GPT-5.6 Sol, Claude Fable 5, Claude Opus 5]
+      models: [GPT-5.6 Sol, Claude Fable 5.1, Claude Opus 5, Claude Sonnet 5]
       framework: Codex and Claude Code
+      tool_setup: >-
+        Astra, a custom proof tool, for the mathematics; Claude Code and Codex
+        agents for the Lean development.
+  notes: >-
+    The LIX problem was solved by Astra, using a custom proof tool. The prose
+    of k1_injectivity_counterexample.tex, the registry abstract and the
+    narrative fields of this file were written by Claude Fable 5.1. The Lean
+    formalisation was produced by Claude Opus 5, Claude Sonnet 5 and GPT-5.6
+    Sol agents under the author's direction.
 
 review:
   status: self-assessed

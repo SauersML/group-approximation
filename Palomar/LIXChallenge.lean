@@ -18,6 +18,9 @@ Schafhauser, Tikuisis and White, *Nuclear C⋆-algebras: 99 problems*
 
 > Are all unital simple C*-algebras K₁-injective?
 
+The question is older than the list: Blackadar's *K-Theory for Operator
+Algebras* (2nd ed., 1998, §8.1) records it as open.
+
 The three theorems below answer **no**, in increasing strength:
 
 * `not_all_simple_unital_k1Injective` negates the printed question as stated;
