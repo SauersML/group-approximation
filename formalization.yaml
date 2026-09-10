@@ -32,7 +32,11 @@ sources:
     note: >-
       Every selected theorem is first presented in this project: the
       sofic-not-MF group of Palomar/comparator.json, and the negative answer to
-      STW Problem LIX of Palomar/comparator-lix.json.
+      STW Problem LIX of Palomar/comparator-lix.json. The LIX argument was
+      committed to this public repository on 2026-09-05 04:40 UTC (fb38f13ad),
+      posted publicly on 2026-09-07
+      (https://x.com/Sauers_/status/2096961149770043897), and its Lean endpoint
+      not_problemLIX landed on 2026-09-07 (aa9ba0148).
 
   # Background for the LIX result: what the counterexample had to avoid, what
   # was already known, the architecture the construction follows, and the
@@ -105,10 +109,7 @@ sources:
     relationship: background
     note: >-
       Independent solution of Problem LIX, posted 2026-09-08, by a different
-      method and not used here. The argument here was committed to this public
-      repository on 2026-09-05 04:40 UTC (fb38f13ad), posted publicly on
-      2026-09-07 (https://x.com/Sauers_/status/2096961149770043897), and its
-      Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148).
+      method; not used here.
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
