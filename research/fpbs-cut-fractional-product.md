@@ -3,7 +3,6 @@ rg: 2
 id: fpbs-cut-fractional-product
 kind: claim
 title: Fractional product-space Holder bounds shared-support cut failures
-root: true
 ---
 
 Sections 2: a finite repeated-Holder proof. Dependencies are paid by per-label fractional loads.

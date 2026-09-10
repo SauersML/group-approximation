@@ -3,7 +3,6 @@ rg: 2
 id: fpbs-ew-finite-replay
 kind: claim
 title: "The stated finite exact and sampled-arithmetic checks pass"
-root: true
 ---
 
 The replay reports 150032 assertions, including sampled finite checks with a fixed seed. It does not verify any infinite theorem, any imported theorem, or either universal conjecture.

@@ -3,7 +3,6 @@ rg: 2
 id: fpbs-qb-finite-replay
 kind: claim
 title: Finite union-and-pruning checks and outward-rounded numeric bounds pass
-root: true
 ---
 
 Section 8 and the replay: 4160 finite labelings, 12732 exact assertions. No infinite theorem is formally verified.
