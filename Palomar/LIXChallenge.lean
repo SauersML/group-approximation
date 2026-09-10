@@ -108,12 +108,15 @@ theorem exists_separable_simple_not_k1Injective :
 unitary `u` that is not connected to `1` in `U(A)`, although `diag (u, 1)` is
 connected to `1` in `U(M₂(A))`.  The class of `u` therefore vanishes already at
 the first stabilisation step, which refutes `K₁`-injectivity of `A` with `n = 2`
-in `IsK1Injective`. -/
+in `IsK1Injective`.  The `Fintype (Fin 2)` instance behind `M₂(A)` is pinned to
+Mathlib's `Fin.fintype 2` so that the statement elaborates to the same term in
+every environment, whatever other instances happen to be imported. -/
 theorem exists_separable_simple_stage_two_witness :
     ∃ (A : Type) (_ : CStarAlgebra A),
       TopologicalSpace.SeparableSpace A ∧ IsSimpleRing A ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+       letI : Fintype (Fin 2) := Fin.fintype 2
        ∃ u : unitary A, u ∉ pathComponent (1 : unitary A) ∧
          ∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
            (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (u : A)) := by
