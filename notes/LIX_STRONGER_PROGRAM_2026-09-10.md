@@ -99,17 +99,27 @@ For `v^k ∉ U₀(A_j)` the chain is:
    every local contribution literally equal, so no local degree is ever computed.**
    (owner `sp-oddside`, after `sp-design` signs off)
 
-#### 1.3.2 The `k`-fold map `ψ_k` (design, owner `sp-design`)
+#### 1.3.2 The `k`-fold map `ψ_k` (AGREED 2026-09-10 by `sp-design` and `sp-powers`, independently)
 
-Requirements: (i) `ψ_k : S^{2n} → S^{2n}` continuous; (ii) `ψ_k ∘ ρ = ψ_k` for a rotation
-`ρ` of order `k` (a rotation by `2π/k` in a plane not containing `e₁`, restricted to the
-equator sphere); (iii) `ψ_k^{-1}(−e₁) = {q₀, ρ q₀, …, ρ^{k-1} q₀}` and `ψ_k` is a local
-homeomorphism at each, with `ψ_k = ρ^{-i} ∘ (ψ_k near q₀)` near `ρ^i q₀`; (iv) `u ∘ ψ_k` is
-homotopic to `u^k` (Eckmann–Hilton needs `ψ_k` to be the `k`-fold pinch sum of the identity
-up to homotopy; the cleanest is to DEFINE `ψ_k` as an explicit `ρ`-equivariant pinch sum and
-prove the pointwise product of the `k` summands is homotopic to the pinch sum).  Deliver the
-formula, the zero count, and the equivariance as Lean-precision lemmas.  Model-test the
-zero count numerically before writing anything.
+Write `S^{2n} ⊂ ℂ × ℂ^{n-1} × ℝ` (equatorial coordinates) with `x₀ ∈ ℂ` the coordinate of the
+`e₁`-plane.  Then
+```
+ψ_k(x₀, x') = (x₀^k / |x₀|^{k-1}, x')
+```
+is continuous (the quotient is `0` at `x₀ = 0` by Lean's convention and is `O(|x₀|)`), norm-preserving
+and positively homogeneous, so it is its own cone: `Σψ_k` on `S^{2n+1}` is **literally the same formula**
+with the clutching coordinate `Re (x n)` untouched (`Analysis/LIXPowersNaturality.lean`, `IsRadialMap`).
+Two corrections to the first draft of this note: the rotation `ρ` of order `k` is the rotation
+`x₀ ↦ e^{2πi/k} x₀` **in the `e₁`-plane** (not in a plane avoiding `e₁`), so that `ψ_k ∘ ρ = ψ_k`; and
+the local identity at the `k` preimages `ψ_k^{-1}(−e₁) = {x₀^k = −1, x' = 0}` is **precomposition**:
+near `ρ^i q₀` the map is the map near `q₀` precomposed with `ρ^{-i}`, and it is a local
+homeomorphism there because `x₀ ≠ 0`.  The vertical slab pinch does NOT work (it jumps by 2 at every
+interior interface, model-confirmed); only the angle coordinate closes, because its two ends are the
+same set.  Eckmann–Hilton (`Analysis/LIXPowersEH.lean`) reduces `u^k ≃ u ∘ ψ_k` to the one named
+`Prop` `PinchIdentification`, which `sp-powers` discharges through the angle family.  Renormalising
+the seam generator by a disc unitary `a` is free for the whole chain, powers included
+(`clutch((a·ũ)^k) ≅ clutch(ũ^k)` via `θ ↦ (A_θ ũ)^k ũ^{-k}`, no centrality needed), which removes the
+basepoint obstruction.  Model tests: `scratch/sp-powers/powers_modeltest.py` on MSI (50 checks).
 
 ### 1.4 Step D mod `p`, uniform in the stage (design, owner `sp-design`, then `sp-evenside`)
 
