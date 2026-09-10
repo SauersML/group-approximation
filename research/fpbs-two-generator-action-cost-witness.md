@@ -3,7 +3,6 @@ rg: 2
 id: fpbs-two-generator-action-cost-witness
 kind: claim
 title: Every free action of cost above one has a two-generated subgroup restriction of cost above one
-root: true
 ---
 
 **Statement.** Theorem 6.2 of the two-generator note: let G be countably infinite and alpha a free

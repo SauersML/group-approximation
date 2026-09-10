@@ -3,7 +3,6 @@ rg: 2
 id: fpbs-nonamenability-bounds-critical-connectivity-operator
 kind: claim
 title: Nonamenability makes the critical connectivity operator bounded on l2
-root: true
 artifacts:
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/creative-branches.md
