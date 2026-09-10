@@ -229,3 +229,8 @@ does not give the needed near-critical rate. More fundamentally,
 Corollary 1.1 shows that for the current schedule, a query-cost estimate
 must also control exploration inside the infinite part with no bridges.
 It cannot charge all wasted queries to finite dangling branches.
+
+The subsequent `optimistic-search.md` changes the search rule itself.
+It proves that forward optimistic shortest-path replanning crosses
+these walls in exactly 5m+4 queries, so this obstruction does not
+apply to that candidate. Its general Bernoulli cost bound remains open.

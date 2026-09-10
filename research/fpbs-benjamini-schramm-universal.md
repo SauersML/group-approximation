@@ -64,7 +64,7 @@ the difficulty.
   groups of fixed price one, and a counterexample to this goal would have to
   come from that class.
 
-**Decomposition supplied by the 2026-09-08/09 archive.** Seven live routes
+**Decomposition supplied by the archive and subsequent work.** Eight live routes
 target this claim; every one of them is conditional on an OPEN estimate, and
 none asserts more. Two further routes are recorded and dead:
 `fpbs-dead-inverse-laplacian-expansion`, killed by
@@ -97,6 +97,12 @@ positive off-diagonal entry of the inverse), and
 * `fpbs-universal-connectivity-operator-route` records the assessment's own
   preferred finishing theorem: nonamenability bounds the critical connectivity
   operator, plus the L2 criterion.
+* `fpbs-universal-optimistic-certificate-route` combines the established
+  query strong converse and the sound optimistic search with the OPEN
+  construction `fpbs-universal-optimistic-certificate-budget`. That
+  construction must supply subexponential connection success below the
+  information budget under hypothetical collapse. This puts the missing
+  algorithmic estimate on Cairn's frontier, rather than only in prose.
 
 Special cases proved inside the archive are `fpbs-sc-percolation-family` and
 `fpbs-ew-window`, an explicit interval for a constructed family. They are
@@ -174,6 +180,14 @@ content in that region.
   expansion and an open four-cycle through every open edge. The missing
   estimate must control exploration in the part with no bridges, not
   just the sizes of finite dangling pieces.
+  A different candidate, `fpbs-optimistic-search-certified-growth`,
+  replans shortest paths using only known closed edges and certifies
+  a growing tree. `fpbs-optimistic-search-linear-wall-cost` proves
+  that it crosses the same wall in exactly 5m+4 queries, overcoming
+  that schedule-specific obstruction. The next missing estimate is
+  a Bernoulli bound on the certified vertices it explores, with no
+  substitution of full ball volume for walk length; see Section 5 of
+  `optimistic-search.md`. The finite pilot does not supply this estimate.
 
 * **Contract the critical clusters and sprinkle independently (2026-09-09).**
   `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond

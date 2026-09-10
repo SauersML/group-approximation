@@ -1,0 +1,262 @@
+{
+  "status": "passed",
+  "scope": "Exact finite correctness and wall queries, plus a censored pseudorandom pilot; no universal expected-cost bound",
+  "finite": {
+    "cap_cases": 93,
+    "configurations": 3300,
+    "transcripts": 386
+  },
+  "walls": [
+    {
+      "wall_radius": 0,
+      "queries": 4,
+      "path_length": 3,
+      "planning_expansions": 11,
+      "replans": 2
+    },
+    {
+      "wall_radius": 1,
+      "queries": 9,
+      "path_length": 5,
+      "planning_expansions": 47,
+      "replans": 4
+    },
+    {
+      "wall_radius": 2,
+      "queries": 14,
+      "path_length": 7,
+      "planning_expansions": 156,
+      "replans": 6
+    },
+    {
+      "wall_radius": 3,
+      "queries": 19,
+      "path_length": 9,
+      "planning_expansions": 482,
+      "replans": 8
+    },
+    {
+      "wall_radius": 4,
+      "queries": 24,
+      "path_length": 11,
+      "planning_expansions": 1457,
+      "replans": 10
+    },
+    {
+      "wall_radius": 5,
+      "queries": 29,
+      "path_length": 13,
+      "planning_expansions": 4377,
+      "replans": 12
+    },
+    {
+      "wall_radius": 6,
+      "queries": 34,
+      "path_length": 15,
+      "planning_expansions": 13130,
+      "replans": 14
+    },
+    {
+      "wall_radius": 7,
+      "queries": 39,
+      "path_length": 17,
+      "planning_expansions": 39380,
+      "replans": 16
+    }
+  ],
+  "pilot": [
+    {
+      "seed": 0,
+      "walk_length": 48,
+      "percent": 60,
+      "distance": 15,
+      "status": "censored",
+      "censor_reason": "planning",
+      "queries": 60,
+      "planning_expansions": 8000,
+      "replans": 28,
+      "path_length": null
+    },
+    {
+      "seed": 0,
+      "walk_length": 48,
+      "percent": 90,
+      "distance": 15,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 22,
+      "planning_expansions": 248,
+      "replans": 5,
+      "path_length": 17
+    },
+    {
+      "seed": 0,
+      "walk_length": 96,
+      "percent": 60,
+      "distance": 21,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 59,
+      "planning_expansions": 4060,
+      "replans": 22,
+      "path_length": 27
+    },
+    {
+      "seed": 0,
+      "walk_length": 96,
+      "percent": 90,
+      "distance": 21,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 22,
+      "planning_expansions": 103,
+      "replans": 2,
+      "path_length": 21
+    },
+    {
+      "seed": 1,
+      "walk_length": 48,
+      "percent": 60,
+      "distance": 3,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 8,
+      "planning_expansions": 35,
+      "replans": 4,
+      "path_length": 5
+    },
+    {
+      "seed": 1,
+      "walk_length": 48,
+      "percent": 90,
+      "distance": 3,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 3,
+      "planning_expansions": 6,
+      "replans": 1,
+      "path_length": 3
+    },
+    {
+      "seed": 1,
+      "walk_length": 96,
+      "percent": 60,
+      "distance": 18,
+      "status": "censored",
+      "censor_reason": "planning",
+      "queries": 65,
+      "planning_expansions": 8000,
+      "replans": 28,
+      "path_length": null
+    },
+    {
+      "seed": 1,
+      "walk_length": 96,
+      "percent": 90,
+      "distance": 18,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 18,
+      "planning_expansions": 64,
+      "replans": 1,
+      "path_length": 18
+    },
+    {
+      "seed": 2,
+      "walk_length": 48,
+      "percent": 60,
+      "distance": 15,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 41,
+      "planning_expansions": 1334,
+      "replans": 15,
+      "path_length": 19
+    },
+    {
+      "seed": 2,
+      "walk_length": 48,
+      "percent": 90,
+      "distance": 15,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 16,
+      "planning_expansions": 56,
+      "replans": 2,
+      "path_length": 15
+    },
+    {
+      "seed": 2,
+      "walk_length": 96,
+      "percent": 60,
+      "distance": 19,
+      "status": "censored",
+      "censor_reason": "planning",
+      "queries": 72,
+      "planning_expansions": 8000,
+      "replans": 31,
+      "path_length": null
+    },
+    {
+      "seed": 2,
+      "walk_length": 96,
+      "percent": 90,
+      "distance": 19,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 20,
+      "planning_expansions": 101,
+      "replans": 2,
+      "path_length": 19
+    },
+    {
+      "seed": 3,
+      "walk_length": 48,
+      "percent": 60,
+      "distance": 17,
+      "status": "censored",
+      "censor_reason": "planning",
+      "queries": 60,
+      "planning_expansions": 8000,
+      "replans": 28,
+      "path_length": null
+    },
+    {
+      "seed": 3,
+      "walk_length": 48,
+      "percent": 90,
+      "distance": 17,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 33,
+      "planning_expansions": 174,
+      "replans": 4,
+      "path_length": 19
+    },
+    {
+      "seed": 3,
+      "walk_length": 96,
+      "percent": 60,
+      "distance": 25,
+      "status": "censored",
+      "censor_reason": "planning",
+      "queries": 59,
+      "planning_expansions": 8000,
+      "replans": 27,
+      "path_length": null
+    },
+    {
+      "seed": 3,
+      "walk_length": 96,
+      "percent": 90,
+      "distance": 25,
+      "status": "connected",
+      "censor_reason": null,
+      "queries": 41,
+      "planning_expansions": 238,
+      "replans": 4,
+      "path_length": 27
+    }
+  ],
+  "elapsed_seconds": 1.675
+}

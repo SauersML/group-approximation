@@ -4,11 +4,11 @@
   "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "c93928a0e06b4e2d0dd13986afbf8ba9b70c94256e9a1e74120703b3bc882e60",
-  "claims": 7769,
-  "routes": 7938,
-  "task_claims": 231,
-  "task_routes": 236,
+  "overlay_archive_sha256": "1b8b82faf2cb6e2efc6d1eba6543036d2f7043f8f8c30e084aa580eb53518fb0",
+  "claims": 7772,
+  "routes": 7941,
+  "task_claims": 234,
+  "task_routes": 239,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": false,
@@ -47,6 +47,11 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "findings": [
@@ -84,11 +89,47 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "duplicate_findings": [],
   "removed_nodes": [],
-  "new_open_claims": [],
+  "new_open_claims": [
+    "fpbs-universal-optimistic-certificate-budget"
+  ],
+  "allowed_new_open_claims": [
+    "fpbs-universal-optimistic-certificate-budget"
+  ],
+  "unexpected_new_open_claims": [],
+  "benjamini_schramm_frontier": {
+    "id": "fpbs-benjamini-schramm-universal",
+    "node_status": "OPEN",
+    "holes": [
+      "fpbs-critical-dyadic-projection-estimate",
+      "fpbs-fixed-price-one-percolation-kernel",
+      "fpbs-integrated-sensitivity-universal",
+      "fpbs-nonamenability-bounds-critical-connectivity-operator",
+      "fpbs-pivotal-budget-universal",
+      "fpbs-pivotal-nonconcentration-universal",
+      "fpbs-universal-optimistic-certificate-budget",
+      "fpbs-universal-subcritical-pivotal-growth-rate"
+    ],
+    "necessary": [],
+    "connected": null,
+    "obstruction_sensitive": true,
+    "counterfactual_unstable": false
+  },
+  "optimistic_search_goal_chain": [
+    [
+      "fpbs-benjamini-schramm-universal",
+      "fpbs-universal-optimistic-certificate-route",
+      "fpbs-optimistic-search-certified-growth"
+    ]
+  ],
   "state_changes": {
     "fpbs-adaptive-exploration-entropy-proof": [
       null,
@@ -158,6 +199,22 @@
       null,
       "COMPLETE"
     ],
+    "fpbs-optimistic-search-certified-growth-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-optimistic-search-certified-growth": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-optimistic-search-linear-wall-cost-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-optimistic-search-linear-wall-cost": [
+      null,
+      "ESTABLISHED"
+    ],
     "fpbs-projection-noise-variance-identity": [
       null,
       "ESTABLISHED"
@@ -226,6 +283,14 @@
       null,
       "COMPLETE"
     ],
+    "fpbs-universal-optimistic-certificate-budget": [
+      null,
+      "OPEN"
+    ],
+    "fpbs-universal-optimistic-certificate-route": [
+      null,
+      "OPEN"
+    ],
     "fpbs-weighted-expansion-allows-zero-uniqueness-proof": [
       null,
       "COMPLETE"
@@ -241,7 +306,10 @@
     "fpbs-uniqueness-spectrum-critical-remainder": "ESTABLISHED",
     "fpbs-integrated-sensitivity-universal": "OPEN",
     "fpbs-benjamini-schramm-universal": "OPEN",
-    "fpbs-fixed-price-universal": "OPEN"
+    "fpbs-fixed-price-universal": "OPEN",
+    "fpbs-optimistic-search-certified-growth": "ESTABLISHED",
+    "fpbs-optimistic-search-linear-wall-cost": "ESTABLISHED",
+    "fpbs-universal-optimistic-certificate-budget": "OPEN"
   },
   "overlay_source_sha256": {
     "notes/fpbs-critical-quotient-environment-gap-2026-09-09.md": "7866c26ece1c8fbd3e99751d5084c0dbd3d4b98bfb5c2924affcbca0ee1ffd66",
@@ -250,29 +318,32 @@
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
+    "research/artifacts/fpbs/optimistic-search-replay.json": "377eb476ecdb881e51b4706ad4b8e5e0e60d32cd7891615af44369e9ee1ba7f2",
+    "research/artifacts/fpbs/optimistic-search.md": "8036701f9d8b3e078f43c68d84566e57064c97070e88190fde104d863131f9d0",
     "research/artifacts/fpbs/projection-resolvent-replay.json": "295befdf08e7328e5e9b066c6b8c2f4bd065e36a7d85d38a5424c5a3a5d9ce29",
     "research/artifacts/fpbs/projection-resolvent.md": "a6dbed6dcfd8c39dc38896b074a38b2fb56cdb8c3d8840332741a236b924f9f1",
     "research/artifacts/fpbs/query-strong-converse-replay.json": "1801ab520d89712677f0136c3a7be3a3742e73c6fa20470ed07c3e382906977d",
     "research/artifacts/fpbs/query-strong-converse.md": "149c232c7da3960ce646ac506a2b4204e524cdb25a2308ce3781fdf138bce7c9",
     "research/artifacts/fpbs/quotient-environment-gap-replay.json": "a60b5784825cef71ce67ce9cce63995fd53edb2395062ec6712d69cfb375a084",
     "research/artifacts/fpbs/quotient-environment-gap.md": "0028626945649a5824ade70565ed89b34634320cbfa0ac705d160582239bc745",
-    "research/artifacts/fpbs/scripts/exploration_search.py": "db7eb58fd1d6d07d5895488e805b1e5ab9d83664b89411dd70e7543bad7f6f0b",
+    "research/artifacts/fpbs/scripts/exploration_search.py": "e1515940226b7188333303b6dd6c188bc5a6e234eb6377e302460efe3ec8550a",
     "research/artifacts/fpbs/scripts/pilot_exploration_search.py": "cf96316042f00d7d2163a22281acdd28ea858c0b3776c46b86184e1f8bdb1d28",
     "research/artifacts/fpbs/scripts/replay_critical_quotient.py": "25f9990ec72a7210b07094953fcb8d8efb08baa95a5a5444bdf9b801b28d800d",
     "research/artifacts/fpbs/scripts/replay_exploration_information.py": "6e16aefe057174068f648f57abf1348d0b637edb733ebfa35ca2f21c6f776aaa",
+    "research/artifacts/fpbs/scripts/replay_optimistic_search.py": "e40db4bd213d24bae9e9561735c78edb381054beb6568b6187c02fd0727ae80a",
     "research/artifacts/fpbs/scripts/replay_projection_resolvent.py": "9f0e19845044a7d13d62f2be4aaf2973d7040062e91ae45acc4cb0a20def641f",
     "research/artifacts/fpbs/scripts/replay_query_strong_converse.py": "6f5b3f0d25672f1cbc787acaf5649a7932f4f7b5f3f560952575954aab4db50e",
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
-    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "94f3cbc8e80ecfe781d2b61c0bda27cdc3237b76e50dc9e60e208bf1fb77b695",
+    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "247ac49f5c08367399866f3c239df6b008b4c97565bfc36d279d9888e90306cb",
     "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
-    "research/artifacts/fpbs/search-barriers.md": "2c1be21a9b466bdd4f2be376d4e0e545727df1b9d00ab7c93db95158d5c72221",
+    "research/artifacts/fpbs/search-barriers.md": "9e85c9b4d985a2a1fdbf3f1a7cd9a1818f9896d7328ea840a1b43686f0155281",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
     "research/artifacts/fpbs/search-geometry.md": "7b783609ac2f1c37c5e7b16a5059ff2d8f47cb611a6aa3279d7de1751040c7b5",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "47ec3e6a3f6ab3a3eb527288b89ad1c273c728884c1c916f8ade44b48392ed9b",
+    "research/fpbs-benjamini-schramm-universal.md": "ab601090727572aa89056cd7c7ba815199617a3d8b3819d88dd3ecba3d3c2060",
     "research/fpbs-bernoulli-projection-resolvent-bound.md": "ebde9f62674dea3b17d4fb033976d7656d1c20a5a304cb5aacfa6e1a402b3824",
     "research/fpbs-bernoulli-projection-resolvent-proof.md": "e72e810b30246b55c02f785fefdbba652bda073b3d536ff468e6a47ca4858083",
     "research/fpbs-bernoulli-wall-branch-budget-summable-proof.md": "dbdaf67341b7b6d674a1841e880a83f5500272bfab1b7b3a7599e3fb8caa2a16",
@@ -290,6 +361,10 @@
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
     "research/fpbs-hermon-hutchcroft-finite-tail-input.md": "1d230b6e23a51326356802a2c3fe93d13d29cb11a4588e73080e2ef63a7cb7cf",
     "research/fpbs-nonamenability-bounds-critical-connectivity-operator.md": "b8766a965a5ae58e4fae11cf2d46b126bdffa79350e214fe276022c5623c8d70",
+    "research/fpbs-optimistic-search-certified-growth-proof.md": "145d4e7c0fe4bee87f7530d19bd8316a6018ce55fab373caa325a4ca44705577",
+    "research/fpbs-optimistic-search-certified-growth.md": "359c27ba66f7a8db88a60c2ba1b1f1e917a3a25bee3839866c78df3e336a6b50",
+    "research/fpbs-optimistic-search-linear-wall-cost-proof.md": "faf65c04b8666be7073d21d981e574ecab66e7abc06d6e819e44426b0bb9c634",
+    "research/fpbs-optimistic-search-linear-wall-cost.md": "d6758a5e4d641e66e31a328e276607e637bd959462fec37a99c1cc3ef0f71f1d",
     "research/fpbs-projection-noise-variance-identity.md": "e26ed2987fa9187e8b91b934a968d9fe1aa84ac4fc11654732552f3038db5871",
     "research/fpbs-projection-noise-variance-proof.md": "bf94ec5e098d638937f4b511eda9bf999610009a401e5c553f4a0d53b273c0a6",
     "research/fpbs-projection-resolvent-ghost-obstruction.md": "c2548e9d67ea5c3e76117abf67ffdd8151d7495e47d5fc0d76ab754dc8e27784",
@@ -307,6 +382,8 @@
     "research/fpbs-uniqueness-query-quantiles-and-tube-width.md": "1416f19f5429375d40554b230b701f100ec08e86ac48189b1e2c601a48f4c8d0",
     "research/fpbs-unit-target-search-ellipse-bound.md": "381e82508de2d61718df699630734e272a9b5e077c09f591b65af186cfe4f6db",
     "research/fpbs-unit-target-search-ellipse-proof.md": "412278b90e2825c3926aee5db5a30d116c944989532c0c5a85e3af3dac10a45d",
+    "research/fpbs-universal-optimistic-certificate-budget.md": "ad9b6f32619376508885bae0ac827ac0ebbbdf6e6c585cea22523c2a8f3c8945",
+    "research/fpbs-universal-optimistic-certificate-route.md": "81c58b9d4120fe82b6ef8f0a7f1689b597555e1659143f99139f131cad5b50e4",
     "research/fpbs-weighted-expansion-allows-zero-uniqueness-proof.md": "8e5719206605c8487c15786b0cd3bda09d0b91ea63786626de820534c91a1c4e",
     "research/fpbs-weighted-expansion-allows-zero-uniqueness.md": "f85b72f7c7672981a6480586f5128d533bf9ec720ace56143170a6ce88d3dd31"
   },
@@ -337,7 +414,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "47ec3e6a3f6ab3a3eb527288b89ad1c273c728884c1c916f8ade44b48392ed9b",
+    "research/fpbs-benjamini-schramm-universal.md": "ab601090727572aa89056cd7c7ba815199617a3d8b3819d88dd3ecba3d3c2060",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-reuse-removal.md": "b7825e31d4bb90802729486ab91dd0c3a52cf74e83dd15ebbe96371aee924456",
     "research/fpbs-bernoulli-maximal-cost-reference.md": "c3c8734186562b033633c0e5268b64d3953904237f27f1fbbd4b72750be50938",
@@ -582,6 +659,10 @@
     "research/fpbs-noninjective-pullback-is-not-free.md": "52ae6b5c13cec93b0e5c1cf66c5d73e755f5023fc8d32dc6277f49f1b3e29234",
     "research/fpbs-normalized-cost-induction-input.md": "c882e41dc1df741fe93957be037f1819ad29d8e77853c843637d7405ba16813b",
     "research/fpbs-normalized-induction-reference.md": "5e5299d991b4d7da27b510d320a6949f29b029f4b96d8dc5fa6f32e60028f419",
+    "research/fpbs-optimistic-search-certified-growth-proof.md": "145d4e7c0fe4bee87f7530d19bd8316a6018ce55fab373caa325a4ca44705577",
+    "research/fpbs-optimistic-search-certified-growth.md": "359c27ba66f7a8db88a60c2ba1b1f1e917a3a25bee3839866c78df3e336a6b50",
+    "research/fpbs-optimistic-search-linear-wall-cost-proof.md": "faf65c04b8666be7073d21d981e574ecab66e7abc06d6e819e44426b0bb9c634",
+    "research/fpbs-optimistic-search-linear-wall-cost.md": "d6758a5e4d641e66e31a328e276607e637bd959462fec37a99c1cc3ef0f71f1d",
     "research/fpbs-pivotal-budget-implies-nonuniqueness.md": "47589229af25985ef05df48cd16e7516b34f19aaceb0963047769f2b95e42a0c",
     "research/fpbs-pivotal-budget-reduction-proof.md": "ce06a2c057a4213122796349d7d98777151b491fd0086f8966f17c2198d46025",
     "research/fpbs-pivotal-budget-universal.md": "cb6a808194db678fcc10bdd85a7577863c4fc1025529315456c6e40d2b227c91",
@@ -763,6 +844,8 @@
     "research/fpbs-universal-dyadic-route.md": "4c4a5d690f749ae83cc69d039604b150576cffb9cd4217aff7a894d7e4a5d08c",
     "research/fpbs-universal-integrated-pivotal-route.md": "3d13f23722fb020d3feef9babef6e7768f80e387f568623a09a8b355e996e8ea",
     "research/fpbs-universal-integrated-sensitivity-route.md": "150c93eac8fc558151aaafb2443221202620bbc234db0b3f3456c1185391532d",
+    "research/fpbs-universal-optimistic-certificate-budget.md": "ad9b6f32619376508885bae0ac827ac0ebbbdf6e6c585cea22523c2a8f3c8945",
+    "research/fpbs-universal-optimistic-certificate-route.md": "81c58b9d4120fe82b6ef8f0a7f1689b597555e1659143f99139f131cad5b50e4",
     "research/fpbs-universal-pivotal-rate-contradiction-route.md": "29fcadb4ee9449567eec03e8878cda51486e051bebab328d34e601ecedf2b4e5",
     "research/fpbs-universal-pivotal-route.md": "d6f9bb24d219f2f1cca66252d1bd107a35d78c8a739d435044173c0cb1e25336",
     "research/fpbs-universal-priority-deletion-connected-fmsf-proof.md": "dcdfad09589109b78726e2361bf2792ecb0cbb7c6f883a8482fc7119f06b3aac",
@@ -779,5 +862,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 10.148
+  "elapsed_seconds": 12.651
 }

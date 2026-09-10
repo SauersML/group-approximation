@@ -8,6 +8,71 @@ def edge_key(u, v):
     return (u, v) if u < v else (v, u)
 
 
+def optimistic_search(source, target, neighbors, distance, read_edge,
+                      *, query_limit, planning_limit):
+    """Test optimistic shortest paths, preferring fewer unqueried edges.
+
+    Planning sees only graph geometry and cached answers. Its expansion cap
+    is separate from the fresh percolation-query cap. Either can censor.
+    """
+    assert query_limit >= 0 and planning_limit >= 0
+    cache, trace = {}, []
+    expansions = replans = 0
+
+    def result(status, path=(), cell=frozenset(), reason=None):
+        return {"status": status, "trace": tuple(trace), "path": tuple(path),
+                "finite_component": frozenset(cell), "censor_reason": reason,
+                "planning_expansions": expansions, "replans": replans}
+
+    if source == target:
+        return result("connected", (source,))
+    while True:
+        replans += 1
+        order = itertools.count()
+        heuristic = distance(source, target)
+        queue = [(heuristic, 0, heuristic, next(order), 0, source)]
+        best, parent = {source: (0, 0)}, {source: None}
+        path = None
+        while queue:
+            _, unknown, _, _, depth, u = heapq.heappop(queue)
+            if (depth, unknown) != best[u]:
+                continue
+            if expansions == planning_limit:
+                return result("censored", reason="planning")
+            expansions += 1
+            if u == target:
+                path = [u]
+                while parent[u] is not None:
+                    u = parent[u]
+                    path.append(u)
+                path.reverse()
+                break
+            for v in neighbors(u):
+                edge = edge_key(u, v)
+                if not cache.get(edge, True):
+                    continue
+                candidate = (depth+1, unknown+(edge not in cache))
+                if v in best and best[v] <= candidate:
+                    continue
+                best[v], parent[v] = candidate, u
+                heuristic = distance(v, target)
+                heapq.heappush(queue, (candidate[0]+heuristic, candidate[1],
+                                      heuristic, next(order), candidate[0], v))
+        if path is None:
+            return result("disconnected", cell=best)
+        for u, v in zip(path, path[1:]):
+            edge = edge_key(u, v)
+            if edge not in cache:
+                if len(trace) == query_limit:
+                    return result("censored", reason="queries")
+                cache[edge] = bool(read_edge(edge))
+                trace.append((edge, cache[edge]))
+            if not cache[edge]:
+                break
+        else:
+            return result("connected", path)
+
+
 def balanced_search(source, target, neighbors, distance, read_edge,
                     *, direction, query_limit, reverse=False):
     """Return a path, an exhausted finite component, or explicit censoring.

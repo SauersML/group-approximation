@@ -91,6 +91,9 @@ def main():
         'fpbs-integrated-sensitivity-universal': 'OPEN',
         'fpbs-benjamini-schramm-universal': 'OPEN',
         'fpbs-fixed-price-universal': 'OPEN',
+        'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
+        'fpbs-optimistic-search-linear-wall-cost': 'ESTABLISHED',
+        'fpbs-universal-optimistic-certificate-budget': 'OPEN',
     }
     statuses = {node: task_graph.nodes[node].status for node in expected}
     removed = sorted(set(before.nodes)-set(after.nodes))
@@ -100,10 +103,23 @@ def main():
                if node not in before.nodes or before.nodes[node].status != after.nodes[node].status}
     new_open = [node for node in after.claims
                 if node not in before.nodes and after.claims[node].status == 'OPEN']
+    # A named, explicitly unproved construction is now an actual frontier
+    # premise. Permit only that new hole, while keeping all goals OPEN and
+    # rejecting any other unexpected new unresolved claim.
+    allowed_new_open = {'fpbs-universal-optimistic-certificate-budget'}
+    unexpected_new_open = sorted(set(new_open)-allowed_new_open)
+    goal_view, _ = cairn.frontier_view(task_graph,
+                                     only_goal='fpbs-benjamini-schramm-universal')
+    goal_view[0]['necessary'] = sorted(goal_view[0]['necessary'])
+    search_chain = cairn.why_chain(task_graph, 'fpbs-optimistic-search-certified-growth')
+    wired = ('fpbs-universal-optimistic-certificate-budget' in goal_view[0]['holes']
+             and search_chain
+             and search_chain[0][0] == 'fpbs-benjamini-schramm-universal'
+             and search_chain[-1][2] == 'fpbs-optimistic-search-certified-growth')
     new_errors = [finding for finding in errors if finding not in baseline_errors]
     passed = (not any(severity == 'error' for severity, _, _ in task_errors)
               and not new_errors and not duplicates and not removed
-              and statuses == expected and not new_open)
+              and statuses == expected and not unexpected_new_open and wired)
     report = {
         'status': 'passed_task_graph' if passed else 'failed',
         'execution': 'MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.',
@@ -118,6 +134,10 @@ def main():
         'baseline_findings': baseline_errors,
         'findings': errors, 'duplicate_findings': duplicates,
         'removed_nodes': removed, 'new_open_claims': new_open,
+        'allowed_new_open_claims': sorted(allowed_new_open),
+        'unexpected_new_open_claims': unexpected_new_open,
+        'benjamini_schramm_frontier': goal_view[0],
+        'optimistic_search_goal_chain': search_chain,
         'state_changes': changes, 'selected_statuses': statuses,
         'overlay_source_sha256': {p: hashlib.sha256(data).hexdigest()
                                   for p, data in sorted(overlay.items())},
