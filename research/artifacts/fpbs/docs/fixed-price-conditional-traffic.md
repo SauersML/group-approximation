@@ -462,7 +462,85 @@ No numerical check or dependency compilation verifies this extension.
 The proof is the displayed repair construction and its approximation
 argument, using the same conditional traffic identity as Sections 2--5.
 
-## 10. Verification boundaries
+## 10. Finite fibers and increasing information factors
+
+The finite-fiber bound in `finite-fiber-cost-descent.md`, Section 1,
+proves
+
+    C(X)<=1+q(C(Y)-1)
+
+for uniform q-point free extensions. If C(Y)<infinity, it supplies
+the finite-base hypothesis of Section 9 without assuming C(X) finite
+in advance. This gives another applicable case of (9.4)--(9.5),
+not an equality theorem for finite fibers.
+
+The same artifact proves C(X)-1<=(C(Y)-1)/a when X is ergodic
+and its conditional measures have atoms of largest mass a>0.
+Thus finite source cost also enters Section 9 in that setting.
+
+There is also a genuine approximation theorem for increasing
+information. Suppose the invariant sigma-algebras of factors Z_r
+satisfy
+
+    B_X contained in B_(Z_1) contained in B_(Z_2) contained ...,
+    sigma(union_r B_(Z_r))=B_Y modulo null sets,
+
+and C(X)<infinity. All factors are free because they factor onto X.
+Then
+
+    C(Z_r) decreases to C(Y).                              (10.1)
+
+The factor inequality gives C(Y)<=C(Z_(r+1))<=C(Z_r). To prove
+the other direction, fix epsilon>0 and a Section 9 plan on Y with
+B_Lambda<C(Y)+epsilon. Let U_j be its finitely many used source
+domains, m its finite demand-prefix length, and L its path cutoff.
+Keep only T_(g_j)|U_j from its source graphing.
+
+Since the factor sigma-algebras increase to B_Y, there are sets
+U_(j,r) measurable in Z_r with
+
+    nu(U_(j,r) symmetric-difference U_j)->0.
+
+For example threshold the conditional expectations of 1_(U_j) at
+1/2 and use their L1 convergence. These sets define partial
+transformations on Z_r. Consider the score consisting of their
+total domain cost, plus the measure of the first m Lambda-requests
+not connected by a path of length at most L, plus the unchanged
+tail cost t_m.
+
+This score changes continuously under the stated domain
+approximations. Indeed there are only finitely many words of length
+at most L in the fixed graphing labels and their inverses. Whether
+a word is a valid path tests finitely many group translates of the
+domains. The measure of changed validity events is bounded by a
+finite sum of the symmetric-difference measures, since the group
+maps preserve measure. A finite union bound controls the prefix
+failure score as well. No uniform bound over all plans or cutoffs
+is asserted.
+
+For the original used domains, every originally covered prefix
+request has its chosen path, so the score is at most B_Lambda.
+For all sufficiently large r the approximating score is therefore
+less than C(Y)+2epsilon. Repair those prefix failures directly in
+Z_r and append the lifted base tail. This generates Z_r, proving
+C(Z_r)<C(Y)+2epsilon. Let epsilon decrease to zero to obtain (10.1).
+There is no need for the limit of a decreasing sequence of graph
+edge sets to remain connected; the sigma-algebras here increase.
+
+Consequently if every Z_r already has cost C(X), then C(Y)=C(X).
+In particular a tower of uniform finite-fiber extensions over X
+would preserve cost in the limit *if* preservation were established
+at all its finite stages. The finite-fiber/index equivalence in the
+other artifact explains why that premise is not supplied merely
+by the ordinary compression formula.
+
+An arbitrary binary symbolic extension is not asserted to be such
+a tower. Finite partitions of its space do not in general form
+invariant finite-fiber factors after taking their orbit translates.
+Nor does (10.1) prove that the nonincreasing costs equal the initial
+one: the desired equality at the stages is a separate hypothesis.
+
+## 11. Verification boundaries
 
 The script check_descent.py tests the actual constructive bound and its traffic
 identities on every pair of partial domains for the +1 and -1 maps on the

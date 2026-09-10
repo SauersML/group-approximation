@@ -5,6 +5,7 @@ kind: claim
 title: Finite routing plans give exact variational formulas for both action costs
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
+  - research/artifacts/fpbs/docs/finite-fiber-cost-descent.md
   - research/artifacts/fpbs/responses/51_0909-211602.md
 ---
 
@@ -20,7 +21,17 @@ with both bracketed terms nonnegative. Hence C(X) = C(Y) exactly when there are 
 
 Finite generation is not required. The finite-cost base hypothesis supplies
 a summable ordinary repair budget and also ensures C(Y)<=C(X)<infinity.
-The result does not address finite-cost sources over infinite-cost bases or
+For a uniform q-point free factor, finite source cost already ensures
+finite base cost by `fpbs-finite-fiber-cost-bound`, so these identities
+apply under that sufficient hypothesis as well. The same input proves
+this for an ergodic base with an atomic part in the conditional
+measures and finite source cost. The identities do not exclude
+finite-cost sources over infinite-cost bases with arbitrary fibers or
 prove universal vanishing of the defect.
+
+Section 10 also proves continuity along increasing information factors:
+if X is a finite-cost base, Y->Z_r->X, their invariant sigma-algebras
+increase and generate that of Y, then C(Z_r) decreases to C(Y).
+Equality with C(X) still requires cost preservation at the stages.
 
 Status records a written deduction, not independent validation.
