@@ -219,30 +219,30 @@ status:
       comparator_config: Palomar/comparator.json
 
     # The three LIX rows deliberately carry no `sorry_count` and no `axioms`.
-    # Both fields ask about the closure of the proved declaration, which
-    # reaches into the development, and the only thing that settles either is a
-    # run of `scripts/PalomarLIXAxioms.lean` under `lake env lean`.  No such run
-    # has completed for these three declarations yet, so the fields are absent
-    # rather than filled in from reading a file: an absent field is a gap, a
-    # wrong one is a false certificate.  The lead fills them in from the first
-    # green `palomar-check` run, citing its run id and commit exactly as the
-    # entry above does.  The development's own LIX endpoints --
-    # `not_problemLIX` and `exists_separable_simple_unital_not_k1Inj` in
-    # GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIX.lean -- close
-    # over the three classical axioms, so [propext, Classical.choice,
-    # Quot.sound] is the expected value.  Expected, not asserted: the compared
-    # declarations here are assembled in Palomar/LIXSolution.lean and their own
-    # closure is what the field is about.
+    # The three LIX rows carry the closure `scripts/PalomarLIXAxioms.lean`
+    # computed under `lake env lean`, gated on every push to the Palomar
+    # surface by `.github/workflows/palomar-check.yml`: first green at run
+    # 34457861307 on f6da71566, which also reported the challenge and solution
+    # elaborating all three statements, and their transitive constant
+    # closures, identically.  As for the entry above, `sorry_count: 0` is what
+    # a closure containing no `sorryAx` settles, not a lexical scan of
+    # Palomar/LIXSolution.lean.
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-lix.json
 
     - declaration: ProblemLIX.exists_separable_simple_not_k1Injective
       file: Palomar/LIXSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-lix.json
 
     - declaration: ProblemLIX.exists_separable_simple_stage_two_witness
       file: Palomar/LIXSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-lix.json
 
 fidelity:

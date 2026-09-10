@@ -118,3 +118,16 @@ surjectivity consequence. The degree-one kernel remains uncomputed.
   exact quotient reduction; its survival question is now settled.
   The particular subgroup D inside Z/24 is not identified by this
   argument and is not needed for the counterexample.
+
+**Palomar submission surface (2026-09-10).** The negative answer is offered
+for mechanical verification under the `leanprover/comparator` protocol as the
+repository's second configuration, `Palomar/comparator-lix.json`:
+`Palomar/LIXChallenge.lean` states, Mathlib-only, that not every nontrivial
+simple unital C*-algebra is `K₁`-injective, that the counterexample is
+separable, and that it carries a unitary outside `U₀(A)` whose `diag(u, 1)`
+lies in `U₀(M₂(A))`; `Palomar/LIXSolution.lean` proves all three from
+`not_problemLIX`'s development. Axiom closure of each compared theorem is
+`[propext, Classical.choice, Quot.sound]`, and the challenge and solution
+elaborate the statements identically (palomar-check run 34457861307 at
+f6da71566). `K₁`-injectivity is rendered there elementwise, as the
+direct-limit description of the kernel of `U(A)/U₀(A) → K₁(A)`.
