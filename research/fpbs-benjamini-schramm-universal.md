@@ -151,6 +151,13 @@ content in that region.
   particular failure. The censored pilot in `search-geometry.md` supports
   investigating the latter schedules, without providing the needed
   expected-cost bound or a phase determination.
+  The further obstruction `fpbs-closed-wall-forces-exponential-search`
+  rules out a deterministic polynomial detour bound even for stronger
+  target weights. However, `fpbs-bernoulli-wall-branch-budget-summable`
+  proves that one family of wall/branch lower certificates has uniformly
+  finite expected sum: charging only closed walls and importing an
+  all-open volume is invalid. The actual conditional expected-query
+  upper bound remains unproved; see `search-barriers.md`.
 
 * **Contract the critical clusters and sprinkle independently (2026-09-09).**
   `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond

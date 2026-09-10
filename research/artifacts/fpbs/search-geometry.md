@@ -170,6 +170,14 @@ The missing task remains a near-critical conditional expected-query
 upper bound valid under hypothetical uniqueness on every Cayley graph.
 The pilot and deterministic bounds do not supply it.
 
+The follow-up `search-barriers.md` proves that a finite closed wall
+forces exponential queries in detour length for every finite beta>=0,
+including beta>1. It also gives the exact probability charge for a
+terminal transcript and a summable family of Bernoulli wall/branch lower
+certificates. Thus a deterministic polynomial detour estimate is
+unavailable for this schedule, while its conditional expected cost
+still requires a separate probabilistic argument.
+
 ## 5. Exact verification
 
 `scripts/replay_search_geometry.py` checks 684 all-open cases, 2,028
