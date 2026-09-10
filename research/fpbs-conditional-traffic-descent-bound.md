@@ -4,6 +4,7 @@ id: fpbs-conditional-traffic-descent-bound
 kind: claim
 title: Conditional routing traffic gives a constructive cost bound in the target action
 artifacts:
+  - research/artifacts/fpbs/docs/shared-component-repair.md
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/responses/51_0909-211602.md
 ---
@@ -21,3 +22,11 @@ only the routed part and its traffic are finite. No infinite-cost base is
 covered by this extension.
 
 Status records a written deduction, not independent validation. The note reports a finite check of the projection-and-repair construction on 4,096 domain configurations of a six-point two-sheet extension of a regular Z/3 action; that script is not part of this archive, and the check tests finite accounting only.
+
+The repair can also use whole components. If the retained base
+graphing F has connected infinite contacts between its components
+in a fixed finite-cost generating base graphing, the shared-repair
+artifact proves C(X)<=c(F) by repairs of arbitrarily small cost on
+X itself. This applies to the threshold graphing above or another
+measurable base selection meeting the stated hypothesis. The source
+routing data are not asserted to provide that hypothesis.

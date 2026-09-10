@@ -4,8 +4,10 @@ id: fpbs-conditional-traffic-descent-bound-proof
 kind: route
 title: Retain edges of expected traffic at least one and charge the rest to repairs
 target: fpbs-conditional-traffic-descent-bound
-requires: []
+requires:
+  - fpbs-infinite-contact-zero-relative-cost
 artifacts:
+  - research/artifacts/fpbs/docs/shared-component-repair.md
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/responses/51_0909-211602.md
 ---
@@ -20,3 +22,9 @@ full tail cost in r. Every Lambda-request is then connected, so the completed
 graphings generate. The tail adds no conditional traffic defect because it
 is base measurable. This is a direct repair construction; it does not use
 subgroup exhaustion or assume that an infinite-cost base has a cheap tail.
+
+For the component-repair alternative, apply the required zero-relative-
+cost theorem to S=R_F whenever its infinite-contact hypothesis holds.
+Append its arbitrarily cheap repair to F to obtain C(X)<=c(F).
+This use does not assume that every threshold graphing has the
+necessary contacts or that a random graph law can be realized on X.
