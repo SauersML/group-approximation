@@ -192,3 +192,105 @@ It is not a theorem about arbitrary component quotients with
 infinite cuts. We have not proved an analogue for relative
 determinantal deletion, nor realized that law in every prescribed
 base action. Those gaps remain explicit.
+
+## 6. The contact hypothesis fails even when relative repair costs zero
+
+Take Gamma=F_2 x Z and its product Cayley graph G=T_4 x Z.
+Let F have the uniform spanning forest law. Here FUSF=WUSF:
+the group has fixed price one (the infinite-order generators
+a,b,z are joined by the commuting pairs a,z and b,z), hence
+beta_1(Gamma)=0; the standard spanning-forest identity gives
+E deg_FUSF(o)=2+2 beta_1, while WUSF has expected degree two
+and is stochastically dominated by FUSF. Thus their laws coincide.
+For the fixed-price input see
+[Gaboriau's commuting-family theorem](https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf);
+the forest identities are also recalled in
+[Hutchcroft--Pete, Introduction](https://arxiv.org/pdf/1810.11015).
+
+The graph is nonamenable. By
+[Benjamini--Lyons--Peres--Schramm, Theorem 13.7](https://rdlyons.pages.iu.edu/pdf/usf.pdf),
+F union an independent Bernoulli(epsilon) bond percolation has
+infinitely many components almost surely for all sufficiently
+small positive epsilon. Consequently the infinite-contact graph
+of F-components cannot be connected almost surely. Indeed, if
+it were connected on a set of forest configurations of positive
+probability, independent edge sprinkling would connect every
+infinite contact on that set, contradicting the cited theorem.
+
+This is compatible with zero optimized relative repair cost on
+the same probability space. Let X be the product of the forest
+configuration space with an independent nontrivial Bernoulli
+Gamma-action, and let S be the subrelation given by the forest
+edges. The action on X is free, so C(R_X)=1 by the known fixed
+price of Gamma. The forest has infinite components and cost one,
+giving C(S)=1 by the aperiodic lower bound. The relative-cost
+formula already recorded in Cairn therefore gives
+
+    relC(R_X;S)=C(R_X)-1=0.                               (6)
+
+Thus the infinite-contact hypothesis is not necessary for cheap
+repair, even for an actual uniform spanning forest of a Cayley
+graph of a known fixed-price group. This conclusion uses the
+known value C(R_X)=1; it cannot establish that value for an
+unresolved group. Repairs in (6) may use arbitrary group-labelled
+partial transformations and depend on the configuration. The
+sprinkling theorem concerns independent original Cayley edges.
+
+## 7. An explicit dependent repair that preserves the forest
+
+There is also an elementary positive construction on an explicitly
+enlarged probability space. It illustrates what independence of
+individual added edges was preventing, without assuming a method
+to realize its extra information in an arbitrary action.
+
+Independently of F, mark the vertices of T_4 with probability
+delta in (0,1), obtaining A, and mark the integers with probability
+eta in (0,1), obtaining B. Add the following subgraph J of G:
+
+* every vertical edge in a column h x Z with h in A;
+* every horizontal edge in a layer T_4 x {n} with n in B.
+
+The nonisolated part of J is connected almost surely: A and B
+are both nonempty, each chosen vertical column meets each chosen
+horizontal layer, and each such column or layer is connected.
+
+Every infinite set T of vertices of T_4 x Z has an infinite
+projection onto at least one coordinate. Conditional on F, for
+each of its trees T, infinitely many distinct first coordinates
+give an A-mark in that projection almost surely, or infinitely
+many distinct second coordinates give a B-mark. In either case
+T intersects J. There are countably many trees, so they all
+intersect its connected nonisolated part simultaneously. Hence
+
+    F union J is connected almost surely.                (7)
+
+The law is Gamma-invariant. Counting one positive vertical and
+two positive horizontal generators, the added cost is at most
+
+    delta+2 eta,
+
+which tends to zero. Every original F-edge is retained. The
+argument works for any independent random spanning forest with
+only infinite components; it does not require indistinguishability.
+These are shared whole-column and whole-layer connections, not
+independent bond sprinkling. This is a reconstruction using the
+known product geometry, not a new fixed-price family.
+
+### The realization issue remains explicit
+
+The marking law used in (7) cannot be copied as a factor of a
+Bernoulli Gamma-action. Membership of a column in A is a nontrivial
+event invariant under the infinite Z-subgroup. Restriction of a
+Bernoulli Gamma-action to that subgroup is again a Bernoulli action
+after regrouping coordinates into its cosets, and is ergodic.
+It has no invariant event of measure delta in (0,1). Moreover A
+is recoverable from the vertical-edge indicators of J, so this
+obstruction applies to reproducing the helper graph law itself.
+
+Equation (7) supplies a concrete connected repair on the product
+with the two marking spaces. It does not make J measurable on
+the original base action. Equation (6) separately guarantees
+arbitrarily cheap repairs there because this group's fixed price
+is already known; it does not identify those repairs with J.
+For the universal problem, reproducing the attainable cost while
+discarding the marking law is still the unproved step.

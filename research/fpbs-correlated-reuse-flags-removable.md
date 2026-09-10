@@ -29,6 +29,16 @@ from that weaker cut property alone. Suitable contacts at the
 source budget, or a stronger repair mechanism exploiting the
 actual determinantal law, remain to be constructed.
 
+There is now a sharper limitation of this repair criterion in
+Sections 6--7 of the same artifact. The uniform forest on F_2 x Z
+has zero optimized relative repair cost in its free forest-times-
+Bernoulli action, but sparse independent sprinkling fails by BLPS
+Theorem 13.7. Rare whole columns and layers give an explicit
+dependent repair on an enlarged space. Their law cannot be copied
+into Bernoulli because of a nontrivial Z-invariant marking event.
+Thus neither infinite contacts nor reproduction of that successful
+helper law can be required as a universal route to cost preservation.
+
 Start with finite fibers, then pass to a limit. The proved
 `fpbs-finite-fiber-cost-bound` gives C(X)-1<=q(C(Y)-1) for a uniform
 q-point factor. This excludes finite-to-infinite cost loss in that

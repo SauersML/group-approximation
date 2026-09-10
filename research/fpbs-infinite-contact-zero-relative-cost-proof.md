@@ -4,7 +4,8 @@ id: fpbs-infinite-contact-zero-relative-cost-proof
 kind: route
 title: Sample shared connectors and derandomize finite connection tests with paid tails
 target: fpbs-infinite-contact-zero-relative-cost
-requires: []
+requires:
+  - fpbs-cost-one-backbone-fixes-completion-bill
 artifacts:
   - research/artifacts/fpbs/docs/shared-component-repair.md
 ---
@@ -31,3 +32,20 @@ union. Imported for the cut audit: the defining determinantal
 inclusion probabilities from Lyons, linked in the artifact.
 
 These are written deductions, not formal proof verification.
+
+For Section 6, import BLPS Theorem 13.7 and the standard uniform-
+forest expected-degree and domination identities at the linked
+primary sources. Use the known commuting-family fixed-price-one
+case F_2 x Z. Its free forest-times-Bernoulli action and infinite
+forest subrelation both have cost one, so the required completion-
+bill formula yields zero relative cost, despite the independent
+sprinkling obstruction. No universality is inferred from this case.
+
+Section 7 gives an explicit dependent repair on a larger space:
+rare full vertical columns intersect rare full horizontal layers,
+and every infinite forest tree has an infinite projection onto at
+least one coordinate. Independent marks on that coordinate make
+the tree hit the connected helper almost surely. Countability
+handles all trees. The direct cost count is delta+2 eta. The
+nontrivial invariant column event prevents copying this helper law
+into a Bernoulli action, whose Z-restriction is ergodic.
