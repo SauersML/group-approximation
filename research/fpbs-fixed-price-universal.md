@@ -6,6 +6,7 @@ title: All free probability-preserving actions of each countably infinite group 
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/docs/cost-rank-duality.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/fixed-price-percolation.md

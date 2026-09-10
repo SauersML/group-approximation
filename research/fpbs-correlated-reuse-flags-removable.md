@@ -4,6 +4,7 @@ id: fpbs-correlated-reuse-flags-removable
 kind: claim
 title: Group-correlated reuse flags can be removed without increasing completed cost
 artifacts:
+  - research/artifacts/fpbs/docs/cost-rank-duality.md
   - research/artifacts/fpbs/docs/finite-fiber-cost-descent.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
@@ -16,6 +17,17 @@ artifacts:
 This is the isolated remaining step of the reuse programme. The savings to be preserved are those of a connection used many times and paid for once, and the question is whether they can depend irreducibly on group-correlated information of the source action. No route establishes it.
 
 ## Attempts
+
+Dualize optimized subgraph cost as a matroid rank. The proved
+`fpbs-cost-subgraph-rank-obstruction` rules out a monotone or
+submodular rank that both attains cost and is consistent under
+edge restriction. Two commuting extensions of the F_r treeing
+give costs 1,1,r,1 for A,B,their intersection,their union.
+Even zero relative completion cost leaves the retained treeing's
+edge cost r. An ambient-dependent dual certificate remains possible,
+but the graphing-matroid theorem for planar duals does not supply
+one for an arbitrary Cayley graph. The precise literature scope
+and the failed extra axiom are recorded in the cost-rank artifact.
 
 Repair connections shared by whole components. The proved
 `fpbs-infinite-contact-zero-relative-cost` constructs arbitrarily
