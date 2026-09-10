@@ -163,9 +163,12 @@ Node E states the restricted form `(AN1)`; its title was tightened here.
   MF-valued map with kernel `{+-I}` injective on `N_n`).  The prompt
   `/tmp/non_mf_decide_integral_jacobson.txt` item (3) was reworded to the
   restricted form so that no solver can take the strong form as given.
-* Exact centerless reformulation: `G_n` is MF iff `P = G_n/{+-I}` is MF,
-  `C_P(image of N_n) = 1`, and every MF homomorphism of `P` is injective
-  or kills the image of `N_n`.  Nothing is decided.
+* Exact centerless reformulation, node H
+  (`integral-jacobson-centerless-quotient-carries-dichotomy`): `G_n` is
+  MF iff `P = G_n/{+-I}` is MF, `C_P(image of N_n) = 1`, and every MF
+  homomorphism of `P` is injective or kills the image of `N_n`; for odd
+  `n >= 5` the center is trivial and the whole-group dichotomy holds for
+  `G_n` itself.  Nothing is decided.
 
 ## 5. Rank-two exclusion (node F)
 
