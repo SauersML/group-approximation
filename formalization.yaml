@@ -105,10 +105,11 @@ sources:
     relationship: background
     note: >-
       Independent solution of Problem LIX, posted 2026-09-08, by a different
-      method and not used here; this project's endpoint not_problemLIX was
-      committed on 2026-09-07 (aa9ba0148), and the full argument was posted
-      publicly the same day (https://x.com/Sauers_/status/2096961149770043897,
-      13:57 UTC).
+      method and not used here. The argument here was committed to this public
+      repository on 2026-09-05 04:40 UTC (fb38f13ad; the evening of 2026-09-04
+      in Central time), posted publicly on 2026-09-07
+      (https://x.com/Sauers_/status/2096961149770043897), and its Lean endpoint
+      not_problemLIX landed on 2026-09-07 (aa9ba0148).
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
