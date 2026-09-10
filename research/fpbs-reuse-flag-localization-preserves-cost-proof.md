@@ -4,7 +4,8 @@ id: fpbs-reuse-flag-localization-preserves-cost-proof
 kind: route
 title: Reveal only the repeated-use flags and apply the descent bound to the intermediate factor
 target: fpbs-reuse-flag-localization-preserves-cost
-requires: []
+requires:
+  - fpbs-conditional-traffic-descent-bound
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md

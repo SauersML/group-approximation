@@ -12,6 +12,8 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import posixpath
+import re
 import tarfile
 import time
 
@@ -25,6 +27,72 @@ def read_archive(path):
     return files, hashlib.sha256(raw).hexdigest()
 
 
+def integration_view(graph):
+    """Separate genuine premise reachability from complete catalog navigation."""
+    ids = {node for node in graph.nodes if node.startswith('fpbs-')}
+    goals = ('fpbs-benjamini-schramm-universal', 'fpbs-fixed-price-universal')
+
+    def reachable(goal, live):
+        seen, pending = set(), [goal]
+        while pending:
+            node = pending.pop()
+            if node in seen:
+                continue
+            seen.add(node)
+            value = graph.nodes[node]
+            if value.kind == 'claim':
+                pending.extend(r for r in graph.routes_into.get(node, [])
+                               if not live or graph.nodes[r].status != 'INVALIDATED')
+            else:
+                pending.extend(value.meta.get('requires', []))
+        return seen & ids
+
+    all_paths = {g: reachable(g, False) for g in goals}
+    live_paths = {g: reachable(g, True) for g in goals}
+    live_union = set().union(*live_paths.values())
+    lines = [
+        '# Fixed Price and Benjamini–Schramm: complete Cairn navigation', '',
+        'Generated from the captured graph by `scripts/validate_critical_cluster_stability.py`.',
+        'Both universal goals remain OPEN. ESTABLISHED records Cairn dependency closure;',
+        'it does not certify mathematical correctness or a Lean proof.', '',
+        'Every fpbs claim and route is listed below. Catalog links make supporting work',
+        'discoverable without pretending that it is a proof premise. A live goal path',
+        'uses declared claim-to-route and route-to-requirement edges and excludes',
+        'INVALIDATED routes; it can still contain OPEN premises.', '',
+        '| Scope | Nodes |', '| --- | ---: |',
+        f'| Complete catalog | {len(ids)} |',
+        f'| Live proof paths from either goal | {len(live_union)} |',
+        f'| All declared paths, including invalidated routes | {len(set().union(*all_paths.values()))} |',
+        f'| Supporting catalog outside live goal paths | {len(ids-live_union)} |', '',
+        'New conditional work: [sparse base surgery](docs/sparse-base-surgery.md).',
+        'It transfers coupled separators to the base action and rounds certificates',
+        'already supported in a sufficiently sparse base region. Producing that support',
+        'at source-optimal cost and handling nonexact groups remain unresolved.', '',
+        '| Claim or route | Kind | Cairn status | Live goal path | Declared premises or routes |',
+        '| --- | --- | --- | --- | --- |',
+    ]
+
+    def link(node):
+        return f'[{node}](../../{node}.md)'
+
+    for node in sorted(ids):
+        value = graph.nodes[node]
+        paths = ', '.join(label for g, label in zip(goals, ('BS', 'FP'))
+                          if node in live_paths[g]) or 'supporting catalog'
+        adjacent = (graph.routes_into.get(node, []) if value.kind == 'claim'
+                    else value.meta.get('requires', []))
+        references = ', '.join(link(n) for n in sorted(adjacent)) or 'none'
+        lines.append(f'| {link(node)} | {value.kind} | {value.status} | {paths} | {references} |')
+    return '\n'.join(lines)+'\n', {
+        'catalog_nodes': len(ids),
+        'catalog_ids': sorted(ids),
+        'live_proof_reachable': {g: sorted(v) for g, v in live_paths.items()},
+        'all_declared_reachable': {g: sorted(v) for g, v in all_paths.items()},
+        'outside_live_goal_paths': sorted(ids-live_union),
+        'meaning': 'Catalog coverage is navigation, not additional proof dependency or mathematical verification.',
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo', type=Path, required=True)
@@ -33,6 +101,11 @@ def main():
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--overlay', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--write-navigation', action='store_true',
+                        help='Generate navigation only; rebuild the overlay and validate separately.')
+    parser.add_argument('--source-rename', nargs=2, action='append', default=[],
+                        metavar=('OLD', 'NEW'),
+                        help='Explicit source rename omitted from the overlay; verify unchanged text except id.')
     args = parser.parse_args()
     start = time.monotonic()
     tool_path = args.kernel
@@ -42,6 +115,14 @@ def main():
     baseline, baseline_hash = read_archive(args.baseline)
     overlay, overlay_hash = read_archive(args.overlay)
     current = baseline | overlay
+    for old, new in args.source_rename:
+        assert old in baseline and old not in overlay and new in overlay
+        assert not (args.repo/old).exists() and (args.repo/new).is_file()
+        old_text = baseline[old].decode('utf-8')
+        expected_text = old_text.replace('id: '+Path(old).stem+'\n',
+                                         'id: '+Path(new).stem+'\n', 1)
+        assert overlay[new].decode('utf-8') == expected_text
+        del current[old]
 
     def node_sources(files):
         return {path: content for path, content in files.items()
@@ -61,6 +142,32 @@ def main():
 
     before, baseline_errors = compile_sources(old_sources)
     after, errors = compile_sources(new_sources)
+    navigation, integration = integration_view(after)
+    navigation_path = 'research/artifacts/fpbs/navigation.md'
+    if args.write_navigation:
+        (args.repo/navigation_path).write_text(navigation)
+        print(json.dumps({'status': 'navigation_generated_not_validated',
+                          'catalog_nodes': integration['catalog_nodes']}))
+        return
+    navigation_matches = (current.get(navigation_path) == navigation.encode('utf-8')
+                          and (args.repo/navigation_path).read_text() == navigation)
+    integration['navigation_matches_compiled_graph'] = navigation_matches
+    checked_documents = (
+        navigation_path,
+        'research/artifacts/fpbs/docs/sparse-base-surgery.md',
+        'research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md',
+    )
+    missing_links = []
+    for path in checked_documents:
+        for target in re.findall(r'\]\(([^)]+)\)', current[path].decode('utf-8')):
+            if '://' in target or target.startswith('#'):
+                continue
+            resolved = posixpath.normpath(posixpath.join(posixpath.dirname(path),
+                                                        target.split('#', 1)[0]))
+            if resolved not in current:
+                missing_links.append([path, target, resolved])
+    integration['checked_document_links'] = list(checked_documents)
+    integration['missing_document_links'] = missing_links
     changed = {Path(p).stem for p in new_sources
                if old_sources.get(p) != new_sources[p]}
     duplicates = cairn.duplicate_findings(after, only_ids=changed)
@@ -110,6 +217,10 @@ def main():
         'fpbs-pulled-back-graphing-isoperimetry': 'ESTABLISHED',
         'fpbs-cluster-contact-merger-balance': 'ESTABLISHED',
         'fpbs-contact-dispersion-sign-obstruction': 'ESTABLISHED',
+        'fpbs-sparse-fiid-approximate-hyperfiniteness': 'ESTABLISHED',
+        'fpbs-local-equivalence-separator-rounding': 'ESTABLISHED',
+        'fpbs-sparse-base-connected-cycle-rounding': 'ESTABLISHED',
+        'fpbs-measurable-matroid-approximate-exchange': 'ESTABLISHED',
         'fpbs-relative-cycle-block-localization': 'OPEN',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
@@ -179,11 +290,12 @@ def main():
     passed = (not any(severity == 'error' for severity, _, _ in task_errors)
               and not new_errors and not duplicates and not removed
               and statuses == expected and not unexpected_new_open
-              and wired and price_wired)
+              and wired and price_wired and navigation_matches and not missing_links
+              and not any(severity == 'error' for severity, _, _ in errors))
     report = {
         'status': 'passed_task_graph' if passed else 'failed',
         'execution': 'MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.',
-        'scope': 'Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.',
+        'scope': 'Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Reports original baseline findings and remaining findings separately. Verifies complete navigation against compiled graph without adding proof premises. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.',
         'cairn_sha256': hashlib.sha256(tool_path.read_bytes()).hexdigest(),
         'cairn_asset_sha256': {
             name: hashlib.sha256((tool_path.parent/name).read_bytes()).hexdigest()
@@ -197,6 +309,8 @@ def main():
         'baseline_findings': baseline_errors,
         'findings': errors, 'duplicate_findings': duplicates,
         'removed_nodes': removed, 'new_open_claims': new_open,
+        'source_renames': args.source_rename,
+        'integration': integration,
         'allowed_new_open_claims': sorted(allowed_new_open),
         'unexpected_new_open_claims': unexpected_new_open,
         'benjamini_schramm_frontier': goal_view[0],
@@ -220,7 +334,7 @@ def main():
     args.output.write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps({k:v for k,v in report.items()
                       if k not in ('overlay_source_sha256', 'task_source_sha256',
-                                   'baseline_findings')}, indent=2))
+                                   'baseline_findings', 'integration')}, indent=2))
     raise SystemExit(0 if passed else 1)
 
 

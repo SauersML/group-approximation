@@ -4,7 +4,9 @@ id: fpbs-cost-drop-witnessed-by-one-binary-observable-proof
 kind: route
 title: Adjoin the reuse flags one at a time and pigeonhole the strict decrease
 target: fpbs-cost-drop-witnessed-by-one-binary-observable
-requires: []
+requires:
+  - fpbs-reuse-flag-localization-preserves-cost
+  - fpbs-factor-invariance-equals-fixed-price
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md

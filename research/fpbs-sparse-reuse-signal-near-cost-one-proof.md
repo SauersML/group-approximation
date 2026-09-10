@@ -6,6 +6,7 @@ title: Reveal the reuse flags of a relative routing plan and bound their total m
 target: fpbs-sparse-reuse-signal-near-cost-one
 requires:
   - fpbs-relative-traffic-descent-over-hyperfinite-spine
+  - fpbs-reuse-flag-localization-preserves-cost
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
 ---
