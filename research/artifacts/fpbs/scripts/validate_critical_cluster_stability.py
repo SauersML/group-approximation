@@ -107,6 +107,7 @@ def main():
         'fpbs-finite-fiber-cost-bound': 'ESTABLISHED',
         'fpbs-infinite-contact-zero-relative-cost': 'ESTABLISHED',
         'fpbs-cost-subgraph-rank-obstruction': 'ESTABLISHED',
+        'fpbs-pulled-back-graphing-isoperimetry': 'ESTABLISHED',
         'fpbs-relative-cycle-block-localization': 'OPEN',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',

@@ -100,6 +100,11 @@ For a bounded-degree graphing with epsilon=c(Phi)-C(R),
 
 For a free action of Gamma, beta_1^(2)(R) depends only on Gamma. Thus all possible action-dependence of cost lies in g(R). Proving g(R)=0 for every free action would prove the stronger cost–Betti equality, and therefore Fixed Price. Fixed Price alone only asks for g(R) to be action-independent.
 
+The optimized quantity g(R) is the classical cycle rate tau(R),
+explicitly recorded with C(R)=1+beta_1(R)+tau(R) in
+[Pichot--Vassout, Section 4.3](https://arxiv.org/pdf/0903.0911).
+The accounting identity above is not a new cost invariant.
+
 ## 4. An exact description of loss at large cycle scales
 
 Let Z_L(Phi) be the closed span of simple cycles having length at most L, and z_L(Phi)=dim_R Z_L(Phi). It is supported on the edges B_L(Phi), so Theorem 2.1 gives
