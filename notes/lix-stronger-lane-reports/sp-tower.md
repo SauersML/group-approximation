@@ -114,24 +114,190 @@ script made that check necessary (see TRAPS).
   before the overwrite are certainly mine.  The gate is the dedicated
   `CharClass`-free probe listed under AUTHORED, UNVERIFIED.
 
+* **The C*-side gate, 2026-09-10 10:25 (cs-stages).**  Rebuilt from my sources, verified
+  `md5sum`-identical in the clone, with every one of the three a real `Built` line:
+
+  | module | |
+  |---|---|
+  | `Analysis.LIXBlockProjections` | `✔ [3015/3040] Built (41s)` |
+  | `Analysis.LIXConnectingMapPoints` | `✔ [3017/3040] Built (32s)` |
+  | `Analysis.LIXStageAlgebra` | `✔ [3019/3040] Built (39s)` |
+
+  and with them the whole `Analysis/` closure: `LIXProjectiveSpaceModel`, `LIXCornerAlgebra`,
+  `LIXConnectingMap`, `LIXConnectingMapFullness`, `LIXStageAlgebraSeparable`,
+  `LIXLimitTower`, `LIXLimitCompletion`, `LIXLimitWitness`, `LIXLimitMatrixFlatten`,
+  `LIXLimitMatrixTransport`, `LIXLimitSectionMatrix`, `LIXSimplicity`,
+  `LIXSimplicityInstance`, `LIXGeneratorUnitary`, `LIXLemmaSixGenerator`,
+  `LIXLemmaSixShape`, `LIXLemmaSixDiagPath`, `LIXLemmaSixClimb`, `LIXLemmaSixSouth`,
+  `LIXEndpointStatement`, `LIXFiniteStageNullHomotopy`, `SequentialGroupColimit`,
+  `CStarSimple`, `CStarKOne`, `CStarKOneInjectivityCriterion`, `CStarUnitaryComponent`,
+  `CStarMatrixBlockInclusion`, `KTheory.MatrixProjection`.  The `#audit_axioms` lines that
+  ran in that closure all printed exactly `[propext, Classical.choice, Quot.sound]`.
+
+  **One genuine failure, found and fixed:** `LIXLemmaSixStageZero.lean:38` did
+  `rw [STW59.stageProj, Eproj_zero_eq_one, …]`, and `stageProj` is now an `abbrev`, so its
+  equation lemma unfolds to `Gen.stageProj 2 0` and the next rewrite loses its pattern.
+  Fixed by publishing `STW59.stageProj_def` and `STW59.stageEval_def` (`… = rfl`) and
+  pointing that `rw`, and the one other unfold-by-name in the closure
+  (`LIXLemmaSixCor4.lean:133`, `rw [STW59.stageEval, …]`), at them.  The confirming
+  re-probe is queued behind `warm4.sh`, which wiped the clone's whole olean tree
+  (`rm -rf .lake/build/lib/lean/GroupApproximation`) and is `cp -a`-ing the node tree's
+  back in, so it will be a full rebuild.  `warm4.sh` does now take `laneprobe.lock`, so
+  the probe will at least not be torn.
+
 ## AUTHORED, UNVERIFIED
 
-* `Analysis/LIXConnectingMapPoints.lean` — `Gen.baseXinf n`, `Gen.truncate n i`,
-  `Gen.infDenseSeq n`, `Gen.stagePoint n i` and the two density lemmas, plus the `n = 2`
-  layer.  Landed in the tree, awaiting a probe.
-* `Analysis/LIXStageAlgebra.lean` — `Gen.stageProj n i`, `Gen.StageAlgebra n i` with the
-  full C*-instance ladder checked by `example`, `Gen.stageEval`, the zero/corner lemmas,
-  and `Gen.stageAlgebra_one_ne_zero` / `Gen.instNontrivialStageAlgebra` under `[NeZero n]`,
-  plus the `n = 2` layer.  Landed in the tree, awaiting a probe.  The `CStarAlgebra`
-  *pi*-instance `∀ n, CStarAlgebra (StageAlgebra n)` is deliberately left only at `n = 2`:
-  a second, generic one would be a data-class diamond, and the tower/limit lane is the
-  next deliverable, where it belongs.
+Probes are held by the lead while the clones are converted to real copies; everything in
+this section is in the shared tree and waits for the gate.
+
+* The `stageProj_def` / `stageEval_def` fix and its two call sites
+  (`LIXLemmaSixStageZero:38`, `LIXLemmaSixCor4:133`).  A probe holding **exactly** this
+  state, and nothing later, is queued on cs-stages — the clone's `LIXConnectingMap.lean`
+  is still `731ccc82…`, the pre-generalisation file, so its verdict is about deliverable 1
+  alone.
+* `Analysis/LIXGeneratorUnitary.lean` — the instantiation section generic in `n`:
+  `Gen.ePole n = Pi.single (Fin.last n) 1`, `Gen.genU n x = seamGen (ePole n) x`, both
+  hemisphere trivialisations of `F`, and `diag(u,1) ≃ 1` in `U(n+1)` through
+  `seamPath (ePole n)`.  `e3` and `genU` keep their own one-line definitions with
+  `e3_eq_ePole` / `genU_eq` as `rfl` bridges, because two consumers unfold those names
+  with `rw`/`simp`; every *theorem* in the `n = 2` section is now the generic one at `2`.
+  The `SU(2)`/`hopfSuspension` block stays in place as documentation of the `n = 2`
+  generator.  No declaration removed.
+* `Analysis/LIXConnectingMap.lean` — the connecting map generic in `n`:
+  `Gen.stageFrame n i`, `Gen.compressMat n i` with multiplicativity on the corner,
+  `Gen.connectMatrix`, `Gen.connectFun`, `Gen.connect` and its injectivity, with the
+  `n = 2` layer delegating.  One new lemma, `STW59.connectMatrix_def`, because
+  `LIXLemmaSixClimb:58` unfolds `connectMatrix` by name; that `rw` now names it.  No
+  declaration removed.
+* `Analysis/LIXStageAlgebra.lean`, one addition —
+  `Gen.instCStarAlgebraStageAlgebraPi (n) : ∀ i, CStarAlgebra (Gen.StageAlgebra n i)`, the
+  pi-shaped instance `CStarTower` binds.  It is a **data** class, so the `n = 2` one is
+  left as `fun _ => inferInstance` and now resolves *through* the generic one, which makes
+  the two definitionally the same term rather than an independent second instance.
+* `Analysis/LIXStageAlgebraSeparable.lean` — `Gen.instSecondCountableBaseX`,
+  `Gen.instSeparableSpaceStageAlgebra`, `Gen.instSeparableSpaceStageAlgebraPi` at general
+  `n`.  All `Prop` classes, so the `n = 2` ones stay beside them.
+* `Analysis/LIXLimitAlgebra.lean` — **the tower and the limit at general `n`**:
+  `Gen.lixTower n`, `Gen.LIXLimit n`, `Gen.lixIota`, `dense_iUnion_lixStage`,
+  `lixLimit_hasK1InjWitness` and `lixLimit_separableSpace`, with the `n = 2` layer
+  delegating and every old name kept.  The C*-algebra structure of the limit is
+  unconditional; only `Nontrivial (Gen.LIXLimit n)` carries `[NeZero n]`, and it is
+  checked by `example`.  The `2` in `CStarMat 2 (…)` is the `K₁` witness's matrix size and
+  stays `2` at every rank — the docstring now says so, because it is one character away
+  from reading as the rank.  Six `#audit_axioms` gates, three generic and three at `n = 2`.
+
+* `Analysis/LIXConnectingMapFullness.lean`, `…Sum.lean`, `…Tower.lean` — the whole
+  stagewise-fullness chain generic in `n`: `Gen.compressMat_eq_zero_iff`,
+  `Gen.stageEval_connect_ne_zero`, `Gen.sum_single_conj` (the matrix-unit averaging),
+  `Gen.isFull_of_forall_stageEval_ne_zero`, `Gen.isFull_connect_of_stageEval_ne_zero`,
+  `Gen.stageEval_climb_ne_zero` and `Gen.isFull_climb_of_ne_zero`.  `sum_single_diag` and
+  `ofFunctionMatrix_sum` are stated for an arbitrary index type, so they do **not** move
+  into `Gen`; they are hoisted above it because `Gen.sum_single_conj` consumes the first.
+* `Analysis/LIXLimitSimple.lean` — `Gen.lixLimit_isSimpleCStar_of_full n` and
+  `Gen.lixLimit_isSimpleCStar n`, i.e. **the counterexample algebra is simple at every
+  rank**, with `#audit_closed_axioms` on both the generic theorem and the `n = 2` one.
+  `LIXSimplicityInstance` needed no change: it was already abstract over `A : ℕ → Type u`.
+
+Every one of these keeps the old name with its old signature and removes no declaration;
+the diff is additive plus delegation.  Backups of the pre-edit files are in this session's
+scratchpad, so any single file can be reverted to its green form in one copy if the gate
+localises a failure there.
+* `Analysis/LIXStageAlgebra.lean`'s `CStarAlgebra` *pi*-instance
+  `∀ n, CStarAlgebra (StageAlgebra n)` is deliberately left only at `n = 2`: a second,
+  generic one would be a data-class diamond, and the tower/limit lane is the next
+  deliverable, where it belongs.
 * `Analysis/LIXGeneratorUnitary.lean` generic instantiation, drafted in this session's
   scratchpad (`sp/genu_gen.lean`) and **not yet installed**: `Gen.ePole n =
   Pi.single (Fin.last n) 1`, `Gen.genU n x = seamGen (ePole n) x`, both hemisphere
   trivialisations, `diag(u,1) ≃ 1` in `U(n+1)` via `seamPath (ePole n)`.  The whole
   Householder/frame engine above it is already generic, so this is a 150-line
   transcription with `Fin 3 ↦ Fin (n+1)` and `x 2 ↦ x (Fin.last n)`.
+
+## The fresh-clone gate, 2026-09-10 11:29 (cs-stages, 9357 jobs)
+
+Run on the lead's rebuilt clone (real copies, no hard links), with **my fourteen modules'
+`.olean`/`.ilean`/`.trace`/`.c` deleted first**, so every line below is a genuine compile.
+All fourteen clone sources were `md5sum`-verified identical to my working copies before it
+started.
+
+Green, with times: `LIXBlockProjections` 67s, `LIXGeneratorUnitary` 32s,
+`LIXConnectingMapPoints` 35s, `LIXStageAlgebra` 51s, `LIXConnectingMap` 44s,
+`LIXStageAlgebraSeparable` 42s, `LIXLimitAlgebra` 39s, `LIXConnectingMapFullness` 39s,
+`LIXLemmaSixStageZero`, `LIXLemmaSixClimb` 41s, and the surrounding LemmaSix chain
+(`HIdx` 96s, `Generator` 38s, `Shape` 65s, `Diag` 39s, `Glue` 40s, `Equator` 38s,
+`LimitSectionMatrix` 42s).
+
+**The three defeq claims I could not check by reading all held**: `Fin.last 2` against the
+numeral `2` in `Fin 3` (`LIXGeneratorUnitary` green), the `CStarTower` instance argument
+agreeing between `STW59.StageAlgebra` and `Gen.StageAlgebra 2` (`LIXLimitAlgebra` green),
+and `variable (n : ℕ)` putting `n` first in the scripted rewrites (`LIXConnectingMap` and
+`LIXConnectingMapFullness` green).
+
+**Two genuine misses of mine, both fixed:**
+
+1. `LIXLemmaSixDiagEnd:93` left `(Gen.stageProj 2 0) w (inl a) (inl b) = if a = b then 1
+   else 0` unsolved: its `simp` list named `STW59.stageProj`, whose equation lemma now
+   unfolds to the generic name, so `Eproj_zero_eq_one` lost its pattern.  Fixed by naming
+   `stageProj_def`.  My earlier grep missed it because that `simp` list spans four lines
+   and I had matched only single-line brackets; the scan is now a bracket-balancing parser
+   over every `rw`/`simp`/`unfold` in the repository, and this was the last such site.
+2. `LIXConnectingMapFullnessSum:122,129` passed `isStarProjection_stageProj j` where the
+   generic form needs `… n j` — that name was absent from the scripted rewrite's
+   substitution list.  Fixed, and the class of mistake is now closed by a checker that
+   extracts every `Gen` declaration whose first argument is `n` (162 of them) and flags
+   applications inside `Gen` blocks not followed by `n`.  It found exactly these two.
+
+Blocked, not failed: `LIXConnectingMapFullnessSum`, `…Tower` and `LIXLimitSimple` sat
+behind the miss above, and `LIXLemmaSixCor4` cannot build while `CharClass` is red.
+`CharClass` is at eighteen errors, all `sp-coeff`'s in-flight coefficient parameter
+(`CoeffField:53` fails to synthesize an instance; `CohomologyAssoc:93,:103` follow).
+**Nothing of mine is implicated there**, so the seven-importer gate cannot go green today
+and the narrow CharClass-free gate is the strongest verdict available.
+
+## PLAN for the remaining layers
+
+Scoped by reading, in dependency order.  Every one is the same recipe — a `Gen` namespace
+with `n` first, the old names kept as the `n = 2` specialisation — and for each I record
+the only thing that is *not* mechanical.
+
+1. **`LIXStageAlgebra`, one addition.**  `Gen.instCStarAlgebraStageAlgebraPi (n) :
+   ∀ i, CStarAlgebra (Gen.StageAlgebra n i)`.  It has to be pi-shaped because
+   `CStarTower` binds `[∀ i, CStarAlgebra (A i)]` and instance search does not assemble
+   that from the per-stage instance.  Not mechanical: this is a **data** class, so the
+   `n = 2` one must not be an independent second instance; it stays `fun _ => inferInstance`
+   and therefore resolves *through* the generic one.
+2. **`LIXStageAlgebraSeparable`.**  `instSecondCountableBaseX`,
+   `instSeparableSpaceStageAlgebra`, `instSeparableSpaceStageAlgebraPi` at general `n`.
+   All `Prop` classes, so duplicates are harmless.  Purely mechanical.
+3. **`LIXConnectingMapFullness`, `…Sum`, `…Tower`.**  Stated throughout over `EIdx i`,
+   `baseX i`, `StageAlgebra i`, `stageEval`, `connect`, so the same scripted `n`-insertion
+   that did `LIXConnectingMap` applies.  `…Tower`'s `isFull_climb_of_ne_zero` is already
+   abstract over the tower `T`, so only its `StageAlgebra` argument moves.
+4. **`LIXLimitAlgebra`.**  `Gen.lixTower n := CStarTower.ofInjective (STW59.Gen.connect n)
+   (STW59.Gen.connect_injective n)`, `Gen.LIXLimit n`, `lixIota`, the witness theorem and
+   separability.  Not mechanical: `Nontrivial (Gen.LIXLimit n)` needs
+   `Gen.instNontrivialStageAlgebra`, which carries `[NeZero n]`, so `Gen.LIXLimit`'s
+   nontriviality is `[NeZero n]`-conditional while the algebra itself is not.
+5. **`LIXLimitSimple`.**  Two delegating theorems once (3) and (4) are generic.
+   `LIXSimplicityInstance` needs **no change**: it is already abstract over
+   `A : ℕ → Type u`.
+6. **The Corollary-4 chain** (`LIXLemmaSixHIdx/Field/Compare/Cor4`) stays abstract over
+   the `LemmaTwoHolds` `Prop`, with the seam left where the `k`-index will enter:
+   `LemmaTwoHolds` becomes `LemmaTwoHolds n p k` and `climb_genUnitary_notMem` becomes
+   `climb_genUnitary_pow_notMem k (hk : ¬ p ∣ k)`.  This chain cannot move until (7).
+7. **The `CharClass/LIX*` shape layer** (mine by the lead's ruling of 2026-09-10).  The
+   only things pinning `Fin 3` on the definitional side are two lines:
+   `LIXSectionManuscript:82` `VIdx dd = Fin 3 ⊕ HIdx dd` and `:88`
+   `baseM dd = ↥(unitVectors (Fin 3)) × baseY dd`.  `HBlk`, `HIdx`, `baseY` and `Hmat` are
+   already `dd`-generic and `n`-free.  So: `Gen.VIdx n dd = Fin (n+1) ⊕ HIdx dd`,
+   `Gen.baseM n dd = ↥(unitVectors (Fin (n+1))) × baseY dd`, and `Vmat`, `sProj`, `eProj`,
+   `FHmat`, `EHmat` (`LemmaTwoStatement`) follow.  `eThree` becomes `Gen.eLast n =
+   Pi.single (Fin.last n) 1` with `eThree` keeping its numeral spelling and an `rfl`
+   bridge, exactly as `e3` did — several `CharClass` files `simp [eThree]`.  **Out of
+   scope by the lead's ruling:** the coefficient parameter (sp-coeff) and the Step C
+   geometry (`LIXSectionChart/Deriv/LocalHomeo`, `LIXHsq*`, `LIXStepCOdd*`,
+   `RelativeSupport`, `Thom*`, and any move of the constant section off `e_last`), which
+   are sp-oddside's after sp-design reports where the zero sits.
 
 ## NEEDS
 

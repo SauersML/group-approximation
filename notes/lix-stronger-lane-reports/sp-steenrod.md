@@ -69,7 +69,43 @@ critical path.  §7 gives the landing order so that partial progress is usable.
 | `CharClass/CartanSimplexContractible.lean` | `homZMod2_isZero_of_contractible`, `homZMod2_isZero_stdSimplexTop` | built on Mathlib's `AlgebraicTopology.singularHomologyFunctor (ModuleCat R) k` applied to `ModuleCat.of R R`, which is generic in the coefficient object; the file pins `ZMod 2` in the abbreviation only. |
 | `CharClass/AcyclicModelsResolution.lean` | `periodicDiff`, `periodicResolution`, `periodicResolutionBasis` | genuinely mod-2: one repeated differential, because `1 − T = 1 + T`.  §2.2 replaces it with a **two-differential** version that has the mod-2 file as its `a = b = 1 + T` instance. |
 | `CharClass/CartanGroupRing.lean` | `GroupRingZ2`, `groupRingGen`, `galEnd`, `galAlgHom`, `moduleOfInvolution`, `moduleOfInvolution_smul` | the shape transfers; `galEnd`'s `if toAdd a = 0 then 1 else τ` becomes `τ ^ (ZMod.val a)`, and the `by decide` case analysis on `ZMod 2` becomes one `ZMod.natCast_self`-style computation.  See §2.1. |
-| `CharClass/CartanSimplexExact.lean` | the degreewise iso between Mathlib's coproduct carrier and the `Finsupp` carrier, hence "over a standard simplex every positive-degree cycle is a boundary" | the file's chain-map proof "collapses the alternating signs in characteristic two".  At odd `p` the iso is between two complexes that **both** carry the signs, so the sign-collapsing step is deleted rather than replaced; expect this port to be shorter than the original. |
+| `CharClass/CartanSimplexExact.lean` | the degreewise iso between Mathlib's coproduct carrier and the `Finsupp` carrier, hence "over a standard simplex every positive-degree cycle is a boundary" | **corrected 2026-09-10, see §1.2a** — this is *not* a mechanical substitution. |
+
+### 1.2a Correction (2026-09-10), from `sp-coeff`, verified here
+
+The row above originally said the `CartanSimplexExact.lean` port was a mechanical
+`ZMod 2 ↦ K` substitution that would come out shorter.  That was wrong, and the
+reason is worth more than the correction.
+
+The file's chain-map step is `rw [hL, singular_d_ι]` at l.129, and
+`singular_d_ι` (vendored, `CoveringTransferBoundary.lean` l.106) encodes
+characteristic two **in the shape of its statement**, not in its proof: it says
+the differential applied to a basis simplex is the *unsigned* sum of the
+coproduct injections of the faces, where the alternating sum belongs.  I read
+both sites; the claim holds.  Its proof reaches `AlternatingFaceMapComplex.obj_d_eq`
+and `singularChainSimplicialModule_δ_ι`, which are the honest signed steps, and
+then discards the signs with `neg_one_zsmul_eq_self` against the 2-torsion lemma
+`singularChain_add_self`.
+
+Two consequences.
+
+* **No token grep finds this.**  There is no `ZMod 2` on the statement's
+  characteristic-two-ness; the file is mod-2 throughout, so a scan for the token
+  flags everything and distinguishes nothing.  `sp-coeff` found it by a one-hop
+  *use* analysis — collect declarations whose **code**, not docstring, is false
+  outside characteristic two, then find their callers — and that method also
+  found five in-scope files they had missed.  This lane adopts the method.
+* **The repair is to re-derive, not to transport.**  The signed statement is the
+  same proof stopped one line earlier, before `neg_one_zsmul_eq_self`; whether
+  the surrounding vendored objects (`singularChainCx`, `transferCoeff`,
+  `singularChainSimplicialModule`) are generic in the coefficient ring is a
+  separate question this lane must check before relying on it.  Nothing
+  downstream of `singular_d_ι` may be carried to odd `p` by substitution.
+
+`CartanSimplexExact` is this lane's only concern here: `sp-coeff` reports it is
+`singular_d_ι`'s only `CharClass` consumer, and of the 367 vendored declarations
+whose code mentions `ZMod 2`, exactly 19 are reachable from an in-scope
+`CharClass` file and `singular_d_ι` is not among them.
 
 ### 1.3 **Not** reusable
 
@@ -127,9 +163,18 @@ in the commutative `F_p`-algebra `Λ`.  It is one line and it is the reason
 everything below is cheap:
 
 * `d ∘ d = 0` for the resolution is `s · s^{p-1} = s^p = 0`;
-* the norm `N = Σ_j T^j` equals `s^{p-1}` (`grNorm_eq`: multiply
-  `Σ T^j` by `T − 1` and telescope), so `N` is **not** a separate element with
-  separate lemmas — every `N`-fact is an `s`-fact;
+* the norm `N = Σ_j T^j` equals `s^{p-1}`, so `N` is **not** a separate element
+  with separate lemmas — every `N`-fact is an `s`-fact.  **The justification
+  originally given here was wrong** and `sp-design` caught it in review: "multiply
+  `Σ T^j` by `T − 1` and telescope" proves only `N · s = 0`, i.e. `N ∈ Ann(s)`,
+  and in `Λ ≅ F_p[s]/(s^p)` the annihilator of `s` is the one-dimensional
+  `(s^{p-1})`, so the telescope pins `N` only up to an undetermined constant —
+  including zero.  That is this report's own §4 hazard appearing in the lane's
+  first lemma, which is worth more as a warning than the lemma is as a fact.
+  The correct proof telescopes in `F_p[X]`, a **domain**, where `X - 1` may be
+  cancelled: `(Σ_{j<p} X^j)(X-1) = X^p - 1 = (X-1)^p` by Frobenius, so
+  `Σ_{j<p} X^j = (X-1)^{p-1}`, and only then does one map `X ↦ T`.  Landed as
+  `OddPNorm.lean`;
 * `N e_i` is a boundary in `W` in **every** degree `i` — for odd `i` because
   `d e_{i+1} = N e_i` by definition, for even `i` because
   `N = s·s^{p-2}` and `d e_{i+1} = s e_i`.  This is what makes additivity of
@@ -310,6 +355,22 @@ theorem tupT_pow_card (hr : r = p ∨ …) : (tupT K X r k) ^ r = 1
   cancel — one computation, `r` free, no induction on `r`.  This is strictly
   easier in the flat model than in an iterated binary one, which is the second
   reason to be flat.
+  **The prerequisite, checked at the pin (2026-09-10).**  Route (A) needs
+  `ker d ≤ range d` for `singFree.obj (Δ^n)`, the `Finsupp`-carrier complex, and
+  the vanishing-homology input is stated for Mathlib's
+  `singularHomologyFunctor`.  Those are *not* the same object: Mathlib's
+  `singularChainComplexFunctor C = SSet.chainComplexFunctor C ⋙ …` uses the
+  **coproduct** presentation (`Sigma.ι` throughout), while `singFree` takes
+  `ModuleCat.free R` levelwise.  A bridge is genuinely required — that is what
+  `CartanSimplexExact.lean` is — and per §1.2a it must be rebuilt with signs
+  rather than substituted.  Two encouraging facts:
+  `singularChainSimplicialModule (R : Type) [CommRing R]` is already generic
+  (`AlexanderWhitneyChainMap.lean` l.58), so only `transferCoeff` and
+  `singularChainCx`, both pinned at `ZMod 2`, need generic twins.  The
+  alternative — an explicit cone contraction on the singular chains of a convex
+  set — is the thing cc-cartan deliberately avoided building, and it stays the
+  fallback of last resort.
+
 * **(B) Fallback: transport along an isomorphism to the iterated `tensorCx`**,
   and use `tensorCx_ker_le_range` by induction on `r`.  Costs a degreewise iso
   `tupCx C r ≅ tensorCx (tupCx C (r-1)) C` compatible with both differentials,
@@ -709,6 +770,30 @@ that the sketch does not mention.
   vanishing survives the degenerate `1`-simplices of a point, which is the case
   a "dimension" argument would miss.  Worth stating as its own lemma.
 
+> **RETRACTED 2026-09-10, after `sp-design`'s review.**  There is no
+> discrepancy and no endpoint irregularity; the paragraph below contains an
+> arithmetic slip and its conclusion is false.  I wrote
+> `λ_{p-2}(-1)^{p-2} = (p-1)(-1)^{p-1}`, reading `(-1)^{p-2}` as `(-1)^{p-1}`.
+> For `p` odd, `p-2` is **odd**, so `λ_{p-2}(-1)^{p-2} = (p-1)·(-1) = 1-p ≡ +1`,
+> which is exactly what the alternating pattern wants.  **The telescope closes
+> with `λ_i = i + 1` and no endpoint correction**, and I have confirmed it
+> numerically at `p = 3, 5, 7, 11, 13`.
+>
+> The sign vector is not an anomaly either.  My `+, +, −` is correct as a
+> function of the **rotation index** `k`, and `T^k v_0 = ε_k v_{p-k}`; read by
+> the **position** `j = p-k` of the `f`, `ε_{p-j} = (-1)^{p-j-1} = (-1)^j`
+> because `p-1` is even.  So `N v_0 = Σ_j (-1)^j v_j` on the nose: one vector
+> read in two orders, not two patterns.  Also confirmed numerically at those
+> five primes.  This is **not** the composite-B hazard, and I invoked that
+> precedent wrongly.
+>
+> The lesson is not about signs.  I reported a *blocking* obstruction on the
+> strength of a hand computation I did not check numerically, in a lane whose
+> own report tells everyone to model-test before claiming.  The growth risk in
+> the next paragraph, which I did not miscompute, remains the genuinely open
+> item.  Kept below rather than deleted, because a retraction that removes the
+> error also removes the evidence for the rule.
+
 **The discrepancy.**  With `w_i := (δf)^{⊗i} ⊗ f ⊗ f ⊗ (δf)^{⊗(p−2−i)}` and
 `v_m :=` the word with `f` in slot `m`, the Koszul signs give
 
@@ -758,25 +843,301 @@ that the closed form in `p` can be recognised or ruled out.
 
 ## GREEN (with job counts)
 
-Probe of `CharClass.OddPGroupRing`, `CharClass.OddPModule`,
-`CharClass.OddPResolution` on `cs-limit` launched 2026-09-10; result pending,
-recorded here on completion.
-
-## AUTHORED, UNVERIFIED
-
-Three modules, all new files, no existing file edited, no `sorry` anywhere:
+**All five §2 modules build together: `Build completed successfully (2010 jobs)`,
+`LAKE_EXIT=0`, `PROBE GREEN`** on `cs-limit`, 2026-09-10.  The two maximal
+elements are named in the log as freshly `Built` (`OddPResolution` 20s,
+`OddPSource` 25s); the other three are separate targets of the same green build,
+and none of them exists in the node-side tree, so none can be a replayed stale
+olean.
 
 * `GroupApproximation/CharClass/OddPGroupRing.lean` — `GroupRingZMod`, `grGen`,
-  `grGen_pow_card`, the `CharP` instance, `grS`, `grNorm`, `grNorm_mul_grS`,
-  `grS_mul_grNorm`, `grS_pow_card`.
+  `grGen_pow_card`, `grS`, `grNorm`, `grNorm_mul_grS`, `grS_mul_grNorm`.
+* `GroupApproximation/CharClass/OddPFrobenius.lean` — the `CharP` instance and
+  `grS_pow_card`.
 * `GroupApproximation/CharClass/OddPModule.lean` — `pow_mod_of_pow_card_eq_one`,
   `galEndP`, `galAlgHomP`, `moduleOfOrderP`, `moduleOfOrderP_smul`.
 * `GroupApproximation/CharClass/OddPResolution.lean` — `altCoeff`, `altDiff`,
   `altCoeff_mul_succ`, `altDiff_comp`, `altResolution`, `altResolutionBasis`,
   `Wodd`.
+* `GroupApproximation/CharClass/OddPSource.lean` — `OddPBoundaryData`,
+  `OddWTensor`, `oddDiffW`, `oddDiffS`, `oddDiffGen`, `oddDiff` and their six
+  computation lemmas.
 
-None is imported by `GroupApproximation.lean` and none is imported by any
-existing module, so no root build can be affected by them.
+No `sorry` anywhere.  None of these is imported by `GroupApproximation.lean` or
+by any existing module, so no root build can be affected by them.  `WSIndex` and
+`stdSimplexTop` are **reused** from `CartanDiagonalModule.lean` rather than
+redefined: neither mentions the coefficient ring, and a second declaration of
+either in this namespace would be a root-only failure invisible to every probe.
+
+### What the two red rounds cost, and what they were
+
+Both were Mathlib-presentation issues, neither was mathematics.
+
+1. `Finsupp.single_injective` for the injectivity of the constants of a
+   `MonoidAlgebra`.  At this pin a `MonoidAlgebra` is a **structure** wrapping
+   its coefficient `Finsupp`, not the `Finsupp`, so no `Finsupp` lemma applies;
+   the live name is `MonoidAlgebra.single_right_injective`.  The error is a bare
+   "Application type mismatch" that reads like a binder-name problem.
+2. `-DwarningAsError=true` makes the auto-included-section-variable linter fatal:
+   `altCoeff` needs no ring structure, so the section's `[CommRing Λ]` is
+   included in the two `altCoeff_even`/`altCoeff_odd` statements and unused.
+   `omit [CommRing Λ] in` before each is the fix.
+
+Both are in `FLEET_TRAPS.md`, together with the design note that paid for itself:
+the first red blocked three downstream modules only because the Frobenius
+consequence was sitting in the same file as the group ring.  Splitting it into
+`OddPFrobenius.lean` cost one file and turned a blocking red into an isolated
+one.
+
+### The three cancellations are green
+
+`GroupApproximation/CharClass/OddPSourceComplex.lean`, log line
+`✔ [2009/2010] Built GroupApproximation.CharClass.OddPSourceComplex (41s)` —
+**Built**, not Replayed.  Contents: `altCoeff_smul_oddDiffW` (resolution then
+resolution), `linearCombination_oddDiffS_bd` (`∂∂ = 0`), `oddMixed_terms_eq` (the
+two mixed terms before their signs), plus `neg_one_pow_add_succ`,
+`altCoeff_succ_junction` and the three `Finsupp` helpers over an arbitrary
+`[CommRing R]`.
+
+The mixed cancellation is where the mod-2 proof and this one part company.  At
+`p = 2` the two terms are *equal* and die because two is zero; here they are
+`c · (-1)^{i-1}` and `(-1)^i · c` times the same element and die because
+`(-1)^{i-1} + (-1)^i = 0`.  That single fact is the entire reason `oddDiffS`
+carries a sign, and §2.3's argument that the sign cannot be reindexed away is
+what says no alternative exists.
+
+### `d ∘ d = 0` is green, and §2 is closed
+
+`GroupApproximation/CharClass/OddPSourceDD.lean`, log line
+`✔ [2010/2010] Built GroupApproximation.CharClass.OddPSourceDD (67s)`,
+`Build completed successfully (2010 jobs)`, `PROBE GREEN` — **Built**, not
+Replayed.  `oddScalar_junction` and `oddDiff_oddDiff`.
+
+That closes everything the lead authorised: the group ring, the resolution, the
+source functor and its chain-complex condition.  **`W ⊗ C(X)` is a complex of
+`Λ`-modules at odd `p`, with no `sorry` and no hypothesis beyond an abstract
+signed singular boundary.**  What §2 still owes before the acyclic-models theorem
+can be applied to it is the functoriality in `X` and the freeness on the models
+(`OddPSourceFunctor.lean`, `OddPSourceFree.lean`), both of which are
+cc-cartan's `CartanSourceFunctor.lean` with the coefficient ring changed and no
+new mathematics; the one delicate field is the `ULift` reindex their traps
+section flags.
+
+## AUTHORED, UNVERIFIED
+
+Written during the 2026-09-10 network outage, unprobed because the MSI wrapper's
+auth cooldown runs to about 12:10 CDT:
+
+* `GroupApproximation/CharClass/OddPSourceFunctor.lean` — `oddSrcComplex`,
+  `oddSrcComplex_d`, `lmapDomain_oddDiffW`, `lmapDomain_oddDiffS`,
+  `lmapDomain_oddDiffGen`, `oddSrcMap`, `oddSrc`, `oddSrc_map_single`.
+* `GroupApproximation/CharClass/OddPSourceFree.lean` — `oddSrcFree`, the
+  `FreeOnModels` instance.
+* `GroupApproximation/CharClass/OddPNorm.lean` — `geom_sum_eq_sub_one_pow`,
+  `grNorm_eq`, `grNorm_eq_grS_mul`, replacing the wrong justification `sp-design`
+  caught (see §2.1).
+* `GroupApproximation/CharClass/OddPSingular.lean` — `singFreeSimplicialR`,
+  `singFreeR`, `singFaceR`, `singFreeR_d`, `singFreeR_d_single`,
+  `singFreeR_map_apply`, `singFreeR_d_natural`, `bdRHom`, `bdRHom_bdRHom`,
+  `bdRHom_natural`, and **`oddSingularBoundary p : OddPBoundaryData p`**.
+
+The last one closes a gap that would otherwise have been a gate certifying
+nothing: until it exists, `oddSrc p data` is a functor for every `data` and there
+is no `data`, so nothing has been built.  With it,
+`oddSrc p (oddSingularBoundary p)` is a concrete functor.
+
+**It is cheaper at odd `p` than at `p = 2`, and that is not a slogan.**  The
+whole assembly `toSSet ⋙ free R ⋙ alternatingFaceMapComplex` is generic in `R`,
+`ModuleCat.free R` gives `Finsupp` carriers on the nose, and `∂∂ = 0` and
+naturality are `HomologicalComplex.d_comp_d` and `Hom.comm`.  The mod-2 files
+spend four lemmas (`ModuleCatZMod2.hom_add_self`, `neg_eq_self`,
+`neg_one_pow_zsmul`, `singFree_d`) **discarding the alternating signs**, which is
+the only place their characteristic is used; this lane deletes those four rather
+than replacing them, and the signed formula it needs,
+`alternatingFaceMapComplex_obj_d`, is the very statement `singFree_d` rewrites
+away from one line before it drops the signs.
+
+That also settles the shape of the §1.2a repair in the one place this lane needs
+it.  The unsigned `bdU` of `CartanTargetBoundary.lean` is generic in the ring but
+its `bdU_bdU` requires `[Algebra (ZMod 2) Λ]`, and necessarily: `∂ ∘ ∂ = 0` is
+false for the unsigned face sum outside characteristic two.  Nothing downstream
+of `bdU` is carried here.
+
+Both are `CartanSourceFunctor.lean` with the coefficient ring changed and no new
+mathematics.  The reason there is none: the two things that distinguish odd `p`
+— the alternating resolution coefficient and the Koszul sign — are **scalars**,
+and `Finsupp.lmapDomain` is linear, so both cross the pushforward by `map_smul`
+and neither appears in a naturality argument at all.
+
+`srcMapIdx` is reused from `CartanSourceFunctor.lean`, like `WSIndex` and
+`stdSimplexTop`: it does not mention the coefficient ring, and a second
+declaration would be a root-only failure no probe can see.
+
+### A correction to §2.3 of this plan, found by reading the landed code
+
+§2.3 repeated cc-cartan's report that the `FreeOnModels` basis needs a `ULift`
+reindex "spent in the `basis`/`basis_apply` fields and nowhere else".  Their
+landed `srcFree` needs no reindex: the degree-`k` carrier is indexed by the
+**bare hom-set** `Σ n : Fin (k+1), (stdSimplexTop n.val ⟶ X)`, which is what
+`FreeOnModels` wants on the nose, so the basis is `Finsupp.basisSingleOne` and
+`basis_apply` is `Category.id_comp`.  The remark was true of an earlier design
+and outlived it.
+
+This is the second time today that a *report* about the tree was wrong where the
+*code* was right — the first was my own §1.2 row about `CartanSimplexExact`.
+Both were caught by reading the declaration rather than the sentence describing
+it.  cc-thom's "docstring rot" trap says to prefer stating a negative about your
+own file over a claim about someone else's state; the corollary this lane adds is
+that a *plan* inherits every such claim it copies, so a plan's inventory rows
+must be re-read against the code before they are acted on, not merely before they
+are written.
+
+## 11. `sp-design`'s review (2026-09-10) — sign-off, and what it changed
+
+Verdict: §2, §3 and §6 mathematically sound, signed off.  Checked and correct
+with no action: §2.3's `(-1)^i` versus `(-1)^{i-1}` cancellation; §2.1's "`N e_i`
+is a boundary in every degree"; §3.3's `tupT^r = 1` and its parity argument;
+§3.3's cross-slot sign in `tupD_tupD`; §6.1's four sign claims including the
+riffle sign; §6.3's degree-zero agreement.
+
+**The κ question is settled, and the argument is better than the sweep.**  Their
+Step D lemma list uses exactly four things about `P`: that the total `P` is a
+ring homomorphism, that `P(h) = h + κh^p` on degree-2 generators, that
+`P(z) = z`, and instability.  It never uses the `p`-th power property and never
+uses the value of any constant.  With `κ ≠ 1`: L1 is untouched; L2 becomes
+`∏(1 + h^p + κh^{p²})^{d/p}` using `κ^p = κ`, so the Frobenius support mod `p`
+is unchanged and L3a/L3b survive; L4a's coefficient becomes
+`κ^i(-1)^{i(p-1)}C(b-1,i)`, so the diagonal leading coefficient at `(b,i)=(i+1,i)`
+is `κ^i`, a unit; L5's triangularity therefore holds with a unit leading
+coefficient instead of `1`; L6 and L7 are unchanged.  **So the forcing conclusion
+is identical for every `κ ≠ 0`, and only `c_2 ≠ 0` matters, never its value.**
+That closes §4 Route 1 as the lane's route and retires Route 2 unless `c_2 ≠ 0`
+fails.
+
+**Three corrections adopted.**
+
+1. §3.3's "`p` odd enters in exactly two places" is really **one fact used three
+   times**, `(-1)^{a(p-1)} = 1`: `tupEval`'s `T`-invariance, and again in §6.1
+   for the alternating functional under the block shift at `r = 2p` with block
+   degree `a + b`.  It becomes one named lemma rather than three appeals.
+2. §6.2's justification was wrong in a harmless direction: the comparison
+   theorem needs `W` **projective** (it is free) and `W ⊗ W` acyclic in positive
+   degrees.  Freeness of `W ⊗ W` is not needed and is struck from the argument.
+3. §3.4(A)'s real difficulty is not the `Finset.filter` prefix sum: it is that
+   the prefix sign is computed on **input** degrees while the prefixed slots'
+   outputs have degree `0` after `ηε`.  Settle that convention before writing
+   the telescoping contraction, not during.
+
+## 12. The descent numerics (2026-09-10, `sp-design`), and where `c_2` now stands
+
+**The constant at degree one is `((p-1)/2)!`**, computed at `p = 3, 5, 7, 11, 13`
+as `1, 2, -1, -1, 5`, which is `1, 2, 6, 120, 720` reduced.  That is the
+classical `m!` with `m = (p-1)/2`, **derived rather than cited**, which is what
+the program note demanded.  Nonvanishing is then free: `m!` is a product of
+integers below `p`.  Well-definedness was tested exhaustively against every
+single-word perturbation of every primitive at `p = 3, 5` and the value never
+moved.
+
+**The growth risk I flagged is gone, and by a better route than a closed form.**
+Work in the cochains on `Δ^n` vanishing on vertex `0`; the cone on that vertex is
+an explicit contraction, and applied to slot `0` only it contracts the `p`-fold
+tensor power on the nose, because the two mixed Koszul terms cancel.  So every
+primitive in the descent is that operator applied to the previous term, with no
+linear solve at any level, and the whole descent is an explicit composite of two
+one-line operators.  **This retires §4 Route 2 for good**: the Lean cost is three
+lemmas — the cone contraction, its one-slot tensor version, and `N(T-1) = 0` —
+plus one evaluation.
+
+**The `Δ²` route for `c_2` is dead, and the reason is instructive.**  Every
+primitive exists and the descent runs, but the answer is not well defined: over
+exhaustive perturbations it takes *every* value in `F_p`.  The cause is the
+failure at `q = 2` of the very point-term lemma I verified at `q = 1`.  Changing
+the primitive changes the answer by a pairing against the boundary of the
+simplex; on `Δ¹` that boundary is a sum of **points**, where every word carries a
+factor that is the zero cochain, and on `Δ²` it is a sum of **edges**, where
+nothing kills it.  Only `q = 1` has a boundary of points, so no `Δ^q` descent can
+be made well defined for `q ≥ 2`.
+
+### The bridge from `c_1` to `c_2`, and the gap in it
+
+`sp-design` recommends `c_2 = c_1²` from multiplicativity, on the grounds that
+the comparison's degree-zero agreement normalises the Cartan coefficient to `1`.
+**I do not think it does, and I have said so to them and to the lead.**  Writing
+`C_{a,b}` for the coproduct's coefficients summed over the twist (the twist being
+invisible to the functional, by the invariance lemma of §3.3), the comparison
+gives
+
+```text
+D_i(u ⌣ v) ≡ Σ_{a+b=i} C_{a,b} · (D_a(u) ⌣ D_b(v))     (mod coboundary)
+```
+
+with coefficient `1` on the left.  The degree-zero agreement is the **counit**
+condition, which pins `C_{0,0} = 1` and nothing else; that is the `i = 0` case of
+the formula, which says `(uv)^p = u^p v^p` — true and empty.  The identity
+`c_2 = C_{p-1,p-1} · c_1²` needs the coefficient at `(p-1, p-1)`, which the
+counit condition does not reach.
+
+Two observations make this small rather than alarming.
+
+* We need `C_{p-1,p-1} ≠ 0`, **not** `= 1`: the normalisation absorbs any unit,
+  and the consistency condition `c_{q+q'} = κ c_q c_{q'}` is automatic.
+* `C_{p-1,p-1}` is a purely arithmetic quantity in the group ring, computable by
+  the machinery `sp-design` has already built and far smaller than the descent.
+  Requested.
+
+**A second prerequisite nobody had named**: the bridge needs two degree-1 classes
+with nonzero product, and at an odd prime a degree-1 class squares to zero, so
+they must be distinct.  That means a space like `S¹ × S¹`, reached through the
+Künneth layer rather than through sphere cohomology alone.
+
+### What this lane can prove unconditionally, which narrows it to one number
+
+**The Cartan coefficient is `1` whenever both degrees are even**, with no
+reference to the coproduct.  Evaluate the formula at the top index; instability
+kills every term except the one where each factor takes its own top operation;
+the top operation is the `p`-th power; so `κ · (uv)^p = (uv)^p`, and a projective
+space of large enough dimension supplies a product whose `p`-th power does not
+vanish.  Hence `c_{q+q'} = c_q c_{q'}` for even degrees, every even constant is a
+power of `c_2`, and the whole programme rests on `c_2 ≠ 0` alone.
+
+## The outage of 2026-09-10
+
+Every lane died at 15:55 UTC on the Mac's network, not on any lane's work.  The
+lead reports nothing lost.  For this lane the state at the cut was:
+
+* the seven §2 modules green, with `Built` lines cited for four of them;
+* an artifact-deleting rebuild of all seven in flight, started so that one log
+  would carry seven `Built` lines, which may have died on the node.
+
+So the **remote clone may currently be missing this lane's oleans**, since the
+deletion certainly ran and the rebuild may not have.  That is a clone state, not
+a source state: every file is intact locally and no green claim above rests on
+the interrupted probe.  When the wrapper returns, check for a live `lake` in
+`cs-limit` before starting anything, then re-run the seven-module probe.
+`cs-limit` is also scheduled for a de-hardlinking copy of its build directory
+under the probe lock; a probe that queues behind it is harmless.
+
+### The spelling trap, three times in one lane
+
+Every red round in §2 after the first was one shape: **a number that is
+definitionally but not syntactically what a lemma's statement spells, sitting
+inside the type of a `Finsupp`.**  `rw` matches at `instances` transparency, so
+it neither fires nor can be made to fire by a `show`; the goal displays the
+pattern and the rewrite reports "Did not find an occurrence", followed by a note
+that the target is not type-correct at that transparency.
+
+| where | goal spells | lemma spells |
+|---|---|---|
+| `linearCombination_oddDiffS_bd` | `↑i.succ` | `i.val + 1` |
+| `oddDiff_oddDiff`, interior branch | `↑i.castSucc` | `i.val` |
+
+The cure both times is a `have` whose **stated** type carries the goal's
+spelling and whose **proof** is the lemma, because `have` checks at default
+transparency where the two are equal.  Where the two sides of the junction want
+different spellings — the goal's on the left, the next rewrite's on the right —
+state the `have` with one on each side; that is what `hmix` does.
+`CartanSourceComplex.lean` does exactly this and it reads as a stylistic
+preference.  It is not one, and this lane paid two probe rounds to learn it.
 
 ## NEEDS
 
@@ -789,9 +1150,36 @@ existing module, so no root build can be affected by them.
 * **`sp-design`, review of §3 and §6** (the flat arity-generic tuple model and
   the sign conventions).  §2 is authored on the lead's authorisation, being pure
   algebra with no design risk; §3 waits on the sign-convention answer.
-* **`sp-coeff`:** `CoeffLeibniz.lean`'s signed Leibniz rule, and `Hmod K` /
-  `cocycleClassK` / `cupK` / `cohCast`.  Nothing else.  Names confirmed from
-  their report; this lane defines no cohomology vocabulary.
+* ~~**`sp-coeff`:** the signed Leibniz rule and the generic cohomology
+  vocabulary.~~  **DELIVERED 2026-09-10**, all probe-green on `cs-endpoint`:
+  `CoeffLeibniz.lean` (2031 jobs) with `aw_cochain_leibniz` over `[CommRing R]`
+  and the three sign-free consequences `cochainCup_respects_cocycles`,
+  `cochainCup_coboundary_left'`, `cochainCup_coboundary_right'`;
+  `CoeffCohomology.lean` (2055 jobs); `CohomologyBasic.lean` and
+  `CohomologyAssoc.lean` (2057 jobs) with `Hmod K`, `cup`, `pull`, `cohCast`,
+  `one` generic and `K` **implicit**.  `[CommRing K]` throughout, so `ZMod p`
+  with `[Fact p.Prime]` needs no extra hypothesis at this layer.  This lane has
+  nothing further to ask of them.
+
+  Two rules adopted from their delivery.  **Never carry the Leibniz sign into a
+  cohomology-level statement**: differentiating `(-1)^p • (φ ⌣ η)` instead of
+  `φ ⌣ η` squares the two signs to one, which is how the mod-2 shape survives
+  over any ring.  And **name the coefficient ring wherever a partial application
+  leaves it undetermined** — `pull (K := ZMod 2) f n`, not `pull f n` — because
+  `K` implicit has no argument to be inferred from; 36 sites needed it in their
+  scope and the tuple model of §3, where the ring and the arity are both section
+  variables, will have the same shape.
+
+### A rule from the lead, adopted (2026-09-10)
+
+The lane clones were warmed by hard-linking the main tree's oleans, so a stale
+artifact can be replayed.  **A module is green only when its own line in the
+probe log reads `✔ [k/N] Built …`; a `Replayed` line on a module that was edited
+is a false green and the probe is FAILED**, as is an unmoved job count across a
+structural change.  The remedy is to delete that module's remote `.olean`,
+`.ilean` and `.trace` in `cs-limit` and re-probe.  This lane's modules cannot in
+fact be replayed from the warm tree — none of them exists there — but the log
+line is cited from now on rather than inferred.
 
 ## TRAPS
 

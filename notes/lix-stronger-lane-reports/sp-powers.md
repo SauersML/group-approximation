@@ -70,35 +70,60 @@ from it as a point can be.  With `e₁` orthogonal to the ρ-plane instead, `ψ_
 a single point and `ψ_k` is not a local homeomorphism there.  Both lanes reached this
 independently.
 
-## 0.1 Renormalising the seam generator is FREE — the load-bearing observation
+## 0.1 Renormalising the seam generator is FREE — and cheaper than I first said
 
-Any homotopy `u^k ≃ u ∘ ψ_k` built by *reparametrising the argument* — the only kind that
-is a formula — is frozen where the reparametrisation is trivial, and there it degenerates
-to a basepoint condition on `u`.  For `Ψ_k` in the angle coordinate that set is the **wall**
-`W₀ = {(z,v) : z ∈ ℝ_{≥0}}` (`sp-design`'s name for it), and the condition is `u ≡ 1` on `W₀`.  The `n = 2`
-generator fails it (model test A4/A5, E9).
+**SUPERSEDED, and the correction matters.**  I first reported that the load-bearing
+observation was the homotopy `θ ↦ (A_θ ũ)^k · ũ^{-k}`, which contracts `u^k ũ^{-k}` to `1`
+even when the correction `a` is not central.  That argument is correct, and it is the right
+argument *if the gauge lemma asks for a disc unitary*.  It does not: the gauge lemma I
+landed asks only for a **ball unitary** — continuous and unitary on the closed unit ball,
+with no condition at the centre — and `IsDiscUnitary.map_zero` is never used by it.  With
+that, no homotopy is constructed anywhere and **path-connectedness of `U(n)` is not owed by
+the program**.
 
-This is **not fatal**, because renormalising `u` costs nothing.  If `u = a·ũ` with `a` a
-disc unitary, then all three of
+The renormalisation, in full (`Analysis/LIXPowersNormalise.lean`):
 
-* `clutch(u) ≅ clutch(ũ)` — the gauge lemma, item 1;
-* `clutch(u^k) ≅ clutch(ũ^k)` — because `θ ↦ (A_θ ũ)^k · ũ^{-k}` is a homotopy from
-  `u^k ũ^{-k}` to `1`, so `u^k ũ^{-k}` is null-homotopic *even though `a` need not be
-  central*;
-* `clutch(u ∘ ψ_k) ≅ clutch(ũ ∘ ψ_k)` — because `a ∘ Ψ_k` is again a disc unitary
-  (`isDiscUnitary_comp_radial`: `Ψ_k` maps the closed ball to itself and fixes `0`)
+* `wallRetract e₁ e₂ (z, v) = (−|z|, v)` is norm-preserving and positively homogeneous,
+  hence an `IsRadialMap`, hence `A := U ∘ wallRetract` is a **ball unitary** for free.
+* `ũ := Aᴴ · U` is a ball unitary, and `ũ ≡ 1` on the wall because `wallRetract` is
+  idempotent — which is precisely the hypothesis `pinchIdentification_angleRepar` takes.
+* `clutch(u) ≅ clutch(ũ)`: gauge factor `A`.
+* `clutch(u ∘ ψ) ≅ clutch(ũ ∘ ψ)`: gauge factor `A ∘ ψ`, again a ball unitary because `ψ`
+  is radial.
+* `clutch(u^m) ≅ clutch(ũ^m)`: gauge factor `u^m · (ũ^m)ᴴ`, a product of ball unitaries.
 
-hold.  So the chain may be run with **any** disc-unitary renormalisation of `u`, and the
-only remaining question for `sp-design` is which `ũ` is cheapest to write.  Two
-candidates, both model-tested at `n = 2`:
+The mathematical content is only that `U ∘ wallRetract` factors through the wall, which is
+a disc, so it extends over the ball by the very same formula.  Nothing about `π₀(U(n))`
+enters.  The two candidate corrections I tabulated earlier (the scalar `d`, and the `σ₃`
+correction on the ρ-fixed sphere) are no longer needed for anything: `wallRetract` supplies
+the normalisation the join power actually wants, on the nose.
 
-| correction | what it fixes | test |
-|---|---|---|
-| the **scalar** `d(y) = exp(iπ(‖y‖ − ⟨e, y⟩)/2)` (a disc unitary, `d(0) = 1`) | `u(N) = u(S) = 1`, which is what the *vertical slab* pinch needs | D5, D6 |
-| `a(y) = exp(−i θ(y) σ₃)`, `θ(y) = ‖y‖ · arccos(clamp(⟨e,y⟩/‖y‖))` (disc unitary: `θ(0) = 0`, `|θ| ≤ π‖y‖`) | `u ≡ 1` on the ρ-fixed sphere `{z = 0}` | A6 |
+## 0.15 Cross-lane: two corrections sent to `sp-design`
 
-Neither is yet the `W₀` normalisation the join power wants; that is the open item, and it
-is the only thing between the current green Lean and a discharged `PinchIdentification`.
+`sp-design.md` §2.5 records the convergence and adopts both of my refinements, but it
+adopts them against an earlier version of my argument.  Two corrections sent:
+
+* **The `θ ↦ (A_θ ũ)^k ũ^{−k}` homotopy is withdrawn**, not weakened.  What
+  `clutchEquiv_normGen_pow` actually does is take the gauge factor `C := u^m · (ũ^m)ᴴ`, a
+  product of ball unitaries, with `u^m = C · ũ^m` on the ball, and apply the left gauge
+  lemma once.  No homotopy, and the "easy to get wrong because `A` is not central" caveat
+  goes with it.
+* **The wall is the NEGATIVE real axis in the Lean**, not the positive one: Mathlib's
+  `Complex.arg` cuts on the non-positive reals and that is where my clamp saturates.  Their
+  `π(x) = (|x₀|, x₁, …)` must read `(−|x₀|, x₁, …)` when citing my file, or the `ũ` they
+  specify is `1` on the wrong disc and the pinch identification does not fire.  This is also
+  why the target carries the sign, `joinCneg k = (−1)^k · joinC k`.
+
+Their `F_p` warning about `RelativeLineHomotopy` being mod-2-only **does not touch this
+lane**: checked by imports, not by reasoning.  No file of mine imports or mentions it, none
+uses cohomology, and every comparison in the chain is matrix algebra plus point-set topology
+— explicit partial isometries checked by multiplying blocks.  There is no relative pullback
+anywhere in it.
+
+Independent confirmation worth recording: their canonical-basis computation gives
+`d(ψ_k)_{q_j} = diag(k, 1, …, 1)` at every `j`, and my oriented-frame computation gives
+`det = +k` at every `j`.  Two different methods, same answer, including that all `k` local
+degrees are `+1`.
 
 ## 0.2 What I need from you if you pick a different ψ_k
 
@@ -114,6 +139,65 @@ Exactly this, and nothing else:
 Everything else on my side is already generic in that data and green.
 
 ---
+
+## 0.3 FINDING: the clutching layer has no consumer, and `clutch u ≅ F` is unproved
+
+Checked before writing the export, in both directions:
+
+* `clutchMat`, `coneMat` and `clutchOfChart` occur **only** in `Analysis/LIXClutching.lean`
+  and in this lane's own `LIXPowers*` files.  No `CharClass` file mentions them.
+* Only three files import `LIXClutching`: `LIXGeneratorUnitary`,
+  `LIXObstructionComplementUnitary`, and this lane's `LIXPowersGauge`.  `LIXGeneratorUnitary`
+  does not use `clutchMat` at all.
+
+So the live Corollary-4 chain (`LIXLemmaSixField` → `LIXLemmaSixCompare` →
+`LIXLemmaSixCor4`) never touches the clutching layer: it goes from a null-homotopy of the
+stage unitary straight to a unitary field conjugating `EHmat` to `FHmat`.  And
+`clutch u ≅ Fproj` is **not proved anywhere** — `LIXGeneratorUnitary`'s module docstring
+says why, the hemisphere sections whose seam discrepancy is `u` being exactly what is not
+constructed there.
+
+**But it is off the critical path** (checked after the first version of this section, which
+did not say so).  `CharClass.FHmat m = Vmat m − sProj m` with
+`sProj m = fromBlocks (rankOneProj (bVec m)) 0 0 0` and `bVec m = m.1`, the tautological
+point of `S⁵`, and `FHmat_eq_fromBlocks` already proves `FHmat = (1 − b bᴴ) ⊕ H`.  So the
+manuscript's object is defined **directly from the section**, and `FHmat_k` of §1.6 is the
+same definition with `b = x ∘ Σψ_k`.  Nothing on that side goes through clutching, so
+**nobody has to prove `clutch u ≅ Fproj`**; the gap is real and irrelevant.
+
+**Consequence for this lane.**  The hypothesis `hP` of `clutchEquiv_pow_of_clutch_eq` and of
+the export is a live undischarged input, not a formality, and nobody owes it.  Two
+interfaces are possible and they cost differently:
+
+| interface | statement | cost |
+|---|---|---|
+| **(a) clutched**, what is built | `clutch(u^{k+1}) ≅ clutch(u) ∘ Σψ_k` | every step is a gauge step; `U(n)` never enters; **needs `clutch u ≅ F ⊕ H`** |
+| **(b) bare homotopy**, what Corollary 4 would consume | `u^{k+1} ≃ u ∘ ψ_k` through unitaries | plugs into `LIXLemmaSixField` unchanged; **needs `A ≃ 1` for `A = U ∘ wallRetract`** |
+
+(b) does *not* follow from (a): `u = A·ũ`, and the bare homotopy needs `A` contracted while
+the clutched statement does not.  But the contraction is cheap and concrete, not a general
+theorem: the wall is a disc, so contracting it gives an explicit homotopy from `A` to the
+constant `u(wall centre)`, and what remains is one explicit path from **one explicit matrix**
+to `1` — at `n = 2` a diagonal one, a line of Lean.  So the correct footnote to "`U(n)`
+path-connectedness is struck" is: struck for (a), and for (b) replaced by one concrete path,
+never the general theorem.
+
+**SETTLED by the lead, 2026-09-10: (b) is the primary export and (a) is off the critical
+path.**  The Corollary-4 chain glues the two hemisphere frames of `LIXGeneratorUnitary` into
+a unitary field `G` with `G e₃ = x`; for the `k`-th power the same construction with the
+frames pulled back along `Σψ_k` has seam `u ∘ ψ_k` and takes `e₃` to `x ∘ Σψ_k`.  So what it
+consumes is the homotopy of *maps*, which is `Analysis/LIXPowersHomotopy.lean`.
+
+**And the `ũ`-to-`u` step is never built**, so the `U(n)` footnote is withdrawn for good:
+the endpoint witness is `ũ ⊕ 1_H` rather than `u ⊕ 1_H`, and nothing downstream
+distinguishes them (`ũ = Aᴴ u` with `A` a ball unitary, so `ũ ⊕ 1` still contracts in
+`U(n+1)`, `ũ ∉ U₀` iff `u ∉ U₀`, and the frames gauged by `A` on one hemisphere have seam
+`ũ` and still take `e₃` to `x`).  Interface (b) is therefore **complete** as
+`exists_homotopy_pow_comp_normGen`.
+
+Consumers: **`sp-tower`** for the C*-side (they own `LIXGeneratorUnitary` and the stage
+unitary); `sp-oddside` consumes nothing from this lane, only the substituted section
+`b = x ∘ Σψ_k` on the `CharClass` side.
 
 ## 1. What `LIXClutching` already had, and what it did not
 
@@ -189,11 +273,41 @@ genuine continuous self-map *and* the identification is a formula.
 
 ## GREEN (with job counts)
 
-Probe `cs-simplicity`, 2026-09-10, one probe, all four modules:
-`Build completed successfully (2378 jobs)`, `EXIT=0`, `PROBE GREEN`, empty error index.
-Every `✔ … Built <module>` line, no `Replayed`.  The clone's copies were checked
-`md5sum`-identical to the local files after the probe (see the first TRAP below for why
-that check is not optional here):
+**Status of this section under the fleet `Built`-not-`Replayed` rule (lead, 2026-09-10):
+GREEN, but the evidence is spread across three logs, not one, and one single-log
+re-confirmation is owed.**  Read the next four paragraphs before quoting this section.
+
+Every one of the four modules has a `✔ [k/N] Built GroupApproximation.Analysis.<module>`
+line in a `cs-simplicity` log, at the source content it has now:
+
+| module | `Built` line | log |
+|---|---|---|
+| `LIXPowersGauge` | `✔ [2375/2375] Built … (24s)` | `laneprobe-20260910-095…` |
+| `LIXPowersNaturality` | `✔ [2376/2377] Built … (58s)` | `laneprobe-20260910-101631` |
+| `LIXPowersEH` | `✔ [2377/2378] Built … (25s)` | `laneprobe-20260910-102922` |
+| `LIXPowersJoinPower` | `✔ [2378/2378] Built … (25s)` | `laneprobe-20260910-102922` |
+
+In the last log (`102922`) `LIXPowersGauge` and `LIXPowersNaturality` produce **no line at
+all** — not `Built`, not `Replayed`; they were up to date from the earlier probes in the
+same clone and lake is silent about them.  Their sources have not changed since their own
+`Built` lines (`LIXPowersGauge` has not been edited since its first green; the node copies
+are `md5sum`-identical to the local files, below).  The job count moved monotonically
+`2375 → 2377 → 2378` as the modules were added, which is the lead's second tell.
+
+**Why a stale hard-linked artifact cannot be the explanation here**, unlike for a lane
+editing existing modules: all four are *new* files that exist nowhere but this lane's
+working copy, so the main tree has never produced an olean for them and there was nothing
+to hard-link.  The only oleans in the clone are the ones these probes made.
+
+**Owed, when the lead releases `cs-simplicity`:** delete the remote
+`.olean`/`.ilean`/`.trace` for all four modules and re-probe, so that a *single* log carries
+four `Built` lines.  Until that is done this section should be read as "green on three logs
+plus an md5 check", which is weaker than the fleet rule asks for.
+
+Job count at the last probe: `Build completed successfully (2378 jobs)`, `EXIT=0`,
+`PROBE GREEN`, empty error index.  The clone's copies were checked `md5sum`-identical to the
+local files after that probe (see the first TRAP below for why that check is not optional
+here):
 
 ```text
 ad50e1d1b5df5823c3e966e12cec8c77  LIXPowersGauge.lean
@@ -247,35 +361,140 @@ some of them — count `depends on axioms` and grep the *following* lines.)
 
 ## AUTHORED, UNVERIFIED
 
-* nothing.
+Written during the probe hold (lead, 2026-09-10, cs-simplicity cold).  Both are
+model-tested against the *exact* Lean formulas before authoring
+(`sp/angle_modeltest.py`, tests F1–F16, all passing) but neither has been near a compiler.
+
+* `Analysis/LIXPowersAngle.lean` — **the angle reparametrisation family**, the concrete `P`
+  the Eckmann–Hilton step consumes.  `angleClamp`, `angleRaw`, `angleParam` (the clamped
+  pinch angle, with `θ` clamped *inside* the definition so the family is continuous for
+  every real `θ`), `angleC` with `norm_angleC`, `angleC_param_zero`, `angleC_smul` and
+  `continuous_angleC`; the wall map `wallC` and the radial retraction `wallRetract`; the
+  family `angleRepar` on `E` with `isRadialMap_angleRepar`, `angleRepar_param_zero`,
+  `continuous_angleRepar`, `norm_angleRepar`, `angleRepar_eq_wallRetract`; and the general
+  collapse lemma `reparProd_eq_single`.
+* `Analysis/LIXPowersPinch.lean` — **the pinch identification**.  `joinCneg`/`joinPowNeg`
+  (the join power rotated to the pinch basepoint, still an `IsRadialMap`), `slabIndex` with
+  the three slab bounds, the exponential bridge `angleC_slab_eq_joinCneg`, and
+  `pinchIdentification_angleRepar`, which is the instance of `Powers.PinchIdentification`
+  that `exists_partialIsometry_pow_pullback` consumes.  With it, §1.3 items 1–3 close for
+  the agreed `ψ_k`, modulo the one remaining hypothesis: `W` is the identity matrix on the
+  wall.
+
+* `Analysis/LIXPowersNormalise.lean` — **the renormalised generator**, deliverable 2.
+  `ClutchEquiv` with `symm`/`trans` (the same shape as `CharClass.ContinuousMvNEquiv`, so
+  the `Analysis/` files need not import `CharClass`); the plane-coordinate lemmas
+  `planeC_add`, `planeC_planeE`, `planeC_planeRest`, `planeC_planeSub`,
+  `planeRest_planeSub`, `planeSub_comp`, and `wallC_idem`/`wallRetract_idem`; then
+  `wallPart`, `normGen`, `isBallUnitary_normGen`, `normGen_wall`, `wallPart_mul_normGen`,
+  and the three gauge transports `clutchEquiv_normGen`, `clutchEquiv_normGen_pow`,
+  `clutchEquiv_normGen_comp`.  **No homotopy is constructed and `U(n)` is never mentioned**
+  (§0.1).
+
+* `Analysis/LIXPowersChain.lean` — **the powers chain, assembled** (lead's deliverable 3,
+  abstract half).  `norm_equator_mul`, `isClutchDatum_coneMat_of_ballUnitary`,
+  `clutchMat_idem`, then `clutchEquiv_pow_pullback` — *the projection clutched by `u^{k+1}`
+  is Murray--von Neumann equivalent to the projection clutched by `u` read at `Σψ_k`*, with
+  no hypothesis on the generator beyond unitarity on the closed ball — plus the composite
+  form `clutchEquiv_pow_comp`, the transported form `clutchEquiv_pow_pullback_map`, and the
+  hand-off `clutchEquiv_pow_of_clutch_eq`.
+
+**The vocabulary half of deliverable 3 is deliberately not authored here.**
+`CharClass.ContinuousMvNEquiv` (LemmaTwoStatement.lean:98) and `Powers.ClutchEquiv` are the
+*same* definition unfolded — `∃ w, Continuous w ∧ (∀ m, wᴴw = P m) ∧ (∀ m, wwᴴ = Q m)` — so
+the bridge is `Iff.rfl`.  Writing it in an `Analysis/` file would put a `CharClass` import
+(and `LemmaTwoParity`'s whole closure) under the clutching layer for the sake of one line.
+It belongs in the file that already imports `CharClass`, i.e. `sp-oddside`'s.  What they
+then need on top is `clutch u = FHmat`-with-the-transported-section, which is `Fin 3`-bound
+until `CharClass.VIdx`/`baseM` go generic in `n` (`sp-tower`'s NEEDS).
+`clutchEquiv_pow_of_clutch_eq` takes exactly that as its one hypothesis.
+
+**A defect the assembly caught, which no probe would have.**  `reparProd` asks for
+continuity of `P j` at *every* index `j : ℕ`, but `angleRepar e₁ e₂ k j` is continuous only
+for `j ≤ k`: past `k` the top clamp end stops saturating at intermediate `θ` and the map
+jumps across the cut.  The fix is `angleFam e₁ e₂ k j := angleRepar e₁ e₂ k (min j k)`,
+which agrees with the intended family on every index the ordered product reaches, plus
+`reparProd_congr` to move between the two.  This is worth generalising: **a hypothesis
+quantified over all of `ℕ` will silently demand more than the construction provides, and
+only assembling the chain exposes it.**
+
+* `Analysis/LIXPowersHomotopy.lean` — **THE PRIMARY EXPORT.**  `exists_homotopy_pow_comp`:
+  for a generator that is `1` on the wall, an explicit `G` with `G 0 = U^{k+1}`,
+  `G 1 = U ∘ ψ_k` on the sphere, unitary at every `θ` and continuous in `(θ, y)`; and
+  `exists_homotopy_pow_comp_normGen`, the same with no hypothesis on the generator beyond
+  ball-unitarity.  The homotopy is the ordered product of the `k+1` angle
+  reparametrisations.  No clutching, no contraction, no `U(n)`.
+* `Analysis/LIXPowersExport.lean` — **the vocabulary bridge** (deliverable 3, second half).
+  `clutchEquiv_iff_continuousMvNEquiv` is `Iff.rfl`; `continuousMvNEquiv_pow_of_clutch_eq`
+  and `continuousMvNEquiv_pow_pullback_map` restate the chain in `CharClass` vocabulary.
+  Index-generic on purpose: the `n = 2` specialisation is not a renaming, because the
+  clutched projection has rank `4` in `Matrix (Fin 2 ⊕ Fin 2)` while `FHmat` has rank
+  `3 + m` in `Matrix (VIdx dd)`, and the reindexing between them is *determined by* the
+  missing identification (§0.3).  The rank is pinned exactly once, in the caller's choice of
+  `P` and index type, and nowhere in the geometry.
+
+**The single risky proof** is `continuous_angleC` at the branch cut.  Mathlib's
+`Complex.arg` cuts on the non-positive reals, which is exactly where the clamp saturates,
+so the cut costs one lemma instead of a change of coordinates: at a negative real the two
+one-sided limits of `arg` are `π` and `−π`, `angleParam` is saturated at both, and
+`exp (iπ) = exp (−iπ) = −1`.  The proof splits the neighbourhood as
+`𝓝[{0 ≤ im}] ⊔ 𝓝[{im < 0}]` and uses
+`Complex.tendsto_arg_nhdsWithin_im_nonneg_of_re_neg_of_im_zero` and its `im < 0` twin, both
+present at the pin `81a5d257`.
+
+**The θ-clamp is load-bearing on one side only**, and the model test now says which
+(`sp/branch_modeltest.py`, G1–G8, all passing).  Both clamp ends saturate for *every*
+`θ > 0` and `j ≤ k`, so the family is continuous across the cut without any upper clamp;
+it is `θ < 0` that breaks it, and there the break is real (45 of 140 sampled `(k, j, θ)`
+triples jump by `2`).  So `min 1` in `angleClamp` is tidiness — it makes `angleParam k j θ`
+constant in `θ` past `1` — and `max 0` is the part the continuity proof needs.  I keep both;
+the note is here so that nobody later "simplifies" away the wrong one.
+
+**One convention to flag to `sp-design`.**  My pinch basepoint is the *negative* real axis,
+because that is where Mathlib puts the `arg` cut; theirs is the positive one.  The two
+differ by the rotation `z ↦ −z` of the plane, which is why the target carries a sign,
+`joinCneg k = (−1)^k · joinC k`, and why their retraction `x ↦ (|x₀|, x₁, …)` becomes
+`x ↦ (−|x₀|, x₁, …)` here.  All the `ψ_k` properties are unaffected: `joinPowNeg` is
+`joinPow` composed with a fixed rotation of the plane, so the `k` preimages and their common
+orientation are the same set and the same sign, rotated.
 
 ## NEXT, in order (what a resume should do)
 
-1. **Author the angle family** `A_{j,θ}` as a `ℕ → ℝ → E → E` in the `planeSub` vocabulary
-   and discharge `PinchIdentification` for `joinPow`.  This is the last piece of §1.3 items
-   1–3 and it is the *only* one with real Mathlib risk: the map goes through
-   `Complex.arg`, whose cut is the non-positive reals, which is exactly where the clamp
-   ends meet.  Three continuity obligations: away from `ℝ_{≤0}` (composition,
-   `Complex.continuousAt_arg`), on `ℝ_{<0}` (both one-sided limits give `−|z|`, since
-   `e^{iπ} = e^{−iπ}`), and at `0` (damped by `|z|`).  Everything else is already generic
-   and green.  The alternative, interpolating without `arg`, does not exist: at `θ = 0` the
-   family must be the identity and at `θ = 1` the `k`-tupling, so the exponent
-   `1 + θ(k−1)` is genuinely fractional in between.
-2. **The renormalisation `ũ`.**  `sp-design`'s retraction `π(x) = (|x₀|, x₁, …, x_n)` is
-   itself an `IsRadialMap`, so `u ∘ π` is a ball unitary for free and the *gauge* step needs
-   no contraction at all.  The contraction `u ∘ π ≃ 1` is needed only for the `u^k ↔ ũ^k`
-   step, and there the open question is whether the wall can be contracted to a point where
-   `u` is already `1` (at `n = 2` the north pole lies in the wall and `hopfSuspension` is
-   exactly `1` there) — if it can, the program never owes path-connectedness of `U(n)`.
-3. Instantiate `isRadialMap_joinPow` at `sp-tower`'s generic-`n` equatorial space once it
+1. **Probe `LIXPowersAngle`, `LIXPowersPinch` and `LIXPowersNormalise`** as soon as the
+   lead releases the clone, deleting all my modules' remote artifacts first so one log
+   carries every `Built` line.
+   Expect iteration in `continuous_angleC` (the cut) and in the real-arithmetic bounds of
+   `slabIndex`; the mathematics is model-tested, the Lean is not.  Note that interpolating
+   without `Complex.arg` is not an option to fall back on: at `θ = 0` the family must be the
+   identity and at `θ = 1` the `(k+1)`-tupling, so the exponent `1 + θk` is genuinely
+   fractional in between.
+2. **DONE, authored** (`LIXPowersNormalise.lean`): the renormalisation, with the
+   `U(n)` question closed negatively — it is not needed, see §0.1.
+3. **DONE, authored** (`LIXPowersChain.lean`): the abstract half of the export.  The
+   vocabulary half is one `Iff.rfl` in a file that already imports `CharClass`, plus the
+   `clutch u = FHmat` identification, which is `Fin 3`-bound until `CharClass.VIdx`/`baseM`
+   go generic in `n`.
+4. Instantiate `isRadialMap_joinPow` at `sp-tower`'s generic-`n` equatorial space once it
    exists, and hand `sp-oddside` the `Φ` of `clutchMat_comp_radial_pullback`.
+
+## OPEN QUESTION (asked, blocking nothing yet)
+
+`IsBallUnitary U` asks for `U` continuous on all of `E` and unitary on the **closed ball**.
+`Gen.genU n` is a formula in a unit vector, and `continuous_genU2` is proved only along
+sphere-valued inputs, so `sp-tower` may not be able to supply it.  **My proofs do not need
+the ball**: `angleFam`, `wallRetract` and `joinPowNeg` are all norm-preserving, so from a
+unit vector the construction never leaves the unit sphere.  The minimal honest hypothesis is
+`Continuous U` plus unitarity **on the sphere**, and if even global continuity is awkward
+(the Householder denominators can vanish off the sphere) it localises to a shell
+`1/2 < ‖y‖ < 2`, which the norm-preserving maps also never leave.  Asked `sp-tower` which of
+the three they can supply; it is a mechanical edit in four files once known, and a wasted
+probe round if guessed.
 
 ## NEEDS
 
-* `sp-design`: a ruling on item 2 above (the contraction target for the wall), and
-  confirmation that they are happy for me to author the angle family in the `planeSub`
-  vocabulary rather than in their `(t, w)` coordinates — the two agree, but the Lean
-  continuity burden is much smaller in mine.
+* `sp-design`: nothing blocking.  For information: their §2.4(a) contraction and its
+  appeal to path-connectedness of `U(n)` can be deleted from the route (§0.1), and their
+  wall becomes the *negative* real axis to match Mathlib's `arg` cut.
 * `sp-tower`: the generic-`n` seam generator, whenever it exists, so the renormalisation
   is written once rather than at `n = 2`.
 
@@ -293,6 +512,21 @@ some of them — count `depends on axioms` and grep the *following* lines.)
   through the implicit argument of `hy`'s type.  The same shape inside a tactic block does
   *not* fire, so one file can carry both and only one reddens.  Write `fun _ hy => …`.
   Appended to `FLEET_TRAPS.md`.
+* Authoring Lean during a probe hold: a self-review pass over the two new files, done with
+  no compiler, caught six defects that would each have cost a probe round —
+  `Nat.cast_le (α := ℝ).mpr h` (the ascription binds to the wrong term; it is
+  `(Nat.cast_le (α := ℝ)).mpr h`), `induction (k + 1)` on a non-variable term, three uses of
+  `positivity` on goals whose nonnegativity lives in a *hypothesis* it cannot see
+  (`0 ≤ 2π · angleClamp θ · ((k:ℝ) − j)` needs `j ≤ k` and `mul_nonneg`, not `positivity`),
+  and `rw [ContinuousAt]` where a `show` of the unfolded `Filter.Tendsto` is what actually
+  works.  The pattern worth keeping: when writing blind, the defects are concentrated in
+  *tactic* steps that depend on the ambient context, never in the statements.
+* A third wrong test expectation, same shape as the first two: I asserted that the angle
+  family must be discontinuous across the cut for `θ > 1` without the upper clamp, and it
+  is not — at `φ = π` the raw angle is `2π(1 + θ(k−j)) ≥ 2π` for *every* `θ > 0` and
+  `j ≤ k`.  The formula was right and the expectation was wrong.  Three for three: when a
+  model test fails, suspect the assertion before the formula, because the formula has
+  usually already been derived on paper and the assertion has not.
 * Two of my own model tests were wrong before they were right, and both failures looked
   like real mathematics: (i) the sign of a local Jacobian is meaningless unless the tangent
   frames at source and target are oriented by the *ambient* orientation — the raw QR frames
