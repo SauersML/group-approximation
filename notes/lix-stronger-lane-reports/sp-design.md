@@ -278,12 +278,24 @@ split), and it is norm-preserving and positively homogeneous, so it is an
 **ball unitary** (continuous and unitary on the closed unit ball) for free, and
 `u = A·ũ`.  `sp-powers`' left gauge lemma consumes a ball-unitary factor directly, so
 `clutch(u ∘ ψ_k) ≅ clutch(ũ ∘ ψ_k)` (because `A ∘ Ψ_k` is again a ball unitary,
-`isDiscUnitary_comp_radial`) and `clutch(u^k) ≅ clutch(ũ^k)` (`sp-powers`' observation:
-`θ ↦ (A_θ ũ)^k·ũ^{−k}` is a homotopy to `1`, which works although `A` is not central).
-**Path-connectedness of `U(n)` is not needed anywhere and is struck from the obligation
-list** (lead's ruling, and `sp-powers` is authoring it as
-`Analysis/LIXPowersNormalise.lean`).  No homotopy extension property, no cofibration, no
+`isDiscUnitary_comp_radial`).  For the powers, **no homotopy is built at all**: the gauge
+factor `C := u^m·(ũ^m)ᴴ` is a product of ball unitaries, hence a ball unitary, and
+`u^m = C·ũ^m` on the ball, so the left gauge lemma applies in one step
+(`clutchEquiv_normGen_pow` in `Analysis/LIXPowersNormalise.lean`).  *(Corrected on
+`sp-powers`' instruction: an earlier draft of this paragraph cited their
+`θ ↦ (A_θ ũ)^k ũ^{−k}` homotopy.  That argument is correct but it is the right argument only
+for a gauge lemma stated for a DISC unitary; theirs asks only for a ball unitary, they have
+withdrawn the homotopy, and the "easy to get wrong because `A` is not central" caveat goes
+with it.)*  **Path-connectedness of `U(n)` is not needed anywhere and is struck from the
+obligation list** (lead's ruling).  No homotopy extension property, no cofibration, no
 contraction of `A` to a constant.
+
+**The wall is the NEGATIVE real axis, not the positive one.**  `sp-powers`' clamp saturates
+where Mathlib's `Complex.arg` cuts, on the non-positive reals, so their retraction is
+`π(x) = (−|x₀|, x₁,…,x_n)` and their target carries the sign `joinCneg k = (−1)^k·joinC k`.
+The two conventions differ by `z ↦ −z` in the `x₀`-plane.  Everything above holds verbatim
+with `W₀ = {x : x₀ ∈ ℝ_{≤0}}`; **use their convention**, because a `ũ` normalised on the
+wrong disc will not make the pinch identification fire.
 
 **(b) Powers and compositions respect homotopy, trivially.**  If `H` is a homotopy `u ≃ ũ`
 then `H^k` (pointwise `k`-th power) is a homotopy `u^k ≃ ũ^k`, and `H ∘ (ψ_k × id)` is a
@@ -404,8 +416,11 @@ State it in the shape the `F₂` tree already uses, `CharClass/ParityEven.lean`'
 > * **(A)** `a_0 = 1` and `a_q = 0` whenever `p ∤ q`;
 > * **(I)** `P^i(b_k) = 0` whenever `i > k − (n+1)` (instability);
 > * **(W)** for every `i ≥ 0`, `P^i(γ_{i+1}) = Q_i(γ)` where `Q_i` is the universal
->   weight-`(ip+1)` polynomial, and `Q_i = γ_{ip+1} + (a sum of products of at least two
->   `γ`'s)`.
+>   weight-`(ip+1)` polynomial, and `Q_i = u_i·γ_{ip+1} + (a sum of products of at least two
+>   `γ`'s)` with `u_i` a **unit**.  (`u_i = 1` when `P(h) = h + h^p`; `u_i = κ^i` under
+>   `sp-steenrod`'s normalisation `P(h) = h + κh^p`, see §3.4a.  State the hypothesis with
+>   the unit, not with `1`: it costs one multiplication in the inductive step and buys
+>   independence from their normalisation constant.)
 >
 > Then `b_N = 0` for every `N ≡ 1 (mod p)`.  Consequently, if `a_q = 0` for `q > m` and
 > `r ≡ 1 (mod p)`, then `γ_r(W) = 0`.
@@ -417,13 +432,14 @@ State it in the shape the `F₂` tree already uses, `CharClass/ParityEven.lean`'
 the left side is `0`.
 
 *Right side.*  In a monomial `γ_{α_1}⋯γ_{α_s}` of `Q_i` the `z`-part replaces exactly one
-factor by its `b` and the others by their `a`.  By (A) the term survives only if
+factor by its `b` and the others by their `a`.  (Read `u_i` in place of the leading `1`
+throughout; since `u_i` is a unit the induction is unchanged.)  By (A) the term survives only if
 `α_{t'} ≡ 0 (mod p)` for every `t' ≠ t`, hence `α_t ≡ N ≡ 1 (mod p)`; and if `s ≥ 2` then
 the other indices are `≥ p`, so `α_t ≤ N − p`.  The single `s = 1` monomial is `γ_N` with
 coefficient `1`.  So the relation reads
 
 ```text
-   0  =  b_N  +  (an H-combination of b_α with α ≡ 1 mod p and α ≤ N − p).
+   0  =  u_i·b_N  +  (an H-combination of b_α with α ≡ 1 mod p and α ≤ N − p).
 ```
 
 Induction on `i`: at `i = 0` there is no second term (`N − p = 1 − p < 0`), so `b_1 = 0`;
@@ -1076,12 +1092,20 @@ Tools landed in `notes/lix-stronger-lane-reports/tools/` (node copies in
   `CharClass/LIXHsq.lean` already depends on at `k = 1`.
 * **`sp-coeff`:** re-cut `CharClass/CohomologyBridge.lean`'s `pull_eq_of_homotopic` and
   friends over `K`; the underlying `ThirdParty` statement is already generic in `(R, M)`.
+* **Superseded by `sp-oddside`:** my §4.2 item 3 and §4.5 item 4 asked for a direct-sum
+  splitting; read them instead in their `ρ_i` form (`x = ∑_i ρ_i(x_i)`, `ρ_i ≫ j = j_i` by
+  naturality along the identity).  See "Review of `sp-oddside`".
 * **`sp-oddside`:** confirm that `CharClass/ChernRelation.lean`'s `∏(X + y_k)` convention
   survives at odd `p` (I believe it does — `P^1(y) = y^p` is sign-stable for a degree-2 class
   because `(−1)^p = −1` — but the file's "over `ZMod 2` signs are invisible" docstring must be
   re-audited, not re-used).
-* **`sp-evenside`:** the linear part of the universal Wu polynomial (L4a).  I give a proof
-  in §3.3; there is no closed form for the odd-`p` diagonal Wu polynomial to fall back on.
+* **L4a, the linear part of the universal Wu polynomial** — assigned to nobody as of
+  2026-09-10; `sp-evenside` has offered to take it and I have no objection (it is pure
+  symmetric-function algebra with no cohomology in it).  Proof in §3.3; only the diagonal
+  case is needed, where the coefficient is `1 + p·i ≡ 1` times `κ^i`.  There is no closed
+  form for the odd-`p` diagonal Wu polynomial to fall back on.
+* **Anyone stating hypothesis (W):** its leading coefficient is a **unit**, not `1`
+  (`κ^i` under `sp-steenrod`'s normalisation).  §3.2, corrected 2026-09-10.
 * **The lead:** two corrections to `notes/LIX_STRONGER_PROGRAM_2026-09-10.md` — §1.3.2's
   `ρ`-plane must *contain* `e₁`, and its local-model identity is pre-composition.
 
@@ -1103,3 +1127,168 @@ Tools landed in `notes/lix-stronger-lane-reports/tools/` (node copies in
   choice of primitive.  Test the independence before believing any number a descent prints.
 * **A module docstring's premise can be stale.**  `RelativeLineHomotopy.lean` says the prism
   operator "was never ported"; it is in the tree, at arbitrary coefficients, via Mathlib.
+
+## `c_2 = c_1²` at lemma precision, and the resolution's coproduct
+
+Follow-up (a) for the lead, and the answer to `sp-steenrod`'s challenge that the degree-`0`
+agreement of the Cartan comparison pins only the bottom coefficient.  **They are right that
+it pins only the bottom one, and wrong that the identity therefore carries an unknown
+constant: the constant is `1`, and the other candidate terms vanish for a reason that needs
+no instability input at all.**  Tool `tools/wcoproduct.py` (with `tools/wshow.py`,
+`tools/wcheck.py`); node copies in `scratch/`.
+
+### The coproduct, solved rather than remembered
+
+`sp-steenrod`'s §6.2 says of the explicit `ψ_W`: "I will not write this from memory.  The
+deliverable is: solve the chain-map recursion symbolically, confirm the closed form, and only
+then state it."  Done.  `Λ = F_p[T]/(T^p−1)`, `W_i = Λ e_i`, `d e_{2k+1} = s e_{2k}`,
+`d e_{2k+2} = N e_{2k+1}`.  `Λ` carries the explicit `F_p`-linear contraction of `W`
+
+```text
+   h_E(T^j) = 1 + T + ⋯ + T^{j−1}  (h_E(1) = 0)    on even degrees,
+   h_O(T^j) = [ j = p−1 ]                           on odd degrees,
+```
+
+which satisfies `dh + hd = 1` in positive degrees and `= 1 − ηε` in degree `0` (VERIFIED
+(model): `0` failures, `p = 3,5,7,11,13`, degrees `0..5`).  Then `H := h ⊗ 1` gives
+`DH + HD = 1 − (ηε)⊗1` on `W ⊗ W`, so the recursion `ψ(e_n) = H(α_n·ψ(e_{n−1}))` plus one
+explicit correction in the `a = 0` blocks solves the chain-map condition in `O(size)` at
+every degree.  The chain-map identity is asserted at every step and holds.
+
+**The closed form it produces**, `ψ(e_n) = ∑_{a+b=n} (block)`:
+
+```text
+   a even                :  e_a ⊗ e_b
+   a odd,  b even        :  e_a ⊗ T e_b
+   a odd,  b odd         :  ∑_{0 ≤ u < v < p}  T^u e_a ⊗ T^v e_b
+```
+
+VERIFIED (model) block by block for `p = 3, 5, 7` over all degrees `n ≤ 2(p−1)`: every
+`(even,even)` block is `e_a ⊗ e_b` with coefficient `1`, every `(odd,odd)` block is exactly
+`∑_{u<v} T^u ⊗ T^v`, and the `(odd,even)` and `(even,odd)` blocks are as displayed.  This is
+the classical formula; it is now confirmed rather than recalled, and `sp-steenrod` may state
+it.
+
+### The three lemmas
+
+Write `ψ(e_n) = ∑_{a+b=n} ∑_{i,j} c^{(n)}_{a,b;i,j} T^i e_a ⊗ T^j e_b` and let
+`c̄^{(n)}_{a,b} := ∑_{i,j} c^{(n)}_{a,b;i,j}` be the **reduced** coefficient — the only thing
+the Cartan evaluation sees, because the functional `u⊗v⊗u⊗v⊗⋯` is `T`-invariant.
+
+> **C1 (the reduced coefficients).**  For the `ψ` above,
+> `c̄^{(n)}_{a,b} = 1` whenever `a` is even, and whenever `a` is odd and `b` is even;
+> `c̄^{(n)}_{a,b} = 0` whenever `a` and `b` are both odd.
+>
+> *Reason for the vanishing, and it is the whole point:* the `(odd,odd)` block is
+> `∑_{0≤u<v<p}T^u e_a ⊗ T^v e_b`, whose reduced coefficient is the number of pairs `u < v`,
+> namely `C(p,2) = p(p−1)/2 ≡ 0 (mod p)`.  It is the reduction to `F_p` that kills it; the
+> integral count is not zero.
+
+VERIFIED (model), `p = 3,5,7,11,13`: at `n = 2(p−1)` every `a`-odd reduced coefficient is `0`
+and every `a`-even one is `1`.
+
+> **C2 (exactly one term survives, with no instability input).**  Let `u, v` be cocycles of
+> degree `1`.  In the Cartan identity at index `2(p−1)`,
+> `D_{2(p−1)}(uv) = ∑_{a+b=2(p−1)} c̄_{a,b}·D_a(u)·D_b(v)`, every term except
+> `(a,b) = (p−1,p−1)` vanishes:
+> * `a + b` is even, so `a` and `b` have the same parity.  If `a` is odd then both are, and
+>   `c̄_{a,b} = 0` by C1.  This is what kills the two terms one would otherwise have to
+>   worry about, `(p, p−2)` and `(p−2, p)`, since `p` and `p−2` are both odd.
+> * If `a` is even and `a ≠ p−1`, then either `a ≥ p+1`, and `D_a(u) ∈ C^{p−a}` with
+>   `p − a < 0`, so the group is zero; or `a ≤ p−3`, and then `b = 2(p−1)−a ≥ p+1` and
+>   `D_b(v) ∈ C^{p−b} = 0`.
+> * `p−1` is even because `p` is odd, so `(p−1,p−1)` is not excluded.
+
+VERIFIED (model): `c̄_{(p,p−2)} = c̄_{(p−2,p)} = 0` at `p = 11, 13` (and the same at 3, 5, 7).
+Note what this buys: **the vanishing at the `a > q(p−1)` end of the range, which is the
+instability statement `P^s = 0` for `s < 0`, is not needed.**  `sp-steenrod` was right to
+worry about it; it does not arise.
+
+> **C3 (the constant).**  Hence `c_2·(uv) = C·c_1²·(uv)` with
+> `C = c̄^{(2(p−1))}_{p−1,p−1} = 1`, so `c_2 = c_1² = (((p−1)/2)!)²`, a unit.
+
+VERIFIED (model): `C = 1` at `p = 3, 5, 7, 11, 13`.  By Wilson, `c_2 ≡ (−1)^{(p+1)/2}`.
+
+### The two caveats, both `sp-steenrod`'s and both real
+
+* **A pair of degree-`1` classes with `uv ≠ 0` is needed**, and at odd `p` a degree-`1` class
+  squares to zero, so `u ≠ v`.  The torus `S¹ × S¹` with the two circle classes supplies it
+  (`u v` generates `H²`), which routes through Künneth rather than through a single sphere.
+  The tree has `CharClass/CohomologyKunnethSphere.lean`.  Name it now.
+* **C1 is a property of the explicit `ψ`, not of an abstract one.**  If `sp-steenrod` takes
+  `ψ` from the comparison theorem (their §6.2's cheap option), C1 is unavailable and the two
+  competing terms come back, and then they *do* need instability at the `a > q(p−1)` end.
+  With the explicit `ψ` above — now confirmed, with a `O(size)` construction and a chain-map
+  identity that is checkable degree by degree — neither is needed.  I recommend the explicit
+  `ψ`: it is one closed formula in three cases, and it retires an unknown constant instead of
+  creating one.
+
+Their own unconditional argument for even × even (top index, instability, the `p`-th power
+property) stands and is a good independent check: it forces `c_{q+q'} = c_q c_{q'}` on even
+degrees with no reference to the coproduct, so everything really does reduce to `c_2`, and
+`c_2 = c_1²` closes it.
+
+## Review of `sp-oddside`'s plan
+
+Follow-up (b) for the lead.  **Verdict: the plan is right, its two structural findings are
+genuine improvements on my §4.2/§4.5 and I adopt both, and there is one simplification they
+have not taken and one caveat on their finding 1.**
+
+**Adopted from them, replacing my §4.2 item 3.**  The direct-sum splitting
+`H^{2r}(N, N∖Z) ≅ ⊕_i H^{2r}(N, N∖{z_i})` is more than the consumer needs.  For each `i`
+the identity of `N` is a map of pairs `(N, N∖Z) → (N, N∖{z_i})` because `N∖Z ⊆ N∖{z_i}`, so
+`relPullback` gives `ρ_i : H^{2r}(N, N∖{z_i}) ⟶ H^{2r}(N, N∖Z)`, and naturality of
+`relToAbs` along the identity gives `ρ_i ≫ j = j_i`.  The obligation is then the single
+equation `x = ∑_i ρ_i(x_i)` — no biproduct, no compatibility square, nothing to invert.
+VERIFIED (read): the variance is right (`relPullback` is contravariant in the pair, and
+enlarging the subspace is the direction that exists), and `j(∑_i ρ_i x_i) = ∑_i j_i(x_i)`
+follows.  **My §4.2(3) and §4.5(4) should be read in their form.**
+
+**Adopted: the line is needed at one zero only.**  `topClass_eq_of_naturality'` produces
+`γ_r = j(σ^*u)` from `hnat` and `hsection` alone and never uses surjectivity of `j`
+(VERIFIED (read), `ThomStepCEuler`/`ThomStepCOdd`).  So the punctured-acyclicity machinery is
+consumed once, at the distinguished zero, to get `c ≠ 0`.
+
+**The caveat on their finding 1.**  "The `k+1`-point punctured vanishing is not on the
+critical path" is right about the `k+1`-point statement, but the **one**-point statement at
+*every* `z_i` may still be, depending on how `LocalClassesAgree` is discharged:
+
+* **Route 1 (`F₂` only):** run the one-zero argument at each `z_i`.  Needs
+  `PuncturedAcyclic N (2r) z_i` at every `i`, and then over an `F₂`-line
+  `j_i(x_i) ≠ 0 ⟹ j_i(x_i) = c`.
+* **Route 2 (any `p`):** the `ρ`-transport of §4.1 — Half A (naturality plus absolute
+  homotopy invariance along `ρ_t`) and Half B.  Needs no extra punctured acyclicity, but
+  needs relative homotopy invariance at odd `p`.
+
+They have `puncturedAcyclic_lixPoint` in `LIXKStepCWired`, so Route 1 is anticipated; the
+point is that finding 1 should not be read as retiring it.
+
+**The simplification they have not taken, and it removes the whole `ρ`-machinery from the
+`F₂` deliverable.**  At `p = 2`, `LocalClassesAgree` needs neither Half A nor Half B in any
+form: `H^{2r}(N; F₂)` is a line, so `j_i(x_i) = c` for every `i` as soon as
+`j_i(x_i) ≠ 0`, which is Route 1.  **So the first deliverable needs no isotopy `ρ_t`, no
+naturality square along `ρ^i`, and no homotopy invariance of any kind.**  Their §0.4 cites
+"the `F₂` line trick of `RelativeLineHomotopy`" for Half B; that is the wrong citation and
+also more than they need — the fact is "an `F₂`-line has a unique nonzero element"
+(`ThomStepCEuler.eq_localGenerator_of_ne_zero`, or
+`RelativeSupport.eq_of_injective_of_line`), and reaching for
+`relPullback_eq_of_homotopy_of_line` would pull in machinery that does not generalise
+anyway.  Keeping `LocalClassesAgree` an abstract hypothesis — which their §0.2 already
+does — is exactly right, because the odd-`p` discharge is Route 2 and has a different
+shape.
+
+**One thing not to budget as free.**  `LocalSplit` (`x = ∑_i ρ_i(x_i)`) is simpler to
+*state* than the direct sum, but its proof is still excision to `k+1` disjoint balls; the
+saving is in the interface, not in the work.
+
+**Rulings they asked for.**  (i) Do the local model at `−e₁` in the generic form — a unit
+vector `a` with `Re (a n) = 0` plus an ℝ-linear isometry `L` onto `a^⊥_ℝ`, giving
+`chart_a(w) = L w − √(1−‖w‖²)·a` with derivative `(dw,du) ↦ ½ L dw − du·a` — not as a
+`Fin 3` relabelling.  `LIXSectionDeriv.lean:79` already factors through the coordinate-free
+identity, so the cost is one definition, and `sp-tower` needs the same object at general `n`
+where the `![…]` literal has no analogue.  (ii) Their `joinC` reading is right and the trap
+is real: `joinPow` is `planeSub`-based and wants `InnerProductSpace ℝ E`, which
+`unitVectors (Fin 3) ⊆ (Fin 3 → ℂ)` does not have; the scalar `joinC` is the shared part.
+Note the index shift: their `Ψ_k` (degree `k+1`) is my `Ψ_{k+1}`, and their exponent-facing
+statement is about `k+1`, so at `F₂` the arithmetic condition `((k+1 : ℕ) : K) ≠ 0` is "the
+exponent is odd", matching the existing `n = 2` theorem.

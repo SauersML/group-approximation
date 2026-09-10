@@ -215,8 +215,18 @@ all stages.
   irrelevant (κ-sweep: 0 of 28 cases depended on it; a rescaling `P'^i = κ^i P^i` preserves every
   axiom), so `P̃ := c_q^{-1} Q` on even degrees; only `c_2 ≠ 0` matters.  `c_1 = ((p−1)/2)!` by
   the descent on the 1-simplex, generic in `p` (cone contraction on slot 0, `DH + HD = 1`, every
-  primitive is `H(A)`, final pairing with the Alexander–Whitney diagonal), and `c_2 = c_1²` from
-  the Cartan comparison normalised by its degree-0 agreement.  A descent on `Δ²` is NOT well
+  primitive is `H(A)`, final pairing with the Alexander–Whitney diagonal), and `c_2 = κ(1,1)·c_1²` from
+  the Cartan comparison on the torus, where `κ(1,1)` is the Cartan coefficient at the top splitting
+  (both `W`-indices `p−1`, twist summed) — NOT pinned by the degree-0 agreement (that is the counit and
+  fixes only the empty top-index case).  `sp-steenrod` proves unconditionally that the coefficient
+  is `1` in even degrees, so every even constant is a power of `c_2`.  **Settled 2026-09-10 ~11:50 CDT:**
+  `sp-design` solved the resolution's coproduct in closed form (three cases, verified block by block) and
+  `κ(1,1) = 1` at `p = 3, 5, 7, 11, 13` (the integral pair count `p(p−1)/2` dies mod `p` because `p`
+  is odd), so `c_2 = c_1² = (((p−1)/2)!)² = ±1` by Wilson, a unit.  `sp-steenrod` therefore takes the
+  coproduct EXPLICITLY (the abstract route creates the unknown, the explicit one retires it and also
+  discharges the vanishing below the bottom of the range), states the bridge with its Künneth
+  prerequisite (two distinct degree-one classes with nonzero product, a torus), and still runs the
+  independent even-degree argument as a cross-check.  The lane has no unknown constant anywhere.  A descent on `Δ²` is NOT well
   defined (the primitive ambiguity pairs against `AW(∂σ)`, edges, not points) and must not be
   attempted.  The explicit `p`-fold interval-cut diagonal is not built.
 * Wu relations for `P^i` on mod-`p` Chern classes follow from the splitting principle

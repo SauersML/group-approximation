@@ -355,6 +355,22 @@ theorem tupT_pow_card (hr : r = p ∨ …) : (tupT K X r k) ^ r = 1
   cancel — one computation, `r` free, no induction on `r`.  This is strictly
   easier in the flat model than in an iterated binary one, which is the second
   reason to be flat.
+  **The sign convention, settled before writing (2026-09-10, on `sp-design`'s
+  instruction).**  The contraction is
+  `S(x_1 ⊗ ⋯ ⊗ x_r) = Σ_j ± (ηε)x_1 ⊗ ⋯ ⊗ (ηε)x_{j-1} ⊗ s x_j ⊗ x_{j+1} ⊗ ⋯`,
+  and the Koszul sign of applying a degree-`+1` operator in slot `j` past a
+  prefix of degree-`0` operators is `(-1)^{|x_1| + ⋯ + |x_{j-1}|}` — the degrees
+  of the **inputs**.  The trap is that the prefix slots of the **output** have
+  degree `0`, because `ηε` has landed on them, so an implementation that reads
+  the prefix off the output tuple computes `(-1)^0 = 1` in every term and gets
+  the contraction wrong in a way that still typechecks.
+
+  `tupD` does not have this problem and that is what makes it seductive: its
+  slots before `j` are untouched, so input and output prefixes agree and either
+  reading gives the same sign.  `S` is the first place they diverge.  **Rule for
+  this file: `S`'s sign is a function of the input tuple, passed explicitly, and
+  is never recomputed from the value.**
+
   **The prerequisite, checked at the pin (2026-09-10).**  Route (A) needs
   `ker d ≤ range d` for `singFree.obj (Δ^n)`, the `Finsupp`-carrier complex, and
   the vanishing-homology input is stated for Mathlib's
@@ -615,11 +631,81 @@ options:
   coefficients `c_{a,b,σ} ∈ F_p` and the Cartan formula comes out with an
   unknown constant `κ`, which folds into §4's problem rather than adding to it.
 
-**Recommendation:** abstract `ψ` first (it unblocks the whole comparison and
-costs one module), explicit `ψ` only if `sp-design`'s κ-sweep says the constants
-matter.  Note the pleasant consequence: if the κ-sweep comes back "independent of
-κ", then *neither* the normalisation constant *nor* `ψ_W`'s coefficients ever
-have to be computed, and this lane's two hardest items both evaporate.
+**DECISION REVERSED, 2026-09-10, and the explicit `ψ` wins.**  The reasoning
+above assumed writing `ψ` down was the expensive option.  `sp-design` has now
+**solved** the recursion rather than recalled it, so it is the cheap one, and the
+abstract route is the expensive one because it *creates* an unknown constant
+where the explicit route retires one.
+
+The closed form, verified block by block at `p = 3, 5, 7` over every degree
+`n ≤ 2(p-1)`:
+
+```text
+ψ(e_n) = Σ_{a+b=n}   e_a ⊗ e_b                          when a is even
+                     e_a ⊗ T e_b                        when a is odd, b even
+                     Σ_{0 ≤ u < v < p} T^u e_a ⊗ T^v e_b   when a, b both odd
+```
+
+obtained from an explicit `F_p`-linear contraction of `W`
+(`h(T^j) = 1 + T + ⋯ + T^{j-1}` in even degrees, `h(T^j) = [j = p-1]` in odd
+ones), whence `H := h ⊗ 1` contracts `W ⊗ W` and `ψ` is built degree by degree in
+time linear in the size, with the chain-map identity asserted at every step.
+This discharges the "I will not write this from memory" of the original §6.2.
+
+**The reduced coefficients, and why the competing terms die.**  Writing `c̄_{a,b}`
+for the coefficient summed over the twist: `c̄ = 1` when `a` is even, and when `a`
+is odd and `b` even; and `c̄ = 0` when `a` and `b` are **both odd**.  The
+vanishing is one line of arithmetic, and I checked it: the `(odd,odd)` block's
+reduced coefficient is the number of pairs `u < v` in `[0,p)`, which is
+`C(p,2) = p·((p-1)/2)`, divisible by `p` because `(p-1)/2` is an integer for `p`
+odd.  The integral count is not zero; the reduction to `F_p` is what kills it.
+
+**Consequence: `C = 1`, and instability is not needed for the bridge.**  In the
+Cartan identity at index `2(p-1)` for two degree-1 cocycles, `a + b` is even so
+`a` and `b` share a parity.  Both odd gives `c̄ = 0`, which kills exactly the two
+competing terms `(p, p-2)` and `(p-2, p)`.  Both even with `a ≠ p-1` forces one
+of the two factors into a negative cochain degree, where the group is zero.  And
+`p - 1` is even, so the surviving term is exactly `(p-1, p-1)`, with `c̄ = 1`.
+Hence
+
+```text
+c_2 = c_1² = (((p-1)/2)!)²  =  (-1)^{(p+1)/2}   (Wilson),
+```
+
+a unit.  I verified the values against `sp-design`'s computed `c_1` at
+`p = 3, 5, 7, 11, 13`; all five agree.  **The bridge is unblocked**, and the
+`P^s = 0` for `s < 0` statement I had flagged as not free never arises on this
+route.
+
+**Prerequisite to name now, not at the end**: the identity needs two degree-1
+classes with nonzero product, and at an odd prime a degree-1 class squares to
+zero, so they must be distinct.  The space is `S¹ × S¹`, reached through
+`CharClass/CohomologyKunnethSphere.lean` rather than through sphere cohomology
+alone.
+
+### 6.2a The even-degree Cartan coefficient is `1` (accepted by the lead, 2026-09-10)
+
+A lemma of this lane, unconditional and independent of the coproduct.
+
+```lean
+theorem cartanCoeff_even_eq_one (q q' : ℕ) (hq : Even q) (hq' : Even q') :
+    κ q q' = 1
+```
+
+Proof.  Evaluate the Cartan formula at the **top** index `n = (q + q')/2`.  By
+instability every term `Q^a(u) ⌣ Q^b(v)` with `a + b = n` vanishes unless
+`2a ≤ q` and `2b ≤ q'`, which with `a + b = n` forces `a = q/2` and `b = q'/2`.
+Both survivors are top operations, so the surviving term is `u^p ⌣ v^p`, which
+is `(u ⌣ v)^p` in even degrees.  The left side is `Q^n(u ⌣ v) = (u ⌣ v)^p` by
+the top-operation property.  Hence `κ · (u ⌣ v)^p = (u ⌣ v)^p`, and a projective
+space of dimension at least `p(q + q')/2` supplies a class whose `p`-th power
+does not vanish.  ∎
+
+Consequence: `c_{q+q'} = c_q c_{q'}` for even `q, q'`, so `c_{2k} = c_2^k` and
+**the programme rests on the single number `c_2`**.  With `c_1 = ((p-1)/2)!` in
+hand, the only remaining link is the odd×odd coefficient of §"The bridge",
+which `sp-design` is computing.  Nothing may be authored on that bridge until
+the number is in this report; the lead's instruction, and it is the right one.
 
 ### 6.3 What the comparison then gives
 
@@ -1089,6 +1175,24 @@ Two observations make this small rather than alarming.
 with nonzero product, and at an odd prime a degree-1 class squares to zero, so
 they must be distinct.  That means a space like `S¹ × S¹`, reached through the
 Künneth layer rather than through sphere cohomology alone.
+
+### The lead's ruling (2026-09-10), and the one claim held open
+
+Ruled: `c_1 ≠ 0` by the `Δ¹` descent generic in `p`; `c_2 = c_1²` by Cartan; no
+`Δ²` descent; §2.1's telescoping proof replaced; `sp-design`'s review is a
+sign-off; proceed with §7 steps 0–5, then the descent lemmas, then Cartan.  All
+adopted.  §2.1 is already replaced, by the polynomial-ring route rather than the
+binomial one.
+
+The ruling's justification for `c_2 = c_1²` is the same one questioned above, and
+our messages crossed, so it does not address the objection.  **This is recorded
+as a claim to verify, not as an open dispute, because it checks itself and blocks
+nothing.**  The bridge is the last step in the order the lead set; by the time it
+is reached, the coproduct will have been pinned down in order to prove Cartan at
+all, so `C_{p-1,p-1}` will be a computed quantity rather than an assumption and
+the check costs nothing extra.  If it is a unit the bridge closes as ruled; if it
+vanishes we learn so before anything rests on it.  Nothing is built on it in the
+meantime.
 
 ### What this lane can prove unconditionally, which narrows it to one number
 

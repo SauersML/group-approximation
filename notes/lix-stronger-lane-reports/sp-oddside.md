@@ -95,7 +95,7 @@ them.
 |---|---|---|
 | `KPuncturedVanish` | `H^{2r}(N ∖ Z; K) = 0` for the `k+1`-point `Z` | **this lane, discharged** (`LIXKPunctured`) |
 | `KZeroLocus` | the section vanishes exactly on `Z`, `#Z = k+1` | **this lane, discharged** (`LIXKSection`) |
-| `KLocalSplit` | `x = ∑_i ρ_i(x_i)` — excision to `k+1` disjoint balls | this lane, **later**; needs `RelativeExcision` at a disjoint open cover of the zeros |
+| `KLocalSplit` | `x = ∑_i ρ_i(x_i)` | this lane, **later**; see the route below — **relative** Mayer–Vietoris, *not* excision to disjoint balls |
 | `KLocalClassEq` | `j_i(x_i) = j_0(x_0)` — `sp-design` §4.1 Half A **and** Half B | this lane, **later**; Half A is `relToAbs_naturality` + absolute homotopy invariance along `ρ_t`, Half B is the `F₂` line trick of `RelativeLineHomotopy` at `p = 2` and needs `sp-coeff`'s relative homotopy invariance at odd `p` |
 | `KLocalNonzero` | `j_0(x_0) ≠ 0` — the one-zero computation at `−e₁` | this lane, **later**; it is the existing `LIXHsq*`/`LIXSectionChart` chain with `e₃` replaced by `e₁`, which `sp-design` §1.3 recommends doing generically in the unit vector `a` and an ℝ-linear isometry `L` onto `a^⊥`, not as a `Fin 3` relabelling |
 
@@ -124,35 +124,127 @@ binder for the split.
 ## GREEN (with job counts)
 
 Nothing yet.  `spare2`'s real-copy warm is queued behind the other lanes and the MSI
-wrapper is on an auth cooldown until ≈12:10 CDT (lead, 2026-09-10).
+wrapper was on an auth cooldown until ~12:10 CDT (lead, 2026-09-10).
 
 ## AUTHORED, UNVERIFIED
 
-Nothing yet.
+Six new files, none imported by anything outside this lane, no `sorry` anywhere.  Written
+blind (no compiler); the mathematics of each is settled in §0 above, so the expected
+defects are in tactic steps, not statements.
+
+| file | contents |
+|---|---|
+| `GroupApproximation/CharClass/LIXKMap.lean` | `eOne`, `negEOne`, `re_neg_eOne_two`; `psiVec` (= `Ψ_k`, via `sp-powers`' `Powers.joinC`), `norm_psiVec_apply`, `normSq_psiVec`, `psiVec_mem_unitVectors`, `continuous_psiVec`, `psiVec_zero_eq`; `kUnity`/`kBase`/`kRoot` with `kRoot_pow`, `norm_kRoot`, `kRoot_injective`, `exists_kRoot_of_pow_eq_neg_one`; `kZeroVec`/`kZero` with `kZero_injective`, `re_kZeroVec_two`; **`psiVec_eq_neg_eOne_iff`**; `kRot` with `psiVec_kRot` and `kRot_kZeroVec_zero` |
+| `GroupApproximation/CharClass/LIXKSection.lean` | `aVecK`, `bVecK` with norms and continuity; `isMTSectionData_manuscriptDataK`; `bVecK_eq_neg_aVecK_iff`; `lixKSection`, `lixKZero`, **`lixKSection_eq_zero_iff`** (exactly `k+1` zeros); `lixKZero_injective`, `lixKZeroSet`, `finite_lixKZeroSet`, `lixKSection_ne_zero_of_notMem` |
+| `GroupApproximation/CharClass/LIXKPunctured.lean` | `isZero_inter_of_cover` (Mayer–Vietoris at the intersection), `isZero_cohomology_setCongr`, `isZero_punctured_finset`, **`isZero_punctured_finite`** |
+| `GroupApproximation/CharClass/LIXKCount.lean` | `LocalSplit`, `LocalClassesAgree`, **`map_eq_nsmul_of_localSplit`**, `map_ne_zero_of_localSplit`, `natCast_ne_zero_zmod_two`; all over `[Field K]` |
+| `GroupApproximation/CharClass/LIXKStepC.lean` | **`topChernClass_ne_zero_kzero`**, `topChernClass_ne_zero_kzero_naturality` |
+| `GroupApproximation/CharClass/LIXKStepCWired.lean` | `lixKJ`, `lixKJloc`, `lixKI`, `lixK_hexact`, `lixK_mapsTo`, `lixKRho`, `lixK_hcompat`; `lixKSectionTotal`, `lixKSectionTotal_mapsTo`, `lixKSRel`, `lixKS`, `lixKSAbs`, `lixK_hnat`, `lixK_hsection`; `puncturedAcyclic_lixPoint`, `puncturedVanish_lixKZeroSet`; **`lixK_topClass_ne_zero`**, `lixK_topClass_ne_zero_odd` |
+
+Model test: **ALL PASS**, `scratch/sp-oddside/oddside_modeltest.py` on MSI (source in this
+session's scratchpad `sp/`), in *this lane's* coordinates rather than `sp-design`'s, so a
+coordinate slip between the two spellings cannot hide.
+
+| test | claim | result |
+|---|---|---|
+| A1–A3 | `Ψ_k` preserves every coordinate's modulus, damps to `0` at the origin, is the identity at `k = 0` | pass, `k ≤ 7`, 200 random points each |
+| B1–B3 | the `k+1` roots are distinct, the Lean enumeration `ζ^j·α` equals the closed form `e^{iπ(2j+1)/(k+1)}`, each is a zero and lies on the equator | pass, `k ≤ 7` |
+| B4 | **no stray zeros**: 4000 random starts refined by descent, `k ≤ 7` | pass, 0 strays |
+| C1–C2 | `Ψ_k ∘ ρ_m = Ψ_k`, and `ρ_j` carries `z₀` to `z_j` | pass, `k ≤ 6` |
+| D1 | **the `k+1` local derivatives of the section are literally one matrix** in the `ρ^j`-transported frames | pass, spread `≤ 1e−12`, `k ≤ 5` |
+| D2–D3 | the section vanishes at each `z_j`, and each local derivative is invertible | pass; `det J = −(k+1)/32`, smallest singular value `0.5`, identical across `j` |
+| E1–E2 | the count is `k+1`, and `(k+1 : F₂) ≠ 0` iff `k+1` is odd | pass |
+
+**Two of my own tests were wrong before they were right**, and both would have read as
+mathematics.  (i) I evaluated the section's derivative at circle coordinate `u = −1`; the
+zero is at `u = 0` (`τ = 1/2`), and at `u = −1` the derivative degenerates to `−e₁ du` for
+every `j`, so D1 passed **vacuously** — the calibration case that tells you nothing.
+(ii) I asserted rank `5`; the source is 6-real-dimensional (5 sphere + 1 circle) and the
+correct assertion is invertibility, rank `6`.  Both are now checked at `u = 0` with the
+determinant printed.
+
+### The structural finding, for the fleet
+
+**The `k`-zero Step C is the one-zero Step C at a single chosen zero, plus the count.**
+`γ_r = j(σ^* u)` comes from the naturality square `topClass_eq_of_naturality'`, which never
+uses surjectivity of `j`; so the only place a group has to be a line — hence the only place
+punctured acyclicity is consumed — is at the **distinguished** zero `z_{i₀}`, where
+`ThomStepCEuler.topChernClass_ne_zero_of_su_ne_zero_line` applies character for character
+with `gamma := c`, `j := j_{i₀}`, `su := x_{i₀}`.
+
+Two consequences worth propagating:
+
+1. **The `k+1`-point punctured vanishing is not on the critical path.**  It is proved
+   anyway (`LIXKPunctured.lean`, and instantiated as `puncturedVanish_lixKZeroSet`) because
+   `sp-design` §4.2 item 1 asks for it and because any arrangement that identifies `γ_r`
+   through exactness rather than through the section needs it.  But this route does not
+   consume it.  `sp-evenside` and `sp-endpoint` should not budget for it as a blocker.
+2. **`sp-design` §4.2 item 3 can be weakened.**  The direct-sum splitting
+   `H^{2r}(N, N∖Z) ≅ ⊕_i H^{2r}(N, N∖{z_i})` is more than the consumer uses.  What is used
+   is the single equation `x = ∑_i ρ_i(x_i)`, with `ρ_i` the relative pullback along the
+   **identity** of `N` seen as a map of pairs `(N, N∖Z) → (N, N∖{z_i})`.  The compatibility
+   `ρ_i ≫ j = j_i` is then naturality of `relToAbs` along the identity and costs one
+   rewrite (`lixK_hcompat`), with no biproduct and nothing to invert.
+
+### The route to `LocalSplit`, revised (recommended, not yet built)
+
+`sp-design` §4.2 item 3 and my own first plan both said "excision to `k+1` disjoint balls".
+That route needs a metric, a disjointness argument, and the splitting of a *relative* group
+over a disjoint union, none of which the tree has.  There is a route with none of that:
+
+> **Relative Mayer–Vietoris.**  For opens `A, B ⊆ X` with `A ∪ B = X`, the sequence
+> `H^n(X, A∪B) → H^n(X,A) ⊕ H^n(X,B) → H^n(X, A∩B) → H^{n+1}(X, A∪B)` has zero at both
+> ends, because `A ∪ B = X` and `H^*(X, X) = 0`.  So the middle map — which is exactly
+> `(a, b) ↦ ρ_A a + ρ_B b` — is an **isomorphism**.
+
+Applied with `A = N ∖ {z_0, …, z_{k−1}}` and `B = N ∖ {z_k}`: `A ∪ B = N` because the two
+puncture sets are disjoint, and `A ∩ B = N ∖ Z`.  Induction on the number of punctures then
+gives `x = ∑_i ρ_i(x_i)` with the `ρ_i` exactly the ones already built here
+(`lixKRho`), and the composition of two `relPullback`s along identities is again one.
+**No balls, no metric, no disjoint-union splitting, no geometry at all.**
+
+What it costs is one genuinely new piece of infrastructure: relative Mayer–Vietoris, and
+only its surjectivity half.  At cochain level that is `C^*(X, A) + C^*(X, B) = C^*(X, A∩B)`
+up to coboundaries, which is the same small-simplices input
+`RelativeExcision.smallAnnComplex_acyclic` already supplies for excision — so it should be
+built beside `CharClass/RelativeExcision.lean` and reused, not re-derived.  It is generic
+in the coefficient ring, so `sp-coeff` gets it for free.
 
 ## NEEDS
 
 * **`sp-powers`**: `Analysis/LIXPowersGauge`, `LIXPowersNaturality`, `LIXPowersJoinPower`
-  to stay green — my `CharClass/LIXKMap.lean` imports the third for `joinC`.  If you rename
-  `joinC` or move it, tell me; I use `joinC`, `joinC_zero`, `joinC_id`, `norm_joinC`,
+  to stay green — my `CharClass/LIXKMap.lean` imports the third for `Powers.joinC`.  If you
+  rename or move `joinC`, tell me; I use `joinC`, `joinC_zero`, `joinC_id`, `norm_joinC`,
   `continuous_joinC` and nothing else.
 * **`sp-powers`**: eventually, the bridge lemma identifying *your* `joinPow e₁ e₂ k` on the
-  equatorial `EuclideanSpace ℝ (Fin 5)` with *my* `Function.update x 0 (joinC k (x 0))` on
-  `Fin 3 → ℂ` across `LIXLemmaSixGenerator.equatorEmb`.  Neither of us needs it for our own
-  first deliverable; Step A needs it, because Step A must produce `G *ᵥ (e₁,0) = (Ψ_k x, 0)`
-  for the *same* `Ψ_k` that your clutching naturality pulls back.  I state it as a `Prop`
-  and do not prove it.
+  equatorial `EuclideanSpace ℝ (Fin 5)` with *my* `psiVec k = Function.update x 0 (joinC k (x 0))`
+  on `Fin 3 → ℂ` across `LIXLemmaSixGenerator.equatorEmb`.  Neither of us needs it for our
+  own first deliverable; **Step A does**, because Step A must produce
+  `G *ᵥ (e₁,0) = (Ψ_k x, 0)` — my `hGe` binder — for the *same* `Ψ_k` that your clutching
+  naturality pulls back.
 * **`sp-coeff`**: relative homotopy invariance over a field `K` (their item 1 /
-  `sp-design` §4.4).  Not blocking at `p = 2`, blocking for the second deliverable.
+  `sp-design` §4.4).  Not blocking at `p = 2`; blocking for the second deliverable and for
+  `LocalClassesAgree` at odd `p`.
+* **`sp-design`**: a ruling on whether the local model at `−e₁` should be done as
+  `LIXSectionChart` reindexed (`Fin 3` relabelling) or as their §1.3 generic form
+  (a unit vector `a` with `Re (a n) = 0` plus an ℝ-linear isometry `L` onto `a^⊥`).  I
+  recommend the generic form and will write it that way unless told otherwise; it is what
+  `sp-tower`'s general `n` needs too, and the `![…]` literal has no analogue there.
 * **`sp-tower`**: the `Gen` shape layer for `VIdx`/`baseM` at general `n`.  Not blocking:
   I write against the `n = 2` shape layer as it is, but never against `e₃` or the south
-  pole of the sphere — the zeros are `−e₁` and its `ρ`-rotates, on the equator.
+  pole of the sphere — the zeros are `−e₁`'s rotates, on the equator.
 
 ## TRAPS
 
 * `Analysis/LIXPowersJoinPower.lean`'s `joinPow` is **not usable at `Fin 3 → ℂ`**: it is
   built from `planeSub`, which needs `InnerProductSpace ℝ E`, and the LIX five-sphere is a
   sup-normed pi type with no such instance.  The scalar `joinC` is the shared part and the
-  only shared part.  Reaching for `joinPow` and then trying to supply the instance would
-  land in `EuclideanSpace`/`WithLp` transport, which `LIXSectionChart.lean`'s header already
-  records as the trap that file exists to avoid.
+  only shared part.  Reaching for `joinPow` and then trying to supply the instance lands in
+  `EuclideanSpace`/`WithLp` transport, which `LIXSectionChart.lean`'s header already records
+  as the trap that file exists to avoid.
+* `LocalSplit` and `LocalClassesAgree` are `def`s returning `Prop`, so `rw [hsplit]` does
+  **not** fire: `rw` matches `Eq` only up to *reducible* transparency and a plain `def` is
+  not reducible.  Convert first (`have hs : x = ∑ … := hsplit`), which typechecks by defeq
+  at default transparency.  The same trap will bite any lane that names an obligation as a
+  `def` and then tries to rewrite with it — which the program note's "statements before
+  proofs" rule makes likely.  Appended to `notes/lix-lane-reports/FLEET_TRAPS.md`.
