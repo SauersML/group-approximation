@@ -27,6 +27,16 @@ the computed Fixed Price frontier and the reuse premise's dependency path,
 in addition to checking that this goal remains open. These are graph checks,
 not mathematical proof verification.
 
+The traffic variational identities have now been extended to every
+countable group when the base action has finite cost
+(`fixed-price-conditional-traffic.md`, Section 9). The repair budget
+includes the complete tail of a fixed finite-cost base graphing.
+Thus finite generation is not essential for that characterization.
+Producing vanishing defect remains open, as does exclusion of a
+finite-cost free extension over an infinite-cost free base. The
+extension does not establish the finitely-generated-to-countable
+passage required by the current root route.
+
 Rechecked [Abert--Weiss, Corollary 2](https://arxiv.org/pdf/1103.1063) and
 [Tucker-Drob, Corollary 6.22](https://arxiv.org/pdf/1211.6395): the former
 has the stated finite-generation hypothesis; the latter extends cost

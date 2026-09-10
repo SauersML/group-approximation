@@ -6,7 +6,9 @@ Research derivation — September 9, 2026
 
 This note proves a constructive cost-descent inequality and an exact variational
 characterization of cost preservation under a factor map between free p.m.p.
-actions of a finitely generated group. It does not prove that every such factor
+actions. Sections 1--8 use a finitely generated group. Section 9 extends the
+construction to every countable group when the base action has finite cost,
+by paying the tail of a fixed generating graphing. It does not prove that every such factor
 preserves cost. Therefore it does not solve Fixed Price or Benjamini–Schramm.
 No novelty, independent verification, or formal verification is claimed.
 
@@ -47,8 +49,9 @@ Consequently
 
 For a fixed group, equality for all such free factor maps is equivalent to
 Fixed Price: apply factor invariance to both projections from the product of
-any two free actions. This equivalence does not require finite generation, but
-the finite routing characterization below does.
+any two free actions. This equivalence does not require finite generation.
+The finite-generator version below is extended in Section 9 using a finite-cost
+base graphing in place of a finite generating set.
 
 ## 2. Finite routing plans
 
@@ -316,17 +319,150 @@ Fixed Price for finitely generated groups. In the language of (5.3), what is
 still needed is a theorem producing source-near-optimal routing plans with
 vanishing J for these projections. The present note does not prove that.
 
-The full countable-group problem includes infinite generating sets and
-potentially infinite costs. This finite-demand variational proof is not silently
-extended to that setting. Standard pseudocost literature [TD] explains why
-exhaustions require care. A proof for all finitely generated groups would not be
-asserted here to settle all those additional cases without an argument.
+The full countable-group problem includes potentially infinite costs.
+Section 9 removes finite generation from the variational proof when the base
+has finite cost. It does not cover a finite-cost extension of an infinite-cost
+base, or prove the missing vanishing-defect assertion. Standard pseudocost
+literature [TD] explains why subgroup exhaustions require care. A proof for all
+finitely generated groups is not asserted here to settle the remaining cases
+without an argument.
 
 No Bernoulli percolation threshold inequality is obtained. The cost problem
 and the percolation problem impose different constraints; the source-to-target
 rounding here is not independent bond percolation.
 
-## 9. Verification boundaries
+## 9. Countable groups with a finite-cost base
+
+September 10, 2026. Finite generation is not needed for the traffic
+identities once an actual finite-cost family of base demands is supplied.
+The tail must be paid in the graphing's ordinary cost, not discounted by
+arbitrary weights.
+
+Let Gamma be any countably infinite group and pi:Y->X a free p.m.p.
+factor with C(X)<infinity. Fix a generating base graphing
+
+    Lambda=(T_(h_i)|D_i)_(i>=1),
+    sum_i mu(D_i)<infinity.
+
+Such a graphing exists by the definition of finite cost; splitting its
+partial maps into group labels preserves the sum of domain measures.
+The h_i need not form a finite set and Lambda need not minimize cost.
+Write
+
+    t_n=sum_(i>n) mu(D_i)->0.
+
+A plan now consists of an integer n, a finite source partial graphing
+Phi as in Section 2, and bounded-length chosen paths for requests
+indexed by i<=n on measurable sets E_i contained in pi^(-1)(D_i).
+The path goes from y to y h_i. Define its repair budget by
+
+    r_Lambda(D)=t_n+
+        sum_(i<=n) nu(pi^(-1)(D_i) minus E_i).                (9.1)
+
+Count traffic N_j only for these finitely many chosen request families.
+It is still bounded for each plan by the same finite-word argument.
+Keep the definitions of m_j, p_j and J_pi from Section 3, and put
+
+    B_Lambda(D)=r_Lambda(D)+sum_j nu(N_j>0).
+
+### Constructive inequalities
+
+Retain the used source edge copies. Repair each uncovered prefix
+request directly on pi^(-1)(D_i) minus E_i, and append the entire lifted
+tail (T_(h_i)|pi^(-1)(D_i))_(i>n). Every Lambda-request now has a
+source path. Freeness makes the lift of Lambda generate the full
+source relation, so
+
+    C(Y)<=B_Lambda(D).                                      (9.2)
+
+For descent, retain T_(g_j) on K_j={m_j>=1} in X. For i<=n let
+F_i be the subset of D_i where x and x h_i are not connected by
+this retained graphing. The same projection-of-path argument gives
+
+    sum_(i<=n) mu(F_i)
+      <=sum_(i<=n) nu(pi^(-1)(D_i) minus E_i)
+        +sum_j integral_(X minus K_j) m_j dmu.
+
+Append the direct repairs T_(h_i)|F_i and every tail map i>n.
+The resulting graphing generates X and has cost at most
+
+    r_Lambda(D)+sum_j integral_X min(1,m_j) dmu
+      =B_Lambda(D)+J_pi(D).                                 (9.3)
+
+The completed graphings may have countably many maps because they
+include the tail. The routed part, its traffic, and its conditional
+defect remain finite. All tail maps are base measurable and lifted
+without additional conditional-information cost. Their ordinary
+edge cost t_n has been included on both sides throughout.
+
+### Exact variational formulas
+
+Over these plans, with Lambda fixed and n allowed to vary,
+
+    C(Y)=inf_D B_Lambda(D),
+    C(X)=inf_D (B_Lambda(D)+J_pi(D)).                         (9.4)
+
+For the source upper approximation, first choose n so that t_n is
+small. Take a near-optimal generating source graphing and split it
+into group-labelled maps. Each of the finitely many prefix demands
+has a finite path in that graphing almost surely on its domain.
+Increasing the finite subgraphing and the common length cutoff
+therefore makes the sum of uncovered prefix measures arbitrarily
+small. The used edges cost no more than the chosen source graphing.
+This proves the first equality using (9.2). Notice that C(Y) is
+finite because lifting gives C(Y)<=C(X)<infinity.
+
+For the second equality, do the same approximation with a near-optimal
+base graphing, for the same prefix demands and the same tail budget,
+then lift the finite plan. Its traffic is a base-measurable integer
+function, hence J_pi=0. Together with (9.3), this proves the second
+equality. The order of choices is important: fix a cheap demand tail
+first, and then approximate the finitely many remaining requests.
+There is no asserted uniform cutoff over all i.
+
+Since both costs are finite, (9.4) gives the exact criterion
+
+    C(X)=C(Y)
+      iff some D_l have B_Lambda(D_l)->C(Y)
+                         and J_pi(D_l)->0.                  (9.5)
+
+Thus the characterization is not intrinsically limited to finitely
+generated groups. It applies to every factor whose base has finite
+cost. It is still only a characterization: simultaneous optimality
+and vanishing conditional defect have not been proved generally.
+
+### The remaining universal cases
+
+For two finite-cost free actions a and b of any countable group, the
+product action has finite cost by lifting. Both projections onto a
+and b therefore lie within (9.5). A universal vanishing-defect theorem
+in this finite-base setting would prove equality of all finite-cost
+free actions of every countable group, without a subgroup-exhaustion
+step. This theorem is not supplied by the present extension.
+
+If all free actions of a group have infinite cost, equality is
+automatic. What is not covered is a group with both a finite-cost
+and an infinite-cost free action: its product with the finite-cost
+action has finite cost and projects onto the infinite-cost one.
+Conversely, such a factor would itself exhibit mixed action costs.
+This is a separate part of the universal objective. The discussion
+of [Tucker-Drob, Questions 7.7--7.8](https://arxiv.org/pdf/1211.6395)
+identifies the same finite/infinite issue through Bernoulli actions;
+the present finite-tail argument does not answer those questions.
+
+An infinite list of full generator requests cannot simply be given
+summable artificial weights. For example, take a free action of F_2,
+the identity factor, and no routed edges. Weighting each of its two
+full generator requests by 1/4 would assign repair budget 1/2, even
+though every aperiodic generated relation has cost at least one.
+Actual direct repairs cost their full domain measures. Equation (9.1)
+uses a summable *graphing cost*, not such discounted demands.
+
+No numerical check or dependency compilation verifies this extension.
+The proof is the displayed repair construction and its approximation
+argument, using the same conditional traffic identity as Sections 2--5.
+
+## 10. Verification boundaries
 
 The script check_descent.py tests the actual constructive bound and its traffic
 identities on every pair of partial domains for the +1 and -1 maps on the
