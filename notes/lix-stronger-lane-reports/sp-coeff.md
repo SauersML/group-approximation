@@ -158,6 +158,33 @@ missed — it encodes characteristic two in the *shape* of its statement, with n
 char-2 token in the proof.  No in-scope file uses it; `CartanSimplexExact` is its
 only `CharClass` consumer, and it is out of scope.
 
+## 0c. The naming convention (binding for `sp-steenrod` and `sp-oddside`)
+
+**The coefficient argument is implicit when some argument determines it, and
+explicit otherwise.**  That is the whole rule, and it is forced, not stylistic.
+
+* Implicit: `cup a b`, `pull f n a`, `cohCast h a`, `one`, `cupBilin`,
+  `pullLinear`, `cocycleClassK`, `cupK` — each has a class argument whose type
+  is `Hmod K …`, so `K` is inferred and every existing `F₂` call site is
+  unchanged.
+* Explicit, as the **first** argument: `mvCoSCOf K U V hUV`, `mvDeltaOf`,
+  `mvConnectingIsoOf`, `dualCxOf`, `cohDualFunctorOf`, `moduleInjective_of_field`,
+  and everything else whose arguments are spaces, opens or degrees.  `mvCoSC U V hUV`
+  mentions only two opens; there is nothing for `K` to be inferred from.
+
+The `F₂` spellings stay as **`abbrev`s** at `K = ZMod 2` in both cases, so they
+are reducible and the generic instances fire on them without being restated.
+
+Two consequences worth knowing before you author:
+
+1. Even with an implicit coefficient, a *partial* application has nothing to
+   infer from — `Function.Injective (pull f n)` needs `pull (K := ZMod 2) f n`,
+   and in a generic file it needs `pull (K := K) f n` with `K` the section
+   variable.  There were 39 such sites in `CharClass/`.
+2. A leaf file that mentions `ZMod p` needs `import Mathlib.Data.ZMod.Basic`
+   explicitly.  `autoImplicit` reports the missing import as
+   `Function expected at ZMod`, pointing at the application rather than the import.
+
 ## 1. The parametrisation
 
 ```lean
@@ -233,6 +260,34 @@ consumers use.  Over `K` those four lemmas are replaced by `sub_self`,
 `sub_eq_zero`, and `eq_of_sub_eq_zero`, and each consumer's `a + b` becomes
 `a - b`.  No new mathematics, and the sign is already proved upstream.
 
+## 2c. Two facts the Mayer–Vietoris step needs that are not obvious from the plan
+
+**The lead's ordering has a hidden prerequisite, and it is harmless.**
+`CohomologyMayerVietoris` imports `CohomologyContractible`, which imports
+`CohomologySphere` — so "Mayer–Vietoris and Contractible" sits *above* the sphere
+computation, which is mechanism (d) and the longest port in the lane.  It does
+not block: `CohomologyMayerVietoris` never uses a sphere fact, the import is a
+chain artefact, and the compatibility rule keeps every `F₂` sphere name in place.
+So MV can be made generic in `K` while `CohomologySphere` stays at `ZMod 2`, and
+the sphere port can happen later without redoing MV.
+
+**One genuinely missing lemma.**  The dual short exact sequence needs the
+coefficient module to be injective.  At `F₂` this is
+`moduleInjective_ZMod2` (`H1ClassifierZMod2.lean` l.313), proved by Baer's
+criterion with a `fin_cases a` that enumerates the two elements of `ZMod 2`.
+Mathlib at the pin has **no** instance "every module over a field is injective" —
+`Mathlib/Algebra/Module/Injective.lean` offers `Module.Baer.injective` and a `pi`
+instance and nothing else — so the port is a real, if small, lemma:
+
+```lean
+theorem moduleInjective_field (K M : Type) [Field K] [AddCommGroup M] [Module K M] :
+    Module.Injective K M
+```
+
+by Baer, replacing `fin_cases a` with "a nonzero element of a field is a unit, so
+the ideal is `⊤`" (`Ideal.eq_top_of_isUnit_mem`).  Consumers:
+`CohomologyMayerVietoris` and `RelativeDual`.
+
 ## 3. Keeping `F₂` green
 
 After each landing, probe **the direct consumers of the changed files, not the
@@ -241,6 +296,122 @@ The import graph of `CharClass` is wide and shallow at the bottom
 (`CohomologyBasic` has 6 direct consumers), so the closure stays small until the
 `LerayHirsch`/`Thom` layers.  The `F₂` instance is green iff those consumers are
 green, since `Hmod2` is reducibly the old `cohomologyZMod2`.
+
+## Deliverable 2: Mayer–Vietoris (authored) and why Contractible is not its peer
+
+`CohomologyMayerVietoris.lean` is rewritten generic in `K` and awaiting its probe.
+The shape is `mvCoSCOf K U V hUV`, `mvDeltaOf`, `mvConnectingIsoOf`, … with the
+coefficient an **explicit first argument** — unlike `cup`/`pull`, none of these
+has an argument that would determine it (`mvCoSC U V hUV` mentions only two
+opens), so an implicit coefficient would be ambiguous at every call site.  The
+existing `F₂` names are `abbrev`s at `K = ZMod 2`, hence reducible, so all 16
+consumers of `mvDelta`, all 11 of `mvCoSC` and the rest are byte-unchanged, and
+the generic instances fire on the `F₂` spellings without being restated.
+`[CommRing K]` carries the dualizing functor and the dual complex; `[Field K]` is
+asked for only where injectivity of the coefficient is used
+(`cohDualFunctorOf_preservesEpimorphisms`) and downstream of it.
+
+**`CohomologyContractible` is not a peer of Mayer–Vietoris and cannot be done
+next.**  Its three vanishing theorems go through `kroneckerEquiv` and
+`homologyDualZMod2_isZero_of_homology_isZero`, and `cohZeroEquivOfContractible`
+goes through `cohZeroEquiv`.  `kroneckerEquiv X n` (`KroneckerNaturality.lean`
+l.214) takes **no coefficient parameter**: the whole universal-coefficient /
+Kronecker layer, together with `H1ClassifierZMod2.lean`, is a genuinely
+`ZMod 2`-only vendored development.  That layer *is* mechanism (d), it is what
+`CohomologySphere` also rests on, and porting it is the prerequisite for
+Contractible — not the other way round.  The good news is that its one hard
+input is exactly `moduleInjective_of_field`, which is now written
+(`CoeffField.lean`), so the port is bounded.
+
+Mayer–Vietoris does not need any of this: it imports `CohomologyContractible`
+only through the chain, never uses a fact from it, and stays green with the `F₂`
+Contractible in place.
+
+**And `MayerVietorisBiproduct.lean` is smaller than §0 mechanism (a) suggests.**
+Reading it rather than grepping it: its actual development — `mvDualMap_add/zero`,
+`mvCx`, the four maps `mvCxProjU/ProjV/InclU/InclV`, `mvCx_total`, their homology
+versions, `mvH_decompose` and `mvH_eq_zero_iff` (l.100-234) — is **entirely
+coefficient-independent**.  It is `biprod.total` carried through an additive
+functor and then through `homologyMap`; not one line of it uses characteristic
+two.  The four char-2 lemmas (`add_self_eq_zero_two` and its three corollaries,
+l.58-81) sit in §1 of that file and are used **only by each other** — they are a
+service exported to the consumers listed under mechanism (a), not part of the
+biproduct argument.  So the file generalises as a plain substitution, with the
+four `F₂` lemmas simply left in place beside generic `sub`-based analogues, and
+the sign work is confined to the consumers that use `a + b = 0` to mean `a = b`.
+
+## Deliverable 3 (design, not yet authored): relative homotopy invariance over any `R`
+
+Lead's addition of 2026-09-10, on the odd side's critical path.  Written here at
+lemma precision first, per §3 of the program note; no Lean until it is probeable.
+
+**The premise checks out.**  `TopCat.Homotopy.singularChainComplexFunctorObjMap H R`
+gives the chain homotopy itself, generic in the coefficient object `R`, so
+`RelativeLineHomotopy`'s `F₂` trick is replaceable.  And the components are not
+opaque: `SimplicialObject.Homotopy.ToChainHomotopy.hom_eq` is a `@[simp]` lemma
+saying
+
+```text
+hom H p (p+1) = -∑ k : Fin (p+1), (-1)^k • H.h k
+```
+
+so the chain homotopy is an alternating sum of the *simplicial* homotopy's own
+structure maps.  Restriction to a subspace is therefore naturality in the space,
+not a computation with prism decompositions.
+
+**The shape of the target.**  `relPullback R f hf n` is already generic
+(`RelativeFunctorial.lean` l.118), and the relative cochain complex is the
+**annihilator subcomplex** `relCochainSubmodule R Y B` of `C^*(Y)`, not a
+quotient.  So what has to be shown is that the dual prism carries
+"cochains vanishing on `B`-chains" into "cochains vanishing on `A`-chains", which
+is the transpose of: the prism carries `A`-chains into `B`-chains.
+
+**The lemma list.**
+
+1. `relHomotopyCorestrict` — from `H : TopCat.Homotopy f g` with
+   `∀ t x, x ∈ A → H (t, x) ∈ B`, build `H_A : TopCat.Homotopy f_A g_A` for the
+   corestricted maps `f_A g_A : TopCat.of A ⟶ TopCat.of B`.  Elementary; the
+   underlying map is `H ∘ (id × i)` corestricted to `B`.
+2. `toSSet_homotopy_naturality` — for the inclusions `i : A ⟶ X`, `j : B ⟶ Y`,
+   `(toSSet.map i) ≫ H.toSSet.h k = H_A.toSSet.h k ≫ (toSSet.map j)` for every
+   `k`.  `TopCat.Homotopy.toSSet` builds its `h` field as
+   `(whiskering) ≫ (lax monoidal μ) ≫ TopCat.toSSet.map H.h`, and the only
+   space-dependent factor is the last, so this is functoriality of `toSSet` plus
+   naturality of `μ`, applied to `H.h ∘ (i × id) = j ∘ H_A.h` — which is exactly
+   hypothesis (1) made precise.
+3. `chainHomotopy_naturality` — `C(i) ≫ P = P_A ≫ C(j)` in each degree, where
+   `P := (H.singularChainComplexFunctorObjMap R).hom`.  By `hom_eq` this is (2)
+   summed over `k` with signs.  **Mathlib has no naturality lemma for
+   `toChainHomotopy`, so this one is ours**; it is the only real work in the
+   deliverable.
+4. `prism_mapsTo_subChain` — `P` maps `subChainSubmodule R X A p` into
+   `subChainSubmodule R Y B (p+1)`.  From (3): the submodule is the image of
+   `C(i)`, so `P (im C(i)) = im (C(i) ≫ P) = im (P_A ≫ C(j)) ⊆ im C(j)`.
+5. `relCochainHomotopy` — transpose (4): the dual of `P` carries
+   `relCochainSubmodule R Y B` into `relCochainSubmodule R X A`, giving a
+   `Homotopy (relCochainMap R f hf) (relCochainMap R g hg)`.
+6. `relPullback_eq_of_homotopy (R) [CommRing R] {f g} (hf hg) (H) (hH) (n) :
+   relPullback R f hf n = relPullback R g hg n` — `Homotopy.homologyMap_eq`.
+
+**Mathlib names, verified at the pin `81a5d257` so the authoring is mechanical:**
+
+| what | name |
+|---|---|
+| homotopy in `TopCat` | `TopCat.Homotopy f g` — an `abbrev` for `ContinuousMap.Homotopy f.hom g.hom`, applied as `H (t, x)` with `t : I` **first** |
+| its `TopCat` morphism | `TopCat.Homotopy.h : X ⊗ I ⟶ Y`, with `@[simp] h_hom_apply : F.h p = F (I.homeomorph p.2, p.1)` — note the swap |
+| chain homotopy, generic in `R` | `TopCat.Homotopy.singularChainComplexFunctorObjMap H R` |
+| its components | `SimplicialObject.Homotopy.ToChainHomotopy.hom_eq`, `@[simp]` |
+| simplicial homotopy field | `SimplicialObject.Homotopy.h {n} (i : Fin (n+1)) : X _⦋n⦌ ⟶ Y _⦋n+1⦌` |
+| the simplicial homotopy of a topological one | `TopCat.Homotopy.toSSet`, whose `h` is `(whiskering) ≫ μ ≫ TopCat.toSSet.map H.h` |
+
+So the hypothesis is `hH : ∀ (t : I) (x : X), x ∈ A → H (t, x) ∈ B`, and
+`H.h p ∈ B` for `p.1 ∈ A` follows by `h_hom_apply`.
+
+**Stated risk, flagged early as the lead asked.**  Step (2) leans on naturality
+of the lax monoidal structure map of `TopCat.toSSet`.  If that is awkward at the
+pin, the fallback is to prove (3) directly from the concrete description of
+`SSet.chainComplexMap` on generators rather than through `μ`.  I will say so
+rather than fight it.
 
 ## Touched outside my lane
 
@@ -256,6 +427,19 @@ It is one of the 36 partial-application sites that the implicit coefficient
 argument makes ambiguous.  Semantics unchanged; the alternative was a red tree.
 Nothing else under `Steenrod*`, `Cartan*`, `Parity*`, `Wu*`, `Sq*`, `Acyclic*` or
 `LIX*` is touched.
+
+## A pattern worth naming, from `sp-steenrod`
+
+`sp-steenrod` checked the `singular_d_ι` finding rather than accepting it, and
+reports that the vendored proof **reaches the honest signed steps and then
+discards the signs with a two-torsion lemma in its last line**.  That is exactly
+the shape of `aw_cochain_leibniz_zmod2`, where `sum_split_char2` and
+`neg_one_pow_zmod2` are applied at the very end of an otherwise generic argument.
+So the vendored tree has a recurring idiom: *prove it signed, collapse the signs
+at the end*.  The practical consequence is the good one — the generic statement
+is almost always the same proof stopped one line earlier, not a new argument —
+and it is why the Leibniz port went green on its first probe.  Expect the same
+when the Kronecker/UCT layer is ported.
 
 ## Probe hygiene (fleet rule of 2026-09-10)
 
@@ -290,7 +474,48 @@ Clone `cs-endpoint`, probes of 2026-09-10.
 | `CharClass.CohomologyAssoc` | 2057 | `cup_assoc`, `one_cup`, `cohCast_cocycleClassOf` generic |
 
 Wide probe of the whole `CharClass` tree (the 20 modules nothing else imports,
-covering all 548 files): running / see below.
+covering 548 of the 553 files; the 5 uncovered are named under Probe hygiene):
+**FAILED on the first run**, and its complete verdict is in: exactly two
+failures, `ThomBridgeHyperplane.lean:104` and `ProjectiveSpaceStable.lean:105`,
+with no third anywhere else in the tree.  Both are fixed.
+
+The combined re-probe then **aborted at job 4406 of ~9300** on a one-line missing
+import in `CoeffLine` and `CoeffField` (`ZMod` not in scope; `autoImplicit`
+reports it as `Function expected at ZMod`).  Lake aborts the whole build when any
+named target fails, so the Mayer–Vietoris verdict — the point of that run — was
+never reached.  Lesson recorded in FLEET_TRAPS: probe new leaf files on their own
+first, they cost seconds; never bundle them with the tops.
+
+That run did produce two results worth keeping.  `CoeffAxiomCheck` built, so
+every generic theorem reports exactly `[propext, Classical.choice, Quot.sound]`,
+and its two `rfl` bridges typechecked: `cup` and `one` at `K = ZMod 2` are now
+machine-checked to be definitionally the vendored `cupZMod2` and `oneZMod2`.  And
+every generic declaration in `CoeffLine` and `CoeffField` compiled — only the
+`F₂`-instance corollaries at the bottom of each file failed — so
+`moduleInjective_of_field` by the complement route is sound.  Imports fixed;
+re-probing.  The four base-layer modules above are unaffected — they are green on
+their own probes and were `Built`, not `Replayed`.
+
+The first run surfaced **two** failures, both ambiguity sites of kinds my
+line-oriented grep could not see, and both now fixed:
+`ThomBridgeHyperplane.lean:104` and `ProjectiveSpaceStable.lean:105`.
+
+The first was a site of a kind my grep could not see:
+`have hcomp : ∀ a, pull … (pull (subInclusion …) k a) = …` leaves `a` untyped, so
+`K` is undetermined, reported as `typeclass instance problem is stuck: CommRing
+?m.56` and then as a `sorryAx` in the enclosing `hyperplane_hsub`.  The second was an equation between two
+partial applications, `pull (cpIncl d) 2 = (pull (cpInclP d) 2) ∘ (pull (punctIncl d) 2)`,
+where nothing on either side is a class.
+
+Re-sweeping on whitespace-normalised source with an argument COUNT rather than a
+regex (flag every `pull` with fewer than three arguments, then keep only those
+under `Injective`/`Surjective`/`Bijective`, under `∘`, or on both sides of an `=`)
+cut 212 raw candidates to 31 and the 31 to exactly these plus two multi-line
+`Function.Bijective\n  (pull …)` in `GysinPairRetract`.  All five are pinned now,
+bringing the total to **41** sites — though the probe then built `GysinPairRetract`
+green from the *un*pinned source, so those two pins were precautionary rather than
+required: there the coefficient is fixed by the term on the right of `:=`.
+Over-pinning is harmless; under-pinning costs a 40-minute cycle.
 
 ## AUTHORED, UNVERIFIED
 

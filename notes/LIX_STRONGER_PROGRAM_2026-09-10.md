@@ -78,8 +78,13 @@ For `v^k ∉ U₀(A_j)` the chain is:
 
 1. **Eckmann–Hilton on `U(n)`-valued maps of `S^{2n}`.**  `u^k` (pointwise power) and
    `u ∘ ψ_k` are homotopic, where `ψ_k : S^{2n} → S^{2n}` is an explicit `k`-fold map (§1.3.2).
-   Formal shape: `IsDiscUnitary`-style — exhibit `u^k · (u ∘ ψ_k)⁻¹ ∈ U₀(C(S^{2n}, U(n)))` as a
-   unitary over the disc restricting to it on the sphere.  (owner `sp-powers`)
+   Formal shape (as landed, `Analysis/LIXPowersGauge.lean`): the gauge lemma asks only for a BALL
+   unitary (continuous and unitary on the closed ball, no basepoint condition), and the seam generator
+   normalises for free: with `wallRetract` the radial retraction onto the wall, `A := U ∘ wallRetract`
+   is a ball unitary, `ũ := Aᴴ U` is a ball unitary identically `1` on the wall, `U = A ũ`, and
+   `clutch(u^k) ≅ clutch(ũ^k)` by the left gauge lemma with the ball-unitary factor
+   `(A ũ)^k (ũ^k)ᴴ`.  **Path-connectedness of `U(n)` is needed nowhere; do not prove it.**
+   (owner `sp-powers`; `Analysis/LIXPowersNormalise.lean`)
 2. **Gauge lemma.**  If `a ∈ U₀` (extends over the northern hemisphere) then
    `clutch(a·b) ≅ clutch(b)` (change the northern trivialisation by the extension; this is
    `LIXClutching`'s seam trick and needs no square root).  Hence `clutch(u^k) ≅ clutch(u ∘ ψ_k)`.
@@ -98,6 +103,22 @@ For `v^k ∉ U₀(A_j)` the chain is:
    **Over `F_p` with `p` odd this is where signs would enter; the `ρ`-symmetry is what makes
    every local contribution literally equal, so no local degree is ever computed.**
    (owner `sp-oddside`, after `sp-design` signs off)
+
+**Interface decision (2026-09-10, after sp-powers' grep).**  The live Corollary 4 never uses the
+clutching layer: it glues the two hemisphere frames of `LIXGeneratorUnitary` with the null-homotopy
+of `u ⊕ 1_H` into a unitary field `G` with `G e₃ = x`, so "`clutch u ≅ F`" is nobody's deliverable
+and is not in the tree.  The PRIMARY export of `sp-powers` is therefore the bare homotopy
+`u^k ≃ u ∘ ψ_k` through unitary maps `S^{2n} → U(n)` (no clutching), which `sp-tower`'s k-indexed
+Corollary-4 chain consumes with the frames pulled back along `Σψ_k` (seam `u ∘ ψ_k`, `e₃ ↦ x ∘ Σψ_k`).
+**Superseded the same day:** the endpoint WITNESS is the renormalised generator `ũ := Aᴴ u`
+(`A := U ∘ wallRetract`, a ball unitary; `ũ ≡ 1` on the wall), so no path from `A` to `1` is ever
+built: `ũ ⊕ 1 = (A ⊕ 1)⁻¹(u ⊕ 1)` still contracts in `U(n+1)`, `ũ ∉ U₀ ⟺ u ∉ U₀`, the frames gauged
+by `A` on one hemisphere have seam `ũ` and still take `e₃ ↦ x`, and `sp-powers`'
+`exists_homotopy_pow_comp_normGen` gives the explicit unitary homotopy `ũ^{k+1} ≃ ũ ∘ ψ_k` directly.
+No path in `U(n)` anywhere in the program.  `sp-tower` builds the k-indexed Corollary-4 chain around
+`ũ`; `FHmat_k` on the CharClass side is `FHmat` with `b = x ∘ Σψ_k` (`FHmat_eq_fromBlocks` unchanged).
+The clutched statement (items 2–3 above, `LIXPowersChain.lean`) stays as the geometric form and is
+off the critical path.
 
 #### 1.3.2 The `k`-fold map `ψ_k` (AGREED 2026-09-10 by `sp-design` and `sp-powers`, independently)
 
@@ -188,6 +209,16 @@ all stages.
   `sp-steenrod` writes the construction plan first (which acyclic-models statements are
   needed, which the tree already has, what normalisation constant appears and why it is a
   unit mod `p`) and gets it reviewed by `sp-design` before authoring.
+* **The normalisation constant (decided 2026-09-10).**  An abstract equivariant diagonal gives every
+  axiom except `P^0 = id`, which is the value of a universal constant `c_q` (`Q^0 = c_q · id`),
+  and no other axiom pins it (the pure Frobenius satisfies all of them with `c = 0`).  Its VALUE is
+  irrelevant (κ-sweep: 0 of 28 cases depended on it; a rescaling `P'^i = κ^i P^i` preserves every
+  axiom), so `P̃ := c_q^{-1} Q` on even degrees; only `c_2 ≠ 0` matters.  `c_1 = ((p−1)/2)!` by
+  the descent on the 1-simplex, generic in `p` (cone contraction on slot 0, `DH + HD = 1`, every
+  primitive is `H(A)`, final pairing with the Alexander–Whitney diagonal), and `c_2 = c_1²` from
+  the Cartan comparison normalised by its degree-0 agreement.  A descent on `Δ²` is NOT well
+  defined (the primitive ambiguity pairs against `AW(∂σ)`, edges, not points) and must not be
+  attempted.  The explicit `p`-fold interval-cut diagonal is not built.
 * Wu relations for `P^i` on mod-`p` Chern classes follow from the splitting principle
   exactly as `Wu.HasSplitting` does at `F₂`; the universal polynomials `E_j` are the
   elementary symmetric functions of `y + y^p`.
@@ -206,11 +237,13 @@ Mathlib-only challenge stating the `n = 6` corollary and the general theorem.
 | lane | clone / cores | owns | first deliverable |
 |---|---|---|---|
 | `sp-design` | spare1 / 96-103 | this note §1.2–1.4 as theorems; every model test | uniform Step D proof for `p ∣ n`; `ψ_k` design; sign-off gate for the Lean lanes |
-| `sp-tower` | cs-stages / 88-95 | `Analysis/LIX*` generic in `n` | `stageRank n i`, `Fproj n`, seam generator for `U(n+1) → S^{2n+1}`, `diag(u,1) ∈ U₀`, tower, limit, simplicity, separability at general `n` with the `n = 2` instance unchanged |
+| `sp-tower` | cs-stages / 88-95 | `Analysis/LIX*` generic in `n`; ALSO the rank parameter in the `CharClass/LIX*` shape layer (VIdx, baseM, HIdx, Vmat, sProj/eProj, FHmat/EHmat, lixDD), as `Gen` namespaces with every old name kept as the `n = 2` specialisation; never the constant-section move or the Step C geometry files | `stageRank n i`, `Fproj n`, seam generator for `U(n+1) → S^{2n+1}`, `diag(u,1) ∈ U₀`, tower, limit, simplicity, separability at general `n` with the `n = 2` instance unchanged |
 | `sp-coeff` | cs-endpoint / 64-71 | `CharClass` coefficient parameter | `Hmod K`, cup/pull/MV/relative/excision/LH/Chern/Thom/Gysin over a field `K`, `F₂` instance green |
 | `sp-steenrod` | cs-limit / 72-79 | odd-primary `P^i` | construction plan reviewed, then the operations with Cartan + instability + `P(h) = h + h^p` |
 | `sp-powers` | cs-simplicity / 80-87 | §1.3 items 1–3 | Eckmann–Hilton over `U(n)`, gauge lemma, clutching naturality along `Σψ_k` |
-| later: `sp-oddside`, `sp-evenside`, `sp-endpoint` | | §1.3.4, §1.4, §1.6 | after `sp-design` signs off |
+| `sp-evenside` | spare1 / 96-103 | Step D mod p: `CharClass/ParityP*`, `StepDModP*` | the uniform theorem of sp-design §3.2 as pure algebra generic in p (`ParityData` shape); later the bridge to real objects over sp-coeff's Chern classes and sp-steenrod's export |
+| `sp-oddside` | spare2 / 104-111 | Step C with k zeros: `CharClass/LIXK*` | the F₂, n = 2 instance first (constant section at e₁, k equatorial zeros, excision splitting, `γ_r = k·c₀`); later over F_p (needs sp-coeff's relative homotopy invariance and generic sphere/contractible) and general n (needs sp-tower's Gen shape layer) |
+| later: `sp-endpoint` | | §1.6 | after both sides are green |
 
 Ownership is by file: a lane creates files under its own prefix and edits existing files
 only when the table says it owns them.  Two lanes never edit one file; ask the lead.
@@ -226,13 +259,26 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   lane's clone.  Never use `/tmp` on the node.  Do not start a second probe while one runs
   (the helper serialises with `flock`; queueing is wasted wall-clock).  A probe that takes
   more than 15 minutes is a signal to cut the import closure, not to wait.
+* **Built, never Replayed (fleet rule, 2026-09-10).**  Every module you are CLAIMING green must show
+  `✔ [k/N] Built GroupApproximation.X (Ns)` in the log you cite; a `Replayed` line on a module you
+  edited is a false green and the probe is FAILED; lake prints nothing for an up-to-date target, so
+  "no Replayed line" is not evidence.  The standard way to produce the citable log is to delete your
+  own modules' remote `.olean/.ilean/.trace` in your clone and re-probe once, so one log carries every
+  Built line.  Second tell: an unmoved job count across a structural change means no rebuild.
+  Clones hold REAL copies of artifacts (never hard links: lake writes in place and shared inodes
+  corrupt every other tree); warming is artifacts-only and holds the probe lock.
 * **No `sorry` lands.**  Author with `sorry` only inside a file that is not imported by
   anything, and say so in the report.  `#print axioms` on every endpoint-facing theorem:
   `[propext, Classical.choice, Quot.sound]`, nothing else, ever.
 * **Statements before proofs.**  Land the statement of each obligation as a `Prop` with a
   docstring saying who discharges it, then discharge.  A hypothesis used once is an over-ask.
 * **Landing.**  Lanes do not commit or push.  The lead commits and pushes the shared tree
-  regularly; a lane's report says which files are green and at which job count.
+  regularly; a lane's report says which files are green and at which job count.  A landing batch
+  must be green AS A TREE STATE: because lanes share one working tree and every probe rsyncs all
+  of it, a lane whose files are mid-edit (a half-applied rename, a missing import) turns every
+  other lane's gate red in its own directory.  So a lane keeps the shared tree in a consistent
+  state between its own probes (do renames in one step; stage a new layer in new files), and
+  the lead lands the union of the lanes whose closures were gated green together.
 * **Reports.**  `notes/lix-stronger-lane-reports/<lane>.md`, four sections (GREEN with job
   counts / AUTHORED, UNVERIFIED / NEEDS / TRAPS), kept current.  Cross-lane traps go to
   `notes/lix-lane-reports/FLEET_TRAPS.md` (append only).  Read it before a second failed
