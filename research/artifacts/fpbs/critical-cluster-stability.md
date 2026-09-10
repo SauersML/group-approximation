@@ -172,6 +172,11 @@ of four vertices, and checks the two-atom formulas exactly. These tests
 do not verify the infinite spectral or percolation theorems. They run
 only on MSI. Cairn checks the dependency graph, not the proof text.
 
+The [recorded exact replay](critical-cluster-stability-replay.json) passed
+1,116 edge configurations, 92,160 nested-partition sign cases, and 369
+two-atom moment cases on MSI acn112. No infinite result follows from
+these finite checks alone.
+
 Critical finiteness is the theorem of Benjamini--Lyons--Peres--Schramm;
 a recent exposition is Tasmin Chu, *Applications of the cluster graphing*,
 Theorem 1.1, https://arxiv.org/abs/2608.06644.
