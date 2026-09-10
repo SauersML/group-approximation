@@ -4,11 +4,11 @@
   "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "4fa44d267b10df3bfeea5d272d817d45fcb5df2109a6008c25448af347ee0680",
-  "claims": 7767,
-  "routes": 7936,
-  "task_claims": 229,
-  "task_routes": 234,
+  "overlay_archive_sha256": "a903fa2cbd5e51607bd0d08dc5c9b41cde55923a314c62634367621b2859824b",
+  "claims": 7769,
+  "routes": 7938,
+  "task_claims": 231,
+  "task_routes": 236,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": false,
@@ -124,6 +124,14 @@
       null,
       "ESTABLISHED"
     ],
+    "fpbs-bounded-query-connection-strong-converse-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-bounded-query-connection-strong-converse": [
+      null,
+      "ESTABLISHED"
+    ],
     "fpbs-closed-wall-forces-exponential-search-proof": [
       null,
       "COMPLETE"
@@ -212,6 +220,14 @@
       null,
       "COMPLETE"
     ],
+    "fpbs-uniqueness-query-quantiles-and-tube-width-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-uniqueness-query-quantiles-and-tube-width": [
+      null,
+      "ESTABLISHED"
+    ],
     "fpbs-unit-target-search-ellipse-bound": [
       null,
       "ESTABLISHED"
@@ -242,10 +258,12 @@
     "research/artifacts/fpbs/critical-quotient-replay.json": "d25e2f6dbcd662b8ead46f994fb0b618bdeb6a554e7791db565679e84bf3c0e3",
     "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
-    "research/artifacts/fpbs/exploration-information.md": "5f7525550bc14cb2cf3d6f6cbfff9ceedf7b667183096e9da9737427624d6507",
+    "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
     "research/artifacts/fpbs/projection-resolvent-replay.json": "295befdf08e7328e5e9b066c6b8c2f4bd065e36a7d85d38a5424c5a3a5d9ce29",
     "research/artifacts/fpbs/projection-resolvent.md": "a6dbed6dcfd8c39dc38896b074a38b2fb56cdb8c3d8840332741a236b924f9f1",
+    "research/artifacts/fpbs/query-strong-converse-replay.json": "1801ab520d89712677f0136c3a7be3a3742e73c6fa20470ed07c3e382906977d",
+    "research/artifacts/fpbs/query-strong-converse.md": "149c232c7da3960ce646ac506a2b4204e524cdb25a2308ce3781fdf138bce7c9",
     "research/artifacts/fpbs/quotient-environment-gap-replay.json": "a60b5784825cef71ce67ce9cce63995fd53edb2395062ec6712d69cfb375a084",
     "research/artifacts/fpbs/quotient-environment-gap.md": "0028626945649a5824ade70565ed89b34634320cbfa0ac705d160582239bc745",
     "research/artifacts/fpbs/scripts/exploration_search.py": "db7eb58fd1d6d07d5895488e805b1e5ab9d83664b89411dd70e7543bad7f6f0b",
@@ -253,6 +271,7 @@
     "research/artifacts/fpbs/scripts/replay_critical_quotient.py": "25f9990ec72a7210b07094953fcb8d8efb08baa95a5a5444bdf9b801b28d800d",
     "research/artifacts/fpbs/scripts/replay_exploration_information.py": "6e16aefe057174068f648f57abf1348d0b637edb733ebfa35ca2f21c6f776aaa",
     "research/artifacts/fpbs/scripts/replay_projection_resolvent.py": "9f0e19845044a7d13d62f2be4aaf2973d7040062e91ae45acc4cb0a20def641f",
+    "research/artifacts/fpbs/scripts/replay_query_strong_converse.py": "6f5b3f0d25672f1cbc787acaf5649a7932f4f7b5f3f560952575954aab4db50e",
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "68a0bfd9c611fa68587d7ed86770b2cead82cfcba9ffafb5ffd3cd67f4af513f",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
@@ -263,11 +282,13 @@
     "research/artifacts/fpbs/search-geometry.md": "7b783609ac2f1c37c5e7b16a5059ff2d8f47cb611a6aa3279d7de1751040c7b5",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "5923ae776b214823adc071f312244e7e183a26907cce37b28cf182991a59860f",
+    "research/fpbs-benjamini-schramm-universal.md": "1055edfca60680bedc768612355622d204bbbc346375e557eb4058d4d31bc389",
     "research/fpbs-bernoulli-projection-resolvent-bound.md": "ebde9f62674dea3b17d4fb033976d7656d1c20a5a304cb5aacfa6e1a402b3824",
     "research/fpbs-bernoulli-projection-resolvent-proof.md": "e72e810b30246b55c02f785fefdbba652bda073b3d536ff468e6a47ca4858083",
     "research/fpbs-bernoulli-wall-branch-budget-summable-proof.md": "dbdaf67341b7b6d674a1841e880a83f5500272bfab1b7b3a7599e3fb8caa2a16",
     "research/fpbs-bernoulli-wall-branch-budget-summable.md": "8bd3111b5b080a565f0b49aaa6d757ef16c5821a612f6680f1b463673ca85faf",
+    "research/fpbs-bounded-query-connection-strong-converse-proof.md": "fd3d8481baaf9344cbf4ca89ef7e6602975f0578d60fee6c4666107a342db18a",
+    "research/fpbs-bounded-query-connection-strong-converse.md": "8da4160daa479a93c23d7aef047bf44c2a75f2462c92e90c67e860670504a17e",
     "research/fpbs-closed-wall-forces-exponential-search-proof.md": "d1e2debc84e726b35d5540d7f27799b4ce564b9c9f326cc33c89721ac49133c0",
     "research/fpbs-closed-wall-forces-exponential-search.md": "e42bd52b3ceaf4ac71ffa3ac1205e07ec91abc972db15bee8ffb6bc303c2e2fc",
     "research/fpbs-critical-dyadic-projection-estimate.md": "4a1234c7e9f24908ecea76efae35058b08e64ee1f9bde139bb2d46739ca42cf1",
@@ -292,6 +313,8 @@
     "research/fpbs-unimodular-critical-quotients-can-have-zero-pu.md": "1eabf8ea8c6b520fd17d3c2813738345ebde767c6cc24cfbca25c81eb972c5d1",
     "research/fpbs-uniqueness-exploration-query-lower-bound.md": "7a7ea7aaec27b3e5f33806f8498752d1e25e9a7cebe824c5a5a72bfaaf86369c",
     "research/fpbs-uniqueness-exploration-query-proof.md": "fb01181f51d5d6447be981047a4ad20200c5fe9bbc1885537b470a53c7b627a5",
+    "research/fpbs-uniqueness-query-quantiles-and-tube-width-proof.md": "b2f847ee0417724b1b80461186de9ee0b1ea06e0d2aba4db26d43dbebc1c4bab",
+    "research/fpbs-uniqueness-query-quantiles-and-tube-width.md": "1416f19f5429375d40554b230b701f100ec08e86ac48189b1e2c601a48f4c8d0",
     "research/fpbs-unit-target-search-ellipse-bound.md": "381e82508de2d61718df699630734e272a9b5e077c09f591b65af186cfe4f6db",
     "research/fpbs-unit-target-search-ellipse-proof.md": "412278b90e2825c3926aee5db5a30d116c944989532c0c5a85e3af3dac10a45d",
     "research/fpbs-weighted-expansion-allows-zero-uniqueness-proof.md": "8e5719206605c8487c15786b0cd3bda09d0b91ea63786626de820534c91a1c4e",
@@ -324,7 +347,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "5923ae776b214823adc071f312244e7e183a26907cce37b28cf182991a59860f",
+    "research/fpbs-benjamini-schramm-universal.md": "1055edfca60680bedc768612355622d204bbbc346375e557eb4058d4d31bc389",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-reuse-removal.md": "b7825e31d4bb90802729486ab91dd0c3a52cf74e83dd15ebbe96371aee924456",
     "research/fpbs-bernoulli-maximal-cost-reference.md": "c3c8734186562b033633c0e5268b64d3953904237f27f1fbbd4b72750be50938",
@@ -347,6 +370,8 @@
     "research/fpbs-bounded-exponent-subgroup-relative-cost.md": "cf460795b4b8f2c6d9db18b9563f04e3b16f7c45d1603482a8645918bf6044e6",
     "research/fpbs-bounded-exponent-two-groups-fixed-price.md": "a7c79f6a0cfcd3cc776051c30b00b911848ade41d56d1b27a27b4bfc2377ad21",
     "research/fpbs-bounded-exponent-upper-cost-below-two.md": "c60bdd6b357095c0c1e15445768ee2ca3d25f07e7694d4e0447221ee94c96b5a",
+    "research/fpbs-bounded-query-connection-strong-converse-proof.md": "fd3d8481baaf9344cbf4ca89ef7e6602975f0578d60fee6c4666107a342db18a",
+    "research/fpbs-bounded-query-connection-strong-converse.md": "8da4160daa479a93c23d7aef047bf44c2a75f2462c92e90c67e860670504a17e",
     "research/fpbs-bridgeless-collective-fragility.md": "86e764cc5a2193001df2774c8d86e8f3d9a52b31c928820aad69fc12159b8eb1",
     "research/fpbs-burnside-algebra-reference.md": "1e9745700af06a13684eab8b56c52f387c497c1e083fd20e53be810d35514dc3",
     "research/fpbs-burnside-common-upper-cost.md": "5cf60ead35cca7ece690bc699c9a83a54d34ea24e3f496f395daabc0f6d19d91",
@@ -736,6 +761,8 @@
     "research/fpbs-unimodular-critical-quotients-can-have-zero-pu.md": "1eabf8ea8c6b520fd17d3c2813738345ebde767c6cc24cfbca25c81eb972c5d1",
     "research/fpbs-uniqueness-exploration-query-lower-bound.md": "7a7ea7aaec27b3e5f33806f8498752d1e25e9a7cebe824c5a5a72bfaaf86369c",
     "research/fpbs-uniqueness-exploration-query-proof.md": "fb01181f51d5d6447be981047a4ad20200c5fe9bbc1885537b470a53c7b627a5",
+    "research/fpbs-uniqueness-query-quantiles-and-tube-width-proof.md": "b2f847ee0417724b1b80461186de9ee0b1ea06e0d2aba4db26d43dbebc1c4bab",
+    "research/fpbs-uniqueness-query-quantiles-and-tube-width.md": "1416f19f5429375d40554b230b701f100ec08e86ac48189b1e2c601a48f4c8d0",
     "research/fpbs-uniqueness-scale-crossover.md": "0f0e2630689d85423361f0eee23855987b33957ae3889a2b0878e46a3c1531c6",
     "research/fpbs-uniqueness-spectral-atom-decomposition.md": "5283b98d35c5d436367ddb4fdb297e92b399a76f025576a8baef3149ecbd85f6",
     "research/fpbs-uniqueness-spectrum-critical-remainder-proof.md": "538056cb02152b0879177f2204f8ebb44857ad2ba43efd15f184298f277f0779",
@@ -762,5 +789,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 17.857
+  "elapsed_seconds": 11.08
 }

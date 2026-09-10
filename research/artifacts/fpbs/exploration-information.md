@@ -212,3 +212,12 @@ The next investigation is `search-geometry.md`: a deterministic ellipse
 bound, an all-open geodesic-tie obstruction at beta=1, a linear all-open
 bound at beta>1, and a censored T_4 x Z pilot. These choose a more precise
 algorithmic candidate while leaving the near-critical expected cost open.
+
+The later `query-strong-converse.md` strengthens the expected-cost
+conclusion: below lambda/k(q,c) queries per walk step, successful path
+certificates have exponentially small probability. It gives conditional
+quantile and almost sure bounds, without a finite-susceptibility input,
+and a necessary walk-tube width. Its Section 5 identifies a weaker
+sufficient construction: capped searches with subexponential success
+under collapse. That construction, and hence the universal theorem,
+remains unproved.

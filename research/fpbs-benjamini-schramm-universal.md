@@ -158,6 +158,16 @@ content in that region.
   finite expected sum: charging only closed walls and importing an
   all-open volume is invalid. The actual conditional expected-query
   upper bound remains unproved; see `search-barriers.md`.
+  The sharpened `fpbs-bounded-query-connection-strong-converse` now
+  shows that below the information budget, successful certificates are
+  exponentially unlikely. The follow-up
+  `fpbs-uniqueness-query-quantiles-and-tube-width` rules out explaining
+  the cost purely by rare expensive searches and gives a necessary
+  walk-tube width. A weaker sufficient construction would be a capped
+  search below that budget with subexponential success under collapse;
+  it would not need to decide every connection. Section 5 of
+  `query-strong-converse.md` states this still-unproved construction
+  precisely. Neither uniqueness nor the new estimates supplies it.
 
 * **Contract the critical clusters and sprinkle independently (2026-09-09).**
   `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond
