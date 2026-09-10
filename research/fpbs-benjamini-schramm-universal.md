@@ -142,10 +142,12 @@ content in that region.
   is justified. `fpbs-weighted-expansion-allows-zero-uniqueness` separately
   shows that expansion alone allows uniqueness for every positive
   parameter. Its layered graph has no unimodular root law, so it does
-  not refute an argument retaining the true critical quotient. The
-  unresolved task is to use that law and Bernoulli independence to obtain
-  nonuniqueness at a positive sprinkling parameter, not merely to restate
-  the original threshold separation on the quotient.
+  not refute an argument retaining the true critical quotient.
+  However, `fpbs-unimodular-critical-quotients-can-have-zero-pu` uses the
+  published Angel--Hutchcroft example to show that adding unimodularity,
+  finite mean mass and independent sprinkling still does not suffice.
+  The unresolved task needs further structure inherited from the FIXED
+  Cayley graph; the moment calculation is not a proof of nonuniqueness.
 
 * **Bound pivotal edges rather than route lengths (response 4,
   `creative-branches.md`, Sections 1.1--1.4).** The finite-volume Russo

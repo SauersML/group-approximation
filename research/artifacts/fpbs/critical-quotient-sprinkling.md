@@ -202,13 +202,55 @@ the actual critical quotient, or the Cayley-graph conjecture.
 
 ## 5. The remaining task and verification
 
+### A stronger obstruction from published counterexamples
+
+There also exists a unimodular random mass-marked critical quotient with
+finite mean mass and degree, uniform positive normalized expansion, and
+p_c=p_u=0 almost surely. Here is the deduction, with its imported inputs.
+
+Angel--Hutchcroft [AH], Theorem 1.4 and Proposition 4.2, supply a
+bounded-degree unimodular random graph with deterministic critical value
+c in (0,1), uniform positive expansion, and p_c=p_u=c. Their Lemma 4.3
+proves uniqueness for each p>c. Choose an ergodic component; these
+properties persist. Classical uniform expansion implies invariant
+nonamenability: any invariant partition into finite components has
+expected boundary at least the positive vertex expansion constant, by
+mass transport. Aldous--Lyons [AL], Theorem 8.11, therefore supplies
+finiteness of every critical cluster almost surely.
+
+Contract those clusters. The path-lifting and boundary arguments in
+Section 1 require only finite cells, bounded degrees and expansion.
+The transport calculation in Section 2 requires only original
+unimodularity. They apply verbatim, giving an equivalent Palm root law
+with finite expected mass and degree and the positive bound (1).
+Conditional sprinkling remains independent.
+
+For each rational t>0, the original parameter c+(1-c)t has a unique
+infinite cluster almost surely. Disintegration and a countable
+intersection show that almost every quotient graph has a unique infinite
+cluster almost surely at every rational t>0. Thus its infimum thresholds
+satisfy p_c=p_u=0. No exchange over all real parameters or quenched
+uniqueness-monotonicity assumption is needed.
+
+This deduction from [AH] and [AL] eliminates a general positive-p_u
+theorem based just on the listed quotient properties. We do not assert
+the second-moment conclusion (6) for this example: the transitive
+susceptibility theorem [DT] cannot simply be applied to a random graph.
+The construction has a random ambient graph; no representation as the
+critical quotient of a fixed Cayley graph is established. Further
+structure inherited from that fixed Cayley origin still has to enter
+a successful argument.
+
+### What remains
+
 This investigation has not proved that the quotient has a nonuniqueness
 parameter t>0. Establishing it on a nonempty interval for every critical
 quotient would transfer back to the requested statement through Section 1.
-The Palm law, independent edge sprinkling, and its origin in critical
-Bernoulli percolation must be retained in such an argument. The layered
-example cannot replace those hypotheses. Conversely, the infinite second
-moment blocks the elementary exploration bound even with the correct law.
+The Palm law and independent sprinkling must be retained, but are not
+sufficient together with expansion and finite mean mass. The fixed
+Cayley origin must contribute something further. The infinite second
+moment in the actual Cayley quotient also blocks the elementary
+exploration bound.
 
 `scripts/replay_critical_quotient.py` verifies finite contraction identities,
 parallel-edge retention, the Palm normalization and an explicit failure of
@@ -217,6 +259,12 @@ finite calculations are not proofs of critical finiteness, infinite
 susceptibility, the infinite mass-transport principle, or the universal goal.
 All execution and Cairn validation take place on MSI. The compiled graph
 records these deductions without marking Benjamini--Schramm established.
+
+The [exact replay](critical-quotient-replay.json) checks 1,674 sprinkling
+configurations, 15 Palm partitions, 4,589 layer-cut count vectors, 12,360
+bipartite-cut count vectors and 520 finite disconnection configurations.
+The [Cairn record](critical-quotient-validation.json) records graph
+validation separately from the imported and written infinite mathematics.
 
 ## Sources
 
@@ -228,7 +276,14 @@ is Chu, Theorem 1.1: https://arxiv.org/abs/2608.06644.
 transition for Bernoulli percolation and the Ising model*, arXiv:1502.03050v3,
 Proposition 1.2, printed page 4: https://arxiv.org/pdf/1502.03050.
 
-For the general unimodular framework see Aldous--Lyons, *Processes on
+[AL] Aldous--Lyons, *Processes on
 Unimodular Random Networks*: https://arxiv.org/abs/math/0603062. Section 2
 above proves the particular reweighting identity rather than importing
-an unspecified contraction theorem.
+an unspecified contraction theorem. Theorem 8.11 is used explicitly in
+Section 5 for the non-Cayley counterexample.
+
+[AH] Angel--Hutchcroft, *Counterexamples for percolation on unimodular
+random graphs*, Theorem 1.4, Proposition 4.2 and Lemma 4.3:
+https://arxiv.org/abs/1710.03003. Their expansion proof uses uniform
+bounded-degree tree pieces and bounded subdivisions; its constant can
+be chosen independently of the realization.
