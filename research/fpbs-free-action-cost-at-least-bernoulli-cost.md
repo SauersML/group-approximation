@@ -45,6 +45,17 @@ interior by a tree and retaining crossing edges. The conditional route
 vanish. It preserves connectivity, but its localization premise is
 not supplied by the finite-block normal form or the trace identity.
 
+Cancel parallel bridges before measuring the error. The established
+`fpbs-relative-cycle-retraction-rounding` gives
+C(X)<=c(Phi)+Tr(R K R^*) for a bounded path replacement onto a
+connected retained graphing. Block trees with one bridge per adjacent
+pair give such a replacement. Section 7 makes this residual exactly
+zero on the F_r x C_M certificate whose weighted boundary is bounded
+away from zero. It subsumes the earlier rounding estimate, but no
+construction making its residual vanish for arbitrary factors is
+proved. Quotient cycles and possible amplification of chain norms
+still need control.
+
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
 open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti

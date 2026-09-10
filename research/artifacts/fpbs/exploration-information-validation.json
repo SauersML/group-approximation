@@ -9,11 +9,11 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "9ebaebae57dd756fc95b3e9a141a26e5871795e1fd9e7597a50b7bfa29e98c5c",
-  "claims": 7778,
-  "routes": 7947,
-  "task_claims": 240,
-  "task_routes": 245,
+  "overlay_archive_sha256": "27ce69cb0883e78e15f25a699e0a2f4f90514575621c5966feaef95e0e0a7713",
+  "claims": 7779,
+  "routes": 7948,
+  "task_claims": 241,
+  "task_routes": 246,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": false,
@@ -52,6 +52,11 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "findings": [
@@ -89,6 +94,11 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "warning",
+      "cycle",
+      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "duplicate_findings": [],
@@ -179,6 +189,23 @@
       "fpbs-free-action-cost-at-least-bernoulli-cost",
       "fpbs-bernoulli-lower-bound-from-block-localization",
       "fpbs-relative-cycle-block-localization"
+    ]
+  ],
+  "cycle_retraction_goal_chain": [
+    [
+      "fpbs-fixed-price-universal",
+      "fpbs-fixed-price-from-bernoulli-cost-equality",
+      "fpbs-free-action-cost-at-least-bernoulli-cost"
+    ],
+    [
+      "fpbs-free-action-cost-at-least-bernoulli-cost",
+      "fpbs-bernoulli-lower-bound-from-block-localization",
+      "fpbs-relative-cycle-block-rounding-bound"
+    ],
+    [
+      "fpbs-relative-cycle-block-rounding-bound",
+      "fpbs-relative-cycle-block-rounding-bound-proof",
+      "fpbs-relative-cycle-retraction-rounding"
     ]
   ],
   "state_changes": {
@@ -338,6 +365,14 @@
       null,
       "ESTABLISHED"
     ],
+    "fpbs-relative-cycle-retraction-rounding-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-relative-cycle-retraction-rounding": [
+      null,
+      "ESTABLISHED"
+    ],
     "fpbs-supercritical-finite-susceptibility": [
       null,
       "ESTABLISHED"
@@ -415,6 +450,7 @@
     "fpbs-relative-cycle-dpp-disconnects": "ESTABLISHED",
     "fpbs-finite-block-forest-cost-normal-form": "ESTABLISHED",
     "fpbs-relative-cycle-block-rounding-bound": "ESTABLISHED",
+    "fpbs-relative-cycle-retraction-rounding": "ESTABLISHED",
     "fpbs-relative-cycle-block-localization": "OPEN",
     "fpbs-reduced-circulation-tail-bounds-cost-excess": "ESTABLISHED",
     "fpbs-optimistic-search-certified-growth": "ESTABLISHED",
@@ -427,7 +463,7 @@
     "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
     "research/artifacts/fpbs/docs/cost-cycle-structure.md": "9c0809bfd6b2a35f8cd5f87de4b720cfdf3815415e40d80375fdf882cdbf843f",
     "research/artifacts/fpbs/docs/fixed-price-reuse-compression.md": "5e3ee42789c4b092222b5551ed8b3abbf2af60d422e97ac9e4c110a23ff63f2b",
-    "research/artifacts/fpbs/docs/relative-cycle-exchange.md": "223161f4888ccf25d5ced2191381562f0660483937ff21e2adc362add421739f",
+    "research/artifacts/fpbs/docs/relative-cycle-exchange.md": "91d2e663551e3363bf1a1f1a46d3997c199ff73bbdf2596fc1fa8d19c9bcd5e5",
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
@@ -449,7 +485,7 @@
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
-    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "93c19cc5b08ae04e5b4095c2e0ba10749e1fa3bba4f759d8afe4fd1f3bbd9809",
+    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "9719194109ea8f06e40c907d0dd8702065aee62d371719a68b1117c9cc3097fe",
     "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
     "research/artifacts/fpbs/search-barriers.md": "9e85c9b4d985a2a1fdbf3f1a7cd9a1818f9896d7328ea840a1b43686f0155281",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
@@ -480,7 +516,7 @@
     "research/fpbs-finite-block-forest-cost-normal-form.md": "4b0410facfd2fca6811bca146bfadfa1fcfa8a6ed5b68ce819cdfcfbdbdba247",
     "research/fpbs-fixed-price-countable-from-finitely-generated.md": "b299e8aeb8714a987ee2581be937489f7ac7fef8bca15a2d244cb687986d4b30",
     "research/fpbs-fixed-price-universal.md": "1d22cfcb4db352d274fa0c9da8490e288b6f4283cb5db92962f340ef3ad90012",
-    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "07659c2071fed73656c2fe25d4257785d3b113f66917a4860a9a4b72f0394c8c",
+    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "7edccd0f48bd251ce848d7f36c4765c30de3361fbef2ef0b859daa076671a148",
     "research/fpbs-hermon-hutchcroft-finite-tail-input.md": "1d230b6e23a51326356802a2c3fe93d13d29cb11a4588e73080e2ef63a7cb7cf",
     "research/fpbs-nonamenability-bounds-critical-connectivity-operator.md": "b8766a965a5ae58e4fae11cf2d46b126bdffa79350e214fe276022c5623c8d70",
     "research/fpbs-optimistic-search-certified-growth-proof.md": "145d4e7c0fe4bee87f7530d19bd8316a6018ce55fab373caa325a4ca44705577",
@@ -494,12 +530,14 @@
     "research/fpbs-quotient-sprinkling-spectral-atom-proof.md": "1b06ee5a9d6cbcc26a09d67cd1e3e948f5f7dffcd60cb648abf19113a519633c",
     "research/fpbs-quotient-sprinkling-spectral-atom.md": "e403c13838076ee0726acc16de6dcd6c7bc616a83a25b9b04154aba48c598035",
     "research/fpbs-relative-cycle-block-localization.md": "a986d17e0c90623f103b85b9c623ee1bfeb8188af39dc5e38d0e5db3379750ff",
-    "research/fpbs-relative-cycle-block-rounding-bound-proof.md": "9ad4a6b97701597b43899c8078e33883a4c1353c53d0d68d2bf655eeb5cf11c9",
+    "research/fpbs-relative-cycle-block-rounding-bound-proof.md": "dcbb84194243cf3333eb06f393952a3efc41de09a7d08b74f3c867b475b559a0",
     "research/fpbs-relative-cycle-block-rounding-bound.md": "1b8d941a82f75696123a9520ae406279325e94f4d137841f1d764034aa521ad2",
     "research/fpbs-relative-cycle-dpp-disconnects-proof.md": "884b51b6e3fe4238bc4fe9f2d0cf93a6f204528accd08df7e6c7c9498b92b8b0",
     "research/fpbs-relative-cycle-dpp-disconnects.md": "9d1666947eabb2417912bc65d6f4adb916e74f4113c42cfaf2f6997e45353185",
     "research/fpbs-relative-cycle-operator-descent-proof.md": "7a66c44c0dc5275516bc08b314436d12d773c6a583d3a3c89567ce1c30792674",
     "research/fpbs-relative-cycle-operator-descent.md": "1c2bb51e67feb53406770f4f3e10165cab76f7347ca23288496f1fd375a99904",
+    "research/fpbs-relative-cycle-retraction-rounding-proof.md": "679b7b0d96ce7fa493defaea60d6e930b52b069db5af73be8d0c6d2011b53adb",
+    "research/fpbs-relative-cycle-retraction-rounding.md": "c8c3d7dc6db4d0ca808096d081694628cc4d9f9410427e6bb26d87dde0db5f3d",
     "research/fpbs-supercritical-finite-susceptibility.md": "7adcc28a2c89e060c6c7c9a388b5b669b0f0c67b3f87ff253c0f2fc66dc89246",
     "research/fpbs-target-search-geodesic-tie-calibration.md": "8657701478c96caa57c7a9e4a18869793a250e3fc279504c911829c1b0984fbd",
     "research/fpbs-target-search-geodesic-tie-proof.md": "348e3367427324126e428f3a544beeed7fc00c0a17fc028db4a280a77277f32a",
@@ -740,7 +778,7 @@
     "research/fpbs-fixed-price-universal.md": "1d22cfcb4db352d274fa0c9da8490e288b6f4283cb5db92962f340ef3ad90012",
     "research/fpbs-fixed-price-via-priority-deletion-optimality.md": "db5f7da538b742b13846d433e9dbe21eb0d56648e1a0e8c7856f4b0bb4aff7d4",
     "research/fpbs-forest-band-bridge-proof.md": "65d3018f8cdef1b9be8e9b402689c548c7c2acf70705509f5e904e2738baaf8f",
-    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "07659c2071fed73656c2fe25d4257785d3b113f66917a4860a9a4b72f0394c8c",
+    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "7edccd0f48bd251ce848d7f36c4765c30de3361fbef2ef0b859daa076671a148",
     "research/fpbs-fusf-not-connected-on-some-cayley-graphs-ref.md": "24831affb036b6456bb6eaf84d9a93771b2c0d4c35cb4c1caf31664364227211",
     "research/fpbs-fusf-not-connected-on-some-cayley-graphs.md": "9241864c252d90ff99d71d660d2a8b5624904630f7f625862eadba5c0c99a5e6",
     "research/fpbs-graphing-cost-betti-cycle-dimension-identity-proof.md": "1b19b8c8d884802349b7b141089236dd485fb868a0c1f1f6b12f495a1a2f15dc",
@@ -869,12 +907,14 @@
     "research/fpbs-regular-tree-dyadic-projection-bound.md": "3cfe45f78f6d95c4699a2ad1de6d75e533ac89c3c2fa39f6e2adea10e4692d4d",
     "research/fpbs-regular-tree-dyadic-three-halves.md": "5f745a7af4daeedfc77717965d99232a0b28105861a00fd7e82fdbe145d3ec36",
     "research/fpbs-relative-cycle-block-localization.md": "a986d17e0c90623f103b85b9c623ee1bfeb8188af39dc5e38d0e5db3379750ff",
-    "research/fpbs-relative-cycle-block-rounding-bound-proof.md": "9ad4a6b97701597b43899c8078e33883a4c1353c53d0d68d2bf655eeb5cf11c9",
+    "research/fpbs-relative-cycle-block-rounding-bound-proof.md": "dcbb84194243cf3333eb06f393952a3efc41de09a7d08b74f3c867b475b559a0",
     "research/fpbs-relative-cycle-block-rounding-bound.md": "1b8d941a82f75696123a9520ae406279325e94f4d137841f1d764034aa521ad2",
     "research/fpbs-relative-cycle-dpp-disconnects-proof.md": "884b51b6e3fe4238bc4fe9f2d0cf93a6f204528accd08df7e6c7c9498b92b8b0",
     "research/fpbs-relative-cycle-dpp-disconnects.md": "9d1666947eabb2417912bc65d6f4adb916e74f4113c42cfaf2f6997e45353185",
     "research/fpbs-relative-cycle-operator-descent-proof.md": "7a66c44c0dc5275516bc08b314436d12d773c6a583d3a3c89567ce1c30792674",
     "research/fpbs-relative-cycle-operator-descent.md": "1c2bb51e67feb53406770f4f3e10165cab76f7347ca23288496f1fd375a99904",
+    "research/fpbs-relative-cycle-retraction-rounding-proof.md": "679b7b0d96ce7fa493defaea60d6e930b52b069db5af73be8d0c6d2011b53adb",
+    "research/fpbs-relative-cycle-retraction-rounding.md": "c8c3d7dc6db4d0ca808096d081694628cc4d9f9410427e6bb26d87dde0db5f3d",
     "research/fpbs-relative-traffic-descent-over-hyperfinite-spine-proof.md": "ecc4a91613934ded2cdddbe542845c8b49a9fb60511c68d20f430e059744e52e",
     "research/fpbs-relative-traffic-descent-over-hyperfinite-spine.md": "9db14b10a57033e863dc2f9668e154a8bcf666c0d25ad861a7a8928a7acf80c4",
     "research/fpbs-reuse-flag-localization-preserves-cost-proof.md": "a5c06d4a239bcf15ad2a017ee9ac77f3763fee8f365d616855ab7da7e8223fe8",
@@ -1003,5 +1043,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 16.207
+  "elapsed_seconds": 17.399
 }

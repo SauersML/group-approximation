@@ -445,6 +445,163 @@ control the resulting quotient cycles. Equations (15)--(16) rule out
 trying to obtain the missing universal estimate solely by enlarging
 blocks around the unchanged certificate of Section 2.
 
+## 7. Cancel parallel bridges and measure the remaining circulations
+
+The boundary estimate charges crossings before cancellations. A chain
+retraction gives a bound after cancellation and permits the additional
+bridge operation in Section 3.
+
+Let H be a bounded-degree generating graphing and J a measurable
+spanning subgraph. For every oriented H-edge e choose a finite simple J-path
+with the same endpoints, choosing the single edge itself when e is
+retained in J. Send delta_e to the signed chain of that path and extend
+linearly. Assume this defines a bounded equivariant operator R on the
+ambient edge Hilbert module, with range in the coordinate subspace
+supported on J. Uniform bounds L on path length and D on the number
+of replacement paths using each retained edge suffice:
+
+    ||R||^2 <= L D.                                        (17)
+
+Indeed, apply Cauchy--Schwarz in each row of the matrix of absolute
+path incidences, then sum its column incidences. Paths can be chosen
+simple, so each individual incidence has absolute value at most one.
+All choices and the bounds here are part of the hypotheses. Merely
+knowing that replacement paths are finite does not prove boundedness.
+
+The operator fixes retained edges, so R^2=R. It preserves boundary,
+partial R=partial, and the chosen paths prove that J generates the
+same relation as H.
+
+### Theorem 7.1: retraction residual bounds the cost of connected rounding
+
+For any equivariant positive contraction 0<=K<=I on the edge module,
+
+    c(J) <= c(H)-Tr(K)+Tr(R K R^*).                        (18)
+
+In particular, for the relative cycle operator from Section 1,
+
+    C(X) <= c(J) <= c(Phi)+Tr(R K R^*).                    (19)
+
+This is a statement about a concrete generating graphing J. There is
+no uncharged repair and no random-law realization step.
+
+**Proof.** Let D be the set of deleted edges, P_D its coordinate
+projection, W=ker R, and P_W the orthogonal projection onto W. The map
+
+    T:C_1(D)->W,     T(w)=w-Rw,
+
+is a bounded equivariant isomorphism with bounded inverse P_D|W.
+To check surjectivity, decompose v in W into its deleted and retained
+parts. Since R fixes the retained part, Rv=0 implies
+v=P_D v-R P_D v. Injectivity and the inverse identity follow from
+P_D R=0. The standard invariance of von Neumann dimension under
+bounded module isomorphism therefore gives
+
+    Tr(P_W)=m_H(D)=c(H)-c(J).                              (20)
+
+For every v, the vector v-Rv belongs to W. Orthogonal projection is
+the nearest-point map to W, so
+
+    ||(I-P_W)v|| <= ||Rv||.
+
+Apply this to K^(1/2) and take the finite normalized trace:
+
+    Tr((I-P_W)K) <= Tr(R K R^*).
+
+Also Tr(P_W K)<=Tr(P_W), since K is a positive contraction. Splitting
+Tr(K) over P_W and I-P_W and then using (20) proves (18). The exact
+relative trace identity proves (19). QED.
+
+The residual also has an exact expression in terms of source cycles.
+Lift the base retraction R to Y and put Q_y=P_Z(H)-P_Z(Phi_y).
+Equivariant disintegration and positivity give
+
+    Tr_X(R K R^*)
+      = (1/2) integral_Y sum_{e in J incident to pi(y)}
+          dist(P_Z(H) R^* delta_e, Z(Phi_y))^2 dnu(y).     (21)
+
+Indeed K is the conditional average of Q_y, Q_y is an orthogonal
+projection, and the diagonal of R Q_y R^* is ||Q_y R^* delta_e||^2.
+Since Z(Phi_y) is contained in Z(H), this norm is exactly the displayed
+distance. Formula (21) measures what remains after subtracting the
+best source-cycle approximation, rather than forcing all quotient
+cycles to vanish. The cycle projection P_Z(H) can be nonlocal, so the
+formula does not by itself supply a finite computational certificate
+or an estimate tending to zero.
+
+For the path retractions in this section, W is the closed span of
+the finite circulations e-Re over deleted edges. This follows from
+the bounded isomorphism T and density of finite-support chains in
+C_1(D). Thus W lies in Z(H); it describes the circulations removed by
+the particular connected replacement. The theorem does not assume
+that W contains the entire relative surplus.
+
+### A bounded retraction keeping one bridge per block pair
+
+Partition H into connected blocks of size at most M. Choose a Borel
+spanning tree inside each block and, for each unordered pair of
+adjacent blocks, one of the finitely many H-edges between them. Retain
+exactly those trees and chosen bridges to form J. The choices are
+Borel choices from finite sets, with the same choice for both
+orientations of a block pair.
+
+Replace an internal deleted edge by its block-tree path. Replace an
+unchosen crossing edge between B and B' by the path inside B to the
+chosen bridge, that bridge, and the path inside B' to its endpoint.
+These paths have length at most 2M-1.
+
+If deg(H)<=d, a retained tree edge inside B is used only by paths for
+original edges incident to B, of which there are at most dM. A
+retained bridge is used only by original edges between its two
+blocks, again at most dM. Therefore (17) applies with
+
+    L=2M-1,    D=dM.
+
+This proves boundedness on infinite orbits as well as connectivity.
+The estimate (19) measures the signed image chains, so cancellations
+between parallel crossing edges are retained in the calculation.
+
+### Recovery of the previous block bound
+
+If instead every crossing edge is retained, perform only the internal
+tree replacement. For v in Z(H), Rv has the same external part as v.
+Its internal part is a chain on the block trees, and its boundary is
+the negative boundary of that external part. Applying the tree
+Laplacian and full boundary bounds used in Section 6 gives
+
+    ||Rv||^2 <= (1+2d M^2)||P_out v||^2.
+
+Hence Tr(R K R^*)<=(1+2d M^2)Tr(P_out K) when 0<=K<=P_Z(H).
+Theorem 7.1 recovers Theorem 6.1. The retraction theorem thus supplies
+an actual prerequisite for the existing block-localization route;
+it is not an unrelated operator inequality.
+
+### Exact cancellation in the previous obstruction example
+
+Take the cyclic fibers of T_(2r) x C_M as blocks. Keeping one bridge
+per adjacent pair makes J a tree: after contracting the fiber trees,
+the quotient is T_(2r). Every finite cycle chain of H is sent by R to
+a finite cycle chain of J, and therefore to zero. Boundedness extends
+this to the whole closed cycle space. For the actual certificate
+K=P_Z(H) in Section 2,
+
+    R K R^*=0.
+
+Thus (19) recovers c(J)<=c(Phi)=1+(r-1)/M for that fixed source
+graphing. Its cost is exactly this value by the direct count in
+Section 3. This succeeds even though Section 6 proves
+Tr(P_out K)>=(r-1)/4 for every finite-block partition. Measuring
+uncancelled boundary mass had discarded relevant cancellation.
+
+This does not prove that bridge cancellation always decreases the
+residual relative to another retraction; the quotient may have
+cycles and retraction can increase chain norms. In general it remains
+unproved that one can choose near-optimal source graphings and
+connected replacements with Tr(R K R^*) tending to zero. Such a
+construction would give the reverse cost comparison by (19), but
+the theorem by itself supplies no universal bound on that residual.
+The separate infinite-cost and countable-group issues also remain.
+
 ## Sources and certificate boundary
 
 Repository reconnaissance covered the existing cycle-dimension identity,
@@ -481,3 +638,10 @@ artifacts on September 10, 2026.
 The proofs here are written mathematics, not Lean verification. Cairn
 compilation checks their dependency registration and explicit open
 boundary. No finite numerical experiment certifies a universal claim.
+
+Section 7 uses only the same finite-trace Hilbert-module framework
+already imported for Section 1, elementary path routing, and the
+nearest-point property of orthogonal projection. Repository searches
+and external reconnaissance on bounded graphing rewirings and cycle
+matroids were repeated on September 10, 2026. No novelty claim or
+general spanning-tree theorem is inferred from that reconnaissance.
