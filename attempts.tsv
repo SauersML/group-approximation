@@ -314,3 +314,4 @@
 34446187532	2026-09-10T06:40:16Z	GroupApproximation/Algebra/PreusserSandwichExchange.lean	manuscriptSentence_preusserSandwichForExchangeRings
 34473534747	2026-09-10T11:52:33Z	GroupApproximation/Sofic/CyclicStack.lean	twistedShift_zero_one
 34502369149	2026-09-10T16:29:53Z	GroupApproximation/Sofic/DefectActionAnyUniverse.lean	isAsymptoticCommutantOfAny_type0
+34519548657	2026-09-10T19:18:31Z	GroupApproximation/Sofic/DefectSaturation.lean	involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
