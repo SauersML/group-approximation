@@ -67,15 +67,16 @@
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 Some groups are not MF\@.  The obstruction is a property-\textup{(T)}
 subgroup conjugated into a proper subgroup of itself, together with a
-normal property-\textup{(T)} subgroup of the resulting commutator defect.
+property-\textup{(T)} subgroup of the resulting commutator defect that is
+normal in the whole group.
 The unit group of the binary Leavitt algebra $L_{\F_2}(1,2)$ is a finitely
 generated simple property-\textup{(T)} group with no nontrivial
 homomorphism to an MF group, and its reduced $C^*$-algebra is separable
 and stably finite but
 not MF\@.  We also construct a sofic group that is not MF, whose canonical
 trace on the maximal group $C^*$-algebra is amenable but not
-quasidiagonal, and a torsion-free group with no nontrivial homomorphism
-to an MF group.
+quasidiagonal, and a finitely presented torsion-free group with
+property~\textup{(T)} and no nontrivial homomorphism to an MF group.
 \end{abstract}
 
 \maketitle
@@ -119,13 +120,8 @@ Write
  =\bigcap\{\ker f:f\colon G\to M,\ M\text{ an MF group}\}
 \]
 for the \emph{MF radical} of $G$.  For countable $G$ the quotient
-$G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is again MF, and hence the largest
-MF quotient of $G$: enumerate its nontrivial elements and separate each by
-an MF model, and at stage $n$ take the direct sum of the first $n$ models,
-each carried far enough along its own sequence to have multiplicative
-defect below $1/n$ on the first $n$ elements while still separating its
-own element.  This family is asymptotically multiplicative and separates
-every nontrivial element.
+$G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is the largest MF quotient of $G$
+(Section~\ref{sec:compression-radical}).
 
 Some groups admit no such approximation.  We construct groups for which
 every homomorphism to an MF group is trivial, as well as a sofic group
@@ -195,12 +191,14 @@ projection $P$ of $L$ and the class $U$ of $(\operatorname{Ad}(V_n(u)))$
 satisfy $U^*PU\le P$; stable finiteness of the corona forces equality,
 so conjugation by $u$ preserves the Hilbert--Schmidt asymptotic commutant
 of $L$, and every element of $\mathfrak D_G(L)$ tends to $1$ in normalized
-Hilbert--Schmidt norm (Corollary~\ref{cor:defect-hs}).  Second, for a
-normal property-\textup{(T)} subgroup $K\le\mathfrak D_G(L)$, a corona
-homomorphism nontrivial on $K$ compresses to a corner, renormalized by its
-own rank, on which the Kazhdan projection of $K$ vanishes while the
-limiting trace is the trivial character of $K$, which takes the value $1$
-on that projection (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
+Hilbert--Schmidt norm (Corollary~\ref{cor:defect-hs}).  Second, let
+$K\le\mathfrak D_G(L)$ be a normal property-\textup{(T)} subgroup and let a
+corona homomorphism be nontrivial on $K$.  It compresses to a corner on
+which the Kazhdan projection of $K$ vanishes, and the corner, renormalized
+by its own rank, carries an operator norm asymptotic representation to
+which the first step applies.  Its limiting trace is then the trivial
+character of $K$, which takes the value $1$ on that projection
+(Theorem~\ref{thm:normal-kazhdan}).\footnote{A
 Hilbert--Schmidt bound on the multiplicative defect does not give an
 operator norm bound on the conjugation maps, so this argument does not
 apply to sofic or hyperlinear approximations; the sofic group of
@@ -214,10 +212,10 @@ $s,t\in R$ with $ts=1$ gives a compressor in the same way: an explicit
 element $u\in\EL_4(R)$ conjugates $\EL_3(R)$ into itself by
 $e_{ij}(a)\mapsto e_{ij}(sat)$, and if $1-st$ generates $R$ as a
 two-sided ideal, then one commutator $[ucu^{-1},\ell]$ normally
-generates all of $\EL_4(R)$.  This happens once, in
+generates all of $\EL_4(R)$.  It suffices to do this once, in
 the universal unital associative ring
 $\mathcal C=\mathbb Z\langle s_0,s_1,t_0,t_1\rangle/
-(t_is_j-\delta_{ij}:i,j\in\{0,1\})$, and $\EL_4(\mathcal C)$ then maps
+(t_is_j-\delta_{ij}:i,j\in\{0,1\})$, since $\EL_4(\mathcal C)$ maps
 to every $\EL_n(R)$ below with normally generating image.
 
 Theorem~\ref{thm:full-defect-ring} carries this to every countable
@@ -234,9 +232,9 @@ $s_0,s_1,t_0,t_1$ subject to
 
 \begin{mainthm}[the unit group of the binary Leavitt algebra]\label{thm:headline}
 Let $R=L_{\F_2}(1,2)$ and let $H=R^\times$ be its unit group.  Then
-$H\cong\EL_4(R)$, and $H$ is finitely generated, nontrivial, simple, has
-property~\textup{(T)}, and every homomorphism from $H$ to an MF group
-is trivial.  So $H$ is not MF, and
+$H\cong\EL_4(R)$, and $H$ is nontrivial, finitely generated, and simple,
+and has property~\textup{(T)}.  Every homomorphism from $H$ to an MF
+group is trivial.  So $H$ is not MF, and
 $C^*_{\mathrm r}(H)$ is separable and stably finite but not MF, while
 $C^*_{\max}(H)$ is not finite: it contains a proper isometry.
 \leanverified{Manuscript/OneSidedMFRadical/UnitGroupHeadline}{GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline}
@@ -280,8 +278,7 @@ Korchagin~\cite[remark following Proposition~12]{Korchagin}.
 \leanverified{Manuscript/OneSidedMFRadical/AmenableTraceTheorem}{GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect}
 
 Every example above has torsion, and in the lamp construction the
-obstruction is itself a torsion element.  The last construction has
-none.
+obstruction is itself a torsion element.  The last group has none.
 
 \begin{mainthm}[a torsion-free example]
 \label{thm:torsion-free}
@@ -333,14 +330,18 @@ force the centralizing subgroup to be locally embeddable into finite
 groups, and a copy of Thompson's group $V$ gives the contradiction.  Here
 the rigidity comes from the Kazhdan projection of $L$ in a norm matrix
 corona, which commutes with the compressor because the corona is stably
-finite, and the contradiction is a commutator $[ucu^{-1},\ell]\ne1$
+finite, and the obstruction is a commutator $[ucu^{-1},\ell]\ne1$
 that every operator norm asymptotic representation sends to $1$ in
-Hilbert--Schmidt norm.  The group $H$ is the group of~\cite{OAI}, and
+Hilbert--Schmidt norm; Theorem~\ref{thm:normal-kazhdan} then shows that
+every corona homomorphism is trivial on each normal Kazhdan subgroup of
+the defect.  The group $H$ is the group of~\cite{OAI}, and
 Theorem~\ref{thm:torsion-free} reuses Fournier-Facio's
 configuration~\cite{FFF}.  Bachner--Dogon--Lubotzky showed that for groups
 of Deligne type, operator--Hilbert--Schmidt stability would imply that the
 group is not MF~\cite[Proposition~1.5]{BDL}.  Here the compression
-relation replaces the stability hypothesis.
+relation replaces the stability hypothesis.  Eckhardt's
+note~\cite{Eckhardt} gives a short, elementary proof that certain
+generalized wreath products are not MF\@.
 
 \section{One-sided compression}
 \label{sec:compression-radical}
@@ -367,6 +368,15 @@ an embedding as in the last assertion, then
 $g\mapsto\iota(\pi(g))+1-\iota(1)$ is a corona homomorphism that is
 injective on $G$; the complement term allows $\iota$ to be nonunital.
 \end{proof}
+
+For countable $G$ the quotient
+$G/\operatorname{Rad}_{\mathrm{MF}}(G)$ is again MF, and hence the largest
+MF quotient of $G$: enumerate its nontrivial elements and separate each by
+an MF model, and at stage $n$ take the direct sum of the first $n$ models,
+each carried far enough along its own sequence to have multiplicative
+defect below $1/n$ on the first $n$ elements while still separating its
+own element.  This family is asymptotically multiplicative and separates
+every nontrivial element.
 
 \subsection{Kazhdan transport in normalized Hilbert--Schmidt norm}
 
@@ -823,11 +833,12 @@ $\begin{psmallmatrix}1+vb&0\\b&1\end{psmallmatrix}$, and multiplying by
 $e_{21}(-b)$ gives $D=\operatorname{diag}(1+vb,1)$.  Let $N$ be the
 normal closure of $D$ in $\EL_2(R)$.  For $r\in R$,
 $[D,e_{12}(ar)]=e_{12}((1+vb)ar-ar)=e_{12}(vr)$, since $ba=1$; so
-$e_{12}(vR)\le N$.  Put $f=1-vw$, an idempotent with $fv=0=wf$, and
+$e_{12}(vR)\le N$.  Put $f=1-vw$, an idempotent with $fv=0=wf$.  Since
+$r=vwr+fr$, it remains to put $e_{12}(fR)$ in $N$, and the involution
 \[
- z=vf+fw+1-f-vfw .
+ z=vf+fw+1-f-vfw
 \]
-Put $x=vf$, $y=fw$, $q=vfw$, and $c=1-f-q$, so that $z=x+y+c$.  From
+does this by conjugation, since $zf=vf$.  Put $x=vf$, $y=fw$, $q=vfw$, and $c=1-f-q$, so that $z=x+y+c$.  From
 $wv=1$ and $fv=wf=0$: $x^2=y^2=0$, $xy=q$, $yx=f$, the idempotents $f$
 and $q$ are orthogonal, and $c$ annihilates $x$ and $y$ on both sides;
 so $z^2=q+f+c=1$ and $zf=xf+yf+cf=vf$.  The factorization
@@ -1073,7 +1084,9 @@ characteristic, then $\EL_4(R)$ MF implies that $R$ is directly finite.
 If $e=0$, then $ReR=0$ and $\EL_n(R,ReR)=1$, so assume $e\ne0$.
 Let $S$ be the unital subring generated by $s,t$, and let $L=\EL_3(S)$
 occupy coordinates $1,2,3$ of $\EL_4(S)$; it has
-property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}.  Put $f_{ij}=s^iet^j$.
+property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}.  The criterion is applied
+to a subgroup $B\le\EL_4(S)$ with a central element of finite order inside
+$\mathfrak D_B(L)$.  Put $f_{ij}=s^iet^j$.
 Since $es=te=0$, $f_{ij}f_{kl}=\delta_{jk}f_{il}$, so $f_{ij}^2=0$ for
 $i\ne j$.  Write $D(a)=\operatorname{diag}(1,1,1,a)$; for $i\ne j$,
 $D(1\pm f_{ij})=[e_{41}(f_{ii}),e_{14}(\pm f_{ij})]$ lies in $\EL_4(S)$.
@@ -1110,7 +1123,8 @@ The Toeplitz--Jacobson algebra $J=\F_2\langle s,t\mid ts=1\rangle$ has
 $1-st\ne0$ of order two, while $J/J(1-st)J\cong\F_2[z,z^{-1}]\ne0$, so
 $1-st$ is not full and Theorem~\ref{thm:full-defect-ring} does not apply;
 Proposition~\ref{prop:torsion-defect-ring} shows that $\EL_n(J)$ is not MF
-for $n\ge4$.  Here the inclusion is an equality.  The algebra $J$ acts
+for $n\ge4$.  For $J$ the inclusion of
+Proposition~\ref{prop:torsion-defect-ring} is an equality.  The algebra $J$ acts
 faithfully on $V=\F_2^{(\mathbb N)}$ by the shift, $e=1-st$ is the
 projection onto the first vector $b_0$ of the standard basis $(b_j)$, and
 $JeJ$ is the ring of matrices with finitely many nonzero entries in this
@@ -1186,6 +1200,8 @@ shows that $C^*_{\mathrm r}(H)$ is separable, stably finite, and not
 MF, and that $C^*_{\max}(H)$ contains a proper isometry.
 \end{proof}
 
+\subsection{MF quotients of unit groups}
+
 All rings in the following discussion are unital and associative.
 Two idempotents $e,f$ of a ring are \emph{equivalent} if $e=xy$ and
 $f=yx$ for some $x,y$; an idempotent $e$ is \emph{infinite} if
@@ -1220,8 +1236,10 @@ $A$ is MF: $C^*_{\max}(A)$ is commutative and separable, hence
 residually finite-dimensional and MF~\cite{BK}, and
 Lemma~\ref{prop:mf-residual-calculus} applies.  So $\kappa$ is a homomorphism to an MF group, and $N\le\ker\kappa$.
 
-For the converse we use Theorem~\ref{thm:full-defect-ring} in the
-following form.  Every nonzero idempotent $e$ of $R$ is
+For the converse, a unit in $\ker\kappa$ is reduced modulo $N$ to a unit
+of the form $e+(1-e)v(1-e)$, which is then the image of a stabilized
+elementary matrix under a corner isomorphism.  We use
+Theorem~\ref{thm:full-defect-ring} in the following form.  Every nonzero idempotent $e$ of $R$ is
 infinite~\cite[Proposition~1.5]{AGP}, so $eRe$ contains $s,t$ with
 $ts=e\ne st$, and $eRe$ is simple, so $e-st$ generates $eRe$ as a
 two-sided ideal; hence every homomorphism from $\EL_m(eRe)$, $m\ge2$,
@@ -1310,7 +1328,8 @@ Brown observed that it was unknown whether every amenable trace on a
 $C^*$-algebra is quasidiagonal~\cite[discussion preceding
 Proposition~3.5.1]{Brown}.  For a separable unital $C^*$-algebra $A$ we
 use the sequential form of his definitions.  A tracial state $\tau$ on
-$A$ is \emph{amenable} if there are u.c.p. maps
+$A$ is \emph{amenable} if there are unital completely positive (u.c.p.)
+maps
 $\phi_n\colon A\to M_{d_n}(\C)$ such that
 \[
  \hsnorm{\phi_n(ab)-\phi_n(a)\phi_n(b)}\longrightarrow0,
@@ -1362,6 +1381,10 @@ $C^*_{\max}(G)$ is amenable.
 \end{proposition}
 
 \begin{proof}
+The models are compressions of a quasi-regular representation of $G$ to a
+finite set of cosets indexed by a F\o lner set of $A$ and a finite
+quotient of a finitely generated subgroup of $N$, and the multiplicative
+defect comes from the F\o lner boundary.
 Write $g\mapsto\bar g$ for the quotient map
 $G\to A$, and fix a finite set $\Sigma\subseteq G$, a finite F\o lner set
 $F\subseteq A$, and a section $\sigma\colon A\to G$.  For $g\in \Sigma$ and
@@ -1598,6 +1621,11 @@ $\alpha$, and $a$.
 \section{A torsion-free finitely presented example}
 \label{sec:torsion-free}
 
+Theorem~\ref{thm:torsion-free} is proved by passing from Fournier-Facio's
+group to a two-generated quotient onto which a normal subgroup inside the
+defect subgroup already maps.  Lemma~\ref{lem:saturation} produces such
+quotients.
+
 For an acylindrically hyperbolic group $G$, choose the generating set $A$
 provided by Hull~\cite[Theorem~3.12]{Hull}.  A subgroup is \emph{suitable}
 if it acts non-elementarily on the Cayley graph $\operatorname{Cay}(G,A)$ and normalizes no nontrivial
@@ -1688,9 +1716,9 @@ quotient map $Q\to\bar Q$ is trivial, so $\bar Q=1$.
 \end{proof}
 
 \begin{corollary}\label{cor:regular-nonmf-algebra}
-The algebra $C^*_{\mathrm r}(Q)$ is separable, unital, generated by two
-unitaries, simple, has a unique tracial state, has stable rank one, is
-stably finite, and is not MF\@.
+The algebra $C^*_{\mathrm r}(Q)$ is separable, unital, simple, and
+generated by two unitaries.  It has a unique tracial state and stable rank
+one, and it is stably finite but not MF\@.
 \end{corollary}
 
 \begin{proof}
@@ -1746,9 +1774,7 @@ history.\footnote{\url{https://github.com/SauersML/group-approximation}}
 The author consulted experts from August~13, and their comments shaped
 the revisions.  Many models also reviewed drafts; Astra's reviews
 shortened the paper and simplified the proof of
-Theorem~\ref{thm:normal-kazhdan}.  We recommend Eckhardt's
-writeup~\cite{Eckhardt}: a short, elementary proof that certain
-generalized wreath products are not MF\@.
+Theorem~\ref{thm:normal-kazhdan}.
 
 \section*{Acknowledgments}
 
