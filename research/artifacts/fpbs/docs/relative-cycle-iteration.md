@@ -350,7 +350,191 @@ finite local exchanges must identify how its globally coordinated
 operations go beyond the finite counting argument, rather than
 assume that a single finite improving move always exists.
 
-## 8. What has and has not been advanced
+## 8. A spectral restriction on every permitted exchange sequence
+
+The update rules retain an obstruction that is invisible in the trace
+ledger alone. All spectral projections below are taken on the cycle
+module Z(H_n), not on the full edge module. In particular, zero
+eigenvalues on noncycle edges are not counted. Set
+
+    N_n(t)=Tr(1_[0,t](K_n|Z(H_n))),       0<=t<1.
+
+For every sequence of the additions and polar compressions above,
+
+    N_(n+1)(t)<=N_n(t)<=N_0(t).                           (16)
+
+Here and below one step may comprise both an addition and a deletion.
+For addition, the enlarged cycle module is Z(H) direct-sum ran Q
+and K^+=K direct-sum I_Q. Thus N(t) is unchanged for t<1.
+
+For compression, write B=(P_V K P_V)|V before the polar unitary.
+Let E=1_[0,t](B) and F=1_(t,1](K), viewed as projections in the
+old cycle module. Their ranges have zero intersection: a nonzero
+vector v in both would satisfy
+
+    <Kv,v>=<Bv,v><=t||v||^2
+
+and also <Kv,v>>t||v||^2, by the spectral support of F. The strict
+inequality follows by integrating lambda-t>0 against the nonzero
+spectral measure of v; no spectral gap above t is needed. The
+finite-module dimension formula for intersections now gives
+
+    Tr(E)<=Tr(I-F)=N_old(t).
+
+Unitary transport preserves this trace. This proves (16) without
+assuming that K and P_V commute or that their spectra are discrete.
+
+Write b=1+beta_1(R) and g=C(R)-b>=0. These are finite in the present
+bounded-degree setting. Every H_n generates the same aperiodic
+relation, so the dimension identity gives
+
+    z(H_n)=c(H_n)-b>=g.
+
+Combining this with (16) yields, for 0<t<1,
+
+    Tr(K_n)>=t(z(H_n)-N_n(t))
+            >=t(g-N_0(t)).                               (17)
+
+Let kappa=Tr(ker(K_0|Z(H_0))). Normality of the finite trace gives
+N_0(t)->kappa as t decreases to zero. Consequently
+
+    Tr(K_n)->0  implies  C(R)<=b+kappa.                   (18)
+
+In particular, if K_0 has zero kernel on its cycle module, the
+proposed trace-zero conclusion would force C(R)=1+beta_1(R).
+If g>kappa, choose t with N_0(t)<g; (17) is a fixed positive lower
+bound on every iterate's trace, regardless of the added edges or
+the chosen bounded retractions. This is a conditional obstruction:
+no example with g>0 is being asserted.
+
+For an actual initial relative certificate K_0=E[P_H-P_Phi|X],
+its kernel has a concrete meaning. For v in Z(H)_x,
+
+    <K_0 v,v>=integral ||(P_H-P_Phi,y)v||^2 dnu_x(y).
+
+Thus its kernel consists of the cycle chains lying in Z(Phi)_y
+for conditionally almost every source fiber. These are common
+source cycles, rather than the average amount of source cycle
+dimension. In particular
+
+    kappa<=Tr(P_H-K_0)=c(Phi)-b.                          (19)
+
+Equation (18) can therefore demand strictly more than
+C(X)<=c(Phi). Averaging and then repeatedly compressing the same
+certificate does not retain all the geometric information about
+which source cycles vary from fiber to fiber.
+
+## 9. Zero-kernel relative certificates occur arbitrarily near action cost
+
+The zero-kernel hypothesis in Section 8 is not merely a formal choice
+of an arbitrary positive operator. It can occur for genuine relative
+certificates over an elementary extension of any free action that
+has a bounded-degree generating graphing H.
+
+Partition the finite simple cycles of H into countably many Borel
+families C_j, each consisting of pairwise vertex-disjoint cycles
+of one fixed finite length. Here is a direct justification of the
+measurability and countability needed. Represent each cycle by a
+canonical finite tuple using a Borel injection of X into [0,1].
+For fixed length, the graph joining cycles that share a vertex has
+finite degree, since H has bounded degree. A countable family of
+Borel sets separates points of this standard Borel cycle space.
+For each cycle choose the first finite binary membership string
+that distinguishes it from all its finitely many neighbors, and
+color by the length and string. Adjacent cycles cannot have the
+same color. This supplies the claimed countable partition.
+
+For each family C_j, choose one edge per cycle measurably and delete
+just those edges from H, obtaining J_j. Because the cycles in the
+family are vertex-disjoint, each deleted edge has its remaining
+cycle path in J_j. Thus J_j generates and there is a bounded path
+retraction R_j. Put Q_j=P_Z(H)-P_Z(J_j). For a vector v in Z(H),
+Q_j v=0 means v belongs to Z(J_j). Every vector of Z(J_j) has zero
+coordinate on each edge deleted in this family. To see that
+intersection_j Z(J_j) is zero on Z(H), choose the deleted edges so
+that every edge lying in a finite cycle is deleted in some family:
+repeat each length/color family once for each of its cycle edge
+positions, selecting that position in the repetition. Every
+finite-cycle chain is supported on this set of edges, and so is
+its closed span. A vector in all Z(J_j) vanishes on that support.
+Hence
+
+    intersection_j ker(Q_j|Z(H))={0}.                    (20)
+
+Pad the list with empty families if necessary. The repetitions need
+not be disjoint from one another: they define
+different J_j, never simultaneous deletions. Each J_j individually
+still has bounded replacement paths and generates.
+
+Let Gamma act on Y=X x {0,1,2,...} by acting on X and fixing
+the countable second coordinate. Fix 0<epsilon<1. Give 0 mass
+1-epsilon and j>=1 mass epsilon p_j, with p_j>0 and sum p_j=1.
+This is a standard probability
+space and the action is essentially free. Define Phi to equal H
+on component 0 and J_j on component j. It generates on every
+component. Since every component is an invariant copy of X,
+
+    C(Y)=C(X),
+    C(X)<=c(Phi)<=c(H).
+
+The first equality follows directly by restricting a graphing to
+the countably many invariant components for the lower bound and
+copying a near-optimal graphing of X to all components for the
+upper bound. It uses no Fixed Price assumption. The conditional
+support of Phi is H, because the component 0 retains all its edges.
+The genuine relative operator is
+
+    K_0=epsilon sum_j p_j Q_j.
+
+This norm-convergent positive sum has zero kernel on Z(H), by (20).
+When Z(H) is zero the assertion is understood on the zero module.
+
+For finitely generated groups, the finite-label approximation
+already established in the relative-exchange artifact lets H be
+chosen with c(H)<C(X)+delta for any delta>0. Thus Phi is within
+delta of C(Y), while its relative K_0 has zero kernel. No uniform
+positive lower bound on the spectrum is claimed or needed.
+
+A theorem driving the trace to zero for *every* such near-optimal
+relative initialization would, by Section 8, prove the stronger
+cost--Betti equality for every finitely generated free action.
+It would not merely prove equality of action costs. The distinction
+between those two open problems is explicitly recorded in
+[Gaboriau's FAQ, page 1](https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/FAQ.pdf).
+This consequence does not rule out a specially chosen initialization,
+a different operator update, or a direct control of the full cost
+ledger. It concerns decay with one fixed initial certificate; the
+lower bound in (17) need not be uniform when the initialization
+changes with the requested approximation error. The invariant-copy
+examples are not asserted to be the prescribed Bernoulli product
+factor in the reverse-comparison problem. They test a proposed
+theorem quantified over all free factors and all initializations.
+
+## 10. The stopping criterion must retain the accumulated saving
+
+Let s_n=sum_{i<n} eta_i. The exact ledger (12) says
+
+    c(H_n)-c(Phi)=Tr(K_n)-s_n.                            (21)
+
+Thus a stage with Tr(K_n)-s_n<=delta already proves
+C(X)<=c(Phi)+delta. Requiring Tr(K_n)->0 discards s_n and is only
+a sufficient condition. The preceding spectral argument shows why
+this distinction matters: a positive residual may be harmless if
+it is paid for by the accumulated eta terms.
+
+This does not give an exchange-selection theorem. Indeed, after
+adding cost a_n and deleting a set of cost d_n=Tr(P_W),
+
+    (Tr(K_(n+1))-s_(n+1))-(Tr(K_n)-s_n)=a_n-d_n.
+
+Controlling the signed quantity is exactly the actual edge-cost
+improvement; no improvement follows just by renaming the ledger.
+Any further use of the spectral certificate must justify a choice
+of geometric exchanges that obtains that improvement. The audit
+removes an unnecessarily strong stopping target without supplying
+the missing choice.
+
+## 11. What has and has not been advanced
 
 The iteration now has a valid positive-contraction invariant and an
 exact cost identity, including fully charged edge additions. Its
@@ -359,8 +543,11 @@ after the first exchange. The original source graphing need not be
 reconstructed at each step, and the retained graphing stays connected
 by its explicit finite paths.
 
-There is still no rule selecting exchanges that makes the surviving
-trace tend to zero for arbitrary factors. Independent cycle priorities
+There is still no rule selecting exchanges that makes the full signed
+cost excess tend to zero for arbitrary factors. Annihilating the
+certificate trace is stronger: Sections 8--9 show that a universal
+version for all genuine initializations would force cost--Betti
+equality, even for near-optimal self-extensions. Independent cycle priorities
 do not do so, and acyclicity of a limiting edge set does not force
 that conclusion. No universal residual estimate, countable-group
 passage, or exclusion of finite-cost extensions over infinite-cost

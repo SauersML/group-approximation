@@ -77,6 +77,18 @@ be treated as this same-relation step, and Section 7 rules out an
 unpaid finite edge-count improvement on a forest. Neither audit
 rules out globally coordinated measurable exchanges.
 
+Retain the full saving in the stopping test. Sections 8--10 of the
+iteration artifact prove that these updates cannot increase the
+low-spectrum dimension of the certificate. A universal trace-zero
+conclusion for all genuine near-optimal initializations would force
+the stronger cost--Betti equality, as shown by explicit zero-kernel
+certificates on invariant-copy extensions whose action cost is
+already equal to the base cost. The actual sufficient target is
+Tr(K_n)-sum_{i<n} eta_i<=delta, allowing positive trace to remain.
+This avoids imposing annihilation of all residual spectrum, but
+the signed change is exactly added edge cost minus deleted edge
+cost. A general geometric choice achieving it is still missing.
+
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
 open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti
