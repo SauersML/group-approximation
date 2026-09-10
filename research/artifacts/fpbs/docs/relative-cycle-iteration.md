@@ -534,7 +534,192 @@ of geometric exchanges that obtains that improvement. The audit
 removes an unnecessarily strong stopping target without supplying
 the missing choice.
 
-## 11. What has and has not been advanced
+## 11. Bounded connected exchanges approximate every bounded-degree competitor
+
+The allowed operations have a useful completeness property. Let H
+and Psi be simple bounded-degree graphings generating the same p.m.p.
+relation. They are graphings on the same probability space; no source
+graphing has been descended in this hypothesis. Write m for the
+unoriented edge measure, consistently on their union. For L>=1 set
+
+    E_L={e in H minus Psi: dist_Psi(endpoints(e))>L},
+    J_L=Psi union E_L.
+
+All these sets are measurable. For an edge outside E_L choose the
+first shortest Psi-path between its endpoints in a Borel enumeration
+of the finitely many paths of length at most L. Every H-edge either
+is retained in J_L or has such a retained replacement. Thus J_L
+generates, and there is a path retraction
+
+    R_L:C_1(H union Psi)->C_1(J_L)
+
+with replacement lengths at most L. Its congestion is finite as
+well. A path using a particular retained edge starts within distance
+L of one of that edge's endpoints in H union Psi. Bounded degree
+bounds the number of such vertices and the number of original edges
+incident to them. The path-to-chain estimate from the retraction
+artifact therefore makes R_L bounded.
+
+Since Psi generates, every H-edge has some finite Psi-path. The
+sets E_L decrease to the empty set up to an invariant null set.
+Their initial edge measure is finite, so
+
+    c(J_L)=c(Psi)+m(E_L)->c(Psi).                         (22)
+
+This is exactly one fully charged addition, Psi minus H, followed
+by one allowed connected deletion. If a is the added cost and d_L
+the deleted cost, then
+
+    d_L-a=c(H)-c(Psi)-m(E_L).                            (23)
+
+No uniform rate for m(E_L)->0 is asserted. The competitor Psi is
+given as input, not constructed from the conditional operator.
+
+### Bounded-degree competitors suffice when H is bounded-degree
+
+For completeness this does not require assuming a bounded-degree
+near-minimizer in advance. Take any finite-cost generating graphing
+Theta, decompose it into countably many partial p.m.p. bijections,
+and let Theta_r be the union of its first r maps and their inverses,
+deduplicated as unoriented edges. Each Theta_r has bounded degree.
+Let B_r consist of H-edges whose endpoints are not connected by
+Theta_r. The graphing Theta_r union B_r generates: every H-edge is
+either included in B_r or replaceable by a finite Theta_r-path.
+Since Theta generates, m(B_r)->0, by continuity on the finite-measure
+H-edge space. Hence
+
+    c(Theta_r union B_r)<=c(Theta)+m(B_r).
+
+Thus bounded-degree generating graphings approximate C(R) whenever
+one bounded-degree generating H is available. This is the same
+truncate-and-repair principle used earlier for finite-label
+approximation; no uniform bound on the resulting degree is claimed.
+
+Taking the supremum in (23), and using C(R)<=c(J) for every allowed
+output J, proves
+
+    sup_{one allowed addition and deletion}(deleted cost-added cost)
+        =c(H)-C(R).                                     (24)
+
+So the missing general cost saving is not caused by restricting each
+individual path replacement to a finite length and congestion. Those
+restrictions permit approximation to the true optimum. To use (24)
+for Fixed Price, however, one must still produce or justify a base
+competitor of cost at most the source cost. Substituting that desired
+competitor into (22) would assume the missing comparison.
+
+## 12. A quantitative exchange escaping the known forest obstruction
+
+The preceding argument can be made explicit on the benchmark already
+used in Sections 4 and 6. This is a construction in the known
+fixed-price-one group F_2 x Z, not a new group-class theorem.
+
+Use the standard product Cayley graph G=T_4 x Z, with vertical
+generator t and two positive horizontal generators. Let H be a
+generating subgraphing of G on a Bernoulli label space. For the
+forest benchmark, take H=FMSF union omega_epsilon from Section 6.
+Its generation is the imported spanning-forest sprinkling theorem.
+On the same space include a fresh independent uniform label U(e)
+for each unoriented horizontal edge. This uses a product Bernoulli
+space; it does not assert that this independent field is already
+available over an arbitrary prescribed action.
+
+For 0<q<1, let Psi_q contain all vertical edges and the horizontal
+edges with U(e)<=q. This is the sparse-column graphing from
+`cost-cycle-structure.md`, Section 8. Every adjacent pair of vertical
+columns has marked crossings almost surely, so Psi_q generates and
+
+    c(Psi_q)=1+2q.
+
+For a horizontal edge e let
+
+    D_q(e)=min{j>=0: U(t^j e)<=q}.
+
+The translates here are distinct horizontal edges. For k>=0,
+
+    P(D_q(e)>k)=(1-q)^(k+1).
+
+Add Psi_q minus H and retain
+
+    J_(q,k)=Psi_q union {e in H_horizontal: D_q(e)>k}.
+
+Every deleted edge has 1<=D_q(e)<=k. Replace it by going vertically
+up D_q(e) levels, across the marked edge, and vertically down. This
+path has length at most 2k+1. Retained edges are fixed. A retained
+vertical edge is used by at most k deleted edges for each of its
+four neighboring columns, in addition to itself. A retained marked
+horizontal edge is used by at most k deleted edges below it, in
+addition to itself. Thus the retraction has bounds
+
+    path length <=2k+1,
+    congestion <=4k+1,
+    ||R||^2 <=(2k+1)(4k+1).                              (25)
+
+In particular this is an allowed finite-stage exchange on infinite
+orbits, not just a connectivity assertion.
+
+If h is the horizontal cost of H and the U-field is independent of
+H, disjointness of Psi_q and the residual edges gives the exact cost
+
+    c(J_(q,k))=1+2q+h(1-q)^(k+1).
+
+Even if H depends on the U-field, the inclusion of the residual in
+{e in G_horizontal: D_q(e)>k} always gives
+
+    c(J_(q,k))<=1+2q+2(1-q)^(k+1).                       (26)
+
+Only the marginal iid law of U along each vertical edge column is
+used in this inequality; no conditional independence of H is used.
+
+For the sprinkled forest H, whose cost is 1+delta_G+a_epsilon,
+choose q and then k so that the right side of (26) is less than
+1+delta_G/2. The resulting allowed exchange saves more than
+delta_G/2+a_epsilon after charging all additions. Such q,k exist
+because delta_G>0, first by making 2q small and then by letting
+k increase. This explicitly escapes the independent-priority
+obstruction on that example.
+
+### A single initial addition followed by nested connected deletions
+
+The construction also gives a full successful operator iteration
+in this benchmark. Use the same uniform field at all stages and put
+
+    q_n=2^(-n),   k_n=n 2^n,   n>=1.
+
+Apply the preceding exchange to H_0=H, giving H_1. At every later
+stage define
+
+    H_n=Psi_(q_n) union
+        {e in (H_(n-1))_horizontal: D_(q_n)(e)>k_n}.
+
+Since Psi_(q_n) is contained in Psi_(q_(n-1)), it is already in
+H_(n-1). Thus after stage 1 no additions are needed; H_n are nested
+generating graphings, and (25) supplies a bounded retraction at
+each finite stage. The dependency-robust bound (26) gives
+
+    c(H_n)<=1+2^(1-n)+2 exp(-n)->1.                      (27)
+
+Nonnegativity of cycle dimension gives beta_1<=c(H_n)-1 at every
+stage, so (27) itself forces beta_1=0. The cycle dimension identity
+now proves, for *any* initial cycle-supported positive
+contraction transported by the rules above,
+
+    0<=Tr(K_n)<=z(H_n)=c(H_n)-1->0.                      (28)
+
+Thus a valid selection can succeed on the same sprinkled-forest
+benchmark where the independent-priority rule fails. The reason
+is the explicit coherent system of vertical paths and shared
+crossings, together with its quantitative edge-cost bound. It is
+not acyclicity of an unspecified limiting graph.
+
+The construction uses product geometry and the known sparse-column
+competitors. Neither the operator inequality nor the existence of
+a nonamenable group supplies such competitors universally. Equation
+(24) identifies the remaining task as finding the cost saving on
+the base, while (25)--(28) verify that the permitted exchanges can
+realize it when this geometric information is actually available.
+
+## 13. What has and has not been advanced
 
 The iteration now has a valid positive-contraction invariant and an
 exact cost identity, including fully charged edge additions. Its
@@ -551,7 +736,10 @@ equality, even for near-optimal self-extensions. Independent cycle priorities
 do not do so, and acyclicity of a limiting edge set does not force
 that conclusion. No universal residual estimate, countable-group
 passage, or exclusion of finite-cost extensions over infinite-cost
-bases has been proved.
+bases has been proved. Sections 11--12 establish completeness of the
+allowed exchanges relative to supplied competitors and a quantitative
+successful selection on the known product-group benchmark, not the
+missing universal construction.
 
 These are written deductions over the identified operator and
 spanning-forest inputs. Cairn compilation checks registration and
