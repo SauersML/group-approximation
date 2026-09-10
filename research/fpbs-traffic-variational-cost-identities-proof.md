@@ -5,6 +5,7 @@ kind: route
 title: Truncate near-optimal graphings and lift target plans to get both identities
 target: fpbs-traffic-variational-cost-identities
 requires:
+  - fpbs-conditional-traffic-descent-bound
   - fpbs-finite-fiber-cost-bound
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md

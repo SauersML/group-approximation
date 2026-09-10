@@ -17,6 +17,18 @@ This is the isolated remaining step of the reuse programme. The savings to be pr
 
 ## Attempts
 
+Repair connections shared by whole components. The proved
+`fpbs-infinite-contact-zero-relative-cost` constructs arbitrarily
+cheap repairs on the original action when the graph of infinite
+contacts between retained components is connected. This can replace
+the traffic construction's direct demand repairs. The shared-repair
+artifact also proves that determinantal cycle deletion leaves no
+finite cut in its component quotient. A recursive parallel-path
+counterexample rules out inferring sparse-sprinkling connectivity
+from that weaker cut property alone. Suitable contacts at the
+source budget, or a stronger repair mechanism exploiting the
+actual determinantal law, remain to be constructed.
+
 Start with finite fibers, then pass to a limit. The proved
 `fpbs-finite-fiber-cost-bound` gives C(X)-1<=q(C(Y)-1) for a uniform
 q-point factor. This excludes finite-to-infinite cost loss in that

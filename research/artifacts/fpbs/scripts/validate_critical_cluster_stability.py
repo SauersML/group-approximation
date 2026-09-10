@@ -105,6 +105,7 @@ def main():
         'fpbs-relative-cycle-retraction-rounding': 'ESTABLISHED',
         'fpbs-cycle-retraction-contractive-transport': 'ESTABLISHED',
         'fpbs-finite-fiber-cost-bound': 'ESTABLISHED',
+        'fpbs-infinite-contact-zero-relative-cost': 'ESTABLISHED',
         'fpbs-relative-cycle-block-localization': 'OPEN',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
@@ -142,6 +143,7 @@ def main():
     retraction_chain = cairn.why_chain(task_graph, 'fpbs-relative-cycle-retraction-rounding')
     transport_chain = cairn.why_chain(task_graph, 'fpbs-cycle-retraction-contractive-transport')
     finite_fiber_chain = cairn.why_chain(task_graph, 'fpbs-finite-fiber-cost-bound')
+    contact_chain = cairn.why_chain(task_graph, 'fpbs-infinite-contact-zero-relative-cost')
     price_wired = (
         {'fpbs-correlated-reuse-flags-removable',
          'fpbs-bernoulli-cycle-tail-compactness',
@@ -165,7 +167,10 @@ def main():
         and transport_chain[-1][2] == 'fpbs-cycle-retraction-contractive-transport'
         and finite_fiber_chain
         and finite_fiber_chain[0][0] == 'fpbs-fixed-price-universal'
-        and finite_fiber_chain[-1][2] == 'fpbs-finite-fiber-cost-bound')
+        and finite_fiber_chain[-1][2] == 'fpbs-finite-fiber-cost-bound'
+        and contact_chain
+        and contact_chain[0][0] == 'fpbs-fixed-price-universal'
+        and contact_chain[-1][2] == 'fpbs-infinite-contact-zero-relative-cost')
     new_errors = [finding for finding in errors if finding not in baseline_errors]
     passed = (not any(severity == 'error' for severity, _, _ in task_errors)
               and not new_errors and not duplicates and not removed
@@ -199,6 +204,7 @@ def main():
         'cycle_retraction_goal_chain': retraction_chain,
         'contractive_transport_goal_chain': transport_chain,
         'finite_fiber_goal_chain': finite_fiber_chain,
+        'infinite_contact_goal_chain': contact_chain,
         'state_changes': changes, 'selected_statuses': statuses,
         'overlay_source_sha256': {p: hashlib.sha256(data).hexdigest()
                                   for p, data in sorted(overlay.items())},
