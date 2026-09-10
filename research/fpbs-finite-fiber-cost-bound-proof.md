@@ -40,3 +40,24 @@ carry the original base and source relations, with measures 1/q!
 and 1/(q-1)!. The hypothesized index equality in that free action
 therefore yields source/base equality. Only complete-section
 induction is used unconditionally in this deduction.
+
+Section 5 averages the graphings selected by each fiber label.
+Uniform disintegration preserves the average edge-copy budget.
+Every covered path without a label switch projects to a retained
+path; integrating its switching occurrences by partial p.m.p.
+changes of variables bounds the average repair by r+W. This proves
+C(X)<=B+W directly, without relying on the downstream variational
+identity or introducing a dependency cycle.
+
+Section 6 supplies a counterexample to requiring W->0 and r->0.
+For the two-point chi-cocycle over Bernoulli F_2 x C_2, a labeling
+is a measurable bit c. The nonconstant Bernoulli Walsh basis splits
+into free F_2-orbits, and the elementary four-regular-tree operator
+bound gives sum d_s>=2-sqrt(3), including the involution demand.
+Endpoint disagreements force either uncovered requests or switches,
+so r+W has that same positive lower bound. Both costs equal 3/2
+by the explicit two-point-block treeing. Imported for this last
+identification: Gaboriau's treeing minimality theorem, Theorem 2.24
+at the primary source linked in the artifact. The deduction is
+written mathematics, not Lean verification or a counterexample to
+Fixed Price.

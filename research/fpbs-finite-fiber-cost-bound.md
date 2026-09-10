@@ -39,3 +39,18 @@ Gamma x Sym(q) action on X x Sym(q) in the other.
 The result is a written deduction over the named induction and
 relative-repair inputs, not an independent verification or a
 resolution of either conjectural equality.
+
+For a measurable bijective fiber labeling ell and a finite routing
+plan D, Sections 5--6 also prove the constructive bound
+
+    C(X)<=B(D)+W_ell(D),
+
+where W_ell is traffic integrated over edges changing their label.
+This bound does not characterize equality. On the explicit
+two-point cocycle extension of the Bernoulli F_2 x C_2 action,
+every labeling and every plan for the five symmetric generator
+demands satisfy r(D)+W_ell(D)>=2-sqrt(3). Both action costs are
+3/2. Thus vanishing switching traffic with vanishing uncovered
+requests is not necessary for cost preservation, and cannot be
+a universal proof strategy. This does not refute removal of the
+different conditional traffic defect J.
