@@ -21,6 +21,15 @@ most M_n such that, writing P_out,n for the crossing-edge projection,
 
 ## Attempts
 
+`fpbs-sparse-base-connected-cycle-rounding` now gives an alternative
+connected surgery when the relative certificate is supported on a
+sufficiently sparse base region with a fixed finite label set, for an
+exact group and Bernoulli base. It uses a base-measurable separator from
+Fraczyk plus Lovasz, and pays actual cut rank rather than M^2 times
+boundary trace. The required sparse support does not follow from this
+node's premise or from rarity of source reuse flags. It is not a proof
+of this universal localization assertion.
+
 Impose a common finite-block forest at the cost infimum. Section 5 of
 the artifact justifies this without a finite normal subgroup, but
 proves that a potential cost gap scales as D=q D_A under contraction.

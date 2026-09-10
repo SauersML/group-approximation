@@ -6,6 +6,7 @@ title: Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuni
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/navigation.md
   - research/artifacts/fpbs/docs/cluster-contact-mergers.md
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/creative-branches.md

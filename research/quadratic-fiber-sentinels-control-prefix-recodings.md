@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: quadratic-fiber-weights-and-tail-sentinels-control-prefix-recodings
+id: quadratic-fiber-sentinels-control-prefix-recodings
 kind: route
 title: Use quadratic fiber weights and an untouched sentinel to obtain a faithful orthant action
 target: weighted-prefix-centralizers-remain-elementary-amenable

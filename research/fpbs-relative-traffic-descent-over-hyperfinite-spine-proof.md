@@ -4,7 +4,9 @@ id: fpbs-relative-traffic-descent-over-hyperfinite-spine-proof
 kind: route
 title: Rerun the traffic accounting with free spine steps and relative cost
 target: fpbs-relative-traffic-descent-over-hyperfinite-spine
-requires: []
+requires:
+  - fpbs-conditional-traffic-descent-bound
+  - fpbs-cost-one-backbone-fixes-completion-bill
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md

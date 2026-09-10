@@ -135,6 +135,16 @@ the two quantities in this example.
 
 ## 5. Remaining direction, with no unproved theorem registered
 
+The August 2026 [measurable matroid preprint, Theorem 7.20](https://arxiv.org/html/2608.16464v1#S7.SS4)
+adds approximate simultaneous basis exchange. It is registered as
+`fpbs-measurable-matroid-approximate-exchange`. Its cycle-matroid bases
+remain hyperfinite essential forests, and Remark 7.18 distinguishes
+rank from optimized cost. The new theorem therefore does not remove
+the connectivity obligation in this note. The separate
+[sparse base surgery](sparse-base-surgery.md) uses Fraczyk and Lovasz
+to construct actual finite components on the base, where tree
+replacement does preserve connectivity under its stated hypotheses.
+
 A viable dual approach must specify which ambient information its
 certificate retains. A certificate for R_E cannot automatically
 serve as a cost certificate for every R_F. Conversely, a forest

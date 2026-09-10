@@ -6,6 +6,8 @@ title: All free probability-preserving actions of each countably infinite group 
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/navigation.md
+  - research/artifacts/fpbs/docs/sparse-base-surgery.md
   - research/artifacts/fpbs/docs/isoperimetric-test-descent.md
   - research/artifacts/fpbs/docs/cost-rank-duality.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
@@ -198,6 +200,18 @@ statements about equality of costs across actions, so they bound this goal's
 vocabulary rather than its content.
 
 ## Attempts
+
+* **Use sparse FIID geometry and measurable separator descent.**
+  `fpbs-sparse-base-connected-cycle-rounding` combines Fraczyk's sparse
+  FIID theorem for exact groups with Lovasz's separator transfer theorem.
+  It supplies small cuts on the original Bernoulli base and connected
+  rounding of relative cycle certificates supported in a sparse base
+  region. The proof pays cut rank without a block-size multiplier.
+  Arbitrary source-near-optimal certificates are not known to have that
+  support, and nonexact groups remain outside the imported hypothesis.
+  The new `fpbs-measurable-matroid-approximate-exchange` supplies essential
+  forests; it does not supply the missing orbit-connectivity assertion.
+  See the linked artifact for the exact interfaces and restrictions.
 
 * **Descend along a factor map (the archive's main line, responses 48--55,
   `docs/fixed-price-reuse-localization.md` and `docs/fixed-price-conditional-traffic.md`).**
