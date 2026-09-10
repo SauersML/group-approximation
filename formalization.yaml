@@ -390,41 +390,28 @@ repository:
 related_formalizations: []
 
 status:
-  # Scope note.  This repository is a large development with open work in it;
-  # the results offered for mechanical verification are the Palomar challenge
-  # theorems, and that is what `main_results` describes.  There are two
-  # Comparator configurations and a submission is exactly one of them, so this
-  # tree is submitted twice; this file is per repository, which is why one
-  # `main_results` list carries the rows of both submissions, each naming its
-  # own `comparator_config`.
-  #
-  # The axiom list below is not asserted from reading a file.  It is the
-  # closure `Lean.collectAxioms` reports for the declaration, computed by
-  # `scripts/PalomarAxioms.lean` under `lake env lean` and gated on every push
-  # to the Palomar surface by `.github/workflows/palomar-check.yml`, which
-  # fails if the closure leaves the set `Palomar/comparator.json` permits.
-  # First green at run 34285122501 on af75d7783.  `sorry_count` is 0 for the
-  # same reason and not because Palomar/Solution.lean has no `sorry` lexically:
-  # the field asks about the closure of the proved declaration, which reaches
-  # into the development, and a closure containing no `sorryAx` is what settles
-  # it.  `leanprover/comparator` checks the same thing at submission.
+  # This repository is submitted twice, once per Comparator configuration, and
+  # this file is per repository, so `main_results` lists the rows of both
+  # submissions, each naming its configuration.  The axiom lists are the
+  # closures computed by scripts/PalomarAxioms.lean and
+  # scripts/PalomarLIXAxioms.lean under `lake env lean` and checked on every
+  # push by .github/workflows/palomar-check.yml (first green: runs 34285122501
+  # and 34457861307); `sorry_count: 0` means the closure contains no `sorryAx`.
   scope: >-
-    A Lean 4 development over Mathlib of the one-sided Kazhdan compression
-    criterion and its MF-radical consequences, and of a negative answer to STW
-    Problem LIX, together with two self-contained Comparator submission
-    surfaces. Palomar/Challenge.lean states, in a Mathlib-only module with its
-    own definitions of the three approximation notions it uses, that one
-    explicitly presented eight-generator group is sofic in normalized Hamming
-    distance and not MF in the sequential operator-norm sense;
-    Palomar/Solution.lean proves that statement from the development.
+    A Lean 4 development over Mathlib with two Comparator submission surfaces.
+    Palomar/Challenge.lean states, in a Mathlib-only module with its own
+    definitions of normalized Hamming distance, soficity and the MF property,
+    that one explicitly presented eight-generator group is sofic in normalized
+    Hamming distance and not MF in the sequential operator-norm sense;
+    Palomar/Solution.lean proves this from the development.
     Palomar/LIXChallenge.lean states, in a second Mathlib-only module with its
     own definitions of the corner matrix diag(a, 1, ..., 1) and of
-    K1-injectivity, three statements: that not every nontrivial simple unital
-    C*-algebra is K1-injective, that the counterexample can be taken separable,
-    and that it can be taken to fail K1-injectivity already at the first
-    stabilisation step; Palomar/LIXSolution.lean proves those three statements
-    from the development. Each configuration is one submission. The rest of the
-    repository is not offered as certified by these entries.
+    K1-injectivity, that not every nontrivial simple unital C*-algebra is
+    K1-injective, that the counterexample can be taken separable, and that it
+    can be taken to fail K1-injectivity at the first stabilisation;
+    Palomar/LIXSolution.lean proves these from the development. Each
+    configuration is one submission. Nothing else in the repository is
+    certified by these entries.
   main_results:
     - declaration: ExplicitNonMF.explicit_sofic_not_MF
       file: Palomar/Solution.lean
@@ -432,15 +419,6 @@ status:
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator.json
 
-    # The three LIX rows deliberately carry no `sorry_count` and no `axioms`.
-    # The three LIX rows carry the closure `scripts/PalomarLIXAxioms.lean`
-    # computed under `lake env lean`, gated on every push to the Palomar
-    # surface by `.github/workflows/palomar-check.yml`: first green at run
-    # 34457861307 on f6da71566, which also reported the challenge and solution
-    # elaborating all three statements, and their transitive constant
-    # closures, identically.  As for the entry above, `sorry_count: 0` is what
-    # a closure containing no `sorryAx` settles, not a lexical scan of
-    # Palomar/LIXSolution.lean.
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
       sorry_count: 0
@@ -461,43 +439,36 @@ status:
 
 fidelity:
   divergences: >-
-    The certified proposition is about one explicitly presented group, not the
-    general theorem the manuscript states, and both approximation notions in it
-    are rendered rather than imported. The registry recompiles the challenge
-    against a frozen canonical Mathlib and rejects any project-local source in
-    its import closure, so Palomar/Challenge.lean carries its own definitions of
-    normalized Hamming distance, of soficity, and of the MF property; those
-    definitions are copied into the module and are not the development's own.
-    Soficity is rendered as approximation by permutations of finite carriers in
-    normalized Hamming distance. The MF side is rendered in the sequential
-    operator-norm form and negated, rather than in the norm-matrix-corona form
-    the manuscript uses; the equivalence of the formulations is proved inside
-    the development and is not part of the compared statement. No quantitative
-    defect bound, and no statement about any other group, is certified by this
-    result.
+    The certified statement concerns one explicitly presented group, not the
+    general theorem of the manuscript. The registry recompiles the challenge
+    against a frozen Mathlib and rejects project-local imports, so
+    Palomar/Challenge.lean defines normalized Hamming distance, soficity and
+    the MF property itself; these definitions are copies, not the
+    development's. Soficity is approximation by permutations of finite sets in
+    normalized Hamming distance. The MF property is stated in the sequential
+    operator-norm form and negated; the manuscript uses the norm-matrix-corona
+    form, and the equivalence of the two forms is proved in the development
+    but is not part of the compared statement. The result certifies no
+    quantitative defect bound and nothing about any other group.
 
-    For the LIX surface the same constraint applies and produces four further
-    divergences. Simplicity is rendered as Mathlib's IsSimpleRing, which asks
-    that the only ALGEBRAIC two-sided ideals be zero and the whole algebra,
-    rather than the only closed ones as C*-simplicity does; the two agree for a
-    nontrivial unital C*-algebra, because a proper two-sided ideal of a unital
-    Banach algebra misses a neighbourhood of the unit and so has proper closure,
-    and that agreement is proved in the development
-    (isSimpleCStar_iff_isSimpleRing) rather than assumed. K1-injectivity is
-    rendered elementwise: the challenge asks that every unitary whose
-    stabilisation diag(u, 1, ..., 1) is null-homotopic in some Mn over the
-    algebra be null-homotopic in the algebra itself. That is the direct-limit
-    description of the kernel of U(A)/U0(A) -> K1(A), and it is not a
-    construction of K1; no K1 group is built in the compared statement, so
-    nothing about the value of K1(A) is certified. Mathlib's C*-structure on Mn
-    over A needs a partial order on A making it a star-ordered ring, and the
-    challenge fixes that order to the spectral order rather than quantifying
-    over it; a star-ordered ring order is determined by the star operation, so
-    there is only one such order, but the compared statement pins it instead of
-    proving that. All algebras range over Type 0; K1-injectivity is
-    universe-polymorphic, so quantifying over Type 0 is weaker as a universal
-    and correspondingly stronger as a negation, and the counterexample is a
-    concrete separable algebra that lives there.
+    The LIX challenge has four divergences of the same kind. Simplicity is
+    Mathlib's IsSimpleRing, which asks that the only two-sided ideals be zero
+    and the whole algebra, while C*-simplicity asks this of closed ideals only;
+    for a nontrivial unital C*-algebra the two agree, because a proper
+    two-sided ideal of a unital Banach algebra misses a neighbourhood of the
+    unit and so has proper closure, and the development proves this agreement
+    (isSimpleCStar_iff_isSimpleRing). K1-injectivity is stated elementwise:
+    every unitary whose stabilisation diag(u, 1, ..., 1) is null-homotopic in
+    some Mn(A) is null-homotopic in A. This is the direct-limit description of
+    the kernel of U(A)/U0(A) -> K1(A); no K1 group is constructed, so nothing
+    about the value of K1(A) is certified. Mathlib's C*-structure on Mn(A)
+    needs a partial order on A making it a star-ordered ring, and the
+    challenge fixes this order to the spectral order. Such an order is
+    determined by the star operation, so there is only one, but the compared
+    statement fixes it instead of proving that. All algebras range over
+    Type 0. K1-injectivity is universe-polymorphic, so quantifying over Type 0
+    is weaker as a universal statement and stronger as its negation, and the
+    counterexample is a separable algebra in Type 0.
 
 alignment:
   statements:
@@ -509,25 +480,24 @@ alignment:
       status: proved
 
     - source: >-
-        STW Problem LIX: Are all unital simple C*-algebras K1-injective? No:
-        it is not the case that every nontrivial simple unital C*-algebra is
-        K1-injective.
+        Problem LIX (are all unital simple C*-algebras K1-injective?): no,
+        not every nontrivial simple unital C*-algebra is K1-injective.
       lean: ProblemLIX.not_all_simple_unital_k1Injective
       module: Palomar.LIXChallenge
       status: proved
 
     - source: >-
-        STW Problem LIX, with the counterexample separable: there is a
-        separable simple unital C*-algebra that is not K1-injective.
+        Problem LIX with the counterexample separable: there is a separable
+        simple unital C*-algebra that is not K1-injective.
       lean: ProblemLIX.exists_separable_simple_not_k1Injective
       module: Palomar.LIXChallenge
       status: proved
 
     - source: >-
-        STW Problem LIX, sharp form: there is a separable simple unital
-        C*-algebra carrying a unitary u not connected to 1 in its unitary
-        group although diag(u, 1) is connected to 1 in the unitary group of M2
-        over it, so the class of u dies at the first stabilisation step.
+        Problem LIX, sharp form: there is a separable simple unital
+        C*-algebra A with a unitary u not connected to 1 in U(A) although
+        diag(u, 1) is connected to 1 in U(M2(A)), so the class of u vanishes
+        at the first stabilisation.
       lean: ProblemLIX.exists_separable_simple_stage_two_witness
       module: Palomar.LIXChallenge
       status: proved

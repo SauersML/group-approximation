@@ -71,12 +71,12 @@ in the unitary group.
 stabilisation maps `u ↦ diag (u, 1)`, so the class of a unitary `u ∈ U(A)`
 vanishes in `K₁(A)` exactly when `diag (u, 1, …, 1) ∈ U₀(Mₙ(A))` for some
 `n ≥ 1`, and a group homomorphism is injective exactly when its kernel is
-trivial.  The definition records precisely that: every unitary of `A` whose
+trivial.  The definition states this directly: every unitary of `A` whose
 stabilisation is connected to `1` in some matrix algebra over `A` is already
 connected to `1` in `U(A)`.  `U₀` is written as `pathComponent 1`, the path
 component of `1` in the unitary group with its norm topology; the stabilised
-unitary is described by its underlying matrix, so that no unitarity proof has
-to be packaged inside the statement.
+unitary is described by its underlying matrix, so the statement does not
+include a proof of unitarity.
 
 Mathlib's C⋆-structure on `Mₙ(A)`, `CStarMatrix.instCStarAlgebra`, asks for a
 partial order on `A` making it a `StarOrderedRing`.  A unital C⋆-algebra has

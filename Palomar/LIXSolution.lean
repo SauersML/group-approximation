@@ -18,10 +18,10 @@ The counterexample is `GroupApproximation.LIX.LIXLimit`, the inductive limit of
 the STW LIX tower of corner algebras of matrices over `C(X, ℂ)`.  The
 development proves it separable (`LIX.lixLimit_separableSpace`), C⋆-simple
 (`LIX.lixLimit_isSimpleCStar`, converted to Mathlib's `IsSimpleRing` by
-`isSimpleCStar_iff_isSimpleRing`), and carrying a unitary `u ∉ U₀(A)` with
-`diag (u, 1) ∈ U₀(M₂(A))` (`LIX.lixLimit_hasK1InjWitness_of` at
-`CharClass.lemmaTwoHolds`, the mod-2 Gysin identity).  The three compared
-theorems are assembled from those facts and nothing else.
+`isSimpleCStar_iff_isSimpleRing`), and with a unitary `u ∉ U₀(A)` such that
+`diag (u, 1) ∈ U₀(M₂(A))` (`LIX.lixLimit_hasK1InjWitness_of` applied to
+`CharClass.lemmaTwoHolds`, the bundle obstruction).  The three compared
+theorems follow from these facts.
 -/
 
 namespace ProblemLIX
@@ -45,12 +45,12 @@ in the unitary group.
 stabilisation maps `u ↦ diag (u, 1)`, so the class of a unitary `u ∈ U(A)`
 vanishes in `K₁(A)` exactly when `diag (u, 1, …, 1) ∈ U₀(Mₙ(A))` for some
 `n ≥ 1`, and a group homomorphism is injective exactly when its kernel is
-trivial.  The definition records precisely that: every unitary of `A` whose
+trivial.  The definition states this directly: every unitary of `A` whose
 stabilisation is connected to `1` in some matrix algebra over `A` is already
 connected to `1` in `U(A)`.  `U₀` is written as `pathComponent 1`, the path
 component of `1` in the unitary group with its norm topology; the stabilised
-unitary is described by its underlying matrix, so that no unitarity proof has
-to be packaged inside the statement.
+unitary is described by its underlying matrix, so the statement does not
+include a proof of unitarity.
 
 Mathlib's C⋆-structure on `Mₙ(A)`, `CStarMatrix.instCStarAlgebra`, asks for a
 partial order on `A` making it a `StarOrderedRing`.  A unital C⋆-algebra has
