@@ -4,6 +4,7 @@ id: fpbs-correlated-reuse-flags-removable
 kind: claim
 title: Group-correlated reuse flags can be removed without increasing completed cost
 artifacts:
+  - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/responses/55_0909-215618.md
@@ -14,6 +15,14 @@ artifacts:
 This is the isolated remaining step of the reuse programme. The savings to be preserved are those of a connection used many times and paid for once, and the question is whether they can depend irreducibly on group-correlated information of the source action. No route establishes it.
 
 ## Attempts
+
+Replace source information by a relative cycle operator. Conditional
+averaging preserves the surplus trace exactly, but the determinantal
+law of that operator can lose connectivity even for a finite extension
+with a connected source treeing. The relative-exchange artifact proves
+this and gives a working finite-block replacement in the same known
+family. Its generalization would need a bound on the actual repair
+graphing, not just a dimension count.
 
 Reveal the flags. The localization theorem produces an intermediate factor on which the defect is exactly zero, but it resolves the penalty by retaining information; the flags remain measurable in an extension of the base, and fixed price needs an argument that forgets them (reuse-compression artifact, Section 7).
 

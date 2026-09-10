@@ -4,6 +4,7 @@ id: fpbs-free-action-cost-at-least-bernoulli-cost
 kind: claim
 title: Every free action of a finitely generated group has cost at least its Bernoulli cost
 artifacts:
+  - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/responses/55_0909-215618.md
@@ -12,6 +13,19 @@ artifacts:
 **OPEN.** For every infinite finitely generated group, every free p.m.p. action a and a nontrivial Bernoulli shift b, prove C(a) >= C(b). With Abert-Weiss maximality, which supplies C(a) <= C(b), this is the missing half of fixed price in the finitely generated case. The comparison has already been sharpened to C(a x b) = C(a) <= C(b), so the whole question is the projection a x b -> b, which forgets the entire a-process.
 
 ## Attempts
+
+Descend only the relative cycle surplus. The established
+`fpbs-relative-cycle-operator-descent` gives a base positive contraction
+K of exact trace c(H)-c(Phi) for a source generating graphing Phi inside
+the lifted base graphing H. But
+`fpbs-relative-cycle-dpp-disconnects` proves that determinantal deletion
+using K can disconnect even for a Bernoulli base and a finite extension
+with a source treeing. The relative-exchange artifact, Sections 2--3,
+constructs this example and a successful alternative using connected
+finite cyclic blocks with a tree quotient. Section 4 states the actual
+deletion-minus-repair bill still needed in general. That bill is not
+proved by its operator trace; no new premise is introduced just to
+rename this comparison.
 
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the

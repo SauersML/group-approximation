@@ -28,12 +28,14 @@ def read_archive(path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo', type=Path, required=True)
+    parser.add_argument('--kernel', type=Path, required=True,
+                        help='Explicit captured Cairn kernel; leaves shared warm tools untouched.')
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--overlay', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     start = time.monotonic()
-    tool_path = args.repo / 'tools/cairn.py'
+    tool_path = args.kernel
     spec = importlib.util.spec_from_file_location('pinned_cairn', tool_path)
     cairn = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(cairn)
@@ -96,6 +98,8 @@ def main():
         'fpbs-fixed-price-countable-from-finitely-generated': 'OPEN',
         'fpbs-bernoulli-cycle-tail-compactness': 'OPEN',
         'fpbs-graphing-cost-betti-cycle-dimension-identity': 'ESTABLISHED',
+        'fpbs-relative-cycle-operator-descent': 'ESTABLISHED',
+        'fpbs-relative-cycle-dpp-disconnects': 'ESTABLISHED',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
         'fpbs-optimistic-search-linear-wall-cost': 'ESTABLISHED',
@@ -148,6 +152,9 @@ def main():
         'execution': 'MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.',
         'scope': 'Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.',
         'cairn_sha256': hashlib.sha256(tool_path.read_bytes()).hexdigest(),
+        'cairn_asset_sha256': {
+            name: hashlib.sha256((tool_path.parent/name).read_bytes()).hexdigest()
+            for name in ('math_explainer.css', 'math_macros.js', 'math_explainer.js')},
         'baseline_archive_sha256': baseline_hash,
         'overlay_archive_sha256': overlay_hash,
         'claims': len(after.claims), 'routes': len(after.routes),
