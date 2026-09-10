@@ -13,3 +13,10 @@ depth(u)+1+beta*d(v,opposite root) on T_4 x Z requires at least
 |z|<=m are closed and every other edge is open. Its roots are the
 height-zero endpoints of that tree edge; shortest open distance is
 2m+3. This is a deterministic obstruction, not a Bernoulli mean bound.
+
+Corollary 1.1 strengthens the obstruction: uniformly in m, the open
+configuration has edge Cheeger constant at least 2 and normalized
+edge Cheeger constant at least 1/3. Every open edge lies on an open
+four-cycle, and iterative leaf removal changes nothing. Thus positive
+expansion and the absence of dangling bridges do not give a polynomial
+detour bound for this search schedule.

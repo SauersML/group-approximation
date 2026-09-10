@@ -245,6 +245,8 @@
     }
   ],
   "branch_configurations": 4096,
+  "open_square_certificates": 88208,
+  "finite_boundary_checks": 32,
   "bernoulli_checks": [
     {
       "q": "1/5",
@@ -271,5 +273,5 @@
       "wall_branch_series": "5/226"
     }
   ],
-  "elapsed_seconds": 2.968
+  "elapsed_seconds": 3.611
 }

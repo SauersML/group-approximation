@@ -82,6 +82,43 @@ half, so those discoveries cannot be obtained from open answers of the
 other side. There are at least ball-size minus one fresh queries,
 proving (1). The argument is independent of the tie order. QED.
 
+**Corollary 1.1 (expansion and removal of finite branches do not fix
+this schedule).** Every wall configuration in Proposition 1 has edge
+Cheeger constant at least 2 and normalized edge Cheeger constant at
+least 1/3, uniformly in m. Every open edge belongs to an open four-cycle.
+There are no bridges or finite pieces attached by a single bridge,
+and iterative deletion of vertices of degree at most one removes
+nothing. Nevertheless the exponential query lower bound (1) holds.
+
+**Proof.** In each of the two rooted ternary half-trees, orient tree
+edges from parent to child. For a finite set U at one fixed height,
+there are 3|U| child edges with parent in U, and at most |U|-1
+of them have both endpoints in U when U is nonempty: these internal
+edges form a finite forest. Thus at least 2|U| child edges leave U.
+These edges are all open, because none crosses the distinguished
+tree edge xy. Apply this count separately in both halves and at each
+height for any finite nonempty vertex set S. The counted outgoing
+edges are distinct, so |boundary_open S|>=2|S|. Since every degree
+is at most 6, this also gives
+
+    |boundary_open S| / sum_{v in S} deg_open(v) >= 1/3.
+
+An open horizontal edge other than a copy of xy forms a four-cycle
+with its translate one level higher. An open copy of xy at |z|>m
+forms a four-cycle with the adjacent copy farther from height zero.
+A vertical edge forms a four-cycle using any horizontal neighbor in
+the same half-tree. All the specified edges are open. Hence no open
+edge is a bridge. Each vertex has degree at least 5, which also proves
+the assertion about iterative leaf removal. QED.
+
+This is a deterministic obstruction for the specified target priorities,
+not for every algorithm. In particular an efficient algorithm might
+use the product geometry to find a route around the wall. The corollary
+only rules out controlling this schedule's excess queries by a sum of
+finite dangling-branch sizes, or deriving a polynomial detour bound
+for it from a positive Cheeger constant alone. It makes no Bernoulli
+expected-cost assertion.
+
 The all-open remainder in this example has probability zero for an iid
 parameter q<1. A completed run nevertheless has a finite transcript.
 If its answers include U open and C closed edges, that exact transcript
@@ -169,8 +206,10 @@ certificate, and checks (1). It also exhausts the 4,096 configurations
 of a ternary tree of depth two, verifying its exact Bernoulli mean and
 the independent minimum's distribution at four rational parameters.
 Exact rational arithmetic checks the factorization and series in (4).
+The strengthened replay also verifies 88,208 explicit open four-cycle
+certificates through queried edges and 32 finite-set boundary counts.
 Results are in `search-barriers-replay.json`; the MSI run took about
-three seconds. These finite checks supplement the written proofs,
+3.6 seconds. These finite checks supplement the written proofs,
 and do not establish their infinite statements by enumeration.
 
 The deterministic detour shortcut is ruled out for these priorities,
@@ -180,3 +219,13 @@ expected-cost theorem. The outstanding task from
 upper bound on conditional queries per random-walk step that is strictly
 smaller than its information lower bound under hypothetical collapse.
 No such bound is asserted here.
+
+The finite-branch approach was checked against
+[Hermon--Hutchcroft, Proposition 2.1 and Section 2.1](https://arxiv.org/pdf/1904.10448).
+Their lower bound for the loss term in a finite-cluster derivative
+uses a positive constant at each fixed supercritical parameter; its
+proof supplies no explicit lower bound for that constant. This
+does not give the needed near-critical rate. More fundamentally,
+Corollary 1.1 shows that for the current schedule, a query-cost estimate
+must also control exploration inside the infinite part with no bridges.
+It cannot charge all wasted queries to finite dangling branches.

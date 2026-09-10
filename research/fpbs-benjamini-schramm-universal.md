@@ -168,6 +168,12 @@ content in that region.
   it would not need to decide every connection. Section 5 of
   `query-strong-converse.md` states this still-unproved construction
   precisely. Neither uniqueness nor the new estimates supplies it.
+  A finite-branch accounting shortcut for the current priority search
+  is also insufficient: Corollary 1.1 of `search-barriers.md` shows
+  that its exponential wall obstruction already has uniform positive
+  expansion and an open four-cycle through every open edge. The missing
+  estimate must control exploration in the part with no bridges, not
+  just the sizes of finite dangling pieces.
 
 * **Contract the critical clusters and sprinkle independently (2026-09-09).**
   `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond

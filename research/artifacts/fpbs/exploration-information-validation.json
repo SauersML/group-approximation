@@ -4,7 +4,7 @@
   "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "a903fa2cbd5e51607bd0d08dc5c9b41cde55923a314c62634367621b2859824b",
+  "overlay_archive_sha256": "c93928a0e06b4e2d0dd13986afbf8ba9b70c94256e9a1e74120703b3bc882e60",
   "claims": 7769,
   "routes": 7938,
   "task_claims": 231,
@@ -47,11 +47,6 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
-    ],
-    [
-      "warning",
-      "cycle",
-      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "findings": [
@@ -89,11 +84,6 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
-    ],
-    [
-      "warning",
-      "cycle",
-      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "duplicate_findings": [],
@@ -273,24 +263,24 @@
     "research/artifacts/fpbs/scripts/replay_projection_resolvent.py": "9f0e19845044a7d13d62f2be4aaf2973d7040062e91ae45acc4cb0a20def641f",
     "research/artifacts/fpbs/scripts/replay_query_strong_converse.py": "6f5b3f0d25672f1cbc787acaf5649a7932f4f7b5f3f560952575954aab4db50e",
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
-    "research/artifacts/fpbs/scripts/replay_search_barriers.py": "68a0bfd9c611fa68587d7ed86770b2cead82cfcba9ffafb5ffd3cd67f4af513f",
+    "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
     "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "94f3cbc8e80ecfe781d2b61c0bda27cdc3237b76e50dc9e60e208bf1fb77b695",
-    "research/artifacts/fpbs/search-barriers-replay.json": "b3d9b82a72ea403c99b9b0bbe3d3965b2bcc98fb1cd33db095c5d6788d82740d",
-    "research/artifacts/fpbs/search-barriers.md": "69f87d53fe25f8b38e29da7cf0ceb9a21c60a2030d8b2acde533e5b68b82de4c",
+    "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
+    "research/artifacts/fpbs/search-barriers.md": "2c1be21a9b466bdd4f2be376d4e0e545727df1b9d00ab7c93db95158d5c72221",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
     "research/artifacts/fpbs/search-geometry.md": "7b783609ac2f1c37c5e7b16a5059ff2d8f47cb611a6aa3279d7de1751040c7b5",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "1055edfca60680bedc768612355622d204bbbc346375e557eb4058d4d31bc389",
+    "research/fpbs-benjamini-schramm-universal.md": "47ec3e6a3f6ab3a3eb527288b89ad1c273c728884c1c916f8ade44b48392ed9b",
     "research/fpbs-bernoulli-projection-resolvent-bound.md": "ebde9f62674dea3b17d4fb033976d7656d1c20a5a304cb5aacfa6e1a402b3824",
     "research/fpbs-bernoulli-projection-resolvent-proof.md": "e72e810b30246b55c02f785fefdbba652bda073b3d536ff468e6a47ca4858083",
     "research/fpbs-bernoulli-wall-branch-budget-summable-proof.md": "dbdaf67341b7b6d674a1841e880a83f5500272bfab1b7b3a7599e3fb8caa2a16",
     "research/fpbs-bernoulli-wall-branch-budget-summable.md": "8bd3111b5b080a565f0b49aaa6d757ef16c5821a612f6680f1b463673ca85faf",
     "research/fpbs-bounded-query-connection-strong-converse-proof.md": "fd3d8481baaf9344cbf4ca89ef7e6602975f0578d60fee6c4666107a342db18a",
     "research/fpbs-bounded-query-connection-strong-converse.md": "8da4160daa479a93c23d7aef047bf44c2a75f2462c92e90c67e860670504a17e",
-    "research/fpbs-closed-wall-forces-exponential-search-proof.md": "d1e2debc84e726b35d5540d7f27799b4ce564b9c9f326cc33c89721ac49133c0",
-    "research/fpbs-closed-wall-forces-exponential-search.md": "e42bd52b3ceaf4ac71ffa3ac1205e07ec91abc972db15bee8ffb6bc303c2e2fc",
+    "research/fpbs-closed-wall-forces-exponential-search-proof.md": "aa791456c6bd1d659bab9b459a0ae33b888f3019cc74a8553cfee43c691515e9",
+    "research/fpbs-closed-wall-forces-exponential-search.md": "7e01bd78a17e916016a514b7811b71986e4ef977c7801792a279a66f8ca2e0a2",
     "research/fpbs-critical-dyadic-projection-estimate.md": "4a1234c7e9f24908ecea76efae35058b08e64ee1f9bde139bb2d46739ca42cf1",
     "research/fpbs-critical-quotient-environment-gap-proof.md": "b6a18dc600374067d3b66bc6c83eb93675e36bb889b65fde670701715185af1c",
     "research/fpbs-critical-quotient-environment-gap.md": "0d24871592e92a775708a00cf5ab8c03eec4fbcbac4b6e3af904bfa83295c477",
@@ -347,7 +337,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "1055edfca60680bedc768612355622d204bbbc346375e557eb4058d4d31bc389",
+    "research/fpbs-benjamini-schramm-universal.md": "47ec3e6a3f6ab3a3eb527288b89ad1c273c728884c1c916f8ade44b48392ed9b",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-reuse-removal.md": "b7825e31d4bb90802729486ab91dd0c3a52cf74e83dd15ebbe96371aee924456",
     "research/fpbs-bernoulli-maximal-cost-reference.md": "c3c8734186562b033633c0e5268b64d3953904237f27f1fbbd4b72750be50938",
@@ -408,8 +398,8 @@
     "research/fpbs-centralizer-disjoint-detours-proof.md": "3e886c5f405cb16401a22fc66a3fbcde1fd469746be0a92e9566decc2dd9d80f",
     "research/fpbs-centralizer-saturation-first-return-proof.md": "1e7d9c577fcfee568571eeb3fb4cf29bd6dcd8a6070697d8b1057636c4c6d8b2",
     "research/fpbs-centralizer-transversal-proof.md": "0ff1c2e41dc408d133fc0ca38e65d71a801803ec39cc8329b5518068eb4072f1",
-    "research/fpbs-closed-wall-forces-exponential-search-proof.md": "d1e2debc84e726b35d5540d7f27799b4ce564b9c9f326cc33c89721ac49133c0",
-    "research/fpbs-closed-wall-forces-exponential-search.md": "e42bd52b3ceaf4ac71ffa3ac1205e07ec91abc972db15bee8ffb6bc303c2e2fc",
+    "research/fpbs-closed-wall-forces-exponential-search-proof.md": "aa791456c6bd1d659bab9b459a0ae33b888f3019cc74a8553cfee43c691515e9",
+    "research/fpbs-closed-wall-forces-exponential-search.md": "7e01bd78a17e916016a514b7811b71986e4ef977c7801792a279a66f8ca2e0a2",
     "research/fpbs-cluster-merger-block-proof.md": "1b531bd73ac9e58f5848b17073832efebc152523e17854bdc5114a3973997803",
     "research/fpbs-cluster-merger-projections.md": "1ba7f72b532b6f628033c3791c9b97ae61b21a763fa60a46451e91b8c30533b0",
     "research/fpbs-collapse-concentration-proof.md": "752c280a745a58602cf7afc04478901b8e7ea3e693317342127786e2cfac6fdd",
@@ -789,5 +779,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 11.08
+  "elapsed_seconds": 10.148
 }
