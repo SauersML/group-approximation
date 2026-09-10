@@ -6,6 +6,7 @@ title: Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuni
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/docs/cluster-contact-mergers.md
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/creative-branches.md
   - research/artifacts/fpbs/exploration.md
@@ -137,6 +138,18 @@ cross-links recorded on `fpbs-fixed-price-universal`. There is no percolation
 content in that region.
 
 ## Attempts
+
+* **Track growth and mergers separately (2026-09-10).**
+  `fpbs-cluster-contact-merger-balance` gives an exact finite-state
+  balance: quotient triangles create parallel contacts and subsequent
+  mergers remove them. However,
+  `fpbs-contact-dispersion-sign-obstruction` shows that the proposed
+  effective-neighbor statistic has opposite initial drifts even on two
+  nonamenable Cayley graphs of the same degree. A merger between other
+  clusters can lower the root statistic without growing its cluster.
+  The calculation supplies no near-critical sign, infinite-volume
+  moment control, or implication to threshold separation. See
+  `docs/cluster-contact-mergers.md` for the exact identities and scope.
 
 * **Compare adaptive exploration transcripts (2026-09-10).**
   `fpbs-adaptive-exploration-relative-entropy` gives exact information

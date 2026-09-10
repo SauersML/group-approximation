@@ -108,6 +108,8 @@ def main():
         'fpbs-infinite-contact-zero-relative-cost': 'ESTABLISHED',
         'fpbs-cost-subgraph-rank-obstruction': 'ESTABLISHED',
         'fpbs-pulled-back-graphing-isoperimetry': 'ESTABLISHED',
+        'fpbs-cluster-contact-merger-balance': 'ESTABLISHED',
+        'fpbs-contact-dispersion-sign-obstruction': 'ESTABLISHED',
         'fpbs-relative-cycle-block-localization': 'OPEN',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
