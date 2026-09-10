@@ -4,6 +4,8 @@ id: fpbs-quantitative-routing-tail-bound
 kind: claim
 title: Ambient expansion quantitatively forces long routes in near-unit-degree connected invariant subgraphs
 root: true
+invalidates:
+  - fpbs-dead-uniform-tight-routes-contradiction
 ---
 
 Let G be a nonamenable d-regular Cayley graph with unnormalized edge Cheeger constant h. For an invariant random connected spanning subgraph H, put delta = E deg_H(o)/2 - 1. For every integer R >= 1,
