@@ -1053,12 +1053,43 @@ that the closed form in `p` can be recognised or ruled out.
 > thing that would have caught it, and the count says it was not a theoretical
 > risk.
 
-**ALL THIRTEEN OWNED MODULES BUILD TOGETHER, FROM DELETED ARTIFACTS, UNDER THE
-PURGING HELPER**: `cs-limit`, 2026-09-10, `Build completed successfully (2181
-jobs)`, `EXIT=0`.  Every one of the thirteen has its own `✔ … Built …` line in
-that single log and **not one `Replayed` line**, counted mechanically:
-`grep -c Built … = 13`, `grep -c Replayed … = 0`, `purged 0`.  The artifacts were
-deleted first precisely so the count would mean something.
+**ALL FOURTEEN OWNED MODULES BUILD TOGETHER, FROM DELETED ARTIFACTS, AGAINST A
+FULLY PURGED IMPORT CLOSURE**: `cs-limit`, 2026-09-10,
+`Build completed successfully (2182 jobs)`, `EXIT=0`, `BUILT=14 REPLAYED=0`,
+`purged 0 stale artifact sets (source-newer=0, import-newer=0) of 1940 oleans`.
+Counted mechanically, not read off the tail; artifacts deleted first so the count
+would mean something.
+
+**Certified afterwards under the transitive purge**, which is a stricter test
+than the one that run used.  `laneprobe-20260910-131549.log`:
+`purged 0 stale artifact sets (source-newer=0, import-newer=0) of 1954 oleans`,
+`Build completed successfully (2182 jobs)`, `EXIT=0`, and `BUILT=0 REPLAYED=0`
+because there was nothing left to do.
+
+That second log is evidence *about* the first, not a replacement for it, and the
+two have to be cited together.  The first supplies the fourteen `Built` lines.
+The second says that, judged by the rule that an olean is stale if it predates
+the olean of anything in `GroupApproximation` it imports, none of those fourteen
+artifacts is stale — so they were compiled against a current import closure.  A
+log with `BUILT=0` proves nothing on its own; a log with fourteen `Built` lines
+proves nothing about imports the checker of the day could not see.  Together they
+do.
+
+**This supersedes the thirteen-module green of an hour earlier, and had to.**
+That run was clean by the checks available at the time — thirteen `Built`, zero
+`Replayed`, `purged 0`.  But the helper then learned a second staleness test,
+*import*-newer as well as source-newer, and its next run on this clone purged
+**2876 of 4829 oleans** on that new criterion.  So the thirteen had been built
+against an import closure that was more than half stale, and nothing in the old
+check could see it.  Re-running was not caution; the first green would have been
+wrong to keep citing.
+
+That is the third time in one day that a green had to be re-earned because the
+*test* improved rather than because the code changed.  The rule this lane now
+follows: a green is a claim about a specific probe under a specific helper, so
+when the helper changes, every green predating the change is provisional until
+re-run.  Cheap here, because the lane is fourteen small modules; it will not stay
+cheap, which is an argument for re-running early rather than at the end.
 
 | module | build |
 |---|---|
@@ -1328,7 +1359,58 @@ lambda_1 : ⟨ A_final , AW(ι₁) ⟩ = ((p-1)/2)!
 `(3)` is `grNorm_mul_grS`, already green.  `(2)` is a one-slot sign computation.
 `(1)` and `(4)` are the work.
 
-### The unsettled point, and why I am not authoring past it yet
+### SETTLED 2026-09-10, and the cone operator is not owed
+
+`sp-design` answered both questions with the cheap answer, and the second is
+cheaper than either branch I had costed.  **The descent never leaves a
+two-letter complex.**
+
+Let `E` be `E⁰ = K·f`, `E¹ = K·g`, `δf = g`, `δg = 0`.  A chain map `E → C^*(X)`
+is *any* `0`-cochain `f`, for free.  Every operator the descent uses — `D`
+replacing a letter by its coboundary, `T` and `N` permuting slots, `H` acting on
+one slot — preserves `E^{⊗p}`.  So the whole computation is finite-dimensional
+linear algebra over `F_p` in `2^p` words, and it reaches the singular tensor
+power only at the end, by functoriality.  **Nothing singular occurs inside the
+computation, so no model comparison and no cone operator arise.**
+
+On `E` the contraction is `h(g) = f`, `h(f) = 0`, and `δh + hδ = 1` on the nose
+with **no `ηε` term**, because `δ : E⁰ → E¹` is an isomorphism.  That is why the
+one-slot `h ⊗ 1 ⊗ ⋯ ⊗ 1` suffices here for exactly the reason it sufficed on the
+resolution and failed on chains: nothing in the bottom degree for a residual to
+leak into.  The distinction recorded in §3.4 yesterday is the one that answers
+this question today, in the lane's favour.
+
+For the singular reading on `Δ¹`: take `f` the barycentric coordinate of vertex
+`1`, a genuine singular `0`-cochain; then `g = δf` evaluates a `1`-simplex as
+`f(σ(1)) - f(σ(0))`, and `f(σ(0)) = 0` kills every term of the final
+Alexander–Whitney evaluation but the one with `g` in slot `0`.
+
+**And the invariance is a theorem, whose engine this lane already owns.**
+Perturb a primitive by a cocycle `z`; exactness gives `z = Dζ`, so the next level
+changes by a coboundary, the level after that by `op' ∘ op (ζ) = 0` — because
+consecutive operators are `N` and `T - 1` and `N(T-1) = 0`.  That is
+`grNorm_mul_grS`, green in `OddPGroupRing.lean` since this morning.  So a
+perturbation introduced anywhere but the last level dies within two steps, and at
+the last level the change is the boundary pairing that my point lemma kills on
+`Δ¹` and cannot kill on `Δ²`.  The two runs' behaviour now has a reason rather
+than a symptom.
+
+`sp-design` also corrected their own reporting: their perturbation test was
+*complete*, not a sample, because enumerating `D(w)` over basis words one degree
+up spans `im D = ker D`, and the dependence is linear.  They had understated it,
+which is what generated my question.
+
+**And they retracted the top-degree route, keeping the numbers.**  My flag was
+right: reading the constant off a one-dimensional top degree is simplicial and
+fails singularly.  It does not affect the values, which are pairings, and nothing
+in this lane's chain needs it — `c_1` from the descent, `κ_top` from the
+coproduct's reduced coefficients and the riffle sign, both model-free.
+
+**Revised plan for this step:** build `E` and its two-line contraction, run the
+descent inside `E^{⊗p}` generically in `p`, map to the singular tensor power,
+evaluate.  The 250 lines are not owed.
+
+### Superseded: the unsettled point as it stood
 
 `sp-design`'s contraction is written `h(τ*) = (τ∖{0})*`, which is **simplicial**
 notation: it removes a vertex from a face.  That makes sense on the finitely many

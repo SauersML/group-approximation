@@ -16,43 +16,40 @@ real objects, the mod-`p` analogue of `LemmaTwoStepD.lean`.
 
 ## GREEN (with job counts)
 
-Clone `spare1`, log `.lake/laneprobe-20260910-121116.log`, **PROBE GREEN at 1619 jobs**,
-empty error index.  Every module is `Built`, none `Replayed` (the fleet rule of 2026-09-10);
-the preceding probe purged 234 stale artifact sets, so this one purged 0.
+**The definitive log**: clone `spare1`, `.lake/laneprobe-20260910-131632.log`, **PROBE GREEN
+at 1634 jobs**, empty error index, run under the lead's transitive `purge_stale.py`.  All
+nine modules show `Built`, and the log contains **zero** `Replayed` lines anywhere.
 
 | module | line | time |
 |---|---|---|
-| `CharClass.ParityPData` | `✔ [1616/1619] Built` | 33s |
-| `CharClass.ParityPTwo` | `✔ [1617/1619] Built` | 62s |
-| `CharClass.ParityPSlice` | `✔ [1618/1619] Built` | 63s |
-| `CharClass.ParityPAxiomCheck` | `ℹ [1619/1619] Built` | 66s |
+| `CharClass.ParityPData` | `✔ [1626/1634] Built` | 30s |
+| `CharClass.ParityPSymmetric` | `✔ [1627/1634] Built` | 42s |
+| `CharClass.ParityPTwo` | `✔ [1628/1634] Built` | 46s |
+| `CharClass.ParityPWuCartan` | `✔ [1629/1634] Built` | 46s |
+| `CharClass.ParityPSlice` | `✔ [1630/1634] Built` | 47s |
+| `CharClass.ParityPNewton` | `✔ [1631/1634] Built` | 48s |
+| `CharClass.ParityPAxiomCheck` | `ℹ [1632/1634] Built` | 50s |
+| `CharClass.ParityPNewtonValue` | `✔ [1633/1634] Built` | 56s |
+| `CharClass.ParityPTwist` | `✔ [1634/1634] Built` | 44s |
 
-A second probe, log `.lake/laneprobe-20260910-122632.log`, is **PROBE GREEN at 1630 jobs**
-with the axiom check extended over the two L4a modules, which are themselves green at 1505
-jobs (log `.lake/laneprobe-20260910-122315.log`):
-
-| module | line | time |
-|---|---|---|
-| `CharClass.ParityPSymmetric` | `✔ [1504/1505] Built` | 42s |
-| `CharClass.ParityPWuCartan` | `✔ [1505/1505] Built` | 45s |
-| `CharClass.ParityPAxiomCheck` (extended) | `ℹ [1630/1630] Built` | 46s |
-
-Two further L4a modules are green and sit **outside the ~13:00 landing batch**, as new
-leaves nothing in the batch imports: `CharClass.ParityPNewton` at **1335 jobs**
-(`✔ [1335/1335] Built`, 34s) and `CharClass.ParityPNewtonValue` at **1336 jobs**
-(`✔ [1336/1336] Built`, 48s).
+**How that log had to be obtained, which is the part worth reading.**  Simply re-probing
+after the transitive purge did **not** produce it.  The purge is consistency-driven, so it
+left my own modules' oleans in place — they were consistent with their imports — and lake
+then printed `Replayed` for `ParityPAxiomCheck` and *nothing at all* for the other eight.
+A log with no line for a module is not evidence about that module, which is exactly what
+the fleet rule says and exactly what it looks like when you are about to claim a false
+green.  The citable log came from the rule's own remedy: delete your own modules'
+`.olean`/`.ilean`/`.trace`/`.hash` and the `ir/` outputs in the clone (45 files), then probe
+once.  "The purge ran" and "my modules were rebuilt" are independent facts.
 
 **Axioms.**  All 24 endpoint-facing declarations report a subset of
 `[propext, Classical.choice, Quot.sound]` and nothing else.  Twenty report exactly that
 list; `ParityP.IsDecomposable.sum`, `ParityP.pR_b_succ_of_instability` and
 `ParityData.gamma_zero` report `[propext, Quot.sound]`, and `ParityP.IsDecomposable.pair`
-reports `[propext]`.  The seven L4a declarations
-(`wuRHSP_eq_sum_wuMonomialP`, `PowerData.p_one_eq_zero`, `p_prod`, `p_gamma_succ`,
-`p_gamma_succ_eq_smul`, `eCoeff_esymmSub_self`, `eCoeff_mul_eq_zero`) all report the full
-list and nothing else.  `CharClass/ParityPAxiomCheck.lean` is the check, and it is a leaf that
+reports `[propext]`.  `CharClass/ParityPAxiomCheck.lean` is the check, and it is a leaf that
 nothing imports.
 
-Three of the seventeen lines wrap in the log — `[propext,` on the declaration's line and
+Three of the twenty-four lines wrap in the log — `[propext,` on the declaration's line and
 `Classical.choice,` / `Quot.sound]` on the next two — so a one-line grep under-reports them
 as `[propext,`.  This is the known multi-line axiom-list trap and it bit the extraction, not
 the proof.
@@ -187,6 +184,39 @@ The cost was the lift from `MvPolynomial (Fin n) R`, where Mathlib states the id
 `symmetricSubalgebra (Fin n) R`, where `eCoeff` lives.  It is done once, by `Subtype.ext`,
 with the scalars carried as `R`-smuls rather than as ring elements — that is what lets
 `eCoeff_smul` apply directly instead of needing an `algebraMap`-times-element lemma.
+
+### `GroupApproximation/CharClass/ParityPTwist.lean` (~100 lines) — L4a, the twist
+
+**GREEN** (1394 jobs, `Built`), outside the landing batch.  `twist` is the substitution
+`y ↦ y + κ·y^p` as an `AlgHom`, so the one structural fact `sp-design`'s proof uses about
+`φ_κ` — that it is a ring homomorphism and hence descends to the indecomposables — is free.
+`twist_psum` is the binomial expansion on a power sum, with no symmetric-function theory in
+it at all.  `twist_psum_weight` is the exponent bookkeeping: for `p ≥ 2` and `b = i+1` the
+weight `ip+1` is reached by exactly one term, the one at `j = 1`, whose coefficient is
+`C(i+1,1)·κ^i = (i+1)·κ^i`.  That single surviving term is the one whose `(i+1)` the
+division later cancels.
+
+The arithmetic in `twist_psum_weight` is the usual `omega`-and-nonlinear-atoms problem:
+writing `p = q + 1` turns `j + p(i+1-j) = ip+1` into the linear identity `q·m = q·i` in the
+two atoms `q·m` and `q·i`, after which `Nat.eq_of_mul_eq_mul_left` cancels `q ≥ 1`.
+
+### `GroupApproximation/CharClass/ParityPHomog.lean` (~112 lines) — L4a, the crux, half of it
+
+**GREEN** (1611 jobs, `Built`), outside the landing batch.  Two results.
+`esymm_isHomogeneous`: `e_a` is homogeneous of degree `a` — ten lines, and it is the one
+piece of the crux that is **not** in Mathlib, which has no `esymm_isHomogeneous` anywhere in
+`RingTheory/MvPolynomial/Symmetric/`.  `isHomogeneous_esymmAeval`: the substitution
+`X_a ↦ e_{a+1}` carries weighted-homogeneous of weight `w` to homogeneous of degree `w`,
+proved by `MvPolynomial.IsWeightedHomogeneous.induction_on`, where the only case with
+content is the monomial one and the degree `∑_a (a+1)·d a` is `Finsupp.weight` of `d` after
+one `Nat.mul_comm`.
+
+That is the *forward* direction.  The crux itself is the converse — the `e`-expansion of a
+degree-`w`-homogeneous symmetric polynomial is weighted-homogeneous of weight `w` — and it
+follows from this one by decomposing into weighted-homogeneous components, applying the
+forward direction to each, and using uniqueness of the homogeneous decomposition plus
+injectivity of `esymmAlgHom`.  That is the remaining step, and it is the only place in the
+lane where `esymmAlgEquiv`'s surjectivity is used rather than its injectivity.
 
 ### `GroupApproximation/CharClass/ParityPTwo.lean` (~135 lines) — the calibration case
 
@@ -337,13 +367,53 @@ Estimate: 800–1500 lines.  Nothing in it is cohomological, so it runs in paral
 **Progress as of 2026-09-10, 13:00 CDT.**  Steps (1) and (2)'s infrastructure are green:
 `ParityPWuCartan` (the Cartan half, `P^i(e_{i+1}) = κ^i·m_{(p^i,1)}`), `ParityPSymmetric`
 (the functional and that it kills constant-term-free products) and `ParityPNewton` (the
-`fst`-is-evaluation-at-zero lemma and the linearity of `eCoeff`).  Newton is now green too
-(`ParityPNewtonValue.eCoeff_psumSub`).  What is left is exactly three things: `φ_κ` on
-power sums by the binomial theorem; the division by `i+1`, performed on integer
-coefficients in the domain `ℤ[κ]` where it is ordinary cancellation; and the
-weight-homogeneity that turns the coefficient into an element-level membership in
-`IsDecomposable`.  The third is the piece I still expect to dominate, and it is the only
-one that needs `esymmAlgEquiv`'s surjectivity rather than its injectivity.
+`fst`-is-evaluation-at-zero lemma and the linearity of `eCoeff`).  Newton and the twist are now
+green too (`ParityPNewtonValue.eCoeff_psumSub`, `ParityPTwist.twist_psum`).
+
+**What is left is one thing, not three.**  Working through the assembly showed that the
+division by `i+1` and the weight extraction are not independent of the homogeneity lemma;
+they are consequences of it, and it is the only genuinely missing piece:
+
+> **The crux.**  The `e`-expansion of a symmetric polynomial that is homogeneous of degree
+> `w` in the variables is *weighted*-homogeneous of weight `w`, where `X_a` carries weight
+> `a+1`.
+
+Everything else follows.  It gives, at once, that `eCoeff (N-1)` annihilates every
+weight-`w` piece with `w ≠ N` — so the weight-`N` part of `φ_κ(e_{i+1})` never has to be
+extracted as an element, only isolated by the functional — and that a weight-`N`-homogeneous
+`f` satisfies `f − eCoeff(f)·e_N ∈ IsDecomposable`, which is the element-level membership
+the `wu` field wants.  It is also the only place `esymmAlgEquiv`'s **surjectivity** is
+needed; every green step so far uses only its injectivity, through the well-definedness of
+`eExpand`.
+
+**And the universal ring is smaller than sp-design's proof suggests.**  The final statement
+is about `m_{(p^i,1)}`, in which `κ` does not appear — the Cartan half factors `κ^i` out
+already (`p_gamma_succ_eq_smul`).  So the universal identity lives in
+`MvPolynomial (Fin r) ℤ` and the division by `i+1` is cancellation in `ℤ`, not in `ℤ[κ]`.
+`κ` is still carried through `twist` because it is what separates the weights of
+`φ_κ(e_{i+1})` by its own degree, but it never reaches the statement being specialised.
+
+**The Mathlib inventory for the crux, checked by reading the files.**
+`Mathlib/RingTheory/MvPolynomial/WeightedHomogeneous.lean` has everything the argument
+needs: `IsWeightedHomogeneous`, `weightedHomogeneousComponent` as a linear map,
+`sum_weightedHomogeneousComponent`, `IsWeightedHomogeneous.weightedHomogeneousComponent_same`
+and `_ne`, `weightedHomogeneousComponent_eq_self`, and — the one that gives half the crux
+for free — `IsWeightedHomogeneous.coeff_eq_zero`, which says a weighted-homogeneous
+polynomial has no coefficient in a monomial of the wrong weight.  That is exactly
+"`eCoeff (N−1)` annihilates the weight-`w` pieces with `w ≠ N`", since the monomial
+`X_{N−1}` has weight `N`.
+
+**The one gap**: there is no `esymm_isHomogeneous` anywhere in
+`Mathlib/RingTheory/MvPolynomial/Symmetric/`.  `MvPolynomial.IsHomogeneous.sum`,
+`isHomogeneous_X` and `IsHomogeneous.mul` all exist, so `e_a` is homogeneous of degree `a`
+in about ten lines, but it has to be written.  That is the only piece of the crux that is
+not already in the library, which is a much better position than I expected.
+
+**The argument, in order.**  `esymmAlgHom` carries weighted-homogeneous of weight `w` to
+homogeneous of degree `w`, because `X_a ↦ e_{a+1}` and `e_{a+1}` is homogeneous of degree
+`a+1`.  Decompose `eExpand f` into weighted-homogeneous components, apply `esymmAlgHom`, and
+use uniqueness of the homogeneous decomposition of `f` to kill every component but one;
+injectivity of `esymmAlgHom` then kills the corresponding components of `eExpand f`.
 
 **Not to be attempted**, on sp-design's evidence (`tools/diag_wu_shape.py`): a closed form
 for the odd-`p` diagonal Wu polynomial in the two-factor shape `WuSymmetric.lean` has at

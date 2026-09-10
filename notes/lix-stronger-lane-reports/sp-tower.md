@@ -220,7 +220,21 @@ localises a failure there.
   Householder/frame engine above it is already generic, so this is a 150-line
   transcription with `Fin 3 ↦ Fin (n+1)` and `x 2 ↦ x (Fin.last n)`.
 
-## THE C*-SIDE GATE IS GREEN — 2026-09-10 11:56 (cs-stages, **PROBE GREEN, 3040 jobs**)
+## THE C*-SIDE GATE — 2026-09-10 11:56 (cs-stages, PROBE GREEN, 3040 jobs) — **RETIRED, RE-RUNNING**
+
+> **Superseded 13:2x.**  `purge_stale.py` gained an import-transitive criterion after this
+> run.  Measured on this same clone minutes apart with no edits between: 13:0x printed
+> `purged 0 stale artifact sets (source newer than olean)`, 13:2x printed `purged 2870
+> stale artifact sets (source-newer=0, import-newer=2870) of 4838 oleans`.  Fifty-nine
+> percent of cs-stages was stale by the import test while source-newer was zero — which is
+> the fresh-trace-over-stale-olean mode seen from the only angle that can see it.  So the
+> run below, the 12:15 equator run and the 13:0x shape-layer run were all taken over a
+> clone in that state.  They are not necessarily wrong; they are **unevidenced**, and I am
+> not restating them as confirmed.  The whole gate plus all four new leaves has been
+> relaunched on one command under the strengthened purge, and that verdict replaces this
+> section.  The axiom lines below stand or fall with it.
+
+### The retired run, kept for the record
 
 Target: the seven `CharClass`-free maximal elements of my closure — `LIXLemmaSixField`,
 `LIXLemmaSixClimb`, `LIXLemmaSixDiagEnd`, `LIXLimitSimple`, `LIXStageAlgebraSeparable`,
@@ -498,6 +512,82 @@ New, all leaves imported by nothing: `Analysis/LIXGenericEquator`,
 **The seven-importer gate does not test the four new files**, precisely because nothing
 imports them.  The landing probe must name them explicitly alongside the seven, or they
 land unverified.  That is a trap in the gate design, not in the files.
+
+## The re-verification, 2026-09-10 13:15–14:0x — and the no-op green that nearly passed
+
+Re-running the whole `CharClass`-free gate plus all four leaves under the strengthened
+purge produced `PROBE GREEN`, `Build completed successfully (8719 jobs)`,
+`purged 0 (source-newer=0, import-newer=0) of 1972 oleans`, zero errors, zero `sorryAx`,
+and these lines:
+
+```text
+'GroupApproximation.LIX.Gen.lixLimit_isSimpleCStar'  depends on axioms: [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.lixLimit_isSimpleCStar'      depends on axioms: [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.lixLimit_separableSpace'      depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+Then I counted the log: **`grep -c Built` = 0, `grep -c Replayed` = 6.**  Of 8719 jobs, not
+one of my nineteen modules was elaborated.  The six that printed anything printed it
+because they carry `#audit_axioms`, and lake replayed their recorded `info:` lines
+verbatim — so **the axiom-allowlist lines above came back word for word from a run that did
+not happen.**  A replayed audit line is indistinguishable from a fresh one.
+
+This is my own "absence is not evidence" rule turned around and pointed at me, and the
+purge is what disarmed it: `purged 0` made deleting artifacts look unnecessary.  It was
+not.  The artifacts were *consistent* — they were simply not mine to trust yet.  Two
+habits, both now in `FLEET_TRAPS`:
+
+* after any gate you intend to land on, `grep -c 'Built' $LOG` and require it to be at
+  least the number of modules you changed — **a job count is not a work count**;
+* "delete your own modules' remote artifacts first" is not a precaution for the stale
+  case, it is the only way to force elaboration.
+
+So I deleted them: 73 artifact files across the nineteen modules
+(`.olean`, `.ilean`, `.trace`, `.olean.hash`, `ir/*.c`; `.ilean.hash` may stay, it is
+IDE-only), and relaunched the same eleven-module gate.
+
+### THE GATE, FOR REAL — `laneprobe-20260910-132043.log`, **PROBE GREEN, 8719 jobs**
+
+```text
+purged 12 stale artifact sets (source-newer=0, import-newer=12) of 1954 oleans
+Build completed successfully (8719 jobs).   EXIT=0   PROBE GREEN
+grep -c Built = 29        grep -c Replayed = 3
+grep -c sorryAx = 0       grep -c "uses 'sorry'" = 0
+no axiom anywhere in the log outside [propext, Classical.choice, Quot.sound]
+```
+
+**Eighteen of my nineteen files were freshly elaborated in this run**, by name:
+`LIXBlockProjections` 82s, `LIXGeneratorUnitary` 69s, `LIXConnectingMapPoints` 77s,
+`LIXConnectingMap` 81s, `LIXConnectingMapFullness` 120s, `LIXConnectingMapFullnessSum`
+250s, `LIXConnectingMapFullnessTower` 93s, `LIXStageAlgebra` 93s,
+`LIXStageAlgebraSeparable` 78s, `LIXLimitAlgebra` 121s, `LIXLimitSimple` 90s,
+`LIXLemmaSixStageZero` 136s, `LIXLemmaSixClimb` 114s, `LIXLemmaSixDiagEnd` 90s, and the
+four new leaves — `LIXGenericEquator` 64s, `CharClass/LIXShapeGeneric` 187s,
+`LIXLemmaTwoPropGeneric` 262s, `LIXLemmaSixHIdxGeneric` 268s.  Eleven more of the
+`LIXLemmaSix*` chain came with them.
+
+The nineteenth is `LIXLemmaSixCor4`, which imports `CharClass` and is therefore not in a
+`CharClass`-free gate.  It is the only file of mine still unverified.
+
+The axiom lines, now genuinely computed rather than replayed:
+
+```text
+'GroupApproximation.LIX.lixLimit_isSimpleCStar'       [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.Gen.lixLimit_isSimpleCStar'   [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.lixLimit_hasK1InjWitness'     [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' [propext, Classical.choice, Quot.sound]
+'GroupApproximation.LIX.lixLimit_separableSpace'      [propext, Classical.choice, Quot.sound]
+```
+
+Two of the `LIXLimitSectionMatrix` lines look at first like a violation because they end
+`[propext,` — they are the multi-line form, `Classical.choice,` and `Quot.sound]` follow on
+the next two lines.  Grepping a single line for the closing bracket reports a false red on
+every long axiom list in the repository.
+
+**So: the counterexample algebra is simple and separable at every rank, unconditionally, on
+exactly the classical allowlist — and this time the run that says so is a run that
+happened.**
 
 ## PLAN for the remaining layers
 

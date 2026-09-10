@@ -148,11 +148,26 @@ confirm the two-variable placement; message sent.
 
 ## GREEN (with job counts)
 
-- nothing yet.
+- nothing yet; first probe of `CupOneSign` was FAILED (four errors, both causes below),
+  fixed, re-probing the whole chain.
 
 ## AUTHORED, UNVERIFIED
 
-- nothing yet.
+All five files are written; the sign derivation and the coboundary formula are
+model-verified, the Lean is not yet green.
+
+| file | contents |
+|---|---|
+| `CharClass/CupOneSign.lean` | `cutExp`, `cupOneSign`, the pair description of `cutU`/`cutV`/cards/ranks, the two termwise sign identities |
+| `CharClass/CupOneCochain.lean` | `cutRank_orderEmbOfFin`, the **signed** `faceVal_coboundary`, `cochainCupOne` and its zero/off-degree lemmas, three generic restatements |
+| `CharClass/CupOneInsert.lean` | `mul_self_mod_two`, `cutExp_pair_mod_two`, `telExp`, `telTerm`, `cut_insert_cancel_signed` (the signed telescope) |
+| `CharClass/CupOneCoboundary.lean` | `cupOneWeight`, `cupOneSign_succAbove`, `sum_compl_split`, `cut_coboundary_master_signed`, `cochainCupOne_coboundary` |
+| `CharClass/CupOneComm.lean` | `cocycleClassK_add`/`_smul`, `cochainCupOne_coboundary_cocycle`, `cup_comm_signed`, `cup_comm_of_even_left`/`_right` |
+
+**First probe (thm-e, 2032 jobs, `CupOneSign` at 123 s): FAILED with exactly four
+errors, of two kinds.**  The two big sign theorems `cutExp_succAbove_cutU` and
+`cutExp_succAbove_cutV` were structurally right on the first pass; both failures were
+in the small `Finset` plumbing under them.
 
 ## NEEDS
 

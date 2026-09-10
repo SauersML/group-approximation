@@ -457,17 +457,30 @@ decomposing into components.
 **Split, approved by the lead 2026-09-10.**  Mine: `TotalH` over `K` as a graded
 ring (`DirectSum.GRing`, `mul_comm` dropped), `TotalH.of`, `component`,
 `of_eq_zero_iff`, `map`, the `IsEven` predicate, the criterion
-`isEven_of_odd_component_eq_zero`, and the seven closure lemmas
-(`isEven_of`, `IsEven.zero/one/add/neg/mul/map`).  All unblocked today.
+`isEven_of_odd_component_eq_zero`, and the closure lemmas
+(`isEven_of`, `IsEven.zero/one/add/neg/map`).  All unblocked today.
+
+**`IsEven.mul` is dropped, deliberately.**  `sp-evenside` offered to withdraw it
+once I corrected its cost, and no consumer survives the check: they need `IsEven`
+for `z` (a single `of`-term, so `isEven_of`), for `ι r` (from `IsEven.map` plus
+`Y`'s even-concentration), and `mul_comm_of_isEven` to move one past the other —
+they never multiply two even elements and then need the result even.
+`sp-cupone`'s `mul_comm_of_isEven` does not need it either: that proof expands
+both factors over their supports and applies `cup_comm_of_even` pairwise, which
+is the same machinery but not this lemma.  And `CommRing (TotalH K Y)` follows
+from `mul_comm_of_isEven` alone once every element is even.  So it is an unused
+abstraction and it is not being written; if a consumer appears it is 30–50 lines
+via `sum_support_of`, `Finset.sum_mul_sum`, `of_mul_of`, `of_eq_of_ne`.
 `sp-cupone`'s: the signed cup-1 coboundary formula, signed `cup_comm`,
 `cup_comm_of_even`, and `TotalH.mul_comm_of_isEven`.  That is exactly one blocked
 declaration, which is the property `sp-evenside` asked for.
 
-`IsEven.mul` needs no commutativity: the degree-`m` component of a product is a
-sum over `i + j = m`, and if `m` is odd then every term has an odd factor.  **That
-reasoning goes in the docstring** (`sp-evenside`'s request): otherwise someone
-will assume the lemma inherits the `mul_comm_of_isEven` block and re-derive it
-once that lands.
+**Mathlib has no component-of-product lemma for a graded semiring** at this pin —
+`DirectSum/Ring.lean` gives `mulHom`, `mulHom_of_of` and `of_mul_of` and stops.
+So "the degree-`m` component of a product is a sum over `i + j = m`" is true
+mathematics with nothing to cite, and must not appear in a docstring: it sends a
+reader into a search that terminates in nothing, and a zero-hit search is
+indistinguishable from the fact being false.
 
 `isEven_of_odd_component_eq_zero` **stays a named lemma even though it is
 definitional**, and this is a standing decision, not an oversight to optimise away

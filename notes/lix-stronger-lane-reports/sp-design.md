@@ -1725,3 +1725,172 @@ it:
 
 So the `Φ`-on-models computation was corroboration and a prediction of the values, not a route
 to be formalised.
+
+## Program note audit (2026-09-10)
+
+Read `notes/LIX_STRONGER_PROGRAM_2026-09-10.md` end to end against the seven lane reports.
+I do not edit the note.  Fourteen findings, tagged **(a)** stale (true when written, false
+now), **(b)** internally inconsistent, **(c)** claim with no artefact.  Ordered by how much
+damage a reader takes from them.
+
+### The two the lead named
+
+**A1 (b), §1.3.2 — two dangling corrections that correct text no longer in the note.**
+§1.3.2 says "the rotation `ρ` … **in the `e₁`-plane** (not in a plane avoiding `e₁`)", but the
+sentence being corrected was replaced when the AGREED block landed, so the parenthesis
+corrects something a reader cannot see and reads as a warning about an alternative that was
+never proposed.  §1.5 has the same shape: "Correction (sp-coeff, 12:20): graded commutativity
+IS provided at `F₂`…" now follows text that no longer says the opposite.  **Fix:** state both
+positively ("`ρ` is `x₀ ↦ e^{2πi/k}x₀` in the `e₁`-plane"; "graded commutativity is provided at
+`F₂` … and is false at odd `p` without the sign"), and if the history is worth keeping put it
+in one dated line at the end of the section rather than inline.
+
+**A2 (a)(b), §1.5 — the constant paragraphs are a revision log, and one of them is
+out of order and contradicted.**  Four blocks in sequence: "The normalisation constant
+(decided)", "Model caveat (12:55)", "Resolved (12:55): no cone needed", "Settled ~11:50".  The
+last is timestamped *before* the two above it, is actually later than 11:50 (the `c_2`
+computation landed after 12:15), and asserts `c_2 = −1` "by evaluating on the fundamental class
+of the torus" — the `Φ`-on-models route whose top-degree step the paragraph above it
+retracts.  The "decided" block also still contains `c_n = (−1)^K λ_n` … "so every constant is
+read off the model simplex", which is that same retracted route, two paragraphs before its own
+retraction.  And `c_2` is given twice by different means (`κ(1,1)·c_1²`, and "directly").
+**Proposed single replacement below.**
+
+### Stale claims
+
+**A3 (a), §1.4 headline — "Conjecture the lanes must turn into a proof".**  It is no longer a
+conjecture.  The uniform theorem is proved (my §3.2), stated in the `ParityData` shape, with
+every lemma model-tested over 24 cases and `0` failures, and `sp-evenside` has it authored as
+`CharClass/ParityPData.lean`.  The same paragraph's closing instruction ("`sp-design` derives
+the uniform argument … and model-tests every lemma") is a task that is done.  **Fix:** state
+the theorem and cite `sp-design` §3.2 and `sp-evenside`; keep the table as the calibration
+record.
+
+**A4 (a), §1.2 — "`sp-design` must confirm … that the zero … is where `b = −a`".**  Confirmed:
+`LemmaTwoZero.mtSection_manuscript_eq_zero_iff` gives `t = −1 ∧ y = 0 ∧ b m = −a m ∧ c m = 0`.
+**Fix:** replace the instruction with the formula.  The same paragraph's "Lemma 2 is
+unchanged" is right about Lemma 2 and silent about the eleven chart-layer files that do change;
+the ruling `sp-oddside` asked for and got — do the local model generically in a unit vector `a`
+with `Re (a n) = 0` and an ℝ-linear isometry `L` onto `a^⊥`, not as a `Fin 3` relabelling —
+belongs here.
+
+**A5 (a)(b), §1.3.2 — the withdrawn renormalisation route is still printed.**  "(`clutch((a·ũ)^k)
+≅ clutch(ũ^k)` via `θ ↦ (A_θ ũ)^k ũ^{-k}`, no centrality needed)" is the argument `sp-powers`
+**withdrew**: their gauge lemma asks for a BALL unitary, not a disc unitary, so no homotopy is
+built — the gauge factor `u^m·(ũ^m)ᴴ` is itself a ball unitary and the left gauge lemma applies
+in one step (`clutchEquiv_normGen_pow`).  §1.3 item 1 already carries the replacement, so the
+note states both.  The same sentence says "disc unitary" where the landed hypothesis is "ball
+unitary", which is exactly the distinction that removed the obligation.
+
+**A6 (a)(b), §1.3 item 2 — the gauge lemma's hypothesis and its open question.**  Item 2 still
+reads "If `a ∈ U₀` (extends over the northern hemisphere)" and "(check whether `LIXClutching`
+already has it in this generality)".  It is landed as `exists_partialIsometry_of_gauge_left` /
+`_right` over `IsBallUnitary`, which is a weaker hypothesis than `a ∈ U₀`, and item 1 above it
+already says so.
+
+**A7 (a), §1.4 — the tool pointer.**  "`scratch/lix_modp_fast.py` … source in this session's
+scratchpad `sp/`" predates the tools directory.  The eleven tools now live in
+`notes/lix-stronger-lane-reports/tools/`.
+
+**A8 (a)(b), §1.1 status paragraph vs §3.**  §1.1 asserts "PROBE GREEN 3040 jobs" at 11:56, and
+§3 now says (sp-tower, 13:20) that "every green obtained before the transitive criterion
+existed is unevidenced … and must be re-probed before it lands" and (13:40) that a job count is
+not a work count.  The 11:56 green predates the 13:00 transitive purge, so the note's own
+protocol disqualifies the note's own status line.  **Fix:** mark it pre-purge and pending
+re-probe, or re-probe and restate with a `grep -c Built`.
+
+### Inconsistencies
+
+**A9 (b), §0 — the displayed theorem contradicts the §1.6 ratification.**  §0's Lean block uses
+`diagOne v ∈ pathComponent 1 (unitary (CStarMat 2 A))`, development vocabulary; §1.6 ratifies
+that the challenge states the stabilisation as an existential over a path-component element
+whose matrix is `cornerDiag`, with no `diagOne`.  Two further slips in the same block:
+`pathComponent 1 (unitary X)` has the arguments the wrong way round (Mathlib's is
+`pathComponent (1 : unitary X)`), and `SeparableSpace` is `TopologicalSpace.SeparableSpace`.
+**Fix:** either paste the ratified challenge statement or label the block "schematic; the
+Mathlib-only form is §1.6".
+
+**A10 (b), §1.4 vs §1.5 — `P(h) = h + h^p` vs the normalisation.**  §1.4 lists the available
+relations with `P(h) = h + h^p`, but §1.5 decides the operations are normalised so that
+`P^0 = id`, at the price of `P(h) = h + κ h^p` with `κ` a unit.  Everything survives (§3.4a),
+but the consequence must be recorded where the relations are listed: **the Wu hypothesis's
+leading coefficient is a unit, not `1`**.  `sp-evenside` had hard-coded `1` and has been
+corrected; the note should not re-seed the error.  §2's `sp-steenrod` row has the same
+`P(h) = h + h^p`.
+
+**A11 (b), §1.3 item 4 vs `sp-oddside`'s plan.**  Item 4 asks for excision to a direct sum and
+says the local contributions agree "by naturality of `j` and ABSOLUTE homotopy invariance".
+Two changes since: the splitting is the single equation `x = ∑_i ρ_i(x_i)` with `ρ_i ≫ j = j_i`
+(no biproduct — `sp-oddside`'s simplification, which I adopted), and the "contributions agree"
+step has a **second half** the note never mentions — the local classes corresponding under
+`(ρ^i)^*_rel`, which is not free because the mapping-torus bundle is not `ρ`-invariant (`G` comes
+from Step A).  It is true, because the local model is `G`-free, but it needs its own lemma.
+At `p = 2` neither half is needed at all: an `F₂`-line has one nonzero element.  Also item 4's
+`γ_r(W_g) = k·c₀` is `(k+1)·c` in `sp-oddside`'s indexing (their `ψ_k` has degree `k+1`).
+
+**A12 (b), §2 lane table.**  `sp-design` and `sp-evenside` are both assigned **clone spare1 and
+cores 96–103**, while §3 says "Never use another lane's clone."  Harmless only because this
+lane runs no `lake`; it should say so rather than assert a shared clone.  And `sp-powers`' first
+deliverable still names the clutching statement, which §1.3's interface decision moved off the
+critical path in favour of the bare homotopy.
+
+### Claims with no artefact behind them
+
+**A13 (c), §0 — "Mod-p cohomology cannot see `p²` (see §1.4)".**  §1.4 contains a model table
+and a mechanism, and no argument about `p²`.  The support that exists is indirect: the Step D
+theorem concludes `p ∣ k`, and the certificates show the relations constrain residues mod `p`
+only.  **Fix:** give the reason in one clause or drop the cross-reference, which currently
+promises a justification the target does not contain.
+
+**A14 (c), §1.1 — "this is the only place the tower's shape enters Step D".**  There are **two**
+arithmetic inputs, not one: `p ∣ d_j` (which is what this sentence names) and `p ∣ n + m`, i.e.
+`r ≡ 1 (mod p)`, which is about the RANK and is what makes the final index land where the
+induction has reached.  Both follow from `p ∣ n`, which is why the sentence has never caused
+trouble, but as written it is an exhaustive claim that is not exhaustive.
+
+### The consolidated §1.5 constant paragraph
+
+Replacing the four blocks (A2), with the retracted route named as such:
+
+> **The normalisation constant (settled 2026-09-10).**  An abstract equivariant diagonal gives
+> every axiom except `P^0 = id`, which is the value of a universal constant `c_q`
+> (`Q^0 = c_q·id`); no other axiom pins it (the Frobenius satisfies all of them with `c = 0`).
+> Its VALUE never reaches Step D: a rescaling `P'^i = κ^i P^i` preserves every axiom, the
+> κ-sweep found `0` of `28` cases dependent on it, and the only consequence downstream is that
+> the degree-2 relation reads `P(h) = h + κ h^p` with `κ = c_2^{-1}` a unit — so **every
+> statement of the Wu hypothesis carries a unit leading coefficient, not `1`**.  What is needed
+> is `c_2 ≠ 0`, and it is now known.
+>
+> * **`c_1 = ((p−1)/2)!`**, by the descent on `Δ¹`, generic in `p`.  The descent never leaves
+>   the two-letter complex `E⁰ = ⟨f⟩`, `E¹ = ⟨g⟩`, `δf = g`, where `h(g) = f` and
+>   `h ⊗ 1^{⊗(p−1)}` is a **full** contraction of `E^{⊗p}` (no `ηε` term, `E` being exact); so
+>   it is finite linear algebra in `2^p` words, model-free, landing in the singular tensor power
+>   by functoriality.  **No cone operator is needed** (there is none in Mathlib at the pin).
+>   Primitive-independence is a THEOREM: a perturbation changes the next element by a
+>   coboundary the following step absorbs, `N(T−1) = 0` kills the rest, and only the last
+>   step's boundary term survives, which vanishes on `Δ¹` by the point lemma.  A descent on
+>   `Δ²` is NOT well defined (the ambiguity pairs against `AW(∂σ)`, edges rather than points)
+>   and must not be attempted.
+> * **`κ_top(q,q') = (−1)^{q q'(p−1)/2}`**, the Cartan coefficient at the TOP corner (both
+>   `W`-indices at their maxima), derived and verified: the reduced coproduct coefficient there
+>   is always `1` because both indices are even, the rest is the riffle Koszul sign, and the
+>   evaluation reordering cancels.  So even-degree multiplicativity holds (`κ_top = 1` when `q`
+>   or `q'` is even) and the odd × odd case is `(−1)^{(p−1)/2}`.
+> * Hence **`c_2 = κ_top(1,1)·c_1² = −1`** and **`c_{2k} = (−1)^k`**, a unit in every even
+>   degree.  Independently confirmed by building the equivariant diagonal `Φ` on the models:
+>   `c_2 = −1` at `p = 3,5,7,11`, `c_4 = +1` and `c_6 = −1` at `p = 3`, `c_4 = +1` at `p = 5`,
+>   and `c_1` agreeing with the descent at every prime — two computations by different
+>   machinery.
+> * `sp-steenrod` therefore takes the resolution's coproduct **explicitly** (`sp-design` solved
+>   it in closed form, three cases, verified block by block; the abstract route creates an
+>   unknown, the explicit one retires it and removes the need for the vanishing below the bottom
+>   of the range), and states the bridge with its Künneth prerequisite: two **distinct**
+>   degree-one classes with nonzero product, i.e. a torus, since an odd class squares to zero.
+>   Their earlier "coefficient `1` in even degrees" lemma was RETRACTED (it evaluated at the
+>   bottom corner, the counit case).  The explicit `p`-fold interval-cut diagonal is not built.
+>   The lane has no unknown constant anywhere.
+> * **Not a route to formalise.**  The `Φ`-on-models computation reads each constant off the top
+>   degree of `C_*(Δ^n)^{⊗p}` because that degree has a single basis element.  That is true of
+>   the **simplicial** model and false for singular chains, where the top-degree group of a
+>   simplex is enormous.  The pairing values transfer; the route does not.  `c_1` comes from the
+>   descent and the higher constants from `κ_top`.

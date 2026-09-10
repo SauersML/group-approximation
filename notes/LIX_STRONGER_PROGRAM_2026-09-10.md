@@ -21,7 +21,7 @@ unitary that dies in K₁ at the first stabilisation and whose powers stay outsi
 the exponent is divisible by every prime dividing n. -/
 theorem exists_simple_unital_unitary_powers_outside_U0 (n : ℕ) (hn : 2 ≤ n) :
     ∃ (A : Type) (_ : CStarAlgebra A), Nontrivial A ∧ IsSimpleRing A ∧ SeparableSpace A ∧
-      ∃ v : unitary A, diagOne v ∈ pathComponent 1 (unitary (CStarMat 2 A)) ∧
+      ∃ v : unitary A, (∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)), (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag v) ∧
         ∀ k : ℕ, v ^ k ∈ pathComponent 1 (unitary A) → ∀ p : ℕ, p.Prime → p ∣ n → p ∣ k
 ```
 
@@ -31,8 +31,8 @@ infinite) that is trivial in `K₁`.  Corollary (every squarefree order): for ev
 squarefree `N` take `n = N`.  The `n = 2` instance is the existing theorem.
 
 **Not claimed, not attempted:** `K₁(A) = 0`, exact orders, `p² ∣ k`, nuclearity, traces,
-stable rank.  Mod-p cohomology cannot see `p²` (see §1.4), so `rad(n) ∣ k` is the sharp
-statement this method yields.  Anyone proposing to formalize the exact order must first
+stable rank.  Mod-p cohomology cannot see `p²` (Step D concludes `p ∣ k` and its relations constrain residues mod `p`
+only; see §1.4's uniform theorem), so `rad(n) ∣ k` is the sharp statement this method yields.  Anyone proposing to formalize the exact order must first
 produce, on paper, an unconditional proof of `2·Ση = 0 ∈ π₄(S³)`; see
 `Analysis/LIXGeneratorUnitary.lean`'s module docstring for why the obvious ansätze fail.
 
@@ -52,7 +52,8 @@ the differences are stated here.
   The twisted connecting maps, the limit, simplicity and separability are the existing
   arguments with `2` replaced by `n` (`Analysis/LIXConnectingMap`, `LIXLimitAlgebra`,
   `CStarSimple`, ...).  **`p ∣ r_j` for every prime `p ∣ n` and every stage** — this is the
-  only place the tower's shape enters Step D.
+  one of the two arithmetic inputs of Step D (the other is `r ≡ 1 mod p`, i.e. `p ∣ n + m`, a
+  statement about the rank); both follow from `p ∣ n`.
 * `F` over `S^{2n+1}`: `Fproj = 1_{n+1} − x xᴴ` (rank `n`), the complement of the tautological
   section.  The generator `u : S^{2n} → U(n)` is the seam discrepancy of the two hemisphere
   frames of `U(n+1) → S^{2n+1}` (Householder reflections through the normalised midpoint,
@@ -60,7 +61,7 @@ the differences are stated here.
   clutched by `u` is `Fproj`.  No `π_{2n}(U(n))` anywhere.
 * `V = 1^{n+1} ⊕ H`, rank `r = n + 1 + m`, `m = Σ d_i`, over `M = S^{2n+1} × Y`; the two
   projections are `FHmat = V − s sᴴ` and `EHmat = V − e eᴴ`.
-* **Status 2026-09-10 11:56 CDT (`sp-tower`, PROBE GREEN 3040 jobs on cs-stages):** the whole C*-side is
+* **Status 2026-09-10 (`sp-tower`; the 11:56 green at 3040 jobs predates the transitive purge and is superseded by the 13:20 gate: PROBE GREEN, 8719 jobs, 29 Built lines, artifacts deleted first):** the whole C*-side is
   generic in `n` (`STW59.Gen.*`, every old name kept as the `n = 2` specialisation, `stageRank n i :=
   2 ^ i * n` so `n = 2` is a `rfl`): block projections, connecting maps, stage algebras with the
   pi-shaped `CStarAlgebra` instance, separability, the tower and limit, fullness, and
@@ -78,8 +79,9 @@ point of the clutching coordinate, and a degree-`k` map of the sphere that prese
 hemispheres is a cone at the suspension points, so with `e = e₃` the `k`-th power's zeros
 could never be local homeomorphisms.  **Take `e = e₁`** (any unit vector with
 `Re (e n) = 0`): `EHmat` changes by a constant unitary, Lemma 2 is unchanged, and the zero
-moves to `x = −e₁` on the equator.  `sp-design` must confirm from `LemmaTwoZero.lean` that
-the zero of the transported section for abstract block data `(a, b, c)` is where `b = −a`.
+moves to `x = −e₁` on the equator.  Confirmed by `sp-design` from `LemmaTwoZero.mtSection_manuscript_eq_zero_iff` (read): for abstract block
+data `(a, b, c)` the transported section vanishes exactly where the circle is at its south pole,
+`b(m) = −a(m)` and `c(m) = 0`, so with `a = e₁` the zero is `−e₁` on the equator.
 
 ### 1.3 Powers: Step C with `k` zeros (design, owners `sp-design`, `sp-powers`, `sp-oddside`)
 
@@ -94,10 +96,10 @@ For `v^k ∉ U₀(A_j)` the chain is:
    `clutch(u^k) ≅ clutch(ũ^k)` by the left gauge lemma with the ball-unitary factor
    `(A ũ)^k (ũ^k)ᴴ`.  **Path-connectedness of `U(n)` is needed nowhere; do not prove it.**
    (owner `sp-powers`; `Analysis/LIXPowersNormalise.lean`)
-2. **Gauge lemma.**  If `a ∈ U₀` (extends over the northern hemisphere) then
+2. **Gauge lemma (landed, `Analysis/LIXPowersGauge.lean`, hypothesis `IsBallUnitary`, weaker than membership in `U₀`).**  If `a` is a ball unitary then
    `clutch(a·b) ≅ clutch(b)` (change the northern trivialisation by the extension; this is
    `LIXClutching`'s seam trick and needs no square root).  Hence `clutch(u^k) ≅ clutch(u ∘ ψ_k)`.
-   (owner `sp-powers`; check whether `LIXClutching` already has it in this generality)
+   (owner `sp-powers`; landed as `exists_partialIsometry_of_homotopy`, no functional calculus, no square root)
 3. **Naturality of clutching.**  `clutch(u ∘ ψ_k) = (Σψ_k)^* clutch(u) = (x ∘ Σψ_k)^⊥` where
    `Σψ_k : S^{2n+1} → S^{2n+1}` is the suspension (acts on the equatorial coordinates, fixes
    the clutching coordinate `Re (x n)`).  (owner `sp-powers`)
@@ -108,7 +110,10 @@ For `v^k ∉ U₀(A_j)` the chain is:
    `j^*(loc_i)` is the one-zero computation already in the tree (`LIXStepCOdd*`), transported
    along the rotation `ρ^i` (§1.3.2): `j^*(loc_i) = (ρ^{-i})^*(j^*(loc_0)) = j^*(loc_0)` by
    naturality of `j` and ABSOLUTE homotopy invariance (`ρ` is isotopic to the identity).
-   Hence `γ_r(W_g) = k · c₀` with `c₀ ≠ 0`, so `γ_r(W_g) ≠ 0` whenever `p ∤ k`.
+   Hence `γ_r(W_g) = (k+1)·c` in sp-oddside's indexing (`k+1` zeros for the `(k+1)`-st power), with `c ≠ 0`,
+   so `γ_r(W_g) ≠ 0` whenever `p ∤ k+1`.  The second half of "the contributions agree" — the local classes
+   corresponding under `(ρ^i)^*_rel` — is NOT free (the mapping-torus bundle is not `ρ`-invariant) and is
+   the extra lemma of sp-design §4.5; at `p = 2` neither half is needed (an `F₂`-line has one nonzero element).
    **Over `F_p` with `p` odd this is where signs would enter; the `ρ`-symmetry is what makes
    every local contribution literally equal, so no local degree is ever computed.**
    (owner `sp-oddside`, after `sp-design` signs off)
@@ -140,22 +145,22 @@ is continuous (the quotient is `0` at `x₀ = 0` by Lean's convention and is `O(
 and positively homogeneous, so it is its own cone: `Σψ_k` on `S^{2n+1}` is **literally the same formula**
 with the clutching coordinate `Re (x n)` untouched (`Analysis/LIXPowersNaturality.lean`, `IsRadialMap`).
 Two corrections to the first draft of this note: the rotation `ρ` of order `k` is the rotation
-`x₀ ↦ e^{2πi/k} x₀` **in the `e₁`-plane** (not in a plane avoiding `e₁`), so that `ψ_k ∘ ρ = ψ_k`; and
+`x₀ ↦ e^{2πi/k} x₀` in the `e₁`-plane (the `x₀`-plane), so that `ψ_k ∘ ρ = ψ_k`; and
 the local identity at the `k` preimages `ψ_k^{-1}(−e₁) = {x₀^k = −1, x' = 0}` is **precomposition**:
 near `ρ^i q₀` the map is the map near `q₀` precomposed with `ρ^{-i}`, and it is a local
 homeomorphism there because `x₀ ≠ 0`.  The vertical slab pinch does NOT work (it jumps by 2 at every
 interior interface, model-confirmed); only the angle coordinate closes, because its two ends are the
 same set.  Eckmann–Hilton (`Analysis/LIXPowersEH.lean`) reduces `u^k ≃ u ∘ ψ_k` to the one named
 `Prop` `PinchIdentification`, which `sp-powers` discharges through the angle family.  Renormalising
-the seam generator by a disc unitary `a` is free for the whole chain, powers included
-(`clutch((a·ũ)^k) ≅ clutch(ũ^k)` via `θ ↦ (A_θ ũ)^k ũ^{-k}`, no centrality needed), which removes the
-basepoint obstruction.  Model tests: `scratch/sp-powers/powers_modeltest.py` on MSI (50 checks).
+the seam generator by a ball unitary `A` is free for the whole chain, powers included
+(`clutch((A·ũ)^k) ≅ clutch(ũ^k)` by one application of the left gauge lemma with the ball-unitary factor
+`(Aũ)^k (ũ^k)ᴴ`; no homotopy is built), which removes the basepoint obstruction.  Model tests: `scratch/sp-powers/powers_modeltest.py` on MSI (50 checks).
 
 ### 1.4 Step D mod `p`, uniform in the stage (design, owner `sp-design`, then `sp-evenside`)
 
 Over `F_p`: `H^*(N) ⊇ H^*(Y)[z]/(z²)` in even degrees, `z = t x`, `deg z = 2n+2`,
 `γ(W) = γ(V)(1 + z b)`, `b ∈ H^*(Y; F_p)` unknown.  Available relations, and ONLY these:
-the total reduced power `P = Σ P^i` is a ring homomorphism (Cartan), `P(h) = h + h^p` on
+the total reduced power `P = Σ P^i` is a ring homomorphism (Cartan), `P(h) = h + κ h^p` on
 degree-2 classes, `P(z) = z`, instability `P^i = 0` below degree `2i`, and the Wu relations
 `P(γ_j(W)) = E_j(γ(W))` **for each `j` separately** (the universal polynomials `E_j` with
 `P(e_j) = E_j(e)`; the total-class identity alone is too weak — it lost the calibration case).
@@ -184,13 +189,11 @@ with `p ∤ n` they generally do not, and the controls behave as Bott requires.
 | 10 | 7 | [10], [10,20] | no |
 | 11 | 11 | [11], [11,22] | yes |
 
-Conjecture the lanes must turn into a proof: **for every prime `p ∣ n` and every stage,
-the relations force `γ_r(W) = 0`.**  The expected mechanism is the mod-2 one: `p ∣ d_i`
-makes `γ(V) = ∏(1 + h_i^p)^{d_i/p}` supported in degrees `≡ 0 mod 2p` (Frobenius), and the
-Wu relations read on the `z`-part, with instability, kill the coefficients `b` in the
-complementary residues.  `sp-design` derives the uniform argument from the model's
-certificates (print which relation kills which coefficient), states it as a finite list of
-lemmas over an abstract `F_p`-algebra `H^*(Y)[z]/(z²)`, and model-tests every lemma.
+Done (sp-design §3.2–3.3): the uniform argument is the mod-2 one with `p` in place of `2` — `p ∣ d_i` makes
+`γ(V) = ∏(1 + h_i^p)^{d_i/p}` (Frobenius), the Wu relations read on the `z`-part with instability kill
+`b_N` for `N ≡ 1 mod p` by a triangular induction, and the assembly `γ_r(W) = z·Σ A_{m−k} b_k` vanishes
+since `r ≡ 1 mod p` — stated as lemmas L0–L7 over an abstract `F_p`-algebra `H^*(Y)[z]/(z²)`, every
+lemma model-tested (24 cases), and authored by sp-evenside in the `ParityData` shape.
 A proof that works stage by stage but not uniformly is NOT acceptable: the limit needs
 all stages.
 
@@ -203,7 +206,7 @@ all stages.
   coefficient parameter `K` (a field, or `ZMod p` with `[Fact p.Prime]`) through the layers
   that never use `1 = -1`: cohomology basic/assoc/pull, Mayer–Vietoris, relative pairs and
   excision, Leray–Hirsch, Chern classes via Leray–Hirsch, projective bundles, Thom class,
-  Gysin.  Correction (sp-coeff, 2026-09-10 12:20): graded commutativity IS provided at `F₂` (`SteenrodCupOne.cup_comm`,
+  Gysin.  Graded commutativity is provided at `F₂` (`SteenrodCupOne.cup_comm`,
   unsigned, all degrees; `ChernTotalRing`'s `GCommRing` instance rests on it) but is FALSE at odd `p`
   without the sign `(−1)^{|a||b|}`, so `TotalH` over `K` is a graded RING (`DirectSum.GRing`, dropping
   exactly the `mul_comm` field) and over `F₂` a graded commutative ring; any lemma that commutes two
@@ -231,7 +234,8 @@ all stages.
   building at every landing: the LIX answer is a verified artifact and stays green.
 * The odd-primary Steenrod powers `P^i` at cochain level, with naturality, `P^0 = id`,
   Cartan formula (total `P` multiplicative), instability (`P^i = 0` below degree `2i`,
-  `P^{q/2} = p`-th power on degree `q` even), `P(h) = h + h^p` on degree 2.  The `F₂` tree
+  `P^{q/2} = p`-th power on degree `q` even), `P(h) = h + κ h^p` on degree 2 with `κ` a unit (the
+  normalisation of §1.5; every Wu hypothesis carries a unit leading coefficient, never a bare `1`).  The `F₂` tree
   builds `Sq` from cup-`i` products (`SteenrodSquare.lean`) and the Cartan formula by acyclic
   models (`Cartan*.lean`); for odd `p` the cup-`i` route does not exist and the construction
   is the `ℤ/p`-equivariant diagonal approximation on the `p`-fold tensor power (the
@@ -241,54 +245,48 @@ all stages.
   `sp-steenrod` writes the construction plan first (which acyclic-models statements are
   needed, which the tree already has, what normalisation constant appears and why it is a
   unit mod `p`) and gets it reviewed by `sp-design` before authoring.
-* **The normalisation constant (decided 2026-09-10).**  An abstract equivariant diagonal gives every
-  axiom except `P^0 = id`, which is the value of a universal constant `c_q` (`Q^0 = c_q · id`),
-  and no other axiom pins it (the pure Frobenius satisfies all of them with `c = 0`).  Its VALUE is
-  irrelevant (κ-sweep: 0 of 28 cases depended on it; a rescaling `P'^i = κ^i P^i` preserves every
-  axiom), so `P̃ := c_q^{-1} Q` on even degrees; only `c_2 ≠ 0` matters.  `c_1 = ((p−1)/2)!` by
-  the descent on the 1-simplex, generic in `p` (cone contraction on slot 0, `DH + HD = 1`, every
-  primitive is `H(A)`, final pairing with the Alexander–Whitney diagonal), and `c_2 = κ(1,1)·c_1²` from
-  the Cartan comparison on the torus, where `κ(1,1)` is the Cartan coefficient at the top splitting
-  (both `W`-indices `p−1`, twist summed) — NOT pinned by the degree-0 agreement (that is the counit and
-  fixes only the empty top-index case).  (`sp-steenrod`'s "coefficient 1 in even degrees" lemma was RETRACTED
-  the same day: it evaluated at the bottom corner, the counit case; the constants live at the top
-  corner, so the higher even constants come from the Cartan identity at the top corner with the
-  explicit coproduct, `c_{q+q'} = κ_top(q,q')·c_q·c_{q'}` with **`κ_top(q,q') = (−1)^{q q' (p−1)/2}`** (derived and verified
-  2026-09-10 12:30: the reduced coproduct coefficient at that corner is always 1 since both `W`-indices
-  `q(p−1)`, `q'(p−1)` are even, and the rest is the riffle sign; the evaluation reordering cancels),
-  so even-degree multiplicativity holds (`κ_top = 1` when `q` or `q'` is even), the odd×odd case is
-  `(−1)^{(p−1)/2}`, and **`c_{2k} = (−1)^k`**, a unit in every even degree.  Moreover `c_n = (−1)^K λ_n`
-  with `λ_n` the coefficient of `[0..n]^{⊗p}` in `Φ(e_{n(p−1)} ⊗ ι_n)` (Fermat on any `n`-cycle), so
-  every constant is read off the model simplex; `λ_1 = ((p−1)/2)!`.)  **Model caveat (sp-steenrod,
-  12:55):** sp-design's descent contraction is written on the simplicial (face) model; the tower is
-  SINGULAR.  Only the pairing VALUES transfer, not the top-degree-is-one-dimensional route.  Ruling: if
-  "the final pairing is independent of the choice of primitives" is a theorem on singular cochains, use
-  the abstract contraction from the splitting lemma; otherwise build the singular cone operator
-  (`(t₀,t') ↦ (1−t₀)σ(t'/(1−t₀)) + t₀ v` on a convex target, `∂c + c∂ = id − ηε`), ~250 lines, absent
-  from Mathlib at the pin, reusable by every contractible-model argument — approved in advance.  **Resolved (sp-design, 12:55): no cone needed.** The descent never leaves the two-letter complex
-  `E⁰ = ⟨f⟩, E¹ = ⟨g⟩, δf = g`; a map from it into any cochain complex (singular or simplicial) is a
-  choice of 0-cochain and is a chain map for free, and the differential, the cyclic action and the
-  one-slot contraction all preserve its `p`-fold tensor power, so the computation is finite linear
-  algebra in `2^p` words landing in the singular tensor power by functoriality.  Primitive-independence
-  is a THEOREM (a perturbation changes the next element by a coboundary the following step absorbs and
-  the `N·(T−1) = 0` step kills; only the last step's boundary term survives, which vanishes on `Δ¹`).
-  The top-degree route is retracted; `c_1` comes from the model-free descent and the higher constants
-  from the multiplicativity factor.
-  **Settled 2026-09-10 ~11:50 CDT:**
-  `sp-design` solved the resolution's coproduct in closed form (three cases, verified block by block) and
-  the reduced (odd,odd) coproduct coefficient is `1` (the integral pair count `p(p−1)/2` dies mod `p`);
-  with the riffle Koszul sign the full Cartan coefficient is `κ(1,1) = (−1)^{(p−1)/2}`, and building the
-  equivariant diagonal `Φ` itself on the models (iterated Alexander–Whitney at `e_0`, chain-map
-  recursion solved by the FULL tensor contraction) and evaluating on the fundamental class of the
-  torus gives **`c_2 = −1` directly** for every odd `p` computed (3, 5, 7, 11), Wilson-consistent with
-  `c_1 = ((p−1)/2)!`: `κ·c_1² = (−1)^{(p−1)/2}(−1)^{(p+1)/2} = −1`.  The constant is well defined on a
-  CYCLE (torus), not on a simplex, which is why `Δ²` failed.  `sp-steenrod` therefore takes the
-  coproduct EXPLICITLY (the abstract route creates the unknown, the explicit one retires it and also
-  discharges the vanishing below the bottom of the range), states the bridge with its Künneth
-  prerequisite (two distinct degree-one classes with nonzero product, a torus), and still runs the
-  independent even-degree argument as a cross-check.  The lane has no unknown constant anywhere.  A descent on `Δ²` is NOT well
-  defined (the primitive ambiguity pairs against `AW(∂σ)`, edges, not points) and must not be
-  attempted.  The explicit `p`-fold interval-cut diagonal is not built.
+* **The normalisation constant (settled 2026-09-10).**  An abstract equivariant diagonal gives
+  every axiom except `P^0 = id`, which is the value of a universal constant `c_q`
+  (`Q^0 = c_q·id`); no other axiom pins it (the Frobenius satisfies all of them with `c = 0`).
+  Its VALUE never reaches Step D: a rescaling `P'^i = κ^i P^i` preserves every axiom, the
+  κ-sweep found `0` of `28` cases dependent on it, and the only consequence downstream is that
+  the degree-2 relation reads `P(h) = h + κ h^p` with `κ = c_2^{-1}` a unit — so **every
+  statement of the Wu hypothesis carries a unit leading coefficient, not `1`**.  What is needed
+  is `c_2 ≠ 0`, and it is now known.
+  
+  * **`c_1 = ((p−1)/2)!`**, by the descent on `Δ¹`, generic in `p`.  The descent never leaves
+    the two-letter complex `E⁰ = ⟨f⟩`, `E¹ = ⟨g⟩`, `δf = g`, where `h(g) = f` and
+    `h ⊗ 1^{⊗(p−1)}` is a **full** contraction of `E^{⊗p}` (no `ηε` term, `E` being exact); so
+    it is finite linear algebra in `2^p` words, model-free, landing in the singular tensor power
+    by functoriality.  **No cone operator is needed** (there is none in Mathlib at the pin).
+    Primitive-independence is a THEOREM: a perturbation changes the next element by a
+    coboundary the following step absorbs, `N(T−1) = 0` kills the rest, and only the last
+    step's boundary term survives, which vanishes on `Δ¹` by the point lemma.  A descent on
+    `Δ²` is NOT well defined (the ambiguity pairs against `AW(∂σ)`, edges rather than points)
+    and must not be attempted.
+  * **`κ_top(q,q') = (−1)^{q q'(p−1)/2}`**, the Cartan coefficient at the TOP corner (both
+    `W`-indices at their maxima), derived and verified: the reduced coproduct coefficient there
+    is always `1` because both indices are even, the rest is the riffle Koszul sign, and the
+    evaluation reordering cancels.  So even-degree multiplicativity holds (`κ_top = 1` when `q`
+    or `q'` is even) and the odd × odd case is `(−1)^{(p−1)/2}`.
+  * Hence **`c_2 = κ_top(1,1)·c_1² = −1`** and **`c_{2k} = (−1)^k`**, a unit in every even
+    degree.  Independently confirmed by building the equivariant diagonal `Φ` on the models:
+    `c_2 = −1` at `p = 3,5,7,11`, `c_4 = +1` and `c_6 = −1` at `p = 3`, `c_4 = +1` at `p = 5`,
+    and `c_1` agreeing with the descent at every prime — two computations by different
+    machinery.
+  * `sp-steenrod` therefore takes the resolution's coproduct **explicitly** (`sp-design` solved
+    it in closed form, three cases, verified block by block; the abstract route creates an
+    unknown, the explicit one retires it and removes the need for the vanishing below the bottom
+    of the range), and states the bridge with its Künneth prerequisite: two **distinct**
+    degree-one classes with nonzero product, i.e. a torus, since an odd class squares to zero.
+    Their earlier "coefficient `1` in even degrees" lemma was RETRACTED (it evaluated at the
+    bottom corner, the counit case).  The explicit `p`-fold interval-cut diagonal is not built.
+    The lane has no unknown constant anywhere.
+  * **Not a route to formalise.**  The `Φ`-on-models computation reads each constant off the top
+    degree of `C_*(Δ^n)^{⊗p}` because that degree has a single basis element.  That is true of
+    the **simplicial** model and false for singular chains, where the top-degree group of a
+    simplex is enormous.  The pairing values transfer; the route does not.  `c_1` comes from the
+    descent and the higher constants from `κ_top`.
 * Wu relations for `P^i` on mod-`p` Chern classes follow from the splitting principle
   exactly as `Wu.HasSplitting` does at `F₂`; the universal polynomials `E_j` are the
   elementary symmetric functions of `y + y^p`.
@@ -316,13 +314,13 @@ the one `inferInstance` finds); `NeZero n` is solution-side from `2 ≤ n`; land
 
 | lane | clone / cores | owns | first deliverable |
 |---|---|---|---|
-| `sp-design` | spare1 / 96-103 | this note §1.2–1.4 as theorems; every model test | uniform Step D proof for `p ∣ n`; `ψ_k` design; sign-off gate for the Lean lanes |
+| `sp-design` | no clone (runs no lake; model tests only) | this note §1.2–1.4 as theorems; every model test | uniform Step D proof for `p ∣ n`; `ψ_k` design; sign-off gate for the Lean lanes |
 | `sp-tower` | cs-stages / 88-95 | `Analysis/LIX*` generic in `n`; ALSO the rank parameter in the `CharClass/LIX*` shape layer (VIdx, baseM, HIdx, Vmat, sProj/eProj, FHmat/EHmat, lixDD), as `Gen` namespaces with every old name kept as the `n = 2` specialisation; never the constant-section move or the Step C geometry files | `stageRank n i`, `Fproj n`, seam generator for `U(n+1) → S^{2n+1}`, `diag(u,1) ∈ U₀`, tower, limit, simplicity, separability at general `n` with the `n = 2` instance unchanged |
 | `sp-coeff` | cs-endpoint / 64-71 | `CharClass` coefficient parameter | `Hmod K`, cup/pull/MV/relative/excision/LH/Chern/Thom/Gysin over a field `K`, `F₂` instance green |
-| `sp-steenrod` | cs-limit / 72-79 | odd-primary `P^i` | construction plan reviewed, then the operations with Cartan + instability + `P(h) = h + h^p` |
+| `sp-steenrod` | cs-limit / 72-79 | odd-primary `P^i` | construction plan reviewed, then the operations with Cartan + instability + `P(h) = h + κ h^p`, `κ` a unit |
 | `sp-powers` | cs-simplicity / 80-87 | §1.3 items 1–3 | Eckmann–Hilton over `U(n)`, gauge lemma, clutching naturality along `Σψ_k` |
 | `sp-evenside` | spare1 / 96-103 | Step D mod p: `CharClass/ParityP*`, `StepDModP*` | the uniform theorem of sp-design §3.2 as pure algebra generic in p (`ParityData` shape); later the bridge to real objects over sp-coeff's Chern classes and sp-steenrod's export |
-| `sp-oddside` | spare2 / 104-111 | Step C with k zeros: `CharClass/LIXK*` | the F₂, n = 2 instance first (constant section at e₁, k equatorial zeros, excision splitting, `γ_r = k·c₀`); later over F_p (needs sp-coeff's relative homotopy invariance and generic sphere/contractible) and general n (needs sp-tower's Gen shape layer) |
+| `sp-oddside` | spare2 / 104-111 | Step C with k zeros: `CharClass/LIXK*` | the F₂, n = 2 instance first (constant section at e₁, k+1 equatorial zeros, the single equation `x = Σ ρ_i(x_i)` via relative Mayer–Vietoris, `γ_r = (k+1)·c`); later over F_p (needs sp-coeff's relative homotopy invariance and generic sphere/contractible) and general n (needs sp-tower's Gen shape layer) |
 | `sp-cupone` | thm-e / 112-119 | signed cup-1 product over `K`: `CharClass/CupOne*` | the cup-1 coboundary formula with signs over any commutative ring (2-fold case of sp-steenrod's tuple model, same sign conventions), `cup_comm` signed and `cup_comm_of_even`, `TotalH.IsEven`/`mul_comm_of_even`; unblocks LerayHirsch*/Chern*/Projective*/Chart tower over `K` (12 files consume `SteenrodCupOne.cup_comm`) |
 | later: `sp-endpoint` | | §1.6 | after both sides are green; statements drafted by `sp-design` ("Endpoint statements") |
 
@@ -373,6 +371,19 @@ only when the table says it owns them.  Two lanes never edit one file; ask the l
   olean, or whose olean predates the olean of any `GroupApproximation` module it imports, or whose
   import has no olean; bounded to the library.  First use costs one large rebuild per clone
   (spare1 dry run: 2876 of 4823 oleans); that is the price of a green that means something.
+  **Two corollaries (sp-tower, 13:20):** every green obtained before the transitive criterion existed
+  is unevidenced (not necessarily wrong) and must be re-probed before it lands; and a closure gate is
+  blind by construction to a LEAF (a new file nothing imports yet), so the landing gate must name
+  every new leaf file explicitly on the same command as the closure targets.
+  And the transitive purge does NOT substitute for deleting your own artifacts (sp-evenside, 13:25):
+  it is consistency-driven, so it leaves your modules alone precisely when they are fine, and the
+  citable log (a Built line per claimed module) still needs `rm` of your own `.olean/.ilean/.trace/
+  .hash` and `ir/` outputs, with no probe running, followed by one probe.
+  **A job count is not a work count (sp-tower, 13:40):** a PROBE GREEN with a five-figure job count,
+  purge 0, and the axiom-allowlist lines printed verbatim can be a run in which NOTHING of yours was
+  elaborated (lake replays the recorded `info` lines of `#audit_axioms` word for word).  After any gate
+  you intend to land on, `grep -c Built` on the log must be at least the number of modules you changed.
+  Axiom lists wrap across lines; a line-oriented allowlist check reports false reds.
 * **No `sorry` lands.**  Author with `sorry` only inside a file that is not imported by
   anything, and say so in the report.  `#print axioms` on every endpoint-facing theorem:
   `[propext, Classical.choice, Quot.sound]`, nothing else, ever.

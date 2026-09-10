@@ -284,6 +284,58 @@ retires `sp-design` §4.2's "excision to `k+1` disjoint balls", which would have
 metric, a disjointness argument and a relative splitting over a disjoint union — none of
 which the tree has.
 
+## Since the first green (2026-09-10 afternoon)
+
+Three things happened after the five-module green; all three are in flight, none is cited
+as green yet.
+
+**1. `sp-design`'s `p = 2` simplification, implemented.**  New file
+`CharClass/LIXKStepCTwo.lean`.  Their observation is that at mod-2 coefficients
+`LocalClassesAgree` needs **neither Half A nor Half B**: `H^{2r}(N; F₂)` is a line, an
+`F₂`-line has a unique nonzero element, so the `k` local classes agree as soon as each is
+nonzero, and each of those is the one-zero argument at `z_i`.  So the `F₂` deliverable
+carries no isotopy, no naturality square along the rotation and no homotopy invariance at
+all.  The file provides `eq_of_ne_zero_of_line_two`, `localClassesAgree_of_ne_zero_two`,
+`localClass_ne_zero` and `topChernClass_ne_zero_kzero_two`.  It does **not** import
+`RelativeLineHomotopy`, per their warning that it is mod-2-only by construction and would
+have to be torn out for the odd-`p` deliverable.
+
+I also corrected `LIXKCount`'s `LocalClassesAgree` docstring, which had cited that file.
+The correct citation is `ThomStepCEuler.eq_localGenerator_of_ne_zero`.  The docstring now
+records both routes and `sp-design`'s caveat on my finding 1: the **`k`-point** punctured
+vanishing is off the critical path, but the **one-point** statement at every `z_i` is not,
+because the `F₂` route runs the one-zero argument `k` times.  `puncturedAcyclic_lixPoint`
+already supplies it at every point of the LIX base.
+
+**2. Relative Mayer–Vietoris, authored.**  New file `CharClass/LIXKRelativeMV.lean`,
+namespace `GroupApproximation.CharClass.LIXKRelMV`, generic in `[CommRing R]`.  Reading
+`RelativeExcision.lean` in full turned the "one new piece of infrastructure" into something
+smaller than expected, and the `epi` half needs **no subdivision at all**:
+
+* `relKeep A` is the idempotent on chains keeping the `A`-simplices, built from the tree's
+  own `relRetract` and `singularChainMap`, both already generic in the ring;
+* `splitKeep φ := relKeep A ≫ φ` lies in `C^n(X, B)` whenever `φ ∈ C^n(X, A ∩ B)`, and
+  `splitDrop φ := φ − splitKeep φ` lies in `C^n(X, A)` for any `φ` at all;
+* the two halves are not cocycles, but `δ(splitDrop φ) = −δ(splitKeep φ)`, so that
+  coboundary vanishes on every `{A,B}`-small simplex, and `smallAnnComplex_acyclic` — the
+  single geometric input, the same one excision consumes, and the only place `A ∪ B = X`
+  enters — corrects both halves at once.
+
+`exists_relCocycle_split_of_acyclic` takes the acyclicity as a hypothesis and is generic;
+`exists_relCocycle_split` is the `ZMod 2` instance, discharged by
+`CupVanishSmallAnn.exists_smallAnn_preimage`.  The hypothesis disappears when `sp-coeff`
+generalises `RelativeSmallChains`.  What remains between this and `LocalSplit` is the
+passage from cochains to relative-cohomology classes and the induction on the punctures.
+
+**3. The `ChernTotalRing` blocker is a second-order stale artifact, not a source break.**
+After the purge that `laneprobe.sh` now runs, spare2 still held
+`SteenrodCupOne.olean` from 09-05 22:37 beside a `CohomologyBasic.olean` rebuilt today at
+12:10.  `ChernTotalRing` imports both, so it was elaborated against the new generic `cup`
+and an old `cup_comm` compiled against the `cup` that no longer exists — which is why the
+error prints as `cup_comm a b has type cup = cohCast`.  The purge rule misses it because
+`SteenrodCupOne.lean` itself has not changed; the correct predicate is transitive, an olean
+is stale if it predates the olean of any of its **imports**.  Reported to the lead.
+
 ## NEEDS
 
 * **`sp-coeff` (BLOCKING, and the only thing between this lane and a complete first
