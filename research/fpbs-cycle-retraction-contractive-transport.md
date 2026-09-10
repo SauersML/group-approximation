@@ -36,5 +36,25 @@ The same-relation hypothesis is essential. Section 6 checks it
 against sparse reconnection of the free minimal spanning forest,
 whose subrelation has a different first Betti number.
 
+The iteration also obeys a spectral restriction (Section 8). On each
+cycle module put N_n(t)=Tr(1_[0,t](K_n)) for 0<=t<1. Then
+N_n(t)<=N_0(t) through both charged additions and polar compressions.
+If g=C(X)-1-beta_1 and kappa is the kernel dimension of K_0 on
+Z(H_0), then
+
+    Tr(K_n)>=t(g-N_0(t)),
+    Tr(K_n)->0 implies g<=kappa.
+
+Section 9 constructs genuine zero-kernel relative certificates on
+countable invariant-copy extensions Y of X with C(Y)=C(X). For
+finitely generated groups their generating source graphings can
+be arbitrarily near C(Y). Therefore a universal trace-zero theorem
+for all these initializations would imply the stronger cost--Betti
+equality. No example violating that equality is asserted.
+
+Section 10 retains the weaker sufficient stopping condition from
+the exact identity: Tr(K_n)-sum_{i<n} eta_i<=delta gives
+C(X)<=c(Phi)+delta. It proves no general selection achieving it.
+
 The result is a written deduction from standard finite-trace
 operator theory, not a novelty claim or universal Fixed Price proof.

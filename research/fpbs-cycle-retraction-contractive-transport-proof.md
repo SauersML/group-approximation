@@ -35,3 +35,29 @@ it to K preserves the positive-contraction bound and adds a to
 the trace. The quantity c(H)-Tr(K) is unchanged. Combining this
 step with the proved deletion identity gives the fully charged
 nonmonotone iteration, without a claim of trace decay.
+
+Section 8 proves spectral monotonicity directly. For a compression
+B=P_V K P_V on V, the ranges of 1_[0,t](B) and 1_(t,1](K)
+have zero intersection, by their contradictory quadratic-form
+inequalities on a common nonzero vector. Finite-module dimension
+then bounds the low-spectrum trace of B by that of K. Polar
+unitaries preserve it; additions only append eigenvalue one.
+The required cost--Betti dimension identity gives z(H_n)>=g,
+and integration above t gives the stated trace lower bound.
+Normality at t decreasing to zero supplies the kernel criterion.
+
+Section 9 constructs the genuine zero-kernel examples. Countably
+color the finite cycles into vertex-disjoint bounded-length
+families; repeat each family for every possible deleted edge.
+Each resulting J_j generates. The intersection of Z(J_j) is zero
+because every edge in any finite cycle is deleted in at least one
+J_j. Mixing these graphings, and H with positive mass, on invariant
+copies of X yields K=epsilon sum p_j(P_H-P_Jj), with zero kernel
+on Z(H). Componentwise restriction proves the extension still has
+cost C(X). The finite-label approximation in the required relative
+operator claim supplies near-optimal H for finitely generated
+groups. This construction proves a limitation of the trace-zero
+target; it does not prove a positive cost--Betti gap exists.
+
+Section 10 obtains the signed stopping criterion by rearranging
+the already proved ledger, retaining all accumulated eta terms.
