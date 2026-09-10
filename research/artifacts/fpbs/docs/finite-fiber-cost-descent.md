@@ -193,3 +193,171 @@ an atomic part in its conditional measures.
 This is a real use of the bound in the existing cost-comparison
 route. The identities still need simultaneous source optimality
 and vanishing conditional defect to prove equality.
+
+## 5. Selecting fiber labels: a constructive switching bound
+
+Keep the uniform q-point hypothesis. Fix a measurable labeling
+ell:Y->{1,...,q} that is a bijection on every fiber. No equivariance
+is imposed. Write s_i(x) for the point above x with label i.
+
+First take finitely many full generator demands S. A finite routing
+plan D has finitely many partial source maps z->g_j z and bounded
+length chosen paths from y to s y on measurable sets E_s. Let N_j(z)
+count all occurrences of the edge copy (j,z) in those paths, including
+reverse traversals, and put U_j={N_j>0}. Define
+
+    r(D)=sum_s nu(Y\E_s),
+    B(D)=r(D)+sum_j nu(U_j),
+    W_ell(D)=sum_j integral N_j(z)
+                          1_{ell(g_j z)!=ell(z)} dnu(z).
+
+Then
+
+    C(X) <= B(D)+W_ell(D).                                (6)
+
+Here is a direct proof, including the traffic accounting. For each
+i, retain the base g_j-edge on
+
+    V_{j,i}={x:s_i(x) in U_j},
+
+and call the resulting graphing Psi_i. Uniform disintegration gives
+
+    (1/q) sum_i sum_j mu(V_{j,i}) = sum_j nu(U_j).           (7)
+
+The left side counts graphing copies separately, which suffices for
+an upper bound even if two copies coincide. If a request starting
+at y=s_i(x) is covered and no edge along its chosen path changes
+ell, every visited point has label i. Each forward edge therefore
+projects to a retained Psi_i-edge. For a reverse traversal, its
+forward starting point also has label i, so the same assertion
+holds. Thus x and s x are connected in Psi_i.
+
+Add a direct s-edge exactly on the measurable set of base requests
+not connected in Psi_i. Its indicator is at most the indicator of
+an uncovered source request plus the number of label switches on
+its chosen path. Average this inequality over i and integrate over
+X. For each path word and occurrence, the change of variables from
+the request source y to the forward edge start z is a partial p.m.p.
+bijection, also for a reverse occurrence. Summing these equalities
+identifies the integrated number of switches with W_ell(D). Hence
+the average repair cost is at most r(D)+W_ell(D). Every repaired
+Psi_i generates the base relation, so some i has completed cost at
+most the average B(D)+W_ell(D). This proves (6).
+
+The same proof works for a countable group with a fixed finite-cost
+base graphing: route a finite prefix of its partial-domain demands
+and include the full remaining base tail in each completed Psi_i.
+Include that tail's ordinary cost in r(D), exactly as in Section 9
+of the conditional-traffic artifact. Only the routed prefix
+contributes to W_ell. No artificial weights on generator demands
+are used.
+
+This is a sufficient upper bound, not an exact variational formula.
+A label switch need not disconnect the projected request: a different
+retained path may already connect it. In particular W_ell is not
+the conditional clipping defect J of the traffic theorem.
+
+## 6. A positive switching obstruction with no cost gap
+
+Let Gamma=F_2 x C_2, with free generators a,b and central involution
+t. Let X={-1,1}^Gamma with the fair Bernoulli measure and shift
+action, and let chi:Gamma->C_2 be projection. On
+
+    Y=X x {0,1},   g.(x,i)=(g.x,i+chi(g)),
+
+use uniform fiber measure and addition modulo two. The projection
+Y->X is a uniform two-point free factor. The Bernoulli base is
+essentially free; for a nonidentity shift, its coordinate cycles
+impose infinitely many independent nontrivial constraints (or an
+infinite constant-coordinate constraint), so its fixed set is null.
+
+Every measurable bijective labeling of these fibers has the form
+
+    ell(x,i)=i+c(x),   c:X->{0,1}.
+
+Set S={a,a^(-1),b,b^(-1),t} and
+
+    d_s=mu{c(s.x)!=c(x)+chi(s)}.
+
+For every such c,
+
+    sum_{s in S} d_s >= delta := 2-sqrt(3) > 0.            (8)
+
+To prove this uniformly over all measurable c, put E={c=1},
+p=mu(E) and f=1_E-p. The nonconstant Walsh functions
+
+    w_A(x)=product_{h in A} x_h,
+
+indexed by finite nonempty A subset Gamma, form an orthonormal
+basis of L2_0(X). The F_2-action on this index set is free: if
+hA=A, a power of h fixes an element of A, so h has finite order;
+F_2 is torsion-free. Thus the restricted Koopman representation is
+a direct sum of copies of the regular representation of F_2.
+
+The averaging operator P over a,a^(-1),b,b^(-1) on the regular
+representation has norm at most sqrt(3)/2. For completeness, orient
+the four-regular Cayley tree toward a fixed end. Every vertex has
+one parent and three children. The operator T summing values at
+the children has norm at most sqrt(3): apply Cauchy--Schwarz at
+each vertex and use that every vertex has one parent. Adjacency
+is T+T*, so its norm is at most 2 sqrt(3). Dividing by four proves
+the asserted bound, also on the direct sum.
+
+Consequently
+
+    sum_{s=a^(+/-1),b^(+/-1)} d_s
+      = sum_s ||f composed with s - f||_2^2
+      >= 8(1-sqrt(3)/2) p(1-p).                           (9)
+
+For t, the desired cocycle bit is one, so
+
+    d_t=1-mu(E symmetric-difference tE) >= |2p-1|.         (10)
+
+With u=|2p-1|, (9)--(10) give
+
+    sum_s d_s >= delta(1-u^2)+u >= delta,
+
+since u(1-delta u)>=0 for 0<=u<=1. This proves (8).
+
+### Why this is an obstruction to a method, not to Fixed Price
+
+Every free action of Gamma has cost 3/2. Indeed choose a measurable
+representative set A for its two-point t-orbits, of measure 1/2.
+Use the graphing t|A, a|A, b|A. Its internal t-edge connects each
+pair. Between the pairs there is exactly one bridge per positive
+free generator. The quotient graph on pairs is the Cayley tree of
+F_2: normality gives the quotient action, and freeness excludes
+any nontrivial free word fixing a pair. Replacing each tree vertex
+by its two-point tree and each quotient edge by one bridge gives
+a connected tree on the whole Gamma-orbit. This generating treeing
+has cost 3/2. Treeings attain relation cost by
+[Gaboriau, Theorem 2.24](https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf).
+In particular C(X)=C(Y)=3/2. This is a known fixed-price family;
+no universal finite-index action-cost formula is being assumed.
+
+For any finite routing plan with the full demands S above, a covered
+request whose endpoint labels differ has at least one switch along
+its path. Uncovered requests cost at most their indicator. The same
+traffic change of variables as in Section 5 now gives
+
+    sum_s d_s <= r(D)+W_ell(D),
+    r(D)+W_ell(D) >= 2-sqrt(3).                           (11)
+
+Thus, along any sequence with r(D_n)->0, even with labelings ell_n
+chosen anew for each plan,
+
+    liminf W_{ell_n}(D_n) >= 2-sqrt(3).                   (12)
+
+Source plans with B(D_n)->3/2 and r(D_n)->0 do exist: use the
+generating treeing above and route all requests whose unique paths
+have length at most n. Their uncovered measure tends to zero,
+B(D_n)<=3/2+r(D_n), and completing them gives B(D_n)>=C(Y).
+So a proof strategy demanding simultaneously near-optimal source
+budget, asymptotically full coverage, and vanishing W is impossible
+even for this cost-preserving two-point factor.
+
+This does not exclude optimal selected graphings Psi_i: (6) may
+overcount their actual repair. It does not obstruct vanishing of
+the distinct conditional defect J, nor all possible methods using
+sections. The precise lesson is that approximate coherence of a
+fiber choice is stronger than the required preservation of cost.

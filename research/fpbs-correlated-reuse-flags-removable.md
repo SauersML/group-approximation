@@ -31,6 +31,17 @@ base. A tower of cost-preserving finite-fiber factors would therefore
 suffice where it exists. Neither cost preservation at the finite stages
 nor such a tower for arbitrary binary symbolic extensions is proved.
 
+Choose an approximately equivariant label in each finite fiber.
+Sections 5--6 of the finite-fiber artifact prove C(X)<=B+W, where
+W counts routing traffic across label switches. But the explicit
+two-point chi-extension of Bernoulli F_2 x C_2 satisfies
+r+W>=2-sqrt(3) for every labeling and every finite plan for the
+five symmetric generator demands, while both costs are 3/2.
+Therefore requiring vanishing W together with vanishing uncovered
+requests is too strong. W can overcount actual missing connections;
+this rules out that criterion, not all selection-based repairs or
+vanishing of the conditional defect J required by the open claim.
+
 Replace source information by a relative cycle operator. Conditional
 averaging preserves the surplus trace exactly, but the determinantal
 law of that operator can lose connectivity even for a finite extension
