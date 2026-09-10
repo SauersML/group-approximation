@@ -34,9 +34,10 @@ sources:
       sofic-not-MF group of Palomar/comparator.json, and the negative answer to
       STW Problem LIX of Palomar/comparator-lix.json.
 
-  # The four entries below fix what the LIX counterexample had to avoid, and
-  # what was already known.  They are background: none of them is formalized
-  # here and none of them proves the result.
+  # The five entries below fix what the LIX counterexample had to avoid, what
+  # was already known, and the independent solution that appeared after this
+  # one.  They are background: none of them is formalized here and none of
+  # them proves the result.
   - title: "Nuclear C*-algebras: 99 problems"
     authors: [Christopher Schafhauser, Aaron Tikuisis, Stuart White]
     year: 2025
@@ -84,6 +85,22 @@ sources:
       unital nuclear algebras that are not K1-surjective, which is the
       surjectivity analogue; STW record injectivity as the open direction, and
       that is the direction this project settles.
+
+  - title: A simple C*-algebra which is not K1-injective
+    authors: [Andrew S. Toms]
+    year: 2026
+    type: paper
+    id: https://arxiv.org/abs/2609.09535
+    relationship: background
+    note: >-
+      arXiv:2609.09535v1, posted 2026-09-08 (23:30 UTC): an independent
+      negative answer to Problem LIX by a different method (a generator of
+      pi_4(U(2)) = Z/2, higher-rank matrix trapping, and a spin-bordism
+      obstruction to the hypothetical homotopy). Nothing from it is used here.
+      This project's endpoint, not_problemLIX, was proved unconditionally and
+      committed to this public repository on 2026-09-07 (commit aa9ba0148),
+      before that posting; the two solutions are independent, and no priority
+      claim beyond those timestamps is made.
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
