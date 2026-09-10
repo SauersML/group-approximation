@@ -64,6 +64,9 @@ def integration_view(graph):
         f'| Live proof paths from either goal | {len(live_union)} |',
         f'| All declared paths, including invalidated routes | {len(set().union(*all_paths.values()))} |',
         f'| Supporting catalog outside live goal paths | {len(ids-live_union)} |', '',
+        'Direct percolation: [new-result scope checks](docs/direct-bs-new-results.md)',
+        'identify the small-cell obstruction to the weighted profile criterion and',
+        'the distinct-infinite-cluster term introduced by exterior wiring.', '',
         'New conditional work: [sparse base surgery](docs/sparse-base-surgery.md).',
         'It transfers coupled separators to the base action and rounds certificates',
         'already supported in a sufficiently sparse base region. Producing that support',
@@ -155,6 +158,7 @@ def main():
     checked_documents = (
         navigation_path,
         'research/artifacts/fpbs/docs/sparse-base-surgery.md',
+        'research/artifacts/fpbs/docs/direct-bs-new-results.md',
         'research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md',
     )
     missing_links = []
@@ -217,6 +221,7 @@ def main():
         'fpbs-pulled-back-graphing-isoperimetry': 'ESTABLISHED',
         'fpbs-cluster-contact-merger-balance': 'ESTABLISHED',
         'fpbs-contact-dispersion-sign-obstruction': 'ESTABLISHED',
+        'fpbs-critical-quotient-small-profile-obstruction': 'ESTABLISHED',
         'fpbs-sparse-fiid-approximate-hyperfiniteness': 'ESTABLISHED',
         'fpbs-local-equivalence-separator-rounding': 'ESTABLISHED',
         'fpbs-sparse-base-connected-cycle-rounding': 'ESTABLISHED',

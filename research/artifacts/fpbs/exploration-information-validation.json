@@ -9,11 +9,11 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "b155ef09fc7e773dfac964b8e6e53911b04c044872d8fbc5645d4846b69a5bd0",
-  "claims": 7790,
-  "routes": 7961,
-  "task_claims": 252,
-  "task_routes": 258,
+  "overlay_archive_sha256": "587ca19b65517734126e0431515dd800fd9eff0bf4c131185e48d953c7d8ac59",
+  "claims": 7791,
+  "routes": 7962,
+  "task_claims": 253,
+  "task_routes": 259,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": true,
@@ -50,7 +50,7 @@
     ]
   ],
   "integration": {
-    "catalog_nodes": 510,
+    "catalog_nodes": 512,
     "catalog_ids": [
       "fpbs-action-level-local-expanding-sparsifiers",
       "fpbs-adaptive-exploration-entropy-proof",
@@ -173,6 +173,8 @@
       "fpbs-critical-quotient-environment-gap-proof",
       "fpbs-critical-quotient-palm-moments",
       "fpbs-critical-quotient-palm-moments-proof",
+      "fpbs-critical-quotient-small-profile-obstruction",
+      "fpbs-critical-quotient-small-profile-proof",
       "fpbs-critical-quotient-sprinkling",
       "fpbs-critical-quotient-sprinkling-proof",
       "fpbs-critical-walk-correlation",
@@ -891,6 +893,8 @@
       "fpbs-critical-quotient-environment-gap-proof",
       "fpbs-critical-quotient-palm-moments",
       "fpbs-critical-quotient-palm-moments-proof",
+      "fpbs-critical-quotient-small-profile-obstruction",
+      "fpbs-critical-quotient-small-profile-proof",
       "fpbs-critical-quotient-sprinkling",
       "fpbs-critical-quotient-sprinkling-proof",
       "fpbs-cut-burnside-completion-route",
@@ -1209,6 +1213,7 @@
     "checked_document_links": [
       "research/artifacts/fpbs/navigation.md",
       "research/artifacts/fpbs/docs/sparse-base-surgery.md",
+      "research/artifacts/fpbs/docs/direct-bs-new-results.md",
       "research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md"
     ],
     "missing_document_links": []
@@ -1449,6 +1454,14 @@
     "fpbs-critical-quotient-palm-moments": [
       null,
       "ESTABLISHED"
+    ],
+    "fpbs-critical-quotient-small-profile-obstruction": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-critical-quotient-small-profile-proof": [
+      null,
+      "COMPLETE"
     ],
     "fpbs-critical-quotient-sprinkling-proof": [
       null,
@@ -1707,6 +1720,7 @@
     "fpbs-pulled-back-graphing-isoperimetry": "ESTABLISHED",
     "fpbs-cluster-contact-merger-balance": "ESTABLISHED",
     "fpbs-contact-dispersion-sign-obstruction": "ESTABLISHED",
+    "fpbs-critical-quotient-small-profile-obstruction": "ESTABLISHED",
     "fpbs-sparse-fiid-approximate-hyperfiniteness": "ESTABLISHED",
     "fpbs-local-equivalence-separator-rounding": "ESTABLISHED",
     "fpbs-sparse-base-connected-cycle-rounding": "ESTABLISHED",
@@ -1725,6 +1739,7 @@
     "research/artifacts/fpbs/docs/cluster-contact-mergers.md": "f2c7c9955b3e77ea3a6055a87ac8dd525a3be86aa92d112fd5e981fc818f9e9a",
     "research/artifacts/fpbs/docs/cost-cycle-structure.md": "2a3ae1b7f7f35e1b818a4a5f971215fd058f825b39599e06f3dd0e7f203dcc55",
     "research/artifacts/fpbs/docs/cost-rank-duality.md": "80de06b496d721052fa0a887f63e6fafc356c0f87f442d75720a8d56abb6fe83",
+    "research/artifacts/fpbs/docs/direct-bs-new-results.md": "dc0fd6b74db82d18349f40e141fa9f0468cbbbe810772920c97426e0db3585dd",
     "research/artifacts/fpbs/docs/finite-fiber-cost-descent.md": "fa4e0d875646f9cc51161f399b08044e2df4bc9521d0afe8620afeb63a6dcf24",
     "research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md": "bea80f5e73ff693c047fbf2b15a2a43dda9d34ff34b0b489a0f2554f7b53b7db",
     "research/artifacts/fpbs/docs/fixed-price-reuse-compression.md": "5e3ee42789c4b092222b5551ed8b3abbf2af60d422e97ac9e4c110a23ff63f2b",
@@ -1736,7 +1751,7 @@
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
-    "research/artifacts/fpbs/navigation.md": "fd5b6c5790c72d53435e397cd0ba6a61ce507a03efcf1137fb2b57b9f41b2350",
+    "research/artifacts/fpbs/navigation.md": "f28edd47241f03cf0be116d4ead45b6eec8ff3e78cabe2233c77b511f0eaa9f4",
     "research/artifacts/fpbs/optimistic-search-replay.json": "377eb476ecdb881e51b4706ad4b8e5e0e60d32cd7891615af44369e9ee1ba7f2",
     "research/artifacts/fpbs/optimistic-search.md": "8036701f9d8b3e078f43c68d84566e57064c97070e88190fde104d863131f9d0",
     "research/artifacts/fpbs/projection-resolvent-replay.json": "295befdf08e7328e5e9b066c6b8c2f4bd065e36a7d85d38a5424c5a3a5d9ce29",
@@ -1756,14 +1771,14 @@
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
-    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "814b38740d7cfd77cda5d9db136ff1038772b80721e93d52969769e4a4ac7d6b",
+    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "7148601fbe35e611c2aaa3245a75ef797d23bca04bb7c8bcd3038ca85efa59ce",
     "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
     "research/artifacts/fpbs/search-barriers.md": "9e85c9b4d985a2a1fdbf3f1a7cd9a1818f9896d7328ea840a1b43686f0155281",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
     "research/artifacts/fpbs/search-geometry.md": "7b783609ac2f1c37c5e7b16a5059ff2d8f47cb611a6aa3279d7de1751040c7b5",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "045058145f53d4f111945f26ffd7c6dfe0c23a50835d320b67ac882efd6f83a2",
+    "research/fpbs-benjamini-schramm-universal.md": "4a563ef84b244794301dc1e47dfbcbdacf624349c34fcd5c05047ce0676cc7b6",
     "research/fpbs-bernoulli-cycle-tail-compactness.md": "35162c4c633b12c30f1e8b92fd056a14529ff7193b53d6b477cdca3c11e7e19b",
     "research/fpbs-bernoulli-lower-bound-from-block-localization.md": "922fef4f8b8d03363d37e9f3d50c8afc8655cc228bf023d5b180ec38a12480f9",
     "research/fpbs-bernoulli-lower-bound-from-cycle-tails.md": "5aa7d836c7bfba32824e71fabc41c8fa0812460462d6b95c2bd4cde669917df6",
@@ -1791,6 +1806,8 @@
     "research/fpbs-critical-quotient-environment-gap.md": "0d24871592e92a775708a00cf5ab8c03eec4fbcbac4b6e3af904bfa83295c477",
     "research/fpbs-critical-quotient-palm-moments-proof.md": "e1edb19d43e8c63efa2c868cd3d1865b1a83589e0a0c8e81d0ae8fe51884a144",
     "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
+    "research/fpbs-critical-quotient-small-profile-obstruction.md": "5ec224a37832d84671bba1dd324732a3ace1c0be5950c76065fbd27816b094b0",
+    "research/fpbs-critical-quotient-small-profile-proof.md": "99fb5a614ada2049d98ba007d88dd9271e836f29c70fcbaa4080af9bbeb6998e",
     "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
     "research/fpbs-cycle-retraction-contractive-transport-proof.md": "990249836b9bb082b44c850e9275c14ea57861f5b0d5ffdf59ff24e7d061fac4",
@@ -1887,7 +1904,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "045058145f53d4f111945f26ffd7c6dfe0c23a50835d320b67ac882efd6f83a2",
+    "research/fpbs-benjamini-schramm-universal.md": "4a563ef84b244794301dc1e47dfbcbdacf624349c34fcd5c05047ce0676cc7b6",
     "research/fpbs-bernoulli-cycle-tail-compactness.md": "35162c4c633b12c30f1e8b92fd056a14529ff7193b53d6b477cdca3c11e7e19b",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-block-localization.md": "922fef4f8b8d03363d37e9f3d50c8afc8655cc228bf023d5b180ec38a12480f9",
@@ -1982,6 +1999,8 @@
     "research/fpbs-critical-quotient-environment-gap.md": "0d24871592e92a775708a00cf5ab8c03eec4fbcbac4b6e3af904bfa83295c477",
     "research/fpbs-critical-quotient-palm-moments-proof.md": "e1edb19d43e8c63efa2c868cd3d1865b1a83589e0a0c8e81d0ae8fe51884a144",
     "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
+    "research/fpbs-critical-quotient-small-profile-obstruction.md": "5ec224a37832d84671bba1dd324732a3ace1c0be5950c76065fbd27816b094b0",
+    "research/fpbs-critical-quotient-small-profile-proof.md": "99fb5a614ada2049d98ba007d88dd9271e836f29c70fcbaa4080af9bbeb6998e",
     "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
     "research/fpbs-critical-walk-correlation-reference.md": "0f288a23ad7bf820543d2f72553bb67306435d81695062b4501fadd31ccc4035",
@@ -2372,5 +2391,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 22.164
+  "elapsed_seconds": 24.581
 }
