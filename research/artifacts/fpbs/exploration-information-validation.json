@@ -4,7 +4,7 @@
   "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "16358b9d8850f86bc04d614c983de4adc464eb56d7871eda9f14e110369964d8",
+  "overlay_archive_sha256": "8d7756f880c5eb4ed57dbed95deab2329e1b38adc6bfb3dcf0ea359792dfa3fb",
   "claims": 7773,
   "routes": 7942,
   "task_claims": 235,
@@ -409,6 +409,7 @@
     "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
     "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
+    "research/fpbs-fixed-price-countable-from-finitely-generated.md": "b299e8aeb8714a987ee2581be937489f7ac7fef8bca15a2d244cb687986d4b30",
     "research/fpbs-fixed-price-universal.md": "40e2b9f16e9e736954f11d308ab04429d79091c51698cb9e7dff53148c8f626a",
     "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "26996067bce39c98339e043370548e573cff6b4e4bca9f30baa44c8d41cd0353",
     "research/fpbs-hermon-hutchcroft-finite-tail-input.md": "1d230b6e23a51326356802a2c3fe93d13d29cb11a4588e73080e2ef63a7cb7cf",
@@ -653,7 +654,7 @@
     "research/fpbs-finite-tree-telescoping-cost-proof.md": "a16ba0fa6464520570d963c3709a7a3e7f8a127193c4ae2db6120958caf6e96e",
     "research/fpbs-first-return-paid-repair-proof.md": "8d1f6c3bcd181df3c03e93e0f909bad594c17669a90ef631d0e80eefb9e9ab23",
     "research/fpbs-first-return-torsion-detours.md": "d7acf24b1d5bf414fb869e084e8b120254e232575bb1b4fd83dde745dc0ac0cb",
-    "research/fpbs-fixed-price-countable-from-finitely-generated.md": "6add63d567fb81ad7d1d727a9c11525520fb0d0284b7deadb5666b6c0d264152",
+    "research/fpbs-fixed-price-countable-from-finitely-generated.md": "b299e8aeb8714a987ee2581be937489f7ac7fef8bca15a2d244cb687986d4b30",
     "research/fpbs-fixed-price-counterexample-exists.md": "58f72e4507e2f817ae39a8cb3dcbddbf6618b161f9afd7d5765f4faf671eea93",
     "research/fpbs-fixed-price-from-bernoulli-cost-equality.md": "9fcd6104590ba4656bf00bfca0b47f9d6bf3f91416cb24766a523a4ea65a9739",
     "research/fpbs-fixed-price-one-percolation-kernel.md": "d79075346d83239defc3eb7fc7e5650c338c2b50f5243d033b61546c022ace62",
@@ -916,5 +917,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 21.131
+  "elapsed_seconds": 18.773
 }

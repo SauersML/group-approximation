@@ -12,4 +12,23 @@ artifacts:
 
 ## Attempts
 
-Exhaust by finitely generated subgroups. This is the standard move and it is already used in this graph for the cost-one case, where summable relative costs over an increasing union keep every stage at cost one (`fpbs-amen2-case-split-countable-exhaustion-proof`). For a common value above one there is no such telescoping: the relative costs of the successive stages need not sum to zero, so equality at each stage does not transfer to the union, and the cost of an increasing union is where cost and pseudocost part company (Tucker-Drob, arXiv:1211.6395, Section 6 and Corollary 6.5). The conditional-traffic and reuse notes both stop at the same boundary, in Section 8 and Section 7 respectively.
+Exhaust Gamma by finitely generated subgroups Gamma_n. Under the hypothesis,
+the restriction to Gamma_n has an action-independent cost c_n. Its orbit
+relations exhaust the full action relation, so the definition of pseudocost
+gives only the shared upper bound
+
+    PC(R_alpha) <= liminf_n c_n.
+
+It does not show equality with this particular bound, or equality between
+the pseudocosts of two actions. This remains a gap even if cost and pseudocost
+are assumed equal. For the cost-one case, the increasing-union argument is
+already used in `fpbs-amen2-case-split-countable-exhaustion-proof`.
+
+**Source correction, September 10, 2026.** In
+[Tucker-Drob, arXiv:1211.6395](https://arxiv.org/pdf/1211.6395), Proposition
+6.7 gives the exhaustion inequalities, and Corollary 6.8 gives C=PC for
+finite-cost or treeable relations, as well as PC=1 iff C=1. Corollary 6.5,
+previously cited here, instead concerns upper semicontinuity for finitely
+generated groups. Question 7.6 asks whether PC<C can occur at all; the earlier
+wording must not be read as asserting a known strict example. No source
+checked supplies the universal passage claimed by this node.
