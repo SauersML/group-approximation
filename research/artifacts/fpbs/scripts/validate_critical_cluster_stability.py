@@ -94,6 +94,9 @@ def main():
         'fpbs-free-action-cost-at-least-bernoulli-cost': 'OPEN',
         'fpbs-correlated-reuse-flags-removable': 'OPEN',
         'fpbs-fixed-price-countable-from-finitely-generated': 'OPEN',
+        'fpbs-bernoulli-cycle-tail-compactness': 'OPEN',
+        'fpbs-graphing-cost-betti-cycle-dimension-identity': 'ESTABLISHED',
+        'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
         'fpbs-optimistic-search-linear-wall-cost': 'ESTABLISHED',
         'fpbs-universal-optimistic-certificate-budget': 'OPEN',
@@ -106,10 +109,10 @@ def main():
                if node not in before.nodes or before.nodes[node].status != after.nodes[node].status}
     new_open = [node for node in after.claims
                 if node not in before.nodes and after.claims[node].status == 'OPEN']
-    # A named, explicitly unproved construction is now an actual frontier
-    # premise. Permit only that new hole, while keeping all goals OPEN and
-    # rejecting any other unexpected new unresolved claim.
-    allowed_new_open = {'fpbs-universal-optimistic-certificate-budget'}
+    # Named, explicitly unproved constructions are actual frontier premises.
+    # Keep all goals OPEN and reject unexpected new unresolved claims.
+    allowed_new_open = {'fpbs-universal-optimistic-certificate-budget',
+                        'fpbs-bernoulli-cycle-tail-compactness'}
     unexpected_new_open = sorted(set(new_open)-allowed_new_open)
     goal_view, _ = cairn.frontier_view(task_graph,
                                      only_goal='fpbs-benjamini-schramm-universal')
@@ -123,13 +126,18 @@ def main():
                                       only_goal='fpbs-fixed-price-universal')
     price_view[0]['necessary'] = sorted(price_view[0]['necessary'])
     reuse_chain = cairn.why_chain(task_graph, 'fpbs-correlated-reuse-flags-removable')
+    cycle_chain = cairn.why_chain(task_graph, 'fpbs-bernoulli-cycle-tail-compactness')
     price_wired = (
         {'fpbs-correlated-reuse-flags-removable',
+         'fpbs-bernoulli-cycle-tail-compactness',
          'fpbs-fixed-price-countable-from-finitely-generated'}
         <= set(price_view[0]['holes'])
         and reuse_chain
         and reuse_chain[0][0] == 'fpbs-fixed-price-universal'
-        and reuse_chain[-1][2] == 'fpbs-correlated-reuse-flags-removable')
+        and reuse_chain[-1][2] == 'fpbs-correlated-reuse-flags-removable'
+        and cycle_chain
+        and cycle_chain[0][0] == 'fpbs-fixed-price-universal'
+        and cycle_chain[-1][2] == 'fpbs-bernoulli-cycle-tail-compactness')
     new_errors = [finding for finding in errors if finding not in baseline_errors]
     passed = (not any(severity == 'error' for severity, _, _ in task_errors)
               and not new_errors and not duplicates and not removed
@@ -155,6 +163,7 @@ def main():
         'optimistic_search_goal_chain': search_chain,
         'fixed_price_frontier': price_view[0],
         'correlated_reuse_goal_chain': reuse_chain,
+        'cycle_compactness_goal_chain': cycle_chain,
         'state_changes': changes, 'selected_statuses': statuses,
         'overlay_source_sha256': {p: hashlib.sha256(data).hexdigest()
                                   for p, data in sorted(overlay.items())},

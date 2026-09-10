@@ -13,6 +13,14 @@ artifacts:
 
 ## Attempts
 
+Control cycle dimension in Bernoulli cost minimizers. The conditional route
+`fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
+open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti
+lower bound. It would show C(b)=1+beta_1, a stronger assertion than Fixed
+Price alone. The explicit F_r x Z reduced-circulation calculation in
+`research/artifacts/fpbs/docs/cost-cycle-structure.md`, Section 8, verifies
+a sufficient tail bound in that family, not for arbitrary Gamma.
+
 Descend through the product. By the variational identities, C(b) = C(a x b) would follow from finite routing plans on a x b whose budgets approach C(a x b) and whose conditional traffic defect for the projection onto b tends to zero. The two probability-space coordinates are independent, but the orbit observations inside the a-coordinate are not, so the finite conditional-noise simulation that settles the other projection does not apply in reverse. The localization theorem reduces what must be transported to finitely many binary reuse flags, and the argument then stops at exactly that point (reuse-localization artifact, Sections 4 and 7; response 55, Sections 4 and 6).
 
 Optimise a canonical graphing instead. Replacing the comparison by an action-independent cycle optimiser fails: the universal priority-deletion scheme converges to the free minimal spanning forest, whose density stays above the cost of a fixed-price-one group (response 47, Section 3, recorded in `fpbs-priority-deletion-density-above-action-cost`).

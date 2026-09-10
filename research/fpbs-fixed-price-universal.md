@@ -39,6 +39,15 @@ also explicitly lists the universal problem as open and gives a sufficient
 finite-set criterion for fixed price one; that criterion is not asserted for
 every group.
 
+The reverse Bernoulli comparison now has a second conditional route,
+`fpbs-bernoulli-lower-bound-from-cycle-tails`. Its additional open premise
+is `fpbs-bernoulli-cycle-tail-compactness`. This would establish the stronger
+Bernoulli cost--Betti equality and then use the homological lower bound for
+all other free actions. The coherent sparse-column calculation in
+`research/artifacts/fpbs/docs/cost-cycle-structure.md`, Section 8, verifies
+the reduced-circulation estimate for F_r x Z only. The universal compactness
+assertion and the countable-group passage remain open.
+
 The cost of an action is the infimum of the costs of the graphings that
 generate its orbit equivalence relation, a graphing's cost being half the
 expected degree of its graph; see Gaboriau, *What is... cost?*,

@@ -265,6 +265,114 @@ The work does not create another specially presented group. It also does not ass
 
 This note addresses Fixed Price. Equality of cost with 1+beta would not alone settle Benjamini–Schramm for groups with beta=0. A separate percolation argument is still required in that regime.
 
+## 8. A coherent routing example with bounded reduced mass
+
+September 10, 2026. This calculation tests the hypothesis of Section 6
+positively on a known fixed-price-one group. It does not prove that hypothesis
+for arbitrary groups, nor claim novelty for the group's cost.
+
+Fix r>=2 and Gamma=F_r x Z with presentation
+
+    <a_1,...,a_r,t | a_i t a_i^(-1) t^(-1), 1<=i<=r>.
+
+Work on one free Bernoulli action with independent uniform [0,1] marks for
+each positive a_i-edge at each vertex. Equivalently, use r coordinates per
+vertex of a [0,1]^r Bernoulli shift. Retain all t-edges and retain each
+a_i-edge when its mark is at most epsilon, where 0<epsilon<1. Write Phi_epsilon
+for this graphing. It has cost 1+r epsilon.
+
+For every horizontal edge column and every starting height z, let H_i(z)
+be the first retained edge height at least z. Almost surely these heights
+are finite simultaneously at all vertices. Route the a_i-request at height z
+up to H_i(z), across that retained edge, and back down to height z. Route t
+directly. Thus Phi_epsilon generates the full orbit relation. The same
+Bernoulli space supports every epsilon in any sequence tending to zero.
+The aperiodic cost lower bound and c(Phi_epsilon)=1+r epsilon give C(R)=1;
+this is the familiar sparse-column construction, not a new fixed-price result.
+
+### Exact cancellation around the relators
+
+The routed commutator a_i t a_i^(-1) t^(-1) compares the horizontal route
+at height z with the one at z+1. If the edge at z is absent, then
+H_i(z)=H_i(z+1). Adding the two routes with their inverse orientations
+and the two t-steps cancels every edge, giving the zero integer circulation.
+
+If the edge at z is present, set D=H_i(z+1)-z. Then D has the geometric
+distribution on {1,2,...} with success probability epsilon, independently
+of the event that the edge at z is present. After cancellation, the
+commutator is the rectangle between heights z and z+D in the two adjacent
+vertical columns. The rectangle has exactly 2D+2 edges, each with coefficient
+of absolute value one. No other edges remain.
+
+For the edge-comparison circulations eta_j of Section 5, choose the original
+single-letter edge words. A retained horizontal edge routes across itself,
+and a vertical edge also routes directly; hence every eta_j is zero.
+Writing xi_i for the i-th relator circulation, we obtain
+
+    E ||xi_i||_1 = epsilon (2 E D+2) = 2+2 epsilon,
+    sum_i E ||xi_i||_1 + sum_j integral ||eta_j||_1
+        = r(2+2 epsilon) <= 4r.                              (8.1)
+
+This verifies the uniform reduced-mass hypothesis (6.4), even though the
+expected length of an a_i-request is
+
+    E length(P_(a_i)) = 1 + 2(1-epsilon)/epsilon -> infinity. (8.2)
+
+There is also an exact tail formula. For any integer L>=3, put
+m=floor((L-2)/2). Then
+
+    T_L(Phi_epsilon;P,w) = r epsilon (1-epsilon)^m.           (8.3)
+
+For L>=4, m>=1 and the maximum of epsilon(1-epsilon)^m occurs at
+epsilon=1/(m+1), by differentiation. Therefore
+
+    sup_(0<epsilon<1) T_L
+      = r/(m+1) (m/(m+1))^m
+      <= r/floor(L/2) -> 0.                                 (8.4)
+
+Every identity above follows from a geometric waiting time and the explicit
+edge cancellation. No finite simulation substitutes for a statement about
+all orbits. The construction uses the commuting infinite-order direction t:
+successive routes choose the same connector until a retained edge is passed.
+No such direction or analogous common routing rule is available here for
+an arbitrary group. In particular, the calculation must not be extended to
+torsion groups by assuming a vertical line exists.
+
+## 9. The actual conditional route to universal Fixed Price
+
+It is sufficient to prove the cycle-dimension compactness condition only for
+Bernoulli actions of finitely generated groups; applying it separately to
+every free action would be stronger than needed at this step. More precisely,
+suppose that for every infinite finitely generated Gamma its free Bernoulli
+action b has near-minimizing bounded-degree generating graphings Phi_n with
+
+    lim_(L->infinity) limsup_(n->infinity) tau_L(Phi_n)=0.     (9.1)
+
+By Corollary 4.1, C(b)=1+beta_1^(2)(Gamma). The published cost--Betti lower
+bound then gives C(alpha)>=C(b) for every free action alpha. Abert--Weiss
+supplies the opposite inequality, so all free actions of Gamma have equal
+cost. Passing from all finitely generated groups to arbitrary countable
+groups remains a separate, unproved prerequisite in the current Cairn route.
+
+Condition (9.1) is NOT established. By Section 4 it is equivalent to the
+Bernoulli cost--Betti equality, so it is a stronger target than Fixed Price
+alone, not a weaker reformulation that has already been solved. Section 8
+shows that the concrete sufficient reduced-circulation estimate can coexist
+with divergent route lengths in one family; it does not prove (9.1)
+universally. For finite presentations, (6.3) implies (9.1). For arbitrary
+finitely generated groups the cycle-space formulation makes sense directly,
+but the finite relator list in Section 5 is unavailable.
+
+This route is now explicit in `fpbs-bernoulli-lower-bound-from-cycle-tails`.
+Its open construction premise is `fpbs-bernoulli-cycle-tail-compactness`.
+It uses no assertion that the free minimal spanning forest is connected
+or computes cost. Current external status was checked September 10, 2026:
+Gaboriau's author-hosted [FAQ](https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/FAQ.pdf)
+lists cost--Betti equality as a question, and the introduction of
+[Slutsky's July 2026 preprint](https://arxiv.org/html/2607.20273v1)
+explicitly describes universal Fixed Price as open. No novelty is claimed
+for these reductions or the known class result.
+
 ## References and mathematical provenance
 
 [G02] Damien Gaboriau, Invariants l2 de relations d'equivalence et de groupes, Publications Mathematiques de l'IHES 95 (2002), 93–150. Measured L2-homology and invariance. https://www.numdam.org/item/PMIHES_2002__95__93_0/
