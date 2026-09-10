@@ -6,6 +6,7 @@ title: Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuni
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/docs/direct-bs-new-results.md
   - research/artifacts/fpbs/navigation.md
   - research/artifacts/fpbs/docs/cluster-contact-mergers.md
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
@@ -139,6 +140,19 @@ cross-links recorded on `fpbs-fixed-price-universal`. There is no percolation
 content in that region.
 
 ## Attempts
+
+* **Use the September weighted-isoperimetry theorem (2026-09-10).**
+  Hartarsky--Severo--Teixeira, arXiv:2609.07768v1, concerns percolation
+  existence, including a different Benjamini--Schramm question about
+  p_c<1. `fpbs-critical-quotient-small-profile-obstruction` shows its
+  profile hypothesis fails for weak sprinkling on the actual critical
+  quotient because infinitely many singleton cells remain. Section 3 of
+  `docs/direct-bs-new-results.md` also identifies exactly what exterior
+  wiring adds: connections between distinct infinite clusters. Its
+  finite-volume connectivity estimate therefore cannot be read as a
+  free two-point bound without an additional argument. The August
+  cluster-graphing note arXiv:2608.06644v1 supplies a new exposition of
+  critical finiteness, not a right-neighbourhood nonuniqueness theorem.
 
 * **Track growth and mergers separately (2026-09-10).**
   `fpbs-cluster-contact-merger-balance` gives an exact finite-state

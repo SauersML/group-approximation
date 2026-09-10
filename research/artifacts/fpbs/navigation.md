@@ -11,10 +11,14 @@ INVALIDATED routes; it can still contain OPEN premises.
 
 | Scope | Nodes |
 | --- | ---: |
-| Complete catalog | 510 |
+| Complete catalog | 512 |
 | Live proof paths from either goal | 102 |
 | All declared paths, including invalidated routes | 113 |
-| Supporting catalog outside live goal paths | 408 |
+| Supporting catalog outside live goal paths | 410 |
+
+Direct percolation: [new-result scope checks](docs/direct-bs-new-results.md)
+identify the small-cell obstruction to the weighted profile criterion and
+the distinct-infinite-cluster term introduced by exterior wiring.
 
 New conditional work: [sparse base surgery](docs/sparse-base-surgery.md).
 It transfers coupled separators to the base action and rounds certificates
@@ -144,6 +148,8 @@ at source-optimal cost and handling nonexact groups remain unresolved.
 | [fpbs-critical-quotient-environment-gap-proof](../../fpbs-critical-quotient-environment-gap-proof.md) | route | COMPLETE | supporting catalog | [fpbs-bernoulli-lazy-covariance-bound](../../fpbs-bernoulli-lazy-covariance-bound.md), [fpbs-critical-quotient-palm-moments](../../fpbs-critical-quotient-palm-moments.md) |
 | [fpbs-critical-quotient-palm-moments](../../fpbs-critical-quotient-palm-moments.md) | claim | ESTABLISHED | supporting catalog | [fpbs-critical-quotient-palm-moments-proof](../../fpbs-critical-quotient-palm-moments-proof.md) |
 | [fpbs-critical-quotient-palm-moments-proof](../../fpbs-critical-quotient-palm-moments-proof.md) | route | COMPLETE | supporting catalog | [fpbs-critical-quotient-sprinkling](../../fpbs-critical-quotient-sprinkling.md) |
+| [fpbs-critical-quotient-small-profile-obstruction](../../fpbs-critical-quotient-small-profile-obstruction.md) | claim | ESTABLISHED | supporting catalog | [fpbs-critical-quotient-small-profile-proof](../../fpbs-critical-quotient-small-profile-proof.md) |
+| [fpbs-critical-quotient-small-profile-proof](../../fpbs-critical-quotient-small-profile-proof.md) | route | COMPLETE | supporting catalog | [fpbs-critical-quotient-sprinkling](../../fpbs-critical-quotient-sprinkling.md) |
 | [fpbs-critical-quotient-sprinkling](../../fpbs-critical-quotient-sprinkling.md) | claim | ESTABLISHED | supporting catalog | [fpbs-critical-quotient-sprinkling-proof](../../fpbs-critical-quotient-sprinkling-proof.md) |
 | [fpbs-critical-quotient-sprinkling-proof](../../fpbs-critical-quotient-sprinkling-proof.md) | route | COMPLETE | supporting catalog | [fpbs-critical-cluster-stability-modulus](../../fpbs-critical-cluster-stability-modulus.md) |
 | [fpbs-critical-walk-correlation](../../fpbs-critical-walk-correlation.md) | claim | ESTABLISHED | BS | [fpbs-critical-walk-correlation-reference](../../fpbs-critical-walk-correlation-reference.md) |
