@@ -9,7 +9,7 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "587ca19b65517734126e0431515dd800fd9eff0bf4c131185e48d953c7d8ac59",
+  "overlay_archive_sha256": "b6a08ca6d9a155e938156afff9cdca7d1ad81dfd60c08f6ae20017ee52804fa4",
   "claims": 7791,
   "routes": 7962,
   "task_claims": 253,
@@ -1739,7 +1739,7 @@
     "research/artifacts/fpbs/docs/cluster-contact-mergers.md": "f2c7c9955b3e77ea3a6055a87ac8dd525a3be86aa92d112fd5e981fc818f9e9a",
     "research/artifacts/fpbs/docs/cost-cycle-structure.md": "2a3ae1b7f7f35e1b818a4a5f971215fd058f825b39599e06f3dd0e7f203dcc55",
     "research/artifacts/fpbs/docs/cost-rank-duality.md": "80de06b496d721052fa0a887f63e6fafc356c0f87f442d75720a8d56abb6fe83",
-    "research/artifacts/fpbs/docs/direct-bs-new-results.md": "dc0fd6b74db82d18349f40e141fa9f0468cbbbe810772920c97426e0db3585dd",
+    "research/artifacts/fpbs/docs/direct-bs-new-results.md": "91a30b268f554485163de505b5b45ff924c4b8a8bf891c7467c913123a189084",
     "research/artifacts/fpbs/docs/finite-fiber-cost-descent.md": "fa4e0d875646f9cc51161f399b08044e2df4bc9521d0afe8620afeb63a6dcf24",
     "research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md": "bea80f5e73ff693c047fbf2b15a2a43dda9d34ff34b0b489a0f2554f7b53b7db",
     "research/artifacts/fpbs/docs/fixed-price-reuse-compression.md": "5e3ee42789c4b092222b5551ed8b3abbf2af60d422e97ac9e4c110a23ff63f2b",
@@ -1778,7 +1778,7 @@
     "research/artifacts/fpbs/search-geometry.md": "7b783609ac2f1c37c5e7b16a5059ff2d8f47cb611a6aa3279d7de1751040c7b5",
     "research/fpbs-adaptive-exploration-entropy-proof.md": "e9e666e8265444b80fdfeb5de1ead3ef514baa4b1b724df9a6c06461349d8237",
     "research/fpbs-adaptive-exploration-relative-entropy.md": "744fa7f696926d0c643e58845353d82733ffe526c770f33bf9548807b1628dc5",
-    "research/fpbs-benjamini-schramm-universal.md": "4a563ef84b244794301dc1e47dfbcbdacf624349c34fcd5c05047ce0676cc7b6",
+    "research/fpbs-benjamini-schramm-universal.md": "ba74a8edd6debf912f30905b51d17a5ff30903ef5c6d41fb5fc1945fc3d53ec1",
     "research/fpbs-bernoulli-cycle-tail-compactness.md": "35162c4c633b12c30f1e8b92fd056a14529ff7193b53d6b477cdca3c11e7e19b",
     "research/fpbs-bernoulli-lower-bound-from-block-localization.md": "922fef4f8b8d03363d37e9f3d50c8afc8655cc228bf023d5b180ec38a12480f9",
     "research/fpbs-bernoulli-lower-bound-from-cycle-tails.md": "5aa7d836c7bfba32824e71fabc41c8fa0812460462d6b95c2bd4cde669917df6",
@@ -1904,7 +1904,7 @@
     "research/fpbs-ball-growth-centralizer-packing-proof.md": "56035aebef971a41d17e1dcb7d848f6664545cceca582acc6e8506230e8ae345",
     "research/fpbs-benjamini-schramm-counterexample-exists.md": "ef6ba297a024d0356239cae67366dc38650396f551449279e42eceef97510ba2",
     "research/fpbs-benjamini-schramm-two-cost-cases.md": "c7e036edb9553973a9ac1504e4f736339b98e8c9b3fcdb824adcf4cfdc13f88c",
-    "research/fpbs-benjamini-schramm-universal.md": "4a563ef84b244794301dc1e47dfbcbdacf624349c34fcd5c05047ce0676cc7b6",
+    "research/fpbs-benjamini-schramm-universal.md": "ba74a8edd6debf912f30905b51d17a5ff30903ef5c6d41fb5fc1945fc3d53ec1",
     "research/fpbs-bernoulli-cycle-tail-compactness.md": "35162c4c633b12c30f1e8b92fd056a14529ff7193b53d6b477cdca3c11e7e19b",
     "research/fpbs-bernoulli-lazy-covariance-bound.md": "0078f6d092faf86743064bd20f2ef843d99b07863369b4a33eb1f9b43e9b0441",
     "research/fpbs-bernoulli-lower-bound-from-block-localization.md": "922fef4f8b8d03363d37e9f3d50c8afc8655cc228bf023d5b180ec38a12480f9",
@@ -2391,5 +2391,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 24.581
+  "elapsed_seconds": 6.642
 }

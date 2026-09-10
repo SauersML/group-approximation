@@ -141,6 +141,16 @@ content in that region.
 
 ## Attempts
 
+* **Test two-cluster and intrinsic-growth inputs (2026-09-10).**
+  Sections 5--6 of `docs/direct-bs-new-results.md` retain the finite-cluster
+  restriction in the two-ghost inequality and prove the exact order of
+  limits for two large distinct clusters in free finite volumes. A regular
+  tree shows that those limits cannot be exchanged. Universal small
+  intrinsic growth near criticality also gives no contradiction to
+  uniqueness without a bound on connecting-path lengths; the stronger
+  growth results assume the still-OPEN L2 condition. No root premise is
+  discharged by these checks.
+
 * **Use the September weighted-isoperimetry theorem (2026-09-10).**
   Hartarsky--Severo--Teixeira, arXiv:2609.07768v1, concerns percolation
   existence, including a different Benjamini--Schramm question about
