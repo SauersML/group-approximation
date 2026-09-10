@@ -20,8 +20,7 @@ development proves it separable (`LIX.lixLimit_separableSpace`), C⋆-simple
 (`LIX.lixLimit_isSimpleCStar`, converted to Mathlib's `IsSimpleRing` by
 `isSimpleCStar_iff_isSimpleRing`), and with a unitary `u ∉ U₀(A)` such that
 `diag (u, 1) ∈ U₀(M₂(A))` (`LIX.lixLimit_hasK1InjWitness_of` applied to
-`CharClass.lemmaTwoHolds`, the bundle obstruction).  The three compared
-theorems follow from these facts.
+`CharClass.lemmaTwoHolds`, the bundle obstruction).
 -/
 
 namespace ProblemLIX
@@ -32,7 +31,7 @@ noncomputable section
 
 /-- `diag (a, 1, …, 1)`: the `n × n` matrix over `A` whose top-left entry is
 `a`, whose remaining diagonal entries are `1`, and whose off-diagonal entries
-are `0`.  For `n = 2` this is `diag (a, 1)`, the standard stabilisation of `a`. -/
+are `0`. -/
 def cornerDiag (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :
     CStarMatrix (Fin n) (Fin n) A :=
   fun i j => if i = j then (if (i : ℕ) = 0 then a else 1) else 0
@@ -43,14 +42,11 @@ in the unitary group.
 
 `K₁(A)` is the direct limit of the groups `U(Mₙ(A))/U₀(Mₙ(A))` along the
 stabilisation maps `u ↦ diag (u, 1)`, so the class of a unitary `u ∈ U(A)`
-vanishes in `K₁(A)` exactly when `diag (u, 1, …, 1) ∈ U₀(Mₙ(A))` for some
-`n ≥ 1`, and a group homomorphism is injective exactly when its kernel is
-trivial.  The definition states this directly: every unitary of `A` whose
-stabilisation is connected to `1` in some matrix algebra over `A` is already
-connected to `1` in `U(A)`.  `U₀` is written as `pathComponent 1`, the path
-component of `1` in the unitary group with its norm topology; the stabilised
-unitary is described by its underlying matrix, so the statement does not
-include a proof of unitarity.
+vanishes in `K₁(A)` iff `diag (u, 1, …, 1) ∈ U₀(Mₙ(A))` for some `n ≥ 1`.
+So `A` is `K₁`-injective iff every unitary whose stabilisation is connected
+to `1` in some `Mₙ(A)` is connected to `1` in `U(A)`, which is the definition
+below.  The stabilised unitary is described by its underlying matrix, so the
+statement does not include a proof of unitarity.
 
 Mathlib's C⋆-structure on `Mₙ(A)`, `CStarMatrix.instCStarAlgebra`, asks for a
 partial order on `A` making it a `StarOrderedRing`.  A unital C⋆-algebra has
@@ -105,13 +101,11 @@ theorem not_isK1Injective_of_stage_two_witness (A : Type) [CStarAlgebra A]
   obtain ⟨u, hu, w, hw, heq⟩ := h
   exact hu (hinj u ⟨2, by norm_num, w, hw, heq⟩)
 
-/-- **The sharp form**: a separable simple unital C⋆-algebra `A` carrying a
-unitary `u` that is not connected to `1` in `U(A)`, although `diag (u, 1)` is
-connected to `1` in `U(M₂(A))`.  The class of `u` therefore vanishes already at
-the first stabilisation step, which refutes `K₁`-injectivity of `A` with `n = 2`
-in `IsK1Injective`.  The `Fintype (Fin 2)` instance behind `M₂(A)` is pinned to
-Mathlib's `Fin.fintype 2` so that the statement elaborates to the same term in
-every environment, whatever other instances happen to be imported. -/
+/-- **The sharp form**: a separable simple unital C⋆-algebra `A` with a unitary
+`u` not connected to `1` in `U(A)` although `diag (u, 1)` is connected to `1` in
+`U(M₂(A))`; this is `¬ IsK1Injective A` with `n = 2`.  The `Fintype (Fin 2)`
+instance is pinned to `Fin.fintype 2` so that the statement elaborates to the
+same term in every environment. -/
 theorem exists_separable_simple_stage_two_witness :
     ∃ (A : Type) (_ : CStarAlgebra A),
       TopologicalSpace.SeparableSpace A ∧ IsSimpleRing A ∧
@@ -133,8 +127,8 @@ theorem exists_separable_simple_not_k1Injective :
   obtain ⟨A, inst, hsep, hsimp, hwit⟩ := exists_separable_simple_stage_two_witness
   exact ⟨A, inst, hsep, hsimp, not_isK1Injective_of_stage_two_witness A hwit⟩
 
-/-- **STW Problem LIX has a negative answer**: it is not the case that every
-nontrivial simple unital C⋆-algebra is `K₁`-injective. -/
+/-- **Problem LIX has a negative answer**: not every nontrivial simple unital
+C⋆-algebra is `K₁`-injective. -/
 theorem not_all_simple_unital_k1Injective :
     ¬ ∀ (A : Type) [CStarAlgebra A], Nontrivial A → IsSimpleRing A → IsK1Injective A := by
   intro hall

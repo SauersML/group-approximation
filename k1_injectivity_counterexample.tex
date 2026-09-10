@@ -84,9 +84,9 @@ $\kappa_A$ is injective when every unitary $v \in \U(A)$ with
 $\operatorname{diag}(v,1,\dots,1) \in \Uz(M_n(A))$ for some $n$ already lies in
 $\Uz(A)$.
 
-Injectivity fails for some nonsimple algebras.  Blackadar
-\cite[8.1.2(d)]{Bl} gives the classical example, which rests on a theorem of
-Araki, James and Thomas \cite{AJT}: for $A = C(\U(2) \times \U(2), M_2)$ and
+Blackadar \cite[8.1.2(d)]{Bl} gives the classical example of a nonsimple
+algebra for which injectivity fails, resting on a theorem of Araki, James and
+Thomas \cite{AJT}: for $A = C(\U(2) \times \U(2), M_2)$ and
 the two coordinate unitaries $u$ and $v$, the products $uv$ and $vu$ lie in
 different components of $\U(A)$, while $\operatorname{diag}(uv,1)$ and
 $\operatorname{diag}(vu,1)$ lie in the same component of $\U(M_2(A))$.  For
@@ -110,27 +110,21 @@ $v \notin \Uz(A)$ and $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.
 \leanverified{thm:main-separable}{GroupApproximation.NinetyNineProblems.exists\_separable\_simple\_unital\_not\_k1Inj}
 \end{mainthm}
 
-Simplicity means that every closed two-sided ideal of $A$ is $0$ or $A$; for
-a unital C*-algebra this is the same as simplicity as a ring.
-
-The algebra $A$ is an inductive limit of homogeneous algebras
-$A_j = E_j\, M(C(X_j))\, E_j$, where $X_j = S^4 \times \prod_{i<j} \CP^{d_i}$
-and $E_j$ is the direct sum of a trivial rank-two bundle with multiples of the
-tautological line bundles of the projective factors.  The connecting maps are
-twisted point evaluations $a \mapsto a \oplus a(x_j) \otimes 1_{L}$, with $L$
-the tautological line bundle of the new factor.  Inductive limits of this kind
-were introduced by Villadsen \cite{Vi98,Vi99}.  Point evaluations at a sequence
-of points with dense tails make the limit simple, and the twist by $L$ is
-necessary: a simple inductive limit of this shape with untwisted point
-evaluations has stable rank one \cite{EHT}, so is $K_1$-injective by
+The algebra $A$ is an inductive limit of homogeneous algebras over the spaces
+$S^4 \times \prod_{i<j} \CP^{d_i}$, of the kind introduced by Villadsen
+\cite{Vi98,Vi99}, with twisted point evaluations as connecting maps.  The
+point evaluations, at a sequence of points with dense tails, make the limit
+simple.  The twist, by the tautological line bundle of the new projective
+factor, is necessary: a simple inductive limit of this shape with untwisted
+point evaluations has stable rank one \cite{EHT}, so is $K_1$-injective by
 \cite{Ri}, and is even $K$-stable \cite{Se}.
 
 The unitary $v$ is the image in $A$ of the clutching function
 $u \colon S^4 \to \U(2)$ of the rank-two bundle $F = x^{\perp}$ over
 $S^5 \subset \C^3$; it represents the nonzero element of
 $\pi_4(\U(2)) \cong \mathbb Z/2$ \cite{Bo}.  Since $\operatorname{diag}(u,1)$
-is null-homotopic in $\U(3)$, $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.  The
-content of the theorem is $v \notin \Uz(A)$.  A null-homotopy of $v$ in $A$
+is null-homotopic in $\U(3)$, $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.  It
+remains to show $v \notin \Uz(A)$.  A null-homotopy of $v$ in $A$
 gives one at a finite stage $A_j$, and a null-homotopy at stage $j$ gives an
 isomorphism of vector bundles $F \oplus H \cong \mathbf 1^2 \oplus H$ over
 $S^5 \times \prod_{i<j} \CP^{d_i}$, where $H$ is the sum of the twisted line
@@ -175,9 +169,7 @@ pulled back to $Y_j$.  Put $E_j = \mathbf 1^2 \oplus H_j$ and
 \[
   A_j \;=\; E_j \, M(C(X_j)) \, E_j .
 \]
-The bundle $E_j$ has rank $2 + \sum_{i<j} d_i = 2^{\,j+1}$ and the base $X_j$
-has dimension $4 + 2\sum_{i<j} d_i = 2^{\,j+2}$, twice the rank.  The
-dimensions $d_i$ are even; Step~D in Section~\ref{sec:modtwo} uses this.
+The bundle $E_j$ has rank $2 + \sum_{i<j} d_i = 2^{\,j+1}$.
 
 \subsection{The connecting maps and the limit}
 
@@ -300,18 +292,11 @@ $2+m$, are not isomorphic.
 Both bundles are subbundles of $V = \mathbf 1^3 \oplus H$, of rank $r = 3+m$:
 with $e$ the constant section $e_3$ of $\mathbf 1^3$ and $s$ the section
 $x \mapsto x$, we have $F \oplus H = V - ss^{*}$ and
-$\mathbf 1^2 \oplus H = V - ee^{*}$.  Since the two bundles have the same rank,
-no dimension count separates them.
+$\mathbf 1^2 \oplus H = V - ee^{*}$.
 
 The argument is a mod-2 characteristic class computation.  We write
 $\gamma_i$ for the mod-2 Chern classes and $\gamma = \sum_i \gamma_i$ for the
-total class, and all cohomology has coefficients in $\F_2$.  The source
-manuscript proves the lemma integrally, by a Chern number computation with a
-K\"unneth decomposition over $\mathbb Z$; the argument below, which is the one
-formalised, works mod~$2$ throughout.  Working mod~$2$ removes signs and
-torsion, replaces the K\"unneth theorem over $\mathbb Z$ by one over a field,
-and makes the evenness of the $d_i$ enter through the Frobenius endomorphism
-of an $\F_2$-algebra.
+total class, and all cohomology has coefficients in $\F_2$.
 
 \subsection{The setting}
 
@@ -320,10 +305,7 @@ let $M$, $H$ and $V$ be as above.  Everything happens over the closed manifold
 \[
   N \;=\; S^1 \times M
 \]
-of dimension $1 + 5 + 2m = 2r$.  So $H^{2r}(N)$ is the top cohomology group of
-$N$, it is one-dimensional over $\F_2$, and it is the only group in which a
-rank-$r$ bundle over $N$ can have a nonzero top Chern class.  We compute
-$\gamma_r$ of one bundle over $N$ in two ways and get different answers.
+of dimension $1 + 5 + 2m = 2r$, so $H^{2r}(N) \cong \F_2$.
 
 \subsection{Step A: from an isomorphism to a unitary}
 
@@ -338,10 +320,6 @@ Cut $S^1$ at two points into two arcs and let $W_g$ be the bundle over
 $N = S^1 \times M$ obtained from $V \times \mathrm{arc}$ on each arc by gluing
 with the identity at one seam and with $g$ at the other.  Then $W_g$ has rank
 $r$ and restricts to $V$ on each slice $\{t\} \times M$.
-
-The rotation model, in which one runs a path from the identity to $g$ around
-the circle, does not work here: the rotation returns to the identity, so the
-bundle it produces is trivial.
 
 \subsection{Step C: $\gamma_r(W_g) \neq 0$}
 
@@ -379,13 +357,12 @@ $Y = \prod_i \CP^{d_i}$.  Because $W$ restricts to $V$ on a slice,
   \gamma(W) \;=\; \gamma(p^{*}V)\,(1 + z\,b),
   \qquad z = t x,\quad b = \sum_n b_n \in H^{*}(Y),
 \]
-with $b_n \in H^{2n}(Y)$.  Three facts finish the computation.
+with $b_n \in H^{2n}(Y)$.
 
 First, $\gamma(V) = \prod_i (1+h_i)^{d_i}$, where $h_i \in H^2(\CP^{d_i})$ is
 the mod-2 Chern class of $L_i$.  Since each $d_i$ is even and
 $(1+h)^2 = 1 + h^2$ over $\F_2$, this is a polynomial in the $h_i^2$, so
-$\gamma_k(V) = 0$ for every odd $k$.  This is the only place where the
-evenness of the $d_i$ is used.
+$\gamma_k(V) = 0$ for every odd $k$.
 
 Second, the Wu formula for mod-2 Chern classes \cite{MS},
 \[
@@ -474,10 +451,9 @@ $H^{2r}(N, N \setminus z) \cong \F_2$.
 \begin{proof}
 Both sides are pullbacks of $U$ along maps of pairs into
 $(E, E \setminus 0)$, but reading $\sigma^{*}U$ in the chart involves the
-inverse of an excision isomorphism, so the two sides cannot be compared
-pointwise.  Composing both with the excision itself removes the inverse.  We
-then restrict to a small neighbourhood of $z$, on which the chart reads the
-section; only injectivity of this restriction is used.  What remains are two
+inverse of an excision isomorphism; composing both sides with the excision
+removes it.  We then restrict to a small neighbourhood of $z$ on which the
+chart reads the section.  What remains are two
 pullbacks along explicit maps of pairs: on one side a point goes to the value
 of the section at its chart image, on the other to the point of the fibre over
 $z$ with the given coordinates.  These maps are homotopic through maps of
@@ -491,9 +467,6 @@ isomorphisms between them coincide.  Hence the homotopy can be replaced by
 its two ends and the automorphism induces the identity, and the two pullbacks
 agree.  The second statement follows from Lemma~\ref{lem:hres}.
 \end{proof}
-
-The last step is specific to $\F_2$: over any other field two isomorphisms
-between lines differ by a scalar.
 
 \section*{Provenance}
 
