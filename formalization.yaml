@@ -34,7 +34,13 @@ sources:
       first presented in this project. The argument was committed to this
       public repository on 2026-09-05 04:40 UTC (fb38f13ad), posted publicly
       on 2026-09-07 (https://x.com/Sauers_/status/2096961149770043897), and
-      its Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148).
+      its Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148). The
+      informal account is k1_injectivity_counterexample.tex in this
+      repository: Theorem A is the compared result and Lemma 2 the bundle
+      obstruction it rests on, and each printed statement carries a
+      leanverified marker naming its Lean carrier. That account presents the
+      mod-2 route that is formalised; the earlier integral route is
+      research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md.
 
   - title: Non-MF Groups
     type: original-proof
@@ -506,6 +512,31 @@ alignment:
         over it, so the class of u dies at the first stabilisation step.
       lean: ProblemLIX.exists_separable_simple_stage_two_witness
       module: Palomar.LIXChallenge
+      status: proved
+
+    - source: >-
+        k1_injectivity_counterexample.tex, Theorem A: there is a unital simple
+        separable C*-algebra A that is not K1-injective; explicitly, a unitary
+        v in U(A) with v not in U0(A) and diag(v, 1) in U0(M2(A)).
+      lean: GroupApproximation.NinetyNineProblems.not_problemLIX
+      module: GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
+      status: proved
+
+    - source: >-
+        k1_injectivity_counterexample.tex, Theorem A in its existence form:
+        there is a separable simple unital C*-algebra that is not
+        K1-injective.
+      lean: GroupApproximation.NinetyNineProblems.exists_separable_simple_unital_not_k1Inj
+      module: GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIX
+      status: proved
+
+    - source: >-
+        k1_injectivity_counterexample.tex, Lemma 2: for even positive
+        d_0, ..., d_{l-1} and M = S^5 x prod_i CP^{d_i}, the projections
+        F + H and 1^2 + H over M, both of pointwise rank 2 + m, are not
+        Murray-von Neumann equivalent as continuous fields.
+      lean: GroupApproximation.CharClass.lemmaTwoHolds
+      module: GroupApproximation.CharClass.LemmaTwoOfHsqHresHclass
       status: proved
 
 acknowledgements: "Built on Lean 4 and Mathlib."
