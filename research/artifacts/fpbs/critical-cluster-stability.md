@@ -177,6 +177,14 @@ The [recorded exact replay](critical-cluster-stability-replay.json) passed
 two-atom moment cases on MSI acn112. No infinite result follows from
 these finite checks alone.
 
+The [Cairn validation record](critical-cluster-stability-validation.json)
+separately records the full captured graph's pre-existing findings and
+the dependency-closed cost/percolation graph. The archive-fed checker in
+`scripts/validate_critical_cluster_stability.py` uses the pinned Cairn
+parser, linter, compiler, and changed-claim duplicate checker; serial CLI
+loading on shared storage exceeded the time limit. A clean task graph
+does not certify unrelated source files or the mathematical proof text.
+
 Critical finiteness is the theorem of Benjamini--Lyons--Peres--Schramm;
 a recent exposition is Tasmin Chu, *Applications of the cluster graphing*,
 Theorem 1.1, https://arxiv.org/abs/2608.06644.

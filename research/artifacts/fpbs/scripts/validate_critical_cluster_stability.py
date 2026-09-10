@@ -62,6 +62,28 @@ def main():
     changed = {Path(p).stem for p in new_sources
                if old_sources.get(p) != new_sources[p]}
     duplicates = cairn.duplicate_findings(after, only_ids=changed)
+    # Include every proof and explicit refutation/invalidator relevant to the
+    # fpbs region, rather than dropping unrelated findings from a global check.
+    cone = {node for node in after.nodes if node.startswith('fpbs-')}
+    while True:
+        expanded = set(cone)
+        for node in cone:
+            metadata = after.nodes[node].meta
+            for key in ('requires', 'invalidates', 'refuted_by'):
+                expanded.update(metadata.get(key, []))
+            if metadata.get('target'):
+                expanded.add(metadata['target'])
+            expanded.update(metadata.get('distinct_from', {}))
+        for node, value in after.nodes.items():
+            if value.meta.get('target') in cone:
+                expanded.add(node)
+            if set(value.meta.get('invalidates', [])) & cone:
+                expanded.add(node)
+        if expanded == cone:
+            break
+        cone = expanded
+    task_graph, task_errors = compile_sources({
+        path: content for path, content in new_sources.items() if Path(path).stem in cone})
     expected = {
         'fpbs-critical-cluster-stability-modulus': 'ESTABLISHED',
         'fpbs-finite-spectrum-total-variation-continuity': 'ESTABLISHED',
@@ -70,7 +92,7 @@ def main():
         'fpbs-benjamini-schramm-universal': 'OPEN',
         'fpbs-fixed-price-universal': 'OPEN',
     }
-    statuses = {node: after.nodes[node].status for node in expected}
+    statuses = {node: task_graph.nodes[node].status for node in expected}
     removed = sorted(set(before.nodes)-set(after.nodes))
     changes = {node: [before.nodes[node].status if node in before.nodes else None,
                       after.nodes[node].status]
@@ -78,16 +100,21 @@ def main():
                if node not in before.nodes or before.nodes[node].status != after.nodes[node].status}
     new_open = [node for node in after.claims
                 if node not in before.nodes and after.claims[node].status == 'OPEN']
-    passed = (not any(severity == 'error' for severity, _, _ in errors)
-              and not duplicates and not removed and statuses == expected and not new_open)
+    new_errors = [finding for finding in errors if finding not in baseline_errors]
+    passed = (not any(severity == 'error' for severity, _, _ in task_errors)
+              and not new_errors and not duplicates and not removed
+              and statuses == expected and not new_open)
     report = {
-        'status': 'passed' if passed else 'failed',
+        'status': 'passed_task_graph' if passed else 'failed',
         'execution': 'MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.',
-        'scope': 'Full captured research graph; unchanged Cairn parser, linter, dependency compiler and changed-claim duplicate checker. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.',
+        'scope': 'Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.',
         'cairn_sha256': hashlib.sha256(tool_path.read_bytes()).hexdigest(),
         'baseline_archive_sha256': baseline_hash,
         'overlay_archive_sha256': overlay_hash,
         'claims': len(after.claims), 'routes': len(after.routes),
+        'task_claims': len(task_graph.claims), 'task_routes': len(task_graph.routes),
+        'task_findings': task_errors, 'new_findings': new_errors,
+        'full_snapshot_clean': not any(f[0] == 'error' for f in errors),
         'baseline_findings': baseline_errors,
         'findings': errors, 'duplicate_findings': duplicates,
         'removed_nodes': removed, 'new_open_claims': new_open,
