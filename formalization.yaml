@@ -50,11 +50,10 @@ sources:
       The sofic-not-MF group of Palomar/comparator.json is first presented in
       this project.
 
-  # Background for the LIX result, in four groups: the problem and its
-  # history; the positive results the counterexample had to avoid; the
-  # construction's ancestry and the barrier it evades; the topology the
-  # obstruction rests on.  None is formalized here and none proves the
-  # result; the formal proof rebuilds every topological input over Mathlib.
+  # Background for the LIX result: the problem and its history, the positive
+  # results the counterexample had to avoid, the construction's ancestry and
+  # the barrier it evades, the topology the obstruction rests on, and the
+  # independent solution.  None is used in the proof.
 
   - title: "Nuclear C*-algebras: 99 problems"
     authors: [Christopher Schafhauser, Aaron Tikuisis, Stuart White]
@@ -76,7 +75,7 @@ sources:
       8.1.2(d): the nonsimple failure of injectivity, with a class killed by
       one stabilisation. After 8.1.3: whether U(A)/U0(A) -> K1(A) is an
       isomorphism for simple unital A "remains an open problem", the earliest
-      record of the question answered here.
+      reference we found for the question answered here.
 
   - title: Homotopy-abelian Lie groups
     authors: [S. Araki, I. M. James, Emery Thomas]
@@ -362,7 +361,17 @@ review:
 repository:
   role: substantive-development
 
-related_formalizations: []
+related_formalizations:
+  - id: https://github.com/akopjan/HamSandwich/tree/76202dbbb6610ffcebbccfbf7a56f833a4c2a376
+    relationship: builds-on
+    note: >-
+      The mod-2 singular cohomology used by the LIX obstruction (cochains,
+      cup products, the cohomology of spheres) is a namespace-isolated Lean
+      4.32 port of the HamSandwich library, in
+      GroupApproximation/ThirdParty/HamSandwich, with the upstream revision
+      and the porting record in its UPSTREAM.md. The characteristic classes,
+      Steenrod squares, Thom class and the obstruction itself are this
+      project's own.
 
 status:
   # Axiom closures computed by scripts/PalomarAxioms.lean and
@@ -457,4 +466,6 @@ alignment:
       module: Palomar.Challenge
       status: proved
 
-acknowledgements: "Built on Lean 4 and Mathlib."
+acknowledgements: >-
+  Built on Lean 4 and Mathlib. The mod-2 singular cohomology layer is a port
+  of akopjan/HamSandwich (Apache-2.0).
