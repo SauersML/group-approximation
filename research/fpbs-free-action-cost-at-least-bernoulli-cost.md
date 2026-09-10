@@ -56,6 +56,16 @@ construction making its residual vanish for arbitrary factors is
 proved. Quotient cycles and possible amplification of chain norms
 still need control.
 
+Iterate the connected exchanges with a valid operator invariant.
+`fpbs-cycle-retraction-contractive-transport` replaces R K R-star,
+which may exceed the identity, by a positive contraction on the
+retained cycle space with no larger trace. The iteration artifact
+proves the exact telescoping cost identity. It also gives a genuine
+relative starting certificate on F_2 x Z for which every finite
+independent-priority stage leaves trace at least delta_G-2p>0.
+Contractivity and eventual acyclicity of the limiting edge set
+therefore do not supply the universal decay estimate.
+
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
 open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti

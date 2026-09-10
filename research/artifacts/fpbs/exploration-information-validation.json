@@ -9,11 +9,11 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "27ce69cb0883e78e15f25a699e0a2f4f90514575621c5966feaef95e0e0a7713",
-  "claims": 7779,
-  "routes": 7948,
-  "task_claims": 241,
-  "task_routes": 246,
+  "overlay_archive_sha256": "7ee3c9d820faad07d2157ea42621416276edbc282f4f73535cf5b0252581ebdd",
+  "claims": 7780,
+  "routes": 7949,
+  "task_claims": 242,
+  "task_routes": 247,
   "task_findings": [],
   "new_findings": [],
   "full_snapshot_clean": false,
@@ -208,6 +208,28 @@
       "fpbs-relative-cycle-retraction-rounding"
     ]
   ],
+  "contractive_transport_goal_chain": [
+    [
+      "fpbs-fixed-price-universal",
+      "fpbs-fixed-price-from-bernoulli-cost-equality",
+      "fpbs-free-action-cost-at-least-bernoulli-cost"
+    ],
+    [
+      "fpbs-free-action-cost-at-least-bernoulli-cost",
+      "fpbs-bernoulli-lower-bound-from-block-localization",
+      "fpbs-relative-cycle-block-rounding-bound"
+    ],
+    [
+      "fpbs-relative-cycle-block-rounding-bound",
+      "fpbs-relative-cycle-block-rounding-bound-proof",
+      "fpbs-relative-cycle-retraction-rounding"
+    ],
+    [
+      "fpbs-relative-cycle-retraction-rounding",
+      "fpbs-relative-cycle-retraction-rounding-proof",
+      "fpbs-cycle-retraction-contractive-transport"
+    ]
+  ],
   "state_changes": {
     "fpbs-adaptive-exploration-entropy-proof": [
       null,
@@ -282,6 +304,14 @@
       "COMPLETE"
     ],
     "fpbs-critical-quotient-sprinkling": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-cycle-retraction-contractive-transport-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-cycle-retraction-contractive-transport": [
       null,
       "ESTABLISHED"
     ],
@@ -451,6 +481,7 @@
     "fpbs-finite-block-forest-cost-normal-form": "ESTABLISHED",
     "fpbs-relative-cycle-block-rounding-bound": "ESTABLISHED",
     "fpbs-relative-cycle-retraction-rounding": "ESTABLISHED",
+    "fpbs-cycle-retraction-contractive-transport": "ESTABLISHED",
     "fpbs-relative-cycle-block-localization": "OPEN",
     "fpbs-reduced-circulation-tail-bounds-cost-excess": "ESTABLISHED",
     "fpbs-optimistic-search-certified-growth": "ESTABLISHED",
@@ -463,7 +494,8 @@
     "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
     "research/artifacts/fpbs/docs/cost-cycle-structure.md": "9c0809bfd6b2a35f8cd5f87de4b720cfdf3815415e40d80375fdf882cdbf843f",
     "research/artifacts/fpbs/docs/fixed-price-reuse-compression.md": "5e3ee42789c4b092222b5551ed8b3abbf2af60d422e97ac9e4c110a23ff63f2b",
-    "research/artifacts/fpbs/docs/relative-cycle-exchange.md": "91d2e663551e3363bf1a1f1a46d3997c199ff73bbdf2596fc1fa8d19c9bcd5e5",
+    "research/artifacts/fpbs/docs/relative-cycle-exchange.md": "10e6d655a01622958da4830b7a182c9b5d1e986745a786fcd0fe5b9642c2e8df",
+    "research/artifacts/fpbs/docs/relative-cycle-iteration.md": "0f73990cfe15e442702ac740eea0ad54799690d7cfb5d078454151076973b5ce",
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
@@ -485,7 +517,7 @@
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
-    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "9719194109ea8f06e40c907d0dd8702065aee62d371719a68b1117c9cc3097fe",
+    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "558c8c13843c19e692589178b069db14568f1999fe4d1889c766a003ad510786",
     "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
     "research/artifacts/fpbs/search-barriers.md": "9e85c9b4d985a2a1fdbf3f1a7cd9a1818f9896d7328ea840a1b43686f0155281",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
@@ -512,11 +544,13 @@
     "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
     "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
+    "research/fpbs-cycle-retraction-contractive-transport-proof.md": "db7db6667000b5331a6a94a373a39f08661a1b8245681b3dd9ccb7d129720ebf",
+    "research/fpbs-cycle-retraction-contractive-transport.md": "d2b6c8da59cdab9f088694c242b864c9ef78514eca9744cfec1fb2d33687436d",
     "research/fpbs-finite-block-forest-cost-normal-form-proof.md": "d8f4ebe2042213a038cb99feacb001459e1a96d90e30f5f585eeab07801cbd5f",
     "research/fpbs-finite-block-forest-cost-normal-form.md": "4b0410facfd2fca6811bca146bfadfa1fcfa8a6ed5b68ce819cdfcfbdbdba247",
     "research/fpbs-fixed-price-countable-from-finitely-generated.md": "b299e8aeb8714a987ee2581be937489f7ac7fef8bca15a2d244cb687986d4b30",
     "research/fpbs-fixed-price-universal.md": "1d22cfcb4db352d274fa0c9da8490e288b6f4283cb5db92962f340ef3ad90012",
-    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "7edccd0f48bd251ce848d7f36c4765c30de3361fbef2ef0b859daa076671a148",
+    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "0dbf23db83311dc2f56dbb1a705b13f38132d1cc71025c31be14e1cf41937443",
     "research/fpbs-hermon-hutchcroft-finite-tail-input.md": "1d230b6e23a51326356802a2c3fe93d13d29cb11a4588e73080e2ef63a7cb7cf",
     "research/fpbs-nonamenability-bounds-critical-connectivity-operator.md": "b8766a965a5ae58e4fae11cf2d46b126bdffa79350e214fe276022c5623c8d70",
     "research/fpbs-optimistic-search-certified-growth-proof.md": "145d4e7c0fe4bee87f7530d19bd8316a6018ce55fab373caa325a4ca44705577",
@@ -536,7 +570,7 @@
     "research/fpbs-relative-cycle-dpp-disconnects.md": "9d1666947eabb2417912bc65d6f4adb916e74f4113c42cfaf2f6997e45353185",
     "research/fpbs-relative-cycle-operator-descent-proof.md": "7a66c44c0dc5275516bc08b314436d12d773c6a583d3a3c89567ce1c30792674",
     "research/fpbs-relative-cycle-operator-descent.md": "1c2bb51e67feb53406770f4f3e10165cab76f7347ca23288496f1fd375a99904",
-    "research/fpbs-relative-cycle-retraction-rounding-proof.md": "679b7b0d96ce7fa493defaea60d6e930b52b069db5af73be8d0c6d2011b53adb",
+    "research/fpbs-relative-cycle-retraction-rounding-proof.md": "8d10104125511bda96d16ca72fe2267fd3b89c70ce4ac102da8026c8383728d5",
     "research/fpbs-relative-cycle-retraction-rounding.md": "c8c3d7dc6db4d0ca808096d081694628cc4d9f9410427e6bb26d87dde0db5f3d",
     "research/fpbs-supercritical-finite-susceptibility.md": "7adcc28a2c89e060c6c7c9a388b5b669b0f0c67b3f87ff253c0f2fc66dc89246",
     "research/fpbs-target-search-geodesic-tie-calibration.md": "8657701478c96caa57c7a9e4a18869793a250e3fc279504c911829c1b0984fbd",
@@ -698,6 +732,8 @@
     "research/fpbs-cut-weighted-count.md": "3338cd5dbda93d4d82c639784b3bff10bae9e3ca56dbeb019a832a98cb7849c5",
     "research/fpbs-cycle-deletion-boundary-proof.md": "ffd26f66a86f392e0568ce868c03fba25a0ea3c8c58fdd9305b4711c7fab4bd1",
     "research/fpbs-cycle-deletion-half-boundary.md": "158a7728d863fa8bb084bb8ef3de2c514e799b87305d2974e5a9521571b2e904",
+    "research/fpbs-cycle-retraction-contractive-transport-proof.md": "db7db6667000b5331a6a94a373a39f08661a1b8245681b3dd9ccb7d129720ebf",
+    "research/fpbs-cycle-retraction-contractive-transport.md": "d2b6c8da59cdab9f088694c242b864c9ef78514eca9744cfec1fb2d33687436d",
     "research/fpbs-dead-bridge-count-at-criticality.md": "290deada422aa41443d67bfbe9f3d8a915efd5eca9df245f81d9809e358b0d7a",
     "research/fpbs-dead-copy-source-correlations.md": "8fbe75a5289d1874fbd3f18cb86c0b7dfcb9b20a3d0d19c42d9710f8b9e03376",
     "research/fpbs-dead-fusf-connected-betti-descent.md": "6e5575b9d69cbd2fa92d6103c978478db711ae91942181fdbb5861436eb1c24c",
@@ -778,7 +814,7 @@
     "research/fpbs-fixed-price-universal.md": "1d22cfcb4db352d274fa0c9da8490e288b6f4283cb5db92962f340ef3ad90012",
     "research/fpbs-fixed-price-via-priority-deletion-optimality.md": "db5f7da538b742b13846d433e9dbe21eb0d56648e1a0e8c7856f4b0bb4aff7d4",
     "research/fpbs-forest-band-bridge-proof.md": "65d3018f8cdef1b9be8e9b402689c548c7c2acf70705509f5e904e2738baaf8f",
-    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "7edccd0f48bd251ce848d7f36c4765c30de3361fbef2ef0b859daa076671a148",
+    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "0dbf23db83311dc2f56dbb1a705b13f38132d1cc71025c31be14e1cf41937443",
     "research/fpbs-fusf-not-connected-on-some-cayley-graphs-ref.md": "24831affb036b6456bb6eaf84d9a93771b2c0d4c35cb4c1caf31664364227211",
     "research/fpbs-fusf-not-connected-on-some-cayley-graphs.md": "9241864c252d90ff99d71d660d2a8b5624904630f7f625862eadba5c0c99a5e6",
     "research/fpbs-graphing-cost-betti-cycle-dimension-identity-proof.md": "1b19b8c8d884802349b7b141089236dd485fb868a0c1f1f6b12f495a1a2f15dc",
@@ -913,7 +949,7 @@
     "research/fpbs-relative-cycle-dpp-disconnects.md": "9d1666947eabb2417912bc65d6f4adb916e74f4113c42cfaf2f6997e45353185",
     "research/fpbs-relative-cycle-operator-descent-proof.md": "7a66c44c0dc5275516bc08b314436d12d773c6a583d3a3c89567ce1c30792674",
     "research/fpbs-relative-cycle-operator-descent.md": "1c2bb51e67feb53406770f4f3e10165cab76f7347ca23288496f1fd375a99904",
-    "research/fpbs-relative-cycle-retraction-rounding-proof.md": "679b7b0d96ce7fa493defaea60d6e930b52b069db5af73be8d0c6d2011b53adb",
+    "research/fpbs-relative-cycle-retraction-rounding-proof.md": "8d10104125511bda96d16ca72fe2267fd3b89c70ce4ac102da8026c8383728d5",
     "research/fpbs-relative-cycle-retraction-rounding.md": "c8c3d7dc6db4d0ca808096d081694628cc4d9f9410427e6bb26d87dde0db5f3d",
     "research/fpbs-relative-traffic-descent-over-hyperfinite-spine-proof.md": "ecc4a91613934ded2cdddbe542845c8b49a9fb60511c68d20f430e059744e52e",
     "research/fpbs-relative-traffic-descent-over-hyperfinite-spine.md": "9db14b10a57033e863dc2f9668e154a8bcf666c0d25ad861a7a8928a7acf80c4",
@@ -1043,5 +1079,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 17.399
+  "elapsed_seconds": 12.798
 }

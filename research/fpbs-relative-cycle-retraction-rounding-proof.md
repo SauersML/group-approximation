@@ -2,21 +2,22 @@
 rg: 2
 id: fpbs-relative-cycle-retraction-rounding-proof
 kind: route
-title: Identify the deleted-edge module with the retraction kernel and bound its orthogonal complement
+title: Bound path residual by the contractively transported certificate and apply the cost identity
 target: fpbs-relative-cycle-retraction-rounding
 requires:
-  - fpbs-relative-cycle-operator-descent
+  - fpbs-cycle-retraction-contractive-transport
 artifacts:
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
+  - research/artifacts/fpbs/docs/relative-cycle-iteration.md
 ---
 
-Section 7. For the deleted-edge set D, the bounded map w->w-Rw is
-an equivariant isomorphism from C_1(D) onto ker R, with inverse the
-deleted-edge coordinate projection. Thus the kernel projection P_W
-has trace c(H)-c(J). Since v-Rv lies in W, the nearest-point property
-gives ||(I-P_W)v||<=||Rv||. Apply this to K^(1/2), take traces, and
-use Tr(P_W K)<=Tr(P_W). This proves the general inequality; the
-required operator-descent identity gives its relative version.
-The artifact checks path length and congestion for bridge collapse,
-recovers the earlier block estimate, and verifies exact cancellation
-in the known finite-fiber example without a universal extrapolation.
+The transport theorem gives a positive contraction K' with
+c(J)=c(H)-Tr(K)+Tr(K')-eta, where eta>=0 and
+Tr(K')<=Tr(R K R-star). Dropping eta gives the general path bound.
+For the relative operator, its defining trace identity substitutes
+c(Phi) for c(H)-Tr(K), giving the relative version.
+
+Section 7 of the exchange artifact retains the direct projection
+proof and checks the bounded bridge construction. Sections 1--3
+of the iteration artifact prove why the smaller transported
+certificate, rather than the raw path image, is valid for iteration.

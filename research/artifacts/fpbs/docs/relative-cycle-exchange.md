@@ -602,6 +602,11 @@ construction would give the reverse cost comparison by (19), but
 the theorem by itself supplies no universal bound on that residual.
 The separate infinite-cost and countable-group issues also remain.
 
+For iteration, R K R^* need not remain a positive contraction.
+`relative-cycle-iteration.md` gives a polar transport that fixes this
+problem, proves its exact cost identity, and shows that the known
+independent-priority obstruction still prevents universal trace decay.
+
 ## Sources and certificate boundary
 
 Repository reconnaissance covered the existing cycle-dimension identity,
