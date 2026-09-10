@@ -121,11 +121,15 @@ def main():
         'state_changes': changes, 'selected_statuses': statuses,
         'overlay_source_sha256': {p: hashlib.sha256(data).hexdigest()
                                   for p, data in sorted(overlay.items())},
+        'task_source_sha256': {p: hashlib.sha256(data).hexdigest()
+                              for p, data in sorted(new_sources.items())
+                              if Path(p).stem in cone},
         'elapsed_seconds': round(time.monotonic()-start, 3),
     }
     args.output.write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps({k:v for k,v in report.items()
-                      if k not in ('overlay_source_sha256', 'baseline_findings')}, indent=2))
+                      if k not in ('overlay_source_sha256', 'task_source_sha256',
+                                   'baseline_findings')}, indent=2))
     raise SystemExit(0 if passed else 1)
 
 

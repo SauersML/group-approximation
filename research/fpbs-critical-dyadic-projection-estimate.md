@@ -9,6 +9,15 @@ OPEN research hypothesis Q2 for every nonamenable Cayley graph. Q3 is a stronger
 
 ## Attempts
 
+* **Control the total projection using independent edge resampling.**
+  `fpbs-bernoulli-projection-resolvent-bound` bounds Q=E P_omega in
+  operator order by an explicit graph resolvent, giving ||Q||<1 at
+  criticality. Each shell Q_N is below Q, but this supplies no
+  size-weighted summability. The ghost derivative is precisely where
+  the cluster-size factor returns; `fpbs-projection-resolvent-ghost-obstruction`
+  refutes obtaining its upper bound by subtracting separate resolvent
+  bounds. The universal shell estimate remains OPEN.
+
 * **Prove it on trees and transport the proof.** `fpbs-regular-tree-dyadic-three-halves`
   gives `c_b N^(-3/2) <= ||Q_N|| <= C_b N^(-3/2)` on every regular tree of
   degree at least three, with an exact finite formula for the norm and an

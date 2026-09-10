@@ -38,6 +38,19 @@ gap has to be computed.
 
 ## Attempts
 
+* **Use the product law in the averaging-projection derivative
+  (2026-09-10).** `fpbs-projection-noise-variance-identity` proves the
+  exact positive matrix remainder in -p(1-p)Q_p'>=Q_p-Q_p^2.
+  `fpbs-bernoulli-projection-resolvent-bound` integrates it to
+  Q_p<=[I+p L_G/(2(1-p))]^{-1}, including on the infinite graph.
+  This excludes the norm-one vertical FIID countermodel and uses the
+  actual independent edge law. **Where the next step fails:** Q_p still
+  divides by cluster size. Adding ghost killing preserves a resolvent
+  bound, but subtracting or differentiating the separate upper bounds
+  does not bound the connectivity operator. The explicit single-edge
+  calculation in `fpbs-projection-resolvent-ghost-obstruction` refutes
+  that inference. The size-weighted estimate remains unproved.
+
 * **Dyadic decomposition of the critical clusters** (response 4,
   `creative-branches.md` Section 2.2; response 8, `exploration.md` Sections
   3--4). Write `<f,T_{p_c} f> <= sum_k 2^(k+1) <f,Q_k f>` where `Q_k` averages
