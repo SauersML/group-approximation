@@ -101,6 +101,8 @@ def main():
         'fpbs-relative-cycle-operator-descent': 'ESTABLISHED',
         'fpbs-relative-cycle-dpp-disconnects': 'ESTABLISHED',
         'fpbs-finite-block-forest-cost-normal-form': 'ESTABLISHED',
+        'fpbs-relative-cycle-block-rounding-bound': 'ESTABLISHED',
+        'fpbs-relative-cycle-block-localization': 'OPEN',
         'fpbs-reduced-circulation-tail-bounds-cost-excess': 'ESTABLISHED',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
         'fpbs-optimistic-search-linear-wall-cost': 'ESTABLISHED',
@@ -117,7 +119,8 @@ def main():
     # Named, explicitly unproved constructions are actual frontier premises.
     # Keep all goals OPEN and reject unexpected new unresolved claims.
     allowed_new_open = {'fpbs-universal-optimistic-certificate-budget',
-                        'fpbs-bernoulli-cycle-tail-compactness'}
+                        'fpbs-bernoulli-cycle-tail-compactness',
+                        'fpbs-relative-cycle-block-localization'}
     unexpected_new_open = sorted(set(new_open)-allowed_new_open)
     goal_view, _ = cairn.frontier_view(task_graph,
                                      only_goal='fpbs-benjamini-schramm-universal')
@@ -132,9 +135,11 @@ def main():
     price_view[0]['necessary'] = sorted(price_view[0]['necessary'])
     reuse_chain = cairn.why_chain(task_graph, 'fpbs-correlated-reuse-flags-removable')
     cycle_chain = cairn.why_chain(task_graph, 'fpbs-bernoulli-cycle-tail-compactness')
+    block_chain = cairn.why_chain(task_graph, 'fpbs-relative-cycle-block-localization')
     price_wired = (
         {'fpbs-correlated-reuse-flags-removable',
          'fpbs-bernoulli-cycle-tail-compactness',
+         'fpbs-relative-cycle-block-localization',
          'fpbs-fixed-price-countable-from-finitely-generated'}
         <= set(price_view[0]['holes'])
         and reuse_chain
@@ -142,7 +147,10 @@ def main():
         and reuse_chain[-1][2] == 'fpbs-correlated-reuse-flags-removable'
         and cycle_chain
         and cycle_chain[0][0] == 'fpbs-fixed-price-universal'
-        and cycle_chain[-1][2] == 'fpbs-bernoulli-cycle-tail-compactness')
+        and cycle_chain[-1][2] == 'fpbs-bernoulli-cycle-tail-compactness'
+        and block_chain
+        and block_chain[0][0] == 'fpbs-fixed-price-universal'
+        and block_chain[-1][2] == 'fpbs-relative-cycle-block-localization')
     new_errors = [finding for finding in errors if finding not in baseline_errors]
     passed = (not any(severity == 'error' for severity, _, _ in task_errors)
               and not new_errors and not duplicates and not removed
@@ -172,6 +180,7 @@ def main():
         'fixed_price_frontier': price_view[0],
         'correlated_reuse_goal_chain': reuse_chain,
         'cycle_compactness_goal_chain': cycle_chain,
+        'block_localization_goal_chain': block_chain,
         'state_changes': changes, 'selected_statuses': statuses,
         'overlay_source_sha256': {p: hashlib.sha256(data).hexdigest()
                                   for p, data in sorted(overlay.items())},

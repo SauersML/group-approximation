@@ -37,6 +37,14 @@ proves D=q D_A for the original and normalized restricted cost gaps.
 Making the block transversal small without a new estimate on D_A
 therefore retains the entire possible gap.
 
+Localize the relative cycle operator in those blocks. Section 6 proves
+the bound C(X)<=c(Phi)+(1+2d M^2)Tr(P_out K) by replacing every block
+interior by a tree and retaining crossing edges. The conditional route
+`fpbs-bernoulli-lower-bound-from-block-localization` uses the new open
+`fpbs-relative-cycle-block-localization` to make this explicit error
+vanish. It preserves connectivity, but its localization premise is
+not supplied by the finite-block normal form or the trace identity.
+
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
 open `fpbs-bernoulli-cycle-tail-compactness` and the established cost--Betti

@@ -304,6 +304,147 @@ available bridge per quotient edge. For general R, equation (7) does
 not construct an optimal quotient connector graphing, and (8) prevents
 us from mistaking a small transversal for a small comparison gap.
 
+## 6. A quantitative condition that does give connected rounding
+
+Return to a simple generating graphing H of degree at most d, and a
+base-measurable equivariant positive contraction 0<=K<=P_Z(H). Partition
+each orbit measurably into finite blocks, each with at most M vertices,
+such that H restricted to each block is connected. Let P_out be the
+coordinate projection onto edges joining different blocks and set
+
+    b(K,E) = Tr(P_out K).
+
+This is an observable weighted boundary measure, with the diagonal of
+K as edge weight. It is not a count of components or an uncharged
+repair term.
+
+### Theorem 6.1: block-boundary rounding estimate
+
+There is a measurable generating subgraphing H' of H such that
+
+    c(H') <= c(H)-Tr(K)+(1+2d M^2) b(K,E).                  (9)
+
+In the relative setting of Section 1 this becomes
+
+    C(X) <= c(H') <= c(Phi)+(1+2d M^2) b(K,E).             (10)
+
+Unlike determinantal deletion, the construction preserves connectivity
+pointwise: choose a spanning tree inside each block and retain every
+edge between blocks. Every removed edge has a retained finite path
+inside its own block. The work is to bound how much this saves.
+
+**Proof of the estimate.** Let P_in=I-P_out and let P_0 project onto
+the orthogonal direct sum of the finite cycle spaces of the induced
+block graphs. For v in Z(H), its bounded boundary operator satisfies
+partial v=0. Put u=(P_in-P_0)v. On each finite block u is orthogonal
+to the kernel of the internal boundary operator, hence is a gradient.
+Also
+
+    partial u = -partial P_out v.                         (11)
+
+The unweighted Laplacian of a connected graph with n<=M vertices has
+every positive eigenvalue at least 1/M^2. Here is a sufficient elementary
+bound. For a mean-zero function f, write its squared norm as
+(1/n) times the sum of |f(x)-f(y)|^2 over unordered pairs. Choose a
+simple path of length at most n-1 for each pair and use Cauchy--Schwarz
+along it. Bounding the number of pairs by n(n-1)/2 gives
+
+    ||f||^2 <= ((n-1)^2/2) ||partial_in^* f||^2
+            <= M^2 ||partial_in^* f||^2.
+
+Consequently on the internal gradient space
+||u||^2<=M^2 ||partial_in u||^2. Singleton blocks have zero gradient
+space and satisfy this assertion as well. Since deg(H)<=d,
+||partial w||^2<=2d ||w||^2 for every edge chain w, by Cauchy--Schwarz
+at each vertex and counting each edge at its two endpoints. Sum the
+block inequalities and use (11) to get
+
+    ||u||^2 <= 2d M^2 ||P_out v||^2.
+
+The internal and external edge spaces are orthogonal, so
+
+    ||(I-P_0)v||^2 <= (1+2d M^2)||P_out v||^2.             (12)
+
+The range of K^(1/2) is contained in Z(H). Apply (12) to K^(1/2)w
+and take the finite normalized operator trace. Positivity and cyclicity
+of that trace yield
+
+    Tr((I-P_0)K) <= (1+2d M^2) Tr(P_out K).
+
+Also Tr(P_0 K)<=Tr(P_0), because 0<=K<=I. Hence
+
+    Tr(P_0) >= Tr(K)-(1+2d M^2)b(K,E).                     (13)
+
+Choose a Borel representative and spanning tree for each block. If a
+block has n vertices and e internal edges, the dimension of its cycle
+space and the number of edges deleted are both e-n+1. Averaging with
+the p.m.p. edge normalization gives deletion measure exactly Tr(P_0).
+Thus c(H')=c(H)-Tr(P_0), which proves (9). Equation (3) then gives
+(10). QED.
+
+### What this would need to settle the comparison
+
+For near-optimal source graphings Phi_n, let H_n be their finite-label
+conditional-support graphings and K_n the relative operators. The
+bound proves cost descent if there are connected finite-block
+partitions E_n with degree and size bounds d_n,M_n such that
+
+    (1+2 d_n M_n^2) b(K_n,E_n) -> 0.                       (14)
+
+This is the explicit open premise `fpbs-relative-cycle-block-localization`.
+The estimate alone does not supply those partitions. In particular,
+vanishing unweighted boundary is not asserted, and even b(K_n,E_n)->0
+without the factor depending on d_n,M_n would not suffice for (10).
+
+This premise concerns only the relative surplus. It does not require
+the entire cycle space of a near-optimal base graphing to vanish, so
+the resulting route does not assert cost--Betti equality. It is an
+exact geometric reformulation of factor-cost preservation in the
+finitely generated setting: if preservation already holds, lift a
+near-optimal finite-label base graphing to the source, giving H_n=Phi_n
+orbitwise, K_n=0, and use singleton blocks. Conversely (10) proves
+preservation from (14). Its value as a research target is the concrete
+boundary estimate and a connected rounding algorithm, not an
+independent proof of (14).
+
+The normal form in Section 5 permits a common finite-block forest at
+the cost infimum. It does not imply the weighted localization (14),
+and does not automatically give the finite-label, bounded-degree
+graphings used here. Those are separate requirements of this route.
+
+### A fixed source graphing can resist every finite-block partition
+
+In the example of Section 2, K=P_Z(H) for H=T_(2r) x C_M. Every edge
+lies in a simple commutation square. Taking the inner product of its
+unit edge vector with the normalized four-edge cycle vector gives
+
+    <K delta_e,delta_e> >= 1/4                             (15)
+
+for every edge. Also every finite vertex set U in this product graph
+has at least (2r-2)|U| boundary edges: apply the elementary tree boundary
+inequality separately in each cyclic layer and count only horizontal
+edges. For any measurable partition into finite blocks, mass transport
+therefore gives
+
+    Tr(P_out) = (1/2) integral |boundary B_x|/|B_x| dmu(x)
+              >= r-1,
+    b(K,E) >= (r-1)/4.                                    (16)
+
+This holds regardless of the block sizes or how they are selected.
+Thus this fixed relative certificate cannot satisfy (14), even though
+the base has the optimal treeing constructed in Section 3. No
+partition-only theorem for every fixed source graphing can establish
+the open premise. Varying the near-optimal source graphing, as its
+statement allows, is essential.
+
+There is also a concrete limitation of the rounding rule behind (9):
+it keeps all crossing edges. Section 3 saves additional cost by keeping
+only one bridge between each pair of adjacent cyclic blocks. A future
+exchange argument may need that additional operation and a way to
+control the resulting quotient cycles. Equations (15)--(16) rule out
+trying to obtain the missing universal estimate solely by enlarging
+blocks around the unchanged certificate of Section 2.
+
 ## Sources and certificate boundary
 
 Repository reconnaissance covered the existing cycle-dimension identity,

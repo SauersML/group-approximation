@@ -6,6 +6,7 @@ title: All free probability-preserving actions of each countably infinite group 
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/fixed-price-percolation.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
@@ -47,6 +48,16 @@ all other free actions. The coherent sparse-column calculation in
 `research/artifacts/fpbs/docs/cost-cycle-structure.md`, Section 8, verifies
 the reduced-circulation estimate for F_r x Z only. The universal compactness
 assertion and the countable-group passage remain open.
+
+A third conditional route now uses
+`fpbs-relative-cycle-block-localization`. The proved connected-rounding
+bound is C(X)<=c(Phi)+(1+2d M^2)Tr(P_out K), where K is the relative
+cycle operator and P_out records edges crossing finite connected
+blocks. This controls the actual cost of a generating base graphing.
+Finding near-optimal source graphings and blocks making that error
+vanish remains OPEN. The new route compares relative surplus and
+does not require cost--Betti equality. Its computed dependency path
+is included in the MSI validation report.
 
 The cost of an action is the infimum of the costs of the graphings that
 generate its orbit equivalence relation, a graphing's cost being half the
