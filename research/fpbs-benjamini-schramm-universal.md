@@ -132,6 +132,21 @@ content in that region.
 
 ## Attempts
 
+* **Contract the critical clusters and sprinkle independently (2026-09-09).**
+  `fpbs-critical-quotient-sprinkling` preserves the exact conditional bond
+  law, infinite-component counts, and a uniform weighted expansion bound.
+  `fpbs-critical-quotient-palm-moments` supplies the correct unimodular
+  root reweighting: quotient degree has finite first moment but infinite
+  second moment. **Where the simple argument dies:** the degree-biased
+  exploration mean is infinite, and no independent branching comparison
+  is justified. `fpbs-weighted-expansion-allows-zero-uniqueness` separately
+  shows that expansion alone allows uniqueness for every positive
+  parameter. Its layered graph has no unimodular root law, so it does
+  not refute an argument retaining the true critical quotient. The
+  unresolved task is to use that law and Bernoulli independence to obtain
+  nonuniqueness at a positive sprinkling parameter, not merely to restate
+  the original threshold separation on the quotient.
+
 * **Bound pivotal edges rather than route lengths (response 4,
   `creative-branches.md`, Sections 1.1--1.4).** The finite-volume Russo
   identity `d/dp log a_{n,R}(p) = E_p[N_{n,R} | E_{n,R}]/p` is exact, and a
