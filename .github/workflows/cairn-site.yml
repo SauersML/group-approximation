@@ -16,6 +16,7 @@ on:
     paths:
       - 'research/**'
       - 'tools/cairn.py'
+      - 'tools/test_cairn_site.js'
       - 'tools/math_explainer.js'
       - 'tools/math_explainer.css'
       - 'tools/math_macros.js'
@@ -108,6 +109,9 @@ jobs:
       # PROVER's source scan (the certification gate is unchanged); here it
       # only warns, and `bin/cairn site` below publishes with any broken
       # nodes dropped, so the /paper/ edition always tracks the tex.
+      - name: Test graph focus navigation
+        run: node tools/test_cairn_site.js tools/cairn.py
+
       - name: Validate the research graph
         id: graphcheck
         continue-on-error: true

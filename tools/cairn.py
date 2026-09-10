@@ -2573,8 +2573,6 @@ svg text.goalcap{fill:var(--goal);stroke-width:4px}
 opacity:.75}
 g.deadbit,line.dead{visibility:hidden}
 .showdead g.deadbit,.showdead line.dead{visibility:visible}
-g.orphan{display:none}
-line.gone{display:none}
 .dim{opacity:.13}
 /* `.lk.dead` is two classes and `.dim` is one, so without these the red
    obstruction edges kept their own opacity while everything else dimmed --
@@ -2583,7 +2581,6 @@ line.gone{display:none}
    the graph is noise, not context. */
 .lk.dim,.lk.kill.dim,.lk.dead.dim{opacity:.06}
 g.n,line.lk{transition:opacity .1s ease}
-text.orphan{display:none}
 g.labels text{font:10px __MONO__;fill:var(--mut);paint-order:stroke;
 stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
 g.labels text.hot{fill:var(--ink);font-weight:700}
@@ -2837,17 +2834,15 @@ for(const n of nodes)if(n.depth==null)n.depth=maxD+1;
 const GAP=20;   // breathing room between footprints
 const real=l=>l.kind!=='aff';
 const REAL=links.filter(real);
-const svg=d3.select('#view'),W=svg.node().clientWidth,H=svg.node().clientHeight;
+const svg=d3.select('#view'),W=svg.node().clientWidth;
 // The graph is a derivation, so the layout should read as one: an integer
 // layer per node (half-steps for the junctions and stubs that sit between a
 // claim and its premises), with real vertical separation between layers.
-for(const n of nodes)n.layer=Math.round((n.depth==null?maxD+1:n.depth)*2);
 
 const LGAP=105;
 // Vertical band per layer: this is the hierarchy, and it is a force pull, not
 // a pin -- the simulation is free to bend it where the structure demands.
 const bandY=d=>80+d.layer*LGAP;
-nodes.forEach(n=>{n.y=bandY(n);n.x=W/2+(Math.random()-.5)*W*.5});
 // Three heads, and the difference between them IS the direction: an input
 // is hollow and small, an output is solid and full size, a failure is red.
 // Before this, inputs had no head at all and the reader was asked to read
@@ -3540,7 +3535,7 @@ function renderClaim(d,extra){
    ${ctx(d)}
    <details id="statement"><summary>Statement</summary><div class="stmt"></div></details>
    ${artlist(extra.arts)}
-   <p><a href="#" data-focus="${d.id}">focus this claim and its consequences &#8594;</a></p>
+   <p><a href="#" data-focus="${d.id}">focus this claim &#8594;</a></p>
    <p><a class="open-page" href="${d.id}.html">open page &#8594;</a></p>`;
   bindStatement(extra.html);afterPanel();
 }
