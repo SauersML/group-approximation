@@ -2,10 +2,11 @@
 rg: 2
 id: fpbs-cycle-retraction-contractive-transport-proof
 kind: route
-title: Use the polar unitary on the surviving module and telescope the deleted-cycle cost
+title: Charge added cycle dimension and use polar transport for connected deletions
 target: fpbs-cycle-retraction-contractive-transport
 requires:
   - fpbs-relative-cycle-operator-descent
+  - fpbs-graphing-cost-betti-cycle-dimension-identity
 artifacts:
   - research/artifacts/fpbs/docs/relative-cycle-iteration.md
 ---
@@ -25,3 +26,12 @@ on Z(J). Dimension invariance and trace splitting give the exact
 cost identity. Section 3 proves its iteration and initializes it
 using the required relative-operator trace identity. The proof
 does not invoke or assert the missing trace-decay estimate.
+
+For additions, Section 5 uses the required dimension identity on
+H and H^+, which generate the same relation. Their nested cycle
+projections differ by a projection of trace c(H^+)-c(H)=a.
+This new projection is orthogonal to the old cycle space, so adding
+it to K preserves the positive-contraction bound and adds a to
+the trace. The quantity c(H)-Tr(K) is unchanged. Combining this
+step with the proved deletion identity gives the fully charged
+nonmonotone iteration, without a claim of trace decay.

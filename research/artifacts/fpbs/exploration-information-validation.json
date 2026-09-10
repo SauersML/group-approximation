@@ -9,7 +9,7 @@
     "math_explainer.js": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62"
   },
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "7ee3c9d820faad07d2157ea42621416276edbc282f4f73535cf5b0252581ebdd",
+  "overlay_archive_sha256": "59e5c68a86184c6e652c091b09ec6db5cb4298c52d50e0dccc3bba99c75149ee",
   "claims": 7780,
   "routes": 7949,
   "task_claims": 242,
@@ -52,11 +52,6 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
-    ],
-    [
-      "warning",
-      "cycle",
-      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "findings": [
@@ -94,11 +89,6 @@
       "error",
       "artifact",
       "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
-    ],
-    [
-      "warning",
-      "cycle",
-      "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
     ]
   ],
   "duplicate_findings": [],
@@ -495,7 +485,7 @@
     "research/artifacts/fpbs/docs/cost-cycle-structure.md": "9c0809bfd6b2a35f8cd5f87de4b720cfdf3815415e40d80375fdf882cdbf843f",
     "research/artifacts/fpbs/docs/fixed-price-reuse-compression.md": "5e3ee42789c4b092222b5551ed8b3abbf2af60d422e97ac9e4c110a23ff63f2b",
     "research/artifacts/fpbs/docs/relative-cycle-exchange.md": "10e6d655a01622958da4830b7a182c9b5d1e986745a786fcd0fe5b9642c2e8df",
-    "research/artifacts/fpbs/docs/relative-cycle-iteration.md": "0f73990cfe15e442702ac740eea0ad54799690d7cfb5d078454151076973b5ce",
+    "research/artifacts/fpbs/docs/relative-cycle-iteration.md": "794e33fd31db8acdf7c93bedf6bafd66bc1aaee02cba5a8ec525158b0d4816f8",
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
@@ -544,13 +534,13 @@
     "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
     "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
-    "research/fpbs-cycle-retraction-contractive-transport-proof.md": "db7db6667000b5331a6a94a373a39f08661a1b8245681b3dd9ccb7d129720ebf",
-    "research/fpbs-cycle-retraction-contractive-transport.md": "d2b6c8da59cdab9f088694c242b864c9ef78514eca9744cfec1fb2d33687436d",
+    "research/fpbs-cycle-retraction-contractive-transport-proof.md": "560bb9204ca182b855f9d7df7de38bb46d72aca0c4d1f44935e6d9193edc11de",
+    "research/fpbs-cycle-retraction-contractive-transport.md": "eebd3585abdbbe3fda533b85bf4199af4d003ef47f485dc90b80a34d60b78f6e",
     "research/fpbs-finite-block-forest-cost-normal-form-proof.md": "d8f4ebe2042213a038cb99feacb001459e1a96d90e30f5f585eeab07801cbd5f",
     "research/fpbs-finite-block-forest-cost-normal-form.md": "4b0410facfd2fca6811bca146bfadfa1fcfa8a6ed5b68ce819cdfcfbdbdba247",
     "research/fpbs-fixed-price-countable-from-finitely-generated.md": "b299e8aeb8714a987ee2581be937489f7ac7fef8bca15a2d244cb687986d4b30",
     "research/fpbs-fixed-price-universal.md": "1d22cfcb4db352d274fa0c9da8490e288b6f4283cb5db92962f340ef3ad90012",
-    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "0dbf23db83311dc2f56dbb1a705b13f38132d1cc71025c31be14e1cf41937443",
+    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "c9d160d480a86d02239c2f7094698cf08b23a06ee781ce515c2d91b92a70600d",
     "research/fpbs-hermon-hutchcroft-finite-tail-input.md": "1d230b6e23a51326356802a2c3fe93d13d29cb11a4588e73080e2ef63a7cb7cf",
     "research/fpbs-nonamenability-bounds-critical-connectivity-operator.md": "b8766a965a5ae58e4fae11cf2d46b126bdffa79350e214fe276022c5623c8d70",
     "research/fpbs-optimistic-search-certified-growth-proof.md": "145d4e7c0fe4bee87f7530d19bd8316a6018ce55fab373caa325a4ca44705577",
@@ -732,8 +722,8 @@
     "research/fpbs-cut-weighted-count.md": "3338cd5dbda93d4d82c639784b3bff10bae9e3ca56dbeb019a832a98cb7849c5",
     "research/fpbs-cycle-deletion-boundary-proof.md": "ffd26f66a86f392e0568ce868c03fba25a0ea3c8c58fdd9305b4711c7fab4bd1",
     "research/fpbs-cycle-deletion-half-boundary.md": "158a7728d863fa8bb084bb8ef3de2c514e799b87305d2974e5a9521571b2e904",
-    "research/fpbs-cycle-retraction-contractive-transport-proof.md": "db7db6667000b5331a6a94a373a39f08661a1b8245681b3dd9ccb7d129720ebf",
-    "research/fpbs-cycle-retraction-contractive-transport.md": "d2b6c8da59cdab9f088694c242b864c9ef78514eca9744cfec1fb2d33687436d",
+    "research/fpbs-cycle-retraction-contractive-transport-proof.md": "560bb9204ca182b855f9d7df7de38bb46d72aca0c4d1f44935e6d9193edc11de",
+    "research/fpbs-cycle-retraction-contractive-transport.md": "eebd3585abdbbe3fda533b85bf4199af4d003ef47f485dc90b80a34d60b78f6e",
     "research/fpbs-dead-bridge-count-at-criticality.md": "290deada422aa41443d67bfbe9f3d8a915efd5eca9df245f81d9809e358b0d7a",
     "research/fpbs-dead-copy-source-correlations.md": "8fbe75a5289d1874fbd3f18cb86c0b7dfcb9b20a3d0d19c42d9710f8b9e03376",
     "research/fpbs-dead-fusf-connected-betti-descent.md": "6e5575b9d69cbd2fa92d6103c978478db711ae91942181fdbb5861436eb1c24c",
@@ -814,7 +804,7 @@
     "research/fpbs-fixed-price-universal.md": "1d22cfcb4db352d274fa0c9da8490e288b6f4283cb5db92962f340ef3ad90012",
     "research/fpbs-fixed-price-via-priority-deletion-optimality.md": "db5f7da538b742b13846d433e9dbe21eb0d56648e1a0e8c7856f4b0bb4aff7d4",
     "research/fpbs-forest-band-bridge-proof.md": "65d3018f8cdef1b9be8e9b402689c548c7c2acf70705509f5e904e2738baaf8f",
-    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "0dbf23db83311dc2f56dbb1a705b13f38132d1cc71025c31be14e1cf41937443",
+    "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "c9d160d480a86d02239c2f7094698cf08b23a06ee781ce515c2d91b92a70600d",
     "research/fpbs-fusf-not-connected-on-some-cayley-graphs-ref.md": "24831affb036b6456bb6eaf84d9a93771b2c0d4c35cb4c1caf31664364227211",
     "research/fpbs-fusf-not-connected-on-some-cayley-graphs.md": "9241864c252d90ff99d71d660d2a8b5624904630f7f625862eadba5c0c99a5e6",
     "research/fpbs-graphing-cost-betti-cycle-dimension-identity-proof.md": "1b19b8c8d884802349b7b141089236dd485fb868a0c1f1f6b12f495a1a2f15dc",
@@ -1079,5 +1069,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 12.798
+  "elapsed_seconds": 13.095
 }

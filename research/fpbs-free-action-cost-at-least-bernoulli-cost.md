@@ -4,6 +4,7 @@ id: fpbs-free-action-cost-at-least-bernoulli-cost
 kind: claim
 title: Every free action of a finitely generated group has cost at least its Bernoulli cost
 artifacts:
+  - research/artifacts/fpbs/docs/relative-cycle-iteration.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
@@ -65,6 +66,16 @@ relative starting certificate on F_2 x Z for which every finite
 independent-priority stage leaves trace at least delta_G-2p>0.
 Contractivity and eventual acyclicity of the limiting edge set
 therefore do not supply the universal decay estimate.
+
+Allow added edges to escape a fixed decreasing sequence. Section 5
+of the iteration artifact proves that adding edges of cost a, while
+preserving the full generated relation, adds exactly a to the cycle
+certificate. This extends the cost identity to nonmonotone exchanges.
+It still needs a rule capturing more trace than additions introduce.
+Section 6 checks why sparsely reconnecting a limiting forest cannot
+be treated as this same-relation step, and Section 7 rules out an
+unpaid finite edge-count improvement on a forest. Neither audit
+rules out globally coordinated measurable exchanges.
 
 Control cycle dimension in Bernoulli cost minimizers. The conditional route
 `fpbs-bernoulli-lower-bound-from-cycle-tails` proves the comparison from the
