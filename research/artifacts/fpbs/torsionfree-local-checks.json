@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "scope": "exact finite checks, not a formal or independent verification of infinite theorems",
+  "assertions": {
+    "formal_endomorphism_identity": 39,
+    "relator_length": 100,
+    "piece_bound_arithmetic": 100,
+    "free_subgroup_half_bound": 100,
+    "distinct_run_lengths": 100,
+    "support_radius": 100,
+    "alternative_path_word": 100,
+    "kernel_word_length": 1,
+    "kernel_word_below_relator_half": 1,
+    "finite_rotation_piece_maximum": 20020,
+    "finite_rotation_Cprime": 20020,
+    "simultaneous_priority_preserves_connectivity": 26843,
+    "exact_continuous_priority_integral": 8,
+    "exact_tied_priority_formula": 16,
+    "exact_integral_decay_bound": 40,
+    "exact_integral_product_formula": 12,
+    "exact_Riemann_error_bound": 240,
+    "route_length_recurrence": 361,
+    "finite_quotient_periodicity": 612,
+    "finite_model_kernel_word_vanishes": 20
+  },
+  "total_exact_assertions": 68833,
+  "results": {
+    "word_checks": {
+      "positive_rotations": 20020,
+      "lexical_neighbor_comparisons": 20019,
+      "max_piece_by_relator": {
+        "1": 226,
+        "2": 426,
+        "3": 626,
+        "4": 826,
+        "5": 1024
+      },
+      "scope": "finite sample i=1,...,5; no infinite word-problem claim"
+    },
+    "priority_checks": {
+      "labelled_cases": 26843,
+      "partition_counts": {
+        "n=4,M=3": 15,
+        "n=5,M=3": 52,
+        "n=6,M=2": 203
+      },
+      "scope": "finite cycle permutations with every subequivalence relation; not quotients approximating the infinite group"
+    },
+    "probability_checks": {
+      "strict_priority_permutations": 5246,
+      "tied_priority_labelings": 2964,
+      "sample_integrals": [
+        {
+          "k": 1,
+          "I_decimal_display": 0.9230769230769231,
+          "I_exact": "12/13"
+        },
+        {
+          "k": 2,
+          "I_decimal_display": 0.8861538461538462,
+          "I_exact": "288/325"
+        },
+        {
+          "k": 5,
+          "I_decimal_display": 0.8307617188179249,
+          "I_exact": "5971968/7188545"
+        },
+        {
+          "k": 10,
+          "I_decimal_display": 0.7874792244584952,
+          "I_exact": "1283918464548864/1630415666434555"
+        },
+        {
+          "k": 20,
+          "I_decimal_display": 0.7449123000984309,
+          "I_exact": "6593786494438050175804174761984/8851762138397719005425334939565"
+        },
+        {
+          "k": 40,
+          "I_decimal_display": 0.7038859370156503,
+          "I_exact": "1565208732032410705272564272110569459753865661119632829858185216/2223668139569052913654717163904319040202563111458423797359662645"
+        }
+      ]
+    },
+    "finite_quotient_checks": {
+      "pairs_tested": 612,
+      "pairs_satisfying_full_period": 20,
+      "scope": "finite periodicity identity only; nontriviality of the word in G is a written Greendlinger deduction"
+    }
+  },
+  "elapsed_seconds": 1.436
+}

@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "scope": "Finite witness and incidence-counting inequalities only; not an infinite proof.",
+  "results": [
+    {
+      "graph": "cycle4",
+      "vertices": 4,
+      "edges": 4,
+      "nested_configurations": 48,
+      "pointwise_checks": 384,
+      "averaged_checks": 96
+    },
+    {
+      "graph": "cycle5",
+      "vertices": 5,
+      "edges": 5,
+      "nested_configurations": 112,
+      "pointwise_checks": 1120,
+      "averaged_checks": 224
+    },
+    {
+      "graph": "complete4",
+      "vertices": 4,
+      "edges": 6,
+      "nested_configurations": 624,
+      "pointwise_checks": 2496,
+      "averaged_checks": 624
+    },
+    {
+      "graph": "complete_bipartite_3_3",
+      "vertices": 6,
+      "edges": 9,
+      "nested_configurations": 15008,
+      "pointwise_checks": 180096,
+      "averaged_checks": 30016
+    }
+  ],
+  "totals": {
+    "nested_configurations": 15792,
+    "pointwise_checks": 184096,
+    "averaged_checks": 30960
+  }
+}

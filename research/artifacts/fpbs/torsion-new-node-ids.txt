@@ -1,0 +1,16 @@
+fpbs-aw-finite-pattern-input
+fpbs-aw-finite-pattern-reference
+fpbs-torsion-finite-repair-relative-cost
+fpbs-finite-pattern-paid-repair-proof
+fpbs-bounded-centralizer-relative-cost
+fpbs-centralizer-disjoint-detours-proof
+fpbs-burnside-embedding-input
+fpbs-burnside-algebra-reference
+fpbs-burnside-common-upper-cost
+fpbs-mutual-subgroup-cost-comparison-proof
+fpbs-normalized-cost-induction-input
+fpbs-normalized-induction-reference
+fpbs-burnside-explicit-action-pair
+fpbs-burnside-sheet-compression-proof
+fpbs-burnside-positive-upper-cost
+fpbs-burnside-upper-cost-one

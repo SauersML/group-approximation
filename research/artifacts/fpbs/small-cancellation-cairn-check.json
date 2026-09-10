@@ -1,0 +1,19 @@
+{
+ "status": "ok",
+ "findings": [],
+ "claims": 126,
+ "routes": 120,
+ "dead_work": [],
+ "detached_tops": [],
+ "newly_dead": [],
+ "newly_detached": [],
+ "unlocked": {
+  "established": [],
+  "refuted": [],
+  "last_missing": [],
+  "invalidated": [],
+  "plan_cost": []
+ },
+ "compose_hints": [],
+ "outputs_written": true
+}

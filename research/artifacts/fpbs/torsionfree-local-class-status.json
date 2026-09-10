@@ -1,0 +1,16 @@
+{
+ "status": "ok",
+ "id": "fpbs-tfl-fixed-price",
+ "kind": "claim",
+ "node_status": "ESTABLISHED",
+ "why": [
+  "fpbs-tfl-fixed-price [ESTABLISHED via fpbs-tfl-fixed-price-proof] \u2014 Every infinite selected relator family has fixed price one",
+  "derivation:",
+  "  fpbs-tfl-fixed-price \u2713 via fpbs-tfl-fixed-price-proof",
+  "    fpbs-tfl-cost-input \u2713 via fpbs-tfl-cost-input-proof  (direct proof)",
+  "    fpbs-tfl-algebra \u2713 via fpbs-tfl-algebra-proof",
+  "      fpbs-tfl-sc-input \u2713 via fpbs-tfl-sc-input-proof  (direct proof)",
+  "    fpbs-tfl-priority \u2713 via fpbs-tfl-priority-proof  (direct proof)",
+  "live routes waiting on it: fpbs-tfl-continuum-proof"
+ ]
+}

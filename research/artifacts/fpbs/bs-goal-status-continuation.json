@@ -1,0 +1,15 @@
+{
+ "status": "ok",
+ "id": "fpbs-benjamini-schramm-universal",
+ "kind": "claim",
+ "node_status": "OPEN",
+ "why": [
+  "fpbs-benjamini-schramm-universal [OPEN] \u2014 Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuniqueness interval",
+  "decomposition (routes into it; \u2713 = already in hand):",
+  "    \u251c fpbs-benjamini-schramm-two-cost-cases [OPEN] Split the percolation goal according to whether maximal cost equals one",
+  "      fpbs-non-fixed-price-one-has-nonuniqueness [\u2713] Groups not of fixed price one have a nonuniqueness phase on every Cayley graph",
+  "        \u251c fpbs-threshold-collapse-forces-price-one [\u2713] Threshold equality collapses the maximal action cost to one",
+  "          fpbs-quantitative-cost-threshold-bound [\u2713] A finite-cluster-corrected bound relates maximal action cost to the uniqueness window",
+  "      fpbs-fixed-price-one-percolation-kernel [OPEN] Every Cayley graph of a nonamenable fixed-price-one group has strict percolation thresholds"
+ ]
+}

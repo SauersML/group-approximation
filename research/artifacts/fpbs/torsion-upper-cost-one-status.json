@@ -1,0 +1,10 @@
+{
+ "status": "ok",
+ "id": "fpbs-burnside-upper-cost-one",
+ "kind": "claim",
+ "node_status": "OPEN",
+ "why": [
+  "fpbs-burnside-upper-cost-one [OPEN] \u2014 All sufficiently large odd Burnside groups have upper cost one",
+  "frontier hole: no live routes into it \u2014 prove it directly (a route with requires: []) or decompose it with a new route"
+ ]
+}

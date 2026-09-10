@@ -1,0 +1,257 @@
+[
+  [
+    "group-approximation-main/notes/FALSE_INTEGRAL_CYCLIC_RADICAL_MODULE.md",
+    [
+      [
+        385,
+        "Thus a cost-one or forest repair of the circle phase on the common"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/notes/TRUE_ROUTED_HOLONOMY_PHASE_REPAIR.md",
+    [
+      [
+        9,
+        "but **cost one by itself does not supply the quantitative conclusion**."
+      ],
+      [
+        20,
+        "For a cost-one relation the normalized tree excess can be made arbitrarily"
+      ],
+      [
+        22,
+        "near-minimal graphing may diverge faster than its reciprocal.  No theorem"
+      ],
+      [
+        24,
+        "``cost-one compact-skew permanence'' claim was invalid and is withdrawn."
+      ],
+      [
+        26,
+        "The correction is load-bearing.  If cost one alone sufficed, one could take"
+      ],
+      [
+        28,
+        "relation (a cost-one stabilization), apply phase repair there, and try to"
+      ],
+      [
+        242,
+        "bounds the relevant per-step phase error.  For a fixed graphing and fixed"
+      ],
+      [
+        244,
+        "gives `(RFR8a)`.  The problem for an abstract cost-one relation is that both"
+      ],
+      [
+        245,
+        "the graphing and the representing words change as the graphing cost"
+      ],
+      [
+        248,
+        "## 5. Why cost one alone does not prove the criterion"
+      ],
+      [
+        251,
+        "generating graphing `Phi_epsilon` with"
+      ],
+      [
+        255,
+        "A sufficiently accurate finite model of a large finite subgraphing has"
+      ],
+      [
+        260,
+        "can be made small by aperiodicity.  This part of the original cost-one"
+      ],
+      [
+        278,
+        "The same loss appears under finite amplification.  The standard graphing of"
+      ],
+      [
+        316,
+        "This is more precise than asking for cost one, strictly weaker than"
+      ],
+      [
+        318,
+        "graphing model to be cocycle stable.  It asks only for the cycle errors seen"
+      ],
+      [
+        326,
+        "background notions are the graphing definition of cost and the"
+      ],
+      [
+        335,
+        "routed-holonomy form.  The unconditional cost-one claim should not be cited;"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/notes/lix-lane-reports/cc-projective.md",
+    [
+      [
+        581,
+        "time cost one extra lemma and saved four."
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/notes/lix-lane-reports/cs-limit.md",
+    [
+      [
+        295,
+        "  earliest (and usually causal) errors, which cost one probe cycle here."
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/artifacts/cairn-cascade-audit-2026-08-22.md",
+    [
+      [
+        452,
+        "`1/N` and total Pythagorean cost one, while the terminal off-diagonal still"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/artifacts/paunescu-free-action-crossed-product-audit-2026-08-21.md",
+    [
+      [
+        31,
+        "algebra into a free-group crossed product using partial graphing isometries but"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/artifacts/sl3-building-quotient-label-audit-2026-08-21.md",
+    [
+      [
+        73,
+        "This is the same distinction as that between Benjamini--Schramm convergence"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/atlas-a4-packet-alone-fails-opaque-star.md",
+    [
+      [
+        39,
+        "order-four measures have optimal squared chordal matching cost one, which is"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/bs14-flexible-cross-packet-boundary-reconciliation.md",
+    [
+      [
+        366,
+        "  in this cone is repaired at exact additive cost one, and the six-unit"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/coherent-sequential-schur-tape-payment.md",
+    [
+      [
+        11,
+        "Polynomial-cost one-step relative exactification along the self-referential BCS tape"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/fm-stone-lamp-corners-are-singular.md",
+    [
+      [
+        8,
+        "  stone-additive-semidir-product-loses-manzoor-measure: that exhibits a single wrong-weight event for the native Manzoor actor; this rules out every countable graphing actor and every nonzero, initially noncentral, corner at once."
+      ],
+      [
+        45,
+        "This remains false if `Lambda` is a countable full-group graphing of `R`, an"
+      ],
+      [
+        46,
+        "arbitrary enlargement of such a graphing, or if the corner `q` is not assumed"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/non-ce-relation-admits-algebraic-action-envelope.md",
+    [
+      [
+        55,
+        "  full-group graphings and arbitrary actor enlargements.  Thus"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/non-ce-relation-is-not-treeable.md",
+    [
+      [
+        9,
+        "  free-actor-extensions-cannot-host-nonce-relation: that fences crossed products by actions of the free actor F (and its free, diagonal, coinduced extensions) as Connes embeddable; this is the orbit-equivalence invariant behind it, ruling out every treeing of the relation by any partial isomorphisms whatsoever, not only graphings by a free-group action."
+      ],
+      [
+        40,
+        "groups, Bernoulli shifts of free groups, and every treeable graphing are"
+      ],
+      [
+        45,
+        "graphings by the free actor; the present statement covers every treeing.  The mechanism is"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/non-ce-relation-not-treeable-proof.md",
+    [
+      [
+        44,
+        "**(2).**  The Cayley graphing of an essentially free p.m.p. action of a"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/non-hyperlinear-group.md",
+    [
+      [
+        2979,
+        "locus.  This rules out the canonical Boolean-lamp compiler for every graphing"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/sl3-z-inverse-3-is-flexibly-p-stable.md",
+    [
+      [
+        48,
+        "  Benjamini\u2013Schramm limit of almost-actions of `Gamma` is an invariant"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/soft-block-mass-yields-fractional-branch.md",
+    [
+      [
+        62,
+        "controlled by the cross-block moment `||X_e^*X_f||_2` at the fixed price"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/spherical-defect-congruence-preserves-separation.md",
+    [
+      [
+        58,
+        "  distance.  Any proof must control percolation/normal closure, not just one"
+      ]
+    ]
+  ],
+  [
+    "group-approximation-main/research/unitary-block-energy-transport.md",
+    [
+      [
+        44,
+        "leakage bound is the zero-one cost special case: cost one on forbidden edges"
+      ]
+    ]
+  ]
+]

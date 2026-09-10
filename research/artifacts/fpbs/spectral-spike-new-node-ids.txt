@@ -1,0 +1,16 @@
+fpbs-bernoulli-lazy-covariance-bound
+fpbs-finite-tensor-regular-representation-proof
+fpbs-all-parameter-finite-cluster-spectrum
+fpbs-finite-cluster-sign-coloring-proof
+fpbs-uniqueness-spectral-atom-decomposition
+fpbs-infinite-membership-covariance-proof
+fpbs-uniqueness-scale-crossover
+fpbs-two-scale-spectral-squeeze-proof
+fpbs-transitive-sharpness-linear-lower-bound
+fpbs-duminil-copin-tassion-sharpness-input
+fpbs-collapse-exponential-pivotal-spikes
+fpbs-sharpness-russo-exponential-spike-proof
+fpbs-fiid-partition-spectral-jump-model
+fpbs-toy-partition-formula-and-peak-proof
+fpbs-universal-subcritical-pivotal-growth-rate
+fpbs-universal-pivotal-rate-contradiction-route

@@ -1,0 +1,10 @@
+{
+ "status": "ok",
+ "id": "fpbs-burnside-low-cost-averaged-connector-target",
+ "kind": "claim",
+ "node_status": "OPEN",
+ "why": [
+  "fpbs-burnside-low-cost-averaged-connector-target [OPEN] \u2014 Construct Bernoulli subrelations of cost tending to one with vanishing average torsion connector errors",
+  "frontier hole: no live routes into it \u2014 prove it directly (a route with requires: []) or decompose it with a new route"
+ ]
+}

@@ -1,0 +1,14 @@
+{
+ "status": "ok",
+ "id": "fpbs-cap-hyperfinite-barrier",
+ "kind": "claim",
+ "node_status": "ESTABLISHED",
+ "why": [
+  "fpbs-cap-hyperfinite-barrier [ESTABLISHED via fpbs-cap-hyperfinite-barrier-proof] \u2014 In the stated Burnside range all sufficiently reliable hyperfinite connectors lie in one finite cyclic subgroup",
+  "derivation:",
+  "  fpbs-cap-hyperfinite-barrier \u2713 via fpbs-cap-hyperfinite-barrier-proof",
+  "    fpbs-cap-hyperfinite-coefficient \u2713 via fpbs-cap-hyperfinite-coefficient-proof  (direct proof)",
+  "    fpbs-cap-osin-input \u2713 via fpbs-cap-osin-input-source  (direct proof)",
+  "live routes waiting on it: fpbs-cap-robust-barrier-proof"
+ ]
+}
