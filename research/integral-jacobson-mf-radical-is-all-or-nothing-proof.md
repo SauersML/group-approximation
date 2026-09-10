@@ -53,7 +53,10 @@ the determinant on an unused basis vector) lies in `N_n <= G_n`, and
 `P T_(cb)(r) P^-1 = zeta^(+-r)`.  So `phi(zeta)^r = 1`: `phi(zeta)` has
 finite order, and the third prerequisite gives `phi(zeta) = 1`.  The
 signed-permutation conjugates of `zeta` are all `T_(pq)(1)`, which
-generate `N_n`; hence `phi(N_n) = 1`.  This is `(AN1)`.
+generate `N_n`; hence `phi(N_n) = 1`.  This is `(AN1)`: the restriction
+of `phi` to `N_n` is injective or trivial.  Nothing is claimed about
+`ker(phi)` outside `N_n` here; see `(AN3)` on the claim for the
+whole-group form, whose only other possibility is `ker(phi) = {+-I}`.
 
 **The alternative.**  If some MF-valued `phi` has `ker(phi) cap N_n = 1`,
 then `phi x q : G_n -> M x T_n`, with `q` the quotient by `N_n`, has

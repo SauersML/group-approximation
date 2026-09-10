@@ -76,6 +76,13 @@ image of infinite order
 - **Rank descent from the binary case.**  Dead in the other direction:
   `EL_n(J_Z)` surjects onto the non-MF `EL_n(J_(F_p))`, but MF is not
   inherited by quotients, and MF passes to subgroups, not the other way.
+- **Passing to the centerless quotient.**  `Z(EL_4(J_Z)) = {+-I}` and
+  `EL_4(J_Z)` is MF iff `P = EL_4(J_Z)/{+-I}` is MF
+  (`mf-group-with-order-two-center-has-mf-central-quotient`); `P` has
+  trivial centralizer of the image of `SL_fin(Z)`, so for `P` the
+  dichotomy holds in whole-group form.  Trap: the whole-group form for
+  `EL_4(J_Z)` itself ("injective or kills `SL_fin(Z)`") is equivalent to
+  this claim, not a reduction of it.
 - **Intermediate radicals.**  Excluded: the radical is `1` or
   `SL_fin(Z)`, so no congruence-type or partial collapse can be the
   answer (`integral-jacobson-mf-radical-is-all-or-nothing`).

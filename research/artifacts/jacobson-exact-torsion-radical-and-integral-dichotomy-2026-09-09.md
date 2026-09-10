@@ -137,6 +137,36 @@ generate `N_n`.  So `phi` is injective or trivial on `N_n`.  If some
 an MF group and `G_n` is MF; otherwise `Rad_MF(G_n) = N_n`.  Which
 alternative holds is not decided.
 
+## 4b. Scalar-center audit of the dichotomy (node G, same day, later note)
+
+A follow-up note audited Theorem 3 of the source note and found its
+statement overstated: the proof gives "`phi` restricted to `N_n` is
+injective or trivial", not "`phi` is injective or trivial on `N_n`".
+Node E states the restricted form `(AN1)`; its title was tightened here.
+
+* `C_(G_n)(N_n) = Z(G_n) = {+-I}`: an integral automorphism commuting
+  with every finitary transvection `I + E_(ab)` is scalar (checked: the
+  relation on `e_c`, `c != b`, kills off-diagonal entries; on `e_b` it
+  equates diagonal entries), and `-I = w_12^2 w_34^2 in EL_4`, not
+  finitary.  So the whole-group form is `N_n <= ker phi` or
+  `ker phi <= {+-I}`.
+* `mf-group-with-order-two-center-has-mf-central-quotient` (node G): a
+  countable MF group with center a single involution has MF central
+  quotient.  Every step re-derived: spectral rounding of `V_j(c)` with
+  the bound `delta/sqrt 2`; averaging and polar parts commuting exactly
+  with `J_j`; `Psi_j = (+)_(+-) W_j^(+-) (x) conj W_j^(+-)` with
+  `||U (x) conj U - V (x) conj V|| <= 2||U - V||` and `Psi_j(c) = I`; and
+  `||U (x) conj U - I|| = max |lambda - mu|` forcing a killed element to
+  be asymptotically scalar on both blocks, hence central.
+* Consequence: the strong reading of Theorem 3 is equivalent to
+  `Rad_MF(G_n) = N_n` (if `G_n` were MF, `G_n -> G_n/{+-I}` would be an
+  MF-valued map with kernel `{+-I}` injective on `N_n`).  The prompt
+  `/tmp/non_mf_decide_integral_jacobson.txt` item (3) was reworded to the
+  restricted form so that no solver can take the strong form as given.
+* Exact centerless reformulation: `G_n` is MF iff `P = G_n/{+-I}` is MF,
+  `C_P(image of N_n) = 1`, and every MF homomorphism of `P` is injective
+  or kills the image of `N_n`.  Nothing is decided.
+
 ## 5. Rank-two exclusion (node F)
 
 `rank-two-jacobson-groups-have-no-infinite-kazhdan-subgroup`.
