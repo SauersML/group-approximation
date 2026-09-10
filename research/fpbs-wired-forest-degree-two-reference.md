@@ -9,4 +9,4 @@ artifacts:
   - research/artifacts/fpbs/routing-obstruction-continuation.md
 ---
 
-Aldous and Lyons, Processes on Unimodular Random Networks, author-hosted version: Theorem 6.2 and Proposition 7.1. The inherited rooted law of an invariant component is unimodular. See Section 2.1 of the artifact for the exact use. This is a literature import, not an automated proof.
+Aldous and Lyons, Processes on Unimodular Random Networks, arXiv:math/0603062 (author-hosted version read): Theorem 6.2 and Proposition 7.1. The inherited rooted law of an invariant component is unimodular. See Section 2.1 of the artifact for the exact use. This is a literature import, not an automated proof.

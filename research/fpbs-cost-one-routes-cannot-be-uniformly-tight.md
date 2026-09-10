@@ -3,7 +3,6 @@ rg: 2
 id: fpbs-cost-one-routes-cannot-be-uniformly-tight
 kind: claim
 title: Nonamenability prevents uniformly tight routes in near-unit-degree connected invariant subgraphs
-root: true
 invalidates:
   - fpbs-dead-uniform-tight-routes-contradiction
   - fpbs-dead-limit-graphing-connectivity
@@ -34,6 +33,16 @@ is not enough, attainment is what the contradiction needs.
 **Finite-replay evidence.** For the compactness route, none, and none is available: the argument is a
 weak-limit argument in an infinite product. For the quantitative route, the 184,096 pointwise checks of
 `routing-bound-replay.json`.
+
+**Prior statement of the same obstruction in this repository.**
+`notes/TRUE_ROUTED_HOLONOMY_PHASE_REPAIR.md` is the note the external session
+read first (response 1, Section 1). It already identifies the phenomenon:
+driving a graphing's cost toward one does not control the lengths of the paths
+needed to express the original generators, and its corrected argument
+therefore carries extra routing and phase-compatibility hypotheses, explicitly
+withdrawing the unconditional cost-one shortcut. Proposition 5 above is the
+percolation-side quantitative form of that withdrawal. The note is a
+noncanonical prior record, not a proof input, and is not cited in `artifacts:`.
 
 **Evidence level.** Written deduction from one verified import, now with a second and quantitative
 derivation. Not refereed, not formally verified. It is an obstruction, so it constrains constructions

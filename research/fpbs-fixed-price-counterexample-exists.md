@@ -7,6 +7,8 @@ root: true
 distinct_from:
   fpbs-kazhdan-positive-rank-gradient: that asks for one specific algebraic object, an infinite Kazhdan group with a positive-rank-gradient Farber chain; this is the negation of the universal goal, which such a group would establish but which other constructions could establish instead.
   fpbs-burnside-positive-upper-cost: that is the numerical statement c_n>1 for one large odd Burnside exponent; only together with fpbs-burnside-explicit-action-pair does it produce the unequal pair asserted here.
+  fpbs-kazhdan-rankgradient-counterexample-reduction: that is an ESTABLISHED conditional implication, positive rank gradient in an infinite Kazhdan group would refute Fixed Price; it does not decide this claim, because its hypothesis fpbs-kazhdan-positive-rank-gradient is unconstructed.
+  fpbs-kazhdan-groups-have-cost-one: that is the imported Hutchcroft-Pete theorem that every infinite property (T) group has infimal cost one, which supplies a cheap action and no second action of different cost; it is an input to one attack on this claim, not a decision of it.
 artifacts:
   - research/artifacts/fpbs/creative-branches.md
   - research/artifacts/fpbs/fixed-price-percolation.md

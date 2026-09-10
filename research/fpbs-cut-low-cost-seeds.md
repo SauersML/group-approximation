@@ -2,7 +2,7 @@
 rg: 2
 id: fpbs-cut-low-cost-seeds
 kind: claim
-title: Nonamenable Bernoulli actions have nested ergodic nowhere-hyperfinite seeds of cost 1+t
+title: Bernoulli actions of nonamenable groups have nested ergodic nowhere-hyperfinite seeds of cost 1+t
 root: true
 ---
 
