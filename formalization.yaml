@@ -2,28 +2,24 @@
 version: "v0.4"
 
 project:
-  name: "A Simple C*-Algebra That Is Not K1-Injective, and Non-MF Groups"
+  name: "A Simple C*-Algebra That Is Not K1-Injective"
   description: >-
-    This project formalizes two results in Lean 4 over Mathlib. The first is
-    a negative answer to the question whether every unital simple C*-algebra
-    is K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
+    This project formalizes, in Lean 4 over Mathlib, a negative answer to the
+    question whether every unital simple C*-algebra is K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
     records as open and which Schafhauser, Tikuisis and White pose as Problem
     LIX of "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902). The
     counterexample is a separable simple unital C*-algebra A, an inductive
     limit of corner algebras of matrices over C(X), with a unitary u that is
     not in the connected component of 1 in U(A) although diag(u, 1) is in the
     connected component of 1 in U(M2(A)). So the class of u vanishes already
-    at the first stabilisation. The second is an explicitly presented finitely
-    generated group that is sofic and not MF, obtained from a one-sided
-    Kazhdan compression criterion, its consequence for the MF radical of a
-    group with normal property (T), and a rank-four Leavitt compression.
+    at the first stabilisation.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
 
 classification:
-  arxiv: [math.OA, math.GR]
-  msc2020: ["46L05", "46L80", "19K56"]
+  arxiv: [math.OA, math.KT]
+  msc2020: ["46L05", "46L80", "55R40"]
 
 sources:
   - title: A simple C*-algebra that is not K1-injective
@@ -42,13 +38,6 @@ sources:
       public repository on 2026-09-05 04:40 UTC (fb38f13ad), posted publicly
       on 2026-09-07 (https://x.com/Sauers_/status/2096961149770043897), and
       its Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148).
-
-  - title: Non-MF Groups
-    type: original-proof
-    relationship: other
-    note: >-
-      The sofic-not-MF group of Palomar/comparator.json is first presented in
-      this project.
 
   # Background for the LIX result: the problem and its history, the positive
   # results the counterexample had to avoid, the construction's ancestry and
@@ -263,82 +252,6 @@ sources:
       Independent solution of Problem LIX, posted 2026-09-08, by a different
       method; not used here.
 
-  - title: On groups with quasidiagonal C*-algebras
-    authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
-    year: 2013
-    type: paper
-    id: https://arxiv.org/abs/1210.4050
-    relationship: background
-
-  - title: MF-property for countable discrete groups
-    authors: [A. I. Korchagin]
-    year: 2017
-    type: paper
-    id: https://arxiv.org/abs/1704.06906
-    relationship: background
-
-  - title: The MF property for amalgamated free products
-    authors: [Tatiana Shulman]
-    year: 2026
-    type: paper
-    id: https://arxiv.org/abs/2603.13564
-    relationship: background
-
-  - title: On L^1-approximation of groups
-    authors: [Benjamin Bachner, Alon Dogon, Alexander Lubotzky]
-    year: 2026
-    type: paper
-    id: https://doi.org/10.1016/j.jalgebra.2026.04.041
-    relationship: background
-
-  - title: Stability, cohomology vanishing, and nonapproximable groups
-    authors: [Marcus De Chiffre, Lev Glebsky, Alexander Lubotzky, Andreas Thom]
-    year: 2020
-    type: paper
-    id: https://doi.org/10.1017/fms.2020.5
-    relationship: background
-
-  - title: Entanglement in non-local games and the hyperlinear profile of groups
-    authors: [William Slofstra, Thomas Vidick]
-    year: 2018
-    type: paper
-    id: https://arxiv.org/abs/1711.10676
-    relationship: background
-
-  - title: Nonsofic groups exist
-    authors: [OpenAI]
-    year: 2026
-    type: other
-    id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
-    relationship: background
-
-  - title: Nonsofic wreath products of residually finite groups
-    authors: [Gábor Kun, Andreas Thom]
-    year: 2026
-    type: paper
-    id: https://arxiv.org/abs/2608.06222
-    relationship: background
-
-  - title: On sofic groups
-    authors: [Gábor Elek, Endre Szabó]
-    year: 2006
-    type: paper
-    id: https://arxiv.org/abs/math/0305352
-    relationship: background
-
-  - title: Presentations for 3-dimensional special linear groups over integer rings
-    authors: [Marston D. E. Conder, Edmund F. Robertson, Peter Williams]
-    year: 1992
-    type: paper
-    id: https://doi.org/10.2307/2159559
-    relationship: background
-
-  - title: Kazhdan's property (T)
-    authors: [Bachir Bekka, Pierre de la Harpe, Alain Valette]
-    year: 2008
-    type: book
-    relationship: background
-
 automation:
   methods:
     - method: agent
@@ -380,8 +293,6 @@ status:
     C*-algebra is K1-injective, that the counterexample can be taken separable,
     and that it can be taken to fail K1-injectivity at the first
     stabilisation; Palomar/LIXSolution.lean proves these.
-    Palomar/Challenge.lean states that one explicitly presented eight-generator
-    group is sofic and not MF, and Palomar/Solution.lean proves it.
   main_results:
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
@@ -401,15 +312,9 @@ status:
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-lix.json
 
-    - declaration: ExplicitNonMF.explicit_sofic_not_MF
-      file: Palomar/Solution.lean
-      sorry_count: 0
-      axioms: [propext, Classical.choice, Quot.sound]
-      comparator_config: Palomar/comparator.json
-
 fidelity:
   divergences: >-
-    In the LIX challenge, simplicity is Mathlib's IsSimpleRing, which asks
+    Simplicity is Mathlib's IsSimpleRing, which asks
     that the only two-sided ideals be zero and the whole algebra, while
     C*-simplicity asks this of closed ideals only; for a unital C*-algebra the
     two agree, because a proper two-sided ideal of a unital Banach algebra
@@ -424,14 +329,6 @@ fidelity:
     statement fixes it and does not prove uniqueness. All algebras range over
     Type 0, and the counterexample is in Type 0.
 
-    In the non-MF challenge, the certified statement is about one explicitly
-    presented group; the general criterion it comes from is not part of the
-    compared statement. Palomar/Challenge.lean defines soficity and the MF
-    property itself. Soficity is approximation by permutations of finite sets
-    in normalized Hamming distance. The MF property is stated in the
-    sequential operator-norm form and negated; the development also has the
-    norm-matrix-corona form and proves the two equivalent, but the equivalence
-    is not part of the compared statement.
 
 alignment:
   statements:
@@ -456,13 +353,6 @@ alignment:
         at the first stabilisation.
       lean: ProblemLIX.exists_separable_simple_stage_two_witness
       module: Palomar.LIXChallenge
-      status: proved
-
-    - source: >-
-        There is an explicitly presented finitely generated group which is
-        sofic and not MF.
-      lean: ExplicitNonMF.explicit_sofic_not_MF
-      module: Palomar.Challenge
       status: proved
 
 acknowledgements: >-

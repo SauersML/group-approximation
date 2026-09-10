@@ -4,7 +4,7 @@
 A Palomar submission is exactly ONE Comparator configuration path, so a
 repository offering two results is submitted twice, once per configuration
 (PalomarRegistry's CONTRIBUTING rules; the kim-em/PalomarSubmission README).
-This repository offers two, listed in `PALOMAR_CONFIGS`, and every check below
+This repository submits one, listed in `PALOMAR_CONFIGS`, and every check below
 that is about a submission surface runs once per configuration with the
 configuration path on its finding.  The challenge and solution paths are not
 written down here: they are read out of each configuration's
@@ -155,7 +155,6 @@ class Findings:
 # results at once, so the two entries below are two submissions of the same
 # tree and each has to hold on its own.
 PALOMAR_CONFIGS = (
-    "Palomar/comparator.json",      # ExplicitNonMF.explicit_sofic_not_MF
     "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
 )
 
@@ -164,7 +163,6 @@ PALOMAR_CONFIGS = (
 # configuration -- so this list exists only so that a planter can corrupt a
 # file without first parsing the configuration that names it.
 SURFACE_FILES = (
-    "Palomar/Challenge.lean", "Palomar/Solution.lean", "Palomar/comparator.json",
     "Palomar/LIXChallenge.lean", "Palomar/LIXSolution.lean",
     "Palomar/comparator-lix.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
@@ -709,9 +707,6 @@ def check_metadata(root: Path, pairs: list[Pair], f: Findings) -> None:
 # calibration that certifies nothing.
 CALIBRATION: tuple[tuple[str, str], ...] = (
     ("challenge over the line cap", "hard cap is 1000"),
-    ("challenge with a project-local import", "may import Mathlib only"),
-    ("shared block edited on one side",
-     "Palomar/comparator.json: shared block diverges"),
     ("signature edited on one side", "compared signature diverges"),
     ("LIX challenge with a project-local import",
      "Palomar/LIXChallenge.lean:1:"),
@@ -722,7 +717,6 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
     ("dependency pinned to a branch", "not a full"),
     ("dependency hosted off github", "only a credential-free public"),
     ("comparator naming a missing module", "does not resolve to a regular file"),
-    ("comparator permitting a fourth axiom", "only the three classical axioms"),
     ("LIX comparator permitting a fourth axiom",
      "Palomar/comparator-lix.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
@@ -755,19 +749,13 @@ def plant(name: str, root: Path) -> None:
     calibration matters most.
     """
     if name == "challenge over the line cap":
-        path = root / "Palomar" / "Challenge.lean"
+        path = root / "Palomar" / "LIXChallenge.lean"
         path.write_text(path.read_text() + "\n" * 1200)
-    elif name == "challenge with a project-local import":
-        path = root / "Palomar" / "Challenge.lean"
-        path.write_text("import GroupApproximation.Sofic.Sofic\n" + path.read_text())
-    elif name == "shared block edited on one side":
-        path = root / "Palomar" / "Solution.lean"
-        path.write_text(path.read_text().replace(
-            "structure FiniteCarrier where", "structure FiniteCarrier' where", 1))
     elif name == "signature edited on one side":
-        path = root / "Palomar" / "Solution.lean"
+        path = root / "Palomar" / "LIXSolution.lean"
         path.write_text(path.read_text().replace(
-            "    IsSoficGroup E ∧ ¬", "    IsSoficGroup E ∧ True ∧ ¬", 1))
+            "IsSimpleRing A ∧ ¬ IsK1Injective A := by",
+            "IsSimpleRing A ∧ True ∧ ¬ IsK1Injective A := by", 1))
     elif name == "LIX challenge with a project-local import":
         path = root / "Palomar" / "LIXChallenge.lean"
         path.write_text(
@@ -794,18 +782,15 @@ def plant(name: str, root: Path) -> None:
     elif name == "dependency hosted off github":
         _edit_manifest(root, lambda p: p.update({"url": "https://gitlab.com/a/b"}))
     elif name == "comparator naming a missing module":
-        _edit_config(root, "Palomar/comparator.json",
+        _edit_config(root, "Palomar/comparator-lix.json",
                      lambda c: c.update({"solution_module": "Palomar.Nope"}))
-    elif name == "comparator permitting a fourth axiom":
-        _edit_config(root, "Palomar/comparator.json",
-                     lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "tracked compiled artifact":
-        (root / "Palomar" / "Challenge.olean").write_bytes(b"\0")
-        subprocess.run(["git", "add", "Palomar/Challenge.olean"], cwd=root,
+        (root / "Palomar" / "LIXChallenge.olean").write_bytes(b"\0")
+        subprocess.run(["git", "add", "Palomar/LIXChallenge.olean"], cwd=root,
                        capture_output=True, check=False)
     elif name == "three arXiv classes":
-        _edit_metadata(root, "  arxiv: [math.OA, math.GR]",
-                       "  arxiv: [math.OA, math.GR, math.LO]")
+        _edit_metadata(root, "  arxiv: [math.OA, math.KT]",
+                       "  arxiv: [math.OA, math.KT, math.LO]")
     elif name == "original result with a substantive source":
         _edit_metadata(root, "    relationship: background",
                        "    relationship: formalizes", count=1)
