@@ -37,6 +37,20 @@ finite-cost free extension over an infinite-cost free base. The
 extension does not establish the finitely-generated-to-countable
 passage required by the current root route.
 
+Uniform finite fibers now exclude one part of the mixed-cost issue:
+`fpbs-finite-fiber-cost-bound` proves C(X)-1<=q(C(Y)-1) for a
+uniform q-point free factor. It also identifies exact preservation
+for all such factors with the finite-index multiplicativity question
+for specified actions; that equality has not been proved here.
+The increasing-factor limit step is valid over a finite-cost base,
+but cannot supply cost preservation at its finite stages.
+
+The same bound applied to the invariant set of largest conditional
+atoms excludes finite-cost sources over ergodic infinite-cost bases
+whenever the conditional measures have an atomic part. A mixed-cost
+factor with an ergodic infinite-cost base would therefore need
+nonatomic conditional measures. That remaining case is not excluded.
+
 Rechecked [Abert--Weiss, Corollary 2](https://arxiv.org/pdf/1103.1063) and
 [Tucker-Drob, Corollary 6.22](https://arxiv.org/pdf/1211.6395): the former
 has the stated finite-generation hypothesis; the latter extends cost

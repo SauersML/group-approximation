@@ -38,8 +38,13 @@ groups. Take Gamma_n=F_(4^n) x (Z/2Z)^n, nested by the free-factor and
 coordinate inclusions. Their fixed prices are
 1+(4^n-1)/2^n, which diverge, while their union is
 F_infinity x direct-sum_N(Z/2Z), of fixed price one because it has an
-infinite amenable normal subgroup. The finite-stage values follow by
-finite-index scaling from the free factors. This is the explicit pattern
+infinite amenable normal subgroup. For the finite-stage values, choose
+trees on the orbits of the finite factor and one free-generator bridge
+from each block representative. The quotient is a free-group tree, so
+the resulting graphing is a generating treeing of cost
+1-2^(-n)+4^n 2^(-n), and treeings attain cost. This avoids assuming
+finite-index multiplicativity for a specified arbitrary action.
+This is the explicit pattern
 in [Gaboriau's lectures, Exercise 2.60(1)](https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf),
 not a new example. It rules out identifying cost with the liminf of the
 costs of an arbitrary finitely generated subgroup exhaustion.

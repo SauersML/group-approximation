@@ -4,6 +4,7 @@ id: fpbs-correlated-reuse-flags-removable
 kind: claim
 title: Group-correlated reuse flags can be removed without increasing completed cost
 artifacts:
+  - research/artifacts/fpbs/docs/finite-fiber-cost-descent.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
@@ -15,6 +16,20 @@ artifacts:
 This is the isolated remaining step of the reuse programme. The savings to be preserved are those of a connection used many times and paid for once, and the question is whether they can depend irreducibly on group-correlated information of the source action. No route establishes it.
 
 ## Attempts
+
+Start with finite fibers, then pass to a limit. The proved
+`fpbs-finite-fiber-cost-bound` gives C(X)-1<=q(C(Y)-1) for a uniform
+q-point factor. This excludes finite-to-infinite cost loss in that
+setting and proves equality at cost one. Exact equality at arbitrary
+cost is equivalent, over all groups, to finite-index multiplicativity
+for specified free actions; the finite-fiber artifact proves both
+directions without assuming either universal assertion. Complete-section
+induction alone does not supply that equality. Section 10 of the
+conditional-traffic artifact does prove C(Z_r) decreasing to C(Y)
+when increasing factor sigma-algebras exhaust Y over a finite-cost
+base. A tower of cost-preserving finite-fiber factors would therefore
+suffice where it exists. Neither cost preservation at the finite stages
+nor such a tower for arbitrary binary symbolic extensions is proved.
 
 Replace source information by a relative cycle operator. Conditional
 averaging preserves the surplus trace exactly, but the determinantal

@@ -4,7 +4,8 @@ id: fpbs-traffic-variational-cost-identities-proof
 kind: route
 title: Truncate near-optimal graphings and lift target plans to get both identities
 target: fpbs-traffic-variational-cost-identities
-requires: []
+requires:
+  - fpbs-finite-fiber-cost-bound
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
 ---
@@ -28,3 +29,19 @@ The zero-gap criterion follows because B-C(Y) and J are nonnegative.
 This extends the original finite-generator proof without taking an
 unjustified limit of subgroup costs. It is a supplied deduction, not
 external validation.
+
+The required finite-fiber bound supplies C(X)<infinity when the
+alternative hypothesis is a uniform finite-fiber factor with finite
+source cost, or an ergodic base with conditional atoms and finite
+source cost. It is used to enter the proved finite-tail setting,
+not to assert that the two costs are equal.
+
+Section 10 proves the increasing-factor statement. Choose one
+source-near-optimal finite-prefix plan, then approximate its finitely
+many used domains in the increasing factor sigma-algebras. For that
+fixed plan, finite-word path validity and the finite-prefix failure
+score change by at most a finite union bound on translated domain
+errors. Repair those failures and append the fixed base tail.
+This gives lim_r C(Z_r)<=C(Y)+2epsilon for every epsilon>0,
+while lifting gives the reverse bound.
+No uniform approximation over changing plans is assumed.
