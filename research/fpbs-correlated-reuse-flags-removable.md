@@ -24,3 +24,13 @@ Simulate the flags by independent colouring. The finite conditional-noise simula
 Push the information limit for a fixed plan. Conditional Jensen gives only nonnegativity of the defect, and the L1 contraction gives monotonicity along an increasing information chain; neither supplies an upper bound tending to zero, and the optimisation is over plans that change as they approach optimal cost (reuse-compression artifact, Sections 2 and 3).
 
 Make the signal negligible. Relative to a cost-one hyperfinite spine the flags can be supported on a set of arbitrarily small measure, but a rare connector may serve many requests: a hypothetical gap Delta with relative budget b forces traffic at least Delta/b, and no uniform traffic bound is available (reuse-localization artifact, Section 6).
+
+Unite independent copies of a source graphing. This preserves generation but
+can destroy optimality even when every input attains the action cost. The
+September 10 calculation in the reuse-compression artifact, Section 8,
+uses M Nielsen bases of F_2 over a finite trivial extension: each input
+costs 2, whereas the union of k independent copies costs exactly
+1+M(1-(1-1/M)^k), tending to M+1. The infinite union is base measurable,
+but its excess cost is arbitrarily large. A successful version must also
+remove edges with a proved cost and connectivity bound. The example does
+not exclude such removal and is not a counterexample to this open claim.

@@ -239,7 +239,66 @@ For a finitely generated group, Abért–Weiss gives maximal cost to Bernoulli a
 
 The full countable-group formulation includes infinite generating sets and potentially infinite cost. Finite-demand approximations used here do not silently cover that additional scope. No Bernoulli-percolation bound or full solution of Benjamini–Schramm is deduced.
 
-## 8. Verification boundaries
+## 8. September 10: independent unions do not preserve the optimal budget
+
+One possible attempt at (16) is to take conditionally independent copies of
+the hidden source, lift each source graphing to their common product, and
+unite their edge sets. The union preserves connectivity and eventually
+forgets which copy supplied an edge. The following exact example rules out
+this operation alone as a cost-preserving erasure procedure. It is an
+elementary deduction, with no novelty claim, and is not a counterexample to
+Fixed Price or to a procedure that also removes edges.
+
+Fix an integer M>=2 and Gamma=F(a,b). Let X be a free Bernoulli Gamma-action.
+Give {0,...,M-1} the uniform measure and the trivial Gamma-action. On
+Y=X x {0,...,M-1}, use the graphing
+
+    Phi = {T_a} union {T_(a^j b) restricted to X x {j}: 0<=j<M}.
+
+For every j, the pair (a,a^j b) is a free basis: the substitution
+b -> a^j b has inverse b -> a^(-j)b. Thus Phi is a generating treeing,
+and its cost is 1+M/M=2. Treeings attain cost, so C(Y)=2. The same argument
+applies to every product Y_k=X x {0,...,M-1}^k with trivial action on the
+finite coordinates. These uses of the treeing theorem are the published
+Gaboriau theorem [G, Theorem 2.24], not a new fixed-price result.
+
+On Y_k lift Phi through each coordinate projection, and take the union of
+the resulting undirected edge sets, counting an edge only once. Write J_i
+for the i-th coordinate and D_k=|{J_1,...,J_k}|. The union has one full
+a-map and the a^j b-map on exactly the event that some J_i=j. These labels
+are distinct even up to inversion and are different from a up to inversion;
+freeness therefore prevents accidental identifications of their edges.
+Consequently its graphing cost is exactly
+
+    Cost(union_i Phi_i) = 1 + E[D_k]
+                       = 1 + M (1-(1-1/M)^k).                (17)
+
+It generates: the two maps in the first lifted treeing already generate
+each orbit and are contained in the union. At k=1 its cost is 2. As
+k tends to infinity it approaches M+1, although C(Y_k)=2 for every k.
+On the countable product all M labels occur almost surely, so the union
+actually descends to the base graphing {T_a,T_b,T_(ab),...,T_(a^(M-1)b)},
+of cost M+1. Its excess M-1 over the optimum is arbitrarily large.
+
+Here conditional independence means independence of the finite coordinates
+given X; each coordinate is constant along a Gamma-orbit. It must not be
+confused with independent labels at different vertices. The example thus
+tests independent copies of an extension, which was the proposed operation.
+It does not test independent vertex coloring or refute their existing
+conditional-noise simulation theorem.
+
+This identifies an additional obligation for a union-based attack on (16):
+it must remove the surplus edges while retaining every required connection,
+and must bound that removal against the original optimal budget. Erasure of
+the hidden labels by itself supplies neither bound. In this example that
+removal is easy after all labels appear: keep only a and b. No corresponding
+construction for arbitrary source graphings is supplied here.
+
+The proof of (17) is the indicator identity
+D_k=sum_j 1_{some J_i=j} and the probability
+P(J_1!=j,...,J_k!=j)=(1-1/M)^k. It requires no numerical experiment.
+
+## 9. Verification boundaries
 
 The script verify_reuse_compression.py uses only Python's standard library and exact Fraction arithmetic. It checks:
 

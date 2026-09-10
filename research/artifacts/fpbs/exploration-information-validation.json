@@ -4,7 +4,7 @@
   "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "8c45b8ec844668a79546eea6436d9da44f5eca34ae937503c42237193420531b",
+  "overlay_archive_sha256": "63b76ae4d446b6ce5c99007f27f0c735bd495b058fe3ae65cbe3dfccf7f876ba",
   "claims": 7772,
   "routes": 7941,
   "task_claims": 234,
@@ -345,6 +345,7 @@
     "notes/fpbs-critical-quotient-environment-gap-2026-09-09.md": "7866c26ece1c8fbd3e99751d5084c0dbd3d4b98bfb5c2924affcbca0ee1ffd66",
     "research/artifacts/fpbs/critical-quotient-replay.json": "d25e2f6dbcd662b8ead46f994fb0b618bdeb6a554e7791db565679e84bf3c0e3",
     "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
+    "research/artifacts/fpbs/docs/fixed-price-reuse-compression.md": "5e3ee42789c4b092222b5551ed8b3abbf2af60d422e97ac9e4c110a23ff63f2b",
     "research/artifacts/fpbs/exploration-information-replay.json": "3a27a6ce4e45a1113247f055760f8ebf2d8b9decc13e3efd9849e4e9807a854c",
     "research/artifacts/fpbs/exploration-information.md": "db13a3813f462e40c2b1920357255c2654941ef32e96784af40bd00fe6c49d9f",
     "research/artifacts/fpbs/exploration-search-pilot.json": "3961fc9d49a680f9981254d7af83da406bfe9a4e5b40342712503345ec6c6242",
@@ -382,6 +383,7 @@
     "research/fpbs-bounded-query-connection-strong-converse.md": "8da4160daa479a93c23d7aef047bf44c2a75f2462c92e90c67e860670504a17e",
     "research/fpbs-closed-wall-forces-exponential-search-proof.md": "aa791456c6bd1d659bab9b459a0ae33b888f3019cc74a8553cfee43c691515e9",
     "research/fpbs-closed-wall-forces-exponential-search.md": "7e01bd78a17e916016a514b7811b71986e4ef977c7801792a279a66f8ca2e0a2",
+    "research/fpbs-correlated-reuse-flags-removable.md": "32c32b6fb3e414cf677d76e93ee07f34d2ce201eb4dca8ac4e971b07a251d454",
     "research/fpbs-critical-dyadic-projection-estimate.md": "4a1234c7e9f24908ecea76efae35058b08e64ee1f9bde139bb2d46739ca42cf1",
     "research/fpbs-critical-quotient-environment-gap-proof.md": "b6a18dc600374067d3b66bc6c83eb93675e36bb889b65fde670701715185af1c",
     "research/fpbs-critical-quotient-environment-gap.md": "0d24871592e92a775708a00cf5ab8c03eec4fbcbac4b6e3af904bfa83295c477",
@@ -515,7 +517,7 @@
     "research/fpbs-compact-limit-attainment-proof.md": "86fd79866f2983874da498c8d25e030c8df04b47a92df4b7786e29187c6b1d73",
     "research/fpbs-conditional-traffic-descent-bound-proof.md": "3caef3a2bf8fbe16ea204f8405ec22f8cdaffdfcfaf00541f446fab01b3fb020",
     "research/fpbs-conditional-traffic-descent-bound.md": "6fa5f4bb19e218f377edc991a0389cb1c41238fe67bfc3ca8f04681de761ea2f",
-    "research/fpbs-correlated-reuse-flags-removable.md": "aee0a112be85b697965768178a4e4ae8db4af787ea7cd49c269cc8c471c1f265",
+    "research/fpbs-correlated-reuse-flags-removable.md": "32c32b6fb3e414cf677d76e93ee07f34d2ce201eb4dca8ac4e971b07a251d454",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable-proof.md": "84d8017dfef45c50443f2c84e13d67bc61e4174773a68124f5395047717b836e",
     "research/fpbs-cost-drop-witnessed-by-one-binary-observable.md": "425be66d604fc68c0db22976592b7404d24cfdea37ca8d0669b1ebf6b852b20e",
     "research/fpbs-cost-one-backbone-fixes-completion-bill-proof.md": "711e471ea9f6e701b275d7ceec206bc0b03637855dadf387679019889786191e",
@@ -893,5 +895,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 16.86
+  "elapsed_seconds": 27.359
 }
