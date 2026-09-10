@@ -91,6 +91,9 @@ def main():
         'fpbs-integrated-sensitivity-universal': 'OPEN',
         'fpbs-benjamini-schramm-universal': 'OPEN',
         'fpbs-fixed-price-universal': 'OPEN',
+        'fpbs-free-action-cost-at-least-bernoulli-cost': 'OPEN',
+        'fpbs-correlated-reuse-flags-removable': 'OPEN',
+        'fpbs-fixed-price-countable-from-finitely-generated': 'OPEN',
         'fpbs-optimistic-search-certified-growth': 'ESTABLISHED',
         'fpbs-optimistic-search-linear-wall-cost': 'ESTABLISHED',
         'fpbs-universal-optimistic-certificate-budget': 'OPEN',
@@ -116,14 +119,26 @@ def main():
              and search_chain
              and search_chain[0][0] == 'fpbs-benjamini-schramm-universal'
              and search_chain[-1][2] == 'fpbs-optimistic-search-certified-growth')
+    price_view, _ = cairn.frontier_view(task_graph,
+                                      only_goal='fpbs-fixed-price-universal')
+    price_view[0]['necessary'] = sorted(price_view[0]['necessary'])
+    reuse_chain = cairn.why_chain(task_graph, 'fpbs-correlated-reuse-flags-removable')
+    price_wired = (
+        {'fpbs-correlated-reuse-flags-removable',
+         'fpbs-fixed-price-countable-from-finitely-generated'}
+        <= set(price_view[0]['holes'])
+        and reuse_chain
+        and reuse_chain[0][0] == 'fpbs-fixed-price-universal'
+        and reuse_chain[-1][2] == 'fpbs-correlated-reuse-flags-removable')
     new_errors = [finding for finding in errors if finding not in baseline_errors]
     passed = (not any(severity == 'error' for severity, _, _ in task_errors)
               and not new_errors and not duplicates and not removed
-              and statuses == expected and not unexpected_new_open and wired)
+              and statuses == expected and not unexpected_new_open
+              and wired and price_wired)
     report = {
         'status': 'passed_task_graph' if passed else 'failed',
         'execution': 'MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.',
-        'scope': 'Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.',
+        'scope': 'Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.',
         'cairn_sha256': hashlib.sha256(tool_path.read_bytes()).hexdigest(),
         'baseline_archive_sha256': baseline_hash,
         'overlay_archive_sha256': overlay_hash,
@@ -138,6 +153,8 @@ def main():
         'unexpected_new_open_claims': unexpected_new_open,
         'benjamini_schramm_frontier': goal_view[0],
         'optimistic_search_goal_chain': search_chain,
+        'fixed_price_frontier': price_view[0],
+        'correlated_reuse_goal_chain': reuse_chain,
         'state_changes': changes, 'selected_statuses': statuses,
         'overlay_source_sha256': {p: hashlib.sha256(data).hexdigest()
                                   for p, data in sorted(overlay.items())},

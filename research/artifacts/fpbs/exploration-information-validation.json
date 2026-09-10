@@ -1,10 +1,10 @@
 {
   "status": "passed_task_graph",
   "execution": "MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.",
-  "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.",
+  "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm or Fixed Price.",
   "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
   "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
-  "overlay_archive_sha256": "1b8b82faf2cb6e2efc6d1eba6543036d2f7043f8f8c30e084aa580eb53518fb0",
+  "overlay_archive_sha256": "8c45b8ec844668a79546eea6436d9da44f5eca34ae937503c42237193420531b",
   "claims": 7772,
   "routes": 7941,
   "task_claims": 234,
@@ -128,6 +128,33 @@
       "fpbs-benjamini-schramm-universal",
       "fpbs-universal-optimistic-certificate-route",
       "fpbs-optimistic-search-certified-growth"
+    ]
+  ],
+  "fixed_price_frontier": {
+    "id": "fpbs-fixed-price-universal",
+    "node_status": "OPEN",
+    "holes": [
+      "fpbs-correlated-reuse-flags-removable",
+      "fpbs-fixed-price-countable-from-finitely-generated"
+    ],
+    "necessary": [
+      "fpbs-correlated-reuse-flags-removable",
+      "fpbs-fixed-price-countable-from-finitely-generated"
+    ],
+    "connected": true,
+    "obstruction_sensitive": false,
+    "counterfactual_unstable": false
+  },
+  "correlated_reuse_goal_chain": [
+    [
+      "fpbs-fixed-price-universal",
+      "fpbs-fixed-price-from-bernoulli-cost-equality",
+      "fpbs-free-action-cost-at-least-bernoulli-cost"
+    ],
+    [
+      "fpbs-free-action-cost-at-least-bernoulli-cost",
+      "fpbs-bernoulli-lower-bound-from-reuse-removal",
+      "fpbs-correlated-reuse-flags-removable"
     ]
   ],
   "state_changes": {
@@ -307,6 +334,9 @@
     "fpbs-integrated-sensitivity-universal": "OPEN",
     "fpbs-benjamini-schramm-universal": "OPEN",
     "fpbs-fixed-price-universal": "OPEN",
+    "fpbs-free-action-cost-at-least-bernoulli-cost": "OPEN",
+    "fpbs-correlated-reuse-flags-removable": "OPEN",
+    "fpbs-fixed-price-countable-from-finitely-generated": "OPEN",
     "fpbs-optimistic-search-certified-growth": "ESTABLISHED",
     "fpbs-optimistic-search-linear-wall-cost": "ESTABLISHED",
     "fpbs-universal-optimistic-certificate-budget": "OPEN"
@@ -336,7 +366,7 @@
     "research/artifacts/fpbs/scripts/replay_quotient_environment_gap.py": "f6993916753db6bcef6a8d16e26f454e123fff2bccdc010f1a39821a9d8c4a48",
     "research/artifacts/fpbs/scripts/replay_search_barriers.py": "b8f41bae5c60238b68c12051061068275c770846c338fc7cf07c67f4952791e5",
     "research/artifacts/fpbs/scripts/replay_search_geometry.py": "10c022c5351b5395087d1d4a4da944766880d6d91c6d808177f7f4b16d7cac88",
-    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "247ac49f5c08367399866f3c239df6b008b4c97565bfc36d279d9888e90306cb",
+    "research/artifacts/fpbs/scripts/validate_critical_cluster_stability.py": "f1d1462209f9f4af281ad071d0b4a83b5b219f69f70d32647e2c12e714797cc8",
     "research/artifacts/fpbs/search-barriers-replay.json": "4a59dfd7d87f603b35f7b95aa47d25bc8a8a016f4c5ad20b7792e8057bf0b36c",
     "research/artifacts/fpbs/search-barriers.md": "9e85c9b4d985a2a1fdbf3f1a7cd9a1818f9896d7328ea840a1b43686f0155281",
     "research/artifacts/fpbs/search-geometry-replay.json": "4e57dbfcbc94909d919cfb06da9dc60df44462a329b51d7df14ee43afbc4d7e0",
@@ -359,6 +389,7 @@
     "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
     "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
     "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
+    "research/fpbs-fixed-price-universal.md": "033c1e882c75228ee120ce6192223a2837bb41924f13d65d09b270902782637e",
     "research/fpbs-hermon-hutchcroft-finite-tail-input.md": "1d230b6e23a51326356802a2c3fe93d13d29cb11a4588e73080e2ef63a7cb7cf",
     "research/fpbs-nonamenability-bounds-critical-connectivity-operator.md": "b8766a965a5ae58e4fae11cf2d46b126bdffa79350e214fe276022c5623c8d70",
     "research/fpbs-optimistic-search-certified-growth-proof.md": "145d4e7c0fe4bee87f7530d19bd8316a6018ce55fab373caa325a4ca44705577",
@@ -603,7 +634,7 @@
     "research/fpbs-fixed-price-counterexample-exists.md": "58f72e4507e2f817ae39a8cb3dcbddbf6618b161f9afd7d5765f4faf671eea93",
     "research/fpbs-fixed-price-from-bernoulli-cost-equality.md": "9fcd6104590ba4656bf00bfca0b47f9d6bf3f91416cb24766a523a4ea65a9739",
     "research/fpbs-fixed-price-one-percolation-kernel.md": "d79075346d83239defc3eb7fc7e5650c338c2b50f5243d033b61546c022ace62",
-    "research/fpbs-fixed-price-universal.md": "2a43be329af33188a4f514001e4adda27f0b8c4b3f85694d58d548d1c4cf3d13",
+    "research/fpbs-fixed-price-universal.md": "033c1e882c75228ee120ce6192223a2837bb41924f13d65d09b270902782637e",
     "research/fpbs-fixed-price-via-priority-deletion-optimality.md": "db5f7da538b742b13846d433e9dbe21eb0d56648e1a0e8c7856f4b0bb4aff7d4",
     "research/fpbs-forest-band-bridge-proof.md": "65d3018f8cdef1b9be8e9b402689c548c7c2acf70705509f5e904e2738baaf8f",
     "research/fpbs-free-action-cost-at-least-bernoulli-cost.md": "25ff741235c4af0a53b4895c5727c3b4cf516589ddcbed949121a90caa4a8b81",
@@ -862,5 +893,5 @@
     "research/fpbs-zero-traffic-defect-exact-cases-proof.md": "1489891602d990607b66d66839b5354b521b787671f7375305ebeb7f5df8bd6e",
     "research/fpbs-zero-traffic-defect-exact-cases.md": "4a58638f7cb548e9fa2fbe30815afc300d2455ad8799b9b9f79bc6a36dcd5fb2"
   },
-  "elapsed_seconds": 12.651
+  "elapsed_seconds": 16.86
 }

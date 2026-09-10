@@ -16,6 +16,29 @@ artifacts:
 essentially free probability-measure-preserving actions of `Gamma` on standard
 probability spaces have the same cost.
 
+**Scope audit, September 10, 2026.** The current proof search targets this
+universal statement. The earlier September 9 priority assessment is historical.
+The live reuse route still needs both
+`fpbs-correlated-reuse-flags-removable` and
+`fpbs-fixed-price-countable-from-finitely-generated`. The MSI validation report
+`research/artifacts/fpbs/exploration-information-validation.json` now records
+the computed Fixed Price frontier and the reuse premise's dependency path,
+in addition to checking that this goal remains open. These are graph checks,
+not mathematical proof verification.
+
+Rechecked [Abert--Weiss, Corollary 2](https://arxiv.org/pdf/1103.1063) and
+[Tucker-Drob, Corollary 6.22](https://arxiv.org/pdf/1211.6395): the former
+has the stated finite-generation hypothesis; the latter extends cost
+monotonicity under weak containment in specified cases, including when the
+weakly containing action has finite cost. Neither statement supplies the
+reverse comparison between arbitrary free actions. The
+[higher-rank theorem](https://annals.math.princeton.edu/articles/22425)
+settles its stated class of lattices, not this universal claim.
+The July 2026 [product-neighbourhood preprint, Introduction and Theorem 1.1](https://arxiv.org/html/2607.20273v1)
+also explicitly lists the universal problem as open and gives a sufficient
+finite-set criterion for fixed price one; that criterion is not asserted for
+every group.
+
 The cost of an action is the infimum of the costs of the graphings that
 generate its orbit equivalence relation, a graphing's cost being half the
 expected degree of its graph; see Gaboriau, *What is... cost?*,
