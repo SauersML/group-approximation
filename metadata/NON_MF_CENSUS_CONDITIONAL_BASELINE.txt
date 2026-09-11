@@ -187,3 +187,17 @@ inlined-statement GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentence
 # commutator(GL_d(R)) <= elementaryGroup (Fin d) R.  The other two
 # inclusions (Theorem B at rank d, and the countable-abelian-implies-MF
 # step) are unconditional.
+#
+# ---------------------------------------------------------------------------
+# Added 2026-09-11 by the census lane of the non-MF verbatim swarm (lead session
+# nonsofic-existence-41).  These four findings were already failing this gate on
+# main at f643c96ea (--verify-unconditional: 4 new) because the rows citing them
+# landed without register lines.  Each row is graded `partial`, never formalized,
+# and each debt has an owner lane working to discharge it by PROOF (user order:
+# no literature inputs ever).  A line goes the day its carrier gets a closed producer.
+open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarWNotNuclear_of_quotient  -- row a96c09324a87 (partial): "C*_max(W) is not nuclear since W is not amenable" needs quotients of nuclear C*-algebras to be nuclear (NuclearCStarQuotientInput has no producer); owner lane sec4-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem  -- row 0f22bdbc4184 (partial): thm:torsion-free over FournierFacioParagraph + HullPrintedInputs, whose producers rest on the TheoremCAssembly admissions; owners simple-group, hull-select, hull-unbound, hull-bridge, hull-respell, kh-hyperbolic, kh-torsion, sec5-sentences
+carrier-data GroupApproximation.LeavittKOneScalar.PrintedKhanhThanhDiagonalDecomposition  -- row 4321530b3fec (partial): the Khanh-Thanh decomposition GL_d(R)=EL_d(R)D_d(k) is named as the printed citation; nothing produces it yet; owner lane leavitt-ge
+open-predicate GroupApproximation.LeavittKOneScalar.scalarSurjective_of_khanhThanh  -- row 4321530b3fec (partial): same citation as a premise; owner lane leavitt-ge
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra  -- rows 7b1fa3182135 and 8b1ec28a0e73 (partial; cor:regular-nonmf-algebra split into two sentences at 8a22a6418): FournierFacioParagraph is produced only through TheoremCAssembly's open admissions, alongside the open-predicate DGO/GO premises registered above; owners sec5-sentences, simple-group, dgo-analytic, dgo-geometric, go-sr1, hull-*
+carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.Configuration  -- row dab2f2bfe084 (partial since the 2026-09-11 strength audit; it was graded definition off this structure): "G_0 is obtained there as a common quotient ... by Hull's theorem [Corollary 7.4]"; Configuration is produced only through declarations resting on TheoremCAssembly's open admissions; owners simple-group, hull-*
