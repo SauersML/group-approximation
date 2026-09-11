@@ -316,3 +316,4 @@
 34502369149	2026-09-10T16:29:53Z	GroupApproximation/Sofic/DefectActionAnyUniverse.lean	isAsymptoticCommutantOfAny_type0
 34519548657	2026-09-10T19:18:31Z	GroupApproximation/Sofic/DefectSaturation.lean	involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
 34534901638	2026-09-10T21:57:45Z	GroupApproximation/Sofic/DihedralCoronaParity.lean	halfTurn_sq
+34545554531	2026-09-11T00:14:06Z	GroupApproximation/Sofic/DirectSumAmplification.lean	card_directSumModel_succ
