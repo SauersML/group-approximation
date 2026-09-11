@@ -318,3 +318,4 @@
 34534901638	2026-09-10T21:57:45Z	GroupApproximation/Sofic/DihedralCoronaParity.lean	halfTurn_sq
 34545554531	2026-09-11T00:14:06Z	GroupApproximation/Sofic/DirectSumAmplification.lean	card_directSumModel_succ
 34563606599	2026-09-11T04:49:45Z	GroupApproximation/Sofic/DivisibleInvisible.lean	map_eq_one_of_divisible
+34585968921	2026-09-11T09:48:10Z	GroupApproximation/Sofic/DossierAuditAddenda.lean	char_mul_left
