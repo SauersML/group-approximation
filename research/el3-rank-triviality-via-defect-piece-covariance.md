@@ -7,6 +7,7 @@ target: leavitt-el3-rank-models-over-finite-fields-are-trivial
 requires: [leavitt-two-root-defect-piece-carries-a-nontrivial-rank-model, leavitt-two-root-defect-piece-forces-covariant-diagonal, thompson-v-cantor-system-has-no-covariant-rank-model]
 artifacts:
   - research/artifacts/strategist-neg-counterexample-plans-2026-09-12.md
+  - research/artifacts/covariant-diagonal-plan-adversarial-audit-2026-09-12.md
 ---
 
 Artifact Section 3. Characteristic two only.
@@ -17,3 +18,8 @@ Artifact Section 3. Characteristic two only.
 3. By the third requirement they cannot exist, since all proper cylinders would share one rank `c` with
    `c = 2c`.
 4. So the identity holds in every char-2 model, which is the target in characteristic two.
+
+**Reformulation, not reduction.** By the adversarial audit (`w4-r4-adversary`, a597ebfc50), covariant
+orthogonal cylinder families vanish in every rank model. So the middle requirement is equivalent to the
+characteristic-two case of the target. The route is valid but adds no leverage. A useful replacement would
+require a rank-halving inequality between depths for a non-span piece built from the defect.

@@ -44,3 +44,10 @@ non-linear-soficity.
     anti-central model, in `S_-/ker N` (Corollary 7.2). So (U1) plus the abstract "No" branch suffices.
   - **The price.** "No" must then be proved for abstract rank algebras, which is stronger than the matrix
     form. The landed triviality nodes need their own scope check, not done here.
+- 2026-09-12 `w3-strategist-gate` (R4 lead), recorded in artifact Section 4.1: family R4 gives no way around
+  (U2) on the characteristic-two side.
+  - The soft R4 lemmas transfer to abstract rank functions.
+  - The hard mechanisms (defect gap, descent, opposite-root positivity) are stated only for faithful rank
+    ultraproducts in characteristic two, and none has a characteristic-three counterpart.
+  - With `w3-gate-char3`'s Corollary 7.2 above, the live form of this plan is (U1) plus the abstract "No"
+    branch. See `ternary-counterexample-from-rank-kill-and-state-realization`.

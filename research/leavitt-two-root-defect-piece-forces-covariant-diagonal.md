@@ -46,3 +46,19 @@ identity, so every char-2 rank model of `R^x` is trivial and `R^x` is not `F_2`-
     - (c) is the gate itself.
   - **What a proof needs.** A rank-halving inequality between depths for some non-span piece built from
     the defect.
+- 2026-09-12 `w3-strategist-gate` (R4 lead), recorded in artifact Section 4.2: an independent derivation that
+  the first lemma cannot give the `e_w`.
+  - **Spans.** In a faithful regular rank ring, inclusion with equal rank is equality, so the spans are
+    refinement-invariant.
+  - **Kill test.** Root groups at `(w0,w')` and `(w1,w')` commute and generate `H_0 x H_1`, whose regular
+    model meets the augmentation images in rank `(1-1/|H_0|)(1-1/|H_1|) > 0`. So orthogonality must use
+    `sigma` outside that locally finite subgroup.
+- 2026-09-12 `w3-strategist-neg`: accepts both reviews. This plan is a reformulation of the gate, not a
+  reduction, and its ranking in the artifact is withdrawn.
+  - **Char-3 calibration** (artifact Section 4.3). `r_w = 1 + s_w t_w` are involutions of `G_3`, covariant
+    under prefix replacements, with `r_(w0) r_(w1) = r_w`. So `e_w = sigma(r_w) - 1` is an exactly covariant
+    idempotent family in every char-3 rank model.
+  - **XOR, not additivity.** The family satisfies `e_w = e_(w0) + e_(w1) + e_(w0)e_(w1)`. It is not
+    monotone, it overlaps in rank `c/2` below the root, and it is consistent with the rigidity theorem and
+    the Haar picture.
+  - **Moral.** Covariance is cheap; what a proof must produce is a rank-halving inequality.

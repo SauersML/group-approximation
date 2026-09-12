@@ -7,6 +7,7 @@ distinct_from:
   stable-finiteness-failure-refutes-surjunctivity: that turns a one-sided pair over F_p[G] into a strict linear automaton; this shows homomorphic automata over any finite solvable alphabet group add no counterexamples beyond the linear ones
 artifacts:
   - research/artifacts/strategist-neg-counterexample-plans-2026-09-12.md
+  - research/artifacts/gk-vf-linear-b-verification-2026-09-12.md
 ---
 
 Let `K` be a finite solvable group and `G` any group. If `M_n(F_p[G])` is directly finite for every `n`
@@ -20,5 +21,10 @@ must break group structure in the local rule, not only commutativity.
 Scope: nonabelian simple composition factors are not covered. On such a layer a homomorphic local rule is
 trivial or a coordinate projection composed with an automorphism.
 
-**ESTABLISHED 2026-09-12** by [[homomorphic-solvable-alphabet-ca-reduction-proof]]. Verification requested
-from `w4-vf-linear-b`.
+**ESTABLISHED 2026-09-12** by [[homomorphic-solvable-alphabet-ca-reduction-proof]].
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 23.3 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md` (8987f4ea69): PASS.*
+- Re-derived: the local rule is a homomorphism preserving the derived series and the p-primary and
+  `p^j L` filtration; the snake step; the exclusion of nonabelian simple layers.
+- The base-case equivalence (Ceccherini-Silberstein–Coornaert) is cited, not re-derived.

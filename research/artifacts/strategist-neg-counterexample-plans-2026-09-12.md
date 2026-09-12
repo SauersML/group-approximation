@@ -206,3 +206,129 @@ What remains:
   identity. Any mechanism proving the identity must fail there. Its coefficient algebra `C(X,F_2) ⋊ Z`
   has no Leavitt halving, so check that the argument really uses `s_0, s_1`.
 - **The adversary.** Ask `w4-r4-adversary` to attack the mechanism.
+
+## 4. Review corrections and the sharpest form of Plan 1
+
+### 4.1 Plan 1: which parts of (U2) can be skipped
+
+**w3-gate-char3** (1bace02f7e, its artifact Section 7). The characteristic-three gate results hold for any
+`F_3`-algebra whose Sylvester matrix rank function is positive on nonzero idempotents:
+- the equivalences between z-moving, nontrivial, injective and anti-central models;
+- the corner kill;
+- the Haar law;
+- the torus normal form.
+
+The one exception is the transfer to `PG`, which uses Kronecker products and Jordan forms and is not used
+here. **Corollary 7.2:** a rank function `N` on `S_-` with `N(eps_-) = 1` is itself an anti-central model,
+in `S_-/ker N`. So (U2) can be skipped, at the price of proving the "No" branch for abstract rank algebras.
+
+**w3-strategist-gate (R4 lead).**
+- **Soft parts transfer to abstract rank functions:** the endpoint
+  `toeplitz-isometry-defects-have-total-rank-at-least-one`, the el4 normal-closure lemma, the
+  reversed-root identity and both firewalls.
+- **Hard parts do not:** the defect gap, descent and opposite-root positivity are stated only for faithful
+  rank ultraproducts in characteristic two, with no characteristic-three counterpart.
+
+So nothing in R4 is yet evidence for the abstract ternary "No" branch.
+### 4.2 Plan 2: the first lemma of Section 3.3 cannot produce the `e_w`
+
+**(a) Spans are refinement-invariant.** In a regular rank ring with faithful rank, if one submodule sits
+inside another with equal rank, they are equal: a complement would have rank zero, hence be zero.
+- **First coordinate.** Section 3.3 gives `V_(w0,w') <= V_(w,w')` with equal ranks, so
+  `V_(w0,w') = V_(w,w') = V_(w1,w')`.
+- **Second coordinate.** The same holds there, from
+  `s_w y t_(w') = s_w (y s_0) t_(w'0) + s_w (y s_1) t_(w'1)`.
+
+So the image spans do not change under refinement and cannot be the orthogonal halves `e_w`. As the R4
+lead put it, orthogonality is block support under another name.
+
+**(b) The locally finite subgroup cannot supply orthogonality.** This kill test is due to the R4 lead.
+- **The subgroup.** Root elements at `(w0,w')` and at `(w1,w')` commute. Both cross terms contain
+  `t_(w') s_(w0)` or `t_(w') s_(w1)`, which vanish because `w'` is disjoint from `w`. In characteristic
+  two each root element is an involution, so the two root groups generate an elementary abelian 2-group
+  `H_0 x H_1`.
+- **The kill.** In the regular model of `H_0 x H_1`, the two augmentation images meet in rank
+  `(1 - 1/|H_0|)(1 - 1/|H_1|) > 0`. So relations inside that subgroup never force orthogonality.
+- **Consequence.** Any orthogonality proof has to use `sigma` outside it, most likely the prefix
+  replacements that do not preserve measure.
+
+
+**(c) The adversarial audit makes Plan 2 a reformulation.** This is `w4-r4-adversary`, a597ebfc50,
+`research/artifacts/covariant-diagonal-plan-adversarial-audit-2026-09-12.md`.
+- **Joins exist.** Kill test (a) fails: countable saturation gives joins and meets of principal right
+  ideals in rank ultraproducts.
+- **Monotone rigidity.** `covariant-monotone-cylinder-families-in-rank-models-are-constant`: every
+  V-covariant, refinement-monotone family of principal ideals indexed by proper cylinders is constant.
+- **The claim is the gate.** Covariant orthogonal cylinder idempotents are zero in every model and every
+  nonzero corner. So the conclusion of `leavitt-two-root-defect-piece-forces-covariant-diagonal` holds in
+  no model, and the claim is equivalent to the characteristic-two gate. The first lemma is an automatic
+  instance of rigidity, true whatever the defect.
+- **Root spans give only the known direction.** The all-coefficient identity on one frame forces
+  triviality, through a Weyl element and simplicity.
+- **The Toeplitz test is consistent.** Its invariant trace forbids depth-changing units, so honest diagonals
+  exist there.
+- **What a proof needs.** A rank-halving inequality between consecutive depths for a non-span piece built
+  from the defect.
+
+**Plan 2's rank-2 ranking is withdrawn.** It is a reformulation of the gate, not a new reduction. Its useful
+residue is the rigidity theorem, which belongs to the adversary lane, and the calibration of Section 4.3.
+
+### 4.3 Calibration: in characteristic three, covariance is free but additivity becomes XOR
+
+Let `G_3 = L_(F_3)(1,2)^x` and `r_w = 1 + s_w t_w` for a cylinder `w`.
+- **Involutions.** In characteristic three, `(1+p)^2 = 1 + 3p = 1` for an idempotent `p`, so `r_w` is an
+  involution of `G_3`. The empty word gives `r_() = 2 = z`.
+- **Covariance.** A prefix replacement `v` whose domain partition is refined by `w` gives
+  `v r_w v^-1 = r_(vw)`.
+- **Multiplication.** `r_(w0) r_(w1) = r_w`.
+- **The idempotents.** For any char-3 rank model `sigma`, put `e_w = sigma(r_w) - 1`. Then
+  `e_w^2 = 2 - 2 sigma(r_w) = e_w`, since `-2 = 1`. So `e_w` is the `-1` eigenprojection, and it is exactly
+  covariant.
+- **The relation.** Expanding `sigma(r_w) = sigma(r_(w0)) sigma(r_(w1))` gives
+  `e_w = e_(w0) + e_(w1) + e_(w0) e_(w1)`, the XOR of two commuting idempotents in characteristic three.
+  So `rk(e_w) = rk(e_(w0)) + rk(e_(w1)) - 2 rk(e_(w0) e_(w1))`.
+- **Ranks.** The involutions `r_w` for proper cylinders are all conjugate in `G_3`: `s_w t_w` and its
+  complement are nonzero idempotents in the purely infinite simple ring `R`, which has `K_0 = 0`. So
+  every proper `e_w` has one rank `c`.
+  - **At the root:** `r_([0]) r_([1]) = z`. In a model with `sigma(z) = -1` this gives `1 = 2c - 2 rk(e_0 e_1)`.
+  - **Below the root:** `c = 2c - 2 rk(e_(w0) e_(w1))`, so `rk(e_(w0) e_(w1)) = c/2`.
+  - **Solution:** with `c = 1/2`, the rank w3-gate-v reports for the anti-central lifts, the top pair is
+    complementary and every deeper pair overlaps in rank 1/4.
+
+This is consistent with the Haar-measure picture of `w3-gate-char3` (6601af31f): nothing contradicts it.
+
+**Moral.** Natural covariant cylinder families exist, but they satisfy the XOR relation, not orthogonal
+additivity, and the halving obstruction needs additivity. So a proof of Plan 2 must turn an XOR family into
+an additive one, or get orthogonality some other way, using elements outside the locally finite root
+subgroups. Characteristic two has no `r_w` at all, since `1 + s_w t_w` is not a unit there.
+
+### 4.4 The sharpest form of Plan 1: rank condition versus rank functions
+
+Let `G = L_(F_3)(1,2)^x` and `S_- = eps_- F_3[G]`. Consider three conditions.
+- **(C)** `S_-` fails the rank condition, `[eps_-] <= 0`. This is the counterexample,
+  `ternary-anti-central-unit-class-is-nonpositive`.
+- **(NS)** `(K_0(S_-), [eps_-])` has no state.
+- **(NR)** `S_-` has no Sylvester matrix rank function with `N(eps_-) = 1`.
+
+**Facts.**
+- **(C) iff (NS).** This is `anti-central-state-obstruction-equals-stable-finiteness`, Goodearl–Handelman
+  form.
+- **(NS) implies (NR).** A normalized rank function restricts to a state on projections.
+- **(NR) is a statement about the whole group algebra.** (NR) iff every Sylvester matrix rank function on
+  `F_3[G]` has `rk(1 - [z]) = 0`. For one direction, `rk(eps_-) = t > 0` gives `N(X) = rk(eps_- X)/t`. For
+  the other, `rk(X) = N(eps_- X)` extends `N`, because `eps_-` is central. This is
+  `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`.
+- **(NR) is the abstract "No" branch.** (NR) iff `G` has no anti-central model in an abstract rank
+  algebra: Corollary 7.2 in one direction, pullback along `F_3[G] -> B` in the other. It implies the matrix
+  "No" branch.
+- **(U1) closes the gap.** (U1), `ternary-anti-central-states-give-sylvester-rank-functions`, is exactly
+  (NR) implies (NS).
+
+**Conclusion.** Given (U1), the linear ternary counterexample is equivalent to (NR): every Sylvester rank
+function on `F_3[G]` kills `1 - [z]`. The route is
+`ternary-counterexample-from-rank-kill-and-state-realization`.
+
+**The risk.** A ring can satisfy the rank condition without having a Sylvester matrix rank function. That is
+plausibly the general situation, though not checked against the literature here. If it happens for `S_-`,
+then (NR) holds but gives no counterexample, and the corner equation must be attacked directly. So the
+first task for (U1) is the literature, and the second is input specific to `S_-`.
