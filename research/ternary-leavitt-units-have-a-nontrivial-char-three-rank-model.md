@@ -43,3 +43,29 @@ injective model, an anti-central model, or a nontrivial model of `PG = G/{±1}`.
   stops: projective content of level groups meets the Haar law and has `A^2 != 0` on the Sylow 3-subgroup.
   Finite level groups cannot decide the gate, and a proof must use Leavitt-coefficient relations such as
   the compressor pair.
+- **Level-factoring constructions are dead** (w4-char3-construct,
+  `char-three-level-factoring-models-of-leavitt-units-are-trivial`).
+  - **What dies:** every level-factoring model of `G` or `PG` whose transvection displacement is bounded
+    below is trivial. That covers natural assignments and Steinberg, projective, free and twisted regular
+    level models.
+  - **Central errors too:** central relator errors do not survive. They would embed `G` or `PG` in an
+    ultraproduct of finite groups, and both are nonsofic.
+  - **So:** a "yes" must send some element to positive rank distance from the image of the level
+    representation.
+- **What already works** (`level-unit-hnn-extensions-have-anti-central-rank-models`).
+  - **The tower:** the twisted regular tower of the level unit group `L = ∪ GL_(2^j)(F_3)` carries the
+    Haar law.
+  - **Extension:** it extends, with exact intertwiners, to every multiple HNN extension of `L` along
+    single-letter partial conjugations. Torsion letters keep their orders, for example the Thompson
+    three-cycle.
+  - **So:** single-letter relations decide neither direction.
+- **Where the construction stops** (artifact Section 3 of
+  `research/artifacts/char-three-level-factoring-and-hnn-models-2026-09-12.md`).
+  - **What is needed:** each intertwiner is unique up to a commutant. A model of `G` needs commutant
+    corrections that satisfy the multi-letter relations:
+    - `V`'s multiplication table on depth-changing elements;
+    - commutation of disjointly supported depth-changing elements;
+    - Steinberg commutators of non-level root elements, such as the compressor pair.
+  - **Fock locality, unfinished:** letters could act on the tensor factors of `Λ` over clopen pieces,
+    which would give disjoint-support commutation. It needs asymptotic freeness of `Λ(U)^(⊗m)` over
+    3-subgroups, which is not proved.
