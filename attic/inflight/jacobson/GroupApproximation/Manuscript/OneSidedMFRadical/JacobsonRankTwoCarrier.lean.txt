@@ -120,9 +120,9 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
 
 /-- The kernel of `GL_n(J) → GL_n(F_2[z,z^{-1}])`, into `GL_fs(V^n)`. -/
 noncomputable def kerToBinaryGLfs (n : ℕ) : (glSymbolMap n).ker →* binaryGLfs n where
-  toFun g := ⟨glAct n g, glAct_mem_binaryGLfs g.2⟩
+  toFun g := ⟨glAct n g.1, glAct_mem_binaryGLfs g.2⟩
   map_one' := Subtype.ext (map_one (glAct n))
-  map_mul' g h := Subtype.ext (map_mul (glAct n) g h)
+  map_mul' g h := Subtype.ext (map_mul (glAct n) g.1 h.1)
 
 theorem kerToBinaryGLfs_injective (n : ℕ) : Function.Injective (kerToBinaryGLfs n) := by
   intro g h hgh
