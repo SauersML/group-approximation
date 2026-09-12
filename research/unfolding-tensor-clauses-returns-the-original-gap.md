@@ -3,6 +3,8 @@ rg: 2
 id: unfolding-tensor-clauses-returns-the-original-gap
 kind: claim
 title: Unfolding each amplified tensor clause into the average of its factors returns exactly the input ground energy
+invalidates:
+  - reducer-by-factor-unfolding
 artifacts:
   - research/artifacts/qpcp-dinur-iteration-architecture-2026-09-11.md
 distinct_from:
