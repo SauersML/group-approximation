@@ -156,6 +156,7 @@ class Findings:
 # tree and each has to hold on its own.
 PALOMAR_CONFIGS = (
     "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
+    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
 )
 
 # Configurations whose SOLUTION is still a skeleton.
@@ -185,11 +186,6 @@ PALOMAR_CONFIGS = (
 # summary line says so.
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
-    # `Palomar/BowenChapmanSolution.lean` proves each selected statement in its
-    # `_of` form from the development endpoint's statement
-    # (`GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`),
-    # which is not in its import closure yet.
-    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -818,25 +814,28 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "does not declare `exists_simple_separable_order_six_witness_of`"),
     ("strong comparator permitting a fourth axiom",
      "Palomar/comparator-lix-strong.json: permitted_axioms"),
-    # The pending Bowen-Chapman surface, under the same four rules.
+    # The Bowen-Chapman surface.
     ("bowen-chapman challenge with a project-local import",
      "Palomar/BowenChapmanChallenge.lean:1:"),
     ("bowen-chapman shared block edited on one side",
      "Palomar/comparator-bowen-chapman.json: shared block diverges"),
-    ("bowen-chapman solution missing an `_of` form",
-     "does not declare `exists_finitelyGenerated_surjunctive_not_sofic_of`"),
+    ("bowen-chapman signature edited on one side",
+     "`exists_finitelyGenerated_surjunctive_not_sofic`: the compared signature diverges"),
     ("bowen-chapman comparator permitting a fourth axiom",
      "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("three arXiv classes", "one or two distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
     ("LIX result dropped from the metadata", "is not listed in status.main_results"),
+    ("bowen-chapman result dropped from the metadata",
+     "BowenChapman.not_all_surjunctive_groups_sofic is not listed in status.main_results"),
 )
 
 YAML_CALIBRATIONS = {
     "three arXiv classes",
     "original result with a substantive source",
     "LIX result dropped from the metadata",
+    "bowen-chapman result dropped from the metadata",
 }
 
 
@@ -903,11 +902,11 @@ def plant(name: str, root: Path) -> None:
         path.write_text(path.read_text().replace(
             "def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=",
             "def hammingDist' (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=", 1))
-    elif name == "bowen-chapman solution missing an `_of` form":
+    elif name == "bowen-chapman signature edited on one side":
         path = root / "Palomar" / "BowenChapmanSolution.lean"
         path.write_text(path.read_text().replace(
-            "theorem exists_finitelyGenerated_surjunctive_not_sofic_of",
-            "theorem exists_finitelyGenerated_surjunctive_not_sofic_renamed", 1))
+            "theorem exists_finitelyGenerated_surjunctive_not_sofic :",
+            "theorem exists_finitelyGenerated_surjunctive_not_sofic : True →", 1))
     elif name == "bowen-chapman comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-bowen-chapman.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
@@ -915,6 +914,10 @@ def plant(name: str, root: Path) -> None:
         _edit_metadata(root,
                        "    - declaration: ProblemLIX.not_all_simple_unital_k1Injective",
                        "    - declaration: ProblemLIX.renamed_and_not_republished")
+    elif name == "bowen-chapman result dropped from the metadata":
+        _edit_metadata(root,
+                       "    - declaration: BowenChapman.not_all_surjunctive_groups_sofic",
+                       "    - declaration: BowenChapman.renamed_and_not_republished")
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":

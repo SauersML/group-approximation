@@ -9,12 +9,14 @@ import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.Perm.Basic
 import GroupApproximation.Sofic.Sofic
 import GroupApproximation.Dynamics.Surjunctivity
+import GroupApproximation.BowenChapman.Endpoint
 
 /-!
 # Proof of the Bowen–Chapman Problem 1.1 theorems
 
-This file repeats the challenge's shared block byte for byte and translates the
-development's vocabulary into it.
+This file repeats the challenge's shared block byte for byte, translates the
+development's vocabulary into it, and proves the two theorems
+`Palomar/comparator-bowen-chapman.json` selects.
 
 * `isSoficGroup_of_isSofic` and `isSofic_of_isSoficGroup`: the challenge's
   `IsSoficGroup` is the development's `GroupApproximation.IsSofic`, with the
@@ -25,18 +27,14 @@ development's vocabulary into it.
   challenge's `IsSurjunctive`, because Bowen–Chapman's automaton with memory
   `γ` is the development's `localMap` whose memory set is the image of `γ`.
 * `closure_eq_top_of_fg`: `Group.FG` gives a finite generating set.
+* `not_all_surjunctive_groups_sofic_of` and
+  `exists_finitelyGenerated_surjunctive_not_sofic_of` carry any finitely
+  generated, surjunctive, nonsofic group of the development into the
+  challenge's two statements.
 
-## What this file still owes
-
-The development endpoint `GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`,
-a finitely generated group that is surjunctive in the development's sense and
-not sofic, is not in this file's import closure yet.  So each theorem
-`Palomar/comparator-bowen-chapman.json` selects appears here in its `_of` form,
-with that endpoint statement as its one hypothesis, and every other step is
-proved.  When the endpoint lands, the two unsuffixed theorems are one-line
-applications of these, and the configuration moves from
-`PALOMAR_PENDING_CONFIGS` to `PALOMAR_CONFIGS` in
-`scripts/check_palomar_submission.py`.
+The group is supplied by `GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`
+in `GroupApproximation/BowenChapman/Endpoint.lean`: the symmetric double
+`G *_Γ G` of `Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ)`.
 -/
 
 namespace BowenChapman
@@ -141,8 +139,8 @@ theorem closure_eq_top_of_fg {G : Type} [Group G] (h : Group.FG G) :
     ∃ S : Finset G, Subgroup.closure (S : Set G) = ⊤ :=
   h.out
 
-/-- `not_all_surjunctive_groups_sofic`, from the development endpoint's
-statement. -/
+/-- `not_all_surjunctive_groups_sofic`, from any finitely generated group that
+is surjunctive and not sofic in the development's sense. -/
 theorem not_all_surjunctive_groups_sofic_of
     (h : ∃ (E : Type) (_ : Group E), Group.FG E ∧ Surjunctivity.IsSurjunctive E ∧
       ¬ IsSofic E) :
@@ -151,8 +149,8 @@ theorem not_all_surjunctive_groups_sofic_of
   obtain ⟨E, _, _, hsurj, hns⟩ := h
   exact hns (isSofic_of_isSoficGroup (hall E (isSurjunctive_of_surjunctive hsurj)))
 
-/-- `exists_finitelyGenerated_surjunctive_not_sofic`, from the development
-endpoint's statement. -/
+/-- `exists_finitelyGenerated_surjunctive_not_sofic`, from any finitely
+generated group that is surjunctive and not sofic in the development's sense. -/
 theorem exists_finitelyGenerated_surjunctive_not_sofic_of
     (h : ∃ (E : Type) (_ : Group E), Group.FG E ∧ Surjunctivity.IsSurjunctive E ∧
       ¬ IsSofic E) :
@@ -161,6 +159,21 @@ theorem exists_finitelyGenerated_surjunctive_not_sofic_of
   obtain ⟨E, _, hfg, hsurj, hns⟩ := h
   exact ⟨E, inferInstance, closure_eq_top_of_fg hfg, isSurjunctive_of_surjunctive hsurj,
     fun hs => hns (isSofic_of_isSoficGroup hs)⟩
+
+/-- **Problem 1.1 has a negative answer**: not every surjunctive group is
+sofic. -/
+theorem not_all_surjunctive_groups_sofic :
+    ¬ ∀ (G : Type) [Group G], IsSurjunctive G → IsSoficGroup G :=
+  not_all_surjunctive_groups_sofic_of
+    GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic
+
+/-- **A finitely generated counterexample**: some finitely generated group is
+surjunctive and not sofic. -/
+theorem exists_finitelyGenerated_surjunctive_not_sofic :
+    ∃ (G : Type) (_ : Group G), (∃ S : Finset G, Subgroup.closure (S : Set G) = ⊤) ∧
+      IsSurjunctive G ∧ ¬ IsSoficGroup G :=
+  exists_finitelyGenerated_surjunctive_not_sofic_of
+    GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic
 
 end
 

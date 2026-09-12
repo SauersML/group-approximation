@@ -64,7 +64,7 @@ trap 'rm -rf "$work"' EXIT
 
 status=0
 
-for prefix in "" LIX; do
+for prefix in "" LIX BowenChapman; do
   # A label for the messages: the empty prefix is the original non-MF pair.
   label="${prefix:-non-MF}"
   pair_ok=1
@@ -120,7 +120,7 @@ done
 # gated -- and the part of the report before `pending-boundary:` must match.
 # The part after it is printed and not gated, because the solution's theorems
 # still carry the outstanding hypothesis.
-for prefix in LIXStrong BowenChapman; do
+for prefix in LIXStrong; do
   label="$prefix"
   pair_ok=1
 

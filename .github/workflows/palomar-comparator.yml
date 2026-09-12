@@ -25,6 +25,7 @@ name: Palomar Comparator
 #   Palomar/comparator.json              the sofic-not-MF group (the default)
 #   Palomar/comparator-lix.json          the three STW Problem LIX theorems
 #   Palomar/comparator-lix-strong.json   the three strengthened LIX theorems
+#   Palomar/comparator-bowen-chapman.json  the two Bowen-Chapman Problem 1.1 theorems
 #
 # The three values are the entries of `PALOMAR_CONFIGS` and
 # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
@@ -150,7 +151,8 @@ jobs:
         run: |
           lake build PalomarChallenge PalomarSolution \
                      PalomarLIXChallenge PalomarLIXSolution \
-                     PalomarLIXStrongChallenge PalomarLIXStrongSolution
+                     PalomarLIXStrongChallenge PalomarLIXStrongSolution \
+                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is

@@ -191,8 +191,7 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarLIXStrongAxioms.lean
 
-      # The pending Bowen-Chapman surface gates its `_of` forms the same way:
-      # they carry the endpoint statement as a hypothesis, not as a hole.
+      # The Bowen-Chapman surface: the two compared theorems, from the endpoint.
       - name: Palomar axiom closure (Bowen-Chapman)
         id: axioms-bowen-chapman
         continue-on-error: true

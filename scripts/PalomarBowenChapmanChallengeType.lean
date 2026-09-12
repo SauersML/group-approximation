@@ -4,31 +4,21 @@ import Palomar.BowenChapmanChallenge
 # Dump the Bowen–Chapman statements and their declaration closures
 
 The challenge-side driver for `Palomar/comparator-bowen-chapman.json`, twin of
-`scripts/PalomarBowenChapmanSolutionType.lean`, on the model of
-`scripts/PalomarLIXStrongChallengeType.lean`.
+`scripts/PalomarBowenChapmanSolutionType.lean`.
 
 `leanprover/comparator` compares the exported challenge and solution
 `ConstantVal`s structurally and then walks the constants each compared type
 mentions, transitively, requiring each to be identical in both environments:
-name, type and value.
+name, type and value.  For the four shared definitions and the two compared
+theorems this driver prints the level parameters, the type hash, the transitive
+closure with a type and value hash per constant, and the `pp.all` type, and
+`scripts/check_palomar_statement_match.sh` diffs the two drivers' output.
 
-## Why this driver prints two groups
+The values of the four definitions are walked as well, because Comparator
+compares them; the proofs of the two theorems are not, because the challenge
+states them with holes.
 
-The configuration is pending: `Palomar/BowenChapmanSolution.lean` proves each
-selected statement from the development endpoint's statement and names it
-`<theorem>_of`, so comparing the theorem statements today would report a
-difference that is the honest state of the work.
-
-What can be compared today is the shared block (`cellularAutomaton`,
-`IsSurjunctive`, `hammingDist`, `IsSoficGroup`), written byte-identically in
-both files.  Every one of them is in the compared closure of both theorems, and
-the failure this catches is an instance resolved differently once the solution
-imports the development.  So the report is in two groups separated by
-`pending-boundary:`: everything before it is diffed against the solution twin
-and gates; everything after it is printed for inspection.  When the endpoint
-lands, the boundary moves to the end and the whole report is diffed.
-
-Run with `scripts/remote-build.sh --run scripts/PalomarBowenChapmanChallengeType.lean`.
+Run with `lake env lean scripts/PalomarBowenChapmanChallengeType.lean`.
 -/
 
 open Lean Meta in
@@ -41,11 +31,7 @@ open Lean Meta in
      (false, `BowenChapman.not_all_surjunctive_groups_sofic),
      (false, `BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic)]
   let env ← getEnv
-  let mut boundaryPrinted := false
   for (isShared, target) in targets do
-    unless isShared || boundaryPrinted do
-      IO.println "pending-boundary:"
-      boundaryPrinted := true
     let some info := env.find? target
       | throwError "declaration {target} is not in this environment"
     IO.println s!"declaration: {target}"
@@ -80,5 +66,3 @@ open Lean Meta in
         ppExpr info.type
     IO.println "type:"
     IO.println (toString fmt)
-  unless boundaryPrinted do
-    throwError "no compared statement was reported, so the pending boundary was never printed"

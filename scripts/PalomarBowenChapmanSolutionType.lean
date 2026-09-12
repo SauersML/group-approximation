@@ -4,24 +4,21 @@ import Palomar.BowenChapmanSolution
 # Dump the Bowen–Chapman statements and their declaration closures
 
 The solution-side driver for `Palomar/comparator-bowen-chapman.json`, twin of
-`scripts/PalomarBowenChapmanChallengeType.lean`, on the model of
-`scripts/PalomarLIXStrongSolutionType.lean`.
+`scripts/PalomarBowenChapmanChallengeType.lean`.
 
 `leanprover/comparator` compares the exported challenge and solution
 `ConstantVal`s structurally and then walks the constants each compared type
 mentions, transitively, requiring each to be identical in both environments:
-name, type and value.
+name, type and value.  For the four shared definitions and the two compared
+theorems this driver prints the level parameters, the type hash, the transitive
+closure with a type and value hash per constant, and the `pp.all` type, and
+`scripts/check_palomar_statement_match.sh` diffs the two drivers' output.
 
-## Why this driver prints two groups
+The solution imports the development, whose instances the challenge never sees,
+so this is where an instance resolved differently inside a shared definition
+shows up.
 
-The configuration is pending: this side declares each selected statement as
-`<theorem>_of`, with the development endpoint's statement as a hypothesis.
-Everything before `pending-boundary:` is the shared block and is diffed against
-the challenge twin, which gates; everything after it is printed for inspection.
-When the endpoint lands, the names below lose their `_of`, the boundary moves to
-the end, and the whole report is diffed.
-
-Run with `scripts/remote-build.sh --run scripts/PalomarBowenChapmanSolutionType.lean`.
+Run with `lake env lean scripts/PalomarBowenChapmanSolutionType.lean`.
 -/
 
 open Lean Meta in
@@ -31,14 +28,10 @@ open Lean Meta in
      (true,  `BowenChapman.IsSurjunctive),
      (true,  `BowenChapman.hammingDist),
      (true,  `BowenChapman.IsSoficGroup),
-     (false, `BowenChapman.not_all_surjunctive_groups_sofic_of),
-     (false, `BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic_of)]
+     (false, `BowenChapman.not_all_surjunctive_groups_sofic),
+     (false, `BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic)]
   let env ← getEnv
-  let mut boundaryPrinted := false
   for (isShared, target) in targets do
-    unless isShared || boundaryPrinted do
-      IO.println "pending-boundary:"
-      boundaryPrinted := true
     let some info := env.find? target
       | throwError "declaration {target} is not in this environment"
     IO.println s!"declaration: {target}"
@@ -73,5 +66,3 @@ open Lean Meta in
         ppExpr info.type
     IO.println "type:"
     IO.println (toString fmt)
-  unless boundaryPrinted do
-    throwError "no compared statement was reported, so the pending boundary was never printed"
