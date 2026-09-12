@@ -257,3 +257,64 @@ over `F_4 = F_2(w)`, and `ubar` its conjugate.
 
 **Decision status.** Nothing decision-level. `z3-weight-one-rotation-is-not-an-automorphism-shadow` stays
 OPEN.
+
+## 5. Radu's BMW lattice as a host (w3-lattice, fe61f2234)
+
+Artifact: `research/artifacts/radu-lattice-strict-automaton-screens-2026-09-12.md`.
+`Gamma_R = <a,b,c,x,y,z | a^2,...,z^2, axax, ayay, azbz, bxbx, bycy, cxcz>` acts simply transitively
+on the vertices of `T_3 x T_3`. This action, irreducibility, non-residual-finiteness and `(xz)^4` in
+the finite residual are imported through `radu-bmw-lattice-embeds-in-titz-witzel-kernel`, which was
+read from the PDF. They are not re-derived here.
+
+### 5.1 `strict-composites-have-strict-factors`. Verdict: PASS.
+
+- If `tau = tau_1 ... tau_k` is injective, so is `tau_k`, and so is every tail.
+- If `tau_k` is bijective and `tau_1 ... tau_(k-1)` identified `tau_k w` and `tau_k w'`, then
+  `tau w = tau w'`. So the shorter composite is injective with the same image, and induction gives a
+  strict factor.
+- Memory inside a surjunctive `S`: `tau_j` acts coset by coset on `prod_(gS) A^(gS)` as one automaton
+  over `S`. A product map is injective iff each component is, so `tau_j` is surjunctive.
+- Scope: one fixed alphabet, as the claim states. `distinct_from` names
+  `linear-reversible-words-strict-via-strict-linear-factor`.
+
+### 5.2 `radu-bmw-lattice-has-no-invariant-output-injective-automata`. Verdict: PASS.
+
+- **Any group.** `N` is normal of finite index. `Fix_N`, the configurations invariant under left
+  translation by `N`, which are constant on the cosets `gN = Ng`, is `tau`-invariant because `tau`
+  commutes with translations. It has `|A|^[G:N]` points. Its outputs are constant on `gN` and on `gH`,
+  hence on `gHN`. Injectivity gives `[G:N] <= [G:HN]`, so `H <= N`.
+- **Involutions.**
+  - A finite-order element fixes a point of the CAT(0) space, so it preserves the open cell containing
+    it. It fixes no vertex, and the action preserves the two tree factors.
+  - So it inverts an edge, and is conjugate to a letter, or it is a half-turn of a square.
+  - The half-turn at `o` is the unique element `hv` carrying `o` to the opposite corner. It is an
+    involution iff `hv = vh`, which holds in rows `(a,x)`, `(a,y)`, `(b,x)`.
+  - Elements of odd order would fix a vertex, so a nontrivial finite `H` contains an involution.
+- **Abelianization.** `azbz`, `bycy`, `cxcz` give `a + b`, `b + c`, `x + z`, so
+  `Gamma_R^ab = (Z/2)^3` on `a, x, y`. The images of `a, b, c, x, y, z, ax, ay, bx` are `a, a, a, x, y,
+  x, a+x, a+y, a+x`, all nonzero. So no involution lies in `[Gamma_R, Gamma_R]`, which has index 8, and
+  `H = 1`. `invariant-output-injective-ca-need-torsion` supplies finiteness of `H`.
+- **Linear shadow.** For odd `p` some character `chi : Gamma_R -> {+-1}` has `chi(t) = -1`. It kills
+  `(1+t)/2`, so that idempotent is full at no matrix size. Correct.
+
+### 5.3 Remaining screens, routes and root. Verdict: correct as scoped.
+
+- **Corollary 4.** `<h, v>` is dihedral, hence amenable. `A` and `V` are `C_2 * C_2 * C_2`, whose kernel
+  onto `(Z/2)^3` is free by Kurosh, so they are virtually free and sofic.
+  - The corner memory `{1, h, v', hv}` of a row `(h,v) -> (v',h')` lies in the dihedral `<h, v'>`. In every
+    row of the table either `v = v'` or `h = h'`, and `hv = v'h'`.
+  - So square-reading layers, horizontal or vertical layers, and their alternations are never strict.
+- **Lemma 5.** Inverting `s m = s' m'` with `s, m, s', m'` involutions gives `m s = m' s'`. So every letter
+  identification keeps its transpose. Correct, and consistent with
+  `transposed-hinges-are-conjugated-commutators`.
+- **Routes.**
+  - `radu-bmw-nonsurjunctivity-gives-lattice-target`: a simply transitive vertex action is faithful,
+    discrete and cocompact.
+  - `radu-bmw-nonsurjunctivity-gives-nonsoficity`: via `sofic-groups-are-surjunctive`.
+  - Both are valid and cannot fire while `radu-bmw-lattice-nonsurjunctive` is open.
+- **Root consequences.** A strict `Gamma_R` gives nonsurjunctive `pi_1(S_R)` by finite-index overgroup
+  closure, then nonsurjunctive `K` by subgroup heredity. That is a Gottschalk counterexample and a
+  refutation of `fg-simple-kazhdan-groups-are-surjunctive`. The equivalence with `pi_1(S_R)` is correct.
+
+**Decision status.** Nothing decision-level. `radu-bmw-lattice-nonsurjunctive` and
+`strict-automaton-on-lattice-in-product-of-trees` stay OPEN.

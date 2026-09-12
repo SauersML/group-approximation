@@ -9,6 +9,7 @@ requires:
   - radu-bmw-lattice-embeds-in-titz-witzel-kernel
 artifacts:
   - research/artifacts/radu-lattice-strict-automaton-screens-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -24,3 +25,8 @@ Section 1 of the artifact.
 4. The presentation gives `Gamma_R^ab = (Z/2)^3` on the images of `a, x, y`. All nine involution types
    map to nonzero vectors, so a nontrivial finite `H` is not inside `[Gamma_R, Gamma_R]`, which has
    index eight. Hence `H = 1`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: the `Fix_N` count
+`|A|^[G:N] <= |A|^[G:HN]`, the classification of involutions (edge inversions, and half-turns `hv`
+with `hv = vh`), and `Gamma_R^ab = (Z/2)^3` with all nine images nonzero
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 5.2).
