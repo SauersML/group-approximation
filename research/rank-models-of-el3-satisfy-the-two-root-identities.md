@@ -132,3 +132,15 @@ payoff is `non-linear-sofic-group`.
   - A rescue must use data that counterexample lacks: the compression relation with property (T) of
     the compressor group, the absence of finite-dimensional representations of `R^x`, or the global
     fixed-ideal condition.
+- **Compressor conjugation: exact, but rank-preserving (gk-gate-compress, 2026-09-12).**
+  - `compressors-conjugate-leak-free-root-pairs`: explicit units c, c' give
+    `(x_12(a), x_23(b' t_1 t_1)) ~ (x_12(s_0 a t_0), x_23(s_0 b'))` and
+    `(x_12(s_1 a'), x_23(b)) ~ (x_12(t_1 a' t_0), x_23(s_0 b t_0))`. The leak-free coefficient sets
+    are exactly `R t_1 t_1` and `s_1 R`; elsewhere the conjugates leak into `x_21` and the torus.
+  - `scalar-two-root-rank-data-cannot-force-the-identity`: unit and compressor moves never meet the
+    unit pair, and the Cuntz decomposition gives only subadditive upper bounds. The Boolean function
+    `eps [a != 0][b != 0]` satisfies conjugation invariance and root subadditivity, so no bridge on
+    delta-values can prove this claim.
+  - Where it dies: compression never shrinks rank. A proof needs a lower bound from orthogonality, or
+    operator identities beyond rank data (artifact
+    `research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md`).
