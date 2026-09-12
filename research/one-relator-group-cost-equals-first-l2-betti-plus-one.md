@@ -8,6 +8,7 @@ artifacts:
 distinct_from:
   fpbs-fixed-price-universal: that is Gaboriau's fixed price problem, about all free actions of a group having the same cost; this computes only the infimal group cost for one-relator groups and does not give fixed price for them.
   fpbs-graphing-cost-betti-cycle-dimension-identity: that is an identity for graphings relating cost, Betti numbers and cycle dimension; this is an exact computation of the group cost for one class of groups.
+  fpbs-quotient-split-not-bernoulli-contained: that is the general obstruction that an action with a nontrivial factor fixed by a nonamenable normal subgroup is not weakly contained in the Bernoulli shift; this computes the cost of one-relator groups, and the source's Remark 3.6 is a finite-factor instance of the same mechanism (a nonergodic restriction to a nonamenable subgroup) for a different action.
 ---
 
 **ESTABLISHED, BY CITATION (unrefereed preprint).** Let `Gamma = <S | w^m>` be
