@@ -89,3 +89,98 @@ approximations give rank models in which, for `a != 0`:
 
 So rank symmetry across positions, and nonvanishing centre data, do not rescue a `U_4`-only argument
 either. Only operator use of elements outside `U_4(R)` escapes.
+
+## 2. The claim is equivalent to the defect identity; checks (b) and (c) are idle
+
+By Corollary 3, rank ultraproducts and their corners are directly finite ([TR] Theorem D, as used in
+`leavitt-algebra-has-no-unital-rank-model`). Four consequences:
+
+* **The conclusion never holds.** In no model is the conclusion of
+  `rank-four-isometry-relations-give-corner-cuntz-family` true. So for `R = L_K(1,2)` the claim is
+  equivalent to "every rank model of `R^x` has `D = 0`", with `D` read in the `EL_4` block frame. It
+  is the defect identity with a contradiction attached, not a reduction of it.
+* **Only part of check (a) is needed.** Check (a) alone is contradictory, already in the form
+  `T_0 S_0 = e`, `T_0 S_1 = 0`, `S_1 != 0`. Check (b), the Cuntz sum, is never needed. Check (c),
+  `rk(e) = rk(D)`, can be weakened to `e != 0`.
+* **Nothing can be tested on an example.** A model with `D != 0` is exactly what the claim says
+  cannot exist. Intermediate lemmas can only be checked inside hypothetical models, or on
+  calibration models of subgroups such as Section 1, where they fail.
+* **The minimal target.** From `D != 0`, produce a nonzero corner `eMe` holding a one-sided inverse
+  `T_0` of some `S_0`, together with a nonzero `S_1` that `T_0` kills: a proper isometry in a corner.
+
+## 3. What a proof must use
+
+* **Something outside `U_4(R)`.** By Theorem 1, every derivation of Plan 1's checks uses `sigma` on
+  some element outside `U_4(R)`.
+* **Opposite root elements pull in the host.**
+  - For `I < J`, `w = x_IJ(1) x_JI(-1) x_IJ(1)` conjugates `x_IJ(a)` to `x_JI(-a)`.
+  - So `<x_IJ(R), x_JI(1)>` contains `EL_2(R)` on `{I, J}`.
+  - `EL_2(R) = GL_2(R) ~= R^x`, by `leavitt-gl-equals-el-and-perfect-unit-group` and
+    `M_2(R) ~= R`.
+  - The torus elements `diag(u,1,1,1)`, `u in R^x`, form a copy of `R^x` as well.
+
+  So the first relation outside `U_4(R)` that a proof can use already involves `sigma` on a copy of
+  the nonsofic host. That matches `sofic-subgroups-carry-rank-models-violating-two-root-identity`.
+* **The fourth index adds no relations.** Group the indices `{3,4}` through the right-module
+  isomorphism `R^2 -> R`, `(y_3, y_4) |-> s_0 y_3 + s_1 y_4`, with inverse `z |-> (t_0 z, t_1 z)`.
+  This identifies `EL_4(R)` and `EL_3(R)` as the same group of module automorphisms:
+
+  ```text
+  x_12^(4)(a) = x_12^(3)(a)          x_23^(4)(b) = x_23^(3)(b t_0)      x_24^(4)(b) = x_23^(3)(b t_1)
+  x_13^(4)(a) = x_13^(3)(a t_0)      x_14^(4)(a) = x_13^(3)(a t_1)      x_34^(4)(c) = diag(1, 1, 1 + s_0 c t_1)
+  ```
+
+  So every `EL_4` relation is an `EL_3` relation among root and torus elements. The four-index frame
+  is a choice of coordinates. It may help find a proof, but it adds no relation.
+* **Frame note.** In these coordinates Plan 1's block defect `n_23^(4)(1) n_12^(4)(1)` is the
+  shifted-pair product `(sigma(x_23(t_0)) - 1)(sigma(x_12(1)) - 1)` of the standard frame, not the
+  standard `N_23 N_12`.
+  - The `(1,2,3)`-block of the `EL_4` frame is itself an `EL_3` frame, on a corner.
+  - Its standard defect is the block defect, and the dichotomy `D = 0` / `D != 0` can be run there.
+  - I found no frame error in the route, provided `D` is read in the block frame throughout.
+
+## 4. Calibrations that tell nothing, and the listed configurations
+
+* **Rings with rank models.** Examples: `F_2[t]`, `M_n(F_p)`, locally matricial algebras. A unital
+  ring with a unital homomorphism into a rank ultraproduct contains no `t_0, s_0, t_1, s_1` with
+  `t_i s_j = delta_ij` (Corollary 3 with `e = 1`). So Plan 1's coefficients do not exist there, and
+  its relations cannot even be stated. This covers the (T)-rounding counterexample
+  `EL_3(F_2[t]) -> SL_3(F_(2^k))`, and every natural tensor or regular-representation model over such
+  rings. Running the assembly on them tests nothing.
+* **Block-unipotent and matrix-unit models.** These have `D = 0`, so Plan 1's `D != 0` branch is
+  empty on them.
+* **Scalar two-root data** (`scalar-two-root-rank-data-cannot-force-the-identity`). That excluded
+  rank-value arguments only. Theorem 1 is operator-level, and the regular sofic model matches the
+  position-symmetric rank profile.
+* **Compressor leakage** (gk-gate-compress, Section 48). Compressors are units outside `U_4(R)`, so
+  Section 3 permits them. The target node records `<U_12(R), c>` as amenable, so arguments using one
+  root subgroup and one compressor are also excluded by the sofic calibration. I have not checked
+  whether `<U_4(R), c>` is amenable; this is left open.
+* **An `EL_4`-type configuration over another ring where the isometries cannot be read off.**
+  Theorem 1 holds for every unital `R`, including `R = L_K(1,2)` itself, at the level of `U_4(R)`.
+  So the answer is yes over the Leavitt algebra itself, for the unitriangular part.
+
+## 5. Side result: one identity decides in every characteristic
+
+**Proposition 6.** Let `R` and `M` be unital rings, `sigma : EL_3(R) -> M^x` a homomorphism, and
+`N_ab = sigma(x_ab(1)) - 1`. If `N_23 N_12 = 0`, then `N_ab^2 = 0` for every root `ab`.
+
+*Proof.*
+1. **Weyl spread.** As in `el3-two-root-identities` Section 1, conjugation by signed permutation
+   matrices and `N_x(-1) = -U_x N_x = -N_x U_x`, `U_x = (1+N_x)^-1`, give `N_jk N_ij = 0` for all
+   distinct `i, j, k`.
+2. **Commutator formula.** Fix distinct `i, j, k`, `X = 1 + N_ij`, `Y = 1 + N_jk`. From
+   `x_ik(1) = [x_ij(1), x_jk(1)]`,
+   `N_ik = (XY - YX) X^-1 Y^-1 = N_ij N_jk X^-1 Y^-1`.
+3. **Absorption.** `Y^-1 - 1 = -Y^-1 N_jk`, so `Y^-1 N_ij = N_ij`. Also `X^-1` commutes with
+   `N_ij`. So `N_jk X^-1 Y^-1 N_ij = N_jk N_ij X^-1 = 0`.
+4. **Squares.** `N_ik^2 = N_ij (N_jk X^-1 Y^-1 N_ij) N_jk X^-1 Y^-1 = 0`, and every root has a
+   middle index. QED
+
+**Consequence.**
+- The matrix-unit hypothesis is the single identity `N_23 N_12 = 0` in every characteristic.
+- The odd-characteristic `D = 0` case of `leavitt-el3-triviality-via-rank-four-cuntz-family` needs
+  no second identity.
+- The ternary gate, in characteristic three, is one identity, as in characteristic two.
+
+Node: `reversed-root-pair-identity-forces-root-squares-to-vanish`.
