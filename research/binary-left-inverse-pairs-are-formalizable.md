@@ -3,14 +3,18 @@ rg: 2
 id: binary-left-inverse-pairs-are-formalizable
 kind: claim
 title: Every binary cellular automaton pair with a left-inverse identity admits representatives in which the identity is formal
+refuted_by: [binary-left-inverse-pairs-need-not-be-formalizable]
 distinct_from:
   formal-polynomial-strict-pairs-need-unstable-linearization: that proves formal pairs are bijective under direct finiteness; this asks whether every pair over F_2^n alphabets can be made formal, which would make direct finiteness of F_2[G] enough for surjunctivity over alphabets of size 2^n.
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that shows canonical multilinear representatives can fail to be formal even for a reversible pair; this asks for some representatives, on possibly larger memories, that are formal.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/binary-formalizability-refutation-2026-09-12.md
 ---
 
-**OPEN.** For every group `G` and `n >= 1`: if `tau`, `sigma` are cellular automata on
+**REFUTED** by `binary-left-inverse-pairs-need-not-be-formalizable`, with `G = Z` and `n = 1`.
+
+The statement was: for every group `G` and `n >= 1`, if `tau`, `sigma` are cellular automata on
 `(F_2^n)^G` with `sigma o tau = id`, then there are polynomial representatives of their local rules,
 on possibly larger memories, with `sigma o tau = id` as a formal polynomial identity.
 
@@ -57,3 +61,16 @@ non-formalizable strict pair.
     of degree.
   - The Kaplansky payoff needs only some left inverse:
     `injective-binary-automata-have-formalizable-left-inverses`, fed from this claim.
+- **Refuted (gk-fz-bennett, 2026-09-12, cf99b38215).**
+  - **Classification.** Over a bi-orderable group, formalizable one-track pairs are affine
+    translations (`formalizable-binary-pairs-over-biorderable-groups-are-affine`). The proof:
+    - the formal identity is two-sided, since `F_2[G]` is a domain;
+    - the translates of the encoder polynomial are algebraically independent;
+    - the extreme variable enters with degree `DE >= 1`, which forces single-cell windows.
+  - **Witness.** The six-cell marker involution on `{0,1}^Z` is not affine.
+  - **What survives, both still giving the Kaplansky payoff:**
+    - stable formalization with identity ancilla tracks (gk-free-neg's
+      `injective-binary-automata-are-stably-formalizable`);
+    - formal pairs after regrouping along a finite-index subgroup, where several tracks carry shears.
+  - **Lemma C** of the refutation artifact: the Bennett defect can always be pushed into `I^2`, so
+    the obstruction is never first order.

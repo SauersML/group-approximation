@@ -3,15 +3,22 @@ rg: 2
 id: injective-binary-automata-have-formalizable-left-inverses
 kind: claim
 title: Every injective binary cellular automaton has some left inverse with which it forms a formalizable pair
+refuted_by: [binary-left-inverse-pairs-need-not-be-formalizable]
 distinct_from:
   binary-left-inverse-pairs-are-formalizable: that asks formalizability for every left inverse of every pair; this asks it only for some left inverse, which is implied by that claim and already gives the same Kaplansky payoff.
   stable-finiteness-forces-binary-surjunctivity: that is the payoff on hosts with stably finite F_2[G]; this is the host-free mechanism the payoff needs.
 artifacts:
   - research/artifacts/formalizability-by-shear-decomposition-2026-09-12.md
+  - research/artifacts/binary-formalizability-refutation-2026-09-12.md
 ---
 
-**OPEN.** For every group `G` and `n >= 1`, every injective automaton `tau` on `(F_2^n)^G` has a
-left-inverse automaton `sigma` such that some representatives satisfy `sigma o tau = id` formally.
+**REFUTED** by `binary-left-inverse-pairs-need-not-be-formalizable`. The six-cell marker involution
+on `{0,1}^Z` is injective, and its only left inverse as a function is itself. No representatives
+formalize that pair.
+
+The statement was: for every group `G` and `n >= 1`, every injective automaton `tau` on
+`(F_2^n)^G` has a left-inverse automaton `sigma` such that some representatives satisfy
+`sigma o tau = id` formally.
 
 By `formalizable-left-inverse-iff-clean-shear-dilation`, this is equivalent to: every injective
 binary automaton is the restriction to the zero-ancilla subshift of a structurally reversible word
@@ -35,3 +42,12 @@ whose ancillas vanish formally.
   whose group algebras are stably finite, or on one where they aren't but formality still fails.
 - **Where it stops.** No mechanism chooses representatives, or equivalently a circuit, with formally
   clean ancillas for an automaton that reads more than one cell and is not structurally reversible.
+- **Refuted (gk-fz-bennett, 2026-09-12).**
+  - **Classification.** Theorem A of `research/artifacts/binary-formalizability-refutation-2026-09-12.md`:
+    over a bi-orderable group, formalizable one-track pairs are affine translations.
+  - **Witness.** A bijective automaton has a unique left inverse, so the non-affine marker involution
+    has no formalizable left inverse over `Z`.
+  - **What survives, where the one-track degree argument does not apply because the top variable can
+    cancel between tracks:**
+    - stable formalization with identity ancilla tracks (gk-free-neg);
+    - formal pairs after regrouping along a finite-index subgroup.
