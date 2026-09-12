@@ -64,6 +64,7 @@ theorem one_sub_mul_corner (x : Corner R p hp) : (1 - p) * (x : R) = 0 := by
 def cornerMatrixMap (A : Matrix ι ι (Corner R p hp)) : Matrix ι ι R :=
   A.map (fun x : Corner R p hp ↦ (x : R)) + Matrix.diagonal (fun _ ↦ 1 - p)
 
+omit [DecidableEq ι] in
 theorem map_coe_mul (A B : Matrix ι ι (Corner R p hp)) :
     (A * B).map (fun x : Corner R p hp ↦ (x : R))
       = A.map (fun x : Corner R p hp ↦ (x : R)) * B.map (fun x : Corner R p hp ↦ (x : R)) := by
@@ -83,6 +84,7 @@ theorem diagonal_mul_map_coe (A : Matrix ι ι (Corner R p hp)) :
   simp only [Matrix.diagonal_mul, Matrix.map_apply, Matrix.zero_apply]
   exact one_sub_mul_corner p hp (A i j)
 
+omit [Fintype ι] in
 theorem cornerMatrixMap_one : cornerMatrixMap p hp (1 : Matrix ι ι (Corner R p hp)) = 1 := by
   ext i j
   simp only [cornerMatrixMap, Matrix.add_apply, Matrix.map_apply, Matrix.one_apply,
@@ -104,7 +106,8 @@ def cornerMatrixHom : Matrix ι ι (Corner R p hp) →* Matrix ι ι R where
   map_one' := cornerMatrixMap_one p hp
   map_mul' := cornerMatrixMap_mul p hp
 
-theorem cornerMatrixMap_elementary (i j : ι) (a : Corner R p hp) :
+omit [Fintype ι] in
+theorem cornerMatrixMap_elementary (i j : ι) (hij : i ≠ j) (a : Corner R p hp) :
     cornerMatrixMap p hp (1 + Matrix.single i j a) = 1 + Matrix.single i j (a : R) := by
   ext k l
   simp only [cornerMatrixMap, Matrix.add_apply, Matrix.map_apply, Matrix.one_apply,
@@ -115,7 +118,7 @@ theorem cornerUnits_elementaryUnit (i j : ι) (hij : i ≠ j) (a : Corner R p hp
     Units.map (cornerMatrixHom p hp) (elementaryUnit i j hij a)
       = elementaryUnit i j hij (a : R) := by
   apply Units.ext
-  exact cornerMatrixMap_elementary p hp i j a
+  exact cornerMatrixMap_elementary p hp i j hij a
 
 theorem elementaryGroup_map_corner_le :
     (elementaryGroup ι (Corner R p hp)).map (Units.map (cornerMatrixHom p hp))
@@ -151,7 +154,7 @@ theorem cornerElementaryHom_injective :
   ext i j
   have hij := congrFun (congrFun hval i) j
   simp only [Matrix.map_apply] at hij
-  exact Subtype.ext hij
+  exact hij
 
 end CornerMatrix
 
@@ -168,12 +171,15 @@ a nonzero idempotent `p ∈ R` is such that the ring `pRp`, with unit `p`, satis
 the hypothesis, then `A ↦ A + (1-p)I_n` embeds `EL_n(pRp)` in `EL_n(R)`, and
 restricting models shows that MF passes to subgroups, so `EL_n(R)` is not MF for
 every `n ≥ 2`." -/
-theorem manuscriptSentence_cornerPassesUp :
-    ∀ (R : Type) [Ring R] (p : R) (hp : IsIdempotentElem p), p ≠ 0 →
-      Countable (Corner R p hp) → FullDefectPair (Corner R p hp) →
-        (∀ n : ℕ, Function.Injective (cornerElementaryHom (ι := Fin n) p hp)) ∧
-        ∀ n : ℕ, 2 ≤ n → ¬ IsOperatorMF (elementaryGroup (Fin n) R) := by
+def PrintedCornerPassesUp : Prop :=
+  ∀ (R : Type) [Ring R] (p : R) (hp : IsIdempotentElem p), p ≠ 0 →
+    Countable (Corner R p hp) → FullDefectPair (Corner R p hp) →
+      (∀ n : ℕ, Function.Injective (cornerElementaryHom (ι := Fin n) p hp)) ∧
+      ∀ n : ℕ, 2 ≤ n → ¬ IsOperatorMF (elementaryGroup (Fin n) R)
+
+theorem manuscriptSentence_cornerPassesUp : PrintedCornerPassesUp := by
   intro R _ p hp hp0 hcount hpair
+  haveI := hcount
   refine ⟨fun _ ↦ cornerElementaryHom_injective p hp, fun n hn hMF ↦ ?_⟩
   obtain ⟨s, t, hts, hfull⟩ := hpair
   haveI : Nontrivial (Corner R p hp) := corner_nontrivial p hp hp0
@@ -218,6 +224,7 @@ theorem manuscriptSentence_hypothesisNeedNotPass :
         IsOperatorMF (elementaryGroup (Fin n) (ZMod 2)) ∧
         ∃ f : elementaryGroup (Fin n) (AryLeavitt.AryLeavittAlgebra (ZMod 2) 2 × ZMod 2) →*
             elementaryGroup (Fin n) (ZMod 2), f ≠ 1 := by
+  have h01 : (0 : Fin 2) ≠ 1 := by decide
   haveI : NeZero (2 : ℕ) := ⟨by norm_num⟩
   have hp : IsIdempotentElem ((1, 0) : AryLeavitt.AryLeavittAlgebra (ZMod 2) 2 × ZMod 2) := by
     simp [IsIdempotentElem]
@@ -225,7 +232,6 @@ theorem manuscriptSentence_hypothesisNeedNotPass :
   · intro h
     exact one_ne_zero (congrArg Prod.fst h)
   · -- the corner is `L_{𝔽₂}(1,2)`, with its printed pair `s = s₁`, `t = t₁`
-    have h01 : (0 : Fin 2) ≠ 1 := by decide
     obtain ⟨hts, m, a, b, hab⟩ :=
       GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing.completeMatrixFamily_full
         (AryLeavitt.family (ZMod 2) 2) h01

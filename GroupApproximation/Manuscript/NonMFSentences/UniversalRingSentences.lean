@@ -37,8 +37,7 @@ open GroupApproximation.Manuscript.OneSidedMFRadical
 
 /-- **The printed map `𝒞 → L_{𝔽₂}(1,2)`**: `s₀,s₁,t₀,t₁` to the generators of the
 binary Leavitt algebra. -/
-noncomputable def universalToLeavitt :
-    UniversalPairRing →ₐ[ℤ] BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2) :=
+noncomputable def universalToLeavitt :=
   lift (ofLeavittFamily (BinaryLeavitt.family (ZMod 2)))
 
 /-- **"it maps onto `L_{𝔽₂}(1,2)`"**: the map is surjective. -/
