@@ -48,6 +48,10 @@ structure SplitOutput (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v} W)
   /-- The suffix side reads the path, then the retained suffix. -/
   suffixSide_darts : (diagram.faceBoundary suffixSide).darts =
     darts ++ ((Delta.faceBoundary f).darts.drop k.val).map embedding.darts
+  /-- A retained old face other than `f` is not the prefix side. -/
+  prefixSide_not_kept : ∀ g, g ≠ f → embedding.faces g ≠ prefixSide
+  /-- A retained old face other than `f` is not the suffix side. -/
+  suffixSide_not_kept : ∀ g, g ≠ f → embedding.faces g ≠ suffixSide
 
 /-- **The producer**: the landed word insertion, with its two sides. -/
 theorem exists_split_output_of_reversible (D : RelGenSet G Lambda)
@@ -92,7 +96,13 @@ theorem exists_split_output_of_reversible (D : RelGenSet G Lambda)
     trans l.flatMap (fun d => [E.first (EdgeInsertion.embed Delta.toCombMap d)])
     · apply List.flatMap_congr
       intro d _
-      exact R.other_darts _ (fun h => by cases h) (fun h => by cases h)
+      refine R.other_darts _ (fun h => ?_) (fun h => ?_)
+      · change EdgeInsertion.embed Delta.toCombMap d =
+          (some none : EdgeInsertion.Dart Delta.toCombMap) at h
+        cases h
+      · change EdgeInsertion.embed Delta.toCombMap d =
+          (GFaceEdgeInsertion.map Delta f k).alpha (some none) at h
+        cases h
     · exact (List.flatMap_map _ _ _).symm.trans
         (List.flatMap_singleton' (l.map (fun d => E.first (EdgeInsertion.embed Delta.toCombMap d))))
   refine ⟨{
@@ -134,7 +144,13 @@ theorem exists_split_output_of_reversible (D : RelGenSet G Lambda)
       ((congrArg (fun l : List (EdgeInsertion.Dart Delta.toCombMap) => l.flatMap expandR)
         (EdgeInsertion.allFaceBoundary_suffix Delta.toCombMap (Delta.faceBoundary f)
           Delta.faceBoundary k)).trans
-        (List.flatMap_cons.trans (congrArg₂ (· ++ ·) hsome (hold _)))) }⟩
+        (List.flatMap_cons.trans (congrArg₂ (· ++ ·) hsome (hold _))))
+    prefixSide_not_kept := fun g hg h =>
+      EdgeInsertion.keptFace_ne_prefixFace Delta.toCombMap (Delta.faceBoundary f) k g hg
+        (R.expansion.faceEquiv.injective h)
+    suffixSide_not_kept := fun g hg h =>
+      EdgeInsertion.keptFace_ne_suffixFace Delta.toCombMap (Delta.faceBoundary f) k g hg
+        (R.expansion.faceEquiv.injective h) }⟩
   · intro i hi hv
     obtain ⟨v, hv⟩ := hv
     exact E.internal_fresh p i hi ⟨V.symm v, hv⟩
