@@ -117,6 +117,7 @@ with `z != 0` never occurs in its image.
 - **Wording point 1.** The phrase "equivalently, whether `h_fin = h^Rok` on Bernoulli shifts is open" is not equivalent to the
   sentence before it. It is a separate open question, and a positive answer would make FIN and INF the same.
 - **Wording point 2.** The "factorised count" paragraph is a heuristic, not a theorem. No node should consume it.
+- **Follow-up.** `w3-bal-prove` applied both points at `7b1501fd3e` and changed nothing else. PASS.
 
 ## 2. Second pass on the single-site equivalence and window balance (concurs with w3-vf-positive)
 
@@ -146,3 +147,94 @@ are in `w3-vf-positive` Sections 2 and 5.
     can occur: take `E` to be the two children of a vertex, so `EM` is the parent alone.
   - The accurate form of (a): each site is read in each memory position by exactly one site, so `|E m| = |E|` for every `m in M`.
   - The artifact's conclusion does not change.
+
+## 3. Numerical window relations (w4-window-boundary, `0d87da248b`)
+
+Verdicts:
+
+- **`numeric-window-relations-do-not-force-balance`: PASS.** There are two wording points (Section 3.7).
+- **Route `numeric-window-relations-do-not-force-balance-proof`: PASS.** Every step was re-derived.
+- **`balance-from-numeric-window-relations`: correctly marked dead.**
+- **A strengthening at `q = 4`** (Section 3.6): the counterexample also satisfies the counts-level shadow of `sigma o tau = id`.
+
+### 3.1 The image of a strict automaton satisfies R1–R4. PASS.
+
+- **R1, R2.** `c_E(p) = q^|EM| nu[p]_E` is the fibre count, an integer. The outputs on `U` read inputs on `UM`.
+- **R3.** `c_E(p) <= q^(|EM| - |int_N E|)` by the decoder bound, which is `w3-vf-positive` Section 5.2.
+- **R4.** A cylinder is null exactly when the automaton is not surjective. The image is closed, and nonempty open preimages have
+  positive mass.
+
+### 3.2 Proposition 1, amenable decoder memory. PASS.
+
+- **Right Følner sets.** Inverting left Følner sets of `H = <N>` gives right Følner sets.
+- **Boundary estimate.** If `g` is in `F \ int_N F`, then some `gn` lies outside `F`, so `g` lies outside `F n^-1`.
+  - `|F \ F n^-1| = |F n^-1 \ F|`, since both sets have the size of `F`.
+  - Right multiplication by `n` maps `F n^-1 \ F` onto `F \ F n`, and `|F \ F n| = |F n \ F|`.
+  - So the boundary is `o(|F_k|)`.
+- **Entropy.** Every pattern on `F_k` has mass at most `q^(-|int_N F_k|)`, so min-entropy bounds Shannon entropy from below.
+  Subadditivity and invariance give `H(y|F_k) <= |F_k| H(y(e))`. Since `e in N`, `int_N F_k` lies in `F_k`, inside `H`.
+
+### 3.3 Lemma 2, nonamenable interiors. PASS.
+
+- **Følner criterion.** Small `|FN \ F|` gives small `|Fn \ F|` and `|F n^-1 \ F| = |F \ Fn|`.
+  - Along words, `F s t \ F` lies in `(F s t \ F t) ∪ (F t \ F)`, so the letter bounds add.
+  - These sets would be right Følner sets for `H`, which is impossible.
+- **Coset splitting.** Right multiplication by `N` preserves left cosets of `H`, and `IN` lies in `E`.
+
+### 3.4 Theorem 3, the merge measure. PASS.
+
+- **Atoms.** `2/q`, `0` and `1/q`.
+- **Integrality.** `c_E(p) = q^(|EM| - |E|) prod q lambda(p(g))`, and every factor is in `{0, 1, 2}`. Since `|EM| >= |E|` the count
+  is an integer.
+- **Decay.** `(2/q)^|E| = q^(-(1 - log_q 2)|E|) <= q^(-theta_N |E|)` exactly when `q^(1-theta_N) >= 2`.
+- **Alphabet size.** `q >= 3` is automatic, because `theta_N > 0`.
+
+### 3.5 Proposition 4, the AND measure. PASS.
+
+- **Null pattern.** Outputs `1` at `e` and at `c^2` force `x(c) = x(c^2) = 1`, so the output at `c` is `1`, and `(1,0,1)` is null.
+- **Transfer matrices.** The indices are consecutive input bits: `T_0 = [[1,1],[1,0]]`, `T_1 = [[0,0],[0,1]]`, with norms `phi_g`
+  and `1`.
+  - The count is at most `2 phi_g^l` and there are `2^(l+1)` inputs, so a run has mass at most `(phi_g/2)^l`.
+  - Maximal runs on one coset of `<c>` read disjoint inputs, and distinct cosets are independent.
+  - `kappa = 1 - log_2 phi_g = 0.3058`.
+- **Interiors.**
+  - In an induced subforest of the 4-regular tree with `n >= 2` vertices, `2(n-1) >= 4k + (n-k)`, so `k <= (n-2)/3`.
+  - `int_(B_1 B_1) C = int_(B_1)(int_(B_1) C)`, so `|int_(B_2) C| <= |C|/9`.
+  - Splitting along left cosets of `L` extends this to all of `G`, and `N` containing `B_2` gives `int_N E` inside `int_(B_2) E`.
+  - Finally `1/9 <= kappa`.
+
+### 3.6 Strengthening: both pushforward relations hold at `q = 4`
+
+A counts-level form of telescoping `tau`, `sigma`, `tau` would use two relations that R1–R4 do not list:
+
+- **(R5a)** `nu = tau'_* mu` for some automaton `tau'` with memory `M`;
+- **(R5b)** `sigma'_* nu = mu` for some automaton `sigma'` with memory `N`.
+
+Together they give `(sigma' o tau')_* mu = mu`. This is the measure shadow of `sigma o tau = id`.
+
+**Claim (checked here, not a node).** Take `q = 4` and `N` containing the radius-2 ball `B_2` of a free pair `a, b`. Then the merge
+measure satisfies R1–R4, R5a and R5b, and its site law is not uniform.
+
+- **R1–R4.** Section 3.5 gives `theta_N <= 1/9`, and `4^(8/9) >= 2`, so Theorem 3 applies.
+- **R5a.** The merge rule has memory `{e}`, which lies in `M`.
+- **R5b.**
+  - Identify `A` with `(Z/2)^2`. Let `beta : A -> Z/2` send `a_1, a_2` to `0` and the other two symbols to `1`. Then `beta` pushes
+    `lambda` to the uniform law, so `beta(y)` is uniform iid on `Z/2`.
+  - Put `sigma'(y)(g) = (beta y(g) + beta y(ga), beta y(g) + beta y(gb))`. It reads `{e, a, b}`, inside `N`.
+  - It is the Ornstein–Weiss homomorphism applied to `beta(y)`. On each left coset of `<a, b>` it is surjective: the Cayley graph
+    is a tree, so the difference equations can be propagated from one vertex.
+  - A continuous surjective homomorphism of compact groups pushes Haar measure to Haar measure.
+
+So at `q = 4` the no-go also covers arguments that use both pushforward relations as numbers. At other alphabet sizes this is not
+checked. What still separates injective images from the merge measure is the pointwise identity together with the group law, or
+the uniform Gibbs specification the node names.
+
+### 3.7 Wording points
+
+- **Title.** "exactly when the decoder memory group is amenable" is proved in the nonamenable direction only at alphabet sizes
+  with `q^(1-theta_N) >= 2`, and at `q = 2` for decoder memories containing a free radius-2 ball. At a fixed small `q` with other
+  nonamenable decoders the question is open, as artifact Corollary 5 says. So read the title as "at every alphabet size".
+- **`distinct_from` on the tree node.** It says the tree is "where translation totals fail". Totals and invariance hold on the
+  tree. What fails there is right cancellation of reads (Sections 1.4 and 2).
+- **Not verified here.** The "What remains" bullet on the uniform Gibbs specification cites a 09-08 bridge artifact. No node
+  consumes that bullet.

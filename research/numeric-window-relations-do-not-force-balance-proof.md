@@ -7,6 +7,7 @@ target: numeric-window-relations-do-not-force-balance
 requires: []
 artifacts:
   - research/artifacts/numeric-window-relations-no-go-2026-09-12.md
+  - research/artifacts/gk-vf-positive-b-verification-2026-09-12.md
 ---
 
 A complete direct proof is in the artifact.
@@ -32,3 +33,10 @@ A complete direct proof is in the artifact.
     `|int_(B_2) C| <= |C|/9`.
   - Splitting along cosets of the free pair gives `|int_N E| <= |E|/9`.
   - The pattern `(1,0,1)` along `c` is null.
+
+**Verification.** `w4-vf-positive-b` passed this route in Section 3 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
+- Every step was re-derived.
+- There are two wording points: the title's "exactly when", and the tree `distinct_from`.
+- At `q = 4`, with decoder memory containing a free radius-2 ball, the merge measure also satisfies both pushforward relations
+  (Section 3.6).
