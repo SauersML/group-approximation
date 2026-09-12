@@ -113,15 +113,45 @@ tail -3 "$LOG"
 # Palomar libs build without warningAsError, so an incomplete proof there is only a warning. Gate on it, except for
 # the deliberate holes of Palomar/*Challenge.lean.
 HOLES=$(grep -E 'declaration uses .sorry.|sorryAx' "$LOG" | grep -vE 'Palomar/[A-Za-z0-9_]*Challenge\.lean:' | head -5)
-if [ $RC -eq 0 ] && grep -q 'Build completed successfully' "$LOG" && [ -z "$HOLES" ]; then
+# Axiom drivers: every `#print axioms` line of the overlay must come back as one closure from that overlay file
+# (joined across line breaks), and no closure may name an axiom outside propext, Classical.choice and Quot.sound.
+awk '
+  acc != "" { acc = acc " " $0; if (index($0, "]")) { print acc; acc = "" }; next }
+  /depends on axioms: \[/ { if (index($0, "]")) print; else acc = $0; next }
+  /does not depend on any axioms/ { print }
+' "$LOG" > "$CLONE/.nm/axjoined-$TAG"
+: > "$CLONE/.nm/axmine-$TAG"
+NPRINT=0
+while IFS= read -r p; do
+  case "$p" in *.lean) ;; *) continue;; esac
+  n=$(grep -c '^#print axioms ' "$CLONE/$p" 2>/dev/null); NPRINT=$((NPRINT + ${n:-0}))
+  grep -F "info: $p:" "$CLONE/.nm/axjoined-$TAG" >> "$CLONE/.nm/axmine-$TAG"
+done < "$CLONE/.nm/ovpaths-$TAG"
+sed -n -e "s/^.*: '\(.*\)' depends on axioms: \[\(.*\)\].*$/AXIOMS \1: [\2]/p" \
+       -e "s/^.*: '\(.*\)' does not depend on any axioms.*$/AXIOMS \1: []/p" "$CLONE/.nm/axmine-$TAG" \
+  | sed -e 's/  */ /g' -e 's/\[ /[/' > "$CLONE/.nm/axlines-$TAG"
+NAX=$(wc -l < "$CLONE/.nm/axlines-$TAG" | tr -d ' ')
+AXFAIL=""
+if [ "$NPRINT" -gt 0 ] || [ "$NAX" -gt 0 ]; then
+  echo "--- axiom closures printed by the overlay ($NAX printed, $NPRINT requested)"
+  cat "$CLONE/.nm/axlines-$TAG"
+  BADAX=$(sed -n 's/^AXIOMS .*: \[\(.*\)\]$/\1/p' "$CLONE/.nm/axlines-$TAG" | tr ',' '\n' | sed -e 's/^ *//' -e 's/ *$//' \
+    | grep -v '^$' | grep -vxE 'propext|Classical\.choice|Quot\.sound' | LC_ALL=C sort -u | tr '\n' ' ')
+  if [ -n "$BADAX" ]; then AXFAIL="axiom outside [propext, Classical.choice, Quot.sound]: $BADAX"
+  elif [ "$NAX" != "$NPRINT" ]; then AXFAIL="printed $NAX axiom closures, but the overlay requests $NPRINT"; fi
+fi
+if [ $RC -eq 0 ] && grep -q 'Build completed successfully' "$LOG" && [ -z "$HOLES" ] && [ -z "$AXFAIL" ]; then
   echo "PROBE GREEN"
 elif [ $RC -eq 0 ] && [ -n "$HOLES" ]; then
   echo "--- incomplete proofs outside a challenge file (first 5):"; printf '%s\n' "$HOLES"
   RC=6; echo "PROBE FAILED rc=$RC (incomplete proof outside a challenge file)"
+elif [ $RC -eq 0 ] && [ -n "$AXFAIL" ]; then
+  RC=7; echo "PROBE FAILED rc=$RC ($AXFAIL)"
 else
   echo "PROBE FAILED rc=$RC"
 fi
 echo "REAL_EXIT=$RC"
 rm -rf "$OV" "$CLONE/.nm/ovpaths-$TAG" "$CLONE/.nm/todo-$TAG" "$CLONE/.nm/tree-$TAG" "$CLONE/.nm/delta-$TAG" \
-  "$CLONE/.nm/disk-$TAG" "$CLONE/.nm/missing-$TAG" "$CLONE/.nm/extra-$TAG"
+  "$CLONE/.nm/disk-$TAG" "$CLONE/.nm/missing-$TAG" "$CLONE/.nm/extra-$TAG" \
+  "$CLONE/.nm/axjoined-$TAG" "$CLONE/.nm/axmine-$TAG" "$CLONE/.nm/axlines-$TAG"
 exit $RC

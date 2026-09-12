@@ -12,6 +12,9 @@
 # Evidence: the md5 of every overlay file that COMPILED is recorded with the base SHA, module list and PROBE line,
 # in $BC/lanes/<lane>.green.<tag> when the probe is GREEN and in <lane>.failed.<tag> otherwise. A .failed. record
 # says what compiled in a failed probe; it is never landing evidence.
+# Axiom drivers (overlay files with `#print axioms` lines): every closure the overlay prints is recorded as
+# `# axioms <decl>: [...]`, joined across line breaks. The probe fails (rc=7) when a closure names an axiom outside
+# propext, Classical.choice and Quot.sound, or when the number of closures differs from the overlay's `#print axioms` count.
 # Bytes already recorded GREEN for the same module list are refused (exit 0, ALREADY GREEN) only when no synced path
 # changed between that record's base and the current origin/main; BC_FORCE=1 re-certifies regardless.
 # Output ends with PROBE GREEN / PROBE FAILED / PROBE DEFERRED (exit 5: clone preparation in progress) and REAL_EXIT=<rc>.
@@ -56,6 +59,7 @@ for p in ${FILES[@]+"${FILES[@]}"}; do
   mkdir -p "$OVL/$(dirname "$p")"; cp "$SRCROOT/$p" "$OVL/$p"
   echo "$(md5 -q "$OVL/$p")  $p" >> "$PEND"
 done
+NPRINTL=$(find "$OVL" -name '*.lean' -exec cat {} + 2>/dev/null | grep -c '^#print axioms ')
 for m in $MODS; do
   case "$m" in GroupApproximation.*|Palomar.*) ;; *) echo "REFUSED: module '$m' must start with GroupApproximation. or Palomar."; cleanup; exit 2;; esac
   p="${m//.//}.lean"
@@ -70,6 +74,7 @@ if [ -z "${BC_FORCE:-}" ] && [ -s "$PEND" ]; then
     miss=0
     while IFS= read -r line; do grep -qxF "$line" "$rec" || { miss=1; break; }; done < "$PEND"
     [ $miss -eq 0 ] || continue
+    [ "$(grep -c '^# axioms ' "$rec")" = "$NPRINTL" ] || continue
     RB=$(sed -n 's/^# base //p' "$rec")
     if [ "$RB" = "$SHA" ] || { git cat-file -e "$RB^{commit}" 2>/dev/null \
          && [ -z "$(git diff --name-only "$RB" "$SHA" -- $SYNC_PATHS | head -1)" ]; }; then
@@ -92,6 +97,7 @@ if [ -n "$COMP" ]; then
   KIND=failed; [ "$PL" = "PROBE GREEN" ] && KIND=green
   REC=$BC/lanes/$LANE.$KIND.$TAG
   { echo "# base $SHA"; echo "# tag $TAG"; echo "# mods $MODS"; echo "# srcroot $SRCROOT"; echo "# $PL"
+    printf '%s\n' "$OUT" | sed -n 's/^AXIOMS /# axioms /p'
     while IFS= read -r line; do p="${line#*  }"; printf '%s\n' "$COMP" | grep -qxF "$p" && echo "$line"; done < "$PEND"; } > "$REC"
   echo "recorded compiled evidence ($(printf '%s\n' "$COMP" | wc -l | tr -d ' ') files): $REC"
   [ "$KIND" = green ] || echo "NOT GREEN: $REC lists what compiled in a failed probe; it is never landing evidence"
