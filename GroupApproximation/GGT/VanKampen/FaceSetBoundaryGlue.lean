@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.Embedded
+import GroupApproximation.GGT.VanKampen.FaceShellingValue
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -21,11 +22,13 @@ more internal move, and continues along the other cycle.
 
 * `internalBoundaryMove_of_subset` and `reflTransGen_internalBoundaryMove_of_subset`: internal
   moves are monotone in the face set;
+* `listVal_dartWord_glue`: if `P ++ S` and the reverse of `S` followed by `Q` read trivial
+  words, so does `P ++ Q`;
 * `FaceSetBoundary.glue_isBoundaryDart_left`, `FaceSetBoundary.glue_isBoundaryDart_right` and
   `FaceSetBoundary.glue_mem_of_isBoundaryDart`: the boundary darts of the union are exactly
   the darts of `P ++ Q`;
 * `FaceSetBoundary.glue`: the boundary cycle `P ++ Q` of `F₁ ∪ F₂`, for nonempty `P`, `S`
-  and `Q`, with `FaceSetBoundary.glue_cycle`.
+  and `Q`, with `FaceSetBoundary.glue_cycle` and `FaceSetBoundary.glue_value_one`.
 -/
 
 namespace GroupApproximation
@@ -74,6 +77,24 @@ theorem reflTransGen_internalBoundaryMove_of_subset {F F' : Finset Delta.toCombM
   | refl => exact Relation.ReflTransGen.refl
   | tail _ hstep ih =>
       exact Relation.ReflTransGen.tail ih (internalBoundaryMove_of_subset hsub hstep)
+
+/-! ## The value of the glued word -/
+
+/-- If `P ++ S` and the reverse of `S` followed by `Q` read trivial words, so does `P ++ Q`:
+the value of `P` is the inverse of the value of `S`, and reading `S` backwards along reversed
+darts inverts its value. -/
+theorem listVal_dartWord_glue {P S Q : List Delta.toCombMap.Dart}
+    (h₁ : GGT.RelLetter.listVal (dartWord Delta (P ++ S)) = 1)
+    (h₂ : GGT.RelLetter.listVal
+      (dartWord Delta (S.reverse.map Delta.toCombMap.alpha ++ Q)) = 1) :
+    GGT.RelLetter.listVal (dartWord Delta (P ++ Q)) = 1 := by
+  have hinv : GGT.RelLetter.listVal (dartWord Delta (S.reverse.map Delta.toCombMap.alpha)) =
+      (GGT.RelLetter.listVal (dartWord Delta S))⁻¹ :=
+    listVal_dartWord_invDarts Delta S
+  rw [dartWord_append, HullSC.RelWord.listVal_append] at h₁ h₂ ⊢
+  rw [hinv] at h₂
+  rw [eq_inv_of_mul_eq_one_left h₁]
+  exact h₂
 
 section Glue
 
@@ -302,6 +323,24 @@ def FaceSetBoundary.glue {F₁ F₂ : Finset Delta.toCombMap.Face}
       Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∈ F₂ → d ∈ S) :
     (B₁.glue B₂ hdisj hP hS hQ h₁ h₂ hadj).cycle = P ++ Q := rfl
 
+/-- The glued cycle reads a trivial word when both cycles do. -/
+theorem FaceSetBoundary.glue_value_one {F₁ F₂ : Finset Delta.toCombMap.Face}
+    (B₁ : FaceSetBoundary Delta F₁) (B₂ : FaceSetBoundary Delta F₂)
+    (hdisj : Disjoint F₁ F₂) {P S Q : List Delta.toCombMap.Dart}
+    (hP : P ≠ []) (hS : S ≠ []) (hQ : Q ≠ [])
+    (h₁ : B₁.cycle = P ++ S) (h₂ : B₂.cycle = S.reverse.map Delta.toCombMap.alpha ++ Q)
+    (hadj : ∀ d : Delta.toCombMap.Dart, Delta.toCombMap.faceOf d ∈ F₁ →
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∈ F₂ → d ∈ S)
+    (hv₁ : GGT.RelLetter.listVal (dartWord Delta B₁.cycle) = 1)
+    (hv₂ : GGT.RelLetter.listVal (dartWord Delta B₂.cycle) = 1) :
+    GGT.RelLetter.listVal (dartWord Delta (B₁.glue B₂ hdisj hP hS hQ h₁ h₂ hadj).cycle) = 1 := by
+  show GGT.RelLetter.listVal (dartWord Delta (P ++ Q)) = 1
+  refine listVal_dartWord_glue (S := S) ?_ ?_
+  · rw [← h₁]
+    exact hv₁
+  · rw [← h₂]
+    exact hv₂
+
 end Glue
 
 end Embedded
@@ -313,8 +352,10 @@ end GroupApproximation
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.glue_head_congr
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.internalBoundaryMove_of_subset
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.reflTransGen_internalBoundaryMove_of_subset
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.listVal_dartWord_glue
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.glue_isBoundaryDart_left
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.glue_isBoundaryDart_right
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.glue_mem_of_isBoundaryDart
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.glue
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.glue_cycle
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.glue_value_one
