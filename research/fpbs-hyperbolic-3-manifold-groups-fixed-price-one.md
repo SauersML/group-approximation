@@ -3,6 +3,7 @@ rg: 2
 id: fpbs-hyperbolic-3-manifold-groups-fixed-price-one
 kind: claim
 title: Fundamental groups of closed hyperbolic 3-manifolds have fixed price one
+root: true
 distinct_from:
   fpbs-fixed-price-universal: that is the universal goal for every countable group; this is the single class of closed hyperbolic 3-manifold groups, cocompact lattices in PSL(2,C), with its own consequence for Heegaard genus.
   fpbs-normal-subgroup-bounded-cost-fixed-price-one: that is a general statement about extensions by normal subgroups of bounded action cost; this is one class it would settle through virtual fibering, and which could be settled otherwise.
