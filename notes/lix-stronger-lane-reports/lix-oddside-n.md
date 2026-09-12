@@ -34,15 +34,18 @@ Main declarations, by module:
 | `LIXKGenBaseChart` | **`lixKRelModelIso n k dd i q`**: `H^q(N, N∖z_i) ≅ H^q(ℂ^r, ℂ^r∖0)`. This DISCHARGES leaf (2). |
 | `LIXKGenTopLine` | **`absEquiv_lixN n dd hdd`**: `H^{2r}(N; F₂) ≃ F₂`. This DISCHARGES leaf (1). |
 
-## AUTHORED, UNVERIFIED
+- **Probe 0911-231632-71904 (PROBE GREEN):** `LIXKGenStepCHalf`, landed at a9a92178b. It holds `KZeroStepCData` (`u`, `xloc`, `hsplit`, `hx`, `hclass`), `stepCHalf_two_of_kZeroStepCData` and `stepCHalf_two_powers`.
 
-`LIXKGenStepCHalf` has a probe running (the glue compiled, lix-evenside-n probe 0911-221342-93884). It contains:
+- **Probe 0911-235706-48216 (PROBE GREEN, 9269 jobs):** the four hclass modules below, landed at a0bc1306d (unverified) and 409347c6a (the `LIXKGenChern` fix).
 
-- `KZeroStepCData`, which keeps only `u`, `xloc`, `hsplit`, `hx` and `hclass`;
-- `stepCHalf_two_of_kZeroStepCData`;
-- `stepCHalf_two_powers`, covering every stage `j` and every odd `e`, at `bVecK n (e−1)`.
+## hclass at rank n (compiled)
 
-This module reshapes the remaining leaves into StepCHalf's form; it does not discharge them.
+| module | contents |
+|---|---|
+| `LIXKGenChern` | rank-`n` `LixFamily`, `LixChernDeg`, **`lixChern n dd`**, `lixChern_eq_of_rank`, `lixChern_mappingTorus`, **`lixChernOf n chern : TotalH (lixN n dd)`**, `lixChernOf_mappingTorus`; instances for `unitVectors (Fin (n+1))` |
+| `LIXKGenThomTerm` | `lixTopCoeff n dd` (≠ 0), `lixLHplus n`, `lixLHhyper n`, **`lixThomClassTerm n hGc hGu`** (≠ 0), `thomJmTotal_lixThomClassTerm n`, `lixChern_top_eq_gamma n` |
+| `LIXKGenHclass` | **`lixHclass n`**: `jE (lixThomClassTerm n) = π^* (lixChern n dd W _ _ r)`. This is LEAF (5). |
+| `LIXKGenStepCHalfTop` | **`KZeroLocalData`** (only `xloc`, `hsplit`, `hx`, with `u := lixThomClassTerm n`), `kZeroStepCData_of_kZeroLocalData`, **`stepCHalf_two_lixChernOf`** and **`stepCHalf_two_powers_lixChernOf`** at `topClass := fun W => lixChernOf n (lixChern n dd) W ((∑ j, dd j) + (n + 1))`, the glue's `γfun` spelling |
 
 ## Model tests (MSI acn112, scripts in `nm/lixoddn/`)
 
@@ -51,18 +54,16 @@ This module reshapes the remaining leaves into StepCHalf's form; it does not dis
 
 ## REMAINING LEAVES at `p = 2`
 
-The remaining leaves are the fields of `KZeroStepCData`:
+`KGen.KZeroLocalData n k dd hGc hGu hGe` holds all that is left of the Step C half at `p = 2`:
 
-- **(3) `hx i`** (lix-oddside): every local class is nonzero.
-- **(4) `hsplit`** (lix-oddside): relative Mayer–Vietoris over the `k+1` punctures.
-- **(5) `hclass`** (this lane): `jE u = π^* γ_r`, the rank-`n` counterpart of `LIXHclass`.
-  - The Thom stack `ThomChartTautZero`, `ThomBridgeRelToAbs` and most of `LIXThomClassTerm` are generic in the `Bundle`.
-  - What is rank-specific: `lixThomClassTerm`, `lixLHplus`/`lixLHhyper`, `lixChern`, `lixChern_top_eq_gamma`, `thomJmTotal_lixThomClassTerm` and `lixHclass`.
-  - Plan: add `LIXKGenThomTerm`, `LIXKGenChern` and `LIXKGenHclass` over `KGen.lixBundle n`, coordinated with lix-thom (`ThomDataOf`/`ThomHabsOf`) and lix-lh (`ChernClassesOf`).
-- **The top class:** `topClass` in StepCHalf is still a parameter. The glue's `lemmaTwoFor_powers_of_stepC_modP` uses `γfun j W r` in some `H j`, so an adapter from `cohomologyZMod2 (lixN n dd) (2r)` to `TotalH` is needed.
+- **(3) `∀ i, xloc i ≠ 0`** (lix-oddside): every local class is nonzero.
+- **(4) `LocalSplit (fun i => lixKRho n k dd i (2r)) ((lixKSRel n k hGc hGu hGe (2r)).hom (lixThomClassTerm n hGc hGu)) xloc`** (lix-oddside): relative Mayer–Vietoris over the `k+1` punctures.
+
+Discharged by this lane: (1) `absEquiv_lixN`, (2) `lixKRelModelIso`, (5) `lixHclass`, and the `γfun` adapter. `stepCHalf_two_powers_lixChernOf` states the Step C half at `topClass := fun W => lixChernOf n (lixChern n (lixDD n j)) W ((∑ i, lixDD n j i) + (n + 1))`. Step D (lix-evenside-n, `stepDHalf_of_wu`) must use the same `γfun`, with `N := KGen.lixN n (lixDD n j)`.
 
 ## TRAPS
 
+- **Instances:** a `show dite _ _ _ = _` over a classical `if h : ∃ …` needs `open scoped Classical in` on the THEOREM too, not only on the def.
 - **Linters:**
   - `field_simp; ring` can fail with "No goals" because `field_simp` sometimes closes the goal. When the identity is polynomial in `c⁻¹`, use `push_cast; ring`. When it needs `c ≠ 0`, use `div_mul_cancel₀`.
   - `simp only [..] <;> ring`, when simp leaves a single goal, is a seq-focus linter ERROR under warningAsError. Put `ring` on the next line.
