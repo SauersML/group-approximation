@@ -1020,3 +1020,47 @@ Item checked: Section 8 of `leavitt-unit-rank-model-construction-audit-2026-09-1
     not directly finite.
   - So it has no nonzero homomorphism into a corner of a rank ultraproduct (Sections 6 and 14). Approximate
     modules over these tensor algebras, including approximate bimodules, give nothing.
+
+## 32. Finite triangular extensions of matrix-unit models (gk-rk-extensions, family R): PASS
+
+Items checked: `perfect-groups-have-no-triangular-models-with-trivial-diagonal`,
+`filtered-matrix-unit-rank-models-of-simple-el3-are-trivial`, their routes, and
+`el3-rank-model-extensions-2026-09-12.md` Sections 1 to 3.
+
+- **Lemma 1(1).** For `g, h` upper triangular, `h_t g h h_t = sum_r (h_t g h_r)(h_r h h_t)`. The terms with
+  `r < t` die by `h_t g h_r = 0`, and those with `r > t` by `h_r h h_t = 0`. So compression is multiplicative
+  and unital, and `sigma(g^-1)` in `T` makes `sigma_t(g)` a corner unit.
+- **Lemma 1(2).**
+  - `h_s M h_r . h_s' M h_r'` is nonzero only if `r = s'`, and then it has height
+    `(r - s) + (r' - s')`. So `N_k N_l <= N_(k+l)` and `N_m = 0`.
+  - `T N_k` and `N_k T` lie in `N_k`, because `T` never lowers the column index. So `N_k` is an ideal of `T`,
+    and `1 + N_k` is a group, with finite geometric-series inverses.
+  - `(1+x)(1+y) = (1+y)(1+x) + (xy - yx)` gives `[1+x, 1+y] = 1 + (xy - yx)(1+x)^-1(1+y)^-1` in `U_(k+l)`.
+    So `gamma_c(U_1) <= U_c` and `U_m = 1`.
+  - Trivial diagonal blocks give `sigma(g) - 1 = sum_(s<r) h_s(sigma(g) - 1)h_r`, which lies in `N`. A perfect
+    subgroup of a nilpotent group is trivial.
+- **Membership of all of `sigma(EL_3(R))` in `T`.** In the shapes E1 and E2 only root images are specified.
+  `T` is a subring, and `x_ij(a)^-1 = x_ij(-a)` is again a root element. So triangular root images force
+  `sigma(EL_3(R)) <= T`, and the hypothesis of the claim is met.
+- **Corners are rank ultraproducts.**
+  - Lifting idempotents: take a finite-stage matrix `e` with `rk(e^2 - e) = delta n`, and put
+    `W = ker(e^2 - e)`. Every `w` in `W` is `(w - ew) + ew`, with the first term in `ker e` and the second in
+    `ker(e - 1)`. So the idempotent `e'` projecting onto `ker(e - 1)` along `ker e (+) C` agrees with `e` on
+    `W`, and `rk(e - e') <= delta n`.
+  - So `h_t M h_t` is a rank ultraproduct with renormalized rank, or zero. Only direct finiteness of corners
+    is used anyway.
+- **Transposed pieces.**
+  - Transpose is an anti-isomorphism `M_3(R) -> M_3(R^op)`: `(AB)^T_(ij) = sum_k A_jk B_ki = (B^T A^T)_ij`
+    over `R^op`.
+  - So `theta(g) = (g^T)^-1` is a group isomorphism `EL_3(R) -> EL_3(R^op)` with
+    `theta(x_ij(a)) = x_ji(-a)`.
+  - `R^op` is simple and not directly finite, so Corollaries 7 and 9 over `R^op` apply (Section 29).
+- **Gluing.** `EL_3(R)` is perfect, and Lemma 1 gives triviality.
+- **E1 and E2 coordinates.**
+  - For `X` in `(p_i + f) M p_j` and `Y` in `(p_j + f) M p_k`: `X^2 = YX = 0` because `p_j(p_i + f) = 0` and
+    `p_k(p_i + f) = 0`, `Y^2 = 0`, and `X d_jk = 0`.
+  - So `XY = v_ij v_jk + d_ij v_jk`, as stated.
+- **Scope.** The claim covers only finite upper-triangular flags whose graded pieces are matrix-unit,
+  transposed or trivial pieces. Two-sided mixing, other composition factors, and diffuse flags of unbounded
+  length remain open, as the artifact says. The restatement trap S4 is correctly not landed as a route.
+  `el3-rank-models-factor-through-ring-rank-models` stays OPEN.

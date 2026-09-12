@@ -9,6 +9,7 @@ requires:
   - matrix-unit-root-rank-models-of-simple-el3-are-trivial
   - matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-extensions-2026-09-12.md
 ---
 
@@ -25,3 +26,5 @@ Artifact Section 2, Theorem 2.
 5. **Gluing.** `EL_3(R)` is perfect, because `x_ik(a) = [x_ij(a), x_jk(1)]`. Every graded piece
    is trivial, so `perfect-groups-have-no-triangular-models-with-trivial-diagonal` makes
    `sigma` trivial.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 32 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

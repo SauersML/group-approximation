@@ -6,6 +6,7 @@ title: Diagonal compression is multiplicative on triangular elements, so the ima
 target: perfect-groups-have-no-triangular-models-with-trivial-diagonal
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-extensions-2026-09-12.md
 ---
 
@@ -20,3 +21,5 @@ Artifact Section 1, Lemma 1.
   `[1+x, 1+y] = 1 + (xy - yx)(1+x)^-1(1+y)^-1`, the group `1 + N` is nilpotent of class below
   `m`.
 * **Perfection.** `sigma(Gamma)` is a perfect subgroup of a nilpotent group, hence trivial.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 32 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
