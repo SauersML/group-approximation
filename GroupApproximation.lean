@@ -4680,6 +4680,8 @@ import GroupApproximation.KunThom.RelativeFunctorBundle
 import GroupApproximation.KunThom.RelativeFunctorScaled
 import GroupApproximation.KunThom.ConjugationFailureVanishing
 import GroupApproximation.KunThom.ScaledBisectionConverse
+import GroupApproximation.KunThom.CompressorNormalizationAssemblyFrame
+import GroupApproximation.KunThom.CompressorNormalizationAssemblyThreshold
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
