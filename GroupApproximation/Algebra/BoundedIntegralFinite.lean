@@ -33,7 +33,7 @@ open WithZero TotalDegreeValuation
 theorem le_exp_neg_one_of_lt_one {y : ℤᵐ⁰} (hy : y < 1) : y ≤ exp (-1 : ℤ) := by
   by_cases hy0 : y = 0
   · rw [hy0]
-    exact WithZero.zero_le _
+    exact zero_le
   have hlog : log y < 0 := (log_lt_iff_lt_exp hy0).mpr (by rw [exp_zero]; exact hy)
   exact le_exp_of_log_le (by omega)
 
