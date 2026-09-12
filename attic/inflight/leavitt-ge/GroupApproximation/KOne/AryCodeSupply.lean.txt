@@ -1,0 +1,152 @@
+import GroupApproximation.KOne.AryPrefixCodes
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Complete codes of controlled depth, at arbitrary arity
+
+The exits of the pencil elimination reshape a column code into one whose words all have
+length in `{M, M + 1}`.  At arity `d = |ι|` such a code exists on every index type of size
+`d^M + s·(d - 1)` with `s ≤ d^M`: take the full depth-`M` code and replace `s` of its words by
+their `d` one-letter children.  The binary development supplies deep and shallow codes by
+separate inductions (`KOne/CodeShapeSupply.lean`); here one explicit construction serves both
+exits.
+-/
+
+namespace GroupApproximation
+namespace CompleteMatrixFamily
+
+variable {A : Type*} [Ring A] {ι : Type*} [Fintype ι] [DecidableEq ι]
+variable (F : CompleteMatrixFamily A ι)
+
+/-- The full depth-`M` code: all words of length `M`. -/
+def fullCode (M : ℕ) : AryPrefixCode (Fin M → ι) ι :=
+  ⟨fun f ↦ List.ofFn f, fun f g hfg hp ↦ hfg (List.ofFn_inj.mp (hp.eq_of_length (by simp)))⟩
+
+@[simp] theorem fullCode_word (M : ℕ) (f : Fin M → ι) :
+    (fullCode (ι := ι) M).word f = List.ofFn f := rfl
+
+theorem fullCode_isComplete (M : ℕ) : F.IsComplete (fullCode M) :=
+  F.sum_cylinder_ofFn M
+
+/-- **Codes of exact depth**: on an index type of size `d^M` there is a complete code all of
+whose words have length `M`. -/
+theorem exists_exact_depth_code (M : ℕ) {κT : Type*} [Fintype κT]
+    (hcard : Fintype.card κT = Fintype.card ι ^ M) :
+    ∃ Q : AryPrefixCode κT ι, F.IsComplete Q ∧ ∀ j, (Q.word j).length = M := by
+  classical
+  have hcardeq : Fintype.card κT = Fintype.card (Fin M → ι) := by
+    rw [Fintype.card_fun, Fintype.card_fin, hcard]
+  refine ⟨(fullCode M).reindex (Fintype.equivOfCardEq hcardeq),
+    F.reindex_isComplete _ (F.fullCode_isComplete M) _, fun j ↦ ?_⟩
+  simp [fullCode]
+
+/-- The index type of a split code: `s` chosen words replaced by their children. -/
+abbrev SplitIndex (M s : ℕ) (e : Fin s → (Fin M → ι)) : Type _ :=
+  (Fin s × ι) ⊕ {x : Fin M → ι // x ∉ Finset.univ.image e}
+
+/-- The words of a split code. -/
+def splitWords {M s : ℕ} (e : Fin s → (Fin M → ι)) : SplitIndex M s e → List ι :=
+  Sum.elim (fun p ↦ List.ofFn (e p.1) ++ [p.2]) (fun x ↦ List.ofFn x.1)
+
+theorem splitWords_free {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
+    ∀ ⦃p q : SplitIndex M s e⦄, p ≠ q → ¬ splitWords e p <+: splitWords e q := by
+  have hout : ∀ (x : {x : Fin M → ι // x ∉ Finset.univ.image e}) (a : Fin s), x.1 ≠ e a := by
+    intro x a hxa
+    exact x.2 (Finset.mem_image.mpr ⟨a, Finset.mem_univ a, hxa.symm⟩)
+  rintro (⟨a, z⟩ | x) (⟨a', z'⟩ | x') hne h
+  · simp only [splitWords, Sum.elim_inl] at h
+    have hlen : (List.ofFn (e a) ++ [z]).length = (List.ofFn (e a') ++ [z']).length := by simp
+    have heq := h.eq_of_length hlen
+    obtain ⟨h1, h2⟩ := List.append_inj heq (by simp)
+    have hea : a = a' := he (List.ofFn_inj.mp h1)
+    have hz : z = z' := List.singleton_inj.mp h2
+    exact hne (by rw [hea, hz])
+  · simp only [splitWords, Sum.elim_inl, Sum.elim_inr] at h
+    have := h.length_le
+    simp at this
+  · simp only [splitWords, Sum.elim_inl, Sum.elim_inr] at h
+    have h1 : List.ofFn x.1 <+: List.ofFn (e a') :=
+      List.prefix_of_prefix_length_le h (List.prefix_append _ _) (by simp)
+    exact hout x a' (List.ofFn_inj.mp (h1.eq_of_length (by simp)))
+  · simp only [splitWords, Sum.elim_inr] at h
+    have hxx : x.1 = x'.1 := List.ofFn_inj.mp (h.eq_of_length (by simp))
+    exact hne (congrArg Sum.inr (Subtype.ext hxx))
+
+/-- The split code. -/
+def splitCode {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
+    AryPrefixCode (SplitIndex M s e) ι :=
+  ⟨splitWords e, splitWords_free e he⟩
+
+theorem splitCode_isComplete {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
+    F.IsComplete (splitCode e he) := by
+  classical
+  unfold IsComplete
+  rw [Fintype.sum_sum_type, Fintype.sum_prod_type]
+  simp only [splitCode, splitWords, Sum.elim_inl, Sum.elim_inr]
+  have hchildren : ∀ a : Fin s, ∑ z : ι, F.cylinder (List.ofFn (e a) ++ [z]) =
+      F.cylinder (List.ofFn (e a)) := fun a ↦ (F.cylinder_split _).symm
+  rw [Finset.sum_congr rfl fun a _ ↦ hchildren a]
+  have himage : ∑ a : Fin s, F.cylinder (List.ofFn (e a)) =
+      ∑ x : {x // x ∈ Finset.univ.image e}, F.cylinder (List.ofFn x.1) := by
+    rw [← Finset.sum_subtype (Finset.univ.image e) (fun x ↦ Iff.rfl)
+      (fun x ↦ F.cylinder (List.ofFn x)),
+      Finset.sum_image (fun x _ y _ hxy ↦ he hxy)]
+  rw [himage, Fintype.sum_subtype_add_sum_subtype (fun x ↦ x ∈ Finset.univ.image e)
+    (fun x ↦ F.cylinder (List.ofFn x))]
+  exact F.sum_cylinder_ofFn M
+
+theorem splitCode_length {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e)
+    (p : SplitIndex M s e) :
+    M ≤ ((splitCode e he).word p).length ∧ ((splitCode e he).word p).length ≤ M + 1 := by
+  rcases p with ⟨a, z⟩ | x
+  · simp [splitCode, splitWords]
+  · simp [splitCode, splitWords]
+
+theorem card_splitIndex {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
+    Fintype.card (SplitIndex M s e) + s = s * Fintype.card ι + Fintype.card ι ^ M := by
+  classical
+  have h1 := Fintype.card_congr (Equiv.sumCompl (fun x : Fin M → ι ↦ x ∈ Finset.univ.image e))
+  rw [Fintype.card_sum, Fintype.card_fun, Fintype.card_fin] at h1
+  have h2 : Fintype.card {x // x ∈ Finset.univ.image e} = s := by
+    rw [Fintype.card_coe, Finset.card_image_of_injective _ he, Finset.card_univ,
+      Fintype.card_fin]
+  rw [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin]
+  omega
+
+/-- **Codes of controlled depth**: on an index type of size `d^M + s·(d - 1)` with `s ≤ d^M`
+there is a complete code all of whose words have length `M` or `M + 1`. -/
+theorem exists_depth_code [Nonempty ι] {M s : ℕ} (hs : s ≤ Fintype.card ι ^ M)
+    {κT : Type*} [Fintype κT] [DecidableEq κT]
+    (hcard : Fintype.card κT = Fintype.card ι ^ M + s * (Fintype.card ι - 1)) :
+    ∃ Q : AryPrefixCode κT ι, F.IsComplete Q ∧
+      ∀ j, M ≤ (Q.word j).length ∧ (Q.word j).length ≤ M + 1 := by
+  classical
+  have hs' : s ≤ Fintype.card (Fin M → ι) := by rw [Fintype.card_fun, Fintype.card_fin]; exact hs
+  set e : Fin s → (Fin M → ι) := fun a ↦ (Fintype.equivFin (Fin M → ι)).symm (Fin.castLE hs' a)
+    with he
+  have heinj : Function.Injective e := by
+    intro a b hab
+    have h := (Fintype.equivFin (Fin M → ι)).symm.injective hab
+    exact Fin.castLE_injective hs' h
+  have hpos : 1 ≤ Fintype.card ι := Fintype.card_pos
+  have hsplit := card_splitIndex e heinj
+  have hcardeq : Fintype.card κT = Fintype.card (SplitIndex M s e) := by
+    obtain ⟨d', hd'⟩ : ∃ d', Fintype.card ι = d' + 1 := ⟨Fintype.card ι - 1, by omega⟩
+    rw [hd', Nat.add_sub_cancel, Nat.mul_succ] at hsplit
+    rw [hcard, hd', Nat.add_sub_cancel]
+    omega
+  set eq : κT ≃ SplitIndex M s e := Fintype.equivOfCardEq hcardeq with heq
+  refine ⟨(splitCode e heinj).reindex eq, F.reindex_isComplete _ (F.splitCode_isComplete e heinj) eq,
+    fun j ↦ ?_⟩
+  exact splitCode_length e heinj (eq j)
+
+end CompleteMatrixFamily
+end GroupApproximation
+
+/-! ### Axiom audit -/
+
+#audit_axioms GroupApproximation.CompleteMatrixFamily.fullCode_isComplete
+#audit_axioms GroupApproximation.CompleteMatrixFamily.splitWords_free
+#audit_axioms GroupApproximation.CompleteMatrixFamily.splitCode_isComplete
+#audit_axioms GroupApproximation.CompleteMatrixFamily.card_splitIndex
+#audit_axioms GroupApproximation.CompleteMatrixFamily.exists_depth_code
