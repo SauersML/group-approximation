@@ -67,3 +67,24 @@ The theorem is correct as stated. Its standard inputs are Glimm's lemma, Rørdam
 - **Known-case test.** For `Z`-stable nuclear `A`, CPoU gives the same conclusion (CCEGSTW Theorem 7.17), so there is no conflict. For Villadsen or Toms algebras without strict comparison the theorem says nothing, so again no conflict.
 - **The "in particular" clause.** It uses the CCEGSTW embedding `M ↪ A^ω`. It holds provided that embedding is the diagonal one, under which a limit trace restricted to `M` is `lim_ω τ_n|_M` with `τ_n ∈ T(A)`. That is the standard construction, not re-read here.
 - **Consequence 2.1 (Toms's certificate, simple `B`).** It depends on the internal structure of Toms's Theorems 2 and 5. The claim is that a partial isometry in `M_k(B^ω)` supplies finite-stage 2-norm approximants just as one in `M_k(M)` does. Along `ω` it supplies, for each large index, an element close to a partial isometry from `P` to `Q`, which is what a fixed-threshold finite-stage argument needs. That is plausible, but the reviewer did not read Toms Section 6, so **no verdict** on 2.1. The node's distinct_from cites `toms-gamma-counterexample-fails-strict-comparison`, which reaches the same conclusion by a different route, so nothing in the graph currently rests on 2.1 alone.
+
+## 4. Follow-up with the lane (2026-09-12)
+
+**The "in particular" clause: PASS, now verified directly.** The embedding is the diagonal one, and its compatibility with limit traces needs only elementary facts.
+- Constant sequences give a unital *-homomorphism `ι : A → A^ω`. It is isometric for the uniform 2-norm `||a||_(2,u) = sup_τ ||a||_(2,τ)` and contractive in operator norm.
+- **Completeness of the unit ball of `A^ω`.** Given a uniform-2-norm Cauchy sequence `ξ_j` in the ball with `||ξ_j − ξ_(j+1)||_(2,u) < 2^(−j)`:
+  - choose contractive representatives `(x^j_n)_n`;
+  - choose decreasing sets `I_j ∈ ω` on which `sup_τ ||x^i_n − x^(i+1)_n||_(2,τ) < 2^(−i)` for all `i < j`, with `I_j ⊆ [j, ∞)`;
+  - put `x_n = x^(j(n))_n`, where `j(n)` is maximal with `n ∈ I_(j(n))`;
+  - then `[(x_n)]` is the limit, by the same diagonal pattern as Step 6.
+- **Extension to the completion.** An element `x` of the uniform tracial completion `M` is a uniform-2-norm limit of a bounded sequence `a_j ∈ A`, so `ι` extends to `M`. The extension is a *-homomorphism, because multiplication is 2-norm continuous on bounded sets.
+- **Traces.** For a limit trace `σ = lim_ω τ_n`, `|τ(y)| <= ||y||_(2,u)` uniformly in `τ`, so `σ(ι(x)) = lim_j lim_ω τ_n(a_j) = lim_ω τ_n(x)`, where `τ_n` is extended continuously to `M`. Hence `τ(p) <= τ(q)` for all `τ ∈ T(A)` gives `σ(ι p) <= σ(ι q)` for every limit trace, and the Theorem applies to `ι(p)` and `ι(q)` in `M_k(A^ω)`.
+- **Conclusion.** The clause as written is correct. There is no need to downgrade to projections of `A`.
+
+**Consequence 2.1.** The lane re-scoped it as a corollary conditional on Toms arXiv:2606.12188v2 §6 (Theorem 2; the start of the Theorem 5 proof; Lemma 2; Proposition 4(3) with `β > 0`) and on Toms's own proof. The reviewer did not read Toms §6, so the verdict stays "no verdict". With that scope the statement is honest.
+
+**Artifact §4.1 (landed e2010ec1b): rank density plus comparison gives a unital `M_k ⊆ A^ω`. PASS.**
+- **Existence of `e`.** Rank density, in the uniform form the section states (`sup_τ |τ(b_n) − 1/k| → 0`), gives a projection `e` with `σ(e) = 1/k` for every limit trace. This is taken from the quadratic-selection node, which was not re-read.
+- **The induction.** Set `e_1 = e` and `v_1 = e`. At step `j <= k`, `q_j = 1 − (e_1 + … + e_(j−1))` is a projection with `σ(q_j) = (k−j+1)/k >= 1/k`, because the `e_i` are orthogonal and equivalent projections have equal limit traces. The Theorem gives `v_j` with `v_j* v_j = e` and `e_j := v_j v_j* <= q_j`. At `j = k` the traces are equal, and the equality clause gives `e_k = q_k`, so `Σ_j e_j = 1`.
+- **Matrix units.** `f_ij = v_i v_j*`. Since `v_j* v_l = v_j* e_j e_l v_l = δ_jl e` and `v_i e = v_i`, we get `f_ij f_lm = δ_jl f_im`, `f_ij* = f_ji` and `Σ_i f_ii = 1`. So there is a unital `M_k ⊆ A^ω`. Correct.
+- **Scope.** The copy need not be approximately central, as the section says. §4.2's conclusion (on the lfnd locus a Toms–Winter counterexample is an existence failure) is correct as logic: rank density plus strict comparison gives Z-stability by the established chain, and Z-stable nuclear algebras have uniform Gamma.
