@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LIXKGenRotate
+import GroupApproximation.CharClass.LIXKGenBaseChart
 import GroupApproximation.CharClass.LIXKGenOfBundle
 import GroupApproximation.CharClass.LIXKLocalRestrict
 import GroupApproximation.CharClass.LIXKCount
@@ -228,7 +229,7 @@ theorem restrictTo_lixKSRelOf (K : Type) [Field K] (n k : ℕ) {dd : Fin ℓ →
         ((lixKZeroSet n k dd)ᶜ : Set (↥sphereOne × Gen.baseM n dd)) q).hom
         ((lixKSRelOf K n k hGc hGu hGe q).hom u)
       = (relPullback K (sInclusion (X := lixN n dd) (agreeBall n k dd i) ≫ lixKS n k hGc hGu hGe)
-          (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q).hom u :=
+          (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q).hom u :=
   relPullback_comp_apply' K _ _ _ _ q u
 
 /-! ## 4. Half B: the rotation carries the local piece at `z_i` to the one at `z_0` -/
@@ -337,7 +338,8 @@ def agreeHomotopy (n k : ℕ) {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Ge
         mappingTorus (Gen.Vmat n) G circHoriz circHeight
             (rotPt n dd (norm_rotPath k i ((0 : unitInterval) : ℝ)) p.1)
           *ᵥ Sum.elim 0 (blockSouth (aVecK n) (bVecK n k) (fun m : Gen.baseM n dd => Gen.cVec m.2)
-            lixChi circHoriz p.1)) : ↥sphereOne × Gen.baseM n dd × (_ → ℂ))
+            lixChi circHoriz p.1)) :
+          (↥sphereOne × Gen.baseM n dd) × (Gen.VIdx n dd ⊕ Gen.VIdx n dd → ℂ))
       = (p.1, lixKSection n k G p.1)
     rw [hr, lixKSection_of_circHeight_neg n k G p.2.1]
   map_one_left p := by
@@ -349,7 +351,8 @@ def agreeHomotopy (n k : ℕ) {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Ge
         mappingTorus (Gen.Vmat n) G circHoriz circHeight
             (rotPt n dd (norm_rotPath k i ((1 : unitInterval) : ℝ)) p.1)
           *ᵥ Sum.elim 0 (blockSouth (aVecK n) (bVecK n k) (fun m : Gen.baseM n dd => Gen.cVec m.2)
-            lixChi circHoriz p.1)) : ↥sphereOne × Gen.baseM n dd × (_ → ℂ))
+            lixChi circHoriz p.1)) :
+          (↥sphereOne × Gen.baseM n dd) × (Gen.VIdx n dd ⊕ Gen.VIdx n dd → ℂ))
       = (rotPt n dd (norm_kUnity_pow k (i : ℕ)) p.1,
           lixKSection n k G (rotPt n dd (norm_kUnity_pow k (i : ℕ)) p.1))
     rw [hr, lixKSection_of_circHeight_neg n k G
@@ -400,34 +403,41 @@ theorem agreeRes_rotRel (K : Type) [Field K] (n k : ℕ)
   -- the right side is the section's pullback on the ball at `z_0`
   have hright : (agreeRes K n k dd 0 q).hom (xloc 0)
       = (relPullback K (sInclusion (X := lixN n dd) (agreeBall n k dd 0) ≫ lixKS n k hGc hGu hGe)
-          (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q).hom u := by
-    rw [← restrictTo_eq_agreeRes K n k dd q hsplit 0, restrictTo_lixKSRelOf]
+          (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q).hom u :=
+    (restrictTo_eq_agreeRes K n k dd q hsplit 0).symm.trans
+      (restrictTo_lixKSRelOf K n k hGc hGu hGe 0 q u)
   -- the left side, through the ball at `z_i`
-  have hleft : (agreeRes K n k dd 0 q).hom ((rotRel K n k dd i q).hom (xloc i))
-      = (relPullback K (rotBall n k hGe i ≫ (sInclusion (X := lixN n dd) (agreeBall n k dd i)
-          ≫ lixKS n k hGc hGu hGe))
-          (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _
-            (rotBall_mapsTo n k hGe i x hx)) q).hom u := by
-    show (relPullback K (sInclusion (X := lixN n dd) (agreeBall n k dd 0))
-        (agreeBall_mapsTo n k dd 0) q).hom
-        ((relPullback K (rotMap n dd (norm_kUnity_pow k (i : ℕ))) (hR_rot n k dd i) q).hom
-          (xloc i)) = _
-    rw [relPullback_comp_apply', relPullback_congr_apply' K (sInclusion_comp_rotMap n k hGe i) _
-      (fun x hx => agreeBall_mapsTo n k dd i _ (rotBall_mapsTo n k hGe i x hx)) q (xloc i),
-      ← relPullback_comp_apply' K (rotBall n k hGe i) (sInclusion (X := lixN n dd) (agreeBall n k dd i))
-        (rotBall_mapsTo n k hGe i) (agreeBall_mapsTo n k dd i) q (xloc i)]
-    show (relPullback K (rotBall n k hGe i) (rotBall_mapsTo n k hGe i) q).hom
-        ((agreeRes K n k dd i q).hom (xloc i)) = _
-    rw [← restrictTo_eq_agreeRes K n k dd q hsplit i, restrictTo_lixKSRelOf, relPullback_comp_apply']
-  rw [hleft, hright]
-  exact (relPullback_eq_of_homotopy K _ _ (agreeHomotopy n k hGc hGu hGe i)
-    (agreeHomotopy_mapsTo n k hGc hGu hGe i) q ▸ rfl :
-      (relPullback K (sInclusion (X := lixN n dd) (agreeBall n k dd 0) ≫ lixKS n k hGc hGu hGe)
-        (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q).hom u
-      = (relPullback K (rotBall n k hGe i ≫ (sInclusion (X := lixN n dd) (agreeBall n k dd i)
-          ≫ lixKS n k hGc hGu hGe))
-          (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _
-            (rotBall_mapsTo n k hGe i x hx)) q).hom u).symm
+  have e1 := relPullback_comp_apply' K (sInclusion (X := lixN n dd) (agreeBall n k dd 0))
+    (rotMap n dd (norm_kUnity_pow k (i : ℕ))) (agreeBall_mapsTo n k dd 0) (hR_rot n k dd i) q
+    (xloc i)
+  have e2 := relPullback_congr_apply' K (sInclusion_comp_rotMap n k hGe i)
+    (fun x hx => hR_rot n k dd i _ (agreeBall_mapsTo n k dd 0 x hx))
+    (fun x hx => agreeBall_mapsTo n k dd i _ (rotBall_mapsTo n k hGe i x hx)) q (xloc i)
+  have e3 := relPullback_comp_apply' K (rotBall n k hGe i)
+    (sInclusion (X := lixN n dd) (agreeBall n k dd i)) (rotBall_mapsTo n k hGe i)
+    (agreeBall_mapsTo n k dd i) q (xloc i)
+  have e4 : (agreeRes K n k dd i q).hom (xloc i)
+      = (relPullback K (sInclusion (X := lixN n dd) (agreeBall n k dd i) ≫ lixKS n k hGc hGu hGe)
+          (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q).hom u :=
+    (restrictTo_eq_agreeRes K n k dd q hsplit i).symm.trans
+      (restrictTo_lixKSRelOf K n k hGc hGu hGe i q u)
+  have e5 := relPullback_comp_apply' K (rotBall n k hGe i)
+    (sInclusion (X := lixN n dd) (agreeBall n k dd i) ≫ lixKS n k hGc hGu hGe)
+    (rotBall_mapsTo n k hGe i) (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q u
+  have e6 := RelativeSupport.relPullback_eq_of_homotopy K
+    (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx)
+    (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ (rotBall_mapsTo n k hGe i x hx))
+    (agreeHomotopy n k hGc hGu hGe i) (agreeHomotopy_mapsTo n k hGc hGu hGe i) q
+  have e6' := congrArg (fun φ => φ.hom u) e6
+  calc (agreeRes K n k dd 0 q).hom ((rotRel K n k dd i q).hom (xloc i))
+      = _ := e1
+    _ = _ := e2
+    _ = _ := e3.symm
+    _ = _ := congrArg
+        (fun v => (relPullback K (rotBall n k hGe i) (rotBall_mapsTo n k hGe i) q).hom v) e4
+    _ = _ := e5
+    _ = _ := e6'.symm
+    _ = _ := hright.symm
 
 /-! ## 5. Half A: the rotation does not change the absolute image -/
 
@@ -442,9 +452,7 @@ theorem lixKJlocOf_rotRel (K : Type) [Field K] (n k : ℕ) (dd : Fin ℓ → ℕ
       (HomologicalComplex.homologyMap ((singularCochainComplexFunctor K (ModuleCat.of K K)).map
         (rotMap n dd (norm_kUnity_pow k (i : ℕ))).op) q).hom a = a :=
     fun a => pull_rotMap K n k dd i q a
-  simp only at h2
-  rw [habs] at h2
-  exact h2.symm
+  exact h2.symm.trans (habs _)
 
 /-! ## 6. The field -/
 
