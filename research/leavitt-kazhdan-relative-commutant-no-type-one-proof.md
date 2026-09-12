@@ -49,17 +49,17 @@ Each `sigma(V_j)''` is a factor commuting with `A_0 v sigma(V_1)'' v ... v sigma
 so the independence argument above applies inductively.  That gives
 `A_0 (tensor) L(V)^(tensor k) <= A_k`.
 
-**Item 3.**  Let `e` be a central projection of `A_1` with `A_1 e` of type I,
-say `A_1 e = (+)_m L^infinity(X_m) (tensor) M_m`.
+**Item 3.**  `J` commutes with `Gamma`, so `sigma(J)'' ~= L(V)` is a unital
+II_1 factor inside `A_0`.  Let `e` be a central projection of `A_0` with
+`A_0 e` of type I, say `A_0 e = (+)_m L^infinity(X_m) (tensor) M_m`.
 
-* `L(V)` contains a unital copy of `M_k` for every `k`.  By item 1 it lies in
-  `A_1`; `e` commutes with it, and `M_k` is simple, so `x -> x e` embeds `M_k`
-  unitally into `e A_1 e`.
+* `L(V)` contains a unital copy of `M_k` for every `k`.  Since `e` is central
+  and `M_k` is simple, `x -> x e` embeds `M_k` unitally into `A_0 e`.
 * Cutting by each central summand, `M_k` embeds unitally into
   `L^infinity(X_m) (tensor) M_m` whenever that summand is nonzero, which
   forces `k | m`.
-* Taking `k = m + 1` kills the summand.  So `e = 0` and `A_1` is of type II_1.
-* `A_0 ~= A_1` via `Ad sigma(u)`, so `A_0` is of type II_1 too.
+* Taking `k = m + 1` kills the summand.  So `e = 0` and `A_0` is of type II_1.
+* `A_1 ~= A_0` via `Ad sigma(u)`, so `A_1` is of type II_1 too.
 
 **Item 4.**  For fixed `m`, let `z_n` be the central projection of `A_n`
 collecting its summands of size at most `m`, and `z = [z_n]`.

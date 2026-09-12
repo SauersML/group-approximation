@@ -39,6 +39,13 @@ Then:
    `j <= m` tends to `0` along `omega`.  Captured Kazhdan commutants of a
    nontrivial model therefore have diverging block sizes on almost all mass.
 
+**What is cheap here.**  Items 3 and 4 need only `[Gamma, J] = 1`.  The
+algebra `A_0` unitally contains `sigma(J)'' ~= L(V)`, and a finite von Neumann
+algebra containing a unital II_1 factor has no type I summand.  The compression
+contributes item 2 only: the grown commutant contains `A_0` tensor a Thompson
+factor, while remaining isomorphic to `A_0`.  None of this is an obstruction
+to faithful models.  It fixes the shape any model must have.
+
 **Use.**  Item 3 is a screen for unstable-branch constructions
 (`leavitt-steinberg-hs-unstable`, `binary-leavitt-unit-group-hyperlinear`).
 Any model in which the approximate commutant of the `Gamma`-generators has
