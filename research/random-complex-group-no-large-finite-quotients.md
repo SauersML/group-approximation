@@ -6,6 +6,7 @@ title: Mid-range random complex groups have no nontrivial finite quotient of sup
 distinct_from:
   meshulam-random-complex-no-polynomial-quotients: that excludes quotients of order at most n^c by a counting argument; this excludes all larger ones, where first-moment counting over cochains fails because the entropy of Sym(N)-labels outgrows the n^η energy per edge
   random-complex-cocycle-cheeger-beats-triangle-count: that is a Cheeger bound implying only that random missing triangles die in finite quotients; this asks that there be no nontrivial finite quotients beyond polynomial order at all
+  kazhdan-hyperbolic-group-without-finite-quotients: that is the existence target for any hyperbolic Kazhdan group without finite quotients; this is one specific random family's large-quotient regime, which feeds that target through kazhdan-quotientless-hyperbolic-via-random-complex
 ---
 
 **OPEN, conjectural.** For some `0 < η < 1/2` and some fixed `c > 0`, with
