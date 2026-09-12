@@ -29,7 +29,7 @@ Consequences:
   `V` carries must come from a mechanism with no property (T).
 - **Cantor-orbit encodings.** Dead: `full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant`.
   Compressions such as `V_(0*) > V_(00*)` give strict self-maps only on the subshift of
-  configurations constant on right `V_(0*)`-cosets (`y -> y o psi` with `psi(gH) = g u^-1 H`),
+  configurations constant on the left cosets `gH`, `H = V_(0*)` (`y -> y o psi` with `psi(gH) = g u^-1 H`),
   never on the full shift.
 - **Design filters.** A candidate must pass the landed filters: nonsofic forward core,
   triangular tables, holonomy normal form, amenable decoder memory, measure distortion. Its
