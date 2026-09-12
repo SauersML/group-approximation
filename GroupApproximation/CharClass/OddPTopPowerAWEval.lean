@@ -93,16 +93,14 @@ theorem tagEvalG_piSingle_vtx {q k a : ℕ} (u : singularCochainGroup K X q)
   show cochainEval a (Pi.single a u a) ((TopCat.toSSet.obj X).map (clampHom a k v hv).op σ) = _
   rw [Pi.single_eq_same]
 
-theorem front_vtx_eq_frontSimplex {m q : ℕ} (σ : singularSimplices X (m + q)) :
-    (vtx σ m id monotone_id).2 = frontSimplex X m q σ := by
+theorem front_map_eq_frontSimplex {m q : ℕ} (σ : singularSimplices X (m + q)) :
+    (TopCat.toSSet.obj X).map (clampHom m (m + q) id monotone_id).op σ = frontSimplex X m q σ := by
   have hf : clampHom m (m + q) id monotone_id = frontFace m q := by
     ext j : 3
     apply Fin.ext
-    rw [clampHom_apply, frontFace_apply]
     show min j.val (m + q) = j.val
-    have := j.isLt
-    omega
-  show (TopCat.toSSet.obj X).map (clampHom m (m + q) id monotone_id).op σ = frontSimplex X m q σ
+    have hj : j.val < m + 1 := j.isLt
+    rw [min_eq_left (show j.val ≤ m + q by omega)]
   rw [hf]
   rfl
 
@@ -112,10 +110,9 @@ theorem back_map_eq_backSimplex {m q : ℕ} (σ : singularSimplices X (m + q)) :
   have hf : clampHom q (m + q) (fun j => j + m) (addRight_mono m) = backFace m q := by
     ext j : 3
     apply Fin.ext
-    rw [clampHom_apply, backFace_apply]
     show min (j.val + m) (m + q) = j.val + m
-    have := j.isLt
-    omega
+    have hj : j.val < q + 1 := j.isLt
+    rw [min_eq_left (show j.val + m ≤ m + q by omega)]
   rw [hf]
   rfl
 
@@ -134,18 +131,26 @@ theorem tupEvalAll_awAll_piSingle {q : ℕ} (u : singularCochainGroup K X q) (r 
     rw [Finset.sum_eq_single (q * r)]
     · rw [tupEvalAll_catLin_single]
       have hfront : awFront (⟨q * (r + 1), σ⟩ : TagSimp X) (q * r)
-          = ⟨q * r, (vtx σ (q * r) id monotone_id).2⟩ := rfl
-      rw [hfront, ih, awBack, tagEvalG_piSingle_vtx K X u σ _ _ (by show q * (r + 1) - q * r = q; omega)]
-      show cochainEval (q * r) (cupPowQ K X u r) (vtx σ (q * r) id monotone_id).2
+          = ⟨q * r, (TopCat.toSSet.obj X).map (clampHom (q * r) (q * (r + 1)) id monotone_id).op σ⟩ :=
+        rfl
+      have hback : awBack (⟨q * (r + 1), σ⟩ : TagSimp X) (q * r)
+          = vtx σ (q * (r + 1) - q * r) (fun j => j + q * r) (addRight_mono (q * r)) :=
+        rfl
+      rw [hfront, ih, hback,
+        tagEvalG_piSingle_vtx K X u σ _ _ (show q * (r + 1) - q * r = q by omega)]
+      show cochainEval (q * r) (cupPowQ K X u r)
+            ((TopCat.toSSet.obj X).map (clampHom (q * r) (q * r + q) id monotone_id).op σ)
           * cochainEval q u ((TopCat.toSSet.obj X).map
               (clampHom q (q * r + q) (fun j => j + q * r) (addRight_mono (q * r))).op σ)
         = cochainEval (q * r + q) (cochainCup (q * r) q (cupPowQ K X u r) u) σ
-      rw [cochainCup_eval, front_vtx_eq_frontSimplex, back_map_eq_backSimplex]
+      rw [cochainCup_eval, front_map_eq_frontSimplex, back_map_eq_backSimplex]
     · intro i hi hne
-      rw [tupEvalAll_catLin_single, awBack, tagEvalG_piSingle_of_ne K X u _
-        (by show q * (r + 1) - i ≠ q; have := Finset.mem_range.mp hi; omega), mul_zero]
+      have hi' : i < q * (r + 1) + 1 := Finset.mem_range.mp hi
+      rw [tupEvalAll_catLin_single,
+        tagEvalG_piSingle_of_ne K X u (awBack (⟨q * (r + 1), σ⟩ : TagSimp X) i)
+          (show q * (r + 1) - i ≠ q by omega), mul_zero]
     · intro h
-      exact absurd (Finset.mem_range.mpr (by omega)) h
+      exact absurd (Finset.mem_range.mpr (show q * r < q * (r + 1) + 1 by omega)) h
 
 #audit_axioms tupEvalAll_awAll_piSingle
 

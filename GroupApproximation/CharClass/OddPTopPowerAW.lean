@@ -117,14 +117,20 @@ theorem faceSimplex_eq_vtx (n : ℕ) (i : Fin (n + 2)) (σ : singularSimplices X
     apply Fin.ext
     rw [clampHom_apply]
     show (i.succAbove j : ℕ) = min (succAb i.val j.val) (n + 1)
-    have hj1 := j.isLt
+    have hj1 : j.val < n + 1 := j.isLt
     by_cases hj : j.val < i.val
-    · rw [Fin.succAbove_of_castSucc_lt i j (by rw [Fin.lt_iff_val_lt_val, Fin.coe_castSucc]; exact hj)]
-      simp only [succAb, if_pos hj, Fin.coe_castSucc]
-      omega
-    · rw [Fin.succAbove_of_le_castSucc i j (by rw [Fin.le_iff_val_le_val, Fin.coe_castSucc]; omega)]
-      simp only [succAb, if_neg hj, Fin.val_succ]
-      omega
+    · have hlt : Fin.castSucc j < i := by
+        rw [Fin.lt_def, Fin.val_castSucc]
+        exact hj
+      rw [Fin.succAbove_of_castSucc_lt i j hlt, Fin.val_castSucc]
+      simp only [succAb, if_pos hj]
+      rw [min_eq_left (show j.val ≤ n + 1 by omega)]
+    · have hle : i ≤ Fin.castSucc j := by
+        rw [Fin.le_iff_val_le_val, Fin.val_castSucc]
+        omega
+      rw [Fin.succAbove_of_le_castSucc i j hle, Fin.val_succ]
+      simp only [succAb, if_neg hj]
+      rw [min_eq_left (show j.val + 1 ≤ n + 1 by omega)]
   show (⟨n, (TopCat.toSSet.obj X).map (SimplexCategory.δ i).op σ⟩ : TagSimp X) = _
   rw [hδ]
   rfl
@@ -154,9 +160,10 @@ theorem tagBd_vtx (K : Type) [CommRing K] {k : ℕ} (σ : singularSimplices X k)
           ((-1 : K) ^ l) • Finsupp.single (vtx σ a (v ∘ succAb l) (hv.comp (succAb_mono l))) (1 : K) := by
   have h := tagBd_eq_sum K a (vtx σ (a + 1) v hv).2
   refine h.trans (Finset.sum_congr rfl fun l _ => ?_)
-  rw [vtx_vtx σ (a + 1) hv a (succAb_mono l) fun j hj => by
-    have := succAb_le l j
-    omega]
+  exact congrArg (fun τ => ((-1 : K) ^ l) • Finsupp.single τ (1 : K))
+    (vtx_vtx σ (a + 1) hv a (succAb_mono l) fun j hj => by
+      have := succAb_le l j
+      omega)
 
 /-- A sub-simplex of degree `0` has no boundary. -/
 theorem tagBd_vtx_zero (K : Type) [CommRing K] {k : ℕ} (σ : singularSimplices X k) (v : ℕ → ℕ)
@@ -213,7 +220,7 @@ theorem sum_snocT {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
 
 theorem tupPre_snocT_castSucc {r : ℕ} (t : TupAll X r) (τ : TagSimp X) (j : Fin r) :
     tupPre (snocT X t τ) j.castSucc = tupPre t j := by
-  rw [tupPre_eq_sum_range, tupPre_eq_sum_range, Fin.coe_castSucc]
+  rw [tupPre_eq_sum_range, tupPre_eq_sum_range, Fin.val_castSucc]
   refine Finset.sum_congr rfl fun l hl => ?_
   have hlr : l < r := lt_trans (Finset.mem_range.mp hl) j.isLt
   unfold tupDeg

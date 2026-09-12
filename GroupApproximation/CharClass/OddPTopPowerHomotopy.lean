@@ -98,16 +98,26 @@ end Functor
 
 /-! ## 2. The two hypotheses of the acyclic-models theorem -/
 
-/-- **The tensor power is acyclic on the models**, over a field. -/
-theorem tupFunK_acyclicOnModels (K : Type) [Field K] (r : ℕ) :
+/-- **The tensor power is acyclic on the models** as soon as its differential is exact there.  Stated
+with the exactness as data, so that `ZMod p` can supply it at its own `CommRing` structure (the
+`Field` export elaborates at `Field.toCommRing`, and unifying the two can time out). -/
+theorem tupFunK_acyclicOnModels_of (K : Type) [CommRing K] (r : ℕ)
+    (hex : ∀ (n k : ℕ) (y : tupMod K (stdSimplexTop n) r (k + 1)),
+      tupD K (stdSimplexTop n) r k y = 0 →
+        ∃ z : tupMod K (stdSimplexTop n) r (k + 2), tupD K (stdSimplexTop n) r (k + 1) z = y) :
     AcyclicOnModels stdSimplexTop K (tupFunK K r) where
   exists_preimage n k y hy := by
     rw [tupFunK_d] at hy
-    obtain ⟨z, hz⟩ := tupD_exists_preimage_stdSimplexTop K n r k y hy
+    obtain ⟨z, hz⟩ := hex n k y hy
     refine ⟨z, ?_⟩
     rw [show ((tupFunK K r).obj (stdSimplexTop n)).d (k + 2) (k + 1)
         = ModuleCat.ofHom (tupD K (stdSimplexTop n) r (k + 1)) from tupFunK_d K r _ (k + 1)]
     exact hz
+
+/-- **The tensor power is acyclic on the models**, over a field. -/
+theorem tupFunK_acyclicOnModels (K : Type) [Field K] (r : ℕ) :
+    AcyclicOnModels stdSimplexTop K (tupFunK K r) :=
+  tupFunK_acyclicOnModels_of K r fun n k y hy => tupD_exists_preimage_stdSimplexTop K n r k y hy
 
 /-- **The singular chains are free on the standard simplices**, over any ring. -/
 def singFreeR_freeOnModels (K : Type) [CommRing K] :
@@ -239,7 +249,8 @@ theorem gCoboundary_piSingle (K : Type) [CommRing K] {X : TopCat.{0}} {q : ℕ}
 For a natural chain map `Φ : singFreeR K ⟶ tupFunK K r` agreeing with `awNat` in degree `0` and a
 cocycle `u ∈ C^q(X; K)`, there is one `k`-cochain `w` with
 `⟨u^{⊗r}, Φ(σ)⟩ = ⟨u^{⊗r}, AW^{(r)}(σ)⟩ + (δw)(σ)` for every `(k+1)`-simplex `σ`. -/
-theorem eval_eq_awTup_add_coboundary (K : Type) [Field K] (r : ℕ)
+theorem eval_eq_awTup_add_coboundary (K : Type) [CommRing K] (r : ℕ)
+    (hG : AcyclicOnModels stdSimplexTop K (tupFunK K r))
     (Φ : singFreeR K ⟶ tupFunK K r)
     (h0 : ∀ X : TopCat.{0}, (Φ.app X).f 0 = ((awNat K r).app X).f 0)
     {X : TopCat.{0}} {q : ℕ} (u : singularCochainGroup K X q)
@@ -249,8 +260,7 @@ theorem eval_eq_awTup_add_coboundary (K : Type) [Field K] (r : ℕ)
           (((Φ.app X).f (k + 1)).hom (Finsupp.single σ 1))
         = tupEval K X r (k + 1) (fun _ => Pi.single q u) (awTup K X r (k + 1) σ)
           + cochainEval (k + 1) (cochainCoboundary K X k w) σ := by
-  let H := acyclicModelsHomotopy (singFreeR_freeOnModels K) (tupFunK_acyclicOnModels K r) Φ
-    (awNat K r) h0
+  let H := acyclicModelsHomotopy (singFreeR_freeOnModels K) hG Φ (awNat K r) h0
   refine ⟨cochainOfFun k fun τ =>
       tupEval K X r (k + 1) (fun _ => Pi.single q u) ((H.s k X).hom (Finsupp.single τ 1)),
     fun σ => ?_⟩
