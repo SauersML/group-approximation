@@ -35,7 +35,7 @@ matrices of the item-(a) matrix ring gives `u v⁻¹ ∈ N`; and if `κ(u) = 0` 
 `κ` to a countable abelian group, then `κ(v) = 0`. -/
 def PrintedCongruenceModRadical : Prop :=
   ∀ (R : Type) [Ring R] [Countable R], IsPurelyInfiniteSimpleRing R →
-    ∀ (m : ℕ), 3 ≤ m → ∀ (e : Fin (m + 1) → R) (hidem : ∀ i, IsIdempotentElem (e i)),
+    ∀ (m : ℕ), 3 ≤ m → ∀ (e : Fin (m + 1) → R), (∀ i, IsIdempotentElem (e i)) →
       (∀ i j : Fin (m + 1), i ≠ j → e i * e j = 0) → (∑ i, e i = 1) →
       ∀ i₀ last : Fin (m + 1), i₀ ≠ last →
         (∀ i j : Fin (m + 1), i ≠ last → j ≠ last → IsEquivalentIdempotent R (e i) (e j)) →
