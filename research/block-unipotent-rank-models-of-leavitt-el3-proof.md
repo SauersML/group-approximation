@@ -6,6 +6,7 @@ title: Steinberg triples build matrix units and a unital corner homomorphism, wh
 target: block-unipotent-rank-models-of-leavitt-el3-are-trivial
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md
 ---
 
@@ -46,3 +47,5 @@ for `K = F_2` and `n = 2` the identity is `binary-leavitt-algebra-not-directly-f
 7. **Finite stages.** Approximate block support and asymptotic multiplicativity become
    exact in the rank ultraproduct, so every element is sent to `1` there, i.e.
    `rk(sigma_k(g) - 1) = o(N_k)`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 14 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

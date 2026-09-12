@@ -6,6 +6,7 @@ title: The diagonal endomorphism centralizes the swap and sign units, whose quat
 target: anti-central-ternary-summand-contains-its-matrix-ring
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-cohn-reformulation-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Section 1 of the artifact.
   unitally.
 - **The consequence.** Iterating gives `M_(2^n)(S_-)` inside `S_-`. A pair `BA = I != AB` in a matrix
   ring pads to size `2^n` and travels along the unital injective embedding to a scalar pair.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 15 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

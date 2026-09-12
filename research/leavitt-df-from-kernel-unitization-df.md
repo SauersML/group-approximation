@@ -8,6 +8,7 @@ requires:
   - leavitt-evaluation-kernel-unitization-directly-finite
   - leavitt-kaplansky-failures-have-invisible-witnesses
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/scalar-corner-kernel-embedding-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ already excludes visible ones.
 This route and `kernel-unitization-df-from-unit-group-algebra-df` form a deliberate
 equivalence cycle between direct finiteness of `K^+` and direct finiteness of the whole
 group algebra. The cycle establishes nothing on its own.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 16 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

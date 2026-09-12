@@ -8,6 +8,7 @@ requires:
   - ternary-anti-invariant-swap-corner-is-full
   - ternary-leavitt-swap-problem-splits-at-central-involution
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-cohn-reformulation-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Theorem 2.1, (a) implies (b), of the artifact.
 
 Intended two-route cycle with `anti-central-cohn-family-gives-swap-corner-fullness`: the claims are
 equivalent.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 15 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

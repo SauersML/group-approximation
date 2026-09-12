@@ -6,6 +6,7 @@ title: Take canonical traces of the Leavitt relations in the anti-central summan
 target: anti-central-ternary-summand-has-no-binary-leavitt-family
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-cohn-reformulation-2026-09-12.md
 ---
 
@@ -16,3 +17,5 @@ Proposition 2.5 of the artifact.
 - **Leavitt families.** `tau(1_-) = sum_j tau(sigma_j tau_j) = sum_j tau(tau_j sigma_j) = n tau(1_-)`, so
   `2(n - 1) = 0` in `F_3`.
 - **Cohn defects.** `tau_C(1_- - sigma_1 tau_1 - sigma_2 tau_2) = tau_C(1_-) - 2 tau_C(1_-)`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 15 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

@@ -8,6 +8,7 @@ requires:
   - ternary-anti-central-summand-has-cohn-family
   - anti-central-ternary-summand-contains-its-matrix-ring
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-cohn-reformulation-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ c = e_- delta_*(tau_1)   + [d] e_- delta_*(tau_2).
 
 This route and `swap-corner-fullness-gives-anti-central-cohn-family` form an intended two-route
 cycle: the two claims are equivalent. Neither route can establish either claim alone.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 15 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

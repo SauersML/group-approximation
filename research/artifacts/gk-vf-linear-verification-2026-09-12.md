@@ -396,3 +396,97 @@ Items checked: artifact `leavitt-invisible-corner-transfer-2026-09-12.md`, route
   - a single reflection fixes a line.
   So the averaging idempotent of any scalar-free `3'`-subgroup is not killed by `rho_2`, as claimed.
   The level-two Klein constants of Section 8 avoid `-I_4`.
+
+## 14. Block-unipotent and monomial rank models (d5e9f806b, lane gk-l-gate-pos): PASS
+
+Items checked: `block-unipotent-rank-models-of-leavitt-el3-are-trivial` and
+`monomial-rank-models-are-hamming-models`, Sections 5 and 6 of
+`leavitt-unit-rank-model-construction-audit-2026-09-12.md`.
+
+- **Block calculus.** For `X` in `e_i M e_j` and `Y` in `e_j M e_k` (`i, j, k` distinct),
+  orthogonality gives `X^2 = Y^2 = YX = 0`. Expanding,
+  `(1 + X)(1 + Y)(1 - X) = 1 + Y + XY`, and then `(1 + Y + XY)(1 - Y) = 1 + XY`. Also
+  `psi(a) psi(b)` lies in `e_i M e_j e_i M e_j = 0`, which gives additivity.
+- **Matrix units.** `u_ij u_jk = u_ik`, and `u_ji = u_jk u_ki` makes `p_i = u_ij u_ji` independent
+  of `j`. `p_i u_ij = u_ij = u_ij p_j`, `p_i^2 = p_i`, and `u_ji u_ij = p_j`, so the corners have
+  equal rank.
+- **Support.** `psi_ij(a) = psi_ik(a) u_kj = u_ik psi_kj(a)` lies in `p_i M p_j`.
+- **Corner homomorphism.**
+  - `phi(a) = psi_12(a) u_21 = psi_13(a) u_31`, using `psi_12(a) = psi_13(a) u_32`.
+  - `u_21 psi_13(b) = psi_23(b)` gives `phi(a) phi(b) = psi_13(ab) u_31 = phi(ab)`, and `phi(1) = p_1`.
+- **Directly finite corners.** `ab = p` gives `(a + 1 - p)(b + 1 - p) = 1`, hence `ba = p`.
+  - Simplicity of `L_K(1,n)` and `t0 s0 = 1 != s0 t0` force `p_1 = 0`.
+  - Then `psi_ij = u_i1 phi u_1j = 0`.
+- **Weyl element and scope.**
+  - `sigma(w_ij) = (1 - p_i - p_j) + u_ij - u_ji`.
+  - Unequal blocks `e_i` add only trivial summands.
+  - The finite-stage form follows by passing to the ultraproduct.
+  - The statement for `St_3` or `EL_3` over every `L_K(1,n)`, `n >= 2`, is sound.
+- **Monomial models.**
+  - `j(AB) = j(A) j(B)`, and both distances are left invariant.
+  - For `C = B^-1 A`, `j(C)` moves exactly the points over the `m` non-fixed columns, so
+    `d_H = m/N`, and `rk(C - 1) <= m`.
+  - Cycle blocks give rank at least `l - 1 >= l/2` for `l >= 2`, and 1 for a relabelled fixed point.
+    So `rk >= m/2`.
+  - Defects at most double under `j`, and separation survives. So the permutation-type family is
+    excluded for every nonsofic host.
+
+## 15. Anti-central matrix amplification and Cohn forms (2a48f8775, 8a9cd0ebe, lane gk-l3-units): PASS
+
+Items checked: `anti-central-ternary-summand-contains-its-matrix-ring`,
+`anti-central-ternary-summand-has-no-binary-leavitt-family`, and the equivalence routes
+`anti-central-cohn-family-gives-swap-corner-fullness` and
+`swap-corner-fullness-gives-anti-central-cohn-family`.
+
+- **Lemma 1.1.** `w delta(g) = s0 g t1 + s1 g t0 = delta(g) w`, and
+  `d delta(g) = s0 g t0 - s1 g t1 = delta(g) d`. Also `delta(-1) = -1`.
+- **Lemma 1.2.** `[d][w] = [z][w][d] = -[w][d]` on `S_-`, so `Q` is closed under products.
+  - `1, w, d, wd` are distinct modulo `z`, so `Q` is four-dimensional.
+  - The matrix units check: `E_12 E_21 = e_-` and `E_21 E_12 = [d] e_- [d] = 1_- - e_-`.
+  - `E_12 E_22 = e_-[d] - e_-[d]e_- = E_12`.
+- **Theorem 1.3.** `delta_*(S_-)` centralizes `Q`. The multiplication map `Q (x) C -> S_-` has
+  kernel an ideal `M_2(I)` of `M_2(C)`, and it restricts to the inclusion on `C`, so `I = 0`.
+  Hence `J` is injective, unital and multiplicative. Iteration gives `M_(2^n)(S_-)` inside `S_-`,
+  and therefore direct finiteness equals stable finiteness.
+- **Theorem 2.1, (b) => (a).** `C_i` and `D_i` commute with `e_-` and `[d]`. The four terms of
+  `c e_- b` are `e_- delta(tau_1 sigma_1)`, `E_12 delta(tau_1 sigma_2) = 0`,
+  `E_21 delta(tau_2 sigma_1) = 0` and `(1_- - e_-) delta(tau_2 sigma_2)`, which sum to `1_-`.
+- **Theorem 2.1, (a) => (b).**
+  - `gamma_i beta_j = e_- [d]^(i+j-2) e_- = delta_ij e_-`.
+  - The products give `u_p v_q = delta_pq e_-`, and `x[d]y = 0` for `x, y` in `T`.
+  - So `tau_a sigma_b = delta_ab (e_- + [d]e_-[d]) = delta_ab 1_-`.
+  - The equivalences (b) <=> (c) <=> (d) are standard.
+- **Class traces.** `tau_C([g][h]) = [gh in C] = [hg in C]`, and `tau(1_-) = 2`.
+  - A type `(1, n)` family gives `2 = 2n`, so `n = 1 mod 3`.
+  - The Cohn defect has `tau_C(p) = -tau_C(1_-)`: `tau(p) = 1`, `tau_(z)(p) = -1`, and 0 on every
+    other class.
+  - Quaternary families are allowed.
+- **Finite-subgroup defect exclusion (3555a55a9).** `F_3[G] ~= F_3[G] + d F_3[G]` gives `t_3(d) = 0`
+  from the additive lifted trace. Nonzero sums of finite-subgroup projectives have positive
+  rational lifted trace `dim/|H|`, which is integral over `Z_3` because projectives over 3-groups
+  are free. So such sums are excluded as defects, as stated. This rests on the established node
+  `lifted-trace-detects-finite-subgroup-projectives`.
+
+## 16. Scalar-corner kernel embedding and lifted matrix units (5c62ee4ff, lane gk-l2-visible): PASS
+
+Items checked: `leavitt-unit-group-algebra-embeds-in-kernel-corner`,
+`leavitt-kaplansky-failures-have-invisible-witnesses` and
+`leavitt-matrix-units-lift-into-finite-subgroup-algebra`, with the routes
+`kernel-unitization-failure-from-group-algebra-failure`, `leavitt-df-from-kernel-unitization-df`
+and `no-s0-lift-from-kernel-unitization-df`.
+
+- **Claims 1 and 2.** These are the construction verified in Section 13.
+  - `Phi(x) Phi(y) = delta(xy) z + e`, because `ze = 0` and `z` commutes with `delta(S)`, and
+    `Phi(1) = 1`.
+  - The defect `1 - Phi(ab) = delta(1 - ab) z` lies in `K`.
+- **Claim 3, the explicit units.** `u, v` are transvections, `g = uv` has order 3, `g^2 = vu`,
+  `w = uvu = vuv`, and `M_g^2 = M_g + I`.
+  - Natural-representation images: `rho(f_11) = I + U + V + M_g = E_11`,
+    `rho(f_22) = I + U + V + M_g^2 = E_22`, `rho(f_12) = M_g + M_g^2 + V + W = E_12` and
+    `rho(f_21) = M_g + M_g^2 + W + U = E_21`, computed entrywise over `F_2`.
+  - Block membership, spot-checked: `f_11 e = f_11` and `f_12 e = f_12`, using `ug = v`, `vg = w`,
+    `ug^2 = w`, `vg^2 = u`, `wg = u` and `wg^2 = v`.
+  - `rho` restricted to `e F_2[H]` is an isomorphism onto `M_2(F_2)` by dimension. So the
+    multiplication table is exact, and `f_11 + f_22 = [g] + [g^2] = e`.
+  - `pi(delta(x) f_ij) = s_i pi(x) t_j`.
+- **Routes.** All three are valid: the conversion is exhaustive, and a lift of `s0` is never a unit.

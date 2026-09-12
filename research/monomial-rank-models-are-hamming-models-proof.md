@@ -6,6 +6,7 @@ title: Cycle blocks of a monomial matrix minus the identity have rank at least h
 target: monomial-rank-models-are-hamming-models
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md
 ---
 
@@ -29,3 +30,5 @@ Section 6 of the artifact.
    `d_H(j(sigma_k(g)) j(sigma_k(h)), j(sigma_k(gh))) <= 2 rk(sigma_k(g) sigma_k(h) - sigma_k(gh)) / N_k -> 0`,
    and `d_H(j(sigma_k(g)), 1) >= rk(sigma_k(g) - 1) / N_k`, which stays bounded away from
    `0` for `g != 1`. So `j o sigma_k` is a sofic approximation on the sets `X_(N_k)`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 14 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

@@ -9,6 +9,7 @@ requires:
   - leavitt-kaplansky-failures-have-invisible-witnesses
   - leavitt-unit-group-algebra-surjects-onto-leavitt
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/scalar-corner-kernel-embedding-2026-09-12.md
 ---
 
@@ -17,3 +18,5 @@ a unit of `R`. It is not, since `t_0 s_0 = 1` would then give `s_1 t_1 = 0` and
 `1 = (t_1 s_1)^2 = 0`. So `a b != 1`, and `(a, b)` is a direct-finiteness failure of
 `F_2[R^x]`. The second prerequisite turns it into a failure of `K^+`, contradicting the
 first. So no lift of `s_0` is left invertible.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 16 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

@@ -8,6 +8,7 @@ requires:
   - leavitt-unit-group-algebra-not-directly-finite
   - leavitt-kaplansky-failures-have-invisible-witnesses
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/scalar-corner-kernel-embedding-2026-09-12.md
 ---
 
@@ -18,3 +19,5 @@ The second converts it to `Phi(b) Phi(a) = 1 != Phi(a) Phi(b)` with both factors
 This route and `kaplansky-failure-from-invisible-kernel-defect` form an intended
 equivalence cycle between the invisible problem and the Kaplansky failure for `R^x`.
 Neither route establishes anything alone.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 16 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
