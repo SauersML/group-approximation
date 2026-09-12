@@ -88,3 +88,55 @@ cocycle of `kt-two-positive-compressors-generate-full-obstruction`, or (ii)
 the entropy-ceiling refutation, which first needs
 `kt-coset-bernoulli-essentially-free`. No shortcut through existing permanence
 theory exists.
+
+## Update, same day: freeness proved, ceiling imported, and why it does not decide
+
+**Freeness (`kt-coset-bernoulli-essentially-free`, established, route
+`kt-coset-bernoulli-essentially-free-proof`).**  No building is needed.
+Grading by `G -> SL_d(Z)` shows elements outside `E = EL_r(R)` fix no coset.
+For non-constant `g in E`, the cosets `s Gamma` (`s in SL_d(Z)`) spread a
+nonzero exponent into infinitely many non-polynomial positions.  Constant
+non-scalar `g` is sheared off `R_+` by `I + x_1^(-n) E_ij`.  The correction to
+the first posing: the central scalars `lambda I` (`lambda^r = 1`) fix every
+coset, so `core_G(Gamma) = Z_q` has order `gcd(r,q-1)`, and freeness holds
+exactly modulo `Z_q`.  For `q = 2` it is full freeness.
+
+**Cartan and ceiling (`kt-wreath-algebra-has-a-lamp-cartan`,
+`kt-wreath-hyperlinearity-forces-strong-one-boundedness`, both established).**
+For `q = 2`, `L(W)` is a II_1 factor with the lamp Cartan, so `h(L(W)) <= 0`.
+
+**It does not refute hyperlinearity.**  The ceiling is vacuous off the
+positive branch.  Its only refutation form, "hyperlinear implies `h > 0`", is
+equivalent to the goal given the ceiling (a restatement), so no such hole is
+posed.  It is also symmetric across the equivalence class: Hayes' join property
+over the diffuse `L(Gamma)` plus property-(T) strong 1-boundedness gives
+`h(L(D)) <= 0` for the double too.  Entropy separates neither branch.
+
+**Recast worth knowing (not a node).**  For `q = 2` the action is free, so
+`L(W) = L(R_KT)` for the orbit equivalence relation `R_KT` of a free ergodic
+Bernoulli action of a residually finite Kazhdan group.  Kun--Thom Corollary D
+makes the action nonsofic in Paunescu's sense.  So hyperlinearity of `W` is
+Connes embeddability of the von Neumann algebra of this explicit nonsofic
+action's orbit relation: the relation-level analogue of Question 3.4.  The
+identification of Paunescu action-soficity with Elek--Lippner relation-soficity
+for free actions was not source-verified here; only the abstract of
+arXiv:1002.0605 was read.
+
+**Pivot: best remaining attack on `RE/C` over the Kazhdan base.**
+By `commutation-stabilizers-are-relatively-embeddable` and its lamp converse,
+`RE/C(Gamma <= G)` holds iff some Connes-embeddable `M >= L(G)` (canonical
+trace) has `G cap (L(Gamma)' cap M)' = Gamma`.  In any such `M`, a strict
+compressor makes `Ad(u_t^(-1))` a proper trace-preserving compression of
+`Q_Gamma = L(Gamma)' cap M`, never a normalization.  That is exactly the
+negation of `kt-centralizer-normalization-hs`.
+
+A positive witness must therefore start from a one-compressor model
+(`kun-thom-single-compressor-sofic-joint-nonsofic`; each `<Gamma,t>` is
+directed-union-by-cyclic, as a peer lane landed on 2026-09-11) and extend it
+across the finite-order normalizer `C = A B^(-1)`.  All incompatibility sits
+in the `Theta = Phi_C` holonomy of
+`kt-ab-compressors-have-one-backward-commutant-edge`.  The negative side is
+`kt-centralizer-normalization-hs`: find the HS replacement for Kun--Thom's
+median size-matching, whose atomic block sizes do not survive in a diffuse
+relative commutant.  These two nodes are the sharpest open statements in this
+region; everything else reduces to them.
