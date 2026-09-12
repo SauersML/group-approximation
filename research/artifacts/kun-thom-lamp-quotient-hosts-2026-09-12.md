@@ -80,10 +80,20 @@ Contradiction. QED
 **Lemma 3.1 (binary targets).** If `V` is an elementary abelian 2-group, it is residually
 permutational iff for every `v != 0` some `Q`-map `phi : V -> F_2[Y]` has `phi(v) != 0`.
 
-*Proof.* The image of `V` in `direct_sum_Y A` lies in `direct_sum_Y A[2]`, and `A[2]` is an
-`F_2`-vector space. Choose a linear functional `lambda` on `A[2]` that is nonzero on one nonzero
-coordinate of `phi(v)` and apply it at every site. This is `Q`-equivariant because `Q` acts
-trivially on `A`. QED
+*Proof.* The converse is clear, since `F_2[Y] = direct_sum_Y Z/2`. For the forward direction, take
+`phi : V -> direct_sum_Y A` with `phi(v) != 0`, and a site `y_0` with `phi(v)(y_0) != 1`. For `A`
+nonabelian the set `A[2]` of elements of order at most two is not a subgroup, so work with images
+instead. For each site `y` the coordinate map `pi_y o phi : V -> A` is a homomorphism, and its
+image `B_y` is an elementary abelian 2-group, being a quotient of `V`. Since `Q` acts trivially on
+`A` and permutes the sites, `phi(g v')(g y) = phi(v')(y)`. So `B_(g y) = B_y` along each `Q`-orbit,
+because `V` is `Q`-invariant. Choose a homomorphism `lambda : B_(y_0) -> F_2` with
+`lambda(phi(v)(y_0)) != 0`, and put
+
+    phi'(v')(y) = lambda( phi(v')(y) )   for y in Q y_0,        phi'(v')(y) = 0 otherwise.
+
+Each coordinate of `phi'` is a homomorphism, supports stay finite, and `phi'(g v')(g y) = phi'(v')(y)`.
+So `phi' : V -> F_2[Q y_0]` is a `Q`-map with `phi'(v)(y_0) != 0`. (Fix from w3-vf-nonlinear's
+verification; the first version applied a functional to `A[2]`.) QED
 
 **Lemma 3.2 (Frobenius).** `Hom_G(P, F_2[Y]) = F_2[Y]^Gamma`: a map is `phi_c(e_(g Gamma)) = g c`
 for a finitely supported `Gamma`-fixed vector `c`, that is, a finite sum of indicators of finite
