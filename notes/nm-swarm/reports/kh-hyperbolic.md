@@ -23,7 +23,10 @@ Lane clone thm-d. The leaf served is `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7
   The lead asked for this signature to stay stable.
 - Open leaves, as assigned by the lead on 09-12 (hzip reassigned from kh-ejz):
   - `Systolic.ZipSpurStatement`: kh-torsion, `Systolic.zipSpurStatement X` in GGT/SystolicDiscZip.lean.
-  - `Systolic.MirrorFoldStatement`: fff-periodic, `Systolic.mirrorFold X` in GGT/SystolicDiscMirrorFold.lean.
+  - `Systolic.MirrorFoldStatement`: fff-periodic, GGT/SystolicDiscMirrorFold.lean. The binder is fixed (09-12):
+    `Systolic.mirrorFold {V : Type u} (X : TriangleComplex V) : MirrorFoldStatement X`, with X explicit.
+    It imports only SystolicDisc and VanKampen surgery modules. The fallback, if the general form fails, is a
+    cosetComplex-specific statement.
 
 ## LANDED (09-12)
 - 0ac9f4538 (unverified): GHBHyperbolic, adopted from the shared tree (this lane's target path; no other lane
