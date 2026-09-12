@@ -4576,6 +4576,8 @@ import GroupApproximation.Kazhdan.EJZAngleGHB
 import GroupApproximation.CharClass.OddPAcyclicZero
 import GroupApproximation.CharClass.OddPAcyclicZeroAug
 import GroupApproximation.CharClass.CohomologyTotalNontrivialOf
+import GroupApproximation.Dynamics.SiteStrata
+import GroupApproximation.Dynamics.SubsetSchedule
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
