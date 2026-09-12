@@ -211,7 +211,7 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_osinLemma97
   intro W hcondition Delta hlea hcells hboundary
   obtain ⟨_, S, hb⟩ :=
     hall rho0 le_rfl W hcondition Delta (SectionCuts.whole hboundary) hlea hcells
-  obtain ⟨_source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  obtain ⟨_source, present, region, _hsource, htargets, _hdisjoint, hsum⟩ := hb
   have hne : present.Nonempty := by
     by_contra hemp
     rw [Finset.not_nonempty_iff_eq_empty] at hemp

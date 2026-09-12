@@ -168,10 +168,10 @@ theorem OsinMultipleEdgeCut.false_of_below
     (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
     (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
     (hlea : Delta.LeastArea)
-    (hb : ∃ T : GloballyDistinguishedSectionFamily D lambda c eps cut.enclosed
-        cut.sections, OsinLemma97bConclusion mu T.toRealizedSectionFamily) :
+    (hb : ∃ T : RealizedSectionFamily D lambda c eps cut.enclosed
+        cut.sections, OsinLemma97bConclusion mu T) :
     False := by
-  obtain ⟨T, _source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  obtain ⟨T, _source, present, region, _hsource, htargets, _hdisjoint, hsum⟩ := hb
   have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
     T.equiv.boundaryWord_eq
   have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤
@@ -255,10 +255,10 @@ theorem OsinLoopCut.false_of_below
     (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
     (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
     (hlea : Delta.LeastArea)
-    (hb : ∃ T : GloballyDistinguishedSectionFamily D lambda c eps cut.enclosed
-        cut.sections, OsinLemma97bConclusion mu T.toRealizedSectionFamily) :
+    (hb : ∃ T : RealizedSectionFamily D lambda c eps cut.enclosed
+        cut.sections, OsinLemma97bConclusion mu T) :
     False := by
-  obtain ⟨T, _source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  obtain ⟨T, _source, present, region, _hsource, htargets, _hdisjoint, hsum⟩ := hb
   have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
     T.equiv.boundaryWord_eq
   have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤

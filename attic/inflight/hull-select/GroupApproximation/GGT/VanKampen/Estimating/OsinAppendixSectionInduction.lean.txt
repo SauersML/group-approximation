@@ -67,8 +67,8 @@ def OsinLemma97Below (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) (n : ℕ) : Prop :=
   ∀ (Xi : DiscDiagram.{u, w, v} W) (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
     Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < n →
-      ∃ T : GloballyDistinguishedSectionFamily D lambda c eps Xi cutsXi,
-        OsinLemma97bConclusion mu T.toRealizedSectionFamily
+      ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+        OsinLemma97bConclusion mu T
 
 /-- **G2, multiple edges**: two distinct selected regions joining the same cells
 enclose a cut. -/
@@ -127,8 +127,8 @@ def DescentInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
           (∃ i : Fin S.diagram.rCellCount,
             (1 - 11 * mu) * ((cell S.diagram i).word.length : ℝ) <
               ∑ a ∈ RegionCandidate.exteriorAt S.family i, (a.2.sourceArc.length : ℝ)) →
-            ∃ S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-              OsinLemma97bConclusion mu S'.toRealizedSectionFamily
+            ∃ S' : RealizedSectionFamily D lambda c eps Delta cuts,
+              OsinLemma97bConclusion mu S'
 
 /-! ## The induction -/
 
@@ -150,15 +150,15 @@ theorem osinLemma97_atParameters_of_inputs
       Delta.LeastArea → 0 < Delta.rCellCount →
         (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
             S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
-          ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-            OsinLemma97bConclusion mu S.toRealizedSectionFamily := by
+          ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
+            OsinLemma97bConclusion mu S := by
   have key : ∀ (n : ℕ) (Delta : DiscDiagram.{u, w, v} W)
       (cuts : SectionCuts D lambda c Delta.boundaryWord),
       Delta.rCellCount = n → Delta.LeastArea → 0 < Delta.rCellCount →
         (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
             S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
-          ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-            OsinLemma97bConclusion mu S.toRealizedSectionFamily := by
+          ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
+            OsinLemma97bConclusion mu S := by
     intro n
     induction n using Nat.strong_induction_on with
     | h n ih =>
