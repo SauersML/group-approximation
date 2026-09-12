@@ -142,7 +142,46 @@ anywhere refutes it.
   - a `G`-generating partition need not generate along the smaller `F_2`-orbits;
   - the `F_2` generators act through cocycles into `G` with infinitely many values, so recording them
     costs unbounded entropy.
+- **Sofic actions and sofic orbit relations are unavailable over nonsofic
+  groups (2026-09-12, gottschalk-rokhlin-lower-bound).** Suppose a free action
+  is sofic in Păunescu's sense (`paunescu-sofic-action-class-permanence`,
+  Definition 1.4). The crossed product then embeds in a matrix ultraproduct
+  with `G` in the permutation matrices, and `τ(u_g) = μ(Fix g) = 0` for
+  `g != 1`. That is a sofic approximation of `G`. So no free action of a
+  nonsofic group is sofic, and entropy theories built on sofic actions or sofic
+  orbit relations are undefined over the binary Leavitt unit group and the
+  tester host.
+- **Weak containment only moves positivity around.** Seward,
+  arXiv:1602.06680v2:
+  - Lemma 1.1 bounds a weakly containing joining's relative entropy from above
+    by the contained one's;
+  - Theorem 1.2 is an equality for actions weakly contained in all free actions;
+  - the paper says the Bernoulli case "leads to new upper bounds to Rokhlin
+    entropy".
+
+  A positive lower bound must enter as an input.
+- **Følner counting along amenable Schreier graphs needs right-Følner windows
+  in `G`.** Try to bound a partition `α` from below using a Bernoulli factor over
+  a coset space `G/H` with Følner sets `F_n`.
+  - The counting reads `α`-names over `F̃_n S^-1`, where `F̃_n` lifts `F_n` to `G`
+    and `S` is the window of `α`.
+  - It gives nearly `log q` only when `|F̃_n S^-1| <= (1+ε)|F̃_n|`.
+  - `α`, and hence `S`, is arbitrary, so this needs right-Følner sets for every
+    finite `S` in `G`, i.e. `G` amenable.
+  - The coset action is also not free, and moving the bound to a free action
+    goes through outer entropy, which is again what needs bounding (artifact
+    `research/artifacts/rokhlin-lower-bound-mechanisms-2026-09-12.md`, §2.5).
+- **The Koopman representation gives necessary conditions only.**
+  `koopman-lambda-singular-part-has-zero-rokhlin-entropy` (Seward,
+  arXiv:1804.05270v1, Theorem 1.2): entropy lives on the part of the Koopman
+  representation not singular with `λ`, and `λ^⊕N` embeds in every
+  positive-entropy free ergodic action. The Bernoulli shift passes this test
+  whatever its entropy.
+- **A nonsofic test case.** `kun-thom-wreath-bernoulli-rokhlin-maximal` asks
+  for maximal Bernoulli entropy over a surjunctive Kun–Thom wreath. It would be
+  the first lower bound over any nonsofic group. It is open, with its specific
+  obstructions recorded there.
 - **What is left.** A lower bound for any nonsofic group needs a counting
   mechanism that is not a sofic approximation. The sources read here
-  (arXiv:1501.03367, 1602.06680, 1805.08279, 0812.2718) derive lower bounds only
-  from sofic entropy or from amenability.
+  (arXiv:1501.03367, 1602.06680, 1804.05270, 1805.08279, 0812.2718) derive lower
+  bounds only from sofic entropy or from amenability.
