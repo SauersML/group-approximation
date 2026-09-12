@@ -69,3 +69,20 @@ non-linear-soficity.
     needs a non-idempotent triangular step at a mixed minor. Regular rings satisfy (U1) by Goodearl
     (literature, not re-read), but a regular target for `S_-` with the rank condition would already kill
     the corner.
+- 2026-09-12 `w4-upg-state` (`research/artifacts/state-upgrade-rank-condition-gap-2026-09-12.md`): step (U1) reduced to one open half.
+  - **(U1a), proved.** A state on `K_0(S_-)` gives a nonzero weakly finite quotient `W`, all of whose states
+    are faithful on idempotents, with `G_3` embedded and `z -> -1`.
+    - Nodes: `anti-central-rank-condition-gives-weakly-finite-image`, from the general
+      `rank-condition-rings-have-weakly-finite-images`.
+    - Method: killing class-zero idempotents keeps the rank condition by an explicit retract, then Zorn.
+    - In the certificate language above, weak finiteness is the part of (U1) that minor certificates
+      already control.
+  - **(U1b), open.** `anti-central-weakly-finite-images-carry-rank-functions`: flattening triangular
+    certificates on `W`.
+    - A state pins ranks of regular elements only. The free data is the Jordan types of order-three
+      unipotents, which are the root elements (`rank-functions-extending-a-state-are-pinned-on-regular-elements`).
+    - Kill test: a weakly finite `W ⊇ M_4(K)` with faithful states and `u^3 = 0`,
+      `L u R = diag(1,1,1,0)` has no rank function.
+  - **Rank-free counterexample criterion.** The corner is full iff no quotient of `F_3[G_3]` with `z = -1` is
+    weakly finite (`ternary-anti-central-summand-has-no-weakly-finite-image`). A "No" argument using only
+    weak finiteness bypasses U1 and U2 entirely.

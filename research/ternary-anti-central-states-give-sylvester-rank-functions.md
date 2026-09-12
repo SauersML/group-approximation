@@ -38,3 +38,27 @@ into a regular ring.
     localization). Then states extend, and Goodearl's pseudo-rank correspondence gives rank functions.
   - **First kill test.** A ring satisfying the rank condition with no Sylvester matrix rank function, whose
     obstruction can be transported to `S_-`.
+- 2026-09-12 `w4-upg-state` (`research/artifacts/state-upgrade-rank-condition-gap-2026-09-12.md`): U1 splits in two, and the
+  first half is proved.
+  - **(U1a), proved.** `rank-condition-rings-have-weakly-finite-images`: a ring satisfies the rank
+    condition iff it has a nonzero weakly finite image. Killing class-zero or state-null idempotents
+    keeps the rank condition, through an explicit retract, and Zorn gives a maximal such quotient.
+    - On `S_-`: `anti-central-rank-condition-gives-weakly-finite-image`. A state gives a weakly finite
+      quotient `W` with all states faithful on idempotents and `G_3` embedded with `z -> -1`.
+    - Necessity: `anti-central-rank-functions-give-weakly-finite-leavitt-images`.
+  - **(U1b), open.** `anti-central-weakly-finite-images-carry-rank-functions`: such a `W` carries a
+    Sylvester rank function. Route `sylvester-rank-functions-from-weakly-finite-images` gives this
+    claim from (U1a) and (U1b).
+  - **What (U1b) must invent.** `rank-functions-extending-a-state-are-pinned-on-regular-elements`: a state
+    fixes ranks of regular elements, and leaves `N(g - 1) ∈ [0, 2/3]` free for order-three `g`. Every
+    root element of `G_3` has order three, so (U1b) must choose exactly the Jordan-type data the rank
+    gate is about.
+  - **Kill test for (U1b).** Is there a weakly finite `W ⊇ M_4(K)` with faithful states and
+    `u ∈ M_4(W)`, `u^3 = 0`, `L u R = diag(1,1,1,0)`? No rank function survives there. The `1 x 1`
+    analogue collapses in weakly finite rings.
+  - **Universal localization, not pursued.** The first lemma above needs a `K_0`-order embedding into a
+    regular ring. Any rank function already gives a weakly finite null quotient, so the localization would
+    have to see nilpotent data that states cannot.
+  - **A route needing neither U1 nor U2.** The counterexample is equivalent to "no quotient of
+    `F_3[G_3]` with `z = -1` is weakly finite" (`ternary-anti-central-summand-has-no-weakly-finite-image`,
+    route `nonpositive-unit-class-from-no-weakly-finite-image`).
