@@ -205,3 +205,42 @@ automatically, so only strict compressors matter.
     blocks, and none of it proves nonsoficity. In a realized injective model the
     defect lies in `Pi \ sigma(N)`: realizers move `sigma(d)` into the block
     closure of `sigma(N)`, never into `sigma(N)`. **This is where it stops.**
+- **Kazhdan-projection sizes of the kernel: blind at bounded multiplicity (lane
+  `rnorm-kazhdan-projection-sizes`).** Full account in
+  `research/artifacts/rnorm-kazhdan-projection-sizes-2026-09-12.md`.
+  - **General theorem.** `kazhdan-kernel-isotypic-sectors-extend-within-kernel-closure`:
+    over a Kazhdan kernel whose quotient has no finite quotients, in any unitary
+    representation,
+    - the group fixes every finite-dimensional type of `N` (Wang finiteness plus
+      no finite quotients), so it commutes with every isotypic projection;
+    - it acts on `V_rho (x) W_rho` as the closure of `T . rho(N)` tensored with a
+      projective representation `W_rho` of the quotient (Malcev on the compact
+      outer image);
+    - `W_rho` is scalar on every submodule of bounded multiplicity over an abelian
+      commutant.
+  - **The cover.** `bounded-multiplicity-kazhdan-sectors-miss-leavitt-cover-defect`.
+    Block invariance puts the block algebra in the commutant of `sigma(G)`. On the
+    bounded-multiplicity Kazhdan sector `H_b` of `sigma(N)`, `sigma(G)`,
+    `sigma(Gamma_hat)` and every compressed image act inside the strong closure of
+    `T . sigma(N)`. Realizer sets are invariant under kernel conjugation, so
+    - `S_b(eps_t q) = S_b(q)`;
+    - host twists look like the trivial class.
+    This covers size and position of the fixed sector, permutation of isotypic
+    components (trivial) and transport costs at bounded multiplicity. It extends
+    `component-space-sizes-miss-leavitt-cover-defect` from the invariant sector to
+    every finite-dimensional isotype.
+  - **Red-flag check.** Uses (T) of `N` and block invariance, no soficity of `G`.
+    It is an obstruction to a method and says nothing about Thompson's `V`.
+  - **Surviving shape.**
+    - On the weakly mixing part of `sigma|_N` every Kazhdan projection vanishes.
+    - Every other Kazhdan sector has unbounded multiplicity over the block
+      algebra. There `W_rho` is a non-scalar projective representation of `R^x`,
+      and the position of `Gamma_hat` is genuine data: the fixed spaces of
+      `W_rho(EL_alpha(R))` and `W_rho(u^-1 EL_alpha(R) u)` are unitarily
+      conjugate and nested.
+    - Dimension counts are infinite there, so a size must be a conjugation
+      invariant, quantized relative index. An example is a Jones index forced to
+      `1` by an almost-invariance bound below `2`, the analogue of Kun–Thom's
+      integer index.
+    - None is constructed, and `W_rho(R^x)''` has no evident finite trace in a
+      sofic model. **This is where it stops.**
