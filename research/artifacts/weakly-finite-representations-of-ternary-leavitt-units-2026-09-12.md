@@ -106,3 +106,85 @@ If `D_rho = 0`, then `rho` is trivial.
   Theorem 2 covers every target the rank criterion covers, and also any weakly finite algebra with no rank
   function at all.
 - **Contrapositive.** Every nontrivial weakly finite representation of `Γ` has `D_rho != 0`.
+
+## 3. Group form of the target
+
+**Theorem 3.** Let `G = L_(F_3)(1,2)^x`. The following are equivalent:
+- (i) `G` has a nontrivial weakly finite representation over `F_3`;
+- (ii) `G` has an injective weakly finite representation over `F_3`;
+- (iii) `S_-` has a nonzero weakly finite image, i.e. some weakly finite representation sends `z` to `-1`;
+- (iv) some weakly finite representation of `G` over `F_3` has `D_rho != 0`.
+
+*Proof.*
+- **(iii) ⟹ (i).** `rho(z) = -1 != 1`, because `2` is a unit and `W != 0`.
+- **(i) ⟺ (iv).** Theorem 2, and the trivial representation kills `D`.
+- **Normal subgroups.** `PG = G/<z>` is simple (`odd-leavitt-unit-groups-mod-scalars-are-fp-simple`,
+  conditional on the imported criteria recorded there), and `G` is perfect
+  (`leavitt-gl-equals-el-and-perfect-unit-group`). If `N` is normal in `G` and `N` is not in `<z>`, then
+  `N<z> = G`, so `G/N` is a quotient of `<z>`. It is abelian, and perfection gives `N = G`.
+- **(i) ⟹ (ii).** A nontrivial `rho` has `ker rho <= <z>`. The corner embedding `iota(g) = s0 g t0 + s1 t1` is
+  injective with `iota(G) ∩ {±1} = 1` (`leavitt-units-embed-in-their-scalar-quotient`). So `rho∘iota` is
+  injective.
+- **(i) ⟹ (iii).**
+  - `u = rho(iota(z))` is an involution with `u != 1`, since `iota(z)` is not in `<z>`.
+  - `f = 2(1 - u)` satisfies `f^2 = 4(2 - 2u) = 8(1 - u) = f` in characteristic three, and `f != 0`.
+  - `iota(z)` is central in `iota(G)`, so `f` commutes with `rho(iota(G))`.
+  - So `x -> f·rho(iota(x))` is a unital ring homomorphism `F_3[G] -> fWf` with `[z] -> fu = 2(u - 1) = -f`.
+  - Its image is a subring of the weakly finite corner `fWf` containing its unit `f`. It is a nonzero weakly
+    finite quotient of `F_3[G]` in which `[z] = -1`, i.e. of `S_-`. QED
+
+**Corollary 3.2 (three forms of the counterexample).** These are equivalent:
+- `ternary-anti-central-summand-has-no-weakly-finite-image`;
+- `ternary-leavitt-units-have-no-weakly-finite-representation`: every homomorphism from `G` into the unit
+  group of a weakly finite `F_3`-algebra is trivial;
+- `ternary-weakly-finite-representations-kill-two-root-defect`: every such homomorphism kills `D`.
+
+Each refutes Gottschalk on `G` through Corollary 1.2 (stage 1 suffices), without Theorem C of the
+state-upgrade artifact. Through census Theorem A and `rank-condition-rings-have-weakly-finite-images`
+(Theorem C, pending verification), each is also equivalent to the full ternary swap corner.
+
+**Corollary 3.3 (what refutes it).**
+- **Overgroups.** Any group `H` containing `G` with `F_3[H]` stably finite: the inclusion is an injective
+  weakly finite representation. So the target says that no overgroup of `G` has a stably finite ternary
+  group algebra. In particular `G` embeds in no `F_3`-linear sofic group
+  (`linear-sofic-group-algebra-is-stably-finite`).
+- **Rank models.** Any nontrivial characteristic-three rank model of `G`, because subalgebras of faithful
+  rank rings are weakly finite. That is `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`.
+- **Beyond matrices.** A weakly finite algebra need carry no rank function, so the target is stronger in form
+  than "`G` is not `F_3`-linear sofic".
+
+**Corollary 3.4 (defects at every scale).** Let `rho` be nontrivial. The cut representation
+`rho_1 = f·rho∘iota` is anti-central, hence nontrivial, so Theorem 2 gives
+`D_(rho_1) = f·rho(iota(D)) != 0`. Iterating the cut along `iota` gives nested corners, and the transported
+defect is nonzero in each of them.
+
+## 4. Where it stops
+
+- **Stage 1 is the obstacle.** `J_1(S_-) != 0` needs an exact one-sided pair over `S_-`.
+  - The natural lifts of the isometry `s0`, `sigma = [g0] e_- + [g1] e_+` with `e_(±) = 2(1 ± [d])` and
+    `d = iota(z)`, are left zero divisors (`mixed-depth-leavitt-lift-is-a-left-zero-divisor`). So no
+    correction `tau` gives `tau sigma = 1`.
+  - With `tau = e_-[g0^-1] + e_+[g1^-1]`, the defect is `tau sigma = 1 + X`, where `h = g0^-1 g1` and
+    `X = e_-[h]e_+ + e_+[h^-1]e_-`.
+  - Then `X^2 = e_- e_+^h + e_+ e_-^(h^-1)`, where `e_+^h = 2(1 + [h d h^-1])` commutes with `e_-` because both
+    lie in the diagonal sign group.
+  - `e_- e_+^h` is the indicator of the odd measures `mu` with `mu([0]) = 1` and `mu(h[0] \ [0]) = 1`. That set
+    is nonempty, since `h[0]` strictly contains `[0]`. So `X` is not nilpotent.
+- **Firewalls transfer verbatim.** Every anti-central model on main lives in a faithful rank ring, hence in
+  a weakly finite algebra. That covers sofic subgroups containing `z`
+  (`anti-central-sofic-data-cannot-force-defect-submultiplicativity`), locally finite bases with HNN letters,
+  and Fock local letters. So an obstruction using weak finiteness must use relations realized in none of
+  them: multi-letter relations among letters with overlapping supports, or non-level Steinberg commutators.
+- **Through `E⋊V`.** `signed-thompson-z-moving-rank-functions-match-v-rank-functions` proves the
+  rank-function version. Its two steps are group algebra plus simplicity and transitivity of `V`, and they
+  transfer to weakly finite representations. This was checked on paper here; no node depends on it.
+  - **Restriction.** If `V` acts trivially, all `tau_A` with `A` proper map to one unit `c`. Then
+    `tau_[0] = tau_[00] tau_[01]` gives `c = c^2`, so `c = 1` and `z = tau_[0] tau_[1] -> 1`.
+  - **Pullback.** Along `E⋊V <= V` (centralizer of `sigma_0`), with the corner cut in characteristic three.
+  - **Consequence.** An obstruction that uses only `E⋊V` would show that `V` has no nontrivial weakly finite
+    representation over `F_3`, which implies `V` is not sofic.
+- **No construction.** A nonzero weakly finite image of `S_-` would refute the corner. None is known, and
+  every known source is a rank model, which runs into the rank gate.
+- **What remains.** Produce square matrices `A`, `B` over `S_-` with `AB = I` and `BA != I`, from the
+  relations of `G` with `z = -1`. Equivalently, prove `D_rho = 0` in every weakly finite representation using
+  weak finiteness alone.
