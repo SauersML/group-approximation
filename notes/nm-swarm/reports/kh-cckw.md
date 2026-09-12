@@ -109,6 +109,27 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   waits for sec4-sentences' `GGT/SystolicDefs` (amended spec with triangle data sent to the lead 22:25).
 - T3 combinatorial half: link cycles of length 4 ↦ alternating relations (links bipartite by type) → `cosetComplex_linksSixLarge`.
 - T2 simple connectivity (Tits' lemma), T5, T7 and `Kazhdan/GHBSharpExistence.lean` (`sharpExistence_ghb7`) once all leaves exist.
-- 023c61d58 (unverified, probe running): CCKWLinkGirthTyped — `KMSGroup.vertexGroup`, `NoAlternatingRelation`,
+- 023c61d58 (compiled, probe 0911-230528-11856): CCKWLinkGirthTyped — `KMSGroup.vertexGroup`, `NoAlternatingRelation`,
   `LinkGirthAtLeast`, `CCKWLinkGirths`; `linkGirthAtLeast_six_vertex0 h3`, `linkGirthAtLeast_eight_vertex1 h4`,
   `linkGirthAtLeast_eight_vertex2 h4`, `cckwLinkGirths h3 h4` (typed T3 for go-sr1's H-c and kh-hyperbolic's curvature count).
+
+## LANDED (2026-09-12 00:15)
+- CCKWLinkCycles (compiled, probe 0911-234815-79119; bytes d26ed3bf0): generic `TypedPoints X H`; link cycles of length 3–7
+  give alternating relations of length 4/6 (odd lengths impossible); `linkCycles_ghb7`.
+- CCKWCosetComplex (compiled, probe 0911-235831-60061): `Vertex`, `cosetComplex := CCKWTits.titsComplex (GHB 7) vertexGroup`,
+  `cosetPoints`, `cosetComplex_linkCycles`, `cosetAction : GHB 7 →* (cosetComplex.G ≃g cosetComplex.G)`, `tri_cosetAction`,
+  `conj_mem_of_cosetAction_eq` (T1 + T7 core).
+- CCKWCosetComplexLinks (compiled, probe 0912-000319-9226): `cosetComplex_linksLargeAt h3 h4 : Systolic.LinksLargeAt cosetComplex
+  (fun x => if x.1 = 0 then 6 else 8)`, `cosetComplex_linksSixLarge` (typed T3 at complex level, for go-sr1's HC10).
+- CCKWCosetCliques (compiled, probe 0912-001329-67224): `cosetComplex_cliqueFree_four` (T5, types), `cosetAction_eq_of_mem_clique`,
+  `cckwFiniteOrderConjugateIntoVertex_of_invariantCliques (hfix)` (T7 over the invariant-clique leaf).
+
+## REMAINING for hconj
+- `hfix`: from sec4-sentences' T6 `exists_invariant_clique` (Γ := zpowers g, ρ := cosetAction ∘ subtype, hρ := tri_cosetAction),
+  with `cosetComplex.G.Connected` (unowned: from generation of GHB(7) by the vertex groups), T2 `SimplyConnected cosetComplex`
+  (leavitt-ge) and `cosetComplex_linksSixLarge`.
+
+## TRAPS (09-12)
+- `decide +kernel` over `∀ … : Fin 3, … → False` (or an atomic `= …` conclusion) failed to synthesize `Decidable`; the same shape with
+  a `∧`/`∨` conclusion synthesizes. Derive odd-cycle facts from the four-cycle lemma instead.
+- `simp only [smulVertex, mul_smul]` left `⟨x.fst, g • h • x.snd⟩ = ⟨x.fst, g • h • x.snd⟩` open; use `congrArg (Sigma.mk x.1) (mul_smul g h x.2)`.
