@@ -463,7 +463,177 @@ theorem tupEvalAll_awTupAll (r : ℕ) (φ ψ : Fin r → ∀ n : ℕ, singularCo
 
 end SlotwiseAW
 
--- PIECE 2B
+/-! ## 5. Prefix sums over the pairs -/
+
+section Prefix
+
+/-- A `Fin r`-indexed family of naturals, extended by `0` past the arity. -/
+def awFinExt {r : ℕ} (f : Fin r → ℕ) (l : ℕ) : ℕ := if h : l < r then f ⟨l, h⟩ else 0
+
+theorem sum_Iio_eq_sum_range_awFinExt {r : ℕ} (f : Fin r → ℕ) (j : Fin r) :
+    ∑ l ∈ Finset.Iio j, f l = ∑ l ∈ Finset.range j.val, awFinExt f l := by
+  have hmap : (Finset.Iio j).map Fin.valEmbedding = Finset.range j.val := by
+    rw [Fin.map_valEmbedding_Iio, Nat.Iio_eq_range]
+  rw [← hmap, Finset.sum_map]
+  refine Finset.sum_congr rfl fun l _ => ?_
+  show f l = if h : l.val < r then f ⟨l.val, h⟩ else 0
+  rw [dif_pos l.isLt]
+
+theorem sum_range_two_mul (g : ℕ → ℕ) (j : ℕ) :
+    ∑ m ∈ Finset.range (2 * j), g m = ∑ l ∈ Finset.range j, (g (2 * l) + g (2 * l + 1)) := by
+  induction j with
+  | zero => simp
+  | succ j ih =>
+    rw [show 2 * (j + 1) = 2 * j + 1 + 1 by ring, Finset.sum_range_succ, Finset.sum_range_succ, ih,
+      Finset.sum_range_succ, add_assoc]
+
+/-- The Koszul prefix of an even slot is the prefix of the pairs below. -/
+theorem prefix_awSlot_even {r : ℕ} (d : Fin (2 * r) → ℕ) (j : Fin r) :
+    ∑ l ∈ Finset.Iio (awSlot r (j, 0)), d l
+      = ∑ l ∈ Finset.Iio j, (d (awSlot r (l, 0)) + d (awSlot r (l, 1))) := by
+  rw [sum_Iio_eq_sum_range_awFinExt, sum_Iio_eq_sum_range_awFinExt]
+  show ∑ m ∈ Finset.range (2 * j.val + 0), awFinExt d m = _
+  rw [add_zero, sum_range_two_mul]
+  refine Finset.sum_congr rfl fun l hl => ?_
+  have hl' : l < j.val := Finset.mem_range.mp hl
+  have hr : l < r := lt_trans hl' j.isLt
+  simp only [awFinExt, dif_pos hr, dif_pos (show 2 * l < 2 * r by omega),
+    dif_pos (show 2 * l + 1 < 2 * r by omega)]
+  rfl
+
+/-- The Koszul prefix of an odd slot adds the degree of its even partner. -/
+theorem prefix_awSlot_odd {r : ℕ} (d : Fin (2 * r) → ℕ) (j : Fin r) :
+    ∑ l ∈ Finset.Iio (awSlot r (j, 1)), d l
+      = ∑ l ∈ Finset.Iio j, (d (awSlot r (l, 0)) + d (awSlot r (l, 1))) + d (awSlot r (j, 0)) := by
+  rw [← prefix_awSlot_even, sum_Iio_eq_sum_range_awFinExt, sum_Iio_eq_sum_range_awFinExt]
+  show ∑ m ∈ Finset.range (2 * j.val + 1), awFinExt d m
+    = ∑ m ∈ Finset.range (2 * j.val + 0), awFinExt d m + d (awSlot r (j, 0))
+  rw [Finset.sum_range_succ, add_zero]
+  have hr : 2 * j.val < 2 * r := by have := j.isLt; omega
+  congr 1
+  show (if h : 2 * j.val < 2 * r then d ⟨2 * j.val, h⟩ else 0) = d (awSlot r (j, 0))
+  rw [dif_pos hr]
+  rfl
+
+end Prefix
+
+/-! ## 6. The chain-map law -/
+
+section ChainMap
+
+variable (K : Type) [CommRing K] (X : TopCat.{0})
+
+/-- **Linearity of the evaluation in one slot**, from a pointwise identity of slot values. -/
+theorem tupEvalAll_update_eq_add_smul {r : ℕ} (χ : Fin r → ∀ n : ℕ, singularCochainGroup K X n)
+    (j : Fin r) (A B C : ∀ n : ℕ, singularCochainGroup K X n) (c : K)
+    (h : ∀ τ, tagEvalG K A τ = tagEvalG K B τ + c * tagEvalG K C τ) (x : tupAllMod K X r) :
+    tupEvalAll K X r (Function.update χ j A) x
+      = tupEvalAll K X r (Function.update χ j B) x + c * tupEvalAll K X r (Function.update χ j C) x := by
+  induction x using Finsupp.induction_linear with
+  | zero => simp only [map_zero, mul_zero, add_zero]
+  | add x y hx hy =>
+    rw [map_add, map_add, map_add, hx, hy]
+    ring
+  | single t a =>
+    rw [← Finsupp.smul_single_one, map_smul, map_smul, map_smul, smul_eq_mul, smul_eq_mul,
+      smul_eq_mul, tupEvalAll_single, tupEvalAll_single, tupEvalAll_single]
+    have split : ∀ D : ∀ n : ℕ, singularCochainGroup K X n,
+        ∏ l, tagEvalG K (Function.update χ j D l) (t l)
+          = tagEvalG K D (t j) * ∏ l ∈ Finset.univ.erase j, tagEvalG K (χ l) (t l) := fun D =>
+      oddPEval_prod_split (fun l => tagEvalG K (Function.update χ j D l) (t l))
+        (fun l => tagEvalG K (χ l) (t l)) j (tagEvalG K D (t j))
+        (congrArg (fun ψ => tagEvalG K ψ (t j)) (Function.update_self j _ χ))
+        (fun l hl => congrArg (fun ψ => tagEvalG K ψ (t l)) (Function.update_of_ne hl _ χ))
+    rw [split A, split B, split C, h]
+    ring
+
+variable {K X}
+
+theorem tagEvalG_gCupFun_gSign_of_homog (φ ψ : ∀ n : ℕ, singularCochainGroup K X n) {a : ℕ}
+    (hφ : ∀ m, m ≠ a → φ m = 0) (τ : TagSimp X) :
+    tagEvalG K (gCupFun K (gSign K φ) ψ) τ = (-1 : K) ^ a * tagEvalG K (gCupFun K φ ψ) τ := by
+  rw [tagEvalG_gCupFun_range, tagEvalG_gCupFun_range, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun m _ => ?_
+  rw [tagEvalG_gSign, ← mul_assoc]
+  by_cases hm : (TopPow.awFront τ m).1 = a
+  · rw [hm]
+  · rw [tagEvalG_of_eq_zero K φ _ (hφ _ hm)]
+    simp only [mul_zero, zero_mul]
+
+/-- **Leibniz at a simplex, for a homogeneous left factor.** -/
+theorem tagEvalG_gCoboundary_gCupFun_of_homog (φ ψ : ∀ n : ℕ, singularCochainGroup K X n) {a : ℕ}
+    (hφ : ∀ m, m ≠ a → φ m = 0) (τ : TagSimp X) :
+    tagEvalG K (gCoboundary K X (gCupFun K φ ψ)) τ
+      = tagEvalG K (gCupFun K (gCoboundary K X φ) ψ) τ
+        + (-1 : K) ^ a * tagEvalG K (gCupFun K φ (gCoboundary K X ψ)) τ := by
+  rw [tagEvalG_gCoboundary_gCupFun, tagEvalG_gCupFun_gSign_of_homog φ _ hφ]
+
+theorem gCupFun_update_even {r : ℕ} (Φ : Fin (2 * r) → ∀ n : ℕ, singularCochainGroup K X n)
+    (j : Fin r) (A : ∀ n : ℕ, singularCochainGroup K X n) :
+    (fun j' => gCupFun K (Function.update Φ (awSlot r (j, 0)) A (awSlot r (j', 0)))
+        (Function.update Φ (awSlot r (j, 0)) A (awSlot r (j', 1))))
+      = Function.update (fun j' => gCupFun K (Φ (awSlot r (j', 0))) (Φ (awSlot r (j', 1)))) j
+          (gCupFun K A (Φ (awSlot r (j, 1)))) := by
+  funext j'
+  by_cases hj : j' = j
+  · subst hj
+    have h10 : awSlot r (j', 1) ≠ awSlot r (j', 0) := fun h =>
+      absurd (congrArg Prod.snd ((awSlot r).injective h)) (by decide)
+    rw [Function.update_self, Function.update_of_ne h10, Function.update_self]
+  · have h0 : awSlot r (j', 0) ≠ awSlot r (j, 0) := fun h =>
+      hj (congrArg Prod.fst ((awSlot r).injective h))
+    have h1 : awSlot r (j', 1) ≠ awSlot r (j, 0) := fun h =>
+      hj (congrArg Prod.fst ((awSlot r).injective h))
+    rw [Function.update_of_ne hj, Function.update_of_ne h0, Function.update_of_ne h1]
+
+theorem gCupFun_update_odd {r : ℕ} (Φ : Fin (2 * r) → ∀ n : ℕ, singularCochainGroup K X n)
+    (j : Fin r) (A : ∀ n : ℕ, singularCochainGroup K X n) :
+    (fun j' => gCupFun K (Function.update Φ (awSlot r (j, 1)) A (awSlot r (j', 0)))
+        (Function.update Φ (awSlot r (j, 1)) A (awSlot r (j', 1))))
+      = Function.update (fun j' => gCupFun K (Φ (awSlot r (j', 0))) (Φ (awSlot r (j', 1)))) j
+          (gCupFun K (Φ (awSlot r (j, 0))) A) := by
+  funext j'
+  by_cases hj : j' = j
+  · subst hj
+    have h01 : awSlot r (j', 0) ≠ awSlot r (j', 1) := fun h =>
+      absurd (congrArg Prod.snd ((awSlot r).injective h)) (by decide)
+    rw [Function.update_of_ne h01, Function.update_self, Function.update_self]
+  · have h0 : awSlot r (j', 0) ≠ awSlot r (j, 1) := fun h =>
+      hj (congrArg Prod.fst ((awSlot r).injective h))
+    have h1 : awSlot r (j', 1) ≠ awSlot r (j, 1) := fun h =>
+      hj (congrArg Prod.fst ((awSlot r).injective h))
+    rw [Function.update_of_ne hj, Function.update_of_ne h0, Function.update_of_ne h1]
+
+variable (K X)
+
+/-- Evaluation on the image, for an arbitrary functional on `2r` slots. -/
+theorem tupEvalAll_awTupAll' {r : ℕ} (Ψ : Fin (2 * r) → ∀ n : ℕ, singularCochainGroup K X n)
+    (y : tupAllMod K X r) :
+    tupEvalAll K X (2 * r) Ψ (awTupAll K X r y)
+      = tupEvalAll K X r (fun j => gCupFun K (Ψ (awSlot r (j, 0))) (Ψ (awSlot r (j, 1)))) y := by
+  have h := tupEvalAll_awTupAll K X r (fun j => Ψ (awSlot r (j, 0))) (fun j => Ψ (awSlot r (j, 1))) y
+  rw [tupInterleave_eta] at h
+  exact h
+
+/-- **The slotwise Alexander–Whitney map is a chain map.** -/
+theorem tupDAll_awTupAll (r : ℕ) (x : tupAllMod K X r) :
+    tupDAll K X (2 * r) (awTupAll K X r x) = awTupAll K X r (tupDAll K X r x) := by
+  refine tupAllMod_eq_of_eval K fun d Φ hΦ => ?_
+  have hχ : IsHomogFun K (fun j => gCupFun K (Φ (awSlot r (j, 0))) (Φ (awSlot r (j, 1))))
+      (fun j => d (awSlot r (j, 0)) + d (awSlot r (j, 1))) :=
+    fun j n hn => gCupFun_of_ne K _ _ (hΦ _) (hΦ _) hn
+  rw [tupEvalAll_tupDAll K Φ d hΦ, tupEvalAll_awTupAll' K X Φ (tupDAll K X r x),
+    tupEvalAll_tupDAll K _ _ hχ, sum_awSlot]
+  refine Finset.sum_congr rfl fun j _ => ?_
+  rw [tupEvalAll_awTupAll', tupEvalAll_awTupAll', gCupFun_update_even, gCupFun_update_odd,
+    prefix_awSlot_even, prefix_awSlot_odd,
+    tupEvalAll_update_eq_add_smul K X _ j _ _ _ ((-1 : K) ^ d (awSlot r (j, 0)))
+      (tagEvalG_gCoboundary_gCupFun_of_homog (Φ (awSlot r (j, 0))) (Φ (awSlot r (j, 1))) (hΦ _))]
+  ring
+
+end ChainMap
+
+-- PIECE 3
 
 end
 
