@@ -46,10 +46,13 @@ such `Γ` and every `r`:
 - **From the finiteness form.** `sp21-lattice-few-alternating-and-large-rank-quotients`
   implies this claim. No route is recorded, because that claim already feeds the
   same target directly.
-- **(T) and hyperbolicity alone.** They do not bound alternating quotients
-  (`caprace-kassabov-hyperbolic-kazhdan-alternating-quotients`). The known
-  examples have torsion, so separation for torsion-free groups is not decided by
-  them.
+- **(T), hyperbolicity and torsion-freeness alone.** They do not bound alternating
+  quotients (`caprace-kassabov-hyperbolic-kazhdan-alternating-quotients`), and
+  they do not give separation either.
+  `tf-kazhdan-hyperbolic-alternating-kernels-not-separating` produces a
+  torsion-free hyperbolic Kazhdan group with infinitely many alternating quotients
+  whose kernels all contain one infinite normal subgroup. So any proof of this
+  claim has to use arithmeticity of the lattice.
 - **Random relators.** `random-relators-kill-small-simple-quotients-of-kazhdan-groups`
   kills every alternating quotient of order at most `λ^(-L)` that contains `k`
   random relators of length `L`. The alternating quotients that survive a random
