@@ -9,6 +9,7 @@ requires:
   - leavitt-evaluation-kernel-unitization-directly-finite
   - leavitt-inverse-defects-are-visible-or-invisible
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
 ---
 
@@ -24,3 +25,5 @@ the pair lies either over `(s_0, t_0)` or over `(1, 1)`.
   excluded by the second.
 
 So no such pair exists.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): exhaustiveness comes from the established normal forms, so the route is valid. See Section 5 of the linear-family verification artifact.*

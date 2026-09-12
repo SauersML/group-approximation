@@ -7,6 +7,7 @@ target: leavitt-algebra-has-no-unital-rank-model
 requires:
   - binary-leavitt-algebra-not-directly-finite
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md
 ---
 
@@ -34,3 +35,5 @@ Section 1 of the artifact.
    stay nonzero because each `phi_k(a)` has rank bounded away from `0`). Steps
    1--3 then apply. The argument is characteristic free, so it holds over every
    field `F`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 6 of the linear-family verification artifact.* Scope remark: the Steinberg relations force approximate additivity and multiplicativity of `phi`, but not `phi(1) = 1`. The no-go survives anyway. `p = phi(1)` is idempotent, `phi : R -> pMp` is unital, and corners of rank ultraproducts are directly finite, since `rk(1 - ab) = rk(1 - p) + rk(p - ab)`. So every nonzero elementary-matrix model is excluded. Also read "any field" as ring homomorphisms: `R` has characteristic two.

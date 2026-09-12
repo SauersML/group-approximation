@@ -119,3 +119,62 @@ Item checked: node `left-invertible-lift-of-s0-in-leavitt-group-algebra`.
 - **UNSAT verdicts.** The node correctly records them as solver outputs without proof logs,
   excluding only the searched support pairs.
 - No overstatement found.
+
+## 5. Routes into the binary direct-finiteness roots: PASS
+
+Items checked: `leavitt-direct-finiteness-from-both-lifting-problems-failing`,
+`leavitt-direct-finiteness-from-f2-linear-soficity` and
+`kaplansky-failure-from-invisible-kernel-defect`.
+
+- **Both lifting problems failing.** The established normal-form claim
+  `leavitt-inverse-defects-are-visible-or-invisible` says every one-sided pair of `F_2[R^x]` has a
+  group-element translate over `(s0, t0)` or over `(1, 1)`. A pair over `(s0, t0)` gives a
+  left-invertible lift of `s0`, and a pair over `(1, 1)` lies in `F_2 1 + ker pi`. So the two negated
+  prerequisites exclude every pair, and the route is valid.
+- **Linear soficity.** Linear soficity over `F_2` gives stable finiteness at every size, and at
+  `n = 1` that is direct finiteness. The route is valid.
+- **Invisible defect.** `F_2 1 + ker pi` is a unital subring with the same identity, so a one-sided
+  pair there is one in `F_2[R^x]`. The route is valid.
+
+## 6. No unital rank model of the Leavitt algebra (973727ddf): PASS, with one scope remark
+
+Items checked: `leavitt-algebra-has-no-unital-rank-model` and its proof route.
+
+- **The rank ultraproduct is directly finite.** For square matrices over a field, `v -> bv` maps
+  `ker(1 - ab)` injectively into `ker(1 - ba)`: if `v = abv` then `(1 - ba)bv = 0`, and `bv = 0`
+  forces `v = abv = 0`. By symmetry the nullities agree, so the ranks agree, and `ab = 1` implies
+  `ba = 1` modulo rank-null sequences. The same computation shows that every corner `pMp`, with `p`
+  idempotent, is directly finite:
+  `rk(1 - ab) = rk(1 - p) + rk(p - ab)` for `a, b` in `pMp`.
+- **Injectivity and contradiction.** `R` is simple, so a nonzero homomorphism is injective, and
+  `t0 s0 = 1 != s0 t0` gives the contradiction.
+- **Scope remark on the consequence paragraph.** The Steinberg relations
+  `e_ij(a) e_ij(b) = e_ij(a + b)` and `[e_12(a), e_23(b)] = e_13(ab)` force approximate additivity
+  and multiplicativity of `phi`. They do not force `phi(1) = 1`. The conclusion survives without
+  unitality:
+  - `p = phi(1)` is an idempotent of `M`, and `phi` is a unital homomorphism `R -> pMp`;
+  - that corner is directly finite, and `phi != 0` makes `phi` injective;
+  - so the elementary-matrix construction is dead for every nonzero, possibly non-unital, `phi`.
+  The node's conclusion stands.
+- **Wording.** "Over any field `F`" should be read for ring homomorphisms. `R` has characteristic
+  two, so a unital homomorphism into a nonzero algebra forces characteristic two. The claim is
+  vacuously true in other characteristics, and nothing depends on the wording.
+
+## 7. Torsion-free host constraints (de231f8c9): PASS
+
+Items checked:
+- `leavitt-tower-does-not-embed-in-torsion-free-hosts`;
+- `invariant-output-injective-ca-need-torsion`;
+- `torsion-free-scalar-df-failure-gives-exotic-idempotents`, with their proof routes.
+
+- **Involution.** `(1 + s0 t1)^2 = 1 + 2 s0 t1 + s0 (t1 s0) t1 = 1` over `F_2`, and `s0 t1 != 0`.
+  Every member of the tower `V <= R^x <= A^x` contains an element of order two. `V` contains the
+  finite symmetric groups.
+- **Invariant output forces a finite symmetry group.**
+  - `F(x)(gH) = tau(x)(g)` is well defined by invariance and continuous.
+  - It is equivariant for the left action: `F(gamma x)(gH) = tau(x)(gamma^-1 g) = (gamma F(x))(gH)`.
+  - The established constancy lemma for coset shifts with infinite stabilizers makes `F` constant
+    when `H` is infinite. That contradicts injectivity when `|A| >= 2`.
+- **Exotic idempotents.** `e = alpha beta` satisfies `e^2 = alpha (beta alpha) beta = e` and
+  `e != 1`. It is also nonzero, because `beta e alpha = 1`. So a scalar one-sided pair in `k[G]`
+  exhibits a nontrivial idempotent and zero divisors.

@@ -7,6 +7,7 @@ target: leavitt-unit-group-algebra-not-directly-finite
 requires:
   - leavitt-evaluation-kernel-unitization-not-directly-finite
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
   - research/artifacts/leavitt-kaplansky-pair-dichotomy-2026-09-12.md
 ---
@@ -25,3 +26,5 @@ group-element translate of a witness to one of their prerequisites.
 
 The gk-kdf-lift lane landed an identical route. It was merged into this one on
 2026-09-12.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): `F_2 1 + ker pi` is a unital subring with the same identity. See Section 5 of the linear-family verification artifact.*
