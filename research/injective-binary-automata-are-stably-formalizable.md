@@ -38,5 +38,16 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   track shear, flip the data with a linear track shear, then uncompute. The uncompute leaves the
   residue `m_i(x + m(x)) - m_i(x)`. Markers are exclusive functionally, but `F_2[X]` is a domain,
   so `m_i m_(i+k)` is never zero formally, and the residue must be cancelled by other terms.
-- **Where it stops.** No ancilla construction is known for any one-track non-affine automaton on a
-  bi-orderable group, and no invariant is known that survives cancellation between components.
+- **Regrouping decides the test case, but only after regrouping.** Along `4Z` the marker involution
+  is the word `S_3 S_2 S_1 S_0` of track shears, one per residue class, with a formal inverse
+  (`marker-involution-is-formalizable-after-regrouping`). That is a stabilization with the same
+  Kaplansky payoff, but hosts without proper finite-index subgroups do not have it.
+- **One ancilla, `Z`-equivariant word.** With `A : y += m(x)` and `B : x += y` applied in the order
+  `A, B, A, B`, the output is `(x + m(x + y + m(x)), y + m(x) + m(x + y + m(x)))`. This is
+  `tau x id` only when `y` does not disturb markers. The missing ingredient is a translation-invariant
+  way to keep the controls fixed while the targets in the same track flip.
+- **Parity is dead as an invariant.** Over `Z/2` with two tracks, a controlled square-zero affine map
+  is a formal involution inducing an odd permutation (artifact, Section 6.5).
+- **Where it stops.** No `Z`-equivariant ancilla construction is known for the marker involution, and
+  no invariant is known that survives cancellation between components. The candidate invariant is
+  the higher `I`-adic layers of gk-fz-obstruction's cokernel class.

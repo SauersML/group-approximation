@@ -245,3 +245,45 @@ alphabets have left-inverse automata, by compactness.
   preserves `X_0` formally. Changing representatives feeds the defect through `J_sigma(tau)`
   applied to ideal elements, an equivariant finite-memory solvability problem inside the ideal
   `(X_h^2 - X_h)`. No argument is known on any group with nontrivial memory.
+
+**Update (13:55).** Over bi-orderable groups a formalizable one-track binary pair is a shift plus a
+constant (`binary-left-inverse-pairs-need-not-be-formalizable`, gk-fz-bennett). So the claim above
+is false, and the live target is `injective-binary-automata-are-stably-formalizable` (identity
+ancilla tracks).
+
+### 6.5 The marker involution: regrouping, ancillas, specializations
+
+Let `tau(x)_i = x_i + m_i(x)` with `m_i(x) = [x_(i-3..i+3) = 001*100]`. It is an involution:
+markers within distance 3 exclude each other, so flipping any subset of the marker set changes no
+marker.
+
+**Regrouping along `4Z` formalizes it.**
+- Let `S_r` flip the cells `4k+r` at markers.
+- `m_i` reads offsets `±1, ±2, ±3`, none congruent to 0 mod 4, so each `S_r` reads only other tracks
+  of the regrouped configuration. It is a track shear and a formal involution.
+- Since subset flips preserve markers, `S_3 S_2 S_1 S_0 = tau`, and the reversed word is a formal
+  inverse (`marker-involution-is-formalizable-after-regrouping`).
+- Consequences:
+  - Formalizability is not invariant under regrouping.
+  - Regrouping along a finite-index subgroup is a stabilization that keeps the Kaplansky payoff,
+    because stable finiteness passes to finite-index subgroups.
+  - The target hosts are finitely generated simple groups, which have no proper finite-index
+    subgroups, so there only ancillas are available.
+
+**One ancilla with `Z`-equivariance: where the obvious word stops.**
+- Let `A : y -> y + m(x)` and `B : x -> x + y`, both track shears. Applying `A`, `B`, `A`, `B` in
+  that order gives `(x + m(x + y + m(x)), y + m(x) + m(x + y + m(x)))`.
+- This is `tau x id` exactly when `m(x + y + m(x)) = m(x)`, for instance at `y = 0`, but not for
+  every `y`. The dirty-ancilla trick needs the controls unchanged while the targets change.
+- In one track with translation symmetry, controls and targets are the same cells. Regrouping
+  separates them by residue, and no `Z`-equivariant separation is known.
+
+**Specializations give no invariant.**
+- Substituting `Y = 0` turns a formal automorphism realizing `tau x id` into a two-output formal
+  identity `nu_1(mu_1(X,0), mu_2(X,0)) = X`, where the extreme variable can cancel.
+- Diagonal (constant) specialization gives the identity on `F_2^2`.
+- Periodic specialization gives finite-group equivariant automorphisms. Those are flexible: over
+  `Z/2` with two tracks, the controlled affine map `a -> (I + cM) a + c v` with `c = b_0 b_1`,
+  `M = [[1,1],[1,1]]`, `v = (1,1)` is a formal involution inducing an odd permutation.
+- A negative answer needs an invariant that sees translation symmetry with simultaneous updates.
+  gk-fz-obstruction's higher `I`-adic layers are the candidate.
