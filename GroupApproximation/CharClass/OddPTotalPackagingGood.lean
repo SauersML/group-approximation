@@ -137,9 +137,9 @@ def good (X : TopCat.{0}) : Subring (Gen.evenPart (ZMod p) X) where
   carrier := {x | R.IsGood X (x : TotalHOf (ZMod p) X)}
   mul_mem' {a b} ha hb := R.isGood_mul X a.2 b.2 ha hb
   one_mem' := R.isGood_one X
-  add_mem' {a b} ha hb := R.isGood_add X ha hb
+  add_mem' ha hb := R.isGood_add X ha hb
   zero_mem' := R.isGood_zero X
-  neg_mem' {x} hx := R.isGood_neg X hx
+  neg_mem' hx := R.isGood_neg X hx
 
 theorem mem_good {X : TopCat.{0}} {x : Gen.evenPart (ZMod p) X} :
     x ∈ R.good X ↔ R.IsGood X (x : TotalHOf (ZMod p) X) :=
@@ -193,9 +193,9 @@ theorem totalPtot_mul (X : TopCat.{0}) {x y : TotalHOf (ZMod p) X} (hx : TotalHO
     · rw [if_pos (by omega : (a + b) % 2 = 0), if_pos ha, if_pos hb]
       exact R.ptot_mul X (Nat.even_iff.mpr ha) (Nat.even_iff.mpr hb) _ _
     · have hyb : y b = 0 := hy b (Nat.odd_iff.mpr (by omega))
-      simp only [hyb, cup_zero, map_zero, ite_self, if_neg hb, mul_zero]
+      simp only [hyb, cup_zero, map_zero, ite_self, mul_zero]
   · have hxa : x a = 0 := hx a (Nat.odd_iff.mpr (by omega))
-    simp only [hxa, zero_cup, map_zero, ite_self, if_neg ha, zero_mul]
+    simp only [hxa, zero_cup, map_zero, ite_self, zero_mul]
 
 /-- **The total power, as a ring endomorphism of the even part.** -/
 def Ptot (X : TopCat.{0}) : Gen.evenPart (ZMod p) X →+* Gen.evenPart (ZMod p) X where
@@ -221,7 +221,7 @@ theorem totalPtot_map {X Y : TopCat.{0}} (f : X ⟶ Y) (x : TotalHOf (ZMod p) Y)
     by_cases hd : d % 2 = 0
     · rw [if_pos hd, if_pos hd, R.ptotOf_natural]
     · rw [if_neg hd, if_neg hd, map_zero]
-  | add x y hx hy => rw [map_add, map_add, hx, hy, map_add]
+  | add x y hx hy => rw [map_add, map_add, hx, hy, ← map_add]
 
 end TotalReducedPowers
 

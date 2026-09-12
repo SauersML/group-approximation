@@ -39,7 +39,7 @@ theorem totalP_map {X Y : TopCat.{0}} (f : X ⟶ Y) (i : ℕ) (x : TotalHOf (ZMo
     by_cases h : d % 2 = 0 ∧ 2 * i ≤ d
     · rw [if_pos h, if_pos h, R.ptotOf_natural, projDeg_map, map_smul']
     · rw [if_neg h, if_neg h, map_zero]
-  | add x y hx hy => rw [map_add, map_add, hx, hy, map_add]
+  | add x y hx hy => rw [map_add, map_add, hx, hy, ← map_add]
 
 /-- Reindexing a class `[D_j]` along an equality of indices, inside the ring. -/
 theorem of_D_congr (X : TopCat.{0}) (q : ℕ) {j j' : ℕ} (h : j = j') (x : Hmod (ZMod p) X q) :
