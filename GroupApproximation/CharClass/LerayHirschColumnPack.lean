@@ -32,41 +32,41 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X P : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P : TopCat.{0}}
 
 /-- **The free-module statement**, as plain tuples with the vanishing side
-condition.  Stated in the producer's vocabulary so that nothing on their side needs
-`lhDomain`. -/
-def HasFreeTuple (π : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) : Prop :=
+condition, over any coefficient ring.  Stated in the producer's vocabulary so that nothing
+on their side needs `lhDomainOf`. -/
+def HasFreeTuple (π : P ⟶ X) (ξ : Hmod K P 2) (r : ℕ) : Prop :=
   ∀ n : ℕ,
-    (∀ z : Hmod2 P n, ∃ a : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ)),
+    (∀ z : Hmod K P n, ∃ a : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ)),
         (∀ i : Fin r, n < 2 * (i : ℕ) → a i = 0)
           ∧ z = ∑ i : Fin r, lhTerm π ξ n (i : ℕ) (a i))
-    ∧ (∀ a : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ)),
+    ∧ (∀ a : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ)),
         (∀ i : Fin r, n < 2 * (i : ℕ) → a i = 0) →
         (∑ i : Fin r, lhTerm π ξ n (i : ℕ) (a i)) = 0 → ∀ i : Fin r, a i = 0)
 
 /-- **The column shape.**  `lhDomain` is the subgroup the side condition cuts out and
 `lhSum` is the sum, so this is a repackaging. -/
-theorem bijective_lhSum_of_freeTuple (π : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ)
+theorem bijective_lhSum_of_freeTuple (π : P ⟶ X) (ξ : Hmod K P 2) (r : ℕ)
     (h : HasFreeTuple π ξ r) (n : ℕ) : Function.Bijective (lhSum π ξ r n) := by
   constructor
   · intro c c' hcc
     have hzero : lhSum π ξ r n (c - c') = 0 := by
       rw [map_sub, hcc, sub_self]
     have hmem : ∀ i : Fin r, n < 2 * (i : ℕ) →
-        ((c - c' : lhDomain X r n) : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i = 0 := by
+        ((c - c' : lhDomainOf K X r n) : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i = 0 := by
       intro i hi
-      show (c : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i
-          - (c' : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i = 0
+      show (c : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i
+          - (c' : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i = 0
       rw [c.2 i hi, c'.2 i hi, sub_self]
     have hall := (h n).2 _ hmem (by rw [← lhSum_apply]; exact hzero)
     refine Subtype.ext (funext fun i => ?_)
     have hi := hall i
-    show (c : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i
-        = (c' : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i
-    have : (c : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i
-        - (c' : (j : Fin r) → Hmod2 X (n - 2 * (j : ℕ))) i = 0 := hi
+    show (c : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i
+        = (c' : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i
+    have : (c : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i
+        - (c' : (j : Fin r) → Hmod K X (n - 2 * (j : ℕ))) i = 0 := hi
     exact sub_eq_zero.mp this
   · intro z
     obtain ⟨a, ha0, haz⟩ := (h n).1 z

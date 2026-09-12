@@ -38,7 +38,7 @@ noncomputable section
 
 /-- **The floor, discharged** against `cc-cohom-api`'s `lhLow_general`. -/
 theorem hasLowSurj_cpProd (U : Type) [TopologicalSpace U] (d : ℕ) :
-    HasLowSurj (KnCP.cpFst U d) :=
+    HasLowSurj (K := ZMod 2) (KnCP.cpFst U d) :=
   fun n hn => (KnCP.lhLow_general U d n hn).2
 
 /-- **Every class on `U × ℂP^d` is a column**, unconditionally: the spanning half of

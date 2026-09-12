@@ -37,7 +37,7 @@ theorem hasPeel_cpProd (U : Type) [TopologicalSpace U] (d : ℕ) (hd : 1 ≤ d) 
 
 /-- **Every class on `U × ℂP^d` is a column**, over the floor alone. -/
 theorem exists_col_cpProd (U : Type) [TopologicalSpace U] (d : ℕ) (hd : 1 ≤ d)
-    (hlow : HasLowSurj (KnCP.cpFst U d)) (n : ℕ)
+    (hlow : HasLowSurj (K := ZMod 2) (KnCP.cpFst U d)) (n : ℕ)
     (z : Hmod2 (TopCat.of (U × CP d)) n) :
     ∃ c : (i : ℕ) → Hmod2 (TopCat.of U) (n - 2 * i),
       z = ∑ i ∈ Finset.range (n + 1),

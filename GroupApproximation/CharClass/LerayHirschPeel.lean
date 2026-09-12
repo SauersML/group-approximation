@@ -35,20 +35,20 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X P : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P : TopCat.{0}}
 
 /-- The projective-factor Künneth in peeling form. -/
-def HasPeel (π : P ⟶ X) (ξ : Hmod2 P 2) : Prop :=
-  ∀ (m : ℕ) (z : Hmod2 P (2 + m)),
-    ∃ (a : Hmod2 X (2 + m)) (y : Hmod2 P m), z = pull π (2 + m) a + cup ξ y
+def HasPeel (π : P ⟶ X) (ξ : Hmod K P 2) : Prop :=
+  ∀ (m : ℕ) (z : Hmod K P (2 + m)),
+    ∃ (a : Hmod K X (2 + m)) (y : Hmod K P m), z = pull π (2 + m) a + cup ξ y
 
 /-- The floor: below degree two the pullback is already onto. -/
 def HasLowSurj (π : P ⟶ X) : Prop :=
-  ∀ n : ℕ, n < 2 → Function.Surjective (pull (K := ZMod 2) π n)
+  ∀ n : ℕ, n < 2 → Function.Surjective (pull (K := K) π n)
 
 /-- Cupping with the class and transporting the degree pass through a sum. -/
-theorem cohCast_cup_sum (ξ : Hmod2 P 2) (m : ℕ) (s : Finset ℕ)
-    (f : ℕ → Hmod2 P m) :
+theorem cohCast_cup_sum (ξ : Hmod K P 2) (m : ℕ) (s : Finset ℕ)
+    (f : ℕ → Hmod K P m) :
     cohCast (Nat.add_comm 2 m) (cup ξ (∑ i ∈ s, f i))
       = ∑ i ∈ s, cohCast (Nat.add_comm 2 m) (cup ξ (f i)) := by
   classical
@@ -59,13 +59,13 @@ theorem cohCast_cup_sum (ξ : Hmod2 P 2) (m : ℕ) (s : Finset ℕ)
 
 /-- **Every class is a column.**  The spanning half of Leray–Hirsch at general
 rank, over the two inputs. -/
-theorem exists_col (π : P ⟶ X) (ξ : Hmod2 P 2)
-    (hlow : HasLowSurj π) (hpeel : HasPeel π ξ) :
-    ∀ (n : ℕ) (z : Hmod2 P n),
-      ∃ c : (i : ℕ) → Hmod2 X (n - 2 * i),
+theorem exists_col (π : P ⟶ X) (ξ : Hmod K P 2)
+    (hlow : HasLowSurj (K := K) π) (hpeel : HasPeel π ξ) :
+    ∀ (n : ℕ) (z : Hmod K P n),
+      ∃ c : (i : ℕ) → Hmod K X (n - 2 * i),
         z = ∑ i ∈ Finset.range (n + 1), lhTerm π ξ n i (c i) := by
-  have low : ∀ (n : ℕ), n < 2 → ∀ z : Hmod2 P n,
-      ∃ c : (i : ℕ) → Hmod2 X (n - 2 * i),
+  have low : ∀ (n : ℕ), n < 2 → ∀ z : Hmod K P n,
+      ∃ c : (i : ℕ) → Hmod K X (n - 2 * i),
         z = ∑ i ∈ Finset.range (n + 1), lhTerm π ξ n i (c i) := by
     intro n hn z
     obtain ⟨a, ha⟩ := hlow n hn z
@@ -79,9 +79,9 @@ theorem exists_col (π : P ⟶ X) (ξ : Hmod2 P 2)
         lhTerm_of_gt π ξ (by omega : ¬ 2 * 1 ≤ 1), add_zero]
       exact ha.symm
   have key : ∀ n : ℕ,
-      (∀ z : Hmod2 P n, ∃ c : (i : ℕ) → Hmod2 X (n - 2 * i),
+      (∀ z : Hmod K P n, ∃ c : (i : ℕ) → Hmod K X (n - 2 * i),
         z = ∑ i ∈ Finset.range (n + 1), lhTerm π ξ n i (c i))
-      ∧ (∀ z : Hmod2 P (n + 1), ∃ c : (i : ℕ) → Hmod2 X (n + 1 - 2 * i),
+      ∧ (∀ z : Hmod K P (n + 1), ∃ c : (i : ℕ) → Hmod K X (n + 1 - 2 * i),
         z = ∑ i ∈ Finset.range (n + 1 + 1), lhTerm π ξ (n + 1) i (c i)) := by
     intro n
     induction n with
