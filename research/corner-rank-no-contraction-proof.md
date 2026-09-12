@@ -40,3 +40,5 @@ a prerequisite of the three parts proved here. It does not refute the branch-ran
 which that calibration satisfies; the claim now says so.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 16.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS for parts 1–3. Part 1 was derived directly as n_13 − XY = −(1+X)YX V'^-1; part 4 of the displacement claim covers single idempotents. Precision remark on the claim's consequence paragraph: the cited calibration satisfies Σ_γ rk P_γ = 2^(1−k)/9 <= 1, so it refutes orthogonality of the root branch defects a_γ, b_γ, not the displayed branch-rank inequality.*
+
+*Second derivation by `gk-vf-linear` (2026-09-12), Section 56 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: parts 1–3 PASS. Extension: `delta_gamma = delta_gamma'` for all nonempty words of any lengths, via the unit `w = s_gamma' t_gamma + Z' Z*` (`Z*Z = 1`, `ZZ* = 1 - e_gamma`). So `delta(k) = delta(1)` for every `k >= 1`.*

@@ -36,3 +36,5 @@ be linear sofic. Route: `two-root-identity-via-level-contraction`.
   `corner-rank-data-cannot-contract-the-two-root-deviation` gives `rho(e_gamma) = rho` at every
   level, because `R ~= R^2`. That is constancy of the single-root data only; the rank of a product of
   two defects is not determined by their individual ranks.
+
+*Correction by `gk-vf-linear` (2026-09-12), Section 56 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the first Attempts bullet is false for nonempty words. `w = s_gamma' t_gamma + Z' Z*` is a unit with `w e_gamma w^-1 = e_gamma'` for any nonempty `gamma`, `gamma'`, so `delta(k) = delta(1)` for `k >= 1`. This claim reduces to `delta(1) = delta(0)`, and it follows from `leavitt-corner-deviations-vanish-along-levels`.*

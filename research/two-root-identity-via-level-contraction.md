@@ -40,3 +40,5 @@ corner data: additivity of branch ranks is refuted, and the root displacements a
 across levels.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 16.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid and conditional; both prerequisites are OPEN. Notation: rk(n_23(e_0)n_12(e_0)) is delta(1). delta(0) is the unit pair itself, so delta(0) = 0 is N_23N_12 = 0 directly.*
+
+*Correction by `gk-vf-linear` (2026-09-12), Section 56 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. Since `delta(k) = delta(1)` for `k >= 1`, corner locality makes `leavitt-corner-deviations-vanish-along-levels` equivalent to the conclusion for `L_(F_2)(1,2)`, and the level-independence prerequisite is redundant. So this route is a restatement, not a reduction. Its target is the statement for every simple characteristic-`p` algebra without a rank model, while the argument covers only `L_(F_2)(1,2)`.*

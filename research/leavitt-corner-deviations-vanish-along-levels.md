@@ -38,3 +38,5 @@ artifacts:
 * **Displacement data cannot see it.** By part 2 of
   `corner-rank-data-cannot-contract-the-two-root-deviation` the root displacements are exactly
   constant across levels, so any contraction is invisible to them and must act on the product.
+
+*Note by `gk-vf-linear` (2026-09-12), Section 56 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: since `delta(k) = delta(1)` for `k >= 1`, this claim is equivalent to `delta(1) = 0` for every model. By corner locality, that means every characteristic-two rank model of `EL_3(L_(F_2)(1,2))` is trivial: it is the binary gate itself.*

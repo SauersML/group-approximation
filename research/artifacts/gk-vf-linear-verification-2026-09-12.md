@@ -2064,3 +2064,67 @@ Attempts entry on the OPEN `binary-jacobson-el3-rank-radical-is-the-finitary-ker
   - `S` is injective with one-dimensional cokernel, so it has index `-1`, and finite-rank `f` preserves the index.
   - A surjective operator has index `dim ker >= 0`, so this is impossible. Correct.
 - The general finitary corrections are correctly recorded as undecided.
+
+## 56. Corner rank data and the two-root deviation (47302b981, db8495936, lane w3-gate-bridge-a): parts 1–3 PASS; the level route is a restatement and overshoots its target
+
+Items checked:
+- the claim `corner-rank-data-cannot-contract-the-two-root-deviation` and its route `corner-rank-no-contraction-proof`;
+- the OPEN claims `leavitt-corner-deviations-are-level-independent` and `leavitt-corner-deviations-vanish-along-levels`;
+- the route `two-root-identity-via-level-contraction`;
+- `corner-rank-contraction-obstruction-2026-09-12.md`, Sections 1–5.
+
+The assigned verifier is `w3-vf-linear` (its Section 16). This is a second derivation.
+
+**Parts 1–3: PASS.**
+- **Part 1.** `[x_12(t0), x_23(s0)] = x_13(t0 s0) = x_13(1)`. The defect factorization (Section 43) gives
+  `rk(n_13(1) - XY) = rk(YX) = delta_sh`. `rk(n_13(1)) = rho` by Weyl symmetry, and subadditivity gives both inequalities.
+- **Part 2.** `rho(e) = rho` for nonzero idempotents (Section 37, part 6 with `n = 1`), transported to the 13 root.
+- **Part 3.** `t_gamma' s_gamma = 0` for distinct words of equal length, so `w^2 = sum e_mu = 1` and `w e_gamma w = e_gamma'`.
+- **The D calibration.** `P_gamma = Y_gamma (x) X_gamma + X_gamma (x) Y_gamma`, of rank `2 . 4^-k / 9`. So the level-`k` sum is
+  `2^(1-k)/9`, matching the corrected wording.
+
+**Extension: the branch deviation is constant at every positive level.** Take nonempty words `gamma`, `gamma'` of any lengths.
+- *Equivalence.* `s_gamma' t_gamma` and `s_gamma t_gamma'` give `e_gamma ~ e_gamma'`.
+- *Complement isometries.* `1 - e_gamma` is a nonempty finite sum of cylinder idempotents `S[c_i]T[c_i]`, `i = 1..m`. For a complete
+  prefix code `d_1..d_m`, `Z = sum_i S[c_i]T[d_i]` has `Z*Z = 1` and `ZZ* = 1 - e_gamma`. `Z'` is built likewise for `gamma'`.
+- *The unit.* `w = s_gamma' t_gamma + Z' Z*` has inverse `s_gamma t_gamma' + Z Z'*`, because the cross products vanish. Since
+  `T[c_i] s_gamma = 0`, `w e_gamma w^-1 = s_gamma' t_gamma'`.
+- *The conjugation.* `diag(w,w,w)` lies in `GL_3(R) = EL_3(R)` and conjugates `(x_12(e_gamma), x_23(e_gamma))` to
+  `(x_12(e_gamma'), x_23(e_gamma'))`. So `delta(k) = delta(1)` for every `k >= 1`.
+- *Calibration.* `D` contains no such unit, since `s_gamma' t_gamma` is not in `D` when the lengths differ. The tensor-square model has
+  `delta(k) = 2 . 4^-k / 9`, which is not constant. So cross-level constancy genuinely uses Leavitt units.
+
+**Consequences.**
+- *Corner locality.* `delta(1) = rk(n_23(e_0) n_12(e_0))`. The pair `(x_12(e_0), x_23(e_0))` is simultaneously conjugate to
+  `iota_0` of the unit pair (Section 47 addendum). So by corner locality `delta(1) = 0` iff `sigma` is trivial iff `delta(0) = 0`.
+- *The vanishing claim is the whole problem.* `leavitt-corner-deviations-vanish-along-levels` holds for `sigma` iff `delta(1) = 0`,
+  iff `sigma` is trivial. Quantified over all `sigma`, it is exactly: every characteristic-two rank model of `EL_3(L_(F_2)(1,2))` is
+  trivial. That is the binary gate itself, not half of it.
+- *The level-independence claim is weaker.* `leavitt-corner-deviations-are-level-independent` reduces to `delta(1) = delta(0)`, and it
+  follows from the vanishing claim.
+- *A false Attempts bullet.* The first bullet ("No unit of `R` carries `e_gamma` to `e_gamma'` for `|gamma| != |gamma'|`") is false when
+  both words are nonempty. What is true: no unit carries `e_gamma` to `e_(empty) = 1` for nonempty `gamma`.
+- *The route is a restatement.* `two-root-identity-via-level-contraction` is valid for `L_(F_2)(1,2)`, but its vanishing prerequisite
+  is equivalent to the conclusion, and its level-independence prerequisite is then redundant. It isolates no easier halves.
+- *The route overshoots its target.* The target, `rank-models-of-el3-satisfy-the-two-root-identities`, is the statement for every simple
+  characteristic-`p` algebra without a rank model. The prerequisites and the argument concern only `L_(F_2)(1,2)`, so the route
+  proves only that case. No node records exactly that binary case; the instance claim quantifies over all finite `K` and `n`.
+- *Requested from the author:*
+  - (a) land constancy at positive levels;
+  - (b) correct the Attempts bullet;
+  - (c) retarget or narrow the route, or mark it as a restatement.
+- *Relation to `w3-vf-linear`.* Its Section 16.2 passed the route as "valid and conditional" without these two points.
+
+**Section 55 addendum 2 (5bc7fc0bc): the refutation of `psi` PASS.**
+- *Model.* On components `(i, j)`, `a = [[S, Q], [0, T]] = WP`, where `W = [[Q,S],[T,0]]` and `P` swaps the two components.
+  `a^-1 = [[T,0],[Q,S]]`, since `QS = TQ = 0` and `ST + Q = 1`.
+- *Conjugating `u - 1` by `a^-1`.*
+  - `delta_c^(i)* o a = delta_(c-1)^(i)*` for `c >= 1`, and `delta_0^(j)*` for `c = 0`. Also `a^-1 delta_c^(j) = delta_(c+1)^(j)`.
+  - So `a^-1(u-1)a = sum_(c>=1) delta_(c+1)^(j) (x) delta_(c-1)^(i)* + delta_1^(j) (x) delta_0^(j)*`, as stated.
+  - Its products with `v - 1` vanish in both orders, and `u` commutes with `v`. So `[[a^-1,u],v] = 1`.
+- *Conjugating `u - 1` by `a`.*
+  - `a delta_0^(j) = delta_0^(i)` and `delta_c^(i)* o a^-1 = delta_(c+1)^(i)*`.
+  - So `B = a(u-1)a^-1` has the boundary term `delta_0^(i) (x) delta_1^(i)*`.
+  - `(v-1)B = delta_0^(k) (x) delta_1^(i)* != 0 = B(v-1)`, so `[[a,u],v] != 1`.
+- *Why this kills the criterion.* An endomorphism with `a -> a^-1` that fixes the constants would carry the relation
+  `[[a^-1,u],v] = 1` to `[[a,u],v] = 1`, which is false. The criterion is correctly recorded as dead.
