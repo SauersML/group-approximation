@@ -6,7 +6,7 @@ title: A nontrivial strictly separable W*-bundle with all fibres the hyperfinite
 root: true
 distinct_from:
   gamma-failure-invisible-to-projection-comparison: that asks for a C*-algebra without uniform Gamma whose tracial ultrapower compares projections; this asks only for an abstract bundle, with no C*-algebra realizing it and no comparison hypothesis.
-  toms-ah-counterexample-to-uniform-gamma: that is an algebra without uniform Gamma whose trace simplex has not been checked to be Bauer; this is the bundle-theoretic existence question, which such an algebra would answer if its simplex were Bauer.
+  toms-ah-counterexample-to-uniform-gamma: that is an algebra without uniform Gamma whose trace simplex is the Poulsen simplex (`toms-doubling-ah-trace-simplex-is-poulsen`); this is the bundle-theoretic existence question, which needs a Bauer simplex.
   bauer-gamma-failure-localizes-to-infinite-dim-point: that constrains where a nontrivial bundle fails local triviality; this asks whether any nontrivial one exists.
 artifacts:
   - research/artifacts/tw-bundle-hunter-bundle-localization-2026-09-12.md
@@ -53,7 +53,8 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
   - A witness base must contain a nonempty closed set all of whose nonempty relatively open subsets are infinite-dimensional, e.g. a Hilbert cube. Every two-piece patching scheme must fail there.
 - **Algebras without uniform Gamma.**  Toms's AH algebra
   (`toms-ah-counterexample-to-uniform-gamma`) would give a witness if its trace
-  simplex were Bauer.  Its paper does not address this, and it was not checked.
+  simplex were Bauer.  It is not.  Its trace simplex, and that of the non-simple
+  limit, is the Poulsen simplex (`toms-doubling-ah-trace-simplex-is-poulsen`).
 - **A dimension-free certificate, and why Toms's mechanism is not yet one.**
   - **The certificate.** `trivial-r-fibre-bundles-compare-equal-trace-projections`:
     in `C_σ(K,R)` over any compact base, equal-trace projections are
@@ -63,8 +64,11 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
   - **Toms's non-simple system** (arXiv:2606.12188v2, Section 4) has exactly this
     obstruction in its uniform tracial completion.  But its connecting maps double
     the base, `X_{i+1} = X_i × X_i × CP^{j_i}`, through the two coordinate
-    projections.  Point traces restrict to averages `½(τ_{x'} + τ_{x''})`, and
-    whether the extreme traces form a closed set was not determined.
+    projections.  Point traces restrict to averages `½(τ_{x'} + τ_{x''})`.  The
+    extreme traces are dense and do not form a closed set
+    (`toms-doubling-ah-trace-simplex-is-poulsen`).  The diagonal branch traces
+    Toms uses to evaluate the obstruction are extreme, and branch traces started
+    at deep stages restrict to arbitrary empirical measures on the leaves.
   - **The single-projection variant** `X_{i+1} = X_i × CP^{j_i}` is a
     `C(X̂)`-algebra with Bauer simplex `Prob(X̂)`.  Its doubled virtual bundle only
     squares a top-degree Thom–Porteous class, which vanishes (heuristic; Toms's
@@ -74,3 +78,22 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
     obstruction) together with a closed set of extreme traces.  These pull in
     opposite directions in the obvious presentation.  Details are in
     `research/artifacts/tw-hilbert-cube-projection-invariant-2026-09-12.md`.
+  - **Doubling with diagonal points and free labels is always Poulsen.**
+    - Setting: a diagonal system whose top part averages pullbacks along maps
+      with a common right inverse (diagonal points) and a surjective joint map
+      (free leaf labels), with summable contamination.
+    - Result: its extreme boundary is dense
+      (`toms-doubling-ah-trace-simplex-is-poulsen`).
+    - This covers coordinate-projection doubling on full products, such as a
+      Hilbert-cube inverse limit, whatever fixed-point structure is added.
+    - Contamination that is not summable sends the normalized rank of the
+      propagated pair to zero, so the pair vanishes in the completion.
+    - What is left is correlated copies: a joint map that is not surjective.
+      This competes with the independence of the two copies that Toms's
+      Section 5 uses.  Not attempted.  Details are in
+      `research/artifacts/tw-doubling-poulsen-and-comparison-2026-09-12.md`.
+  - **Strict comparison cannot be kept.**
+    `strict-comparison-bundle-certificate-vanishes`: in every exact algebra with
+    strict comparison, equal-trace projections of the completion are
+    approximately equivalent.  So a C*-algebraic witness certified this way fails
+    strict comparison.  The bundle question itself has no comparison hypothesis.
