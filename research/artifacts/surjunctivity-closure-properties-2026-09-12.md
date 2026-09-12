@@ -132,6 +132,16 @@ copies, subgroups and ultraproducts by (R). By Mal'cev's characterization of qua
 algebras containing the trivial algebra is a quasivariety exactly when it is also closed under direct
 products. Closure under all products follows from binary closure by (a). QED
 
+**Addendum (c): permutational wreath products.** Binary product closure is also equivalent to closure
+under permutational wreath products `A wr_X G` of surjunctive groups.
+- **Forward.** By `wreath-surjunctivity-reduces-to-stabilizer-products` (gk-n-ff), `A wr_X G` is
+  surjunctive iff `A^U x G_U` is surjunctive for every finite `U`. With product closure and heredity to
+  the stabilizers `G_U`, every such product is surjunctive.
+- **Converse.** Over a one-point set, `A wr_X G = A x G`.
+
+So graph products, permutational wreath products and binary direct products are one closure question
+(`permutational-wreaths-of-surjunctive-groups-are-surjunctive`).
+
 **Where the general product problem stops.**
 - **Coset transplant along one factor.** Transplanting an injective automaton over `G x K` to coset
   spaces needs a family of subgroups separating finite sets. Using `G_0 x {1}` with `G_0` of infinite
