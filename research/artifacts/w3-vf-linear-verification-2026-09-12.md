@@ -899,3 +899,52 @@ This is a gate reduction, checked with full care. It proves no identity and cons
   `1 != −1` in the quotient.
 * **Scope.** The abstract "No" branch is stronger than the matrix form, and the matrix-unit, unipotent and flag
   triviality results need their own scope checks, as the artifact says.
+
+## 25. Rank kill versus the counterexample (w3-strategist-neg; 0f7afb4dea, artifact Section 4.4)
+
+### 25.1 Equivalences in `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one` (OPEN): PASS
+
+* **Normalization.**
+  * Take `rk` on `F_3[G]` with `rk(eps_-) = t > 0`. A matrix `X` over `S_-` has `eps_- X = X`, so `N(X) = rk(X)/t`.
+  * Each Sylvester axiom (products, block sums, triangular blocks, `N(0) = 0`) is the same axiom for `rk` divided by
+    `t`, and `N(eps_-) = 1`.
+* **Extension.**
+  * `eps_-` is a central idempotent, so `X -> eps_- X` is a unital ring homomorphism `F_3[G] -> S_-`.
+  * `rk = N o (eps_- ·)` is a pullback along it, hence a Sylvester matrix rank function, with `rk(eps_-) = 1`.
+* **The whole-algebra form.**
+  * `1 − [z] = 2 eps_-` and `2` is a unit, so `rk(1 − [z]) = rk(eps_-)`. So (NR) holds iff every `rk` on `F_3[G]` kills
+    `1 − [z]`.
+  * The node's `eps_- = (1 − [z])/2` agrees with `2(1 − [z])`, since `1/2 = 2` in `F_3`.
+* **Abstract models, model ⟹ `N`.**
+  * `sigma(z) = −1` makes the linear extension `phi : F_3[G] -> M` unital, and `rho o phi` is a pullback Sylvester
+    function.
+  * `rho(phi(1 − [z])) = rho(2) = 1`. Positivity of `rho` on idempotents is not needed.
+* **Abstract models, `N` ⟹ model.** This is Corollary 7.2 (Section 24.2).
+* **The matrix "No" branch.** A nontrivial matricial model moves `z` (Section 11.1), and a faithful ultraproduct rank
+  gives `rho(1 − sigma(z)) > 0`.
+
+### 25.2 `ternary-counterexample-from-rank-kill-and-state-realization`: valid, conditional on two OPEN claims
+
+* **Chain.**
+  * The contrapositive of (U1) turns (NR) into (NS).
+  * Part 2 of `anti-central-state-obstruction-equals-stable-finiteness` turns (NS) into `k u <= 0` for some `k`.
+  * `k u <= 0` means `−k u = [Q]`, so `[Q ⊕ S_-^k] = 0`, that is, `S_-^r ≅ S_-^r ⊕ S_-^k ⊕ Q` for some `r`. That is the
+    target exactly.
+* **Necessity of the first requirement.**
+  * The target gives no state: `s(k u) = k > 0` contradicts `k u <= 0`.
+  * No state gives (NR): a normalized `N` gives the state `s([e S^n]) = N(e)`.
+    * Equivalent idempotents `e = xy`, `f = yx` (with `x ∈ eMf`, `y ∈ fMe`) have `N(e) <= N(y) = N(yxy) <= N(f)`,
+      and symmetrically.
+    * Block sums add, and the Grothendieck property extends `s` to `K_0`.
+  * So, given (U1), target ⟺ (NR).
+* **Downstream route.** In `nonpositive-unit-class-refutes-ternary-surjunctivity`, `BA = 1 != AB` over `S_-`,
+  padded by the central `eps_+ = 1 − eps_-`, is a one-sided pair in `M_r(F_3[G])`.
+
+### 25.3 Body of `ternary-anti-central-states-give-sylvester-rank-functions` (OPEN): consistent
+
+* **State versus rank condition.**
+  * A state exists iff `[eps_-]` is not `<= 0`.
+  * `u <= 0` iff `S_-^(r+1) ⊕ Q ≅ S_-^r` for some `r`, which is failure of the rank condition.
+* **A rank function always gives the rank condition.** A summand `S_-^(n+1)` of `S_-^n` gives an idempotent in
+  `M_n(S_-)` equivalent to `I_(n+1)`, so `n + 1 <= n`.
+* **Risk paragraph.** The converse is correctly marked unverified, and nothing depends on it.
