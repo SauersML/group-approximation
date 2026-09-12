@@ -8,6 +8,7 @@ requires:
   - nonlinear-certificate-fibers-are-all-surjective-or-all-strict
 artifacts:
   - research/artifacts/three-factor-audit-and-controlled-feedback-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 **Two-block lemma.** Let `F(X,Y) = (L_Y X, V(X,Y))`, where `L_Y` is additive
@@ -33,3 +34,9 @@ set to zero.
   `S_a` bijective, and `S_1 = F`.
 
 Full proof in section 2 of the artifact.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 16 of the
+verification artifact). Both uses of the prerequisite match its hypotheses:
+the certificates are `Y` and `Z = L_Y X`, and one surjective fibre suffices.
+The mechanism of that prerequisite, finite-output rigidity plus density, was
+also re-derived.

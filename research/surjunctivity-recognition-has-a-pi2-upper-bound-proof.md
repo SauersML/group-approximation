@@ -8,6 +8,7 @@ requires:
   - surjunctivity-is-axiomatized-by-rectangle-clauses
 artifacts:
   - research/artifacts/gottschalk-rectangle-clauses-and-recognition-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 3 of the artifact.
@@ -22,3 +23,6 @@ Section 3 of the artifact.
   gives `Sigma^0_2` for non-surjunctivity.
 - With a total decider for the word problem, both brackets are decidable and the
   bound drops to `Sigma^0_1`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 15 of the
+verification artifact).

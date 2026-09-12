@@ -11,6 +11,7 @@ requires:
   - surjunctivity-passes-to-subgroups
 artifacts:
   - research/artifacts/gottschalk-rectangle-clauses-and-recognition-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 4 of the artifact.
@@ -31,3 +32,8 @@ Section 4 of the artifact.
   `Pi^0_1`-hard. Neither is at the first level on the other side.
 - **Equivalences.** (i) gives (ii) to (v) by (B). Under (A) the sets are full or
   empty, and a computable set is not `Pi^0_2`-complete.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 15 of the
+verification artifact). For (B2) a direct seed switch also suffices: form the
+free product over `n` of copies of `P(D)`, and kill copy `n` when a witness for
+the `n`-th `Sigma^0_1` clause appears.

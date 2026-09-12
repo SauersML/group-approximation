@@ -7,6 +7,7 @@ target: surjunctivity-is-axiomatized-by-rectangle-clauses
 requires: []
 artifacts:
   - research/artifacts/gottschalk-rectangle-clauses-and-recognition-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete direct proof: Sections 1 and 2 of the artifact.
@@ -28,3 +29,7 @@ Complete direct proof: Sections 1 and 2 of the artifact.
   Equational premises and conclusions pass through directed colimits.
   `not rho_D` is existential, so it holds in every existentially closed group once it
   holds in any group. Every labelling satisfying the premises factors through `P(D)`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 15 of the
+verification artifact), in both directions of Theorem 1 and for the
+transfer to existentially closed groups through `E * K`.

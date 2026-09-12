@@ -386,6 +386,70 @@ normalization added forward.
   * Its equivalence with `bernoulli-rokhlin-entropy-maximal-on-fixed-tester` is a
     two-route cycle.
 
+## 15. Rectangle clauses and the recognition dichotomy (gk-logic)
+
+Reviewed: `surjunctivity-is-axiomatized-by-rectangle-clauses`,
+`surjunctivity-recognition-has-a-pi2-upper-bound` and
+`surjunctivity-recognition-dichotomy`, with their proof routes (main at
+`1ad7aa663a`). Verdict: PASS.
+
+* **Axiomatization, if.** With realized data, `sigma tau(x)(1)` reads
+  `x(x_s x_m)`. That pattern is constant on the realized forward coincidence
+  classes, which are coarser than `T_f`, so `Dec(T_f)` gives `x(1)`. Every `q`
+  constant on `T_r`-classes is realizable at `x_m x_s`, because the realized
+  reverse coincidences are finer than `T_r`. So `not Enc(T_r)` gives `tau sigma != id`,
+  and with `sigma tau = id` the automaton `tau` is injective and not surjective.
+* **Axiomatization, only if.** Take the memories, with `1` adjoined, as labels,
+  and the realized tables as `T_f` and `T_r`. A left-inverse automaton exists
+  by compactness, and `tau sigma != id` translates to the identity.
+* **`P(D)`.** A realization in `K` gives a homomorphism `P(D) -> K`. It
+  preserves the forward equalities and cannot create reverse coincidences, so
+  `P(D)` realizes `D`. Universal sentences pass to subgroups, ultraproducts,
+  local embeddings and directed colimits. An existential realization
+  transfers to an existentially closed `E` through `E * K`.
+* **Upper bound.** `NONSURJ` is `exists D, w [Sigma^0_1 AND Pi^0_1]`, which is
+  `Sigma^0_2`. On a host with decidable word problem it is `Sigma^0_1`.
+* **Dichotomy.**
+  * (B1): `P(D)` is finitely presented.
+  * (B2): a direct seed switch gives `Pi^0_2`-hardness of `SURJ_enum`. Take the
+    free product over `n` of copies of `P(D)`, where copy `n` is killed when a
+    witness for the `n`-th `Sigma^0_1` clause appears. The result is trivial
+    when the `Pi^0_2` sentence holds, and otherwise contains `P(D)`.
+  * (B3): Adian--Rabin with seed `P(D)` reduces a `Sigma^0_1`-complete word
+    problem to `SURJ_fp`. So `SURJ_fp` is undecidable and `NONSURJ_fp` is
+    `Pi^0_1`-hard, hence not r.e.
+  * Under (A) all the sets are full or empty.
+
+  `Pi^0_2`-completeness of `SURJ_fp` is correctly not claimed.
+* **Consequence for search.** No complete r.e. listing of nonsurjunctive finite
+  presentations exists unless there are none. A counterexample search is a
+  `Sigma^0_1` certificate search in one host with decidable word problem.
+* **Trust surfaces.** Adian--Rabin (Lyndon--Schupp IV.4.1). The repository switch
+  theorem was not re-read; the direct construction above suffices for (B2).
+
+## 16. Controlled self-linear feedback (gk-three-factor)
+
+Reviewed: `three-factor-audit-and-controlled-feedback-2026-09-12.md`, Sections
+1--3, and `controlled-self-linear-feedback-ca-are-surjunctive`. Verdict: PASS.
+
+* **Lemma 2.2(a)** uses only additivity of `L_Y` and `L_(Y')(0) = 0`.
+* **Both uses of `nonlinear-certificate-fibers-are-all-surjective-or-all-strict`
+  match its hypotheses.**
+  * `E(X,Y) = (L_Y X, Y)`: certificate `Y`, bijective fibre at `Y_0`.
+  * `D = F o E^-1`: certificate `Z` in `R^d`, fibre `v_0` at `Z = 0`.
+
+  One surjective fibre suffices. Re-derived mechanism: finite-output rigidity
+  (for `c'` a finite modification of `c`, `T_(c') o T_c^-1` is an injective map
+  that fixes all but finitely many coordinates, hence bijective), density of
+  finite modifications, and closedness of fibrewise surjectivity by compactness.
+* **Theorem 2.3.** Each row `b < a` is (2.2) at `X_b = 0`, so
+  `F(0, X_(>=a)) = (0, S_a(X_(>=a)))` and `S_a` is injective. Downward induction
+  uses `v_0 = S_(a+1)`.
+* **Sharpness.** In `(x + u, F(x) - x - u)`:
+  * with `x` first, the row carries the offset `u`;
+  * with `u` first, the own part `-u` is admissible (constant controller `-2`
+    at `s = 1`, `L0 = -id`), but the offset `F(x) - x` vanishes only for `F = id`.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by
