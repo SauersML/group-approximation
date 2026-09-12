@@ -255,10 +255,15 @@ fence below is an established claim and names the ansatz it kills.
     candidates such as `A_0 = sigma(J)''` are excluded.
 - **Naive transfers from the Leavitt algebra.** Quotient, scalar and metric
   transfers stop before hyperlinearity (`three-naive-leavitt-transfers-stop-before-hyperlinearity`).
-- **What survives.** A non-separable, non-internal type `II_1` commutant
-  `A_0` that grows under the compressor, `A_0 < Ad sigma(u) A_0 ~= A_0`,
-  without a slowly varying central height, in the shape of `R < R (x) M_2`.
-  This is a negative instance of Alekseev--Thom Open Problem 6.2(a) for the
-  native corner.
+- **What survives.** Two requirements, on two different algebras.
+  - **The nine-leaf commutant.** `A_0 = sigma(Gamma)' cap qMq` is non-separable
+    and of type `II_1`. It grows under the compressor,
+    `A_0 < Ad sigma(u) A_0 ~= A_0`, without a slowly varying central height, in
+    the shape of `R < R (x) M_2`.
+  - **The native-corner commutant.** By (13) of the heat-rounding artifact,
+    `pi(L)' cap M` of a canonical `H`-model must be a negative instance of
+    Alekseev--Thom Open Problem 6.2(a). By definition, that means it is not an
+    ultraproduct of coordinate algebras. It is also non-separable, by the same
+    proof as for `A_0`.
 - **Lower bound on difficulty.** Success proves that Thompson's `V` is
   hyperlinear (`thompson-v-hyperlinear-from-leavitt-unit-hyperlinear`).
