@@ -4,6 +4,7 @@ id: stw99-problem-xxvii-comparison-vs-divisibility
 kind: claim
 title: Strict comparison implies pure, and almost divisibility implies pure (STW Problem XXVII)
 root: true
+refuted_by: [stw27-strict-comparison-non-pure-algebra-exists]
 artifacts:
   - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
   - research/artifacts/stw27-villadsen-compact-divider-no-go-audit-2026-08-30.md
@@ -44,6 +45,17 @@ hypothesis.
   (STW `prop:cu-regular` (7) ⟺ (5)).  Part (1) is also the exact
   companion needed to close Toms--Winter from Winter's question
   (`stw99-xxvi-xxvii-imply-xviii`).
+* **Only rank density is needed for part (1)** (2026-09-11):
+  `rank-density-and-strict-comparison-give-purity`.  If rank functions are
+  uniformly dense in the continuous affine functions on `T(A)`, strict
+  comparison gives almost divisibility.  So part (1) holds on every AH algebra
+  (`ah-algebras-realize-ranks-approximately`), and a counterexample must fail
+  approximate rank realization.  Its negation is recorded as the root
+  `stw27-strict-comparison-non-pure-algebra-exists`.  That root is fed by the
+  K1-witness (`stw27-counterexample-from-stw18-k1-witness`) and feeds the
+  Toms--Winter negation root
+  (`stw18-counterexample-from-stw27-non-pure-algebra`).  The open class is
+  approximately subhomogeneous algebras without slow dimension growth.
 * Toms's uniform-Γ counterexample `B` is now a second test object for
   part (2): `B` is not pure — it provably fails strict comparison
   (`toms-gamma-counterexample-fails-strict-comparison`) — while being
