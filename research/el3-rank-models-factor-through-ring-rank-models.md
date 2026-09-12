@@ -78,5 +78,14 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
     there. The open step is propagating block support from `x_ij(1)` to every `x_ij(a)`. The
     two expansions `x_13(a) = [x_12(a), x_23(1)] = [x_12(1), x_23(a)]` constrain the images
     of `n_13(a)` from both sides (artifact Lemma 3).
+- **The hybrid shape: killed (2026-09-12).**
+  - `matrix-unit-root-rank-models-of-simple-el3-are-trivial`: if the six unit root elements
+    act by matrix units on orthogonal idempotents with trivial complement, the Steinberg
+    relations propagate block support to every `x_ij(a)`, and the model is trivial.
+  - So the extraction is proved whenever `sigma` restricted to `SL_3(F_2)` is
+    `(natural (x) W) (+) trivial`.
+  - The open case is complements carrying a nontrivial `SL_3(F_2)`-action, or composition
+    factors other than the natural module: dual natural, Steinberg, projective.
+  - Artifact Section 4c.
 - **Hamming analogue: open.** That a sofic approximation of `EL_3(R)` yields a rank model
   of `R` would reprove nonsoficity of `R^x` with no property (T).
