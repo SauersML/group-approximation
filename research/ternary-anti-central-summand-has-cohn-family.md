@@ -73,3 +73,16 @@ trace-compatible and sufficient (`ternary-anti-central-summand-has-quaternary-le
       constant unit, and their fullness gives this claim (`hadamard-spectral-fullness-gives-f9-cohn-family`).
     - **Collapse.** They reduce to 2x2 `F_3` designs on supports closed under right multiplication by
       `h`, and admit no one-element-per-half lift. No witness.
+- *Mixed-depth monomial lifts, exact defect* (lane w3-corner-cohn-a,
+  `natural-leavitt-pair-lifts-have-partial-symmetry-defect`).
+  - Take any Thompson units `g_0, g_1` extending `s_0` on the first-letter cylinders, and the lifts
+    `sigma = [g_0]P_0 + [g_1]P_1`, `tau = [g_0^-1]P_00 + [g_1^-1]P_01`. Then `tau sigma = 1 + D`, where
+    `D` is a partial symmetry on one nonzero kernel idempotent `F`: `D^2 = F`, `DF = FD = D`.
+  - A corrected lift `tau''` of `t_0` gives `tau'' sigma = 1 - e'` with `e' = 2(F - D)` a nonzero
+    kernel idempotent. So the lift of `s_0` is left invertible exactly modulo `e'`, for every choice of
+    mixed-depth units. The choice changes the sets, never the defect type.
+  - No functorial repair: `no-equivariant-lattice-lift-of-cylinder-idempotents` excludes any
+    `V`-equivariant Dirac-compatible Boolean lift of the cylinder idempotents.
+  - Where it dies: a witness needs some `x` with `x sigma = e'`. `{0,1}`-valued monomial corrections are
+    Haar-excluded. What is left is coefficients `2` on overlaps, units outside `E x| V`, or a skeleton for
+    the lifts of `s_1` making the whole `2 x 2` Gram defect a single partial symmetry (not yet computed).
