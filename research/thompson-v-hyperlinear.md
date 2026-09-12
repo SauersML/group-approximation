@@ -43,3 +43,22 @@ It is necessary for `leavitt-steinberg-hs-unstable` and for
   energy, so a construction only needs to certify one marked word, for example
   `a = (00 01)` in the Bleak--Quick presentation. That same word is the target
   of every collapse lane (`thompson-v-one-word-strict-hs-ceiling`).
+
+## Attempts
+
+- **Truncated tree-vertex models.** Restrict the almost action of `V` on finite
+  binary words to words of length at most `M` and rewire the boundary. This
+  dies at the first length-changing generator. The Schreier graph is coarsely
+  the binary tree, so every finite set has boundary of positive proportion and
+  the relator defect stays bounded below.
+- **Spatial cylinder models.** These are degenerate by the trace count above.
+- **Closure permanence.** Limits in the space of marked groups, and amalgams or
+  HNN extensions over amenable subgroups, preserve hyperlinearity. `V` is
+  finitely presented and simple, so every marked group close enough to `V` is
+  `V` itself, and there is no decomposition over a proper amenable subgroup to
+  exploit. This dies before it starts.
+- **Operator-norm stability.** Fournier-Facio--Rangarajan give uniform stability
+  for submultiplicative norms. Since `V` has no nontrivial finite-dimensional
+  representation, uniform almost-representations are near trivial. That says
+  nothing about pointwise normalized-HS models, so it neither produces nor
+  excludes the models this claim needs.
