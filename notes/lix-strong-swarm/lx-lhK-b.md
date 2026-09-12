@@ -49,7 +49,17 @@ lx-lhK-a LadderClosedOf → CompactClosedOf (unconditional).
 - lx-lhK-a's PeelUniqOf fix at 577568a3a; its probe 5 compiles TowerOf…FreenessOf.  Sequence agreed: probe 5 →
   lx-stablyfinite S3+S4 (ladder) → my CompactClosedOf probe (restores) → lx-splitK LHBridge, lx-stepcK-local ThomLH.
 
-## NEXT (one probe when lx-lhK-a's ProductOf lands)
+## DONE 12:20 CDT — target compiled
+- **PROBE GREEN 0912-121755-88637** (lix-q, base c7f794109, 9049 jobs): `Built GroupApproximation.CharClass.
+  LerayHirschCompactClosedOf (19s)`, sorryAx 0.  `LH.lerayHirschGraded_compactOf` and
+  `LH.lerayHirschGraded_compactDualOf` depend on axioms [propext, Classical.choice, Quot.sound] (read in full from the
+  remote log; the lines wrap).  Green record covers CompactClosedOf, RingClosedOf, BootstrapOf, HomogOf, CompactOf,
+  TrivOpenOf, BundleOf, FiniteOf, NegOf, RankOneOf.
+- Closure: lx-lhK-a tower 0912-120703-48079, lx-stablyfinite ladder 0912-120941-56371.
+- Notified: lx-splitK (LHBridge), lx-stepcK-local (ChernOf + ThomLH), lx-sliceK (LE/LV), main.
+- Not wired into the root (lx-integrator / lead).
+
+## NEXT (one probe when lx-lhK-a's ProductOf lands)  — superseded by DONE above
 - land RingClosedOf normally; probe BootstrapOf + HomogOf + RingClosedOf in ONE probe.
 - after LadderClosedOf lands unconditional: land + probe CompactClosedOf; message lx-splitK (bridge in their
   `ChernSplittingOfLHBridge`), lx-sliceK, lx-bundleP.
