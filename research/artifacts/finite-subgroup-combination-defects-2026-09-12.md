@@ -80,8 +80,9 @@ carries every equation, but only to the amalgam of the whole configuration.
 - Let `H_0, ..., H_k <= G` be finite, and put `D_ij = H_i n H_j`.
 - Let `A` be the colimit of the inclusions `H_i <- D_ij -> H_j` over all `i < j`. The inclusions
   induce `q : A -> G`, which restricts to the inclusion on each `H_i`.
-- A *laminar family* is a finite set of distinct idempotents `x_i in M_n(F_p[H_i])` such that for
-  `i != j`, `x_i x_j = x_j x_i` lies in `{0, x_i, x_j}`. Several `x_i` may use the same subgroup.
+- A *laminar family* is a finite set of distinct nonzero idempotents `x_i`, each lying in
+  `M_n(F_p[H_(s(i))])` for some index `s(i)`, such that for `i != j`, `x_i x_j = x_j x_i` lies in
+  `{0, x_i, x_j}`. Several members may use the same subgroup.
 - A *laminar combination* is an idempotent of the commutative algebra `B` spanned by `1` and the
   `x_i`.
 
@@ -156,9 +157,8 @@ On idempotents `rk` is additive for orthogonal sums, so it induces a state on `K
 - **Lift the family.**
   - Lift each `x_i` to `X_i in M_n(F_p[A])` through the copy of `H_i` in `A`.
   - By Lemma 2.2 the `X_i` form a laminar family with the same multiplication table.
-  - Write `d = c 1 + sum c_i x_i` and put `d_A = c 1 + sum c_i X_i`. It is idempotent because
-    the table is the same.
-  - `d_A != 0`, because `q(d_A) = d != 0`.
+  - The parents, children and atoms below are defined from the table alone, so they are the same
+    for the `x_i` and for the `X_i`.
 - **The atoms.**
   - The members of the family lying above a given `X_i` form a chain, so each `X_i` has a unique
     parent: the smallest member strictly above it, or `1`.
@@ -168,6 +168,11 @@ On idempotents `rk` is additive for orthogonal sums, so it induces a state on `K
     and once, under its parent, with sign `-`.
   - `B` is a finite commutative algebra spanned by idempotents, so `B ~= F_p^m`, and its nonzero
     idempotents are sums of distinct nonzero `alpha_y`.
+  - Write `d` as such a sum, and let `d_A` be the sum of the corresponding atoms of the lifted
+    family. It is an idempotent with `q(d_A) = d`, so `d_A != 0`.
+  - A coefficient expression `d = c 1 + sum c_i x_i` must not be lifted directly. The members can
+    be linearly dependent in `M_n(S)` and independent in `M_n(F_p[A])`, and then the lifted
+    expression need not be idempotent. Sums of atoms avoid this.
 - **Classes and traces.**
   - Additivity on orthogonal sums gives `[alpha_y] = [y] - sum_(z in C(y)) [z]`.
   - So `[d S^n] = m [S^n] + sum m_i [x_i S^n]` for integers `m, m_i`, and the same integers
@@ -206,9 +211,45 @@ no hypothesis on `G` or on the join `<H_0, ..., H_k>`.
 - Theorem 2.1 is stronger than this: a forest configuration has a sofic amalgam however
   nonsofic its join is.
 
-**Scope.** The theorem concerns laminar combinations, whose `K_0` classes are integer
-combinations of finite-subgroup classes. It says nothing about idempotents similar to such
-combinations through units of unbounded support. That module shape is the open part.
+**Theorem 2.6 (sofic realizations).** Theorem 2.1 holds whenever some sofic group `Gamma`
+contains the configuration: finite subgroups `K_s <= Gamma` with isomorphisms
+`psi_s : H_s -> K_s` that agree on every `D_st` and satisfy `K_s n K_t = psi_s(D_st)`.
+
+*Proof.*
+- The `psi_s` agree on the `D_st`, so they define `phi : A -> Gamma`.
+- `phi` is injective on the union `U` of the `H_s` in `A`. If `psi_s(a) = psi_t(b)`, this element
+  lies in `K_s n K_t = psi_s(D_st)`, so `a` lies in `D_st`. Then `psi_t(a) = psi_s(a) = psi_t(b)`
+  gives `a = b`.
+- `phi` induces a ring map `M_n(F_p[A]) -> M_n(F_p[Gamma])`. It carries the lifted family, its
+  table and its atoms. So `d_Gamma = phi(d_A)` is an idempotent, and
+  `[d_Gamma] = m [F_p[Gamma]^n] + sum m_i [phi(X_i)]` with the same integers.
+- `d_A` is supported in `U`, where `phi` is injective, so `d_Gamma != 0`.
+- `phi` is injective on each `H_s`, so `r(phi(X_i)) = r(x_i)`.
+- Replace `Gamma` by the finitely generated subgroup `phi(A)`, which is countable and sofic.
+  Lemma 2.3 there gives `rk(d_Gamma) = m n + sum m_i r(x_i) = t_p([d S^n]) > 0`. QED
+
+Conversely, a homomorphism `A -> Gamma` injective on `U` yields such subgroups `K_s`. Special
+cases:
+- `Gamma = A`, when `A` is sofic (Theorem 2.1);
+- `Gamma = <H_0, ..., H_k> <= G` with `phi = q`, when the join is sofic, since `q` is injective on
+  `U` by Lemma 2.2;
+- a finite quotient of `A` separating `U`, where LFT1 alone suffices.
+
+**Remark 2.7 (linear soficity is not known to suffice).**
+- Lemma 2.3 uses permutation models. A sofic approximation acts freely on a density-one union of
+  regular orbits, and that normalizes `rk` on finite subgroups.
+- A rank model from linear soficity gives a faithful Sylvester rank function, and so stable
+  finiteness. Its values on finite-subgroup idempotents need not be the regular ones: amplification
+  pushes `rk(1 - [h])` toward `1`, not toward `1 - 1/ord(h)`.
+- So a linear sofic realization gives `rk(d) > 0` without identifying `rk(d)` with `t_p`.
+- Whether `F_p`-linear soficity of the configuration suffices is not known.
+
+**Scope.** `t_p` depends only on the `K_0` class.
+- **Covered.** Theorems 2.1 and 2.6 also exclude every idempotent stably similar to such a
+  combination, whatever the support of the similarity.
+- **Not covered.** Zero-trace integer combinations of finite-subgroup classes that no nonzero
+  laminar combination represents. An example shape is `Q (+) Ind P_2 ~= Ind P_1` with
+  `r(P_1) = r(P_2)` and intertwiners of unbounded support (Section 3.3).
 
 ## 3. What survives, and the directive's candidates
 
@@ -216,21 +257,22 @@ Here `R^x = L_(F_2)(1,2)^x` and `p = 2`.
 
 ### 3.1 Candidates tested
 
-- **Dyadic permutation subgroups at different prefix levels.**
-  - For a 2-group `P`, `F_2[P]` is local, so its only idempotents are `0` and `1`. A laminar
-    family in characteristic two uses only odd-order parts.
-  - Two subgroups are excluded at every join, by TFR1 or Theorem 2.1 with `k = 1`.
-  - Three or more with pairwise trivial intersections give a graph `Phi` with no edges. Then `A`
-    is a free product of finite groups, so they are excluded too.
-  - Constants at any levels lie in one finite subgroup `Theta(GL_(2^K)(F_2))`, through the tower
-    identity `Theta_(2^(k+1))(a (x) I_2) = Theta_(2^k)(a)`. This is the computation of Section 8.2
-    of `research/artifacts/ternary-anti-central-kernel-normal-forms-2026-09-12.md`, carried out
-    over `F_2`. So LFT1 alone excludes them.
-- **Order-two and order-three elements generating `Z/2 * Z/3` inside `V`.** `F_2[Z/2]` has no
-  nontrivial idempotents, so any family lives in `F_2[Z/3]` together with `1`. That is one finite
-  subgroup, excluded by LFT1.
+- **Dyadic permutation subgroups at different prefix levels.** These are constants. Constants at
+  any levels lie in one finite subgroup `Theta(GL_(2^K)(F_2))`, through the tower identity
+  `Theta_(2^(k+1))(a (x) I_2) = Theta_(2^k)(a)`. This is the computation of Section 8.2 of
+  `research/artifacts/ternary-anti-central-kernel-normal-forms-2026-09-12.md`, carried out over
+  `F_2`. So LFT1 alone excludes every configuration built from them.
+- **Order-two and order-three elements generating `Z/2 * Z/3` inside `V`.** A configuration using
+  only `<sigma>` and `<tau>` has two subgroups. TFR1, or Theorem 2.1 with `k = 1`, excludes it at
+  every join.
+- **2-group members.** For a 2-group `P`, `F_2[P]` is local, so `x F_2[P]^n` is free for every
+  idempotent `x in M_n(F_2[P])`. Such members add only integer multiples of `[S]` to a class,
+  but they can still take part in the laminar table.
+- **Pairwise trivial intersections.** Three or more subgroups with pairwise trivial intersections
+  give a graph `Phi` with no edges. Then `A` is a free product of finite groups, and the
+  configuration is excluded.
 
-No candidate was constructed that survives Theorem 2.1.
+No candidate was constructed that survives Theorem 2.6.
 
 ### 3.2 Survivor S2: cyclic configurations with a nonsofic amalgam
 
@@ -238,7 +280,8 @@ A laminar defect needs all of the following:
 - `k >= 2`;
 - a cycle of nontrivial pairwise intersections in `Phi`, among non-constant finite subgroups (in
   `R^x`, for instance Thompson conjugates `u H u^(-1)`);
-- a nonsofic intersection amalgam `A`;
+- a configuration that occurs in no sofic group (Theorem 2.6), so `A` and the join are both
+  nonsofic;
 - trace balance `m n + sum m_i r(x_i) = 0` with `d != 0`.
 
 **The question lives in `A`.** Lemma 2.2 works in both directions. A nonzero laminar combination
@@ -253,7 +296,8 @@ in `K_0(S)`, and the trace alone does not give that.
 
 **Soficity of such amalgams.**
 - If `A` is residually finite or finitely generated linear, the configuration is excluded. This
-  covers finite colimits and the linear lattices of `A_2~`-buildings.
+  covers finite colimits and the linear lattices of `A_2~`-buildings. So is any `A` with a finite
+  or sofic quotient injective on the union of the `H_i` (Theorem 2.6).
 - Colimits of triangles of finite groups include hyperbolic groups (Gersten--Stallings) and exotic
   `A_2~`-lattices. Their soficity is open, and a candidate has to live there.
 
@@ -275,8 +319,8 @@ Suppose one wants to show that cyclic configurations never balance, in every gro
   beyond the pairwise rectangles, or prove positivity in `F_p[A]` for every configuration amalgam
   `A`.
 - The second is an Atiyah-type positivity statement for laminar forests of idempotents over a
-  2-complex of finite groups. No approach was found. Soficity of `A` is the only mechanism
-  available.
+  2-complex of finite groups. No approach was found. Sofic realizations of the configuration
+  (Theorem 2.6) are the only mechanism available.
 
 ### 3.5 A finite certificate of nonsoficity
 
@@ -294,9 +338,10 @@ finite groups:
 - the balance is a rational identity.
 
 By Lemma 2.2 the same data give a nonzero zero-trace laminar combination in `F_p[A]`. So, by
-Theorem 2.1:
+Theorem 2.6:
 
-> A balanced configuration in any group certifies that its intersection amalgam `A` is not sofic.
+> A balanced configuration in any group certifies that no sofic group contains that
+> configuration. In particular its intersection amalgam `A` is not sofic.
 
 **Consequences.**
 - A search for S2 candidates is automatically a search for finite certificates of nonsoficity of

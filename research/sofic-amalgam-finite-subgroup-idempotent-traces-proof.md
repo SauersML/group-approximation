@@ -18,13 +18,18 @@ The complete proof is Section 2 of the attached artifact. Outline:
    - An equality `ab = a'b'` in `G` with `a, a' in H_i` and `b, b' in H_j` forces
      `a'^(-1) a = b' b^(-1) in D_ij`, which holds already in `A`. So `A -> G` is injective on every
      rectangle `H_i H_j`.
-   - Products `x_i x_j`, and the candidate values `0`, `x_i`, `x_j`, live on those rectangles, so
-     the laminar table holds in `F_p[A]`. The lift `d_A` of `d` is a nonzero idempotent.
-2. **Classes.** Each family member has a unique parent, the smallest member above it or `1`. The
-   atoms `y - sum(children of y)` are orthogonal idempotents, and every laminar combination is a
-   sum of atoms. So `[d] = m [S^n] + sum m_i [x_i]` for integers `m, m_i`, the same integers
-   express `[d_A]`, and `t_p([d S^n]) = m n + sum m_i r(x_i)`, where
-   `r(x) = dim(x F_p[H]^n) / |H|`.
+   - Products of two members, and the candidate values `0` and the members themselves, live on
+     those rectangles. So the laminar table holds in `F_p[A]`.
+2. **Atoms and classes.**
+   - Each member has a unique parent: the smallest member above it, or `1`.
+   - The atoms `y - sum(children of y)` are orthogonal idempotents defined from the table alone, so
+     they lift.
+   - Write `d` as a sum of distinct nonzero atoms, and let `d_A` be the sum of the corresponding
+     lifted atoms. It is an idempotent with `q(d_A) = d`, hence nonzero.
+   - A coefficient expression `c 1 + sum c_i x_i` would not do: members can be linearly dependent
+     in `G` and independent in `A`.
+   - So `[d] = m [S^n] + sum m_i [x_i]` for integers `m, m_i`, the same integers express `[d_A]`,
+     and `t_p([d S^n]) = m n + sum m_i r(x_i)`, where `r(x) = dim(x F_p[H]^n) / |H|`.
 3. **Sofic rank (Lemma 2.3).** Take the Elek--Szabo rank function `rk` of a sofic approximation
    of `A`.
    - It is additive on orthogonal idempotents.
@@ -35,7 +40,13 @@ The complete proof is Section 2 of the attached artifact. Outline:
      `F_p[H]`.
 4. **Conclusion.** `rk(d_A) = m n + sum m_i r(x_i) = t_p([d S^n])`, and faithfulness makes it
    positive. A Kaplansky defect has class zero and lifted trace zero, so `d` is not one.
-5. **Forests (Corollary 2.4).**
+5. **Sofic realizations (Theorem 2.6).** Let `A -> Gamma` be a homomorphism to a sofic group that
+   is injective on the union `U` of the `H_s`.
+   - It induces a ring map, so it carries the table and the atoms.
+   - It is injective on each `H_s`, so ranks keep their normalization.
+   - `d_A` is supported in `U`, so its image stays nonzero.
+   - Lemma 2.3 in the image of `A` gives the same conclusion.
+6. **Forests (Corollary 2.4).**
    - Along a rooted tree, the free actions of the vertex groups on one finite set can be
      conjugated to agree on the edge groups.
    - The resulting permutation representation of `A` is injective on each vertex group. Its
