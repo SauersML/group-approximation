@@ -183,7 +183,8 @@ theorem OsinMultipleEdgeCut.false_of_below
     intro hn
     subst hn
     simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
-    norm_num <;> ring
+    norm_num
+    ring
   linarith
 
 /-! ## Loops -/
@@ -268,7 +269,8 @@ theorem OsinLoopCut.false_of_below
     intro hn
     subst hn
     simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
-    norm_num <;> ring
+    norm_num
+    ring
   linarith
 
 end GroupApproximation.GGT.VanKampen
