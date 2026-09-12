@@ -88,7 +88,6 @@ theorem opAlmost_tendsto_map_one_sub_one {G : Type} [Group G]
       atTop (𝓝 0) := by
   refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_)
     (opAlmost_tendsto_mulDefect B 1 1)
-  dsimp only
   have hunit : star (B.map n 1 : Matrix (B.model n) (B.model n) ℂ) *
       (B.map n 1 : Matrix (B.model n) (B.model n) ℂ) = 1 :=
     Unitary.star_mul_self_of_mem (B.map n 1).2
@@ -122,7 +121,6 @@ theorem opAlmost_tendsto_map_inv_sub_conjTranspose {G : Type} [Group G]
     (opAlmost_tendsto_map_one_sub_one B)
   rw [add_zero] at hsum
   refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_) hsum
-  dsimp only
   have hUU : (B.map n g : Matrix (B.model n) (B.model n) ℂ) *
       (B.map n g : Matrix (B.model n) (B.model n) ℂ)ᴴ = 1 := by
     have h := Unitary.mul_star_self_of_mem (B.map n g).2
@@ -156,7 +154,8 @@ theorem opAlmost_tendsto_map_inv_sub_conjTranspose {G : Type} [Group G]
             (B.map n g : Matrix (B.model n) (B.model n) ℂ))
           (B.map n 1 : Matrix (B.model n) (B.model n) ℂ) 1
         rwa [norm_sub_rev ((B.map n g⁻¹ : Matrix (B.model n) (B.model n) ℂ) *
-          (B.map n g : Matrix (B.model n) (B.model n) ℂ))] at htri
+          (B.map n g : Matrix (B.model n) (B.model n) ℂ))
+          (B.map n 1 : Matrix (B.model n) (B.model n) ℂ)] at htri
 
 /-! ## The three displays -/
 
@@ -239,7 +238,6 @@ theorem printedDisplay_conj {G : Type} [Group G] (B : OpAlmostRepresentation G)
       (opAlmost_tendsto_map_inv_sub_conjTranspose B g)
   rw [add_zero, add_zero] at hlim
   refine squeeze_zero_norm (fun n ↦ ?_) hlim
-  dsimp only
   have hY := B.modelNonempty n
   set Vc := (B.map n (g * h * g⁻¹) : Matrix (B.model n) (B.model n) ℂ) with hVc
   set Vgh := (B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ) with hVgh

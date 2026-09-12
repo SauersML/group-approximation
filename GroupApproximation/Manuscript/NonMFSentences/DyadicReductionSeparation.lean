@@ -48,8 +48,8 @@ variable (m : ℕ) (hm : Nat.Coprime 2 m)
 def halfMod : ZMod m := ((ZMod.unitOfCoprime 2 hm)⁻¹ : (ZMod m)ˣ)
 
 theorem two_mul_halfMod : (2 : ZMod m) * halfMod m hm = 1 := by
-  have h := congrArg Units.val (ZMod.unitOfCoprime 2 hm).mul_inv
-  rw [Units.val_mul, Units.val_one, ZMod.coe_unitOfCoprime] at h
+  have h := (ZMod.unitOfCoprime 2 hm).mul_inv
+  rw [ZMod.coe_unitOfCoprime] at h
   exact_mod_cast h
 
 /-- The reduction of `k / 2ⁿ` modulo `m`. -/
@@ -78,15 +78,15 @@ theorem repReduce_eq_of_eq {k k' : ℤ} {n n' : ℕ}
     _ = (k' : ZMod m) * halfMod m hm ^ n' := by rw [hu, one_pow, mul_one]
 
 /-- The reduction of a dyadic rational modulo `m`. -/
-def dyadicReduce (x : Dyadic) : ZMod m := repReduce m hm (repNum x) (repExp x)
+def dyadicReduce (x : DyadicRationals.Dyadic) : ZMod m := repReduce m hm (repNum x) (repExp x)
 
-theorem dyadicReduce_of_rep (x : Dyadic) {k : ℤ} {n : ℕ}
+theorem dyadicReduce_of_rep (x : DyadicRationals.Dyadic) {k : ℤ} {n : ℕ}
     (h : (x : ℚ) = (k : ℚ) / 2 ^ n) :
     dyadicReduce m hm x = repReduce m hm k n :=
   repReduce_eq_of_eq m hm ((rep_spec x).symm.trans h)
 
 /-- **Reduction modulo an odd integer**, `ℤ[1/2] →+* ℤ/m`. -/
-def dyadicReduceHom : Dyadic →+* ZMod m where
+def dyadicReduceHom : DyadicRationals.Dyadic →+* ZMod m where
   toFun := dyadicReduce m hm
   map_one' := by
     rw [dyadicReduce_of_rep m hm 1 (k := 1) (n := 0) (by simp)]
@@ -94,7 +94,7 @@ def dyadicReduceHom : Dyadic →+* ZMod m where
   map_mul' x y := by
     obtain ⟨k, n, hx⟩ := exists_rep x
     obtain ⟨l, n', hy⟩ := exists_rep y
-    have hxy : ((x * y : Dyadic) : ℚ) = ((k * l : ℤ) : ℚ) / 2 ^ (n + n') := by
+    have hxy : ((x * y : DyadicRationals.Dyadic) : ℚ) = ((k * l : ℤ) : ℚ) / 2 ^ (n + n') := by
       rw [Subring.coe_mul, hx, hy, div_mul_div_comm, pow_add]
       norm_cast
     rw [dyadicReduce_of_rep m hm _ hxy, dyadicReduce_of_rep m hm x hx,
@@ -110,7 +110,7 @@ def dyadicReduceHom : Dyadic →+* ZMod m where
     obtain ⟨l, n', hy⟩ := exists_rep y
     have hn : ((2 : ℚ)) ^ n ≠ 0 := pow_ne_zero _ two_ne_zero
     have hn' : ((2 : ℚ)) ^ n' ≠ 0 := pow_ne_zero _ two_ne_zero
-    have hxy : ((x + y : Dyadic) : ℚ)
+    have hxy : ((x + y : DyadicRationals.Dyadic) : ℚ)
         = ((k * 2 ^ n' + 2 ^ n * l : ℤ) : ℚ) / 2 ^ (n + n') := by
       rw [Subring.coe_add, hx, hy, div_add_div _ _ hn hn', pow_add]
       norm_cast
@@ -130,20 +130,20 @@ def dyadicReduceHom : Dyadic →+* ZMod m where
     push_cast
     exact key _ _
 
-theorem dyadicReduceHom_apply (x : Dyadic) :
+theorem dyadicReduceHom_apply (x : DyadicRationals.Dyadic) :
     dyadicReduceHom m hm x = dyadicReduce m hm x := rfl
 
 end Reduction
 
 /-- **Distinct dyadic rationals have distinct reductions modulo some odd prime.** -/
-theorem exists_odd_prime_dyadicReduce_ne {x y : Dyadic} (hxy : x ≠ y) :
+theorem exists_odd_prime_dyadicReduce_ne {x y : DyadicRationals.Dyadic} (hxy : x ≠ y) :
     ∃ (p : ℕ) (hp : Nat.Coprime 2 p), p.Prime ∧
       dyadicReduceHom p hp x ≠ dyadicReduceHom p hp y := by
   obtain ⟨c, n, hc⟩ := exists_rep (x - y)
   have hc0 : c ≠ 0 := by
     intro h0
     apply hxy
-    have hcoe : ((x - y : Dyadic) : ℚ) = ((0 : Dyadic) : ℚ) := by
+    have hcoe : ((x - y : DyadicRationals.Dyadic) : ℚ) = ((0 : DyadicRationals.Dyadic) : ℚ) := by
       rw [hc, h0]
       simp
     exact sub_eq_zero.mp (Subtype.ext hcoe)
@@ -153,7 +153,7 @@ theorem exists_odd_prime_dyadicReduce_ne {x y : Dyadic} (hxy : x ≠ y) :
   haveI : NeZero p := ⟨by omega⟩
   refine ⟨p, hcop, hp, fun heq ↦ ?_⟩
   have hsub : dyadicReduceHom p hcop (x - y) = 0 := by
-    rw [map_sub, heq, sub_self]
+    rw [map_sub (dyadicReduceHom p hcop) x y, heq, sub_self]
   rw [dyadicReduceHom_apply, dyadicReduce_of_rep p hcop (x - y) hc, repReduce] at hsub
   have hu := two_mul_halfMod p hcop
   have hcz : (c : ZMod p) = 0 := by
@@ -173,7 +173,7 @@ theorem exists_odd_prime_dyadicReduce_ne {x y : Dyadic} (hxy : x ≠ y) :
 theorem two_zpow_mem_dyadicSubring (k : ℤ) : ((2 : ℚ) ^ k) ∈ dyadicSubring := by
   rcases Int.eq_nat_or_neg k with ⟨n, rfl | rfl⟩
   · exact mem_dyadicSubring.mpr ⟨2 ^ n, 0, by simp⟩
-  · exact mem_dyadicSubring.mpr ⟨1, n, by simp [zpow_neg]⟩
+  · exact mem_dyadicSubring.mpr ⟨1, n, by simp [_root_.zpow_neg]⟩
 
 set_option linter.unusedSimpArgs false in
 theorem realization_entry_mem_dyadicSubring (v : V) (i j : Fin 4) :
@@ -184,27 +184,31 @@ theorem realization_entry_mem_dyadicSubring (v : V) (i j : Fin 4) :
     simp [printedMat, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
       Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons] <;>
     first
-      | exact Subring.mul_mem _ (two_zpow_mem_dyadicSubring k) (Subring.intCast_mem _ _)
+      | exact mul_mem (two_zpow_mem_dyadicSubring k) (intCast_mem dyadicSubring _)
       | exact hw _
 
 /-- The realization of `v`, read as a matrix over `ℤ[1/2]`. -/
-def dyadicMat (v : V) : Matrix (Fin 4) (Fin 4) Dyadic :=
+def dyadicMat (v : V) : Matrix (Fin 4) (Fin 4) DyadicRationals.Dyadic :=
   fun i j ↦ ⟨((realization v : Matˣ) : Mat) i j, realization_entry_mem_dyadicSubring v i j⟩
 
 theorem dyadicMat_mul (v w : V) : dyadicMat (v * w) = dyadicMat v * dyadicMat w := by
-  apply Matrix.map_injective (f := (dyadicSubring.subtype : Dyadic → ℚ))
+  apply Matrix.map_injective (f := (dyadicSubring.subtype : DyadicRationals.Dyadic → ℚ))
     Subtype.val_injective
+  change (dyadicMat (v * w)).map dyadicSubring.subtype
+    = (dyadicMat v * dyadicMat w).map dyadicSubring.subtype
   rw [Matrix.map_mul]
   change ((realization (v * w) : Matˣ) : Mat)
     = ((realization v : Matˣ) : Mat) * ((realization w : Matˣ) : Mat)
-  rw [map_mul, Units.val_mul]
+  rw [map_mul realization v w, Units.val_mul]
 
 theorem dyadicMat_one : dyadicMat 1 = 1 := by
-  apply Matrix.map_injective (f := (dyadicSubring.subtype : Dyadic → ℚ))
+  apply Matrix.map_injective (f := (dyadicSubring.subtype : DyadicRationals.Dyadic → ℚ))
     Subtype.val_injective
+  change (dyadicMat 1).map dyadicSubring.subtype
+    = (1 : Matrix (Fin 4) (Fin 4) DyadicRationals.Dyadic).map dyadicSubring.subtype
   rw [Matrix.map_one _ (map_zero dyadicSubring.subtype) (map_one dyadicSubring.subtype)]
   change ((realization 1 : Matˣ) : Mat) = 1
-  rw [map_one, Units.val_one]
+  rw [map_one realization, Units.val_one]
 
 /-! ## Reduction homomorphisms of `V` -/
 
@@ -245,7 +249,8 @@ theorem manuscriptSentence_reductionModuloOddSeparates (v w : V) (hvw : v ≠ w)
     by_contra hcon
     push Not at hcon
     exact hne (Matrix.ext hcon)
-  have hdy : dyadicMat v i j ≠ dyadicMat w i j := fun h ↦ hij (congrArg Subtype.val h)
+  have hdy : dyadicMat v i j ≠ dyadicMat w i j :=
+    fun (h : dyadicMat v i j = dyadicMat w i j) ↦ hij (congrArg Subtype.val h)
   obtain ⟨p, hp, -, hred⟩ := exists_odd_prime_dyadicReduce_ne hdy
   refine ⟨p, hp, fun heq ↦ hred ?_⟩
   exact congrArg
@@ -261,7 +266,7 @@ theorem residuallyFinite_of_reductionModuloOdd : Group.ResiduallyFinite V := by
       rintro rfl
       simp [Nat.Coprime] at hm⟩
     infer_instance
-  · rwa [map_one] at hne
+  · rwa [map_one (reductionHom m hm)] at hne
 
 /-- **The printed clause, every part**: the reductions modulo odd integers are
 homomorphisms given entrywise by reducing the dyadic realization, they separate
@@ -286,7 +291,7 @@ end GroupApproximation
 
 open GroupApproximation
 
-#audit_closed_axioms
+#audit_axioms
   Manuscript.NonMFSentences.manuscriptSentence_reductionModuloOddSeparates
 #audit_closed_axioms
   Manuscript.NonMFSentences.manuscriptSentence_reductionModuloOddRFAndMF
