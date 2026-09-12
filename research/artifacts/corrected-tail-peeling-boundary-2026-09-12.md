@@ -42,41 +42,35 @@ automaton in block `X` has the shape `row(X,Y)`. We use throughout:
 ## 1. Own-block local-bijection rows
 
 Call a row `row(X,Y)` an **own-block local-bijection row** if for every `Y` the
-self-map `Phi_Y : X -> row(X,Y)` of the block-`X` full shift is a bijection
-whose inverse is a cellular automaton with memory bounded uniformly in `Y`.
-Linearity is not required.
+self-map `Phi_Y : X -> row(X,Y)` of the block-`X` full shift is a bijection.
+Linearity is not required, and nothing more is needed:
+`E(X,Y) = (Phi_Y(X), Y)` is then a bijective cellular automaton on a full shift
+over a finite alphabet, so by Curtis--Hedlund--Lyndon its inverse
+`(Z,Y) -> (Phi_Y^{-1}(Z), Y)` is a cellular automaton, and the inverses are
+local uniformly in `Y`.
 
 The predecessor's **type (O)** is the special case `Phi_Y = L_Y(.) + beta(Y)`
-with `L_Y` linear and bijective. The next definition supplies nonlinear
-instances.
+with `L_Y` linear and bijective.
 
-**Definition (graded-nilpotent own part).** Write `row(X,Y) = X + N_Y(X)`, where
-`N_Y` is a local function reading `X` at a finite address set `S` and `Y`
-arbitrarily. Suppose there is a finite chain of local functions
-`X = P_0(X,Y), P_1, ..., P_D = 0` and a bound `D` such that `N_Y` maps the value
-determined by `P_{k}` into the value determined by `P_{k+1}`; concretely, that
-the formal substitution `N_Y^{(D)} = 0` after `D` iterations at each fixed `Y`.
-Then
+**Instances (corrected 2026-09-12; the first version's graded-nilpotent example
+was false, see Section 5).**
 
-```text
-Phi_Y^{-1} = sum_{k=0}^{D-1} (-N_Y)^{(k)}
-```
-
-is a finite composite of local functions, uniform in `Y`, so `Phi_Y` is an
-own-block local-bijection row.
-
-**Example (nonlinear, over F_2).** Two own-block factors with a nilpotent
-address pattern. On `Z`, single track over `F_2`,
-
-```text
-row(x)(g) = x(g) + x(g+1) x(g+2),
-```
-
-read with the convention that the correction is applied from the largest
-address inward, has `N` raising the minimal read address, so `N^{(3)} = 0` on
-any window and `Phi^{-1} = I - N + N^{(2)}` is local. This is own-block
-*nonlinear* and still peelable. (Contrast the central-`C_3` row of section 3,
-which is not a local bijection.)
+* *Track shears.* If block `X` has tracks `(u,v)`, every composite of the shears
+  `(u,v) -> (u + f(v,Y), v)` and `(u,v) -> (u, v + h(u,Y))`, with arbitrary
+  local `f` and `h`, is an own-block local bijection; the inverses are the
+  opposite shears. These rows are nonlinear in the block, but they also peel
+  track by track with type-(O) steps. For
+  `Phi(u,v) = (u + f(v,Y), v + h(u + f(v,Y), Y))`, peel `u` with correction
+  `u* = -f(v,Y)`; the tail row in `v` is the pure shear `v + h(0,Y)`.
+* *A single-track nonlinear bijection.* Let `t` have order three and, over `F_2`,
+  put `row(x)(h) = x(h) + x(h)x(ht) + x(ht)x(ht^2)`. The rule acts separately on
+  each left coset `g<t>`, as the map
+  `(a,b,c) -> (a + ab + bc, b + bc + ca, c + ca + ab)` on `F_2^3`. That map fixes
+  `000, 100, 010, 001, 111` and cycles `110 -> 011 -> 101 -> 110`, so the row is a
+  bijection. It is nonlinear and lives on one track, so it cannot be split into
+  tracks: this is where Lemma 1.1 reaches beyond type (O). It is the same-track
+  control of the audit artifact's boundary B3; the B3 family `x + A(x R_t x)`
+  with an arbitrary linear `A` is in general not a bijection.
 
 **Lemma 1.1 (peeling an own-block local-bijection row).** Let `F` be an
 injective automaton on blocks `X, Y`, whose `X`-rows form an own-block
@@ -87,16 +81,15 @@ injective, and:
 * if `F'` is surjective, so is `F`;
 * `F` is surjective iff `F'` is surjective.
 
-*Proof.* Let `E(X,Y) = (Phi_Y(X), Y)`. `E` is a bijective cellular automaton:
-it is injective because each `Phi_Y` is, its inverse `E^{-1}(Z,Y) =
-(Phi_Y^{-1}(Z), Y)` is a cellular automaton by hypothesis (uniform local
-inverse), and it fixes the second coordinate. Put `D = F o E^{-1}`. Then
-`D(Z,Y) = (Z, T_Z(Y))` with `T_Z(Y)` the `Y`-rows of `F` at
-`(Phi_Y^{-1}(Z), Y)`, and `T_0 = F'`. `F = D o E` with `E` bijective, so `F` is
-injective iff `D` is, and surjective iff `D` is. `D` fixes `Z` and is injective,
-so by (FIB) `F'` injective; if `F'` surjective then some fiber of `D` is
-bijective... more directly, `D` is surjective iff some fiber is surjective
-(FIB), and its `Z=0` fiber is `F'`. So `F` surjective iff `F'` surjective. QED
+*Proof.* Let `E(X,Y) = (Phi_Y(X), Y)`. `E` is a bijective cellular automaton
+fixing the second coordinate, and `E^{-1}(Z,Y) = (Phi_Y^{-1}(Z), Y)` is a
+cellular automaton, as above. Put `D = F o E^{-1}`. Then `D(Z,Y) = (Z, T_Z(Y))`
+with `T_Z(Y)` the `Y`-rows of `F` at `(Phi_Y^{-1}(Z), Y)`, and `T_0 = F'`.
+`F = D o E` with `E` bijective, so `F` is injective iff `D` is, and surjective
+iff `D` is. `D` is injective and fixes `Z`, so its fiber `F' = T_0` is
+injective. If `D` is surjective, every fiber is. Conversely, by (FIB) one
+surjective fiber makes `D` surjective. So `D` is surjective iff `F'` is, and
+hence `F` is surjective iff `F'` is. QED
 
 Lemma 1.1 is exactly Theorem 2.2 of the offset-corrected artifact with the
 linear `L_Y` replaced by an arbitrary local bijection `Phi_Y`; the proof only
@@ -208,3 +201,8 @@ Lemma 1.1, Corollary 1.2, Theorem 2.1 and Theorem 3.1 pass. Section 7 of
   `x - N(x) + N(x - N(x))`, which is not `x` in general.
 * **Replacement instances.** Nonlinear own-block local bijections exist: composites of track shears
   `(u,v) -> (u + f(v,Y), v)` and `(u,v) -> (u, v + h(u,Y))` with arbitrary local `f` and `h`.
+* **Resolved by the author (gk-p-tails, 2026-09-12).** The false example and the graded-nilpotent
+  definition have been removed from Section 1. Section 1 now lists the track shears (which also
+  peel track by track with type-(O) steps) and the single-track order-three control
+  `x(h) + x(h)x(ht) + x(ht)x(ht^2)`, which permutes `F_2^3` on each left coset of `<t>`. It also
+  drops the local-inverse hypothesis, which is automatic by Curtis--Hedlund--Lyndon.
