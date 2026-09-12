@@ -161,8 +161,15 @@ with 463,000 to 470,000 AND variables and about 145 s to build:
 `s0-lifts-cannot-be-supported-in-the-all-ones-stabilizer` compiles ESTABLISHED via its
 proof route.
 
+**With prunes and the strictness clause.** `v` (3,3) is still UNKNOWN at 2,450 s
+(44,521 AND variables). The clause `beta alpha != 1` is one large disjunction over
+XOR-defined bits, and it propagates weakly. A mode that fixes both evaluations,
+`pi(beta) = s0` and `pi(alpha) = t0`, replaces it with linear rows on both sides.
+By `leavitt-inverse-defects-are-visible-or-invisible`, every pair whose defect
+survives evaluation is such a pair after translating by one group element, so that
+mode covers the visible-defect case at slightly larger radii.
+
 **Running.**
-- sbatch `kdf-sat-b8`: `v` (3,3) with the strict clause and prunes.
 - sbatch `kdf-sat-b9`: atlas (3,4) and (2,5) with `pi(beta) = s0`, and (4,3) and (5,2)
   with `pi(alpha) = t0`. These use the prunes plus the all-ones clause of 63eeb5e54,
   with 2,400 s each.
