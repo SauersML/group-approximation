@@ -92,7 +92,158 @@ The `distinct_from` keys `relative-automorphism-action-is-highly-transitive`,
 `twisted-brin-thompson-finite-presentation-criterion` and
 `fp-self-similar-groups-embed-in-fp-simple-groups` exist as claims.
 
+## 5. `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` (925b9eabd) — FAIL, corrected forward in 4ba6fa13b
+
+**Error.** Theorem C of `boone-higman-char-p-all-degrees-2026-09-12`, and step 3
+of `char-p-linear-embedding-projective-leavitt-power-proof`, use
+`X |-> diag(X, X^-1, 1, ..., 1)` as an injective homomorphism `H -> E_m(R_d)`.
+It is not one. `w(X) w(Y) = diag(XY, X^-1 Y^-1)`, while
+`w(XY) = diag(XY, Y^-1 X^-1)`. So `w` is multiplicative only on commuting pairs,
+and it fails for every nonabelian `H`, for example `SL_3(F_p[t])`.
+
+**What stands:**
+- Lemma A: `H <= GL_N(R_d)`, through Noether normalization and free extensions
+  over `C[g^±]`, with `M_k(R_d) ≅ R_d`.
+- Lemma B: the six-factor identity is correct, and each single `diag(X, X^-1)`
+  lies in `E_(2N)`.
+- Lemma C: `Z(R_d) = F_p`.
+- Simplicity of `E_m(R_d) / Z`, taken from part 4 of the host claim.
+
+**Correction.** The established obstruction
+`whitehead-diagonal-map-is-not-multiplicative`, with its `-proof` route,
+invalidates the route. The claim now reads OPEN, with `## Attempts` recording
+two repair directions:
+- `K_1(R_d) = 0`;
+- `diag(X, X^-T)` over the commutative coordinate ring, which needs
+  `[X^T] = [X]` in `K_1(S)`.
+
+The artifact's statement that `K_1` plays no role is therefore not established.
+
+**Check.** MSI `cairn check` at 80aa1b814, which contains 4ba6fa13b: EXIT=0, 0 ERROR.
+- The claim reads OPEN.
+- The route reads INVALIDATED.
+- The obstruction reads ESTABLISHED.
+- `positive-char-linear-groups-satisfy-boone-higman` and
+  `boone-higman-conjecture` still read OPEN.
+
+**Repair by lane `bh-char-p-all-degrees` (83fee9c7b) — PASS.** The new route
+`char-p-linear-embedding-corner-swindle-proof` replaces the Whitehead map with a
+homomorphism and one more tensor factor:
+- `H <= GL_N(R_d ⊗ 1) <= GL_N(R_(d+1))`;
+- each generator has trivial class in `K_1(R_(d+1))` by
+  `leavitt-tensor-kills-k1-of-coefficient-matrices` (§11), so some
+  stabilization of it lies in `E_M`;
+- the stabilization homomorphism `X |-> diag(X, I_(M-N))` then puts `H` inside
+  `E_M(R_(d+1))`.
+
+The centre calculation and the simplicity input carry over with `B = R_d`
+central simple. So the claim is established again, now over `R_(d+1)`.
+`positive-char-linear-groups-satisfy-boone-higman` still needs the open
+finite-presentation premise.
+
+## 6. `rational-linear-groups-satisfy-boone-higman` (103b2b683) — PASS
+
+From the text of arXiv:2405.09722, extracted on MSI:
+- Theorem 1.2 reads "Every finitely generated subgroup of GL_n(Q) satisfies the
+  Boone–Higman conjecture";
+- Theorem 1.1 is the finitely presented self-similar embedding;
+- the proof goes through Example 4.7 with `J = pZ[1/m]`.
+
+Not rechecked: the journal reference.
+
+## 7. `algebraic-linear-groups-satisfy-boone-higman` (103b2b683) — PASS
+
+- The entries of the generators and their inverses generate a number field `F`.
+- The regular representation `F -> M_d(Q)` is an injective unital ring
+  homomorphism.
+- Applying it entrywise gives `GL_n(F) -> GL_(nd)(Q)`.
+- A finitely generated subgroup of `GL_(nd)(Q)` then satisfies Boone–Higman by §6.
+
+The node claims no novelty.
+
+## 8. `char-zero-leavitt-unit-groups-have-congruence-kernels` (103b2b683) — PASS
+
+- The infinite-word module `A^(X)` satisfies the Leavitt relations: every word
+  starts with 0 or 1.
+- Residue fields of finitely generated `Z`-algebras at maximal ideals are finite.
+- `w = s_0 t_1 + s_1 t_0` is an involution that survives reduction.
+- `u = 1 + p s_0 t_1` is a unit in the kernel. It is nontrivial because
+  `(u-1) e_(1x) = p e_(0x) != 0` in the free `A`-module.
+
+## 9. `affine-self-similar-coordinate-rings-are-one-dimensional` (103b2b683) — PASS
+
+**Part (a).**
+- (SC) applied `e` times to `p` gives an element of valuation 0 and one of
+  valuation 1.
+- So `P R_P = pi R_P`, and `R_P` is a DVR by Krull's principal ideal theorem.
+
+**Part (b).**
+- A minimal prime `Q` over `xR` has height 1.
+- `R/Q` is a finite field of characteristic `p`.
+- The dimension formula over the universally catenary `Z` (Matsumura 15.6)
+  gives `1 = 1 + trdeg - 0`, so `trdeg = 0`.
+
+**Reading of Zaremsky's Example 4.7.** Checked verbatim against the PDF text on
+MSI: "a principal left ideal J = Rx of finite index … x is not a zero-divisor …
+∩_k R x^k = {0} … R^⊕n ⋊ GL_n(R) is self-similar". The node's commutative,
+finitely generated reading matches.
+
+**Section argument.** The digit section of the translation by
+`b in R^n ∩ pi O^n` is the translation by `b/pi`.
+
+## 10. `spherical-artin-boone-higman-reduces-to-e6-e7-e8` (d533ae6e6) — PASS
+
+This is a conditional reduction.
+- **Crisp.** The text of Paris arXiv:0711.2372, p. 45, extracted on MSI, reads:
+  "any spherical type Artin group embeds in a direct product of Artin groups of
+  type A_n (n ≥ 1), D_n (n ≥ 4), and E_k (k = 6,7,8) (see [57])", with [57] =
+  Crisp, *Injective maps between Artin groups*.
+- **Product closure.** The BFHZ arXiv:2503.21882 text reads "PBH is stable under
+  commensurability and direct products [Zarb]", citing [Zarb] Propositions 5.5
+  and 5.6.
+- **Types A and D.** Corollary B covers braid groups and type D_n. Its proofs go
+  through PBH by embedding or commensurability.
+- **Trust surfaces.** The primary sources, Crisp 1999 and [Zarb], were not
+  re-read. No root is established.
+
+## 11. `leavitt-tensor-kills-k1-of-coefficient-matrices` (83fee9c7b) — PASS
+
+The route `leavitt-tensor-k1-coefficient-swindle-proof` checks line by line.
+- **The corner endomorphism** `φ(r) = s_0 r t_0 + s_1 r t_1` is unital and
+  multiplicative, because `t_0 s_1 = t_1 s_0 = 0`. It fixes `B ⊗ 1`.
+- **The block matrices.** `S = (s_0 I, s_1 I)` and `T = (t_0 I; t_1 I)` satisfy
+  `ST = I_N` and `TS = I_(2N)`. Then `U = [[S,0],[0,T]]` and `V = [[T,0],[0,S]]`
+  satisfy `UV = VU = I_(3N)`, and `U diag(X, X, I_N) V = diag(φ(X), I_(2N))`.
+- **Conclusion.** `[X] = [φ(X)] = 2[X]`, so `[X] = 0`.
+
+This is the classical swindle, and the node claims no novelty.
+
+## 12. `boone-higman-implies-relative-permutational-bh` (29dfc60b5) — PASS
+
+Checked against the text of arXiv:2603.24687v2, extracted on MSI:
+- **Theorem C (Theorem 5.1)**, verbatim: "If a group satisfies the Boone–Higman
+  conjecture then it satisfies the relative permutational Boone–Higman
+  conjecture."
+- **Conjecture 1.8 (relPBH)** matches: "a group G with a type [A2] action on a
+  set S such that Γ sharply embeds in (G, ker(G ↷ S))".
+- **Definition 1.6:** its opening matches.
+- **Question 5.9:** the remark that a "yes" to its first part gives
+  (relPBH) ⟹ (PBH) matches.
+
+The node's definitions were first read through a summarizing fetch. Theorem C
+and Conjecture 1.8 are now verified from the PDF text. The definition of type
+[A_2] was not re-extracted.
+
+**Open nodes from the same commit** (not established, so no verdict):
+- **The permutational statement.** The BFHZ PDF text confirms it (line 132:
+  "embeds in a group admitting an action of type (A)").
+- **The MIF question.** The BFHZ text states it as Question 3.4 (line 721), which
+  the node calls "their question" without the number.
+- **Routes.** `boone-higman-via-permutational-boone-higman` and
+  `permutational-boone-higman-via-mif-envelopes` form the intended conditional
+  cycle, and neither fires.
+
 ## Summary
 
-4 PASS, 0 FAIL, 0 GAP. No correction was landed. The Boone–Higman root stays
-OPEN.
+12 PASS, including the repair; 1 FAIL, corrected forward in 4ba6fa13b and
+repaired in 83fee9c7b; 0 GAP. The Boone–Higman root stays OPEN.
