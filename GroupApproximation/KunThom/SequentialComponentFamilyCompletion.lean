@@ -101,7 +101,8 @@ theorem card_taggedBoundary_le_card_mul_directedBoundary {G : Type*} (T : Finset
     · intro p hp q hq hpq
       have hp' := (Finset.mem_filter.mp (Finset.mem_coe.mp hp)).2
       have hq' := (Finset.mem_filter.mp (Finset.mem_coe.mp hq)).2
-      exact Prod.ext hpq (congrArg Prod.snd (hp'.trans hq'.symm))
+      have h2 := congrArg Prod.snd (hp'.trans hq'.symm)
+      exact Prod.ext hpq h2
     · exact (Finset.card_univ.trans (Fintype.card_coe T)).le
 
 /-- **Directed expansion of the completed labels.** -/

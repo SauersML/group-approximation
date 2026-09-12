@@ -4652,6 +4652,9 @@ import GroupApproximation.KunThom.RetainedComponentExpansion
 import GroupApproximation.KunThom.BisectionActualDefect
 import GroupApproximation.KunThom.ComponentCountingRetainedMatchingSums
 import GroupApproximation.KunThom.RelativeFunctorEstimateMatching
+import GroupApproximation.KunThom.SequentialComponentFamilyPruning
+import GroupApproximation.KunThom.SequentialComponentFamilyCompletion
+import GroupApproximation.KunThom.SequentialComponentFamilyLevels
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
