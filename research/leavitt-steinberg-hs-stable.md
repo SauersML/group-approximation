@@ -181,4 +181,48 @@ majority matching.  Transcribing it to the normalized-HS metric needs
 exactly one new input, `hs-expander-block-decomposition`; the other two
 steps do transcribe, and the transcription is written out in
 `hs-block-decomposition-to-steinberg-stable`.  That route is currently the
-sharpest formulation of what proving this claim requires.
+sharpest formulation of what proving this claim requires.  *Superseded
+2026-09-11:* that route's load-bearing prerequisite is equivalent to this
+claim (`stable-branch-trivializes-hs-block-programme`), so it is a
+reformulation, not a reduction.
+
+**Next attack (2026-09-11, speculative).**  The atom algebra of a gap
+decomposition has to be *chosen*, and choosing it is where both the nonmonomial
+obstruction and the masa collapse live.
+
+*A choice-free observable on exact representations.*  For an exact
+finite-dimensional representation `pi` of any group containing the
+configuration, put
+
+```text
+K = sum_sigma (dim sigma / d) e_sigma,
+```
+
+the local irreducible dimension, summed over the `Gamma`-isotypic central
+projections `e_sigma`.  It is central, so nothing is chosen.
+
+*The compressor collapses it.*
+
+* `pi(u) K pi(u)^* <= K`: a `u Gamma u^(-1)`-isotypic component lies inside
+  `Gamma`-irreducibles of at least its dimension, and the two families of
+  central projections commute.
+* Trace conservation forces equality, so every `Gamma`-irreducible restricts
+  irreducibly to `u Gamma u^(-1)`.
+* Schur's lemma then makes `pi(u J u^(-1))` central in `pi(Gamma)''`.
+
+This re-proves, choice-free, the finite-dimensional collapse of
+`compression-defect-dies-in-finite-dimensions`.
+
+*What an approximate version would need.*  `Gamma = EL_3(L)` has no nontrivial
+exact finite-dimensional representations, so the isotypic data would have to
+come from the exact coordinates of the atlas source.  There the relations of
+`Gamma` hold only asymptotically.
+
+* The open step is an approximate, `o(1)`-mass monotonicity of such a central
+  size observable under `phi_n(u)`: a multiplicity-median device replacing
+  Kun's atom median.
+* It must fail in faithful models, so it is of branch strength too.
+* It would concern canonical data, so an obstruction to it would locate the
+  unstable branch's room at a named scale.
+
+Nothing here is proved beyond the exact case.
