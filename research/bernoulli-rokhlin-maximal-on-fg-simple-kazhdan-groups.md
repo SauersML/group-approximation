@@ -71,3 +71,25 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   positive conditional entropy at the identity; and the injective equivariant image of the subshift `Y`
   from `strict-split-decoders-have-infinitely-many-sections`. No lane has computed either one on a
   nonsofic host.
+
+- **Subgroup induction collapses (gk-p-inf-f, 2026-09-12).** Every known lower bound runs on some
+  subgroup `H` that has an entropy theory: amenable, sofic, or free through Bowen's f-invariant.
+  Transferring that bound to a `G`-generating partition needs Følner sets for `G` acting on `H\G`,
+  that is, a co-amenable `H`. By `simple-kazhdan-groups-have-no-proper-co-amenable-subgroups`, the only
+  co-amenable subgroup of a canonical host is the host itself, so the induction returns the question
+  unchanged. Mechanism analysis: Section 1.2 of
+  `research/artifacts/rokhlin-lower-bounds-without-finite-models-2026-09-12.md`.
+- **Tree mechanisms (gk-p-inf-f).**
+  - Bowen's f-invariant is the one lower-bound functional here that needs no finite models:
+    `F(Q) = H(Q) - sum_i I(Q; s_i^-1 Q) <= H(Q)`, and it equals `log|A|` on Bernoulli time-zero
+    partitions.
+  - Its invariance needs a tree Cayley graph. Graph-of-groups relatives die on the host by FA
+    (`property-t-implies-property-fa`), and cubical relatives by FW.
+  - Infinite-index free subgroups only see the restricted shift, whose entropy is infinite.
+  - The whole orbit relation of an infinite Kazhdan group is not treeable (Adams–Spatzier).
+  Artifact Section 2.3.
+- **Percolation treeings (gk-p-inf-f).** Factor-of-iid treed subrelations (Gaboriau–Lyons) have infinite
+  index in the orbit relation. A `G`-generating partition controls them only through co-amenability at
+  the level of the relation. For Kazhdan relations that is expected to collapse as in the subgroup
+  case, but it is not proved here. Artifact Section 3. Any surviving mechanism has to meet the five
+  conditions of artifact Section 4.
