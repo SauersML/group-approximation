@@ -46,8 +46,10 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
   - graded objects for growing finite subgroups are incompatible.
   (Artifact Section 3.)
 - **Counting on finite level subgroups: cannot finish.** In every rank model of the Leavitt
-  unit group, involution types in `SL_(3·2^k)(F_2)` satisfy `f(2r) = f(r)`. That uses the
-  exact doubling identity `g = g (x) I_2` and the compressor corner `g ~ g (+) I`. Regular
+  unit group, involution types `1 <= r < N/4` in `SL_N(F_2)`, `N = 3·2^(k+1)`, satisfy
+  `f(2r) = f(r)`. That uses the exact doubling identity `g = g (x) I_2` and the corner copy
+  `g ~ g (+) I`, which holds by absorption when `g` has a trivial Jordan summand and fails at
+  the maximal type (range and justification corrected 2026-09-12). Regular
   modules satisfy it, so finite-subgroup counting is consistent with free models and gives
   no contradiction (artifact Section 4, Proposition 2).
 - **Uniform displacement and root self-similarity: proved, not enough.**
