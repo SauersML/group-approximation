@@ -36,3 +36,8 @@ target and a Gottschalk counterexample on `PG`.
   - a forward table with a nonsofic two-core;
   - `PG` not `F_3`-linear sofic.
   `F_3`-linear soficity of `PG` refutes this claim.
+- *Membership, reduced.* `delta^2` lies in the adjoint image iff `Psi^2` does, iff `Psi^2` has a right
+  inverse there (`adjoint-image-is-stable-under-klein-doubling`). The image does keep the doubling
+  self-similarity: `delta T Psi` is in it for every `T` in it, and `F_3[PG]` embeds unitally in the
+  corner `e_K F_3[PG] e_K` (`klein-corner-contains-unital-copy-of-projective-group-algebra`). It dies
+  at a partial isometry: a unital copy inside the corner is not a pair `c e b = 1`.

@@ -39,3 +39,14 @@ artifacts:
   `delta Psi` lives in `End_(F_3)(R)`, where no rank function sees `rho(e_K)` as
   smaller than `1`. A splitting inside the image algebra would therefore say nothing
   about linear soficity, and a lift to `F_3[PG]` would refute it.
+- *Balanced invariant (gk-n-klein, 5b6ac9c994).* On the adjoint image both multiplications
+  `a (x) b -> ab` and `a (x) b -> ba` equal the augmentation (`ternary-adjoint-image-is-balanced`).
+  `delta` and `Psi` have `mu' = 2`, so the literal splitting `delta Psi` is not in the image
+  (`klein-level-one-splitting-is-outside-adjoint-image`). The level-two pair `delta^2`, `Psi^2` is
+  balanced and still splits `rho(e_K)` (`klein-expectation-splits-in-balanced-algebra`). The stronger
+  target `projective-ternary-level-two-klein-idempotent-is-full` routes here, and its natural
+  splitting is the balanced one. Membership of `delta^2` in the image is open.
+- *Self-similarity survives, fullness does not follow.* `x -> delta_*(x) e_K` embeds `F_3[PG]` unitally
+  into `e_K F_3[PG] e_K` (`klein-corner-contains-unital-copy-of-projective-group-algebra`).
+  `T -> delta T Psi` preserves the adjoint image (`adjoint-image-is-stable-under-klein-doubling`). It
+  dies at the partial isometry: a unital subring of the corner gives no `b, c` with `c e_K b = 1`.

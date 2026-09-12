@@ -165,3 +165,55 @@ analogue `(delta, Psi)` is not. This is recorded as the open claim
 **What this does not show.** It decides neither the Klein target nor the swap target, nor whether
 `delta^2` lies in the adjoint image. It rules out one specific operator splitting and shows that a
 balanced one exists.
+
+## 7. The doubling endomorphism survives in the group algebra and in its image
+
+Let `delta : R -> R`, `delta(r) = s_0 r t_0 + s_1 r t_1`. It is a unital ring endomorphism: the cross
+terms vanish because `t_i s_j = delta_ij`. It restricts to a group endomorphism of `G` with
+`delta(-1) = -1`, hence of `PG`. Write `delta_*` for the induced map on `k[PG]`. The tensor `delta`
+of Section 3 and this endomorphism share a name on purpose.
+
+**Proposition 7 (corner self-embedding).** `x -> delta_*(x) e_K` is an injective unital ring
+homomorphism `k[PG] -> e_K k[PG] e_K`.
+
+*Proof.* `delta(g) w = s_0 g t_1 + s_1 g t_0 = w delta(g)` and `delta(g) d = s_0 g t_0 - s_1 g t_1 = d delta(g)`.
+So `delta_*(x)` commutes with `e_K`, and the map is multiplicative with `1 -> e_K`.
+
+For injectivity, the group elements `delta(g) k` (`g in PG`, `k in K`) are pairwise distinct.
+`delta(g) k = delta(g') k'` gives `delta(h) in K` for `h = g'^-1 g`. But `delta(h) = diag(h, h)` is
+scalar-diagonal. `w` and `wd` are not diagonal, and `d = diag(1, -1)` is not of that form even up
+to sign. So `delta(h) = ±1`, then `h = ±1`, and `g = g'`, `k = k'`. QED
+
+**Proposition 8 (intertwining and doubling on the image).** For `x in k[PG]`, with `delta`, `Psi`
+the tensors of Section 3:
+
+```text
+delta rho(x) = rho(delta_*(x)) delta,          Psi rho(delta_*(x)) = rho(x) Psi,
+Theta(rho(x)) := delta rho(x) Psi = rho(delta_*(x) e_K),       Psi rho(delta_*(x)) delta = rho(x).
+```
+
+So `Theta` maps the adjoint image `A = rho(k[PG])` into itself. It is an injective algebra
+endomorphism of `A` with `Theta(1) = rho(e_K)`.
+
+*Proof.* On `g`:
+- `delta rho(g) = sum_i s_i g (x) (g^-1 t_i)^op`, and `rho(delta(g)) delta` gives the same, using
+  `t_i delta(g) s_j = delta_ij g`.
+- `Psi rho(delta(g)) = 2 sum_j g t_j (x) (s_j g^-1)^op = rho(g) Psi`.
+
+Then `Theta(rho(x)) = rho(delta_*(x)) delta Psi = rho(delta_*(x)) rho(e_K)`, and `Psi delta = 1`.
+`Theta(T) Theta(T') = delta T (Psi delta) T' Psi = Theta(TT')`, and `Psi Theta(T) delta = T` gives
+injectivity. QED
+
+**Corollary 9 (membership at level two).** `delta^2 in A` iff `Psi^2 in A` iff `Psi^2` has a right
+inverse in `A`.
+
+*Proof.* The flip `sigma(a (x) b^op) = b (x) a^op` is an anti-automorphism of `Q` with
+`sigma(rho(g)) = rho(g^-1)`, so `sigma(A) = A`, and `sigma(delta^2) = Psi^2`. If `delta^2 in A`,
+then `Psi^2 delta^2 = 1`. If `Psi^2 T = 1` with `T in A`, then
+`delta^2 = delta^2 Psi^2 T = rho(e_(K_4)) T in A`. QED
+
+**Where it dies.** Propositions 7 and 8 give unital copies of `k[PG]` inside the corner
+`e_K k[PG] e_K`, and of `A` inside `rho(e_K) A rho(e_K)`. Fullness of `e_K` asks for more: a partial
+isometry pair `b = e_K b`, `c = c e_K` with `c b = 1`. A unital subring of the corner is not such a
+pair. The same self-similarity holds in `R` itself, where `delta` is the partial isometry. In
+`k[PG]` no element plays `delta`'s role, and in `A` none is known.
