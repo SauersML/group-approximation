@@ -4632,6 +4632,7 @@ import GroupApproximation.KunThom.FixedPointNormalizationScaleSums
 import GroupApproximation.KunThom.CountingEndgameCompletion
 import GroupApproximation.KunThom.MedianVertexForm
 import GroupApproximation.Matching.ScaledPartialClusterGroupoid
+import GroupApproximation.KunThom.ComponentCountingRetainedMatching
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
