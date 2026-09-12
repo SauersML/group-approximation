@@ -19,6 +19,10 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
 
 - **Fixed tables, via products.** `strict-rule-pairs-pass-to-product-alphabets` moves strictness
   only from `k` to multiples `kl`, never down.
+- **Fixed tables do not descend at all.** `equal-label-table-is-strict-at-three-symbols-not-two`
+  shows that the table `x_a = x_b` with a discrete reverse table admits strict rules over every
+  alphabet with at least three symbols and over none with two. Any group-level descent must
+  therefore change the tables, e.g. by enlarging the memories.
 - **Retraction onto a sub-alphabet.** Using `mu o r` and `nu o r` loses the fiber position of the
   demanded cell. When the class of `(1,1)` meets only relay `1`, that relay must carry both the
   code's symbol and the fiber position. So the extension fails unless the fibers have equal size,

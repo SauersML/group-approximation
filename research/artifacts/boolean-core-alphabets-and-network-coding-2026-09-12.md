@@ -3,7 +3,10 @@
 Lane `gk-n-boolean`, 2026-09-12. Handwritten proofs, no computation. Supports the claims
 `boolean-core-is-uniform-single-demand-network-coding`,
 `strict-rule-pairs-pass-to-product-alphabets`,
-`smallest-boolean-strict-core-is-a-one-sided-inverse`, and the open holes
+`smallest-boolean-strict-core-is-a-one-sided-inverse`,
+`copy-codes-make-one-sided-table-identities-strict`,
+`two-by-two-single-coincidence-strict-cores-classified`,
+`equal-label-table-is-strict-at-three-symbols-not-two`, and the open holes
 `surjunctivity-failure-descends-to-binary-alphabet` and `every-group-is-binary-surjunctive`.
 
 The question: fix a pair of tables. Which finite alphabets carry rule pairs that satisfy the
@@ -17,12 +20,17 @@ decoder identity on the forward table and fail the reverse identity? The answers
 - Two pure Boolean filters (Section 3). A discrete forward table forces the reverse identity on
   every reverse table, over every alphabet. So does a one-relay or one-column shape whose reverse
   table contains the transpose.
-- The smallest Boolean strict core has one forward coincidence, `(a,b) ~ (1,1)` (Section 4). It is
-  strict over some alphabet iff it is strict over every alphabet with at least two symbols, iff the
-  reverse table does not repeat the coincidence. It is realized by a one-sided inverse in the
-  bicyclic monoid and by no group.
-- Whether strictness passes to every larger alphabet, or descends to two symbols, stays open
-  (Section 5).
+- The one-coincidence table `(a,b) ~ (1,1)` (Section 4) is strict over some alphabet iff it is
+  strict over every alphabet with at least two symbols, iff the reverse table does not repeat the
+  coincidence. It is realized by a one-sided inverse in the bicyclic monoid and by no group.
+  It is one of four strict single-coincidence 2 x 2 tables, not the only one (Section 6).
+- All six single-coincidence 2 x 2 tables are classified (Section 6).
+  - Three are strict through copy codes over every alphabet with at least two symbols.
+  - Two are never strict.
+  - The table `x_a = x_b` is strict over every alphabet with at least three symbols and over none
+    with two. So strictness for fixed tables does not descend to two symbols.
+- Whether strictness passes to every larger alphabet stays open. So does whether a group's
+  strictness descends to two symbols once the tables may change (Section 5).
 
 Nothing here decides the conjecture. For tables realized in some group, strict rules over any
 alphabet would already be a counterexample.
@@ -169,7 +177,7 @@ alphabet.
 - The group-level exclusion of these shapes is `amenable-decoder-memory-forces-surjectivity`.
   Section 4 shows the transpose relation is exactly what the Boolean core needs.
 
-## 4. The smallest Boolean strict core
+## 4. The one-sided-inverse table
 
 Let `S = {1,a}` and `M = {1,b}`, and let `T_f` be the forward table whose only coincidence is
 `(a,b) ~ (1,1)`.
@@ -205,9 +213,10 @@ In case 2 the column copy works: `mu(u,v) = v` and `nu(y_1, y_a) = y_a`.
      `tau sigma = id`, which by Lemma 1.2 is `Enc(T_0)`.
   3. **`Enc(T_r)` holds.** `T_r` is coarser than `T_0`, so it inherits `Enc` by Lemma 1.1. QED.
 
-In the smallest shape with a coincidence, then, Boolean strict cores exist, uniformly over every
-alphabet with at least two symbols. The single obstruction is the group identity "a one-sided
-inverse is two-sided", the combinatorial shadow of direct finiteness.
+For this table, then, strict rules exist uniformly over every alphabet with at least two symbols,
+and the single obstruction is the group identity "a one-sided inverse is two-sided", the
+combinatorial shadow of direct finiteness. Other single-coincidence tables are strict for other
+reasons (Section 6).
 
 ## 5. Larger alphabets and descent (open)
 
@@ -240,3 +249,125 @@ Theorem 2 moves strictness up along multiples. Two questions are not settled her
 - **Sizes with a factor in common.** Theorem 2 covers them only when the new size is a multiple.
   For example, strictness at size `6` gives sizes `12, 18, ...` but says nothing about sizes `7` or
   `3`.
+
+## 6. All single-coincidence 2 x 2 tables
+
+Let `S = {1,a}` and `M = {1,b}`.
+- **Forward cells:** `O = (1,1)`, `B = (1,b)`, `A = (a,1)`, `X = (a,b)`, with group values
+  `1, x_b, x_a, x_a x_b`.
+- **Reverse cells:** `O' = (1,1)`, `A' = (1,a)`, `B' = (b,1)`, `X' = (b,a)`, with group values
+  `1, x_a, x_b, x_b x_a`.
+- **Transpose:** sends `O, B, A, X` to `O', B', A', X'`.
+- **Relays:** forward relay `1` reads `(O, B)` and relay `a` reads `(A, X)`. Reverse relay `1` reads
+  `(O', A')` and relay `b` reads `(B', X')`.
+
+**Lemma 6.1 (copy codes, any label sets).** For labels `s0` in `S` and `m0` in `M`, the code
+`mu = pi_(m0)`, `nu = pi_(s0)` has forward composite `p(s0,m0)` and reverse composite `q(m0,s0)`.
+So over every alphabet with at least two symbols it is strict for `(T_f, T_r)` iff
+`(s0,m0) T_f (1,1)` and `(m0,s0)` is not `T_r`-related to `(1,1)`.
+
+*Proof.* Relay `s` outputs `p(s,m0)` and the sink reads relay `s0`. The reverse computation
+exchanges the roles. A `q` taking different values on the two separated classes witnesses the
+failure. QED.
+
+In a group, `x_(s0) x_(m0) = 1` forces `x_(m0) x_(s0) = 1`, so copy codes never give
+counterexamples: their automata are the shifts by `x_(m0)` and `x_(s0)`.
+
+**Theorem 6.2.** Let `T_f` have exactly one coincidence. Strict rules exist for `(T_f, T_r)`
+exactly as follows.
+
+| forward coincidence | group reading | strict iff `T_r` | alphabets |
+|---|---|---|---|
+| `O ~ X` | `x_a x_b = 1` | separates `X'` from `O'` | every `|A| >= 2` (copy code) |
+| `O ~ B` | `x_b = 1` | separates `B'` from `O'` | every `|A| >= 2` (copy code) |
+| `O ~ A` | `x_a = 1` | separates `A'` from `O'` | every `|A| >= 2` (copy code) |
+| `B ~ A` | `x_a = x_b` | separates `A'` from `B'` | every `|A| >= 3`; none with `|A| = 2` |
+| `B ~ X` | `x_b = x_a x_b` | never | none |
+| `A ~ X` | `x_a = x_a x_b` | never | none |
+
+*Proof, row by row.*
+- **`O ~ X`.** This is Section 4.
+- **`O ~ B`.**
+  - *Strict.* Copy code with `s0 = 1`, `m0 = b`.
+  - *Converse.* `Dec` says `nu(mu(c,c), mu(u,v)) = c` for all `c, u, v`. With `g(c) = mu(c,c)`,
+    every `r` in the image of `mu` gives `nu(g(c), r) = c`. So `g` is a bijection, the image of `mu`
+    is `A`, and `nu(y,r) = g^-1(y)` for all `y, r`. If `q(b,1) = q(1,1) = d`, both reverse relays
+    output `g^-1(d)` and the sink returns `g(g^-1(d)) = d`.
+- **`O ~ A`.**
+  - *Strict.* Copy code with `s0 = a`, `m0 = 1`.
+  - *Converse.* `Dec` says `nu(mu(c,w), mu(c,v)) = c` for all `c, w, v`, so `nu` is constant `c` on
+    `I_c x I_c`, where `I_c` is the image of `mu(c,.)`. The `I_c` are pairwise disjoint and
+    nonempty, hence singletons. So `mu(c,w) = g(c)` for a bijection `g`, and `nu(y,y) = g^-1(y)`.
+    If `q(1,a) = q(1,1) = d`, reverse relay `1` outputs `g^-1(d)`, and the sink returns
+    `g(g^-1(d)) = d` whatever relay `b` outputs.
+- **`B ~ X`.** `Dec` says `nu(mu(c,w), mu(u,w)) = c` for all `c, u, w`.
+  1. For fixed `w`, `h_w = mu(.,w)` is injective, hence a bijection, and `nu(y,z) = h_w^-1(y)` for
+     every `z` in its image, which is `A`.
+  2. So all `h_w` equal one `h`, with `mu = h o pi_1` and `nu = h^-1 o pi_1`.
+  3. Every reverse composite returns `h(h^-1(q(1,1))) = q(1,1)`.
+- **`A ~ X`.** `Dec` says `nu(mu(c,w), mu(u,u)) = c` for all `c, w, u`.
+  1. For `z` in the diagonal image, `nu(.,z)` is constant `c` on `I_c`, so the `I_c` are disjoint
+     singletons and `mu = g o pi_1`.
+  2. The diagonal image is then `A`, and `nu = g^-1 o pi_1`.
+  3. The reverse identity follows as for `B ~ X`.
+- **`B ~ A`, repeated coincidence.** In additive `Z` the labelling `x_a = x_b = 1` has forward values
+  `0, 1, 1, 2` and reverse values `0, 1, 1, 2`, realizing exactly `T_f` and `{A' ~ B'}`. `Z` is
+  surjunctive, so `Dec(T_f)` forces `Enc({A' ~ B'})` as in Section 4, and hence `Enc` on every
+  coarser `T_r`.
+- **`B ~ A`, two symbols.** `Dec` says `nu(mu(c,w), mu(w,v)) = c` for all `c, w, v`.
+  1. For fixed `w`, `h_w = mu(.,w)` is a bijection, and `nu(.,z) = h_w^-1` for `z` in
+     `J_w = {mu(w,v) : v}`. If `J_w` meets `J_w'`, then `h_w = h_w'`.
+  2. Over `{0,1}`, suppose `h_0 != h_1`. Then `J_0` and `J_1` are disjoint singletons, so
+     `mu(u,v) = k(u)` for a bijection `k`, which gives `h_0 = h_1 = k`, a contradiction.
+  3. So `h_0 = h_1 = h` and `mu = h o pi_1`. The `J_w` then cover `A`, so `nu = h^-1 o pi_1`, and the
+     reverse identity holds on every `T_r`.
+- **`B ~ A`, three or more symbols.** Split `A` into blocks `P = {0,1}` and `Q = A \ P`. Put
+  `g_P = id` and `g_Q = (0 1)`; both preserve the blocks and are involutions. Write `B(z)` for the
+  block of `z`, and use the same rule for both automata:
+
+      mu(u,v) = nu(u,v) = g_B(v)(u).
+
+  - *`Dec` holds.* Relay `a` reads `(w,v)` and outputs `g_B(v)(w)`, which lies in the block of `w`.
+    Relay `1` reads `(c,w)` and outputs `g_B(w)(c)`. The sink outputs `g_B(w)(g_B(w)(c)) = c`.
+  - *`Enc` fails.* Reverse relay `1` outputs `g_B(e)(d)`, with `d = q(1,1)` and `e = q(1,a)`. Relay
+    `b` outputs a symbol in the block of `e' = q(b,1)`, whatever `q(b,a)` is. So the sink outputs
+    `g_B(e')(g_B(e)(d))`. Suppose `T_r` separates `A'` from `B'`.
+    - If `O' ~ B'`, take `e = 2`, `e' = d = 0`. The sink outputs `(0 1)(0) = 1`.
+    - Otherwise take `e = d = 0` and `e' = 2`. This is consistent whether or not `O' ~ A'`. The sink
+      outputs `(0 1)(0) = 1`.
+    - `X'` enters only through the block of relay `b`'s output, so any identification involving
+      `X'` is harmless.
+
+  QED.
+
+**Corollary 6.3 (fixed tables do not descend).** For `T_f = {(1,b) ~ (a,1)}` and discrete `T_r`,
+the alphabet sizes admitting strict rules are exactly `n >= 3`. So strictness for fixed tables does
+not descend to two symbols, and it is not always available at two symbols when available at some
+size. Group-level descent, `surjunctivity-failure-descends-to-binary-alphabet`, lets the tables
+change and is not refuted by this.
+
+**Example 6.4 (a triple coincidence).** Let `T_f = {B ~ A ~ X}`, read in groups as
+`x_a = x_b = x_a x_b`. Over `A = {0, ..., n-1}` with `n >= 3`, put `h_0 = id`, `h_1 = (0 2)`,
+`h_2 = (0 1)` and `h_w = id` for `w >= 3`. Each `h_w` is an involution with `h_w(w) = w`. Take
+`mu(u,v) = nu(u,v) = h_v(u)`.
+- **`Dec` holds.** Relay `1` outputs `h_w(c)`, relay `a` outputs `h_w(w) = w`, and the sink outputs
+  `h_w(h_w(c)) = c`.
+- **`Enc` fails.** Take `q(1,1) = q(1,a) = q(b,1) = 0` and `q(b,a) = 2`. Relay `1` outputs
+  `h_0(0) = 0`, relay `b` outputs `h_2(0) = 1`, and the sink outputs `h_1(0) = 2`.
+  - With `q(1,1) = 2` instead, relay `1` outputs `2`, relay `b` outputs `1`, and the sink outputs
+    `h_1(2) = 0`.
+  - So the code is strict for every `T_r` that identifies `A'` with `B'` and separates `X'` from
+    them. `T_r` separating `A'` from `B'` is covered by the `B ~ A` block code, since `Dec` passes to
+    the coarser `T_f`.
+- **Converse.**
+  - Every code with `Dec(T_f)` has `mu(c,w) = h_w(c)` for bijections `h_w`, has
+    `nu(., h_w(w)) = h_w^-1`, and has `w -> h_w(w)` bijective.
+  - If `q(1,a) = q(b,1) = q(b,a) = e`, reverse relay `b` outputs the `w` with `h_w(w) = e`, relay `1`
+    outputs `h_w^-1(d)`, and the sink returns `h_w(h_w^-1(d)) = d`.
+  - So `T_f` is strict for `T_r` iff `T_r` does not contain `{A' ~ B' ~ X'}`, over every alphabet
+    with at least three symbols.
+- **Two symbols.** Injectivity of `w -> h_w(w)` forces `h_0 = h_1`, so the table is never strict.
+
+Multi-coincidence tables other than Example 6.4 are not classified here. The kill tables need not
+be group- or monoid-realized reverse tables. For `O ~ B` the kill table `{O' ~ B'}` is strictly
+finer than the reverse table `{O' ~ B', A' ~ X'}` of any monoid labelling with `x_b = 1`.
