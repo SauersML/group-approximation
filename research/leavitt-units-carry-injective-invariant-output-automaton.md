@@ -87,3 +87,9 @@ pattern on `{1,h}` with distinct symbols.
   `gottschalk-counterexamples-lie-outside-the-permanence-closure`, `G` lies outside
   the closure of the sofic groups under every surjunctivity permanence theorem now
   available. So no positive method in the graph rules this claim out.
+- *Global signature (2026-09-12).* By
+  `positive-rokhlin-entropy-makes-leavitt-units-surjunctive`, a solution would
+  force every free ergodic p.m.p. action of `G` to have zero Rokhlin entropy,
+  Bernoulli shifts included. So `G` would fail Seward's POS. That excludes no
+  finite window by itself, but it names the entropy statement a certificate
+  refutes as a byproduct.
