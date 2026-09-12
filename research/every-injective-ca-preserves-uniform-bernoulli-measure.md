@@ -43,6 +43,24 @@ every `p in A^Omega`, where `M` is the memory,
   `end-fixing-tree-symmetries-carry-strict-automata` gives a strict automaton on a
   homogeneous space of an amenable non-unimodular group. A proof must use that the
   index set is a group.
+* **Mass transport on trees (gk-p-bernoulli-mass, 2026-09-12).** Over free groups the
+  claim holds with no finite model: `free-group-injective-ca-preserve-bernoulli-via-f-invariant`.
+  - Bowen's f-invariant agrees on `mu` and `tau_* mu`.
+  - Splitting monotonicity plus submodularity on balls, with the tree identity
+    `|B_n| - sum_i |B_n ∩ s_i B_n| = 1`, forces uniform ball laws. That identity is the
+    Cayley tree's mass-transport balance in entropy form.
+
+  Where it stops, per Section 5 of that artifact:
+  - *Two-cells.* Face terms of an Euler functional need the three-set
+    inclusion–exclusion bound, which fails on duplicated coordinates: one bit copied to
+    three sites gives `log 2 > 0`. Duplication is exactly the redundancy of a strict
+    image.
+  - *Kazhdan hosts.* They have FA, so there is no tree index structure. The coordinate
+    partition does not generate for a free subaction.
+  - *Unimodularity.* Bijective translations are what balance the edge count.
+
+  The f-invariant is partition-bounded, so on nonsofic hosts saturating any such
+  invariant is at least as strong as INF (`rokhlin-entropy-is-the-largest-partition-bounded-invariant`).
 * **Invariants of the image (gk-p-bernoulli-ergodic, 2026-09-12).** No isomorphism invariant can
   separate the image measure from the uniform measure. A strict automaton is a measure conjugacy
   onto its image, so Koopman spectral data, strong ergodicity, mixing of all orders, weak
