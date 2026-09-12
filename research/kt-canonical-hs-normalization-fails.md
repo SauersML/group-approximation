@@ -49,3 +49,12 @@ intermediate `K` suffices.
   `<Gamma,t>`) and are not Kazhdan, but the action is still nonsofic by the
   previous item.  A model must be native, e.g. extend the one-compressor
   permutation model of `<Gamma,t>` to all of `G` inside a II_1 envelope.
+- **Atomic commutants.** Dead.  Any compressor acts as an automorphism on the
+  discrete type I summand of `R`
+  (`trace-preserving-endomorphism-fixes-discrete-type-i-summand`), and on the
+  finite-dimensional isotypic part of `sigma|Gamma`
+  (`fd-isotypic-part-of-a-kazhdan-image-carries-no-wall`).  A witness needs a
+  diffuse summand of `R` on which `Ad sigma(t)^*` is a proper trace-preserving
+  endomorphism.  The model shape is the one-sided Bernoulli shift: in the lamp
+  model of `W`, the lamps at the cosets `t^(-k) Gamma`, `k >= 0`, span such a
+  summand, and `Ad sigma(t)^*` shifts `k -> k+1`.
