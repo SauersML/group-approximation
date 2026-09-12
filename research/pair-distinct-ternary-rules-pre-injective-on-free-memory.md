@@ -18,16 +18,33 @@ artifacts:
   fixed pair `P_m` and is injective otherwise, and `P_1`, `P_a`, `P_b` are distinct.
 - **Conclusion.** The automaton over `F(a, b)` is pre-injective.
 
-**Example.** The rule `mu = x_1 + x_a + x_b + [(x_1, x_a, x_b) = (0, 1, 2)]` over `Z/3` qualifies.
+**Example.** The census rule `R = x_1 - x_a + x_b + [(x_1, x_a, x_b) = (0, 2, 2)]` over `Z/3`
+qualifies (w4-bal-census).
+- Its diagonal is the identity, so it passes the constant tests.
 - It is unbalanced, with value counts `(8, 10, 9)`.
-- Each address has exactly one insensitive context, identifying `{0,1}`, `{1,2}` and `{0,2}`
-  respectively.
+- Each address has exactly one insensitive context: `(x_a, x_b) = (2,2)` identifies `{0,1}`,
+  `(x_1, x_b) = (0,2)` identifies `{1,2}`, and `(x_1, x_a) = (0,2)` identifies `{0,2}`.
+
+The first example given here, `x_1 + x_a + x_b + [x = (0,1,2)]`, also meets the hypothesis. But it
+sends every constant configuration to `0`, so it is never injective. It illustrates pre-injectivity
+only.
 
 **Consequence.** Constant backgrounds, rectangle relations, glued flips and finite-subgroup screens
 all compare finitely different configurations, and none of them excludes such rules. The rule is not
 injective over `F(a, b)`, because free groups are sofic and injectivity would force balance, so the
 failure there is global. A counterexample built from these rules needs relations that stop infinite
 defect cascades. This is the open target `affine-plus-defect-rule-is-injective-on-some-group`.
+
+**Where such rules die over other groups.**
+- **Linear part not a unit.** By `avoidable-patches-of-affine-rules-inherit-linear-injectivity`, `R`
+  is injective over `G` only if `1 - a + b` is a unit of `F_3[G]`, or `G` already carries a linear
+  strict automaton.
+- **Linear part a unit.** On three ternary addresses, distinct pairs with a unit linear part force
+  `p` to omit a symbol. `R` omits `1`. Then a constant background at the omitted symbol, plus the
+  inverse correction creating one defect, gives two configurations with the same image. This fails
+  only if a memory translate is absorbed (`constant-background-kills-unit-linear-defect-rules`).
+- **What the pre-injectivity result shows.** It locates where finite perturbations stop. It does not
+  supply a candidate host.
 
 **Relation to the census.** Pair-distinct rules are rigid in the sense of `w4-bal-census`: no pair is blind
 in every coordinate. So they are exactly where `ternary-three-address-injective-automata-have-balanced-rules`

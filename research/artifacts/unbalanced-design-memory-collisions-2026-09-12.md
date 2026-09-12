@@ -289,6 +289,8 @@ mu(x_1, x_a, x_b) = x_1 + x_a + x_b + [ (x_1, x_a, x_b) = (0, 1, 2) ]      over 
 - **Consequence.** Proposition 10 applies. So Lemmas 4 and 6, Corollary 7, Theorem 8 and
   Proposition 9, and more generally every screen that compares finitely different configurations,
   say nothing about this rule at three addresses.
+- **Correction (Section 4).** This rule sends every constant configuration to `0`, so it is never
+  injective. The census rule `x_1 - x_a + x_b + [x = (0,2,2)]` is the right example of Proposition 10.
 - **Over the free group.** The rule is not injective there, since `F(a, b)` is sofic and injectivity
   would force balance. So its failure is global: two configurations differing on an infinite set.
 
@@ -315,8 +317,74 @@ Recorded as the open construction target `affine-plus-defect-rule-is-injective-o
 - The single-flip part of Lemma 6 as its own node: `binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`.
 - `avoidable-patches-of-affine-rules-inherit-linear-injectivity`. For `q >= 3`, a single-defect affine rule is an
   avoidable patch, so injectivity forces the linear part to be injective. The architecture above therefore needs
-  `sum_m c_m m` to be a unit of `F_q[G]`, unless `G` already carries a linear strict automaton. In the ternary example
-  that unit is `1 + a + b`.
+  `sum_m c_m m` to be a unit of `F_q[G]`, unless `G` already carries a linear strict automaton. The ternary example
+  above has linear part `1 + a + b`, which is never a unit (Section 4, Lemma 12).
 - Proposition 10 bears on the open census case `ternary-three-address-injective-automata-have-balanced-rules`. Over free
   memory, rigid ternary rules with distinct blind pairs have no finite invisible perturbation. A proof of balance there
   must therefore be global.
+
+## 4. The affine-plus-defect architecture dies at a constant background
+
+Conventions: `(L x)(g) = sum_m c_m x(g m)` is the linear automaton of `ell = sum_m c_m m` in
+`F_q[G]`. Composition of automata is the product in `F_q[G]`. A rule with one moved table entry is
+`mu(x) = sum_m c_m x_m + c_0 + t [x|_M = p]` with `t != 0`. Re-root so that `1` is in `M`.
+
+**Lemma 12 (augmentation).** A unit of `F_q[G]` has nonzero augmentation. So a linear part whose
+coefficients sum to `0` is never a unit.
+
+*Proof.* The augmentation `F_q[G] -> F_q` is a ring homomorphism, and it sends units to units. QED
+
+**Theorem 13 (a defect-creation witness).** Suppose `ell` is a unit with inverse
+`kappa = sum_(n in N) k_n n`, and `p` omits some symbol `c`. Define
+
+```text
+x(s) = c                      for s not in M,
+x(m) = p_m + t k_(m^-1)       for m in M,
+x'(s) = x(s) - t k_(s^-1)     for every s   (k_n = 0 off N).
+```
+
+Suppose that for every `h != 1` with `hM ⊆ M ∪ N^-1`, neither `x|_(hM)` nor `x'|_(hM)` equals `p`.
+Then `tau(x) = tau(x')` and `x != x'`. In particular `tau` is not injective when no nontrivial
+translate `hM` lies inside `M ∪ N^-1`.
+
+*Proof.*
+- **The correction is invisible to `L`.** `x' = x - t K delta_1`, where `K` is the automaton of
+  `kappa` and `(K delta_1)(s) = k_(s^-1)`. So `L x' = L x - t delta_1`.
+- **Window `1`.** `x'|_M = p` is a defect. `x|_M = p + t (k_(m^-1))_m` is not, because the
+  coefficient of `1` in `ell kappa = 1` is `sum_(mn = 1) c_m k_n = 1`, so some `k_(m^-1) != 0`.
+- **Windows `h != 1` with `hM` not inside `M ∪ N^-1`.** Pick `s = hm` outside `M ∪ N^-1`. Then
+  `x(s) = x'(s) = c != p_m`, so neither configuration has a defect at `h`.
+- **The remaining windows** carry no defect by hypothesis.
+- **Conclusion.** `D(x') = D(x) + t delta_1`, and `tau(x') = L x - t delta_1 + c_0 + D(x) + t delta_1 = tau(x)`.
+  Also `x != x'`, because `K delta_1 != 0`. QED
+
+**Corollary 14 (three ternary addresses).** Let `q = 3` and `|M| = 3`, with distinct identified
+pairs as in Proposition 10. Then one of the following holds.
+- **Augmentation zero.** The linear part has augmentation `0`. By Lemma 12 it is not a unit. So by
+  `avoidable-patches-of-affine-rules-inherit-linear-injectivity` the rule is injective only over
+  groups where `L` is injective and not surjective, i.e. groups already carrying a linear strict automaton.
+- **`p` omits a symbol.** Then Theorem 13 applies, unless a nontrivial translate `hM` lies in
+  `M ∪ N^-1` and meets the hypothesis there.
+
+*Proof.* The pair `{p_m, p_m + t c_m^-1}` misses `p_m - t c_m^-1`. The three pairs are distinct, so
+the three missing symbols are all of `F_3` and sum to `0`. If `p` uses every symbol, `sum_m p_m = 0`,
+hence `t sum_m c_m^-1 = 0`. In `F_3` this gives `sum_m c_m = 0`, since `c^-1 = c`. QED
+
+- **Correction to Section 3.** The example `x_1 + x_a + x_b + [x = (0,1,2)]` falls under the first
+  case, and worse: it sends every constant configuration to `0`, so it is never injective
+  (w4-bal-census). It illustrates Proposition 10 only. Constant configurations are a test outside
+  Section 2: injectivity needs the diagonal `c -> mu(c, ..., c)` to be a permutation.
+- **The census example.** `R = x_1 - x_a + x_b + [x = (0,2,2)]` has diagonal the identity and
+  distinct pairs `{0,1}`, `{1,2}`, `{0,2}`. It omits the symbol `1`. By Theorem 13, if `1 - a + b` is
+  a unit of `F_3[G]`, the rule is not injective unless a translate of `{1, a, b}` is absorbed into
+  `M ∪ N^-1`. If `1 - a + b` is not a unit, avoidable patches send `R` to the linear route.
+
+**Where it stops.**
+- **Patterns using every symbol.** When `|M| >= q`, `p` may use every symbol. Then the background
+  must be a used symbol `c`. The dangerous windows are the `h` whose sites outside `M ∪ N^-1` all sit
+  at addresses where `p_m = c`.
+- **Absorbed translates.** Nontrivial translates `hM ⊆ M ∪ N^-1` are coincidences a unit can force,
+  for example through finite subgroups. An injective single-defect rule with a unit linear part must
+  live on such coincidences.
+- **Net.** Up to linear strict automata, the architecture needs a unit `ell` whose inverse support
+  absorbs translates of the memory, or a pattern using every symbol. Neither is excluded.

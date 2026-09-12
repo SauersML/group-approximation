@@ -32,17 +32,28 @@ surjunctive.
     (`three-address-binary-injective-rules-are-balanced`).
   - **Sofic or amenable memory groups.** Injectivity there forces balance.
 - **Ternary rules on three addresses pass the local screens.**
-  - For `mu = x_1 + x_a + x_b + [x = (0,1,2)]` over `Z/3` the pairs are distinct.
+  - For the census rule `R = x_1 - x_a + x_b + [x = (0,2,2)]` over `Z/3`, the diagonal is the
+    identity and the pairs are distinct.
   - Over free memory every finite perturbation is visible
     (`pair-distinct-ternary-rules-pre-injective-on-free-memory`), and no screen of Section 2 of the
     artifact applies.
   - The failure over `F(a, b)` is global, so the host must stop infinite defect cascades.
+  - The first example, `x_1 + x_a + x_b + [x = (0,1,2)]`, sends every constant to `0` and is never
+    injective.
 - **The linear part must be a unit (w4-bal-census).** For `q >= 3` a single moved entry at `p`
   occurs only at patterns containing the symbol `p_m`. So the rule is an avoidable patch, and
   injectivity makes the linear automaton injective
   (`avoidable-patches-of-affine-rules-inherit-linear-injectivity`). Either `G` already carries a
-  linear strict automaton, or `sum_m c_m m` is a unit of `F_q[G]`. For the ternary example this means
-  `1 + a + b` is a unit of `F_3[G]`.
+  linear strict automaton, or `sum_m c_m m` is a unit of `F_q[G]`. A linear part with coefficient
+  sum `0` is never a unit, and its diagonal is constant, so constant configurations already collide.
+- **Constant background (w3-bal-design, Section 4 of the artifact).** When the linear part is a unit
+  and `p` omits a symbol, an explicit pair of configurations shows the rule is not injective. The
+  pair is a constant background plus the inverse correction creating one defect. The only exception
+  is when a nontrivial translate `hM` lies in `M ∪ N^-1` and shows `p`
+  (`constant-background-kills-unit-linear-defect-rules`). Over `F_3` on three addresses with distinct
+  pairs, every rule falls into this case or into augmentation zero. What is left:
+  - units whose inverse support absorbs memory translates;
+  - patterns using every symbol, which needs `|M| >= q`.
 - **Correction witnesses.** Write `L` for the linear part and `D(x) = t 1[x|_(gM) = p]` for the
   defect field.
   - If `x` has defects only on a set `B`, and `x + L^-1(D(x))` has none, the two configurations
