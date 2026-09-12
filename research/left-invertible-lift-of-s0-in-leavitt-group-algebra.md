@@ -157,3 +157,12 @@ certify nothing. Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12
   with `t_1 W != 0`. On `W`, `t_0 s_0 = 1` forces `s_0` bijective, hence `s_1 t_1 = 0`,
   hence `t_1 = t_1 s_1 t_1 = 0`. Without `t_1 W != 0` there is no contradiction, as
   `W = span{0^infinity}` in `F_2^(X)` shows.
+* **Absorption by the kernel corner is impossible.** Using the lifted matrix units of
+  `leavitt-matrix-units-lift-into-finite-subgroup-algebra`,
+  `S = f_11 S (+) f_22 S (+) z S`, with `f_11 S ~= f_22 S` visible of rank one.
+  - A tempting construction gets `S ~= S (+) f_11 S` from `zS ~= zS (+) f_11 S`, since
+    `zS` lies in the kernel and looks roomy.
+  - That isomorphism cannot exist: base change along `pi` sends `zS` to `0` and
+    `f_11 S` to `s_0 t_0 R ~= R`.
+  - So a visible defect cannot be absorbed by invisible modules. Its rank-one
+    evaluation has to come from the visible summand itself.
