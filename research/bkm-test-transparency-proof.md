@@ -4,17 +4,14 @@ id: bkm-test-transparency-proof
 kind: route
 title: Specialize the derived-unique-game bound to kappa=1 and invert it for a reduction
 target: bkm-test-transparent-on-learnable-games
-requires: []
+requires: [derived-unique-game-lower-bounds-the-noise-test]
 artifacts:
   - research/artifacts/unique-games-bkm-test-transparency-2026-09-11.md
 ---
 
-The artifact proves the per-instance inequality
-`val(R_(rho,m)(Psi)) >= 1/m+(1-1/m)rho^3 val(UG_der(Psi))^2 - 2e(Psi)`
-in full (Theorem 1), so this route is complete against it; the same inequality
-is recorded as the standalone lemma `derived-unique-game-lower-bounds-the-noise-test`
-(ugc-1's node, credited to ugc-2), and this route may be refactored to require
-that id once it is on main. All three parts read off the inequality.
+All three parts read off the per-instance inequality of the prerequisite,
+`val(R_(rho,m)(Psi)) >= 1/m+(1-1/m)rho^3 val(UG_der(Psi))^2 - 2e(Psi)`.
+The artifact also proves it in full (Theorem 1).
 
 1. Distinct matchings give `|F_e|` classes each of one edge, so a right
    labeling can be matched by choosing, per class, the fiber over the
