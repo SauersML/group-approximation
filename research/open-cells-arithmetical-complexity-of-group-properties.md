@@ -67,6 +67,14 @@ them fills one cell.
    is decided here.
 7. **`METABELIAN_fp`, `CONTAINS-F2_fp` exact levels**
    (`Pi^0_2`, `Sigma^0_2` upper bounds; first-level hardness only).
+8. **`SURJ_fp` `Pi^0_2`-complete, and `SURJ_rec2` `Pi^0_2`-hard, when
+   Gottschalk's conjecture fails?** Known on side (B) of
+   [[surjunctivity-recognition-dichotomy]]: `SURJ_fp` lies in
+   `Pi^0_2 \ Pi^0_1` and `SURJ_enum` is `Pi^0_2`-complete. On side (A) every
+   cell is trivial. Completeness on finite presentations needs a
+   surjunctivity-safe finite-presentation compiler. The two-generator bridge
+   of [[second-level-rice-theorem-for-local-approximation-properties]] is
+   stated for local approximation properties, and surjunctivity is not one.
 
 ## Attempts
 
@@ -82,4 +90,8 @@ quotient permanence exactly to the two approximation calculations above on
 the same prescribed group `V`. No claim is made that either calculation is
 known. Cell 7 is deferred: its positive branch would have to be metabelian,
 respectively free-subgroup-free, on a finitely presented switch, which is
-the same obstruction as cell 4.
+the same obstruction as cell 4. Cell 8 is conditional twice over. It is
+vacuous unless a nonsurjunctive group exists. Its compiler would have to be
+safe for a property with no finite-model characterization: every
+certificate's reverse inequalities can be witnessed only inside a
+nonsurjunctive group ([[surjunctivity-recognition-has-a-pi2-upper-bound]]).

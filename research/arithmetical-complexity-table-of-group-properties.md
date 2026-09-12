@@ -59,6 +59,8 @@ residually p       Pi^0_2 \ Pi^0_1 (as RF)     Pi^0_3-complete               Pi^
 residually p for   --                          Sigma^0_4-complete            Sigma^0_4-complete
 some prime p
 property (T)       Sigma^0_1-complete          Sigma^0_1-complete (rec)      --
+surjunctive        trivial or Sigma^0_1-hard   Pi^0_2 (hardness OPEN)        trivial or Pi^0_2-complete
+                   in Pi^0_2 \ Pi^0_1 [G]      [G]                           [G]
 ```
 
 Legend.  `[S]` = [[sofic-safe-finite-presentation-compiler]];
@@ -69,6 +71,9 @@ non-hyperlinear group exists;
 `[W]` = [[weak-soficity-recognition-has-a-pi2-upper-bound]],
 [[linear-soficity-recognition-has-a-pi2-upper-bound]] (side (B) iff some
 group fails the property);
+`[G]` = [[surjunctivity-recognition-dichotomy]], side (B) iff Gottschalk's
+conjecture fails, with membership from
+[[surjunctivity-recognition-has-a-pi2-upper-bound]];
 `[FP]` = [[finite-presentability-two-generator-recursive-is-sigma2-hard]];
 `[TF]` = [[torsion-freeness-of-finite-presentations-is-pi2-complete]], via
 [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]];
