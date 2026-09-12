@@ -10,8 +10,15 @@ artifacts:
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in the artifact, Section 4c, with independent verification requested
-from `gk-vf-linear`). Let `R` be a simple ring of characteristic two that is not directly
+**ESTABLISHED** (proof in the artifact, Section 4c). Lane `gk-l-gate-pos` independently
+re-derived it on 2026-09-12, including a complement on which the unit root elements act
+trivially. `gk-vf-linear` passed it (Section 22 of
+`research/artifacts/gk-vf-linear-verification-2026-09-12.md`, ad4e862566), with this scope
+sharpening: block support of the six unit root elements on orthogonal idempotents already
+gives the matrix-unit hypotheses. The block calculus gives `u_ij u_jk = u_ik`, and shrinking
+`p_i` to `u_ij u_ji` still leaves a complement that the `u`'s kill. So the claim covers every
+model whose `x_ij(1)` act block-unipotently. The odd-characteristic case
+is `matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial`. Let `R` be a simple ring of characteristic two that is not directly
 finite, for instance `L_K(1,n)` with `char K = 2` and `n >= 2`. Let `M` be a rank
 ultraproduct of matrix algebras over a field of characteristic two, and
 `sigma : EL_3(R) -> M^x` a homomorphism. Suppose there are pairwise orthogonal idempotents

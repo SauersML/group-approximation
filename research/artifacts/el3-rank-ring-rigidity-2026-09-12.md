@@ -232,7 +232,8 @@ identify the three corners through the `u`'s, so that `u_ij = E_ij`. By Lemma 1 
    `x_13(1)` and `x_21(1)`. The same comparison gives
    `Z' = D'(E_11 + E_22 + E_33) + C' E_23 + P' E_24 + Q' E_43 + S' E_44`.
 5. **The other expansion of `n_13(a)`.** `x_13(a) = [x_12(1), x_23(a)]`. Expanding with
-   `E_12` and `Z'` gives `n_13(a) = C'(1+D') E_13 + P'(1+D') E_14 + D'^2 E_12`, which has no
+   `E_12` and `Z'` gives `n_13(a) = (1+D')C' E_13 + (1+D')P' E_14 + D'^2 E_12` (coefficient order corrected by
+   `gk-vf-linear`; not load-bearing), which has no
    `E_43` entry. Comparing with step 3 gives `Q = 0`. So `n_13(a) = C E_13` and
    `n_12(a) = C E_12`.
 6. **The remaining roots.** `x_23(a) = [x_21(1), x_13(a)]` gives `n_23(a) = C E_23`, and
@@ -279,6 +280,102 @@ QED
   `sigma|_(SL_3(F_2)) = (natural (x) W) (+) M'` and `M'` nontrivial, the entrywise
   comparisons acquire intertwiner terms between the natural block and `M'`, and the argument
   does not close.
+
+**Independent re-derivation.** Lane `gk-l-gate-pos` re-derived Proposition 6 and Corollary 7
+(2026-09-12), including a complement on which the unit root elements act trivially, by the
+same sequence of relations: commutation with `x_12(1)` and `x_23(1)`, then
+`[x_13(a), x_32(1)]`, `[x_12(a), x_23(1)]`, `[x_21(1), x_13(a)]` and `[x_12(1), x_23(a)]`.
+Its hybrid models meet the hypothesis through its Step 1, so they are trivial in
+characteristic two.
+
+## 4d. Odd characteristic: the torus propagates block structure
+
+Proposition 6 uses `n_ij(a)^2 = 0`, which holds only in characteristic two. In odd
+characteristic `p`, root actions satisfy only `n^p = 0` (Lemma 1). The diagonal torus of
+`SL_3(F_p)` replaces the five-term expansions. This covers the ternary hosts
+`L_(F_3)(1,2)^x` and `PG`.
+
+**Proposition 8.** Let `p` be odd, `R` a unital algebra over a field of characteristic `p`,
+`M` a rank ultraproduct over a field of characteristic `p`, and `sigma : EL_3(R) -> M^x` a
+homomorphism. Suppose the matrix-unit hypothesis of Proposition 6 holds: pairwise orthogonal
+idempotents `p_1, p_2, p_3`, `f = 1 - p_1 - p_2 - p_3`, and
+`sigma(x_ij(1)) = 1 + u_ij` with `u_ij` in `p_i M p_j`, `u_ij u_jk = u_ik` and
+`u_ij u_ji = p_i`. Then `n_ij(a) = sigma(x_ij(a)) - 1` lies in `p_i M p_j` for every `i != j`
+and every `a` in `R`.
+
+*Proof.*
+
+1. **`sigma` on `SL_3(F_p)`.** `Phi(E_ij) = u_ij` and `Phi(E_ii) = p_i` define an algebra
+   homomorphism `M_3(F_p) -> M` with `Phi(1) = p_1 + p_2 + p_3`, so `g -> Phi(g) + f` is a
+   group homomorphism `GL_3(F_p) -> M^x`. Since `u_ij^2 = 0`,
+   `sigma(x_ij(lambda)) = (1 + u_ij)^lambda = 1 + lambda u_ij = Phi(x_ij(lambda)) + f`. The
+   elementary matrices generate `SL_3(F_p)`, so `sigma(g) = Phi(g) + f` there.
+2. **Block form (characteristic free).** Write `n = n_13(a)` in `4 x 4` blocks over
+   `(p_1, p_2, p_3, f)`, with corners identified through the `u`'s. Commutation with `u_12`
+   and `u_23` gives, exactly as in Proposition 6,
+   `n = D(E_11 + E_22 + E_33) + C E_13 + P E_14 + Q E_43 + S E_44`.
+   * `p_2` is invariant, and `n` acts on it by `D`.
+   * On `p_1 + f + p_3`, in that order, `n` is upper triangular with diagonal `(D, S, D)`.
+   * So `n^p = 0` gives `D^p = 0` and `S^p = 0`.
+3. **First torus element.** `h = diag(-1, -1, 1)` lies in `SL_3(F_p)` and
+   `h x_13(a) h^-1 = x_13(-a) = x_13(a)^-1`.
+   * By step 1, conjugation by `sigma(h)` multiplies the `(i,j)` block entry by
+     `eps_i eps_j` with `eps = (-1, -1, 1, 1)`. So `(1 + n)(1 + n') = 1` with
+     `n' = D(E_11 + E_22 + E_33) - C E_13 - P E_14 + Q E_43 + S E_44`.
+   * Reading entries: `(1,1)` gives `2D + D^2 = 0`, `(f,f)` gives `2S + S^2 = 0`, and `(f,3)`
+     gives `2Q + QD + SQ = 0`.
+   * `2` is invertible and `D`, `S` are nilpotent, so `D + 2` and `S + 2` are invertible in
+     their corners. So `D = S = 0`, and then `Q = 0`.
+4. **Second torus element.** `h' = diag(1, -1, -1)` also inverts `x_13(a)`, with
+   `eps = (1, -1, -1, 1)`. Now `n = C E_13 + P E_14` and `n' = -C E_13 + P E_14`, so
+   `(1 + n)(1 + n') = 1 + 2P E_14`. So `P = 0`, and `n_13(a) = C(a) E_13` lies in
+   `p_1 M p_3`.
+5. **Weyl transport.** Every ordered pair `(k,l)` is `(pi(1), pi(3))` for some permutation
+   `pi`, realized by a monomial `w` in `SL_3(F_p)` with `w x_13(b) w^-1 = x_kl(+-b)`. By
+   step 1, `sigma(w)` permutes the corners with signs and fixes `f`, so `n_kl(a)` lies in
+   `p_k M p_l` for every `a`.
+QED
+
+**Corollary 9.** Let `p` be odd, `R` a simple algebra of characteristic `p` that is not
+directly finite, for instance `L_K(1,n)` with `char K = p` and `n >= 2`, and `M` a rank
+ultraproduct over a field of characteristic `p`. Every homomorphism
+`sigma : EL_3(R) -> M^x` meeting the matrix-unit hypothesis is trivial.
+
+*Proof.* By Proposition 8, `sigma(x_ij(a)) = 1 + psi_ij(a)` with `psi_ij(a)` in `p_i M p_j`.
+* *Additive.* `psi_ij(a) psi_ij(b)` lies in `p_i M p_j p_i M p_j = 0`, so `psi_ij` is
+  additive.
+* *Commutators.* For `X` in `p_i M p_j` and `Y` in `p_j M p_k` with `i, j, k` distinct,
+  `X^2 = Y^2 = YX = 0`, so `[1 + X, 1 + Y] = 1 + XY` in every characteristic. The Steinberg
+  relations give
+  `psi_13(ab) = psi_12(a) psi_23(b)`, `psi_12(c) = psi_13(c) u_32`,
+  `psi_13(b) = psi_12(b) u_23` and `psi_23(b) = u_21 psi_13(b)`.
+* *Ring homomorphism.* Put `C(a) = psi_12(a) u_21` in `p_1 M p_1`. Then `C(1) = p_1`, `C` is
+  additive, and
+  `C(ab) = psi_13(ab) u_31 = psi_12(a) u_21 psi_13(b) u_31 = psi_12(a) u_21 psi_12(b) u_21 = C(a) C(b)`.
+* *Collapse.* `p_1 M p_1` is directly finite, since the rank function is faithful and an
+  idempotent below `p_1` of the same rank equals `p_1`. So `ts = 1` gives `C(s) C(t) = p_1`
+  and `C(1 - st) = 0`. Simplicity gives `C = 0`, hence `p_1 = 0`. Then every `u_ij` and every
+  `psi_ij(a)` vanishes, and root elements generate `EL_3(R)`.
+QED
+
+**For the ternary hosts.** Put `R_3 = L_(F_3)(1,2)`. Since `R_3 ~= M_3(R_3)`,
+`EL_3(R_3) <= GL_3(R_3) ~= R_3^x = G_3`, and `G_3` embeds in `PG` through
+`leavitt-units-embed-in-their-scalar-quotient`. An `F_3`-linear sofic approximation of `G_3`
+or of `PG` restricts to a separating model of the infinite group `EL_3(R_3)`. By Corollary 9,
+its restriction to `SL_3(F_3)` is not `(natural (x) W) (+) trivial`. So the construction
+shapes excluded in characteristic two are excluded for the `F_3` gate too.
+
+**A tool for general complements in odd characteristic (open).**
+* *Exact logarithm.* `L_ij(a) = log sigma(x_ij(a)) = sum_(k<p) (-1)^(k+1) n^k / k` is exact,
+  because `n^p = 0`, and `exp L_ij(a) = sigma(x_ij(a))`.
+* *Weight vectors.* `(1 + n)^t = exp(tL)`, so `Ad sigma(h) L_ij(a) = chi_ij(h) L_ij(a)` for
+  `h` in the diagonal torus `T` of `SL_3(F_p)`, with `chi_ij(h) = t_i t_j^-1`.
+* *Weight splitting.* `p` does not divide `|T| = (p-1)^2`, so `sigma(T)` splits `M` into
+  weight idempotents `q_lambda`, and `L_ij(a) q_lambda = q_(lambda + alpha_ij) L_ij(a)`.
+* *Where it stops.* `L_ij` is not additive in `a` (mixed terms of degree at least `p`
+  survive), and for `p = 3` the root weight `alpha_13` equals the natural weight `eps_2`. So
+  weights alone do not separate corners from a complement. Proposition 8 also needed
+  commutation and unipotence.
 
 ## 5. The claim
 

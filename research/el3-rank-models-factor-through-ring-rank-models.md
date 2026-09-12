@@ -87,5 +87,15 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
   - The open case is complements carrying a nontrivial `SL_3(F_2)`-action, or composition
     factors other than the natural module: dual natural, Steinberg, projective.
   - Artifact Section 4c.
+- **Odd characteristic, same shape: killed (2026-09-12).**
+  - `matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial`: the torus elements
+    `diag(-1,-1,1)` and `diag(1,-1,-1)` invert `x_13(a)`. Together with `n^p = 0` and the
+    invertibility of `2`, they propagate block support; the corner collapse then applies.
+  - This covers the `F_3` gate, through `EL_3(L_(F_3)(1,2)) <= G_3 <= PG`.
+  - The char-2 propagation was independently re-derived by `gk-l-gate-pos`.
+  - Open tool for general complements in odd characteristic: `log sigma(x_ij(a))` is exact
+    and a torus weight vector of weight `eps_i - eps_j`. It is not additive in `a`, and for
+    `p = 3` root weights coincide with natural weights, so this alone does not extract matrix
+    units (artifact Section 4d).
 - **Hamming analogue: open.** That a sofic approximation of `EL_3(R)` yields a rank model
   of `R` would reprove nonsoficity of `R^x` with no property (T).
