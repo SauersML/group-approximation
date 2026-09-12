@@ -34,7 +34,18 @@ Per the attached artifact:
   - the Euclidean triangle types Ã_2, C̃_2, G̃_2, by BLIW Corollary 12.8 and
     Remark 12.7;
   - every C̃_n, `c-tilde-artin-groups-satisfy-permutational-boone-higman`.
+    This follows from the Charney--Crisp embedding `A(C̃_n) <= B_(n+2)`
+    (arXiv:math/0408412) together with BFFHZ.
 - **Boone--Higman:** right-angled Artin groups, by survey Theorem 5.1(3).
+- **Forest defining graphs, secondary source only.**
+  - Jankiewicz, arXiv:2103.01343, quotes Brunner and Hermiller--Meier: these are
+    fundamental groups of graph manifolds with boundary.
+  - Przytycki--Wise, arXiv:1110.3513, prove such groups virtually special.
+  - Virtually special groups embed in some `GL_N(Z)`, by induction from a
+    finite-index subgroup of a right-angled Artin group. Scott's theorem would
+    then give Boone--Higman.
+  - Not imported as a claim, because the identification was read only through
+    that quotation (see the artifact, §5.5).
 - **Stated open** (BFFHZ, survey Remark 5.4): the exceptional spherical types,
   and the Euclidean types other than Ã_n and the triangle cases.
 
