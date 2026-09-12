@@ -100,3 +100,35 @@ normalizes `C_U(sigma(Gamma))`.
     such a branch, because `V` preserves no measure on `2^N`.
   - A positive model needs rank-preserving transport, which this action does
     not supply. This rules out only the natural truncation, not other bases.
+- **The linear-scale layer: complete with no (T), and insufficient
+  (2026-09-12, lane `gk-kdf-structure`).**
+  - [[rank-ultraproduct-compressors-conserve-fixed-right-ideals]]: fixed right
+    ideals of a compressed finitely generated subgroup round for free,
+    `rk((1-e)x) <= sum_s rk((s-1)x)`. Compressors conserve them in every tensor
+    degree, and the normal closure fixes them pointwise. Degree `(1,1)` is the
+    linear-scale part of the commutant.
+  - So (A1)-(A3) of Theorem 10 hold on this layer with size `rk`, and rounding there
+    needs no property (T). The rounding and size gaps recorded above live below
+    linear scale.
+  - (A4) fails on this layer, and
+    [[linear-scale-rank-conservation-does-not-kill-defects]] shows it cannot kill
+    defects without property (T) of the compressor group: the sofic literal group
+    `E` satisfies every conclusion while its defect survives.
+  - Consequence for the payoff group: every rank model of `L^x` has the nine-leaf
+    Kazhdan subgroup fixing exactly what `L^x` fixes, in every degree
+    ([[leavitt-rank-models-kazhdan-fixed-ideals-are-global]]).
+- **Which step of the Hamming proof is permutation-specific**
+  (`research/artifacts/rank-row-compression-audit-2026-09-12.md`, Section 3).
+  - *Transfer.* No room to drift: for an invertible `s` carrying pieces into single
+    pieces, `sum_l |d_l - sum_(tau(j)=l) d_j| <= 2 sum_j leak_j`. Also the
+    more-than-half collision, since independent subspaces add dimensions.
+  - *Fail.* Rounding into expanding pieces: almost invariant subspaces do not round,
+    as in the cyclic `F_2^(2^m)` example.
+  - *Fail.* One-piece transport, which consumes monomiality. A compressor
+    `rho(t) (x) B` with non-monomial `B` sends `W (x) e_1` to the graph
+    `{ w (x) e_1 + w (x) e_2 }`, which lies inside no single piece. The
+    Hilbert--Schmidt row fails at the same step
+    ([[nonmonomial-multiplicity-obstructs-hs-compressor-transport]]).
+  - So a proof needs finite-stage multiplicity coordinates on which compressors act
+    monomially up to rank `o(n)`, and a rank-expansion input for Kazhdan groups.
+    Neither is known.

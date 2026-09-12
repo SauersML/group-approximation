@@ -8,6 +8,7 @@ distinct_from:
   openai-leavitt-unit-nonsofic: that is nonsoficity of the same group in the Hamming metric; this is the rank-metric approximation property, which nonsoficity does not exclude.
 artifacts:
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
+  - research/artifacts/rank-row-compression-audit-2026-09-12.md
 ---
 
 **OPEN.** `R^x`, with `R = L_(F_2)(1,2)`, is linear sofic over `F_2` in the sense of
@@ -29,8 +30,21 @@ a Kaplansky pair in `F_2[R^x]` refutes this claim
 * **Genuine representations.** Dead. `R^x` is finitely generated, simple and infinite,
   so every finite-dimensional linear representation of it is trivial. Approximations
   must be genuinely almost multiplicative.
-* **Rank-metric compression rigidity.** No node records a rank-metric analogue of the
-  expander-matching criterion that makes `R^x` nonsofic. By the calibration in
-  `non-linear-sofic-via-leavitt-kaplansky-failure`, even the existence of a non-linear-sofic
-  group over `F_2` is open. This claim is recorded as the positive gate for the
-  Kaplansky lane and is not attacked here.
+* **Rank-metric compression rigidity (2026-09-12).** The rank row
+  `f2-linear-sofic-groups-kill-rigid-compression-defects` would refute this claim through
+  `non-linear-sofic-via-f2-rank-row-defect`.
+  * Its linear-scale layer is established and too coarse
+    (`rank-ultraproduct-compressors-conserve-fixed-right-ideals`,
+    `linear-scale-rank-conservation-does-not-kill-defects`).
+  * Below linear scale, the Hamming proof fails in the rank metric at two steps:
+    rounding into expanding pieces, and one-piece transport, where compressors can rotate
+    multiplicity coordinates (`research/artifacts/rank-row-compression-audit-2026-09-12.md`,
+    Section 3).
+  * Even the existence of a non-linear-sofic group over `F_2` is open.
+* **Necessary condition on models.** Every rank model `sigma` of `R^x`, over any field,
+  has `Fix^(a,b)(sigma(Gamma)) = Fix^(a,b)(sigma(R^x))` for the nine-leaf Kazhdan subgroup
+  in every tensor degree (`leavitt-rank-models-kazhdan-fixed-ideals-are-global`). A
+  construction where `Gamma` fixes, or commutes with, a linear-size piece that `R^x` does
+  not is excluded.
+* **Natural Cantor truncation.** Dead: length-changing prefix replacements lose rank
+  (recorded on `f2-linear-sofic-groups-kill-rigid-compression-defects`).
