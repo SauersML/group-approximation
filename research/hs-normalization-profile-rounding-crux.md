@@ -3,6 +3,8 @@ rg: 2
 id: hs-normalization-profile-rounding-crux
 kind: claim
 title: Property (T) rounds approximate commutant centers to exact ones with a controlled irreducible-dimension profile
+refuted_by:
+  - hs-literal-commutant-profile-rounding-is-false
 distinct_from:
   kt-centralizer-normalization-hs: that is the full normalization statement in every tracial matrix ultraproduct; this is the single finite-stage rounding lemma that, together with median concentration, would prove it, isolated so it can be attacked or refuted on its own.
   hs-per-atom-compressor-clause-is-vacuous: that shows the per-atom transport clause carries no size information on atoms of trace below eps^2/4; this asks for the mass-weighted rounding that survives exactly that regime, and states it as the open finite-stage lemma.
@@ -12,7 +14,18 @@ artifacts:
   - research/artifacts/rigid-compression-defect-ladder-2026-09-11.md
 ---
 
-**OPEN. The single crux of the positive branch.** Let `Gamma` be a group with
+**REFUTED as stated (2026-09-12, lane `hs-median-assembly`).** The rounding
+target, the center of the exact commutant of the supplied matrices, is
+unstable under operator-norm perturbation.
+`hs-literal-commutant-profile-rounding-is-false` gives a counterexample in
+fixed dimension: a projection of trace `1/2` that is `delta`-central in
+`A_n(delta)`, with defect `O(delta)`, while the literal commutant is scalar.
+The corrected conditional assembly is
+`hs-normalization-needs-coarse-actor-scale-pinning`. It needs rounding to a
+nearby genuine representation, a coarse actor gap, and one-sided transport of
+the aspect ratio `m/d`. The original statement follows.
+
+Let `Gamma` be a group with
 Kazhdan's property (T), finite generating set `F`, and Kazhdan gap `kappa`.
 Let `sigma_n : Gamma -> U(n)` be maps with multiplicative defect
 `max_(s,s' in F) ||sigma_n(ss') - sigma_n(s)sigma_n(s')||_2 <= eps` (normalized
