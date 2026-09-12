@@ -91,7 +91,18 @@ theorem AuxiliaryPeripheralFamily.exists_stronglyBoundedRelatorPublished_exact
 strongly bounded in the published sense and are killed by the quotient.
 The conclusion is hyperbolic embeddedness itself: pullback into the original
 source relative balls can fail when those balls omit the finite peripheral
-letters occurring in the filling. No proof of this statement is claimed here. -/
+letters occurring in the filling. No proof of this statement is claimed here.
+
+**Risk: this hypothesis may be too weak to imply the conclusion.**
+`RelativeLinearKernelArea D W q` counts only the relator cells from `W`. It asks
+that every quotient-null word of length `ℓ` is, in `G`, a product of at most `ℓ`
+conjugates `c_i r_i c_i⁻¹` of relator values. The relations of `G` itself cost
+nothing, and nothing bounds the conjugators. Osin's Lemma 5.1 counts the relators
+of `G`'s relative presentation as well. Filling `w · (∏ c_i r_i c_i⁻¹)⁻¹` in `G`
+costs about `∑ |c_i|`, so no isoperimetric or Stokes bound for the quotient follows
+from this predicate alone. Nothing is routed through this statement. The Hull
+leaf `RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` is produced
+directly from the Dehn steps of Osin's induction instead. -/
 def BoundedRelativeLinearAreaTransferStatement : Prop :=
   ∀ {G : Type u} [Group G] {Λ : Type w} (D : GGT.RelGenSet G Λ),
     D.IsHyperbolicallyEmbedded →

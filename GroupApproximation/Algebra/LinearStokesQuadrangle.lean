@@ -36,15 +36,19 @@ variable {Q : Type v} [Group Q]
 def trueLetters (l : List Q) : List (Q × Bool) :=
   l.map fun x => (x, true)
 
+omit [Group Q] in
 @[simp] theorem trueLetters_nil : trueLetters ([] : List Q) = [] := rfl
 
+omit [Group Q] in
 @[simp] theorem trueLetters_cons (x : Q) (l : List Q) :
     trueLetters (x :: l) = (x, true) :: trueLetters l := rfl
 
+omit [Group Q] in
 theorem trueLetters_append (l m : List Q) :
     trueLetters (l ++ m) = trueLetters l ++ trueLetters m :=
   List.map_append
 
+omit [Group Q] in
 @[simp] theorem length_trueLetters (l : List Q) : (trueLetters l).length = l.length :=
   List.length_map _
 
@@ -173,15 +177,28 @@ theorem truncDist_lipschitzAlong {S : Set Q} (hS : IsSymmetricGeneratingSet S)
   push_cast
   constructor <;> omega
 
+/-- A truncated distance moves by at most one along every letter of `S`, everywhere. -/
+theorem truncDist_lipschitz {S : Set Q} (hS : IsSymmetricGeneratingSet S)
+    {P : List Q} (hP : P ≠ []) (k : ℕ) (g s : Q) (hs : s ∈ S) :
+    |truncDist S P k (g * s) - truncDist S P k g| ≤ 1 := by
+  have h1 := distToList_mul_le hS hP g s hs
+  have h2 := distToList_le_mul hS hP g s hs
+  simp only [truncDist]
+  rw [abs_le]
+  push_cast
+  constructor <;> omega
+
 /-! ## The linear Stokes inequality -/
 
 /-- **The linear Stokes inequality** at constant `C`: along every closed path of
 letters of `S`, the discrete integral of `φ dψ` is at most `C` times the length,
-for all functions moving by at most one along the letters of the path. -/
+for all functions moving by at most one along every letter of `S`.  The Lipschitz
+condition is asked everywhere, not only along the path, because the area bound
+integrates along the relators of a filling, which leave the path. -/
 def LinearStokes (S : Set Q) (C : ℕ) : Prop :=
-  ∀ (φ ψ : Q → ℤ) (l : List Q), (∀ x ∈ l, x ∈ S) →
-    LipschitzAlong (id : Q → Q) φ (trueLetters l) →
-    LipschitzAlong (id : Q → Q) ψ (trueLetters l) → ∀ b : Q, l.prod = 1 →
+  ∀ (φ ψ : Q → ℤ), (∀ (g s : Q), s ∈ S → |φ (g * s) - φ g| ≤ 1) →
+    (∀ (g s : Q), s ∈ S → |ψ (g * s) - ψ g| ≤ 1) →
+    ∀ (l : List Q), (∀ x ∈ l, x ∈ S) → ∀ b : Q, l.prod = 1 →
       |wordSum (id : Q → Q) φ ψ b (trueLetters l)| ≤ (C : ℤ) * l.length
 
 /-- **The quadrangle bound.**  A closed path `l₁ l₂ l₃ l₄` whose third side is at
@@ -196,9 +213,9 @@ theorem two_mul_mul_le_of_linearStokes {S : Set Q} (hS : IsSymmetricGeneratingSe
       c ≤ distToList S q (listPoints (b * l₁.prod) l₂)) :
     2 * (a : ℤ) * c ≤ (C : ℤ) * (l₁ ++ l₂ ++ l₃ ++ l₄).length := by
   have hbound := hC (truncDist S (listPoints b l₁) a)
-    (truncDist S (listPoints (b * l₁.prod) l₂) c) _ hl
-    (truncDist_lipschitzAlong hS (listPoints_ne_nil b l₁) a _ hl)
-    (truncDist_lipschitzAlong hS (listPoints_ne_nil _ l₂) c _ hl) b hclosed
+    (truncDist S (listPoints (b * l₁.prod) l₂) c)
+    (truncDist_lipschitz hS (listPoints_ne_nil b l₁) a)
+    (truncDist_lipschitz hS (listPoints_ne_nil _ l₂) c) _ hl b hclosed
   have hquad : wordSum (id : Q → Q) (truncDist S (listPoints b l₁) a)
       (truncDist S (listPoints (b * l₁.prod) l₂) c) b (trueLetters (l₁ ++ l₂ ++ l₃ ++ l₄)) =
         2 * (a : ℤ) * c := by

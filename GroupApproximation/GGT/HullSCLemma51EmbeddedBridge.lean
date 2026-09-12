@@ -7,48 +7,72 @@ import GroupApproximation.Meta.AxiomGuard
 
 `RelativeIsoperimetricBridgeQuasiGeodesicStatement`
 (`GGT/HullSCLemma44QuasiGeodesicBridge.lean`), one of the four Hull leaves of
-Theorem C, concludes `RelativeIsoperimetricControl`, and it quantifies over
-every family satisfying `RelWord.IsLemma44Input`.  Both choices ask for more
-than Osin's Lemma 5.1 gives and more than anything consumes.
+Theorem C, concludes `RelativeIsoperimetricControl`, quantifies over every family
+satisfying `RelWord.IsLemma44Input`, and asks for certificates at every reduced
+diagram with a quasi-geodesic spelling.  All three choices differ from Osin's
+Lemma 5.1, and the first two ask for more than it gives.
+`RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` is the leaf with all
+three corrected.
 
-## What the consumers read
+## The pullback clause is false
 
-Every consumer of `RelativeIsoperimetricControl` on main reads only
-`RelativeIsoperimetricControl.embedded`, i.e. hyperbolic embeddedness of the
-image family `D.mapSurjective q hq`:
-`quotientPeripheralPreservation_of_isoperimetricControl`,
-`canonicalQuotientFamilyPreservation_of_control` and
-`quotientJointPeripheralPreservation_of_control`.  The `peripheralPullback`
-clause (quotient relative balls inside images of *source* relative balls) is
-never read, and it is not what Osin proves: when a relator carries a peripheral
-letter `h` whose source relative distance is infinite, the complementary arc of
-the relator reaches `q h` in the quotient by a path of base letters.  The header
-of `GGT/HullSCLemma44BoundedInput.lean` records the same defect.
+`RelativeIsoperimetricControl` carries, besides the data giving hyperbolic
+embeddedness of the image family `D.mapSurjective q hq`, the clause
+`peripheralPullback : PeripheralPullbackBound D q hq radius`: every quotient
+relative ball of a peripheral subgroup lies in the image of a source relative
+ball.  It fails at the simplest input.  Take `G = F(a, b) * ⟨t⟩` with the
+peripheral subgroup `H = ⟨t⟩` and base alphabet `{a, b}`, which is hyperbolically
+embedded, and the symmetrized closure `W` of one relator `w t^m` with `m ≠ 0`,
+where `w` is a long word in `a, b` whose exponent sum `e` in `a` is nonzero, chosen
+so that `W` is a strongly bounded small-cancellation family.
+
+* In the source no path from `1` to `t^m` avoids the edges of `H`, so every
+  nontrivial element of `H` is at infinite relative distance, and every source
+  relative ball of `H` is `{1}`.
+* In the quotient `q (t^m) = q (w)⁻¹` is reached by the base letters of `w`, so
+  `q (t^m)` lies in the quotient relative ball of radius `|w|`.
+* The pullback clause would force `q (t^m) = 1`.  But the homomorphism `G → ℤ`
+  with `a ↦ -m`, `b ↦ 0`, `t ↦ e` kills `w t^m` and sends `t^m` to `m e ≠ 0`, so it
+  factors through `q` and `q (t^m) ≠ 1`.
+
+No consumer reads the clause.  Every consumer of `RelativeIsoperimetricControl` on
+main (`quotientPeripheralPreservation_of_isoperimetricControl`,
+`canonicalQuotientFamilyPreservation_of_control`,
+`quotientJointPeripheralPreservation_of_control`) reads only
+`RelativeIsoperimetricControl.embedded`.  The leaf here concludes embeddedness.
+The header of `GGT/HullSCLemma44BoundedInput.lean` records the same defect.
 
 ## The length bound
 
 Osin's Lemma 5.1 is stated for a **finite** symmetrized family, and Hull's
 strongly bounded families have uniformly bounded relator lengths.
-`IsLemma44Input` records only finite peripheral support; `IsBoundedLemma44Input`
-restores the bound.  Without it the conclusion fails for infinite
-small-cancellation families of unbounded length over a free group, whose
-quotients are infinitely presented and so not hyperbolic; and the unbounded area
-transfer is refuted outright (`not_relativeLinearAreaTransferStatement`).
+`IsLemma44Input` records only finite peripheral support.  Without a bound the
+conclusion fails already with no peripheral subgroups: an infinite
+small-cancellation family over `F(a, b)` with relator lengths tending to infinity
+satisfies the hypotheses, and its quotient is not finitely presented, so not
+hyperbolic.  The unbounded area transfer is refuted outright
+(`not_relativeLinearAreaTransferStatement`).  The leaf here takes
+`RelWord.IsBoundedLemma44Input`.
+
+## Least-area diagrams
+
+Osin's Lemma 4.4 is a statement about diagrams with the least number of relator
+cells, so the leaf receives certificates only at `RelativeLeastAreaDiagram`s with
+a quasi-geodesic spelling, in the spelling of
+`RelativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement`
+(`GGT/HullSCLeastAreaGreendlingerTwins.lean`).  This hypothesis is weaker than the
+printed leaf's, so the printed leaf does not imply this one.
 
 ## What is proved here
 
-* `RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` — the leaf with the
-  bounded input and the embedded conclusion;
-* `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_quasiGeodesicBridge`
-  — the printed leaf implies it, so it is no stronger than what the assembly
-  admits;
-* `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_boundedTransfer`
-  — it follows from `BoundedRelativeLinearAreaTransferStatement` alone, through
-  the linear relative area of
-  `relativeLinearKernelArea_of_quasiGeodesicCertificates`.  That transfer —
-  a linear relative isoperimetric inequality over strongly bounded relators gives
-  hyperbolic embeddedness of the image family — is the residue of the leaf;
-* `quotientPeripheralPreservation_of_embeddedBridge` — the consumer, at the
+* `RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`, the leaf;
+* `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_boundedTransfer`:
+  it follows from `BoundedRelativeLinearAreaTransferStatement` alone, through the
+  linear relative area of
+  `relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates`.  That transfer
+  (a linear relative isoperimetric inequality over strongly bounded relators gives
+  hyperbolic embeddedness of the image family) is the residue of the leaf;
+* `quotientPeripheralPreservation_of_embeddedBridge`, the consumer at the
   embedded bridge.
 -/
 
@@ -56,14 +80,15 @@ namespace GroupApproximation
 namespace HullSC
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.WordMetric
 
 universe u v w
 
 /-- **Osin's Lemma 5.1, pointwise, in the form its consumers read.**  The
-certificate hypothesis is asked only at diagrams with a quasi-geodesic spelling,
-the relator family is strongly bounded in Hull's published sense, and the
-conclusion is hyperbolic embeddedness of the image family. -/
+certificate hypothesis is asked only at least-area diagrams with a quasi-geodesic
+spelling, the relator family is strongly bounded in Hull's published sense, and
+the conclusion is hyperbolic embeddedness of the image family. -/
 def RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedAt
     {G : Type u} [Group G] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda) : Prop :=
@@ -75,9 +100,9 @@ def RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedAt
       20 * (eps + 1) ≤ rho →
       RelWord.IsBoundedLemma44Input D W eps mu rho →
       q.ker = Subgroup.normalClosure (GGT.RelLetter.listVal '' W) →
-        (∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-          Z.HasQuasiGeodesicSpelling →
-            Nonempty (RelativeDiagramCertificate D W eps mu Z)) →
+        (∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+          Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+            Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram)) →
             (D.mapSurjective q hq).IsHyperbolicallyEmbedded
 
 /-- Uniform form over all hyperbolically embedded source relative generating
@@ -87,16 +112,6 @@ def RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement : Prop :=
     (D : GGT.RelGenSet G Lambda),
     D.IsHyperbolicallyEmbedded →
       RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedAt.{u, v, w} D
-
-/-- **The printed leaf implies the embedded bridge.**  Bounded inputs are inputs,
-and control gives embeddedness. -/
-theorem relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_quasiGeodesicBridge
-    (h : RelativeIsoperimetricBridgeQuasiGeodesicStatement.{u, v, w}) :
-    RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{u, v, w} := by
-  intro G _ Lambda D hD eps rho mu W Q _ q hq hmu hmuUpper hrho hsc hker hcert
-  obtain ⟨C⟩ := h D hD eps rho mu W q hq hmu hmuUpper hrho hsc.toIsLemma44Input
-    hker hcert
-  exact C.embedded hD
 
 /-- A relator family spelling kernel values is killed by the quotient. -/
 theorem map_listVal_eq_one_of_ker_eq_normalClosure
@@ -112,9 +127,9 @@ theorem map_listVal_eq_one_of_ker_eq_normalClosure
   exact MonoidHom.mem_ker.mp hmem
 
 /-- **The embedded bridge from the bounded relative-area transfer.**  The
-restricted certificates give linear relative area by Osin's induction
-(`relativeLinearKernelArea_of_quasiGeodesicCertificates`), and the bounded
-transfer turns linear area over a strongly bounded family into hyperbolic
+least-area certificates give linear relative area by Osin's induction
+(`relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates`), and the
+bounded transfer turns linear area over a strongly bounded family into hyperbolic
 embeddedness of the image family. -/
 theorem relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_boundedTransfer
     (htransfer : BoundedRelativeLinearAreaTransferStatement.{u, v, w}) :
@@ -122,12 +137,13 @@ theorem relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_boundedTran
   intro G _ Lambda D hD eps rho mu W Q _ q hq _hmu hmuUpper hrho hsc hker hcert
   exact htransfer D hD W q hq hsc.admissible hsc.isStronglyBounded
     (map_listVal_eq_one_of_ker_eq_normalClosure q hker)
-    (relativeLinearKernelArea_of_quasiGeodesicCertificates D hsc.toIsLemma44Input
-      hmuUpper hrho q hker hcert)
+    (relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates D
+      hsc.toIsLemma44Input hmuUpper hrho q hker hcert)
 
 /-- **Hull's peripheral preservation at the embedded bridge.**  This is
 `quotientPeripheralPreservation_of_quasiGeodesicCertificates` with the bounded
-input and the embedded bridge; its proof reads nothing but embeddedness. -/
+input, least-area certificates and the embedded bridge; its proof reads nothing
+but embeddedness. -/
 theorem quotientPeripheralPreservation_of_embeddedBridge
     (hbridge : RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{u, u, 0})
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
@@ -143,9 +159,9 @@ theorem quotientPeripheralPreservation_of_embeddedBridge
     (hsc : RelWord.IsBoundedLemma44Input D.rel W eps mu rho)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hcert : ∀ (r : ℕ) (Z : RelativeReducedDiagram D.rel W r),
-      Z.HasQuasiGeodesicSpelling →
-        Nonempty (RelativeDiagramCertificate D.rel W eps mu Z))
+    (hcert : ∀ (r : ℕ) (Z : RelativeLeastAreaDiagram D.rel W r),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D.rel W eps mu Z.toRelativeReducedDiagram))
     (hinj : Set.InjOn q
       (⋃ i : AuxiliaryPeripheralIndex k,
         (D.cores.peripheral i : Set G))) :
@@ -157,7 +173,6 @@ theorem quotientPeripheralPreservation_of_embeddedBridge
 end HullSC
 end GroupApproximation
 
-#audit_axioms GroupApproximation.HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_quasiGeodesicBridge
 #audit_axioms GroupApproximation.HullSC.map_listVal_eq_one_of_ker_eq_normalClosure
 #audit_axioms GroupApproximation.HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_boundedTransfer
 #audit_axioms GroupApproximation.HullSC.quotientPeripheralPreservation_of_embeddedBridge

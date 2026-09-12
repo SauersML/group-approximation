@@ -68,7 +68,7 @@ theorem boundedFamilyInclusionRelativeEmbeddingStatement_of_quasiGeodesic_of_res
       intro R Z hZ
       exact hcertO rho' hrhoO W' R hscO.toIsLemma44Input Z hZ
     exact hbridge original horiginal epsO rho' mu W' q hq hmuPos hmuThousand
-      h20 hscO hkerO hcert
+      h20 hscO hkerO (fun R Z hZ => hcert R Z.toRelativeReducedDiagram hZ)
   · obtain ⟨W', eps', rho', heps', hrho', h20', hlist', hsc'⟩ := hrespJ
     have hepsJ : epsJ ≤ eps' := le_trans (Nat.le_max_right _ _) heps'
     have hrhoJ : rho0J ≤ rho' := le_trans (Nat.le_max_right _ _) hrho'
@@ -85,7 +85,7 @@ theorem boundedFamilyInclusionRelativeEmbeddingStatement_of_quasiGeodesic_of_res
       intro R Z hZ
       exact hcertJ rho' hrhoJ W' R hscJ.toIsLemma44Input Z hZ
     exact hbridge joint hjoint epsJ rho' mu W' q hq hmuPos hmuThousand
-      h20 hscJ hkerJ hcert
+      h20 hscJ hkerJ (fun R Z hZ => hcert R Z.toRelativeReducedDiagram hZ)
 
 /-- **The bounded repaired family form from the bounded canonical statement and
 the two auxiliary embeddings.**

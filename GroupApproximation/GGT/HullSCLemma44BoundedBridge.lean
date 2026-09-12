@@ -324,7 +324,8 @@ theorem boundedHullLemma44CanonicalQuotientStatement_of_quasiGeodesic
     · exact hxy
   refine ⟨hinject.1, ?_⟩
   exact quotientPeripheralPreservation_of_embeddedBridge hbridge D q hsurj
-    hmuPos hmuThousand hrhoDehn hsc hker hcert hinjectCores
+    hmuPos hmuThousand hrhoDehn hsc hker
+    (fun r Z hZ => hcert r Z.toRelativeReducedDiagram hZ) hinjectCores
 
 /-! ## The torsion-free canonical quotient from the bounded statement -/
 
