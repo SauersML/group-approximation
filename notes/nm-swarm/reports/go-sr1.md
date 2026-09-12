@@ -86,8 +86,10 @@ theorem TriangulatedDisc.abs_boundarySum_le (I : V → V → ℤ) (hanti : ∀ x
 | module | last commit | status |
 |---|---|---|
 | `GGT/SystolicDisc` | 2cf6d1248 | compiled in probe 0912-092123-9062 |
-| `GGT/SystolicDiscFilling` | 4c12845a1 (first landed cf71506a5) | fix landed; probe 0912-103604-11425 running |
-| `GGT/SystolicDiscCounts` | 4c12845a1 (first landed b139e9695) | fix landed; probe 0912-103604-11425 running |
+| `GGT/SystolicDiscFilling` | 4c12845a1 (first landed cf71506a5) | GREEN, probe 0912-103604-11425 |
+| `GGT/SystolicDiscCounts` | 4c12845a1 (first landed b139e9695) | GREEN, probe 0912-103604-11425 |
+
+Probe 0912-103604-11425 (base 3221a02ea) built both modules with exit 0 and also compiled `SystolicDisc`. The probed files match origin/main: `SystolicDisc` a79432f8, `SystolicDiscFilling` f5f0eb23, `SystolicDiscCounts` 3330bc17.
 
 Probe 0912-092123-9062 was red on `SystolicDiscFilling`. 4c12845a1 fixes those errors and the ones in `SystolicDiscCounts`.
 - **Filling.** `rintro (hlen | ⟨D⟩)` bound `D` to the `Nonempty` proof; it now reads `⟨⟨D⟩⟩`. It also drops an unused simp argument.
