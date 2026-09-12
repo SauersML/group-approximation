@@ -104,3 +104,15 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     only `S_+`.
 
   Section 2 of `research/artifacts/leavitt-self-similarity-exactness-2026-09-12.md`.
+- *Idempotent-free forms (gk-l3-units, 2026-09-12).*
+  - This claim is equivalent to `ternary-anti-central-summand-has-cohn-family`: a unital two-pair
+    Cohn family in `S_-` itself, or four elements of `S_-` with invertible Gram matrix.
+  - The tool is the diagonal endomorphism `delta(g) = s0 g t0 + s1 g t1`, which fixes `z` and
+    centralizes `w` and `d`, so `S_-` contains `M_2(S_-)` unitally
+    (`anti-central-ternary-summand-contains-its-matrix-ring`; routes
+    `anti-central-cohn-family-gives-swap-corner-fullness` and
+    `swap-corner-fullness-gives-anti-central-cohn-family`).
+  - The canonical trace has `tau(1_-) = 2`. It forbids an exact lift of the binary Leavitt family
+    `(s_i, t_i)` into `S_-`, and allows the quaternary family `(s_i s_j, t_j t_i)`, which suffices
+    (`anti-central-ternary-summand-has-no-binary-leavitt-family`,
+    `ternary-anti-central-summand-has-quaternary-leavitt-family`).
