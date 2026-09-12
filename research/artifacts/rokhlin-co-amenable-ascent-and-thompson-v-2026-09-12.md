@@ -154,4 +154,14 @@ The PDFs were extracted on MSI. `review-lit/entropy/1501.03367.txt` was already 
 - "If F is a G-invariant sub-σ-algebra, then the Rokhlin entropy of G y (X,µ) relative to F, denoted h_G(X,µ|F), is inf{H(α|F∨I_G) : α countable partition and σ-alg_G(α)∨F∨I_G = B(X)}."
 - "Theorem 1.2. Let G be a countably infinite group, let G y (X,µ) be a free p.m.p. action, and let F be a G-invariant sub-σ-algebra. If G y (Y,ν) is a p.m.p. action which is weakly contained in all free p.m.p. actions of G then h_G(X,µ|F) = h_G(X×Y,µ×ν|F∨B(Y))."
 
-**Abért–Weiss, arXiv:1103.1063v2.** Read by another lane from the arXiv HTML and quoted verbatim in `nontrivial-bernoulli-weak-equivalence-proof`: "Theorem 1: Let Γ be a countable infinite group and let f be a free p.m.p. action of Γ. Then f weakly contains every Bernoulli action of Γ." Its definition of a Bernoulli action allows any probability space as base. Not re-read here.
+**Abért–Weiss, arXiv:1103.1063v2.** Re-read here from the PDF, fetched on MSI and extracted with ghostscript. It was earlier quoted from the HTML in `nontrivial-bernoulli-weak-equivalence-proof`.
+- "Let κ be a probability space. The Bernoulli action κ^Γ is defined as the set of maps from Γ to κ, endowed with the product measure and the shift action by Γ."
+- "Theorem 1 Let Γ be a countable infinite group and let f be a free p.m.p. action of Γ. Then f weakly contains every Bernoulli action of Γ. In particular, all free factors of i.i.d.-s of Γ are weakly equivalent."
+
+Any probability space is allowed as base, so the infinite-product complement C of Step 6 is covered.
+
+## 6. Cairn check
+
+`cairn check --changed` on MSI, run on a `--shared` clone at tip be6bb740f with the 11 node files overlaid:
+- **Exit code 4.** All five errors are in other lanes' files: `leavitt-ternary-frame-tree-uniformization-proof`, `locally-finite-hnn-regular-rank-model-proof`, `rgr-p-reduces-to-cyclic-twist-system`, `scalar-target-power-words-have-exact-roots` and `two-syllable-nonsingular-words-are-exactly-solvable`. No error or warning names a node of this lane.
+- **`cairn why`.** The four new claims are ESTABLISHED through their routes. `thompson-v-has-positive-rokhlin-entropy-action`, `thompson-v-surjunctive`, `leavitt-unit-group-surjunctive`, `leavitt-unit-group-has-positive-rokhlin-entropy-action`, `every-group-has-positive-rokhlin-entropy-action`, `bernoulli-rokhlin-entropy-maximal-for-every-group` and `gottschalk-surjunctivity-conjecture` stay OPEN.
