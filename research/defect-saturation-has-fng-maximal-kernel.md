@@ -58,9 +58,8 @@ construction. It is therefore not a restatement of its consequence.
 ## Status of the payoff
 
 The consequence this claim was built to deliver, `fp-simple-full-mf-radical-group`,
-is now established independently by the binary Leavitt unit group
-(`fp-simple-full-mf-radical-via-leavitt-unit-group`). This claim stays open as a
-question about one group's normal lattice. If it holds, it would give a
-*torsion-free* finitely presented simple group with full MF radical, provided
-the simple quotient inherits torsion-freeness, which is not automatic. The
-Leavitt witness has torsion.
+is established independently, and it already was before this node existed.
+The Titz Mite--Witzel lattices are finitely presented, simple, Kazhdan and
+torsion-free (`fp-simple-full-mf-radical-via-titz-witzel`). A torsion-free
+witness is therefore not new either. This claim stays open only as a question
+about one group's normal lattice. No payoff beyond its own answer is recorded.
