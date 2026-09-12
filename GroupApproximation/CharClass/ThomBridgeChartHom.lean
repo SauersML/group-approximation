@@ -109,10 +109,73 @@ theorem bridgeChart_natural (p : Bundle X ι) (U : Set X) (n : ℕ)
   apply TopCat.Hom.ext
   exact ContinuousMap.ext fun v => bridgeChartIncl_natural p U v
 
+/-! ## Over a field `K`
+
+The same two statements for `bridgeChartOf K`, by the same proofs: `excisionIsoOf` and
+`relCohomologyCongrOf` are, like their `F₂` originals, a single relative pullback each. -/
+
+/-- **The first two bridge steps over a field are a single relative pullback**, along the
+chart inclusion. -/
+theorem bridgeChartOf_hom_eq (K : Type) [Field K] (p : Bundle X ι) (n : ℕ)
+    (h : ∀ v ∈ ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p),
+      (ConcreteCategory.hom (cmap (bridgeChartIncl p))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne))) :
+    (bridgeChartOf K p n).hom = relPullback K (cmap (bridgeChartIncl p)) h n := by
+  show relPullback K _ _ n ≫ relPullback K _ _ n = _
+  rw [← relPullback_comp K _ _ _ _
+    (by
+      intro v hv
+      have := bridgeChartIncl_map_eq p
+      exact (congrArg (fun g => (ConcreteCategory.hom g) v) this) ▸ h v hv) n]
+  exact relPullback_eq_of_eq K (bridgeChartIncl_map_eq p) _ n
+
+/-- **The first two bridge steps over a field are natural in the base.** -/
+theorem bridgeChartOf_natural (K : Type) [Field K] (p : Bundle X ι) (U : Set X) (n : ℕ)
+    (ha : ∀ v ∈ ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p),
+      (ConcreteCategory.hom (cmap (bridgeChartIncl p))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)))
+    (hd : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom (cmap (bridgeChartIncl (p.restrictTo U)))) v
+        ∈ ((Gysin.notZeroOpens (p.restrictTo U) :
+            Opens (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+          : Set (Bundle.Proj (p.restrictTo U).plusOne)))
+    (hb : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom (cmap (Bundle.totalInclOn p U))) v
+        ∈ ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p))
+    (hc : ∀ z ∈ ((Gysin.notZeroOpens (p.restrictTo U) :
+          Opens (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
+        : Set (Bundle.Proj (p.restrictTo U).plusOne)),
+      (ConcreteCategory.hom (cmap (Bundle.projInclOn p.plusOne U))) z
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)))
+    (hba : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom (cmap (Bundle.totalInclOn p U) ≫ cmap (bridgeChartIncl p))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)))
+    (hdc : ∀ v ∈ ((Subtype.val : Bundle.Total (p.restrictTo U) → ↥U × (ι → ℂ)) ⁻¹'
+        Bundle.puncturedSet (p.restrictTo U)),
+      (ConcreteCategory.hom
+        (cmap (bridgeChartIncl (p.restrictTo U)) ≫ cmap (Bundle.projInclOn p.plusOne U))) v
+        ∈ ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne))) :
+    (bridgeChartOf K p n).hom ≫ relPullback K (cmap (Bundle.totalInclOn p U)) hb n
+      = relPullback K (cmap (Bundle.projInclOn p.plusOne U)) hc n
+        ≫ (bridgeChartOf K (p.restrictTo U) n).hom := by
+  rw [bridgeChartOf_hom_eq K p n ha, bridgeChartOf_hom_eq K (p.restrictTo U) n hd]
+  refine relPullback_comm_of_map_eq K _ _ _ _ ?_ ha hb hc hd hba hdc n
+  apply TopCat.Hom.ext
+  exact ContinuousMap.ext fun v => bridgeChartIncl_natural p U v
+
 /-! Audited on every build: `#audit_axioms` prints the closure **and fails the
 build** if it leaves the classical allowlist, which `#print axioms` does not. -/
 
 #audit_axioms bridgeChart_natural
+#audit_axioms bridgeChartOf_natural
 
 end
 
