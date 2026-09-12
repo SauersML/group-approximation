@@ -8,6 +8,7 @@ distinct_from:
   binary-leavitt-algebra-is-purely-infinite-by-monomials: that is the monomial compression lemma for nonzero elements; this is the orbit theorem for one-sided inverse pairs that the lemma makes possible.
 artifacts:
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 Let `R = L_(F_2)(1,2)` and `Q = R^x`. If `alpha, beta` in `R` satisfy

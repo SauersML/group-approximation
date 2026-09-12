@@ -191,3 +191,47 @@ computation was run. Inputs taken on trust are listed in Section 7.
 * `sofic-radical-localizes-garden-of-eden-windows-proof`, step 2 ("fix at most a
   quarter of the points in total") should be read with the per-pair correction
   of Section 1.
+
+## 9. Kaplansky normal forms over the evaluation (landing 5792e4bbf)
+
+Verdict: PASS for the established claims
+`binary-leavitt-algebra-is-purely-infinite-by-monomials`,
+`leavitt-one-sided-pairs-are-unit-translates-of-s0-t0` and
+`leavitt-inverse-defects-are-visible-or-invisible`, and for Proposition 6. The
+open claims of that landing stay open and assert nothing.
+
+* **(M1).** The innermost `t_(beta_1) s_(gamma_1)` is `delta`; cancel one letter
+  at a time.
+* **(M3).** `s_i` prepends and `t_i` strips, a representation on the span of
+  infinite sequences. For `x` not eventually periodic, `alpha x = alpha' x` with
+  `|alpha| < |alpha'|` forces `x = alpha'' x`, which is periodic.
+* **Lemma 1.**
+  * With `m` the longest ghost length, (M2) gives `y = x S[gamma] != 0`, a sum
+    of words.
+  * For a longest `alpha*`, `T[alpha*] S[alpha]` is `1` or `T[delta]` with
+    `alpha* = alpha delta`. A prefix of `alpha*` of each length is unique, so
+    the tails have distinct lengths.
+  * With `w = 0 1^L` and `L >= max |delta|`, a nonzero `T[delta] S[w]` needs
+    `delta = 0 1^i`, `i <= L - 1`, and equals `S[1^(L-i)]`. Then
+    `T[w] S[1^(L-i)] = 0` because `w` begins with `0`. No gap.
+* **Lemma 2.**
+  * `a = p nu` and `b = mu p` give `qR ~= R` for `q = ab <= p`, and
+    `R ~= R (+) R` gives `pR ~= pR (+) R`.
+  * `R = alpha beta R (+) pR` gives `R ~= R (+) pR`.
+  * The inverse of `phi : R -> pR`, extended by zero, is left multiplication by
+    `y_1 = psi(p)` in `Rp`, with `y_1 x_1 = 1` and `x_1 y_1 = p`. Then
+    `x = x_1 t_1` and `y = s_1 y_1`.
+* **Theorem 3.** The vanishings `beta p = p alpha = t_0 p' = p' s_0 = 0` give
+  `w w' = s_0 t_0 + s_1 t_1 = 1` and `w' w = alpha beta + p = 1`, and then
+  `w alpha = s_0`, `beta w' = t_0`.
+* **Theorem 4 and Corollary 5.** Translation by `[w]` or `[r^-1]` keeps `b a = 1`
+  and conjugates `ab`. The involution `v = 1 + s_0 gamma t_1` satisfies `v^2 = 1`
+  (since `t_1 s_0 = 0` in characteristic two), `v s_0 = s_0` and
+  `(t_0 + gamma t_1) v = t_0`.
+* **Proposition 6.** From `d c = 1` and `c d = delta`, `b c = b delta c = 0` and
+  `d a = d delta a = 0`, so `(a, c; b, d)` is a unital Leavitt family.
+  Augmentation gives `eps(b) eps(c) = 0` against
+  `eps(b) eps(a) = eps(d) eps(c) = 1`.
+* **Section 6, finite-dimensional representations.** The image of `R^x` in
+  `GL_n(k)` is finitely generated linear, hence residually finite. Simplicity
+  and infinitude make it trivial.

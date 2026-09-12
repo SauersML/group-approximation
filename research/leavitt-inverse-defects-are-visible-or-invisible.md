@@ -9,6 +9,7 @@ distinct_from:
   direct-finiteness-not-inherited-by-quotients: that says the Leavitt surjection transports nothing by itself; this says exactly what a transported failure must look like over that surjection.
 artifacts:
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 Let `R = L_(F_2)(1,2)`, `Q = R^x`, `S = F_2[Q]`, `pi : S ->> R` the evaluation,

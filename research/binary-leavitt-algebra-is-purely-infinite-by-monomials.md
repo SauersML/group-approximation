@@ -8,6 +8,7 @@ distinct_from:
   binary-leavitt-algebra-not-directly-finite: that is the single one-sided inverse t_0 s_0 = 1 != s_0 t_0; this says every nonzero element is carried to 1 by a left and a right monomial.
 artifacts:
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 Let `R = L_(F_2)(1,2)` with `t_i s_j = delta_ij` and `s_0 t_0 + s_1 t_1 = 1`,
