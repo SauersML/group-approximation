@@ -239,7 +239,8 @@ theorem linearStokes_image_of_steps {S : Set G} (hS : IsSymmetricGeneratingSet S
         rw [trueLetters_append, wordSum_append, wordVal_trueLetters, trueLetters_append,
           wordSum_append, wordVal_trueLetters, List.prod_append, ← mul_assoc]
       have hbb : q (b' * before.prod * arc.prod) = q (b' * before.prod * repl.prod) := by
-        rw [map_mul, map_mul, ← hextprod, ← hqrepl]
+        simp only [map_mul]
+        rw [← hextprod, ← hqrepl]
       have hloopG : wordSum (id : G → G) (φ ∘ q) (ψ ∘ q) (b' * before.prod)
           (trueLetters (arc ++ revList ext)) =
           wordSum (id : G → G) (φ ∘ q) (ψ ∘ q) (b' * before.prod) (trueLetters arc) -
@@ -253,7 +254,8 @@ theorem linearStokes_image_of_steps {S : Set G} (hS : IsSymmetricGeneratingSet S
         rw [trueLetters_append, wordSum_append, wordVal_trueLetters,
           wordSum_comp_base q φ ψ
             (show q (b' * before.prod * ext.prod) = q (b' * before.prod * repl.prod) by
-              rw [map_mul, map_mul, hqrepl]),
+              simp only [map_mul]
+              rw [hqrepl]),
           wordSum_trueLetters_revList, sub_eq_add_neg]
       have hsplit_sum : wordSum (id : G → G) (φ ∘ q) (ψ ∘ q) b'
           (trueLetters (before ++ arc ++ after)) =
@@ -281,7 +283,7 @@ theorem linearStokes_image_of_steps {S : Set G} (hS : IsSymmetricGeneratingSet S
         (by rw [List.prod_append, prod_revList, map_mul, map_inv, hqrepl, mul_inv_cancel])
         (b' * before.prod)
       rw [← hrotsum, hsplit_sum]
-      exact abs_add_add_le_of_cut hIH hGloop hQloop
+      exact abs_add_add_le_of_cut (B := B) hIH hGloop hQloop
         (by simp only [List.length_append]; omega)
         (by simp only [List.length_append, length_revList]; omega)
         (by simp only [List.length_append, length_revList]; omega) hlt
