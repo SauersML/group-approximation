@@ -34,6 +34,7 @@ namespace GroupApproximation
 namespace ValuedMatrixTwo
 
 open Matrix
+open Classical
 
 universe u
 
@@ -282,7 +283,7 @@ theorem dispInt_mul_stab {g s : GL (Fin 2) K} (hs : s ∈ stab v) : dispInt v (g
   omega
 
 theorem dispInt_stab_mul {g s : GL (Fin 2) K} (hs : s ∈ stab v) : dispInt v (s * g) = dispInt v g := by
-  rw [← dispInt_inv v (s * g), mul_inv_rev, dispInt_mul_stab v ((stab v).inv_mem hs), dispInt_inv]
+  rw [← dispInt_inv v (s * g), _root_.mul_inv_rev, dispInt_mul_stab v ((stab v).inv_mem hs), dispInt_inv]
 
 /-- Adjacent cosets have levels differing by exactly one. -/
 theorem dispInt_adj {g h : GL (Fin 2) K} (hgh : dispInt v (g⁻¹ * h) = 1) :
@@ -290,7 +291,7 @@ theorem dispInt_adj {g h : GL (Fin 2) K} (hgh : dispInt v (g⁻¹ * h) = 1) :
   have t1 := dispInt_mul_le v g (g⁻¹ * h)
   rw [mul_inv_cancel_left] at t1
   have t2 := dispInt_mul_le v h (g⁻¹ * h)⁻¹
-  rw [mul_inv_rev, inv_inv, mul_inv_cancel_left, dispInt_inv] at t2
+  rw [dispInt_inv, _root_.mul_inv_rev, inv_inv, mul_inv_cancel_left] at t2
   have hdet : vz v (((g⁻¹ * h : GL (Fin 2) K)) : Matrix (Fin 2) (Fin 2) K).det =
       vz v (h : Matrix (Fin 2) (Fin 2) K).det - vz v (g : Matrix (Fin 2) (Fin 2) K).det := by
     rw [vz_det_mul, vz_det_inv]

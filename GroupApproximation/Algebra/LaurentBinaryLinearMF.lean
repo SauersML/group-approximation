@@ -96,11 +96,20 @@ instance instCountableBinaryLaurentGL (n : ℕ) :
 
 /-! ## Residual finiteness and MF -/
 
+/-- The finite-type property for every `ℤ`-algebra structure on the Laurent ring: all
+`ℤ`-algebra structures on a ring coincide, so this is the instance above in whatever
+form Mal'cev's theorem is stated with. -/
+theorem finiteType_of_algebra (inst : Algebra ℤ BinaryLaurent) :
+    @Algebra.FiniteType ℤ BinaryLaurent _ _ inst := by
+  have h := instFiniteTypeBinaryLaurent
+  convert h
+  exact Subsingleton.elim _ _
+
 /-- **Mal'cev for the binary Laurent ring.**  `GL_n(F_2[z,z^{-1}])` is
 residually finite at every rank. -/
 instance residuallyFinite_binaryLaurentGL (n : ℕ) :
     Group.ResiduallyFinite (Matrix.GeneralLinearGroup (Fin n) BinaryLaurent) :=
-  residuallyFinite_generalLinearGroup BinaryLaurent n
+  @residuallyFinite_generalLinearGroup BinaryLaurent _ _ (finiteType_of_algebra _) n
 
 /-- Residual finiteness of `GL_n(F_2[z,z^{-1}])` passes to every subgroup. -/
 theorem residuallyFinite_subgroup (n : ℕ)

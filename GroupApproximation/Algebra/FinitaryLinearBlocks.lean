@@ -22,7 +22,7 @@ namespace FinitaryLinear
 universe u v w
 
 variable {F : Type u} [Field F] {M : Type v} [AddCommGroup M] [Module F M]
-  {β : Type w} (B : Module.Basis β F M) (T : Finset β)
+  {β : Type w} [DecidableEq β] (B : Module.Basis β F M) (T : Finset β)
 
 open Matrix
 
@@ -43,7 +43,7 @@ theorem repr_blockLin (A : Matrix T T F) (a b : T) :
     B.repr (blockLin B T A (B b)) a = A a b := by
   classical
   rw [blockLin_basis_mem B T A b.2]
-  simp only [Subtype.coe_eta, map_sum, map_smul, Module.Basis.repr_self, Finsupp.coe_finset_sum,
+  simp only [Subtype.coe_eta, map_sum, map_smul, Module.Basis.repr_self, Finsupp.coe_finsetSum,
     Finset.sum_apply, Finsupp.smul_apply, Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one,
     mul_zero]
   rw [Finset.sum_eq_single a]
@@ -123,6 +123,7 @@ theorem blockLin_coeffMatrix {g : M ≃ₗ[F] M} (hg : IsSupportedOn B g T) :
     blockLin B T (coeffMatrix B T (g : M →ₗ[F] M)) = (g : M →ₗ[F] M) := by
   classical
   refine B.ext fun b ↦ ?_
+  simp only [LinearEquiv.coe_coe]
   by_cases hb : b ∈ T
   · rw [blockLin_basis_mem B T _ hb]
     have hsupp : ((B.repr (g (B b))).support : Set β) ⊆ (T : Set β) :=
@@ -130,9 +131,10 @@ theorem blockLin_coeffMatrix {g : M ≃ₗ[F] M} (hg : IsSupportedOn B g T) :
     have hsupp' : (B.repr (g (B b))).support ⊆ T := by exact_mod_cast hsupp
     conv_rhs => rw [← B.linearCombination_repr (g (B b))]
     rw [Finsupp.linearCombination_apply,
-      Finsupp.sum_of_support_subset _ hsupp' _ (fun _ _ ↦ zero_smul F _)]
-    rw [← Finset.sum_coe_sort]
-    rfl
+      Finsupp.sum_of_support_subset (B.repr (g (B b))) hsupp' (fun i a ↦ a • B i)
+        (fun i _ ↦ zero_smul F (B i))]
+    rw [← Finset.sum_coe_sort T]
+    exact Finset.sum_congr rfl fun a _ ↦ rfl
   · rw [blockLin_basis_not_mem B T _ hb]
     exact (hg.fix b hb).symm
 
