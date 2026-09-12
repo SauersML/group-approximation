@@ -699,3 +699,29 @@ outside the separated finite-normal theorem. Its linear case is direct finitenes
 of a Clifford skew group ring. It is now its own counterexample root,
 `kun-thom-clifford-cover-nonsurjunctive`, fed by
 `clifford-cover-nonsurjunctive-from-anti-half-df-failure`.
+
+**Clifford covers, orbital localization (2026-09-12).** On a Clifford cover `E_S` over
+the Kun--Thom wreath, re-choosing the invariant graph on the finitely many site pairs
+a strict pair reads moves the pair, with the same coordinates, to a separated cover,
+which is surjunctive. So every counterexample on `E_S` reads a profinitely invisible
+adjacency: for the complete graph, two sites in one fibre of `G/Gamma -> G/Gamma-bar`,
+forced through a holonomy group, which is the Kun--Thom phase pattern
+(`clifford-cover-strict-pairs-read-invisible-adjacency`). The same local embeddings
+prove profinitely saturated covers surjunctive, including the cross graph, whose
+center lies in the finite residual (`profinitely-saturated-clifford-covers-are-surjunctive`).
+That settles one residue instance of `finite-normal-subgroups-do-not-affect-surjunctivity`,
+in the predicted direction. Artifact:
+`research/artifacts/clifford-cover-orbital-localization-2026-09-12.md`.
+
+**Biased rules certify strictness (2026-09-12).** An unbalanced effective encoder rule
+over a forward-sufficient table gives a strict automaton
+(`unbalanced-effective-rule-certifies-strictness`). So the conjecture is equivalent to
+`unbalanced-forward-tables-identify-memory-letters`: every minimal forward table of an
+unbalanced design identifies two memory letters in `U_E`, and reverse hinges never
+enter. The equivalence is an intended cycle through
+`gottschalk-via-unbalanced-table-memory-collisions` and
+`unbalanced-table-memory-collisions-from-gottschalk`. Every sofic quotient of `U_E`
+must collide memory letters so that the rule balances. Over `F_2`, an unbalanced
+injective rule needs at least four memory elements and is never monotone
+(`three-address-binary-injective-rules-are-balanced`,
+`monotone-binary-injective-rules-are-copies`).
