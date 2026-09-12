@@ -25,6 +25,19 @@ Arulseelan–Hanson arXiv:2609.10218 Cor 1.5, which removes normality for all
 AW*-algebras). So a `II_1` AW*-factor is W* iff it has a large W*-corner, giving
 1 ⟺ 2.
 
+**Two further equivalent readings.**
+- *Some nonzero W*-corner suffices.* In a factor every nonzero projection `p` is
+  faithful. If `tau(p) >= 1/n`, then `M` is a corner of `M_n(pMp)`. So `M` is W*
+  iff some nonzero corner `pMp` is W*.
+- *A faithful state suffices.* A type `II_1` AW*-factor with a faithful state is
+  W* (Wright, J. London Math. Soc. (2) 12 (1975/76)). Conversely a `II_1`
+  W*-factor has a faithful normal trace. So 2Q is equivalent to every type `II_1`
+  AW*-factor admitting a faithful state, which is the open question recorded in
+  Gow's introduction.
+
+The problem also splits into monotone completeness plus exclusion of wild `II_1`
+factors: `stw01-problem-i-via-monotone-complete-ii1-factors`.
+
 **This is a reformulation, not progress.** It asserts neither side. The corner
 criterion for factors was already available from Berberian plus the 1991 factor
 normality theorem, so Arulseelan–Hanson's Theorem A ("every AW*-algebra is
