@@ -40,3 +40,37 @@ For a Magnus piece `B_0` of `G = <a,t | w>`, the relator `W_0` has fewer letters
 than `w`. Under the inductive hypothesis "every one-relator group with a
 shorter relator is sofic", `B_0` is sofic and envelopes reduce to pure
 Bass--Serre data.
+
+## 3. Proof
+
+**Hierarchy gives envelope.** Fix `i >= 1`. By Bass--Serre theory `V_i` is the
+fundamental group of the quotient graph of groups `V_i \ T_i`. The orbit of
+`v_i` is one quotient vertex, with group `V_(i-1)`. Every other vertex group is
+sofic and every edge group is amenable. Choose a maximal tree containing that
+vertex and enumerate its vertices so that each is adjacent to an earlier one.
+Adjoining a vertex group `X` along its tree edge is a move `Y *_E X`; the edge
+group already lies in `Y` and is amenable. Each edge outside the tree is an HNN
+move over amenable associated subgroups that already lie in the partial group.
+Finite subgraphs give finitely many moves, and `V_i` is their directed union.
+Composing the steps `i = 1, ..., k` builds `B` from `F`, so the identity is an
+envelope.
+
+**Envelope gives hierarchy.** Let `iota(F) = Y_0 <= Y_1 <= ... <= Y_r = B'` list the
+moves, treating a directed union as its final stage; the argument below never
+uses finiteness of `r`. Identify `B` with `iota(B)` and put `V_i = B ∩ Y_i`. Then
+`V_0 = F` and `V_r = B`. Each `Y_i` acts on the Bass--Serre tree `T_i` of its
+move:
+* edge stabilizers are conjugates of the amenable edge groups;
+* vertex stabilizers are conjugates of `Y_(i-1)` or of the sofic factor `X`;
+* `Y_(i-1)` fixes a vertex `v_i`.
+
+Restrict to `V_i`. Edge stabilizers are subgroups of amenable groups, so they
+are amenable. `Stab_(V_i)(v_i) = V_i ∩ Y_(i-1) = V_(i-1)`. Every other vertex
+stabilizer lies in a conjugate of `X`, which is sofic, or in a conjugate of
+`Y_(i-1)`. The latter is sofic because it is built from the free group `iota(F)`
+by moves, and the transport lemma with `S = iota(F)` makes it sofic. Subgroups of
+sofic groups are sofic. ∎
+
+**Remark.** The earlier necessary condition (envelope artifact, §5) is the top
+nontrivial step of this hierarchy. The theorem shows that one splitting is not
+enough: the vertex group containing `F` must again split, down to `F` itself.
