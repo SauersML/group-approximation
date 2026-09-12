@@ -118,7 +118,19 @@ def build(L, A, B, group_mode):
     return ab, ba, ident
 
 
-def encode_and_solve(A, B, ab, ba, ident, strict, time_limit):
+def evaluation_rows(units, target):
+    """XOR rows saying pi(sum_k c_k [units_k]) = target in R, one per monomial."""
+    cols = defaultdict(list)
+    for k, u in enumerate(units):
+        for term in u.val.terms:
+            cols[term].append(k)
+    missing = [t for t in target.terms if t not in cols]
+    rows = [(ks, term in target.terms) for term, ks in cols.items()]
+    return rows, missing
+
+
+def encode_and_solve(A, B, ab, ba, ident, strict, time_limit, linear_rows=()):
+    """linear_rows: (side, indices, rhs) with side 'x' or 'y', one XOR per row."""
     from pycryptosat import Solver
     s = Solver(threads=1, time_limit=time_limit)
     nA, nB = len(A), len(B)
@@ -126,6 +138,12 @@ def encode_and_solve(A, B, ab, ba, ident, strict, time_limit):
     y = lambda j: 1 + nA + j
     z = lambda p: 1 + nA + nB + p
     nz = nA * nB
+    for side, idx, rhs in linear_rows:
+        var = x if side == "x" else y
+        if idx:
+            s.add_xor_clause([var(k) for k in idx], rhs)
+        elif rhs:
+            return "UNSAT", None, {"trivial": "target monomial outside the span"}
     for p in range(nz):
         i, j = divmod(p, nB)
         s.add_clause([-z(p), x(i)])
@@ -188,6 +206,10 @@ def main():
     ap.add_argument("--ra", type=int, default=1)
     ap.add_argument("--rb", type=int, default=1)
     ap.add_argument("--no-strict", action="store_true")
+    ap.add_argument("--target", choices=["none", "beta-S0", "alpha-T0"], default="none",
+                    help="replace the strictness clause by the linear condition pi(beta) = s0 "
+                         "(or pi(alpha) = t0); strictness is then automatic, since s0 and t0 "
+                         "are not units of R")
     ap.add_argument("--time-limit", type=float, default=600.0)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
@@ -209,8 +231,15 @@ def main():
         B = A if args.rb == args.ra else ball(L, gens, args.rb)
         group_mode = True
     ab, ba, ident = build(L, A, B, group_mode)
+    rows, strict = [], not args.no_strict
+    if args.target != "none" and group_mode:
+        side, units, target = ("y", B, L.s0) if args.target == "beta-S0" else ("x", A, L.t0)
+        erows, missing = evaluation_rows(units, target)
+        rows = [(side, ks, rhs) for ks, rhs in erows] + ([(side, [], True)] if missing else [])
+        report["target"], report["evaluation_rows"] = args.target, len(erows)
+        strict = False
     report["build_seconds"] = round(time.time() - t0, 3)
-    status, model, stats = encode_and_solve(A, B, ab, ba, ident, not args.no_strict, args.time_limit)
+    status, model, stats = encode_and_solve(A, B, ab, ba, ident, strict, args.time_limit, rows)
     report.update(stats)
     report["status"] = status
     if model is not None:
