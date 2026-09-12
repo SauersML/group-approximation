@@ -39,3 +39,31 @@ non-hyperlinear hyperbolic group, which is both nonsofic and not residually fini
 Strict HS-stability is excluded for every infinite hyperlinear Kazhdan group by
 Becker--Lubotzky, so only the flexible notion is available. Reading the claim
 contrapositively: if all hyperbolic groups are hyperlinear, this claim is false.
+
+## Attempts
+
+- **Class-wide stability is screened.** By
+  `classwide-hyperbolic-kazhdan-hs-stability-covers-fp-kazhdan`, an argument proving
+  flexible HS stability for every hyperbolic Kazhdan group would make every finitely
+  presented Kazhdan group stable. So would one for any class closed under
+  Belegradek--Osin covers. Such an argument would therefore make the binary Leavitt
+  unit group and the Caprace--Rémy simple lattices non-hyperlinear. A proof for the
+  candidates has to use a feature that such covers lack.
+- **Covers add nothing.** By `flexible-hs-stability-passes-to-kazhdan-kernel-quotients`,
+  stability of a hyperbolic Kazhdan group passes to each of its quotients by Kazhdan
+  normal subgroups. So a cover is never easier to stabilize than its quotient.
+- **`Ã_2` Ballmann--Świątkowski groups are not candidates.** They act properly and
+  cocompactly on Euclidean buildings, contain `Z^2`, and so are not hyperbolic.
+- **`GHB(7)`.** It is Caprace--Conder--Kaluba--Witzel's group; its property (T) is
+  proved in `GroupApproximation/Kazhdan/EJZAngleGHB.lean`. It is a complex of finite
+  groups, so it has torsion, and `b_2` only makes sense on a torsion-free finite-index
+  subgroup. Getting one needs virtual torsion-freeness first. There is no stability
+  input.
+- **Cocompact `Sp(2,1)` lattices.** They are linear, hence hyperlinear and residually
+  finite, so they fall under the hyperlinear bullet above. Their `b_2` has not been
+  verified from a source.
+- **No known example.** No source read for this node exhibits a flexibly HS-stable
+  infinite property (T) group.
+
+The candidate-by-candidate record is
+`research/artifacts/kazhdan-hyperbolic-hs-candidates-2026-09-12.md`.
