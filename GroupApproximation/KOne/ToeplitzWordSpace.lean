@@ -100,7 +100,7 @@ theorem opT_single_singleton (j i : Fin d) (c : k) :
 theorem opT_single_cons_cons (j i b : Fin d) (w : List (Fin d)) (c : k) :
     opT k d j (Finsupp.single (i :: b :: w) c)
       = Finsupp.lmapDomain k k (List.cons i) (opT k d j (Finsupp.single (b :: w) c)) := by
-  rw [opT_single, opT_single, List.getLast?_cons_cons, List.dropLast_cons₂]
+  rw [opT_single, opT_single, List.getLast?_cons_cons, List.dropLast_cons_cons]
   split_ifs
   · rw [Finsupp.lmapDomain_apply, Finsupp.mapDomain_single]
   · rw [map_zero]
@@ -138,10 +138,11 @@ theorem sum_opS_mul_opT :
 theorem opQ_eq :
     opQ k d = (Finsupp.lsingle [] : k →ₗ[k] Space k d) ∘ₗ (Finsupp.lapply [] : Space k d →ₗ[k] k) := by
   refine Finsupp.lhom_ext fun w c => ?_
-  rw [opQ_single, LinearMap.comp_apply, Finsupp.lapply_apply, Finsupp.lsingle_apply,
-    Finsupp.single_apply]
+  rw [opQ_single]
+  show _ = Finsupp.single [] ((Finsupp.single w c : Space k d) [])
+  rw [Finsupp.single_apply]
   by_cases h : w = []
-  · rw [if_pos h, if_pos h, h]
+  · rw [if_pos h, if_pos h]
   · rw [if_neg h, if_neg h, Finsupp.single_zero]
 
 /-- `Q` has rank one. -/
@@ -237,8 +238,8 @@ theorem piMap_single (X : Module.End k (Space k d)) (i : Fin d) (g : Space k d) 
 the one-letter word `j`. -/
 theorem defect_opS (j : Fin d) :
     defect (split k d) (opS k d j)
-      = LinearMap.inr k k (Fin d → Space k d) ∘ₗ LinearMap.single k (fun _ : Fin d => Space k d) j ∘ₗ
-          (Finsupp.lsingle [] : k →ₗ[k] Space k d) ∘ₗ LinearMap.fst k k (Fin d → Space k d) := by
+      = (LinearMap.inr k k (Fin d → Space k d) ∘ₗ LinearMap.single k (fun _ : Fin d => Space k d) j ∘ₗ
+          (Finsupp.lsingle [] : k →ₗ[k] Space k d)) ∘ₗ LinearMap.fst k k (Fin d → Space k d) := by
   refine LinearMap.prod_ext ?_ ?_
   · refine LinearMap.ext_ring ?_
     show splitMap k d (opS k d j (glueMap k d ((1 : k), 0))) - sep k (Fin d) (opS k d j) ((1 : k), 0)
@@ -268,7 +269,7 @@ theorem defect_opT (j : Fin d) :
   refine LinearMap.prod_ext ?_ ?_
   · refine LinearMap.ext_ring ?_
     show splitMap k d (opT k d j (glueMap k d ((1 : k), 0))) - sep k (Fin d) (opT k d j) ((1 : k), 0)
-      = ((0 : Fin d → Space k d) j [], 0)
+      = (((0 : Fin d → Space k d) j : Space k d) [], 0)
     rw [glueMap_inl, opT_single_nil, map_zero]
     refine Prod.ext ?_ ?_
     · simp [sep]
@@ -276,7 +277,7 @@ theorem defect_opT (j : Fin d) :
   · refine LinearMap.pi_ext' fun i => Finsupp.lhom_ext fun w c => ?_
     show splitMap k d (opT k d j (glueMap k d (0, Pi.single i (Finsupp.single w c))))
         - sep k (Fin d) (opT k d j) (0, Pi.single i (Finsupp.single w c))
-      = (Pi.single i (Finsupp.single w c) j [], 0)
+      = (((Pi.single i (Finsupp.single w c) : Fin d → Space k d) j : Space k d) [], 0)
     rw [glueMap_single, Finsupp.lmapDomain_apply, Finsupp.mapDomain_single]
     cases w with
     | nil =>
@@ -285,7 +286,7 @@ theorem defect_opT (j : Fin d) :
       · by_cases h : i = j
         · subst h
           simp [sep, splitMap_single_nil]
-        · simp [sep, h, Pi.single_eq_of_ne (Ne.symm h)]
+        · simp [sep, h]
       · show (splitMap k d (if i = j then Finsupp.single [] c else 0)).2
             - piMap (Fin d) (opT k d j) (Pi.single i (Finsupp.single [] c)) = 0
         rw [piMap_single, opT_single_nil, Pi.single_zero, sub_zero]
@@ -295,7 +296,12 @@ theorem defect_opT (j : Fin d) :
     | cons b w =>
       rw [opT_single_cons_cons, splitMap_lmapDomain_cons]
       refine Prod.ext ?_ ?_
-      · simp [sep, Finsupp.single_apply]
+      · by_cases h : j = i
+        · subst h
+          rw [Pi.single_eq_same, Finsupp.single_apply, if_neg (List.cons_ne_nil b w)]
+          simp [sep]
+        · rw [Pi.single_eq_of_ne h, Finsupp.coe_zero, Pi.zero_apply]
+          simp [sep]
       · show Pi.single i (opT k d j (Finsupp.single (b :: w) c))
             - piMap (Fin d) (opT k d j) (Pi.single i (Finsupp.single (b :: w) c)) = 0
         rw [piMap_single, sub_self]
