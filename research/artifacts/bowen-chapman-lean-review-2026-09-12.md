@@ -178,15 +178,18 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 73f646f13 fourteen landings touch the campaign: the Palomar
+As of `origin/main` 2f1092457 eighteen landings touch the campaign: the Palomar
 challenge (6ae077316), solution (1ad7aa663) and pending gate registration
 (73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
 (0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
 finiteness (dfa8d5e7b), the coset wreath algebra (2d5427380), the Dynamics upper
 layer (684f9d301), residual finiteness of the ambient group (e728fe4e7),
 surjunctivity of symmetric doubles (53d1db321), infranormality and
-non-normality (8d36818d4), and property (T), finite generation and countability
-(3e8c96515). Everything else is a WIP snapshot under `wip/bowen-chapman/`.
+non-normality (8d36818d4), property (T), finite generation and countability
+(3e8c96515), sequential normalization and the double bridge (b2fb68328), the
+derivation from the leaves (12f9e82b4), the sequential wreath reduction
+(2f1092457), and the block-patching toolkit for Theorem 4.1 (438fbabd3).
+Everything else is a WIP snapshot under `wip/bowen-chapman/`.
 
 **Stale oleans.** The shared MSI checkout's oleans were built at a7bf5d4fc
 (30 August). A private-directory green counts only if every repository
@@ -487,6 +490,53 @@ defect.**
     base and the landing parent, and the base is an ancestor of the landing.
 * Two root imports are added. The only deletions are the WIP snapshots.
 
+**(q) Landed: `BowenChapman/EndpointOfInputs`, 12f9e82b4, root-wired. No
+defect.**
+* `symmetricDouble_not_isSofic_of_leaves` takes exactly the leaves as
+  hypotheses: countability, property (T) of `Ambient` and `Peripheral`,
+  infranormality, non-normality, and `hnormalization`. The last is Theorem 4.1
+  in sequential form, for every countable (T) group and infranormal (T)
+  subgroup. The conclusion is `¬ IsSofic (SymmetricDouble Ambient Peripheral)`.
+* The endpoint closes only when every hypothesis is replaced by a proof. Five of
+  them are landed (F4(k), (m), (n)); `hnormalization` is the open leaf of
+  F4(p).
+* Design note sent to `bc-assembly`, optional: the derivation uses
+  `hnormalization` only at `Peripheral ≤ Ambient`, so a leaf
+  `HasSequentialCentralizerNormalization Peripheral` would also admit a
+  pair-specific producer.
+* Probe evidence: record `bc-assembly.green.0912-120804-51046` at base
+  bac03055a carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `d9d5b17f…`. The 60-module import closure did not change between the record
+  base and the landing parent.
+* One root import is added. The only deletion is the WIP snapshot.
+
+**(r) Landed: `Sofic/WreathCentralizerNormalizationSequential`, 2f1092457,
+root-wired. No defect.**
+* `not_isSofic_wreath_of_sequentialNormalization_of_ne_one` requires `[Countable
+  G]`, `HasSequentialCentralizerNormalization Γ`, a countable lamp group with
+  `k ≠ 1`, and an escape `t⁻¹ γ t ∉ Γ`. It concludes
+  `¬ IsSofic (Wreath K G (G ⧸ Γ))`, and the order-two lamp case follows.
+* `Wreath` uses finitely supported lamps (`lampSubgroup` = functions with finite
+  support), so this is the restricted wreath product `⊕_{G/Γ} K ⋊ G` of Kun–Thom
+  Theorem A.
+* Probe evidence: record `bc-wreath.green.0912-120822-51768` at base bac03055a
+  carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `a8131518…`. The 14-module import closure did not change.
+* One root import is added. The only deletion is the WIP snapshot.
+
+**(s) Landed: `KunThom/FixedPointNormalizationPatching`, `…Bisection`,
+`…Comparison`, 438fbabd3, root-wired. No defect.**
+* This is finite combinatorics for the end of the proof of Theorem 4.1:
+  * patching block arrows into a permutation, with counts of Hamming
+    disagreement and commutation defect;
+  * patched bisections of a cluster groupoid;
+  * block-by-block comparison with a target permutation.
+  None of the three modules claims Theorem 4.1 or any endpoint.
+* Probe evidence: record `kt-norm-fixedpoint.green.0912-120736-49767` at base
+  6146a3480 carries `# PROBE GREEN`, names all three modules, and holds all
+  three landed md5s. The 10-module import closure did not change.
+* Three root imports are added. The only deletions are the WIP snapshots.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
@@ -505,8 +555,8 @@ defect.**
 * the producer of `HasSequentialCompressorNormalization` under property (T) and
   infranormality, i.e. the analytic core of Theorem 4.1, from the four
   Theorem 4.1 lanes;
-* `WreathWitness` and the sequential wreath consumer (`bc-wreath`);
-* the endpoint (`bc-assembly`);
+* `WreathWitness` and `WreathWitnessEndpoint` (`bc-wreath`, WIP at 7d220e568);
+* the final `Endpoint` (`bc-assembly`);
 * the unsuffixed `bc-palomar` solution, its move from `PALOMAR_PENDING_CONFIGS`
   to `PALOMAR_CONFIGS`, and a rerun of the statement-match drivers after the
   endpoint import.
