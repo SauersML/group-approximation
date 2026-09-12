@@ -8,6 +8,7 @@ requires:
   - elementary-group-property-t-over-free-algebras
 artifacts:
   - research/artifacts/kazhdan-rank-rounding-counterexample-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -27,3 +28,7 @@ linear algebra, in Sections 1-3 of the artifact.
   forces `dim P < 20 b(P)/kappa`.
 * **Perturbed models.** A rank perturbation of the generators by `delta n` changes each
   `e_s` by at most `delta n`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 25 of the verification
+artifact). The decomposition bounds need `3 floor(k/2) kappa > 6`, and the perturbation
+statement needs linear-size pieces with `o(n)` leakage. Both scopes are now in the claim.

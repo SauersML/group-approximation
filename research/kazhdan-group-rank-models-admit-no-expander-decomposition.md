@@ -9,6 +9,7 @@ distinct_from:
   kazhdan-rank-ultraproducts-can-have-diffuse-commutants: that is the ultraproduct statement about relative commutants and invariant right ideals; this is the finite-stage statement about rounding, dimension expansion and decompositions.
 artifacts:
   - research/artifacts/kazhdan-rank-rounding-counterexample-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 **ESTABLISHED.** Let `Gamma = EL_3(F_2[t])` with `S = { e_ij(1), e_ij(t) }`, a Kazhdan
@@ -23,12 +24,15 @@ where `S_m = span{1, alpha, ..., alpha^(m-1)}`, and `b(X) = sum_s (dim(X + rho_k
    ones.
 3. **Not dimension expanders.** Irreducible `F_2`-representations of `Gamma` are not
    uniform dimension expanders.
-4. **Expander decompositions leak linearly.** For every decomposition of `F_q^3` into
+4. **Expander decompositions leak linearly.** Let `3 floor(k/2) kappa > 6`, so that `N`
+   itself is not internally `kappa`-expanding. For every decomposition of `F_q^3` into
    independent subspaces `P_j` with leakage `Lambda = sum_j b(P_j)`, the internally
    `kappa`-expanding pieces have total dimension less than `20 Lambda / kappa`. So a
    decomposition whose expanding pieces carry `(1 - lambda)` of the dimension has
-   `lambda > kappa/21`. Linear-size pieces stay non-expanding under rank perturbations
-   `o(n)` of the models.
+   `lambda > kappa/21`. Linear-size pieces with leakage `o(n)` stay non-expanding under
+   rank perturbations `o(n)` of the models. The scope in this item was tightened on
+   2026-09-12 by gk-verify-pos: for small `k` the decomposition `{N}` can be expanding
+   with `Lambda = 0`, and the perturbation statement needs the leakage bound.
 
 Over `C`, irreducible unitary representations of a Kazhdan pair `(S, kappa)` satisfy
 `b(W) >= kappa^2 dim W / 4` for `dim W <= n/2`. The unitary argument needs a Hilbert

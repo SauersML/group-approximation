@@ -168,11 +168,14 @@ the theorem below covers it too.
 
 **Theorem 3.1.** Let `0 < kappa <= 1`.
 1. **Exact models.** For every decomposition of `N` for `rho_k`, every internally
-   `kappa`-expanding piece `P_j` other than `N` has `dim P_j < 20 b(P_j)/kappa`. So the
-   expanding pieces have total dimension less than `20 Lambda / kappa`. `N` itself is not
-   internally `kappa`-expanding once `3 floor(k/2) kappa > 6`.
-2. **Linear leakage.** If the internally `kappa`-expanding pieces carry total dimension
-   at least `(1 - lambda) n`, and `Lambda <= lambda n`, then `lambda > kappa/21`.
+   `kappa`-expanding piece `P_j` other than `N` has `dim P_j < 20 b(P_j)/kappa`. `N` itself
+   is not internally `kappa`-expanding once `3 floor(k/2) kappa > 6`, and then the expanding
+   pieces have total dimension less than `20 Lambda / kappa`. The condition matters: for
+   small `k` the decomposition `{N}` can be expanding with `Lambda = 0`. (Scope added by
+   gk-verify-pos, 2026-09-12.)
+2. **Linear leakage.** Let `3 floor(k/2) kappa > 6`. If the internally `kappa`-expanding
+   pieces carry total dimension at least `(1 - lambda) n`, and `Lambda <= lambda n`, then
+   `lambda > kappa/21`.
 3. **Perturbed models, linear-size pieces.** Let `rho'_k(s)` differ from `rho_k(s)` in
    rank at most `delta_k n` for `s` in `S`, with `delta_k -> 0`. Fix `c > 0`. For large
    `k`, no subspace `P` with `dim P >= c n` and `b'(P) = o(n)` is internally

@@ -8,6 +8,7 @@ requires:
   - elementary-group-property-t-over-free-algebras
 artifacts:
   - research/artifacts/kazhdan-rank-rounding-counterexample-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -23,3 +24,6 @@ The rest is Section 4 of the artifact.
 * **No atoms.** For representatives `V_k` of an invariant ideal, the subspaces
   `V_k n W_m` are almost invariant, with boundary at most `b(V_k) + 6`. Their dimension
   grows in steps of at most `3`, so every fraction of `dim V_k` is attained up to `O(1)`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 25 of the verification
+artifact).

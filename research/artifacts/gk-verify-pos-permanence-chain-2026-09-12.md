@@ -785,6 +785,66 @@ Verdict: PASS, with one gap in the refuted_by wiring, now fixed.
 * **Container reduction** (`a03dd1b0c8`): passed already in Section 18. Its trust surfaces are
   Schupp, Hull 7.1, 5.7, 3.5 and 5.8, Osin 7.1, and Dahmani--Guirardel--Osin.
 
+## 25. Property (T) does not round in normalized rank (gk-kdf-structure)
+
+Reviewed: `kazhdan-rank-rounding-counterexample-2026-09-12.md` (landing `5edf273bee`),
+`kazhdan-group-rank-models-admit-no-expander-decomposition` and
+`kazhdan-rank-ultraproducts-can-have-diffuse-commutants`, with their proof routes. Verdict:
+PASS. Two statement scopes were tightened forward.
+
+* **(T) input.** `controlSet_isKazhdanPair` in `PropertyT/FiniteFieldElementaryPropertyT`
+  quantifies over any `X` with `[Fintype X]` and any finite field `K`. With `X` a one-point
+  type, `FreeAlgebra F_2 X ~= F_2[t]`, and the control set is
+  `{1} ∪ {e_ij(1), e_ij(t)}`: the scalar `0` contributes the identity, which is harmless. The
+  theorem is stated for real orthogonal representations, and property (T) over `R` and over
+  `C` agree. The counterexample uses only that `Gamma` is Kazhdan, never the constant.
+* **Lemma 1.1.** `F_2[t] -> F_q` is onto, so `rho_k` hits the elementary generators of
+  `EL_3(F_q) = SL_3(F_q)`. Transitivity on nonzero vectors kills every proper nonzero
+  invariant `F_2`-subspace. Images and kernels of commutant idempotents are invariant.
+* **Lemma 1.2.** `e_g(X) = d(X, gX)/2` with the triangle inequality and `d(gX, ghX) = d(X, hX)`.
+  For intersections, `(X ∩ Y) ∩ s(X ∩ Y) = (X ∩ Y ∩ sX) ∩ (X ∩ Y ∩ sY)`, and codimensions add.
+* **Lemma 1.3.**
+  * `(pi_m C - C pi_m)(alpha^l)` is nonzero only at `l = m-1` (`-alpha^m`) and `l = k-1`
+    (`pi_m(alpha^k)`), so the rank is `<= 2`.
+  * `s = e_ij(t)` is an involution in characteristic two.
+  * `x in W_m` has `s x in W_m` iff `alpha x_j in S_m` iff the `alpha^(m-1)`-coefficient of
+    `x_j` vanishes, valid because `alpha^m` is a basis vector for `m <= k-1`. So the
+    codimension is `<= 1`. Six of the twelve generators move `W_m`, so `b(W_m) <= 6`.
+* **Theorem 2.1.** `d(W_m, 0) = 3m` and `d(W_m, N) = 3k - 3m`, so for `m = floor(k/2)` the
+  distance is `>= (n-3)/2`, and `b/dim W_m <= 2/floor(k/2)`.
+* **Remark 2.2.**
+  * `pi(s)Ppi(s)* - P` vanishes on `(W ∩ sW) (+) (W + sW)^perp`, which has codimension
+    `2 e_s(W)`, and its norm is `<= 1`.
+  * `||xi||_HS^2 = dim W (1 - dim W/n)`.
+  * Schur and the Kazhdan inequality on the orthocomplement of the scalars give
+    `2 e_s >= kappa^2 dim W/2` for some `s`.
+* **Theorem 3.1(1).**
+  * `b(P) >= 1` for proper nonzero `P`.
+  * The steps `U_(m+1)/U_m -> W_(m+1)/W_m` have dimension `<= 3`, so the largest `m` with
+    `dim U_m <= p/2` has `dim U_m > p/2 - 3`, and `b(U_m) <= b(P) + 6`.
+  * For `p >= 8`: `p < (2b + 12)/kappa + 6 <= (8b + 12)/kappa <= 20b/kappa`, using `b >= 1`
+    and `kappa <= 1`. For `p < 8`: `p < 8b <= 20b/kappa`.
+* **Scope tightened (claim item 4 and Theorem 3.1(2)).** "Expanding pieces have total dimension
+  `< 20 Lambda/kappa`" and "`lambda > kappa/21`" need `N` not to be an expanding piece. That
+  holds once `3 floor(k/2) kappa > 6`. For small `k` the decomposition `{N}` with `N` expanding
+  has `Lambda = 0`, and both statements fail. "Linear-size pieces stay non-expanding under
+  perturbation" needs the leakage hypothesis `b'(P) = o(n)` of Theorem 3.1(3). Both were added
+  to the claim, and the first to the artifact.
+* **Theorem 3.1(3).**
+  * On `ker(rho'(s) - rho(s)) ∩ X` the two maps agree, so `d(rho X, rho' X) <= 2 delta n` and
+    `|e'_s - e_s| <= delta n`.
+  * With twelve generators, `b'(U) <= b'(P) + 24 delta n + 6`, and expansion of a linear-size
+    piece contradicts this for large `k`.
+* **Theorem 4.1.**
+  * `rank [pi_(m_k) (x) 1, rho_k(s)] <= 2 = o(3k)` puts `p_beta` in the relative commutant, and
+    the projections are nested.
+  * No atoms: representatives `V_k` of an invariant right ideal have `b(V_k) = o(k)`. Then
+    `V_k ∩ W_m` have boundary `<= b(V_k) + 6` and dimension steps `<= 3`. An `o(k)`-boundary
+    subspace inside `V_k` defines an invariant right ideal inside `eM` of the chosen rank.
+* **Remark 4.2** follows from the uniform spectral gap in `l^2(X_k)` and on `HS` minus scalars.
+* **Section 5.** `x_l -> alpha` sends every `e_ij(x_l)` to `e_ij(alpha)`. Every `EL_r(F_q)` is
+  transitive, the bound becomes `b <= r(r-1)d`, and the steps are `r`.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by
