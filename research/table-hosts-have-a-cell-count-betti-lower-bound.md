@@ -1,0 +1,51 @@
+---
+rg: 2
+id: table-hosts-have-a-cell-count-betti-lower-bound
+kind: claim
+title: The canonical table host has first Betti number at least the cell count minus the free bound
+distinct_from:
+  table-groups-are-memory-holonomy-groups: that computes the table group as memory letters modulo cycle holonomies; this abelianizes that presentation and reads a numerical lower bound on the host's Betti number from the number of cells the decoder reads.
+  triangular-forward-tables-force-surjectivity: that excludes forward partitions whose relators peel one letter at a time; this is a counting bound that applies to every partition and constrains only the abelianization.
+  unicyclic-strict-designs-present-nonsofic-one-relator-groups: that treats one independent cycle and produces a one-relator host; this bounds the abelianization of the host for every cycle number.
+artifacts:
+  - research/artifacts/table-abelianization-and-cell-count-2026-09-12.md
+---
+
+**ESTABLISHED** by `table-host-cell-count-betti-proof`.
+
+Let `D = (A, S, M, nu, mu)` be a design, `E` a marked partition of `S x M` with
+connected decoder difference graph `Gamma_E`, and `Hol_M(E)` the canonical table
+host of `table-groups-are-memory-holonomy-groups`. Write `|S.M|` for the number
+of classes of `E`, the number of cells the decoder reads. Then
+
+```text
+b_1(Hol_M(E))  >=  |S.M| - (|S| - 1)(|M| - 1) - 1,
+```
+
+where `b_1` is the rank of the abelianization.
+
+**Consequence.** If the host has finite abelianization, which holds whenever it
+is Kazhdan, perfect or simple, then
+
+```text
+|S.M|  <=  (|S| - 1)(|M| - 1) + 1,
+```
+
+so the forward table carries at least `|S| + |M| - 2` independent coincidences.
+A design that means to present a Kazhdan host, as the only known invisibility
+mechanism requires, pays one coincidence per address.
+
+**Anchor form.** Call an identification `(s,m) ~_E (s',m')` anchored when exactly
+one of `m, m'` is the identity address. If every cycle of `Gamma_E` has zero
+anchor charge, in particular if no identification is anchored, then
+`x_m -> 1` defines a surjection `Hol_M(E) -> Z`. The host then has infinite
+abelianization, and every Kazhdan subgroup lies in the kernel, so it contains no
+memory letter of nonzero total degree.
+
+This is a rule-independent filter: it examines the forward partition and the
+addresses only, never a local rule and never a reverse product. It is a class
+theorem and decides Gottschalk's conjecture for no group. It is strictly weaker
+than the invisibility requirement, since the residually finite core `Z * Z^2` of
+the small-core attempt in `defect-window-automaton-over-leavitt-units` passes it.
+
+Proof: Sections 1 to 3 of the artifact.
