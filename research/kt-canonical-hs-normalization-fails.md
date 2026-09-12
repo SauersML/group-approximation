@@ -2,17 +2,17 @@
 rg: 2
 id: kt-canonical-hs-normalization-fails
 kind: claim
-title: Some canonical-trace Connes-embeddable model of the Kun--Thom actor has a non-normalized Gamma-commutant
+title: Some Connes-embeddable model of the Kun--Thom actor, with any trace, has a non-normalized Gamma-commutant
 invalidates: [kt-pair-non-hyperlinear-commutant]
 distinct_from:
-  kt-centralizer-normalization-hs: that is the universal normalization statement over all trace-preserving representations; this is the negation of its canonical-trace Connes-embeddable instance, and unlike an arbitrary counterexample it answers Question 3.4.
+  kt-centralizer-normalization-hs: that is the universal normalization statement over all trace-preserving representations; this is the negation of its Connes-embeddable instance, with no trace condition, and any such counterexample answers Question 3.4.
 artifacts:
   - research/artifacts/kt-wreath-double-re-unification-2026-09-11.md
 ---
 
 **OPEN.**  For the Kun--Thom Theorem E pair `Gamma < G`, there exist a
 Connes-embeddable finite tracial algebra `M` and a homomorphism
-`sigma: G -> U(M)` with `tau(sigma(g)) = 0` for `g != 1`, such that
+`sigma: G -> U(M)`, with no condition on `tau o sigma` and `sigma` not necessarily injective, such that
 
 ```text
 R = sigma(Gamma)' cap M   is not normalized by sigma(G).
