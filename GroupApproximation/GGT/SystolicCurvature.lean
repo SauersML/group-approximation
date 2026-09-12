@@ -177,8 +177,9 @@ theorem length_eq : γ.length = D.blen + 1 := by
   exact h.symm
 
 theorem getElem?_eq {k : ℕ} (hk : k ≤ D.blen) : γ[k]? = some (D.vtx (D.bvert k)) := by
-  have h := congrArg (fun l : List V => l[k]?) D.boundary
-  simp only at h
+  have h : (List.ofFn (fun t : Fin (D.map.faceDegree D.outer + 1) =>
+      D.vtx (D.map.vertexOf ((D.map.facePerm ^ (t : ℕ)) D.base))))[k]? = γ[k]? :=
+    congrArg (fun l : List V => l[k]?) D.boundary
   rw [← h, List.getElem?_ofFn]
   have hk' : k < D.map.faceDegree D.outer + 1 := Nat.lt_succ_of_le hk
   simp only [hk', dite_true]
@@ -406,7 +407,7 @@ theorem SimpleBoundary.exists_parallel_walk (hS : D.SimpleBoundary) {a c : ℕ} 
   | base =>
     have ht := hS.tri_edge a
     refine ⟨SimpleGraph.Walk.cons (X.tri_adj ht).2.1 SimpleGraph.Walk.nil, ?_⟩
-    rw [SimpleGraph.Walk.length_cons, SimpleGraph.Walk.length_nil, Finset.Ioc_self,
+    simp only [SimpleGraph.Walk.length_cons, SimpleGraph.Walk.length_nil, Finset.Ioc_self,
       Finset.sum_empty]
   | succ c hac ih =>
     obtain ⟨p, hp⟩ := ih fun i hai hic => hdeg i hai (by omega)
