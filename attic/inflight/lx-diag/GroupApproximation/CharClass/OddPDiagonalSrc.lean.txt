@@ -1,0 +1,203 @@
+import GroupApproximation.CharClass.OddPDiagonalAug
+import GroupApproximation.CharClass.OddPSourceFree
+import GroupApproximation.CharClass.OddPSingular
+
+/-!
+# The source augmentation and the degree-`0` diagonal of the odd-primary comparison
+
+Two inputs of `acyclicModelsMap` that do not wait on acyclicity:
+
+* `srcAug p` — **the augmentation of `W ⊗ C(X)`** at the concrete signed singular boundary,
+  into the trivial module of `OddPDiagonalAug.lean`: a generator `c · (e_0 ⊗ x)` goes to
+  `grAug c`.  It kills boundaries because `grAug (T − 1) = 0` and a 1-simplex has two faces of
+  opposite sign.
+* `diagF0 p r s hs X` — **the degree-`0` diagonal** `e_0 ⊗ x ↦ (x, …, x)`, natural and
+  compatible with the two augmentations.
+-/
+
+namespace GroupApproximation.CharClass
+
+open CategoryTheory
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
+
+noncomputable section
+
+variable (p : ℕ) [NeZero p]
+
+/-! ## 1. The source augmentation -/
+
+/-- The augmentation of the degree-`0` source carrier, over the group ring. -/
+def srcAugLin (X : TopCat.{0}) :
+    @LinearMap (GroupRingZMod p) (GroupRingZMod p) _ _ (RingHom.id (GroupRingZMod p))
+      (OddWTensor p 0 X) (ZMod p) _ _ _ (trivModule p) :=
+  letI := trivModule p
+  Finsupp.linearCombination (GroupRingZMod p) (fun _ => (1 : ZMod p))
+
+omit [NeZero p] in
+theorem srcAugLin_single (X : TopCat.{0}) (q : WSIndex 0 X) :
+    srcAugLin p X (Finsupp.single q (1 : GroupRingZMod p)) = 1 := by
+  letI := trivModule p
+  rw [srcAugLin, Finsupp.linearCombination_single, one_smul]
+
+/-- A constant functional does not see a relabelling of the basis. -/
+theorem lc_const_mapDomain {R α β M : Type} [CommRing R] [AddCommGroup M] [Module R M] (c : M)
+    (f : α → β) (l : α →₀ R) :
+    Finsupp.linearCombination R (fun _ : β => c) (Finsupp.mapDomain f l)
+      = Finsupp.linearCombination R (fun _ : α => c) l :=
+  Finsupp.linearCombination_mapDomain R f l
+
+omit [NeZero p] in
+/-- The coefficient sum of the signed boundary of a singular 1-simplex vanishes. -/
+theorem srcAugLin_bdRHom (X : TopCat.{0}) (σ : stdSimplexTop (0 + 1) ⟶ X) :
+    letI := trivModule p
+    Finsupp.linearCombination (GroupRingZMod p) (fun _ : WSIndex 0 X => (1 : ZMod p))
+      (Finsupp.lmapDomain (GroupRingZMod p) (GroupRingZMod p)
+        (fun τ : stdSimplexTop 0 ⟶ X => (⟨0, τ⟩ : WSIndex 0 X))
+        (bdRHom (GroupRingZMod p) X 0 (Finsupp.single σ 1))) = 0 := by
+  letI := trivModule p
+  rw [Finsupp.lmapDomain_apply, lc_const_mapDomain, bdRHom_apply, lc_const_mapDomain,
+    Finsupp.mapDomain_single, singFreeR_d_single, map_sum,
+    Fin.sum_univ_two, map_zsmul, map_zsmul, Finsupp.linearCombination_single,
+    Finsupp.linearCombination_single, one_smul, Fin.val_zero, Fin.val_one, pow_zero, pow_one,
+    one_zsmul, neg_one_zsmul, add_neg_cancel]
+
+/-- **The augmentation of the odd-primary source.** -/
+def srcAug : Augmentation (GroupRingZMod p) (oddSrc p (oddSingularBoundary p)) (trivObj p) where
+  ε X :=
+    letI := trivModule p
+    ModuleCat.ofHom (srcAugLin p X)
+  ε_natural X Y φ := by
+    letI := trivModule p
+    apply ModuleCat.hom_ext
+    apply Finsupp.lhom_ext'
+    intro q
+    apply LinearMap.ext_ring
+    show srcAugLin p Y ((((oddSrc p (oddSingularBoundary p)).map φ).f 0).hom
+        (Finsupp.single q (1 : GroupRingZMod p))) = srcAugLin p X (Finsupp.single q 1)
+    rw [oddSrc_map_single, srcAugLin_single, srcAugLin_single]
+  ε_d X := by
+    letI := trivModule p
+    change (oddSrcComplex p (oddSingularBoundary p) X).d 1 0 ≫ _ = 0
+    rw [oddSrcComplex_d]
+    apply ModuleCat.hom_ext
+    apply Finsupp.lhom_ext'
+    intro q
+    apply LinearMap.ext_ring
+    show srcAugLin p X (oddDiff p (oddSingularBoundary p) X 0
+      (Finsupp.single q (1 : GroupRingZMod p))) = 0
+    rw [oddDiff_single]
+    obtain ⟨n, σ⟩ := q
+    induction n using Fin.lastCases with
+    | last =>
+      show srcAugLin p X (oddDiffW p X 0 (Fin.last (0 + 1)) σ
+        + oddDiffS p (oddSingularBoundary p) X 0 (Fin.succ (0 : Fin (0 + 1))) σ) = 0
+      rw [oddDiffW_last, oddDiffS_succ, zero_add, map_smul]
+      have hb : (oddSingularBoundary p).bd X (0 : Fin (0 + 1)).val (Finsupp.single σ 1)
+          = bdRHom (GroupRingZMod p) X 0 (Finsupp.single σ 1) := rfl
+      rw [hb]
+      show ((-1 : GroupRingZMod p) ^ (0 - (0 : Fin (0 + 1)).val)) •
+          Finsupp.linearCombination (GroupRingZMod p) (fun _ : WSIndex 0 X => (1 : ZMod p))
+            (Finsupp.lmapDomain (GroupRingZMod p) (GroupRingZMod p)
+              (fun τ : stdSimplexTop 0 ⟶ X => (⟨0, τ⟩ : WSIndex 0 X))
+              (bdRHom (GroupRingZMod p) X 0 (Finsupp.single σ 1))) = 0
+      rw [srcAugLin_bdRHom, smul_zero]
+    | cast j =>
+      obtain rfl : j = 0 := Fin.fin_one_eq_zero j
+      show srcAugLin p X (oddDiffW p X 0 (Fin.castSucc 0) σ
+        + oddDiffS p (oddSingularBoundary p) X 0 0 σ) = 0
+      rw [oddDiffW_castSucc, oddDiffS_zero, add_zero, map_smul, srcAugLin_single, trivModule_smul,
+        Fin.val_zero, Nat.sub_self, altCoeff_even _ _ Even.zero, grAug_grS, zero_mul]
+
+omit [NeZero p] in
+theorem srcAug_ε_hom_single (X : TopCat.{0}) (q : WSIndex 0 X) :
+    ((srcAug p).ε X).hom (Finsupp.single q (1 : GroupRingZMod p)) = 1 :=
+  srcAugLin_single p X q
+
+/-! ## 2. The degree-`0` diagonal -/
+
+omit [NeZero p] in
+/-- The constant tuple of a point. -/
+def diagPt (X : TopCat.{0}) (r : ℕ) (x : stdSimplexTop 0 ⟶ X) : TupIdx X r 0 :=
+  ⟨fun _ => ⟨0, (simplexEquiv X 0).symm x⟩, Finset.sum_eq_zero fun _ _ => rfl⟩
+
+omit [NeZero p] in
+/-- The constant tuple on the vertex of a degree-`0` generator.  The simplex degree of a generator
+`⟨n, x⟩` of `W`-degree `0` is `n.val` for `n : Fin 1`, which is `0` only propositionally when `n` is
+a variable, so the tag degree is read off the index; at `⟨0, x⟩` this is `diagPt X r x` by
+definition. -/
+def diagPtIdx (X : TopCat.{0}) (r : ℕ) (q : WSIndex 0 X) : TupIdx X r 0 :=
+  ⟨fun _ => ⟨q.1.val, (simplexEquiv X q.1.val).symm q.2⟩, by
+    have h0 : q.1.val = 0 := by
+      have h := q.1.isLt
+      omega
+    show ∑ _j : Fin r, q.1.val = 0
+    rw [h0, Finset.sum_const_zero]⟩
+
+omit [NeZero p] in
+theorem tupPushIdx_diagPt {X Y : TopCat.{0}} (f : X ⟶ Y) (r : ℕ) (x : stdSimplexTop 0 ⟶ X) :
+    tupPushIdx f (diagPt X r x) = diagPt Y r (x ≫ f) := by
+  have hpt : pushSimplex f 0 ((simplexEquiv X 0).symm x) = (simplexEquiv Y 0).symm (x ≫ f) := by
+    apply (simplexEquiv Y 0).injective
+    rw [simplexEquiv_pushSimplex, Equiv.apply_symm_apply, Equiv.apply_symm_apply]
+  refine Subtype.ext (funext fun _ => ?_)
+  show (⟨0, pushSimplex f 0 ((simplexEquiv X 0).symm x)⟩ : TagSimp Y)
+    = ⟨0, (simplexEquiv Y 0).symm (x ≫ f)⟩
+  rw [hpt]
+
+omit [NeZero p] in
+theorem tupPushIdx_diagPtIdx {X Y : TopCat.{0}} (f : X ⟶ Y) (r : ℕ) (q : WSIndex 0 X) :
+    tupPushIdx f (diagPtIdx X r q) = diagPtIdx Y r (srcMapIdx f 0 q) := by
+  obtain ⟨⟨n, hn⟩, x⟩ := q
+  obtain rfl : n = 0 := by omega
+  exact tupPushIdx_diagPt f r x
+
+/-- The degree-`0` diagonal, over the group ring. -/
+def diagF0Lin (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) :
+    @LinearMap (GroupRingZMod p) (GroupRingZMod p) _ _ (RingHom.id (GroupRingZMod p))
+      (OddWTensor p 0 X) (tupMod (ZMod p) X r 0) _ _ _ (tupModule p X r 0 s hs) :=
+  letI := tupModule p X r 0 s hs
+  Finsupp.linearCombination (GroupRingZMod p)
+    (fun q : WSIndex 0 X => Finsupp.single (diagPtIdx X r q) (1 : ZMod p))
+
+theorem diagF0Lin_single (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) (q : WSIndex 0 X) :
+    diagF0Lin p X r s hs (Finsupp.single q (1 : GroupRingZMod p))
+      = Finsupp.single (diagPtIdx X r q) (1 : ZMod p) := by
+  letI := tupModule p X r 0 s hs
+  rw [diagF0Lin, Finsupp.linearCombination_single, one_smul]
+
+/-- **The degree-`0` diagonal** `e_0 ⊗ x ↦ (x, …, x)`. -/
+def diagF0 (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) :
+    ((oddSrc p (oddSingularBoundary p)).obj X).X 0 ⟶ ((oddTgt p r s hs).obj X).X 0 :=
+  letI := tupModule p X r 0 s hs
+  ModuleCat.ofHom (diagF0Lin p X r s hs)
+
+theorem diagF0_natural (r s : ℕ) (hs : r ∣ s * p) (X Y : TopCat.{0}) (φ : X ⟶ Y) :
+    ((oddSrc p (oddSingularBoundary p)).map φ).f 0 ≫ diagF0 p r s hs Y
+      = diagF0 p r s hs X ≫ ((oddTgt p r s hs).map φ).f 0 := by
+  letI := tupModule p X r 0 s hs
+  letI := tupModule p Y r 0 s hs
+  apply ModuleCat.hom_ext
+  apply Finsupp.lhom_ext'
+  intro q
+  apply LinearMap.ext_ring
+  show diagF0Lin p Y r s hs ((((oddSrc p (oddSingularBoundary p)).map φ).f 0).hom
+      (Finsupp.single q (1 : GroupRingZMod p)))
+    = tupMap (ZMod p) φ r 0 (diagF0Lin p X r s hs (Finsupp.single q 1))
+  rw [oddSrc_map_single, diagF0Lin_single, diagF0Lin_single, tupMap_single, tupPushIdx_diagPtIdx]
+
+theorem diagF0_aug (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) :
+    diagF0 p r s hs X ≫ (tgtAug p r s hs).ε X = (srcAug p).ε X := by
+  letI := tupModule p X r 0 s hs
+  letI := trivModule p
+  apply ModuleCat.hom_ext
+  apply Finsupp.lhom_ext'
+  intro q
+  apply LinearMap.ext_ring
+  show tupAug (ZMod p) X r (diagF0Lin p X r s hs (Finsupp.single q (1 : GroupRingZMod p)))
+    = srcAugLin p X (Finsupp.single q 1)
+  rw [diagF0Lin_single, tupAug_single, srcAugLin_single]
+
+end
+
+end GroupApproximation.CharClass
