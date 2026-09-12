@@ -49,7 +49,7 @@ theorem exists_homog_preimage_lhFunOf {K : Type} [CommRing K] {π : P ⟶ X} {ξ
     TotalHOf.of K X (n - 2 * (i : ℕ)) (a ⟨(i : ℕ), h⟩) else 0, fun i => ?_, ?_⟩
   · by_cases h : (i : ℕ) < lhDomainCard r n
     · exact ⟨a ⟨(i : ℕ), h⟩, dif_pos h⟩
-    · exact ⟨0, by rw [dif_neg h, map_zero]⟩
+    · exact ⟨0, by simp only [dif_neg h, map_zero]⟩
   · ext n'
     show TotalHOf.component K P n' (lhFunOf K π r ξ _)
       = TotalHOf.component K P n' (TotalHOf.of K P n w)

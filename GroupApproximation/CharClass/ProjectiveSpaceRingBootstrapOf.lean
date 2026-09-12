@@ -72,7 +72,7 @@ of `U × ℂP^1`. -/
 theorem cupPowE_rNotZero_ne_zeroOf_of_freeTuple (K : Type) [Field K] (d : ℕ) (hd : 1 ≤ d)
     (hgen : Hmod K (CPtop (1 + LH.tautCardOf (Fin (d + 1) ⊕ Unit))) 2) (hgen0 : hgen ≠ 0)
     (hfree : ∀ (U : Type) [TopologicalSpace U] (hfib : Hmod K (CPtop 1) 2), hfib ≠ 0 →
-      HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
+      LH.HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
     {m : ℕ} (hm : m ≤ d) :
     cupPowE (Gysin.rNotZeroOf K (cpTaut d) (trace_cpTaut d) 2
       (LH.tautEulerOfK K hgen (cpTaut d).plusOne)) m ≠ 0 := by
@@ -106,7 +106,7 @@ theorem cupPowE_rNotZero_ne_zeroOf_of_freeTuple (K : Type) [Field K] (d : ℕ) (
 over the free tuple of `U × ℂP^1`. -/
 theorem exists_cupPowE_ne_zeroOf_of_freeTuple (K : Type) [Field K]
     (hfree : ∀ (U : Type) [TopologicalSpace U] (hfib : Hmod K (CPtop 1) 2), hfib ≠ 0 →
-      HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
+      LH.HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
     (d : ℕ) (hd : 1 ≤ d) :
     ∃ e : Hmod K (CPtop d) 2, ∀ j : ℕ, j ≤ d → cupPowE e j ≠ 0 := by
   obtain ⟨φN⟩ : Nonempty (Hmod K (CPtop (1 + LH.tautCardOf (Fin (d + 1) ⊕ Unit))) 2 ≃ₗ[K] K) :=
@@ -120,7 +120,7 @@ field, over the free tuple of `U × ℂP^1`.  `H^2(ℂP^d; K)` is a line, so `h`
 class the Gysin step produces. -/
 theorem cupPowE_ne_zeroOf_of_freeTuple (K : Type) [Field K]
     (hfree : ∀ (U : Type) [TopologicalSpace U] (hfib : Hmod K (CPtop 1) 2), hfib ≠ 0 →
-      HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
+      LH.HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
     (d : ℕ) (hd : 1 ≤ d) (h : Hmod K (CPtop d) 2) (h0 : h ≠ 0) {m : ℕ} (hm : m ≤ d) :
     cupPowE h m ≠ 0 := by
   obtain ⟨e, hpow⟩ := exists_cupPowE_ne_zeroOf_of_freeTuple K hfree d hd
