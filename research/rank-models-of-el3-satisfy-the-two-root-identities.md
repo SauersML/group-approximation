@@ -66,3 +66,25 @@ payoff is `non-linear-sofic-group`.
   needs the block form, i.e. `N_23 N_12 = 0`, so that route assumes its conclusion. A
   non-circular assembly of the four partial isometries from a model with `N_23 N_12 != 0` is the
   open content. Artifact `research/artifacts/leavitt-isometry-commutator-relations-2026-09-12.md`.
+- **Simultaneous conjugacy of the shifted pair: dies (gk-rk-unipotent, 2026-09-12).**
+  `shifted-root-pair-conjugates-to-idempotent-root-pair`: `(x_12(t_0), x_23(s_0))` has the same
+  commutator `x_13(1)` as the unit pair but is not conjugate to it. The invariant
+  `(ker N ∩ ker M) / (… ∩ (Im N + Im M))` is `0` for the unit pair and `s_1 R` for the shifted
+  pair. The shifted pair is conjugate to `(x_12(e_0), x_23(e_0))` by an explicit `g`, which gives
+  only `rk(n_23(s_0) n_12(t_0)) = rk(n_23(e_0) n_12(e_0))` (artifact Section 6.1).
+- **Orthogonal splitting: dies.** With `a' = sigma(x_12(e_0))`, `a'' = sigma(x_12(e_1))` and
+  similarly for `b`, `YX = Y'X' b''a'' + b'' X''Y' + X' Y''a'' + Y''X''`. No term is forced to vanish
+  outside block models. It lives in the finite group `SL_3(F_2)^2` (artifact Section 6.2).
+- **Every finite-subgroup mechanism: dies, by calibration.**
+  `finite-subgroup-rank-data-cannot-force-two-root-identity`: the free profile
+  `r_K = rank lambda_K / |K|` on all finite subgroups respects restriction and every conjugacy,
+  and has `rk(N_23 N_12) = 3/8`. So relations inside finite subgroups, conjugacy between finite
+  subgroups and per-subgroup ranks cannot force the identity. That covers:
+  - Steinberg relations with any coefficients, the isometry commutator identities, and the
+    splitting through `e_0`, `e_1`;
+  - branch expansions under involutive `diag(w,w,w)`;
+  - Leavitt and Thompson conjugacy, and level-group counting;
+  - even `(x_12(t_0), x_21(s_0))`, which generates `S_3`.
+  A proof must use `sigma` on a subgroup not contained in any finite subgroup, for example
+  `<diag(u, u^-1, 1), x_12(1)>` with `u` of infinite order, or joint ranks across finite subgroups
+  generating an infinite group (artifact Section 6.3).
