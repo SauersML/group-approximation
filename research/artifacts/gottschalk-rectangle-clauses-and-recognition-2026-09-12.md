@@ -314,3 +314,59 @@ decider for their word problem, and a search over one decidable host is
   here. Associativity links the two tables only through `P(T_f)`, and the whole
   conjecture lives in that link: which reverse coincidences are consequences of
   the forward relations.
+
+## 6. Peeling the forward relations
+
+Let `D` be rectangle data with forward table `T_f`. Choose spanning relators
+class by class: for each class of size `c`, `c - 1` relators
+`x_s x_m x_m'^-1 x_s'^-1`, with identity letters deleted and the word freely
+reduced. Each generator occurs at most once in each relator. The `S`-labels and
+`M`-labels are different generators, and a relator with `s = s'` or `m = m'`
+reduces to length two.
+
+**Relator hypergraph.** Its vertices are the generators and its hyperedges are
+the sets of generators of the relators. The *2-core* is the largest subfamily of
+relators in which every generator that occurs, occurs in at least two members.
+It is unique, and it is reached by repeatedly deleting any relator that contains
+a generator occurring in no other remaining relator, in any order.
+
+**Proposition 6.1.** `P(D) ≅ C(D) * F`, where `C(D)` is presented by the
+generators and relators of the 2-core and `F` is free.
+
+*Proof.* If a generator `g` occurs once in a relator `r` and in no other remaining
+relator, then `r` expresses `g` as a word in the other generators of `r`. A Tietze
+move deletes `g` and `r`, and no other relator changes. After peeling to the
+core, the surviving generators that occur in no core relator generate a free
+factor. QED.
+
+**Corollary 6.2.** If `D` is strict and realized in some group, then its 2-core
+is nonempty and `C(D)` is not sofic. In particular `C(D)` is neither residually
+finite nor amenable.
+
+*Proof.* `P(D)` is not surjunctive (Corollary 1.5), hence not sofic, by
+`sofic-groups-are-surjunctive`. Free groups are sofic, and free products of
+sofic groups are sofic (Elek--Szabó, *On sofic groups*, J. Group Theory 9 (2006);
+this lane did not re-read the statement). So `C(D)` is not sofic. If the core
+were empty, `P(D)` would be free. QED.
+
+**Corollary 6.3 (a rule-independent filter).** Let `T_f` be the forward table of
+memories `M`, `S` in some group. If the 2-core of its relator hypergraph is
+empty, or presents a sofic group, then no strict data with forward table `T_f` is
+realized in any group. The filter reads only the forward products. No reverse
+product and no rule needs to be examined, and the empty-core case needs no
+citation.
+
+*Proof.* `P(D) ≅ C(D) * F` is sofic, hence surjunctive. Its canonical labelling
+satisfies `Dec`, so by Theorem 1 it satisfies `Enc` at its own reverse table. A
+realization of `D` anywhere would give `not Enc` there, by the argument of
+Corollary 1.5. QED.
+
+**Examples and relations.**
+- Memories `{1, a}` and `{1, b}` admit only the coincidences `a = b` and `ab = 1`.
+  Their core presents at most `Z/2`, so no strict pair ever uses such memories.
+- `forward-memory-lifts-exclude-strict-cellular-sections` is the case of no
+  forward coincidences, where the relator set is empty.
+- `strict-automaton-tables-present-an-invisible-window-difference` shows that the
+  table group, including the window products, is nonsofic. Here the forward
+  rectangle alone already carries a nonsofic core, and a free factor splits off.
+
