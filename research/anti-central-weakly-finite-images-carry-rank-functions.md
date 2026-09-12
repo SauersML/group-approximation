@@ -36,3 +36,19 @@ artifacts:
   - **A possible first lemma.** A rank-level analogue of the retract trick of
     `rank-condition-rings-have-weakly-finite-images`, killing "Frobenius-violating" configurations the
     way that result kills class-zero idempotents. No such lemma is known.
+- 2026-09-12 `w5-upg-flatten` (artifact `research/artifacts/separated-triangular-certificates-flatten-2026-09-12.md`).
+  - **The kill test configuration cannot exist** (`nilpotent-jordan-certificates-flatten-to-minors`,
+    Section 2). If `u^k = 0` and `f <~ u`, then `f^((+)k) <~ I_((k-1)n)` through minors alone. For
+    `diag(1,1,1,0) <~ u` with `u^3 = 0` in `M_4(W)` this gives `I_9 <~ I_8`, so `W` fails the rank condition.
+    Weak finiteness is not needed. This is the rank-level retract lemma asked for above.
+  - **Consequence.** The outer s-rank already obeys `rho^s(u) <= (k-1)n/k`. So the free Jordan data of
+    order-three unipotents never makes the choices inconsistent one element at a time.
+  - **Exact form of (U1b)** (`k0-state-extends-to-rank-function-iff-triangular-monotone`, Section 4). `W`
+    carries a rank function iff some state on `(K_0(W), [W])` is monotone for the triangular preorder on
+    idempotents.
+  - **Sufficient condition** (`outer-state-rank-is-rank-function-iff-subadditive`, Section 3). Some state has
+    a subadditive outer s-rank.
+  - **What remains.** A violation needs a triangular step whose carried minor mixes the two diagonal
+    blocks, or both with one padding block. Separated steps are removable
+    (`separated-triangular-steps-flatten-to-minors`), and no mixed certificate is known over any ring with
+    the rank condition.

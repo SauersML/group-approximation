@@ -35,3 +35,18 @@ Both certificates live over `eps_- F_3[H]` for a finitely generated `H` containi
   - **Relation to the "Yes" side:** a unital map from `S_-` to a regular ring with the rank condition would
     give a rank function, which is the "Yes" side of the gate and kills the corner. So the regular-ring
     calibration cannot prove this claim unless the corner is not full.
+- 2026-09-12 `w5-upg-flatten` (artifact `research/artifacts/separated-triangular-certificates-flatten-2026-09-12.md`).
+  - **More steps flatten, with no group input** (`separated-triangular-steps-flatten-to-minors`). A triangular
+    step is removable whenever its carried idempotent minor separates, meaning each diagonal block mixes
+    only with its own padding.
+  - **All Jordan chains flatten** (`nilpotent-jordan-certificates-flatten-to-minors`). The nullity chain behind
+    the Jordan bound `k[f] <= (k-1)n` for `f <~ u`, `u^k = 0`, is a minor certificate. That covers the
+    `2/3` bound on characteristic-three root elements.
+  - **Halving examined** (Section 5). The map `M_2(S_-) -> S_-` is a ring homomorphism. It transports and
+    shrinks certificates but keeps the mixing pattern, so it does not separate a step, and Jordan chains
+    do not need it.
+  - **What remains:** triangular steps whose carried minor mixes both diagonal blocks, or both with one
+    padding block. No such certificate is known over any ring with the rank condition. Nobody has checked
+    whether the minors in the two-root defect arguments (`N_23 N_12`) separate.
+  - **Equivalent state form** (`k0-state-extends-to-rank-function-iff-triangular-monotone`). `S_-` carries a
+    rank function iff some state is monotone for the triangular preorder on idempotents.
