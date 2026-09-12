@@ -167,7 +167,7 @@ theorem distToList_le_of_bowditchH4_of_end {S : Set Q} (hS : IsSymmetricGenerati
         X * (δ.take b).prod := by
       rw [hsplitb, List.prod_append, mul_assoc]
     obtain ⟨n, hn_le, hn_eq, hn_far⟩ := exists_entry_index hS hP hω₂
-      (P := X * (δ.take m).prod) (by omega) (by rw [hω₂prod]; exact hbd)
+      (r := r) (P := X * (δ.take m).prod) (by omega) (by rw [hω₂prod]; exact hbd)
     have hlenb : ((δ.drop m).take (b - m)).length = b - m := by
       rw [List.length_take, List.length_drop]
       omega

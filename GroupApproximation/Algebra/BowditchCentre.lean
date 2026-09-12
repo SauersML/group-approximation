@@ -158,7 +158,7 @@ theorem exists_centre_of_maxMiddle {S : Set Q} (hS : IsSymmetricGeneratingSet S)
     rw [hωAB.isWord.prod_eq]
     exact hωAB.length_eq
   obtain ⟨g, _hg_le, hGr, hGfar⟩ := exists_exit_index hS hP₁ hωABgeo
-    (P := V₁ * (γ₁.take a).prod)
+    (r := r) (P := V₁ * (γ₁.take a).prod)
     (by rw [distToList_eq_zero_of_mem S (take_mem_listPoints V₁ γ₁ a)]; exact Nat.zero_le _)
     (by rw [hωABprod]; exact hBfar b le_rfl)
   have hGprod : V₁ * (γ₁.take a).prod * (ωAB.take g).prod * (ωAB.drop g).prod =
