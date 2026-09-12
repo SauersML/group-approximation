@@ -19,54 +19,55 @@ p_c(Cay(G,S)) < p_u(Cay(G,S)).
 ```
 
 This is the direct-product case of `fpbs-benjamini-schramm-universal`, posed
-explicitly by Choi--Seo (arXiv:2508.08932, Questions 1.3, 1.5 and 1.7): does
-every Cayley graph of `F_2 x Z`, of `F_2 x F_2`, and of `CAT(0)` cubical groups
-have a nonuniqueness phase. A nonamenable product is nonamenable, so a positive
-answer is expected; the difficulty is the every-generating-set quantifier.
+explicitly by Choi--Seo (arXiv:2508.08932v2, Questions 1.3, 1.5 and 1.7, read
+from source 2026-09-11): does every Cayley graph of `F_2 x Z`, of `F_2 x F_2`,
+and of `CAT(0)` cubical groups have a nonuniqueness phase. The same paper
+records that Hutchcroft informed the authors that Question 1.3 is still not
+answered. By `fpbs-nonuniqueness-parameter-criterion` it suffices to exhibit,
+for each generating set, one parameter with infinitely many infinite clusters.
 
 ## Attempts
 
-* **Product generating set (partial, known).** For the product generating set
-  `S = S_H t S_K` the Cayley graph is the Cartesian product
-  `Cay(H,S_H) x Cay(K,S_K)`. When a factor is free this is a tree times a
-  graph, whose automorphism group is nonunimodular, so `p_c < p_u` follows from
-  `fpbs-hyperbolic-and-nonunimodular-nonuniqueness` (this already covers
-  `T_k x Z^d`). Peres, *Percolation on nonamenable products at the uniqueness
-  threshold* (Ann. IHP 36 (2000) 395--406), further studies the Cartesian
-  product `X x Y` of infinite quasi-transitive graphs with `Aut(X)` nonamenable
-  and shows the uniqueness-parameter set does not contain its infimum; its
-  abstract gives only `N_infinity(p_u) != 1`, i.e. `N_infinity(p_u) in {0,
-  +infinity}`, which separates the thresholds only in the `+infinity` branch
-  (the numdam PDF could not be text-extracted to confirm the strong branch, so
-  this is recorded as an import, not a verified separation). By
-  `fpbs-nonuniqueness-parameter-criterion` it suffices to exhibit one
-  nonuniqueness parameter; the partial results supply one for the Cartesian
-  generating set.
+* **Tree factor with a free basis (partial, known).** When `S = S_H t S_K`
+  and `S_H` is a free basis of a free factor `H = F_n`, the Cayley graph is the
+  Cartesian product of a regular tree with `Cay(K,S_K)`. The end stabilizer of
+  the tree times `Aut(Cay(K,S_K))` is a nonunimodular quasi-transitive subgroup,
+  so `p_c < p_u` follows from `fpbs-hyperbolic-and-nonunimodular-nonuniqueness`
+  (this covers `T_k x Z^d`). **Where it stops:** a generating set of `F_n` that
+  is not a free basis gives a factor graph that is not a tree, and a mixed
+  generating set gives a non-Cartesian graph (`fpbs-mixed-gen-set-not-cartesian`);
+  in both cases the nonunimodular structure is lost.
 
-* **Why the other class theorems miss it.**
-  `fpbs-sc-choi-seo` needs acylindrical hyperbolicity, which a product with
-  infinite center never has. Hutchcroft--Pan (arXiv:2409.12283, subgroup
-  relativization) prove `N_infinity(p_u) = +infinity` only for a group with an
-  amenable weakly quasi-normal subgroup of *exponential* growth (lamplighters);
-  `Z` has polynomial growth and `F_2 x F_2` has no nontrivial amenable normal
-  subgroup, so neither `F_2 x Z` nor `F_2 x F_2` is reached.
+* **Nonuniqueness at the uniqueness threshold (weak form only).** Peres,
+  *Percolation on nonamenable products at the uniqueness threshold*, Ann. IHP 36
+  (2000) 395--406, Theorem 1.1 (read from source 2026-09-11): on the Cartesian
+  product `X x Y` of infinite quasi-transitive graphs with `Aut(X)` nonamenable,
+  `P_{p_u}(there is a unique infinite cluster) = 0`. Hutchcroft--Pan,
+  arXiv:2409.12283v1, Theorem 1.14 with Definition 1.11 (read from source):
+  `H x K` with `H` finitely generated nonamenable and `K` infinite finitely
+  generated is an obstacle to uniqueness, so **every** Cayley graph of it has
+  no unique infinite cluster at `p_u`. Their Definition 1.11 states explicitly
+  that this means either no infinite cluster or infinitely many. The slicing
+  argument extends to every Cayley graph of any `Gamma = HK` with commuting
+  subgroups, `H` finitely generated nonamenable and `K` infinite
+  (`fpbs-pu-nonuniqueness-commuting-subgroups`). **Where it dies:**
+  `fpbs-pu-nonuniqueness-cannot-separate` shows that this weak conclusion is
+  consistent with `p_c = p_u` and adds nothing to threshold separation, killing
+  `fpbs-dead-pu-nonuniqueness-separates`.
 
-* **The obstruction to a naive transfer.** A generating set that mixes the two
-  factors, containing some `(h,k)` with `h != 1 != k`, makes `Cay(G,S)` a
-  non-Cartesian graph, so the factor structure that Peres and Grimmett--Newman
-  use has no direct analogue. This is recorded as
-  `fpbs-mixed-gen-set-not-cartesian` and it kills
-  `fpbs-dead-product-peres-all-gens`.
+* **Why the other class theorems miss it.** `fpbs-sc-choi-seo` needs
+  acylindrical hyperbolicity, which a product with an infinite direct factor
+  never has. Hutchcroft--Pan Theorem 1.13 needs an amenable wq-normal subgroup
+  of *exponential* growth; `Z` has polynomial growth and `F_2 x F_2` has no
+  nontrivial amenable normal subgroup. Lyons's cost criterion
+  (`fpbs-non-fixed-price-one-has-nonuniqueness`) is silent because products of
+  infinite groups with an element of infinite order have fixed price one.
 
-* **Transfer attack (open).** The proposed route is to show that the property
-  `N_infinity(p_u) = +infinity` is generating-set independent for a product, by
-  using only the two commuting infinite subgroup actions of `H` and `K` (which
-  exist for every generating set) together with indistinguishability of the
-  infinite clusters (Lyons--Schramm), which holds for every unimodular
-  transitive graph, hence every Cayley graph. If Peres's proof uses only these
-  two ingredients and not the Cartesian metric, the transfer succeeds. Verifying
-  this needs the proof of Peres 2000, not only its abstract; that check is the
-  next step. The single structural input already in hand is that under
-  uniqueness every open edge that disconnects the infinite cluster has exactly
-  one infinite side (deletion tolerance), so pivotal edges for `o <-> x` are
-  dangling bridges independent of `d(o,x)`.
+* **What is actually needed.** For a fixed Cayley graph of `H x K`, one
+  parameter `p > p_c` with more than one infinite cluster; equivalently, since
+  `N_infinity(p_c) = 0` (`fpbs-critical-no-infinite-cluster`), an infinite
+  cluster at `p_u` together with the weak theorem above. Hutchcroft--Pan (page
+  2, read from source) state that it is not even known whether the number of
+  infinite clusters at `p_u` of a Cayley graph depends on the generating set.
+  No method in the region supplies an infinite cluster at `p_u` for a mixed or
+  non-free-basis generating set; this is the open core.
