@@ -1,0 +1,270 @@
+import GroupApproximation.GGT.SystolicDefs
+import GroupApproximation.GGT.VanKampen.FaceCycle
+import GroupApproximation.GGT.VanKampen.PendantEdgeWalks
+import GroupApproximation.Meta.AxiomGuard
+
+set_option linter.unusedSectionVars false
+
+/-!
+# Triangulated discs with an explicit exterior cycle, and attaching a pendant edge
+
+A `CycleDisc X` is a planar combinatorial map whose darts are labelled by vertices of the
+triangle complex `X`, constantly along vertex rotation, with edges on edges of `X`, an
+explicit enumeration `cyc` of the exterior face, and every other face a triangle of `X`.
+Its boundary walk (`CycleDisc.boundary`) reads the labels along `cyc` and returns to the
+first vertex.  This is the working form of the systolic triangulated discs: the exterior
+face is a list, so the moves are list operations.
+
+* `CycleDisc.attachPendant`: a pendant edge at an exterior corner turns the boundary
+  `p ++ u :: q` into `p ++ u :: v :: u :: q` (`PendantEdge`).
+* `CycleDisc.attachPendant_end`: the same at the closing corner, `γ ++ [u, v, u]`.
+-/
+
+namespace GroupApproximation.Systolic
+
+open GGT.VanKampen
+
+universe u
+
+variable {V : Type u} (X : TriangleComplex V)
+
+/-- **A triangulated disc with an explicit exterior face cycle.** -/
+structure CycleDisc where
+  map : CombMap.{0}
+  planar : map.IsPlanar
+  lab : map.Dart → V
+  lab_sigma : ∀ d, lab (map.sigma d) = lab d
+  adj : ∀ d, X.G.Adj (lab d) (lab (map.alpha d))
+  cyc : List map.Dart
+  isFaceCycle : map.IsFaceCycle cyc
+  tri : ∀ d, d ∉ cyc → (map.facePerm ^ 3) d = d ∧
+    X.Tri (lab d) (lab (map.facePerm d)) (lab ((map.facePerm ^ 2) d))
+
+namespace CycleDisc
+
+variable {X}
+
+/-- The boundary vertex walk, closed up at the first vertex. -/
+def boundary (D : CycleDisc X) : List V :=
+  D.cyc.map D.lab ++ [D.lab (D.cyc.head D.isFaceCycle.ne_nil)]
+
+/-- Darts off the exterior cycle stay off it along face rotation. -/
+theorem facePerm_not_mem (D : CycleDisc X) {z : D.map.Dart} (hz : z ∉ D.cyc) :
+    D.map.facePerm z ∉ D.cyc := by
+  intro hm
+  apply hz
+  have h := (D.isFaceCycle.mem_iff _).mp hm
+  rw [D.map.faceOf_facePerm] at h
+  exact (D.isFaceCycle.mem_iff z).mpr h
+
+section Pendant
+
+variable (D : CycleDisc X) (b : D.map.Dart) (v : V)
+
+/-- Labels after attaching a pendant edge before `b`, with far end labelled `v`. -/
+def pendantLab : EdgeInsertion.Dart D.map → V
+  | none => v
+  | some none => D.lab b
+  | some (some d) => D.lab d
+
+variable {D b v}
+
+theorem pendantLab_sigma (x : EdgeInsertion.Dart D.map) :
+    pendantLab D b v ((PendantEdge.toCombMap D.map b).sigma x) = pendantLab D b v x := by
+  classical
+  rcases x with _ | (_ | d)
+  · rfl
+  · show pendantLab D b v (some (PermOrbitInsert.insertBefore D.map.sigma b none)) = D.lab b
+    rw [PermOrbitInsert.insertBefore_none]
+    rfl
+  · show pendantLab D b v (some (PermOrbitInsert.insertBefore D.map.sigma b (some d))) = D.lab d
+    rw [PermOrbitInsert.insertBefore_some]
+    by_cases h : D.map.sigma d = b
+    · rw [if_pos h]
+      show D.lab b = D.lab d
+      rw [← h, D.lab_sigma]
+    · rw [if_neg h]
+      exact D.lab_sigma d
+
+theorem pendantLab_adj (hv : X.G.Adj (D.lab b) v) (x : EdgeInsertion.Dart D.map) :
+    X.G.Adj (pendantLab D b v x) (pendantLab D b v ((PendantEdge.toCombMap D.map b).alpha x)) := by
+  rcases x with _ | (_ | d)
+  · exact hv.symm
+  · exact hv
+  · exact D.adj d
+
+variable (hb : b ∈ D.cyc)
+
+include hb in
+/-- Darts off the expanded cycle are old darts off the old cycle. -/
+theorem eq_embed_of_not_mem {x : EdgeInsertion.Dart D.map}
+    (hx : x ∉ D.cyc.flatMap (PendantEdge.expand D.map b)) :
+    ∃ y, x = some (some y) ∧ y ∉ D.cyc := by
+  have hsub : ∀ z ∈ PendantEdge.expand D.map b b, z ∈ D.cyc.flatMap (PendantEdge.expand D.map b) :=
+    fun z hz => List.mem_flatMap.mpr ⟨b, hb, hz⟩
+  have hexp : PendantEdge.expand D.map b b = [some none, none, some (some b)] := if_pos rfl
+  rcases x with _ | (_ | y)
+  · exact absurd (hsub none (by rw [hexp]; simp)) hx
+  · exact absurd (hsub (some none) (by rw [hexp]; simp)) hx
+  · refine ⟨y, rfl, fun hy => hx (List.mem_flatMap.mpr ⟨y, hy, ?_⟩)⟩
+    unfold PendantEdge.expand
+    split_ifs <;> simp
+
+include hb in
+theorem facePerm_embed_of_not_mem {y : D.map.Dart} (hy : y ∉ D.cyc) :
+    (PendantEdge.toCombMap D.map b).facePerm (some (some y)) = some (some (D.map.facePerm y)) := by
+  rw [PendantEdge.step_embed, if_neg]
+  intro h
+  exact D.facePerm_not_mem hy (h ▸ hb)
+
+include hb in
+theorem facePerm_pow_embed_of_not_mem {y : D.map.Dart} (hy : y ∉ D.cyc) (k : ℕ) :
+    ((PendantEdge.toCombMap D.map b).facePerm ^ k) (some (some y)) =
+      some (some ((D.map.facePerm ^ k) y)) := by
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      have hk : (D.map.facePerm ^ k) y ∉ D.cyc := by
+        clear ih
+        induction k with
+        | zero => exact hy
+        | succ k ihk =>
+            rw [pow_succ', Equiv.Perm.mul_apply]
+            exact D.facePerm_not_mem ihk
+      rw [pow_succ', Equiv.Perm.mul_apply, ih, facePerm_embed_of_not_mem hb hk, pow_succ',
+        Equiv.Perm.mul_apply]
+
+include hb in
+/-- **The disc with a pendant edge before `b`.** -/
+noncomputable def pendant (hv : X.G.Adj (D.lab b) v) : CycleDisc X where
+  map := PendantEdge.toCombMap D.map b
+  planar := PendantEdge.planar D.map b D.planar
+  lab := pendantLab D b v
+  lab_sigma := pendantLab_sigma
+  adj := pendantLab_adj hv
+  cyc := D.cyc.flatMap (PendantEdge.expand D.map b)
+  isFaceCycle :=
+    ⟨CyclicListExpansion.nonempty (PendantEdge.expand D.map b) (PendantEdge.expand_nonempty D.map b)
+        D.cyc D.isFaceCycle.ne_nil,
+      PendantEdge.expanded_nodup D.map b D.cyc D.isFaceCycle.nodup,
+      CyclicListExpansion.chain (PendantEdge.expand D.map b) (PendantEdge.expand_nonempty D.map b)
+        D.map.facePerm (PendantEdge.toCombMap D.map b).facePerm (PendantEdge.expand_chain D.map b)
+        (PendantEdge.expand_join D.map b) D.cyc D.isFaceCycle.chain,
+      CyclicListExpansion.closes (PendantEdge.expand D.map b) (PendantEdge.expand_nonempty D.map b)
+        D.map.facePerm (PendantEdge.toCombMap D.map b).facePerm (PendantEdge.expand_join D.map b)
+        D.cyc D.isFaceCycle.ne_nil D.isFaceCycle.closes⟩
+  tri := by
+    intro x hx
+    obtain ⟨y, rfl, hy⟩ := eq_embed_of_not_mem hb hx
+    obtain ⟨h3, htri⟩ := D.tri y hy
+    refine ⟨?_, ?_⟩
+    · rw [facePerm_pow_embed_of_not_mem hb hy, h3]
+    · rw [facePerm_pow_embed_of_not_mem hb hy 2, facePerm_embed_of_not_mem hb hy]
+      exact htri
+
+theorem pendant_map_label (d : D.map.Dart) (hdb : d ≠ b) :
+    (PendantEdge.expand D.map b d).map (pendantLab D b v) = [D.lab d] := by
+  have h : PendantEdge.expand D.map b d = [some (some d)] := if_neg hdb
+  rw [h]
+  rfl
+
+theorem pendant_map_label_self :
+    (PendantEdge.expand D.map b b).map (pendantLab D b v) = [D.lab b, v, D.lab b] := by
+  have h : PendantEdge.expand D.map b b = [some none, none, some (some b)] := if_pos rfl
+  rw [h]
+  rfl
+
+theorem map_label_flatMap_of_not_mem {l : List D.map.Dart} (hl : b ∉ l) :
+    (l.flatMap (PendantEdge.expand D.map b)).map (pendantLab D b v) = l.map D.lab := by
+  induction l with
+  | nil => rfl
+  | cons d l ih =>
+      have hdb : d ≠ b := fun h => hl (h ▸ List.mem_cons_self)
+      rw [List.flatMap_cons, List.map_append, pendant_map_label d hdb,
+        ih (fun h => hl (List.mem_cons_of_mem d h)), List.map_cons, List.singleton_append]
+
+/-- The label of the head of the expanded cycle is the label of the old head. -/
+theorem pendantLab_head (hne : D.cyc ≠ []) :
+    pendantLab D b v ((D.cyc.flatMap (PendantEdge.expand D.map b)).head
+      (CyclicListExpansion.nonempty _ (PendantEdge.expand_nonempty D.map b) _ hne)) =
+      D.lab (D.cyc.head hne) := by
+  rw [CyclicListExpansion.head _ (PendantEdge.expand_nonempty D.map b) _ hne,
+    PendantEdge.expand_head]
+  split_ifs with h
+  · rw [h]
+    rfl
+  · rfl
+
+/-- **Attaching a pendant edge at an exterior corner.** -/
+theorem attachPendant {s t : List D.map.Dart} (hcyc : D.cyc = s ++ b :: t)
+    (hv : X.G.Adj (D.lab b) v) :
+    ∃ D' : CycleDisc X,
+      D'.boundary = s.map D.lab ++ D.lab b :: v :: D.lab b :: (t.map D.lab ++
+        [D.lab (D.cyc.head D.isFaceCycle.ne_nil)]) := by
+  have hb : b ∈ D.cyc := by rw [hcyc]; simp
+  refine ⟨pendant hb hv, ?_⟩
+  have hnd := D.isFaceCycle.nodup
+  rw [hcyc] at hnd
+  have hbs : b ∉ s := fun h => (List.nodup_append.mp hnd).2.2 _ h _ List.mem_cons_self rfl
+  have hbt : b ∉ t := (List.nodup_cons.mp (List.nodup_append.mp hnd).2.1).1
+  show (D.cyc.flatMap (PendantEdge.expand D.map b)).map (pendantLab D b v) ++
+      [pendantLab D b v ((D.cyc.flatMap (PendantEdge.expand D.map b)).head _)] = _
+  rw [pendantLab_head D.isFaceCycle.ne_nil]
+  have hmap : (D.cyc.flatMap (PendantEdge.expand D.map b)).map (pendantLab D b v) =
+      s.map D.lab ++ [D.lab b, v, D.lab b] ++ t.map D.lab := by
+    rw [hcyc, List.flatMap_append, List.flatMap_cons, List.map_append, List.map_append,
+      map_label_flatMap_of_not_mem hbs, pendant_map_label_self, map_label_flatMap_of_not_mem hbt,
+      List.append_assoc]
+  rw [hmap]
+  simp only [List.append_assoc, List.cons_append, List.singleton_append, List.nil_append]
+
+/-- **Attaching a pendant edge at the closing corner.** -/
+theorem attachPendant_end (hv : X.G.Adj (D.lab (D.cyc.head D.isFaceCycle.ne_nil)) v) :
+    ∃ D' : CycleDisc X,
+      D'.boundary = D.cyc.map D.lab ++ [D.lab (D.cyc.head D.isFaceCycle.ne_nil),
+        v, D.lab (D.cyc.head D.isFaceCycle.ne_nil)] := by
+  obtain ⟨b, t, hcyc⟩ := List.exists_cons_of_ne_nil D.isFaceCycle.ne_nil
+  have hb : b ∈ D.cyc := by rw [hcyc]; simp
+  have hhead : D.cyc.head D.isFaceCycle.ne_nil = b := by
+    have := congrArg (fun l : List D.map.Dart => l.head?) hcyc
+    simp only [List.head?_cons] at this
+    exact Option.some.inj ((List.head?_eq_some_head D.isFaceCycle.ne_nil).symm.trans this)
+  rw [hhead] at hv ⊢
+  let P := pendant hb hv
+  have hPcyc : P.cyc = some none :: none :: (some (some b) :: t.flatMap (PendantEdge.expand D.map b)) := by
+    show D.cyc.flatMap (PendantEdge.expand D.map b) = _
+    rw [hcyc, List.flatMap_cons]
+    have h : PendantEdge.expand D.map b b = [some none, none, some (some b)] := if_pos rfl
+    rw [h]
+    rfl
+  let cyc' := P.cyc.rotate 2
+  have hrot : cyc' = (some (some b) :: t.flatMap (PendantEdge.expand D.map b)) ++ [some none, none] := by
+    show P.cyc.rotate 2 = _
+    rw [hPcyc]
+    exact List.rotate_append_length_eq [some none, none] _
+  have hnd := D.isFaceCycle.nodup
+  rw [hcyc] at hnd
+  have hbt : b ∉ t := (List.nodup_cons.mp hnd).1
+  refine ⟨{ P with
+    cyc := cyc'
+    isFaceCycle := P.isFaceCycle.rotate 2
+    tri := fun x hx => P.tri x (fun hm => hx (List.mem_rotate.mpr hm)) }, ?_⟩
+  show cyc'.map (pendantLab D b v) ++ [pendantLab D b v (cyc'.head _)] = _
+  have hhd : cyc'.head (P.isFaceCycle.rotate 2).ne_nil = some (some b) := by
+    have := congrArg (fun l : List (EdgeInsertion.Dart D.map) => l.head?) hrot
+    simp only [List.cons_append, List.head?_cons] at this
+    exact Option.some.inj ((List.head?_eq_some_head _).symm.trans this)
+  rw [hhd, hrot, hcyc, List.map_append, List.map_cons, map_label_flatMap_of_not_mem hbt,
+    List.map_cons, List.map_cons, List.map_nil]
+  rfl
+
+end Pendant
+
+end CycleDisc
+
+end GroupApproximation.Systolic
+
+#audit_axioms GroupApproximation.Systolic.CycleDisc.facePerm_not_mem
+#audit_axioms GroupApproximation.Systolic.CycleDisc.pendant
+#audit_axioms GroupApproximation.Systolic.CycleDisc.attachPendant
+#audit_axioms GroupApproximation.Systolic.CycleDisc.attachPendant_end
