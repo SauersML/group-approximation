@@ -71,8 +71,20 @@ Landings: 100539f34, 460831be0, 04cc4aa44, 2a711b6bd, d748a8d40, 14914dfd2,
    in `OsinAppendixSectionInduction` already proves `(a) ∧ (b)`) or carry the
    `11μ` cell of the pocket as an input.
 
-Open: `OsinAppendixAssemblyDescent.lean` (named merge/step producers,
-`descentInput_of_exteriorDescent`), waiting on hull-select's clause (b) batch.
+* `GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean` (57ddccb86, dea18154c,
+  5f5dddd41; compiled in probe 0912-001046-51202): design F2 (approved).
+  `OsinDescentMergeInput` and `OsinDescentStepInput` (named producers quoting
+  Osin; the step carries Corollary 9.6 at the pocket), `exists_exteriorUniqueAt_of_merge_step`,
+  `exists_sectionSelection_of_exteriorUniqueAt`, `osinLemma97bConclusion_of_exteriorUniqueAt`
+  (clause (b) in hull-select's shape, disjointness from compatibility, distinct
+  regions from nondegenerate target arcs), and
+  `descentInput_of_merge_step : OsinDescentMergeInput → OsinDescentStepInput → … → DescentInput`.
+* Repair 948130d79: the wired pocket module after eb4bc56f4 changed the
+  signature of `contiguityDegree_lt_mu_of_o52` (the root was red until then).
+
+Residual of G6: the two named producers, `OsinDescentMergeInput` (merge through
+`R`-cell-free pockets) and `OsinDescentStepInput` (pocket, Corollary 9.6 at the
+pocket, uniqueness to `s_1, t_1, s_2`, glue-back with smaller measure).
 
 ## Fleet traps found here
 
