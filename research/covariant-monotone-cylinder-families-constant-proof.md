@@ -34,3 +34,5 @@ Proof, artifact Sections 1–3.
    - **Weyl element.** With `X = N_(a,b)(1)` and `Y = N_(b,a)(1)`, `sigma(w) X = Y sigma(w)` reads
      `X + X^3 = Y + Y^2`. This gives `X^2 = 0`, then `Y^2 = 0`, then `X = Y`.
    - **Triviality.** `sigma(j([[0,1],[1,1]])) = 1`, and `R^x` is simple, so `sigma` is trivial.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 12.1 (leastness of joins is among principal right ideals, which is every use) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

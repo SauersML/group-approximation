@@ -607,3 +607,46 @@ Section 3 and Section 5 firewalls.
   `(3/8)^2`.
 - **Consequence.** Any argument that sees only relations and ranks inside finite subgroups realizes
   `theta = 1`. This matches Sections 5.1 and 10.
+
+## 12. w4-r4-adversary, second landing (a597ebfc50)
+
+### 12.1 `covariant-monotone-cylinder-families-in-rank-models-are-constant`: PASS, with a scope remark
+
+1. **Proposition 1: joins and meets.**
+   - **Existence of the join.** Put `f_n M = A_1 + ... + A_n`.
+   - The conditions `e^2 = e`, `e f_n = f_n` for every `n`, and `rk e <= s` are finitely satisfied by
+     `f_N`, since `f_n` lies in `f_N M`.
+   - They are closed in the rank metric, and metric ultraproducts along a nonprincipal ultrafilter on
+     `N` are countably saturated. So `e` exists.
+   - **Leastness.** For principal `K` containing every `A_n`, `K ∩ eM` is principal of rank `s = rk(eM)`,
+     so faithfulness gives `eM ⊆ K`.
+   - **Meets.** Same argument, dual: `g_N e = e` and `rk e >= s - 1/m`, with `K + eM` for greatest.
+   - **Scope remark.** Leastness is proved among principal right ideals, not all right ideals, as
+     Proposition 1 states it. Every use in the claim is principal: annihilators of principal ideals,
+     joins of spans.
+2. **Theorem 2: rigidity.**
+   - Transitivity of `V` on proper cylinders gives one rank.
+   - `A_(w0) ⊆ A_w` with equal rank gives equality, so `A_(0x) = A_[0]` and `A_(1x) = A_[1]`.
+   - The leaf map `(00, 01, 1) -> (00, 1, 01)` is a valid prefix replacement fixing `[00]` and carrying
+     `[01]` onto `[1]`. So `A_[0] = sigma(v) A_[00] = sigma(v) A_[0] = sigma(v) A_[01] = A_[1]`.
+3. **Corollary 3.** `e_w e_(wi) = e_(wi)` gives monotonicity. Covariance is conjugation. Then
+   `e_(w0) = e_(w1) m`, so `e_(w0) = e_(w0) e_(w1) m = 0`, and constant rank gives `e_w = 0`.
+4. **Lemma 4: root spans.**
+   - `v s_w y t_(w') v^-1 = s_(vw) y t_(vw')`.
+   - `s_(w0) y t_(w') = s_w (s_0 y) t_(w')`, and `t_(w'0) = t_0 t_(w')` gives the second slot.
+   - `V` is transitive on disjoint pairs with proper union.
+5. **Proposition 5: frame identity forces triviality.**
+   - **The frame product.** The left annihilator `M(1-e)` of `V_(a0,b)` contains the join
+     `L_(b,a1) = L_(b,a)`, so `N_(b,a)(y) N_(a,b)(z) = 0`. The swap in `V` reverses the product.
+   - **Squares.** In characteristic two `(1+X)^2 = sigma(j(x_12(2))) = 1`, so `X^2 = 0`, and likewise
+     `Y^2 = 0`.
+   - **The Weyl element.** Over `F_2`, `x_12(1) x_21(1) x_12(1) = [[0,1],[1,0]]`, and
+     `sigma(w) = 1 + X^2 + Y`.
+   - **Conjugation.** `sigma(w) X = Y sigma(w)` gives `X + X^3 = Y + Y^2`. Then `X = Y + Y^2`, and
+     multiplying by `Y` gives `Y^2 (1+Y) = 0`, so `X = Y`.
+   - **Triviality.** `x_12(1) x_21(1) = [[0,1],[1,1]]` has order 3, and `sigma(j(.)) = 1 + 2X = 1`. The
+     kernel is a nontrivial normal subgroup, so `binary-leavitt-unit-group-is-simple` makes `sigma`
+     trivial.
+6. **Consequence.** Corollary 3 gives no orthogonal covariant diagonal in any rank model or nonzero
+   corner. So `leavitt-two-root-defect-piece-forces-covariant-diagonal` is model by model equivalent to
+   the gate.
