@@ -188,10 +188,12 @@ theorem injective_agreeRes (K : Type) [Field K] (n k : ℕ) (dd : Fin ℓ → �
     refine (injective_iff_map_eq_zero E.hom.hom).mpr fun a ha => ?_
     by_contra hne
     exact ne_zero_of_isoOf E hne ha
-  have hid := injective_relPullback_id_of_eq K (agreeBall_preimage_eq n k dd i) hsub q
+  have hid := injective_relPullback_id_of_eq K (W := TopCat.of ↥(agreeBall n k dd i))
+    (agreeBall_preimage_eq n k dd i) hsub q
   intro a b hab
   rw [agreeRes_eq_comp K n k dd i q hsub] at hab
-  exact hE (hid hab)
+  exact hE (hid (show (relPullback K (𝟙 (TopCat.of ↥(agreeBall n k dd i))) hsub q).hom (E.hom.hom a)
+      = (relPullback K (𝟙 (TopCat.of ↥(agreeBall n k dd i))) hsub q).hom (E.hom.hom b) from hab))
 
 /-! ## 3. Restriction identifies the local piece -/
 
@@ -342,6 +344,7 @@ def agreeHomotopy (n k : ℕ) {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Ge
           (↥sphereOne × Gen.baseM n dd) × (Gen.VIdx n dd ⊕ Gen.VIdx n dd → ℂ))
       = (p.1, lixKSection n k G p.1)
     rw [hr, lixKSection_of_circHeight_neg n k G p.2.1]
+    rfl
   map_one_left p := by
     have hr : rotPt n dd (norm_rotPath k i ((1 : unitInterval) : ℝ)) p.1
         = rotPt n dd (norm_kUnity_pow k (i : ℕ)) p.1 :=
@@ -425,19 +428,23 @@ theorem agreeRes_rotRel (K : Type) [Field K] (n k : ℕ)
     (sInclusion (X := lixN n dd) (agreeBall n k dd i) ≫ lixKS n k hGc hGu hGe)
     (rotBall_mapsTo n k hGe i) (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx) q u
   have e6 := RelativeSupport.relPullback_eq_of_homotopy K
-    (fun _ hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ hx)
-    (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe _ (rotBall_mapsTo n k hGe i x hx))
+    (X := TopCat.of ↥(agreeBall n k dd 0))
+    (A := ((Subtype.val : ↥(agreeBall n k dd 0) → ↥sphereOne × Gen.baseM n dd) ⁻¹'
+      ((lixKZeroSet n k dd)ᶜ : Set (↥sphereOne × Gen.baseM n dd))))
+    (f := sInclusion (X := lixN n dd) (agreeBall n k dd 0) ≫ lixKS n k hGc hGu hGe)
+    (g := rotBall n k hGe i ≫ (sInclusion (X := lixN n dd) (agreeBall n k dd i)
+      ≫ lixKS n k hGc hGu hGe))
+    (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe x.1 hx)
+    (fun x hx => lixKSectionTotal_mapsTo n k hGc hGu hGe
+      ((ConcreteCategory.hom (rotBall n k hGe i)) x).1 (rotBall_mapsTo n k hGe i x hx))
     (agreeHomotopy n k hGc hGu hGe i) (agreeHomotopy_mapsTo n k hGc hGu hGe i) q
   have e6' := congrArg (fun φ => φ.hom u) e6
-  calc (agreeRes K n k dd 0 q).hom ((rotRel K n k dd i q).hom (xloc i))
-      = _ := e1
-    _ = _ := e2
-    _ = _ := e3.symm
-    _ = _ := congrArg
-        (fun v => (relPullback K (rotBall n k hGe i) (rotBall_mapsTo n k hGe i) q).hom v) e4
-    _ = _ := e5
-    _ = _ := e6'.symm
-    _ = _ := hright.symm
+  -- the steps live over two spellings of the ball's carrier (`↑(lixN n dd)` vs
+  -- `↥sphereOne × Gen.baseM n dd`), which `calc`'s `Trans` search cannot identify; `Eq.trans`
+  -- unifies at default transparency
+  exact e1.trans (e2.trans (e3.symm.trans ((congrArg
+    (fun v => (relPullback K (rotBall n k hGe i) (rotBall_mapsTo n k hGe i) q).hom v) e4).trans
+      (e5.trans (e6'.symm.trans hright.symm)))))
 
 /-! ## 5. Half A: the rotation does not change the absolute image -/
 
