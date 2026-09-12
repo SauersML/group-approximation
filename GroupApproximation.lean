@@ -4639,6 +4639,7 @@ import GroupApproximation.KunThom.RelativeFunctorEstimate
 import GroupApproximation.KunThom.StepNineHammingReference
 import GroupApproximation.KunThom.StepNineHammingDefects
 import GroupApproximation.KunThom.StepNineHammingEstimate
+import GroupApproximation.KunThom.CompressorNormalizationAssembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
