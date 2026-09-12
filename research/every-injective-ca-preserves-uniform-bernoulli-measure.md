@@ -43,3 +43,29 @@ every `p in A^Omega`, where `M` is the memory,
   `end-fixing-tree-symmetries-carry-strict-automata` gives a strict automaton on a
   homogeneous space of an amenable non-unimodular group. A proof must use that the
   index set is a group.
+* **Digest (gk-archive, 2026-09-12).** **Proved:**
+  - preservation forces surjectivity, automaton by automaton
+    (`injective-measure-preserving-ca-is-surjective`);
+  - bijective automata preserve the measure (`bijective-ca-preserve-uniform-bernoulli-measure`);
+  - a failure lowers Rokhlin entropy (`strict-automaton-lowers-bernoulli-rokhlin-entropy`);
+  - strict pairs carry positive-entropy flip lifts and infinitely many cellular sections
+    (`strict-split-pairs-carry-positive-entropy-flip-lifts`,
+    `strict-split-decoders-have-infinitely-many-sections`).
+
+  **Dead:**
+  - trace-level premises, which are zero-one (`injective-ca-product-trace-zero-one-law`);
+  - zero fiber entropy (`xor-lift-of-bernoulli-has-positive-fiber-entropy`);
+  - Bernoulli rigidity on Kazhdan hosts, since compressed coset shifts carry strict equivariant
+    embeddings (`compressed-coset-shifts-carry-strict-equivariant-embeddings`,
+    `kazhdan-bernoulli-rigidity-forces-surjective-embeddings` refuted);
+  - every measure or spectral invariant of the image, because a strict automaton is a measure
+    conjugacy onto its image.
+
+  **Reductions:** it is enough to treat f.g. simple Kazhdan hosts
+  (`gottschalk-reduces-to-fg-simple-kazhdan-groups`), and the Leavitt case is
+  `injective-cas-over-leavitt-units-preserve-uniform-bernoulli`.
+
+  **Exact open step:** use Curtis--Hedlund--Lyndon locality over the free regular action of the group
+  itself. The tree calibration and the coset-shift embedding both show that nothing weaker than
+  freeness plus group structure can suffice. Rephrased, the step is to prove the window balance for
+  every finite window, or to find one window where it fails.

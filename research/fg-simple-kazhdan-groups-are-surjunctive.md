@@ -62,3 +62,32 @@ counterexample, if one exists, lives on one.
     (`injective-measure-preserving-ca-is-surjective`);
   - on the negative side, a strict automaton on some such host, for example
     `R^x` (`leavitt-unit-group-nonsurjunctive`).
+- **Digest (gk-archive, 2026-09-12).** **Proved:**
+  - both reductions (`countable-group-embeds-in-fg-simple-kazhdan-group`,
+    `gottschalk-reduces-to-fg-simple-kazhdan-groups`) and the simple-host form
+    `finitely-generated-simple-groups-are-surjunctive`;
+  - subgroup heredity (`surjunctivity-passes-to-subgroups`);
+  - the tower `V <= R^x <= A^x` (`leavitt-surjunctivity-tower`);
+  - `R^x` is simple, FA and nonsofic (`leavitt-unit-group-is-simple-fa-nonsofic`), hence outside every
+    permanence closure (`sofic-permanence-closure-omits-simple-fa-nonsofic-groups`,
+    `leavitt-tower-outside-sofic-permanence-closure`);
+  - the design filters that any counterexample must pass (`amenable-decoder-memory-forces-surjectivity`,
+    `table-groups-are-memory-holonomy-groups`, `forward-relations-of-a-counterexample-have-a-nonsofic-core`,
+    `strict-automata-live-on-canonical-table-groups`);
+  - a certificate must live in one decidable host (`surjunctivity-recognition-dichotomy`).
+
+  **Dead, beyond the entries above:**
+  - Cantor coset peeling on `V` is circular (`thompson-v-coset-stabilizers-contain-copies-of-v`);
+  - full-shift maps into infinite-stabilizer coset shifts are constant
+    (`full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant`);
+  - (T) gives no rank-metric rounding over finite fields
+    (`kazhdan-group-rank-models-admit-no-expander-decomposition`).
+
+  **Live negative targets on hosts of this class:**
+  - `ternary-anti-invariant-swap-corner-is-full` and `projective-ternary-klein-idempotent-is-full`,
+    over `L_(F_3)(1,2)^x` and its scalar quotient;
+  - the binary lifts over `R^x`;
+  - `leavitt-units-have-zero-rokhlin-entropy-supremum` (measurable).
+
+  **Live positive targets:** `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups` and
+  `every-injective-ca-preserves-uniform-bernoulli-measure`.

@@ -43,3 +43,25 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   whatever the base. So spectral gap, strong ergodicity and every other Koopman invariant are blind
   to the base entropy and cannot detect a deficit. No property (T) mechanism for a lower bound is
   known (`fg-simple-kazhdan-groups-are-surjunctive`, Attempts).
+- **Digest (gk-archive, 2026-09-12).** **Proved:**
+  - the exact reduction to this class (`rokhlin-maximality-via-fg-simple-kazhdan-hosts`);
+  - heredity to subgroups (`bernoulli-rokhlin-maximality-passes-to-subgroups`);
+  - one finite configuration witnesses a deficit (`bernoulli-rokhlin-deficit-has-a-finitary-witness`);
+  - every witness folds on a sofic-invisible element, which gives maximality for sofic groups directly
+    (`sofic-radical-localizes-bernoulli-deficit-witnesses`);
+  - a strict automaton forces a deficit (`strict-automaton-lowers-bernoulli-rokhlin-entropy`), so this
+    claim implies `fg-simple-kazhdan-groups-are-surjunctive`.
+
+  **Dead:**
+  - Koopman and property-(T) detectors, which are blind to the base;
+  - restriction and co-induction, which bound only from above;
+  - localization, vacuous on hosts with full sofic radical;
+  - median matching (`median-matching-has-no-bernoulli-entropy-analogue`).
+
+  **Refuter to watch:** `leavitt-units-have-zero-rokhlin-entropy-supremum`, since `U` is a host of this
+  class. Its twins are `every-group-has-positive-rokhlin-entropy-action` and
+  `leavitt-unit-group-has-positive-rokhlin-entropy-action`.
+
+  **Exact open step:** a lower-bound mechanism on one nonsofic simple Kazhdan host that does not pass
+  through finite models. For hosts with centralized self-copies, the dichotomy makes this equivalent to
+  exhibiting one free action of positive Rokhlin entropy.

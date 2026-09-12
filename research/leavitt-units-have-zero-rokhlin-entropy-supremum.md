@@ -80,3 +80,28 @@ deficit certificate is finite and checkable.
   - a homomorphism to `U` that is injective on the points.
 
   Merging points is not monotone, so no coarser host needs to be tested.
+- **Digest (gk-archive, 2026-09-12).** **Proved:**
+  - a strict automaton gives an explicit deficit (`strict-automaton-lowers-bernoulli-rokhlin-entropy`)
+    and a finite bound on the supremum (`strict-automaton-bounds-rokhlin-supremum`);
+  - a deficit is one finite configuration (`bernoulli-rokhlin-deficit-has-a-finitary-witness`);
+  - every witness folds on an invisible element (`sofic-radical-localizes-bernoulli-deficit-witnesses`);
+  - the zero-or-infinite dichotomy for `U` (`rokhlin-supremum-dichotomy-with-centralized-self-copies`).
+
+  **Dead:**
+  - linear witnesses;
+  - witnesses on sofic subgroups;
+  - every Koopman or property-(T) detector;
+  - median matching (`median-matching-has-no-bernoulli-entropy-analogue`);
+  - free centralizing factors (`free-centralizer-amalgams-are-surjunctivity-inert`).
+
+  **Feeders from other families.** Any strict linear automaton on `U` gives a certificate, through
+  `leavitt-zero-rokhlin-supremum-from-strict-automaton`. Such an automaton would come from a solution of
+  `left-invertible-lift-of-s0-in-leavitt-group-algebra`, of
+  `leavitt-evaluation-kernel-unitization-not-directly-finite`, or of a ternary analogue transported to
+  `U`. The ternary targets live on `L_(F_3)(1,2)^x`, not on `U`, so they feed only the ternary twin
+  of this claim, which has not been recorded.
+
+  **Exact open step:** a nonlinear code `psi` on a square presentation, mapped into `U` injectively on
+  its points, with a strict `Phi` inequality. Its folds must run through a nonsoficity configuration of
+  `U`, such as the nested defect of `leavitt-units-carry-nested-rigid-defect`, and not through
+  median matching.

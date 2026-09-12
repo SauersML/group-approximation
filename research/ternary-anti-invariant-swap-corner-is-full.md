@@ -51,3 +51,31 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     - a direct-finiteness failure of `S_-`;
     - one cross term, which lies in the evaluation kernel when the pair lies over `(s0, t0)`.
   - Research artifact: `research/artifacts/ternary-swap-separated-pairs-2026-09-12.md`.
+- *Digest (gk-archive, 2026-09-12).* **Proved:**
+  - the split itself (`ternary-leavitt-swap-problem-splits-at-central-involution`), with the
+    corrected reading that either half refutes (`anti-invariant-swap-corner-refutes-ternary-surjunctivity`,
+    `projective-swap-corner-refutes-ternary-surjunctivity`);
+  - nonsoficity of `G` and of `PG` through the scalar-avoiding embedding
+    (`leavitt-units-embed-in-their-scalar-quotient`,
+    `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`), so Gromov--Weiss excludes neither host;
+  - the binary normal forms, whose shape this problem shares
+    (`leavitt-one-sided-pairs-are-unit-translates-of-s0-t0`,
+    `leavitt-inverse-defects-are-visible-or-invisible`);
+  - the idempotent-free reformulation above.
+
+  **Dead:**
+  - lifting along a quotient, because direct finiteness does not descend
+    (`direct-finiteness-not-inherited-by-quotients`);
+  - K_0-type invariants, because every defect has zero class;
+  - trace, augmentation and finite-dimensional representations, which were checked on the projective
+    half;
+  - (T)-based rank rounding as a route to an obstruction, which fails over every finite field
+    (`kazhdan-group-rank-models-admit-no-expander-decomposition`).
+
+  **Binding gate:** linear soficity of `G` over `F_3` (`linear-sofic-group-algebra-is-stably-finite`).
+  Its F_2 twin is `binary-leavitt-unit-group-is-f2-linear-sofic`.
+
+  **Exact open step:** one pair `c a = 1` in `S_-` with `c [w] a = 0`, or with `1 - m^2` invertible.
+  Siblings: the binary lifts `left-invertible-lift-of-s0-in-leavitt-group-algebra` and
+  `leavitt-evaluation-kernel-unitization-not-directly-finite`, and the projective half
+  `projective-ternary-klein-idempotent-is-full`.
