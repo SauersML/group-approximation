@@ -7,6 +7,7 @@ distinct_from:
   forward-memory-lifts-exclude-strict-cellular-sections: that attaches one presentation to the product table of a given pair in a given group and proves a cover obstruction; this attaches a presentation to each minimal forward-sufficient partition of the rule pair alone and proves strictness anywhere is equivalent to strictness over one of them.
   sofic-radical-localizes-garden-of-eden-windows: that places one sofic-invisible difference inside a Garden-of-Eden window; this names the only groups a rule pair needs and shows every sofic quotient of them kills all words of some reverse hinge.
   gottschalk-surjunctivity-fixed-two-generator-tester: that reduces every group to one fixed host through marked limits; this fixes the rule pair and reduces every group to finitely many explicit table presentations.
+  strict-pairs-transfer-to-table-realizations: that pushes one strict pair with its Garden-of-Eden pattern forward to every group admitting a partial homomorphism on the window tables; this pulls strictness back to the canonical table group of a minimal forward-sufficient partition, the initial realization of the rule pair, and decides it there through the reverse hinge words.
 artifacts:
   - research/artifacts/canonical-table-groups-for-automaton-designs-2026-09-12.md
   - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
