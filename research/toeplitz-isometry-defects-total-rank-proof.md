@@ -22,3 +22,5 @@ Section 1 of the artifact.
 
 The proof uses only three axioms: `rk(1) = 1`, `rk(MN) <= min(rk M, rk N)`, and additivity on block
 diagonals. It uses no simplicity, no characteristic, and no ultraproduct.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 4.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

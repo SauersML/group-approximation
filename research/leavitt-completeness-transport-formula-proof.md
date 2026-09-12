@@ -22,3 +22,5 @@ Section 2 of the artifact, Proposition 3.
 3. **(c)** Sum (b) over `i` and substitute `E_0 + E_1 = N + E_0 E_1` from (a).
 4. **Natural models.** For `n_ab(r) = rho(r) E_ab`, every reversed product contains `E_bc E_ab = 0`
    or `E_ac E_ab = 0`, and `E_0 E_1` contains `E_ac E_ac = 0`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 7.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

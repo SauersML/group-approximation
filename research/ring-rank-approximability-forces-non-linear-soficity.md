@@ -23,3 +23,5 @@ Let `K` be a finite field of characteristic `p` and `R = L_K(1,2)`.
 **What this route records.** The Plan 2 claim is not an intermediate step toward the gate: it already
 carries the payoff. `ring-rank-approximability-from-leavitt-el3-triviality` is its partner route, and
 the two together place the claim between the gate instance and the payoff.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 4.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

@@ -26,3 +26,5 @@ Let `K` be a finite field of characteristic `p` and `R = L_K(1,2)`.
 
 This route is the partner of `ring-rank-approximability-forces-non-linear-soficity`. Together they show
 the Plan 2 claim is exactly as hard as the payoff and adds no intermediate step.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 4.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

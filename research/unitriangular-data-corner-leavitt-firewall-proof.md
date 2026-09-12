@@ -27,3 +27,5 @@ Complete proof: artifact Sections 1 and 3.
   orthogonal idempotents, each of rank at least `rk(e)`, so `rk(e) >= 2 rk(e)`. This is the argument
   of `leavitt-algebra-has-no-unital-rank-model`. With `rk(e) = rk(N_23 N_12) = 3/8` in the regular
   model, no derivation from positive-root data can produce such a family.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 5.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

@@ -278,3 +278,129 @@ bound.
 I derived this independently in Section 1.3, and route steps 1 to 4 match. So condition 3 of
 `el3-unit-root-matrix-units-iff-two-root-identities` reduces to the single identity `N_23 N_12 = 0` in
 every characteristic.
+
+## 4. w4-r4-approx (b7b0e9d387, 9930bb89f5)
+
+### 4.1 `toeplitz-isometry-defects-have-total-rank-at-least-one`: PASS
+
+**Lemma 1 (push-through).**
+1. `[[1,0],[-y,1]] [[1,x],[y,1]] = [[1,x],[0,1-yx]]`, and multiplying on the right by `[[1,-x],[0,1]]` gives
+   `diag(1, 1-yx)`.
+2. The mirror product is `diag(1-xy, 1)`.
+3. Invertible factors preserve rank and block diagonals add, so `rk(1-xy) = rk(1-yx)`.
+
+**The corner form.** For `x, y` in `eAe`, `1 - (x + 1 - e)(y + 1 - e) = e - xy`, so the corner form
+follows even without orthogonal additivity.
+
+**Lemma 2.** `X = X(e - ST) + (XS)T` for `X` in `Ae`. Subadditivity follows from the three axioms,
+because `a + b` factors through `diag(a,b)` by a row and a column. Then Lemma 1 turns `e - ST` into
+`e - TS`.
+
+**Theorem 3.**
+1. Lemma 2 with `X = T_1`, `S = S_0`, `T = T_0` gives `rk T_1 <= rk(e - T_0 S_0) + rk(T_1 S_0)`.
+2. `rk e <= rk(T_1 S_1) + rk(e - T_1 S_1)` and `rk(T_1 S_1) <= rk T_1`.
+3. **Sharpness:** `A = k`, `S_0 = T_0 = 1`, `S_1 = T_1 = 0` gives `0 + 1 + 0 = 1`.
+
+**Corollary 4.** With `phi(1) = 1`, `phi(0) = 0` and `t_1 s_0 = 0` in `L_K(1,d)` for `d >= 2`, the
+three defects are multiplicativity defects and add to at least `1`. So one is at least `1/3`.
+
+**The corner consequence.** `rk X <= rk(e - TS) + rk(XS) = 0`, and faithfulness gives `X = 0`.
+
+### 4.2 The collapse routes: PASS
+
+- **`ring-rank-approximability-forces-non-linear-soficity`.** The right side is false by Corollary 4,
+  since `F` contains `t_0, s_0, t_1, s_1` and `eps < 1/3`. The equivalence then makes the left side
+  false. This is a valid route, conditional on the open equivalence node.
+- **`ring-rank-approximability-from-leavitt-el3-triviality`.**
+  - Triviality kills every model of `EL_3(R) ~= R^x`.
+  - An `F_p`-linear sofic approximation would give an injective homomorphism into `M^x`
+    (w4-r4-corner Section 3.3).
+  - So both sides are false and the equivalence holds.
+
+This matches Section 1.6 and the lead pass.
+
+## 5. w4-heisenberg (f576dccf26)
+
+### 5.1 `unitriangular-data-cannot-assemble-corner-leavitt-families`: PASS
+
+1. **Local finiteness.** Take `b_1, ..., b_m` strictly upper triangular.
+   - The nonunital `F_p`-algebra `B` they generate is spanned by words of length less than `n`, since
+     `B^n = 0`.
+   - So `B` is finite, and `1 + B` is a finite group, with `(1+b)^-1 = sum (-b)^j` in `1 + B`.
+2. **The model.**
+   - Exhaust `L` by finite `P_k`. Left regular representations are exactly multiplicative on a pair
+     once both elements lie in `P_k`, so `sigma_reg` is a homomorphism into `M^x`.
+   - `F_p[P_k]` is free of rank `[P_k : Q]` over `F_p[Q]`. So `rank lambda_(P_k)(alpha)` is
+     `[P_k : Q]` times `rank lambda_Q(alpha)`, and the normalized rank is intrinsic to `Q`.
+3. **Values.**
+   - **`p = 2`:** `3/8`, recomputed in Section 3.1.
+   - **Odd `p`:** `(y-1)(x-1) = yx - y - x + 1` is nonzero in `F_p[H(F_p)]`, so its rank is at least
+     `1/p^3`.
+   - **`diag(w,w,w)`:** it has order 2, since `w^2 = 1`, and normalizes `UT_3(R)`. So
+     `UT_3(R) ⋊ <diag(w,w,w)>` is locally finite.
+4. **Weakened endpoint remark.** Put `f_0 = S_0 T_0` and `f_1 = S_1 T_1`.
+   - `T_1 S_0 = 0` gives `f_1 f_0 = 0`.
+   - `f_0' = f_0(e - f_1)` is idempotent, since `(e - f_1) f_0 = f_0`.
+   - `f_0'` and `f_1` are orthogonal.
+   - `f_0' f_0 = f_0` gives `rk f_0' >= rk f_0 >= rk e`, and `rk f_1 >= rk e`.
+   - So `rk e >= 2 rk e`, and `rk T_1 <= rk e` forces `T_1 = 0`.
+5. **Scope.** The firewall covers derivations whose inputs hold in every rank model of `UT_4(R)`.
+   The regular model has `D != 0`, while the endpoint is impossible in every `M`.
+
+## 6. w4-r4-orth (fcffe16327)
+
+### 6.1 `index-three-corner-placement-holds-only-modulo-two-root-defects`: PASS
+
+**The swap identity (Sw).**
+- `[x_ij(r), x_jk(r')] = x_ik(rr')` gives `x_ij x_jk = x_ik x_jk x_ij`.
+- Expanding `(1 + n_ij)(1 + n_jk) = (1 + n_ik) X_jk X_ij` and substituting `X_jk X_ij = 1 + n_jk + n_ij + n_jk n_ij`
+  gives `n_ij n_jk = n_jk n_ij + n_ik X_jk X_ij`.
+- No characteristic is used.
+
+**The identity.**
+1. (Sw) at `(4,3,1)` gives `n_43(1) n_31(b) = n_31(b) n_43(1) + n_41(b) X_31(b) X_43(1)`.
+2. `x_34` and `x_31` commute (`4 != 3` and `3 != 1`), so `n_34(a) n_31(b) = n_31(b) n_34(a)`.
+3. (Sw) at `(3,4,1)` gives `n_34(a) n_41(b) = n_41(b) n_34(a) + n_31(ab) X_41(b) X_34(a)`.
+4. Substituting gives exactly the three terms of the claim.
+
+**The honest value.** Every factor of `W = X_41 X_34 X_31 X_43` has first row `e_1`, so `E_31 W = E_31`
+and the first term is `rho(ab) E_33`. The deviation products `E_31 E_34` and `E_41 E_34` vanish.
+
+**Index 4 replaced by 2.** (Sw) at `(2,3,1)` and `(3,2,1)`, together with `[x_32, x_31] = 1`.
+
+**Remark 3.1.** I checked every nonempty ordered sub-product of `a = x_34(E_22)`, `b = x_43(1)`,
+`c = x_31(E_11)`, `d = x_13(1)` in `SL_8(F_2)`.
+- **Singles and pairs.** Each element is `1 + A` with `A^2 = 0`, so `(1+A)(1+B) = 1` forces `B = -A`.
+  Different positions never meet that.
+- **Triples.**
+  - `abc`: `(ab)^-1` has entries at `(4,3)`, `(3,4)` and `(4,4)`, and `c` does not.
+  - `abd`: same entries, and `d` does not have them.
+  - `acd`: `ac` sits at `(3,4)` and `(3,1)`, while `d^-1` sits at `(1,3)`.
+  - `bcd`: `bc` sits at `(4,3)`, `(3,1)` and `(4,1)`, while `d^-1` sits at `(1,3)`.
+- **The quadruple.** `ab` sits at `(3,4)`, `(4,3)` and `(3,3)`, while `(cd)^-1` sits at `(1,3)`, `(3,1)`
+  and `(1,1)`.
+- **Conclusion.** The coefficient at `1` is `1`, so the cross term is nonzero.
+
+## 7. w4-r4-complete (c22ebb8e32, b09f639b5d)
+
+Four nodes were deleted as duplicates at b09f639b5d, on the lane's instruction, so I gave them no verdict.
+
+### 7.1 `leavitt-completeness-transport-formula-for-root-data`: PASS
+
+**(a)**
+- `x_ac(1) = x_ac(e_0) x_ac(e_1)`, and the two factors commute, so `N = E_0 + E_1 + E_0 E_1`.
+- In characteristic two `x(r)^2 = x(2r) = 1`, so `n^2 = 0`.
+
+**(b)** Put `P = A + B + AB`.
+- `[X, Y] = XYXY`, since `X^-1 = X` and `Y^-1 = Y`.
+- `(1 + P)^2 = 1 + P^2`.
+- `A^2 = B^2 = 0`, so `A AB = AB B = 0`.
+- Hence `P^2 = AB + BA + ABA + BAB + ABAB`.
+
+**(c)** Sum over `i`, and substitute `E_0 + E_1 = N + E_0 E_1` in characteristic two.
+
+**Natural models.** `B_i A_i`, `A_i B_i A_i`, `B_i A_i B_i` and `A_i B_i A_i B_i` contain `E_bc E_ab` or
+`E_ac E_ab`, or equal `E_ac E_ac`. All of these vanish. `E_0 E_1` contains `E_ac E_ac = 0`.
+
+**Return operator.** `NWNW = NW`, and the completeness defect of `S_i = A_i`, `T_i = B_i W` is
+`(E_0 E_1 + rho_0 + rho_1) W`.

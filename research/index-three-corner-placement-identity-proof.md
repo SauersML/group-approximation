@@ -33,3 +33,5 @@ assumption.
   candidates `ab`, `ac`, `bc`, `dc` are listed in Remark 3.1.
 - **Conclusion.** So `(a - 1)(b - 1)(c - 1)(d - 1)` has coefficient `1` at the identity, and the
   cross term is nonzero.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 6.1 (identity, honest value and Remark 3.1 re-derived) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
