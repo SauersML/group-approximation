@@ -48,12 +48,12 @@ edge insertion. -/
 theorem edgeCount_eq : (toCombMap M b).edgeCount = M.edgeCount + 1 :=
   EdgeInsertion.edgeCount_eq M b b
 
-/-- **Face rotation.**  The two new darts are inserted, out and back,
-immediately before `b` in its face. -/
-theorem facePerm_eq : (toCombMap M b).facePerm =
-    PermOrbitInsert.insertBefore (PermOrbitInsert.insertBefore M.facePerm b) (some b) := by
+/-- **Face rotation**, dart by dart.  The two new darts are inserted, out and
+back, immediately before `b` in its face. -/
+theorem facePerm_apply (x : EdgeInsertion.Dart M) :
+    (toCombMap M b).facePerm x =
+      PermOrbitInsert.insertBefore (PermOrbitInsert.insertBefore M.facePerm b) (some b) x := by
   classical
-  ext x
   rcases x with _ | (_ | d)
   · change some (PermOrbitInsert.insertBefore M.sigma b none) = _
     rw [PermOrbitInsert.insertBefore_none, PermOrbitInsert.insertBefore_none]
@@ -64,15 +64,25 @@ theorem facePerm_eq : (toCombMap M b).facePerm =
     rw [PermOrbitInsert.insertBefore_some, PermOrbitInsert.insertBefore_some,
       PermOrbitInsert.insertBefore_some, hf]
     by_cases h : M.sigma (M.alpha d) = b
-    · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => Option.noConfusion h')]
+    · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => by cases h')]
     · rw [if_neg h, if_neg (fun h' => h (Option.some.inj h'))]
+
+/-- **Face rotation.** -/
+theorem facePerm_eq : (toCombMap M b).facePerm =
+    PermOrbitInsert.insertBefore (PermOrbitInsert.insertBefore M.facePerm b) (some b) :=
+  Equiv.ext (facePerm_apply M b)
 
 /-- **The faces are unchanged in number.** -/
 theorem faceCount_eq : (toCombMap M b).faceCount = M.faceCount := by
+  have h : Nat.card (CombMap.Orbit (PermOrbitInsert.insertBefore
+      (PermOrbitInsert.insertBefore M.facePerm b) (some b))) =
+      Nat.card (CombMap.Orbit M.facePerm) := by
+    rw [Nat.card_congr (PermOrbitInsert.orbitEquiv
+        (PermOrbitInsert.insertBefore M.facePerm b) (some b)),
+      Nat.card_congr (PermOrbitInsert.orbitEquiv M.facePerm b)]
   change Nat.card (CombMap.Orbit (toCombMap M b).facePerm) = Nat.card (CombMap.Orbit M.facePerm)
-  rw [facePerm_eq,
-    Nat.card_congr (PermOrbitInsert.orbitEquiv (PermOrbitInsert.insertBefore M.facePerm b) (some b)),
-    Nat.card_congr (PermOrbitInsert.orbitEquiv M.facePerm b)]
+  rw [facePerm_eq]
+  exact h
 
 /-- One old rotation step is reached in the new map, through the new dart when
 the old successor is `b`. -/

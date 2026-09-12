@@ -23,20 +23,19 @@ variable (M : CombMap.{u}) (b : M.Dart)
 noncomputable local instance : DecidableEq M.Dart := Classical.decEq _
 
 theorem step_some_none : (toCombMap M b).facePerm (some none) = none := by
-  rw [facePerm_eq, insertBefore_some, insertBefore_none, if_pos rfl]
+  rw [facePerm_apply, insertBefore_some, insertBefore_none, if_pos rfl]
 
 theorem step_none : (toCombMap M b).facePerm none = some (some b) := by
-  rw [facePerm_eq, insertBefore_none]
+  rw [facePerm_apply, insertBefore_none]
 
 /-- Face rotation on the old darts: the successor `b` is replaced by the new
 dart leaving the corner. -/
 theorem step_embed (d : M.Dart) :
     (toCombMap M b).facePerm (some (some d)) =
       if M.facePerm d = b then some none else some (some (M.facePerm d)) := by
-  rw [facePerm_eq, insertBefore_some, insertBefore_some]
+  rw [facePerm_apply, insertBefore_some, insertBefore_some]
   by_cases h : M.facePerm d = b
-  · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => Option.noConfusion h'),
-      if_pos h]
+  · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => by cases h'), if_pos h]
   · rw [if_neg h, if_neg (fun h' => h (Option.some.inj h')), if_neg h]
 
 /-- The walk replacing an old dart along its face. -/
