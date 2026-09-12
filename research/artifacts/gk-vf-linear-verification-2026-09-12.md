@@ -2150,3 +2150,21 @@ steps. This is prose on an OPEN claim.
   - PASS.
 - **Not re-derived.** The two blocks (no Kazhdan averaging over `F_2`, and failure of transvection active-rank control on natural
   content) are correctly recorded as blocks. The non-LEF citation for `E_5` was not re-derived here.
+
+**Section 56 addendum: the author's corrections (534ac4c4be) PASS.**
+- **Part 4, as landed.**
+  - For `gamma = gamma_1..gamma_m`, the words `c_i = gamma_1..gamma_(i-1)(1 - gamma_i)` together with `gamma` form a complete prefix
+    code, so `1 - e_gamma = sum_i e_(c_i)`.
+  - `d_i = 1^(i-1)0` for `i < m`, with `d_m = 1^(m-1)`, is a complete code of size `m`. For `m = 1` it is the empty word.
+  - Incomparability gives `T[c_j]S[c_i] = delta_ij`, `t_gamma Z = 0` and `Z* s_gamma = 0`.
+  - Then `w w' = e_gamma' + Z'Z'* = 1`, `w'w = 1` and `w e_gamma w' = e_gamma'`. PASS.
+- **Retargeted route `two-root-identity-via-level-contraction`: valid, conditional, and correctly a restatement.**
+  - It requires part 4 (established), `leavitt-corner-deviations-vanish-along-levels` (OPEN) and corner locality (established).
+  - The chain: `delta(1) = 0`, then Lemma 2.3 conjugacy (Section 47 addendum), then condition 3 of corner locality at `P = 0`, so
+    `sigma` is trivial.
+  - The infinite group `R^x` then has no nontrivial characteristic-two rank model, so it is not `F_2`-linear sofic.
+  - The route fires iff the vanishing claim is established.
+- **The two open claims.**
+  - The rewritten reduction of `leavitt-corner-deviations-are-level-independent` to `delta(0) = delta(1)` is correct, and it states
+    correctly that no route requires it.
+  - `leavitt-corner-deviations-vanish-along-levels` now states that it is the binary gate. Correct.
