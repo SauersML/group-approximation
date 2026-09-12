@@ -106,7 +106,7 @@ theorem exists_homotopy_pow_comp_normGen (h₁ : ‖e₁‖ = 1) (h₂ : ‖e₂
       (∀ (θ : ℝ) (y : E), ‖y‖ ≤ 1 → (G θ y)ᴴ * G θ y = 1) ∧
       (∀ (θ : ℝ) (y : E), ‖y‖ ≤ 1 → G θ y * (G θ y)ᴴ = 1) :=
   exists_homotopy_pow_comp h₁ h₂ h₁₂ (isBallUnitary_normGen h₁ h₂ h₁₂ hU)
-    (fun y hy => normGen_wall h₁ h₂ h₁₂ hU hy) k
+    (fun _ hy => normGen_wall h₁ h₂ h₁₂ hU hy) k
 
 end Homotopy
 
