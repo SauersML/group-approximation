@@ -244,8 +244,8 @@ theorem OsinExteriorDoubleCut.lastSection_total_gt
       · rw [if_pos h1]
         obtain ⟨Y, b, t, ⟨EY⟩, htarget, hne', hdeg⟩ :=
           cut.cellTransport j h1 T.diagram T.equiv a ha'.2
-        have hdegb := RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hrho
-          (EY.leastArea hlea) b htarget hne'
+        have hdegb := RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hlambda hmu
+          hrho hlarge (EY.leastArea hlea) b htarget hne'
         rw [hdeg] at hdegb
         exact le_of_lt (RegionCandidate.sourceArc_length_lt_of_contiguityDegree_lt ha'.1 hpos
           hdegb)
