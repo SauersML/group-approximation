@@ -95,5 +95,25 @@ of Section 3.
   survivor with `<K, h>` finite, amenable or residually finite is dead, whatever
   the screen says.
 
-Pending: degree 3 on window 3 for the 120 (job 506462), and a group-order test of
-`<K, h>`. This section is updated when those finish.
+* **Window `m = 4`, degree 2** (job 507650, 297 s). The `f_0`-sector has rank 512.
+  None of the 120 has a kernel, so all 120 survive again.
+* **Group-order test** (job 507132, 173 s; script
+  `/projects/standard/hsiehph/sauer354/kdf-leavitt/runs/kdf_order.py`). For each
+  survivor, balls of `<K, h>` were grown on the generators `g^(+-1)`,
+  `(u g u^-1)^(+-1)`, `h^(+-1)` up to 4000 elements. None closes: every `<K, h>` is
+  infinite, and the last sphere ratio is at least 3.0. The order of `h` is at
+  most 64 for 36 survivors (orders 2 to 6) and exceeds 64 for the other 84. So
+  finiteness never removes a survivor. The amenable and residually finite cases
+  of the structural filter still have to be decided group by group.
+* **Degree 3 on window 3** (job 506462) was cancelled by the scheduler after
+  25 minutes with no output, so it is not recorded. The degree-3 sector on
+  window 3 is too large for this tool at single-core speed.
+
+**Reading.** Single nesting transporters are not killed by any exact
+exterior screen tried, nor by finiteness. By
+`sofic-support-cannot-install-half-corner-comparison` they remain candidates
+only because `<K, h>` sits inside `<K, V>`, whose soficity is open. Since
+OpenAI's packet `EL_D(R)` is all of `R^x`
+(`leavitt-packet-linear-sofic-kills-kaplansky-target`), `F_2`-linear soficity of
+`R^x` would kill every candidate at once. Screening larger windows is no
+substitute for deciding that question.
