@@ -286,3 +286,37 @@ Two things are not decided here:
   the failure of Kun--Thom normalization inside `G`;
 - **what does not help.** A lamp, ambient extension or free centralizing factor
   contributes nothing (Theorems 3 and 4).
+
+## 7. Subgroups of finite-lamp wreaths that meet the lamps finitely
+
+This section gives a first step on Corollary 6.3's question for the Kun--Thom wreaths.
+
+**Proposition 7.1.** Let `A` be a finite group, `G` a residually finite group acting on
+a set `X`, and `W = (⊕_X A) ⋊ G`. Let `G' <= W` be a subgroup whose intersection `N'`
+with the lamp kernel `⊕_X A` is finite. Then `G'` is residually finite.
+
+*Proof.*
+- *Invariant support.* Let `S` be the union of the supports of the elements of `N'`, a
+  finite set. Let `Q'` be the image of `G'` in `G`. For `w = (n, g)` in `G'` and `nu` in
+  `N'`, the conjugate `w nu w^-1 = n (g.nu) n^-1` lies in `N'`. Its support is
+  `g supp(nu)`, because pointwise conjugation in `A` does not change supports. So `Q'`
+  preserves `S`.
+- *A homomorphism.* Define `rho(n, g) = (n|_S, g)` into `A^S ⋊ Q'`. For `(n, g)` and
+  `(n', g')` in `G'`, the lamp part of the product restricts to
+  `(n (g.n'))|_S = n|_S (g.(n'|_S))`, because `g^-1 S = S`. So `rho` is a homomorphism.
+- *Injectivity.* If `rho(n, g) = 1`, then `g = 1`, so `(n, 1)` lies in `N'`, and
+  `supp(n) ⊆ S` with `n|_S = 1`. So `n = 1`.
+- *Residual finiteness of the target.* `Q'` acts on the finite set `S` through a finite
+  quotient with kernel `K`. So `A^S × K` has finite index in `A^S ⋊ Q'`. It is finite
+  times residually finite, hence residually finite, and so is its finite-index
+  overgroup.
+
+QED.
+
+**Corollary 7.2.**
+- *Kazhdan subgroups.* A nonsofic subgroup of a Kun--Thom wreath
+  `(Z/2) wr_(G/Gamma) G` meets the lamp kernel in an infinite subgroup. So does any
+  nonsofic Kazhdan subgroup carrying a nested defect.
+- *Where the question sits.* For those wreaths, Corollary 6.3's question is whether some
+  Kazhdan subgroup has an infinite elementary abelian 2-group as its lamp part and is
+  nonsofic.

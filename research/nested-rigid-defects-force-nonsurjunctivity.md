@@ -59,4 +59,11 @@ a nested nontrivial rigid defect.
   (`gottschalk-counterexamples-lie-outside-the-permanence-closure`). All the defect
   carriers checked so far exhibit only non-nested defects. It is open whether any known
   surjunctive nonsofic group contains a nonsofic Kazhdan subgroup at all. That is the
-  first question for a refutation.
+  first question for a refutation. For the Kun--Thom wreaths,
+  `wreath-subgroups-meeting-lamps-finitely-are-rf` narrows it: such a subgroup must meet
+  the lamp kernel in an infinite subgroup.
+- **Choosing the group last.** Coarsening a reverse table can only help surjectivity
+  (`strict-automata-live-on-canonical-table-groups`). So the nesting relation can matter
+  only if the minimal forward-sufficient partition of some rule pair forces it. A proof
+  of this claim must produce a rule pair whose canonical table group maps into the
+  Kazhdan group with the nesting intact. None was found.
