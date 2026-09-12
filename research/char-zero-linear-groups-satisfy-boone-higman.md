@@ -79,3 +79,34 @@ generate a field of positive transcendence degree over `Q`. The first cases are
    - **Open:** whether a full group of this Brin--Thompson type with infinitely
      many directions is finitely presented. See
      `research/artifacts/bh-char-zero-transcendental-2026-09-12.md`.
+6. **Number-field local groups and canonical similarities** (lane
+   `bh-full-cantor-ca-host`, 2026-09-12).
+   - **No number-field linearity.** By
+     `el3-of-infinite-rank-rings-not-linear-over-number-fields`, no finite-index
+     subgroup of `EL_3(Z[t])`, and so of `SL_3(Z[t])`, is linear over `Qbar`.
+     Elementary matrices are quadratically distorted, so over a number field they
+     become virtually unipotent, while `E_12(Z[t])` has infinite rank.
+     *Dies:* every route that embeds the input abstractly in some `GL_N(Q)` and
+     then applies Zaremsky's theorem.
+   - **No eventually similar host with number-field local groups.** By
+     `el3-z-t-embeds-in-no-host-with-number-field-local-groups`, property (T) and
+     `fw-subgroups-of-eventually-similar-groups-virtually-embed` exclude every
+     eventually `H`-similar Cantor group whose local vertex groups are linear over
+     `Qbar`. *Dies:*
+     - the Higman--Thompson groups;
+     - Matui's topological full groups of one-sided SFT groupoids;
+     - every `V_d(H)` with `H` linear over a number field, Zaremsky's affine hosts
+       included.
+   - **Consequence for item 5.** A finitely presented full Cantor host must
+     either have local maps that carry a group not linear over any number field,
+     as the cellular-automaton candidate does with Laurent matrices over
+     `Z[t^(+-1)]`, or not be eventually similar on any shift of finite type, as
+     for `nV`, twisted Brin--Thompson groups and rational similarity groups.
+   - **For the candidate itself.** Its natural cylinders split one digit of one
+     coordinate `j in Z` at a time. That is a product lattice over infinitely
+     many directions, not the cone tree of a finite graph, so it falls outside
+     that obstruction as it stands. On a rectangular cylinder whose windows are
+     deep enough, each Laurent matrix restricts to an affine Laurent map with the
+     same linear part.
+   - *Not settled:* whether any finitely presented full group with such local maps
+     exists. See `research/artifacts/bh-full-cantor-ca-host-2026-09-12.md`.
