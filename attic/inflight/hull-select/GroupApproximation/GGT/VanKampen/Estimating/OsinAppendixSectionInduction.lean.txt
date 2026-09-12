@@ -194,7 +194,7 @@ theorem osinLemma97_atParameters_of_inputs
           apply hloopsS edge.val hmem
           rw [edge.target_eq, heq]
         have hinterior := RegionCandidate.interior_total_le_of_o52 hO52 hleaS S.family
-          S.pairwise hloopsEdge hplanar hcondition hmu.le
+          S.pairwise hloopsEdge hplanar hcondition hlambda hmu hlarge
         have hcountEq : S.diagram.rCellCount = Delta.rCellCount := S.equiv.rCellCount_eq
         have hunbound94 := h94 Delta cuts hlea hcells S hcard
         have hunbound := RegionCandidate.unbound_total_lt_mu S.family
