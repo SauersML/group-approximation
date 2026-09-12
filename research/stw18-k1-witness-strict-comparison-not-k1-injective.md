@@ -35,6 +35,15 @@ Such an `A` is a counterexample to both Problem XVIII and Problem XXIII; see
   the LIX towers it carries half the trace with nonvanishing `c_1(L)^(r_j)`,
   which is Villadsen's perforation. These are necessary conditions, not a
   no-go outside AH.
+- **Non-type-I exclusions (2026-09-12).** Free minimal crossed products
+  `C(X) ⋊ Gamma` are closed on both counts. With (URP) and (COS), in particular
+  every `C(X) ⋊ Z^d`, they have stable rank one
+  (`urp-cos-crossed-products-are-k1-bijective`). With (URP) alone they satisfy
+  Toms--Winter (`urp-crossed-products-satisfy-toms-winter`). Every building
+  block of any presentation must fail K1-injectivity at a tail
+  (`unital-limits-of-k1-injective-algebras-are-k1-injective`). So Z-stable,
+  stable-rank-one, purely infinite and URP crossed-product blocks are all
+  useless.
 - **Surviving design space.** A witness must be non-AH (for example
   approximately subhomogeneous with nonhomogeneous blocks, or built from
   non-type-I blocks), have stable rank at least two, an unrealized rank
