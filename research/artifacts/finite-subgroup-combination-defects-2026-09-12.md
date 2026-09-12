@@ -209,3 +209,71 @@ no hypothesis on `G` or on the join `<H_0, ..., H_k>`.
 **Scope.** The theorem concerns laminar combinations, whose `K_0` classes are integer
 combinations of finite-subgroup classes. It says nothing about idempotents similar to such
 combinations through units of unbounded support. That module shape is the open part.
+
+## 3. What survives, and the directive's candidates
+
+Here `R^x = L_(F_2)(1,2)^x` and `p = 2`.
+
+### 3.1 Candidates tested
+
+- **Dyadic permutation subgroups at different prefix levels.**
+  - For a 2-group `P`, `F_2[P]` is local, so its only idempotents are `0` and `1`. A laminar
+    family in characteristic two uses only odd-order parts.
+  - Two subgroups are excluded at every join, by TFR1 or Theorem 2.1 with `k = 1`.
+  - Three or more with pairwise trivial intersections give a graph `Phi` with no edges. Then `A`
+    is a free product of finite groups, so they are excluded too.
+  - Constants at any levels lie in one finite subgroup `Theta(GL_(2^K)(F_2))`, through the tower
+    identity `Theta_(2^(k+1))(a (x) I_2) = Theta_(2^k)(a)`. This is the computation of Section 8.2
+    of `research/artifacts/ternary-anti-central-kernel-normal-forms-2026-09-12.md`, carried out
+    over `F_2`. So LFT1 alone excludes them.
+- **Order-two and order-three elements generating `Z/2 * Z/3` inside `V`.** `F_2[Z/2]` has no
+  nontrivial idempotents, so any family lives in `F_2[Z/3]` together with `1`. That is one finite
+  subgroup, excluded by LFT1.
+
+No candidate was constructed that survives Theorem 2.1.
+
+### 3.2 Survivor S2: cyclic configurations with a nonsofic amalgam
+
+A laminar defect needs all of the following:
+- `k >= 2`;
+- a cycle of nontrivial pairwise intersections in `Phi`, among non-constant finite subgroups (in
+  `R^x`, for instance Thompson conjugates `u H u^(-1)`);
+- a nonsofic intersection amalgam `A`;
+- trace balance `m n + sum m_i r(x_i) = 0` with `d != 0`.
+
+**The question lives in `A`.** Lemma 2.2 works in both directions. A nonzero laminar combination
+with zero trace inside `F_p[A]` maps to one in every group `G` containing the configuration, since
+the supports stay in the `H_i`, where `A -> G` is injective. So the first question is intrinsic:
+
+> Does the intersection amalgam of some cyclic configuration of finite groups carry a nonzero
+> laminar combination with zero lifted trace?
+
+A positive answer is necessary for S2. A defect in `G` needs more: the class `[d S^n]` must vanish
+in `K_0(S)`, and the trace alone does not give that.
+
+**Soficity of such amalgams.**
+- If `A` is residually finite or finitely generated linear, the configuration is excluded. This
+  covers finite colimits and the linear lattices of `A_2~`-buildings.
+- Colimits of triangles of finite groups include hyperbolic groups (Gersten--Stallings) and exotic
+  `A_2~`-lattices. Their soficity is open, and a candidate has to live there.
+
+### 3.3 Survivor S1: non-literal comparisons
+
+S1 is `Q (+) Ind_(H_2) P_2 ~= Ind_(H_1) P_1`, with intertwiners of unbounded support and
+`r(P_1) = r(P_2)`. This is the general Kaplansky problem for `R^x` plus a trace-balance condition,
+and Theorem 2.1 does not reach it. Constraints already on main:
+- `split-comparisons-balance-induced-brauer-characters`: Brauer balance in chart-injective finite
+  images.
+- `one-sided-shear-conjugates-cannot-strictly-nest`: one-orientation shears die.
+- `finite-subgroup-copy-circuits-have-no-recurrent-branching`: recurrent copying cannot branch.
+- Section 8.0 of the ternary normal-forms artifact: vanishing Hattori--Stallings class sums.
+
+### 3.4 Where a positive proof would have to go
+
+Suppose one wants to show that cyclic configurations never balance, in every group.
+- By Lemma 2.2 the laminar table sees only `A`. So such a proof must either use relations of `G`
+  beyond the pairwise rectangles, or prove positivity in `F_p[A]` for every configuration amalgam
+  `A`.
+- The second is an Atiyah-type positivity statement for laminar forests of idempotents over a
+  2-complex of finite groups. No approach was found. Soficity of `A` is the only mechanism
+  available.

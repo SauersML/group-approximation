@@ -76,3 +76,20 @@ in an infinite subgroup is not given by any finite-group dimension count, and
 positivity there is exactly what
 `lifted-trace-detects-finite-subgroup-projectives` does not assert. A separate
 invariant, or the compression structure, is needed for that case.
+
+**2026-09-12, lane `w4-kap-join`: the infinite join does not survive.**
+* **The trace is still computed.** For idempotents `f < e`, additivity gives
+  `t_p([(e - f) F_p[G]^n]) = t_p([e]) - t_p([f])`. Each term is given by LFT1 inside its own finite
+  subgroup, whatever the join. The trace of `e - f` is therefore always available, even though
+  `e - f` generates an infinite subgroup.
+* **The inequality is already established.** `nested-two-finite-subgroup-idempotents-have-strict-rank`
+  (established 2026-09-07 by `two-finite-subgroup-nesting-amalgam-proof`) proves
+  `dim(e F_p[H_1]^n)/|H_1| > dim(f F_p[H_2]^n)/|H_2|` for any two finite subgroups, with no
+  hypothesis on `<H_1, H_2>`. So `e - f` is never a defect, at any join.
+* **A second proof.** Section 1 of `research/artifacts/finite-subgroup-combination-defects-2026-09-12.md`
+  gives an amalgam-free coset dimension count.
+* **Beyond two subgroups.** `sofic-amalgam-finite-subgroup-idempotent-traces-are-strict` excludes
+  laminar combinations from any number of finite subgroups whose intersection amalgam is sofic.
+  Forest configurations are excluded unconditionally.
+* **What remains.** Cyclic configurations with a nonsofic amalgam, and non-literal comparisons, are
+  recorded on `leavitt-units-have-laminar-finite-subgroup-defect`.
