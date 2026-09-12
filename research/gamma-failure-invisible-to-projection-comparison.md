@@ -57,5 +57,17 @@ A unital counterexample to Toms--Winter would be such an algebra, by
   traces, so they violate the hypothesis.
 - **Bauer boundary form.**  A witness is a nontrivial W*-bundle with hyperfinite
   II_1 fibres, arising as a uniform tracial completion, whose reduced powers
-  compare projections by traces.  Mommaerts's uniform spectral gap obstruction
-  (arXiv:2606.12134) concerns non-Gamma fibres and gives nothing here.
+  compare projections by traces (`bauer-uniform-gamma-iff-trivial-tracial-bundle`).
+  - Ozawa's finite-dimensional base theorem, with the localization claim
+    `bauer-gamma-failure-localizes-to-infinite-dim-point`, confines
+    non-triviality to extreme traces all of whose closed neighbourhoods are
+    infinite-dimensional.  So attachments over finite-dimensional pieces and
+    twisting invariants are dead.
+  - A Bauer witness answers BBSTWW Question 3.14
+    (`nontrivial-w-star-bundle-with-r-fibres-exists`).
+  - Smallest shape: the base is the one-point compactification of the
+    disjoint union of the cubes `[0,1]^n`.  On cube `n` the central halving
+    rate must degenerate as `n` grows while every pair of projections still
+    compares.
+  - Mommaerts's uniform spectral gap obstruction (arXiv:2606.12134) concerns
+    non-Gamma fibres and gives nothing here.
