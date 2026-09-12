@@ -1,30 +1,24 @@
-import GroupApproximation.Algebra.LampCountable
 import GroupApproximation.Algebra.PermutationalWreathSimple
-import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import Mathlib.GroupTheory.GroupAction.Quotient
 import Mathlib.Tactic.Group
 
 /-!
-# Coset wreath products over a normalizing pair are not sofic
+# Escaping conjugates of one-site lamps in coset wreath products
 
 Let `Γ ≤ G` and let `W = K ≀_{G/Γ} G` be the permutational wreath product of a
-countable lamp group `K` over the coset action of a countable group `G`.
-Suppose that in every faithful permutation-ultraproduct representation of `G`
-the centralizer of `Γ` is normalized by `G`
-(`HasSoficCentralizerNormalization Γ`), and that some `t ∈ G` conjugates an
-element `γ ∈ Γ` outside `Γ`.  Then `W` is not sofic.
+lamp group `K` over the coset action of `G` on `G ⧸ Γ`.  This file proves the
+algebra behind the nonsoficity of `W` under centralizer normalization
+(`Sofic/WreathCentralizerNormalizationSequential`):
 
-The argument is the wreath form of the free-lamp obstruction in
-`Sofic/MFNonsoficDoubleEndpoint`.  A sofic approximation of `W` gives a faithful
-representation `ι` of `W` in a universal sofic group, and `ι ∘ inr` is a faithful
-representation of `G`.  A nontrivial one-site lamp at the base coset commutes
-with `Γ`, because `Γ` fixes that coset.  Normalization makes its `t`-conjugate,
-the lamp at the coset `t Γ`, commute with `γ`.  Faithfulness then forces
-`γ t Γ = t Γ`, that is `t⁻¹ γ t ∈ Γ`.
+* a one-site lamp at the base coset `Γ` commutes with every element of `Γ`
+  (`wreath_commute_inl_single_inr`);
+* conjugating it by `t` moves it to the coset `t Γ` (`wreath_conj_inl_single`);
+* for a nontrivial lamp value, its `t`-conjugate commutes with `γ` only when
+  `t⁻¹ γ t ∈ Γ` (`wreath_conj_mem_of_commute`, `wreath_conj_lamp_not_commute`).
 
-The file also shows that `W` is finitely generated when `G` and `K` are: the
-coset action is transitive, so generators of `G` together with one-site lamps at
-the base coset generate `W`.
+It also shows that `W` is finitely generated when `G` and `K` are: the coset
+action is transitive, so generators of `G` together with one-site lamps at the
+base coset generate `W` (`wreath_quotient_fg`).
 -/
 
 namespace GroupApproximation
@@ -88,14 +82,11 @@ theorem lampSingle_eq_iff_of_ne_one {K : Type} [Group K] {X : Type} [DecidableEq
   · rintro rfl
     rfl
 
-/-! ## The obstruction -/
+/-! ## The escaping conjugate -/
 
 /-- **The algebraic step.**  For `k ≠ 1`, if the one-site lamp `k` at the coset
 `t Γ` commutes with `γ` inside `K ≀_{G/Γ} G`, then `γ` fixes `t Γ`, that is
-`t⁻¹ γ t ∈ Γ`.
-
-Every normalization hypothesis, exact or asymptotic, reaches its contradiction
-through this lemma. -/
+`t⁻¹ γ t ∈ Γ`. -/
 theorem wreath_conj_mem_of_commute {G : Type} [Group G] (Γ : Subgroup G)
     [DecidableEq (G ⧸ Γ)] {K : Type} [Group K] {k : K} (hk : k ≠ 1) {t γ : G}
     (hcommW : Commute
@@ -114,30 +105,9 @@ theorem wreath_conj_mem_of_commute {G : Type} [Group G] (Γ : Subgroup G)
   rw [heq]
   exact inv_mem hmem
 
-/-- **The faithful-representation step.**  Let `ι` be a faithful representation
-of `K ≀_{G/Γ} G` in any group, and `k ≠ 1`.  If the `t`-conjugate of the one-site
-lamp `k` at the base coset commutes with the image of `γ`, then `t⁻¹ γ t ∈ Γ`. -/
-theorem wreath_conj_mem_of_faithful_commute {G : Type} [Group G] (Γ : Subgroup G)
-    [DecidableEq (G ⧸ Γ)] {K : Type} [Group K] {k : K} (hk : k ≠ 1)
-    {M : Type*} [Group M] (ι : Wreath K G (G ⧸ Γ) →* M)
-    (hι : Function.Injective ι) {t γ : G}
-    (hcomm : Commute
-      (ι (inr t) * ι (inl (Lamp.single (wreathBaseCoset Γ) k)) * (ι (inr t))⁻¹)
-      (ι (inr γ))) :
-    t⁻¹ * γ * t ∈ Γ := by
-  have hcomm' :
-      Commute (ι (inl (Lamp.single (t • wreathBaseCoset Γ) k))) (ι (inr γ)) := by
-    rw [← wreath_conj_inl_single t (wreathBaseCoset Γ) k]
-    simpa only [map_mul, map_inv] using hcomm
-  refine wreath_conj_mem_of_commute Γ hk ?_
-  have h := hcomm'.eq
-  rw [← map_mul ι, ← map_mul ι] at h
-  exact hι h
-
 /-- **The escaping conjugate does not commute.**  If `t⁻¹ γ t ∉ Γ` and `k ≠ 1`,
 then the `t`-conjugate of the one-site lamp `k` at the base coset does not
-commute with `γ` in `K ≀_{G/Γ} G`.  This is the form consumed by the asymptotic
-normalization hypotheses. -/
+commute with `γ` in `K ≀_{G/Γ} G`. -/
 theorem wreath_conj_lamp_not_commute {G : Type} [Group G] (Γ : Subgroup G)
     [DecidableEq (G ⧸ Γ)] {K : Type} [Group K] {k : K} (hk : k ≠ 1) {t γ : G}
     (hesc : t⁻¹ * γ * t ∉ Γ) :
@@ -151,47 +121,6 @@ theorem wreath_conj_lamp_not_commute {G : Type} [Group G] (Γ : Subgroup G)
   rw [map_inv] at hconj
   rw [hconj] at h
   exact h
-
-/-- **Coset wreath products over a normalizing pair are not sofic.**  If the
-centralizer of `Γ` is normalized by `G` in every faithful permutation-ultraproduct
-representation, and `t⁻¹ γ t ∉ Γ` for some `γ ∈ Γ`, then `K ≀_{G/Γ} G` is not
-sofic for every countable group `K` with a nontrivial element. -/
-theorem not_isSofic_wreath_of_centralizerNormalization_of_ne_one
-    {G : Type} [Group G] [Countable G] (Γ : Subgroup G)
-    (hcentralizer : HasSoficCentralizerNormalization Γ)
-    {K : Type} [Group K] [Countable K] {k : K} (hk : k ≠ 1)
-    {t γ : G} (hγ : γ ∈ Γ) (hesc : t⁻¹ * γ * t ∉ Γ) :
-    ¬ IsSofic (Wreath K G (G ⧸ Γ)) := by
-  classical
-  intro hsofic
-  haveI : Countable (G ⧸ Γ) := QuotientGroup.mk_surjective.countable
-  obtain ⟨S⟩ :=
-    (isSofic_iff_nonempty_soficApproximation (Wreath K G (G ⧸ Γ))).mp hsofic
-  let 𝒰 : Ultrafilter ℕ := Ultrafilter.of Filter.cofinite
-  have h𝒰 : (𝒰 : Filter ℕ) ≤ Filter.cofinite := Ultrafilter.of_le _
-  obtain ⟨ι, hι⟩ := exists_soficEmbedding_of_soficApproximation S h𝒰
-  let ρ : G →* UniversalSofic 𝒰 S.model :=
-    ι.comp (inr : G →* Wreath K G (G ⧸ Γ))
-  have hρ : Function.Injective ρ := hι.comp inr_injective
-  let q : UniversalSofic 𝒰 S.model :=
-    ι (inl (Lamp.single (wreathBaseCoset Γ) k))
-  have hq : ∀ δ : G, δ ∈ Γ → Commute q (ρ δ) := by
-    intro δ hδ
-    exact (wreath_commute_inl_single_inr
-      ((smul_wreathBaseCoset_eq_iff Γ δ).mpr hδ) k).map ι
-  exact hesc (wreath_conj_mem_of_faithful_commute Γ hk ι hι
-    (hcentralizer 𝒰 S.model ρ hρ q hq t γ hγ))
-
-/-- **The order-two lamp.**  Under centralizer normalization and an escaping
-conjugate, the coset wreath product `(ℤ/2ℤ) ≀_{G/Γ} G` is not sofic. -/
-theorem not_isSofic_wreath_of_centralizerNormalization
-    {G : Type} [Group G] [Countable G] (Γ : Subgroup G)
-    (hcentralizer : HasSoficCentralizerNormalization Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hesc : t⁻¹ * γ * t ∉ Γ) :
-    ¬ IsSofic (Wreath (Multiplicative (ZMod 2)) G (G ⧸ Γ)) :=
-  not_isSofic_wreath_of_centralizerNormalization_of_ne_one Γ hcentralizer
-    (k := Multiplicative.ofAdd (1 : ZMod 2))
-    (by rw [Ne, ofAdd_eq_one]; decide) hγ hesc
 
 /-! ## Finite generation -/
 

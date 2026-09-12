@@ -2,12 +2,12 @@ import GroupApproximation.BowenChapman.LaurentPairInfranormal
 import GroupApproximation.BowenChapman.LaurentPairKazhdan
 import GroupApproximation.BowenChapman.LaurentPairGeneration
 import GroupApproximation.BowenChapman.LaurentPairResiduallyFinite
-import GroupApproximation.KunThom.CentralizerNormalization
+import GroupApproximation.KunThom.NormalizationFromCriterion
 import GroupApproximation.Dynamics.WreathFinitarySite
 import GroupApproximation.Dynamics.SurjunctivityTransfer
 import GroupApproximation.Sofic.InfranormalCompressionPair
 import GroupApproximation.Sofic.TargetEquivalence
-import GroupApproximation.Sofic.WreathCentralizerNormalization
+import GroupApproximation.Sofic.WreathCentralizerNormalizationSequential
 
 /-!
 # The coset wreath witness for Bowen–Chapman Problem 1.1
@@ -21,9 +21,10 @@ sofic: the coset wreath product `(ℤ/2ℤ) ≀_{G/Γ} G` over the explicit pair
 * surjunctive: `Ambient` is residually finite, hence surjunctive, and a wreath
   product with residually finite lamps over a surjunctive base is surjunctive
   (`Surjunctivity.isSurjunctive_wreath`);
-* not sofic: property (T) for both groups and infranormality give centralizer
-  normalization (Kun–Thom Theorem 4.1), non-normality gives an escaping
-  conjugate, and `not_isSofic_wreath_of_centralizerNormalization` concludes.
+* not sofic: property (T) for both groups and infranormality give sequential
+  centralizer normalization (Kun–Thom Theorem 4.1), non-normality gives an
+  escaping conjugate, and `not_isSofic_wreath_of_sequentialNormalization`
+  concludes.
 -/
 
 namespace GroupApproximation.BowenChapman

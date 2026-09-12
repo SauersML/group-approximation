@@ -1,4 +1,6 @@
+import GroupApproximation.Algebra.LampCountable
 import GroupApproximation.KunThom.NormalizationFromCriterion
+import GroupApproximation.Sofic.SoficSequential
 import GroupApproximation.Sofic.WreathCentralizerNormalization
 
 /-!
