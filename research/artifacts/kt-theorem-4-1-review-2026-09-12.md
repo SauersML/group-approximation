@@ -28,7 +28,8 @@ audits the mathematics:
 | R5 | counting modules `b30597455` | match the counting and Lemma 4.4; a fixed clamp level suffices |
 | R6 | relative-functor finite lemmas | match the sentences of the proof of Lemma 4.3 |
 | R7 | scale-defect fix | real on both halves, conditional on L1, F1 and F2 |
-| R8 | in-flight modules on disk, 13:00–13:17, unlanded | pre-landing review: no defect; they resolve F1 and F2 |
+| R8 | in-flight modules on disk, 13:00–13:17, now landed | pre-landing review: no defect; they resolve F1 and F2 |
+| R9 | landings 13:08–13:26 | per-pair groupoid: laws check out and compose with the cluster system; **(A) no `ClusterMetric` for the per-pair presentation**; **(B) the assembly's `Rel F` must cover every compressor** |
 
 ## R1. The sequential Prop against Theorem 4.1
 
@@ -409,6 +410,125 @@ audit the evidence when they land.
   patched bisection;
 - the `GroupoidPresentation.Morphism` instance of the functor;
 - the assembly into `seqNormalizes_distinguished_of_kazhdan`.
+
+## R9. Landings 13:08–13:26
+
+bc-review audits the evidence. Every `KunThom/` blob I reviewed on disk equals its
+origin blob: `PairImprove` `fa9cdba96`, `ClusterSystem` `d1b14faa0`.
+
+### `fb4a81460`: `Matching/ScaledPartialClusterGroupoid` (coordinator's request). No defect
+
+The groupoid laws against Lemma 4.2(3), with per-pair thresholds, recomputed from
+the fields. The paper's version is "`2/5 < 1 − q_n`, the gap forces `≤ q_n`".
+- **Near transitivity.** `< 2r < 8r`, so the gap gives `< r`.
+- **Congruence.** `< r_XZ + (r_XY + r_YZ) + r_XZ ≤ 4.2·r_XZ`. This uses
+  `radius_source_le_left g X` and `radius_target_le f Z`.
+- **Associativity.** `< 2 r_WZ + r_WY + r_YZ + r_WX + r_XZ ≤ 6.4·r_WZ`, with four
+  comparability instances.
+- **Inverse laws.** `< r_YY + 2·targetDefect < 3.2·r_YY`. The right law goes through
+  `f.symm` (`radius_target_le_left`), which is the reported slip and its fix.
+- **Degenerate case.** An oversized `radius` gives a legitimate but trivial groupoid.
+  That is visible downstream: step 9's `hroom` needs `2·sc + x + 1 ≤ |C|`.
+
+**Composes with `87c53ad0c`.** `ScaledPartialClusterSystem.clusterData` supplies
+every field:
+- `radius = 2·min(scale X, scale Y)`;
+- `one_mem` from `isClusterCandidate_refl` at `min_self`;
+- `symm_mem` from `min_comm` and `.symm`;
+- `gap` from `IsClusterCandidate.gap` at the pair scale, with `expands` lowered from
+  scale 1 and `size_min_left`/`size_min_right`;
+- `radius_comparable` from `scale_comparable`.
+
+### `0b0986179`: `RelativeFunctorMetric` and `RelativeFunctorAssembly`. Composition gap (A)
+
+**The landed part is sound.** The functor, faithfulness, estimate (7)
+(`twoSidedDisagreement_sandwich_lt_of_ofRep_eq`) and `nonempty_hom_relativeFunctor`
+all match Lemma 4.3.
+
+**Gap (A).**
+- `GroupoidPresentation.ClusterMetric` has one radius per source object, with
+  `lt_of_rel` below `radius X` and `rel_of_lt` below `8·radius X`.
+- The only instance is `FinitePartialClusterData.clusterMetric`, with constant radius.
+  No instance exists for `ScaledFinitePartialClusterData.presentation`, on origin or
+  on disk.
+- None can come from that structure's fields.
+  - `lt_of_rel` needs `radius X ≥ r_XY` for every `Y` joined to `X`, when related
+    distances approach `r_XY`.
+  - `rel_of_lt` needs `8·radius X ≤ 8·r_XY` for every such `Y`, since the recorded
+    gap only puts far distances `≥ 8·r_XY`.
+  - `r_XY = 2·min(scale X, scale Y)` varies with `Y`, by up to `11/10` under
+    `radius_comparable`.
+
+**Fixes.**
+1. **A concrete instance at `ScaledPartialClusterSystem.presentation`.** Take
+   `radius X := 2·scale X`.
+   - Near: `< 2m ≤ 2·scale X`.
+   - Far: `agreement_or_disagreement_small` puts one direction at disagreement
+     `> |·| − m`, so far distance `≥ min(|X|, |Y|) − m`.
+   - A candidate gives `|Y| ≥ |X| − m/100` (`hundred_mul_defects_le_of_candidate`).
+   - So far distance `≥ 18·scale X − 1.01·m ≥ 16.99·scale X > 16·scale X`.
+   - `comp_close` and `self_small` hold since `2·min ≤ 2·scale X`.
+2. **Factor 7 in `rel_of_lt`.** Then `radius X := 2·scale X` works from the abstract
+   fields: `14·scale X ≤ 16·(10/11)·scale X ≤ 8·r_XY`.
+   - The functor budgets stay satisfiable:
+     - `hrespects`: `≈ 2s ≤ 14s`;
+     - `hcomp`: `≈ 8.2s ≤ 14s`;
+     - `hfaithful`: `≈ 6.2s ≤ 14s`.
+3. **A pair radius in `ClusterMetric`.**
+
+**Owner.** kt41-functor.
+
+### `f5a22c36e`: `CompressorNormalizationAssembly`. Sound skeleton; one instantiation trap (B)
+
+`seqNormalizes_of_compressor_of_steps` is correct as stated. The hypotheses match the
+paper's steps:
+- a joint scale with `ρ = o(threshold)`;
+- representation under domination;
+- the converse for vanishing thresholds;
+- the functor under domination of the matching error;
+- `OneSided → Concentrated`;
+- counting for every bisection sequence;
+- Hamming;
+- the wrapper, which is `seqNormalizes_of_forall_not_uniform_lower_bound` from
+  `SequentialContradiction`.
+
+**Trap (B).**
+- The docstring calls `Rel F` "relative data of t" and `matchingError D` "the matching
+  error of t".
+- Lemma 4.4 needs the one-sided inequalities along every compressor of a generating
+  family: "for every ℓ", and "apply Lemmas 4.2 and 4.3 simultaneously to this finite
+  family".
+- If `Rel F` carries only `t`, `hmedian : OneSided R → Concentrated R` cannot be
+  derived. The clamped observable is controlled only along the `t` and `Γ` labels, and
+  `clamped_pinning` needs every ambient generator.
+- `MedianVertexFormLocal` already takes a matching for every compressor. So the
+  instance should let `Rel F` carry the relative data of all of `C.compressors`, and
+  `matchingError D` their sum.
+
+### Other landings. No defect
+
+- **`fc6e7940b` `ComponentCountingRetainedMatching`.**
+  `|u Q △ Q'| ≤ |u B △ B'| + |B \ Q| + |B' \ Q'|`. The object match is induced by an
+  injective parent map.
+- **`d84f69fa4` `CountingEndgameCompletion`.** Completion within orbits.
+  `exists_bisection_extend` is the paper's "choose a bijection between their
+  complements … arbitrary arrow".
+- **`8383dbd5f` `CountingEndgameLift`.** `exists_bisection_lift` for an abstract
+  faithful functor that is injective on objects, from
+  `|orbit(F X)| < |orbit X| + |orbit(sel X)|` and isotropy index `< 2`. This is
+  `Ω₁ = Ω₂` plus the Hom-set bijection.
+- **`f3ea74313` `SequentialContradiction`.** Reindexing, the subsequence principle and
+  slow diagonals. `seqNormalizes_of_forall_not_uniform_lower_bound` is R1's
+  subsequence argument, stated sequentially.
+- **`87c53ad0c`, `83a349325`, `773d7952c`, `6870469d4`, `a3ae7dd4c`, `4fd4ba058`.**
+  Reviewed pre-landing (R8).
+- **`5f364e5f1` `RetainedComponentExpansion`.** L1:
+  - removing the maximal sparse cut leaves an exact directed Cheeger bound `c/|T|` on
+    every agreeing completion;
+  - the removed mass is `≤ E/(γ − c)`;
+  - the additive inequality comes from an edited expander.
+
+  This matches kt41-g1-alt's recipe.
 
 ## Named statements in the chain without a producer
 
