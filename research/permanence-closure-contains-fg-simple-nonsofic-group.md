@@ -41,8 +41,24 @@ closure `S*` of `gottschalk-counterexamples-lie-outside-the-permanence-closure`.
   with LEF lamps: surjunctive and nonsofic, but the lamp subgroup stays normal. A
   simple limit needs base generators to become short products of lamp commutators in
   the limit. No design is known yet.
-- **Next candidates (not tried).** Topological full groups of the Kun–Thom generalized
-  Bernoulli action, whose commutator subgroups are simple under minimality, and small
-  cancellation embeddings of a Kun–Thom wreath into infinitely presented simple groups.
-  For each, test local embeddability of balls into permutational wreath products over
-  the Kun–Thom base.
+- **Concrete candidate: an alternating full group.** Let `W = (Z/2) wr_(G/Gamma) G` be the
+  Kun–Thom wreath, acting on the Cantor set `X = {0,1}^(G/Gamma)` by flips and site
+  permutations, and let `Q = A(W ↷ X)` be Nekrashevych's alternating full group of this
+  action. The imported statements below were not re-read from source, and no node
+  depends on them.
+  - *Simple and finitely generated.* The action is minimal, since `W` flips any finite
+    set of coordinates and `G` is transitive on sites. It is expansive, since
+    cylinders at one site and their `W`-translates separate points. Nekrashevych
+    (Simple groups of dynamical origin, 2019) gives simplicity for minimal effective
+    actions and finite generation for expansive ones.
+  - *Nonsofic, conditionally.* If `A(W ↷ X) = [[W ↷ X]]'`, then `Q` contains `[W,W]`.
+    `G` is perfect for `r, d >= 3`, so `[W,W]` is the even-lamp subgroup extended by `G`.
+    It has index 2 in `W` and is therefore nonsofic.
+  - *Open step.* Every finite ball of `Q` must embed as a partial table into a group of
+    `S*`. Elements of `Q` are piecewise `W`-translations controlled by cylinders on
+    finitely many sites. The natural targets are permutational wreath products over the
+    Kun–Thom base with finite lamps on the controlling sites, as in the marked-site
+    peeling of `rf-lamp-wreath-surjunctivity-by-marked-site-peeling`. No such embedding
+    has been built yet.
+- **Also not tried.** Small cancellation embeddings of a Kun–Thom wreath into infinitely
+  presented simple groups. Quotients are involved, so balls must be checked directly.
