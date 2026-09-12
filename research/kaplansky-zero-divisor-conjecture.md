@@ -23,10 +23,16 @@ Known cases:
 - torsion-free elementary amenable groups, over every division ring
   (Kropholler--Linnell--Moody);
 - in characteristic zero, every torsion-free group satisfying the Strong
-  Atiyah conjecture.
+  Atiyah conjecture;
+- over every field, every subgroup of a torsion-free virtually compact special
+  group or of a compact 3-manifold group
+  (`fisher-sanchez-peralta-special-and-3-manifold-domains`, consequence
+  `zero-divisor-host-is-not-virtually-compact-special`).
 
-The unit conjecture over `F_2` is false (Gardam, on the Promislow group), but
-that group is elementary amenable, so it satisfies this conjecture.
+The unit conjecture is false over `F_2` (Gardam) and also over `C`
+(`unit-conjecture-fails-over-complex-numbers`, Gardam arXiv:2312.05240), both on
+the Promislow group. That group is elementary amenable, so it satisfies this
+conjecture.
 
 By `kaplansky-all-fields-reduce-to-finite-fields-on-one-group`, the conjecture
 is equivalent to `F[U]` being a domain for every finite field `F` and one
