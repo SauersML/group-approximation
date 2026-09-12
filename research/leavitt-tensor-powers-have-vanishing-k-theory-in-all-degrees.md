@@ -30,9 +30,14 @@ in non-connective algebraic `K`-theory. In particular `K_1 = K_2 = 0` for every
   categories, so it computes `K(C ∗ Λ)` from the crossed products `C ∗ H` over the
   virtually cyclic subgroups `H`.
 - Each such `C ∗ H` is `C` itself or a skew Laurent ring `C_φ[t, t^−1]` over `C`.
-- `C` is semihereditary with regular coherent Laurent extensions and `K(C) ≃ 0`
-  (`leavitt-crossed-product-coefficient-ring-is-k-trivial`). Its twisted Nil
-  terms vanish (Bartels–Lück), so every `C ∗ H` is `K`-trivial.
+- `C` is semihereditary, its polynomial extensions are regular coherent, and
+  `K(C) ≃ 0` (`leavitt-crossed-product-coefficient-ring-is-k-trivial`).
+- Its Laurent extensions `C[Z^m]` are then regular coherent by central
+  localization, as derived in Step 3.2 of the route. That claim does not state
+  this case, and Bartels–Lück record that inheritance of regular coherence by
+  Laurent extensions is open in general.
+- So the twisted Nil terms over `C` vanish (Bartels–Lück), and every `C ∗ H` is
+  `K`-trivial.
 - The non-coherent intermediate rings of
   `leavitt-tensor-powers-are-not-left-coherent` never enter the computation.
 
