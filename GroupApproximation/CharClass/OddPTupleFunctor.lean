@@ -172,6 +172,7 @@ theorem tupMap_id (k : ℕ) (x : tupMod K X r k) : tupMap K (𝟙 X) r k x = x :
   | add u v hu hv => rw [map_add, hu, hv]
   | single t c =>
     rw [← Finsupp.smul_single_one, map_smul, tupMap_single]
+    congr 2
 
 theorem tupMap_comp (f : X ⟶ Y) (g : Y ⟶ Z) (k : ℕ) (x : tupMod K X r k) :
     tupMap K (f ≫ g) r k x = tupMap K g r k (tupMap K f r k x) := by
@@ -181,6 +182,7 @@ theorem tupMap_comp (f : X ⟶ Y) (g : Y ⟶ Z) (k : ℕ) (x : tupMod K X r k) :
   | single t c =>
     rw [← Finsupp.smul_single_one, map_smul, map_smul, map_smul, tupMap_single, tupMap_single,
       tupMap_single]
+    congr 2
 
 /-- **The augmentation** of the degree-`0` carrier: every tuple of points to `1`. -/
 def tupAug (K : Type) [CommRing K] (X : TopCat.{0}) (r : ℕ) : tupMod K X r 0 →ₗ[K] K :=
@@ -296,8 +298,7 @@ def tupCx (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) :
       apply ModuleCat.hom_ext
       apply LinearMap.ext
       intro y
-      simp only [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_zero, LinearMap.zero_apply,
-        tupDHom_hom_apply]
+      simp only [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_zero, LinearMap.zero_apply]
       exact tupD_tupD (ZMod p) X k y)
 
 theorem tupCx_d (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) (k : ℕ) :
@@ -345,7 +346,7 @@ def tupCxMap {X Y : TopCat.{0}} (f : X ⟶ Y) (r s : ℕ) (hs : r ∣ s * p) :
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro y
-    simp only [ModuleCat.hom_comp, LinearMap.comp_apply, tupDHom_hom_apply, tupMapHom_hom_apply]
+    simp only [ModuleCat.hom_comp, LinearMap.comp_apply]
     exact (tupMap_tupD (ZMod p) f j y).symm
 
 theorem tupCxMap_f {X Y : TopCat.{0}} (f : X ⟶ Y) (r s : ℕ) (hs : r ∣ s * p) (k : ℕ) :
@@ -363,8 +364,7 @@ def oddTgt (r s : ℕ) (hs : r ∣ s * p) :
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro y
-    simp only [tupCxMap_f, HomologicalComplex.id_f, ModuleCat.hom_id, LinearMap.id_apply,
-      tupMapHom_hom_apply]
+    simp only [tupCxMap_f, HomologicalComplex.id_f, ModuleCat.hom_id, LinearMap.id_apply]
     exact tupMap_id (ZMod p) k y
   map_comp {X Y Z} f g := by
     refine HomologicalComplex.hom_ext _ _ fun k => ?_
@@ -373,8 +373,7 @@ def oddTgt (r s : ℕ) (hs : r ∣ s * p) :
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro y
-    simp only [tupCxMap_f, HomologicalComplex.comp_f, ModuleCat.hom_comp, LinearMap.comp_apply,
-      tupMapHom_hom_apply]
+    simp only [tupCxMap_f, HomologicalComplex.comp_f, ModuleCat.hom_comp, LinearMap.comp_apply]
     exact tupMap_comp (ZMod p) f g k y
 
 @[simp] theorem oddTgt_obj (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) :
