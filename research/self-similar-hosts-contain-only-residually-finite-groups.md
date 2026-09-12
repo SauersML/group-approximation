@@ -26,7 +26,11 @@ solvable word problem that embeds in no self-similar group.
   carry the general conjecture. The self-similar method only serves
   `fp-residually-finite-boone-higman`, through
   `fp-rf-boone-higman-via-fp-self-similar-overgroups`.
-- For the general conjecture, self-similar machinery must enter through hosts
-  acting on Cantor space that contain non-residually-finite groups, such as
-  Rover--Nekrashevych commutator subgroups:
-  `decidable-groups-embed-in-rover-nekrashevych-hosts`.
+- For the general conjecture, the next candidates were hosts acting on Cantor
+  space that contain non-residually-finite groups, namely Rover--Nekrashevych
+  commutator subgroups (`decidable-groups-embed-in-rover-nekrashevych-hosts`).
+  That claim is refuted as well:
+  - Kazhdan subgroups of `V_d(H)` are still residually finite
+    (`kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf`);
+  - Deligne's lattice is a decidable Kazhdan input that is not residually finite
+    (`deligne-lattice-embeds-in-no-rover-nekrashevych-group`).
