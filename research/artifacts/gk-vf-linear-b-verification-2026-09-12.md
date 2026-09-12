@@ -1005,3 +1005,74 @@ through the rank-projective claim, and `p = 3` directly. An `F_p`-model is an `F
 - Faithfulness gives `g = 1`.
 - For residually finite `G`, block-sum at stage `n` with the regular representation of a finite quotient separating
   the first `n` such elements. Each fixed `g` is separated at distance at least `1/4` on a cofinite set of stages. PASS.
+
+## 28. Triangular identity certificates (w4-upg-kill, c1b9da39b8): PASS
+
+This lane is not on this verifier's roster. It asked for verification directly.
+
+### 28.1 `sylvester-rank-functions-iff-no-triangular-certificate` (Theorems 2.1–2.2): PASS
+
+**(a) Rank functions are monotone matrix states.**
+- *Rank function to state.* `XMY` is a product, so a Sylvester rank function is `<~`-monotone. It is monotone for
+  triangular moves by the triangular axiom, and additivity and transitivity extend monotonicity to all of `<=_T`.
+- *State to rank function.*
+  - `MN <~ M` and `MN <~ N` give the product axiom.
+  - Zero matrices of all sizes, the empty one included, are mutual minors. So `d(0) = 2d(0) = 0`, and `0 <~ M` gives
+    `d >= 0`.
+
+**Monoid and cone.**
+- `~` is compatible with `(+)`, permutation matrices make `(+)` commutative, and the zero matrix is equivalent to the
+  empty matrix.
+- Monotone matrix states are exactly the additive maps on the Grothendieck group that are `>= 0` on `P` and 1 at `u`.
+
+**Order unit.** For `X` of size `p x c`, `X <~ I_c <~ I_c (+) Y`, so `c u - ([X] - [Y]) ∈ P`.
+
+**States exist iff `-u ∉ P`.**
+- *Necessity* is immediate.
+- *Sufficiency.* If `-u ∉ P`, then `-ku ∉ P` for every `k >= 1`, since `u ∈ P` and `P + P ⊆ P`. So `f(nu) = n` is
+  well defined and `>= 0` on `Zu ∩ P`. The one-step extension lemma extends it to a state (Section 24, Lemma 2.1).
+
+**Absorption.** `[N] + [I_1] = [M]` in the Grothendieck group means `N (+) I_1 (+) K ~ M (+) K` for some `K`. With
+`X = N (+) K`, this gives `I_1 (+) X ~ M (+) K <=_T X`.
+
+**Identities.**
+- By induction, `I_k (+) X <=_T X`.
+- `X <~ I_q`, where `q` is the number of columns of `X`, and `I_(q+1) <~ I_(q+1) (+) X`.
+- So `I_(q+1) <=_T I_q`.
+
+**(c) Chains.** The chain relation contains both generators and is transitive. It is compatible with `(+)`: a minor
+step `(+) K` is a minor step, and a triangular step absorbs `K` into `Z`.
+
+**Theorem 2.2.**
+- `I_(q+1) = XY`, with `X` of size `(q+1) x q`, is a split epimorphism `A^q -> A^(q+1)`. That is equivalent to
+  `-[A] ∈ K_0^+`.
+- So matrix states, `K_0` states and the rank condition coincide.
+
+**Remark "The summand".** Sylvester rank functions pull back along the unital projection `F_3[G] -> S_-`. In the other
+direction, they restrict to the corner `S_-`, divided by `rk(eps_-) > 0`.
+
+### 28.2 `split-identity-minors-survive-triangular-moves`: PASS
+
+**`⊑`.**
+- Minor steps preserve it: `Y <~ Y'` gives `Y (+) I_s <~ Y' (+) I_s`.
+- It adds over `(+)`, up to permutation.
+
+**Proposition 3.1 (split minors survive).**
+- After permutation, `T (+) I_(s+t) = [[A (+) I_s, C'], [0, B (+) I_t]]`, where `C'` is `C` bordered by zeros.
+- `diag(X_1, X_2)` on the left and `diag(W_1, W_2)` on the right give `[[I, D], [0, I]]`.
+- Right multiplication by `[[I, -D], [0, I]]` gives the identity.
+
+**Corollary 3.2 (split chains flatten).** Induction runs from `I_(q+1) ⊑ Y_0`, with `s = 0`, to `I_(q+1) ⊑ I_q`.
+
+**Remark 3.3 (idempotent steps).**
+- `T^2 = T` gives `A^2 = A`, `B^2 = B` and `C = AC + CB`.
+- Multiplying by `A` on the left and `B` on the right gives `ACB = 2ACB`, so `ACB = 0`.
+- With `x = AC - CB`: `Ax = AC` and `xB = -CB`, so the corner `C - Ax + xB` is 0.
+
+**Remark 3.4.** Over `K`, `I_(1+s) <~ e_11 (+) I_s` would give `2 + 2s <= 1 + 2s` in `K`-rank.
+
+**Consequence.**
+- Replace idempotent triangular steps by minor steps (Remark 3.3).
+- If every remaining triangular step split, Corollary 3.2 would flatten the chain.
+- So a certificate over a ring with the rank condition and no Sylvester rank function has a non-idempotent step with
+  no split. PASS.

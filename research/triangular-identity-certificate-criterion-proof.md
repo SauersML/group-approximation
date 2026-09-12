@@ -19,3 +19,9 @@ Section 2 of the artifact (Theorems 2.1 and 2.2).
 - **Absorption.** `-[I_1]` is in `P` iff `I_1 (+) X <=_T X` for some `X`. Iterating gives
   `I_(q+1) <=_T I_(q+1) (+) X <=_T X <~ I_q`, with `q` the number of columns of `X`.
 - **Minors only.** The same argument with `<~` gives the rank condition.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 28.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the axioms as monotonicity, with zero matrices of all sizes mutual minors;*
+- *the order unit `X <~ I_c <~ I_c (+) Y`;*
+- *the state criterion via `-ku ∈ P ⟹ -u ∈ P` and the one-step extension lemma;*
+- *absorption `N (+) I_1 (+) K ~ M (+) K`, the chain relation, and the rank-condition case.*

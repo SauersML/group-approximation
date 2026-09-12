@@ -16,3 +16,5 @@ Artifact Section 2.4.
   from `1`.
 - Its linear extension is a ring homomorphism from `F_2[R^x]`. The ultraproduct rank pulls back to a
   Sylvester matrix rank function with `rk(1 - [x]) >= κ` for `x != 1`, which is not the augmentation rank.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 13 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. The pullback of the ultraproduct rank along the linearly extended ring homomorphism is a Sylvester matrix rank function. The augmentation rank of `1 - [x]` is 0. The input claim is OPEN.*

@@ -27,3 +27,5 @@ Let `P = d S^n` be the nonzero projective of the prerequisite, with `[P] = 0` in
 This route is live, not dead. Its prerequisite is open, and the obstruction
 `sofic-amalgam-finite-subgroup-idempotent-traces-are-strict` excludes only configurations with a
 sofic intersection amalgam.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 13 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. Re-derived independently: `[P] = 0` gives `P (+) S^m ≅ S^m`; `c a = π ι = I_m` while `a c` has nonzero kernel `φ^-1(P (+) 0)`; and the scalar reduction through `leavitt-stable-finiteness-equals-direct-finiteness`. The input claim is OPEN.*
