@@ -6,6 +6,7 @@ title: The Toeplitz defect spans finitary matrix units, whose infinite simple el
 target: toeplitz-defect-dies-in-every-finite-quotient-of-el3
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-toeplitz-assembly-2026-09-12.md
 ---
 
@@ -17,3 +18,5 @@ Section 3 of the artifact.
    `SL_n(F_p)` over `n >= 3`.
 4. In a residually finite target its image is trivial, since residual finiteness passes to
    subgroups and simple residually finite groups are finite.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 42 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

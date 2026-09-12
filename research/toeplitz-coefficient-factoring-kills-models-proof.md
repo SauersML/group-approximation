@@ -8,6 +8,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-toeplitz-assembly-2026-09-12.md
 ---
 
@@ -16,3 +17,5 @@ Section 2 of the artifact.
 2. The entrywise map sends `x_12(e)` to `x_12(0) = 1`, so `σ(x_12(e)) = ψ(1) = 1`.
 3. `x_12(e) != 1`, and `G = EL_3(R) ≅ R^x` is simple, so `ker σ = G`.
 4. The limit version runs the same steps stagewise, up to rank `o(1)`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 42 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. Scope: the transfer to `L_K(1,n)` needs `EL_3(L_K(1,n))` simple modulo its centre, which is recorded only for `n = 2` over `F_2` and over odd prime fields.*
