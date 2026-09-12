@@ -1,5 +1,4 @@
 import GroupApproximation.KunThom.RelativeDataErrors
-import GroupApproximation.KunThom.SequentialComponentFamilyCompanion
 
 /-!
 # Good objects of a compressor over a cluster frame
@@ -244,10 +243,11 @@ theorem frame_scale_eventually {G : Type} [Group G] {Γ : Subgroup G} [Infinite 
     {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
     (D : CompressorDecomposition C A) (F : ClusterFrame D.retained) (M : ℕ) :
     ∃ N₀ : ℕ, ∀ n ≥ N₀, ∀ X : F.Obj n, M ≤ (F.system n).scale X := by
-  obtain ⟨N₀, hN₀⟩ := SequentialComponentFamily.componentFamily_scale_eventually D.gamma
-    C.generatorsΓ_symmetric C.generatorsΓ_generate ⟨1, C.generatorsΓ_one⟩ D.enum
-    D.enum_surjective M
-  exact ⟨N₀, fun n hn X ↦ hN₀ n hn X.1⟩
+  obtain ⟨N₀, hN₀⟩ := D.retained.data.family.size_tendsTo (18 * M)
+  refine ⟨N₀, fun n hn X ↦ ?_⟩
+  have h := hN₀ n hn X.1
+  show M ≤ Fintype.card (D.retained.data.family.model n X.1) / 18
+  omega
 
 /-- The bridge defects along the matching have negligible total over the domain. -/
 theorem frameBridgeError_sum_negligible {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]

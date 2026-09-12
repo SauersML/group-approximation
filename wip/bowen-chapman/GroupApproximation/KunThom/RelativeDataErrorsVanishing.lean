@@ -12,6 +12,9 @@ compatibility failures of the retained components, and the two totals of conjuga
 failures (`ConjugationFailureVanishing.negligible_sum_card_conjFailure` and
 `negligible_sum_card_conjFailure_inv`, for the words `compressorWords C q`).
 
+* `sum_card_conjFailure_words_negligible` and `sum_card_conjFailure_inv_words_negligible`:
+  the two conjugation totals for the words of a compression setup, over any group of
+  generators.
 * `compressorMajorant_negligible` and `matchingError_vanishing`.
 -/
 
@@ -19,7 +22,34 @@ namespace GroupApproximation
 namespace RelativeDataMarkov
 
 open Classical
-open CompressorNormalizationAssembly
+open BlockPatching CompressorNormalizationAssembly
+
+/-- The conjugation failures of a compressor for the chosen words are negligible. -/
+theorem sum_card_conjFailure_words_negligible {G K J : Type} [Group G] [Group K] [Group J]
+    (C : CompressionSetup G K J) {q : G} (hq : q ∈ C.compressors) (S : SoficApproximation G)
+    {I : ℕ → Type} [∀ n, Fintype (I n)] (E : ∀ n, BlockEmbedding (S.model n) (I n))
+    (B : ∀ n, BlockAction (E n) ↥C.generatorsΓ)
+    (hB : ∀ n l, (B n).act l = S.map n (C.embedΓ (l : K))) :
+    Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ)) fun n ↦
+      ((∑ s : ↥C.generatorsΓ, ∑ X, (RelativeFunctorEstimate.conjFailure (E n) (S.map n q) (B n)
+        (RelativeFunctorEstimate.wordBlockAction (B n) (compressorWords C q)) X s).card : ℕ) :
+          ℝ) :=
+  ConjugationFailureVanishing.negligible_sum_card_conjFailure S (fun l ↦ C.embedΓ (l : K))
+    (compressorWords C q) q (compressorWords_prod C hq) E B hB
+
+/-- The conjugation failures of the inverse of a compressor for the chosen words are
+negligible. -/
+theorem sum_card_conjFailure_inv_words_negligible {G K J : Type} [Group G] [Group K]
+    [Group J] (C : CompressionSetup G K J) {q : G} (hq : q ∈ C.compressors)
+    (S : SoficApproximation G) {I : ℕ → Type} [∀ n, Fintype (I n)]
+    (E : ∀ n, BlockEmbedding (S.model n) (I n)) (B : ∀ n, BlockAction (E n) ↥C.generatorsΓ)
+    (hB : ∀ n l, (B n).act l = S.map n (C.embedΓ (l : K))) :
+    Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ)) fun n ↦
+      ((∑ s : ↥C.generatorsΓ, ∑ X, (RelativeFunctorEstimate.conjFailure (E n) (S.map n q)⁻¹
+        (RelativeFunctorEstimate.wordBlockAction (B n) (compressorWords C q)) (B n) X s).card :
+          ℕ) : ℝ) :=
+  ConjugationFailureVanishing.negligible_sum_card_conjFailure_inv S (fun l ↦ C.embedΓ (l : K))
+    (compressorWords C q) q (compressorWords_prod C hq) E B hB
 
 /-- The majorant of a compressor has negligible density. -/
 theorem compressorMajorant_negligible {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
@@ -35,19 +65,16 @@ theorem compressorMajorant_negligible {G : Type} [Group G] {Γ : Subgroup G} [In
   have hcompat : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (compatTotal D) :=
     Negligible.sum Finset.univ _ fun l _ ↦ D.retained.compat_negligible l
   have hconj : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (conjTotal D q) := by
-    refine (ConjugationFailureVanishing.negligible_sum_card_conjFailure A _ _ q
-      (compressorWords_prod C hq) (fun n ↦ D.retained.data.embedding n)
+    refine (sum_card_conjFailure_words_negligible C hq A (fun n ↦ D.retained.data.embedding n)
       (fun n ↦ D.retained.data.blockAction n) (fun _ _ ↦ rfl)).congr fun n ↦ ?_
-    rw [conjTotal]
-    simp only [Nat.cast_sum]
-    rfl
+    rw [conjTotal, Nat.cast_sum]
+    exact Finset.sum_congr rfl fun _ _ ↦ Nat.cast_sum _ _
   have hconjInv : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (conjInvTotal D q) := by
-    refine (ConjugationFailureVanishing.negligible_sum_card_conjFailure_inv A _ _ q
-      (compressorWords_prod C hq) (fun n ↦ D.retained.data.embedding n)
-      (fun n ↦ D.retained.data.blockAction n) (fun _ _ ↦ rfl)).congr fun n ↦ ?_
-    rw [conjInvTotal]
-    simp only [Nat.cast_sum]
-    rfl
+    refine (sum_card_conjFailure_inv_words_negligible C hq A
+      (fun n ↦ D.retained.data.embedding n) (fun n ↦ D.retained.data.blockAction n)
+      (fun _ _ ↦ rfl)).congr fun n ↦ ?_
+    rw [conjInvTotal, Nat.cast_sum]
+    exact Finset.sum_congr rfl fun _ _ ↦ Nat.cast_sum _ _
   have hmajor := (((((hblock.add (hremoved.const_mul 2)).const_mul
       (Fintype.card ↥D.retained.data.generators : ℝ)).add (hcompat.const_mul 2)).add
       hconj).add hconjInv).add
