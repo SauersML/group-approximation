@@ -53,8 +53,8 @@ theorem manuscriptSentence_reductionModSuitableIntegerSeparates :
   intro ι κ A B hAB
   obtain ⟨i, j, hij⟩ : ∃ i j, A i j ≠ B i j := by
     by_contra h
-    push_neg at h
-    exact hAB (Matrix.ext h)
+    exact hAB (Matrix.ext fun i j =>
+      Classical.byContradiction fun hne => h ⟨i, j, hne⟩)
   have hz : A i j - B i j ≠ 0 := sub_ne_zero.mpr hij
   refine ⟨(A i j - B i j).natAbs + 1, Nat.succ_ne_zero _, fun heq => ?_⟩
   have h := congrFun (congrFun heq i) j
