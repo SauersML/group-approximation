@@ -47,7 +47,7 @@ variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq �
 
 /-- `1` in the even part is the degree-zero class `1`. -/
 theorem one_eq_evenOf_one (p : ℕ) (Y : TopCat.{0}) :
-    (1 : Gen.evenPart (ZMod p) Y) = OddPTotal.evenOf (ZMod p) Y even_zero (one (K := ZMod p) Y) :=
+    (1 : Gen.evenPart (ZMod p) Y) = OddPTotal.evenOf (ZMod p) Y Even.zero (one (K := ZMod p) Y) :=
   Subtype.ext (TotalHOf.of_one (ZMod p) Y).symm
 
 /-- A pulled-back degree-two class, in the even part, is the pullback of the class. -/
@@ -85,7 +85,7 @@ theorem hasSplittingPN_of_compactOps (p : ℕ) [Fact p.Prime]
     hnat
   · intro n hn
     rw [one_eq_evenOf_one p (TopCat.of (Bundle.Flag E r))]
-    exact ops.unstable _ n even_zero (one (K := ZMod p) _) (by omega)
+    exact ops.unstable _ n Even.zero (one (K := ZMod p) _) (by omega)
   · intro n l C
     exact ops.cartan _ n _ _ (ops.good_two _ (flagRootOf (ZMod p) hgen E r hr1 l))
       (Subring.prod_mem _ fun l' _ => ops.good_two _ (flagRootOf (ZMod p) hgen E r hr1 l'))
