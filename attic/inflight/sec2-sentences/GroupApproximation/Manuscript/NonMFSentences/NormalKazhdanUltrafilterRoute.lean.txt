@@ -102,19 +102,20 @@ theorem manuscriptSentence_ultrafilterTraceIsTracialStateOnCorona :
     rfl
   · rw [ultrafilterNormalizedTraceCLM_apply]
     exact norm_ultrafilterNormalizedTraceAdd_le X ω hω x
-  · rw [← map_one (normMatrixCStarCoronaMk (fun n ↦ X n)),
+  · rw [← RingHom.map_one (normMatrixCStarCoronaMk (fun n ↦ X n)),
       ultrafilterNormalizedTraceCLM_mk]
     exact TracialUltraproduct.seqUltratrace_one X ω
   · obtain ⟨a, rfl⟩ := normMatrixCStarCoronaMk_surjective (fun n ↦ X n) x
     rw [normMatrixCStarCorona_star_mk,
-      ← map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)), ultrafilterNormalizedTraceCLM_mk]
+      ← RingHom.map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)), ultrafilterNormalizedTraceCLM_mk]
     exact ⟨TracialUltraproduct.seqHSLimit X ω a,
       TracialUltraproduct.seqHSLimit_nonneg X ω a,
       TracialUltraproduct.seqUltratrace_star_mul_self X ω a⟩
   · obtain ⟨a, rfl⟩ := normMatrixCStarCoronaMk_surjective (fun n ↦ X n) x
     obtain ⟨b, rfl⟩ := normMatrixCStarCoronaMk_surjective (fun n ↦ X n) y
-    rw [← map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)) a b,
-      ← map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)) b a, ultrafilterNormalizedTraceCLM_mk,
+    rw [← RingHom.map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)) a b,
+      ← RingHom.map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)) b a,
+      ultrafilterNormalizedTraceCLM_mk,
       ultrafilterNormalizedTraceCLM_mk]
     exact TracialUltraproduct.seqUltratrace_mul_comm X ω a b
 
@@ -145,8 +146,8 @@ def cornerCoronaUnitaryHom {G : Type*} [Group G] {model : ℕ → FiniteModel}
           * normMatrixCStarCoronaMk (fun n ↦ D.cornerModel n)
             (unitarySequenceBounded (fun n ↦ D.cornerModel n)
               (fun n ↦ D.cornerMap n h))
-      rw [← map_mul (normMatrixCStarCoronaMk (fun n ↦ D.cornerModel n)), ← sub_eq_zero,
-        ← map_sub (normMatrixCStarCoronaMk (fun n ↦ D.cornerModel n)),
+      rw [← RingHom.map_mul (normMatrixCStarCoronaMk (fun n ↦ D.cornerModel n)), ← sub_eq_zero,
+        ← RingHom.map_sub (normMatrixCStarCoronaMk (fun n ↦ D.cornerModel n)),
         normMatrixCStarCoronaMk_eq_zero_iff, IsNullMatrixSequence, Nat.cofinite_eq_atTop]
       refine (D.cornerMap_mul_defect_tendsto g h).congr fun n ↦ ?_
       rw [lp.coeFn_sub, Pi.sub_apply, lp.infty_coeFn_mul, Pi.mul_apply]
@@ -158,8 +159,7 @@ theorem cornerEmbedSeq_zero (Y : ℕ → FiniteModel) (P : ∀ n, Matrix (Y n) (
     (hP : ∀ n, (P n).IsHermitian) :
     CornerCoronaEmbedding.cornerEmbedSeq Y P hP 0 = 0 := by
   refine lp.ext (funext fun n ↦ ?_)
-  rw [CornerCoronaEmbedding.cornerEmbedSeq_apply, lp.coeFn_zero, Pi.zero_apply,
-    Pi.zero_apply]
+  rw [CornerCoronaEmbedding.cornerEmbedSeq_apply]
   exact NormalKazhdanPrintedRoute.cornerEmbed_zero (hP n)
 
 theorem cornerEmbedSeq_add (Y : ℕ → FiniteModel) (P : ∀ n, Matrix (Y n) (Y n) ℂ)
@@ -172,11 +172,15 @@ theorem cornerEmbedSeq_add (Y : ℕ → FiniteModel) (P : ∀ n, Matrix (Y n) (Y
   simp only [CornerCoronaEmbedding.cornerEmbedSeq_apply, lp.coeFn_add, Pi.add_apply]
   exact NormalKazhdanPrintedRoute.cornerEmbed_add (hP n) (c n) (d n)
 
-theorem cornerEmbedSeq_smul (Y : ℕ → FiniteModel) (P : ∀ n, Matrix (Y n) (Y n) ℂ)
-    (hP : ∀ n, (P n).IsHermitian) (z : ℂ)
+set_option synthInstance.maxHeartbeats 80000 in
+theorem cornerEmbedSeq_smul (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
+    (P : ∀ n, Matrix (Y n) (Y n) ℂ) (hP : ∀ n, (P n).IsHermitian)
+    [∀ n, Nonempty (CornerCoronaEmbedding.cornerModel Y P hP n)] (z : ℂ)
     (c : BoundedMatrixSequence (fun n ↦ CornerCoronaEmbedding.cornerModel Y P hP n)) :
-    CornerCoronaEmbedding.cornerEmbedSeq Y P hP (z • c)
-      = z • CornerCoronaEmbedding.cornerEmbedSeq Y P hP c := by
+    CornerCoronaEmbedding.cornerEmbedSeq Y P hP
+        (z • c : BoundedMatrixSequence (fun n ↦ CornerCoronaEmbedding.cornerModel Y P hP n))
+      = (z • CornerCoronaEmbedding.cornerEmbedSeq Y P hP c :
+          BoundedMatrixSequence (fun n ↦ Y n)) := by
   refine lp.ext (funext fun n ↦ ?_)
   simp only [CornerCoronaEmbedding.cornerEmbedSeq_apply, lp.coeFn_smul, Pi.smul_apply]
   exact NormalKazhdanPrintedRoute.cornerEmbed_smul (hP n) z (c n)
@@ -188,9 +192,10 @@ def cornerEmbedSeqAddHom (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
       NormMatrixCStarCorona (fun n ↦ Y n) where
   toFun c := normMatrixCStarCoronaMk (fun n ↦ Y n)
     (CornerCoronaEmbedding.cornerEmbedSeq Y P hP c)
-  map_zero' := by rw [cornerEmbedSeq_zero, map_zero (normMatrixCStarCoronaMk (fun n ↦ Y n))]
+  map_zero' := by
+    rw [cornerEmbedSeq_zero, RingHom.map_zero (normMatrixCStarCoronaMk (fun n ↦ Y n))]
   map_add' c d := by
-    rw [cornerEmbedSeq_add, map_add (normMatrixCStarCoronaMk (fun n ↦ Y n))]
+    rw [cornerEmbedSeq_add, RingHom.map_add (normMatrixCStarCoronaMk (fun n ↦ Y n))]
 
 theorem nullIdeal_le_cornerEmbedSeqAddHom_ker (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
     (P : ∀ n, Matrix (Y n) (Y n) ℂ) (hP : ∀ n, (P n).IsHermitian)
@@ -206,12 +211,12 @@ theorem nullIdeal_le_cornerEmbedSeqAddHom_ker (Y : ℕ → FiniteModel) [∀ n, 
         (fun n ↦ CornerCoronaEmbedding.cornerModel Y P hP n) c
       = normMatrixCStarCoronaMk
         (fun n ↦ CornerCoronaEmbedding.cornerModel Y P hP n) 0 := by
-    rw [map_zero (normMatrixCStarCoronaMk
+    rw [RingHom.map_zero (normMatrixCStarCoronaMk
       (fun n ↦ CornerCoronaEmbedding.cornerModel Y P hP n))]
     exact (normMatrixCStarCoronaMk_eq_zero_iff
       (fun n ↦ CornerCoronaEmbedding.cornerModel Y P hP n) c).mpr hnull
   rw [CornerCoronaEmbedding.mk_cornerEmbedSeq_congr Y P hP c 0 hmk0,
-    cornerEmbedSeq_zero, map_zero (normMatrixCStarCoronaMk (fun n ↦ Y n))]
+    cornerEmbedSeq_zero, RingHom.map_zero (normMatrixCStarCoronaMk (fun n ↦ Y n))]
 
 /-- **The printed identification of `𝒬_r` with the corner, on classes.** -/
 def cornerCoronaEmbedAdd (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
@@ -298,6 +303,7 @@ theorem cornerCoronaEmbedCLM_apply (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y
 
 /-! ## `π(e_K) = 0` in `𝒬_r` -/
 
+open scoped CStarAlgebra in
 /-- The map `a ↦ (q Θ(a))` restricted to the retained coordinates, with
 `q = 1 − p`, as a continuous linear map on `C*_max(L)`. -/
 def complementRestrictCLM {L : Type} [Group L] (X : ℕ → FiniteModel)
@@ -305,15 +311,13 @@ def complementRestrictCLM {L : Type} [Group L] (X : ℕ → FiniteModel)
     (p : NormMatrixCStarCorona (fun n ↦ X n))
     (f : MaximalGroupCStar L →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) :
     MaximalGroupCStar L →L[ℂ] NormMatrixCStarCorona (fun k ↦ X (φ k)) where
-  toFun a := coronaRestrictAlg X φ hφ ((1 - p) * f a)
-  map_add' a b := by
-    rw [map_add f a b, mul_add, map_add (coronaRestrictAlg X φ hφ)]
-  map_smul' z a := by
-    rw [map_smul f z a, mul_smul_comm, map_smul (coronaRestrictAlg X φ hφ)]
-    rfl
+  toLinearMap := (coronaRestrictAlg X φ hφ).toAlgHom.toLinearMap.comp
+    ((LinearMap.mulLeft ℂ ((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p)).comp
+      f.toAlgHom.toLinearMap)
   cont := (map_continuous (coronaRestrictAlg X φ hφ)).comp
     (continuous_const.mul (map_continuous f))
 
+open scoped CStarAlgebra in
 /-- A `⋆`-homomorphism out of a maximal group `C*`-algebra, as a continuous
 linear map. -/
 def starAlgHomCLM {L : Type} [Group L] {A : Type} [CStarAlgebra A]
@@ -392,7 +396,7 @@ theorem manuscriptSentence_inducedCornerKazhdanProjectionZero
         F KD.projection) hext
     change cornerCoronaEmbedCLM (fun k ↦ X (φ k)) D.q D.qHermitian (π KD.projection)
       = coronaRestrictAlg X φ hφ ((1 - f KD.projection) * f KD.projection) at h
-    rw [h, hzero, map_zero (coronaRestrictAlg X φ hφ)]
+    rw [h, hzero, coronaRestrictAlg_apply, RingHom.map_zero (coronaRestrict X φ hφ)]
   have hnorm : ‖π KD.projection‖ = 0 := by
     rw [← norm_cornerCoronaEmbedAdd (fun k ↦ X (φ k)) D.q D.qHermitian
       (π KD.projection), ← cornerCoronaEmbedCLM_apply, hΨ, norm_zero]
