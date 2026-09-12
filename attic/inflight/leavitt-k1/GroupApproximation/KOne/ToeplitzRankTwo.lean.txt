@@ -134,12 +134,8 @@ def genUnit {a b : Fin 2} (h : a ≠ b) (X : Module.End k (Space k d)) :
     (Module.End k (Fin 2 → Space k d))ˣ where
   val := 1 + entry a b X
   inv := 1 - entry a b X
-  val_inv := by
-    rw [mul_sub, mul_one, add_mul, one_mul, entry_mul_entry_of_ne h]
-    abel
-  inv_val := by
-    rw [sub_mul, one_mul, mul_add, mul_one, entry_mul_entry_of_ne h]
-    abel
+  val_inv := one_add_mul_one_sub_of_mul_self (entry_mul_entry_of_ne h X X)
+  inv_val := one_sub_mul_one_add_of_mul_self (entry_mul_entry_of_ne h X X)
 
 theorem tame_genUnit {a b : Fin 2} (h : a ≠ b) {X : Module.End k (Space k d)}
     (hX : Tame (split k d) X) :
@@ -241,14 +237,7 @@ theorem Lifts.mul {Z Z' : Module.End k (Fin 2 → Space k d)}
   refine ⟨x0 * y0 + x1 * y1, ?_, ?_⟩
   · rw [map_add, map_mul, map_mul, hx0, hx1, hy0, hy1, Matrix.mul_apply, Fin.sum_univ_two]
   · rw [ent_mul, map_add, map_mul, map_mul]
-    have hrw : ent a 0 Z * ent 0 b Z' + ent a 1 Z * ent 1 b Z'
-          - (rho k d x0 * rho k d y0 + rho k d x1 * rho k d y1)
-        = ((ent a 0 Z - rho k d x0) * ent 0 b Z' + rho k d x0 * (ent 0 b Z' - rho k d y0))
-          + ((ent a 1 Z - rho k d x1) * ent 1 b Z' + rho k d x1 * (ent 1 b Z' - rho k d y1)) := by
-      rw [sub_mul, sub_mul, mul_sub, mul_sub]
-      abel
-    rw [hrw]
-    exact ((hr0.mul_right _).add (hs0.mul_left _)).add ((hr1.mul_right _).add (hs1.mul_left _))
+    exact FiniteRank.add_sub_add (FiniteRank.mul_sub_mul hr0 hs0) (FiniteRank.mul_sub_mul hr1 hs1)
 
 theorem lifts_one :
     Lifts (1 : Module.End k (Fin 2 → Space k d)) (1 : Matrix (Fin 2) (Fin 2) (AryLeavittAlgebra k d)) := by
@@ -256,8 +245,7 @@ theorem lifts_one :
   refine ⟨if a = b then 1 else 0, ?_, ?_⟩
   · rw [Matrix.one_apply]
     split_ifs <;> simp
-  · rw [ent_one]
-    split_ifs <;> simp [finiteRank_zero]
+  · exact finiteRank_sub_of_eq (by rw [ent_one]; split_ifs <;> simp)
 
 theorem lifts_genUnit {a b : Fin 2} (h : a ≠ b) (x : Free k d) :
     Lifts (genUnit h (rho k d x) : Module.End k (Fin 2 → Space k d))
@@ -267,9 +255,10 @@ theorem lifts_genUnit {a b : Fin 2} (h : a ≠ b) (x : Free k d) :
   · show _ = (1 + Matrix.single a b (quotientMap k d x) : Matrix (Fin 2) (Fin 2) _) a' b'
     rw [Matrix.add_apply, Matrix.one_apply, Matrix.single_apply, map_add]
     split_ifs <;> simp_all
-  · show FiniteRank (ent a' b' (1 + entry a b (rho k d x)) - _)
+  · refine finiteRank_sub_of_eq ?_
+    show ent a' b' (1 + entry a b (rho k d x)) = _
     rw [ent_add, ent_one, ent_entry, map_add]
-    split_ifs <;> simp [finiteRank_zero]
+    split_ifs <;> simp
 
 /-- **Every element of `EL₂(L_k(1,d))` has a tame lift with regularized determinant one.** -/
 theorem exists_lift_of_mem_elementaryGroup
@@ -372,11 +361,10 @@ theorem finiteRank_sub_diagOp_of_lifts (c : kˣ) {Z : Module.End k (Fin 2 → Sp
   have hq : quotientMap k d x = quotientMap k d (diagEnt c a b) := by
     rw [hx, quotientMap_diagEnt]
   have hdiff := finiteRank_rho_sub_of_quotientMap_eq hq
-  rw [ent_sub, ← rho_diagEnt]
-  have hrw : ent a b Z - rho k d (diagEnt c a b)
-      = (ent a b Z - rho k d x) + (rho k d x - rho k d (diagEnt c a b)) := by abel
-  rw [hrw]
-  exact hr.add hdiff
+  have hdiff' : FiniteRank (rho k d x - ent a b (diagOp c : Module.End k (Fin 2 → Space k d))) := by
+    rw [← rho_diagEnt]
+    exact hdiff
+  exact hr.sub_trans hdiff'
 
 end ToeplitzWords
 end GroupApproximation
