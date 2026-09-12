@@ -4602,6 +4602,8 @@ import GroupApproximation.Dynamics.DoubleFinitarySite
 import GroupApproximation.BowenChapman.LaurentPairResiduallyFinite
 import GroupApproximation.BowenChapman.LaurentPairKazhdan
 import GroupApproximation.BowenChapman.LaurentPairGeneration
+import GroupApproximation.KunThom.NormalizationFromCriterion
+import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
