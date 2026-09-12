@@ -172,55 +172,73 @@ def compact(cells, rels):
     return basic, word, sorted(out)
 
 
-def gap_file(path, wit, nbasic, crels, max_index):
+GAP_TARGETS = [("A5", "AlternatingGroup(5)"), ("PSL32", "PSL(3,2)"), ("A6", "AlternatingGroup(6)"),
+               ("PSL28", "PSL(2,8)"), ("PSL211", "PSL(2,11)"), ("PSL213", "PSL(2,13)"),
+               ("A7", "AlternatingGroup(7)"), ("A8", "AlternatingGroup(8)")]
+
+
+def gap_files(gap_dir, tag, nbasic, crels, max_index, cap):
+    """One GAP file per target and one for low-index coset actions, so each run has its own time bound.
+
+    <tag>--<name>.g writes <tag>--<name>.witness.jsonl, one image per line, at most `cap` images.
+    """
     def w(r):
         return "*".join("g[%d]%s" % (a, "" if e == 1 else "^-1") for a, e in r)
-    with open(path, "w") as fh:
-        fh.write("F := FreeGroup(%d);; g := GeneratorsOfGroup(F);;\nrels := [%s];;\n" % (
-            nbasic, ",\n".join(w(r) for r in crels)))
-        fh.write("U := F/rels;; iso := IsomorphismSimplifiedFpGroup(U);; V := Range(iso);;\n"
-                 "Print(\"SIMPLIFIED \", Length(GeneratorsOfGroup(V)), \" \", Length(RelatorsOfFpGroup(V)), \"\\n\");\n"
-                 "out := OutputTextFile(\"%s\", false);; SetPrintFormattingStatus(out, false);;\n"
-                 "emit := function(hom, deg, tag) local imgs;\n"
-                 "  imgs := List(GeneratorsOfGroup(U), x -> Image(hom, Image(iso, x)));\n"
-                 "  AppendTo(out, \"{\\\"tag\\\": \\\"\", tag, \"\\\", \\\"degree\\\": \", deg,\n"
-                 "    \", \\\"perms\\\": \", List(imgs, x -> ListPerm(x, deg)), \"}\\n\");\nend;;\n" % wit)
-        fh.write("targets := [[AlternatingGroup(5), \"A5\"], [PSL(3,2), \"PSL(3,2)\"], [AlternatingGroup(6), \"A6\"],\n"
-                 "  [PSL(2,8), \"PSL(2,8)\"], [PSL(2,11), \"PSL(2,11)\"], [PSL(2,13), \"PSL(2,13)\"],\n"
-                 "  [AlternatingGroup(7), \"A7\"], [AlternatingGroup(8), \"A8\"]];;\n"
-                 "for T in targets do for hom in GQuotients(V, T[1]) do\n"
-                 "  emit(hom, LargestMovedPoint(T[1]), T[2]); od; Print(\"DONE \", T[2], \"\\n\"); od;\n"
-                 "for K in LowIndexSubgroupsFpGroup(V, %d) do if Index(V, K) > 1 then\n"
-                 "  emit(FactorCosetAction(V, K), Index(V, K), \"cosets\"); fi; od;\n"
-                 "CloseStream(out);; Print(\"GAP_DONE\\n\");\nQUIT;\n" % max_index)
+    head = ("F := FreeGroup(%d);; g := GeneratorsOfGroup(F);;\nrels := [%s];;\n" % (
+        nbasic, ",\n".join(w(r) for r in crels)) +
+        "U := F/rels;; iso := IsomorphismSimplifiedFpGroup(U);; V := Range(iso);;\n"
+        "Print(\"SIMPLIFIED \", Length(GeneratorsOfGroup(V)), \" \", Length(RelatorsOfFpGroup(V)), \"\\n\");\n")
+    emit = ("out := OutputTextFile(\"%s\", false);; SetPrintFormattingStatus(out, false);; emitted := 0;;\n"
+            "emit := function(hom, deg, tname) local imgs;\n"
+            "  imgs := List(GeneratorsOfGroup(U), x -> Image(hom, Image(iso, x)));\n"
+            "  AppendTo(out, \"{\\\"tag\\\": \\\"\", tname, \"\\\", \\\"degree\\\": \", deg,\n"
+            "    \", \\\"perms\\\": \", List(imgs, x -> ListPerm(x, deg)), \"}\\n\");\n"
+            "  emitted := emitted + 1;\nend;;\n")
+    tail = "CloseStream(out);; Print(\"GAP_DONE \", emitted, \"\\n\");\nQUIT;\n"
+    jobs = [(name, "for hom in GQuotients(V, %s) do if emitted < %d then emit(hom, LargestMovedPoint(%s), \"%s\"); fi; od;\n"
+             % (grp, cap, grp, name)) for name, grp in GAP_TARGETS]
+    jobs.append(("cosets", "for K in LowIndexSubgroupsFpGroup(V, %d) do if Index(V, K) > 1 and emitted < %d then\n"
+                           "  emit(FactorCosetAction(V, K), Index(V, K), \"cosets\"); fi; od;\n" % (max_index, cap)))
+    for name, body in jobs:
+        base = os.path.join(gap_dir, "%s--%s" % (tag, name))
+        with open(base + ".g", "w") as fh:
+            fh.write(head + emit % (base + ".witness.jsonl") + body + tail)
 
 
 def mul(g, h):
     return [h[x] for x in g]
 
 
-def replay_images(cells, rels, ba, word, wit_path, keys):
-    """Apply every GAP image: check all relators of U(A, B), then refine the keys on BA u {1}."""
+def replay_images(cells, rels, ba, word, wit_paths, keys):
+    """Apply every GAP image: check all relators of U(A, B), then refine the keys on BA u {1}.
+
+    A line that is not valid JSON, for instance from a run killed mid-write, counts as rejected.
+    """
     used = bad = 0
-    for line in open(wit_path):
-        rec = json.loads(line)
-        n = rec["degree"]
-        gens = [[x - 1 for x in p] + list(range(len(p), n)) for p in rec["perms"]]
-        inv = [[0] * n for _ in gens]
-        for a, p in enumerate(gens):
-            for x, y in enumerate(p):
-                inv[a][y] = x
-        perm = {}
-        for k in range(len(cells)):
-            img = list(range(n))
-            for a, e in word[k]:
-                img = mul(img, gens[a - 1] if e == 1 else inv[a - 1])
-            perm[k] = tuple(img)
-        if any(mul(perm[i], perm[j]) != list(perm[k]) for i, j, k in rels):
-            bad += 1
-            continue
-        used += 1
-        keys = {g: keys[g] + (perm[g],) for g in ba}
+    for wit_path in wit_paths:
+        for line in open(wit_path):
+            try:
+                rec = json.loads(line)
+            except ValueError:
+                bad += 1
+                continue
+            n = rec["degree"]
+            gens = [[x - 1 for x in p] + list(range(len(p), n)) for p in rec["perms"]]
+            inv = [[0] * n for _ in gens]
+            for a, p in enumerate(gens):
+                for x, y in enumerate(p):
+                    inv[a][y] = x
+            perm = {}
+            for k in range(len(cells)):
+                img = list(range(n))
+                for a, e in word[k]:
+                    img = mul(img, gens[a - 1] if e == 1 else inv[a - 1])
+                perm[k] = tuple(img)
+            if any(mul(perm[i], perm[j]) != list(perm[k]) for i, j, k in rels):
+                bad += 1
+                continue
+            used += 1
+            keys = {g: keys[g] + (perm[g],) for g in ba}
     return keys, used, bad
 
 
@@ -245,16 +263,18 @@ def main():
                 keys = {g: keys[g] + (chi.get(g, 0),) for g in ba}
             rec["stage1_classes_replayed"] = len(classes(keys))
             tag = "%s-%d-%d" % (rec["family"], rec["ra"], rec["rb"])
-            wit = os.path.join(args.gap_dir or ".", tag + ".witness.jsonl")
-            if os.path.exists(wit):
+            gdir = args.gap_dir or "."
+            wits = sorted(os.path.join(gdir, f) for f in (os.listdir(gdir) if os.path.isdir(gdir) else [])
+                          if f.startswith(tag + "--") and f.endswith(".witness.jsonl"))
+            if wits:
                 basic, word, crels = compact(cells, rels)
-                keys, used, bad = replay_images(cells, rels, ba, word, wit, keys)
-                rec.update(images_used=used, images_rejected=bad)
+                keys, used, bad = replay_images(cells, rels, ba, word, wits, keys)
+                rec.update(images_used=used, images_rejected=bad, witness_files=len(wits))
             cl = classes(keys)
             rec.update(characters_ok=ok, final_classes=len(cl), final_class_sizes=sorted(len(c) for c in cl),
                        final_classes_cells=cl, status="DEAD" if ok and not cl else "SURVIVES")
-            print(tag, {k: rec[k] for k in ("characters_ok", "stage1_classes", "final_classes", "status")
-                        if k in rec}, flush=True)
+            print(tag, {k: rec[k] for k in ("characters_ok", "stage1_classes", "images_used", "images_rejected",
+                                            "final_classes", "status") if k in rec}, flush=True)
         json.dump(results, open(args.verify.replace(".json", ".final.json"), "w"))
         return
     primes = [int(x) for x in args.primes.split(",")]
@@ -272,8 +292,7 @@ def main():
             os.makedirs(args.gap_dir, exist_ok=True)
             basic, word, crels = compact(cells, rels)
             tag = "%s-%d-%d" % (fam, ra, rb)
-            gap_file(os.path.join(args.gap_dir, tag + ".g"), os.path.join(args.gap_dir, tag + ".witness.jsonl"),
-                     len(basic), crels, args.max_index)
+            gap_files(args.gap_dir, tag, len(basic), crels, args.max_index, int(os.environ.get("GAPCAP", "60")))
             rec.update(compact_generators=len(basic), compact_relators=len(crels))
         print(spec, {k: v for k, v in rec.items() if k != "characters"}, flush=True)
         results.append(rec)
