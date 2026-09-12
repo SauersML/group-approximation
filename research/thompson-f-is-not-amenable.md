@@ -43,7 +43,28 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
 - **Non-Ore certificate.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   non-amenability is equivalent to a pair `a, b` in `K[F]` with no nonzero common
   multiple. A finite search can propose candidate pairs, but ruling out every
-  multiple needs a structural invariant. Dies: none is known.
+  multiple needs a structural invariant. Dies: none is known. What is excluded:
+  - `(1 - a, 1 - c)` for all `a, c ≠ 1` (`thompson-f-binomial-pairs-have-common-multiples`);
+  - `(1 - x_0, b)` for every `b` (`thompson-f-one-minus-x0-is-ore-with-every-element`, Guba
+    2022);
+  - `(1 - h, b)` for every `b`, when `h` is conjugate to `x_0^{+-1}`, `x_1^{+-1}` or
+    `(x_1 x_0^-1)^{+-1}`. That is Guba's Question 3.20, answered here
+    (`thompson-f-one-minus-x1-is-ore-with-every-element`).
+  - homogeneous degree-one pairs `P_(1,m)` for all `m`, and the degree-two case
+    `P_(2,1)` (Guba's survey arXiv:2305.07113, Theorems 3.10, 3.11, 3.14);
+  - three-equation systems `Q_3` in linear forms of `x_0, x_1, x_2` (survey Corollary
+    3.13).
+
+  Open candidates named in the survey: the degree-two case `P_(2,2)` and the
+  four-equation system `Q_4`. A witness must also avoid `1 - h` for `h` in those
+  conjugacy classes. Map: `research/artifacts/thompson-f-certificate-shapes-2026-09-12.md`.
+- **Evacuation schemes and bounded flows.** Non-amenability is equivalent to a flow on
+  the Cayley graph with bounded values and inflow at least `epsilon` everywhere, or an
+  evacuation scheme in which each edge is used at most `C` times. This is survey
+  Propositions 1.3 and 2.3, and by Proposition 2.4 (König) it can be checked on finite
+  fragments. Dies for `C = 1`: the Cheeger constant of `F` is below 1 for
+  `{x_0, x_1, x_1 x_0^-1}` and for `{x_0, x_1, x_2}` (survey Theorems 2.5, 2.6, 2.8). Open
+  for `C >= 2`.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.

@@ -48,9 +48,23 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   measures remain, and none is known to be Liouville and non-degenerate.
 - **Group-ring equations.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   amenability is the Ore condition for `K[F]`: every pair of nonzero `a, b` has a
-  nonzero common multiple. Dies: a universally quantified algebraic statement,
-  with no structural source of common multiples. Guba's survey treats equations
-  in the group ring of `F`, and this graph records only its abstract.
+  nonzero common multiple. Guba's survey (arXiv:2305.07113, §3, read in full) reduces
+  this to homogeneous pairs in the positive monoid, Problems `P_(d,m)`. It solves
+  `P_(1,m)` for all `m` and `P_(2,1)`. This graph adds:
+  - all pairs `(1 - a, 1 - c)` (`thompson-f-binomial-pairs-have-common-multiples`);
+  - all pairs `(1 - h, b)` with `h` conjugate to `x_0^{+-1}`, `x_1^{+-1}` or
+    `(x_1 x_0^-1)^{+-1}` (`thompson-f-one-minus-x0-is-ore-with-every-element`,
+    `thompson-f-one-minus-x1-is-ore-with-every-element`).
+
+  Dies at `P_(2,2)`: the survey's cardinality method needs a set with `|S Y| < 2|Y|`
+  for the nine degree-two monomials `S`, and none is known. Unit-coefficient
+  multiples fail outright: `Z_+[M]` is not Ore (survey Theorem 3.6).
+- **Density of Cayley graphs.** Amenability is equivalent to finite subgraphs of density
+  arbitrarily close to `2m`. The best known is density `> 3.5` for `{x_0, x_1}` (Guba,
+  arXiv:2210.12304, improving Belk--Brown's `3.5`), with sets of size about
+  `2^27200` (survey §2). Dies: each improvement removes a local fragment of positive
+  density from Belk--Brown forest sets. No family approaching density 4 is known, and
+  `thompson-f-folner-function-exceeds-every-tower` forces tower-size sets.
 - **Ramsey reformulation.** J. T. Moore, *Amenability and Ramsey theory*, Fund.
   Math. 220 (2013) 263–280, reformulates amenability as a structural Ramsey
   statement that "constitutes a considerable weakening of the Følner criterion"
