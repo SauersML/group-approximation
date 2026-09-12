@@ -4762,3 +4762,4 @@ import GroupApproximation.KunThom.ComponentCountingCompressorImage
 import GroupApproximation.KunThom.ComponentCountingSequentialObjects
 import GroupApproximation.KunThom.CountingEndgameProps
 import GroupApproximation.KunThom.CentralizerBisectionRepresentationCharges
+import GroupApproximation.KunThom.CountingEndgamePropsScale
