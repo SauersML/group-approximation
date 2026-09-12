@@ -35,7 +35,7 @@ Consequences:
   characteristic-three rank model, so neither is `F_3`-linear sofic.
 - The open gate is the single question `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`.
 
-**Scope** (artifact Section 7; scope extension, verification requested).
+**Scope** (artifact Section 7; scope extension, PASS by `w3-vf-linear`, Section 24 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`).
 - **What holds abstractly.** Conditions 1, 2, 3 and 6 are equivalent, and the consequence for the ternary
   corner holds, for homomorphisms into any `F_3`-algebra with a Sylvester matrix rank function positive on
   nonzero idempotents. Conditions 4 and 5 imply them there.

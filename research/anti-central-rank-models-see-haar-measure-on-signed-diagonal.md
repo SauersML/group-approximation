@@ -32,7 +32,7 @@ Consequences:
 - It recovers the corner exclusion of `anti-central-rank-models-kill-ternary-corner-witnesses` on subgroups
   containing `H`: the cylinder idempotent `q_0` has rank `1/2 < 1`.
 
-**Scope** (artifact Section 7; scope extension, verification requested). The proof uses only additivity on
+**Scope** (artifact Section 7; scope extension, PASS by `w3-vf-linear`, Section 24 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`). The proof uses only additivity on
 orthogonal idempotents, invariance under conjugation, and normalization. So the statement holds for any
 `F_3`-algebra with a Sylvester matrix rank function positive on nonzero idempotents.
 

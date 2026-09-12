@@ -27,7 +27,7 @@ mapping each `P_ε` to `P_(ε')`, where `ε'` flips the first two signs. Then:
 The proof uses only the three reflections and `x_12(1)^3 = 1`. Projective content of level groups violates
 `A^2 = 0` while meeting the Haar law, so finite level groups cannot force the identity.
 
-**Scope** (artifact Section 7; scope extension, verification requested).
+**Scope** (artifact Section 7; scope extension, PASS by `w3-vf-linear`, Section 24 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`).
 - **No rank function needed.** The first two bullets are ring identities. They hold for every homomorphism
   from `G` into the units of any `F_3`-algebra.
 - **Any rank function.** The third bullet holds for any Sylvester matrix rank function positive on nonzero

@@ -31,8 +31,7 @@ non-linear-soficity.
   into a regular ring, for instance by universal localization. First kill test: a ring with the rank
   condition but no Sylvester matrix rank function.
 - 2026-09-12 `w3-gate-char3`: (U2) is skippable on the gate side, with one exception
-  (`research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md`, Section 7; scope extension,
-  verification requested).
+  (`research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md`, Section 7; scope extension, PASS by `w3-vf-linear`, Section 24 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`).
   - **What holds abstractly.** These hold for any `F_3`-algebra with a Sylvester matrix rank function positive
     on nonzero idempotents:
     - the equivalence of z-moving, nontrivial, injective and anti-central models of `G`;
