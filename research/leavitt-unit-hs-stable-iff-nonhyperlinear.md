@@ -48,7 +48,10 @@ Fix a finite presentation `<S | R>` of `Q`.
   homomorphism.
 * **1 => 2.** Let `pi : Q -> prod_omega U(d_n)` be a homomorphism, and lift
   each `pi(s)`, `s in S`, to unitaries `phi_n(s)`. Every relator in `R` has
-  defect tending to `0` along `omega`. Stability supplies representations
+  defect tending to `0` along `omega`. Stability gives, for every
+  `epsilon > 0`, some `delta > 0` such that `delta`-almost representations are
+  `epsilon`-close to representations. Along `omega` the defects are
+  eventually below every `delta`. So there are representations
   `rho_n : Q -> U(d_n)` with `max_s ||phi_n(s) - rho_n(s)||_2 -> 0` along
   `omega`. Each `rho_n` is trivial, so `pi(s) = 1` for every generator.
 * **2 => 1.** Suppose `Q` is not stable. Then there are `epsilon > 0` and maps
