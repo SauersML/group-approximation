@@ -264,6 +264,17 @@ bounded 2-quasitrace on `A` vanishes on `K`, and `QL(B)` holds.
    - Whether `A` itself is exact is also open. Non-exactness of `B` does not
      decide it, because the extension by the nuclear ideal `I` need not be locally
      split.
+   - **The non-exactness certificate does not descend to `A`.** Take any faithful
+     representation `π` of `A` and put `x = Σ_{s∈E} ρ_∞(s) ⊗ ρ̄(s)`. The
+     `|E|`-eigenspace of `x` consists of intertwiners from some `σ_j` into
+     `π ∘ ρ_∞`.
+     - A nonzero one would make `σ_j` a finite-dimensional representation of `A`,
+       which Lemma 1.2 excludes.
+     - So `spec(x) ⊂ [−|E|, |E| − κ²/2]`, and the Kazhdan projection is zero in
+       `A ⊗_min ∏ B(H̄_j)`.
+
+     All of `B`'s known non-exactness may therefore sit in the extension by `I`.
+     If `A` is exact, `K` is exact, and Prop. 4.2 gives `QL(B)`.
 4. **Displacement.** Elements of `K` concentrated near finitely many low-height
    points or lines of `P²(Q)` admit, for every `m`, approximately orthogonal
    `Γ`-translates in `A`. So they are infinitesimal and invisible (Prop. 4.1).

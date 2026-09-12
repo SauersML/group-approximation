@@ -45,3 +45,9 @@ this is equivalent to the statement that every bounded 2-quasitrace on the coron
   elements.
 - **Haagerup directly.** Dead: `B` is not exact
   (`kazhdan-fd-block-representation-algebras-are-not-exact`).
+- **Exactness of the corona `A`.** Would prove it, since exact `A` makes `K` exact.
+  Open, but not excluded. The Wassermann–Kazhdan certificate does not descend to
+  `A`: the corona has no finite-dimensional representation, so
+  `Σ ρ_∞(s) ⊗ ρ̄(s)` has no invariant vectors and its Kazhdan projection is zero
+  (artifact §5, item 3). The known non-exactness of `B` may sit entirely in the
+  non-split extension by `⊕M`.
