@@ -322,3 +322,4 @@
 34610332600	2026-09-11T14:29:20Z	GroupApproximation/Sofic/DoubleInputsMinimal.lean	not_isOperatorMF_symmetricDouble_top
 34630505619	2026-09-11T17:57:34Z	GroupApproximation/Sofic/DoublePauliCoefficient.lean	product_commutes_of_both_anticommute
 34647215700	2026-09-11T21:01:51Z	GroupApproximation/Sofic/DoubleSoficTransfer.lean	isSofic_freeLamp_flip_of_isSofic_symmetricDouble
+34657560241	2026-09-12T00:56:41Z	GroupApproximation/Sofic/ExactCoronaNegativeCorner.lean	that
