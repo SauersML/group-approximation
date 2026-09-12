@@ -72,21 +72,31 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
     share at least two points with cancelling signs.
   * **Dead designs.** Cancellation-free, two-term and difference-free designs are dead.
   * **Scope.** General solutions with `c' != b'*` escape this counting.
-- **Rank obstruction (w3-corner-module, w3-corner-crossed).** A Sylvester rank function `rk` on `B`
-  with `rk(q_[0]) < rk(eps_-)` refutes this claim, because `eps_- = c' q_[0] b'` gives
-  `rk(eps_-) <= rk(q_[0])`.
-  * **Lower bound.** Every rank function has `rk(q_[0]) >= rk(eps_-)/2`. A swap `g` in `V` with
-    `g[0] = [1]` conjugates `q_[0]` to `q_[1]`, and `q_[0] + q_[1] = eps_-`.
-  * **Source.** A sofic model of `V ↷ (M_-, lambda)`: asymptotic permutation representations of `V` on
-    `d_n` points, with clopens modelled by subsets that are asymptotically Boolean and equivariant, with
-    densities tending to `lambda`.
-    - The ultralimit of normalized ranks of `f[g] -> diag(f) perm(g)` is a Sylvester rank function with
-      `rk(1_U) = lambda(U)`, so `rk(q_[0]) = 1/2`.
-    - Any asymptotically rank-multiplicative matrix model of `B` over `F_3` with `rk(q_[0])` bounded away
-      from `rk(eps_-)` also suffices.
-    - The mechanism is stated self-contained, and no literature theorem is cited.
-  * **Status.** No such model is known. A sofic essentially free action makes `V` sofic, which is open.
-    How this compares with the `E ⋊ V` linear-soficity gate above is not settled.
+- **Rank obstruction (w3-corner-module, w3-corner-crossed).** Any Sylvester rank function on `B`
+  refutes this claim.
+  * **Why.**
+    - A swap `g` in `V` with `g[0] = [1]` conjugates `q_[0]` to `q_[1] = eps_- - q_[0]`.
+    - Rank functions add over orthogonal idempotents, so every rank function has
+      `rk(q_[0]) = rk(eps_-)/2`, exactly.
+    - `eps_- = c' q_[0] b'` gives `rk(eps_-) <= rk(q_[0])`, which forces `rk(eps_-) = 0`, while
+      `rk(eps_-) = 1` for the unit of `B`.
+    - Equivalently, the claim makes `eps_-` properly infinite: `eps_- ⊕ eps_- ≲ q_[0] ⊕ q_[1] ~ eps_-`.
+    - The exact value is w3-corner-module's sharpening.
+  * **This also forbids** `eps_- ~ 1_(W_1)` in the mixed-depth entry below, since that equivalence would
+    solve this claim.
+  * **Sources.** Densities matter only for building a rank function. The mechanisms below are stated
+    self-contained, and no literature theorem is cited.
+    - **Sofic action.** A sofic model of `V ↷ (M_-, lambda)`: asymptotic permutation representations of
+      `V`, with clopens modelled by asymptotically Boolean, equivariant subsets whose densities tend to
+      `lambda`. The ultralimit of normalized ranks of `f[g] -> diag(f) perm(g)` is a rank function with
+      `rk(1_U) = lambda(U)`.
+    - **Linear soficity.** An `F_3`-linear sofic approximation `pi_n` of `E ⋊ V` (over a field of
+      characteristic 3), extended linearly to `F_3[H]`, has an ultralimit rank function with
+      `rk(eps_-) = lim rk(1 - pi_n(z)) > 0`, because the approximation separates `z` from `1`.
+      Compressing to the corner `B = F_3[H] eps_-` gives one on `B`. So the linear-soficity gate above
+      is an instance of this obstruction.
+  * **Status.** No rank function on `B` is known. A sofic essentially free action makes `V` sofic, which
+    is open.
 - **Mixed-depth defect, equivalent to a clopen indicator (w3-corner-cohn-a).** For every choice of
   extending units, the natural lift of `(s_0, t_0)` has a corrected left inverse with
   `tau'' sigma = eps_- - e'`. Here `e' = 2(F - D)`, and `D` is a partial symmetry on
