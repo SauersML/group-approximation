@@ -93,3 +93,58 @@ trivially to every quotient `Q` of `Γ` whose group algebra has a rank function 
 
 On a simple group such as `R^x` the only proper quotient is trivial, so Corollary 1.3 is the whole
 content there. On proper supports the filter is live.
+
+## 2. Which rank functions can exist on F_2[R^x]
+
+By Corollary 1.3 the binary averaging targets stand or fall with one question: does `F_2[R^x]` carry a
+Sylvester matrix rank function other than `rk_ε`? By Theorem 1.1(4) any such function detects every
+nontrivial element. The known sources are as follows.
+
+**2.1 Through the evaluation: none.** `R` has no Sylvester rank function.
+- Orthogonal idempotents add: `diag(f_1, f_2) = [f_1; f_2] [f_1, f_2]` and
+  `[f_1, f_2] = (f_1 + f_2)[f_1, f_2]` give `rk f_1 + rk f_2 <= rk(f_1 + f_2)`.
+- Equivalent idempotents `f = xy`, `f' = yx` (with `x = f x f'`, `y = f' y f`) have equal rank, since
+  `y = y(xy)` and `f = xy`.
+- `s0 t0` and `s1 t1` are orthogonal with sum `1`, and each is equivalent to `t_i s_i = 1`. So
+  additivity would give `1 = 2`. No rank function on `A` factors through `pi`.
+
+**2.2 Matrix algebras over division rings: none.** Let `φ : F_2[R^x] -> M_n(D)` be a ring
+homomorphism, with `D` a division ring of characteristic two, and `rk(X) = rank_D(φ(X))/n`. Suppose
+`rk != rk_ε`.
+1. By Theorem 1.1(4), `φ` is injective on `R^x`.
+2. Take `x` in `R^x` of order `2^k` with `2^k > 2n`, for example the permutation unit cycling the `2^k`
+   cylinders of length `k`.
+3. `(φ(x) - 1)^(2^k) = φ(x)^(2^k) - 1 = 0`, so `N = φ(x) - 1` is nilpotent. The kernels `ker N^i` form a
+   chain of `D`-subspaces that increases strictly until it reaches `D^n`, so `N^n = 0`.
+4. With `2^j` the least power of two `>= n`, `φ(x)^(2^j) = 1 + N^(2^j) = 1`. So `φ(x)` has order at most
+   `2^j < 2n < 2^k`, a contradiction.
+
+This covers every homomorphism to a division ring. Compare Lemma 1 of
+`research/artifacts/el3-rank-model-extensions-2026-09-12.md`, where triangular models of bounded length
+die through the nilpotency class.
+
+**2.3 Monomial and Hamming models: none.** Rank models into monomial matrix groups are Hamming models
+(`monomial-rank-models-are-hamming-models`). A detecting one would embed `R^x` into a metric
+ultraproduct of symmetric groups, which is ruled out by `openai-leavitt-unit-nonsofic`.
+
+**2.4 Linear soficity: sufficient, open.** Suppose `R^x` is linear sofic over `F_2`.
+- Embedding it into the units of a rank ultraproduct `prod_ω M_(n_i)(F_2)/ker` and extending linearly
+  gives a ring homomorphism.
+- The ultraproduct rank pulls back to a Sylvester rank function with `rk(1 - [x]) >= κ > 0` for `x != 1`.
+
+The same holds for a nontrivial rank model of `R^x` over any field of characteristic two, restricted
+to `F_2[R^x]`. So if `rk_ε` is the only rank function, every characteristic-two rank model of `R^x`
+is trivial. The converse is not available, because a Sylvester rank function need not be matricial.
+
+**2.5 Characteristic zero, for contrast.** Over `C`, von Neumann dimension gives a detecting rank function
+on `C[Γ]` for every group `Γ`. This is literature (Kaplansky's positivity of the trace), not re-read here,
+and no node depends on it. The open claim asks for a characteristic-two substitute on one simple nonsofic
+group.
+
+**2.6 Twisted hosts (remarks, not claims).**
+- *Ternary host.* Over `F_3`, `eps_- = (1 - [z])/2`. So a rank function on `F_3[G_3]` with
+  `rk(1 - [z]) > 0` normalizes to a state on `S_-` and kills the ternary corner. `N_rk` is then a normal
+  subgroup of `G_3` not containing `z`.
+- *Quaternary host `(4, 2, 3)`.* Let `Ψ` be the `F_4`-linear extension of coefficientwise Frobenius on `L`.
+  It swaps `eps_iota` and `eps_(iota²)`. Averaging `rk` with `rk o Ψ` gives `rk(eps_iota) > 0` whenever
+  `rk(1 - [ω]) > 0`, because `1 - [ω] = (1 - [ω])(eps_iota + eps_(iota²))`.
