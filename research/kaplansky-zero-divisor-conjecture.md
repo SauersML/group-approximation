@@ -75,3 +75,10 @@ fixed finitely presented torsion-free group `U`.
     (T), is not elementary amenable, and is not left-orderable (Witte, Proc.
     AMS 122 (1994)). Unique products are not known for it here. A
     Gardam-style SAT census on its balls is in `experiments/zero-divisor-tf/`.
+  - **Field-independent census on `E_3(3)`.** A zero divisor over any field
+    needs a support pair without a uniquely represented product. SAT excludes
+    such pairs with radii `(2,2)` and `(2,3)` in either order
+    (`e33-no-unique-product-pairs-of-small-radius`). So no zero divisor over
+    any field has supports of these radii. The `(3,3)` and `(2,4)` instances
+    were still running on MSI when this bullet landed; outputs go to
+    `/projects/standard/hsiehph/sauer354/zero-divisor-tf/runs-up/`.
