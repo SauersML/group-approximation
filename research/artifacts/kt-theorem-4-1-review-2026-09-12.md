@@ -701,6 +701,56 @@ So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domina
   - Together these give the count hypotheses of `exists_bisection_lift` from ambient
     cleanliness and ratio bounds.
 
+## R15. Landings 13:44–13:45. No defect
+
+- **`205fdf5b4` `MedianVertexFormBlocks`** (kt41-median-vertex). Lemma 4.4 for
+  embedded blocks.
+  - Objects weigh `|E.model i|`. The observable is `f ≥ 1`, read through
+    `blockObject` and set to `1` on uncovered vertices.
+  - `blockRatio_negligible` takes `hone`, `hbad`, `hout` and `hmiss` for every
+    `q ∈ C.compressors`. It is the every-compressor form that trap (B) requires.
+  - The `Γ` generators enter through negligible self-bridge missing mass.
+  - `sum_abs_sub_negligible_of_closure` extends the label estimates to a symmetric
+    generating `T`.
+  - The one-sided form `f(π i) ≤ (1 + κ)·f(i)` matches the paper.
+- **`ced0eb674` `CentralizerBisectionRepresentationDefects`.** Block-local charging for
+  an almost-centralizer `q`.
+  - `localObstruction` sums over blocks to the global commutation and compatibility
+    counts, which fixes the double counting of `card_equivarianceDefect_bridge_le`.
+  - Bridge defects are at most the per-label missing mass plus local obstructions.
+  - `sourceDefect_bridge_le_of_reseparation` is Lemma 2.4's dominant cell at a
+    vanishing scale: the source is almost invariant and the majority condition holds.
+  - `eq_of_isClusterCandidate_bridge` gives at most one candidate bridge per block.
+  - `mul_scale_le_of_not_isClusterCandidate` bounds the defect of a non-candidate
+    below.
+  - It is stated on an abstract `BlockEmbedding` with an explicit scale. So it serves a
+    per-object restatement of the forward half, and it supplies the per-block defect
+    lower bound that (C)'s mass bound needs.
+
+## R16. `673943642` (kt41-hamming): step 9 rebased on the raw map. No defect
+
+- **References.** The references are now the relative functor's raw maps:
+  `sandwich (bridge q⁻¹ (π i) i) (bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i)) (β.arrow (π i))`.
+  They realize `q⁻¹·β.patch·q` on their source (`realizesOn_sandwich_bridge_inv`),
+  so `hc` holds with no condition.
+- **`hnear` from estimate (7).** Take the cluster identity `F[b_{π i}] = [a_i]` and a
+  representative `θ` of the image class. Then:
+  - `twoSided(a_i, θ) < r_Q(i, ā i)`, since they are in the same cluster;
+  - `twoSided(θ, raw) < r_Q + ρ` (`twoSidedDisagreement_sandwich_lt_of_ofRep_eq`).
+
+  So `hnear` holds with `sc i ≈ r_Q + ⌈ρ/2⌉`, and `hroom` holds for small `h_n, d_n`.
+- **`sum_stepNineBudget_le`.** With `π` injective on `good`, every term is a
+  controlled total:
+  - retained bridge missing masses, by the retained matching error
+    (`RelativeFunctorEstimateMatching`, `ComponentCountingRetainedMatchingNegligible`);
+  - arrow defects of `α` and `β`, candidates at `h_n → 0`, at most `O(h_n|Y|)`;
+  - label and word compatibility failures;
+  - the localized conjugation failures of `q` and `q⁻¹`, whose sum is at most the
+    ambient failures of the relations `t s t⁻¹ = w_s`.
+- **Instantiation note.** The second bridge term is small only when
+  `β.objEquiv (π i) = π (α.objEquiv i)`, i.e. `b_{π i}` lands at `π(ā i)`. The
+  counting endgame selects `good` inside that set, as the paper's `E_n` does.
+
 ## Named statements in the chain without a producer
 
 - `seqNormalizes_distinguished_of_kazhdan`: pinned name only; its file is absent.
