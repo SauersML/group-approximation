@@ -9,7 +9,9 @@ artifacts:
   - research/artifacts/el3-two-root-self-similarity-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof route `el3-two-root-branch-split-proof`; artifact Sections 2–3). Let
+**ESTABLISHED** (proof route `el3-two-root-branch-split-proof`; artifact Sections 2–3).
+`gk-vf-linear` passed it independently (Section 43 of
+`research/artifacts/gk-vf-linear-verification-2026-09-12.md`, 19b046f71e). Let
 `R = L_K(1,2)` with `char K = 2`, `sigma : EL_3(R) -> M^x` a homomorphism into a ring with
 `2 = 0`, and `n_ab(c) = sigma(x_ab(c)) - 1`.
 

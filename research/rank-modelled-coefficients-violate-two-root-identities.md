@@ -11,6 +11,8 @@ artifacts:
 ---
 
 **ESTABLISHED** (proof route `rank-modelled-coefficients-violation-proof`; artifact Section 4).
+`gk-vf-linear` passed it independently (Section 43 of
+`research/artifacts/gk-vf-linear-verification-2026-09-12.md`, 19b046f71e).
 Let `T` be a unital ring and `phi : T -> M_omega` a unital ring homomorphism into a rank
 ultraproduct over a field of characteristic `p`. Then `EL_3(T)` has a homomorphism into the unit
 group of a rank ultraproduct over the same field in which the unit root elements satisfy
