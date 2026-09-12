@@ -1,0 +1,101 @@
+# Normal rotation and the eigen-hyperplane stabilizer for Z_3-equivariant automorphisms
+
+Lane `w3-nonformal`, 2026-09-12. This artifact supports two claims:
+`z3-equivariant-automorphisms-have-constant-normal-rotation` and
+`z3-eigen-hyperplane-stabilizer-is-the-triangular-group`. It also supports Attempts entries on
+`z3-weight-one-rotation-is-not-an-automorphism-shadow` and
+`non-surjunctive-group-with-stably-finite-group-algebras`.
+
+## 0. Setup
+
+- **Space and shift.** A³ over F_2 has coordinates x_0, x_1, x_2. R is the cyclic shift,
+  (Rx)_i = x_(i−1).
+- **The automorphism.** T is a polynomial automorphism defined over F_2 (polynomial inverse) with
+  T∘R = R∘T.
+- **Coordinates.** Write x = s(1,1,1) + v, where s = x_0 + x_1 + x_2 and v lies in the 2-dimensional
+  summand V. Over F_4 = F_2(ω), put u = x_0 + ωx_1 + ω²x_2 and ū = x_0 + ω²x_1 + ωx_2, the Frobenius
+  conjugate. (s, u, ū) is a linear coordinate system over F_4.
+- **Weights.** u∘R = ωu and ū∘R = ω²ū. Give s, u, ū the weights 0, 1, −1 in Z/3.
+- **Equivariance in coordinates.** Write T_s = s∘T, T_u = u∘T, T_ū = ū∘T. T commutes with R iff
+  every monomial s^k u^a ū^b has a − b ≡ 0 (mod 3) in T_s and a − b ≡ 1 in T_u. T_ū is obtained from
+  T_u by conjugating the coefficients and swapping u and ū.
+- **Fixed line.** Over F̄_2, R fixes exactly Λ = {u = ū = 0}, the diagonal.
+- **Boolean points.**
+  - 000 and 111 lie on Λ. The free orbits are O_1 = {100, 010, 001} (weight one) and
+    O_2 = {011, 101, 110}.
+  - Complementation x ↦ x + 111 adds 1 to s and fixes u and ū.
+  - Each value in F_4^× is taken by u at exactly two Boolean points, x ∈ O_1 and x + 111 ∈ O_2.
+
+## 1. Constant normal rotation
+
+**Theorem A.** Let T be a Z_3-equivariant polynomial automorphism of A³ over F_2. Then:
+- T(Λ) = Λ, and T acts on Λ as s ↦ s + b with b ∈ F_2;
+- there is λ(T) ∈ F_4^× with ∂T_u/∂u = λ(T) and ∂T_u/∂ū = 0 at every point of Λ;
+- λ(T_1∘T_2) = λ(T_1)·λ(T_2).
+
+*Proof.*
+1. **The line.** If Rp = p then R·T(p) = T(Rp) = T(p), so T(Λ) ⊆ Λ, and likewise for T^(−1). So T
+   restricts to a polynomial automorphism of the line over F_2, which is s ↦ s + b.
+2. **Weights at Λ.**
+   - The monomials of T_u of degree one in (u, ū) are s^k u (weight 1, allowed) and s^k ū (weight −1,
+     excluded). So on Λ, ∂T_u/∂u = λ(s), the sum of the coefficients of the s^k u, and ∂T_u/∂ū = 0.
+   - T_u has no monomial free of u and ū (weight 0 ≠ 1). So ∂T_u/∂s = 0 on Λ.
+   - T_s has weight 0, and its monomials of degree one in (u, ū) would have weight ±1. So
+     ∂T_s/∂u = ∂T_s/∂ū = 0 on Λ.
+3. **Jacobian along Λ.**
+   - At (s, 0, 0), in coordinates (s, u, ū), the Jacobian matrix is diag(∂_s T_s, λ(s), λ̄(s)), and
+     ∂_s T_s = 1 there by step 1.
+   - The Jacobian determinant of a polynomial automorphism over F_2 is a unit of F_2[x], hence 1.
+     The linear change to (s, u, ū) conjugates the Jacobian matrix.
+   - So λ(s)·λ̄(s) = 1 in F_4[s], and λ is a constant in F_4^×.
+4. **Multiplicativity.** T_2 maps Λ to Λ, so the chain rule multiplies the normal derivatives.
+∎
+
+**Values.**
+- R^k has λ = ω^k.
+- Shears (s + f(v), v) with f invariant, and complementation, have λ = 1.
+
+## 2. The stabilizer of the eigen-hyperplane
+
+- **The hyperplane.** H = {u = 0} is defined over F_4. Its conjugate is H̄ = {ū = 0}, and H ∩ H̄ = Λ.
+- **The cone.** C = {N = 0}, where N = uū = Σ x_i² + Σ_(i<j) x_i x_j is defined over F_2. So
+  C = H ∪ H̄.
+- **The triangular group.** G_tri is the group of maps (s + f(v), λv), with f an R-invariant
+  polynomial on V and λ ∈ {1, R, R²}.
+
+**Theorem B.** For a Z_3-equivariant polynomial automorphism T of A³ over F_2, the following are
+equivalent:
+- (i) T(C) ⊆ C;
+- (ii) T(H) ⊆ H;
+- (iii) T_u = λ(T)·u;
+- (iv) T ∈ G_tri.
+
+*Proof.*
+1. **(i) ⇒ (ii).**
+   - T(H) is irreducible and lies in H ∪ H̄, so it lies in H or in H̄.
+   - If T(H) ⊆ H̄, then T_ū vanishes on H, so u divides T_ū. Conjugating, ū divides T_u.
+   - Then T_u = ū·β, and ∂T_u/∂u = ū·∂_u β vanishes on Λ. This contradicts λ(T) ≠ 0 (Theorem A).
+2. **(ii) ⇒ (iii).**
+   - T_u vanishes on H(F̄_2), and u is prime in F_4[s, u, ū], so T_u = u·β.
+   - T(H) is closed, irreducible, two-dimensional and contained in H. So T(H) = H, T^(−1)(H) = H,
+     and (T^(−1))_u = u·β′.
+   - u = (T^(−1))_u∘T = (u∘T)·(β′∘T) = u·β·(β′∘T). Cancelling u gives β·(β′∘T) = 1. So β is a
+     unit, hence a constant. It equals ∂T_u/∂u on Λ, which is λ(T).
+3. **(iii) ⇒ (iv).**
+   - Conjugating gives T_ū = λ̄ū. So T_v = λv, with λ ∈ F_4^× ≅ F_2[R]^× = {1, R, R²}.
+   - Put T′ = (s, λ^(−1)v)∘T. Then T′ and its inverse fix F_2[V] pointwise.
+   - An F_2[V]-algebra automorphism of F_2[V][s] sends s to a·s + c(v), with a ∈ F_2[V]^× = {1}.
+   - Equivariance makes c invariant. So T = (s + c(v), λv).
+4. **(iv) ⇒ (i).** (s + f(v), λv) multiplies u by λ, so it preserves H, H̄ and C.
+∎
+
+**Corollary (the weight-one rotation).**
+- The shadows of G_tri form the order-12 group K generated by complementation, the level swap
+  (s + N, v), and the uniform rotations.
+- ρ rotates O_1 and fixes O_2, so ρ ∉ K.
+- So every equivariant automorphism with shadow ρ moves the F_2-quadric C.
+
+**Relation to the landed rigidity.** `z3-level-preserving-automorphisms-rotate-uniformly` shows two
+things: level-preserving automorphisms lie in G_tri, and G_tri has uniform shadows. Theorem B
+identifies G_tri as the full stabilizer of C. That stabilizer contains maps that do not preserve the
+level, such as (s + N, v).
