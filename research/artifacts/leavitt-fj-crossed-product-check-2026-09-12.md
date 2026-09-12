@@ -207,3 +207,47 @@ This is an internal check, not a refereed one. Nothing here is in Lean.
   BFL's own definition text was not re-read beyond that citation.
 - **Not re-read from source.** Ara–Cortiñas Lemma 6.1 was not re-read here; it
   is used as main's import node quotes it.
+
+## 6. Comparison with the landed derivation
+
+Lane `bh-leavitt-nil-k-regularity` landed the imports and the derivation in
+2b19d1c07, and updated the Boone–Higman chain in d34e26446.
+
+**Same chain, same argument.** Route
+`leavitt-tensor-powers-k-vanishing-via-farrell-jones-proof` requires exactly the
+nodes traced in §1:
+- the two crossed-product claims;
+- `virtually-poly-z-groups-satisfy-fjc-with-additive-coefficients`;
+- `crossed-product-rings-inherit-fjc-with-additive-coefficients`;
+- `regular-coherent-laurent-coefficients-kill-twisted-nil-terms`;
+- `ara-cortinas-leavitt-tensor-k-theory-vanishes`, for `d = 1`.
+
+Its steps match §3:
+- **Step 1** puts the units into Bartels–Reich form, with `α_λ = Ad(u^λ)` and
+  `τ_(λ,μ) = u^λ u^μ (u^(λ+μ))^(−1)`. The cocycle identities follow from
+  associativity.
+- **Step 3.2** is (B): `u^(mλ) (u^λ)^(−m) ∈ C^x` gives `C_φ[t, t^(−1)]`. It also
+  derives the Laurent regular coherence of `C[Z^m]` by central localization,
+  which is (A), and handles sides with the anti-automorphism `x_i ↦ y_i`.
+- **Step 4** is (C).
+
+**Imports.** The three citation routes quote the same statements as §2. The Nil
+node adds the journal reference for arXiv:2002.03412, Proc. Roy. Soc. Edinburgh
+Sect. A 154 (2024). It also quotes BFL's remark that their coefficient versions
+"encompass [...] crossed product rings R ∗ G", which agrees with §5.
+
+**Verdict on the landed derivation: PASS, no gap found.**
+- `char-two-linear-groups-satisfy-boone-higman` and
+  `positive-char-linear-groups-satisfy-boone-higman` read ESTABLISHED at the tip.
+- They rest on the four imports above and on the host claims, which import
+  Khanh arXiv:2609.08428 (unrefereed).
+- `boone-higman-conjecture` is untouched.
+- This is an internal check, not a referee report.
+
+**One presentational note, no gap.**
+- `leavitt-crossed-product-coefficient-ring-is-k-trivial` states only the
+  polynomial case `C[t_1, ..., t_p]`.
+- The Laurent case that Bartels–Lück need is proved inside Step 3.2 of the route.
+- Bartels–Lück record that Laurent inheritance of regular coherence is open for
+  general rings (lines 3631–3632). A one-line cross-reference in the claim would
+  stop a reader from concluding that the hypothesis is unverified.
