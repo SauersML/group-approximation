@@ -30,9 +30,17 @@ max_(s ∈ F_Δ) ||σ_n(s) - ρ_n(s)||_2  ->  0     along U.
   higher-rank Kazhdan groups is open.
 - **Robust spectral gap.** Insufficient, for the same reason as for `Γ` in
   `hs-stable-vertex-rounding-for-every-model`: `(T;FD)_rob` supplies no genuine representation.
-- **Deduce it from polynomial-vertex rounding.** No converse is recorded.
+- **Deduce it from polynomial-vertex rounding.** Reduced to `d` commutation conditions. Not closed.
+  - The opposite implication holds. By `log-depth-rate-rounding-via-laurent-vertex-rounding`, this claim implies
+    `vertex-rounding-with-log-depth-rate`, so it is at least as strong as input 1.
   - A unit-type rounding of `Γ` extends along `L -> A_u` only to `St_r(L)`.
-  - Its closeness to `σ_n` on the Laurent generators `e_ij(x^(-a))` is not controlled by closeness on `F_Γ`.
+  - By `laurent-extension-agrees-iff-inverse-defects-commute`, that extension agrees with `σ` on `St_r(L)` exactly
+    when the `d` defects `W_i = ρ'(x_23(x_i^(-1)))^* σ(e_23(x_i^(-1)))` commute with `π(Γ)`.
+  - Each `W_i` commutes unconditionally with `π(H_i)`, and `π_n(H_i) = π_n(Γ)` at every finite level. The gap is
+    rigidity of ultraproduct commutants.
+  - Under a regular trace the inverse `x_i^(m_n - 1)` has unbounded degree, so commuting with each fixed element
+    of `H_i` gives no control. This is the same high-degree mechanism the log-depth rate targets.
+  - Descent from `St_r(L)` to `Δ` also stays open: the symbols `{x_i, x_j}` can have unbounded order in `K_2(A_n)`.
 - **Restrict to wreath models.** It pays only through lamp covariance.
   - Regular trace and a trace-zero symmetry in the vertex commutant can be added to any model by tensoring with
     finite-quotient models and `1_2`, without changing the root spectra of a rounding.
