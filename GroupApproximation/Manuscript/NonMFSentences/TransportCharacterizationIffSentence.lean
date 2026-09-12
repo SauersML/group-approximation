@@ -44,22 +44,25 @@ lift of `P`.  The forward direction is
 `TransportProjectionCharacterization.tendsto_hsNorm_applyOp_projection_sub`,
 the reverse direction is
 `TransportProjectionCharacterization.isHSAsymptoticallyCentral_of_tendsto`. -/
-theorem manuscriptSentence_printedCTwoIffProjectionAbsorbs
-    {G : Type} [Group G] (B : OpAlmostRepresentation G)
+def PrintedCTwoIffProjectionAbsorbs : Prop :=
+  ∀ (G : Type) [Group G] (B : OpAlmostRepresentation G)
     [∀ n, Nonempty (B.model n)] (L : Subgroup G) (KD : KazhdanData ↥L)
     (f : MaximalGroupCStar ↥L →⋆ₐ[ℂ] sqCorona B)
-    (Pseq : BoundedMatrixSequence (fun n ↦ sqModel (B.model n)))
-    (hf : ∀ s : ↥L, f (maximalGroupCStarGenerator ↥L s)
-      = ((sigmaB B (L.subtype s) : unitary (sqCorona B)) : sqCorona B))
-    (hPmk : normMatrixCStarCoronaMk (fun n ↦ sqModel (B.model n)) Pseq
-      = f KD.projection)
-    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ) (hx : IsHSBounded B x) :
-    x ∈ printedCTwo B L ↔
-      Tendsto (fun n ↦ hsNorm (B.model n)
-        (applyOp (B.model n)
-          ((Pseq : ∀ n, Matrix (sqModel (B.model n))
-            (sqModel (B.model n)) ℂ) n) (x n) - x n))
-        atTop (nhds 0) := by
+    (Pseq : BoundedMatrixSequence (fun n ↦ sqModel (B.model n))),
+    (∀ s : ↥L, f (maximalGroupCStarGenerator ↥L s)
+      = ((sigmaB B (L.subtype s) : unitary (sqCorona B)) : sqCorona B)) →
+    normMatrixCStarCoronaMk (fun n ↦ sqModel (B.model n)) Pseq = f KD.projection →
+    ∀ x : ∀ n, Matrix (B.model n) (B.model n) ℂ, IsHSBounded B x →
+      (x ∈ printedCTwo B L ↔
+        Tendsto (fun n ↦ hsNorm (B.model n)
+          (applyOp (B.model n)
+            ((Pseq : ∀ n, Matrix (sqModel (B.model n))
+              (sqModel (B.model n)) ℂ) n) (x n) - x n))
+          atTop (nhds 0))
+
+theorem manuscriptSentence_printedCTwoIffProjectionAbsorbs :
+    PrintedCTwoIffProjectionAbsorbs := by
+  intro G _ B _ L KD f Pseq hf hPmk x hx
   constructor
   · intro hmem
     exact tendsto_hsNorm_applyOp_projection_sub B L KD f Pseq hf hPmk x hmem

@@ -116,6 +116,4 @@ end GroupApproximation
 open GroupApproximation
 
 #audit_closed_axioms
-  Manuscript.NonMFSentences.card_cornerPredicate_eq_rank
-#audit_closed_axioms
   Manuscript.NonMFSentences.manuscriptSentence_retainedCoordinatesAndRanks
