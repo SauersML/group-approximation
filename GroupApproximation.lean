@@ -4635,6 +4635,7 @@ import GroupApproximation.Matching.ScaledPartialClusterGroupoid
 import GroupApproximation.KunThom.ComponentCountingRetainedMatching
 import GroupApproximation.KunThom.SequentialContradiction
 import GroupApproximation.KunThom.CountingEndgameLift
+import GroupApproximation.KunThom.RelativeFunctorEstimate
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
