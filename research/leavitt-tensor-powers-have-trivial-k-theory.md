@@ -41,3 +41,19 @@ With `leavitt-tensor-hosts-acyclic-steinberg-and-fp`, it would make every
    *Dies*: this proves vanishing only on the image of `K_*(B)`, and
    surjectivity of that map is the fundamental-sequence statement that needs
    regularity.
+4. **The exact obstruction is a twisted Nil group.** ABC Theorem 5.10 holds for
+   every H-unital coefficient ring `A`, with no regularity. For the quiver with
+   one vertex and two loops the homotopy cofibre term is zero, so
+   `K(L ⊗ A) ≃ NK(L_0 ⊗ A; φ^-1)_+ ⊕ NK(L_0 ⊗ A; φ)_-`. Here `L_0` is the
+   degree-zero ultramatricial part and `φ(x) = e x e*` is the corner
+   isomorphism.
+   - So the claim at `d` is exactly vanishing of these twisted Nil groups, in
+     degrees `1, 2`, for `A = L^(⊗(d-1))`.
+   - What is proved: `L ⊗ L` is `K`-regular. `(L ⊗ L)[t_1, ..., t_p]` is
+     `L ⊗ L[t_1, ..., t_p]`, and `L[t_1, ..., t_p]` is regular supercoherent by
+     Ara--Cortiñas Lemma 6.1, since its polynomial extensions are polynomial
+     extensions of `L`. So Ara--Cortiñas Proposition 6.2 gives
+     `K((L ⊗ L)[t_1, ..., t_p]) = 0 = K(L ⊗ L)`.
+   - *Stops*: `K`-regularity of `A` controls untwisted Nil groups only. The
+     twisted groups for the stage-shift corner map `φ` were not reduced to
+     untwisted ones.
