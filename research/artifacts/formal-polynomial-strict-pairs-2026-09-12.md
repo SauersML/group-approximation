@@ -134,4 +134,114 @@ coordinatewise, for polynomials `P_h`.
   polynomial.
 - **Where it stops.** No invariant is known that forces the collapse defect to vanish, and no
   collapse-essential strict pair has been constructed on any group. Recorded as the open claim
-  `non-surjunctive-group-with-stably-finite-group-algebras`.
+  `non-surjunctive-group-with-stably-finite-group-algebras`. Section 6 shows why no such invariant
+  exists: the defect depends on representatives.
+
+## 5. Decoders with disjoint encoder footprints
+
+Use reduced representatives over `F_q`: every exponent below `q`, which makes them unique.
+- **Encoder.** Rules `mu_j` with essential footprints `F_j ⊆ M`, the variables occurring in `mu_j`.
+- **Decoder.** Rules `nu_i` in the variables `Y_(s,j)`.
+
+**Theorem 5.** Suppose `sigma o tau = id` and condition (DF) holds: every monomial of every `nu_i` is
+multilinear in the `Y`-variables, and distinct variables `Y_(s,j)`, `Y_(s',j')` in a common monomial
+satisfy `s F_j ∩ s' F_(j') = ∅`. Then the identity is formal for these representatives. So if
+`M_n(F_q[G])` is directly finite, `tau` is bijective.
+
+*Proof.*
+- At `g` a monomial `c prod_((s,j) in T) Y_(s,j)` becomes `c prod mu_j((X_(gsm))_(m in F_j))`.
+- The sets `g s F_j` are pairwise disjoint, so the product of these reduced factors is reduced, and
+  so is the sum over monomials.
+- Each coordinate of the composite is therefore a reduced polynomial equal to `X_(g,i)` on
+  `F_q`-points, hence equal to `X_(g,i)`.
+- Theorem 1 finishes. QED
+
+**Corollaries.**
+- **Affine decoders.** They satisfy (DF). A strict automaton with an affine left-inverse automaton
+  is a matrix Kaplansky pair.
+- **Stably finite hosts.** On a host with stably finite `F_p[G]`, a strict pair over `F_q^n` needs a
+  decoder monomial multiplying two encoder outputs that read a common essential cell (or a power,
+  when `q > 2`). Over `F_2` this is a nonlinear decoder term at a forward coincidence read by both
+  encoder copies. This sharpens the table-level coincidence filters.
+
+**Relation to gk-n-highalpha** (`low-degree-strict-pairs-have-one-sided-linear-parts`, landed 12:55;
+`unipotent-automata-over-finite-fields-are-surjective` and
+`low-degree-strict-automata-force-matrix-kaplansky-failure`, established 13:05):
+- `deg sigma * deg tau < q` is another sufficient condition for formality, since no exponent reaches `q`.
+- Theorem 1 at that bound gives both of those conclusions (formal identity plus directly finite
+  matrix algebra gives bijectivity), with a different injectivity argument.
+- Over `F_2` the degree bound forces both rules linear, while Theorem 5 covers decoders of every degree.
+
+## 6. The multilinear defect is not an invariant; formalizability is
+
+### 6.1 Calibration: a sitewise reversible pair with nonzero canonical defect
+
+Over `F_2^3` with coordinates `(a,b,c)`, take the Toffoli gates `T_1(a,b,c) = (a, b, c + ab)` and
+`T_2(a,b,c) = (a + bc, b, c)`, and put `tau = T_2 T_1`, `sigma = T_1 T_2`. These are inverse
+bijections, acting sitewise on `(F_2^3)^G` for any `G`.
+
+**Multilinear representatives.** `tau = (a + ab + bc, b, c + ab)` and
+`sigma = (a + bc, b, c + ab + bc)`.
+
+**Formal composite.** Substituting into `sigma = (y_1 + y_2 y_3, y_2, y_3 + y_1 y_2 + y_2 y_3)` gives
+`(a + ab + ab^2, b, c + bc + b^2 c)`. This is the identity on `{0,1}`-points but not formally.
+
+**At `c = (1,0,0)`.**
+- `tau(c) = c`.
+- `J_tau(c) = [[1,1,0],[0,1,0],[0,1,1]]`.
+- `J_sigma(c) = [[1,0,0],[0,1,0],[0,1,1]]`.
+- `J_sigma(tau(c)) J_tau(c) = I + e_12`, so `D(c) = e_12 ≠ 0`. Both Jacobians are invertible, and the
+  pair is bijective on every group, including groups with stably finite group algebras.
+
+**Unreduced representatives.** `(a + bc + ab^2, b, c + ab)` and `(a + bc, b, c + ab + b^2 c)` compose
+formally to the identity, so the pair is formalizable.
+
+### 6.2 What is intrinsic
+
+- **Linear parts are not invariants.** Replacing a rule `mu_j` by `mu_j + (X_h^2 - X_h) P` changes
+  `J_tau(c)` at a Boolean constant configuration by `P(c)` at `h` (characteristic 2), arbitrarily.
+  So `J_tau(c)`, `J_sigma(c)` and `D(c)` are invariants of the representatives, not of the automata.
+  The underlying reason is in `boolean-secants-do-not-supply-operator-left-inverses`: the Boolean
+  function algebra has no Kähler differentials.
+- **Formalizability is.** A pair is *formalizable* if some representatives satisfy `sigma o tau = id`
+  formally, possibly after enlarging the memories.
+- **Sitewise pairs over `F_2^n` are formalizable, on every group.**
+  - A shear `x_i -> x_i + f(other coordinates)` is a formal involution in characteristic 2.
+  - Shears with `f` the indicator of one point realize the transpositions along hypercube edges.
+  - These generate `Sym(F_2^n)`, because the hypercube is connected.
+  - So a permutation `tau` is a composite of shears. The reverse composite is `sigma`, and the
+    identity is formal.
+- **Theorem 1 restated.** Formalizable strict pairs are matrix Kaplansky pairs.
+
+### 6.3 The Bennett form of a strict pair
+
+Let `A = F_2^n`, and put:
+- `T(x,y) = (x, y + tau(x))`;
+- `S(x,y) = (x + sigma(y), y)`;
+- `P` the track swap;
+- `V = P o S o T` on `(A^2)^G`.
+
+**Properties of `V`.**
+- **Formally invertible, whatever the representatives.** `T o T = id` and `S o S = id` formally.
+- **Formula on `X_0`.** `V(x,0) = (tau(x), x + sigma(tau(x)))`. Functionally this is `(tau(x), 0)`.
+  So `V` maps the linear subspace `X_0 = A^G x 0` into itself, it restricts to `tau` there, and
+  `tau` is strict iff `V(X_0) ⊊ X_0`.
+- **Where the collapse enters.** Only in this invariance of `X_0`.
+
+**Linearization.** Normalize `tau(0) = 0` and put `a = J_tau(0)`, `b = J_sigma(0)`, `ba = 1 + D`.
+Then `J_(S o T)(0) = [[1,b],[0,1]] [[1,0],[a,1]] = [[D, b],[a, 1]]`, and
+`J_V(0) = [[a, 1],[D, b]]`, which lies in `GL_(2n)(F_2[G])`. The defect `D` is exactly how far the
+invertible linearization is from preserving `X_0`.
+
+### 6.4 Open: are strict pairs formalizable?
+
+Recorded as `binary-left-inverse-pairs-are-formalizable`. If every pair of automata on
+`(F_2^n)^G` with `sigma o tau = id` is formalizable for every `G`, then Theorem 1 makes every group
+with stably finite `F_2[G]` surjunctive over alphabets of size `2^n`. Injective automata over finite
+alphabets have left-inverse automata, by compactness.
+- **Sitewise pairs:** formalizable (6.2).
+- **Canonical representatives:** the wrong ones (6.1).
+- **Where it stops.** In the Bennett form, formalizability asks for representatives in which `V`
+  preserves `X_0` formally. Changing representatives feeds the defect through `J_sigma(tau)`
+  applied to ideal elements, an equivariant finite-memory solvability problem inside the ideal
+  `(X_h^2 - X_h)`. No argument is known on any group with nontrivial memory.
