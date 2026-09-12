@@ -9,6 +9,7 @@ requires:
   - surjunctive-groups-carry-invisible-rigid-defects
 artifacts:
   - research/artifacts/defect-window-automata-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Derivation (artifact Section 4).
@@ -25,3 +26,6 @@ Derivation (artifact Section 4).
 - **Defect.** A reduced word of length two in a free product is nontrivial. The two
   sites differ because `gamma` lies outside the stabilizer `t Gamma t^-1` of `t Gamma`.
 - **Invisibility for rigid pairs.** Part 1 of `surjunctive-groups-carry-invisible-rigid-defects`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 17 of the
+verification artifact).

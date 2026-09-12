@@ -9,6 +9,7 @@ requires:
   - binary-leavitt-elementary-group-is-simple
 artifacts:
   - research/artifacts/defect-window-automata-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Derivation (artifact Proposition 5.2).
@@ -20,3 +21,8 @@ Derivation (artifact Proposition 5.2).
 - **A noncentral target.** For nontrivial `z in J`, the element `u z u^-1` is a
   nontrivial element of `Gamma ≅ EL_3(R)`. That group is simple and nonabelian, so its
   center is trivial and some `gamma` fails to commute with `u z u^-1`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 17 of the
+verification artifact). This established half does not make
+`nonsurjunctive-from-nested-rigid-defect` complete: its other prerequisite,
+`nested-rigid-defects-force-nonsurjunctivity`, is open.

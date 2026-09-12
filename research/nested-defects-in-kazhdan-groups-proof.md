@@ -8,6 +8,7 @@ requires:
   - sofic-groups-kill-rigid-compression-defects
 artifacts:
   - research/artifacts/defect-window-automata-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Derivation (artifact Proposition 6.1 and Corollary 6.2).
@@ -22,3 +23,6 @@ Derivation (artifact Proposition 6.1 and Corollary 6.2).
 5. An automaton whose memory lies in `G` runs independently on the cosets of `G`. So a
    strict pair over `G` is one over `H`, and the case `H = G` implies the general
    statement.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 17 of the
+verification artifact).

@@ -450,6 +450,48 @@ Reviewed: `three-factor-audit-and-controlled-feedback-2026-09-12.md`, Sections
   * with `u` first, the own part `-u` is admissible (constant controller `-2`
     at `s = 1`, `L0 = -id`), but the offset `F(x) - x` vanishes only for `F = id`.
 
+## 17. Defect-window automata and nested defects (gk-defect-automaton)
+
+Reviewed: `defect-window-automata-2026-09-12.md` (main at `f317a3b0ce`). The
+established claims are:
+* `leavitt-units-carry-nested-rigid-defect`;
+* `nested-rigid-defects-live-in-nonsofic-kazhdan-groups`;
+* `wreath-subgroups-meeting-lamps-finitely-are-rf`;
+* `free-centralizer-amalgams-are-surjunctivity-inert`.
+
+The route `nonsurjunctive-from-nested-rigid-defect` into
+`leavitt-unit-group-nonsurjunctive` stays incomplete, because its prerequisite
+`nested-rigid-defects-force-nonsurjunctivity` is open. Verdict: PASS.
+
+* **Lemma 1.** Constants map to constants injectively, so single cells display
+  every symbol. If `Omega_1 M` misses `Omega_2 M`, the displayed patterns form a
+  product, so a minimal Garden of Eden has a connected overlap graph, and
+  `{1, d}` forces `d in M M^-1`.
+* **Lemma 2.** The image of `H` in a metric ultraproduct of symmetric groups is
+  countable and sofic. Images of the Kazhdan groups stay Kazhdan,
+  `psi(P_Gamma)` lies in `P_(psi(Gamma))`, and centralizers map into
+  centralizers. So the rigid-defect theorem kills the image.
+* **Theorem 4.**
+  * `Phi(k) = k_(x_0)` respects `Gamma x K`, because `Gamma` fixes `x_0`.
+  * `Psi(k_(h x_0)) = h k h^-1` is well defined, because `Gamma` commutes with `K`.
+  * `P` is the empty-graph LEF wreath, so surjunctivity transfers.
+  * `[t k_(x_0) t^-1, gamma] = k_(t x_0) (k^-1)_(gamma t x_0)` is a reduced word of
+    length two.
+* **Proposition 5.2.** In the nine-leaf configuration, `z in J = V_(1000)`
+  centralizes `Gamma ~= EL_3(R)` and `w = u z u^-1` lies in `V_(0001) <= Gamma`.
+  Simplicity gives `Z(Gamma) = 1`, so `[w, gamma] != 1` for some `gamma`. The
+  defect is rigid and nested. This is the OpenAI mechanism read as a defect.
+* **Proposition 6.1.**
+  * `z = t^-1 w t` lies in `G`.
+  * `C_G(Gamma)` is not normal, because `t z t^-1 = w` fails to centralize `Gamma`.
+  * The rigid-defect theorem with ambient group `G` makes `G` nonsofic.
+  * (4) is `z in C_G(Gamma) ∩ t^-1 Gamma t` with `w` outside `Z(Gamma)`.
+* **Proposition 7.1.** `w nu w^-1 = (n (g.nu) n^-1, 1)` has support `g supp(nu)`, so
+  `Q'` preserves the finite `S`. Then `rho(n,g) = (n|_S, g)` is an injective
+  homomorphism into `A^S ⋊ Q'`, which contains `A^S x K` with finite index.
+* **Scope.** The one open step toward a refutation of Gottschalk is
+  `nested-rigid-defects-force-nonsurjunctivity`. No strict automaton is constructed.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by
