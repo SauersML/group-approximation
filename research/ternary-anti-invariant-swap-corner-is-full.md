@@ -79,3 +79,14 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
   Siblings: the binary lifts `left-invertible-lift-of-s0-in-leavitt-group-algebra` and
   `leavitt-evaluation-kernel-unitization-not-directly-finite`, and the projective half
   `projective-ternary-klein-idempotent-is-full`.
+- *Untested ideas reported by lanes, not yet nodes (gk-archive, 2026-09-12).*
+  - *gk-kdf-structure.* Two ways past the rank-rounding counterexample are untried:
+    - the compressor group's own property (T) used together with the compression itself;
+    - a size function not built from atoms.
+
+    In the rank ultraproduct the relative commutant can be diffuse
+    (`kazhdan-rank-ultraproducts-can-have-diffuse-commutants`). Whether it is commutative, and whether
+    it carries a size that forbids strict compression, is open. Both questions bear on the `F_3`
+    linear-sofic gate that binds this claim.
+  - *gk-kdf-lift.* For pairs lying over `(s0, t0)`, lifts `a`, `b` with `b a - 1` nilpotent already
+    give a left inverse `(b a)^-1 b`. That shortcut was never tried on the ternary half.
