@@ -17,6 +17,9 @@ normalization `sum u = sum v = 1`.
 | `gardam-support-pair-gsp.py` | builds `S`, `T`, rechecks Theorem A exactly, writes the product table | `1debc5ec75d10b1b92b6e688a385f916` |
 | `gardam-support-pair-f2enum.c` | enumerates every `F_2`-point of `uv = 1` on `(S,T)` | `d2b921a576eeef77e333a03793f0a571` |
 | `gardam-support-pair-lift.py` | Jacobian ranks and 2-adic lifting at every `F_2`-point | `89871eb0a295e1319cc60440409bcfad` |
+| `gardam-support-pair-kernel-formula.py` | checks `kappa_i = #(S cap g_i T g_i) - 1` at the 17 trivial units | `c07d4ca8bc4bdae691eb869429d4532f` |
+| `gardam-support-pair-z3-subsets.py` | characteristic-free sub-support check | `9bd1081d08c5c2e1c143a163b8c73d71` |
+| `gardam-support-pair-gb-easy.py` | exact Groebner basis over `Q` of the localized system | `11feb3a005a35fe748c9c5cb36993d92` |
 
 ## 2. Theorem A, rechecked exactly
 
@@ -76,8 +79,26 @@ Indices are 0-based positions in `S` and `T`.
   contradiction. So each of these eight classes contains only the trivial
   unit.
 * *Case A at the nine singular trivial residues is not decided by lifting.*
-  The Jacobian is rank-deficient over `Q` there as well. The first-order
-  deformations `g_i + eps du`, `g_i^(-1) - eps g_i^(-1) du g_i^(-1)` with
-  `supp(du)` in `S cap g_i T g_i` and `sum du = 0` all satisfy the
-  linearized system. Solution counts modulo `2^k` grow, as Bartholdi's
-  approximate units predict.
+  The Jacobian is rank-deficient over `Q` there as well. At `(g_i, h_j)` with
+  `g_i h_j = 1` the linearized system reads `du h_j + g_i dv = 0` with
+  `sum du = 0`. So its kernel is exactly `dv = -h_j du h_j` with `supp(du)`
+  in `S cap g_i T g_i`, and `kappa_i = #(S cap g_i T g_i) - 1` in every
+  characteristic. `gardam-support-pair-kernel-formula.py` confirms the values
+  0, 8 and 12 at all 17 trivial units. Solution counts modulo `2^k` grow, as
+  Bartholdi's approximate units predict.
+
+## 5. Characteristic-free sub-supports
+
+Let `u` be a unit over any field with `S' = supp(u)` in `S` and
+`T' = supp(u^(-1))` in `T`. Then the identity lies in `S'T'`, and no other
+product has exactly one representation `g_i h_j`, because that coefficient of
+`u u^(-1)` would be one nonzero product. `gardam-support-pair-z3-subsets.py`
+encodes this with Boolean indicators and `|S'| >= 2`:
+
+```text
+proper (g_1 or g_2 missing): {'result': 'unsat'}
+sanity, no restriction: {'result': 'sat', "S'": [0, ..., 20], "T'": [0, ..., 20]}
+```
+
+So every nontrivial unit on `(S,T)`, over any field, has `u_1, u_2 != 0`.
+This is Gardam's case `(1,2)`.
