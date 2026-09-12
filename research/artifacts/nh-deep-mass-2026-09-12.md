@@ -99,3 +99,76 @@ P( c w ∉ Sh(D_M(χ_0(u ·))) )  <=  2 q^(-(ℓ+1)).
   `c(1-γ_k)ℓ_i λ^k < s`.
 - **Lower.** If `c(1+γ_k)ℓ_i λ^k < s`, then `c A^k e_i` is an integer vector below `⌊c(1+γ_k)ℓ_i λ^k v⌋ ∈ Sh`.
   So `c <= c_i`.
+
+## 5. Proof of the theorem
+
+**Compressors.**
+- `A_ij = min(i,j)`. `A = L L^T` with `L` the lower unitriangular all-ones matrix, so `det A = 1`. Every entry is
+  `>= 1`, and `A` is symmetric, so `ℓ_A = v_A`.
+- `λ v_d = Σ_j j v_j > Σ_j v_j = λ v_1`, so `ℓ_(A,d) > ℓ_(A,1)`. Put `β = log(ℓ_(A,d)/ℓ_(A,1)) > 0`.
+- `B = P A P^(-1)`, with `P` the reversal permutation. It has every entry `>= 1`, `det B = 1`, the same `λ`, `C`
+  and `θ`, and `ℓ_B = P ℓ_A`. So `log(ℓ_(B,d)/ℓ_(B,1)) = -β`.
+
+**Parameters.**
+- Fix `k` with `log((1+γ_k)/(1-γ_k)) < β/4`. Put `M_+ = A^k`, `M_- = B^k`, `Λ = λ^k` and
+  `N = ||A^k 1||_∞ = ||B^k 1||_∞`.
+- Fix `L >= 1`. Choose `K` with `-log(1-ε) < β/4`, where `ε = (L+1)(1+γ_k) Λ max_i ℓ_i / K`, and with
+  `K' = ⌊(K-1)/N⌋ - L + 1 >= 2`.
+- For an origin character with `e_1, e_d >= 1`, put `ρ(χ) = log(e_1(χ)/e_d(χ))`. All sets below consist of
+  characters whose non-unit component is at the origin.
+
+**Sets.** `E_± = {χ : depth_nu(χ) >= K', ±ρ(χ_0) > β/2}`. They are disjoint, and both lie in `{depth_nu >= K'}`.
+
+**Transported deep characters land in `E_±`.** Let `depth_nu(χ) >= K`, `M = M_+`, and `s = s(Sh(χ_0)) >= K`.
+- **Upper.** Lemma 2(a) with `w = e_i`, then Lemma 3: `e_i(D_M χ_0) <= c_i <= s/((1-γ_k) ℓ_i Λ)`.
+- **Lower.** Lemma 2(b) with `w = e_i` and `c = c_i - L`, so that `ℓ >= L`. Except with orbit probability
+  `<= 2q^(-(L+1))`,
+
+  ```text
+  e_i(D_M χ_0)  >=  c_i - L  >=  s/((1+γ_k) ℓ_i Λ) - (L+1)  >=  (1-ε) · s/((1+γ_k) ℓ_i Λ),
+  ```
+
+  for `i = 1` and `i = d`.
+- **Depth.** Lemma 2(b) with `w = (1,..,1)` and `c = c^(1) - L`, where `c^(1) = max{c : c M 1 ∈ Sh} >= ⌊(K-1)/N⌋`.
+  Except with orbit probability `<= 2q^(-(L+1))`, `depth_nu(D_M χ) >= K'`, and then `e_1, e_d >= K' - 1 >= 1`.
+- **Ratio.** On the good event,
+  `ρ(D_M χ_0) >= log(ℓ_d/ℓ_1) - log((1+γ_k)/(1-γ_k)) + log(1-ε) > β - β/4 - β/4 = β/2`.
+  So `D_M χ ∈ E_+`.
+- **Mass.** `{depth_nu >= K}` is `U_0`-invariant. By the disintegration of Lemma 1,
+  `μ_n({depth_nu >= K} ∖ D_(M_+)^(-1) E_+) <= 6 q^(-(L+1))`. The same holds for `M_-` and `E_-`.
+
+**Counting.**
+- `M_±` are compressors, so `compressor-transport-exactifies-under-vertex-rounding` gives
+  `|μ_n(E) - μ_n(D_(M_±)^(-1) E)| <= η_n^± -> 0` for every Borel `E`. Hence
+  `μ_n(E_±) >= μ_n(depth_nu >= K) - 6 q^(-(L+1)) - η_n^±`.
+- Add the two inequalities. Since `E_+ ∩ E_- = ∅` and both lie in `{depth_nu >= K'}`,
+
+  ```text
+  2 μ_n(depth_nu >= K) - 12 q^(-(L+1)) - η_n^+ - η_n^-  <=  μ_n(depth_nu >= K)  +  μ_n(K' <= depth_nu < K).
+  ```
+
+**Conclusion.** Let `ν_n` be the root mass at intermediate places. Then
+
+```text
+μ_n(depth_nu > 1)  <=  ν_n  +  2 μ_n(1 < depth_nu < K)  +  12 q^(-(L+1))  +  η_n^+  +  η_n^-.
+```
+
+- `ν_n -> 0` by item 1 of `vertex-rounding-non-unit-mass-at-origin`.
+- `μ_n(1 < depth_nu < K) <= ⌈log_d K⌉·η_n` by item 3 of `nonunit-component-root-mass-is-log-scale-folner`.
+- So `lim_U μ_n(depth_nu > 1) <= 12 q^(-(L+1))` for every `L`, i.e. it is 0. ∎
+
+## 6. Consequences and status
+
+- **The target is proved from established claims.** The route is `deep-nonunit-root-mass-two-attractor-proof`.
+  Neither the Laurent torus nor the shallow claim is used.
+- **Theorem E.** The fifth premise of `theorem-e-vertex-unit-type-via-deep-root-mass` is settled. That route is
+  now open only through (H1), `hs-stable-vertex-rounding-for-every-model`.
+- **Reading with `log-depth-rate-rounding-is-equivalent-to-unit-type`.** Under (H1), every rounding family of
+  the Theorem E actor becomes unit type after trivializing its non-unit constituents.
+- **Where the Attempts went wrong.**
+  - The drift obstruction is correct for depth alone. Shape ratios supply the missing invariant.
+  - The containment `J_κ ⊇ φ_A^(-1) J_ρ` holds for constituents. The lower bound holds only for orbit-typical
+    characters, which is all TV invariance needs.
+- **Quantitative remark.** `k` depends only on `d`, and `K = O_d(L+1)`. So
+  `μ_n(depth_nu > 1) <= ν_n + O_d(log L)·max(η_n, η_n^±) + 12 q^(-L)`, which gives a rate polylogarithmic in the
+  defects. It is not recorded as a claim.
