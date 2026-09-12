@@ -67,6 +67,29 @@ groups of unbounded Lie rank.
   `quotientless-hyperbolic-via-sp21-noncongruence-separation` gets a hyperbolic
   group without finite quotients from it. That route replaces the
   congruence-density step with one preliminary Olshanskii quotient.
+- **Torsion-freeness is not enough either.**
+  `tf-kazhdan-hyperbolic-alternating-kernels-not-separating` gives a torsion-free
+  hyperbolic Kazhdan group with infinitely many alternating quotients whose
+  kernels share an infinite normal subgroup. The fence therefore covers
+  torsion-free groups and the separation form as well.
+- **Transferring the only known mechanism.** Every known alternating family of a
+  hyperbolic Kazhdan group comes from a polynomial transvection group
+  `G_(F_p,e) <= Aut(F_p[x_1..x_n])` with `max e_i >= 2`, acting on affine spaces
+  over finite fields (Caprace–Kassabov, arXiv:2210.00730v3, Theorem 1.2 and
+  Corollary 1.3).
+  - **What a surjection would give.** A surjection `Γ ->> G_(F_p,e)` would give
+    `Γ` infinitely many alternating quotients, so this claim would fail.
+    Contrapositively to `sp21-simple-quotient-bound-from-congruence-property`,
+    the congruence kernel of `Γ` would be infinite.
+  - **Necessary condition.** `G_(F_p,e)` is residually-p (their Proposition 7.2)
+    and contains elementary abelian p-groups of infinite rank (their
+    Corollary 6.3). So its pro-p completion has infinite rank, and such a
+    surjection needs the pro-p completion of `Γ` to have infinite rank, i.e. to
+    be not p-adic analytic. The congruence pro-p images of `Γ` are analytic, so
+    this needs non-congruence p-quotients. Whether the pro-p completion of a
+    cocompact arithmetic `Sp(2,1)` lattice has finite rank is not recorded here.
+  - **Status.** No homomorphism from such a lattice onto a transvection group is
+    known or attempted.
 - **Random relators.** `random-relators-kill-small-simple-quotients-of-kazhdan-groups`
   kills the alternating quotients of order at most `λ^(-L)`. The large ones
   survive exactly when their kernels contain every relator.
