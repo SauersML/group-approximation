@@ -31,7 +31,22 @@ the horizontal quotient can decide it.
 * **Exact case.**  True, by Proposition 3.4(4) together with the exact
   equivalence of its two alternatives
   (`radu-mark-is-controlled-by-one-commutator`, `(RL2)` at zero defect).
-* **Robustness of the published proof.**  Unread.  Proposition 3.4(3), that
-  `xz` lies in the profinite closure of `<a,b,c>`, is a statement about finite
-  quotients and has no direct metric analogue.  The next step is to read
-  [Rad20, Section 5] and locate where finiteness of the quotient is used.
+* **Robustness of the published proof: does not transfer literally.**  The
+  journal version [Rad20] (Canad. J. Math. 72 (2020)) was not read.  Its
+  arXiv v1 (1712.01091v1, pp. 40--42, Proposition 5.1, the analogous result
+  for the `(4,4)`-group `Gamma_(4,4)`) runs as follows.
+  * Caprace's inclusion `[C_G(H), overline(H)] <= G^(infinity)`, with
+    `overline(H)` the profinite closure, reduces the problem to putting a
+    power of a generator in the profinite closure of a vertex-fixator subgroup.
+  * That membership is proved one finite quotient `phi` at a time.
+    Irreducibility makes the projection of `Fix(B(v,1)) cap B^(2) cap ker phi`
+    infinite.  This produces an element of `ker phi` fixing a path but moving
+    a neighbour, and the geometric squares turn it into `phi(gamma') = phi(x^2)`.
+  * The argument ends by combining two quotients into their product.
+
+  Every step uses the kernel of an exact homomorphism: a finite-index
+  subgroup whose projection is infinite, and exact membership in images.
+  Almost actions have no kernel, so this proof yields no metric inequality.
+  A proof of this claim needs a different mechanism, for instance a
+  quantitative replacement for "infinite projection of a finite-index
+  subgroup".
