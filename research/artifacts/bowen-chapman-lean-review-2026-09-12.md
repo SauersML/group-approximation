@@ -177,12 +177,13 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 684f9d301 nine landings touch the campaign: the Palomar
+As of `origin/main` 3e8c96515 eleven landings touch the campaign: the Palomar
 challenge (6ae077316) and solution (1ad7aa663), the Dynamics base layer
 (5e2c62ed1), the site-strata leaves (0bfc073cd), semidirect (T) (3d4569114), the
 Laurent pair (031156388), residual finiteness (dfa8d5e7b), the coset wreath
-algebra (2d5427380) and the Dynamics upper layer (684f9d301). Everything else is
-a WIP snapshot under `wip/bowen-chapman/`.
+algebra (2d5427380), the Dynamics upper layer (684f9d301), residual finiteness of
+the ambient group (e728fe4e7) and surjunctivity of symmetric doubles
+(53d1db321). Everything else is a WIP snapshot under `wip/bowen-chapman/`.
 
 **Stale oleans.** The shared MSI checkout's oleans were built at a7bf5d4fc
 (30 August). A private-directory green counts only if every repository
@@ -372,6 +373,38 @@ defect.**
   fields are satisfiable. The site fields are structural hypotheses, not
   literature inputs.
 
+**(k) Landed: `BowenChapman/LaurentPairResiduallyFinite`, e728fe4e7,
+root-wired. No defect.**
+* It proves `ambient_residuallyFinite : Group.ResiduallyFinite Ambient`, the
+  pinned statement, through `substitution_apply_eq_expSubst` and the general
+  theorem of F4(h).
+* Probe evidence: the message cites probe 0912-115423-96573, GREEN at base
+  79408b79a. The landed md5 `cdfaedf4…` is in `bc-rf.green.0912-115423-96573`,
+  whose `# mods` names the module and whose `# PROBE` line is GREEN.
+* The repository import closure is `LaurentPair`,
+  `ResiduallyFiniteSubstitution` and `Leavitt/ElementaryGroup`. Each blob at the
+  record base equals its blob at the landing parent, and the base is an
+  ancestor of the landing.
+* One root import is added, and nothing is deleted.
+
+**(l) Landed: `Dynamics/DoubleKernel`, `DoubleConsequences`,
+`DoubleFinitarySite`, 53d1db321, root-wired. No defect.**
+* `isSurjunctive_symmetricDouble {G : Type w} [Group G] (Γ : Subgroup G)
+  (hG : IsSurjunctive G) : IsSurjunctive (SymmetricDouble G Γ)` matches the
+  pinned interface.
+* The instance supplies every `FinitarySite` field with the maps checked in
+  F3(d): site groups free on `S \ {x₀}`, `kernelSupport` containing `x₀`
+  (`base_mem_kernelSupport`), detection, finite support and stabilizer
+  invariance. Residual finiteness of the site groups comes from the repo's
+  `Sofic/FreeGroupResiduallyFinite`.
+* Probe evidence: the message cites probe 0912-115538-1495 at base 4d8097c38,
+  with "Build completed successfully (1398 jobs); PROBE GREEN; REAL_EXIT=0". All
+  three landed md5s are in `bc-double-surj.green.0912-115538-1495`, whose mods
+  name all three modules.
+* The repository import closure has 21 modules. None changed between the record
+  base and the landing parent, and the base is an ancestor of the landing.
+* Three root imports are added, and nothing is deleted.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
@@ -386,12 +419,11 @@ defect.**
 * `git diff --no-renames --diff-filter=D BASE NEW` is empty unless a deletion is
   intended.
 
-**Still to review as they land:** the first `bcprobe` landings;
-`LaurentPairInfranormal` (`bc-pair`); `LaurentPairKazhdan` and
-`LaurentPairGeneration` (`bc-kazhdan`); `LaurentPairResiduallyFinite` and
-`WreathWitness`; the double finitary site (`bc-double-surj`); the sequential
-wreath consumer (`bc-wreath`); the four Theorem 4.1 lanes; `bc-assembly`; and the
-unsuffixed `bc-palomar` solution.
+**Still to review as they land:** `LaurentPairInfranormal` (`bc-pair`, green
+record 0912-115614-4108 exists); `LaurentPairKazhdan` and
+`LaurentPairGeneration` (`bc-kazhdan`, green record 0912-115559-3074 exists);
+`WreathWitness` and the sequential wreath consumer (`bc-wreath`); the four
+Theorem 4.1 lanes; `bc-assembly`; and the unsuffixed `bc-palomar` solution.
 
 ## F5. Main was emptied and restored
 
@@ -422,6 +454,40 @@ unsuffixed `bc-palomar` solution.
 
 An informal pass of the permanence chain by another team is not a Lean
 verification; the Lean is reviewed here independently.
+
+## F6. The shared probe infrastructure
+
+**Status: sent to `bc-infra`; (1) open, (2) and (3) are audit rules applied
+here.** I read `bcprobe.sh` in the campaign scratchpad and
+`tools/bc-swarm/remote/bcjob.template.sh` at 924105b04.
+
+* **(1) Failed probes can write a record named `.green.`. Confirmed.**
+  `bcprobe.sh` writes `<lane>.green.<tag>` whenever the job reports at least
+  one compiled overlay file, whatever the `# PROBE` line says. The job lists
+  compiled files after `lake build` whatever its exit code. Evidence:
+  `lanes/kt-norm-paper.green.0912-120052-26096` contains `# PROBE FAILED rc=1`.
+  The planted-type-error calibration left no record only because the plant
+  produced no olean at all; a green helper with a red target in one probe would
+  leave a `.green.` file. **Audit rule:** a record counts only if it contains
+  `# PROBE GREEN`. The two records cited by landings so far (F4(k), F4(l)) do.
+* **(2) The already-green shortcut ignores the base.** A probe of bytes and mods
+  already recorded green at any earlier base is skipped. **Audit rule:** compare
+  the landed modules' import closures between the record base and the landing
+  parent, as done in F4(k) and F4(l).
+* **(3) Palomar libraries build without `-DwarningAsError=true`.** For a Palomar
+  module, PROBE GREEN does not exclude a `sorry`, which there is only a warning.
+  **Audit rule:** Palomar solution landings also need the axiom driver's output.
+* **Checked, no defect:**
+  * the base refuses a gutted tree;
+  * the synced paths must equal the tree (G1–G4);
+  * the manifest md5 is checked;
+  * overlays are restricted to `GroupApproximation/**/*.lean`, `Palomar/*.lean`
+    and `lakefile.toml`;
+  * PROBE GREEN requires exit code 0 and "Build completed successfully";
+  * an olean restored from the artifact cache counts as compiled, which is sound
+    because the cache key includes the source hash;
+  * the calibration record's md5 `9f6a8f83…` equals main's
+    `Dynamics/Surjunctivity.lean`.
 
 ## Credit and priority
 
