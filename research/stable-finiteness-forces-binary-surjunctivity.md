@@ -46,3 +46,13 @@ The converse direction is `stable-finiteness-failure-refutes-surjunctivity`.
 - **Where it stops.** No ancilla construction is known for any one-track non-affine automaton on a
   bi-orderable group. The first test is the marker involution with one ancilla (artifact,
   Section 6.4).
+- **Regrouping now has a node (gk-fz-decompose).**
+  - **First test answered: yes.** The marker involution is the word of four track shears over `4Z`.
+    Its window `{±1, ±2, ±3}` avoids `4Z`, and its flip set survives partial flipping
+    (`subset-stable-marker-flips-are-virtually-formalizable`).
+  - **The finitely generated hypothesis is needed.** Over `Q`, which has no proper finite-index
+    subgroup, the induced marker involution has no formal pair after any regrouping
+    (`marker-involution-over-rationals-is-not-virtually-formalizable`).
+  - **Live route:** `virtual-formalizability-reduces-surjunctivity-to-kaplansky`, through
+    `injective-automata-over-fg-groups-are-virtually-formalizable`. It localizes to the memory
+    subgroup first.
