@@ -61,3 +61,28 @@ artifacts:
     Section 3.5).
   - So this route cannot give a cheap candidate. It needs a finite configuration of finite groups
     that occurs in no sofic group, with modular cancellation in its table.
+- **Localization to one star** (lane `w5-laminar-cycle`, 2026-09-12;
+  `research/artifacts/laminar-cycle-overfilled-stars-2026-09-12.md`).
+  - `laminar-defects-localize-to-a-nonsofic-overfilled-star`: any nonzero laminar combination with
+    `t_p <= 0` contains a nonzero atom whose star (one parent and its orthogonal children) is
+    *overfilled*, meaning `sum r(children) >= r(parent)`. That star alone occurs in no sofic group.
+  - So candidates are decided star by star. A star inside a common finite subgroup or any sofic
+    subgroup is dead, and a star with all subgroups in Thompson's `V` would certify `V` nonsofic.
+- **Fake cycles.** `intersection-edges-inside-a-third-subgroup-are-redundant`: an edge `D_ij <= H_l`
+  does not change the amalgam. A three-subgroup star needs every pairwise intersection strictly larger
+  than the triple intersection. Artifact Example 2.4 is a fake cycle in `V` (the constants `S_4` with
+  the partition groups of `{[0],[10],[11]}` and `{[000],[001],[01],[10],[11]}`): all edges are
+  nontrivial and the join is infinite, yet the amalgam is virtually free.
+- **Thompson conjugates of constants.** The trace question sees only the abstract star: the groups,
+  their intersections and the identifications (artifact Remark 2.5). A conjugation that keeps the
+  abstract intersection data changes nothing. Only conjugates that produce an intersection pattern
+  occurring in no finite (or sofic) group can help.
+- **Search inside `V`.** `finite-subgroups-of-thompson-v-permute-a-canonical-partition`: every finite
+  `H <= V` sits in `Sigma(P_H) ~= Sym(|P_H|)` for a canonical coarsest cylinder partition, and
+  `H n K <= Sigma(P_H ^ P_K)`. So V-hosted stars can be enumerated from partitions and tested with the
+  essential-graph criterion. No essential V-hosted triangle with an infinite join has been exhibited
+  yet.
+- **Where it stops.** No overfilled star has been constructed, and there is no obstruction for
+  essential cycles whose amalgam has no sofic quotient injective on the union of the vertex groups.
+  Candidate amalgams are colimits of nonpositively curved triangles of finite groups, such as hyperbolic
+  colimits and exotic `A_2~`-lattices, whose soficity is open (literature not re-read).

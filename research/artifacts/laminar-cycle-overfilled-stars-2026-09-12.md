@@ -84,3 +84,107 @@ contains the star with the actual intersections. Item 3 is Theorem 1.1. QED
 **Answer to "does local finiteness kill cycles in `R^x`?"** Only in part. Local finiteness of the
 constants kills every star inside finitely many levels (1.3.1). A star with a Thompson conjugate
 `u H u^(-1)` escapes, and for stars inside `V` the question is at least as hard as soficity of `V` (1.3.2).
+
+## 2. Redundant intersection edges, and essential cycles
+
+For finite subgroups `H_0, ..., H_k <= G` put `D_ij = H_i n H_j`, and let `A` be the colimit of all the
+inclusions `H_i <- D_ij -> H_j` (as in the `w4-kap-join` artifact). Write `iota_i : H_i -> A`.
+
+**Lemma 2.1 (an edge inside a third subgroup is redundant).** Suppose `D_ij <= H_l` for some `l != i, j`.
+Then the colimit of the diagram with the edge `{i, j}` removed is canonically isomorphic to `A`.
+
+*Proof.* Let `A'` be the colimit without that edge. The universal properties give `A' -> A`. For the
+converse map it is enough that `iota_i(g) = iota_j(g)` holds in `A'` for every `g in D_ij`. Such a `g` lies
+in `H_i n H_j n H_l`, so `g in D_il` and `g in D_lj`. The edges `{i, l}` and `{l, j}` are still present, so
+`iota_i(g) = iota_l(g) = iota_j(g)` in `A'`. The two maps are mutually inverse on generators. QED
+
+**Corollary 2.2 (essential graph).** Let `Phi` be the graph with an edge `{i, j}` for each nontrivial
+`D_ij`. Repeatedly delete an edge `{i, j}` for which some `l` has `D_ij <= H_l` and both `{i, l}` and
+`{l, j}` are still edges. Every such deletion keeps `A` unchanged. Call the final graph `Phi^ess`. If
+`Phi^ess` is a forest, `A` is the fundamental group of a finite tree of finite groups, hence virtually free
+and sofic, and no laminar combination over these subgroups has `t_p <= 0`.
+
+*Proof.* If `D_ij != 1` and `D_ij <= H_l`, then `D_il` and `D_lj` contain `D_ij`, so they are nontrivial.
+The condition on the current graph is exactly what Lemma 2.1 uses, so each deletion preserves the colimit.
+The forest case is the argument of Corollary 2.4 of the `w4-kap-join` artifact, run on `Phi^ess`, followed
+by Theorem 2.1 there. QED
+
+**Corollary 2.3 (three-subgroup stars).** A star of Theorem 1.1 that uses exactly three distinct finite
+subgroups `H_0, H_1, H_2` needs `D_ij` not contained in the third subgroup, for all three pairs.
+Equivalently, each pairwise intersection is strictly larger than the triple intersection
+`H_0 n H_1 n H_2`. If one pairwise intersection equals the triple intersection, the star's amalgam is
+virtually free.
+
+*Proof.* `D_ij <= H_l` is the same as `D_ij = H_i n H_j n H_l`. Corollary 2.2 then deletes that edge
+and leaves a path, which is a forest. QED
+
+**Example 2.4 (a degenerate cycle).** In Thompson's `V`, write `a, b, c, d` for the cylinders `[00]`,
+`[01]`, `[10]`, `[11]`, and `Sigma(P)` for the group permuting the pieces of a cylinder partition `P` by
+prefix replacements (Section 3). Take:
+- `H_0 = Sigma({a, b, c, d}) ~= S_4`, the level-two constants;
+- `H_1 = Sigma({[0], c, d}) ~= S_3`;
+- `H_2 = Sigma({[000], [001], b, c, d}) ~= S_5`.
+
+Intersections:
+- `D_01 = <(c d)>`. An element of `H_1` moving `[0]` sends `[00]` to a depth-three cylinder.
+- `D_12 = <(c d)>`. `[0]` is a union of three pieces of the third partition, so it must be fixed pointwise.
+- `D_02 = Sym{b, c, d}`. `a` is subdivided in the third partition, so it must be fixed pointwise.
+
+All three edges are nontrivial, and the join is infinite.
+- Let `sigma in H_1` be the 3-cycle `0x -> 10x -> 11x -> 0x`, and `(a c) in H_0` the swap `00x <-> 10x`.
+- Then `g = sigma (a c)` maps `10x -> 100x`. So with `y = (10)^inf`, `g(1 0^k y) = 1 0^(k+1) y` for
+  `k >= 1`.
+- That orbit is infinite, so `g` has infinite order.
+
+But `D_01 = D_12 = H_0 n H_1 n H_2`, so the amalgam is virtually free. No star over these subgroups is
+overfilled.
+
+**Remark 2.5 (only the abstract star matters for the trace).** By Lemma 2.2 and Theorem 2.6 of the
+`w4-kap-join` artifact, whether a star can be overfilled depends only on the abstract data: the groups
+`H_s`, the subgroups `D_st`, and their identifications. If the same abstract data occur among finite
+subgroups of a finite group, or of any sofic group, no realization in any host carries an overfilled star.
+So replacing a constant configuration by Thompson conjugates helps only when the conjugation changes the
+abstract intersection pattern. Conjugating each subgroup separately while keeping the same groups and
+intersections cannot help.
+
+**Where the known cases stand (literature, not re-read here).** Colimits of triangles of finite groups
+with angle sum at most `pi` are developable (Gersten--Stallings). They include hyperbolic groups and
+lattices of `A_2~`-buildings. Residually finite or finitely generated linear colimits die by Theorem 2.6.
+Soficity of the rest, such as general hyperbolic colimits and exotic `A_2~`-lattices, is open. A surviving
+essential triangle must be one of those, with no finite or sofic quotient injective on the union of its
+vertex groups.
+
+## 3. Finite subgroups of Thompson's `V` permute a canonical partition
+
+For a finite partition `P` of `X = {0,1}^N` into cylinders, `Sigma(P) ~= Sym(|P|)` is the group of
+homeomorphisms that permute the pieces of `P` by prefix replacements.
+
+**Proposition 3.1.** Let `H <= V` be finite. Let `C_H` be the set of cylinders `c` such that every `h in H`
+restricts to a prefix replacement of `c` onto a cylinder. Then:
+1. `C_H` is closed under subcylinders and invariant under `H`;
+2. its maximal elements form a finite partition `P_H` of `X`;
+3. `H` permutes `P_H` by prefix replacements, so `H <= Sigma(P_H)`;
+4. every partition `P` with `H <= Sigma(P)` refines `P_H`.
+
+*Proof.*
+1. **Closure and invariance.** Subcylinder closure is immediate. For `c in C_H` and `g, h in H`,
+   `g` restricted to `h(c)` equals `(g h)` restricted to `c`, composed with the inverse of the prefix
+   replacement `c -> h(c)`. Both are prefix replacements, so `h(c) in C_H`.
+2. **The partition.**
+   - Each `h in V` is a prefix replacement on the pieces of some finite partition `D_h`. So every point
+     lies in a cylinder inside a piece of every `D_h` (`h in H`), and that cylinder is in `C_H`.
+   - The cylinders containing a given cylinder form a finite chain, so a largest one in `C_H` exists.
+   - Two cylinders are nested or disjoint, so distinct maximal elements are disjoint. They cover `X`,
+     and compactness makes them finitely many.
+3. **The action.** Let `c in P_H` and `h in H`. Then `h(c) in C_H` lies in a maximal `c'`. If
+   `h(c) != c'`, then `h^(-1)(c')` is a cylinder in `C_H`, because `h^(-1)` is a prefix replacement on
+   `c'`, and it strictly contains `c`. That contradicts maximality.
+4. **Minimality.** The pieces of such a `P` lie in `C_H`, hence inside maximal elements. QED
+
+**Corollary 3.2 (intersections).** For finite `H, K <= V`, `H n K <= Sigma(P_H ^ P_K)`, where `P_H ^ P_K`
+is the common refinement. An element of `H n K` permutes both partitions by prefix replacements, maps
+`p n q` onto `g(p) n g(q)`, and restricts there to the prefix replacement of `p`.
+
+So a star inside `V` is a star of subgroups of symmetric groups on cylinder partitions. Its pairwise
+intersections lie in the symmetric groups of the common refinements, as in Example 2.4. This fact is
+standard, and the proof above is included only to make the search checkable.
