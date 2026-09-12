@@ -47,6 +47,11 @@ being directly finite. Each implies that `G` is not surjunctive
 * **Traces mod 3.** They do not separate kernel idempotents from `eps_-`; only evaluation does.
   The 3-adic lifted trace separates every finite-subgroup projective from a defect (see
   Necessary conditions).
+* **Larger fields.** They give no extra room.
+  `leavitt-identity-factor-failures-transfer-into-kernel-corners` makes the invisible form universal
+  on every host with `q >= 3`. Extra roots of unity only lower the amplification level to one, and
+  base change carries kernel pairs up. So a kernel pair over `F_3` exists iff the ternary host fails,
+  and it is no easier to find over `F_9` than the corresponding host question there.
 * **Proper corner self-embedding.** Dead as a shortcut. `mu` embeds `S_-` unitally into the proper
   corner `q S_- q`, but a proper corner self-embedding does not make a ring directly infinite: the
   telescoping tail `mu^m(error)` stays nonzero at every finite depth. This is the same failure

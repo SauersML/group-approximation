@@ -206,3 +206,109 @@ these.
   any obstruction to the lift must already act inside `K_-^+`.
 
 Nothing here decides existence either way.
+
+## 7. Every finite-field host: roots of unity lower the level and add no room
+
+This answers a relayed question: do the extra roots of unity in the hosts of
+`leavitt-unit-group-algebras-split-over-scalar-characters`, such as `(q,d) = (4,2)` or the colimit
+over finite fields, give the kernel normal forms more room?
+
+**Setting.**
+* `q = p^r >= 3`, `d >= 2`, `L = L_(F_q)(1,d)`, `G = L^x`, `A = F_q[G]` and `pi : A -> L` the
+  evaluation.
+* `Z = F_q^x . 1`, with the central character idempotents `eps_chi`. `A_iota` is the
+  Leavitt-visible factor, and `K_iota = ker(pi|A_iota)`.
+* Level-`k` cylinders run over words `gamma` in `{0,...,d-1}^k`, with `q_gamma = S[gamma] T[gamma]`,
+  `T[gamma] S[gamma'] = delta_(gamma gamma')` and `sum q_gamma = 1`.
+* The diagonal constants are `D_k = { sum lambda(gamma) q_gamma : lambda : {0..d-1}^k -> F_q^x }`,
+  a subgroup of `G` isomorphic to `(F_q^x)^(d^k)`. The coordinate characters are
+  `ev_gamma(h) = lambda_h(gamma)`.
+* `delta_k(g) = sum_(|gamma| = k) S[gamma] g T[gamma]`.
+
+**Lemma 7.0.**
+* `delta_k` is an injective homomorphism `G -> G`, since `T[gamma] delta_k(g) S[gamma] = g`.
+* It fixes `Z` and commutes with `D_k`.
+* `delta_k(G)` meets `D_k` in `Z`: if `delta_k(g) = h`, then `g = T[gamma] h S[gamma] = lambda_h(gamma)`
+  for every `gamma`.
+
+**Theorem 7.1.** Let `H <= D_k` with `H n Z = 1`, and let `psi` be a character of `H` different
+from every `ev_gamma|H`. Put
+
+    E = (1/|H|) sum_h psi(h)^(-1) [h],        mu(x) = delta_k*(x) E,        q_iota = eps_iota E.
+
+Then:
+* `mu : A -> A` is an injective ring homomorphism with `pi mu = 0`;
+* `mu(eps_chi) = eps_chi E != 0`, and `mu(A_chi)` lies in the corner of `eps_chi E` for every `chi`;
+* if `c a = eps_iota != a c` in `A_iota`, then `A' = (eps_iota - q_iota) + mu(a)` and
+  `C' = (eps_iota - q_iota) + mu(c)` satisfy `C' A' = eps_iota != A' C'`, with `A' - eps_iota` and
+  `C' - eps_iota` in `K_iota`.
+
+So `A_iota` is not directly finite iff `F_q eps_iota + K_iota` is not directly finite.
+
+*Proof.*
+* **E is a killed idempotent.** `|H|` divides `(q-1)^(d^k)`, so it is prime to `p`, and the
+  characters of `H` take values in `F_q`. `[h] E = psi(h) E` gives `E^2 = E`. By orthogonality of
+  characters,
+  `pi(E) = sum_gamma ((1/|H|) sum_h psi(h)^(-1) ev_gamma(h)) q_gamma = sum_(gamma : ev_gamma|H = psi) q_gamma = 0`.
+* **mu is multiplicative.** `E` commutes with `delta_k*(A)`, and `E^2 = E`.
+* **mu is injective.** `delta_k(g) h = delta_k(g') h'` forces `delta_k(g'^(-1) g) = h' h^(-1)`, which
+  lies in `delta_k(G) n D_k n H = Z n H = 1`. So the products are distinct group elements, and the
+  coefficient of `mu(x)` at `delta_k(g)` is `x_g/|H|`.
+* **Scalars and corners.** `delta_k` fixes scalars, so `mu(eps_chi) = eps_chi E`. Since `eps_chi`
+  is central, `mu(x) = mu(eps_chi) mu(x) mu(eps_chi)` for `x` in `A_chi`.
+* **Evaluation.** `pi mu(x) = pi(delta_k*(x)) pi(E) = 0`.
+* **The pair.** `mu(a)` and `mu(c)` lie in `q_iota A q_iota` with `q_iota <= eps_iota`, so the cross
+  terms vanish. `C'A' = eps_iota - q_iota + mu(ca) = eps_iota`. `A'C' != eps_iota` because
+  `mu(ac) != mu(eps_iota)`. Finally `pi(A') = pi(C') = 1`. QED
+
+**Theorem 7.2 (level criterion).**
+* A triple `(k, H, psi)` as in 7.1 exists iff `q >= 3`.
+* The least level is `k = 1` iff `q >= 4`, or `q = 3` and `d >= 3`.
+* For `(q, d) = (3, 2)` the least level is `2`, and Theorem 4 is that instance.
+
+*Proof.*
+* **q = 2.** `D_k` is trivial.
+* **Level 1.** Take `H = {lambda : lambda(0) = 1}`, isomorphic to `(F_q^x)^(d-1)`. It meets `Z`
+  trivially and has `(q-1)^(d-1)` characters, against at most `d` coordinate characters. So a
+  missing character exists when `(q-1)^(d-1) > d`, which holds for `q >= 4` and for `q = 3`, `d >= 3`.
+  For `(3,2)`, the subgroups of `D_1 = {+-1}^2` meeting `Z = {+-1}` trivially are `1`, `<(1,-1)>` and
+  `<(-1,1)>`. On each, the two coordinate characters exhaust the characters.
+* **Level 2 for q >= 3.** `H = {lambda : lambda(0^k) = 1}` at `k = 2` has
+  `(q-1)^(d^2 - 1) >= 2^(d^2 - 1) > d^2` characters. QED
+
+**Proposition 7.3 (base change).** Let `F_q <= F_q'`, `G_q <= G_q'`, and let `eps'` be the identity
+character idempotent of `F_q'[G_q']`. Then `x -> eps' x` sends a pair `c a = eps_iota != a c` of
+`F_q[G_q]` to a pair over `eps'`, and it sends kernel elements to kernel elements.
+* `eps' eps_iota = eps'`, and `eps' = ((q-1)/(q'-1)) sum_t t^(-1) [t] eps_iota`, where `t` runs
+  over a transversal of `F_q'^x / F_q^x`.
+* The cosets `t G_q` are disjoint because `G_q n F_q'^x = F_q^x`. So `eps' delta != 0` for the
+  defect `delta`.
+* `pi'(eps' x) = pi(x)`, because `L_(F_q) -> L_(F_q')` is injective.
+
+This extends gk-lp-hosts' extension-field statement for corner solutions to arbitrary pairs and
+to kernel pairs.
+
+**Answer.**
+* **No extra room.** On every host with `q >= 3` the invisible form is universal for `A_iota`. The
+  kernel problem on a host is exactly that host's direct-finiteness question for `A_iota`, neither
+  easier nor harder.
+* **What extra roots of unity do.** They lower the amplification level from `2` to `1` (Theorem
+  7.2). That is cosmetic.
+* **The colimit.** Its only extra room is host monotonicity (Proposition 7.3), which the
+  extension-field statement already records.
+* **F_2.** There are no diagonal constants. The binary transfer uses the permutation constants
+  `F_2[S_3]` instead (lane `gk-l2-invisible`).
+* **Scope.** The dichotomy of Section 3 is not claimed for `d >= 3`. There `V(L) = {0} u Z/(d-1)`,
+  so defect classes need not be free, which is why the cyclic twist requires `m = 1 mod (d-1)`.
+  Theorem 7.1 uses no orbit theorem and holds for every `d`.
+
+**Remark 7.4 (other factors: an untested idea).** Extra roots of unity do add Leavitt-invisible
+factors `A_chi`.
+* **Isomorphisms.** Coefficientwise Frobenius and the inverse-adjoint `g -> (g*)^(-1)` (with
+  `s_i* = t_i`) are automorphisms of `G`. They give `A_(iota^j) ~= A_(iota^(j'))` whenever
+  `j'` lies in `+-p^Z j` modulo `q - 1`.
+* **A tensor evaluation.** The factor `A_(iota^2)` carries the unital evaluation
+  `g -> g (x) g : A -> L (x) L`, since `[lambda] -> lambda^2`.
+* **Its kernel corners.** Theorem 7.1 transfers into the kernel of that evaluation whenever `psi`
+  is not a product `ev_gamma ev_gamma'`.
+* **Not examined.** Whether a corner equation has an image solution in `L (x) L`.
