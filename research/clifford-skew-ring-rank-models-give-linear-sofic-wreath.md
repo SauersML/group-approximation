@@ -10,16 +10,19 @@ artifacts:
   - research/artifacts/clifford-skew-ring-matrix-lamp-wreath-2026-09-12.md
 ---
 
-Let `k` be a field with `char k != 2`, and `X` an infinite `G`-set on which `G` acts faithfully. Let `S`, `q`
-be as in `clifford-cover-group-algebra-splits-into-wreath-and-skew-ring`, and `W = F_2 wr_X G`.
+Let `k` be a field with `char k != 2`, and `X` an infinite `G`-set on which `G` either acts faithfully or is
+residually finite, as for the Kun--Thom pair. Let `S`, `q` be as in
+`clifford-cover-group-algebra-splits-into-wreath-and-skew-ring`, and `W = F_2 wr_X G`.
 
 1. **Doubling.** `c_x tensor c_x^op` and `u_g tensor (u_(g^-1))^op` give an injective unital homomorphism
    `k[W] -> A_S tensor_k A_S^op`, for every `S`.
 2. **Rank gate.** Suppose `b_S` is nondegenerate and `A_S` embeds unitally in a rank-metric ultraproduct
    of matrix algebras over `k`. Then `W` embeds in the unit group of such an ultraproduct, with every
    nontrivial element at positive rank distance from `1`.
-   - If `W` concentrated near a scalar, `c_v u_g` would be rank-central, hence central, which is
-     impossible.
+   - If the image of a nontrivial `w` concentrated near a scalar, `c_v u_g` would be rank-central, hence
+     central. That forces `v = 0` and `g` central in `G` and acting trivially on `X`.
+   - Such `g` is `1` under faithfulness. For residually finite `G` it is separated by a finite quotient
+     of `G`, block-summed in.
    - For the Kun--Thom Clifford cover over `F_3`, `E_S` embeds the same way.
 3. **Equivalence.** For the Kun--Thom Clifford cover with nondegenerate `b_S`, `E_S` is `F_3`-linear
    sofic iff `A_S` embeds unitally in a rank-metric ultraproduct over `F_3`.

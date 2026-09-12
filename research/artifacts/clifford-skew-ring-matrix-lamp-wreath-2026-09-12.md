@@ -225,6 +225,12 @@ positive rank distance from `1`. So does `E_S` when `k = F_3`.
 - **No central `U` exists.**
   - A central `c_v u_g` commutes with every `c_x`, so `gx = x` for all `x`, and `g = 1` by faithfulness.
   - Then `c_v` is central in `C_S`, so `v` is in the radical, which is `0`. So `w = 1`, a contradiction.
+- **Remark (residually finite `G` instead of faithful).** Without faithfulness the argument still shows that
+  a central `U` has `v = 0` and `g` central in `G` and acting trivially on `X`.
+  - If `G` is residually finite, such `g != 1` survives in a finite quotient `G -> Q`.
+  - Block-summing `tau` with the regular representation of `Q`, pulled back along `W -> G -> Q`, separates it.
+  - So the conclusion for `W`, and for `E_S`, holds for residually finite `G` with `b_S` nondegenerate, as
+    for the Kun--Thom pair.
 - **The group `E_S`.**
   - `F_3[E_S] = F_3[W] x A_S`, and `diag(tau_i(.), sigma_i(.) tensor 1_(n_i))` is a unital homomorphism.
   - A nontrivial element either maps to `w != 1` in `W`, or equals `eps`, which is `-1` on the second
