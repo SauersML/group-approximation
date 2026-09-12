@@ -79,6 +79,12 @@ Dead ends on the negative side (uct-problem lane, 2026-09-12; details in
   repository's non-MF and nonsofic theorems live on non-amenable groups, whose
   group C\*-algebras are not nuclear.  Dies at nuclearity.
 * **Ozawa's Kazhdan projections** (arXiv:2609.08892,
-  `hyperfinite-factor-not-quasidiagonal`).  The MF algebra built there has only
-  non-faithful tracial states, so it gives no faithful non-quasidiagonal trace
-  for `stw99-ii-implies-ix1`.  Dies at faithfulness.
+  `hyperfinite-factor-not-quasidiagonal`).  Corrected 2026-09-12: the
+  non-quasidiagonal trace there is `τ_R`, which is faithful, so faithfulness is
+  not what fails; exactness is (R is not exact).  The surviving attack is the
+  MF-tensor certificate `nuclear-factor-with-infinite-mf-tensor-exists`
+  (route `nuclear-non-uct-via-infinite-mf-tensor`, lemma
+  `mf-min-tensor-exact-mf-is-mf`).  The natural right-leg algebra of Ozawa's
+  isometry is not nuclear (`ozawa-leg-algebra-carries-non-amenable-trace`), and
+  whether it is exact is open.  Details:
+  `research/artifacts/uct-fresh-mf-tensor-route-2026-09-12.md`.
