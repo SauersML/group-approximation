@@ -64,25 +64,29 @@ every nontrivial root element `x_ij(a)`, `a != 0`, is displaced by at least `rho
    `binary-leavitt-algebra-is-purely-infinite-by-monomials`, every nonzero `a` has monomials
    `x, y` with `x a y = 1`. Then `x_13(1) = x_13(x·ay) = [x_12(x), x_23(ay)]` and
    `x_23(ay) = [x_21(a), x_13(y)]`, so `rho = rho_13(1) <= 2 rho_23(ay) <= 4 rho_21(a) = 4 rho(a)`.
-6. Put `e = sum e_i` and `f = sum f_i`. Decompose
+6. Put `e = sum e_i` and `f = sum f_i`, and write `c_1, c_2, c_3` for the standard basis columns
+   of `R^3`, to keep them apart from the idempotents `e_i`. Decompose
 
    ```text
-   e_1 R = (+)_i e_1 e_i R  (+)  e_1 (1-e) R,     e_2 R = (+)_i e_2 e_i R  (+)  e_2 (1-e) R,
-   B = e_1 (1-e) R  (+)  e_2 (1-e) R  (+)  e_3 R,
+   c_1 R = (+)_i c_1 e_i R  (+)  c_1 (1-e) R,     c_2 R = (+)_i c_2 e_i R  (+)  c_2 (1-e) R,
+   B = c_1 (1-e) R  (+)  c_2 (1-e) R  (+)  c_3 R,
    ```
 
-   so `R^3 = (+)_i (e_1 e_i R (+) e_2 e_i R) (+) B`, and similarly with `f` and `B'`. The operator
-   `N_i = x_12(e_i) - 1` sends `e_2 e_i r` to `e_1 e_i r` and kills every other summand. The same
-   holds for `N'_i = x_12(f_i) - 1`.
+   so `R^3 = (+)_i (c_1 e_i R (+) c_2 e_i R) (+) B`, and similarly with `f` and `B'`. The operator
+   `N_i = x_12(e_i) - 1 = e_i E_12` sends `c_2 e_j r` to `delta_ij c_1 e_i r` and kills `B` and
+   every `c_1 e_j R`. The same holds for `N'_i = x_12(f_i) - 1`.
    * Every nonzero finitely generated projective right `R`-module is isomorphic to `R`
      (`binary-leavitt-nonzero-projectives-are-free`). So there are isomorphisms
      `phi_i : e_i R -> f_i R`, and `psi : B -> B'`; `B` and `B'` are nonzero since they contain
-     `e_3 R`.
-   * Define `g` by `e_1 e_i r -> e_1 phi_i(e_i r)`, `e_2 e_i r -> e_2 phi_i(e_i r)`, and `psi` on
+     `c_3 R`.
+   * Define `g` by `c_1 e_i r -> c_1 phi_i(e_i r)`, `c_2 e_i r -> c_2 phi_i(e_i r)`, and `psi` on
      `B`. It is an automorphism of `R^3`, hence an element of `GL_3(R) = EL_3(R)`.
-   * On `e_2 e_i r`: `g N_i (e_2 e_i r) = e_1 phi_i(e_i r)` and
-     `N'_i g (e_2 e_i r) = e_1 f_i phi_i(e_i r) = e_1 phi_i(e_i r)`. On every other summand both
+   * On `c_2 e_i r`: `g N_i (c_2 e_i r) = c_1 phi_i(e_i r)` and
+     `N'_i g (c_2 e_i r) = c_1 f_i phi_i(e_i r) = c_1 phi_i(e_i r)`. On every other summand both
      sides vanish. So `g N_i g^-1 = N'_i` for all `i`.
+
+   Verified by `gk-vf-linear` (verification artifact Section 37, 31618a184a), which suggested this
+   notation.
 
    With `n = 1` and `f_1 = 1`, `x_12(e) ~ x_12(1)` for every nonzero idempotent `e`. QED
 
