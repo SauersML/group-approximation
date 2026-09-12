@@ -8,6 +8,7 @@ distinct_from:
   low-degree-strict-pairs-have-one-sided-linear-parts: that is the established dichotomy, a pair or a unipotent automaton; this is its consequence once the unipotent branch is shown never strict.
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a group and `F = F_q` with `q = p^k`. Suppose `G` carries an injective, non-surjective

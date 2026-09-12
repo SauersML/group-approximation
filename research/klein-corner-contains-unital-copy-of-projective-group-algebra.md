@@ -8,6 +8,7 @@ distinct_from:
   leavitt-units-embed-in-their-scalar-quotient: that embeds the unit group into its scalar quotient by a corner map on one coordinate; this doubles a group element diagonally and embeds the group algebra into a corner cut by the Klein idempotent.
 artifacts:
   - research/artifacts/klein-target-balanced-invariant-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `k = F_3`, `R = L_k(1,2)`, `PG = R^x/{±1}`, `K = <wbar, dbar>` with `w = s_0 t_1 + s_1 t_0` and

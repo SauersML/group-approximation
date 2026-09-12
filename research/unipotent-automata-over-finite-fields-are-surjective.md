@@ -8,6 +8,7 @@ distinct_from:
   gottschalk-surjunctivity-conjecture: that is every automaton on every host; this is only automata with invertible linear part and a low-degree decoder, and it says nothing about decoders of degree product at least q.
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `F = F_q` and let `G` be any group. Let `tau` be an automaton over `F^m` with `tau(0) = 0`

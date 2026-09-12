@@ -9,6 +9,7 @@ distinct_from:
   stable-finiteness-failure-refutes-surjunctivity: that turns a one-sided inverse pair into a strict linear automaton; this goes the other way, from a low-degree nonlinear strict pair to a pair or a unipotent automaton.
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `F = F_q`, `q = p^k`, `G` any group, and let `tau`, `sigma` be automata over the

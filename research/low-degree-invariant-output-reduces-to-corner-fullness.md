@@ -9,6 +9,7 @@ distinct_from:
   ternary-leavitt-swap-idempotent-is-full: that is one scalar corner equation on one host; this shows every low-degree invariant-output design, over any field and any host, is a matrix corner equation for the averaging idempotent over F_p[G].
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `H <= G` be finite with `H != 1`, and `F = F_q` with `q = p^k`. Let `tau` be an injective

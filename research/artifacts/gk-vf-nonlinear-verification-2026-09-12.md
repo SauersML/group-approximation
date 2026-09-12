@@ -15,6 +15,8 @@ not by rereading the author's argument. Nothing was run.
 | `2fdd8cc75` (gk-free-neg) | `formal-polynomial-strict-pairs-need-unstable-linearization` and its corollaries | PASS (Section 7) |
 | `54ab1d134` (gk-n-twocycle) | `bijective-designs-force-every-finite-presentation` | PASS (Section 8) |
 | `5b6ac9c99` (gk-n-klein) | `ternary-adjoint-image-is-balanced`, `klein-level-one-splitting-is-outside-adjoint-image`, `klein-expectation-splits-in-balanced-algebra`, route `level-two-klein-fullness-gives-klein-fullness` | PASS (Section 9) |
+| `3c67b7dbd` (gk-n-klein, Section 7 as claims) | `klein-corner-contains-unital-copy-of-projective-group-algebra`, `adjoint-image-is-stable-under-klein-doubling` | PASS (Section 9) |
+| `222a8b610`, `8b69514ac` (gk-n-highalpha) | `low-degree-strict-pairs-have-one-sided-linear-parts`, `low-degree-invariant-output-reduces-to-corner-fullness`, `unipotent-automata-over-finite-fields-are-surjective`, `low-degree-strict-automata-force-matrix-kaplansky-failure` | PASS (Section 10) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
 Section 6 of `invariant-output-descent-and-sensitivity-2026-09-12.md` (the ternary form) was
@@ -388,3 +390,66 @@ a 16-dimensional span, so `rho` has a nontrivial kernel.
   - `Psi rho(delta(g)) = rho(g) Psi`.
 - *Corollary 9.* The flip is an anti-automorphism with `sigma(rho(g)) = rho(g^-1)` and
   `sigma(delta^2) = Psi^2`. That closes the three-way equivalence.
+
+## 10. Low-degree strict pairs over finite fields (`222a8b610`, `8b69514ac`, gk-n-highalpha): PASS
+
+**Theorem 1: linear parts.**
+- Substituting components of degree at most `deg tau`, with no constant term, into a monomial of
+  degree `D <= deg sigma` gives monomials of total degree at most `deg sigma deg tau < q`.
+- Identifying variables through product coincidences raises exponents but never beyond the total
+  degree. So the substituted polynomial is already reduced.
+- Reduced representatives are unique, so the functional identity is coefficientwise.
+- The degree-one part comes only from `D = 1`, and it reads `C A = I`.
+
+**Corollary 2.**
+- (a) Left inverse plus surjectivity would give `tau_C = tau_A^-1` and `AC = I`.
+- (b) `tau_C o tau` has linear part `tau_(CA) = id` and decoder `sigma o tau_A`. Linear
+  substitution raises no degree.
+
+**Corollary 3: invariant output.**
+- *Linear part.* Invariance holds as functions, hence for reduced polynomials over the union of
+  both variable sets. Comparing the coefficient of `x_u` gives `A_u = A_(h^-1 u)`, that is `hA = A`.
+- *(i)* When `p` divides `|H|`, orbit constancy gives `eps(A) = 0`, which contradicts
+  `eps(C) eps(A) = I`.
+- *(ii)* `eA = A`, and the converse design `tau_(eB)` has invariant output.
+- *Always case (a).* `AC = I` with `A = eA` would force `e = e(AC) = (eA)C = AC = I`.
+- Restriction of scalars keeps `e` in `F_p[G]`.
+
+**Example 4.** On `F_8`, `x^15 = x` and `15 >= 8`. The linear parts are 0, so the bound is needed.
+
+**Theorem 7: unipotent case.**
+- *The formal endomorphisms.* `phi^*` maps `x_u` to the local rule at `u`. Then
+  `(psi phi)^* = phi^* psi^*`, by expanding `F_psi((F_phi((x_(uts))_s))_t)` both ways.
+- *Step 1.* The exponent bound makes `sigma tau = id` formal, so `tau^* sigma^* = id_P`.
+- *Step 2.*
+  - For a homogeneous `f` of degree `j`, the degree-`j` part of `tau^*(f)` is `tau_A^*(f)`.
+  - `tau_A^*` is a degree-preserving automorphism, since `CA = AC = I`.
+  - The lowest part of `tau^*(f)` is `tau_A^*(f_j) != 0`, so `tau^*` is injective.
+- *Step 3.* `sigma^* = (tau^*)^-1`, so `tau sigma = id` formally, and therefore as functions.
+- Items (ii) and (iii) follow.
+
+**Proposition 8: words.** This is downward induction on the suffixes `S_j`.
+- Injectivity of `tau` makes each `S_j` injective, so `W_j` is injective on the image of `S_(j+1)`.
+- A bijective factor preserves surjectivity. A square linear factor is either surjective or the
+  witness.
+- Trust surface: the linear left inverse cites `certificate-linear-automata-have-local-linear-decoders`.
+
+## 11. Level-two membership equations (`24d073e3c`, gk-n-klein Section 8): PASS
+
+**Lemma 10.** The level-two code is complete, so the two families act as dual bases:
+- `(T[b] (x) S[c])(S[b'] (x) T[c']) = delta_(bb') delta_(cc') 1 (x) 1`;
+- `sum_(b,c) (S[b] (x) T[c])(T[b] (x) S[c]) = 1 (x) 1`.
+
+Right multiplication by `S[b'] (x) T[c']` extracts the coefficients uniquely.
+
+**Proposition 11.**
+- `T[a] g = sum_b g_(ab) T[b]` and `g^-1 S[a] = sum_c S[c] h_(ca)`, both from completeness.
+- So `Psi^2 rho(g) = sum_(b,c) (sum_a g_(ab) (x) h_(ca)^op)(T[b] (x) S[c]^op)`. The op-order of the
+  second factor is `(S[c] h_(ca))^op`.
+- Coefficient comparison gives the sixteen equations.
+
+**Corollary 12.**
+- The Z-grading `deg s_i = 1`, `deg t_i = -1` is compatible with the relations, which are
+  homogeneous of degree 0.
+- `S[b] (x) T[c]^op` has bidegree `(2,-2)`, while degree-zero entries give bidegree `(0,0)`.
+- Examples: the entries of `K_4`, the level-two sign and permutation units, are scalars.

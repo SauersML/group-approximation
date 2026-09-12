@@ -8,6 +8,7 @@ distinct_from:
   klein-corner-contains-unital-copy-of-projective-group-algebra: that is the group algebra embedding x -> delta_*(x) e_K; this is its image-level form and the intertwining identities behind it.
 artifacts:
   - research/artifacts/klein-target-balanced-invariant-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 With `k`, `R`, `PG`, `K`, `e_K`, `delta_*` as in `klein-corner-contains-unital-copy-of-projective-group-algebra`,
