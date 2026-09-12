@@ -34,9 +34,25 @@ the flagship candidates; their soficity is recorded as unknown by Cornulier.
   simply transitively on vertices. They have unique normal forms, so every reverse
   table is decidable. They contain `Z^2`, so they escape
   `cubulated-hyperbolic-table-cores-carry-no-strict-pair`.
-* **Dies for now at realizability.** Single-track 0/1 linear rules pair every product,
-  so they never realize the star partition. Two-by-two linear track gadgets force
-  2-torsion (Lemma D of the artifact), and these lattices are torsion-free. Nonlinear
-  gadgets forcing exactly one square per decoder address have not been constructed.
-* **Next.** Nonlinear square gadgets, then Wise's non-residually-finite complete square
-  complexes as hosts, with reverse hinges computed through the normal form.
+* **Realizing the forward table is not the obstacle.**
+  `bijective-designs-force-every-finite-presentation` (gk-n-twocycle, 54ab1d134f) forces
+  every finite presentation, and so every VH lattice, as the principal forward table of
+  a design over `F_2^T`. That design is bijective over every group. A forced square core
+  is therefore no evidence on its own. Two things are needed:
+  * the rules must force the squares through an irreversible component;
+  * some reverse hinge word must survive in the lattice.
+* **Where it dies now.**
+  * Single-track 0/1 linear rules pair every product, so they never force only the star
+    partition.
+  * Two-by-two linear track gadgets force 2-torsion (Lemma D of the artifact), and these
+    lattices are torsion-free.
+  * At the Boolean level, strict data are uniform codes solving the forward network and
+    failing the transposed one (`boolean-core-is-uniform-single-demand-network-coding`).
+  * Group-realized 2x2 reverse tables are transposes
+    (`smallest-boolean-strict-core-is-a-one-sided-inverse`), so the irreversible part needs
+    larger shapes.
+* **Next.**
+  1. Take Wise's non-residually-finite complete square complexes as hosts.
+  2. Modify the shift–shear design so the decoder reads a key track at two addresses
+     joined by a square, making the encoder non-invertible.
+  3. Certify the surviving hinge with the normal form.

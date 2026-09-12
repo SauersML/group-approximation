@@ -170,9 +170,23 @@ Complete VH lattices are torsion-free, so a multi-track linear realization canno
 cancel products with two-by-two track supports. Tracks need at least three addresses
 on one side.
 
+**Update (sibling results since the first landing).**
+* `bijective-designs-force-every-finite-presentation` (gk-n-twocycle) forces every
+  finite presentation as the principal forward table of a shift–shear design over
+  `F_2^T`, with a bijective encoder over every group. Every complete VH complex is
+  therefore forced by some design, and realizing forward tables is solved. What remains:
+  * forcing the squares through an irreversible component;
+  * keeping a reverse hinge nontrivial in `pi_1(X)`.
+* `boolean-core-is-uniform-single-demand-network-coding` (gk-n-boolean): strict data are
+  uniform codes solving `N(T_f)` and failing the transposed `N^t(T_r)`.
+  `smallest-boolean-strict-core-is-a-one-sided-inverse`: group-realized 2x2 reverse
+  tables are transposes. Irreversible square gadgets therefore need shapes larger than
+  2x2, consistent with Lemma D.
+
 **Next steps.**
-* Nonlinear gadgets whose forward sufficiency needs exactly a square
-  `s v = h`, `s h' = v'` per decoder address and nothing else. This is the Boolean-core
-  question of `gk-n-boolean`, specialized to square tables.
-* Take Wise's smallest non-residually-finite complete square complexes as `X`, and
-  compute the reverse hinge words of any realized design with the normal form.
+1. In the shift–shear design for a complete square complex, let the decoder read a key
+   track at two addresses joined by a square, instead of translating it back. The
+   forward table keeps the square, the encoder loses its inverse, and the reverse
+   table is then computed by the normal form.
+2. Take Wise's smallest non-residually-finite complete square complexes as `X`, and
+   decide each reverse hinge word by square moves.
