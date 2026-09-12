@@ -78,3 +78,37 @@ message names the content.  `40801adec`, `19b478821` (board notes): no Prop.
 
 Sent to owners 2026-09-12: lx-torusP (F1, F2), lx-splitK (F1), lx-slice2 (F1), lx-pzero (F1), lx-endpoint (F3, F5,
 F6), lx-stepcK-agree (F4).
+
+Follow-ups: lx-endpoint narrowed `htop` to mapping tori (assemblies PROBE GREEN 0912-101459-43218) and fixed the
+docstring.  lx-stepcK-agree's frozen-field rotation route for `LocalClassesAgree` (`R_c`, `β ∘ R_c = β`,
+homotopy `H(τ, p) = (R_{c(τ)} p, P(R_{c(τ)} p)(0 ⊕ β p))`) was checked against dadc8f5df: no flaw.
+
+## Round 2: the odd-primary narrowing (origin c1b23d84a)
+
+lx-design narrowed the consumer interfaces (design `notes/lix-strong-swarm/design-oddp.md`).
+
+**Complete against their proof sites.**  `ParityP.PowerDataN` and `wu_field_of_splittingN`: p_mul_y at `u = ∏ y`,
+`p_one_pos` for `p_one_eq_zero`, `p_zero_one` and the derived `p_zero_prod` for `p_prod`, `hP` only at `γ (i+1)`
+(WuTransport:235).  `ParityPDataN.pH_z_mul_zero` at ParityPDataNarrow:151.  `EvenReducedPowers` (a5f0a1992):
+`mul_single` needs no unit on `c`, and its consumer needs none; `z ∈ Good` via `good_of_components`, because the
+degree-0 component of `Ptot z` vanishes (restrict to a point); `zero_cp = μ⁻¹ μ`.
+
+**R1. The real odd-`p` chain still uses the strong forms.**  `LemmaTwoPowersModPData` →
+`lemmaTwoFor_powers_of_stepC_realModP` → `RealBundleModP.toModPStepDData` (`pH_zero := T.PN_zero`,
+`cartan := T.cartan`) → `ModPStepDData.toParityPData` (LIXStepDGenModP:142, `pH_z_mul_of_cartan`) → ParityPData:471.
+`Gen.RealTorusModP` at e6b92af13 still has `PN_zero` on the whole even part of `N` and an unconditional `cartan`;
+design-oddp.md's "landed spellings" entry for lx-torusP does not match origin.  `ModPStepDDataN` exists only in
+the shared tree, unrouted.
+
+**R2. Red at tip, unwired.**  `LIXStepDGenTorusPModel.RealTorusModP.ofEven` uses `ops.zero N` (field removed) and
+`ops.cartan N` (now guarded by `Good`).  `LIXStepDGenBundleP` (142, 179) and `LIXStepDGenBundlePLix` (78, 127) use
+`T.PN_even` (removed).
+
+**R3. Strong splitting on the bundle path.**  lx-bundleP consumes `HasSplittingP` and `realWu_of_splitting` (strong
+`PowerData`, `hP` for all `x`).  lx-splitK's producers give `HasSplittingPN`; `realWu_of_splittingN` does not exist.
+
+**R4. Producer route for `pH_z_mul_zero`.**  Use `mul_single` at `z` plus naturality.
+`pH_z_mul_zero_of_cartan` needs Cartan at `z × ι r` for arbitrary even `r`, hence `ι r ∈ Good`, hence
+generation of `H^*(∏ ℂP; F_p)` by degree-two classes, which the design avoids.
+
+Sent 2026-09-12: lx-torusP (R1, R2, R4), lx-bundleP (R2, R3), lx-slice2 (R1, R4), lx-design (all).
