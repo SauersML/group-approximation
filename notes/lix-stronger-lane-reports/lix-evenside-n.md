@@ -56,6 +56,23 @@ complements: Step A gives `G (e_last, 0) = (b, 0)`; `G ∘ τ = (G m).submatrix 
 `0 ↔ last` (identity on `H`) is a continuous corner unitary (τ fixes `V`) carrying `(e₀, 0)` to `(b, 0)`.
 So Step C at `e₀` is consumed for the SAME section `b = KGen.bVecK n (k − 1)`; no `σ ∘ b` anywhere.
 
+## Concrete mod-p assembly at the real mapping torus (option (a), approved 2026-09-11 ~22:50)
+
+`H` and `R` of `ParityPData` must be COMMUTATIVE; over `K` at odd `p` the whole ring `TotalHOf K X` is only
+graded-commutative, so they are the EVEN parts.  `CharClass/LIXStepDGenRealEven.lean`: `Gen.evenPart K X`
+(subring of classes vanishing in odd degrees), `Gen.instCommRingEvenPart` (commutative with no hypothesis,
+from lix-cupone's `TotalHOf.mul_comm_of_isEven_left`), `Gen.evenMap K f` (pullback as a ring hom),
+`Gen.evenRestrictAdd f hf` (P^i restricted).  `CharClass/LIXStepDGenReal.lean`: `Gen.tClassOf`, `Gen.xClassOf`,
+`Gen.zClass`, `Gen.isEven_zClass`, `Gen.zClass_mul_self` (z² = 0 with NO sign: z even ⇒ z t = t z, so
+z z = (t t) x x = 0 from H²(S¹) = 0 alone), `Gen.RealTorusModP` (torus inputs: H²(S¹)=0, Künneth z_inj, P^i
+on N and Y with P⁰ = id, Cartan, naturality, P^{>0} t = P^{>0} x = 0, instability on Y),
+`Gen.RealTorusModP.PN_zClass` (P(z) = z by Cartan), `Gen.RealBundleModP` (bundle inputs: even Chern classes,
+Künneth components, degree of b, slice, Wu with unit c), `RealBundleModP.instability_b`,
+**`RealBundleModP.toModPStepDData`** (the instance over the even parts), `RealBundleModP.gamma_top_eq_zero`,
+`Gen.realWu_of_splitting` (field wu from lix-evenside's `wu_field_of_splitting`; unit via
+`ParityP.isUnit_wuLeading`), `Gen.stepDHalf_of_realModP`, `Gen.lemmaTwoFor_powers_of_stepC_realModP`.
+Landed unverified: d6009101a (RealEven), 73ff46a09 + b4d828247 (Real).  Probe running on lix-c.
+
 ## NEEDS
 
 * lix-oddside-n: `StepCHalf n (lixDD n j) (KGen.bVecK n (k − 1)) topClass` at the top mod-`p` class.
