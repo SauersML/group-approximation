@@ -54,3 +54,52 @@ gives `K_1 = K_2 = 0` for `L^(⊗(d+1))`. This is exactly the missing input of
    *No transfer found*: `L ⊗ L` is simple, so there is no augmentation ideal from
    which to induce a finitely generated, not finitely presented left ideal.
    Neither coherence nor its failure is established.
+6. **Free-variable induction (withdrawn before landing).** The plan was to
+   induct on `L^(⊗m) ⊗ k<Y> ⊗ k[t_1..t_n]`, producing each new Leavitt factor
+   by localizing two fresh free variables over the field.
+   *Dies* at its first step: `k<Y> ⊗ k<x_1, x_2>` is not `k<Y ⊔ {x_1, x_2}>`,
+   because variables in different tensor factors commute. The ring being
+   localized is again a free algebra over a non-noetherian coefficient ring,
+   which is the gap of attempt 1.
+7. **The conditional warning cited in attempt 1 never fires.** Attempt 6 of
+   `leavitt-tensor-powers-have-trivial-k-theory` assumes that `k<e,f> -> k[F_2]`
+   is flat. It is not flat on either side.
+   - **Equational criterion.** A right `A`-module `U` is flat iff every relation
+     `Σ u_i a_i = 0` factors as `u_i = Σ_j v_j b_(ji)` with `Σ_i b_(ji) a_i = 0`
+     in `A` for each `j`.
+   - **The failing relation.** In `k[F_2]`, `(−f e^(−1))·e + 1·f = 0`. In
+     `k<e,f>`, `b_1 e + b_2 f = 0` forces `b_1 = b_2 = 0`: the monomials of
+     `b_1 e` end in `e` and those of `b_2 f` end in `f`, and `k<e,f>` is a
+     domain. So every factorization gives `u_2 = 0`, not `1`.
+   - **Left side.** Apply the anti-automorphisms fixing `e` and `f`: word
+     reversal on `k[F_2]` and on `k<e,f>`.
+
+   So no counterexample is known to "free algebras over regular coherent rings
+   are regular coherent", and attempt 1's input is open, not refuted. That input
+   is coherence of `S<x_1, x_2>` for `S = L^(⊗(d-1))`.
+
+   Bihler (arXiv:math/0612569v1, read on MSI) gives only permanence of
+   Vogel-regularity for tensor algebras (Proposition 5). He remarks that
+   Waldhausen's class Cl needs coherence conditions on the base ring. Waldhausen
+   was not read here.
+8. **Corner skew Laurent induction on the last factor.**
+   `L^(⊗d) = R_0[t_+, t_-; α]` with `R_0 = L^(⊗(d-1)) ⊗ L_0`, `t_± = 1 ⊗ x_1,
+   1 ⊗ y_1`, and `α = 1 ⊗ (x_1 · y_1)`. Here `R_0` is a flat filtering colimit of
+   matrix rings over `L^(⊗(d-1))`. By Gersten's Proposition 1.6 (as quoted in
+   ABC Section 7), `R_0` is regular supercoherent whenever `L^(⊗(d-1))` is.
+   *Dies*: the generic step is false, even for automorphisms.
+   - **The ring.** Let `B = k[x_i^(±1) : i ∈ Z]` with `σ` the shift.
+     `B[t_1..t_n]` is a filtering union of noetherian regular rings along free
+     extensions, so `B` is regular supercoherent by the same Proposition 1.6.
+   - **Its Laurent extension.** `B[s^(±1); σ] = k[Z ≀ Z]`. Its augmentation ideal
+     is finitely generated, and it is finitely presented only if `Z ≀ Z` is of
+     type `FP_2` over `k`.
+   - **Homology.** In the Lyndon--Hochschild--Serre spectral sequence of
+     `Z^(⊕Z) ⋊ Z`, `E^2_(p,q) = 0` for `p >= 2`. So `H_2(Z ≀ Z; k)` contains
+     `E^2_(0,2) = H_0(Z; Λ^2 k[t^(±1)])`, which has one basis vector
+     `e_0 ∧ e_n` for each `n >= 1`. It is infinite-dimensional, so `Z ≀ Z` is not
+     `FP_2` over `k`, and `k[Z ≀ Z]` is not coherent.
+
+   A proof must therefore use the particular corner isomorphism, or the
+   ultramatricial base `L_0^(⊗d)` of attempt 2. Regular supercoherence of the
+   degree-zero ring is not enough.
