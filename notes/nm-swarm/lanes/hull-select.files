@@ -19,3 +19,10 @@ GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionDegenerate.lean
 GroupApproximation/GGT/VanKampen/VanKampenMerge.lean
 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Prep.lean
 GroupApproximation/GGT/VanKampen/VanKampenCancel.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Values.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Collapse.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Surgery.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52LeastArea.lean
+GroupApproximation/GGT/VanKampen/PlanarVanKampenCellFactor.lean
+GroupApproximation/GGT/VanKampen/PlanarVanKampenCellSteps.lean
+GroupApproximation/GGT/VanKampen/PlanarVanKampenCells.lean

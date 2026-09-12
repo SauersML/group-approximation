@@ -37,28 +37,61 @@ Mathematical content over a field K:
   multiplicative.  **Unit vectors over K** (`GysinSphereOf`): the K-cohomology of S^{2d+1}.
 - **Thom bridge steps 1–2 over K** (`bridgeChartOf K [Field K]`), a single relative pullback, natural in the base.
 
-## AUTHORED, landed unverified (probe 3 queued on lix-b)
+| 902250273 | 0911-221742-20681 | ThomChernDegreewiseOf, GysinPairTautOf, ThomDataOf |
+| (identical) | 0911-225755-70521 | ThomTopLineOf, ThomKunnethOf, GysinPairRetractOf |
+| adb163993 | 0911-231754-79319 (PROBE GREEN) | ThomHabsOf, ThomBridgeTotalOf, ThomProjectivePuncturedOf |
 
-- `ThomDataOf` (97a94b2f3, import fix in attic): `thomData_of_absToSubOf` with an abstract coordinate equivalence.
-- `ThomChernDegreewiseOf` (fe512ef71): the degreewise Chern relation `lhTerm_top_eq_sumOf` over K.
-- `ThomHabsOf` (fe512ef71): `lhTopEquivOf`, the restriction square, habs, relToAbs injectivity,
-  `thomData_of_lerayHirschOf`.  F₂'s `lhSumTop` proves scalar linearity by `decide`; over K it is `lhTerm_smulOf`.
-- `GysinPairTautOf`, `GysinPairRetractOf` (fe512ef71): the Gysin pair condition over a field, against `mvSequenceOf K`
-  and `mvResUOf_eq_pull`.  GysinPairRetractOf waits until MayerVietorisPullOf has compiled.
-- `ThomBridgeTotalOf` (f9a0d04c2): `bridgeTotalOf K`, `thomData_total_of_lerayHirschOf`.  The Leray–Hirsch
-  generator is left arbitrary, because over K the Grothendieck relation uses the dual tautological class.
-- `ThomKunnethOf`: `kunnethFactor_sphereOf K n`, `kunnethFactor_CPOf K d`, the Künneth inputs of the recursion over F_p.
+Further content over K (probes 3–5):
+- **The Thom data over K** (`ThomChernDegreewiseOf`, `ThomHabsOf`, `ThomBridgeTotalOf`).  The degreewise Chern relation,
+  `lhTopEquivOf`, the restriction square, habs, relToAbs injectivity, `thomData_of_lerayHirschOf`, the Thom bridge
+  `bridgeTotalOf K`, and `thomData_total_of_lerayHirschOf`.  The Leray–Hirsch generator is left arbitrary.
+- **Künneth factors, top lines, projective base case over K** (`ThomKunnethOf`, `ThomTopLineOf`,
+  `ThomProjectivePuncturedOf`).  `kunnethFactor_sphereOf`, `kunnethFactor_CPOf`; `HasTopLineOf`, with the circle step
+  proved over a field by the rank count; `hasTopLineOf_prod_sphere`, `hasTopLineOf_prod_CP`;
+  `isZero_cohomology_CPOf` (from the Künneth factor with a point), `puncturedAcyclic_CPOf`,
+  `kunnethFactor_CP_puncturedOf`.  Step C over F_p gets its `hacyclic` and `absLine` inputs from these.
+- **Gysin pair condition over K** (`GysinPairTautOf`, `GysinPairRetractOf`).
+
+| (identical) | 0911-233524-73677 (GREEN) | GysinTautChartOf |
+| (identical) | 0911-234055-22190 (GREEN) | ThomBridgeTotalNaturalOf, ThomJmNaturalOf |
+| (identical) | 0911-234431-51070 (GREEN) | ThomBridgeRelToAbsOf |
+
+Further content over K (probes 6–8):
+- **The tautological class dies on the chart** (`GysinTautChartOf.rChartOf_tautEulerK`), for every generator `hgen`,
+  against lix-lh's `eulerOfBundleOf`.
+- **Naturality** (`ThomBridgeTotalNaturalOf`, `ThomJmNaturalOf`): `bridgeTotalRestrictOf`, `thomJm_naturalOf` (any ring),
+  `thomJmTotalOf`, `thomJmTotal_restrictOf` (the generators and their compatibility `hξ` are arguments).
+- **The bridge commutes with relToAbs** (`ThomBridgeRelToAbsOf.relToAbs_bridgeTotalOf`).
+
+| 8ada97d0e | probe 10 | ThomHyperplaneLHOf (`hyperLHOf`, `thomData_total_of_tautOf`; the Leray–Hirsch instances are arguments) |
+| (landed) | probe 11 (GREEN) | ThomSphereSubspaceOf (`absToSub_injective_of_sphereOf`, `relQuotEquiv_of_sphereOf`), BundleTotalPiCohIsoOf |
+
+All authored modules of this lane are compiled.
+
+## Left F₂-only in the lane's prefixes, and why
+
+- `SliceHomogeneous`, `SliceValueV`, `SliceSplitV`, `SliceRoots`: `Finset.prod` of degree-two classes needs a
+  `CommMonoid`, and at odd p the total ring over K is only a `GRing`.  The K-form must multiply inside the even
+  subring (lix-cupone's `TotalH.mul_comm_of_even`) or use `List.prod`.  This is a design question for the Step D owners.
+- `ThomChartTautZero`: needs a K-form of `CPn.eulerOfBundle_pushforward_congr` (lix-lh).
+- `ThomTopLineLIX`, `ThomCoordinates`: rank-two LIX instances, consumed by the LIX lanes.
+- `ThomSectionDetect` / `ThomStepCOdd*` / `ThomStepCSection` / `ThomChainHne`: superseded over K by the `…Of` forms in
+  ThomStepCEulerOf / ThomStepCLocalOf.
 
 ## NEEDS (declaration level)
 
-- An Euler class over K (`eulerOfBundle`, `eulerOfBundle_comap`, `eulerOfBundle_eq_zero_of_factors` over K), for
-  GysinTautFields §4 (`rChart_tautEuler`) over K.  Owner unknown; asked the lead.
-- `hasCPCohomology_CP` over K (ProjectiveSpaceComputation, lix-lh), for `puncturedAcyclic_CPOf` and
-  `kunnethFactor_CP_puncturedOf` (the K-forms of ThomProjectivePunctured).
+- Line in degree 2d of `H^*(ℂP^d; K)` (lix-lh's projective computation over K) for `HasTopLineOf K (CP d) (2d)`.  Not
+  needed for the recursion: the vanishing comes from `kunnethFactor_CPOf`.
 
 ## TRAPS
 
-- `RelativeLES` does not bring `Hmod` into scope; import `CohomologyBasic`.
+- Subscript `₊` in a binder name breaks the parse (`ξ₊` → "unexpected token '₊'"), and every declaration below the break
+  reports as unknown.
+
+- `RelativeLES` does not bring `Hmod` into scope; import `CohomologyBasic`.  `sInclusion` lives in
+  `GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree`; open it.
+- `cohPullbackK_apply_eq` is `rfl`, so `show pull … = _` replaces the import of `CohomologyKunnethHemiOf`, whose
+  closure reaches `MayerVietorisPullOf`.
 - `KroneckerContractible.pull_eq_of_homotopicOf` is not reached by the F₂ Gysin files.  Adding it to their imports would
   change the F₂ closure, so K-forms go in a new module that imports it.
 - `excisionIsoOf` takes its section variables first: `excisionIsoOf U V K hUV n`, not `excisionIsoOf K U V …`.  The old

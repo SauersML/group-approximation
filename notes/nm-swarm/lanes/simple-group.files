@@ -23,3 +23,7 @@ GroupApproximation/GroupTheory/HigmanThompson/RstabIso.lean
 GroupApproximation/GroupTheory/HigmanThompson/Proximal.lean
 GroupApproximation/GroupTheory/HigmanThompson/Orbits.lean
 GroupApproximation/GroupTheory/HigmanThompson/RstabGerms.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoBrownStab.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoBrownCover.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoBrown.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoFinitelyPresented.lean

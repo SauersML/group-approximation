@@ -25,3 +25,4 @@ GroupApproximation/GGT/HullSCLemma51QuotientStokes.lean
 GroupApproximation/GGT/HullSCLemma51EmbeddedProducer.lean
 GroupApproximation/GGT/HullSCLemma51LetterWords.lean
 GroupApproximation/GGT/HullSCLemma51FaceRelation.lean
+GroupApproximation/GGT/HullSCLemma51LetterMoves.lean

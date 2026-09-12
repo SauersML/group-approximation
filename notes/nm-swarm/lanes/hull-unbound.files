@@ -9,3 +9,5 @@ GroupApproximation/GGT/VanKampen/SurgeryInnerCollapseMerged.lean
 GroupApproximation/GGT/VanKampen/GFaceSplitCorners.lean
 GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean
 GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOne.lean
+GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoubling.lean
+GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean

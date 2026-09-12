@@ -9,3 +9,13 @@ GroupApproximation/CharClass/LIXKGenStepCWired.lean
 GroupApproximation/CharClass/LIXKGenChartZero.lean
 GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean
 GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean
+GroupApproximation/CharClass/LIXKGenBaseChart.lean
+GroupApproximation/CharClass/LIXKGenTopLine.lean
+GroupApproximation/CharClass/LIXKGenStepCHalf.lean
+GroupApproximation/CharClass/LIXKGenChern.lean
+GroupApproximation/CharClass/LIXKGenThomTerm.lean
+GroupApproximation/CharClass/LIXKGenHclass.lean
+GroupApproximation/CharClass/LIXKGenStepCHalfTop.lean
+GroupApproximation/CharClass/LIXKGenLocalPair.lean
+GroupApproximation/CharClass/LIXKGenLocalRes.lean
+GroupApproximation/CharClass/LIXKGenLocalNbhd.lean

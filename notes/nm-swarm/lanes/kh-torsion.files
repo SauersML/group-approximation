@@ -20,3 +20,8 @@ GroupApproximation/GGT/VanKampen/SingleEdgeDisc.lean
 GroupApproximation/GGT/VanKampen/EdgeInsertionFaceCycles.lean
 GroupApproximation/GGT/VanKampen/DiscTransport.lean
 GroupApproximation/GGT/VanKampen/FoldDiagram.lean
+GroupApproximation/GGT/VanKampen/PinchLemma.lean
+GroupApproximation/GGT/VanKampen/CombMapInvariantRestrict.lean
+GroupApproximation/GGT/SystolicDiscMovesCycle.lean
+GroupApproximation/GGT/SystolicDiscMovesAdapter.lean
+GroupApproximation/GGT/SystolicDiscMovesChord.lean

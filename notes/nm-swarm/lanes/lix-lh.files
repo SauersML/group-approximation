@@ -1,5 +1,10 @@
+GroupApproximation/CharClass/ChernClassesEvenOf.lean
 GroupApproximation/CharClass/ChernClassesOf.lean
+GroupApproximation/CharClass/ChernEulerBundleOf.lean
+GroupApproximation/CharClass/ChernGammaBridgeOf.lean
 GroupApproximation/CharClass/ChernTotalRingOf.lean
+GroupApproximation/CharClass/CohomologyChartCoverOf.lean
+GroupApproximation/CharClass/CohomologyChartFlatOf.lean
 GroupApproximation/CharClass/CohomologyChartFreeness.lean
 GroupApproximation/CharClass/CohomologyChartGenBridge.lean
 GroupApproximation/CharClass/CohomologyChartInduction.lean
@@ -10,6 +15,8 @@ GroupApproximation/CharClass/CohomologyDeltaCupOf.lean
 GroupApproximation/CharClass/CohomologyDeltaLiftOf.lean
 GroupApproximation/CharClass/CohomologyDeltaNaturalOf.lean
 GroupApproximation/CharClass/CohomologyDeltaSpecOf.lean
+GroupApproximation/CharClass/LerayHirschChartClassGenK.lean
+GroupApproximation/CharClass/LerayHirschChartClassK.lean
 GroupApproximation/CharClass/LerayHirschColumnPack.lean
 GroupApproximation/CharClass/LerayHirschCover.lean
 GroupApproximation/CharClass/LerayHirschMVOf.lean
@@ -23,4 +30,5 @@ GroupApproximation/CharClass/MayerVietorisElementOf.lean
 GroupApproximation/CharClass/MayerVietorisPullOf.lean
 GroupApproximation/CharClass/MayerVietorisSequenceOf.lean
 GroupApproximation/CharClass/MayerVietorisZeroOf.lean
+GroupApproximation/CharClass/ProjectiveSpaceComputationOf.lean
 GroupApproximation/CharClass/ProjectiveSpaceGenHyp.lean

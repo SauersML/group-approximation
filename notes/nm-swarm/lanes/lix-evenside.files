@@ -3,3 +3,10 @@ GroupApproximation/CharClass/ParityPWuValue.lean
 GroupApproximation/CharClass/ParityPDecomposable.lean
 GroupApproximation/CharClass/ParityPWuComponent.lean
 GroupApproximation/CharClass/ParityPWuTransport.lean
+GroupApproximation/CharClass/ParityPSplitStepD.lean
+GroupApproximation/CharClass/ParityPWuAxiomGuard.lean
+GroupApproximation/CharClass/ChernSplittingOfPowers.lean
+GroupApproximation/CharClass/ChernSplittingOfInjective.lean
+GroupApproximation/CharClass/ChernSplittingOfWhitney.lean
+GroupApproximation/CharClass/ChernSplittingOfFlag.lean
+GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean

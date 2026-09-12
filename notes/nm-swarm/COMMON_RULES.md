@@ -101,6 +101,12 @@ Manuscript = `non_mf_groups_exist.tex` at origin/main (2022 lines, last edit 73c
   land the real edit after it compiles.
 - Nothing lives only in the shared tree or a backup. Re-land after every edit cycle.
 
+## 22. ROOT SAFETY (lead, 09-11 23:58, after eb4bc56f4 reddened the root through a peer's wired module)
+- Before landing a STATEMENT change (signature, binder, field, definition body that callers unfold) to any EXISTING
+  declaration: `git grep -n '<decl>' origin/main -- GroupApproximation` and put EVERY using module, from any lane and
+  especially root-wired ones, into the same probe. A user in another lane's file: send the lead the one-line fix so
+  both land in the same window. Additive new declarations need no grep.
+
 ## 21. USER ORDER 22:45: "we MUST commit and push after LITERALLY EVERY EDIT. an edit NOT PUSHED AND COMMITED TO
 ##     MAIN is UNSAVED. do not clobber other work or overwrite when u push though"
 - After EVERY Edit/Write of a repo file, before probing or anything else, land it at once:

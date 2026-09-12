@@ -1,1 +1,3 @@
-GroupApproximation/Kazhdan/CCKWLinkRelations.lean
+GroupApproximation/Kazhdan/CCKWCosetCliques.lean
+GroupApproximation/Kazhdan/CCKWCosetComplexLocallyFinite.lean
+GroupApproximation/Kazhdan/GHBSharpExistence.lean

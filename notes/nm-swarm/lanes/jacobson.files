@@ -28,3 +28,6 @@ GroupApproximation/Kazhdan/HaagerupAffineSums.lean
 GroupApproximation/Algebra/LaurentBinaryHaagerup.lean
 GroupApproximation/Algebra/ValuationWithTopInt.lean
 GroupApproximation/Kazhdan/GHWPlaces.lean
+GroupApproximation/Algebra/TotalDegreeValuation.lean
+GroupApproximation/Algebra/ValuationExtensionPlaces.lean
+GroupApproximation/Algebra/BoundedIntegralFinite.lean

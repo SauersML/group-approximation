@@ -8,3 +8,6 @@ GroupApproximation/Kazhdan/UnipotentSylowCounts.lean
 GroupApproximation/GGT/KazhdanHypSymLocalData.lean
 GroupApproximation/GGT/KazhdanHypGirthEightSymHyperbolicity.lean
 GroupApproximation/GGT/KazhdanHypSymPowerDisc.lean
+GroupApproximation/GGT/VanKampen/TypedTriangularDiscCounts.lean
+GroupApproximation/Kazhdan/GHBHyperbolicStokesPolygon.lean
+GroupApproximation/Kazhdan/GHBHyperbolicStokesLadder.lean

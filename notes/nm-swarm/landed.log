@@ -513,3 +513,334 @@
 2026-09-11 22:36:49 kh-torsion bb7865a6028bf6a59ddb07ee79d684b28030445f GroupApproximation/GGT/VanKampen/VertexJoinMap.lean GroupApproximation/GGT/VanKampen/FoldMap.lean GroupApproximation/GGT/VanKampen/FoldFaceCycles.lean
 2026-09-11 22:37:21 kh-cckw 5819edb5fa65c3374d604277c1d86e68672b9092 GroupApproximation/Kazhdan/CCKWLinkRelations.lean
 2026-09-11 22:37:26 kh-torsion-attic dbcbd70747025cc0bffc8bd3b128c562c9fd3ad8 GroupApproximation/GGT/VanKampen/FoldTransport.lean
+2026-09-11 22:37:38 leavitt-ge 52b626bee670102d97da58e3d2ef5747e564addf GroupApproximation/Kazhdan/FoxIdentityLists.lean GroupApproximation/Kazhdan/FoxAsphericalReduction.lean
+2026-09-11 22:37:54 dgo-geometric 5664ec9245fadf2f2d1c36326a01eee7fae94d60 GroupApproximation/Kazhdan/GHWReductionComplexEmbedding.lean
+2026-09-11 22:38:26 go-lemma42 CORRECTION: the 22:36:34 line (8f999a341a) did NOT reach origin/main; nmland.sh was rewritten while that run executed
+2026-09-11 22:38:39 go-lemma42 b8af8cb13b46faac3243c07eff7e0f00440ebeeb metadata/NON_MF_SENTENCE_MAP.tsv metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt metadata/NON_MF_SENTENCE_CENSUS.tsv metadata/NON_MF_SENTENCE_CENSUS.md
+2026-09-11 22:38:45 lix-lh dc2f633a8bf1ec55867518fc6642f21e040217f7 GroupApproximation/CharClass/ChernClassesOf.lean notes/lix-stronger-lane-reports/lix-lh.md
+2026-09-11 22:39:41 lix-oddside-n 26a4e252b7df5d23ccf2fcf308feb4cf405f2e3f GroupApproximation/CharClass/LIXKGenBaseChart.lean
+2026-09-11 22:39:48 lix-thom baf2d8036305e20700b8894439e87f01b8e6886e GroupApproximation/CharClass/ThomTopLineOf.lean
+2026-09-11 22:40:05 lix-oddside-n-attic 94351d0271990e0b70cb398c553b5365526846a8 GroupApproximation/CharClass/LIXKGenChartZero.lean GroupApproximation/CharClass/LIXKGenStepCHalf.lean
+2026-09-11 22:41:10 fff-quotient 080b9297a680c49286311a206846f3da231e09a3 GroupApproximation/GroupTheory/HydeLodha/GammaTwoGeneration.lean GroupApproximation/GroupTheory/HydeLodha/GammaTwoSimple.lean
+2026-09-11 22:43:09 kh-ejz fb009189aabf3fe85f98ca77756602c0bb8989db GroupApproximation/PropertyT/ThreeVertexClosure.lean
+2026-09-11 22:43:52 hull-euler eb9501c79f88c95c196a89180050b2a2c630ff17 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean
+2026-09-11 22:44:28 lix-evenside 02d0df66c2a804e18d747a9ddd79d2ab5b1a7da4 GroupApproximation/CharClass/ParityPSplitStepD.lean
+2026-09-11 22:44:58 lix-powers 0890faa0d61ff36a13bfd8076e9ac2962bd0855e GroupApproximation/Analysis/LIXPowersSphere.lean GroupApproximation/Analysis/LIXPowersEquator.lean
+2026-09-11 22:45:45 leavitt-k1-attic bcfbf04b63ef55080ec89416660aa770dcc0029d GroupApproximation/Manuscript/OneSidedMFRadical/LeavittKOneFormula.lean GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientSentences.lean GroupApproximation/Manuscript/OneSidedMFRadical/LeavittMFQuotientGeneral.lean GroupApproximation/KOne/LeavittKOneScalarSurjectivity.lean GroupApproximation/KOne/LeavittKOneRankTwo.lean GroupApproximation/KOne/LeavittKOneDegreeZeroDeterminant.lean
+2026-09-11 22:45:51 sec2-sentences dcaca96731831f0ccd42a227917b789e8aae4c56 metadata/nm-census-rows/sec2-sentences.tsv notes/nm-swarm/reports/sec2-sentences.md
+2026-09-11 22:46:01 lix-tower 5f1b8d0b10d09f81c325b0e4da6ab243aca6fdab notes/lix-stronger-lane-reports/lix-tower.md
+2026-09-11 22:46:13 kh-ejz f0f56b337d6175d6ffabd0b2ab5a95af99f98f81 GroupApproximation/PropertyT/ThreeVertexProposition.lean
+2026-09-11 22:46:50 kh-torsion-attic f29f58ad71fb0c909c0f7c4a401f7d46a1a9ccd0 GroupApproximation/GGT/VanKampen/FoldDiagram.lean
+2026-09-11 22:47:14 jacobson-attic a699e2d81a76f596d41e36106290dc91cc492ffe GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonBlockAction.lean GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonComplementarySentence.lean
+2026-09-11 22:47:25 lix-thom 9022502736af74bcc67842e8609d7707bb0e3b41 GroupApproximation/CharClass/ThomDataOf.lean GroupApproximation/CharClass/ThomChernDegreewiseOf.lean GroupApproximation/CharClass/GysinPairTautOf.lean
+2026-09-11 22:47:31 sec4-sentences 0f3bb5e5529c84e609807aea738323b13ae7faaf GroupApproximation/GGT/SystolicDefs.lean
+2026-09-11 22:47:54 lix-thom-attic 0ee2027cac092be446541adf9a7ea2f6b4954c5e GroupApproximation/CharClass/ThomHabsOf.lean
+2026-09-11 22:53:10 dgo-geometric 122e83942a039051dc4976e97d93706d99412d7f GroupApproximation/Kazhdan/GHWInterfaces.lean
+2026-09-11 22:53:54 lix-powers 3e0035c8b0047adf6d5387c9d7f207d94510e9e6 GroupApproximation/Analysis/LIXPowersEquator.lean GroupApproximation/Analysis/LIXPowersEquatorChart.lean
+2026-09-11 22:54:05 lix-oddside-n 68780388f1e7f4865d2ac2d422848c2b7c33bbeb GroupApproximation/CharClass/LIXKGenChartZero.lean
+2026-09-11 22:54:25 lix-oddside-n-attic 502918c8cdd81dba5b3e598e25b256240dbfcf7b GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean
+2026-09-11 22:54:46 lix-steenrod 69dce0fae28d70a90910f9e001597179f4d774f7 GroupApproximation/CharClass/OddPTupleFunctor.lean
+2026-09-11 22:55:00 dgo-geometric-attic 01b6cebdad8791ea310b44b71c7d0b9eac4aff84 GroupApproximation/Kazhdan/GHWReductionComplexEmbedding.lean
+2026-09-11 22:55:24 lix-oddside b6d871308508a538c87e7bf2312fee767e835830 GroupApproximation/CharClass/LIXKLocalSplit.lean
+2026-09-11 22:57:04 lead a04e741f247422a2bf8b25fa9c8bd0d8baf1b624 notes/nm-swarm/COMMON_RULES.md notes/nm-swarm/LIX_LANES.md notes/nm-swarm/wire-queue.txt notes/nm-swarm/wave1.mods notes/nm-swarm/wave2.mods notes/nm-swarm/census-notes.md notes/nm-swarm/WORKLIST.md notes/nm-swarm/landed.log notes/nm-swarm/atrisk.txt notes/nm-swarm/deprecated-at-pin.txt metadata/nm-census-rows/agp-units.tsv metadata/nm-census-rows/dgo-analytic.tsv metadata/nm-census-rows/dgo-geometric.tsv metadata/nm-census-rows/go-sr1.tsv metadata/nm-census-rows/hull-respell.tsv metadata/nm-census-rows/jacobson.tsv metadata/nm-census-rows/leavitt-ge.tsv metadata/nm-census-rows/leavitt-k1.tsv metadata/nm-census-rows/sec2-sentences.tsv metadata/nm-census-rows/sec3-sentences.tsv metadata/nm-census-rows/sec4-sentences.tsv metadata/nm-census-rows/sec5-sentences.tsv metadata/nm-census-rows/torsion-ring.tsv notes/nm-swarm/reports/go-lemma42.md notes/nm-swarm/reports/kh-cckw.md notes/nm-swarm/reports/lix-coeff.md notes/nm-swarm/reports/lix-cupone.md notes/nm-swarm/reports/lix-descent.md notes/nm-swarm/reports/lix-evenside-n.md notes/nm-swarm/reports/lix-lh.md notes/nm-swarm/reports/lix-oddside-n.md notes/nm-swarm/reports/lix-oddside.md notes/nm-swarm/reports/lix-powers.md notes/nm-swarm/reports/lix-thom.md notes/nm-swarm/reports/lix-tower.md notes/nm-swarm/reports/rescue-lix.md tools/nm-swarm/nmprobe.sh tools/nm-swarm/nmland.sh tools/nm-swarm/nmwire.sh tools/nm-swarm/nmwirelist.sh tools/nm-swarm/closure.sh tools/nm-swarm/savelead.sh tools/nm-swarm/palomar-verify.sh tools/nm-swarm/remote/copynow.sh tools/nm-swarm/remote/copynow2.sh tools/nm-swarm/remote/copyrelaunch.sh tools/nm-swarm/remote/dispatch.sh tools/nm-swarm/remote/job.template.sh tools/nm-swarm/remote/lixclone.sh tools/nm-swarm/remote/lixclone2.sh tools/nm-swarm/remote/lixclone3.sh tools/nm-swarm/remote/palomar-verify.template.sh tools/nm-swarm/remote/pkgfix.sh tools/nm-swarm/remote/prep.sh tools/nm-swarm/remote/relaunch.sh tools/nm-swarm/remote/relaunch2.sh tools/nm-swarm/remote/trimclones.sh tools/nm-swarm/remote/wirejob.template.sh tools/nm-swarm/remote/purge_stale_nm.py tools/nm-swarm/remote/purge_stale.orig.py tools/nm-swarm/census/census_merge.sh tools/nm-swarm/census/census_run.sh tools/nm-swarm/census/merge_rows.py tools/nm-swarm/census/rekey_proposals.py tools/nm-swarm/census/worklist.py notes/nm-swarm/lanes/agp-units.files notes/nm-swarm/lanes/census.files notes/nm-swarm/lanes/dgo-analytic.files notes/nm-swarm/lanes/dgo-geometric.files notes/nm-swarm/lanes/fff-periodic.files notes/nm-swarm/lanes/fff-quotient.files notes/nm-swarm/lanes/go-lemma42.files notes/nm-swarm/lanes/go-sr1.files notes/nm-swarm/lanes/hull-bridge.files notes/nm-swarm/lanes/hull-component.files notes/nm-swarm/lanes/hull-respell.files notes/nm-swarm/lanes/hull-select.files notes/nm-swarm/lanes/hull-unbound.files notes/nm-swarm/lanes/jacobson.files notes/nm-swarm/lanes/kh-cckw.files notes/nm-swarm/lanes/kh-ejz.files notes/nm-swarm/lanes/kh-hyperbolic.files notes/nm-swarm/lanes/kh-torsion.files notes/nm-swarm/lanes/lead.files notes/nm-swarm/lanes/leavitt-ge.files notes/nm-swarm/lanes/leavitt-k1.files notes/nm-swarm/lanes/lix-coeff.files notes/nm-swarm/lanes/lix-cupone.files notes/nm-swarm/lanes/lix-descent.files notes/nm-swarm/lanes/lix-evenside-n.files notes/nm-swarm/lanes/lix-evenside.files notes/nm-swarm/lanes/lix-lh.files notes/nm-swarm/lanes/lix-oddside-n.files notes/nm-swarm/lanes/lix-oddside.files notes/nm-swarm/lanes/lix-powers.files notes/nm-swarm/lanes/lix-steenrod.files notes/nm-swarm/lanes/lix-thom.files notes/nm-swarm/lanes/lix-tower.files notes/nm-swarm/lanes/rescue-lix.files notes/nm-swarm/lanes/sec2-sentences.files notes/nm-swarm/lanes/sec3-sentences.files notes/nm-swarm/lanes/sec4-sentences.files notes/nm-swarm/lanes/sec5-sentences.files notes/nm-swarm/lanes/simple-group.files notes/nm-swarm/lanes/torsion-ring.files notes/nm-swarm/lanes/agp-units.clone notes/nm-swarm/lanes/census.clone notes/nm-swarm/lanes/dgo-analytic.clone notes/nm-swarm/lanes/dgo-geometric.clone notes/nm-swarm/lanes/fff-periodic.clone notes/nm-swarm/lanes/fff-quotient.clone notes/nm-swarm/lanes/go-lemma42.clone notes/nm-swarm/lanes/go-sr1.clone notes/nm-swarm/lanes/hull-bridge.clone notes/nm-swarm/lanes/hull-component.clone notes/nm-swarm/lanes/hull-respell.clone notes/nm-swarm/lanes/hull-select.clone notes/nm-swarm/lanes/hull-unbound.clone notes/nm-swarm/lanes/jacobson.clone notes/nm-swarm/lanes/kh-cckw.clone notes/nm-swarm/lanes/kh-ejz.clone notes/nm-swarm/lanes/kh-hyperbolic.clone notes/nm-swarm/lanes/kh-torsion.clone notes/nm-swarm/lanes/lead.clone notes/nm-swarm/lanes/leavitt-ge.clone notes/nm-swarm/lanes/leavitt-k1.clone notes/nm-swarm/lanes/lix-coeff.clone notes/nm-swarm/lanes/lix-cupone.clone notes/nm-swarm/lanes/lix-descent.clone notes/nm-swarm/lanes/lix-evenside-n.clone notes/nm-swarm/lanes/lix-evenside.clone notes/nm-swarm/lanes/lix-lh.clone notes/nm-swarm/lanes/lix-oddside-n.clone notes/nm-swarm/lanes/lix-oddside.clone notes/nm-swarm/lanes/lix-powers.clone notes/nm-swarm/lanes/lix-steenrod.clone notes/nm-swarm/lanes/lix-thom.clone notes/nm-swarm/lanes/lix-tower.clone notes/nm-swarm/lanes/rescue-lix.clone notes/nm-swarm/lanes/sec2-sentences.clone notes/nm-swarm/lanes/sec3-sentences.clone notes/nm-swarm/lanes/sec4-sentences.clone notes/nm-swarm/lanes/sec5-sentences.clone notes/nm-swarm/lanes/simple-group.clone notes/nm-swarm/lanes/torsion-ring.clone
+2026-09-11 22:58:20 lix-oddside-n dbfd1021f03d0a2bf42840c7c7fbbf378ea2fc59 GroupApproximation/CharClass/LIXKGenTopLine.lean
+2026-09-11 22:58:44 simple-group 015049e793cd0081306707c15588bcc1ee1e987f GroupApproximation/GroupTheory/HigmanThompson/RstabGerms.lean
+2026-09-11 22:58:54 fff-quotient dddc19123da74a0bbebb678a0959430c6c20ed6e GroupApproximation/GroupTheory/HydeLodha/QTwoStatement.lean
+2026-09-11 23:03:01 lix-coeff fbd5cc37d88be738c5595993c6d86e188879b25e GroupApproximation/CharClass/CohomologyKunnethStepOf.lean
+2026-09-11 23:03:28 leavitt-k1 4301f23744e9376dcff9d04caaaee44a1ec533f8 GroupApproximation/Manuscript/OneSidedMFRadical/LeavittKOneFormula.lean GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientSentences.lean GroupApproximation/Manuscript/OneSidedMFRadical/LeavittMFQuotientGeneral.lean GroupApproximation/KOne/LeavittKOneScalarSurjectivity.lean GroupApproximation/KOne/LeavittKOneRankTwo.lean GroupApproximation/KOne/LeavittKOneDegreeZeroDeterminant.lean
+2026-09-11 23:03:49 lix-steenrod 9e404d16202354d3da5676e8f334e16e7eb6c142 GroupApproximation/CharClass/OddPTupleFunctor.lean
+2026-09-11 23:04:24 kh-cckw 023c61d586f40aa7143281f104c8765fe26f4df7 GroupApproximation/Kazhdan/CCKWLinkGirthTyped.lean
+2026-09-11 23:04:37 lix-evenside-n d6009101ad955fa007e73ed8ae53066c367a19af GroupApproximation/CharClass/LIXStepDGenRealEven.lean
+2026-09-11 23:04:43 lix-evenside 2be49495a3cdaf5d69643ced28a40f590f878cbf notes/lix-stronger-lane-reports/lix-evenside.md GroupApproximation/CharClass/ParityPWuAxiomGuard.lean
+2026-09-11 23:05:25 lix-tower 914ba32683d2296e19b81eb75f5b3fc3c7c2fbe8 GroupApproximation/Analysis/LIXCor4PowersAssembly.lean
+2026-09-11 23:05:42 kh-torsion 64c49b8178fb8f752d63d2097dcdfc947c6bf87c GroupApproximation/GGT/VanKampen/PinchLemma.lean
+2026-09-11 23:05:55 lix-oddside-n 37af80afccd1c08f2decde716f2f32badaab457e GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean GroupApproximation/CharClass/LIXKGenBaseChart.lean GroupApproximation/CharClass/LIXKGenTopLine.lean
+2026-09-11 23:06:21 lix-thom 2de74242b79c74ef16a36340d9e724164a8f1334 GroupApproximation/CharClass/ThomProjectivePuncturedOf.lean
+2026-09-11 23:07:56 hull-select-attic f8b120dfbd1387a17e0eed5831054f7a8002a29f GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSections.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionBridge.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInterior.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionMultipleEdge.lean GroupApproximation/GGT/VanKampen/VanKampenCancel.lean
+2026-09-11 23:08:33 lix-coeff 620c057201606ab57315e7b2c03ede8ed1c9f49c GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean
+2026-09-11 23:08:40 kh-hyperbolic 7c06a251d40b950c63e5c570c32e7ab11de03107 GroupApproximation/GGT/VanKampen/TypedTriangularDiscCounts.lean
+2026-09-11 23:08:52 go-lemma42 f57b559f789d5ed9158a9bba51aa375b0f546994 metadata/NON_MF_SENTENCE_MAP.tsv metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt metadata/NON_MF_SENTENCE_CENSUS.tsv metadata/NON_MF_SENTENCE_CENSUS.md
+2026-09-11 23:09:06 lix-powers c0c8041cd0f894e0f675cf042af272b6ced9c0da GroupApproximation/Analysis/LIXPowersEquatorChart.lean
+2026-09-11 23:09:25 hull-bridge b670a9e175c8232d68ce7ab7c4f91abb3c7747dc GroupApproximation/GGT/HullSCLemma51FaceRelation.lean
+2026-09-11 23:10:56 kh-cckw a77bddb1373ba7b174cf05273f313970ebf6f615 notes/nm-swarm/reports/kh-cckw.md experiments/ghb7_vertex_families/README.md experiments/ghb7_vertex_families/ghb7_model.py experiments/ghb7_vertex_families/ghb7_readout.py experiments/ghb7_vertex_families/ghb7_lean_formulas.py experiments/ghb7_vertex_families/ghb7_families.py experiments/ghb7_vertex_families/ghb7_typed_girth.py
+2026-09-11 23:11:15 lix-evenside-n 73ff46a091989815432a03b8a27c9d9a5dc601b5 GroupApproximation/CharClass/LIXStepDGenReal.lean
+2026-09-11 23:12:35 lix-coeff 025f7af3adb8ec594de01f845a444158c347487e GroupApproximation/CharClass/CohomologyKunnethSurjZeroOf.lean
+2026-09-11 23:13:09 lix-oddside-n-attic f99407dbc0cacdac9d2b2e22ac4d6e29f215bcba GroupApproximation/CharClass/LIXKGenStepCHalf.lean
+2026-09-11 23:15:25 lix-thom-attic 008451f36a74ac00aef4957d601af0f7d1fa0b45 GroupApproximation/CharClass/ThomHabsOf.lean GroupApproximation/CharClass/ThomBridgeTotalOf.lean
+2026-09-11 23:15:30 dgo-analytic 7e995d9248137156ffd0bed5eafca26c28dc5053 notes/nm-swarm/reports/dgo-analytic.md
+2026-09-11 23:16:07 lix-lh d1f4a9b278469badef49e568da330012e24fa444 GroupApproximation/CharClass/ChernEulerBundleOf.lean
+2026-09-11 23:17:04 lix-coeff ee0b11fbf8dfa5edc13ec2cfd751022ae20f73f6 GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean
+2026-09-11 23:17:13 lix-evenside-n b4d828247e50eaaa463414effeaa5ffa46bfcb93 GroupApproximation/CharClass/LIXStepDGenReal.lean
+2026-09-11 23:17:22 fff-quotient 291a89369905f8579c58294ae7e3d188595f373c GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationDefs.lean
+2026-09-11 23:17:50 dgo-geometric-attic 1ceff5341b6745a6acec0db570e4d53a61e39e85 GroupApproximation/Kazhdan/GHWReductionComplexEmbedding.lean
+2026-09-11 23:18:08 lix-oddside-n 8da3019b5fe8600745d97352dcc0480ac8d5b751 notes/lix-stronger-lane-reports/lix-oddside-n.md
+2026-09-11 23:18:33 hull-bridge 0c6ffa0422b12eb5c0285143cfb7548d7ef4043a notes/nm-swarm/reports/hull-bridge.md
+2026-09-11 23:19:24 lix-lh ad93d6a9317645f2bbad840cf31a4008eb2835ef GroupApproximation/CharClass/LerayHirschChartClassK.lean
+2026-09-11 23:19:33 lix-coeff f9c753444f1803178c003ba04c393430a4c229b6 GroupApproximation/CharClass/CohomologyKunnethParityOf.lean
+2026-09-11 23:19:52 lix-thom-attic 587812635e5dae719df08dd7032869de3ac3fb0b GroupApproximation/CharClass/GysinTautChartOf.lean
+2026-09-11 23:20:19 jacobson-attic 5e3f6ba76e89c0eae7505caff2eae22a1c59db7f GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonKernelFinitary.lean GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean
+2026-09-11 23:20:41 lix-evenside 3e7c09ed5f63979584b781d46d2329b9f31e6f75 GroupApproximation/CharClass/ParityPWuAxiomGuard.lean notes/lix-stronger-lane-reports/lix-evenside.md
+2026-09-11 23:20:49 lix-oddside-attic 46270ef0c1b171edebf9ddb9b691a721c984eb76 GroupApproximation/CharClass/LIXKLocalRestrict.lean
+2026-09-11 23:21:40 lix-tower e60383ad37684126ce542748461f358a31819cc0 GroupApproximation/Analysis/LIXCor4PowersDiag.lean
+2026-09-11 23:21:49 lix-coeff 74ccb666856d10f3d2dec3f120311920a7f31cab notes/lix-stronger-lane-reports/lix-coeff.md
+2026-09-11 23:22:15 fff-quotient b82fce373c8a8bf4452b3de50626fef3f3e9cd6a GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationMove.lean
+2026-09-11 23:22:43 jacobson 7b3522d808b6e89a6aa2fe4030deb05e6b4b5a67 GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonBlockAction.lean GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonComplementarySentence.lean
+2026-09-11 23:24:35 lix-evenside-n 1c36fe610cf53cd5a48c075eef3e971e199f6731 notes/lix-stronger-lane-reports/lix-evenside-n.md
+2026-09-11 23:24:42 lix-powers 63487f51cda35254efb50cacaaf5a93ef042eebe GroupApproximation/Analysis/LIXPowersEquatorChart.lean notes/lix-stronger-lane-reports/lix-powers.md
+2026-09-11 23:26:40 lix-lh 1aa54781ec0181407f6a5a9d041aece174aa2271 notes/lix-stronger-lane-reports/lix-lh.md
+2026-09-11 23:27:04 sec2-sentences 2f418b44f40ae15e7182cf6059657f927358c59a GroupApproximation/Kazhdan/GHWArchimedeanWedge.lean
+2026-09-11 23:28:50 lix-cupone c4e19f1676222d34735332b7b4e4c6986a0e8f3e GroupApproximation/CharClass/OddPAcyclicAlgebra.lean GroupApproximation/CharClass/OddPAcyclicSimplex.lean GroupApproximation/CharClass/OddPAcyclicTag.lean GroupApproximation/CharClass/OddPAcyclicSlot.lean GroupApproximation/CharClass/OddPAcyclic.lean
+2026-09-11 23:30:09 dgo-geometric-attic b52e5a2efa39ca6e90ef0bceec0fa972d42baae7 GroupApproximation/Kazhdan/GHWReductionComplexEmbedding.lean
+2026-09-11 23:30:45 lix-thom adb163993c59a81f6ad629c2d49dea2f16c4ddc7 GroupApproximation/CharClass/ThomHabsOf.lean GroupApproximation/CharClass/ThomBridgeTotalOf.lean GroupApproximation/CharClass/ThomProjectivePuncturedOf.lean
+2026-09-11 23:32:20 lix-descent ab574afd4c4a2efea5317fd2497fb4a8616b4f25 GroupApproximation/CharClass/OddPEval.lean
+2026-09-11 23:32:46 go-lemma42 4888c563f72aba5561259a05f8cc67c95b9c99ef metadata/NON_MF_SENTENCE_MAP.tsv metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt metadata/NON_MF_SENTENCE_CENSUS.tsv metadata/NON_MF_SENTENCE_CENSUS.md
+2026-09-11 23:32:58 lix-oddside-n a9a92178b510507154ea4ed3ba4c7d0c75a53b0e GroupApproximation/CharClass/LIXKGenStepCHalf.lean
+2026-09-11 23:33:09 lix-thom a0c18e1f89039b8bfc155dc03dc9155f8c70a6dc notes/lix-stronger-lane-reports/lix-thom.md
+2026-09-11 23:33:12 lix-evenside-n 938aa5bb4160c3c38ebeb2c781f963f7d2f006ab GroupApproximation/CharClass/LIXStepDGenRealEven.lean
+2026-09-11 23:33:18 kh-torsion 27881ed9454b7aa4ae61c0494c91a82145867137 GroupApproximation/GGT/VanKampen/FoldDiagram.lean
+2026-09-11 23:33:28 lix-cupone-attic 6511c4175f54481db7195dbf1832797512f20840 GroupApproximation/CharClass/OddPAcyclicSimplex.lean
+2026-09-11 23:33:49 lix-tower 3c026e80c118eb4f7ad6a39f7f3caaf174aebc01 notes/lix-stronger-lane-reports/lix-tower.md
+2026-09-11 23:33:53 kh-torsion-attic 45b2099b37d8387890066f2d3397e569bc8c24c6 GroupApproximation/GGT/VanKampen/PinchLemma.lean
+2026-09-11 23:34:55 sec2-sentences 4a9140e1d63c2fc8dd9b4d834cd045cf13da7243 GroupApproximation/Kazhdan/GHWArchimedeanBound.lean
+2026-09-11 23:35:05 lix-oddside 5816b46dc03bb21c026e2375cb281946e37a17db GroupApproximation/CharClass/LIXKLocalRestrict.lean GroupApproximation/CharClass/LIXKStepCExponent.lean
+2026-09-11 23:35:16 lix-descent 88400d423fba3fb30bc9a8b80d59361e76bfc8cf GroupApproximation/CharClass/OddPEvalNatural.lean
+2026-09-11 23:35:24 lix-thom 0d2ef1f393bcaa1deb911ab4a37d150427d06550 GroupApproximation/CharClass/GysinTautChartOf.lean
+2026-09-11 23:35:38 hull-unbound-attic acae72a33f45291029915df8fa86e0dc5fa14c95 GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOne.lean
+2026-09-11 23:35:43 kh-ejz 87f5f8471f03507703002fcce85936d3b999859a GroupApproximation/PropertyT/ThreeVertexProposition.lean
+2026-09-11 23:36:12 sec5-sentences c1ecf6f06a01093b33178af8ff552edc5e8a46f6 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
+2026-09-11 23:36:15 lix-steenrod e2bb4f82096b62f48d9ef4c7d799cd34d45a27bd GroupApproximation/CharClass/OddPTupleFunctor.lean
+2026-09-11 23:36:27 kh-ejz 29bbb970138f7d05ca97548f8db3f8396ad0ed34 GroupApproximation/PropertyT/ThreeVertexKazhdan.lean
+2026-09-11 23:36:33 jacobson c2c89c3fde424d713c2c157e78e20eecef48e2f5 GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonKernelFinitary.lean
+2026-09-11 23:36:50 dgo-geometric 1289b80ba0b0ac74b5f90c1a9f883088015009b0 GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+2026-09-11 23:37:22 dgo-analytic 57ddccb863c72c5cb21322579539bd75a9048d3f GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean
+2026-09-11 23:37:31 sec2-sentences 4197466c872f9afc920dccbd6a513474a03aef2c GroupApproximation/Kazhdan/GHWArchimedeanWedge.lean
+2026-09-11 23:37:35 lix-cupone-attic a2471cdf7731473033ef9ba7572bcede672baeb4 GroupApproximation/CharClass/OddPAcyclic.lean
+2026-09-11 23:37:39 jacobson-attic fd3f56e9160ed4167b8a76869a130a9f963ab317 GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean
+2026-09-11 23:37:44 lix-evenside-n 1edf075829c3ab2bfa6062a0e00664a9b4780c74 notes/lix-stronger-lane-reports/lix-evenside-n.md
+2026-09-11 23:37:57 hull-select eb4bc56f4fdab0608a32f12f6818147343d06cc0 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSections.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionBridge.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionDarts.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPieces.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionDegenerate.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInterior.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionMultipleEdge.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInduction.lean
+2026-09-11 23:38:03 lix-descent 77f3ac926c620a0e644b7a11f254357809d2f83b notes/lix-stronger-lane-reports/lix-descent.md
+2026-09-11 23:38:40 lix-coeff 5809c9e140dd972832df69793419b0d924b1e36c notes/lix-stronger-lane-reports/lix-coeff.md
+2026-09-11 23:38:53 kh-cckw 4c33acdf199b0c0f52aa06067c139c8829ce1cad GroupApproximation/Kazhdan/CCKWLinkCycles.lean
+2026-09-11 23:39:00 hull-select 0c2b3f8470b10cb302a6eec0c42f0feeeab8d94d GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Prep.lean
+2026-09-11 23:39:48 fff-periodic da166db58e2411bdd3d5e630b3e50fe855b7e025 GroupApproximation/GGT/VanKampen/SurgeryPinchSplitMap.lean
+2026-09-11 23:40:19 kh-torsion 10407b50b16b2407e2e865a8f4a68d8d46ebcb48 GroupApproximation/GGT/VanKampen/PinchLemma.lean
+2026-09-11 23:40:49 lix-cupone 8739ca3a803dd284a97fbefbb875fbc8f1c14eeb GroupApproximation/CharClass/OddPAcyclicSimplex.lean
+2026-09-11 23:40:54 hull-component 68e7a64a4ce4c4d6e74216a44f5e4b3da22b45fe GroupApproximation/GGT/HullSCLemma51LetterFacts.lean
+2026-09-11 23:41:43 jacobson-attic 4afc47582ecd17dd0d226f5dafbb2e46b43c4a7d GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean
+2026-09-11 23:41:57 lix-oddside 20295daef06582667bb2ca278b01a7126dffa96e GroupApproximation/CharClass/LIXKGenLocalSplit.lean
+2026-09-11 23:42:37 hull-select-attic 6d9eb690f118f8658966ae278b21af8784bf22d9 GroupApproximation/GGT/VanKampen/VanKampenCancel.lean
+2026-09-11 23:42:53 hull-euler a19257066696021c64a190008bc4bada3acf8602 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean
+2026-09-11 23:43:15 kh-cckw edca857ac8a3273e1beddac1985f375c9a41e95d GroupApproximation/Kazhdan/CCKWLinkCycles.lean
+2026-09-11 23:44:07 leavitt-ge f80c38bf6b4be56839d21d8c23c8fe40579d6391 GroupApproximation/Kazhdan/CCKWTitsMoves.lean
+2026-09-11 23:44:27 kh-ejz b7e91276bc388d03eddc49b0c7d5a14f03bbea9c GroupApproximation/Kazhdan/EJZAngleTranslates.lean
+2026-09-11 23:44:40 lix-steenrod 00bd390be9b7c5857790d7a792f20c76b7f61890 GroupApproximation/CharClass/OddPTupleFunctor.lean
+2026-09-11 23:44:52 lix-powers 664a4c758c5fe6df8a6d939c60be3f638016b892 GroupApproximation/CharClass/LIXKGenOfModel.lean GroupApproximation/CharClass/LIXKGenOfBundle.lean
+2026-09-11 23:44:56 lix-cupone 9b8b95eee6314939869820402dd796535efa6e12 GroupApproximation/CharClass/OddPAcyclic.lean
+2026-09-11 23:45:17 jacobson d52bda221f254281d2490e8a681ed634fc64b3aa GroupApproximation/Algebra/TotalDegreeValuation.lean
+2026-09-11 23:45:29 rescue-lix b082f80a6a2ca7debcf82f98f4f5dcabd076625e GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrongAssemblyCor4.lean
+2026-09-11 23:46:14 lead-wire edc26bc892d57116798e810d8bab59f210e94b5e GroupApproximation.Algebra.FinitaryLinearBinaryPower GroupApproximation.Algebra.FinitaryLinearFiniteRank GroupApproximation.Algebra.FinitaryLinearTransvections GroupApproximation.Algebra.LaurentBinaryHaagerup GroupApproximation.Algebra.LaurentBinaryPlaces GroupApproximation.Algebra.ValuationWithTopInt GroupApproximation.Algebra.ValuedMatrixTwoCartan GroupApproximation.Analysis.LIXCor4PowersDiagChain GroupApproximation.Analysis.LIXCor4PowersField GroupApproximation.Analysis.LIXCor4PowersShape GroupApproximation.Analysis.LIXCor4PowersStage GroupApproximation.Analysis.LIXPowersSphere GroupApproximation.CharClass.ChernClassesOf GroupApproximation.CharClass.ChernTotalRingOf GroupApproximation.CharClass.CohomologyKunnethSphereOf GroupApproximation.CharClass.CohomologyKunnethSplitOf GroupApproximation.CharClass.CohomologyLHDegreewiseOf GroupApproximation.CharClass.CupOneTotal GroupApproximation.CharClass.GysinPairTautOf GroupApproximation.CharClass.GysinRetractOf GroupApproximation.CharClass.GysinSphereOf GroupApproximation.CharClass.KroneckerContractible GroupApproximation.CharClass.KroneckerSphere GroupApproximation.CharClass.LerayHirschMVOf GroupApproximation.CharClass.LIXKGenChart GroupApproximation.CharClass.LIXKGenDeriv GroupApproximation.CharClass.LIXKGenLocalHomeo GroupApproximation.CharClass.LIXKGenSect GroupApproximation.CharClass.LIXLemmaTwoGenGlue GroupApproximation.CharClass.LIXStepDGenHalf GroupApproximation.CharClass.MayerVietorisDisjointOf GroupApproximation.CharClass.MayerVietorisSequenceOf GroupApproximation.CharClass.MayerVietorisZeroOf GroupApproximation.CharClass.OddPDescentValue GroupApproximation.CharClass.OddPTupleAction GroupApproximation.CharClass.RelativeLocalModelOf GroupApproximation.CharClass.RelativeProdContractibleOf GroupApproximation.CharClass.RelativeSplitField GroupApproximation.CharClass.RelativeSubspaceIsoOf GroupApproximation.CharClass.RelHomotopyIdentity GroupApproximation.CharClass.ThomChernDegreewiseOf GroupApproximation.CharClass.ThomDataOf GroupApproximation.CharClass.ThomStepCLocalOf GroupApproximation.CharClass.ThomToolkitInstanceOf GroupApproximation.GGT.HullSCLemma44BoundedLeastAreaCanonical GroupApproximation.GGT.HullSCLemma51EmbeddedProducer GroupApproximation.GGT.HullSCLemma51QuotientStokes GroupApproximation.GGT.HullSCTheorem71GeneralLeastArea GroupApproximation.GGT.KazhdanHypGirthEightHyperbolicityBridge GroupApproximation.GGT.KazhdanHypGirthEightHyperbolicityFromFilling GroupApproximation.GGT.KazhdanHypGirthEightSymHyperbolicity GroupApproximation.GGT.KazhdanHypSymLocalData GroupApproximation.GGT.KazhdanHypSymPowerDisc GroupApproximation.GGT.OsinLemma71PrintedReductionClosedCitations GroupApproximation.GGT.OsinLimitSetSpelling GroupApproximation.GGT.OsinLinealExclusion GroupApproximation.GGT.RelativeCosetPieces GroupApproximation.GGT.SystolicDefs GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssembly GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssemblyPocket GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOne GroupApproximation.GGT.VanKampen.GFaceQuadrilateralRegion GroupApproximation.GGT.VanKampen.PlanarVanKampen GroupApproximation.GGT.VanKampen.VanKampenMerge GroupApproximation.GroupTheory.AscendingHNNRecognition GroupApproximation.GroupTheory.CasingPair GroupApproximation.GroupTheory.FGAbelianFinitePresentation GroupApproximation.GroupTheory.FinitePresentationExtension GroupApproximation.GroupTheory.HigmanThompson.CompactConj GroupApproximation.GroupTheory.HigmanThompson.CompactCore GroupApproximation.GroupTheory.HigmanThompson.CompactCoreGerms GroupApproximation.GroupTheory.HigmanThompson.CompactRangeB GroupApproximation.GroupTheory.HigmanThompson.CompactTrunc GroupApproximation.GroupTheory.HigmanThompson.GeometricF GroupApproximation.GroupTheory.HigmanThompson.Orbits GroupApproximation.GroupTheory.HigmanThompson.PLMoves GroupApproximation.GroupTheory.HigmanThompson.Proximal GroupApproximation.GroupTheory.HigmanThompson.ResidueInvariance GroupApproximation.GroupTheory.HigmanThompson.RstabIso GroupApproximation.GroupTheory.HydeLodha.CommutatorGeneration GroupApproximation.GroupTheory.HydeLodha.GammaOrbits GroupApproximation.GroupTheory.HydeLodha.GammaOrbitsTelescope GroupApproximation.GroupTheory.HydeLodha.GammaOrbitsZero GroupApproximation.GroupTheory.HydeLodha.GammaTwoLambda GroupApproximation.GroupTheory.HydeLodha.GammaTwoSimple GroupApproximation.GroupTheory.HydeLodha.PeriodicDisplacement GroupApproximation.Kazhdan.BruhatTitsTwoTree GroupApproximation.Kazhdan.CCKWLinkRelations GroupApproximation.Kazhdan.FoxAsphericalReduction GroupApproximation.Kazhdan.GHBLatticeRoute GroupApproximation.Kazhdan.GHWPlaces GroupApproximation.Kazhdan.HaagerupAffineSums GroupApproximation.Kazhdan.HaagerupUnion GroupApproximation.Kazhdan.LevelTreeAcyclic GroupApproximation.Kazhdan.UnipotentSylowCounts GroupApproximation.KOne.LeavittKOneScalarKernel GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrongAssembly GroupApproximation.Manuscript.NonMF.GerasimovaOsinSection2Printed GroupApproximation.Manuscript.NonMF.GerasimovaOsinTheorem11Closed GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssemblyClosedGO GroupApproximation.Manuscript.NonMFSentences.CompressionSentencesB2 GroupApproximation.Manuscript.NonMFSentences.DyadicReductionSeparation GroupApproximation.Manuscript.NonMFSentences.HSNullNormalSubgroupSentences GroupApproximation.Manuscript.NonMFSentences.LeavittKOneFormulaSentences GroupApproximation.Manuscript.NonMFSentences.LeavittKOneQuotientEvaluations GroupApproximation.Manuscript.NonMFSentences.MFRadicalQuotientBlockSumSentences GroupApproximation.Manuscript.NonMFSentences.NormalKazhdanUltrafilterRoute GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonFiniteMatrices GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonLaurentKazhdanFinite GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol
+2026-09-11 23:46:41 simple-group 42ed97c2980c6120edb5cd41328e9c67f6b3cf43 GroupApproximation/GroupTheory/HydeLodha/QTwoBrownStab.lean
+2026-09-11 23:46:50 lix-lh 2e6ff7cd46e62ba5921c66d7dc99c0ccac49cb33 GroupApproximation/CharClass/ChernClassesEvenOf.lean
+2026-09-11 23:47:09 rescue-lix f01a6c1f75d320d8913519d1ddc7fcaae971192a GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrongAssemblyHalves.lean
+2026-09-11 23:47:14 dgo-analytic dea18154c4734f24e0b0da090dcbbdf97865f847 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean
+2026-09-11 23:47:34 sec5-sentences f658b7eb35db75da9fead1f82afbc33f92c886f1 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
+2026-09-11 23:47:46 lix-coeff 7f180061c246c2e591cfb2e8cc046da05850715e GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean
+2026-09-11 23:47:50 fff-periodic 33bae46ebb54c80df7a7c5306182256b4a1b0584 GroupApproximation/GGT/VanKampen/SurgeryPinchSplitMap.lean
+2026-09-11 23:47:54 kh-torsion f2958ac5d5be0ff9b07bf074e4c57df889729d7c GroupApproximation/GGT/VanKampen/CombMapInvariantRestrict.lean
+2026-09-11 23:48:03 kh-cckw d26ed3bf08b66037dc70df7860d4dc8a8ee11a69 GroupApproximation/Kazhdan/CCKWLinkCycles.lean
+2026-09-11 23:48:09 simple-group 93f1890678e95e8afdedd7fad58fe5597548add2 GroupApproximation/GroupTheory/HydeLodha/QTwoBrownStab.lean
+2026-09-11 23:48:24 lix-thom 7c3eae52f04083bbc990a68900cb2d8defc1eab4 GroupApproximation/CharClass/ThomHyperplaneLHOf.lean
+2026-09-11 23:48:33 hull-unbound ccde452ae1b9d6e6168bfed7b8855d22643d21a8 GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOne.lean
+2026-09-11 23:49:40 lix-powers 893a25c711ee13e608f771b13426c96f59ea317a GroupApproximation/CharClass/LIXKGenOfBundle.lean
+2026-09-11 23:49:44 lix-lh 83040f5105680ae6284014803642c0750a9637c8 GroupApproximation/CharClass/ProjectiveSpaceComputationOf.lean
+2026-09-11 23:50:11 lix-evenside 69844e5e426e0b4d7c0eb5990669a3fdabf741ea GroupApproximation/CharClass/ChernSplittingOfPowers.lean
+2026-09-11 23:50:32 dgo-geometric fa37f11256ef1f025dbecf099ea31fc7d492525b GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+2026-09-11 23:50:43 rescue-lix ff690fad25881b0dbf8c4d8896bb362c502b34f9 Palomar/LIXStrongSolution.lean
+2026-09-11 23:50:56 lix-coeff 14952c890c1db0257e86bb95203668ab95222fa8 GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean
+2026-09-11 23:51:05 lix-oddside-n a0bc1306d1970fb1e849daddb009d175808ddeb3 GroupApproximation/CharClass/LIXKGenChern.lean GroupApproximation/CharClass/LIXKGenThomTerm.lean GroupApproximation/CharClass/LIXKGenHclass.lean GroupApproximation/CharClass/LIXKGenStepCHalfTop.lean
+2026-09-11 23:51:33 hull-select 47b3b5727a9e6a215bf729e67de1dea64af49aa5 GroupApproximation/GGT/VanKampen/VanKampenCancel.lean
+2026-09-11 23:51:51 lix-lh d15ad41aaf1f9364fe155f865921e701156e3421 GroupApproximation/CharClass/ChernGammaBridgeOf.lean
+2026-09-11 23:52:02 sec2-sentences 82942cbb993b057f1b5ae858643a04280ed8126d GroupApproximation/Kazhdan/GHWArchimedeanSeparation.lean
+2026-09-11 23:52:11 lix-oddside d6ab186d0aff1f0003b2c38b3e1e00e276841c0c GroupApproximation/CharClass/LIXKGenLocalSplitOf.lean
+2026-09-11 23:52:17 kh-cckw 92bfd4a17b91903dc7bdc110a7de0a17f8f59c9c GroupApproximation/Kazhdan/CCKWCosetComplex.lean
+2026-09-11 23:52:40 kh-ejz 1d5d905561b12e74bf2e2aa816cd200502289902 GroupApproximation/Kazhdan/EJZAngleHeisenberg.lean
+2026-09-11 23:53:33 rescue-lix 3c2f78cf93a001923d7100da7e452978a009cc8e notes/lix-stronger-lane-reports/rescue-lix.md
+2026-09-11 23:53:47 lix-thom 7563ca84c4e447d81edb326b6f047e72c1ef86a0 GroupApproximation/CharClass/ThomSphereSubspaceOf.lean
+2026-09-11 23:53:55 simple-group 25deeea9484c48314c805dab17f8b3e50acbad25 GroupApproximation/GroupTheory/HydeLodha/QTwoBrownCover.lean
+2026-09-11 23:54:12 sec5-sentences 00f4d4775feaaa9907bc70c2d493dfe96851ed01 GroupApproximation/GGT/VanKampen/SurgeryGFaceMerge.lean
+2026-09-11 23:54:49 lix-thom-attic 3d58747ee38aaff2f5860b1ae9c6e41a6ce75c47 GroupApproximation/CharClass/ThomHyperplaneLHOf.lean
+2026-09-11 23:55:04 lix-evenside-n 9cc011bdea2c72ad7bf7aaec98dbe27fb8688bd3 GroupApproximation/CharClass/LIXStepDGenRealTorus.lean
+2026-09-11 23:55:29 hull-bridge bf5a1636093bc8d6323630bbe0038b43e6b7cdc2 GroupApproximation/GGT/HullSCLemma51FaceRelation.lean
+2026-09-11 23:55:44 lix-descent 3a73f7d0f68f625de599b471f74fac315c6cabec GroupApproximation/CharClass/OddPEvalMultilinear.lean
+2026-09-11 23:55:49 fff-periodic 0c40dd430c30e7a86b2017f8439d6c46b4b69a5c GroupApproximation/GGT/VanKampen/SurgeryPinchSplitDiagram.lean
+2026-09-11 23:55:53 lix-cupone b18eb4e68bebb3370c6a79a8ec6652055cceda57 GroupApproximation/CharClass/OddPAcyclicZero.lean GroupApproximation/CharClass/OddPAcyclicZeroAug.lean
+2026-09-11 23:56:01 lix-evenside c9e3fdcc5dcd47664f776bdf6d8438d8eb8df61a GroupApproximation/CharClass/ChernSplittingOfPowers.lean
+2026-09-11 23:56:10 kh-hyperbolic 06fa3aa1f64444df036d95ca80b66b97d8f54bbf GroupApproximation/Kazhdan/GHBHyperbolicStokesPolygon.lean
+2026-09-11 23:56:15 hull-select 6ccd770fa5c27417df9efdbe4744b507171867ad GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Values.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Collapse.lean
+2026-09-11 23:56:26 kh-torsion-attic 9551ba423ae9ad5bba08cdc8cdf2f9a32c5f5aef GroupApproximation/GGT/VanKampen/CombMapInvariantRestrict.lean
+2026-09-11 23:56:39 dgo-analytic-attic 48397d69bbbe51bf25ad7b997945092e6cb484a3 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyPocket.lean
+2026-09-11 23:56:43 sec2-sentences 7087bee547343eda97bd550d81f4c8ec2d49964f GroupApproximation/Kazhdan/GHWArchimedeanBound.lean
+2026-09-11 23:57:06 lix-oddside-n-attic 7c92b6ebed3c66c668726c32a20fdf18bca72a27 GroupApproximation/CharClass/LIXKGenChern.lean
+2026-09-11 23:57:21 lix-powers 50ffefe3e6d3a8ad5b25cf3c284bb7b997659fc4 GroupApproximation/CharClass/LIXKGenOfPunctured.lean
+2026-09-11 23:57:52 simple-group 9ceee93ef71af62f8ae2bf53f4ef4c13235668cd GroupApproximation/GroupTheory/HydeLodha/QTwoBrown.lean
+2026-09-11 23:57:58 kh-cckw 39ef3970d0796d92bf20ca1df05f43d62ec2cb6c GroupApproximation/Kazhdan/CCKWCosetComplex.lean
+2026-09-11 23:58:02 lix-thom 8ada97d0eebe2b60d3d5ecc24351878aab676fcf GroupApproximation/CharClass/ThomHyperplaneLHOf.lean
+2026-09-11 23:58:08 rescue-lix c541280868c9602d6ec1bd1fef052fa41846cf72 .github/workflows/palomar-comparator.yml scripts/check_palomar_submission.py
+2026-09-11 23:58:11 lix-lh 9e0fab4ace88324d41de304ad6eda6067aa26f20 GroupApproximation/CharClass/ProjectiveSpaceComputationOf.lean
+2026-09-11 23:58:39 hull-select 714220e1b4483b3491211a02fc0923946acbbfd8 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Surgery.lean
+2026-09-11 23:58:43 go-sr1 2cf6d1248aa571e7ebe589956b95225fa65955d3 GroupApproximation/GGT/SystolicDisc.lean
+2026-09-11 23:58:50 lix-coeff 653132048a23dd92ce4f072209a8124320a397cf GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean
+2026-09-11 23:59:08 lix-powers b83b8ce5cb633be0ec759b02800ccb4138624fb1 GroupApproximation/CharClass/LIXKGenOfTopLine.lean
+2026-09-11 23:59:17 lix-evenside 495b5bd7dd87805f1f2a8976e7ee4e625cee6509 GroupApproximation/CharClass/ChernSplittingOfInjective.lean
+2026-09-11 23:59:21 simple-group c3dc6d5088cc60f79311460640be3b31ac71fb7f GroupApproximation/GroupTheory/HydeLodha/QTwoBrownCover.lean
+2026-09-11 23:59:25 lix-tower a73bcf4abbb7727a722ccde9aafb1a1e23b5452d GroupApproximation/CharClass/OddPWDiagonalRing.lean notes/lix-stronger-lane-reports/tools/psiw_test.py
+2026-09-11 23:59:29 jacobson e865046d2d7b3b3da00ef96e032eeca0206f1392 GroupApproximation/Algebra/ValuationExtensionPlaces.lean
+2026-09-11 23:59:31 kh-torsion ca33154e9abc3f0053dd873d3ca70e8ca61f6895 GroupApproximation/GGT/SystolicDiscMovesCycle.lean
+2026-09-11 23:59:35 lix-descent f9070dd74365b9e01c964ce5d946e347f8b03ae7 notes/lix-stronger-lane-reports/lix-descent.md
+2026-09-11 23:59:54 lix-steenrod 6a7c0975bd2b78150772c7fe7a44643a0e751121 GroupApproximation/CharClass/OddPDiagonalAug.lean
+2026-09-12 00:00:00 sec5-sentences 4152e118326f9bf27a2fa94594e116e6eea8585b GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean GroupApproximation/GGT/VanKampen/SurgeryGFaceMerge.lean
+2026-09-12 00:00:12 jacobson 678807ad642e125caf3963dadd3391be1725530b GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean
+2026-09-12 00:00:26 hull-unbound d538b4ac2be87f9c9e138b91000506470aa849ec GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoubling.lean
+2026-09-12 00:00:32 lix-thom 929ca5878594498e8a31ca946668ff7e62a297da GroupApproximation/CharClass/BundleTotalPiCohIsoOf.lean
+2026-09-12 00:00:50 kh-ejz df68077274515b5a651e16137614dbdf39361a42 GroupApproximation/Kazhdan/EJZAngleBessel.lean
+2026-09-12 00:00:56 lix-thom-attic 891b3724e62149263f26df8f6dfcf7e84d9f9eb6 GroupApproximation/CharClass/ThomSphereSubspaceOf.lean
+2026-09-12 00:01:01 hull-bridge 2b0707935bbb469e415ff3ab1fd86c29338f6367 GroupApproximation/GGT/HullSCLemma51FaceRelation.lean
+2026-09-12 00:01:23 lix-oddside-n 409347c6a619c32f851fff07f44f13b2a49976f5 GroupApproximation/CharClass/LIXKGenChern.lean GroupApproximation/CharClass/LIXKGenThomTerm.lean GroupApproximation/CharClass/LIXKGenHclass.lean GroupApproximation/CharClass/LIXKGenStepCHalfTop.lean
+2026-09-12 00:01:26 lix-evenside-n 0d189d933ab1b217e221caa1246f3f20c2f15962 GroupApproximation/CharClass/LIXStepDGenRealTorusModel.lean GroupApproximation/CharClass/LIXLemmaTwoGenTwo.lean
+2026-09-12 00:01:32 lix-cupone-attic 3afcf41928400dc90f6301c576bf17e2e3edcd8e GroupApproximation/CharClass/OddPAcyclicZero.lean
+2026-09-12 00:01:43 kh-ejz 0528ef13b6ce7645bef96ad6035edd4a7340aa4a GroupApproximation/Kazhdan/EJZAngleHeisenberg.lean
+2026-09-12 00:02:16 fff-quotient 587d629e94edee78b0e6a05f90ad56566184df41 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationGermAt.lean
+2026-09-12 00:02:19 lix-oddside-n df70cb261acd05f6220675225deab49e4a6469c1 notes/lix-stronger-lane-reports/lix-oddside-n.md
+2026-09-12 00:02:33 kh-cckw 6e2cde22a2f49174ce2a4635053300a984a0cbb4 GroupApproximation/Kazhdan/CCKWCosetComplexLinks.lean
+2026-09-12 00:02:37 hull-select b00990095b70a09b9c312e56b7ca0b98944327aa GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52LeastArea.lean
+2026-09-12 00:02:48 lix-evenside 9d422f49dc0d9853be367f7a56336199a6400ed7 GroupApproximation/CharClass/ChernSplittingOfPowers.lean
+2026-09-12 00:03:07 dgo-geometric c577ea5ecc0bcda1cad19133922e73d294ac3620 GroupApproximation/Kazhdan/GHWReductionComplexEmbedding.lean
+2026-09-12 00:03:10 lix-lh 0b1db2833ce9f06c662e2fda7cde4de6cb55e870 GroupApproximation/CharClass/LerayHirschChartClassGenK.lean
+2026-09-12 00:03:48 dgo-geometric-attic 751142afc379224288492714e452c86b4fc15821 GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+2026-09-12 00:04:11 jacobson-attic 84193e8244f8ba177757d9b7a8d0c469ddecb80f GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonLaurentKazhdanFinite.lean
+2026-09-12 00:05:03 lix-powers 8b0c32e8fa2780272867c64e82885035a10c5d73 GroupApproximation/CharClass/LIXKGenOfPunctured.lean GroupApproximation/CharClass/LIXKGenOfStepC.lean
+2026-09-12 00:05:11 lix-evenside-n 485a003871dbeccf7ec8e948bbd75229a2308b8b GroupApproximation/CharClass/LIXStepDGenRealTorus.lean
+2026-09-12 00:05:16 lix-thom c91d403d4591162221f5402bd3b234d4d954fc60 GroupApproximation/CharClass/ThomSphereSubspaceOf.lean GroupApproximation/CharClass/BundleTotalPiCohIsoOf.lean
+2026-09-12 00:05:42 dgo-analytic 948130d7902160fb6ed925d406aa20c576c32ba4 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyPocket.lean
+2026-09-12 00:05:49 lix-thom 5fadb09204dcd626c2963dd41c9f074cb2e2534a notes/lix-stronger-lane-reports/lix-thom.md
+2026-09-12 00:06:08 dgo-geometric-attic f95a1ea5fc12a8e9e1478ee94c019da1f5828076 GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+2026-09-12 00:06:18 leavitt-ge 27aedaf51e3a235966492bc86890d018e3939111 GroupApproximation/Kazhdan/CCKWTitsTypedWords.lean
+2026-09-12 00:06:46 go-lemma42 02754e4638bc9c25ee447316de9923d52950804c GroupApproximation/GroupTheory/HydeLodha/QTwoBrownTriangle.lean
+2026-09-12 00:06:52 sec5-sentences a470eb92983177720878fc47270cdb125168158a GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
+2026-09-12 00:07:00 fff-quotient 5e78224b72b5af5c51e15228cfc2a378386d8c20 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationSlopes.lean
+2026-09-12 00:07:23 kh-torsion-attic 81aceebee300ed6ca686f17f504a95a4fadecd5e GroupApproximation/GGT/VanKampen/CombMapInvariantRestrict.lean
+2026-09-12 00:07:38 lix-lh 3643d0936fba8e1831e9bb63aac7cbb2412095b4 notes/lix-stronger-lane-reports/lix-lh.md
+2026-09-12 00:07:45 hull-component 7da8689ac6fc4ce2200f1904d26f89e9bfcfe0a1 GroupApproximation/GGT/HullSCLemma51LetterPullbackAtoms.lean
+2026-09-12 00:07:58 lix-coeff cafa54819290345306c927e4c331aa38c0f84416 GroupApproximation/CharClass/CohomologyLHRingPiecesOf.lean
+2026-09-12 00:08:36 simple-group 9ff12f742b27113d2b1f597e6a5c79838a7bed57 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitelyPresented.lean
+2026-09-12 00:09:03 lix-evenside 9c15285d0d411b5223c0cd64f68aa4112c185316 GroupApproximation/CharClass/ChernSplittingOfInjective.lean
+2026-09-12 00:10:34 lix-tower 53d71ef29784fdf8e275ad1cda16d4440f5f2751 GroupApproximation/CharClass/OddPWDiagonal.lean GroupApproximation/CharClass/OddPWDiagonalCounit.lean
+2026-09-12 00:10:46 dgo-analytic 5f5dddd410c79968af4e916194a81e17e57935cd GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean
+2026-09-12 00:11:02 hull-bridge a0e4457ea306ef43ce0a26ed01d5c15b341dae4e GroupApproximation/GGT/HullSCLemma51LetterMoves.lean
+2026-09-12 00:11:09 kh-hyperbolic 0eb80e3344460dc61c6a975a674e44c10018d082 GroupApproximation/Kazhdan/GHBHyperbolicStokesLadder.lean
+2026-09-12 00:11:19 fff-periodic 4a6bbc3e51da2aa3104c4ff174c3d7f32d63d32d GroupApproximation/GGT/VanKampen/SurgeryPinchSplitRegions.lean
+2026-09-12 00:12:04 kh-cckw cb9aa816b1be8638f300fbb865fc9259e532b45d GroupApproximation/Kazhdan/CCKWCosetCliques.lean
+2026-09-12 00:12:08 lix-coeff 0f6b23ceaf3d317cd9cc928be202ab902eca9e77 GroupApproximation/CharClass/CohomologyLHRingDataOf.lean
+2026-09-12 00:14:37 simple-group 1c20b9d86e42dfc1e258be563b8693ac88f1e649 notes/nm-swarm/reports/simple-group.md
+2026-09-12 00:14:43 go-sr1 cf71506a505f748a60ce5cc8f0bcaa9fb63f833f GroupApproximation/GGT/SystolicDiscFilling.lean
+2026-09-12 00:14:52 jacobson 1ccefa3ca4f3d7b167e8eaea31244eb7e5f14876 GroupApproximation/Algebra/BoundedIntegralFinite.lean
+2026-09-12 00:14:58 dgo-analytic 3ef8fe7598248ee0cb43b2dce1d08397873accb6 notes/nm-swarm/reports/dgo-analytic.md
+2026-09-12 00:15:12 sec5-sentences c9d85cf96e8c48f075134aefee6c1e86e0f1c96e GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
+2026-09-12 00:15:26 lix-cupone-attic d812248d8d35da7dddec3c221dc8c99777d8fbf5 GroupApproximation/CharClass/OddPAcyclicZero.lean
+2026-09-12 00:15:32 kh-ejz 3c7add102695a741a79a261f8286a07d85948577 GroupApproximation/Kazhdan/EJZAngleSylowFourGram.lean
+2026-09-12 00:15:54 fff-quotient 8b80c2999aee9bf2eebbe1d46bbc615841d30e4c GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationShort.lean
+2026-09-12 00:16:20 lix-coeff 709aef02d4229337484bb1742bfd9ff64df42e9a notes/lix-stronger-lane-reports/lix-coeff.md
+2026-09-12 00:16:36 sec4-sentences db4b47f0d701216cd9cd3e06236070c0acf52ea8 GroupApproximation/GGT/SystolicCurvature.lean
+2026-09-12 00:16:45 leavitt-ge f7c307ff5dc2e694a520a6854f36fd13e107ae0b GroupApproximation/Kazhdan/CCKWTitsPresentation.lean
+2026-09-12 00:16:55 lix-evenside-n 587532f613d56b015986476fbe843e705cbe7a92 notes/lix-stronger-lane-reports/lix-evenside-n.md
+2026-09-12 00:17:01 lix-oddside-n 0f038ff96f321439022e5c3bda228e200b5b9a49 GroupApproximation/CharClass/LIXKGenLocalPair.lean
+2026-09-12 00:17:05 hull-euler 80033b6607010fbff881b48c6ef803f5b2c19752 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean
+2026-09-12 00:17:28 hull-component 8cc13f20141802538fa718353e9b2743312c71f2 GroupApproximation/GGT/HullSCLemma51LetterPullbackClose.lean
+2026-09-12 00:19:23 go-lemma42-attic a7408f321bf041dabf337cdbf58d7c1be1d5b776 GroupApproximation/GroupTheory/HydeLodha/QTwoBrownTriangle.lean
+2026-09-12 00:19:31 kh-torsion 0074798716f07a537b4709c2b00565235869ba3d GroupApproximation/GGT/VanKampen/CombMapInvariantRestrict.lean
+2026-09-12 00:19:41 kh-torsion-attic 225c5f297d000db9a31c3ff43858d3c6991134ff GroupApproximation/GGT/SystolicDiscMovesCycle.lean
+2026-09-12 00:20:18 hull-unbound-attic 28d00d5f30f79e22b7a56a1a8b33b4ecdbc3fabf GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoubling.lean
+2026-09-12 00:22:02 kh-cckw d184a537f153bd2e8bdc8e5e671514f3cdd922e0 notes/nm-swarm/reports/kh-cckw.md
+2026-09-12 00:23:59 jacobson f8b0f5d26a44895c1aaaddb67751b2c49d159ae6 GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonLaurentKazhdanFinite.lean
+2026-09-12 00:24:42 lix-coeff 37bb6043a8afc1abe41327120dd64b1a789216d2 notes/lix-stronger-lane-reports/lix-coeff.md
+2026-09-12 00:24:51 lix-steenrod b07f2e96cef85d3b51076a1cc5e407f83e045ee5 GroupApproximation/CharClass/OddPDiagonalSrc.lean
+2026-09-12 00:25:00 hull-select c527088f602d2c0aaa92ed12348579d3ed5aeee5 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Collapse.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52Surgery.lean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52LeastArea.lean
+2026-09-12 00:25:07 hull-euler aef80d690344f4f377a86afa00e9d30bfc26149c GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhiCount.lean
+2026-09-12 00:25:18 lix-steenrod-attic 1b5e1230ba4f41963490f6fa1eadeb6b738d8815 GroupApproximation/CharClass/OddPDiagonalAug.lean
+2026-09-12 00:25:29 lix-oddside 6d6d4a4e2f6c0b76409adf78c0b98eb9c75a7f88 GroupApproximation/CharClass/LIXKGenLocalEta.lean
+2026-09-12 00:25:41 lix-cupone c74ce78c3186f8d97fd7604f2799c12e11633602 GroupApproximation/CharClass/OddPAcyclicZero.lean GroupApproximation/CharClass/OddPAcyclicZeroAug.lean
+2026-09-12 00:26:58 jacobson-attic 058a94b14c107a0eeb74e952b4a71753428f3afc GroupApproximation/Algebra/TotalDegreeValuation.lean GroupApproximation/Algebra/ValuationExtensionPlaces.lean
+2026-09-12 00:27:03 kh-ejz b1d7a415bf95d7af278678abbe55b300c0b687d2 GroupApproximation/Kazhdan/EJZAngleSylowFour.lean
+2026-09-12 00:27:43 lix-evenside fff335f17dd5b61468856cf9aec331655cba1c6c GroupApproximation/CharClass/ChernSplittingOfWhitney.lean
+2026-09-12 00:28:36 lix-steenrod 93494e31f0b9958ff9b82d6605dcc759f86390b0 GroupApproximation/CharClass/OddPDiagonalAug.lean
+2026-09-12 00:28:44 hull-bridge 8ad1d967ff226166c86c86f5a1f725d34a6937d6 GroupApproximation/GGT/HullSCLemma51FaceRelation.lean
+2026-09-12 00:29:52 hull-unbound ceb7135c3f425da631071c1b5765e8427846be89 GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoubling.lean
+2026-09-12 00:30:42 dgo-geometric-attic 236f9cf7c4b8df337d676f2bfd411974eddae34a GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+2026-09-12 00:31:19 hull-euler dc941a3e3398ae11ba72b81f4cd8f64778cc6175 GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhiBound.lean
+2026-09-12 00:31:51 fff-periodic a2175c67d694cb3c85086a31d27bd9b6aabb0bd4 GroupApproximation/GGT/VanKampen/SurgeryPinchSplitRegions.lean
+2026-09-12 00:32:17 lix-cupone 8f8fc1ab8c209d6c9bba9f3a4cadf11424bafbf5 GroupApproximation/CharClass/CupVanishRepOf.lean
+2026-09-12 00:32:33 kh-torsion d4b5096b3c6ac2032158efa9b4a073cae9111e22 GroupApproximation/GGT/SystolicDiscMovesAdapter.lean
+2026-09-12 00:33:10 lix-oddside-n fee3cc5041c6816d213c0c1438e9a774c9bea6c3 GroupApproximation/CharClass/LIXKGenLocalRes.lean
+2026-09-12 00:33:40 lix-evenside 5a7c48881a89206779127c4e855ba8d45b1d2880 notes/lix-stronger-lane-reports/lix-evenside.md
+2026-09-12 00:33:51 sec5-sentences ba00fb55994c8d0d443cf717e097a3b95055ecea GroupApproximation/GGT/VanKampen/SurgeryGFaceMerge.lean
+2026-09-12 00:34:05 sec4-sentences c3cf00925e359f373227af5b3c6775005ec0b393 GroupApproximation/GGT/SystolicCurvature.lean
+2026-09-12 00:34:23 fff-quotient-attic fd846a32850561415b9cb23ac0c33a12f6ca54f1 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationShort.lean
+2026-09-12 00:34:30 lix-cupone 9b557a3639d571e729739c7103ccb7cf574313c8 GroupApproximation/CharClass/CupVanishIterateOf.lean
+2026-09-12 00:34:42 kh-hyperbolic 0f5344b90e495ca6942e82e4f2c68692b3f27c95 GroupApproximation/Kazhdan/GHBHyperbolicStokesLadder.lean
+2026-09-12 00:34:52 fff-periodic dd08937212e9648034fb1647306dde8a3e1635ec GroupApproximation/GGT/VanKampen/SurgeryPinchSplitSections.lean
+2026-09-12 00:34:57 leavitt-ge cf16c4b7a785819f45a369dc1eb1b85feafd9546 GroupApproximation/Kazhdan/CCKWTitsTypedWords.lean
+2026-09-12 00:35:08 lix-tower 01e539421fcceb38427688ad43caa7336da0d5b2 GroupApproximation/CharClass/OddPWDiagonalRing.lean
+2026-09-12 00:36:27 hull-select daf53c3492e916120e4396551d1634e6202e6bc8 GroupApproximation/GGT/VanKampen/PlanarVanKampenCellFactor.lean
+2026-09-12 00:36:35 lix-cupone fd4b137227202b36a87ee117a4eec32c7097a345 GroupApproximation/CharClass/CohomologyTotalNontrivialOf.lean
+2026-09-12 00:36:42 lix-lh fc92ba049889994436d7a22bbf40203b1aa59ee2 GroupApproximation/CharClass/CohomologyChartCoverOf.lean
+2026-09-12 00:37:23 jacobson 22f1987d0122581c33fc8f0b5516038cc97319d4 GroupApproximation/Algebra/TotalDegreeValuation.lean GroupApproximation/Algebra/ValuationExtensionPlaces.lean
+2026-09-12 00:37:28 hull-bridge af15fcd61a23bb67330b9fbeeead9809023fa1b3 GroupApproximation/GGT/HullSCLemma51LetterMoves.lean
+2026-09-12 00:37:38 fff-quotient 7c39b21cf11cc100a075255cc4cb654c7c23368a GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationGermGamma.lean
+2026-09-12 00:37:50 go-lemma42 91fbada584b5dd06b08e8c5df5cd08907ab4c6e8 GroupApproximation/GroupTheory/HydeLodha/QTwoBrownTriangle.lean
+2026-09-12 00:38:03 jacobson-attic 35cb7617c00e8714b3c7e3d76b47fbd9887a481e GroupApproximation/Algebra/BoundedIntegralFinite.lean
+2026-09-12 00:38:18 dgo-geometric b5e5abc1327d58a9b1550dc90d15ee049d76f62b GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+2026-09-12 00:38:22 hull-unbound b67574c3340f941cebae24f40612bd50362b2504 GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean
+2026-09-12 00:38:27 lix-tower cbeaf407155271838bdce4e8574a78f6820ed69b GroupApproximation/CharClass/OddPWDiagonal.lean
+2026-09-12 00:38:34 fff-quotient 302958c7bdefca526ada223334288cccdfbfe652 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationShort.lean
+2026-09-12 00:38:42 sec4-sentences 955fc3a22cf6eedbea34c6fb22942ea882660b69 GroupApproximation/GGT/SystolicCurvature.lean
+2026-09-12 00:39:31 fff-periodic a6fb37e101a9f2e6206a041897afa16f20406d5c GroupApproximation/GGT/VanKampen/SurgeryPinchSplitRegions.lean
+2026-09-12 00:40:15 lix-evenside 62de870b7be26d6d91d2e257588d7c39b20cc239 GroupApproximation/CharClass/ChernSplittingOfFlag.lean GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean
+2026-09-12 00:40:19 lix-cupone e905bfe0be74f20082d0059412ab2d82ceed40b0 notes/lix-stronger-lane-reports/lix-cupone.md
+2026-09-12 00:40:25 kh-torsion-attic 6500f69df33f4cf979ad7c82292d7608250b9531 GroupApproximation/GGT/SystolicDiscMovesCycle.lean
+2026-09-12 00:40:29 leavitt-ge a3deb810765bab3941db7f350c0b85904ca7f4ac GroupApproximation/Kazhdan/CCKWTitsTypedWords.lean
+2026-09-12 00:40:35 hull-component 3b442ed348f82d093994184e049803473a7b0f47 GroupApproximation/GGT/HullSCLemma51LetterPullbackRotate.lean
+2026-09-12 00:41:01 leavitt-ge e6610abbc73ff65b6306876cda75fc2a64af2a91 GroupApproximation/Kazhdan/CCKWTitsGHB.lean
+2026-09-12 00:41:15 hull-euler f7fcb8c9cf53b096886bc17b151bb48cae48ffaa GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerHereditary.lean
+2026-09-12 00:41:22 kh-ejz 3e1878759a91fcdf064268b5ad5f8e39181dc67c GroupApproximation/Kazhdan/EJZAngleSylowFour.lean
+2026-09-12 00:41:38 lix-oddside e92b7f2c91f702869968a742da0a15119cd83c0e GroupApproximation/CharClass/LIXKGenLocalLinear.lean
+2026-09-12 00:42:02 kh-ejz f816893382e0e70104ac8ecdf8f7429b6ed8f88e GroupApproximation/Kazhdan/EJZAngleGHB.lean
+2026-09-12 00:42:20 jacobson 19441736f942fd154cb4589a948f43c416e9be77 GroupApproximation/Algebra/BoundedIntegralFinite.lean
+2026-09-12 00:42:24 lix-lh 52095fce745521ebc042cfc7bfe49db894eb6123 GroupApproximation/CharClass/CohomologyChartFlatOf.lean
+2026-09-12 00:45:11 hull-bridge c97d6ac4fe901215d31a4a9a1918b2c1e45a8ece notes/nm-swarm/reports/hull-bridge.md
+2026-09-12 00:45:16 kh-torsion 18b7663a56d01622699039095e2ffd8396a15fc1 GroupApproximation/GGT/SystolicDiscMovesChord.lean
+2026-09-12 00:45:32 lix-evenside 9d068835cdfcc146e0215c2b53a827ad516da0ef notes/lix-stronger-lane-reports/lix-evenside.md
+2026-09-12 00:46:30 fff-quotient ddd327336c3e8b8eebd06698d6a2d804ee059053 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationLong.lean
+2026-09-12 00:46:41 dgo-geometric-attic c6e2bfb5e37d881a9e9d2e50b886d539c53b1c4e GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+2026-09-12 00:46:47 lix-tower 386f6eb27cb714239bb69c951157c7edd978ced9 notes/lix-stronger-lane-reports/tools/riffle_test.py
+2026-09-12 00:47:00 lix-cupone 1e3038157c52a15845d838b98054d8bc3ba2a842 GroupApproximation/CharClass/CohomologyTotalNontrivialOf.lean
+2026-09-12 09:15:49 hull-select b45e648e3e1878a7a23b88003682fdbdb6c3dd23 GroupApproximation/GGT/VanKampen/PlanarVanKampenCellSteps.lean GroupApproximation/GGT/VanKampen/PlanarVanKampenCells.lean
+2026-09-12 09:17:09 hull-component d80e0d009d2a15d65ee3bbc44faa28c1916ee08e GroupApproximation/GGT/HullSCLemma51LetterPullbackRotate.lean
+2026-09-12 09:18:33 sec5-sentences 0528ed707ff00b3ccc497edd62915b4f92ea9413 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeDarts.lean
+2026-09-12 09:19:14 hull-bridge 333132500f81e459aa9f2d37aec2e9abb261d34c notes/nm-swarm/reports/hull-bridge.md
+2026-09-12 09:20:05 dgo-geometric b9f144093ceeba35b18673803ad88e00f4a08ba1 GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+2026-09-12 09:20:49 dgo-geometric 587dde0d535e5438ae6a04256268e1f4fccd666d GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+2026-09-12 09:20:56 lix-lh bad666ccf9f23293a8b0b5670380997e38dd145e GroupApproximation/CharClass/CohomologyChartFlatOf.lean
+2026-09-12 09:21:03 lix-oddside 40ecb054b8d9a3ade17146930dfa46be3f7f0b94 GroupApproximation/CharClass/LIXKGenLocalLinear.lean
+2026-09-12 09:21:38 simple-group 47c4e98a0ac5d83e18b8ca2f22b05b55fa324533 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitelyPresented.lean
+2026-09-12 09:21:42 sec2-sentences 87ab7e2259385ab03901be52ecec19565d2c6bb6 GroupApproximation/Algebra/GHWFrobeniusSeparable.lean
+2026-09-12 09:21:58 lix-oddside-n 416ff8badceab2c6466b1908b2af3d3d98971330 GroupApproximation/CharClass/LIXKGenLocalNbhd.lean
+2026-09-12 09:22:11 kh-ejz 5a58865519f871ed5808652fb68bb444e9ab1788 GroupApproximation/Kazhdan/GHBLatticeRouteKazhdan.lean
+2026-09-12 09:23:25 lix-oddside-n b97f3e18d467625ffbc067f6ebb0c902cfa944f7 notes/lix-stronger-lane-reports/lix-oddside-n.md
+2026-09-12 09:23:53 sec2-sentences 2889b62294c920f9c44f35ed015ef543406d05f6 GroupApproximation/Algebra/GHWFrobeniusSeparable.lean notes/nm-swarm/reports/sec2-sentences.md
+2026-09-12 09:24:06 lix-oddside-n e075e363e7d3fddb44f37355ca8a70ecae50e5d7 notes/lix-stronger-lane-reports/lix-oddside-n.md
+2026-09-12 09:24:18 lix-thom ffc437ff2b7ae504b01b7463f0b6811a8af84cd1 GroupApproximation/CharClass/ThomBridgeTotalNaturalOf.lean GroupApproximation/CharClass/ThomJmNaturalOf.lean
+2026-09-12 09:24:21 lix-thom e70b58371b2668123cfff9dcd6c74b03d0376ca8 GroupApproximation/CharClass/ThomBridgeRelToAbsOf.lean
+2026-09-12 09:24:24 dgo-geometric 8964169807160e23307837ace2e8e66392234732 GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+2026-09-12 09:24:38 kh-cckw afd49c3ffcb01b7629a5e971801bf9a6c658f90b GroupApproximation/Kazhdan/CCKWCosetComplexLocallyFinite.lean
+2026-09-12 09:24:45 lix-steenrod 7e2fb508187a9fcea28953aba4ddffb11d1ee297 GroupApproximation/CharClass/OddPDiagonal.lean
+2026-09-12 09:24:55 kh-cckw e725a36e2c02918015852924e154445674febc49 GroupApproximation/Kazhdan/GHBSharpExistence.lean

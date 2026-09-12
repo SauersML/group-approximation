@@ -1,71 +1,87 @@
-# `lix-oddside-n` — the `k`-zero Step C at general rank `n` (successor of `sp-oddside-n`)
+# `lix-oddside-n`: the `k`-zero Step C at general rank `n` (successor of `sp-oddside-n`)
 
-Lane of `notes/LIX_STRONGER_PROGRAM_2026-09-10.md`, launched 2026-09-11 ~21:20 CDT by the lead
-(nonsofic-existence-41). Clone `lix-d` (hard-link warmed from cs-endpoint by `nm/lixclone2`).
-Owns `GroupApproximation/CharClass/LIXKGen*.lean`. Namespace `GroupApproximation.CharClass.KGen`.
+This is a lane of `notes/LIX_STRONGER_PROGRAM_2026-09-10.md`. The lead (nonsofic-existence-41) launched it on 2026-09-11 at about 21:20 CDT. It probes on the shared clone `lix-a`, together with lix-tower and lix-powers.
 
-**Deliverable (lead ruling 21:35):** for every stage `j` and every exponent `k` with `p ∤ k`, the
-Step C half of `LIX.Gen.LemmaTwoFor n (lixDD n j) (KGen.bVecK n (k-1))`, i.e. the degree-`k`
-section with `k` zeros. The names `psiVec` / `bVecK` / `normSq_psiVec` / `bVecK_normSq` stay.
+- Owned files: `GroupApproximation/CharClass/LIXKGen*.lean`.
+- Namespace: `GroupApproximation.CharClass.KGen`.
 
-## STEP 0 (21:25)
+## Deliverable (lead rulings 21:35, 22:10, 22:45)
 
-The predecessor's four files A–D (`LIXKGenSphere`, `LIXKGenPunctured`, `LIXKGenMap`,
-`LIXKGenSection`) are on origin/main byte-identical to the shared tree, and compiled per rescue-lix's
-gates. There is no unlanded predecessor work under `LIXKGen*` and no `attic/inflight` copy.
+The deliverable is `Gen.StepCHalf n (LIX.Gen.lixDD n j) (KGen.bVecK n (e-1)) topClass` for every stage `j` and every exponent `e` with `p ∤ e`. It comes first at `p = 2`.
 
-## GREEN
+- The spelling is in `CharClass/LIXLemmaTwoGenGlue.lean`, owned by lix-evenside-n.
+- lix-oddside owns leaves (3) `hx` and (4) `hsplit`, in `CharClass/LIXKGenLocal*`, written over this lane's names.
+- This lane keeps leaves (1) `absLine`, (2) `exc`/`chartIso` and (5) `hclass`, plus the StepCHalf assembly.
 
-Nothing new yet (clone lix-d still PREP_PENDING at 21:29).
+## GREEN: compiled and landed normally
 
-## AUTHORED, UNVERIFIED
+- **Probe 0911-220933-61809:** `LIXKGenSect`, `LIXKGenChart`, `LIXKGenDeriv`, `LIXKGenLocalHomeo`. Landed at 2749542ef.
+- **Probe 0911-222214-52591:** `LIXKGenBundle`, `LIXKGenStepCWired`, `LIXKGenSectInverse`, `LIXKGenSector`. Landed at 93bb40412.
+- **Probe 0911-224111-84100:** `LIXKGenChartZero`. Landed at 68780388f.
+- **Probe 0911-225543-57885 (PROBE GREEN, 8929 jobs):** `LIXKGenSphereChartHomeo`, `LIXKGenZeroChartHomeo`, `LIXKGenBaseChart`, `LIXKGenTopLine`. Landed at 37af80afc; the other three were already byte-identical on main.
 
-| file | contents | landed |
+Main declarations, by module:
+
+| module | main declarations |
+|---|---|
+| `LIXKGenSect` | `kSect`, **`joinC_kSect`** for every `w`, `kSect_neg_one = kRoot`, `continuousOn_kSect` |
+| `LIXKGenSectInverse` / `LIXKGenSector` | `kSect_joinC_polar`, **`kSector`** (open), **`kSect_joinC_of_mem_kSector`**, `kSect_mem_kSector` |
+| `LIXKGenChart` / `Deriv` / `LocalHomeo` | `sphereChartVec n`, `eulerLinearModel n`, **`hasStrictFDerivAt_trivialBlockChart n`**, **`eulerLocalHomeo n`**, `lixLocalRelIso n m` |
+| `LIXKGenChartZero` | **`psiVec_chartZeroVec`** (no hypothesis), **`trivialBlockK_chartZeroVec`** (one local model at every zero) |
+| `LIXKGenSphereChartHomeo` / `ZeroChartHomeo` | **`sphereChartHomeo n`**, **`zeroChartHomeo n k j`** (`zeroChartHomeo_zero = kZero n k j`) |
+| `LIXKGenBundle` | rank-`n` `lixN`, `lixBundle`, `rank_lixBundle`, `lixTotalPair`, `lixPuncturedInTotal`, `lixKSRel`, `lixJE`, `lixKSAbs`, `lixPiStar`, `lixKJ`, `lixKJloc`, `lixKI`, `lixKRho`, `lixK_hexact`, `lixK_hcompat`, `lixK_hnat`, `lixK_hsection` |
+| `LIXKGenStepCWired` | **`puncturedAcyclic_lixKZero`** (discharged at every rank), `lixK_topClass_ne_zero`, **`lixK_topClass_ne_zero_two`**, `_two_odd` |
+| `LIXKGenBaseChart` | **`lixKRelModelIso n k dd i q`**: `H^q(N, N∖z_i) ≅ H^q(ℂ^r, ℂ^r∖0)`. This DISCHARGES leaf (2). |
+| `LIXKGenTopLine` | **`absEquiv_lixN n dd hdd`**: `H^{2r}(N; F₂) ≃ F₂`. This DISCHARGES leaf (1). |
+
+- **Probe 0911-231632-71904 (PROBE GREEN):** `LIXKGenStepCHalf`, landed at a9a92178b. It holds `KZeroStepCData` (`u`, `xloc`, `hsplit`, `hx`, `hclass`), `stepCHalf_two_of_kZeroStepCData` and `stepCHalf_two_powers`.
+
+- **Probe 0911-235706-48216 (PROBE GREEN, 9269 jobs):** the four hclass modules below, landed at a0bc1306d (unverified) and 409347c6a (the `LIXKGenChern` fix).
+
+## hclass at rank n (compiled)
+
+| module | contents |
+|---|---|
+| `LIXKGenChern` | rank-`n` `LixFamily`, `LixChernDeg`, **`lixChern n dd`**, `lixChern_eq_of_rank`, `lixChern_mappingTorus`, **`lixChernOf n chern : TotalH (lixN n dd)`**, `lixChernOf_mappingTorus`; instances for `unitVectors (Fin (n+1))` |
+| `LIXKGenThomTerm` | `lixTopCoeff n dd` (≠ 0), `lixLHplus n`, `lixLHhyper n`, **`lixThomClassTerm n hGc hGu`** (≠ 0), `thomJmTotal_lixThomClassTerm n`, `lixChern_top_eq_gamma n` |
+| `LIXKGenHclass` | **`lixHclass n`**: `jE (lixThomClassTerm n) = π^* (lixChern n dd W _ _ r)`. This is LEAF (5). |
+| `LIXKGenStepCHalfTop` | **`KZeroLocalData`** (only `xloc`, `hsplit`, `hx`, with `u := lixThomClassTerm n`), `kZeroStepCData_of_kZeroLocalData`, **`stepCHalf_two_lixChernOf`** and **`stepCHalf_two_powers_lixChernOf`** at `topClass := fun W => lixChernOf n (lixChern n dd) W ((∑ j, dd j) + (n + 1))`, the glue's `γfun` spelling |
+
+## Local square at p = 2: this lane's half of the split with lix-oddside (2026-09-12)
+
+lix-oddside owns `LIXKGenLocalEta`, `Linear`, `Homotopy`, `Legs`, `Square` and `Nonzero`. This lane owns the three files below. The convention is `(n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1)) {G} (hGc) (hGu)`, with `dd` explicit.
+
+| module | state | main declarations |
 |---|---|---|
-| `LIXKGenSect` | `kSect k j w = ‖w‖·exp(i(arg(−w)+π+2πj)/(k+1))`; `kSect_pow` (`κ^{k+1} = ‖w‖^k w`), **`joinC_kSect` for every `w`** (no half-plane hypothesis: `‖x‖exp(arg x·i) = x` at every `x`), `kSect_neg_one = kRoot k j`, `norm_kSect`, `continuousAt_kSect`/`continuousOn_kSect` off the positive ray | 69b2bd332 (unverified) |
-| `LIXKGenChart` | `ChartBase n = ℝ × (Fin n → ℂ)`, `ChartSrc n`, `chartQ`, `chartWeight`, **`sphereChartVec n (c,v) = Fin.cons (c·i − √(1−q)) v`**, `sphereChartVec_zero = −eZero n`, `_mem`, continuity; **`eulerLinearModel n`** with explicit inverse, `eulerContinuousLinearEquiv n`; `trivialBlockChart n`, `_eq_zero_iff`, `_zero` | 48f2ff1de (fix in attic e13a30f39) |
-| `LIXKGenDeriv` | `chartLinearCLM n`, `sphereChartVec_eq`, `hasStrictFDerivAt_normSq_comp` (generic), `hasStrictFDerivAt_chartQ/chartWeight/sphereChartVec`, **`hasStrictFDerivAt_trivialBlockChart n`** | 48f2ff1de (fix in attic e13a30f39) |
-| `LIXKGenLocalHomeo` | **`eulerLocalHomeo n`** (inverse function theorem), source/target/zero lemmas, **`lixChartPairHomeo n`**, **`lixLocalRelIso n m`**, `injective_lixLocalRelIso` | 48f2ff1de |
-| `LIXKGenSectInverse` | `kZeroAngle`, `exp_kZeroAngle = kRoot`, `joinC_polar`, `arg_neg_joinC_polar_zero = (k+1)t`, **`kSect_joinC_polar`** | cca8b3156 |
-| `LIXKGenSector` | `kRotBack`, **`kSector k j`** (open), `polar_of_mem_kSector`, **`kSect_joinC_of_mem_kSector`**, `neg_joinC_mem_slitPlane_of_mem_kSector`, `kSect_mem_kSector` | 43a160311 |
-| `LIXKGenBundle` | rank-`n` `lixN`, `lixBundle`, `rank_lixBundle`, `lixTotalPair`, `lixPuncturedInTotal`, `lixKSectionTotal(_mapsTo)`, `lixKSRel`, `lixKS`, `lixPi`, `lixHE`, `lixJE`, `lixKSAbs`, `lixPiStar`, `lixKJ`, `lixKJloc`, `lixKI`, `lixK_hexact`, `lixKRho`, **`lixK_hcompat`, `lixK_hnat`, `lixK_hsection`** | a92331829 |
-| `LIXKGenStepCWired` | **`puncturedAcyclic_lixKZero`** (discharged at every rank), `lixK_topClass_ne_zero` (naturality form), **`lixK_topClass_ne_zero_two`** and `_two_odd` (mod 2, local data at every zero) | a92331829 |
-| `LIXKGenChartZero` | **`chartZeroVec n k j`**, **`psiVec_chartZeroVec`** (no hypothesis), `chartZeroVec_zero = kZeroVec`, `_mem`, **`trivialBlockK_chartZeroVec`** (one local model at every zero), `chartZeroVec_zero_mem_kSector`, `continuousOn_chartZeroVec` | c3be9d45d |
-| `LIXKGenSphereChartHomeo` | clamp, `sphereLowerZero`, `sphereChartInv`, `one_sub_chartQ_inv`, **`sphereChartHomeo n`**, `sphereChartHomeo_zero = negEZero n` | 33531de45 |
-| `LIXKGenZeroChartHomeo` | `psiSphere`, `sphereNearZero` (open), **`zeroChartHomeo n k j`** (inverse `Ψ_k` then the chart at `−e₀`), `psiSphere_zeroChartFun`, `zeroChartHomeo_zero = kZero n k j` | fb298522c |
+| `LIXKGenLocalPair` | COMPILED (as an import in probe 0912-003310-54233), landed at 0f038ff96 | `otherZeros`, `lixKTrivSet` (trivSet ∩ otherZerosᶜ), **`lixKTrivBall`**, `lixKTrivBall_subset`, `_subset_target`, `isOpen_`, `lixKZero_mem_`, **`lixKZero_notMem_lixKTrivBall`**, `contractibleSpace_lixKTrivBall`, `lixKZeroInBall`, `lixKBundlePairIso`, `two_le_two_mul_lixRank`, **`lixKLocalPairIsoClosed`** |
+| `LIXKGenLocalRes` | GREEN (probe 0912-003310-54233), landed at fee3cc504 | `lixKTotalInclOn_mapsTo`, **`lixKRes`**, **`lixKRes_lixThomClassTerm_ne_zero`** |
+| `LIXKGenLocalNbhd` | GREEN (probe 0912-092212-18558, `BUILT`, axioms propext/choice/Quot.sound), landed at 416ff8bad | `lixKHsqRad` (cap `1/(n+2)`), **`lixKHsqBall`**, `lixKBC_image_lixKHsqBall_subset`, `_subset_bc_source`, `_subset_fc_source`, `zero_mem_`, `norm_lt_half_of_mem_`, `chartQ_lt_one_of_mem_`, `chartQ_le_one_of_mem_`, `circCoord_mem_Ioo_of_mem_`, **`smul_mem_lixKHsqBall`**, **`lixKU`**, `isOpen_lixKU`, `zero_mem_lixKU`, `lixKU_subset_target`, `symm_mem_lixKHsqBall`, **`lixKULine`**, `lixKShrinkMap`, `lixKShrink_mapsTo`, **`injective_lixKShrink`** |
 
-## Model tests (on MSI acn112, scripts in `nm/lixoddn/`)
+One maths change from rank two: the cap is `1/(n+2)`, not `1/2`. `chartQ n` has `n + 1` squared terms, so a cap of `1/2` only gives `chartQ < (n+1)/4`. With `1/(n+2)` it gives `chartQ < (n+1)/(n+2)² < 1`.
 
-* `ksect_modeltest.py`: 315 checks, 0 failures. S1 `joinC k ∘ κ_j = id` on all of `ℂ` (worst
-  `3.8e−14`, `k ≤ 8`); S2 `κ_j(−1) = kRoot`; S3 modulus; S4 `κ_j ∘ joinC k = id` on the open sector
-  of half-width `π/(k+1)`; S4b fails outside it (load-bearing); S5 continuity off the positive
-  ray; S6 `joinC k` maps the sector into the continuity domain.
-* `chart_n_modeltest.py`: 30 checks, 0 failures, `n ≤ 5`. C1 centre, C2 on the sphere, C4 the
-  Jacobian of the trivial block at `0` is `eulerLinearModel n` (central differences), C5 the
-  inverse, C6 no stray zero near the origin.
+## Model tests (MSI acn112, scripts in `nm/lixoddn/`)
 
-## PLAN (remaining, in order)
+- `ksect_modeltest.py`: 315 checks, 0 failures.
+- `chart_n_modeltest.py`: 30 checks, 0 failures, for `n ≤ 5`.
 
-1. `LIXKGenSectInverse`: `κ_j (joinC k z) = z` on the open sector (S4). With `joinC_kSect` this
-   makes `x ↦ update x 0 (κ_j (x 0))` a homeomorphism of a neighbourhood of `−e₀` onto a
-   neighbourhood of the `j`-th zero `kZeroVec n k j`, with `psiVec n k` as its inverse.
-2. `LIXKGenChartZero`: the chart at the `j`-th zero and `psiVec n k ∘ chart_j = sphereChartVec n`
-   on the chart domain, so the `k`-section read in `chart_j` is `trivialBlockChart n` at every `j`.
-3. The rank-`n` bundle side (the rank-`n` analogue of `LIXHsq*` / `LIXResFibre` / `LIXHclass`, and the
-   pair/mapping-torus vocabulary over `Gen.baseM n dd`) — **NEEDS an owner ruling**: `LIXBundleModel`,
-   `LIXBundlePair`, `RelativeSupport`, and `LemmaTwoTopClass` are rank-two and outside `LIXKGen*`.
-4. `LIXKGenStepCWired`: the rank-`n` counterpart of `LIXKStepCWired` through
-   `topChernClass_ne_zero_kzero_two` (p = 2) at the `k` zeros of `bVecK n (k-1)`.
+## REMAINING LEAVES at `p = 2`
 
-## NEEDS
+`KGen.KZeroLocalData n k dd hGc hGu hGe` holds all that is left of the Step C half at `p = 2`:
 
-* **lead:** who owns the rank-`n` bundle vocabulary (`lixN n dd`, `lixBundle` over `Gen.baseM n dd`,
-  `lixTotalPair`, `RelativeSupport.lixJE/lixPiStar/lixHE` at rank `n`)? I propose creating
-  `CharClass/LIXKGenBundle*.lean` myself (namespace `KGen`) unless lix-tower or lix-thom already
-  has them.
+- **(3) `∀ i, xloc i ≠ 0`** (lix-oddside): every local class is nonzero.
+- **(4) `LocalSplit (fun i => lixKRho n k dd i (2r)) ((lixKSRel n k hGc hGu hGe (2r)).hom (lixThomClassTerm n hGc hGu)) xloc`** (lix-oddside): relative Mayer–Vietoris over the `k+1` punctures.
+
+Discharged by this lane: (1) `absEquiv_lixN`, (2) `lixKRelModelIso`, (5) `lixHclass`, and the `γfun` adapter. `stepCHalf_two_powers_lixChernOf` states the Step C half at `topClass := fun W => lixChernOf n (lixChern n (lixDD n j)) W ((∑ i, lixDD n j i) + (n + 1))`. Step D (lix-evenside-n, `stepDHalf_of_wu`) must use the same `γfun`, with `N := KGen.lixN n (lixDD n j)`.
 
 ## TRAPS
 
-* `κ_j`'s forward identity `joinC k ∘ κ_j = id` needs no hypothesis at all, not even
-  `Re w < 0`. The half-plane / sector hypothesis is load-bearing only for the inverse
-  `κ_j ∘ joinC k = id`, which is what the openness of the chart's image needs.
+- **Instances:** a `show dite _ _ _ = _` over a classical `if h : ∃ …` needs `open scoped Classical in` on the THEOREM too, not only on the def.
+- **Linters:**
+  - `field_simp; ring` can fail with "No goals" because `field_simp` sometimes closes the goal. When the identity is polynomial in `c⁻¹`, use `push_cast; ring`. When it needs `c ≠ 0`, use `div_mul_cancel₀`.
+  - `simp only [..] <;> ring`, when simp leaves a single goal, is a seq-focus linter ERROR under warningAsError. Put `ring` on the next line.
+  - An unused lambda binder (`fun w => ...`) is an error. Write `fun _ =>`.
+- **Elaboration:**
+  - `ContinuousAt.comp hg hf` can unify `f x` against an applied term the wrong way, e.g. `sphereChartVec n w 0` read as `f := sphereChartVec n w`, `x := 0`. Pin it with `(f := fun v => ...)`.
+  - `∑ j, ‖z j.succ‖^2` inside `show` does not know `j`'s type. Write `∑ j : Fin n, ...`.
+  - `cohomologyZMod2` lives in `ThirdParty.HamSandwich.SphereOddDegree`, so open that namespace.
+- **Maths:** `joinC k ∘ κ_j = id` needs no hypothesis, because `‖x‖ exp(i arg x) = x` holds even at `0`. Only the inverse composite, and hence the openness of the chart's image, needs the sector.

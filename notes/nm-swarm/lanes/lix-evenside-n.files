@@ -1,2 +1,3 @@
-GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean
-GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean
+GroupApproximation/CharClass/LIXStepDGenRealTorus.lean
+GroupApproximation/CharClass/LIXStepDGenRealTorusModel.lean
+GroupApproximation/CharClass/LIXLemmaTwoGenTwo.lean

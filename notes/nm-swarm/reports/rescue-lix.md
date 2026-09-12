@@ -55,3 +55,18 @@ Do not wire: OddPTupleBd, OddPTupleSlot, OddPDescentDomino, OddPDescentValue (re
 - nmland's lexical scan once refused Palomar challenge holes; the lead now allows `sorry` in `Palomar/*Challenge.lean` only.
 - A SLURM gate can be cancelled from outside (job 417774, 19:40 CDT, CANCELLED+ SIGTERM); the remote build leaves no summary, so no compiled evidence is written; relaunch replays the partial artifacts.
 - The cs-endpoint lock was held for ~27 min by an unidentified holder (20:20–20:47 CDT); a queued job waits inside its allocation.
+
+## 23:50 CDT: Corollary 4 discharged; ONE named input left
+
+- `ProblemLIXStrongAssemblyCor4.lean` (COMPILED, probe 0911-234757-76086): `powersSections_eq_degreeFamily` (rfl),
+  `LemmaTwoHoldsAtPowers n := ∀ p, p.Prime → p ∣ n → ∀ k, ¬ p ∣ k → LemmaTwoHoldsForSections n (powersSections n k)`,
+  `lemmaTwoHoldsAtPowers_iff` (glue's per-stage form), `corollary4Powers_powersSections` (from lix-tower's
+  `LIX.Gen.corollary4Powers`), `climbedPowersOutside_of_lemmaTwoHoldsAtPowers`,
+  `hasK1InjPowerWitness_of_lemmaTwoHoldsAtPowers`, `exists_isSimpleRing_separable_hasK1InjPowerWitness_of_lemmaTwoHoldsAtPowers`,
+  `exists_simple_separable_not_k1Inj_of_lemmaTwoHoldsAtPowers`.
+- `ProblemLIXStrongAssemblyHalves.lean` (COMPILED, same probe): imports Cor4; glue names fully qualified (rank-two
+  `VIdx`/`baseM`/`Vmat` in `CharClass` collide with `CharClass.Gen` under `open`); `lemmaTwoHoldsAtPowers_of_glue`,
+  `exists_isSimpleRing_separable_hasK1InjPowerWitness_of_glue`.
+- `Palomar/LIXStrongSolution.lean` docstrings (ff690fad2, text only, shared block untouched): the one remaining
+  named proposition is `NinetyNineProblems.LemmaTwoHoldsAtPowers n`.
+- Wiring tops: `ProblemLIXStrongAssemblyHalves` (reaches Cor4, Assembly, Glue, Diag).

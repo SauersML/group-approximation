@@ -19,3 +19,5 @@ GroupApproximation/Manuscript/NonMF/GerasimovaOsinProposition41.lean
 GroupApproximation/Manuscript/NonMF/GerasimovaOsinTheorem11Closed.lean
 GroupApproximation/Manuscript/NonMF/GerasimovaOsinSection2Printed.lean
 GroupApproximation/Manuscript/NonMF/GerasimovaOsinProposition36.lean
+GroupApproximation/GGT/SystolicDisc.lean
+GroupApproximation/GGT/SystolicDiscFilling.lean

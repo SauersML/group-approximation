@@ -9,3 +9,4 @@ GroupApproximation/Manuscript/NonMFSentences/MFRadicalQuotientBlockSumSentences.
 GroupApproximation/Manuscript/NonMFSentences/HSNullNormalSubgroupSentences.lean
 GroupApproximation/Manuscript/NonMFSentences/DyadicReductionSeparation.lean
 GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB.lean
+GroupApproximation/Algebra/GHWFrobeniusSeparable.lean

@@ -24,3 +24,6 @@ GroupApproximation/Manuscript/NonMF/TorsionFreeSectionAssembly.lean
 GroupApproximation/Manuscript/NonMF/TorsionFreeSectionAssemblyClosedGO.lean
 GroupApproximation/GGT/OsinLemma71PrintedReductionClosedCitations.lean
 GroupApproximation/Manuscript/NonMF/TorsionFreeAlgebraSentencesClosed.lean
+GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
+GroupApproximation/GGT/VanKampen/SurgeryGFaceMerge.lean
+GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeDarts.lean

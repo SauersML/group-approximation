@@ -398,12 +398,25 @@ for key in sorted((k for k in new_rows if k not in idx), key=lambda k: pos[k]):
 
 audit = [["key", "start_line", "old_status", "new_status", "not-compiled carrier modules"]]
 existing_downgrades = 0
+restored = 0
+DOWN_SUFFIX = re.compile(r" \[census merge [0-9a-f]+: DOWNGRADED from (formalized|definition): carrier not compiled at "
+                         r"origin \(no root closure, lane record, or clone olean of these bytes\): [^\]]*\]$")
 for key, i in map_rows().items():
     if key in new_rows or key not in by_key:
         continue
     cols = map_lines[i].split("\t")
     while len(cols) < 4:
         cols.append("")
+    m = DOWN_SUFFIX.search(cols[3])
+    if cols[1] == "partial" and m:
+        still = sorted({relpath(index[d]) for d in cols[2].split() if d in index and not compiled(relpath(index[d]))})
+        if not still and all(d in index for d in cols[2].split()):
+            audit.append([key, str(start_line[key]), "partial", m.group(1), "RESTORED: carriers now compiled"])
+            cols[1] = m.group(1)
+            cols[3] = cols[3][:m.start()]
+            map_lines[i] = "\t".join(cols)
+            restored += 1
+        continue
     if cols[1] not in GRADED:
         continue
     badm = sorted({relpath(index[d]) for d in cols[2].split() if d in index and not compiled(relpath(index[d]))})
@@ -430,5 +443,5 @@ counts: dict = {}
 for r in report[1:]:
     counts[r[0]] = counts.get(r[0], 0) + 1
 print("merge", sha9, "sentences with lane rows", len(groups), "actions", counts, "downgraded merged", downgrades,
-      "downgraded existing", existing_downgrades, "sentences located", sum(located.values()), "of", len(records),
+      "downgraded existing", existing_downgrades, "restored existing", restored, "sentences located", sum(located.values()), "of", len(records),
       "root closure modules", len(closure))

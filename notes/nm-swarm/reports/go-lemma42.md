@@ -28,3 +28,26 @@ dgo-geometric, make it compile, land it; no second Lemma 4.2 proof.
 ## Census
 No row: Lemma 4.2 is internal to the cited proof of GO Theorem 1.1. The printed sentence (tex 1729–1731,
 cor:regular-nonmf-algebra) is graded through `GerasimovaOsinTheorem11Printed`.
+
+## LANDED
+- 5558478e0 `Manuscript/NonMF/GerasimovaOsinLemma42Proof` (probe 0911-213026-69780, cs-simplicity, BUILT 43s). CyclicTwoSided
+  landed by dgo-geometric at 2ec9cfdba. Lemma 4.2 is closed; nothing is left as a hypothesis.
+- b8af8cb13 census merge (map, register, census tsv/md) at origin 434d65bfb: 323 formalized / 51 definition / 46 structural /
+  19 provenance / 18 attribution / 36 partial / 5 unassigned. verify-decls 0 missing of 811; verify-unconditional
+  189 accepted, 0 new.
+
+## Census tooling (census/)
+census_merge.sh (acn112 via msi; live work dir merge-live, delta sync), merge_rows.py (sentence start-line location,
+statement-env rows, unions, compiled-evidence downgrade incl. clone oleans), overrides.tsv, baseline-merge.txt.
+
+## TRAPS
+- nmland.sh rewritten mid-run: bash reads scripts lazily, so a run printed LANDED-like output and a landed.log line
+  for a commit that never reached origin. Always check `git merge-base --is-ancestor <sha> origin/main`.
+- sentence_census.py records PARAGRAPH start lines; lanes' LINE:<n> keys need the sentence's own start line.
+- f57b559f7 census merge step (rows from metadata/nm-census-rows, 13 lanes): unions per sentence, register.py (10 lines),
+  verify-unconditional 236 accepted / 0 new. census_merge.sh lands every step (rule 21) and verifies the sha on origin.
+- 0911-231324-58545 PROBE GREEN: BinaryExampleSentences, IntroSentences, KorchaginFullSequenceSentence compiled unchanged
+  (bytes = origin; nothing to land). Wire candidates (0 importers).
+- 91fbada58 GroupTheory/HydeLodha/QTwoBrownTriangle (probe 0912-003620-69441 GREEN): vertexH_triangle (htri for simple-group),
+  exists_commutator_compactCore_move, exists_edgeStab_left, resLabel, triKey, triKey_eq.
+- TRAP: `open Classical in` must precede the docstring (a docstring followed by `open ... in` is a parse error).

@@ -22,9 +22,15 @@ was never created).  Owns (`nm/LIX_LANES.md` + lead rulings 09-11 ~21:40): `Char
 | `0b20e149e` | `ChernTotalRingOf` (TotalPieceOf, TotalHOf, instGRingOf, of/component/…/map) | UNVERIFIED, then compiled (probe 1) |
 | `35c6f5056` | `MayerVietorisElementOf`, `SequenceOf`, `ZeroOf` | UNVERIFIED, then compiled (probe 1) |
 | `3b4df4ec0` | ChartRankTwoInterface, ChartInduction, ChartGenBridge, ProjectiveSpaceGenHyp: `cup_comm_of_even` | COMPILED |
-| `4252ac767` | `LerayHirschMVOf` (bijective_lhSum_comapOf, LHOver_supOf) | UNVERIFIED |
+| `4252ac767` | `LerayHirschMVOf` (bijective_lhSum_comapOf, LHOver_supOf) | UNVERIFIED, then compiled (probe 3) |
 | `4ad91fa8a` | PullOf, DeltaLiftOf/SpecOf/CupOf/NaturalOf, DisjointOf, Cover/RankTwo/Shift over K, Tower/TowerTop/Freeness | COMPILED |
-| (unverified) | `ChernClassesOf` | UNVERIFIED |
+| `6a5fd08ab` | LerayHirschPeel/PeelCP/PeelClosed/ColumnPack over K | COMPILED |
+| `dc2f633a8` | `ChernClassesOf` + this report | COMPILED (probe 4) |
+| `d1f4a9b27`, `ad93d6a93` | `ChernEulerBundleOf` (eulerOfBundleOf K hgen, comap, cpTaut, homotopic, zero_of_factors, hasPointCohomology_of_contractibleOf), `LerayHirschChartClassK` (`LH.tautEulerK`) | UNVERIFIED, then compiled (probe 5, same bytes) |
+| `2e6ff7cd4` | `ChernClassesEvenOf` (the even-part carrier `LerayHirschDataEvenOf`) | UNVERIFIED, then compiled (probe 6, same bytes) |
+| (u11) | `ChernGammaBridgeOf` (`chern_relation_lhFunEvenOf`, `chern_relation_lhFunOf`, with the minus) | UNVERIFIED, then compiled (probe 6) |
+| `83040f510`, `9e0fab4ac` | `ProjectiveSpaceComputationOf` (`hasCPCohomologyOf_CP K d`) | UNVERIFIED, then compiled (probe 7, same bytes) |
+| (u12) | `LerayHirschChartClassGenK` (`tautEulerOfK`, `tautEulerDualK`, `tautEulerOf_comapOf`) | UNVERIFIED, then compiled (probe 7) |
 | attics | e8c44817b, the PullOf/RankTwo fixes, ColumnPack over K | ATTIC |
 
 ## GREEN (with job counts)
@@ -33,15 +39,25 @@ was never created).  Owns (`nm/LIX_LANES.md` + lead rulings 09-11 ~21:40): `Char
 - probe `0911-221318-90775` (nm-b, base 93e1d2992, acn112 88-95): 20 files COMPILED; LerayHirschChart, ChartTwo,
   Finite, Product built against the generic Cover/RankTwo.
 
-## AUTHORED, UNVERIFIED (running probe)
+- probe `0911-222934-2669` (nm-b): LerayHirschMVOf, Peel, PeelCP, PeelClosed, ColumnPack COMPILED; ChartGeneral,
+  FreeTuple, Ladder, CohomologyLHDegreewise built against the new statements.
+- probe `0911-223543-45625` (nm-b): `✔ [2460/2460] Built GroupApproximation.CharClass.ChernClassesOf`, PROBE GREEN.
+- probe `0911-235151-7107` (nm-b): ChernClassesEvenOf, ChernGammaBridgeOf COMPILED; ProjectiveSpaceComputationOf red (namespace `Gysin.`).
+- probe `0912-000310-7985` (nm-b): PROBE GREEN, ProjectiveSpaceComputationOf and LerayHirschChartClassGenK BUILT.
+- probe `0911-231924-87562` (nm-b): `✔ [8904/8904] Built GroupApproximation.CharClass.LerayHirschChartClassK`, PROBE GREEN; ChernEulerBundleOf compiled.
 
-| file | change |
-|---|---|
-| `LerayHirschPeel` | K generic; `HasLowSurj (K := K) π` pin at the one binder |
-| `LerayHirschPeelCP`, `PeelClosed` | `HasLowSurj (K := ZMod 2)` pins (sp-lh) |
-| `LerayHirschColumnPack` | `HasFreeTuple`, `bijective_lhSum_of_freeTuple` over K |
-| `LerayHirschMVOf` | the Mayer–Vietoris step and the two-set step over a field |
-| `ChernClassesOf` | `LerayHirschDataOf K` with `mul_comm_base`/`map_central` data; Chern classes from `ChernRelation` |
+## AUTHORED, UNVERIFIED
+
+- none.
+
+## OPEN in scope (next deliverables)
+
+1. `ChernSplitRelation`, `ChernGammaBridge`, `ChernGammaComponent` over K (mechanism (b), the dual tautological
+   class `tautEulerDual`), on `LerayHirschDataOf K`.
+2. The `Wu.HasSplitting` producers over K, once lix-cupone's `TotalHOf.IsEven`/`mul_comm_of_isEven` supplies
+   `mul_comm_base`/`map_central`.
+3. The chart tower above `CohomologyChartTop` over `F_p`: waits on mechanism (d), lix-cupone's Kronecker/sphere
+   port (`hasCPCohomology_CP` over K).
 
 ## Design decisions
 
@@ -52,9 +68,20 @@ was never created).  Owns (`nm/LIX_LANES.md` + lead rulings 09-11 ~21:40): `Char
 - **Additive `Of` twins, F₂ names untouched.**  Every `MayerVietoris*Of`, `CohomologyDelta*Of`, `LerayHirschMVOf`,
   `ChernClassesOf`, `ChernTotalRingOf` is a new module, so no F₂ consumer rebuilds.  `LHOver_sup` stays F₂;
   `LHOver_supOf K` is the generic twin.
+- **The Euler class over K takes the generator as data.**  Over `F₂` `cpGen` is canonical (a line has one nonzero
+  element); over `K` it is not, and `H^*(ℂP^d; K)` is not computed yet, so `eulerOfBundleOf K hgen`.  Naturality,
+  normalisation, homotopy invariance and vanishing through a space without `H²` hold for every `hgen`, which is all
+  lix-thom's GysinTautFields §4 needs.
 - **Chern classes over K take commutativity as data.**  `TotalHOf K X` is only a `DirectSum.GRing`; the base ring
   commutativity and the centrality of pulled-back classes are fields of `LerayHirschDataOf`, produced from even
   concentration (lix-cupone's `mul_comm_of_isEven`).  No `mul_comm` on `TotalHOf`, ever.
+
+- **The degreewise `gamma` over K is `−c_k`.**  The monic relation `ξ^r + Σ c_k ξ^{r−k} = 0` makes the Leray–Hirsch
+  coordinates of `ξ^r` the negated coefficients (`chern_relation_lhFunEvenOf`).  Consumers take the ring classes
+  `LerayHirschDataEvenOf.chern`; a bridge to `LerayHirschGraded.gamma` carries the minus explicitly.
+- **Even parts at odd p.**  `LerayHirschDataEvenOf` runs Leray–Hirsch between `Gen.evenPart K X` and
+  `Gen.evenPart K P` (lix-evenside-n), both commutative, so no commutativity/centrality data is needed; this is THE
+  carrier lix-evenside consumes.
 
 ## NEEDS
 

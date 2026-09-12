@@ -34,3 +34,7 @@ GroupApproximation/Kazhdan/FoxAsphericalAssembly.lean
 GroupApproximation/Kazhdan/FoxMagnusKernel.lean
 GroupApproximation/Kazhdan/FoxIdentityLists.lean
 GroupApproximation/Kazhdan/FoxAsphericalReduction.lean
+GroupApproximation/Kazhdan/CCKWTitsMoves.lean
+GroupApproximation/Kazhdan/CCKWTitsTypedWords.lean
+GroupApproximation/Kazhdan/CCKWTitsPresentation.lean
+GroupApproximation/Kazhdan/CCKWTitsGHB.lean
