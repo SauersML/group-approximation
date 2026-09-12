@@ -4,6 +4,10 @@ Lane of the LIX strongest swarm (lead: main session nonsofic-existence-39). Clon
 Owns `CharClass/LIXStepDGenBundleP*`, `CharClass/LIXStepDGenExpChar*`, and `Gen.realWu_of_splittingN`
 (coordinator ruling 09-12).
 
+## Group probe 0912-120132-28564 (spare2, acn112, base 28cbc64fd, after lx-torusP's narrowed RealTorusModP 21c8eb2a6 and lx-stepcK-local's fix 79408b79a)
+- PROBE GREEN, 9319 jobs: `LIXStepDGenBundlePWuN`, `LIXStepDGenBundleP`, `LIXStepDGenExpChar`, `LIXStepDGenBundlePLix`, `LIXStepDGenBundlePReal` each BUILT and COMPILED; no sorryAx.
+- `LIXStepDGenBundlePReal` landed normally (`.1` spelling for the Leray–Hirsch classes; trap below).
+
 ## Group probe 0912-114034-42709 (spare2, acn112, base faf9c127d)
 - BUILT + COMPILED: `LIXStepDGenBundlePWuN`, `LIXStepDGenBundleP`, `LIXStepDGenExpChar`, `LIXStepDGenBundlePLix`.
   Landed normally at 6ff29b783 (NM_BASE = restored tip; the restore 3f71a3a50 reproduced my earlier blobs byte for byte).
@@ -39,6 +43,7 @@ Semantic changes of 09-12 (after lx-torusP e6b92af13 and lx-splitK's narrowing):
 - `q`: any unit vector.
 
 ## TRAPS
+- A type ascription `(x : TotalHOf K (KGen.lixN n dd))` of a class living over `TopCat.of (↥sphereOne × baseM n dd)` does not elaborate (coercion search does not unfold the def `lixN`); write `.1` and let argument unification (default transparency) bridge the types.
 - `Gen.splitA`/`splitB` would shadow `CharClass.splitA/splitB` (ParityEvenTransport) inside `namespace Gen`; renamed `bundlePA/bundlePB`.
 - A peer commit (becc912bd) deleted the repository tree and 3f71a3a50 restored it; a probe/landing in that
   window fails with "bad import" / "imports X which is not on origin/main" on files that exist. Check
