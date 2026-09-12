@@ -34,6 +34,7 @@ section Letters
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+omit [Group G] in
 /-- A component letter is a component constructor. -/
 theorem exists_comp_of_isCompOf {lam : Λ} {a : RelLetter G Λ} (h : a.IsCompOf lam) :
     ∃ e : G, a = RelLetter.comp lam e := by
@@ -200,9 +201,9 @@ theorem letter_point_near_sides (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
   have hc₁ : IsComp (Sum.inr i) (geodWord J x y) k (k + 1) :=
     isComp_succ_of_isCompOf_geodesic J hw₁ hk (by rw [hletter]; exact rfl)
   -- the letter, along the line through its entrance
-  have hc₋ : vertex x (geodWord J x y) k = vertex x (geodWord J x y) k * g i ^ (0 : ℤ) := by
+  have hcIn : vertex x (geodWord J x y) k = vertex x (geodWord J x y) k * g i ^ (0 : ℤ) := by
     rw [zpow_zero, mul_one]
-  have hc₊ : vertex x (geodWord J x y) (k + 1)
+  have hcOut : vertex x (geodWord J x y) (k + 1)
       = vertex x (geodWord J x y) k * g i ^ expo g i e :=
     vertex_succ_eq_mul_zpow J g hg hw₁.1 hk hletter
   obtain ⟨t, ht⟩ : ∃ t : ℤ, (if 0 ≤ expo g i e then (s : ℤ) else -(s : ℤ)) = t := ⟨_, rfl⟩
@@ -240,7 +241,7 @@ theorem letter_point_near_sides (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     have hA1 : a₂.natAbs ≤ T := by
       have h0 := entranceConnector_mem_relBall_of_bound J (Sum.inr i) hbaseInv hbnd hDc hw₁ hw₂
         hc₁ hc₂' hcos₂.symm
-      have h1 := natAbs_sub_le_of_connector J g hinf hT i _ hc₋ hv₂ h0
+      have h1 := natAbs_sub_le_of_connector J g hinf hT i _ hcIn hv₂ h0
       omega
     by_cases h₃ : ∃ i₃ k₃ : ℕ, IsComp (Sum.inr i) (geodWord J z y) i₃ k₃ ∧
         (QuotientGroup.mk (vertex z (geodWord J z y) i₃) : Q ⧸ J.fam (Sum.inr i))
@@ -258,7 +259,7 @@ theorem letter_point_near_sides (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
       have hA2 : (a₃ + expo g i e₃ - expo g i e).natAbs ≤ T := by
         have h0 := exitConnector_mem_relBall J (Sum.inr i) hbaseInv hbnd hDc hw₁ hw₃ hc₁ hc₃'
           hcos₃.symm
-        exact natAbs_sub_le_of_connector J g hinf hT i _ hc₊ hv₃' h0
+        exact natAbs_sub_le_of_connector J g hinf hT i _ hcOut hv₃' h0
       -- the exit of the second side and the entrance of the third, at `z`
       have hA3 : (a₃ - (a₂ + expo g i e₂)).natAbs ≤ T := by
         have h0 := exitEntranceConnector_mem_relBall J (Sum.inr i) hbaseInv hbnd hDc hw₂ hw₃
@@ -282,7 +283,7 @@ theorem letter_point_near_sides (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
       have hA4 : (a₂ + expo g i e₂ - expo g i e).natAbs ≤ T := by
         have h0 := exitConnector_of_noComp J (Sum.inr i) hbaseInv hbnd hw₁ hw₂ hw₃ hc₁ hc₂'
           hcos₂.symm hno₃
-        have h1 := natAbs_sub_le_of_connector J g hinf hT4 i _ hv₂' hc₊ h0
+        have h1 := natAbs_sub_le_of_connector J g hinf hT4 i _ hv₂' hcOut h0
         omega
       obtain ⟨s₂, hs₂1, hs₂2, hs₂⟩ :=
         cover_chain_one T a₂ (expo g i e₂) (expo g i e) t hA1 hA4 ht1 ht2
@@ -308,12 +309,12 @@ theorem letter_point_near_sides (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     have hA5 : a₃.natAbs ≤ T := by
       have h0 := entranceConnector_of_noComp J (Sum.inr i) hbaseInv hbnd hw₁ hw₂ hw₃ hc₁ hc₃'
         hcos₃.symm hno₂
-      have h1 := natAbs_sub_le_of_connector J g hinf hT4 i _ hv₃ hc₋ h0
+      have h1 := natAbs_sub_le_of_connector J g hinf hT4 i _ hv₃ hcIn h0
       omega
     have hA2 : (a₃ + expo g i e₃ - expo g i e).natAbs ≤ T := by
       have h0 := exitConnector_mem_relBall J (Sum.inr i) hbaseInv hbnd hDc hw₁ hw₃ hc₁ hc₃'
         hcos₃.symm
-      exact natAbs_sub_le_of_connector J g hinf hT i _ hc₊ hv₃' h0
+      exact natAbs_sub_le_of_connector J g hinf hT i _ hcOut hv₃' h0
     obtain ⟨s₃, hs₃1, hs₃2, hs₃⟩ :=
       cover_chain_one T a₃ (expo g i e₃) (expo g i e) t hA5 hA2 ht1 ht2
     obtain ⟨n, hn, hpn⟩ := guessPath_coord J g hg z y hi₃ he₃ _ a₃ hv₃ hs₃1 hs₃2
