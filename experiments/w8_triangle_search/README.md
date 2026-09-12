@@ -60,11 +60,12 @@ three torus subgroups: order 65 (9 orbits), 13 (45 orbits), 5 (117 orbits).
 
 ## Jobs
 
-* Job 407503 (2026-09-11, msismall, 16 cpus, 2 h): order 65, 9 orbits.
-  CNF 4,122,465 variables and 12,388,455 clauses, 1,026,672 triangle classes;
-  encoding 16 s, 250 MB.  15 CaDiCaL 3.0.1 runs with distinct seeds.  All
-  cyclic subgroups of order 65 of Sp(4,8) are conjugate, so UNSAT here would rule
-  out every table invariant under an element of order 65.
+* Job 407503 (2026-09-11 18:31–20:27, msismall node acn65, 16 cpus, 2 h): order
+  65, 9 orbits.  CNF 4,122,465 variables and 12,388,455 clauses, 1,026,672
+  triangle classes; encoding 16 s, 250 MB.  15 CaDiCaL 3.0.1 runs with seeds
+  1–15, 110 min each.  **Result: UNKNOWN**, no run decided.  All cyclic subgroups
+  of order 65 of Sp(4,8) are conjugate, so a decision either way would settle
+  every table invariant under an element of order 65; none was reached.
 * Pre-approved follow-up if that returns UNSAT or unknown: order 13 (45 orbits),
   `sbatch --export=ALL,ORDER=13 run_search.sbatch`.
 
