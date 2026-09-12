@@ -59,6 +59,7 @@ The evaluation is completed to `s_0` (or `t_0`) by an even correction.
 | fixed lift | side | depth | universe | live after peel | result |
 |---|---|---|---|---|---|
 | ELA1 (11) | left | 1 | 1,023 | 0 | no partner |
+| ELA1 (11) | left | 2 | 92,585 | 0 | no partner (sbatch 531539, 4 min, 670 MB) |
 | FIVE_T0 (5) | right | 1 | 76 | 0 | no partner |
 | FIVE_T0 (5) | right | 2 | 1,058 | 0 | no partner |
 | FIVE_T0 (5) | right | 3 | 14,639 | 0 | no partner |
