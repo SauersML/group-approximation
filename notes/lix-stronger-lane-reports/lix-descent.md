@@ -100,6 +100,12 @@ Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
 
 ## TRAPS
 
+* (lix-descent, 09-11) Passing `_` for the function arguments of a product-splitting lemma
+  (`oddPEval_prod_split _ _ j _ hj hne`) makes Lean elaborate `hne := fun l hl => congrArg …` against `?F l = ?G l`,
+  and the pattern unification `?F j =?= … update φ j ψ j …` abstracts EVERY `j`, including the one inside `update`.
+  Pass `F`, `G` and the value explicitly; then `congrArg (fun ψ => tagEvalG K ψ (t.1 l)) (Function.update_of_ne hl _ φ)`
+  checks against the beta-redex by defeq.  All three OddPEval* modules compiled first time with that shape.
+
 * (lix-descent, 09-11) `have h : T := by …` where `T` fixes an implicit index only through an argument that does not
   carry it (`eY1 K k`, `eMid K k`, `ePair K (eA K m) (eX K 0)`, `eWedge K 0 …`) reports `typeclass instance problem is
   stuck NeZero ?m` (or `OfNat (Fin ?m) 0`) at the `have`.  Tactic blocks run after instance synthesis, so nothing
@@ -129,7 +135,11 @@ Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
   `tagEvalG_of_eq_zero`, `tagEvalG_zero`, `tupEval_tupUpdate_of_eq`, `tupEval_lc_tupUpdate`, (E4) `tupEval_tupD_single`,
   (E4') `tupEval_tupD_eq_zero`, (E5) `tupEval_tupT_const`, `tupEval_tupT_pow_const`, (E6) `tupEval_sum_tupT_pow`.
   Axioms `[propext, Classical.choice, Quot.sound]`.
-* `OddPEvalNatural.lean` — (E7) `tagEvalG_tagPush`, `tupEval_tupMap`; landed unverified.  Not probed: it imports
-  `OddPTupleFunctor`, which has no compiled artifact yet (rule 20: no speculative probe).
-* E8 (`tupEval_add_slot` / `tupEval_smul_slot`) not written; optional, on request.
-* WIRE top: `GroupApproximation.CharClass.OddPEval`.
+* `OddPEvalNatural.lean` — **COMPILED**, probe 0911-235228-11757 (after OddPTupleFunctor compiled), on main
+  byte-identical.  (E7) `tagEvalG_tagPush`, `tupEval_tupMap`.
+* `OddPEvalMultilinear.lean` — **COMPILED**, probe 0911-235614-41211, on main byte-identical.  (E8) `tagEvalG_add`,
+  `tagEvalG_smul`, `tupEval_single_update`, `tupEval_add_slot`, `tupEval_smul_slot`.
+* All three probes built only their one changed module (2164 / 2174 / 2165 jobs).  Axioms `[propext, Classical.choice,
+  Quot.sound]` throughout.
+* WIRE tops: `GroupApproximation.CharClass.OddPEvalNatural`, `GroupApproximation.CharClass.OddPEvalMultilinear`
+  (both import `OddPEval`).
