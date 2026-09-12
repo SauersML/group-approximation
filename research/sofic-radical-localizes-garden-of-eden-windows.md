@@ -15,7 +15,12 @@ there are a finite `F` containing `g` and `delta>0` with
 `d(phi(g), id) <= eps` for every map `phi: F -> Sym(V)`, `V` finite, satisfying
 `phi(1)=id` and `d(phi(a)phi(b), phi(ab)) <= delta` for `a,b,ab` in `F`. Here
 `d` is normalized Hamming distance, and no freeness is required. `Rad(G)` is a
-normal subgroup, and it is trivial exactly when `G` is sofic.
+normal subgroup, and it is trivial exactly when `G` is sofic. It is the same
+subgroup as `Rad_sof(G)` of `sofic-radical-soficization`, the kernel of
+soficization: a homomorphism into a metric ultraproduct of symmetric groups has
+a sofic image, and a sofic quotient embeds into such an ultraproduct. For
+finitely presented groups, `sofic-radical-linear-action-criterion` gives the
+equivalent linear displacement test.
 
 **Theorem.** Let `tau` be an injective cellular automaton over `G` with memory
 `M`, and `p in A^Omega` a Garden-of-Eden pattern. Then `Omega^-1 Omega`
