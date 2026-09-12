@@ -7,6 +7,7 @@ target: countable-group-embeds-in-fg-simple-kazhdan-group
 requires: [countable-group-embeds-in-two-generator-simple-group, torsion-free-hyperbolic-kazhdan-partner-exists, proper-normal-subgroups-miss-the-normally-generating-core]
 artifacts:
   - research/artifacts/simple-kazhdan-hosts-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 1 of the artifact gives the complete proof.
@@ -26,3 +27,8 @@ Step 1 makes `F_1 = gamma_1(H)` contain `C'`. Step 2 needs the normal closure
 
 Step 3 uses that any `1 != s in C'` normally generates `Q`, and applies
 `proper-normal-subgroups-miss-the-normally-generating-core`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 18 of the
+verification artifact). Lemma 5.8 needs `<h_1>` alone hyperbolically embedded,
+which follows from the family statement. The trust surfaces are the quoted
+statements listed above.

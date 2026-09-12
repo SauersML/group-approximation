@@ -7,6 +7,7 @@ target: gottschalk-reduces-to-fg-simple-kazhdan-groups
 requires: [countable-group-embeds-in-fg-simple-kazhdan-group, surjunctivity-passes-to-subgroups]
 artifacts:
   - research/artifacts/simple-kazhdan-hosts-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 One direction is immediate. For the other, let `tau` be injective over `G` with
@@ -18,3 +19,6 @@ memory `M`, and put `L = <M>`.
 - If `S` is `A`-surjunctive, so is `L` (`surjunctivity-passes-to-subgroups`).
 
 The alphabet never changes. Section 2 of the artifact.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 18 of the
+verification artifact).

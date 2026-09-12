@@ -7,6 +7,7 @@ target: compressed-coset-shifts-carry-strict-equivariant-embeddings
 requires: [binary-leavitt-unit-group-is-simple, leavitt-gl-equals-el-and-perfect-unit-group, rank-twelve-leavitt-simple-non-mf, leavitt-cylinder-swaps-generate-thompson-in-el]
 artifacts:
   - research/artifacts/simple-kazhdan-hosts-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 3.3 of the artifact.
@@ -31,3 +32,7 @@ Section 3.3 of the artifact.
 **Kazhdan-side properties.** Property (T) gives strong ergodicity and spectral
 gap for the ergodic Bernoulli measure (Schmidt; Connes--Weiss) and closedness of
 ergodic measures (Glasner--Weiss).
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 18 of the
+verification artifact). `psi(kuH) = kH` gives ontoness, and the fibres have size
+`[u^-1 H u : H] >= 2`.

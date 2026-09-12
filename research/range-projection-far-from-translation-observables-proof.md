@@ -7,6 +7,7 @@ target: range-projection-far-from-translation-observables
 requires: []
 artifacts:
   - research/artifacts/simple-kazhdan-hosts-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 3.4 of the artifact gives the complete proof. The argument is due to
@@ -23,3 +24,6 @@ Section 3.4 of the artifact gives the complete proof. The argument is due to
 
 Under property (T) the Kazhdan projection is the projection onto invariant
 vectors, and the only finite orbit is `{c}`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 18 of the
+verification artifact).

@@ -492,6 +492,53 @@ The route `nonsurjunctive-from-nested-rigid-defect` into
 * **Scope.** The one open step toward a refutation of Gottschalk is
   `nested-rigid-defects-force-nonsurjunctivity`. No strict automaton is constructed.
 
+## 18. Simple Kazhdan hosts (gk-fixed-host, with gk-observables Section 3.4)
+
+Reviewed: `simple-kazhdan-hosts-2026-09-12.md` (landings `a03dd1b0c8`, `8dff8bfdcb`,
+`97dc9b6e5f`). Verdict: PASS.
+
+* **Theorem 1.1 (containers).**
+  * *Step 1.* A single member of the hyperbolically embedded family
+    `{<h_1>, <h_2>}` is hyperbolically embedded, which is what Lemma 5.8
+    needs. Clause (c) puts the generators of `C'` into `gamma_1(S) <= gamma_1(H)`,
+    so `F_1 = gamma_1(H)`. Ball injectivity at the single element `c` gives
+    injectivity on the simple `C'`. `K(F_1) = 1`, because a finite normal subgroup
+    is normalized by the suitable `gamma_1(S)`.
+  * *Step 2.* `D = <<gamma_1(C')>>` is suitable:
+    * it is infinite and normal, hence s-normal, hence non-elementary (Osin, Lemma 7.1);
+    * `K_(F_1)(D)` is normal by maximality, hence trivial.
+
+    Clause (c) with `t = gamma_1(X_H)` gives `Q = gamma_2(D) = <<C'>>_Q`.
+  * *Step 3.* For `1 != s in C'`, `<<s>>_Q` contains `C'` and hence `Q`. By Zorn
+    there is a maximal normal subgroup avoiding `s`; it meets `C'` trivially, and
+    the quotient is simple, infinite, finitely generated and Kazhdan.
+  * *Trust surfaces:* Schupp, Hull Theorem 7.1 and Corollary 5.7, Lemmas 3.5 and 5.8,
+    Osin Lemma 7.1, Dahmani--Guirardel--Osin free factors, and the hyperbolic
+    Kazhdan partner.
+* **Theorem 2.1 (reduction).** Localize to `<M>`, embed, and use subgroup heredity.
+* **Theorem 3.3 (coset-shift witness).**
+  * `psi(gh u^-1 H) = g u^-1 (u h u^-1) H`, so `psi` is well defined.
+  * `psi(kuH) = kH`, so `psi` is onto.
+  * `k in u^-1 H u \ H` collapses `kH` and `H`.
+  * `Psi(y) = y o psi` is continuous, equivariant and injective, and its image is
+    constant on fibres of size `[u^-1 H u : H] >= 2`.
+  * Instance: `u` carries `[1]` onto `[11]`, so `u V_1 u^-1 = V_11 < V_1`.
+  * `BS(1,2)` with `u = t` and `H = <a>` shows such embeddings exist over
+    surjunctive groups too.
+  * `kazhdan-bernoulli-rigidity-forces-surjective-embeddings` is correctly
+    refuted, and `fg-simple-kazhdan-surjunctive-via-bernoulli-rigidity` is invalidated.
+* **Theorem 3.4 (range projection).**
+  * Step 3: `Stab(x) = K`, because `g K t = K t` iff `g in K`, and
+    `tau(x) in Y ∩ C_c` has the same stabilizer.
+  * Step 4: moving the supports off `F ∪ S_O^-1 F` makes `<z| a_g |g.z>` depend only
+    on whether `g in h K h^-1`. So `O` has equal expectations at `h.u` and `h.y`,
+    while `P` gives `0` and `1`.
+  * (b): stabilizers of finite perturbations are finite, so the only invariant
+    vector is `|c>`.
+* **Scope.** `fg-simple-kazhdan-groups-are-surjunctive` and
+  `finitely-generated-simple-groups-are-surjunctive` are open. Every route
+  into the goal through them needs one of the two.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by
