@@ -191,7 +191,8 @@ theorem twoSidedIdeal_span_zero : TwoSidedIdeal.span ({0} : Set R) = ⊥ := by
   refine le_antisymm ?_ bot_le
   rw [TwoSidedIdeal.span_le]
   intro x hx
-  exact TwoSidedIdeal.mem_bot.mpr hx
+  show x = 0
+  exact hx
 
 /-- **Printed: "`EL_n(R,ReR) = 1`".**  The relative elementary group of the zero
 ideal is trivial. -/
@@ -201,7 +202,8 @@ theorem relativeElementary_bot {ι : Type*} [Fintype ι] [DecidableEq ι] :
   show Subgroup.normalClosure (relativeElementarySet ι (⊥ : TwoSidedIdeal R)) ≤ ⊥
   refine Subgroup.normalClosure_le_normal ?_
   rintro g ⟨i, j, hij, a, ha, rfl⟩
-  rw [TwoSidedIdeal.mem_bot.mp ha, elGen_zero]
+  have ha0 : a = 0 := ha
+  rw [ha0, elGen_zero]
   exact (⊥ : Subgroup (elementaryGroup ι R)).one_mem
 
 /-- **Printed:** "If `e = 0`, then `ReR = 0` and `EL_n(R,ReR) = 1`." -/
@@ -218,11 +220,11 @@ end GroupApproximation
 
 open GroupApproximation
 
-#audit_closed_axioms
+#audit_axioms
   Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.relativeElementary_span_le_of_elGen_mem
 
-#audit_closed_axioms
+#audit_axioms
   Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.relativeElementary_span_le_of_elGen_mem_fin
 
-#audit_closed_axioms
+#audit_axioms
   Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.relativeElementary_span_zero

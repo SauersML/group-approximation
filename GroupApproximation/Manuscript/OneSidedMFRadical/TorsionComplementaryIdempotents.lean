@@ -52,6 +52,10 @@ namespace TorsionComplementaryIdempotents
 
 open GroupApproximation.OneSidedCompressor
 
+/- `IsCDEOperatorMF` asks for a `Countable` instance on the group; over a countable ring
+the elementary group is countable. -/
+attribute [local instance] FullDefectRing.countable_elementaryGroup
+
 /-! ## Elementary roots along a coefficient map -/
 
 theorem elementaryGroupMap_elementaryRoot {ι : Type*} [Fintype ι] [DecidableEq ι]
@@ -104,8 +108,8 @@ theorem printedRoot_killed (s t : R) (hts : t * s = 1) {m : ℕ} (hm : 0 < m)
     simp
   have hT : HasKazhdanPropertyT.{0, 0}
       (elementaryGroup (Fin 3) ↥(Subring.closure ({s, t} : Set R))) :=
-    (NonMFSentences.HeadlineCitationSentences
-      .manuscriptSentence_pairSubringElementaryPropertyT R s t).2
+    (NonMFSentences.HeadlineCitationSentences.manuscriptSentence_pairSubringElementaryPropertyT
+      R s t).2
   have hkill := printedE21_killed_rank PS hT hm hmeS hn hM
     (f.comp (elementaryGroupMap (ι := Fin n)
       (Subring.closure ({s, t} : Set R)).subtype))
