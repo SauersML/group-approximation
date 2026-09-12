@@ -4,10 +4,13 @@ id: stw99-problem-ii-nuclear-uct
 kind: claim
 title: All separable nuclear C*-algebras satisfy the universal coefficient theorem (STW Problem II)
 root: true
+refuted_by:
+  - nuclear-algebra-without-uct-exists
 distinct_from:
   stw99-problem-iii-r-omega-uct: that asks only for the single divisible target R-omega, where K_1 vanishes and K_0 is the reals; this is the full Rosenberg--Schochet UCT problem, which implies it (route stw99-uct-implies-r-omega-uct).
 artifacts:
   - research/artifacts/stw99-uct-cluster-2026-08-30.md
+  - research/artifacts/stw-uct-reduction-map-2026-09-11.md
 ---
 
 **Problem II of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Do all
@@ -16,11 +19,37 @@ coefficient theorem: for every `B` with `K_*(B)` divisible, the map
 `α : KK(A, B) → Hom(K_*(A), K_*(B))` is an isomorphism?
 
 Known positive classes: type I and ASH algebras (Rosenberg--Schochet),
-C\*-algebras of second countable amenable groupoids (Tu; twisted with
-torsion-free-quotient hypotheses by Barlak--Li), locally-UCT nuclear
-algebras (Dadarlat: approximate containment of finite sets in UCT
-subalgebras suffices).  In the non-nuclear world the answer is no
-(Skandalis: `C*_r(G)` for biexact Kazhdan `G`).
+C\*-algebras of second countable amenable groupoids (Tu), nuclear reduced
+algebras of twisted étale groupoids and hence all separable nuclear algebras
+with a Cartan subalgebra (Barlak--Li Theorem 1.1 and Corollary 1.2, recorded in
+`barlak-li-cartan-subalgebras-force-uct`; the printed theorem carries no torsion
+hypothesis), locally-UCT nuclear algebras (Dadarlat: approximate containment of
+finite sets in UCT subalgebras suffices), and algebras decomposing over nuclear
+UCT algebras (`willett-yu-decomposability-forces-uct`).  In the non-nuclear
+world the answer is no (Skandalis: `C*_r(G)` for biexact Kazhdan `G`).
+
+**Graph structure (stw-uct lane, 2026-09-11).**  Four live routes now target
+this claim, each waiting on open claims:
+
+* `stw99-ii-via-trivial-k-kirchberg-algebras`, through
+  `trivial-k-theory-kirchberg-algebras-are-o2` (Kirchberg);
+* `stw99-ii-via-complexity-rank-one`, through
+  `trivial-k-kirchberg-algebras-have-complexity-rank-one` (Willett--Yu,
+  Jaime--Willett);
+* `stw99-ii-via-tracially-af-rational-k0`, through
+  `tracially-af-rational-k0-algebras-are-universal-uhf` (Dadarlat);
+* `stw99-ii-via-coprime-uhf-absorbing-cases`, through the two UHF-localized
+  halves `uct-for-two-infinity-absorbing-nuclear-algebras` and
+  `uct-for-three-infinity-absorbing-nuclear-algebras`.  The splitting theorem
+  `coprime-uhf-stabilizations-detect-uct` is proved here.  The half at 2 is
+  equivalent, by Barlak--Li Theorem 1.8, to
+  `o2-z2-actions-fix-a-cartan-subalgebra`.
+
+The negation is `nuclear-algebra-without-uct-exists`, which lists what a witness
+must avoid.  Problem II implies Problem IX(1) (`stw99-ii-implies-ix1`), so a
+non-quasidiagonal nuclear algebra with a faithful trace would refute it.  The
+verified sources, theorem numbers and the lane's plan are in
+`research/artifacts/stw-uct-reduction-map-2026-09-11.md`.
 
 ## Attempts
 
