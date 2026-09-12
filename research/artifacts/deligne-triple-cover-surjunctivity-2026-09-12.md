@@ -81,3 +81,73 @@ and `k[E/N]` is stably finite, then `E` carries no strict `k`-linear automaton i
   `k[E_S]` is stably finite iff `k[W]` is (`kun-thom-wreath-stably-finite`).
 - For `p` not dividing `|N|` the kernel `J` is not nilpotent, and the algebra splits over characters
   instead (Section 4).
+
+## 2. Deligne's triple cover in characteristic three
+
+**Theorem 2.1** (`deligne-triple-cover-ternary-group-algebras-are-stably-finite`). For every field `k` of
+characteristic `3`, `k[E_3]` is stably finite.
+
+*Proof.* `Gamma = Sp_4(Z)` is a finitely generated linear group, hence residually finite
+(`finitely-generated-linear-groups-are-residually-finite`). A residually finite group is LEF: any finite
+subset maps injectively into a finite quotient, and the quotient map preserves products. So `k[Gamma]` is
+stably finite (`lef-group-rings-over-stably-finite-rings-are-stably-finite`, with the coefficient ring
+`k`). The center `C_3` is a normal `3`-subgroup with `E_3/C_3 = Gamma`, and Theorem 1.4 applies.
+
+**Corollary 2.2 (screens on strict automata over E_3 in characteristic three).**
+- **(a) Linear.** No strict `k`-linear automaton on `(k^n)^(E_3)` exists for finite `k` of characteristic
+  `3` (Remark 1.5).
+- **(b) Formal.** Over an alphabet `F_3^n`, no strict pair `(tau, sigma)` on `E_3` has polynomial
+  representatives with `sigma o tau = id` holding formally, by
+  `formal-polynomial-strict-pairs-need-unstable-linearization` with `M_n(F_3[E_3])` directly finite.
+- **(c) Low degree.** Over `F_q^m` with `q` a power of `3`, every strict pair on `E_3` has
+  `deg sigma * deg tau >= q` after translating so that `tau(0) = 0`, by
+  `low-degree-strict-automata-force-matrix-kaplansky-failure`.
+- **(d) Conditional.** If `prime-field-left-inverse-pairs-are-stably-formalizable` holds at `p = 3`, then
+  `E_3` is surjunctive over every alphabet of size `3^n`: a strict pair would become formalizable after
+  adding identity tracks, against (b) at size `n + k`.
+
+**Remark 2.3 (what survives in characteristic three).** A strict automaton on `E_3` over a `3`-power
+alphabet must be non-formalizable at every stabilization, so its left-inverse identity genuinely uses
+`x^q = x`. No such pair is known on any group.
+
+## 3. Memory groups of strict automata over finite normal extensions
+
+**Lemma 3.1 (coset restriction).** Let `tau` on `A^E` have memory `M <= H <= E`. Then `tau` is injective,
+respectively surjective, iff its restriction `tau_H` on `A^H` is.
+
+*Proof.* `tau(x)(g) = mu((x(gm))_(m in M))`, and `g, gm` lie in the same left coset `gH`. With a transversal
+`T` of `E/H`, `A^E = prod_(t in T) A^(tH)`, identify `A^(tH)` with `A^H` by `h -> x(th)`. Then `tau` acts
+as `tau_H` on each factor, and a product map is injective or surjective iff each factor is.
+
+**Theorem 3.2** (`strict-automata-memory-keeps-finite-normal-kernel-residual`). Let `N` be a finite normal
+subgroup of `E` with `E/N` surjunctive, `tau` a strict automaton on `A^E` with memory set `M`, and
+`H = <M>`. Then:
+- `tau_H` is strict over `H`;
+- `H cap N` injects into no finite quotient of `H`, equivalently `N cap Res_fin(H) != 1`;
+- `H` is not sofic.
+
+*Proof.*
+1. Lemma 3.1 gives the first item.
+2. Suppose `H cap N` injects into a finite quotient of `H`. By
+   `separated-finite-normal-subgroups-preserve-surjunctivity`, `H` is surjunctive iff
+   `H/(H cap N) = HN/N` is. That group lies in `E/N`, so it is surjunctive by
+   `surjunctivity-passes-to-subgroups`. Then `tau_H` could not be strict.
+3. **Equivalence.** If `N cap Res_fin(H) = 1`, each `x in (H cap N) \ 1` lies outside some finite-index
+   normal `K_x <= H`. As `N` is finite, `K = intersection of the K_x` has finite index and
+   `K cap N = 1`, so `H cap N` injects into `H/K`. Conversely, an injection into `H/K` gives
+   `Res_fin(H) cap N <= K cap N = 1`.
+4. A sofic `H` would be surjunctive (`sofic-groups-are-surjunctive`).
+
+**Corollary 3.3 (E_3).** The memory group `H` of any strict automaton on `E_3` contains `z`, has
+`z in Res_fin(H)`, and is nonsofic. So `Lambda = H/<z>` is a finitely generated subgroup of `Sp_4(Z)` over
+which the triple cover does not virtually split. Two classes of `Lambda` are excluded:
+- **Virtually free `Lambda`.** For a free finite-index `F <= Lambda`, the central extension of `F` by `C_3`
+  splits. A splitting subgroup `F'` has finite index in `H` and meets `C_3` trivially.
+- **Amenable `Lambda`.** Then `H` is amenable, hence sofic.
+
+This includes the block `SL_2(Z) <= Sp_4(Z)`, which is virtually free.
+
+**Remark 3.4 (fixed configurations).** `z` is central, so right translation by `z` commutes with `tau`.
+By `surjectivity-descends-to-centralized-coset-quotients`, `tau` acts on `z`-invariant configurations as an
+injective automaton over `Gamma`. `Gamma` is residually finite, hence surjunctive, so that restriction is
+bijective. Every configuration missed by a strict `tau` therefore has trivial `C_3`-stabilizer.
