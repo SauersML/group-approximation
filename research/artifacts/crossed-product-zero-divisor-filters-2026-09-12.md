@@ -389,3 +389,63 @@ These arguments are pointwise in case 1, and need no measure there.
   on every finite set of every orbit. They must generate a non-hyperfinite relation, and they must admit
   only non-measurable paradoxical matchings. That is the regime of the `F_3`-linear soficity gate for
   `E x| V`, and nothing in this artifact decides it.
+
+## 6. Partners can be taken in `B`, and left inverses act on all functions
+
+**Lemma 6.1 (projection).** Let `P : S_- -> B` keep the `H`-supported part:
+`P(sum_(g in G) c_g [g] eps_-) = sum_(h in H) c_h [h] eps_-`.
+1. `P` is a `B`-bimodule map fixing `B`.
+2. If `x in B` and `zeta x = eps_-` with `zeta in S_-`, then `P(zeta) x = eps_-`. The same holds for right
+   inverses, and for rectangular matrices over `B` with a one-sided inverse over `S_-`.
+
+*Proof.* `F_3[G] = F_3[H] ⊕ F_3[G \ H]`, and `F_3[G \ H]` is an `F_3[H]`-sub-bimodule, because
+`H (G \ H) H = G \ H`. `eps_-` is central and lies in `F_3[H]`. So `P(zeta x) = P(zeta) x`. QED
+
+**Consequence.** Partners outside `B` add nothing to Lemma 2.3, Corollaries 3.2–3.3, Corollary 4.2 and
+Theorem 5.3.
+- *Cohn families.* A family whose isometries `sigma_1, sigma_2` lie in `B` projects to the family
+  `(sigma_j, P(tau_i))` inside `B`, because `P(tau_i) sigma_j = P(tau_i sigma_j) = delta_ij eps_-`.
+- *Corner witnesses.* A witness with `b' in B` projects to one with `c' in B`.
+- *Theorem 5.3.* Proposition 5.1 and Theorem 5.3 therefore hold with the `tau_i` and `c'` anywhere in `S_-`.
+
+**Proposition 6.2 (all functions).** Extend `rho_mu` to `F_3^V`, the space of all functions on `V`, by
+the same formulas. If `x in B` has a left inverse in `S_-`, then:
+- every `rho_mu(x)` is injective on `F_3^V`;
+- every `rho_mu(x*)` is surjective on `F_3[V]`.
+
+*Proof.* By Lemma 6.1 the left inverse `zeta` may be taken in `B`, and then `rho_mu(zeta) rho_mu(x) = 1`
+on `F_3^V`. With the pairing `<f, xi> = sum_k f(k) xi(k)`, `<rho_mu(x) f, delta_m> = <f, rho_mu(x*) delta_m>`.
+So `rho_mu(x)` on `F_3^V` is the algebraic dual of `rho_mu(x*)` on `F_3[V]`, and a dual map is injective
+only if the map is surjective. QED
+
+**Infinite back-substitution.** In the peeling of Theorem 4.1, each removed point is cleared by the unique
+column removed with it, and that column touches only earlier points. Every point meets boundedly many
+columns, so the procedure applies verbatim to infinitely supported vectors. Suppose the *live operator* at
+a round `r`, from functions on `Col_r` to functions on `Pt_r`, kills a nonzero function. Then `x` kills a
+nonzero element of `F_3^V`, and by Proposition 6.2 `x` has no left inverse in `S_-`.
+
+**Corollary 6.3 (two-regular cores).** Let `x in B` be a non-unit. Suppose that at some round `r` nothing
+is removed, every live column has exactly two live points, and every live point lies in at most two live
+columns. Then `x` has no left inverse in `S_-`.
+
+*Proof.*
+- *Two-regular.* Live membership and live multiplicities are clopen in the sense of Section 4. By
+  invariance, `∫_(Pt_r) mult = ∫_(Col_r) deg = 2 lambda(Col_r) = 2 lambda(Pt_r)`, using the equal measures of
+  Theorem 4.1(3). With `mult <= 2` this forces `mult = 2` on `Pt_r`. So in every fibre the live incidence
+  graph is two-regular, and each component is a cycle or a bi-infinite line.
+- *A line.* Put the value `1` on one live column and propagate. At each live point both entries are
+  nonzero, so the value on the next column is forced and nonzero. This gives a nonzero function killed by
+  the live operator, and infinite back-substitution with Proposition 6.2 excludes a left inverse.
+- *Only cycles, bounded lengths.* The set of base points whose live column lies on a cycle of length at most
+  `l` is clopen. These sets increase in `l` and cover a compact set, so cycle lengths are bounded.
+- *Only cycles, a singular block.* If some cycle carries a singular square block, a finite kernel vector
+  exists, and back-substitution makes `x` a left zero divisor.
+- *Only cycles, all blocks invertible.* The blocks have bounded size and are locally determined. Replace `D`
+  in the proof of Theorem 4.1(2) by the diagonal entries of rounds `< r` together with the live blocks. It is
+  a unit of `B`, and `D^-1 N` is nilpotent with the live stage on top. So `x` is a unit, which was
+  excluded. QED
+
+**Reading.** A left-invertible entry of `B` whose peeling gets stuck must have a live core in which some
+column has three or more live points, or some point meets three or more live columns, on a set of positive
+measure. Cancellation among pairs of overlapping pieces, where coefficient `2` cancels coefficient `1` one
+overlap at a time, is dead.

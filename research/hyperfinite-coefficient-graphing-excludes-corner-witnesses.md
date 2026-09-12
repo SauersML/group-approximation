@@ -33,6 +33,8 @@ injective. On the finite classes `C` of an exhaustion, with interior `C°` of sm
 `lambda(interior) <= 1/2`, which is a contradiction.
 
 **Scope.**
+- *Partners.* By the `H`-support projection (Lemma 6.1 of the artifact), the `tau_i` and `c'` may lie
+  anywhere in `S_-`. Only the isometries `sigma_j`, or `b'`, need to lie in `B`.
 - *What it refines.* It sharpens the support-group no-go: a witness with amenable Thompson projection has a
   hyperfinite coefficient relation, and small coefficient pieces can have one even over a nonamenable
   support.
