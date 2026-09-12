@@ -11,9 +11,10 @@ requires:
 
 A nonamenable product `H x K` of infinite groups either has an infinite
 amenable wq-normal subgroup or has none. The first case is contained in
-`fpbs-amenable-wq-normal-class-nonuniqueness`. That covers every product with an
-infinite amenable factor, such as `F_2 x Z`, and its premise is relative
-subcriticality along that subgroup. The second case is
+`fpbs-amenable-wq-normal-class-nonuniqueness`. It covers every product in
+which some factor has an infinite amenable subgroup `A`, because `{1} x A` is
+wq-normal. That includes `F_2 x Z` and `F_2 x F_2`, taking `A` cyclic. Its
+premise is relative subcriticality along `{1} x A`. The second case is
 `fpbs-product-no-amenable-wq-normal`. Together they give the product root for
 every generating set.
 
