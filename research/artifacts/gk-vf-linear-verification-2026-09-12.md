@@ -1194,3 +1194,69 @@ is correctly OPEN.
 identity `N_23 N_12 = 0` in characteristic two, together with `N_12^2 = 0` in odd characteristic. By Calibration C,
 no finite set of group relations over a finitely represented coefficient subring can prove it. Nothing
 decision-level has landed.
+
+## 36. Equidistant root displacement on the locally matricial part (092320434, artifact el3-rank-ring-rigidity Proposition 12): PASS
+
+- **Smith normal form.** `A_k ~= M_(2^k)(F_2)` in the matrix-unit basis `s_w t_v`, with unit `sum s_w t_w = 1`. So
+  `a = g_1 e_S g_2` with `g_1, g_2` units of `A_k`, hence units of `R`, and `e_S` a sum of `r = rank(a)` diagonal
+  level idempotents.
+- **Conjugation.** `diag(d_1, d_2, 1) x_12(b) diag(d_1, d_2, 1)^-1 = x_12(d_1 b d_2^-1)`, so
+  `d_1 = g_1, d_2 = g_2^-1` sends `x_12(e_S)` to `x_12(a)`.
+  - `GL_3(A_k) = GL_(3 2^k)(F_2)`, and every elementary transvection of `GL_(3m)(F_2)` lies in `EL_3(A_k)`:
+    cross-block transvections are there directly, and same-block ones come from `[e_(ab), e_(bc)] = e_(ac)`
+    through a third block.
+  - So `GL_3(A_k) = EL_3(A_k) <= EL_3(R)`.
+- **Idempotent conjugacy.** `x_12(e_S) ~ x_12(1)` for every nonzero `S` at `n = 2` (Sections 22 and 34), realized
+  in `GL_3(R) = EL_3(R)`.
+- **Weyl.** Permutation matrices move `x_ij(a)` to `x_12(a)`, with no signs in characteristic two. So
+  `rk(sigma(x_ij(a)) - 1) = rho` for all nonzero `a` in `A_inf`.
+- **Consequence check.** For `U = (Z/2)^N` and `u != 0`:
+  - on `F_2[U/Q]`, `u` acts trivially if `u` is in `Q`, and freely by translation otherwise, with normalized rank
+    `1/2`;
+  - the proportion of codimension-`c` subspaces containing `u` is `[N-1, c]_2 / [N, c]_2 = (2^(N-c) - 1)/(2^N - 1)`;
+  - so the uniform sum has displacement `(2^N - 2^(N-c)) / (2(2^N - 1))`, which tends to `(1 - 2^-c)/2`, the same
+    for every `u`.
+  - The remark that such sums "occur in regular models of level groups" was not checked, and nothing depends on it.
+    The free case `rho = 1/2` does occur.
+
+## 37. Root displacement bounds and the dyadic calibration (42e9d058e, lane gk-rk-free): PASS
+
+Items checked: `leavitt-rank-models-have-uniform-root-displacement`, `dyadic-root-displacement-data-admit-trivial-plus-free-models`,
+their routes, and `root-displacement-rank-extraction-2026-09-12.md` Sections 1 to 3.
+
+- **Parts 1 and 2 (invariances).** Permutation matrices of `SL_3(F_2)` give `x_(pi 1 pi 2)(a)`. `diag(u, v, 1)` in
+  `GL_3(R) = EL_3(R)` gives `x_12(u a v^-1)`.
+- **Part 3.** `x_12(a)^2 = 1` gives `N^2 = 0` in `M`, and Sylvester's inequality `rank N^2 >= 2 rank N - n`
+  gives `rk N <= 1/2`.
+- **Part 4.**
+  - `sigma(x_12(a+b)) - 1 = N_a(1 + N_b) + N_b`, so its rank is at most `rk N_a + rk N_b`.
+  - `[g,h] - 1 = (gh - hg) g^-1 h^-1`, and `gh - hg = (g-1)(h-1) - (h-1)(g-1)`, so the commutator displacement
+    is at most `2 min(rk(g-1), rk(h-1))`.
+  - With `x_13(ab) = [x_12(a), x_23(b)]` this gives the product bound.
+- **Part 5.**
+  - *Upper bound.* `rho_13(a . 1) <= 2 rho_23(1)`.
+  - *Lower bound.* Monomial pure infiniteness gives `x a y = 1` with monomials `x, y`. Then
+    `x_13(1) = [x_12(x), x_23(ay)]` and `x_23(ay) = [x_21(a), x_13(y)]` (indices `2, 1, 3` distinct). So
+    `rho <= 2 rho_23(ay) <= 4 rho_21(a) = 4 rho(a)`.
+- **Part 6.** With `N_i = e_i E_12` acting on columns:
+  - `N_i(e_2 e_j r) = delta_ij e_1 e_j r`, and `N_i` kills the `e_1`- and `e_3`-coordinates and `e_2(1-e)R`,
+    because `e_i(1-e) = 0`.
+  - The blockwise map `g`, built from `phi_i : e_i R ~= f_i R` and `psi : B ~= B'` (nonzero finitely generated
+    projectives, Bergman import of Section 33), is an automorphism of `R^3`. It satisfies
+    `N'_i g(e_2 e_i r) = e_1 f_i phi_i(e_i r) = g N_i(e_2 e_i r)`, and both sides vanish on the other summands.
+  - So `g x_12(e_i) g^-1 = x_12(f_i)` simultaneously, and `g` lies in `GL_3(R) = EL_3(R)`.
+  - Wording remark: the artifact writes both the standard basis columns and the idempotents as `e_1, e_2, e_3` and
+    `e_i`. The argument is correct, but the notation is ambiguous.
+- **Calibration, Theorem 2.**
+  - `D_k ~= (Z/2)^(2^k)`, because the `e_S` are distinct.
+  - Stagewise regular actions extended by the identity are asymptotically multiplicative on each finite set, hence
+    exact in the ultraproduct.
+  - Order-two elements act freely on free modules, so the displacement is `epsilon/2`, and injectivity holds for
+    `epsilon > 0`.
+  - The free restrictions over `Q ~= Q'` intertwine along a generator-matching isomorphism.
+  - The Boolean function meets parts 2 to 5.
+  - Scope: this realizes the listed data (a scalar function on `R` and a model of `D`), not a model of
+    `EL_3(R)`. The claim says exactly that.
+- **Section 3.** For free `F_2[Q]`-modules, the sum of the images `Im(g_i - 1)` is the augmentation-ideal part, of
+  codimension one per copy, giving `epsilon(1 - 2^-n)`. Natural block models over `A_inf` satisfy
+  `N_23 N_12 = 0`, while free models do not. Both statements check.

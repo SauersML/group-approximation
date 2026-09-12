@@ -9,6 +9,7 @@ requires:
   - binary-leavitt-nonzero-projectives-are-free
   - leavitt-gl-equals-el-and-perfect-unit-group
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/root-displacement-rank-extraction-2026-09-12.md
 ---
 
@@ -26,3 +27,5 @@ Section 1 of the artifact.
 * **Tuple conjugacy.** Decompose `R^3` along the tuple, and use isomorphisms `e_i R ~= f_i R`
   and `B ~= B'` of nonzero finitely generated projectives. They intertwine every
   `x_12(e_i) - 1` with `x_12(f_i) - 1`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 37 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
