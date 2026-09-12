@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md
   - research/artifacts/kaplansky-torus-fusion-brauer-balance-2026-09-11.md
   - research/artifacts/kaplansky-single-macro-prefix-transporter-obstruction-2026-09-08.md
+  - research/artifacts/kaplansky-transporter-exterior-screen-2026-09-12.md
 ---
 
 Let `Q = L_(F_2)(1,2)^x`, `S = F_2[Q]`, and let `K = <g, u g u^-1> ~= GL_2(F_4)` be the
@@ -50,6 +51,13 @@ isomorphism `f_+ E ~= P E` (half-corner Section 7).
   boundary module for the displayed architectures. Sums over several double
   cosets passing the mod-three orbit test, general linear Leavitt units, and
   bit-level prefix permutations mixing the binary coordinates remain open.
+* **Single small Thompson transporters (exact machine screen, partial).**
+  `P_0 [h] f_0` for all 551 Thompson units with codes of size at most four:
+  exact exterior kernels on a window kill 407, torus fusion kills the
+  uniform-depth ones, and a nonuniform remainder is being rescreened. The
+  explicit fusion transporter `phi` that conjugates `T0` to `T1` fails in degree 2,
+  and so do its coefficient dressings and simple sums. Details are in the
+  transporter screen artifact.
 * **Additive invariants never obstruct.** `Q` fuses `T0 ~ T1 ~ T2`, so all lifted
   Hattori--Stallings ranks of `f_+` and `P` agree. A live design must route the
   surplus fixed mass of `T0` to `T1` and `T2` through relations with no faithful
