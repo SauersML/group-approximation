@@ -52,19 +52,41 @@ Further content over K (probes 3–5):
   `kunnethFactor_CP_puncturedOf`.  Step C over F_p gets its `hacyclic` and `absLine` inputs from these.
 - **Gysin pair condition over K** (`GysinPairTautOf`, `GysinPairRetractOf`).
 
-## AUTHORED, not compiled
+| (identical) | 0911-233524-73677 (GREEN) | GysinTautChartOf |
+| (identical) | 0911-234055-22190 (GREEN) | ThomBridgeTotalNaturalOf, ThomJmNaturalOf |
+| (identical) | 0911-234431-51070 (GREEN) | ThomBridgeRelToAbsOf |
 
-- `GysinTautChartOf` (attic): `rChartOf_tautEulerK`, written against lix-lh's `ChernEulerBundleOf` /
-  `LerayHirschChartClassK`, which are not on main yet.
+Further content over K (probes 6–8):
+- **The tautological class dies on the chart** (`GysinTautChartOf.rChartOf_tautEulerK`), for every generator `hgen`,
+  against lix-lh's `eulerOfBundleOf`.
+- **Naturality** (`ThomBridgeTotalNaturalOf`, `ThomJmNaturalOf`): `bridgeTotalRestrictOf`, `thomJm_naturalOf` (any ring),
+  `thomJmTotalOf`, `thomJmTotal_restrictOf` (the generators and their compatibility `hξ` are arguments).
+- **The bridge commutes with relToAbs** (`ThomBridgeRelToAbsOf.relToAbs_bridgeTotalOf`).
+
+| 8ada97d0e | probe 10 | ThomHyperplaneLHOf (`hyperLHOf`, `thomData_total_of_tautOf`; the Leray–Hirsch instances are arguments) |
+| (landed) | probe 11 (GREEN) | ThomSphereSubspaceOf (`absToSub_injective_of_sphereOf`, `relQuotEquiv_of_sphereOf`), BundleTotalPiCohIsoOf |
+
+All authored modules of this lane are compiled.
+
+## Left F₂-only in the lane's prefixes, and why
+
+- `SliceHomogeneous`, `SliceValueV`, `SliceSplitV`, `SliceRoots`: `Finset.prod` of degree-two classes needs a
+  `CommMonoid`, and at odd p the total ring over K is only a `GRing`.  The K-form must multiply inside the even
+  subring (lix-cupone's `TotalH.mul_comm_of_even`) or use `List.prod`.  This is a design question for the Step D owners.
+- `ThomChartTautZero`: needs a K-form of `CPn.eulerOfBundle_pushforward_congr` (lix-lh).
+- `ThomTopLineLIX`, `ThomCoordinates`: rank-two LIX instances, consumed by the LIX lanes.
+- `ThomSectionDetect` / `ThomStepCOdd*` / `ThomStepCSection` / `ThomChainHne`: superseded over K by the `…Of` forms in
+  ThomStepCEulerOf / ThomStepCLocalOf.
 
 ## NEEDS (declaration level)
 
-- An Euler class over K (`eulerOfBundle`, `eulerOfBundle_comap`, `eulerOfBundle_eq_zero_of_factors` over K), for
-  GysinTautFields §4 (`rChart_tautEuler`) over K.  Owner unknown; asked the lead.
 - Line in degree 2d of `H^*(ℂP^d; K)` (lix-lh's projective computation over K) for `HasTopLineOf K (CP d) (2d)`.  Not
   needed for the recursion: the vanishing comes from `kunnethFactor_CPOf`.
 
 ## TRAPS
+
+- Subscript `₊` in a binder name breaks the parse (`ξ₊` → "unexpected token '₊'"), and every declaration below the break
+  reports as unknown.
 
 - `RelativeLES` does not bring `Hmod` into scope; import `CohomologyBasic`.  `sInclusion` lives in
   `GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree`; open it.
