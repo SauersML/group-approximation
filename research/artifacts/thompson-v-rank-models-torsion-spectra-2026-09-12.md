@@ -100,3 +100,61 @@ it tends to `a`, whatever the supports of the cycles.
 
 So on every clopen-cycle subgroup a rank model looks like a fraction `a` of trivial representation plus
 a fraction `1 - a` of the regular representation. Only the constant `a_p(sigma)` is free.
+
+## 2. Calibration: finite subgroups never force triviality
+
+**Proposition 2.1.** Let `K <= V` be finite, `a` in `[0,1]`, and `F` any field. Take a rank ultraproduct of
+the `F[K]`-modules `F^(m_k) (+) F[K]^(l_k)`, with trivial action on the first summand and
+`m_k / (m_k + |K| l_k) -> a`. It is a rank model of `K`. For every `g` in `K` and every polynomial `P` in
+`F[t]`, the rank of `P(sigma(g))` depends only on `a`, `P` and the order of `g`.
+
+*Proof.* Restricted to `<g>`, the regular module `F[K]` is `|K|/ord(g)` copies of `F[t]/(t^o - 1)` with
+`o = ord(g)`. On that module `P(t)` has rank `o - deg gcd(P, t^o - 1)`, and on the trivial summand it has
+rank `[P(1) != 0]`. QED
+
+Conjugate elements of `V` have equal orders. So every constraint an argument can extract from one finite
+subgroup `K` and `V`-conjugacy between its elements is satisfied by the model of Proposition 2.1, in every
+characteristic and including the `2`-groups of characteristic two. On clopen-cycle subgroups
+Theorem 1.3 shows that this form is also forced.
+
+This extends the Klein four-group calibration of [COV] Section 5.2 from one relation to all of torsion.
+A proof of `thompson-v-has-no-nontrivial-f2-rank-model` must use elements of infinite order, or two
+finite subgroups that together generate an infinite subgroup.
+
+## 3. Depth-changing elements carry rigid conjugacy invariants
+
+**Definition.** Let `g` be in `V` and `x` a fixed point of `g`. Near `x`, `g` is a prefix replacement
+`u z -> u' z` with `x` in `[u]`. The *slope* of `g` at `x` is `s_g(x) = |u| - |u'|`. Refining `u` to `uv`
+and `u'` to `u'v` leaves it unchanged.
+
+**Proposition 3.1.** For `h` in `V`, `h` maps `Fix(g)` bijectively onto `Fix(h g h^(-1))`, and
+`s_(h g h^(-1))(h x) = s_g(x)`.
+
+*Proof.* Near `h x`, write `h^(-1)` as `w' y -> w y`, `g` as `u z -> u' z` and `h` as `w y -> w' y`, all on
+small enough cylinders; this uses `g x = x`. Lengths add along the composite, so the slope is
+`(|w'| - |w|) + (|u| - |u'|) + (|w| - |w'|) = |u| - |u'|`. QED
+
+**Example 3.2.** `x_0 : (00, 01, 1) -> (0, 10, 11)` fixes exactly `0^inf` and `1^inf`, with slopes `+1` and
+`-1`. So `x_0^k` has slopes `+k` and `-k`. For `|k| != 1`, `x_0^k` is not conjugate to `x_0` in `V`.
+
+**What this costs.** In characteristic two, `y ~ y^2` would force `rk((y - 1)^2) = rk(y - 1)`, which says the
+unipotent part of `y` is trivial in rank. Power-conjugacy is the natural way to transfer torsion-style
+rigidity to infinite-order elements, and Example 3.2 shows it is unavailable for the depth-changing
+generator. (Standard revealing-pair theory says every infinite-order element of `V` has attracting
+periodic orbits with nonzero slope, which would rule it out for all of them. That is not verified here,
+and no node depends on it.)
+
+## 4. Where the gate stops
+
+- **Torsion is spent.** By Theorem 1.3 and Proposition 2.1, torsion data, however finely split across
+  supports, is "a trivial + (1 - a) regular" with one constant `a_p`.
+- **Additive versus multiplicative.** The covariance obstruction ([COV] Theorem 2.3) needs support
+  idempotents that ADD over a split `[0] = [00] (+) [01]`. Torsion averaging idempotents MULTIPLY over
+  disjoint supports: the joint fixed rank is `a + (1 - a)/p^k` (Corollary 1.5), and it never halves. An
+  obstruction must find additive support idempotents inside the image of `F[V]`, and none is known.
+- **Depth change.** Conjugating by `x_0` moves `E_n` over `[0]` into the tree over `[00]`, and the data is
+  unchanged. It is consistent with the trivial-plus-regular form, because ascending HNN extensions of
+  locally finite groups are amenable, hence sofic, hence rank-modelled.
+- **Positive direction.** Any nontrivial model must be free on all odd torsion, with displacement
+  `(1 - a_p)(p - 1)/p` for every clopen `p`-cycle whatever its support. That is the behaviour a sofic
+  approximation of `V` would have. It is evidence neither way on soficity.

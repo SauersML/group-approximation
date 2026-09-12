@@ -58,3 +58,17 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
 - **The root identity lives outside V.** Root elements `1 + E_ij` of `EL_3(R)` are not in `V`, so
   `rank-models-of-el3-satisfy-the-two-root-identities` does not specialize to `V`. This claim is the
   stronger target.
+- **Torsion is spent** (`w4-gate-v2`; `v-rank-models-are-trivial-plus-free-on-odd-cycle-trees`; artifact
+  `research/artifacts/thompson-v-rank-models-torsion-spectra-2026-09-12.md`).
+  - **Structure.** On every odd clopen-cycle subgroup, a rank model is a fraction `a_p` of trivial plus a
+    fraction `1 - a_p` of regular representation, with one global constant. The model is nontrivial iff
+    `a_p < 1`.
+  - **No finite shortcut.** By artifact Proposition 2.1, the trivial-plus-regular model of any finite
+    subgroup meets every conjugacy constraint, in every characteristic. So a proof must use infinite-order
+    elements, or two finite subgroups that generate an infinite subgroup.
+  - **No halving from torsion.** Torsion averaging idempotents multiply over disjoint supports: the joint
+    fixed rank is `a + (1 - a)/p^k`, and it never halves. The covariance obstruction needs support
+    idempotents that add over a split, and none is known inside the image of `F[V]`.
+  - **No power-conjugacy.** `y ~ y^2` would give `rk((y-1)^2) = rk(y-1)`, but that route is unavailable
+    for `x_0`. Slopes at fixed points are conjugacy invariants, and `x_0^k` has slopes `+k` and `-k`
+    (artifact Section 3).
