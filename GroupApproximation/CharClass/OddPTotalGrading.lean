@@ -47,10 +47,10 @@ theorem isEven_smul (s : K) {x : TotalHOf K X} (hx : TotalHOf.IsEven x) :
 
 theorem smul_mul_left (s : K) (x y : TotalHOf K X) : (s • x) * y = s • (x * y) := by
   induction x using DirectSum.induction_on with
-  | zero => rw [smul_zero, zero_mul, zero_mul, smul_zero]
+  | zero => simp only [smul_zero, zero_mul]
   | of a c =>
     induction y using DirectSum.induction_on with
-    | zero => rw [mul_zero, mul_zero, smul_zero]
+    | zero => simp only [mul_zero, smul_zero]
     | of b d =>
       show (s • TotalHOf.of K X a c) * TotalHOf.of K X b d
         = s • (TotalHOf.of K X a c * TotalHOf.of K X b d)
@@ -60,10 +60,10 @@ theorem smul_mul_left (s : K) (x y : TotalHOf K X) : (s • x) * y = s • (x * 
 
 theorem mul_smul_right (s : K) (x y : TotalHOf K X) : x * (s • y) = s • (x * y) := by
   induction y using DirectSum.induction_on with
-  | zero => rw [smul_zero, mul_zero, mul_zero, smul_zero]
+  | zero => simp only [smul_zero, mul_zero]
   | of b d =>
     induction x using DirectSum.induction_on with
-    | zero => rw [zero_mul, zero_mul, smul_zero]
+    | zero => simp only [zero_mul, smul_zero]
     | of a c =>
       show TotalHOf.of K X a c * (s • TotalHOf.of K X b d)
         = s • (TotalHOf.of K X a c * TotalHOf.of K X b d)
@@ -103,18 +103,19 @@ theorem eq_sum_components (x : TotalHOf K X) (T : Finset ℕ)
     x = ∑ e ∈ T, TotalHOf.of K X e (TotalHOf.component K X e x) := by
   apply DFinsupp.ext
   intro e
-  rw [DFinsupp.finset_sum_apply]
+  show TotalHOf.component K X e x
+    = TotalHOf.component K X e (∑ e' ∈ T, TotalHOf.of K X e' (TotalHOf.component K X e' x))
+  rw [map_sum]
+  simp only [component_of_eq_dite]
   by_cases he : e ∈ T
   · rw [Finset.sum_eq_single e]
-    · exact (DirectSum.of_eq_same e _).symm
+    · rw [dif_pos rfl, cohCast_rfl]
     · intro b _ hb
-      exact DirectSum.of_eq_of_ne b e _ (Ne.symm hb)
+      rw [dif_neg hb]
     · intro h
       exact absurd he h
-  · rw [Finset.sum_eq_zero]
-    · exact hT e he
-    · intro b hb
-      exact DirectSum.of_eq_of_ne b e _ (fun h => he (h ▸ hb))
+  · rw [Finset.sum_eq_zero fun b hb => dif_neg (fun h => he (h ▸ hb))]
+    exact hT e he
 
 /-- The projection onto one degree. -/
 def projDeg (e : ℕ) : TotalHOf K X →+ TotalHOf K X :=
