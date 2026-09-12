@@ -54,3 +54,23 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
 - **Algebras without uniform Gamma.**  Toms's AH algebra
   (`toms-ah-counterexample-to-uniform-gamma`) would give a witness if its trace
   simplex were Bauer.  Its paper does not address this, and it was not checked.
+- **A dimension-free certificate, and why Toms's mechanism is not yet one.**
+  - **The certificate.** `trivial-r-fibre-bundles-compare-equal-trace-projections`:
+    in `C_σ(K,R)` over any compact base, equal-trace projections are
+    approximately equivalent in `‖·‖_{2,u}`.  So a bundle is a witness as soon as
+    it contains equal-trace projections that are not approximately equivalent,
+    with no dimension hypothesis on the base.
+  - **Toms's non-simple system** (arXiv:2606.12188v2, Section 4) has exactly this
+    obstruction in its uniform tracial completion.  But its connecting maps double
+    the base, `X_{i+1} = X_i × X_i × CP^{j_i}`, through the two coordinate
+    projections.  Point traces restrict to averages `½(τ_{x'} + τ_{x''})`, and
+    whether the extreme traces form a closed set was not determined.
+  - **The single-projection variant** `X_{i+1} = X_i × CP^{j_i}` is a
+    `C(X̂)`-algebra with Bauer simplex `Prob(X̂)`.  Its doubled virtual bundle only
+    squares a top-degree Thom–Porteous class, which vanishes (heuristic; Toms's
+    Lemma 1 Step 2 was not checked in full).  So that variant loses the
+    obstruction.
+  - **What a Toms-style witness needs:** doubling (independent copies of the old
+    obstruction) together with a closed set of extreme traces.  These pull in
+    opposite directions in the obvious presentation.  Details are in
+    `research/artifacts/tw-hilbert-cube-projection-invariant-2026-09-12.md`.
