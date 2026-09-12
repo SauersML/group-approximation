@@ -125,3 +125,131 @@ Section 7.
   simple nonsofic `Q` satisfies the hypothesis. Correct.
 - **Not verified.** The fixed-algebra form relies on Kun–Thom Lemma 2.3, which
   was not re-read here. It is a restatement and is not used by the main claim.
+
+---
+
+## The characteristic-two half of `positive-char-surface-linear-groups-satisfy-boone-higman`
+
+`cairn why` at fb77d8e0b derives the class through
+`positive-characteristic-surface-linear-proof` from three inputs:
+
+- `odd-leavitt-unit-groups-mod-scalars-are-fp-simple`;
+- `char-two-surface-linear-groups-satisfy-boone-higman`;
+- `char-two-laurent-linear-groups-satisfy-boone-higman`.
+
+reviewer-2 passed the odd-prime half and the host theorems
+(`review-boone-higman-leavitt-tensor-hosts-2026-09-12.md`). The
+characteristic-two ring-embedding nodes below had no verdict.
+
+## 4. `leavitt-subalgebra-linear-groups-satisfy-boone-higman` (f2b36666c): PASS
+
+- **Prefix code.** The code is `μ_i = 1^(i-1)0` for `i < n`, and `μ_n = 1^(n-1)`.
+  For `j < k` the words `μ_j` and `μ_k` first differ at letter `j`, where
+  `t_0 s_1 = 0`. So `t_(μ_j) s_(μ_k) = δ_jk`, and induction on `n` gives
+  `Σ s_(μ_i) t_(μ_i) = 1`.
+- **Isomorphism.** `Φ(a)Φ(b) = Φ(ab)`, `ΨΦ = id` and `ΦΨ = id` all check. So
+  `M_n(R) ≅ R` as unital rings, and restriction to `M_n(A)` is injective on
+  units.
+- **Imports.** The payoff inherits two claims:
+  - `leavitt-unit-group-finitely-presented` (Khanh arXiv:2609.08428 Thm 6.1,
+    unrefereed; statement quoted from the PDF in the citation route);
+  - `binary-leavitt-unit-group-is-simple` (§8).
+
+## 5. `char-two-laurent-linear-groups-satisfy-boone-higman` (f2b36666c): PASS
+
+- **Test module.** On `M = F_2[Ω]`, `t_a s_b = δ_ab` and `s_0 t_0 + s_1 t_1 = 1`
+  hold, so `M` is a unital `R`-module. Nonvanishing on `M` implies nonvanishing
+  in `R`.
+- **Free algebra.** `ρ_i = 1^(i-1)0` is a prefix code, so monomials give distinct
+  words `w`. Since every `ρ_i` ends in `0`, the last `1` of `s_w(1 0 0 …)`
+  marks the end of `w`. Distinct monomials hit distinct basis vectors.
+  Injective.
+- **Thompson unit, recomputed in full.** All nine products were expanded.
+  - `gh`: only the diagonal terms survive, giving
+    `s_0t_0 + s_1 s_0 t_0 t_1 + s_1 s_1 t_1 t_1 = 1`.
+  - `hg`: only the diagonal terms survive, giving
+    `s_0 s_0 t_0 t_0 + s_0 s_1 t_1 t_0 + s_1 t_1 = 1`.
+  - On `M`, `g` rewrites prefixes `00→0, 01→10, 1→11`, and `h` inverts this.
+    So `g^k(v) = 1^(k+1)0…` for `k ≥ 0`, and `g^(-k)(v) = 0^k 1 0…` for
+    `k ≥ 1`. These are pairwise distinct, so `F_2[t^±] → R` is injective.
+- **Fields.** The companion matrix embeds `F_q` unitally in `M_k(F_2)`. `B` is flat
+  over the field `F_2`, so `F_q ⊗ B → M_k(B)` is injective. Correct.
+- **Examples.** `C_2 wr Z ≤ GL_2(F_2[t^±])` holds via `[[t^n, f], [0, 1]]`.
+
+## 6. `char-two-curve-linear-groups-satisfy-boone-higman` (22cb987f5): PASS
+
+- **Steps 0–2.** A finitely generated field of transcendence degree 1 is finite
+  over some `F_2(t)`. The generating set includes inverses, so clearing
+  denominators of the generators suffices. In the algebraic case the group is
+  finite and embeds in `GL_N(F_2) ≤ R^x`.
+- **Step 3.** Every nonzero polynomial over `F_2` is monic, and `t | f` forces
+  `d ≥ 1`. So `f(T) − g` is monic of degree `d` over `F_2[g^±]`. The quotient
+  is `F_2[T][f(T)^-1] ≅ F_2[t, 1/f]`, free of rank `d`, and the regular
+  representation is a unital injection into `M_d(F_2[g^±])`. Correct.
+- **Step 4.** This is §5 and §4. Correct.
+
+## 7. `char-two-surface-linear-groups-satisfy-boone-higman` (75bbd0843): PASS
+
+- **Step 3.** `f = t_2 h / c` is monic in `t_2` over `C = F_2[t_1][1/c]` and of
+  positive degree. Also `1/h = t_2 / (c f)`, so
+  `F_2[t_1,t_2][1/h] ⊆ C[t_2][1/f]` inside `F_2(t_1,t_2)`.
+- **Step 4.** `f(T) − g` is monic over `C[g^±]`, so the ring is free of rank
+  `deg f`. Correct.
+- **Step 5.** `C ⊆ F_2[t_1, 1/(t_1 c)]`, and §6 embeds the latter unitally in
+  `M_d(L) ≅ L`. That gives the claimed `C ↪ L`, including the case `c = 1`.
+  Injectivity of `C ⊗ F_2[g^±] → L ⊗ L` holds over a field. Leaf coordinates in
+  the first factor give `M_k(L⊗L) ≅ L⊗L`.
+- **Imports.** The host `leavitt-square-unit-group-is-fp-simple-and-acyclic` is
+  reviewer-2 PASS.
+- **Examples.**
+  - Suslin gives `SL_n(k[t_1,t_2]) = E_n` for `n ≥ 3`, and `E_n` over a
+    finitely generated commutative ring is finitely generated for `n ≥ 3`.
+    Correct.
+  - For the "finite products" bullet, two groups over different fields of
+    transcendence degree 2 need not live over one such field. The embedding
+    should instead be taken at the host:
+    `(L⊗L)^x × (L⊗L)^x ≤ GL_2(L⊗L) ≅ (L⊗L)^x`. With that reading it is correct.
+
+## 8. `binary-leavitt-unit-group-is-simple` (72d9a63cc): PASS, inheriting two Lean theorems
+
+- **Three-leaf code.** All nine products `T_i S_j` were checked, and
+  `Σ S_i T_i = 1`. So `L^x = GL_3(L)`.
+- **Inputs, Lean-proved.**
+  - `GL_3 = EL_3` (§9).
+  - `EL_3(L)` simple: `binary-leavitt-elementary-group-is-simple`, which is
+    `RootDetectionBinary.isSimpleGroup_elementaryGroup_binaryLeavitt`. The
+    `reviewer` lane matched the statement and found no `sorry`, `admit` or
+    `axiom` in the file (`review-leavitt-hs-collapse-2026-09-12.md` §2.2). No
+    axiom audit of its closure has been run, and none was run here.
+- **Infinite and nonabelian.** Both are correct.
+- **Independent consistency check.** `L^x` is Kazhdan, via
+  `EL_4(L) ≅ L^x` and Ershov–Jaikin-Zapirain. It is also minimally almost
+  periodic (reviewer, Malcev argument). Neither contradicts simplicity.
+
+## 9. `leavitt-gl-equals-el-and-perfect-unit-group` (39be23122): PASS as mathematics; Lean not re-built
+
+- **Transport.** A ring isomorphism `φ: A ≅ M_2(A)` maps `EL_n(A)` onto
+  `EL_n(M_2(A))`, because `φ` is surjective on entries.
+- **Block flattening.** `EL_p(M_q(A)) = EL_(pq)(A)` for `p ≥ 2`. The
+  within-block roots are commutators through another block.
+- **Ranks.** Together these give:
+  - even ranks from rank two, `GL_(2n) = GL_2(M_n) = EL_2(M_n) = EL_(2n)`;
+  - odd ranks from `2n`, `GL_n(A) ≅ GL_n(M_2 A) = GL_(2n) = EL_(2n) = EL_n(M_2 A) ≅ EL_n(A)`.
+  Correct.
+- **Perfectness.** `[e_13(a), e_32(1)] = e_12(a)` in rank 3. Correct.
+- **Trust surface.** The rank-two base `glTwo_eq_elementary_holds` (the `K₁`
+  chain) is a Lean theorem, not re-read or re-built here.
+
+## Summary of §4–9
+
+The ring-embedding half of the positive-characteristic class is correct. The
+whole class `positive-char-surface-linear-groups-satisfy-boone-higman` now has
+a verdict on every node of its `cairn why` derivation except the
+literature imports:
+
+- `khanh-acyclicity-and-steinberg-criteria` and `leavitt-unit-group-finitely-presented`
+  (Khanh, unrefereed);
+- `ara-cortinas-leavitt-tensor-k-theory-vanishes` (published);
+- `leavitt-center-is-coefficient-field` (internal).
+
+It also relies on two Lean theorems whose axiom closure has not been audited.
