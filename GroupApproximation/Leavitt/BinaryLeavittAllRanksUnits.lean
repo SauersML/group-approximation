@@ -127,6 +127,7 @@ def rightLinearEquivSquare : A ≃ₗ[Aᵐᵒᵖ] A × A where
 
 /-! ## Complete prefix codes, and `GLₘ(A) ≅ Aˣ`, at every leaf count `m ≥ 1` -/
 
+include L in
 /-- **`GLₘ(A) ≅ Aˣ` for every `m ≥ 1`.**  The self-similarity of Proposition
 `prop:selfsim` at the `m`-leaf complete left-comb prefix code
 `leftCombCode (m - 1)`.  `UnitGroupHeadline.lean`'s `glFourEquivUnits` is the

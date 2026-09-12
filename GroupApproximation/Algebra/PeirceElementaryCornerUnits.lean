@@ -74,6 +74,7 @@ section Coordinates
 
 variable {R : Type} [Ring R] [Countable R]
 
+omit [Countable R] in
 /-- Orthogonal idempotents each equivalent to `1` form a matrix-unit system.
 Same construction as `KappaProof.exists_coordinates`, but for a family given in
 advance rather than one chosen by the proof. -/
