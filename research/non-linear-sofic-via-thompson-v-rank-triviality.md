@@ -13,7 +13,9 @@ into a characteristic-two matrix rank ultraproduct. By `thompson-v-has-no-nontri
 every such homomorphism is trivial. So `V` is not `F_2`-linear sofic, which is `non-linear-sofic-group`
 with `G = V` and `F = F_2`.
 
-By simplicity of `L_(F_2)(1,2)^x`, which contains `V`, the same prerequisite also makes the binary Leavitt
-units not `F_2`-linear sofic. See artifact Section 4.
+The same prerequisite also makes the binary Leavitt units not `F_2`-linear sofic. `V <= L_(F_2)(1,2)^x`,
+so an injective approximation of the units restricts to an injective one of `V`; this step does not
+need simplicity. Simplicity of the units gives the stronger statement that their characteristic-two rank
+models are trivial. See artifact Section 4.
 
 *Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the route is valid and conditional, and its prerequisite is correctly OPEN.*
