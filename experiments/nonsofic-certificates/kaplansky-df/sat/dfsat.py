@@ -354,6 +354,31 @@ def main():
         prune_x, prune_or = [], []
         if group_mode and not args.no_strict:
             prune_x, prune_or, report["prune"] = prune_rows(L, A, B, gens, args.family)
+            if args.target != "none":
+                # s0-lifts-cannot-be-supported-in-the-all-ones-stabilizer: a lift of s0 must
+                # use a unit with u 1 != 1 (and a lift of t0 one with u^* 1 != 1), where
+                # S[a]T[b] contributes 1 on the cylinder [a].
+                def fixes_all_ones(u, star):
+                    words = [b if star else a for a, b in u.val.terms]
+                    parity, prefixes = {}, set()
+                    for w in words:
+                        parity[w] = parity.get(w, 0) ^ 1
+                        prefixes.update(w[:i] for i in range(len(w)))
+                    stack = [("", 0)]
+                    while stack:
+                        p, acc = stack.pop()
+                        acc ^= parity.get(p, 0)
+                        if p in prefixes:
+                            stack += [(p + "0", acc), (p + "1", acc)]
+                        elif acc != 1:
+                            return False
+                    return True
+                star = args.target == "alpha-T0"
+                side, units = ("x", A) if star else ("y", B)
+                outside = [k for k, u in enumerate(units) if not fixes_all_ones(u, star)]
+                prune_or.append((side, outside))
+                report["prune"].append({"subgroup": "all-ones stabilizer" + (" (starred)" if star else ""),
+                                        "outside": len(outside)})
         status, model, stats = encode_and_solve(A, B, ab, ba, ident, strict, args.time_limit,
                                                 rows + prune_x, prune_or)
     report.update(stats)
