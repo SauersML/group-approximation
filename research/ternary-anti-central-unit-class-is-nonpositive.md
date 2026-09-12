@@ -52,3 +52,13 @@ that is, `k[eps_-] <= 0` in `K_0(S_-)`. Equivalent forms:
   - The obstruction is invertibility of `1 + E` for a kernel-valued `E`.
 - *Where it dies today.* No lift with invertible `1 + E` is known, and no state on `K_0(S_-)` is
   known. By Theorem E exactly one of the two exists.
+- *Halving endomorphism* (gk-l3-state; artifact `ternary-corner-state-sources-2026-09-12.md`, Section 5).
+  - `w` and `d` centralize `δ(G)`, so `ψ(x) = e_- δ_*(x)` is a unital map `S_- -> e_- S_- e_-`.
+  - Through `M_2(δ(S_-)) ⊂ S_-` it gives only `[eps_-] = 2[e_-]`, which a state allows.
+  - An intertwiner implementing `ψ` would give `eps_- ~ e_-` and so `[eps_-] <= 0`. But it would satisfy
+    `V[g] = [δ(g)]V`, and so `V = 0` (`self-similar-leavitt-intertwiners-have-no-exact-lift`).
+  - Any isomorphism with `k >= 1` is the Cohn-family lift.
+- *State side* (gk-l3-state, 38533db3fe). The only concrete source of a state is a characteristic-three
+  rank model moving `z` on each finitely generated subgroup containing `z`, `w`, `d`
+  (`anti-central-rank-models-kill-ternary-corner-witnesses`). By compactness local models suffice, and
+  their existence is as open as this claim.

@@ -162,3 +162,18 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     (`signed-thompson-group-has-no-finite-dimensional-representations`).
   - Sufficient open target: `odd-measure-crossed-product-unit-below-cylinder-idempotent`, through the
     route `odd-measure-compression-gives-anti-invariant-corner`.
+- **State sources (gk-l3-state, 38533db3fe; artifact `ternary-corner-state-sources-2026-09-12.md`).**
+  - `anti-central-rank-models-kill-ternary-corner-witnesses`: take a subgroup containing `z`, `w`, `d`
+    and a characteristic-three rank model of it moving `z`. Compressing to the minus-one eigen-corner
+    gives a `K_0` state normalized at `eps_-`, and the dihedral halving `d w d^-1 = z w` then rules out
+    witnesses supported there.
+  - So a witness's support subgroup sends `z` to `1` in every rank model, finite-dimensional
+    representation and finite quotient. That strengthens `ternary-corner-witnesses-need-non-linear-sofic-support`.
+  - One rank model of `G` moving `z` would refute this claim. The target survives only if every
+    characteristic-three rank model of `G` factors through `G/<z>`.
+  - Dead ends, artifact Sections 4–5:
+    - Haar measure on the odd-measure crossed product is a type-semigroup state only;
+    - kernel-corner states pull back to `S_-` but are no easier;
+    - lifted traces are not positive;
+    - the halving endomorphism `x -> e_- δ_*(x)` has no intertwiner, by
+      `self-similar-leavitt-intertwiners-have-no-exact-lift`.
