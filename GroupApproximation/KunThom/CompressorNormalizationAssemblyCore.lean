@@ -99,11 +99,13 @@ theorem seqNormalizes_distinguished_of_steps {G : Type} [Group G] [Countable G]
             (Vanishing fun n ↦ matchingError D n / F.threshold n) →
               Nonempty (CountingEndgame.CompressorRelativeData C.distinguished F))
     (hhamming : ∀ (A : SoficApproximation G)
-      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained)
-      (M : CountingEndgame.CompressorRelativeData C.distinguished F) (a b : ∀ n, F.Bis n),
-        M.Transported a b →
-          Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
-            (A.map n C.distinguished * F.patch n (a n) * (A.map n C.distinguished)⁻¹)) :
+      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained),
+        F.repairFactor = compressorRepairFactor (normalizedSetup C hembed) →
+          Vanishing F.threshold →
+            ∀ (M : CountingEndgame.CompressorRelativeData C.distinguished F)
+              (a b : ∀ n, F.Bis n), M.Transported a b →
+                Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
+                  (A.map n C.distinguished * F.patch n (a n) * (A.map n C.distinguished)⁻¹)) :
     SeqNormalizes Γ C.distinguished :=
   seqNormalizes_of_compressor_of_frameSteps
     (Decomp := CompressorDecomposition (normalizedSetup C hembed))

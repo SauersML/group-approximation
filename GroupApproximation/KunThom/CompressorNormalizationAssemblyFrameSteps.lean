@@ -43,8 +43,9 @@ The hypotheses, with the lanes that own them:
 * `honesided`, `hcounting` (kt41-counting-endgame), `hmedian`
   (kt41-median-vertex): the one-sided inequalities, their concentration, and the
   transported bisections;
-* `hhamming` (kt41-hamming): transported bisections are close to the
-  conjugates. -/
+* `hhamming` (kt41-hamming): at frames with the repair factor of the
+  decomposition and a vanishing threshold, transported bisections are close to
+  the conjugates. -/
 theorem seqNormalizes_of_compressor_of_frameSteps {G : Type} [Group G] {Γ : Subgroup G}
     {t : G}
     (Decomp : SoficApproximation G → Type*)
@@ -85,10 +86,11 @@ theorem seqNormalizes_of_compressor_of_frameSteps {G : Type} [Group G] {Γ : Sub
     (hcounting : ∀ (A : SoficApproximation G) (D : Decomp A) (F : ClusterFrame (retained D))
       (R : Rel F), Concentrated R → ∀ a : ∀ n, F.Bis n, ∃ b : ∀ n, F.Bis n,
         Transported R a b)
-    (hhamming : ∀ (A : SoficApproximation G) (D : Decomp A) (F : ClusterFrame (retained D))
-      (R : Rel F) (a b : ∀ n, F.Bis n), Transported R a b →
-        Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
-          (A.map n t * F.patch n (a n) * (A.map n t)⁻¹)) :
+    (hhamming : ∀ (A : SoficApproximation G) (D : Decomp A) (F : ClusterFrame (retained D)),
+      F.repairFactor = repairFactor D → Vanishing F.threshold →
+        ∀ (R : Rel F) (a b : ∀ n, F.Bis n), Transported R a b →
+          Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
+            (A.map n t * F.patch n (a n) * (A.map n t)⁻¹)) :
     SeqNormalizes Γ t := by
   refine seqNormalizes_of_compressor_of_steps Decomp
     (fun A D ↦ {F : ClusterFrame (retained (A := A) D) //
@@ -115,7 +117,7 @@ theorem seqNormalizes_of_compressor_of_frameSteps {G : Type} [Group G] {Γ : Sub
   · intro A D F R h a
     exact hcounting A D F.1 R h a
   · intro A D F R a b h
-    exact hhamming A D F.1 R a b h
+    exact hhamming A D F.1 F.2.1 F.2.2 R a b h
   · exact seqNormalizes_of_forall_not_uniform_lower_bound
 
 end CompressorNormalizationAssembly
