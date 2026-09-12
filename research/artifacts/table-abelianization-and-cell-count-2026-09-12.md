@@ -125,17 +125,30 @@ abelianization has `b_1 = 0`, so the right side is at most `0`, which is the
 second display. The coincidence count is
 `|S||M| - |P| >= |S||M| - (|S|-1)(|M|-1) - 1 = |S| + |M| - 2`. QED
 
-For `c` components, `b_1(Gamma_E) = |S||M| - |P| - |S| + c` and
-`b_1(U_E) = b_1(Hol_M(E)) + c - 1`, so the bound holds verbatim for `U_E` with
-`|S| - c` in place of `|S| - 1`. The connected case is the only one needed, by
-the reduction in (H1).
+For `c` components, `b_1(Gamma_E) = |S||M| - |P| - |S| + c`, and
+`U_E = Hol_M(E) * F_(c-1)` by (H1), so `b_1(U_E) = b_1(Hol_M(E)) + c - 1`. The
+same count gives
+
+```text
+b_1(U_E)       >=  |S.M| - (|S| - 1)(|M| - 1) - 1,
+b_1(Hol_M(E))  >=  |S.M| - (|S| - 1)(|M| - 1) - c.
+```
+
+So the display holds verbatim for the table group `U_E`, and the host `Hol_M(E)`
+loses `c - 1`. An earlier version of this remark put `|S| - c` in place of
+`|S| - 1`. That is wrong: it gives the false bound `3` in the discrete `2 x 2`
+example below. The connected case is the only one needed, by the reduction in
+(H1).
 
 **Sanity checks.**
 
 * `S = M = {1}`: `|S.M| = 1`, bound `1 <= 1`. The host is trivial, and its
   abelianization is finite. Consistent.
-* `S = {1,a}`, `M = {1,b}` with `|S.M| = 4`: the bound `4 <= 2` fails, so
-  `b_1 >= 2`. Correct: the host is free of rank two.
+* `S = {1,a}`, `M = {1,b}`, discrete table, `|S.M| = 4`. The difference graph
+  has two vertices and no edges, so `c = 2`, and the connected display does not
+  literally apply (scope note from `gk-vf-nonlinear`). The table group is
+  `U_E = Z * Z` with `b_1 = 2`, matching the verbatim bound `4 - 1 - 1 = 2`. The
+  host `Hol_M(E) = <x_b> = Z` has `b_1 = 1`, matching `4 - 1 - 2 = 1`.
 * `S = M = F` a finite group with its full multiplication table: `|S.M| = |F|`
   and `(|F|-1)^2 + 1 >= |F|` for `|F| >= 1`, so the test passes. Correct: the
   host is `F`, with finite abelianization. So the filter is not vacuously
