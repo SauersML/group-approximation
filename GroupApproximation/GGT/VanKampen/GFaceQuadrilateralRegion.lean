@@ -37,21 +37,24 @@ universe u w v v' v''
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda} {eps : ℕ}
 
-/-- Two regions, possibly on different diagrams, target the exterior together, and
-their target arcs start at the same position and have the same length.  Whether a
-region is a contiguity to a boundary section depends only on this profile. -/
+/-- Two regions, possibly on different diagrams, target the exterior together, their
+target arcs start at the same position and have the same length, and their source arcs
+have the same length.  Whether a region is a contiguity to a boundary section depends
+only on the target part, and nondegeneracy only on the two lengths. -/
 def SameTargetProfile {Delta : DiscDiagram.{u, w, v} W} {Xi : DiscDiagram.{u, w, v'} W}
     (a : RegionCandidate D eps Xi) (b : RegionCandidate D eps Delta) : Prop :=
   (a.2.target = none ↔ b.2.target = none) ∧
     a.2.targetArc.start.val = b.2.targetArc.start.val ∧
-      a.2.targetArc.length = b.2.targetArc.length
+      a.2.targetArc.length = b.2.targetArc.length ∧
+        a.2.sourceArc.length = b.2.sourceArc.length
 
 theorem SameTargetProfile.trans {Delta : DiscDiagram.{u, w, v} W}
     {Xi : DiscDiagram.{u, w, v'} W} {Theta : DiscDiagram.{u, w, v''} W}
     {a : RegionCandidate D eps Theta} {b : RegionCandidate D eps Xi}
     {c : RegionCandidate D eps Delta}
     (hab : SameTargetProfile a b) (hbc : SameTargetProfile b c) : SameTargetProfile a c :=
-  And.intro (hab.1.trans hbc.1) (And.intro (hab.2.1.trans hbc.2.1) (hab.2.2.trans hbc.2.2))
+  And.intro (hab.1.trans hbc.1) (And.intro (hab.2.1.trans hbc.2.1)
+    (And.intro (hab.2.2.1.trans hbc.2.2.1) (hab.2.2.2.trans hbc.2.2.2)))
 
 end GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate
 
@@ -81,12 +84,14 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
     {a : RegionCandidate D eps Xi} (ha : a ∈ E.regionFamily C hcells hf family havoid) :
     ∃ b ∈ family, RegionCandidate.SameTargetProfile a b := by
   obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
-  refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ ?_)⟩
+  refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ (And.intro ?_ ?_))⟩
   · exact Option.map_eq_none_iff
   · exact CyclicArc.mapTo_start b.val.2.targetArc E.darts
       (E.targetDarts_eq C hcells hf b.val.2.target)
   · exact CyclicArc.mapTo_length b.val.2.targetArc E.darts
       (E.targetDarts_eq C hcells hf b.val.2.target)
+  · exact CyclicArc.mapTo_length b.val.2.sourceArc E.darts
+      (E.cellDarts_eq C hcells b.val.2.source)
 
 end GroupApproximation.GGT.VanKampen.DiscEmbeddingAway
 
