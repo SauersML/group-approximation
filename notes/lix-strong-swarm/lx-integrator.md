@@ -1,29 +1,37 @@
-# lx-integrator: LIX-strong swarm integration lane (clone cs-endpoint)
+# lx-integrator: LIX-strong swarm lane (clone now lix-s)
+
+Re-tasked 2026-09-12 ~10:25 CDT from integration to authoring: the F₂ rank-n slice value, the `slice` leaf of `Gen.WuStepDData` (lix-evenside-n STOPPED residual (b)).  Prefix `CharClass/SliceGen*` except `SliceGenOf*` (lx-sliceK).
 
 ## GREEN
-- Board `notes/lix-strong-swarm/BOARD.md` landed 40801adec, read at 01b92308d. It lists every residual of D1 with file:line, state, owner lane and sha.
-- Integration baseline probe 0912-100606-67380: cs-endpoint, acn112 cores 64-71, base 4c343e664.
-  - Modules: `ProblemLIXStrongAssemblyHalves`, `LIXLemmaTwoGenTwo`, `LIXStepDGenReal`, `LIXKGenOfStepC`.
-  - Result: PROBE GREEN, 9456 jobs, purge 0, 0 modules rebuilt. All four were restored with the same input hash.
-  - This shows the consumer tops are consistent at that base. It is not a fresh elaboration.
-- Duplicate scan at c3b58d90c: `/projects/standard/hsiehph/sauer354/lixs/dupscan-c3b58d90c.out`, 6111 modules, 832 of them LIX.
-  - (a) 6 name collisions, all in the parked red `OddPTupleBd`/`OddPTupleSlot` versus `OddPTuple`. lx-diag has been told.
-  - (b) 47 signature matches, mostly definitions with equal types. The real same-fact pairs are on the board as cleanup; none blocks.
+- `CharClass/SliceGenValue.lean`, landed 970d1f3e6.  Probe 0912-104840-68239 on base 970d1f3e6: PROBE GREEN, `BUILT GroupApproximation.CharClass.SliceGenValue`, 9235 jobs, 1 module rebuilt.  The probed md5 d9e0e351… equals the bytes on main.
+  - `Gen.vSliceValue_sliceGen` depends on axioms `[propext, Classical.choice, Quot.sound]`.
+  - Declarations:
+    - `Gen.splitRelation_V n dd root hroot`
+    - `Gen.lineEulerOf_vLineYBundle_inl n dd i` (value 0)
+    - `Gen.lineEulerOf_vLineYBundle_inr n β hd` (value: the pulled-back `cpGen`)
+    - `Gen.sliceGen_eq_rootN n dd hdd β`
+    - `Gen.vRootE n dd l`, `Gen.vRootE_equiv n dd k`
+    - **`Gen.VSliceValue n dd gen`**: `∀ q, TotalH.of (KnTwo.YTop (baseY dd)) (2 * q) (LH.chernOf (vBundleY n dd) (KGen.lixRank n dd) (rank_vBundleY n dd) (kgenLixRank_pos n dd) q) = (sliceClass univ gen dd).coeff q`
+    - **`Gen.vSliceValue_sliceGen n dd hdd : VSliceValue n dd (LH.sliceGen dd hdd)`**
+  - Built on lx-sliceK's coefficient-free `SliceGenOfLines` and `SliceGenOfBlocks` (fbdce4552), with rank-two `SliceValueV` as the F₂ toolkit import.
+- Earlier, as integrator:
+  - `notes/lix-strong-swarm/BOARD.md` landed at 40801adec and 19b478821; the board refresh was dropped by lead order.
+  - Tops probe 0912-100606-67380: GREEN.
+  - Probe 0912-102247-19148: red in lx-pzero's `OddPTotalInterface:111:37`, an unused `hd`. Routed to lx-pzero.
+  - Probe 0912-102928-74491 of `ProblemLIXStrongAssemblyTwo` and `…OddP`: GREEN, restore only. lx-endpoint holds the BUILT evidence, and OddP has changed since, at 972f81ac4.
+  - Duplicate scan at c3b58d90c: the only name collisions are in the parked `OddPTupleBd`/`OddPTupleSlot`. lx-diag acknowledged.
 
 ## AUTHORED, UNVERIFIED
-- none (no Lean authored)
+- none
 
 ## NEEDS
-- Resume me by SendMessage for:
-  - the ~45-minute board refresh;
-  - an integration probe after each producer landing (local square, WuStepDData, RealTorusModP, RealBundleModP, KZeroStepCDataOf, the assembly files).
-- Root wiring is on hold until session nonsofic-existence-3a reports that wave bo6h618iu has finished. Rules accepted:
-  - `tools/nm-swarm/dupcheck.py` before each build and each push;
-  - no landing while an `nm-root` job is running or pending;
-  - root builds named `lx-root`;
-  - insert after the last import only.
+- none.  The consumer is lx-slice2: `LIXStepDGenSlice*` needs the mapping-torus → V bridge plus `Gen.vSliceValue_sliceGen n (LIX.Gen.lixDD n j) hdd`, where `hdd` is rank-n positivity of `lixDD`.
+
+## SPLIT
+- No open sub-task in this lane; the leaf is a theorem.
 
 ## TRAPS
-- An empty-overlay probe of tops that have not changed gives `mentioned-not-built` on every module, which means restore by input hash. Cite it as a consistency check only. For a fresh compile, delete the artifacts first.
-- LANES.md was edited after launch: lx-lhK-a and lx-lhK-b now share clone cs-endpoint with this lane, so integration probes queue behind their probes under the clone lock.
-- `git fetch` in the shared checkout prints a `.git/gc.log` warning about unreachable loose objects. It is harmless; never run `git prune` there.
+- Positivity spelling: `LH.chernOf`'s `hs1 : 1 ≤ s` accepts `kgenLixRank_pos n dd : 0 < KGen.lixRank n dd` by defeq.  Consumers stating it with `KGen.one_le_lixRank n dd` still unify, since the proofs are irrelevant.
+- Two `lixRank`s: `Gen.lixRank` (LIXShapeGenericRank) and `KGen.lixRank` (LIXKGenPunctured) are definitionally equal but not syntactically.  Always write `KGen.lixRank` in the slice layer, to match `Gen.rank_vBundleY`.
+- Two `cpTaut`s: `Bundle.cpTaut` (the tautological bundle) and `KnCP.cpTaut` (a class).  Only the first is reachable through `open Bundle`.
+- An empty-overlay probe of unchanged tops reports `mentioned-not-built` (restored by input hash).  It is a consistency check, not a compile.
