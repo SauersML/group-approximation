@@ -46,7 +46,7 @@ theorem exists_keptFaceCycle {g : Delta.toCombMap.Face} (hg : g ∉ R.faces)
     (hcyc : Delta.toCombMap.IsFaceCycle (d :: rest)) (hd : Delta.toCombMap.faceOf d = g) :
     ∃ (d' : R.diagram.toCombMap.Dart) (rest' : List R.diagram.toCombMap.Dart),
       d'.1 = d ∧ R.diagram.toCombMap.IsFaceCycle (d' :: rest') ∧
-        rest'.map Subtype.val = rest := by
+        rest'.map (fun x : R.diagram.toCombMap.Dart => x.1) = rest := by
   have hmap : (R.diagram.faceBoundary
       (Surgery.MapCollapse.keptFace Delta.toCombMap R.faces R.region g hg)).darts.map
         Subtype.val = (Delta.faceBoundary g).darts :=
@@ -77,7 +77,7 @@ theorem exists_newFaceCycle {d : Delta.toCombMap.Dart} {rest : List Delta.toComb
     (hcycle : R.boundary.cycle = d :: rest) :
     ∃ (d' : R.diagram.toCombMap.Dart) (rest' : List R.diagram.toCombMap.Dart),
       d'.1 = d ∧ R.diagram.toCombMap.IsFaceCycle (d' :: rest') ∧
-        rest'.map Subtype.val = rest := by
+        rest'.map (fun x : R.diagram.toCombMap.Dart => x.1) = rest := by
   have hmap : (R.diagram.faceBoundary
       (Surgery.MapCollapse.newFace Delta.toCombMap R.faces R.region)).darts.map
         Subtype.val = d :: rest :=

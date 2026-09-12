@@ -83,14 +83,15 @@ theorem isRelatorProduct_sub_two {i j : Fin Delta.rCellCount} (hij : i ≠ j)
           R.outer_not_mem :=
     FaceBoundary.faceOf_head (R.diagram.faceBoundary R.diagram.outerFace)
   -- the merged word
-  have hmapAll : (zs' ++ xs' ++ us' ++ ws').map Subtype.val = zs ++ xs ++ us ++ ws :=
+  have hmapAll : (zs' ++ xs' ++ us' ++ ws').map (fun x : R.diagram.toCombMap.Dart => x.1) =
+      zs ++ xs ++ us ++ ws :=
     List.map_append.trans (congrArg₂ (· ++ ·)
       (List.map_append.trans (congrArg₂ (· ++ ·)
         (List.map_append.trans (congrArg₂ (· ++ ·) hzs' hxs')) hus')) hws')
   have hval' : RelLetter.listVal ((zs' ++ xs' ++ us' ++ ws').map R.diagram.label) = 1 := by
     have e1 : (zs' ++ xs' ++ us' ++ ws').map R.diagram.label =
         Embedded.dartWord Delta (zs ++ xs ++ us ++ ws) :=
-      (List.map_map (g := Delta.label) (f := Subtype.val)
+      (List.map_map (g := Delta.label) (f := fun x : R.diagram.toCombMap.Dart => x.1)
         (l := zs' ++ xs' ++ us' ++ ws')).symm.trans (congrArg (List.map Delta.label) hmapAll)
     rw [e1]
     exact hval
