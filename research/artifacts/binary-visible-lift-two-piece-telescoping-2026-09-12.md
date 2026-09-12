@@ -66,3 +66,71 @@ natural representation onto `M_n(F_2)`, and it factors through `F_2[GL_n(F_2)]/r
 modulo nilpotent ideals, so every depth-`k` matrix-unit system lifts into `F_2[GL_n(F_2)]`. Depth one is special
 only because its block splits off: the natural module is projective only for `n = 2`, since projective
 `F_2[GL_n(F_2)]`-modules have dimension divisible by `2^(n(n-1)/2)`.
+
+## 2. Two-piece lifts and corner telescoping
+
+**Data 2.0.**
+- `E^` is an idempotent of `A` with `pi(E^) = P_0`, and `E1^ = 1 - E^`. Example: `P0^` of Proposition 1.2.
+- `g1, g2` in `G` satisfy `g1 s0 = s0 s0`, `g1 P_0 g1^(-1) = P_00`, `g2 s1 = s0 s1` and `g2 P_1 g2^(-1) = P_01`.
+- `h = g1^(-1) g2`.
+- `a = [g1] E^ + [g2] E1^` and `b = E^ [g1^(-1)] + E1^ [g2^(-1)]`.
+
+**Lemma 2.1.** `pi(a) = s0` and `pi(b) = t0`. Also `b a = 1 + X + Y`, where `X = E^ [h] E1^` and
+`Y = E1^ [h^(-1)] E^`, and both `X` and `Y` lie in `K`.
+
+*Proof.*
+- `pi(a) = g1 s0 t0 + g2 s1 t1 = s00 t0 + s01 t1 = s0`.
+- `P_0 g1^(-1) = g1^(-1) P_00 = g1^(-1) s00 t00 = s0 t00`, since `g1^(-1) s00 = s0`. Likewise `P_1 g2^(-1) = s1 t01`,
+  so `pi(b) = s0 t00 + s1 t01 = t0`.
+- Expanding `b a` with `E^ E^ = E^`, `E1^ E1^ = E1^` and `g1^(-1) g1 = 1` gives `E^ + E1^ + X + Y`.
+- `pi(X) = P_0 g1^(-1) g2 P_1 = g1^(-1) P_00 P_01 g2 = 0`. Similarly `pi(Y) = g2^(-1) P_01 P_00 g1 = 0`. QED
+
+**Theorem 2.2 (corner telescoping).** Put `C = E1^ [h] E1^` and `C' = E1^ [h^(-1)] E1^`. Then
+`YX = E1^ + C'C`, and the following are equivalent:
+1. `b a` is a unit of `A`;
+2. `C'C` is a unit of the corner ring `E1^ A E1^`.
+
+When they hold, `c = (ba)^(-1) b` satisfies `c a = 1`, `pi(c) = t0` and `pi(a c) = s0 t0 != 1`. So `a` witnesses
+`left-invertible-lift-of-s0-in-leavitt-group-algebra`.
+
+*Proof.*
+- **The identity.** `YX = E1^ [h^(-1)] (1 - E1^) [h] E1^ = E1^ - C'C`, which is `E1^ + C'C` in characteristic two.
+- **Factorization.** `X^2 = Y^2 = 0` because `E^ E1^ = 0`. Then `(1 + Y)(1 + X + YX) = 1 + X + Y`, and `1 + Y`
+  is its own inverse.
+- **Peirce blocks.** `T = 1 + X + YX = E^ + X + d`, where `d = E1^ + YX = C'C`. In Peirce form,
+  `T = [[E^, X], [0, d]]`.
+- **(2) implies (1).** Let `w` be the inverse of `d` in `E1^ A E1^`. Then `S = E^ + Xw + w` satisfies
+  `TS = ST = 1`. This uses `X p = d p = 0` for `p` in `E^ A E1^`, and `X w d = X`.
+- **(1) implies (2).** Let `S = [[p, q], [r, s]]` be an inverse of `T`.
+  - `ST = [[p, pX + qd], [r, rX + sd]] = 1` gives `r = 0` and `sd = E1^`.
+  - `TS = [[p + Xr, q + Xs], [dr, ds]] = 1` gives `ds = E1^`.
+  - So `s` inverts `d` in the corner.
+- **The witness.** `pi(ba) = t0 s0 = 1`, so `pi(c) = t0` and `pi(ac) = s0 t0`. QED
+
+**Corollary 2.3 (triangular defect).** If `X = 0` or `Y = 0`, then `b a = 1 + N` with `N^2 = 0`, so `b a` is a unit
+and Theorem 2.2 produces a witness. Moreover:
+- `X = 0` exactly when `[h] E1^ A` is contained in `E1^ A`, because `X = (1 - E1^)[h]E1^`;
+- `Y = 0` exactly when `[h^(-1)] E^ A` is contained in `E^ A`.
+
+**Proposition 2.4 (nilpotent defect).** `b a - 1 = X + Y` is nilpotent if and only if `YX` is nilpotent, that is,
+if and only if `E1^ + C'C` is nilpotent in `E1^ A E1^`.
+
+*Proof.*
+- `(X + Y)^2 = XY + YX`. The two summands lie in the orthogonal corners `E^ A E^` and `E1^ A E1^`, so
+  `(X + Y)^(2k) = (XY)^k + (YX)^k`.
+- `(YX)^(k+1) = Y (XY)^k X` and `(XY)^(k+1) = X (YX)^k Y`, so either product is nilpotent exactly when the other is.
+  QED
+
+**Remark 2.5 (the ansatz telescopes visible to visible).**
+- **The corner isometry.** Since `pi(X) = 0`, `pi(h) P_1 = P_1 pi(h) P_1`. So `pi(C) = pi(h) P_1` maps `P_1` onto
+  `q = g1^(-1) P_01 g1`, and `pi(C') = P_1 pi(h^(-1))` is a left inverse of `pi(C)` in `P_1 R P_1`.
+- **The range is proper.** `g1^(-1) P_00 g1 = P_0`, and `q` is orthogonal to it. So `g1^(-1) P_0 g1 = P_0 + q`, and
+  `q = P_1 - g1^(-1) P_1 g1` is strictly smaller than `P_1`.
+- **Same problem in a corner.** Transport along `R ~= P_1 R P_1`, `r |-> s1 r t1`:
+  - `sigma = t1 pi(h) s1` satisfies `sigma' sigma = 1` for `sigma' = t1 pi(h^(-1)) s1`;
+  - `sigma sigma' = t1 q s1 != 1`.
+  - So `(C, C')` lifts a proper isometry and its left inverse into the corner ring `E1^ A E1^`. Theorem 2.2 asks
+    for `C'C` to be a unit there, which is the visible problem again, one corner down.
+- **Stopping the recursion.** This is the recursive-corner transport of
+  `research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md` Section 6 made explicit. A finite witness
+  of this shape must stop the recursion, and Corollary 2.3 is the one-step stop.
