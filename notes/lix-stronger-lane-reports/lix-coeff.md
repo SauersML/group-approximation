@@ -83,7 +83,7 @@ Sweep of `RelativeHomotopyInvariance` and `RelativeLocal` (lead, 00:00): every d
 K twin (`…Of` in the same file, `RelativeSubspaceIsoOf.relPullback_bijective_of_absoluteOf`,
 `RelativeLocalModelOf.excisionIsoPointOf`); `pointComplementOpen`/`pointComplement_sup` carry no coefficients.  No new file.
 
-Probe 0912-001208-59872 running: `CohomologyLHRingPiecesOf`, `CohomologyLHRingDataOf`.
+**Probe 0912-001208-59872 (PROBE GREEN):** `CohomologyLHRingPiecesOf`, `CohomologyLHRingDataOf` each `Built`.
 
 ## NEEDS
 
