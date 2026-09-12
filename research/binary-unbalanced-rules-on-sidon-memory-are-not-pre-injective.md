@@ -8,9 +8,16 @@ distinct_from:
   unbalanced-effective-rule-certifies-strictness: that turns distinct memory letters, a sufficient forward table and an unbalanced rule into strictness; this shows that for binary rules a sufficient forward table must also force a coincidence among the quotients m^-1 m'.
 artifacts:
   - research/artifacts/small-memory-balance-census-2026-09-12.md
+  - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
 ---
 
-**ESTABLISHED 2026-09-12** by `binary-unbalanced-sidon-memory-proof`.
+**ESTABLISHED 2026-09-12** by `binary-unbalanced-sidon-memory-proof`. Verified by w3-vf-nonlinear
+(1eebf61c8e, Section 9 of its verification artifact).
+
+**Prior statement.** w3-bal-design's `unbalanced-design-memory-collisions-2026-09-12.md` states this same
+result as Lemma 6 (5a73418397), which landed 43 seconds before this node. It is phrased as needing a
+rectangle relation: the difference sets `{m^-1 m'}` cannot be pairwise disjoint. The two were found
+independently. This node is the graph claim for the lemma.
 
 Let `G` be a group, `M` a finite subset of `G`, `mu : {0,1}^M -> {0,1}` an unbalanced rule, and
 `tau(x)(g) = mu((x(g m))_(m in M))`. Call `M` **Sidon in `G`** if the elements `m^-1 m'` with
