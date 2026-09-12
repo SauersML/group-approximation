@@ -215,3 +215,10 @@ payoff is `non-linear-sofic-group`.
   - **Later: halving by itself cannot give theta < 1** (w4-r4-orth, f25ccc5958). Halving relations
     live in a locally finite group whose regular rank model has `theta = 1`. A strict deficit must
     use relations outside a locally finite group.
+- **Letterwise conjugation is not enough (w4-defect-cov, 2960587575).** Every multiple HNN extension of a
+  countable locally finite subgroup containing the corner pair, along single-letter partial conjugations
+  by units of `R^x` (measure-changing prefix replacements, compressors, Weyl elements, torus units), has a
+  characteristic-two rank model with `rk(N'_23 N'_12) = 3/8`
+  (`binary-locally-finite-hnn-models-violate-two-root-identity`). A proof must use relations that fail in
+  all such extensions: relations among two or more letters, or one-letter relations other than partial
+  conjugations.

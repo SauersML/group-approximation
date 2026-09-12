@@ -62,3 +62,19 @@ identity, so every char-2 rank model of `R^x` is trivial and `R^x` is not `F_2`-
     monotone, it overlaps in rank `c/2` below the root, and it is consistent with the rigidity theorem and
     the Haar picture.
   - **Moral.** Covariance is cheap; what a proof must produce is a rank-halving inequality.
+- **Scope and letterwise firewall (w4-defect-cov, artifact
+  `research/artifacts/defect-piece-covariance-letterwise-firewall-2026-09-12.md`).**
+  - **Scope.** On `Q` only `iota_0(V)` acts, on the cylinders of `[0]`. With that covariance group the
+    statement as written holds in every nontrivial model: take `e_(1^k) = q` for `k >= 0` and `e_w = 0`
+    otherwise. So step 3 of the route needs the `e_w` indexed by cylinders of `[0]`, with positive rank
+    inside `[0]`. With that scope the audit's Corollary 3 applies, and the claim is the gate.
+  - **Letterwise covariance is inert** (`binary-locally-finite-hnn-models-violate-two-root-identity`).
+    Multiple HNN extensions of any locally finite subgroup containing the corner pair, along
+    single-letter partial conjugations by arbitrary units, carry rank models with defect `3/8`. So a
+    diagonal cannot come from letterwise covariance; a proof needs relations beyond it, such as `V`'s
+    multiplication table.
+  - **Torsion lifts halve but never refine** (`swap-group-cylinder-lift-trees-halve-but-never-refine`).
+    Swap-group lifts give covariant exact halvings `E_w = A_(w0) + A_(w1)` of ranks `eps` and `eps/2`, but
+    `A_(wi)` differs from the next depth's `E_(wi)` by an evaluation-kernel element of rank at least `eps/2`.
+  - **Defect images overlap in every nontrivial model.** For disjoint `A, B`, `D_A M cap D_B M` contains
+    `D_A D_B M`, of rank `f(2) >= c_* delta > 0`.
