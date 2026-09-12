@@ -38,6 +38,13 @@ Declarations (namespace `GroupApproximation.CharClass.KGen`, binders `(n k : ℕ
 ## AUTHORED, UNVERIFIED
 - none
 
+## SPLIT (independent sub-tasks for helpers)
+- None open in this lane.  The coefficient-free geometry of the rank-n local square is complete and green, and
+  `LIXKGenLocalLegs` is intentionally not a separate file: its maps are in `LIXKGenLocalHomotopy`.
+- Adjacent, outside this lane (prefix `LIXKStepCExponent*` belongs to lx-local2b): the rank-two `KLocalNonzero k hGc hGu hGe`
+  (`CharClass/LIXKStepCExponent.lean`) has no producer on main.  It is off the critical path: `LemmaTwoHoldsAtPowers` uses the
+  rank-n `KZeroLocalData`, which lx-local2b's `LIXKGenLocalNonzero` produces.
+
 ## NEEDS
 - none
 
