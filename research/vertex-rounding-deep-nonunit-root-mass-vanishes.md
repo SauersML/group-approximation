@@ -10,9 +10,10 @@ distinct_from:
   vertex-rounding-non-unit-mass-at-origin: that confines non-unit mass to the origin and bounds its depth profile scale by scale; this asks that the deep origin mass vanish.
 artifacts:
   - research/artifacts/nh-unit-type-valuations-2026-09-12.md
+  - research/artifacts/nh-deep-mass-2026-09-12.md
 ---
 
-**OPEN.** Setting of `nonunit-component-root-mass-is-log-scale-folner`:
+**ESTABLISHED.** Setting of `nonunit-component-root-mass-is-log-scale-folner`:
 - `σ : G -> U(prod_U M_n)` is trace-preserving, with (H1) roundings `π_n` of the vertex `Γ = EL_r(F_q[x_1..x_d])`,
   `r, d >= 3`;
 - `μ_n` is the normalized spectral measure of `f -> π_n(e_12(f))`;
@@ -26,11 +27,19 @@ artifacts:
 - So the claim gives `theorem-e-vertex-rounds-to-unit-type-representations` (route
   `theorem-e-vertex-unit-type-via-deep-root-mass`).
 
-**What is left.**
-- By `vertex-rounding-non-unit-mass-at-origin`, the deep mass is at the origin.
-- Its profile must occupy at least order `1/η_n` d-adic depth scales, which needs `η_n log D_n` bounded below, where `D_n` is
-  the largest origin depth.
-- Every fixed finite quotient and every bounded depth carries vanishing mass.
+**Proof idea** (route `deep-nonunit-root-mass-two-attractor-proof`, artifact `nh-deep-mass-2026-09-12.md`).
+- **Shape and extents.** For an origin character, `Sh = {a : χ nontrivial on x^a R_+}`, with axis extents `e_i`.
+- **Upper bound.** A compressor `M` bounds `e_i(D_M χ)` above by the extent of `Sh` along the column `M e_i`.
+- **Lower bound.** Invariance of `μ_n` under scaling by units of `B_n`, together with a chain rank bound in the local ring
+  `R_+/J(χ)`, gives the matching lower bound up to `L`, except with orbit probability `2q^(-(L+1))`.
+- **Two attractors.** The columns of `A^k` align with the Perron vector, so `D_(A^k)` forces
+  `log(e_1/e_d) ≈ log(ℓ_(A,d)/ℓ_(A,1)) = β > 0` on transported deep characters. Here `A = (min(i,j))`.
+  The reversal conjugate `B` forces `≈ -β`.
+- **Counting.** TV invariance under both, and disjointness, give
+  `μ_n(depth_nu > 1) <= ν_n + 2 μ_n(1 < depth_nu < K) + 12 q^(-(L+1)) + η_n^+ + η_n^-`. Every term but `12 q^(-(L+1))`
+  vanishes along `U`, and `L` is arbitrary.
+
+No root is affected. With this claim the route `theorem-e-vertex-unit-type-via-deep-root-mass` is open only through (H1).
 
 ## Attempts
 
@@ -51,6 +60,9 @@ artifacts:
     `SL_d(Z)`-action on shapes does not descend to the spectra.
   - The same containment defeats the projective-staircase compactness argument: two positive compressors with different
     Perron vectors have no common invariant shape measure, but constituents inherit only `J_κ ⊇ φ_A^(-1) J_ρ`.
+  - **Superseded (nh-deep-mass).** The containment is one-sided only for constituents. At character level, unit-scaling
+    invariance of `μ_n` supplies the lower bound for orbit-typical characters, and total-variation invariance needs no more.
+    The two-attractor argument then goes through. See the route.
 - **Depth-one compressor rigidity (explains the need for the torus).** Take `R_+/J_ρ = A_u × F_q`.
   - The substitution `ψ∘φ_A` maps onto both factors, by the unit trick and `ev_0∘φ_A = ev_0`.
   - By Goursat its image is the whole product, since `x_1 -> (unit, 0)` excludes a graph.
