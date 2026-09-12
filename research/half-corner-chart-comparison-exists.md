@@ -41,6 +41,13 @@ isomorphism `f_+ E ~= P E` (half-corner Section 7).
   would have to fuse the torus classes `T0, T1, T2`, and fixed-space dimensions
   forbid it. Recorded as the invalidated route
   `half-corner-comparison-via-finite-actor-images`.
+* **Sofic actor subgroups (dead).** By
+  `sofic-support-cannot-install-half-corner-comparison`, a solution needs
+  `<K, supp Z>` to be nonsofic, whatever the support of `L`. This excludes
+  finite, locally finite, residually finite and amenable actor subgroups, and
+  amenable extensions of them, at every coefficient choice. It contains the
+  finite-block case `non-nesting-transporters-cannot-install-chart-comparison`.
+  It is no filter inside `<K, V>`, since soficity of Thompson's `V` is open.
 * **Normalizer actors (dead).** Half-corner Section 8: modulo the chart radical,
   source and target types are disjoint under all normalizer automorphisms.
 * **Single macro-prefix transporters and one double coset (dead).** The focused
