@@ -93,14 +93,21 @@ every scale with d in F has a model moving d at a fraction greater than eps_d.
 Let eps_0 = min_d eps_d. As in Lemma 1, a disjoint union followed by an r-fold
 product gives, for every delta, an (F, r delta)-model V in which each phi(d),
 d in D, fixes at most a fraction (1-eps_0/|D|)^r. Fix r with
-|D|(1-eps_0/|D|)^r <= 1/4; r depends only on eps_0 and |D|.
+|Omega|^2 (1-eps_0/|D|)^r <= 1/4; r depends only on eps_0, |D| and |Omega|.
 
 **Step 2: good points and charts.** Let W be the set of v in V such that
 (v.a).b = v.(ab) for all a,b in F with ab in F. Then |V minus W| <= beta|V| with
 beta = |F|^2 r delta. At v in W and distinct k,k' in Omega, v.k = v.k' holds
 exactly when v.k is fixed by phi(k^-1 k'). The map v -> v.k is a bijection, so
-at most a fraction 1/4 of v have a non-injective Omega-chart. Hence the set U of
-v in W with k -> v.k injective on Omega has |U| >= (3/4 - beta)|V|.
+for each of the fewer than |Omega|^2 ordered pairs (k,k') at most a fraction
+(1-eps_0/|D|)^r of v have v.k = v.k'. Hence at most a fraction 1/4 of v have a
+non-injective Omega-chart, and the set U of v in W with k -> v.k injective on
+Omega has |U| >= (3/4 - beta)|V|.
+
+*Correction (2026-09-12, independent re-derivation).* The union bound runs over
+window pairs, not over D: several pairs can share one difference, so the earlier
+condition |D|(1-eps_0/|D|)^r <= 1/4 did not bound the non-injective charts. The
+repaired r is still independent of delta, and nothing else in the proof changes.
 
 **Step 3: the model automata.** Put
 
