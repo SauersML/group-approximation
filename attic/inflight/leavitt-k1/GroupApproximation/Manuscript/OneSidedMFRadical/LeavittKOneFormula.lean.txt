@@ -3,7 +3,7 @@ import GroupApproximation.Leavitt.AryPurelyInfinite
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# `K₁(L_k(1,d)) ≅ k^×/(k^×)^{d-1}`: what is proved and what is still cited
+# `K₁(L_k(1,d)) ≅ k^×/(k^×)^{d-1}`: the two clauses and their assembly
 
 `non_mf_groups_exist.tex`, `cor:leavitt-mf-quotient`:
 
@@ -11,8 +11,10 @@ import GroupApproximation.Meta.AxiomGuard
 
 with the second isomorphism attributed to Khanh--Thanh's proof of Theorem 7.2.
 After `LeavittMFQuotientKhanhThanhFree.lean` the *first* isomorphism no longer
-needs that citation; this file is about the second, which is now the only part
-of `cor:leavitt-mf-quotient` still resting on it.
+needs that citation.  This file is about the second, which no longer needs it
+either: both of its clauses below are theorems, and
+`LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula` is the printed
+isomorphism at every field and every `d ≥ 2`.
 
 ## What is proved here, unconditionally
 
@@ -26,22 +28,26 @@ of `cor:leavitt-mf-quotient` still resting on it.
   the `d`-ary Leavitt family alone: a central unit decomposes into `d` corner
   insertions, each of which is `κ`-equal to the unit itself.
 
-## What is still open, and exactly what it is
+## The two clauses
 
-Two clauses, stated as named propositions so that a later discharge has a
-target with no slack in it:
+Two clauses, stated as named propositions so that a discharge has a target
+with no slack in it.  Both are proved at every field and every `d ≥ 2`, in
+modules that import this one:
 
 * `ScalarSurjective k d` --- `α` is surjective, i.e. **every** class of `K₁(R)`
   is the class of a scalar.  Equivalently: every unit of `L_k(1,d)` is a
   central scalar modulo the stably elementary units.  At `d = 2` this is the
   repository's own rose-graph input `ScalarReduction`, closed there by
-  `RefineLoopDischarge`; for `d ≥ 3` nothing on the tree proves it, and the
-  62-module `KOne/` development that closes `d = 2` does so through
-  `K₁(L_k(1,2)) = 0`, a conclusion that is **false** at `d ≥ 3`.
+  `RefineLoopDischarge` through `K₁(L_k(1,2)) = 0`, a conclusion that is
+  **false** at `d ≥ 3`.  At every `d ≥ 2` it is
+  `KhanhThanhDiagonal.scalarSurjective_holds`
+  (`Manuscript/OneSidedMFRadical/KhanhThanhDecompositionClosed.lean`), from the
+  arity-`d` elimination `AryLeavitt.narrowReduction_holds`.
 * `ScalarKernel k d` --- `ker α ≤ (k^×)^{d-1}`, the reverse of the exponent
-  relation.  This is the clause that needs an invariant of `K₁(R)`: nothing
-  proved here distinguishes two scalars, so nothing here can bound `ker α` from
-  above.
+  relation.  This is the clause that needs an invariant of `K₁(R)`, since
+  nothing proved here distinguishes two scalars.  The invariant is the
+  regularized determinant on the Toeplitz space of words, and the clause is
+  `scalarKernel` (`KOne/LeavittKOneScalarKernel.lean`).
 
 `printedLeavittKOneFormula_of_inputs` assembles the printed isomorphism from
 exactly those two and nothing else.
@@ -49,9 +55,9 @@ exactly those two and nothing else.
 `scalarSurjective_of_scalarReduction` further reduces the *first* of them to
 the repository's own vocabulary: it follows from
 `MatrixDiagonalization.ScalarReduction (L_k(1,d))` --- the `d`-ary rose-graph
-input, which the `KOne/` development closes at `d = 2` --- together with
-`CentralUnitsAreScalars`, i.e. `Z(L_k(1,d)) = k`.  So `ScalarSurjective` need
-not be attacked directly.  `ScalarKernel` has no such reduction here.
+input --- together with `CentralUnitsAreScalars`, i.e. `Z(L_k(1,d)) = k`.  This
+is the route `scalarSurjective_holds` takes.  `ScalarKernel` has no such
+reduction here.
 
 ## Calibration
 
@@ -124,16 +130,16 @@ theorem unitPowSubgroup_le_ker (hd : 2 ≤ d) :
   rw [map_pow]
   exact alpha_pow_eq_one k d hd e
 
-/-! ### The two open clauses -/
+/-! ### The two clauses -/
 
 /-- **Every `K₁`-class is a scalar class.**  Equivalently, every unit of
-`L_k(1,d)` is a central scalar modulo the stably elementary units.  Open for
-`d ≥ 3`. -/
+`L_k(1,d)` is a central scalar modulo the stably elementary units.  Proved at
+every field and every `d ≥ 2`: `KhanhThanhDiagonal.scalarSurjective_holds`. -/
 def ScalarSurjective : Prop := Function.Surjective (alpha k d)
 
 /-- **A scalar killed by `κ` is a `(d-1)`-st power.**  The reverse of the
-exponent relation, and the clause that needs an invariant of `K₁(R)`.  Open for
-`d ≥ 3`. -/
+exponent relation, and the clause that needs an invariant of `K₁(R)`.  Proved at
+every field and every `d ≥ 2`: `LeavittKOneFormula.scalarKernel`. -/
 def ScalarKernel : Prop := (alpha k d).ker ≤ unitPowSubgroup k (d - 1)
 
 /-- **Every central unit of `L_k(1,d)` is a scalar.**  True for `d ≥ 2`,
@@ -166,7 +172,7 @@ def CentralUnitsAreScalars : Prop :=
 `MatrixDiagonalization.ScalarReduction R` --- every unit is a central unit
 times a stably elementary one --- is the proposition the `KOne/` development
 closes at `d = 2` through `RefineLoopDischarge`.  Together with the
-identification of the centre it gives the first open clause, so that clause
+identification of the centre it gives the first clause, so that clause
 does not have to be attacked directly: it is the `d`-ary rose-graph input plus
 `Z(L_k(1,d)) = k`.
 
@@ -193,7 +199,7 @@ def PrintedLeavittKOneFormula : Prop :=
   Nonempty (AlgebraicKOne (AryLeavittAlgebra k d) ≃*
     (kˣ ⧸ unitPowSubgroup k (d - 1)))
 
-/-- **The printed identification from the two open clauses and nothing else.**
+/-- **The printed identification from the two clauses and nothing else.**
 The exponent relation is supplied here, not assumed. -/
 theorem printedLeavittKOneFormula_of_inputs (hd : 2 ≤ d)
     (hsurj : ScalarSurjective k d) (hker : ScalarKernel k d) :
