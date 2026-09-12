@@ -150,9 +150,9 @@ of `M` in `M_2(S_-)` is invertibility of `J(M)` in `S_-`. `K_-` contains nonzero
 **Remark 2.3 (no augmentation obstruction).** The augmentation `[g] -> 1` sends `eps_-` to
 `2(1 - 1) = 0`, so no unital map `S_- -> k` extends it. Proposition 6 of
 `research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md` forbids a unital binary
-Leavitt family in `k[G]`, but that obstruction does not apply inside `S_-`. There,
-`sigma_i tau_j = delta_ij 1_-` with `sigma_1 tau_1 + sigma_2 tau_2 = 1_-` is not excluded by it. A
-unital Leavitt family is one more relation than (b) asks for.
+Leavitt family in `k[G]`, but that obstruction does not apply inside `S_-`. The canonical trace
+does apply, and it forbids unital binary Leavitt families in `S_-` (Proposition 2.5). It does not
+forbid quaternary ones, and it forbids no Cohn family.
 
 **Proposition 2.4 (support filter).** Suppose (b) holds with all four elements supported on a finite
 set `F` in `G`. Then `H = <F, z>` is not `F_3`-linear sofic, so in particular it is nonsofic.
@@ -161,6 +161,37 @@ set `F` in `G`. Then `H = <F, z>` is not `F_3`-linear sofic, so in particular it
 `tau_2 = tau_2 sigma_1 tau_1 = 0`, contradicting `tau_2 sigma_2 = 1_-`. So
 `(tau_1 + eps_+)(sigma_1 + eps_+) = 1 != (sigma_1 + eps_+)(tau_1 + eps_+)` in `k[H]`, and
 `linear-sofic-group-algebra-is-stably-finite` applies. QED
+
+**Proposition 2.5 (the canonical trace).** For a conjugacy class `C` of `G`, put
+`tau_C(sum x_h [h]) = sum_(h in C) x_h`, and write `tau = tau_({1})`. Each `tau_C` is a trace on `S`,
+since `gh` and `hg` are conjugate, and hence a trace on the direct factor `S_-`. Moreover
+
+```text
+tau_C(1_-) = tau_C(2[1] - 2[z]) = 2 [C = {1}] - 2 [C = {z}],
+```
+
+so `tau(1_-) = 2 != 0`.
+
+- (i) If `sigma_1, ..., sigma_n, tau_1, ..., tau_n` in `S_-` satisfy `tau_i sigma_j = delta_ij 1_-` and
+  `sum_j sigma_j tau_j = 1_-`, then `n = 1 mod 3`. So `S_-` contains no unital binary Leavitt family,
+  but a quaternary family is not excluded.
+- (ii) For a two-pair Cohn family with defect idempotent `p = 1_- - sigma_1 tau_1 - sigma_2 tau_2`,
+  `tau_C(p) = -tau_C(1_-)`. So `tau(p) = 1`, `tau_({z})(p) = -1`, and `tau_C(p) = 0` for every other
+  class. For comparison, `tau(e_-) = tau(4(1 - [z])(1 + [w])) = 1`.
+- (iii) A unital quaternary Leavitt family in `S_-` contains a two-pair Cohn family: take
+  `sigma_1, sigma_2, tau_1, tau_2`.
+
+*Proof.*
+- (i) `tau(1_-) = sum_j tau(sigma_j tau_j) = sum_j tau(tau_j sigma_j) = n tau(1_-)`. So
+  `(n - 1) 2 = 0` in `F_3`, and `3` divides `n - 1`.
+- (ii) `tau_C(p) = tau_C(1_-) - sum_(j <= 2) tau_C(tau_j sigma_j) = tau_C(1_-) - 2 tau_C(1_-)`.
+- (iii) Immediate.
+
+QED
+
+In `R` the words `s_i s_j` and `t_j t_i` form a unital quaternary Leavitt family. Lifting that family
+exactly into `S_-` is trace-compatible and sufficient. Lifting the binary family `(s_i, t_i)`
+exactly is impossible.
 
 ## 3. Honest idempotent lifts in characteristic three
 

@@ -31,6 +31,11 @@ Exhibit `sigma_1, sigma_2, tau_1, tau_2` in `S_-` with
 **What does not obstruct it.** No augmentation exists on `S_-`, so the no-Leavitt-family argument for
 group algebras over a field does not apply here (Remark 2.3).
 
+**What the trace says.** The canonical trace has `tau(1_-) = 2`. It forbids unital binary Leavitt
+families in `S_-` and fixes `tau(p) = 1` for the defect `p` of any Cohn family
+(`anti-central-ternary-summand-has-no-binary-leavitt-family`). A quaternary Leavitt family is
+trace-compatible and sufficient (`ternary-anti-central-summand-has-quaternary-leavitt-family`).
+
 ## Attempts
 
 - *Lifts of the Leavitt generators.* `pi_-` maps `S_-` onto `R`, where `(t_i, s_j)` is a Cohn family.
