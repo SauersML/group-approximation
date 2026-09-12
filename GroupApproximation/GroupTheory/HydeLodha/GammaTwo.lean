@@ -61,10 +61,10 @@ theorem affineOn_comp {f g : ℚ → ℚ} {a₁ b₁ s₁ a₂ b₂ s₂ c d : �
   rw [h1, h2, h3, h4]
   ring
 
-theorem affineOn_inv {f : Equiv.Perm ℚ} {a b s : ℚ} (hf : AffineOn f a b s) (hab : a ≤ b)
+theorem affineOn_inv {f : Equiv.Perm ℚ} {a b s : ℚ} (hf : AffineOn f a b s) (_hab : a ≤ b)
     (hs : s ≠ 0) (hmono : StrictMono f) : AffineOn ⇑f⁻¹ (f a) (f b) s⁻¹ := by
   intro w hw1 hw2
-  have hfinv : ∀ y, f (f⁻¹ y) = y := fun y => Equiv.apply_symm_apply f y
+  have hfinv : ∀ y, f (f⁻¹ y) = y := fun y => perm_apply_inv_self f y
   have hx1 : a ≤ f⁻¹ w := by
     by_contra h
     have h' := hmono (not_le.mp h)
@@ -77,10 +77,11 @@ theorem affineOn_inv {f : Equiv.Perm ℚ} {a b s : ℚ} (hf : AffineOn f a b s) 
     linarith
   have h := hf (f⁻¹ w) hx1 hx2
   rw [hfinv] at h
-  have ha : f⁻¹ (f a) = a := Equiv.symm_apply_apply f a
+  have ha : f⁻¹ (f a) = a := perm_inv_apply_self f a
   rw [ha]
-  have e : s * s⁻¹ = 1 := mul_inv_cancel₀ hs
-  linear_combination -s⁻¹ * h + (f⁻¹ w - a) * e
+  have hx : w - f a = s * (f⁻¹ w - a) := by linarith
+  rw [hx, ← mul_assoc, inv_mul_cancel₀ hs, one_mul]
+  ring
 
 /-- A permutation grid-affine together with its inverse moves no point of `ℚ ∖ ℤ[1/6]` into `ℤ[1/6]`. -/
 theorem not_dyadic6_apply {f : Equiv.Perm ℚ} {Ω : Submonoid ℚ} {N B : ℕ}
@@ -88,7 +89,7 @@ theorem not_dyadic6_apply {f : Equiv.Perm ℚ} {Ω : Submonoid ℚ} {N B : ℕ}
   rintro ⟨M, hM⟩
   apply hx
   have h := hfi.mapsGrid hM
-  rw [Equiv.symm_apply_apply] at h
+  rw [perm_inv_apply_self] at h
   exact ⟨_, h⟩
 
 /-! ## The group -/
@@ -109,7 +110,7 @@ def gammaTwo : Subgroup (Equiv.Perm ℚ) where
     · obtain ⟨hgm, -, ⟨Ngi, Bgi, hgi⟩⟩ := hg
       obtain ⟨a₁, b₁, i₁, j₁, ha₁, hb₁, haff₁, hij₁⟩ := hgc x hx
       obtain ⟨a₂, b₂, i₂, j₂, ha₂, hb₂, haff₂, hij₂⟩ := hfc (g x) (not_dyadic6_apply hgi hx)
-      have hginv : ∀ y, g (g⁻¹ y) = y := fun y => Equiv.apply_symm_apply g y
+      have hginv : ∀ y, g (g⁻¹ y) = y := fun y => perm_apply_inv_self g y
       have hc1 : g⁻¹ a₂ < x := by
         by_contra h
         have h' := hgm.monotone (not_lt.mp h)
@@ -127,6 +128,7 @@ def gammaTwo : Subgroup (Equiv.Perm ℚ) where
           rw [zpow_add₀ (by norm_num : (2 : ℚ) ≠ 0), zpow_add₀ (by norm_num : (3 : ℚ) ≠ 0)]
           ring
         rw [hs]
+        show AffineOn (⇑f ∘ ⇑g) _ _ _
         refine affineOn_comp haff₁ haff₂ hgm.monotone (le_max_left _ _) (min_le_left _ _)
           (le_trans (le_of_lt (max_lt ha₁ hc1)) (le_of_lt (lt_min hb₁ hd1))) ?_ ?_
         · have h := hgm.monotone (le_max_right a₁ (g⁻¹ a₂))
@@ -138,14 +140,15 @@ def gammaTwo : Subgroup (Equiv.Perm ℚ) where
   inv_mem' := by
     rintro f ⟨hf, hfper, hfc⟩
     refine ⟨(PLGroup 6 slopes23).inv_mem hf, fun t => ?_, fun x hx => ?_⟩
-    · rw [Equiv.Perm.inv_eq_iff_eq, hfper, Equiv.apply_symm_apply]
+    · rw [Equiv.Perm.inv_eq_iff_eq, hfper, perm_apply_inv_self]
     · obtain ⟨hfm, ⟨Nf, Bf, hfA⟩, -⟩ := hf
-      have hfinv : ∀ y, f (f⁻¹ y) = y := fun y => Equiv.apply_symm_apply f y
+      have hfinv : ∀ y, f (f⁻¹ y) = y := fun y => perm_apply_inv_self f y
       have hy : ¬ Dyadic6 (f⁻¹ x) := by
         have hfA' : GridAffine 6 slopes23 ⇑(f⁻¹)⁻¹ Nf Bf := by simpa only [inv_inv] using hfA
         exact not_dyadic6_apply hfA' hx
       obtain ⟨a, b, i, j, ha, hb, haff, hij⟩ := hfc (f⁻¹ x) hy
-      have hs0 : (2 : ℚ) ^ i * (3 : ℚ) ^ j ≠ 0 := by positivity
+      have hs0 : (2 : ℚ) ^ i * (3 : ℚ) ^ j ≠ 0 :=
+        (mul_pos (zpow_pos (by norm_num) i) (zpow_pos (by norm_num) j)).ne'
       refine ⟨f a, f b, -i, -j, ?_, ?_, ?_, ?_⟩
       · have h := hfm ha
         rwa [hfinv] at h
@@ -164,11 +167,11 @@ theorem mem_gammaTwo {f : Equiv.Perm ℚ} :
 
 theorem gammaTwo_add_int {f : Equiv.Perm ℚ} (hf : f ∈ gammaTwo) (t : ℚ) (k : ℤ) :
     f (t + k) = f t + k := by
-  obtain ⟨-, hper, -⟩ := hf
+  obtain ⟨-, hper, -⟩ := mem_gammaTwo.mp hf
   induction k using Int.induction_on with
   | zero => simp
   | succ k ih =>
-    have e : t + ((k + 1 : ℤ) : ℚ) = (t + k) + 1 := by push_cast; ring
+    have e : t + ((k + 1 : ℤ) : ℚ) = (t + ((k : ℤ) : ℚ)) + 1 := by push_cast; ring
     rw [e, hper, ih]
     push_cast
     ring
