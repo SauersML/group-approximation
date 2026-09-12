@@ -224,7 +224,7 @@ theorem isRelatorProduct_of_planar {G : Type u} [Group G] {Lambda : Type w} (R :
         (Quotient.out ((EdgeDeletion.toCombMap M a).faceOf x)) =
           (EdgeDeletion.toCombMap M a).faceOf x :=
       Quotient.out_eq _
-    exact C.faceOf_value_eq hnil hl hx₀ hq (by rw [hq]; exact hx)
+    exact C.faceOf_value_eq hnil hl hx₀ hq (fun h => hx (hq.symm.trans h))
   have hrel' : ∀ (l' : List (EdgeDeletion.Dart M a))
       (hl' : (EdgeDeletion.toCombMap M a).IsFaceCycle l'),
       (EdgeDeletion.toCombMap M a).faceOf (l'.head hl'.ne_nil) ∈ relFaces' →
@@ -263,34 +263,38 @@ theorem isRelatorProduct_of_planar {G : Type u} [Group G] {Lambda : Type w} (R :
   have hlist : (l.map fun e => label (EdgeDeletion.value M a e)) = (C.xs ++ C.ys).map label := by
     rw [← hl]
     exact List.map_map.symm
-  rw [hlist, List.map_append, RelWord.listVal_append] at hIH
+  have hIH' : IsRelatorProduct R relFaces'.card
+      (RelLetter.listVal (C.xs.map label) * RelLetter.listVal (C.ys.map label)) := by
+    have e : RelLetter.listVal (C.xs.map label) * RelLetter.listVal (C.ys.map label) =
+        RelLetter.listVal (l.map fun e => label (EdgeDeletion.value M a e)) := by
+      rw [hlist, List.map_append, RelWord.listVal_append]
+    rw [e]
+    exact hIH
   have hcardE : relFaces'.card = (relFaces.erase (M.faceOf (M.alpha a))).card := by
     refine Finset.card_nbij (fun f => M.faceOf (EdgeDeletion.value M a (Quotient.out f)))
       ?_ ?_ ?_
     · intro f hf
-      obtain ⟨hoff, hin⟩ := (hmem' f).mp hf
+      obtain ⟨hoff, hin⟩ := (hmem' f).mp (Finset.mem_coe.mp hf)
       have hq : (EdgeDeletion.toCombMap M a).faceOf (Quotient.out f) = f := Quotient.out_eq f
-      refine Finset.mem_erase.mpr ⟨?_, hin⟩
-      exact (C.faceOf_value_ne hnil hl hx₀ (by rw [hq]; exact hoff)).2
+      exact Finset.mem_coe.mpr (Finset.mem_erase.mpr
+        ⟨(C.faceOf_value_ne hnil hl hx₀ (fun h => hoff (hq.symm.trans h))).2, hin⟩)
     · intro f₁ hf₁ f₂ _ heq
-      obtain ⟨hoff₁, -⟩ := (hmem' f₁).mp hf₁
+      obtain ⟨hoff₁, -⟩ := (hmem' f₁).mp (Finset.mem_coe.mp hf₁)
       have hq₁ : (EdgeDeletion.toCombMap M a).faceOf (Quotient.out f₁) = f₁ := Quotient.out_eq f₁
       have hq₂ : (EdgeDeletion.toCombMap M a).faceOf (Quotient.out f₂) = f₂ := Quotient.out_eq f₂
-      have hN := C.faceOf_eq_of_faceOf_value_eq hnil hl hx₀ (by rw [hq₁]; exact hoff₁) heq
-      rw [hq₁, hq₂] at hN
-      exact hN
+      exact hq₁.symm.trans ((C.faceOf_eq_of_faceOf_value_eq hnil hl hx₀
+        (fun h => hoff₁ (hq₁.symm.trans h)) heq).trans hq₂)
     · intro f hf
-      obtain ⟨hne_g, hin⟩ := Finset.mem_erase.mp hf
+      obtain ⟨hne_g, hin⟩ := Finset.mem_erase.mp (Finset.mem_coe.mp hf)
       obtain ⟨d, rfl⟩ := Quotient.exists_rep f
-      have hdO : M.faceOf d ≠ M.faceOf a := fun h => hOrel (by rw [← haO, ← h]; exact hin)
+      have hdO : M.faceOf d ≠ M.faceOf a := fun h =>
+        hOrel ((congrArg (fun z => z ∈ relFaces) (h.trans haO)).mp hin)
       obtain ⟨x, hxd, hxoff⟩ := C.exists_value_eq_of_faceOf_ne hnil hl hx₀ hdO hne_g
-      refine ⟨(EdgeDeletion.toCombMap M a).faceOf x, (hmem' _).mpr ⟨hxoff, ?_⟩, ?_⟩
-      · rw [hout x hxoff, hxd]
-        exact hin
-      · show M.faceOf (EdgeDeletion.value M a
-          (Quotient.out ((EdgeDeletion.toCombMap M a).faceOf x))) = _
-        rw [hout x hxoff, hxd]
-        rfl
+      refine ⟨(EdgeDeletion.toCombMap M a).faceOf x,
+        Finset.mem_coe.mpr ((hmem' _).mpr ⟨hxoff, ?_⟩), ?_⟩
+      · exact (congrArg (fun z => z ∈ relFaces)
+          ((hout x hxoff).trans (congrArg M.faceOf hxd))).mpr hin
+      · exact (hout x hxoff).trans (congrArg M.faceOf hxd)
   have hOval : RelLetter.listVal ((a :: C.xs).map label) =
       (label a).val * RelLetter.listVal (C.xs.map label) := by
     rw [List.map_cons, RelWord.listVal_cons]
@@ -303,7 +307,7 @@ theorem isRelatorProduct_of_planar {G : Type u} [Group G] {Lambda : Type w} (R :
       rw [hcardE, Finset.card_erase_add_one hgrel]
     have hsc := isRelatorProduct_one_of_isSignedConjugate (hrel _ hg hgrel)
     rw [hgval] at hsc
-    have hprod := (hIH.mul hsc.inv).conj (label a).val
+    have hprod := (hIH'.mul hsc.inv).conj (label a).val
     have heq : (label a).val * RelLetter.listVal (C.xs.map label) =
         (label a).val * (RelLetter.listVal (C.xs.map label) *
           RelLetter.listVal (C.ys.map label) *
@@ -318,7 +322,7 @@ theorem isRelatorProduct_of_planar {G : Type u} [Group G] {Lambda : Type w} (R :
     have hY : RelLetter.listVal (C.ys.map label) = (label a).val := by
       have h := congrArg ((label a).val * ·) hone
       simpa using h
-    have hprod := hIH.conj (label a).val
+    have hprod := hIH'.conj (label a).val
     have heq : (label a).val * RelLetter.listVal (C.xs.map label) =
         (label a).val * (RelLetter.listVal (C.xs.map label) *
           RelLetter.listVal (C.ys.map label)) * (label a).val⁻¹ := by
