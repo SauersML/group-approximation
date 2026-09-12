@@ -18,8 +18,10 @@ Nothing here decides the target. What is proved:
 - Section 2: a fixed finite-index subgroup can act by scalars only on a subspace of rank at most the defect
   (Proposition 2.1). Tensoring with exact finite-dimensional projective representations shifts the multiplier
   class and leaves the defect unchanged (Proposition 2.2).
-- Sections 3 and 4 land separately: a rank version of the Schur-kernel transfer, conditional on a rank
-  Gerstenhaber--Rothaus property, and where the attempt stops.
+- Section 3: a rank version of the Schur-kernel transfer, conditional on a rank Gerstenhaber--Rothaus property
+  (RGR_p). Under RGR_p, the finite certificate `sp4-schur-kernel-meets-the-deligne-triple-class` would make `E_3`
+  not `F_p`-linear sofic (Corollary 3.5).
+- Section 4: where the attempt stops.
 
 The common mechanism: a scalar mismatch on a subspace has rank equal to the dimension of that subspace. So
 rank models see multipliers exactly on every sector where the operators involved act by scalars, and
@@ -153,3 +155,152 @@ realized by exact finite-dimensional projective representations over `Fbar`. Per
 representations of congruence quotients shifts the target class by an element of `R_p` and leaves the problem
 exactly as hard. Over `C` the corresponding realizable subgroup is finite (`sp4-fd-projective-multiplier-is-finite`).
 The analogous computation over `Fbar_p` has not been done here.
+
+## 3. A rank Schur transfer, conditional on rank root solvability
+
+The Hilbert--Schmidt program for `E_3` has a finite algebraic certificate,
+`sp4-schur-kernel-meets-the-deligne-triple-class`. Through `schur-kernel-lies-in-hyperlinear-radical` it would put
+`z` in the hyperlinear radical. That proof uses one property of its targets: nonsingular equations with
+coefficients in unitary ultraproduct groups have roots (Gerstenhaber--Rothaus; Section 3 of
+`nonsingular-equations-and-approximation-radicals.md`). This section states the characteristic-`p` rank form of
+that property and shows that it carries the whole argument over. So the same finite certificate would decide
+`F_p`-linear soficity of `E_3` for each `p != 3` where the property holds.
+
+### 3.0 Rank ultraproducts and the rank radical
+
+For dimensions `d_n` and a nonprincipal ultrafilter on `N`, let `R = prod_n M_(d_n)(Fbar) / I`, where `I` is the
+ideal of sequences with `r(x_n) -> 0` along the ultrafilter. `R` carries the rank function `rk(x) = lim r(x_n)`.
+Every unit of `R` lifts to a sequence of invertible matrices: modify a lift on subspaces of vanishing normalized
+dimension. Write `G(R) = R^x`, `A(R)` for the image of the scalar sequences `prod_n Fbar^x 1` (central in
+`G(R)`), and `T(R) = G(R)/A(R)`.
+
+For a countable group `E` let `Rad_rk,p(E)` be the intersection of the kernels of all homomorphisms
+`E -> G(R)`, over all such `R`. This is not the `Rad_lin` of the radical nodes, which uses finite-dimensional
+linear representations.
+- **Separation.** By the standard ultraproduct argument, `z in Rad_rk,p(E)` exactly when no sequence of rank
+  almost homomorphisms of `E` over fields of characteristic `p` keeps `z` at a fixed normalized rank distance
+  from `1`.
+- **Consequence.** If `Rad_rk,p(E) != 1`, then `E` is not `F_p`-linear sofic, because extension of scalars from
+  `F_p` to `Fbar` keeps normalized rank.
+
+### 3.1 Rank root solvability
+
+**Property RGR_p** (`rank-ultraproduct-unit-groups-solve-nonsingular-equations`). For every word
+`c_0 t^(e_1) c_1 ... t^(e_l) c_l` with `m = sum_i e_i != 0`, every `d`, all `c_0, ..., c_l in GL_d(Fbar)` and
+every `eps > 0`, there are `k >= 1`, `t in GL_(dk)(Fbar)` and `lambda in Fbar^x` with
+
+```text
+r( (c_0 (x) 1_k) t^(e_1) (c_1 (x) 1_k) ... t^(e_l) (c_l (x) 1_k) - lambda 1 ) <= eps.
+```
+
+This is a statement about matrices over `Fbar_p`, with no group in it. It allows three things that exact
+solvability in each `GL_d` does not: amplification by `k`, a scalar on the right, and an error of small normalized
+rank.
+
+**Lemma 3.2 (extension).** Assume RGR_p. Let `Q` be countable, `w in Q * <t>` with nonzero `t`-exponent sum, and
+`q : Q -> X = (Q * <t>)/<<w>>`. For every homomorphism `phi : Q -> T(R)` there are a rank ultraproduct `R'` in
+dimensions `d_n k_n`, the amplification `iota : R -> R'`, `x -> x (x) 1`, and a homomorphism `phi' : X -> T(R')`
+with `phi' o q = iotabar o phi`. Here `iotabar : T(R) -> T(R')` is induced by `iota`.
+
+*Proof.*
+1. *Amplification.* `iota` is a unital ring homomorphism preserving `rk`. So it is well defined on `R`, maps
+   `G(R)` into `G(R')` and `A(R)` into `A(R')`, and is injective on `A(R)`.
+2. *Roots.* Write `w = c_0 t^(e_1) c_1 ... t^(e_l) c_l` with `c_i in Q`, and choose invertible matrix sequences
+   `(c_(i,n))_n` representing lifts of `phi(c_i)` to `G(R)`. For each `n`, RGR_p with `eps = 1/n` gives `k_n`,
+   `t_n` and `lambda_n`.
+3. *Factoring.* Put `phi'(t) = [(t_n)]` and `phi' = iotabar o phi` on `Q`. The value of `w` under this
+   homomorphism of `Q * <t>` is represented in `G(R')` by a sequence within normalized rank `1/n` of
+   `lambda_n 1`. So it lies in `A(R')`, it is trivial in `T(R')`, and the homomorphism factors through `X`. ∎
+
+**Lemma 3.3 (projective classes vanish on the Schur kernel).** Assume RGR_p. For `phi : Q -> T(R)` let
+`beta_phi = ev(phi^* [G(R)])` in `Hom(H_2(Q; Z), A(R))`, where `[G(R)] in H^2(T(R); A(R))` is the class of
+`1 -> A(R) -> G(R) -> T(R) -> 1`. Then `beta_phi` vanishes on `K_2(Q, w) = ker(q_* : H_2 Q -> H_2 X)`.
+
+*Proof.* `iota` is a morphism of central extensions over `iotabar` whose kernel map `iota|_A` is injective.
+Naturality of pullback and of `ev` gives `iota|_A o beta_phi = beta_(iotabar o phi) = beta_(phi') o q_*`, which
+vanishes on `ker q_*`. ∎
+
+This is S2 of `kl-schur-kernel-central-extensions-2026-09-11.md`, with RGR_p in place of Gerstenhaber--Rothaus.
+`ev` is used only through naturality, so `A(R)` need not be divisible.
+
+### 3.2 The transfer
+
+**Theorem 3.4** (`schur-kernel-lies-in-char-p-linear-sofic-radical`, from RGR_p). Assume RGR_p. Let
+`1 -> Z -> E -> Q -> 1` be central with `Z` finite of order prime to `p`, class `alpha`, and evaluation
+`alpha_H : H_2(Q; Z) -> Z`. For every nonsingular `w in Q * <t>`,
+
+```text
+alpha_H( K_2(Q, w) )  <=  Rad_rk,p(E).
+```
+
+*Proof.* Let `x in K_2(Q, w)` and `z_0 = alpha_H(x)`, and suppose `psi : E -> G(R)` has `psi(z_0) != 1`.
+1. *Isotypic cut, exact.* `|Z|` is prime to `p`, so `Fbar[Z] = (+)_chi Fbar e_chi` over the characters
+   `chi : Z -> Fbar^x`, with `e_chi = |Z|^(-1) sum_(z in Z) chi(z)^(-1) z`. `psi` extends to a unital homomorphism
+   `Fbar[Z] -> R`. The idempotents `E_chi = psi(e_chi)` commute with `psi(E)` because `Z` is central. They sum to
+   `1`, and `psi(z) = sum_chi chi(z) E_chi`. Since `psi(z_0) != 1`, some `E_chi != 0` has `chi(z_0) != 1`.
+2. *Corner.* An idempotent of `R` lifts to a sequence of idempotent matrices `e_n`: round a lift `x_n` with
+   `r(x_n^2 - x_n) -> 0`. So `E_chi R E_chi` is again a rank ultraproduct `R_chi`, in dimensions `rank e_n`, with
+   rank renormalized by `rk(E_chi) > 0`. Then `psi_chi(g) = E_chi psi(g) E_chi` is a homomorphism `E -> G(R_chi)`
+   with `psi_chi(z) = chi(z) 1` for `z in Z`.
+3. *Classes.* `psi_chi` maps `Z` into `A(R_chi)` through `chi`, so it induces `phi : Q -> T(R_chi)`. It is a
+   morphism of central extensions over `phi` with kernel map `chi`, so `phi^*[G(R_chi)] = chi_* alpha` and
+   `beta_phi = chi o alpha_H`. By Lemma 3.3, `chi(z_0) = chi(alpha_H(x)) = 1`, a contradiction. ∎
+
+In the tracial proof the cut-down needs spectral projections and a second ultraproduct, because the center may be
+infinite and eigenvalues are only approximate. Here `Z` is finite of order prime to `p`, and the cut is exact
+inside `R`.
+
+**Corollary 3.5 (Deligne).** Let `p != 3`, and assume RGR_p and `sp4-schur-kernel-meets-the-deligne-triple-class`.
+Then `z in Rad_rk,p(E_3)`. So `E_3` is not `F_p`-linear sofic. By Theorem 2.1 of the twisted-algebras artifact, the
+Deligne multiplier has no rank-approximate projective representations in characteristic `p`, and `E_3` witnesses
+`non-linear-sofic-group`.
+
+*Proof.* Apply Theorem 3.4 with `Z = C_3`, whose order is prime to `p`, and a killed class `x` with
+`alpha_H(x) != 0`. Then `alpha_H(x)` generates `C_3`, so `z in Rad_rk,p(E_3)`. A linear sofic approximation of
+`E_3` over `F_p` with separation `delta` would give, in an ultraproduct, a homomorphism into `G(R)` with
+`rk(psi(z) - 1) >= delta`. ∎
+
+So a single finite certificate, `sp4-schur-kernel-meets-the-deligne-triple-class`, would make `E_3`
+non-hyperlinear through the tracial transfer. Given RGR_p, it would also make `E_3` not `F_p`-linear sofic.
+
+### 3.3 What is known about RGR_p
+
+- **Power words** (`l = 1`, so `t^m = lambda c^(-1)`) are solvable exactly after amplification. Take the Jordan
+  decomposition over `Fbar`.
+  - The semisimple part has roots of every order.
+  - If `p` does not divide `m`, a unipotent block `1 + N` has the binomial root.
+  - If `p` divides `m`, `(1 + N_(ps))^p = 1 + N_(ps)^p` is similar to `p` Jordan blocks of size `s`. So each
+    unipotent block of size `s` gets a `p`-th root after amplification by `p`.
+- **Finite-group obstructions disappear.** Exact roots can fail in `GL_d(F_q)`: a non-square scalar in odd dimension
+  has no square root, because its determinant is not a square. That failure costs rank `1`, which the error
+  allowance absorbs, and over `Fbar` scalars have all roots.
+- **No general argument.** The Gerstenhaber--Rothaus proof is degree theory on the compact manifold `U(d)`, and no
+  characteristic-`p` analogue is known here. Over `C` the word map of `GL_d(C)` is dominant, since its image
+  contains `U(d)`. That gives roots only for generic coefficients, not for every tuple, and nothing uniform in `d`.
+- **Scope.** RGR_p is the characteristic-`p` rank form of the root property behind
+  `nonsingular-adjunction-preserves-approximation-radicals`, and it would also give the rank form of that
+  conservation theorem. That is not needed here and is not landed.
+
+## 4. Where it stops
+
+**Positive side** (rank-approximate projective representations exist).
+- **Dead:**
+  - exact and bounded-dimension models (twisted-algebras Lemma 1.1);
+  - bounded-block packets (Proposition 1.1);
+  - fixed-level scalar sectors (Proposition 2.1);
+  - coordinate truncations of fixed monomial modules (twisted-algebras Proposition 3.1).
+- **Same problem again:** perturbing exact finite-dimensional projective representations (Proposition 2.2).
+- **Not excluded:**
+  - large-block models whose congruence level grows faster than their window;
+  - non-monomial subspace truncations of one exact module that is not locally finite;
+  - models that vary intrinsically with the window.
+- **Missing input:** a finite-field mechanism that encodes the Archimedean winding behind Deligne's class with
+  errors of vanishing normalized rank. Finite-field automorphy factors, such as the cubic residue character of
+  `det(CZ + D)`, are genuine characters, so they realize the trivial multiplier.
+
+**Negative side** (no rank-approximate projective representations, so `E_3` is not linear sofic).
+- **Conditional route:** RGR_p plus the finite certificate `sp4-schur-kernel-meets-the-deligne-triple-class`
+  (Corollary 3.5). Both are open.
+- **Not available:** property (T) gives no rank rounding over finite fields
+  (`kazhdan-group-rank-models-admit-no-expander-decomposition`), and the congruence subgroup property constrains
+  only finite quotients.

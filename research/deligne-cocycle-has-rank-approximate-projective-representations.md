@@ -5,10 +5,12 @@ kind: claim
 title: Deligne's mod-three multiplier on Sp4(Z) has rank-approximate projective representations in every characteristic other than three
 refuted_by:
   - deligne-twisted-group-algebra-is-not-stably-finite
+  - deligne-central-mark-dies-in-char-p-rank-models
 distinct_from:
   maslov-mod3-projective-defect-gap: that asserts a uniform positive normalized Hilbert--Schmidt defect for unitary projective almost representations; this asks for vanishing normalized-rank defect for invertible matrices over finite fields of characteristic p != 3, a different metric over different fields.
 artifacts:
   - research/artifacts/deligne-twisted-group-algebras-2026-09-12.md
+  - research/artifacts/deligne-rank-projective-rigidity-2026-09-12.md
 ---
 
 **OPEN.** For every prime `p != 3`, the multiplier `w^a` of Deligne's triple cover `E_3` of `Gamma = Sp_4(Z)`
@@ -44,3 +46,19 @@ has rank-approximate projective representations in characteristic `p`. That mean
   (`sofic-implies-linear-sofic-over-every-field`), and `deligne-triple-cover-is-sofic` is open.
 - **Through hyperlinearity:** no transfer is known. Unitary HS projective almost representations
   (`deligne-sector-gap-is-exactly-nonhyperlinearity`) are not rank models over finite fields.
+- **Bounded-block packets: dead** (`deligne-rank-models-carry-no-bounded-block-mass`). In any vanishing-defect
+  family, common invariant blocks of dimension at most `m` carry at most `m |R_0| eps` of the dimension, uniformly
+  in the dimension and the field. Integrality of rank replaces compactness.
+- **Fixed-level congruence constructions: dead** (`deligne-rank-models-have-no-fixed-level-scalar-sectors`). A fixed
+  finite-index subgroup can act by scalars only on a subspace of rank at most the defect. Families whose level
+  grows faster than their window are not excluded.
+- **Perturbing exact Weil or theta representations: no gain**
+  (`deligne-rank-realizability-is-invariant-under-fd-class-shifts`). Tensoring with an exact finite-dimensional
+  projective representation shifts the class and keeps the defect, so the problem is unchanged.
+- **Finite-field automorphy factors: trivial multiplier.** The cubic residue character of `det(CZ + D)` over a
+  finite field is a genuine character, so it realizes the trivial class. No finite-field counterpart of the
+  Archimedean winding behind Deligne's class is known here.
+- **Negative side: conditional.** `deligne-central-mark-dies-in-char-p-rank-models` refutes this claim at some `p`.
+  It follows from `sp4-schur-kernel-meets-the-deligne-triple-class` plus the open rank root property
+  `rank-ultraproduct-unit-groups-solve-nonsingular-equations`, by the characteristic-`p` rank form of the tracial
+  Schur transfer (`deligne-rank-projective-rigidity-2026-09-12.md`, Section 3).
