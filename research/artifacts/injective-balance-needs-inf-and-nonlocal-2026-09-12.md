@@ -50,6 +50,21 @@ wall as step 3's dependence on INF, seen combinatorially.
 
 ## 2. The finite left-inverse identity does not force balance
 
+**Correction 2026-09-12 (w4-vf-positive-b).** Details are in Section 1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
+
+- **The error.** The argument below treats the end-fixing tree as a group `Gamma` with configurations
+  `B^Gamma`, and quotes the group theorem `strict-automata-give-injective-ca-with-skewed-site-marginals` for
+  it. Neither step is right:
+  - the tree automaton lives on the vertex set of `T`, a homogeneous space of `Aut(T, xi)`;
+  - an unbalanced injective automaton on `B^Gamma` for a group `Gamma` would be a Gottschalk counterexample.
+- **The correct witness.** A direct tree construction: a data track marks one child, and the unmarked
+  children copy the parent. It shows only that `(*)`, read on an abstract incidence pattern, does not force
+  balance.
+- **The conclusion that does not follow.** The tree pattern fails right cancellation of reads, which every
+  group window has. So "any proof must import a nonlocal input" does not follow. On group windows the question
+  is equivalent to the goal.
+
 Injectivity of `tau` yields, by Curtis-Hedlund-Lyndon for the inverse (valid over every group), a
 finite decoder memory `E` and rule `rho` with
 
@@ -75,6 +90,10 @@ window `(*)` coexists with non-balance. Any proof must import a nonlocal input â
 soficity/amenability substitute â€” which is precisely the INF ingredient isolated in Section 1.
 
 ## 3. Net
+
+**Correction 2026-09-12 (w4-vf-positive-b).** The finite-identity method is refuted only off groups, on the
+tree's vertex set. On group windows it is equivalent to the goal. See the correction at the start of
+Section 2.
 
 Balance of injective rules is not a front below INF for the entropy method: the conjugacy proof is
 exactly INF, and the finite-identity method is refuted outright by the tree's amplified automaton. The
