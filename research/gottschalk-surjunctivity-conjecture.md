@@ -645,3 +645,14 @@ automata and reversible automata are strict only through a strict linear factor.
 So on hosts where `F_p[G]` is stably finite, only designs with degree product at
 least `q`, whose decoder identity uses `x^q = x` (every binary design), can refute
 Gottschalk. The cube-root pair on `F_8` shows the bound is sharp in kind.
+
+**Closure properties (2026-09-12).** Surjunctivity is a commensurability invariant
+(`surjunctivity-is-a-commensurability-invariant`); `G x K` is surjunctive for `G`
+surjunctive and `K` LEF (`products-with-lef-factors-preserve-surjunctivity`); and
+a finite normal subgroup that injects into a finite quotient does not affect
+surjunctivity (`separated-finite-normal-subgroups-preserve-surjunctivity`). Binary
+product closure, graph product closure and permutational wreath closure are open
+and mutually equivalent (`finite-direct-products-of-surjunctive-groups-are-surjunctive`).
+The finite-normal-subgroup residue is open, with test instance the center of
+Deligne's triple cover of `Sp_4(Z)` (`finite-normal-subgroups-do-not-affect-surjunctivity`).
+Quotient closure is equivalent to the conjecture (`surjunctivity-passes-to-quotients`).
