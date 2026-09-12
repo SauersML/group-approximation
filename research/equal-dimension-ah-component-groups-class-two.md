@@ -3,6 +3,8 @@ rg: 2
 id: equal-dimension-ah-component-groups-class-two
 kind: claim
 title: Unital AH limits of blocks with base dimension at most twice the rank have unitary component groups of nilpotency class at most two
+invalidates:
+  - class-three-via-equal-dimension-towers
 artifacts:
   - research/artifacts/stw59-samelson-orders-and-wedged-arms-2026-09-11.md
 ---
