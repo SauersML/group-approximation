@@ -736,3 +736,92 @@ This sharpens Section 11.1.
 - **The radical is `G`.** If every model of `EL_3(J)` kills that head (the open Jacobson claim), then no
   model of `G` is injective, so the radical is `G`.
 - **Conclusion.** Every model is trivial, and the identity follows.
+
+## 15. Family SUB: w4-sub-adversary (93e48b681d, cc7fef520a)
+
+### 15.1 `locally-finite-hnn-data-allow-independent-cylinder-defects`: PASS
+
+1. **Intertwiners.** `K_(n,u) = H_n ∩ u^-1 H_n u` is a subgroup, and `phi_u` is injective.
+   - Left multiplication by `K_(n,u)` and by `phi_u(K_(n,u))` is free on `H_n`, with the same number
+     of orbits.
+   - `pi(k x_l) = phi_u(k) y_l` is a bijection.
+   - `pi lambda(k')(k x_l) = phi(k'k) y_l = lambda(phi(k')) pi(k x_l)`.
+2. **Exact relations at large stages.** For `k` in `K_u`, both `k` and `u k u^-1` lie in `H_n` for
+   large `n`.
+3. **Free profile.** `F_2[H_n]` is free over `F_2[Q]`.
+4. **Fixed vectors.**
+   - Inside `im(x_n)`, the `lambda_n(H_m)`-fixed vectors have codimension at most
+     `sum_(h in H_m) rank((lambda_n(h)-1) x_n) = o(|H_n|)`.
+   - `Fix(lambda_n(H_m))` has normalized dimension `1/|H_m|`, one line per free summand.
+   - So `rk x <= 1/|H_m|` for every `m`.
+5. **Corollary 2.1.**
+   - `Q_i ~= D_8`; the factors commute and meet trivially.
+   - Ranks multiply over the tensor decomposition.
+   - The value `3/8` was recomputed in Section 3.1, and `rk(x+1) = 4/8`.
+6. **Corollary 2.2 (firewall).** Inputs 1 to 3 hold in `sigma`, and there `theta = 1`.
+
+### 15.2 `leavitt-right-child-frames-generate-infinite-order-units`: PASS, with a naming correction
+
+1. **Proposition 3.1.**
+   - Units of `R` inside `M_(2^n)(F_2)` are invertible there: a non-invertible matrix has a nonzero
+     right annihilator, which a unit of `R` cannot have.
+   - Ternary words of length `k` give `3^k` leaves inside `A`. Complete codes refine the frame and
+     nine-leaf units into leaf units.
+   - With `l >= |A| + 2k` there are `2^(l-|A|) >= 4^k > 3^k` subcylinders of `A`, so `w` exists.
+   - Conjugates of leaf units are degree-zero matrix units, and `1 - S[A]T[A]` becomes
+     `1 - sum S[beta]T[beta]` in `R_0`.
+2. **Proposition 4.1(1).**
+   - `sigma S[A10] = S[A110]`, `tau S[A110] = tau S[A11] s_0 = S[A100]`, so `b S[A10] = S[A10] s_0`.
+   - If `b^n = 1`, then `s_0^n = 1`, and `t_1 = t_1 s_0^n = 0`, which is false.
+   - **Images.** `A10 -> A100`, `A110 -> A11`, `A111 -> A101`.
+   - **CORRECTION.** This map does not preserve order, so `b` lies in `V` but not in `F`. It is
+     `x_0` on `A1` (`A10 -> A100`, `A110 -> A101`, `A111 -> A11`), followed by the exchange of `A101`
+     and `A11`. Infinite order, and the conclusion that the frames at `A` and `A1` fit in no locally
+     finite subgroup, are unaffected. "A first generator of Thompson's F" should read "an element of
+     `V` of infinite order, `x_0` on `A1` composed with a leaf exchange".
+3. **Proposition 4.1(2).**
+   - `m = (1 + e_1) + d_1` with `d_1 = (1 + e_1) e_2` of degree 1, so the degree-`n` part of `m^n` is
+     `d_1^n`.
+   - `d_1 S[A0] = S[A10] + S[A0] s_0` and `d_1 S[A10] = 0`.
+   - By induction `d_1^n S[A0] = S[A10] s_0^(n-1) + S[A0] s_0^n`, and `T[A0]` times it is `s_0^n != 0`.
+   - I also expanded `((1+a)b)^n` directly and got the same degree-`n` word pair.
+4. **Proposition 4.1(3).**
+   - Each positive root monomial `S[P]T[Q]` maps its source region to strictly smaller lexicographic
+     potential.
+   - So products of more than 9 generators vanish, the algebra of monomials is finite and nilpotent,
+     and `1 + B` is a finite group containing the roots.
+
+## 16. Family SUB: w4-sub-weyl, second node
+
+### 16.1 `finite-subgroup-data-cannot-force-defect-submultiplicativity`: PASS
+
+- **Well-defined.** With `F_2[K'] = ⊕_x F_2[K] x` over right cosets, `alpha F_2[K'] = ⊕ alpha F_2[K] x`,
+  so the ratio does not depend on `K'`.
+- **A rank model on each locally finite subgroup.** As in Section 15.1(4).
+- **Conjugation invariance.** Conjugation is an algebra isomorphism between finite-subgroup algebras.
+- **The kernel count.** `dim ker((1+y)(1+x)) = 4 + dim((1+x)F_2[D_8] ∩ (1+y)F_2[D_8])`, because
+  `ker(1+y) = im(1+y)`. It equals 5, which agrees with rank 3 (Section 3.1).
+- **Scope.** This is a rank assignment, not one model of `R^x`. The node says so. It is consistent
+  with Section 15.1, which is a single HNN model.
+
+## 17. Family SUB: w4-cohn-el3, Section 4 (cbe5dceaf7)
+
+### 17.1 `thompson-v-lifts-into-rank-four-cohn-elementary-group`: PASS
+
+1. **The lift.**
+   - Prefix replacements preserve `E` (sequences ending in `0^inf`), and each is `w 1 0^inf` or `0^inf`.
+   - For `nu_i z 1 0^inf -> mu_i z 1 0^inf`, `phi(g) delta_(nu_i z) = delta_(mu_i z) = s_(mu_i) t_(nu_i) delta_(nu_i z)`
+     in the Toeplitz representation.
+   - The exceptions are the internal nodes `w`, proper prefixes of the `nu_i`, together with `delta_empty`
+     of the second copy. Those are finitely many basis vectors.
+   - The correction is a finite combination of `s_alpha q t_beta`, `s_alpha q`, `q t_beta` and `q`.
+   - Faithfulness gives a homomorphism, `pi` kills the corrections, and `pi phi = diag(g,1)` is injective.
+2. **Whitehead.** `[A,B] (+) 1_2` lies in `E_4(S)` for any ring, and `V` is perfect.
+3. **Rank four.** The Section 14.2 argument with four rows goes through: `ker pi = K_4`, which is
+   simple with trivial centralizer, and `EL_4(R) = GL_4(R) ~= R^x` is simple.
+4. **Ordering.**
+   - **V gate.** It kills `phi(V) (+) 1`, which meets `K_4` trivially, so the kernel is `G_4`.
+   - **Cohn `EL_3`.** A nontrivial model of `G_4` yields an injective one, and its restriction to
+     `EL_3(C_2)` is nontrivial.
+   - **`R^x`.** `G_4 <= EL_4(R) ~= R^x` through the embedding of Section 14.2, and nontrivial models of
+     the simple `R^x` are injective.

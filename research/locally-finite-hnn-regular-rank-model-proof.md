@@ -23,3 +23,5 @@ Complete proof: artifact Sections 1–2.
 - **Defects.** Disjoint configurations span `D_8 x ... x D_8 <= L`, and ranks of tensor products
   multiply. In `F_2[D_8]`, `x + 1` has rank 4 and `(y+1)(x+1)` has rank 3, so the normalized ranks are
   `1/2`, `3/8` and `(3/8)^k`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 15.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

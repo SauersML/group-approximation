@@ -20,3 +20,5 @@ Complete proof: artifact Sections 3–4.
   component of degree `n`.
 - **Positive only.** A lexicographic potential on the regions strictly decreases along each positive
   unit, so products of more than 9 vanish and the generated group is finite.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 15.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS, with one naming correction: b sends A10, A110, A111 to A100, A11, A101, which does not preserve order, so b is in V but not in F (it is x_0 on A1 followed by the exchange of A101 and A11). Infinite order and every conclusion are unaffected.*

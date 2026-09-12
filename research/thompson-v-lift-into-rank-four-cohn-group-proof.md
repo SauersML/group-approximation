@@ -29,3 +29,5 @@ Artifact Section 4, Propositions 4.1 and 4.2 and Corollary 4.3.
    - **Cohn `EL_3`.** A nontrivial model of `G_4` yields an injective one, which restricts
      injectively to `EL_3(C_2)`.
    - **To `R^x`.** `G_4 <= EL_4(R) ~ R^x`, and nontrivial models of `R^x` are injective.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 17.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

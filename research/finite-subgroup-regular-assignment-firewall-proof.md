@@ -25,3 +25,5 @@ Artifact Section 3, Lemma 3.1 and Theorem 3.2.
 5. **Scope.** Weyl elements over `F_2`, halving sheets, prefix doubling, the swap, and conjugation by torus
    units or compressors only produce finite-subgroup relations or rank equalities between conjugates
    (artifact 3.3), and all of those hold for `rk_reg`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 16.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
