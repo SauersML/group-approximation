@@ -289,6 +289,7 @@ section Closing
 
 variable {G : Type u} [Group G] {D : RelGenSet G Unit} {F : Set G} {t : G} {C : ℕ}
 
+omit [Group G] in
 theorem next_of_not_comp {w : List (RelLetter G Unit)} {i : ℕ} (hi : i < w.length)
     (hnext : ∀ g₁ : G, w[i + 1]? ≠ some (RelLetter.comp () g₁)) :
     i + 1 = w.length ∨ ∃ x : G, w[i + 1]? = some (RelLetter.base x) := by
@@ -298,11 +299,12 @@ theorem next_of_not_comp {w : List (RelLetter G Unit)} {i : ℕ} (hi : i < w.len
     omega
   · right
     cases a with
-    | base x => exact ⟨x, h⟩
+    | base x => exact ⟨x, rfl⟩
     | comp lam g₁ =>
       cases lam
       exact absurd h (hnext g₁)
 
+omit [Group G] in
 theorem prev_of_not_comp {w : List (RelLetter G Unit)} {i : ℕ} (hi : i < w.length)
     (hprev : ∀ g₁ : G, 0 < i → w[i - 1]? ≠ some (RelLetter.comp () g₁)) :
     i = 0 ∨ ∃ x : G, w[i - 1]? = some (RelLetter.base x) := by
@@ -313,7 +315,7 @@ theorem prev_of_not_comp {w : List (RelLetter G Unit)} {i : ℕ} (hi : i < w.len
     · have e := List.getElem?_eq_none_iff.mp h
       omega
     · cases a with
-      | base x => exact ⟨x, h⟩
+      | base x => exact ⟨x, rfl⟩
       | comp lam g₁ =>
         cases lam
         exact absurd h (hprev g₁ hpos)
@@ -347,7 +349,7 @@ theorem closing_edge_mem_relBall (hS : GOSetting D F t C) {h : G} (hh : h ∈ D.
     hlet (isOneOneSide_of_length_le_one (by simp)) hs₁ hs₂ hs₃ hclose'
   have hread0 : ([RelLetter.comp () h] ++ u₁ ++ u₂ ++ revWord u₃)[0]?
       = some (RelLetter.comp () h) := by
-    first | rfl | simp
+    rfl
   have hlen0 : 0 < ([RelLetter.comp () h] ++ u₁ ++ u₂ ++ revWord u₃).length := by
     rw [length_fourGon]
     simp
@@ -434,7 +436,8 @@ theorem middle_edge_mem_relBall (hS : GOSetting D F t C) {h : G} (hh : h ∈ D.f
     rfl
   have hlen0 : u₀.length < (u₀ ++ [RelLetter.comp () h] ++ [] ++ revWord u₃).length := by
     rw [length_fourGon]
-    simp
+    simp only [List.length_singleton, List.length_nil]
+    omega
   have hv0 : vertex (1 : G) (u₀ ++ [RelLetter.comp () h] ++ [] ++ revWord u₃) u₀.length
       = RelLetter.listVal u₀ := by
     rw [vertex_fourGon_first u₀ [RelLetter.comp () h] [] u₃ 1 le_rfl, vertex_length, one_mul]
@@ -954,6 +957,8 @@ end Cases
 
 section Assembly
 
+open Classical
+
 variable {G : Type u} [Group G] {D : RelGenSet G Unit} {F : Finset G} {t : G} {C : ℕ}
   {hfin : (D.relBall () (5 * C)).Finite}
 
@@ -1135,7 +1140,7 @@ theorem gerasimovaOsinLemma48 (hS : GOSetting D (F : Set G) t C) {s g : G}
     group
 
 /-- **Gerasimova–Osin, Lemma 4.8**, for `s = 1`. -/
-theorem gerasimovaOsinLemma48_one (hS : GOSetting D (F : Set G) t C) (g : G) :
+theorem gerasimovaOsinLemma48_one (_hS : GOSetting D (F : Set G) t C) (g : G) :
     (goCone D F t C hfin 1 ∩ goComb D F t C hfin 1 g ∩ goCone D F t C hfin g).Nonempty := by
   refine ⟨1, ⟨?_, ?_⟩, ?_⟩
   · exact mem_goCone_of_vertex (i := 0) (Nat.zero_le _) one_mem_goOmega one_mem_goOmega
