@@ -67,6 +67,7 @@ theorem gCoboundary_piSingle_eq_zero (K : Type) [CommRing K] {X : TopCat.{0}} {q
       rw [Pi.single_eq_same]
       exact hu
     · rw [Pi.single_eq_of_ne h]
+      unfold cochainCoboundary
       exact map_zero _
 
 /-- **Boundaries evaluate to zero against cocycles.**  The diagonal is a chain map (`oddDiagApp_d`)
@@ -229,6 +230,7 @@ theorem piSingle_cochainPullback_apply (K : Type) [CommRing K] {X Y : TopCat.{0}
   · subst h
     rw [Pi.single_eq_same, Pi.single_eq_same]
   · rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h]
+    unfold cochainPullback
     exact map_zero _
 
 /-- **R3. `D_j` commutes with pullback.** -/
