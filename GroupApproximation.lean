@@ -4620,6 +4620,7 @@ import GroupApproximation.KunThom.ComponentCountingRelativeFunctorBridges
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorRealization
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorBlockWords
 import GroupApproximation.KunThom.NormalizationProducer
+import GroupApproximation.KunThom.FixedPointNormalizationSummation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
