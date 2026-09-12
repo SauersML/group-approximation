@@ -1,0 +1,211 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionMultipleEdge
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInterior
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionCounting
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionBridge
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.7 at fixed parameters, from named inputs
+
+Osin, arXiv:math/0411039v3, Lemma 9.7, proved "by induction on `n`, the number of
+`R`-cells in `Δ`".  This file proves that induction at fixed parameters
+`(D, λ, c, μ, ε, ρ, W)` from named geometric inputs, with every numeric step
+proved:
+
+* the multiple-edge and loop halves of `(∗)` (`OsinMultipleEdgeCut.false_of_below`,
+  `OsinLoopCut.false_of_below`) from the cut producers and the inductive hypothesis;
+* the interior budget `Σ_inn ≤ 10μΣ` (`RegionCandidate.interior_total_le_of_o52`);
+* the unbound budget `S < μΣ` from Lemma 9.4 (`RegionCandidate.unbound_total_lt_mu`);
+* Corollary 9.6's cell (`RegionCandidate.exists_large_exterior_collection`).
+
+The inputs, each a `def … : Prop` over the fixed parameters:
+
+* `O52LeastAreaStatement` — O52 at least area (G1);
+* `MultipleEdgeCutInput`, `LoopCutInput` — the cut producers (G2);
+* `EulerCountInput` — the Euler count of `Φ'_M` and the planar edge bound from
+  `(∗)`, including the two-gon half through merges (G3, G4);
+* `UnboundInput` — Lemma 9.4 at these parameters (G5);
+* `DescentInput` — the `m(Π)` descent of clause (b) (G6).
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded
+open scoped Classical
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+
+/-! ## The combinatorial clauses of `(∗)` -/
+
+/-- No selected region joins a cell to itself. -/
+def GloballyDistinguishedSectionFamily.NoLoops {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) : Prop :=
+  ∀ a ∈ S.family, a.2.target ≠ some a.2.source
+
+/-- A region joins the cells `i` and `j`, in either direction. -/
+def Embedded.RegionCandidate.JoinsCells {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {Xi : DiscDiagram.{u, w, v} W}
+    (a : RegionCandidate D eps Xi) (i j : Fin Xi.rCellCount) : Prop :=
+  (a.2.source = i ∧ a.2.target = some j) ∨ (a.2.source = j ∧ a.2.target = some i)
+
+/-- No two distinct selected regions join the same pair of cells. -/
+def GloballyDistinguishedSectionFamily.NoMultipleEdges {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) : Prop :=
+  ∀ a ∈ S.family, ∀ b ∈ S.family, a ≠ b → ∀ i j : Fin S.diagram.rCellCount,
+    a.JoinsCells i j → b.JoinsCells i j → False
+
+/-! ## The inputs -/
+
+/-- Clause (b) of Lemma 9.7 below `n` cells: the inductive assumption. -/
+def OsinLemma97Below (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (n : ℕ) : Prop :=
+  ∀ (Xi : DiscDiagram.{u, w, v} W) (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+    Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < n →
+      ∃ T : GloballyDistinguishedSectionFamily D lambda c eps Xi cutsXi,
+        OsinLemma97bConclusion mu T.toRealizedSectionFamily
+
+/-- **G2, multiple edges**: two distinct selected regions joining the same cells
+enclose a cut. -/
+def MultipleEdgeCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        ∀ a ∈ S.family, ∀ b ∈ S.family, a ≠ b → ∀ i j : Fin S.diagram.rCellCount,
+          a.JoinsCells i j → b.JoinsCells i j →
+            Nonempty (OsinMultipleEdgeCut D lambda c eps Delta)
+
+/-- **G2, loops**: a selected region from a cell to itself encloses a cut. -/
+def LoopCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        ∀ a ∈ S.family, a.2.target = some a.2.source →
+          Nonempty (OsinLoopCut D lambda c eps Delta)
+
+/-- **G3 with G4**: the Euler count of `Φ'_M` and the endpoint-closed planar edge
+bound of `Φ_M` at a distinguished system without loops or multiple edges (the
+two-gon half of `(∗)` is proved inside, through merges). -/
+def EulerCountInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea → 0 < Delta.rCellCount →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        S.NoLoops → S.NoMultipleEdges →
+          S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) ∧
+            HasEndpointClosedPlanarEdgeBound
+              (RegionCandidate.InteriorEdge.Incident (selected := S.family))
+
+/-- **G5**: Lemma 9.4 at the fixed parameters. -/
+def UnboundInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps rho : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea → 0 < Delta.rCellCount →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) →
+          (∑ i : Fin S.diagram.rCellCount,
+              ((RegionCandidate.unboundDarts S.family i).card : ℝ)) <
+            (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
+
+/-- **G6**: the `m(Π)` descent of clause (b).  From a cell whose selected exterior
+regions have total degree above `1 − 11μ`, and the inductive assumption, some
+distinguished system satisfies clause (b). -/
+def DescentInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea → 0 < Delta.rCellCount →
+      OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        S.NoLoops → S.NoMultipleEdges →
+          (∃ i : Fin S.diagram.rCellCount,
+            (1 - 11 * mu) * ((cell S.diagram i).word.length : ℝ) <
+              ∑ a ∈ RegionCandidate.exteriorAt S.family i, (a.2.sourceArc.length : ℝ)) →
+            ∃ S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+              OsinLemma97bConclusion mu S'.toRealizedSectionFamily
+
+/-! ## The induction -/
+
+/-- **Osin's Lemma 9.7 at fixed parameters, from the named inputs.** -/
+theorem osinLemma97_atParameters_of_inputs
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
+    {lambda c mu : ℝ} {eps rho : ℕ}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
+    (hthreshold : 1 ≤ mu * Real.sqrt (rho : ℝ))
+    (hO52 : O52LeastAreaStatement.{u, w, v})
+    (hmulti : MultipleEdgeCutInput.{u, w, v} D lambda c eps W)
+    (hloop : LoopCutInput.{u, w, v} D lambda c eps W)
+    (heuler : EulerCountInput.{u, w, v} D lambda c eps W)
+    (h94 : UnboundInput.{u, w, v} D lambda c eps rho W)
+    (hdescent : DescentInput.{u, w, v} D lambda c mu eps W) :
+    ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+      Delta.LeastArea → 0 < Delta.rCellCount →
+        (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+            S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
+          ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+            OsinLemma97bConclusion mu S.toRealizedSectionFamily := by
+  have key : ∀ (n : ℕ) (Delta : DiscDiagram.{u, w, v} W)
+      (cuts : SectionCuts D lambda c Delta.boundaryWord),
+      Delta.rCellCount = n → Delta.LeastArea → 0 < Delta.rCellCount →
+        (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+            S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
+          ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+            OsinLemma97bConclusion mu S.toRealizedSectionFamily := by
+    intro n
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+        intro Delta cuts hn hlea hcells
+        have hbelow : OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount := by
+          intro Xi cutsXi hleaXi hcellsXi hlt
+          exact (ih Xi.rCellCount (by omega) Xi cutsXi rfl hleaXi hcellsXi).2
+        have hsimple : ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+            S.NoLoops ∧ S.NoMultipleEdges := by
+          intro S
+          constructor
+          · intro a ha hloopEq
+            obtain ⟨cut⟩ := hloop Delta cuts hlea S a ha hloopEq
+            exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
+              (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+                cut.rCellCount_lt)
+          · intro a ha b hb hab i j hai hbj
+            obtain ⟨cut⟩ := hmulti Delta cuts hlea S a ha b hb hab i j hai hbj
+            exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
+              (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+                cut.rCellCount_lt)
+        refine ⟨fun S => (heuler Delta cuts hlea hcells S (hsimple S).1 (hsimple S).2).1, ?_⟩
+        obtain ⟨S⟩ := exists_globallyDistinguishedSectionFamily D lambda c eps Delta cuts
+          (DiscDiagram.reduced_of_leastArea hlea) cuts.admissible
+          (fun C _ => hcondition.admissible C.word C.word_mem)
+        obtain ⟨hloopsS, hmultiS⟩ := hsimple S
+        obtain ⟨hcard, hplanar⟩ := heuler Delta cuts hlea hcells S hloopsS hmultiS
+        have hleaS : S.diagram.LeastArea := S.equiv.leastArea hlea
+        have hloopsEdge : ∀ edge : RegionCandidate.InteriorEdge S.family,
+            edge.val.2.source ≠ edge.target := by
+          intro edge heq
+          have hmem : edge.val ∈ S.family := (Finset.mem_filter.mp edge.property).1
+          apply hloopsS edge.val hmem
+          rw [edge.target_eq, heq]
+        have hinterior := RegionCandidate.interior_total_le_of_o52 hO52 hleaS S.family
+          S.pairwise hloopsEdge hplanar hcondition hmu.le
+        have hcountEq : S.diagram.rCellCount = Delta.rCellCount := S.equiv.rCellCount_eq
+        have hunbound94 := h94 Delta cuts hlea hcells S hcard
+        have hunbound := RegionCandidate.unbound_total_lt_mu S.family
+          (fun i => hcondition.long _ (cell S.diagram i).word_mem) hmu.le
+          (by rw [← hcountEq] at hunbound94; exact hunbound94) hthreshold
+        obtain ⟨i, hi⟩ := RegionCandidate.exists_large_exterior_collection S.family
+          S.pairwise hinterior hunbound
+        exact hdescent Delta cuts hlea hcells hbelow S hloopsS hmultiS ⟨i, hi⟩
+  intro Delta cuts hlea hcells
+  exact key Delta.rCellCount Delta cuts rfl hlea hcells
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma97_atParameters_of_inputs

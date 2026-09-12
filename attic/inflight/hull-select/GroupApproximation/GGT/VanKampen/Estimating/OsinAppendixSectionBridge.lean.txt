@@ -13,12 +13,14 @@ Consequences of the vocabulary in `Estimating/OsinAppendixSections.lean`.
   two fewer factors (`RelatorDefectBudget.no_cancelling_pair_of_minimal`).
 * `relativeGreendlingerQuasiGeodesicLeastArea_of_reduced`: the historical waist
   `RelativeGreendlingerQuasiGeodesicStatement` implies the least-area waist.
-* `exists_globallyDistinguishedSectionFamily`: Osin's distinguished system
-  (Definition 9.2) over every reduced O-equivalent diagram exists.  The total
-  weight of a compatible family is bounded by the relator perimeters plus the
-  boundary length (`RegionCandidate.familyWeight_le`), and the empty family is
-  admissible, so the maximum is attained; well-ordering then attains the minimal
-  cardinality.  This is the pattern of `RegionGlobalSelection`, restricted to
+* `exists_globallyDistinguishedSectionFamily_of_seed`,
+  `exists_globallyDistinguishedSectionFamily`: Osin's distinguished system
+  (Definition 9.2) over every reduced O-equivalent diagram with legal labels
+  exists.  The total weight of a compatible family is bounded by the relator
+  perimeters plus the boundary length (`RegionCandidate.familyWeight_le`), and the
+  normalized empty family (`symmetricLabelAlphabet.exists_normalization`) is a legal
+  seed, so the maximum is attained; well-ordering then attains the minimal
+  cardinality.  This is the pattern of `RegionLegalSelection`, restricted to
   section-respecting regions.
 * `relativeGreendlingerQuasiGeodesicLeastArea_of_osinLemma97`: clause (b) of
   Lemma 9.7 at the single section `SectionCuts.whole` is Osin's Lemma 4.4 at
@@ -105,45 +107,70 @@ def empty {G : Type u} [Group G] {Lambda : Type w}
 
 end RealizedSectionFamily
 
-/-- **Osin's distinguished system exists** over every reduced O-equivalent
-diagram, with sections. -/
-theorem exists_globallyDistinguishedSectionFamily
+/-- **Osin's distinguished system exists** from any legal seed: the maximum weight
+and then the minimal cardinality are attained among legal section families. -/
+theorem exists_globallyDistinguishedSectionFamily_of_seed
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))}
-    (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
-    (Delta : DiscDiagram.{u, w, v} W)
-    (cuts : SectionCuts D lambda c Delta.boundaryWord) (hred : Delta.Reduced) :
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (initial : RealizedSectionFamily D lambda c eps Delta cuts)
+    (hlegal : initial.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D)) :
     Nonempty (GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) := by
   classical
   let bound := (∑ i : Fin Delta.rCellCount, (cell Delta i).word.length) +
     Delta.boundaryWord.length
   let values := (Finset.range (bound + 1)).filter fun n =>
-    ∃ S : RealizedSectionFamily D lambda c eps Delta cuts, S.weight = n
-  have hmem (S : RealizedSectionFamily D lambda c eps Delta cuts) :
+    ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
+      S.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) ∧ S.weight = n
+  have hmem (S : RealizedSectionFamily D lambda c eps Delta cuts)
+      (hS : S.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D)) :
       S.weight ∈ values := by
     apply Finset.mem_filter.mpr
-    refine ⟨Finset.mem_range.mpr ?_, S, rfl⟩
+    refine ⟨Finset.mem_range.mpr ?_, S, hS, rfl⟩
     have h := S.weight_le
     change S.weight ≤ bound at h
     omega
-  have hnonempty : values.Nonempty :=
-    ⟨(RealizedSectionFamily.empty D lambda c eps Delta cuts hred).weight,
-      hmem (RealizedSectionFamily.empty D lambda c eps Delta cuts hred)⟩
+  have hnonempty : values.Nonempty := ⟨initial.weight, hmem initial hlegal⟩
   obtain ⟨maximum, hmaximum, hmaximal⟩ :=
     Finset.exists_max_image values id hnonempty
-  obtain ⟨initial, hinitial⟩ := (Finset.mem_filter.mp hmaximum).2
+  obtain ⟨first, hfirstLegal, hfirst⟩ := (Finset.mem_filter.mp hmaximum).2
   have hexists : ∃ k : ℕ, ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
-      S.weight = maximum ∧ S.family.card = k :=
-    ⟨initial.family.card, initial, hinitial, rfl⟩
-  obtain ⟨S, hweight, hcard⟩ := Nat.find_spec hexists
-  refine ⟨{ toRealizedSectionFamily := S, weight_maximal := ?_, card_minimal := ?_ }⟩
-  · intro other
+      S.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) ∧
+        S.weight = maximum ∧ S.family.card = k :=
+    ⟨first.family.card, first, hfirstLegal, hfirst, rfl⟩
+  obtain ⟨S, hS, hweight, hcard⟩ := Nat.find_spec hexists
+  refine ⟨{ toRealizedSectionFamily := S, label_admissible := hS,
+    weight_maximal := ?_, card_minimal := ?_ }⟩
+  · intro other hother
     rw [hweight]
-    exact hmaximal other.weight (hmem other)
-  · intro other heq
+    exact hmaximal other.weight (hmem other hother)
+  · intro other hother heq
     rw [hcard]
     apply Nat.find_min' hexists
-    exact ⟨other, heq.trans hweight, rfl⟩
+    exact ⟨other, hother, heq.trans hweight, rfl⟩
+
+/-- **Osin's distinguished system exists** over every reduced diagram with legal
+exterior and relator words: the normalized empty family is a legal seed. -/
+theorem exists_globallyDistinguishedSectionFamily
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord) (hred : Delta.Reduced)
+    (hboundary : HullSC.RelWord.IsAdmissible D Delta.boundaryWord)
+    (hcells : ∀ C ∈ Delta.relatorCells, HullSC.RelWord.IsAdmissible D C.word) :
+    Nonempty (GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) := by
+  obtain ⟨R⟩ := symmetricLabelAlphabet.exists_normalization D Delta hboundary hcells
+  let S : RealizedSectionFamily D lambda c eps Delta cuts := {
+    diagram := R.diagram
+    equiv := R.oEquivalent _
+    reduced := R.reduced _ hred
+    family := ∅
+    pairwise := by intro a ha; simp at ha
+    respects := by intro a ha; simp at ha }
+  exact exists_globallyDistinguishedSectionFamily_of_seed S R.label_admissible
 
 /-! ## One section is Osin's Lemma 4.4 -/
 
