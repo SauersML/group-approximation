@@ -93,14 +93,14 @@ theorem fill_iff_of_triangleMove (ha : AttachTriangleStatement X)
   cases hxy with
   | backtrack p q u v huv =>
     constructor
-    · rintro (hlen | ⟨D⟩)
+    · rintro (hlen | ⟨⟨D⟩⟩)
       · exfalso
         simp only [List.length_append, List.length_cons] at hlen
         omega
       · rcases hd p q u v D with h | h
         · exact Or.inr h
-        · exact Or.inl (by simp [h])
-    · rintro (hlen | ⟨D⟩)
+        · exact Or.inl (by rw [h, List.length_singleton])
+    · rintro (hlen | ⟨⟨D⟩⟩)
       · simp only [List.length_append, List.length_cons] at hlen
         have hp : p = [] := List.length_eq_zero_iff.mp (by omega)
         have hq : q = [] := List.length_eq_zero_iff.mp (by omega)
@@ -110,12 +110,12 @@ theorem fill_iff_of_triangleMove (ha : AttachTriangleStatement X)
       · exact Or.inr (hc p q u v huv D)
   | triangle p q u v w htri =>
     constructor
-    · rintro (hlen | ⟨D⟩)
+    · rintro (hlen | ⟨⟨D⟩⟩)
       · exfalso
         simp only [List.length_append, List.length_cons] at hlen
         omega
       · exact Or.inr (hb p q u v w htri D)
-    · rintro (hlen | ⟨D⟩)
+    · rintro (hlen | ⟨⟨D⟩⟩)
       · exfalso
         simp only [List.length_append, List.length_cons] at hlen
         omega
@@ -138,8 +138,7 @@ theorem fillingStatement_of_simplyConnected (hsc : SimplyConnected X)
   intro v l hl _
   rcases (hEqv _ _ (hsc v l hl)).mpr (Or.inl rfl) with hlen | hD
   · exfalso
-    simp only [List.cons_append, List.length_cons, List.length_append,
-      List.length_singleton] at hlen
+    simp only [List.cons_append, List.length_cons, List.length_append] at hlen
     omega
   · exact hD
 

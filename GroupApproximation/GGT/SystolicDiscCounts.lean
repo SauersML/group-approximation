@@ -309,15 +309,15 @@ theorem sum_outerDarts [DecidableEq D.map.Face] (J : D.map.Dart → ℤ) :
       simp only [hl, List.getElem_cons_zero, pow_zero, Equiv.Perm.one_apply]
     · have hl : l = D.map.facePerm.toList D.base := by simp [l, closedOrbitList, hfix]
       simp only [hl]
-      exact Equiv.Perm.getElem_toList _ _
+      exact Equiv.Perm.getElem_toList D.map.facePerm D.base k _
   have hofFn : l = List.ofFn (fun k : Fin (D.map.faceDegree D.outer) =>
       (D.map.facePerm ^ (k : ℕ)) D.base) := by
     apply List.ext_getElem
     · rw [List.length_ofFn, hlen]
     · intro k h1 h2
       rw [List.getElem_ofFn, hget k h1]
-  rw [← hset, Finset.sum_toFinset J hnd, hofFn, List.map_ofFn, List.sum_ofFn]
-  rfl
+  rw [← hset, List.sum_toFinset J hnd, hofFn, List.map_ofFn]
+  exact Fin.sum_ofFn _
 
 /-- **HC12: boundary sums.**  An antisymmetric function whose sum around every triangle of
 `X` is at most `C₀` has boundary sum at most `C₀` times the number of triangles. -/
@@ -330,7 +330,8 @@ theorem abs_boundarySum_le (I : V → V → ℤ) (hanti : ∀ x y, I y x = -I x 
   -- the boundary sum is the sum over outer darts
   have hbd : (List.zipWith I γ γ.tail).sum =
       ∑ d ∈ Finset.univ.filter (fun d => D.map.faceOf d = D.outer), J d := by
-    rw [D.sum_outerDarts J, ← D.boundary]
+    rw [D.sum_outerDarts J]
+    conv_lhs => rw [← D.boundary]
     have hzip : List.zipWith I
         (List.ofFn fun k : Fin (D.map.faceDegree D.outer + 1) =>
           D.vtx (D.map.vertexOf ((D.map.facePerm ^ (k : ℕ)) D.base)))
@@ -348,7 +349,8 @@ theorem abs_boundarySum_le (I : V → V → ℤ) (hanti : ∀ x y, I y x = -I x 
           I (D.vtx (D.map.vertexOf ((D.map.facePerm ^ k) D.base)))
             (D.vtx (D.map.vertexOf (D.map.alpha ((D.map.facePerm ^ k) D.base))))
         rw [pow_succ', Equiv.Perm.mul_apply, vertexOf_facePerm]
-    rw [hzip, List.sum_ofFn]
+    rw [hzip]
+    exact Fin.sum_ofFn _
   -- the sum over all darts vanishes
   have hall := D.sum_darts_antisymm I hanti
   rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (fun d => D.map.faceOf d = D.outer)]
@@ -366,9 +368,12 @@ theorem abs_boundarySum_le (I : V → V → ℤ) (hanti : ∀ x y, I y x = -I x 
     have hrep : D.map.faceOf (Quotient.out f) = f := Quotient.out_eq f
     have hin : D.map.faceOf (Quotient.out f) ≠ D.outer := by rw [hrep]; exact hne
     obtain ⟨h3, htri'⟩ := D.tri _ hin
+    have h4 : D.map.facePerm ((D.map.facePerm ^ 2) (Quotient.out f)) = Quotient.out f := by
+      rw [← Equiv.Perm.mul_apply, ← pow_succ']
+      exact h3
     have hclose : D.map.vertexOf (D.map.alpha ((D.map.facePerm ^ 2) (Quotient.out f))) =
         D.map.vertexOf (Quotient.out f) := by
-      rw [← vertexOf_facePerm, ← perm_pow_three_apply, h3]
+      rw [← vertexOf_facePerm, h4]
     have e2 : D.map.vertexOf (D.map.alpha (Quotient.out f)) =
         D.map.vertexOf (D.map.facePerm (Quotient.out f)) := (vertexOf_facePerm _ _).symm
     have e3 : D.map.vertexOf (D.map.alpha (D.map.facePerm (Quotient.out f))) =
