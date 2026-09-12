@@ -4,7 +4,7 @@ id: stw18-k1-witness-constraints-proof
 kind: route
 title: Assemble the nonstable K-theory and tracial obstructions for a K1-witness
 target: stw18-k1-witness-constraints
-requires: [stable-rank-one-unital-algebras-are-k1-bijective, strict-comparison-rank-surjectivity-forces-sr1, simple-ah-strict-comparison-is-k1-injective, z-stable-unital-algebras-are-k1-bijective, stw18-finite-trace-boundary-toms-winter, lin-condition-c-boundary-strict-comparison-z-stable, stw58-simple-pure-k1-bijective]
+requires: [stable-rank-one-unital-algebras-are-k1-bijective, strict-comparison-rank-surjectivity-forces-sr1, simple-ah-strict-comparison-is-k1-injective, z-stable-unital-algebras-are-k1-bijective, stw18-finite-trace-boundary-toms-winter, lin-condition-c-boundary-strict-comparison-z-stable, stw58-simple-pure-k1-bijective, urp-crossed-products-satisfy-toms-winter]
 artifacts:
   - research/artifacts/stw18-k1-route-constraint-map-2026-09-11.md
 ---
@@ -38,4 +38,8 @@ target claim.
 7. Items 5 and 3 together with item 1: `A` is a simple separable unital
    nuclear non-elementary algebra with strict comparison that is not
    Z-stable, and a unital simple separable stably finite non-elementary
-   algebra in which not all ranks occur. Square.
+   algebra in which not all ranks occur.
+8. For a free minimal action with the uniform Rokhlin property, strict
+   comparison of `C(X) ⋊ Gamma` gives Z-stability
+   (`urp-crossed-products-satisfy-toms-winter`), which contradicts item 5.
+   Square.
