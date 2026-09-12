@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - projective-ternary-leavitt-group-nonsurjunctive
   - ternary-leavitt-unit-group-nonsurjunctive
   - leavitt-unit-group-nonsurjunctive
 distinct_from:
@@ -518,3 +519,28 @@ memory `{1, a}` is never strict. By
 design with one independent cycle presents a nonsofic one-relator group, so under
 Pestov 4.10 every strict design needs two independent coincidence cycles.
 Artifact: `research/artifacts/table-group-holonomy-normal-form-2026-09-12.md`.
+
+**Ternary split (2026-09-12).** The central involution `-1` splits
+`F_3[L_(F_3)(1,2)^x]` into `F_3[PG]`, where `PG` is the quotient by scalars, and
+an anti-central summand. There the sign unit `s0 t0 - s1 t1` halves the swap
+idempotent, so the corner equation is equivalent to a unital Cohn family, and a
+solution acts only on a proper subshift. The Leavitt evaluation sees only that
+summand. The half that would yield a counterexample, fullness of the swap
+idempotent in `F_3[PG]`, is invisible to it. It holds in the adjoint image
+algebra `R (x) R^op` with explicit witnesses; witnesses in the span of
+`g (x) g^-1` are open (`projective-ternary-swap-idempotent-is-full`). The
+projective ternary group is now its own counterexample root,
+`projective-ternary-leavitt-group-nonsurjunctive`.
+
+**F_2-linear-sofic gate for R^x (2026-09-12).** Both Kaplansky lifting problems
+sit behind `binary-leavitt-unit-group-is-f2-linear-sofic`, whose negative side is
+the rank row `f2-linear-sofic-groups-kill-rigid-compression-defects`. In rank
+ultraproducts, fixed right ideals round with no property (T) and compressors
+conserve them in every tensor degree
+(`rank-ultraproduct-compressors-conserve-fixed-right-ideals`). That layer cannot
+kill defects (`linear-scale-rank-conservation-does-not-kill-defects`). The Hamming
+normalization proof fails in the rank metric exactly at rounding into expanding
+pieces and at one-piece transport, where compressors can rotate multiplicity
+coordinates. Every rank model of `R^x` must have the nine-leaf Kazhdan subgroup
+fixing exactly what `R^x` fixes (`leavitt-rank-models-kazhdan-fixed-ideals-are-global`).
+Neither direction of the gate is decided.
