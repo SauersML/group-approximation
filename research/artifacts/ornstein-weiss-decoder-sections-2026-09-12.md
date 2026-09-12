@@ -114,3 +114,78 @@ So the Ornstein–Weiss idea survives only as redundancy added in parallel, with
   `p_1(x) + p_2(a^-1.x) + p_3(d^-1.x) = lambda(x(1))`. There is no single transformation whose skew product carries
   it, and no obstruction is known.
 - **Nonlinear decoders** have no obstruction beyond maximality, which is open over `U`.
+
+## 5. Linear decoders: Lemma K1 and Theorem K′
+
+**Setting.** `F = F_p` with `p` prime.
+- A *linear decoder* is `L: (F^m)^G -> (F^(m'))^G`, `L(y)(g) = sum_(s in S) y(gs) R_s`, with `S` finite and
+  `R_s` in `M_(m x m')(F)`, acting on row vectors.
+- For a finitely supported `q: G -> F^(m')` (column vectors), put `<x, q> = sum_g x(g) q(g)`. Then
+  `<L(y), q> = <y, R*q>` with `(R*q)(h) = sum_s R_s q(h s^-1)`.
+- `<a^-1.y, v> = <y, a.v>` with `(a.v)(k) = v(a^-1 k)`.
+- A *section* is a Borel equivariant `tau` with `L o tau = id` almost everywhere. When `m < m'` it is a compression.
+
+**Lemma K1.** Let `a` be in `G`, `q: G -> F^(m')` finitely supported, and `f(x) = <x, q>` on
+`((F^(m'))^G, mu)`. Suppose one of the following holds:
+- `a` has finite order `N` and `sum_(k<N) a^k.q != 0`;
+- `a` has infinite order and some right coset `C = <a>t` has coset sum `sigma_C(q) = sum_(k in Z) q(a^k t) != 0`.
+
+Then no Borel `Q` satisfies `Q(x) - Q(a^-1.x) = f(x)` almost everywhere.
+
+*Proof.* Put `S x = a^-1.x`, so `(S^k x)(h) = x(a^k h)`.
+
+**Finite order.** Telescoping over `k < N` gives `0 = sum_(k<N) f(S^k x) = <x, sum_(k<N) a^k.q>`. This is a
+nonzero linear functional of iid uniform coordinates, so it is uniform on `F`. Contradiction.
+
+**Infinite order.**
+- *Reduction to one coordinate per coset.* For a column `c`, the function `<(S^k x)(t), c> - <x(t), c>` is the
+  coboundary `U - U o S` of a cylinder function `U`. For `k >= 1` take `U = -sum_(j<k) <(S^j x)(t), c>`, and
+  similarly for `k < 0`. So `f` differs by a cylinder coboundary from `f_0(x) = sum_C <x(t_C), sigma_C(q)>`, with one
+  representative `t_C` per coset. A solution `Q` for `f` gives the solution `Q - U` for `f_0`.
+- *Invariant function.* On `(F^(m'))^G x F`, the skew product `S_(f_0)(x, eps) = (Sx, eps + f_0(x))` preserves the
+  measure, and `omega^(eps + Q(x))` is invariant and not constant (`omega = exp(2 pi i/p)`), as in Lemma K0.
+- *Ergodicity.* Fix `C_0` with `sigma_(C_0) != 0`, and write `w^C_k = x(a^k t_C)`. The linear bijection
+  `w -> (<w, sigma_(C_0)>, r)` onto `F x F^(m'-1)` carries uniform to uniform. Put `s_0 = eps` and
+  `s_(k+1) = s_k + sum_C <w^C_k, sigma_C>`.
+  - The map `(x, eps) -> (s, r^(C_0), (w^C)_(C != C_0), rest)` is a bijection, since `<w^(C_0)_k, sigma_(C_0)>`
+    is recovered from the increments.
+  - It carries the product measure to a product measure, because the increments are uniform given everything
+    else.
+  - It conjugates `S_(f_0)` to a Bernoulli shift.
+
+  A Bernoulli shift is mixing, so `S_(f_0)` is ergodic and the invariant function must be constant, a
+  contradiction. QED
+
+**Theorem K′.** Let `L` be a linear decoder with matrix `R`. `L` has no Borel equivariant section if either:
+
+1. there are `a` in `G`, a finitely supported `q` as in Lemma K1, and a finitely supported `v: G -> F^m` with
+   `R*q = v - a.v`; or
+2. `ker L` is finite and nonzero.
+
+*Proof.*
+1. Put `Q(x) = <tau(x), v>`. By equivariance, `Q(a^-1.x) = <tau(x), a.v>`. So almost everywhere
+   `Q(x) - Q(a^-1.x) = <tau(x), R*q> = <L(tau(x)), q> = <x, q>`, which Lemma K1 excludes.
+2. A section makes the image of `L` conull, hence dense. The image is closed, so `L` is onto and carries Haar
+   measure to Haar measure. Put `D = tau(X_0)`, a Borel invariant set, where `X_0` is conull. Then
+   `L^-1(X_0) = union over h in ker L of (D + h)`, a finite disjoint union with equal measures and total measure
+   `1`. So `mu(D) = 1/|ker L|`, which is neither `0` nor `1`, while ergodicity forces `mu(D)` to be `0` or `1`. QED
+
+**Special cases.**
+- *Annihilators.* If `R*q = 0` for some nonzero `q`, take `a = 1` and `v = 0`.
+- *Two-term rows.* This gives the linear case of Theorem K. For Ornstein–Weiss, `q = e_1` at `1` and `v = delta_1`
+  give `R*q = delta_1 + delta_a = v - a.v`, and the coset sum along `<a>` is `e_1 != 0`.
+- *Zero kernel.* If `ker L = 0`, a section makes `L` a continuous bijection, and then `tau = L^-1` almost
+  everywhere. Composing with an inclusion `F^m -> F^(m')` gives an injective, non-surjective linear automaton,
+  that is, matrices with `SR = I_(m')` over `F_p[G]`, a stable finiteness failure. Continuous linear sections are
+  exactly such pairs.
+
+## 6. Where linear decoders stop
+
+Over `U` the open statement is `linear-decoders-over-leavitt-units-admit-no-measurable-section`.
+- Maximal Rokhlin entropy excludes every section, because a section compresses `p^(m')` symbols into `p^m`.
+- Theorem K′ excludes coboundary functionals, annihilators and finite nonzero kernels.
+- A zero kernel requires a stable finiteness failure.
+
+What remains are decoders with infinite kernel, `q -> R*q` injective, and no functional pulling back to a
+coboundary with nonzero coset sum. Over `F_2` maximality excludes every section, and it is not known whether
+Theorem K′ alone detects every linear decoder there.
