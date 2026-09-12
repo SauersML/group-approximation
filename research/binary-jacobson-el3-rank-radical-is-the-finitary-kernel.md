@@ -92,6 +92,43 @@ intersection of the kernels of all rank models) is `L`.
     * The constants detect the orientation of the turn at index `0`. Every finite folded cycle has one
       turn of each orientation, so path models carry a rank-one relator error at the far end,
       exactly where the head is thin. This criterion yields nothing.
+* **Dies unconditionally in rank 5: level-factoring models of `E_5 = EL_5(J)`.** The weaker
+  rank-5 form of this claim already carries the payoff, since `EL_5(J)` embeds in `R^x`.
+  * **A head-retaining model of `E_n` is injective.** Its kernel meets `L` trivially, so it
+    commutes with `L`. Every element commuting with all finitary matrices is scalar, hence `1`.
+  * **`E_5` is not LEF.** This is the finitely-presented-cover lemma in
+    `leavitt-first-offdiagonal-core-is-marked-non-lef`, as recorded in
+    `binary-jacobson-elementary-mark-is-finite-quotient-invisible`.
+  * `transvection-displacement-forces-exact-local-embedding` therefore excludes every
+    head-retaining model of `E_5` factoring through representations of general linear groups with
+    positive transvection displacement.
+  * The normal form of `rank-models-are-exact-representations-at-moving-finite-levels` holds for
+    `E_5` verbatim, including a generator far from the moving level group.
+  * The same holds for `n >= 4`. Here `St_n(J)` is finitely presented
+    (`steinberg-finite-presentation-and-kazhdan-theorem`), and every finite image of a group
+    satisfying the Steinberg relations over `J` kills `x_13(Q)`:
+    * by pigeonhole, two of the `x_13(e_ab)` have the same image, so `x_13(e_ab + e_a'b')` maps to `1`;
+    * the commutator chain `x_13(r) -> x_12(rp) -> x_32(qrp) -> x_12(p'qrp) -> x_13(p'qrp)` reaches
+      `x_13(e_0a r e_b0) = x_13(e_00)`.
+* **MF analogue established; transfer to rank models blocked.**
+  * `binary-jacobson-steinberg-head-root-is-mf-invisible` kills the head in every norm-corona
+    representation of `St_5(J)`, via route `jacobson-head-collapses-by-rank-weighted-transport`.
+    That route uses a compression cell `u H u^(−1) <= H` with `H = EL_3(J)` Kazhdan,
+    `c ∈ C_E(H)`, and `[u c u^(−1), x_23(1)] = x_13(Q)`.
+  * **What transfers.** In a rank model, let `F = Fix(σ(H))`, the kernel over finitely many
+    generators.
+    * `σ(u)F = Fix(σ(uHu^(−1))) ⊇ F`, and the two have equal rank. Rank ultraproducts are directly
+      finite, so `σ(u)F = F`.
+    * `σ(c)` preserves `F`, and `x_23(1)` fixes it. So the head acts trivially on `F`, and its
+      displacement lives on `V/F`.
+  * **Block 1.** The MF proof removes the remainder with the Kazhdan projection of `H`. Rank
+    ultraproducts over `F_2` have no averaging, and Kazhdan groups give no rank rounding over finite
+    fields (family R's `EL_3(F_2[t])` counterexample).
+  * **Block 2.** It also uses a uniform bound of active rank by transvection active rank
+    (`binary-finitary-transvection-uniformly-controls-active-rank`). Over `F_2` this fails on
+    natural-module content, where transvections displace `1/n` of the dimension.
+  * **Next.** Find a rank substitute on `V/F` that uses the uniform displacement `>= c_0/4` of
+    `F_K`, which natural content cannot supply at fixed levels.
 * **Next attempts.**
   * Decide whether `E` is finitely presented. If it is, it is not LEF, because finite quotients kill
     the head, and the normal form applies verbatim.
