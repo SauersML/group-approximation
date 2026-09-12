@@ -25,6 +25,9 @@ determinant conjecture.
   mix lamps with letters of `G` whose generated subgroup is nonsofic. Whether
   `B x| Gamma` is sofic is not settled here, because the stabilizers
   `Gamma cap x Gamma x^(-1)` of its orbits need not be separable.
-- **Lamp-corner model, next.** With `P = 1 + e_Gamma`, the corner `P X P` for
-  `X in Z[G]` is `X` restricted to a random union of right cosets of `Gamma`.
-  Atoms come from how compressing letters join open cosets.
+- **Lamp-corner model.** With `P = 1 + e_Gamma`, the corner `P X P` for
+  `X in Z[G]` is `X` restricted to a random union of right cosets of `Gamma`
+  (`wreath-lamp-corner-is-coset-percolation`). `Gamma`-supported `X` gives only
+  sofic atoms. The untested case is letters outside `Gamma` joining open
+  cosets. The next test is the atom masses of finite open clusters of cosets
+  under a compressing letter `t` with `t Gamma t^(-1)` properly inside `Gamma`.
