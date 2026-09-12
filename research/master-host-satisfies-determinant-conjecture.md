@@ -32,5 +32,17 @@ determinant region's Serre-class reformulation
   theorem itself is `determinant-conjecture-holds-for-sofic-groups`; the same
   obstruction at the level of all groups is
   `nonsoficity-blocks-sofic-determinant-transfer`.
+* **Euler integrality of spectral moments.**  Dead:
+  `master-host-determinant-via-euler-integrality`, killed by
+  `euler-integral-measure-violates-serre-inequality`.  The hypothesis is closed
+  under integer differences of measures, and the Serre inequality is not.
+* **Positivity-aware moment classes.**  Refuted by
+  `necklace-realizable-measures-can-violate-serre`: the same `Z^3` measure also
+  passes two tests —
+  - nonnegative necklace counts for every nonnegative integral matrix image;
+  - complete positivity of its moment functional.
+  Moment-level positivity survives dominated differences.  What remains untested
+  is realizability of the measure as an operator's spectral measure, with its
+  multiplicative structure.
 * No approximation-free proof of the determinant conjecture for any nonsofic
   group is recorded in this graph.
