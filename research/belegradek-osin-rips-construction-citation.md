@@ -11,8 +11,10 @@ artifacts:
 
 Literature import.
 
-- The statement is quoted verbatim from the arXiv abstract of math/0605553,
-  read on 2026-09-12.
+- The statement is Corollary 1.2 of arXiv:math/0605553v4, quoted verbatim
+  from the PDF by the reviewer lane on 2026-09-12
+  (`research/artifacts/review-hyperbolic-leavitt-cover-2026-09-12.md`). The
+  abstract, read the same day, agrees.
 - Published version: Groups Geom. Dyn. **2** (2008) 1--12, DOI
   `10.4171/GGD/29`. Its Corollary 1.2 was read for `rips-kernel-equivalence-proof`
   on 2026-08-30.

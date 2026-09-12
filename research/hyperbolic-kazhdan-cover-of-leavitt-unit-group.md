@@ -9,9 +9,10 @@ distinct_from:
   openai-leavitt-unit-nonsofic: that is nonsoficity of the quotient; this is a hyperbolic cover of it whose own soficity is open.
 artifacts:
   - research/artifacts/hyperbolic-leavitt-cover-relative-defect-2026-09-12.md
+  - research/artifacts/review-hyperbolic-leavitt-cover-2026-09-12.md
 ---
 
-**ESTABLISHED.** Put `R = L_(F_2)(1,2)`. There is a short exact sequence
+**ESTABLISHED.** Independent review: PASS (reviewer lane, 2026-09-12). Put `R = L_(F_2)(1,2)`. There is a short exact sequence
 
 ```text
 1 -> N -> G -> R^x -> 1
@@ -19,7 +20,8 @@ artifacts:
 
 with the following properties:
 
-- `G` is word-hyperbolic;
+- `G` is word-hyperbolic and torsion-free, since the Rips source is a
+  torsion-free lattice (Belegradek--Osin Corollary 1.2, "Moreover" clause);
 - `G` and `N` have property (T);
 - `N` is infinite;
 - every homomorphism `phi` from `G` to a finite group satisfies

@@ -18,14 +18,17 @@ a short exact sequence
 1 -> N -> G -> Q -> 1
 ```
 
-with `G` word-hyperbolic and `N` a quotient of `H`.
+with `G` word-hyperbolic and `N` a quotient of `H`. Moreover, `G` is
+torsion-free whenever `H` is.
 
 Source: I. Belegradek and D. Osin, *Rips construction and Kazhdan property
-(T)*, Groups Geom. Dyn. **2** (2008) 1--12, arXiv:math/0605553v4. The abstract,
-read verbatim on 2026-09-12: "We show that for any non--elementary hyperbolic
-group H and any finitely presented group Q, there exists a short exact
-sequence 1→N→G→Q→1, where G is a hyperbolic group and N is a quotient group of
-H."
+(T)*, Groups Geom. Dyn. **2** (2008) 1--12, arXiv:math/0605553v4,
+**Corollary 1.2**. The reviewer lane read the v4 PDF on 2026-09-12; verbatim:
+"For any nonelementary hyperbolic group H and any finitely presented group Q,
+there exists a short exact sequence 1→N→G→Q→1, where G is hyperbolic and N is
+a quotient group of H. Moreover, G is torsion-free whenever H is." The arXiv
+abstract, read the same day, states the first sentence. No further hypotheses
+are needed.
 
 ## Two permanence facts consumers use
 
