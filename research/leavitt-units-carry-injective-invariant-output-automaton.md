@@ -53,3 +53,13 @@ pattern on `{1,h}` with distinct symbols.
 - *Counting along permutation models.* Over `G` every model folds each `h` onto
   `1`, so no counting argument decides this claim in either direction.
   Recorded, not an attack on existence.
+- *Invisibility is necessary, not sufficient.* `surjunctive-nonsofic-group-exists`
+  exhibits surjunctive groups with nontrivial sofic radical: residually finite
+  lamps over a residually finite base. So the conditions above cannot be
+  promoted to an existence principle. That proof reduces to surjunctive point
+  stabilizers of a normal lamp structure, and `G` has no normal subgroups at
+  all. By `strict-automaton-tables-present-an-invisible-window-difference`, any
+  solution's own product tables must present a nonsofic group. Its decoder
+  window must therefore realize a nonsofic configuration, today a one-sided
+  compression configuration, and the decoder identity must genuinely use those
+  relators.
