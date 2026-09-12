@@ -8,6 +8,7 @@ requires:
   - sylvester-rank-functions-on-leavitt-units-kill-two-root-defect
   - leavitt-rank-functions-killing-two-root-defect-are-augmentation
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/sylvester-rank-function-two-root-gate-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ Artifact Corollary 4.
 3. By `leavitt-rank-functions-killing-two-root-defect-are-augmentation`, `rk(D) > 0`. That contradicts
    the first requirement.
 4. `R^x` is infinite, so it is a group that is not linear sofic over `F_2`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 23.1 (Corollary 4) of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid, conditional on the OPEN sylvester-rank-functions-on-leavitt-units-kill-two-root-defect. The uniform constant κ is not needed: a nontrivial homomorphism into a faithful rank ultraproduct already gives rk(1 − [x]) > 0 for some x, so rk != rk_ε, and Theorem 1 then gives rk(D) > 0.*
