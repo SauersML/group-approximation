@@ -87,11 +87,19 @@ sends `z` to `1`.
 *Proof.* `b` and `c` lie in `S_Γ`, because `eps_-` is in `F_3[Γ]` and `b = eps_- b`. Apply
 Theorem 2.1 (d). QED
 
-**Corollary 3.2 (comparison).** Corollary 3.1 implies `ternary-corner-witnesses-need-non-linear-sofic-support`.
-- An `F_3`-linear sofic approximation of `Γ` separating `z` from `1` gives a homomorphism into a rank
-  ultraproduct with `σ(z) != 1`.
-- Corollary 3.1 excludes more: non-linear-sofic groups that have a single rank model moving `z`, for
-  example any group with a finite quotient in which `z` survives.
+**Corollary 3.2 (comparison, corrected).** Corollary 3.1 and `ternary-corner-witnesses-need-non-linear-sofic-support`
+complement each other, and neither implies the other. An earlier version of this corollary said
+"implies", which was wrong; gk-vf-linear caught it (Section 46 of its verification artifact).
+- That node constrains `H = <z, w, supp b, supp c>`. Corollary 3.1 constrains `Γ = <H, d>`, and `d`
+  need not lie in `H`.
+- Theorem 2.1 needs `d`. Without it, `σ(w) f = f` is possible, the state gives `e_-` the value `1`, and
+  there is no contradiction.
+- Linear soficity passes to subgroups, so "`H` is not `F_3`-linear sofic" gives "`Γ` is not", but not
+  conversely. Corollary 3.1 also gives "`Γ` is not `F_3`-linear sofic", since a separating approximation
+  of `Γ` is a rank model moving `z`. That is weaker than the node's statement about `H`.
+- In the other direction, Corollary 3.1 has the weaker model hypothesis. A single rank model of `Γ`
+  moving `z`, for example a finite quotient of `Γ` in which `z` survives, excludes a candidate that the
+  linear-sofic filter excludes only through separating approximations.
 
 **Corollary 3.3 (global form).** If `G` has a homomorphism into the units of a characteristic-three rank
 ultraproduct with `σ(z) != 1`, then `ternary-anti-invariant-swap-corner-is-full` is false.

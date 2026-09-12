@@ -167,8 +167,11 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     and a characteristic-three rank model of it moving `z`. Compressing to the minus-one eigen-corner
     gives a `K_0` state normalized at `eps_-`, and the dihedral halving `d w d^-1 = z w` then rules out
     witnesses supported there.
-  - So a witness's support subgroup sends `z` to `1` in every rank model, finite-dimensional
-    representation and finite quotient. That strengthens `ternary-corner-witnesses-need-non-linear-sofic-support`.
+  - So the subgroup `<z, w, d, supp b, supp c>` of a witness sends `z` to `1` in every rank model,
+    finite-dimensional representation and finite quotient. This complements
+    `ternary-corner-witnesses-need-non-linear-sofic-support`, which concerns the subgroup without `d`;
+    neither filter implies the other. An earlier version of this entry said "strengthens", which was
+    wrong (gk-vf-linear, Section 46).
   - One rank model of `G` moving `z` would refute this claim. The target survives only if every
     characteristic-three rank model of `G` factors through `G/<z>`.
   - Dead ends, artifact Sections 4–5:
