@@ -230,8 +230,18 @@ theorem scaledBisectionRep_near_bridge [Fintype I] {L : Type*} [Fintype L] [Deci
       ⟨(scaledClusterEmbedding D.clusterData ι hinj hdisj).bridge q X
         (scaledBisectionIndexEquiv (D := D.clusterData) b X),
         (FinitePartialBijection.mem_clusterCandidates _ _ _ _ _).mpr hc⟩ := by
-    rw [scaledBisectionRep, hb]
-    exact Quotient.mk_out _
+    have key : ∀ t : Quotient (D.clusterData.nearSetoid X
+        (scaledBisectionIndexEquiv (D := D.clusterData) b X)),
+        t = Quotient.mk _ ⟨(scaledClusterEmbedding D.clusterData ι hinj hdisj).bridge q X
+          (scaledBisectionIndexEquiv (D := D.clusterData) b X),
+          (FinitePartialBijection.mem_clusterCandidates _ _ _ _ _).mpr hc⟩ →
+        D.clusterData.Near t.out ⟨(scaledClusterEmbedding D.clusterData ι hinj hdisj).bridge q X
+          (scaledBisectionIndexEquiv (D := D.clusterData) b X),
+          (FinitePartialBijection.mem_clusterCandidates _ _ _ _ _).mpr hc⟩ := by
+      rintro t rfl
+      exact Quotient.mk_out
+        (s := D.clusterData.nearSetoid X (scaledBisectionIndexEquiv (D := D.clusterData) b X)) _
+    exact key (b.hom ⟨X⟩) hb
   exact hrel
 
 /-- **At a selected object, the arrow of a completed bisection is near the bridge.** -/

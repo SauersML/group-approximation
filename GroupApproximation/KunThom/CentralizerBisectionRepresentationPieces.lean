@@ -185,7 +185,7 @@ variable {E : BlockEmbedding Y I} {L : Type*}
 /-- **Boundary slices of the pieces.**  At the label `s`, the boundary of all the pieces of
 block `C` is at most twice its local obstructions plus its points sent to entering
 failures. -/
-theorem sum_card_boundarySlice_le [Fintype I] [DecidableEq L] (A : BlockAction E L)
+theorem sum_card_boundarySlice_le [Fintype I] [Fintype L] [DecidableEq L] (A : BlockAction E L)
     (q : Equiv.Perm Y) (C : I) (s : L) :
     ∑ D, (Finset.univ.filter fun x : E.model C ↦
         (s, x) ∈ taggedBoundary (A.blockAct C) (E.bridge q C D).source).card ≤
@@ -294,7 +294,7 @@ theorem mul_card_model_le_dominant [Fintype I] [Fintype L] (A : BlockAction E L)
   have herase : (E.bridge q C D₀).source.card +
       ∑ D ∈ Finset.univ.erase D₀, (E.bridge q C D).source.card =
         ∑ D, (E.bridge q C D).source.card :=
-    Finset.add_sum_erase _ _ (Finset.mem_univ D₀)
+    Finset.add_sum_erase Finset.univ (fun D ↦ (E.bridge q C D).source.card) (Finset.mem_univ D₀)
   have hnat : Fintype.card (E.model C) ≤ (E.bridge q C D₀).source.card +
       ∑ D ∈ Finset.univ.erase D₀, (E.bridge q C D).source.card + (E.offBlocks q C).card := by
     omega

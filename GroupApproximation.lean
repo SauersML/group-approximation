@@ -4750,3 +4750,5 @@ for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.KunThom.RelativeFunctorImprove
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyFrameSteps
+import GroupApproximation.KunThom.CentralizerBisectionRepresentation
+import GroupApproximation.KunThom.CentralizerBisectionRepresentationPieces
