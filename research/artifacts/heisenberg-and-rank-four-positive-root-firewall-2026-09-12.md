@@ -111,6 +111,19 @@ By (c) and Theorem 1.4, `rk(e) > 0`. By (a), `S_0 T_0` and `S_1 T_1` are idempot
 `leavitt-algebra-has-no-unital-rank-model`, applied in the corner.
 QED
 
+**Remark (the weakened endpoint).** The family lead's pass and `w4-r4-approx` reduce the endpoint to
+`T_0 S_0 = e = T_1 S_1`, `T_1 S_0 = 0`, and any positive lower bound on `rk(T_1)`. Since
+`e = T_1 S_1`, that bound is the same as `rk(e) > 0`. Theorem 2 covers this endpoint too.
+
+* **Idempotents.** `f_i = S_i T_i` is an idempotent in `eMe` with `rk(f_i) >= rk(e)`.
+* **Orthogonality.** `f_1 f_0 = S_1 (T_1 S_0) T_0 = 0` is only one-sided, but `f'_0 = f_0 (e - f_1)` is
+  again idempotent, since `f_1 f_0 = 0` gives `f'_0 f'_0 = f_0 (f_0 - f_1 f_0)(e - f_1) = f'_0`. It is
+  orthogonal to `f_1` on both sides, and `rk(f'_0) = rk(f_0)` because `f'_0 f_0 = f_0`.
+* **Contradiction.** `f'_0 + f_1` is an idempotent in `eMe`, so
+  `rk(e) >= rk(f_0) + rk(f_1) >= 2 rk(e)`, and `rk(e) = 0`.
+
+So in the regular model no positive-root derivation reaches even the weakened endpoint.
+
 The same holds with `UT_4(R)` replaced by any sofic subgroup containing it: the permutation models of
 `sofic-subgroups-carry-rank-models-violating-two-root-identity` have `rk(N_23 N_12) = 3/8`, and an
 argument whose inputs are properties shared by all rank models of that subgroup would apply to them.

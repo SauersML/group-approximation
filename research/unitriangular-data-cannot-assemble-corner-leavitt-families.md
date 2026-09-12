@@ -8,6 +8,7 @@ distinct_from:
   finite-positive-root-fragments-have-marked-regular-models: that gives finite regular models of finite positive-root fragments of the affine-Leavitt Steinberg presentation; this is one direct-limit model of the whole unitriangular group, used against the two-root gate and the corner Leavitt family.
   heisenberg-centre-pairing-constrains-two-root-defect: that asserts the centre pairing forces the two-root defect to vanish; this exhibits a model satisfying every input of that mechanism with rk(N_23 N_12) = 3/8.
   rank-four-isometry-relations-give-corner-cuntz-family: that asserts a corner Leavitt family from a nonzero defect in rank models of R^x; this shows no derivation from positive-root data alone can produce it.
+  unipotent-frame-relations-cannot-assemble-corner-cuntz-family: that uses the p^2-dimensional translation model through the superdiagonal entries, where N_13 = N_14 = 0, so it covers derivations from relations of U_4(R) only; this uses the regular model with the free profile on every finite subgroup, so it also covers rank equalities across root positions from Weyl conjugation and the weakened endpoint T_0 S_0 = e = T_1 S_1, T_1 S_0 = 0, rk(T_1) > 0.
 artifacts:
   - research/artifacts/heisenberg-and-rank-four-positive-root-firewall-2026-09-12.md
 ---
@@ -38,8 +39,10 @@ finite, `n >= 3`, and `L` a countable locally finite group, for example `UT_n(R)
   by ring operations from `sigma(UT_4(R))`, and proves `T_i S_j = delta_ij e`,
   `S_0 T_0 + S_1 T_1 = e` and `rk(e) = rk(N_23 N_12)` from relations of `UT_4(R)`, the ring structure of
   `M`, and conjugation-invariant ranks. Applied to `sigma_reg`, it would give idempotents with
-  `rk(e) >= 2 rk(e) > 0`. So the four-index assembly needs `sigma` as an operator on negative root
-  elements or torus units, jointly on a nonsofic subgroup.
+  `rk(e) >= 2 rk(e) > 0`. The same holds for the weakened endpoint `T_0 S_0 = e = T_1 S_1`,
+  `T_1 S_0 = 0`, `rk(T_1) > 0`: then `S_0 T_0 (e - S_1 T_1)` and `S_1 T_1` are orthogonal idempotents in
+  `eMe`, each of rank at least `rk(e)` (artifact, Remark after Theorem 2). So the four-index assembly
+  needs `sigma` as an operator on negative root elements or torus units, jointly on a nonsofic subgroup.
 
 The conclusion `N_23 N_12 = 0` for rank models of `EL_3(R)` is not affected: it is the open gate
 `rank-models-of-el3-satisfy-the-two-root-identities`.
