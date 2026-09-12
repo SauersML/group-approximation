@@ -136,3 +136,19 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
     bases and glue those bases non-monomially along level-changing units (artifact Section 4e).
 - **Hamming analogue: open.** That a sofic approximation of `EL_3(R)` yields a rank model
   of `R` would reprove nonsoficity of `R^x` with no property (T).
+- **Two root identities are equivalent to this claim (gk-rk-unipotent, 2026-09-12, 685d99751a).**
+  - `el3-unit-root-matrix-units-iff-two-root-identities` (established): for any rings, the six
+    unit root elements act by matrix units iff `N_12^2 = 0` and `N_23 N_12 = 0`, where
+    `N_ab = sigma(x_ab(1)) - 1`. The idempotents are forced, `p_i = N_ij N_ji`. In
+    characteristic two the single identity `N_23 N_12 = 0` decides.
+  - `matrix-unit-rank-models-extract-ring-rank-models` (established): matrix-unit models extract
+    a unital ring homomorphism into a rank-ultraproduct corner, or are trivial. Simplicity is
+    not used.
+  - So this claim is equivalent to `rank-models-of-el3-satisfy-the-two-root-identities`, through
+    routes `two-root-identities-give-el3-ring-rigidity` and
+    `el3-ring-rigidity-gives-the-two-root-identities` (intended cycle).
+  - Calibration `fd-represented-coefficients-violate-two-root-identities`: the identity fails in
+    regular-representation models over any finitely represented coefficient ring. Even the
+    Toeplitz subring doesn't suffice. A proof must use a coefficient family with no
+    finite-dimensional representation, or the no-rank-model hypothesis beyond relations.
+  - Artifact `research/artifacts/el3-two-root-identities-2026-09-12.md`.
