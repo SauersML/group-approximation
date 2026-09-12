@@ -36,6 +36,7 @@ namespace KGen
 
 open CategoryTheory
 open GroupApproximation.STW59
+open GroupApproximation.CharClass.LH
 open GroupApproximation.CharClass.ChernSplittingOf
 
 noncomputable section
