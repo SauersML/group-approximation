@@ -193,6 +193,26 @@ theorem stepDHalf_powers_of_wu (n : ℕ) (hn : Even n) (hn2 : 2 ≤ n)
 
 end Gen
 
+/-! ## 5. The rank-two bridge
+
+At `n = 2` the Step D half is, **definitionally**, the `stepD` conjunct of
+`CharClass/LemmaTwoGlue.lean`'s `LemmaTwoInput`, over the rank-two `baseM`, `VIdx` and
+`Vmat`.  The `Iff.rfl` below makes that a build error if it ever stops holding; it runs
+`sp-tower`'s `rfl` bridges (`baseM dd ≡ Gen.baseM 2 dd`, `VIdx dd ≡ Gen.VIdx 2 dd`,
+`Vmat ≡ Gen.Vmat 2`) inside a quantified proposition and in the type of `topClass`. -/
+
+variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
+
+theorem stepDHalf_two_iff {K : Type*} [Zero K]
+    (topClass : (↥sphereOne × baseM dd →
+      Matrix (VIdx dd ⊕ VIdx dd) (VIdx dd ⊕ VIdx dd) ℂ) → K) :
+    Gen.StepDHalf 2 dd topClass ↔
+      ∀ G : baseM dd → Matrix (VIdx dd) (VIdx dd) ℂ, Continuous G →
+        (∀ m, IsCornerUnitary (Vmat m) (G m)) →
+        topClass (mappingTorus Vmat G circHoriz circHeight) = 0 :=
+  Iff.rfl
+
+#audit_axioms stepDHalf_two_iff
 #audit_axioms Gen.StepDHalf
 #audit_axioms Gen.stepDHalf_of_wu
 #audit_axioms Gen.stepDHalf_of_wu_stage
