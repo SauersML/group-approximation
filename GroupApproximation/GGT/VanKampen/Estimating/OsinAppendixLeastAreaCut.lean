@@ -62,25 +62,25 @@ theorem Surgery.MapCollapse.RegionCutData.diagram_leastArea {G : Type u} [Group 
     cut.diagram.LeastArea := by
   intro m hm
   let c := cut.basepoint
-  let infix := (cut.cells.map Subtype.val).map RelatorCell.value
+  let mid := (cut.cells.map Subtype.val).map RelatorCell.value
   have hkept : cut.diagram.relatorCells.map RelatorCell.value =
-      infix.map (fun x => c⁻¹ * x * c) := by
+      mid.map (fun x => c⁻¹ * x * c) := by
     show (cut.cells.map (Surgery.MapCollapse.keptRelatorCell Delta cut.outside
       cut.region cut.basepoint)).map RelatorCell.value = _
-    simp only [infix, List.map_map]
+    simp only [mid, List.map_map]
     apply List.map_congr_left
     intro C _
     exact Surgery.MapCollapse.keptRelatorCell_value Delta cut.outside cut.region
       cut.basepoint C
-  have hpiece : cut.diagram.boundaryValue = c⁻¹ * infix.prod * c := by
+  have hpiece : cut.diagram.boundaryValue = c⁻¹ * mid.prod * c := by
     rw [← cut.diagram.relatorValues_prod_eq_boundaryValue, hkept]
-    have h := RelatorDefectBudget.prod_map_conj c⁻¹ infix
+    have h := RelatorDefectBudget.prod_map_conj c⁻¹ mid
     simpa only [inv_inv] using h
   have hinfix : RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
-      infix.prod := by
+      mid.prod := by
     have h := hm.conj c
     rw [hpiece] at h
-    have heq : c * (c⁻¹ * infix.prod * c) * c⁻¹ = infix.prod := by group
+    have heq : c * (c⁻¹ * mid.prod * c) * c⁻¹ = mid.prod := by group
     rwa [heq] at h
   have hbefore := RelatorDefectBudget.isRelatorProduct_prod_of_signedConjugates
     (cut.before.map RelatorCell.value) (by
@@ -93,10 +93,10 @@ theorem Surgery.MapCollapse.RegionCutData.diagram_leastArea {G : Type u} [Group 
       obtain ⟨C, _hC, rfl⟩ := List.mem_map.mp hx
       exact C.value_isSignedConjugate)
   have hsum := (hbefore.mul hinfix).mul hafter
-  have hDelta : (cut.before.map RelatorCell.value).prod * infix.prod *
+  have hDelta : (cut.before.map RelatorCell.value).prod * mid.prod *
       (cut.after.map RelatorCell.value).prod = Delta.boundaryValue := by
     rw [← Delta.relatorValues_prod_eq_boundaryValue, cut.cells_infix]
-    simp only [infix, List.map_append, List.prod_append]
+    simp only [mid, List.map_append, List.prod_append]
   rw [hDelta] at hsum
   have hle := hlea hsum
   have hcount : Delta.rCellCount =

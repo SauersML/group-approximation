@@ -66,7 +66,7 @@ universe u w v
 theorem map_subtypeVal_map {α β : Type*} {p : α → Prop}
     (l : List {a : α // p a}) (f : α → β) :
     l.map (fun d => f d.1) = (l.map Subtype.val).map f := by
-  rw [List.map_map]
+  rw [List.map_map]; rfl
 
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (GGT.RelLetter G Lambda))}
@@ -107,7 +107,18 @@ theorem faceWord_keptFace {g : Delta.toCombMap.Face} (hg : g ∉ R.faces) :
           Delta.faceBoundary
           (keptFace Delta.toCombMap R.faces R.region g hg)).darts).map
         (fun d => Delta.label d.1) = Delta.faceWord g := by
-  rw [map_subtypeVal_map, replaceGRegionFaceBoundary_keptFace_map_val]
+  have h := replaceGRegionFaceBoundary_keptFace_map_val Delta.toCombMap R.faces
+    R.region Delta.faceBoundary g hg
+  calc ((replaceGRegionFaceBoundary Delta.toCombMap R.faces R.region
+          Delta.faceBoundary
+          (keptFace Delta.toCombMap R.faces R.region g hg)).darts).map
+        (fun d => Delta.label d.1)
+      = (((replaceGRegionFaceBoundary Delta.toCombMap R.faces R.region
+          Delta.faceBoundary
+          (keptFace Delta.toCombMap R.faces R.region g hg)).darts).map
+          Subtype.val).map Delta.label := by
+        rw [List.map_map]; rfl
+    _ = Delta.faceWord g := by rw [h]; rfl
 
 /-- The merged face reads the region's boundary cycle. -/
 theorem faceWord_newFace :
@@ -116,7 +127,18 @@ theorem faceWord_newFace :
           (newFace Delta.toCombMap R.faces R.region)).darts).map
         (fun d => Delta.label d.1) =
       Embedded.dartWord Delta R.region.toBoundaryCycle.cycle := by
-  rw [map_subtypeVal_map, replaceGRegionFaceBoundary_newFace_map_val]
+  have h := replaceGRegionFaceBoundary_newFace_map_val Delta.toCombMap R.faces
+    R.region Delta.faceBoundary
+  calc ((replaceGRegionFaceBoundary Delta.toCombMap R.faces R.region
+          Delta.faceBoundary
+          (newFace Delta.toCombMap R.faces R.region)).darts).map
+        (fun d => Delta.label d.1)
+      = (((replaceGRegionFaceBoundary Delta.toCombMap R.faces R.region
+          Delta.faceBoundary
+          (newFace Delta.toCombMap R.faces R.region)).darts).map
+          Subtype.val).map Delta.label := by
+        rw [List.map_map]; rfl
+    _ = Embedded.dartWord Delta R.region.toBoundaryCycle.cycle := by rw [h]; rfl
 
 /-! ## The relator cells -/
 
@@ -150,10 +172,10 @@ theorem collapseCells_map_word :
   have h1 : (R.collapseCells).map RelatorCell.word =
       R.cells.map (fun C => C.1.word) := by
     show ((R.cells.map R.collapseCell).map RelatorCell.word) = _
-    rw [List.map_map]
+    rw [List.map_map]; rfl
   have h2 : (R.cells.map Subtype.val).map RelatorCell.word =
       R.cells.map (fun C => C.1.word) := by
-    rw [List.map_map]
+    rw [List.map_map]; rfl
   rw [h1, ← R.cells_eq, h2]
 
 theorem collapseCells_map_value :
@@ -162,10 +184,10 @@ theorem collapseCells_map_value :
   have h1 : (R.collapseCells).map RelatorCell.value =
       R.cells.map (fun C => C.1.value) := by
     show ((R.cells.map R.collapseCell).map RelatorCell.value) = _
-    rw [List.map_map]
+    rw [List.map_map]; rfl
   have h2 : (R.cells.map Subtype.val).map RelatorCell.value =
       R.cells.map (fun C => C.1.value) := by
-    rw [List.map_map]
+    rw [List.map_map]; rfl
   rw [h1, ← R.cells_eq, h2]
 
 theorem cells_map_face_nodup :
@@ -183,13 +205,13 @@ theorem collapseCells_faces_nodup :
       R.cells.map (fun C =>
         keptFace Delta.toCombMap R.faces R.region C.1.face C.2) := by
     show ((R.cells.map R.collapseCell).map RelatorCell.face) = _
-    rw [List.map_map]
+    rw [List.map_map]; rfl
   rw [h1]
   refine List.Nodup.map_on ?_ R.cells_nodup
   intro x hx y hy hxy
   have hface : x.1.face = y.1.face :=
     keptFace_inj Delta.toCombMap R.faces R.region x.1.face y.1.face x.2 y.2 hxy
-  exact List.inj_on_of_nodup_map R.cells_map_face_nodup x hx y hy hface
+  exact List.inj_on_of_nodup_map R.cells_map_face_nodup hx hy hface
 
 theorem mem_collapseCells
     {C : {C : RelatorCell Delta.toCombMap Delta.outerFace W //

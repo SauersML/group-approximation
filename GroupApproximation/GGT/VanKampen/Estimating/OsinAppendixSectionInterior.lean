@@ -29,6 +29,7 @@ variable {G : Type u} [Group G] {Lambda : Type w}
   {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
 
 open scoped Classical
+open GroupApproximation.HullSC
 
 /-- A selected cell-to-cell region, as an edge of `Φ_M`. -/
 def InteriorEdge (selected : Finset (RegionCandidate D eps Delta)) :=

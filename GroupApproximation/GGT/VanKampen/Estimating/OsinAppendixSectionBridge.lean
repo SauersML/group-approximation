@@ -96,10 +96,12 @@ def empty {G : Type u} [Group G] {Lambda : Type w}
     (Delta : DiscDiagram.{u, w, v} W)
     (cuts : SectionCuts D lambda c Delta.boundaryWord) (hred : Delta.Reduced) :
     RealizedSectionFamily D lambda c eps Delta cuts where
-  toRealizedRegionFamily := RealizedRegionFamily.empty D eps Delta hred
-  respects := by
-    intro a ha
-    simp [RealizedRegionFamily.empty] at ha
+  diagram := Delta
+  equiv := OEquivalentDiscDiagram.refl Delta
+  reduced := hred
+  family := ∅
+  pairwise := by intro a ha; simp at ha
+  respects := by intro a ha; simp at ha
 
 end RealizedSectionFamily
 
