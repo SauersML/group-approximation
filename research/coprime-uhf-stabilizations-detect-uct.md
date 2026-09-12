@@ -36,4 +36,8 @@ Proof: `coprime-uhf-stabilizations-detect-uct-proof`.
 Brown--Browne--Willett--Wu 2020; Willett--Yu; Jaime--Willett; the STW problem
 list) does not state (CU1) or the filter.  The argument is the dimension-drop
 trick and may well be folklore; it is recorded here with a complete proof and
-no priority claim.
+no priority claim.  The literature uses coprime primes the same way:
+Barlak--Li II (arXiv:1704.04939v2) Theorem 1.4 needs exactly `p = 2` and `p = 3`
+(`barlak-li-uct-iff-z2-z3-actions-fix-cartan`), and their introduction cites
+Barlak--Szabó Theorem 4.17 for the reduction of Problem II to `Z_p`-crossed
+products of `O_2`.
