@@ -6,6 +6,7 @@ title: The binary group algebra of the Leavitt unit group carries a Sylvester ra
 refuted_by:
   - binary-cyclic-averaging-idempotent-is-full-on-leavitt-units
   - thompson-v-order-three-averaging-idempotent-is-full
+  - sylvester-rank-functions-on-leavitt-units-kill-two-root-defect
 distinct_from:
   binary-leavitt-unit-group-is-f2-linear-sofic: that asks for rank-metric approximations of R^x by matrices over F_2; this asks only for one Sylvester matrix rank function on F_2[R^x] other than the augmentation rank, which linear soficity supplies and which need not be matricial.
 artifacts:
@@ -45,3 +46,19 @@ binary averaging target. It implies that every characteristic-two rank model of 
   - It does not come from any `M_n(D)`.
   - On the nine-cylinder group `⟨g, D(g)⟩ ≅ C_3²` it satisfies `rk(1 - e) = 3 rk(e - e_(C_3²))`
     (artifact Section 3).
+- **One element decides (lane `w4-rankfn`, artifact
+  `research/artifacts/sylvester-rank-function-two-root-gate-2026-09-12.md`).**
+  - Identify `R^x = EL_3(R)` through the three-leaf prefix code. By
+    `leavitt-rank-functions-killing-two-root-defect-are-augmentation`, a Sylvester rank function on
+    `F_2[R^x]` is `rk_ε` iff it kills `D = ([x_23(1)] - 1)([x_12(1)] - 1)`, which lies in the evaluation
+    kernel.
+  - So this claim says exactly that some rank function gives `D` positive rank. Its negation is the open
+    `sylvester-rank-functions-on-leavitt-units-kill-two-root-defect`, the Sylvester form of the two-root
+    gate.
+  - Gate arguments that use only group relations, ring identities and the Sylvester axioms decide this
+    claim. Arguments that use images, idempotent lifting or rounding reach only matricial rank functions.
+- **Non-matricial sources (lane `w4-rankfn`, artifact Section 3).** No construction.
+  - Rank completions of locally matricial algebras only reproduce linear soficity.
+  - Følner compressions of permutation modules are Hamming, so they would make `R^x` sofic.
+  - Diagonal tensor powers of `R`-modules remain a handle: `D` acts by `e_23 (x) e_12 + e_12 (x) e_23`,
+    and `V` has no invariant density on `X^n`.
