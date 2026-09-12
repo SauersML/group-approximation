@@ -54,6 +54,12 @@ sums.
   length-changing units. The standard units `@u @v @w @g` generate `S_3` and are
   dead, as are the rank-three lifts
   (`leavitt-rank-three-lift-has-no-one-sided-inverse`).
+- `sofic-support-cannot-install-half-corner-comparison` (db1604762) is the
+  sharper form for the comparison stage, where `Z` is a split embedding between
+  inequivalent idempotents of a chart `K`. It is what
+  `kdf-leavitt-certificate` prunes with. `dfsat` searches complete pairs with no
+  chart and no comparison stage, so the operative prune here is the per-factor
+  rigidity above. A future comparison-stage encoding must use this lemma instead.
 - `dykema-heister-juschenko-bounded-rank-direct-finiteness`: support pairs
   `(3, n <= 11)` and `(5, 5)` are dead over `F_2` for every group, and
   augmentation forces both supports to be odd.
@@ -81,18 +87,26 @@ The two families searched are built to avoid all three:
 | v | (2,3) | strict clause | 9,284 | UNSAT | 147 s |
 | eld | (1,1) | strict clause | 1,225 | UNSAT | 0.08 s |
 | eld | (1,2) | strict clause | 32,655 | UNSAT | 238 s |
-| v | (2,2) | `pi(beta) = s0` | 1,936 | UNSAT: `s0` outside the span of `pi(B)` | trivial |
-| v | (2,2) | `pi(alpha) = t0` | 1,936 | UNSAT: `t0` outside the span of `pi(A)` | trivial |
-| eld | (1,1) | `pi(beta) = s0` / `pi(alpha) = t0` | 1,225 | UNSAT: target outside the span | trivial |
-| eld | (1,2) | `pi(beta) = s0` | 32,655 | UNSAT | 0.0 s |
-| eld | (2,1) | `pi(alpha) = t0` | 32,655 | UNSAT | 0.0 s |
+| eld | (2,1) | strict clause | 32,655 | UNSAT | 256 s |
 
-Running: `v` (3,3) and `eld` (2,1) in strict mode (acn112); batch 3 (sbatch
-`kdf-sat-b3`) in target mode, `eld` (2,2) both ways and `v` (3,4)/(4,3).
+**Target mode so far is only linear.** Gaussian elimination (`span_contains`,
+c698d076a) shows that `s0` is not in the `F_2`-span of `pi(B_4(V))` and not in
+the span of `pi(B_2(eld))`, and likewise for `t0`. Every target-mode UNSAT
+recorded on these families is that linear fact, not a bilinear one:
 
-The target mode is far cheaper. The evaluation rows plus the singleton-cell unit
-clauses settle the radius-2 `eld` instances at once, so the larger supports go
-through target mode first.
+| family | supports | target | status |
+|---|---|---|---|
+| v | `B` up to radius 4 | `pi(beta) = s0` | target outside the span |
+| v | `A` up to radius 4 | `pi(alpha) = t0` | target outside the span |
+| eld | `B` up to radius 2 | `pi(beta) = s0` | target outside the span |
+| eld | `A` up to radius 2 | `pi(alpha) = t0` | target outside the span |
+
+So the sharp lift problem needs supports whose evaluations reach `s0`. The atlas
+family below does: the predecessor's seven-term lift of `s0` lives in a
+radius-three atlas ball.
+
+Running: `v` (3,3) in strict mode; the `atlas` family in target mode, (1,3)/(3,1)
+and then (2,3)/(3,2).
 
 ## Trust surface
 
