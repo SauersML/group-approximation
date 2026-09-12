@@ -38,8 +38,9 @@ uses. -/
 theorem tupD_exists_preimage_zero_stdSimplexTop_zmod [Fact p.Prime] (n r : ℕ)
     (y : tupMod (ZMod p) (stdSimplexTop n) r 0)
     (hy : tupAug (ZMod p) (stdSimplexTop n) r y = 0) :
-    ∃ z : tupMod (ZMod p) (stdSimplexTop n) r 1, tupD (ZMod p) (stdSimplexTop n) r 0 z = y :=
-  tupD_exists_preimage_zero_stdSimplexTop (ZMod p) n r y hy
+    ∃ z : tupMod (ZMod p) (stdSimplexTop n) r 1, tupD (ZMod p) (stdSimplexTop n) r 0 z = y := by
+  have h := tupD_exists_preimage_zero_stdSimplexTop (ZMod p) n r
+  exact h y hy
 
 /-- **The target is acyclic on the models in degree `0`**, relative to its augmentation. -/
 theorem oddTgt_acyclicZeroOnModels [Fact p.Prime] (r s : ℕ) (hs : r ∣ s * p) :
@@ -114,7 +115,18 @@ theorem oddDiagApp_grGen [Fact p.Prime] (X : TopCat.{0}) (k : ℕ) (x : OddWTens
     moduleOfOrderP_smul (Fact.out : p.Prime).one_lt _ _ _
   rw [h, pow_one]
 
-/-- **In degree `0` the diagonal is the constant tuple.** -/
+/-- The index of a degree-`0` generator on a point is the constant tuple of that point. -/
+@[simp] theorem diagPtIdx_zero (X : TopCat.{0}) (r : ℕ) (x : stdSimplexTop 0 ⟶ X) :
+    diagPtIdx X r (⟨0, x⟩ : WSIndex 0 X) = diagPt X r x :=
+  rfl
+
+/-- **In degree `0` the diagonal is the constant tuple.**  The component is rewritten to
+`diagF0` by `acyclicModelsMap_zero` after unfolding `oddDiagApp` and `oddDiagonal`, so the
+unifier never reduces the recursive component `((acyclicModelsMap …).app X).f 0` (that
+reduction exhausted the heartbeats at `whnf`, probe 0912-120717-49104).  `diagF0` is then read
+as `diagF0Lin` by `show`, as in `diagF0_natural`: `unfold diagF0` leaves `ModuleCat.ofHom` at
+the `ModuleCat.of` objects, which is not type-correct at `instances` transparency, so
+`ModuleCat.hom_ofHom` cannot be rewritten there (probe 0912-121845-91999). -/
 theorem oddDiagApp_zero [Fact p.Prime] (X : TopCat.{0}) (x : stdSimplexTop 0 ⟶ X) :
     oddDiagApp p X 0 (Finsupp.single (⟨0, x⟩ : WSIndex 0 X) (1 : GroupRingZMod p))
       = Finsupp.single (diagPt X p x) (1 : ZMod p) := by
@@ -123,12 +135,11 @@ theorem oddDiagApp_zero [Fact p.Prime] (X : TopCat.{0}) (x : stdSimplexTop 0 ⟶
     (tgtAug p p 1 (dvd_mul_left p 1)) (oddTgt_acyclicZeroOnModels p p 1 (dvd_mul_left p 1))
     (diagF0 p p 1 (dvd_mul_left p 1)) (diagF0_natural p p 1 (dvd_mul_left p 1))
     (diagF0_aug p p 1 (dvd_mul_left p 1)) X
-  have h2 : oddDiagApp p X 0 (Finsupp.single (⟨0, x⟩ : WSIndex 0 X) (1 : GroupRingZMod p))
-      = diagF0Lin p X p 1 (dvd_mul_left p 1)
-          (Finsupp.single (⟨0, x⟩ : WSIndex 0 X) (1 : GroupRingZMod p)) :=
-    congrArg (fun g => ModuleCat.Hom.hom g
-      (Finsupp.single (⟨0, x⟩ : WSIndex 0 X) (1 : GroupRingZMod p))) h
-  rw [h2]
+  unfold oddDiagApp oddDiagonal
+  rw [h, ← diagPtIdx_zero X p x]
+  letI := tupModule p X p 0 1 (dvd_mul_left p 1)
+  show diagF0Lin p X p 1 (dvd_mul_left p 1)
+      (Finsupp.single (⟨0, x⟩ : WSIndex 0 X) (1 : GroupRingZMod p)) = _
   exact diagF0Lin_single p X p 1 (dvd_mul_left p 1) ⟨0, x⟩
 
 end
