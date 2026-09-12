@@ -8,6 +8,7 @@ distinct_from:
   structurally-reversible-automata-are-formalizable: that shows words in gates are formal involutions; this shows that in the erasure step, sitewise gates cannot use a functional copy whose remainder is nonlocal.
 artifacts:
   - research/artifacts/stable-formalization-erasure-audit-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `k` be a field and `S` a finite set of variables. Let `c ∈ k[S]`, and let `d` be a polynomial

@@ -35,6 +35,7 @@ not by rereading the author's argument. Nothing was run.
 | `2740990165` (gk-fz-decompose) | `subset-stable-marker-flips-are-virtually-formalizable`, `marker-involution-over-rationals-is-not-virtually-formalizable`, route `virtual-formalizability-reduces-surjunctivity-to-kaplansky` | PASS (Section 29) |
 | `d2fb445ab`, `91ef83465` (gk-fz-counter) | `finite-group-formalizability-equals-equivariant-automorphism`, `formalizable-pairs-restrict-to-finite-quotients`, `order-three-equivariant-plane-automorphisms-are-linear`, `z3-level-preserving-automorphisms-rotate-uniformly` | PASS (Section 30) |
 | `77278f6fd` (gk-fz-kari) | partition lemma F1 and F2, route `kari-words-give-virtual-formalizability-over-integers`, the re-derivations of Sections 2.1–2.4 | PASS (Section 31) |
+| `382ec7a73` (gk-fz-strict) | `garbage-output-tracks-formalize-every-left-inverse-pair`, `invertible-ancilla-outputs-collapse-stable-formalization`, `sitewise-gates-cannot-erase-nonlocal-defects` | PASS (Section 32) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1219,6 +1220,66 @@ directions work.
   within the theorem's scope, not only its HNN corollary. That theorem was passed by gk-verify-pos.
 - *Consequences.* The last bullet is honest: on virtually simple lattices the filter excludes
   nothing, because `F_V ∩ Gamma_s != 1` and embedding a finite-index subgroup already suffices.
+
+## 32. Which erasure steps can remove the Bennett remainder (`382ec7a73`, gk-fz-strict): PASS
+
+**Theorem 1.1 and Remark 1.2 (garbage tracks are free and prove nothing).**
+- `sigma~(tau~(X)) + d(X) = X` is immediate from the definition of `d`, and `d` vanishes on points.
+- The rectangular Jacobian pair `B A = I_n` with `A` of size `2n x n` exists over any ring, for
+  instance `A = [I; 0]`, `B = [I 0]`. So direct finiteness, which constrains square pairs only, says
+  nothing. The remark's conclusion — that squareness is what the linearization theorem consumes — is
+  right, and it matches my Section 7.
+
+**Theorem 2.1 (a formally right-invertible ancilla map collapses).**
+1. `Phi`'s `X`-component is `X`, so `(Phi o Theta)_X = Theta_X = X`, and the ancilla component gives
+   `V(X, theta(X,Y')) = Y'`.
+2. Substituting `(X,Y) := (X, theta(X,Y'))` is a ring homomorphism, and step 1 replaces the second
+   argument of `sigma~'` by `Y'`.
+3. Setting `Y' := 0` and reading `X`-components gives `rho~(tau~⁰(X)) = X` formally.
+4. `V = Y + e` with `e` in `I`, so `Phi` is the identity on `F`-points; with `Phi o Theta = id` that
+   makes `Theta` the identity on points, so `theta(x,0) = 0` and `tau~⁰(x) = U(x,0) = tau(x)`.
+5. `(tau x id)(x,0) = (tau(x),0)`, so `sigma'(tau(x),0) = (x,0)` and `rho o tau = id`.
+
+**Corollary 2.2.** With `V = Y + e(X)`, `theta(X,Y') = Y' - e(X)` is equivariant with finite memory and
+satisfies `V(X, theta) = Y'`. An invertible affine map in `Y` over the data has a polynomial inverse
+for the same reason.
+
+**Corollary 2.3.** Theorem 1 applied with `tau := Phi` and `sigma := Lambda` on `n + m` tracks turns
+the formal left inverse into a two-sided one, so `Lambda` is the `Theta` of Theorem 2.1. In Case 1 the
+`Y`-component of `sigma~'(U,V) = (X,Y)` reads `lambda(V(X,Y)) = Y`, which is exactly a formal left
+inverse of `Phi`.
+
+**Corollary 2.4 (the integers).**
+- `F_2[Z]` is commutative, so `BA = I` gives `det(B) det(A) = 1`, making `det(A)` a unit and `A`
+  invertible. Hence every `M_N(F_2[Z])` is directly finite.
+- (a) follows because a formal right inverse would give a plain formalization, which Theorem A
+  excludes for a non-affine `tau`. (b) follows because Case 1 plus direct finiteness would do the same.
+- *Trust surface.* The extension to bi-orderable groups leans on Malcev–Neumann, which the author
+  flags as not re-derived. No node depends on it.
+
+**Corollary 2.5 (sharpness).** A non-affine sitewise permutation over `F_p`, `p >= 5`, has no plain
+formalization by the constant-configuration theorem of Section 25, and Theorem 4.1 part 3 gives it a
+stable formalization whose ancilla output is functionally `Y`. So right-invertibility of `Phi` is a
+proper restriction and Theorem 2.1 is sharp.
+
+**Lemma 3.1 and Theorem 3.2.**
+- For `P = sum_(j<=r) a_j w^j` with `a_r != 0` in `k(S)`, the `T`-degree of `a_j d^j` is
+  `j deg_T(d)`, and `k(S)[T]` is a domain, so the `j = r` term cannot cancel. Hence `P(d) != 0` and
+  `d` is transcendental over `k(S)`.
+- `c + d` is again outside `k[S]` with the same positive `T`-degree, so `F(w) - F(c+d)` vanishes at a
+  transcendental element and is therefore the zero polynomial.
+- *Application.* A sitewise gate reads only `S` and `w_g = X_g - d_g`, and a clean, data or identity
+  output lies in `k[S]`. With `d_g` involving a variable outside `S`, Theorem 3.2 says the gate cannot
+  read `w_g`.
+
+**Remark 3.3 (scope).** Correct. Regrouping turns blocks into sites, so a block-local remainder stops
+being nonlocal, matching `marker-involution-is-formalizable-after-regrouping`. A finitely generated
+infinite simple group has no proper finite-index subgroup, since such a subgroup would give a
+nontrivial finite quotient, so there sites are single cells.
+
+**Reading.** The conclusion that identity tracks must act as nonlinear catalysts follows from the
+three results, and the sitewise `p >= 5` stabilizations show catalysis occurs. Nothing here decides
+`injective-binary-automata-are-stably-formalizable` or Gottschalk.
 
 ## 31. Kari-type blocks and regrouping (`77278f6fd`, gk-fz-kari): PASS
 

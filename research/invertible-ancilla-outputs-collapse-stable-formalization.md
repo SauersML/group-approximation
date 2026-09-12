@@ -9,6 +9,7 @@ distinct_from:
   sitewise-pairs-over-prime-fields-are-stably-formalizable: that constructs stable formalizations of sitewise pairs; this shows those constructions necessarily have relative ancilla maps with no formal right inverse, which makes this collapse sharp.
 artifacts:
   - research/artifacts/stable-formalization-erasure-audit-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `p` be prime, `G` a group, and `τ` an automaton on `(F_p^n)^G` with a left inverse. Suppose we

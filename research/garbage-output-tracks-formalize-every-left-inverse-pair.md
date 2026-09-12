@@ -8,6 +8,7 @@ distinct_from:
   injective-binary-automata-are-stably-formalizable: that asks for square stabilization, with identity tracks read as inputs; this is the rectangular calibration, where the extra tracks are outputs only, and it holds for every pair.
 artifacts:
   - research/artifacts/stable-formalization-erasure-audit-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `p` be prime, `G` any group, and `(τ, σ)` a left-inverse pair on `(F_p^n)^G` with representatives
