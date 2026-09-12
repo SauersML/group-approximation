@@ -196,7 +196,7 @@ theorem compactF_le_map (hr : 1 ≤ r) : compactF m r ≤ (geoF m).map (compConj
   have hzC : ∀ t : ℚ,
       compE m r ((r : ℚ) - 1 + (((k.natAbs + 1) * (m + 2) + k.natAbs * (m + 1) : ℕ) : ℚ)) ≤ t →
       t < r → compConjHom m r (xg m 0 ^ k) t = (r : ℚ) - ((r : ℚ) - t) * ((m : ℚ) + 2) ^ (-k) :=
-    fun t h1 h2 => compConj_near m r (xg_zero_zpow_translation m k) h1 h2
+    fun t h1 h2 => compConj_near m r hr (xg_zero_zpow_translation m k) h1 h2
   set t₁ := compE m r ((r : ℚ) - 1 + (((k.natAbs + 1) * (m + 2) + k.natAbs * (m + 1) : ℕ) : ℚ))
     with ht₁
   have ht₁r : t₁ < r := compE_lt m r _
