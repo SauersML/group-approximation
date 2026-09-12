@@ -182,3 +182,81 @@ w* w = (p - 3/4)_+ = p/4,        w w* = g(q) w w* g(q) = q w w* q.
 ```
 
 So `v = 2w` is a partial isometry with `v*v = p` and `vv* <= q`.  QED
+
+If `sigma(p) = sigma(q)` for all limit traces, then `q - vv*` is a positive
+element with every limit trace zero.  By the compactness argument of Step 1,
+it is zero in `M_k(A^omega)`, so `p` and `q` are equivalent.
+
+## 2. Consequences
+
+**2.1 Projection-comparison certificates against Gamma cannot coexist with
+strict comparison.**
+- Toms's certificate for his simple algebra `B` (Theorem 5) and for the
+  non-simple limit (Theorem 2) is a pair `P, Q` in a matrix amplification of
+  the completion.  The two agree on all traces and are not equivalent.
+- Both proofs use only this: a putative partial isometry has finite-stage
+  contractions close to it in uniform 2-norm.  A partial isometry in
+  `M_k(A^omega)` also provides these, through representing sequences and norm
+  density of the stages.
+- Point-mass survival (Lemma 2 and Proposition 4(3)) then produces a
+  nowhere-zero bundle map, which total degeneracy forbids.
+- So `B` is simple, exact and non-elementary, and has no partial isometry
+  between `P` and `Q` in `M_k(B^omega)`.  By the Theorem, `B` fails strict
+  comparison.  This is a direct argument, independent of Winter's purity
+  theorem and CETWW.
+- More generally, no Gamma obstruction that works by non-subequivalent
+  projections with dominated traces can live in a strict-comparison algebra,
+  whatever its building blocks.
+
+**2.2 The residual question.**  With CETW Theorem A, the unital Toms--Winter
+conjecture follows from:
+
+```text
+(Q_tr)  A unital simple separable nuclear non-elementary, and projections in
+        every M_k(A^omega) compared by limit traces  =>  A has uniform Gamma.
+```
+
+- The hypothesis of `(Q_tr)` concerns only the tracial ultrapower.
+- For a tracially complete algebra with CPoU the hypothesis holds (CCEGSTW
+  Theorem 7.17).  So `(Q_tr)` asks whether this consequence of CPoU already
+  forces CPoU, for completions of nuclear algebras.
+
+**2.3 The locally finite nuclear dimension locus.**
+- Let `A` have locally finite nuclear dimension and strict comparison.  Then
+  `A` is Z-stable iff rank density holds, by the established chain
+  `rank-density-and-strict-comparison-give-purity` plus Winter's purity
+  theorem.
+- Rank density is the existence, in `A^omega`, of projections with every
+  continuous affine trace profile (`rank-density-is-quadratic-trace-selection`).
+- A counterexample on this locus therefore has a tracial ultrapower in which
+  projections are compared perfectly by traces, yet some trace profiles have no
+  projections at all: comparison without existence.
+
+## 3. Attempts on (Q_tr)
+
+- **Unconditional cells.**  Uniform Gamma holds without the hypothesis in
+  these cases:
+  - compact finite-dimensional extreme boundary;
+  - stable rank one with tracially locally finite nuclear dimension (Vaccaro,
+    Theorem B).
+- **CPoU gluing.**  CETWW produce CPoU from Gamma by averaging with
+  approximately central halving projections.  Comparison gives partial
+  isometries between projections that already exist.  It supplies neither the
+  projections nor their centrality.
+- **Real rank zero.**  On the tracially locally-finite-nuclear-dimension locus,
+  real rank zero of `A^omega` gives Gamma (Vaccaro Theorem 2.2 plus Winter).
+  So `(Q_tr)` there follows from "comparison forces real rank zero of the
+  tracial ultrapower", the converse of CCEGSTW Proposition 7.2.  No argument is
+  known.
+- **W*-bundles.**  For a Bauer simplex, `(Q_tr)` asks whether a W*-bundle with
+  hyperfinite II_1 fibres, arising as a completion and comparing projections in
+  its reduced powers, is trivial (Ozawa).  The only known non-local-triviality
+  obstruction (Mommaerts) needs non-Gamma fibres.
+- **Mechanisms excluded as counterexamples.**
+  - Villadsen Euler-class gaps: a small trivial projection not below a larger
+    twisted one.
+  - Toms's Thom--Porteous degeneracy loci.
+
+  Both produce non-subequivalent projections with dominated traces.  A
+  counterexample to `(Q_tr)` among strict-comparison algebras needs an
+  obstruction to central halving that no pair of projections detects.
