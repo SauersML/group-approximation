@@ -37,3 +37,10 @@ idempotent refutes this claim (`non-linear-sofic-via-projective-ternary-swap-ful
   `binary-leavitt-unit-group-is-f2-linear-sofic` asks over `F_2`: whether
   almost-representations of the Kazhdan subgroups in normalized rank can be rounded.
   Nothing here decides it over either field.
+- *Property (T) does not round rank models over finite fields.* By
+  `kazhdan-group-rank-models-admit-no-expander-decomposition` (gk-kdf-structure), exact
+  rank models of `EL_3(F_p[t])` over any finite field admit no decomposition into
+  expanding pieces. So a proof that `PG` is not `F_3`-linear sofic cannot copy the
+  Hamming proof's step where (T) rounds the models of the Kazhdan subgroup. This does
+  not decide the gate. `PG` has no nontrivial finite-dimensional representations, and
+  perturbed models with sublinear pieces are not covered.
