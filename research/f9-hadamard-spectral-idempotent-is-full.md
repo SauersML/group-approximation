@@ -25,3 +25,12 @@ and `ternary-anti-central-cohn-family-over-f9`, this refutes Gottschalk's conjec
   characteristic-three rank model moving `z`.
 - *Where it dies today.* No finitely supported witness is known. See the artifact for the collapse
   audit of spectral monomial lifts.
+- *Equivalent to the swap corner (w4-hadamard-f3, 2026-09-12).* `f_+ = W e_- W^(-1)` for the unit
+  `W = v[c]` of `hadamard-spectral-half-is-constant-conjugate-to-swap-idempotent`: `c` is the constant
+  involution `[[-1,0],[1,1]]` carrying `(wd, d)` to `(h, u)`, and `v` joins two rank-one idempotents of the
+  dihedral copy of `M_2(F_9)`. So this claim is equivalent to `ternary-anti-invariant-swap-corner-is-full`
+  (route `f9-hadamard-fullness-from-swap-corner-fullness` plus the existing chain). The surviving idea of the
+  collapse audit, that `h` in the support escapes the signed Thompson crossed product, is the escape the
+  swap corner already makes through `q_[0] = [h] e_- [h]^(-1)`. Designs translate with supports multiplied by
+  `<h, u> c`; the state filter is the swap filter transported by `[c]`. Section 1 of
+  `research/artifacts/hadamard-spectral-conjugacy-and-forced-states-2026-09-12.md`.
