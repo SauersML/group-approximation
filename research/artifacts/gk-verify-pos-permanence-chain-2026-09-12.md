@@ -231,6 +231,63 @@ surjunctivity of the binary Leavitt unit group. The steward's compiled
   `three-factor-finite-alphabet-ca-are-surjunctive` is valid; its prerequisite
   is open, so nothing is established by it.
 
+## 12. The permanence-closure obstruction (gk-fixed-host)
+
+Reviewed: `fixed-host-permanence-closure-obstruction-2026-09-12.md` (`75922f372`),
+`sofic-permanence-closure-omits-simple-fa-nonsofic-groups` with its proof route,
+`fixed-host-outside-sofic-permanence-closure` with its proof route, the refuted
+`fixed-host-lies-in-sofic-permanence-closure`, and the dead route
+`fixed-host-surjunctive-via-sofic-permanence`. Verdict: PASS.
+
+Theorem 3.1, for `Sigma` finitely presented, simple, FA and nonsofic, and
+`D_Sigma` the groups with no copy of `Sigma`:
+
+* **(c) colimits.** Lift `j(s_a)` to one stage, and kill the finitely many
+  relator values at a later stage. This gives `phi : Sigma -> G_i` with
+  `psi_i phi = j`, and `phi` is injective because `j` is. Only finite
+  presentation is used, and no injectivity of the structure maps. So an
+  embedding into the colimit does factor through an embedding into one stage.
+* **(d) extensions.** `Sigma ∩ N` is normal in `Sigma`, so it is `1` or `Sigma`.
+* **(e) graphs of groups.** FA gives a fixed vertex of the Bass--Serre tree, so
+  `Sigma` lies in a conjugate of a vertex group.
+* **(f) marked limits.** Ball agreement makes the relators hold in `K_n`, and a
+  nontrivial generator stays nontrivial, so `K_n` is a nontrivial quotient of
+  `Sigma`. Simplicity gives `K_n ~= Sigma`. The same argument covers local
+  embeddability of groups that are not finitely generated.
+
+Corollary 3.2:
+
+* Finitary split extensions: (A1) with residually finite `N_S` makes `N`
+  residually finite, hence sofic, and then (a) and (d) apply.
+* Graph folds: the vertex groups embed in a member, so (b) and (e) apply.
+* LEF-lamp graph wreaths: the kernel `Lambda(A)` is a graph product of sofic
+  groups, which is sofic (Ciobanu--Holt--Rees). The artifact's star-splitting
+  induction also works.
+
+Instance `Sigma = R^x`:
+
+* FA: `R_R ~= R_R^12` gives `R^x ~= GL_12(R) = EL_12(R)`, which is Kazhdan, and
+  (T) implies FA.
+* `R^x` embeds in `U` because `U` contains every recursively presented group.
+* Trust surfaces:
+  * finite presentation of `R^x`, imported from Khanh, arXiv:2609.08428v1,
+    Theorem 6.1, whose proof has not been reviewed here;
+  * the (T) and simplicity nodes;
+  * the universal container.
+
+The invalidator's prerequisites each have a live route on main.
+
+**Overlap.** `gottschalk-counterexamples-lie-outside-the-permanence-closure`
+(route `permanence-closure-evasion-proof`, from the table-realization lane)
+proves an FA-free form for the landed operations. It sends a copy of `Q` in a
+graph fold into the fold kernel, which is free, and a copy in an LEF graph wreath
+into a sofic graph product. I re-derived it: PASS. The two claims are distinct:
+
+* the FA form survives arbitrary extensions and arbitrary graphs of groups;
+* the FA-free form needs only an infinite finitely presented simple nonsofic group.
+
+Neither carries `distinct_from` on the other.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by
