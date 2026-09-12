@@ -37,13 +37,15 @@ normally generates `EL_n(R)`."
 First clause: a normal subgroup containing every `e₁₂(r)` contains every `e_{ij}(r)`,
 by the signed permutation conjugations.  Second clause: the normal closure of the copy
 of `EL₂(R)` is `EL_n(R)`. -/
-theorem manuscriptSentence_allRanksSignedPermutations :
-    ∀ (R : Type) [Ring R] (k : ℕ), 1 ≤ k →
-      (∀ (N : Subgroup (elementaryGroup (Fin (2 + k)) R)) [N.Normal],
-        (∀ r : R, elementaryRoot (finSumFinEquiv (Sum.inl (0 : Fin 2)))
-            (finSumFinEquiv (Sum.inl (1 : Fin 2))) (blockEmbed_ne k) r ∈ N) →
-        ∀ (i j : Fin (2 + k)) (hij : i ≠ j) (r : R), elementaryRoot i j hij r ∈ N) ∧
-      Subgroup.normalClosure (Set.range (blockEmbed R k)) = ⊤ := by
+def PrintedAllRanksSignedPermutations : Prop :=
+  ∀ (R : Type) [Ring R] (k : ℕ), 1 ≤ k →
+    (∀ (N : Subgroup (elementaryGroup (Fin (2 + k)) R)) [N.Normal],
+      (∀ r : R, elementaryRoot (finSumFinEquiv (Sum.inl (0 : Fin 2)))
+          (finSumFinEquiv (Sum.inl (1 : Fin 2))) (blockEmbed_ne k) r ∈ N) →
+      ∀ (i j : Fin (2 + k)) (hij : i ≠ j) (r : R), elementaryRoot i j hij r ∈ N) ∧
+    Subgroup.normalClosure (Set.range (blockEmbed R k)) = ⊤
+
+theorem manuscriptSentence_allRanksSignedPermutations : PrintedAllRanksSignedPermutations := by
   intro R _ k _hk
   have hspread : ∀ (N : Subgroup (elementaryGroup (Fin (2 + k)) R)) [N.Normal],
       (∀ r : R, elementaryRoot (finSumFinEquiv (Sum.inl (0 : Fin 2)))
