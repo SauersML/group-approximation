@@ -35,6 +35,20 @@ The proof is in Section 1 of the artifact: lift to near projections, use the
 quadratic spectral inequalities for ranks, add a Glimm witness of uniformly
 small rank and uniformly positive trace so that strict comparison applies with
 a gap, cut down with Rordam's lemma, compress the witness away, and diagonalize
-over witnesses of rank `1/l`.  No novelty is claimed for the statement; CETWW
-arXiv:1901.05853 Lemma 4.3 obtains strict comparison for relative commutants
-under CPoU instead.
+over witnesses of rank `1/l`.  Reviewer PASS:
+`research/artifacts/review-toms-winter-ultrapower-comparison-2026-09-12.md`.
+
+**Literature status (2026-09-12, bounded search by lane `lit-scout`).**  No
+source proving this statement was found.
+- Every comparison-of-projections result found assumes complemented partitions
+  of unity:
+  - Carrion et al., arXiv:2310.20594v6, Theorems 7.5 and 7.17, for reduced
+    products and tracially complete algebras with CPoU;
+  - CETWW, arXiv:1901.05853, Lemma 4.3, which gives strict comparison of
+    relative commutants in `B^omega` under CPoU.
+- Without CPoU, the nearest results reported give only weak*-density of limit
+  traces in the trace space of the ultrapower (Ozawa; Ng--Robert
+  arXiv:1504.00046; not re-read here).  That is a different statement.
+- The search was bounded, so novelty is not asserted.  This claim does not by
+  itself give uniform Gamma; that step is the open
+  `tracial-projection-comparison-forces-uniform-gamma`.
