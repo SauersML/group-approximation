@@ -4,7 +4,8 @@ id: mixed-finite-subgroup-defects-need-infinite-generation
 kind: claim
 title: Nested finite-subgroup idempotent defects need two subgroups generating an infinite group
 distinct_from:
-  lifted-trace-detects-finite-subgroup-projectives: that proves the lifted trace is positive on projectives induced from ONE finite subgroup, so a defect is not such a projective; this treats a defect built as a difference of nested idempotents drawn from TWO finite subgroups, and locates the only surviving case.
+  lifted-trace-detects-finite-subgroup-projectives: that proves the lifted trace is positive on projectives induced from ONE finite subgroup, so a defect is not such a projective; this treats a defect built as a difference of nested idempotents drawn from TWO finite subgroups, in the finite-join case.
+  nested-two-finite-subgroup-idempotents-have-strict-rank: that proves a strict rank gap for nested idempotents from any two finite subgroups at any join, so no such difference is ever a defect; this is its finite-join special case.
   leavitt-nested-idempotent-corner-module-equivalence: that asks for a module isomorphism between two explicitly constructed nested corners over the torsion-free group Q, refuted by cocenter coefficients; this is a general obstruction over the Leavitt unit group R^x, ruling out difference-of-nested-idempotent defects whenever the two finite subgroups generate a finite group.
 artifacts:
   - research/artifacts/mixed-finite-subgroup-defects-2026-09-12.md
@@ -23,12 +24,10 @@ so that case must be excluded. With the amendment the claim is consequence 2 of
 
 **Claim.** If `H = <H_1, H_2>` is finite, no such configuration exists.
 
-Consequently, for `G = R^x = L_(F_2)(1,2)^x`, any defect of the form `e - f`
-with `e, f` supported in finite subgroups forces `<H_1, H_2>` to be infinite.
-This is the only surviving shape of a difference-of-nested-idempotent defect,
-and it complements the single-subgroup exclusion in
-`lifted-trace-detects-finite-subgroup-projectives` (consequence 1) by handling
-two subgroups.
+*Superseded scope.* An earlier version said an infinite join is the only surviving
+shape of such a defect. It is not: `nested-two-finite-subgroup-idempotents-have-strict-rank`
+(established 2026-09-07) excludes these defects at every join (see the `w4-kap-join`
+entry under Attempts). This claim is its finite-join special case.
 
 ## Why this shape
 
@@ -66,7 +65,8 @@ of rank `n` (`AB` is idempotent and `A` trivialises its range). So
 
 ## Attempts
 
-The infinite-generation survivor is open. Over `R^x` two finite subgroups
+*(Stale; superseded by the `w4-kap-join` entry below.)* The infinite-generation
+survivor was recorded here as open. Over `R^x` two finite subgroups
 generically generate an infinite, often dense, subgroup, so this claim does
 not by itself close the finite-subgroup route. What it removes is any hope of a
 defect assembled inside one finite group: a witness must place `e` and `f` in

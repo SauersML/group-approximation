@@ -3,6 +3,7 @@ rg: 2
 id: modular-nested-idempotents-equivalent-over-leavitt-units
 kind: claim
 title: Two finite subgroups of the binary Leavitt unit group carry properly nested equivalent idempotents
+refuted_by: nested-two-finite-subgroup-idempotents-have-strict-rank
 distinct_from:
   nested-idempotents-from-p-regular-intersections-are-equal: that proves nested equal-trace idempotents from finite subgroups with odd intersection coincide over F_2; this asks for a properly nested equivalent pair, which that theorem confines to subgroups with even intersection.
   leavitt-nested-idempotent-corner-module-equivalence: that concerns one explicit nested pair over the torsion-free group Q; this asks for any properly nested equivalent pair supported in two finite subgroups of R^x.
@@ -10,12 +11,17 @@ artifacts:
   - research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md
 ---
 
-**OPEN.** Let `R = L_(F_2)(1,2)` and `G = R^x`. There are finite subgroups `H_1, H_2 <= G`,
+**REFUTED** by `nested-two-finite-subgroup-idempotents-have-strict-rank` (established 2026-09-07;
+flagged by `w4-kap-join`, verified by `w3-vf-linear` Section 12.3). Equivalent idempotents have
+equal lifted traces, while that node gives a strict rank gap for every properly nested pair from
+two finite subgroups, over any field, at any intersection and any join.
+
+The refuted statement: let `R = L_(F_2)(1,2)` and `G = R^x`. There are finite subgroups `H_1, H_2 <= G`,
 idempotents `e in F_2[H_1]` and `f in F_2[H_2]` with `0 != f < e`, and `x, y in F_2[G]` with
 `xy = e` and `yx = f`.
 
-By `nested-idempotents-from-p-regular-intersections-are-equal`, any such pair needs
-`|H_1 ∩ H_2|` even.
+An earlier version said `nested-idempotents-from-p-regular-intersections-are-equal` confines such
+pairs to even intersections. No such pair exists at all.
 
 **Why it matters.** Padding by `1 - e` turns the pair into `AB = 1 != BA` in `F_2[G]`, so
 `F_2[R^x]` is not directly finite (route
@@ -23,6 +29,9 @@ By `nested-idempotents-from-p-regular-intersections-are-equal`, any such pair ne
 
 ## Attempts
 
+- **Whole claim refuted (2026-09-12).** `nested-two-finite-subgroup-idempotents-have-strict-rank` was
+  already on main (established 2026-09-07). This lane's duplicate scan truncated its list of
+  candidate names and missed it. The bullets below record only the partial exclusions found first.
 - **Odd intersections: dead.** `nested-idempotents-from-p-regular-intersections-are-equal`
   kills subgroups meeting trivially and every idempotent from order-3, order-5 or order-7
   cyclic constants, at any prefix levels.

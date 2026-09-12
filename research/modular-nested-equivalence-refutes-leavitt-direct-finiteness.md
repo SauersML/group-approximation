@@ -11,6 +11,10 @@ artifacts:
   - research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md
 ---
 
+**Dead.** The padding is valid, but the prerequisite
+`modular-nested-idempotents-equivalent-over-leavitt-units` is refuted by
+`nested-two-finite-subgroup-idempotents-have-strict-rank`.
+
 ## Why sufficient
 
 - **Normalize the pair.** Given `xy = e` and `yx = f` with `0 != f < e`, replace `x` by `exf`

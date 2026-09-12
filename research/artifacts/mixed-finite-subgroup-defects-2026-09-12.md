@@ -50,16 +50,16 @@ none produced a defect.
   prefix depth: all lie in a single finite `M_(2^k)(F_2)^x`. Finite join.
 - **Two Klein groups at the same level**: still inside one `M_(2^k)(F_2)^x`.
 
-To leave the finite-join case the two subgroups must sit at *incommensurable*
-prefix depths whose join is infinite, e.g. a level-`j` constant group together
-with a Thompson-type unit conjugating across scales. Then the join is an
-infinite subgroup of `R^x` and `t_p` is no longer a finite-group dimension
-count.
+Candidates with an infinite join, for example a level-`j` constant group together
+with a Thompson-type unit conjugating across scales, are excluded as well; see
+Section 3.
 
-## 3. Where it stops
+## 3. Where it stops (corrected)
 
-`t_p` of an idempotent supported in an infinite subgroup is not computed by
-LFT1, and `lifted-trace-detects-finite-subgroup-projectives` explicitly does
-not assert positivity there. So the infinite-join case needs a different
-invariant or the compression structure of `R^x`. Recorded as the open
-survivor in the claim's Attempts.
+This section originally said the infinite-join case is open, because `t_p` of
+`e - f` is not a finite-group dimension count. That was wrong. By additivity
+`t_p([e - f]) = t_p([e]) - t_p([f])`, and each term is given by LFT1 in its own
+finite subgroup. `nested-two-finite-subgroup-idempotents-have-strict-rank`
+(established 2026-09-07) makes that difference strictly positive at any join, so
+no nested finite-subgroup difference is ever a defect (flagged by `w4-kap-join`;
+`w3-vf-linear` Section 12.3). Section 1 is its finite-join special case.
