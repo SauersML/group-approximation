@@ -311,8 +311,7 @@ noncomputable def cornerMatrixEquiv (hyx : ∀ a, y a * x a = p)
       Corner R (cornerWitnessSum x y) (isIdempotentElem_cornerWitnessSum hyx hcross hxp) :=
   RingEquiv.ofBijective (cornerMatrixHom hyx hcross hxp hp)
     ⟨fun A B hAB => by
-      ext a b
-      apply corner_ext
+      refine Matrix.ext fun a b => corner_ext ?_
       have h := congrArg (fun w : Corner R (cornerWitnessSum x y)
         (isIdempotentElem_cornerWitnessSum hyx hcross hxp) => y a * (w : R) * x b) hAB
       change y a * cornerMatrixEmbed hp x y A * x b = y a * cornerMatrixEmbed hp x y B * x b at h

@@ -93,7 +93,7 @@ theorem isResiduallyFiniteDimensional :
     intro h0
     apply ha
     apply (gelfandTransform_isometry (MaximalGroupCStar A)).injective
-    rw [h0, map_zero]
+    exact h0.trans (map_zero (gelfandTransform ℂ (MaximalGroupCStar A))).symm
   obtain ⟨φ, hφ⟩ := DFunLike.ne_iff.mp hne
   have hφa : φ a ≠ 0 := hφ
   refine ⟨1, (StarAlgHom.ofId ℂ (Matrix (Fin 1) (Fin 1) ℂ)).comp
