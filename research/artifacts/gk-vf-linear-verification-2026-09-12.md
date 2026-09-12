@@ -867,3 +867,49 @@ Item checked: the Cohn-defect paragraph added to `char-zero-liftable-idempotents
   contradiction.
 - **Scope.** By Theorem E (Section 25), every stable failure reduces to a size-one Cohn family, whose
   defect class is `-[eps_-]`. So this exclusion covers every complement relevant to the corner target.
+
+## 28. Matrix-unit root models in odd characteristic (1c8585ca8, lane gk-l-gate-neg): PASS, scope sharpening extends
+
+Items checked: `matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial`, route
+`odd-char-matrix-unit-root-rank-models-torus-proof`, artifact `el3-rank-ring-rigidity-2026-09-12.md`
+Section 4d (Proposition 8 and Corollary 9).
+
+- **Step 1, pressure point 1.**
+  - `u_ij u_kl = u_ij p_j p_k u_kl = 0` for `j != k`, and `u_ij u_jl = u_il`, `u_ij u_ji = p_i`. So `Phi` is
+    an algebra homomorphism with `Phi(1) = p_1 + p_2 + p_3`, and `Phi + f` is a group homomorphism.
+  - `x_ij(lambda) = x_ij(1)^lambda`, and `(1 + u)^lambda = 1 + lambda u` because `u^2 = 0`.
+  - The elementary matrices generate `SL_3(F_p)`, so `sigma = Phi + f` there.
+- **Step 2, pressure point 2.** The entrywise block form uses no characteristic.
+  - Row 2 and column 2 of `n` are `(0, D, 0, 0)`, so `p_2` is an invariant summand acted on by `D`.
+  - On `(p_1, f, p_3)` the matrix is `[[D, P, C], [0, S, Q], [0, 0, D]]`, upper triangular.
+  - So `n^p = 0` gives `D^p = S^p = 0`.
+- **Step 3, pressure point 3.**
+  - `h = diag(-1,-1,1)` has determinant 1 and scales `E_13` by `t_1/t_3 = -1`, so it inverts `x_13(a)`.
+  - `sigma(h) = -p_1 - p_2 + p_3 + f` scales block `(i,j)` by `eps_i eps_j`, which gives `n'` as stated.
+  - Entries of `n + n' + n n'`:
+    - `(1,1)`: `2D + D^2`;
+    - `(4,4)`: `2S + S^2 + n_43 n'_34 = 2S + S^2`;
+    - `(4,3)`: `2Q + n_43 n'_33 + n_44 n'_43 = 2Q + QD + SQ`.
+  - `2 + D = 2(1 + D/2)` is invertible by a finite geometric series, so `D = 0`, likewise `S = 0`, and then
+    `2Q = 0`.
+- **Step 4, pressure point 4.** `h' = diag(1,-1,-1)` also inverts `x_13(a)`, with scalings `-1` at `(1,3)`
+  and `+1` at `(1,4)`. `(C E_13 + P E_14)(-C E_13 + P E_14) = 0`, so the product is `1 + 2P E_14`, and
+  `P = 0`.
+- **Step 5.** A signed permutation `w` in `SL_3(F_p)` sends `x_13(b)` to `x_kl(+-b)`, and `sigma(w) = Phi(w) + f`
+  permutes the corners and fixes `f`, so every root has block support.
+- **Corollary 9, pressure point 5.**
+  - Block support gives additivity and `[1+X, 1+Y] = 1 + XY` in every characteristic.
+  - The Steinberg relations give `psi_13(ab) = psi_12(a) psi_23(b)`, `psi_12(c) = psi_13(c) u_32`,
+    `psi_13(b) = psi_12(b) u_23` and `psi_23(b) = u_21 psi_13(b)`.
+  - So `C(a) = psi_12(a) u_21 = psi_13(a) u_31`, and
+    `C(ab) = psi_12(a) u_21 psi_13(b) u_31 = psi_12(a) u_21 psi_12(b) u_23 u_31 = C(a) C(b)`, with
+    `C(1) = p_1`.
+  - The corner is directly finite and `R` is simple, so the collapse follows.
+- **Ternary hosts.** `R_3 ~= R_3^3` gives `EL_3(R_3) <= GL_3(R_3) ~= G_3`, and `G_3` embeds in `PG`. A
+  separating `F_3`-linear sofic model restricts to a nontrivial model of the infinite `EL_3(R_3)` in
+  characteristic three, so Corollary 9 excludes the matrix-unit shape.
+- **Scope sharpening (Section 22) holds here too.** The block calculus is characteristic-free. If only
+  `sigma(x_ij(1)) - 1` lies in `p_i M p_j` for orthogonal idempotents `p_i`, then
+  `u_ij u_jk = u_ik`, `p_i' = u_ij u_ji` is idempotent and independent of `j`, and `u_ij` lies in
+  `p_i' M p_j'` and kills the enlarged complement. So the odd claim also needs only block support of the
+  six unit root elements.

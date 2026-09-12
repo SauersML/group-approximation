@@ -6,6 +6,7 @@ title: Torus inversion of root elements and unipotence force block support in od
 target: matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
@@ -25,3 +26,5 @@ Complete proof: artifact Section 4d, Proposition 8 and Corollary 9.
   homomorphism into `p_1 M p_1`.
 - That corner is directly finite, and `R` is simple and not directly finite, so `p_1 = 0` and
   `sigma` is trivial.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 28 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. The block-support-only sharpening of Section 22 also holds in odd characteristic.*
