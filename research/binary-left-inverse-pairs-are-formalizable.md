@@ -43,3 +43,17 @@ non-formalizable strict pair.
     non-formalizable pair is known.
   - A non-formalizable **bijective** pair on some group would refute this claim without deciding
     Gottschalk.
+- **Decomposition (gk-fz-decompose, 2026-09-12).**
+  - Words in track shears with arbitrary memories, sitewise `GL_n(F_2)` maps and constant
+    translations form formalizable pairs with their reversed words, on every group and after
+    regrouping along a finite-index subgroup (`structurally-reversible-automata-are-formalizable`).
+    All of them are bijective.
+  - With ancillas, functional dilations always exist (two shears and a swap).
+    `formalizable-left-inverse-iff-clean-shear-dilation` shows that formally clean ancillas are
+    exactly a formalizable left inverse, so circuit decompositions, including Kari-type block
+    permutations, only re-express the claim. The input-erasure step carries the defect.
+  - Left-inverse extensions over every `F_(2^k)` always exist
+    (`binary-left-inverse-pairs-extend-over-every-finite-field`), so the obstruction is uniformity
+    of degree.
+  - The Kaplansky payoff needs only some left inverse:
+    `injective-binary-automata-have-formalizable-left-inverses`, fed from this claim.
