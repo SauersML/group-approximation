@@ -407,8 +407,9 @@ theorem SimpleBoundary.exists_parallel_walk (hS : D.SimpleBoundary) {a c : ℕ} 
   | base =>
     have ht := hS.tri_edge a
     refine ⟨SimpleGraph.Walk.cons (X.tri_adj ht).2.1 SimpleGraph.Walk.nil, ?_⟩
-    simp only [SimpleGraph.Walk.length_cons, SimpleGraph.Walk.length_nil, Finset.Ioc_self,
-      Finset.sum_empty]
+    have h0 : ∑ i ∈ Finset.Ioc a a, (D.bdeg i - 3) = 0 := by simp
+    rw [h0]
+    rfl
   | succ c hac ih =>
     obtain ⟨p, hp⟩ := ih fun i hai hic => hdeg i hai (by omega)
     obtain ⟨q, hq⟩ := hS.exists_tvert_walk c (hdeg (c + 1) (by omega) le_rfl)
