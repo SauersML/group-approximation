@@ -11,6 +11,7 @@ requires:
   - signed-thompson-algebra-is-odd-measure-crossed-product
   - hadamard-unit-conjugates-swap-idempotent-to-cylinder
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -37,3 +38,5 @@ Suppose `K` is amenable.
   * But `q_[1] != 0`: `1`, `[tau_[0]]`, `[z]` and `[z tau_[0]]` are distinct basis elements.
 
 So `K` is nonamenable. Proposition 8 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 30 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

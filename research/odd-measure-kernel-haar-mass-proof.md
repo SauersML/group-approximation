@@ -6,6 +6,7 @@ title: Count weight-one odd vectors at each depth
 target: odd-measure-kernel-carries-almost-all-haar-mass
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ artifacts:
   The measure of the complement tends to `0`.
 
 Section 11 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 30 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

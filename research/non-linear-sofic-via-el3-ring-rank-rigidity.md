@@ -38,3 +38,5 @@ artifacts:
   Leavitt algebra. A linear sofic `EL_3` over any such ring refutes it.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): Section 17 (route valid; it establishes nothing while its prerequisite el3-rank-models-factor-through-ring-rank-models is open) of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
+
+*`gk-vf-linear` (2026-09-12), Section 29 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the route is valid as stated and conditional, and its prerequisite is correctly OPEN. Recommendation: add an instance claim for `L_K(1,n)` with its own route, so that a failure of the class statement for some other simple ring does not kill the payoff.*

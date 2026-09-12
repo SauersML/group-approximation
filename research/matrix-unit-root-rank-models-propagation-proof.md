@@ -30,3 +30,5 @@ expands as `xy + yx + xyx + yxy + xyxy`.
   the displacement bound of artifact Corollary 4 then kills every root element.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): Section 22 (one ordering slip in artifact step 5: (1+D')C', not C'(1+D'); not load-bearing. Scope sharpening: block support of the six unit root elements on orthogonal idempotents already implies the matrix-unit hypotheses) of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
+
+*`gk-vf-linear` (2026-09-12), Section 29 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the dual natural shape `sigma(x_ij(1)) = 1 - u'_ji` is excluded too. `g -> (g^T)^-1` is an isomorphism `EL_3(R) -> EL_3(R^op)` taking it to the matrix-unit shape, and `R^op` is simple and not directly finite.*

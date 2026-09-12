@@ -913,3 +913,80 @@ Section 4d (Proposition 8 and Corollary 9).
   `u_ij u_jk = u_ik`, `p_i' = u_ij u_ji` is idempotent and independent of `j`, and `u_ij` lies in
   `p_i' M p_j'` and kills the enlarged complement. So the odd claim also needs only block support of the
   six unit root elements.
+
+## 29. Rank-rigidity region for the lead: exact hypotheses, status of the factoring claim, route validity
+
+This section answers the lead's priority request on `gk-l-gate-neg`'s landings (384d05027, 1c8585ca8,
+ed4f426dc). The derivations are Sections 17, 22 and 28.
+
+**Exact hypotheses of the two matrix-unit theorems (both PASS).**
+- **Characteristic.** `R` is simple and not directly finite, of characteristic `p`. `M` is a rank
+  ultraproduct over a field of the same characteristic. Characteristic two is needed for `n^2 = 0` in
+  Proposition 6. For odd `p`, only `n^p = 0`, the torus of `SL_3(F_p)`, and invertibility of 2 are used.
+- **Block support of the unit roots.** The six unit root elements must satisfy
+  `sigma(x_ij(1)) - 1 in p_i M p_j` for pairwise orthogonal idempotents `p_i`. The matrix-unit relations
+  and a trivial complement then follow (Sections 22 and 28), in every characteristic.
+- **Nothing else.** Nothing is assumed about `x_ij(a)` for `a != 1`, about ranks of the `p_i`, or about
+  additivity.
+- **Transposed shape, new here.** The dual natural shape is covered as well. `g -> (g^T)^-1` is a group
+  isomorphism `EL_3(R) -> EL_3(R^op)` sending `x_ij(a)` to `x_ji(-a)`, since transpose is an
+  anti-isomorphism `M_3(R) -> M_3(R^op)`. `R^op` is again simple and not directly finite, because
+  `ts = 1 != st`. If `sigma(x_ij(1)) = 1 - u'_ji` with `u'` matrix units (restriction
+  `(dual natural (x) W) (+) trivial`), then `sigma o theta^-1` sends `x_kl(1)` to
+  `sigma(x_lk(1))^-1 = 1 + u'_kl`. That satisfies the matrix-unit hypothesis over `R^op`, so `sigma` is
+  trivial.
+
+**What stays open (the lane's scope note is accurate).** A surviving rank model restricts to `SL_3(F_p)`
+with some summand on which the unit roots are not block supported. That covers:
+- a nontrivial complement;
+- natural and dual natural pieces together;
+- other composition factors, such as adjoint or Steinberg pieces, and projectives;
+- non-split extensions between natural and trivial factors.
+
+**The factoring claim.** `el3-rank-models-factor-through-ring-rank-models` is OPEN at tip `6be4178c43`,
+correctly. Its Attempts accurately record every proved sub-case and where each attempt stops.
+
+**The route `non-linear-sofic-via-el3-ring-rank-rigidity`: valid as stated, conditional.**
+- An `F_2`-linear sofic approximation gives an injective homomorphism `R^x -> M^x` into a rank ultraproduct
+  over `F_2`, with `rk(sigma(g) - 1) >= 1/4` for `g != 1` (Arzhantseva–Paunescu).
+- `R^x = EL_3(R)` and `leavitt-algebra-has-no-unital-rank-model` are established. Simplicity of `R^x` is
+  recorded, and the route does not even need it: separation alone contradicts triviality on the
+  infinite `EL_3(R)`.
+- So the route fires iff the prerequisite is established. Nothing decision-level has landed.
+
+**Recommendation (not a defect).** The prerequisite is a class statement over all simple characteristic-`p`
+rings without rank models, and a sofic `EL_3(S)` over any such `S` refutes it. The payoff only needs the
+Leavitt instance. An instance claim for `L_K(1,n)`, with its own route into `non-linear-sofic-group`,
+would keep the route alive even if the class statement fails for some non-finitely-generated ring.
+
+## 30. Odd-measure kernel mass and nonamenable Thompson support (879678530, lane gk-l3-free); withdrawn Hadamard proposition (0a97d381d, lane gk-l3-units): PASS
+
+- **`odd-measure-kernel-carries-almost-all-haar-mass`.**
+  - *Pushforward.* Restricting to the length-`n` cylinders is a surjective continuous homomorphism
+    `M -> F_2^(P_n)`, since it is dual to the injection `F_2^(P_n) -> C(X, F_2)`. So Haar measure pushes forward
+    to the uniform measure, and on the coset `M_-` to the uniform measure on the `2^(2^n - 1)` odd vectors.
+  - *Mass.* Dirac measures give exactly the `2^n` weight-one vectors, so `lambda(M_- \ U_n) = 2^(n+1-2^n)`.
+    That gives `0`, `1/2` and `15/16` for `n = 1, 2, 3`. `U_n` is clopen and avoids every Dirac measure, so
+    `1_(U_n)` is a kernel idempotent (Theorem 2(4), Section 20).
+  - *Nesting.* If `mu` has weight one at every depth, the children of the carrying atom sum to 1, so exactly
+    one carries 1; the children of the other atoms sum to 0, and weight one excludes two. The nested atoms
+    define `x`, and `mu(C) = [x in C]` on every clopen `C`. The intersection has measure at most
+    `2^(n+1-2^n) -> 0`.
+- **`odd-measure-corner-witnesses-need-nonamenable-thompson-support`.**
+  - *Soficity.* `L cap E` lies in an elementary abelian 2-group, so it is locally finite and sofic. It is
+    normal in `L` with quotient `K`. `sofic-kernel-amenable-quotient-permanence` then makes `L` sofic, so
+    `F_3`-linear sofic, so `F_3[L]` is directly finite.
+  - *Membership.* `b'` and `c'` lie in `F_3[L]` because their supports and `z` are in `L`. `q_[0]` and
+    `q_[1] = eps_- 2(1 - [z tau_[0]])` lie in `F_3[L]` because `z, tau_[0]` are in `L`.
+  - *Contradiction.* With `x = q_[0] b' + eps_+` and `y = c' q_[0] + eps_+`, the cross terms vanish because
+    `c' eps_+ = eps_+ q_[0] = 0`, so `yx = 1`. Then `xy = 1` gives `q_[0] b' c' q_[0] = eps_-`, and multiplying
+    by `q_[1]` gives `q_[1] = 0`. But `1, tau_[0], z, z tau_[0]` are distinct.
+  - *Scope.* Only the `V`-projection is constrained. Subgroups of amenable groups are amenable, so a witness
+    with projection in `F` would make `F` nonamenable.
+- **gk-l3-units corrections (0a97d381d).** Proposition 4.2 is withdrawn, and Proposition 4.3 now reads
+  "`H` finite, containing `z`", which is exactly the scope of Section 26.
+  - *Corollary 4.5.* No Cohn family is supported on the locally finite group of constant units. A family has
+    finite support. Level coherence (Section 23) puts finitely many constants, together with
+    `z = Theta(-I)`, in one finite `Theta(GL_(2^K)(F_3))`, and Proposition 4.3 applies there. PASS.
+  - *Diagnostics.* The kernel mass sitting at finite depth (Proposition 7 above) supersedes the withdrawn
+    "infinite-depth" dichotomy.

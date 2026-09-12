@@ -28,3 +28,5 @@ Complete proof: artifact Section 4d, Proposition 8 and Corollary 9.
   `sigma` is trivial.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): Section 28 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. The block-support-only sharpening of Section 22 also holds in odd characteristic.*
+
+*`gk-vf-linear` (2026-09-12), Section 29 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the dual natural shape `sigma(x_ij(1)) = 1 - u'_ji` is excluded too. `g -> (g^T)^-1` is an isomorphism `EL_3(R) -> EL_3(R^op)` taking it to the matrix-unit shape, and `R^op` is simple and not directly finite.*
