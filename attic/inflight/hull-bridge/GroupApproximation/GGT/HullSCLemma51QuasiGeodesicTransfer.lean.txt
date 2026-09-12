@@ -157,7 +157,7 @@ theorem relativeLinearKernelArea_of_dehnSteps
       · refine ⟨0, Nat.zero_le _, ?_⟩
         rw [hone]
         exact RelatorDefectBudget.IsRelatorProduct.one
-      · rcases hsteps word hword' hone hmap' with ⟨C⟩ | ⟨w', hw', hval, hlen⟩
+      · rcases hsteps word hword' hone hmap' with ⟨⟨C⟩⟩ | ⟨w', hw', hval, hlen⟩
         · have hshortLength :
               C.contiguity.shortenedBoundaryWord.length < length := by
             rw [← hlength]
