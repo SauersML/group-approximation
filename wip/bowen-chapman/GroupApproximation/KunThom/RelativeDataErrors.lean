@@ -29,8 +29,8 @@ the retained objects.
 
 * `frame_wordError_sum_le`: for every frame `F`, the localized errors over the retained
   domain of `q` are at most the majorant.
-* `compressorMajorant_negligible`, `matchingError_nonneg`, `matchingError_vanishing`, and
-  `frame_wordError_div_le_matchingError`.
+* `matchingError_nonneg` and `frame_wordError_div_le_matchingError`.  The majorants are
+  negligible (`KunThom/RelativeDataErrorsVanishing`).
 -/
 
 namespace GroupApproximation
@@ -272,41 +272,6 @@ theorem compressorMajorant_nonneg {G : Type} [Group G] {Γ : Subgroup G} [Infini
     · exact mul_nonneg (mul_nonneg (by norm_num) (mul_nonneg (Nat.cast_nonneg _)
         (Nat.cast_nonneg _))) hcompat
   · exact le_rfl
-
-/-- The majorant of a compressor has negligible density. -/
-theorem compressorMajorant_negligible {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
-    {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
-    (D : CompressorDecomposition C A) {q : G} (hq : q ∈ C.compressors) :
-    Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (compressorMajorant D q) := by
-  have hblock : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ))
-      (fun n ↦ blockTotal D hq n) :=
-    D.toLocal.compressorBlock_symmDiff_negligible hq
-  have hremoved : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (removedTotal D) :=
-    SequentialComponentFamily.removedMass_objectBlocks_negligible D.gamma
-      ⟨1, C.generatorsΓ_one⟩ D.enum
-  have hcompat : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (compatTotal D) :=
-    Negligible.sum Finset.univ _ fun l _ ↦ D.retained.compat_negligible l
-  have hconj : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (conjTotal D q) :=
-    (ConjugationFailureVanishing.negligible_sum_card_conjFailure A
-      (fun l : ↥D.retained.data.generators ↦ C.embedΓ (l : ↥Γ)) (compressorWords C q) q
-      (fun s ↦ compressorWords_prod C hq s) (fun n ↦ D.retained.data.embedding n)
-      (fun n ↦ D.retained.data.blockAction n) (fun _ _ ↦ rfl)).congr fun n ↦ by
-        rw [conjTotal]
-        simp only [Nat.cast_sum]
-  have hconjInv : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (conjInvTotal D q) :=
-    (ConjugationFailureVanishing.negligible_sum_card_conjFailure_inv A
-      (fun l : ↥D.retained.data.generators ↦ C.embedΓ (l : ↥Γ)) (compressorWords C q) q
-      (fun s ↦ compressorWords_prod C hq s) (fun n ↦ D.retained.data.embedding n)
-      (fun n ↦ D.retained.data.blockAction n) (fun _ _ ↦ rfl)).congr fun n ↦ by
-        rw [conjInvTotal]
-        simp only [Nat.cast_sum]
-  have hmajor := (((((hblock.add (hremoved.const_mul 2)).const_mul
-      (Fintype.card ↥D.retained.data.generators : ℝ)).add (hcompat.const_mul 2)).add
-      hconj).add hconjInv).add
-    (hcompat.const_mul (2 * (Fintype.card ↥D.retained.data.generators *
-      compressorWordBound C)))
-  refine hmajor.congr fun n ↦ ?_
-  rw [compressorMajorant, dif_pos hq]
 
 theorem matchingError_nonneg {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
     {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
