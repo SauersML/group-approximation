@@ -104,8 +104,8 @@ theorem norm_conj_reducedLeftRegular_le (x : ReducedGroupCStar G) (g : G) :
   have h2 : ‖reducedLeftRegular G g * x‖ ≤ ‖reducedLeftRegular G g‖ * ‖x‖ :=
     norm_mul_le _ _
   have h3 : ‖star (reducedLeftRegular G g)‖ ≤ 1 := by
-    rw [norm_star]
-    exact norm_reducedLeftRegular_le_one G g
+    rw [star_reducedLeftRegular]
+    exact norm_reducedLeftRegular_le_one G g⁻¹
   nlinarith [norm_nonneg x, norm_nonneg (reducedLeftRegular G g),
     norm_nonneg (reducedLeftRegular G g * x),
     norm_reducedLeftRegular_le_one G g, h1, h2, h3]
@@ -138,6 +138,7 @@ theorem norm_reducedAverage_le (x : ReducedGroupCStar G) {n : ℕ} (hn : 0 < n)
 
 /-! ## The canonical trace of a translation -/
 
+open scoped Classical in
 /-- `τ(λ(g)) = 1` if `g = 1` and `0` otherwise. -/
 theorem canonicalCoefficientAtOne_reducedLeftRegular (g : G) :
     canonicalCoefficientAtOne G (reducedLeftRegular G g)
@@ -178,6 +179,7 @@ theorem coe_translationSum {m : ℕ} (c : Fin m → ℂ) (γ : Fin m → G) :
   rw [h]
   exact Finset.sum_congr rfl fun i _ ↦ by
     rw [map_smul, reducedInclusion_apply]
+    rfl
 
 /-! ## The estimate -/
 
@@ -191,7 +193,7 @@ theorem powersAveragingEstimate_of_powersProperty (h : PowersProperty G) :
   classical
   intro a hτa ε hε
   set δ : ℝ := ε / 4 with hδdef
-  have hδ : 0 < δ := by positivity
+  have hδ : 0 < δ := by rw [hδdef]; positivity
   have hδne : δ ≠ 0 := ne_of_gt hδ
   -- Approximate `a` by a finite combination of translations.
   obtain ⟨m, c, γ, happrox⟩ := exists_translationSum_approx G a.2 hδ
@@ -225,19 +227,6 @@ theorem powersAveragingEstimate_of_powersProperty (h : PowersProperty G) :
       simp [hγ]
     · simp [hc', hγ]
   -- The identity coefficient is the trace of `b`, hence small.
-  have hτb₀ : canonicalFaithfulTracialState G b₀ = 0 := by
-    have hlin : canonicalCoefficientAtOne G b₀
-        = ∑ i : Fin m, c' i * canonicalCoefficientAtOne G (reducedLeftRegular G (γ i)) := by
-      rw [hb₀, map_sum]
-      exact Finset.sum_congr rfl fun i _ ↦ by rw [map_smul, smul_eq_mul]
-    show canonicalCoefficientAtOne G b₀ = 0
-    rw [hlin]
-    refine Finset.sum_eq_zero fun i _ ↦ ?_
-    rw [canonicalCoefficientAtOne_reducedLeftRegular]
-    by_cases hγ : γ i = 1
-    · rw [hc']
-      simp [hγ]
-    · simp [hγ]
   have hτb : canonicalFaithfulTracialState G b = κ := by
     have hlin : canonicalCoefficientAtOne G b
         = ∑ i : Fin m, c i * canonicalCoefficientAtOne G (reducedLeftRegular G (γ i)) := by
@@ -272,7 +261,7 @@ theorem powersAveragingEstimate_of_powersProperty (h : PowersProperty G) :
       _ = 2 * δ := by ring
   -- Choose the number of averaging elements.
   set M : ℝ := 2 * ‖b₀‖ / δ with hM
-  have hM0 : 0 ≤ M := by positivity
+  have hM0 : 0 ≤ M := by rw [hM]; positivity
   set n : ℕ := ⌈M ^ 2⌉₊ + 1 with hn
   have hnpos : 0 < n := Nat.succ_pos _
   have hnM : M ^ 2 ≤ (n : ℝ) := by
@@ -325,9 +314,7 @@ theorem powersAveragingEstimate_of_powersProperty (h : PowersProperty G) :
       = (n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * (a - b₀) * star (reducedLeftRegular G (g i)) := by
     rw [← smul_sub, ← Finset.sum_sub_distrib]
-    congr 1
-    refine Finset.sum_congr rfl fun i _ ↦ ?_
-    rw [mul_sub, sub_mul]
+    simp only [mul_sub, sub_mul]
   have hdiffbound : ‖((n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * a * star (reducedLeftRegular G (g i)))
       - ((n : ℂ)⁻¹ • ∑ i : Fin n,

@@ -186,9 +186,7 @@ theorem powersAveragingEstimate_of_conjugateAveragingCriterion
       = (n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * (a - b₀) * star (reducedLeftRegular G (g i)) := by
     rw [← smul_sub, ← Finset.sum_sub_distrib]
-    congr 1
-    refine Finset.sum_congr rfl fun i _ ↦ ?_
-    rw [mul_sub, sub_mul]
+    simp only [mul_sub, sub_mul]
   have hdiffbound : ‖((n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * a * star (reducedLeftRegular G (g i)))
       - ((n : ℂ)⁻¹ • ∑ i : Fin n,
