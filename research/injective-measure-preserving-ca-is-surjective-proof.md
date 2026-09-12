@@ -7,6 +7,7 @@ target: injective-measure-preserving-ca-is-surjective
 requires: []
 artifacts:
   - research/artifacts/gottschalk-kazhdan-direct-attack-2026-09-12.md
+  - research/artifacts/gk-vf-positive-verification-2026-09-12.md
 ---
 
 ## Direct proof
@@ -27,3 +28,5 @@ Hence `tau` is surjective. Injectivity is not used in the argument beyond making
 the statement about an automaton; the content is that a measure-preserving
 continuous self-map of `A^G` for a full-support measure has dense, hence full,
 image. QED
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 1.2 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).
