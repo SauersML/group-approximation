@@ -96,6 +96,41 @@ States:
 | `formalization.yaml` strong main_results row | waits on a completed axioms run | lx-endpoint |
 | stable finiteness of `LIX.Gen.LIXLimit n` (tracial state, faithful by simplicity) | NOT AUTHORED | lx-stablyfinite |
 
+## Duplicate scan (lx-integrator, MSI mirror at `c3b58d90c`, 832 LIX modules)
+
+Name collisions (the same fully qualified name declared in two files): 6.  All six involve the parked red files, and nothing imports those files.
+- `CharClass.tagAt`, `CharClass.tagAt_single`: `OddPTuple` and `OddPTupleBd`.
+- `CharClass.tagBdL`, `tagBdL_single`, `tagBdL_tagAt`, `tagBdL_tagBdL`: `OddPTupleBd` and `OddPTupleSlot`.
+- lx-diag has been told.
+
+Content duplicates: 47 signature matches.
+- Matching rule: distinct names, identical statement text of at least 80 characters.
+- Most are definitions with equal binders and type, so they are not duplicate facts.
+- Distinct names cause no import error, so these are cleanup, not blockers.
+
+The same-fact pairs among them:
+
+| names | files | owners |
+|---|---|---|
+| `LH.colTwo` / `colTwoOf`, `LH.lhSum_two_apply` / `…Of`, `LH.lhTerm_index_one` / `…Of`, `LH.lhTerm_index_zero` / `…Of` | `GysinFromGraded`, `LerayHirschRankTwo` | lx-stepcK-agree, lx-lhK-b |
+| `exists_smallAnnOf_preimage` / `exists_smallAnn_preimageOf` | `RelativeSplitField`, `CupVanishRepOf` | lx-kunneth |
+| `isZero_Hmod_of_isEmptyMV` / `isZero_cohomology_of_isEmptyOf` | `MayerVietorisDisjointOf`, `CohomologyKunnethSphereOf` | lx-lhK-a, lx-kunneth |
+| `MVDelta.f_comp_projU/V`, `MVDelta.mvCxInclV_comp_g` / `f_comp_mvCxProjU/V`, `mvCxInclV_comp_g` | `CohomologyDeltaChain`, `MayerVietorisPull*` | lx-lhK-a |
+| `Gen.circle_two_sphereOf` / `Gen.circle_two_torusOf` | `LIXStepDGenRealTorus`, `LIXStepDGenRealTorusModel` | lx-torusP |
+| `topChernClass_ne_zero_odd_iso` / `topChernClass_ne_zero_odd_local_of_iso` | `ThomStepCOddIso`, `ThomStepCOddLocal` | lx-stepcK-agree |
+| `LIX.Gen.matEval_fromBlocks`, `reindex_conjTranspose`, `reindex_mul` / the rank-two `LIX.*` | `LIXCor4PowersStage`, `LIXLemmaSixCor4` | lx-endpoint |
+
+The scanner is `lixs/remote/lix_dupscan.py` in session 39213f46's scratchpad; its MSI copy is `/projects/standard/hsiehph/sauer354/lixs/`.
+
+## Root wiring
+
+Rules agreed with session `nonsofic-existence-3a`:
+- Run `tools/nm-swarm/dupcheck.py <tip> <modules>` before each root build and before each push; any DUP line blocks the landing.
+- Never land while an `nm-root` SLURM job is running or pending.
+- LIX root builds are named `lx-root`.
+- Insert only after the last import line and remove nothing.
+- No LIX wave until 3a reports that wave bo6h618iu has finished.
+
 ## Do not wire (red or parked)
 
 `CharClass/OddPTupleBd`, `CharClass/OddPTupleSlot` (red; the author parked them; duplicates of `tagAt`/`tagAt_single` in `OddPTuple`), `CharClass/OddPDiagonalAug` (red).
