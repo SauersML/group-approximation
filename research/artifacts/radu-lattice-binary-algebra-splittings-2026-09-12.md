@@ -164,3 +164,59 @@ groups conjugate to `A_ev`.
   the two embeddings of the base disagree.
 * **Scope.** Nothing here is specific to `Gamma_R` beyond virtually free stabilizers. The same filter
   holds for any group acting on a tree with virtually free vertex stabilizers.
+
+## 3. Finite subgroups carry no defect, in any characteristic
+
+**Lemma C1.** Every finite subgroup of `Gamma_R` has order 1, 2 or 4.
+* Order two: conjugate to `<l>` for a letter `l`, or to `<ax>`, `<ay>` or `<bx>`.
+* Order four: conjugate to `<a,x>`, `<a,y>` or `<b,x>`, all Klein four groups.
+
+Every finite subgroup maps injectively into `Gamma_R^ab = (Z/2)^3`.
+
+*Proof.*
+* **Order at most four.** A finite `H` fixes a point `p` of the CAT(0) complex `X`, and preserves the
+  open cell containing `p`. Vertex stabilizers are trivial, so `H` permutes the vertices of that cell
+  freely. This gives `H = 1` on a vertex, `|H| <= 2` on an edge, and `|H| <= 4` on a square.
+* **Order two.** Screens, Theorem 1, step 3.
+* **Order four.** `H` acts freely and transitively on the corners of a square, preserving edge types.
+  Take the corner `o`, with horizontal edge `o -- h.o` and vertical edge `o -- v'.o`, for a row
+  `hv = v'h'`.
+  * The elements of `H` carrying `o` to `h.o` and to `v'.o` are the letters `h` and `v'`, since the action
+    on vertices is simply transitive.
+  * So `H = {1, h, v', hv}`. Closure forces `hv' = hv`, so `v' = v`, and `v'h = hv`, so `h' = h`.
+  * The rows `(h,v) -> (v,h)` are `(a,x)`, `(a,y)` and `(b,x)`.
+* **Abelianization.** From the screens, step 4, the letters map to `a, a, a, x, y, x`, where `a, x, y` is
+  a basis. So every letter and `ax`, `ay`, `bx` map to nonzero vectors, and `{a,x}`, `{a,y}`, `{b,x}` map to
+  independent pairs. QED
+
+**Proposition C2.** Let `p` be any prime and `H <= Gamma_R` finite.
+1. If `e in M_m(F_p[H])` is idempotent and `C e B = I_m` for some `C, B in M_m(F_p[Gamma_R])`, then `e = I_m`.
+2. If `B A = I_n != A B` over `M_n(F_p[Gamma_R])`, the defect `F = I_n - A B` is not conjugate into
+   `M_n(F_p[H])` by any `U in GL_n(F_p[Gamma_R])`.
+
+*Proof for `p = 2`.* `H` is a 2-group, so `F_2[H]` is local.
+* Over a local ring every idempotent matrix is similar to `diag(I_r, 0)`, because its image and kernel
+  are free.
+* The augmentation `eps : F_2[Gamma_R] -> F_2` is a ring map.
+* **Part 1.** `eps(C) eps(e) eps(B) = I_m` gives `rank eps(e) = r >= m`. So `r = m`, and `e = I_m`.
+* **Part 2.** Over the field `F_2`, `eps(B) eps(A) = I_n` forces `eps(A) eps(B) = I_n`, so `eps(F) = 0`.
+  If `F = U F' U^(-1)` with `F'` similar to `diag(I_r, 0)` over `F_2[H]`, then `r = rank eps(F) = 0`. So
+  `F = 0` and `AB = I_n`, a contradiction.
+
+*Proof for odd `p`.* `F_p[H]` is the product of copies of `F_p` indexed by the characters
+`psi : H -> {±1}`, and `e = (e_psi)_psi`. By Lemma C1, `H -> (Z/2)^3` is injective, so every `psi`
+extends to a character `chi : Gamma_R -> {±1} <= F_p^x`, and `chi(e) = e_(chi|H)`.
+* **Part 1.** `chi(C) e_psi chi(B) = I_m` forces `rank e_psi = m`, so `e_psi = I_m` for every `psi`.
+* **Part 2.** `chi(F) = I - chi(A) chi(B) = 0`, and `chi(F)` is similar to `F'_psi`. So every
+  `F'_psi = 0`, hence `F' = 0` and `F = 0`. QED
+
+**Reading.**
+* **Corner starting data is dead in every characteristic.** On the Leavitt hosts, corner witnesses start
+  from idempotents of finite-subgroup algebras: averaging idempotents of odd cyclic groups, and swap and
+  Klein idempotents. On `Gamma_R` every such idempotent is either trivial or killed by a character
+  (part 1). This extends the screens' odd-`p` involution remark to all finite subgroups and to `p = 2`.
+* **What a witness needs.** It needs a nonzero projective `P` with `P ⊕ F_p[Gamma_R]^n ≅ F_p[Gamma_R]^n`.
+  Its idempotent is never a basis change of one living on a finite subgroup (part 2).
+* **No finite-subgroup telescoping.** The two-piece corner telescoping of
+  `two-piece-s0-lifts-telescope-to-a-corner` needs an idempotent lifting a Leavitt projection, and here
+  there is neither a Leavitt evaluation nor a nontrivial finite-subgroup idempotent to start from.
