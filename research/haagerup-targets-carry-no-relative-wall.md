@@ -3,6 +3,7 @@ rg: 2
 id: haagerup-targets-carry-no-relative-wall
 kind: claim
 title: No homomorphism of an infranormal Kazhdan pair into a Haagerup finite von Neumann algebra carries a relative wall
+invalidates: [kt-ce-stabilizer-from-haagerup-target]
 distinct_from:
   half-space-tail-no-go: that kills half-space tensor towers through tail triviality and a centralized-subgroup hypothesis; this kills every target with the Haagerup property, with no tensor structure and no hypothesis on what the compressor centralizes.
   kt-centralizer-normalization-hs: that is the open normalization question for tracial matrix ultraproducts, which contain property (T) algebras; this settles normalization for all Haagerup targets and says nothing about ultraproducts.
