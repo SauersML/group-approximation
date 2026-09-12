@@ -279,8 +279,8 @@ theorem cartan (g : GL (Fin 2) K) :
       simp [e₁, e₂, du, Matrix.mul_apply, Fin.sum_univ_two, Matrix.vecMul, dotProduct, h'00,
         ← hpdef, ← hqdef, hu, inv_mul_cancel₀ hπn, mul_assoc] <;>
       first
-      | ring
-      | (rw [hdet2]; ring)
+      | ring1
+      | (rw [hdet2]; ring1)
   refine ⟨a⁻¹ * sc⁻¹ * e₁⁻¹ * du, ?_, e₂⁻¹ * b⁻¹, ?_, ?_⟩
   · exact (stab v).mul_mem ((stab v).mul_mem ((stab v).mul_mem ((stab v).inv_mem ha)
       ((stab v).inv_mem hsc)) ((stab v).inv_mem he₁)) hdu
