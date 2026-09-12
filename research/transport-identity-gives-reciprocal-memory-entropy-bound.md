@@ -4,8 +4,8 @@ id: transport-identity-gives-reciprocal-memory-entropy-bound
 kind: claim
 title: The single-site output entropy of an injective automaton is at least log |A| over its left-inverse memory size
 distinct_from:
-  injective-ca-images-have-full-single-site-entropy: that asks for the full bound log |A|, which is equivalent to the goal; this is the weaker unconditional bound (log |A|)/|N| that the random-order transport identity yields by itself, tight term by term.
-  decoder-window-fiber-bound-loses-exactly-the-boundary: that is a per-window counting bound losing the right boundary on nonamenable groups; this is a single-site bound from the exact transport identity, valid over every group with no counting.
+  injective-ca-images-have-full-single-site-entropy: that asks for the full bound log |A|, which is equivalent to the goal; this is the elementary bound (log |A|)/|N| from subadditivity, which is also all that the random-order transport identity gives when each term is bounded by the site entropy.
+  decoder-window-fiber-bound-loses-exactly-the-boundary: that is a per-window counting bound losing the right boundary on nonamenable groups; this is a single-site entropy bound valid over every group with no counting.
 artifacts:
   - research/artifacts/three-point-decoder-transport-obstruction-2026-09-12.md
   - research/artifacts/random-order-decoder-transport-2026-09-12.md
@@ -18,13 +18,15 @@ of memory `N` containing `e`. Under the uniform product measure on `A^G`,
 
     H( kappa(x)(e) )  >=  (1 / |N|) log |A| .
 
-This is exactly what the random-order transport identity (`injective-ca-random-order-transport-identity`) gives on its
-own: the identity splits `log |A|` into `|N|` averaged conditional mutual informations into `y(e)`, each at most
-`H(y(e))`. The per-term bound is tight (one term can reach `H(y(e))`), so no term-by-term argument beats the constant
-`1/|N|`. Domination (`injective-ca-random-order-transport-is-dominated`) is the constant-`1` case, equal to the goal.
+The proof is subadditivity: `x(e)` is a function of `y|_N`, so `log |A| <= H(y|_N) <= |N| H(y(e))`. Despite the id, the
+bound needs no transport. Its role here is calibration: bounding each term of
+`injective-ca-random-order-transport-identity` by `H(y(e))` and summing reproduces exactly this bound. So the identity
+adds nothing at that level, and domination (`injective-ca-random-order-transport-is-dominated`, the constant-`1`
+case, equivalent to the goal) needs the conditionings used jointly.
 
 ## Attempts
-- **Exact at `|N| = 1`** (`kappa(x)(e)` determines `x(e)`), with a gap for every `|N| >= 2`; the bound degrades to `0`
-  as `|N| -> infinity`. So a proof of the full bound must beat the reciprocal, i.e. use realizability of `y` as a
-  finite block code of i.i.d. `x`, not only the information relations among the decoder sites. See
-  `three-point-decoder-memory-injective-ca-are-surjective`.
+- **Sharpness not claimed.** Over amenable groups every injective automaton already has `H(y(e)) >= log |A|`. An
+  earlier version said the per-term bound is attained and no term-by-term argument beats `1/|N|`. That is withdrawn:
+  attainment holds only for one order realization in the `Z` example, and the average there is `3/2 < 2`.
+- **Sharper per-term form.** `A_n <= H(y(e) | Z_n, U)` gives `sum_n H(y(e) | Z_n, U) >= log |A|`. That is not
+  domination, because the conditionings differ. See `three-point-decoder-memory-injective-ca-are-surjective`.

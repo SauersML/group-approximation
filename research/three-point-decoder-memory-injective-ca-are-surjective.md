@@ -27,16 +27,22 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
   question is whether it holds for a reason that uses no finite model.
 - **Pointwise versions fail.** A single order realization can violate domination even for bijective automata
   (artifact 3.2). Averaging over the random order is required.
-- **Transport gives only a reciprocal bound** (`transport-identity-gives-reciprocal-memory-entropy-bound`,
-  e87f4c60f5). The identity plus the per-term bound `I(.;y(e)|.) <= H(y(e))` yields only
-  `H(y(e)) >= (log |A|)/3`; the per-term bound is tight, so no term-by-term argument reaches domination. A proof must
-  use realizability (`y` a finite block code of i.i.d. `x`), not only the information relations at the seven sites.
-- **Amplification does not reduce this claim** (`skewed-marginal-amplification-enlarges-decoder-memory`, e87f4c60f5).
-  The skewed amplification of a strict `tau` has left-inverse memory `N_tau ∪ W_anchor ∪ W_block`, not three points,
-  so three-point domination does not feed the surjectivity reading by amplification. Read the claim either as the
-  `h_fin` statement for three-point-decoder automata, or attack single-site domination for the enlarged-memory `kappa`.
+- **Per-term bounds give only subadditivity** (`transport-identity-gives-reciprocal-memory-entropy-bound`). Bounding
+  each transport term by `H(y(e))` and summing gives `H(y(e)) >= (log |A|)/3`. That is the elementary bound
+  `log |A| <= H(y|_N) <= 3 H(y(e))` (direct proof by w3-vf-positive), so the identity adds nothing at that level. The
+  sharper per-term bound gives `sum_n H(y(e) | Z_n, U) >= log |A|`, which is not domination because the conditionings
+  differ. A proof has to use the three conditionings jointly. No Shannon-type proof was found, and none has been shown
+  impossible. (Corrected at the second landing: the first entry said the per-term bound is tight and that a proof
+  must use realizability; both are withdrawn.)
+- **Amplification step: open** (`skewed-marginal-amplification-enlarges-decoder-memory`, OPEN). The decoder built in
+  the skewed construction reads `N_tau ∪ W_anchor ∪ W_block`. The only proved lower bound is that any left inverse of
+  the amplified `kappa` restricts to a left inverse of `tau` with contained memory (artifact Lemma 3.1). So the
+  reduction above is not known to work: it needs a three-point left inverse of `kappa`, and whether one exists is
+  open. (Corrected at the second landing: the first entry asserted the enlargement as established.)
 - **Caution on the free case.** "The free case `<s,t> = F_2` is sofic, hence already true" is about soficity of the
-  decoder memory group, not of the host `G`. The coset argument of `amenable-decoder-memory-forces-surjectivity`
-  reduces it to pre-injectivity of a surjective automaton over `F_2`, and GOE's surjective-implies-pre-injective
-  direction fails on `F_2` (Bartholdi). So the free-`Gamma` case needs its own justification and should be treated as
-  open; the amenable mechanism closes exactly the amenable-`<s,t>` cases.
+  decoder memory group, not of the host `G`. Two gaps:
+  - the amenable mechanism reduces the free case to pre-injectivity of a surjective automaton over `F_2`, where
+    "surjective implies pre-injective" fails (attributed to Bartholdi; not re-read);
+  - the joint law of `y` at the seven sites depends on the encoder windows, so relations of `G` outside `<s,t>` enter.
+
+  So the free-`Gamma` case should be treated as open. The amenable mechanism closes exactly the amenable-`<s,t>` cases.

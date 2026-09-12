@@ -37,8 +37,10 @@ form. It is kept because it isolates the conditionings as the whole difficulty a
 - **Discarded on the way** (artifact Section 4): exactness transfer (left equivariance, no right Folner sets),
   free subrelations with the f-invariant (not generating, and a conjugacy invariant), symbol symmetrization
   (orbits break uniformity).
-- **Reciprocal lower bound, and its tightness** (`transport-identity-gives-reciprocal-memory-entropy-bound`,
-  e87f4c60f5). The identity plus `I(.;y(e)|.) <= H(y(e))` per term gives only `H(y(e)) >= (log |A|)/|N|`. Domination is
-  the constant-`1` case. Since the per-term bound is attained (the `Z` bijective example, artifact 2.5), domination
-  needs an upper bound on the transport sum that is not a sum of per-term entropy bounds, i.e. it needs realizability
-  beyond Shannon inequalities plus the identity.
+- **Per-term bounds reproduce subadditivity** (`transport-identity-gives-reciprocal-memory-entropy-bound`). Bounding
+  each term by `H(y(e))` gives `H(y(e)) >= (log |A|)/|N|`. That is the elementary bound
+  `log |A| <= H(y|_N) <= |N| H(y(e))`, so the identity adds nothing at that level. Domination is the constant-`1` case.
+  The sharper per-term bound gives `sum_n H(y(e) | Z_n, U) >= log |A|`, which is not domination. A proof must use the
+  conditionings jointly. (Corrected at the second landing: the first entry claimed the per-term bound is attained and
+  that domination needs realizability beyond Shannon inequalities; attainment holds only for one order realization, and
+  the impossibility was never shown.)
