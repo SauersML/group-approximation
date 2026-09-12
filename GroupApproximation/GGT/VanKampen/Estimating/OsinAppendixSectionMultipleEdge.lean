@@ -155,8 +155,8 @@ theorem OsinMultipleEdgeCut.false_of_below
     intro j hj
     have hj4 : (j : ℕ) < 4 := by
       have hlt := j.isLt
-      rw [cut.count_eq] at hlt
-      exact hlt
+      have hc := cut.count_eq
+      omega
     by_cases hside : (j : ℕ) = 0 ∨ (j : ℕ) = 2
     · rw [if_pos hside]
       exact le_of_lt (RegionCandidate.contiguityDegree_lt_half_mu_of_shortSection
@@ -182,7 +182,9 @@ theorem OsinMultipleEdgeCut.false_of_below
     generalize cut.sections.count = n
     intro hn
     subst hn
-    norm_num [Fin.sum_univ_four] <;> ring
+    simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
+    norm_num
+    ring
   linarith
 
 /-! ## Loops -/
@@ -239,8 +241,8 @@ theorem OsinLoopCut.false_of_below
     intro j hj
     have hj2 : (j : ℕ) < 2 := by
       have hlt := j.isLt
-      rw [cut.count_eq] at hlt
-      exact hlt
+      have hc := cut.count_eq
+      omega
     by_cases hside : (j : ℕ) = 0
     · rw [if_pos hside]
       exact le_of_lt (RegionCandidate.contiguityDegree_lt_half_mu_of_shortSection
@@ -266,7 +268,9 @@ theorem OsinLoopCut.false_of_below
     generalize cut.sections.count = n
     intro hn
     subst hn
-    norm_num [Fin.sum_univ_two] <;> ring
+    simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
+    norm_num
+    ring
   linarith
 
 end GroupApproximation.GGT.VanKampen
