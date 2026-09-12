@@ -240,17 +240,17 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
   · intro h
     rcases (hmemR _).mp h with hf | ⟨hf, _⟩
     · obtain ⟨_, hin⟩ := (hfilt _).mp hf
-      rw [hout _ hOoff, hheadO] at hin
-      exact V.outer_not_mem hin
+      exact V.outer_not_mem
+        ((congrArg (fun z => z ∈ V.relFaces) ((hout _ hOoff).trans hheadO)).mp hin)
     · exact hOoff hf
   · intro l' hl' h
     rcases (hmemR _).mp h with hf | ⟨hf, hP⟩
     · obtain ⟨hoff, hin⟩ := (hfilt _).mp hf
       have hM' := C.isFaceCycle_map_value_of_ne hne hl hx₀ hl' hoff
       have hface' : M.faceOf ((l'.map (EdgeDeletion.value M a)).head hM'.ne_nil) ∈
-          V.relFaces := by
-        rw [List.head_map, ← hout _ hoff]
-        exact hin
+          V.relFaces :=
+        (congrArg (fun z => z ∈ V.relFaces)
+          ((congrArg M.faceOf (List.head_map hM'.ne_nil)).trans (hout _ hoff).symm)).mpr hin
       have hsc := V.rel _ hM' hface'
       rwa [List.map_map] at hsc
     · obtain ⟨k, hk, hrot⟩ := hcyc.exists_rotate_eq hl' hf.symm
@@ -269,14 +269,13 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
       exact htrivF hP
     · have hM' := C.isFaceCycle_map_value_of_ne hne hl hx₀ hl' hF
       have hnotin : M.faceOf ((l'.map (EdgeDeletion.value M a)).head hM'.ne_nil) ∉
-          V.relFaces := by
-        rw [List.head_map, ← hout _ hF]
-        exact fun h => hnot ((hmemR _).mpr (Or.inl ((hfilt _).mpr ⟨hF, h⟩)))
+          V.relFaces := fun h => hnot ((hmemR _).mpr (Or.inl ((hfilt _).mpr ⟨hF,
+            (congrArg (fun z => z ∈ V.relFaces)
+              ((congrArg M.faceOf (List.head_map hM'.ne_nil)).trans (hout _ hF).symm)).mp h⟩)))
       have hneO : M.faceOf ((l'.map (EdgeDeletion.value M a)).head hM'.ne_nil) ≠
-          M.faceOf (V.outer.head V.outer_cycle.ne_nil) := by
-        rw [List.head_map, ← hheadO]
-        intro h
-        exact hoffO (C.faceOf_eq_of_faceOf_value_eq hne hl hx₀ hF h)
+          M.faceOf (V.outer.head V.outer_cycle.ne_nil) := fun h =>
+        hoffO (C.faceOf_eq_of_faceOf_value_eq hne hl hx₀ hF
+          ((congrArg M.faceOf (List.head_map hM'.ne_nil)).symm.trans (h.trans hheadO.symm)))
       have hone := V.triv _ hM' hneO hnotin
       rwa [List.map_map] at hone
   · have hFnot : (EdgeDeletion.toCombMap M a).faceOf (l.head hlne) ∉ filt :=
