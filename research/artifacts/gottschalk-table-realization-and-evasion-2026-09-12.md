@@ -134,3 +134,83 @@ group kills `x_h`.
   group, or any group already known to be surjunctive, realizes the products of
   `S x M` and `H x M` with `h != 1`, then no pair of local rules on those windows is
   strict. The rules never need to be examined.
+
+## 2. Full shifts map only constantly into two-sided algebraic subshifts
+
+Let `p` be a prime and `G` a group. For a subset `I` of `F_p[G]` put
+
+    X_I = { x in F_p^G : <x, r> = sum_g x(g) r_g = 0 for all r in I }.
+
+If `I` is a left ideal, `X_I` is closed and invariant, because
+`<h.x, r> = <x, h^-1 r>`. If `I` is also a right ideal, `X_I` is invariant under
+right translations as well, since `<x(. k), r> = <x, r k^-1>`.
+
+**Theorem B.** Let `G` be icc, meaning every nontrivial element has infinitely many
+conjugates. Let `I` be a nonzero two-sided ideal of `F_p[G]` and `A` a finite
+alphabet. Then every continuous equivariant map `F: A^G -> X_I` is constant. Its
+value is a constant configuration `c` with `c · eps(r) = 0` for all `r` in `I`,
+where `eps` is the augmentation.
+
+*Proof.* By Curtis--Hedlund--Lyndon, `F(y)(g) = f( y(g d) )_(d in D)` for a finite
+set `D` and a local rule `f`. Take a nonzero `r` in `I`, with support
+`{g_1, ..., g_n}` and nonzero coefficients `c_i`. For every `k` in `G`, the element
+`rk` lies in `I`, so for every `y`
+
+    (B1)    sum_i c_i f( y(g_i k d) )_(d in D) = 0.
+
+Choose `k` to make the windows disjoint.
+- For `i != j` put `a_ij = g_i^-1 g_j`, which is not `1`. The windows `g_i k D` and
+  `g_j k D` meet iff `k^-1 a_ij k` lies in `D D^-1`.
+- For fixed `a` and `b`, the solutions `k` of `k^-1 a k = b` are empty or a right
+  coset of the centralizer `C(a)`. So the bad `k` form a finite union of right
+  cosets of the `C(a_ij)`.
+- Each `C(a_ij)` has infinite index, because `a_ij` has infinitely many conjugates.
+- By B. H. Neumann's lemma, a group is not a finite union of cosets of
+  infinite-index subgroups. So some `k` makes the `n` windows `g_i k D` pairwise
+  disjoint.
+
+For that `k`, the tuple `(y|_(g_i k D))_i` ranges over all of `(A^D)^n`, and (B1)
+reads
+
+    sum_i c_i f(a_i) = 0     for all a_1, ..., a_n in A^D.
+
+Vary `a_1` alone: since `c_1` is invertible, `f` is constant. So `F(y)` is the
+constant configuration `c = f`, independent of `y`, and `<c, r> = c · eps(r) = 0`.
+QED.
+
+**The right-ideal hypothesis is essential.** Take a left ideal `I = F_p[G] a`.
+With the checker's convention `tau_a(x)(g) = sum_(h in supp a) a_h x(gh)`, the
+subshift `X_I` is the kernel of `tau_a`. It receives the nonconstant automaton
+`tau_b` whenever `ab = 0` and `b != 0`, since `tau_a tau_b = tau_(ab)`. The
+Kaplansky lane lives on these one-sided kernels, and Theorem B says nothing
+against it.
+
+**Corollary B1 (the Leavitt subshift is invisible from full shifts).**
+- *Setting.* Let `G = L_(F_2)(1,2)^x` and `pi: F_2[G] -> L_(F_2)(1,2)` the
+  evaluation, with kernel `K`, and put `X = K^perp = X_K`. This is the subshift of
+  `leavitt-kernel-annihilator-strict-self-embedding`.
+- *Hypotheses of Theorem B hold.* `K` is a two-sided ideal. It is nonzero: the
+  standard unit `g = uv` of order three, with `u = 1 + s_0 t_1` and
+  `v = 1 + s_1 t_0`, acts on the corner `M_2(F_2)` as `[[0,1],[1,1]]`. That matrix
+  satisfies `x^2 + x + 1`, so `[1] + [g] + [g^2]` lies in `K`. `G` is icc because
+  it is infinite and simple (`binary-leavitt-unit-group-is-simple`).
+- *Conclusion.* Since `eps([1] + [g] + [g^2]) = 1`, the only constant configuration
+  in `X` is `0`. So every automaton from any full shift into `X` is identically
+  zero.
+
+**Consequences for designs.**
+- *No absorption.* `X` carries the strict self-embedding `T_a`, and it would be
+  natural to try `A^G ≅ W × X`, which with `X ≅ X × X` would give
+  `A^G ≅ A^G × X` and hence a strict automaton. The projection to `X` would be a
+  nonzero automaton from a full shift into `X`, so no such conjugacy exists. More
+  generally, `X` is not a factor of any full shift, through any nonlinear
+  intermediary: composing with a conjugacy onto `X` only gives another automaton
+  into `X`.
+- *Other quotient rings.* The same holds for the dual subshift of every quotient
+  `F_p[G] -> R` with nonzero kernel, over any icc group. The defect of a quotient
+  ring, the lesson of `direct-finiteness-not-inherited-by-quotients`, is invisible
+  to the full shift, not only uninherited.
+- *Scope.* This complements `subshift-self-embedding-carries-no-surjunctivity-content`,
+  which shows the subshift embedding exists over free groups too. Theorem B shows
+  instead that the full shift cannot reach the subshift at all. It says nothing
+  about kernels of one-sided linear automata, or about nonlinear subshifts.
