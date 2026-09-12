@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.HullSuitabilityGeometry
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The sequential Gromov boundary, limit sets, and Osin's definition of acylindrical hyperbolicity

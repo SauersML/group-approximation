@@ -70,13 +70,11 @@ theorem convergesAtInfinity_pow_of_gap {δ C : ℝ} (hδ : IsHyperbolicSpace δ 
   have hj1 : 1 ≤ j := le_trans (le_max_right _ _) hj
   have hiN : N ≤ i := le_trans (le_max_left _ _) hi
   have hjN : N ≤ j := le_trans (le_max_left _ _) hj
-  have hCδ : 0 ≤ C + 2 * δ := by linarith
   rcases lt_trichotomy i j with hij | hij | hji
   · have h1 := PNaive.le_gromovProduct_pow_pow hδ hδ0 hiso hloc hC hgap hi1 hij
     have h2 := hN i hiN
     linarith
-  · subst hij
-    rw [gromovProduct_self, dist_comm]
+  · rw [← hij, gromovProduct_self, dist_comm]
     have h2 := hN i hiN
     linarith
   · have h1 := PNaive.le_gromovProduct_pow_pow hδ hδ0 hiso hloc hC hgap hj1 hji

@@ -99,7 +99,7 @@ theorem manuscriptSentence_hullOneTargetOneRelator_of_leaves
     ∃ (s : HullSC.HullTower A N (fun j : Fin 0 => Fin.elim0 j) (fun _ : Fin 1 => t) 0)
       (r : G), s.step.q.ker = Subgroup.normalClosure ({r} : Set G) ∧
         Nonempty (G ⧸ Subgroup.normalClosure ({r} : Set G) ≃* s.step.Q) := by
-  have hOne := hullOneStep_of_leaves hgreendlinger hbridge
+  have hOne : HullSC.HullOneStepStatement.{0} := hullOneStep_of_leaves hgreendlinger hbridge
   obtain ⟨s⟩ := hOne (k := 0) (S := fun j : Fin 0 => Fin.elim0 j) hG A hN
     (fun j : Fin 0 => Fin.elim0 j) t 0
   obtain ⟨T, hTcard, hTker⟩ := s.kerNormallyGenerated

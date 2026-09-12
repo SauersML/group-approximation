@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.HullSCTheorem71GeneralLeastArea
+import GroupApproximation.GGT.HullSCTheorem71General
 import GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences
 import GroupApproximation.Meta.AxiomGuard
 
@@ -24,8 +24,8 @@ ambient group:
   `m`, clause (d) holding along it (`HullSC.hullTowerGeneral_of_oneStep`).
 
 The kernel remark is `TorsionFreeSectionSentences.manuscriptSentence_hullKernelRemark`,
-already stated for every tower.  Both sentences are given over the one-step
-statement at every ambient group and over the least-area leaves.
+already stated for every tower.  The same two sentences over the least-area leaves
+are in `TorsionFreeHullPrintedLeastArea`.
 -/
 
 namespace GroupApproximation
@@ -77,33 +77,6 @@ theorem manuscriptSentence_hullInductionOnTargetsGeneral_of_oneStep
     (k := 0) (S := fun j : Fin 0 => Fin.elim0 j) (fun j : Fin 0 => Fin.elim0 j) t R
   exact ⟨s, s.step.suitable_map⟩
 
-/-- **The one-relator sentence at every ambient group, from the least-area
-leaves.** -/
-theorem manuscriptSentence_hullOneTargetOneRelatorGeneral_of_leastAreaLeaves
-    (hgreendlinger :
-      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    {G : Type} [Group G] (A : HullGeneratingSet G)
-    {N : Subgroup G} (hN : Suitable A.alphabet N) (t : G) :
-    ∃ (s : HullSC.HullTower A N (fun j : Fin 0 => Fin.elim0 j) (fun _ : Fin 1 => t) 0)
-      (r : G), s.step.q.ker = Subgroup.normalClosure ({r} : Set G) ∧
-        Nonempty (G ⧸ Subgroup.normalClosure ({r} : Set G) ≃* s.step.Q) :=
-  manuscriptSentence_hullOneTargetOneRelatorGeneral_of_oneStep
-    (HullSC.hullOneStepStatementGeneral_of_leastAreaLeaves hgreendlinger hbridge) A hN t
-
-/-- **The induction sentence at every ambient group, from the least-area
-leaves.** -/
-theorem manuscriptSentence_hullInductionOnTargetsGeneral_of_leastAreaLeaves
-    (hgreendlinger :
-      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (m : ℕ) {G : Type} [Group G] (A : HullGeneratingSet G)
-    {N : Subgroup G} (hN : Suitable A.alphabet N) (t : Fin m → G) (R : ℕ) :
-    ∃ s : HullSC.HullTower A N (fun j : Fin 0 => Fin.elim0 j) t R,
-      Suitable s.step.hullSet.alphabet (N.map s.step.q) :=
-  manuscriptSentence_hullInductionOnTargetsGeneral_of_oneStep
-    (HullSC.hullOneStepStatementGeneral_of_leastAreaLeaves hgreendlinger hbridge) m A hN t R
-
 end TorsionFreeHullParagraphGeneral
 end NonMF
 end Manuscript
@@ -111,5 +84,3 @@ end GroupApproximation
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_oneStep
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullInductionOnTargetsGeneral_of_oneStep
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_leastAreaLeaves
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullInductionOnTargetsGeneral_of_leastAreaLeaves
