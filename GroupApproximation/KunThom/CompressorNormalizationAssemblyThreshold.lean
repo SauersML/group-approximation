@@ -69,16 +69,17 @@ theorem vanishing_div_of_sqrt_le {ρ h : ℕ → ℝ} (hρ0 : ∀ n, 0 ≤ ρ n)
     _ ≤ Real.sqrt (ρ n) * h n := mul_le_mul_of_nonneg_left (hle n hn) (Real.sqrt_nonneg _)
 
 /-- **The joint scale choice.**  For retained components whose generators
-contain a Kazhdan pair, and a nonnegative vanishing sequence `ρ`, some cluster
-frame has a positive vanishing threshold `h` with `ρ = o(h)`. -/
+contain a Kazhdan pair, a repair factor `K₀ ≥ 4` and a nonnegative vanishing
+sequence `ρ`, some cluster frame with repair factor `K₀` has a positive
+vanishing threshold `h` with `ρ = o(h)`. -/
 theorem exists_clusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K : Type}
     [Group K] {ι : K →* G} (R : RetainedComponents A K ι) {Q : Finset K} {κ : ℝ}
     (hQ : IsKazhdanPair.{0, 0} K Q κ) (hQT : Q ⊆ R.data.generators) (hκone : κ ≤ 1)
-    (ρ : ℕ → ℝ) (hρ0 : ∀ n, 0 ≤ ρ n) (hρ : Vanishing ρ) :
-    ∃ F : ClusterFrame R, (∀ n, 0 < F.threshold n) ∧ Vanishing F.threshold ∧
-      Vanishing fun n ↦ ρ n / F.threshold n := by
+    (K₀ : ℝ) (hK₀ : 4 ≤ K₀) (ρ : ℕ → ℝ) (hρ0 : ∀ n, 0 ≤ ρ n) (hρ : Vanishing ρ) :
+    ∃ F : ClusterFrame R, F.repairFactor = K₀ ∧ (∀ n, 0 < F.threshold n) ∧
+      Vanishing F.threshold ∧ Vanishing fun n ↦ ρ n / F.threshold n := by
   obtain ⟨h, d, hpos, htend, _, hev, N₀, hN₀⟩ :=
-    R.data.family.exists_joint_pairRepair 4 le_rfl hQ hQT R.data.one_mem hκone
+    R.data.family.exists_joint_pairRepair K₀ hK₀ hQ hQT R.data.one_mem hκone
       (fun n ↦ Real.sqrt (ρ n)) (tendsto_of_vanishing (vanishing_sqrt hρ0 hρ))
   obtain ⟨N₁, hN₁⟩ := R.data.family.size_tendsTo 360
   have hcap : 0 < min (1 / 100000 : ℝ) R.data.family.cheeger :=
@@ -90,6 +91,7 @@ theorem exists_clusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K :
   have hthrpos : ∀ n, 0 < min (h n) (min (1 / 100000) R.data.family.cheeger) :=
     fun n ↦ lt_min (hpos n) hcap
   refine ⟨{ threshold := fun n ↦ min (h n) (min (1 / 100000) R.data.family.cheeger)
+            repairFactor := K₀
             distance := d
             start := max N₀ (max N₁ N₂)
             threshold_pos := hthrpos
@@ -97,13 +99,13 @@ theorem exists_clusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K :
             threshold_cheeger := fun n ↦ (min_le_right _ _).trans (min_le_right _ _)
             scale_large := ?_
             repair := ?_
-            improve := ?_ }, hthrpos, ?_, ?_⟩
+            improve := ?_ }, rfl, hthrpos, ?_, ?_⟩
   · intro n hn i
     have hcard := hN₁ n ((le_max_left N₁ N₂).trans ((le_max_right N₀ _).trans hn)) i
     show 20 ≤ Fintype.card (R.data.family.model n i) / 18
     omega
   · intro n hn
-    show R.data.family.PairRepairAt 4 (min (h n) (min (1 / 100000) R.data.family.cheeger))
+    show R.data.family.PairRepairAt K₀ (min (h n) (min (1 / 100000) R.data.family.cheeger))
       (d n) n
     rw [heq n ((le_max_right N₁ N₂).trans ((le_max_right N₀ _).trans hn))]
     exact (hN₀ n ((le_max_left N₀ _).trans hn)).1

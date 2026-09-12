@@ -152,18 +152,25 @@ structure RetainedComponents {G : Type} [Group G] (A : SoficApproximation G) (K 
 
 /-! ### Cluster frames -/
 
-/-- A candidate threshold, a distance factor and a start index from which the
-pair-scale repair and improvement statements hold. -/
+/-- A candidate threshold, a repair factor, a distance factor and a start index
+from which the pair-scale repair and improvement statements hold.  The repair
+factor is the constant `K₀` of Kun--Thom Lemma 4.2(2): arrows whose defects are
+below `K₀` times the pair threshold are within the distance factor of a
+candidate.  Transporting a candidate through a compressor multiplies its defect
+by the length of the words representing the conjugated generators, so `K₀`
+depends on those words. -/
 structure ClusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K : Type} [Group K]
     {ι : K →* G} (R : RetainedComponents A K ι) where
   threshold : ℕ → ℝ
+  repairFactor : ℝ
   distance : ℕ → ℝ
   start : ℕ
   threshold_pos : ∀ n, 0 < threshold n
   threshold_small : ∀ n, threshold n ≤ 1 / 100000
   threshold_cheeger : ∀ n, threshold n ≤ R.data.family.cheeger
   scale_large : ∀ n, start ≤ n → ∀ i, 20 ≤ R.data.family.scale n i
-  repair : ∀ n, start ≤ n → R.data.family.PairRepairAt 4 (threshold n) (distance n) n
+  repair : ∀ n, start ≤ n →
+    R.data.family.PairRepairAt repairFactor (threshold n) (distance n) n
   improve : ∀ n, start ≤ n → R.data.family.PairImproveCloseAt (threshold n) (distance n) n
 
 namespace ClusterFrame
