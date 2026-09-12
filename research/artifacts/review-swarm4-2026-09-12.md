@@ -354,9 +354,15 @@ Priority review, requested by the coordinator: three named checks and a must-fai
 - The `L`-orbits are the sets `(G_A-orbit) × Z`, so there are three.
 
 **Check 3: nonunimodular in Hutchcroft's sense.**
-- **Source.** arXiv:1711.02590, checked 2026-09-12 against the ar5iv HTML rendering through WebFetch, because
-  the MSI auth breaker blocked a TeX extraction. Both quotes agree word for word with the TeX quotes in
-  `fpbs-hyperbolic-and-nonunimodular-nonuniqueness-citation`.
+- **Source.** arXiv:1711.02590. First checked 2026-09-12 against the ar5iv HTML rendering through WebFetch,
+  while the MSI auth breaker was set.
+  - Re-checked the same day against the v3 PDF text extracted on MSI with `pdftotext`
+    (`/scratch.global/sauer354/rev4-pdf/h.txt`): Theorem 1.2 at lines 130–131 and the definition at lines
+    144–151. The wording is identical.
+  - The definition takes `Stab_x y` to be the orbit of `y` under `Stab_x`, and it puts no closedness
+    hypothesis on `Γ`.
+  - Both quotes agree word for word with the TeX quotes in
+    `fpbs-hyperbolic-and-nonunimodular-nonuniqueness-citation`.
   - Theorem 1.2: "Let G be a connected, locally finite graph, and suppose that Aut(G) has a quasi-transitive
     nonunimodular subgroup. Then p_c(G) < p_u(G)."
   - Definition: "Γ is said to be unimodular if |Stab_v u| = |Stab_u v| for every u,v ∈ V in the same orbit
@@ -394,8 +400,15 @@ Priority review, requested by the coordinator: three named checks and a must-fai
 
 **Scope remarks.**
 - The root `fpbs-tree-projected-cayley-graphs-strict-thresholds` says in `distinct_from` that the remaining
-  graphs are "outside" Hutchcroft's theorem. What is known is only that they are not known to be covered,
-  as its own Attempts say.
+  graphs are "outside" Hutchcroft's theorem.
+  - That is proved only where the whole automorphism group is discrete, since a discrete group is
+    unimodular. Artifact §3 of the letter-exchange lane (§22) claims this for one rigid example; that claim
+    was not checked here.
+  - Hutchcroft makes the same point (PDF lines 169–172): "Theorem 1.2 does not apply to every Cayley graph
+    of the direct product of Zd with a non-Abelian free group. Indeed, there are even Cayley graphs of the
+    free group on two generators whose automorphism groups are discrete".
+  - For the other remaining graphs, what is known is only that no nonunimodular subgroup has been found, as
+    the root's Attempts say.
 - Novelty was checked only against Cairn. `{(a,0),(a,1),(b,0),(1,1)}` was the smallest open example recorded
   in Cairn, one case of Choi–Seo Q1.3, which stays open.
 - The lift-check script was not re-run, because MSI was unavailable.
