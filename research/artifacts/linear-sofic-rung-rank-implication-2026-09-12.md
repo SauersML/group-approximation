@@ -185,3 +185,39 @@ all-ones vector.
 - **So.** A proof of the rung for nonlinear automata must linearize on the group side before it touches models,
   as the recorded route does through stable formalizability and `linear-sofic-group-algebra-is-stably-finite`, or
   find a rank-visible invariant of the pair `(mu, nu)` that is not a coordinatewise evaluation.
+
+## 4. The negation, a separating datum, and where the rung stops
+
+**The negation.** `some-linear-sofic-group-is-not-surjunctive` is the open claim that some `F_p`-linear sofic group
+is not surjunctive. By Theorem 1.2 it is a matrix statement: some strict datum `D` and prime `p` admit, for every
+reverse word `w`, tuples over `F_p` with forward relators of normalized rank tending to `0` and `w` of normalized
+rank bounded below. By Theorem 1.2 (b) ⇒ (c), such tuples assemble into a finitely generated `F_p`-linear sofic
+group realizing `D`: the quotient `F(D)/N_lin(F_p)(D)`.
+
+**Task 2 of this lane (a datum separating `N_lin` from `N_sof`).** A strict `D` with `W_r(D) ∩ N_lin(F_p)(D)`
+empty, and so by Gromov–Weiss with `W_r(D) ∩ N_sof(D)` nonempty, makes `F(D)/N_lin(F_p)(D)` a finitely generated
+group that is `F_p`-linear sofic, not surjunctive, and hence not sofic. So a separating datum answers the finite-field
+form of Arzhantseva–Paunescu Question 8.5 (recorded over `C` as `linear-sofic-nonsofic-group`) and refutes
+Gottschalk's conjecture in the same stroke. It is at least as hard as either. I did not find one.
+
+**What a witness must be.**
+- **Far from monomial.** By Remark 2.3, the witnessing tuples stay at rank distance at least `delta(eps)/4` from
+  monomial tuples, generator by generator.
+- **Invisible to counting.** By Proposition 3.1, the coordinatewise evaluation of the rules is not stable on such
+  tuples. So the witness gives no configuration space on which to count, which is why Gromov–Weiss does not see it.
+- **Linear-algebraically finite.** `F_p[K]` is stably finite, so every strict automaton on the witness group `K`
+  is nonlinear, and over `p`-power alphabets none is formalizable after identity tracks.
+
+**What a proof of the rung must use.**
+- **The only recorded route.** `linear-sofic-surjunctivity-via-formalizability-and-ascent` uses nothing from linear
+  soficity beyond stable finiteness of `F_p[G]`. It needs stable formalizability and alphabet ascent, both open.
+- **What linear soficity adds.** A Sylvester rank function on `F_p[G]`, strictly more than stable finiteness. The
+  per-datum form shows exactly what the rank function must control: word ranks, in all tuples, of words of length
+  four, with no coordinatewise structure available. No argument on record uses the rank function past direct
+  finiteness.
+- **Linear control.** Remark 1.4 records a stronger quantitative form. The weakly sofic rung implies it with
+  constant equal to the conjugacy width. Whether the rung implies it is open.
+
+**Where this lane stops.** No proof of the rung for nonlinear automata. No separating datum. The landed results
+place the rung between Gromov–Weiss (monomial tuples) and the weakly sofic rung (bounded conjugacy width), and they
+explain why coordinatewise counting cannot be pushed from one to the other.

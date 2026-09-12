@@ -7,8 +7,11 @@ distinct_from:
   sofic-groups-are-surjunctive: that is Gromov and Weiss from soficity; this would derive surjunctivity from linear soficity over one prime field, a weaker hypothesis, conditional on stable formalizability and alphabet ascent.
   stable-finiteness-forces-prime-power-surjunctivity: that concludes surjunctivity over p-power alphabets from stable finiteness of F_p[G]; this concludes surjunctivity over every alphabet from linear soficity over F_p.
   linear-sofic-nonsofic-group: that asks for a linear sofic group outside the sofic class; this records what such a group would buy for Gottschalk's conjecture.
+refuted_by:
+  - some-linear-sofic-group-is-not-surjunctive
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
+  - research/artifacts/linear-sofic-rung-rank-implication-2026-09-12.md
 ---
 
 **OPEN.** If a group `G` is `F_p`-linear sofic for some prime `p`, then `G` is surjunctive over every finite
@@ -39,3 +42,19 @@ contains `sofic-groups-are-surjunctive`, and it exceeds it on any linear sofic n
     currently exceeds Gromov–Weiss only conditionally.
   - Read contrapositively: a strict automaton on a group, together with the two open prerequisites,
     makes that group not linear sofic over any prime field.
+- **Matrix form, datum by datum** (w4-linsofic-surj, artifact `linear-sofic-rung-rank-implication-2026-09-12.md`).
+  - *Exact form.* Over `F_p` the claim holds iff every strict datum has a reverse word whose rank is forced
+    below `eps n` whenever all forward relators have rank at most `delta n`, in every invertible matrix tuple
+    (`linear-sofic-surjunctivity-is-a-rank-implication-per-datum`). The rules enter only through strictness.
+  - *Gromov–Weiss is the monomial case.* That implication holds on monomial tuples for every strict datum, and on
+    tuples near monomial ones (`gromov-weiss-is-the-monomial-case-of-the-rank-implication`). The content of the
+    claim is tuples far from monomial.
+  - *Counting does not extend.* The coordinatewise product through which nonlinear rules are evaluated vanishes
+    in defect only at permutation matrices, and a rank-one perturbation gives it full rank
+    (`site-pullbacks-are-discontinuous-in-the-rank-metric`). So Gromov–Weiss counting has no rank-metric version.
+    A proof must linearize on the group side first, as the recorded route does, or find a rank-visible invariant of
+    the rule pair.
+  - *Negation.* `some-linear-sofic-group-is-not-surjunctive` (open). A strict datum whose reverse words avoid the
+    linear sofic kernel makes `F(D)/N_lin(F_p)(D)` linear sofic, not surjunctive and not sofic.
+  - *Where it stops.* No proof for nonlinear automata, and no separating datum. Whether the rank implication
+    implies linear control, `rk(rho(w) - 1) <= C max_r rk(rho(r) - 1)`, is open. The weakly sofic rung implies it.
