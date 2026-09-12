@@ -4,6 +4,11 @@ Lane `w4-lamp-closure`, 2026-09-12. Handwritten; nothing run. Decides the smalle
 `kun-thom-wreath-lamp-quotient-nonsurjunctive` (Example 5.4 of
 `kun-thom-lamp-quotient-hosts-2026-09-12.md`) and isolates the closure that matters.
 
+**Correction (w3-vf-nonlinear, Section 21 of its verification artifact).** The first version of
+Theorem 1.2 (330d3b39cb) claimed `w in U^c <=> m in S_0`. That is false: pairing (P_b), `b in S`,
+does not force `pi_S(w) = 0`. The corrected theorem has a second membership. The direction used for
+the negative resolution (`m notin S_0 => w notin U-bar`) was and is correct.
+
 ## 0. Two closures
 
 `P = F_2[G/Gamma]`, `Gamma <= G`. For a `G`-submodule `U <= P`:
@@ -20,79 +25,68 @@ Coset projections are permutation maps, so using **fewer** maps gives a **bigger
     U  <=  U-bar  <=  U^c.
 
 **Lemma 0.1 (coset parity suffices).** If `U = U^c` then `U = U-bar` and `W/U` is surjunctive.
-*Proof.* `U = U^c` forces `U = U-bar` by the sandwich, and then
-`P/U` embeds in `prod_S F_2[G/S]` through the `pi_S` with `pi_S(U)=0` (their common kernel is
-`U^c = U`). Each `F_2[G/S]` is a permutation module, so `P/U` is residually permutational and
-`W/U` is surjunctive by `residually-permutational-lamp-extensions-are-surjunctive`. QED
+*Proof.* `U = U^c` forces `U = U-bar` by the sandwich, and `P/U` embeds in `prod_S F_2[G/S]`
+through the `pi_S` with `pi_S(U) = 0`, whose common kernel is `U^c = U`. Each `F_2[G/S]` is a
+permutation module, so `P/U` is residually permutational and `W/U` is surjunctive by
+`residually-permutational-lamp-extensions-are-surjunctive`. QED
 
-So a lamp quotient can be proved surjunctive using only the concrete fibre-parity maps `pi_S`,
-with no Hecke cancellation. `U^c` is idempotent (`(U^c)^c = U^c`), so `W/U^c` is surjunctive for
-**every** `U`: the only room for a counterexample is the gap `U-bar / U` (a fortiori `U^c / U`).
+`U^c` is idempotent (`(U^c)^c = U^c`), so `W/U^c` is surjunctive for **every** `U`. The only room for
+a counterexample is the gap `U-bar / U`, and a fortiori `U^c / U`.
 
 ## 1. The commutator generator
 
 Fix `a, b in G`. Put
 
-    v = (1+a)(1+b) e_Gamma,   w = (1+b)(1+a) e_Gamma,   m = b^-1 a^-1 b a,   U = F_2[G] v.
+    v = (1+a)(1+b) e_Gamma,   w = (1+b)(1+a) e_Gamma,   m = b^-1 a^-1 b a,   U = F_2[G] v,
+    S_0 = <Gamma, ab, a^-1 b>,   S_1 = <Gamma, b>.
 
-Both `v, w` are fibre-even when `a, b in N`. `w + v = e_(ab Gamma) + e_(ba Gamma)`, and
-`(ab+ba)c = 0` for a vector `c` means exactly `m c = c`. Example 5.4 asks whether `w in U-bar`.
+Both `v, w` are fibre-even when `a, b in N`. Example 5.4 asks whether `w in U-bar`.
 
-**Theorem 1.2 (coset closure of the commutator generator is a subgroup membership).**
+**Theorem 1.2 (corrected).**
 
-    w in U^c   <=>   m in <Gamma, ab, a^-1 b>.
+    w in U^c   <=>   m in S_0   and   a^-1 b a in S_1.
 
-Write `S_0 = <Gamma, ab, a^-1 b>`. In particular, **if `m notin S_0` then `w notin U-bar`**:
-the reversed product is not in the permutation closure, so this generator does not enlarge the
-closure through `w`.
+So **if `m notin S_0` or `a^-1 b a notin S_1`, then `w notin U-bar`**.
 
-*Proof.* For `S >= Gamma`, `pi_S(U) = 0` iff `pi_S(v) = 0` (`pi_S` is `G`-equivariant and `U` is
-cyclic on `v`). Now
+*Proof.* For `S >= Gamma`, `pi_S(U) = 0` iff `pi_S(v) = 0`, by equivariance and cyclicity. Now
 
     pi_S(v) = e_S + e_(aS) + e_(bS) + e_(abS),
-    pi_S(w) = e_S + e_(aS) + e_(bS) + e_(baS).
+    pi_S(w) = e_S + e_(bS) + e_(aS) + e_(baS).
 
-`pi_S(v) = 0` needs the four cosets to cancel in two pairs. The pairings are:
-- **(I)** `aS = bS` and `abS = S`, i.e. `ab in S` and `a^-1 b in S`;
-- **(II)** `a in S` (then `S=aS`, `bS=abS`);
-- **(III)** `b in S` (then `S=bS`, `aS=abS`).
-(If three or four of the cosets coincide it is a sub-case of II and III.)
+`pi_S(v) = 0` iff the four cosets cancel in pairs, that is, iff one of:
+- **(P_a)** `a in S` and `b^-1 a b in S` (`S = aS`, `bS = abS`). Then `aS = S` and `baS = bS`, so
+  `pi_S(w) = 0`.
+- **(P_b)** `b in S` (`S = bS`, `aS = abS`). Then `pi_S(w) = e_(aS) + e_(baS)`, zero iff
+  `a^-1 b a in S`.
+- **(P_ab)** `ab in S` and `a^-1 b in S` (`S = abS`, `aS = bS`). Then `pi_S(w) = e_S + e_(baS)`, and
+  `ba = (ab) m` gives `baS = S` iff `m in S`.
 
-In (II) and (III) the same coincidences give `pi_S(w) = 0` directly.
+Each formula uses only its own pairing's conditions, so it holds whenever that pairing does.
+`w in U^c` iff every `S` satisfying some pairing has `pi_S(w) = 0`. (P_a) never obstructs. The
+subgroups satisfying (P_b) are those containing `S_1`, and all contain `a^-1 b a` iff `S_1` does. The
+subgroups satisfying (P_ab) are those containing `S_0`, and all contain `m` iff `S_0` does. QED
 
-In (I), `pi_S(w) = e_S + e_(aS) + e_(aS) + e_(baS) = e_S + e_(baS)`. Since `ab in S`,
-`ba = (ab) m` gives `baS = S` iff `m in S`. So `pi_S(w) != 0` iff `m notin S`.
-
-(<=) If `m notin S_0`, take `S = S_0`: it is type (I), `pi_(S_0)(v) = 0`, and `pi_(S_0)(w) != 0`,
-so `w notin ker pi_(S_0) >= U^c`, i.e. `w notin U^c`.
-
-(=>) If `m in S_0`, then every `S >= Gamma` with `pi_S(v) = 0` gives `pi_S(w) = 0`: types II, III
-are immediate, and a type-(I) `S` contains `S_0`, hence `m`, hence `baS = S`, hence `pi_S(w)=0`.
-So `w in U^c`. QED
+**Example 1.3 (the second condition is needed).** `G = S_3`, `Gamma = 1`, `a = (12)`, `b = (13)`.
+`ab` is a 3-cycle, so `S_0 = A_3 ni m`. But `S = <b>` satisfies (P_b), and
+`a^-1 b a = (23) notin <b>`, so `pi_S(w) = e_(aS) + e_(baS) != 0` and `w notin U^c`.
 
 ## 2. The smallest test is negative for free generators
 
-`m notin S_0` is a membership question in `G`. It holds whenever `a, b` are chosen so that
-`S_0 cap <a,b> = <ab, a^-1 b>`, because in the free group `F(a,b)`:
+**Lemma 2.1.** In `F(a,b)`, `m = b^-1 a^-1 b a notin <ab, a^-1 b>`, and `a^-1 b a notin <b>`.
+*Proof.* Stallings graph of `H = <ab, a^-1 b>`: after folding it has two vertices `*, u`, `a`-edges
+`* -> u` and `u -> *`, and a single `b`-edge `u -> *`. Reading `m = b^-1 a^-1 b a` from `*`:
+`b^-1` goes `* -> u`, `a^-1` goes `u -> *`, and then `b` has no outgoing edge at `*`. The read
+fails, so `m notin H`. The word `a^-1 b a` is reduced and is not a power of `b`. QED
 
-**Lemma 2.1.** `m = b^-1 a^-1 b a notin <ab, a^-1 b>` in `F(a,b)`.
-*Proof.* Stallings graph of `H = <ab, a^-1 b>`: after folding it has two vertices `*, u` with
-`a`-edges `* -> u` and `u -> *` and a single `b`-edge `u -> *`. Reading `m = b^-1 a^-1 b a` from
-`*`: `b^-1` goes `* -> u`, `a^-1` goes `u -> *`, and then `b` has no outgoing edge at `*`. The
-read fails, so `m notin H`. QED
-
-`N = EL_r(R)` (`r >= 3`) is not virtually solvable and contains nonabelian free subgroups; picking
-`a, b` inside one with `<a,b> cap Gamma = 1` and `<a,b> cap S_0 = <ab,a^-1 b>` gives `m notin S_0`,
-so by Theorem 1.2 **`w notin U-bar`**. The commutator generator, for such `a, b`, is coset-separated
-from its reversal: Example 5.4 resolves negatively, like the single fibre pairs of Example 3.4.
+`N = EL_r(R)` (`r >= 3`) contains nonabelian free subgroups. Pick `a, b` in one with
+`<a,b> cap S_0 = <ab, a^-1 b>`. Then `m notin S_0`, so by Theorem 1.2, **`w notin U-bar`**. Example
+5.4 resolves negatively for such `a, b`, like the single fibre pairs of Example 3.4. The intersection
+hypothesis is the one point not proved for all pairs.
 
 ## 3. Where non-closedness must live
 
-A non-closed `U` (the only route to a counterexample) needs an element `x in U-bar \ U`. Theorem
-1.2 shows the reversed commutator cannot be such an `x` unless `m in S_0` for **every** presentation
-`S_0`, i.e. the inseparability `m in <Gamma, ab, a^-1 b>` holds. For `a, b in N` with non-closed
-behaviour one therefore needs `ab, a^-1 b` to generate (with `Gamma`) a subgroup already containing
-the commutator `m` while `m` is detected by some Hecke operator with cancellation (Lemma 5.3) but by
-no coset projection. No such pair is exhibited here, and `m in <Gamma, ab, a^-1 b>` is the exact
-residue for the weight-four commutator class. Heavier generators (weight `>= 4` whose relations no
-`pi_S` sees even after cancellation) remain the only candidates.
+A non-closed `U`, the only route to a counterexample, needs an element `x in U-bar \ U`. By Theorem
+1.2 the reversed commutator is such an `x` only if **both** `m in <Gamma, ab, a^-1 b>` and
+`a^-1 b a in <Gamma, b>`, while some Hecke operator with cancellation (Lemma 5.3 of the host
+artifact) still separates `w` from `U`. No such pair is exhibited here. Heavier generators, of weight
+at least four whose relations no coset projection sees, remain the only candidates.

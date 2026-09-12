@@ -60,12 +60,15 @@ while the quotient module has no lamp sites for the peeling proof to use.
   `(1+a)(1+b)c = 0` is fixed by `b^-1 a^-1 b a`. Not decided.
 - **Smallest test decided negatively for free generators**
   (`lamp-commutator-coset-closure-is-subgroup-membership`, w4-lamp-closure). With
-  `S_0 = <Gamma, ab, a^-1 b>`, the reversal `w = (1+b)(1+a)e_Gamma` lies in the coset-parity closure
-  `U^c` iff `m = b^-1 a^-1 b a in S_0`; since `U <= U-bar <= U^c`, `m notin S_0` gives `w notin U-bar`.
+  `S_0 = <Gamma, ab, a^-1 b>` and `S_1 = <Gamma, b>`, the reversal `w = (1+b)(1+a)e_Gamma` lies in the
+  coset-parity closure `U^c` iff `m = b^-1 a^-1 b a in S_0` and `a^-1 b a in S_1`. This was corrected
+  by w3-vf-nonlinear; the first landing stated only the first membership, and `S_3` with `a=(12)`,
+  `b=(13)` refutes that. Since `U <= U-bar <= U^c`, failure of either membership gives `w notin U-bar`.
   In `F(a,b)`, `m notin <ab, a^-1 b>` (Stallings), so for `a, b in N` free with
   `<a,b> cap S_0 = <ab, a^-1 b>` the reversed commutator is not in the closure, like the fibre pairs
   of Example 3.4. Coset parity already suffices: `U = U^c => W/U` surjunctive, and `W/U^c` is
   surjunctive for every `U`, so the only room is the gap `U-bar / U`. A non-closed weight-four
-  commutator needs `m in S_0` with `m` seen by a Hecke operator but no coset projection; none known.
+  commutator needs both `m in S_0` and `a^-1 b a in S_1`, with `w` still separated by a Hecke
+  operator with cancellation; none known.
 - **Where it stops.** No non-closed submodule of `K_even` has been exhibited, and no design is
   known.
