@@ -9,6 +9,7 @@ distinct_from:
   triangular-forward-tables-force-surjectivity: that proves bijectivity through freeness of the table group of a triangular partition; this proves it from the rules, on partitions whose table group may be anything, including every mixed-bigon square presentation.
 artifacts:
   - research/artifacts/vh-lattice-table-hosts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `private-origin-rows-permutation-proof`.

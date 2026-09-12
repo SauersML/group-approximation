@@ -9,6 +9,7 @@ distinct_from:
   triangular-forward-tables-force-surjectivity: that decides bijectivity from the table group of a forward partition; this decides strictness from the architecture of the encoder, independently of every forward table.
 artifacts:
   - research/artifacts/vh-lattice-table-hosts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `shear-design-key-automaton-reduction-proof`.

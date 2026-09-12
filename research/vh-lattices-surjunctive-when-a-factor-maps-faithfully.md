@@ -9,6 +9,7 @@ distinct_from:
   strict-automaton-on-lattice-in-product-of-trees: that asks for a strict automaton on some such lattice; this constrains every host of one, since its surjunctive quotients must kill elements of both factor subgroups.
 artifacts:
   - research/artifacts/vh-lattice-table-hosts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `vh-lattice-factor-faithful-graph-fold-proof`.

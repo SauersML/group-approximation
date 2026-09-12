@@ -31,6 +31,7 @@ not by rereading the author's argument. Nothing was run.
 | `1b608cf1e`, `08916adad` (gk-fz-alphabets) | `formalizable-pairs-induce-polynomial-automorphisms-on-constants`, `tame-maps-induce-every-permutation-of-prime-field-cubes`, `sitewise-pairs-over-prime-fields-are-stably-formalizable`, `formalizable-strict-pairs-certify-non-linear-soficity` | PASS (Section 25) |
 | gk-free-neg (Section 6.5) | `marker-involution-is-formalizable-after-regrouping` | PASS (Section 26) |
 | `ca9996a1e` (gk-fz-obstruction) | `formalizability-is-a-boolean-ideal-cokernel-class`, the corrected `formalizability-conormal-obstruction-is-jacobian-cokernel`, `binary-left-inverse-pairs-are-boolean-adically-formalizable` | PASS (Section 27) |
+| `4443cada1` (gk-free-wild) | `shear-designs-are-strict-iff-their-key-automaton-is`, `private-origin-rows-force-permutation-encoders`, `vh-lattices-surjunctive-when-a-factor-maps-faithfully`, Corollary H, the mixed-bigon scope correction | PASS (Section 28) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1156,3 +1157,68 @@ Checked with maximal care, because it refutes the family's original reduction.
 termination: whether the degree-by-degree correction stops at finite degree and memory. A graded
 invariant cannot see it. Nothing here decides
 `injective-binary-automata-are-stably-formalizable` or Gottschalk.
+
+## 28. VH lattice hosts, Sections 6–9 (`4443cada1`, gk-free-wild): PASS
+
+**Theorem E (shear reduction).** `pi_x(g)` depends only on `x_K`, which is what makes all four
+directions work.
+- *`kappa` onto gives `tau` onto.* Pick `x_K` with `kappa(x_K) = y_K`, then set
+  `x_D(g) = pi_x(g)^-1(y_D(g))`, which is a legitimate configuration.
+- *`tau` onto gives `kappa` onto.* Read the first coordinate.
+- *`kappa` injective gives `tau` injective.* Equal first coordinates give `x_K = x'_K`, so the
+  permutations agree and `x_D = x'_D`.
+- *`tau` injective gives `kappa` injective.* Given `kappa(x_K) = kappa(x'_K)`, set
+  `x'_D(g) = pi_(x')(g)^-1(pi_x(g)(x_D(g)))`. Then `tau(x) = tau(x')`, so `x = x'`.
+
+**Corollary 6.1.**
+- A product automaton is injective, respectively surjective, iff each factor is.
+- *The two-address reduction, re-derived.* With `k'(g) = k(gv)`, `k(gh) = k'(g v^-1 h) = k'(gc)` for
+  `c = v^-1 h`. So the track automaton is a memory-`{1,c}` automaton after a bijective translation.
+- That automaton reads `p` and `pc`, both in `p<c>`, so it is the product over left cosets of one
+  automaton on `A^(<c>)`. A cyclic group is residually finite, hence surjunctive; for `c = 1` the
+  rule is a map of a finite set. Theorem E finishes.
+
+**Lemma F (private origin rows force permutation encoders).**
+- *Step 1.* The marked class is the singleton `{(1_S,1_M)}`, so `c_0` is read only at relay `1_S`,
+  position `1_M`. With the other sources fixed, only `y_(1_S)` varies with `c_0`, and the sink must
+  return `c_0`. So `mu(., rest)` is injective, hence a bijection, for every `rest`.
+- *Step 2.* The origin source of `s_i` sits at position `1_M` of relay `s_i` and nowhere else in
+  that row, so Step 1 lets it steer `y_(s_i)` to any target. It occurs elsewhere only in rows `s_j`
+  with `j > i`, so `c_0`, `y_(1_S)` and the already-set relays are untouched.
+- *Step 3.* Steering two assignments with equal `y_(1_S)` to the same side relays makes the sink see
+  equal inputs, so `y_(1_S)` determines `c_0`.
+- *Step 4, re-derived.* Write `psi_rest = mu(., rest)`, a bijection. Step 3 gives: `psi_rest(a) =
+  psi_(rest')(a')` implies `a = a'`. For any `a`, choose `a'` with `psi_(rest')(a') = psi_rest(a)`;
+  then `a' = a`, so `psi_(rest') = psi_rest`. Hence `mu = psi o pi_(1_M)`.
+- *Group reading.* The marked class is `{(s,m) : s = m^-1}`, a singleton iff `S ∩ M^-1 = {1}`. The
+  origin cell of `s` is private iff no other `(s',m')` has `s'm' = s`.
+
+**Corollary H (reflected squares).**
+- The identification holds because the square gives `h v^-1 = v' h'^-1`.
+- `v^-1 h` is already in `V`-then-`H` normal form. Completeness gives `h'^-1 v' = w k` uniquely, from
+  the unique square at the corner `(h'^-1, v')`. So the transpose holds iff `w = v^-1` and `k = h`.
+- *The reflection, re-derived.* `h'^-1 v' = v^-1 h` gives `v h'^-1 v' h^-1 = 1`; conjugating by
+  `v^-1` gives `h'^-1 v' h^-1 v = 1`; inverting gives `v^-1 h v'^-1 h' = 1`; conjugating by `v` gives
+  `h v'^-1 h' v^-1 = 1`, the reflected square.
+- With `v = v'` the square is its own reflection, so the hinge dies.
+
+**Proposition G (VH lattices surjunctive when a factor maps faithfully).**
+- *Stabilizer.* An element fixing the base vertex of `T_H` sends `o` into `F_V . o`, and freeness
+  makes it the corresponding element of `F_V`. So the stabilizer is `F_V`.
+- *Torsion-free.* A finite subgroup fixes a point of the CAT(0) product, and the action is free.
+- *Conjugates.* `ker f` is normal, so `ker f ∩ g F_V g^-1 = g(ker f ∩ F_V)g^-1 = 1`.
+- *Midpoints.* `ker f ∩ P` meets `Q` trivially, so it injects into `P/Q`, of order at most 2, and
+  torsion-freeness makes it trivial.
+- *Scope check on the permanence input.* `graph-folds-over-surjunctive-groups-are-surjunctive` is
+  stated for the fundamental group of **any** connected graph of groups with injective edge maps and
+  a homomorphism to a surjunctive group injective on every vertex group. The Bass–Serre
+  decomposition here, after subdividing inverted edges, is of that shape. So the application is
+  within the theorem's scope, not only its HNN corollary. That theorem was passed by gk-verify-pos.
+- *Consequences.* The last bullet is honest: on virtually simple lattices the filter excludes
+  nothing, because `F_V ∩ Gamma_s != 1` and embedding a finite-index subgroup already suffices.
+
+**The mixed-bigon scope correction (Section 2) is right.** Every relator Theorem B produces reads
+`h v^-1 h' v'^-1` in positive letters, so opposite sides are antiparallel. The `F_V x F_H` commutator
+square `h v h^-1 v^-1` has a letter repeated on opposite sides in parallel, and no orientation of the
+letters turns it into that shape. So the converse covers only complexes admitting such an
+orientation, and the first landing overstated it.
