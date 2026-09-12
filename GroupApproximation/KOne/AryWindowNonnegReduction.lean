@@ -36,6 +36,34 @@ theorem prod_ofFn_val_of_mul_eq_zero {A : Type*} [Ring A] :
             noncomm_ring
         _ = 1 + (X 0 + ∑ z : Fin n, X z.succ) := by rw [h0, add_zero]
 
+/-! ### Ring identities of the block move
+
+Proved over an abstract ring and applied by term: on `L_k(1,d)` the negation and
+subtraction instances of the quotient do not unify with the ring projections at the
+reducible transparency `simp` and `rw` use, so `noncomm_ring` cannot normalize there. -/
+
+theorem blockMove_neg_corner {R : Type*} [Ring R] (a b c : R) :
+    1 + a * -b * c = 1 + -(a * b * c) := by
+  noncomm_ring
+
+theorem blockMove_sum_neg {R : Type*} [Ring R] {ι : Type*} [Fintype ι] (f : ι → R) :
+    1 + ∑ i, -f i = 1 - ∑ i, f i := by
+  rw [Finset.sum_neg_distrib, sub_eq_add_neg]
+
+theorem blockMove_expand {R : Type*} [Ring R] (X K Y : R) :
+    (1 - X) * (1 + K) * (1 + Y) =
+      1 + K + Y - X - X * Y + K * Y - X * K - X * K * Y := by
+  noncomm_ring
+
+theorem blockMove_collapse {R : Type*} [Ring R] (X K Y : R) (h1 : K * Y = 0)
+    (h2 : X * K = 0) :
+    1 + K + Y - X - X * Y + K * Y - X * K - X * K * Y = 1 + K + Y - X - X * Y := by
+  rw [h1, h2, zero_mul, add_zero, sub_zero, sub_zero]
+
+theorem blockMove_final {R : Type*} [Ring R] (S T a η X Y : R) :
+    1 + S * (a + η) * T + Y - X - S * η * T = 1 + (S * a * T - X + Y) := by
+  noncomm_ring
+
 namespace AryLeavitt
 
 open CompleteMatrixFamily MatrixDiagonalization
@@ -221,26 +249,27 @@ theorem window_nonneg_mem_centralClassGroup (hd : 2 ≤ d) :
         exact F.incomparableUnit_mem _ _ _
       have hm₂val : (m₂ : AryLeavittAlgebra k d) = 1 - ∑ z, X z := by
         rw [hm₂, prod_ofFn_val_of_mul_eq_zero _ (fun z ↦ -X z)
-          (fun z ↦ by rw [incomparableUnit_val, mul_neg, neg_mul]; rfl)
-          (fun z z' ↦ by rw [neg_mul_neg, hXX]),
-          Finset.sum_neg_distrib, sub_eq_add_neg]
+          (fun z ↦ by
+            rw [incomparableUnit_val]
+            exact blockMove_neg_corner _ _ _)
+          (fun z z' ↦ (neg_mul_neg (X z) (X z')).trans (hXX z z'))]
+        exact blockMove_sum_neg _
       have hm₁val : (m₁ : AryLeavittAlgebra k d) = 1 + ∑ z, Y z := by
         rw [hm₁, prod_ofFn_val_of_mul_eq_zero _ (fun z ↦ Y z)
-          (fun z ↦ by rw [incomparableUnit_val]; rfl) (fun z z' ↦ hYY z z')]
+          (fun z ↦ by rw [incomparableUnit_val]) (fun z z' ↦ hYY z z')]
       -- the block-move product and its value
       set u' : (AryLeavittAlgebra k d)ˣ := m₂ * κ * m₁ with hu'
       have hu'val : (u' : AryLeavittAlgebra k d) =
-          1 + (F.wordS [i₀, i₀] * a * F.wordT [i₀, i₀] - ∑ z, X z + ∑ z, Y z) := by
+          1 + (F.wordS [i₀, i₀] * a * F.wordT [i₀, i₀] - (∑ z, X z) + (∑ z, Y z)) := by
         rw [hu', Units.val_mul, Units.val_mul, hm₂val, hκval, hm₁val]
         calc (1 - ∑ z, X z) * (1 + K) * (1 + ∑ z, Y z)
-            = 1 + K + ∑ z, Y z - ∑ z, X z - (∑ z, X z) * (∑ z, Y z) + K * ∑ z, Y z -
-                (∑ z, X z) * K - (∑ z, X z) * K * ∑ z, Y z := by noncomm_ring
-          _ = 1 + K + ∑ z, Y z - ∑ z, X z - (∑ z, X z) * (∑ z, Y z) := by
-              rw [hSKY, hSXK, zero_mul]
-              abel
-          _ = 1 + (F.wordS [i₀, i₀] * a * F.wordT [i₀, i₀] - ∑ z, X z + ∑ z, Y z) := by
+            = 1 + K + (∑ z, Y z) - (∑ z, X z) - (∑ z, X z) * (∑ z, Y z) + K * (∑ z, Y z) -
+                (∑ z, X z) * K - (∑ z, X z) * K * (∑ z, Y z) := blockMove_expand _ _ _
+          _ = 1 + K + (∑ z, Y z) - (∑ z, X z) - (∑ z, X z) * (∑ z, Y z) :=
+              blockMove_collapse _ _ _ hSKY hSXK
+          _ = 1 + (F.wordS [i₀, i₀] * a * F.wordT [i₀, i₀] - (∑ z, X z) + (∑ z, Y z)) := by
               rw [hSXY, hK]
-              noncomm_ring
+              exact blockMove_final _ _ _ _ _ _
       -- the new tail lives one degree lower
       have hs00w : F.wordS [i₀, i₀] ∈ Submodule.span k (F.degreeMonomials 2 2) :=
         Submodule.subset_span ⟨[i₀, i₀], [], by simp, by simp, by simp⟩

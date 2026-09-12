@@ -277,6 +277,7 @@ abbrev MergeIndex (g : ι → κ) : Type uκ :=
 def mergeWords (word : κ → List ι) (g : ι → κ) (w : List ι) : MergeIndex g → List ι :=
   Sum.elim (fun _ ↦ w) (fun q ↦ word q.1)
 
+omit [DecidableEq ι] [Fintype κ] in
 theorem mergeWords_free [Nonempty ι] (σ : AryPrefixCode κ ι) (g : ι → κ) (w : List ι)
     (hg : ∀ z, σ.word (g z) = w ++ [z]) :
     ∀ ⦃p q : MergeIndex g⦄, p ≠ q →
@@ -312,19 +313,15 @@ def mergeCode [Nonempty ι] (σ : AryPrefixCode κ ι) (g : ι → κ) (w : List
     (hg : ∀ z, σ.word (g z) = w ++ [z]) : AryPrefixCode (MergeIndex g) ι :=
   ⟨mergeWords σ.word g w, mergeWords_free σ g w hg⟩
 
-/-- Sums over the image of the sibling map. -/
-theorem sum_image_subtype {M : Type*} [AddCommMonoid M] (g : ι → κ)
-    (hginj : Function.Injective g) (f : κ → M) :
-    ∑ i : {x // x ∈ Finset.univ.image g}, f i = ∑ z, f (g z) := by
-  rw [← Finset.sum_subtype (Finset.univ.image g) (fun x ↦ Iff.rfl) f,
-    Finset.sum_image (fun x _ y _ hxy ↦ hginj hxy)]
-
+omit [DecidableEq ι] in
 /-- Splitting a sum over a code's index type into the sibling group and the rest. -/
 theorem sum_merge_split {M : Type*} [AddCommMonoid M] (g : ι → κ)
     (hginj : Function.Injective g) (f : κ → M) :
     ∑ j, f j = ∑ z, f (g z) + ∑ q : {j : κ // j ∉ Finset.univ.image g}, f q.1 := by
-  rw [← sum_image_subtype g hginj f]
-  exact (Fintype.sum_subtype_add_sum_subtype (fun x ↦ x ∈ Finset.univ.image g) f).symm
+  rw [← Finset.sum_add_sum_compl (Finset.univ.image g) f,
+    Finset.sum_image fun x _ y _ hxy ↦ hginj hxy]
+  refine congrArg₂ (· + ·) rfl ?_
+  exact Finset.sum_subtype _ (fun x ↦ Finset.mem_compl) f
 
 theorem mergeCode_isComplete [Nonempty ι] (σ : AryPrefixCode κ ι) (hσ : F.IsComplete σ)
     (g : ι → κ) (hginj : Function.Injective g) (w : List ι)
@@ -347,9 +344,13 @@ theorem sum_mergeCode [Nonempty ι] (τ σ : AryPrefixCode κ ι) (g : ι → κ
         F.wordT ((mergeCode σ g w hσg).word p) := by
   rw [sum_merge_split g hginj (fun j ↦ F.wordS (τ.word j) * F.wordT (σ.word j))]
   simp only [hτg, hσg]
-  rw [← F.wordS_mul_wordT_split v w, Fintype.sum_sum_type, Fintype.sum_unique]
+  rw [← F.wordS_mul_wordT_split v w, Fintype.sum_sum_type]
+  refine congrArg₂ (· + ·)
+    (Fintype.sum_unique fun a₁ : PUnit.{uκ + 1} ↦ F.wordS ((mergeCode τ g v hτg).word (Sum.inl a₁)) *
+      F.wordT ((mergeCode σ g w hσg).word (Sum.inl a₁))).symm ?_
   rfl
 
+omit [DecidableEq ι] in
 /-- The merged index type is strictly smaller than the code. -/
 theorem card_mergeIndex_lt [Nontrivial ι] (g : ι → κ) (hginj : Function.Injective g) :
     Fintype.card (MergeIndex g) < Fintype.card κ := by
@@ -388,7 +389,7 @@ theorem codeChange_mem_centralClassGroup [Nontrivial A] [Nontrivial ι]
   | _ n ihn =>
   intro κ _ _ hcard τ σ hτ hσ u hu
   rcases Nat.lt_or_ge n 2 with hn | hn
-  · interval_cases n
+  · obtain rfl | rfl : n = 0 ∨ n = 1 := by omega
     · exfalso
       haveI : IsEmpty κ := Fintype.card_eq_zero_iff.mp hcard
       have h := hσ
