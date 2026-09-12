@@ -99,11 +99,69 @@ theorem tupEval_galAlgHomP_vanCoef (r : ℕ) (hp : Odd p) {X : TopCat.{0}} (q : 
 
 /-! ## 2. The two maps and the homotopy -/
 
+/-- `σ_r ∘ Φ` in degree `k`, linear over the group ring acting on the target through `T ^ r`. -/
+def permDiagLin (r : ℕ) (hr : Nat.Coprime r p) (X : TopCat.{0}) (k : ℕ) :
+    @LinearMap (GroupRingZMod p) (GroupRingZMod p) _ _ (RingHom.id (GroupRingZMod p))
+      (OddWTensor p k X) (tupMod (ZMod p) X p k) _ _ _ (tupModule p X p k r (dvd_mul_left p r)) :=
+  letI := tupModule p X p k r (dvd_mul_left p r)
+  { toFun := fun x => tupPerm (ZMod p) X p k (mulPerm p r hr)⁻¹ (oddDiagApp p X k x)
+    map_add' := fun x y => by simp only [oddDiagApp_add, map_add]
+    map_smul' := fun c x => by
+      show tupPerm (ZMod p) X p k (mulPerm p r hr)⁻¹ (oddDiagApp p X k (c • x))
+        = galAlgHomP (tupT (ZMod p) X p k ^ r) (tupT_pow_pow p X p k r (dvd_mul_left p r)) c
+            (tupPerm (ZMod p) X p k (mulPerm p r hr)⁻¹ (oddDiagApp p X k x))
+      rw [oddDiagApp_smul]
+      exact galAlgHomP_comm p (tupT (ZMod p) X p k ^ 1)
+        (tupT_pow_pow p X p k 1 (dvd_mul_left p 1)) (tupT (ZMod p) X p k ^ r)
+        (tupT_pow_pow p X p k r (dvd_mul_left p r)) (tupPerm (ZMod p) X p k (mulPerm p r hr)⁻¹)
+        (fun v => by rw [pow_one]; exact tupPerm_mulPerm_inv_tupT p r hr X k v) c _ }
+
+/-- The degree-`k` component of `σ_r ∘ Φ`, as a morphism over the group ring. -/
+def permDiagHom (r : ℕ) (hr : Nat.Coprime r p) (X : TopCat.{0}) (k : ℕ) :
+    ((oddSrc p (oddSingularBoundary p)).obj X).X k
+      ⟶ ((oddTgt p p r (dvd_mul_left p r)).obj X).X k :=
+  letI := tupModule p X p k r (dvd_mul_left p r)
+  ModuleCat.ofHom (permDiagLin p r hr X k)
+
+/-- `σ_r ∘ Φ` at one space, as a map of complexes. -/
+def permDiagCx (r : ℕ) (hr : Nat.Coprime r p) (X : TopCat.{0}) :
+    (oddSrc p (oddSingularBoundary p)).obj X ⟶ (oddTgt p p r (dvd_mul_left p r)).obj X where
+  f k := permDiagHom p r hr X k
+  comm' i j hij := by
+    have hij' : j + 1 = i := hij
+    subst hij'
+    rw [oddSrc_obj_d, oddTgt_obj_d]
+    letI := tupModule p X p (j + 1) r (dvd_mul_left p r)
+    letI := tupModule p X p j r (dvd_mul_left p r)
+    apply ModuleCat.hom_ext
+    apply Finsupp.lhom_ext'
+    intro q
+    apply LinearMap.ext_ring
+    show tupD (ZMod p) X p j (tupPerm (ZMod p) X p (j + 1) (mulPerm p r hr)⁻¹
+        (oddDiagApp p X (j + 1) (Finsupp.single q 1)))
+      = tupPerm (ZMod p) X p j (mulPerm p r hr)⁻¹
+          (oddDiagApp p X j (oddDiff p (oddSingularBoundary p) X j (Finsupp.single q 1)))
+    rw [← tupPerm_tupD, oddDiagApp_d]
+
 /-- **`σ_r ∘ Φ`**, into the target on which the generator acts as `T ^ r`. -/
 def permDiag (r : ℕ) (hr : Nat.Coprime r p) :
-    oddSrc p (oddSingularBoundary p) ⟶ oddTgt p p r (dvd_mul_left p r) :=
-  oddDiagonal p p 1 (dvd_mul_left p 1) ≫
-    permTgt p r (mulPerm p r hr)⁻¹ (fun X k y => tupPerm_mulPerm_inv_tupT p r hr X k y)
+    oddSrc p (oddSingularBoundary p) ⟶ oddTgt p p r (dvd_mul_left p r) where
+  app X := permDiagCx p r hr X
+  naturality X Y f := by
+    refine HomologicalComplex.hom_ext _ _ fun k => ?_
+    letI := tupModule p X p k r (dvd_mul_left p r)
+    letI := tupModule p Y p k r (dvd_mul_left p r)
+    apply ModuleCat.hom_ext
+    apply Finsupp.lhom_ext'
+    intro q
+    apply LinearMap.ext_ring
+    show tupPerm (ZMod p) Y p k (mulPerm p r hr)⁻¹
+        (oddDiagApp p Y k ((((oddSrc p (oddSingularBoundary p)).map f).f k).hom
+          (Finsupp.single q 1)))
+      = tupMap (ZMod p) f p k (tupPerm (ZMod p) X p k (mulPerm p r hr)⁻¹
+          (oddDiagApp p X k (Finsupp.single q 1)))
+    rw [tupMap_tupPerm, oddDiagApp_natural]
+    rfl
 
 theorem permDiag_app_f_apply (r : ℕ) (hr : Nat.Coprime r p) (X : TopCat.{0}) (k : ℕ)
     (x : OddWTensor p k X) :
