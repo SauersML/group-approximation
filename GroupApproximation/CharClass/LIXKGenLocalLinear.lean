@@ -46,7 +46,7 @@ variable {ℓ : ℕ} {dd : Fin ℓ → ℕ}
 
 theorem trace_mappingTorus_lixKZero (n k : ℕ) (i : Fin (k + 1))
     {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
-    (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m)) :
+    (_hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m)) :
     Matrix.trace (mappingTorus (Gen.Vmat n) G circHoriz circHeight (lixKZero n k dd i))
       = ((lixRank n dd : ℕ) : ℂ) := by
   rw [trace_mappingTorus]
