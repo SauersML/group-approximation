@@ -143,3 +143,192 @@ such as the defect factorization.
     dead" was false on its original grounds; Corollary 5.0 supersedes it.
   * **Proof.** Under injectivity each off-identity component has one term `(a_g a_(g')) o g`. So the
     supports are pairwise disjoint, `n <= 1`, and Part 2 fails.
+
+## 4. Binary swap-group matrix units (w3-kap-visible; artifact Section 1)
+
+### 4.1 `binary-swap-group-lifts-leavitt-matrix-units-with-kernel-gap`: PASS
+
+* **The group.**
+  * `u^2 = 1 + s0 t1 s0 t1 = 1`, since `t1 s0 = 0`; likewise `v^2 = 1`.
+  * On the depth-one matrix units, `u = [[1,1],[0,1]]`, `v = [[1,0],[1,1]]`, and `g = uv = [[0,1],[1,1]]`
+    has order 3.
+  * `E_00 + E_11 = 1`, so this `M_2(F_2)` is a unital copy in `R`, and `<u, v> = GL_2(F_2) ~= S_3`.
+* **Proposition 1.2.**
+  * **(1)** `x^2 = [1] + [u^2] = 0`.
+  * **(2)** Recomputed `xyx = v + g + g^2 + w` and `xyxy = 1 + u + v + g`, using `gv = u`, `g^2 v = vuv = w`
+    and `wv = g^2`. The braid relation `uvu = vuv` holds in `S_3`.
+  * **(3)** Holds.
+  * **(4)** `xy + yx = g + g^2 = 1 + z`, and `z^2 = 1 + g^2 + g^4 = z`. The value `pi(z) = I + g + g^2 = 0`
+    is also a direct `M_2(F_2)` computation, so this step does not need the cited node.
+  * **(5)** In characteristic two, `xy z = xy + xy(xy + yx) = 0`; the other side and `yx` work the same
+    way. So `xy`, `yx` and `z` are orthogonal idempotents with sum `1`. `P0^ = xy + z = u + v + g^2` with
+    `g^2 = vu`, and `pi(u + v + vu) = 1 + s1t1 = s0t0` directly.
+* **Lemma 1.1.** The binomial expansion of the commuting `1` and `n`, and the Frobenius in `F_2[<u>]`.
+* **Scope.** A partial lift: `xy + yx` misses the kernel idempotent `z`. It decides nothing about one-sided
+  pairs, as the node says. Remark 1.3 is unused; only its Sylow count was checked (`2^6` does not divide `4`).
+* **Artifact Sections 2–3** (telescoping, obstructions) are queued separately.
+
+## 5. Mixed-depth lifts of the ternary Leavitt pair (w3-corner-cohn-a; artifact at 5837c75433)
+
+### 5.1 `natural-leavitt-pair-lifts-have-partial-symmetry-defect` (Lemma 2.1, Remarks 2.2–2.3): PASS
+
+* **Conventions.**
+  * `f[k] = [k](k^-1 . f)` follows from `[g] f [g]^-1 = g . f`.
+  * `k^-1 . 1_U = 1_(k^-1 U)`.
+  * `g U_C = U_(gC)`, because `(g mu)(gC) = mu(C)`.
+* **Lifts.** In the checker convention, `s_0 = S[00]T[0] + S[01]T[1] = g_0 p_0 + g_1 p_1` and
+  `t_0 = g_0^-1 p_00 + g_1^-1 p_01`.
+* **Grades of `tau sigma`.**
+  * `(0,0)` and `(1,1)` give `P_0 + P_1 = 1` on `M_- = U_0 ⊔ U_1`.
+  * `(0,1)` gives `[h] 1_(U_A) P_1`, and `(1,0)` gives `[h^-1] 1_(U_(B')) P_0`.
+  * `A ⊆ 0` because `g_1(1) = 01`, and `B' ⊆ 1` because `g_0(0) = 00`.
+* **Item 1.**
+  * `g_1(0) = 00 ∪ 1` gives `g_1^-1(1) = 0 \ A`, which is nonempty, and `(1,1,1)` on the atoms `(A, 0\A, 1)`
+    is odd. So `W_1` is nonempty.
+  * `h != 1`, since `h(A) = 0` strictly contains `A`. So `D` has no identity grade.
+* **Item 2.** `h(A) = 0` and `h(1) = B'`. Also `h^-1(1) = 1 ∪ (0\A)` and `h(0) = 0 ∪ (1\B')`, from
+  `g_0(1) = 01 ∪ 1` and `g_0^-1(1) = 1 \ B'`. The total-mass contradictions hold.
+* **Item 3.** All eight products recomputed.
+* **Item 4.** `(F ± D)^2 = 2(F ± D)`, `8 = 2`, `e + e' = 4F = F`, and the identity grade of `e'` is `2F != 0`.
+* **Item 5.** `c = (1 - F) + 2e = 1 + D = tau sigma`, so `tau'' sigma = c^2 = (1 - F) + e = 1 - e'`, with
+  `pi(c) = 1`.
+* **Left invertibility.** It holds iff `e'` lies in `S_- sigma`:
+  * if `y sigma = 1`, then `e' = (e' y) sigma`;
+  * if `x sigma = e'`, then `(tau'' + x) sigma = 1`.
+* **Remark 2.2.** `lambda(W_i) = 1/4`, since one of the four odd functions on three atoms qualifies. So
+  `Tr(e') = 2 · 1/2 = 1`.
+* **Remark 2.3.**
+  * `vu = f_1`, `uv = f_2`, `u = f_2 u f_1` and `v = f_1 v f_2`.
+  * `xy = e'` and `yx = 4 f_1 = f_1`, using `f_1 u = 0` and `v f_1 = 0`.
+  * `W_2 ⊆ U_0`.
+  * If `1 ~ f_1`, then `1 ≲ P_0`, and the first-letter swap gives `1 ≲ P_1` orthogonally. That is a Cohn
+    family.
+* **Cited, not re-derived.** `signed-thompson-algebra-is-odd-measure-crossed-product`, for `B ⊆ S_-` and
+  for "no Dirac measure implies `ker pi`".
+
+### 5.2 `no-equivariant-lattice-lift-of-cylinder-idempotents` (Theorem 3.1): PASS, two remarks
+
+* **The proof.** Stone duality gives `r`. Equivariance `r(g mu) = g r(mu)` was recomputed, V-invariance
+  of `lambda` is Section 3.1 above, and the halving contradiction with `h_1`, `h_2` and the swap holds.
+* **Remark 1: hypothesis 3 is unused.** The contradiction needs only hypotheses 1–2 and a nonempty `M_-`.
+  So there is no `V`-equivariant Boolean homomorphism `Clopen(X) -> Clopen(M_-)` at all.
+* **Remark 2: the claim's "Equivalently" sentence.**
+  * **Different statement.** Idempotent lifts in `B` need not lie in `C(M_-, F_3)`, so this is not the
+    Stone-duality statement.
+  * **Still true, more simply.** `tau(f[g]) = delta_(g,1) ∫ f d lambda` is an `F_3`-valued trace on `B`.
+    Dyadic values reduce mod 3, and the trace property uses V-invariance of `lambda`.
+  * **Proof.** Take any `V`-equivariant, finitely additive `Phi : Clopen(X) -> B` with `Phi(X) = 1`. Then
+    `nu = tau o Phi` is invariant and additive. `h_1` and `h_2` give `nu(0) = 2 nu(0)`, so `nu(0) = 0`;
+    the swap gives `nu(1) = 0`, contradicting `nu(X) = 1`.
+  * **Not needed.** Idempotency, commutation and Dirac compatibility.
+
+## 6. F_9 Hadamard spectral idempotents (w3-corner-cohn-b; artifact at 136a93c518)
+
+### 6.1 Theorem 1.1 and the routes: PASS
+
+* **`rho` is a unital ring embedding.** `rho(i)^2 = -I`, and `F_9 = F_3[i]/(i^2 + 1)` since `-1` is a
+  non-square mod 3.
+* **`Phi` is a unital ring map.** `rho (x) id` is a unital algebra map `F_9 (x) S_- -> M_2(S_-)`, and
+  `J` is unital, so `Phi` preserves `tau_i sigma_j = delta_ij 1`.
+* **Routes.**
+  * `anti-central-cohn-family-extends-to-f9` (inclusion): valid.
+  * `f9-cohn-family-descends-to-anti-central-summand` (via `Phi`): valid.
+  * The cycle between the two routes is intentional.
+
+### 6.2 `f9-hadamard-spectral-idempotents-are-half-idempotents` (Propositions 2.1–2.3): PASS
+
+* **Lemma 2.0.** Recomputed with `(c_ab) <-> sum c_ab s_a t_b`:
+  * `h^2 = -I = z` and `u^2 = I`;
+  * `uh = [[1,1],[0,2]]` and `uhu = [[2,-1],[2,-2]] = -h`;
+  * `[z] = -1_-`, since `eps_- [z] = -eps_-`.
+* **Proposition 2.1.**
+  * `f_+^2 = 4(2 + 2i[h]) = f_+` and `f_+ f_- = 4(1 - i^2 [h]^2) = 0`.
+  * `[u] f_+ [u] = f_-`.
+  * The matrix-unit products hold, for example `E_12 E_12 = f_+ ([u] f_+ [u]) = f_+ f_- = 0`.
+* **Proposition 2.2.**
+  * `tau_2 sigma_2 = c f_+ [u]^2 f_+ b = 1_-`.
+  * Both cross products equal `c f_+ [u] f_+ b = c [u] f_- f_+ b = 0`.
+* **Proposition 2.3.**
+  * `sigma(eps_-) = 2(1 - sigma(z))` is idempotent because `sigma(z)^2 = 1`, and nonzero because
+    `sigma(z) != 1`.
+  * The rank state is constant on equivalent idempotents: `r(xy) = r(xyxy) <= r(yx)`.
+  * `xy = f_+ b c f_+` is an idempotent below `f_+`, so `1 = s(xy) <= s(f_+) = 1/2`.
+* **Route** `hadamard-spectral-fullness-gives-f9-cohn-family`: valid given its two required claims.
+
+### 6.3 Section 3: Lemma 3.3 PASS, prose consistent
+
+* **Lemma 3.3 and its consequence.** The evaluation is `2(lambda_+ g_+ + lambda_- g_-) +
+  2i(lambda_+ g_+ − lambda_- g_-) h`. Rationality forces `lambda_+ g_+ = lambda_- g_-`, and then the value
+  is a unit, not `s0`.
+* **Section 3.1.** `tr(ih) = 0` and `det(ih) = -1`. The eigenvalues `±1` are distinct in characteristic
+  three, so `ih` is conjugate to `d = 1 + s1t1` over `F_9`. Also `2(1 + [1+p]) = 1 − P_p`.
+* **Section 3.2 wording.** `rho (x) id` carries an `F_9` design to a `2 x 2` `F_3` design. The converse needs
+  entries commuting with `rho(F_9)`, so "is the same as" should read "gives".
+
+## 7. Covariance obstruction and the V rank gate (w3-gate-v; artifact at dbb8cb8979)
+
+### 7.1 `thompson-v-cantor-system-has-no-covariant-rank-model`: PASS
+
+This is a third derivation; `gk-vf-linear` Section 50 was the second.
+
+* **Lemma 2.1(b), recomputed.**
+  * A vector in `im e_k ∩ im f_k` lies in `im(e_k − e_k^2) + im(e_k f_k)`.
+  * `im e_k ⊆ im(e_k + f_k) + im(e_k^2 − e_k) + im(f_k e_k)`.
+  * Hence `rank e_k + rank f_k <= rank(e_k + f_k) + o(n_k)`.
+* **Lemma 2.2 and Theorem 2.3.** Both hold. The proof uses covariance by units only, never
+  multiplicativity of `sigma`.
+* **Proposition 2.4.**
+  * The four prefix codes are complete.
+  * `|m(h_i C) − m(C)| <= eps` by rank subadditivity.
+  * So `m([0]) <= 2 eps` and `m([1]) <= 2 eps`, which gives `eps >= 1/4`.
+* **Section 3.1 is prose.** Feeding compressions into Proposition 2.4 requires rounding almost-idempotents
+  to idempotents at small rank cost. The step is standard but not written out.
+* **Calibration 5.2.** `(x−1)(y−1) = 1 + x + y + xy` is the all-ones matrix over `F_2`, of rank 1. Each
+  `x − 1` has rank `4 − 2 = 2`.
+
+### 7.2 Rank-gate wiring and Section 4.4: PASS
+
+* **The two open claims.** `thompson-v-is-f2-linear-sofic` and `thompson-v-has-no-nontrivial-f2-rank-model`
+  are OPEN and refute each other. `V` is simple, so a nontrivial homomorphism into `M^x` is injective.
+  Units of `M` lift to almost invertible sequences, so homomorphisms into `M^x` are exactly the linear
+  sofic approximations.
+* **Route `thompson-v-f2-linear-sofic-from-soficity`.** Valid. If a `delta` fraction of points is not
+  fixed, then `rank(P − I) = n − #cycles >= delta n/2`.
+* **Route `non-linear-sofic-via-thompson-v-rank-triviality`.** Valid and conditional.
+* **Dead route `thompson-v-f2-linear-sofic-via-covariant-cantor-truncation`.** Correctly invalidated by the
+  ESTABLISHED covariance claim.
+* **Section 4.4 scope.** Correct. A nontrivial `phi` on the simple group `R^x` is injective and restricts
+  to a nontrivial homomorphism of `V`. That yields only the binary characteristic-two case of
+  `leavitt-el3-rank-models-over-finite-fields-are-trivial`, so not landing a route into it is right.
+  Simplicity (`binary-leavitt-unit-group-is-simple`) was not re-derived here.
+* Agrees with `gk-vf-linear` Section 51.
+
+## 8. Halving-invariant states (w3-corner-module; artifact at 5c0ded347f)
+
+### 8.1 `twisted-leavitt-k0-states-can-be-chosen-halving-invariant`: PASS
+
+* **Notation.** In "`F(mu) = u`", `mu` is the class `m·u`: `Phi = M_m(psi)` sends `[M_m(A)]`, which
+  corresponds to `m·u`, to `[A] = u`. So `x = F(u)` satisfies `m x = u`, and that is the only property used.
+* **Step 2.** `Phi_s(u) = m s(x) = s(m x) = 1`.
+* **Step 3.** A summand `P` of `A^n` has `[P] <= n u`, so `|s(a)| <= n`.
+* **Step 4.** `Phi(M_N) − M_N = (Phi^N s − s)/N` telescopes. Each coordinate of `Phi` is continuous in the
+  product topology, so a limit point is fixed.
+* **Consequence.** "Corner full iff no halving-invariant state" holds with Theorem E.
+* **Scope.** A normalization; it decides nothing.
+
+## 9. Finite-join defects (w3-kap-kernel; artifact at aaafa6dcc4)
+
+### 9.1 `mixed-finite-subgroup-defects-need-infinite-generation`: PASS after one precision repair
+
+* **Precision.** The hypothesis `0 != f <= e` allows `f = e`. Then `e − f = 0 = I − AB` with `A = B = I` is a
+  configuration, against "no such configuration exists". The proof uses `f < e`.
+  * **Repair:** assume `f != e`, equivalently a nonzero defect.
+  * The hypothesis `f != 0` is not needed.
+* **The argument, with `f < e`.**
+  * `e − f` is a nonzero idempotent of `M_n(F_p[H])`.
+  * LFT1 gives `t_p = dim((e−f) F_p[H]^n)/|H| > 0`, a rational number in `Z_(p)`.
+  * `A : F_p[G]^n -> AB F_p[G]^n` is an isomorphism with inverse `B`, and `F_p[G]^n = AB F_p[G]^n ⊕ d F_p[G]^n`.
+    So the defect class is `0`.
+* **Content.** This is consequence 2 of `lifted-trace-detects-finite-subgroup-projectives` applied to the
+  finite group `H = <H_1, H_2>`. The node says so; it is a corollary, not a duplicate.
+* **Cited, not re-derived.** Additivity of `t_p` on `K_0(F_p[G])` is taken from that node.

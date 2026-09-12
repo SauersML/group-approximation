@@ -7,6 +7,7 @@ target: natural-leavitt-pair-lifts-have-partial-symmetry-defect
 requires:
   - signed-thompson-algebra-is-odd-measure-crossed-product
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-cohn-mixed-depth-lifts-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ Section 2 of the artifact, Lemma 2.1.
   `mu(0) = mu(1) = 1`.
 - Hence `D^2 = F`, `DF = FD = D`, and `(F ± D)^2 = 2(F ± D)` in characteristic three.
 - The correction `c = (1 - F) + 2(F + D)` satisfies `c tau sigma = c^2 = 1 - e'`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 5.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the grades, h != 1, h(A) = 0, h(1) = B', h^-1(1) = 1 ∪ (0\A), h(0) = 0 ∪ (1\B'), the eight products, and c = 1 + D = tau sigma with c^2 = 1 - e'. The Remark 2.3 matrix units check.*

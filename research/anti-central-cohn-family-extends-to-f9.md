@@ -7,6 +7,7 @@ target: ternary-anti-central-cohn-family-over-f9
 requires:
   - ternary-anti-central-summand-has-cohn-family
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/f9-hadamard-spectral-cohn-attempt-2026-09-12.md
 ---
 
@@ -15,3 +16,5 @@ trivial half of Theorem 1.1 of the artifact.
 
 This route and `f9-cohn-family-descends-to-anti-central-summand` form an intended equivalence cycle;
 neither claim establishes the other on its own.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 6.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid (unital inclusion).*

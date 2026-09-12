@@ -7,6 +7,7 @@ target: mixed-finite-subgroup-defects-need-infinite-generation
 requires:
   - lifted-trace-detects-finite-subgroup-projectives
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/mixed-finite-subgroup-defects-2026-09-12.md
 ---
 
@@ -17,3 +18,5 @@ is positive on every nonzero idempotent of a single finite group algebra
 `<H_1, H_2>` is finite, `e`, `f` and `e - f` all lie in one such `M_n(F_p[H])`,
 so `t_p(e - f) = t_p(e) - t_p(f) > 0`, which a defect cannot have. The full
 argument is in the claim body and in Section 1 of the artifact.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 9.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS after one precision repair. The claim allows f = e, where A = B = I is a configuration. The proof needs f != e, that is, a nonzero defect. With that repair it is consequence 2 of lifted-trace-detects-finite-subgroup-projectives at H = <H_1, H_2>.*

@@ -8,6 +8,7 @@ requires:
   - ternary-anti-central-cohn-family-over-f9
   - anti-central-ternary-summand-contains-its-matrix-ring
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/f9-hadamard-spectral-cohn-attempt-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ Theorem 1.1 of the artifact.
 - A unital ring homomorphism sends `tau_i sigma_j = delta_ij 1` to the same identities.
 
 This route and `anti-central-cohn-family-extends-to-f9` form an intended equivalence cycle.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 6.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid. rho(i)^2 = -I, and rho (x) id and J are unital.*

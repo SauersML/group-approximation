@@ -6,6 +6,7 @@ title: Dead - truncate V's covariant Cantor module to almost invariant finite-di
 target: thompson-v-is-f2-linear-sofic
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-models-cantor-covariance-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ rank model. This is the rank-metric counterpart of the dead tracial route
 `thompson-v-hyperlinear-via-cantor-action-truncation`.
 
 *Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: correctly invalidated. Vanishing-boundary compressions would assemble into an exact covariant rank model, which Theorem 2.3 forbids.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 7.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: correctly invalidated.*

@@ -6,6 +6,8 @@ title: A Thompson V with no characteristic-two rank model is not F_2-linear sofi
 target: non-linear-sofic-group
 requires:
   - thompson-v-has-no-nontrivial-f2-rank-model
+artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
 ---
 
 An `F_2`-linear sofic approximation of `V` gives an injective homomorphism of the nontrivial group `V`
@@ -19,3 +21,5 @@ need simplicity. Simplicity of the units gives the stronger statement that their
 models are trivial. See artifact Section 4.
 
 *Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the route is valid and conditional, and its prerequisite is correctly OPEN.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 7.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid and conditional. The Section 4.4 restriction from the simple Leavitt units is correctly scoped.*

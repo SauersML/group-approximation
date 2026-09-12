@@ -6,6 +6,7 @@ title: Halve the rank of a cylinder idempotent with prefix replacements
 target: thompson-v-cantor-system-has-no-covariant-rank-model
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-models-cantor-covariance-2026-09-12.md
 ---
@@ -26,3 +27,5 @@ The proof is Section 2 of the artifact.
   `1 <= 4 eps`.
 
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 50 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS, including the explicit constant `1/4`. The assigned verifier remains `w3-vf-linear`.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 7.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS (third derivation). Recomputed: Lemma 2.1(b) at finite stages, Lemma 2.2, Theorem 2.3, and the constant 1/4 of Proposition 2.4. Multiplicativity of sigma is not used.*

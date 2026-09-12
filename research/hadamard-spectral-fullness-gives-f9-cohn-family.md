@@ -8,9 +8,12 @@ requires:
   - f9-hadamard-spectral-idempotent-is-full
   - f9-hadamard-spectral-idempotents-are-half-idempotents
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/f9-hadamard-spectral-cohn-attempt-2026-09-12.md
 ---
 
 Proposition 2.2 of the artifact. From `c f_+ b = 1_-`, put `sigma_1 = f_+ b`, `sigma_2 = [u] f_+ b`,
 `tau_1 = c f_+` and `tau_2 = c f_+ [u]`. The relation `f_+[u] = [u]f_-` kills the cross products, and
 `[u]^2 = 1` gives `tau_2 sigma_2 = 1_-`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 6.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid. tau_2 sigma_2 = 1_-, and both cross products equal c [u] f_- f_+ b = 0.*

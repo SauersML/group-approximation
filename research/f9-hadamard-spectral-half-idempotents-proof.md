@@ -6,6 +6,7 @@ title: Square the Hadamard unit to the central involution and conjugate by an an
 target: f9-hadamard-spectral-idempotents-are-half-idempotents
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/f9-hadamard-spectral-cohn-attempt-2026-09-12.md
 ---
 
@@ -16,3 +17,5 @@ Section 2 of the artifact.
 - **Proposition 2.2:** the four products vanish or equal `1_-` by the matrix-unit relations.
 - **Proposition 2.3:** the rank state of `anti-central-rank-models-kill-ternary-corner-witnesses`,
   halved through `[u]`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 6.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the Lemma 2.0 matrices, the Proposition 2.1 idempotents and matrix units, the Proposition 2.2 products, and the Proposition 2.3 rank state.*
