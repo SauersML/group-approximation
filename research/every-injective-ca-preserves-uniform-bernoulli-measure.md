@@ -43,6 +43,19 @@ every `p in A^Omega`, where `M` is the memory,
   `end-fixing-tree-symmetries-carry-strict-automata` gives a strict automaton on a
   homogeneous space of an amenable non-unimodular group. A proof must use that the
   index set is a group.
+* **Invariants of the image (gk-p-bernoulli-ergodic, 2026-09-12).** No isomorphism invariant can
+  separate the image measure from the uniform measure. A strict automaton is a measure conjugacy
+  onto its image, so Koopman spectral data, strong ergodicity, mixing of all orders, weak
+  equivalence, cost, `l^2`-Betti numbers and every entropy agree
+  (`measure-conjugacy-invariants-cannot-certify-surjectivity`).
+  - Architectures that saturate a partition-bounded invariant reduce to maximal Bernoulli Rokhlin
+    entropy (`rokhlin-entropy-is-the-largest-partition-bounded-invariant`).
+  - Any other proof must use coordinate data together with the group structure of the index set:
+    window laws, completion counts, and block-code radii in both directions. Section 3 of
+    `research/artifacts/conjugacy-invariants-and-partition-bounds-2026-09-12.md`.
+  - The functional asked for by gk-decoder-fibers handoff (at most `log |A|`, equal at the uniform
+    measure, strictly monotone under strict automata) therefore cannot be an isomorphism invariant.
+    It must read the coordinate partition, as Shannon window entropies do.
 * **Digest (gk-archive, 2026-09-12).** **Proved:**
   - preservation forces surjectivity, automaton by automaton
     (`injective-measure-preserving-ca-is-surjective`);
