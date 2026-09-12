@@ -50,6 +50,14 @@ model be non-canonical: the trace, and even injectivity, are free.
   `t^(-1) Gamma t` for every compressor. So the witnesses that cut the
   stabilizer down to `Gamma` must live on `1 - z`, where `sigma|Gamma` has no
   finite-dimensional subrepresentation, as in the canonical models.
+- **Canonical Fell models over Haagerup coefficients.** Tensor a tame
+  coefficient `pi` with the regular representation. Dead:
+  `kt-fell-models-over-haagerup-coefficients-are-wall-free`. The polynomial
+  subgroup has infinite conjugacy classes
+  (`kt-polynomial-subgroup-is-icc-in-kt-group`), so the relative commutant of
+  `lambda tensor pi` is `1 tensor` that of `pi`
+  (`fell-models-inherit-walls-from-coefficients`). Recorded as the invalidated
+  route `kt-ce-stabilizer-from-fell-haagerup-model`.
 - **Genuine finite-dimensional ultraproducts.** Once the `Gamma`-part is
   exact, dimension counting (`commutant-no-growth`) fixes the commutant; see
   `kt-wreath-relative-canonical-actor-exactification` for where
@@ -57,6 +65,18 @@ model be non-canonical: the trace, and even injectivity, are free.
 - **The universal target.** `M = L(G *_Gamma (Gamma x Z))` works exactly
   when this claim holds, so it proves nothing on its own.
 
-Remaining room: a non-Haagerup Connes-embeddable target, for instance a
-tracial matrix ultraproduct or `L(H)` for a hyperlinear overgroup `H` of `G`,
-with a witness that does not normalize `sigma(G)`.
+Remaining room: a non-Haagerup Connes-embeddable target that is not a Fell
+model over a Haagerup coefficient, for instance a tracial matrix ultraproduct or
+`L(H)` for a hyperlinear overgroup `H` of `G`, with a witness that does not
+normalize `sigma(G)`.
+
+**A weaker target suffices for Question 3.4.** By
+`kt-intermediate-coset-wreaths-are-nonsofic`, any exact stabilizer `K` with
+`Gamma <= K` and `EL_r(R)` not contained in `K` gives a nonsofic coset wreath
+`W_K`. By `ce-stabilizer-criterion-needs-no-trace` (applied to `K`) and the coset
+equivalence, `W_K` is then hyperlinear. The Haagerup, normalizing-witness and
+Fell obstructions above still apply to this weaker target, because each forces
+every stabilizer containing `Gamma` to contain the normal closure `EL_r(R)`. The
+Haagerup and Fell obstructions do this by normalizing the `Gamma`-commutant; the
+normalizing-witness obstruction does it by making the witness central in
+`sigma(G)`.
