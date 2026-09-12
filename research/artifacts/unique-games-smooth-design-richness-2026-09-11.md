@@ -214,10 +214,11 @@ BKM's proof or by the test itself (for separated families).
 ## 6. The Smooth-Design Rich 2-to-1 Conjecture (open)
 
 **Conjecture (SD-Rich).** There is a function `C : N x N -> [1,infinity)` such
-that for every `epsilon > 0` and every `t >= 1`, for all sufficiently large `n`,
-`Gap-2-to-1_n[1-epsilon, epsilon]` is NP-hard on instances whose pairing family
-at every left vertex is `t`-wise uniform and `(K,m,C(K,m))`-smooth for all
-`m >= 2` and `K >= 1`.
+that for every `epsilon > 0`, `t >= 1`, `m >= 2` and `K >= 1`, for all
+sufficiently large `n`, `Gap-2-to-1_n[1-epsilon, epsilon]` is NP-hard on
+instances whose pairing family at every left vertex is `t`-wise uniform and
+`(K,m,C(K,m))`-smooth. (Smoothness is asked for one `(m,K)` at a time. Asking it
+for all `m` at once would force `log |F| = omega(n)` by Theorem C.)
 
 * **SD-Rich + Theorem B ⟹ UGC.** Given `epsilon`, BKM's choices fix `m, delta,
   zeta, K`. Take `C_0 = C(K,m)`, then `gamma`, then `d` so that
