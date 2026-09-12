@@ -39,7 +39,10 @@ theorem brownF_translation {g : Equiv.Perm ℚ} (hg : g ∈ brownF m) :
     | inv_of x ih =>
         obtain ⟨T, k, hT⟩ := ih
         refine ⟨T + k.natAbs * (m + 1), -k, fun t ht => ?_⟩
-        have hab : (k : ℚ) ≤ (k.natAbs : ℚ) := by exact_mod_cast Int.le_natAbs
+        have hab : (k : ℚ) ≤ (k.natAbs : ℚ) := by
+          have h2 := (Int.cast_le (R := ℚ)).mpr (Int.le_natAbs (a := k))
+          rw [Int.cast_natCast] at h2
+          exact h2
         have hmul : (k : ℚ) * ((m : ℚ) + 1) ≤ (k.natAbs : ℚ) * ((m : ℚ) + 1) :=
           mul_le_mul_of_nonneg_right hab hq.le
         push_cast at ht
@@ -51,7 +54,13 @@ theorem brownF_translation {g : Equiv.Perm ℚ} (hg : g ∈ brownF m) :
         obtain ⟨Tx, kx, hTx⟩ := ihx
         obtain ⟨Ty, ky, hTy⟩ := ihy
         refine ⟨Ty + Tx + ky.natAbs * (m + 1), kx + ky, fun t ht => ?_⟩
-        have hab : (-(ky : ℚ)) ≤ (ky.natAbs : ℚ) := by exact_mod_cast Int.neg_le_natAbs
+        have hab : (-(ky : ℚ)) ≤ (ky.natAbs : ℚ) := by
+          have h : -ky ≤ (ky.natAbs : ℤ) := by
+            have h1 := Int.le_natAbs (a := -ky)
+            rwa [Int.natAbs_neg] at h1
+          have h2 := (Int.cast_le (R := ℚ)).mpr h
+          rw [Int.cast_neg, Int.cast_natCast] at h2
+          exact h2
         have hmul : (-(ky : ℚ)) * ((m : ℚ) + 1) ≤ (ky.natAbs : ℚ) * ((m : ℚ) + 1) :=
           mul_le_mul_of_nonneg_right hab hq.le
         have hnat : (0 : ℚ) ≤ (ky.natAbs : ℚ) * ((m : ℚ) + 1) := by positivity
@@ -75,7 +84,7 @@ theorem compE_add_int_q (k : ℤ) {u : ℚ} (hu : (r : ℚ) - 1 ≤ u)
     compE m r (u + k * ((m : ℚ) + 1)) =
       (r : ℚ) - ((r : ℚ) - compE m r u) * ((m : ℚ) + 2) ^ (-k) := by
   have hp : (0 : ℚ) < (m : ℚ) + 2 := mTwo_pos
-  rcases le_or_lt 0 k with hk | hk
+  rcases le_or_gt 0 k with hk | hk
   · obtain ⟨k', rfl⟩ := Int.eq_ofNat_of_zero_le hk
     have h := compE_add_nat_q m r k' hu
     push_cast at h ⊢
@@ -115,17 +124,24 @@ theorem compConj_fix_nonpos (hr : 1 ≤ r) {g : Equiv.Perm ℚ} (hg0 : ∀ t : �
     hg0 t ht, compE_of_le m r ht1]
 
 /-- **The germ at `r`.** -/
-theorem compConj_near {g : Equiv.Perm ℚ} {T : ℕ} {k : ℤ}
+theorem compConj_near (hr : 1 ≤ r) {g : Equiv.Perm ℚ} {T : ℕ} {k : ℤ}
     (hT : ∀ t : ℚ, (T : ℚ) ≤ t → g t = t + k * ((m : ℚ) + 1)) {t : ℚ}
     (ht1 : compE m r ((r : ℚ) - 1 + ((T + k.natAbs * (m + 1) : ℕ) : ℚ)) ≤ t) (ht2 : t < r) :
     compConjHom m r g t = (r : ℚ) - ((r : ℚ) - t) * ((m : ℚ) + 2) ^ (-k) := by
   have hq : (0 : ℚ) < (m : ℚ) + 1 := mOne_pos m
+  have hr' : (1 : ℚ) ≤ r := by exact_mod_cast hr
   have hu : (r : ℚ) - 1 + ((T + k.natAbs * (m + 1) : ℕ) : ℚ) ≤ compEinv m r t := by
     by_contra h
     have h' := compE_strictMono m r (not_le.mp h)
     rw [compE_compEinv m r ht2] at h'
     linarith
-  have hab : (-(k : ℚ)) ≤ (k.natAbs : ℚ) := by exact_mod_cast Int.neg_le_natAbs
+  have hab : (-(k : ℚ)) ≤ (k.natAbs : ℚ) := by
+    have h : -k ≤ (k.natAbs : ℤ) := by
+      have h1 := Int.le_natAbs (a := -k)
+      rwa [Int.natAbs_neg] at h1
+    have h2 := (Int.cast_le (R := ℚ)).mpr h
+    rw [Int.cast_neg, Int.cast_natCast] at h2
+    exact h2
   have hmul : (-(k : ℚ)) * ((m : ℚ) + 1) ≤ (k.natAbs : ℚ) * ((m : ℚ) + 1) :=
     mul_le_mul_of_nonneg_right hab hq.le
   have hnat : (0 : ℚ) ≤ (k.natAbs : ℚ) * ((m : ℚ) + 1) := by positivity
@@ -159,7 +175,7 @@ theorem trunc_conj_gridAffine (J : ℕ) {g : Equiv.Perm ℚ} (hgm : StrictMono g
   exact ⟨_, _, h1.comp h3 (compET_gridAffine m r J) hinner hright⟩
 
 theorem natPow_zpow_mem_grid (k : ℤ) : ((m : ℚ) + 2) ^ (-k) ∈ Grid (m + 2) k.natAbs := by
-  rcases le_or_lt 0 k with hk | hk
+  rcases le_or_gt 0 k with hk | hk
   · obtain ⟨k', rfl⟩ := Int.eq_ofNat_of_zero_le hk
     rw [zpow_neg, zpow_natCast]
     exact inv_pow_mem_grid m (by simp)
@@ -199,17 +215,25 @@ theorem compConj_gridAffine (hr : 1 ≤ r) {g : Equiv.Perm ℚ} (hg : g ∈ geoF
     · simp only [hF₂, if_pos ht]
     · by_cases h : t ≤ r
       · have htr : t = r := le_antisymm h ht
-        simp only [hF₂, if_pos h, id, htr]
+        subst htr
+        show (if (r : ℚ) ≤ r then s * r + (r : ℚ) * (1 - s) else (r : ℚ)) = (r : ℚ)
+        rw [if_pos le_rfl]
         ring
       · simp only [hF₂, if_neg h, id]
   -- common level
   set L : ℕ := NA + ((T + k.natAbs * (m + 1)) / (m + 1) + 1) with hL
-  have hA' := (hA.mono_level (show NA ≤ L by omega)).mono_bound
+  have hNAL : NA ≤ L := by
+    rw [hL]
+    exact Nat.le_add_right _ _
+  have hA' := (hA.mono_level hNAL).mono_bound
     (show BA + L ≤ BA + (k.natAbs + k.natAbs) + L by omega)
-  have hF' := (hF₂A.mono_level (show 0 ≤ L by omega)).mono_bound
+  have hF' := (hF₂A.mono_level (Nat.zero_le L)).mono_bound
     (show k.natAbs + k.natAbs + L ≤ BA + (k.natAbs + k.natAbs) + L by omega)
+  have hblk : (T + k.natAbs * (m + 1)) / (m + 1) + 1 ≤ L := by
+    rw [hL]
+    exact Nat.le_add_left _ _
   have hp₀ : compE m r ((r : ℚ) - 1 + ((T + k.natAbs * (m + 1) : ℕ) : ℚ)) ∈ Grid (m + 2) L :=
-    grid_mono (by omega) (compE_block_mem m r (T + k.natAbs * (m + 1)))
+    grid_mono hblk (compE_block_mem m r (T + k.natAbs * (m + 1)))
   refine ⟨L, BA + (k.natAbs + k.natAbs) + L, GridAffine.glue hA' hF' hp₀ (fun t ht => ?_)
     (fun t ht => ?_)⟩
   · -- below the germ: the truncated conjugate
@@ -235,7 +259,10 @@ theorem compConj_gridAffine (hr : 1 ≤ r) {g : Equiv.Perm ℚ} (hg : g ∈ geoF
         have : (0 : ℚ) ≤ (k.natAbs : ℚ) * ((m : ℚ) + 1) := by positivity
         linarith
       rw [hT _ hTle] at h1
-      have hab : (k : ℚ) ≤ (k.natAbs : ℚ) := by exact_mod_cast Int.le_natAbs
+      have hab : (k : ℚ) ≤ (k.natAbs : ℚ) := by
+        have h2 := (Int.cast_le (R := ℚ)).mpr (Int.le_natAbs (a := k))
+        rw [Int.cast_natCast] at h2
+        exact h2
       have hmul : (k : ℚ) * ((m : ℚ) + 1) ≤ (k.natAbs : ℚ) * ((m : ℚ) + 1) :=
         mul_le_mul_of_nonneg_right hab hq.le
       push_cast at h1 ⊢
@@ -244,14 +271,16 @@ theorem compConj_gridAffine (hr : 1 ≤ r) {g : Equiv.Perm ℚ} (hg : g ∈ geoF
     rw [compConjFun_of_lt m r g htr, hinvT, compET_of_le m r hgu]
   · -- at and beyond the germ
     by_cases htr : t < r
-    · rw [compConj_near m r hT ht htr]
+    · rw [compConj_near m r hr hT ht htr]
       simp only [hF₂, if_pos htr.le]
       ring
     · have htr' : (r : ℚ) ≤ t := not_lt.mp htr
       rw [compConjHom_apply, compConjFun_of_ge m r g htr']
       by_cases h : t ≤ r
       · have ht' : t = r := le_antisymm h htr'
-        simp only [hF₂, if_pos h, ht']
+        subst ht'
+        show (r : ℚ) = (if (r : ℚ) ≤ r then s * r + (r : ℚ) * (1 - s) else (r : ℚ))
+        rw [if_pos le_rfl]
         ring
       · simp only [hF₂, if_neg h]
 
