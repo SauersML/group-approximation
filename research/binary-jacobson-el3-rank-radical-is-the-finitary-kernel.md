@@ -82,6 +82,16 @@ intersection of the kernels of all rank models) is `L`.
       `(S + f)(T + h) = 1` would make `S + f` surjective, while finite-rank perturbations keep index
       `−1`.
     * General finitary corrections `g = x_12(S)ℓ`, `g' = x_23(T)ℓ'` are not decided.
+  * **Dead: `ψ` does not extend.** Let `u = x_ji(1)` and `v = x_ki(1)` (constants, `k` the third
+    component).
+    * `a^(−1) u a − 1 = Σ_(b>=1) δ_(b+1)^(j)⊗δ_(b−1)^(i)* + δ_1^(j)⊗δ_0^(j)*`. Both products with
+      `v − 1 = Σ δ_c^(k)⊗δ_c^(i)*` vanish, and `u` commutes with `v`. So `[[a^(−1), u], v] = 1` in `E`.
+    * `a u a^(−1) − 1` has the boundary term `δ_0^(i)⊗δ_1^(i)*`, and
+      `(v − 1)(a u a^(−1) − 1) = δ_0^(k)⊗δ_1^(i)* != 0 = (a u a^(−1) − 1)(v − 1)`. So
+      `[[a, u], v] != 1`.
+    * The constants detect the orientation of the turn at index `0`. Every finite folded cycle has one
+      turn of each orientation, so path models carry a rank-one relator error at the far end,
+      exactly where the head is thin. This criterion yields nothing.
 * **Next attempts.**
   * Decide whether `E` is finitely presented. If it is, it is not LEF, because finite quotients kill
     the head, and the normal form applies verbatim.
