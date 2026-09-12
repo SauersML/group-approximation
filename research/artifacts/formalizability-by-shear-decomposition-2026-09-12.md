@@ -143,7 +143,11 @@ nothing. That is an observation about this construction, not a lower bound.
 
 ## 4. The open statement, and where it stops
 
-**Open (`injective-binary-automata-have-formalizable-left-inverses`).** Every injective automaton on
+**Status (added later the same day).** This statement and `binary-left-inverse-pairs-are-formalizable`
+are both refuted over `Z` with one track, by `binary-left-inverse-pairs-need-not-be-formalizable`.
+Section 5 records what survives.
+
+**Formerly open (`injective-binary-automata-have-formalizable-left-inverses`).** Every injective automaton on
 `(F_2^n)^G` has *some* left inverse forming a formalizable pair. It is implied by
 `binary-left-inverse-pairs-are-formalizable`, which asks this for every left inverse. It already
 suffices for `stable-finiteness-forces-binary-surjunctivity`, via
@@ -163,3 +167,110 @@ ancillas.
 - **What remains.** A mechanism must choose representatives, equivalently a circuit, whose formal
   ancilla output vanishes, using more than functional data. No such mechanism is known for any
   automaton that reads more than one cell and is not structurally reversible.
+
+## 5. After the refutation: formalizability depends on the regrouping
+
+**Status.** `binary-left-inverse-pairs-need-not-be-formalizable` (gk-fz-bennett) refutes both open
+statements of Section 4 over `Z` with one track: formalizable one-track pairs over bi-orderable
+groups are affine translations, and the six-cell marker involution is not affine. I re-derived both
+steps of that argument: the two-sided formal inverse, then the degree count in the variable at the
+product of the largest window elements. Regrouping gives several tracks, where the degree argument
+does not apply, and this section shows regrouping genuinely changes the answer.
+
+### 5.1 Subset-stable marker flips
+
+**Proposition 5.1.** Let `N ⊴ G` have finite index, with right transversal `T`. Let `W ⊂ G \ N` be
+finite and `mu: {0,1}^W -> {0,1}`. Put `F(x) = {g : mu((x(gw))_(w in W)) = 1}` and
+`tau(x) = x + 1_(F(x))`, and suppose `F(x + 1_S) = F(x)` for every `x` and every `S ⊆ F(x)`. For
+`t in T` let `tau_t(x) = x + 1_(F(x) ∩ Nt)`. Then:
+- (i) each `tau_t` is a track shear over `N`, on the regrouped alphabet `{0,1}^T` with `y(h)_t = x(ht)`;
+- (ii) `tau = tau_(t_k) o ... o tau_(t_1)` for any enumeration of `T`;
+- (iii) `tau` is an involution, and `(tau, tau)` is formalizable as `N`-automata.
+
+*Proof.*
+- (i) A cell `g = nt` of track `t` reads the cells `gw = ntw`. By normality, `ntw in Nt` iff
+  `t w t^-1 in N` iff `w in N`, and `w notin N`. So `tau_t` writes track `t` from other tracks only.
+  For `h in N`, `h^-1 g in Nt` iff `g in Nt`, so `tau_t` commutes with left translation by `N`.
+  Writing `tw = h'(t,w) t'(t,w)` with `h' in N` and `t' in T`, the rule reads `y(n h')_(t')`, a
+  finite memory over `N`.
+- (ii) `tau_(t_1)` flips `S_1 = F(x) ∩ Nt_1 ⊆ F(x)`, so the flip set of the new configuration is
+  still `F(x)`. Inductively `tau_(t_j)` flips `F(x) ∩ Nt_j`, and the word flips each cell of `F(x)`
+  exactly once.
+- (iii) With `S = F(x)`, `F(tau x) = F(x)`, so `tau o tau = id`. By (i) and Proposition 1.1, each
+  `tau_t` has a representative `X + P_t` that is a formal involution, where `P_t` is a polynomial
+  indicator of the marker pattern in variables of other tracks. By Corollary 1.3 and
+  Proposition 1.4, `tau~ = tau_(t_k)~ o ... o tau_(t_1)~` and `sigma~ = tau_(t_1)~ o ... o tau_(t_k)~`
+  satisfy `sigma~ o tau~ = id` formally. ∎
+
+### 5.2 The marker involution over `4Z`
+
+For the six-cell marker rule over `Z`, the window `W = {±1, ±2, ±3}` avoids `4Z`. Subset stability,
+for `S ⊆ F(x)` and a cell `j`:
+- **`j in F(x)`.** No cell `i` with `1 <= |i − j| <= 3` lies in `F(x)` (Lemma 2.1 of
+  `research/artifacts/binary-formalizability-refutation-2026-09-12.md`). So none lies in `S`, and the
+  marker at `j` reads unchanged cells.
+- **`j notin F(x)`, no cell of `S` within distance 3.** The marker at `j` reads unchanged cells.
+- **`j notin F(x)`, some `i in S` with `1 <= |j − i| <= 3`.** By the table of Lemma 2.1, the marker at
+  `j` needs a `0` at `i − 1` or `i + 1`, where `x` has a `1` because `i in F(x)`. Those cells are at
+  distance 1 from `i in F(x)`, so they are not in `F(x)` and not in `S`. The marker at `j` stays false.
+
+So the marker involution is the word `tau_3 o tau_2 o tau_1 o tau_0` of four track shears over `4Z`,
+and `(tau, tau)` is formalizable as `4Z`-automata. The representative `tau~` assigns different
+polynomials to the four tracks, because the shears apply in order. So it is `4Z`-equivariant but
+not `Z`-equivariant, as Theorem A of the refutation artifact requires. The hypothesis `W ∩ N = ∅`
+fails for `2Z` and `3Z`, and nothing here decides those subgroups.
+
+### 5.3 Over `Q` no regrouping helps
+
+**Proposition 5.3.** Let `tau` be the six-cell marker rule on `{0,1}^Q`, with memory in `Z ⊂ Q`.
+Then `tau` is a bijective involution. For every finite-index subgroup `H <= Q`, no representatives
+make `(tau, tau)` formal as `H`-automata, and `tau` is its own unique left inverse.
+
+*Proof.*
+- **No regrouping.** `Q` is divisible, so a finite quotient `Q/H` of order `n` is divisible, and every
+  class is `n` times a class, which is `0`. So `H = Q`, with one track.
+- **Involution.** `tau` acts on each coset `q + Z` as the marker involution over `Z`.
+- **Not affine.** `Q` is bi-orderable, so by `formalizable-binary-pairs-over-biorderable-groups-are-affine`
+  a formal pair would give `tau(x)(g) = x(g + m) + eps`. `tau` fixes the configuration with a single
+  `1` at `0`, since every marker needs two `1`s. That forces `m = 0` and `eps = 0`, so `tau = id`.
+  But `tau` changes the configuration that is `1` exactly at `−1` and `1`. ∎
+
+So "formalizable after regrouping along some finite-index subgroup" is false in general. The payoff
+route therefore localizes first:
+- An automaton with memory in the finitely generated subgroup `Γ` acts coset by coset on
+  `A^G = ∏_(gΓ) A^(gΓ)`, as a copy of the same rule over `Γ`. So injectivity and surjectivity are
+  decided over `Γ`.
+- Stable finiteness of `F_2[G]` passes to `F_2[H]` for every `H <= Γ`, since matrix rings over
+  `F_2[H]` are unital subrings of those over `F_2[G]`.
+
+### 5.4 The surviving statement
+
+**Open (`injective-automata-over-fg-groups-are-virtually-formalizable`).** Let `Γ` be finitely
+generated. Every injective automaton on `(F_2^n)^Γ` has a left inverse `sigma` and a finite-index
+`H <= Γ` such that the pair is formalizable as `H`-automata. With
+`formal-polynomial-strict-pairs-need-unstable-linearization`, this gives
+`stable-finiteness-forces-binary-surjunctivity`, through the route
+`virtual-formalizability-reduces-surjunctivity-to-kaplansky`.
+
+- **Block permutations.** A block permutation along the translates of a fundamental domain `B` of
+  `bZ^d` is a word of track shears over `bZ^d`.
+  - Each block meets every residue class once.
+  - A permutation of `{0,1}^B` is a product of hypercube-edge transpositions, and each of those is an
+    indicator shear reading the other cells of its block.
+  - Translations are formal.
+  So a decomposition of the reversible automata over `Z^d` into block permutations and translations
+  would give the statement for them. Kari's theorems for `d = 1, 2` are recalled, not read from
+  source, so no node depends on them.
+- **Groups without finite-index subgroups.** There `H = Γ`, and the automaton keeps its `n` tracks.
+  The one-track classification never applies to a nontrivial finitely generated perfect group:
+  - A finitely generated bi-orderable group has a maximal proper convex subgroup, because the
+    finitely many generators cannot all lie in a union of a chain of proper convex subgroups.
+  - That subgroup is normal, since conjugation maps it to a proper convex subgroup.
+  - Its quotient is Archimedean, hence embeds in `R` by Hölder's theorem, so the group maps onto `Z`.
+  So on `R^x` and on finitely generated simple hosts, no one-track classification constrains the
+  statement.
+- **Strict automata.** On a host with stably finite `F_2[Γ]`, a strict automaton has no formal pair
+  after any regrouping. A proof of the statement must produce Kaplansky failures from strict
+  automata.
+- **Where it stops.** Every formal pair known after regrouping is a gate word, hence bijective. No
+  mechanism produces formal representatives for a strict automaton.
