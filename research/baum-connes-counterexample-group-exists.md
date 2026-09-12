@@ -72,6 +72,30 @@ Property (T) closes the Higson--Kasparov route for both.
     would already refute surjectivity of `mu_r` for a Theorem E actor. On
     `L^x` no rational target exists. The difficulty is unchanged: no mechanism
     produces a projection in `C*_r G` that is not built from subgroup averages.
+- **Algebraic idempotents on the Kun--Thom actors.**
+  - Dead. `kun-thom-actor-finite-subgroup-ring-equals-z-inverted-p` makes the
+    target exactly `Lambda^G = Z[1/P(q,r,d)]`.
+  - `kun-thom-actor-algebraic-idempotents-pass-trace-test` puts the trace of
+    every idempotent of `M_n(C[G])` inside it.
+  - Why: push the idempotent to congruence quotients chosen by Dirichlet, so
+    that the index avoids any given prime outside `P`.
+  - Every spectral projection of a finite-spectrum element is such an
+    idempotent.
+- **Markov operators on coset spaces over Kazhdan subgroups.** Not candidates.
+  - `lambda_(G/H)` is weakly contained in `lambda_G` only when `H` is amenable.
+    The Theorem E subgroup and `SL_d(Z)` are infinite Kazhdan groups.
+  - So their coset-space spectral projections are not elements of `C*_r G`.
+  - See the artifact `research/artifacts/bc-kun-thom-trace-test-2026-09-12.md`,
+    Section 3.
+- **What survives on the Kun--Thom actors, with no mechanism yet.**
+  - A non-algebraic gapped spectral projection of a self-adjoint
+    `a ∈ M_n(C[G])` with infinite spectrum. For integral coefficients its
+    spectrum has capacity at least 1 (`integral-spectra-of-small-capacity-are-finite`).
+  - Its trace is the limit, over large primes `p'`, of the eigenvalue fractions
+    of `a` in the congruence quotients `G/N_(p')` below the gap. The gap mass of
+    those quotients tends to 0.
+  - A refutation needs this limit to leave `Z[1/P]`. Nothing in the graph
+    controls such limits.
 - **Extension permanence is no shortcut.** Meyer, arXiv:2508.05726 (abstract
   read, not imported), shows that the Chabert--Echterhoff hypotheses cannot be
   weakened to Baum--Connes for the normal subgroup alone.
