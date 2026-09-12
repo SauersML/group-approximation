@@ -1,6 +1,5 @@
 import GroupApproximation.CharClass.OddPDiagonal
 import GroupApproximation.CharClass.OddPWDiagonal
-import GroupApproximation.CharClass.OddPProductEval
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -165,6 +164,26 @@ theorem faceMap_def (m' : ℕ) (f : Fin (m' + 2)) (τ : stdSimplexTop (m' + 1) �
 
 end Source
 
+/-- A tuple of total degree `0` has no boundary. -/
+theorem tupDAll_single_tot_zero (p : ℕ) {X : TopCat.{0}} {r : ℕ} (t : TupAll X r)
+    (ht : ∑ j, (t j).1 = 0) : tupDAll (ZMod p) X r (Finsupp.single t (1 : ZMod p)) = 0 := by
+  rw [tupDAll, LinearMap.sum_apply]
+  refine Finset.sum_eq_zero fun j _ => ?_
+  rw [slotBd_single, slotBdGen]
+  have hj : (t j).1 = 0 := by
+    have hle : (t j).1 ≤ ∑ l, (t l).1 :=
+      Finset.single_le_sum (f := fun l => (t l).1) (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
+    omega
+  have key : ∀ τ : TagSimp X, τ.1 = 0 →
+      Finsupp.linearCombination (ZMod p)
+          (fun τ' : TagSimp X => Finsupp.single (Function.update t j τ') (1 : ZMod p))
+          (tagBd (ZMod p) X τ) = 0 := by
+    rintro ⟨n, σ⟩ hn
+    simp only at hn
+    subst hn
+    rw [tagBd_zero, map_zero]
+  rw [key (t j) hj, smul_zero]
+
 /-! ## 3. The diagonal on the full model -/
 
 section Diagonal
@@ -198,7 +217,7 @@ theorem tupDAll_phiAll_zero (x : OddWTensor p 0 X) :
   | add y₁ y₂ h₁ h₂ => rw [map_add, map_add, h₁, h₂, add_zero]
   | single t c =>
     rw [← Finsupp.smul_single_one, map_smul, map_smul, tupIncl_single,
-      tupDAll_single_of_tot_eq_zero (ZMod p) t.1 t.2, smul_zero]
+      tupDAll_single_tot_zero p t.1 t.2, smul_zero]
 
 /-- **The generator of the group ring acts as the cyclic operator.** -/
 theorem phiAll_grGen_smul (k : ℕ) (x : OddWTensor p k X) :
