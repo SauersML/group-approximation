@@ -94,7 +94,7 @@ theorem perHom_gridAffine (f : ↥(compactF m 1)) {Ω : Submonoid ℚ} {N B : �
     refine ⟨⌊gridPt (m + 2) N k⌋, Int.floor_le _, ?_⟩
     by_contra h
     have hj : (((⌊gridPt (m + 2) N k⌋ + 1 : ℤ)) : ℚ) ∈ Grid (m + 2) N := int_mem_grid N _
-    refine not_between_consecutive hj ⟨?_, ?_⟩
+    refine not_between_consecutive (k := k) hj ⟨?_, ?_⟩
     · push_cast
       exact Int.lt_floor_add_one _
     · push_cast
@@ -145,9 +145,8 @@ theorem perHom_hlCond (f : ↥(compactF 4 1)) : HLCond (perHom 4 f) := by
   have hq1 : gridPt (4 + 2) N (⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ + 1) ≤ 1 := by
     by_contra h
     have h1 : ((1 : ℤ) : ℚ) ∈ Grid (4 + 2) N := int_mem_grid N 1
-    refine not_between_consecutive h1 ⟨?_, ?_⟩
-    · push_cast
-      linarith [hfr.2]
+    refine not_between_consecutive (k := ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋) h1 ⟨?_, ?_⟩
+    · exact lt_of_le_of_lt hp (by exact_mod_cast hfr.2)
     · push_cast
       exact not_le.mp h
   obtain ⟨s, ⟨i, rfl⟩, -, haff⟩ := hA.slope ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋
@@ -159,7 +158,7 @@ theorem perHom_hlCond (f : ↥(compactF 4 1)) : HLCond (perHom 4 f) := by
     have hj2 : t ≤ ((⌊x⌋ : ℤ) : ℚ) + 1 := by linarith
     have hj1' : ((⌊x⌋ : ℤ) : ℚ) ≤ ⌊x⌋ + p := by linarith
     have hj2' : (⌊x⌋ : ℚ) + p ≤ ((⌊x⌋ : ℤ) : ℚ) + 1 := by linarith
-    rw [perHom_eq_of_mem_Icc f hj1 hj2, perHom_eq_of_mem_Icc f hj1' hj2', six_zpow_eq i]
+    rw [perHom_eq_of_mem_Icc f hj1 hj2, perHom_eq_of_mem_Icc f hj1' hj2']
     have h := haff (t - ⌊x⌋) (by linarith) (by linarith)
     have e : (⌊x⌋ : ℚ) + p - ⌊x⌋ = p := by ring
     rw [e, h, six_zpow_eq i]

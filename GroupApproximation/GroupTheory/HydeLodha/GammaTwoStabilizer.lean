@@ -37,12 +37,16 @@ theorem not_dyadic6_gridPt_add_fifth (N : ℕ) (k : ℤ) :
   have hQ : (5 * (k : ℚ) + 1) * (6 : ℚ) ^ M = 5 * (j : ℚ) * (6 : ℚ) ^ N := by
     linear_combination (5 * (6 : ℚ) ^ N) * hj - 5 * (6 : ℚ) ^ M * hg - (6 : ℚ) ^ M * hinv
   have hZ : (5 * k + 1) * 6 ^ M = 5 * j * 6 ^ N := by exact_mod_cast hQ
-  have hp : Prime (5 : ℤ) := Nat.prime_iff_prime_int.mp Nat.prime_five
-  have hdvd : (5 : ℤ) ∣ (5 * k + 1) * 6 ^ M := ⟨j * 6 ^ N, by rw [hZ]; ring⟩
-  rcases hp.dvd_or_dvd hdvd with h | h
-  · omega
-  · have h6' := hp.dvd_of_dvd_pow h
-    omega
+  have h6M : ∀ n : ℕ, (6 : ℤ) ^ n % 5 = 1 := by
+    intro n
+    induction n with
+    | zero => norm_num
+    | succ n ih =>
+      rw [pow_succ, Int.mul_emod, ih]
+      norm_num
+  have hmod := congrArg (fun z : ℤ => z % 5) hZ
+  rw [Int.mul_emod, h6M, mul_assoc, Int.mul_emod_right] at hmod
+  omega
 
 /-- Two affine pieces through a common interior point have the same slope. -/
 theorem affineOn_slope_eq {f : ℚ → ℚ} {a b a' b' s s' x : ℚ} (h : AffineOn f a b s)
@@ -54,7 +58,7 @@ theorem affineOn_slope_eq {f : ℚ → ℚ} {a b a' b' s s' x : ℚ} (h : Affine
   have h3 := h' (min b b') (le_trans (le_max_right a a') hu.le) (min_le_right b b')
   have h4 := h' (max a a') (le_max_right a a') (le_trans hu.le (min_le_right b b'))
   have hd : (min b b' - max a a') ≠ 0 := (sub_pos.mpr hu).ne'
-  have e : (s - s') * (min b b' - max a a') = 0 := by linear_combination h1 - h2 - h3 + h4
+  have e : (s - s') * (min b b' - max a a') = 0 := by linear_combination h2 - h1 + h3 - h4
   rcases mul_eq_zero.mp e with e | e
   · linarith
   · exact absurd e hd
