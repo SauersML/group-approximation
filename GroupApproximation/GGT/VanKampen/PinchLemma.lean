@@ -88,7 +88,7 @@ theorem split_euler (hM : M.IsPlanar) {p e : M.Dart} (hpe : p ≠ e)
 variable {p d e : M.Dart}
 
 /-- In the split map a face step of `d` reaches `e`. -/
-theorem split_facePerm_d (hprev : M.facePerm p = d) (hnext : M.facePerm d = e) (hde : d ≠ e)
+theorem split_facePerm_d (hnext : M.facePerm d = e) (hde : d ≠ e)
     (hdp : d ≠ p) : (FoldMap.joined M p e).facePerm d = e := by
   rw [FoldMap.joined_facePerm_apply, Equiv.swap_apply_of_ne_of_ne hdp hde, hnext]
 
@@ -113,7 +113,7 @@ theorem reach_or_reach (hM : M.IsConnected) (hprev : M.facePerm p = d)
   have hPp : ∀ y, Relation.EqvGen J.Adjacent p y → P y := fun y h => Or.inr h
   have hde' : Relation.EqvGen J.Adjacent d e := by
     have h := eqvGen_facePerm (M := J) d
-    rwa [split_facePerm_d hprev hnext hde hdp] at h
+    rwa [split_facePerm_d hnext hde hdp] at h
   have hstep : ∀ y z, M.Adjacent y z → (P y ↔ P z) := by
     intro y z hyz
     rcases hyz with h | h
@@ -244,7 +244,7 @@ theorem exists_isRelatorProduct_lt_of_pinch (Delta : DiscDiagram.{u, w, v} W)
   have hnot := not_reach_p Delta.planar hprev hnext hde hdp hpe (hpO.trans heO.symm) hpinch
   have hde' : Relation.EqvGen J.Adjacent d e := by
     have h' := eqvGen_facePerm (M := J) d
-    rwa [split_facePerm_d hprev hnext hde hdp] at h'
+    rwa [split_facePerm_d hnext hde hdp] at h'
   have hdαe : Relation.EqvGen J.Adjacent d (M.alpha e) :=
     Relation.EqvGen.trans _ _ _ hde' (Relation.EqvGen.rel _ _ (Or.inl rfl))
   -- the remaining exterior darts are not reached from `d`
