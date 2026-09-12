@@ -4,9 +4,10 @@ id: lef-graph-wreath-via-finite-lamp-tables
 kind: route
 title: Verify finite graph retractions and then transplant LEF lamp tables
 target: lef-lamp-graph-wreaths-are-surjunctive
-requires: [finitary-split-extension-surjunctivity-permanence]
+requires: [finitary-split-extension-surjunctivity-permanence, graph-product-normal-forms-and-rf-permanence]
 artifacts:
   - research/artifacts/lef-graph-wreath-surjunctivity-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Sections 2--5 of the artifact give the implication in full.
@@ -32,4 +33,6 @@ implication.
 Green's residual-finiteness theorem and closure of surjunctivity under
 local embeddings are standard inputs, not claims of new results. The
 artifact supplies the local-embedding proof explicitly and records primary
-references for both.
+references for both. Green's normal form and residual finiteness theorems
+are now required as `graph-product-normal-forms-and-rf-permanence`, added
+2026-09-12 after an independent re-derivation of this route.
