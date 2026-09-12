@@ -33,9 +33,10 @@ satisfies PBH. That cannot be done for any cover. This kills the route
 **Scope.**
 - **Unbranched covers only.** A branched cover needs representatives preserving
   the branch set, and that variant was not analysed.
-- **Genus 3 is not covered.** There the construction is equivalent to a virtual
-  section of the genus-3 Birman sequence (`outer-covering-lifts-are-virtual-sections`),
-  and Chen--Salter's Theorem A starts at genus four.
+- **Genus 3 is not covered here.** There the construction is equivalent to a
+  virtual section of the genus-3 Birman sequence (`outer-covering-lifts-are-virtual-sections`),
+  and Chen--Salter's Theorem A starts at genus four. The genus-3 no-go is the
+  separate claim `genus-three-mcg-has-no-covering-lift-to-marked-covers`.
 - **Non-covering embeddings** of finite-index subgroups into punctured mapping
   class groups are not excluded. That is the open premise
   `closed-mcgs-virtually-embed-in-punctured-mcgs`.

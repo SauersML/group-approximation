@@ -24,9 +24,11 @@ This premise feeds `closed-mcg-bh-via-punctured-mcg-host`.
 
 1. **Covering lifts with marked points, the BFFHZ one-puncture template.**
    - *Dies* for `g ≥ 4`, by `closed-mcgs-have-no-covering-lift-to-marked-covers`.
-   - In genus 3 it is equivalent to a virtual section of the genus-3 Birman
-     sequence (`outer-covering-lifts-are-virtual-sections`). Chen--Salter's
-     Theorem A does not decide that case.
+   - *Dies* in genus 3 too, by `genus-three-mcg-has-no-covering-lift-to-marked-covers`.
+     There it is a virtual section of the genus-3 Birman sequence
+     (`outer-covering-lifts-are-virtual-sections`), and
+     `birman-sequence-genus-three-does-not-virtually-split` excludes those. That
+     claim is not independently reviewed.
 2. **Targets of small genus.** *Dies* for the full group when `g ≥ 6`.
    - **Source.** Aramayona--Souto, arXiv:1011.1855v1, abstract, read from the
      PDF on MSI. For `X` of genus `g ≥ 6` and `Y` of genus at most `2g − 1`

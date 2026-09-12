@@ -34,6 +34,8 @@ inclusion of `L`.
 **Scope.**
 - **Genus 2:** the sequence does virtually split, through the six Weierstrass
   points (same paper, Introduction).
-- **Genus 3:** not covered by Theorem A.
+- **Genus 3:** not covered by Theorem A. The genus-3 case over finite-index
+  subgroups of the full mapping class group is
+  `birman-sequence-genus-three-does-not-virtually-split`.
 - **History:** the paper says Theorem A was announced in a 1990 preprint of
   G. Mess whose argument contains an error.

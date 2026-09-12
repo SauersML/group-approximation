@@ -34,18 +34,18 @@ Genus at most two and all surfaces with a puncture or boundary are
 2. **Covering lifts to marked covers.**
    - *Dies* for `g ≥ 4`: the route `closed-mcg-bh-via-covering-lift-to-marked-cover`
      is invalidated by `closed-mcgs-have-no-covering-lift-to-marked-covers`.
-   - In genus 3 such a lift exists iff the genus-3 Birman sequence has a
-     section over a finite-index subgroup (`outer-covering-lifts-are-virtual-sections`),
-     and a section would settle genus 3 through
-     `punctured-surface-mcgs-satisfy-permutational-boone-higman`. Chen--Salter's
-     Theorem A starts at genus four, so this case is undecided here.
-   - Luo--Watanabe, arXiv:2502.14343v2, abstract (read from the PDF on MSI):
-     "for any finite index subgroup of the mapping class group containing the
-     Johnson subgroup, the profinite Birman exact sequence does not split in
-     genus g ≥ 3". Whether this excludes a discrete section over a finite-index
-     subgroup in genus 3 was not checked. Such a subgroup need not contain the
-     Johnson subgroup, and exactness of the completed sequence was not verified
-     from source.
+   - *Dies* in genus 3 as well, by `genus-three-mcg-has-no-covering-lift-to-marked-covers`.
+     Such a lift is a virtual section of the genus-3 Birman sequence
+     (`outer-covering-lifts-are-virtual-sections`), and
+     `birman-sequence-genus-three-does-not-virtually-split` excludes those.
+     - That claim adapts Chen--Salter's argument to genus three, over
+       finite-index subgroups of the full mapping class group.
+     - It is not independently reviewed (lane `bh-birman-genus3-section`,
+       artifact `research/artifacts/bh-birman-genus3-section-2026-09-12.md`).
+   - Luo--Watanabe, arXiv:2502.14343v2, Theorem 1 (read from the PDF on MSI),
+     already excluded discrete sections in genus `≥ 3` over finite-index
+     subgroups containing the Johnson subgroup: "Consequently, the Birman exact
+     sequence (4) for Γ does not split for g≥ 3."
 3. **A punctured host by other means.** Route `closed-mcg-bh-via-punctured-mcg-host`,
    with open premise `closed-mcgs-virtually-embed-in-punctured-mcgs`. Its
    Attempts record the small-genus exclusion of Aramayona--Souto.
