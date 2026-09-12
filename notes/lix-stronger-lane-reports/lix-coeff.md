@@ -62,18 +62,24 @@ Probe plan once lix-k exists (one small closure first): (1) `RelHomotopyIdentity
 | `CohomologyKunnethStepDeltaOf` | `injective_sphereNextOf` (over lix-lh's `MVDelta.mvDeltaOf_naturality`, `MVDelta.mvDeltaOf_cup`) | `[Field K]` | 190c7a03f |
 | `CohomologyKunnethInjectiveOf` | `one_ne_zero_unitOf`, `sphereGenOf`, `knGen_sphereGenOf`, `ne_zero_of_knGenOf`, `knGen_sphereTopClassOf`, `kunnethSecondInjectiveOf`, `kunnethInjectiveOf` | `[Field K]` | 190c7a03f |
 
-Next probe (one batch, when lix-lh's `MayerVietorisPullOf` compiles): `CohomologyKunnethHemiOf`, `StepOf`,
-`ZeroOf`, `StepDeltaOf`, `InjectiveOf`.
+| `CohomologyKunnethSurjOf` | `KnHemi.mvRes{U,V}Of_pull_knPrY`, `mvResW{U,V}Of_mvRes{U,V}Of`, `pull_prSub_band_injectiveOf`, `mvDeltaOf_pull_prSub_band`, `KnLowOf`, `KnTopOf`, `exists_common_restrictionOf`, `exists_delta_of_subOf`, `knLow_zero_degreeOf`, `mvDeltaOf_bandRestrict`, `exists_band_transportOf`, `knLow_succOf`, `knTop_succOf` | `[Field K]` | 620c05720 |
+| `CohomologyKunnethSurjZeroOf` | `KnZero.exists_pull_zPrSub_{pos,neg}Of`, `KnZero.mvRes{U,V}Of_pull_knPrY`, `pull_sInclusion_zeroGen_{pos,neg}Of`, `pull_sInclusion_knPrY_posOf`, `knTop_zeroOf` | `[Field K]` | 025f7af3a |
+| `CohomologyKunnethDecompOf` | `knLow_allOf`, `knTop_sphereGenOf`, `knTopOf_smul`, `sphereTopClassOf_eq_smul_sphereGenOf`, `knTop_sphereTopClassOf`, `kunneth_lowOf`, `kunneth_decompositionOf`, `kunneth_decomposition_uniqueOf` | `[Field K]` | ee0b11fbf |
+| `CohomologyKunnethParityOf` | `NoOddCohomologyOf`, `eq_zero_of_noOddOf`, `even_pulled_back_of_odd_sphereOf`, `eq_zero_odd_of_even_sphereOf`, `isZero_odd_prod_sphereOf`, `noOddCohomology_prod_sphereOf` | `[Field K]` | f9c753444 |
+
+Probe 0911-224614-10401 (lix-b, base f0f56b337; the msi hop died but the remote summary came back):
+`CohomologyKunnethHemiOf` COMPILED (`Built`, 24s).  `CohomologyKunnethStepOf` red on `SphereOddDegree.northPole`
+(unresolvable from `CharClass`), fixed and re-landed fbd5cc37d.  Running (bhp8yi2fb): StepOf, ZeroOf, StepDeltaOf,
+InjectiveOf, SurjOf, SurjZeroOf, DecompOf.  ParityOf goes into the next batch.
 
 ## NEEDS
 
-* lix-lh: a compiled sha for `MayerVietorisPullOf` (red at b5f0dee2f: 166:6, 175:30, 165:54) and for
-  `CohomologyDeltaNaturalOf` / `CohomologyDeltaCupOf` (landed unverified b7f9acbdf / 447d9146f).
-* Then Surj*/Decomp over K: three `add_self_eq_zero_two` sites become `sub_self`/`sub_eq_zero`, and
-  `MVDelta.mvDeltaOf_spec` carries `aU| − aV| = α`.
+* Nothing from other lanes: lix-lh's `MayerVietorisPullOf` and the δ layer compiled at 4ad91fa8a.
 
 ## TRAPS
 
+* `open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree` does not make `SphereOddDegree.northPole`
+  resolvable from `namespace GroupApproximation.CharClass`: write the full name (or the bare `northPole`).
 * `git grep -E` has no `\b`: a pattern with `\b` silently matches nothing.  Use `git grep -nw`.
 * Inside `namespace KnHemi` the F₂ `KnHemi.cohCast_zero` shadows the generic `CharClass.cohCast_zero`
   (innermost namespace wins): write `CharClass.cohCast_zero` in K-generic KnHemi files.
