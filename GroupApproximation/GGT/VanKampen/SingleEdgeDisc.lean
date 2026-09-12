@@ -90,15 +90,15 @@ theorem planar_map : map.IsPlanar := by
 def faceBoundary (f : map.Face) : FaceBoundary map f where
   darts := [true, false]
   nonempty := List.cons_ne_nil _ _
-  nodup := by decide
+  nodup := List.nodup_cons.mpr ⟨by simp, List.nodup_singleton _⟩
   mem_iff := fun d => ⟨fun _ => faceSubsingleton.allEq _ _, fun _ => by cases d <;> simp⟩
   chain := List.isChain_cons_cons.mpr ⟨rfl, List.IsChain.singleton _⟩
   closes := rfl
   length_eq_degree := by
     have hall : ∀ d : map.Dart, map.faceOf d = f := fun d => faceSubsingleton.allEq _ _
     change 2 = Nat.card {d : map.Dart // (Quotient.mk'' d : CombMap.Orbit map.facePerm) = f}
-    rw [Nat.card_congr (Equiv.subtypeUnivEquiv hall), Nat.card_eq_fintype_card]
-    exact Fintype.card_bool.symm
+    exact ((Nat.card_congr (Equiv.subtypeUnivEquiv hall)).trans
+      (Nat.card_eq_fintype_card.trans Fintype.card_bool)).symm
 
 variable {G : Type u} [Group G] {Lambda : Type w}
 
@@ -136,8 +136,8 @@ theorem diagram_boundaryWord :
     (diagram W letter).boundaryWord = [letter, HullSC.RelWord.inv letter] := by
   show HullSC.RelWord.revInv [letter, HullSC.RelWord.inv letter] =
     [letter, HullSC.RelWord.inv letter]
-  simp only [HullSC.RelWord.revInv_cons, HullSC.RelWord.revInv_singleton,
-    HullSC.RelWord.inv_inv_letter, List.singleton_append]
+  simp only [HullSC.RelWord.revInv_cons, HullSC.RelWord.inv_inv_letter]
+  rfl
 
 theorem diagram_rCellCount : (diagram W letter).rCellCount = 0 := rfl
 

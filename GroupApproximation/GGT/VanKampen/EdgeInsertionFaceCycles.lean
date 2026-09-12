@@ -42,9 +42,9 @@ theorem facePerm_embed (hab : a ≠ b) (x : M.Dart) :
       else embed M (M.facePerm x) := by
   rw [facePerm_apply_of_ne hab]
   by_cases ha : M.facePerm x = a
-  · simp [embed, insertBefore_some, Perm.mul_apply, ha, hab.symm]
+  · simp [embed, insertBefore_some, Perm.mul_apply, ha]
   · by_cases hb : M.facePerm x = b
-    · simp [embed, insertBefore_some, Perm.mul_apply, ha, hb, hab]
+    · simp [embed, insertBefore_some, Perm.mul_apply, hb, hab, hab.symm]
     · simp [embed, insertBefore_some, Perm.mul_apply, ha, hb,
         Equiv.swap_apply_of_ne_of_ne ha hb]
 
@@ -98,7 +98,7 @@ variable {xs ys : List M.Dart}
 theorem isChain_side (hab : a ≠ b) {c c' : M.Dart} {zs : List M.Dart}
     (hchain : (c :: zs).IsChain fun d e => M.facePerm d = e) (hnd : (c :: zs).Nodup)
     (hc : c = a ∨ c = b) (hc' : c' = a ∨ c' = b) (hcc' : c ≠ c') (hnot : c' ∉ c :: zs) :
-    ((c :: zs).map (embed M)).IsChain fun d e => (toCombMap M a b).facePerm d = e := by
+    ((c :: zs).map (embed M)).IsChain fun d e : Dart M => (toCombMap M a b).facePerm d = e := by
   rw [List.isChain_map]
   apply hchain.imp_of_mem_tail_imp
   intro y z _ hz hyz
@@ -122,7 +122,7 @@ theorem isChain_side (hab : a ≠ b) {c c' : M.Dart} {zs : List M.Dart}
 /-- **The first new face follows the face rotation.** -/
 theorem isChain_left (hab : a ≠ b) (h : SplitCycle M a b xs ys) :
     ((a :: xs).map (embed M) ++ [none]).IsChain
-      fun d e => (toCombMap M a b).facePerm d = e := by
+      fun d e : Dart M => (toCombMap M a b).facePerm d = e := by
   rw [List.isChain_append]
   refine ⟨isChain_side hab h.chain_left h.nodup_left (Or.inl rfl) (Or.inr rfl) hab
     h.b_not_mem_left, List.isChain_singleton _, ?_⟩
@@ -137,7 +137,7 @@ theorem isChain_left (hab : a ≠ b) (h : SplitCycle M a b xs ys) :
 /-- **The second new face follows the face rotation.** -/
 theorem isChain_right (hab : a ≠ b) (h : SplitCycle M a b xs ys) :
     ((b :: ys).map (embed M) ++ [some none]).IsChain
-      fun d e => (toCombMap M a b).facePerm d = e := by
+      fun d e : Dart M => (toCombMap M a b).facePerm d = e := by
   rw [List.isChain_append]
   refine ⟨isChain_side hab h.chain_right h.nodup_right (Or.inr rfl) (Or.inl rfl) hab.symm
     h.a_not_mem_right, List.isChain_singleton _, ?_⟩
