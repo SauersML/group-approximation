@@ -29,8 +29,8 @@ the flagship candidates; their soficity is recorded as unknown by Cornulier.
 * **Approach, and why (gk-free-wild, 2026-09-12).** By
   `strict-automata-live-on-canonical-table-groups` and the holonomy normal form, a
   counterexample is a table presentation. `mixed-bigon-difference-graphs-present-vh-square-complexes`
-  shows every one-vertex VH square complex is the table group of an explicit star
-  partition. Complete VH complexes are exactly the lattices in products of trees acting
+  shows every one-vertex VH complex whose squares read `h v^(-1) h' v'^(-1)` in positive
+  letters is the table group of an explicit star partition. Complete VH complexes are exactly the lattices in products of trees acting
   simply transitively on vertices. They have unique normal forms, so every reverse
   table is decidable. They contain `Z^2`, so they escape
   `cubulated-hyperbolic-table-cores-carry-no-strict-pair`.
@@ -51,8 +51,29 @@ the flagship candidates; their soficity is recorded as unknown by Cornulier.
   * Group-realized 2x2 reverse tables are transposes
     (`smallest-boolean-strict-core-is-a-one-sided-inverse`), so the irreversible part needs
     larger shapes.
-* **Next.**
-  1. Take Wise's non-residually-finite complete square complexes as hosts.
-  2. Modify the shift–shear design so the decoder reads a key track at two addresses
-     joined by a square, making the encoder non-invertible.
-  3. Certify the surviving hinge with the normal form.
+* **Square-read shift–shear designs are dead (gk-free-wild, second round).** The lead
+  asked for the shift–shear design with the decoder reading a key track at two
+  square-joined addresses. `shear-designs-are-strict-iff-their-key-automaton-is` proves
+  that a key-controlled data shear is strict exactly when its key automaton is. A key
+  automaton reading each track at two addresses has cyclic memory after a translation,
+  so it is bijective. These designs are bijective over every group, so no reverse hinge
+  needs computing over Wise's or Burger–Mozes lattices. The squares are forced by the
+  data shear, and such forcing never bears on strictness.
+* **Star and mixed-bigon partitions are dead.** Their origin cells are private, so
+  `private-origin-rows-force-permutation-encoders` makes every forward-sufficient encoder
+  a symbol permutation. A live square table needs anchoring cells `(s, 1_M) ~ (s', m')`
+  glued back to the origin row.
+* **Hinges are cheap on these hosts.** By `transposed-hinges-are-conjugated-commutators`,
+  the square identification `(h, v^(-1)) ~ (v', h'^(-1))` keeps a nontrivial transposed hinge
+  exactly when the reflected word `h v'^(-1) h' v^(-1)` is not a square (artifact Section 8).
+  So the target lives or dies on irreversibility of the encoder, not on the reverse
+  table.
+* **Host filter.** By `vh-lattices-surjunctive-when-a-factor-maps-faithfully`, every
+  surjunctive quotient of a host must kill nontrivial elements of both factor free
+  subgroups, so its finite residual meets both. Virtually simple Burger–Mozes lattices
+  pass trivially and remain the natural hosts.
+* **Next.** A key automaton that mixes its tracks, is strict on its own, and whose left
+  inverse forces an anchored square presentation of a virtually simple lattice. In the
+  linear case this is a one-sided matrix inverse over `F_2[Gamma]`, a failure of stable
+  finiteness (`stable-finiteness-failure-refutes-surjunctivity`), where two-by-two track
+  gadgets need 2-torsion (Lemma D of the artifact).

@@ -89,7 +89,17 @@ each `s_q`. The pair `(s_q, v_q) ~ (1, h_q)` is an edge `1 -> s_q` with label
 
 **Remark.** Theorem B concerns table groups of partitions. Whether `E_X` is a
 *minimal forward-sufficient* partition for some rules `(nu, mu)` is the realizability
-step (Section 5).
+step (Section 5). Section 7 settles it: no rule pair with a non-permutation encoder is
+forward sufficient on these partitions.
+
+**Scope correction.** Every relator Theorem B produces reads `h v^(-1) h' v'^(-1)` in
+positive letters, so opposite sides of each square are antiparallel. A square with one
+letter on two opposite sides in parallel, such as the commutator squares of the product
+complex of `F_V x F_H`, has no such reading under any orientation of the letters. So the
+converse covers the complete complexes admitting an orientation in which every square
+reads `h v^(-1) h' v'^(-1)`. It does not cover every lattice in a product of trees acting
+simply transitively on vertices, as the first landing of
+`mixed-bigon-difference-graphs-present-vh-square-complexes` said.
 
 ## 3. Complete VH complexes and products of trees
 
@@ -190,3 +200,173 @@ on one side.
    table is then computed by the normal form.
 2. Take Wise's smallest non-residually-finite complete square complexes as `X`, and
    decide each reverse hinge word by square moves.
+
+Both steps are settled in Section 6: the first cannot give strictness, so the second is
+moot for that architecture.
+
+## 6. The square-read shift–shear design is bijective over every group
+
+The lead asked for step 1 of Section 5: the shift–shear design of
+`bijective-designs-force-every-finite-presentation` for the square presentation of a
+complete complex `X`, with the decoder reading a key track at two addresses joined by a
+square instead of translating it back. No design of this architecture is strict,
+whatever it forces.
+
+**The architecture.** Write a square `h v^(-1) h' v'^(-1)` in holonomy shape
+`u v^(-1) = w z^(-1)`, with `u = h`, `w = v'`, `z = h'`. The shift–shear design has key
+tracks `a`, `b` and a data track `d`:
+
+    a'(g) = a(g v),   b'(g) = b(g h'),   d'(g) = d(g) + a(g h) b(g v').
+
+The decoder reads `a'` at `v^(-1)`, `b'` at `h'^(-1)`, and both at `p = h v^(-1) = v' h'^(-1)`.
+The square is forced by the data shear. The proposed modification replaces the
+translations by a key automaton reading each key track at two addresses, such as
+`a'(g) = phi(a(g v), a(g h))`, and lets the decoder recover the keys through a square.
+
+**Theorem E (shear reduction).** Let `A = K x D`, `kappa` a cellular automaton on `K^G`,
+`N` finite and `pi : K^N -> Sym(D)`. Put
+
+    tau(x)(g) = ( kappa(x_K)(g),  pi((x_K(g n))_(n in N)) (x_D(g)) ).
+
+Then `tau` is injective iff `kappa` is, and surjective iff `kappa` is.
+
+*Proof.* Write `pi_x(g)` for the permutation used at `g`. It depends only on `x_K`.
+* If `kappa` is surjective, take `y`, pick `x_K` with `kappa(x_K) = y_K`, and put
+  `x_D(g) = pi_x(g)^(-1)(y_D(g))`. If `tau` is surjective, so is its first coordinate `kappa`.
+* If `kappa` is injective and `tau(x) = tau(x')`, then `x_K = x'_K`, so the permutations
+  agree and `x_D = x'_D`. If `tau` is injective and `kappa(x_K) = kappa(x'_K)`, take any `x_D`
+  and put `x'_D(g) = pi_(x')(g)^(-1)(pi_x(g)(x_D(g)))`. Then `tau(x) = tau(x')`, so
+  `x_K = x'_K`. QED
+
+**Corollary 6.1.** Suppose the key automaton acts track by track, and each track
+automaton reads at most two addresses. Then the design is injective only if it is
+bijective, over every group.
+
+*Proof.* A product automaton is injective, respectively surjective, iff every factor is.
+A track automaton `k -> phi(k(. v), k(. h))` is the bijective translation `k -> k(. v)`
+followed by an automaton with memory `{1, c}`, `c = v^(-1) h`. That automaton acts on every
+left coset `g<c>` as one automaton on `A^(<c>)`, through `x(g c^n)`, so it is injective,
+respectively surjective, iff that one is. A cyclic group is residually finite, hence
+sofic and surjunctive (`sofic-groups-are-surjunctive`). Theorem E finishes. QED
+
+**What this settles.** The squares of `X` are forced by the data shear, and Theorem E
+says coincidences forced only through a data shear never bear on strictness. So the
+proposed step is dead over every host. The reverse hinges of step 2 need no computing,
+because the encoder is bijective and `tau sigma = id` holds identically. A strict design
+of shear shape needs a strict key automaton, whose own left inverse forces a nonsofic
+core (`forward-relations-of-a-counterexample-have-a-nonsofic-core`).
+
+## 7. Private origin rows carry no information
+
+Call `(s, 1_M)` the *origin cell* of row `s`. Use the network form of
+`boolean-core-is-uniform-single-demand-network-coding`: one source per class, one relay
+per row applying `mu`, one sink applying `nu`.
+
+**Lemma F.** Let `E` have marked class `{(1_S, 1_M)}`. Suppose the rows `S \ {1_S}` admit an
+order `s_1, ..., s_k` such that the class of `(s_i, 1_M)` contains no cell of row `1_S`, no
+other cell of row `s_i`, and otherwise only cells of rows `s_j` with `j > i`. If
+`(nu, mu)` is forward sufficient on `E`, then `mu = psi o pi_(1_M)` for a permutation `psi` of `A`.
+
+*Proof.*
+1. The origin source `c_0` feeds only relay `1_S`, at position `1_M`. With every other
+   source fixed, the side relays do not move, and the sink returns `c_0` from
+   `y_(1_S) = mu(c_0, rest)`. So `mu(., rest)` is injective, hence a bijection of `A`, for
+   every `rest`.
+2. Given any assignment and targets `t_1, ..., t_k`, change the origin source of `s_i` for
+   `i = 1, ..., k` in turn. That source sits at position `1_M` of relay `s_i` and nowhere
+   else in that row, so by step 1 some value makes `y_(s_i) = t_i`. It occurs elsewhere
+   only in rows `s_j` with `j > i`, so `c_0`, `y_(1_S)` and the relays already set keep
+   their values.
+3. If two assignments give the same `y_(1_S)`, steer both to the same side relays. Their
+   origin sources `c_0` are unchanged, the sink sees equal inputs, and it returns both
+   `c_0`. So `y_(1_S)` determines `c_0`.
+4. So `mu(a, rest) = mu(a', rest')` forces `a = a'`, and with step 1 the bijection
+   `mu(., rest)` is the same `psi` for every `rest`. QED
+
+The encoder is then `x -> psi o x`, bijective over every group, so no realization with
+forward table dominating `E` is strict.
+
+**At a group realization.** The marked class is the origin iff `S ∩ M^(-1) = {1}`. The
+origin cell of `s` is private iff `s` is no product `s' m'` other than `s . 1`.
+
+**Consequence for Theorem B.** Its partitions use only non-identity memory labels, so the
+marked class is the origin and every origin cell is a singleton. So every
+forward-sufficient rule pair on them has a permutation encoder, and no rule pair that is
+forward sufficient on a star partition `E_X` is strict. A square table that can carry a
+strict pair needs anchoring cells `(s, 1_M) ~ (s', m')` whose gluing reaches row `1_S` or
+closes a cycle, so some decoder addresses must be memory products. The shift–shear
+designs do this through the marked cells `(v_r^(-1), v_r)`, which enlarge the marked class.
+
+## 8. Reflected squares decide the transposed hinges
+
+By `transposed-hinges-are-conjugated-commutators`, a forward identification
+`s m = s' m'` keeps its transposed reverse identification `m s = m' s'` exactly when
+`m'^(-1) m` commutes with the common product.
+
+**Corollary H.** In `Gamma = pi_1 X` for a complete one-vertex VH complex, let
+`h v^(-1) h' v'^(-1)` be a square in positive letters, and take the identification
+`(s, m) = (h, v^(-1)) ~ (s', m') = (v', h'^(-1))`. Its transpose `v^(-1) h = h'^(-1) v'` holds iff
+the reflected word `h v'^(-1) h' v^(-1)` is also a square of `X`.
+
+*Proof.* `v^(-1) h` is in normal form, with vertical part `v^(-1)` and horizontal part `h`. By
+completeness the word `h'^(-1) v'` has a unique normal form `w k`, given by the unique
+square at the corner `(h'^(-1), v')`. By uniqueness of normal forms the transpose holds iff
+`w = v^(-1)` and `k = h`, that is, iff `h'^(-1) v' h^(-1) v` bounds a square. Conjugating by `v`
+and inverting gives `h v'^(-1) h' v^(-1)`. QED
+
+Every square with `v = v'` is its own reflection, and its transposed hinge dies. A
+square that is not reflection-symmetric leaves the nontrivial hinge
+`(h'^(-1) v')^(-1) v^(-1) h`, and square moves decide it. So the lattice target lives or dies on
+irreversibility of the encoder, not on its reverse table.
+
+## 9. Host filter: surjunctive quotients must kill both factor subgroups
+
+Let `X` be complete, `Gamma = pi_1 X`, `F_V = <V>` and `F_H = <H>`. `Gamma` acts freely and
+vertex-transitively on `T_V x T_H` and preserves the vertical and horizontal edge types.
+
+**Proposition G.** If a homomorphism `f : Gamma -> G` into a surjunctive group is injective on
+`F_V` or on `F_H`, then `Gamma` is surjunctive.
+
+*Proof.*
+1. `Gamma` acts on the factor `T_H`, transitively on vertices. The base vertex of `T_H` is
+   the vertical slice through the base point `o`, whose vertices are `F_V . o`. An element
+   fixing it sends `o` to some `u . o` with `u in F_V`, so freeness makes it equal to `u`.
+   Hence the stabilizer is `F_V`.
+2. `Gamma` is torsion-free: a finite subgroup fixes a point of the CAT(0) complex
+   `T_V x T_H`, and the action is free.
+3. Bass–Serre theory, after subdividing the edges of `T_H` that `Gamma` inverts, writes `Gamma`
+   as the fundamental group of a graph of groups with injective edge maps. Its vertex
+   groups are conjugates of `F_V` and, after subdivision, midpoint stabilizers `P`
+   containing an edge stabilizer `Q <= F_V^g` with `[P : Q] <= 2`.
+4. `f` is injective on each conjugate of `F_V`. On `P`, `ker f ∩ P` meets `Q` trivially, so it
+   injects into `P / Q`, has order at most two, and is trivial by step 2.
+5. `graph-folds-over-surjunctive-groups-are-surjunctive` makes `Gamma` surjunctive. The case
+   of `F_H` uses `T_V`. QED
+
+**Consequences.**
+* A strict automaton over `Gamma` forces every homomorphism into a surjunctive group to
+  kill a nontrivial element of `F_V` and one of `F_H`.
+* The quotient by the finite residual `Gamma_0` is residually finite, hence sofic and
+  surjunctive. So a host of a strict automaton has `Gamma_0 ∩ F_V != 1` and
+  `Gamma_0 ∩ F_H != 1`.
+* If `Gamma` has a finite-index simple subgroup `Gamma_s`, then `F_V ∩ Gamma_s != 1`, so
+  injectivity of `f` on `F_V` forces `ker f ∩ Gamma_s = 1`. The hypothesis then embeds
+  `Gamma_s` in a surjunctive group, which already makes `Gamma` surjunctive, because
+  surjunctivity passes to subgroups and up from finite-index subgroups. The filter
+  excludes nothing on virtually simple lattices, and they are the hosts that survive it.
+
+## 10. Where the lattice target stands
+
+* Forcing the squares is solved (Section 5 update). Architectures that force them
+  through a key-controlled data shear are never strict (Section 6). Partitions whose
+  origin rows are private never carry strict rules (Section 7).
+* Reverse hinges are cheap: they survive at every square that is not
+  reflection-symmetric (Section 8).
+* A host must lose part of both factor subgroups in every surjunctive quotient
+  (Section 9). Virtually simple lattices survive.
+* The remaining problem is a key automaton that mixes its tracks and is strict on its
+  own, over a virtually simple lattice, whose left inverse forces an anchored square
+  presentation (Section 7). In the linear case this is a one-sided matrix inverse over
+  `F_2[Gamma]`, a failure of stable finiteness, where two-by-two track gadgets need
+  2-torsion (Lemma D). No such key automaton is known, and no obstruction specific to
+  lattices in products of trees is known.
