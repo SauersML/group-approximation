@@ -27,7 +27,12 @@ Known cases:
 - over every field, every subgroup of a torsion-free virtually compact special
   group or of a compact 3-manifold group
   (`fisher-sanchez-peralta-special-and-3-manifold-domains`, consequence
-  `zero-divisor-host-is-not-virtually-compact-special`).
+  `zero-divisor-host-is-not-virtually-compact-special`);
+- over fields of characteristic `0` or `p`, every subgroup of a `p`-adic
+  congruence kernel `CS(u,d,p)` (Farkas--Linnell,
+  `p-adic-analytic-torsion-free-groups-satisfy-strong-atiyah`). These include
+  infinite Kazhdan groups such as `Gamma(3) <= SL_3(Z)`
+  (`congruence-kazhdan-groups-satisfy-strong-atiyah`).
 
 The unit conjecture is false over `F_2` (Gardam) and also over `C`
 (`unit-conjecture-fails-over-complex-numbers`, Gardam arXiv:2312.05240), both on
@@ -75,6 +80,10 @@ fixed finitely presented torsion-free group `U`.
     (T), is not elementary amenable, and is not left-orderable (Witte, Proc.
     AMS 122 (1994)). Unique products are not known for it here. A
     Gardam-style SAT census on its balls is in `experiments/zero-divisor-tf/`.
+    *Correction (2026-09-12):* it is a host only in characteristics other
+    than `0` and `3`, since `E_3(3) <= CS(1,3,3)` and Farkas--Linnell make
+    its group ring a domain in characteristics `0` and `3`
+    (`congruence-kazhdan-groups-satisfy-strong-atiyah`).
   - **Field-independent census on `E_3(3)`.** A zero divisor over any field
     needs a support pair without a uniquely represented product. SAT excludes
     such pairs with radii at most `(3,3)`, and with radii `(2,4)` or `(4,2)`

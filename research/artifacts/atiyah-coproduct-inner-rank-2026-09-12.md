@@ -85,6 +85,18 @@ handing over a ring whose elements have no `l^2`-geometric meaning.
 
 ## 3. Scope: the hypotheses are not known to be satisfiable
 
+*Correction, 2026-09-12 (lane `strong-atiyah-kazhdan-group`):* the next
+paragraph is wrong. Infinite torsion-free property (T) groups satisfying Strong
+Atiyah are known:
+- `Gamma(3) <= SL_3(Z)` and every subgroup of it, since they lie in the 3-adic
+  congruence kernel `CS(1,3,3)` (Farkas--Linnell, arXiv:math/0511747,
+  Theorem 1.1; see `congruence-kazhdan-groups-satisfy-strong-atiyah`);
+- torsion-free finite-index subgroups of `Out(F_n)`, `n >= 4` (Fisher--Ng).
+The two exclusions below are correct, but they concern only the locally
+indicable and RFRS classes. The `p`-adic analytic class contains Kazhdan groups,
+so the claim is testable. The consequence paragraph at the end of this section
+is superseded.
+
 The claim assumes `A`, `B`, `C` satisfy Strong Atiyah with `C` an infinite
 property (T) group. No infinite torsion-free property (T) group is currently
 known to satisfy Strong Atiyah, and two of the standard positive classes

@@ -44,8 +44,17 @@ field, but covers supports of small radius around one of their own points.
 - A radius-2 support need not lie in `B(2)`.
 So neither statement contains the other.
 
-**Host status.** `H` is an admissible host for
-`kaplansky-zero-divisor-conjecture` that avoids every proved class:
+**Host status (corrected 2026-09-12, lane `strong-atiyah-kazhdan-group`).** `H` is
+an admissible host for `kaplansky-zero-divisor-conjecture` **only over fields of
+characteristic other than 0 and 3**. Since `H <= Gamma(3) <= CS(1,3,3)`,
+Farkas--Linnell (arXiv:math/0511747, Theorems 1.2 and 1.3) make `k[H]` a domain
+for every field of characteristic `0` or `3`, and `H` satisfies Strong Atiyah over
+`C` (`congruence-kazhdan-groups-satisfy-strong-atiyah`). So an earlier version of
+this paragraph was wrong to say that `H` "avoids every proved class". The census
+above is unaffected: it is field-independent, and over `F_2` it is still bounded
+evidence on an admissible host. `H` has no finite 2-group quotients, since its
+abelianization is a finite 3-group, so no 2-adic congruence argument reaches
+`F_2[H]`. The properties listed below remain true.
 - torsion-free, since `H <= Gamma(3)` (Minkowski);
 - property (T), so not elementary amenable, not locally indicable (finite
   abelianization), and not virtually compact special

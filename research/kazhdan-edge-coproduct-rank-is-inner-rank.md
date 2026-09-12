@@ -60,10 +60,13 @@ some epic `R`-field, and maximality asks for the universal one.
   `D_C`-coset decomposition of `l^2(G)`, so orthogonality of cosets, translation length and
   finite-support normal forms decide neither injectivity of `phi` nor maximality. The escape is
   independent of property (T).
-- **Scope: the hypotheses are not known to be satisfiable** (same lane). No infinite torsion-free
-  property (T) group is known to satisfy Strong Atiyah. Two standard positive classes provably
-  exclude them: locally indicable groups, since (T) gives finite abelianization; and RFRS groups,
-  since an infinite RFRS group has a finite-index subgroup with infinite abelianization while (T)
-  passes to finite-index subgroups. Linnell's class `C` is not addressed. So the claim can be
-  neither tested on a known example nor attacked by a counterexample matrix over a known host; it
-  is meaningful only as the conditional the Fournier--Facio application uses.
+- **Scope (corrected 2026-09-12, lane `strong-atiyah-kazhdan-group`).** An earlier note here said
+  no infinite torsion-free property (T) group is known to satisfy Strong Atiyah. That is false.
+  [[congruence-kazhdan-groups-satisfy-strong-atiyah]] gives `Gamma(3) <= SL_3(Z)` and all its
+  subgroups (Farkas--Linnell, arXiv:math/0511747), and Fisher--Ng give torsion-free finite-index
+  subgroups of `Out(F_n)`, `n >= 4` (`raag-out-and-mapping-class-virtually-strong-atiyah`). What
+  survives is narrower. Locally indicable and RFRS groups do exclude Kazhdan groups: (T) gives
+  finite abelianization, and an infinite RFRS group has a finite-index subgroup with infinite
+  abelianization. So the Hughes-free and RFRS routes are unavailable, but the `p`-adic analytic
+  class is not excluded. The hypotheses can be met by subgroups of `Gamma(3)`, so the claim is
+  testable on amalgams of congruence subgroups.

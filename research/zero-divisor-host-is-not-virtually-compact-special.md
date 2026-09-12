@@ -23,10 +23,14 @@ in:
 - right-angled Artin and Coxeter groups, or their subgroups;
 - torsion-free 3-manifold groups.
 
-**Kazhdan hosts are not excluded.** An infinite group with property (T) is
-never virtually compact special. So infinite torsion-free Kazhdan groups, for
-example `E_3(3)` in `SL_3(Z)` (`e33-balls-have-no-small-zero-divisors`), remain
-admissible hosts for every field.
+**Kazhdan hosts are not excluded by this claim.** An infinite group with
+property (T) is never virtually compact special, so this claim excludes no
+Kazhdan host. Other theorems do. Subgroups of a `p`-adic congruence kernel, such
+as `E_3(3) <= Gamma(3)` in `SL_3(Z)` (`e33-balls-have-no-small-zero-divisors`),
+have domain group rings in characteristics `0` and `p`
+(`congruence-kazhdan-groups-satisfy-strong-atiyah`). So `E_3(3)` is a host only
+in characteristics other than `0` and `3`. An earlier version of this paragraph
+said "for every field".
 
 Graphical small-cancellation hyperbolic groups without unique products
 (Rips--Segev, Steenbock) are excluded exactly when they are cubulated. That was
