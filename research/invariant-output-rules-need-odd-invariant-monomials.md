@@ -25,3 +25,9 @@ involution, and `tau` an injective automaton on `F_2^G` with output invariant un
 (1) is `tau(e_1) != tau(0)`. (2) is that `tau` permutes the two constant
 configurations, together with the pairing of non-invariant monomials under
 relabeling. (3) follows from (1). Proof: Section 3 of the artifact.
+
+**Scope over larger alphabets.** Item 3 holds over every finite field: a rule whose
+monomials all involve at least two variables misses every single-site configuration.
+Items 1 and 2 use characteristic two. Over `F_q` with `q` odd and not dividing `|H|`,
+a free orbit of monomials contributes a nonzero multiple of one coefficient, so no
+parity count survives. Section 9 of the artifact.

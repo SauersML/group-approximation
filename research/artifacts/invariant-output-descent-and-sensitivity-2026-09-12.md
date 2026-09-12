@@ -396,11 +396,14 @@ injective with right-`H`-invariant output.
   one coefficient, which vanishes over `F_2`. For odd `q` with `q` not dividing `|H|`
   that contribution is nonzero. Only the permutation condition on constants remains:
   `c -> f(c, ..., c)` must permute `F_q`.
-- **The one-orbit decoder kill needs the alphabet size to divide the symmetry's order.**
-  Theorem 4 excludes a sensitivity profile with a right symmetry `c` only when `q`
-  divides `ord(c)`. The one-orbit profile `k + hk` is right-invariant under the
-  involution `k^-1 h k`. Over `F_3` Theorem 4 does not exclude it, so Section 4's
-  one-orbit kill has no characteristic-three analogue for involution symmetries.
+- **The one-orbit kill holds over every alphabet.** Theorem 4 as stated needs `q` to
+  divide `ord(c)`, but gk-vf-nonlinear's verification removes that condition
+  (`sensitivity-profile-right-symmetry-forces-noninjectivity`). Since
+  `tau(b e_k)(g) = f(0) + p_b(g^-1 k)`, a right symmetry `c != 1` of `p_b` gives
+  `tau(b e_(kc)) = tau(b e_k)`, so `tau` is not injective, with no decoder count
+  involved. The one-orbit profile `k + hk`, right-invariant under `k^-1 h k`, is
+  therefore excluded over `F_3` and over every alphabet. An earlier version of this
+  bullet said the opposite; it is withdrawn.
 - **Linear designs are corner equations.** For `q` not dividing `|H|` they are exactly
   `c e_H b = 1` (Proposition C(3)), and an `F_q`-linear sofic host forbids them
   (Remark 8.6).
