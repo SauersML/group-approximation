@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.OddPTupleAction
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Algebra.Field.ZMod
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Data.Fintype.BigOperators
@@ -41,12 +42,14 @@ def trueCount (ε : Fin p → Bool) : ZMod p := ∑ l, if ε l = true then (1 : 
 def mixedWeight (ε : Fin p → Bool) : ZMod p :=
   if (∃ l, ε l = false) ∧ ε 0 = true then (trueCount p ε)⁻¹ else 0
 
+omit [NeZero p] in
 /-- Permuting the slots does not change the count. -/
 theorem trueCount_comp (ε : Fin p → Bool) (π : Equiv.Perm (Fin p)) :
     trueCount p (fun l => ε (π l)) = trueCount p ε := by
   unfold trueCount
   exact Equiv.sum_comp π (fun l => if ε l = true then (1 : ZMod p) else 0)
 
+omit [NeZero p] in
 /-- **The count of a mixed assignment is a unit mod `p`.** -/
 theorem trueCount_ne_zero [Fact p.Prime] (ε : Fin p → Bool) (ht : ∃ l, ε l = true)
     (hf : ∃ l, ε l = false) : trueCount p ε ≠ 0 := by
@@ -185,7 +188,7 @@ theorem sum_eq_mixed_add_const {M : Type*} [AddCommGroup M] (F : (Fin p → Bool
         have h2 : ε ≠ (fun _ => false) := fun h => by
           have h' := congrFun h l₁
           rw [hl₁] at h'
-          exact Bool.true_ne_false h'
+          exact Bool.false_ne_true h'.symm
         rw [if_pos ⟨⟨l₁, hl₁⟩, ⟨l₂, hl₂⟩⟩, if_neg h1, if_neg h2, add_zero, add_zero]
       · have h1 : ε = (fun _ => true) := funext fun l => by
           cases hε : ε l
@@ -193,7 +196,7 @@ theorem sum_eq_mixed_add_const {M : Type*} [AddCommGroup M] (F : (Fin p → Bool
           · rfl
         have h2 : ε ≠ (fun _ => false) := fun h => by
           have h' := congrFun (h1.symm.trans h) 0
-          exact Bool.true_ne_false h'
+          exact Bool.false_ne_true h'.symm
         rw [if_neg (fun h => hf h.2), if_pos h1, if_neg h2, zero_add, add_zero]
     · have h2 : ε = (fun _ => false) := funext fun l => by
         cases hε : ε l
