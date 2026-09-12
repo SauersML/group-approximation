@@ -180,6 +180,20 @@ noninjective homomorphism this branch is trying to construct, whose central
 kernel makes a proper central quotient of `U` hyperlinear while leaving `U`
 itself possibly nonhyperlinear.
 
+**Update 2026-09-12.** The trap above is empty for this ring.
+- **No central quotient.** Khanh's comparison theorem
+  (`leavitt-steinberg-map-iso-from-rank-three`) gives `U ~= Q ~= L^x`, which
+  is simple. So every nontrivial homomorphism of `U` into a tracial
+  ultraproduct is injective.
+- **This branch is the hyperlinearity question.** It is literally
+  `binary-leavitt-unit-group-hyperlinear`, through the routes
+  `leavitt-unit-hyperlinear-from-steinberg-instability` and
+  `steinberg-instability-from-leavitt-unit-hyperlinear`.
+- **Witnesses modulo scalars.** A witness may be built up to scalars
+  (`leavitt-unit-hyperlinear-iff-projective-hs-model`).
+- **Stakes.** Selecting this branch proves that Thompson's `V` is hyperlinear
+  (`leavitt-hyperlinear-branch-implies-thompson-v-hyperlinear`).
+
 **Neighbouring stability results, for calibration.**  Two 2026 data points
 bound how much the flexible/strict distinction can be worth.
 Lubotzky--Salomon (arXiv:2607.17578) exhibit `Z^2` as flexibly stable but not
@@ -190,3 +204,14 @@ Becker--Chapman proved uniform flexible stability **in permutations** for all
 amenable groups (recorded in Kun--Thom arXiv:1901.03963v3 §5); that is the
 state of the art on the flexible side and it does not reach this fork,
 because `U` is as far from amenable as a group gets.
+
+**Correction 2026-09-12 (flexible versus strict).** For this group the two
+notions coincide, so a flexible variant is not a different target.
+- **Genuine representations are trivial.** Every finite-dimensional unitary
+  representation of `U ~= L^x` is trivial: a finitely generated linear image
+  is residually finite (Malcev), and `L^x` is simple and infinite.
+- **Flexible collapses to strict.** A flexible correction is then a
+  compression of the identity. So flexible stability already forces every
+  almost-representation to be asymptotically trivial, which is strict
+  stability.
+- Both are equivalent to nonhyperlinearity of `L^x`.
