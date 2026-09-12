@@ -42,6 +42,10 @@ Lane clone thm-d. The leaf served is `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7
   `faceDegree_outer_eq`. Probe 0912-094958-2788 had failed on the omega goal there.
 - Probe 0912-095158-18076 (base 67efd4db8): GHBHyperbolicFilling PROBE GREEN. All four declarations pass
   `#audit_axioms`; the bytes on main are the probed bytes.
+- Probe 0912-105051-82282 (base df2f3b1a8, after go-sr1's green SystolicDiscFilling and SystolicDiscCounts at
+  4c12845a1): GHBHyperbolicDiscCounts PROBE GREEN, with GHBHyperbolic and GHBHyperbolicFilling rebuilt in the
+  same run. `typedCountStatement_of_typed`, `boundarySumStatement`, `CCKW.typedCountStatement_cosetComplex` and
+  `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold` all pass `#audit_axioms`. The bytes on main are the probed bytes.
 
 ## EARLIER LANDINGS (09-11/12)
 f2d8712cd KMSGroupPresentation; 8e9bd8324 UnipotentSylowCounts with KazhdanHypSymLocalData; a49d59853
@@ -50,7 +54,6 @@ KazhdanHypSymPowerDisc; 7c06a251d VanKampen/TypedTriangularDiscCounts; 06fa3aa1f
 888400dcc, b2c9d8f50 KazhdanHypGirthEightSpurCountermodel and KazhdanHypSharpExistenceResiduals.
 
 ## NEXT
-- Re-probe DiscCounts when go-sr1's fixes land, and land normally when green.
 - When `Systolic.zipSpurStatement` (kh-torsion) and `Systolic.mirrorFold` (fff-periodic) land:
   `isHyperbolicGroup_ghb7 : Hyperbolic.IsHyperbolicGroup (GHB 7) := isHyperbolicGroup_ghb7_of_zipFold (zipSpurStatement _) (mirrorFold _)`,
   with the names adjusted to what lands.
