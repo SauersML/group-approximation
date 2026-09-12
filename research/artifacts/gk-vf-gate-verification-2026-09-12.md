@@ -1171,3 +1171,72 @@ which contradicts `delta >= c_0'`.
 
 **Remark 2.3.** In `F_2[C_2 x C_2] = F_2[s,t]/(s^2, t^2)`, `sM + tM = (s,t)` has dimension 3 of 4. So the
 row-plus-column bound is attained: `3/4 + 3/4 = 3 · (1/2)`.
+
+## 26. w5-regular-rankfn (ebede0e17d, ca4ff63cb5)
+
+### 26.1 `sylvester-rank-functions-descend-to-quotients-and-compressions`: PASS
+
+**Lemma 1.1: ideal quotients.**
+- **The matrix `Y_A`.** `J` is two-sided, so `x_i a_pq = sum_j y x_j`, giving `X A = Y_A X` with sizes
+  `km x kn` times `kn x n`.
+- **(S2).** `rho(X AB) = rho(Y_A X B) <= rho(XB)`, and `rho((XA)B) <= rho(XA)`.
+- **(S3) and (S4).** The block `i` of `X(A ⊕ B)` is `x_i A ⊕ x_i B`. Permuting rows gives `(XA) ⊕ (XB)`,
+  and the triangular case is the same.
+- **Independence.** It follows from mutual domination of the generating columns.
+- **`J = J^2`.** Then `J^2 = sum_(i,j) S x_i x_j`, so `X = Y(XX)`.
+  - One direction: `rho(XZ) <= rho(XXZ)`.
+  - The other: `XXZ = (X (x) I)(XZ)`, so `rho(XXZ) <= rho(XZ)`.
+  - Hence `rho_J(XZ) = rho(XXZ)/rho(X) = rho_J(Z)`.
+
+**Lemma 1.2.** Same as Section 23.1.
+
+**Sylvester inequality.**
+- `col_2 - col_1 B`, then `row_1 - A row_2`, carries `[[A,0],[I,B]]` to `[[0,-AB],[I,0]]`.
+- Swapping rows and then columns gives the triangular `[[B,I],[0,A]]`.
+
+**Frobenius.**
+- `col_2 - col_1 C`, then `row_2 - A row_1`, carries `[[B,BC],[AB,0]]` to `[[B,0],[0,-ABC]]`.
+- Swapping columns gives `[[BC,B],[0,AB]]`.
+
+**Stacking.** `[A;B] = (A ⊕ B)[I;I]`.
+
+### 26.2 `perfect-group-augmentation-quotient-ranks-are-fixed-point-free`: PASS
+
+**Lemma 2.1.**
+- `gh - 1 = g(h-1) + (g-1)`.
+- `h |-> h - 1 mod omega^2` is a homomorphism with spanning image and abelian target, so a perfect group
+  gives `omega = omega^2`.
+- `rho(X) = 0` kills every `1 - [h]`.
+
+**Corollary 2.3.** `rho_omega(X) = rho_omega(I_1) = 1`, and stacking gives `max >= 1/r`.
+
+**Proposition 3.1.**
+1. **Right translates.** `B omega_Gamma B` contains `n - 1` for the normal closure. Expanding `c` gives
+   finitely many right translates.
+2. **Invariance.** For `h` in `P_Gamma`:
+   - `X_(hSh^-1) = Y_h X_S = (h (x) I) X_S h^-1`, so `rho(Y_h X_S) = rho(X_S)`.
+   - Frobenius with `(Y_h, X_S, Z)` gives `rho(X_S Z) <= rho(Y_h X_S Z) <= rho(X_S Z)`.
+   - So `rho(X_S Z) = rho(X_S h^-1 Z)`. The invariant `h` form a group containing `P_Gamma`.
+   - This holds for every `psi`.
+3. **Density.** `psi(Z) = psi(XZ) <= sum_j psi(X_S h_j Z)`.
+
+### 26.3 `sylvester-leavitt-defect-gap-and-geometric-descent`: PASS
+
+**(1) Gap.**
+- `rho_omega` is non-augmentation and displaces some generator by at least `1/4`.
+- The uniform gap (Section 18.4) gives `c_0`.
+- `(N^A_12)^2 = 0` and the Sylvester inequality give `2 rho(N) <= 1`.
+
+**(2) Descent.**
+- **Conjugation invariance.** `X u = (u (x) I)(u^-1 X u)`, and `u^-1 X u` is again a generating column of
+  `omega`, so `rho_omega` is conjugation invariant.
+- **Compression along `P`.** `tau = (rho_omega)_P o iota_B`, and `tau(D_1000) = f(k+1)/f(k)`, since the
+  tuple `(A_i, B1000)` has proper union.
+- **Upper factor.** `tau(N^1000_12) <= 1/2`.
+- **Lower factor.**
+  - `iota_B(X) = X_(S_B)`. Proposition 3.1(3), for `psi = rho_omega` and `Gamma_B` (a conjugate of
+    `Gamma_0`, with the same `m_0`), gives `tau(X) >= 1/m_0`.
+  - (S2) gives `tau(E) >= tau(XE) = tau(X) tau_omega(E) >= c_0/m_0`.
+
+**Inputs taken as established, not re-derived here:** that the compression semigroup of `Gamma_0` generates
+`R^x` (the rigid-defect and packet nodes), and simplicity.

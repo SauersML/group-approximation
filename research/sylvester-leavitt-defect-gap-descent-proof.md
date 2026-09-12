@@ -31,3 +31,5 @@ artifacts:
     gives `tau(X) >= 1/m_0`.
   - `tau` is then non-augmentation, its own gap gives `tau_omega(D) >= c_0`, and
     `tau(D) >= tau(X D) = tau(X) tau_omega(D)`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 26.3 (compression-semigroup generation and simplicity taken as established) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

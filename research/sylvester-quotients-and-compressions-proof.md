@@ -23,3 +23,5 @@ artifacts:
   `[A; B] = (A (+) B)[I; I]`.
 
 Direct proof from the Sylvester axioms; no other node is used.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 26.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

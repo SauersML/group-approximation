@@ -27,3 +27,5 @@ artifacts:
     inequality turns this into `psi(X_S Z) = psi(X_S h^-1 Z)` for all `Z`. The invariant `h` form a group, which
     is `G`.
   - Hence `psi(Z) = psi(X Z) <= sum_j psi(X_S h_j Z) = m psi(X_S Z)`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 26.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
