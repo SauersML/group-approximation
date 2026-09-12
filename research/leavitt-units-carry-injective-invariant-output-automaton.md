@@ -93,3 +93,15 @@ pattern on `{1,h}` with distinct symbols.
   Bernoulli shifts included. So `G` would fail Seward's POS. That excludes no
   finite window by itself, but it names the entropy statement a certificate
   refutes as a byproduct.
+- *Small ball windows are dead (2026-09-12).*
+  `small-leavitt-invariant-output-windows-have-finite-separations` runs the table
+  filter on 44 ball windows:
+  - Thompson units, low-depth transvections, the GL(4,2) atlas charts, and the
+    nine-leaf `E_ij(1)` with compressors;
+  - radii up to `2:2`, and `h` of order 2 or 3.
+
+  In every window a finite image of the table group keeps `x_h != 1`: a character
+  to `Z/2` or `Z/3`, or a permutation image of degree at most 7 (PSL(3,2) for the
+  nine-leaf windows). So a certificate needs memories outside these balls, or a
+  window whose table group kills `x_h` in PSL(3,2) and in every small image. The
+  full nine-leaf window with all 30 `E_ij(r)` at radius `1:1` is still unresolved.
