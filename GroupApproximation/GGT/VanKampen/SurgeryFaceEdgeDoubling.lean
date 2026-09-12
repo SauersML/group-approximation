@@ -171,8 +171,9 @@ theorem boundary_digon :
 theorem boundary_kept_word {g : Delta.toCombMap.Face} (hg : g ≠ f) :
     (boundary Delta f j hlen (keep Delta f j hlen g)).darts.map (label Delta f j hlen) =
       (Delta.faceBoundary g).darts.map Delta.label := by
-  rw [boundary_kept Delta f j hlen hg, List.map_map]
-  rfl
+  rw [boundary_darts, if_neg (keep_ne_cellFace Delta f j hlen hg), List.rotate_zero]
+  exact split_kept_word Delta.toCombMap (rebased Delta f j) Delta.faceBoundary
+    (second Delta f j hlen) g hg Delta.label (Delta.label (dart Delta f j))
 
 theorem prefix_value :
     (Delta.label (dart Delta f j)).val =
@@ -195,8 +196,10 @@ theorem boundary_cellFace_word :
     (boundary Delta f j hlen (cellFace Delta f j hlen)).darts.map (label Delta f j hlen) =
       (Delta.faceBoundary f).darts.map Delta.label := by
   rw [boundary_darts, if_pos rfl, List.map_rotate]
-  rw [split_suffix_word Delta.toCombMap (rebased Delta f j) Delta.faceBoundary
-    (second Delta f j hlen) Delta.label (Delta.label (dart Delta f j))]
+  have hsw := split_suffix_word Delta.toCombMap (rebased Delta f j) Delta.faceBoundary
+    (second Delta f j hlen) Delta.label (Delta.label (dart Delta f j))
+  refine (congrArg (fun l : List (RelLetter G Lambda) =>
+    l.rotate ((Delta.faceBoundary f).darts.length - j.val)) hsw).trans ?_
   have hcons : Delta.label (dart Delta f j) ::
       ((rebased Delta f j).darts.drop (second Delta f j hlen).val).map Delta.label =
         (rebased Delta f j).darts.map Delta.label := by
