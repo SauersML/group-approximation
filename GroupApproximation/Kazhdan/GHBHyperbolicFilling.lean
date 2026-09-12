@@ -68,7 +68,7 @@ end Statements
 theorem faceDegree_outer_eq {X : TriangleComplex V} {v : V} {l : List V}
     (D : TriangulatedDisc X (v :: l ++ [v])) : D.map.faceDegree D.outer = l.length + 1 := by
   have h := congrArg List.length D.boundary
-  simp only [List.length_ofFn, List.length_append, List.length_cons, List.length_singleton] at h
+  simp only [List.length_ofFn, List.length_append, List.length_cons, List.length_nil] at h
   omega
 
 /-- **The area input from least discs.**  Filling, folding, large links, the typed count and
