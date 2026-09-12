@@ -174,8 +174,21 @@ def main():
         # Positive control: 1 + x + x^2 with x of order 7 is a unit of F2[<x>],
         # since x^2+x+1 is coprime to x^7-1 over F2.  Its left inverse must be
         # found once the collision universe covers <x>.
-        x_word = next(w for w in ((0, 2, 4), (0, 2, 4, 6), (0, 1, 2, 3), (1, 3, 5), (0, 2, 3), (1, 2, 4))
-                      if word_key(w * 7, gens, one) == one and word_key(w, gens, one) != one)
+        from itertools import product as words_of
+        from atlas_two_chart_search import I4, gf2_mul, transvection
+        chart = [transvection(r, c) for r, c in ((0, 1), (1, 0), (1, 2), (2, 1), (2, 3), (3, 2))]
+
+        def matrix_order(word):
+            m = I4.copy()
+            for i in word:
+                m = gf2_mul(m, chart[i])
+            p, n = m.copy(), 1
+            while not (p == I4).all():
+                p, n = gf2_mul(p, m), n + 1
+            return n
+        x_word = next(w for length in range(2, 7) for w in words_of(range(6), repeat=length)
+                      if matrix_order(w) == 7)
+        assert word_key(x_word * 7, gens, one) == one and word_key(x_word, gens, one) != one
         words, side, target_eval = ((), x_word, x_word * 2), "left", None
     elif args.fixed == "ela1-left":
         words, side, target_eval = ELA1, "left", S0
