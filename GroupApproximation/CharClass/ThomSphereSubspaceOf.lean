@@ -19,8 +19,6 @@ ring.
 
 * `absToSub_injective_of_sphereOf` — the restriction is injective, over `K`.
 * `relQuotEquiv_of_sphereOf` — the relative group is the cokernel, over `K`.
-* `Bundle.totalPiCohIsoOf`, `Bundle.bijective_totalPiPullOf` — the bundle projection is an
-  isomorphism on `K`-cohomology.
 -/
 
 set_option autoImplicit false
@@ -59,28 +57,10 @@ noncomputable def relQuotEquiv_of_sphereOf {K : Type} [CommRing K] {Z : TopCat.{
       ≃ₗ[K] relCohomology K Z A (m + 1) :=
   relQuotEquiv K Z A m (absToSub_injective_of_sphereOf A n p (m + 1) eZ eA hcompat)
 
-namespace Bundle
-
-variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
-
-/-- **The bundle projection is a linear isomorphism on `H^n(−; K)`**, through the zero-section
-deformation retraction. -/
-def totalPiCohIsoOf (K : Type) [CommRing K] (p : Bundle X ι) (n : ℕ) :
-    Hmod K (TopCat.of X) n ≃ₗ[K] Hmod K (TopCat.of (Total p)) n :=
-  pullEquivOfHomotopyEquivOf K (totalHomotopyEquivBase p) n
-
-/-- **`π^*` is bijective on `K`-cohomology.** -/
-theorem bijective_totalPiPullOf (K : Type) [CommRing K] (p : Bundle X ι) (n : ℕ) :
-    Function.Bijective (pull (K := K) (cmap (totalPi p)) n) :=
-  (totalPiCohIsoOf K p n).bijective
-
-end Bundle
-
 /-! Audited on every build: `#audit_axioms` fails the build if a closure leaves the
 classical allowlist. -/
 
 #audit_axioms absToSub_injective_of_sphereOf
-#audit_axioms Bundle.bijective_totalPiPullOf
 
 end
 
