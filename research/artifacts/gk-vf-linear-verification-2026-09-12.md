@@ -1978,3 +1978,77 @@ Attempts entries on `projective-ternary-group-is-f3-linear-sofic` and `rank-mode
   - With `e_[0] = e_[00] + e_[01]` exactly, Lemma 3.1a gives `m([0]) >= m([00]) + m([01]) - 6 beta`.
   - `|m(h_i C) - m(C)| <= eps` then gives `m([0]) <= 2eps + 6beta`, and likewise `m([1]) <= 2eps + 6beta`.
   - Subadditivity on `e_[0] + e_[1] = 1_W` gives `1 <= 4 eps + 12 beta <= 32 beta`.
+
+## 55. Transvection displacement, forced truncated shifts, moving-level normal form (lane w3-gate-construct): PASS, second derivation
+
+Items checked:
+- `transvection-displacement-forces-exact-local-embedding`;
+- `natural-compressor-extension-fails-at-toeplitz-commutator`;
+- `rank-models-are-exact-representations-at-moving-finite-levels`;
+- their routes, the OPEN `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`, and
+  `el3-rank-model-compressor-extension-2026-09-12.md` Sections 1, 2 and 4.
+
+The assigned verifier is `w3-vf-linear`; this is a second derivation.
+
+**Lemma 1.** `Fix(g) <= Fix(g_p)`. `P` restricted to `<g_p>` is free over a local group algebra, so `dim Fix(g_p) = n/|g_p|`, and the
+displacement of `g` is at least `n/2`.
+
+**Lemma 2.** `AB - 1 = (A-1)B + (B-1)`, and `u z^-1 u^-1 - 1` has the rank of `z - 1`.
+
+**Lemma 3.**
+- *First commutator.* Since `m >= 4`, there is `phi != 0` vanishing on `v, zv, z^-1 v`. Put `u = 1 + v (x) phi`.
+  - With `A = zv (x) phi o z^-1` and `B = v (x) phi`, all of `A^2`, `B^2`, `AB = phi(z^-1 v) zv (x) phi` and `BA = phi(zv) v (x) psi`
+    vanish.
+  - So `[z,u] = 1 + A + B = 1 + N` with `N^2 = 0`, and `N != 0` because `zv` and `v` are independent.
+- *Second commutator, when `rk N = 2`.* Pick `w` with `alpha(w) = 1` and `chi != 0` vanishing on `a, b, w`.
+  - `chi o N = 0` gives `chi o y^-1 = chi`, so `y u'' y^-1 = 1 + yw (x) chi`.
+  - `chi(w) = 0` then gives `[y, u''] = 1 + Nw (x) chi`, a transvection.
+- *Bound.* Two applications of Lemma 2 give displacement at least `1/4`. Transvections are conjugate.
+
+**Theorem 4.**
+- `pi(tau(g))pi(tau(h)) - pi(tau(gh)) = pi(tau(gh))(pi(z_k) - 1)`, so a relator error costs at least `d_k n_k/4` unless `z_k = 1`.
+  Hence `tau_k` is multiplicative on `F`, omega-almost everywhere.
+- `tau_k(1) = 1` follows from multiplicativity and invertibility.
+- `sigma(g) != 1` forces `tau_k(g) != 1`. Multiplicativity on `F^-1 F` then gives injectivity, so `G` is LEF.
+
+**Corollary 5.**
+- *(a)* A fixed element sent to a transvection has displacement tending to `rk(sigma(g_0) - 1) > 0`, by injectivity.
+- *(b)* A projective share `alpha` gives `d_k >= alpha/2`.
+- *(c)* A finitely presented LEF group is residually finite, and `R^x` is infinite and simple, so it is not. This relies on the cited
+  `leavitt-unit-group-finitely-presented`.
+- *(d)* The same lemmas run inside `M` on `F_K = SL_fin(F_2)`.
+
+**Proposition 7.** I redid it entrywise.
+- *Relations.* `t0 e_ab = e_(a-1,b)`, `t0 e_0b = 0`, `e_ab s0 = e_(a,b-1)` and `e_a0 s0 = 0`. The commutation pairs in (Σ4) satisfy the
+  Steinberg rule `j != k`, `i != l`.
+- *Commutators as conjugation.* For commuting involutions, `[q,u] = w` iff `q u q^-1 = wu`, and `[u,q] = w` gives the same.
+- *Rank-one factors.* Over `F_2`, `1 + v (x) phi` determines `v` and `phi`.
+- *`X^`.* (Σ1) gives `X delta_a^(2) = delta_a^(2) + delta_(a-1)^(1)` for `a >= 1` and `X delta_0^(2) = delta_0^(2)`. The (Σ4)
+  commutations fix `V^(1)` and `V^(3)`.
+- *`Y^`.* (Σ2) gives `delta_b^(2)* o Y^-1 = delta_b^(2)* + delta_(b-1)^(3)*`. With the other functionals fixed, `Y^-1 = 1 + S_N E_23 = Y^`.
+- *`Z^`.* (Σ5), using that `u_21` and `u_23` commute, gives `delta_b^(1)* o Z^-1 = delta_b^(1)* + delta_b^(3)*`, so `Z^ = 1 + E_13`.
+- *Uniqueness.* Each image is determined on a basis or by all coordinate functionals.
+- *The failing relation.* `BA = 0` reduces the commutator to `1 + T_N S_N E_13 = 1 + (1 - P_(N-1)) E_13`, and multiplying by `Z^^-1` in
+  characteristic two gives `u_13(N-1, N-1)`.
+- *Corollary 8.* The index swap is a conjugation in `GL_(3N)(F_2)`.
+
+**Lemma 9 and Proposition 10.**
+- `U = V_0 cap ∩_h s(h)^-1 V_0` is invariant: for `v in U`, `s(h)s(k)v = s(hk)v` lies in `V_0`.
+- `s` is exact on `U`, and `s(1)` is an invertible idempotent there, hence the identity.
+- `rho` agrees with `s` on `U`, so `rk(rho(h) - s(h)) <= codim U`.
+- The diagonal choice of levels is sound.
+
+**Corollary 11.**
+- *(b)* Rounding the finitely many generators and extending along fixed words gives a level-factoring model with the same limit.
+  Theorem 4 then gives a contradiction.
+- *(c)* Algebraic check that `D` commutes with `H_M`. Here `gamma_M = x_12(sum_(j=1..M) e_(j-1,j))` and `c = t0 - sum_(j=1..M) e_(j-1,j)`.
+  - `c e_ab = e_(a-1,b)[a >= 1] - e_(a-1,b)[1 <= a <= M] = 0` for `a < M`.
+  - `e_ab c = e_(a,b+1) - e_(a,b+1)[b+1 <= M] = 0` for `b < M`.
+  - So `x_12(c)` commutes with every root element of `H_M`, including `x_21` and `x_31`, which need both products to vanish.
+  - If all three corrections were `o(1)`, level-`(M+1)` matrix algebra gives the error `rho_k(u_13(M,M))`, whose displacement tends
+    to `c_0`.
+
+**Open claim.**
+- Normal subgroups of `E` inside the simple `L = GL_fin(F_2)` are `1` or `L`.
+- Residual finiteness of the Laurent quotient puts the radical inside `L`.
+- The payoff through `J <= R` and simplicity is correct as stated.

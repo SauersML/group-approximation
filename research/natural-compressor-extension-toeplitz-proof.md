@@ -7,6 +7,7 @@ target: natural-compressor-extension-fails-at-toeplitz-commutator
 requires:
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-compressor-extension-2026-09-12.md
 ---
 
@@ -26,3 +27,5 @@ Section 2 of the artifact: Proposition 7 and Corollary 8.
 5. **Defect.** The index swap `0 <-> N−1` conjugates the error to `u_13(0,0) = τ_k(x_13(1 − s0 t0))`.
    Its displacement tends to `rk(σ(x_13(1 − s0 t0)) − 1)`, which is positive for nontrivial `σ` by
    simplicity.
+
+*Second independent derivation by `gk-vf-linear` (2026-09-12), Section 55 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*

@@ -8,6 +8,7 @@ requires:
   - transvection-displacement-forces-exact-local-embedding
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-compressor-extension-2026-09-12.md
 ---
 
@@ -32,3 +33,5 @@ Section 4 of the artifact: Lemma 9, Proposition 10, Corollary 11.
      `>= M`, so it commutes with `H_M`.
    * If all three corrections were `o(1)`, Proposition 7 at level `M + 1` would give the error
      `ρ_k(u_13(M,M))`, of displacement `c_0`.
+
+*Second independent derivation by `gk-vf-linear` (2026-09-12), Section 55 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*
