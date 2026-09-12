@@ -11,7 +11,10 @@ artifacts:
   - research/artifacts/level-group-polynomial-content-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in the artifact, Sections 1–4). Let `k` be a field of characteristic
+**ESTABLISHED** (proof in the artifact, Sections 1–4). `gk-vf-linear` passed it (Section 39 of
+`research/artifacts/gk-vf-linear-verification-2026-09-12.md`, ead15402a3). The pass covers the
+polynomial Jordan count, additivity over orthogonal pieces, the projective profile `1/2`, and the
+dyadic identity for flag diagonals. Let `k` be a field of characteristic
 `2`, `M` a ring with a faithful normalized Sylvester rank function, `N >= 4(D + 1)`,
 `H = SL_N(F_2)` and `sigma : H -> M^x` a homomorphism. Write `f(r) = rk(sigma(g_r) - 1)` for an
 involution `g_r = 1 + n` with `n^2 = 0` and `rank n = r`. Suppose:
