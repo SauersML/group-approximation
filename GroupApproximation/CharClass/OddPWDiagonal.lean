@@ -72,8 +72,9 @@ theorem wdT2_pow_card (p : ℕ) : wdT2 p ^ p = 1 := by
   rw [MonoidAlgebra.single_pow, one_pow, MonoidAlgebra.one_def]
   congr 1
   refine Prod.ext ?_ ?_
-  · simp only [Prod.fst_pow, one_pow, Prod.fst_one]
-  · simp only [Prod.snd_pow, Prod.snd_one]
+  · show (1 : Multiplicative (ZMod p)) ^ p = 1
+    exact one_pow p
+  · show (Multiplicative.ofAdd (1 : ZMod p)) ^ p = 1
     rw [← ofAdd_nsmul, nsmul_eq_mul, mul_one, ZMod.natCast_self, ofAdd_zero]
 
 /-- The diagonal `Λ → F_p[ℤ/p × ℤ/p]`, `T ↦ T₁T₂`. -/
@@ -174,7 +175,7 @@ def psiW (p n : ℕ) : GroupRingZMod p →ₗ[ZMod p] WWAll p :=
 
 theorem psiW_apply (p n : ℕ) (x : GroupRingZMod p) :
     psiW p n x = ∑ i ∈ antidiagonal n, wdAtBideg p i.1 i.2 (wdDiag p x * wdPhiG p i.1 i.2) := by
-  simp only [psiW, LinearMap.coeFn_sum, Finset.sum_apply, LinearMap.comp_apply,
+  simp only [psiW, LinearMap.coe_sum, Finset.sum_apply, LinearMap.comp_apply,
     LinearMap.mulRight_apply, AlgHom.toLinearMap_apply]
 
 /-- **The closed form on the generator `e_n`.** -/
@@ -195,7 +196,7 @@ theorem psiW_chainMap (p n : ℕ) (x : GroupRingZMod p) :
   have hi' : i.1 + i.2 = n := Finset.mem_antidiagonal.mp hi
   rw [← map_smul, ← map_add]
   congr 1
-  have key := wdChain_identity p (wdT2_pow_card p) i.1 i.2
+  have key := wdChain_identity p (T₁ := wdT1 p) (wdT2_pow_card p) i.1 i.2
   rw [map_mul (wdDiag p), ← hi', wdDiag_altCoeff, Algebra.smul_def, map_pow, map_neg, map_one]
   simp only [wdPhiG]
   linear_combination (-wdDiag p x) * key
