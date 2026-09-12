@@ -8,6 +8,7 @@ distinct_from:
   stable-finiteness-failure-refutes-surjunctivity: that turns a one-sided inverse pair into a strict linear automaton; this extracts a strict linear factor from any strict word in linear and reversible pieces.
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `tau = W_1 ... W_n` act on `F_q^m` configurations over a group `G`. Each factor is either a
