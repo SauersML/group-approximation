@@ -108,10 +108,10 @@ theorem compET_of_ge {J : ℕ} {u : ℚ} (h : (r : ℚ) - 1 + J ≤ u) :
 
 theorem compET_strictMono (J : ℕ) : StrictMono (compET m r J) := by
   intro u u' huu'
-  rcases le_or_lt u' ((r : ℚ) - 1 + J) with h' | h'
+  rcases le_or_gt u' ((r : ℚ) - 1 + J) with h' | h'
   · rw [compET_of_le m r h', compET_of_le m r (le_trans huu'.le h')]
     exact compE_strictMono m r huu'
-  rcases le_or_lt u ((r : ℚ) - 1 + J) with h | h
+  rcases le_or_gt u ((r : ℚ) - 1 + J) with h | h
   · rw [compET_of_le m r h, compET_of_ge m r h'.le]
     have h1 := (compE_strictMono m r).monotone h
     linarith
@@ -124,7 +124,7 @@ noncomputable def compEinvT (J : ℕ) (t : ℚ) : ℚ :=
     (r : ℚ) - 1 + J + (t - compE m r ((r : ℚ) - 1 + J))
 
 theorem compEinvT_compET (J : ℕ) (u : ℚ) : compEinvT m r J (compET m r J u) = u := by
-  rcases le_or_lt u ((r : ℚ) - 1 + J) with h | h
+  rcases le_or_gt u ((r : ℚ) - 1 + J) with h | h
   · rw [compET_of_le m r h]
     have hle : compE m r u ≤ compE m r ((r : ℚ) - 1 + J) := (compE_strictMono m r).monotone h
     simp only [compEinvT, if_pos hle]
@@ -138,7 +138,7 @@ theorem compEinvT_compET (J : ℕ) (u : ℚ) : compEinvT m r J (compET m r J u) 
     ring
 
 theorem compET_compEinvT (J : ℕ) (t : ℚ) : compET m r J (compEinvT m r J t) = t := by
-  rcases le_or_lt t (compE m r ((r : ℚ) - 1 + J)) with h | h
+  rcases le_or_gt t (compE m r ((r : ℚ) - 1 + J)) with h | h
   · simp only [compEinvT, if_pos h]
     have ht : t < r := lt_of_le_of_lt h (compE_lt m r _)
     have hle : compEinv m r t ≤ (r : ℚ) - 1 + J := by
