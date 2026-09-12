@@ -52,6 +52,12 @@ This is hypothesis (H2') of `hs-rounding-and-actor-gap-force-ccr`, required for 
 - **Few aspect scales bypass the gap.** `ccr-under-vertex-rounding-from-few-aspect-scales`: under (H1),
   `eps_n <= 18 (N_n delta_n)^(1/3)`, with `N_n` the number of occupied dyadic windows of `zeta_A` and `delta_n` the
   transport defect. So this claim is needed only when `zeta_A` spreads over at least about `1/delta_n` scales.
+- **Log transport (lane `nh-few-aspect-scales`).** `ccr-under-vertex-rounding-from-log-transport`: under (H1),
+  `eps_n <= 7 (eta*_n (2 + log R_n))^(1/3)`. Here `eta*_n` is the total-variation type mismatch between `pi_n|Lambda`
+  and `pi_n o theta`, and `R_n` is the multiplicity-times-dimension range of the mismatched types.
+  - So this claim is needed only when the mismatched types span at least `exp(c/eta*_n)`.
+  - The operator-level criterion `N_n delta_n -> 0` depends on the coordinate chosen for `sigma(t)`, so it cannot
+    be proved for every representative.
 - **Compressor transport clause.** Not asked, and not appendable in general
   (`nonmonomial-multiplicity-obstructs-hs-compressor-transport`). Transport comes from (H1) through the
   intertwiner of `vertex-rounding-reduces-ccr-to-commutant-excess`.
