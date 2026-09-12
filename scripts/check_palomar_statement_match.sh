@@ -120,7 +120,7 @@ done
 # gated -- and the part of the report before `pending-boundary:` must match.
 # The part after it is printed and not gated, because the solution's theorems
 # still carry the outstanding hypothesis.
-for prefix in LIXStrong; do
+for prefix in LIXStrong BowenChapman; do
   label="$prefix"
   pair_ok=1
 

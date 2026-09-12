@@ -54,6 +54,9 @@ on:
       - 'scripts/PalomarLIXStrongChallengeType.lean'
       - 'scripts/PalomarLIXStrongSolutionType.lean'
       - 'scripts/PalomarLIXStrongAxioms.lean'
+      - 'scripts/PalomarBowenChapmanChallengeType.lean'
+      - 'scripts/PalomarBowenChapmanSolutionType.lean'
+      - 'scripts/PalomarBowenChapmanAxioms.lean'
       - 'formalization.yaml'
       - 'lakefile.toml'
       - 'lean-toolchain'
@@ -145,7 +148,8 @@ jobs:
         run: |
           lake build PalomarChallenge PalomarSolution \
                      PalomarLIXChallenge PalomarLIXSolution \
-                     PalomarLIXStrongChallenge PalomarLIXStrongSolution
+                     PalomarLIXStrongChallenge PalomarLIXStrongSolution \
+                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution
 
       # The check that reproduces Comparator's comparison, for all three
       # pairs; the script loops over the configurations and fails if a
@@ -187,19 +191,29 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarLIXStrongAxioms.lean
 
+      # The pending Bowen-Chapman surface gates its `_of` forms the same way:
+      # they carry the endpoint statement as a hypothesis, not as a hole.
+      - name: Palomar axiom closure (Bowen-Chapman)
+        id: axioms-bowen-chapman
+        continue-on-error: true
+        if: always()
+        run: lake env lean scripts/PalomarBowenChapmanAxioms.lean
+
       - name: Reject a run whose axiom closures were not all clean
         if: always()
         run: |
           nonmf='${{ steps.axioms-nonmf.outcome }}'
           lix='${{ steps.axioms-lix.outcome }}'
           strong='${{ steps.axioms-lix-strong.outcome }}'
+          bc='${{ steps.axioms-bowen-chapman.outcome }}'
           echo "non-MF closure: $nonmf"
           echo "LIX closure: $lix"
           echo "LIX strengthened closure: $strong"
+          echo "Bowen-Chapman closure: $bc"
           # `skipped` counts as a failure: the closure was not computed, and a
           # check that did not run must not read like one that passed.
           if [ "$nonmf" != success ] || [ "$lix" != success ] \
-             || [ "$strong" != success ]; then
+             || [ "$strong" != success ] || [ "$bc" != success ]; then
             echo "::error::an axiom-closure driver did not report success"
             exit 1
           fi

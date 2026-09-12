@@ -185,6 +185,11 @@ PALOMAR_CONFIGS = (
 # summary line says so.
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
+    # `Palomar/BowenChapmanSolution.lean` proves each selected statement in its
+    # `_of` form from the development endpoint's statement
+    # (`GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`),
+    # which is not in its import closure yet.
+    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -196,6 +201,8 @@ SURFACE_FILES = (
     "Palomar/comparator-lix.json",
     "Palomar/LIXStrongChallenge.lean", "Palomar/LIXStrongSolution.lean",
     "Palomar/comparator-lix-strong.json",
+    "Palomar/BowenChapmanChallenge.lean", "Palomar/BowenChapmanSolution.lean",
+    "Palomar/comparator-bowen-chapman.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -811,6 +818,15 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "does not declare `exists_simple_separable_order_six_witness_of`"),
     ("strong comparator permitting a fourth axiom",
      "Palomar/comparator-lix-strong.json: permitted_axioms"),
+    # The pending Bowen-Chapman surface, under the same four rules.
+    ("bowen-chapman challenge with a project-local import",
+     "Palomar/BowenChapmanChallenge.lean:1:"),
+    ("bowen-chapman shared block edited on one side",
+     "Palomar/comparator-bowen-chapman.json: shared block diverges"),
+    ("bowen-chapman solution missing an `_of` form",
+     "does not declare `exists_finitelyGenerated_surjunctive_not_sofic_of`"),
+    ("bowen-chapman comparator permitting a fourth axiom",
+     "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("three arXiv classes", "one or two distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -878,6 +894,22 @@ def plant(name: str, root: Path) -> None:
             "theorem exists_simple_separable_order_six_witness_renamed", 1))
     elif name == "strong comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-lix-strong.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "bowen-chapman challenge with a project-local import":
+        path = root / "Palomar" / "BowenChapmanChallenge.lean"
+        path.write_text("import GroupApproximation.Sofic.Sofic\n" + path.read_text())
+    elif name == "bowen-chapman shared block edited on one side":
+        path = root / "Palomar" / "BowenChapmanSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=",
+            "def hammingDist' (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=", 1))
+    elif name == "bowen-chapman solution missing an `_of` form":
+        path = root / "Palomar" / "BowenChapmanSolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_finitelyGenerated_surjunctive_not_sofic_of",
+            "theorem exists_finitelyGenerated_surjunctive_not_sofic_renamed", 1))
+    elif name == "bowen-chapman comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-bowen-chapman.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "LIX result dropped from the metadata":
         _edit_metadata(root,
