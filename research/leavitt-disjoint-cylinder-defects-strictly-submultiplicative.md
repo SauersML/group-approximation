@@ -62,3 +62,21 @@ than vanishing.
   * **Still untested:** opposite roots at a child cylinder, the compressors, the nine-leaf
     configuration, and the block root groups of `GL_2(R)` normalized by the torus
     `iota_0(R^x) x iota_1(R^x)`.
+- **Weyl elements, torus units and compressors: finite-subgroup data, so no `theta < 1` (w4-sub-weyl,
+  2026-09-12; artifact `research/artifacts/cylinder-commutant-independence-and-weyl-firewall-2026-09-12.md`).**
+  * **Firewall** (`finite-subgroup-data-cannot-force-defect-submultiplicativity`). The regular assignment
+    `rk_reg(alpha) = dim(alpha F_2[K])/|K|` on all finite-subgroup algebras of `R^x` is consistent,
+    invariant under conjugation by every unit, a rank model on every locally finite subgroup, and has
+    `rk(D_A) = 3/8` with exactly multiplicative disjoint defects.
+  * **Covered.** Weyl elements over `F_2` (`iota_A(GL_3(F_2))`), iterated sheets `EL_3(C_n)`, prefix
+    doubling (w4-r4-orth's Lemma 5.1), the swap, and torus units or compressors used as conjugators.
+    This extends w4-r4-orth's Proposition 5.2 from one configuration to all finite subgroups at once.
+  * **Products are pinned too** (`near-minimal-defects-are-rank-independent-of-cylinder-commutants`,
+    passed by w4-vf-gate). At near-minimal defect, `rk(D_(AP) X) = delta rk(X)` up to `eps delta` for
+    every `X` commuting with `sigma(iota_A(R^x))`, including the whole complementary model. So no
+    commuting factor produces a deficit.
+  * **What is left.** A unit of infinite order as a factor, not a conjugator (the block root groups
+    `x_12(r)`, `r` in `R`, over the torus `iota_0(R^x) x iota_1(R^x)`, or the isometry-coefficient root
+    elements), or a global input turned into an upper bound. At `delta = c_*` every invariant summand of
+    `iota_A` carries defect exactly `c_*`, so one invariant summand with a different normalized defect
+    would finish; it must be built from an infinite-order unit.
