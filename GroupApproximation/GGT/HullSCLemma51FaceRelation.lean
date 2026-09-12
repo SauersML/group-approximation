@@ -227,6 +227,64 @@ theorem listVal_mem_boundedProducts_of_cosetLettersAt_from (D : GGT.RelGenSet G 
   have h := hA.translate x⁻¹
   rwa [inv_mul_cancel] at h
 
+/-- Enlarging the radius and the length bound of bounded products. -/
+theorem boundedProducts_relBall_mono (D : GGT.RelGenSet G Lambda) (lam : Lambda) (A : Set G)
+    {m n N M : ℕ} (hmn : m ≤ n) (hNM : N ≤ M) :
+    boundedProducts (A ∪ D.relBall lam m) N ⊆ boundedProducts (A ∪ D.relBall lam n) M :=
+  boundedProducts_mono (Set.union_subset_union_right _
+    (GGT.OsinComponents.relBall_mono_radius D lam hmn)) hNM
+
+/-- **The face relation with one letter split off.**  If that letter is not read at a
+vertex of `H_λ`, the value is a bounded product; if it is, the value is a bounded
+product, the letter, and a bounded product. -/
+theorem face_relation_split (D : GGT.RelGenSet G Lambda) (lam : Lambda) (A : Set G)
+    {u₁ u₂ : List (GGT.RelLetter G Lambda)} {a : GGT.RelLetter G Lambda}
+    (hletters : ∀ b ∈ u₁ ++ a :: u₂, D.IsLetter b)
+    (hval : GGT.RelLetter.listVal (u₁ ++ a :: u₂) ∈ D.fam lam)
+    (h₁ : CosetLettersAt D lam A 1 1 u₁)
+    (h₂ : CosetLettersAt D lam A 1 (GGT.RelLetter.listVal u₁ * a.val) u₂) :
+    (¬ (GGT.RelLetter.IsCompOf lam a ∧ GGT.RelLetter.listVal u₁ ∈ D.fam lam) →
+        GGT.RelLetter.listVal (u₁ ++ a :: u₂) ∈
+          boundedProducts (A ∪ D.relBall lam (u₁ ++ a :: u₂).length)
+            ((u₁ ++ a :: u₂).length + 1)) ∧
+      ((GGT.RelLetter.IsCompOf lam a ∧ GGT.RelLetter.listVal u₁ ∈ D.fam lam) →
+        ∃ x y : G,
+          x ∈ boundedProducts (A ∪ D.relBall lam (u₁ ++ a :: u₂).length)
+            ((u₁ ++ a :: u₂).length + 1) ∧
+          y ∈ boundedProducts (A ∪ D.relBall lam (u₁ ++ a :: u₂).length)
+            ((u₁ ++ a :: u₂).length + 1) ∧
+            GGT.RelLetter.listVal (u₁ ++ a :: u₂) = x * a.val * y) := by
+  have hsplit : GGT.RelLetter.listVal (u₁ ++ a :: u₂) =
+      GGT.RelLetter.listVal u₁ * a.val * GGT.RelLetter.listVal u₂ := by
+    rw [RelWord.listVal_append, RelWord.listVal_cons, mul_assoc]
+  have hlen₁ : u₁.length ≤ (u₁ ++ a :: u₂).length := by simp
+  have hlen₂ : u₂.length ≤ (u₁ ++ a :: u₂).length := by simp
+  have hl₁ : ∀ b ∈ u₁, D.IsLetter b := fun b hb => hletters b (by simp [hb])
+  have hl₂ : ∀ b ∈ u₂, D.IsLetter b := fun b hb => hletters b (by simp [hb])
+  have ha : D.IsLetter a := hletters a (by simp)
+  constructor
+  · intro hnot
+    apply listVal_mem_boundedProducts_of_cosetLettersAt D lam A hletters hval
+    refine h₁.append (CosetLettersAt.append (cosetLettersAt_singleton ?_) ?_)
+    · intro hc hv
+      exact absurd ⟨hc, by simpa using hv⟩ hnot
+    · simpa [RelWord.listVal_singleton] using h₂
+  · rintro ⟨hc, hv⟩
+    have haval : a.val ∈ D.fam lam := val_mem_fam_of_isCompOf ha hc
+    have hv₂ : GGT.RelLetter.listVal u₂ ∈ D.fam lam := by
+      have e : GGT.RelLetter.listVal u₂ =
+          (GGT.RelLetter.listVal u₁ * a.val)⁻¹ * GGT.RelLetter.listVal (u₁ ++ a :: u₂) := by
+        rw [hsplit]; group
+      rw [e]
+      exact (D.fam lam).mul_mem ((D.fam lam).inv_mem ((D.fam lam).mul_mem hv haval)) hval
+    refine ⟨GGT.RelLetter.listVal u₁, GGT.RelLetter.listVal u₂, ?_, ?_, hsplit⟩
+    · exact boundedProducts_relBall_mono D lam A hlen₁ (by omega)
+        (listVal_mem_boundedProducts_of_cosetLettersAt D lam A hl₁ hv h₁)
+    · refine boundedProducts_relBall_mono D lam A hlen₂ (by omega)
+        (listVal_mem_boundedProducts_of_cosetLettersAt_from D lam A
+          (GGT.RelLetter.listVal u₁ * a.val) hl₂ hv₂ (h₂.of_rep ?_))
+      simpa using (D.fam lam).inv_mem ((D.fam lam).mul_mem hv haval)
+
 end HullSC
 end GroupApproximation
 
@@ -238,3 +296,4 @@ end GroupApproximation
 #audit_axioms GroupApproximation.HullSC.cosetLettersAt_respellInv
 #audit_axioms GroupApproximation.HullSC.listVal_mem_boundedProducts_of_cosetLettersAt
 #audit_axioms GroupApproximation.HullSC.listVal_mem_boundedProducts_of_cosetLettersAt_from
+#audit_axioms GroupApproximation.HullSC.face_relation_split
