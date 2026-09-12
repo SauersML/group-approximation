@@ -152,6 +152,17 @@ def relCohomologyCongrPointOf (K : Type) [CommRing K] {X Y : Type} [TopologicalS
         rw [← e.apply_symm_apply p, h1, hzo]
       exact congrArg Subtype.val h2) n
 
+/-! ## 6. Excision to a chart around a point, over any field -/
+
+/-- **Excision to a chart, over any field**: for `V` open and containing `z`, restriction to
+`V` induces an isomorphism `H^n(X, {z}ᶜ; K) ≅ H^n(V, V ∖ {z}; K)`.  The `F₂` statement is
+`RelativeLocal.excisionIsoPoint`. -/
+def excisionIsoPointOf (K : Type) [Field K] (X : TopCat.{0}) [T1Space X] (z : X) (V : Set X)
+    (hV : IsOpen V) (hz : z ∈ V) (n : ℕ) :
+    relCohomology K X ({z}ᶜ) n
+      ≅ relCohomology K (TopCat.of V) ((Subtype.val ⁻¹' ({z}ᶜ)) : Set V) n :=
+  excisionIsoOf (pointComplementOpen X z) ⟨V, hV⟩ K (pointComplement_sup z ⟨V, hV⟩ hz) n
+
 end
 
 /-! Audited on every build. -/
