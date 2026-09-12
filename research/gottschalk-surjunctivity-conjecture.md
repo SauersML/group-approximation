@@ -385,3 +385,30 @@ to handle automata on a simple nonsofic Kazhdan group directly. Subgroup
 heredity now has its own node, `surjunctivity-passes-to-subgroups`, and the dead
 route names it as a prerequisite. Artifact:
 `research/artifacts/fixed-host-permanence-closure-obstruction-2026-09-12.md`.
+
+**Linear case over the Leavitt unit group (2026-09-12).**
+`leavitt-inverse-defects-are-visible-or-invisible` proves that every Kaplansky
+pair in `F_2[R^x]` is a group-element translate either of a lift of
+`(s_0, t_0)` or of a pair in `1 + ker(pi)`, where `pi` is the evaluation onto
+the Leavitt algebra. So the linear route into
+`leavitt-unit-group-nonsurjunctive` comes down to exactly two lifting problems:
+`left-invertible-lift-of-s0-in-leavitt-group-algebra` and
+`leavitt-evaluation-kernel-unitization-not-directly-finite`. Killing both
+proves `leavitt-unit-group-algebra-is-directly-finite`, and then every
+injective `F_2`-linear automaton over `R^x` is surjective.
+
+**Logical form (2026-09-12).** A group is not surjunctive exactly when some
+pair of local rules satisfies the decoder identity on the realized forward
+rectangle `S x M` and fails the reverse identity on `M x S`
+(`surjunctivity-is-axiomatized-by-rectangle-clauses`). The identity passes to
+coarser tables and its failure passes to finer ones. So the surjunctive groups
+are exactly the models of decidably many universal sentences with equational
+premises and conclusions, and existentially closed groups decide the
+conjecture. The conjecture itself is the `Pi^0_2` sentence "for every strict
+rectangle data `D`, some reverse coincidence follows from the forward relations
+of the canonical host `P(D)`". By `surjunctivity-recognition-dichotomy`, either
+every group is surjunctive, or surjunctivity of finite presentations is
+undecidable and the nonsurjunctive finite presentations are not recursively
+enumerable. On one host with decidable word problem the search stays
+`Sigma^0_1`. None of this decides the conjecture. Artifact:
+`research/artifacts/gottschalk-rectangle-clauses-and-recognition-2026-09-12.md`.
