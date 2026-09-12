@@ -4614,6 +4614,7 @@ import GroupApproximation.BowenChapman.EndpointOfNormalization
 import GroupApproximation.KunThom.ComponentCountingNormalizationMedian
 import GroupApproximation.KunThom.ComponentCountingNormalizationGroupoid
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorPresentation
+import GroupApproximation.KunThom.ComponentCountingRelativeFunctorDefects
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
