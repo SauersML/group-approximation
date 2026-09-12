@@ -1245,6 +1245,10 @@ element $b\in R$, the equation $(1-x_1)u=bv$ has a non-zero solution in $R$?" Th
 - Semantic Scholar lists two citing records of arXiv:2201.02308: that survey, and one titled "R. Thompson's group F
   and its group algebras", whose author and year were not returned. Semantic Scholar rate-limited this review
   (HTTP 429), so that record was not inspected. Priority should not be claimed until it has been read.
+- Two arXiv searches found no such paper. A title search for "group F and its group algebras" returned nothing. An
+  all-fields search for "Thompson's group F" together with "group algebras" returned three unrelated 2023–2024
+  papers: Aiello 2405.17275, Krishnan 2309.05626, and Hong–Szymański 2303.10363. So that citing record is probably
+  not on arXiv.
 - The lane's arXiv title and abstract searches found no later answer. This review's arXiv API queries returned no
   entries, which settles nothing.
 
