@@ -9,6 +9,8 @@ refuted_by:
 distinct_from:
   leavitt-unit-group-nonsurjunctive: that is the negation, seeking an injective nonsurjective automaton; this is the positive assertion for the same group.
   gottschalk-surjunctivity-conjecture: that asserts surjunctivity of every group; this is the case of the first nonsofic group, which that conjecture implies and which does not imply it.
+  surjunctive-nonsofic-group-exists: that exhibits surjunctive nonsofic wreaths and doubles, all inside the permanence closure of the sofic groups; this asks for the first nonsofic group, which is finitely presented and simple and lies outside that closure.
+  fixed-gottschalk-test-group-is-surjunctive: that is surjunctivity of the fixed tester host, equivalent to the whole conjecture; this is one specific nonsofic group, whose surjunctivity decides nothing universal.
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
   - research/artifacts/gottschalk-sofic-radical-localization-2026-09-11.md
