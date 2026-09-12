@@ -174,6 +174,20 @@ about Kazhdan groups:
 
 Neither mentions `L`.
 
+**Shape of a faithful model (2026-09-11).**  Two established claims say what
+excluding faithful models has to defeat.
+
+* `leavitt-kazhdan-relative-commutant-has-no-type-one-part`: the Kazhdan
+  relative commutant `A_0` is of type II_1, and `A_0 (tensor) L(V)^(tensor k)`
+  sits in `A_k ~= A_0`.  Captured multiplicities diverge on almost all mass,
+  and the Thompson copy acts on the multiplicity spaces.
+* `leavitt-thompson-copy-and-compressor-generate-v-wreath-z`: the shift layers
+  generate `V wr Z`, which is hyperlinear exactly when `V` is.
+
+So a tower exclusion either proves `V` nonhyperlinear or uses property (T) of
+`Gamma` on diverging multiplicity spaces, where dimension counting is invisible
+in normalized HS.
+
 **Where the branch is actually decided.**  The only mechanism that has ever
 closed a question of this shape for this group is the one that proved `Q`
 nonsofic: Kun's expander decomposition, a conservation identity, and a
