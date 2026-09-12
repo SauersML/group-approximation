@@ -1,0 +1,66 @@
+{
+ "N": 14,
+ "K": 64,
+ "relations": {
+  "r1_trivial": true,
+  "r2_trivial": true,
+  "x0_x1_noncommuting": true,
+  "relator_lengths": [
+   10,
+   14
+  ]
+ },
+ "brute_force_counts": {
+  "2": 4,
+  "4": 28,
+  "6": 232,
+  "8": 2092
+ },
+ "c2": [
+  1,
+  4,
+  28,
+  232,
+  2092,
+  19884,
+  196096,
+  1988452,
+  20612364,
+  217561120,
+  2331456068,
+  25311956784,
+  277937245744,
+  3082543843552,
+  34493827011868
+ ],
+ "support_sizes": [
+  1,
+  4,
+  13,
+  40,
+  121,
+  354,
+  1027,
+  2930,
+  8307,
+  23282,
+  64971,
+  179852,
+  496209,
+  1360820,
+  3722149
+ ],
+ "brute_matches_dp": true,
+ "z2_upper_bound_ok": true,
+ "certificate": {
+  "k": 7,
+  "theta": "380918149/500000000",
+  "p_k_at_theta_negative": true,
+  "rho_lower_bound": "13638/15625",
+  "rho_lower_bound_float": 0.872832,
+  "ratio_bound_sqrt_M_N_over_M_Nm1": 0.836288390754442,
+  "root_bound_M_N_pow": 0.7610808109878604,
+  "log_convex": true
+ },
+ "seconds": 262.8
+}
