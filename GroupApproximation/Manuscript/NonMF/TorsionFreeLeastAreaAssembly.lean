@@ -13,8 +13,8 @@ are:
 
 * `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` — Osin's
   Lemma 4.4 at least-area diagrams;
-* `HullSC.BoundedRelativeLinearAreaTransferStatement` — the bounded linear-area
-  transfer that produces the embedded bridge;
+* `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` — Osin's
+  Lemma 5.1 in the embedded form, proved directly from Osin's (18)–(21);
 * `TorsionFreePrinted.FournierFacioParagraph` — the paragraph of tex lines
   1675–1685;
 * `TorsionFreePrinted.SimpleUniqueTraceAtHypEmbedded` and
@@ -34,44 +34,43 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.Manuscript.NonMF.TorsionFreePrinted
 
 /-- **`thm:hull` as printed, at a torsion-free ambient group**, from the
-least-area Greendlinger waist and the bounded linear-area transfer. -/
+least-area Greendlinger waist and the embedded bridge. -/
 theorem hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     HullSmallCancellationTorsionFreePrinted.{0} :=
   hullSmallCancellationTorsionFreePrinted_of_oneStep
-    (HullSC.hullOneStepStatement_of_leastAreaGreendlinger_of_boundedTransfer
-      hgreendlinger htransfer)
+    (HullSC.hullOneStepStatement_of_leastAreaLeaves hgreendlinger hbridge)
 
 /-- **`lem:saturation` as printed** (tex line 1650), from the same two leaves. -/
 theorem printedSaturationNoOmega_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     PrintedSaturationNoOmega.{0} :=
   manuscriptSaturationNoOmega_of_torsionFreePrinted
-    (hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves hgreendlinger htransfer)
+    (hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves hgreendlinger hbridge)
 
 /-- **`thm:torsion-free`, exactly as printed** (tex line 284), from the
 Fournier-Facio paragraph and the two Hull leaves. -/
 theorem manuscriptTorsionFreeTheorem_of_leastAreaLeaves (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     PrintedTorsionFreeTheorem :=
   manuscriptTorsionFreeTheorem_of_torsionFreePrinted hFFF
-    (hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves hgreendlinger htransfer)
+    (hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves hgreendlinger hbridge)
 
 /-- **`thm:torsion-free` in the radical form**, from the same three. -/
 theorem manuscriptTorsionFreeFullMFRadical_of_leastAreaLeaves
     (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     TheoremC.PrintedTorsionFreeFullMFRadical :=
   manuscriptTorsionFreeFullMFRadical_of_torsionFreePrinted hFFF
-    (hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves hgreendlinger htransfer)
+    (hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves hgreendlinger hbridge)
 
 /-- **`cor:regular-nonmf-algebra`, along the printed proof**, from the
 Fournier-Facio paragraph, the two Hull leaves, Dahmani–Guirardel–Osin's Theorem
@@ -79,11 +78,11 @@ Fournier-Facio paragraph, the two Hull leaves, Dahmani–Guirardel–Osin's Theo
 theorem manuscriptRegularNonMFAlgebra_of_leastAreaLeaves (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0})
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
     (hDGO : SimpleUniqueTraceAtHypEmbedded)
     (hGO : GerasimovaOsinTheorem11Printed) : PrintedRegularNonMFAlgebra :=
   TorsionFreeLeafAssembly.manuscriptRegularNonMFAlgebra_of_saturationNoOmega hFFF
-    (printedSaturationNoOmega_of_leastAreaLeaves hgreendlinger htransfer) hDGO hGO
+    (printedSaturationNoOmega_of_leastAreaLeaves hgreendlinger hbridge) hDGO hGO
 
 end TorsionFreeLeastAreaAssembly
 end NonMF

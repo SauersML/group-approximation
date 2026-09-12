@@ -60,11 +60,11 @@ theorem manuscriptTorsionFreeTheoremOsin_of_leastAreaLeaves
     (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     PrintedTorsionFreeTheoremOsin :=
   printedTorsionFreeTheoremOsin_of_printed
     (TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeTheorem_of_leastAreaLeaves
-      hFFF hgreendlinger htransfer)
+      hFFF hgreendlinger hbridge)
 
 /-! ## `thm:hull` -/
 
@@ -97,7 +97,7 @@ two Hull leaves. -/
 theorem manuscriptSentence_hullTheoremTorsionFreeOsin_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     ∀ (G : Type) [Group G], GGT.IsAcylindricallyHyperbolicOsin G →
       IsPowerTorsionFree G →
         ∀ (A : HullGeneratingSet G) {N : Subgroup G}, Suitable A.alphabet N →
@@ -109,7 +109,7 @@ theorem manuscriptSentence_hullTheoremTorsionFreeOsin_of_leastAreaLeaves
   haveI : IsAcylindricallyHyperbolic G := GGT.isAcylindricallyHyperbolic_of_osin hG
   obtain ⟨H⟩ :=
     TorsionFreeLeastAreaAssembly.hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves
-      hgreendlinger htransfer htf A hN g
+      hgreendlinger hbridge htf A hN g
   exact ⟨H.quotient.Q, H.quotient.group, H.quotient.q, H.quotient.surjective,
     @GGT.osin_of_isAcylindricallyHyperbolic H.quotient.Q H.quotient.group
       H.quotient.acylindricallyHyperbolic,
@@ -147,11 +147,11 @@ theorem printedSaturationOsin_of_noOmega (h : PrintedSaturationNoOmega.{0}) :
 theorem manuscriptSaturationOsin_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0}) :
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
     PrintedSaturationOsin :=
   printedSaturationOsin_of_noOmega
     (TorsionFreeLeastAreaAssembly.printedSaturationNoOmega_of_leastAreaLeaves
-      hgreendlinger htransfer)
+      hgreendlinger hbridge)
 
 /-! ## `cor:regular-nonmf-algebra` -/
 
@@ -193,12 +193,12 @@ theorem manuscriptRegularNonMFAlgebraOsin_of_leastAreaLeaves
     (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (htransfer : HullSC.BoundedRelativeLinearAreaTransferStatement.{0, 0, 0})
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
     (hDGO : SimpleUniqueTraceAtHypEmbedded)
     (hGO : GerasimovaOsinTheorem11Printed) : PrintedRegularNonMFAlgebraOsin :=
   printedRegularNonMFAlgebraOsin_of_printed
     (TorsionFreeLeastAreaAssembly.manuscriptRegularNonMFAlgebra_of_leastAreaLeaves
-      hFFF hgreendlinger htransfer hDGO hGO)
+      hFFF hgreendlinger hbridge hDGO hGO)
 
 end TorsionFreeOsinNotion
 end NonMF
