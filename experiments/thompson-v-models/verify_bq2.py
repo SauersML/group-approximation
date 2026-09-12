@@ -29,7 +29,7 @@ def order(letter, gens, bound=24, M=12):
 
 
 def run(gspec):
-    gens = {k: vwords.parse_cycles(v) for k, v in gspec.items()}
+    gens = {k: vwords.parse_generator(v) for k, v in gspec.items()}
     ok = True
     for i, r in enumerate(P["relators_tex"], 1):
         w = texwords.parse(r)
@@ -53,7 +53,7 @@ def run(gspec):
     }
     for name, spec in targets.items():
         gens2 = dict(gens)
-        gens2["t"] = vwords.parse_cycles(spec)
+        gens2["t"] = vwords.parse_generator(spec)
         w = texwords.conj(base, conj_s[name])
         eq = element_equal(w, [("t", 1)], gens2)
         print("  marked %-16s equals %s: %s" % (name, spec, eq))

@@ -42,9 +42,28 @@ def apply_cycles(cycles, s, inverse=False):
     return s
 
 
+def parse_generator(spec):
+    """A generator is a product of factors read left to right (right action).
+
+    spec is either one cycle string '(01 10 11)' (disjoint cycles, one factor) or a
+    list of such strings, e.g. ['(00 01)', '(10 110)', '(10 111)'] for
+    t_{00,01} t_{10,110} t_{10,111}.  Returns a list of factors (cycle lists).
+    """
+    if isinstance(spec, str):
+        return [parse_cycles(spec)]
+    return [parse_cycles(x) for x in spec]
+
+
 def compile_word(word, gens):
-    """gens: name -> cycles. word: list of (name, +-1)."""
-    return [(gens[n], e) for n, e in word]
+    """gens: name -> list of factors (from parse_generator). word: list of (name, +-1)."""
+    out = []
+    for n, e in word:
+        factors = gens[n]
+        if e > 0:
+            out.extend((f, 1) for f in factors)
+        else:
+            out.extend((f, -1) for f in reversed(factors))
+    return out
 
 
 def eval_word(cword, s, convention):
