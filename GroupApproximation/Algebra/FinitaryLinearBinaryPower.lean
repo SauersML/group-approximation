@@ -129,7 +129,7 @@ noncomputable def powerIndexEquiv (n : ℕ) [NeZero n] : (Σ _ : Fin n, ℕ) ≃
 noncomputable def binaryGLfsEquivSLUnion (n : ℕ) [NeZero n] : binaryGLfs n ≃* binarySLUnion :=
   (finitaryEquivOfBasis (binaryPowerBasis n) binaryBasis (powerIndexEquiv n)
       (e := (binaryPowerBasis n).equiv binaryBasis (powerIndexEquiv n))
-      fun b ↦ Module.Basis.equiv_apply _ _ _ _).trans
+      fun _ ↦ Module.Basis.equiv_apply _ _ _ _).trans
     (MulEquiv.subgroupCongr binarySLUnion_eq_finitary.symm)
 
 end FinitaryLinear
