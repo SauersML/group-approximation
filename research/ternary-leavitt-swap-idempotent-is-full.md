@@ -31,6 +31,13 @@ is invariant under `<w>`, and it is not surjective
   is to lift this along the linear extension `F_3[G_3] -> R_3` of the inclusion
   of units, and direct finiteness does not pass to quotients. This is where it
   dies today. Section 6 of the artifact.
+- *The lift along the Leavitt evaluation addresses only half.* By
+  `ternary-leavitt-swap-problem-splits-at-central-involution`, the evaluation factors
+  through the anti-central summand. There the equation is equivalent to a unital
+  two-pair Cohn family in a corner, and a solution acts only on a proper subshift.
+  The half that suffices is `projective-ternary-swap-idempotent-is-full`, on the
+  quotient by the scalars. This claim implies it, and the Leavitt evaluation
+  vanishes on it. Section 7 of the artifact.
 - *Why this form is worth a separate lane.* Over `F_2` the half projection is not
   an idempotent of the group algebra and involution-invariant linear rules die by
   augmentation. Here `e` is an honest idempotent, and the question is whether the

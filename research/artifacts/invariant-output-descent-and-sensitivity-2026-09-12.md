@@ -215,3 +215,89 @@ finiteness (`linear-sofic-group-algebra-is-stably-finite`). So the product
 coincidences of any certificate must present a group outside that class. The
 lifting problem from `R_3` to `F_3[G_3]` is the same wall as the binary Kaplansky
 lift (`direct-finiteness-not-inherited-by-quotients`). No certificate is claimed.
+Section 7 shows that this lift addresses only the anti-central half of `F_3[G_3]`,
+and that half proves nothing about the full shift.
+
+## 7. The central involution splits the ternary problem
+
+Notation: `k = F_3`, `R = L_k(1,2)`, `G = R^x`, `S = k[G]`, `z = -1` in `G` (central,
+order two), `PG = G/<z>`, `w = s0 t1 + s1 t0`, `d = s0 t0 - s1 t1`, `e = 2(1 + [w])`.
+
+**Lemma 7.1 (splitting).** `eps_+ = 2(1 + [z])` and `eps_- = 2(1 - [z])` are central
+idempotents with `eps_+ eps_- = 0` and `eps_+ + eps_- = 1`. So `S = S_+ x S_-` with
+`S_(+-) = eps_(+-) S`. Also `eps_+ [g] -> [gbar]` gives `S_+ ~= k[PG]`, and
+`eps_- [z] = -eps_-`.
+
+*Proof.* `(1 +- z)^2 = 2(1 +- z)`, so `(2(1 +- z))^2 = 8(1 +- z) = 2(1 +- z)`. The sum is
+`4 = 1` and the product is `4(1 - z^2) = 0`. `S_+ = S/eps_- S = S/(1 - [z])S = k[PG]`,
+and `eps_- z = 2(z - 1) = -eps_-`. QED
+
+**Lemma 7.2 (the sign unit halves the swap idempotent on `S_-`).** In `G`, `w^2 = 1`,
+`d^2 = 1` and `d w d = z w`. Put `1_- = eps_-` and `e_- = eps_- e`. Then
+`[d] e_- [d] = 1_- - e_-`. So `E_11 = e_-`, `E_22 = 1_- - e_-`, `E_21 = [d] e_-` and
+`E_12 = e_- [d]` are matrix units, `S_- ~= M_2(T)` with `T = e_- S_- e_-`, and `S_-`
+has no unital ring homomorphism to a nonzero commutative ring.
+
+*Proof.* `d^2 = s0 t0 + 4 s1 t1 = 1`, `w d = s1 t0 - s0 t1` and `d(w d) = -w = z w`. In
+`S_-`, `[d][w][d] = [z][w] = -[w]`. So `[d] e_- [d] = 2 eps_-(1 - [w])`, and
+`1_- - e_- = eps_-(1 - 2 - 2[w]) = 2 eps_-(1 - [w])`. Since `d = d^-1`,
+`E_12 E_21 = e_- d d e_- = e_-` and `E_21 E_12 = d e_- d = E_22`. A unital homomorphism
+to a commutative ring gives `E_11` and `E_22` the same image. They sum to `1` and
+multiply to `0`, which forces `1 = 0`. QED
+
+**Proposition 7.3 (the anti-central half is a Cohn family).** `c e_- b = 1_-` has a
+solution in `S_-` iff `T` contains `beta_1, beta_2, gamma_1, gamma_2` with
+`gamma_i beta_j = delta_ij e_-`.
+
+*Proof.* In `S_- = M_2(T)`, `e_- = diag(e_-, 0)`. A solution gives `beta = e_- b`, a
+matrix with one nonzero row `(beta_1, beta_2)`, and `gamma = c e_-`, with one nonzero
+column `(gamma_1, gamma_2)`. `gamma beta = I` reads `gamma_i beta_j = delta_ij`.
+Conversely such a family defines `beta` and `gamma` with `gamma e_- beta = gamma beta = I`. QED
+
+The Leavitt evaluation `pi` maps `S_-` onto `R` and `T` onto `pi(e) R pi(e) ~= R`. There
+`b = s0 + s1` and `c = 2(t0 + t1)` from Section 6 give such a family.
+
+**Proposition 7.4 (which half matters).**
+
+(a) `pi(eps_+) = 0`, so `pi` factors through `S_-`.
+(b) If `c e b = 1` in `S`, then `cbar ebar bbar = 1` in `k[PG]`, with `ebar = 2(1 + [wbar])`.
+(c) If `cbar ebar bbar = 1` in `k[PG]`, then `PG` is not surjunctive.
+(d) Put `X_- = {x in k^G : x(gz) = -x(g)}`, a proper closed linear subshift. Every
+linear automaton preserves `X_-`, and on `X_-` it depends only on the `S_-` component
+of its coefficient. So a solution in `S_-` alone gives at most an injective,
+non-surjective self-map of a proper subshift. Such a map carries no surjunctivity
+content (`subshift-self-embedding-carries-no-surjunctivity-content`).
+
+*Proof.* (a) `pi(z) = -1`. (b) Multiply by `eps_+` and apply Lemma 7.1. (c) `wbar != 1`
+because `w` is not a scalar, so Proposition C(3) and Corollary B apply over `PG`.
+(d) `z` is central, so on `X_-`, `tau_a(x)(gz) = sum_m a_m x(g m z) = -tau_a(x)(g)`.
+Also `tau_(1 + z)` vanishes on `X_-`, so `tau_(y(1 + z)) = tau_y tau_(1 + z)` vanishes there. QED
+
+So Section 6's lift along `pi` is aimed at the half that proves nothing, and the half
+that suffices is invisible to `pi`.
+
+**Remark 7.5 (the adjoint evaluation sees `S_+`).** `rho([g]) = g (x) (g^-1)^op` defines a
+unital ring homomorphism `rho : S -> Q = R (x)_k R^op`, because inversion reverses
+products and so does `R^op`. `rho([z]) = (-1) (x) (-1) = 1`, so `rho` kills `S_-`. Put
+
+```text
+b' = (s0 + s1) (x) (t0 + t1)^op,      c' = (t0 + t1) (x) (s0 + s1)^op.
+```
+
+From `w (s0 + s1) = s0 + s1` and `(t0 + t1) w = t0 + t1`,
+`rho(ebar) b' = 2(b' + b') = b'`. And `c' b' = (t0 + t1)(s0 + s1) (x) ((t0 + t1)(s0 + s1))^op = 2 (x) 2 = 1`.
+So the equation of 7.4(b) holds in `Q`. Whether witnesses can be taken in `rho(S)`, the
+span of the `g (x) (g^-1)^op`, and then lifted, is open. This is the right guide for
+`projective-ternary-swap-idempotent-is-full`.
+
+**Screening against the team filters.** A certificate for that claim must also satisfy:
+
+- the memory of `c` generates a nonamenable subgroup
+  (`amenable-decoder-memory-forces-surjectivity`);
+- the forward table of the pair has a nonsofic two-core
+  (`forward-relations-of-a-counterexample-have-a-nonsofic-core`);
+- `PG` is not linear sofic (`linear-sofic-group-algebra-is-stably-finite`);
+- the image lies in the `<wbar>`-invariant configurations, a Bernoulli-null set, as
+  `injective-measure-preserving-ca-is-surjective` requires of a strict automaton.
+
+None of these excludes the architecture.
