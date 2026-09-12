@@ -27,10 +27,14 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
   The route `ternary-lift-by-honest-odd-measure-compression` is invalidated.
 - **Mod-3 trace, no obstruction.** `Tr(eps_-) = 1` and `Tr(q_[0]) = -1` leave room for an
   equivalent subidempotent of trace `1` (`odd-measure-crossed-product-carries-mod-three-trace`).
-- **Intertwiner, dead.** No nonzero finitely supported `v in S_-` intertwines the corner endomorphism
-  `iota(g) = s0 g t0 + s1 t1`. Such coefficients are constant on twisted conjugacy orbits in
-  `PG = G/<z>`, which are infinite because `G` is simple and `iota(z) != z`. Section 7(b) of the
-  artifact.
+- **Intertwiner, dead.** No nonzero finitely supported `v` intertwines the corner endomorphism
+  `iota(g) = s0 g t0 + s1 t1`, so a lift of `s0` cannot be an exact intertwiner. The general form,
+  covering every injective non-surjective endomorphism, both sides, every prime and every field, is
+  `self-similar-leavitt-intertwiners-have-no-exact-lift` (gk-l3-corner). Section 7(b) of the artifact
+  gives the `iota` case directly.
+- **Finite-dimensional support no-gos do not bind.** Every finite-dimensional representation of
+  `H = E ⋊ V` is trivial (`signed-thompson-group-has-no-finite-dimensional-representations`). No
+  obstruction needing a representation with `z -> -1` can exclude witnesses in `B`.
 - **Gate.** If the signed Thompson group `E ⋊ V` is `F_3`-linear sofic, this claim is false
   (`linear-sofic-group-algebra-is-stably-finite`). Soficity of `V` is open.
 - **Where it dies.** A witness needs a cover of `M_-` compressible only modulo 3: multiplicities

@@ -222,3 +222,21 @@ idempotents of `B` equivalent to `eps_-` that are not functions.
 
 Outside `B`, the non-monomial units such as `h` enter. No construction of either kind is known, and no
 obstruction beyond Sections 5 to 7 is known.
+
+## 9. No finite-dimensional representations of the signed Thompson group
+
+**Proposition 6.** Every finite-dimensional representation `rho : H -> GL_n(k)`, over any field `k`,
+is trivial.
+
+*Proof.*
+* `rho(V)` is a finitely generated linear group, hence residually finite (Mal'cev). `V` is infinite,
+  simple and not residually finite, so `rho(V) = 1`.
+* `V` acts transitively on proper nonempty clopens, and `g tau_C g^-1 = tau_(gC)`. So `rho(tau_C)`
+  is one involution `sigma` for all such `C`.
+* `tau_[00] tau_[01] = tau_[0]` gives `sigma^2 = sigma`, hence `sigma = 1`.
+* So `rho(z) = rho(tau_[0] tau_[1]) = 1`, and `rho` is trivial. QED
+
+**Why it matters.** A support no-go says that no separated pair, or corner solution, is supported in
+a subgroup with a finite-dimensional characteristic-3 representation sending `z` to `-1`. That no-go
+never excludes witnesses inside `B = F_3[H] eps_-`. Proposition 6 explains why the invariants that do
+bind on `B` must be infinite-dimensional, like the Haar measure of Section 5.

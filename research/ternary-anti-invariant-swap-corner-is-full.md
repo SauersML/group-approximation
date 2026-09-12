@@ -145,3 +145,17 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     - supports stabilizing a line on which `w` acts by `-1`, such as the span of `1_[0] - 1_[1]`
       in the Cantor module;
     - supports with a finite quotient that keeps both `z` and `w`.
+- *Signed Thompson crossed-product model (gk-l3-free, 2026-09-12).*
+  - The Hadamard unit `h = s0t0 + s0t1 + s1t0 - s1t1` conjugates `e_-` to the cylinder reflection
+    idempotent `q_[0] = eps_- 2(1 - [tau_[0]])`. So this claim is `eps_- <= q_[0]`
+    (`hadamard-unit-conjugates-swap-idempotent-to-cylinder`).
+  - The signed Thompson units `E ⋊ V` span `C(M_-, F_3) ⋊ V`, over the odd `F_2`-valued measures.
+    This subalgebra already maps onto `R`, by evaluation at Dirac measures
+    (`signed-thompson-algebra-is-odd-measure-crossed-product`).
+  - An invariant Haar measure rules out honest clopen compressions, including the naive lift of `s0`
+    (`odd-measure-space-has-no-honest-thompson-compression`). A mod-3 trace exists but does not
+    obstruct (`odd-measure-crossed-product-carries-mod-three-trace`).
+  - `H` has no nontrivial finite-dimensional representations
+    (`signed-thompson-group-has-no-finite-dimensional-representations`).
+  - Sufficient open target: `odd-measure-crossed-product-unit-below-cylinder-idempotent`, through the
+    route `odd-measure-compression-gives-anti-invariant-corner`.
