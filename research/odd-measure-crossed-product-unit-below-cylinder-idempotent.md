@@ -87,3 +87,16 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
     - The mechanism is stated self-contained, and no literature theorem is cited.
   * **Status.** No such model is known. A sofic essentially free action makes `V` sofic, which is open.
     How this compares with the `E ⋊ V` linear-soficity gate above is not settled.
+- **Mixed-depth defect, equivalent to a clopen indicator (w3-corner-cohn-a).** For every choice of
+  extending units, the natural lift of `(s_0, t_0)` has a corrected left inverse with
+  `tau'' sigma = eps_- - e'`. Here `e' = 2(F - D)`, and `D` is a partial symmetry on
+  `F = 1_(W_1) + 1_(W_2)` (`natural-leavitt-pair-lifts-have-partial-symmetry-defect`).
+  * **Matrix units.** `(1_(W_1), 1_(W_2), [h]1_(W_1), [h^-1]1_(W_2))` form `2 x 2` matrix units, and `e'` is
+    their rank-one idempotent. So `e' ~ 1_(W_1) ~ 1_(W_2)`. Since `W_2 ⊆ {mu([0]) = 1}`, we get
+    `e' ≲ q_[0]` for every choice of units. This is Remark 2.3 of
+    `research/artifacts/ternary-cohn-mixed-depth-lifts-2026-09-12.md`.
+  * **Comparison.** `e' ~ eps_-` iff `eps_- ~ 1_(W_1)`, and that would solve this claim: from `x y = 1_(W_2)`
+    and `y x = eps_-`, take `c' = y`, `b' = x`. Up to equivalence the defect is a clopen indicator of
+    Haar mass `1/4`, not a new non-function idempotent.
+  * **Status.** `Tr(1_(W_1)) = 1/4 = 1 = Tr(eps_-)` in `F_3`, so the mod-3 trace allows it. No equivalence
+    `eps_- ~ 1_(W_1)` is known. Monomial ones are dead by `odd-measure-space-has-no-honest-thompson-compression`.
