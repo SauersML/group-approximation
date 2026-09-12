@@ -12,10 +12,8 @@ from `1`, is cut at the vertices of `H_λ` into coset pieces
 vertices, and avoiding stretches, whose values lie in a relative ball.  So when the
 peripheral letters read at vertices of `H_λ` all have values in a set `A`, the value of
 the word is a bounded product of elements of `A` and of the relative ball
-(`listVal_mem_boundedProducts_of_cosetLettersAt`); when one letter is exceptional, the
-value is either such a product, or, when the exceptional letter is itself read at a
-vertex of `H_λ`, a product with a copy of that letter in the middle
-(`face_relation_split`).
+(`listVal_mem_boundedProducts_of_cosetLettersAt`), from any base point
+(`listVal_mem_boundedProducts_of_cosetLettersAt_from`).
 
 `CosetLettersAt D λ A c x u` says that every peripheral letter of index `λ` of the word
 `u` read from `x`, read at a vertex of the coset `c H_λ`, has value in `A`.  It is
@@ -87,7 +85,7 @@ theorem CosetLettersAt.mono {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A B : S
 theorem cosetLettersAt_of_forall {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A : Set G}
     (c x : G) {u : List (GGT.RelLetter G Lambda)}
     (h : ∀ a ∈ u, GGT.RelLetter.IsCompOf lam a → a.val ∈ A) : CosetLettersAt D lam A c x u :=
-  fun i hi hc _ => h _ (List.getElem_mem hi) hc
+  fun _ hi hc _ => h _ (List.getElem_mem hi) hc
 
 /-- The representative may move inside its coset. -/
 theorem CosetLettersAt.of_rep {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A : Set G}
@@ -108,8 +106,7 @@ theorem CosetLettersAt.translate {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A 
   apply h i hi hc
   have e : (y * c)⁻¹ * (y * x * GGT.RelLetter.listVal (u.take i)) =
       c⁻¹ * (x * GGT.RelLetter.listVal (u.take i)) := by group
-  rw [mul_assoc] at hv
-  rwa [← mul_assoc, e] at hv
+  rwa [e] at hv
 
 /-- Words read one after the other. -/
 theorem CosetLettersAt.append {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A : Set G} {c x : G}
@@ -123,9 +120,8 @@ theorem CosetLettersAt.append {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A : S
     exact hu i hiu hc hvert
   · have hle : u.length ≤ i := not_lt.mp hiu
     rw [List.getElem_append_right hle] at hc ⊢
-    rw [List.take_append, List.take_of_length_le hle, RelWord.listVal_append, ← mul_assoc]
-      at hvert
-    exact hv (i - u.length) _ hc hvert
+    rw [List.take_append, List.take_of_length_le hle, RelWord.listVal_append] at hvert
+    exact hv (i - u.length) _ hc (by simpa only [mul_assoc] using hvert)
 
 /-- A single letter. -/
 theorem cosetLettersAt_singleton {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A : Set G}
@@ -173,7 +169,7 @@ theorem cosetLettersAt_respellInv (D : GGT.RelGenSet G Lambda) (lam : Lambda) (A
       · intro k hk hc hvert
         have e : (a :: t).take (k + 1) = a :: t.take k := rfl
         exact h (k + 1) (by simp; omega) hc
-          (by rw [e, RelWord.listVal_cons, ← mul_assoc]; exact hvert)
+          (by rw [e, RelWord.listVal_cons]; simpa only [mul_assoc] using hvert)
       · apply cosetLettersAt_singleton
         intro hc hvert
         rw [listVal_respellInv, mul_inv_cancel_right] at hvert
@@ -219,123 +215,17 @@ theorem listVal_mem_boundedProducts_of_cosetLettersAt (D : GGT.RelGenSet G Lambd
       right
       exact hinr g hp
 
-/-- The coset letters of a word with one letter split off. -/
-theorem cosetLetters_split {D : GGT.RelGenSet G Lambda} {lam : Lambda} {A : Set G}
-    {u₁ u₂ : List (GGT.RelLetter G Lambda)} {a : GGT.RelLetter G Lambda}
-    (h₁ : CosetLettersAt D lam A 1 1 u₁)
-    (h₂ : CosetLettersAt D lam A 1 (GGT.RelLetter.listVal u₁ * a.val) u₂) :
-    ∀ (i : ℕ) (hi : i < (u₁ ++ a :: u₂).length), i ≠ u₁.length →
-      GGT.RelLetter.IsCompOf lam (u₁ ++ a :: u₂)[i] →
-        GGT.OsinComponents.vertex 1 (u₁ ++ a :: u₂) i ∈ D.fam lam →
-          (u₁ ++ a :: u₂)[i].val ∈ A := by
-  intro i hi hne hc hvert
-  rw [vertex_eq_mul_listVal_take, one_mul] at hvert
-  by_cases hiu : i < u₁.length
-  · rw [List.getElem_append_left hiu] at hc ⊢
-    rw [List.take_append_of_le_length hiu.le] at hvert
-    exact h₁ i hiu hc (by rw [inv_one, one_mul, one_mul]; exact hvert)
-  · have hle : u₁.length + 1 ≤ i := by omega
-    have hsucc : i - u₁.length = (i - u₁.length - 1) + 1 := by omega
-    have hget : (u₁ ++ a :: u₂)[i] = u₂[i - u₁.length - 1]'(by simp at hi; omega) := by
-      rw [List.getElem_append_right (by omega)]
-      simp only [hsucc, List.getElem_cons_succ]
-    rw [hget] at hc ⊢
-    have htake : (u₁ ++ a :: u₂).take i = u₁ ++ a :: u₂.take (i - u₁.length - 1) := by
-      rw [List.take_append, List.take_of_length_le (by omega), hsucc, List.take_succ_cons]
-    rw [htake, RelWord.listVal_append, RelWord.listVal_cons] at hvert
-    apply h₂ (i - u₁.length - 1) _ hc
-    rw [inv_one, one_mul, mul_assoc, mul_assoc]
-    exact hvert
-
-/-- **The face relation with one letter split off.**  If that letter is not read at a
-vertex of `H_λ`, the value is a bounded product; if it is, the value is a bounded
-product, the letter, and a bounded product. -/
-theorem face_relation_split (D : GGT.RelGenSet G Lambda) (lam : Lambda) (A : Set G)
-    {u₁ u₂ : List (GGT.RelLetter G Lambda)} {a : GGT.RelLetter G Lambda}
-    (hletters : ∀ b ∈ u₁ ++ a :: u₂, D.IsLetter b)
-    (hval : GGT.RelLetter.listVal (u₁ ++ a :: u₂) ∈ D.fam lam)
-    (h₁ : CosetLettersAt D lam A 1 1 u₁)
-    (h₂ : CosetLettersAt D lam A 1 (GGT.RelLetter.listVal u₁ * a.val) u₂) :
-    (¬ (GGT.RelLetter.IsCompOf lam a ∧ GGT.RelLetter.listVal u₁ ∈ D.fam lam) →
-        GGT.RelLetter.listVal (u₁ ++ a :: u₂) ∈
-          boundedProducts (A ∪ D.relBall lam (u₁ ++ a :: u₂).length)
-            ((u₁ ++ a :: u₂).length + 1)) ∧
-      ((GGT.RelLetter.IsCompOf lam a ∧ GGT.RelLetter.listVal u₁ ∈ D.fam lam) →
-        ∃ x y : G,
-          x ∈ boundedProducts (A ∪ D.relBall lam (u₁ ++ a :: u₂).length)
-            ((u₁ ++ a :: u₂).length + 1) ∧
-          y ∈ boundedProducts (A ∪ D.relBall lam (u₁ ++ a :: u₂).length)
-            ((u₁ ++ a :: u₂).length + 1) ∧
-            GGT.RelLetter.listVal (u₁ ++ a :: u₂) = x * a.val * y) := by
-  set rest := u₁ ++ a :: u₂ with hrest_def
-  have hj : u₁.length < rest.length := by rw [hrest_def]; simp
-  have hgetj : rest[u₁.length] = a := by
-    rw [hrest_def, List.getElem_append_right le_rfl]
-    simp
-  have hvertj : GGT.OsinComponents.vertex 1 rest u₁.length = GGT.RelLetter.listVal u₁ := by
-    rw [hrest_def, GGT.RelHyp.cosetPieces_vertex_append, one_mul]
-  obtain ⟨pieces, hprod, hinr, hinl, hall, hpair, hlen⟩ :=
-    GGT.RelHyp.exists_cosetPieces D lam rest hletters hval
-  have hsplit := cosetLetters_split h₁ h₂
-  have hclass : ∀ p ∈ pieces, p ≠ Sum.inl u₁.length →
-      GGT.RelHyp.pieceVal rest p ∈ A ∪ D.relBall lam rest.length := by
-    intro p hp hne
-    cases p with
-    | inl i =>
-        obtain ⟨hi, hcomp, hvert⟩ := hinl i hp
-        left
-        rw [pieceVal_inl hi]
-        exact hsplit i hi (fun h => hne (by rw [h])) hcomp hvert
-    | inr g =>
-        right
-        exact hinr g hp
-  constructor
-  · intro hnot
-    have hmem : Sum.inl u₁.length ∉ pieces := by
-      intro hmem
-      obtain ⟨hi, hcomp, hvert⟩ := hinl _ hmem
-      apply hnot
-      refine ⟨?_, ?_⟩
-      · have e : rest.get ⟨u₁.length, hi⟩ = a := hgetj
-        rw [← e]
-        exact hcomp
-      · rw [← hvertj]
-        exact hvert
-    refine ⟨pieces.map (GGT.RelHyp.pieceVal rest), by rw [List.length_map]; exact hlen, ?_,
-      hprod⟩
-    intro z hz
-    obtain ⟨p, hp, rfl⟩ := List.mem_map.mp hz
-    exact hclass p hp (by rintro rfl; exact hmem hp)
-  · rintro ⟨hcomp, hvert⟩
-    have hmem : Sum.inl u₁.length ∈ pieces :=
-      hall u₁.length hj (by rw [show rest.get ⟨u₁.length, hj⟩ = a from hgetj]; exact hcomp)
-        (by rw [hvertj]; exact hvert)
-    obtain ⟨s, t, rfl⟩ := List.append_of_mem hmem
-    have hfm : ((s ++ Sum.inl u₁.length :: t).filterMap Sum.getLeft?) =
-        s.filterMap Sum.getLeft? ++ u₁.length :: t.filterMap Sum.getLeft? := by
-      simp [List.filterMap_append]
-    rw [hfm, List.pairwise_append, List.pairwise_cons] at hpair
-    obtain ⟨-, ⟨hjt, -⟩, hst⟩ := hpair
-    have hs : ∀ p ∈ s, p ≠ Sum.inl u₁.length := by
-      rintro p hp rfl
-      have hmemi : u₁.length ∈ s.filterMap Sum.getLeft? := List.mem_filterMap.mpr ⟨_, hp, rfl⟩
-      exact Nat.lt_irrefl _ (hst _ hmemi _ (List.mem_cons_self ..))
-    have ht : ∀ p ∈ t, p ≠ Sum.inl u₁.length := by
-      rintro p hp rfl
-      have hmemi : u₁.length ∈ t.filterMap Sum.getLeft? := List.mem_filterMap.mpr ⟨_, hp, rfl⟩
-      exact Nat.lt_irrefl _ (hjt _ hmemi)
-    simp only [List.length_append, List.length_cons] at hlen
-    refine ⟨(s.map (GGT.RelHyp.pieceVal rest)).prod, (t.map (GGT.RelHyp.pieceVal rest)).prod,
-      ⟨s.map (GGT.RelHyp.pieceVal rest), by rw [List.length_map]; omega, ?_, rfl⟩,
-      ⟨t.map (GGT.RelHyp.pieceVal rest), by rw [List.length_map]; omega, ?_, rfl⟩, ?_⟩
-    · intro z hz
-      obtain ⟨p, hp, rfl⟩ := List.mem_map.mp hz
-      exact hclass p (List.mem_append_left _ hp) (hs p hp)
-    · intro z hz
-      obtain ⟨p, hp, rfl⟩ := List.mem_map.mp hz
-      exact hclass p (List.mem_append_right _ (List.mem_cons_of_mem _ hp)) (ht p hp)
-    · rw [← hprod, List.map_append, List.map_cons, List.prod_append, List.prod_cons,
-        pieceVal_inl hj, hgetj, mul_assoc]
+/-- **The face relation from any base point.**  A word read from `x`, returning to the
+coset `x H_λ`, whose peripheral letters read at vertices of `x H_λ` have values in `A`. -/
+theorem listVal_mem_boundedProducts_of_cosetLettersAt_from (D : GGT.RelGenSet G Lambda)
+    (lam : Lambda) (A : Set G) (x : G) {rest : List (GGT.RelLetter G Lambda)}
+    (hrest : ∀ a ∈ rest, D.IsLetter a) (hval : GGT.RelLetter.listVal rest ∈ D.fam lam)
+    (hA : CosetLettersAt D lam A x x rest) :
+    GGT.RelLetter.listVal rest ∈
+      boundedProducts (A ∪ D.relBall lam rest.length) (rest.length + 1) := by
+  apply listVal_mem_boundedProducts_of_cosetLettersAt D lam A hrest hval
+  have h := hA.translate x⁻¹
+  rwa [inv_mul_cancel] at h
 
 end HullSC
 end GroupApproximation
@@ -347,5 +237,4 @@ end GroupApproximation
 #audit_axioms GroupApproximation.HullSC.CosetLettersAt.append
 #audit_axioms GroupApproximation.HullSC.cosetLettersAt_respellInv
 #audit_axioms GroupApproximation.HullSC.listVal_mem_boundedProducts_of_cosetLettersAt
-#audit_axioms GroupApproximation.HullSC.cosetLetters_split
-#audit_axioms GroupApproximation.HullSC.face_relation_split
+#audit_axioms GroupApproximation.HullSC.listVal_mem_boundedProducts_of_cosetLettersAt_from
