@@ -134,8 +134,9 @@ theorem homOf_isZero_of_contractible (Y : TopCat.{0}) [ContractibleSpace Y] (k :
 /-- **The signed `Finsupp` complex of a standard simplex has no positive-degree homology.** -/
 theorem singFreeR_isZero_homology_stdSimplexTop (n k : ℕ) :
     IsZero (((singFreeR K).obj (stdSimplexTop n)).homology (k + 1)) := by
-  have hM : IsZero ((alternatingFaceMapComplex (ModuleCat.{0} K)).obj
-      (TopCat.toSSet.obj (stdSimplexTop n) ⋙ sigmaConst.obj (ModuleCat.of K K))).homology (k + 1)) :=
+  have hM : IsZero (((alternatingFaceMapComplex (ModuleCat.{0} K)).obj
+      (TopCat.toSSet.obj (stdSimplexTop n) ⋙ sigmaConst.obj (ModuleCat.of K K))).homology
+        (k + 1)) :=
     homOf_isZero_of_contractible K (stdSimplexTop n) (k + 1) (Nat.succ_ne_zero k)
   exact IsZero.of_iso hM
     (HomologicalComplex.homologyMapIso (singFreeRIsoSingular K (stdSimplexTop n)) (k + 1))
