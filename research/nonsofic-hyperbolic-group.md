@@ -49,3 +49,29 @@ premise is a statement about the finite quotients of random Kazhdan hyperbolic
 groups. It already forces a non-residually-finite hyperbolic group
 (`non-rf-hyperbolic-via-cheeger-threshold`), and residual finiteness of those
 groups would refute it (`random-complex-cheeger-capped-by-triangle-count`).
+
+## Attempts
+
+- **Forcing a nontrivial block representation on the Leavitt cover: dead.**
+  - The cover `hyperbolic-kazhdan-cover-of-leavitt-unit-group` gives
+    `1 -> N -> G -> R^x -> 1` with `N` Kazhdan.
+  - By `kazhdan-quotient-sofic-iff-injective-block-representation`, each sofic
+    approximation of `G` induces `tau_sigma : R^x -> S_U` on the expander
+    blocks of `N`.
+  - By `kazhdan-kernel-blocks-invariant-under-sofic-invisible-quotient`, that
+    representation is trivial for **every** approximation, because `R^x` is
+    simple and nonsofic.
+  - So showing that some approximation moves the blocks nontrivially is
+    impossible. That route to nonsoficity of `G` is closed by a theorem, not
+    left as a gap. A contradiction has to come from inside single blocks: see
+    `relative-normalization-modulo-kazhdan-kernel`.
+- **Bounded inner realizers: dead.**
+  - On blocks, an element outside `N` is not within `eps < 1/2` of a kernel
+    element from a fixed finite set times an exact block centralizer, except on
+    negligible mass (`bounded-blockwise-inner-realizers-fail-off-kernel`).
+  - So blockwise realizers must leave every finite set along `U`. The genuine
+    realizers of the finite quotients
+    (`leavitt-cover-finite-quotients-split-over-the-kernel`) do not transfer
+    with bounded size.
+  - What remains is the unbounded-cocycle conjugacy hinge recorded on
+    `sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`.
