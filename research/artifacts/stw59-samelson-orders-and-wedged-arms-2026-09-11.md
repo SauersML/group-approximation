@@ -178,3 +178,53 @@ limit of groups of class ≤ 2 has class ≤ 2. □
 
 So nilpotency class three or more needs blocks with dim X > 2·rank E
 cofinally. That rules out every LIX tower built so far.
+
+## 6. A triple commutator one dimension above the equal-dimension regime
+
+**Proposition E.** Let α ∈ π_1U(2) be z↦diag(z,1), and let ω: S³=SU(2) ⊂ U(2)
+be the inclusion. Then ⟨α,⟨α,ω⟩⟩ = ω∘η_3∘η_4 ≠ 0 in π_5U(2) ≅ Z/2.
+
+Consequently, in U(M_2(C(T²×S³))) the unitaries u_1=α∘pr_1, u_2=α∘pr_2
+and v=ω∘pr_3 have a triple commutator [u_2,[u_1,v]] that is not in U_0. The
+component group has nilpotency class at least three. Here
+dim X = 5 = 2·rank + 1.
+
+**Proof.**
+
+*The inner product.* Commutators are pointwise in SU(2). Since
+π_kSU(2) → π_kU(2) is an isomorphism for k ≥ 2, NCG Proposition 2 (n=2)
+gives ⟨α,ω⟩ = ω∘η_3, the nonzero element of π_4S³.
+
+*Naturality.* For based h: S^k → S³, the commutator map of α and ω∘h is
+the commutator map of α and ω precomposed with 1×h. So
+⟨α,ω∘h⟩ = ⟨α,ω⟩∘(1_{S¹}∧h). With h=η_3 this gives
+⟨α,⟨α,ω⟩⟩ = ω∘η_3∘Ση_3 = ω∘η_3η_4. That is the generator of
+π_5S³ ≅ Z/2 (Toda).
+
+*Detection.* The triple commutator map factors as ⟨α,⟨α,ω⟩⟩∘q, where
+q: T²×S³ → S¹∧S¹∧S³ = S⁵ is the collapse.
+
+- The map w vanishes on {1}×Y, where Y=S¹×S³. So w factors through
+  (S¹×Y)/({1}×Y) = Σ(Y_+) ≃ S¹∨ΣY.
+- The pair {1}×Y ⊂ S¹×Y has a retraction. Its Puppe connecting map is
+  therefore null, and [Σ(Y_+),U(2)] → [S¹×Y,U(2)] is injective.
+- The collapse ΣY=Σ(S¹×S³) → Σ(S¹∧S³)=S⁵ has a homotopy section, from
+  the splitting Σ(A×B) ≃ ΣA∨ΣB∨Σ(A∧B) (Hatcher, Prop. 4I.1). So
+  π_5U(2) → [ΣY,U(2)] is injective.
+
+Composing, q^* is injective on π_5U(2), and w ≠ 0. □
+
+## 7. The simple-limit problem for class three
+
+In an excess-one tower, the stages are X_k = T²×S³×∏_{l<k}CP^{r_l} with
+E_k=1²⊕H_k, so dim X_k = 2·rank E_k+1. The element w⊕1_{H_k} lies in the
+kernel of π_0G(E_k) → K^1(X_k). Restricting to a point of the projective
+factors kills it: π_5U(2) → π_5U(2+m) is zero for m ≥ 1. So detection
+must use the twisting, as LIX does.
+
+In the gauge sequence, π_1 of the section space now has a secondary
+coordinate H^{2r+1}(X;π_{2r+2}S^{2r+1}) = Z/2. This is where η² lives.
+Proving that twisted tautological blocks keep this coordinate out of the
+image of the unstable group π_1G(F) is open. The natural tool is a
+Wu/Sq²-type computation, like the mod-2 top Chern class of LIX. So a simple
+unital C*-algebra whose component group has class ≥ 3 remains open.
