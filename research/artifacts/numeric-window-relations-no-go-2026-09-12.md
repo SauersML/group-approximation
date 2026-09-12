@@ -1,4 +1,4 @@
-# Numerical window relations never force balance over a nonamenable decoder
+# Numerical window relations do not force balance at large alphabets over a nonamenable decoder
 
 Lane `w4-window-boundary`, 2026-09-12. Supports `numeric-window-relations-do-not-force-balance`, which
 invalidates `balance-from-numeric-window-relations`, and records an Attempts entry on
@@ -7,9 +7,11 @@ invalidates `balance-from-numeric-window-relations`, and records an Attempts ent
 The open step isolated by `w3-bern-window` (`research/artifacts/window-balance-mass-transport-2026-09-12.md`)
 is to remove the boundary factor `q^|d_N E|` from the decoder fiber bound on a cofinal family of windows.
 This artifact shows that no argument using those relations only as numbers can do it, over any group,
-once the decoder memory generates a nonamenable subgroup. When it generates an amenable subgroup, the
-numbers already give a uniform site law. So the numerical form of relations (a), (b), (c) is exactly as
-strong as amenability of the decoder memory group.
+once the decoder memory generates a nonamenable subgroup and the alphabet is large enough (Theorems 3 and
+6), or at `q = 2` when the decoder memory contains a free radius-2 ball (Proposition 4). When the decoder
+memory generates an amenable subgroup, the numbers already give a uniform site law. So at large alphabets
+the numerical form of relations (a), (b), (c) is exactly as strong as amenability of the decoder memory
+group.
 
 ## 1. The numerical relations
 
@@ -179,14 +181,26 @@ Four findings bound where a proof can come from:
 | isomorphism invariants of the image | yes | inert | `measure-conjugacy-invariants-cannot-certify-surjectivity` |
 | conjugacy invariants read on the coordinate partition | yes | reduces to INF | `injective-balance-needs-inf-and-nonlocal-2026-09-12.md`, Section 1 |
 
-A proof of `every-injective-ca-preserves-uniform-bernoulli-measure`, or of the one-site law, must
-therefore either:
-- use the pointwise identity `sigma o tau = id` on the group's own coincidence pattern, which is the
-  combinatorics of product tables, formalizability and group-ring identities; or
-- prove maximal Bernoulli Rokhlin entropy, or at least a lower bound on `h_fin`.
+**Scope of the squeeze.** The table classifies the inputs examined so far. It is not a theorem about all
+possible proofs. Here "numerical relations" means exactly the lists R1–R4 (Section 1) and G1–G4
+(Section 4), plus at `q = 4` the pushforward relation R5 of the verifier's §3.6 (below): `nu = tau'_* mu`
+for an automaton `tau'`, and `sigma'_* nu = mu` for an automaton `sigma'`. Among the inputs examined, the
+ones not shown consistent with imbalance are:
+- the pointwise identity `sigma o tau = id` on the group's own coincidence pattern, which is the
+  combinatorics of product tables, formalizability and group-ring identities;
+- maximal Bernoulli Rokhlin entropy;
+- a direct lower bound on `h_fin` (`injective-ca-images-have-full-single-site-entropy`), which INF implies
+  and which is a priori weaker;
+- a numerical argument at small alphabets combined with an alphabet reduction. Theorems 3 and 6 need `q`
+  large relative to `theta`, and Proposition 4 needs a free radius-2 ball in the decoder memory. A numerical
+  proof at `q = 2` for decoder memories outside Proposition 4 (no free radius-2 ball, or
+  `theta_N > 0.3057`) is not excluded. Combined with a descent that lands in that class, it would reach
+  every alphabet. The descent `surjunctivity-failure-descends-to-binary-alphabet` is OPEN and changes
+  memories, so it gives no control over the decoder memory as it stands.
 
-Mass transport, local permutations and cofinal window families all act on the numbers of Sections 1 and 4,
-so none of them can remove the boundary factor.
+At the alphabet sizes and decoder groups of Theorems 3 and 6 and Proposition 4, mass transport, local
+permutations and cofinal window families all act on the numbers of Sections 1 and 4, so none of them can
+remove the boundary factor there.
 
 Verifier `w4-vf-positive-b` (§3.6 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`)
 strengthens Theorem 3 at `q = 4` when `N` contains the radius-2 ball of a free pair. The merge measure is
@@ -197,6 +211,10 @@ even after `(sigma' o tau')_* mu = mu` is added. Other `q` are not checked.
 On the tree row of the table: the counts there obey totals and invariance. What the end-fixing tree lacks is
 right cancellation of reads, because the parent map is two-to-one.
 
-Two things the tables do not reach:
-- the binary alphabet for weakly nonamenable decoder groups, which Proposition 4 misses;
-- alphabet sizes that are not perfect powers, where Theorem 3 covers R1–R4 but not G1 or G3.
+Three things the tables do not reach:
+- the binary alphabet for decoder memories with no free radius-2 ball, or with `theta_N > 0.3057`, which
+  Proposition 4 misses;
+- small alphabets in general. Theorem 3 needs `q^(1 - theta_N) >= 2`, and Theorem 6 needs `q = r^k` with
+  `k >= 1/(1 - theta)`;
+- alphabet sizes that are not perfect powers, where Theorem 3 covers R1–R4 (once `q^(1 - theta_N) >= 2`)
+  but not G1 or G3.

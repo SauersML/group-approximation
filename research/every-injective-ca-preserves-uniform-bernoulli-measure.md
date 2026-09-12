@@ -129,7 +129,7 @@ every `p in A^Omega`, where `M` is the memory,
   - Exact open step: the boundary-free decoder bound on a cofinal family of windows. At `E = {1}` the
     decoder bound is vacuous, matching `every-injective-ca-has-uniform-single-site-output-law`.
   - Artifact: `research/artifacts/window-balance-mass-transport-2026-09-12.md`.
-* **Numbers never remove the boundary factor (w4-window-boundary, 2026-09-12).**
+* **Window numbers do not remove the boundary factor at large alphabets (w4-window-boundary, 2026-09-12).**
   `numeric-window-relations-do-not-force-balance` invalidates `balance-from-numeric-window-relations`.
   - *Amenable decoder memory group.* The decoder decay alone forces a uniform site law, by a Følner entropy
     count.
@@ -138,12 +138,21 @@ every `p in A^Omega`, where `M` is the memory,
     null cylinder:
     - iid merge measures, once `q^(1 - theta) >= 2`;
     - AND measures at `q = 2`, once the decoder memory contains a free radius-2 ball;
-    - sitewise projections `B^k -> B^(k-1) x {b_0}`, which also satisfy every relation of the 2026-09-08
-      Gibbs bridge: unique uniform Gibbs measure, weak mixing, completion counts divisible by `q^|I_E|`.
-  - *What is ruled out.* Mass transport of counts, local permutations of the image, cofinal windows and
-    count-level telescoping cannot remove `q^(|d_N E|)` on any nonamenable decoder group.
-  - *What a proof must use.* Either the pointwise identity `sigma o tau = id` on the group's own coincidence
-    pattern (the end-fixing tree shows the identity without the group law is not enough), or maximal
-    Bernoulli Rokhlin entropy.
-  - *Not covered.* The binary alphabet over weakly nonamenable decoder groups.
+    - sitewise projections `B^k -> B^(k-1) x {b_0}` at `q = r^k` with `k >= 1/(1 - theta)`. These also
+      satisfy every relation of the 2026-09-08 Gibbs bridge: unique uniform Gibbs measure, weak mixing,
+      completion counts divisible by `q^|I_E|`.
+  - *What is ruled out.* In the three cases above, mass transport of counts, local permutations of the
+    image, cofinal windows and count-level telescoping cannot remove `q^(|d_N E|)`. "Numerical" means
+    exactly those relations, plus at `q = 4` the pushforward relation of verifier w4-vf-positive-b's §3.6.
+    All of this passed verification in §3 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
+  - *Inputs not shown consistent with imbalance.* This classifies the inputs examined; it is not a theorem.
+    - the pointwise identity `sigma o tau = id` on the group's own coincidence pattern (the end-fixing tree
+      shows the identity without the group law is not enough);
+    - maximal Bernoulli Rokhlin entropy;
+    - a direct lower bound on `h_fin` (`injective-ca-images-have-full-single-site-entropy`), which is a priori
+      weaker than INF;
+    - a numerical argument at small alphabets combined with an alphabet reduction. A numerical proof at
+      `q = 2` for decoder memories with no free radius-2 ball (or `theta_N > 0.3057`) is not excluded, and
+      with a descent landing in that class it would reach every alphabet. The descent
+      `surjunctivity-failure-descends-to-binary-alphabet` is OPEN and changes memories.
   - Artifact: `research/artifacts/numeric-window-relations-no-go-2026-09-12.md`, Sections 1–5.

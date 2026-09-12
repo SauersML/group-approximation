@@ -47,20 +47,31 @@ The image of `mu` under a strict automaton with memory `M` and left-inverse memo
      and `q^|I_E| <= N_Y(E, c) <= q^|E|`.
    - Its site law is not uniform.
 
-**Consequence.** In cases 2–4 no argument from these numerical relations proves a uniform site law, so none
-proves balance at any window. The goal quantifies over every alphabet, so a numerical proof would have to
-work at the alphabet sizes of cases 2 and 4.
+**Consequence.** At the alphabet sizes and decoder memories of cases 2–4, no argument from these numerical
+relations proves a uniform site law, so none proves balance at any window. Here "numerical relations"
+means exactly R1–R4 and the Gibbs-bridge relations of part 4. At `q = 4` it also means the pushforward
+relation of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md` §3.6: the merge measure is an
+automaton image of `mu`, and some automaton carries it back to `mu`. A numerical proof of the goal handles
+every alphabet directly, so it would have to work at the sizes of cases 2 and 4. That does not apply to a
+proof that reaches small alphabets numerically and then passes through an alphabet reduction (below).
 
-This covers the following manipulations of window counts and completion counts:
+At those alphabet sizes and decoder memories, this covers the following manipulations of window counts and
+completion counts:
 - mass transport along the decoder graph;
 - averaging over translates or invariant random windows;
 - cofinal window families;
 - local permutations of the image;
 - telescoping `tau`, `sigma`, `tau` at the level of counts.
 
-**What remains** (artifact Section 5).
+**Inputs not shown consistent with imbalance** (artifact Section 5). This is a classification of the inputs
+examined so far, not a theorem about all proofs.
 - **The pointwise decoder identity `sigma o tau = id`, on the group's own coincidence pattern.** Without the
   group law this identity coexists with imbalance, on the end-fixing tree
   (`finite-left-inverse-identity-does-not-force-balance`, a tree fact only).
-- **Conjugacy invariants read on the coordinate partition.** On nonsofic hosts these reduce to maximal
-  Bernoulli Rokhlin entropy.
+- **Maximal Bernoulli Rokhlin entropy.** The conjugacy-entropy proof of balance factors through it.
+- **A direct lower bound on `h_fin`** (`injective-ca-images-have-full-single-site-entropy`). INF implies it,
+  and it is a priori weaker.
+- **Small alphabets plus an alphabet reduction.** Cases 2 and 4 need large `q`, and case 3 needs a free
+  radius-2 ball in the decoder memory. A numerical proof at `q = 2` for decoder memories outside case 3 is
+  not excluded. Combined with a descent landing in that class, it would reach every alphabet. The descent
+  `surjunctivity-failure-descends-to-binary-alphabet` is OPEN and changes memories.
