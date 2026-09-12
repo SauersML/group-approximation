@@ -197,13 +197,15 @@ constants `C, c, c' > 0` with:
 - `rk(rho_i(h) - 1) <= C d_i l_i(h)` for all `h`;
 - `rk(rho_i(h) - 1) >= c' d_i` whenever `l_i(h) >= c`.
 
-Then every countable subgroup of `Q` whose nontrivial elements have limit length at least `c` is `F`-linear sofic,
-and its group algebra over `F` is stably finite.
+Then every countable subgroup of `Q` whose nontrivial elements have limit length greater than `c` is `F`-linear
+sofic, and its group algebra over `F` is stably finite.
 
 *Proof.* Compose each weakly sofic approximation `phi_i` with `rho_i`.
 - **Defects.** `rk(rho_i(phi_i(a)phi_i(b)) - rho_i(phi_i(ab))) = rk(rho_i(phi_i(a)phi_i(b)phi_i(ab)^-1) - 1)`, which
   is at most `C d_i eps_i`.
-- **Separation.** `rk(rho_i(phi_i(g)) - 1) >= c' d_i`.
+- **Separation.** For `g != 1` in a finite `F`, the limit length exceeds `c`, so `l_i(phi_i(g)) >= c` for
+  `omega`-almost every `i`, and then `rk(rho_i(phi_i(g)) - 1) >= c' d_i`. Limit length equal to `c` would not give
+  this; there, apply the second hypothesis at `c/2` instead (scope note from w3-vf-positive, Section 10).
 
 Stable finiteness follows from `linear-sofic-group-algebra-is-stably-finite`. QED
 
