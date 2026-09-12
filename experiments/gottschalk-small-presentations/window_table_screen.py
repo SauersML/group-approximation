@@ -211,18 +211,37 @@ def gap_file(path, n, rels, h_idx, max_index):
         fh.write("F := FreeGroup(%d);;\nrels := [%s];;\n" % (
             n, ",\n".join("%s/(%s)" % (w(l), w(r)) for l, r in rels)))
         fh.write("U := F/rels;;\niso := IsomorphismSimplifiedFpGroup(U);;\nV := Range(iso);;\n"
-                 "yh := Image(iso, U.%d);;\nres := \"SURVIVES_TO_INDEX_%d\";;\n" % (h_idx + 1, max_index))
-        fh.write("for K in LowIndexSubgroupsFpGroup(V, %d) do\n"
-                 "  hom := FactorCosetAction(V, K);;\n"
-                 "  if Image(hom, yh) <> () then\n"
-                 "    imgs := List(GeneratorsOfGroup(U), x -> Image(hom, Image(iso, x)));;\n"
-                 "    ok := ForAll(rels, rr -> MappedWord(rr, GeneratorsOfGroup(F), imgs) = ());;\n"
-                 "    out := OutputTextFile(\"%s\", false);; SetPrintFormattingStatus(out, false);;\n"
-                 "    PrintTo(out, \"{\\\"index\\\": \", Index(V, K), \", \\\"gap_relators_ok\\\": \",\n"
-                 "      ok, \", \\\"perms\\\": \", List(imgs, x -> ListPerm(x, Index(V, K))), \"}\\n\");;\n"
-                 "    CloseStream(out);;\n"
-                 "    res := Concatenation(\"SEP_INDEX_\", String(Index(V, K)));; break;\n"
-                 "  fi;\nod;\nPrint(\"RESULT \", res, \"\\n\");\nQUIT;\n" % (max_index, wit))
+                 "yh := Image(iso, U.%d);;\nres := \"SURVIVES\";;\n" % (h_idx + 1))
+        fh.write("Print(\"SIMPLIFIED gens \", Length(GeneratorsOfGroup(V)), \" rels \",\n"
+                 "  Length(RelatorsOfFpGroup(V)), \"\\n\");\n")
+        fh.write("record := function(hom, deg, tag)\n"
+                 "  local imgs, ok, out;\n"
+                 "  imgs := List(GeneratorsOfGroup(U), x -> Image(hom, Image(iso, x)));\n"
+                 "  ok := ForAll(rels, rr -> MappedWord(rr, GeneratorsOfGroup(F), imgs) = ());\n"
+                 "  out := OutputTextFile(\"%s\", false); SetPrintFormattingStatus(out, false);\n"
+                 "  PrintTo(out, \"{\\\"index\\\": \", deg, \", \\\"gap_relators_ok\\\": \", ok,\n"
+                 "    \", \\\"image\\\": \\\"\", tag, \"\\\", \\\"perms\\\": \",\n"
+                 "    List(imgs, x -> ListPerm(x, deg)), \"}\\n\");\n"
+                 "  CloseStream(out);\nend;;\n" % wit)
+        # small simple targets in their natural permutation actions, before low index
+        fh.write("targets := [[PSL(3,2), \"PSL(3,2)\"], [AlternatingGroup(7), \"A7\"],\n"
+                 "  [PSL(2,8), \"PSL(2,8)\"], [AlternatingGroup(8), \"A8\"], [PSL(2,11), \"PSL(2,11)\"]];;\n"
+                 "for T in targets do\n"
+                 "  if res = \"SURVIVES\" then\n"
+                 "    for hom in GQuotients(V, T[1]) do\n"
+                 "      if res = \"SURVIVES\" and Image(hom, yh) <> () then\n"
+                 "        record(hom, LargestMovedPoint(T[1]), T[2]);\n"
+                 "        res := Concatenation(\"SEP_QUOTIENT_\", T[2]);\n"
+                 "      fi;\n    od;\n  fi;\nod;\n")
+        fh.write("if res = \"SURVIVES\" then\n"
+                 "  for K in LowIndexSubgroupsFpGroup(V, %d) do\n"
+                 "    hom := FactorCosetAction(V, K);\n"
+                 "    if res = \"SURVIVES\" and Image(hom, yh) <> () then\n"
+                 "      record(hom, Index(V, K), \"cosets\");\n"
+                 "      res := Concatenation(\"SEP_INDEX_\", String(Index(V, K)));\n"
+                 "    fi;\n  od;\n"
+                 "  if res = \"SURVIVES\" then res := \"SURVIVES_TARGETS_AND_INDEX_%d\"; fi;\n"
+                 "fi;\nPrint(\"RESULT \", res, \"\\n\");\nQUIT;\n" % (max_index, max_index))
 
 
 def main():
