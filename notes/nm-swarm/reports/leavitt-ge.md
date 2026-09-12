@@ -108,4 +108,7 @@ The helpers live in `Systolic.BFS`.
 
 ## Probe history
 
-- Probe on the stage-1 bytes (6e2564b25) is running. Stage 2 (7db678817) is probed after it.
+- 0912-102720-64127: PROBE GREEN on the stage-1 bytes (6e2564b25); BUILT
+  `GroupApproximation.GGT.SystolicBallDismantlable`, base c1a21c29d. The whole ranking compiled on
+  the first probe.
+- Stage 2 (7db678817, the `Dismantlable` wrapper; bytes on main) is being probed.
