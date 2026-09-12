@@ -17,8 +17,18 @@ Clone spare2.  Owns `CharClass/OddPProductAW*`.  Interface: lx-cartan-b's spelli
   `tupPush_awTupOf`, **`tupAllMap_awTupAll`**, **`awTup`**, **`tupIncl_comp_awTup`**, **`awTup_tupD`**,
   **`awTup_tupT`**, **`awTup_tupMap`**, **`awTup_diagPt`**.
 
+- 2968d8530 part 3 (above).  Split (landing): `awTup_diagPt` moved to NEW `CharClass/OddPProductAWDiag.lean`
+  (imports OddPProductAW + OddPDiagonalSrc); OddPProductAW no longer imports OddPDiagonalSrc.
+
 ## GREEN
 (none yet; never compiled)
+
+## PROBES
+- 0912-115949-21053 (spare2, acn112 slot 0, base 142e9d35b): PROBE FAILED before reaching OddPProductAW —
+  red IMPORTS on main: `OddPProductEval` (instance synthesis 68:36, 71:39, 82:17, 96:74; unsolved 99:4; likely
+  missing classical DecidableEq on TagSimp/TupAll) → messaged lx-prodeval; `OddPTopPowerAW` (deprecated
+  `Fin.lt_iff_val_lt_val`, `Fin.coe_castSucc`; omega 127:6; rw 157:6) → messaged lx-toppower; `OddPDiagonalAug`
+  (isDefEq timeout 262:0, lx-diag) → removed from my closure by the split.  Re-probe once both owners land fixes.
 
 ## NEEDS
 - none.  Imports on main: OddPProductEval (2590c0d3b), OddPTopPowerAWChain (249cfba63), OddPEvalMultilinear,
