@@ -131,6 +131,7 @@ theorem go_prop41_core (h42 : GerasimovaOsinLemma42Statement) (G : Type) [Group 
   · intro g
     simp only [wordNorm_inv hSG]
   · intro g h
+    dsimp only
     exact_mod_cast wordNorm_mul_le hSG g h
   · intro g
     simp only [Nat.cast_eq_zero]
@@ -160,6 +161,7 @@ theorem go_prop41_core (h42 : GerasimovaOsinLemma42Statement) (G : Type) [Group 
   · intro n g hg x hx
     rw [goComb_one] at hx
     have hxg := wordNorm_le_of_mem_goCone (hfin := hfin) hS hx
+    dsimp only at hg
     have hg' : wordNorm D.alphabet.carrier g ≤ n := by exact_mod_cast hg
     have h1 : n + goOmegaM D F t C hfin ≤ (goOmegaM D F t C hfin + 1) * (n + 1) := by
       nlinarith [Nat.zero_le (goOmegaM D F t C hfin * n)]
@@ -172,12 +174,14 @@ theorem go_prop41_core (h42 : GerasimovaOsinLemma42Statement) (G : Type) [Group 
         ≤ (2 * (goOmegaM D F t C hfin + 1) * (goOmega D F t C hfin).card ^ 2 +
           goOmegaM D F t C hfin + 1) * (n + 1) :=
       le_trans (le_trans hxg (Nat.add_le_add_right hg' _)) (le_trans h1 h2)
+    dsimp only
     exact_mod_cast hbound
 
 /-- **Gerasimova–Osin, Proposition 4.1**, from the two-sided Lemma 4.2. -/
 theorem gerasimovaOsinProposition41_of_lemma42 (h42 : GerasimovaOsinLemma42Statement) :
     GerasimovaOsinProposition41Statement := by
   intro G _ _ _ hrad F _
+  classical
   obtain ⟨y, D, hy, -⟩ := h42 G hrad ∅ (by simp)
   have hGinf : (Set.univ : Set G).Infinite :=
     (infinite_zpowers.mpr hy).mono (Set.subset_univ _)
