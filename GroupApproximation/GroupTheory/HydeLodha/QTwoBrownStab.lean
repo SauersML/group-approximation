@@ -202,7 +202,7 @@ noncomputable def kerEdgeShiftEquiv (hΓ : Γ ≤ gammaTwo) (t : ↥Γ) :
       rw [(mem_stabK.mp f.2).2 0 (Set.mem_insert _ _)]
       simp⟩⟩, (mem_edgeStab_vertexH_iff hΓ t _).mpr ⟨0, by
       show (f : Equiv.Perm ℚ) ((t : Equiv.Perm ℚ) 0) = (t : Equiv.Perm ℚ) 0 + ((0 : ℤ) : ℚ)
-      rw [(mem_stabK.mp f.2).2 _ (Set.mem_insert_of_mem _ rfl)]
+      rw [(mem_stabK.mp f.2).2 _ (Set.mem_insert_of_mem _ (Set.mem_singleton _))]
       simp⟩⟩, by
       rw [MonoidHom.mem_ker]
       show Multiplicative.ofAdd ⌊(f : Equiv.Perm ℚ) 0⌋ = 1
