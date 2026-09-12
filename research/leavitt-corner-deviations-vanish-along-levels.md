@@ -19,11 +19,15 @@ artifacts:
 
 ## Attempts
 
-* **Additivity of branch ranks would give it, and is refuted.** The Cuntz relation puts `2^k`
-  branch products at level `k`, all of rank `delta(k)`. If their ranks added, `delta(k) <= 2^(-k)`.
-  But the commuting branch defects need not have orthogonal ranges: the natural tensor square of
-  `rank-modelled-coefficients-violate-two-root-identities` has commuting branches acting on tensor
-  factors, where ranks do not add, and deviation `2/9` over `D = colim M_(2^k)(F_2)`.
+* **Additivity of branch ranks would give it, and corner data do not supply it.** The Cuntz
+  relation puts `2^k` branch products at level `k`, all of rank `delta(k)`. If
+  `sum_{|gamma| = k} rk(P_gamma) <= 1`, then `delta(k) <= 2^(-k)`. The natural source of that
+  inequality, orthogonality of the root branch defects `a_gamma`, `b_gamma`, fails in the natural
+  tensor square of `rank-modelled-coefficients-violate-two-root-identities` (deviation `2/9` over
+  `D = colim M_(2^k)(F_2)`). But that calibration still satisfies the inequality
+  (`sum_gamma rk(P_gamma) = 2^(1-k)/9`), and in a Leavitt model the inequality implies this claim,
+  so no calibration over another ring can refute it. Correction after `w3-vf-linear`, Section 16.1;
+  an earlier version said additivity is refuted.
 * **Proposition 2(5) is an upper bound with the wrong constant.** It gives
   `delta(k) <= 2 delta(k+1) + rk(C_k)`, which bounds the coarser level by the finer one and so does
   not iterate downwards.

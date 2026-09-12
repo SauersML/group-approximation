@@ -42,9 +42,12 @@ delta_sh = rk( n_23(s_0) n_12(t_0) ) .
    `|gamma| = k` is well defined.
 
 **Consequence for the gate.** The only contraction corner data could supply is additivity of the
-`2^k` branch ranks at level `k`, which with 3 would give `delta(k) <= 2^(-k)`. Additivity is refuted
-by `rank-modelled-coefficients-violate-two-root-identities`, whose commuting branches act on tensor
-factors. So any proof of `rank-models-of-el3-satisfy-the-two-root-identities` must contract the
+`2^k` branch ranks at level `k`, which with 3 would give `delta(k) <= 2^(-k)`. Corner data do not
+supply it: its natural source, orthogonality of the root branch defects for distinct words, fails in
+`rank-modelled-coefficients-violate-two-root-identities`, whose commuting branches act on tensor
+factors. That calibration still satisfies the additivity inequality itself, and in a Leavitt model
+the inequality would imply the open vanishing half, so no calibration over another ring can refute
+it (precision remark of `w3-vf-linear`, Section 16.1). So any proof of `rank-models-of-el3-satisfy-the-two-root-identities` must contract the
 product deviation by a mechanism that is neither additive over the Cuntz decomposition nor visible
 in root displacements. The surviving form is the pair of open claims
 `leavitt-corner-deviations-are-level-independent` and

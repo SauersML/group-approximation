@@ -34,8 +34,9 @@ artifacts:
 
 ## Scope
 
-The consequence paragraph of the claim quotes the refutation of branch-rank additivity from
-`rank-modelled-coefficients-violate-two-root-identities` without re-deriving it, and that node is
-not a prerequisite of the three parts proved here.
+The consequence paragraph of the claim quotes, without re-deriving it, the failure of orthogonality
+of root branch defects in `rank-modelled-coefficients-violate-two-root-identities`. That node is not
+a prerequisite of the three parts proved here. It does not refute the branch-rank inequality itself,
+which that calibration satisfies; the claim now says so.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 16.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS for parts 1–3. Part 1 was derived directly as n_13 − XY = −(1+X)YX V'^-1; part 4 of the displacement claim covers single idempotents. Precision remark on the claim's consequence paragraph: the cited calibration satisfies Σ_γ rk P_γ = 2^(1−k)/9 <= 1, so it refutes orthogonality of the root branch defects a_γ, b_γ, not the displayed branch-rank inequality.*

@@ -73,7 +73,7 @@ a unit of `R`, and `W = diag(w, w, w)` lies in `GL_3(R) = EL_3(R)`
 This generalizes Proposition 2(4) of the self-similarity artifact from `k = 1` to every level, and it
 makes `delta(k) := delta_gamma` (`|gamma| = k`) a well-defined function of the level alone.
 
-## 4. The one contraction that would work, and why it is refuted
+## 4. The one contraction that would work, and why corner data do not supply it
 
 The Cuntz relation gives `1 = sum_{|gamma| = k} e_gamma`, so level `k` carries `2^k` branch products
 `P_gamma`, all of the same rank `delta(k)` by Section 3. **If** their ranks were additive, that is
@@ -84,12 +84,21 @@ sum_{|gamma| = k} rk(P_gamma) <= 1 ,
 
 then `delta(k) <= 2^(-k) -> 0`, which with Section 5 would force `delta(0) = 0` and prove the gate.
 
-Additivity is refuted. The branch defects `a_gamma`, `b_gamma` commute but need not have orthogonal
-ranges: in the natural tensor square of `rank-modelled-coefficients-violate-two-root-identities` the
-commuting branches act on tensor factors, where ranks do not add, and that model has
-`rk(N_23 N_12) = 2/9` over `D = colim M_(2^k)(F_2)`. So corner data alone supplies no contraction,
-and Proposition 2(5) of the self-similarity artifact remains an upper bound with no companion lower
-bound.
+Corner data do not supply this inequality. The natural route to it would be orthogonality of the
+root branch defects `a_gamma`, `b_gamma` for distinct words, and that orthogonality fails: in the
+natural tensor square of `rank-modelled-coefficients-violate-two-root-identities` the commuting
+branches act on tensor factors, and that model has `rk(N_23 N_12) = 2/9` over
+`D = colim M_(2^k)(F_2)`.
+
+**Correction (after `w3-vf-linear`, Section 16.1 of its verification artifact).** An earlier version
+said additivity is *refuted*. That overstates. In the tensor-square model
+`P_gamma = Y_gamma (x) X_gamma + X_gamma (x) Y_gamma` has image in independent blocks
+`phi(e_gamma) V (x) phi(e_gamma) V`, so `sum_gamma rk(P_gamma) = 2^(1-k)/9 <= 1` and the calibration
+**satisfies** the displayed inequality. It refutes only orthogonality of `a_gamma`, `b_gamma`. In a
+Leavitt rank model the displayed inequality implies the open vanishing half, so no calibration over
+another ring can refute it; it is simply not available from corner data.
+
+Proposition 2(5) of the self-similarity artifact remains an upper bound with no companion lower bound.
 
 ## 5. What survives: a two-part route into the gate
 
@@ -98,8 +107,9 @@ By Section 3, `delta(k)` is well defined. The gate follows from the conjunction 
 * `leavitt-corner-deviations-are-level-independent`: `delta(k) = delta(0)` for every `k`;
 * `leavitt-corner-deviations-vanish-along-levels`: `delta(k) -> 0`.
 
-Together they give `delta(0) = 0`, hence `N_23 N_12 = 0` on the unit pair, hence triviality by
-corner locality. Route: `two-root-identity-via-level-contraction`.
+Together they give `delta(0) = 0`. The empty word has `e_(empty) = 1`, so `delta(0) = rk(N_23 N_12)`
+is the unit pair itself and `delta(0) = 0` is `N_23 N_12 = 0` directly. (By contrast
+`rk(n_23(e_0) n_12(e_0))` is `delta(1)`.) Route: `two-root-identity-via-level-contraction`.
 
 Level-independence is not automatic: Corollary 2.4 of the mechanism artifact records that the
 shifted pair is **not** conjugate to the unit pair, so the conjugation of Section 3 does not cross

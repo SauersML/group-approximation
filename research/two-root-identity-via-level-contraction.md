@@ -22,11 +22,14 @@ Let `sigma` be a characteristic-two rank model of `EL_3(R)`, `R = L_(F_2)(1,2)`.
 * `leavitt-corner-deviations-are-level-independent` gives `delta(k) = delta(0)` for all `k`.
 * `leavitt-corner-deviations-vanish-along-levels` gives `delta(k) -> 0`.
 
-So `delta(0) = 0`. By part 2 of `el3-two-root-violation-splits-over-leavitt-branches`,
-`delta(0) = rk(n_23(e_0) n_12(e_0))` is the deviation of the branch model `sigma o iota_0`, whose
-vanishing makes that model trivial by `two-root-identity-is-corner-local-for-leavitt-rank-models`;
-the same node then makes `sigma` trivial, so in particular `N_23 N_12 = 0`. In characteristic two
-`N_12^2 = 0` holds automatically, so both two-root identities hold and the target is met.
+So `delta(0) = 0`. The empty word has `e_(empty) = 1`, so `delta(0) = rk(N_23 N_12)` is the unit pair
+itself, and `delta(0) = 0` is `N_23 N_12 = 0` directly. In characteristic two `x_12(1)^2 = 1` gives
+`N_12^2 = 0` automatically, so both two-root identities hold and the target is met. No node outside
+`requires` is used.
+
+*Notation correction (after `w3-vf-linear`, Section 16.2).* An earlier version wrote
+`delta(0) = rk(n_23(e_0) n_12(e_0))` and argued through corner locality. That product is `delta(1)`;
+the direct argument above replaces it.
 
 ## Status
 
