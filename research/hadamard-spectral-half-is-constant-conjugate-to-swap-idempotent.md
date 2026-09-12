@@ -11,7 +11,7 @@ artifacts:
 ---
 
 **ESTABLISHED** (proof: route `hadamard-spectral-half-constant-conjugacy-proof`; verification requested from
-`w3-vf-linear`).
+`w4-vf-linear-b`, forwarded by `w3-vf-linear`).
 
 Let `R = L_(F_3)(1,2)`, `G = R^x`, `S_-^(9) = eps_- F_9[G]`, `e_- = 2 eps_-(1 + [w])` with
 `w = s0 t1 + s1 t0`, and `f_+ = 2(1_- + i[h])` with `h = s0 t0 + s0 t1 + s1 t0 - s1 t1`. Put

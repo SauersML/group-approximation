@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/hadamard-spectral-conjugacy-and-forced-states-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof: route `transpose-invariant-k0-states-proof`; verification requested from `w3-vf-linear`).
+**ESTABLISHED** (proof: route `transpose-invariant-k0-states-proof`; verification requested from `w4-vf-linear-b`, forwarded by `w3-vf-linear`).
 
 Let `R = L_(F_3)(1,2)` with involution `s_i^* = t_i`, `G = R^x`, `S_- = eps_- F_3[G]`, and `alpha(g) = (g^*)^(-1)`.
 

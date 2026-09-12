@@ -173,9 +173,10 @@ from clopen indicators to all idempotent matrices over finite subgroups of `H`, 
   `B_1 ~= B_2 ~= M_2(F_3)`: the evaluation, and its twist by the sign character with kernel `<w, d>`.
 - *Blocks.* `c_2 = -eps_-(1 + [wh] + [dh])` is the unit of `B_2`. It evaluates to `-(I + h^2) = 0`, and to
   `-(I - h^2) = I` in the twist. `c_1 = eps_- - c_2`, and `trl(c_1) = trl(c_2) = 1/2`.
-- *Not conjugate into `H`.* Suppose `g a g^(-1) = hw` with `a = e f` in `H`. Then `a^4 = z`, so `f^4 = 1`. At a point
-  `x` with `f^2 x = x` the lamp sum `sum_(k<4) e(f^(-k) x)` is even, so `<f>` acts freely. Take a clopen fundamental
-  domain `D_0` and `D = D_0 ∪ f^2 D_0`. Then `tau_D a tau_D = e tau_(D + fD) f = z a`. So `hw` would be conjugate to
+- *Not conjugate into `H`.* Suppose `g a g^(-1) = hw` with `a = e f` in `H`. Then `a^4 = z`, so `f^4 = 1`, and in
+  additive notation `a^4 = z` says the lamp sum `sum_(k<4) e(f^(-k) x)` equals `1` at every `x`. At a point with
+  `f^2 x = x` that sum is `2 e(x) + 2 e(f^(-1) x) = 0`. So `f^2` has no fixed point, and `<f>` acts freely. Take a
+  clopen fundamental domain `D_0` and `D = D_0 ∪ f^2 D_0`. Then `tau_D a tau_D = e tau_(D + fD) f = z a`. So `hw` would be conjugate to
   `-hw` in `G`. The characteristic polynomial of `[[1,1],[-1,1]]` over `F_3` is `x^2 + x - 1`, so both `(hw)^2 + hw - 1`
   and `(hw)^2 - hw - 1` would vanish in `R`, giving `hw = 0`.
 - *So `t = s(c_1)` is free* as far as Theorem 2.1 is concerned: its restriction to `<w, d>` is forced, but the split
@@ -224,9 +225,12 @@ Every such state also satisfies Theorem 2.1.
 **Remark 3.3 (what the normalization says).**
 - The one free datum of Remark 2.3 is exchanged by an automorphism fixing all the forced data. So no argument that
   only uses `H`, `delta` and `e_-` can force `t`. Averaging makes it agree with the lifted trace.
-- Other finite subgroups escape `H` as well. For example, the unipotent `[[1,1],[0,1]]` satisfies `(x - 1)^2 = 0`, while
-  a Thompson three-cycle `p` of cylinders has `(p - 1)^2 != 0`. So `GL_2(F_3)` is not conjugate into `H`, and its
-  modular blocks carry further unforced splits.
+- Other finite subgroups escape `H` as well. The unipotent constant `n = [[1,1],[0,1]]` has order three and
+  `(n - 1)^2 = 0` in `R`. An element `a = e f` of order three in `H` has `f^3 = 1` and `f != 1` (if `f = 1` then `a = e`
+  has order at most two). `R` acts on locally constant functions `X -> F_3` by `(s_i phi)(x) = [x_1 = i] phi(x_2 x_3 ...)`
+  and `(t_i phi)(x) = phi(i x)`, so `a` acts as `phi -> (-1)^e . (phi o f^(-1))`. Take a clopen `U` with `U`, `fU`, `f^2 U`
+  pairwise disjoint and `phi = 1_U`. Then `(a - 1)^2 phi = a^2 phi + a phi + phi` is nonzero on `U`. So `n` is not
+  conjugate into `H`, `GL_2(F_3)` is not either, and its modular blocks carry further unforced splits.
 - *The natural candidate.* The lifted trace is additive, conjugation invariant, positive, `alpha`-invariant, and
   compatible with Theorem 2.1 on the union of all finite-subgroup algebras of `G`. A state on `(K_0(S_-), [eps_-])`
   extending it would refute the swap corner. No extension is known, and no `K_0` relation between finite-subgroup

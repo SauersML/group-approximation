@@ -10,7 +10,7 @@ artifacts:
 ---
 
 **ESTABLISHED** (proof: route `anti-central-k0-states-lifted-trace-proof`; verification requested from
-`w3-vf-linear`).
+`w4-vf-linear-b`, forwarded by `w3-vf-linear`).
 
 Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = -1`, `H = E x| V` the signed Thompson group, and `Gamma` any subgroup with
 `H <= Gamma <= G`. Let `s` be a state on `(K_0(eps_- F_3[Gamma]), [eps_-])`. Then:
