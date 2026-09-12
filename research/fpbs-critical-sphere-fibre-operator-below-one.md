@@ -88,3 +88,12 @@ boundedness conjecture on that graph.
   elements of `Q` fix a boundary point, so the worst and best directions cannot be
   compared. Also, the `nu`-averaged half tilt is at most `||lambda_Q(sigma_p)||`,
   the wrong direction for a Schur test (artifact Section 5).
+* **Strongly expanding product factors (2026-09-12, partial).** On
+  `G □ Cay(Z^k, {±e_j})` with `1 + h(G) > ||A_G|| + 2k`, `p_c` is at most
+  `1/(1+h(G)) < 1/||A_X||`, so the L2 gap holds and, by the equivalence above, so
+  does this claim at that graph (`fpbs-expanding-factor-product-strict-thresholds`).
+  This covers the standard product sets of `Gamma_g x Z^k` for `g >= 3`,
+  `1 <= k <= max(1, g-2)` (`fpbs-surface-group-times-zk-product-sets-strict-thresholds`).
+  **Where it stops:** it is perturbative in the expansion of the factor. Genus two
+  fails (`1 + h = 1 + sqrt 32 < 4 sqrt 2 + 2`), and mixed or small generating sets
+  are untouched (artifact `expanding-factor-product-thresholds.md`, Section 4).

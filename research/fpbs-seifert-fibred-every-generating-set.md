@@ -33,3 +33,11 @@ subgroup.
   `fpbs-seifert-fibred-from-amenable-wq-normal-class`. Its premise is open; see
   `fpbs-amenable-wq-normal-relative-subcriticality` for where the direct attacks
   stop.
+* **Trivial bundles with product generating sets (partial, 2026-09-12).** For
+  `M = S_g x S^1` with `g >= 3` and generating set standard surface generators
+  plus `(1,±1)`, `p_c < p_{2->2} <= p_u`
+  (`fpbs-surface-group-times-zk-product-sets-strict-thresholds`, the case `k = 1`).
+  **Where it stops:** it is a perturbative comparison with the edge expansion of
+  the `{4g,4g}` tiling. It gives nothing for genus two, for nontrivial bundles
+  (central extensions have no product generating set), or for non-product
+  generating sets.

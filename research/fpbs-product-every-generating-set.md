@@ -55,6 +55,18 @@ for each generating set, one parameter with infinitely many infinite clusters.
   verbatim from the TeX source (2026-09-12): "Does every Cayley graph of
   $F_{2} \times \Z$ have a nonuniqueness phase?"
 
+* **Strongly expanding factor with a discrete automorphism group (partial,
+  2026-09-12).** When `S = S_H t S_K` and `Cay(H,S_H)` has edge expansion `h`
+  with `1 + h > ||A_(Cay(H,S_H))|| + deg(Cay(K,S_K))`, the product graph has
+  `p_c <= 1/(1+h) < 1/||A|| <= p_{2->2} <= p_u`
+  (`fpbs-expanding-factor-product-strict-thresholds`). No nonunimodularity is
+  used. With the Häggström–Jonasson–Lyons tiling constant and Mohar's bound, this
+  covers the standard product sets of `Gamma_g x Z^k`, `g >= 3`,
+  `1 <= k <= max(1, g-2)` (`fpbs-surface-group-times-zk-product-sets-strict-thresholds`).
+  **Where it dies:** it is perturbative. It fails for genus two and for free
+  factors of small rank with non-basis generators, and it says nothing about
+  mixed generating sets.
+
 * **Nonuniqueness at the uniqueness threshold (weak form only).** Peres,
   *Percolation on nonamenable products at the uniqueness threshold*, Ann. IHP 36
   (2000) 395--406, Theorem 1.1 (read from source 2026-09-11): on the Cartesian
