@@ -23,6 +23,16 @@ arXiv:2211.15249v2, Definitions 1.1–1.3 and Remark 1.4) for almost-homomorphis
 So `thompson-v-is-sofic` holds exactly when `V` is not permutation stable, in any of the four
 senses.
 
+**Flexible P-stability is equivalent too.** Here the correction is by genuine actions on finite
+supersets `Y_n >= X_n` with `|Y_n \ X_n| / |X_n| -> 0`, as in
+`hyperbolic-rf-not-flexibly-p-stable`.
+- Stable implies flexibly stable.
+- Conversely, every action of `V` on a finite set is trivial, because `V` is infinite and simple.
+  So a flexible correction forces each `phi_n(g)` to fix all but `o(|X_n|)` points, and then no
+  separating almost-homomorphism exists.
+
+For `V`, strict and flexible permutation stability coincide.
+
 ## Why it matters
 
 - **Bradford's heuristic is not a separate property.** Bradford (p. 4) reads his local
