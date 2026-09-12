@@ -26,8 +26,18 @@ Proof of `rgr-p-reduces-to-cyclic-twist-system` (artifact Section 1).
 3. **Rank additivity.** For a block-diagonal operator `rank(w(t) - lambda 1) = sum_m rank(P_m - lambda 1_d)`.
    So `w(t) = lambda 1` iff all `P_m = lambda 1`, and the `eps`-approximate form is the stated sum bound.
 
-4. **No loss.** Conversely any `t` of this twisted-shift form at amplification `e` yields exactly this
-   system, so solving the system is equivalent to RGR_p at that amplification for the given word.
+4. **No loss, up to one further amplification.**
+   - Solving the system gives an RGR_p witness.
+   - Conversely, a witness `t` at amplification `k` gives the twisted shift `t (x) S`, with every twist equal to `t`,
+     at amplification `k|e|`. Then `w(t (x) S) = w(t) (x) 1`, with the same normalized error.
+
+**Correction (w4-vf-linear-b, 2026-09-12).** An earlier version of step 4 said that solving the system is
+equivalent to RGR_p at amplification `e`.
+- A general witness at that amplification need not be a shift. For `c_0 t c_1 t c_2`, `t = diag(u, u)` with
+  `u c_1 u = K` is one.
+- The corrected form is above. For a negative total exponent, amplify by `|e|`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 30.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS for steps 1–3 and the corrected step 4.*
 
 The computation is verified in full for `l = 2, e_1 = e_2 = 1` in
 `two-syllable-nonsingular-words-are-exactly-solvable` (direct `2x2` block product).

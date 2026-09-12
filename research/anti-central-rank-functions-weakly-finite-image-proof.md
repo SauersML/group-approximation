@@ -19,3 +19,10 @@ Artifact Corollary A.2.
 4. The quotient by `ker N` is weakly finite with a faithful rank function
    (`sylvester-rank-function-quotients-are-weakly-finite`). Faithfulness and `N_rk = 1` give the
    embedding of `G_3`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *`rk(1 - [z]) = N(2 eps_-) = 1`;*
+- *a normal subgroup missing `z` maps to `1` or `PG`, and `PG` would split off `<z>`;*
+- *`(1 - [k]) eps_-` has positive rank for `k != 1`.*
+
+*Perfection of `G_3` and simplicity of `PG` were not re-derived.*

@@ -18,3 +18,5 @@ Artifact Sections 3–4.
 3. **Pullback.** `N(X) = N_W(X + M(J))` is a Sylvester matrix rank function on `S_-` with `N(eps_-) = 1`.
 
 So (U1) reduces to (U1b), and (U1a) is no longer open.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.5 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. Rank functions pull back along the unital quotient map `S_- -> W`, with `N(eps_-) = N_W(1) = 1`.*

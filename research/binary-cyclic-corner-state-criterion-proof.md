@@ -28,3 +28,10 @@ Section 2 of `research/artifacts/ternary-anti-central-invariant-census-2026-09-1
    - Absorption `N v + v + q = N v` in `V(A)` iterates to `N v + 3^k v + 3^k q = N v`.
    - Applying `F^k` gives `N d_k + v + x = N d_k`.
    - `[eA] = N d_k + c` once `(3^k - 1)/2 >= N`, so `[eA] + [fA] + x = [eA]`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 32.1–32.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *`D` is a unital injective endomorphism commuting with permutation units, and `π_M τ_b π_M^-1 = τ_(Mb)`;*
+- *the tower: `ψ(E_k) = E_(k+1)` through commuting subgroups meeting trivially, `v = 3 d_1`, the telescoping `p = p_(k+1) + ((3^k - 1)/2) d_k`, and `ψ'(f) = f_(K_3) + f_(K_4)`;*
+- *Lemma 1.3;*
+- *4 ⇒ 5 via `x = f_(MK) π_M f_K` and `y = f_K π_M^-1 f_(MK)` in `T`;*
+- *6 ⇒ 2 in `V(A)`.*

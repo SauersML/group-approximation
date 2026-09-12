@@ -21,3 +21,8 @@ component, and those configurations form a proper subshift. That subshift is a
 linear direct summand of the full shift, so a solution in `S_-` still gives a strict
 automaton on the full shift (correction 7.4(e), gk-verify-pos, 2026-09-12). Section 7
 of the artifact.
+
+*Verification: earlier review by `gk-verify-pos`, Section 23 of `research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md` (parts 1–5 PASS; part 6 corrected forward). Independent re-derivation by `w4-vf-linear-b` (2026-09-12), Section 34 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS for parts 1–6 as now stated. Checked:*
+- *the central idempotents, `(dw)d = zw`, the matrix units, and no commutative image;*
+- *the Cohn-family form, and the projection to `S_+`;*
+- *the padded pair `CA = 1 != AC`, and the embedding of `G` in `PG`.*

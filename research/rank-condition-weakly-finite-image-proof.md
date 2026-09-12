@@ -30,3 +30,11 @@ Artifact Section 3.
 
 No imports. The state-positivity addendum uses the state criterion already proved in the census
 artifact.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the sizes, `K = UẼV`, and `Y'X' = YX - UẼ^2V = I_(n+1)`;*
+- *the class-zero form: `ẼA^R ⊕ A^r ≅ A^r` gives an epimorphism `A^(n+r) -> A^(n+1+r)`;*
+- *Zorn through finitely many entries;*
+- *weak finiteness through the class-zero idempotent `I_n - BA`, and the padded converse.*
+
+*The literature check (Malcolmson 1980) was not done.*

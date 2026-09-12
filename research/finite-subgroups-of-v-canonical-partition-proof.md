@@ -20,3 +20,8 @@ Proof: Section 3 of the artifact (Proposition 3.1, Corollary 3.2).
    `C_H` strictly containing `c`.
 4. **Intersections.** An element permuting both partitions maps `p n q` onto `g(p) n g(q)` by the prefix
    replacement of `p`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 33.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *invariance through `(gh)|_c ∘ (h|_c)^-1`, and finitely many disjoint maximal cylinders;*
+- *the maximality contradiction via `h^-1(c')`;*
+- *the coarsest property, and that `p ∩ q` is the smaller cylinder.*

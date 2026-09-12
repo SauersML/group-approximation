@@ -20,3 +20,8 @@ Proof: Section 2 of the artifact (Lemma 2.1, Corollaries 2.2 and 2.3).
    `w4-kap-join` artifact), and Theorem 2.1 there gives positivity.
 4. **Three subgroups.** `D_ij <= H_l` means `D_ij` equals the triple intersection. Deleting that edge
    leaves a path.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 33.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the inverse colimit maps, and deletion through edges of the current diagram;*
+- *a forest gives a free product of trees of finite groups;*
+- *Example 2.4: `D_01 = D_12 = <(c d)>` is the triple intersection, and `g(1 0^k y) = 1 0^(k+1) y`.*

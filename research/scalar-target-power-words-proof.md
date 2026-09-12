@@ -19,3 +19,5 @@ every characteristic, with no Jordan or `p`-divisibility hypothesis, because the
 
 This is the `l = 1` instance of `rgr-p-cyclic-twist-system-proof`: one block-equation `P_0 = lambda`,
 solved by the single twist `b_0 = C`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 30.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Checked: `C^e e_i = lambda e_i`, and `det C = (-1)^(e-1) lambda`. Precision: for `e < 0`, use the companion matrix of `x^|e| - lambda^(-1)` and invert.*

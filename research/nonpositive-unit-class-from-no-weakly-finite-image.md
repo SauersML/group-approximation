@@ -17,3 +17,5 @@ Artifact Corollary C.2.
 
 The first requirement is also necessary for the target: the rank condition fails in `S_-` and hence in
 every image. So the route loses nothing, and it needs neither (U1) nor (U2).
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.5 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. No weakly finite image means the rank condition fails (Theorem C), so there is no state and `k[eps_-] <= 0`.*

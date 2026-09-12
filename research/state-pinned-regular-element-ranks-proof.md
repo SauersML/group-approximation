@@ -24,3 +24,8 @@ Artifact Section 2.
      `2N(u^2) <= N(u)`, so `N(u) <= 2/3`.
 
 No imports.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the retract through `f a e` and `e b f`, and regular elements via `e = XY`;*
+- *`F_3[C_3]` is local, and `N_j` gives `0`, `1/2`, `2/3`;*
+- *the Sylvester and Frobenius inequalities with `u^3 = 0`.*

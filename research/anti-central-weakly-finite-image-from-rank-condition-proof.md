@@ -18,3 +18,8 @@ Artifact Corollary C.2.
    - It misses `z`: `1 - z` maps to `2·1_W != 0` in the nonzero `F_3`-algebra `W`.
    - A normal subgroup missing `z` meets `<z>` trivially, and maps to `1` or `PG` in the simple group `PG`.
    - The image `PG` would split off `<z>` and contradict perfection. So the kernel is trivial.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.5 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Checked:*
+- *a state is the rank condition for `S_-`;*
+- *Theorem C gives a nonzero weakly finite `W`;*
+- *`1 - z` maps to `2·1_W != 0`, then the normal subgroup argument.*

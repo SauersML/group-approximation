@@ -25,3 +25,9 @@ Proof: Section 1 of the artifact (Theorem 1.1, Corollaries 1.2 and 1.3).
    that atom's trace positive. So no sofic group contains the star.
 5. **Shape.** TFR1 gives `m >= 2`. A forest star has a virtually free, hence sofic, amalgam (Corollary 2.4
    of that artifact), so the star has a cycle.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 31 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *atom additivity, and a nonpositive term among the atoms;*
+- *children are pairwise orthogonal, so `α_y` is an atom of the star;*
+- *a compatible realization is injective on the union of the images, so the image of `α_y` is nonzero;*
+- *TFR1, and a cycle with at least three distinct subgroups.*

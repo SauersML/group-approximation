@@ -22,3 +22,7 @@ Proof: Section 4 of the artifact (Proposition 4.1).
    the same prefix replacements on the common pieces. So `h = h'`.
 4. **Realization.** Theorem 2.6 of the `w4-kap-join` artifact, with the finite group `Sym(Y)`, gives
    positivity.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 33.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *injective label actions, agreement on intersections, and `h = h'` through unique prefix replacements between common pieces;*
+- *Example 4.2: the intersections `S_4`, essential edges, the infinite-order `g`, and `|Y| = 12`.*

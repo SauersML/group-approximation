@@ -20,3 +20,9 @@ Artifact Section 1.
 4. If `AB - I_n` has rank-zero entries, step 1 gives `N(I_n - BA) = 0`, so `BA = I_n` in the quotient.
 
 No imports.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *both block factorizations multiplied out, giving `n + N(I_m - BA) = N(I_n - AB) + m`;*
+- *subadditivity via `[1 1] diag(x,y) [1 1]^T`;*
+- *the entrywise rank-zero criterion;*
+- *weak finiteness with `m = n`.*

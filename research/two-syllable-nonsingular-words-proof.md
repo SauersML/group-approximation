@@ -29,3 +29,9 @@ K c_2 = lambda 1`. Since `b_0, b_1 in GL_d`, `t in GL_(2d)`. QED.
 Equal-exponent reduction: `u = t^(e')` solves `u c_1 u = K`; set `v = c_1 u`, then `v^2 = c_1 K`, an
 e-th/square root handled by the established power-word result (`scalar-target-power-words-have-exact-roots`
 for the scalar pieces, the general power case for the matrix `c_1 K`), and `t` is an `e'`-th root of `u`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 30.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the block values `P_0 = c_0 b_1 c_1 b_0 c_2` and `P_1 = c_0 b_0 c_1 b_1 c_2`, and the choice `b_0 = c_1^-1`, `b_1 = K`;*
+- *the general power word `t^m = M`, solvable exactly after amplification by `p^r` via binomial roots and `(1 + N_(p^r s))^(p^r) ~ ⊕^(p^r) (1 + N_s)`.*
+
+*So the equal-exponent reduction holds.*

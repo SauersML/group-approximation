@@ -25,3 +25,10 @@ Artifact Proposition C.
    - `1 - [g] = (1 - [g]) f`, so `rk(f) = 0` forces `g` into the normal subgroup `N_rk`.
    - Simplicity of `G` then forces `rk = rk_ε`.
    - Otherwise `rk/rk(f)` on matrices over `T` is normalized.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 32.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the corner unit of `(f_(K_3) + f_(K_4)) F_2[A_9] ≅ F_4 × F_4` has rank `2/3`;*
+- *`(1 - [g]) e = 0` gives `1 - [g] = (1 - [g]) f`, and then simplicity;*
+- *Corollary 4.2 through Section 16.3.*
+
+*The input `binary-leavitt-unit-group-is-simple` was not re-derived.*

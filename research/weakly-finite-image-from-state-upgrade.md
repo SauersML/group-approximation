@@ -20,3 +20,5 @@ Artifact Section 1.
 4. `anti-central-rank-functions-give-weakly-finite-leavitt-images` gives the weakly finite image.
 
 This route only records that the target is necessary for the upgrade. It is not an independent proof.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 29.5 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. `1 - [z] = 2 eps_-` gives `rk(eps_-) = rk(1 - [z]) > 0`, and the corner normalization is a Sylvester rank function on `S_-`.*

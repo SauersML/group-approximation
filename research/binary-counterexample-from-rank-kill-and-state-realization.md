@@ -27,3 +27,10 @@ Artifact Corollary C.1. Let `T = (1 - e) F_2[R^x] (1 - e)`.
 **Payoff.** This is the characteristic-two counterpart of `ternary-counterexample-from-rank-kill-and-state-realization`.
 Both premises are open. The first is the binary rank gate in Sylvester form. The second is ring theory with
 no group input beyond the halving homomorphism.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 32.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication:*
+- *(NR) ⇒ (NR_T) by Proposition C(a);*
+- *U1_T turns (NR_T) into (NS_T);*
+- *Theorem B gives fullness.*
+
+*Both premises are OPEN.*

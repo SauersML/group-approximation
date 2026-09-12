@@ -1076,3 +1076,313 @@ direction, they restrict to the corner `S_-`, divided by `rk(eps_-) > 0`.
 - If every remaining triangular step split, Corollary 3.2 would flatten the chain.
 - So a certificate over a ring with the rank condition and no Sylvester rank function has a non-idempotent step with
   no split. PASS.
+
+## 29. The state upgrade at weakly finite images (w4-upg-state; 93ed389c3f, fcad1e6913): PASS
+
+This lane asked for verification directly.
+
+### 29.1 `sylvester-rank-function-quotients-are-weakly-finite` (Lemma A.1, Theorem A): PASS
+
+- **Factorizations.** Multiplying out, both `[[I_n,0],[B,I_m]]·[[I_n,A],[0,I_m-BA]]` and
+  `[[I_n,A],[0,I_m]]·[[I_n-AB,0],[B,I_m]]` equal `[[I_n,A],[B,I_m]]`.
+- **The identity.** Invertible factors leave `N` unchanged, so `n + N(I_m - BA) = N(I_n - AB) + m`.
+- **Rank-zero entries.** `x + y = [1 1]·diag(x,y)·[1 1]^T` gives subadditivity. Reading entries as
+  `e_i^T X e_j`, and writing `X = Σ E_ij x_ij`, shows a matrix has rank 0 iff its entries do.
+- **Weak finiteness.** Apply Lemma A.1 with `m = n`.
+
+### 29.2 Corollary A.2 (the anti-central summand): PASS
+
+- `X -> X eps_-` is unital, and `rk(1 - [z]) = N(2 eps_-) = 1`.
+- A normal subgroup missing `z` meets `<z>` trivially. Its image in the simple group `PG` is `1` or `PG`. `PG` would
+  give `G_3 = N_rk × <z>`, which has a quotient of order two, against perfection.
+- Perfection of `G_3` and simplicity of `PG` are established nodes, not re-derived here.
+- **Injectivity.** `(1 - [k]) eps_-` has positive rank for every `k ≠ 1`.
+
+### 29.3 Proposition B (states pin regular elements): PASS
+
+- **Retracts.** If an idempotent `f` factors as `a e b`, the maps `f a e` and `e b f` compose to `f`, so `fA^(k')` is a
+  retract of `eA^k` and `s(f) <= s(e)`.
+- **Regular elements.** For `X = XYX`: `e = XY` is idempotent, `X = eX`, and `e = I·X·Y`.
+- **`F_3[C_3]`.**
+  - It is local, so its only idempotents are 0 and 1, and `K_0 = Z`.
+  - The normalized ranks on `F_3[x]/(x-1)^j` give `0`, `1/2` and `2/3`, and convex combinations fill the interval.
+  - With `u^3 = 0`, the Sylvester inequality `N(u^2) + 1 >= 2N(u)` and the Frobenius inequality
+    `N(u^3) + N(u) >= 2N(u^2)` give `N(u) <= 2/3`.
+  - `ρ^s(u) = 0`, by the augmentation on idempotent matrices over the local ring. `ρ_s(u) = 1`.
+
+### 29.4 Lemma C.1 and Theorem C (rank condition gives a weakly finite image): PASS
+
+**Lemma C.1.**
+- *Sizes.* `X` is `n × (n+1)`, `Y` is `(n+1) × n`, and `K = UẼV` with `Ẽ` a direct sum of null idempotents, `U` of size
+  `(n+1) × R` and `V` of size `R × (n+1)`.
+- *Retract.* `X' = [[X],[ẼV]]` and `Y' = [Y, -UẼ]` give `Y'X' = YX - UẼ^2V = I_(n+1)`.
+- *State-null form.* `n + 1 <= n + s(Ẽ) = n`.
+- *Class-zero form (the route).* `[ẼA^R] = 0` gives `ẼA^R ⊕ A^r ≅ A^r`, hence `A^(n+r) ≅ A^(n+1+r) ⊕ P`: an
+  epimorphism `A^(n+r) -> A^(n+1+r)`.
+
+**Theorem C.**
+- *Easy direction.* Pad a failure `YX = I_(n+1)` with a zero row and column. Weak finiteness would then force
+  `XY ⊕ 0 = I_(n+1)`, which is impossible in a nonzero ring.
+- *Zorn.* A failure uses finitely many entries. Every ideal in the family is proper, since the zero ring fails the rank
+  condition.
+- *Maximal quotient.* States are faithful, by Lemma C.1 plus maximality. For weak finiteness, `AB = I_n` makes
+  `I_n - BA` an idempotent of class zero.
+- *Literature.* Possibly Malcolmson (1980). Not checked here either.
+
+### 29.5 Corollary C.2 and routes: PASS
+
+- **Equivalences.** 1–3 are the census equivalences, not re-derived here. 3 ⟺ 4 is Theorem C.
+- **Embedding.** `1 - z` maps to `2·1_W ≠ 0` in the nonzero `F_3`-algebra `W`. Then the normal subgroup argument
+  applies.
+- **`nonpositive-unit-class-from-no-weakly-finite-image`.** No weakly finite image means the rank condition fails, so
+  there is no state, so `k[eps_-] <= 0`. PASS as an implication.
+- **`weakly-finite-image-from-state-upgrade`.** `1 - [z] = 2 eps_-` gives `rk(eps_-) = rk(1 - [z]) > 0`, then corner
+  normalization. PASS as an implication.
+- **`sylvester-rank-functions-from-weakly-finite-images`.** Pullback along the unital quotient map. PASS as an
+  implication.
+- **Section 4 prose.** Consistent:
+  - a cube-zero `4 × 4` matrix over a division ring has at least two Jordan blocks, hence rank at most 2;
+  - the Sylvester bound generalizes to `N(u) <= 2n/3`;
+  - the one-by-one case collapses, since `uv = 1` gives `u^3 v^3 = 1`.
+
+## 30. RGR_p cyclic reduction (w5-rgr-p, a026618e23): two claims PASS; one passes in the sufficiency direction, with a false sentence corrected forward
+
+### 30.1 `rgr-p-reduces-to-cyclic-twist-system`: sufficiency PASS; the "no loss" sentence is FALSE as written and is corrected
+
+**Sufficiency.**
+- *Block-diagonality.* The coefficients are block-scalar, and each `t^(±1)` moves the block index by `±1`. The net shift
+  is `e ≡ 0 mod |e|`.
+- *Negative total exponent.* Amplify by `|e|`. The node says `k = e`.
+- *Block values and rank additivity.* Re-derived. So a solution of the cyclic system is an RGR_p witness.
+
+**The false sentence.**
+- *What main says.* The claim: "any RGR_p witness at amplification `e` has this block form". Route step 4: "solving
+  the system is equivalent to RGR_p at that amplification".
+- *Why it is false.* A general `t ∈ GL_(de)` is not a twisted cyclic shift. For `c_0 t c_1 t c_2`, a block-diagonal
+  `t = diag(u, u)` with `u c_1 u = K` is a witness at amplification 2 that is not of shift form.
+
+**Correct form: no loss up to one more amplification.**
+- If `t ∈ GL_(dk)` is a witness at amplification `k`, let `S_e` be the cyclic permutation of `|e|` blocks. Then
+  `t~ = t ⊗ S_e` is a twisted cyclic shift with every twist equal to `t`.
+- `t~` commutes with nothing it needs to: the coefficients act on the first tensor factor, so
+  `w(t~) = w(t) ⊗ S_e^e = w(t) ⊗ 1`, with the same normalized error.
+- So RGR_p holds for `w` iff, for every `ε`, some amplification of the coefficients admits an `ε`-solution of the
+  cyclic system.
+- The claim that the cyclic system "is as hard as RGR_p itself" stands.
+
+### 30.2 `scalar-target-power-words-have-exact-roots`: PASS
+
+- `C e_i = e_(i+1)` and `C e_e = λ e_1` give `C^e e_i = λ e_i`.
+- `det C = (-1)^(e-1) λ`: a cyclic permutation times `λ`.
+- **Precision.** For `e < 0`, use the companion matrix of `x^|e| - λ^(-1)` and invert.
+
+### 30.3 `two-syllable-nonsingular-words-are-exactly-solvable`: PASS
+
+**`c_0 t c_1 t c_2`.**
+- With `t(w_0, w_1) = (b_1 w_1, b_0 w_0)`, tracking blocks gives `P_0 = c_0 b_1 c_1 b_0 c_2` and
+  `P_1 = c_0 b_0 c_1 b_1 c_2`.
+- `b_0 = c_1^(-1)` and `b_1 = K = c_0^(-1) λ c_2^(-1)` give `b_1 c_1 b_0 = b_0 c_1 b_1 = K`, so `P_0 = P_1 = λ 1`.
+
+**Equal exponents.** `u c_1 u = K` iff `(c_1 u)^2 = c_1 K`.
+
+**General power words, re-derived here.** `t^m = M` is exactly solvable after amplification by `p^r`, where
+`m = p^r m'` with `p ∤ m'`:
+- take the Jordan blocks `μ(1 + N_s)` of `M`;
+- take an `m`-th root of `μ`;
+- take the binomial `m'`-th root of `1 + N_(p^r s)`;
+- `(1 + N_(p^r s))^(p^r) = 1 + N_(p^r s)^(p^r)` has `p^r` Jordan blocks of size `s`.
+
+This upgrades the power-word Attempts line of `rank-ultraproduct-unit-groups-solve-nonsingular-equations` from
+"consistent" (Section 25.5) to re-derived. The equations are stable under amplification of the coefficients, so the
+two amplifications compose.
+
+## 31. Overfilled stars (w5-laminar-cycle): PASS
+
+### 31.1 `laminar-defects-localize-to-a-nonsofic-overfilled-star` (Theorem 1.1, Corollaries 1.2–1.3): PASS
+
+**Theorem 1.1.**
+- *Atom traces.* `y = α_y + Σ_(C(y)) z` is an orthogonal sum, and the lifted trace is additive. So
+  `t_p(α_y) = r(y) - Σ r(z)`, with `r(1) = n`.
+- *A nonpositive term.* A nonpositive sum over distinct nonzero atoms has a nonpositive term.
+- *The star is laminar.* Children of one parent are pairwise orthogonal: if one child lay below another, it would have
+  a closer parent. So within `F_y` the children of `y` are exactly `C(y)`, and `α_y` is an atom of `F_y`.
+- *No sofic realization.*
+  - A compatible realization of `Star(y)` is injective on the union of the images, because `K_s ∩ K_t` is the image
+    of `H_s ∩ H_t`.
+  - So the image of `α_y` has the same coefficients as `α_y`, and it is nonzero.
+  - Theorem 2.6 then makes its trace positive, a contradiction.
+
+**Corollary 1.2 (shape).**
+- TFR1 for each strict pair `z_i < Y` gives `m >= 2`.
+- If `Φ_y` were a forest, the amalgam would be virtually free and contain `Star(y)`, hence sofic.
+- A cycle needs three distinct vertices, and at most one of them is the parent's subgroup.
+
+**Corollary 1.3 (hosts).** A common finite overgroup, or a sofic overgroup, is a realization with the actual
+intersections.
+
+**Wording remark.** "Occurs in no sofic group" means no compatible realization with matching intersections, as the
+artifact defines. Finite groups themselves always embed in sofic groups.
+
+## 32. The binary cyclic corner and its complement corner (w5-binary-upg; 3277b6da2b, 7a22750be7): PASS
+
+### 32.1 Setup and Lemma 1.1: PASS
+
+- **`D`.** `D(h)D(h') = Σ_i s_i h h' t_i`, `D(1) = 1` and `t_1 D(h) s_1 = h`. Every ternary permutation unit
+  `Σ s_σ(i) t_i` commutes with `D(h)`.
+- **Translations.** `g = τ_(1,0)` and `D(g) = τ_(0,1)` on the nine cylinders, and `π_M τ_b π_M^-1 = τ_(Mb)` by
+  re-indexing.
+- **`F_2[A_9]`.** It is semisimple. `f_K = e_K - e_(A_9)` is the primitive idempotent of the two characters with
+  kernel `K`, `1 = e_(A_9) + Σ_K f_K`, and `f = f_(K_2) + f_(K_3) + f_(K_4)`.
+- **Lemma 1.1.** `ψ` and `ψ'` are unital homomorphisms, because `D(x)` commutes with `e`.
+
+### 32.2 Lemmas 1.2 and 1.3: PASS
+
+- **(a)** `e·D(E_k)` is the averaging idempotent of `<g>·D(C_3^k) = C_3^(k+1)`, a product of commuting subgroups that
+  meet trivially.
+- **(b)** Conjugation by `π_M` permutes the `f_K <= f`, and `f_(K_1) = E_1 - E_2`.
+- **(c)** Telescoping `e = E_(k+1) + Σ_(l=1..k) (E_l - E_(l+1))`, with `Σ 3^(k-l) = (3^k - 1)/2`.
+- **(d)** `D(e) = e_(K_2)`, `f_(K_i) e_(K_2) = δ_(i2) f_(K_2)` and `f_(K_2)[D(g)] = f_(K_2)`.
+- **Lemma 1.3.** `c = φ(e) = ce`, and `1 = c e m`.
+
+### 32.3 Theorem B (the binary Theorem E): PASS
+
+- **2 ⇒ 3 ⇒ 4.** Cancellation in `K_0`, then positivity.
+- **4 ⇒ 5.**
+  - `x = f_(MK) π_M f_K` and `y = f_K π_M^-1 f_(MK)` lie in `T`, with `xy = f_(MK)` and `yx = f_K`.
+  - So each `f_K` has `s_T`-value `1/3`, and the pulled-back state gives `[f]` the value `2/3`.
+- **5 ⇔ 6.** The state criterion (as in Section 28.1): `-[T] ∈ K_0^+` iff `T ⊕ Q ⊕ T^N ≅ T^N`.
+- **6 ⇒ 2, in `V(A)`.**
+  - `N v + v + q = N v` iterates to `N v + j v + j q = N v`.
+  - Applying `F^k` with `j = 3^k` gives `N d_k + v + x = N d_k`.
+  - Choose `k` with `(3^k - 1)/2 >= N`. Then `p = N d_k + c`, so `p + v + x = p` and `u + x = p`.
+- **Scope.** The result holds for `D`-stable subgroups containing `g` and the `π_M`: every construction stays inside.
+
+### 32.4 Proposition C, Corollary 4.2 and the chain route: PASS
+
+- **(a)** `(f_(K_3) + f_(K_4))(1 - [D(g)])` is a unit of the corner `(f_(K_3) + f_(K_4)) F_2[A_9] ≅ F_4 × F_4`. So its rank
+  equals the rank of the corner unit, `2/3`.
+- **(b)**
+  - `(1 - [g]) e = 0` gives `1 - [g] = (1 - [g]) f`.
+  - `rk(f) = 0` forces `g ∈ N_rk`, and simplicity then forces `rk = rk_ε`.
+  - The input `binary-leavitt-unit-group-is-simple` was not re-derived.
+- **Corollary 4.2.** Composing with `ψ'` contradicts Section 16.3.
+- **Route `binary-counterexample-from-rank-kill-and-state-realization`.** PASS as an implication:
+  - (NR) ⇒ (NR_T) by (a);
+  - U1_T turns (NR_T) into (NS_T);
+  - Theorem B gives fullness.
+- **Proposition 4.1 (prose).** `ψ'|_T` is a non-unital endomorphism, with `ψ'(f)` of state value `2/3`, so
+  `(3/2) s_T ∘ K_0(ψ'|_T)` is a state. Consistent.
+
+## 33. Essential cycles, canonical partitions of V, label realization (w5-laminar-cycle; 24f4cc3b9a, c4a3e6ec31): PASS
+
+### 33.1 `intersection-edges-inside-a-third-subgroup-are-redundant`: PASS
+
+**Lemma 2.1.**
+- `A' -> A` exists because the diagram of `A'` has fewer relations.
+- In the other direction, `g ∈ D_ij <= H_l` lies in `D_il` and `D_lj`, so `ι_i(g) = ι_l(g) = ι_j(g)` in `A'`.
+- The two maps are inverse on generators.
+
+**Corollary 2.2.**
+- Each deletion uses edges `{i,l}` and `{l,j}` of the current diagram. The same proof applies, since
+  `D_il, D_lj ⊇ D_ij ≠ 1`.
+- If `Φ^ess` is a forest, `A` is a free product of trees of finite groups: virtually free, hence sofic. Theorem 2.1
+  of the `w4-kap-join` artifact then applies.
+
+**Corollary 2.3.** `D_ij <= H_l` iff `D_ij = H_0 ∩ H_1 ∩ H_2`. Deleting that edge leaves at most a path.
+
+**Example 2.4 (a degenerate cycle).**
+- *`D_01 = <(c d)>`.* An element of `H_1` moving `[0]` sends `[00]` to a depth-three cylinder, so only `[0]`-fixing
+  elements lie in `H_0`.
+- *`D_12 = <(c d)>`.* `[0]` is the only piece of `P_1` that is a union of three pieces of `P_2`, so it is fixed
+  pointwise.
+- *`D_02 = Sym{b,c,d}`.* `a` is the only piece of `P_0` that is a union of two pieces of `P_2`.
+- *Triple intersection.* It is `<(c d)>`.
+- *Infinite order.* `g = σ ∘ (a c)` maps `10x -> 00x -> 100x`, so `g(1 0^k y) = 1 0^(k+1) y` for `k >= 1`.
+
+### 33.2 `finite-subgroups-of-thompson-v-permute-a-canonical-partition`: PASS
+
+- **Invariance.** `g|_(h(c)) = (gh)|_c ∘ (h|_c)^-1` is a prefix replacement onto a cylinder.
+- **Partition.**
+  - A common refinement of the pieces `D_h` puts every point in some cylinder of `C_H`.
+  - The chains of cylinders above a given cylinder are finite, so maximal elements exist.
+  - Maximal elements are disjoint, since cylinders are nested or disjoint. Compactness makes them finitely many.
+- **Action.** If `h(c) ⊊ c'`, then `h^-1(c') ∈ C_H` strictly contains `c`, which contradicts maximality.
+- **Coarsest.** The pieces of any `P` with `H <= Σ(P)` lie in `C_H`.
+- **Intersections.** `p ∩ q` is the smaller cylinder or empty, and `g` restricts to a prefix replacement there.
+
+### 33.3 `v-hosted-stars-without-block-symmetries-occur-in-finite-groups`: PASS
+
+**Proposition 4.1.**
+- *Injectivity.* An element of `Σ(P_s)` fixing every piece is a prefix replacement of each piece onto itself, hence
+  the identity.
+- *Agreement.* For `g ∈ H_s ∩ H_t`, `g` maps common pieces to common pieces, and both labelings apply the same
+  geometric action there. On non-common labels, the hypothesis handles one side and "fix outside its own partition"
+  the other.
+- *Exact intersections.*
+  - If `ψ_s(h) = ψ_t(h')`, the permutation fixes the labels of `P_s \ P_t` and `P_t \ P_s`. So `h` and `h'` are the
+    identity on `X \ ∪(P_s ∩ P_t)`.
+  - On a common piece, both are the unique prefix replacement onto the same image piece. So `h = h'`.
+- *Conclusion.* A homomorphism from the amalgam, injective on the union with exact intersections, into the finite
+  group `Sym(Y)`. Theorem 2.6 applies.
+
+**Example 4.2 (an essential triangle that still dies).**
+- *Intersections.* A split region is the only way to write that cylinder as a union of two pieces of the other
+  partition, so every intersection element fixes it pointwise. This gives `D_01 = Sym{U_1,U_2,U_3,U_5}`,
+  `D_12 = Sym{U_1,U_3,U_4,U_5}` and `D_02 = Sym{U_1,U_3,U_5,U_6}`.
+- *Essential.* `(U_1 U_2) ∉ H_2`, because it sends `[0010]` to `[0000]`, which is not a piece. The other two edges are
+  symmetric.
+- *Infinite order.* `g = (U_3 U_4) ∘ t` sends `010x -> 0110x -> 0100x`.
+- *Count.* `|Y| = 6 + 2 + 2 + 2 = 12`.
+
+**Corollary 4.3.** The contrapositive of Proposition 4.1.
+
+## 34. The swap-problem split at the central involution (lead priority check): PASS, route verdict line added
+
+`ternary-leavitt-swap-problem-splits-at-central-involution` had no verdict line on its route. Its earlier review is
+Section 23 of `research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md`: parts 1–5 PASS, and part 6 was
+corrected forward. The corrected claim is on main. Re-derived independently here:
+
+- **Part 1.** `(2(1 ± z))^2 = 8(1 ± z) = 2(1 ± z)`, the sum is `4 = 1`, and the product is `4(1 - z^2) = 0`. So
+  `S_+ ≅ F_3[PG]`.
+- **Part 2.**
+  - `d^2 = s0t0 + s1t1 = 1`, `dw = s0t1 - s1t0` and `(dw)d = -w = zw`.
+  - On `S_-`, `[d] e_- [d] = eps_- - e_-`, with matrix units `e_-`, `eps_- - e_-`, `e_-[d]` and `[d]e_-`.
+  - A unital map to a commutative ring would give `e = 1 - e` and `e(1 - e) = 0`. So `e = 2`, and `4 = 2`, which is
+    impossible.
+- **Part 3.** Fullness through `E_11` of `M_2(T)` is a column times a row, which is a two-pair Cohn family.
+- **Part 4.** Evaluation sends `[z]` to `-1` and `eps_+` to 0.
+- **Part 5.** Project to `S_+`, and note `ebar ≠ 1`.
+- **Part 6, corrected form.**
+  - With `b, c ∈ S_-`: `CA = eps_- + eps_+ = 1`, and `AC = e_- b c + eps_+ ≠ 1`, because `e_- b c ∈ e_- S_-` and
+    `e_- ≠ eps_-`.
+  - `G` embeds in `PG` by `g -> s0 g t0 + s1 t1`, and surjunctivity passes to subgroups.
+
+## 35. Weakly finite representations of the binary corner (w5-wf-binary, 3e90870399): PASS
+
+**Lemma W.1 (corners are weakly finite).**
+- `X' = X + (1-p)I` and `Y' = Y + (1-p)I` satisfy `X'Y' = I`, because `X(1-p) = (1-p)Y = 0`.
+- Compress `Y'X' = I` by `p`.
+
+**Lemma W.2.**
+- *Block unit.* `f(1 - [D(g)]) = (f_(K_3) + f_(K_4)) u`, with `u` a unit of the block algebra: `D(g)` acts by `ω` on the
+  `K_3` and `K_4` blocks.
+- *One idempotent dies.* If `φ([g]) = 1`, then `q(f_(K_3)) = 0`.
+- *The others die.*
+  - An `M` fixing `K_1` with `MK_3 = K_2` exists, because `GL_2(F_3)` acts on the four lines as `S_4`.
+  - `π_M` commutes with `e`, hence with `f`.
+  - `x = π_M f_(K_3)` and `y = f_(K_3) π_M^-1` lie in `T`, with `xy = f_(K_2)` and `x = x f_(K_3)`.
+  - So `q(f) = 0`, and `W = 0`.
+
+**Theorem W.**
+- *(a) ⇒ (c).*
+  - `φ(ce)φ(eb) = 1` gives `φ(ebce) = 1`.
+  - `φ(e)` has left inverse `φ(ebc)` and right inverse `φ(bce)`, so `φ(e) = 1`.
+  - Then `u + u^2 = 0`, so `u^2 = u`, and `u = 1`.
+- *(b) ⇔ (c).* Lemma W.2 in one direction. In the other, `φ(f) = u + u^2 ≠ 0`, with Lemma W.1.
+- *(c) ⇔ (d).* Characteristic two, and simplicity of `G`. That input was not re-derived.
+- *(b) ⇒ (a).* Theorem C (Section 29.4), then Theorem B (Section 32.3).
+
+**Route `binary-cyclic-corner-from-no-weakly-finite-complement-image`.** PASS as an implication.
+
+**Consequence confirmed, given simplicity.** The binary averaging corner is full iff `L_(F_2)(1,2)^x` has no
+nontrivial homomorphism into the unit group of a weakly finite ring of characteristic two.
