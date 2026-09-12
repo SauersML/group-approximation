@@ -32,3 +32,5 @@ replacements.
   contradicting corner locality.
 - **Unchanged.** The dimension calculus of principal right ideals, square zero in characteristic two,
   commuting disjoint cylinders and `V`-transitivity, perfection, and four-generation.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 18.3, as a step-by-step transfer of Section 8 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

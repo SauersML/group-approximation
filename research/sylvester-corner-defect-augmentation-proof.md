@@ -22,3 +22,5 @@ Artifact Proposition 1.1.
    (`simple-group-rank-functions-are-augmentation-or-detecting`). It contains `iota_P(R^x) != 1`, and
    `R^x` is simple (`binary-leavitt-unit-group-is-simple`), so it is all of `R^x`, and `rk` is the
    augmentation rank.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 18.2 (given the established [SYL] Theorem 1 and [DI] Theorem 1.1) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

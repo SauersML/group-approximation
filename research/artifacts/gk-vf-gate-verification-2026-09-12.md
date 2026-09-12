@@ -825,3 +825,73 @@ This sharpens Section 11.1.
      `EL_3(C_2)` is nontrivial.
    - **`R^x`.** `G_4 <= EL_4(R) ~= R^x` through the embedding of Section 14.2, and nontrivial models of
      the simple `R^x` are injective.
+
+## 18. w4-upg-audit (0bd1b6b05f, f03a707081)
+
+### 18.1 `regular-rank-ring-compressors-conserve-fixed-right-ideals`: PASS
+
+**Part 1: the rank bound.**
+- **Setup.** `Fix_r(sigma(Gamma)) = ∩_s A_s`, a finite intersection of principal right annihilators,
+  so it is principal, `= eU`.
+- **Rank of `(1-e)x`.** The right annihilator of `1-e` is `eU`. Fact 1.1(d) on `xU + eU`, which
+  contains `eU`, together with modularity gives `rk((1-e)x) = rk J - rk(J ∩ eU)` for `J = xU`.
+- **Rank of `(sigma(s)-1)x`.** The same argument gives `rk((sigma(s)-1)x) = rk J - rk(J ∩ A_s)`.
+- **Combining.** Inside `J`, `rk(I ∩ I') >= rk I + rk I' - rk J`, and iterating over `S` gives the bound.
+
+**Part 2: normal closure.**
+- **Invariance.** `g Gamma g^-1 <= Gamma` gives `eU <= sigma(g) e sigma(g)^-1 U`. The two idempotents are
+  conjugate, so the ranks are equal, and faithfulness makes the ideals equal.
+- **Pointwise fixing.** `sigma(g gamma g^-1) y = y`, since `sigma(g)^-1 y` lies in `eU`.
+
+### 18.2 `corner-defect-killing-rank-functions-are-augmentation`: PASS
+
+This rests on established inputs I did not re-derive here: [SYL] Theorem 1 and [DI] Theorem 1.1.
+- **Pullback.** `iota_P` is an injective unital endomorphism of `F_2[R^x]`, so `rk o iota_P` is a
+  Sylvester rank function, and it kills `D`.
+- **[SYL] Theorem 1.** It gives the augmentation rank, so `iota_P(R^x) <= N_rk`.
+- **`N_rk` is a normal subgroup.**
+  - `rk(1 - gh) <= rk(1-g) + rk(1-h)`;
+  - `rk(1 - x g x^-1) = rk(1-g)`.
+- **Simplicity.** It gives `N_rk = R^x`, so every `alpha` is congruent to `epsilon(alpha)` modulo the
+  null ideal.
+- **Pullback consequence.** For a faithful target, pulling back `rk_U` shows that the corner product
+  vanishing forces `sigma(g) = 1`.
+
+### 18.3 `leavitt-defect-descent-chain-holds-in-regular-rank-rings`: PASS as a transfer
+
+I checked every step of Section 8 (my verification of [DG]) against the regular setting.
+
+**Unchanged steps.**
+- Fact 1.1 (regular rings).
+- Facts 1.2 and 1.3.
+- Lemmas 2.1 and 2.2.
+- Theorem 3.1.
+- Proposition 4.1.
+
+**Replaced steps.**
+- **Principal fixed ideal:** Theorem 2.2(1).
+- **Globality:** Corollary 2.4, which consumes Theorem 2.2.
+- **Corners:** Lemma 2.1(1). `x = x(eye)x`, and `rk/rk(e)` is faithful.
+- **Compactness.**
+  - Lemma 2.1(2) gives a product of regular rings modulo the null ideal of `rk_omega`: regular,
+    faithful, characteristic two, with units mapping to units.
+  - `rk_omega(D_1000) = 0` gives `D_1000 = 0`, and then Proposition 1.1, through the pullback, makes
+    `sigma` trivial.
+- **The infimum `c_*'`** is over the whole class, which contains the corner models.
+
+**Scope.** [DP] Theorem 1.2 was verified by w3-vf-linear, and its steps are ring algebra plus principal
+ranges.
+
+**Consequence 3.2.** `delta^2 - 2 eps delta <= f(2) <= theta delta^2` gives `(1-theta) delta <= 2 eps`,
+which contradicts `delta >= c_0'`.
+
+### 18.4 `sylvester-rank-functions-have-a-uniform-two-root-defect-gap`: PASS
+
+- **Independence of `P`.** `iota_B(D) = [u] iota_A(D) [u]^-1` for `u` in `V`, and rank is
+  conjugation-invariant.
+- **Compactness.**
+  - The Sylvester axioms are closed conditions on bounded values, so the space of such rank functions is
+    compact in the product topology.
+  - A limit point keeps `rk(1 - [g_i]) >= eta`, and has `rk(iota_P(D)) = 0`.
+  - Proposition 1.1 then contradicts it.
+- **Remark 4.2 (convex combinations).** They force `c^Syl(eta) -> 0`. Correct.

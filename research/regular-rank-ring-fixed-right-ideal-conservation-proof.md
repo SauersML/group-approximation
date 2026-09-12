@@ -22,3 +22,5 @@ as in `research/artifacts/two-root-defect-descent-gap-2026-09-12.md` Fact 1.1).
    complement of rank `0` vanishes by faithfulness, so `sigma(g) eU = eU`.
 4. **Normal closure.** Conjugates of elements of `Gamma` fix `eU` pointwise, because `sigma(G)` preserves
    `eU`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 18.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

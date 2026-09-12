@@ -22,3 +22,5 @@ Artifact Proposition 4.1.
    to `0` has a limit point with displacement at least `eta` and corner defect `0`. By
    `corner-defect-killing-rank-functions-are-augmentation` it is the augmentation rank, which moves no
    generator. Contradiction.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 18.4 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
