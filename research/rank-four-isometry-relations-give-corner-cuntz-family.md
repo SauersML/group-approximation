@@ -63,3 +63,15 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   the single-corner circularity is bypassed by the fourth index. Property (T) is not used.
 - **Open.** The three checks (a)-(c). In particular the precise placement of `T_i` and `S_j` and the
   proof that `rk(e) = rk(D)` rather than a lower bound.
+- **Lead pass (w3-strategist-gate, family R4 lead).**
+  - Only `T_0 S_0 = e = T_1 S_1` and `T_1 S_0 = 0` are needed. Check (b), completeness, is not
+    used in the contradiction (artifact L1).
+  - Given the established nodes, this claim is equivalent to the gate, so its content is the
+    construction. The first landing did not define `S_j`, `T_i` or `e`. The baseline `tau`
+    candidate is the circular matrix-unit extraction (L2, L3).
+  - Kaplansky calibration: an exact corner family inside `F_2[R^x]` would refute direct finiteness
+    of `F_2[R^x]` and make `R^x` non-sofic (Elek--Szabo). So check (a) must use the regularity or
+    rank of `M` at an intermediate step, not only group relations, the Leavitt relations and
+    direct finiteness (L4a).
+  - The adjacent "cannot see" and "is now a Steinberg identity" wording was an overclaim. `EL_4`
+    relations are relations of the same group `EL_3(R)`.

@@ -34,5 +34,10 @@ Either way `sigma` is trivial, which is `leavitt-el3-rank-models-over-finite-fie
 prerequisite `rank-four-isometry-relations-give-corner-cuntz-family` is established; the other three
 requirements are established.
 
+**Minimal form of the second case (lead pass, family R4).** The contradiction uses only
+`T_0 S_0 = e = T_1 S_1` and `T_1 S_0 = 0` in `eMe` with `e != 0`. Then `(T_0 + 1 - e)(S_0 + 1 - e) = 1`,
+and direct finiteness of `M` gives `S_0 T_0 = e`, so `T_1 = T_1 S_0 T_0 = 0` and `e = T_1 S_1 = 0`.
+Completeness `S_0 T_0 + S_1 T_1 = e` is not used. Artifact Section L1.
+
 Payoff: through the target's own routes, `non-linear-sofic-group` for `K = F_2`, `n = 2`, and the
 non-`F_p`-linear-soficity of `R^x` and of `PG`.
