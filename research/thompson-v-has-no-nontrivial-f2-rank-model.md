@@ -44,6 +44,15 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
   - Calibrated dead end: conjugacy of `pi_(a0<->b0)` to `pi_(a<->b)`, commutation, `N^2 = 0` and equal
     displacement do not force `rk(N_0 N_1) = 0`. The regular Klein four-group in `Sym(4)` satisfies all
     of them with `N_0 N_1 != 0` (artifact 5.2). A proof must use the depth-changing elements of `V`.
+- **3-cycle commutators give uniform displacement, not triviality.**
+  - `thompson-v-rank-models-displace-every-element-uniformly`: every nontrivial element of `V`
+    displaces at least `d_3/4`, where `d_3` is the displacement of a cylinder 3-cycle.
+  - Honest representations of large symmetric groups satisfy the same inequality, so this is a
+    necessary condition on a counterexample, not an obstruction.
+  - At finite stages it kills more. `thompson-v-rank-models-through-displacing-sym-reps-are-trivial`
+    shows that a model whose stages are symmetric-group representations with 3-cycle displacement
+    bounded below is an exact local embedding, and none exists. So a counterexample built from finite
+    symmetric groups must have displacement tending to zero, like the natural permutation module.
 - **Verification.** `gk-vf-linear` passed the covariance obstruction independently (Section 50 of its
   verification artifact). `w3-vf-linear` has the request.
 - **The root identity lives outside V.** Root elements `1 + E_ij` of `EL_3(R)` are not in `V`, so
