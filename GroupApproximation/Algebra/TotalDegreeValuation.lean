@@ -113,7 +113,8 @@ theorem algebraMap_ne_zero {p : MvPolynomial (Fin d) k} (hp : p ≠ 0) :
 
 /-- **Uniformizers.**  `(t_i)⁻¹` has total-degree valuation `1`. -/
 theorem degVal_inv_X (i : Fin d) :
-    degVal k d (algebraMap _ (FractionRing (MvPolynomial (Fin d) k)) (MvPolynomial.X i))⁻¹ = 1 := by
+    degVal k d (algebraMap (MvPolynomial (Fin d) k) (FractionRing (MvPolynomial (Fin d) k))
+      (MvPolynomial.X i))⁻¹ = 1 := by
   refine ValuationWithTopInt.addVal_eq_one _ ?_
   rw [map_inv₀, degValuation_algebraMap, degFun_of_ne_zero (MvPolynomial.X_ne_zero i),
     MvPolynomial.totalDegree_X, Nat.cast_one, exp_neg]
@@ -133,7 +134,7 @@ theorem finite_setOf_totalDegree_le [Finite k] (N : ℕ) :
   refine (Set.finite_range
     (fun x : MvPolynomial.restrictTotalDegree (Fin d) k N ↦ (x : MvPolynomial (Fin d) k))).subset ?_
   intro p hp
-  exact ⟨⟨p, (MvPolynomial.mem_restrictTotalDegree (Fin d) p).mpr hp⟩, rfl⟩
+  exact ⟨⟨p, (MvPolynomial.mem_restrictTotalDegree (Fin d) N p).mpr hp⟩, rfl⟩
 
 end TotalDegreeValuation
 end GroupApproximation
