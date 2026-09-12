@@ -7,6 +7,7 @@ distinct_from:
   fpbs-hyperbolic-quotient-uniform-fibre-bubble: that asks for finiteness of the whole critical fibre bubble over any hyperbolic quotient; this asks, on tree-projected generating sets only, that one finite sphere of the quotient carry critical squared fibre mass below one.
 artifacts:
   - research/artifacts/fpbs/docs/fibre-summed-hyperbolic-quotient-criterion.md
+  - research/artifacts/fpbs/docs/tree-projected-branching-numerics-2026-09-12.md
 ---
 
 **OPEN.** Let `Gamma`, `H = <z>` and `S` be as in
