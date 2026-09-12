@@ -101,7 +101,8 @@ than vanishing.
   * **First escapes** (same claim, items 2–3). These configurations lie in no locally finite
     subgroup:
     * the frames at `A` and at the right child `A1` give `b = iota_A(w_23) iota_(A1)(w_12)` of
-      infinite order, a first generator of Thompson's `F` on `A1`;
+      infinite order, acting on `A1` as `x_0` followed by the exchange of `A101` and `A11`, an element
+      of `V \ F`;
     * `x^A_12(s_0) x^A_21(1)` has infinite order, so the `GL_2(R)` block root groups with
       coefficients of nonzero degree, together with an opposite root, are not locally finite.
   * **Torus normalization.** Single conjugations by units of `iota_0(R^x) x iota_1(R^x)` are covered.

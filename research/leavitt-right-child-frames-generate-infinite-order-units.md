@@ -5,7 +5,7 @@ kind: claim
 title: The ternary tree of Leavitt frames at a cylinder conjugates into degree-zero units, while the frame at the right child, or a coefficient root with an opposite root, already gives units of infinite order
 distinct_from:
   locally-finite-hnn-data-allow-independent-cylinder-defects: that is the rank model with independent defects for identities of one locally finite subgroup plus single conjugations; this decides which configurations of Leavitt frames fit inside one locally finite subgroup and which do not.
-  finite-subgroup-data-cannot-force-defect-submultiplicativity: that says what is left is a unit of infinite order used as a factor; this computes the smallest such configurations, the right-child exchange product (a first generator of Thompson's F) and x_12(s_0) x_21(1), and shows the whole ternary frame tree at a cylinder lies in one locally finite conjugate of the degree-zero units.
+  finite-subgroup-data-cannot-force-defect-submultiplicativity: that says what is left is a unit of infinite order used as a factor; this computes the smallest such configurations, the right-child exchange product (an element of V but not of F: x_0 on A1 followed by an exchange of two cylinders) and x_12(s_0) x_21(1), and shows the whole ternary frame tree at a cylinder lies in one locally finite conjugate of the degree-zero units.
 artifacts:
   - research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md
 ---
@@ -23,8 +23,9 @@ Let `R = L_(F_2)(1,2)` with code `(0, 10, 11)`, and let `A` be a proper cylinder
    So the frames at `A`, `A0`, `A10`, `A11`, every halving unit, and opposite roots at those child
    cylinders all lie in one locally finite subgroup.
 2. **The right child.** `b = iota_A(w_23) iota_(A1)(w_12)` satisfies `b S[A10] = S[A10] s_0`, so it has
-   infinite order. It sends `A10, A110, A111` onto `A100, A11, A101`, a first generator of Thompson's
-   `F` on `A1`.
+   infinite order. It sends `A10, A110, A111` onto `A100, A11, A101`, which does not preserve order. So
+   `b` lies in `V \ F`: it is the generator `x_0` of `F` on `A1`, followed by the exchange of `A101` and
+   `A11`. (Corrected after w4-vf-gate, Section 15.)
 3. **A coefficient root.** `x^A_12(s_0) x^A_21(1)` has infinite order: its `n`-th power has a nonzero
    component of degree `n`.
 4. **Positive roots only.** The positive unit roots of the frames at `A` and `A1` generate a finite
