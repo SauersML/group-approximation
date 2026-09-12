@@ -129,6 +129,32 @@ def evaluation_rows(units, target):
     return rows, missing
 
 
+def span_contains(rows, ncols):
+    """Is the linear system {sum_{k in ks} c_k = rhs} solvable over F_2?
+
+    Gaussian elimination on row bitsets; bit ncols carries the right-hand side.
+    False means the target lies outside the F_2-span of the evaluated support,
+    so the bilinear instance is UNSAT for a purely linear reason.
+    """
+    pivots = {}
+    for ks, rhs in rows:
+        v = 0
+        for k in ks:
+            v ^= 1 << k
+        if rhs:
+            v ^= 1 << ncols
+        while v & ((1 << ncols) - 1):
+            low = (v & -v).bit_length() - 1
+            if low not in pivots:
+                pivots[low] = v
+                break
+            v ^= pivots[low]
+        else:
+            if v:
+                return False
+    return True
+
+
 def encode_and_solve(A, B, ab, ba, ident, strict, time_limit, linear_rows=()):
     """linear_rows: (side, indices, rhs) with side 'x' or 'y', one XOR per row."""
     from pycryptosat import Solver
@@ -237,9 +263,13 @@ def main():
         erows, missing = evaluation_rows(units, target)
         rows = [(side, ks, rhs) for ks, rhs in erows] + ([(side, [], True)] if missing else [])
         report["target"], report["evaluation_rows"] = args.target, len(erows)
+        report["target_in_span"] = (not missing) and span_contains(erows, len(units))
         strict = False
     report["build_seconds"] = round(time.time() - t0, 3)
-    status, model, stats = encode_and_solve(A, B, ab, ba, ident, strict, args.time_limit, rows)
+    if report.get("target_in_span") is False:
+        status, model, stats = "UNSAT", None, {"reason": "target outside the span of the evaluated support"}
+    else:
+        status, model, stats = encode_and_solve(A, B, ab, ba, ident, strict, args.time_limit, rows)
     report.update(stats)
     report["status"] = status
     if model is not None:
