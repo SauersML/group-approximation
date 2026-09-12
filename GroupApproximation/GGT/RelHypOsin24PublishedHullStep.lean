@@ -188,8 +188,8 @@ theorem osin24HullStep_of_boundedLeaves
       · rcases hjointSub₀ hy with hy | hy
         · exact ⟨y, Or.inl hy, rfl⟩
         · exact ⟨y, Or.inr (Or.inl hy), rfl⟩
-      · exact ⟨t, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
-      · exact ⟨t⁻¹, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
+      · exact ⟨_, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
+      · exact ⟨_, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
   -- the original collection: the joint image with the cyclic members un-coned
   have hloxMem : ∀ i : HullSC.AuxiliaryPeripheralIndex 0,
       D.cores.lox i ∈ D.cores.peripheral i := by

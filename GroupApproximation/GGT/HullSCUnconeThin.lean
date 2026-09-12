@@ -123,8 +123,8 @@ theorem vertex_near (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     obtain ⟨p, hp, hd⟩ := corner_near J g hg hbaseInv hbnd hDc hT (sidePoints J g x y z) hrev₁
       hrev₃ hk' hm hu (fun i hi => vertex_revWord_mem_sidePoints_right J g hg x y z hi)
       (side_right J g hg hbaseInv hinf hbnd hDc hT x y z _)
-    rw [hp₀] at hd
-    refine ⟨p, hp, le_trans hd ?_⟩
+    refine ⟨p, hp, ?_⟩
+    rw [← hp₀]
     have hmul := Nat.mul_le_mul_left (3 * T + 1) hulen
     omega
 
@@ -156,7 +156,7 @@ theorem thin (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
   · -- a point strictly inside the expansion of a letter, which is then cyclic
     have hletter : ∃ (i₀ : I) (e : Q), (geodWord J x y)[k]'hk = RelLetter.comp (Sum.inr i₀) e := by
       by_contra hne
-      push_neg at hne
+      push Not at hne
       have h1 : (expLetters g ((geodWord J x y)[k]'hk)).length = 1 := by
         revert hne
         generalize (geodWord J x y)[k]'hk = a
@@ -215,7 +215,7 @@ end Uncone
 /-- **Removing infinite cyclic peripheral members keeps the Cayley graph hyperbolic.** -/
 theorem cyclicPeripheralRemovalHyperbolicityStatement :
     CyclicPeripheralRemovalHyperbolicityStatement.{u, w, v} := by
-  intro Q _ Lambda I _ _ J g hg hbaseInv hinf hJ
+  intro Q _ Lambda I _ J g hg hbaseInv hinf hJ
   obtain ⟨δ, hδ⟩ := exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded J hJ
   obtain ⟨C, hC, hbnd⟩ := sixBound_one_of_fourPointHyperbolic J hbaseInv hδ 0 le_rfl
   obtain ⟨T, hT⟩ := Uncone.exists_expo_bound J g hJ (C * 4)

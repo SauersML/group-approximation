@@ -49,7 +49,7 @@ theorem boundedImageEmbeddingStatement_of_quasiGeodesic
     hsc.mono_parameters heps le_rfl le_rfl
   have h20' : 20 * (eps0 + 1) ≤ rho := by omega
   exact hbridge D hD eps0 rho mu W q hq hmu hmuUpper h20' hsc0 hker
-    (fun R Z hZ => hcert rho hrho W R hsc0.toIsLemma44Input Z hZ)
+    (fun R Z hZ => hcert rho hrho W R hsc0.toIsLemma44Input Z.toRelativeReducedDiagram hZ)
 
 end HullSC
 end GroupApproximation
