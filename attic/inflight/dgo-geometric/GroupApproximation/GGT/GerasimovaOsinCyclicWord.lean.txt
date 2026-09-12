@@ -1,0 +1,506 @@
+import GroupApproximation.GGT.DGOLemma421a
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Power words of a four-letter product and the bound of DGO Lemma 4.21(a)
+
+Infrastructure for the two-sided form of Gerasimova--Osin's Lemma 4.2.
+
+Let `{H₀, H₁, H₂, H₃}` be a family with relative generating set `X`, and let
+`aᵢ ∈ Hᵢ` be deep letters: `aᵢ` and `aᵢ⁻¹` lie outside the relative ball of
+radius `C`, where `C` is the constant of Dahmani--Guirardel--Osin's Lemma
+4.21(a).  Put `x = a₀ a₁ a₂ a₃`.  The power `xᵉ` is spelled by the block word
+`(a₀ a₁ a₂ a₃)^e` for `e ≥ 0` and `(a₃⁻¹ a₂⁻¹ a₁⁻¹ a₀⁻¹)^|e|` for `e < 0`
+(`powWord`), of length `4|e|`, and it satisfies (W1)--(W3).
+
+Splicing one `X`-letter between two such words keeps (W1)--(W3), provided the
+letter lies in no `Hᵢ` (`isWOne_append_base_cons` and its siblings).  Lemma
+4.21(a) bounds the length of a `W`-word by `4d + 4`, where `d` is the distance
+between its endpoints.  That gives the two relations below.
+
+* `base_mul_zpow_ne_one`: for `y ∈ X` and `b ≠ 0`, `y · xᵇ ≠ 1`; the closed
+  word has length `1 + 4|b| ≥ 5`.
+* `zpow_mul_base_mul_zpow_ne`: for `y ∈ X` outside every `Hᵢ`, `z` a letter of
+  the alphabet, and `a, b ≠ 0`, `xᵃ · y · xᵇ ≠ z`; the word has length at least
+  `9`, while its endpoints are at distance at most `1`.
+
+## Manuscript status
+
+Infrastructure for `cor:regular-nonmf-algebra` (stable rank one through
+Gerasimova--Osin); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation
+namespace GGT
+namespace CyclicTwoSided
+
+open GroupApproximation.WordMetric
+open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
+open GroupApproximation.GGT.OsinComponents
+
+universe u w
+
+/-! ## Splicing one `X`-letter -/
+
+section Splice
+
+variable {G : Type u} [Group G] {Λ : Type w}
+
+omit [Group G] in
+/-- **(W1) across one spliced `X`-letter.** -/
+theorem isWOne_append_base_cons {w₁ w₂ : List (RelLetter G Λ)} (y : G)
+    (hb₁ : ∀ (i : ℕ) (x : G), w₁[i]? ≠ some (RelLetter.base x))
+    (hb₂ : ∀ (i : ℕ) (x : G), w₂[i]? ≠ some (RelLetter.base x)) :
+    WWord.IsWOne (w₁ ++ RelLetter.base y :: w₂) := by
+  intro i x z hx hz
+  rcases Nat.lt_or_ge i w₁.length with hi | hi
+  · rw [List.getElem?_append_left hi] at hx
+    exact hb₁ i x hx
+  · rw [List.getElem?_append_right (by omega : w₁.length ≤ i + 1)] at hz
+    have hidx : i + 1 - w₁.length = (i - w₁.length) + 1 := by omega
+    rw [hidx, List.getElem?_cons_succ] at hz
+    exact hb₂ _ z hz
+
+/-- **(W2) across one spliced `X`-letter.** -/
+theorem isWTwo_append_base_cons (D : RelGenSet G Λ) {R : ℕ}
+    {w₁ w₂ : List (RelLetter G Λ)} (y : G)
+    (h₁ : WWord.IsWTwo D R w₁) (h₂ : WWord.IsWTwo D R w₂) :
+    WWord.IsWTwo D R (w₁ ++ RelLetter.base y :: w₂) := by
+  intro i lam h hx
+  rcases Nat.lt_or_ge i w₁.length with hi | hi
+  · rw [List.getElem?_append_left hi] at hx
+    exact h₁ i lam h hx
+  · rw [List.getElem?_append_right hi] at hx
+    rcases Nat.eq_or_lt_of_le hi with heq | hlt
+    · rw [← heq, Nat.sub_self, List.getElem?_cons_zero] at hx
+      simp at hx
+    · have hidx : i - w₁.length = (i - w₁.length - 1) + 1 := by omega
+      rw [hidx, List.getElem?_cons_succ] at hx
+      exact h₂ _ lam h hx
+
+/-- **(W3) across one spliced `X`-letter**, when the letter lies in no
+subgroup of the family (needed only if something precedes it). -/
+theorem isWThree_append_base_cons (D : RelGenSet G Λ)
+    {w₁ w₂ : List (RelLetter G Λ)} (y : G)
+    (hb₁ : ∀ (i : ℕ) (x : G), w₁[i]? ≠ some (RelLetter.base x))
+    (hb₂ : ∀ (i : ℕ) (x : G), w₂[i]? ≠ some (RelLetter.base x))
+    (h₁ : WWord.IsWThree D w₁) (h₂ : WWord.IsWThree D w₂)
+    (hsep : w₁ ≠ [] → ∀ lam : Λ, y ∉ D.fam lam) :
+    WWord.IsWThree D (w₁ ++ RelLetter.base y :: w₂) := by
+  constructor
+  · intro i lam mu g₁ g₂ hx hy
+    by_cases hi1 : i + 1 < w₁.length
+    · rw [List.getElem?_append_left (by omega : i < w₁.length)] at hx
+      rw [List.getElem?_append_left hi1] at hy
+      exact h₁.1 i lam mu g₁ g₂ hx hy
+    · by_cases hi2 : i + 1 = w₁.length
+      · rw [List.getElem?_append_right (by omega : w₁.length ≤ i + 1), hi2, Nat.sub_self,
+          List.getElem?_cons_zero] at hy
+        simp at hy
+      · by_cases hi3 : i = w₁.length
+        · rw [List.getElem?_append_right (by omega : w₁.length ≤ i), hi3, Nat.sub_self,
+            List.getElem?_cons_zero] at hx
+          simp at hx
+        · have hx' : w₂[i - w₁.length - 1]? = some (RelLetter.comp lam g₁) := by
+            rw [List.getElem?_append_right (by omega : w₁.length ≤ i)] at hx
+            have hidx : i - w₁.length = (i - w₁.length - 1) + 1 := by omega
+            rw [hidx, List.getElem?_cons_succ] at hx
+            exact hx
+          have hy' : w₂[i - w₁.length - 1 + 1]? = some (RelLetter.comp mu g₂) := by
+            rw [List.getElem?_append_right (by omega : w₁.length ≤ i + 1)] at hy
+            have hidx : i + 1 - w₁.length = (i - w₁.length - 1 + 1) + 1 := by omega
+            rw [hidx, List.getElem?_cons_succ] at hy
+            exact hy
+          exact h₂.1 _ lam mu g₁ g₂ hx' hy'
+  · intro i lam mu g₁ g₂ x _hx hb _hy
+    rcases Nat.lt_or_ge (i + 1) w₁.length with hlt | hge
+    · rw [List.getElem?_append_left hlt] at hb
+      exact absurd hb (hb₁ (i + 1) x)
+    · rcases Nat.eq_or_lt_of_le hge with heq | hgt
+      · rw [List.getElem?_append_right hge, ← heq, Nat.sub_self,
+          List.getElem?_cons_zero] at hb
+        have hxy : y = x := by simpa using hb
+        have hne : w₁ ≠ [] := by
+          intro hnil
+          rw [hnil, List.length_nil] at heq
+          omega
+        right
+        rw [← hxy]
+        exact hsep hne lam
+      · rw [List.getElem?_append_right hge] at hb
+        have hidx : i + 1 - w₁.length = (i - w₁.length) + 1 := by omega
+        rw [hidx, List.getElem?_cons_succ] at hb
+        exact absurd hb (hb₂ _ x)
+
+/-- **Admissible letters across one spliced `X`-letter.** -/
+theorem isLetter_append_base_cons (D : RelGenSet G Λ) {w₁ w₂ : List (RelLetter G Λ)}
+    {y : G} (h₁ : ∀ c ∈ w₁, D.IsLetter c) (h₂ : ∀ c ∈ w₂, D.IsLetter c)
+    (hy : y ∈ D.base) : ∀ c ∈ w₁ ++ RelLetter.base y :: w₂, D.IsLetter c := by
+  intro c hc
+  rcases List.mem_append.mp hc with hc | hc
+  · exact h₁ c hc
+  · rcases List.mem_cons.mp hc with rfl | hc
+    · exact hy
+    · exact h₂ c hc
+
+omit [Group G] in
+/-- The empty word has no `X`-letter. -/
+theorem nil_ne_base (i : ℕ) (x : G) :
+    ([] : List (RelLetter G Λ))[i]? ≠ some (RelLetter.base x) := by
+  simp
+
+/-- The empty word satisfies (W2). -/
+theorem isWTwo_nil (D : RelGenSet G Λ) (R : ℕ) :
+    WWord.IsWTwo D R ([] : List (RelLetter G Λ)) := by
+  intro i lam h hx
+  simp at hx
+
+/-- The empty word satisfies (W3). -/
+theorem isWThree_nil (D : RelGenSet G Λ) :
+    WWord.IsWThree D ([] : List (RelLetter G Λ)) := by
+  constructor
+  · intro i lam mu g₁ g₂ hx
+    simp at hx
+  · intro i lam mu g₁ g₂ x hx
+    simp at hx
+
+end Splice
+
+/-! ## Power words of `a₀ a₁ a₂ a₃` -/
+
+section PowerWord
+
+variable {G : Type u} [Group G]
+
+/-- The first three letters of the positive block. -/
+def posPre (a : Fin 4 → G) : List (RelLetter G (Fin 4)) :=
+  [RelLetter.comp 0 (a 0), RelLetter.comp 1 (a 1), RelLetter.comp 2 (a 2)]
+
+/-- The first three letters of the negative block. -/
+def negPre (a : Fin 4 → G) : List (RelLetter G (Fin 4)) :=
+  [RelLetter.comp 3 (a 3)⁻¹, RelLetter.comp 2 (a 2)⁻¹, RelLetter.comp 1 (a 1)⁻¹]
+
+/-- `(a₀ a₁ a₂ a₃)^n` as a word. -/
+def posWord (a : Fin 4 → G) (n : ℕ) : List (RelLetter G (Fin 4)) :=
+  blockWord 3 (posPre a) (a 3) n
+
+/-- `(a₃⁻¹ a₂⁻¹ a₁⁻¹ a₀⁻¹)^n` as a word. -/
+def negWord (a : Fin 4 → G) (n : ℕ) : List (RelLetter G (Fin 4)) :=
+  blockWord 0 (negPre a) (a 0)⁻¹ n
+
+/-- `(a₀ a₁ a₂ a₃)^e` as a word, for an integer `e`. -/
+def powWord (a : Fin 4 → G) (e : ℤ) : List (RelLetter G (Fin 4)) :=
+  if 0 ≤ e then posWord a e.toNat else negWord a e.natAbs
+
+theorem listVal_posWord (a : Fin 4 → G) (n : ℕ) :
+    RelLetter.listVal (posWord a n) = (a 0 * a 1 * a 2 * a 3) ^ n := by
+  rw [posWord, listVal_blockWord]
+  congr 1
+  simp only [posPre, RelLetter.listVal, RelLetter.val, List.map_cons, List.map_nil,
+    List.prod_cons, List.prod_nil, mul_one]
+  group
+
+theorem listVal_negWord (a : Fin 4 → G) (n : ℕ) :
+    RelLetter.listVal (negWord a n) = (a 0 * a 1 * a 2 * a 3)⁻¹ ^ n := by
+  rw [negWord, listVal_blockWord]
+  congr 1
+  simp only [negPre, RelLetter.listVal, RelLetter.val, List.map_cons, List.map_nil,
+    List.prod_cons, List.prod_nil, mul_one]
+  group
+
+theorem listVal_powWord (a : Fin 4 → G) (e : ℤ) :
+    RelLetter.listVal (powWord a e) = (a 0 * a 1 * a 2 * a 3) ^ e := by
+  unfold powWord
+  split_ifs with he
+  · rw [listVal_posWord, ← zpow_natCast, Int.toNat_of_nonneg he]
+  · rw [listVal_negWord, inv_pow, ← zpow_natCast, ← zpow_neg]
+    congr 1
+    omega
+
+omit [Group G] in
+theorem length_posWord (a : Fin 4 → G) (n : ℕ) : (posWord a n).length = 4 * n := by
+  rw [posWord, length_blockWord]
+  simp only [posPre, List.length_cons, List.length_nil]
+  ring
+
+theorem length_negWord (a : Fin 4 → G) (n : ℕ) : (negWord a n).length = 4 * n := by
+  rw [negWord, length_blockWord]
+  simp only [negPre, List.length_cons, List.length_nil]
+  ring
+
+theorem length_powWord (a : Fin 4 → G) (e : ℤ) :
+    (powWord a e).length = 4 * e.natAbs := by
+  unfold powWord
+  split_ifs with he
+  · rw [length_posWord]
+    omega
+  · rw [length_negWord]
+
+omit [Group G] in
+theorem posPre_ne_base (a : Fin 4 → G) (j : ℕ) (y : G) :
+    (posPre a)[j]? ≠ some (RelLetter.base y) := by
+  rcases j with _ | _ | _ | j <;> simp [posPre]
+
+theorem negPre_ne_base (a : Fin 4 → G) (j : ℕ) (y : G) :
+    (negPre a)[j]? ≠ some (RelLetter.base y) := by
+  rcases j with _ | _ | _ | j <;> simp [negPre]
+
+theorem powWord_ne_base (a : Fin 4 → G) (e : ℤ) (i : ℕ) (x : G) :
+    (powWord a e)[i]? ≠ some (RelLetter.base x) := by
+  unfold powWord
+  split_ifs
+  · exact getElem?_blockWord_ne_base 3 (posPre_ne_base a) (a 3) _ i x
+  · exact getElem?_blockWord_ne_base 0 (negPre_ne_base a) (a 0)⁻¹ _ i x
+
+theorem isWOne_posWord (a : Fin 4 → G) (n : ℕ) : WWord.IsWOne (posWord a n) :=
+  isWOne_blockWord_of_noBase 3 (posPre_ne_base a) (a 3) n
+
+theorem isWOne_powWord (a : Fin 4 → G) (e : ℤ) : WWord.IsWOne (powWord a e) := by
+  unfold powWord
+  split_ifs
+  · exact isWOne_blockWord_of_noBase 3 (posPre_ne_base a) (a 3) _
+  · exact isWOne_blockWord_of_noBase 0 (negPre_ne_base a) (a 0)⁻¹ _
+
+theorem isLetter_posWord (D : RelGenSet G (Fin 4)) {a : Fin 4 → G}
+    (ha : ∀ i, a i ∈ D.fam i) (n : ℕ) : ∀ c ∈ posWord a n, D.IsLetter c := by
+  refine isLetter_of_mem_blockWord D 3 ?_ (ha 3) n
+  intro c hc
+  simp [posPre] at hc
+  rcases hc with rfl | rfl | rfl
+  · exact ha 0
+  · exact ha 1
+  · exact ha 2
+
+theorem isLetter_negWord (D : RelGenSet G (Fin 4)) {a : Fin 4 → G}
+    (ha : ∀ i, a i ∈ D.fam i) (n : ℕ) : ∀ c ∈ negWord a n, D.IsLetter c := by
+  refine isLetter_of_mem_blockWord D 0 ?_ ((D.fam 0).inv_mem (ha 0)) n
+  intro c hc
+  simp [negPre] at hc
+  rcases hc with rfl | rfl | rfl
+  · exact (D.fam 3).inv_mem (ha 3)
+  · exact (D.fam 2).inv_mem (ha 2)
+  · exact (D.fam 1).inv_mem (ha 1)
+
+theorem isLetter_powWord (D : RelGenSet G (Fin 4)) {a : Fin 4 → G}
+    (ha : ∀ i, a i ∈ D.fam i) (e : ℤ) : ∀ c ∈ powWord a e, D.IsLetter c := by
+  unfold powWord
+  split_ifs
+  · exact isLetter_posWord D ha _
+  · exact isLetter_negWord D ha _
+
+theorem isWTwo_posWord (D : RelGenSet G (Fin 4)) {C : ℕ} {a : Fin 4 → G}
+    (hdeep : ∀ i, a i ∉ D.relBall i C ∧ (a i)⁻¹ ∉ D.relBall i C) (n : ℕ) :
+    WWord.IsWTwo D C (posWord a n) := by
+  refine isWTwo_blockWord_of_deep D 3 ?_ (hdeep 3).1 n
+  intro j mu g hj
+  rcases j with _ | _ | _ | j <;> simp [posPre] at hj
+  · obtain ⟨h1, h2⟩ := hj
+    subst h1
+    subst h2
+    exact (hdeep 0).1
+  · obtain ⟨h1, h2⟩ := hj
+    subst h1
+    subst h2
+    exact (hdeep 1).1
+  · obtain ⟨h1, h2⟩ := hj
+    subst h1
+    subst h2
+    exact (hdeep 2).1
+
+theorem isWTwo_negWord (D : RelGenSet G (Fin 4)) {C : ℕ} {a : Fin 4 → G}
+    (hdeep : ∀ i, a i ∉ D.relBall i C ∧ (a i)⁻¹ ∉ D.relBall i C) (n : ℕ) :
+    WWord.IsWTwo D C (negWord a n) := by
+  refine isWTwo_blockWord_of_deep D 0 ?_ (hdeep 0).2 n
+  intro j mu g hj
+  rcases j with _ | _ | _ | j <;> simp [negPre] at hj
+  · obtain ⟨h1, h2⟩ := hj
+    subst h1
+    subst h2
+    exact (hdeep 3).2
+  · obtain ⟨h1, h2⟩ := hj
+    subst h1
+    subst h2
+    exact (hdeep 2).2
+  · obtain ⟨h1, h2⟩ := hj
+    subst h1
+    subst h2
+    exact (hdeep 1).2
+
+theorem isWTwo_powWord (D : RelGenSet G (Fin 4)) {C : ℕ} {a : Fin 4 → G}
+    (hdeep : ∀ i, a i ∉ D.relBall i C ∧ (a i)⁻¹ ∉ D.relBall i C) (e : ℤ) :
+    WWord.IsWTwo D C (powWord a e) := by
+  unfold powWord
+  split_ifs
+  · exact isWTwo_posWord D hdeep _
+  · exact isWTwo_negWord D hdeep _
+
+theorem isWThree_posWord (D : RelGenSet G (Fin 4)) (a : Fin 4 → G) (n : ℕ) :
+    WWord.IsWThree D (posWord a n) := by
+  refine isWThree_blockWord_of_cyclic D 3 (by simp [posPre]) (posPre_ne_base a)
+    ?_ ?_ ?_ (a 3) n
+  · intro j mu nu g₁ g₂ h1 h2
+    rcases j with _ | _ | j <;> simp [posPre] at h1 h2
+    · obtain ⟨e1, -⟩ := h1
+      obtain ⟨e2, -⟩ := h2
+      subst e1
+      subst e2
+      decide
+    · obtain ⟨e1, -⟩ := h1
+      obtain ⟨e2, -⟩ := h2
+      subst e1
+      subst e2
+      decide
+  · intro j mu g hj h1
+    have hj2 : j = 2 := by
+      simp only [posPre, List.length_cons, List.length_nil] at hj
+      omega
+    subst hj2
+    simp [posPre] at h1
+    obtain ⟨e1, -⟩ := h1
+    subst e1
+    decide
+  · intro mu g h1
+    simp [posPre] at h1
+    obtain ⟨e1, -⟩ := h1
+    subst e1
+    decide
+
+theorem isWThree_negWord (D : RelGenSet G (Fin 4)) (a : Fin 4 → G) (n : ℕ) :
+    WWord.IsWThree D (negWord a n) := by
+  refine isWThree_blockWord_of_cyclic D 0 (by simp [negPre]) (negPre_ne_base a)
+    ?_ ?_ ?_ (a 0)⁻¹ n
+  · intro j mu nu g₁ g₂ h1 h2
+    rcases j with _ | _ | j <;> simp [negPre] at h1 h2
+    · obtain ⟨e1, -⟩ := h1
+      obtain ⟨e2, -⟩ := h2
+      subst e1
+      subst e2
+      decide
+    · obtain ⟨e1, -⟩ := h1
+      obtain ⟨e2, -⟩ := h2
+      subst e1
+      subst e2
+      decide
+  · intro j mu g hj h1
+    have hj2 : j = 2 := by
+      simp only [negPre, List.length_cons, List.length_nil] at hj
+      omega
+    subst hj2
+    simp [negPre] at h1
+    obtain ⟨e1, -⟩ := h1
+    subst e1
+    decide
+  · intro mu g h1
+    simp [negPre] at h1
+    obtain ⟨e1, -⟩ := h1
+    subst e1
+    decide
+
+theorem isWThree_powWord (D : RelGenSet G (Fin 4)) (a : Fin 4 → G) (e : ℤ) :
+    WWord.IsWThree D (powWord a e) := by
+  unfold powWord
+  split_ifs
+  · exact isWThree_posWord D a _
+  · exact isWThree_negWord D a _
+
+end PowerWord
+
+/-! ## The two relations forbidden by Lemma 4.21(a) -/
+
+section Bound
+
+variable {G : Type u} [Group G]
+
+/-- The conclusion of Lemma 4.21(a) for one relative generating set and one
+constant, as `DGOLemma421a` returns it. -/
+def QuasiGeodesicWWords (D : RelGenSet G (Fin 4)) (C : ℕ) : Prop :=
+  ∀ (v : G) (u : List (RelLetter G (Fin 4))), (∀ c ∈ u, D.IsLetter c) →
+    WWord.IsWOne u → WWord.IsWTwo D C u → WWord.IsWThree D u →
+      ∀ i j : ℕ, i ≤ j → j ≤ u.length →
+        j - i ≤ 4 * wordDist D.alphabet.carrier (vertex v u i) (vertex v u j) + 4
+
+/-- **An `X`-letter times a nontrivial power of the product is not trivial.** -/
+theorem base_mul_zpow_ne_one {D : RelGenSet G (Fin 4)} {C : ℕ}
+    (hquasi : QuasiGeodesicWWords D C) {a : Fin 4 → G} (ha : ∀ i, a i ∈ D.fam i)
+    (hdeep : ∀ i, a i ∉ D.relBall i C ∧ (a i)⁻¹ ∉ D.relBall i C)
+    {y : G} (hy : y ∈ D.base) {b : ℤ} (hb : b ≠ 0) :
+    y * (a 0 * a 1 * a 2 * a 3) ^ b ≠ 1 := by
+  intro heq
+  let u : List (RelLetter G (Fin 4)) := [] ++ RelLetter.base y :: powWord a b
+  have hlet : ∀ c ∈ u, D.IsLetter c :=
+    isLetter_append_base_cons D (by simp) (isLetter_powWord D ha b) hy
+  have hW1 : WWord.IsWOne u := isWOne_append_base_cons y nil_ne_base (powWord_ne_base a b)
+  have hW2 : WWord.IsWTwo D C u :=
+    isWTwo_append_base_cons D y (isWTwo_nil D C) (isWTwo_powWord D hdeep b)
+  have hW3 : WWord.IsWThree D u :=
+    isWThree_append_base_cons D y nil_ne_base (powWord_ne_base a b) (isWThree_nil D)
+      (isWThree_powWord D a b) (fun h => absurd rfl h)
+  have hbound := hquasi 1 u hlet hW1 hW2 hW3 0 u.length (Nat.zero_le _) le_rfl
+  have hend : vertex (1 : G) u u.length = 1 := by
+    rw [OsinComponents.vertex_length, one_mul]
+    show RelLetter.listVal (RelLetter.base y :: powWord a b) = 1
+    rw [OsinComponents.listVal_cons, listVal_powWord]
+    exact heq
+  rw [OsinComponents.vertex_zero, hend, wordDist_self, Nat.sub_zero] at hbound
+  have hlen : u.length = 4 * b.natAbs + 1 := by
+    show (RelLetter.base y :: powWord a b).length = _
+    rw [List.length_cons, length_powWord]
+  have hb' : 0 < b.natAbs := Int.natAbs_pos.mpr hb
+  omega
+
+/-- **A nontrivial power, a spliced `X`-letter and a nontrivial power do not
+spell a letter of the alphabet.** -/
+theorem zpow_mul_base_mul_zpow_ne {D : RelGenSet G (Fin 4)} {C : ℕ}
+    (hquasi : QuasiGeodesicWWords D C) {a : Fin 4 → G} (ha : ∀ i, a i ∈ D.fam i)
+    (hdeep : ∀ i, a i ∉ D.relBall i C ∧ (a i)⁻¹ ∉ D.relBall i C)
+    {y z : G} (hy : y ∈ D.base) (hynot : ∀ lam : Fin 4, y ∉ D.fam lam)
+    (hz : z ∈ D.alphabet.carrier) {e b : ℤ} (he : e ≠ 0) (hb : b ≠ 0) :
+    (a 0 * a 1 * a 2 * a 3) ^ e * y * (a 0 * a 1 * a 2 * a 3) ^ b ≠ z := by
+  intro heq
+  let u : List (RelLetter G (Fin 4)) := powWord a e ++ RelLetter.base y :: powWord a b
+  have hlet : ∀ c ∈ u, D.IsLetter c :=
+    isLetter_append_base_cons D (isLetter_powWord D ha e) (isLetter_powWord D ha b) hy
+  have hW1 : WWord.IsWOne u :=
+    isWOne_append_base_cons y (powWord_ne_base a e) (powWord_ne_base a b)
+  have hW2 : WWord.IsWTwo D C u :=
+    isWTwo_append_base_cons D y (isWTwo_powWord D hdeep e) (isWTwo_powWord D hdeep b)
+  have hW3 : WWord.IsWThree D u :=
+    isWThree_append_base_cons D y (powWord_ne_base a e) (powWord_ne_base a b)
+      (isWThree_powWord D a e) (isWThree_powWord D a b) (fun _ => hynot)
+  have hbound := hquasi 1 u hlet hW1 hW2 hW3 0 u.length (Nat.zero_le _) le_rfl
+  have hend : vertex (1 : G) u u.length = z := by
+    rw [OsinComponents.vertex_length, one_mul]
+    show RelLetter.listVal (powWord a e ++ RelLetter.base y :: powWord a b) = z
+    simp only [RelLetter.listVal, List.map_append, List.map_cons, List.prod_append,
+      List.prod_cons]
+    have h1 := listVal_powWord a e
+    have h2 := listVal_powWord a b
+    simp only [RelLetter.listVal] at h1 h2
+    rw [h1, h2, ← heq]
+    simp only [RelLetter.val, mul_assoc]
+  have hdist : wordDist D.alphabet.carrier 1 z ≤ 1 := by
+    unfold wordDist
+    rw [inv_one, one_mul]
+    exact wordNorm_le_one_of_mem hz
+  rw [OsinComponents.vertex_zero, hend, Nat.sub_zero] at hbound
+  have hlen : u.length = 4 * e.natAbs + (4 * b.natAbs + 1) := by
+    show (powWord a e ++ RelLetter.base y :: powWord a b).length = _
+    rw [List.length_append, List.length_cons, length_powWord, length_powWord]
+  have he' : 0 < e.natAbs := Int.natAbs_pos.mpr he
+  have hb' : 0 < b.natAbs := Int.natAbs_pos.mpr hb
+  omega
+
+end Bound
+
+end CyclicTwoSided
+end GGT
+end GroupApproximation
+
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.isWOne_append_base_cons
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.isWTwo_append_base_cons
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.isWThree_append_base_cons
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.listVal_powWord
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.isWThree_powWord
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.base_mul_zpow_ne_one
+#audit_axioms GroupApproximation.GGT.CyclicTwoSided.zpow_mul_base_mul_zpow_ne
