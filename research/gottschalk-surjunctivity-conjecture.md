@@ -725,3 +725,19 @@ must collide memory letters so that the rule balances. Over `F_2`, an unbalanced
 injective rule needs at least four memory elements and is never monotone
 (`three-address-binary-injective-rules-are-balanced`,
 `monotone-binary-injective-rules-are-copies`).
+
+**Numeric window relations do not force balance (2026-09-12).** If the decoder memory
+is amenable, decoder fiber decay alone forces a uniform site law. If it is
+nonamenable, unbalanced measures satisfy every numerical relation an injective image
+is known to satisfy: translation invariance, integral finitely dependent counts, the
+decoder decay `q^(-|int_N E|)`, a null cylinder, and the whole 2026-09-08 uniform Gibbs
+bridge (unique uniform Gibbs measure, weak mixing, completion counts divisible by
+`q^{|I_E|}`). The witnesses are iid merge measures once `q^(1-theta) >= 2`, AND at
+`q = 2` once the decoder memory contains a free radius-2 ball, and sitewise
+projections at every `q = r^k` with `k >= 1/(1-theta)`. So mass transport, local
+permutations, cofinal windows and count-level telescoping cannot remove the boundary
+factor on any nonamenable decoder group (`numeric-window-relations-do-not-force-balance`,
+which invalidates `balance-from-numeric-window-relations`). A proof of balance must use
+the pointwise identity `sigma o tau = id` on the group's own coincidence pattern, or
+maximal Bernoulli Rokhlin entropy. Open gap: binary alphabets over weakly nonamenable
+decoder groups. Artifact: `research/artifacts/numeric-window-relations-no-go-2026-09-12.md`.
