@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.OddPDescentPairing
+import Mathlib.Data.Nat.Factorial.Basic
 
 /-!
 # The cyclic domino operator, and where the factorial comes from
@@ -46,7 +47,8 @@ theorem eWedge_anticomm_apply (a b : Fin p) (y : EMod K p) :
     eWedge K a (eWedge K b y) = -eWedge K b (eWedge K a y) := by
   have h := congrArg (fun f : EMod K p →ₗ[K] EMod K p => f y) (eWedge_anticomm K a b)
   simp only [LinearMap.add_apply, LinearMap.comp_apply, LinearMap.zero_apply] at h
-  exact eq_neg_of_add_eq_zero_right h
+  -- `eq_neg_of_add_eq_zero_right : a + b = 0 → b = -a`, so the summands go in the other order
+  exact eq_neg_of_add_eq_zero_right ((add_comm _ _).trans h)
 
 omit [NeZero p] in
 theorem ePart_eWedge_apply (i a : Fin p) (y : EMod K p) :
@@ -114,8 +116,6 @@ theorem ePart_eR_apply (i : Fin p) (x : EMod K p) :
     Finset.sum_ite_eq Finset.univ i (fun a => eWedge K (a + 1) x),
     Finset.sum_ite_eq Finset.univ (i - 1) (fun a => eWedge K a x),
     if_pos (Finset.mem_univ _), if_pos (Finset.mem_univ _), ← eR_apply]
-  have hsub : i - 1 + 1 = i := by abel
-  rw [hsub]
   abel
 
 /-- **The factorial appears here.**  `∂_i ρ^{n+1} = (n+1)·ρ^n(ξ_{i+1} − ξ_{i−1})` whenever
@@ -131,8 +131,7 @@ theorem ePart_eR_pow_apply (i : Fin p) (n : ℕ) (x : EMod K p) (hx : ePart K i 
       rw [pow_succ' (eR K) (n + 1), Module.End.mul_apply, ePart_eR_apply K i, ih,
         map_nsmul, eWedge_eR_pow_apply K (i + 1) (n + 1) x,
         eWedge_eR_pow_apply K (i - 1) (n + 1) x, add_sub_assoc, ← map_sub,
-        pow_succ' (eR K) n, Module.End.mul_apply]
-      abel
+        pow_succ' (eR K) n, Module.End.mul_apply, succ_nsmul _ (n + 1)]
 
 /-! ## 3. Coefficient extraction -/
 
@@ -140,11 +139,15 @@ omit [NeZero p] in
 theorem eWedge_coeff_of_true (a : Fin p) (x : EMod K p) (w' : EWord p) (h : w' a = true) :
     (eWedge K a x) w' = ((-1 : K) ^ ePre w' a) * x (Function.update w' a false) := by
   classical
+  -- stated as a `have`: inside the `rw` chain below, `update_eq_self_iff.2 h.symm` is
+  -- elaborated with its word still a metavariable and `kabstract` picks the wrong `update`
+  have hself : Function.update w' a true = w' :=
+    Function.update_eq_iff.2 ⟨h.symm, fun _ _ => rfl⟩
   rw [show (eWedge K a x) w' = ∑ w : EWord p, x w * (eWedgeGen K a w) w' from
     eLC_coeff K (eWedgeGen K a) x w']
   rw [Finset.sum_eq_single (Function.update w' a false)]
   · rw [eWedgeGen_of_false K (by simp), ePre_update_of_le w' a false a le_rfl,
-      Function.update_idem, Function.update_eq_self_iff.2 h.symm, Finsupp.smul_apply,
+      Function.update_idem, hself, Finsupp.smul_apply,
       Finsupp.single_eq_same, smul_eq_mul, mul_one, mul_comm]
   · intro w _ hw
     by_cases hwa : w a = true
@@ -154,8 +157,8 @@ theorem eWedge_coeff_of_true (a : Fin p) (x : EMod K p) (w' : EWord p) (h : w' a
         smul_zero, mul_zero]
       intro hcon
       apply hw
-      rw [← hcon, Function.update_idem, eq_update_self_iff]
-      exact hwf
+      rw [← hcon, Function.update_idem]
+      exact Function.eq_update_iff.2 ⟨hwf, fun _ _ => rfl⟩
   · intro h'
     exact absurd (Finset.mem_univ _) h'
 
@@ -181,11 +184,13 @@ omit [NeZero p] in
 theorem ePart_coeff_of_false (a : Fin p) (x : EMod K p) (w' : EWord p) (h : w' a = false) :
     (ePart K a x) w' = ((-1 : K) ^ ePre w' a) * x (Function.update w' a true) := by
   classical
+  have hself : Function.update w' a false = w' :=
+    Function.update_eq_iff.2 ⟨h.symm, fun _ _ => rfl⟩
   rw [show (ePart K a x) w' = ∑ w : EWord p, x w * (ePartGen K a w) w' from
     eLC_coeff K (ePartGen K a) x w']
   rw [Finset.sum_eq_single (Function.update w' a true)]
   · rw [ePartGen_of_true K (by simp), ePre_update_of_le w' a true a le_rfl,
-      Function.update_idem, Function.update_eq_self_iff.2 h.symm, Finsupp.smul_apply,
+      Function.update_idem, hself, Finsupp.smul_apply,
       Finsupp.single_eq_same, smul_eq_mul, mul_one, mul_comm]
   · intro w _ hw
     by_cases hwa : w a = true
@@ -193,8 +198,8 @@ theorem ePart_coeff_of_false (a : Fin p) (x : EMod K p) (w' : EWord p) (h : w' a
         smul_zero, mul_zero]
       intro hcon
       apply hw
-      rw [← hcon, Function.update_idem, eq_update_self_iff]
-      exact hwa
+      rw [← hcon, Function.update_idem]
+      exact Function.eq_update_iff.2 ⟨hwa, fun _ _ => rfl⟩
     · rw [ePartGen_of_false K (Bool.eq_false_of_not_eq_true hwa), Finsupp.coe_zero,
         Pi.zero_apply, mul_zero]
   · intro h'
@@ -263,7 +268,10 @@ theorem eIntervalWord_update_head (i len : ℕ) (a : Fin p) (ha : (a : ℕ) = i)
 `ξ_{i+1}` supplies the next letter. -/
 theorem eR_pow_interval (hp : 1 < p) :
     ∀ (k i : ℕ), 1 ≤ i → i + 2 * k ≤ p →
-      ((eR K ^ k) (eBot K)) (eIntervalWord i (2 * k)) = (Nat.factorial k : K) := by
+      ((eR (p := p) K ^ k) (eBot K)) (eIntervalWord (p := p) i (2 * k))
+        = (Nat.factorial k : K) := by
+  -- the rank has to be named in the statement: nothing else in it fixes `p`, and
+  -- `eR`'s `NeZero` instance problem is otherwise stuck on a metavariable
   intro k
   induction k with
   | zero =>
@@ -274,38 +282,38 @@ theorem eR_pow_interval (hp : 1 < p) :
       intro i hi hle
       have hip : i < p := by omega
       obtain ⟨a, hav⟩ : ∃ a : Fin p, (a : ℕ) = i := ⟨⟨i, hip⟩, rfl⟩
-      have hlen : 2 * (k + 1) = (2 * k + 1) + 1 := by ring
+      have hlen : 2 * (k + 1) = (2 * k + 1) + 1 := by omega
       -- the interval word and its head
       have hI' : Function.update (eIntervalWord (p := p) i (2 * (k + 1))) a false
           = eIntervalWord (p := p) (i + 1) (2 * k + 1) := by
         rw [hlen]
         exact eIntervalWord_update_head i (2 * k + 1) a hav
       have hIa : (eIntervalWord (p := p) i (2 * (k + 1))) a = true := by
-        rw [eIntervalWord_apply]
+        rw [eIntervalWord_apply, hav]
         omega
-      have hI'a : (eIntervalWord (p := p) (i + 1) (2 * k + 1)) a = false := by
-        simp only [eIntervalWord, decide_eq_false_iff_not, not_and, not_lt, hav]
-        omega
+      have hIself : Function.update (eIntervalWord (p := p) i (2 * (k + 1))) a true
+          = eIntervalWord (p := p) i (2 * (k + 1)) :=
+        Function.update_eq_iff.2 ⟨hIa.symm, fun _ _ => rfl⟩
+      have hI'a : (eIntervalWord (p := p) (i + 1) (2 * k + 1)) a = false :=
+        Bool.eq_false_of_not_eq_true (by rw [eIntervalWord_apply, hav]; omega)
       have hpre' : ePre (eIntervalWord (p := p) (i + 1) (2 * k + 1)) a = 0 :=
-        ePre_eIntervalWord (i + 1) (2 * k + 1) a (by omega)
+        ePre_eIntervalWord (i + 1) (2 * k + 1) a (by rw [hav]; omega)
       -- step 1: the coefficient at the interval is a coefficient of `∂_a`
       have hstep1 : ∀ x : EMod K p,
           (ePart K a x) (eIntervalWord (p := p) (i + 1) (2 * k + 1))
             = x (eIntervalWord (p := p) i (2 * (k + 1))) := by
         intro x
         rw [ePart_coeff_of_false K a x _ hI'a, hpre', pow_zero, one_mul, ← hI',
-          Function.update_idem, Function.update_eq_self_iff.2 hIa.symm]
+          Function.update_idem, hIself]
       -- step 2: the derivation identity
       have hbot : ePart K a (eBot K) = 0 := by
-        rw [eBot, ePart_single, ePartGen_of_false K (by rfl)]
+        rw [eBot, ePart_single, ePartGen_of_false K (show eBotWord p a = false from rfl)]
       have hstep2 := ePart_eR_pow_apply K a k (eBot K) hbot
       -- step 3: evaluate the two wedge terms
-      have hsucc : (a + 1 : Fin p) = (⟨i + 1, by omega⟩ : Fin p) :=
-        Fin.ext (by rw [eSucc_val hp a (by omega), hav])
-      have hpred : (a - 1 : Fin p) = (⟨i - 1, by omega⟩ : Fin p) :=
-        Fin.ext (by rw [ePred_val hp a (by rw [hav]; omega), hav])
-      have hsuccv : ((a + 1 : Fin p) : ℕ) = i + 1 := by rw [hsucc]
-      have hpredv : ((a - 1 : Fin p) : ℕ) = i - 1 := by rw [hpred]
+      have hsuccv : ((a + 1 : Fin p) : ℕ) = i + 1 := by
+        rw [eSucc_val hp a (by rw [hav]; omega), hav]
+      have hpredv : ((a - 1 : Fin p) : ℕ) = i - 1 := by
+        rw [ePred_val hp a (by rw [hav]; omega), hav]
       have hplus : ((eR K ^ k) (eWedge K (a + 1) (eBot K)))
             (eIntervalWord (p := p) (i + 1) (2 * k + 1))
           = (Nat.factorial k : K) := by
@@ -313,27 +321,24 @@ theorem eR_pow_interval (hp : 1 < p) :
           rw [eIntervalWord_apply, hsuccv]
           omega
         have hpre2 : ePre (eIntervalWord (p := p) (i + 1) (2 * k + 1)) (a + 1) = 0 :=
-          ePre_eIntervalWord (i + 1) (2 * k + 1) (a + 1) (by omega)
+          ePre_eIntervalWord (i + 1) (2 * k + 1) (a + 1) (le_of_eq hsuccv)
         have hupd2 : Function.update (eIntervalWord (p := p) (i + 1) (2 * k + 1)) (a + 1) false
-            = eIntervalWord (p := p) (i + 2) (2 * k) :=
+            = eIntervalWord (p := p) (i + 1 + 1) (2 * k) :=
           eIntervalWord_update_head (i + 1) (2 * k) (a + 1) hsuccv
         rw [← eWedge_eR_pow_apply K (a + 1) k (eBot K),
           eWedge_coeff_of_true K (a + 1) _ _ hval, hpre2, pow_zero, one_mul, hupd2]
-        exact ih (i + 2) (by omega) (by omega)
+        exact ih (i + 1 + 1) (by omega) (by omega)
       have hminus : ((eR K ^ k) (eWedge K (a - 1) (eBot K)))
             (eIntervalWord (p := p) (i + 1) (2 * k + 1)) = 0 := by
-        have hval : (eIntervalWord (p := p) (i + 1) (2 * k + 1)) (a - 1) = false := by
-          simp only [eIntervalWord, decide_eq_false_iff_not, not_and, not_lt, hpredv]
-          intro _
-          omega
+        have hval : (eIntervalWord (p := p) (i + 1) (2 * k + 1)) (a - 1) = false :=
+          Bool.eq_false_of_not_eq_true (by rw [eIntervalWord_apply, hpredv]; omega)
         rw [← eWedge_eR_pow_apply K (a - 1) k (eBot K)]
         exact eWedge_coeff_of_false K (a - 1) _ _ hval
-      -- assemble
-      rw [← hstep1, hstep2]
-      simp only [Finsupp.smul_apply, nsmul_eq_mul, Finsupp.coe_smul, Pi.smul_apply,
-        map_sub, Finsupp.coe_sub, Pi.sub_apply]
-      rw [hplus, hminus, sub_zero, Nat.factorial_succ, Nat.cast_mul, Nat.cast_add,
-        Nat.cast_one]
+      -- assemble: a coefficient of an `ℕ`-multiple is the multiple of the coefficient
+      have hcoef : ∀ (c : ℕ) (v : EMod K p) (w : EWord p), (c • v) w = c • v w :=
+        fun c v w => by simp
+      rw [← hstep1, hstep2, hcoef, map_sub, Finsupp.sub_apply, hplus, hminus, sub_zero,
+        nsmul_eq_mul, Nat.factorial_succ, Nat.cast_mul]
 
 /-! ## 6. One round of the descent, in closed form -/
 
@@ -351,8 +356,10 @@ theorem eT_pow_eWedge (hp : 1 < p) (k : ℕ) (a : Fin p) (y : EMod K p) :
       have hidx : (a - 1 : Fin p) - (k : Fin p) = a - ((k + 1 : ℕ) : Fin p) := by
         rw [Nat.cast_add, Nat.cast_one]
         abel
-      rw [pow_succ, Module.End.mul_apply, hstep, ih, ← Module.End.mul_apply, ← pow_succ,
-        hidx]
+      -- `← Module.End.mul_apply` with no arguments folds the OUTER application
+      -- `eWedge _ ((eT ^ k) (eT y))`; name the three factors
+      rw [pow_succ, Module.End.mul_apply, hstep, ih,
+        ← Module.End.mul_apply (eT K ^ k) (eT K) y, ← pow_succ, hidx]
 
 theorem eT_pow_apply_of_inv (k : ℕ) {y : EMod K p} (hy : eT K y = y) :
     ((eT K) ^ k) y = y := by
@@ -398,6 +405,10 @@ theorem eT_eR_apply (hp : 1 < p) (x : EMod K p) : eT K (eR K x) = eR K (eT K x) 
     (fun b : Fin p => eWedge K b (eWedge K (b + 1) (eT K x)))
     (fun a : Fin p => eT K (eWedge K a (eWedge K (a + 1) x))) ?_).symm
   intro b
+  -- `Fintype.sum_equiv` leaves `(Equiv.addRight 1) b` unreduced, which `rw [h1]` cannot see.
+  -- Not `show`: checking `(Equiv.addRight 1) b =?= b + 1` under the linear maps times out
+  -- (200000 heartbeats); rewrite the coercion instead
+  simp only [Equiv.coe_addRight]
   have h1 := eT_pow_eWedge K hp 1 (b + 1) (eWedge K (b + 1 + 1) x)
   have h2 := eT_pow_eWedge K hp 1 (b + 1 + 1) x
   simp only [pow_one, Nat.cast_one] at h1 h2
