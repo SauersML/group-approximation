@@ -61,9 +61,13 @@ Items 1–3 exhibit rank targets that keep `g` alive. QED
   subgroups, and every finitely generated subgroup of `V` with a faithful finite-dimensional
   representation.
 - Both `w` and `h` preserve the cyclic order of prefixes, so they lie in Thompson's `T`. `T` is
-  infinite and simple (Cannon–Floyd–Parry), hence equal to its finite residual, and `T`-internal
-  witnesses pass the filter. The smallest known candidate hosts are non-residually-finite
-  subgroups such as `T`, `V` and the Higman–Thompson groups.
+  infinite and simple (Cannon–Floyd–Parry). So it equals its finite residual and has no
+  nontrivial finite-dimensional representations, and its soficity is open.
+- Scope (corrected after w3-vf-nonlinear's review, Section 1 of its artifact). The filter is a
+  condition on `H = <g, supp b, supp c>`, not on the ambient subgroup. A `T`-supported witness
+  whose `H` is residually finite is excluded. What the filter leaves open are witnesses whose `H`
+  is `T`, `V` or a Higman–Thompson group, or any `H` in which `g` survives in no known rank model.
+  An earlier version said "`T`-internal witnesses pass the filter", which overstated it.
 - It is the `V`-internal form of `anti-central-rank-models-kill-ternary-corner-witnesses`, which
   needs `z`, `w` and `d` inside the ternary Leavitt unit group. No central element is needed here.
 

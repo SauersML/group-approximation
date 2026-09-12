@@ -33,8 +33,9 @@ finite (`thompson-v-direct-finiteness-failure-from-swap-fullness`).
   characteristic-3 rank model of `H = <w, supp b, supp c>` to kill `w`. So `w` lies in the finite
   residual of `H`, and `H` is not residually finite, LEF, sofic or `F_3`-linear sofic. No witness
   lives, together with `w`, in a locally finite, residually finite, amenable or linear subgroup.
-  `w` lies in Thompson's `T`, which is simple, so a `T`-internal search is the smallest one the
-  filter allows.
+  The filter constrains `H`, not the ambient subgroup: a `T`-supported witness with residually
+  finite `H` is excluded. It leaves open witnesses whose `H` is `T` (simple, equal to its finite
+  residual, soficity open) or any `H` in which `w` survives in no known rank model.
 - **Kernel copy (w3-v-linear).** `thompson-v-direct-finiteness-failures-transfer-into-kernel`: with
   `x, y` the swaps of `00, 01` and `10, 11`, `q = (1-x)(1-y)` is a nonzero kernel idempotent. The
   tail-diagonal embedding gives an injective unital `mu : F_3[V] -> qF_3[V]q` killed by the Leavitt

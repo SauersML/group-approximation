@@ -34,8 +34,10 @@ artifact). Then `F_2[V]` is not directly finite
   and `thompson-v-linear-witness-supports-kill-g-in-rank-models`, a witness `b, c` forces every
   characteristic-2 rank model of `H = <h, supp b, supp c>` to kill `h`. So `h` lies in the finite
   residual of `H`, and `H` is not residually finite, LEF, sofic or `F_2`-linear sofic. `h` preserves
-  the cyclic order of prefixes, so it lies in Thompson's `T`, which is simple. A `T`-internal
-  search passes the filter.
+  the cyclic order of prefixes, so it lies in Thompson's `T`. The filter constrains `H`, not the
+  ambient subgroup: a `T`-supported witness with residually finite `H` is excluded. It leaves open
+  witnesses whose `H` is `T` (simple, equal to its finite residual, soficity open) or any `H` in
+  which `h` survives in no known rank model.
 - **Kernel copy (w3-v-linear).** `thompson-v-direct-finiteness-failures-transfer-into-kernel`: with
   `x, y` 3-cycles of depth-3 prefixes inside `[0]` and `[1]`, `q = (x+x^2)(y+y^2)` is a nonzero
   kernel idempotent. The depth-3 tail-diagonal embedding gives an injective unital map

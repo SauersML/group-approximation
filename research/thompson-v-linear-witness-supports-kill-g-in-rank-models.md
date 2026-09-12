@@ -20,6 +20,10 @@ target, put `H = <g, supp b, supp c> <= V`. Then `g` lies in the kernel of every
 - no witness is supported, together with `g`, in a finite, locally finite, residually finite,
   amenable or linear subgroup of `V`.
 
-Both `w` and `h` lie in Thompson's `T`, which is simple, so `T`-internal witnesses pass the filter.
+Scope: the filter is a condition on `H`, not on the ambient subgroup. A `T`-supported witness whose
+`H` is residually finite is excluded. Both `w` and `h` lie in Thompson's `T`. `T` equals its finite
+residual and has no nontrivial finite-dimensional representations, and its soficity is open. So the
+filter does not exclude witnesses with `H = T`, or with any `H` in which `g` survives in no known
+rank model.
 
 Proof: Section 2 of the artifact, route `thompson-v-witness-support-rank-model-proof`.
