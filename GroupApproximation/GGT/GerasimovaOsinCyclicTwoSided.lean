@@ -234,7 +234,7 @@ theorem exists_cyclic_hypEmbedded_twoSided (G : Type) [Group G]
     linarith
   have hxLoxA' : IsLoxodromic (a 0 * a 1 * a 2 * a 3) (Cayley.base A') :=
     HullSC.isLoxodromic_base_of_subset (A := A') (A₁ := D'.alphabet)
-      (Elementary.base_subset_alphabet_carrier D') hxLoxD
+      (fun z hz => Set.mem_union_left _ hz) hxLoxD
   have hxLoxA : IsLoxodromic (a 0 * a 1 * a 2 * a 3) (Cayley.base A.alphabet) :=
     HullSC.isLoxodromic_base_of_subset (A := A.alphabet) (A₁ := A') hAA' hxLoxA'
   -- cyclic elementary closure: Hull's matched-product rigidity
@@ -315,7 +315,7 @@ theorem exists_cyclic_hypEmbedded_twoSided (G : Type) [Group G]
       rw [zpow_neg, ← hb, mul_inv_cancel]
     · have hy : g⁻¹ ∈ D'.base := hFinvA' g hg
       have hz : f⁻¹ ∈ D'.alphabet.carrier :=
-        Elementary.base_subset_alphabet_carrier D' (hFinvA' f hf)
+        Set.mem_union_left _ (hFinvA' f hf)
       have hynot : ∀ lam : Fin 4, g⁻¹ ∉ D'.fam lam := by
         intro lam hmem'
         have hz' : g⁻¹ ∈ Subgroup.zpowers (det lam) := by
