@@ -29,3 +29,8 @@ Theorem 3.1 of the artifact.
 - *(d) A signed permutation.* If `c_x = n_x = 1`, then `x* x = x x* = eps_-`.
 
 **Right side.** Apply the left side to `x*`, using `c_(x*) = n_x` and `n_(x*) = c_x`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 8.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the integral identity and the adjoint swap of `c` and `n`;*
+- *cases (a)–(d), including the collision annihilator `epsilon' 1_W - epsilon [k] 1_W` and `x* x = x x* = eps_-`;*
+- *exhaustiveness of both case splits, and Corollaries 3.2–3.3.*

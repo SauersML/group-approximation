@@ -19,3 +19,8 @@ Theorem 2.1 of the artifact.
   `x y = sum_m [m] 1_W (x_mu xi)_m = 0`.
 - *2 ⇔ 3.* The set of `mu` with a kernel vector of given support is clopen, and odd Dirac sums are dense.
 - *Right zero divisors* follow by applying the anti-automorphism `[g] -> [g^-1]`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 8.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the covariance of `rho_mu`, and both implications, with `x y = sum_m [m] 1_W (x_mu xi)_m`;*
+- *openness of the non-injectivity locus, and density of odd Dirac sums;*
+- *Lemma 2.3.*

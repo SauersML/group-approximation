@@ -17,3 +17,8 @@ Section 1 of the artifact.
 - **Theorem 1.3:** for idempotents `p, q`, `v = pq + (1-p)(1-q)` has `vq = pv` and `v v' = v' v = 1 - (p-q)^2`.
   In the evaluation image `p = f_+ = [[-1-i,-i],[-i,-1+i]]`, `q = [[0,1],[0,1]]` and `(p-q)^2 = -I`, so `v` is a unit
   with inverse `-v'`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 9 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *`c^2 = I`, `cdc = u`, `c(wd)c = h`, `cwc = hu` by hand mod 3;*
+- *linear independence of `I, h, u, hu`, so evaluation is injective on the dihedral span;*
+- *`v v' = 1 - (p-q)^2`, and `(p-q)^2 = -I` in `M_2(F_9)` entry by entry.*
