@@ -80,3 +80,12 @@ so a witness that also fails cost one would settle
   minimum graphing cost even on a group known to have fixed price one, so a
   disagreement between the algorithm's outputs on two actions is not evidence
   of a cost gap.
+* **Separate costs by soficity of actions.** Kun--Thom give the residually
+  finite Kazhdan group `EL_r(F_q[x^(+-1)]) semidirect SL_d(Z)` a free nonsofic
+  action (`kun-thom-free-nonsofic-action`) next to its sofic ones (Bernoulli,
+  profinite), so compression rigidity might have forced a different cost.
+  **Dead:** `fpbs-elementary-matrix-semidirect-fixed-price-one` gives that group
+  fixed price one by a commuting root-subgroup chain, so all its free actions,
+  sofic or not, have cost one. A witness must lie outside every group reached
+  from an infinite amenable subgroup by a chain of infinite commensurations, as
+  the Burnside branch does.
