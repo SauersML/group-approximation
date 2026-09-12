@@ -59,3 +59,14 @@ certificate sits across both factors.
   Sofic realizations break the decoder identity on a positive fraction of points, and the repair is a count
   over an infinite `G`-direction alphabet. Artifact
   `research/artifacts/w3-products-permanence-closure-2026-09-12.md`, Section 3.
+- **Repairing the sofic device (w4-free-pos-b, 2026-09-12).**
+  - **The repair.** Store the input on the `epsilon |V|` bad points of a sofic model in an extra track.
+    The transplanted automaton over `G` is then injective, at a cost of `q^(epsilon |V|)` output symbols.
+  - **Single-fibre patterns.** If a Garden of Eden pattern lies in one fibre `{g} x K`, it compresses every
+    output column by `(1 - q^(-|E|))^(c|V|)`, and the device closes. So strict automata over
+    `G x K`, with `G` surjunctive and `K` sofic, have every Garden of Eden pattern across two fibres
+    (`strict-product-automata-have-no-single-fibre-garden-of-eden`).
+  - **Multi-fibre patterns.** The device yields an injective automaton into `n` copies of a proper subshift
+    times a slightly larger full shift. Closing it needs quantitative surjunctivity of `G`
+    (`sofic-factor-products-via-quantitative-surjunctivity`), which sofic groups have.
+  - Artifact `research/artifacts/product-fibre-garden-of-eden-filter-2026-09-12.md`.
