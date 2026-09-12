@@ -56,3 +56,27 @@ of the one-coincidence or four-sign-change exceptions. A violation over
 - **Novelty.** Edjvet--Juhász, *Non-singular equations over groups* I and II,
   could not be read: the session web budget was exhausted. Ivanov--Klyachko's
   length-six theorem assumes torsion-free coefficients and does not apply.
+- **The index-core next attack does not apply as an application of
+  `kl-cyclic-cover-words-have-an-index-m-core` (checked 2026-09-12).** That
+  window lemma needs `w = C t^m` with `C` in the free product `G_0 * ... *
+  G_(m-1)` of the levels `0..m-1`, where `g^(k) = t^k g t^(-k)`. The residue
+  words have variable length six but `|deg| < 6`, so the partial sums of the
+  `t`-exponents overshoot `m-1`:
+  - `+++++-` has `deg = 4` and its partial sums reach `+5` before the single
+    `t^(-1)`, so a loop coefficient sits at level `4` or `5`, above `m-1 = 3`;
+  - `++++--` has `deg = 2` and its partial sums reach `+4`, above `m-1 = 1`.
+  Peeling `t^m` off the right therefore leaves conjugate levels above `m-1`. For
+  the cleanest shape `(1,1,1,1)` of `+++++-`, `w = t^5 y t^(-1) x`, direct
+  expansion gives the exact identity
+  `w = y^(5) x^(4) t^4`
+  (levels `4` and `5` appear), and for the general `++++--` shape
+  `w = t a_1 t a_2 t a_3 t y t^(-1) 1 t^(-1) x`,
+  `w = a_1^(1) a_2^(2) a_3^(3) y^(4) x^(2) t^2` (level `4` appears). So these are
+  not window words, and the "index-four/two core" route is the paired-relator
+  cyclic cover (Reidemeister--Schreier with `t^m = C^(-1)` folded back in), not
+  the window lemma. Folding `t^m = C^(-1)` produces a self-referential core
+  relator `C = a_1^(1)(C^(-1)a_2 C)(C^(-1)a_3^(1)C)(C^(-2) y C^2)(C^(-1) x C)`
+  for `++++--`, which does not reduce to a length `<= 5` equation in general;
+  this matches the cyclic-cover node's own remark that its `m >= 2` relators do
+  not fold. So the viable remaining attack is genuine curvature redistribution
+  on the pictures, not a core substitution.
