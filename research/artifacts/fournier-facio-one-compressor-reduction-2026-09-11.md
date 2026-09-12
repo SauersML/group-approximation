@@ -135,11 +135,29 @@ charged-basis fences (`fournier-facio-monomial-near-witness-impossible`,
 `fournier-facio-bounded-block-near-witness-impossible`) already rule out
 obtaining it from a normalized basis.
 
+**(e) Two compressors without ambient (T).**  The reduction does not extend
+to two compressors by elementary permanence.  In the pre-quotient double HNN
+extension `E = <P, u_1, u_2 | u_i P u_i^-1 = P_i>`, write `P^(w) = w^-1 P w`
+for positive words `w` in the letters `u_i`, so that `P^(w) <= P^(u_i w)`.
+The kernel of the height map `E -> F_2` is the fundamental group of a tree
+of such copies, and the family is not directed: `P^(u_1)` and `P^(u_2)` have
+no common upper term.  The kernel therefore contains the genuine amalgam
+`P^(u_1) *_P P^(u_2)` over the Kazhdan subgroup `P`, embedded as
+`P_1 <= P` and `P_2 <= P`.  Amalgamated products over amenable subgroups
+preserve soficity and hyperlinearity; over Kazhdan subgroups no such theorem
+is available.  So a no-go that does not pass through `Gamma` must use the
+second compressor essentially, either through ambient (T), as the permutation
+proof does, or through the amalgamation over `Gamma` that two compressors
+create.
+
 ## 4. State after this note
 
-* The negative branch that does not use ambient (T) is exactly
+* The negative branch that uses one compressor is exactly
   `fournier-facio-compression-subgroup-not-hyperlinear`, which is implied by
   `fournier-facio-simple-factor-not-hyperlinear` and implies the no-go.
-* A no-go that does not pass through `Gamma` must combine property (T) of `G`
-  with both compressors.  Its missing object is the tracial size function of
-  (d), not another commutant computation.
+* A no-go that does not pass through `Gamma` must use the second compressor
+  essentially (3(e)).  If it follows the permutation proof, its missing object
+  is the tracial size function of (d).  The frame-free candidate is excluded by
+  `fournier-facio-invariant-mass-grows-along-compressor`, and a masa frame
+  carried back into the commutant is excluded by
+  `transported-gap-masa-kills-leavitt-hs-models`, part A.

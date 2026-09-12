@@ -38,9 +38,13 @@ That subgroup has no property (T) and is hyperlinear exactly when `Gamma` is.
 So an obstruction using one compressor and not property (T) of `G` proves the
 stronger `fournier-facio-compression-subgroup-not-hyperlinear`, and the route
 through it is `fournier-facio-no-go-via-compression-subgroup`.  A no-go that
-does not pass through `Gamma` must spend property (T) of `G` on both
-compressors.  In OpenAI's permutation proof that is the median size-matching
-step, which needs a component-size function monotone along the compressors.
+does not pass through `Gamma` must use the second compressor essentially.  In
+OpenAI's permutation proof the second compressor enters only through property
+(T) of `G`, in the median size-matching step, which needs a component-size
+function monotone along the compressors.
+`fournier-facio-invariant-mass-grows-along-compressor` shows that the
+frame-free candidate, invariant mass in the `Gamma`-commutant, is monotone but
+jumps by one, so it cannot serve.
 In normalized HS the missing object is a finite-level positive element of the
 approximate `Gamma`-commutant that is almost monotone under `Ad pi(t_i)^*` and
 encodes a component frame.  The charged-basis fences already forbid taking it

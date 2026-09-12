@@ -32,8 +32,14 @@ the Hilbert-hotel shift on the `Gamma`-commutant is realized in regular
 models of `H_1` in `R^omega`, so it is not by itself an obstruction.  The
 soficity statement says the same about OpenAI Proposition 2.3: its
 ambient-(T) hypothesis cannot be dropped for `H_1` unless `Gamma` is already
-nonsofic.  A no-go for `G` that does not pass through `Gamma` must use
-property (T) of `G` together with both compressors.  In the permutation proof
-that happens only in the median size-matching step (artifact, Section 3(c)).
+nonsofic.  A no-go for `G` that does not pass through `Gamma` must use the
+second compressor essentially.  In the permutation proof the second
+compressor enters only through property (T) of `G`, in the median
+size-matching step (artifact, Section 3(c)).  Whether two compressors without
+ambient (T) already escape the reduction is not decided here.  In the
+pre-quotient double HNN extension `E`, the kernel of `E -> F_2` contains
+amalgams `P^(u_1) *_P P^(u_2)` over the Kazhdan subgroup `P`, where
+`P^(u_i) = u_i^-1 P u_i`, and no elementary permanence theorem covers those
+(artifact, Section 3(e)).
 
 Proof: `fournier-facio-one-compressor-reduction-proof`.
