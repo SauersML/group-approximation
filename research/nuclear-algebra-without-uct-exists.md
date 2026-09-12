@@ -27,7 +27,9 @@ any commutative C\*-algebra.  If established, this refutes
   complexity rank one.
 * Its UCT-support `𝒫(A)` is a proper filter or empty
   (`coprime-uhf-stabilizations-detect-uct`): `A ⊗ M_{p^∞}` satisfies the UCT for
-  at most one prime `p`.
+  at most one prime `p`.  If `[id_A]` is torsion of order `n`, the filter
+  contains the prime divisors of `n`
+  (`torsion-kk-identity-dies-after-uhf-absorption`).
 * Through `stw99-ii-implies-ix1`, any separable nuclear algebra with a faithful
   trace that is not quasidiagonal is already a witness.
 
