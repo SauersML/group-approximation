@@ -24,3 +24,5 @@ Artifact Section 2, Theorem 2.1.
 5. **Conjugation.** Choose `R_q`-isomorphisms `φ_q : P_q -> P'_q`. They are right `R`-linear and satisfy
    `φ_q(gp) = g'φ_q(p)`. So `φ = ⊕ φ_q` is an automorphism of `R_R` with `φ(gp) = g'φ(p)`. Then `φ` is left
    multiplication by `u = φ(1) in R^x`, and `ug = g'u`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 27.2 (main theorem; the order-8 corollary negation-closure claim not re-derived) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

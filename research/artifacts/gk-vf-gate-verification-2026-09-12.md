@@ -1240,3 +1240,50 @@ row-plus-column bound is attained: `3/4 + 3/4 = 3 · (1/2)`.
 
 **Inputs taken as established, not re-derived here:** that the compression semigroup of `Gamma_0` generates
 `R^x` (the rigid-defect and packet nodes), and simplicity.
+
+## 27. w5-c3-outside
+
+### 27.1 `leavitt-prime-field-units-generated-by-v-and-one-transvection`: PASS
+
+1. **Elementary generators.** `psi: e_ij (x) r |-> s_(alpha_i) r t_(alpha_j)` is an isomorphism, and
+   `GL_3 = EL_3` (the internal Lean theorem, Section 1.1).
+2. **Monomials.** `s_(alpha_i) s_mu t_nu t_(alpha_j) = s_(alpha_i mu) t_(alpha_j nu)`. The words start with
+   different codewords, so they are incomparable.
+3. **Splitting.** `s_sigma t_kappa = sum_w s_(sigma w) t_(kappa w)`. `t_(kappa w) s_(sigma w') = 0` for
+   incomparable `kappa w, sigma w'`, so the factors commute and square to zero.
+4. **Conjugation.**
+   - `t_c s_sigma = delta_(c,sigma)` inside the code `C`, so `g s_sigma t_kappa g^-1 = s_00 t_01`.
+   - If `[sigma] ∪ [kappa] = X`, then `{sigma, kappa} = {0,1}`, and one split gives proper unions.
+5. **Prime fields.** `T(λ) = T(1)^λ`.
+6. **Proposition 1.3.**
+   - `tau_[kappa] s_sigma = s_sigma` and `t_kappa tau_[kappa] = -t_kappa`, so `T_(sigma,kappa)(1)` is
+     conjugate to `T_(sigma,kappa)(-1)`, and the other factors are fixed.
+   - One `V`-element sends the chosen pairs to `(00w_i, 01w_i)`. The product is `x` by step 3.
+
+### 27.2 `leavitt-semisimple-torsion-units-conjugate-iff-same-support`: PASS
+
+1. **Spectral idempotents.** `char K ∤ m` makes `x^m - 1` separable, so there are orthogonal `e_q(g)`
+   summing to 1.
+2. **Module structure.** `P_q = e_q(g)R` is a `(K_q, R)`-bimodule, with `K_q` acting through `g`, so it is a
+   right `R_q = K_q (x)_K R ~= L_(K_q)(1,2)`-module.
+   - It is finitely generated and `R`-projective, being a summand of `R_R`.
+   - `K_q/K` is separable, so `R_q` is a separable `R`-algebra, and an `R`-projective `R_q`-module is
+     `R_q`-projective.
+3. **Freeness.** `binary-leavitt-nonzero-projectives-are-free` over the field `K_q` gives `P_q ~= R_q`.
+4. **The conjugating unit.**
+   - Put `φ = ⊕ φ_q`, an automorphism of `R_R`, so `φ` is left multiplication by the unit `u = φ(1)`.
+   - `φ(g e_q p) = g' φ_q(e_q p)` summed over `q` gives `ug = g'u`.
+5. **Corollaries.**
+   - **(1) Square roots of `z`:** `g^2 = -1` gives support `{x^2+1}`.
+   - **(2) Involutions:** support `{x-1, x+1}`.
+   - **(3) Order 8:** `x^4 + 1 = (x^2+x-1)(x^2-x-1)` over `F_3` checks. The claim that every signed
+     permutation unit with fourth power `z` has spectrum closed under negation was not re-derived here.
+     Only the node's main theorem is certified.
+
+### 27.3 Route `v-augmentation-from-minus-one-gate-and-extension`: PASS as a conditional route
+
+- **Setup.** A non-augmentation function on `F_3[V]` detects every nontrivial element, since `V` is simple.
+- **The two open inputs.** The open extension claim would give `rk(1 - [z]) > 0` on `F_3[G_3]`, which
+  contradicts the open minus-one gate.
+- **Attempts section.** Its "no homomorphism `G_3 -> V`" step imports the Haagerup property of `V` from the
+  literature, as the node states.

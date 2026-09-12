@@ -24,3 +24,5 @@ Artifact Section 1, Theorem 1.1 and Proposition 1.3.
 
 For the proposition: conjugation by a sign `τ_([κ])` inverts one factor, and one prefix replacement merges the
 remaining factors into `(00w_i, 01w_i)`, whose product is `x` by step 3.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 27.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

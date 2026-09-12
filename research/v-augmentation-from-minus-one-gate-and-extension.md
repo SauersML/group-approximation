@@ -19,3 +19,5 @@ contradicting the minus-one gate. Hence every rank function on `F_3[V]` is the a
 Together with `ternary-units-kill-minus-one-via-thompson-v-augmentation`, this makes the minus-one gate and the
 V gate equivalent, conditional on the open extension claim. This route is conditional and establishes nothing
 by itself.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 27.3 (valid as a route conditional on its two open inputs) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
