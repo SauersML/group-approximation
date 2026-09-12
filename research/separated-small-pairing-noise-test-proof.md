@@ -4,7 +4,7 @@ id: separated-small-pairing-noise-test-proof
 kind: route
 title: Random low-value rich source games plus a McDiarmid pairing decoder
 target: separated-small-pairing-families-defeat-the-noise-test
-requires: []
+requires: [separated-pairing-families-admit-noisy-decoders]
 artifacts:
   - research/artifacts/unique-games-pairing-entropy-obstruction-2026-09-11.md
 ---

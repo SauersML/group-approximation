@@ -27,6 +27,12 @@ The proposed alphabet-independent list-decoding lemma for this family was
 refuted on 2026-09-07 by `noisy-affine-selector-defeats-bounded-hitting`.
 Consequently that proposed bridge does not supply the missing richness.
 
+Full uniformity is more than the reduction needs.
+`noise-test-sound-on-smooth-design-rich-inputs` shows the published soundness
+proof uses only a strength-`(8d+1)` pairing design with the pull-back density
+comparison. That weaker hypothesis is `smooth-design-rich-2to1-hardness`, which
+feeds UGC through `ugc-from-smooth-design-rich-2to1`.
+
 `dummy-padding-cannot-beat-the-random-guessing-floor` explains why an
 alphabet-sized decoding list cannot supply the intended soundness gain.
 
