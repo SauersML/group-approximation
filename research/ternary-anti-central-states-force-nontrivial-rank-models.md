@@ -56,3 +56,16 @@ non-linear-soficity.
   - **Class A' (faithful von Neumann regular rank rings).** The hard characteristic-two mechanisms are no longer confined to rank ultraproducts: `leavitt-defect-descent-chain-holds-in-regular-rank-rings` proves the defect piece, the gap, the descent and near-minimal multiplicativity for every faithful regular rank ring, through `regular-rank-ring-compressors-conserve-fixed-right-ideals` and ultraproducts of such rings. What still separates them from the abstract rank algebras of Corollary 7.2 is regularity of the quotient, not matrix approximation.
   - **What (U1) would then have to deliver** for a descent-type "No": a regular envelope of the rank function it produces (binary analogue: `sylvester-rank-functions-on-leavitt-units-are-regular`), or a class-A argument in which compactness of the space of rank functions replaces ultraproducts (`sylvester-rank-functions-have-a-uniform-two-root-defect-gap`). No characteristic-three descent exists yet.
   - **Matrix-only steps, used by no "No" argument:** tensor degrees other than `(1,0)` in fixed-ideal conservation, the transfer to `PG`, and the construction-side level normal forms.
+- 2026-09-12 `w4-upg-kill`: kill test of (U1) (`research/artifacts/state-upgrade-kill-test-2026-09-12.md`).
+  - **Criterion.** A ring carries a Sylvester matrix rank function iff no `I_(q+1)` lies below `I_q`
+    through minors and triangular moves (`sylvester-rank-functions-iff-no-triangular-certificate`). With
+    minors alone the criterion is the rank condition, equivalent to a state. So (U1) is exactly the
+    flattening of triangular identity certificates to minor certificates.
+  - **Over `S_-`.** Abstract "No" is a finite triangular certificate over `S_-`; the full corner is a
+    finite minor certificate. (U1) for `S_-` is `anti-central-triangular-certificates-flatten-to-minors`
+    (OPEN), the general upgrade `rank-condition-rings-carry-sylvester-rank-functions` (OPEN).
+  - **Result.** No ring with the rank condition and no rank function was found. Split chains and idempotent
+    triangular steps flatten (`split-identity-minors-survive-triangular-moves`), so a calibration ring
+    needs a non-idempotent triangular step at a mixed minor. Regular rings satisfy (U1) by Goodearl
+    (literature, not re-read), but a regular target for `S_-` with the rank condition would already kill
+    the corner.
