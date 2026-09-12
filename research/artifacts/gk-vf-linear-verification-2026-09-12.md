@@ -1583,3 +1583,49 @@ correct, but it is a conjugacy in `GL_2(R)`, not between `a` and `sat + 1 - st` 
   - `F_2[s_0] ~= F_2[x]`, since the monomials `S[0^j]` are independent, so `EL_3(F_2[s_0])` is finitely generated and
     linear over `F_2(x)`, hence residually finite.
   - All are sofic.
+
+## 46. Anti-central rank models kill ternary corner witnesses (38533db3fe, lane gk-l3-state): theorem PASS, Corollary 3.2 wrong as stated
+
+Items checked: `anti-central-rank-models-kill-ternary-corner-witnesses`, route
+`anti-central-rank-models-kill-ternary-corner-witnesses-proof`, and `ternary-corner-state-sources-2026-09-12.md` Sections 1 to 3.
+
+- **Lemma 1.1, pressure point 1.** `w^2 = d^2 = 1`. `dw = s0 t1 - s1 t0`, then `(dw)d = -s0 t1 - s1 t0 = -w`, so `dwd = zw`. Also
+  `wd = -s0 t1 + s1 t0` with `(wd)^2 = -s0 t0 - s1 t1 = z`, so `<w, d>` is dihedral of order 8 with centre `<z>`.
+- **Lemma 1.2.**
+  - `e^2 = 4(2 + 2[w]) = e`, and `eps_-[z] = 2([z] - 1) = -eps_-`.
+  - So `[d] e_- [d]^-1 = eps_- 2(1 - [w])`, the sum is `4 eps_- = eps_-`, and the two summands are orthogonal.
+  - Conjugation by the unit `eps_-[d]` of `S_Gamma` makes them equivalent.
+- **Theorem 2.1(a), pressure point 2.** `f^2 = 4(2 - 2 sigma(z)) = f`, since `sigma(z)^2 = 1`. `f = 0` iff `sigma(z) = 1`, and `f`
+  commutes with `sigma(Gamma)` because `z` is central.
+- **Theorem 2.1(b), pressure point 2.** `sigma(g)f sigma(h)f = sigma(gh)f`, so the linear extension is an algebra map
+  `F_3[Gamma] -> fMf` with `1 -> f`. From `sigma(z)f = 2(sigma(z) - 1) = -f` we get `eps_- -> 4f = f` and `eps_+ -> 0`, so the
+  restriction to `S_Gamma` is unital.
+- **Theorem 2.1(c), pressure point 3.**
+  - Read `rho` as a Sylvester matrix rank function. This holds for `M_n(k)` and rank ultraproducts; in general by the
+    map-to-matrix correspondence.
+  - *Additivity.* For orthogonal idempotents, `p + q = BA` and `diag(p, q) = AB` with `A = (p; q)`, `B = (p, q)`, and
+    `A = ABA`. So `rho(p + q) = rho(p) + rho(q)`.
+  - *Invariance.* `rho(xy) <= rho(x) = rho(xyx) <= rho(yx)`, and symmetrically.
+  - So `s` is additive on `V(S_Gamma)`, nonnegative, and extends to `K_0` with `s([eps_-]) = 1`. Positivity of `rho` is used
+    only for `rho(f) > 0`.
+- **Theorem 2.1(d), pressure point 4.** With `x = c e_-` and `y = e_- b`:
+  - `xy = eps_-`, and `p = yx` is idempotent because `b` and `c` absorb `eps_-`;
+  - `p e_- = e_- p = p` and `eps_- ~ p`, so `s(eps_-) = s(p) <= s(e_-) = 1/2`, a contradiction.
+- **Corollary 3.1, pressure point 5: PASS.**
+  - `b = eps_- b` lies in `F_3[Gamma]`.
+  - Finite-dimensional representations in characteristic three, and regular representations over `F_3` of finite quotients,
+    are rank algebras with faithful images. So `z` lies in the finite residual, and `Gamma` is not residually finite.
+- **Corollary 3.3: PASS.** A normal subgroup `N` not containing `z` has `N<z>/<z>` trivial or all of `PG`. In the first case
+  `N <= <z>`, so `N = 1`. In the second, `G/N` is a quotient of `<z>`, and perfection forces `N = G`, which contains `z`.
+- **Corollary 3.2, and the claim's "implies that filter": wrong as stated.**
+  - Corollary 3.1 constrains `Gamma = <z, w, d, supp b, supp c>`, which contains `d`.
+  - `ternary-corner-witnesses-need-non-linear-sofic-support` (Section 11, Theorem C) constrains `H = <z, w, supp b, supp c>`,
+    which need not contain `d`.
+  - Linear soficity passes to subgroups, so "`H` is not `F_3`-linear sofic" implies "`Gamma` is not", not conversely. So
+    Corollary 3.1 does not imply that claim.
+  - The proof really needs `d`. Without it, `sigma(w) f = f` is possible, `s(e_-) = 1`, and there is no contradiction.
+  - The two filters are incomparable. Corollary 3.1 needs only one rank model moving `z`, but applies to the larger group
+    `Gamma`. Theorem C needs separating approximations, but applies to `H`.
+  - *Requested correction.* Replace "implies that filter" on the claim (distinct_from and Consequences) and in artifact
+    Corollary 3.2 with "complements that filter: weaker model hypothesis, larger support group `<H, d>`". Nothing
+    established rests on the implication, and no route encodes it.

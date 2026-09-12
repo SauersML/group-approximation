@@ -6,6 +6,7 @@ title: Compress the model to the minus-one eigen-corner, read the rank as a stat
 target: anti-central-rank-models-kill-ternary-corner-witnesses
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-corner-state-sources-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ Sections 1–2 of the artifact.
 
 The injectivity remark in the global form cites `leavitt-gl-equals-el-and-perfect-unit-group` and
 `odd-leavitt-unit-groups-mod-scalars-are-fp-simple` in prose only. The theorem needs no prerequisite.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 46 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. Theorem 2.1 and Corollaries 3.1 and 3.3 pass. Corollary 3.2's "implies ternary-corner-witnesses-need-non-linear-sofic-support" is wrong as stated: this filter concerns `<H, d>`, that one concerns `H = <z, w, supp b, supp c>`, and the two are incomparable.*
