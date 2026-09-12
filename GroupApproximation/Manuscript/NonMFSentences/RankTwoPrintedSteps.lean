@@ -95,7 +95,7 @@ theorem manuscriptSentence_rankTwoGeneratorDiagonal (v b : R) (hbv : b * v = 0) 
     rw [h1, neg_zero, hbv, sub_zero]
   · rw [gen_val v b hbv]
     ext p q
-    fin_cases p <;> fin_cases q <;> simp [Matrix.one_apply, Matrix.single_apply]
+    fin_cases p <;> fin_cases q <;> simp
 
 /-- **Printed (tex 834-836).** "For `r ∈ R`, `[D,e₁₂(ar)] = e₁₂((1+vb)ar-ar) =
 e₁₂(vr)`, since `ba=1`; so `e₁₂(vR) ≤ N`." -/
