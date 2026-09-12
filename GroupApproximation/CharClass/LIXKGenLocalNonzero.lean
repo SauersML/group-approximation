@@ -61,8 +61,16 @@ theorem lixKRestrict_lixThomClassTerm_ne_zero (n k : ℕ) (dd : Fin ℓ → ℕ)
     ← lixKProdIso_hom_eq n k dd i hGc hGu, ← lixKExcF_hom_eq n k dd i] at hEq
   have hL := LinearMap.congr_fun (congrArg ModuleCat.Hom.hom hEq) (lixThomClassTerm n hGc hGu)
   simp only [ModuleCat.hom_comp, LinearMap.coe_comp, Function.comp_apply] at hL
-  rw [h0, map_zero] at hL
-  have hx : (excisionIsoPoint (TopCat.of (Fin (lixRank n dd) → ℂ))
+  -- `h0` is applied to a goal spelled by hand, not inside `hL`, whose composites may carry the
+  -- middle objects in a different (definitionally equal) spelling
+  have hL0 : (relPullback (ZMod 2) (lixKChartPt n k dd i hGc hGu)
+        (lixKChartPt_mapsTo n k dd i hGc hGu) (2 * lixRank n dd)).hom
+      ((LIXKRelMV.restrictTo (ZMod 2) (X := lixN n dd) (lixKTrivBall n k dd i hGc hGu)
+          ((lixKZeroSet n k dd)ᶜ : Set (↥sphereOne × Gen.baseM n dd)) (2 * lixRank n dd)).hom
+        ((lixKSRel n k hGc hGu hGe (2 * lixRank n dd)).hom (lixThomClassTerm n hGc hGu))) = 0 := by
+    rw [h0, map_zero]
+  have hR := hL.symm.trans hL0
+  have hx :(excisionIsoPoint (TopCat.of (Fin (lixRank n dd) → ℂ))
       (0 : Fin (lixRank n dd) → ℂ) (lixKFC n k dd i).target (lixKFC n k dd i).open_target
       (zero_mem_lixKFC_target n k dd i) (2 * lixRank n dd)).hom.hom
         ((lixKLocalPairIsoClosed n k dd i hGc hGu).hom.hom
@@ -70,7 +78,7 @@ theorem lixKRestrict_lixThomClassTerm_ne_zero (n k : ℕ) (dd : Fin ℓ → ℕ)
     apply injective_lixKShrink n k dd i hGc hGu
     rw [map_zero, lixKLocalPairIsoClosed_hom_eq n k dd i hGc hGu]
     simp only [ModuleCat.hom_comp, LinearMap.coe_comp, Function.comp_apply]
-    exact hL.symm
+    exact hR
   apply lixKLocalPairIsoClosed_lixKRes_ne_zero n k dd i hGc hGu
   rw [← iso_inv_hom_apply (excisionIsoPoint (TopCat.of (Fin (lixRank n dd) → ℂ))
       (0 : Fin (lixRank n dd) → ℂ) (lixKFC n k dd i).target (lixKFC n k dd i).open_target
