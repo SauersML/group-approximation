@@ -10,9 +10,11 @@ artifacts:
   - research/artifacts/cohn-elementary-group-compressions-and-lef-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof route `cohn-elementary-group-not-lef-proof`; artifact Section 3; independent
-re-derivation requested from `w4-vf-gate`). It imports
-`steinberg-finite-presentation-and-kazhdan-theorem` at statement level.
+**ESTABLISHED** (proof route `cohn-elementary-group-not-lef-proof`; artifact Section 3). Passed
+independent re-derivation by `w4-vf-gate` (§24 of
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, bb8a4f7135). It imports
+`steinberg-finite-presentation-and-kazhdan-theorem` at statement level; the verifier did not
+re-derive that import.
 
 Let `J = F_2<S,T | TS=1>`, `Q = 1 - ST`, `C_2` the binary Cohn algebra.
 

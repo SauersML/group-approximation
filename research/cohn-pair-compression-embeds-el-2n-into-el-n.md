@@ -10,8 +10,10 @@ artifacts:
   - research/artifacts/cohn-elementary-group-compressions-and-lef-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof route `cohn-pair-compression-el-embedding-proof`; artifact Sections 1–2;
-independent re-derivation requested from `w4-vf-gate`).
+**ESTABLISHED** (proof route `cohn-pair-compression-el-embedding-proof`; artifact Sections 1–2).
+Passed independent re-derivation by `w4-vf-gate` (§24 of
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, bb8a4f7135). Item 4 still consumes the
+rank-four V lift, whose own verdict is separate.
 
 **Setting.** `S` is a unital ring, and `s_0, s_1, t_0, t_1 in S` satisfy `t_i s_j = delta_ij`. Put
 `q = 1 - s_0 t_0 - s_1 t_1` and `iota(x) = sum_(a,b) s_a x_ab t_b` on `M_2(S)`. Apply `iota`
