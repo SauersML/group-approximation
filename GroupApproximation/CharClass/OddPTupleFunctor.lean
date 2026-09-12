@@ -172,8 +172,6 @@ theorem tupMap_id (k : ℕ) (x : tupMod K X r k) : tupMap K (𝟙 X) r k x = x :
   | add u v hu hv => rw [map_add, hu, hv]
   | single t c =>
     rw [← Finsupp.smul_single_one, map_smul, tupMap_single]
-    congr 2
-    exact Subtype.ext (funext fun j => tagPush_id (t.1 j))
 
 theorem tupMap_comp (f : X ⟶ Y) (g : Y ⟶ Z) (k : ℕ) (x : tupMod K X r k) :
     tupMap K (f ≫ g) r k x = tupMap K g r k (tupMap K f r k x) := by
@@ -183,8 +181,10 @@ theorem tupMap_comp (f : X ⟶ Y) (g : Y ⟶ Z) (k : ℕ) (x : tupMod K X r k) :
   | single t c =>
     rw [← Finsupp.smul_single_one, map_smul, map_smul, map_smul, tupMap_single, tupMap_single,
       tupMap_single]
-    congr 2
-    exact Subtype.ext (funext fun j => tagPush_comp f g (t.1 j))
+
+/-- **The augmentation** of the degree-`0` carrier: every tuple of points to `1`. -/
+def tupAug (K : Type) [CommRing K] (X : TopCat.{0}) (r : ℕ) : tupMod K X r 0 →ₗ[K] K :=
+  Finsupp.linearCombination K (fun _ => (1 : K))
 
 theorem tupT_pow_tupD (k s : ℕ) (x : tupMod K X r (k + 1)) :
     (tupT K X r k ^ s) (tupD K X r k x) = tupD K X r k ((tupT K X r (k + 1) ^ s) x) := by
@@ -256,22 +256,33 @@ abbrev tupModule (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) :
 
 /-- The degree-`k` object over the group ring. -/
 abbrev tupObj (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) : ModuleCat.{0} (GroupRingZMod p) :=
-  @ModuleCat.of (GroupRingZMod p) _ (tupMod (ZMod p) X r k) _ (tupModule p X r k s hs)
+  letI := tupModule p X r k s hs
+  ModuleCat.of (GroupRingZMod p) (tupMod (ZMod p) X r k)
+
+/-- The differential, as a map over the group ring. -/
+def tupDLin (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) :
+    @LinearMap (GroupRingZMod p) (GroupRingZMod p) _ _ (RingHom.id (GroupRingZMod p))
+      (tupMod (ZMod p) X r (k + 1)) (tupMod (ZMod p) X r k) _ _
+      (tupModule p X r (k + 1) s hs) (tupModule p X r k s hs) :=
+  letI := tupModule p X r (k + 1) s hs
+  letI := tupModule p X r k s hs
+  { toFun := tupD (ZMod p) X r k
+    map_add' := fun u v => map_add _ u v
+    map_smul' := fun c y =>
+      galAlgHomP_comm p (tupT (ZMod p) X r (k + 1) ^ s) (tupT_pow_pow p X r (k + 1) s hs)
+        (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs) (tupD (ZMod p) X r k)
+        (fun v => (tupT_pow_tupD (ZMod p) k s v).symm) c y }
 
 /-- The differential, as a morphism over the group ring. -/
 def tupDHom (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) :
     tupObj p X r (k + 1) s hs ⟶ tupObj p X r k s hs :=
-  @ModuleCat.ofHom (GroupRingZMod p) _ (tupMod (ZMod p) X r (k + 1)) (tupMod (ZMod p) X r k) _
-    (tupModule p X r (k + 1) s hs) _ (tupModule p X r k s hs)
-    { toFun := tupD (ZMod p) X r k
-      map_add' := fun u v => map_add _ u v
-      map_smul' := fun c y =>
-        galAlgHomP_comm p (tupT (ZMod p) X r (k + 1) ^ s) (tupT_pow_pow p X r (k + 1) s hs)
-          (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs) (tupD (ZMod p) X r k)
-          (fun v => (tupT_pow_tupD (ZMod p) k s v).symm) c y }
+  letI := tupModule p X r (k + 1) s hs
+  letI := tupModule p X r k s hs
+  ModuleCat.ofHom (tupDLin p X r k s hs)
 
 theorem tupDHom_hom_apply (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p)
-    (y : tupMod (ZMod p) X r (k + 1)) : (tupDHom p X r k s hs).hom y = tupD (ZMod p) X r k y :=
+    (y : tupMod (ZMod p) X r (k + 1)) : (tupDHom p X r k s hs).hom y = tupD (ZMod p) X r k y := by
+  unfold tupDHom
   rfl
 
 /-- **The `r`-fold tensor power of the singular chains of one space, over the group ring.** -/
@@ -279,26 +290,45 @@ def tupCx (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) :
     ChainComplex (ModuleCat.{0} (GroupRingZMod p)) ℕ :=
   ChainComplex.of (fun k => tupObj p X r k s hs) (fun k => tupDHom p X r k s hs)
     (fun k => by
+      letI := tupModule p X r (k + 1 + 1) s hs
+      letI := tupModule p X r (k + 1) s hs
+      letI := tupModule p X r k s hs
       apply ModuleCat.hom_ext
       apply LinearMap.ext
       intro y
+      simp only [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_zero, LinearMap.zero_apply,
+        tupDHom_hom_apply]
       exact tupD_tupD (ZMod p) X k y)
 
 theorem tupCx_d (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) (k : ℕ) :
     (tupCx p X r s hs).d (k + 1) k = tupDHom p X r k s hs := by
   simp [tupCx]
 
+/-- The pushforward, as a map over the group ring. -/
+def tupMapLin {X Y : TopCat.{0}} (f : X ⟶ Y) (r k s : ℕ) (hs : r ∣ s * p) :
+    @LinearMap (GroupRingZMod p) (GroupRingZMod p) _ _ (RingHom.id (GroupRingZMod p))
+      (tupMod (ZMod p) X r k) (tupMod (ZMod p) Y r k) _ _
+      (tupModule p X r k s hs) (tupModule p Y r k s hs) :=
+  letI := tupModule p X r k s hs
+  letI := tupModule p Y r k s hs
+  { toFun := tupMap (ZMod p) f r k
+    map_add' := fun u v => map_add _ u v
+    map_smul' := fun c y =>
+      galAlgHomP_comm p (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs)
+        (tupT (ZMod p) Y r k ^ s) (tupT_pow_pow p Y r k s hs) (tupMap (ZMod p) f r k)
+        (fun v => (tupT_pow_tupMap (ZMod p) f k s v).symm) c y }
+
 /-- The pushforward, as a morphism over the group ring. -/
 def tupMapHom {X Y : TopCat.{0}} (f : X ⟶ Y) (r k s : ℕ) (hs : r ∣ s * p) :
     tupObj p X r k s hs ⟶ tupObj p Y r k s hs :=
-  @ModuleCat.ofHom (GroupRingZMod p) _ (tupMod (ZMod p) X r k) (tupMod (ZMod p) Y r k) _
-    (tupModule p X r k s hs) _ (tupModule p Y r k s hs)
-    { toFun := tupMap (ZMod p) f r k
-      map_add' := fun u v => map_add _ u v
-      map_smul' := fun c y =>
-        galAlgHomP_comm p (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs)
-          (tupT (ZMod p) Y r k ^ s) (tupT_pow_pow p Y r k s hs) (tupMap (ZMod p) f r k)
-          (fun v => (tupT_pow_tupMap (ZMod p) f k s v).symm) c y }
+  letI := tupModule p X r k s hs
+  letI := tupModule p Y r k s hs
+  ModuleCat.ofHom (tupMapLin p f r k s hs)
+
+theorem tupMapHom_hom_apply {X Y : TopCat.{0}} (f : X ⟶ Y) (r k s : ℕ) (hs : r ∣ s * p)
+    (y : tupMod (ZMod p) X r k) : (tupMapHom p f r k s hs).hom y = tupMap (ZMod p) f r k y := by
+  unfold tupMapHom
+  rfl
 
 /-- The pushforward, as a map of complexes. -/
 def tupCxMap {X Y : TopCat.{0}} (f : X ⟶ Y) (r s : ℕ) (hs : r ∣ s * p) :
@@ -308,10 +338,18 @@ def tupCxMap {X Y : TopCat.{0}} (f : X ⟶ Y) (r s : ℕ) (hs : r ∣ s * p) :
     have hij' : j + 1 = i := hij
     subst hij'
     rw [tupCx_d, tupCx_d]
+    letI := tupModule p X r (j + 1) s hs
+    letI := tupModule p X r j s hs
+    letI := tupModule p Y r (j + 1) s hs
+    letI := tupModule p Y r j s hs
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro y
+    simp only [ModuleCat.hom_comp, LinearMap.comp_apply, tupDHom_hom_apply, tupMapHom_hom_apply]
     exact (tupMap_tupD (ZMod p) f j y).symm
+
+theorem tupCxMap_f {X Y : TopCat.{0}} (f : X ⟶ Y) (r s : ℕ) (hs : r ∣ s * p) (k : ℕ) :
+    (tupCxMap p f r s hs).f k = tupMapHom p f r k s hs := rfl
 
 /-- **The target of the odd-primary comparison**: `X ↦ C(X)^{⊗r}` over `F_p[ℤ/p]`, the generator
 acting through `T ^ s`. -/
@@ -321,15 +359,22 @@ def oddTgt (r s : ℕ) (hs : r ∣ s * p) :
   map f := tupCxMap p f r s hs
   map_id X := by
     refine HomologicalComplex.hom_ext _ _ fun k => ?_
+    letI := tupModule p X r k s hs
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro y
+    simp only [tupCxMap_f, HomologicalComplex.id_f, ModuleCat.hom_id, LinearMap.id_apply,
+      tupMapHom_hom_apply]
     exact tupMap_id (ZMod p) k y
-  map_comp f g := by
+  map_comp {X Y Z} f g := by
     refine HomologicalComplex.hom_ext _ _ fun k => ?_
+    letI := tupModule p X r k s hs
+    letI := tupModule p Z r k s hs
     apply ModuleCat.hom_ext
     apply LinearMap.ext
     intro y
+    simp only [tupCxMap_f, HomologicalComplex.comp_f, ModuleCat.hom_comp, LinearMap.comp_apply,
+      tupMapHom_hom_apply]
     exact tupMap_comp (ZMod p) f g k y
 
 @[simp] theorem oddTgt_obj (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) :
