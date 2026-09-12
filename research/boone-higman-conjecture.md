@@ -434,3 +434,34 @@ The route `boone-higman-via-enlarged-shell-stabilizers` permits such
 enlargements for arbitrary perfect decidable inputs. Its universal
 permutation-extension hypothesis is still OPEN; the arithmetic
 example does not make a rational host available for all inputs.
+
+## September 12: Leavitt tensor hosts
+
+`leavitt-tensor-hosts-acyclic-steinberg-and-fp` transfers Khanh's
+acyclicity and Steinberg comparison from `L = L_(F_2)(1,2)` to
+`B ⊗ L` for every simple `B` with `K_1(B ⊗ L) = K_2(B ⊗ L) = 0`.
+- If `B` is finitely presented, the unit group is finitely presented.
+- If `B` is central simple, the unit group is simple
+  (`central-simple-leavitt-tensor-unit-groups-are-simple`).
+
+Ara--Cortiñas show that `K_*(L ⊗ L)` vanishes. Two results follow.
+- `leavitt-square-unit-group-is-fp-simple-and-acyclic`: a second
+  finitely presented simple Leavitt unit group.
+- `char-two-surface-linear-groups-satisfy-boone-higman`: the finitely
+  generated linear groups over characteristic-two fields of
+  transcendence degree at most two satisfy the conjecture.
+
+The full characteristic-two linear class is the new root
+`char-two-linear-groups-satisfy-boone-higman`, blocked at
+`leavitt-tensor-powers-have-trivial-k-theory`.
+
+The same host theorem gives the route
+`boone-higman-via-central-simple-leavitt-tensor-host`. Its one open
+premise is `decidable-group-algebras-have-fp-central-simple-hosts`:
+each decidable group algebra must embed in a finitely presented
+central simple algebra whose Leavitt tensor has trivial `K_1` and
+`K_2`.
+
+Unlike `boone-higman-via-projective-ring-host`, this route needs no
+finite normal generation of a kernel. The Steinberg kernel over
+`B ⊗ L` is trivial by Khanh's comparison criterion.
