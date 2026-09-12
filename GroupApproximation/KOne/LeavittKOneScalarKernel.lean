@@ -45,6 +45,25 @@ on the first-letter splitting `V ≃ k × V^d` of the word space: a determinant 
 -/
 
 namespace GroupApproximation
+
+namespace RegularizedDet
+
+section Helpers
+
+variable {k : Type*} [Field k] {U : Type*} [AddCommGroup U] [Module k U] [FiniteDimensional k U]
+  {V : Type*} [AddCommGroup V] [Module k V] {ι : Type*} [Fintype ι]
+
+/-- A finite-rank perturbation of the identity is tame.  (Stated for an arbitrary space so
+that the cancellation `(g - 1) + 1 = g` is rewritten in the ring structure of `Module.End`.) -/
+theorem tame_of_finiteRank_sub_one (e : V ≃ₗ[k] U × (ι → V)) {g : Module.End k V}
+    (hg : FiniteRankDet.FiniteRank (g - 1)) : Tame e g := by
+  have h := (tame_of_finiteRank e hg).add e (tame_one e)
+  rwa [sub_add_cancel] at h
+
+end Helpers
+
+end RegularizedDet
+
 namespace Manuscript
 namespace OneSidedMFRadical
 namespace LeavittKOneFormula
@@ -64,21 +83,14 @@ theorem scalarKernel (hd : 2 ≤ d) : ScalarKernel k d := by
   rw [MatrixDiagonalization.mem_stableUnits_iff] at hstable
   obtain ⟨ε, -, hεd, hεl⟩ := exists_lift_of_mem_elementaryGroup hstable
   have hfr : FiniteRank ((ε : Module.End k (Fin 2 → Space k d)) -
-      (diagOp c : Module.End k (Fin 2 → Space k d))) :=
+      ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))) :=
     finiteRank_sub_diagOp_of_lifts c hεl
   set g' : (Module.End k (Fin 2 → Space k d))ˣ := (diagOp c)⁻¹ * ε with hg'
   have hg'fr : FiniteRank ((g' : Module.End k (Fin 2 → Space k d)) - 1) := by
-    have hrw : (g' : Module.End k (Fin 2 → Space k d)) - 1
-        = (((diagOp c)⁻¹ : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k _) *
-          ((ε : Module.End k (Fin 2 → Space k d)) - (diagOp c : Module.End k _)) := by
-      rw [hg', Units.val_mul, mul_sub, Units.inv_mul]
-    rw [hrw]
-    exact hfr.mul_left _
-  have hg'tame : Tame (split2 k d) (g' : Module.End k (Fin 2 → Space k d)) := by
-    have hrw : (g' : Module.End k (Fin 2 → Space k d))
-        = ((g' : Module.End k (Fin 2 → Space k d)) - 1) + 1 := by abel
-    rw [hrw]
-    exact (tame_of_finiteRank _ hg'fr).add _ (tame_one _)
+    rw [hg', Units.val_mul]
+    exact FiniteRank.inv_mul_sub_one (diagOp c) hfr
+  have hg'tame : Tame (split2 k d) (g' : Module.End k (Fin 2 → Space k d)) :=
+    tame_of_finiteRank_sub_one (split2 k d) hg'fr
   have hsplit : ε = diagOp c * g' := by
     rw [hg', ← mul_assoc, mul_inv_cancel, one_mul]
   have h1 : (c : k) * regDet (split2 k d) g' = 1 := by
@@ -118,7 +130,8 @@ theorem exists_injective_scalarQuotient (hd : 2 ≤ d) :
       Function.Injective φ ∧ ∀ c : kˣ, φ (QuotientGroup.mk c) = alpha k d c := by
   refine ⟨(QuotientGroup.kerLift (alpha k d)).comp
       (QuotientGroup.quotientMulEquivOfEq (alpha_ker_eq k d hd).symm).toMonoidHom, ?_, ?_⟩
-  · exact (QuotientGroup.kerLift_injective _).comp (MulEquiv.injective _)
+  · simp only [MonoidHom.coe_comp, MulEquiv.coe_toMonoidHom]
+    exact (QuotientGroup.kerLift_injective _).comp (MulEquiv.injective _)
   · intro c
     simp only [MonoidHom.coe_comp, Function.comp_apply, MulEquiv.coe_toMonoidHom,
       QuotientGroup.quotientMulEquivOfEq_mk, QuotientGroup.kerLift_mk]
