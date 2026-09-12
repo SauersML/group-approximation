@@ -87,3 +87,13 @@ The fibres are cut sets, which gives an exact criterion.
   applies with `H` central or normal cyclic. By
   `fpbs-relative-susceptibility-tube-excursion-bound`, divergence can only come
   from far excursions. **Where it stops:** finiteness just above `p_c` is open.
+* **Relative gap along a thinner or larger subgroup (2026-09-12).** The attempt
+  was to prove `p_c(G) < p_c(I;G)` for some infinite `I` (lines `<(g,k)>`, free
+  factors, `F_2 x {0}`) on the rigid graph and invoke
+  `fpbs-relative-gap-along-any-subgroup-separates`. **Where it dies:**
+  `fpbs-central-amenable-relative-threshold-is-pu`. With the central `Z`, every
+  infinite amenable subgroup has `p_c(A;G) = p_u(G)`. Any subgroup containing one
+  has `p_c(I;G) <= p_u(G)`. So along amenable `I` the premise is exactly
+  `p_c < p_u`, and along larger `I` it is at least as strong. No choice of
+  subgroup gives an easier target on any Cayley graph of `F_n x Z`. Details:
+  `research/artifacts/fpbs-f2xz-rigid-relative-gap-2026-09-12.md`.
