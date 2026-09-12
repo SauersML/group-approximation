@@ -97,7 +97,7 @@ noncomputable def componentError {K : Type} [Group K]
         (fun g n C ↦ ((Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
           S.map n g (x : S.model n) ∉ C.block).card : ℝ))
         (Sum.elim
-          (fun M n C ↦ if (C.block.card : ℝ) ≤ M then (C.block.card : ℝ) else 0)
+          (fun M _ C ↦ if (C.block.card : ℝ) ≤ M then (C.block.card : ℝ) else 0)
           (Sum.elim
             (fun _ n C ↦ if D.IsClusterGood n C then 0 else (C.block.card : ℝ))
             (fun _ n C ↦ (D.componentLabelEditBudget n C : ℝ))))))
@@ -219,6 +219,28 @@ theorem hammingDistance_componentCompletedAction {K : Type} [Group K]
   unfold hammingDistance
   rw [hset, card_indexedBlockModel]
 
+/-- A local edit budget of at most `ρ · cheeger / 4` times the component size
+gives tagged expansion of the completed labels at the scale `⌈ρ |C|⌉₊`. -/
+theorem taggedExpansion_ceil_of_budget_le {K : Type} [Group K]
+    {S : SoficApproximation K} {T : Finset K} (D : ExpanderDecomposition S T)
+    (n : ℕ) (C : D.componentIndex n) {ρ : ℝ} (hρ : 0 < ρ)
+    (hbudget : (D.componentLabelEditBudget n C : ℝ) ≤
+      ρ * D.cheeger / 4 * C.block.card) :
+    FinitePartialBijection.HasTaggedExpansionAtScale
+      (fun t : T ↦ D.componentCompletedAction n C t.1) (D.cheeger / 4)
+      ⌈ρ * (C.block.card : ℝ)⌉₊ := by
+  apply D.componentCompletedAction_taggedExpansion
+  have hc := D.cheeger_pos
+  have hp : (0 : ℝ) < C.block.card := by
+    exact_mod_cast Finset.card_pos.mpr (BlockIndex.block_nonempty (D.blocks n) C)
+  have hceil : ρ * (C.block.card : ℝ) ≤ ((⌈ρ * (C.block.card : ℝ)⌉₊ : ℕ) : ℝ) :=
+    Nat.le_ceil _
+  have h1 : D.cheeger * (ρ * (C.block.card : ℝ)) ≤
+      D.cheeger * ((⌈ρ * (C.block.card : ℝ)⌉₊ : ℕ) : ℝ) :=
+    mul_le_mul_of_nonneg_left hceil hc.le
+  have h2 : 0 < D.cheeger * (ρ * (C.block.card : ℝ)) := mul_pos hc (mul_pos hρ hp)
+  linarith
+
 open Classical in
 /-- **Good components** of an expander decomposition (blueprint step G1f). -/
 theorem exists_goodComponents {K : Type} [Group K] [Countable K] [Infinite K]
@@ -237,7 +259,10 @@ theorem exists_goodComponents {K : Type} [Group K] [Countable K] [Infinite K]
           Set.InjOn (D.componentCompletedAction n C) (T : Set K)) ∧
         (∃ M : ℕ, ∀ n ≥ M, ∀ C, good n C → D.IsClusterGood n C) ∧
         (∀ δ : ℝ, 0 < δ → ∃ M : ℕ, ∀ n ≥ M, ∀ C, good n C →
-          (D.componentLabelEditBudget n C : ℝ) ≤ δ * C.block.card) := by
+          (D.componentLabelEditBudget n C : ℝ) ≤ δ * C.block.card) ∧
+        (∀ (r : (K × K) ⊕ (K × K) ⊕ K ⊕ ℕ ⊕ Unit ⊕ Unit) (δ : ℝ), 0 < δ →
+          ∃ M : ℕ, ∀ n ≥ M, ∀ C, good n C →
+            componentError D r n C ≤ δ * C.block.card) := by
   haveI : Nonempty ((K × K) ⊕ (K × K) ⊕ K ⊕ ℕ ⊕ Unit ⊕ Unit) :=
     ⟨Sum.inr (Sum.inr (Sum.inr (Sum.inl 0)))⟩
   obtain ⟨good, hbad, herr⟩ := exists_isGood (ι := fun n ↦ D.componentIndex n)
@@ -247,9 +272,9 @@ theorem exists_goodComponents {K : Type} [Group K] [Countable K] [Infinite K]
     (componentError_sum_negligible D hsymm hgen)
   have hpos : ∀ n (C : D.componentIndex n), (0 : ℝ) < C.block.card := fun n C ↦ by
     exact_mod_cast Finset.card_pos.mpr (BlockIndex.block_nonempty (D.blocks n) C)
-  refine ⟨good, hbad, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨good, hbad, ?_, ?_, ?_, ?_, ?_, herr⟩
   · intro g h δ hδ
-    obtain ⟨M, hM⟩ := herr (Sum.inl (g, h)) (δ / 2) (by positivity)
+    obtain ⟨M, hM⟩ := herr (Sum.inl (g, h)) (δ / 2) (half_pos hδ)
     refine ⟨M, fun n hn C hC ↦ ?_⟩
     have hle : ((D.componentMultiplicationError n C g h).card : ℝ) ≤
         δ / 2 * (C.block.card : ℝ) :=
