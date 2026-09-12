@@ -33,6 +33,7 @@ not by rereading the author's argument. Nothing was run.
 | `ca9996a1e` (gk-fz-obstruction) | `formalizability-is-a-boolean-ideal-cokernel-class`, the corrected `formalizability-conormal-obstruction-is-jacobian-cokernel`, `binary-left-inverse-pairs-are-boolean-adically-formalizable` | PASS (Section 27) |
 | `4443cada1` (gk-free-wild) | `shear-designs-are-strict-iff-their-key-automaton-is`, `private-origin-rows-force-permutation-encoders`, `vh-lattices-surjunctive-when-a-factor-maps-faithfully`, Corollary H, the mixed-bigon scope correction | PASS (Section 28) |
 | `2740990165` (gk-fz-decompose) | `subset-stable-marker-flips-are-virtually-formalizable`, `marker-involution-over-rationals-is-not-virtually-formalizable`, route `virtual-formalizability-reduces-surjunctivity-to-kaplansky` | PASS (Section 29) |
+| `d2fb445ab`, `91ef83465` (gk-fz-counter) | `finite-group-formalizability-equals-equivariant-automorphism`, `formalizable-pairs-restrict-to-finite-quotients`, `order-three-equivariant-plane-automorphisms-are-linear`, `z3-level-preserving-automorphisms-rotate-uniformly` | PASS (Section 30) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1217,6 +1218,62 @@ directions work.
   within the theorem's scope, not only its HNN corollary. That theorem was passed by gk-verify-pos.
 - *Consequences.* The last bullet is honest: on virtually simple lattices the filter excludes
   nothing, because `F_V ∩ Gamma_s != 1` and embedding a finite-index subgroup already suffices.
+
+## 30. Finite levels and `Z_3` rigidity (`d2fb445ab`, `91ef83465`, gk-fz-counter): PASS
+
+**Theorem 1 (finite groups).**
+- *(=>)* Memories lie in the finite `G`, so `T`, `S` are polynomial self-maps of `A^(n|G|)`.
+  - `S o T = id` formally gives it on `F̄_2`-points, so `T` is injective there, and Ax–Grothendieck
+    makes an injective polynomial self-map of affine space over an algebraically closed field
+    bijective.
+  - Then `S` is the set-theoretic inverse on all `F̄_2`-points, so `T o S = id` there. A polynomial
+    map agreeing with the identity on every point of affine space over an infinite field is the
+    identity formally.
+- *(<=)* Equivariance gives `T(x)_g = T(g^-1 . x)_1`, so `T` is the automaton with memory `G` and rule
+  `T(.)_1`. The inverse of an equivariant automorphism is equivariant, giving a rule. On the finite
+  set `A^G`, `sigma o tau = id` makes `tau` bijective, so `sigma = tau^-1` is the shadow of `T^-1`,
+  and `T^-1 o T = id` is formal.
+
+**Theorem 2 (restriction to finite quotients).**
+- `K`-invariant configurations are the ones constant on cosets, and `tau` commutes with translations,
+  so it preserves them. With `K` normal the left and right coset spaces agree.
+- `X_(h,i) -> X_(hK,i)` is a ring homomorphism, and it carries the rule `P((X_(gm))_m)` to
+  `P((X_(gmK))_m)`, the rule of the induced automaton.
+- Distinct memory elements may collapse to one coset, merging variables. That is harmless, because a
+  ring homomorphism preserves any identity. Same point as the diagonal specialization in Section 25.
+
+**Theorem 3 (order-three equivariant plane automorphisms are linear).**
+- *`Fix(R) = {v_A}`.* Fixed-point sets of tree automorphisms acting without inversion are subtrees, so
+  a second fixed vertex would give a fixed neighbour `g . v_T` with `g` in `Aff`. Then `R` lies in
+  `Aff ∩ g Tri g^-1`, and since `g` is in `Aff`, `g^-1 R g` lies in `Aff ∩ Tri = B`.
+  - Elements of `B` have lower-triangular linear part, which sends `e_2` to a multiple of itself. The
+    linear part of `g^-1 R g` is a conjugate of `R` by the linear part of `g`, so it satisfies
+    `x^2 + x + 1`, and an eigenvalue in `K` would be a root of that polynomial.
+- *`phi` is affine.* It commutes with `R`, so it preserves `Fix(R)` and fixes `v_A`.
+- *`c = 0`.* `phi R = R phi` on affine maps gives `AR = RA` and `Rc = c`. `R^2 = -R-1` gives
+  `(R-1)(R+2) = -3`, and characteristic 3 is excluded because `x^2 + x + 1 = (x-1)^2` there. So
+  `R - 1` is invertible.
+- *`A` lies in `K[R]^x`.* The minimal polynomial is irreducible of degree 2, equal to the
+  characteristic polynomial, so the centralizer is `K[R]`.
+
+**Theorem 4 (`Z_3` levels).**
+- The two identities give that `v -> Phi(s,v)` is a polynomial automorphism over `K = F_2(s)` with
+  inverse `w -> Psi(s+b,w)`.
+- *`F_2` is algebraically closed in `K`.* `F_2(s)` is purely transcendental over `F_2`, so an element
+  algebraic over `F_2` lies in `F_2`. Hence `x^2 + x + 1` stays irreducible, and `F_4` is not inside
+  `K`.
+- Theorem 3 gives `Phi(s,v) = lambda(s) v` with `lambda(s)` in `K[R]^x`, and polynomiality in `s`
+  puts it in `F_2[s][R] = F_2[s] (x) F_4 = F_4[s]`. The inverse is polynomial in `s` too, so
+  `lambda(s)` is a unit of `F_4[s]`, hence a constant in `F_4^x = {1, R, R^2}`.
+- A constant `lambda` acts the same way at both levels, so the shadow rotates both free orbits by the
+  same power.
+
+**Trust surface.** `automorphisms-of-the-affine-plane-are-an-amalgam` (van der Kulk) is imported at
+statement level, and I did not check it against the source. Serre's no-inversion property of an
+amalgam on its Bass–Serre tree is standard.
+
+**Scope.** `z3-weight-one-rotation-is-not-an-automorphism-shadow` stays OPEN, as the author says, and
+Section 5's two-track example correctly shows the rigidity is a one-track phenomenon.
 
 ## 29. Virtual formalizability (`2740990165`, gk-fz-decompose): PASS
 

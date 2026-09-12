@@ -8,6 +8,7 @@ distinct_from:
   formalizable-pairs-induce-polynomial-automorphisms-on-constants: that is the special case K = G, the constant configurations; this covers every finite-index normal subgroup.
 artifacts:
   - research/artifacts/formalizability-finite-levels-and-z3-rigidity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a group, `K` a normal subgroup of finite index, and `(tau, sigma)` a formalizable pair on

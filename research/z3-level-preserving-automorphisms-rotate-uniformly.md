@@ -5,6 +5,7 @@ kind: claim
 title: A Z_3-equivariant polynomial automorphism of A^3 over F_2 that preserves the level rotates every free Boolean orbit by the same power of the shift
 artifacts:
   - research/artifacts/formalizability-finite-levels-and-z3-rigidity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `Z_3` act on `A^3` over `F_2` by cyclic shift. Write `x = s(1,1,1) + v`, where `s = x_0 + x_1 + x_2`

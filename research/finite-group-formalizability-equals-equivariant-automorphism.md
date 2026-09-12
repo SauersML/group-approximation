@@ -8,6 +8,7 @@ distinct_from:
   structurally-reversible-automata-are-formalizable: that proves words of track shears are formalizable on every group; this characterizes all formalizable pairs on finite groups, whether or not they are words of shears.
 artifacts:
   - research/artifacts/formalizability-finite-levels-and-z3-rigidity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be finite and `(tau, sigma)` a pair on `(F_2^n)^G` with `sigma o tau = id`. The pair is

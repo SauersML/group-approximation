@@ -5,6 +5,7 @@ kind: claim
 title: A polynomial automorphism of the plane commuting with an order-three linear map without eigenvectors is a scalar of K[R]
 artifacts:
   - research/artifacts/formalizability-finite-levels-and-z3-rigidity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `K` be a field, and let `R` in `GL_2(K)` satisfy `R^2 + R + 1 = 0`, with `x^2 + x + 1` irreducible
