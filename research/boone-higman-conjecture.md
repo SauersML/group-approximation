@@ -201,11 +201,14 @@ The August audit and the September correction artifacts carry the arguments.
    its universal ring premise fails in composite characteristic, and its
    unquotiented elementary group has a nontrivial central involution.
 5. **Use this repository's finitely presented strongly simple Leavitt algebra
-   as a universal host.**  *Dies* at
-   `weyl-algebra-blocks-a-universal-leavitt-host`: Bilich--Hazrat--Nam prove
-   the first Weyl algebra does not embed in `L_K(1,2)`, so no blanket
-   embedding theorem for countable algebras is available.  Recorded as
-   `boone-higman-via-universal-leavitt-host`.
+   as a universal host.**  *Dies* in every characteristic.
+   - In characteristic zero at `weyl-algebra-blocks-a-universal-leavitt-host`:
+     Bilich--Hazrat--Nam prove the first Weyl algebra does not embed in
+     `L_K(1,2)` when `char K = 0`.
+   - Over `F_2`, where the Weyl argument fails, at
+     `fixed-leavitt-hosts-cannot-be-universal-bh-containers`: a fixed decidable
+     host has one word-problem time bound.
+   Recorded as `boone-higman-via-universal-leavitt-host`.
 6. **Compress the infinite Boone--Higman HNN tower into finitely many
    relators**, by a shift `t_i = z^{-i} t z^i` encoding the enumeration.
    *Deferred at an identified step.*  Encoding the recursive list is

@@ -2,7 +2,7 @@
 rg: 2
 id: weyl-algebra-blocks-a-universal-leavitt-host
 kind: claim
-title: The first Weyl algebra does not embed in the binary Leavitt algebra, so it is not a universal host
+title: Over a field of characteristic zero the first Weyl algebra does not embed in the binary Leavitt algebra
 invalidates: [boone-higman-via-universal-leavitt-host]
 distinct_from:
   augmentation-blocks-unital-leavitt-family: that shows an augmentation obstructs a unital binary Leavitt FAMILY inside a group algebra, so the Leavitt relations are the guest and the obstruction is an augmentation; this shows the first Weyl algebra is not a guest of L_K(1,2), the obstruction is the Heisenberg relation in Steinberg algebras, and the Leavitt algebra is the host.
@@ -13,7 +13,31 @@ artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
 ---
 
-The first Weyl algebra does not embed into the Leavitt algebra `L_K(1,2)`.
+Let `K` be a field of characteristic zero. The first Weyl algebra `A_1(K)`
+does not embed into the Leavitt algebra `L_K(1,2)`.
+
+**Scope correction (2026-09-12, `swarm2-reviewer`).** An earlier version stated
+this for every field `K`. The source proves it only in characteristic zero,
+and the statement is unsupported in positive characteristic.
+- **The source's hypothesis.** Read from the arXiv v2 PDF on MSI on
+  2026-09-12 (ghostscript txtwrite). Theorem 3.5 begins "Let k be a field of
+  characteristic zero", and Theorem 3.7 has the same hypothesis. The proof
+  goes through Proposition 3.1, about Banach algebras over `R` or `C`, and a
+  transcendence-degree reduction. The abstract quoted below omits the
+  hypothesis.
+- **Positive characteristic realizes the relation.** Over `F_p`, let `D` be
+  `d/dt` and `T` multiplication by `t` on `F_p[t]/(t^p)`. Then `DT - TD = 1`,
+  since `(p-1) = -1` handles the top degree. Over `F_2` this is
+  `D = [[0,1],[0,0]]`, `T = [[0,0],[1,0]]`, `DT - TD = diag(1,-1) = 1`.
+  Since `L_K(1,2) = L^2` as a module, `M_n(L_K(1,2)) ≅ L_K(1,2)` for every `n`,
+  so `M_p(F_p)` sits unitally inside `L_{F_p}(1,2)`. The Heisenberg equation is
+  therefore realized in the Steinberg algebra `L_{F_p}(1,2)`, and the abstract's
+  "cannot be realized in any Steinberg algebra" is false there.
+- **Open in characteristic p.** Whether `A_1(F_p)` itself embeds in
+  `L_{F_p}(1,2)` is not decided by this source.
+- **The repository's host.** Over `F_2`, the universal-host route dies instead at
+  `fixed-leavitt-hosts-cannot-be-universal-bh-containers`, a word-problem
+  complexity argument that holds in every characteristic.
 
 **Verification status.**  Read from source 2026-08-17.  Bilich--Hazrat--Nam,
 *Embedding K-algebras into Leavitt algebra L_K(1,2)*, arXiv:2512.09241v2
@@ -37,11 +61,13 @@ envelope would want.
 
 The tempting move is therefore to treat it as a universal host: embed the
 group ring that `chatterji-kassabov-normal-generator-embedding` produces into
-`L_K(1,2)` and inherit simplicity and finite presentation together.  This
-claim refutes the general form of that move.  A blanket embedding theorem for
-countable or finitely presented `K`-algebras into `L_K(1,2)` is false, and
-the obstruction is not exotic — it is the Heisenberg relation, which no
-Steinberg algebra realizes.
+`L_K(1,2)` and inherit simplicity and finite presentation together.  In
+characteristic zero this claim refutes the general form of that move.  A
+blanket embedding theorem for countable or finitely presented `K`-algebras
+into `L_K(1,2)` is false there, and the obstruction is not exotic: it is the
+Heisenberg relation, which no Steinberg algebra over a field of
+characteristic zero realizes.  Over `F_2` the same move dies for a different
+reason, recorded as `fixed-leavitt-hosts-cannot-be-universal-bh-containers`.
 
 ## What it does not kill
 

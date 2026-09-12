@@ -24,11 +24,18 @@ The route: embed the coefficient ring `Z[G~]` — or a suitable `K`-algebra
 built from it — into `L_K(1,2)`, and inherit both simplicity and finite
 presentation from the host instead of manufacturing them.
 
-Dead at `weyl-algebra-blocks-a-universal-leavitt-host`.  There is no
-universal-host theorem to cite: Bilich--Hazrat--Nam prove the first Weyl
-algebra does not embed in `L_K(1,2)`, because the Heisenberg equation
-`xy - yx = 1` is unrealizable in any Steinberg algebra.  A route that needs
-"every finitely presented `K`-algebra embeds" is refuted outright.
+Dead in every characteristic, for two different reasons.
+- **Characteristic zero.** Dead at `weyl-algebra-blocks-a-universal-leavitt-host`.
+  Bilich--Hazrat--Nam prove the first Weyl algebra does not embed in `L_K(1,2)`
+  when `char K = 0` (their Theorems 3.5 and 3.7 assume this). A route that needs
+  "every finitely presented `K`-algebra embeds" is refuted outright there.
+- **Positive characteristic, including the repository's `F_2` host.** The Weyl
+  argument does not apply: `xy - yx = 1` already holds in
+  `M_p(F_p) ⊆ L_{F_p}(1,2)`. The route dies instead at
+  `fixed-leavitt-hosts-cannot-be-universal-bh-containers`. A fixed host with
+  decidable word problem has one recursive word-problem time bound, so by
+  `complexity-bounded-host-classes-are-not-universal` some two-generated group
+  with solvable word problem embeds in no subgroup of it.
 
 **What survives the demolition.**  A great deal, and this is why the route is
 recorded rather than deleted.  The same paper proves *positive* embedding

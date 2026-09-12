@@ -27,7 +27,12 @@ Heisenberg relation is unrealizable in any Steinberg algebra — is stronger
 than the graph needs, and the positive results of the same paper are not used
 by any node.
 
-Were the Weyl-algebra statement withdrawn, the dead route
-`boone-higman-via-universal-leavitt-host` would revert to open rather than
-to established: nobody has proved the universal host exists either, so the
-route would be an unproved conjecture rather than a refuted one.
+**Hypothesis (added 2026-09-12).** The source's Theorems 3.5 and 3.7 assume `k`
+has characteristic zero, from the v2 PDF text. The abstract omits this. The
+import is scoped accordingly. In characteristic `p` the Heisenberg relation is
+realized in `M_p(F_p) ⊆ L_{F_p}(1,2)`, so nothing here applies over `F_2`.
+
+The dead route `boone-higman-via-universal-leavitt-host` does not rest on this
+import alone. In every characteristic it is also invalidated by
+`fixed-leavitt-hosts-cannot-be-universal-bh-containers`. Withdrawing or
+narrowing the Weyl statement cannot make it fire.
