@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.ParityPDecomposable
 import GroupApproximation.CharClass.ParityPWuCartan
+import Mathlib.Algebra.BigOperators.Group.Finset.Powerset
 
 /-!
 # L4a assembled: the diagonal Wu polynomial is a unit times `e_{ip+1}` plus decomposables
@@ -191,7 +192,7 @@ theorem eCoeff_wuCompSub {p : ℕ} (hp : 2 ≤ p) (i : ℕ) (j : Fin n) (hj : (j
   exact h
 
 /-- **L4a for the component.** -/
-theorem isDecomposable_wuComp {p : ℕ} (hp : 2 ≤ p) (i : ℕ) (hn : i * p < n) :
+theorem isDecomposable_wuComp {p : ℕ} (hp : 2 ≤ p) (i : ℕ) :
     IsDecomposable (fun k => esymm (Fin n) ℤ k) (i * p + 1)
       (wuComp n p i - C (wuCoeff p i) * esymm (Fin n) ℤ (i * p + 1)) := by
   have hsym2 : C (wuCoeff p i) * ((esymmSub ℤ n (i * p + 1) : symmetricSubalgebra (Fin n) ℤ) :
@@ -219,12 +220,12 @@ theorem isDecomposable_wuComp {p : ℕ} (hp : 2 ≤ p) (i : ℕ) (hn : i * p < n
 /-- **L4a, universally.**  `m_{(p^i,1)} − wuCoeff p i · e_{ip+1}` is an integral combination of
 products of at least two elementary symmetric polynomials of positive index summing to
 `ip + 1`. -/
-theorem isDecomposable_wuRHSP {p : ℕ} (hp : 2 ≤ p) (i : ℕ) (hn : i * p < n) :
+theorem isDecomposable_wuRHSP {p : ℕ} (hp : 2 ≤ p) (i : ℕ) :
     IsDecomposable (fun k => esymm (Fin n) ℤ k) (i * p + 1)
       (wuRHSP Finset.univ (fun l : Fin n => (X l : MvPolynomial (Fin n) ℤ) ^ p) X i
         - C (wuCoeff p i) * esymm (Fin n) ℤ (i * p + 1)) := by
   rw [← wuComp_eq_wuRHSP hp i]
-  exact isDecomposable_wuComp hp i hn
+  exact isDecomposable_wuComp hp i
 
 end WuComponent
 
