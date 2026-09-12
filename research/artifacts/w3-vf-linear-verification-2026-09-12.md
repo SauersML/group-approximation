@@ -818,3 +818,84 @@ untouched.
     `n | [L_j : Γ_i]}`. For fixed `i_0` all conditions hold for large `j`, so `i(j) -> ∞` still.
   * **Transport step.** `F_3[Γ_i ⋊ Z/n]` is free of rank `n` over `F_3[Γ_i]`, and `eps_-` stays central because
     `phi_g` fixes `z`. So the transported generator gives `X_j^n = 1` with the intertwining property.
+  * **Status.** The author applied this repair at `e1854a7722`.
+
+## 22. Older L-family route with no verdict anywhere
+
+A sweep of routes from the older `gk-l*` and `gk-r*` lanes against every verification artifact on main found
+one route whose id and target appear in none of them. Every other target claim found in the sweep is
+covered by some verification artifact.
+
+### 22.1 `quaternary-leavitt-family-gives-anti-central-cohn-family`: valid, conditional on the open quaternary family
+
+If `tau_i sigma_j = delta_ij 1_-` for `i, j <= 4`, the relations for `i, j <= 2` are among them. So `sigma_1, sigma_2,
+tau_1, tau_2` is a unital two-pair Cohn family. The completeness relation `sum sigma_i tau_i = 1_-` is not needed.
+
+## 23. Sylvester rank functions and the two-root defect (w4-rankfn; 5d0606ab57)
+
+### 23.1 `leavitt-rank-functions-killing-two-root-defect-are-augmentation` (Theorem 1): PASS
+
+This is a gate reduction, checked with full care. It proves no identity and constructs no model.
+
+* **Setup.**
+  * The three-leaf code gives `M_3(R) ≅ R`, and `GL_3 = EL_3` holds for every field
+    (`leavitt-gl-equals-el-and-perfect-unit-group`, "every rank `n >= 2` and every field").
+  * In characteristic two, `N_12^2 = [x_12(2)] + 1 = 0` in `K[Γ]`.
+* **Quotient.**
+  * `I = {rk = 0}` is a two-sided ideal, a matrix with entries in `I` has rank `0`, and `rk_B` is faithful.
+  * Weyl symmetry turns the two identities into `N_ab N_cd = 0` for `b != c`. Signed permutation matrices lie in
+    `EL_3(K)`, and if `(1+N)^-1 − 1 = M` with `M^2 = 0`, then `N = −M`.
+* **[TRI] Theorem A.** Its converse uses only `X^2 = Y^2 = YX = 0`, so it is ring algebra, and it gives the matrix
+  units in `B`.
+* **Corner homomorphism, `p = 2`.** [RR] Proposition 6 is stated for rings of characteristic two. It uses
+  `n^2 = 0` from `(1+n)^2 = 1`, the five-term commutator expansion, and block entries.
+* **Corner homomorphism, `p` odd.** [RR] Proposition 8's proof was re-read step by step.
+  * `Phi` on `M_3(F_p)`, with `(1+u)^λ = 1 + λu`.
+  * Triangular order `(p_1, f, p_3)` gives `D^p = S^p = 0`.
+  * The torus `diag(−1,−1,1)` gives `2D + D^2 = 0`, `2S + S^2 = 0` and `2Q + QD + SQ = 0`. A unit plus a nilpotent
+    is invertible, so `D = S = Q = 0`.
+  * `diag(1,−1,−1)` gives `2P = 0`, then Weyl transport.
+  * No rank is used. [RR] Corollary 9's computation `C(ab) = psi_13(ab) u_31 = C(a) C(b)` is ring algebra.
+* **No room in the corner.**
+  * `rk_B/r` restricted to matrices over `p_1 B p_1` satisfies each Sylvester axiom, with `rk'(p_1) = 1`.
+  * Pulling back along the unital `C` gives a Sylvester function on `R`.
+  * `t_i (s_i t_i) s_i = 1` gives `rk''(s_i t_i) >= 1`. With [DI] 2.1 additivity
+    (`diag(f_1, f_2) = [f_1; f_2][f_1, f_2]` and `[f_1, f_2] = (f_1 + f_2)[f_1, f_2]`), `1 >= 2`.
+* **Triviality.**
+  * `p_1 = 0` gives `u_ij = u_i1 u_1j = 0`.
+  * `ker sigma` is normal and contains `[x_ik(a), x_kj(1)] = x_ij(a)`, so `sigma` is trivial on `EL_3(R) = Γ`.
+  * [DI] Theorem 1.1(3) gives `rk_ε`.
+* **Corollary 4.** The normalized rank of `M` pulls back along the linear extension to a Sylvester function, and
+  faithfulness gives `sigma = 1`. So the Sylvester gate implies the ultraproduct gate.
+* **Scope.** Corollary 5 also lists `toeplitz-isometry-defects-have-total-rank-at-least-one` as transferable. That was
+  not re-derived here.
+
+## 24. Abstract Sylvester scope for the characteristic-three gate (w3-gate-char3; 1bace02f7e, artifact Section 7)
+
+### 24.1 Proposition 7.1: PASS
+
+* **(F1)–(F3).** They follow from the axioms: additivity as in Section 23.1, conjugation from submultiplicativity
+  both ways, and corner renormalization.
+* **(a) Only (1) ⟹ (6) uses the rank function.**
+  * `f = 2(1 − sigma(z))` is a nonzero idempotent central in `sigma(G)`, so `rho(f) > 0` and (F3) makes `fMf` an
+    abstract rank algebra.
+  * Lemma 1.1, (2) ⟹ (3), (4) ⟹ (5) and (5) ⟹ (3) are group theory together with injectivity of `iota` and
+    `pi o iota`.
+  * Excluding (6) ⟹ (4) is correct: Lemma 1.2 uses Kronecker products and Jordan forms.
+* **(b)** Theorem 2.1 of the state-sources artifact is stated for Sylvester functions positive on idempotents.
+* **(c)** The half split uses (F1), (F2) and `rho(1) = 1`. The atoms use (F1), and the Fourier inversion is arithmetic.
+* **(d)** These are ring identities.
+  * `(1 ± t)/2` are idempotents for involutions `t`.
+  * Commuting with `sigma(τ_11)` and `sigma(τ_0 τ_10)` cuts out the components.
+  * `N^3 = 0`, and conjugation by `τ_0` gives `D = −N^2`.
+  * 5.1(c) is (c) at the code `(0,10,11)`.
+
+### 24.2 Corollary 7.2 (rank functions are models): PASS
+
+* **The ideal.** `ker N` is two-sided, by submultiplicativity and `a + b = (1 1) diag(a, b) (1 1)^T`.
+* **Descent.** A matrix with entries in `ker N` has rank `0`, so `N` is constant on classes and positive on nonzero
+  classes.
+* **The model.** `eps_- [g]` has inverse `eps_- [g^-1]`. `eps_-[z] = −eps_-`, and `N(2 eps_-) = N(−eps_-) = 1`, so
+  `1 != −1` in the quotient.
+* **Scope.** The abstract "No" branch is stronger than the matrix form, and the matrix-unit, unipotent and flag
+  triviality results need their own scope checks, as the artifact says.

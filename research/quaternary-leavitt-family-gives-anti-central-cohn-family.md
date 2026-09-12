@@ -7,8 +7,11 @@ target: ternary-anti-central-summand-has-cohn-family
 requires:
   - ternary-anti-central-summand-has-quaternary-leavitt-family
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-cohn-reformulation-2026-09-12.md
 ---
 
 If `tau_i sigma_j = delta_ij 1_-` for `i, j = 1, ..., 4`, then `sigma_1, sigma_2, tau_1, tau_2` is a
 unital two-pair Cohn family. Proposition 2.5(iii) of the artifact.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 22.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid, conditional on the open quaternary family. The relations tau_i sigma_j = delta_ij for i, j <= 2 are among those for i, j <= 4. Completeness is not needed.*

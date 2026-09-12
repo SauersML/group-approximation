@@ -30,3 +30,5 @@ The cycle of implications is written out in artifact Section 2.
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 53 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS, including the tensor-square rank lemma with threshold `1/3`. The assigned verifier remains `w3-vf-linear`.*
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 11.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: Lemma 1.2(b) (Jordan count, 2δ < 1−δ), (c), and all implications of Theorem 2.1. Simplicity of PG enters only in Lemma 1.1 and (4)⟹(5).*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 24.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Scope extension (artifact Proposition 7.1(a)): PASS. Conditions 1, 2, 3 and 6 are equivalent for abstract Sylvester rank models, and 4 ⟺ 5 ⟹ 3. Only (1) ⟹ (6) uses the rank function, through rho(f) > 0 for the nonzero idempotent f = 2(1 − sigma(z)).*

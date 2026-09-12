@@ -27,3 +27,5 @@ Details: artifact Section 5.
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 15.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the allowed components from τ_11 and τ_0τ_10, D = −N² by τ_0-conjugation with N³ = 0, and then N = A − A², A³ = 0.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 24.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Scope extension (artifact Proposition 7.1(d)): PASS. Parts (a)–(b) are ring identities in any F_3-algebra, and (c) is the abstract Haar law.*

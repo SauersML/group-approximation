@@ -9,6 +9,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - simple-group-rank-functions-are-augmentation-or-detecting
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/sylvester-rank-function-two-root-gate-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ For the other direction:
    element dies, and `EL_3(R) = Γ` (`leavitt-gl-equals-el-and-perfect-unit-group`) dies.
 5. **Conclusion.** Theorem 1.1(3) of `simple-group-rank-functions-are-augmentation-or-detecting` gives
    `rk = rk_ε`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 23.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS in every characteristic p. Recomputed: the null-ideal quotient and Weyl symmetry; TRI Theorem A as ring algebra; RR Proposition 6 (p = 2) and Proposition 8 (odd p), with every step of the torus argument re-read as characteristic-p ring algebra, plus the Corollary 9 computation; the corner Sylvester function pulled back to R, giving 1 >= 2; and D.2 triviality with DI Theorem 1.1(3).*

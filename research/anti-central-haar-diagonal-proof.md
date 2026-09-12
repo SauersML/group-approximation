@@ -27,3 +27,5 @@ Details: artifact Section 4.
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 15.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the half split through τ_(X∖C) = zτ_C and V-transitivity, and the Fourier inversion a_ε = 2^(−n)(1 − χ_[n](ε)).*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 24.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Scope extension (artifact Proposition 7.1(c)): PASS. The half split and the atoms use only additivity on orthogonal idempotents, conjugation invariance and rho(1) = 1.*
