@@ -10,6 +10,7 @@ single-shear version has an amenable fixed-factor obstruction and is not run.
 
 import argparse
 import json
+import math
 import time
 
 from depth_one_paired_leavitt_return_search import (
@@ -35,9 +36,14 @@ def product(left, right):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--seconds", type=float, default=23)
+    parser.add_argument("--radius", type=int, required=True,
+                        help="Exact Cayley-ball radius for the right-shear parameter")
+    parser.add_argument("--seconds", type=float, default=600,
+                        help="Search time budget; successful certificates are verified afterward")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
+    if args.radius < 0 or not math.isfinite(args.seconds) or args.seconds <= 0:
+        parser.error("--radius must be nonnegative and --seconds must be finite and positive")
     started = time.monotonic()
     identity = key(ONE)
     p = canonical((("0", "0"),))
@@ -106,6 +112,7 @@ def main():
             break
     result = {"status": "checking_fixed_factor", "fixed_b_support": len(fixed_b),
               "left_shear_support": len(n_left), "support_certificate": support_certificate,
+              "requested_radius": args.radius, "budget_seconds": args.seconds,
               "right_shear_evaluation_constrained": False,
               "checks": []}
 
@@ -124,98 +131,100 @@ def main():
     left = product(complement, w0)
     target = product(left, e)
     assert target
-    column_cache = {}
-    for radius in (2, 3):
-        if radius == 3 and time.monotonic() - started >= 10:
-            result["status"] = "radius_three_not_started_after_slow_radius_two"
-            break
-        _, ball, words = cayley_ball(radius)
-        columns, n_columns = [], []
-        group_universe = set(target)
-        result.update(status="building_columns", a_universe=len(ball), a_radius=radius,
-                      completed_columns=0)
-        record()
-        for value in ball:
-            value_key = key(value)
-            if value_key not in column_cache:
-                n_column = product(product(complement, {value_key}), e)
-                column = product(left, n_column)
-                column_cache[value_key] = n_column, column
-            n_column, column = column_cache[value_key]
-            n_columns.append(n_column)
-            columns.append(column)
-            group_universe.update(column)
-            result["completed_columns"] = len(columns)
-            if time.monotonic() - started > args.seconds:
-                result["status"] = "budget_expired_during_columns"
-                record()
-                print(json.dumps(result), flush=True)
-                return
+    radius = args.radius
+    _, ball, words = cayley_ball(radius)
+    columns, n_columns = [], []
+    group_universe = set(target)
+    result.update(status="building_columns", a_universe=len(ball), a_radius=radius,
+                  completed_columns=0)
+    record()
+    for value in ball:
+        value_key = key(value)
+        n_column = product(product(complement, {value_key}), e)
+        column = product(left, n_column)
+        n_columns.append(n_column)
+        columns.append(column)
+        group_universe.update(column)
+        result["completed_columns"] = len(columns)
+        if len(columns) % 10 == 0:
+            record()
+        if time.monotonic() - started > args.seconds:
+            result["status"] = "budget_expired_during_columns"
+            record()
+            print(json.dumps(result), flush=True)
+            return
 
-        group_coordinate = {value: i for i, value in enumerate(sorted(group_universe))}
-        basis = {}
-        for index, column in enumerate(columns):
-            vector = sum(1 << group_coordinate[x] for x in column)
-            witness = 1 << index
-            while vector:
-                pivot = vector.bit_length() - 1
-                if pivot not in basis:
-                    basis[pivot] = vector, witness
-                    break
-                row, old_witness = basis[pivot]
-                vector ^= row
-                witness ^= old_witness
-
-        vector = sum(1 << group_coordinate[x] for x in target)
-        witness = 0
+    group_coordinate = {value: i for i, value in enumerate(sorted(group_universe))}
+    basis = {}
+    result["status"] = "eliminating_columns"
+    record()
+    for index, column in enumerate(columns):
+        vector = sum(1 << group_coordinate[x] for x in column)
+        witness = 1 << index
         while vector:
             pivot = vector.bit_length() - 1
             if pivot not in basis:
+                basis[pivot] = vector, witness
                 break
             row, old_witness = basis[pivot]
             vector ^= row
             witness ^= old_witness
+        if time.monotonic() - started > args.seconds:
+            result.update(status="budget_expired_during_elimination",
+                          eliminated_columns=index + 1, partial_rank=len(basis))
+            record()
+            print(json.dumps(result), flush=True)
+            return
 
-        result["checks"].append({"radius": radius, "a_universe": len(ball),
-                                  "group_coordinates": len(group_coordinate),
-                                  "rank": len(basis), "solvable": not bool(vector)})
-        record()
-        if vector:
-            continue
-        indices = [i for i in range(len(ball)) if (witness >> i) & 1]
-        assert literal_product(n_left, n_left) == set()
-        assert literal_product(w0, w0_inverse) == {identity}
-        assert literal_product(w0_inverse, w0) == {identity}
-        n = set()
-        for index in indices:
-            n.symmetric_difference_update(n_columns[index])
-        assert literal_product(n, n) == set()
-        w = w0 ^ literal_product(w0, n)
-        w_inverse = w0_inverse ^ literal_product(n, w0_inverse)
-        assert literal_product(w, w_inverse) == {identity}
-        assert literal_product(w_inverse, w) == {identity}
-        assert literal_product(literal_product(complement, w), e) == set()
-        a = literal_product(literal_product(e, w), e)
-        b = literal_product(literal_product(e, w_inverse), e)
-        assert b == fixed_b
-        assert literal_product(b, a) == e
-        assert literal_product(a, b) != e
-        assert not equal(evaluate_sum([
-            from_key(x) for x in literal_product(a, b)]), p)
-        a_padded, b_padded = a ^ complement, b ^ complement
-        assert literal_product(b_padded, a_padded) == {identity}
-        reverse = literal_product(a_padded, b_padded)
-        assert reverse != {identity}
-        result.update(status="COUNTEREXAMPLE_FOUND", a_parameter_words=[words[i] for i in indices],
-                      a_padded=sorted(a_padded), b_padded=sorted(b_padded),
-                      reverse_keys=sorted(reverse))
+    vector = sum(1 << group_coordinate[x] for x in target)
+    witness = 0
+    while vector:
+        pivot = vector.bit_length() - 1
+        if pivot not in basis:
+            break
+        row, old_witness = basis[pivot]
+        vector ^= row
+        witness ^= old_witness
+
+    result["checks"].append({"radius": radius, "a_universe": len(ball),
+                              "group_coordinates": len(group_coordinate),
+                              "rank": len(basis), "solvable": not bool(vector)})
+    record()
+    if vector:
+        result["status"] = "no_shear_in_prescribed_universe"
         record()
         print(json.dumps(result), flush=True)
         return
-    else:
-        result["status"] = "no_shear_in_both_prescribed_universes"
+    indices = [i for i in range(len(ball)) if (witness >> i) & 1]
+    assert literal_product(n_left, n_left) == set()
+    assert literal_product(w0, w0_inverse) == {identity}
+    assert literal_product(w0_inverse, w0) == {identity}
+    n = set()
+    for index in indices:
+        n.symmetric_difference_update(n_columns[index])
+    assert literal_product(n, n) == set()
+    w = w0 ^ literal_product(w0, n)
+    w_inverse = w0_inverse ^ literal_product(n, w0_inverse)
+    assert literal_product(w, w_inverse) == {identity}
+    assert literal_product(w_inverse, w) == {identity}
+    assert literal_product(literal_product(complement, w), e) == set()
+    a = literal_product(literal_product(e, w), e)
+    b = literal_product(literal_product(e, w_inverse), e)
+    assert b == fixed_b
+    assert literal_product(b, a) == e
+    assert literal_product(a, b) != e
+    assert not equal(evaluate_sum([
+        from_key(x) for x in literal_product(a, b)]), p)
+    a_padded, b_padded = a ^ complement, b ^ complement
+    assert literal_product(b_padded, a_padded) == {identity}
+    reverse = literal_product(a_padded, b_padded)
+    assert reverse != {identity}
+    result.update(status="COUNTEREXAMPLE_FOUND", a_parameter_words=[words[i] for i in indices],
+                  a_padded=sorted(a_padded), b_padded=sorted(b_padded),
+                  reverse_keys=sorted(reverse))
     record()
     print(json.dumps(result), flush=True)
+    return
 
 
 if __name__ == "__main__":
