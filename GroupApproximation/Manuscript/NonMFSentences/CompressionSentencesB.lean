@@ -84,7 +84,7 @@ theorem manuscriptSentence_ultrafilterNormalizedTraceWellDefined
     TracialUltraproduct.seqUltratrace X ω a
       = TracialUltraproduct.seqUltratrace X ω b := by
   have hmk0 : normMatrixCStarCoronaMk (fun n ↦ X n) (a - b) = 0 := by
-    rw [map_sub, h, sub_self]
+    rw [RingHom.map_sub (normMatrixCStarCoronaMk (fun n ↦ X n)) a b, h, sub_self]
   have hnullCofinite : Tendsto (fun n ↦ ‖(a - b) n‖) cofinite (nhds 0) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) (a - b)).mp hmk0
   have hnullOmega : Tendsto (fun n ↦ ‖(a - b) n‖) (ω : Filter ℕ) (nhds 0) :=
@@ -173,8 +173,7 @@ theorem manuscriptSentence_ultrafilterTraceOfCornerUnitaryIsOne
   have hωAtTop : (ω : Filter ℕ) ≤ atTop := by
     rw [← Nat.cofinite_eq_atTop]; exact hω
   exact UltrafilterLimit.ulim_eq
-    (((OneSidedMFRadical.NormalKazhdanPrintedRoute
-        .manuscriptSentence_traceOfCombinationTendsTo
+    (((OneSidedMFRadical.NormalKazhdanPrintedRoute.manuscriptSentence_traceOfCombinationTendsTo
         iota hres D ∅ (fun _ ↦ 0)).1 s).mono_left hωAtTop)
 
 /-- **`thm:normal-kazhdan`, proof sentence: the trivial character `χ`.**

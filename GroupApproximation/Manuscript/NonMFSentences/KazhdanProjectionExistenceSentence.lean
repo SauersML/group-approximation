@@ -117,7 +117,7 @@ end GroupApproximation
 
 open GroupApproximation
 
-#audit_closed_axioms
+#audit_axioms
   Manuscript.NonMFSentences.kazhdanProjection_central
 #audit_closed_axioms
   Manuscript.NonMFSentences.manuscriptSentence_kazhdanProjection
