@@ -258,7 +258,7 @@ theorem face_relation_split (D : GGT.RelGenSet G Lambda) (lam : Lambda) (A : Set
       GGT.RelLetter.listVal u₁ * a.val * GGT.RelLetter.listVal u₂ := by
     rw [RelWord.listVal_append, RelWord.listVal_cons, mul_assoc]
   have hlen₁ : u₁.length ≤ (u₁ ++ a :: u₂).length := by simp
-  have hlen₂ : u₂.length ≤ (u₁ ++ a :: u₂).length := by simp
+  have hlen₂ : u₂.length ≤ (u₁ ++ a :: u₂).length := by simp; omega
   have hl₁ : ∀ b ∈ u₁, D.IsLetter b := fun b hb => hletters b (by simp [hb])
   have hl₂ : ∀ b ∈ u₂, D.IsLetter b := fun b hb => hletters b (by simp [hb])
   have ha : D.IsLetter a := hletters a (by simp)
