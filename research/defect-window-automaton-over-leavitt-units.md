@@ -47,6 +47,14 @@ Eden for `tau` on the window `{1, d}`.
   the `Gamma`-letters and the ambient letters, the nesting relators, and a non-LEF
   presentation for the `J`-letters. No rule pair is known whose forward
   sufficiency needs a Kazhdan presentation. This is where the attempt dies today.
+- *Forcing is not the bottleneck (gk-n-twocycle, 2026-09-12).* By
+  `bijective-designs-force-every-finite-presentation`, shift–shear rule pairs force
+  any finite presentation as a principal forward table, with one independent cycle per
+  relator. That includes the whole criterion above, nesting relators too. Those pairs
+  are bijective over every group, and composing a design with them never changes its
+  strictness. So the death point just recorded is resolved, but only by pairs that
+  give nothing. A rule pair for this claim must force the configuration through its
+  irreversible part, and keep a reverse hinge word nontrivial in the forced core.
 - *The Kun--Thom screen.* By `surjunctive-groups-carry-invisible-rigid-defects`, the
   surjunctive Kun--Thom wreaths already carry a nontrivial sofic-invisible rigid defect
   with the whole configuration present: a Kazhdan pair, a strict compressor and a

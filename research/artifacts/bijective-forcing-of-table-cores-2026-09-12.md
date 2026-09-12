@@ -126,6 +126,21 @@ In holonomy coordinates (`table-groups-are-memory-holonomy-groups`), each relato
 contributes one independent cycle of the decoder difference graph: the two edges out of
 `h_r`, closed through the root. So `b_1(Gamma_(E_P)) = |R|`.
 
+**Anchored against balanced identifications.** This remark is due to `gk-n-defect`,
+landed 38430a8f10. Call an identification `(s,m) ~ (s',m')` anchored if exactly one of
+`m, m'` is `1_M`, and balanced otherwise.
+- **All balanced.** If every relator of a holonomy-shape presentation has
+  `u, v, w, z != 1`, then `x_m = d_m t` for a fixed letter `t` turns each relator into
+  the same word in the `d`'s. So `P ≅ Z * Q`, and every Kazhdan subgroup lies in a
+  conjugate of `Q`.
+- **The presentations of Lemma 1.** They carry identity letters, `x̄ = x^(-1)`,
+  `p_i = p_(i-1) x̄^(-1)` and `p_n = 1`. So their identifications
+  `(h_r, 1_M) ~ (1_S, u_r)` and `(h_r, z_r) ~ (1_S, 1_M)` are anchored, and Lemma 3
+  gives `U_(E_P) ≅ P` exactly, with no extra free factor. When forcing a prescribed
+  core, use a presentation with identity letters, or account for the `Z` factor.
+- **Cost.** The design uses `|S| = 1 + 3|R|` decoder addresses, `|M| = 1 + |X|` memory
+  addresses, and `4|R|` needed identifications of the `|S||M|` cells.
+
 ## 4. The design is bijective over every group
 
 **Lemma 4.** For every group `G` and every realization of `D_P` in `G`, `tau` is bijective.
