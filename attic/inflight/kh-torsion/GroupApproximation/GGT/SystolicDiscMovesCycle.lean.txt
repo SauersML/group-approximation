@@ -254,7 +254,7 @@ theorem attachPendant_end (hv : X.G.Adj (D.lab (D.cyc.head D.isFaceCycle.ne_nil)
     have h2 : L.head? = some (some (some b)) := by rw [hL]; rfl
     exact Option.some.inj (h1.symm.trans h2)
   rw [hhd, hL, hcyc, List.map_append, List.map_cons, map_label_flatMap_of_not_mem hbt,
-    List.map_cons, List.map_cons, List.map_nil]
+    List.map_cons, List.map_cons, List.map_nil, List.append_assoc]
   rfl
 
 end Pendant
