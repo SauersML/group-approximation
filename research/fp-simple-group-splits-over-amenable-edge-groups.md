@@ -40,3 +40,9 @@ virtually cyclic, the action is faithful and has no global fixed point.
   recorded.  A first test case is torsion-free virtually polycyclic edge
   groups, where Hirsch length forces fixators along any geodesic extension of
   a minimal segment to be finite-index subgroups of one another.
+- **Virtually nilpotent edge groups with every finite fixator infinite.**
+  Dead (`fp-simple-splitting-with-infinite-nilpotent-fixators`).
+  `nilpotent-edge-simple-tree-action-has-finite-fixator` forces some finite
+  set of vertex stabilizers to intersect finitely.  That theorem does not
+  exclude virtually nilpotent edge groups where all pairwise intersections are
+  infinite and some larger finite intersection is finite.
