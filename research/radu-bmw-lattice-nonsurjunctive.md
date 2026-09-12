@@ -42,12 +42,13 @@ The claim is equivalent to the same statement for `pi_1(S_R)`.
   - **Factorizations.** `strict-composites-have-strict-factors`: any factorization of a strict
     automaton has a strict factor, and by the coset decomposition that factor's memory generates
     a nonsofic subgroup. Layers whose memory lies in a conjugate of `A = <a,b,c>`, of
-    `V = <x,y,z>`, or of a dihedral `<h, v>` add nothing. This covers reading one square, and a
-    key automaton reading a key track at two square-joined addresses.
+    `V = <x,y,z>`, of `<a,b,c,y>`, of `<a,b,c,x,z>` (`radu-bmw-coordinate-subgroups-are-sofic`),
+    or of a dihedral `<h, v>` add nothing. This covers reading one square, and a key automaton
+    reading a key track at two square-joined addresses.
   - **Letter hinges.** Every transposed letter identification holds, because all letters are
     involutions (`s m = s' m'` inverts to `m s = m' s'`).
 * **Where it stops.** No candidate layer is known: an automaton over `Gamma_R` whose memory
   involves both factors, generates a nonsofic subgroup, and has no output symmetry. Its linear case
-  is a one-sided inverse over `M_n(F_p[Gamma_R])` supported on such a subgroup
-  (`stable-finiteness-failure-refutes-surjunctivity`). Odd-characteristic averaging idempotents are
+  is `radu-bmw-lattice-group-algebra-not-stably-finite`: a one-sided inverse over `M_n(F_p[Gamma_R])`
+  supported on such a subgroup. Odd-characteristic averaging idempotents are
   killed by characters, so the corner-idempotent targets of the Leavitt hosts have no analogue here.

@@ -162,6 +162,64 @@ counterpart of Corollary H of `vh-lattice-table-hosts-2026-09-12.md` (reflection
 squares): on `Gamma_R` every letter square behaves as a symmetric one.
 * A strict design with letter addresses on `Gamma_R` needs decisive reverse coincidences that are
   not transposes of forward identifications.
-* Transposes among longer products are decided by the normal forms of Section 0. None is
-  computed here: by Section 2 the decisive part of the rules is a layer with nonsofic memory, and
-  the hinges of that layer are what matter.
+* Transposes among longer products are decided by pushing letters through (RS3) in the two
+  orders, and they do survive. Take `s = ac` and `m = x`. Rows `(c,x)` and `(a,z)` give
+  `ac.x = a.zc = z.bc`, so `(ac, x) ~ (z, bc)`. The transpose compares `m s = x.ac = ac.z`
+  (rows `(a,x)` and `(c,x)`) with `m' s' = bc.z`. Their normal forms differ, so the transposed
+  hinge `(bcz)^(-1)(acz) = zcbacz` is nontrivial. Surviving hinges are cheap here too; by
+  Section 2 what matters is the layer with nonsofic memory.
+
+## 4. Coordinate subgroups are sofic
+
+**Theorem 6.** Put `P_y = <a,b,c,y>` and `P_xz = <a,b,c,x,z>`. Both are proper sofic subgroups of
+`Gamma_R`. For a set `V'` of vertical letters, `<A, V'>` is `A`, `P_y`, `P_xz` or `Gamma_R`. For a
+nonempty set `A'` of horizontal letters, `<V, A'> = Gamma_R`.
+
+*Proof.*
+1. **Closed letter sets.** Push a horizontal letter rightward through a vertical letter, by the
+   row `(h,v) -> (v',h')`. This sends `y` to `y` and `{x,z}` into `{x,z}`: `a` and `b` keep `x` and
+   `z`, and `c` swaps them. So `A.{1,y}` and `A.D`, with `D` the reduced words in `x, z`, are closed
+   under right multiplication by their generating letters. By uniqueness of normal forms they are the
+   subgroups `P_y` and `P_xz`. Neither contains both `y` and `x`, so both are proper.
+   * `cx = zc` gives `<A,x> = <A,z> = P_xz`, while `<A,x,y>` and `<A,y,z>` contain every letter.
+   * `zaz = b`, `zbz = a`, `yby = c` and `ycy = b` show that one horizontal letter together with `V`
+     generates everything.
+2. **`P_y`.** `y a y = a`, `y b y = c` and `y c y = b`, so `y` normalizes `A` and `P_y = A ⋊ <y>`. It
+   contains `C_2 * C_2 * C_2` with index two, so it is virtually free, hence sofic
+   (`abelian-by-virtually-free-groups-are-sofic`, with trivial abelian kernel).
+3. **`P_xz`.** `P_xz` acts by left multiplication on `L = P_xz / A`.
+   * The vertices of `L` are the reduced words in `x, z`, and `wA` is adjacent to `wxA` and `wzA`. So
+     `L` is a bi-infinite path, and left multiplication preserves adjacency.
+   * The stabilizer of the vertex `A` is `A`. An element `h in A` acts on `wA` by pushing through `w`:
+     `a` and `b` fix every word, and `c` swaps `x <-> z` letterwise. So the kernel of
+     `P_xz -> Aut(L)` is `A_ev`, the words with an even number of `c`, of index two in `A`.
+   * `P_xz / A_ev` embeds in `Aut(L) = D_infinity`, which is amenable. `A_ev` is virtually free, hence
+     sofic, so `P_xz` is sofic by `sofic-kernel-amenable-quotient-permanence`. QED
+
+**Screen.** With Lemmas 2 and 3, no composite of automata on `A^(Gamma_R)` whose memories lie in
+conjugates of `A`, `V`, `P_y`, `P_xz` or a dihedral `<h,v>` is strict. A strict factor has memory
+generating a subgroup inside none of these. In particular some memory element has `y` in its
+vertical normal-form part, and some has `x` or `z`. There is no horizontal analogue, since one
+horizontal letter with `V` generates `Gamma_R`.
+
+## 5. Where the lattice target stands on Gamma_R
+
+A strict automaton on `Gamma_R`, or the strict factor in any factorization of one, must:
+* have no output symmetry (Section 1);
+* have memory generating a nonsofic subgroup, in no conjugate of `A`, `V`, `P_y`, `P_xz` or a
+  dihedral `<h,v>` (Sections 2 and 4);
+* get its decisive reverse coincidences from products longer than single letters (Section 3);
+* not be a key-controlled data shear over a non-strict key automaton
+  (`shear-designs-are-strict-iff-their-key-automaton-is`).
+
+**Linear case** (`radu-bmw-lattice-group-algebra-not-stably-finite`). This is a one-sided inverse over
+some `M_n(F_p[Gamma_R])` whose supports generate a nonsofic subgroup. For odd `p`, the averaging
+idempotents of involutions are killed by characters, so corner-idempotent witnesses of Leavitt type
+are unavailable. For `p = 2`, every involution `t` gives `(1+t)^2 = 0`, so the torsion that Lemma D of
+`vh-lattice-table-hosts-2026-09-12.md` demands is present.
+
+**What is missing.** No candidate is known. No obstruction specific to `Gamma_R` is known beyond
+these screens, and each screen is soficity or finite-quotient visibility of a subgroup. Soficity of
+`Gamma_R` itself is open (`radu-bmw-lattice-sofic`, `radu-bmw-lattice-nonsofic`). So the next unit is
+constructive: a layer whose memory mixes `y` with `x` or `z` and whose forward sufficiency needs
+anchored identifications among two-letter products, where transposed hinges survive (Section 3).
