@@ -31,3 +31,15 @@ injective model, an anti-central model, or a nontrivial model of `PG = G/{±1}`.
   injective and z-moving along the corner embedding, and anti-central models square to models of `PG`.
 - **Corner locality** holds in characteristic three (artifact Remark 3.4). A proof of "no" may work on any
   corner copy, but its extraction step needs both `N_12^2 = 0` and `N_23 N_12 = 0`.
+- **"No" is two identities.** "No" is equivalent to: both identities hold in every anti-central model of
+  `EL_3(R)` (artifact Remark 3.4). An anti-central model satisfying them gives matrix units, then a unital
+  rank model of `R` or triviality, and neither is possible while `z -> −1`.
+- **Haar law.** A "yes" must carry the Haar law on the signed diagonal
+  (`anti-central-rank-models-see-haar-measure-on-signed-diagonal`). Every reflection splits half and half,
+  and joint weights on prefix-code tori are uniform on odd sign patterns. So constructions must be free
+  modulo `z` on reflection tori; natural-module content is never the whole restriction at levels `>= 4`.
+- **Torus normal form.** `N_12 = A − A^2` with `A` flipping torus weights
+  (`ternary-rank-model-root-element-torus-normal-form`), so the first identity is `A^2 = 0`. Where it
+  stops: projective content of level groups meets the Haar law and has `A^2 != 0` on the Sylow 3-subgroup.
+  Finite level groups cannot decide the gate, and a proof must use Leavitt-coefficient relations such as
+  the compressor pair.

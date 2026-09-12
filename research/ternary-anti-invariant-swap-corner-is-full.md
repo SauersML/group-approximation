@@ -3,6 +3,8 @@ rg: 2
 id: ternary-anti-invariant-swap-corner-is-full
 kind: claim
 title: The swap-averaging idempotent is full in the anti-central summand of the ternary Leavitt group algebra
+refuted_by:
+  - ternary-leavitt-units-have-a-nontrivial-char-three-rank-model
 distinct_from:
   projective-ternary-swap-idempotent-is-full: that is the corner equation on the central summand F_3[PG], where the Leavitt evaluation vanishes; this is the corner equation on the complementary summand, through which the Leavitt evaluation factors and where its image equation holds.
   ternary-leavitt-swap-idempotent-is-full: that is the corner equation on the whole group algebra, which implies both halves; this asks only for the anti-central half, which already suffices for a counterexample.
@@ -180,3 +182,11 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     - lifted traces are not positive;
     - the halving endomorphism `x -> e_- δ_*(x)` has no intertwiner, by
       `self-similar-leavitt-intertwiners-have-no-exact-lift`.
+- **Rank models of the whole unit group** (w3-gate-char3, artifact
+  `research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md`).
+  - Any nontrivial characteristic-three rank model of `G`, or of `G/{±1}`, already moves `z`
+    (`ternary-leavitt-rank-models-move-z-iff-nontrivial`), so it refutes this claim. The single open gate is
+    `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`.
+  - Every such model restricts to Haar measure on the signed diagonal
+    (`anti-central-rank-models-see-haar-measure-on-signed-diagonal`), so a witness for this claim forces every
+    characteristic-three rank model of `G` to be trivial.

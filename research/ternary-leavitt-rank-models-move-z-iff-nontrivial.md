@@ -10,8 +10,9 @@ artifacts:
   - research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in the artifact, Sections 1–2; independent verification requested from
-`w3-vf-linear`). Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = −1`, `PG = G/<z>` and `ι(g) = s0 g t0 + s1 t1`.
+**ESTABLISHED** (proof in the artifact, Sections 1–2). `gk-vf-linear` independently re-derived it, PASS
+with no corrections (Section 53 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`).
+Verification by `w3-vf-linear` is also requested. Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = −1`, `PG = G/<z>` and `ι(g) = s0 g t0 + s1 t1`.
 A *rank model* is a homomorphism into the units of a rank ultraproduct of matrix algebras over fields of
 characteristic three. The following are equivalent:
 
