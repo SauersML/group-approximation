@@ -5,6 +5,7 @@ kind: claim
 title: Every uniform Bernoulli shift over every countable group has Rokhlin entropy equal to its base entropy
 distinct_from:
   gottschalk-surjunctivity-conjecture: that is surjunctivity of every group; this is a measurable entropy statement that implies it through strict-automaton-lowers-bernoulli-rokhlin-entropy, and no converse is known.
+  every-group-has-positive-rokhlin-entropy-action: that asks for one positive-entropy free ergodic action per group; this asks for maximal uniform Bernoulli entropy per group. Per group the first is not known to give the second, but over all groups they are equivalent through positive-rokhlin-everywhere-gives-maximal-bernoulli-entropy and maximal-bernoulli-entropy-everywhere-gives-positive-rokhlin.
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
 ---
@@ -44,9 +45,18 @@ finiteness conjecture over finite fields.
 * **Linear witnesses.** For `k = 1` and prime `q`, a nonzero linear `psi` is
   uniform, so any deficit witness is nonlinear. This narrows the search and proves
   nothing.
-* **Earlier record.** A 2026-09-07 repository audit records Seward,
-  arXiv:1501.03367, Corollaries 4.1 and 7.8: positivity of Bernoulli Rokhlin entropy
-  over all countably infinite groups implies these equalities. Not re-read, and no
-  proof of positivity is known here.
+* **Seward's per-group theory.** It is now imported as
+  `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`, read verbatim from
+  arXiv:1501.03367v4:
+  * `h^Rok_G(L^G) = min{H(L), h_sup(G)}`, so for `G` this claim is INF(G):
+    `h_sup(G) = infinity`;
+  * `(for all G, POS) => (for all G, INF)`;
+  * so this claim is equivalent to `every-group-has-positive-rokhlin-entropy-action`
+    (two routes).
+
+  This also makes INF closed under subgroups and directed colimits, by
+  `bernoulli-rokhlin-maximality-passes-to-subgroups` and
+  `bernoulli-rokhlin-deficit-has-a-finitary-witness`. Per group, POS is not known
+  to imply INF, and no lower bound is known for any nonsofic group.
 * **One group suffices.** `rokhlin-maximality-on-tester-covers-every-group` shows
   that the fixed tester host decides this claim.

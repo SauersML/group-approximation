@@ -6,6 +6,7 @@ title: Uniform Bernoulli shifts over the fixed Gottschalk tester host have maxim
 distinct_from:
   bernoulli-rokhlin-entropy-maximal-for-every-group: that quantifies over all countable groups; this is the single host U, and two recorded routes make them equivalent.
   fixed-gottschalk-test-group-is-surjunctive: that is surjunctivity of U; this is a measurable entropy statement about U that implies it.
+  tester-host-has-positive-rokhlin-entropy-action: that asks for a positive-entropy action of the restricted sum Gamma_U of copies of U x Sym_fin(N), which settles Gottschalk through the self-copy dichotomy; this asks for maximal Bernoulli entropy on U itself, equivalent to maximality for every group by subgroup and colimit closure.
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
 ---

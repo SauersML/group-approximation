@@ -6,6 +6,7 @@ title: A strict injective automaton over a group lowers the Rokhlin entropy of i
 distinct_from:
   sofic-radical-localizes-garden-of-eden-windows: that runs Gromov--Weiss counting along almost-multiplicative permutation models; this uses no finite model and bounds an isomorphism invariant of the Bernoulli shift itself.
   stable-finiteness-failure-refutes-surjunctivity: that turns a one-sided inverse pair into a strict linear automaton; this turns any strict automaton into an entropy deficit of Bernoulli shifts.
+  infinite-rokhlin-supremum-forces-surjunctivity: that imports Seward's per-group implication from an infinite Rokhlin supremum to surjunctivity; this is a self-contained quantitative proof of the strictness half, with explicit constants, from which strict-automaton-bounds-rokhlin-supremum reads a finite supremum.
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
 ---

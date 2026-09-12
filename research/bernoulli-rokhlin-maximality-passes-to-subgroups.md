@@ -3,6 +3,8 @@ rg: 2
 id: bernoulli-rokhlin-maximality-passes-to-subgroups
 kind: claim
 title: Maximal Rokhlin entropy of uniform Bernoulli shifts passes to subgroups and up finite index
+distinct_from:
+  bernoulli-entropy-counterexample-constraints: that derives inheritance for failures of the base-entropy classification from Seward's imported computation; this proves inheritance of maximal uniform Bernoulli Rokhlin entropy directly, by restriction and transversal joins, with no import.
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
 ---

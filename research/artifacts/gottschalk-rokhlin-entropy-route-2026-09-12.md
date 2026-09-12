@@ -346,13 +346,8 @@ classical proof. Theorem 1 replaces the window quantity by the invariant
   and is at most the Shannon entropy of any generating partition, so sofic groups
   are maximal. This is context, not imported: its sources were not re-read here,
   and it uses the finite models of Gromov--Weiss.
-* **Earlier record.** A 2026-09-07 audit in the repository records Seward,
-  *Krieger's finite generator theorem for actions of countable groups II*,
-  arXiv:1501.03367, Corollaries 4.1 and 7.8: the Bernoulli equalities imply
-  surjunctivity and direct finiteness, and positivity of Bernoulli Rokhlin entropy
-  over all countably infinite groups implies the equalities. Theorem 1 is a
-  self-contained proof of an implication of the first kind. Its exact relation
-  to Seward's hypotheses has not been re-checked.
+* **Seward's per-group theory.** This is now imported verbatim by another lane
+  as `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`; see Section 6.
 * **Nonsofic groups.** No nonsofic group is known here to be maximal or to fail
   maximality. A deficit over `G` would make `G` nonsofic, because sofic groups
   are maximal.
@@ -371,3 +366,44 @@ classical proof. Theorem 1 replaces the window quantity by the invariant
   element of infinite order. Information about the coordinates in `Lambda` can
   spread over the other cosets of `Lambda`, and this lane has no density argument
   along `G/Lambda`.
+
+## 6. Relation to Seward's per-group theory
+
+Another lane imported the following verbatim from arXiv:1501.03367v4 as
+`seward-per-group-rokhlin-entropy-of-bernoulli-shifts`:
+
+* Theorem 1.10: `h^Rok_G(L^G) = min{H(L), h_sup(G)}` when `H(L) < infinity`;
+* Theorem 1.11: `(for all G, POS) => (for all G, INF)`;
+* Corollary 4.1: `h^Rok_G(k^G) = log k` for every `k` gives Gottschalk and
+  Kaplansky for `G`.
+
+With it, this artifact reads as follows.
+
+1. **Maximality is INF.** The uniform bases `A^k` have unbounded entropy, so
+   `min{k log q, h_sup(G)} = k log q` for all `k` exactly when
+   `h_sup(G) = infinity`. So:
+   * Theorem 1 is a self-contained quantitative proof of the Gottschalk half of
+     Corollary 4.1;
+   * Theorem 3 and Corollary 3.1 make INF closed under subgroups and under directed
+     colimits with arbitrary structure maps;
+   * INF for the fixed tester host `U` is equivalent to INF for every countable
+     group.
+2. **An explicit bound on the supremum.** Let `k_0 = floor(D log 3/delta) + 1`.
+   Theorem 1 at `k_0` gives
+
+   ```text
+   h^Rok((A^(k_0))^G) <= k_0 log q - k_0 delta/D + log 3 < k_0 log q,
+   ```
+
+   and by Theorem 1.10 the left side is `min{k_0 log q, h_sup(G)}`. So a group
+   carrying a strict automaton has `h_sup(G) < k_0 log q`
+   (`strict-automaton-bounds-rokhlin-supremum`).
+3. **Universal forms.** The all-groups claim of Section 5 is `for all G, INF`. It
+   follows from `for all G, POS` by Theorems 1.11 and 1.10. It implies
+   `for all G, POS`, because the Bernoulli 2-shift is free and ergodic with
+   Rokhlin entropy `log 2`. Two routes record the equivalence with
+   `every-group-has-positive-rokhlin-entropy-action`.
+4. **Unchanged.** Per group, POS => INF is open (Seward). The self-copy dichotomy
+   `rokhlin-supremum-dichotomy-with-centralized-self-copies` closes that gap for
+   groups that contain their own square and finite subgroups of unbounded order.
+   No lower bound on `h_sup` is known for any nonsofic group.
