@@ -4773,3 +4773,4 @@ import GroupApproximation.KunThom.CentralizerBisectionRepresentationScaledPatch
 import GroupApproximation.KunThom.CountingEndgamePropsSelect
 import GroupApproximation.KunThom.RelativeDataMarkovDeletion
 import GroupApproximation.KunThom.RelativeFunctorImproveFrame
+import GroupApproximation.KunThom.CountingEndgamePropsCounting
