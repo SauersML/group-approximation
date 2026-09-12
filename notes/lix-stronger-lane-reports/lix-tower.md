@@ -20,16 +20,19 @@ in `Analysis/LIXGenericEquator`.
 | `LIXCor4PowersShape` | `Gen.HasSphereShape` for any continuous top block, stable under connect, climb, products, powers; `Gen.sphereUnitary` | COMPILED 0911-215816-84275 |
 | `LIXCor4PowersField` | `Gen.exists_unitary_field_of_nullHomotopy_gauged` (gauge g, pullback ξ, seam pointwise on the equator); `equatorInv`, `capTime`, `dirPt`, `extTop` | COMPILED 0911-215816-84275 |
 | `LIXCor4PowersStage` | `Gen.climb_pow_notMem_gauged` (concatenated null-homotopy `concatW`), `Gen.lixLimit_pow_notMem` | COMPILED 0911-222130-47938, landed 15fbf0bdc |
-| `LIXCor4PowersAssembly` | witness ũ = Aᴴu, gauge `A(ψ(equatorInv x))`, `Gen.corollary4Powers_of_diag` | blocked: lix-powers' `LIXPowersSphere:332` linter red |
+| `LIXCor4PowersAssembly` | witness ũ = Aᴴu, gauge `A(ψ(equatorInv x))`, `Gen.corollary4Powers_of_diag` | COMPILED 0911-230636-19649 (46270ef0c) |
 | `LIXCor4PowersDiagChain` | rank-n chain Γ(X₀, End(𝟏ⁿ⊕𝟏ⁿ)) → M₂(A₀); `diagChainN_sectionBlock`; `diagOne_sphereUnitary_mem` | COMPILED 0911-222603-77508 (878b6b5f2) |
-| `LIXCor4PowersDiag` | `sectionBlock_genU2_mem` (seamPath in rearranged 𝟏^{n+1}⊕𝟏^{n−1}), `wallBlock_one_mem`, `diagWitnessNullHomotopic`, **`Gen.corollary4Powers n hn : Corollary4Powers n (degreeFamily n)`** | authored; waits on Assembly |
+| `LIXCor4PowersDiag` | `sectionBlock_genU2_mem` (seamPath in rearranged 𝟏^{n+1}⊕𝟏^{n−1}), `wallBlock_one_mem`, `diagWitnessNullHomotopic`, **`Gen.corollary4Powers n hn : Corollary4Powers n (degreeFamily n)`** | COMPILED 0911-232226-4184 (e60383ad3); all audits classical |
 
 ## NEEDS
-* lix-powers: fix `normGen_eq_ballWall_mul` (`rw [...] <;> rfl` is a linter error).
+* Nothing for the arrow.  `ClimbedPowersOutside n` = `Gen.corollary4Powers n hn` applied to Lemma 2 for
+  `KGen.bVecK n (k-1)` at every p ∣ n, p ∤ k (Step C / Step D lanes).
+* WIRE tops: `GroupApproximation.Analysis.LIXCor4PowersDiag` (reaches all five others).
 
 ## TRAPS
 * `have h : ∀ m, P (EHmat n m)` with an implicit `dd`: binder type of `m` is a metavariable, so
   `Fintype (VIdx n ?dd)` is stuck.  Annotate `∀ m : CharClass.Gen.baseM n dd`.
+* An unused `where`-field binder (`last x :=`) is a lint error; write `_`.
 * `rw [a, a]` with the same zero lemma twice fails: `rw` already rewrote every occurrence.
 * `(1 : CStarMatrix ..) i j` needs `CStarMatrix.one_apply`, not `Matrix.one_apply`, in `simp`.
 * `rw [hr, e1, e2]` with `e1 : 2 * (1/2) = 1`, `e2 : 2 * (1/2) - 1 = 0`: e1 rewrites inside e2's pattern
