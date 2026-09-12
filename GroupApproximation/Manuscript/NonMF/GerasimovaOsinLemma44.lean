@@ -211,6 +211,7 @@ theorem mem_of_getElem?_eq_some {α : Type*} {l : List α} {j : ℕ} {a : α}
   rw [← hget]
   exact List.getElem_mem hj
 
+omit [Group G] in
 theorem exists_read_of_isCompStart {w : List (RelLetter G Λ)} {lam : Λ} {j : ℕ}
     (h : IsCompStart lam w j) : ∃ g : G, w[j]? = some (RelLetter.comp lam g) := by
   obtain ⟨hn, hc⟩ := isCompOf_getElem_of_isCompStart h
@@ -249,6 +250,8 @@ theorem getElem?_fourGon_s' (p q r s : List (RelLetter G Λ)) {k : ℕ} (hk : k 
     List.getElem?_eq_getElem (by rw [length_revWord]; exact hk),
     getElem_revWord s _ (by omega)]
 
+omit [Group G] in
+omit [Group G] in
 /-- A peripheral letter flanked by base letters (or by the ends of the word) is a
 single-letter component. -/
 theorem isComp_unit_of_reads {w : List (RelLetter G Unit)} {i : ℕ} {g : G}
@@ -496,7 +499,7 @@ theorem goMatch_cons (hS : GOSetting D F t C) {f : G} {rest : List G} (hf : f �
     rcases List.mem_cons.mp ha with rfl | ha
     · exact hfX
     simp at ha
-  have htf : (RelLetter.comp () t : RelLetter G Unit).val * (RelLetter.base f).val ≠ 1 := by
+  have htf : (RelLetter.comp () t : RelLetter G Unit).val * (RelLetter.base f : RelLetter G Unit).val ≠ 1 := by
     intro h
     apply hfH
     have h' : f = t⁻¹ := eq_inv_of_mul_eq_one_right h
@@ -509,10 +512,10 @@ theorem goMatch_cons (hS : GOSetting D F t C) {f : G} {rest : List G} (hf : f �
     (isOneOneSide_of_isGeodesicWord (isGeodesicWord_one_of_isGeodesicWord hs)) hclose
   have hread0 : (([] : List (RelLetter G Unit)) ++ [RelLetter.comp () t, RelLetter.base f] ++
       altWord t rest ++ revWord s)[0]? = some (RelLetter.comp () t) := by
-    first | rfl | simp
+    rfl
   have hread1 : (([] : List (RelLetter G Unit)) ++ [RelLetter.comp () t, RelLetter.base f] ++
       altWord t rest ++ revWord s)[1]? = some (RelLetter.base f) := by
-    first | rfl | simp
+    rfl
   have hcomp0 : IsComp () (([] : List (RelLetter G Unit)) ++
       [RelLetter.comp () t, RelLetter.base f] ++ altWord t rest ++ revWord s) 0 1 :=
     isComp_unit_of_reads hread0 (Or.inl rfl) (Or.inr ⟨f, hread1⟩)
@@ -698,7 +701,7 @@ theorem goMatchState_cons (hS : GOSetting D F t C) {x y f f' : G} {rest' : List 
     rcases List.mem_cons.mp ha with e | ha
     · rw [e]; exact hfX
     simp at ha
-  have hhf : (RelLetter.comp () h : RelLetter G Unit).val * (RelLetter.base f).val ≠ 1 := by
+  have hhf : (RelLetter.comp () h : RelLetter G Unit).val * (RelLetter.base f : RelLetter G Unit).val ≠ 1 := by
     intro e
     apply hfH
     have e' : f = h⁻¹ := eq_inv_of_mul_eq_one_right e
@@ -711,13 +714,13 @@ theorem goMatchState_cons (hS : GOSetting D F t C) {x y f f' : G} {rest' : List 
     (isOneOneSide_of_isGeodesicWord (isGeodesicWord_one_of_isGeodesicWord hs)) hclose
   have hread1 : ([RelLetter.comp () h, RelLetter.base f] ++ altWord t (f' :: rest') ++
       ([] : List (RelLetter G Unit)) ++ revWord s)[1]? = some (RelLetter.base f) := by
-    first | rfl | simp
+    rfl
   have hread2 : ([RelLetter.comp () h, RelLetter.base f] ++ altWord t (f' :: rest') ++
       ([] : List (RelLetter G Unit)) ++ revWord s)[2]? = some (RelLetter.comp () t) := by
-    first | rfl | simp
+    rfl
   have hread3 : ([RelLetter.comp () h, RelLetter.base f] ++ altWord t (f' :: rest') ++
       ([] : List (RelLetter G Unit)) ++ revWord s)[3]? = some (RelLetter.base f') := by
-    first | rfl | simp
+    rfl
   have hcomp2 : IsComp () ([RelLetter.comp () h, RelLetter.base f] ++ altWord t (f' :: rest') ++
       ([] : List (RelLetter G Unit)) ++ revWord s) 2 3 :=
     isComp_unit_of_reads hread2 (Or.inr ⟨f, hread1⟩) (Or.inr ⟨f', hread3⟩)

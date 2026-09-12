@@ -56,16 +56,18 @@ variable {G : Type u} [Group G]
 theorem translationSum_apply (T : Finset G) (c : G → ℂ) (ξ : GroupHilbert G) (g : G) :
     ((translationSum T c : ReducedGroupCStar G) : GroupHilbert G →L[ℂ] GroupHilbert G) ξ g
       = ∑ s ∈ T, c s * ξ (s⁻¹ * g) := by
-  rw [translationSum, AddSubmonoidClass.coe_finsetSum, ContinuousLinearMap.sum_apply,
+  rw [translationSum, AddSubmonoidClass.coe_finsetSum, sum_apply,
     lp.coeFn_sum, Finset.sum_apply]
   refine Finset.sum_congr rfl fun s _ => ?_
-  rw [SetLike.val_smul, ContinuousLinearMap.smul_apply, lp.coeFn_smul, Pi.smul_apply,
+  rw [SetLike.val_smul, smul_apply, lp.coeFn_smul, Pi.smul_apply,
     smul_eq_mul, reducedLeftRegular_apply]
 
+omit [Group G] in
 theorem norm_sq_eq_tsum (v : GroupHilbert G) : ‖v‖ ^ 2 = ∑' x, ‖v x‖ ^ 2 := by
   have h := lp.norm_rpow_eq_tsum (p := 2) (by norm_num) v
   simpa only [ENNReal.toReal_ofNat, Real.rpow_two] using h
 
+omit [Group G] in
 theorem norm_sq_eq_sum_of_support (v : GroupHilbert G) (U : Finset G)
     (hv : ∀ x, x ∉ U → v x = 0) : ‖v‖ ^ 2 = ∑ x ∈ U, ‖v x‖ ^ 2 := by
   rw [norm_sq_eq_tsum]
@@ -91,6 +93,8 @@ section Estimate
 
 variable (D : Combing G) (S : Set G)
   (htri : ∀ s ∈ S, ∀ g : G, (D.comb 1 s ∩ D.comb s g ∩ D.comb 1 g).Nonempty)
+
+include htri
 
 theorem norm_translationSum_apply_sq_le_of_support {n : ℕ} (T : Finset G)
     (hTS : ∀ s ∈ T, s ∈ S) (hTn : ∀ s ∈ T, D.len s ≤ n) (c : G → ℂ) (ξ : GroupHilbert G)
@@ -246,7 +250,8 @@ theorem tendsto_rpow_inv_of_le_poly {c : ℕ → ℝ} (hc1 : ∀ k, 1 ≤ c k) {
         Real.rpow_le_rpow (le_trans zero_le_one (hc1 k)) (hcA k) (by positivity)
     _ = A ^ ((k : ℝ)⁻¹) * (((k : ℝ) + 1) ^ ((k : ℝ)⁻¹)) ^ m := by
         rw [Real.mul_rpow hA.le hpos, ← Real.rpow_natCast, ← Real.rpow_natCast,
-          ← Real.rpow_mul (by positivity), ← Real.rpow_mul (by positivity), mul_comm]
+          ← Real.rpow_mul (by positivity), ← Real.rpow_mul (by positivity),
+          mul_comm (m : ℝ) ((k : ℝ)⁻¹)]
 
 /-- **The "in particular" clause of Proposition 2.4**, for linear growth bounds. -/
 theorem hasL2SpectralRadiusProperty_of_combing (D : Combing G) (S : Set G)
@@ -327,9 +332,9 @@ theorem hasL2SpectralRadiusProperty_zero :
       reducedTwoNorm ((0 : ReducedGroupCStar G) ^ k) ^ ((k : ℝ)⁻¹) = 0 := by
     filter_upwards [eventually_ge_atTop 1] with k hk
     rw [zero_pow (by omega), reducedTwoNorm, ZeroMemClass.coe_zero,
-      ContinuousLinearMap.zero_apply, norm_zero, Real.zero_rpow (hne k hk)]
+      zero_apply, norm_zero, Real.zero_rpow (hne k hk)]
   rw [HasL2SpectralRadiusProperty, l2SpectralRadius, operatorSpectralRadius,
-    Filter.limsup_congr hev, Filter.limsup_congr hev2, limsup_const, limsup_const]
+    Filter.limsup_congr hev, Filter.limsup_congr hev2, limsup_const]
 
 /-! ## Proposition 4.1 gives the geometric input -/
 
@@ -375,7 +380,8 @@ theorem gerasimovaOsinFreeSubsemigroupInput_of_proposition41
       obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hs
       exact Subsemigroup.subset_closure (hγ i)
     refine hasL2SpectralRadiusProperty_of_combing D
-      ((Subsemigroup.closure ((fun x => t * x) '' (F : Set G)) : Set G) ∪ {1}) htri
+      ((Subsemigroup.closure ((fun x => t * x) '' (F : Set G)) : Set G) ∪ {1})
+      (fun s hs g => htri g s hs)
       ((hzero 1).mpr rfl) (Finset.univ.image γ) (Set.mem_union_right _ (Set.mem_singleton 1))
       ?_ (κ := κ * κ + κ) ?_ ((Finset.univ.image γ).sup fun s => ⌈ℓ s⌉₊) ?_ _
     · intro x hx y hy
@@ -391,7 +397,8 @@ theorem gerasimovaOsinFreeSubsemigroupInput_of_proposition41
       have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg _
       nlinarith
     · intro s hs
-      have h1 : ⌈ℓ s⌉₊ ≤ (Finset.univ.image γ).sup fun s => ⌈ℓ s⌉₊ := Finset.le_sup hs
+      have h1 : ⌈ℓ s⌉₊ ≤ (Finset.univ.image γ).sup fun s => ⌈ℓ s⌉₊ :=
+        Finset.le_sup (f := fun s => ⌈ℓ s⌉₊) hs
       calc ℓ s ≤ ⌈ℓ s⌉₊ := Nat.le_ceil _
         _ ≤ _ := by exact_mod_cast h1
 
