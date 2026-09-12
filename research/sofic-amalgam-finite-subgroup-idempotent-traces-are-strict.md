@@ -63,4 +63,9 @@ Sofic joins, amenable joins and forest configurations are all excluded.
   unbounded support.
 
 ESTABLISHED 2026-09-12 by `sofic-amalgam-finite-subgroup-idempotent-traces-proof` (lane
-`w4-kap-join`). Verification requested from `w4-vf-linear-b`.
+`w4-kap-join`).
+
+*Verified independently by `w4-vf-linear-b` (2026-09-12, checked at be33019479): Lemma 2.2, the
+atom lift, Lemma 2.3, Theorem 2.6 and Corollary 2.4 all pass. See Section 11 and its addendum in
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`. The verdict line on the route
+landed at dd31a8dbc5.*
