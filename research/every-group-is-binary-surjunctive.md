@@ -24,3 +24,11 @@ alphabet. It gives the full conjecture if strictness descends to two symbols
   beyond the filters: discrete forward tables, one-relay shapes, and the transposed 2 x 2 core.
   The design filters of the region (nonsofic forward core, holonomy normal form, amenable decoder
   memory) apply unchanged at two symbols.
+- **Low-degree reduction (gk-n-highalpha, pending verification).** Theorem 7 of
+  `research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md`
+  (`low-degree-strict-pairs-have-one-sided-linear-parts`) says a strict pair over `F_q` with
+  `deg sigma * deg tau < q` has one-sided-inverse linear parts, a matrix Kaplansky pair over
+  `F_p[G]`. At `q = 2` that bound covers only affine designs, so it adds nothing beyond the linear
+  case. Every nonlinear binary design has degree product at least `2 = q`, the regime where
+  `x^2 = x` feeds higher decoder terms into degree one. So a binary counterexample that is not a
+  disguised Kaplansky pair must be nonlinear in exactly that regime.
