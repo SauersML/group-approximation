@@ -67,8 +67,8 @@ def OsinLemma97Below (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) (n : ℕ) : Prop :=
   ∀ (Xi : DiscDiagram.{u, w, v} W) (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
     Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < n →
-      ∃ T : GloballyDistinguishedSectionFamily D lambda c eps Xi cutsXi,
-        OsinLemma97bConclusion mu T.toRealizedSectionFamily
+      ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+        OsinLemma97bConclusion mu T
 
 /-- **G2, multiple edges**: two distinct selected regions joining the same cells
 enclose a cut. -/
@@ -127,8 +127,8 @@ def DescentInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
           (∃ i : Fin S.diagram.rCellCount,
             (1 - 11 * mu) * ((cell S.diagram i).word.length : ℝ) <
               ∑ a ∈ RegionCandidate.exteriorAt S.family i, (a.2.sourceArc.length : ℝ)) →
-            ∃ S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-              OsinLemma97bConclusion mu S'.toRealizedSectionFamily
+            ∃ S' : RealizedSectionFamily D lambda c eps Delta cuts,
+              OsinLemma97bConclusion mu S'
 
 /-! ## The induction -/
 
@@ -150,15 +150,15 @@ theorem osinLemma97_atParameters_of_inputs
       Delta.LeastArea → 0 < Delta.rCellCount →
         (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
             S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
-          ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-            OsinLemma97bConclusion mu S.toRealizedSectionFamily := by
+          ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
+            OsinLemma97bConclusion mu S := by
   have key : ∀ (n : ℕ) (Delta : DiscDiagram.{u, w, v} W)
       (cuts : SectionCuts D lambda c Delta.boundaryWord),
       Delta.rCellCount = n → Delta.LeastArea → 0 < Delta.rCellCount →
         (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
             S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
-          ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-            OsinLemma97bConclusion mu S.toRealizedSectionFamily := by
+          ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
+            OsinLemma97bConclusion mu S := by
     intro n
     induction n using Nat.strong_induction_on with
     | h n ih =>
@@ -182,7 +182,8 @@ theorem osinLemma97_atParameters_of_inputs
                 cut.rCellCount_lt)
         refine ⟨fun S => (heuler Delta cuts hlea hcells S (hsimple S).1 (hsimple S).2).1, ?_⟩
         obtain ⟨S⟩ := exists_globallyDistinguishedSectionFamily D lambda c eps Delta cuts
-          (DiscDiagram.reduced_of_leastArea hlea)
+          (DiscDiagram.reduced_of_leastArea hlea) cuts.admissible
+          (fun C _ => hcondition.admissible C.word C.word_mem)
         obtain ⟨hloopsS, hmultiS⟩ := hsimple S
         obtain ⟨hcard, hplanar⟩ := heuler Delta cuts hlea hcells S hloopsS hmultiS
         have hleaS : S.diagram.LeastArea := S.equiv.leastArea hlea
@@ -193,7 +194,7 @@ theorem osinLemma97_atParameters_of_inputs
           apply hloopsS edge.val hmem
           rw [edge.target_eq, heq]
         have hinterior := RegionCandidate.interior_total_le_of_o52 hO52 hleaS S.family
-          S.pairwise hloopsEdge hplanar hcondition hmu.le
+          S.pairwise hloopsEdge hplanar hcondition hlambda hmu hlarge
         have hcountEq : S.diagram.rCellCount = Delta.rCellCount := S.equiv.rCellCount_eq
         have hunbound94 := h94 Delta cuts hlea hcells S hcard
         have hunbound := RegionCandidate.unbound_total_lt_mu S.family

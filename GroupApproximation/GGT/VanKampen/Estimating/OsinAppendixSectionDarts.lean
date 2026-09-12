@@ -171,6 +171,19 @@ theorem Embedded.RegionCandidate.sourceArc_length_le_of_shortSection
     (cuts.toBoundarySections Xi hword) j hcondition hlambda
     (RegionCandidate.targetsSection_of_targetsSectionIndex hword a h) hpart
 
+/-- A word cut into quasi-geodesic sections is spelled in legal letters. -/
+theorem SectionCuts.admissible {G : Type u} [Group G] {Lambda : Type w}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {word : List (RelLetter G Lambda)}
+    (cuts : SectionCuts D lambda c word) : HullSC.RelWord.IsAdmissible D word := by
+  intro a ha
+  have hflat := SectionCuts.flatten_ofFn_pieces word cuts.count cuts.cut cuts.cut_zero
+    cuts.cut_mono
+  rw [cuts.cut_last, List.take_length] at hflat
+  rw [← hflat] at ha
+  obtain ⟨l, hl, hal⟩ := List.mem_flatten.mp ha
+  obtain ⟨j, rfl⟩ := List.mem_ofFn.mp hl
+  exact (cuts.quasiGeodesic j).1 a hal
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.SectionCuts.flatten_ofFn_pieces

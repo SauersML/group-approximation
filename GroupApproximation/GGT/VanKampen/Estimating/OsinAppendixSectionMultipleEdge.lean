@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDarts
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPieces
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixLeastAreaCut
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDegenerate
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -50,24 +51,49 @@ theorem OEquivalentDiscDiagram.leastArea {G : Type u} [Group G] {Lambda : Type w
 
 /-! ## The two degree bounds -/
 
-/-- **O52 as a degree bound at a least-area diagram.** -/
+/-- **O52 as a degree bound at a least-area diagram.**  A region with an empty arc
+is bounded by quasi-geodesicity instead. -/
 theorem RegionCandidate.contiguityDegree_lt_mu_of_o52
     {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
     {eps rho : ℕ} {mu lambda c : ℝ} {Xi : DiscDiagram.{u, w, v} W}
     (hO52 : O52LeastAreaStatement.{u, w, v})
-    (hcondition : OsinCCondition D W eps mu lambda c rho) (hrho : 0 < rho)
+    (hcondition : OsinCCondition D W eps mu lambda c rho) (hlambda : 0 < lambda)
+    (hmu : 0 < mu) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
     (hlea : Xi.LeastArea) (b : RegionCandidate D eps Xi)
     {target : Fin Xi.rCellCount} (htarget : b.2.target = some target)
     (hne : b.2.source ≠ target) :
     b.contiguityDegree < mu := by
-  have equations : b.2.PieceEquations :=
-    { target := target
-      target_eq := htarget
-      whole_ne := hO52 b.2 target htarget hlea hne }
-  apply b.contiguityDegree_lt_mu equations hcondition.toIsSmallCancellation
-    hcondition.publishedPiecesSmall
-  exact cellWord_length_pos hcondition.toIsSmallCancellation hrho b.2.source
+  by_cases hpos : 0 < b.2.sourceArc.length ∧ 0 < b.2.targetArc.length
+  · have equations : b.2.PieceEquations :=
+      { target := target
+        target_eq := htarget
+        whole_ne := hO52 b.2 target htarget hlea hne hpos.1 hpos.2 }
+    apply b.contiguityDegree_lt_mu equations hcondition.toIsSmallCancellation
+      hcondition.publishedPiecesSmall
+    exact cellWord_length_pos hcondition.toIsSmallCancellation hrho b.2.source
+  · have hdeg : b.2.sourceArc.length = 0 ∨ b.2.targetArc.length = 0 := by
+      rcases Nat.eq_zero_or_pos b.2.sourceArc.length with h1 | h1
+      · exact Or.inl h1
+      rcases Nat.eq_zero_or_pos b.2.targetArc.length with h2 | h2
+      · exact Or.inr h2
+      exact absurd ⟨h1, h2⟩ hpos
+    have hbound := b.2.arcLengths_le_of_degenerate target htarget hcondition hlambda hdeg
+    have hmono : lambda⁻¹ * (2 * (eps : ℝ) + c) ≤ lambda⁻¹ * (3 * (eps : ℝ) + c) := by
+      apply mul_le_mul_of_nonneg_left _ (inv_nonneg.mpr hlambda.le)
+      have heps : (0 : ℝ) ≤ eps := Nat.cast_nonneg _
+      linarith
+    have hlong : (rho : ℝ) ≤ ((cell Xi b.2.source).word.length : ℝ) := by
+      exact_mod_cast hcondition.long (cell Xi b.2.source).word (cell Xi b.2.source).word_mem
+    have hposR : (0 : ℝ) < ((cell Xi b.2.source).word.length : ℝ) :=
+      cellWord_length_pos hcondition.toIsSmallCancellation hrho b.2.source
+    have hmul : mu / 2 * (rho : ℝ) ≤ mu / 2 * ((cell Xi b.2.source).word.length : ℝ) :=
+      mul_le_mul_of_nonneg_left hlong (by linarith)
+    have htnn : (0 : ℝ) ≤ (b.2.targetArc.length : ℝ) := Nat.cast_nonneg _
+    unfold RegionCandidate.contiguityDegree
+    rw [div_lt_iff₀ hposR]
+    nlinarith
 
 /-- **Osin's side-arc estimate as a degree bound**: a region to a section of
 length at most `ε` has degree below `μ/2` once `λ⁻¹(3ε + c) < (μ/2)ρ`. -/
@@ -144,10 +170,10 @@ theorem OsinMultipleEdgeCut.false_of_below
     (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
     (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
     (hlea : Delta.LeastArea)
-    (hb : ∃ T : GloballyDistinguishedSectionFamily D lambda c eps cut.enclosed
-        cut.sections, OsinLemma97bConclusion mu T.toRealizedSectionFamily) :
+    (hb : ∃ T : RealizedSectionFamily D lambda c eps cut.enclosed
+        cut.sections, OsinLemma97bConclusion mu T) :
     False := by
-  obtain ⟨T, _source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  obtain ⟨T, _source, present, region, _hsource, htargets, _hdisjoint, hsum⟩ := hb
   have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
     T.equiv.boundaryWord_eq
   have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤
@@ -167,7 +193,8 @@ theorem OsinMultipleEdgeCut.false_of_below
       obtain ⟨Y, b, t, ⟨EY⟩, htarget, hne, hdeg⟩ :=
         cut.transport j hcell T.diagram T.equiv (region j) (htargets j hj)
       rw [← hdeg]
-      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hrho
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hlambda hmu hrho
+        hlarge
         (EY.leastArea hlea) b htarget hne)
   have hle := Finset.sum_le_sum hbound
   have htotal : (∑ j ∈ present, (if (j : ℕ) = 0 ∨ (j : ℕ) = 2 then mu / 2 else mu)) ≤
@@ -230,10 +257,10 @@ theorem OsinLoopCut.false_of_below
     (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
     (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
     (hlea : Delta.LeastArea)
-    (hb : ∃ T : GloballyDistinguishedSectionFamily D lambda c eps cut.enclosed
-        cut.sections, OsinLemma97bConclusion mu T.toRealizedSectionFamily) :
+    (hb : ∃ T : RealizedSectionFamily D lambda c eps cut.enclosed
+        cut.sections, OsinLemma97bConclusion mu T) :
     False := by
-  obtain ⟨T, _source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  obtain ⟨T, _source, present, region, _hsource, htargets, _hdisjoint, hsum⟩ := hb
   have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
     T.equiv.boundaryWord_eq
   have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤
@@ -253,7 +280,8 @@ theorem OsinLoopCut.false_of_below
       obtain ⟨Y, b, t, ⟨EY⟩, htarget, hne, hdeg⟩ :=
         cut.transport j hcell T.diagram T.equiv (region j) (htargets j hj)
       rw [← hdeg]
-      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hrho
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hlambda hmu hrho
+        hlarge
         (EY.leastArea hlea) b htarget hne)
   have hle := Finset.sum_le_sum hbound
   have htotal : (∑ j ∈ present, (if (j : ℕ) = 0 then mu / 2 else mu)) ≤

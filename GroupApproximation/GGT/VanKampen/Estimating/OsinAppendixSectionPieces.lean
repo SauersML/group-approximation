@@ -375,7 +375,10 @@ In a least-area diagram, a contiguity region of one relator cell to ANOTHER
 relator cell satisfies the non-cancellation clause.  Osin: if it fails, "we can
 cut the subdiagram … and fill the obtained hole with a diagram without
 `R`-cells, reducing the number of `R`-cells by 2", which contradicts least area.
-The self-contiguous case is excluded, as in the source. -/
+The self-contiguous case is excluded, as in the source.  Both contiguity arcs are
+nonempty: a region with an empty arc is charged by quasi-geodesicity alone
+(`Estimating/OsinAppendixSectionDegenerate.lean`), and the surgery deletes one shared
+edge on each side. -/
 def O52LeastAreaStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {D : GGT.RelGenSet G Lambda}
     {W : Set (List (GGT.RelLetter G Lambda))} {eps : ℕ}
@@ -383,6 +386,7 @@ def O52LeastAreaStatement : Prop :=
     (Gamma : ContiguityGeometry D eps Delta faces) (target : Fin Delta.rCellCount)
     (htarget : Gamma.target = some target),
     Delta.LeastArea → Gamma.source ≠ target →
+      0 < Gamma.sourceArc.length → 0 < Gamma.targetArc.length →
       GGT.RelLetter.listVal (Gamma.targetInverseCarrier target htarget) ≠
         (GGT.RelLetter.listVal (dartWord Delta Gamma.rightSide))⁻¹ *
           GGT.RelLetter.listVal (dartWord Delta Gamma.sourceArc.rotated) *

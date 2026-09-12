@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.RegionGlobalSelection
+import GroupApproximation.GGT.VanKampen.Estimating.RegionLegalSelection
 import GroupApproximation.GGT.VanKampen.Estimating.RegionPartition
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundParameters
 import GroupApproximation.GroupTheory.NormalClosureProduct
@@ -242,6 +243,9 @@ structure RealizedSectionFamily {G : Type u} [Group G] {Lambda : Type w}
     (cuts : SectionCuts D lambda c Delta.boundaryWord)
     extends RealizedRegionFamily D eps Delta where
   respects : ∀ a ∈ family, RegionCandidate.RespectsSections cuts a
+  /-- Both contiguity arcs of every selected region are nonempty.  With an empty arc
+  the source cell, or the target cell or section, is not tied to the geometry. -/
+  nondegenerate : ∀ a ∈ family, 0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length
 
 /-- Total arc length of a realized section family. -/
 def RealizedSectionFamily.weight {G : Type u} [Group G] {Lambda : Type w}
@@ -253,19 +257,27 @@ def RealizedSectionFamily.weight {G : Type u} [Group G] {Lambda : Type w}
   S.toRealizedRegionFamily.weight
 
 /-- **Osin's distinguished system `M`** (Definition 9.2), taken over every
-reduced O-equivalent diagram: maximal total contiguity-arc length, then minimal
-number of regions. -/
+reduced O-equivalent diagram whose labels are legal letters of the symmetrized
+alphabet: maximal total contiguity-arc length, then minimal number of regions.
+Osin's diagrams are over the relative alphabet, so legality is part of the class;
+it is what lets the surgeries of Lemma 9.4 insert connector words into the optimal
+diagram (`Estimating/RegionLegalSelection.lean` is the precedent). -/
 structure GloballyDistinguishedSectionFamily {G : Type u} [Group G]
     {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
     (Delta : DiscDiagram.{u, w, v} W)
     (cuts : SectionCuts D lambda c Delta.boundaryWord)
     extends RealizedSectionFamily D lambda c eps Delta cuts where
+  /-- The optimal diagram has legal labels. -/
+  label_admissible :
+    toRealizedSectionFamily.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D)
   weight_maximal : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
-    other.weight ≤ toRealizedSectionFamily.weight
+    other.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) →
+      other.weight ≤ toRealizedSectionFamily.weight
   card_minimal : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
-    other.weight = toRealizedSectionFamily.weight →
-      family.card ≤ other.family.card
+    other.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) →
+      other.weight = toRealizedSectionFamily.weight →
+        family.card ≤ other.family.card
 
 /-! ## The lemmas of the induction -/
 
@@ -308,8 +320,9 @@ def OsinLemma94SectionStatement : Prop :=
 /-- **Clause (b) of Lemma 9.7, verbatim.**  "There is an `R`-cell `Π` of `Δ` and
 disjoint `ε`-contiguity subdiagrams `Γ_j` of `Π` to sections `q_j`,
 `j = 1, …, r`, of `∂Δ` (some of them may be absent) such that
-`∑_j (Π, Γ_j, q_j) > 1 − 13μ`."  The regions are members of the distinguished
-family, hence pairwise disjoint, and distinct sections use distinct regions. -/
+`∑_j (Π, Γ_j, q_j) > 1 − 13μ`."  The regions live in a reduced O-equivalent copy of
+`Δ` and are pairwise disjoint; as in the source, they need not belong to a
+distinguished system. -/
 def OsinLemma97bConclusion {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
@@ -319,10 +332,10 @@ def OsinLemma97bConclusion {G : Type u} [Group G] {Lambda : Type w}
   ∃ (source : Fin S.diagram.rCellCount)
     (present : Finset (Fin cuts.count))
     (region : Fin cuts.count → RegionCandidate D eps S.diagram),
-    (∀ j ∈ present, region j ∈ S.family) ∧
-      (∀ j ∈ present, (region j).2.source = source) ∧
+    (∀ j ∈ present, (region j).2.source = source) ∧
       (∀ j ∈ present, RegionCandidate.TargetsSectionIndex cuts j (region j)) ∧
-      (∀ j ∈ present, ∀ k ∈ present, j ≠ k → region j ≠ region k) ∧
+      (∀ j ∈ present, ∀ k ∈ present, j ≠ k →
+        RegionCandidate.Compatible (region j) (region k)) ∧
       1 - 13 * mu < ∑ j ∈ present, (region j).contiguityDegree
 
 /-- **Osin's Lemma 9.7, at up to four sections.**  (Owner: lane `hull-select`.)
@@ -349,7 +362,7 @@ def OsinLemma97SectionStatement : Prop :=
               Delta.LeastArea → 0 < Delta.rCellCount →
                 (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                     S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
-                  ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-                    OsinLemma97bConclusion mu S.toRealizedSectionFamily
+                  ∃ S : RealizedSectionFamily D lambda c eps Delta cuts,
+                    OsinLemma97bConclusion mu S
 
 end GroupApproximation.GGT.VanKampen
