@@ -11,8 +11,16 @@ normalized trace `tr` (`tr 1 = 1`) and `‖x‖₂ = tr(x*x)^{1/2}`.
 
 ## 1. For genuine finite-dimensional representations the commutants coincide
 
-**Theorem A.** Let `π : G → U(D)` be any unitary representation on a
-finite-dimensional space. Then
+**CREDIT (correction, 2026-09-12, after `nh-rigid-defect-hs` flagged it).**
+Theorem A below is NOT new. It is the established, Lean-formalized claim
+`commutant-no-growth` (`Criterion/CommutantRigidity.commutant_no_growth`), whose
+proof there is the fixed-space collapse for the adjoint representation. The only
+things this section contributes are a second one-line derivation by dimension
+count, which makes the scope visible, and the ultraproduct Corollary A1 in §1.1,
+which is the genuinely new part.
+
+**Theorem A** (= `commutant-no-growth`). Let `π : G → U(D)` be any unitary
+representation on a finite-dimensional space. Then
 
 ```text
 π(Λ)' = π(Γ)' ,
