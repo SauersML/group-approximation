@@ -42,3 +42,38 @@ extend to trace-preserving representations of `G`.
   implies the unit group is not hyperlinear, and a hyperlinearity proof for that group refutes the
   general form. The Theorem E instance `theorem-e-vertex-rounds-to-unit-type-representations`, whose
   vertex has rich finite images, is unaffected.
+- **Existence, not rigidity, is the whole gap (2026-09-12, lane `nh-h1-vertex-rounding`).** With
+  `vertex-rounding-deep-nonunit-root-mass-vanishes` established, the route
+  `theorem-e-vertex-unit-type-via-deep-root-mass` makes
+  `theorem-e-vertex-rounds-to-unit-type-representations` — and through
+  `kt-wreath-nonhyperlinear-via-unit-type-vertex-rounding` the non-hyperlinearity of the Kun–Thom
+  wreath — open *only* through this claim (H1) for the Theorem E pair. The median route
+  `hs-normalization-via-vertex-rounding-and-actor-gap` also requires it. So (H1) is the unique open
+  bottleneck of the whole chain.
+  - **Every established input is conditional on the rounding.**
+    `unit-type-vertex-rounding-forces-compressor-commutant-rigidity`,
+    `nonunit-projection-bounded-by-root-spectral-mass`, the shallow and deep root-mass claims, and
+    `compressor-transport-exactifies-under-vertex-rounding` all begin "let `sigma` satisfy (H1) with
+    roundings `pi_n`" and then constrain the non-unit mass of the given `pi_n`. None constructs
+    `pi_n`. The compressor/torus action and property (T) of `G` are spent entirely on rigidity of an
+    assumed rounding, never on its existence.
+  - **G-extendability has not been used before rounding.** Whether `sigma|Gamma` rounds is a property
+    of the single asymptotic homomorphism `sigma_n|Gamma : Gamma -> U(n)`; the extra data
+    `sigma_n(t_i)` attaches to that same `sigma_n|Gamma` and only narrows which asymptotic
+    representations must round. No argument in the corpus turns that narrowing into a genuine `pi_n`.
+    So (H1) is exactly flexible normalized-HS stability of the infinite higher-rank Kazhdan group
+    `Gamma` at `G`-extendable models: the strict form is impossible (Becker–Lubotzky), and the
+    flexible form is unknown for every infinite higher-rank Kazhdan group (open even for `Sp_2g(Z)`,
+    Dogon). By `amenable-flexible-hs-stability-is-strict-hs-stability` any proof must use models with
+    non-injective limit trace, exactly the "far from genuine on the actor" case the theorem-e
+    attempts already isolate.
+  - **No known reduction makes (H1) easier, but equivalence to the target is not proved.** (H1) ⟹
+    non-hyperlinear is established (modulo review); the converse — that hyperlinearity of the wreath
+    yields a `G`-model whose vertex restriction does not round — is not on main. So (H1) is
+    un-reduced, not proven strictly as hard as the target.
+  - **Most concrete handle: the Laurent sibling.** theorem-e also has route
+    `unit-type-rounding-via-laurent-vertex-rounding` (requires `laurent-vertex-rounds-for-every-model`).
+    Lane `nh-laurent-commutant` (52efa2195) reduced its converse to a relative-(T) question: is the
+    mixed-level root group `K_i` Kazhdan for `r >= 4`? Unlike flexible stability, relative (T) is
+    within reach of Ershov–Jaikin-Zapirain angle methods, so `K_i` Kazhdan is the one point where the
+    existence problem becomes a (T)-style question the corpus has tools for. Recommended sub-target.
