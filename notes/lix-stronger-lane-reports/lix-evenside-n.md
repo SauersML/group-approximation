@@ -71,7 +71,9 @@ Künneth components, degree of b, slice, Wu with unit c), `RealBundleModP.instab
 **`RealBundleModP.toModPStepDData`** (the instance over the even parts), `RealBundleModP.gamma_top_eq_zero`,
 `Gen.realWu_of_splitting` (field wu from lix-evenside's `wu_field_of_splitting`; unit via
 `ParityP.isUnit_wuLeading`), `Gen.stepDHalf_of_realModP`, `Gen.lemmaTwoFor_powers_of_stepC_realModP`.
-Landed unverified: d6009101a (RealEven), 73ff46a09 + b4d828247 (Real).  Probe running on lix-c.
+Landed unverified: d6009101a + 938aa5bb4 (RealEven), 73ff46a09 + b4d828247 (Real).  **COMPILED**: probe
+0911-233331-59048 on lix-c (acn112, 8849 jobs, PROBE GREEN, BUILT + COMPILED both; md5 910ff65d…, b52eb348… = origin
+bytes).  WIRE top: `GroupApproximation.CharClass.LIXStepDGenReal` (reaches RealEven, LIXLemmaTwoGenGlue).
 
 ## NEEDS
 
@@ -81,6 +83,10 @@ Landed unverified: d6009101a (RealEven), 73ff46a09 + b4d828247 (Real).  Probe ru
   leading coefficient, L4a (lix-evenside).
 
 ## TRAPS
+
+* `map_mul f a b` / `map_add f a b` with `a b : ↥(evenPart K X)` and `f : TotalHOf K X →+* _` fails with
+  "failed to synthesize FunLike (… →+* …) ↥(evenPart K Y) ?m": the argument's subtype fixes the domain
+  before the coercion is inserted.  Ascribe `(a : TotalHOf K X)` (probe 0911-232012-91623).
 
 * `NM_UNVERIFIED` refuses a path already on origin/main (even an unverified landing); the in-flight edit
   goes as `NM_ATTIC=1`.
