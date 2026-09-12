@@ -1681,3 +1681,54 @@ Items checked: `two-root-identity-is-corner-local-for-leavitt-rank-models`, rout
 - *Entrywise action.* `V_P S[zeta_a] = S[zeta_a] s_P` and `T[zeta_b] W_P = t_P T[zeta_b]`, so this map sends
   `x_ab(r)` to `x_ab(s_P r t_P)`.
 - *Existence of `Z`.* The complement `1 - s_P t_P` is a nonzero sum of cylinder idempotents, so its range is `~= R`.
+
+## 48. Compressor conjugation of root pairs (gk-gate-compress): c-half PASS, c'-half FALSE as stated, corrected form given
+
+Items checked: `compressors-conjugate-leak-free-root-pairs`, route `compressors-conjugate-leak-free-root-pairs-proof`, and
+`el3-compressor-root-pair-calculus-2026-09-12.md` Section 1.
+
+**Notation.** Below, `T[10] = t_0 t_1` is the adjoint of `S[10] = s_1 s_0`, so `T[10] S[10] = 1`, and `T[11] = t_1 t_1`. The
+artifact writes both as "`t_1 t_0`" and uses the literal product `t_1 . t_0` in some steps.
+- *The adjoint reading is forced.* The inverse `(x,y,z) -> s_0 x + s_1 s_0 y + s_1 s_1 z` is two-sided only for
+  `psi(r) = (t_0 r, T[10] r, T[11] r)`.
+- *The literal reading fails.* `r -> (t_0 r, t_1 t_0 r, t_1 t_1 r)` kills `s_1 s_0 R`, so `c` and `c'` would not be units.
+
+**`c`, Lemma 1 and the first bullet of Lemma 2: PASS.**
+- *Conjugating `x_12`.* `c x_12(a) c^-1 = x_12(s_0 a t_0)` (Lemma 13, Section 45).
+- *Conjugating `x_23`.* `N = c x_23(b) c^-1 - 1` kills `c(e_1 R) + c(e_2 R)` and sends `c(e_3 r)` to `e_2 s_0 b r`.
+  - `e_1 s_1 t_1 v = c(e_3 s_0 t_1 v)`, because `T[10] s_0 = 0`.
+  - `e_2 s_1 t_1 v = c(e_3 s_1 s_0 t_1 v)` and `e_3 v = c(e_3 s_1 s_1 v)`.
+  - So row 2 is `(s_0 b s_0 t_1, s_0 b s_1 s_0 t_1, s_0 b s_1 s_1)`.
+- *Leak-free condition.* The first two entries vanish iff `b s_0 = 0 = b s_1 s_0`, iff `b = b S[11]T[11]`, which lies in
+  `R t_1 t_1`. Then `c x_23(b' t_1 t_1) c^-1 = x_23(s_0 b')`.
+- *Rank identity.* `delta(a, b' t_1 t_1) = delta(s_0 a t_0, s_0 b')` holds.
+
+**`c'`, Lemma 1: PASS in the adjoint reading.**
+- `c'(e_1 v) = e_1 T[11] v + e_2 s_1 t_0 v + e_3 s_1 T[10] v`.
+- `c' x_23(b) c'^-1 = x_23(s_0 b t_0)`: `e_3 s_1 t_1 v = c'(e_1 s_1 s_0 t_1 v)` is killed, `e_1 v = c'(e_1 s_1 s_1 v)`, and
+  `e_2 s_1 t_1 v = c'(e_1 s_0 t_1 v)`.
+- `c' x_12(a) c'^-1 - 1` has column 2 equal to `(T[11] a t_0, s_1 t_0 a t_0, s_1 T[10] a t_0)`.
+
+**`c'`, the second bullet of Lemma 2, Corollary 3 and the claim's second conjugacy: FALSE as stated.**
+- *The step that fails.* The proof says "`s_1 t_0 a t_0` and `s_1 t_1 t_0 a t_0` vanish iff `t_0 a t_0 = 0`". That reads the
+  third entry as literally `s_1 t_1 (t_0 a t_0)`. The correct entry is `s_1 t_0 t_1 a t_0`, which vanishes iff
+  `t_0 t_1 a = 0`.
+- *Counterexample.* Take `a = s_1`, which lies in `s_1 R`.
+  - `c'(e_1 s_1 t_0 v) = e_1 t_1 t_0 v + e_3 s_1 t_0 t_0 v`, so `c' x_12(s_1) c'^-1 - 1` has entry `(3,2)` equal to
+    `s_1 t_0 t_0 != 0`.
+  - So the conjugate leaks into the 32 root and is not a root element.
+  - *The artifact's own check.* Its commutator check has the same slip. For `beta = s_1 a' b`, column 3 is
+    `(t_1 a' b t_0, 0, s_1 t_0 a' b t_0)`, and the last entry is generally nonzero.
+- *Corrected statement.* `c' x_12(a) c'^-1` is a root element iff `t_0 a = 0` and `t_0 t_1 a = 0`, iff
+  `a = S[11]T[11] a`, iff `a` lies in `s_1 s_1 R`. For `a = s_1 s_1 a''`:
+
+  ```text
+  c' (x_12(s_1 s_1 a''), x_23(b)) c'^-1 = (x_12(a'' t_0), x_23(s_0 b t_0)),     delta(s_1 s_1 a'', b) = delta(a'' t_0, s_0 b t_0).
+  ```
+
+  - *Consistency.* `[x_12(a'' t_0), x_23(s_0 b t_0)] = x_13(a'' b t_0)`. For `beta = s_1 s_1 a'' b`, column 3 of
+    `c' x_13(beta) c'^-1 - 1` is `(a'' b t_0, 0, 0)`, since `t_0 t_1 s_1 s_1 = t_0 s_1 = 0`.
+  - *Symmetry.* The result mirrors the `c` half: two-letter cylinders `R t_1 t_1` and `s_1 s_1 R`.
+- *Downstream.* Only the claim, its route and the artifact cite this claim. Nothing else consumes the false half.
+- *Requested correction.* Replace `s_1 R` with `s_1 s_1 R`, and `x_12(t_1 a' t_0)` with `x_12(a'' t_0)`, in the claim, in
+  Lemma 2, in Corollary 3 and in its check. Use `T[10]` or `t_0 t_1` for the adjoint word throughout.

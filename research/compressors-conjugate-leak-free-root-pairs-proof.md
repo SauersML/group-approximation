@@ -6,6 +6,7 @@ title: Compute the conjugates on the compressed and complementary summands and r
 target: compressors-conjugate-leak-free-root-pairs
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md
 ---
 
@@ -17,3 +18,5 @@ Artifact Section 1.
   `c'` on the 12 root, using `t_i s_j = delta_ij` and `s_0 t_0 + s_1 t_1 = 1`.
 * Corollary 3 gives the simultaneous conjugacies. Their commutators match the conjugated `x_13`, as
   the homomorphism property requires.
+
+*Verification by `gk-vf-linear` (2026-09-12), Section 48 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the `c` half passes. The `c'` half is FALSE as stated: `c' x_12(s_1) c'^-1 - 1` has entry `(3,2)` equal to `s_1 t_0 t_0 != 0`. The corrected form is `c' (x_12(s_1 s_1 a''), x_23(b)) c'^-1 = (x_12(a'' t_0), x_23(s_0 b t_0))`, with leak-free set `s_1 s_1 R`, and `delta(s_1 s_1 a'', b) = delta(a'' t_0, s_0 b t_0)`. Correction requested from the author.*

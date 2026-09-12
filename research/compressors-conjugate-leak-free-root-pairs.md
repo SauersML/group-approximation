@@ -6,6 +6,7 @@ title: Two explicit Leavitt compressors simultaneously conjugate every leak-free
 distinct_from:
   shifted-root-pair-conjugates-to-idempotent-root-pair: that conjugates the single shifted pair (x_12(t_0), x_23(s_0)) to the idempotent pair; this gives two families of simultaneous conjugacies, parametrized by all coefficients in R t_1 t_1 on the 23 root or in s_1 R on the 12 root.
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md
 ---
 
@@ -29,3 +30,5 @@ delta(a, b' t_1 t_1) = delta(s_0 a t_0, s_0 b') ,     delta(s_1 a', b) = delta(t
 
 **ESTABLISHED** by `compressors-conjugate-leak-free-root-pairs-proof`: explicit computation on
 column vectors, with a commutator consistency check.
+
+*Verification by `gk-vf-linear` (2026-09-12), Section 48 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the `c` half passes. The `c'` half is FALSE as stated: `c' x_12(s_1) c'^-1 - 1` has entry `(3,2)` equal to `s_1 t_0 t_0 != 0`. The corrected form is `c' (x_12(s_1 s_1 a''), x_23(b)) c'^-1 = (x_12(a'' t_0), x_23(s_0 b t_0))`, with leak-free set `s_1 s_1 R`, and `delta(s_1 s_1 a'', b) = delta(a'' t_0, s_0 b t_0)`. Correction requested from the author.*
