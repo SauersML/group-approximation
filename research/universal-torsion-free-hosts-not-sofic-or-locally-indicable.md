@@ -3,7 +3,7 @@ rg: 2
 id: universal-torsion-free-hosts-not-sofic-or-locally-indicable
 kind: claim
 title: A group containing every finitely presented torsion-free group is neither sofic nor locally indicable
-invalidates: [master-host-atiyah-via-sofic-luck-approximation, master-host-atiyah-via-locally-indicable-hughes-free, master-host-atiyah-via-linnell-class-c, master-host-determinant-via-elek-szabo]
+invalidates: [master-host-atiyah-via-sofic-luck-approximation, master-host-atiyah-via-locally-indicable-hughes-free, master-host-atiyah-via-linnell-class-c, master-host-determinant-via-elek-szabo, galois-invariance-via-sofic-luck-approximation]
 distinct_from:
   fournier-facio-group-is-nonsofic: that is nonsoficity of one explicit group; this transfers it, together with the failure of local indicability and of membership in Linnell's class, to every universal torsion-free host.
 ---
