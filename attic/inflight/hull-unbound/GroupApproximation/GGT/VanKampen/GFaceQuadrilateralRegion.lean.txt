@@ -83,8 +83,10 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
   refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ ?_)⟩
   · exact Option.map_eq_none_iff
-  · exact CyclicArc.mapTo_start _ _ _
-  · exact CyclicArc.mapTo_length _ _ _
+  · exact CyclicArc.mapTo_start b.val.2.targetArc E.darts
+      (E.targetDarts_eq C hcells hf b.val.2.target)
+  · exact CyclicArc.mapTo_length b.val.2.targetArc E.darts
+      (E.targetDarts_eq C hcells hf b.val.2.target)
 
 end GroupApproximation.GGT.VanKampen.DiscEmbeddingAway
 
