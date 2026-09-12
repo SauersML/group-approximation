@@ -22,6 +22,7 @@ every `z` with `∂₂ z = 0` is the chain of a list whose value is `1`
 namespace GroupApproximation.FoxComplex
 
 open FreeResolutionPrimeOrder FoxBoundary PresentedGroupRelatorReplay
+open scoped commutatorElement
 
 universe v w
 
