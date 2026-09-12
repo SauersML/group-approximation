@@ -86,8 +86,15 @@ groups of unbounded Lie rank.
     Corollary 6.3). So its pro-p completion has infinite rank, and such a
     surjection needs the pro-p completion of `Γ` to have infinite rank, i.e. to
     be not p-adic analytic. The congruence pro-p images of `Γ` are analytic, so
-    this needs non-congruence p-quotients. Whether the pro-p completion of a
-    cocompact arithmetic `Sp(2,1)` lattice has finite rank is not recorded here.
+    this needs non-congruence p-quotients.
+  - **Exactly an infinite pro-p congruence kernel.**
+    `sp21-pro-p-finite-rank-iff-finite-pro-p-congruence-kernel` makes the
+    condition equivalent to an infinite pro-p congruence kernel at `p`, which is
+    failure of the congruence subgroup property at `p`.
+  - **Open, with one certificate.** The finite side is the open
+    `sp21-lattice-pro-p-completions-have-finite-rank`, and it would rule the
+    mechanism out. The only recorded certificate for the infinite side is
+    `sp21-golod-shafarevich-test-gives-infinite-pro-p-rank`.
   - **Status.** No homomorphism from such a lattice onto a transvection group is
     known or attempted.
 - **Random relators.** `random-relators-kill-small-simple-quotients-of-kazhdan-groups`
