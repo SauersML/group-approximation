@@ -10,6 +10,7 @@ requires:
   - sofic-radical-localizes-bernoulli-deficit-witnesses
 artifacts:
   - research/artifacts/defect-coupled-routed-codes-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 2 of the artifact.
@@ -22,3 +23,7 @@ Section 2 of the artifact.
    `|E| >= |A|`. If `K` is finite, injectivity on a finite uniform space does it directly.
 5. `|B| = |E|`. Sofic groups are Rokhlin-maximal by the Sofic-groups consequence of the localization
    theorem.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently, including the
+Lusin–Souslin conull image, descent for Borel `f` on `A^K`, and the finite-`K` case
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 2.1).

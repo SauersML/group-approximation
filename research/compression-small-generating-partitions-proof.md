@@ -8,6 +8,7 @@ requires: []
 artifacts:
   - research/artifacts/defect-coupled-routed-codes-2026-09-12.md
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 3 of the defect-coupled artifact.
@@ -17,3 +18,7 @@ Section 3 of the defect-coupled artifact.
 * **Partition to code.** The name map of a generating partition is equivariant. Approximating a
   countable separating family inside the generated sigma-algebra, off countably many null sets, shows
   it separates points of a conull set.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: equal name-map values
+place two points in the same `A_n`, hence the same `B_n`, off the Borel null union of the `N_n`
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 2.2).

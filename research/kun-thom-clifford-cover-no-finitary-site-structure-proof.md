@@ -7,6 +7,7 @@ target: kun-thom-clifford-cover-has-no-finitary-site-structure
 requires: []
 artifacts:
   - research/artifacts/clifford-cover-surjunctivity-test-host-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 1, Proposition 1.1.
@@ -17,3 +18,8 @@ of them (Neumann).
 
 (A2) with `U` empty kills `c_(go)` and `c_(gy)` in `p_T`. `G`-invariance of the commutator form gives
 `[c_(go), c_(gy)] = eps`, so `p_T(eps) = 1` for every `T`. That contradicts (A1).
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently. Only (A1), and (A2) with
+`U` empty and `N_empty = 1`, are used. Signs in `alpha_g(c_o) = +- c_(go)` do not affect the commutator,
+which is `alpha_g(eps) = eps` (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`,
+Section 3.1).

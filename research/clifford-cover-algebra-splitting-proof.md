@@ -8,6 +8,7 @@ requires:
   - rf-lamps-preserve-stable-finiteness-for-arbitrary-actions
 artifacts:
   - research/artifacts/clifford-cover-surjunctivity-test-host-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 3, Proposition 3.1.
@@ -17,3 +18,10 @@ Artifact Section 3, Proposition 3.1.
   `G` fixes `eps`.
 - `F_3[W]` is stably finite, because the base `G` is residually finite. So direct finiteness of the
   product is decided on `A_S`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS, with one wiring note.**
+- The splitting, the product criterion for one-sided pairs and the padding all re-derive.
+- Wiring: `rf-lamps-preserve-stable-finiteness-for-arbitrary-actions` only reduces `k[W]` to `k[G]`.
+  The input actually consumed is `kun-thom-wreath-stably-finite` (`k[W]` stably finite for every field),
+  which is on main. Recommended: add it to `requires`.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 3.3.)
