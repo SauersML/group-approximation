@@ -57,3 +57,26 @@ the augmentation rank.
     and free wandering elements (`v-rank-models-act-freely-by-wandering-elements`).
   - **Matricial only:** the compression to a reduced model has no abstract version yet.
   - **Where it dies:** amenable configurations are inert (artifact Section 3.2).
+- **Two firewalls** (w5-v-nonamenable; artifact
+  `research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md`).
+  - **Sofic configurations are inert** (`sofic-configurations-cannot-force-v-rank-triviality`).
+    - **Construction:** for every sofic `K <= V`, ultraproduct permutation-module ranks give
+      `rk(1 - [g]) = 1 - 1/ord(g)` on `F_3[K]`.
+    - **What they satisfy:** every premise of an argument confined to `K`: the axioms, identities in `F_3[K]`, and
+      single-element `V`-conjugacy with any conjugator.
+    - **Consequence:** no such argument can even lower `rk(1 - [g])` below the sofic value.
+    - **Covered:** lamp groups `<x, L> ≅ L wr Z`, free products of finite groups, and all of `F` if `F` is amenable.
+      No Elek–Szabó import is needed.
+  - **Characteristic-uniform arguments are inert** (`char-uniform-identities-cannot-force-v-rank-triviality`).
+    - **Why:** the von Neumann rank on `C[V]` satisfies every argument whose identities already hold over a subring
+      of `C`.
+    - **Consequence:** a proof over `F_3` must use a `3`-sensitive identity, such as `(1 - [s])^3 = 0` for `s` of
+      order `3`.
+    - **The established abstract tools** (torsion law, fixed rank, displacement, wandering freeness) are satisfied
+      by `rk_vN`, so none of them can be the decisive step.
+  - **Where it dies.** A proof must combine two things:
+    - a configuration not known to be sofic, or tuple-level conjugacy through conjugators outside it;
+    - `3`-torsion.
+  - **First live configuration:** `<x_0, x_1, s>` with `s` a clopen `3`-cycle, or the order-`3` Lochak–Schneps
+    generator of `T` (not re-read).
+  - **Open `p`-sensitive structure question:** `v-rank-order-char-cycles-are-trivial-plus-regular`.

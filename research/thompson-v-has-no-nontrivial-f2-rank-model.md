@@ -85,3 +85,27 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
     use satisfy all of it: lamps along wandering orbits, `BS(1,2)`-type partial conjugacies, locally finite torsion.
     With Elek–Szabó uniqueness (imported, artifact Section 3.2) they also satisfy `V`-conjugacy invariance on those
     subgroups. A proof needs relations in a non-amenable subgroup, and any proof shows `V` is not sofic.
+
+- **Two firewalls** (w5-v-nonamenable; artifact
+  `research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md`).
+  - **Non-amenable is not enough; non-sofic is needed** (`sofic-configurations-cannot-force-v-rank-triviality`).
+    - **Construction:** for every sofic `K <= V`, the ultraproduct permutation-module ranks have
+      `rk(1 - [g]) = 1 - 1/ord(g)`.
+    - **What they satisfy:** every premise of an argument confined to `K`, including single-element conjugacy
+      through any conjugator.
+    - **Consequence:** free products of finite groups, lamp groups `L wr Z`, and all of `F` if `F` is amenable are
+      inert. No Elek–Szabó import is needed.
+  - **Characteristic-uniform arguments are inert** (`char-uniform-identities-cannot-force-v-rank-triviality`).
+    - **Why:** over `C`, the von Neumann rank satisfies every argument whose identities already hold over a subring
+      of `C`.
+    - **Consequence:** a proof over `F_2` must use a `2`-sensitive identity, such as `(1 + [t])^2 = 0` for an
+      involution `t`. `(1 - u_t)^2 = 2(1 - u_t)` is not zero over `C`.
+    - **The established abstract tools** can't be the decisive step.
+  - **Where it dies.** A proof must combine two things:
+    - a configuration not known to be sofic, or tuple-level conjugacy through outside conjugators;
+    - `2`-torsion.
+  - **First live configuration:** `<x_0, x_1, t>` with `t` a clopen transposition, or the order-`4` Lochak–Schneps
+    generator of `T` (not re-read).
+  - **Open:** `v-rank-order-char-cycles-are-trivial-plus-regular`, the characteristic-`2` law
+    `rk((1 + [t])^j) = (1 - phi_V)(2 - j)/2`. In characteristic `2` the relevant identity is `rk(x_1 + x_2) = rk(x_1)`
+    for disjoint transpositions.
