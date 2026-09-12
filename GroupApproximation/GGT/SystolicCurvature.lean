@@ -94,6 +94,7 @@ theorem orbit_pow_injective (d : D) {i j : ℕ}
       exact hij
     exact (Equiv.Perm.nodup_toList p d).getElem_inj_iff.mp hget
 
+omit [Fintype D] in
 theorem pow_succ_apply' (d : D) (k : ℕ) : (p ^ (k + 1)) d = p ((p ^ k) d) := by
   rw [pow_succ', Equiv.Perm.mul_apply]
 
@@ -136,7 +137,7 @@ theorem blen_eq : D.blen = CombMap.orbitDegree D.map.facePerm (Quotient.mk'' D.b
 
 theorem bdart_add_blen (k : ℕ) : D.bdart (k + D.blen) = D.bdart k := by
   unfold bdart
-  rw [add_comm, pow_add, Equiv.Perm.mul_apply, D.blen_eq, orbit_pow_period]
+  rw [pow_add, Equiv.Perm.mul_apply, D.blen_eq, orbit_pow_period]
 
 theorem bdart_mod (k : ℕ) : D.bdart k = D.bdart (k % D.blen) := by
   conv_lhs => rw [← Nat.mod_add_div k D.blen]
@@ -171,11 +172,14 @@ theorem adj_bvert (k : ℕ) : X.G.Adj (D.vtx (D.bvert k)) (D.vtx (D.bvert (k + 1
   exact h
 
 theorem length_eq : γ.length = D.blen + 1 := by
-  rw [← D.boundary, List.length_ofFn]
-  rfl
+  have h := congrArg List.length D.boundary
+  rw [List.length_ofFn] at h
+  exact h.symm
 
 theorem getElem?_eq {k : ℕ} (hk : k ≤ D.blen) : γ[k]? = some (D.vtx (D.bvert k)) := by
-  rw [← D.boundary, List.getElem?_ofFn]
+  have h := congrArg (fun l : List V => l[k]?) D.boundary
+  simp only at h
+  rw [← h, List.getElem?_ofFn]
   have hk' : k < D.map.faceDegree D.outer + 1 := Nat.lt_succ_of_le hk
   simp only [hk', dite_true]
   rfl
@@ -326,7 +330,7 @@ theorem SimpleBoundary.adj_of_bdeg_two (hS : D.SimpleBoundary) (k : ℕ)
     rw [h2] at this
     exact this
   rw [hlast] at ht
-  exact (X.G.symm (X.tri_adj ht).2.1)
+  exact (X.tri_adj ht).2.1.symm
 
 /-- The triangle of `X` on the boundary edge `k → k+1`. -/
 theorem SimpleBoundary.tri_edge (hS : D.SimpleBoundary) (k : ℕ) :
@@ -345,12 +349,9 @@ def tvert (k : ℕ) : D.map.Vertex :=
 theorem tvert_succ_eq (k : ℕ) :
     D.tvert (k + 1) = D.map.vertexOf (D.map.alpha (D.brot k 1)) := by
   unfold tvert
-  rw [perm_pow_two_apply, vertexOf_facePerm]
-  congr 2
-  rw [facePerm_alpha, ← D.brot_succ]
-  change D.map.sigma ((D.map.sigma ^ 0) (D.bdart (k + 1))) = D.brot k 1
-  rw [pow_zero, Equiv.Perm.one_apply]
-  rfl
+  rw [perm_pow_two_apply, vertexOf_facePerm, facePerm_alpha]
+  show _ = D.map.vertexOf (D.map.alpha ((D.map.sigma ^ 1) (D.bdart (k + 1))))
+  rw [pow_one]
 
 variable {D}
 
@@ -363,7 +364,7 @@ theorem SimpleBoundary.tvert_eq (hS : D.SimpleBoundary) (k : ℕ) (h2 : 2 ≤ D.
     rw [facePerm_alpha, ← D.brot_succ, show D.bdeg (k + 1) - 2 + 1 = D.bdeg (k + 1) - 1 by omega,
       D.brot_last]
   unfold tvert
-  rw [← hstep, ← perm_pow_two_apply, ← Equiv.Perm.mul_apply, ← pow_succ, h3]
+  rw [← hstep, ← Equiv.Perm.mul_apply, ← pow_succ, h3]
 
 /-! ## D4: the parallel walk -/
 
@@ -387,7 +388,7 @@ theorem SimpleBoundary.exists_tvert_walk (hS : D.SimpleBoundary) (k : ℕ)
   rw [hS.tvert_eq k (by omega), D.tvert_succ_eq]
   exact ⟨p.reverse, by rw [SimpleGraph.Walk.length_reverse, hp]; omega⟩
 
-theorem SimpleBoundary.exists_bdry_walk (hS : D.SimpleBoundary) {a c : ℕ} (hac : a ≤ c) :
+theorem exists_bdry_walk {a c : ℕ} (hac : a ≤ c) :
     ∃ p : X.G.Walk (D.vtx (D.bvert a)) (D.vtx (D.bvert c)), p.length = c - a := by
   induction c, hac using Nat.le_induction with
   | base => exact ⟨SimpleGraph.Walk.nil, by simp⟩
@@ -404,7 +405,9 @@ theorem SimpleBoundary.exists_parallel_walk (hS : D.SimpleBoundary) {a c : ℕ} 
   induction c, hac using Nat.le_induction with
   | base =>
     have ht := hS.tri_edge a
-    exact ⟨SimpleGraph.Walk.cons (X.tri_adj ht).2.1 SimpleGraph.Walk.nil, by simp⟩
+    refine ⟨SimpleGraph.Walk.cons (X.tri_adj ht).2.1 SimpleGraph.Walk.nil, ?_⟩
+    rw [SimpleGraph.Walk.length_cons, SimpleGraph.Walk.length_nil, Finset.Ioc_self,
+      Finset.sum_empty]
   | succ c hac ih =>
     obtain ⟨p, hp⟩ := ih fun i hai hic => hdeg i hai (by omega)
     obtain ⟨q, hq⟩ := hS.exists_tvert_walk c (hdeg (c + 1) (by omega) le_rfl)
@@ -422,7 +425,7 @@ theorem SimpleBoundary.exists_arc_walk (hS : D.SimpleBoundary) {a b : ℕ} (hab 
   obtain ⟨p, hp⟩ := hS.exists_parallel_walk (a := a) (c := b') (by omega)
     fun i hai hib => hdeg i hai (by omega)
   have ht := hS.tri_edge b'
-  refine ⟨p.concat (X.G.symm (X.tri_adj ht).2.2), ?_⟩
+  refine ⟨p.concat (X.tri_adj ht).2.2.symm, ?_⟩
   rw [SimpleGraph.Walk.length_concat, hp]
   have hIoo : Finset.Ioo a (b' + 1) = Finset.Ioc a b' := by
     ext i
@@ -439,8 +442,8 @@ theorem SimpleBoundary.three_le_bdeg_of_geodesic (hS : D.SimpleBoundary) {a b : 
   have h2 := hS.two_le_bdeg k
   by_contra hlt
   have hadj := hS.adj_of_bdeg_two k (by omega)
-  obtain ⟨p, hp⟩ := hS.exists_bdry_walk (a := a) (c := k) (by omega)
-  obtain ⟨q, hq⟩ := hS.exists_bdry_walk (a := k + 2) (c := b) (by omega)
+  obtain ⟨p, hp⟩ := exists_bdry_walk (D := D) (a := a) (c := k) (by omega)
+  obtain ⟨q, hq⟩ := exists_bdry_walk (D := D) (a := k + 2) (c := b) (by omega)
   have hle := SimpleGraph.dist_le ((p.concat hadj).append q)
   rw [SimpleGraph.Walk.length_append, SimpleGraph.Walk.length_concat, hp, hq, hgeo] at hle
   omega
@@ -470,7 +473,7 @@ theorem SimpleBoundary.side_le_one (hS : D.SimpleBoundary) {a b : ℕ} (hab : a 
 
 /-! ## D2: Gauss--Bonnet -/
 
-theorem SimpleBoundary.not_interior_iff (hS : D.SimpleBoundary) (w : D.map.Vertex) :
+theorem not_interior_iff (w : D.map.Vertex) :
     ¬ D.Interior w ↔ ∃ k, k < D.blen ∧ D.bvert k = w := by
   constructor
   · intro hw
@@ -482,6 +485,7 @@ theorem SimpleBoundary.not_interior_iff (hS : D.SimpleBoundary) (w : D.map.Verte
   · rintro ⟨k, -, rfl⟩ hint
     exact hint (D.bdart k) rfl (D.faceOf_bdart k)
 
+open Classical in
 theorem SimpleBoundary.card_boundary (hS : D.SimpleBoundary) :
     (Finset.univ.filter fun w : D.map.Vertex => ¬ D.Interior w).card = D.blen := by
   classical
@@ -489,12 +493,12 @@ theorem SimpleBoundary.card_boundary (hS : D.SimpleBoundary) :
   refine (Finset.card_bij (fun k _ => D.bvert k) ?_ ?_ ?_).symm
   · intro k hk
     simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-    exact (hS.not_interior_iff _).mpr ⟨k, Finset.mem_range.mp hk, rfl⟩
+    exact (not_interior_iff (D := D) _).mpr ⟨k, Finset.mem_range.mp hk, rfl⟩
   · intro i hi j hj hij
     exact hS.inj i j (Finset.mem_range.mp hi) (Finset.mem_range.mp hj) (congrArg D.vtx hij)
   · intro w hw
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hw
-    obtain ⟨k, hk, rfl⟩ := (hS.not_interior_iff w).mp hw
+    obtain ⟨k, hk, rfl⟩ := (not_interior_iff (D := D) w).mp hw
     exact ⟨k, Finset.mem_range.mpr hk, rfl⟩
 
 open Classical in
@@ -547,16 +551,16 @@ theorem SimpleBoundary.boundary_curvature_ge_six (hS : D.SimpleBoundary)
     refine (Finset.sum_bij (fun k _ => D.bvert k) ?_ ?_ ?_ ?_).symm
     · intro k hk
       simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-      exact (hS.not_interior_iff _).mpr ⟨k, Finset.mem_range.mp hk, rfl⟩
+      exact (not_interior_iff (D := D) _).mpr ⟨k, Finset.mem_range.mp hk, rfl⟩
     · intro i hi j hj hij
       exact hS.inj i j (Finset.mem_range.mp hi) (Finset.mem_range.mp hj) (congrArg D.vtx hij)
     · intro w hw
       simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hw
-      obtain ⟨k, hk, rfl⟩ := (hS.not_interior_iff w).mp hw
+      obtain ⟨k, hk, rfl⟩ := (not_interior_iff (D := D) w).mp hw
       exact ⟨k, Finset.mem_range.mpr hk, rfl⟩
     · intro k hk
       have hni : ¬ D.Interior (D.bvert k) :=
-        (hS.not_interior_iff _).mpr ⟨k, Finset.mem_range.mp hk, rfl⟩
+        (not_interior_iff (D := D) _).mpr ⟨k, Finset.mem_range.mp hk, rfl⟩
       rw [if_neg hni]
       rfl
   rw [hbd] at hgb
