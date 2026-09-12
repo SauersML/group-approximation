@@ -1,0 +1,49 @@
+shape +++++- 111g: 3616 pairings, 87 distinct nontrivial face words in U
+shape +++++- 11g1: 3616 pairings, 80 distinct nontrivial face words in U
+shape +++++- 1g11: 3616 pairings, 78 distinct nontrivial face words in U
+shape +++++- g111: 3616 pairings, 87 distinct nontrivial face words in U
+shape +++++- 11gg: 3616 pairings, 110 distinct nontrivial face words in U
+shape +++++- 1g1g: 3616 pairings, 111 distinct nontrivial face words in U
+shape +++++- 1gg1: 3616 pairings, 84 distinct nontrivial face words in U
+shape ++++-- 11g: 5670 pairings, 121 distinct nontrivial face words in U
+shape ++++-- g11: 5670 pairings, 106 distinct nontrivial face words in U
+shape ++++-- 1gg: 5670 pairings, 137 distinct nontrivial face words in U
+shape ++++-- gg1: 5670 pairings, 156 distinct nontrivial face words in U
+shape ++++-- g1g: 5670 pairings, 311 distinct nontrivial face words in U
+shape ++++-- ggg: 5670 pairings, 137 distinct nontrivial face words in U
+progress 10/216 triples, 2s, hits so far 0
+progress 20/216 triples, 2s, hits so far 0
+progress 30/216 triples, 3s, hits so far 0
+progress 40/216 triples, 3s, hits so far 0
+progress 50/216 triples, 4s, hits so far 0
+progress 60/216 triples, 4s, hits so far 0
+progress 70/216 triples, 5s, hits so far 0
+progress 80/216 triples, 5s, hits so far 0
+progress 90/216 triples, 6s, hits so far 0
+progress 100/216 triples, 6s, hits so far 0
+progress 110/216 triples, 7s, hits so far 0
+progress 120/216 triples, 7s, hits so far 0
+progress 130/216 triples, 8s, hits so far 0
+progress 140/216 triples, 8s, hits so far 0
+progress 150/216 triples, 9s, hits so far 0
+progress 160/216 triples, 9s, hits so far 0
+progress 170/216 triples, 10s, hits so far 0
+progress 180/216 triples, 10s, hits so far 0
+progress 190/216 triples, 11s, hits so far 0
+progress 200/216 triples, 11s, hits so far 0
+progress 210/216 triples, 12s, hits so far 0
+triples covered 216 of 216 in 12s
+  +++++- 111g: triples 216, min nontrivial faces 2, candidate hits 0
+  +++++- 11g1: triples 216, min nontrivial faces 4, candidate hits 0
+  +++++- 11gg: triples 216, min nontrivial faces 2, candidate hits 0
+  +++++- 1g11: triples 216, min nontrivial faces 4, candidate hits 0
+  +++++- 1g1g: triples 216, min nontrivial faces 4, candidate hits 0
+  +++++- 1gg1: triples 216, min nontrivial faces 4, candidate hits 0
+  +++++- g111: triples 216, min nontrivial faces 2, candidate hits 0
+  ++++-- 11g: triples 216, min nontrivial faces 4, candidate hits 0
+  ++++-- 1gg: triples 216, min nontrivial faces 4, candidate hits 0
+  ++++-- g11: triples 216, min nontrivial faces 4, candidate hits 0
+  ++++-- g1g: triples 216, min nontrivial faces 4, candidate hits 0
+  ++++-- gg1: triples 216, min nontrivial faces 4, candidate hits 0
+  ++++-- ggg: triples 216, min nontrivial faces 4, candidate hits 0
+KLCR_LSTAR_DONE

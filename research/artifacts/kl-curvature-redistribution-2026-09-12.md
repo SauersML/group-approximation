@@ -168,6 +168,23 @@ Thompson `F` generators and `rot3` the order-three Thompson rotation. That is
 
 So over these coefficients a violation needs area at least six.
 
-**Larger pass.** Launched with 24 involutions (conjugates of the basic ones by
-the listed units) and 24 labels (products of pairs), capped at 1200 seconds;
-results below when complete.
+**Larger pass** (`lstar_scan.py 1200 big`, acn112, 793 seconds):
+- 24 involutions: conjugates of `u`, `v`, `w`, `swap(00,01)`, `swap(10,11)`,
+  `swap(0,10)` by `g3`, `rot3`, `u`, `uw`, `v`, `w`, `x0`, `x1`, deduplicated;
+- 24 labels: `g3`, `x0`, `x1`, `uw`, `vw`, `rot3`, and products of pairs;
+- all 13,824 triples for each of the 13 shapes.
+
+Results:
+- **Candidate hits:** none.
+- **Fewest nontrivial faces:** 2 for `(1,1,1,g)`, `(1,1,g,g)` and `(g,1,1,1)`; 4
+  for the other ten shapes.
+- **Minimizer:** in all three shapes the first minimizer is `g = g3`, `x = u`,
+  `y = u^uw`, at area four. Two faces die in `R^x` but not in `U`, both
+  conjugates of the relation `g = y x`. The two surviving faces are `g^(+-1)`.
+  So the nearest templates come from the relation `g = y x`, which (I3)
+  already singles out as the boundary case of the curvature count.
+
+**Reading.** Over the 24 x 24 x 24 coefficient lists, no Kervaire--Laudenbach
+certificate over `R^x` has at most four relator discs. A search for a violation
+has to go to area at least six, where brute-force pairing is infeasible (18
+arcs); planar-map generation would be needed.
