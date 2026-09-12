@@ -1311,3 +1311,49 @@ their routes, and `el3-rank-model-extensions-2026-09-12.md` Section 4.
   infinite simple `R^x` would be injective and residually finite.
 - **Section 4.3.** The reduction of diffuse diagonal models to the general claim by compactness and Markov is prose,
   not a route. It is sound in outline, and the claim is correctly worded as "reduces", with no route landed.
+
+## 39. Dyadic involution profiles kill bounded-degree content (gk-rk-composition): PASS
+
+Items checked: `dyadic-involution-profiles-kill-bounded-degree-content`, route `dyadic-involution-profile-content-proof`,
+and `level-group-polynomial-content-2026-09-12.md` Sections 1 to 6.
+
+- **Additivity.** The pieces `e_i` commute with `sigma(H)`, so `sigma(h) - 1 = sum_i e_i(sigma(h) - 1)e_i`, and a
+  Sylvester rank function is additive on orthogonal block-diagonal sums. On `M_d(k) (x) C_e`, `(A - 1) (x) 1` is
+  equivalent to `rank(A - 1)` copies of `E_11 (x) 1`, and `rk(E_11 (x) 1) = rk(e)/d`.
+- **Lemma 1.** Over `k[Z/2]` in characteristic two the indecomposables are `J_1` and `J_2`, and `rank(g - 1)` counts
+  the `J_2` blocks. Projective modules restrict to free ones on any subgroup, so their normalized displacement is
+  `1/2`.
+- **Lemma 2.**
+  - As a `<g_r>`-module, `V` is `r J_2 (+) (N - 2r) J_1`, and `V*` is dual, with the contragredient action.
+  - The torus weight decomposition of a strict polynomial bifunctor gives `<g_r>`-stable summands `F_(alpha,beta)`,
+    each depending on at most `D` effective summands.
+  - By naturality the `J_2`-count of `F_(alpha,beta)` depends only on the degree shape and the types of its
+    effective summands. The number of multidegrees of a given shape is a constant times
+    `C(r, j_1) C(r, j_2) C(N - 2r, t_1) C(N - 2r, t_2)`, a polynomial of degree at most `D` in `r` on
+    `0 <= r <= N/2`.
+  - A shape with `j_1 = j_2 = 0` has all effective summands trivial, hence no `J_2` blocks. So `P_F(0) = 0`.
+  - *Examples.* A tensor factor containing `J_2` is free, so `V^((x) a) (x) V*^((x) b)` gives
+    `(N^d - (N - 2r)^d)/2`. For `Lambda^i`, the `J_1`-part series is `(1 + t^2)^r (1 + t)^(N - 2r)`, because
+    `Lambda(J_2) = J_1 + J_2 t + J_1 t^2`.
+- **Lemma 3.** `Q(2r) - Q(r) = sum_(j>=1) c_j (2^j - 1) r^j` has degree at most `D` and `D + 1` distinct roots, so
+  `c_j = 0` for `j >= 1`, and `Q(0) = 0` kills `c_0`.
+- **Theorem A.**
+  - `f(r) = w_proj/2 + Q(r)` for `1 <= r <= N/2`.
+  - The dyadic identity at `r = 1, ..., floor(N/4) >= D + 1` gives `Q = 0`.
+  - At `r = 1` the pieces contribute nonnegative amounts summing to zero. Faithfulness gives `P_(F_i)(1) = 0`, so the
+    transvections, which are the rank-one involutions, act trivially. They generate `SL_N(F_2)`.
+- **Leavitt application.**
+  - Proposition 2 of the rigidity artifact (verified in Section 17) holds at `N = 3 . 2^(k+1)` for
+    `r <= 3 . 2^k/2 = N/4`, exactly the range needed.
+  - The compressor matrix check: `u = [[s, 1-st],[0, t]]` has inverse `[[t, 0],[1-st, s]]` on both sides, using `ts = 1`
+    and `(1 - st)^2 = 1 - st`, and `u diag(a, 1) u^-1 = diag(sat + 1 - st, 1)`.
+- **Section 6, a remark, not a claim.**
+  - `J/(1 - ST) ~= F_2[z, z^-1]`, and `EL_3(J) <= EL_3(R)` because `J` is a subring.
+  - Regular permutation models of the finite images of `EL_3(F_2[z^(+-1)])` pull back to exact homomorphisms.
+  - Fixed-point-free permutations have `rank(P - 1) >= 1/2`, and the constants inject.
+  - Correct.
+- **Trust surface.** The identification of simple algebraic modules of bounded polynomial highest weight with
+  values of simple strict polynomial functors (Friedlander–Suslin) only enlarges the list of covered shapes. The
+  theorem assumes polynomial pieces directly.
+- **Scope, as stated.** The theorem needs an orthogonal splitting into pieces commuting with `sigma(H)`. Projective
+  content, unbounded degree and non-split restrictions survive.

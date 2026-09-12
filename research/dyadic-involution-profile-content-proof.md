@@ -6,6 +6,7 @@ title: Count J_2 blocks through the weight decomposition of a strict polynomial 
 target: dyadic-involution-profiles-kill-bounded-degree-content
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/level-group-polynomial-content-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Artifact Sections 1–4.
 4. **Rigidity.** If `Q` has degree at most `D`, `Q(0) = 0`, and `Q(2r) = Q(r)` at `D + 1`
    integers, then `Q = 0`. Each piece's contribution at `r = 1` is a nonnegative normalized rank,
    so every polynomial piece has trivial transvection action, hence trivial `SL_N(F_2)` action.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 39 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
