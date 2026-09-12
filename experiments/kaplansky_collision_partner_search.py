@@ -163,15 +163,27 @@ def solve(cols, live, target):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--fixed", choices=("ela1-left", "five-t0-right"), required=True)
+    parser.add_argument("--fixed", choices=("ela1-left", "five-t0-right", "control-order7"),
+                        required=True)
     parser.add_argument("--depth", type=int, default=1)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
     start = time.time()
     gens, one = setup()
-    words, side, target_eval = (ELA1, "left", S0) if args.fixed == "ela1-left" else (FIVE_T0, "right", T0)
+    if args.fixed == "control-order7":
+        # Positive control: 1 + x + x^2 with x of order 7 is a unit of F2[<x>],
+        # since x^2+x+1 is coprime to x^7-1 over F2.  Its left inverse must be
+        # found once the collision universe covers <x>.
+        x_word = next(w for w in ((0, 2, 4), (0, 2, 4, 6), (0, 1, 2, 3), (1, 3, 5), (0, 2, 3), (1, 2, 4))
+                      if word_key(w * 7, gens, one) == one and word_key(w, gens, one) != one)
+        words, side, target_eval = ((), x_word, x_word * 2), "left", None
+    elif args.fixed == "ela1-left":
+        words, side, target_eval = ELA1, "left", S0
+    else:
+        words, side, target_eval = FIVE_T0, "right", T0
     fixed_keys, fixed_inverses = fixed_support(words, gens, one)
-    assert equal(evaluate_sum([from_key(k) for k in fixed_keys]), target_eval)
+    if target_eval is not None:
+        assert equal(evaluate_sum([from_key(k) for k in fixed_keys]), target_eval)
     roots = [(ki, tuple(reversed(w))) for ki, w in zip(fixed_inverses, words)]
     if side == "left":   # steps a a'^(-1)
         steps = {multiply_keys(a, ai): wa + tuple(reversed(wi))
