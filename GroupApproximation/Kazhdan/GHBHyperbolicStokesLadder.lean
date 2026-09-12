@@ -251,6 +251,33 @@ def quadSum (vert : Q → Q → V) (ℓ : V → Q) (φ ψ : Q → ℤ) (v₀ : V
       edgeTerm φ ψ (ℓ (headVertex vert v₀ (b * x) l)) (ℓ (vert b x)) +
         edgeTerm φ ψ (ℓ (vert b x)) b + quadSum vert ℓ φ ψ v₀ (b * x) l
 
+theorem headVertex_nil (vert : Q → Q → V) (v₀ : V) (b : Q) : headVertex vert v₀ b [] = v₀ :=
+  rfl
+
+theorem headVertex_cons (vert : Q → Q → V) (v₀ : V) (b x : Q) (l : List Q) :
+    headVertex vert v₀ b (x :: l) = vert b x :=
+  rfl
+
+theorem ladderVertices_nil (vert : Q → Q → V) (v₀ : V) (b : Q) :
+    ladderVertices vert v₀ b [] = [v₀] :=
+  rfl
+
+theorem ladderVertices_cons (vert : Q → Q → V) (v₀ : V) (b x : Q) (l : List Q) :
+    ladderVertices vert v₀ b (x :: l) = vert b x :: ladderVertices vert v₀ (b * x) l :=
+  rfl
+
+theorem quadSum_nil (vert : Q → Q → V) (ℓ : V → Q) (φ ψ : Q → ℤ) (v₀ : V) (b : Q) :
+    quadSum vert ℓ φ ψ v₀ b [] = 0 :=
+  rfl
+
+theorem quadSum_cons (vert : Q → Q → V) (ℓ : V → Q) (φ ψ : Q → ℤ) (v₀ : V) (b x : Q)
+    (l : List Q) :
+    quadSum vert ℓ φ ψ v₀ b (x :: l) =
+      edgeTerm φ ψ b (b * x) + edgeTerm φ ψ (b * x) (ℓ (headVertex vert v₀ (b * x) l)) +
+        edgeTerm φ ψ (ℓ (headVertex vert v₀ (b * x) l)) (ℓ (vert b x)) +
+          edgeTerm φ ψ (ℓ (vert b x)) b + quadSum vert ℓ φ ψ v₀ (b * x) l :=
+  rfl
+
 theorem ladderVertices_eq_cons (vert : Q → Q → V) (v₀ : V) :
     ∀ (b : Q) (l : List Q), ∃ rest : List V,
       ladderVertices vert v₀ b l = headVertex vert v₀ b l :: rest
@@ -261,7 +288,8 @@ theorem length_ladderVertices (vert : Q → Q → V) (v₀ : V) :
     ∀ (b : Q) (l : List Q), (ladderVertices vert v₀ b l).length = l.length + 1
   | _, [] => rfl
   | b, x :: l => by
-    simp only [ladderVertices, List.length_cons, length_ladderVertices vert v₀ (b * x) l]
+    rw [ladderVertices_cons, List.length_cons, length_ladderVertices vert v₀ (b * x) l,
+      List.length_cons]
 
 theorem getLast?_ladderVertices (vert : Q → Q → V) (v₀ : V) :
     ∀ (b : Q) (l : List Q), (ladderVertices vert v₀ b l).getLast? = some v₀
@@ -269,7 +297,7 @@ theorem getLast?_ladderVertices (vert : Q → Q → V) (v₀ : V) :
   | b, x :: l => by
     obtain ⟨rest, hrest⟩ := ladderVertices_eq_cons vert v₀ (b * x) l
     have ih := getLast?_ladderVertices vert v₀ (b * x) l
-    simp only [ladderVertices]
+    rw [ladderVertices_cons]
     rw [hrest] at ih ⊢
     rw [List.getLast?_cons_cons, ih]
 
@@ -288,16 +316,15 @@ theorem wordSum_sub_chainSum (vert : Q → Q → V) (ℓ : V → Q) (φ ψ : Q �
         quadSum vert ℓ φ ψ v₀ b l + edgeTerm φ ψ b (ℓ (headVertex vert v₀ b l)) -
           edgeTerm φ ψ (b * l.prod) (ℓ v₀)
   | b, [] => by
-    simp only [trueLetters_nil, wordSum_nil, ladderVertices, chainSum_singleton, quadSum,
-      headVertex, List.prod_nil, mul_one]
+    rw [trueLetters_nil, wordSum_nil, ladderVertices_nil, chainSum_singleton, quadSum_nil,
+      headVertex_nil, List.prod_nil, mul_one]
     ring
   | b, x :: l => by
     have ih := wordSum_sub_chainSum vert ℓ φ ψ v₀ (b * x) l
     have h1 := edgeTerm_swap φ ψ (ℓ (headVertex vert v₀ (b * x) l)) (ℓ (vert b x))
     have h2 := edgeTerm_swap φ ψ b (ℓ (vert b x))
-    simp only [trueLetters_cons, wordSum_cons, letterVal_true, id_eq, ladderVertices,
-      quadSum, headVertex, List.prod_cons]
-    rw [chainSum_cons_ladderVertices, ← mul_assoc]
+    rw [trueLetters_cons, wordSum_cons, letterVal_true, id_eq, ladderVertices_cons,
+      quadSum_cons, headVertex_cons, List.prod_cons, chainSum_cons_ladderVertices, ← mul_assoc]
     linarith [ih, h1, h2]
 
 variable {S : Set Q}
@@ -312,7 +339,8 @@ theorem abs_quadSum_le (hS : IsSymmetricGeneratingSet S) (vert : Q → Q → V) 
     (hvert : ∀ g s, s ∈ S → mem g (vert g s) ∧ mem (g * s) (vert g s)) :
     ∀ (b : Q) (l : List Q), (∀ x ∈ l, x ∈ S) → mem (b * l.prod) v₀ →
       |quadSum vert ℓ φ ψ v₀ b l| ≤ l.length * (16 * ((M₀ + 1 : ℕ) : ℤ) ^ 2)
-  | b, [], _, _ => by simp [quadSum]
+  | b, [], _, _ => by
+    simp only [quadSum_nil, abs_zero, List.length_nil, Nat.cast_zero, zero_mul, le_refl]
   | b, x :: l, hl, hend => by
     have hx : x ∈ S := hl x (List.mem_cons.mpr (Or.inl rfl))
     have hl' : ∀ y ∈ l, y ∈ S := fun y hy => hl y (List.mem_cons.mpr (Or.inr hy))
@@ -342,7 +370,7 @@ theorem abs_quadSum_le (hS : IsSymmetricGeneratingSet S) (vert : Q → Q → V) 
         edgeTerm φ ψ (ℓ (headVertex vert v₀ (b * x) l)) (ℓ (vert b x)) +
           edgeTerm φ ψ (ℓ (vert b x)) b)
       (quadSum vert ℓ φ ψ v₀ (b * x) l)
-    simp only [quadSum, List.length_cons]
+    rw [quadSum_cons, List.length_cons]
     push_cast at hq ih ⊢
     linarith [hsum, hq, ih]
 
@@ -367,7 +395,7 @@ theorem isChain_ladderVertices (vert : Q → Q → V) (v₀ : V) (mem : Q → V 
         exact hend'
       | cons y l => exact (hvert (b * x) y (hl' y (List.mem_cons.mpr (Or.inl rfl)))).1
     obtain ⟨rest, hrest⟩ := ladderVertices_eq_cons vert v₀ (b * x) l
-    simp only [ladderVertices]
+    rw [ladderVertices_cons]
     rw [hrest] at ih ⊢
     rw [List.isChain_cons_cons]
     refine ⟨?_, ih⟩
@@ -390,15 +418,14 @@ theorem linearStokes_of_chainFillingBound [DecidableEq V] (hS : IsSymmetricGener
   | cons x l' =>
     have hx : x ∈ S := hl x (List.mem_cons.mpr (Or.inl rfl))
     have hid := wordSum_sub_chainSum vert ℓ φ ψ (vert b x) b (x :: l')
-    rw [hprod, mul_one] at hid
-    simp only [headVertex, add_sub_cancel_right, ladderVertices] at hid
+    rw [hprod, mul_one, headVertex_cons, add_sub_cancel_right, ladderVertices_cons] at hid
     have hend : mem (b * (x :: l').prod) (vert b x) := by
       rw [hprod, mul_one]
       exact (hvert b x hx).1
     have hquad := abs_quadSum_le hS vert ℓ hφ hψ (vert b x) mem hℓ hvert b (x :: l') hl hend
     have hch := isChain_ladderVertices vert (vert b x) mem hAdj hvert b (x :: l') hl hend
     have hlast := getLast?_ladderVertices vert (vert b x) b (x :: l')
-    simp only [ladderVertices] at hch hlast
+    rw [ladderVertices_cons] at hch hlast
     have hanti : ∀ u w : V, edgeTerm φ ψ (ℓ w) (ℓ u) = -edgeTerm φ ψ (ℓ u) (ℓ w) :=
       fun u w => edgeTerm_swap φ ψ (ℓ u) (ℓ w)
     have htri : ∀ u w z, Tri u w z →
