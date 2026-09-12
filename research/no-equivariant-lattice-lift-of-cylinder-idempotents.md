@@ -4,7 +4,7 @@ id: no-equivariant-lattice-lift-of-cylinder-idempotents
 kind: claim
 title: No Thompson-equivariant Boolean lattice lift of the cylinder idempotents exists
 distinct_from:
-  odd-measure-space-has-no-honest-thompson-compression: that forbids clopen compressions of the odd-measure space moved by V; this forbids any uniform V-equivariant Boolean section of the Dirac evaluation, the scheme a nested mixed-depth lift would need.
+  odd-measure-space-has-no-honest-thompson-compression: that forbids clopen compressions of the odd-measure space moved by V; this forbids every V-equivariant Boolean homomorphism from the clopens of X to the clopens of M_-, the uniform scheme a nested mixed-depth lift would need.
   natural-leavitt-pair-lifts-have-partial-symmetry-defect: that computes the defect of one natural lift; this rules out removing such defects by a functorial lattice lift at all depths.
 artifacts:
   - research/artifacts/ternary-cohn-mixed-depth-lifts-2026-09-12.md
