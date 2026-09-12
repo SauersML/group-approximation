@@ -4,6 +4,8 @@ id: leavitt-unit-group-nonsurjunctive
 kind: claim
 title: The binary Leavitt unit group is not surjunctive
 root: true
+refuted_by:
+  - leavitt-unit-group-surjunctive
 distinct_from:
   openai-leavitt-unit-nonsofic: that is the nonsoficity of the same group; nonsurjunctivity implies nonsoficity, but nonsoficity supplies no converse implication
   leavitt-unit-group-algebra-not-directly-finite: that is the Kaplansky question for the same group's modular group algebra, a statement about elements of a ring; this is a statement about cellular automata on a full shift, and while the first implies the second the converse is not available
