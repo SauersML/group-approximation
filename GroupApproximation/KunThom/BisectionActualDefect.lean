@@ -1,4 +1,5 @@
 import GroupApproximation.KunThom.FixedPointNormalizationBisection
+import GroupApproximation.KunThom.FixedPointNormalizationScaleSums
 import GroupApproximation.KunThom.FixedPointNormalizationSummation
 
 /-!
@@ -88,20 +89,6 @@ theorem mem_uncovered {y : Y} :
     y ∈ E.uncovered ↔ ∀ (C : I) (x : E.model C), E.embed C x ≠ y := by
   simp [uncovered]
 
-/-- Disjointly embedded blocks carry at most `|Y|` points in total. -/
-theorem sum_card_model_le [Fintype I] :
-    ∑ C, Fintype.card (E.model C) ≤ Fintype.card Y := by
-  classical
-  have hinjSigma : Function.Injective (fun p : Σ C, E.model C ↦ E.embed p.1 p.2) := by
-    rintro ⟨C, x⟩ ⟨C', z⟩ h
-    have hCC : C = C' := E.embed_disjoint C C' x z h
-    subst hCC
-    have hxz : x = z := E.embed_injective C h
-    subst hxz
-    rfl
-  have hcard := Fintype.card_le_of_injective _ hinjSigma
-  simpa only [Fintype.card_sigma] using hcard
-
 end BlockEmbedding
 
 namespace BlockArrows
@@ -183,17 +170,9 @@ theorem card_commutationDefect_patch_le_of_defect_le [Fintype I] {L : Type*}
           3 * ∑ C, (((β.arrow C).equivarianceDefect (A.blockAct C)
             (A.blockAct (β.objEquiv C))).card : ℝ) := by
     exact_mod_cast β.card_commutationDefect_patch_le_actual A s
-  have hsize : ((∑ C, Fintype.card (E.model C) : ℕ) : ℝ) ≤ Fintype.card Y := by
-    exact_mod_cast E.sum_card_model_le
   have hsum : ∑ C, (((β.arrow C).equivarianceDefect (A.blockAct C)
       (A.blockAct (β.objEquiv C))).card : ℝ) ≤ η * Fintype.card Y :=
-    calc ∑ C, (((β.arrow C).equivarianceDefect (A.blockAct C)
-          (A.blockAct (β.objEquiv C))).card : ℝ)
-        ≤ ∑ C, η * (Fintype.card (E.model C) : ℝ) :=
-          Finset.sum_le_sum fun C _ ↦ hdefect C
-      _ = η * ((∑ C, Fintype.card (E.model C) : ℕ) : ℝ) := by
-          rw [Nat.cast_sum, Finset.mul_sum]
-      _ ≤ η * Fintype.card Y := mul_le_mul_of_nonneg_left hsize hη
+    (Finset.sum_le_sum fun C _ ↦ hdefect C).trans (E.sum_mul_card_model_le hη)
   linarith
 
 /-- **Patched commutation for cluster candidates.**  If the arrow of every
