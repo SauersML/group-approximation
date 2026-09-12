@@ -215,3 +215,50 @@ notions coincide, so a flexible variant is not a different target.
   almost-representation to be asymptotically trivial, which is strict
   stability.
 - Both are equivalent to nonhyperlinearity of `L^x`.
+
+## Attempts
+
+Every witness is a nontrivial homomorphism `L^x -> U(prod_omega M_n)`. Each
+fence below is an established claim and names the ansatz it kills.
+
+- **Hyperfinite or amenable limits.** Dead by `steinberg-hyperfinite-hs-stable`:
+  no witness with a hyperfinite, AF, amenable-factor or
+  character-approximation limit exists.
+- **Ring-first microstates.** Dead by `leavitt-multiplicative-trace-floor`.
+  This covers square-matrix Fock, Toeplitz, leaf truncation, polar correction
+  and direct sums, which keep a dimension-free trace floor in normalized HS.
+- **Atlas monomial deformations.**
+  - Stabilizer-commutant deformations of the tensor flip: dead by
+    `atlas-stabilizer-commutant-no-go`, which invalidates
+    `atlas-stabilizer-coset-witness`.
+  - Equal-block biunitaries: dead by
+    `atlas-equal-block-flattening-is-commutant-gauge`, which invalidates
+    `atlas-equal-block-biunitary-witness`.
+  - Noninner coefficient twists: dead by
+    `atlas-full-coefficient-automorphism-twists-are-gauge`.
+- **Error-basis normalizers (Clifford architecture).**
+  `leavitt-24k-models-avoid-blockwise-error-basis-normalizers` shows that
+  approximate models stay a fixed normalized-HS distance from every blockwise
+  error-basis-normalizing tuple.
+- **Near-twirl heat maps.** On this branch, native heat maps would be
+  counterexamples to channel rounding (`channel-rounding-fails-on-the-unstable-branch`).
+  `near-weyl-covariant-channels-round` then forces them to stay far from their
+  twirl over every projective group basis.
+- **Phase tricks.** `leavitt-unit-hyperlinear-iff-projective-hs-model` makes
+  balanced relators and commuting pairs exact in the limit. So Pauli-type
+  `C_2^3` implementations, spin `A_8` charts, and multiplier-twisted finite
+  subgroups cannot survive.
+- **Small commutants.**
+  - `leavitt-kazhdan-relative-commutant-has-no-type-one-part`: the Kazhdan
+    commutant is type `II_1`.
+  - `leavitt-kazhdan-commutant-is-nonseparable`: it is non-separable, so
+    candidates such as `A_0 = sigma(J)''` are excluded.
+- **Naive transfers from the Leavitt algebra.** Quotient, scalar and metric
+  transfers stop before hyperlinearity (`three-naive-leavitt-transfers-stop-before-hyperlinearity`).
+- **What survives.** A non-separable, non-internal type `II_1` commutant
+  `A_0` that grows under the compressor, `A_0 < Ad sigma(u) A_0 ~= A_0`,
+  without a slowly varying central height, in the shape of `R < R (x) M_2`.
+  This is a negative instance of Alekseev--Thom Open Problem 6.2(a) for the
+  native corner.
+- **Lower bound on difficulty.** Success proves that Thompson's `V` is
+  hyperlinear (`thompson-v-hyperlinear-from-leavitt-unit-hyperlinear`).
