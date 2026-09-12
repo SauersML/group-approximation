@@ -9,6 +9,7 @@ distinct_from:
   two-cell-window-differences-die-in-host-abelianization: that is the abelian consequence for two-cell windows, vacuous on commutator windows; this is the exact nonabelian condition, which is meaningful on commutator windows.
 artifacts:
   - research/artifacts/hinge-closure-window-folding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `garden-of-eden-hinge-closure-folding-proof`.

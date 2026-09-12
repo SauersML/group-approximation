@@ -23,6 +23,7 @@ not by rereading the author's argument. Nothing was run.
 | `4aa38fd07` (gk-n-ae-decoder) | `bernoulli-codes-descend-to-window-subgroup`, `strict-kazhdan-compression-gives-no-bernoulli-deficit` | PASS (Section 15) |
 | `16cc6319c` (gk-free-wild) | `mixed-bigon-difference-graphs-present-vh-square-complexes`, `cubulated-hyperbolic-table-cores-carry-no-strict-pair`, Lemma D | PASS (Section 16) |
 | `ad664ec25`, `9baaf4657` (gk-n-defect) | `table-hosts-have-a-cell-count-betti-lower-bound`, `two-cell-window-differences-die-in-host-abelianization`, Corollary 3.2 free factor | PASS (Section 17) |
+| `b7fef0670` (gk-n-defect) | `garden-of-eden-windows-fold-modulo-every-hinge-closure`, `transposed-hinges-are-conjugated-commutators` | PASS (Section 20) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -686,3 +687,43 @@ three. `e_h = 1 + h + h^2` is idempotent over `F_2`, since `3 = 1`.
 
 `binary-left-inverse-pairs-are-formalizable` and `stable-finiteness-forces-binary-surjunctivity`
 stay OPEN, and nothing here establishes them.
+
+## 20. Hinge closures and transposed hinges (`b7fef0670`, gk-n-defect): PASS
+
+**Inputs.**
+- `T_r(H/N)` dominates `P` iff every hinge word of `P` lies in `N`, that is, iff
+  `N ⊇ N_P(H)`.
+- (Q) `tau_H(z o q)(g) = mu((z(q(g) q(m)))_m)`.
+
+**Theorem 1.1.**
+- Over `Q = H/N_P(H)` the forward table is coarser, hence sufficient, and the reverse table
+  dominates `P`. So `tau_Q` is surjective.
+- If `q` separated every `p`-distinguished pair, then `z(q(w)) = p(w)` would be well defined, and
+  lifting a preimage along (Q) would place `p` in the image over `H`.
+- `q(w) = q(w')` iff `w^-1 w'` lies in `N`.
+
+**Remark 1.2.** A homomorphism into a surjunctive `K` coarsens the forward table, so the
+realization over `K` is bijective, and all hinge words of some minimal `P` die in `K`.
+
+**Corollary 1.3.**
+- `𝓡_D` is nonempty: over the trivial group `tau` is a bijection of `A`, so the coarsest
+  partition is reverse sufficient.
+- A two-cell window has one pair, so `p(1) != p(d)` and `d` lies in every `N_P(H)`.
+- The containments `⊆ Rad_surj ⊆ Rad_sof` follow from Remark 1.2 and Gromov–Weiss.
+
+**Corollary 1.4.**
+- By Zorn there is a maximal normal `K` avoiding `d`, and every larger normal subgroup contains `d`.
+- The forward table over `H/K` is coarser, and (Q) transports the Garden of Eden from `H/K` to `H`.
+- The normal closure of `dK` is the monolith.
+
+**Lemma 2.1.** With `c = sm = s'm'`, `c^-1 s' = m'^-1` and `c m^-1 = s` give
+`s'^-1 m'^-1 m c m^-1 m' c^-1 s' = s'^-1 m'^-1 m s`.
+
+**Corollary 2.2.**
+- *Rooted identifications.* `c = m'`, so the hinge is `[m'^-1, m] = m'^-1 m m' m^-1`.
+- *Marked class.* `c = 1`, so the hinge is `1`.
+
+**Example 2.3.** `s = u c^-1 u^-1 l^-1` gives `s l = u c^-1 u^-1 = m'`, and the hinge is
+`[u c u^-1, l] = d`.
+
+Section 3 of that artifact is a design target, recorded as prose.

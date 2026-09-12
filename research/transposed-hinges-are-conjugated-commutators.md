@@ -9,6 +9,7 @@ distinct_from:
   two-cell-window-differences-die-in-host-abelianization: that is an abelian membership test on window differences; this shows every transposed hinge lies in the commutator subgroup, so no abelian test ever detects a failed transpose.
 artifacts:
   - research/artifacts/hinge-closure-window-folding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `transposed-hinge-commutator-proof`.
