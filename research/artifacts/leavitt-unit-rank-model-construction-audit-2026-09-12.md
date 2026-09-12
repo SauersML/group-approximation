@@ -327,7 +327,12 @@ supported. In characteristic two, natural (x) dual sends `x_ij(1)` to `1 + N` wi
 N = E (x) 1 + 1 (x) E' + E (x) E',     E = E_ij,   E' = E_ji,     N^2 = 0,
 ```
 
-with no trivial summand to split off. Suppose an argument for block support of
+Natural (x) dual is `gl_3 = F I (+) sl_3`, a trivial summand plus the adjoint, because
+`tr(I) = 3` is invertible in characteristic other than three. The 8-dimensional adjoint
+summand is not natural, so its unit root elements are not block supported by matrix
+units even after the trivial summand is split off. (Wording corrected after
+`gk-vf-linear`, Section 31 of its verification artifact; an earlier version said there
+was no trivial summand.) Suppose an argument for block support of
 `sigma(x_ij(1)) - 1` uses only the characteristic, `N^p = 0`, ranges and kernels in the
 regular ring, and the Steinberg relations. Then it applies verbatim to
 `EL_3(F_2[t])`, where its conclusion is false. Any such argument has to use simplicity
