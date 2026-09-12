@@ -58,3 +58,27 @@ attack on both, and any obstruction to one is an obstruction to the other.  In
 particular, the four live routes into `non-residually-finite-hyperbolic-group`
 are routes into `non-virtually-torsion-free-hyperbolic-group` through
 `non-vtf-hyperbolic-via-residual-cyclic-filling`.
+
+## Prior-art check (lit-groups, 2026-09-11)
+
+Requested by the coordinator. Sources read, all from their arXiv PDFs
+(text extracted on MSI):
+
+- **Kapovich–Wise**, J. Algebra 223 (2000), in the verbatim quotation of
+  Niblo–Williams, arXiv:math/0209185v1, p. 744. The quoted theorem lists only
+  "(i) Every word-hyperbolic group is residually finite. (ii) Every
+  word-hyperbolic group has at least one proper finite index subgroup." That is
+  `kapovich-wise-rf-iff-finite-quotients`; virtual torsion-freeness does not
+  appear in it.
+- **Lück**, arXiv:0806.3771v2, §11.1, lists "(i) Is every hyperbolic group
+  virtually torsionfree?" and "(ii) Is every hyperbolic group residually
+  finite?" as separate questions, with no equivalence stated.
+- **Minasyan**, arXiv:math/0506606v2, and **Sisto–Wilton**, arXiv:2410.00556v2:
+  engulfing and residual-finiteness statements only. Neither states this
+  equivalence.
+
+No prior statement of the residual-finiteness / virtual-torsion-freeness
+equivalence was found in these sources. The primary Kapovich–Wise paper was not
+accessible (publisher paywall, no arXiv copy found), so a statement there beyond
+the quoted theorem is not excluded. The Dehn-filling proof here stands as this
+graph's route.

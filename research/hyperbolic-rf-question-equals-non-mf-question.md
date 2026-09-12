@@ -45,3 +45,15 @@ The complete deductions and exact boundary are recorded in
 The existing proof route is now explicitly conditional on the missing MF
 premise. The existence assertions themselves remain open. No historical
 novelty or Lean verification is claimed.
+
+## Prior-art check (lit-groups, 2026-09-11)
+
+Requested by the coordinator. The Kapovich–Wise theorem, as quoted verbatim by
+Niblo–Williams (arXiv:math/0209185v1, p. 744), covers only residual finiteness
+versus existence of proper finite-index subgroups, i.e. items 1 and 2 above
+(`kapovich-wise-rf-iff-finite-quotients`). Nothing about MF, Kazhdan groups or
+operator-norm approximation appears in it, nor in Lück arXiv:0806.3771v2
+§11.1, Minasyan arXiv:math/0506606v2 or Sisto–Wilton arXiv:2410.00556v2. No
+prior statement of the equivalence with item 4 was found in these sources. The
+primary Kapovich–Wise paper was not accessible, and the search was not
+exhaustive.
