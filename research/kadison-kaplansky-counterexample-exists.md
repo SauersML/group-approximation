@@ -52,3 +52,13 @@ two-sided reduced mass is the part that uses the regular representation.
   are NOT forced for disconnected spectra, even over torsion-free groups: the
   two-atom measure `(delta_2 + delta_(-2))/2` passes every moment and
   zeta-integrality test on main.
+- **Spectral arithmetic is not enough, at any capacity (2026-09-12).** See
+  `kk-half-mass-measures-pass-arithmetic-at-every-capacity`. For every `N >= 3`,
+  `T_N = 2(N + u + u^(-1))g` over `Z x Z/2` has a gapped spectral measure with:
+  - two components of mass `1/2`;
+  - integer moments;
+  - an integral zeta Euler product;
+  - capacity `sqrt(8N)`.
+  So moment, zeta and capacity tests cannot force integer component masses at any
+  capacity. A witness, or a proof of integrality, has to use the group through the
+  algebra (assembly or index theory), not only through the arithmetic of `mu_a`.
