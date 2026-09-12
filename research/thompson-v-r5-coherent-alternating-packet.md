@@ -56,6 +56,7 @@ finite-group exactification.
 **The five-set S4 audit is negative at the word level (2026-09-11).**
 `global-s4-chart-seams-have-logarithmic-area` proves that every global
 assignment of conjugate S4 charts has some shared-edge comparison of R1--R5
-area at least `c log_2 N - c'`. A surviving compiler must use charts named per
-five-set, synchronized by averaging, or a matrix estimate that is not an area
-bound.
+area at least `c log_2 N - c'`. The same bound holds for more than one
+eighth of all adjacent pairs, and for charts on any fixed `k>=3` subsets. A
+surviving compiler must therefore rest on a matrix estimate that is not an
+area bound.
