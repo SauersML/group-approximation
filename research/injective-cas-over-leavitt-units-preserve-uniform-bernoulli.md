@@ -31,6 +31,15 @@ preserve `mu_A`.
   transformation and its proper closed image is invisible to invariants of the
   measure-preserving dynamics. They contribute only if used to force this
   preservation. No such argument is known.
+- **Bernoulli rigidity on non-free coset shifts, 2026-09-12.**
+  `compressed-coset-shifts-carry-strict-equivariant-embeddings` puts a strict
+  continuous equivariant injection on the coset shift `A^(U/V_1)`: pull back
+  along the compressor surjection `gV_1 -> g u^-1 V_1`. That shift has full
+  support, spectral gap, strong ergodicity, only constant finite orbits and
+  closed ergodic measures. So the Kazhdan data coexist with strict injections
+  that do not preserve the Bernoulli measure, and a positive proof here must use
+  locality over the free regular action (dead route
+  `fg-simple-kazhdan-surjunctive-via-bernoulli-rigidity`).
 - **Relation to Rokhlin entropy.** Preservation of `mu_A` by every injective
   automaton is the qualitative form of maximal Bernoulli Rokhlin entropy over
   `U`; the quantitative route is `positive-rokhlin-entropy-makes-leavitt-units-surjunctive`
