@@ -10,6 +10,7 @@ lx-slice2).  Owns `CharClass/CohomologyKunneth*`, `Coeff*`, `Relative*` (not Rel
 | probe | modules | state |
 |---|---|---|
 | 0912-102321-27141 (lix-c, SLURM acn67, base f29a035ec, 9207 jobs, PROBE GREEN) | `CharClass/CohomologyKunnethTorusN` (BUILT), `CharClass/CohomologyKunnethLixN` (BUILT) | on main since f29a035ec, bytes = green record |
+| 0912-105131-84638 (lix-c, acn112 64-71, base 8c49e4396, 9238 jobs, PROBE GREEN) | `CharClass/CohomologyKunnethLixNOf` (BUILT) | on main since 8c49e4396, bytes = green record |
 
 Declarations (mod 2, F₂ Künneth layer, no `…Of` at `ZMod 2`):
 * `KnTwo.sig1N`, `sigOddN`, `tx_inj_degreeN`, `tx_injN`, `decomp_evenN`, `decomp_even_lowN`, `totalSplitN`
@@ -22,7 +23,9 @@ Declarations (mod 2, F₂ Künneth layer, no `…Of` at `ZMod 2`):
 
 ## AUTHORED, UNVERIFIED
 
-* `CharClass/CohomologyKunnethLixNOf.lean` (over a field K): `KnCP.eq_zero_odd_prod_CP_succOf`,
+* none.
+
+Compiled over a field K (`CharClass/CohomologyKunnethLixNOf.lean`): `KnCP.eq_zero_odd_prod_CP_succOf`,
   `noOddCohomology_prod_CPOf`, `noOddCohomologyOf_of_homeomorph`, `noOddCohomology_piCPOf`,
   `noOddCohomology_baseYOf`; `KnTwo.decomp_even_topOfK`, `decomp_even_lowOfK`, `totalSplitOfK`;
   `KnLix.map_hom_prYOfK`, `map_hom_zClassOfK`, `evenKunnethSplitOf` (lx-bundleP's `Gen.EvenKunnethSplitOf`
@@ -31,6 +34,11 @@ Declarations (mod 2, F₂ Künneth layer, no `…Of` at `ZMod 2`):
 ## NEEDS
 
 * none.
+
+## SPLIT (independent helper tasks)
+
+* none open: the Künneth side of `WuStepDData` (mod 2) and of `RealBundleModP` / `RealTorusModP` (over K) is
+  authored; what remains is compile evidence for `CohomologyKunnethLixNOf` (probe running).
 
 ## CONSUMERS (spellings agreed)
 
