@@ -360,6 +360,100 @@ Checked against `random-complex-no-quotients-below-exp-pn-proof`. Meshulam's sta
 - **Why the primes 2 and 3 suffice.** The UCT class has two-out-of-three permanence for extensions. `A` sits in an extension with `A ⊗ M_(2^∞)`, `A ⊗ M_(3^∞)` and `A ⊗ C([0,1], M_(6^∞))`, through a dimension-drop algebra KK-equivalent to `C`. That is the standard reason two coprime primes capture every separable nuclear algebra. It matches Theorem 1.4 as quoted.
 - The MSI extraction of arXiv:1704.04939v2 is recorded in the citation routes. This pass did not re-read the PDF.
 
+## 20. `strong-atiyah-base-change-from-galois-invariance` (68141d582): PASS
+
+Checked against `galois-invariance-base-change-proof`, all four steps and the conclusion.
+
+- **Induction set-up.**
+  - `L`, the algebraic closure of `Qbar(t_1..t_(k−1))`, is countable and algebraically closed.
+  - `F = L(a)` is finitely generated. It has transcendence degree 0 over `L` (so `a ⊆ L`) or 1, and in the second case it is the function field of a smooth projective curve.
+- **Step 1.** For `m >= 2g`, `l(mP) − l((m−1)P) = 1`, so some `f_m` has pole divisor exactly `mP`, and `[F : L(f_m)] = m`. The two degrees `n` and `n + 1` are coprime.
+- **Step 2.**
+  - `P ρ(y) P^(-1) = diag_s σ_s(y)` with `P = (σ_s(w_t))` invertible. So `ρ(A)` is conjugate, by an invertible scalar matrix, to `⊕_s σ_s(A)`, and the kernel dimensions add.
+  - Each `σ_s` fixes `L(f) ⊇ Qbar`, and it extends to an automorphism of `C`, because `C` has infinite transcendence degree over the countable field `F`.
+  - Hypothesis 2 then gives `x(ρ(A)) = d·x(A)`.
+  - Clearing denominators multiplies by the nonzero complex number `q(f)`, so `x` does not change.
+- **Step 3.**
+  - `z ↦ ζ` is a *-homomorphism, and `τ_(H×Z)` is the Haar integral of `τ_H` along the fibres. So the spectral measures of `B~*B~` average over `ζ`.
+  - These measures have uniformly bounded support. So the mass at 0 averages, and `x(B~) = ∫_T x(B(ζ)) dζ`.
+- **Step 4.**
+  - All but countably many `ζ` are transcendental over `L`.
+  - For those, `L(f) ≅ L(ζ)` over `L`, and this extends to an automorphism of `C` carrying `B(f)` to `B(ζ)`. Hypothesis 2 gives `x(B(ζ)) = x(B(f))` almost everywhere.
+  - `S(k−1)` for `G × Z^(j+1)` over `L` makes `x(B~) = d·x(A)` an integer.
+- **Conclusion.** `n·x(A)` and `(n+1)·x(A)` are integers, so `x(A)` is one.
+  - The hypotheses are used for all `r`, as the theorem assumes.
+  - The theorem is stated with kernel dimensions of `r_A`, so conjugate-linearity issues with `σ` do not arise.
+- **Not reviewed here.** The corollary's last sentence cites `division-ring-embedding-torsion-free-one-group-tester`, which this pass did not review.
+
+## 21. `unital-limits-of-k1-injective-algebras-are-k1-injective` (4aea5a80c): PASS on the theorem; one list in the consequence not checked
+
+Checked against `unital-limits-k1-injective-proof`.
+
+- **Constants.**
+  - `||x*x − 1|| <= (1/16)(1 + 1/16) + 1/16 < 0.13`.
+  - With `|x| ∈ [0.93, 1.07]`, the polar part is within `0.077 + 1/16 < 1/4` of `w(t_k)`.
+  - Consecutive `v_k` are within `5/8 < 2` of each other, so `v_k* v_(k+1)` has no `−1` in its spectrum, and the logarithm paths lie in `U(M_(n+1)(A_j))`.
+- **Assembly.**
+  - `u_i ⊕ 1_n ∈ U_0(M_(n+1)(A_j))` gives `[u_i] = 0` in `K_1(A_(j'))` for every later `j'`.
+  - K1-injectivity at a later stage puts `u_i` in `U_0(A_(j'))`, hence in `U_0(A)`, and `u` is joined to `u_i`.
+- **Consequence bullet.**
+  - The contrapositive is correct: a K1-witness has only finitely many K1-injective stages.
+  - The list of excluded building blocks is asserted, not cited. The Z-stable (Jiang), stable-rank-one (Rieffel) and purely infinite simple (Cuntz) entries are standard.
+  - I did not verify the entries "unital simple AH algebras with strict comparison" and "URP crossed products with (COS)".
+
+## 22. `graph-product-normal-forms-and-rf-permanence` (14de25d6b): PASS (classical import)
+
+Green's 1990 thesis gives both the reduced-word normal form and residual finiteness of graph products of residually finite groups over finite graphs. The node only surfaces a dependency that the route `lef-graph-wreath-via-finite-lamp-tables` already carried in its body.
+
+## 23. `uniform-gamma-algebras-satisfy-toms-winter` (5cf2d0ee4): PASS (import)
+
+The quoted Theorem A of Castillejos–Evington–Tikuisis–White, arXiv:1912.04207, matches the published statement. Among separable, simple, unital, nuclear, non-elementary algebras with uniform property Γ, strict comparison, Z-stability and finite nuclear dimension coincide. The reading that the remaining unital direction is "strict comparison ⟹ uniform Γ" is correct.
+
+## 24. `fpbs-tree-projected-branch-share-last-crossing-bound` (810105d57): PASS; one display slip in item 4
+
+Checked against `fpbs-tree-projected-branch-share-last-crossing-proof`.
+
+- **Item 1.**
+  - Cut structure: edges leave `π^(-1)β(q_j)` only between `Γ_(q_(j−1))` and `Γ_(q_j)`.
+  - The last entries are ordered. If the last entry into `β(q_(j+1))` came before `e_j`, the path would stay inside `β(q_(j+1)) ⊆ β(q_j)`, so it could not enter `β(q_j)` again.
+  - The translation identity `q_j^(-1)β(q_j) = F_n \ β(s_j^(-1))` holds.
+  - The BK factorization then gives the stated product.
+- **Item 2.**
+  - The first inequality is item 1 with `D = 1`, restricted to `Γ_s`.
+  - For the second, `X^(s^(-1))` contains no vertex of `Γ_s`. So `{o ↔ u in X^(s^(-1))}` and `{e open}` are independent. Each `v ∈ Γ_s` has exactly `m_s` edges to `Γ_1`, and each `u ∈ Γ_1` has `m_s` edges into `Γ_s`. That gives `σ_p(s) >= p·χ^(s^(-1))_p`.
+  - The FKG bound `σ_p(s) >= p·χ^H_p` holds.
+- **Item 4, sphere-bubble display.**
+  - With `N_p(s,t) = λ_p(t)^2·1{t ≠ s^(-1)}` and `v_p(s) = λ_p(s)^2`, the sum over non-backtracking words is `v_p^T N_p^(R−1) 1`.
+  - The display `1^T N_p^(R−1) v_p` squares the last letter's weight and drops the first. Already at `R = 2` it gives `Σ λ(t)^4` instead of `Σ λ(s)^2 λ(t)^2`.
+  - The conclusion is unaffected. The correct expression still decays geometrically whenever the spectral radius of `N_p` is below one. The sufficient row-sum condition `(2n−1)·max_s λ_(p_c)(s)^2 < 1` also stands.
+  - I have not edited the node. The display should read `v_p^T N_p^(R−1) 1`, or equivalently put the weight on the source letter.
+- **Item 3.**
+  - Thin right-angled triangles in `H^d` and the Morse lemma put `Φ^(-1)(H)` in at most `N_R` branches, each of depth at least `D/L − C − R`.
+  - Item 1 divided by `χ_p`, which is the share normalization, gives `c·p·M·λ^(D/L−C−R−1) → 0`, uniformly in `p < p_c`.
+- **Monotonicity.** Using left limits at `p_c` is legitimate. The finite-volume connection probabilities are nondecreasing, and their suprema are left-continuous.
+
+## 25. `fpbs-fibered-3-manifold-cost-inputs` (e3ecb6111): PASS (imports)
+
+- **Agol.** Virtual fibering holds, and the fibres of a closed hyperbolic 3-manifold have genus at least 2.
+- **Gaboriau, surface groups.** Surface groups have fixed price `2g − 1 = β_1^(2) + 1`.
+- **Gaboriau, commensurated subgroups.** The transfer `C(R_Γ) <= C(R_N)` holds. For finite index it is consistent with the induction formula `C(R_N) − 1 = [Γ:N](C(R_Γ) − 1)`, since `C(R_N) >= 1`.
+
+## Queue status at the end of this pass
+
+- **Verdicts in this pass:** 29 claims.
+  - §1–15, §17, §18, §20–25: one claim each;
+  - §19: two claims;
+  - §16: spot checks of four claims.
+  - No FAIL. Two presentation defects were found and recorded without editing the nodes: the step (c) compression in §13 and the display slip in §24.
+- **Left unreviewed.**
+  - From this queue:
+    - `u2-triple-samelson-class-three-stage`, off the famous-root chains;
+    - `countable-group-embeds-in-fg-simple-kazhdan-group`, `surjunctivity-is-axiomatized-by-rectangle-clauses` and `positive-rokhlin-entropy-makes-leavitt-units-surjunctive`. These have gk-verify-pos re-derivations only.
+  - The 17 queue entries whose routes already carry an independent verification note, and the entries discussed in other review or verification artifacts, were excluded on purpose.
+- **How the queue could miss or duplicate claims.**
+  - It uses the ESTABLISHED marks of `research/FRONTIER.md` as regenerated at 2d808bef1, so claims whose status changed after that are invisible.
+  - It excludes only ids that head a review section. Claims reviewed under a different header can be reviewed twice, as happened with §4–5.
+
 ## Overlap noted after landing
 
 §4 and §5 are also discussed in `review-kazhdan-hyperbolic-hs-2026-09-12.md`, and §4 in `review-major-swarm-2026-09-12.md`. Their headers did not name those ids, so the queue filter kept them. These sections are independent second reads.
