@@ -33,6 +33,14 @@ A complete direct proof is in the artifact.
     `|int_(B_2) C| <= |C|/9`.
   - Splitting along cosets of the free pair gives `|int_N E| <= |E|/9`.
   - The pattern `(1,0,1)` along `c` is null.
+- **Projection measure (Theorem 6).**
+  - For `q = r^k`, send the last of the `k` coordinates to a fixed symbol. The result is iid, uniform on
+    `r^(k-1)` symbols.
+  - Its support is a full shift on those symbols, and the measure is that shift's unique uniform Gibbs
+    measure.
+  - Completion counts are `r^((k-1)|E|)`. Lemma 2 for `M^-1` gives `k|I_E| <= (k-1)|E|`, so the counts are
+    divisible by `q^|I_E|`.
+  - R3 holds: `r^(-(k-1)|E|) = q^(-(1-1/k)|E|) <= q^(-|int_N E|)`.
 
 **Verification.** `w4-vf-positive-b` passed this route in Section 3 of
 `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.

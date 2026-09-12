@@ -24,7 +24,13 @@ artifacts:
   transport of counts along the decoder graph, averaging over translates or invariant random windows, or
   telescoping `tau`, `sigma`, `tau` at the level of counts.
 
-**Why it dies.** Every such manipulation uses the counts only as numbers satisfying the relations R1–R4
-of the invalidating claim. Unbalanced iid merge measures satisfy R1–R4 at every alphabet size `q` with
-`q^(1 - theta_N) >= 2` over every nonamenable decoder memory group. Unbalanced AND measures satisfy them
-at `q = 2` whenever the decoder memory contains a free radius-2 ball.
+The same approach can instead use the image's uniform Gibbs specification and completion counts
+(`research/artifacts/gottschalk-injective-image-uniform-gibbs-bridge-2026-09-08.md`).
+
+**Why it dies.** Every such manipulation uses the counts only as numbers, satisfying the relations of the
+invalidating claim. Unbalanced measures satisfy those relations in three cases:
+- iid merge measures satisfy R1–R4 at every alphabet size `q` with `q^(1 - theta_N) >= 2`, over every
+  nonamenable decoder memory group;
+- AND measures satisfy R1–R4 at `q = 2` whenever the decoder memory contains a free radius-2 ball;
+- projection measures satisfy R1–R4 and every relation of the Gibbs bridge at every `q = r^k` with
+  `k >= 1/(1 - theta)`.

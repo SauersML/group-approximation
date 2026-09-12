@@ -129,3 +129,21 @@ every `p in A^Omega`, where `M` is the memory,
   - Exact open step: the boundary-free decoder bound on a cofinal family of windows. At `E = {1}` the
     decoder bound is vacuous, matching `every-injective-ca-has-uniform-single-site-output-law`.
   - Artifact: `research/artifacts/window-balance-mass-transport-2026-09-12.md`.
+* **Numbers never remove the boundary factor (w4-window-boundary, 2026-09-12).**
+  `numeric-window-relations-do-not-force-balance` invalidates `balance-from-numeric-window-relations`.
+  - *Amenable decoder memory group.* The decoder decay alone forces a uniform site law, by a Følner entropy
+    count.
+  - *Nonamenable decoder memory group.* Interiors have density at most `theta < 1`. The following unbalanced
+    measures satisfy translation invariance, integral finitely dependent counts, the decoder decay and a
+    null cylinder:
+    - iid merge measures, once `q^(1 - theta) >= 2`;
+    - AND measures at `q = 2`, once the decoder memory contains a free radius-2 ball;
+    - sitewise projections `B^k -> B^(k-1) x {b_0}`, which also satisfy every relation of the 2026-09-08
+      Gibbs bridge: unique uniform Gibbs measure, weak mixing, completion counts divisible by `q^|I_E|`.
+  - *What is ruled out.* Mass transport of counts, local permutations of the image, cofinal windows and
+    count-level telescoping cannot remove `q^(|d_N E|)` on any nonamenable decoder group.
+  - *What a proof must use.* Either the pointwise identity `sigma o tau = id` on the group's own coincidence
+    pattern (the end-fixing tree shows the identity without the group law is not enough), or maximal
+    Bernoulli Rokhlin entropy.
+  - *Not covered.* The binary alphabet over weakly nonamenable decoder groups.
+  - Artifact: `research/artifacts/numeric-window-relations-no-go-2026-09-12.md`, Sections 1–5.

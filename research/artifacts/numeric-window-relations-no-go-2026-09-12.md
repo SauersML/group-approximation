@@ -125,3 +125,78 @@ window, in either of these cases:
 The goal quantifies over every alphabet size, so any numerical proof of it would in particular work at
 the large sizes of Theorem 3. Whether numerical arguments can reach small alphabets for every nonamenable
 decoder group is left open: Proposition 4 needs `theta_N <= 0.3057`.
+
+## 4. The uniform Gibbs specification and completion counts do not help either
+
+The 2026-09-08 bridge (`research/artifacts/gottschalk-injective-image-uniform-gibbs-bridge-2026-09-08.md`)
+adds the following relations for `nu = tau_* mu` and `Y = tau(A^G)`. Here `I_E = int_(M^-1) E` is the set
+of input sites whose outputs all lie in `E`, and `N_Y(E, c)` is the number of completions in `Y` of an
+admissible exterior `c`.
+- **(G1)** `Y` is a shift of finite type and `nu` is its unique uniform Gibbs measure.
+- **(G2)** Exact finite-range weak mixing.
+- **(G3)** Divisibility: `N_Y(E, c) = q^|I_E| b_E(c)` with `b_E(c)` a positive integer.
+- **(G4)** The bounds `q^|I_E| <= N_Y(E, c) <= q^|E|`.
+
+The merge measure of Theorem 3 violates G1 and G3. A different measure satisfies all of them.
+
+**Theorem 6 (projection measure).** Let `M` and `N` (containing `e`) generate nonamenable subgroups. Put
+`theta = max(theta_N, theta_(M^-1))` from Lemma 2, applied to `N` and to `M^-1`, and take `k >= 2` with
+`theta <= 1 - 1/k`. Let `q = r^k` with `r >= 2`, `A = B^k` with `|B| = r`, fix `b_0` in `B`, and let `nu` be the
+image of `mu` under `phi(x)(g) = pi(x(g))`, where `pi(b_1, ..., b_k) = (b_1, ..., b_(k-1), b_0)`. Then:
+
+1. `nu` satisfies R1–R4 for `(M, N)`;
+2. `Y = supp nu = (B^(k-1) x {b_0})^G` is a shift of finite type, `nu` is its unique uniform Gibbs measure,
+   and G2 holds;
+3. for every finite `E` and every exterior `c`, `N_Y(E, c) = r^((k-1)|E|) = q^|I_E| b_E` with
+   `b_E = r^((k-1)|E| - k|I_E|)` a positive integer, and `q^|I_E| <= N_Y(E, c) <= q^|E|`;
+4. the site law of `nu` is not uniform.
+
+*Proof.* `nu` is iid, uniform on the `r^(k-1)` allowed symbols.
+1. R1 holds. R2 holds because `c_E(p) = r^(k|EM| - (k-1)|E|)` for allowed `p` and `0` otherwise. R4 holds
+   because any symbol outside `B^(k-1) x {b_0}` is null. R3 holds because
+   `nu[p]_E <= r^(-(k-1)|E|) = q^(-(1 - 1/k)|E|) <= q^(-theta_N |E|) <= q^(-|int_N E|)`.
+2. `Y` is the full shift on the allowed symbols, a shift of finite type with memory `{e}`. Given any exterior,
+   the law of `nu` on `E` is uniform on all of `(B^(k-1) x {b_0})^E`, which is the completion set. A uniform
+   Gibbs measure on a full shift has uniform finite marginals, so it is `nu`. G2 holds because for `V` inside
+   `E` the fraction of completions restricting to `v` is `r^(-(k-1)|V|) = nu(Y_V = v)`.
+3. By Lemma 2 for `M^-1`, `|I_E| <= theta_(M^-1)|E| <= (1 - 1/k)|E|`, so `k|I_E| <= (k-1)|E|` and `b_E` is a
+   positive integer. The upper bound is clear.
+4. The site law gives the symbols outside `B^(k-1) x {b_0}` probability zero. QED
+
+So at every alphabet size `q = r^k` with `k >= 1/(1 - theta)`, the four bridge relations, R1–R4 and the
+group law together are consistent with imbalance. This includes every power `2^k` with `k >= 1/(1 - theta)`.
+Every relation that the bridge and the counts supply as numbers is covered. What `phi` lacks is a
+block-code inverse on `Y`.
+
+## 5. What a proof of balance has to use
+
+Four findings bound where a proof can come from:
+
+| input | with the group law? | consistent with imbalance? | source |
+|---|---|---|---|
+| window counts R1–R4 and bridge relations G1–G4 | yes | yes, at large `q` | Theorems 3 and 6 |
+| the pointwise decoder identity with local counting | no, on the end-fixing tree | yes | `finite-left-inverse-identity-does-not-force-balance` (a tree fact only) |
+| isomorphism invariants of the image | yes | inert | `measure-conjugacy-invariants-cannot-certify-surjectivity` |
+| conjugacy invariants read on the coordinate partition | yes | reduces to INF | `injective-balance-needs-inf-and-nonlocal-2026-09-12.md`, Section 1 |
+
+A proof of `every-injective-ca-preserves-uniform-bernoulli-measure`, or of the one-site law, must
+therefore either:
+- use the pointwise identity `sigma o tau = id` on the group's own coincidence pattern, which is the
+  combinatorics of product tables, formalizability and group-ring identities; or
+- prove maximal Bernoulli Rokhlin entropy, or at least a lower bound on `h_fin`.
+
+Mass transport, local permutations and cofinal window families all act on the numbers of Sections 1 and 4,
+so none of them can remove the boundary factor.
+
+Verifier `w4-vf-positive-b` (§3.6 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`)
+strengthens Theorem 3 at `q = 4` when `N` contains the radius-2 ball of a free pair. The merge measure is
+the image `tau'_* mu` of an automaton, and some automaton `sigma'` has `sigma'_* nu = mu`: send `a_1, a_2` to
+`0` in `Z/2`, then apply the Ornstein–Weiss map. So count-level telescoping stays consistent with imbalance
+even after `(sigma' o tau')_* mu = mu` is added. Other `q` are not checked.
+
+On the tree row of the table: the counts there obey totals and invariance. What the end-fixing tree lacks is
+right cancellation of reads, because the parent map is two-to-one.
+
+Two things the tables do not reach:
+- the binary alphabet for weakly nonamenable decoder groups, which Proposition 4 misses;
+- alphabet sizes that are not perfect powers, where Theorem 3 covers R1–R4 but not G1 or G3.
