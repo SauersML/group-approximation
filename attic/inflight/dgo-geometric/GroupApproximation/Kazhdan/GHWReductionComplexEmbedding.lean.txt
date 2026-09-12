@@ -42,21 +42,30 @@ theorem exists_algHom_adjoin_apply {K : Type} [Field K] [CharZero K] {ι : Type}
     {t : ι → K} (ht : AlgebraicIndependent ℚ t) {z : ι → ℂ} (hz : AlgebraicIndependent ℚ z) :
     ∃ τ : IntermediateField.adjoin ℚ (Set.range t) →ₐ[ℚ] ℂ,
       ∀ i, τ ⟨t i, IntermediateField.subset_adjoin ℚ _ (Set.mem_range_self i)⟩ = z i := by
+  have hinjt : Function.Injective
+      ((MvPolynomial.aeval t : MvPolynomial ι ℚ →ₐ[ℚ] K) : MvPolynomial ι ℚ →+* K) :=
+    algebraicIndependent_iff_injective_aeval.1 ht
+  have hinjz : Function.Injective
+      ((MvPolynomial.aeval z : MvPolynomial ι ℚ →ₐ[ℚ] ℂ) : MvPolynomial ι ℚ →+* ℂ) :=
+    algebraicIndependent_iff_injective_aeval.1 hz
   let τ₀ : IntermediateField.adjoin ℚ (Set.range t) →+* ℂ :=
-    (IntermediateField.adjoin ℚ (Set.range z)).val.toRingHom.comp
-      (hz.aevalEquivField.toRingEquiv.toRingHom.comp
-        ht.aevalEquivField.symm.toRingEquiv.toRingHom)
+    (IsFractionRing.lift (K := FractionRing (MvPolynomial ι ℚ)) hinjz).comp
+      (ht.reprField : IntermediateField.adjoin ℚ (Set.range t) →+*
+        FractionRing (MvPolynomial ι ℚ))
   refine ⟨τ₀.toRatAlgHom, fun i => ?_⟩
-  have h1 : ht.aevalEquivField.symm
-      ⟨t i, IntermediateField.subset_adjoin ℚ _ (Set.mem_range_self i)⟩ =
+  set p : IntermediateField.adjoin ℚ (Set.range t) :=
+    ⟨t i, IntermediateField.subset_adjoin ℚ _ (Set.mem_range_self i)⟩ with hp
+  have h1 : ht.reprField p =
       algebraMap (MvPolynomial ι ℚ) (FractionRing (MvPolynomial ι ℚ)) (MvPolynomial.X i) := by
-    rw [AlgEquiv.symm_apply_eq]
-    apply Subtype.ext
-    rw [AlgebraicIndependent.aevalEquivField_algebraMap_apply_coe, MvPolynomial.aeval_X]
+    apply (IsFractionRing.lift (K := FractionRing (MvPolynomial ι ℚ)) hinjt).injective
+    rw [AlgebraicIndependent.lift_reprField, IsFractionRing.lift_algebraMap]
+    show t i = MvPolynomial.aeval t (MvPolynomial.X i)
+    rw [MvPolynomial.aeval_X]
   rw [RingHom.toRatAlgHom_apply]
-  show ((hz.aevalEquivField (ht.aevalEquivField.symm
-    ⟨t i, IntermediateField.subset_adjoin ℚ _ (Set.mem_range_self i)⟩)) : ℂ) = z i
-  rw [h1, AlgebraicIndependent.aevalEquivField_algebraMap_apply_coe, MvPolynomial.aeval_X]
+  show IsFractionRing.lift (K := FractionRing (MvPolynomial ι ℚ)) hinjz (ht.reprField p) = z i
+  rw [h1, IsFractionRing.lift_algebraMap]
+  show MvPolynomial.aeval z (MvPolynomial.X i) = z i
+  rw [MvPolynomial.aeval_X]
 
 /-- **GHW's archimedean places exist with prescribed values on a transcendence basis.** -/
 theorem ghwComplexEmbeddingExtension : GHWComplexEmbeddingExtension := by
