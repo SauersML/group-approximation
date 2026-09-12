@@ -18,6 +18,16 @@ omega*(G_0)<1/2,
 
 and an actual perfect ZPC-IRS strategy witnessing the first equality.
 
+**ESTABLISHED (2026-09-12)** by `explicit-zpc-gap-witness-by-recursion-theorem`.
+There `G_0` is the TailoredMIP instance of a machine that searches the ZPC-IRS
+upper hierarchy of its own game and halts when a bound drops below one. By the
+recursion theorem that machine never halts, so both values follow. Scope:
+- the "certificate" is that recursion-theorem proof. No finite LP certificate
+  of `omega_ZIRS(G_0)=1` is claimed;
+- the perfect strategy exists by compactness and is not described.
+The downstream compiler routes use only the named game and the existence of
+the strategy.
+
 `perfect-zpc-irs-quantum-gap-game` proves existence of some such finite game by
 an undecidability/hierarchy argument, but that argument does not identify which
 instance realizes the perfect ZPC-IRS side.  Cairn's primary goal asks to
@@ -29,8 +39,10 @@ existence.
 
 - Make the hierarchy-separation proof effective on a fixed, explicitly chosen
   nonhalting machine rather than argue that some nonhalting instance must have
-  ZPC-IRS value one.  This requires a direct construction/certificate of the
-  perfect ZPC-IRS strategy for that instance.
+  ZPC-IRS value one. This was first recorded as needing a direct
+  construction/certificate of the perfect ZPC-IRS strategy. That turned out to
+  be unnecessary: the self-referential diagonal fixes the instance without
+  exhibiting a strategy.
 - Search the explicit TailoredMIP construction for a syntactic subclass of
   verifier instances whose ZPC-IRS perfect strategy is canonical (for example,
   an IRS strategy coming from an explicit non-cohyperlinear subgroup process),
