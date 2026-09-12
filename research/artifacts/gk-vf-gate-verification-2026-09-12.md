@@ -1137,3 +1137,37 @@ which contradicts `delta >= c_0'`.
   defect at least `c_3` (item 2). An open deficit bound `N_0'(D) <= theta N_0(D)` would contradict it.
 - **Where the gap is.** The route's validity rests entirely on that open claim delivering the bound for the
   compressed function, as the route states.
+
+## 25. w5-commutant-distort (1139b6be43)
+
+### 25.1 `commuting-subgroup-witnesses-cannot-distort-defect-ranges`: PASS, with a scope remark
+
+**Lemma 1.1.**
+1. `sigma(g) Z M_n(M) = Z sigma(g) M_n(M)`, so the ideal is invariant. `rk(TZ) = rk(TJ)`, since both are
+   the same principal right ideal.
+2. `T` commutes with `e`, so `T = eTe + (1-e)T(1-e)`, and ranks add.
+
+**Theorem 2.1.**
+- **Commuting factors.**
+  - `(g-1)(h-1) = p_U (g-1) p_U p_(U^c) (h-1) p_(U^c) = 0`, so `gh = g + h - 1 = hg`.
+  - An element lying in both groups equals `1`.
+- **Tensor ultraproduct.**
+  - Once `n` is large, `lambda_n` is exact, so the error at `(n,i)` is `lambda_n(gg') (x) (rho_i(h) rho_i(h') - rho_i(hh'))`.
+  - Its normalized rank equals `rho`'s error, and `lim_(U(x)V) = lim_U lim_V` kills it.
+  - Ranks of elementary tensors multiply.
+- **Values.** `T = sigma_L((y+1)(x+1)) (x) 1` has rank `3/8`, and `T (1 (x) Y) = sigma_L(alpha) (x) Y` has
+  rank `(3/8) rk Y`.
+- **Fixed points.** The codimension bound is as in Section 15.1, now with the factor `Omega^(k_i)`, and
+  `Fix(lambda_n(H_m)) (x) Omega^(k_i)` has normalized dimension `1/|H_m|`.
+
+**Scope remark.**
+- **Trivial `rho`.** The theorem holds for any rank model `rho`, the trivial one included. There every
+  witness is a scalar, and the statement says nothing.
+- **Where the content is.** It comes from a `rho` that separates `Lambda`, as in Corollary 2.2: cyclic
+  permutation stages for `<b>` and for `<x^A_12(s_0) x^A_21(1)>`, or sofic, amenable, residually finite or
+  `F_2`-linear sofic subgroups.
+- **The whole complement.** For `Lambda = G_(U^c) ~= R^x`, a separating `rho` is the gate itself. Section 3,
+  item 2, already says this.
+
+**Remark 2.3.** In `F_2[C_2 x C_2] = F_2[s,t]/(s^2, t^2)`, `sM + tM = (s,t)` has dimension 3 of 4. So the
+row-plus-column bound is attained: `3/4 + 3/4 = 3 · (1/2)`.

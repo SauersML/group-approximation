@@ -22,3 +22,5 @@ Artifact Theorem 2.1 and Corollary 2.2.
 5. **Fixed points.** Vectors fixed by `lambda_n(H_m) (x) 1` have normalized dimension at most `1/|H_m|`, which tends
    to `0`, so the model is fixed-point-free.
 6. **Escapes.** `b` and `x^A_12(s_0) x^A_21(1)` generate infinite cyclic groups, which carry rank models.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 25.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS. Scope: the firewall content requires a rank model rho that separates Lambda, as in Corollary 2.2.*
