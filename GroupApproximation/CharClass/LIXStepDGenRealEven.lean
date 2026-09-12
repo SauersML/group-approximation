@@ -66,9 +66,11 @@ def evenMap (K : Type) [CommRing K] {X Y : TopCat.{0}} (f : X ⟶ Y) :
     evenPart K Y →+* evenPart K X where
   toFun a := ⟨TotalHOf.map K f a, TotalHOf.IsEven.map f (mem_evenPart.mp a.2)⟩
   map_one' := Subtype.ext (map_one (TotalHOf.map K f))
-  map_mul' a b := Subtype.ext (map_mul (TotalHOf.map K f) a b)
+  map_mul' a b :=
+    Subtype.ext (map_mul (TotalHOf.map K f) (a : TotalHOf K Y) (b : TotalHOf K Y))
   map_zero' := Subtype.ext (map_zero (TotalHOf.map K f))
-  map_add' a b := Subtype.ext (map_add (TotalHOf.map K f) a b)
+  map_add' a b :=
+    Subtype.ext (map_add (TotalHOf.map K f) (a : TotalHOf K Y) (b : TotalHOf K Y))
 
 @[simp] theorem coe_evenMap (K : Type) [CommRing K] {X Y : TopCat.{0}} (f : X ⟶ Y)
     (a : evenPart K Y) : (evenMap K f a : TotalHOf K X) = TotalHOf.map K f a :=
@@ -81,7 +83,7 @@ def evenRestrictAdd {K : Type} [CommRing K] {X : TopCat.{0}} (f : TotalHOf K X �
     evenPart K X →+ evenPart K X where
   toFun a := ⟨f a, hf a (mem_evenPart.mp a.2)⟩
   map_zero' := Subtype.ext (map_zero f)
-  map_add' a b := Subtype.ext (map_add f a b)
+  map_add' a b := Subtype.ext (map_add f (a : TotalHOf K X) (b : TotalHOf K X))
 
 @[simp] theorem coe_evenRestrictAdd {K : Type} [CommRing K] {X : TopCat.{0}}
     (f : TotalHOf K X →+ TotalHOf K X)
