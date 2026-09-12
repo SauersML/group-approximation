@@ -144,9 +144,28 @@ mode `supp beta` must leave `H_1`, and dually `supp alpha` must leave `H^1` for 
 UNKNOWN (85,849 and 84,959 AND variables). The strict clause on `v` (3,3) is also
 UNKNOWN (44,521 variables).
 
+**The prune clauses work.** The clauses of 7e8a94ac9 require:
+- both supports odd;
+- neither support inside the degree-zero units, which form a locally finite group;
+- neither support inside either finite chart group, each of order 20,160.
+
+With them, atlas (3,3) in target mode is UNSAT in 82 s; unpruned it was UNKNOWN at
+600 s. The controls still pass: the Leavitt control is SAT and V (1,1) is UNSAT.
+
+**Unpruned at 2,400 s (sbatch `kdf-sat-b7`).** All four instances are UNKNOWN, each
+with 463,000 to 470,000 AND variables and about 145 s to build:
+- atlas (3,4) and (2,5) with `pi(beta) = s0`;
+- atlas (4,3) and (5,2) with `pi(alpha) = t0`.
+
+**Cairn.** `cairn check` on MSI at b9399390e exits 0 with 0 errors, and
+`s0-lifts-cannot-be-supported-in-the-all-ones-stabilizer` compiles ESTABLISHED via its
+proof route.
+
 **Running.**
-- sbatch `kdf-sat-b8`: controls, then `v` (3,3) strict and atlas (3,3) target, 2,400 s each. It uses the prune clauses of 7e8a94ac9: both supports odd, and neither support inside the degree-zero units or inside a finite chart group.
-- sbatch `kdf-sat-b7`, unpruned: atlas (3,4), (4,3), (2,5) and (5,2) in target mode.
+- sbatch `kdf-sat-b8`: `v` (3,3) with the strict clause and prunes.
+- sbatch `kdf-sat-b9`: atlas (3,4) and (2,5) with `pi(beta) = s0`, and (4,3) and (5,2)
+  with `pi(alpha) = t0`. These use the prunes plus the all-ones clause of 63eeb5e54,
+  with 2,400 s each.
 
 ## Trust surface
 
