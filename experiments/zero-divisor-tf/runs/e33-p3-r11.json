@@ -1,0 +1,16 @@
+{
+ "host": "E_3(3) in SL_3(Z)",
+ "p": 3,
+ "ra": 1,
+ "rb": 1,
+ "size_A": 13,
+ "size_B": 13,
+ "pairs": 169,
+ "cells": 121,
+ "singleton_cells": 84,
+ "build_seconds": 0.0,
+ "vars": 928,
+ "clauses": 3062,
+ "solve_seconds": 0.04,
+ "result": "UNSAT"
+}
