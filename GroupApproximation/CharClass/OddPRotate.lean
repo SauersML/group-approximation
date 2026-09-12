@@ -125,6 +125,21 @@ theorem tupEval_add_expand (a b : ∀ n : ℕ, singularCochainGroup K X n) (k : 
     refine Finset.prod_congr rfl fun j _ => ?_
     cases ε j <;> rfl
 
+/-- **Homogeneity of a constant tuple.**  Scaling the cochain in every slot scales the evaluation by
+the `r`-th power of the scalar. -/
+theorem tupEval_smul_const (c : K) (a : ∀ n : ℕ, singularCochainGroup K X n) (k : ℕ)
+    (x : tupMod K X r k) :
+    tupEval K X r k (fun _ => c • a) x = c ^ r * tupEval K X r k (fun _ => a) x := by
+  have hL : tupEval K X r k (fun _ => c • a) = c ^ r • tupEval K X r k (fun _ => a) := by
+    apply Finsupp.lhom_ext'
+    intro t
+    apply LinearMap.ext_ring
+    simp only [LinearMap.comp_apply, Finsupp.lsingle_apply, LinearMap.smul_apply]
+    rw [tupEval_single, tupEval_single, smul_eq_mul]
+    simp only [tagEvalG_smul, Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ,
+      Fintype.card_fin]
+  rw [LinearMap.congr_fun hL x, LinearMap.smul_apply, smul_eq_mul]
+
 /-- Every slot of an assignment tuple built from two single-degree cochains is concentrated in that
 degree. -/
 theorem bif_concentrated (a b : ∀ n : ℕ, singularCochainGroup K X n) (q : ℕ)
