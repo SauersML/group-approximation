@@ -74,8 +74,8 @@ def SingleClassAveragingEstimate : Prop :=
 /-- Conjugating stays inside a conjugacy class. -/
 theorem conjClasses_mk_conj (x γ : G) :
     ConjClasses.mk (x * γ * x⁻¹) = ConjClasses.mk γ := by
-  rw [ConjClasses.mk_eq_mk_iff_isConj]
-  exact ⟨⟨x, x⁻¹, by group, by group⟩, by group⟩
+  rw [ConjClasses.mk_eq_mk_iff_isConj, isConj_iff]
+  exact ⟨x⁻¹, by group⟩
 
 /-- **Averaging preserves membership in a single conjugacy class.** -/
 theorem isConjClassCombination_average {t : ConjClasses G} {x : ReducedGroupCStar G}
@@ -157,22 +157,22 @@ theorem exists_average_small_on_finset (hcls : SingleClassAveragingEstimate G)
 theorem eq_one_of_conjClasses_mk_eq_one {g : G}
     (h : ConjClasses.mk g = ConjClasses.mk (1 : G)) : g = 1 := by
   rw [ConjClasses.mk_eq_mk_iff_isConj] at h
-  exact isConj_one_right.mp h
+  exact isConj_one_left.mp h
 
 /-! ## The estimate -/
 
+set_option maxHeartbeats 1000000 in
 /-- **The full averaging estimate follows from the single-class one.**
 
 The support of an approximant meets finitely many conjugacy classes; averaging
 preserves that decomposition, is a contraction, and composes, so the classes can
 be killed one at a time and the composite is still one average. -/
-set_option maxHeartbeats 1000000 in
 theorem powersAveragingEstimate_of_singleClass
     (h : SingleClassAveragingEstimate G) : PowersAveragingEstimate G := by
   classical
   intro a hτa ε hε
   set δ : ℝ := ε / 4 with hδdef
-  have hδ : 0 < δ := by positivity
+  have hδ : 0 < δ := by rw [hδdef]; positivity
   -- Approximate, and delete the identity coefficient, exactly as in
   -- `powersAveragingEstimate_of_powersProperty`.
   obtain ⟨m, c, γ, happrox⟩ := exists_translationSum_approx G a.2 hδ
@@ -204,20 +204,6 @@ theorem powersAveragingEstimate_of_singleClass
     · rw [hc']
       simp [hγ]
     · simp [hc', hγ]
-  have hτb₀ : canonicalFaithfulTracialState G b₀ = 0 := by
-    have hlin : canonicalCoefficientAtOne G b₀
-        = ∑ j : Fin m,
-          c' j * canonicalCoefficientAtOne G (reducedLeftRegular G (γ j)) := by
-      rw [hb₀, map_sum]
-      exact Finset.sum_congr rfl fun j _ ↦ by rw [map_smul, smul_eq_mul]
-    show canonicalCoefficientAtOne G b₀ = 0
-    rw [hlin]
-    refine Finset.sum_eq_zero fun j _ ↦ ?_
-    rw [canonicalCoefficientAtOne_reducedLeftRegular]
-    by_cases hγ : γ j = 1
-    · rw [hc']
-      simp [hγ]
-    · simp [hγ]
   have hτb : canonicalFaithfulTracialState G b = κ := by
     have hlin : canonicalCoefficientAtOne G b
         = ∑ j : Fin m,
@@ -283,8 +269,8 @@ theorem powersAveragingEstimate_of_singleClass
     · exact Or.inl (if_neg hj)
   -- One average, small on every class at once.
   set η : ℝ := δ / ((S.card : ℝ) + 1) with hηdef
-  have hcardpos : (0 : ℝ) < (S.card : ℝ) + 1 := by positivity
-  have hη : 0 < η := by rw [hηdef]; positivity
+  have hcardpos : (0 : ℝ) < (S.card : ℝ) + 1 := Nat.cast_add_one_pos _
+  have hη : 0 < η := by rw [hηdef]; exact div_pos hδ hcardpos
   obtain ⟨n, g, hn, hsmall⟩ :=
     exists_average_small_on_finset G h S x hxne hxcls η hη
   have hcard : (S.card : ℝ) * η ≤ δ := by
@@ -309,9 +295,7 @@ theorem powersAveragingEstimate_of_singleClass
       = (n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * (a - b₀) * star (reducedLeftRegular G (g i)) := by
     rw [← smul_sub, ← Finset.sum_sub_distrib]
-    congr 1
-    refine Finset.sum_congr rfl fun i _ ↦ ?_
-    rw [mul_sub, sub_mul]
+    simp only [mul_sub, sub_mul]
   have hdiffbound : ‖((n : ℂ)⁻¹ • ∑ i : Fin n,
         reducedLeftRegular G (g i) * a * star (reducedLeftRegular G (g i)))
       - ((n : ℂ)⁻¹ • ∑ i : Fin n,
