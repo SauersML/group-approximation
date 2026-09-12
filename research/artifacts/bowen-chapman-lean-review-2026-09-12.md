@@ -8,7 +8,8 @@ delivered through a Palomar challenge.
 
 ## F1. The Lean form of Kun–Thom Theorem 4.1 is stronger than the theorem
 
-**Status: resolved in the plan, pending landing.** Sent to `kt-norm-paper`,
+**Status: resolved; the sequential Prop and its double bridge landed at
+b2fb68328 and were verified (F4(p)).** Sent to `kt-norm-paper`,
 `kt-norm-repo`, `bc-assembly`, `bc-wreath`; the sequential free form below was
 approved in reply to `kt-norm-repo`, and `kt-norm-paper` confirmed that all four
 Theorem 4.1 lanes now target it.
@@ -447,6 +448,45 @@ defect.**
   `PalomarBowenChapmanAxioms.lean`, and the job fails when that step fails.
 * Neither library is a default target. The only deletion is the WIP gate patch.
 
+**(p) Landed: `KunThom/NormalizationFromCriterion` and
+`NormalizationFromCriterionConsumer`, b2fb68328, root-wired. No defect.**
+* **The Prop is the approved one.**
+  * `SoficApproximation.AlmostCommutes A v g` is
+    `Vanishing fun n ↦ hammingDistance (A.model n) (v n * A.map n g)
+    (A.map n g * v n)`, with `Vanishing` along `atTop`.
+  * `conjSeq A g v n = A.map n g * v n * (A.map n g)⁻¹`.
+  * `HasSequentialCentralizerNormalization Γ` quantifies over every
+    `SoficApproximation G` and every sequence `v` almost commuting with each
+    `γ ∈ Γ`, and concludes that `conjSeq g v` almost commutes with each
+    `γ ∈ Γ`, for every `g`. This is the form approved in F1.
+* **The generation step is sound.**
+  `hasSequentialCentralizerNormalization_of_compressorNormalization` derives
+  that Prop from `IsInfranormal Γ` and `HasSequentialCompressorNormalization Γ`,
+  which is normalization by each compressor `t`.
+  * Normalization by `t⁻¹` comes free for a compressor, because `t γ t⁻¹ ∈ Γ`
+    (`seqNormalizes_inv_of_mem_compressionSubmonoid`). This is the easy
+    direction of the proof of Kun–Thom Theorem 4.1.
+  * Normalization is closed under `1` and products, so infranormality spreads it
+    to all of `G`.
+* **The remaining analytic leaf is now `HasSequentialCompressorNormalization Γ`**
+  for the explicit pair. It is a hypothesis of the generation step, not an
+  `axiom`, and the endpoint cannot close until it is proved.
+* **The bridge.**
+  `not_isSofic_symmetricDouble_of_sequentialNormalization [Countable G] Γ
+  hcentralizer hγ hesc : ¬ IsSofic (SymmetricDouble G Γ)` has the same
+  hypotheses as the injective-Prop version, with the sequential Prop in place of
+  the ultraproduct one. Its free-lamp argument restricts a sofic approximation
+  of the amalgam to `G`, takes `v` to be the lamp's model permutations, and
+  concludes through asymptotic faithfulness on `lampWitness`.
+* **Probe evidence.**
+  * The message cites probe 0912-115902-16602 at base 93d95df1f, "Build
+    completed successfully (3131 jobs)", PROBE GREEN, REAL_EXIT=0.
+  * Both landed md5s are in `kt-norm-repo.green.0912-115902-16602`, which
+    carries `# PROBE GREEN` and names both modules.
+  * The 56-module repository import closure did not change between the record
+    base and the landing parent, and the base is an ancestor of the landing.
+* Two root imports are added. The only deletions are the WIP snapshots.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
@@ -461,11 +501,15 @@ defect.**
 * `git diff --no-renames --diff-filter=D BASE NEW` is empty unless a deletion is
   intended.
 
-**Still to review as they land:** `WreathWitness` and the sequential wreath
-consumer (`bc-wreath`); the four Theorem 4.1 lanes; `bc-assembly`; and the
-unsuffixed `bc-palomar` solution, together with its move from
-`PALOMAR_PENDING_CONFIGS` to `PALOMAR_CONFIGS` and a rerun of the
-statement-match drivers after the endpoint import.
+**Still to review as they land:**
+* the producer of `HasSequentialCompressorNormalization` under property (T) and
+  infranormality, i.e. the analytic core of Theorem 4.1, from the four
+  Theorem 4.1 lanes;
+* `WreathWitness` and the sequential wreath consumer (`bc-wreath`);
+* the endpoint (`bc-assembly`);
+* the unsuffixed `bc-palomar` solution, its move from `PALOMAR_PENDING_CONFIGS`
+  to `PALOMAR_CONFIGS`, and a rerun of the statement-match drivers after the
+  endpoint import.
 
 ## F5. Main was emptied and restored
 
