@@ -19,6 +19,12 @@ every shift-invariant decodable feature `c` with decoder error `e_c`,
 val(Psi_c) <= sqrt( (epsilon + 2 e_c) / ((1-1/m) rho^3) ).
 ```
 
+**Regime.** Fix `epsilon`. BKM's Section 5 then fixes `m >= m_0(epsilon)`,
+`rho = 1-epsilon`, `K`, `d` and the strength `t = 8d+1`, and the transfer is a
+large-`n` statement (`n >= n_0`). The bound drops the `-1/m` term from
+`epsilon - 1/m + 2 e_c`. That is simply a weakening, so it needs no assumption
+about `1/m` versus `epsilon`.
+
 **Barrier exhausted.** Feature transparency certifies unsoundness and nothing
 else, and the test is sound on admissible designs. So no admissible design,
 random or structured, can leak a decodable feature with an easy split game on a
