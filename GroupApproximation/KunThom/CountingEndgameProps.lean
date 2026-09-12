@@ -17,7 +17,11 @@ data `Rel F` of the compressor `t`, and three Props about it: `OneSided`,
   retained family `retained q n`, the bundled relative cluster functor of Kun and
   Thom's Lemma 4.3 between them, negligible weight outside both families, negligible
   missing bridge mass along the matching, and matched objects at most twice the size
-  of their matches.
+  of their matches.  For the distinguished compressor `t` it also carries estimate (7)
+  of Lemma 4.3 with bridges realized by `A(t)⁻¹`, in the form consumed by
+  `BlockPatching.card_disagreement_sandwich_lt_of_lift`, and a bound of its error by
+  three times the scale of the image.  Without estimate (7) nothing ties the functor to
+  `A(t)`, and the Hamming estimate of step 9 fails.
 * `observable F n i`: the arrow count of the object `i` in the cluster groupoid at
   index `n`, the observable to which the median lemma is applied once
   (`ArrowCountMedian`).
@@ -92,6 +96,37 @@ structure CompressorRelativeData {G : Type} [Group G] {A : SoficApproximation G}
   size_le : ∀ (q : G) (hq : q ∈ setup.compressors) (n : ℕ), ∀ i ∈ matched q n,
     Fintype.card ((F.embedding n).model i) ≤
       2 * Fintype.card ((F.embedding n).model ((functor q hq n).π i))
+  /-- The error of estimate (7) for `t`. -/
+  estimateError : ∀ n,
+    ((F.system n).presentation.restrict (retained t n : Set (F.Obj n))).Obj →
+      ((F.system n).presentation.restrict (retained t n : Set (F.Obj n))).Obj → ℕ
+  /-- **Estimate (7)** for `t`: every representative of the image of a class lies
+  within `estimateError` of the transport of a representative through the bridges
+  realized by `A(t)⁻¹`. -/
+  estimate : ∀ (n : ℕ)
+    {X Z : ((F.system n).presentation.restrict (retained t n : Set (F.Obj n))).Obj}
+    (c : (F.system n).presentation.Rep X.val.1 Z.val.1)
+    (θ : (F.system n).presentation.Rep
+      ((functor t mem_compressors n).F.toFunctor.obj X).val.1
+      ((functor t mem_compressors n).F.toFunctor.obj Z).val.1),
+    ((F.system n).presentation.restrict (matched t n : Set (F.Obj n))).ofRep
+        (X := (functor t mem_compressors n).F.toFunctor.obj X)
+        (Y := (functor t mem_compressors n).F.toFunctor.obj Z) θ =
+      (functor t mem_compressors n).F.toFunctor.map
+        (((F.system n).presentation.restrict (retained t n : Set (F.Obj n))).ofRep
+          (X := X) (Y := Z) c) →
+    ((F.system n).clusterMetric.val θ).twoSidedDisagreement
+      (FinitePartialBijection.sandwich
+        ((F.embedding n).bridge (A.map n t)⁻¹ X.val.1
+          ((functor t mem_compressors n).F.toFunctor.obj X).val.1)
+        ((F.embedding n).bridge (A.map n t)⁻¹ Z.val.1
+          ((functor t mem_compressors n).F.toFunctor.obj Z).val.1)
+        ((F.system n).clusterMetric.val c)) < estimateError n X Z
+  /-- The error of estimate (7) is at most three times the scale of the image. -/
+  estimateError_le : ∀ (n : ℕ)
+    (X Z : ((F.system n).presentation.restrict (retained t n : Set (F.Obj n))).Obj),
+    estimateError n X Z ≤
+      3 * (F.system n).scale ((functor t mem_compressors n).F.toFunctor.obj X).val.1
 
 namespace CompressorRelativeData
 
