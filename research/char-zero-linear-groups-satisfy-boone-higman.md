@@ -38,15 +38,15 @@ generate a field of positive transcendence degree over `Q`. The first cases are
    - over a characteristic-zero field, the scalars are central, and Khanh's
      acyclicity and Steinberg comparison use scalar actions of finite fields,
      which that field does not contain.
-2. **Affine self-similar groups, extending Zaremsky's rational route.** Send `t`
-   to a transcendental `p`-adic integer and let `R^n x| GL_n(R)` act on `Z_p^n`
-   by digits.
-   *Dies:* the digit shift `(t - s)/p` leaves `Z[t]`, and every section-closed
-   finitely generated coordinate domain in a complete DVR with finite residue
-   field has transcendence degree zero
+2. **Affine self-similar groups, extending Zaremsky's rational route.** His
+   Example 4.7 needs a coordinate ring `R` with a finite-index principal ideal
+   `xR` and `∩ x^k R = 0`.
+   *Dies for commutative coordinates:* no finitely generated commutative domain
+   of positive transcendence degree has such an `x`, and the `p`-adic digit
+   version (`t` sent to a transcendental `p`-adic integer) is not section-closed
    (`affine-self-similar-coordinate-rings-are-one-dimensional`).
-   *Not excluded:* self-similar hosts whose translation parts are not a finitely
-   generated ring, and self-similar hosts that are not affine.
+   *Not excluded:* noncommutative coordinate rings, and self-similar hosts that
+   are not affine.
 3. **Twisted Brin--Thompson hosts.** Zaremsky's action criterion needs a finitely
    presented overgroup whose action has finitely generated point stabilizers and
    finitely many orbits of pairs.

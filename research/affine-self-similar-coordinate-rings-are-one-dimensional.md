@@ -2,7 +2,7 @@
 rg: 2
 id: affine-self-similar-coordinate-rings-are-one-dimensional
 kind: claim
-title: Section-closed finitely generated coordinate domains of digit self-similar affine groups have transcendence degree zero
+title: Finitely generated commutative coordinate domains of self-similar affine groups have transcendence degree zero
 distinct_from:
   fp-self-similar-groups-embed-in-fp-simple-groups: that is the embedding theorem for finitely presented self-similar groups; this is an obstruction on the coordinate rings that affine self-similar examples can use.
   rational-linear-groups-satisfy-boone-higman: that uses self-similar affine groups over suitable rings to reach GL_n(Q); this shows that finitely generated section-closed rings of the digit type are one-dimensional, so the construction stays at transcendence degree zero.
@@ -20,6 +20,18 @@ generated commutative ring and a domain of characteristic zero. Suppose `R` is
 
 Then `P = R ∩ pi O` is a maximal ideal of `R`, the localization `R_P` is a
 discrete valuation ring, and `Frac(R)` is a number field.
+
+**Zaremsky's criterion (part b).** Let `R` be a finitely generated commutative
+ring that is a domain of characteristic zero. Suppose some `x in R` has `R/xR`
+finite and `∩_k x^k R = 0`. Then `trdeg(Frac R / Q) = 0`.
+
+This is the ring hypothesis of Zaremsky's Example 4.7 (arXiv:2405.09722v2), read
+from the HTML text on 2026-09-12. There `R^n x| GL_n(R)` acts self-similarly on
+the tree of cosets of the powers of a finite-index principal left ideal `J = Rx`,
+with `x` not a zero divisor and `∩_k R x^k = {0}`. When that group is finitely
+presented, it satisfies Boone--Higman. A finitely generated affine group
+`R^n x| GL_n(R)` forces `R` to be a finitely generated ring, since the
+translation parts of the generators must span `R^n`.
 
 ## Why (SC) is the relevant condition
 
@@ -42,13 +54,14 @@ ring is a finitely generated domain of characteristic zero has
 
 ## Scope
 
-**What it excludes.** This excludes the direct extension of the affine route of
-`rational-linear-groups-satisfy-boone-higman` to matrix entries of positive
-transcendence degree, e.g. `SL_3(Z[t])` with `t` sent to a transcendental
-`p`-adic integer. The digit shift `(t - s)/p` leaves `Z[t]`, and every
-finitely generated section-closed domain containing `t` would be
-one-dimensional.
+**What it excludes.** Every commutative version of the affine route of
+`rational-linear-groups-satisfy-boone-higman` at positive transcendence degree:
+- **Zaremsky's Example 4.7 criterion:** part (b) shows it never holds for a
+  finitely generated commutative coordinate domain of positive transcendence
+  degree. For example `Z[t]/(f)` is infinite for every nonzero nonunit `f`.
+- **The p-adic digit version:** sending `t` to a transcendental `p`-adic integer
+  fails, because the digit shift `(t - s)/p` leaves `Z[t]`.
 
-**What it does not exclude.** Self-similar hosts whose translation parts form a
-module that is not a finitely generated ring, and self-similar hosts that are not
-affine.
+**What it does not exclude.**
+- Noncommutative coordinate rings with a finite-index principal left ideal.
+- Self-similar hosts that are not affine.

@@ -34,4 +34,16 @@ field, of characteristic `p`. Put `P = R ∩ pi O`.
    ```
 
    With `ht P = 1` from step 4, `trdeg_Q Frac(R) = 0`, so `Frac(R)` is a number
-   field. QED
+   field. This proves part (a).
+
+**Part (b).** Let `x in R` with `R/xR` finite and `∩_k x^k R = 0`.
+
+1. **`x` is a nonzero nonunit.** If `x` were a unit, then `∩_k x^k R = R != 0`. If
+   `x = 0`, then `R/xR = R` would be infinite, since `R` contains `Z`.
+2. **A height-one maximal ideal.** Let `Q` be a minimal prime over `xR`. By
+   Krull's principal ideal theorem, `ht Q = 1`. `R/Q` is a quotient of the finite
+   ring `R/xR`, so it is a finite field, of some characteristic `p`. Then
+   `Q ∩ Z = pZ`, which has height one.
+3. **The dimension formula at `Q`,** exactly as in step 5 of part (a):
+   `1 = ht Q = 1 + trdeg_Q Frac(R) - trdeg_(F_p)(R/Q) = 1 + trdeg_Q Frac(R)`.
+   So `trdeg_Q Frac(R) = 0`. QED
