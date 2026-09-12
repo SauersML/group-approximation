@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.AcylindricallyHyperbolicLimitSetEasy
 import GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences
+import GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -20,7 +21,13 @@ and derives each from the landed statements at Hull's Cayley-graph notion:
 * where it is a **hypothesis** on a group given without a generating set
   (`lem:saturation`, and the choice of Hull's generating set at tex line 1629),
   through the hard direction of Osin's Theorem 1.1, taken as the hypothesis
-  `hhard : ∀ G, IsAcylindricallyHyperbolicLimitSet G → IsAcylindricallyHyperbolicOsin G`.
+  `hhard : ∀ G, IsAcylindricallyHyperbolicLimitSet G → IsAcylindricallyHyperbolicOsin G`
+  (`GGT.OsinClassification.isAcylindricallyHyperbolicOsin_of_limitSet`, lane
+  dgo-geometric).
+
+`thm:hull` and `lem:saturation` at this notion over the two Hull leaves are at the
+end, in namespace `TorsionFreeLimitSetEndpoints`; `thm:torsion-free` and
+`cor:regular-nonmf-algebra` over the leaves are in `TorsionFreeLimitSetEndpoints`.
 -/
 
 namespace GroupApproximation
@@ -158,6 +165,39 @@ theorem printedRegularNonMFAlgebraLimitSet_of_printed (h : PrintedRegularNonMFAl
       Q instQ hah, hrest⟩
 
 end TorsionFreeLimitSetNotion
+
+namespace TorsionFreeLimitSetEndpoints
+
+open GroupApproximation.Manuscript.NonMF.TorsionFree
+open GroupApproximation.Manuscript.NonMF.TorsionFreePrinted
+open GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion
+
+/-- **`thm:hull` at the limit-set notion** (tex lines 1624–1628), from the two Hull
+leaves. -/
+theorem manuscriptHullTheoremLimitSet_of_leastAreaLeaves
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
+    PrintedHullSmallCancellationLimitSet :=
+  printedHullSmallCancellationLimitSet_of_current
+    (TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheorem_of_leastAreaLeaves
+      hgreendlinger hbridge)
+
+/-- **`lem:saturation` at the limit-set notion** (tex line 1650), from the two Hull
+leaves and the hard direction of Osin's Theorem 1.1. -/
+theorem manuscriptSaturationLimitSet_of_leastAreaLeaves
+    (hhard : ∀ (G : Type) [Group G],
+      GGT.SequentialBoundary.IsAcylindricallyHyperbolicLimitSet G →
+        GGT.IsAcylindricallyHyperbolicOsin G)
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}) :
+    PrintedSaturationLimitSet :=
+  printedSaturationLimitSet_of_noOmega hhard
+    (TorsionFreeLeastAreaAssembly.printedSaturationNoOmega_of_leastAreaLeaves
+      hgreendlinger hbridge)
+
+end TorsionFreeLimitSetEndpoints
 end NonMF
 end Manuscript
 end GroupApproximation
@@ -167,3 +207,5 @@ end GroupApproximation
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.printedHullSmallCancellationLimitSet_of_current
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.printedSaturationLimitSet_of_noOmega
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.printedRegularNonMFAlgebraLimitSet_of_printed
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptHullTheoremLimitSet_of_leastAreaLeaves
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptSaturationLimitSet_of_leastAreaLeaves

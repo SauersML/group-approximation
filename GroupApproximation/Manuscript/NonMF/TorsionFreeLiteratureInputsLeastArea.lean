@@ -1,8 +1,12 @@
 import GroupApproximation.GGT.HullSCLemma44BoundedLeastAreaCanonical
-import GroupApproximation.GGT.HullSCBoundedImageEmbedding
-import GroupApproximation.GGT.RelHypProp23FromHullStep
+import GroupApproximation.GGT.RelHypProp23FromLeastAreaLeaves
 import GroupApproximation.GGT.HullSCFreeProductFactor
-import GroupApproximation.Manuscript.NonMF.TheoremCAssembly
+import GroupApproximation.GGT.HullSCUnionGeometryAssembly
+import GroupApproximation.GGT.TreeWPDAxis
+import GroupApproximation.GGT.DGOTheorem442Proof
+import GroupApproximation.Higman.OmegaSharedProof
+import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
+import GroupApproximation.Manuscript.NonMF.FournierFacioInput
 import GroupApproximation.Manuscript.NonMF.FournierFacioParagraphFromSimpleFactor
 import GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly
 import GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion
@@ -18,7 +22,7 @@ paragraph cites.  Two of its fields rest on the admissions of `TheoremCAssembly`
   and the family-inclusion Lemma 4.4;
 * `hullCommonQuotient`, through `TorsionFree.hullOneStep`.
 
-This module is its twin with every Hull-side input spent through the same pair of
+This module is its twin, with every Hull-side input spent through the same pair of
 leaves as the section's Hull chain:
 
 * `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, Osin's
@@ -26,20 +30,44 @@ leaves as the section's Hull chain:
 * `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`, Osin's
   Lemma 5.1 in the embedded form.
 
-The quotient field is `GGT.RelHyp.fournierFacioQuotientStatement_of_boundedLeaves`
-on the least-area bounded canonical Lemma 4.4 and the least-area Lemma 4.9. It
-also asks for Osin's Lemma 5.1 in image form, `HullSC.BoundedImageEmbeddingStatement`,
-carried here as a named hypothesis until its least-area producer lands.  The common quotient field is
-`HullSC.hullCommonQuotient_of_oneStep_of_geometry` on the least-area one-step
-theorem, with the closed union geometry.  Chiodo's theorem and Minasyan–Osin are
-the closed fields of `TheoremC`; Kotowski–Kotowski / Ollivier–Wise is the named
-hypothesis `hKO`.
+The quotient field is `GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves`:
+Osin's Theorem 2.4 at Hull's published relator, on the least-area bounded canonical
+Lemma 4.4, the least-area image form of Lemma 5.1 and the least-area Lemma 4.9.
+The common quotient field is `HullSC.hullCommonQuotient_of_oneStep_of_geometry` on
+the least-area one-step theorem, with the closed union geometry
+(`HullSCUnionGeometry.freeProductUnionGeometryStatement_unconditional`).  The other
+two fields are closed producers, taken directly rather than through
+`TheoremCAssembly`:
+
+* Chiodo's theorem, `TheoremC.chiodo_of_omega` on Higman's ω-closure
+  (`Higman.OmegaSharedProof.omegaInput`);
+* Minasyan–Osin at `E`, `GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osinTheorem12`
+  on `GGT.Elementary.osinTheorem12_unconditional`.
+
+Kotowski–Kotowski / Ollivier–Wise is the named hypothesis `hKO`.
 
 `fournierFacioParagraph_of_leastAreaLeaves` is the paragraph of tex lines
 1675–1685 from these inputs and a finitely presented infinite simple torsion-free
 group (`hW`, the Hyde–Lodha slot), through
 `TorsionFreePrinted.fournierFacioParagraph_of_literatureInputs`.  The section's
 endpoints over the least-area leaves then need no paragraph hypothesis.
+
+## Status: the residual hypotheses and who owns them
+
+1. `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, the
+   least-area Greendlinger waist: lanes hull-select and hull-unbound.
+2. `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`, the embedded
+   bridge (Dahmani–Guirardel–Osin 4.24 in derivation form, letter pullback): lanes
+   hull-bridge and hull-component.
+3. `TheoremC.KotowskiOllivierStatement`: lanes kh-hyperbolic, kh-torsion, kh-ejz,
+   kh-cckw.
+4. `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`, the Hyde–Lodha
+   group: lanes simple-group, fff-periodic, fff-quotient.
+5. `TorsionFreePrinted.SimpleUniqueTraceAtHypEmbedded`: lane dgo-analytic; DGO 2.35
+   rests only on `NaiveFreeProductAtAcylindricallyHyperbolic` (lane dgo-geometric),
+   through `dgoTheorem235Printed_of_naiveFreeProduct`.
+6. `TorsionFreePrinted.GerasimovaOsinTheorem11Printed`: lane go-sr1, with
+   `exists_cyclic_hypEmbedded_twoSided` (lane dgo-geometric).
 -/
 
 namespace GroupApproximation
@@ -47,24 +75,6 @@ namespace HullSC
 
 open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
-
-/-- **Fournier-Facio Proposition 2.3 with Osin's Theorem 2.4(5), the manuscript
-quotient field**, from the least-area leaves and Osin's Lemma 5.1 in image
-form. -/
-theorem fournierFacioQuotientStatement_of_leastAreaLeaves
-    (hgreendlinger :
-      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
-    (hbridge : RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : BoundedImageEmbeddingStatement.{0, 0}) :
-    Manuscript.NonMF.TheoremC.FournierFacioQuotientStatement :=
-  GGT.RelHyp.fournierFacioQuotientStatement_of_boundedLeaves
-    (boundedHullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeastArea
-      (relativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement_of_leastAreaGreendlinger
-        hgreendlinger relativeDiscRealizationSpellingStatement
-        relativeExteriorArcConversionAtWordRotatedStatement)
-      hbridge)
-    hemb
-    (hullLemma49KernelPowerStatement_of_leastAreaGreendlinger hgreendlinger)
 
 /-- **Hull's Corollary 7.4, the common quotient theorem**, from the least-area
 leaves: the least-area one-step theorem applied over the free product, with the
@@ -76,7 +86,7 @@ theorem hullCommonQuotient_of_leastAreaLeaves
     Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=
   hullCommonQuotient_of_oneStep_of_geometry
     (hullOneStepStatement_of_leastAreaLeaves hgreendlinger hbridge)
-    Manuscript.NonMF.TheoremC.hullFreeProductUnionGeometry
+    HullSCUnionGeometry.freeProductUnionGeometryStatement_unconditional
 
 end HullSC
 
@@ -93,28 +103,28 @@ theorem literatureInputs_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement) : TheoremC.LiteratureInputs :=
-  { chiodo := TheoremC.chiodo
+  { chiodo := TheoremC.chiodo_of_omega Higman.OmegaSharedProof.omegaInput
     kotowskiOllivier := hKO
     smallCancellationQuotient :=
-      HullSC.fournierFacioQuotientStatement_of_leastAreaLeaves hgreendlinger hbridge hemb
-    minasyanOsin := TheoremC.minasyanOsin
+      GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves hgreendlinger hbridge
+    minasyanOsin :=
+      GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osinTheorem12
+        GGT.Elementary.osinTheorem12_unconditional
     hullCommonQuotient :=
       HullSC.hullCommonQuotient_of_leastAreaLeaves hgreendlinger hbridge }
 
 /-- **The Fournier-Facio paragraph** (tex lines 1675–1685), from the least-area
-leaves, Osin's Lemma 5.1 in image form, Kotowski–Kotowski / Ollivier–Wise, and a
-finitely presented infinite simple torsion-free group. -/
+leaves, Kotowski–Kotowski / Ollivier–Wise, and a finitely presented infinite simple
+torsion-free group. -/
 theorem fournierFacioParagraph_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement)
     (hW : FinitelyPresentedInfiniteSimpleStatement) : FournierFacioParagraph :=
   fournierFacioParagraph_of_literatureInputs
-    (literatureInputs_of_leastAreaLeaves hgreendlinger hbridge hemb hKO) hW
+    (literatureInputs_of_leastAreaLeaves hgreendlinger hbridge hKO) hW
 
 /-- **`thm:torsion-free`, exactly as printed** (tex line 284), over the least-area
 leaves, with the paragraph produced rather than assumed. -/
@@ -122,11 +132,10 @@ theorem manuscriptTorsionFreeTheorem_of_hullLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement)
     (hW : FinitelyPresentedInfiniteSimpleStatement) : PrintedTorsionFreeTheorem :=
   TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeTheorem_of_leastAreaLeaves
-    (fournierFacioParagraph_of_leastAreaLeaves hgreendlinger hbridge hemb hKO hW)
+    (fournierFacioParagraph_of_leastAreaLeaves hgreendlinger hbridge hKO hW)
     hgreendlinger hbridge
 
 /-- **`thm:torsion-free` in the radical form**, over the same inputs. -/
@@ -134,12 +143,11 @@ theorem manuscriptTorsionFreeFullMFRadical_of_hullLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement)
     (hW : FinitelyPresentedInfiniteSimpleStatement) :
     TheoremC.PrintedTorsionFreeFullMFRadical :=
   TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeFullMFRadical_of_leastAreaLeaves
-    (fournierFacioParagraph_of_leastAreaLeaves hgreendlinger hbridge hemb hKO hW)
+    (fournierFacioParagraph_of_leastAreaLeaves hgreendlinger hbridge hKO hW)
     hgreendlinger hbridge
 
 /-- **`cor:regular-nonmf-algebra`, along the printed proof**, over the same inputs,
@@ -149,13 +157,12 @@ theorem manuscriptRegularNonMFAlgebra_of_hullLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement)
     (hW : FinitelyPresentedInfiniteSimpleStatement)
     (hDGO : SimpleUniqueTraceAtHypEmbedded)
     (hGO : GerasimovaOsinTheorem11Printed) : PrintedRegularNonMFAlgebra :=
   TorsionFreeLeastAreaAssembly.manuscriptRegularNonMFAlgebra_of_leastAreaLeaves
-    (fournierFacioParagraph_of_leastAreaLeaves hgreendlinger hbridge hemb hKO hW)
+    (fournierFacioParagraph_of_leastAreaLeaves hgreendlinger hbridge hKO hW)
     hgreendlinger hbridge hDGO hGO
 
 /-- **`thm:torsion-free` at Osin's notion**, over the same inputs. -/
@@ -163,33 +170,30 @@ theorem manuscriptTorsionFreeTheoremOsin_of_hullLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement)
     (hW : FinitelyPresentedInfiniteSimpleStatement) :
     TorsionFreeOsinNotion.PrintedTorsionFreeTheoremOsin :=
   TorsionFreeOsinNotion.printedTorsionFreeTheoremOsin_of_printed
-    (manuscriptTorsionFreeTheorem_of_hullLeaves hgreendlinger hbridge hemb hKO hW)
+    (manuscriptTorsionFreeTheorem_of_hullLeaves hgreendlinger hbridge hKO hW)
 
 /-- **`cor:regular-nonmf-algebra` at Osin's notion**, over the same inputs. -/
 theorem manuscriptRegularNonMFAlgebraOsin_of_hullLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
     (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
-    (hemb : HullSC.BoundedImageEmbeddingStatement.{0, 0})
     (hKO : TheoremC.KotowskiOllivierStatement)
     (hW : FinitelyPresentedInfiniteSimpleStatement)
     (hDGO : SimpleUniqueTraceAtHypEmbedded)
     (hGO : GerasimovaOsinTheorem11Printed) :
     TorsionFreeOsinNotion.PrintedRegularNonMFAlgebraOsin :=
   TorsionFreeOsinNotion.printedRegularNonMFAlgebraOsin_of_printed
-    (manuscriptRegularNonMFAlgebra_of_hullLeaves hgreendlinger hbridge hemb hKO hW hDGO hGO)
+    (manuscriptRegularNonMFAlgebra_of_hullLeaves hgreendlinger hbridge hKO hW hDGO hGO)
 
 end TorsionFreeLiteratureInputsLeastArea
 end NonMF
 end Manuscript
 end GroupApproximation
 
-#audit_axioms GroupApproximation.HullSC.fournierFacioQuotientStatement_of_leastAreaLeaves
 #audit_axioms GroupApproximation.HullSC.hullCommonQuotient_of_leastAreaLeaves
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.fournierFacioParagraph_of_leastAreaLeaves
