@@ -58,7 +58,8 @@ theorem exists_algHom_adjoin_apply {K : Type} [Field K] [CharZero K] {ι : Type}
   have h1 : ht.reprField p =
       algebraMap (MvPolynomial ι ℚ) (FractionRing (MvPolynomial ι ℚ)) (MvPolynomial.X i) := by
     apply (IsFractionRing.lift (K := FractionRing (MvPolynomial ι ℚ)) hinjt).injective
-    rw [AlgebraicIndependent.lift_reprField, IsFractionRing.lift_algebraMap]
+    rw [IsFractionRing.lift_algebraMap]
+    refine (AlgebraicIndependent.lift_reprField ht p).trans ?_
     show t i = MvPolynomial.aeval t (MvPolynomial.X i)
     rw [MvPolynomial.aeval_X]
   rw [RingHom.toRatAlgHom_apply]
