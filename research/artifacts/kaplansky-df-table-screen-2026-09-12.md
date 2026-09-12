@@ -80,10 +80,10 @@ are balls. Every cell lies in `BA u {1}`, because the balls are symmetric and co
 
 | window | `|A|`, `|B|` | cells | relators | characters | classes | merged cells | singletons | largest class | compact | stage 2 and verdict |
 |---|---|---|---|---|---|---|---|---|---|---|
-| v 1:1 | 8, 8 | 44 | 64 | 4 | 10 | 42 | 2 | 8 | 6, 10 | pending |
-| atlas 1:1 | 9, 9 | 53 | 81 | 4 | 20 | 40 | 13 | 2 | 4, 8 | pending |
-| v-eld1 1:1 | 18, 18 | 259 | 324 | 12 | 81 | 239 | 20 | 8 | 16, 45 | pending |
-| eld 1:1 | 35, 35 | 933 | 1,225 | 33 | 338 | 676 | 257 | 2 | 34, 258 | pending |
+| v 1:1 | 8, 8 | 44 | 64 | 4 | 10 | 42 | 2 | 8 | 6, 10 | **DEAD.** Replay of 360 images leaves 0 classes, 0 images rejected. Minimal certificate: 4 characters and 5 images, in `screen/certs/` |
+| atlas 1:1 | 9, 9 | 53 | 81 | 4 | 20 | 40 | 13 | 2 | 4, 8 | **DEAD.** Replay of 20,458 images leaves 0 classes, 0 images rejected. Minimal certificate: 4 characters and 5 epimorphisms onto A5, in `screen/certs/` |
+| v-eld1 1:1 | 18, 18 | 259 | 324 | 12 | 81 | 239 | 20 | 8 | 16, 45 | SURVIVES: no GAP image obtained, 81 classes. Class SAT: UNSAT (324 AND variables, 20 singleton rows, 239 class cells, 0.0 s; solver verdict, no proof log) |
+| eld 1:1 | 35, 35 | 933 | 1,225 | 33 | 338 | 676 | 257 | 2 | 34, 258 | SURVIVES: no GAP image obtained; the nine-leaf representation refines 338 classes to 304. Class SAT: UNSAT (1,225 AND variables, 325 singleton rows, 608 class cells, 0.0 s; solver verdict, no proof log) |
 | v 2:2 | 44, 44 | 978 | 1,936 | 2 | 4 | 978 | 0 | 275 | 6, 290 | pending |
 | atlas 2:2 | 53, 53 | 1,603 | 2,809 | 3 | 27 | 1,603 | 0 | 99 | 4, 112 | pending |
 | v 2:3 | 44, 211 | 4,410 | 16,632 | 0 | 1 | 4,410 | 0 | 4,410 | 6, 1,962 | pending |
