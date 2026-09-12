@@ -126,6 +126,53 @@ Induction on the number `r` of blocks.
     bijective, which is condition (1).
   - Lemma 2.2 finishes the step. QED
 
+### The peeling criterion
+
+The same induction tolerates offsets and own-block nonlinearity once they
+vanish with the earlier blocks.
+
+**Theorem 2.3.** Let `F` be a cellular automaton on a product full shift with
+block rows `F_1, ..., F_r`, block `a` with alphabet `R^(d_a)`. Suppose the
+blocks can be ordered so that, for every `a`, setting
+`X_1 = ... = X_(a-1) = 0` turns row `a` into
+
+```text
+X_a(g) + sum_(s in S) C_(a,s)(X_(a+1), ..., X_r)(g) . X_a(g s),                  (2.2)
+```
+
+with local controllers reading only later blocks, and with bijective constant
+part `L0_a` (all later blocks zero). If `F` is injective, then `F` is
+surjective.
+
+Before the earlier blocks are set to zero, row `a` is unrestricted. It may
+carry pure-others offsets and nonlinearity in its own block, provided these
+vanish whenever `X_1, ..., X_(a-1)` vanish. Theorem 2.1 is the special case
+with no such terms; its hypotheses hold in every ordering, because a controller
+reading any other block reads only later blocks once the earlier ones are zero.
+
+*Proof.* For `a = 1, ..., r` let `S_a` be the automaton on blocks
+`a, ..., r` sending `(X_a, ..., X_r)` to rows `a, ..., r` of
+`F(0, ..., 0, X_a, ..., X_r)`.
+
+- **`S_a` is injective.** For `b < a`, row `b` of
+  `F(0, ..., 0, X_a, ..., X_r)` is (2.2) for `b` evaluated at `X_b = 0`, which
+  is zero. So `F(0, X_(>=a)) = (0, S_a(X_(>=a)))`, and injectivity of `F`
+  passes to `S_a`.
+- **Downward induction.** `S_r = L0_r` is bijective. For `a < r`, row `a` of
+  `S_a` is `L_Y X_a` with `Y = (X_(a+1), ..., X_r)`, and `L_0 = L0_a` is
+  bijective. Also `S_a(0, Y) = (0, S_(a+1)(Y))`, so `v_0 = S_(a+1)`, which is
+  bijective by induction. Lemma 2.2 makes `S_a` surjective, hence bijective.
+- **Conclusion.** `S_1 = F`. QED
+
+**No ordering peels the universal normal form.** In
+`H(x,u) = (x + u, F(x) - x - u)`:
+- with `x` first, its row `x + u` has the offset `u`;
+- with `u` first, its row `-u + (F(x) - x)` has the offset `F(x) - x`, which
+  vanishes identically only when `F = id`.
+
+This agrees with universality: the peeling criterion cannot apply to every
+automaton unless the conjecture holds.
+
 ### Corollaries
 
 - **Bipartite quadratic operand graphs** (09-08 block-elimination artifact).
@@ -152,7 +199,10 @@ Induction on the number `r` of blocks.
 
 ## 3. Where the theorem stops, sharply
 
-Each hypothesis of Theorem 2.1 marks a boundary of the conjecture.
+Each hypothesis of Theorem 2.1 marks a boundary of the conjecture. Under
+Theorem 2.3 the boundaries (B2) and (B3) are crossed only by offsets or
+own-block nonlinearity that survive with the earlier blocks set to zero, in
+every ordering of the blocks.
 
 - **(B1) The constant own part must be invertible.** Without that hypothesis,
   a single block with constant controllers gives `F = I + A`, an arbitrary
@@ -181,12 +231,13 @@ Each hypothesis of Theorem 2.1 marks a boundary of the conjecture.
 
 ## 4. Consequence for counterexample design
 
-A strict injective automaton admits no stable reversible equivalence and no
-block partition that brings it to the form (2.1) with invertible constant
-parts. Every presentation of a counterexample must keep a pure-others offset,
-an own-block nonlinearity, or a non-invertible constant own part. The
-universal three-factor and recipient-affine normal forms keep offsets in every
-row, which is consistent with their universality.
+A strict injective automaton admits no stable reversible equivalence, no
+block partition and no ordering satisfying Theorem 2.3. In every ordered
+presentation of a counterexample, some row keeps, after the earlier blocks are
+set to zero, a pure-others offset, an own-block nonlinearity, or a
+non-invertible constant own part. The universal recipient-affine normal form
+has an offset in its first row under both orderings, which is consistent with
+its universality.
 
 ## 5. What this does not settle
 
