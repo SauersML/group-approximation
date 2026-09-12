@@ -158,7 +158,56 @@ This is the same uniform input recorded in
   model of `Gamma`, and it needs a hyperlinear model of `S` as input.
 - **Negative (lane `ff-hyperlinear-2`).**  Any universal no-go has to forbid
   the Hilbert-hotel shift of Section 4 quantitatively in `R^omega`.
+- **Correction (second pass).**  The bilateral-shift ansatz above is wrong for
+  two compressors.  See Section 6.
 - **Recorded sufficient condition.**  `fournier-facio-simple-factor-not-hyperlinear`
   closes the negative branch through (W8).  It is at least as hard as
   producing a first non-hyperlinear group, and is recorded only to make the
   permanence explicit in the graph.
+
+## 6. Second pass: the positive construction and its gates
+
+**Tree slots.**  `fournier-facio-compression-tree-lamp-group`.  The skeleton
+has `P >= S x P_1 x P_2` with `u_i P u_i^-1 = P_i`.  Pushing that triple
+through both stable letters gives independent pairwise commuting copies
+`S_w = t_w pi(S) t_w^-1`, `w in {1,2}^*`, all inside `Gamma`, with `Ad(t_i)`
+acting as the prefix map `w -> iw`.  Both parent copies
+`t_i^-1 pi(S) t_i` centralize `Gamma`.  `S_2` commutes with every `J_k`, so
+the Z-indexed slots of Section 5 cannot host it.  A model has to be a tensor
+product over the rooted binary tree plus parents, with `t_1,t_2` acting as
+the two child shifts.
+
+**What blocks the model.**
+
+1. *Simple factor.*  Any witness restricts to a hyperlinear model of `S`.
+   None is recorded for any finitely presented infinite simple group.
+   - A finitely presented simple group is isolated in the space of marked
+     groups, so marked limits add nothing.
+   - A residually amenable infinite simple group is amenable.
+   - Amenable-amalgam permanence (Brown--Dykema--Jung) would need a splitting
+     of `S` over an infinite amenable edge group; no such example is recorded.
+2. *Kazhdan subgroup.*  `Gamma = pi(P)` is the image, under a quotient
+   controlled only on finite sets, of an Osin small-cancellation Kazhdan
+   group containing a universal finitely presented torsion-free group.  The
+   elements outside `pi(S) alpha_1(Gamma) alpha_2(Gamma)` have no explicit
+   description, so the self-similar formula cannot define them.
+   Hyperlinearity of `Gamma` is gated by the peer node
+   `fournier-facio-compression-subgroup-not-hyperlinear`.
+3. *Joint model.*  With `N = u(Gamma)''`, a witness needs unitaries in
+   `R^omega` compressing `N` onto commuting subalgebras, with
+   `N >= L(S) tensor Ad(v_1)(N) Ad(v_2)(N)`, compatible with the extra
+   relations of `G`.  `G` is a proper quotient of the double ascending HNN
+   extension of `Gamma`, because it is Kazhdan and that extension surjects
+   onto `F_2`.  The double HNN kernel is a tree of groups amalgamated over
+   the Kazhdan group `Gamma`, so amenable-amalgam permanence does not apply
+   even when `Gamma` is hyperlinear.
+
+`L(Gamma) >= L(S) tensor L(Gamma) tensor L(Gamma)` exists as an abstract
+inclusion of II_1 factors, because the group inclusion exists.  So the only
+obstruction is `R^omega`-embeddability itself, and no finite bookkeeping in
+the tensor model can decide it.
+
+**Recommendation.**  Put the positive tensor model on hold.  It becomes
+actionable only after gate 1 (a hyperlinear finitely presented infinite simple
+torsion-free group) and gate 2 (a hyperlinear model of `Gamma`) are resolved.
+Neither is specific to this group.
