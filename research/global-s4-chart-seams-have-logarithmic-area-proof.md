@@ -40,5 +40,16 @@ With `N=2^n`, `log binom(N,4) >= 4(n-1) log 2 - log 24`. So
 `H >= (4(n-1) log 2 - log 24)/(4 log(2|X|+1))`, and solving for `C` gives
 `(GSC)` with `c = A log 2 / log(2|X|+1)`.
 
-The argument uses every adjacent pair along one path of length four. It
-therefore says nothing about averaged seam bounds or contextual charts.
+**Averaged form.** Call an adjacent pair bad if every shared-edge comparison
+has area above `C`, and suppose at most a fraction `epsilon<1/8` of adjacent
+pairs is bad. The group `Sym(N)` acts transitively on ordered adjacent pairs of
+`J(N,4)` and preserves the set of geodesics between distance-four pairs. So
+for a random distance-four pair and a random geodesic between them, the edge
+in each position is uniform, and the geodesic meets a bad edge with
+probability at most `4 epsilon`. Every distance-four pair has the same
+`(4!)^2` geodesics, so at most a `4 epsilon` fraction of such pairs has no good
+geodesic. Distance-four pairs make up a fraction
+`binom(N-4,4)/binom(N,4) -> 1` of all pairs. Hence some `S_0` reaches at least
+`binom(N,4)/2` sets `S` along good paths of length at most four once `N` is
+large. Their names are distinct and lie in `Ball_V(4H)`, and the counting
+above gives `C >= c n - c'` with a larger `c'`.
