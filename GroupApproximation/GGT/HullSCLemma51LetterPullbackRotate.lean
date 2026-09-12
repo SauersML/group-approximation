@@ -49,7 +49,7 @@ theorem CosetLettersAt.right_of_append {D : GGT.RelGenSet G Lambda} {lam : Lambd
     rw [Nat.add_comm]
     exact List.take_length_add_append i
   have hres := h (i + u.length) hi' (by rw [← hget]; exact hc)
-    (by rw [htake, GGT.OsinComponents.listVal_append, ← mul_assoc]; exact hv)
+    (by rw [htake, GGT.OsinComponents.listVal_append]; simpa only [mul_assoc] using hv)
   rwa [← hget] at hres
 
 /-- **Avoidance is the vacuous coset condition** at the base coset. -/
@@ -149,7 +149,7 @@ theorem exists_rotatedLift (D : GGT.RelGenSet G Lambda) (q : G →* Q)
         (q (GGT.RelLetter.listVal (p.take k)))⁻¹ * q h := by
       rw [← hpval]
       group
-    rw [hx, he]
+    rw [hx]
     change (q (GGT.RelLetter.listVal (p.take k)))⁻¹ * q h *
       (q h⁻¹ * q (GGT.RelLetter.listVal (p.take k))) = 1
     rw [map_inv]
