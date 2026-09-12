@@ -16,7 +16,8 @@ The steps are:
 * the heat identification (8b);
 * the equivalence (12) between 6.2(a) and uniform rounding;
 * the balanced-flow central-height lemma for the native compressor;
-* the swap ledger (11) with `H = <L, w>`.
+* the generation identity (9), `H = <L, uKu^(-1)>`, with (12) in the
+  exact ultraproduct. The finite-level swap ledger (11) is not needed.
 
 * The (TT)/T input supplies property (T), hence the Kazhdan SOS certificate
   behind the heat estimates.

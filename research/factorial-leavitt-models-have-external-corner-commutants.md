@@ -8,9 +8,15 @@ distinct_from:
   leavitt-channel-rounding-forces-nonhyperlinearity: that is the two-use conditional theorem from unrestricted channel rounding to nonhyperlinearity; this is its second use on its own, for an arbitrary canonical model, with factoriality instead of scalarity as the contradiction.
   at-op62-holds-for-representation-lifts: that proves Alekseev--Thom Open Problem 6.2(a) when the coordinate lifts are genuine representations; this shows 6.2(a) fails for the native corner of every canonical Leavitt model with factorial global commutant.
   native-enlargements-require-external-haar-mass: that bounds the Haar mass outside the canonical group factor for small-leakage S3 enlargements; this is about uniform rounding of the native heat and factoriality of the whole-group commutant.
+artifacts:
+  - research/artifacts/review-factorial-leavitt-external-corner-2026-09-12.md
 ---
 
-**ESTABLISHED (written proof in two audited artifacts; not Lean-verified).**
+**ESTABLISHED (written proof in audited artifacts; independent review PASS,
+2026-09-12; not Lean-verified).** Trust surface: the dimension-change clause
+of item 1 rests on the corner-rounding theorem, Section 10 of the heat-rounding
+countermodel artifact, which the reviewer did not re-read. The same-dimension
+statement does not need it.
 
 Setting:
 * `H = L_(F_2)(1,2)^x`, and `L = EL_3(R)` is the native rank-three corner
@@ -60,12 +66,13 @@ Setting:
     (`research/artifacts/leavitt-central-height-and-coordinate-swap-gap-2026-09-08.md`,
     Sections 1--2).
 * **Native generation.**
-  * `z` commutes with `pi(k_+)` and `pi(k_-)`, which integrated retention
-    captures in `A_n`.
-  * The commutator ledger (11) for the native swap `w`, together with
-    `H = <L, w>`, puts `z` in `C`.
-  * Since `z in Z(D)` and `C subset D`, `z in Z(C)` (same artifact, Sections
-    3--5).
+  * `z in Z(D)` commutes with `pi(K) subset D` and with `pi(u)`, hence with
+    `pi(uKu^(-1))`.
+  * The generation identity `H = <L, uKu^(-1)>` (eq. (9) of the same
+    artifact) puts `z` in `C`.
+  * Since `z in Z(D)` and `C subset D`, `z in Z(C)` (Section 5, eq. (12)).
+    The swap ledger (11) is only the finite-level version, and it is not
+    needed here.
 * **Conclusion 2.** In a factor `Z(C) = C1`, which contradicts `tau(z) = 0`
   with `||z||_2 >= 1/8`.
 
