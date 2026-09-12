@@ -12,13 +12,16 @@ import Mathlib.Topology.Algebra.Star.Unitary
 import Mathlib.Topology.Bases
 import Mathlib.Topology.Connected.PathConnected
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrong
+import GroupApproximation.Manuscript.NinetyNineProblems.LIXStablyFinite
 
 /-!
 # Proof of the strengthened STW Problem LIX theorems
 
 The algebra is `GroupApproximation.LIX.Gen.LIXLimit n`, the inductive limit of the STW LIX
 tower at rank `n`: corners of matrices over `C(X, ℂ)` with `X = S^{2n} × ∏ ℂP^{2ⁱ·n}`.  The
-development proves it separable, C⋆-simple and nontrivial at every rank, and
+development proves it separable, C⋆-simple, nontrivial and stably finite at every rank (the
+last in `Manuscript/NinetyNineProblems/LIXStablyFinite.lean`: a tracial state on the limit,
+faithful by simplicity), and
 `Manuscript/NinetyNineProblems/ProblemLIXStrong.lean` assembles those with the power witness
 into the three statements this file translates into the challenge's vocabulary.
 
@@ -122,11 +125,13 @@ null-homotopic and whose `k`-th power stays outside `U₀` whenever a prime divi
 It follows from the one remaining named proposition `NinetyNineProblems.LemmaTwoHoldsAtPowers n`
 by `NinetyNineProblems.climbedPowersOutside_of_lemmaTwoHoldsAtPowers`, Corollary 4 being the
 theorem `LIX.Gen.corollary4Powers`.  Everything else — nontriviality, simplicity, separability,
-and the exchange of the contrapositive for the divisibility — is a theorem of the development. -/
+stable finiteness, and the exchange of the contrapositive for the divisibility — is a theorem of
+the development. -/
 theorem exists_simple_separable_powers_outside_U0_of (n : ℕ) (hn : 2 ≤ n)
     (hclimb : NinetyNineProblems.ClimbedPowersOutside n) :
     ∃ (A : Type) (_ : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
        letI : Fintype (Fin 2) := Fin.fintype 2
@@ -135,9 +140,10 @@ theorem exists_simple_separable_powers_outside_U0_of (n : ℕ) (hn : 2 ≤ n)
             (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (v : A)) ∧
          ∀ k : ℕ, v ^ k ∈ pathComponent (1 : unitary A) →
            ∀ p : ℕ, p.Prime → p ∣ n → p ∣ k) := by
-  obtain ⟨A, inst, hnt, hsimp, hsep, hwit⟩ :=
-    NinetyNineProblems.exists_isSimpleRing_separable_hasK1InjPowerWitness_of n hn hclimb
-  exact ⟨A, inst, hnt, hsimp, hsep, powers_witness_of A n hwit⟩
+  obtain ⟨A, inst, hnt, hsimp, hsep, hsf, hwit⟩ :=
+    NinetyNineProblems.exists_isSimpleRing_separable_stablyFinite_hasK1InjPowerWitness_of n hn
+      hclimb
+  exact ⟨A, inst, hnt, hsimp, hsep, hsf, powers_witness_of A n hwit⟩
 
 /-- **The `n = 6` instance**, over the same proposition at rank six.
 
@@ -147,6 +153,7 @@ theorem exists_simple_separable_order_six_witness_of
     (hclimb : NinetyNineProblems.ClimbedPowersOutside 6) :
     ∃ (A : Type) (_ : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
        letI : Fintype (Fin 2) := Fin.fintype 2
@@ -154,9 +161,9 @@ theorem exists_simple_separable_order_six_witness_of
          (∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
             (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (v : A)) ∧
          ∀ k : ℕ, v ^ k ∈ pathComponent (1 : unitary A) → 6 ∣ k) := by
-  obtain ⟨A, inst, hnt, hsimp, hsep, hwit⟩ :=
+  obtain ⟨A, inst, hnt, hsimp, hsep, hsf, hwit⟩ :=
     exists_simple_separable_powers_outside_U0_of 6 (by norm_num) hclimb
-  refine ⟨A, inst, hnt, hsimp, hsep, ?_⟩
+  refine ⟨A, inst, hnt, hsimp, hsep, hsf, ?_⟩
   letI : PartialOrder A := CStarAlgebra.spectralOrder A
   letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
   letI : Fintype (Fin 2) := Fin.fintype 2
@@ -173,6 +180,7 @@ theorem exists_simple_separable_squarefree_witness_of (N : ℕ) (hN : 2 ≤ N)
     (hsq : Squarefree N) (hclimb : NinetyNineProblems.ClimbedPowersOutside N) :
     ∃ (A : Type) (_ : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
        letI : Fintype (Fin 2) := Fin.fintype 2
@@ -180,9 +188,9 @@ theorem exists_simple_separable_squarefree_witness_of (N : ℕ) (hN : 2 ≤ N)
          (∃ w ∈ pathComponent (1 : unitary (CStarMatrix (Fin 2) (Fin 2) A)),
             (w : CStarMatrix (Fin 2) (Fin 2) A) = cornerDiag A 2 (v : A)) ∧
          ∀ k : ℕ, v ^ k ∈ pathComponent (1 : unitary A) → N ∣ k) := by
-  obtain ⟨A, inst, hnt, hsimp, hsep, hwit⟩ :=
+  obtain ⟨A, inst, hnt, hsimp, hsep, hsf, hwit⟩ :=
     exists_simple_separable_powers_outside_U0_of N hN hclimb
-  refine ⟨A, inst, hnt, hsimp, hsep, ?_⟩
+  refine ⟨A, inst, hnt, hsimp, hsep, hsf, ?_⟩
   letI : PartialOrder A := CStarAlgebra.spectralOrder A
   letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
   letI : Fintype (Fin 2) := Fin.fintype 2

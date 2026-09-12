@@ -35,6 +35,9 @@ or infinite order, while still lying in the kernel of the map to `K₁(A)`.
 Taking `n = 6` gives an element whose order is divisible by six; taking `n`
 squarefree gives one whose order is divisible by `n`.
 
+Each of these algebras is also stably finite: in every matrix amplification
+`Mₘ(A)`, an isometry is a unitary.
+
 `v ∉ U₀(A)` is not a separate hypothesis or conclusion anywhere below.  It is
 the power clause read at `k = 1`: some prime `p` divides `n`, because `2 ≤ n`,
 and `p ∣ 1` is false for a prime.
@@ -46,7 +49,8 @@ What is proved is a divisibility, a lower bound on the order that a mod-`p`
 argument can see, and the statements say exactly that: an implication from
 `v ^ k ∈ U₀(A)` to `p ∣ k`, for each prime `p ∣ n`.  In particular nothing
 below asserts `K₁(A) = 0`, nor that the order of `v` is finite, nor that
-`p² ∣ k`.
+`p² ∣ k`.  Stable finiteness is claimed, in the elementary form stated; no
+trace, nuclearity, real rank or UCT statement is made.
 
 ## Vocabulary
 
@@ -56,7 +60,9 @@ carries them is the one `Palomar/LIXChallenge.lean` and
 copy a reader can diff.  `IsK1Injective` is therefore present and unused: none
 of the three statements below mentions it, because each says something
 strictly stronger than `¬ IsK1Injective A`, which follows from the power clause
-at `k = 1` together with the stabilisation clause.
+at `k = 1` together with the stabilisation clause.  It is kept rather than
+removed so that this surface and the accepted `Palomar/LIXChallenge.lean`
+carry one block, not two for a reader to compare.
 
 `CStarAlgebra A` is a *unital* C⋆-algebra (`CStarAlgebra` extends
 `NormedRing`), so unitality is not a separate hypothesis.  `IsSimpleRing A` is
@@ -67,12 +73,17 @@ misses a neighbourhood of `1` and so has proper closure.
 `TopologicalSpace.SeparableSpace A` is separability.  `unitary A` is the
 unitary group, `pathComponent (1 : unitary A)` is `U₀(A)`, `v ^ k` is the power
 in that group, and `CStarMatrix (Fin n) (Fin n) A` is `Mₙ(A)` with Mathlib's
-C⋆-norm.  All algebras are quantified over `Type`, where the counterexample
-lives.
+C⋆-norm.  The clause
+`∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1`
+is stable finiteness: every isometry of every `Mₘ(A)` is a unitary.  The size
+`m = 0` is included and holds trivially, `M₀(A)` being the zero ring.  All
+algebras are quantified over `Type`, where the counterexample lives.
 
 The rank `n` occurs in the statements only as a natural number, in `p ∣ n`.  It
 is never a matrix index and never an index type, so no instance on `Fin n`
-appears: the whole rank-`n` construction is on the solution side.
+appears: the whole rank-`n` construction is on the solution side.  The matrix
+sizes that do occur are `2`, whose `Fintype` instance is pinned, and the bound
+variable `m` of the stable finiteness clause.
 
 The prose of this module was written by Claude Fable 5.1.
 -/
@@ -117,8 +128,8 @@ def IsK1Injective (A : Type) [CStarAlgebra A] : Prop :=
 
 -- END SHARED BLOCK
 
-/-- **The stronger theorem.**  For every `n ≥ 2` there is a separable simple
-unital C⋆-algebra carrying a unitary `v` whose stabilisation `diag (v, 1)` is
+/-- **The stronger theorem.**  For every `n ≥ 2` there is a separable, simple,
+stably finite unital C⋆-algebra carrying a unitary `v` whose stabilisation `diag (v, 1)` is
 connected to `1` in `U(M₂(A))` — so its `K₁`-class dies at the first
 stabilisation — and whose powers stay outside `U₀(A)` unless the exponent is
 divisible by every prime dividing `n`.
@@ -136,6 +147,7 @@ involved. -/
 theorem exists_simple_separable_powers_outside_U0 (n : ℕ) (hn : 2 ≤ n) :
     ∃ (A : Type) (_ : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
        letI : Fintype (Fin 2) := Fin.fintype 2
@@ -146,7 +158,8 @@ theorem exists_simple_separable_powers_outside_U0 (n : ℕ) (hn : 2 ≤ n) :
            ∀ p : ℕ, p.Prime → p ∣ n → p ∣ k) := by
   sorry
 
-/-- **The `n = 6` instance.**  A separable simple unital C⋆-algebra with a
+/-- **The `n = 6` instance.**  A separable, simple, stably finite unital
+C⋆-algebra with a
 unitary whose class dies at the first stabilisation and whose powers leave
 `U₀(A)` unless the exponent is divisible by `6`: an element of `U(A)/U₀(A)` of
 order divisible by `6`, or of infinite order, that is trivial in `K₁`.
@@ -158,6 +171,7 @@ not do. -/
 theorem exists_simple_separable_order_six_witness :
     ∃ (A : Type) (_ : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
        letI : Fintype (Fin 2) := Fin.fintype 2
@@ -168,7 +182,8 @@ theorem exists_simple_separable_order_six_witness :
   sorry
 
 /-- **Every squarefree order is realised.**  For squarefree `N ≥ 2` there is a
-separable simple unital C⋆-algebra with a unitary trivial in `K₁` whose powers
+separable, simple, stably finite unital C⋆-algebra with a unitary trivial in
+`K₁` whose powers
 leave `U₀(A)` unless `N` divides the exponent.
 
 Squarefree is exactly the hypothesis this method supports: mod-`p` cohomology
@@ -179,6 +194,7 @@ theorem exists_simple_separable_squarefree_witness (N : ℕ) (hN : 2 ≤ N)
     (hsq : Squarefree N) :
     ∃ (A : Type) (_ : CStarAlgebra A),
       Nontrivial A ∧ IsSimpleRing A ∧ TopologicalSpace.SeparableSpace A ∧
+      (∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧
       (letI : PartialOrder A := CStarAlgebra.spectralOrder A
        letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
        letI : Fintype (Fin 2) := Fin.fintype 2
