@@ -28,6 +28,17 @@ induction hypothesis on quotient-ball stretches.
 - GGT/HullSCLemma51LetterMoves (shortcut, certificate cut with geodesic sides, cross-coset exclusion).
 - The induction (D), GGT/HullSCLemma51LetterPullback, belongs to hull-component.
 
+## Relaunch 2026-09-12
+- (B) FaceRelation and (C) LetterMoves compiled in probe 0912-003729 (GREEN) at exactly the bytes on main.
+  They are not yet wired into the root; the lead wires in waves.
+- hull-component (D): LetterPullbackAtoms and Close compiled. Rotate was red on two proof slips; the fix
+  landed unverified and is being re-probed. (D) needs nothing more from (B) or (C).
+- Next: the endpoint module GGT/HullSCLemma51EmbeddedBridgeHolds,
+  `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_holds :
+  RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{u, v, w}`, from
+  `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback` and (D)'s producer of
+  `QuotientPeripheralLetterPullbackStatement`. It will land when (D)'s module is on main.
+
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
   relations of G (docstring in GGT/HullSCLemma44BoundedInput). Nothing routes through it.
