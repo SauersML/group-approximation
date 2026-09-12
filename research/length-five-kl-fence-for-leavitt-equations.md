@@ -62,7 +62,11 @@ distribution has THREE cyclic classes up to inversion, rotation and
 minus signs at distance 1, 2 or 3; reflection merges none), not one as an
 earlier version listed; the lane's only worked length-six candidate
 `(L6.1)` is of type `++++--`, so the classes `+++-+-` and `++-++-` have
-not been examined.  The Evangelidou length-five input is cited from its
+not been examined.  **Update 2026-09-12:** those two classes are settled
+generically by `kl-length-six-four-sign-change-words-inject`, over every
+coefficient group: they inject unless the quotient of the two same-sign
+coefficients has finite order or absorbs a sign-change coefficient.  The
+Evangelidou length-five input is cited from its
 published abstract and has not been read at source in this repository;
 what must be confirmed there is that the length-five theorem is
 coefficient-unrestricted, which is exactly the strength this fence
