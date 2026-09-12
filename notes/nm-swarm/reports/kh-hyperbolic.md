@@ -13,14 +13,17 @@ Lane clone thm-d. The leaf served is `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7
   `cosetSection`, `wordDist_cosetSection_le`, `letterVertex`, `rep_letterVertex`,
   `linearStokes_ghb7_of_chainFillingBound`,
   `isHyperbolicGroup_ghb7_of_chainFillingBound (hfill : ChainFillingBound CCKW.cosetComplex.G.Adj CCKW.cosetComplex.Tri 6) : Hyperbolic.IsHyperbolicGroup (GHB 7)`.
-- HC10–12 (Kazhdan/GHBHyperbolicFilling): `TypedCountStatement X n`, `BoundarySumStatement X`,
+- HC10–12 (Kazhdan/GHBHyperbolicFilling, imports SystolicDisc only): `TypedCountStatement X n`, `BoundarySumStatement X`,
   `faceDegree_outer_eq`, `chainFillingBound_of_leastDiscs hfill hfold hL hcount hsum : ChainFillingBound X.G.Adj X.Tri 6`,
-  `CCKW.chainFillingBound_cosetComplex`, `GHBQuotient.isHyperbolicGroup_ghb7_of_discInputs`.
-- HC11 and HC12 discharged (Kazhdan/GHBHyperbolicDiscCounts): `typedCountStatement_of_typed τ hτ`,
-  `boundarySumStatement X`, `CCKW.typedCountStatement_cosetComplex`,
+  `CCKW.chainFillingBound_cosetComplex hfill hfold hcount hsum`,
+  `GHBQuotient.isHyperbolicGroup_ghb7_of_discInputs (hfill : Systolic.FillingStatement CCKW.cosetComplex) hfold hcount hsum`.
+- HC11 and HC12 discharged, and filling from simple connectivity (Kazhdan/GHBHyperbolicDiscCounts):
+  `typedCountStatement_of_typed τ hτ`, `boundarySumStatement X`, `CCKW.typedCountStatement_cosetComplex`,
   `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold (hzip : Systolic.ZipSpurStatement CCKW.cosetComplex) (hfold : Systolic.MirrorFoldStatement CCKW.cosetComplex) : Hyperbolic.IsHyperbolicGroup (GHB 7)`.
-- Open leaves: `Systolic.ZipSpurStatement CCKW.cosetComplex` and `Systolic.MirrorFoldStatement CCKW.cosetComplex`.
-  Main has a producer of neither; they belong to kh-torsion's disc moves.
+  The lead asked for this signature to stay stable.
+- Open leaves, as assigned by the lead on 09-12:
+  - `Systolic.ZipSpurStatement`: kh-ejz, `Systolic.zipSpur X` in GGT/SystolicDiscZip.lean.
+  - `Systolic.MirrorFoldStatement`: fff-periodic, `Systolic.mirrorFold X` in GGT/SystolicDiscMirrorFold.lean.
 
 ## LANDED (09-12)
 - 0ac9f4538 (unverified): GHBHyperbolic, adopted from the shared tree (this lane's target path; no other lane
@@ -29,6 +32,9 @@ Lane clone thm-d. The leaf served is `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7
 - Probe 0912-094206-48022 (base 88688fc8d): GHBHyperbolic BUILT; the bytes on main match green record 578cd331.
   GHBHyperbolicFilling and GHBHyperbolicDiscCounts were not reached: go-sr1's GGT/SystolicDiscFilling and
   GGT/SystolicDiscCounts are red on main. The errors are forwarded to go-sr1.
+- 3e6d8448a: this report.
+- 6827a8024 (unverified): decoupling. Filling takes `hfill` and imports SystolicDisc only. The discharge from simple
+  connectivity moves into zipFold in DiscCounts. Rule 22 grep: neither changed declaration has another user.
 
 ## EARLIER LANDINGS (09-11/12)
 f2d8712cd KMSGroupPresentation; 8e9bd8324 UnipotentSylowCounts with KazhdanHypSymLocalData; a49d59853
@@ -37,10 +43,13 @@ KazhdanHypSymPowerDisc; 7c06a251d VanKampen/TypedTriangularDiscCounts; 06fa3aa1f
 888400dcc, b2c9d8f50 KazhdanHypGirthEightSpurCountermodel and KazhdanHypSharpExistenceResiduals.
 
 ## NEXT
-- Take `hfill : FillingStatement cosetComplex` in GHBHyperbolicFilling, so that it no longer imports the red
-  SystolicDiscFilling and probes now. The zip/fold composite moves to GHBHyperbolicDiscCounts.
-- Re-probe when go-sr1's fixes land, and land normally when green.
-- When ZipSpur and MirrorFold producers exist: an unconditional `Hyperbolic.IsHyperbolicGroup (GHB 7)`.
+- Probe GHBHyperbolicFilling alone (running), and land it normally when green.
+- Re-probe DiscCounts when go-sr1's fixes land, and land normally when green.
+- When `Systolic.zipSpur` and `Systolic.mirrorFold` land:
+  `isHyperbolicGroup_ghb7 : Hyperbolic.IsHyperbolicGroup (GHB 7) := isHyperbolicGroup_ghb7_of_zipFold (zipSpur _) (mirrorFold _)`.
+- Wiring: GHBHyperbolic, Filling and DiscCounts join a later root-wiring wave once green, per the lead. The
+  Ladder and TypedTriangularDiscCounts are in the current wave, so edits to them or to their imports land NM_ATTIC
+  until a probe is green.
 
 ## TRAPS
 - The nmland import guard holds even with NM_UNVERIFIED: land a module and its unlanded imports in one call.
