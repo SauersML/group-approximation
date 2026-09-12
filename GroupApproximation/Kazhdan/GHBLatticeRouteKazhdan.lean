@@ -1,6 +1,8 @@
 import GroupApproximation.Kazhdan.GHBLatticeRoute
 import GroupApproximation.Kazhdan.EJZAngleGHB
 import GroupApproximation.Kazhdan.KazhdanUniverse
+import GroupApproximation.Kazhdan.UnipotentSylowCounts
+import GroupApproximation.Manuscript.NonMF.FournierFacioInput
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -11,14 +13,18 @@ from the Kac--Moody--Steinberg group `GHB(7)` over the open leaves `hconj`, `h3`
 `hT`.  The leaf `hT : HasKazhdanPropertyT.{0, 0} (GHB 7)` is `hasKazhdanPropertyT_ghb7`
 (`Kazhdan/EJZAngleGHB`: Caprace--Conder--Kaluba--Witzel, arXiv:2011.09276, Theorem 1.3 at `p = 7`,
 through the Ershov--Jaikin-Zapirain criterion, proved from the relators of `GHB(7)`).  This module
-restates the route with `hT` removed; `hconj`, `h3`, `h4`, `hhyp` stay ordinary hypotheses.
+restates the route with `hT` removed.  `sharpExistence_of_ghb7ConjHyp` also spends the order bounds
+`h3`, `h4` (`card_U3_seven_le`, `card_U4_seven_le`); `hconj` and `hhyp` stay ordinary hypotheses.
 
 `PrintedGHB7PropertyT` is the closed endpoint.  It asks for property (T) in both forms: the real
 orthogonal form at representation universe `0`, which is the form `LatticeRouteInput.kazhdan` and
 `SharpExistence` use, and the textbook complex-unitary form (`hasKazhdanPropertyT_iff_textbook`).
 
-The non-MF manuscript names no `GHB(7)`.  `Hyperbolic.SharpExistence` is a repository statement,
-not a printed sentence.
+`TheoremC.KotowskiOllivierStatement` is `Hyperbolic.SharpExistence`, the field `kotowskiOllivier` of
+`TheoremC.LiteratureInputs`: the infinite finitely presented torsion-free hyperbolic group with
+property (T) inside [FFF §2], which the manuscript cites at tex line 1675.
+`kotowskiOllivierStatement_of_ghb7ConjHyp` supplies it from `GHB(7)` over `hconj` and `hhyp`.  The
+non-MF manuscript names no `GHB(7)`.
 -/
 
 namespace GroupApproximation
@@ -52,9 +58,25 @@ theorem sharpExistence_of_ghb7KazhdanLeaves (hconj : CCKWFiniteOrderConjugateInt
     Hyperbolic.SharpExistence :=
   sharpExistence_of_ghb7Leaves hconj h3 h4 hhyp hasKazhdanPropertyT_ghb7
 
+/-- **`SharpExistence` from `GHB(7)`**, over `hconj` and `hhyp` only.  The order bounds are
+`card_U3_seven_le` and `card_U4_seven_le` (`Kazhdan/UnipotentSylowCounts`). -/
+theorem sharpExistence_of_ghb7ConjHyp (hconj : CCKWFiniteOrderConjugateIntoVertex)
+    (hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)) : Hyperbolic.SharpExistence :=
+  sharpExistence_of_ghb7KazhdanLeaves hconj card_U3_seven_le card_U4_seven_le hhyp
+
+/-- **The hyperbolic property (T) input of [FFF §2], from `GHB(7)`**, over `hconj` and `hhyp`.
+`TheoremC.KotowskiOllivierStatement` is `Hyperbolic.SharpExistence`.  `TheoremC.kotowskiOllivier`
+records it as a citation of Kotowski--Kotowski and Ollivier--Wise; the witness here is `GHB(7)`. -/
+theorem kotowskiOllivierStatement_of_ghb7ConjHyp (hconj : CCKWFiniteOrderConjugateIntoVertex)
+    (hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)) :
+    Manuscript.NonMF.TheoremC.KotowskiOllivierStatement :=
+  sharpExistence_of_ghb7ConjHyp hconj hhyp
+
 end GHBQuotient
 end KMSGroup
 end GroupApproximation
 
 #audit_axioms GroupApproximation.KMSGroup.GHBQuotient.sharpExistence_of_ghb7KazhdanLeaves
+#audit_axioms GroupApproximation.KMSGroup.GHBQuotient.sharpExistence_of_ghb7ConjHyp
+#audit_axioms GroupApproximation.KMSGroup.GHBQuotient.kotowskiOllivierStatement_of_ghb7ConjHyp
 #audit_closed_axioms GroupApproximation.KMSGroup.GHBQuotient.printedGHB7PropertyT
