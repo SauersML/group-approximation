@@ -92,7 +92,8 @@ theorem isGoodPiece_cup (X : TopCat.{0}) {a b : ℕ} (ha : a % 2 = 0) (hb : b % 
   · by_cases h₂ : e₂ % 2 = 0 ∧ GoodDeg p b e₂
     · rw [← TotalHOf.of_mul, component_of_eq_dite, dif_neg]
       intro heq
-      exact hg (heq ▸ goodDeg_add h₁.2 h₂.2)
+      subst heq
+      exact hg (goodDeg_add h₁.2 h₂.2)
     · have hz : TotalHOf.component (ZMod p) X e₂ (ptotOf R.D X b c') = 0 := by
         by_cases hodd : e₂ % 2 = 0
         · exact hc' e₂ hodd fun hgd => h₂ ⟨hodd, hgd⟩
@@ -122,7 +123,7 @@ theorem isGood_mul (X : TopCat.{0}) {x y : TotalHOf (ZMod p) X} (hxe : TotalHOf.
     exact R.isGood_zero X
 
 theorem isGood_one (X : TopCat.{0}) : R.IsGood X 1 := by
-  rw [← TotalHOf.of_one]
+  rw [← TotalHOf.of_one (ZMod p) X]
   refine R.isGood_of X _ fun e _ hg => ?_
   rw [R.component_ptotOf, dif_neg]
   rintro ⟨hle, _⟩
@@ -182,9 +183,10 @@ theorem totalPtot_mul (X : TopCat.{0}) {x y : TotalHOf (ZMod p) X} (hx : TotalHO
     R.totalPtot X (x * y) = R.totalPtot X x * R.totalPtot X y := by
   classical
   rw [← TotalHOf.sum_support_of' (ZMod p) X x, ← TotalHOf.sum_support_of' (ZMod p) X y,
-    Finset.sum_mul_sum, map_sum, map_sum, map_sum, Finset.sum_mul_sum]
+    Finset.sum_mul_sum]
+  simp only [map_sum, Finset.sum_mul_sum]
   refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ => ?_
-  rw [map_sum, ← TotalHOf.of_mul, R.totalPtot_of, R.totalPtot_of, R.totalPtot_of,
+  rw [← TotalHOf.of_mul, R.totalPtot_of, R.totalPtot_of, R.totalPtot_of,
     R.piecePtot_apply, R.piecePtot_apply, R.piecePtot_apply]
   by_cases ha : a % 2 = 0
   · by_cases hb : b % 2 = 0
@@ -196,10 +198,12 @@ theorem totalPtot_mul (X : TopCat.{0}) {x y : TotalHOf (ZMod p) X} (hx : TotalHO
     simp only [hxa, zero_cup, map_zero, ite_self, if_neg ha, zero_mul]
 
 /-- **The total power, as a ring endomorphism of the even part.** -/
-def Ptot (X : TopCat.{0}) : Gen.evenPart (ZMod p) X →+* Gen.evenPart (ZMod p) X :=
-  { Gen.evenRestrictAdd (R.totalPtot X) (fun x _ => R.totalPtot_isEven X x) with
-    map_one' := Subtype.ext (R.totalPtot_one X)
-    map_mul' := fun u v => Subtype.ext (R.totalPtot_mul X u.2 v.2) }
+def Ptot (X : TopCat.{0}) : Gen.evenPart (ZMod p) X →+* Gen.evenPart (ZMod p) X where
+  toFun := Gen.evenRestrictAdd (R.totalPtot X) (fun x _ => R.totalPtot_isEven X x)
+  map_one' := Subtype.ext (R.totalPtot_one X)
+  map_mul' u v := Subtype.ext (R.totalPtot_mul X u.2 v.2)
+  map_zero' := map_zero (Gen.evenRestrictAdd (R.totalPtot X) (fun x _ => R.totalPtot_isEven X x))
+  map_add' := map_add (Gen.evenRestrictAdd (R.totalPtot X) (fun x _ => R.totalPtot_isEven X x))
 
 theorem coe_Ptot (X : TopCat.{0}) (x : Gen.evenPart (ZMod p) X) :
     (R.Ptot X x : TotalHOf (ZMod p) X) = R.totalPtot X x :=

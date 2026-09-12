@@ -28,7 +28,7 @@ theorem projDeg_of_mul (K : Type) [CommRing K] (X : TopCat.{0}) (q e : ℕ)
     (z : TotalPieceOf K X q) (y : TotalHOf K X) :
     projDeg K X (q + e) (TotalHOf.of K X q z * y) = TotalHOf.of K X q z * projDeg K X e y := by
   induction y using DirectSum.induction_on with
-  | zero => rw [mul_zero, map_zero, map_zero, mul_zero]
+  | zero => simp only [mul_zero, map_zero]
   | of a w =>
     show projDeg K X (q + e) (TotalHOf.of K X q z * TotalHOf.of K X a w)
       = TotalHOf.of K X q z * projDeg K X e (TotalHOf.of K X a w)

@@ -30,7 +30,9 @@ theorem not_dvd_half_of_bad {p j : ℕ} (hp3 : 3 ≤ p) (hjev : j % 2 = 0) (hjle
   rcases m with _ | _ | m
   · omega
   · omega
-  · have h2 : (p - 1) * (m + 2) ≥ 2 * (p - 1) := by nlinarith
+  · have h2 : (p - 1) * 2 ≤ j / 2 := by
+      rw [hm]
+      exact Nat.mul_le_mul_left (p - 1) (by omega)
     omega
 
 /-- **`BadTwoOddP` at every odd prime**, from V. -/

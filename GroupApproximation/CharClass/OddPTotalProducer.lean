@@ -33,6 +33,7 @@ variable (p : ℕ) [Fact p.Prime] (hp : Odd p)
 /-- The class of `D_j` is additive at every index. -/
 theorem oddDClass_add (X : TopCat.{0}) (q j : ℕ) (hj : j ≤ p * q) (x y : Hmod (ZMod p) X q) :
     oddDClass p hp q j hj (x + y) = oddDClass p hp q j hj x + oddDClass p hp q j hj y := by
+  haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
   obtain ⟨u, hu, rfl⟩ := cocycleClassK_surjective (ZMod p) X q x
   obtain ⟨v, hv, rfl⟩ := cocycleClassK_surjective (ZMod p) X q y
   have huv : cochainCoboundary (ZMod p) X q (u + v) = 0 := by

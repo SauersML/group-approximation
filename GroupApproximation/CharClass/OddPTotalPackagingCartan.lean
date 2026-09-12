@@ -95,8 +95,10 @@ theorem cartan_piece (X : TopCat.{0}) (hp : 2 ≤ p) {a b : ℕ} (ha : a % 2 = 0
       (fun s s' => (R.μ ^ (a / 2 - s) * R.μ ^ (b / 2 - s')) •
         (R.totalP X s (TotalHOf.of (ZMod p) X a c) * R.totalP X s' (TotalHOf.of (ZMod p) X b c')))
       (fun s hs s' => by
+        beta_reduce
         rw [R.totalP_of_eq_zero X s (fun h => by have := h.2; omega), zero_mul, smul_zero])
       (fun s' hs' s => by
+        beta_reduce
         rw [R.totalP_of_eq_zero X s' (fun h => by have := h.2; omega), mul_zero, smul_zero]),
       Finset.smul_sum]
     refine Finset.sum_congr rfl fun j hj => ?_

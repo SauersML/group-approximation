@@ -148,7 +148,10 @@ theorem totalP_isEven (X : TopCat.{0}) (i : ℕ) (x : TotalHOf (ZMod p) X) :
     TotalHOf.IsEven (R.totalP X i x) := by
   induction x using DirectSum.induction_on with
   | zero => rw [map_zero]; exact TotalHOf.isEven_zero (ZMod p) X
-  | of d c => exact R.totalP_of X i d c ▸ R.pieceP_isEven X i d c
+  | of d c =>
+    show TotalHOf.IsEven (R.totalP X i (TotalHOf.of (ZMod p) X d c))
+    rw [R.totalP_of]
+    exact R.pieceP_isEven X i d c
   | add x y hx hy => rw [map_add]; exact hx.add hy
 
 /-! ## The total power on the whole ring -/
@@ -177,8 +180,8 @@ theorem totalPtot_isEven (X : TopCat.{0}) (x : TotalHOf (ZMod p) X) :
   induction x using DirectSum.induction_on with
   | zero => rw [map_zero]; exact TotalHOf.isEven_zero (ZMod p) X
   | of d c =>
-    rw [show DirectSum.of (fun n : ℕ => TotalPieceOf (ZMod p) X n) d c
-        = TotalHOf.of (ZMod p) X d c from rfl, R.totalPtot_of, R.piecePtot_apply]
+    show TotalHOf.IsEven (R.totalPtot X (TotalHOf.of (ZMod p) X d c))
+    rw [R.totalPtot_of, R.piecePtot_apply]
     by_cases h : d % 2 = 0
     · rw [if_pos h]; exact R.ptotOf_isEven X h c
     · rw [if_neg h]; exact TotalHOf.isEven_zero (ZMod p) X
