@@ -79,6 +79,22 @@ Brin--Thompson groups `nV`, which are finitely presented, infinite and simple.
 `{nV}` is non-universal, and the conjecture demands finitely presented simple
 groups of a complexity nobody has yet exhibited.
 
+## Addendum, same day: merged with the parallel lane
+
+The parallel Boone--Higman lane had landed the same consequence 18 minutes
+earlier, as `fp-simple-groups-with-arbitrarily-complex-word-problem` with route
+`complex-fp-simple-groups-from-boone-higman`, and a general non-universality
+principle `complexity-bounded-host-classes-are-not-universal` with a
+two-generated graph-shift witness. Two roots stating one consequence overstate
+the graph, so `bh-forces-unbounded-fp-simple-wp-complexity` and
+`bh-unbounded-wp-complexity-proof` were retired in `ad00c87ce`. Section 3's
+root is now that surviving node.
+
+`uniform-wp-bound-excludes-bh-universal-targets` is kept as a strict
+strengthening of the principle: its excluded input is finitely presented and
+residually finite, which lanes restricted to such inputs need. The two nodes
+carry `distinct_from` answers to each other.
+
 ## Verification boundary
 
 Steps 1 and 3 are elementary and written out in full in the route. Step 2 is a
