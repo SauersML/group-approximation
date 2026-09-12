@@ -80,6 +80,7 @@ theorem add_inv_le_two_mul_exp_abs_log {a : ℝ} (ha : 0 < a) :
   linarith
 
 open Minkowski
+open scoped symmDiff
 
 /-- **`SeparationFinite`**: both differences of the half-spaces of the base point and its
 translate have finite shell measure. -/
@@ -94,7 +95,7 @@ theorem ghwArchimedeanAffineBound : GHWArchimedeanAffineBound := by
     rw [hκ]
     linarith [Wedge.wedgePhi_one_pos]
   refine ⟨(Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ, fun γ i j ↦ ?_⟩
-  set g : GL (Fin 2) ℂ := ρ γ with hg
+  set g : GL (Fin 2) ℂ := ρ γ
   obtain ⟨a, b, ha, -, hab, htr, -, hsep⟩ := Wedge.separation_bound g
   have hnorm : ‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖ ^ 2 =
       κ⁻¹ * (shellMeasure (Walls.halfSpace origin ∆ Walls.halfSpace (conjAct g origin))).toReal := by

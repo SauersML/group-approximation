@@ -76,11 +76,11 @@ theorem symmDiff_inter_shell_subset_sep (a b : ℝ) :
   rcases hv with ⟨h1, h2⟩ | ⟨h1, h2⟩
   · have h1' : 0 < (v 0 + v 1) / 2 := h1
     have h2' : ¬ 0 < (b * v 0 + a * v 1) / 2 := h2
-    push_neg at h2'
+    push Not at h2'
     nlinarith
   · have h1' : 0 < (b * v 0 + a * v 1) / 2 := h1
     have h2' : ¬ 0 < (v 0 + v 1) / 2 := h2
-    push_neg at h2'
+    push Not at h2'
     nlinarith
 
 /-- The shell vectors with `(v₀ + v₁)(b v₀ + a v₁) < 0` separate `diag(1, 1)` from
@@ -161,7 +161,9 @@ theorem norm_det_of_mem_unitary {U : GL (Fin 2) ℂ}
     Complex.mul_conj, Complex.normSq_eq_norm_sq] at h
   have h2 : ‖((U : Matrix (Fin 2) (Fin 2) ℂ)).det‖ ^ 2 = 1 := by exact_mod_cast h
   have h3 := norm_nonneg ((U : Matrix (Fin 2) (Fin 2) ℂ)).det
-  rcases mul_self_eq_one_iff.mp (by rw [← sq]; exact h2) with h1 | h1
+  have hm : ‖((U : Matrix (Fin 2) (Fin 2) ℂ)).det‖ * ‖((U : Matrix (Fin 2) (Fin 2) ℂ)).det‖ = 1 := by
+    rw [← sq]; exact h2
+  rcases mul_self_eq_one_iff.mp hm with h1 | h1
   · exact h1
   · exact absurd h1 (by linarith [h3])
 
@@ -208,8 +210,8 @@ theorem exists_unitary_diagPoint (g : GL (Fin 2) ℂ) :
   have hUmem : (U : Matrix (Fin 2) (Fin 2) ℂ) ∈ unitary (Matrix (Fin 2) (Fin 2) ℂ) := by
     rw [hUcoe]
     exact u.2
-  set a := hH.eigenvalues 0 with ha_def
-  set b := hH.eigenvalues 1 with hb_def
+  set a := hH.eigenvalues 0
+  set b := hH.eigenvalues 1
   have hd : Matrix.diagonal (RCLike.ofReal ∘ hH.eigenvalues) =
       Matrix.diagonal ![(a : ℂ), (b : ℂ)] := by
     congr 1
@@ -249,10 +251,10 @@ theorem exists_unitary_diagPoint (g : GL (Fin 2) ℂ) :
     exact (mul_nonneg_iff_of_pos_left hdet0).mp h0
   have ha : 0 < a := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hb : b < 0 := by
       by_contra hb'
-      push_neg at hb'
+      push Not at hb'
       nlinarith
     nlinarith
   have hb : 0 < b := by nlinarith
