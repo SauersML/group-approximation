@@ -948,3 +948,46 @@ This is a gate reduction, checked with full care. It proves no identity and cons
 * **A rank function always gives the rank condition.** A summand `S_-^(n+1)` of `S_-^n` gives an idempotent in
   `M_n(S_-)` equivalent to `I_(n+1)`, so `n + 1 <= n`.
 * **Risk paragraph.** The converse is correctly marked unverified, and nothing depends on it.
+
+## 26. Jacobson rank radical Attempts (w3-gate-construct; 5bc7fc0bc, 84327b445)
+
+These are Attempts entries on the OPEN `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`. Both check.
+
+### 26.1 The shift-reversal `psi` does not extend: PASS
+
+* **The shift.**
+  * `a = a_12 = [[S, Q],[0, T]]` of `binary-jacobson-active-cycle-generates-rank-three`, which is `WP` with `P` the
+    transposition of components `i`, `j`.
+  * On basis vectors: `δ_b^(i) -> δ_(b+1)^(i)`, `δ_0^(j) -> δ_0^(i)`, `δ_b^(j) -> δ_(b−1)^(j)`. That is the stated
+    single orbit.
+* **First commutator.** With `u − 1 = sum_c δ_c^(j) ⊗ δ_c^(i)*`:
+  * `a^-1 (u−1) a = sum_(b>=0) δ_(b+2)^(j) ⊗ δ_b^(i)* + δ_1^(j) ⊗ δ_0^(j)*`, matching the entry after reindexing.
+  * Its image lies in component `j` and it reads components `i`, `j`. `v − 1` reads `i` and writes `k`.
+  * So both products vanish, `a^-1 u a`, `u` and `v` pairwise commute, and `[[a^-1, u], v] = 1`.
+* **Second commutator.** `a (u−1) a^-1 = δ_0^(i) ⊗ δ_1^(i)* + sum_(c>=1) δ_(c−1)^(j) ⊗ δ_(c+1)^(i)*`.
+  * `(v−1)(a u a^-1 − 1) = δ_0^(k) ⊗ δ_1^(i)* != 0`, while the reverse product is `0`.
+  * `u` commutes with `v`, so `[a, u]` does not commute with `v`, and `[[a, u], v] != 1`.
+* **Conclusion.** An endomorphism fixing the constants with `a -> a^-1` would send the first relation to the
+  second, so none exists, and the LEF criterion yields nothing.
+
+### 26.2 Level models of `E_5 = EL_5(J)` die, and the MF transfer stops: PASS, cited inputs
+
+* **Head-retaining models are injective.**
+  * `ker sigma ∩ L` is normal in the simple `L = SL_fin(F_2)`, and `x_13(Q) ∈ L` survives, so the intersection is
+    trivial.
+  * `[ker sigma, L] ⊆ ker sigma ∩ L = 1`.
+  * An operator on `F_2^(N x [n])` commuting with every finitary transvection `1 + v ⊗ φ` sends each `v` into
+    `F_2 v`, so it is scalar, hence `1`. The natural representation of `J` is faithful.
+* **Finite images kill the head (n >= 4).**
+  * **Pigeonhole.** It gives `x_13(e_ab + e_a'b') -> 1` with `(a,b) != (a',b')`.
+  * **The chain.** `[x_13(r), x_32(p)] = x_12(rp)`, `[x_31(q), x_12(rp)] = x_32(qrp)`,
+    `[x_13(p'), x_32(qrp)] = x_12(p'qrp)` and `[x_12(p'qrp), x_23(1)] = x_13(p'qrp)`.
+  * **Reaching the head.** `Q S = S − STS = 0` and `T Q = 0` give `e_ab e_cd = δ_bc e_ad`. So `e_0a r e_b0 = e_00 = Q`,
+    since the second term needs `a = a'` and `b = b'`.
+* **Not LEF.** A finitely presented Steinberg cover with finite-image collapse is not LEF. Finite presentation of
+  `St_n(J)` is cited (`steinberg-finite-presentation-and-kazhdan-theorem`), not re-derived.
+* **What transfers.**
+  * `uHu^-1 <= H` gives `σ(u) F ⊇ F`, with equal rank, so `σ(u) F = F` by faithfulness.
+  * `σ(c)` commutes with `σ(H)`, and `x_23(1) ∈ H` fixes `F` pointwise.
+  * So `[u c u^-1, x_23(1)] = x_13(Q)` is the identity on `F`.
+* **Blocks 1–2.** Prose, consistent.
