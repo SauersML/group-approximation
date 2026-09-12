@@ -85,8 +85,13 @@ theorem injective_thomJmTotalOf (K : Type) [Field K] [CompactSpace X] [T2Space X
     relToAbs_injective_of_gradedOf (X := TopCat.of X) (P := TopCat.of (Bundle.Proj p.plusOne))
       (Set.range (Bundle.projIncl p)) (projMapOf p.plusOne) (hyperProj p) rfl ξ ξh hξ hr L Lh
   intro a b hab
-  simp only [thomJmTotalOf_apply, thomJmOf_apply] at hab
-  exact (bridgeTotalOf K p (2 * r)).injective (hinj0 ((lhTopEquivOf L).symm.injective hab))
+  have hab' : (lhTopEquivOf L).symm
+        ((relToAbs K (TopCat.of (Bundle.Proj p.plusOne)) (Set.range (Bundle.projIncl p))
+          (2 * r)).hom (bridgeTotalOf K p (2 * r) a))
+      = (lhTopEquivOf L).symm
+        ((relToAbs K (TopCat.of (Bundle.Proj p.plusOne)) (Set.range (Bundle.projIncl p))
+          (2 * r)).hom (bridgeTotalOf K p (2 * r) b)) := hab
+  exact (bridgeTotalOf K p (2 * r)).injective (hinj0 ((lhTopEquivOf L).symm.injective hab'))
 
 /-- **The range of the coordinate map of the vector-bundle pair over a field is the Thom kernel.** -/
 theorem range_thomJmTotalOf (K : Type) [Field K] [CompactSpace X] [T2Space X]
