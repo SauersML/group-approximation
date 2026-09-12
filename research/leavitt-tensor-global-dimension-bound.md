@@ -18,6 +18,7 @@ and the same holds for right global dimensions. With `B = k`,
 `l.gl.dim L^(⊗d) = d`.
 
 **Consequence.** Every module over `L^(⊗d)`, and over `B ⊗ L^(⊗d)` whenever
-`l.gl.dim B < ∞`, has finite projective dimension. These rings are therefore
-regular coherent as soon as they are coherent. The regularity half is settled,
-and coherence is the whole gap (`leavitt-tensor-powers-are-left-coherent`).
+`l.gl.dim B < ∞`, has finite projective dimension. These rings would be regular
+coherent if they were coherent. For `d >= 2`, `L^(⊗d)` is not coherent
+(`leavitt-tensor-powers-are-not-left-coherent`), so this bound does not feed
+`regular-coherent-coefficients-kill-leavitt-tensor-k-theory` for tensor powers.

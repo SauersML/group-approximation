@@ -3,11 +3,13 @@ rg: 2
 id: leavitt-tensor-powers-are-left-coherent
 kind: claim
 title: Every tensor power of L_k(1,2) with at least two factors is left coherent
+refuted_by: [leavitt-tensor-powers-are-not-left-coherent]
 distinct_from:
   leavitt-tensor-powers-have-trivial-k-theory: that is vanishing of K_1 and K_2 for three or more factors; this is coherence for two or more factors, a ring-theoretic input that implies it through the global dimension bound and the regular coherent import.
 ---
 
-**OPEN.** For every field `k` and every `d >= 2`, `L_k(1,2)^(⊗d)` is left
+**REFUTED** by `leavitt-tensor-powers-are-not-left-coherent` (attempt 9).
+The claim was: for every field `k` and every `d >= 2`, `L_k(1,2)^(⊗d)` is left
 coherent. It is then also right coherent, because the tensor product of the
 involutions is an involution.
 
@@ -103,3 +105,17 @@ gives `K_1 = K_2 = 0` for `L^(⊗(d+1))`. This is exactly the missing input of
    A proof must therefore use the particular corner isomorphism, or the
    ultramatricial base `L_0^(⊗d)` of attempt 2. Regular supercoherence of the
    degree-zero ring is not enough.
+9. **Refuted (lane `bh-coherence-corners`, 2026-09-12).** See
+   `leavitt-tensor-powers-are-not-left-coherent`, with route
+   `leavitt-tensor-powers-not-left-coherent-proof`.
+   - **The ring.** The total-degree-zero ring `⊕_n L_n ⊗ L_(−n)` is the
+     Bernoulli crossed product `(⊗'_(Z) M_2(k)) ⋊ Z`, with
+     `u = x_1⊗y_1 + x_2⊗y_2` as the shift.
+   - **The witness.** The left annihilator of `(1 − u) e`, with
+     `e = x_1 y_1 ⊗ 1`, is not finitely generated. Its elements are constant
+     along runs of ones in two-sided binary sequences, and runs of every length
+     occur.
+   - **Attempt 2 answered negatively.** Graded von Neumann regularity does not
+     give coherence, even for a strong `Z`-grading.
+   - **Attempt 1's input is false.** `L<x_1, x_2>` is not left coherent: its
+     flat universal localization `L ⊗ L` would inherit coherence.

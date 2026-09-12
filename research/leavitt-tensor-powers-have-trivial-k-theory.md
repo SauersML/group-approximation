@@ -95,3 +95,13 @@ With `leavitt-tensor-hosts-acyclic-steinberg-and-fp`, it would make every
      `L_0 ⊗ L_0`, and not a localization of a tensor product of free algebras.
    - **Not checked.** Flatness of `k<e,f> -> k[F_2]` was not verified from a
      source.
+7. **The coherence route is dead.** `leavitt-tensor-powers-are-not-left-coherent`
+   shows that `L^(⊗(d−1))` is not coherent for any `d >= 3`, over any field.
+   - So the reduction of attempt 5 cannot fire, and the routes
+     `leavitt-tensor-powers-k-theory-via-coherence` and
+     `prime-field-leavitt-powers-k-theory-via-coherence` are invalidated.
+   - Waldhausen's Nil vanishing needs coherence. Vogel's extension to
+     non-coherent regular rings is a conjecture (Bihler arXiv:math/0612569).
+   - What remains is attempt 4: vanishing of `NK(L_0 ⊗ A; φ^(±1))` in degrees
+     `1` and `2` for `A = L^(⊗(d−1))`, by an argument that does not pass
+     through coherence. Or, as in attempt 1, `K_2`-regularity of `L^(⊗d)`.

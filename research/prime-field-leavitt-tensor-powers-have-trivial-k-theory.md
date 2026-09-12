@@ -36,3 +36,10 @@ Ara--Cortiñas Lemma 6.1 with Proposition 6.2 over `k = F_p`, as used in
    class, `leavitt-power-projective-elementary-groups-finitely-presented` is
    enough, and it is equivalent to finite normal generation of an unstable
    Steinberg kernel. This claim is a sufficient condition, not a necessary one.
+3. **Coherence is refuted over every field.**
+   `leavitt-tensor-powers-are-not-left-coherent` holds over `F_p`, so the route
+   `prime-field-leavitt-powers-k-theory-via-coherence` is invalidated.
+   - The free algebras of attempt 1 are not coherent either. `L_p^(⊗(d−1))` is a
+     flat universal localization of `L_p^(⊗(d−2))<e,f>`, and flat universal
+     localizations inherit coherence.
+   - Only the twisted Nil groups remain.
