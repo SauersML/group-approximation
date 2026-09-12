@@ -292,7 +292,8 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
   · have hFnot : (EdgeDeletion.toCombMap M a).faceOf (l.head hlne) ∉ filt :=
       fun h => ((hfilt _).mp h).1 rfl
     have hins := Finset.card_insert_of_notMem hFnot
-    split_ifs at hcardErase hins ⊢ <;> omega
+    dsimp only
+    split_ifs at hcardErase ⊢ <;> omega
 
 end Data
 

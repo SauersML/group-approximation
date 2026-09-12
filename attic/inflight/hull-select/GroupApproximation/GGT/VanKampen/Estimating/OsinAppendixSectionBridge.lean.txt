@@ -141,8 +141,11 @@ theorem exists_globallyDistinguishedSectionFamily_of_seed
         S.weight = maximum ∧ S.family.card = k :=
     ⟨first.family.card, first, hfirstLegal, hfirst, rfl⟩
   obtain ⟨S, hS, hweight, hcard⟩ := Nat.find_spec hexists
-  refine ⟨{ toRealizedSectionFamily := S, label_admissible := hS,
-    weight_maximal := ?_, card_minimal := ?_ }⟩
+  refine ⟨{
+    toRealizedSectionFamily := S
+    label_admissible := hS
+    weight_maximal := ?_
+    card_minimal := ?_ }⟩
   · intro other hother
     rw [hweight]
     exact hmaximal other.weight (hmem other hother)
