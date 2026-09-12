@@ -4686,6 +4686,8 @@ import GroupApproximation.KunThom.CompressorNormalizationAssemblyThreshold
 import GroupApproximation.KunThom.CountingEndgameRelative
 import GroupApproximation.KunThom.StepNineHammingCandidates
 import GroupApproximation.KunThom.CountingEndgameBundle
+import GroupApproximation.KunThom.SequentialComponentFamilyBlocks
+import GroupApproximation.KunThom.SequentialComponentFamilyKazhdan
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

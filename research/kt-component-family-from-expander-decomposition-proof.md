@@ -11,6 +11,8 @@ artifacts:
   - GroupApproximation/KunThom/SequentialComponentFamilyLevels.lean
   - GroupApproximation/KunThom/SequentialComponentFamilyObjects.lean
   - GroupApproximation/KunThom/SequentialComponentFamily.lean
+  - GroupApproximation/KunThom/SequentialComponentFamilyBlocks.lean
+  - GroupApproximation/KunThom/SequentialComponentFamilyKazhdan.lean
 ---
 
 ## Direct proof, machine-checked
@@ -64,6 +66,15 @@ artifacts:
   driver printed 14 closures, from `exists_prune` through `componentFamily`,
   `uncoveredMass_negligible` and the mass identity. All are
   `[propext, Classical.choice, Quot.sound]`.
+- Probe GREEN `.0912-141131-24405` for `SequentialComponentFamilyBlocks` and
+  `SequentialComponentFamilyKazhdan`.
+  - Blocks: `objectBlocks` is a `BlockPatching.BlockEmbedding`. Uncovered points
+    and compatibility failures of `objectBlockAction` have negligible mass. These
+    are the `huncovered` and `hcompat` hypotheses of
+    `vanishing_commutator_patch_of_candidates`.
+  - Kazhdan: `exists_sequentialDecompositions` and
+    `exists_kazhdanPair_on_generators`.
+  - All 11 printed closures are `[propext, Classical.choice, Quot.sound]`.
 
 **Parallel toolkits on main, not used here.**
 - `RetainedComponentExpansion` and `CentralizerNormalizationPrunedCore`: pruning
