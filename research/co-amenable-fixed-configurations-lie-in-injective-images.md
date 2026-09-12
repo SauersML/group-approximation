@@ -36,3 +36,17 @@ configuration constant on the right cosets of `H` lies in `tau(A^G)`.
     recurrence.
   - Without recurrence it dies: a certificate occurring with zero density along every Følner sequence
     loses to the decoder's boundary factor, as in `decoder-window-fiber-bound-loses-exactly-the-boundary`.
+- **Recurrent case proved (w4-free-pos-b).** `repetitive-amenable-schreier-fixed-configurations-lie-in-image`
+  covers finite index, and amenable Schreier graphs along which every labelled neighbourhood recurs with
+  positive density, uniformly recurrent graphs included.
+- **Reach (proved).** `separating-repetitive-amenable-schreier-families-force-soficity`.
+  - Surjectivity over every alphabet by density of admissible fixed configurations needs separating
+    families.
+  - Those make the group sofic, or locally embeddable into surjunctive quotients.
+  - So even the full claim decides nothing new. It is a filter on Garden of Eden patterns.
+- **Vacuity on the recorded hosts (proved).** `schreier-transfer-vacuous-on-kazhdan-and-boundary-hosts`.
+  - An infinite simple Kazhdan host has no proper co-amenable subgroup, so only the constant
+    configurations arise.
+  - Point stabilizers of measure-free actions, Thompson's `V` on the Cantor set among them, are never
+    co-amenable.
+  - So the claim has content only on non-Kazhdan hosts, at subgroups other than such point stabilizers.
