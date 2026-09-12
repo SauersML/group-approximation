@@ -376,6 +376,20 @@ statements say. It is not a re-verification.
   * the descent chain holds in every faithful regular rank ring.
 
   So in characteristic two these mechanisms no longer depend on matrix ultraproducts.
+
+  **Later** (lane w5-regular-rankfn; established, verified in `gk-vf-gate-verification-2026-09-12.md`).
+  * **Result.** The gap and the geometric two-sided descent hold for every Sylvester matrix rank function
+    on `F_2[R^x]` other than the augmentation rank, taken through its augmentation quotient.
+  * **Nodes.**
+    * `sylvester-leavitt-defect-gap-and-geometric-descent`;
+    * `perfect-group-augmentation-quotient-ranks-are-fixed-point-free`: on a perfect group the quotient
+      is fixed-point-free;
+    * `sylvester-rank-functions-descend-to-quotients-and-compressions`: ideal quotients and commuting
+      compressions of Sylvester rank functions are Sylvester rank functions.
+  * **Consequence.** In characteristic two the regularity and faithfulness hypotheses are now gone as well.
+    In both characteristics the gap and descent hold for abstract Sylvester rank functions (in
+    characteristic three over the anti-central ones, as below), so they no longer need (U2). The strict
+    deficits are still open in both characteristics.
 * **What still holds.** The ternary route needs characteristic three, and none of these mechanisms has a
   characteristic-three counterpart yet. So (U2) is still open there.
 * **Characteristic three, later landings** (another family; verified in `gk-vf-gate-verification-2026-09-12.md`).
