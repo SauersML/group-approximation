@@ -23,6 +23,67 @@ used.
 -/
 
 namespace GroupApproximation
+
+namespace FiniteRankDet
+
+section Congruence
+
+/-! ### Finite rank modulo differences, as lemmas
+
+Over the word space `rw` does not always see the ring structure of `Module.End` through
+the subtraction a statement elaborates, so the congruence steps are stated once here,
+for an arbitrary vector space, and applied with `exact`. -/
+
+variable {k : Type*} [Field k] {V : Type*} [AddCommGroup V] [Module k V]
+
+theorem finiteRank_sub_of_eq {f g : Module.End k V} (h : f = g) : FiniteRank (f - g) := by
+  rw [h, sub_self]
+  exact finiteRank_zero
+
+theorem FiniteRank.sub_symm {a b : Module.End k V} (h : FiniteRank (a - b)) :
+    FiniteRank (b - a) := by
+  rw [← neg_sub]
+  exact h.neg
+
+theorem FiniteRank.sub_trans {a b c : Module.End k V} (h1 : FiniteRank (a - b))
+    (h2 : FiniteRank (b - c)) : FiniteRank (a - c) := by
+  rw [← sub_add_sub_cancel a b c]
+  exact h1.add h2
+
+theorem FiniteRank.add_sub_add {a b c e : Module.End k V} (h1 : FiniteRank (a - b))
+    (h2 : FiniteRank (c - e)) : FiniteRank (a + c - (b + e)) := by
+  rw [add_sub_add_comm]
+  exact h1.add h2
+
+theorem FiniteRank.mul_sub_mul {a b c e : Module.End k V} (h1 : FiniteRank (a - b))
+    (h2 : FiniteRank (c - e)) : FiniteRank (a * c - b * e) := by
+  have h : a * c - b * e = (a - b) * c + b * (c - e) := by noncomm_ring
+  rw [h]
+  exact (h1.mul_right c).add (h2.mul_left b)
+
+theorem one_add_mul_one_sub_of_mul_self {E : Module.End k V} (h : E * E = 0) :
+    (1 + E) * (1 - E) = 1 := by
+  rw [mul_sub, mul_one, add_mul, one_mul, h]
+  abel
+
+theorem one_sub_mul_one_add_of_mul_self {E : Module.End k V} (h : E * E = 0) :
+    (1 - E) * (1 + E) = 1 := by
+  rw [sub_mul, one_mul, mul_add, mul_one, h]
+  abel
+
+theorem FiniteRank.inv_mul_sub_one (u : (Module.End k V)ˣ) {Z : Module.End k V}
+    (h : FiniteRank (Z - (u : Module.End k V))) :
+    FiniteRank (((u⁻¹ : (Module.End k V)ˣ) : Module.End k V) * Z - 1) := by
+  have heq : ((u⁻¹ : (Module.End k V)ˣ) : Module.End k V) * Z - 1
+      = ((u⁻¹ : (Module.End k V)ˣ) : Module.End k V) * (Z - (u : Module.End k V)) := by
+    rw [mul_sub, Units.inv_mul]
+  rw [heq]
+  exact h.mul_left _
+
+end Congruence
+
+end FiniteRankDet
+
 namespace ToeplitzWords
 
 open FiniteRankDet RegularizedDet AryLeavitt
@@ -71,8 +132,7 @@ theorem finiteRank_rho_sub_of_relation {x y : Free k d} (h : Relation k d x y) :
     have hxy : rho k d (freeT k d i * freeS k d j) = rho k d (if i = j then 1 else 0) := by
       rw [map_mul, rho_freeT, rho_freeS, opT_mul_opS]
       split_ifs <;> simp
-    rw [hxy, sub_self]
-    exact finiteRank_zero
+    exact finiteRank_sub_of_eq hxy
   | complete =>
     have hxy : rho k d (∑ i : Fin d, freeS k d i * freeT k d i) - rho k d 1 = -opQ k d := by
       rw [map_sum, map_one]
@@ -87,29 +147,23 @@ theorem finiteRank_rho_sub_of_rel {x y : Free k d} (h : RingQuot.Rel (Relation k
   induction h with
   | of hr => exact finiteRank_rho_sub_of_relation hr
   | add_left _ ih =>
-    rw [map_add, map_add, add_sub_add_right_eq_sub]
-    exact ih
+    rw [map_add, map_add]
+    exact ih.add_sub_add (finiteRank_sub_of_eq rfl)
   | mul_left _ ih =>
-    rw [map_mul, map_mul, ← sub_mul]
-    exact ih.mul_right _
+    rw [map_mul, map_mul]
+    exact ih.mul_sub_mul (finiteRank_sub_of_eq rfl)
   | mul_right _ ih =>
-    rw [map_mul, map_mul, ← mul_sub]
-    exact ih.mul_left _
+    rw [map_mul, map_mul]
+    exact (finiteRank_sub_of_eq rfl).mul_sub_mul ih
 
 theorem finiteRank_rho_sub_of_eqvGen {x y : Free k d}
     (h : Relation.EqvGen (RingQuot.Rel (Relation k d)) x y) :
     FiniteRank (rho k d x - rho k d y) := by
   induction h with
   | rel _ _ hr => exact finiteRank_rho_sub_of_rel hr
-  | refl =>
-    rw [sub_self]
-    exact finiteRank_zero
-  | symm _ _ _ ih =>
-    rw [← neg_sub]
-    exact ih.neg
-  | trans a b c _ _ ih ih' =>
-    rw [← sub_add_sub_cancel (rho k d a) (rho k d b) (rho k d c)]
-    exact ih.add ih'
+  | refl => exact finiteRank_sub_of_eq rfl
+  | symm _ _ _ ih => exact ih.sub_symm
+  | trans _ _ _ _ _ ih ih' => exact ih.sub_trans ih'
 
 /-- **Equal images in `L_k(1,d)` act on words up to finite rank.** -/
 theorem finiteRank_rho_sub_of_quotientMap_eq {x y : Free k d}
