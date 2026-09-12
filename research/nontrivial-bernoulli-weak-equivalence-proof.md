@@ -30,3 +30,5 @@ parameter, so it covers arbitrary finite bases only once widened.
 is now Abért–Weiss Theorem 1 quoted verbatim, which covers every base, and `requires:` no longer names
 `fpbs-aw-finite-pattern-input`. The verified selector derivation is kept as artifact Remark 2.3, with
 the disjointification constant `ε/(8m)` the verifier added.
+
+**Re-checked after d4b2e9bbc3** by gk-vf-positive: PASS with the direct import of Abért–Weiss Theorem 1, which covers every base (Section 19 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

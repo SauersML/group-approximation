@@ -717,3 +717,21 @@ points Section 11 had re-derived. Verdict: PASS.
   * I checked the consumed chain once. Agol plus Haglund–Wise make hyperbolic cubulated groups
     virtually special, hence linear over `Z` and residually finite. A residually finite core is
     sofic, contradicting `forward-relations-of-a-counterexample-have-a-nonsofic-core`.
+
+## 19. gk-p-inf-cost revision (`d4b2e9bbc3`)
+
+Verdict: PASS. This re-checks the changed dependency.
+
+* **`nontrivial-bernoulli-weak-equivalence-proof`.** It now has `requires: []` and quotes
+  Abért–Weiss Theorem 1: a free p.m.p. action of a countably infinite group weakly contains every
+  Bernoulli action `kappa^Gamma`, for any probability space `kappa`. That covers finite bases
+  directly.
+  * Freeness (Lemma 1.1) together with Theorem 1 applied in both directions gives weak equivalence.
+  * The Section 5.1 trust note about the narrow `fpbs-aw-finite-pattern-input` no longer bears on
+    this route.
+* **Cost monotonicity.** It is now attributed to Kechris (Corollary 10.14, as Abért–Weiss print it)
+  and scoped to finitely generated groups, which is its published scope.
+  * The blindness claim's cost instance inherits "finitely generated". Its weak-equivalence and
+    group-invariant parts do not use it.
+  * Every INF host is finitely generated, so no conclusion changes.
+* **Path.** `fpbs-aw-finite-pattern-reference` now points to `research/artifacts/fpbs/torsion-actions.md`.
