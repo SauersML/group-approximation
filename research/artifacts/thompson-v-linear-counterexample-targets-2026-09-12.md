@@ -145,3 +145,39 @@ modules of the Cantor action. `thompson-v-cantor-orbits-have-no-folner-sets` rul
   larger-host claims. The converse fails a priori.
 - The larger-host forms: `ternary-leavitt-swap-idempotent-is-full`,
   `ternary-anti-invariant-swap-corner-is-full`, `projective-ternary-klein-idempotent-is-full`.
+
+## 7. Self-similar rewrites change nothing
+
+**Proposition 7.1.** Let `(tau, sigma)` be a left-inverse rule pair over `V`, with encoder
+memory `M`, decoder memory `S` and rules `mu`, `nu`.
+1. Let `U` be a nonempty clopen and `phi : V -> V_U` an isomorphism. The rewritten pair, with
+   memories `phi(M)`, `phi(S)` and the same rules, has the same forward and reverse tables, and
+   it is strict exactly when `(tau, sigma)` is.
+2. For pairs with memories inside `V_(U_1)`, `V_(U_2)` on disjoint clopens, the product pair
+   over `A_1 x A_2` is strict exactly when a factor is.
+
+*Proof.*
+1. `phi` is injective, so `phi(s)phi(m) = phi(s')phi(m')` iff `sm = s'm'`, and likewise for
+   `ms`. By `strict-automata-live-on-canonical-table-groups` the design and its tables decide
+   strictness. Directly: the rewritten automaton is `tau` transported along `phi` to
+   `V_U ~= V` and extended along the cosets of `V_U`, and that preserves injectivity and
+   surjectivity in both directions.
+2. The product map is `tau_1 x tau_2` on `A_1^V x A_2^V`, with left inverse
+   `sigma_1 x sigma_2`. It is onto iff both factors are. QED
+
+**Scope.** This excludes inductions whose steps are these rewrites: conjugating the memory into
+a cylinder copy of `V`, and taking products over disjoint clopens. The rewrites keep the rules
+and the tables, and the tables with the rules decide strictness. A descent proof of
+`thompson-v-surjunctive` would need an operation that changes the rules or the tables.
+
+## 8. How the two sides of the V question are wired
+
+- `thompson-v-is-sofic` (open) feeds `thompson-v-surjunctive` through Gromov--Weiss. Through
+  linear soficity it also feeds `thompson-v-modular-group-algebras-are-stably-finite`, which
+  refutes the linear targets of Sections 2 and 3.
+- `thompson-v-nonsurjunctive` (open) feeds `thompson-v-not-sofic` and, by ascent,
+  `leavitt-unit-group-nonsurjunctive`.
+- Every positive argument recorded for `V` goes through soficity. Every negative one proves `V`
+  nonsofic. A decision of `thompson-v-surjunctive` that avoids soficity would need a mechanism
+  that none of the landed tools provide: not permanence, coset peeling, Cantor encodings,
+  self-similar rewrites, or (T)-compression.

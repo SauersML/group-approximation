@@ -4,6 +4,8 @@ id: thompson-v-surjunctive
 kind: claim
 title: Thompson's group V is surjunctive
 root: true
+refuted_by:
+  - thompson-v-nonsurjunctive
 distinct_from:
   thompson-v-not-sofic: that asks whether V admits sofic approximations; soficity would prove this claim by Gromov--Weiss, and a strict automaton over V would prove that one, but surjunctivity of V could hold with V nonsofic.
   leavitt-unit-group-surjunctive: that is surjunctivity of the Leavitt unit group, which contains V and would give this claim; this is the smaller group, which is not known to decide that one.
@@ -39,3 +41,11 @@ unit group, since `V <= R^x`.
 - **What is left.** An argument over `V` itself, for automata whose memory
   generates `V`, perhaps an induction on the automaton using `V_U ~= V` on
   disjoint clopens. None is known: Section 4 of the artifact.
+- **Negative dual (2026-09-12).** `thompson-v-nonsurjunctive` refutes this claim. Its linear
+  target is `thompson-v-ternary-swap-idempotent-is-full`.
+- **Soficity route.** `thompson-v-surjunctive-from-soficity`, through the open
+  `thompson-v-is-sofic`.
+- **Self-similar descent.** Dead in its rewrite form:
+  `thompson-v-surjunctive-via-self-similar-descent`, killed by
+  `v-self-similar-rewrites-preserve-strict-pairs`. Conjugating the memory into `V_U ~= V`, or
+  splitting it along disjoint clopens, keeps the rules and both tables, so nothing decreases.

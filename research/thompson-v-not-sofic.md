@@ -3,6 +3,8 @@ rg: 2
 id: thompson-v-not-sofic
 kind: claim
 title: Thompson's group V is not sofic
+refuted_by:
+  - thompson-v-is-sofic
 distinct_from:
   thompson-v-not-hyperlinear: that is the stronger normalized-HS statement, which implies this one; this is the Hamming statement, which a hyperlinear V could still satisfy.
   thompson-v-not-lef: that excludes exact finite local embeddings, classically; this excludes approximate permutation models, which is open.

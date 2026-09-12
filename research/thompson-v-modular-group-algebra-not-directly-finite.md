@@ -3,6 +3,8 @@ rg: 2
 id: thompson-v-modular-group-algebra-not-directly-finite
 kind: claim
 title: For some prime p the group algebra F_p[V] of Thompson's group is not directly finite
+refuted_by:
+  - thompson-v-modular-group-algebras-are-stably-finite
 distinct_from:
   leavitt-unit-group-algebra-not-directly-finite: that is Kaplansky's question over F_2 for the binary Leavitt unit group, which contains V; this is the same question over the smaller group V at any prime, which gives that one at p = 2 and is not implied by it.
 artifacts:
