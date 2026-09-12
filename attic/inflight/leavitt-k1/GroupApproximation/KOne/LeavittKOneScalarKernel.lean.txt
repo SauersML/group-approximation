@@ -64,7 +64,7 @@ theorem scalarKernel (hd : 2 ≤ d) : ScalarKernel k d := by
   rw [MatrixDiagonalization.mem_stableUnits_iff] at hstable
   obtain ⟨ε, -, hεd, hεl⟩ := exists_lift_of_mem_elementaryGroup hstable
   have hfr : FiniteRank ((ε : Module.End k (Fin 2 → Space k d)) -
-      (diagOp c : Module.End k (Fin 2 → Space k d))) :=
+      ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))) :=
     finiteRank_sub_diagOp_of_lifts c hεl
   set g' : (Module.End k (Fin 2 → Space k d))ˣ := (diagOp c)⁻¹ * ε with hg'
   have hg'fr : FiniteRank ((g' : Module.End k (Fin 2 → Space k d)) - 1) := by
