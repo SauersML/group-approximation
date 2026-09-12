@@ -7,6 +7,7 @@ target: strict-automata-give-injective-ca-with-skewed-site-marginals
 requires: []
 artifacts:
   - research/artifacts/finitary-generation-single-site-criterion-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact Section 2, Steps 1–5. Every ingredient is elementary:
@@ -17,3 +18,5 @@ Artifact Section 2, Steps 1–5. Every ingredient is elementary:
    coordinate's law non-uniform, with deficit `c > 0`;
 4. the chain rule, conditioning only on the anchor indicator, gives
    `H <= (k+1) log q + log 2 - rho k c`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 2.1–2.5 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).
