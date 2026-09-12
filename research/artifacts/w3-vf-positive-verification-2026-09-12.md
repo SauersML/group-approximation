@@ -152,3 +152,201 @@ changes.
   below `log |A^(k+1)|`. This agrees in form with `strict-automaton-lowers-bernoulli-rokhlin-entropy`.
 - **Section 4.** The counting bound `|F| log |A| <= |F E| H` and the remarks on sofic and free groups are
   correct as prose. Nothing consumes them.
+
+## 3. Weakly sofic models and metric ultraproducts (w3-weaksofic, `008801992d`, `6cd986b1c3`)
+
+Verdict: **PASS** for `hamming-transports-of-weak-sofic-models-are-soficity`, its refutation wiring, and
+Proposition 4.1 with both equivalence routes. `metric-ultraproducts-of-finite-groups-are-surjunctive` and
+`weakly-sofic-groups-are-surjunctive` correctly read OPEN, and their cycle cannot fire.
+
+### 3.1 Lemmas 1.1 and 2.1. PASS.
+
+- **Lemma 1.1.** `z hN = hN` iff `h^-1 z h` lies in `N` iff `z` lies in `N`, by normality.
+- **Lemma 2.1.** `x v != y v` iff `y^-1 x` moves `v`. So `d_H(rho_V(x), rho_V(y)) = l_V(y^-1 x)`, and
+  `y^-1 x` and `x y^-1` are conjugate (by `y`), so they have equal fixed-point counts.
+
+### 3.2 Theorem 2.2. PASS.
+
+- **(Only if).** `psi = rho_V o phi` has defects `l_V(phi(a)phi(b)phi(ab)^-1) <= delta` and separation
+  `l_V(phi(g)) >= c'` by 3.1. The normalization `psi(1) = id` is harmless: `a = b = 1` gives
+  `l_V(phi(1)) <= delta`.
+- **Amplification.** On `V^r` the diagonal action has `fix = fix_V^r`. So separations become
+  `1 - (1 - c')^r`, and `d_(V^r)(sigma^(x r), pi^(x r)) = 1 - (1 - d_V(sigma, pi))^r <= r d_V`. Choose `r`
+  first, then `delta`. This gives sofic approximations with any defect and separation.
+- **Uniformity.** A per-set constant `c'(F)` would already suffice, since `r` may depend on `F`. So the
+  uniform version in the definition is more than the proof needs, and the "only if" holds a fortiori.
+- **(If).** `H = Sym(V)` with the normalized Hamming length. This is a length (symmetric, subadditive,
+  conjugation invariant), and the natural action gives `l_V = l`.
+
+### 3.3 Corollary 2.3 and wiring. PASS.
+
+- **The refuted claim.** The universal statement is false. `weakly-sofic-not-sofic` gives a weakly sofic,
+  nonsofic Kun–Thom wreath, and 3.2 would make it sofic.
+- **Wiring.** `refuted_by` names the established equivalence, whose proof route requires
+  `weakly-sofic-not-sofic`. The dead route requires the refuted claim, and the established claim
+  invalidates it.
+- **Scope.** The node says it refutes a method, not `weakly-sofic-groups-are-surjunctive`. Correct: every
+  nonsofic weakly sofic group on record is surjunctive by permanence.
+
+### 3.4 Proposition 4.1 and the two routes. PASS.
+
+Lengths in [WS] are symmetric, so `N_omega` is a normal subgroup.
+
+- **(If).** Weak soficity has fixed separation `c` and arbitrary defect. The rescaled
+  `min(1, l_n / c)` is a length: `min(1, a + b) <= min(1, a) + min(1, b)`. Its defect is `eps_n / c -> 0`,
+  and separation becomes `1`. The class of `(phi_n(g))_n` is then an injective homomorphism into `Q`, and
+  heredity passes surjunctivity down.
+- **(Only if), localization.** A strict automaton over `Q` with memory `M` is strict over `<M>`, by the
+  coset transfer.
+- **(Only if), weak soficity of `<M>`.** For finite `F`, choose representatives with `h_i(1) = 1`.
+  Products agree modulo `N_omega`, and every `g != 1` in `F` has `lim_omega l_i(h_i(g)) = c_g > 0`. So
+  `omega`-many `i` give defect `<= eps` and separation `>= min_g c_g / 2`. The separation depends on `F`,
+  but rescaling by `min(1, 2 l / c_F)` with defect chosen below `eps c_F / 2` makes it `1`. So `<M>` is
+  weakly sofic with a uniform constant.
+- **The routes** state exactly these two directions.
+- **Remarks 4.2–4.4.**
+  - Rectangle clauses are first-order universal sentences, so Łoś applies to the abstract ultraproduct.
+  - If `l_i` is `eps_i` on `N_i ∖ 1` and `1` elsewhere, it is a length. Then `N_omega` is the ultraproduct
+    of the `N_i`, and `Q` is the ultraproduct of the `H_i / N_i`.
+
+## 4. The O3-free permanence closure (w3-free-pos, `ae4b939212`)
+
+Verdict: **PASS** for `fg-simple-subgroups-of-local-embedding-free-closure-are-sofic` and Corollaries 2–3.
+The companion root `permanence-closure-contains-fg-simple-nonsofic-group` is correctly OPEN.
+
+### 4.1 Theorem 1, case by case. PASS.
+
+Transfinite induction on stages: `S_0` is the sofic groups, `S_(alpha+1)` applies one operation to
+`S_alpha`, and limits take unions. The operation list matches O1, O2, O4–O7 of
+`gottschalk-counterexamples-lie-outside-the-permanence-closure`. Let `Q` be infinite, finitely generated,
+simple and nonsofic, sitting in `W` at a minimal stage.
+
+- **O1, O2.** `Q` is a subgroup of an earlier member, or is itself a finitely generated subgroup of `W`,
+  which lies earlier.
+- **O4 (pressure point i).** `Q ∩ N` is normal in `Q`.
+  - If it is trivial, `Q` embeds into the base.
+  - Otherwise `Q <= N`. For `q != 1`, (A1) gives `p_S(q) != 1`, and `ker(p_S|_Q)` is a proper normal
+    subgroup, so it is trivial. `Q` embeds in the residually finite `N_S`. An infinite simple group is
+    never residually finite (a nontrivial finite quotient has a proper normal kernel), which is a
+    contradiction even before soficity enters.
+- **O7.** The same argument with the finitely generated residually finite kernel.
+- **O5 (pressure point iii).** `f` is injective on every conjugate `g Q_v g^-1`. Vertex stabilizers of
+  the Bass–Serre tree are exactly those conjugates, and edge stabilizers lie inside them. So `ker f` acts
+  freely, without inversions, and is free. `Q ∩ ker f` is trivial (and `f` embeds `Q`), or `Q` is free.
+  A free group of rank one is not simple, and free groups of rank at least two are residually finite.
+- **O6 (pressure point ii).** The kernel `Lambda(A)` must be sofic. Two derivations:
+  - **Citation.** Ciobanu–Holt–Rees, graph products of sofic groups are sofic, plus locality for infinite
+    graphs. This is the trust surface already recorded at line 282 of
+    `gottschalk-table-realization-and-evasion-2026-09-12.md`.
+  - **Citation-light alternative.** `Lambda(A)` is LEF. Take a finite set in reduced normal form. Its
+    finitely many syllables lie in the lamps. Local embeddings of the lamps into finite groups `B_x` send
+    reduced words to reduced words and preserve the recorded products (syllable shuffles along edges and
+    products inside one vertex group). So the set embeds into the graph product of the `B_x` over a finite
+    subgraph, the transplant of `lef-lamp-graph-wreaths-are-surjunctive`. Graph products of finite groups
+    over finite graphs are residually finite (Green 1990, statement-level trust). LEF groups are sofic.
+
+  No node on main records either derivation. That is a trust note, not a gap in the claim.
+
+### 4.2 Corollaries 2 and 3. PASS.
+
+- **Corollary 2.** The same case analysis runs inside `S*` for O1, O2, O4–O7. So at a minimal stage `Q`
+  enters through O3. If `Q` were finitely presented, a local embedding of a ball containing the relators
+  into an earlier member would give a nontrivial, hence injective, homomorphism. That contradicts
+  minimality.
+- **Corollary 3.** Members of `S*` are surjunctive, and Corollary 1 of
+  `strict-pairs-transfer-to-table-realizations` gives O3.
+- **The remark on nonsoficity.** A finite witness `(F, eps)` of nonsoficity transports along a partial
+  table embedding, because approximation defects involve only products recorded in `F`. So the target
+  member is nonsofic.
+
+## 5. Window balance and the decoder fiber bound (w3-bern-window, `1c581bd479`)
+
+Verdict: **PASS** for `window-balance-is-a-fiber-upper-bound` and
+`decoder-window-fiber-bound-loses-exactly-the-boundary`, including the three remarks.
+
+### 5.1 Proposition 1. PASS.
+
+- **The formula.** `tau_* mu(p on E) = c_E(p) q^(-|EM|)`, since the output on `E` reads exactly `EM`.
+- **(3) ⇒ (2).** The `q^|E|` counts sum to `q^(|EM|)`, and a finite family bounded above by its average is
+  constant.
+- **Subwindows and cofinal families.** Marginals of uniform laws are uniform. A cofinal family of windows
+  reaches every finite window by marginalization, and cylinder values determine the measure.
+
+### 5.2 Proposition 2 (pressure point: `1 in NM`). PASS.
+
+- **Agreement on the interior.** Two fiber elements, extended by a common exterior, have the same output
+  on `E`. For `g` in `int_N E` the decoder reads outputs on `gN`, inside `E`, so the inputs agree at `g`.
+- **`1 in NM`.** `x(g)` is a function of `x` on `gNM`. If `g` were outside `gNM`, changing `x(g)` alone
+  would leave the decoded value unchanged, which is impossible.
+- **Counting.** So `g` lies in `gNM <= EM` and is a fiber coordinate. Since `1 in N`, `int_N E <= E`, and
+  `|E| = |int_N E| + |d_N E|`. The bound follows.
+
+### 5.3 The remarks. PASS as scoped.
+
+- **Amenable recovery.**
+  - Image patterns on `F` avoid `p_0` on `k` disjoint translates, so there are at most
+    `q^|F| (1 - q^(-|Omega|))^k` of them. Proposition 2 forces at least `q^(|int_N F|)`.
+  - With `1 in Omega` (normalize by translation), a maximal disjoint family of translates inside `F` has
+    `k >= |int_Omega F| / |Omega Omega^-1|`.
+  - Følner windows finish.
+- **Nonamenable boundary density.**
+  - For finite `F` in `G` and `N` generating a nonamenable subgroup `H`, split `F` over left cosets of `H`.
+  - `|Fn ∖ F| = |F n^-1 ∖ F|` and `|F s_1 s_2 ∖ F| <= |F s_1 ∖ F| + |F s_2 ∖ F|`. So small right boundary for
+    `N` would give Følner sets for every finite subset of `H`.
+  - Hence `inf_F |FN ∖ F| / |F| > 0`, and `|d_N F| >= |FN ∖ F| / |N|`.
+  - The statement that the per-window inequality is consistent once `|Omega|` is large is a consistency
+    remark. It claims no theorem.
+- **`E = {1}` with `|N| >= 2`.** `int_N E` is empty, so the bound is the trivial `c <= q^|M|`.
+- **Section 5 of the artifact** (Bartholdi–Kielak) is a literature remark, and nothing consumes it.
+
+## 6. Intrinsic sizes on the automaton monoid (w3-simple-direct, `0d36c14325`, `294d7f3680`)
+
+Verdict: **PASS** for all four claims, with one typo in Theorem 2.1's displayed computation.
+
+### 6.1 `retract-images-of-full-shifts-have-infinite-descending-chains`. PASS.
+
+- **The opening is an automaton.** `h` lies in `gamma_F(S)` iff `h f^-1 F <= S` for some `f in F`. That
+  reads the input on `h F^-1 F`, and `supp(k.x) = k supp(x)` gives equivariance.
+- **Idempotent.** Outputs are unions of translates, and those are fixed. `gamma_(F_n) o r` is idempotent,
+  since `r` fixes `{0,1}`-configurations.
+- **Sizes.** `c_n` outside `F_n F_n^-1` makes `c_n F_n ∩ F_n` empty, so `|F_n| = 2^n`, with `1 in F_n`.
+- **Nesting.** `g F_(n+1) = g F_n ∪ g c_n F_n`, so `X_(F_(n+1)) <= X_(F_n)`.
+- **Strictness.** The indicator of `F_n` is one translate of `F_n`. A translate of `F_(n+1)` has `2^(n+1)`
+  points, so none fits inside `F_n`.
+- **Corollary.** An infinite strictly descending chain rules out strictly monotone maps into a well-ordered
+  set.
+- **Remark 1.4.** The strong-irreducibility gluing is correct. The entropy import has a trust note, and
+  no node depends on it.
+
+### 6.2 `strict-automata-copy-the-retract-poset-below-their-image`. PASS, one typo.
+
+- **(1).** `(tau f sigma)^2 = tau f (sigma tau) f sigma = tau f sigma`. `sigma` is onto, so the image is
+  `tau(X)`.
+- **(2).** An injective continuous equivariant map on a compact space is a conjugacy onto its image.
+- **(3).** `e = tau sigma` fixes `tau(A^G)` pointwise, so `e o g = g`. Then
+  `(sigma g tau)^2 = sigma g (tau sigma) g tau = sigma g (e g) tau = sigma g tau`.
+- **The typo.** The artifact writes the middle step as `sigma (e g) g tau`, with `e g` in the wrong slot.
+  The conclusion is unaffected.
+- **Image.** `g(tau(A^G)) = Y`, since `g` fixes `Y` and maps into `Y`. So `sigma(Y)` is a retract image,
+  and `tau(sigma(Y)) = e(Y) = Y`. The `↓X` version holds because `sigma(Y) <= sigma(tau(X)) = X`.
+  Conjugacy is preserved by composition.
+
+### 6.3 `directly-finite-ring-images-of-ca-monoids-kill-retracts`. PASS.
+
+- **Homomorphisms.** `rho(sigma) rho(tau) = 1` gives `rho(tau) rho(sigma) = 1` in a directly finite
+  ring. So `rho(tau sigma) = 1` for the idempotent `tau sigma != id`.
+- **Anti-homomorphisms.** They reverse the order, with the same conclusion.
+- **Rank functions.** If `ab = 1`, then `ba` is idempotent and `rk(ba) >= rk(a ba b) = 1`. Additivity on
+  complementary idempotents gives `rk(1 - ba) = 0`, and faithfulness gives `ba = 1`.
+- **K-theory.** `a = tau` lies in `(tau sigma) R` and `b = sigma` in `R (tau sigma)`. With `ab = tau sigma`
+  and `ba = 1`, this is a Murray–von Neumann equivalence, so `[1 - tau sigma] = 0`. The augmentation kills
+  every `1 - f`.
+
+### 6.4 `retract-images-of-full-shifts-are-not-disjoint-unions`. PASS.
+
+- **Clopen window.** `X_1` is clopen in the compact `X`, so membership is decided by the pattern on some
+  finite `W`.
+- **Gluing.** With `W M ∩ g W M` empty, glue preimages. `f(w)` shows `y` on `W` and `g.z` on `gW`, and
+  `(g^-1.x)(omega) = x(g omega) = z(omega)` puts `g^-1.x` in `X_2`.
+- **Conclusion.** Invariance puts `x` in both pieces, a contradiction.
+- **Consequence 4.2.** Correct as prose.

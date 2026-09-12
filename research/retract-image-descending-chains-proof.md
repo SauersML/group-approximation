@@ -7,6 +7,7 @@ target: retract-images-of-full-shifts-have-infinite-descending-chains
 requires: []
 artifacts:
   - research/artifacts/automaton-monoid-intrinsic-sizes-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Lemma 1.1, Theorem 1.2 and Corollary 1.3 of the artifact.
@@ -20,3 +21,5 @@ Lemma 1.1, Theorem 1.2 and Corollary 1.3 of the artifact.
   `X_(F_n)`, but no translate of `F_(n+1)` fits in `F_n`, so it is not in `X_(F_(n+1))`.
 - **Corollary:** a strictly monotone map into a well-ordered set would send the chain to an infinite
   strictly descending sequence of ordinals.
+
+**Verification.** `w3-vf-positive` passed this route (Section 6.1 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

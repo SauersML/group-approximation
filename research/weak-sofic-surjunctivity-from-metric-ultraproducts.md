@@ -9,6 +9,7 @@ requires:
   - surjunctivity-passes-to-subgroups
 artifacts:
   - research/artifacts/weak-sofic-hamming-transport-is-soficity-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Let `G` be countable and weakly sofic.
@@ -25,3 +26,5 @@ Let `G` be countable and weakly sofic.
 
 This route and `metric-ultraproduct-surjunctivity-from-weak-sofic-case` form an
 intended equivalence cycle, so neither establishes its target alone.
+
+**Verification.** `w3-vf-positive` passed this route (Section 3.4 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

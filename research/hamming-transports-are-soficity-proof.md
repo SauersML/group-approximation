@@ -7,6 +7,7 @@ target: hamming-transports-of-weak-sofic-models-are-soficity
 requires: [weakly-sofic-not-sofic]
 artifacts:
   - research/artifacts/weak-sofic-hamming-transport-is-soficity-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Sections 1--2 of the artifact.
@@ -24,3 +25,5 @@ Sections 1--2 of the artifact.
   sofic, so that group admits no uniform transport.
 - Normal fibres: `z hN = hN` iff `z` is in `N`, so `l_(H/N)` is the indicator of
   the complement of `N`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 3.1–3.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

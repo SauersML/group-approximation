@@ -8,6 +8,7 @@ requires:
   - weakly-sofic-groups-are-surjunctive
 artifacts:
   - research/artifacts/weak-sofic-hamming-transport-is-soficity-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 - **Localization.** Let `tau` be a strict automaton over `Q` with memory `M`. By
@@ -24,3 +25,5 @@ artifacts:
 
 This route and `weak-sofic-surjunctivity-from-metric-ultraproducts` form an
 intended equivalence cycle.
+
+**Verification.** `w3-vf-positive` passed this route (Section 3.4 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`). The per-set separation is rescaled to a uniform constant, as checked there.

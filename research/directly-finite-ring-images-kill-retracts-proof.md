@@ -7,6 +7,7 @@ target: directly-finite-ring-images-of-ca-monoids-kill-retracts
 requires: []
 artifacts:
   - research/artifacts/automaton-monoid-intrinsic-sizes-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Propositions 3.1 and 3.2 of the artifact.
@@ -22,3 +23,5 @@ Propositions 3.1 and 3.2 of the artifact.
   augmentation sends every monoid element to `1`, so `1 - f` to `0`.
 - **Linear restriction:** linear automata over `F_p^n` form the multiplicative monoid of
   `M_n(F_p[G])` or its opposite, so a separating `rho` gives direct finiteness there.
+
+**Verification.** `w3-vf-positive` passed this route (Section 6.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

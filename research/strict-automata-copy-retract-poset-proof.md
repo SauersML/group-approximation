@@ -7,6 +7,7 @@ target: strict-automata-copy-the-retract-poset-below-their-image
 requires: []
 artifacts:
   - research/artifacts/automaton-monoid-intrinsic-sizes-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Theorem 2.1 and Corollary 2.2 of the artifact.
@@ -21,3 +22,5 @@ Theorem 2.1 and Corollary 2.2 of the artifact.
   `tau(sigma(Y)) = e(Y) = Y`.
 - **Corollary:** an invariant of the down-set is unchanged under the isomorphism `Phi`, which sends
   `A^G` to `tau(A^G)`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 6.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`). Typo in artifact Theorem 2.1(3): the middle step should read sigma g (e g) tau; the conclusion is unaffected.

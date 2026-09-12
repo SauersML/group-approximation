@@ -7,6 +7,7 @@ target: retract-images-of-full-shifts-are-not-disjoint-unions
 requires: []
 artifacts:
   - research/artifacts/automaton-monoid-intrinsic-sizes-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Proposition 4.1 of the artifact.
@@ -19,3 +20,5 @@ Proposition 4.1 of the artifact.
   `g.z'` on `g W M`. By locality and equivariance, `x = f(w)` agrees with `y` on `W` and with `g.z` on
   `g W`.
 - **Contradiction:** `x in X_1`, while `(g^-1.x)|_W = z|_W` puts `g^-1.x` in `X_2`, hence `x in X_2`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 6.4 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).
