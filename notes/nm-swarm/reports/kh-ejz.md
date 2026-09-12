@@ -7,11 +7,13 @@ of that statement to the manuscript's use of property (T).
 
 1. **Compiled bytes = origin bytes.** All ten lane files (ThreeVertexDuality, Closure, Proposition,
    Kazhdan; EJZAngleTranslates, Heisenberg, Bessel, SylowFourGram, SylowFour, GHB) match green probe
-   0912-004202-1394 on origin/main; EJZAngleGHB landed f816893382e0. Nothing to land. The lead is wiring
-   EJZAngleGHB and EJZAngleSylowFour into the root.
+   0912-004202-1394 on origin/main; EJZAngleGHB landed f816893382e0. Nothing to land. EJZAngleSylowFour
+   and EJZAngleGHB are root-wired (bfbe000c7), so `hasKazhdanPropertyT_ghb7` sits inside the root axiom
+   audit.
    `GroupApproximation.KMSGroup.GHBQuotient.hasKazhdanPropertyT_ghb7 : HasKazhdanPropertyT.{0, 0} (GHB 7)`
    (Kazhdan/EJZAngleGHB.lean), under `#audit_closed_axioms`.
-2. **`hT` discharged.** New module Kazhdan/GHBLatticeRouteKazhdan (not root-wired): landed 5a5886551,
+2. **`hT` discharged.** New module Kazhdan/GHBLatticeRouteKazhdan (in the lead's next root-wiring wave at
+   green bytes 0912-093109-89237): landed 5a5886551,
    green probe 0912-092240-22748 (the normal landing reported NOTHING TO LAND, bytes identical).
    ```lean
    def PrintedGHB7PropertyT : Prop :=
@@ -52,7 +54,13 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
 
 ## Remaining leaves of the GHB(7) route
 - `hconj : CCKWFiniteOrderConjugateIntoVertex` (CCKW Theorem 3.1(ii), cyclic case): kh-cckw.
-- `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` (CCKW Theorem 3.1(i)): kh-hyperbolic.
+- `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` (CCKW Theorem 3.1(i)): kh-hyperbolic. kh-ejz has
+  offered to take the boundary-sum and typed-count inputs (from `TriangulatedDisc.abs_boundarySum_le`,
+  `TriangulatedDisc.exists_typedCounts`) or a zip/fold producer. Nothing claimed pending its reply.
+
+## Landing rule
+Edits to EJZAngleGHB, EJZAngleSylowFour and GHBLatticeRouteKazhdan land with NM_ATTIC until a probe is
+green, never NM_UNVERIFIED.
 
 ## Model test (scratch Python, not landed)
 - Regular-representation angles of the CCKW Prop 7.15 images in SL4(F7): <a,b> (343) 0.377964 = 1/√7;
