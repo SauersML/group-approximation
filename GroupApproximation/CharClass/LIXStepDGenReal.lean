@@ -6,7 +6,8 @@ import GroupApproximation.CharClass.ParityPWuTransport
 # Step D mod `p` at the real mapping torus, over a coefficient ring `K`
 
 Lane `lix-evenside-n` of the STW Problem LIX strengthening programme
-(`notes/LIX_STRONGER_PROGRAM_2026-09-10.md`, §1.4; lead's ruling of 2026-09-11).
+(`notes/LIX_STRONGER_PROGRAM_2026-09-10.md`, §1.4; lead's ruling of 2026-09-11); restated on even
+parts by lane `lx-torusP` (2026-09-12).
 
 `CharClass/LIXStepDGenModP.lean` proves Step D mod `p` at rank `n` from `Gen.ModPStepDData`,
 a structure over an abstract pair of commutative rings.  This file assembles that structure
@@ -18,24 +19,28 @@ at the **real** objects: the mapping torus `N` with its projections `pY : N → 
 The inputs are split by where they come from.
 
 * `Gen.RealTorusModP` — what depends on the torus and not on the bundle: the vanishing of
-  `H²(S¹; K)`, Künneth uniqueness for `z = t x`, and the reduced powers `P^i` on `N` and `Y`
-  with `P⁰ = id`, the Cartan formula, naturality along `pY`, `P^{>0}` killing the two sphere
-  classes, and instability on `Y`.  Owners: Künneth over `K` (`lix-lh`, `lix-coeff`), the
-  operations (`lix-steenrod`).
+  `H²(S¹; K)`, Künneth uniqueness for `z = t x`, and the reduced powers `P^i` on the **even
+  parts** of `H^*(N)` and `H^*(Y)` with `P⁰ = id`, the Cartan formula, naturality along `pY`,
+  `P^{>0} z = 0`, and instability on `Y`.  Every field about the operations is asked on even
+  classes only, which is where the even side uses them: in odd degrees the construction's `P⁰`
+  is a unit multiple of the identity and its Cartan formula carries signs, and nothing
+  downstream needs either.  `P^{>0} z = 0` is asked for directly: `z` is pulled back from
+  `S^{2n+1} × S¹`, whose cohomology vanishes above degree `2n + 2`, so it is a naturality
+  statement (`CharClass/LIXStepDGenTorusPModel.lean`).  Owners: Künneth over `K`
+  (`lx-kunneth`), the operations (`lx-pzero`), the torus producer (`lx-torusP`).
 * `Gen.RealBundleModP` — what depends on the bundle: evenness of its Chern classes, their two
   Künneth components, the degree of the `z`-component, the slice class, and the diagonal Wu
-  relation with a unit leading coefficient.  Owners: Leray–Hirsch over `K` (`lix-lh`), the Wu
-  relation (`lix-evenside`, through `Gen.realWu_of_splitting` below).
+  relation with a unit leading coefficient.  Owners: Leray–Hirsch over `K`, the Wu relation
+  (`lx-splitK`, `lx-bundleP`, through `Gen.realWu_of_splitting` below).
 
 What this file proves, rather than assumes, is every field of `Gen.ModPStepDData` that is a
 consequence of those inputs:
 
 * `z² = 0` with **no sign**: `z = t x` is even, so it commutes with `t`, and
   `z z = (z t) x = (t z) x = (t t) x x = 0` from `H²(S¹) = 0` alone (`Gen.zClass_mul_self`);
-* `P^{>0} z = 0` from the Cartan formula and `P^{>0} t = P^{>0} x = 0` (`RealTorusModP.PN_zClass`);
 * instability at the single index the even side uses, from the degree of `b k` and
   instability on `Y` (`RealBundleModP.instability_b`);
-* the restriction of everything to the even parts (`RealBundleModP.toModPStepDData`).
+* the restriction of the bundle data to the even parts (`RealBundleModP.toModPStepDData`).
 
 ## Main results
 
@@ -126,7 +131,8 @@ end Classes
 
 /-- **The mod-`p` data of the mapping torus `N = S¹ × S^{2n+1} × Y`** that does not depend on
 the bundle, over a coefficient ring `K`: the circle has no `H²`, Künneth uniqueness for
-`z = t x`, and the reduced powers on `N` and `Y` in the form the even side uses. -/
+`z = t x`, and the reduced powers on the even parts of `H^*(N)` and `H^*(Y)` in the form the even
+side uses. -/
 structure RealTorusModP (n : ℕ) (K : Type) [CommRing K] {N Y S₁ Sodd : TopCat.{0}}
     (pY : N ⟶ Y) (q₁ : N ⟶ S₁) (qodd : N ⟶ Sodd)
     (σ₁ : TotalPieceOf K S₁ 1) (σodd : TotalPieceOf K Sodd (2 * n + 1)) where
@@ -135,52 +141,22 @@ structure RealTorusModP (n : ℕ) (K : Type) [CommRing K] {N Y S₁ Sodd : TopCa
   /-- Künneth uniqueness: the `z`-component of a class of `N` is well defined. -/
   z_inj : ∀ u v : TotalHOf K Y,
     TotalHOf.map K pY u + zClass K q₁ qodd σ₁ σodd * TotalHOf.map K pY v = 0 → v = 0
-  /-- The reduced powers on `N`. -/
-  PN : ℕ → TotalHOf K N →+ TotalHOf K N
-  /-- The reduced powers on `Y`. -/
-  PY : ℕ → TotalHOf K Y →+ TotalHOf K Y
-  /-- `P^i` preserves evenness on `N` (it raises the degree by `2i(p − 1)`). -/
-  PN_even : ∀ (i : ℕ) (x : TotalHOf K N), TotalHOf.IsEven x → TotalHOf.IsEven (PN i x)
-  /-- `P^i` preserves evenness on `Y`. -/
-  PY_even : ∀ (i : ℕ) (x : TotalHOf K Y), TotalHOf.IsEven x → TotalHOf.IsEven (PY i x)
+  /-- The reduced powers on the even part of `H^*(N)`. -/
+  PN : ℕ → evenPart K N →+ evenPart K N
+  /-- The reduced powers on the even part of `H^*(Y)`. -/
+  PY : ℕ → evenPart K Y →+ evenPart K Y
   /-- `P⁰ = id`. -/
-  PN_zero : ∀ x : TotalHOf K N, PN 0 x = x
-  /-- The Cartan formula on `N`. -/
-  cartan : ∀ (i : ℕ) (u v : TotalHOf K N),
+  PN_zero : ∀ x : evenPart K N, PN 0 x = x
+  /-- The Cartan formula on the even part of `H^*(N)`. -/
+  cartan : ∀ (i : ℕ) (u v : evenPart K N),
     PN i (u * v) = ∑ j ∈ Finset.range (i + 1), PN j u * PN (i - j) v
   /-- Naturality along `pY`. -/
-  natural : ∀ (i : ℕ) (r : TotalHOf K Y),
-    PN i (TotalHOf.map K pY r) = TotalHOf.map K pY (PY i r)
-  /-- The positive powers kill `t` (it lives on the circle). -/
-  P_t : ∀ i : ℕ, 0 < i → PN i (tClassOf K q₁ σ₁) = 0
-  /-- The positive powers kill `x` (it lives on the odd sphere). -/
-  P_x : ∀ i : ℕ, 0 < i → PN i (xClassOf K qodd σodd) = 0
-  /-- Instability on `Y`: `P^i` vanishes on classes of degree `< 2i`. -/
-  PY_unstable : ∀ (i d : ℕ) (c : TotalPieceOf K Y d), d < 2 * i →
-    PY i (TotalHOf.of K Y d c) = 0
-
-namespace RealTorusModP
-
-variable {n : ℕ} {K : Type} [CommRing K] {N Y S₁ Sodd : TopCat.{0}}
-  {pY : N ⟶ Y} {q₁ : N ⟶ S₁} {qodd : N ⟶ Sodd}
-  {σ₁ : TotalPieceOf K S₁ 1} {σodd : TotalPieceOf K Sodd (2 * n + 1)}
-  (T : RealTorusModP n K pY q₁ qodd σ₁ σodd)
-
-/-- **`P(z) = z`**: the positive powers kill `z = t x`, by Cartan. -/
-theorem PN_zClass (i : ℕ) (hi : 0 < i) : T.PN i (zClass K q₁ qodd σ₁ σodd) = 0 := by
-  rw [zClass, T.cartan]
-  refine Finset.sum_eq_zero fun j _ => ?_
-  rcases Nat.eq_zero_or_pos j with rfl | hj
-  · rw [Nat.sub_zero, T.P_x i hi, mul_zero]
-  · rw [T.P_t j hj, zero_mul]
-
-/-- The powers on the even part of `N`. -/
-def evenPN (i : ℕ) : evenPart K N →+ evenPart K N := evenRestrictAdd (T.PN i) (T.PN_even i)
-
-/-- The powers on the even part of `Y`. -/
-def evenPY (i : ℕ) : evenPart K Y →+ evenPart K Y := evenRestrictAdd (T.PY i) (T.PY_even i)
-
-end RealTorusModP
+  natural : ∀ (i : ℕ) (r : evenPart K Y), PN i (evenMap K pY r) = evenMap K pY (PY i r)
+  /-- `P(z) = z`: the positive powers kill `z = t x`. -/
+  P_z : ∀ i : ℕ, 0 < i → PN i (evenZClass K q₁ qodd σ₁ σodd) = 0
+  /-- Instability on `Y`: `P^i` vanishes on classes of even degree `d < 2i`. -/
+  PY_unstable : ∀ (i d : ℕ) (hd : Even d) (c : TotalPieceOf K Y d), d < 2 * i →
+    PY i ⟨TotalHOf.of K Y d c, TotalHOf.isEven_of K Y hd c⟩ = 0
 
 /-! ## 3. The bundle data, and the instance -/
 
@@ -222,7 +198,7 @@ structure RealBundleModP {n : ℕ} (p : ℕ) {ℓ : ℕ} (dd : Fin ℓ → ℕ) 
   /-- The diagonal Wu relation `P^i(γ_{i+1}) = c_i·γ_{ip+1} + (decomposables)`, in the even
   part of `N`. -/
   wu : ∀ i : ℕ, IsDecomposable (fun k => (⟨γ k, γ_even k⟩ : evenPart K N)) (i * p + 1)
-    (evenRestrictAdd (T.PN i) (T.PN_even i) (⟨γ (i + 1), γ_even (i + 1)⟩ : evenPart K N)
+    (T.PN i (⟨γ (i + 1), γ_even (i + 1)⟩ : evenPart K N)
       - evenMap K pY (c i) * (⟨γ (i * p + 1), γ_even (i * p + 1)⟩ : evenPart K N))
 
 namespace RealBundleModP
@@ -244,12 +220,16 @@ def evenB : ℕ → evenPart K Y := fun k => ⟨B.b k, B.b_even k⟩
 
 /-- **Instability at the index the even side uses**, from the degree of `b k` and instability
 on `Y`: `P^i (b k) = 0` whenever `k < i + (n + 1)`. -/
-theorem instability_b (k i : ℕ) (h : k < i + (n + 1)) : T.PY i (B.b k) = 0 := by
+theorem instability_b (k i : ℕ) (h : k < i + (n + 1)) : T.PY i (B.evenB k) = 0 := by
   by_cases hk : k < n + 1
-  · rw [B.b_low k hk, map_zero]
+  · have hb : B.evenB k = 0 := Subtype.ext (B.b_low k hk)
+    rw [hb, map_zero]
   · obtain ⟨c, hc⟩ := B.b_deg k (by omega)
-    rw [hc]
-    exact T.PY_unstable i _ c (by omega)
+    have hb : B.evenB k
+        = ⟨TotalHOf.of K Y _ c, TotalHOf.isEven_of K Y (even_two_mul (k - (n + 1))) c⟩ :=
+      Subtype.ext hc
+    rw [hb]
+    exact T.PY_unstable i _ (even_two_mul (k - (n + 1))) c (by omega)
 
 /-- **The instance**: the real mod-`p` data is a `Gen.ModPStepDData` over the even parts. -/
 def toModPStepDData : ModPStepDData n p dd (evenPart K Y) (evenPart K N) B.evenγ where
@@ -257,20 +237,16 @@ def toModPStepDData : ModPStepDData n p dd (evenPart K Y) (evenPart K N) B.even�
   z := evenZClass K q₁ qodd σ₁ σodd
   z_mul_z := Subtype.ext (zClass_mul_self K q₁ qodd σ₁ σodd ⟨n, rfl⟩ T.circle_two)
   z_inj u v h := Subtype.ext (T.z_inj u v (congrArg Subtype.val h))
-  PH := T.evenPN
-  PR := T.evenPY
-  pH_zero u := Subtype.ext (T.PN_zero u)
-  cartan i u v := Subtype.ext ((T.cartan i u v).trans
-    (map_sum (evenPart K N).subtype (fun j => T.evenPN j u * T.evenPN (i - j) v)
-      (Finset.range (i + 1))).symm)
-  pH_z i hi := Subtype.ext (T.PN_zClass i hi)
-  pH_ι i r := Subtype.ext (T.natural i r)
+  PH := T.PN
+  PR := T.PY
+  pH_zero := T.PN_zero
+  cartan := T.cartan
+  pH_z := T.P_z
+  pH_ι := T.natural
   a := B.evenA
   b := B.evenB
   γ_eq k := Subtype.ext (B.γ_eq k)
-  instability := by
-    intro k i h
-    exact Subtype.ext (B.instability_b k i h)
+  instability k i h := B.instability_b k i h
   gen := B.gen
   slice := B.slice
   c := B.c
@@ -298,15 +274,13 @@ theorem realWu_of_splitting {n : ℕ} {K : Type} [CommRing K] {N Y S₁ Sodd : T
     (hγe : ∀ k, TotalHOf.IsEven (γ k)) {σ A : Type*} [CommRing A] [DecidableEq σ]
     (D : PowerData σ A p) (ρ : evenPart K N →+* A) (hρ : Function.Injective ρ)
     (hγ : ∀ k, ρ (⟨γ k, hγe k⟩ : evenPart K N) = D.gamma k)
-    (hP : ∀ (i : ℕ) (x : evenPart K N),
-      ρ (evenRestrictAdd (T.PN i) (T.PN_even i) x) = D.P i (ρ x))
+    (hP : ∀ (i : ℕ) (x : evenPart K N), ρ (T.PN i x) = D.P i (ρ x))
     (m : ℤ) (hκ : D.κ = (m : A)) (i : ℕ) :
     IsDecomposable (fun k => (⟨γ k, hγe k⟩ : evenPart K N)) (i * p + 1)
-      (evenRestrictAdd (T.PN i) (T.PN_even i) (⟨γ (i + 1), hγe (i + 1)⟩ : evenPart K N)
+      (T.PN i (⟨γ (i + 1), hγe (i + 1)⟩ : evenPart K N)
         - evenMap K pY ((m ^ i * wuCoeff p i : ℤ) : evenPart K Y)
           * (⟨γ (i * p + 1), hγe (i * p + 1)⟩ : evenPart K N)) :=
-  wu_field_of_splitting hp (evenMap K pY) D ρ hρ (fun k => ⟨γ k, hγe k⟩) hγ
-    (fun i => evenRestrictAdd (T.PN i) (T.PN_even i)) hP m hκ i
+  wu_field_of_splitting hp (evenMap K pY) D ρ hρ (fun k => ⟨γ k, hγe k⟩) hγ T.PN hP m hκ i
 
 /-! ## 5. The Step D half of Lemma 2 at the real objects -/
 
@@ -362,7 +336,6 @@ end Gen
 #audit_axioms Gen.tClassOf_mul_self
 #audit_axioms Gen.zClass_mul_self
 #audit_axioms Gen.evenZClass
-#audit_axioms Gen.RealTorusModP.PN_zClass
 #audit_axioms Gen.RealBundleModP.instability_b
 #audit_axioms Gen.RealBundleModP.toModPStepDData
 #audit_axioms Gen.RealBundleModP.gamma_top_eq_zero
