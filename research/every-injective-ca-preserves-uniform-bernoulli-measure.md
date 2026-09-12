@@ -116,3 +116,16 @@ every `p in A^Omega`, where `M` is the memory,
     consistent with the Kaplansky lanes.
   - *gk-free.* Kazhdan `H^1`-vanishing as the missing cancellation in information transport. It is
     listed above as untested, and no lane has taken it.
+* **Window fibers and the decoder (w3-bern-window, 2026-09-12).** Balance at a window is a one-sided
+  fiber bound: no fiber above the average `q^(|EM| - |E|)` (`window-balance-is-a-fiber-upper-bound`).
+  Injectivity supplies that bound only up to the boundary factor `q^(|d_N E|)`
+  (`decoder-window-fiber-bound-loses-exactly-the-boundary`). The factor has zero density on amenable
+  groups, which is Gromov--Weiss in counting form, and positive density on nonamenable groups;
+  averaging over translates or invariant random windows keeps the density.
+  - The three per-window relations: translation totals (unimodularity), the decoder bound
+    (injectivity), and zeros at Gardens of Eden (strictness). The end-fixing tree drops the first;
+    pre-injective non-surjective automata over nonamenable groups drop the second (Bartholdi--Kielak,
+    recorded as a remark only).
+  - Exact open step: the boundary-free decoder bound on a cofinal family of windows. At `E = {1}` the
+    decoder bound is vacuous, matching `every-injective-ca-has-uniform-single-site-output-law`.
+  - Artifact: `research/artifacts/window-balance-mass-transport-2026-09-12.md`.
