@@ -128,7 +128,8 @@ noncomputable def transportBoundary {s : Finset Delta.toCombMap.Face}
     rw [R.mem_map_keep_iff (R.cycle_offEdge hs B) x, B.cycle_mem_iff,
       ← R.isBoundaryDart_keep_iff hs (R.val_ne x), R.keep_val]
   cycle_chain :=
-    List.isChain_map.mpr (B.cycle_chain.imp fun _ _ h => R.boundaryStep_transport hs h)
+    (List.isChain_map R.keep).mpr
+      (B.cycle_chain.imp fun _ _ h => R.boundaryStep_transport hs h)
   cycle_closes := by
     rw [List.getLast_map, List.head_map]
     exact R.boundaryStep_transport hs B.cycle_closes
@@ -409,12 +410,12 @@ theorem regionCandidate_target_isSome
 theorem regionCandidate_sourceArc_darts
     (a : { a : RegionCandidate D eps Delta // R.first ∉ a.1 ∧ R.second ∉ a.1 }) :
     (R.regionCandidate a).2.sourceArc.darts = a.val.2.sourceArc.darts.map R.keep :=
-  CyclicArc.mapTo_darts _ R.keep _
+  CyclicArc.mapTo_darts a.val.2.sourceArc R.keep (R.cellDarts_eq a.val.2.source)
 
 theorem regionCandidate_targetArc_darts
     (a : { a : RegionCandidate D eps Delta // R.first ∉ a.1 ∧ R.second ∉ a.1 }) :
     (R.regionCandidate a).2.targetArc.darts = a.val.2.targetArc.darts.map R.keep :=
-  CyclicArc.mapTo_darts _ R.keep _
+  CyclicArc.mapTo_darts a.val.2.targetArc R.keep (R.targetDarts_eq a.val.2.target)
 
 theorem mem_cellArcDarts_regionCandidate_iff
     (a : { a : RegionCandidate D eps Delta // R.first ∉ a.1 ∧ R.second ∉ a.1 })
@@ -429,45 +430,65 @@ theorem mem_cellArcDarts_regionCandidate_iff
     R.mem_map_keep_iff (fun d hd => R.targetDarts_offEdge a.val.2.target
       (a.val.2.targetArc.mem_cycle_of_mem_darts hd)) x]
 
-theorem mem_boundDarts_iff (family : Finset (RegionCandidate D eps Delta))
+theorem mem_boundDarts_iff {Xi : DiscDiagram.{u, w, v} W}
+    (selected : Finset (RegionCandidate D eps Xi)) (interior : Bool) (i : Fin Xi.rCellCount)
+    (d : Xi.toCombMap.Dart) :
+    d ∈ RegionCandidate.boundDarts selected interior i ↔
+      ∃ a ∈ selected, a.2.target.isSome = interior ∧ d ∈ a.cellArcDarts i := by
+  constructor
+  · intro hd
+    obtain ⟨a, ha, hd⟩ := Finset.mem_biUnion.mp hd
+    obtain ⟨ha, hkind⟩ := Finset.mem_filter.mp ha
+    exact ⟨a, ha, hkind, hd⟩
+  · rintro ⟨a, ha, hkind, hd⟩
+    exact Finset.mem_biUnion.mpr ⟨a, Finset.mem_filter.mpr ⟨ha, hkind⟩, hd⟩
+
+theorem mem_unboundDarts_iff {Xi : DiscDiagram.{u, w, v} W}
+    (selected : Finset (RegionCandidate D eps Xi)) (i : Fin Xi.rCellCount)
+    (d : Xi.toCombMap.Dart) :
+    d ∈ RegionCandidate.unboundDarts selected i ↔
+      d ∈ cellDarts Xi i ∧ ¬(d ∈ RegionCandidate.boundDarts selected false i ∨
+        d ∈ RegionCandidate.boundDarts selected true i) := by
+  unfold RegionCandidate.unboundDarts
+  simp only [Finset.mem_sdiff, Finset.mem_union, List.mem_toFinset]
+
+/-- A dart of a relator cell of the merge is used by a transported region of either kind
+exactly when its old dart was used by the old region. -/
+theorem mem_boundDarts_regionFamily_iff (family : Finset (RegionCandidate D eps Delta))
     (havoid : ∀ a ∈ family, R.first ∉ a.1 ∧ R.second ∉ a.1) (interior : Bool)
     (i : Fin Delta.rCellCount) (x : R.diagram.toCombMap.Dart) :
     x ∈ RegionCandidate.boundDarts (R.regionFamily family havoid) interior
         (R.cellMap.indexEquiv i) ↔
       R.val x ∈ RegionCandidate.boundDarts family interior i := by
-  unfold RegionCandidate.boundDarts RegionCandidate.ofKind
-  simp only [Finset.mem_biUnion, Finset.mem_filter]
+  rw [mem_boundDarts_iff, mem_boundDarts_iff]
   constructor
-  · rintro ⟨a', ⟨ha', hkind⟩, hd⟩
+  · rintro ⟨a', ha', hkind, hd⟩
     obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha'
-    refine ⟨b.val, ⟨b.property, ?_⟩, ?_⟩
-    · rw [← R.regionCandidate_target_isSome ⟨b.val, havoid b.val b.property⟩]
-      exact hkind
-    · exact (R.mem_cellArcDarts_regionCandidate_iff ⟨b.val, havoid b.val b.property⟩ i x).mp hd
-  · rintro ⟨b, ⟨hb, hkind⟩, hd⟩
-    refine ⟨R.regionCandidate ⟨b, havoid b hb⟩, ⟨Finset.mem_map.mpr ⟨⟨b, hb⟩,
-      Finset.mem_attach _ _, rfl⟩, ?_⟩, ?_⟩
-    · rw [R.regionCandidate_target_isSome ⟨b, havoid b hb⟩]
-      exact hkind
-    · exact (R.mem_cellArcDarts_regionCandidate_iff ⟨b, havoid b hb⟩ i x).mpr hd
+    exact ⟨b.val, b.property,
+      (R.regionCandidate_target_isSome ⟨b.val, havoid b.val b.property⟩).symm.trans hkind,
+      (R.mem_cellArcDarts_regionCandidate_iff ⟨b.val, havoid b.val b.property⟩ i x).mp hd⟩
+  · rintro ⟨b, hb, hkind, hd⟩
+    exact ⟨R.regionCandidate ⟨b, havoid b hb⟩,
+      Finset.mem_map.mpr ⟨⟨b, hb⟩, Finset.mem_attach _ _, rfl⟩,
+      (R.regionCandidate_target_isSome ⟨b, havoid b hb⟩).trans hkind,
+      (R.mem_cellArcDarts_regionCandidate_iff ⟨b, havoid b hb⟩ i x).mpr hd⟩
 
 /-- **A dart of a relator cell of the merge is unbound exactly when its old dart was.** -/
-theorem mem_unboundDarts_iff (family : Finset (RegionCandidate D eps Delta))
+theorem mem_unboundDarts_regionFamily_iff (family : Finset (RegionCandidate D eps Delta))
     (havoid : ∀ a ∈ family, R.first ∉ a.1 ∧ R.second ∉ a.1) (i : Fin Delta.rCellCount)
     (x : R.diagram.toCombMap.Dart) :
     x ∈ RegionCandidate.unboundDarts (R.regionFamily family havoid) (R.cellMap.indexEquiv i) ↔
       R.val x ∈ RegionCandidate.unboundDarts family i := by
-  unfold RegionCandidate.unboundDarts
-  simp only [Finset.mem_sdiff, Finset.mem_union, List.mem_toFinset]
-  rw [R.cellDarts_eq i, R.mem_map_keep_iff (fun d hd => R.cellDarts_offEdge i hd) x,
-    R.mem_boundDarts_iff family havoid false i x, R.mem_boundDarts_iff family havoid true i x]
+  rw [mem_unboundDarts_iff, mem_unboundDarts_iff, R.cellDarts_eq i,
+    R.mem_map_keep_iff (fun d hd => R.cellDarts_offEdge i hd) x,
+    R.mem_boundDarts_regionFamily_iff family havoid false i x,
+    R.mem_boundDarts_regionFamily_iff family havoid true i x]
 
 theorem unboundDarts_offEdge (family : Finset (RegionCandidate D eps Delta))
     (i : Fin Delta.rCellCount) {d : Delta.toCombMap.Dart}
     (hd : d ∈ RegionCandidate.unboundDarts family i) :
-    d ≠ R.dart ∧ d ≠ Delta.toCombMap.alpha R.dart := by
-  unfold RegionCandidate.unboundDarts at hd
-  exact R.cellDarts_offEdge i (List.mem_toFinset.mp (Finset.mem_sdiff.mp hd).1)
+    d ≠ R.dart ∧ d ≠ Delta.toCombMap.alpha R.dart :=
+  R.cellDarts_offEdge i ((mem_unboundDarts_iff family i d).mp hd).1
 
 /-- **The unbound darts of a relator cell are the old ones, through `keep`.** -/
 theorem unboundDarts_eq (family : Finset (RegionCandidate D eps Delta))
@@ -475,7 +496,7 @@ theorem unboundDarts_eq (family : Finset (RegionCandidate D eps Delta))
     RegionCandidate.unboundDarts (R.regionFamily family havoid) (R.cellMap.indexEquiv i) =
       (RegionCandidate.unboundDarts family i).image R.keep := by
   ext x
-  rw [R.mem_unboundDarts_iff family havoid i x, Finset.mem_image]
+  rw [R.mem_unboundDarts_regionFamily_iff family havoid i x, Finset.mem_image]
   constructor
   · intro hx
     exact ⟨R.val x, hx, R.keep_val x⟩
@@ -487,10 +508,11 @@ theorem unboundDarts_card (family : Finset (RegionCandidate D eps Delta))
     (RegionCandidate.unboundDarts (R.regionFamily family havoid) (R.cellMap.indexEquiv i)).card =
       (RegionCandidate.unboundDarts family i).card := by
   rw [R.unboundDarts_eq family havoid i]
-  exact Finset.card_image_of_injOn fun d hd e he h =>
-    (R.val_keep (R.unboundDarts_offEdge family i (Finset.mem_coe.mp hd))).symm.trans
-      ((congrArg R.val h).trans
-        (R.val_keep (R.unboundDarts_offEdge family i (Finset.mem_coe.mp he))))
+  refine Finset.card_image_of_injOn ?_
+  intro d hd e he h
+  exact (R.val_keep (R.unboundDarts_offEdge family i (Finset.mem_coe.mp hd))).symm.trans
+    ((congrArg R.val h).trans
+      (R.val_keep (R.unboundDarts_offEdge family i (Finset.mem_coe.mp he))))
 
 /-- **The total unbound length is unchanged.** -/
 theorem sum_unboundDarts_card (family : Finset (RegionCandidate D eps Delta))
