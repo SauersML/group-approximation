@@ -186,8 +186,8 @@ theorem familyWeight_lt_cons_singleton
 end RegionCandidate
 end GroupApproximation.GGT.VanKampen.Embedded
 
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.ofSingleton
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.Embedded.ContiguityGeometry.ofSingletonFace
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.cons_singleton_pairwise
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.familyWeight_cons_singleton
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.familyWeight_lt_cons_singleton
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.ofSingleton
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.ContiguityGeometry.ofSingletonFace
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.cons_singleton_pairwise
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.familyWeight_cons_singleton
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.familyWeight_lt_cons_singleton
