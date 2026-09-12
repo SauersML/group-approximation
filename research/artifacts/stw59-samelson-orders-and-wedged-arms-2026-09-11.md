@@ -152,3 +152,29 @@ unique trace, Nistor's stable-rank bound, exactness of direct limits, and
 continuity of K_1) are exactly those of NCG §3. Stable rank one is
 excluded because [u_1,v_1] is a nontrivial element of the kernel of the
 K_1 map. □
+
+## 5. Equal dimension forces nilpotency class at most two
+
+**Proposition D.** Let A be a unital inductive limit of finite direct sums
+of blocks Γ(X,End E). Each X is a connected finite CW complex with
+dim X ≤ 2·rank E, and the connecting maps are unital. Then U(A)/U_0(A) is
+nilpotent of class at most two.
+
+**Proof.** Put r=rank E and d=dim X.
+
+*Case d ≤ 2r−1.* The stable-range lemma (unique-trace proof, §3) makes
+π_0G(E) → K^1(X) an isomorphism, so this block group is abelian.
+
+*Case d=2r.* The gauge sequence of NCG Theorem 3(a) holds for any such X.
+Its sphere fibre is S^{2r+1}, all unit sections are homotopic, and
+π_1S(F)=H^{2r}(X;Z). Its K-term is π_0G(F)=K^1(X), which is abelian. The
+image of ∂ is central by NCG's invariance argument. Every triple commutator
+therefore vanishes.
+
+Finite products preserve class ≤ 2. The component group of the limit is
+the direct limit of the stage groups: polar approximation gives
+surjectivity, and finite-stage path detection gives the kernel. A direct
+limit of groups of class ≤ 2 has class ≤ 2. □
+
+So nilpotency class three or more needs blocks with dim X > 2·rank E
+cofinally. That rules out every LIX tower built so far.
