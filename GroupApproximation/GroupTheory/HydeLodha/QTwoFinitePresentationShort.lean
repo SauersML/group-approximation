@@ -73,7 +73,7 @@ theorem upsilon_gammaTwo_eq_map {a b : ℚ} (h0a : 0 < a) (hab : a < b) (hb1 : b
     have h0 : f 0 = 0 := hfs 0 (not_mem_perIoo_of_unit h0a hb1 le_rfl zero_lt_one (Or.inl h0a.le))
     obtain ⟨x, rfl⟩ := mem_range_perHom_of_fix_zero hfΓ h0
     refine ⟨x, ?_, rfl⟩
-    rw [Subgroup.mem_subgroupOf]
+    rw [SetLike.mem_coe, Subgroup.mem_subgroupOf]
     have hval : ∀ t : ℚ, 0 ≤ t → t < 1 → (x : Equiv.Perm ℚ) t = perHom 4 x t :=
       fun t h0t ht1 => (perHom_apply_of_mem 4 x h0t ht1).symm
     show (x : Equiv.Perm ℚ) ∈ PLGroup (4 + 2) (powSlopes 4) ∧
@@ -88,7 +88,7 @@ theorem upsilon_gammaTwo_eq_map {a b : ℚ} (h0a : 0 < a) (hab : a < b) (hb1 : b
       · rw [hval t (by linarith) ht1]
         exact hfs t (not_mem_perIoo_of_unit h0a hb1 (by linarith) ht1 (Or.inr ht))
   · rintro _ ⟨x, hx, rfl⟩
-    rw [Subgroup.mem_subgroupOf] at hx
+    rw [SetLike.mem_coe, Subgroup.mem_subgroupOf] at hx
     obtain ⟨-, hxa, hxb⟩ := hx
     have hs : SupportedIn (x : Equiv.Perm ℚ) (Set.Ioo a b) := by
       intro t ht
