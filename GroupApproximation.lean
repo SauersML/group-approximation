@@ -4775,3 +4775,4 @@ import GroupApproximation.KunThom.RelativeDataMarkovDeletion
 import GroupApproximation.KunThom.RelativeFunctorImproveFrame
 import GroupApproximation.KunThom.CountingEndgamePropsCounting
 import GroupApproximation.KunThom.SequentialComponentFamilyCompanion
+import GroupApproximation.KunThom.CentralizerBisectionRepresentationFrame
