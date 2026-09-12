@@ -70,15 +70,42 @@ two independent approximation-theoretic attacks on the negative side of a
 fifty-year-old conjecture, neither of which passes through a decidability or
 embedding argument.
 
+## September 11: a literature route that may close this outright
+
+A parallel lane reports Khanh, arXiv:2609.08428v1 (8 September 2026),
+Theorem 6.1: the binary Leavitt unit group `R^x` is **finitely presented**,
+with an explicit presentation in its Proposition 6.2. Combined with claims
+already established here — `binary-leavitt-unit-group-is-simple` (via the
+three-leaf prefix code `R^x = GL_3(R) = EL_3(R)`),
+`openai-leavitt-unit-nonsofic`, and `binary-leavitt-all-ranks-full-mf-radical`
+— that makes `R^x` itself a finitely presented simple nonsofic group with full
+MF radical, closing this claim and `fp-simple-full-mf-radical-group` at once,
+with no appeal to Boone--Higman.
+
+That lane is landing the import as `leavitt-unit-group-finitely-presented`
+plus the routes `fp-simple-nonsofic-via-leavitt-unit-group` and
+`fp-simple-full-mf-radical-via-leavitt-unit-group`. The status of this root is
+left to the fixpoint rather than edited here.
+
+**The caveat is the whole of the caution.** That is a three-day-old v1
+preprint whose proof has not been reviewed in this repository. Until it is,
+the Boone--Higman route below remains the independently checkable one, and the
+contrapositive stated above remains the usable direction. If the import
+survives review, the implication does not become vacuous: it still says
+Boone--Higman is at least as strong as producing such a group, and the
+conjecture's negative side keeps both approximation attacks.
+
 ## Attempts
 
-1. **Finitely present `EL_12(R)` directly.** *Deferred, no mechanism.* The
-   group is defined by generators and relations over a Leavitt algebra with
-   infinitely many defining ring relations, and no finite presentation of any
-   `EL_n(L_(F_2)(1,2))` is known here. `simple-envelope-forces-solvable-word-problem`
-   shows any finitely presented simple envelope would re-prove the
-   decidability recorded in `rank-twelve-leavitt-elementary-wp-decidable`, so
-   the decidability side is consistent and supplies no obstruction.
+1. **Finitely present `EL_12(R)` directly.** *Superseded on 2026-09-11, if the
+   import above is correct.* It was recorded as deferred with no mechanism:
+   the group is defined over a Leavitt algebra with infinitely many defining
+   ring relations, and no finite presentation of any `EL_n(L_(F_2)(1,2))` was
+   known here. Khanh's Theorem 6.1 supplies exactly that for the unit group,
+   which is `EL_3(R)`. `simple-envelope-forces-solvable-word-problem` shows any
+   finitely presented simple envelope would re-prove the decidability recorded
+   in `rank-twelve-leavitt-elementary-wp-decidable`, so the decidability side
+   was consistent throughout and supplied no obstruction.
 2. **Make the existing finite-table cover simple.** *Dies at the same place as
    every other maximal-quotient argument.* The Kazhdan cover of
    `finitely-presented-nonsofic-group-exists` is finitely presented and

@@ -73,6 +73,28 @@ repository's own vocabulary, and it does not pass through any decidability or
 embedding argument. It is recorded so that the MF-radical machinery here is
 understood to bear on Boone--Higman, not merely to sit beside it.
 
+## September 11: a literature route that may close this outright
+
+A parallel lane reports Khanh, arXiv:2609.08428v1 (8 September 2026),
+Theorem 6.1: the binary Leavitt unit group `R^x` is **finitely presented**.
+With `binary-leavitt-unit-group-is-simple` (the three-leaf prefix code gives
+`R^x = GL_3(R) = EL_3(R)`) and `binary-leavitt-all-ranks-full-mf-radical`,
+that makes `R^x` a finitely presented simple group with full MF radical,
+closing this claim with no appeal to Boone--Higman. The same witness also
+closes `fp-simple-nonsofic-group`, by `openai-leavitt-unit-nonsofic`.
+
+That lane is landing the import as `leavitt-unit-group-finitely-presented`
+plus the route `fp-simple-full-mf-radical-via-leavitt-unit-group`; the status
+of this root is left to the fixpoint rather than edited here.
+
+**Caveat.** That is a three-day-old v1 preprint whose proof has not been
+reviewed in this repository. Until it is, the two routes below remain the
+independently checkable ones. Note also that the attempts recorded below are
+not thereby refuted: they are attacks on the *same* target by routes that do
+not depend on an unreviewed import, and attempt 1 in particular remains the
+right question about the defect-saturation group's normal lattice whatever
+happens to the preprint.
+
 ## Attempts
 
 1. **Take a maximal proper normal quotient of the defect-saturation group.**
