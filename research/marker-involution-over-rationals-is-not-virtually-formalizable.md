@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/formalizability-by-shear-decomposition-2026-09-12.md
   - research/artifacts/binary-formalizability-refutation-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 On `{0,1}^Q`, let `tau` flip cell `q` exactly when

@@ -32,6 +32,7 @@ not by rereading the author's argument. Nothing was run.
 | gk-free-neg (Section 6.5) | `marker-involution-is-formalizable-after-regrouping` | PASS (Section 26) |
 | `ca9996a1e` (gk-fz-obstruction) | `formalizability-is-a-boolean-ideal-cokernel-class`, the corrected `formalizability-conormal-obstruction-is-jacobian-cokernel`, `binary-left-inverse-pairs-are-boolean-adically-formalizable` | PASS (Section 27) |
 | `4443cada1` (gk-free-wild) | `shear-designs-are-strict-iff-their-key-automaton-is`, `private-origin-rows-force-permutation-encoders`, `vh-lattices-surjunctive-when-a-factor-maps-faithfully`, Corollary H, the mixed-bigon scope correction | PASS (Section 28) |
+| `2740990165` (gk-fz-decompose) | `subset-stable-marker-flips-are-virtually-formalizable`, `marker-involution-over-rationals-is-not-virtually-formalizable`, route `virtual-formalizability-reduces-surjunctivity-to-kaplansky` | PASS (Section 29) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1216,6 +1217,55 @@ directions work.
   within the theorem's scope, not only its HNN corollary. That theorem was passed by gk-verify-pos.
 - *Consequences.* The last bullet is honest: on virtually simple lattices the filter excludes
   nothing, because `F_V ∩ Gamma_s != 1` and embedding a finite-index subgroup already suffices.
+
+## 29. Virtual formalizability (`2740990165`, gk-fz-decompose): PASS
+
+**Proposition 5.1.**
+- *(i) Track shear.* For `g = nt`, `ntw in Nt` iff `t w t^-1 in N` iff `w in N` by normality, and
+  `W ∩ N` is empty. So `tau_t` writes track `t` reading only other tracks.
+  - *Equivariance, re-derived.* `F` is `G`-equivariant, and for `h in N`, `h Nt = Nt`, so
+    `(h . F(x)) ∩ Nt = h . (F(x) ∩ Nt)`. Hence `tau_t` commutes with left `N`-translation.
+  - Finite memory over `N`: with `tw = h'(t,w) t'(t,w)`, the cell `ntw = n h' t'` is the variable
+    `y(n h')_(t')`.
+- *(ii)* Each `tau_(t_j)` flips a subset of `F(x)`, so subset stability keeps the flip set equal to
+  `F(x)` throughout. The cosets `Nt` partition `G`, so the word flips each cell of `F(x)` once.
+- *(iii)* `S = F(x)` gives `F(tau x) = F(x)`, so `tau` is an involution. Proposition 1.1 and
+  Corollary 1.3, with Proposition 1.4 for the regrouping, give the formal pair.
+
+**Section 5.2 (the marker rule is subset-stable).** The point that matters is the one the lane
+flags, and it checks: the contradicting cells are `i ± 1`, at distance 1 from `i in F(x)`, so by
+Lemma 2.1 they are not in `F(x)`, hence not in any `S ⊆ F(x)`, hence never flipped.
+- `j in F(x)`: nothing within distance 3 is in `F(x)`, so nothing in `S` is, and the marker reads
+  unchanged cells.
+- `j` not in `F(x)` with some `i in S` within distance 3: the marker needs a `0` where `x` has a
+  `1` that does not flip, so it stays false.
+- `W = {±1, ±2, ±3}` contains no multiple of 4, so `W ∩ 4Z` is empty.
+- This is stronger than Proposition 2.2 of Section 24, which is the case `S = F(x)`.
+
+**Proposition 5.3 (over `Q`).**
+- *No proper finite-index subgroup.* A finite quotient `Q/H` of order `n` is divisible, so every `y`
+  is `nz` for some `z`; but `nz = 0` by Lagrange, so the quotient is trivial.
+- *Involution.* The memory lies in `Z`, so `tau` acts on each coset `q + Z` as the marker involution.
+- *Not affine.* `Q` is bi-orderable, so Theorem A of Section 24 applies, with windows anywhere in
+  `Q`, since its argument needs only the bi-invariant order. `tau` fixes `delta_0`; `eps = 1` would
+  give infinitely many ones, so `eps = 0`, and then `m = 0`. So `tau` would be the identity, which
+  `delta_(-1) + delta_(+1)` contradicts.
+- *Uniqueness.* `tau` is bijective.
+
+**Route `virtual-formalizability-reduces-surjunctivity-to-kaplansky`: valid.**
+- *Localization.* With `Gamma = <M>`, identifying `A^(g Gamma)` with `A^Gamma` by `gamma -> g gamma`
+  turns the restriction into the same rule `tau_Gamma`. A product of copies is injective, respectively
+  surjective, iff each copy is.
+- *Linearization.* `H <= Gamma <= G`, so `M_N(F_2[H])` is a unital subring of `M_N(F_2[G])`, and
+  direct finiteness passes to unital subrings. Theorem 1 over `H` makes the regrouped automaton
+  bijective, and regrouping is a bijection of configuration spaces, so `tau_Gamma` is bijective.
+- The route survives the Section 24 refutation, because regrouping gives several tracks. That matches
+  my Section 23 scope note and Section 26.
+- `injective-automata-over-fg-groups-are-virtually-formalizable` stays OPEN. Its Attempts include a
+  convex-subgroup argument that a nontrivial finitely generated perfect group is not bi-orderable;
+  the outline is sound (a chain of proper convex subgroups cannot absorb finitely many generators,
+  maximality gives normality and an Archimedean quotient, then Hölder), but it is Attempts prose and
+  I did not verify it in full.
 
 **The mixed-bigon scope correction (Section 2) is right.** Every relator Theorem B produces reads
 `h v^-1 h' v'^-1` in positive letters, so opposite sides are antiparallel. The `F_V x F_H` commutator

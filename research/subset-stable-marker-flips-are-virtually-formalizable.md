@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/formalizability-by-shear-decomposition-2026-09-12.md
   - research/artifacts/binary-formalizability-refutation-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a group, `N` a normal subgroup of finite index, `W ⊂ G \ N` finite, and
