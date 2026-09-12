@@ -108,6 +108,17 @@ cover, over any group, whose edges are all profinitely separable.
   complete-graph cover must read a non-closed holonomy configuration. That configuration need not contain
   both products of condition 5.
 
+**Remark 1.3 (the barrier is about separability, not surjunctivity).** Abstract phase data do realize in
+amenable, hence surjunctive, Clifford covers. Take `G' = BS(1,2) = <a, t | t a t^(-1) = a^2>`,
+`Y = G'/<a>`, `y_0 = <a>`, the complete graph on `Y`, `b_1 = b = a` and `h = t^(-1) a t`.
+- **Conditions 1-3.** `a` fixes `y_0`, and `t <a> t^(-1) = <a^2> <= <a>`.
+- **Condition 4.** In `Z[1/2] semidirect Z`, `h = 1/2` lies outside `<a> = Z`, so `h y_0 != y_0`.
+- **Amenability.** `Vtilde(Y) semidirect BS(1,2)` is locally finite by solvable, hence amenable and surjunctive.
+
+So Theorem 1 cannot be upgraded to "no surjunctive target". Whether a specific Kun--Thom window realizes in
+such a cover depends on which words `w_i` the window spells. A window that realizes in no sofic group must
+carry more of the Kazhdan relations of `Gamma`.
+
 ## 2. Lemma 2: cofinite lamp subgroups contain the center
 
 Let `V = directSum_X F_2` with its adjacency form `b_S`. For `H <= E_S` put
@@ -148,3 +159,72 @@ subgroups to separate every finite subset (its Lemma 1.2), and its strata lemma 
 
 This complements `kun-thom-clifford-cover-has-no-finitary-site-structure`, which rules out normal site
 projections. Lemma 2 rules out the non-normal marked-site transplants too.
+
+## 3. Complete graphs over f.g.-closed stabilizers
+
+Call a subgroup `L <= G` **f.g.-closed** if the profinite closure of every finitely generated subgroup of `L`
+lies in `L`. Profinitely closed subgroups are f.g.-closed. In a residually finite group, so is every locally
+finite subgroup, because finite subgroups of residually finite groups are closed.
+
+**Proposition 3.** Let `G` be surjunctive and `X` a `G`-set with finitely many orbits whose point stabilizers are
+f.g.-closed. Then the complete-graph Clifford cover over `X` is surjunctive.
+
+*Proof.* Suppose `(tau, sigma)` is strict. By Theorem B' of the orbital artifact, some component of the read
+graph, with base `x_0` and holonomy `Hol`, has distinct read sites `w x_0 != w' x_0` with `w^(-1) w'` in
+`cl(Hol)`. `Hol` is the image of the fundamental group of a finite labelled graph, so it is finitely generated,
+and it lies in `Stab(x_0)`. By hypothesis `cl(Hol) <= Stab(x_0)`, so `w x_0 = w' x_0`, a contradiction. QED
+
+This extends Theorem C, instance 2 (closed stabilizers). It does not reach the Kun--Thom pair, where `Gamma` is
+finitely generated and not closed.
+
+## 4. Reduction to finitely presented coset data
+
+**Proposition 4.** Let `E(X)` be the complete-graph Clifford cover of any group `G` over a `G`-set `X` with finitely
+many orbits, and suppose it carries a strict pair. Let `U` be the table group of the pair's transfer set: the
+finitely presented group on symbols `[g]` for the `G`-parts, with relators `[g_a][g_m] = [g_(am)]`. Let
+`Hol_1^U, ..., Hol_m^U` be the holonomy subgroups of the components of its read graph, computed in `U`. Then the
+complete-graph Clifford cover of `U` over
+
+```text
+Y = disjoint union over i of U / Hol_i^U
+```
+
+carries a strict pair. Each `Hol_i^U` is finitely generated. When `G` is residually finite, some `Hol_i^U` has a
+read difference in its profinite closure (Theorem B'', condition 2).
+
+*Proof.* Put `lambda(w x_0^(i)) = w Hol_i^U` for path products `w` in `U`, and `phi(u, s, g) = (lambda u, s, [g])`.
+- **Well defined.** Two paths to one site differ by a closed-path product, which lies in `Hol_i^U`.
+- **Injective.** If `w^(-1) w'` lies in `Hol_i^U`, its image in `G` lies in `Stab(x_0)`, so `w x_0 = w' x_0`.
+- **Equivariant and ordered.** Moves are respected by construction. Order `Y` to extend the order of `lambda` on
+  read sites.
+- **Exact products.** `U`-relators hold, and lamp sums are preserved because `lambda` is injective on read sites.
+  On a complete graph, `beta` and `gamma` depend only on order and equalities among each product's sites.
+- **Distinguished cells stay apart.** Distinct `G`-parts stay distinct in `U`; otherwise lamp or sign
+  coordinates differ.
+
+The table-realization theorem gives the strict pair. QED
+
+So a strict pair on some complete-graph Clifford cover is witnessed by finite data of the same kind: a finite
+presentation, finitely many finitely generated subgroups and local rules.
+
+## 5. Where it stops
+
+- **Methods now excluded for the complete-graph Kun--Thom cover.**
+  - finitary site structures;
+  - separated centers;
+  - saturation transport over any base (Theorem 1);
+  - marked-site peeling (Lemma 2);
+  - finite and closed-stabilizer targets (Theorems B' and B'').
+- **What a surjunctivity proof needs.** Realizations of phase windows into surjunctive groups whose edges are not
+  all separable. Amenable covers work only for windows that miss the Kazhdan relations (Remark 1.3). No nonsofic
+  surjunctive Clifford cover with an inseparable edge is known, so the method is circular exactly on the covers in
+  question.
+- **The only non-unimodular mechanism available lives on the site set.**
+  - `p(g Gamma) = g t^(-1) Gamma` is well defined because `t Gamma t^(-1) <= Gamma`.
+  - It is `G`-equivariant and onto, with fibres of size `[Gamma : t Gamma t^(-1)] >= 2`.
+  - So `x -> x o p` is an injective, non-surjective, one-site, equivariant map of `A^X`, the Kun--Thom analogue
+    of the end-fixing-tree copying rule.
+  - Over the untwisted wreath it cannot lift to a strict automaton, since `W` is surjunctive.
+  - Lemma 2 shows that the proof of that fact does not see the Clifford twist. Whether the twist lets the
+    copying rule lift is the sharpest form of the counterexample question found here.
+- **No design.** No strict pair on the complete-graph cover has been built, and none has been excluded.

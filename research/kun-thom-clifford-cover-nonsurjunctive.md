@@ -78,3 +78,21 @@ Marked `root` because it heads a counterexample lane of its own.
     pair, whose center lies in the finite residual.
   - **Where a counterexample can live.** Only on non-saturated graphs: the complete graph, every graph
     carrying the radical-phase edge, and every finite-degree graph (artifact Remark 4.1).
+- **Complete graph: barriers and reductions** (lane w4-clifford-complete, artifact
+  `clifford-cover-phase-barrier-2026-09-12.md`).
+  - **Phase barrier.** A table carrying the Kun--Thom phase has no coordinate realization in any Clifford cover
+    whose edges are all profinitely separable, over any base group
+    (`phase-windows-have-no-separated-clifford-realization`). So saturation transport cannot reach a phase window
+    even after changing the base group, site set or graph. Abstract phase data do realize in the amenable cover
+    over `BS(1,2)` (artifact Remark 1.3), so what fails is separability, not surjunctivity.
+  - **Peeling collapses.** On the complete graph every subgroup with cofinite lamp part contains `eps`
+    (`clifford-cover-cofinite-lamp-subgroups-contain-the-center`). So the marked-site transplants that prove `W`
+    surjunctive see only `eps`-invariant configurations and cannot separate `1` from `eps`.
+  - **Positive, off the Kun--Thom pair.** Complete-graph covers over surjunctive bases with f.g.-closed stabilizers
+    are surjunctive (artifact Proposition 3, from Theorem B').
+  - **Reduction.** A strict pair on any complete-graph cover transfers to the complete-graph cover of its finitely
+    presented table group over finitely many coset spaces of finitely generated holonomy subgroups (artifact
+    Proposition 4).
+  - **Where it stops.** The site set carries the injective, non-surjective copying rule `x -> x o p`, with
+    `p(g Gamma) = g t^(-1) Gamma`. It cannot lift through the untwisted wreath, and the proof of that does not
+    see the Clifford twist. No design and no proof is known for the complete-graph cover.
