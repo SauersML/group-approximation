@@ -75,6 +75,24 @@ def bridgeChart (p : Bundle X ι) (n : ℕ) :
       (by rw [sup_comm]; exact Gysin.chartOpens_sup_notZeroOpens p) n).trans
     (relCohomologyCongr (Bundle.chartOpensHomeoTotal p) _ _ (chartExcisedImage p) n)
 
+/-- **Steps one and two of the Thom bridge over a field `K`.**  The same composite as
+`bridgeChart`, built from `excisionIsoOf` and `relCohomologyCongrOf`.
+
+It is added beside the `F₂` original, not as an `abbrev` over it: `excisionIso` and
+`excisionIsoOf (ZMod 2)` go through different `IsIso` instance terms, so an `abbrev`
+would change what `bridgeChart` unfolds to, and `ThomBridgeChartHom` computes through
+that unfolding.  `[Field K]` is the excision step's hypothesis (excision rests on the
+coefficient being injective over itself); nothing else in the composite uses it. -/
+def bridgeChartOf (K : Type) [Field K] (p : Bundle X ι) (n : ℕ) :
+    relCohomology K (TopCat.of (Bundle.Proj p.plusOne))
+        ((Gysin.notZeroOpens p : Opens (TopCat.of (Bundle.Proj p.plusOne)))
+          : Set (Bundle.Proj p.plusOne)) n
+      ≅ relCohomology K (TopCat.of (Bundle.Total p))
+        ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p) n :=
+  (excisionIsoOf (Gysin.notZeroOpens p) (Gysin.chartOpens p) K
+      (by rw [sup_comm]; exact Gysin.chartOpens_sup_notZeroOpens p) n).trans
+    (relCohomologyCongrOf K (Bundle.chartOpensHomeoTotal p) _ _ (chartExcisedImage p) n)
+
 end
 
 end GroupApproximation.CharClass

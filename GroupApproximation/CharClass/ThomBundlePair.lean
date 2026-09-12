@@ -60,6 +60,22 @@ def bundlePairTrivIso (p : Bundle X ι) (x₀ : X) (r : ℕ) (hr : p.rank x₀ =
   relCohomologyCongr (p.totalTrivStd x₀ r hr) _ _
     (Bundle.totalTrivStd_image_punctured p x₀ r hr) n
 
+/-- **The bundle pair over a trivialising neighbourhood is a product pair, over any
+commutative ring `K`.**  Added beside the `F₂` original, from `relCohomologyCongrOf`.
+No excision is involved, so `[CommRing K]` suffices. -/
+def bundlePairTrivIsoOf (K : Type) [CommRing K] (p : Bundle X ι) (x₀ : X) (r : ℕ)
+    (hr : p.rank x₀ = r) (n : ℕ) :
+    relCohomology K
+        (TopCat.of (Bundle.Total (p.restrictTo (Bundle.trivSet p x₀))))
+        {w : Bundle.Total (p.restrictTo (Bundle.trivSet p x₀)) |
+          (w : ↥(Bundle.trivSet p x₀) × (ι → ℂ))
+            ∈ Bundle.puncturedSet (p.restrictTo (Bundle.trivSet p x₀))} n
+      ≅ relCohomology K
+        (TopCat.of (↥(Bundle.trivSet p x₀) × (Fin r → ℂ)))
+        {q : ↥(Bundle.trivSet p x₀) × (Fin r → ℂ) | q.2 ≠ 0} n :=
+  relCohomologyCongrOf K (p.totalTrivStd x₀ r hr) _ _
+    (Bundle.totalTrivStd_image_punctured p x₀ r hr) n
+
 /-! ## 2. A retracted map of pairs is injective on relative cohomology -/
 
 /-- **A map of pairs with a retraction is injective on relative cohomology.**
