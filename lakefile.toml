@@ -90,11 +90,15 @@ roots = ["Palomar.LIXStrongSolution"]
 # The fourth Comparator configuration, `Palomar/comparator-bowen-chapman.json`:
 # Bowen-Chapman Problem 1.1 (is every surjunctive group sofic?).  Same protocol
 # as the pairs above: `Palomar/BowenChapmanChallenge.lean` imports Mathlib only
-# and states the two theorems with deliberate holes.  Only the challenge library
-# exists so far, and it is NOT in `defaultTargets`: the solution waits for the
-# development endpoint, and both libraries join `defaultTargets` when the
+# and states the two theorems with deliberate holes; `Palomar/BowenChapmanSolution.lean`
+# proves them in their `_of` form from the development endpoint's statement.  Neither
+# library is in `defaultTargets`; both join it when the
 # solution proves the selected theorems without hypotheses.
 
 [[lean_lib]]
 name = "PalomarBowenChapmanChallenge"
 roots = ["Palomar.BowenChapmanChallenge"]
+
+[[lean_lib]]
+name = "PalomarBowenChapmanSolution"
+roots = ["Palomar.BowenChapmanSolution"]

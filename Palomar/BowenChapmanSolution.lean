@@ -5,6 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import Mathlib.Algebra.Group.Subgroup.Lattice
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Real.Basic
+import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.Perm.Basic
 import GroupApproximation.Sofic.Sofic
 import GroupApproximation.Dynamics.Surjunctivity
