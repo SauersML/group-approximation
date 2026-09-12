@@ -1,27 +1,29 @@
 import GroupApproximation.GGT.HullSCLemma51ShorteningBranch
+import GroupApproximation.GGT.HullSCRelativeLeastAreaDiagram
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Osin's Lemma 5.1 area induction at the restricted certificate hypothesis
 
-`HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement` asks for its
-certificates only at reduced diagrams with a quasi-geodesic spelling, which is
-where Osin's Lemma 4.4 applies.  This file runs the part of Osin's proof of
-Lemma 5.1 that such certificates actually feed: the induction on boundary length
-producing a **linear relative area** (Osin, arXiv:math/0411039v3, proof of
-Lemma 5.1, equations (18)--(21)).
+Osin's Lemma 4.4 supplies certificates at least-area diagrams with a
+quasi-geodesic boundary, and nowhere else.  This file runs the part of Osin's
+proof of Lemma 5.1 that such certificates actually feed: the induction on
+boundary length producing a **linear relative area** (Osin, arXiv:math/0411039v3,
+proof of Lemma 5.1, equations (18)--(21)).
 
 ## The one place the certificate is used
 
 `exists_relativeDehnCut_of_kernelBoundary`
 (`GGT/HullSCLemma44RelativeBoundary.lean`) consumes its certificate hypothesis
-at exactly **one** diagram: the `Z` that
-`exists_relativeReducedDiagram_of_boundaryWord` builds for the prescribed word,
-and that construction returns `Z.boundaryWord = boundaryWord` on the nose.
+at exactly **one** diagram, the one it builds for the prescribed word.  The
+least-area construction `exists_relativeLeastAreaDiagram_of_boundaryWord`
+(`GGT/HullSCRelativeLeastAreaDiagram.lean`) returns a least-area diagram with
+`Z.boundaryWord = boundaryWord` on the nose, and
 `hasQuasiGeodesicSpelling_iff_of_letterwise` says
-`Z.HasQuasiGeodesicSpelling` is decided by `Z.boundaryWord` alone.  So **the
-restricted certificate hypothesis suffices whenever the prescribed word is
-quasi-geodesic**: `exists_relativeDehnCut_of_quasiGeodesicKernelWord`.
+`Z.HasQuasiGeodesicSpelling` is decided by `Z.boundaryWord` alone.  So
+**certificates at least-area diagrams with a quasi-geodesic spelling suffice
+whenever the prescribed word is quasi-geodesic**:
+`exists_relativeDehnCut_of_quasiGeodesicKernelWord`.
 
 ## The step Osin's induction takes
 
@@ -34,10 +36,13 @@ same element costs nothing, because area is attached to the element, so
 `relativeLinearKernelArea_of_dehnSteps` is the induction of
 `relativeLinearKernelArea_of_dehnCuts` with a second, free branch.
 
-`relativeDehnStepAt_of_quasiGeodesicCertificates` supplies the step at every
-kernel word: take a letterwise spelling; if it is `(1/4,1)`-quasi-geodesic the
-restricted certificates give a cut, and otherwise
+`relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates` supplies the step at
+every kernel word: take a letterwise spelling; if it is `(1/4,1)`-quasi-geodesic
+the certificates give a cut, and otherwise
 `exists_shorter_admissible_of_not_quasiGeodesic` gives the shortening.
+`relativeLinearKernelArea_of_quasiGeodesicCertificates` is the same conclusion
+from certificates at every reduced diagram with a quasi-geodesic spelling, which
+restrict to the least-area ones.
 
 ## What is NOT reduced here, and why
 
@@ -60,12 +65,12 @@ universe u v w
 /-! ## The cut, at the restricted certificate hypothesis -/
 
 /-- **A cut for a quasi-geodesic kernel word, from certificates asked only at
-diagrams with a quasi-geodesic spelling.**
+least-area diagrams with a quasi-geodesic spelling.**
 
 This is `exists_relativeDehnCut_of_kernelBoundary` with the certificate
 hypothesis narrowed.  The narrowing costs nothing here because the proof uses
-the certificate at one diagram only, and that diagram's designated boundary word
-is the prescribed one. -/
+the certificate at one diagram only, which can be taken least-area, and whose
+designated boundary word is the prescribed one. -/
 theorem exists_relativeDehnCut_of_quasiGeodesicKernelWord
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -76,9 +81,9 @@ theorem exists_relativeDehnCut_of_quasiGeodesicKernelWord
     (q : G →* Q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-      Z.HasQuasiGeodesicSpelling →
-        Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hcert : ∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram))
     (boundaryWord : List G)
     (hword : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod)
     (hne : boundaryWord.prod ≠ 1) (hmap : q boundaryWord.prod = 1)
@@ -90,11 +95,11 @@ theorem exists_relativeDehnCut_of_quasiGeodesicKernelWord
   have hnormal : boundaryWord.prod ∈
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W) :=
     mem_normalClosure_of_map_eq_one q hker hmap
-  obtain ⟨Z, hZboundary⟩ := exists_relativeReducedDiagram_of_boundaryWord
+  obtain ⟨Z, hZboundary⟩ := exists_relativeLeastAreaDiagram_of_boundaryWord
     D W hsc.toIsSmallCancellation boundaryWord boundaryWord.prod hword hne
     hnormal
-  have hZqg : Z.HasQuasiGeodesicSpelling :=
-    (hasQuasiGeodesicSpelling_iff_of_letterwise Z hadm
+  have hZqg : Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling :=
+    (hasQuasiGeodesicSpelling_iff_of_letterwise Z.toRelativeReducedDiagram hadm
       (houter.trans hZboundary.symm)).mpr hqg
   obtain ⟨K⟩ := hcert boundaryWord.length Z hZqg
   have hcut := exists_relativeDehnCut_of_kernel_rotated D hsc hmu hrho K q hker
@@ -152,7 +157,7 @@ theorem relativeLinearKernelArea_of_dehnSteps
       · refine ⟨0, Nat.zero_le _, ?_⟩
         rw [hone]
         exact RelatorDefectBudget.IsRelatorProduct.one
-      · rcases hsteps word hword' hone hmap' with ⟨C⟩ | ⟨w', hw', hval, hlen⟩
+      · rcases hsteps word hword' hone hmap' with ⟨⟨C⟩⟩ | ⟨w', hw', hval, hlen⟩
         · have hshortLength :
               C.contiguity.shortenedBoundaryWord.length < length := by
             rw [← hlength]
@@ -200,11 +205,11 @@ theorem relativeLinearKernelArea_of_dehnSteps
           exact harea
   exact hlinear boundaryWord.length boundaryWord rfl hword hmap
 
-/-- **The step at every kernel word, from certificates at quasi-geodesic
-diagrams.**  Osin's case split: a `(1/4,1)`-quasi-geodesic letterwise spelling
-gives a cut, and any other spelling is strictly longer than a geodesic word for
-the same element. -/
-theorem relativeDehnStepAt_of_quasiGeodesicCertificates
+/-- **The step at every kernel word, from certificates at least-area
+quasi-geodesic diagrams.**  Osin's case split: a `(1/4,1)`-quasi-geodesic
+letterwise spelling gives a cut, and any other spelling is strictly longer than a
+geodesic word for the same element. -/
+theorem relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
     {W : Set (List (GGT.RelLetter G Lambda))}
@@ -214,9 +219,9 @@ theorem relativeDehnStepAt_of_quasiGeodesicCertificates
     (q : G →* Q)
     (hker : q.ker =
       Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
-    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
-      Z.HasQuasiGeodesicSpelling →
-        Nonempty (RelativeDiagramCertificate D W eps mu Z))
+    (hcert : ∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram))
     (boundaryWord : List G)
     (hword : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod)
     (hne : boundaryWord.prod ≠ 1) (hmapq : q boundaryWord.prod = 1) :
@@ -239,10 +244,30 @@ theorem relativeDehnStepAt_of_quasiGeodesicCertificates
     · rw [List.length_map, ← length_of_letterwise_spelling houter]
       exact hlen'
 
-/-- **Osin's Lemma 5.1, linear relative area, at the restricted certificate
-hypothesis.**  Every quotient-null word on the source relative alphabet is a
-product of at most its length many conjugates of relator values, from
-certificates asked only at reduced diagrams with a quasi-geodesic spelling. -/
+/-- **Osin's Lemma 5.1, linear relative area, at least-area certificates.**
+Every quotient-null word on the source relative alphabet is a product of at most
+its length many conjugates of relator values, from certificates asked only at
+least-area diagrams with a quasi-geodesic spelling. -/
+theorem relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram)) :
+    RelativeLinearKernelArea D W q :=
+  relativeLinearKernelArea_of_dehnSteps D W eps q
+    (relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates D hsc hmu hrho q hker
+      hcert)
+
+/-- **Osin's Lemma 5.1, linear relative area, at the reduced-diagram certificate
+hypothesis**, which restricts to the least-area one. -/
 theorem relativeLinearKernelArea_of_quasiGeodesicCertificates
     {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
     (D : GGT.RelGenSet G Lambda)
@@ -257,9 +282,8 @@ theorem relativeLinearKernelArea_of_quasiGeodesicCertificates
       Z.HasQuasiGeodesicSpelling →
         Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
     RelativeLinearKernelArea D W q :=
-  relativeLinearKernelArea_of_dehnSteps D W eps q
-    (relativeDehnStepAt_of_quasiGeodesicCertificates D hsc hmu hrho q hker
-      hcert)
+  relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates D hsc hmu hrho q hker
+    (fun R Z hZ => hcert R Z.toRelativeReducedDiagram hZ)
 
 end HullSC
 end GroupApproximation
@@ -267,5 +291,6 @@ end GroupApproximation
 #audit_axioms GroupApproximation.HullSC.exists_relativeDehnCut_of_quasiGeodesicKernelWord
 #audit_axioms GroupApproximation.HullSC.relativeDehnStepAt_of_cut
 #audit_axioms GroupApproximation.HullSC.relativeLinearKernelArea_of_dehnSteps
-#audit_axioms GroupApproximation.HullSC.relativeDehnStepAt_of_quasiGeodesicCertificates
+#audit_axioms GroupApproximation.HullSC.relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates
+#audit_axioms GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates
 #audit_axioms GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicCertificates

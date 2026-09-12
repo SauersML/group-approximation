@@ -136,7 +136,7 @@ theorem wordSum_quadrangle (f : α → Q) (φ ψ : Q → ℤ) (b : Q)
     exact end_mem_pathPoints f _ w₂
   have hend : ψ (b * wordVal f (w₁ ++ w₂) * wordVal f w₃) = c := by
     apply h₄
-    rw [wordVal_append (w₁ ++ w₂) w₃, ← mul_assoc]
+    rw [wordVal_append f (w₁ ++ w₂) w₃, ← mul_assoc]
     exact start_mem_pathPoints f _ w₄
   rw [hstart, hend]
   ring
