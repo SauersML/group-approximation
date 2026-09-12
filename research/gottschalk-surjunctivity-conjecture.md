@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - kun-thom-clifford-cover-nonsurjunctive
   - strict-automaton-on-lattice-in-product-of-trees
   - some-finite-field-leavitt-unit-group-nonsurjunctive
   - projective-ternary-leavitt-group-nonsurjunctive
@@ -690,3 +691,10 @@ would give Kaplansky over `F_p` implies Gottschalk over `p^n` symbols
 reaches alphabets with two distinct prime factors, so the bridge is ascent
 (`strict-rule-pairs-ascend-to-larger-alphabets`, open) or descent; the new route
 into the goal is `gottschalk-via-alphabet-ascent`.
+
+**Clifford cover host (2026-09-12).** The Kun--Thom Clifford cover `E_S`, a central
+`Z/2` extension of the surjunctive wreath, lies outside finitary permanence and
+outside the separated finite-normal theorem. Its linear case is direct finiteness
+of a Clifford skew group ring. It is now its own counterexample root,
+`kun-thom-clifford-cover-nonsurjunctive`, fed by
+`clifford-cover-nonsurjunctive-from-anti-half-df-failure`.
