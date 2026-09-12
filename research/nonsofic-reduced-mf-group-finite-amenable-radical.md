@@ -27,6 +27,13 @@ separation `weak-mf-does-not-imply-sofic`.
   `SL_4(Z)` has a nonzero `SL_2(Z)`-invariant vector.  So for `d >= 4` no
   sequence of genuine representations can supply the vertex models; approximate
   models are not excluded, and the case `d = 3` is untouched by that argument.
+* **Kazhdan gate, all criteria.**  By `reduced-mf-kazhdan-subgroup-gate`, any
+  group produced by Kun--Thom Theorem A or the expander-matching criterion
+  first needs an infinite Kazhdan group with MF reduced algebra
+  (`infinite-kazhdan-group-with-mf-reduced-cstar`, open, with no known example).
+  Changing the nonsofic group within these mechanisms cannot avoid it.
+* **Fournier-Facio group.**  Dead: every norm-corona representation is trivial
+  (`fournier-facio-asymptotic-representations-trivial`).
 * **Leavitt unit groups.**  Dead: the binary Leavitt unit group and all its
   matrix ranks have full MF radical (`binary-leavitt-all-ranks-full-mf-radical`),
   and reduced MF implies operator MF.
