@@ -49,3 +49,14 @@ OPEN. Prove c_n=1 throughout the stated exponent range. The common-upper-cost re
   dies:** their article explicitly distinguishes that from fixed price one,
   and Bernoulli cost one is what Abert--Weiss would need in order to transfer
   the value to every free action.
+* **Use the normal closure of one generator of `B(m,n)`, `m >= 3`.**
+  `fpbs-burnside-normal-closure-split` gives an infinite normal subgroup with
+  infinite quotient, and all its free actions have cost at most `2` by the
+  common-upper-cost theorem. So `fpbs-burnside-upper-cost-one-via-normal-closure`
+  needs only the per-action normal subgroup statement
+  `fpbs-normal-subgroup-bounded-cost-fixed-price-one`.
+  `fpbs-quotient-split-actions-have-cost-one` already gives cost one for every
+  action of `B(m,n)` with a free finite-cost quotient factor. **Where it
+  dies:** the Bernoulli shift has no such factor, and
+  `fpbs-quotient-split-not-bernoulli-contained` shows that weak containment
+  cannot supply one. The per-action statement is open.
