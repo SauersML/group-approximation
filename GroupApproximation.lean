@@ -4636,6 +4636,7 @@ import GroupApproximation.KunThom.ComponentCountingRetainedMatching
 import GroupApproximation.KunThom.SequentialContradiction
 import GroupApproximation.KunThom.CountingEndgameLift
 import GroupApproximation.KunThom.ArrowCountMedian
+import GroupApproximation.KunThom.ArrowCountMedianBlocks
 import GroupApproximation.KunThom.RelativeFunctorEstimate
 import GroupApproximation.KunThom.BlockLocalDefects
 import GroupApproximation.KunThom.StepNineHammingReference
