@@ -92,3 +92,13 @@ Owns `CharClass/ChernSplitting*`, `ChernSplit*`, `ChernGamma*`, `ParityP*`, `Ste
   (60eceb761 + open-LH fix fb4861756).  Probe HELD: its closure reaches lx-lhK-a's `CohomologyChartPeelUniqOf`, red on
   origin until lx-lhK-a's fix lands; lx-lhK-b sends the tag of its RingClosedOf + CompactClosedOf probe, then ONE probe
   of the bridge.
+
+## STATE 12:25 CDT — bridge GREEN, lane deliverable complete
+- **Probe 0912-121929-94495** (lix-h, base cbeced59f): PROBE GREEN, 9317 jobs, `ChernSplittingOfLHBridge` BUILT, COMPILED
+  evidence for all 9 lane modules; `KGen.hasSplittingPN_lixBundle` depends on axioms `[propext, Classical.choice,
+  Quot.sound]`.  Bytes on main = green record (60eceb761 + fb4861756).
+- **Deliverable, compiled:** `KGen.hasSplittingPN_lixBundle p [Fact p.Prime] n dd ops G hGc hGu PN hnat :
+  ParityP.HasSplittingPN p (LerayHirschDataEvenOf.of_graded (compactLerayHirschDualOf_cpGen (ZMod p) _ _
+  (lixBundle n G hGc hGu) (lixRank n dd) (rank_lixBundle …) (one_le_lixRank n dd))).chern PN 1`.  Compact Leray–Hirsch
+  over F_p is discharged (lx-lhK-b 0912-121755-88637); the ONLY open input is `ops : OddPTotal.EvenReducedPowers p`
+  (lx-pzero), plus `hnat` for a free `PN` (none for `PN := ops.P`, via `…_self` forms).
