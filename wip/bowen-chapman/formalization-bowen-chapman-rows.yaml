@@ -1,0 +1,155 @@
+# DRAFT rows for formalization.yaml, Bowen–Chapman Problem 1.1 surface.
+# NOT merged: Palomar/comparator-bowen-chapman.json is pending, and
+# scripts/check_palomar_submission.py forbids status.main_results rows for a
+# pending configuration.  These rows are added in the same change that moves the
+# configuration to PALOMAR_CONFIGS, with sorry_count/axioms taken from a completed
+# scripts/PalomarBowenChapmanAxioms.lean run.  project.name, the description,
+# contributors and automation.notes are the user's decision and are not drafted.
+#
+# Bibliographic fields verified 2026-09-12: arXiv abs pages (2511.06586,
+# 2608.06222, 1901.03963) and Crossref records (10.1007/pl00011162,
+# 10.1007/bfb0061728, 10.1007/s00222-009-0218-2, 10.5802/ambp.386,
+# 10.1007/978-3-642-14034-1).  Weiss 2000 has no DOI; its fields agree across
+# the citing literature but no publisher record was read.  The OpenAI chapter
+# title is taken from references/README.md and was not re-read from the PDF.
+
+classification_proposal:
+  arxiv: [math.GR, math.DS]
+  msc2020: ["20F69", "37B15"]
+
+sources:
+  - title: Surjunctivity does not characterize cosoficity of invariant random subgroups
+    authors: [Lewis Bowen, Michael Chapman]
+    year: 2025
+    type: paper
+    id: https://arxiv.org/abs/2511.06586
+    relationship: background
+    note: >-
+      Poses Problem 1.1, whether all surjunctive groups are sofic, and answers
+      the analogous question for invariant random subgroups of free groups.
+
+  - title: Some general dynamical notions
+    authors: [Walter Gottschalk]
+    year: 1973
+    type: paper
+    id: https://doi.org/10.1007/BFb0061728
+    relationship: background
+    note: >-
+      Recent Advances in Topological Dynamics, Lecture Notes in Math. 318,
+      120-125. Introduces surjunctivity.
+
+  - title: Endomorphisms of symbolic algebraic varieties
+    authors: [Misha Gromov]
+    year: 1999
+    type: paper
+    id: https://doi.org/10.1007/PL00011162
+    relationship: background
+    note: >-
+      J. Eur. Math. Soc. 1(2):109-197. Sofic groups are surjunctive.
+
+  - title: Sofic groups and dynamical systems
+    authors: [Benjamin Weiss]
+    year: 2000
+    type: paper
+    relationship: background
+    note: >-
+      Sankhya Ser. A 62(3):350-359. Names sofic groups and proves they are
+      surjunctive.
+
+  - title: Nonsofic wreath products of residually finite groups
+    authors: [Gabor Kun, Andreas Thom]
+    year: 2026
+    type: paper
+    id: https://arxiv.org/abs/2608.06222
+    relationship: background
+    note: >-
+      Theorem A (v3, 2026-08-20): for an infranormal, non-normal Kazhdan pair,
+      the generalized wreath product and the group double are nonsofic. The
+      centralizer normalization theorem it rests on is proved in this
+      development.
+
+  - title: Inapproximability of actions and Kazhdan's property (T)
+    authors: [Gabor Kun, Andreas Thom]
+    year: 2019
+    type: paper
+    id: https://arxiv.org/abs/1901.03963
+    relationship: background
+    note: >-
+      The expander-centralizer theorem, proved in this development.
+
+  - title: Property (T) for noncommutative universal lattices
+    authors: [Mikhail Ershov, Andrei Jaikin-Zapirain]
+    year: 2010
+    type: paper
+    id: https://doi.org/10.1007/s00222-009-0218-2
+    relationship: background
+    note: >-
+      Invent. Math. 179(2):303-347. Property (T) for elementary groups of rank
+      at least three over finitely generated rings, proved in this development.
+
+  - title: On approximation properties of semidirect products of groups
+    authors: [Goulnara Arzhantseva, Światosław R. Gal]
+    year: 2020
+    type: paper
+    id: https://doi.org/10.5802/ambp.386
+    relationship: background
+    note: >-
+      Ann. Math. Blaise Pascal 27(1):125-130. A split extension with a finitely
+      generated residually finite kernel and a surjunctive quotient is
+      surjunctive.
+
+  - title: Cellular Automata and Groups
+    authors: [Tullio Ceccherini-Silberstein, Michel Coornaert]
+    year: 2010
+    type: book
+    id: https://doi.org/10.1007/978-3-642-14034-1
+    relationship: background
+    note: >-
+      Springer Monographs in Mathematics. Curtis-Hedlund-Lyndon theorem and
+      the textbook facts on surjunctivity used here.
+
+  - title: Constructing a Non-Sofic Group
+    authors: [OpenAI]
+    year: 2026
+    type: paper
+    id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
+    relationship: background
+    note: >-
+      The first nonsofic group, whose mechanism Kun and Thom analyze. Current
+      PDF title of the chapter to be re-read before merging.
+
+status_main_results_rows:
+  - declaration: BowenChapman.not_all_surjunctive_groups_sofic
+    file: Palomar/BowenChapmanSolution.lean
+    sorry_count: 0          # from a completed PalomarBowenChapmanAxioms run only
+    axioms: [propext, Classical.choice, Quot.sound]   # likewise
+    comparator_config: Palomar/comparator-bowen-chapman.json
+
+  - declaration: BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
+    file: Palomar/BowenChapmanSolution.lean
+    sorry_count: 0
+    axioms: [propext, Classical.choice, Quot.sound]
+    comparator_config: Palomar/comparator-bowen-chapman.json
+
+alignment_statements:
+  - source: >-
+      Bowen-Chapman Problem 1.1 (are all surjunctive groups sofic?), in their
+      setting of finitely generated groups and finite palettes: no, some
+      finitely generated group is surjunctive and not sofic.
+    lean: BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
+    module: Palomar.BowenChapmanChallenge
+    status: proved
+
+  - source: >-
+      Problem 1.1 without finite generation: not every surjunctive group is
+      sofic.
+    lean: BowenChapman.not_all_surjunctive_groups_sofic
+    module: Palomar.BowenChapmanChallenge
+    status: proved
+
+fidelity_divergences_addendum: >-
+  Surjunctivity is stated with Bowen-Chapman's cellular automata,
+  Phi(c)(x) = phi(c(x gamma_1), ..., c(x gamma_n)), over palettes that are
+  finite types in Type 0. Soficity is the finite-set normalized-Hamming form.
+  Finite generation is the existence of a finite subset generating the whole
+  group. All groups range over Type 0, and the counterexample is in Type 0.
