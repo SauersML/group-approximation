@@ -88,6 +88,9 @@ FORBIDDEN_ALLOWLIST = {
     ("hand-declared axiom", "scripts/Audit/Plants.lean", 28,
      "axiom plantedAxiom : True"),
     ("sorry / sorryAx", "Palomar/Challenge.lean", 247, "sorry"),
+    # Palomar/BowenChapmanChallenge.lean states its two theorems the same way.
+    ("sorry / sorryAx", "Palomar/BowenChapmanChallenge.lean", 103, "sorry"),
+    ("sorry / sorryAx", "Palomar/BowenChapmanChallenge.lean", 110, "sorry"),
 }
 
 # Strings known to have been fabricated in earlier edits and purged from the
