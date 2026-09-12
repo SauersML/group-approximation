@@ -27,3 +27,5 @@ Artifact Sections 1 and 2.
    vectors because `-b = b` forces `b = 0` in characteristic three.
 6. **Sofic subgroups** (Theorem 2.2). Linearize a sofic approximation over `F_3` and compress by
    `f = 2(1 - tau(z))`; asymptotic freeness on finite subgroups gives the profile.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 22.1 (Heisenberg kernel count re-derived) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

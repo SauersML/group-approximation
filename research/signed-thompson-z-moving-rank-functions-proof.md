@@ -23,3 +23,5 @@ Artifact Theorem 2.1.
 
 `N_rk` is a normal subgroup by `simple-group-rank-functions-are-augmentation-or-detecting`. Its augmentation
 criterion is used only to name case (2).
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 21.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

@@ -18,3 +18,5 @@ Artifact Section 4.3.
 
 The prerequisite is sufficient but not known to be necessary, and it is at least as strong as `V` failing to be
 sofic. A proof of the target that avoids settling `V` must use elements of `G_3` outside `E ⋊ V`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 21.1 (valid as a route conditional on the open augmentation claim) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

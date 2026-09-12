@@ -18,3 +18,5 @@ Artifact Section 4.2.
    `rk(1 - [g]) >= 1/2` for every `g != 1`.
 4. Composing the induced algebra map with the ultraproduct rank gives the required Sylvester matrix rank function
    on `F_3[V]`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 21.1 (valid as a route conditional on thompson-v-is-sofic) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

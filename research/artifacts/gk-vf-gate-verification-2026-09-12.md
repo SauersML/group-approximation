@@ -964,3 +964,67 @@ which contradicts `delta >= c_0'`.
 4. **Evaluation.** `ev(iota_w(p_i)) = S[w] s_i t_i T[w] + 4(1 - S[w]T[w]) = 1_[wi]`, and
    `ev(iota_(wi)(1+e)) = S[wi](c + c^2)T[wi] + 2(...) = 1_[wi]`.
 5. **Subadditivity.** It gives `rk(A_(wi) - E_(wi)) >= eps - eps/2`.
+
+## 21. w5-c3-signed-thompson (c4f44ada52)
+
+### 21.1 `signed-thompson-z-moving-rank-functions-match-v-rank-functions`: PASS
+
+**Lemma 1.1.**
+- **Group law.** `phi(tau_C)` flips the first letter exactly when the tail lies in `C`, and `phi(g)` acts on
+  the tail. Both are prefix replacements.
+- **Conjugation.** `phi(g) phi(tau_C) phi(g)^-1 (eps x) = (eps + 1_(gC)(x)) x = phi(tau_(gC))(eps x)`.
+- **Products.** Over `F_3`, `(1 - 2P_C)(1 - 2P_(C'))` equals `1 - 2P_(C Δ C')`, since `4 = 1`. `phi` respects
+  this because flips add mod 2.
+- **`z`.** `phi(z) = sigma_0`.
+
+**Equivalence (2) ⟺ (3).** `N_rk ∩ V` is normal in the simple group `V`, so it is `1` or `V`.
+
+**Implication (1) ⟹ (2).** Suppose `V <= N_rk`.
+- `g tau_A g^-1 = tau_(gA)`, and `[g, tau_A] = g (tau_A g^-1 tau_A^-1)` lies in `N_rk`, so `tau_(gA)` and
+  `tau_A` are congruent.
+- Transitivity of `V` on proper clopen sets gives one class `c`.
+- `tau_[0] = tau_[00] tau_[01]`, by orthogonality, so `c = c^2` and hence `c = 1`.
+- Then `z = tau_[0] tau_[1]` lies in `N_rk`.
+
+**Implication (3) ⟹ (1).** Pull back along the unital map `K[phi]`. The result moves `z`, because
+`rk(1 - sigma_0) > 0`.
+
+**The wiring checks.**
+- **`refuted_by`.** Both entries are consistent: the two open claims are negations of each other, and
+  soficity implies non-augmentation.
+- **`ternary-units-kill-minus-one-via-thompson-v-augmentation`.** Restriction still moves `z`, then
+  direction (1) ⟹ (2), then contradiction. PASS as a conditional route.
+- **`thompson-v-ternary-nonaugmentation-rank-function-from-soficity`.**
+  - A cycle of length `l >= 2` gives `rank(P - I) = l - 1 >= l/2`, so `rank(P - I) >= m/2`.
+  - Asymptotic freeness then gives rank at least `1/2`.
+  - PASS as a conditional route.
+- **Section 4.4.** A detecting rank function pulls back to a `z`-moving one, and in characteristic `!= 2` it
+  compresses to `eps_-`. The swap makes `N(q_[0]) = 1/2`, so `c' q_[0] b' = eps_-` would force
+  `1 <= 1/2`. This agrees with w3-corner-crossed's rank-function obstruction.
+
+## 22. w5-c3-submult (5281756de8)
+
+### 22.1 `anti-central-sofic-data-cannot-force-defect-submultiplicativity`: PASS
+
+- **Lemma 1.2.**
+  - `F_3[K'] eps_- = ⊕_c F_3[K] eps_- c`, with `dim = |K|/2`.
+  - Conjugation fixes `eps_-`.
+  - `(1-z) eps_- = 2 eps_-` has full rank.
+- **Proposition 1.3(c): the Heisenberg count, re-derived independently.**
+  - `L_y e_(i,j,k) = e_(i,j+1,k-i)`, and orbits are labelled by `w = k + ij`.
+  - `X^2 = 1 + L_x + L_x^2` sends `f_(i,w)` to the indicator of `d + ib = w`.
+  - The kernel is `sum_i p_i(d + ib) = 0`. With `p_i = alpha_i + beta_i t + gamma_i t^2`, the six monomials
+    give 2 dimensions for `alpha`, 1 for `beta`, and 0 for `gamma` (Vandermonde).
+  - So `dim(XM ∩ ker Y) = 3`, and `rank(YX) = 18 - 3 = 15` in `27` dimensions, which is `5/9`.
+  - The same count on `F_2[D_8]` gives `4 - 1 = 3`.
+- **Proposition 1.3(d).** The frames commute and meet trivially, the 3-group product avoids `z`, and tensor
+  ranks multiply.
+- **Theorem 2.1.**
+  - The letters satisfy `phi_u(z) = z`, so intertwiners between the free `F_3[Gamma_i] eps_-`-modules of equal
+    rank `[K_n : Gamma_i]` preserve the `eps_-`-part.
+  - The index moves along the stages.
+  - Lemma 0.1 gives no fixed vectors.
+- **Theorem 2.2.**
+  - `(2(1-P))^2 = 2(1-P)` over `F_3`, because `P^2 = 1`.
+  - `tau(z) f = -f`.
+  - Freeness on all but `o(n)` points gives `rho(f) = 1/2` and the profile.
