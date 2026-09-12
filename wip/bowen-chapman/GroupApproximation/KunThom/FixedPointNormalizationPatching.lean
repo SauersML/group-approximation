@@ -264,11 +264,12 @@ theorem card_commutationDefect_patch_le {L : Type*} [Fintype L]
       rcases hy.2 with hyF | hpF
       · exact Or.inl hyF
       · exact Or.inr ⟨β.patch y, hpF, β.patch.symm_apply_apply y⟩
-    calc (K.filter fun y ↦ y ∈ F ∨ β.patch y ∈ F).card
-        ≤ (F ∪ F.image β.patch.symm).card := Finset.card_le_card hsub
-      _ ≤ F.card + (F.image β.patch.symm).card := Finset.card_union_le _ _
-      _ ≤ F.card + F.card := by gcongr; exact Finset.card_image_le
-      _ = 2 * F.card := by ring
+    have h1 : (K.filter fun y ↦ y ∈ F ∨ β.patch y ∈ F).card ≤
+        (F ∪ F.image β.patch.symm).card := Finset.card_le_card hsub
+    have h2 : (F ∪ F.image β.patch.symm).card ≤
+        F.card + (F.image β.patch.symm).card := Finset.card_union_le _ _
+    have h3 : (F.image β.patch.symm).card ≤ F.card := Finset.card_image_le
+    omega
   -- the remaining points lie in the equivariance defect
   have hkept : (K.filter fun y ↦ ¬ (y ∈ F ∨ β.patch y ∈ F)) ⊆
       (β.labelDefect A s).image β.domIncl := by

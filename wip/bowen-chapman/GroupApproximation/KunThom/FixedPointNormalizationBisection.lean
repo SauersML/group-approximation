@@ -76,11 +76,8 @@ theorem bisectionArrows_isClusterCandidate
     ((bisectionArrows (ι := ι) (hinj := hinj) (hdisj := hdisj) b).arrow X
       ).IsClusterCandidate (D.act X) (D.act (bisectionIndexEquiv b X))
         D.h D.scale := by
-  have hmem := (bisectionRep b X).2
-  change (bisectionRep b X).1 ∈ FinitePartialBijection.clusterCandidates
-    (D.act X) (D.act (bisectionIndexEquiv b X)) D.h D.scale at hmem
-  rw [FinitePartialBijection.mem_clusterCandidates] at hmem
-  exact hmem
+  exact (FinitePartialBijection.mem_clusterCandidates (D.act X)
+    (D.act (bisectionIndexEquiv b X)) D.h D.scale _).mp (bisectionRep b X).2
 
 /-- The labelled action of a cluster system on its blocks, together with an
 ambient labelled action. -/
@@ -133,6 +130,50 @@ theorem card_commutationDefect_bisectionPatch_le
           ∑ _X : I, D.h * D.scale / 2 := by
         gcongr with X
         exact hdef X
+
+/-- Disjointly embedded objects of a cluster system carry at most `|Y|`
+points in total. -/
+theorem sum_card_model_le (e : ∀ X, D.model X → Y)
+    (he : ∀ X, Function.Injective (e X))
+    (hd : ∀ (X X' : I) (x : D.model X) (z : D.model X'),
+      e X x = e X' z → X = X') :
+    ∑ X, Fintype.card (D.model X) ≤ Fintype.card Y := by
+  classical
+  have hinjSigma : Function.Injective (fun p : Σ X, D.model X ↦ e p.1 p.2) := by
+    rintro ⟨X, x⟩ ⟨X', z⟩ h
+    have hXX : X = X' := hd X X' x z h
+    subst hXX
+    have hxz : x = z := he X h
+    subst hxz
+    rfl
+  have hcard := Fintype.card_le_of_injective _ hinjSigma
+  simpa only [Fintype.card_sigma] using hcard
+
+/-- **The candidate threshold is negligible once `h` is.**  Every object has
+at least `17 * scale` points, so the per-object threshold `h * scale / 2`,
+summed over disjointly embedded objects, is at most `h / 34` times the
+ambient size.  With the cluster expansion constant `h = h_n → 0`, as the
+Alekseev--Thom scale choice requires, the error term of
+`card_commutationDefect_bisectionPatch_le` is `o(|Y|)`. -/
+theorem sum_candidateThreshold_le (e : ∀ X, D.model X → Y)
+    (he : ∀ X, Function.Injective (e X))
+    (hd : ∀ (X X' : I) (x : D.model X) (z : D.model X'),
+      e X x = e X' z → X = X') :
+    ∑ _X : I, D.h * D.scale / 2 ≤ D.h / 34 * Fintype.card Y := by
+  have hnn : 0 ≤ D.h / 34 := div_nonneg D.h_pos.le (by norm_num)
+  have hsize : ∀ X, (17 * D.scale : ℝ) ≤ Fintype.card (D.model X) :=
+    fun X ↦ by exact_mod_cast D.size X
+  have hsum : ((∑ X, Fintype.card (D.model X) : ℕ) : ℝ) ≤ Fintype.card Y := by
+    exact_mod_cast sum_card_model_le e he hd
+  calc ∑ _X : I, D.h * D.scale / 2
+      = ∑ _X : I, D.h / 34 * (17 * D.scale : ℝ) := by
+        refine Finset.sum_congr rfl fun _ _ ↦ ?_
+        ring
+    _ ≤ ∑ X : I, D.h / 34 * (Fintype.card (D.model X) : ℝ) :=
+        Finset.sum_le_sum fun X _ ↦ mul_le_mul_of_nonneg_left (hsize X) hnn
+    _ = D.h / 34 * ((∑ X, Fintype.card (D.model X) : ℕ) : ℝ) := by
+        rw [Nat.cast_sum, Finset.mul_sum]
+    _ ≤ D.h / 34 * Fintype.card Y := mul_le_mul_of_nonneg_left hsum hnn
 
 end BlockPatching
 end GroupApproximation
