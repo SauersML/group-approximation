@@ -28,3 +28,13 @@ prescribed ball of `Γ` then exist.
   a witness `M` must surject onto every finite quotient of `Γ` (in particular
   every congruence quotient) while staying small enough to keep `Γ/M` infinite
   and hyperbolic.  No such `M` is known.
+- **Simple-quotient bound (2026-09-12).** Density is automatic except against
+  finitely many simple images, provided the lattice has only finitely many
+  alternating and large-rank simple quotients.
+  - Route `quotientless-hyperbolic-via-sp21-simple-quotient-bound` builds `M`
+    from two Olshanskii quotients that are surjective on deep finite-index
+    subgroups.
+  - The hypothesis is `sp21-lattice-few-alternating-and-large-rank-quotients`.
+    It is implied by the congruence subgroup property and weaker in form.
+  - So the open part of this claim is exactly the alternating and
+    unbounded-rank images of the lattice.

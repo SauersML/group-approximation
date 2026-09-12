@@ -29,3 +29,18 @@ and has no nontrivial finite quotient; equivalently `<<g^n>>` is dense in `Γ̂`
   the non-congruence finite quotients of `Γ` is available here.  If the kernel
   were finite (`sp21-lattice-has-congruence-subgroup-property`), `Q` would
   already fail residual finiteness for every `g` and deep `n`.
+- **Simple images decide it (2026-09-12).**
+  - **The criterion.** By `filling-no-finite-quotient-iff-simple-image-orders`,
+    `Q` is finite-quotient-free iff no epimorphism of `Γ` onto a finite simple
+    group sends `g` to an element whose order divides `n`.
+  - **What survives.** By `sp21-bounded-rank-simple-quotients-almost-all-congruence`,
+    only finitely many such images have Lie rank at most `r`, for each `r`,
+    beyond the congruence ones. So the families left to exclude are the
+    alternating images and the images of unbounded Lie rank.
+  - **The one-element shape is not needed.** Two Olshanskii quotients do the
+    same job once those families are finite:
+    `quotientless-hyperbolic-via-sp21-simple-quotient-bound` from
+    `sp21-lattice-few-alternating-and-large-rank-quotients`.
+  - **The congruence half is arithmetic.** For a fixed `g` and infinitely many
+    `n`, it is a question of Ailon--Rudnick type: no prime may divide `λ^n - 1`
+    for all eigenvalue ratios `λ` of `g` at once. It is not decided here.
