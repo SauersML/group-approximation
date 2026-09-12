@@ -6,6 +6,7 @@ title: Torsion of invertible order is exactly rank-rigid for unipotents, and one
 target: unipotent-valued-rank-models-of-el3-are-trivial
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-extensions-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ Artifact Section 4.1.
    `sigma(x_kl(1)) = 1`.
 4. **All roots.** `x_ik(a) = [x_ij(a), x_jk(1)]` gives `sigma(x_ik(a)) = 1`, and root elements
    generate `EL_3(R)`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 38 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

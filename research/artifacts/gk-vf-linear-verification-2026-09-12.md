@@ -1260,3 +1260,54 @@ their routes, and `root-displacement-rank-extraction-2026-09-12.md` Sections 1 t
 - **Section 3.** For free `F_2[Q]`-modules, the sum of the images `Im(g_i - 1)` is the augmentation-ideal part, of
   codimension one per copy, giving `epsilon(1 - 2^-n)`. Natural block models over `A_inf` satisfy
   `N_23 N_12 = 0`, while free models do not. Both statements check.
+
+## 38. Unipotent-valued models and the diagonal model of flag-preserving models (1940cc8920, lane gk-rk-extensions): PASS, one implicit step supplied
+
+Items checked: `unipotent-valued-rank-models-of-el3-are-trivial`, `flag-preserving-rank-models-of-el3-reduce-to-their-diagonal`,
+their routes, and `el3-rank-model-extensions-2026-09-12.md` Section 4.
+
+- **Lemma 3.** `x^m - 1 = sum_(l>=1) binom(m,l) N^l = N c`, with `c = m(1 + nilpotent)` invertible when `m` is invertible
+  in `k`. So `rank(x^m - 1) = rank(N)` exactly, at every stage and over every field.
+  - Consequence: if `g` has representatives `g_i` with `g_i - 1` nilpotent and `g^m = 1` in `M`, then
+    `rk(g_i - 1) = rk(g_i^m - 1)`, which tends to 0 along omega. So `g = 1`.
+- **Theorem 5, characteristic `k != p`.** `x_12(1)^p = x_12(p) = 1` and `p` is invertible in `k`, so `sigma(x_12(1)) = 1`.
+  Weyl elements give `x_kl(+-1)`, and `x_ik(a) = [x_ij(a), x_jk(1)]` finishes.
+- **Theorem 5, characteristic `k = p`.**
+  - The 3-cycle is even, hence in `SL_3(F_2)`, and has order 3. `diag(-1,-1,1)` has determinant 1 and order 2 for odd
+    `p`. Both orders are invertible in `k`.
+  - `F_p -> R` is a unital ring map, so `iota : SL_3(F_p) = EL_3(F_p) -> EL_3(R)`.
+  - `K = ker(sigma iota)` contains `h`, which is not scalar, so `K` is not inside the centre.
+  - `PSL_3(F_p)` is simple for every `p`, so `KZ = SL_3(F_p)`. The quotient `SL_3(F_p)/K ~= Z/(Z cap K)` is abelian, and
+    perfection gives `K = SL_3(F_p)`.
+  - Then all `sigma(x_kl(1)) = 1`, and the commutator identity kills every root.
+  - No simplicity of `R`, direct-finiteness failure, property (T) or flag-length bound is used, and the characteristic
+    of `k` is arbitrary.
+- **Lemma 6.**
+  - For block upper triangular matrices, `(xy)_tt = sum_r x_tr y_rt` keeps only `r = t`, and
+    `det x = prod det x_tt`.
+  - Rank contraction: the rows `union I_t` and columns `union J_t` give a submatrix that is block upper triangular with
+    invertible diagonal blocks, hence invertible. So `rank x >= sum rank x_tt`.
+- **Proposition 7.** Well-definedness, multiplicativity, (a) via `D(g_i - 1) = D(g_i) - 1`, and (c) via
+  `rank((1 - D^-1) g_i) <= rank(D - 1)` all check.
+  - *Implicit step supplied.* (b) and part 3 of Theorem 8 need `D_i(g_i)` invertible at finite stages. The
+    presentation only gives triangular representatives. They can be made invertible:
+    - `g_i h_i` is a triangular representative of 1, so `rank(D(g_i h_i) - 1) = o(n_i)`.
+    - Hence `D(g_i) = D(g_i) D(h_i) + ...` has corank `o(n_i)`.
+    - Perturbing each singular diagonal block by its nullity keeps triangularity and changes `g_i` by rank `o(n_i)`,
+      with every block invertible.
+    - Then `D_i(g_i)^-1 g_i - 1` is strictly block upper triangular, hence nilpotent.
+    - The author should add this sentence. The results stand.
+- **Theorem 8.**
+  - *Equivalence.* (a) gives one direction, and Proposition 7(c) with Theorem 5 gives the other.
+  - *Part 1.* Unipotent representatives element by element suffice.
+  - *Part 2.* Diagonal values commute and `EL_3(R)` is perfect.
+  - *Part 3, bounded blocks.*
+    - Block-diagonal rank is additive over blocks, and a failing block has rank at least 1 and dimension at most `d`.
+      So failing blocks on a finite set `F` carry dimension `o(n_i)`.
+    - Blocks nontrivial at `g_0` carry dimension at least `rank >= c n_i`.
+    - Choose one exact block per `F`, and take an ultrafilter on finite subsets containing all cones with `d'` fixed.
+    - `prod_U GL_(d')(k) = GL_(d')(k^U)`, and `rho(g_0) != 1` because it fails on no `F`.
+- **Payoff-host remark.** Prose only, and correct: a nontrivial finite-dimensional image of the finitely generated
+  infinite simple `R^x` would be injective and residually finite.
+- **Section 4.3.** The reduction of diffuse diagonal models to the general claim by compactness and Markov is prose,
+  not a route. It is sound in outline, and the claim is correctly worded as "reduces", with no route landed.

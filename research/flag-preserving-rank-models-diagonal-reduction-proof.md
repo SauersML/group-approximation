@@ -7,6 +7,7 @@ target: flag-preserving-rank-models-of-el3-reduce-to-their-diagonal
 requires:
   - unipotent-valued-rank-models-of-el3-are-trivial
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-extensions-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ Artifact Section 4.2.
    * Bounded blocks: failing blocks carry dimension `o(n_i)`, while blocks nontrivial at a fixed
      `g_0` carry dimension at least `c n_i`. Choose exact blocks on growing finite sets and take
      an algebraic ultraproduct of `GL_(d')`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 38 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. The implicit step that triangular representatives can be taken invertible (perturb singular diagonal blocks by their nullity, total rank `o(n_i)`) is supplied there.*
