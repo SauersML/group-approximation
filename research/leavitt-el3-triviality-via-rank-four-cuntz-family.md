@@ -11,6 +11,7 @@ requires:
   - matrix-unit-rank-models-extract-ring-rank-models
   - el4-model-trivial-on-one-unit-root-element-is-trivial
   - nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple
+  - reversed-root-pair-identity-forces-root-squares-to-vanish
 artifacts:
   - research/artifacts/rank-four-associativity-gate-plans-2026-09-12.md
   - research/artifacts/rank-four-corner-endpoint-and-framing-2026-09-12.md
@@ -55,6 +56,9 @@ Sections 3.2 and 3.4.
    finite `K`, both exclusions (of `R -> p_1 M p_1`, and of the corner family) are covered by
    `nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple`.
 4. **Conclusion.** The route is valid, with these two established requirements added.
+5. **Odd characteristic** (scope note from `w4-vf-gate`, e4d7e1c7fa). In odd `p` the first case needs
+   `N_12^2 = 0` before the matrix-unit claim applies. The identity `D = 0` already forces it, by
+   `reversed-root-pair-identity-forces-root-squares-to-vanish`, which is now listed in requires.
 
 Payoff: through the target's own routes, `non-linear-sofic-group` for `K = F_2`, `n = 2`, and the
 non-`F_p`-linear-soficity of `R^x` and of `PG`.

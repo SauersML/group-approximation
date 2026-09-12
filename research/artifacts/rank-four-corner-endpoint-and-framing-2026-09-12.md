@@ -279,3 +279,51 @@ Put `D = N_23 N_12`" must therefore be read with `D` the block defect of `sigma_
 
 **Not done here.** Checks (i) and (ii) themselves. No construction of `e`, `S_i`, `T_i` has been written
 down yet, so I had nothing to evaluate.
+
+## 5. Addendum: positivity for w4-r4-orth's opposite-root placement
+
+`w4-r4-orth` (fcffe16327; `index-three-corner-placement-holds-only-modulo-two-root-defects`) uses this
+placement:
+
+```text
+S(b) = n_31(b) n_13(1)        T(a) = n_34(a) n_43(1)
+e    = range idempotent of n_31(1) n_13(1)
+```
+
+This `e` absorbs `n_31(1) n_13(1)` on the left. That product is not a single root operator, so
+Corollary 4 does not apply directly. Positivity needs `n_31(1) n_13(1) != 0`. In characteristic two
+that holds for every nontrivial model.
+
+**Proposition 5** (`opposite-unit-root-product-vanishes-only-for-trivial-models`). Let `R` and `M` be
+unital rings with `2 = 0`, and `sigma : EL_4(R) -> M^x` a homomorphism. If `n_JI(1) n_IJ(1) = 0` for one
+pair `I != J`, then `sigma` is trivial.
+
+*Proof.* Take `(I, J) = (1, 3)`, and put `X = n_13(1)` and `Y = n_31(1)`.
+1. **Squares.** `(1 + X)^2 = sigma(x_13(2)) = 1`, so `X^2 = 0`. Likewise `Y^2 = 0`.
+2. **Braid relation.** Over `Z`, both `x_13(1) x_31(-1) x_13(1)` and `x_31(-1) x_13(1) x_31(-1)` have
+   `(1,3)` block `[[0,1],[-1,0]]`. With `-1 = 1` in `R`, the braid relation
+   `x_13(1) x_31(1) x_13(1) = x_31(1) x_13(1) x_31(1)` holds in `EL_4(R)`.
+3. **Expansion.** Apply `sigma` and expand: `1 + Y + XY + YX + XYX = 1 + X + XY + YX + YXY`.
+   So `Y + XYX = X + YXY`.
+4. **Collapse.** If `YX = 0`, both cubic terms vanish, so `X = Y =: u - 1`, where `u = sigma(x_13(1))`.
+5. **A root element dies.** `x_13(1)` commutes with `x_12(r)`, and `x_32(r) = [x_31(1), x_12(r)]`.
+   So `sigma(x_32(r)) = [u, sigma(x_12(r))] = 1`.
+6. **Conclusion.** By Lemma 3, `sigma` is trivial. ∎
+
+**Consequence for the placement.**
+- **Positivity.** In a characteristic-two rank model with `D != 0`, `sigma` is nontrivial, so
+  `rk(e) >= rk(n_31(1) n_13(1)) > 0`. For this placement check (iii) holds unconditionally.
+- **What stays open.** Whether `S(b)` and `T(a)` lie in `eMe` for this `e`, together with relation (i).
+  That is the deviation terms `Delta_row` and `Delta_rev` of w4-r4-orth's identity, which is the gate
+  itself.
+- **Calibration.** In the honest model `n_31(1) n_13(1) = E_33`, and `e = E_33` is the index-three
+  matrix unit.
+
+**Scope.** Characteristic two only. In odd characteristic the braid relation relates `n_13(1)` to
+`n_31(-1)`, and the vanishing of `n_31(1) n_13(1)` does not collapse the same way. The decisive
+instance `K = F_2` is in characteristic two.
+
+**Verifier note (w4-vf-gate, e4d7e1c7fa).** In odd `p`, the `D = 0` branch of the route uses the
+matrix-unit claim, and that needs `N_12^2 = 0`. It comes from
+`reversed-root-pair-identity-forces-root-squares-to-vanish`, which is now added to the route's
+requires.
