@@ -353,12 +353,33 @@ RESCREEN = None
 for i, a in enumerate(args):
     if a == "--rescreen":
         RESCREEN = args[i + 1]
+def nests_with_chart(domain, range_words):
+    """False exactly when non-nesting-transporters-cannot-install-chart-comparison applies."""
+    chart = ("000", "001", "010", "011")
+    images = []
+    for c in chart:
+        img = None
+        for d, r in zip(domain, range_words):
+            if c.startswith(r):
+                img = d + c[len(r):]
+                break
+        if img is None:
+            return True  # a chart leaf is split by the transporter
+        images.append(img)
+    for a in images:
+        for b in chart:
+            if a != b and (a.startswith(b) or b.startswith(a)):
+                return True
+    return False
+
+
 if RESCREEN:
     with open(RESCREEN) as fh:
         prior = json.load(fh)["family"]["degree3_survivor_list"]
-    nonuniform = [s for s in prior if not is_uniform_on_chart(s["domain"], s["range"])]
-    report = {"prior": len(prior), "nonuniform": len(nonuniform)}
-    for deg in (2, 3):
+    nonuniform = [s for s in prior if nests_with_chart(s["domain"], s["range"])]
+    report = {"prior": len(prior), "nesting": len(nonuniform),
+              "uniform_among_prior": sum(1 for s in prior if is_uniform_on_chart(s["domain"], s["range"]))}
+    for deg in (2,):
         bas = sector_basis(f0, deg, WINDOW)
         report["f0_rank_degree%d" % deg] = len(bas)
         keep = []
