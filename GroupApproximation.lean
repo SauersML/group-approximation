@@ -4674,6 +4674,7 @@ import GroupApproximation.KunThom.CentralizerNormalizationUniformSelection
 import GroupApproximation.KunThom.CountingEndgameSelection
 import GroupApproximation.KunThom.CentralizerNormalizationUniformCore
 import GroupApproximation.KunThom.CentralizerNormalizationPrunedCoreMultiplicative
+import GroupApproximation.KunThom.SequentialComponentFamily
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
