@@ -75,6 +75,16 @@ InjectiveOf, SurjOf, SurjZeroOf, DecompOf each `Built`.  **Probe 0911-233409-644
 ParityOf `Built`.  All bytes already on origin.  WIRE tops: `CohomologyKunnethParityOf`, `RelHomotopyIdentity`,
 `RelativeSplitField`, `RelativeProdContractibleOf`, `RelativeLocalModelOf`.
 
+| `CohomologyKunnethTorusOf` | `KnHemi.kunnethSecondInjective_of_ne_zeroOf`, `KnTwo.midBaseOf`, `torusBaseOf`, `prYOf`, `prS1Of`, `prSoddOf`, `sig1Of`, `sigOddOf`, `tx_inj_degree_of_ne_zeroOf`, `tx_inj_degreeOf` (degreewise `z_inj` of `Gen.RealTorusModP`) | `[Field K]` | 653132048, COMPILED 0911-235942-72699 |
+| `CohomologyLHRingPiecesOf` | `LHCast.totalHOf_of_pow`, `sum_lhTerm_truncateOf`, `component_mapOf`, `component_mul_ofOf` (right-concentrated, sign-free), `component_mul_of_ltOf`, `component_lhFunOf_term{,_lt,',_gen}`, `degFunOf`, `component_lhFunOf` | `[CommRing K]` | cafa54819 |
+| `CohomologyLHRingDataOf` | `LHCast.lhFunOf_{zero,add,injective,surjective,bijective}`, `lhMap_zeroOf`, `lerayHirschDataOf_of_graded` (+ `_proj/_rank/_taut`), `coe_lhFunEvenOf`, `isEven_coeff_of_lhFunOf`, `lhFunEvenOf_bijective_of_graded`, `LerayHirschDataEvenOf.of_graded` | `[CommRing K]` | 0f6b23cea |
+
+Sweep of `RelativeHomotopyInvariance` and `RelativeLocal` (lead, 00:00): every declaration naming `ZMod 2` already has a
+K twin (`…Of` in the same file, `RelativeSubspaceIsoOf.relPullback_bijective_of_absoluteOf`,
+`RelativeLocalModelOf.excisionIsoPointOf`); `pointComplementOpen`/`pointComplement_sup` carry no coefficients.  No new file.
+
+Probe 0912-001208-59872 running: `CohomologyLHRingPiecesOf`, `CohomologyLHRingDataOf`.
+
 ## NEEDS
 
 * Nothing from other lanes: lix-lh's `MayerVietorisPullOf` and the δ layer compiled at 4ad91fa8a.
