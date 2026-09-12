@@ -53,6 +53,16 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   correction solves order by order (`binary-left-inverse-pairs-are-boolean-adically-formalizable`,
   gk-fz-obstruction). This applies verbatim to `tau x id`. So graded `I`-adic layers carry no
   invariant, and formalizability is exactly termination at finite degree and memory.
+- **Any realization must be dirty at `y = 0`.** Let `(mu_1, mu_2)`, `(nu_1, nu_2)` be representatives
+  realizing `tau x id` for the marker involution formally on `Z`. If `mu_2(x, 0) = 0` formally, then
+  `(mu_1(., 0), nu_1(., 0))` is a formal one-track pair representing `tau`, which the one-track
+  theorem of gk-fz-bennett forbids. So the ancilla component restricted to `y = 0` is a formally
+  nonzero representative of `0`. The stable problem is genuinely weaker than a clean dilation, which
+  is already refuted.
+- **Two ways termination can fail** (gk-fz-obstruction). In finitely many variables the Boolean
+  completion is `prod_c F_2[[X - c]]` over the Boolean points `c`. So non-termination is either
+  unbounded memory of the corrections, or bounded memory with an infinite local power series at some
+  Boolean point. Neither has been checked for `tau x id`.
 - **Where it stops.** No `Z`-equivariant ancilla construction is known for the marker involution, and
   no invariant is known that survives cancellation between components. A negative answer must
   measure the growth in degree or memory of the corrections; a positive theorem must bound it.
