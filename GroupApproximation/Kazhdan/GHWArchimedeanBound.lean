@@ -99,8 +99,11 @@ theorem ghwArchimedeanAffineBound : GHWArchimedeanAffineBound := by
   obtain ⟨a, b, ha, -, hab, htr, -, hsep⟩ := Wedge.separation_bound g
   have hnorm : ‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖ ^ 2 =
       κ⁻¹ * (shellMeasure (Walls.halfSpace origin ∆ Walls.halfSpace (conjAct g origin))).toReal := by
-    rw [Haagerup.AffineAction.comapHom_b, Walls.wallAction_b, norm_smul, mul_pow,
-      Real.norm_eq_abs, sq_abs, Real.sq_sqrt (inv_nonneg.mpr hκ0.le), Walls.norm_wallCocycle_sq]
+    have h : ‖Real.sqrt κ⁻¹ • Walls.wallCocycle separationFinite g‖ ^ 2 =
+        κ⁻¹ * (shellMeasure (Walls.halfSpace origin ∆ Walls.halfSpace (conjAct g origin))).toReal := by
+      rw [norm_smul, mul_pow, Real.norm_eq_abs, sq_abs, Real.sq_sqrt (inv_nonneg.mpr hκ0.le),
+        Walls.norm_wallCocycle_sq]
+    exact h
   have hlog : |Real.log a| ≤
       ‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖ ^ 2 := by
     rw [hnorm, le_inv_mul_iff₀ hκ0]
