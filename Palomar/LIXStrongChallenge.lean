@@ -25,7 +25,7 @@ unital C⋆-algebra `A` and a unitary `u ∈ U(A) \ U₀(A)` with `diag (u, 1)`
 connected to `1` in `U(M₂(A))`, so the class of `u` in `U(A)/U₀(A)` is
 nontrivial and dies at the first stabilisation.  A counterexample of that kind
 says the kernel of `U(A)/U₀(A) → K₁(A)` is nonzero.  It says nothing about how
-large that kernel is: one element of order two is all it exhibits.
+large that kernel is: one nontrivial element is all it exhibits.
 
 The three theorems below say how large.  For every `n ≥ 2` there is such an
 algebra carrying a unitary `v`, still trivial in `K₁`, whose powers stay
