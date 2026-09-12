@@ -72,7 +72,9 @@ is the Borel inverse of `tau` on its image.
   the rigid defect cannot be coupled to the actor by "combine locally, then transport". The combining
   window must itself generate a nonsofic subgroup, and synergy spread over two or more combining
   stages is outside the theorem. Designing a code is exactly designing a generating partition with
-  fewer pieces (`compression-codes-are-small-generating-partitions`). Coupling "through a non-closed
-  stabilizer" filters nothing over `U`, since every proper subgroup is non-closed
-  (`profinite-localization-is-vacuous-over-leavitt-units`). Artifact:
+  fewer pieces (`compression-codes-are-small-generating-partitions`). Closedness measured in the
+  ambient profinite topology of `U` filters nothing, since every proper subgroup is non-closed
+  (`profinite-localization-is-vacuous-over-leavitt-units`). The witness-level filters still bite:
+  closedness in the profinite topology of the subgroup a witness generates, and nonsoficity of that
+  subgroup. Artifact:
   `research/artifacts/defect-coupled-routed-codes-2026-09-12.md`.
