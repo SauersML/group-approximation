@@ -294,6 +294,8 @@ FAMILY_MAX = 4
 for i, a in enumerate(args):
     if a == "--family-max":
         FAMILY_MAX = int(args[i + 1])
+if "--rescreen" in args:
+    FAMILY_MAX = 1  # skip the family pass; only rescreen a prior survivor list
 codes = [c for c in complete_codes(FAMILY_MAX) if len(c) >= 2]
 seen = set()
 survivors = []
@@ -329,6 +331,46 @@ if survivors and DEGREE == 2:
             still.append(s)
     LOG["family"]["degree3_window_survivors"] = len(still)
     LOG["family"]["degree3_survivor_list"] = still[:200]
+
+def is_uniform_on_chart(domain, range_words):
+    """True when g^-1 carries the four chart leaves to cones of one common length.
+
+    Then <K, g^-1 K g> lies in a finite uniform-depth group, and the torus fusion
+    obstruction (chart-comparison-must-fuse-torus-classes) already kills
+    P_0[g]f_0, whatever the exterior screen says on a window.
+    """
+    tr = L.thompson_unit(domain, range_words)
+    inv = tr.inverse()
+    lengths = set()
+    for leaf in ("000", "001", "010", "011"):
+        out = act(inv, leaf + TAIL)
+        (x,) = tuple(out)
+        lengths.add(len(x) - len(TAIL))
+    return len(lengths) == 1
+
+
+RESCREEN = None
+for i, a in enumerate(args):
+    if a == "--rescreen":
+        RESCREEN = args[i + 1]
+if RESCREEN:
+    with open(RESCREEN) as fh:
+        prior = json.load(fh)["family"]["degree3_survivor_list"]
+    nonuniform = [s for s in prior if not is_uniform_on_chart(s["domain"], s["range"])]
+    report = {"prior": len(prior), "nonuniform": len(nonuniform)}
+    for deg in (2, 3):
+        bas = sector_basis(f0, deg, WINDOW)
+        report["f0_rank_degree%d" % deg] = len(bas)
+        keep = []
+        for s in nonuniform:
+            tr = L.thompson_unit(s["domain"], s["range"])
+            if kernel_of([stage_units([tr]), stage_ga(P0)], bas) is None:
+                keep.append(s)
+        nonuniform = keep
+        report["survivors_after_degree%d" % deg] = len(keep)
+    report["survivor_list"] = nonuniform
+    LOG["rescreen"] = report
+
 LOG["seconds_total"] = round(time.time() - t0, 2)
 with open(OUT, "w") as fh:
     json.dump(LOG, fh, indent=1, sort_keys=True)
