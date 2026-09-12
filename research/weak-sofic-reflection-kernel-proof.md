@@ -8,6 +8,7 @@ requires:
   - glebsky-rivera-w-sofic-criterion
 artifacts:
   - research/artifacts/metric-ultraproduct-bounded-width-closure-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Lemma 2.1 and Proposition 2.3.
@@ -20,3 +21,5 @@ Artifact, Lemma 2.1 and Proposition 2.3.
 - **Minimal.** `Cons_n^F(R)` is a finite union of products `[r_1]^F ··· [r_k]^F`, with `k <= n` and
   `r_j` in `R^(±1)`. If `F/M` is weakly sofic and `M` contains `R`, the criterion puts each product's closure in
   `M`. A finite union of closures is closed.
+
+**Verification.** `w3-vf-positive` passed this route (Section 10.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

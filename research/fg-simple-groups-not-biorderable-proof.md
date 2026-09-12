@@ -7,6 +7,7 @@ target: finitely-generated-simple-groups-are-not-biorderable
 requires: []
 artifacts:
   - research/artifacts/stable-formalizability-on-simple-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Section 2, Theorem 4.
@@ -18,3 +19,5 @@ Artifact, Section 2, Theorem 4.
 4. **Hölder** (imported at statement level). `G/C` embeds in `(R, +)` and is nontrivial, so `G` is not
    perfect.
 5. **Abelian case.** `Z/p` has torsion, so it is not bi-orderable.
+
+**Verification.** `w3-vf-positive` passed this route (Section 11.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

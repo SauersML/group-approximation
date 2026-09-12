@@ -493,3 +493,127 @@ Each extended map is an involution, `g` still depends only on the block, and `Z 
 - **The triple.** The passive block `{3, 4, ...}` has `h_w = id`, so the two rules agree and nothing
   changes.
 - **Reverse witnesses** lie in `A` in both instances.
+
+## 10. Metric ultraproducts and bounded-width profinite closures (w4-metric-ultra, `9b1ff603e1`, `5a5eb6919f`)
+
+Verdict: **PASS** for Theorem 1.1 with both routes, Lemma 2.1, Corollary 2.2, Propositions 2.3, 2.5 and 3.1,
+the rank bound, and the refutation wiring.
+- One scope note on Proposition 3.1, below.
+- `strict-reverse-words-lie-in-bounded-width-profinite-closures`,
+  `metric-ultraproducts-of-finite-groups-are-surjunctive` and `weakly-sofic-group-algebras-are-stably-finite`
+  correctly read OPEN.
+
+### 10.1 Section 0 lemma. PASS.
+
+If `T_r` were full, Enc would test only constant patterns. Dec at constants makes `a -> nu(mu(a,...,a),...)` the
+identity, so `f(a) = mu(a,...,a)` is a bijection and `nu(b,...,b) = f^-1(b)`. Enc at constants then holds, so a
+strict datum has `W_r` nonempty.
+
+### 10.2 Theorem 1.1. PASS.
+
+- **(b) ⇒ (c).** `lambda` maps onto the finite `lambda(F)`, so `w(lambda)` lies in `lambda(Cons_n^F)`. Images of
+  bounded products of conjugates under onto maps are bounded products of conjugates, because conjugators lift.
+  One `w` serves every `H`.
+- **(c) ⇒ (b).** For each `w`, a finite `psi_w` avoids `Cons_n`. The projections of the finite product are onto,
+  so a membership in the product would project to a membership in `H_w`. `W_r` is finite, so `H` is finite.
+- **(c) ⇒ (a).** The lifts `lambda_i` exist since `F` is free.
+  - Relator lengths tend to `0` along `omega`, and reverse words have limit length at least `c > 0`.
+  - Membership in `Cons_n` gives length at most `n eps_i`, by symmetry, invariance and subadditivity.
+  - Finiteness of `W_r` gives one `w` for `omega`-almost every `i`.
+- **(a) ⇒ (c).** `len_n` is symmetric, conjugation invariant and subadditive (`Cons_a Cons_b ⊆ Cons_(a+b)`), with
+  `len(1) = 0`. Since `min(1, s + t) <= min(1, s) + min(1, t)`, the capped `l_n = min(1, len_n / n)` is a length.
+  Relators have `l_n <= 1/n` and reverse words have `l_n = 1`, so the ultraproduct realizes `D`.
+- **Realization semantics.** `T_f ⊆ T_f(lambda)` makes relators trivial, and `T_r(lambda) ⊆ T_r` keeps the
+  reverse words nontrivial.
+
+### 10.3 Section 2. PASS.
+
+- **Lemma 2.1.** `cl(A) cl(B) ⊆ cl(AB)`, by continuity of multiplication in the profinite topology. Inversion and
+  conjugation are homeomorphisms, and the union of the `cl(Cons_n)` is closed under products.
+- **Corollary 2.2.** The `N` form is the canonical-group reflection. The `N_bar` statement holds because a finite
+  product of finite quotients that realizes `D` would contradict surjunctivity of finite groups.
+- **Proposition 2.3** uses Glebsky–Rivera Theorem 4.3 (`glebsky-rivera-w-sofic-criterion`, trust surface as
+  recorded there).
+  - Conjugacy classes of elements of `cl(Cons_n)` stay in `cl(Cons_n)`, since it is a closed invariant set.
+  - Products of classes land in `cl(Cons_(sum n_j))`.
+  - `Cons_n` is a finite union of products of at most `n` conjugacy classes of relators and their inverses.
+  - A finite union of closures is the closure of the union, so minimality holds.
+- **Proposition 2.5.**
+  - Finitely many quotients `F/M` separate a finite subset of `F/N_C`. The finite product lies in `C`, so `F/N_C`
+    is locally embeddable into `C` and lies in `C`.
+  - "If": `ker lambda ⊇ N_C` kills a reverse word. "Only if": the canonical labelling of the surjunctive `F/N_C`
+    kills one.
+  - The ladder: larger classes have smaller reflection kernels (sofic ⊆ linear sofic ⊆ weakly sofic, LEF ⊆ sofic),
+    and `F/N_bar` is residually finite, hence LEF.
+
+### 10.4 Section 3.2. PASS, one scope note.
+
+- **Rank bound.** `ba = 1 + e` puts `ker a` inside `im e`, so the nullity is at most `r`.
+  - An invertible `a'` has `rk(a - a') <= r`, and `b a' = 1 + e'` with `rk e' <= 2r`.
+  - `ab - 1 = a' e' a'^-1 + (a - a')(1 + e') a'^-1`, of rank at most `3r`.
+- **Proposition 3.1.** `rho(x) rho(y) - rho(z) = (rho(x y z^-1) - 1) rho(z)` gives the defect identity, and
+  multiplying by an invertible matrix preserves rank.
+  - **Scope.** Separation needs `l_i(phi_i(g)) >= c` for `omega`-almost every `i`. Limit length exactly `c`
+    does not give that. Read the hypothesis as limit length `> c`, or apply the second rank condition at `c/2`.
+    Nothing consumes the proposition as a node.
+
+### 10.5 Test hosts and wiring. PASS.
+
+- **`refuted_by` on `weakly-sofic-group-algebras-are-stably-finite`.**
+  - `E_S` is weakly sofic by the landed `kun-thom-clifford-cover-weakly-sofic`, which was not re-derived here.
+  - In characteristic 3 the central involution splits `F_3[E_S] = F_3[W] x A_S` through `(1 ± z)/2`.
+  - A one-sided inverse in `A_S`, padded by `1`, is one-sided in the product.
+  - So the open `clifford-cover-anti-half-skew-ring-not-directly-finite` would refute the claim. The wiring is
+    sound.
+- **`refuted_by` on the metric ultraproduct claim.** `E_S` embeds in a metric ultraproduct (Proposition 4.1 of
+  w3-weaksofic, Section 3.4 above), and nonsurjunctivity passes up to overgroups. So the open
+  `kun-thom-clifford-cover-nonsurjunctive` would refute the claim. The wiring is sound.
+- **Route `linear-sofic-surjunctivity-from-weak-sofic-case`.** It requires the OPEN weak-sofic claim. It is valid
+  and cannot fire.
+- **Route `weak-sofic-stable-finiteness-from-surjunctivity`.** It requires the OPEN weak-sofic claim and
+  `stable-finiteness-failure-refutes-surjunctivity`. It is valid and cannot fire.
+
+## 11. Formalizability on finitely generated simple hosts (w3-stable-simple)
+
+Verdict: **PASS** for `formal-pairs-push-along-quotients-of-the-encoder-memory-group` and
+`finitely-generated-simple-groups-are-not-biorderable`, including Corollaries 2 and 3.
+
+### 11.1 Theorem 1. PASS.
+
+- **Collapse.** `psi: X_(ch,i) -> X_(h,i)` is a ring homomorphism fixing `X_(1,i)`.
+  - For `v = c_v h_v` and `m in M~ ⊂ H`, `vm` lies in `c_v H`, so `psi(tau~_v) = tau~^H_(h_v)`.
+  - Repeated `h_v` just repeat a slot of the decoder rule.
+  - Translation over `H` is a ring automorphism, so the identity holds at every cell.
+- **Push.** `phi: X_(h,i) -> X_(rho(h),i)` is a ring homomorphism fixing `X_(1,i)`. It sends `H`-translates to
+  `Q`-translates of `tau~_rho`.
+- **Representation.** Merged variables do no harm, because `tau~` agrees with `mu` at every point, repeated
+  values included.
+- **Passing up.** A formal pair on `H` gives the induced automaton on every overgroup, with the same polynomials,
+  by translating over cosets.
+
+### 11.2 Corollaries 2 and 3. PASS.
+
+- **Corollary 2.** Theorem 1 plus the every-finite-field form of
+  `formalizable-binary-pairs-over-biorderable-groups-are-affine`.
+- **Corollary 3.** For `rho(g) = t != 1` in a bi-orderable group, `t` has infinite order, so the six marker cells
+  stay distinct and `tau_rho` is the marker involution along `<t>`.
+  - It fixes `0`. It flips `q` on the configuration with ones at `q t^(±1)`. It fixes `delta_(qt)`: every cell
+    sees at most one `1` among its six neighbours.
+  - An affine `y -> a y(q m_0) + b` fixing `0` has `b = 0`, and fixing `delta_(qt)` forces `a != 0` and
+    `m_0 = 1`. That is the identity, contradicting the flip. So `rho(g) = 1`.
+  - `H` is finitely generated (finite encoder memory), so `H^ab / torsion` is a free abelian, hence bi-orderable,
+    quotient. Therefore `g` has finite order in `H^ab`.
+
+### 11.3 Theorem 4. PASS.
+
+- **Maximal convex subgroup.** Convex subgroups form a chain. With finitely many generators, the union `C` of the
+  proper ones is proper. Conjugates of proper convex subgroups are proper and convex, so `C` is normal.
+- **Archimedean quotient.** `G/C` carries the quotient bi-order. Its convex subgroups pull back to convex subgroups
+  between `C` and `G`, so none is proper and nontrivial. The bounded set `{x : a^-n <= x <= a^n}` is a convex
+  subgroup (bi-invariance bounds products), hence everything, which is the Archimedean property.
+- **Conclusion.** Hölder (statement-level import, recorded as a trust surface) gives a nontrivial homomorphism to
+  `(R, +)`. An abelian simple `Z/p` has torsion.
+- **Consequences.** They are correct as scoped:
+  - no affine-rigidity or pushforward refutation reaches a finitely generated simple host;
+  - over `F_2` the constant level is covered by tame maps;
+  - torsion in `L_(F_2)(1,2)^x` and `V` gives zero divisors, so step 1 of the affine rigidity proof is unavailable.

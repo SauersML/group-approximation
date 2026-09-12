@@ -9,6 +9,7 @@ requires:
   - surjunctivity-is-axiomatized-by-rectangle-clauses
 artifacts:
   - research/artifacts/metric-ultraproduct-bounded-width-closure-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Theorem 1.1, (a) ⇒ (c) ⇒ (b).
@@ -22,3 +23,5 @@ Artifact, Theorem 1.1, (a) ⇒ (c) ⇒ (b).
   surjunctive, by `surjunctivity-is-axiomatized-by-rectangle-clauses`.
 
 This route and `metric-ultraproduct-surjunctivity-from-bounded-width-closures` form an intended equivalence cycle.
+
+**Verification.** `w3-vf-positive` passed this route (Section 10.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

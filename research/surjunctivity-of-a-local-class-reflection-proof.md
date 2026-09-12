@@ -8,6 +8,7 @@ requires:
   - surjunctivity-is-axiomatized-by-rectangle-clauses
 artifacts:
   - research/artifacts/metric-ultraproduct-bounded-width-closure-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Proposition 2.5.
@@ -18,3 +19,5 @@ Artifact, Proposition 2.5.
   `N_C`, which contradicts realization. By `surjunctivity-is-axiomatized-by-rectangle-clauses`, every group in `C` is
   surjunctive.
 - **Only if.** `F/N_C` is surjunctive, so its canonical labelling kills some reverse word.
+
+**Verification.** `w3-vf-positive` passed this route (Section 10.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

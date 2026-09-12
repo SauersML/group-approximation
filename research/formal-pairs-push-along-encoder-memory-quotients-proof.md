@@ -7,6 +7,7 @@ target: formal-pairs-push-along-quotients-of-the-encoder-memory-group
 requires: []
 artifacts:
   - research/artifacts/stable-formalizability-on-simple-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Section 1, Theorem 1.
@@ -19,3 +20,5 @@ Artifact, Section 1, Theorem 1.
 3. **Representation.** At points, `tau~_rho(y) = tau~(y o rho) = mu(y o rho)`, so `tau~_rho` represents
    `tau_rho`.
 4. **Stable case.** Treat the ancilla tracks as extra tracks.
+
+**Verification.** `w3-vf-positive` passed this route (Section 11.1–11.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).
