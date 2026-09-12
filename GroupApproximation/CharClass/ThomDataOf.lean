@@ -1,3 +1,4 @@
+import GroupApproximation.CharClass.CohomologyBasic
 import GroupApproximation.CharClass.RelativeLES
 import GroupApproximation.CharClass.ThomFreeDegreewise
 import GroupApproximation.Meta.AxiomGuard
