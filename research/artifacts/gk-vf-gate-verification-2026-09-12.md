@@ -922,3 +922,45 @@ which contradicts `delta >= c_0'`.
      `rk(Ma+Mb) >= 2rho - rho^2 - eps rho`.
    - **Column overlap.** Item 3 then gives `rk(aM ∩ bM) >= rho - rho^2 - eps rho`.
    - **Product.** Faithfulness at `Z = b` gives `rk(ab) <= rho^2 + eps rho`.
+
+## 20. w4-defect-cov (2960587575, 6d29d4abcb)
+
+### 20.1 `binary-locally-finite-hnn-models-violate-two-root-identity`: PASS
+
+- **Intertwiners.**
+  - `F_2[Lambda_j]` is free of rank `[Lambda_j : Gamma]` over `F_2[Gamma]` through `a |-> lambda_j(a)`,
+    and also through `a |-> lambda_j(g a g^-1)`.
+  - Free modules of equal rank are isomorphic, which gives an invertible `X_j` with
+    `X_j lambda_j(a) = lambda_j(g a g^-1) X_j` on `Gamma_(i(j))`.
+  - Since `i(j) -> infinity`, `[X_j]` intertwines on all of `B_g`.
+- **The defect.** `ba F_2[D_8] = span{v_1, v_2, v_3}` (Section 3.1). `bab = v_1 + v_2`, and I computed
+  `abab = 1 + x + y + xy + yx + xyx + yxy + z = v_2 + v_3`. So `span{ba, bab, abab}` has dimension 3,
+  and the rank is `3/8`.
+- **Scope.** Letters carry only partial-conjugation relations, with no torsion and no multi-letter
+  relations. The consequence as stated is correct. It agrees with Section 15.1, which is the same model
+  in permutation form.
+
+### 20.2 `swap-group-cylinder-lift-trees-halve-but-never-refine`: PASS
+
+**Lemma 3.1.**
+- **(a)** `u^2 = 1 + s_0 (t_1 s_0) t_1 = 1`.
+  - Through `r |-> (t_i r s_j)`, `u = [[1,1],[0,1]]`, `v = [[1,0],[1,1]]`, and `c = [[1,1],[1,0]]` of
+    order 3.
+  - `s s_0 = s_1` and `t_1 s = t_0` give `s u s = v`.
+- **(b)** `u c u = uv = c^-1 = c^2`, and `(1+c+c^2)^2 = 1 + c^2 + c` in characteristic 2.
+- **(c)** On the `e`-block, `c` becomes `1`, so `v = cu = u` and `p_i = 1 + u + u + u^2 = 0`. On
+  `M_2(F_2)`:
+  - `I + (u+v) + uv = [[1,0],[0,0]]`;
+  - `I + (u+v) + vu = [[0,0],[0,1]]`;
+  - `p_0 + p_1 = uv + vu = c^2 + c = 1 + e`.
+- **(d)** `ev(p_0) = 1 + (s_0 t_1 + s_1 t_0) + (1 + s_0 t_1 + s_1 t_0 + s_0 t_0) = s_0 t_0`, and
+  `I + c + c^2 = 0` over `F_2`.
+
+**Theorem 3.2.**
+1. **Split and covariance.** The linear extensions give the orthogonal split and covariance.
+2. **Ranks.** `sigma(iota_w(s))` exchanges the halves, and ranks add over orthogonal idempotents.
+3. **Positivity.** Simplicity makes `sigma` injective. If `E_w = 0`, then `sigma(c_w)^2 = sigma(c_w)`,
+   so `sigma(c_w) = 1`, a contradiction.
+4. **Evaluation.** `ev(iota_w(p_i)) = S[w] s_i t_i T[w] + 4(1 - S[w]T[w]) = 1_[wi]`, and
+   `ev(iota_(wi)(1+e)) = S[wi](c + c^2)T[wi] + 2(...) = 1_[wi]`.
+5. **Subadditivity.** It gives `rk(A_(wi) - E_(wi)) >= eps - eps/2`.

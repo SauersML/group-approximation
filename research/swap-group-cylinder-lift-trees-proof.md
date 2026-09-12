@@ -22,3 +22,5 @@ Artifact Section 3, Lemma 3.1 and Theorem 3.2.
 4. **Evaluation.** `ev(iota_w(p_i)) = 1_[wi]` (four terms, the complement cancels) and
    `ev(iota_(wi)(1 + e)) = 1_[wi]` (two terms, `c + c^2 = 1`). Rank subadditivity gives
    `rk(A_(wi) - E_(wi)) >= eps/2`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 20.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

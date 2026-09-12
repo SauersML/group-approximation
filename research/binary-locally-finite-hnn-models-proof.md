@@ -22,3 +22,5 @@ Artifact Section 2, Theorem 2.1.
 3. **Extension.** Independent choices for countably many letters give the model of `H(Lambda, I)`.
 4. **Defect.** `<x', y'>` is dihedral of order 8. With `a = 1 + [x']`, `b = 1 + [y']`, the right ideal
    `ba F_2[D_8]` is spanned by `ba, bab, abab`, so the defect has normalized rank `3/8`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 20.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
