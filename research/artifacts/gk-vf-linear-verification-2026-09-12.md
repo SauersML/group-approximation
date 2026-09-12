@@ -2128,3 +2128,25 @@ The assigned verifier is `w3-vf-linear` (its Section 16). This is a second deriv
   - `(v-1)B = delta_0^(k) (x) delta_1^(i)* != 0 = B(v-1)`, so `[[a,u],v] != 1`.
 - *Why this kills the criterion.* An endomorphism with `a -> a^-1` that fixes the constants would carry the relation
   `[[a^-1,u],v] = 1` to `[[a,u],v] = 1`, which is false. The criterion is correctly recorded as dead.
+
+**Section 55 addendum 3 (84327b445): Attempts entry on rank-five level models and the MF transfer gap.** I spot-checked the load-bearing
+steps. This is prose on an OPEN claim.
+- **Head-retaining models are injective.**
+  - Let `K` be the kernel. `K cap L` is normal in `E_n` and lies inside the simple `L = SL_fin(F_2)` (Section 42). Since
+    `x_13(Q)` is in `L` but not in `K`, `K cap L = 1`.
+  - `[K, L] <= K cap L = 1`, so `K` commutes with every finitary transvection `1 + E_xy`. An element commuting with every
+    off-diagonal matrix unit is scalar, hence `1` over `F_2`.
+  - PASS.
+- **Every finite image kills the head.**
+  - Pigeonhole gives `(a,b) != (a',b')` with `x_13(e_ab + e_a'b')` in the kernel.
+  - The chain `[x_13(r), x_32(p)] = x_12(rp)`, `[x_31(q), x_12(rp)] = x_32(qrp)`, `[x_13(p'), x_32(qrp)] = x_12(p'qrp)`,
+    `[x_12(p'qrp), x_23(1)] = x_13(p'qrp)` stays in the normal closure.
+  - Taking `p'q = e_0a` and `p = e_b0` gives `e_0a (e_ab + e_a'b') e_b0 = e_00 + [a = a'][b = b'] e_00 = e_00 = Q`.
+  - PASS.
+- **What the MF transfer keeps.**
+  - `Fix(sigma(uHu^-1)) = sigma(u) Fix(sigma(H))`, and it contains `F` because `uHu^-1 <= H`.
+  - Equal rank in a directly finite rank ultraproduct gives `sigma(u)F = F`.
+  - `sigma(c)` preserves `F`, and `x_23(1)` fixes it (it lies in `H`). So the head acts trivially on `F`.
+  - PASS.
+- **Not re-derived.** The two blocks (no Kazhdan averaging over `F_2`, and failure of transvection active-rank control on natural
+  content) are correctly recorded as blocks. The non-LEF citation for `E_5` was not re-derived here.
