@@ -25,9 +25,10 @@ Proof: `o2-zp-cartan-fixing-iff-rokhlin-uct-ascent-proof`.
 **What this says.**  A counterexample to the UCT at the prime `p` is exactly a
 non-UCT unital Kirchberg algebra carrying a Rokhlin `Z_p`-action with crossed
 product `O_2`. By `o2-zp-cartan-fixing-all-primes-or-at-most-one`, Problem II is
-`Asc_p ∧ Asc_q` for any two distinct primes. The UCT always passes *down* from
-`B` to `B ⋊_δ Z_p`, since that crossed product is `O_2`, so the prime half is
-precisely the question of whether it passes *up*.
+`Asc_p ∧ Asc_q` for any two distinct primes. For Rokhlin actions on separable
+simple nuclear algebras the UCT always passes *down* to the crossed product and
+the fixed point algebra (Gardella, `gardella-rokhlin-actions-preserve-uct`). The
+prime half is precisely the question of whether it passes *up*.
 
 **Credit.**  This is a restatement through the dual action. It uses only
 Barlak--Li II Corollary 4.15, the duality in their Theorem 2.8, and Takai

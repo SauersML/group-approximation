@@ -124,24 +124,36 @@ So no route on main uses the unverified direction.
 **If absorption fails without the UCT.** The robust form of (i) ⟹ (iii)
 replaces `α` by `α ⊗ id_(M_(p^∞))`.
 
-# 4. Not landed: Rokhlin descent of the UCT
+# 4. Rokhlin descent of the UCT is known (landed as literature)
 
-**Planned derivation.** For a Rokhlin action of a finite group on a separable,
-unital, simple, nuclear UCT algebra, the fixed-point algebra and the crossed
-product satisfy the UCT. Proof sketch:
-1. Take exact equivariant Rokhlin towers in `A` (lifting from `F_∞(A)`), using
-   equivariant semiprojectivity of `(C(G), σ)`; see Phillips, arXiv:1112.4584.
-2. The map `y ↦ Σ_g α_g(y)` embeds the corner `p_1 A p_1` into `A^α` and
-   approximates finite subsets.
-3. Apply Dadarlat's local UCT theorem.
-4. Use Morita equivalence of `A^α` with `A ⋊ G`.
+This lane first planned to derive descent itself:
+1. take exact equivariant Rokhlin towers;
+2. embed the corner `p_1 A p_1` into `A^α` by `y ↦ Σ_g α_g(y)`;
+3. apply Dadarlat's local UCT;
+4. use Morita equivalence of `A^α` with `A ⋊ G`.
 
-**Why it is not landed.** The two inputs (the exact hypotheses of Dadarlat's
-local UCT, and the finite-group case of equivariant semiprojectivity) were not
-read from their sources this session.
+The literature already has it. Sources read on MSI, 2026-09-12:
 
-**What it would add.** For Rokhlin actions the UCT passes down, and `Asc_p` asks
-whether it passes up. Nothing more is claimed.
+* **Gardella, arXiv:1408.1946, Theorem 3.13.** "Let A be a separable, simple,
+  nuclear C\*-algebra, let G be a second-countable compact group, and let
+  α: G → Aut(A) be an action with the Rokhlin property. If A satisfies the
+  Universal Coefficient Theorem, then so do A^α and A ⋊_α G." The proof first
+  reduces to Kirchberg algebras by tensoring with `O_∞`.
+  - Definition 2.2 is the Rokhlin property via equivariant unital maps
+    `(C(G), Lt) → F(D, A)`.
+  - The introduction notes the Hirshberg--Winter definition coincides with
+    Izumi's for finite groups.
+  - Landed as `gardella-rokhlin-actions-preserve-uct`, with a `-citation` route.
+* **Brown--Browne--Willett--Wu, arXiv:2005.03184, Theorem 3.6** (Dadarlat's
+  local UCT). A nuclear C\*-algebra satisfies the UCT if, for every finite set
+  `F` and `ε > 0`, some C\*-subalgebra `B` satisfying the UCT has
+  `dist(a, B) < ε` for all `a ∈ F`.
+* **Phillips, arXiv:1112.4584, Proposition 1.13.** For `G` finite cyclic,
+  `(G, C(G), translation)` is equivariantly semiprojective. Section 2 extends
+  this to compact group actions on finite-dimensional algebras.
+
+So for Rokhlin actions the UCT passes *down*, and `Asc_p` asks whether it passes
+*up*. The asymmetry is what the problem measures.
 
 # 5. Assessment
 
