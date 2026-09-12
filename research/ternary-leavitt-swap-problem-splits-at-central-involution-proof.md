@@ -17,5 +17,7 @@ and a column over `T` whose products give the identity matrix, i.e. a Cohn famil
 The Leavitt evaluation sends `z` to `-1` and `2(1 + z)` to `0`. Projecting
 `c e b = 1` to `S_+` gives the equation over the scalar quotient. On
 anti-invariant configurations a linear automaton depends only on the `S_-`
-component, and those configurations form a proper subshift. Section 7 of the
-artifact.
+component, and those configurations form a proper subshift. That subshift is a
+linear direct summand of the full shift, so a solution in `S_-` still gives a strict
+automaton on the full shift (correction 7.4(e), gk-verify-pos, 2026-09-12). Section 7
+of the artifact.

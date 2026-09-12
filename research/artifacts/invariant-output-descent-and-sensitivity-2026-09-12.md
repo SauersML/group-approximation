@@ -215,8 +215,9 @@ finiteness (`linear-sofic-group-algebra-is-stably-finite`). So the product
 coincidences of any certificate must present a group outside that class. The
 lifting problem from `R_3` to `F_3[G_3]` is the same wall as the binary Kaplansky
 lift (`direct-finiteness-not-inherited-by-quotients`). No certificate is claimed.
-Section 7 shows that this lift addresses only the anti-central half of `F_3[G_3]`,
-and that half proves nothing about the full shift.
+Section 7 shows that this lift addresses only the anti-central half of `F_3[G_3]`.
+That half also suffices for a counterexample: a solution there is a
+direct-finiteness failure of `F_3[G_3]` (correction 7.4(e)).
 
 ## 7. The central involution splits the ternary problem
 
@@ -264,17 +265,36 @@ The Leavitt evaluation `pi` maps `S_-` onto `R` and `T` onto `pi(e) R pi(e) ~= R
 (c) If `cbar ebar bbar = 1` in `k[PG]`, then `PG` is not surjunctive.
 (d) Put `X_- = {x in k^G : x(gz) = -x(g)}`, a proper closed linear subshift. Every
 linear automaton preserves `X_-`, and on `X_-` it depends only on the `S_-` component
-of its coefficient. So a solution in `S_-` alone gives at most an injective,
-non-surjective self-map of a proper subshift. Such a map carries no surjunctivity
-content (`subshift-self-embedding-carries-no-surjunctivity-content`).
+of its coefficient. On `X_-` a solution in `S_-` restricts to an injective,
+non-surjective self-map of that subshift. The earlier reading, that such a solution
+carries no surjunctivity content, is withdrawn: see (e).
 
 *Proof.* (a) `pi(z) = -1`. (b) Multiply by `eps_+` and apply Lemma 7.1. (c) `wbar != 1`
 because `w` is not a scalar, so Proposition C(3) and Corollary B apply over `PG`.
 (d) `z` is central, so on `X_-`, `tau_a(x)(gz) = sum_m a_m x(g m z) = -tau_a(x)(g)`.
 Also `tau_(1 + z)` vanishes on `X_-`, so `tau_(y(1 + z)) = tau_y tau_(1 + z)` vanishes there. QED
 
-So Section 6's lift along `pi` is aimed at the half that proves nothing, and the half
-that suffices is invisible to `pi`.
+**(e) Correction (gk-verify-pos, 2026-09-12): a solution in `S_-` alone refutes the
+conjecture.** Suppose `c e_- b = 1_-` with `b, c` in `S_-`. Put `A = e_- b + eps_+` and
+`C = c + eps_+`.
+* `CA = 1_- + eps_+ = 1`, because the summands are central and orthogonal.
+* If `AC = 1`, then `e_- (b c) = 1_-`. An idempotent with a right inverse in the unital ring
+  `S_-` equals its unit, so `e_- = 1_-`. That is false, since `1, [w], [z], [zw]` are distinct
+  basis elements.
+
+So `F_3[G]` is not directly finite, and `stable-finiteness-failure-refutes-surjunctivity`
+gives a strict linear automaton on the full shift `k^G`. Concretely, `k^G = X_+ (+) X_-`, with
+projections `tau_(eps_+)` and `tau_(eps_-)`. The automaton `tau_A` is the identity on
+`X_+ = {x(gz) = x(g)}` and the strict map on `X_-`.
+
+The subshift principle quoted in (d) does not apply, because `X_-` is a linear direct summand
+of the full shift, and the complementary identity extends the strict map. By Corollary 8.2,
+`PG` is then not surjunctive either. The same argument on `S_+` shows that (b) also gives a
+direct-finiteness failure of `F_3[G]`.
+
+So Section 6's lift along `pi` is aimed at `S_-`, and by (e) that half suffices for a
+counterexample, on `G` and through Corollary 8.2 on `PG`. The half `S_+` suffices too, and it
+is invisible to `pi`.
 
 **Remark 7.5 (the adjoint evaluation sees `S_+`).** `rho([g]) = g (x) (g^-1)^op` defines a
 unital ring homomorphism `rho : S -> Q = R (x)_k R^op`, because inversion reverses

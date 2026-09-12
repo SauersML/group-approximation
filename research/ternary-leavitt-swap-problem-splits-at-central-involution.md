@@ -7,6 +7,7 @@ distinct_from:
   ternary-leavitt-swap-idempotent-is-full: that is the open corner equation c e b = 1 in the group algebra of the ternary unit group; this is the established splitting of that equation along the central involution, which shows the Leavitt evaluation sees only the half that refutes nothing.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Let `R = L_(F_3)(1,2)`, `G = R^x`, `S = F_3[G]`, `z = -1` (central, order two),
@@ -23,10 +24,17 @@ Let `R = L_(F_3)(1,2)`, `G = R^x`, `S = F_3[G]`, `z = -1` (central, order two),
    `S_-` and kills `S_+`.
 5. `c e b = 1` in `S` implies `cbar ebar bbar = 1` in `F_3[PG]`, with
    `ebar = 2(1 + [wbar])`. That equation alone makes `PG` nonsurjunctive, through
-   an injective linear automaton with `<wbar>`-invariant output. A solution in
-   `S_-` alone acts only on the proper linear subshift `x(gz) = -x(g)`.
+   an injective linear automaton with `<wbar>`-invariant output.
+6. *(Corrected 2026-09-12 by gk-verify-pos.)* A solution of `c e_- b = eps_-` in
+   `S_-` alone also suffices.
+   * With `A = e_- b + eps_+` and `C = c + eps_+`, `CA = 1` and `AC != 1`, because
+     `e_- != eps_-`.
+   * So `F_3[G]` is not directly finite, and `G` is not surjunctive, hence neither is
+     `PG`, which contains a copy of `G` (Corollary 8.2 of the artifact).
+   * The automaton is the identity on the summand `x(gz) = x(g)` and strict on the
+     complementary summand `x(gz) = -x(g)`.
 
-So lifting the Leavitt solution `b = s0 + s1`, `c = 2(t0 + t1)` addresses only
-`S_-`, the half that proves nothing about the full shift. The half that suffices
-is `projective-ternary-swap-idempotent-is-full`, on which the Leavitt evaluation
-vanishes. Proof: Section 7 of the artifact.
+So lifting the Leavitt solution `b = s0 + s1`, `c = 2(t0 + t1)` addresses `S_-`, and
+that half is sufficient (`ternary-anti-invariant-swap-corner-is-full`). The other
+sufficient half is `projective-ternary-swap-idempotent-is-full`, on which the Leavitt
+evaluation vanishes. Proof: Section 7 of the artifact, with correction 7.4(e).
