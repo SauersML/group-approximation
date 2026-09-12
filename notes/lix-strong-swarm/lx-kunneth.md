@@ -23,7 +23,12 @@ Declarations (mod 2, F₂ Künneth layer, no `…Of` at `ZMod 2`):
 
 ## AUTHORED, UNVERIFIED
 
-* none.
+* none.  COMPILED since: `CharClass/ThomLIXHclassOf.lean` (split item S1 of lx-stepcK-agree, landed 4b11d2f74; probe
+  0912-115747-11347, acn112 64-71, base 21c8eb2a6, 9218 jobs, PROBE GREEN, BUILT, axioms propext/choice/Quot.sound): over any
+  CommRing `gammaCoeff_eq_of_valOf`, `gamma_top_eq_chernCoeffOf`, `chernMul_top_unitOf`, `lhTerm_zero_classOf`,
+  `lhTerm_at_index_zeroOf`, `pull_bridgeChartIncl_lhSumOf` (ξ arbitrary + `hξ : pull (cmap (bridgeChartIncl p)) 2 ξ = 0`);
+  over a field `relToAbs_bridgeTotalOf_eq_lhSumOf`, `relToAbs_total_eq_pull_coordOf` (jE u = π^* of the zeroth Thom
+  coordinate).  Consumers: lx-sliceK (S2 `LIXKGenOfStepCThom`), lx-stepcK-local.
 
 Compiled over a field K (`CharClass/CohomologyKunnethLixNOf.lean`): `KnCP.eq_zero_odd_prod_CP_succOf`,
   `noOddCohomology_prod_CPOf`, `noOddCohomologyOf_of_homeomorph`, `noOddCohomology_piCPOf`,
