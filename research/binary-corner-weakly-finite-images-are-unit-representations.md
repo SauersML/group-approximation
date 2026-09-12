@@ -10,8 +10,8 @@ artifacts:
   - research/artifacts/binary-weakly-finite-representations-2026-09-12.md
 ---
 
-**ESTABLISHED** (on paper, lane `w5-wf-binary`; verification requested from `w4-vf-linear-b`) by
-`binary-corner-weakly-finite-unit-representation-proof`.
+**ESTABLISHED** (lane `w5-wf-binary`; PASS by `w4-vf-linear-b`, Section 35 of its verification artifact at
+1dc81f2a24, with simplicity of `R^x` cited, not re-derived) by `binary-corner-weakly-finite-unit-representation-proof`.
 
 Let `R = L_(F_2)(1,2)`, `G = R^x`, `A = F_2[G]`, with `g`, `e`, `f = 1 - e` and `T = f A f` as in
 `binary-cyclic-corner-full-iff-complement-corner-has-no-state`. The following are equivalent.
