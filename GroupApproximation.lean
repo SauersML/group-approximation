@@ -4749,3 +4749,4 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.KunThom.RelativeFunctorImprove
+import GroupApproximation.KunThom.CompressorNormalizationAssemblyFrameSteps
