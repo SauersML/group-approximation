@@ -1,0 +1,198 @@
+{
+  "checked_at": "2026-09-11",
+  "verification": "Cairn graph checks, not Lean verification",
+  "compute": "MSI compute node; isolated snapshot",
+  "baseline_commit": "66161c6e00101521e4f90b32919ef9d6ada01937",
+  "source_sha256": {
+    "research/relatively-hyperbolic-dehn-filling.md": "fae9b34661ee1e9764940699fdced02f209f3189c18432b1ec518b8f6e452423",
+    "research/non-rf-hyperbolic-via-relative-dehn-filling.md": "efb7b6c12617f46c33fc5139d398a5cb9e5d2f6a1ea0fa9df67982bae34e70ed",
+    "research/hyperbolic-rf-question-equals-vtf-question.md": "1c4f4003c951638acfda9ae45921ac001104e7ec390a43eaf7f707bd191be3ad",
+    "research/hyperbolic-rf-question-equals-vtf-question-proof.md": "44870117cd90f1c9cb2089a302809b3d468ed16199a7bd1e0fa5e01bc7595cf7",
+    "research/artifacts/hyperbolic-rf-vtf-osin-full-proof-2026-09-11.md": "7e78604a65070abe8fd11df2530a2ddb9956c0fc624ab4640f3493080ca1e2a7",
+    "research/artifacts/hyperbolic-quotientless-kazhdan-proof-2026-09-11.md": "ea38e852c4e5835733f5a919d716860eab618abce6accb85d158d8b286ceaa6d",
+    "research/kapovich-wise-via-g-subgroup.md": "21e2bedd729466da62b047454b6163b154f651ee30aa3e0b80b14ee00be65399",
+    "research/kapovich-wise-rf-iff-finite-quotients-citation.md": "1092f71b7e2cf3d457369fb70665f4f57ad623c5d19284fd27156f97d9e6af98",
+    "research/olshanskii-g-subgroup-quotient-theorem.md": "4686cb0d5ddac82f254c8f2031f81319f1279dba6a9c93e17f7070ec319e1e69",
+    "research/kazhdan-quotientless-hyperbolic-via-common-quotient.md": "bf090671195303608d076275550ca65f723b496a2be62e4babc27b136a595a0f",
+    "research/hyperbolic-rf-vtf-kazhdan-equivalence.md": "c15632444c12d61f6cc5fcabcf5b01950b3216ca85391ed72324665df41ab2b9",
+    "research/hyperbolic-rf-vtf-kazhdan-equivalence-proof.md": "3c6e465361a81375ac68f231add8f73519a717471287d54d909555760e4e6ff5",
+    "research/artifacts/hyperbolic-four-statements-audit-2026-09-11.md": "4da3af797cb84042c9d8cde1887cbd5a3df779416b49fe74c5bc55d74ea0bae1",
+    "research/hyperbolic-rf-question-equals-non-mf-question.md": "5288b9ed49ba3a1b7cab5939cb572cc92df6b45e91badc185da769d73c7065d7",
+    "research/hyperbolic-rf-question-equals-non-mf-question-proof.md": "c282c13cfc26c0c279dc90b655ae33bd44f7e58915b00d486768ad2bd6ac649b",
+    "research/non-residually-finite-hyperbolic-group.md": "6d4790ba71e2bbef7537a199b2c69c7c89d5526ac02ab930d7fd43aa851fc437",
+    "research/dadarlat-matricial-stability-obstruction.md": "072a03c1f97339b5ec9364ce2b4316298afcdd5c8e1cc31fb60f5edcfd8b4c24",
+    "research/map-matricial-stability-non-mf.md": "6de21144b02b6c89c06792bfe791bfcc1299ea4d35efc8cb678be2a9ca53bb1c",
+    "research/artifacts/operator-mf-weak-quasidiagonality-audit-2026-09-11.md": "ee06b8091e90dd495ca26aacfc32d42feffc624bacb3774ca675f8ea65db9308",
+    "research/mf-to-weak-qd-citation-has-unproved-lifting-step.md": "a93ef141b84b18a5d12a86d158f1e78fe867ebbbc0f728a1d16eb3f4518ee760",
+    "research/mf-to-weak-qd-citation-has-unproved-lifting-step-proof.md": "7416032de9ee7c9798cf80af883223b4f30f0caa6bc98d7aa84da5579448ac95",
+    "research/weak-qd-kazhdan-quotientless-group-is-trivial.md": "b2d535f4bda04f64d76c0a043f1ae1a2d0b3b7ace593418b4ca19cefd83f94c8",
+    "research/weak-qd-kazhdan-quotientless-group-is-trivial-proof.md": "6019e7bbb447126955589850f20eb1455285fa95097466e664fad75604f4a554",
+    "research/mf-kazhdan-group-without-finite-quotients-is-trivial.md": "d16963615ebbcd0147142d1223fe2babc3fc275c964407d765f6c1ea6ae1b068",
+    "research/non-mf-hyperbolic-group.md": "9ae6c6227d0447b849d9859de72f96d0dacc362445266af6e68dfd286058d9f4",
+    "research/non-mf-hyperbolic-from-kazhdan-quotientless.md": "02e20247a2b55241887d210b314feda837c6d6780c587af65f3c019b643677e2"
+  },
+  "checks": {
+    "phase1": {
+      "status": "ok",
+      "claims": 7968,
+      "routes": 8164,
+      "error_count": 0,
+      "warning_rules": {
+        "cycle": 5
+      }
+    },
+    "phase2": {
+      "status": "ok",
+      "claims": 7971,
+      "routes": 8167,
+      "error_count": 0,
+      "warning_rules": {
+        "cycle": 5,
+        "detached": 1
+      }
+    }
+  },
+  "preview": {
+    "errors": [],
+    "duplicate_warnings": [],
+    "status_changed": [
+      {
+        "id": "exact-kazhdan-radical-kernel-cannot-be-lef",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "exact-kazhdan-radical-kernel-cannot-be-lef-proof",
+        "from": "COMPLETE",
+        "to": "INVALIDATED"
+      },
+      {
+        "id": "hyperbolic-rf-question-equals-non-mf-question",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "hyperbolic-rf-question-equals-non-mf-question-proof",
+        "from": "COMPLETE",
+        "to": "OPEN"
+      },
+      {
+        "id": "mf-kazhdan-group-without-finite-quotients-is-trivial",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "mf-kazhdan-without-finite-quotients-citation",
+        "from": "COMPLETE",
+        "to": "INVALIDATED"
+      },
+      {
+        "id": "simple-kazhdan-full-mf-radical-proof",
+        "from": "COMPLETE",
+        "to": "INVALIDATED"
+      },
+      {
+        "id": "simple-kazhdan-groups-have-full-mf-radical",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "titz-witzel-exact-kazhdan-mf-radical-over-z",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "titz-witzel-exact-kazhdan-mf-radical-over-z-proof",
+        "from": "COMPLETE",
+        "to": "OPEN"
+      },
+      {
+        "id": "titz-witzel-mapping-tori-are-virtually-products",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "titz-witzel-mapping-tori-are-virtually-products-proof",
+        "from": "COMPLETE",
+        "to": "OPEN"
+      },
+      {
+        "id": "torsion-free-kazhdan-alternating-mother-limit-gate",
+        "from": "ESTABLISHED",
+        "to": "OPEN"
+      },
+      {
+        "id": "torsion-free-kazhdan-alternating-mother-limit-gate-proof",
+        "from": "COMPLETE",
+        "to": "OPEN"
+      }
+    ]
+  },
+  "nodes": {
+    "hyperbolic-rf-vtf-kazhdan-equivalence": {
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "blocked_on": []
+    },
+    "hyperbolic-rf-question-equals-vtf-question": {
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "blocked_on": []
+    },
+    "hyperbolic-rf-question-equals-non-mf-question": {
+      "kind": "claim",
+      "status": "OPEN",
+      "blocked_on": []
+    },
+    "mf-kazhdan-group-without-finite-quotients-is-trivial": {
+      "kind": "claim",
+      "status": "OPEN",
+      "blocked_on": []
+    },
+    "weak-qd-kazhdan-quotientless-group-is-trivial": {
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "blocked_on": []
+    },
+    "mf-to-weak-qd-citation-has-unproved-lifting-step": {
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "blocked_on": []
+    },
+    "mf-kazhdan-without-finite-quotients-citation": {
+      "kind": "route",
+      "status": "INVALIDATED",
+      "blocked_on": []
+    },
+    "simple-kazhdan-full-mf-radical-proof": {
+      "kind": "route",
+      "status": "INVALIDATED",
+      "blocked_on": []
+    },
+    "exact-kazhdan-radical-kernel-cannot-be-lef-proof": {
+      "kind": "route",
+      "status": "INVALIDATED",
+      "blocked_on": []
+    },
+    "non-residually-finite-hyperbolic-group": {
+      "kind": "claim",
+      "status": "OPEN",
+      "blocked_on": []
+    },
+    "non-virtually-torsion-free-hyperbolic-group": {
+      "kind": "claim",
+      "status": "OPEN",
+      "blocked_on": []
+    },
+    "kazhdan-hyperbolic-group-without-finite-quotients": {
+      "kind": "claim",
+      "status": "OPEN",
+      "blocked_on": []
+    },
+    "non-mf-hyperbolic-group": {
+      "kind": "claim",
+      "status": "OPEN",
+      "blocked_on": []
+    }
+  }
+}
