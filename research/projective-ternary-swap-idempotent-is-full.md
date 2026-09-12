@@ -30,15 +30,21 @@ conjecture.
 - *The adjoint evaluation holds the equation.* `rho([g]) = g (x) (g^-1)^op` defines
   a unital ring homomorphism `F_3[PG] -> Q = R (x) R^op`. In `Q`,
   `b' = (s0 + s1) (x) (t0 + t1)^op` and `c' = (t0 + t1) (x) (s0 + s1)^op` satisfy
-  `rho(ebar) b' = b'` and `c' b' = 1`, so the equation holds in `Q`. It dies at the
-  witnesses: they must lie in `rho(F_3[PG])`, the span of the `g (x) (g^-1)^op`,
-  and neither membership nor a lift is known. Section 7 of the artifact.
+  `rho(ebar) b' = b'` and `c' b' = 1`, so the equation holds in `Q`. Section 7 of
+  the artifact.
+- *Those witnesses cannot come from the group algebra.* On `R`, every element of
+  `rho(F_3[PG])` sends `1` to a scalar multiple of `1`, while `b'(1) = 1 + w`. The
+  witnesses `delta(r) = s0 r t0 + s1 r t1` and `Psi(r) = 2(t0 r s0 + t1 r s1)` do
+  respect that line: `Psi delta = id` and `rho(ebar) delta = delta`. It dies at
+  membership. No splitting is known inside the span of the `Ad(g)`; see the
+  stronger target `projective-ternary-klein-idempotent-is-full`, whose expectation is
+  exactly `delta Psi`. Section 8 of the artifact.
 - *No cheap obstruction.* The canonical trace of `ebar` is `2` in `F_3`, which is
   unordered. The augmentation gives `eps(ebar) = 1`. `PG` is simple and infinite,
   so it has no nontrivial finite-dimensional representation to test against.
-- *What a witness must satisfy.* `PG` must be nonsofic and not linear sofic
-  (`linear-sofic-group-algebra-is-stably-finite`). The nine-leaf compression
-  configuration meets the scalars trivially, but no node records that it descends
-  to `PG`. The memory of `c` must generate a nonamenable group
+- *What a witness must satisfy.* `PG` must be nonsofic, which holds
+  (`projective-leavitt-unit-groups-mod-scalars-are-nonsofic`), and not linear sofic
+  (`linear-sofic-group-algebra-is-stably-finite`), which is open. The memory of `c`
+  must generate a nonamenable group
   (`amenable-decoder-memory-forces-surjectivity`). The forward table must have a
   nonsofic two-core (`forward-relations-of-a-counterexample-have-a-nonsofic-core`).

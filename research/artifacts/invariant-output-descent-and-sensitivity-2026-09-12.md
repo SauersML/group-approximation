@@ -301,3 +301,56 @@ span of the `g (x) (g^-1)^op`, and then lifted, is open. This is the right guide
   `injective-measure-preserving-ca-is-surjective` requires of a strict automaton.
 
 None of these excludes the architecture.
+
+## 8. The host is nonsofic, and a sharper image-level target
+
+**Lemma 8.1 (corner embedding).** Let `k` be any field and `G = L_k(1,2)^x`. Then
+`iota(g) = s0 g t0 + s1 t1` is an injective homomorphism `G -> G` with
+`iota(G) ∩ k^x = {1}`. So `G` embeds in `G / k^x`.
+
+*Proof.* `t0 s1 = t1 s0 = 0` kills the cross terms, so `iota` is multiplicative, and
+`t0 iota(g) s0 = g`. If `iota(g) = lambda`, then `lambda s1 = iota(g) s1 = s1`, so
+`(lambda - 1) s1 = 0` and `lambda = 1` because `t1 s1 = 1`. QED
+
+**Corollary 8.2.** For every finite field `k`, `L_k(1,2)^x / k^x` is nonsofic. If
+`L_(F_3)(1,2)^x` is not surjunctive, neither is `PG`.
+
+*Proof.* The unit group is nonsofic (`d-ary-leavitt-groups-nonsofic-over-finite-fields`),
+soficity passes to subgroups, and surjunctivity passes to subgroups. QED
+
+No permanence through the finite central kernel is used. That direction is not
+available in general, and the embedding avoids it.
+
+**Lemma 8.3 (the invariant line).** Let `rho([g]) = g (x) (g^-1)^op` act on `R` by
+`(a (x) b^op)(r) = a r b`. Every `T` in `rho(F_3[PG])` satisfies `T(1) = eps(T) 1`,
+where `eps` is the augmentation. So the witnesses `b'`, `c'` of Remark 7.5 do not lie
+in `rho(F_3[PG])`: `b'(1) = (s0 + s1)(t0 + t1) = 1 + w`.
+
+*Proof.* `Ad(g)(1) = 1`, and the condition is linear. QED
+
+**Proposition 8.4 (the Klein expectation splits at operator level).** In `PG` the
+images `wbar`, `dbar` of `w` and `d = s0 t0 - s1 t1` commute, because `d w = -w d`,
+and generate `K ~= C_2 x C_2`. Put `e_K = 2(1 + [wbar]) . 2(1 + [dbar])`. On `R`,
+
+```text
+rho(e_K) = delta Psi,     delta(r) = s0 r t0 + s1 r t1,     Psi(r) = 2(t0 r s0 + t1 r s1),
+```
+
+`Psi delta = id`, `rho(ebar) delta = delta`, and `delta(1) = Psi(1) = 1`.
+
+*Proof.* In the matrix picture `r = sum_(ij) s_i a_ij t_j`, averaging `Ad(d)` over
+`<d>` deletes the off-diagonal entries, since `d = diag(1, -1)`. Averaging `Ad(w)`
+over `<w>` then replaces `a_00`, `a_11` by `2(a_00 + a_11)` in both places. That is
+`delta(Psi(r))`, with `a_ii = t_i r s_i`. `Psi(delta(r)) = 2(r + r) = r`. `delta(r)` is
+a scalar matrix, so it commutes with `w`. QED
+
+So `rho(e_K) ~ id` among operators on `R` fixing the line `F_3 1`, and `(Psi, delta)`
+witness fullness of `rho(ebar)` there. Since `e_K <= ebar`, fullness of `e_K` in
+`F_3[PG]` implies fullness of `ebar`.
+
+**Remark 8.5 (where it stops).** Whether `rho(e_K)` splits inside the span of the
+`Ad(g)`, `g in PG`, is open. One conjugation cannot do it. `t0 g r g^-1 s0 = r` for all
+`r` forces `t0 g = lambda` in `F_3^x`, because `R` is simple with centre `F_3`. Then
+`g = lambda s0 + s1 t1 g`, and under `x -> (t0 x, t1 x)`, `R ~= R (+) R`, left
+multiplication by `g` sends `x` to `(lambda x, t1 g x)`. It misses `(0, y)` for
+`y != 0`, so `g` is not a unit.
