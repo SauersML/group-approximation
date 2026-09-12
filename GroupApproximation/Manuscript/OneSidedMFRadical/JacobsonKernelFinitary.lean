@@ -59,8 +59,7 @@ theorem mem_ker_symbolMap_iff {n : ℕ} {g : elementaryGroup (Fin n) ↥jacobson
   · intro h
     apply Subtype.ext
     apply Units.ext
-    ext i j
-    exact h i j
+    exact Matrix.ext fun i j ↦ h i j
 
 /-- `EL_n(J, JeJ)` lies in the kernel of the symbol map. -/
 theorem relativeElementary_le_ker (n : ℕ) :
@@ -95,7 +94,7 @@ theorem mem_blockSpan_of_coeff {n : ℕ} {Mx : ℕ} {y : BinaryPower n}
   have hm : m < Mx := by
     by_contra h
     exact hcoeff (hy k m (by omega))
-  simp [Finset.mem_sigma, hm]
+  simp [hm]
 
 /-- **The kernel of `EL_n(J) → EL_n(F_2[z,z^{-1}])` lies in `GL_fs(V^n)`.** -/
 theorem blockAct_mem_binaryGLfs_of_mem_ker {n : ℕ} {g : elementaryGroup (Fin n) ↥jacobsonAlgebra}
@@ -115,7 +114,10 @@ theorem blockAct_mem_binaryGLfs_of_mem_ker {n : ℕ} {g : elementaryGroup (Fin n
   have hbound : ∀ i j, M i j ≤ Mx := by
     intro i j
     calc M i j ≤ ∑ j', M i j' := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ j)
-      _ ≤ Mx := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ i)
+      _ ≤ Mx := by
+        rw [hMx]
+        exact Finset.single_le_sum (f := fun i ↦ ∑ j', M i j') (fun _ _ ↦ Nat.zero_le _)
+          (Finset.mem_univ i)
   have hsplit : ∀ (k l : Fin n) (p : JacobsonSpace),
       ((G k l : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) p =
         ((G k l - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) k l : ↥jacobsonAlgebra) :
@@ -145,7 +147,7 @@ theorem blockAct_mem_binaryGLfs_of_mem_ker {n : ℕ} {g : elementaryGroup (Fin n
   · obtain ⟨l, w⟩ := b
     have hw : Mx ≤ w := by
       by_contra h
-      exact hb (by simp [Finset.mem_sigma]; omega)
+      exact hb (by simp; omega)
     funext k
     rw [hbasis, hsplit, hM0 k l w ((hbound k l).trans hw), zero_add, hone, binaryPowerBasis_apply]
     by_cases h : k = l
@@ -153,7 +155,7 @@ theorem blockAct_mem_binaryGLfs_of_mem_ker {n : ℕ} {g : elementaryGroup (Fin n
       rw [if_pos rfl, Pi.single_eq_same]
     · rw [if_neg h, Pi.single_eq_of_ne h]
   · obtain ⟨l, w⟩ := b
-    have hw : w < Mx := by simpa [Finset.mem_sigma] using hb
+    have hw : w < Mx := by simpa using hb
     refine mem_blockSpan_of_coeff fun k m hm ↦ ?_
     rw [hbasis, hsplit, Polynomial.coeff_add, hMc k l w m ((hbound k l).trans hm), zero_add, hone]
     by_cases h : k = l
