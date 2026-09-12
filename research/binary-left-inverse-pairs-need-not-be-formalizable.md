@@ -10,6 +10,7 @@ distinct_from:
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that shows canonical representatives of a formalizable sitewise pair can fail to be formal; this exhibits a pair for which every choice of representatives fails.
 artifacts:
   - research/artifacts/binary-formalizability-refutation-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **The automaton.** On `{0,1}^Z`, flip cell `i` exactly when

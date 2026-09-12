@@ -8,6 +8,7 @@ distinct_from:
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that calibrates canonical representatives of a formalizable sitewise pair on three tracks; this classifies all formalizable pairs on one track over bi-orderable groups.
 artifacts:
   - research/artifacts/binary-formalizability-refutation-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` carry a total order invariant under left and right multiplication. Let `tau`, `sigma` be

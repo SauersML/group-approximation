@@ -27,6 +27,7 @@ not by rereading the author's argument. Nothing was run.
 | `746491973` (gk-n-thompson-v) | routes `thompson-v-direct-finiteness-failure-from-swap-fullness`, `thompson-v-nonsurjunctive-from-direct-finiteness-failure`; Propositions 2.1–2.3, Lemma 3.1, Corollary 3.2, Proposition 9.1 | PASS (Section 21) |
 | `fe7e9bf0c` (gk-n-ae-decoder) | `rokhlin-maximality-closed-under-local-embeddings`, `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers` | PASS (Section 22) |
 | `3639943709` (gk-fz-decompose) | `structurally-reversible-automata-are-formalizable`, `formalizable-left-inverse-iff-clean-shear-dilation`, `binary-left-inverse-pairs-extend-over-every-finite-field` | PASS (Section 23) |
+| `cf99b3821` (gk-fz-bennett) | `formalizable-binary-pairs-over-biorderable-groups-are-affine`, `binary-left-inverse-pairs-need-not-be-formalizable`, Lemma C; wiring of both refuted claims and both invalidated routes; the stable targets and their routes | PASS, decision on family F (Section 24) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -869,7 +870,8 @@ word `g_r^-1 o ... o g_1^-1` is a two-sided formal inverse.
   and `2^k > d` gives that.
 
 **The open target and its routes.**
-- `formalizable-left-inverses-reduce-surjunctivity-to-kaplansky` is valid.
+- `formalizable-left-inverses-reduce-surjunctivity-to-kaplansky` is valid as an implication. Its
+  prerequisite is false, though (Section 24), so it can never complete, and it is now invalidated.
   - By definition, stable finiteness of `F_2[G]` makes every `M_n(F_2[G])` directly finite.
   - The formal identity for some left inverse then gives `tau o sigma = id` by Theorem 1 of
     `formal-polynomial-strict-pairs-need-unstable-linearization` (Section 7 here), which normalizes
@@ -885,3 +887,105 @@ word `g_r^-1 o ... o g_1^-1` is a two-sided formal inverse.
 `injective-binary-automata-have-formalizable-left-inverses`, `binary-left-inverse-pairs-are-formalizable`
 and `stable-finiteness-forces-binary-surjunctivity` all stay OPEN. No non-formalizable pair and no
 formalization of a strict pair has been claimed.
+
+*Update at Section 24:* `binary-left-inverse-pairs-are-formalizable` and
+`injective-binary-automata-have-formalizable-left-inverses` are refuted there.
+`stable-finiteness-forces-binary-surjunctivity` stays OPEN.
+
+## 24. Binary formalizability is false (`cf99b3821`, gk-fz-bennett): PASS, a decision on family F
+
+Checked with maximal care, because it refutes the family's original reduction.
+
+**Theorem A (formalizable one-track pairs over bi-orderable groups are affine).**
+- *Step 1.* For nonzero `a`, `b` with top support elements `g₊`, `h₊`, `g <= g₊` and `h <= h₊`
+  give `gh <= g h₊ <= g₊ h₊`, by left then right invariance. Equality forces `h = h₊` and then
+  `g = g₊`, so `g₊h₊` has coefficient `1` in `ab`, and `F_2[G]` is a domain.
+  - In a domain `ab = 1` gives `(ba - 1)b = b(ab) - b = 0`, so `ba = 1`. That is `M_1(F_2[G])`
+    directly finite.
+- *Step 2.* Theorem 1 of `formal-polynomial-strict-pairs-need-unstable-linearization` (Section 7
+  here), with `n = 1`, gives `tau~ o sigma~ = id` formally for the same representatives.
+  - Pullbacks reverse order, so `sigma~^* o tau~^* = id`, and `tau~^*` is injective.
+  - `tau~^*(Y_h) = mu~_h`, so the translates `mu~_h` are algebraically independent.
+- *Step 3.* The composite at cell `1` is `nu~((mu~_v)_(v in V))`.
+  - `X_(v₊w₊)` lies in the window of `mu~_v` only if `vw = v₊w₊` for some `w in W`, which the
+    Step 1 argument forces to be `(v₊, w₊)`.
+  - Expanding `nu~ = Σ_(d<=D) nu~_d Y_(v₊)^d` and `mu~_(v₊) = Σ_(l<=E) m_l X_(v₊w₊)^l`, only
+    `d = D` reaches degree `DE` in `X_(v₊w₊)`. Its coefficient `nu~_D((mu~_v)_(v != v₊)) m_E^D` is
+    nonzero: `nu~_D != 0`, a subfamily of an algebraically independent family is independent, and
+    the ring is a domain. So the composite has degree `DE >= 1` in `X_(v₊w₊)`.
+  - The composite is `X_1`, so `v₊w₊ = 1`. The same top-degree count in `X_(v₋w₋)` gives
+    `v₋w₋ = 1`, and strict monotonicity gives `W = {m}` and `V = {m^-1}`.
+- *Step 4.* `nu~(mu~(t)) = t` in `F_2[t]` forces degree `1`, so `mu~ = t + eps`.
+
+**Theorem B (the marker involution).**
+- *Lemma 2.1.* A marker at `i` sets `x_(i-1) = x_(i+1) = 1`. All six rows of the table re-derive:
+  - a marker at `i+1` or `i+2` needs `x_(i-1) = 0`;
+  - a marker at `i+3` needs `x_(i+1) = 0`;
+  - a marker at `i-1` or `i-2` needs `x_(i+1) = 0`;
+  - a marker at `i-3` needs `x_(i-1) = 0`.
+- *Proposition 2.2.* The marker at `j` reads `j±1`, `j±2`, `j±3`, never `j`.
+  - If `j` is in `F(x)`, nothing within distance 3 flips.
+  - If no flipped cell is within distance 3 of `j`, the marker reads unchanged values.
+  - If some flipped `i` is within distance 3, the cell the marker needs to be `0` is `i-1` or `i+1`.
+    It equals `1` and does not flip, by Lemma 2.1 at distance 1, so the marker fails for both `x`
+    and `tau x`.
+  - So `F(tau x) = F(x)`, and `tau o tau = id`.
+- *Proposition 2.3.* `delta_0` is fixed, since a marker needs two `1`s.
+  - An affine `x(· + m) + eps` fixing `delta_0` has `eps = 0`, because otherwise the image has
+    infinitely many `1`s. Then `m = 0`.
+  - `tau` changes cell `0` of `delta_(-1) + delta_(+1)`.
+- *Corollary 2.4.* `Z` is bi-orderable, so `(tau, tau)` is not formalizable, and
+  `binary-left-inverse-pairs-are-formalizable` is false at `G = Z`, `n = 1`.
+
+**The weaker some-left-inverse claim is refuted too.**
+- `tau` is bijective, so every left-inverse automaton `sigma` equals `tau^-1 = tau` as a function.
+  A representative of `sigma` on any memory is therefore a representative of `tau`, and `(tau, sigma)`
+  is formalizable iff `(tau, tau)` is.
+- So `binary-left-inverse-pairs-need-not-be-formalizable` refutes
+  `injective-binary-automata-have-formalizable-left-inverses` directly.
+- Independently, Theorem A uses only that `sigma~` is some formal left inverse of `tau~`, which gives
+  the same conclusion.
+
+**Wiring at tip `f12669ddfd`: correct.**
+- Both `binary-left-inverse-pairs-are-formalizable` and
+  `injective-binary-automata-have-formalizable-left-inverses` carry
+  `refuted_by: [binary-left-inverse-pairs-need-not-be-formalizable]`.
+- `binary-left-inverse-pairs-need-not-be-formalizable` invalidates both
+  `formalizable-pairs-reduce-surjunctivity-to-kaplansky` and
+  `formalizable-left-inverses-reduce-surjunctivity-to-kaplansky`.
+- `every-pair-formalizable-gives-formalizable-left-inverses` is dead by its refuted prerequisite.
+- `stable-finiteness-forces-binary-surjunctivity` stays OPEN.
+
+**Lemma C (the defect can be pushed to second order).**
+- `∂(f_h P)/∂X_h = (2X_h + 1)P + f_h ∂P/∂X_h`, which is `P(c)` at a Boolean point `c`. Derivatives
+  in other variables vanish at `c`, and the rule is unchanged on points.
+- The chain rule at Boolean `c`, with both Jacobians prescribed to be `I`, gives
+  `J_d(c) = I + I · I = 0`.
+- `d` vanishes on points, so `d` lies in `I`. The elements `X_h^2 + X_h` form a regular sequence in
+  finitely many variables, so `I/I^2` is free on their classes.
+- The derivative of `d = Σ f_h D_h + e`, with `e` in `I^2`, at `c` is `(D_h(c))_h`. So every `D_h` lies
+  in `I`, and `d` lies in `I^2`.
+
+**The surviving stable targets and their routes: valid, nothing premature.**
+- `stable-formalization-reduces-surjunctivity-to-kaplansky`: `tau x id` is strict iff `tau` is. Theorem 1
+  applies over `(F_2^(n+m))^G`, whatever the ancilla representatives read, and
+  `M_(n+m)(F_2[G])` is directly finite under stable finiteness.
+- `stable-formalizability-reduces-prime-power-surjunctivity`: Theorem 1 holds over any field, here
+  `k = F_p`, with a compactness left inverse.
+- `prime-field-stable-formalizability-specializes-to-binary`: at `p = 2`, `sigma (+) id_k` is a left
+  inverse of `tau x id` with a formal identity.
+- `prime-power-surjunctivity-specializes-to-binary-powers`: instantiation at `p = 2`.
+- `injective-binary-automata-are-stably-formalizable`, `prime-field-left-inverse-pairs-are-stably-formalizable`,
+  `stable-finiteness-forces-binary-surjunctivity`, `stable-finiteness-forces-prime-power-surjunctivity`,
+  `every-group-is-surjunctive-over-binary-power-alphabets`, `linear-sofic-groups-are-surjunctive` and
+  `strict-rule-pairs-ascend-to-larger-alphabets` all read OPEN.
+- Theorem A needs one track, so identity ancillas escape it, and nothing refutes the stable claims.
+
+**Scope notes, not claim-level.**
+- The refutation is one-track over bi-orderable groups. Formalizability on several tracks,
+  including regrouped along a finite-index subgroup (Section 23), is untouched.
+- The heuristic remark in Section 3 of that artifact ("formalizable after adding a track always
+  holds") concerns the Bennett map `V`. `V(x,y) = (y + tau(x), x + sigma(y + tau(x)))` is not a
+  representative of `tau x id`, so the remark does not decide the stable claims, which ask for
+  representatives of `tau x id`.
+- Nothing here decides Gottschalk. The witness is bijective on a residually finite group.
