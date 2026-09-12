@@ -73,7 +73,9 @@ theorem boundaryCard_generatorGraph_le_card_mul_directedBoundary
     · intro e he f hf hef
       have he' := (Finset.mem_filter.mp (Finset.mem_coe.mp he)).2
       have hf' := (Finset.mem_filter.mp (Finset.mem_coe.mp hf)).2
-      have hx : e.1.2 = f.1.2 := congrArg Prod.snd (he'.trans hf'.symm)
+      have hx : e.1.2 = f.1.2 := by
+        have h := congrArg Prod.snd (he'.trans hf'.symm)
+        exact h
       have ht : e.1.1 = f.1.1 := hef
       apply Subtype.ext
       exact Prod.ext ht hx
