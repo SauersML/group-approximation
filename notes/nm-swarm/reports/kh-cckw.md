@@ -139,20 +139,31 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   `CCKW.cckwFiniteOrderConjugateIntoVertex_of_systolicLeaves hT6 hsc hconn h3 h4 : CCKWFiniteOrderConjugateIntoVertex`;
   `sharpExistence_ghb7_of_systolicLeaves hT6 hsc hconn h3 h4 hhyp hT : Hyperbolic.SharpExistence`.
 
-- a0d00d445 (landed unverified, orphan; probe running): `Kazhdan/GHBSharpExistenceSystolic` spends kh-ejz's
+- a0d00d445 (orphan; PROBE GREEN 0912-094104-44599): `Kazhdan/GHBSharpExistenceSystolic` spends kh-ejz's
   `card_U3_seven_le`, `card_U4_seven_le` and property (T) (via `GHBQuotient.sharpExistence_of_ghb7ConjHyp`, 8085b58cd):
   `cckwFiniteOrderConjugateIntoVertex_of_fixedCliqueTits hT6 hsc hconn : CCKWFiniteOrderConjugateIntoVertex`,
   `sharpExistence_ghb7_of_fixedCliqueTitsHyp hT6 hsc hconn hhyp : Hyperbolic.SharpExistence`.
-- Connectivity offer (lead, 09-12): leavitt-ge declined for now. CCKWTitsPresentation compiled (probe 0912-093840-19657,
-  5bef74495); CCKWTitsGHB still red, being fixed, names unchanged. Fallback `CCKW.cosetComplex_connected` (via `exists_typedWord`
-  and `CCKWTits.connected_of_generated`, TypedWords green bytes) is drafted in my scratchpad and NOT landed, so it doesn't duplicate.
-- Asked sec4-sentences for a self-contained generic piece of T6 (local-finiteness/link side); no reply yet.
+- Connectivity: leavitt-ge's CCKWTitsGHB compiled (probe 0912-094055-42831, 8836fadca), so T2 is spent. My scratchpad fallback
+  `CCKW.cosetComplex_connected` is dropped.
+- 0939c64d8 (orphan, landed unverified; batched probe with SystolicDismantlable running): `Kazhdan/GHBSharpExistenceSystolic` adds
+  `cckwFiniteOrderConjugateIntoVertex_of_fixedClique hT6 : CCKWFiniteOrderConjugateIntoVertex` and
+  `sharpExistence_ghb7_of_fixedCliqueHyp hT6 hhyp : Hyperbolic.SharpExistence`, feeding
+  `CCKWTits.cckwCosetComplex_simplyConnected`, `CCKWTits.cckwCosetComplex_connected`.
+- T6 split (agreed with sec4-sentences, 09-12): sec4 owns the disc lemmas, BFS ⇒ dismantlable, and the assembly
+  `Systolic.exists_invariantClique_of_neighborSet_finite` (`GGT/SystolicInvariantClique`). I own the pure graph theory.
+- c30c31d46 (orphan, landed unverified; probe running): `GGT/SystolicDismantlable`, namespace `GroupApproximation.Systolic` —
+  `inductive Dismantlable [DecidableEq V] (G : SimpleGraph V) : Finset V → Prop` (`single v`; `erase hu hw hwu hdom h`: `u ∈ s` is
+  dominated inside `s` by `w ≠ u`, and `s.erase u` is dismantlable);
+  `Dismantlable.erase_of_dominated`, `Dismantlable.sdiff_of_dominated`, `Dismantlable.isClique_of_dominated_symm`;
+  `Dismantlable.exists_invariantClique (hs : Dismantlable G s) (ρ : Γ →* (G ≃g G)) (hinv : ∀ γ, ∀ x ∈ s, ρ γ x ∈ s) :
+  ∃ σ : Finset V, σ.Nonempty ∧ σ ⊆ s ∧ G.IsClique σ ∧ ∀ γ, ∀ x ∈ σ, ρ γ x ∈ σ` (any group Γ);
+  `finite_setOf_dist_le (hfin : ∀ v, (G.neighborSet v).Finite) o R : {x | G.Reachable o x ∧ G.dist o x ≤ R}.Finite`.
 
 ## REMAINING for hconj
-- T6: replace `hT6` by sec4-sentences' fixed-clique theorem once it compiles (restate the draft Prop to its exact binders).
-- T2: when CCKWTitsGHB compiles, add `sharpExistence_ghb7_of_fixedCliqueHyp hT6 hhyp` beside the Tits one, feeding
-  `CCKWTits.cckwCosetComplex_simplyConnected`, `CCKWTits.cckwCosetComplex_connected`.
-- After both, `hconj` is closed and `SharpExistence` from GHB(7) rests on `hhyp` only (kh-ejz / kh-hyperbolic).
+- T6: once sec4-sentences' `exists_invariantClique_of_neighborSet_finite` compiles, discharge `CCKW.SystolicInvariantCliqueStatement`
+  (its extra triangle-preservation binder is harmless) in a new orphan module, since GHBSharpExistence is queued for root wiring.
+- T2: spent (0939c64d8).
+- After T6, `hconj` is closed and `SharpExistence` from GHB(7) rests on `hhyp` only (kh-hyperbolic).
 
 ## TRAPS (09-12)
 - `decide +kernel` over `∀ … : Fin 3, … → False` (or an atomic `= …` conclusion) failed to synthesize `Decidable`; the same shape with
