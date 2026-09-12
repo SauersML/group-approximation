@@ -121,6 +121,26 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
     - diffuse flags of unbounded length at finite stages, where the nilpotency bound fails.
   - Not landed as a route: "every model admits such a flag" is equivalent to triviality
     given the theorem.
+- **Flags of any length: the triangular part carries nothing (2026-09-12, lane `gk-rk-extensions`).**
+  - `unipotent-valued-rank-models-of-el3-are-trivial`: over any field `k` and any ring `R` with
+    `p 1 = 0`, a model with unipotent values is trivial.
+    - The lever is the exact identity `rk(x^m - 1) = rk(x - 1)` for unipotent `x` and `m`
+      invertible in `k`, at every finite stage and with no bound on nilpotency index.
+    - One torsion element normally generates `EL_3(R)` through `SL_3(F_p)`: `x_12(1)` if
+      `char k != p`, the 3-cycle if `p = 2`, `diag(-1,-1,1)` if `p` is odd.
+    - Filter: in a nontrivial characteristic-`p` model that element's image is not unipotent.
+  - `flag-preserving-rank-models-of-el3-reduce-to-their-diagonal`: for flags of unbounded length
+    at finite stages, diagonal compression is a well-defined homomorphism, because
+    `rk(D(x)) <= rk(x)` for block triangular `x`. A flag-preserving model is trivial exactly
+    when its diagonal model is.
+    - Unitriangular models (the diffuse-flag question) die.
+    - Triangularizable models die.
+    - Models with bounded block dimensions die whenever `EL_3(R)` has no nontrivial
+      finite-dimensional representation.
+  - What survives: diagonal models with blocks of unbounded dimension and normalized rank tending
+    to 0. These are general rank models on smaller blocks, so the diffuse-flag case reduces to
+    this claim itself (artifact `research/artifacts/el3-rank-model-extensions-2026-09-12.md`,
+    Section 4.3).
 - **Overreach guard (2026-09-12).** The payoff is now also carried by the instance claim
   `leavitt-el3-rank-models-over-finite-fields-are-trivial`, which has its own route into
   `non-linear-sofic-group`. This class statement implies it
