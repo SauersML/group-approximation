@@ -6,6 +6,7 @@ title: Strict rule pairs for fixed tables are uniform single-demand network code
 distinct_from:
   surjunctivity-is-axiomatized-by-rectangle-clauses: that proves a group is nonsurjunctive exactly when it realizes strict data; this recasts the strict-data condition itself as a network-coding problem and proves Boolean filters for discrete forward tables and one-relay shapes.
   strict-automata-live-on-canonical-table-groups: that fixes a rule pair and finds the only groups it needs; this fixes the pair of tables and studies which rule pairs, over which alphabets, are strict.
+  private-origin-rows-force-permutation-encoders: that forces permutation encoders on tables of any size whose origin cells are glued only forward along an order avoiding the origin row; this proves the network form and the special case of a discrete forward table, plus the one-relay filter.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
   - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
@@ -32,7 +33,9 @@ table level.
 **Boolean filters, over every alphabet.**
 - **Discrete forward table.** If no two forward cells are identified, every solution is
   `mu = f o pi_1`, `nu = f^-1 o pi_1` for a permutation `f`. It satisfies `Enc` on every reverse
-  table, so a strict core needs a forward coincidence.
+  table, so a strict core needs a forward coincidence. `private-origin-rows-force-permutation-encoders`
+  extends the encoder conclusion to tables whose origin cells are glued only forward, along an
+  order that avoids the origin row.
 - **One relay or one column.** If `S = {1}` or `M = {1}`, and `T_r` contains the transpose of
   `T_f`, every solution of `N(T_f)` solves `N^t(T_r)`.
 
