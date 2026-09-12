@@ -1832,3 +1832,11 @@ The assigned verifier of this lane is `w3-vf-linear`; this is a second check.
   - Cylinder swaps with proper union form one conjugacy class, by the refinement argument of Lemma 2.2.
   - `pi = pi_0 pi_1`, with the factors commuting, gives `N = N_0(1 + N_1) + N_1`, so `rk N <= 2 rk N_0`.
   - Correct as a heuristic, and correctly not landed as a claim.
+
+**Section 51 addendum: the involution-calculus calibration (3ce1996bc) PASS.**
+- **The finite example.** The regular Klein four-group in `Sym(4)` consists of `x = (12)(34)`, `y = (13)(24)` and `xy = (14)(23)`.
+  - The three are conjugate in `Sym(4)`, since there is one class of double transpositions, and `x`, `y` commute.
+  - `P - 1` has rank 2 over `F_2`: its columns are `e_2 - e_1`, `e_1 - e_2`, `e_4 - e_3`, `e_3 - e_4`.
+  - The action is regular, so `(x - 1)(y - 1)` acts as a nonzero element of `F_2[V_4]` with four distinct group terms.
+- **Conclusion.** Conjugacy, commutation, `N^2 = 0` and equal displacement do not force `rk(N_0 N_1) = 0`. The dead end is
+  recorded correctly on `thompson-v-has-no-nontrivial-f2-rank-model`.
