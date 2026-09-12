@@ -9,6 +9,7 @@ requires:
   - el3-unit-root-matrix-units-iff-two-root-identities
   - matrix-unit-rank-models-extract-ring-rank-models
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-extensions-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ Artifact Section 4.4, Proposition 9.
      (`matrix-unit-rank-models-extract-ring-rank-models`), which the hypothesis forbids, so the
      diagonal model is trivial;
    * `sigma` is then trivial by `flag-preserving-rank-models-of-el3-reduce-to-their-diagonal`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 40 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

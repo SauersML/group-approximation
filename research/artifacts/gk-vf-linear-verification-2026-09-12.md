@@ -1357,3 +1357,46 @@ and `level-group-polynomial-content-2026-09-12.md` Sections 1 to 6.
   theorem assumes polynomial pieces directly.
 - **Scope, as stated.** The theorem needs an orthogonal splitting into pieces commuting with `sigma(H)`. Projective
   content, unbounded degree and non-split restrictions survive.
+
+## 40. Two root identities localize to diagonal blocks (gk-rk-extensions, artifact Section 4.4, Proposition 9): PASS
+
+Items checked: `two-root-identities-localize-to-diagonal-blocks` and route `two-root-identities-localize-proof`.
+
+- **Descent.** The six displacements have block triangular representatives (invertible after the Section 38 step), so every
+  noncommutative polynomial `P` in them does too. `D_i` is additive, multiplicative on block triangular matrices, and unital,
+  so `D_i(P(N_i)) = P(D_i(N_i))`. Lemma 6.2 contracts rank.
+- **Additivity.** `D_i(N_i) = (+)_t N^(i,t)`, and a block diagonal matrix has rank equal to the sum of its block ranks. So
+  `rk(P^D) = lim_omega sum_t rk(P(N^(i,t))) / n_i`.
+- **Localized gate.**
+  - Weighted-average vanishing gives `N^D_12^2 = 0` and `N^D_23 N^D_12 = 0` in `M`.
+  - `sigma_D` is a homomorphism of `EL_3(R)`, so the Weyl reduction of Theorem A applies to it, and its unit roots act by
+    matrix units (Section 35).
+  - Theorem D plus the no-rank-model hypothesis force `p_1 = 0`, so `sigma_D` is trivial.
+  - The equivalence of Theorem 8 (`R` has characteristic `p`) makes `sigma` trivial.
+  - In characteristic two the square identity is automatic for `sigma_D` as well.
+
+## 41. Isometry commutator relations (e564d566d6, lane gk-ri-nofd): PASS, one scope remark
+
+Items checked: `leavitt-isometry-commutators-constrain-el3-rank-models`, route `leavitt-isometry-commutators-proof`, and
+`leavitt-isometry-commutator-relations-2026-09-12.md` Sections 1 and 2.
+
+- **Expansion.** With involutions `g = 1 + A` and `h = 1 + B`, `[g, h] = (gh)^2 = (1 + A + B + AB)^2`. Expanding with
+  `A^2 = B^2 = 0` and `2 = 0`:
+  - the linear terms cancel in pairs;
+  - `AB` occurs three times;
+  - `A . AB`, `AB . B` and the squares vanish.
+  So `[g, h] = 1 + AB + BA + ABA + BAB + ABAB`, the five-term form of [RR] Lemma 3.
+- **Relations.** `[x_12(t_i), x_23(s_j)] = x_13(t_i s_j)`, which is `x_13(0) = 1` for `i != j` and `x_13(1)` for `i = j`.
+  `x_12(1) = x_12(e_0) x_12(e_1)` by additivity with `e_0 + e_1 = 1`.
+- **Corner Leavitt family, Section 2.**
+  - In a corner of a rank ultraproduct, `T_0 S_0 = e` forces `S_0 T_0 = e`, so `S_1 T_1 = 0`.
+  - But `rk(S_1 T_1) >= rk(T_1 S_1 T_1 S_1) = rk(e) > 0`, a contradiction.
+  - The circularity remark is correct: placing the images in Peirce corners is the matrix-unit hypothesis.
+- **Scope remark on the claim's paragraph.** "not consequences of the group relations available over any finitely
+  represented coefficient subring" is true of the four relations jointly, not individually.
+  - The diagonal relation alone uses only `t_0 s_0 = 1`. The Toeplitz subring maps onto `F_2`, and the regular models of
+    Calibration C satisfy it.
+  - An off-diagonal relation alone uses only `t_0 s_1 = 0`, which holds in `M_2(F_2)` via `t_0 -> E_11`, `s_1 -> E_22`.
+  - All four together need the Cohn family `t_i s_j = delta_ij`, which has no unital finite-dimensional representation,
+    since `rank(TS) <= n < 2n`.
+  - The sentence should say "jointly". Nothing rests on it, and the claim correctly does not assert `N_23 N_12 = 0`.

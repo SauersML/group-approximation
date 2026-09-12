@@ -6,6 +6,7 @@ title: Commutator expansion of the Leavitt isometry relations under a rank model
 target: leavitt-isometry-commutators-constrain-el3-rank-models
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-isometry-commutator-relations-2026-09-12.md
 ---
 
@@ -31,3 +32,5 @@ identity with `Z = n_13(1)`.
 The idempotent decomposition `1 + n_12(1) = (1 + n_12(e_0))(1 + n_12(e_1))` is the root-subgroup
 homomorphism `(R,+) -> M^x` applied to `1 = e_0 + e_1`, `e_i = s_i t_i` (`e_0 + e_1 = s_0 t_0 +
 s_1 t_1 = 1` in `R`, and `e_0, e_1` are orthogonal idempotents). No further input is used.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 41 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. Scope: the four relations are unavailable over finitely represented coefficient subrings jointly, not one at a time.*
