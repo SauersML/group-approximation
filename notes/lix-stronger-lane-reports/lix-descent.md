@@ -79,7 +79,38 @@ Value (first elaboration ever): `simp`/`simpa` replaced by `simp only … at h; 
   coefficient) is stated, not used.  It belongs to lix-steenrod's layer (`tupEval` + iterated diagonal).
   sp-descent verified it by model test at p = 3, 5, 7.
 
+## PROBES
+
+* 0911-215729-75941 (spare1, SLURM acn101, base a0ff25d62): Word, Clifford, Complex, Shift and Pairing were
+  `Built`.  Domino's ONE remaining error: 409:2, `(deterministic) timeout at isDefEq` (200000 heartbeats), from the
+  `show` in `eT_eR_apply`.  Every other Domino declaration elaborated, including `eR_pow_interval`.  Value was not
+  reached.  Fix: `simp only [Equiv.coe_addRight]` instead of `show`; in Value, `eCast_pred` closed by
+  `eq_neg_of_add_eq_zero_left` instead of `simpa`.
+
+* 0911-221812-22898 (spare1, SLURM acn16): **OddPDescentDomino BUILT, COMPILED, LANDED 1a28ab8df.**  Value's first
+  elaboration hit five stuck `NeZero ?p` / `OfNat (Fin ?p) 0` problems, each in a `have … := by` whose type never names
+  `EMod K p`; I named `(p := p)` in seven such haves.
+* 0911-222703-86070 (spare1, acn112 slot 2): **PROBE GREEN, OddPDescentValue BUILT, COMPILED, LANDED eabf84751.**
+  `printedOddPDescentConstant` depends on axioms `[propext, Classical.choice, Quot.sound]`.
+
+## GREEN
+
+All nine `OddPDescent*` modules are compiled on main: Word, Clifford, Complex, Shift, Pairing, Domino (1a28ab8df),
+Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
+
 ## TRAPS
+
+* (lix-descent, 09-11) `have h : T := by …` where `T` fixes an implicit index only through an argument that does not
+  carry it (`eY1 K k`, `eMid K k`, `ePair K (eA K m) (eX K 0)`, `eWedge K 0 …`) reports `typeclass instance problem is
+  stuck NeZero ?m` (or `OfNat (Fin ?m) 0`) at the `have`.  Tactic blocks run after instance synthesis, so nothing
+  from the proof can fix `p`.  A term-mode `have h : T := e` is fine when `e` fixes it.  Name it: `eY1 (p := p) K k`.
+  Only the first such `have` in a proof is reported, because the proof aborts there.
+
+* (lix-descent, 09-11) `show t` whose only change is `(Equiv.addRight 1) b` → `b + 1` inside a goal of linear-map
+  applications times out at `isDefEq` (200000 heartbeats).  The same defeq passed as `exact h.symm` on single words in
+  `OddPDescentShift.eT_comp_eD`, so a "defeq, therefore cheap" judgement from a neighbouring proof does not
+  transfer.  Rewrite the coercion with `simp only [Equiv.coe_addRight]` (`Equiv.coe_addRight : ⇑(Equiv.addRight a)
+  = fun x => x + a`, simp-normal at the pin).
 
 * (lix-descent, 09-11) `rw [..., Function.update_eq_self_iff.2 h.symm, ...]` in a goal holding several `update`
   terms: the proof term is elaborated before `kabstract`, the word stays a metavariable, the first `update` in the
