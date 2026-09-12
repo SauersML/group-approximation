@@ -253,3 +253,103 @@ literature imports:
 - `leavitt-center-is-coefficient-field` (internal).
 
 It also relies on two Lean theorems whose axiom closure has not been audited.
+
+---
+
+## 10. `mf-min-tensor-exact-mf-is-mf` (97a393101): PASS
+
+Route `mf-min-tensor-exact-mf-proof`, `requires: []`. This feeds the UCT route
+`nuclear-non-uct-via-infinite-mf-tensor`.
+
+- **Steps 1–3.** Injectivity of `⊗_min` holds. Exactness of `C` is exactly
+  min-tensor exactness of `0 → ⊕M → ∏M → Q → 0` (Kirchberg).
+- **Steps 4–6.** Isometry into `∏(M_(k_n) ⊗ C)` holds.
+  - The cut-off argument puts every sequence with `‖x_n‖ → 0` into `⊕M ⊗_min C`.
+  - The reverse inclusion is clear, so `∏M⊗C ∩ ⊕(M⊗C) = ⊕M ⊗_min C`.
+  - The induced map `Q ⊗_min C → ∏(M⊗C)/⊕(M⊗C)` is therefore injective.
+- **Step 7.** Take the local characterization of separable MF algebras:
+  approximately multiplicative, approximately isometric *-linear maps into
+  matrix algebras on finite sets. The argument is correct as written.
+  - The quotient norm is `limsup_n ‖b_n‖`, so finitely many large indices attain
+    it on `F`.
+  - Products of lifts differ from lifts of products by `c_0` sequences.
+  - A direct sum of local models is approximately isometric (a max over the
+    blocks) and approximately multiplicative.
+- **"No faithful quasidiagonal trace."** This is correct without exactness.
+  Suppose the maps `φ_n` witness quasidiagonality with `tr∘φ_n → τ`. Then
+  `x` in the kernel of the induced map to `∏M_k/⊕M_k` gives `τ(x*x) = 0`,
+  so faithfulness makes the map injective and `C` would be MF.
+- **Credit.** The node claims no novelty. Standard.
+
+## 11. `trivial-r-fibre-bundles-compare-equal-trace-projections` (7b602b6f3): PASS
+
+Route `trivial-r-fibre-equal-trace-comparison-proof`, `requires: []`. This feeds
+the Toms–Winter bundle root `nontrivial-w-star-bundle-with-r-fibres-exists`.
+
+- **Step 1.** Equal trace in the factor `R` gives Murray–von Neumann equivalence.
+  Continuity of `P, Q` in `‖·‖_2` makes a constant partial isometry good on a
+  neighbourhood.
+- **Step 2.** The image of `K` under `λ ↦ (P(λ), Q(λ))` is compact. The functions
+  `sup ‖x − E_(D_m)(x)‖_2` over an increasing sequence of finite-dimensional
+  `D_m` decrease pointwise to `0`, so Dini makes the convergence uniform.
+  Correct.
+- **Step 3.** Write `D = ⊕_j M_(n_j)` and take `h = Σ_j h_j`, with each `h_j`
+  Lebesgue-distributed in `D' ∩ z_j R z_j`. Then
+  `τ(χ_S(h) y) = Leb(S) τ(y)` for `y ∈ D`, from
+  `z_j R z_j ≅ M_(n_j) ⊗ (D' ∩ z_j R z_j)`. The cut projections are
+  `‖·‖_2`-continuous, because `‖χ_[a,b)(h) − χ_[a',b')(h)‖_2² <= |a−a'| + |b−b'|`.
+- **Step 4.** The `p_i` commute with `D`, so
+  `Z*Z = Σ_i p_i E_D(v_i)* E_D(v_i)`, and `‖Σ p_i y_i‖_2² = Σ f_i ‖y_i‖_2²`
+  for `y_i ∈ D`. The bound follows from the local goodness of `v_i` on
+  `supp f_i ⊂ U_i` and `‖E_D(v_i)*E_D(v_i) − v_i* v_i‖_2 <= 2ε_0`.
+  `‖Z‖ <= 1` because the blocks are orthogonal.
+- **Steps 5–6.** Compressing to `W = QZP` is the standard square-root
+  perturbation. Bundle isomorphisms preserve `‖·‖_(2,u)`, and the
+  equal-trace condition up to the base homeomorphism.
+- **Hidden hypotheses.** None found. No dimension of `K` is used, which is
+  consistent: the claim is a property of the trivial bundle, not a triviality
+  theorem.
+
+## 12. `stw01-modular-test-pair-generates-non-exact-algebra` (a2813e5dc): PASS
+
+Route `stw01-modular-test-pair-non-exact-proof`, `requires: []`. This feeds the
+quasitrace root through `stw01-modular-single-pair-quasitrace-additivity`.
+
+- **Dilation.** `a − a² >= m1 >= mp = b`. The two products that matter were
+  recomputed:
+  - `c*c = a² + b + (a − a² − b) = a`, so `r = c a^-1 c*` satisfies `r² = r = r*`
+    with no commutation between `a` and `p` needed;
+  - `r_11 = a`, and `r_12 r_21 = b^(1/2) b^(1/2) = mp`.
+- **Homomorphism.** `f_j = E_jj ⊗ 1` are orthogonal projections summing to `1`,
+  and `r` is a projection. So the universal property of `C^3 * C^2` gives `π`,
+  and `π(C*(h,k)) = C*(a, p)` in the `(1,1)` corner.
+- **Image.** `0 ∉ sp(a)`, so the nonunital `C*(a)` contains `1` and the `e_i`, and
+  `C*(a,p) = Q`.
+- **Non-exactness.** Four standard inputs combine: Wassermann (`C*(F_2)` is not
+  exact); full C*-algebras of subgroups embed; subalgebras of exact algebras
+  are exact; quotients of exact algebras are exact (Kirchberg).
+- **Consequence.** Correct. Haagerup's theorem needs an exact algebra containing
+  `h` and `k`, and none exists.
+
+## 13. `root-measures-of-integer-matrices-can-violate-serre` (f82523916): PASS
+
+Route `root-measures-integer-matrices-serre-violation-proof`, `requires: []`.
+This feeds the determinant-conjecture region.
+
+- **Weights.** The eigenvector `(1, λ)` gives weight `1/(1+λ²)` at `e_1`, and
+  `1/(1+ψ²) = φ²/(1+φ²)`.
+- **Log integral.** `log φ · (1−φ²)/(1+φ²) ≈ 0.4812 · (−0.4472) ≈ −0.2152`.
+  Recomputed.
+- **Moments.** `B^k = [[F_(k−1), F_k], [F_k, F_(k+1)]]`, so the moments at `e_1`
+  are `F_(k−1)`.
+- **Atomless version.**
+  - The spectral measure of `B ⊗ C` at the product vector is the pushforward
+    of `ρ_1 ⊗ α` under multiplication.
+  - `α` is absolutely continuous and `ρ_1({0}) = 0`, so the pushforward has no
+    atoms.
+  - `∫ log|2cos θ| dθ/2π = 0`.
+  - The moments are `F_(j−1) c_j`, and `N_4 − N_2 = 12 − 2 = 10`, so
+    `p_4 = 5/2`.
+- **Trace check.** `log|det B| = 0` matches the sum of the two root integrals.
+- **Scope.** The claim is an obstruction to one proof strategy and makes no
+  statement about the conjecture itself. That is what it says.
