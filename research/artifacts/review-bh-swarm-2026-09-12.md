@@ -243,7 +243,103 @@ and Conjecture 1.8 are now verified from the PDF text. The definition of type
   `permutational-boone-higman-via-mif-envelopes` form the intended conditional
   cycle, and neither fires.
 
+## 13. `regular-coherent-coefficients-kill-leavitt-tensor-k-theory` (f8466b7d5; route rewritten in 71c5800fc) — PASS
+
+**The question raised by `bh-leavitt-path-steinberg`.** Is the claim "K_n(R ⊗ L_2) = 0
+for n ≥ 1 when R is only regular coherent" established by the source, or is it
+the conjectural part of ABC Remark 7.8?
+
+**Answer: the positive degrees are proved in the source; the conjectural part is
+the negative degrees.** Checked against the text of arXiv:0903.0056v2 on MSI
+(`lit-groups/abc-clean.txt`, lines 941–1090):
+- **Proposition 7.1, proof:** "it suffices to show that D is regular coherent
+  whenever k is so". The flat filtering colimit argument, [17, Prop 1.6], runs
+  at the regular-coherent level.
+- **Lemma 7.2, proof:** "For n ≥ 1 this follows from [30, Theorem 4], because ...
+  R[t_1, t_1^−1, ..., t_p, t_p^−1] is regular coherent. Let n ≤ 1 and assume ...
+  Since R[t, t^−1] is regular supercoherent ...". Supercoherence enters only the
+  downward induction into degrees ≤ 0.
+- **Theorem 5.10:** for H′-unital A and E without sources,
+  `K(L_A(E)) ≃ NK(L_0 ⊗ A; φ⊗1)_+ ⊕ NK(L_0 ⊗ A; φ⊗1)_− ⊕ hocofiber(1 − N^t)`,
+  an equivalence of spectra.
+- **Remark 7.8** reads: "terminates at K_0(L_k(E)), although conjecturally the long
+  exact sequence should still stand under this weaker hypothesis on k, see [5]".
+  Reference [5] is Bihler arXiv:math/0612569. Its text on MSI states Vogel's
+  conjecture for Vogel-regular, possibly non-coherent rings, for K_i Nil with
+  i ≥ 0, extended to all i ∈ Z by Karoubi suspension. So "conjecturally" refers
+  to continuing below K_0, not to the positive degrees.
+
+**The route (71c5800fc).**
+- For the rose, `1 − N^t = −1`, so the hocofiber is contractible and
+  `K_n(L_R(E)) = NK_n(+) ⊕ NK_n(−)`.
+- These are summands of `NK_n(D; φ^)` by excision for the ideal B; the route does
+  not need `NK(k) = 0`.
+- `D` is regular coherent, and Lemma 7.2 with n ≥ 1 and p = 0 kills them.
+
+The route matches the source proofs. The original f8466b7d5 route cited only the
+ambiguous wording of Remark 7.8, and 71c5800fc removes that dependence.
+
+**Hidden hypotheses.**
+- A noncommutative coefficient ring is within scope. ABC define
+  `L_R(E) = L_Z(E) ⊗ R` for any ring R, and Ara–Cortiñas Prop 6.2 applies
+  Theorem 7.6 to noncommutative L(E).
+- Unital rings are H′-unital.
+- The rose has no sources and no sinks.
+
+**Trust surfaces.** Waldhausen 1978, Theorem 4 (unread primary) and the integral
+excision step inside ABC.
+
+**No false establishment.** Its consumers `leavitt-tensor-powers-have-trivial-k-theory`
+and `prime-field-leavitt-tensor-powers-have-trivial-k-theory` stay OPEN, because
+`leavitt-tensor-powers-are-left-coherent` is OPEN. This was checked with MSI
+`cairn why` at d99a23cf3.
+
+## 14. `leavitt-algebra-hochschild-dimension-at-most-one` (2ddf68901) — PASS
+
+- **Setting.** `L_k(1,2) = Σ^(-1) k<x_1,x_2>`, inverting the row map `P → P^2`;
+  this is the path-algebra presentation.
+- **Epimorphism.** Universal localization is a ring epimorphism, so
+  `L ⊗_P L = L`.
+- **Flatness.** Left flatness gives `Tor_1^P(L, L) = 0`.
+- **Base change.** `0 → Ω¹P → P ⊗ P → P → 0` splits as left P-modules, and
+  `Ω¹P ≅ P ⊗ V ⊗ P` because P is free. Apply `L ⊗_P −`, then `− ⊗_P L`.
+- **Result.** The long Tor sequence gives
+  `0 → L ⊗ V ⊗ L → L ⊗ L → L → 0`, with free bimodule terms. So
+  `pd_(L^e) L ≤ 1`.
+
+Trust surface: the left flatness is quoted through Ara–Cortiñas' Lemma 6.1 proof,
+citing Ara–Brustenga Prop 4.1.
+
+## 15. `leavitt-tensor-global-dimension-bound` (340fd06ee) — PASS
+
+**Step 1 (ERZ).**
+- A projective bimodule resolution of C is split exact on the right, so
+  `Q_• ⊗_C M → M` is exact.
+- `(C ⊗ C) ⊗_C M = C ⊗_k M`, and tensoring an A-projective resolution with C
+  over the field k gives `pd(C ⊗ M) ≤ pd_A M`.
+- Dimension shifting gives `l.gl.dim(A ⊗ C) ≤ l.gl.dim A + pd_(C^e) C`.
+
+**Steps 2–3.**
+- The upper bound comes by induction.
+- The right-hand version follows from the involution `L^op ≅ L`.
+- The lower bound uses Cartan–Eilenberg XI.3.1 (quoted through Ara–Cortiñas
+  Example 5.2, not re-read) and `w.gl.dim L = 1`. L is hereditary, and it is not
+  von Neumann regular because the rose has cycles. Induction gives
+  `l.gl.dim L^(⊗d) = d`.
+
+**Consequence.** "regular coherent as soon as coherent" is correct.
+- Over a coherent ring, a f.p. module has a resolution by f.g. frees.
+- Finite projective dimension then makes the truncated kernel f.g. projective.
+
+## 16. Routes `leavitt-tensor-powers-k-theory-via-coherence`, `prime-field-leavitt-powers-k-theory-via-coherence` (eb6a863a3) — PASS
+
+- **Inputs.** Left coherence (OPEN), transferred to right coherence by the
+  involution; finite global dimension on both sides; and §13 applied to
+  `R = L^(⊗(d−1))` with d − 1 ≥ 2.
+- **Conclusion.** `K_1 = K_2 = 0` for `L^(⊗d)`. The logic is sound.
+- **Status.** Both targets stay OPEN, since the coherence input is open.
+
 ## Summary
 
-12 PASS, including the repair; 1 FAIL, corrected forward in 4ba6fa13b and
+16 PASS, including the repair; 1 FAIL, corrected forward in 4ba6fa13b and
 repaired in 83fee9c7b; 0 GAP. The Boone–Higman root stays OPEN.
