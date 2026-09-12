@@ -244,3 +244,21 @@ automatically, so only strict compressors matter.
       integer index.
     - None is constructed, and `W_rho(R^x)''` has no evident finite trace in a
       sofic model. **This is where it stops.**
+- **Jones-type relative index on `H_inf`: dead (lane `rnorm-jones-index`).**
+  `jones-index-blind-on-unbounded-defect-sector`. The surviving shape asked for a
+  quantized index `[P : W_rho(u)^* P W_rho(u)] in {4 cos^2(pi/n)} U [4, infinity)`
+  forced to `1` by an almost-invariance bound below `2`. Dead on two counts.
+  - **No quantization.** The inclusion has diffuse relative commutant `A_rho`
+    (that is what unbounded multiplicity means), so it is not a subfactor; Jones'
+    theorem does not apply, and the Pimsner--Popa index of a non-factor inclusion
+    fills all of `[1, infinity)`. There is no gap in `(1,2)`, so "below `2`" does
+    not force `1`. Kun--Thom's integer gap came from finite cluster cardinalities;
+    an operator index restores a gap only for a subfactor.
+  - **No finite trace.** In a trace-zero model `{W_rho(R^x), A_rho}''` has no
+    finite trace giving `P, P'` positive finite dimension, so `[P:P']` is
+    indeterminate.
+  - **Dichotomy.** Quantization <=> subfactor <=> trivial relative commutant <=>
+    bounded multiplicity `= H_b`, where the datum is already blind (Theorem B).
+    The defect survives only on `H_inf`, where quantization fails. (T) cannot
+    give a factor without moving to `H_b`. So no sector carries a quantized index
+    that sees the defect. **This is where it stops.**
