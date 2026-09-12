@@ -98,8 +98,18 @@ which are the other decoder outputs of the input site `n^-1` that lie in the ran
   are the outputs at `{s, t}`, `{s^-1, s^-1 t}` and `{t^-1, t^-1 s}` that lie in the random past of `e`. Domination is a
   finite information inequality among the outputs at those seven sites and the inputs at `e, s^-1, t^-1`. The only
   inputs are the law of `(x, U)` and the fact that `y` is a finite block code of `x`.
-- Group structure enters only through the coincidences among the seven sites, for instance `s^-1 t = t^-1 s` when
-  `(s^-1 t)^2 = e`. So the lemma can be checked word by word against the relations of `<s, t>`.
+- Relations of `<s, t>` enter through coincidences among the seven sites, for instance `s^-1 t = t^-1 s` when
+  `(s^-1 t)^2 = e`. The joint law of `y` at those sites also depends on the encoder windows, so relations of the host
+  `G` outside `<s, t>` enter as well. (Corrected: the first landing said group structure enters only through
+  coincidences.)
+- **Correction** (w4-vf-positive-b, §5.1 of `gk-vf-positive-b-verification-2026-09-12.md`). For `B = A`, the amenable
+  theorem gives bijectivity, hence a uniform site law. For `B != A` it does not apply. Domination still holds when
+  `Gamma = <N>` is amenable, by counting inside `Gamma`:
+  - `x|_F` is a function of `y|_(FN)`, so `|F| log |A| <= H(y|_(FN)) <= |FN| H(y(e))`;
+  - right Folner sets of `Gamma` give `H(y(e)) >= log |A|`.
+- **Amplification keeps the decoder** (w4-three-point, verification §5.4). When the image of `tau` avoids a symbol
+  (`Omega = {e}`), the amplified `kappa` keeps the three-point left inverse `N_tau`. So the reduction to the transport
+  form runs for such `tau`.
 
 **Payoff.**
 - A proof of domination in the three-point case would be a surjunctivity theorem for a nonamenable decoder

@@ -19,12 +19,16 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
 - **Transport form** (artifact 3.3). By `injective-ca-random-order-transport-identity`, the three transport terms
   into `y(e)`, from the input sites `e, s^-1, t^-1`, sum to `log |A|`. Surjectivity is equivalent to their sum being at
   most `H(y(e))` for the automaton amplified by
-  `strict-automata-give-injective-ca-with-skewed-site-marginals`. That amplification may enlarge the decoder
-  memory, and checking whether it keeps three points is the first step.
+  `strict-automata-give-injective-ca-with-skewed-site-marginals`. When the image of `tau` avoids a symbol
+  (`Omega = {e}`), the amplified `kappa` keeps the three-point left inverse, so the reduction runs for such `tau`
+  (w4-three-point, §5.4 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`). For larger `Omega` it
+  is unchecked.
 - **Where group structure enters.** The conditionings live at the seven sites
-  `{s, t, s^-1, s^-1 t, t^-1, t^-1 s, e}`. Relations of `<s, t>` act only by making some of these sites coincide, so the
-  inequality can be tested relation by relation. The free case `<s, t> = F_2` is sofic, hence already true. The
-  question is whether it holds for a reason that uses no finite model.
+  `{s, t, s^-1, s^-1 t, t^-1, t^-1 s, e}`. Relations of `<s, t>` make some of these sites coincide. The joint law of `y`
+  there also depends on the encoder windows, so relations of `G` outside `<s, t>` enter too. (Corrected at the second
+  landing, following the caution below: the first entry said relations act only through coincidences, and that the free
+  case `<s, t> = F_2` is already true. Soficity of the decoder memory group proves nothing about the host, and the free
+  case is open.)
 - **Pointwise versions fail.** A single order realization can violate domination even for bijective automata
   (artifact 3.2). Averaging over the random order is required.
 - **Per-term bounds give only subadditivity** (`transport-identity-gives-reciprocal-memory-entropy-bound`). Bounding

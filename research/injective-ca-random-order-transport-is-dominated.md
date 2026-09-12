@@ -28,12 +28,14 @@ form. It is kept because it isolates the conditionings as the whole difficulty a
 - **Tree calibration.** On `Aut(T, xi)` domination holds, but the transport identity fails with ratio `2`, the
   modular function (artifact 2.1). So a strict automaton off groups is paid for by imbalance, not by violating
   domination. Neither the tree nor inertness kills this form.
-- **Amenable decoder memory.** Holds, by `amenable-decoder-memory-forces-surjectivity`. That includes two-point
-  decoder memory.
+- **Amenable decoder memory.** Holds when `Gamma = <N>` is amenable. That includes two-point decoder memory.
+  - For `B = A`: `amenable-decoder-memory-forces-surjectivity` gives bijectivity, hence a uniform site law.
+  - For `B != A`: that theorem does not apply. Count inside `Gamma` instead: `|F| log |A| <= |FN| H(y(e))`, then take
+    right Folner sets of `Gamma` (w4-vf-positive-b, artifact 3.3).
 - **First open case.** Three-point decoder memory with a nonamenable decoder group,
   `three-point-decoder-memory-injective-ca-are-surjective`. Domination there is a finite inequality among ten
-  variables, and the group relations enter only through site coincidences (artifact 3.3). No proof or
-  counterexample is known.
+  variables. Relations of `<N>` enter through site coincidences, and relations of the host through the encoder windows
+  (corrected; artifact 3.3). No proof or counterexample is known, including the free decoder group.
 - **Discarded on the way** (artifact Section 4): exactness transfer (left equivariance, no right Folner sets),
   free subrelations with the f-invariant (not generating, and a conjugacy invariant), symbol symmetrization
   (orbits break uniformity).
