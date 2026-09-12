@@ -11,8 +11,16 @@ artifacts:
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in the artifact, Section 4d, Proposition 8 and Corollary 9;
-independent verification requested from `gk-vf-linear`). Let `p` be odd and `R` a simple
+**ESTABLISHED** (proof in the artifact, Section 4d, Proposition 8 and Corollary 9).
+`gk-vf-linear` passed it on all five steps (Section 28 of
+`research/artifacts/gk-vf-linear-verification-2026-09-12.md`, c4719a17ca).
+
+**Scope (block support suffices).** It is enough that each `sigma(x_ij(1)) = 1 + v_ij` with
+`v_ij` in `p_i M p_j` for some orthogonal idempotents `p_i` (`gk-vf-linear`, re-checked
+here). The characteristic-free identity `[1+X, 1+Y] = 1 + XY` gives `v_ik = v_ij v_jk`, hence
+`v_ij v_ji v_ij = v_ij`. So `q_i = v_ij v_ji` is an idempotent, independent of `j` and below
+`p_i`. The `v_ij` are matrix units on the `q_i`, and they kill the complement
+`1 - q_1 - q_2 - q_3`. Let `p` be odd and `R` a simple
 algebra of characteristic `p` that is not directly finite, for instance `L_K(1,n)` with
 `char K = p` and `n >= 2`. Let `M` be a rank ultraproduct over a field of characteristic `p`,
 and `sigma : EL_3(R) -> M^x` a homomorphism. Suppose there are pairwise orthogonal
