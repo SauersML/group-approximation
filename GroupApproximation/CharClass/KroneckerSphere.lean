@@ -171,10 +171,14 @@ def SphereCohomologyOverField : Prop :=
     ∀ (K : Type) [Field K] (n : ℕ), 1 ≤ n →
       Nonempty (Hmod K (TopCat.of (Sphere n)) 0 ≃ₗ[K] K)
 
-theorem sphereCohomologyOverField : SphereCohomologyOverField :=
-  ⟨fun K _ n k h0 hkn => sphere_coh_isZero_of_neOf K n k h0 hkn,
-    fun K _ n hn => sphere_coh_top_finrankOf K n hn,
-    fun K _ n hn => ⟨sphereCohZeroEquivOf K n hn⟩⟩
+theorem sphereCohomologyOverField : SphereCohomologyOverField := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro K _ n k h0 hkn
+    exact sphere_coh_isZero_of_neOf K n k h0 hkn
+  · intro K _ n hn
+    exact sphere_coh_top_finrankOf K n hn
+  · intro K _ n hn
+    exact ⟨sphereCohZeroEquivOf K n hn⟩
 
 #audit_closed_axioms sphereCohomologyOverField
 

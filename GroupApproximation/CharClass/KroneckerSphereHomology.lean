@@ -494,7 +494,9 @@ def sphereTopIsoOf (K : Type) [Field K] :
 /-- `Hₙ(Sⁿ; K)` is one dimensional for `n ≥ 1`. -/
 theorem sphereHomologyOf_top_finrank (K : Type) [Field K] (n : ℕ) (hn : 1 ≤ n) :
     Module.finrank K (homologyOf K (TopCat.of (Sphere n)) n) = 1 := by
-  rw [LinearEquiv.finrank_eq (sphereTopIsoOf K n hn).toLinearEquiv, Module.finrank_self]
+  have e : homologyOf K (TopCat.of (Sphere n)) n ≃ₗ[K] K := (sphereTopIsoOf K n hn).toLinearEquiv
+  rw [e.finrank_eq]
+  simp
 
 /-! ## 6. Closed endpoints -/
 
@@ -506,9 +508,12 @@ def SphereHomologyOverField : Prop :=
     ∀ (K : Type) [Field K] (n : ℕ), 1 ≤ n →
       Nonempty (homologyOf K (TopCat.of (Sphere n)) n ≅ ModuleCat.of K K)
 
-theorem sphereHomologyOverField : SphereHomologyOverField :=
-  ⟨fun K _ n k h0 hkn => sphereHomologyOf_isZero_of_ne K n k h0 hkn,
-    fun K _ n hn => ⟨sphereTopIsoOf K n hn⟩⟩
+theorem sphereHomologyOverField : SphereHomologyOverField := by
+  refine ⟨?_, ?_⟩
+  · intro K _ n k h0 hkn
+    exact sphereHomologyOf_isZero_of_ne K n k h0 hkn
+  · intro K _ n hn
+    exact ⟨sphereTopIsoOf K n hn⟩
 
 #audit_closed_axioms sphereHomologyOverField
 
