@@ -79,29 +79,28 @@ theorem targetBoundary_quasi_lower (Gamma : ContiguityGeometry D eps Delta faces
     lambda * (Gamma.targetArc.length : ℝ) - c ≤
       (wordNorm D.alphabet.carrier (RelLetter.listVal
         (dartWord Delta (targetBoundaryDarts Delta Gamma.target Gamma.targetArc))) : ℝ) := by
-  have hlen : (Gamma.targetArcAtSome target htarget).length = Gamma.targetArc.length :=
-    CyclicArc.length_cast (congrArg (targetDarts Delta) htarget) Gamma.targetArc
+  obtain ⟨arcT, harcT⟩ : ∃ a : CyclicArc (cellDarts Delta target),
+      a = Gamma.targetArcAtSome target htarget := ⟨_, rfl⟩
+  have hlen : arcT.length = Gamma.targetArc.length :=
+    (congrArg CyclicArc.length harcT).trans
+      (CyclicArc.length_cast (congrArg (targetDarts Delta) htarget) Gamma.targetArc)
   have hquasi := hcondition.quasiGeodesic _
-    (CyclicArc.cell_rotated_mem hcondition.toIsSmallCancellation (i := target)
-      (Gamma.targetArcAtSome target htarget))
-  have hlength : (Gamma.targetArcAtSome target htarget).length ≤
-      (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated).length := by
-    simpa only [dartWord, List.length_map, CyclicArc.rotated_length]
-      using (Gamma.targetArcAtSome target htarget).length_le
-  have h := hquasi.2 0 _ (Nat.zero_le _) hlength
-  have hprefix : (dartWord Delta (Gamma.targetArcAtSome target htarget).rotated).take
-      (Gamma.targetArcAtSome target htarget).length =
-        dartWord Delta (Gamma.targetArcAtSome target htarget).darts := by
+    (CyclicArc.cell_rotated_mem hcondition.toIsSmallCancellation arcT)
+  have hlength : arcT.length ≤ (dartWord Delta arcT.rotated).length := by
+    simpa only [dartWord, List.length_map, CyclicArc.rotated_length] using arcT.length_le
+  have h := hquasi.2 0 arcT.length (Nat.zero_le _) hlength
+  have hprefix : (dartWord Delta arcT.rotated).take arcT.length =
+      dartWord Delta arcT.darts := by
     simp only [dartWord, CyclicArc.darts, List.map_take]
-  have hlower : lambda * ((Gamma.targetArcAtSome target htarget).length : ℝ) - c ≤
-      (wordNorm D.alphabet.carrier (RelLetter.listVal
-        (dartWord Delta (Gamma.targetArcAtSome target htarget).darts)) : ℝ) := by
+  have hlower : lambda * (arcT.length : ℝ) - c ≤
+      (wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord Delta arcT.darts)) : ℝ) := by
     simpa only [Nat.sub_zero, OsinComponents.vertex_zero,
       OsinComponents.vertex_eq_mul_listVal_take, one_mul, hprefix,
       List.take_zero, RelLetter.listVal_nil, wordDist_one_left] using h
   have hboundary : targetBoundaryDarts Delta Gamma.target Gamma.targetArc =
-      (Gamma.targetArcAtSome target htarget).reverseDarts :=
-    targetBoundaryDarts_cast htarget Gamma.targetArc
+      arcT.reverseDarts := by
+    rw [harcT]
+    exact targetBoundaryDarts_cast htarget Gamma.targetArc
   rw [hboundary, CyclicArc.reverseDarts, listVal_dartWord_reverse_alpha,
     wordNorm_inv D.alphabet.symmetricGenerating, ← hlen]
   exact hlower

@@ -56,14 +56,15 @@ noncomputable def relatorFaces (Delta : DiscDiagram.{u, w, v} W) :
 
 theorem mem_relatorFaces {Delta : DiscDiagram.{u, w, v} W} {f : Delta.toCombMap.Face} :
     f ∈ Delta.relatorFaces ↔ ∃ C ∈ Delta.relatorCells, C.face = f := by
-  rw [relatorFaces, List.mem_toFinset, List.mem_map]
+  classical
+  simp only [relatorFaces, List.mem_toFinset, List.mem_map]
 
 /-- A disc diagram has exactly `rCellCount` relator faces. -/
 theorem relatorFaces_card (Delta : DiscDiagram.{u, w, v} W) :
     Delta.relatorFaces.card = Delta.rCellCount := by
   classical
-  unfold relatorFaces
-  rw [List.toFinset_card_of_nodup Delta.relatorCell_faces_nodup, List.length_map]
+  simp only [relatorFaces, List.toFinset_card_of_nodup Delta.relatorCell_faces_nodup,
+    List.length_map]
   rfl
 
 /-- A relator face reads a relator. -/
