@@ -86,3 +86,35 @@ automatically, so only strict compressors matter.
     for infinite `Q`. A measure-type size, such as the support proportion
     that corner embeddings of `V` halve, is the natural candidate; none is
     constructed. **This is where it stops.**
+- **Measure-type twist sizes: the support-proportion candidate is dead
+  (lane `rnorm-twist-measure`).**
+  - **Twists are global.** `realized-relative-twists-embed-in-outer-twist-group`:
+    - `N_rel(sigma)/(sigma(M) . C(sigma(Gamma)))` embeds in the outer twist
+      group `Out_M(Gamma)`, which does not depend on `sigma`;
+    - compressors act by an algebraic endomorphism `eps_t`, injective on the
+      realized part;
+    - the realized part is the stabilizer of the `S_U`-conjugacy class of
+      `sigma|_Gamma`.
+    So twist data is not point dependent, and the Kun--Thom pigeonhole has no
+    twist-valued point function to run on.
+  - **Conjugation-invariant sizes are exactly invariant.**
+    `conjugation-invariant-sizes-miss-relative-defect`: `eps_t` moves realizer
+    sets by conjugation, so every size read from conjugacy invariants of
+    realizers never changes. That includes support proportions, which are `1`
+    on nontrivial host elements in trace-zero models. The candidate
+    `support-proportion-size-separates-compressor-images` is refuted and the
+    route `rnorm-via-support-proportion-size` is invalidated.
+  - **Red-flag check.** Neither result uses property (T) beyond the absolute
+    normalization, and both hold in amenable hosts. So they correctly prove no
+    nonsoficity, in particular nothing about Thompson's `V`.
+  - **Surviving shape.** A size has to be a relative invariant of
+    (realizer set, `sigma(Gamma)`). By the stabilizer form, that is an
+    invariant of the conjugacy class of `sigma|_Gamma`: Kun--Thom cluster data
+    of `Gamma`-components with their masses, on which `Out_M(Gamma)` acts by
+    precomposition.
+    - A contradiction needs a monotone quantity comparing the stabilizer of
+      that data with its `eps_t`-image.
+    - For infinite stabilizers such as `V`, orbit counting fails, so the
+      quantity must be a relative index bounded by the (T)-rigidity of
+      components.
+    - None is constructed. **This is where it stops.**
