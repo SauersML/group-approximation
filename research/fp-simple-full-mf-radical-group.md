@@ -35,9 +35,16 @@ three sides. `defect-saturation-full-mf-radical` gives **finitely presented**
 with full radical but not simple; `simple-sofic-total-mf-radical` gives
 **simple** with total radical but not finitely presented;
 `rank-twelve-leavitt-simple-non-mf` gives **finitely generated and simple**
-with full radical but no finite presentation. Nothing in the graph asserts
-the conjunction, and no finitely presented simple group anywhere in the
-literature has been shown to have this property.
+with full radical but no finite presentation.
+
+**Correction (2026-09-11).** When this node was opened it said nothing in the
+graph asserted the conjunction. That was false. Every infinite, finitely
+presented, simple Kazhdan group is a witness, by
+`simple-kazhdan-groups-have-full-mf-radical`. The graph already carried such
+groups: the Titz Mite--Witzel finite residuals, which are also torsion-free.
+The route is `fp-simple-full-mf-radical-via-titz-witzel`. So the target was
+established before the Leavitt import, and the fourth side of the square was
+already filled.
 
 It is also a top-level question in its own right rather than a step toward
 another one: it asks for a finitely presented simple group with no nontrivial
@@ -124,10 +131,12 @@ happens to the preprint.
    `simple-envelope-forces-solvable-word-problem` any finitely presented
    simple envelope would in particular re-prove the decidability recorded in
    `rank-twelve-leavitt-elementary-wp-decidable`.
-4. **Inspect the known finitely presented simple groups.** *No obstruction and
-   no witness.* The Thompson-like families (`V`, `nV`, twisted Brin--Thompson
-   groups, Röver--Nekrashevych groups) are the only finitely presented simple
-   groups this graph carries, and no node asserts that any of them is non-MF,
-   nor that any of them is MF. This is an unexamined question in the
-   literature rather than a recorded obstruction, and settling it either way
-   for a single one of those families would move this claim.
+4. **Inspect the known finitely presented simple groups.** *Succeeds, and was
+   first recorded wrongly.* The draft said the Thompson-like families were the
+   only finitely presented simple groups in the graph. That is false. The
+   Titz Mite--Witzel lattices and the Caprace--Rémy Kac--Moody lattices are
+   finitely presented simple Kazhdan groups, so each has full MF radical
+   (`fp-simple-full-mf-radical-via-titz-witzel`). MF-ness of `V`, `nV`,
+   twisted Brin--Thompson and Röver--Nekrashevych groups remains unexamined
+   here. None of them has property (T), so the Kazhdan argument does not
+   reach them.
