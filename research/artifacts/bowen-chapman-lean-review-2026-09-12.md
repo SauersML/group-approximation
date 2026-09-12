@@ -178,11 +178,11 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` c56628087 twenty-three campaign modules or batches have
-landed, plus two docstring fixes (d4c4f667e, 2f01a8ac1). The five most recent
+As of `origin/main` 039c5af15, twenty-six campaign modules or batches have
+landed, plus two docstring fixes (d4c4f667e, 2f01a8ac1). The eight most recent
 are the witness given normalization at the pair (F4(t)), the coset wreath
-witness (F4(u)), and three component-counting batches for Theorem 4.1 (F4(v),
-F4(w), F4(y)). The earlier eighteen are: the Palomar
+witness (F4(u)), and six component-counting landings for Theorem 4.1 (F4(v),
+F4(w), F4(y), F4(z)). The earlier eighteen are: the Palomar
 challenge (6ae077316), solution (1ad7aa663) and pending gate registration
 (73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
 (0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
@@ -673,6 +673,27 @@ root-wired. No defect.**
   241f6fc6b carries `# PROBE GREEN`, names the module, and holds the landed md5
   `76559343…`. The 7-module import closure did not change.
 * One root import is added. Nothing is deleted.
+
+**(z) Landed: `KunThom/ComponentCountingRelativeFunctorBridges` (e8868748d),
+`…Realization` (db7d2821e), `…BlockWords` (98369e474), root-wired. Content: no
+defect. Evidence: tags not cited, sent to `kt-norm-counting`.**
+* This is finite counting for Kun–Thom Lemma 4.3 and the Hamming estimate at the
+  end of the proof of Theorem 4.1:
+  * bridges between embedded blocks realized by a permutation, with defect
+    bounds;
+  * transported arrows realize `u · patch(â) · u⁻¹` on their sources;
+  * block and ambient word actions compared on one block.
+  None of the three claims Theorem 4.1 or an endpoint.
+* **Evidence.** Each landed md5 is in a record carrying `# PROBE GREEN` and
+  naming the module:
+  * `87108d00…` in `kt-norm-counting.green.0912-122819-33293`;
+  * `25d4fc7d…` in `…0912-123117-48419`;
+  * `c0c3c762…` in `…0912-123256-52739`.
+  The import closures (6, 8 and 11 modules) did not change between each record
+  base and its landing parent. Each adds one root import and deletes nothing.
+* **Flag.** None of the three commit messages cites its probe tag. They refer
+  to "the probe record named in the landing log", and no such log is on main or
+  in the campaign scratchpad. The records were found by md5 match instead.
 
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
