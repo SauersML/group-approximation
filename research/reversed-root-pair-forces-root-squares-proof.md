@@ -4,6 +4,7 @@ id: reversed-root-pair-forces-root-squares-proof
 kind: route
 title: Weyl conjugation spreads the reversed pair identity and the commutator formula kills every root square
 target: reversed-root-pair-identity-forces-root-squares-to-vanish
+requires: []
 artifacts:
   - research/artifacts/rank-four-plan-adversarial-audit-2026-09-12.md
 ---
