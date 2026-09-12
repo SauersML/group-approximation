@@ -366,7 +366,8 @@ theorem collapsedMap_connected
     intro a ha y hy
     apply N.eqvGen_of_sameCycle_facePerm
     apply (N.faceOf_eq_iff _ _).mp
-    have h := collapsed_faceOf_eq_of_mem_cycle hpairwise ha hy (List.head_mem _)
+    have h := collapsed_faceOf_eq_of_mem_cycle hpairwise ha hy
+      (List.head_mem a.2.boundary.cycle_nonempty)
     exact h
   have hstep : ∀ x y, Delta.toCombMap.Adjacent x y →
       Relation.EqvGen N.Adjacent (rep x) (rep y) := by
