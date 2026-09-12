@@ -177,13 +177,15 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 3e8c96515 eleven landings touch the campaign: the Palomar
-challenge (6ae077316) and solution (1ad7aa663), the Dynamics base layer
-(5e2c62ed1), the site-strata leaves (0bfc073cd), semidirect (T) (3d4569114), the
-Laurent pair (031156388), residual finiteness (dfa8d5e7b), the coset wreath
-algebra (2d5427380), the Dynamics upper layer (684f9d301), residual finiteness of
-the ambient group (e728fe4e7) and surjunctivity of symmetric doubles
-(53d1db321). Everything else is a WIP snapshot under `wip/bowen-chapman/`.
+As of `origin/main` 73f646f13 fourteen landings touch the campaign: the Palomar
+challenge (6ae077316), solution (1ad7aa663) and pending gate registration
+(73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
+(0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
+finiteness (dfa8d5e7b), the coset wreath algebra (2d5427380), the Dynamics upper
+layer (684f9d301), residual finiteness of the ambient group (e728fe4e7),
+surjunctivity of symmetric doubles (53d1db321), infranormality and
+non-normality (8d36818d4), and property (T), finite generation and countability
+(3e8c96515). Everything else is a WIP snapshot under `wip/bowen-chapman/`.
 
 **Stale oleans.** The shared MSI checkout's oleans were built at a7bf5d4fc
 (30 August). A private-directory green counts only if every repository
@@ -405,6 +407,46 @@ root-wired. No defect.**
   base and the landing parent, and the base is an ancestor of the landing.
 * Three root imports are added, and nothing is deleted.
 
+**(m) Landed: `BowenChapman/LaurentPairInfranormal`, 8d36818d4, root-wired. No
+defect.**
+* `peripheral_isInfranormal : IsInfranormal Peripheral` and
+  `peripheral_not_normal : ¬ Peripheral.Normal` are the pinned statements.
+* Probe evidence: the message cites probe 0912-115614-4108 at base 4d8097c38,
+  PROBE GREEN, REAL_EXIT=0. The landed md5 `5d99e13d…` is in
+  `bc-pair.green.0912-115614-4108`, which carries `# PROBE GREEN` and names the
+  module.
+* The repository import closure is `LaurentPair`, `Leavitt/ElementaryGroup` and
+  `Sofic/InfranormalCompressionPair`. None changed between the record base and
+  the landing parent, and the base is an ancestor of the landing.
+* One root import is added. The only deletion is its WIP snapshot.
+
+**(n) Landed: `BowenChapman/LaurentPairKazhdan` and `LaurentPairGeneration`,
+3e8c96515, root-wired. No defect.**
+* `ambient_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} Ambient`,
+  `peripheral_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} ↥Peripheral`,
+  `ambient_fg : Group.FG Ambient` and `instance ambient_countable : Countable
+  Ambient` are the pinned statements.
+* Probe evidence: the message cites probe 0912-115559-3074 at base 4d8097c38,
+  with "Build completed successfully (3932 jobs)", PROBE GREEN and REAL_EXIT=0.
+  Both landed md5s are in `bc-kazhdan.green.0912-115559-3074`, which carries
+  `# PROBE GREEN` and names both modules.
+* The repository import closure has 226 modules, including the EJZ property (T)
+  theorem. None changed between the record base and the landing parent, and the
+  base is an ancestor of the landing.
+* Two root imports are added. The only deletions are the two WIP snapshots.
+
+**(o) Landed: the pending Bowen–Chapman gate registration, 73f646f13. No
+defect.**
+* `Palomar/comparator-bowen-chapman.json` is added to `PALOMAR_PENDING_CONFIGS`,
+  not to `PALOMAR_CONFIGS`, which still holds only the LIX configuration.
+* The self-test gains four planted defects: a project-local import in the
+  challenge, a shared block edited on one side, a missing `_of` form, and a
+  fourth permitted axiom.
+* `scripts/check_palomar_statement_match.sh` now loops over `BowenChapman`.
+* `palomar-check.yml` builds both Bowen–Chapman libraries and runs
+  `PalomarBowenChapmanAxioms.lean`, and the job fails when that step fails.
+* Neither library is a default target. The only deletion is the WIP gate patch.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
@@ -419,11 +461,11 @@ root-wired. No defect.**
 * `git diff --no-renames --diff-filter=D BASE NEW` is empty unless a deletion is
   intended.
 
-**Still to review as they land:** `LaurentPairInfranormal` (`bc-pair`, green
-record 0912-115614-4108 exists); `LaurentPairKazhdan` and
-`LaurentPairGeneration` (`bc-kazhdan`, green record 0912-115559-3074 exists);
-`WreathWitness` and the sequential wreath consumer (`bc-wreath`); the four
-Theorem 4.1 lanes; `bc-assembly`; and the unsuffixed `bc-palomar` solution.
+**Still to review as they land:** `WreathWitness` and the sequential wreath
+consumer (`bc-wreath`); the four Theorem 4.1 lanes; `bc-assembly`; and the
+unsuffixed `bc-palomar` solution, together with its move from
+`PALOMAR_PENDING_CONFIGS` to `PALOMAR_CONFIGS` and a rerun of the
+statement-match drivers after the endpoint import.
 
 ## F5. Main was emptied and restored
 
@@ -475,7 +517,8 @@ here.** I read `bcprobe.sh` in the campaign scratchpad and
   the landed modules' import closures between the record base and the landing
   parent, as done in F4(k) and F4(l).
 * **(3) Palomar libraries build without `-DwarningAsError=true`.** For a Palomar
-  module, PROBE GREEN does not exclude a `sorry`, which there is only a warning.
+  module, PROBE GREEN does not exclude an incomplete proof, which there is only a
+  warning.
   **Audit rule:** Palomar solution landings also need the axiom driver's output.
 * **Checked, no defect:**
   * the base refuses a gutted tree;
