@@ -4642,6 +4642,7 @@ import GroupApproximation.KunThom.StepNineHammingEstimate
 import GroupApproximation.KunThom.CompressorNormalizationAssembly
 import GroupApproximation.KunThom.CentralizerNormalizationPairImprove
 import GroupApproximation.KunThom.CentralizerNormalizationClusterSystem
+import GroupApproximation.KunThom.CompressorMatching
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
