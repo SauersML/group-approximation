@@ -151,13 +151,21 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
   extracted yet.
   * Strict submultiplicativity would suffice: `rk(D_A D_B) <= theta rk(D_A) rk(D_B)` with `theta < 1`.
   * Honest tensor configurations attain `theta = 1`, so a proof must use the Leavitt relations.
-  * By L7, it must also use units outside `iota_A(U_3) x iota_B(U_3)`. w4-r4-orth has been redirected here.
+  * By L7, it must also use units outside `iota_A(U_3) x iota_B(U_3)`.
+  * **Halving does not give `theta < 1`** (w4-r4-orth, f25ccc5958; artifact
+    `rank-four-orthogonality-check-2026-09-12.md`, Section 5). Both the prepend form
+    `iota_A(Delta(g)) = iota_(A0)(g) iota_(A1)(g)` and the swap `iota_A(w)` live in the locally finite
+    group `(iota_(A0)(UT_3(R)) x iota_(A1)(UT_3(R))) x| <iota_A(w)>`. Its regular rank model has
+    `delta = 3/8` and `f(2) = delta^2`, so `theta = 1` there.
+  * **Untested sources.** Opposite roots at a child cylinder, the compressors, the nine-leaf
+    configuration, and the block root groups of `GL_2(R)` normalized by the torus
+    `iota_0(R^x) x iota_1(R^x)`.
 
 ### L6. Status
 
 | item | lane | status |
 |---|---|---|
-| (i) three relations | w4-r4-orth | placement fixed and circular (L3); redirected to L5 |
+| (i) three relations | w4-r4-orth | placement fixed and circular (L3); positivity established (row iii); redirected to L5; halving obstruction landed (f25ccc5958); finishing |
 | (ii) completeness | w4-r4-complete | not needed. Transport formula `leavitt-completeness-transport-formula-for-root-data` established and firewalled (it lives in `U_3(R)`). Opened L8 (b09f639b5d) |
 | (iii) positivity | w4-r4-corner | free for exact relations; for w4-r4-orth's placement, established in characteristic two by `opposite-unit-root-product-vanishes-only-for-trivial-models` (ef454c9283; lead spot-check of the braid step passes); only the L3 deviation terms remain open; route framing merged (b0d955566e) |
 | endpoint | w4-r4-approx | canonical form established; verifier PASS |
