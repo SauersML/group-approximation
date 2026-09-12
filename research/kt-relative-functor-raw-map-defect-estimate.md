@@ -7,6 +7,7 @@ distinct_from:
   kun-thom-sofic-centralizer-normalization: that is Kun--Thom Theorem 4.1, imported by citation; this is the finite counting behind estimate (7) in the proof of its Lemma 4.3, proved in the development for the unconditional proof of Theorem 4.1.
 artifacts:
   - GroupApproximation/KunThom/RelativeFunctorEstimate.lean
+  - GroupApproximation/KunThom/RelativeFunctorEstimateMatching.lean
 ---
 
 **ESTABLISHED, proved here.** Module `KunThom/RelativeFunctorEstimate`, namespace
@@ -34,6 +35,13 @@ Proved, with every error an explicit cardinality:
 - **Unmatched mass.** In `sourceDefect_add_targetDefect_bridge_le`, the missing
   source and range masses of the bridge from `C` to `D` realized by `q` add up to
   at most `#(q '' C ∆ D)`.
+  - Module `KunThom/RelativeFunctorEstimateMatching` restates this for the bridge
+    realized by `q⁻¹` from `D` back to `C` in the spelling `|q Q_C ∆ Q_D|` of
+    `BlockEmbedding.objectImage`.
+  - For retained objects inside whole blocks `B` and `B'`, it charges the mass to
+    `|q B ∆ B'|` plus the removed masses, through
+    `RetainedMatching.card_image_symmDiff_le`.
+  - This produces the `hbridge` hypothesis of the landed `relativeFunctor`.
 - **Aggregation.** `sum_card_conjFailure_le` says that over the disjoint blocks the
   localized failures add up to at most the ambient count
   `#{y : q (A s y) ≠ A' s (q y)}`.
