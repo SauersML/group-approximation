@@ -65,3 +65,9 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   **Exact open step:** a lower-bound mechanism on one nonsofic simple Kazhdan host that does not pass
   through finite models. For hosts with centralized self-copies, the dichotomy makes this equivalent to
   exhibiting one free action of positive Rokhlin entropy.
+- **Untested idea reported by lanes, not yet a node (gk-archive, 2026-09-12).** *gk-decoder-fiber,
+  carried by gk-rokhlin.* Apply Seward's maximal-Rokhlin-entropy criterion directly to two objects:
+  the flip-lift measure `nu` of `strict-split-pairs-carry-positive-entropy-flip-lifts`, which has
+  positive conditional entropy at the identity; and the injective equivariant image of the subshift `Y`
+  from `strict-split-decoders-have-infinitely-many-sections`. No lane has computed either one on a
+  nonsofic host.
