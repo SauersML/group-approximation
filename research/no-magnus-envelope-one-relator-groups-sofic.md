@@ -41,3 +41,12 @@ With [[amenable-envelope-magnus-piece-one-relator-sofic]] this gives
    soficity. For a Magnus window, the only natural common quotients are the
    window itself and its overgroups, so the argument is circular unless
    another sofic quotient injective on both pieces is found.
+4. **What a profinite-gluing theorem would already contain.** *A calibration,
+   not a proof.* Any theorem of the form "`S *_F B` is sofic when `S` is
+   sofic, `B` is residually finite and the free subgroup `F` is a retract of
+   `B`" applies to `B = F x Z`. There it gives soficity of
+   `S *_F (F x Z) ~= Z wr^*_(S action S/F) S`, the free-lamp wreath product of
+   `free-lamp-double-and-sofic-action-proof`, (FLD4)--(FLD6). So gluing rigid
+   pieces is at least as hard as controlling the coset actions `S action S/F`
+   of Magnus windows on their free Magnus subgroups. GKP record even the
+   amenable-stabilizer case of such coset-action soficity as open.
