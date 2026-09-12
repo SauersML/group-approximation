@@ -57,10 +57,16 @@ negative direction.
   already the case for the Bernoulli shift of `Gamma`. This is the
   vertical-constancy obstacle that Khezeli's proof for products avoids with
   horoball processes built as weak limits of factors of i.i.d.
-* **Adapt Khezeli's horoballs to extensions.** Deferred. That construction
-  uses a left-invariant weighted product metric and two commuting infinite
-  directions. In a split extension `N semidirect H` the complement does not
-  commute with `N`; no analogue is constructed here.
+* **Adapt Khezeli's horoballs to extensions.** Khezeli's weak limits of
+  factors of i.i.d. live on the weighted product metric `d + d'/c` of
+  `G x G'`, whose horoballs have infinite sections in both coordinates.
+  **Where the literal transfer dies:**
+  `fpbs-split-product-metric-needs-finite-conjugacy-orbits` shows the same
+  formula on `N semidirect H` is left-invariant and proper only when every
+  `H`-conjugacy orbit in `N` is finite. That fails for the Burnside split of
+  `fpbs-burnside-normal-closure-split`. An adaptation needs a non-product
+  left-invariant metric whose horoballs still have infinite `N`- and
+  `H`-sections, and none is constructed.
 * **Restate as factor invariance.** Under the hypothesis, the statement is
   equivalent, through `fpbs-factor-invariance-equals-fixed-price` and Theorem
   A, to cost preservation along `alpha x sigma -> alpha` for free actions
