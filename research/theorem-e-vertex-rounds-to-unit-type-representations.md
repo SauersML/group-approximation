@@ -100,3 +100,19 @@ makes the explicit Kun–Thom wreath non-hyperlinear (route
   - **Counterexample shapes killed:** truncations in some but not all variables, and single-scale
     `R_+/m_0^n`. No counterexample model was built. See
     `research/artifacts/nh-unit-type-counterexample-2026-09-12.md`.
+- **Shallow case closed (lane nh-shallow-torus-mass).** Regime (ii) is gone, pure and mixed.
+  `shallow-nonunit-root-mass-vanishes-under-vertex-rounding`.
+  - **Compressor.** `φ_A(m_0) ⊆ zR_+`, so a nonnegative compressor collapses every shallow non-unit
+    component to a constant-term character `ψ_0 = ψ ∘ ev_0` and fixes those. Off the constant terms,
+    shallow mass is at most `q·η_n`.
+  - **Torus.** `t = diag(x_1, x_1, x_1^(-2), 1, ...) ∈ EL_r(L)` moves the origin. It preserves the block
+    `S = EL_2(R_+) ⋉ R_+^2` and multiplies `R_+^2` by `x_1^3`. Relative (T) of `(S, R_+^2)`
+    (`elementary-linear-semidir-pair-relative-t`) exactifies `π_n ∘ Ad t` on that block, off trace
+    `η_n^t -> 0`. Multiplication by `x_1^3` kills `ψ_0` and is invertible on `A_u`, so constant-term
+    mass, pure or tensored with unit-type factors, is at most `η_n^t`.
+  - **The bound.** `μ_n(depth_nu = 1) <= q·η_n + η_n^t`, a finite-stage total-variation bound. With the
+    component log-scale bound,
+    `τ(1 - P_n) <= r(r-1)[(q + 1 + log_d(r(r-1)n'))·η_n + η_n^t]`.
+  - **What remains.** Under (H1), rounding is of unit type whenever `δ_n^2 log n -> 0`. Only regime (i)
+    survives: non-unit mass spread over `>= 1/η_n` d-adic depth scales at a slow rate. See
+    `research/artifacts/nh-shallow-torus-mass-2026-09-12.md`.
