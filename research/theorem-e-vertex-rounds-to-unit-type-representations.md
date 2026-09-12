@@ -51,3 +51,21 @@ makes the explicit Kun–Thom wreath non-hyperlinear (route
 - **One-compressor groups.** The analogous statement for `<Γ, t>` must fail on the sofic wreath
   models of `kt-single-compressor-canonical-lamps-do-not-exactify-actor`, since nothing in `<Γ, t>`
   inverts the `x_i`. So any proof must use the Laurent torus of `G`.
+- **(T)-exact compressor transport (lane nh-unit-type-rounding, 2eda8abf6).** Partial: three
+  established lemmas cut the non-unit mass that can survive (H1).
+  - **Transport.** `compressor-transport-exactifies-under-vertex-rounding`: property (T) of `Γ`
+    makes `π_n` and `π_n ∘ Ad A` exactly equivalent off trace `η_n = 4δ_n^2/κ^2`. Root spectra
+    are then total-variation invariant under `χ -> χ ∘ φ_A` at every finite stage.
+  - **Projection bound.** `nonunit-projection-bounded-by-root-spectral-mass`:
+    `τ(1 - P_n) <= r(r-1)·μ_n(χ|A_nu ≠ 1)`.
+  - **Depth profile.** `pure-nonunit-root-mass-is-log-scale-folner`: with
+    `depth(χ) = min{k : χ trivial on z^k R_+}` and `z = x_1⋯x_d`, the compressor divides depth by
+    `d`. So pure non-unit mass above depth one is at most `η_n(1 + log_d(r(r-1)n'))`.
+  - **What survives.** Only three regimes:
+    - (i) pure non-unit mass spread over `>= 1/η_n` d-adic depth scales, possible only when
+      `δ_n^2 log n` does not tend to 0; this is the Følner escape along the cyclic compressor;
+    - (ii) shallow mass, characters of `R_+/(z)`, killed in the ultralimit by torus invariance but
+      only weak*;
+    - (iii) mixed constituents, nontrivial on both `A_u` and `A_nu`, which depth cannot see.
+  - **Not done.** No model realizes (i)–(iii), and nothing here is reviewed. See
+    `research/artifacts/nh-unit-type-rounding-2026-09-12.md`.
