@@ -71,7 +71,28 @@ The two families searched are built to avoid all three:
 
 ## Results
 
-Pending batch 1: `v` (2,2), (2,3), (3,3) and `eld` (1,1), (1,2), (2,1).
+`(ra, rb)` gives the ball radii of `A` and `B`. The sizes are `|B_1(V)| = 8`,
+`|B_2(V)| = 44`, `|B_3(V)| = 211`, `|B_1(eld)| = 35` and `|B_2(eld)| = 933`.
+
+| family | (ra, rb) | mode | AND vars | status | solve time |
+|---|---|---|---|---|---|
+| v | (1,1) | strict clause | 64 | UNSAT | 0.0 s |
+| v | (2,2) | strict clause | 1,936 | UNSAT | 2.7 s |
+| v | (2,3) | strict clause | 9,284 | UNSAT | 147 s |
+| eld | (1,1) | strict clause | 1,225 | UNSAT | 0.08 s |
+| eld | (1,2) | strict clause | 32,655 | UNSAT | 238 s |
+| v | (2,2) | `pi(beta) = s0` | 1,936 | UNSAT: `s0` outside the span of `pi(B)` | trivial |
+| v | (2,2) | `pi(alpha) = t0` | 1,936 | UNSAT: `t0` outside the span of `pi(A)` | trivial |
+| eld | (1,1) | `pi(beta) = s0` / `pi(alpha) = t0` | 1,225 | UNSAT: target outside the span | trivial |
+| eld | (1,2) | `pi(beta) = s0` | 32,655 | UNSAT | 0.0 s |
+| eld | (2,1) | `pi(alpha) = t0` | 32,655 | UNSAT | 0.0 s |
+
+Running: `v` (3,3) and `eld` (2,1) in strict mode (acn112); batch 3 (sbatch
+`kdf-sat-b3`) in target mode, `eld` (2,2) both ways and `v` (3,4)/(4,3).
+
+The target mode is far cheaper. The evaluation rows plus the singleton-cell unit
+clauses settle the radius-2 `eld` instances at once, so the larger supports go
+through target mode first.
 
 ## Trust surface
 
