@@ -148,8 +148,9 @@ theorem insertChord {s t : List D.map.Dart} {du dv : D.map.Dart}
       EdgeInsertion.embed D.map (D.map.facePerm y) := by
     intro y hy
     have hfy := D.facePerm_not_mem hy
-    rw [EdgeInsertion.facePerm_embed hab, if_neg (fun h => hfy (h ▸ hdu)),
-      if_neg (fun h => hfy (h ▸ hbmem))]
+    have h1 : D.map.facePerm y ≠ du := fun h => hfy (by rw [h]; exact hdu)
+    have h2 : D.map.facePerm y ≠ b := fun h => hfy (by rw [h]; exact hbmem)
+    rw [EdgeInsertion.facePerm_embed hab, if_neg h1, if_neg h2]
   have hinner_pow : ∀ y, y ∉ D.cyc → ∀ k : ℕ, (N.facePerm ^ k) (EdgeInsertion.embed D.map y) =
       EdgeInsertion.embed D.map ((D.map.facePerm ^ k) y) := by
     intro y hy k
@@ -183,7 +184,10 @@ theorem insertChord {s t : List D.map.Dart} {du dv : D.map.Dart}
     · refine ⟨by rw [perm_pow_three_apply, hstep_n, hstep_u, hstep_v], ?_⟩
       rw [perm_pow_two_apply, hstep_n, hstep_u, hlab_n, hlab_u, hlab_v]
       exact TriangleComplex.tri_rotate (TriangleComplex.tri_rotate htri)
-    · exact absurd (by rw [hL]; simp) hx
+    · have hmem : (some none : EdgeInsertion.Dart D.map) ∈ L := by
+        rw [hL]
+        exact List.mem_append.mpr (Or.inr List.mem_cons_self)
+      exact absurd hmem hx
     · by_cases hyu : y = du
       · rw [hyu]
         show (N.facePerm ^ 3) (EdgeInsertion.embed D.map du) = EdgeInsertion.embed D.map du ∧
