@@ -227,13 +227,17 @@ theorem exists_cellFactors_of_planar {G : Type u} [Group G] {Lambda : Type w} :
   obtain ⟨factors₁, hfactors₁⟩ : ∃ L : List (M.Face × G), L = factorsN.map fun y =>
       (M.faceOf (EdgeDeletion.value M a (Quotient.out y.1)),
         (label a).val * y.2 * ((label a).val)⁻¹) := ⟨_, rfl⟩
+  have hmapfst := map_fst_map_conj (fun F : (EdgeDeletion.toCombMap M a).Face =>
+    M.faceOf (EdgeDeletion.value M a (Quotient.out F))) (label a).val factorsN
+  have hmapsnd := prod_map_snd_map_conj (fun F : (EdgeDeletion.toCombMap M a).Face =>
+    M.faceOf (EdgeDeletion.value M a (Quotient.out F))) (label a).val factorsN
   have hnd₁ : (factors₁.map Prod.fst).Nodup := by
-    rw [hfactors₁, map_fst_map_conj]
+    rw [hfactors₁, hmapfst]
     exact List.Nodup.map_on (fun F hF F' hF' heq =>
       hφinj F ((hiffN F).mp hF) F' ((hiffN F').mp hF') heq) hndN
   have hiff₁ : ∀ f, f ∈ factors₁.map Prod.fst ↔ (f ∈ relFaces ∧ f ≠ M.faceOf (M.alpha a)) := by
     intro f
-    rw [hfactors₁, map_fst_map_conj]
+    rw [hfactors₁, hmapfst]
     constructor
     · intro hf
       obtain ⟨F, hF, rfl⟩ := List.mem_map.mp hf
@@ -250,7 +254,7 @@ theorem exists_cellFactors_of_planar {G : Type u} [Group G] {Lambda : Type w} :
   have hprod₁ : (factors₁.map Prod.snd).prod = (label a).val *
       (RelLetter.listVal (C.xs.map label) * RelLetter.listVal (C.ys.map label)) *
         ((label a).val)⁻¹ := by
-    rw [hfactors₁, prod_map_snd_map_conj, hprodN']
+    rw [hfactors₁, hmapsnd, hprodN']
   by_cases hgrel : M.faceOf (M.alpha a) ∈ relFaces
   · refine hrotfac (factors₁ ++ [(M.faceOf (M.alpha a),
       (label a).val * ((label a).val⁻¹ * RelLetter.listVal (C.ys.map label))⁻¹ *
