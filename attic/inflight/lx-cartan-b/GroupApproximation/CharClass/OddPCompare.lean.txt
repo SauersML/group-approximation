@@ -173,11 +173,11 @@ theorem tupEval_cartanFun_tupT_sq (hp : Odd p) (k : ℕ) (z : tupMod (ZMod p) X 
         rw [tupTot_tupRot, htot]
       have e1 : p * (q + q') - q = 2 * m * q + p * q' := Nat.sub_eq_of_eq_add (by rw [hm]; ring)
       have e2 : p * (q + q') - q' = 2 * m * q' + p * q := Nat.sub_eq_of_eq_add (by rw [hm]; ring)
-      have hev : Even (rotExp X (tupRotIdx X t).1 + rotExp X t.1) := by
-        show Even (tupDeg (tupRot t.1) 0 * (∑ j : Fin (2 * p), (tupRot t.1 j).1 - tupDeg (tupRot t.1) 0)
-          + tupDeg t.1 0 * (∑ j : Fin (2 * p), (t.1 j).1 - tupDeg t.1 0))
+      have hev : Even (rotExp X t.1 + rotExp X (tupRotIdx X t).1) := by
+        show Even (tupDeg t.1 0 * (∑ j : Fin (2 * p), (t.1 j).1 - tupDeg t.1 0)
+          + tupDeg (tupRot t.1) 0 * (∑ j : Fin (2 * p), (tupRot t.1 j).1 - tupDeg (tupRot t.1) 0))
         rw [hd0, hd1, htot, htot', e1, e2, hm]
-        exact ⟨m * q' * q' + m * q * q + (2 * m + 1) * q * q', by ring⟩
+        exact ⟨m * q * q + m * q' * q' + (2 * m + 1) * q * q', by ring⟩
       rw [← mul_assoc, ← pow_add, hev.neg_one_pow, one_mul]
   exact LinearMap.congr_fun hL z
 
@@ -206,9 +206,8 @@ theorem tupEval_cartanFun_galAlgHomP (hp : Odd p) (k : ℕ) (c : GroupRingZMod p
     induction n generalizing z with
     | zero => rw [pow_zero, Module.End.one_apply]
     | succ n ih => rw [pow_succ', Module.End.mul_apply, tupEval_cartanFun_tupT_sq p q q' u v hp, ih]
-  | hadd c₁ c₂ h₁ h₂ => rw [map_add, LinearMap.add_apply, map_add, h₁, h₂, map_add, add_mul]
-  | hsmul a c h =>
-    rw [map_smul, LinearMap.smul_apply, map_smul, h, map_smul, smul_eq_mul, smul_eq_mul, mul_assoc]
+  | hadd c₁ c₂ h₁ h₂ => simp only [map_add, LinearMap.add_apply, h₁, h₂, add_mul]
+  | hsmul a c h => simp only [map_smul, LinearMap.smul_apply, h, smul_eq_mul, mul_assoc]
 
 omit [Fact p.Prime] in
 theorem grAug_altCoeff (i : ℕ) : grAug p (altCoeff (grS p) (grNorm p) i) = 0 := by

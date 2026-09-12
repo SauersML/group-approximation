@@ -121,6 +121,31 @@ theorem two_mul_sum_range_lt (m : ℕ) :
       ring
 
 omit [NeZero p] [Fact p.Prime] in
+/-- One term of the riffle's Koszul exponent, read on slot indices. -/
+def riffleTerm (a b : ℕ) : ℕ :=
+  if a < b ∧ riffleSrc p b < riffleSrc p a then
+    (if a % 2 = 0 then q else q') * (if b % 2 = 0 then q else q') else 0
+
+omit [NeZero p] [Fact p.Prime] in
+/-- On the four parity classes of a pair of slots, only (odd, even) with `l < m` is out of order. -/
+theorem riffleTerm_block (l m : ℕ) (hl : l < p) (hm : m < p) :
+    riffleTerm p q q' (2 * l) (2 * m) + riffleTerm p q q' (2 * l) (2 * m + 1)
+        + (riffleTerm p q q' (2 * l + 1) (2 * m) + riffleTerm p q q' (2 * l + 1) (2 * m + 1))
+      = q' * q * (if l < m then 1 else 0) := by
+  have e1 : riffleSrc p (2 * l) = l := by unfold riffleSrc; rw [if_pos (by omega)]; omega
+  have e2 : riffleSrc p (2 * l + 1) = p + l := by unfold riffleSrc; rw [if_neg (by omega)]; omega
+  have e3 : riffleSrc p (2 * m) = m := by unfold riffleSrc; rw [if_pos (by omega)]; omega
+  have e4 : riffleSrc p (2 * m + 1) = p + m := by unfold riffleSrc; rw [if_neg (by omega)]; omega
+  unfold riffleTerm
+  rw [e1, e2, e3, e4, if_neg (by omega : ¬ (2 * l < 2 * m ∧ m < l)),
+    if_neg (by omega : ¬ (2 * l < 2 * m + 1 ∧ p + m < l)),
+    if_neg (by omega : ¬ (2 * l + 1 < 2 * m + 1 ∧ p + m < p + l)), zero_add, add_zero, zero_add]
+  by_cases hlm : l < m
+  · rw [if_pos (by omega : 2 * l + 1 < 2 * m ∧ m < p + l), if_pos hlm,
+      if_neg (by omega : ¬ (2 * l + 1) % 2 = 0), if_pos (by omega : (2 * m) % 2 = 0), mul_one]
+  · rw [if_neg (by omega : ¬ (2 * l + 1 < 2 * m ∧ m < p + l)), if_neg hlm, mul_zero]
+
+omit [NeZero p] [Fact p.Prime] in
 /-- **The Koszul exponent of the riffle** against the slot degrees `q, q', q, q', …`: only an odd new
 slot before an even one is out of order, and each such pair contributes `q' q`. -/
 theorem riffle_exp_eq :
@@ -128,40 +153,20 @@ theorem riffle_exp_eq :
         if i < j ∧ riffleEquiv p j < riffleEquiv p i then cartanDeg p q q' i * cartanDeg p q q' j
         else 0)
       = q' * q * ∑ a ∈ Finset.range p, ∑ b ∈ Finset.range p, (if a < b then 1 else 0) := by
-  let G : ℕ → ℕ → ℕ := fun a b =>
-    if a < b ∧ riffleSrc p b < riffleSrc p a then
-      (if a % 2 = 0 then q else q') * (if b % 2 = 0 then q else q') else 0
   have hG : ∀ i j : Fin (2 * p),
       (if i < j ∧ riffleEquiv p j < riffleEquiv p i then cartanDeg p q q' i * cartanDeg p q q' j
-        else 0) = G i.val j.val := by
+        else 0) = riffleTerm p q q' i.val j.val := by
     intro i j
-    simp only [G, Fin.lt_def, riffleEquiv_val, cartanDeg]
+    simp only [riffleTerm, Fin.lt_def, riffleEquiv_val, cartanDeg]
   rw [Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => hG i j]
-  rw [Finset.sum_congr rfl fun i _ => Fin.sum_univ_eq_sum_range (fun b => G i.val b) (2 * p),
-    Fin.sum_univ_eq_sum_range (fun a => ∑ b ∈ Finset.range (2 * p), G a b) (2 * p),
+  rw [Finset.sum_congr rfl fun i _ =>
+      Fin.sum_univ_eq_sum_range (fun b => riffleTerm p q q' i.val b) (2 * p),
+    Fin.sum_univ_eq_sum_range (fun a => ∑ b ∈ Finset.range (2 * p), riffleTerm p q q' a b) (2 * p),
     sum_range_two_mul, Finset.mul_sum]
   refine Finset.sum_congr rfl fun l hl => ?_
-  have hlp := Finset.mem_range.mp hl
   rw [sum_range_two_mul, sum_range_two_mul, ← Finset.sum_add_distrib, Finset.mul_sum]
   refine Finset.sum_congr rfl fun m hm => ?_
-  have hmp := Finset.mem_range.mp hm
-  have e1 : riffleSrc p (2 * l) = l := by unfold riffleSrc; rw [if_pos (by omega)]; omega
-  have e2 : riffleSrc p (2 * l + 1) = p + l := by unfold riffleSrc; rw [if_neg (by omega)]; omega
-  have e3 : riffleSrc p (2 * m) = m := by unfold riffleSrc; rw [if_pos (by omega)]; omega
-  have e4 : riffleSrc p (2 * m + 1) = p + m := by unfold riffleSrc; rw [if_neg (by omega)]; omega
-  simp only [G, e1, e2, e3, e4]
-  have p1 : (2 * l) % 2 = 0 := by omega
-  have p2 : ¬ (2 * l + 1) % 2 = 0 := by omega
-  have p3 : (2 * m) % 2 = 0 := by omega
-  have p4 : ¬ (2 * m + 1) % 2 = 0 := by omega
-  rw [if_neg (by omega : ¬ (2 * l < 2 * m ∧ m < l)), if_neg (by omega : ¬ (2 * l < 2 * m + 1 ∧ p + m < l)),
-    if_neg (by omega : ¬ (2 * l + 1 < 2 * m + 1 ∧ p + m < p + l)), if_pos p2.elim, if_pos p3,
-    if_neg p2, if_neg p4]
-  by_cases hlm : l < m
-  · rw [if_pos (by omega : 2 * l + 1 < 2 * m ∧ m < p + l), if_pos hlm]
-    ring
-  · rw [if_neg (by omega : ¬ (2 * l + 1 < 2 * m ∧ m < p + l)), if_neg hlm]
-    ring
+  exact riffleTerm_block p q q' l m (Finset.mem_range.mp hl) (Finset.mem_range.mp hm)
 
 omit [NeZero p] [Fact p.Prime] in
 /-- The riffle sign, in closed form. -/
@@ -483,7 +488,7 @@ theorem ptotOf_mul (hp : Odd p)
     ext ab
     simp only [Finset.mem_filter, Finset.mem_product, Finset.mem_range, Finset.mem_antidiagonal]
     omega
-  rw [hfib]
+  simp only [hfib]
   split_ifs with hev
   · rw [totalClass_oddD_cup p q q' u v hp hu hv i hiK, ← Finset.sum_filter]
     refine Finset.sum_congr rfl fun ab hab => ?_
