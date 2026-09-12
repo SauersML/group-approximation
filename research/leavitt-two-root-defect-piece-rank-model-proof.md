@@ -10,6 +10,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/two-root-defect-piece-and-fd-representations-2026-09-12.md
   - research/artifacts/rank-row-compression-audit-2026-09-12.md
 ---
@@ -32,3 +33,5 @@ Artifact Section 1, Theorem 1.2 and Corollary 1.3.
    `iota_0(R^x)` (`binary-leavitt-unit-group-is-simple`). Since `iota_0 o iota_P' = iota_(0P')`,
    its corner products are `q N^(0P')_23 N^(0P')_12 q`, which corner locality makes nonzero. A
    conjugating compressor then has `q sigma(u) q != 0`, because `P = qP`.
+
+*Second independent derivation by `gk-vf-linear` (2026-09-12), Section 52 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. `Gamma = iota_0(R^x)` equals the nine-leaf `EL_alpha(R)` as a set, so globality applies in degree `(1,0)`. The assigned verifier remains `w3-vf-linear`.*

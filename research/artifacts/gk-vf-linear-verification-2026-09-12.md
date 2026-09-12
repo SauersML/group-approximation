@@ -1840,3 +1840,39 @@ The assigned verifier of this lane is `w3-vf-linear`; this is a second check.
   - The action is regular, so `(x - 1)(y - 1)` acts as a nonzero element of `F_2[V_4]` with four distinct group terms.
 - **Conclusion.** Conjugacy, commutation, `N^2 = 0` and equal displacement do not force `rk(N_0 N_1) = 0`. The dead end is
   recorded correctly on `thompson-v-has-no-nontrivial-f2-rank-model`.
+
+## 52. The two-root defect piece carries a nontrivial rank model (lane w3-gate-bridge-b): PASS, second independent derivation
+
+Items checked: `leavitt-two-root-defect-piece-carries-a-nontrivial-rank-model`, route `leavitt-two-root-defect-piece-rank-model-proof`,
+and `two-root-defect-piece-and-fd-representations-2026-09-12.md` Section 1. The assigned verifier is `w3-vf-linear`; this is a
+second derivation from the rank-gate family verifier.
+
+- **`Gamma = iota_0(R^x)` is the nine-leaf `EL_alpha(R)`.**
+  - `alpha = (000, 001, 01)` partitions `[0]`.
+  - `EL_alpha(R) = GL_alpha(R)`, by GL = EL over the corner `e_0 R e_0 ~= M_3(R)`.
+  - That group is the whole unit group of the corner, embedded as `h + (1 - e_0)`, which is exactly `iota_0(R^x)`.
+  - So the globality node `leavitt-rank-models-kazhdan-fixed-ideals-are-global` applies, in degree `(1,0)`. `Gamma` is
+    finitely generated, so audit Lemma 1 gives `Fix_r(sigma(Gamma)) = eM`.
+- **Commutation.** `n = x' - 1 = e_1000 n e_1000`, and `e_1000 e_0 = 0`. So `n(S[0]hT[0] + 1 - e_0) = n` and
+  `(S[0]hT[0] + 1 - e_0)n = n`, and `x'`, `y'` commute with `Gamma`. Then `P` commutes with `sigma(Gamma)`, and `PM = qM` is
+  invariant.
+- **Lemma 1.1.**
+  - `sigma(s) q` lies in `qM`, so `sigma(s) q = q sigma(s) q`.
+  - Hence `q sigma(s) q sigma(t) q = q sigma(st) q`, and `tau_q(s^-1) tau_q(s) = q`.
+- **Theorem 1.2(2), the fixed case.**
+  - Triviality of `tau_Q` gives `sigma(gamma) q = q`, so `qM <= Fix_r(sigma(Gamma)) = fM`, with `sigma(g) f = f` for all
+    `g`. So `P = fP`.
+  - `(1-f) sigma(g) f = 0` makes `sigma_W` multiplicative.
+  - `N'_23 (1-f) = N'_23` gives corner product `(1-f) f P (1-f) = 0`. Corner locality (Section 47), applied to `sigma_W` on
+    the rank ultraproduct `(1-f)M(1-f)`, makes `sigma_W` trivial.
+  - Then `sigma(g) = 1 + f sigma(g)(1-f)`. The products `ab` vanish in `fM(1-f)`, so the image is abelian, and perfection
+    of `R^x` finishes.
+- **Injectivity.** A nontrivial `tau_Q o iota_0` is injective by simplicity. It has normalized rank `rk(P) > 0`, since `P != 0`
+  by corner locality.
+- **Theorem 1.2(3).**
+  - `iota_0 o iota_P' = iota_(0P')`, because `S[0]S[P'] = S[0P']` and `T[P']T[0] = T[0P']`.
+  - `(sigma(gamma) - 1) q = q (sigma(gamma) - 1) q` turns the model's corner product into `q N^(0P')_23 N^(0P')_12 q`, which
+    corner locality makes nonzero.
+- **Corollary 1.3.** `q sigma(u) P sigma(u)^-1 q != 0` and `P = qP`, so `q sigma(u) q != 0`.
+- **Remark 1.4.** The nested defect pieces lie inside `Q` because of the left factor `q`. The descent has no uniform bound,
+  and the artifact says so accurately.
