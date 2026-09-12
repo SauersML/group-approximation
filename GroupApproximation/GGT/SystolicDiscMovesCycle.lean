@@ -216,7 +216,7 @@ theorem attachPendant {s t : List D.map.Dart} (hcyc : D.cyc = s ++ b :: t)
       map_label_flatMap_of_not_mem hbs, pendant_map_label_self, map_label_flatMap_of_not_mem hbt,
       List.append_assoc]
   rw [hmap]
-  simp only [List.append_assoc, List.cons_append, List.singleton_append, List.nil_append]
+  simp only [List.append_assoc, List.cons_append, List.nil_append]
 
 /-- **Attaching a pendant edge at the closing corner.** -/
 theorem attachPendant_end (hv : X.G.Adj (D.lab (D.cyc.head D.isFaceCycle.ne_nil)) v) :
@@ -230,32 +230,31 @@ theorem attachPendant_end (hv : X.G.Adj (D.lab (D.cyc.head D.isFaceCycle.ne_nil)
     simp only [List.head?_cons] at this
     exact Option.some.inj ((List.head?_eq_some_head D.isFaceCycle.ne_nil).symm.trans this)
   rw [hhead] at hv ⊢
-  let P := pendant hb hv
-  have hPcyc : P.cyc = some none :: none :: (some (some b) :: t.flatMap (PendantEdge.expand D.map b)) := by
-    show D.cyc.flatMap (PendantEdge.expand D.map b) = _
-    rw [hcyc, List.flatMap_cons]
-    have h : PendantEdge.expand D.map b b = [some none, none, some (some b)] := if_pos rfl
-    rw [h]
-    rfl
-  let cyc' := P.cyc.rotate 2
-  have hrot : cyc' = (some (some b) :: t.flatMap (PendantEdge.expand D.map b)) ++ [some none, none] := by
-    show P.cyc.rotate 2 = _
-    rw [hPcyc]
-    exact List.rotate_append_length_eq [some none, none] _
   have hnd := D.isFaceCycle.nodup
   rw [hcyc] at hnd
   have hbt : b ∉ t := (List.nodup_cons.mp hnd).1
-  refine ⟨{ P with
-    cyc := cyc'
-    isFaceCycle := P.isFaceCycle.rotate 2
-    tri := fun x hx => P.tri x (fun hm => hx (List.mem_rotate.mpr hm)) }, ?_⟩
-  show cyc'.map (pendantLab D b v) ++ [pendantLab D b v (cyc'.head _)] = _
-  have hhd : cyc'.head (P.isFaceCycle.rotate 2).ne_nil = some (some b) := by
-    have := congrArg (fun l : List (EdgeInsertion.Dart D.map) => l.head?) hrot
-    simp only [List.cons_append, List.head?_cons] at this
-    exact Option.some.inj ((List.head?_eq_some_head _).symm.trans this)
-  rw [hhd, hrot, hcyc, List.map_append, List.map_cons, map_label_flatMap_of_not_mem hbt,
-    List.map_cons, List.map_cons, List.map_nil]
+  have hexp : PendantEdge.expand D.map b b = [some none, none, some (some b)] := if_pos rfl
+  let L : List (EdgeInsertion.Dart D.map) := (D.cyc.flatMap (PendantEdge.expand D.map b)).rotate 2
+  have hL : L = (some (some b) :: t.flatMap (PendantEdge.expand D.map b)) ++ [some none, none] := by
+    show (D.cyc.flatMap (PendantEdge.expand D.map b)).rotate 2 = _
+    rw [hcyc, List.flatMap_cons, hexp]
+    exact List.rotate_append_length_eq [some none, none] _
+  have hLcyc : (PendantEdge.toCombMap D.map b).IsFaceCycle L := (pendant hb hv).isFaceCycle.rotate 2
+  refine ⟨{ map := PendantEdge.toCombMap D.map b
+            planar := PendantEdge.planar D.map b D.planar
+            lab := pendantLab D b v
+            lab_sigma := pendantLab_sigma
+            adj := pendantLab_adj hv
+            cyc := L
+            isFaceCycle := hLcyc
+            tri := fun x hx => (pendant hb hv).tri x (fun hm => hx (List.mem_rotate.mpr hm)) }, ?_⟩
+  show L.map (pendantLab D b v) ++ [pendantLab D b v (L.head hLcyc.ne_nil)] = _
+  have hhd : L.head hLcyc.ne_nil = some (some b) := by
+    have h1 := List.head?_eq_some_head hLcyc.ne_nil
+    have h2 : L.head? = some (some (some b)) := by rw [hL]; rfl
+    exact Option.some.inj (h1.symm.trans h2)
+  rw [hhd, hL, hcyc, List.map_append, List.map_cons, map_label_flatMap_of_not_mem hbt,
+    List.map_cons, List.map_cons, List.map_nil, List.append_assoc]
   rfl
 
 end Pendant
