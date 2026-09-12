@@ -44,26 +44,13 @@ structure TypedPoints (X : Systolic.TriangleComplex V) (H : Fin 3 → Subgroup G
 
 /-! ## Types along a link cycle -/
 
-theorem types_cycle3 : ∀ i t₀ t₁ t₂ : Fin 3, i ≠ t₀ → t₀ ≠ t₁ → i ≠ t₁ → t₁ ≠ t₂ → i ≠ t₂ →
-    t₂ = t₀ := by
-  decide +kernel
-
 theorem types_cycle4 : ∀ i t₀ t₁ t₂ t₃ : Fin 3, i ≠ t₀ → t₀ ≠ t₁ → i ≠ t₁ → t₁ ≠ t₂ →
     i ≠ t₂ → t₂ ≠ t₃ → i ≠ t₃ → t₃ ≠ t₀ → t₂ = t₀ ∧ t₃ = t₁ := by
-  decide +kernel
-
-theorem types_cycle5 : ∀ i t₀ t₁ t₂ t₃ t₄ : Fin 3, i ≠ t₀ → t₀ ≠ t₁ → i ≠ t₁ → t₁ ≠ t₂ →
-    i ≠ t₂ → t₂ ≠ t₃ → i ≠ t₃ → t₃ ≠ t₄ → i ≠ t₄ → t₄ = t₀ := by
   decide +kernel
 
 theorem types_cycle6 : ∀ i t₀ t₁ t₂ t₃ t₄ t₅ : Fin 3, i ≠ t₀ → t₀ ≠ t₁ → i ≠ t₁ → t₁ ≠ t₂ →
     i ≠ t₂ → t₂ ≠ t₃ → i ≠ t₃ → t₃ ≠ t₄ → i ≠ t₄ → t₄ ≠ t₅ → i ≠ t₅ → t₅ ≠ t₀ →
     t₂ = t₀ ∧ t₄ = t₀ ∧ t₃ = t₁ ∧ t₅ = t₁ := by
-  decide +kernel
-
-theorem types_cycle7 : ∀ i t₀ t₁ t₂ t₃ t₄ t₅ t₆ : Fin 3, i ≠ t₀ → t₀ ≠ t₁ → i ≠ t₁ →
-    t₁ ≠ t₂ → i ≠ t₂ → t₂ ≠ t₃ → i ≠ t₃ → t₃ ≠ t₄ → i ≠ t₄ → t₄ ≠ t₅ → i ≠ t₅ → t₅ ≠ t₆ →
-    i ≠ t₆ → t₆ = t₀ := by
   decide +kernel
 
 theorem types_ab : ∀ i t₀ t₁ : Fin 3, i ≠ t₀ → t₀ ≠ t₁ → i ≠ t₁ →
@@ -104,7 +91,7 @@ theorem linkCycles_of_typedPoints {X : Systolic.TriangleComplex V} {H : Fin 3 �
     obtain ⟨hv0, h01, hv1, -⟩ := T.tri T01
     obtain ⟨-, h12, hv2, -⟩ := T.tri T12
     obtain ⟨-, h20, -, -⟩ := T.tri T20
-    exact h20 (types_cycle3 _ _ _ _ hv0 h01 hv1 h12 hv2)
+    exact h20 (types_cycle4 _ _ _ _ _ hv0 h01 hv1 h12 hv2 h12.symm hv1 h01.symm).1
   · -- length four: an alternating relation of length four
     have hch' : List.IsChain (X.Tri v) [x₀, x₁, x₂, x₃, x₀] := by simpa using hch
     simp only [List.isChain_cons_cons, List.isChain_singleton, and_true] at hch'
@@ -152,7 +139,9 @@ theorem linkCycles_of_typedPoints {X : Systolic.TriangleComplex V} {H : Fin 3 �
     obtain ⟨-, h23, hv3, -⟩ := T.tri T23
     obtain ⟨-, h34, hv4, -⟩ := T.tri T34
     obtain ⟨-, h40, -, -⟩ := T.tri T40
-    exact h40 (types_cycle5 _ _ _ _ _ _ hv0 h01 hv1 h12 hv2 h23 hv3 h34 hv4)
+    have e2 := (types_cycle4 _ _ _ _ _ hv0 h01 hv1 h12 hv2 h12.symm hv1 h01.symm).1
+    have e4 := (types_cycle4 _ _ _ _ _ hv2 h23 hv3 h34 hv4 h34.symm hv3 h23.symm).1
+    exact h40 (e4.trans e2)
   · -- length six: an alternating relation of length six
     have hch' : List.IsChain (X.Tri v) [x₀, x₁, x₂, x₃, x₄, x₅, x₀] := by simpa using hch
     simp only [List.isChain_cons_cons, List.isChain_singleton, and_true] at hch'
@@ -217,7 +206,10 @@ theorem linkCycles_of_typedPoints {X : Systolic.TriangleComplex V} {H : Fin 3 �
     obtain ⟨-, h45, hv5, -⟩ := T.tri T45
     obtain ⟨-, h56, hv6, -⟩ := T.tri T56
     obtain ⟨-, h60, -, -⟩ := T.tri T60
-    exact h60 (types_cycle7 _ _ _ _ _ _ _ _ hv0 h01 hv1 h12 hv2 h23 hv3 h34 hv4 h45 hv5 h56 hv6)
+    have e2 := (types_cycle4 _ _ _ _ _ hv0 h01 hv1 h12 hv2 h12.symm hv1 h01.symm).1
+    have e4 := (types_cycle4 _ _ _ _ _ hv2 h23 hv3 h34 hv4 h34.symm hv3 h23.symm).1
+    have e6 := (types_cycle4 _ _ _ _ _ hv4 h45 hv5 h56 hv6 h56.symm hv5 h45.symm).1
+    exact h60 (e6.trans (e4.trans e2))
   · -- length at least eight exceeds every girth bound
     simp only [List.length_cons] at hlt
     have := hle (T.type v)
