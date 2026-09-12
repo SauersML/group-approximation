@@ -162,3 +162,133 @@ conjugate, so they have the same order and are equal. Hence `K t Gamma t^(-1) = 
 - **Theorem E pair.** `Gamma = EL_r(F_q[x_1..x_d])` lies in `N = EL_r(F_q[x_1^(+-1)..x_d^(+-1)])`, which is
   normal in `G = N semidirect SL_d(Z)` with residually finite quotient `SL_d(Z)`. So `N` is closed and
   `Gammabar <= N`, and `G/Gammabar` is infinite.
+
+## 3. Theorem B: strict pairs read invisible adjacency
+
+Throughout, `G` is surjunctive. `(tau, sigma)` is a strict pair over `E_S`:
+- `tau` has memory `M` and `sigma` has memory `S_sigma`, both containing `1`;
+- `sigma tau = id`;
+- `p` is a Garden of Eden pattern on a finite `Omega`.
+
+Put `F = {1} union M union S_sigma union Omega union S_sigma M union Omega M`, as in
+`strict-pairs-transfer-to-table-realizations`. Let
+
+```text
+R = union of R(a,m)  over  (a,m) in (S_sigma union Omega) x M,
+```
+
+the finite set of site pairs read by the products the transfer theorem needs.
+
+**Definition.** A read edge `{x,y}` in `S` is **K-clean** if:
+- `K x != K y`, and
+- no read non-edge `{x',y'}` in `R` with `K x' != K y'` has `{K x', K y'}` in the `G`-orbit of `{K x, K y}`.
+
+**Cleanliness passes to smaller K.** Let `K' <= K`. If `K' x = K' y` then `K x = K y`. If
+`{K' x', K' y'} = g {K' x, K' y}`, applying `K'\X -> K\X` gives `{K x', K y'} = g {K x, K y}`. So a
+K-clean edge is K'-clean.
+
+**Theorem B (orbital form).** Some read edge is K-clean for no `K`.
+
+*Proof.* Suppose each read edge `E` is `K_E`-clean. Put `K = intersection_E K_E`, which is of finite index
+and normal. Every read edge is K-clean.
+- **The graph on the quotient.** On `K\X` let `Sbar` be the union of the `G`-orbits of `{K x, K y}` over
+  read edges. These are pairs of distinct points, so `Sbar` is a `G`-invariant graph.
+- **The pullback.** Let `S'` be its pullback to `X`, with no edges inside `K`-fibres. `S'` is a finite
+  pullback.
+- **Agreement on `R`.** Read edges lie in `S'`. A read non-edge either has both ends in one fibre, or its
+  image is outside `Sbar` by cleanliness. So `b_(S') = b_S` on `R`.
+- **Transfer.** By Theorem A, Corollary A.1, `E_(S')` is surjunctive. By Consequence 0.1 the identity on
+  coordinates `F -> E_(S')` satisfies `phi(sm) = phi(s) phi(m)` and `phi(wm) = phi(w) phi(m)`, and it is
+  injective. The transfer theorem makes `E_(S')` carry a strict pair. Contradiction. QED
+
+**Coset form.** Let `X = G/Gamma`, and give a read pair `{a Gamma, b Gamma}` the orbital `g = a^(-1) b`,
+defined up to `Gamma g Gamma` and inversion. By Lemma 2.1:
+- `K x = K y` exactly when `g in K Gamma`;
+- the image orbits coincide exactly when `g' in K Gamma g^(+-1) Gamma`, using `K Gamma g K Gamma = K Gamma g Gamma`.
+
+As `K` shrinks, each failure condition shrinks. With finitely many conditions, some single condition fails
+for every `K`. So some read edge `g` satisfies one of:
+
+```text
+g in Gammabar,     or     g' in cl(Gamma g Gamma)  union  cl(Gamma g^(-1) Gamma)  for a read non-edge g',
+```
+
+where `cl(A) = intersection_K K A` is the profinite closure.
+
+**Complete graph.** There are no non-edges between distinct sites, so some read pair is profinitely
+inseparable. Under Lemma 2.2 it lies in one fibre of `G/Gamma -> G/Gammabar`.
+
+**Theorem B' (holonomy form, complete graph).** Let `P` be the finite graph on the read sites with a move
+`y -> g_a y` for every `a in S_sigma union Omega`, `m in M` and `y in supp u_m`. Moves are reversible, with
+label `g_a^(-1)`. In a component with base site `x_0`, let `Hol` be the group of products of labels around
+closed paths at `x_0`; it lies in `Stab(x_0)`. Every site of the component is `w x_0` for a path product `w`.
+
+Then some component contains distinct sites `w x_0 != w' x_0` with `w^(-1) w' in cl(Hol)`.
+
+*Proof.* Suppose not.
+- **The target set.** Let `X'` be the disjoint union over components `i` of `G / cl(Hol_i)`.
+- **The map.** Send `w x_0^(i)` to `w cl(Hol_i)`.
+  - *Well defined:* two paths to one site differ by a closed-path product, which lies in `Hol_i`.
+  - *Equivariant for every move.*
+  - *Injective:* within a component by assumption, and across components because they land in different orbits.
+- **The order.** Order `X'` so that the map preserves the order of the read sites.
+- **Products agree.** In the complete graph all distinct sites are adjacent. So `beta` and `gamma` of
+  Section 0 depend only on order and equalities among the sites of each product, and these are preserved.
+  The identity on the sign and `G` coordinates, with `lambda` on the lamps, satisfies the product identities
+  of the transfer theorem.
+- **Contradiction.** In `X'` every point stabilizer `g cl(Hol_i) g^(-1)` is profinitely closed. So the
+  complete graph on `X'` is profinitely saturated (Section 4), and `E(X')` is surjunctive by Theorem C.
+  Transfer gives a strict pair on it. QED
+
+B' implies the complete-graph case of B: `cl(Hol) <= cl(Stab x_0)`, and `w^(-1) w' not in Stab(x_0)`.
+
+**Reading for the Kun--Thom pair.** Take `x_0 = o`, so `Hol <= Gamma`. A witness must force, through its
+products, a subgroup `Hol` of a stabilizer whose profinite closure contains the difference of two read
+sites. The radical-phase configuration is one such table:
+- moves by generators of `Gamma` at `o`;
+- a path `o -> t o -> gamma t o -> t^(-1) gamma t o = h o`.
+
+Its holonomy is `Gamma`, with closure `Gammabar`, which contains `h`.
+
+## 4. Theorem C: saturated graphs
+
+**Definition.** `S` is **profinitely saturated** if for every edge `{x,y}`:
+1. some `K` has `K x != K y`;
+2. for each non-edge `{x',y'}` of distinct sites, some `K` has `{K x', K y'}` outside `G {K x, K y}`.
+
+**Theorem C** (`profinitely-saturated-clifford-covers-are-surjunctive`). If `G` is surjunctive and `S` is
+profinitely saturated, then `E_S` is surjunctive.
+
+*Proof.* Let `F` be a finite subset of `E_S`. Let `R_F` be the union of `R(a,b)` over all `a, b in F`.
+- **One quotient.** By saturation each edge in `R_F` is K-clean for some `K`, relative to the finitely
+  many non-edges in `R_F`. Cleanliness passes to smaller `K`, so one `K` works for all of them.
+- **A separated cover.** Build `S'` as in Theorem B. It agrees with `S` on `R_F`, so the identity on
+  coordinates embeds `F` as a partial multiplication table into `E_(S')`. That group is surjunctive by
+  Corollary A.1.
+- **Conclusion.** By Corollary 1 of `strict-pairs-transfer-to-table-realizations`, a group whose finite
+  subsets all embed into surjunctive groups is surjunctive. QED
+
+**Instances.**
+1. **Finite pullbacks.** Adjacency descends to `K\X` and fibres are independent.
+2. **Complete graphs over closed stabilizers.** If every point stabilizer of `X` is profinitely closed,
+   distinct sites are separable (Lemma 2.1), and there are no non-edges between distinct sites. For
+   `X = G/Gamma` with `Gamma` closed of infinite index, the center of `E_S` lies in its finite residual
+   (Corollary A.2), yet `E_S` is surjunctive.
+3. **The cross graph.** For `X = G/Gamma`, let `S_cross` join `a Gamma` and `b Gamma` exactly when
+   `a^(-1) b` is not in `Gammabar`. `D(S_cross) = G \ Gammabar` is `Gamma`-bi-invariant and symmetric.
+   - **Condition 1:** holds by Lemma 2.1.
+   - **Condition 2:** a non-edge `g'` lies in `Gammabar`, so it lies in `K Gamma` for every `K`. Its image
+     orbit is the diagonal one, which equals the orbit of the edge `g` only when `g in K Gamma`. Some `K`
+     excludes that.
+   - **Finite pullback exactly when `Gammabar` has finite index.** A pullback needs `K Gamma <= Gammabar`
+     for some `K`. Conversely a finite-index `Gammabar` equals some `K Gamma`: the chain of finite-index
+     subgroups `K Gamma >= Gammabar` stabilizes.
+4. **The Kun--Thom Theorem E pair.** `G/Gammabar` is infinite (Remark 2.3). So `E_(S_cross)` has its center
+   in the finite residual, and the separated theorem does not apply. By Theorem C, `E_(S_cross)` is
+   surjunctive. Its quotient `E_(S_cross) / <eps>` is the surjunctive wreath `W`. This settles one instance
+   of the residue of `finite-normal-subgroups-do-not-affect-surjunctivity`, in the predicted direction.
+
+**What stays open.** The complete-graph cover over the Kun--Thom pair is not saturated: its edges inside
+`Gammabar`-fibres are inseparable. The same holds for every finite-degree graph once `Gammabar != Gamma`,
+and for every graph carrying the radical-phase edge. Soficity of `E_(S_cross)` is not decided here. If it
+were sofic, Theorem C would add nothing new there.
