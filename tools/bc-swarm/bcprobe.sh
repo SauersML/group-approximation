@@ -1,36 +1,39 @@
 #!/usr/bin/env bash
-# bcprobe.sh <lane> <overlay files...> -- <Module.Name...>
+# bcprobe.sh <lane> <overlay>... -- <Module.Name...>
 #
 # Build the named modules ON MSI in the ONE Bowen–Chapman campaign clone, against
 #   origin/main (tip at probe time, from the shared MSI mirror)  +  the overlay files named on the command line
 # (repo-relative paths: GroupApproximation/**/*.lean, Palomar/*.lean, lakefile.toml). Nothing else from the local
 # shared tree reaches the build, so a GREEN certifies exactly origin/main@tip + those bytes. Nothing builds here.
 #
+# Overlay sources: BC_SRCROOT is a colon-separated list of roots; each overlay path is read from the one root that has
+# it (a path found under no root, or under several, is refused). An overlay entry `<path>=<root>` names its root
+# explicitly and must exist there. So a batch can take files from several scratch roots, e.g. your own code plus a
+# peer's unlanded bytes. Without BC_SRCROOT the shared checkout is the only root.
 # Rules: run it with Bash run_in_background: true; ONE probe per lane at a time; BATCH (one probe builds every
 # module you land together); never kill a running probe (the remote build holds the clone lock). Probes of all
 # lanes serialize on the clone lock, so a probe may wait for others first.
+# MSI blips: when the msi wrapper cannot reach MSI, the probe retries every 60 s for up to 12 minutes, printing one line
+# per retry, before failing with exit 4.
 # Base: the tip is resolved ONCE with `git ls-remote` (no local ref is written and no lock is taken), and every later
-# git read names that SHA; its objects are fetched by SHA with --no-write-fetch-head. Concurrent fetches in the shared
-# checkout therefore can neither break a probe nor move its base.
-# Evidence: the md5 of every overlay file that COMPILED is recorded with the base SHA, module list and PROBE line,
-# in $BC/lanes/<lane>.green.<tag> when the probe is GREEN and in <lane>.failed.<tag> otherwise. A .failed. record
-# says what compiled in a failed probe; it is never landing evidence.
+# git read names that SHA; its objects are fetched by SHA with --no-write-fetch-head.
+# Evidence: the md5 of every overlay file that COMPILED is recorded with the base SHA, module list, PROBE line and each
+# file's source root, in $BC/lanes/<lane>.green.<tag> when the probe is GREEN and in <lane>.failed.<tag> otherwise. A
+# .failed. record says what compiled in a failed probe; it is never landing evidence.
 # Axiom drivers (overlay files with `#print axioms` lines): every closure the overlay prints is recorded as
-# `# axioms <decl>: [...]`, joined across line breaks. The probe fails (rc=7) when a closure names an axiom outside
-# propext, Classical.choice and Quot.sound, or when the number of closures differs from the overlay's `#print axioms` count.
+# `# axioms <decl>: [...]`. The probe fails (rc=7) when a closure names an axiom outside propext, Classical.choice and
+# Quot.sound, or when the number of closures differs from the overlay's `#print axioms` count.
 # Bytes already recorded GREEN for the same module list are refused (exit 0, ALREADY GREEN) only when no synced path
 # changed between that record's base and the current origin/main; BC_FORCE=1 re-certifies regardless.
 # Output ends with PROBE GREEN / PROBE FAILED / PROBE DEFERRED (exit 5: clone preparation in progress) and REAL_EXIT=<rc>.
-# BC_SRCROOT=<dir> reads the overlay files from <dir>/<repo-relative path> instead of the shared tree (infra calibration
-# plants live there, so a deliberately red file never sits in the shared checkout); git and the base SHA still come from the repo.
 set -uo pipefail
 BC=__SCRATCHPAD__/bc
 REPO=/Users/user/nonsofic_existence
-MSI=/Users/user/msi-node/msi
+MSI=${BC_MSI:-/Users/user/msi-node/msi}   # BC_MSI exists for infra calibration only
 P=/projects/standard/__MSI_GROUP__/__MSI_USER__; BCR=$P/bc; CLONE=$P/bc_clones/bc
 ROSTER=" bc-pair bc-kazhdan bc-rf kt-norm-paper kt-norm-repo kt-norm-fixedpoint kt-norm-counting bc-dynamics bc-dynamics-upper bc-double-surj bc-wreath bc-assembly bc-palomar bc-review bc-infra kt41-g1-build kt41-g1-uniform kt41-g1-alt kt41-scale kt41-seq-decomp kt41-matching kt41-bisection-rep kt41-bisection-rep-b kt41-functor kt41-functor-estimate kt41-median-vertex kt41-counting-endgame kt41-hamming kt41-assembly kt41-seq-wrapper kt41-review kt41-alt-route kt41-cluster-scale kt41-block-near "
 SYNC_PATHS="GroupApproximation GroupApproximation.lean Palomar lakefile.toml lake-manifest.json lean-toolchain"
-usage() { echo "usage: bcprobe.sh <lane> <overlay files...> -- <Module.Name...>"; exit 2; }
+usage() { echo "usage: bcprobe.sh <lane> <overlay path | path=root>... -- <Module.Name...>"; exit 2; }
 LANE=${1:-}; [ -n "$LANE" ] || usage; shift
 case "$ROSTER" in *" $LANE "*) ;; *) echo "REFUSED: unknown lane '$LANE'"; exit 2;; esac
 FILES=()
@@ -40,8 +43,10 @@ shift; [ $# -ge 1 ] || usage
 MODS="$*"
 mkdir -p "$BC/lanes" "$BC/ov"
 cd "$REPO" || exit 2
-SRCROOT=${BC_SRCROOT:-$REPO}
-[ -d "$SRCROOT" ] || { echo "REFUSED: BC_SRCROOT '$SRCROOT' is not a directory"; exit 2; }
+SRCROOTS=${BC_SRCROOT:-$REPO}
+IFS=: read -r -a ROOTS <<< "$SRCROOTS"
+[ ${#ROOTS[@]} -ge 1 ] || { echo "REFUSED: BC_SRCROOT names no root"; exit 2; }
+for r in "${ROOTS[@]}"; do [ -d "$r" ] || { echo "REFUSED: BC_SRCROOT entry '$r' is not a directory"; exit 2; }; done
 gitnoise() { grep -vE 'gc\.log|git prune|Automatic cleanup|^warning: The last gc|^$' | tail -3; }
 SHA=""; GERR=""
 for attempt in 1 2 3 4 5; do
@@ -66,15 +71,29 @@ done
 TAG=$(date +%m%d-%H%M%S)-$$
 OVL=$BC/ov/$LANE-$TAG; mkdir -p "$OVL"
 PEND=$BC/lanes/$LANE.pending-$TAG.md5; : > "$PEND"
-cleanup() { rm -rf "$OVL" "$OVL.tgz" "$PEND"; }
-for p in ${FILES[@]+"${FILES[@]}"}; do
+SRCMAP=$BC/lanes/$LANE.pending-$TAG.src; : > "$SRCMAP"
+cleanup() { rm -rf "$OVL" "$OVL.tgz" "$PEND" "$SRCMAP"; }
+for spec in ${FILES[@]+"${FILES[@]}"}; do
+  p=${spec%%=*}; root=""
+  [ "$p" = "$spec" ] || root=${spec#*=}
   case "$p" in
     GroupApproximation/*.lean|Palomar/*.lean|lakefile.toml) ;;
     *) echo "REFUSED: overlay path '$p' (allowed: GroupApproximation/**/*.lean, Palomar/*.lean, lakefile.toml)"; cleanup; exit 2;;
   esac
-  [ -f "$SRCROOT/$p" ] || { echo "REFUSED: $p missing under $SRCROOT"; cleanup; exit 2; }
-  mkdir -p "$OVL/$(dirname "$p")"; cp "$SRCROOT/$p" "$OVL/$p"
+  if grep -q "^$p " "$SRCMAP"; then echo "REFUSED: overlay path $p given twice"; cleanup; exit 2; fi
+  if [ -n "$root" ]; then
+    [ -d "$root" ] || { echo "REFUSED: named root '$root' for $p is not a directory"; cleanup; exit 2; }
+    [ -f "$root/$p" ] || { echo "REFUSED: $p missing under its named root $root"; cleanup; exit 2; }
+  else
+    found=()
+    for r in "${ROOTS[@]}"; do [ -f "$r/$p" ] && found+=("$r"); done
+    [ ${#found[@]} -ge 1 ] || { echo "REFUSED: $p missing under every overlay root ($SRCROOTS)"; cleanup; exit 2; }
+    [ ${#found[@]} -eq 1 ] || { echo "REFUSED: $p exists under several overlay roots (${found[*]}); name one with $p=<root>"; cleanup; exit 2; }
+    root=${found[0]}
+  fi
+  mkdir -p "$OVL/$(dirname "$p")"; cp "$root/$p" "$OVL/$p"
   echo "$(md5 -q "$OVL/$p")  $p" >> "$PEND"
+  echo "$p $root" >> "$SRCMAP"
 done
 NPRINTL=$(find "$OVL" -name '*.lean' -exec cat {} + 2>/dev/null | grep -c '^#print axioms ')
 for m in $MODS; do
@@ -101,11 +120,18 @@ if [ -z "${BC_FORCE:-}" ] && [ -s "$PEND" ]; then
     echo "note: $rec certified these bytes at base ${RB:0:9}, but synced paths changed up to ${SHA:0:9}; re-probing"
   done
 fi
-"$MSI" true </dev/null >/dev/null 2>&1 || { echo "PROBE FAILED: msi connection down (infra, not Lean)"; cleanup; exit 4; }
+msiok=0
+for n in 0 1 2 3 4 5 6 7 8 9 10 11 12; do
+  if "$MSI" true </dev/null >/dev/null 2>&1; then msiok=1; break; fi
+  [ "$n" -lt 12 ] || break
+  echo "msi unreachable at $(date +%T); retrying in 60 s ($((n + 1))/12)"
+  sleep 60
+done
+[ $msiok = 1 ] || { echo "PROBE FAILED: msi unreachable for 12 minutes (infra, not Lean)"; cleanup; exit 4; }
 tar czf "$OVL.tgz" -C "$OVL" .
 OUT0=$("$MSI" "mkdir -p $CLONE/.nm/ov-$TAG && tar xzf - -C $CLONE/.nm/ov-$TAG && sed -e 's|__TAG__|$TAG|' -e 's|__SHA__|$SHA|' -e 's|__MODS__|$MODS|' -e 's|__LANE__|$LANE|' $BCR/bcjob.template.sh > $CLONE/.nm/job-$TAG.sh && echo UPLOAD_OK" < "$OVL.tgz" 2>&1)
 printf '%s\n' "$OUT0" | grep -q UPLOAD_OK || { echo "PROBE FAILED: overlay upload (infra): $OUT0"; cleanup; exit 4; }
-echo "probe lane=$LANE tag=$TAG base=${SHA:0:9} overlay=$(wc -l < "$PEND" | tr -d ' ') files mods: $MODS"
+echo "probe lane=$LANE tag=$TAG base=${SHA:0:9} overlay=$(wc -l < "$PEND" | tr -d ' ') files from $(cut -d' ' -f2- "$SRCMAP" | sort -u | wc -l | tr -d ' ') root(s) mods: $MODS"
 OUT=$("$MSI" "bash $P/nm/dispatch.sh $CLONE/.nm/job-$TAG.sh $CLONE/.nm/out-$TAG.txt bc-$LANE ${BC_CPUS:-8}" </dev/null 2>&1); RC=$?
 printf '%s\n' "$OUT"
 COMP=$(printf '%s\n' "$OUT" | sed -n 's/^COMPILED //p')
@@ -113,7 +139,8 @@ PL=$(printf '%s\n' "$OUT" | grep -m1 -E '^PROBE (GREEN|FAILED|DEFERRED)')
 if [ -n "$COMP" ]; then
   KIND=failed; [ "$PL" = "PROBE GREEN" ] && KIND=green
   REC=$BC/lanes/$LANE.$KIND.$TAG
-  { echo "# base $SHA"; echo "# tag $TAG"; echo "# mods $MODS"; echo "# srcroot $SRCROOT"; echo "# $PL"
+  { echo "# base $SHA"; echo "# tag $TAG"; echo "# mods $MODS"; echo "# srcroot $SRCROOTS"; echo "# $PL"
+    sed 's/^/# src /' "$SRCMAP"
     printf '%s\n' "$OUT" | sed -n 's/^AXIOMS /# axioms /p'
     while IFS= read -r line; do p="${line#*  }"; printf '%s\n' "$COMP" | grep -qxF "$p" && echo "$line"; done < "$PEND"; } > "$REC"
   echo "recorded compiled evidence ($(printf '%s\n' "$COMP" | wc -l | tr -d ' ') files): $REC"
