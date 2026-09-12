@@ -85,8 +85,11 @@ def removeCyclicPeripherals (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
               rw [← hg i]
               exact hs
             obtain ⟨n, rfl⟩ := Subgroup.mem_zpowers_iff.mp hs'
-            exact Subgroup.zpow_mem _ (Subgroup.subset_closure
-              (Or.inl (Or.inr (Set.mem_iUnion.mpr ⟨i, Or.inl rfl⟩)))) n
+            have hgi : g i ∈ Subgroup.closure
+                ((J.base ∪ ⋃ j : I, ({g j, (g j)⁻¹} : Set Q)) ∪
+                  ⋃ lam : Lambda, ((J.fam (Sum.inl lam) : Subgroup Q) : Set Q)) :=
+              Subgroup.subset_closure (Or.inl (Or.inr (Set.mem_iUnion.mpr ⟨i, Or.inl rfl⟩)))
+            exact Subgroup.zpow_mem _ hgi n
 
 /-- **A word of the dropped structure is a word of `J`**, of the same value and length, avoiding
 the same component: adjoined base letters become component letters of the dropped members, and
@@ -119,7 +122,7 @@ theorem exists_jointWord_of_removeCyclicPeripherals (J : RelGenSet Q (Sum Lambda
               rcases List.mem_cons.mp hb with rfl | hb
               · exact hx
               · exact ht'letters b hb
-            · simp only [OsinComponents.listVal_cons, ht'val]
+            · simp only [OsinComponents.listVal_cons, ht'val, RelLetter.val]
             · exact ⟨fun h => h.1, ht'avoid⟩
             · rw [List.length_cons, List.length_cons, ht'len]
           · have hx' : x ∈ ⋃ i : I, ({g i, (g i)⁻¹} : Set Q) := by
@@ -231,7 +234,7 @@ family: dropping finitely many infinite cyclic members over the finite enlargeme
 their generators keeps the rest hyperbolically embedded.  The members Osin drops are the
 elementary subgroups `E_G(h₁), E_G(h₂)` of infinite-order elements, which is the case stated. -/
 def CyclicPeripheralRemovalStatement.{uQ, uL, uI} : Prop :=
-  ∀ {Q : Type uQ} [Group Q] {Lambda : Type uL} {I : Type uI} [Finite Lambda] [Finite I]
+  ∀ {Q : Type uQ} [Group Q] {Lambda : Type uL} {I : Type uI} [Finite I]
     (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     (hg : ∀ i : I, J.fam (Sum.inr i) = Subgroup.zpowers (g i))
     (hbaseInv : ∀ x ∈ J.base, x⁻¹ ∈ J.base),
@@ -242,7 +245,7 @@ def CyclicPeripheralRemovalStatement.{uQ, uL, uI} : Prop :=
 /-- **The residue: the un-coned relative Cayley graph is hyperbolic.**  Clause (b) is
 `removeCyclicPeripherals_locallyFinite`. -/
 def CyclicPeripheralRemovalHyperbolicityStatement.{uQ, uL, uI} : Prop :=
-  ∀ {Q : Type uQ} [Group Q] {Lambda : Type uL} {I : Type uI} [Finite Lambda] [Finite I]
+  ∀ {Q : Type uQ} [Group Q] {Lambda : Type uL} {I : Type uI} [Finite I]
     (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     (hg : ∀ i : I, J.fam (Sum.inr i) = Subgroup.zpowers (g i))
     (hbaseInv : ∀ x ∈ J.base, x⁻¹ ∈ J.base),
@@ -254,7 +257,7 @@ def CyclicPeripheralRemovalHyperbolicityStatement.{uQ, uL, uI} : Prop :=
 theorem cyclicPeripheralRemovalStatement_of_hyperbolicity
     (h : CyclicPeripheralRemovalHyperbolicityStatement.{u, w, v}) :
     CyclicPeripheralRemovalStatement.{u, w, v} := by
-  intro Q _ Lambda I _ _ J g hg hbaseInv hinf hJ
+  intro Q _ Lambda I _ J g hg hbaseInv hinf hJ
   exact ⟨h J g hg hbaseInv hinf hJ, removeCyclicPeripherals_locallyFinite J g hg hbaseInv hJ⟩
 
 end GGT

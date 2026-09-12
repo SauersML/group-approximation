@@ -72,13 +72,13 @@ theorem hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves
     (hselection : GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
     (hunbound : GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hbridge : RelativeIsoperimetricBridgeQuasiGeodesicStatement.{0, 0, 0}) :
-    HullLemma44CanonicalQuotientStatement.{0} := by
-  have hgeom : RelativeGreendlingerQuasiGeodesicSpellingStatement.{0, 0} :=
-    relativeGreendlingerQuasiGeodesicSpellingStatement_of_components hselection
+    HullLemma44CanonicalQuotientStatement.{0} :=
+  HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesic
+    (HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components hselection
       GGT.VanKampen.estimatingPieceConstructionStatement hunbound
-      relativeDiscRealizationSpellingStatement
-      relativeExteriorArcConversionAtWordRotatedStatement
-  exact hullLemma44CanonicalQuotientStatement_of_quasiGeodesic hgeom hbridge
+      HullSC.relativeDiscRealizationSpellingStatement
+      HullSC.relativeExteriorArcConversionAtWordRotatedStatement)
+    hbridge
 
 /-- **Hull's Lemma 4.9 in kernel-power form, from the two estimating admissions.**  The piece
 construction, the disc realization and the arc conversion are theorems. -/
@@ -99,22 +99,16 @@ theorem hullOneStepStatement_of_quasiGeodesicLeaves
     (hselection : GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0})
     (hunbound : GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0})
     (hbridge : RelativeIsoperimetricBridgeQuasiGeodesicStatement.{0, 0, 0}) :
-    HullOneStepStatement.{0} := by
-  have h414 : GGT.OsinComponents.DGOProposition414Uniform.{0, 0} :=
-    GGT.OsinComponents.dgoProposition414Uniform
-  have h421 : GGT.OsinComponents.DGOLemma421b.{0, 0} :=
-    GGT.OsinComponents.dgoLemma421b_of_uniform414 h414
-  have hyi : YiSuitablePairAvoidingFiniteOneSided.{0} :=
-    yiSuitablePairAvoidingFiniteOneSided_of_dgoLemma421b h421
-  have hselect : SimultaneousAuxiliaryPeripheralSelection.{0} :=
-    simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
-      (yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr hyi)
-  have h44 : HullLemma44CanonicalQuotientStatement.{0} :=
-    hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves hselection hunbound hbridge
-  have h49 : HullLemma49KernelPowerStatement.{0, 0} :=
-    hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves hselection hunbound
-  exact AuxiliaryPeripheralFamily.hullOneStep_of_canonicalQuotient
-    (torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49 hselect h44 h49)
+    HullOneStepStatement.{0} :=
+  HullSC.AuxiliaryPeripheralFamily.hullOneStep_of_canonicalQuotient
+    (HullSC.torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49
+      (HullSC.simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
+        (HullSC.yiSuitableFiniteFamily_iff_pairAvoidingFiniteOneSided.mpr
+          (HullSC.yiSuitablePairAvoidingFiniteOneSided_of_dgoLemma421b
+            (GGT.OsinComponents.dgoLemma421b_of_uniform414
+              GGT.OsinComponents.dgoProposition414Uniform))))
+      (hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves hselection hunbound hbridge)
+      (hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves hselection hunbound))
 
 /-- **Hull's Theorem 7.1 in its published ball form, with the kernel datum**, over the same
 three admissions: the induction on `m` of `hullBallFormNG_of_oneStep`. -/
