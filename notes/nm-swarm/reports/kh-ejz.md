@@ -54,9 +54,13 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
 
 ## Remaining leaves of the GHB(7) route
 - `hconj : CCKWFiniteOrderConjugateIntoVertex` (CCKW Theorem 3.1(ii), cyclic case): kh-cckw.
-- `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` (CCKW Theorem 3.1(i)): kh-hyperbolic. kh-ejz has
-  offered to take the boundary-sum and typed-count inputs (from `TriangulatedDisc.abs_boundarySum_le`,
-  `TriangulatedDisc.exists_typedCounts`) or a zip/fold producer. Nothing claimed pending its reply.
+- `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` (CCKW Theorem 3.1(i)): kh-hyperbolic.
+  `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold (hzip : Systolic.ZipSpurStatement CCKW.cosetComplex)
+  (hfold : Systolic.MirrorFoldStatement CCKW.cosetComplex) : Hyperbolic.IsHyperbolicGroup (GHB 7)`
+  (Kazhdan/GHBHyperbolicDiscCounts, b049d3faf over 0ac9f4538, kh-hyperbolic's probe pending) has exactly
+  the type of the `hhyp` binder. Main has no producer of `ZipSpurStatement` or `MirrorFoldStatement`.
+  kh-ejz has asked kh-torsion (disc moves) and go-sr1 (SystolicDisc) whether either owns them. Nothing
+  claimed.
 
 ## Landing rule
 Edits to EJZAngleGHB, EJZAngleSylowFour and GHBLatticeRouteKazhdan land with NM_ATTIC until a probe is
