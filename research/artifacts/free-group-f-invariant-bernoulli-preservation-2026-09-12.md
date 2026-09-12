@@ -30,23 +30,49 @@ For a finite partition `alpha` put
 
     F(alpha) = (1 - 2r) H(alpha) + sum_i H(alpha v s_i alpha).
 
-**Lemma 2.1.** For each generator `s` (and `s^-1`), `F(alpha v s alpha) <= F(alpha)`.
+**Lemma 2.1 (simple splittings).** Let `beta` and `gamma` be finite partitions with
+`gamma <= beta` (so `beta` refines `gamma`), and let `t = s_j^(±1)`. Then
+`F(beta v t gamma) <= F(beta)`.
 
-*Proof.* Write `beta = alpha v s alpha` and `d = H(alpha v s alpha) - H(alpha)`.
-Submodularity, `H(X v Y) + H(X ^ Y) <= H(X) + H(Y)` for joins of translates, gives:
+*Proof.* Put `beta' = beta v t gamma` and `d = H(beta') - H(beta) >= 0`. Two facts are
+used:
+* submodularity: adding a partition `Z` to `X v Y` costs at most what adding `Z` to
+  `X` costs;
+* translation invariance: `H(gX) = H(X)`.
 
-* `H(alpha v s alpha v s^2 alpha) <= 2 H(alpha v s alpha) - H(alpha)`. So the term
-  for the generator `s` grows by at most `d`.
-* For `s_i != s`, `H(alpha v s alpha v s_i alpha) <= H(alpha v s alpha) + H(alpha v s_i alpha) - H(alpha)`.
-  Adding `s_i s alpha` costs at most `H(s_i alpha v s_i s alpha) - H(s_i alpha) = d`.
-  So each such term grows by at most `2d`.
+The vertex term changes by exactly `(1 - 2r) d`. For the edge terms:
+
+* *The term `i = j`.* `H(beta' v s_j beta')` is `H(beta v s_j beta)` with two
+  partitions added.
+  - If `t = s_j`: adding `s_j gamma <= s_j beta` costs nothing, and adding
+    `s_j^2 gamma` costs at most `H(s_j beta v s_j^2 gamma) - H(s_j beta) = d`.
+  - If `t = s_j^-1`: adding `s_j t gamma = gamma <= beta` costs nothing, and adding
+    `t gamma` costs at most `H(beta v t gamma) - H(beta) = d`.
+
+  So this term grows by at most `d`.
+* *A term `i != j`.* Adding `t gamma` to `beta v s_i beta` costs at most `d`, and adding
+  `s_i t gamma` costs at most `H(s_i beta v s_i t gamma) - H(s_i beta) = d`. So each of
+  the `r - 1` such terms grows by at most `2d`.
 
 Hence
 
-    F(beta) - F(alpha) <= (1 - 2r) d + d + 2(r - 1) d = 0.   QED
+    F(beta') - F(beta) <= (1 - 2r) d + d + 2(r - 1) d = 0.   QED
 
-Along the ball refinements `eta^(B_n)`, obtained by successive splittings, `F` is
-non-increasing. So `f(eta) = lim_n F(eta^(B_n))` exists and equals the infimum.
+**Ball refinements.** `B_(n+1)` is `B_n` together with its `2r` translates
+`s_j^(±1) B_n`, so
+
+    eta^(B_(n+1)) = eta^(B_n) v join_(j, ±) s_j^(±1) eta^(B_n).
+
+Add the `2r` translates one at a time. Each step is a simple splitting
+`beta -> beta v t gamma` with `gamma = eta^(B_n) <= beta`. By Lemma 2.1,
+`F(eta^(B_(n+1))) <= F(eta^(B_n))`, so `f(eta) = lim_n F(eta^(B_n))` exists and equals
+the infimum.
+
+*Correction (2026-09-12, from gk-vf-positive's verification).* The first version stated
+only the self-splitting case `alpha -> alpha v s alpha`. Iterated self-splittings do
+not reach the ball refinements: splitting by `s_1` and then by `s_2` creates
+`s_2 s_1 eta^(B_n)`, which lies outside `B_(n+1)`. The general form above is what the
+induction uses, and the same submodularity count proves it.
 
 ## 3. The one imported input
 

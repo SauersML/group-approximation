@@ -13,8 +13,10 @@ artifacts:
 
 Complete proof, Sections 2 to 4 of the artifact.
 
-* **Splitting monotonicity** (Lemma 2.1, elementary). `F(alpha v s alpha) <= F(alpha)`
-  by submodularity, so `f = inf_n F(eta^(B_n))`.
+* **Splitting monotonicity** (Lemma 2.1, elementary). `F(beta v t gamma) <= F(beta)`
+  for `t = s_j^(±1)` and `gamma <= beta`, by submodularity. The ball refinement
+  `eta^(B_(n+1))` is reached from `eta^(B_n)` by `2r` such splittings with
+  `gamma = eta^(B_n)`, so `f = inf_n F(eta^(B_n))`.
 * **Invariance** (the prerequisite). The injective automaton is a measure conjugacy
   onto its image, and the coordinate partitions are generating. So
   `f(tau_* mu) = f(mu) = log q`.
