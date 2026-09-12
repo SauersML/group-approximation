@@ -133,8 +133,11 @@ def chartEquator (x : ↥(STW59.unitVectors (Fin (n + 1)))) :
 `E n`.** -/
 theorem isSuspensionChart_unitVectors :
     IsSuspensionChart (chartHeight n) (chartEquator n) where
-  continuous_height :=
-    (Complex.continuous_re.comp (continuous_apply (Fin.last n))).comp continuous_subtype_val
+  continuous_height := by
+    show Continuous fun x : ↥(STW59.unitVectors (Fin (n + 1))) =>
+      ((x : Fin (n + 1) → ℂ) (Fin.last n)).re
+    exact Complex.continuous_re.comp
+      ((continuous_apply (Fin.last n)).comp continuous_subtype_val)
   continuous_equator := (continuous_equatorProj n).comp continuous_subtype_val
   sphere := fun x => by
     rw [chartEquator, chartHeight, norm_sq_equatorProj_add]
