@@ -675,3 +675,45 @@ points Section 11 had re-derived. Verdict: PASS.
     `psi(1) = 1`.
   * `psi(m)psi(n)psi(nm)^-1` is `phi`'s defect at `(m^-1, n^-1)`, so symmetric `F` suffices.
   * The constant `1 - |K|^2(1 - c' + 2 delta)` with `KK^-1` in `F` matches Section 8.4.
+
+## 18. Theorem 4.1, step 0 (gk-p-inf-kazhdan `3300ce782d`), and a coverage index
+
+* **Step 0 (base reduction). Verdict: PASS.** It discharges the Section 12 trust surface.
+  * `(X_0 x [0,1], mu_0 (x) Leb)` is standard and atomless, so it is isomorphic to `([0,1], Leb)`.
+    Coordinatewise, `X x Y = ([0,1], Leb)^G` equivariantly.
+  * `Z x Y` is ergodic, as ergodic times weakly mixing.
+  * `pi x id` has conditional measures `m_x (x) delta_y`, so the multiplicity is unchanged, and it
+    is an isomorphism iff `pi` is.
+  * So `popa-bernoulli-cocycle-superrigidity` is consumed only for the s-malleable diffuse-base
+    shift, which is the form it now states. `G` infinite is added.
+  * The Section 5.4 cap (at most `(1+c)^-r log q` on windows containing a translate of `S^r`)
+    replaces the informal decay.
+* **Imports covered above, named for search.**
+  * `bowen-f-invariant-is-a-measure-conjugacy-invariant` (Section 4.1, one trust surface);
+  * `seward-tucker-drob-free-borel-actions-map-to-2-shift` (Section 9, read from the abstract);
+  * `cost-weak-containment-monotonicity-citation` (Section 5.2);
+  * `popa-bernoulli-cocycle-superrigidity-citation` (Sections 12 and 18).
+* **Other ids covered above.**
+  * `positive-rokhlin-entropy-via-weak-invariant-bounds` is correctly invalidated (Section 5.3).
+  * `permutation-lengths-are-convex-hulls-of-coset-lengths` is Lemma 5.1 (Section 8.3).
+  * `product-closure-from-graph-product-closure` and `quotient-closure-from-gottschalk` are
+    deliberate equivalence cycles through open claims (Sections 6.4 and 6.5).
+* **Open claims whose wiring was checked.** Merges since 12:35 removed no status line and added
+  no route that can fire.
+  * `fg-simple-kazhdan-groups-are-surjunctive`
+  * `every-group-has-positive-rokhlin-entropy-action`
+  * `leavitt-unit-group-has-positive-rokhlin-entropy-action`
+  * `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups`
+  * `finite-direct-products-of-surjunctive-groups-are-surjunctive`
+  * `graph-products-of-surjunctive-groups-are-surjunctive`
+  * `finite-normal-subgroups-do-not-affect-surjunctivity`
+  * `every-injective-ca-preserves-uniform-bernoulli-measure`
+  * `injective-cas-over-leavitt-units-preserve-uniform-bernoulli`
+  Since 12:35 only two new routes target the goal: `gottschalk-via-binary-alphabet-descent` and
+  `gottschalk-via-quotient-closure`. Both require open claims.
+* **gk-free-wild filters.** `cubulated-hyperbolic-table-cores-carry-no-strict-pair` and
+  `mixed-bigon-difference-graphs-present-vh-square-complexes` already cite
+  `gk-vf-nonlinear-verification-2026-09-12.md`, so they are left to that verifier.
+  * I checked the consumed chain once. Agol plus Haglund–Wise make hyperbolic cubulated groups
+    virtually special, hence linear over `Z` and residually finite. A residually finite core is
+    sofic, contradicting `forward-relations-of-a-counterexample-have-a-nonsofic-core`.
