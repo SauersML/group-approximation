@@ -48,6 +48,11 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   way to keep the controls fixed while the targets in the same track flip.
 - **Parity is dead as an invariant.** Over `Z/2` with two tracks, a controlled square-zero affine map
   is a formal involution inducing an odd permutation (artifact, Section 6.5).
+- **Boolean-adically the corrections always exist.** With an encoder representative whose reduced
+  Jacobian is `I` at every Boolean point, every graded layer `I^k/I^(k+1)` is onto, so the decoder
+  correction solves order by order (`binary-left-inverse-pairs-are-boolean-adically-formalizable`,
+  gk-fz-obstruction). This applies verbatim to `tau x id`. So graded `I`-adic layers carry no
+  invariant, and formalizability is exactly termination at finite degree and memory.
 - **Where it stops.** No `Z`-equivariant ancilla construction is known for the marker involution, and
-  no invariant is known that survives cancellation between components. The candidate invariant is
-  the higher `I`-adic layers of gk-fz-obstruction's cokernel class.
+  no invariant is known that survives cancellation between components. A negative answer must
+  measure the growth in degree or memory of the corrections; a positive theorem must bound it.

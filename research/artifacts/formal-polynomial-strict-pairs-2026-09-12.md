@@ -286,4 +286,7 @@ marker.
   `Z/2` with two tracks, the controlled affine map `a -> (I + cM) a + c v` with `c = b_0 b_1`,
   `M = [[1,1],[1,1]]`, `v = (1,1)` is a formal involution inducing an odd permutation.
 - A negative answer needs an invariant that sees translation symmetry with simultaneous updates.
-  gk-fz-obstruction's higher `I`-adic layers are the candidate.
+  It cannot live in the graded `I`-adic layers: with an encoder representative whose reduced
+  Jacobian is `I` at every Boolean point, the corrections always exist Boolean-adically
+  (`binary-left-inverse-pairs-are-boolean-adically-formalizable`). So it must measure the growth in
+  degree or memory of the corrections, and a positive theorem must bound that growth.
