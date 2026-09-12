@@ -543,9 +543,34 @@ verification; the Lean is reviewed here independently.
 
 ## F6. The shared probe infrastructure
 
-**Status: sent to `bc-infra`; (1) open, (2) and (3) are audit rules applied
-here.** I read `bcprobe.sh` in the campaign scratchpad and
+**Status: sent to `bc-infra`, which fixed all three. (1) and (2) are verified
+in the deployed `bcprobe.sh`; (3) lives in the remote job template and is
+verified only through its calibration record until the template lands on main.**
+I read `bcprobe.sh` in the campaign scratchpad and
 `tools/bc-swarm/remote/bcjob.template.sh` at 924105b04.
+
+**Verification of the fixes (deployed `bcprobe.sh`, md5 `d1d07d41…`):**
+* **(1)** A record is named `<lane>.green.<tag>` only for PROBE GREEN, and
+  `<lane>.failed.<tag>` otherwise. The script prints "NOT GREEN … it is never
+  landing evidence".
+  * Every `.green.` record now carries `# PROBE GREEN`.
+  * The three mislabelled records are renamed to `.failed.`: `kt-norm-paper`
+    0912-120052-26096 and 0912-120542-44164, and `kt-norm-fixedpoint`
+    0912-120321-34396.
+  * Calibration C1 (0912-120836-52373) probed a green helper with a red
+    dependent module. It left `bc-infra.failed.0912-120836-52373`, with
+    `# PROBE FAILED rc=1` and only the helper's md5, and no `.green.` record.
+* **(2)** The already-green shortcut now applies only when no synced path
+  changed between the record base and the current tip, checked with
+  `git diff --name-only RB SHA -- $SYNC_PATHS`. Otherwise it re-probes.
+  Calibration C0 left the new record `bc-infra.green.0912-120819-51584`.
+* **(3)** According to `bc-infra`, PROBE GREEN in the template now also requires
+  no incomplete-proof match in the log outside `Palomar/*Challenge.lean`, and
+  exits 6 otherwise. Calibration C2 (0912-120851-53807) left only a `.failed.`
+  record. The template source is still to be read once it lands under
+  `tools/bc-swarm/`.
+
+The original findings:
 
 * **(1) Failed probes can write a record named `.green.`. Confirmed.**
   `bcprobe.sh` writes `<lane>.green.<tag>` whenever the job reports at least
