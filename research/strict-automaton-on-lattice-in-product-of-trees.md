@@ -77,3 +77,14 @@ the flagship candidates; their soficity is recorded as unknown by Cornulier.
   linear case this is a one-sided matrix inverse over `F_2[Gamma]`, a failure of stable
   finiteness (`stable-finiteness-failure-refutes-surjunctivity`), where two-by-two track
   gadgets need 2-torsion (Lemma D of the artifact).
+* **Explicit host: Radu's BMW lattice (w3-lattice, 2026-09-12).**
+  - `radu-bmw-lattice-nonsurjunctive` names `Gamma_R` of `radu-bmw-lattice-embeds-in-titz-witzel-kernel`,
+    an irreducible, not residually finite cocompact lattice in `Aut(T_3) x Aut(T_3)` with 2-torsion and a
+    quoted complete square table. It routes here through `radu-bmw-nonsurjunctivity-gives-lattice-target`.
+  - Screens on it (`research/artifacts/radu-lattice-strict-automaton-screens-2026-09-12.md`):
+    * no output symmetry of any kind (`radu-bmw-lattice-has-no-invariant-output-injective-automata`),
+      although the lattice has torsion;
+    * any factorization of a strict automaton has a strict factor
+      (`strict-composites-have-strict-factors`), whose memory must generate a nonsofic subgroup. So layers
+      reading one square, only horizontal letters, or only vertical letters add nothing;
+    * letter hinges always transpose, because every letter is an involution.
