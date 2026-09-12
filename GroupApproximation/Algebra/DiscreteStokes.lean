@@ -1,4 +1,5 @@
 import Mathlib.GroupTheory.FreeGroup.Reduce
+import Mathlib.Algebra.Order.Ring.Abs
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 import GroupApproximation.Meta.AxiomGuard
@@ -73,6 +74,7 @@ theorem wordVal_append (f : α → Q) (L M : List (α × Bool)) :
 def edgeTerm (φ ψ : Q → ℤ) (g h : Q) : ℤ :=
   (φ g + φ h) * (ψ h - ψ g)
 
+omit [Group Q] in
 /-- Reversing an edge negates its term. -/
 theorem edgeTerm_swap (φ ψ : Q → ℤ) (g h : Q) :
     edgeTerm φ ψ h g = -edgeTerm φ ψ g h := by

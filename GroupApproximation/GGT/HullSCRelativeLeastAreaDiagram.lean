@@ -126,7 +126,8 @@ theorem RelativeDiscRealizationAtWord.leastArea_toRelativeLeastAreaDiagram
     unfold GGT.RelLetter.listVal
     rw [hmap]
     exact Z.boundaryWord_isWord.prod_eq
-  exact C.leastArea (Z.toRelativeLeastAreaDiagram D) hval
+  intro m hm
+  exact C.leastArea (Z.toRelativeLeastAreaDiagram D) hval hm
 
 /-! ## Least-area diagrams with a prescribed boundary word -/
 
