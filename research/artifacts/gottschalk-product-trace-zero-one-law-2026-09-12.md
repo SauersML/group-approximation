@@ -173,14 +173,18 @@ structure of the image measure recorded in
 
 3. **Scale.** The Gromov--Weiss count compares, on a model with `n` sites, an
    image of size `|A|^(n(1 - o(1)))` with the Garden-of-Eden bound
-   `|A|^n (1 - |A|^(-|Omega|))^(cn)`. As normalized traces both are exponentially
-   small in `n`, and the contradiction appears only after taking `(1/n) log`. The
-   infinite product trace sends both to `0` (Theorem 2(b), step 5). The same
-   collapse happens over `Z`. On configurations supported in a finite `F`,
-   locality alone gives the normalized-trace bound `|A|^(-|dF|)` for the image
-   fraction, where `dF` is the memory boundary. This tends to `0` along every
-   Følner sequence even though `|dF|/|F| -> 0`, so Myhill's argument survives only
-   at logarithmic scale.
+   `|A|^n (1 - |A|^(-|Omega|))^(cn)`. As normalized traces both tend to `0`, and
+   the contradiction appears only after taking `(1/n) log`. The infinite product
+   trace sends both to `0` (Theorem 2(b), step 5).
+
+   The same collapse happens over `Z`, in Myhill's count on a finite window `F`.
+   Injectivity gives at least `|A|^(|F| - |dF|)` distinct output patterns on `F`,
+   where `dF` is a memory boundary layer, and the Garden of Eden gives at most
+   `|A|^|F| (1 - |A|^(-|Omega|))^(m(F))`, with `m(F)` the number of disjoint
+   translates of `Omega` inside `F`. Normalized by `|A|^|F|` these are
+   `|A|^(-|dF|)` and `(1 - |A|^(-|Omega|))^(m(F))`. Along a Følner sequence both
+   tend to `0`: `|dF| -> infinity` although `|dF|/|F| -> 0`. They conflict only
+   after `(1/|F|) log`, which is where Myhill's argument lives.
 
 4. **The square hypothesis enters only logarithmically.** Rectangular sections
    `B^G -> A^G` with `|B| < |A|` (for example a pointwise inclusion of alphabets)
