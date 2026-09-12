@@ -218,6 +218,62 @@ is an involution in `G`, and `P_(p_alpha) [g_(alpha beta)] P_(p_beta)` lifts the
 *Proof.* Incomparability gives `T[alpha] S[beta] = 0`, so `g^2 = 1`. And
 `p_alpha g p_beta = S[alpha] T[alpha] S[alpha] T[beta] S[beta] T[beta] = S[alpha] T[beta]`. QED
 
+**Lemma 3.3 (equivariance and the XOR law).** For `g` in `G` and every idempotent `p` of `R`,
+`[g] P_p [g^-1] = P_(g p g^-1)` exactly in `S`. If `p` and `q` commute, then
+`1 + (p + q + pq) = (1 + p)(1 + q)`, so `p -> 1 + p` is a group homomorphism from commuting idempotents
+under symmetric difference `p xor q = p + q + pq` (characteristic three) into an elementary abelian
+2-subgroup of `G`. Also `P_(p xor q) = P_p + P_q + P_p P_q`.
+
+*Proof.* Conjugation fixes `1` and sends `1 + p` to `1 + g p g^-1`. The product identity is a direct
+expansion, and the last identity follows by expanding `2(1 - [(1+p)(1+q)])` against
+`P_p P_q = 4(1 - [1+p] - [1+q] + [1+p][1+q])`. QED
+
+Examples in `S_-`:
+- `1 + s0 t0 = -d`, so `P_(s0 t0) = 2(1 + [d])`.
+- `1 + pi(e) = -w`, so the swap idempotent `e_-` is the honest lift `P_(pi(e))`.
+- The Hadamard unit `h_H = s0 t0 + s0 t1 + s1 t0 - s1 t1` has `h_H^2 = z` and conjugates `pi(e)` to
+  `s0 t0`. So `[h_H] e_- [h_H]^-1 = P_(s0 t0)` (compare lane `gk-l3-free`).
+
+So the corner target is equivalently the fullness of `P_(s0 t0)`, and every conjugation by a unit
+sends honest lifts to honest lifts.
+
+**The natural lift of `(s0, t0)` and its exact defect.** Consider the Thompson units
+`g = S[00]T[0] + S[01]T[10] + S[1]T[11]` and `h = S[01]T[1] + S[1]T[01] + S[00]T[00]` (an involution).
+Then `s0 = g p_0 + h p_1` and `t0 = g^-1 p_00 + h p_01`, with `p_U = S[U]T[U]`. The lifts
+
+```text
+a = [g] P_0 + [h] P_1,          c = [g^-1] P_00 + [h] P_01,        P_U := P_(p_U),
+```
+
+satisfy `pi(a) = s0` and `pi(c) = t0`. By Lemma 3.3, using `g^-1 p_00 g = p_0`, `h p_01 h = p_1`,
+`h p_00 h = p_00` and `g^-1 p_01 g = p_10`:
+
+```text
+c a = P_0 + P_1 + [g^-1 h] P_00 P_1 + [h g] P_10 P_0 = 1_- + [g^-1 h] P_00 P_1 + [h g] P_10 P_0.
+```
+
+Every defect term is a unit times a product `P_U P_V` of honest lifts of disjoint cylinders. Such a
+product is a nonzero idempotent in `K_-`, because `1, 1 + p_U, 1 + p_V, 1 + p_U + p_V` have distinct
+images in `PG`.
+
+In the same way, `c [w] a` is a sum of four such terms, for example `[g^-1 w g] P_110 P_0`, because
+`w g` maps `11x` to `0x`.
+
+**The mass dichotomy for monomial lifts.**
+- Fix a cylinder partition `{U_1, ..., U_n}`. Its involutions `x_U = 1 + p_U` generate `C_2^n`, whose
+  product is `z`. So in `S_-` their span is the algebra of functions on the odd characters `chi`
+  (an odd number of `-1` values).
+- Characters with one `-1` at `U` map to `p_U` under `pi`. Characters with three or more `-1` values
+  map to `0`: that is the kernel mass `m`.
+- Honest lifts `P_U` carry parts of `m`, and their products `P_U P_V` are exactly the mass terms
+  above.
+- The orthogonal lifts `f_U` (single-minus characters) kill every cross term, but
+  `sum_U f_U = 1_- - m` misses the mass.
+- So a monomial lift pays either in cross terms or in missing mass. In `R` the mass is invisible.
+- This is the finite shadow of the invariant-measure obstruction of lane `gk-l3-free`. It is recorded
+  as a diagnostic, not a theorem: non-monomial units, or mod-3 overlaps between different partitions,
+  are exactly what escapes it.
+
 **Where monomial lifts stop.** Every finite decomposition of `s_0` into partial isometries between
 cylinders, over a complete prefix code, contains a piece `S[0^(k+1)] T[0^k]` whose cylinders are
 comparable. Lemma 3.2 does not cover such a piece: it is itself a conjugate of `s_0`. So products of

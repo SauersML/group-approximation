@@ -51,3 +51,18 @@ trace-compatible and sufficient (`ternary-anti-central-summand-has-quaternary-le
     conjugate of `s_0`. So honest monomial pieces never assemble the isometry.
   - Lane gk-l3-free reports that an invariant measure excludes such monomial compressions inside the
     signed Thompson group. Witnesses must use mod-3 overlaps or non-monomial units.
+- *The natural lift of `(s0, t0)`, computed exactly* (Lemma 3.3 of the artifact).
+  - With Thompson units `g, h`, the lifts `a = [g] P_0 + [h] P_1` and `c = [g^-1] P_00 + [h] P_01`
+    give `c a = 1_- + [g^-1 h] P_00 P_1 + [h g] P_10 P_0`. Every defect term is a unit times a product
+    of honest lifts of disjoint cylinders, a nonzero kernel idempotent.
+  - Orthogonal character lifts kill the cross terms but miss the kernel mass of the multi-minus
+    characters.
+  - So monomial lifts pay in cross terms or in mass. That is the finite shadow of gk-l3-free's
+    measure obstruction.
+  - Where it dies: no monomial correction removes both.
+- *Idea, not yet tested: extension fields and roots of unity.*
+  - Corner solutions ascend to `F_(3^k)` (lane gk-lp-hosts). The honest-lift XOR law uses only
+    characteristic three, so the mass dichotomy for cylinder partitions persists there.
+  - Over `F_9` the order-four Hadamard unit (`h_H^2 = z`) has spectral idempotents
+    `(1 + zeta^-1 x + zeta^-2 x^2 + zeta^-3 x^3)/4`. These are non-monomial honest idempotents
+    outside any cylinder partition, which is the kind of escape the dichotomy leaves open.
