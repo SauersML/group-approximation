@@ -8,6 +8,7 @@ refuted_by:
 distinct_from:
   rank-models-of-el3-satisfy-the-two-root-identities: that asks the two-root identity for homomorphisms into rank ultraproducts, whose payoff is non-linear-soficity; this asks it for every Sylvester matrix rank function on the group algebra, which implies that identity for the binary instance and is equivalent to uniqueness of the augmentation rank.
   leavitt-el3-rank-models-over-finite-fields-are-trivial: that is triviality of rank-ultraproduct models over every finite field; this is the binary group-algebra statement over F_2 for every Sylvester rank function, matricial or not.
+  leavitt-rank-functions-killing-two-root-defect-are-augmentation: that is the established equivalence, for one Sylvester rank function over any field of positive characteristic, between being the augmentation rank and killing the defect; this is the open universal assertion that every Sylvester rank function over F_2 kills the defect, which that equivalence turns into uniqueness of the augmentation rank.
 artifacts:
   - research/artifacts/sylvester-rank-function-two-root-gate-2026-09-12.md
 ---
