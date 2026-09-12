@@ -8,9 +8,10 @@ distinct_from:
   aut-free-groups-satisfy-permutational-boone-higman: that imports the Aut(F_n) theorem and the universality of twisted Brin--Thompson groups among finitely presented simple MIF groups (Corollary D); this is the open question of whether every finitely presented simple group has such an overgroup.
 ---
 
-**OPEN.** Belk--Fournier-Facio--Hyde--Zaremsky, arXiv:2503.21882v2, pose it as a
-question. Read through a summarizing fetch: "Does every finitely presented simple
-group embed in a finitely presented simple MIF group?"
+**OPEN.** Belk--Fournier-Facio--Hyde--Zaremsky, arXiv:2503.21882v2, pose it as
+Question 3.4: "Does every finitely presented simple group embed in a finitely
+presented simple MIF group?" The question number was confirmed by lane
+`bh-reviewer` from the PDF text on MSI (review artifact §12, 43f7e25d3).
 
 **Why it matters.**
 - **Universality:** their Corollary D says finitely presented simple twisted
