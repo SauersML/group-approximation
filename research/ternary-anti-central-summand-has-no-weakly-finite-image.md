@@ -10,6 +10,7 @@ distinct_from:
   sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one: that is absence of Sylvester rank functions on S_-, weaker than this in general; this is absence of any nonzero weakly finite quotient, which is equivalent to the counterexample outright.
 artifacts:
   - research/artifacts/state-upgrade-rank-condition-gap-2026-09-12.md
+  - research/artifacts/weakly-finite-representations-of-ternary-leavitt-units-2026-09-12.md
 ---
 
 **OPEN.** Let `G = L_(F_3)(1,2)^x`, `z = -1` and `S_- = eps_- F_3[G]`. Every nonzero quotient ring of
@@ -41,3 +42,21 @@ Sylvester rank function on `S_-`, and its null quotient is weakly finite
     that any weakly finite quotient forces the evaluation kernel to collapse the group, which
     perfection and simplicity forbid.
   - **No mechanism yet.**
+- 2026-09-12 `w5-wf-obstruct`: certificate form and group form (artifact
+  `research/artifacts/weakly-finite-representations-of-ternary-leavitt-units-2026-09-12.md`).
+  - **Certificate.** This claim is `1 ∈ J_omega(S_-)` for the stagewise ideal of
+    `weakly-finite-reflection-ideal-detects-weakly-finite-images`. Refuting Gottschalk on `G` needs only stage
+    one, `J_1(S_-) != 0`, a stable-finiteness failure of `F_3[G]`; that follows from this claim without
+    Theorem C.
+  - **Group form.** Equivalent to `ternary-leavitt-units-have-no-weakly-finite-representation` (no nontrivial
+    homomorphism of `G` into the units of any weakly finite `F_3`-algebra), through
+    `ternary-weakly-finite-representations-give-anti-central-images`. Also equivalent to
+    `ternary-weakly-finite-representations-kill-two-root-defect`, through
+    `weakly-finite-leavitt-representations-killing-defect-are-trivial`: the rank criterion with its one rank
+    step replaced by weak finiteness of corners.
+  - **Where it stops.**
+    - Stage one needs an exact one-sided pair over `S_-`, and the natural isometry lifts are left zero
+      divisors.
+    - Every landed anti-central firewall model lives in a weakly finite algebra.
+    - An obstruction using only `E⋊V` would show that `V` is not sofic.
+    - No mechanism.
