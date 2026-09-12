@@ -88,3 +88,23 @@ Put `Γ̂ = π⁻¹(Γ)` and `Ĝ = π⁻¹(G_L) = G`.
 
 - In `belegradek-osin-rips-construction`, pin the statement to **Corollary 1.2 of arXiv:math/0605553v4** instead of the abstract, and record the torsion-free rider. It makes the Theorem 1 cover torsion-free.
 - In `hyperbolic-kazhdan-group-has-infranormal-kazhdan-subgroup-proof`, add `infranormal-nonnormal-has-infinite-compression-orbit` to `requires:` if part (d) is ever consumed. Otherwise leave (d) as prose.
+
+## 7. Follow-up: `outer-automorphism-mod-kernel-refutes-centralizer-splitting` (bb1e9eacb)
+
+`hyperbolic-sofic` requested a review of this established refuter and its route `outer-automorphism-mod-kernel-splitting-proof`. It refutes the premise `relative-element-splits-into-m-times-centralizer`. **Verdict: PASS.**
+
+- **A splitting forces an inner action.** If `σ(z) = σ(m_0)c` with `c ∈ C_K(σ(Γ))`, then `σ(zγz⁻¹) = σ(m_0) c σ(γ) c⁻¹ σ(m_0)⁻¹ = σ(m_0γm_0⁻¹)`. Injectivity gives `zγz⁻¹ = m_0γm_0⁻¹` on `Γ`. Correct, for any injective homomorphism into any group.
+- **The normal witness `P = SL_3(Z) ⋊ <α>`, `α(x) = (x^T)⁻¹`.**
+  - `α` is an involutive automorphism.
+  - `P` contains the residually finite `SL_3(Z)` with index 2, so it is residually finite, hence sofic, and it has injective trace-separating sofic representations.
+  - `M = Γ = G = SL_3(Z)` is normal and Kazhdan, and `Γ` is trivially infranormal in `G = Γ`.
+  - `[α, γ] = α(γ)γ⁻¹ ∈ SL_3(Z)`.
+  - All hypotheses of the premise hold.
+- **`α` is not inner, re-computed.** `C = [[0,0,1],[1,0,0],[0,1,2]]` has `det(tI − C) = t²(t − 2) − 1 = t³ − 2t² − 1`. So `det C = 1`, `tr C = σ_1 = 2`, and `tr C⁻¹ = σ_2/σ_3 = 0/1 = 0`. Hence `tr α(C) = tr C⁻¹ = 0 ≠ 2`, and no conjugation, even by `GL_3(C)`, realizes `α`. Correct.
+- **The non-normal witness `H = G_KT × P`**, with `M = 1 × SL_3(Z)`, `Γ = Γ_KT × SL_3(Z)`, `G = G_KT × SL_3(Z)` and `z = (1, α)`.
+  - Products preserve residual finiteness (Theorem E gives `G_KT` residually finite) and property (T).
+  - `P_(Γ_KT) × SL_3(Z)` lies in the compression semigroup and generates `G`, so `Γ` is infranormal. `Γ` is not normal, because of the first factor.
+  - `[z, Γ] ⊆ M`, and the trace argument on the second factor kills the splitting. Correct.
+- **The relative criterion survives, as claimed.** `P/SL_3(Z) ≅ Z/2` is abelian, so every commutator in `P` lies in `SL_3(Z)`, and `[gzg⁻¹, γ] ∈ M` for all `g ∈ G`. The refuter kills one proof strategy, not the hinge. That hinge is `sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`, which stays OPEN.
+- **Graph.** The route has `requires: []` with a complete proof, so the claim is established and `refuted_by` on the premise fires. `relative-defect-via-normalizer-split` requires the refuted premise and can no longer fire. That is correct.
+- **The surviving exact form.** For `σ` with trace `δ_e`, `σ(H)'' ≅ L(H)` and `W*(σ(M)) ≅ L(M)`. `E_(L(M))(u_d) = 0` for `d ∉ M`, so `d ∈ M` iff `σ(d) ∈ W*(σ(M))`. Correct.
