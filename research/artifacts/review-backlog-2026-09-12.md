@@ -513,3 +513,35 @@ MSI `cairn check` at 4667e71ee, which contains §16: EXIT 0, 0 ERROR.
 - **Routing gap, not an error.** Attempt 3 of `leavitt-power-projective-elementary-groups-finitely-presented`, finite
   normal generation of the unstable Steinberg kernel, would bypass coherence and `K_1`. It is recorded as an attempt,
   not as a route.
+
+## 24. `shallow-nonunit-root-mass-vanishes-under-vertex-rounding` (a0a334392): PASS
+
+- **Lemma D.**
+  - For `0 ≠ a >= 0`, every coordinate of `Aa` is at least `|a|_1`, so `φ_A(m) ⊆ zR_+`.
+  - For `χ` trivial on `zR_+`, this gives `χ∘φ_A = ψ∘ev_0` with `ψ = χ|_(F_q)`. It uses `φ_A(f)(0) = f(0)`.
+  - Take the test set `{ψ_0}`. `D_A^(-1){ψ_0}` contains every shallow `χ` with `χ|_(F_q) = ψ`, including `ψ_0` itself,
+    so the others carry at most `η_n`. Summing over `ψ` gives item 1.
+- **Lemma E.**
+  - `t = diag(x_1, x_1^(-1), 1)·diag(1, x_1^2, x_1^(-2))` is a product of Whitehead diagonals, so `t ∈ E_3(L)`.
+  - `Ad t` fixes the `EL_2(R_+)` block and multiplies `V = R_+^2` by `x_1^3`. So `Ad t(S) ⊆ S ⊆ Γ`, and `δ_n^t → 0` for
+    the fixed words `tst^(-1)`.
+  - `V ⊴ S`, so `H^V` is `S`-invariant, and relative (T) gives `||ξ − P^V ξ|| <= κ_S^(-1) max_(F_S)||π(s)ξ − ξ||`.
+    `P^V U_t` then intertwines on `V`, off trace `η_n^t`, by the support argument of §1.
+  - `w_23(1)` conjugates `e_12(f)` to `e_13(±f)`, and `f ↦ −f` preserves `E_0^*` and the component split.
+  - `D_tψ_0 = 1`, so `D_t^(-1){1} ⊇ {1} ⊔ E_0^*`, which gives item 2.
+- **Items 3–4.** `{depth = 1} ⊆ ({depth <= 1} \ {ψ_0}) ∪ E_0^*`. Adding the §3 bound on `1 < depth < ∞` gives item 4.
+- **Item 5.**
+  - `D_A` acts componentwise (§4), and multiplication by `x_1^3` commutes with the local idempotents.
+  - `M_ψ ⊆ {depth_nu <= 1, χ_nu|_(F_q) = ψ} ⊆ D_A^(-1) M_ψ`, so Lemma D runs unchanged.
+  - For Lemma E, `D_t` maps `∪_(ψ≠1) M_ψ` and `M_1` into `M_1`.
+- **Item 6.**
+  - `τ(1 − P_n) <= r(r−1)·μ_n(χ_nu ≠ 1)` by §2, split at `depth_nu = 1` by item 5 of §4.
+  - `η_n^t → 0` needs no rate, and `q` is fixed. So `δ_n^2 log n' → 0` suffices.
+- **Imports.**
+  - `elementary-linear-semidir-pair-relative-t` has no verdict of its own. It is the standard relative (T) of
+    `(EL_2(R) ⋉ R^2, R^2)` for finitely generated rings: Shalom for commutative `R`, which covers `R_+`; Kassabov and
+    Ershov–Jaikin-Zapirain for associative `R`. I did not re-read it from source here.
+  - The other imports are §§1, 3 and 4 above.
+- **Status check.**
+  - `theorem-e-vertex-rounds-to-unit-type-representations` correctly stays OPEN.
+  - Together, §§1–6 and 24 reduce it to the slow-rate regime, where `δ_n^2 log n` does not tend to 0.
