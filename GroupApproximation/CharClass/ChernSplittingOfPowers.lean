@@ -104,7 +104,8 @@ def powerData {p : ℕ} (PF : ℕ → TotalHOf K F →+ TotalHOf K F)
     apply evenCoe_injective K F
     rw [map_sum]
     refine (hcartan n (u : TotalHOf K F) v).trans (Finset.sum_congr rfl fun j _ => ?_)
-    exact (map_mul (evenCoe K F) _ _).symm
+    exact (map_mul (evenCoe K F) (Gen.evenRestrictAdd (PF j) (hPF j) u)
+      (Gen.evenRestrictAdd (PF (n - j)) (hPF (n - j)) v)).symm
   s := Finset.range r
   y := S.evenRoot
   κ := (m : Gen.evenPart K F)
