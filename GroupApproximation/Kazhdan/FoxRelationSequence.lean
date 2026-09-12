@@ -95,6 +95,7 @@ theorem mapG_foxFree_mem_range {n : FreeGroup X}
     mapG (PresentedGroup.mk (relSet rel)) (foxFree 1 n) ∈
       (foxD₂ (PresentedGroup.of : X → Presented rel) rel).range := by
   have hn' : n ∈ Subgroup.closure (Group.conjugatesOfSet (relSet rel)) := hn
+  clear hn
   induction hn' using Subgroup.closure_induction with
   | mem x hx =>
       obtain ⟨a, ⟨r, rfl⟩, hconj⟩ := Group.mem_conjugatesOfSet_iff.mp hx
@@ -105,13 +106,15 @@ theorem mapG_foxFree_mem_range {n : FreeGroup X}
       rw [foxFree_one, map_zero]
       exact zero_mem _
   | mul x y hx hy ihx ihy =>
+      have hx' : x ∈ Subgroup.normalClosure (relSet rel) := hx
       have hxN : PresentedGroup.mk (relSet rel) x = 1 :=
-        (QuotientGroup.eq_one_iff x).mpr hx
+        (QuotientGroup.eq_one_iff (N := Subgroup.normalClosure (relSet rel)) x).mpr hx'
       rw [foxFree_mul, map_add, mapG_act, hxN, act_one]
       exact add_mem ihx ihy
   | inv x hx ihx =>
+      have hx' : x ∈ Subgroup.normalClosure (relSet rel) := hx
       have hxN : PresentedGroup.mk (relSet rel) x = 1 :=
-        (QuotientGroup.eq_one_iff x).mpr hx
+        (QuotientGroup.eq_one_iff (N := Subgroup.normalClosure (relSet rel)) x).mpr hx'
       rw [foxFree_inv, map_neg, mapG_act, map_inv, hxN, inv_one, act_one]
       exact neg_mem ihx
 
