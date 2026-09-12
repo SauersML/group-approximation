@@ -201,3 +201,128 @@ Checked against §§2–4 of `research/artifacts/nh-unit-type-counterexample-202
 - **Framing.** The "intended example" paragraph is motivation, not part of the established statement. It reads
   cluster type distributions as finite-orbit data. I did not verify that those distributions carry an invariant
   `Q_s`-action, and items 1–4 do not use it.
+
+## 9. `kun-thom-wreath-sofic-radical-is-fibre-parity-kernel` (6be4178c4): PASS, one Consequences bullet overstated
+
+- **Step 0.** `N <= EL_r(R)`, because `EL_r(R)` is normal and contains `Γ`. The reverse inclusion is
+  `[e_ij(1), e_jk(b)] = e_ik(b)` with `k ∉ {i, j}`.
+- **Step 1: the criterion applies.** The criterion is `sofic-groups-kill-rigid-compression-defects`
+  (review-rigid-defect-criterion: PASS; Kun–Thom Theorem 4.1 checked against the v3 PDF, proof not re-derived).
+  - `φ(W)` is countable and sofic.
+  - `φ(Γ) <= φ(G)` are Kazhdan, being quotients of Kazhdan groups.
+  - `φ(P_Γ) ⊆ P_(φ(Γ))`, and it generates `φ(G)`.
+  - `φ(e_Γ)` centralizes `φ(Γ)`.
+- **Step 1: lamp algebra.**
+  - `[e_(gΓ), γ] = e_(gΓ) e_(γgΓ)`.
+  - Conjugating by `h = yg^(-1)` gives `e_(yΓ) e_(ycΓ)` for `c = g^(-1)γg`.
+  - Telescoping extends this to every `c ∈ N`.
+  - `x'Γ` lies in the `N`-fibre of `xΓ` iff `x' ∈ xN`, and an even configuration within fibres is a product of pairs.
+- **Step 2.**
+  - `Ψ(l, g) = ((l, ρ(g)), g)` is a homomorphism because `g·l = ρ(g)·l`, and it is injective.
+  - Gruenberg (1957): `A wr B` is residually finite iff `A` and `B` are, and `A` is abelian or `B` is finite.
+  - `G` is finitely generated linear, hence residually finite.
+- **Steps 3–4.**
+  - The radical is the smallest normal subgroup with sofic quotient, since residually sofic countable groups are
+    sofic.
+  - In a finite quotient a compressor normalizes the finite image of `Γ`, so `ΓΔ ⊇ N`.
+  - `N` is closed, because `SL_d(Z)` is residually finite.
+- **Known case: infranormality of the Theorem E pair, re-derived.**
+  - Nonnegative elementary matrices generate `SL_d(Z)`.
+  - `B e_ij(x_1^k) B^(-1) = e_ij(x^(kBe_1))` reaches every monomial, since every primitive vector is a first column.
+  - `[e_ik(c), e_kj(x^a)] = e_ij(c x^a)`.
+  - So `⟨P_Γ⟩ = G`. Since `N/Γ` is infinite, `K_even ≠ 1`, consistent with Kun–Thom Theorem A.
+- **Overstated bullet.** "Intermediate wreaths" says `W_K` is nonsofic *exactly* when `N ⊄ K`.
+  - `kt-intermediate-coset-wreaths-are-nonsofic` proves only the direction `N ⊄ K` ⇒ nonsofic.
+  - For `N <= K`, summing over fibres makes `W_K` a quotient of `W_N`. Quotients of sofic groups need not be sofic.
+  - Soficity of `W_K` would need a separate argument, for example for permutational wreath products over
+    `SL_d(Z)/(K/N)`, and none is on main.
+  - The theorem does not use this bullet. Suggested wording: "`W_K` is nonsofic whenever `N ⊄ K`; for `N <= K` it
+    is a quotient of `W_N`."
+
+## 10. `bh-embeddability-forces-decidable-edge-membership` (9adc98525): PASS
+
+- **(i).**
+  - Finitely presented simple groups have solvable word problem (Kuznetsov), and finitely generated subgroups inherit
+    it (`simple-envelope-forces-solvable-word-problem`).
+  - For `a ∉ C` the word `t a t^(-1) a^(-1)` has no pinch, so Britton's lemma makes it nontrivial.
+  - In the double, `i_1(a) = i_2(a)` iff `a ∈ C`, by the normal form theorem.
+  - Each test is one word-problem instance of computable length.
+- **(ii).**
+  - Take `Q` finitely presented with unsolvable word problem, and `H = F_2`. Belegradek–Osin Corollary 1.2 (checked
+    against the PDF in review-hyperbolic-leavitt-cover §1) gives a torsion-free hyperbolic `G` whose kernel `N` is a
+    quotient of `F_2`.
+  - After lifting generators, `q =_Q 1` iff the lift lies in `N`. So membership in `N` is undecidable, and (i)
+    excludes both extensions.
+  - `hyperbolic-groups-satisfy-boone-higman` has a PASS (review-bh-swarm §2).
+
+## 11. `fa-subgroups-of-graph-towers-lie-in-base-pieces` (9adc98525): PASS
+
+- **Induction on tower length.**
+  - The last step acts without inversions on its Bass–Serre tree.
+  - FA gives a fixed vertex, and vertex stabilizers are conjugates of vertex groups (Serre, *Trees*, I.4–I.6).
+  - The conjugate is again FA and lies in a strictly shorter tower over the same bases.
+- **Wording.** "Each `B_i` is a subgroup of `K`" holds only for bases on which `K_n` depends. A base listed but
+  unused downstream need not embed. The conclusion is unaffected, because the base reached by the induction lies on
+  the dependency chain.
+
+## 12. `finite-bi-index-subgroups-have-decidable-membership` (9adc98525): PASS
+
+- **Proof.**
+  - Each `S g_i S` is recursively enumerable, because `S` is finitely generated and the word problem is solvable.
+  - The double cosets partition `Γ`, so exactly one dovetailed search halts, and the answer is yes iff it is the
+    search for `g_1 = 1`.
+  - Non-uniformity is correctly flagged.
+- **Consequence 1.**
+  - It needs finitely generated stabilizers. That is condition 3 of type (A)
+    (`type-a-action-gives-boone-higman-for-subgroups`, Zaremsky arXiv:2405.18354 as quoted there).
+  - `Γ_x g Γ_x` corresponds to the `Γ`-orbit of `(x, gx)`. So `m` orbits of two-element subsets give at most `2m + 1`
+    double cosets.
+- **Consequence 2.** `S` is finitely generated, because the envelope argument of
+  `ck-envelope-simple-core-has-finite-bi-index` requires a finitely generated point stabilizer.
+- **Consequence 3.** Undistortedness bounds the search by `C·len(w) + C`, since `|w|_Γ <= len(w)`.
+
+## 13. `perfect-unit-subgroups-embed-in-elementary-groups` (c72e1f791): PASS
+
+- **Whitehead.** Multiplying out, `e_12(u) e_21(-u^(-1)) e_12(u) = [[0,u],[-u^(-1),0]]`. Only `u u^(-1)` and
+  `u^(-1) u` occur, so no commutativity is used. Then `w(u) w(-1) = diag(u, u^(-1))`.
+- **Commutators.** `diag(u,u^(-1)) diag(v,v^(-1)) diag((vu)^(-1), vu) = diag(uvu^(-1)v^(-1), u^(-1)v^(-1)vu) = diag([u,v], 1)`.
+- **Assembly.** Perfectness writes every element of `P` as a product of commutators within `P`. The block inclusion
+  sends `E_2(R)` into `E_n(R)`.
+
+## 14. `leavitt-path-algebras-have-simultaneous-strong-division` (cbd624ed0): PASS
+
+- **Step 1.** With no sinks every vertex is regular, so `1 = Σ_(|γ|=N) γγ^*`. For `|μ| <= N`, `μ^*γ` is a real path
+  or `0`.
+- **Step 2.** Support lengths of `(a_iγ)τ_γ` lie in `[|τ_γ|, |τ_γ| + N']`, and these windows are disjoint. Right
+  multiplication by a path is injective on paths. Linear independence of real paths then gives `P_i ≠ 0`.
+- **Step 3.**
+  - If `|ν| < |ν'|`, then `0 < |ν'| − |ν| < k|C|`.
+  - So position `|ν| + k|C| + |α| + 1` of `ν'τ` lies inside `C^k α`, where every edge is on `C`, while `ντ` carries
+    `ε` there.
+  - `ε ∉ C`, because a cycle has one outgoing `C`-edge per vertex. Hence the paths are incomparable, and
+    `η_i^* P_i τ = c_i c_0`.
+- **Step 4.**
+  - A path of length `>= |E^0|` repeats a vertex, so it passes through a cycle vertex, and cofinality gives `μ_γ`.
+  - The `π_j = C^j α ε ρ` are pairwise incomparable, so `S^*S = Σ_j γ_j γ_j^* = 1`.
+- **Step 5.** `u_i a_i X = c_i^(-1) S^*(c_i c_0) S = S^* c_0 S = 1`.
+- **Hypotheses used.** No sinks (steps 1, 4); cofinality (`ρ`, `τ_γ`, `μ_γ`); condition (L) (`ε`).
+- **Known case.** `s = 1` agrees with the characterization of unital purely infinite simple rings: `αxβ = 1` for
+  every `x ≠ 0`.
+
+## 15. `leavitt-path-k-theory-over-finite-fields-via-det` (cbd624ed0): PASS
+
+- **Inputs.** ABC Theorem 7.6 was read from `lit-groups/abc-clean.txt` on MSI (`abc-leavitt-path-k-theory-exact-sequence`).
+  With no sinks, the long exact sequence splits as `0 → coker(T|K_n) → K_n(L) → ker(T|K_(n−1)) → 0`.
+- **Degrees, re-checked.**
+  - `n = 1` needs `D ≠ 0` on `Z^V` and `gcd(D, q−1) = 1` on `(Z/(q−1))^V`.
+  - For `n = 2` only the kernel on `(Z/(q−1))^V` remains.
+  - Both `n = 2i−1 >= 3` and `n = 2i >= 4` reduce to `gcd(D, q^i − 1) = 1`.
+  - Item 4 also needs `K_(−1)(F_q) = 0`. That holds because `F_q` is regular, but the route never mentions it; ABC
+    Corollary 7.7 gives it directly.
+- **Arithmetic.** A prime `ℓ ≠ p` divides `q^(ord_ℓ q) − 1`, and `p` divides no `q^i − 1`.
+- **Known cases.**
+  - One vertex with 2 loops: `D = −1`, so all `K_n`, including `K_0`, vanish over every `F_q`. This agrees with
+    Ara–Cortiñas for `L_2`.
+  - Three loops over `F_2`: `D = −2`, `K_0 = Z/2` and `K_1 = 0`.
+  - The two-vertex example: `D = −2`, and the relation at vertex 2 reads `[v_1] + [v_2] = 0`, so `[1] = 0`.
+- **Unused hypothesis.** "No sources" is harmless and not needed.
