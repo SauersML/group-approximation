@@ -156,3 +156,74 @@ Read against `research/artifacts/hs-s4-assembly-2026-09-12.md` §§0–6.
 - **(b), "if".** A nontrivial element of `S_U` has trace `< 1`. Tensor amplification with a diagonal choice gives a sofic approximation. Elek–Szabó already gives soficity from an embedding into `S_U`, so the amplification is correct but not needed.
 - **(b), "only if".** The product `rho_n(g) × t_m(gN)` is a sofic approximation of `G`. Generators of `N` act as `rho_n(s) × id`, so product edits `D × {y}` are uniform-Cheeger. Then `tr tau_sigma(q) <= tr t(q) + o(1)`.
 - **Scope.** A reformulation, not a permanence theorem, as stated. The circularity remark is correct.
+
+## 8. `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` (925b9eabd): not re-reviewed
+
+`bh-reviewer` already reviewed this claim (`review-bh-swarm-2026-09-12.md` §5). Verdict: FAIL, corrected forward in 4ba6fa13b. The Whitehead diagonal map is not multiplicative; the repair uses `X ↦ diag(X, I)` with one more tensor factor. It is skipped here to avoid duplicating that review.
+
+## 9. `r-fibre-w-star-bundle-sigma-finite-dim-base-is-trivial` (0bb74f48d): PASS
+
+Read against `research/artifacts/w-bundle-sigma-finite-dim-triviality-2026-09-12.md`.
+- **Lemma 1.**
+  - `t ↦ ||f(t) - E_(D_m) f(t)||_2` is continuous and decreasing, so Dini applies.
+  - Exact units of `M_2 ⊂ D_m' ∩ R` commute with `E_(D_m) f`, so the commutator defect is at most `2||f - E f||_2`.
+  - Contractions lift through the onto quotient `q_Y`, and the good set is open.
+- **Lemma 2.**
+  - **Flip relations.** Checked with `b` good against `F ∪ {a_ij}`:
+    - `w^* ≈ w`;
+    - `w^2 ≈ Σ a_ii b_jj ≈ 1`;
+    - `w a_kl w ≈ Σ_i a_ii b_kl ≈ b_kl`;
+    - hence `||h^2 - h||_2 ≤ Cδ` and `||[h,f]||_2 ≤ Cδ`.
+  - **Scalar bound.** `exp(iπst) - 1 - (e^(iπs) - 1)t` vanishes at `t = 0, 1`, with bounded quotient by `t(t-1)`. Minor slip: `||w|| ≤ 4`, so `spec h ⊆ [-3/2, 5/2]`, not `[-2,2]`. The constant is still absolute.
+  - **Regimes.**
+    - `g = κ = 0` gives `c = a`.
+    - At every point of `O ∩ C` the estimate covers all `s = g(λ) ∈ [0,1]`.
+    - At `g = 1`, `u ≈ 1 - 2h ≈ w`, so `u a u^* ≈ b`, and a convex combination with `b` stays `Cδ`-good.
+    - `κ = 1` gives `c = b`.
+  - The constant does not depend on dimension.
+- **Induction.**
+  - The derived length is a successor, by compactness.
+  - Monotonicity holds.
+  - `X_inf = ∅` gives `dim X < ∞` by the finite sum theorem.
+  - O16 applies to `M_Y`; `C = X ∖ O'` has `ℓ(C) ≤ γ`.
+  - Then `p = (Re c_11)_+`, with `|t_-| ≤ |t^2 - t|` on `[-1,1]` and `E(p) ≈ 1/2`.
+  - Strict density plus `||[p, a - a_k]||_(2,u) ≤ 2||a - a_k||_(2,u)` gives condition (ii) of O15.
+- **Remark 2 and Corollary 3.** Checked: Baire in one direction, σ-compact strata in the other.
+- **Trust surfaces.** Ozawa Theorem 15 and Corollary 16 as quoted. Novelty was checked only in a bounded way.
+
+## 10. `fpbs-tree-projected-large-rank-strict-thresholds` (2eac9490b): PASS
+
+- **Step 1.** Symmetric choices `g_(t^(-1)) = g_t^(-1)` embed `T_(2n)` injectively, so `p_c <= 1/(2n-1)` by monotonicity.
+- **Step 2.**
+  - Fibre blocks have row and column sums `<= c_t`. Schur's test gives the block norms.
+  - `|<f,Ag>| <= <F, KG>` with `K = vI + Σ m_t ρ(t) <= vI + m A_T` entrywise.
+  - Kesten gives `||A_(T_(2n))|| = 2 sqrt(2n-1)`.
+- **Steps 3–4.**
+  - `T_p <= Σ p^l A^l` entrywise, so `p_(2->2) >= 1/||A||`.
+  - Uniqueness plus Harris–FKG make `T_p` unbounded above `p_u`.
+- **Table.** Recomputed: `x > 1 + sqrt 3` first holds at `n = 5`; `x > 2 + sqrt 6` first holds at `n = 11`.
+- **Scope.** A classical method, correctly credited. Rank 2 is left open.
+
+## 11. `fpbs-rd-quotient-weighted-bubble-gives-critical-l2` (188188f3d): PASS
+
+- **Operator bound.**
+  - `S_p` is left convolution by the symmetric `σ_p` on `Q`.
+  - Rapid Decay per sphere gives `||λ(σ_R)|| <= C(1+R)^D b_R^(1/2)`.
+  - The triangle inequality and Cauchy–Schwarz against `(1+R)^(-1)` give `C (π/sqrt 6) W_D^(1/2)`, with `Σ_(R>=0) (1+R)^(-2) = π^2/6`.
+- **Inputs.**
+  - The fibre comparison `||T|| <= ||S||` (PASS by `major-reviewer`).
+  - Hutchcroft Corollary 2.6, verified from the PDF by `major-reviewer`, turns critical L2 boundedness into `p_c < p_(2->2)`.
+- **Scope.** The note that the premise forces a nonamenable `Q` is correct. If `σ_(p_c)` is infinite somewhere, the premise simply fails.
+
+## 12. `integral-spectra-of-small-capacity-are-finite` (ec18bf405): PASS
+
+- **Steps 1–3.**
+  - `m_k = Tr(T^k) ∈ Z`.
+  - The Stieltjes transform is single-valued on the sphere minus `σ`, with no monodromy, unlike the logarithm.
+  - `σ ⊂ R` has connected complement. Pólya applies to `w f(w) = Σ m_k w^(-k)`.
+- **Step 4.**
+  - A rational Stieltjes transform of a positive measure gives a finitely atomic measure.
+  - The trace is faithful, so `supp μ = σ`.
+  - Fatou gives `F = P/Q` with `Q(0) = 1`, so the poles are roots of the monic reversed polynomial, hence algebraic integers. Then `m(T) = 0`.
+- **Capacity formula.** `cap(p^(-1)E) = cap(E)^(1/2)` for `p = x^2` gives `sqrt(b^2 - a^2)/2`.
+- **Trust surface.** Pólya's theorem as imported (`polya-integer-series-rational-off-small-capacity`), not re-read from the 1928 source.
