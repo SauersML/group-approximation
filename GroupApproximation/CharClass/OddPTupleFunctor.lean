@@ -186,7 +186,159 @@ theorem tupMap_comp (f : X ⟶ Y) (g : Y ⟶ Z) (k : ℕ) (x : tupMod K X r k) :
     congr 2
     exact Subtype.ext (funext fun j => tagPush_comp f g (t.1 j))
 
+theorem tupT_pow_tupD (k s : ℕ) (x : tupMod K X r (k + 1)) :
+    (tupT K X r k ^ s) (tupD K X r k x) = tupD K X r k ((tupT K X r (k + 1) ^ s) x) := by
+  induction s generalizing x with
+  | zero => rw [pow_zero, pow_zero, Module.End.one_apply, Module.End.one_apply]
+  | succ s ih =>
+    rw [pow_succ', pow_succ', Module.End.mul_apply, Module.End.mul_apply, ih, tupT_tupD]
+
+theorem tupT_pow_tupMap (f : X ⟶ Y) (k s : ℕ) (x : tupMod K X r k) :
+    (tupT K Y r k ^ s) (tupMap K f r k x) = tupMap K f r k ((tupT K X r k ^ s) x) := by
+  induction s generalizing x with
+  | zero => rw [pow_zero, pow_zero, Module.End.one_apply, Module.End.one_apply]
+  | succ s ih =>
+    rw [pow_succ', pow_succ', Module.End.mul_apply, Module.End.mul_apply, ih, tupMap_tupT]
+
 end Push
+
+/-! ## 2. Linearity over the group ring -/
+
+section GroupRing
+
+variable (p : ℕ) [NeZero p]
+
+/-- **An `F_p`-linear map intertwining two automorphisms of order `p` is linear over the group ring**
+for the two structures `moduleOfOrderP` induces.  Stated through the algebra maps, so that it can be
+used before either structure is in scope. -/
+theorem galAlgHomP_comm {V W : Type} [AddCommGroup V] [Module (ZMod p) V] [AddCommGroup W]
+    [Module (ZMod p) W] (σ : Module.End (ZMod p) V) (hσ : σ ^ p = 1)
+    (τ : Module.End (ZMod p) W) (hτ : τ ^ p = 1) (f : V →ₗ[ZMod p] W)
+    (hf : ∀ v, f (σ v) = τ (f v)) (c : GroupRingZMod p) (v : V) :
+    f ((galAlgHomP σ hσ c) v) = (galAlgHomP τ hτ c) (f v) := by
+  have hpow : ∀ (n : ℕ) (w : V), f ((σ ^ n) w) = (τ ^ n) (f w) := by
+    intro n
+    induction n with
+    | zero =>
+      intro w
+      rw [pow_zero, pow_zero, Module.End.one_apply, Module.End.one_apply]
+    | succ n ih =>
+      intro w
+      rw [pow_succ', pow_succ', Module.End.mul_apply, Module.End.mul_apply, hf, ih]
+  induction c using MonoidAlgebra.induction_on with
+  | hM g =>
+    have hV : galAlgHomP σ hσ (MonoidAlgebra.of (ZMod p) (Multiplicative (ZMod p)) g)
+        = galEndP σ hσ g := by
+      unfold galAlgHomP
+      exact MonoidAlgebra.lift_of _ _
+    have hW : galAlgHomP τ hτ (MonoidAlgebra.of (ZMod p) (Multiplicative (ZMod p)) g)
+        = galEndP τ hτ g := by
+      unfold galAlgHomP
+      exact MonoidAlgebra.lift_of _ _
+    rw [hV, hW]
+    exact hpow (Multiplicative.toAdd g).val v
+  | hadd c₁ c₂ h₁ h₂ =>
+    rw [map_add, map_add, LinearMap.add_apply, LinearMap.add_apply, map_add, h₁, h₂]
+  | hsmul a c h =>
+    rw [map_smul, map_smul, LinearMap.smul_apply, LinearMap.smul_apply, map_smul, h]
+
+omit [NeZero p] in
+/-- `T ^ s` has order dividing `p` whenever `r ∣ s · p`. -/
+theorem tupT_pow_pow (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) :
+    (tupT (ZMod p) X r k ^ s) ^ p = 1 := by
+  obtain ⟨c, hc⟩ := hs
+  rw [← pow_mul, hc, pow_mul, tupT_pow_card, one_pow]
+
+/-- **The group ring acting on the degree-`k` carrier through `T ^ s`.**  Never an instance. -/
+abbrev tupModule (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) :
+    Module (GroupRingZMod p) (tupMod (ZMod p) X r k) :=
+  moduleOfOrderP (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs)
+
+/-- The degree-`k` object over the group ring. -/
+abbrev tupObj (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) : ModuleCat.{0} (GroupRingZMod p) :=
+  @ModuleCat.of (GroupRingZMod p) _ (tupMod (ZMod p) X r k) _ (tupModule p X r k s hs)
+
+/-- The differential, as a morphism over the group ring. -/
+def tupDHom (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p) :
+    tupObj p X r (k + 1) s hs ⟶ tupObj p X r k s hs :=
+  @ModuleCat.ofHom (GroupRingZMod p) _ (tupMod (ZMod p) X r (k + 1)) (tupMod (ZMod p) X r k) _
+    (tupModule p X r (k + 1) s hs) _ (tupModule p X r k s hs)
+    { toFun := tupD (ZMod p) X r k
+      map_add' := fun u v => map_add _ u v
+      map_smul' := fun c y =>
+        galAlgHomP_comm p (tupT (ZMod p) X r (k + 1) ^ s) (tupT_pow_pow p X r (k + 1) s hs)
+          (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs) (tupD (ZMod p) X r k)
+          (fun v => (tupT_pow_tupD (ZMod p) k s v).symm) c y }
+
+theorem tupDHom_hom_apply (X : TopCat.{0}) (r k s : ℕ) (hs : r ∣ s * p)
+    (y : tupMod (ZMod p) X r (k + 1)) : (tupDHom p X r k s hs).hom y = tupD (ZMod p) X r k y :=
+  rfl
+
+/-- **The `r`-fold tensor power of the singular chains of one space, over the group ring.** -/
+def tupCx (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) :
+    ChainComplex (ModuleCat.{0} (GroupRingZMod p)) ℕ :=
+  ChainComplex.of (fun k => tupObj p X r k s hs) (fun k => tupDHom p X r k s hs)
+    (fun k => by
+      apply ModuleCat.hom_ext
+      apply LinearMap.ext
+      intro y
+      exact tupD_tupD (ZMod p) X k y)
+
+theorem tupCx_d (X : TopCat.{0}) (r s : ℕ) (hs : r ∣ s * p) (k : ℕ) :
+    (tupCx p X r s hs).d (k + 1) k = tupDHom p X r k s hs := by
+  simp [tupCx]
+
+/-- The pushforward, as a morphism over the group ring. -/
+def tupMapHom {X Y : TopCat.{0}} (f : X ⟶ Y) (r k s : ℕ) (hs : r ∣ s * p) :
+    tupObj p X r k s hs ⟶ tupObj p Y r k s hs :=
+  @ModuleCat.ofHom (GroupRingZMod p) _ (tupMod (ZMod p) X r k) (tupMod (ZMod p) Y r k) _
+    (tupModule p X r k s hs) _ (tupModule p Y r k s hs)
+    { toFun := tupMap (ZMod p) f r k
+      map_add' := fun u v => map_add _ u v
+      map_smul' := fun c y =>
+        galAlgHomP_comm p (tupT (ZMod p) X r k ^ s) (tupT_pow_pow p X r k s hs)
+          (tupT (ZMod p) Y r k ^ s) (tupT_pow_pow p Y r k s hs) (tupMap (ZMod p) f r k)
+          (fun v => (tupT_pow_tupMap (ZMod p) f k s v).symm) c y }
+
+/-- The pushforward, as a map of complexes. -/
+def tupCxMap {X Y : TopCat.{0}} (f : X ⟶ Y) (r s : ℕ) (hs : r ∣ s * p) :
+    tupCx p X r s hs ⟶ tupCx p Y r s hs where
+  f k := tupMapHom p f r k s hs
+  comm' i j hij := by
+    have hij' : j + 1 = i := hij
+    subst hij'
+    rw [tupCx_d, tupCx_d]
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro y
+    exact (tupMap_tupD (ZMod p) f j y).symm
+
+/-- **The target of the odd-primary comparison**: `X ↦ C(X)^{⊗r}` over `F_p[ℤ/p]`, the generator
+acting through `T ^ s`. -/
+def oddTgt (r s : ℕ) (hs : r ∣ s * p) :
+    TopCat.{0} ⥤ ChainComplex (ModuleCat.{0} (GroupRingZMod p)) ℕ where
+  obj X := tupCx p X r s hs
+  map f := tupCxMap p f r s hs
+  map_id X := by
+    refine HomologicalComplex.hom_ext _ _ fun k => ?_
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro y
+    exact tupMap_id (ZMod p) k y
+  map_comp f g := by
+    refine HomologicalComplex.hom_ext _ _ fun k => ?_
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro y
+    exact tupMap_comp (ZMod p) f g k y
+
+@[simp] theorem oddTgt_obj (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) :
+    (oddTgt p r s hs).obj X = tupCx p X r s hs := rfl
+
+@[simp] theorem oddTgt_map (r s : ℕ) (hs : r ∣ s * p) {X Y : TopCat.{0}} (f : X ⟶ Y) :
+    (oddTgt p r s hs).map f = tupCxMap p f r s hs := rfl
+
+end GroupRing
 
 end
 
