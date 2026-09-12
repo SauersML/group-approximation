@@ -6,6 +6,7 @@ title: Popa's deformation/rigidity theory gives no coordinate-level input forcin
 distinct_from:
   compressed-coset-shifts-carry-strict-equivariant-embeddings: that constructs the strict continuous equivariant injection of a compressed coset shift; this uses it to show that s-malleability and weak mixing on a Kazhdan subgroup, the hypotheses of cocycle superrigidity, coexist with strict injections, and adds the singularity, factor-map and finite-fibre facts.
   kazhdan-bernoulli-rigidity-forces-surjective-embeddings: that is the refuted architecture "rigid Bernoulli dynamics admit no strict self-embeddings"; this is a theorem naming which tools of Popa's theory fail and why each one carries no information about cylinder masses of a strict image.
+  measure-conjugacy-invariants-cannot-certify-surjectivity: that is the general principle that every measure-conjugacy invariant agrees on mu and a strict image measure; this is specific to Popa's theory, where the malleable deformation is a coordinate-level, non-invariant tool, and names why that tool too carries no cylinder information (singular images, coset calibration of the superrigidity hypotheses, measure-preserving XOR factors).
 artifacts:
   - research/artifacts/popa-deformation-rigidity-and-bernoulli-preservation-2026-09-12.md
 ---
