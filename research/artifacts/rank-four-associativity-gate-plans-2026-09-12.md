@@ -184,6 +184,18 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
     `commutant-distortion-from-strict-defect-submultiplicativity` derives distortion from strict
     submultiplicativity. So distortion is a weaker decisive input for the descent line than
     `theta < 1`.
+    * **Firewall for distortion.** Node `commuting-subgroup-witnesses-cannot-distort-defect-ranges`, from
+      lane w5-commutant-distort; established, with verification requested from w4-vf-gate.
+      * **Result.** Take `L <= G_U` infinite, locally finite and containing the frame's transvections. Take
+        `Lambda <= G_(U^c)` with some characteristic-two rank model `rho`. Then `sigma_L (x) rho` is a
+        nontrivial fixed-point-free model of `L x Lambda`, and `rk(D_Theta Z) = delta rk(Z)` for every
+        matrix `Z` over `sigma(F_2[Lambda])`.
+      * **Consequence.** Witnesses from a rank-modelled subgroup supported off the cylinder set never
+        distort, even infinite-order ones such as `iota_A(w_23) iota_(A1)(w_12)`. A distortion proof has to
+        use one of three inputs:
+        * straddling units as factors, not only as conjugators;
+        * properties of `Lambda` that no rank model has;
+        * global inputs such as corner locality, globality or compactness.
   * **Two more firewalls** (family SUB; both established, with verification requested from w4-vf-gate).
     * `finite-subgroup-data-cannot-force-defect-submultiplicativity` (w4-sub-weyl).
       * The regular assignment `rk_reg(alpha) = dim(alpha F_2[K])/|K|` is a rank function on every
