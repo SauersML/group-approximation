@@ -323,3 +323,4 @@
 34630505619	2026-09-11T17:57:34Z	GroupApproximation/Sofic/DoublePauliCoefficient.lean	product_commutes_of_both_anticommute
 34647215700	2026-09-11T21:01:51Z	GroupApproximation/Sofic/DoubleSoficTransfer.lean	isSofic_freeLamp_flip_of_isSofic_symmetricDouble
 34657560241	2026-09-12T00:56:41Z	GroupApproximation/Sofic/ExactCoronaNegativeCorner.lean	that
+34665297439	2026-09-12T02:17:22Z	GroupApproximation/Sofic/CliffordWitnessHSRemark.lean	manuscriptSentence_soficPermutationModelsHS
