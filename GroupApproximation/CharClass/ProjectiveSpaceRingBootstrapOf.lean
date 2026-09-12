@@ -69,7 +69,7 @@ set_option maxHeartbeats 400000 in
 /-- **The Gysin step over a field.**  The complement's reading of the tautological class of
 `P(taut ⊕ 1)` has nonzero powers up to the dimension, for every nonzero `hgen`, over the free tuple
 of `U × ℂP^1`. -/
-theorem cupPowE_rNotZero_ne_zeroOf_of_freeTuple (K : Type) [Field K] (d : ℕ) (hd : 1 ≤ d)
+theorem cupPowE_rNotZero_ne_zeroOf_of_freeTuple (K : Type) [Field K] (d : ℕ) (_hd : 1 ≤ d)
     (hgen : Hmod K (CPtop (1 + LH.tautCardOf (Fin (d + 1) ⊕ Unit))) 2) (hgen0 : hgen ≠ 0)
     (hfree : ∀ (U : Type) [TopologicalSpace U] (hfib : Hmod K (CPtop 1) 2), hfib ≠ 0 →
       LH.HasFreeTuple (KnCP.cpFst U 1) (pull (KnCP.cpSnd U 1) 2 hfib) 2)
