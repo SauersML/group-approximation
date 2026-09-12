@@ -53,7 +53,7 @@ commutators with `A.map n γ` vanish along `atTop`, separately for each
   homomorphism into the ultraproduct with trace zero off the identity (by
   `asymptoticallyFaithful`), that is, a sofic representation. The class of `v`
   lies in the centralizer of `Γ`, and 4.1 contradicts the failure on `S`.
-  Uncountable groups admit no `SoficApproximation`, so there the Prop is
+  Uncountable groups have no `SoficApproximation`, so there the Prop is
   vacuous, which is harmless.
 * **It suffices for the endpoint.** Restricting a sofic approximation of the
   double or the wreath product along the injective inclusion of `G` keeps
