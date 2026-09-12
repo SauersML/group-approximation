@@ -228,13 +228,20 @@ With `R = Z[t]` this is the input of Section 2.
 > Question 8.5. Are all linear sofic groups indeed sofic?
 
 > Question 8.6. Let G be a linear sofic group and F a finite field. Does there exist an
-> [...]
+> injective group morphism Φ : G → Π_(k→ω) GL_(n_k)(F)/d_ω ?
 
 **The red flag in the lane brief does not apply.** The brief asked to verify that
-hyperlinear groups are linear sofic. In this source "hyperlinear" occurs in the
-introduction, as motivation and in the remark that amplification "[is] easy in the
-sofic and hyperlinear cases. In the rank metric case, both properties are highly
-non-trivial", once more at text line 1228, and in the references. No implication
-between hyperlinearity and linear soficity is stated. So a non-linear-sofic group would
-not thereby be non-hyperlinear, consistent with the `distinct_from` of
-`linear-sofic-nonsofic-group`. The context at line 1228 is recorded after a re-read below.
+hyperlinear groups are linear sofic. In this source "hyperlinear" occurs only in three
+places:
+
+- the introduction, as motivation, and in the remark that amplification "[is] easy in
+  the sofic and hyperlinear cases. In the rank metric case, both properties are highly
+  non-trivial";
+- Section 11, after the linear sofic radical is defined: "This construction of linear
+  sofic radical can be performed for several other metric approximation properties for
+  groups, like soficity, weak soficity or hyperlinearity";
+- the references.
+
+No implication between hyperlinearity and linear soficity is stated. So a
+non-linear-sofic group would not thereby be non-hyperlinear, consistent with the
+`distinct_from` of `linear-sofic-nonsofic-group`.
