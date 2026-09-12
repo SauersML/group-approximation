@@ -67,10 +67,13 @@ Probe plan once lix-k exists (one small closure first): (1) `RelHomotopyIdentity
 | `CohomologyKunnethDecompOf` | `knLow_allOf`, `knTop_sphereGenOf`, `knTopOf_smul`, `sphereTopClassOf_eq_smul_sphereGenOf`, `knTop_sphereTopClassOf`, `kunneth_lowOf`, `kunneth_decompositionOf`, `kunneth_decomposition_uniqueOf` | `[Field K]` | ee0b11fbf |
 | `CohomologyKunnethParityOf` | `NoOddCohomologyOf`, `eq_zero_of_noOddOf`, `even_pulled_back_of_odd_sphereOf`, `eq_zero_odd_of_even_sphereOf`, `isZero_odd_prod_sphereOf`, `noOddCohomology_prod_sphereOf` | `[Field K]` | f9c753444 |
 
-Probe 0911-224614-10401 (lix-b, base f0f56b337; the msi hop died but the remote summary came back):
-`CohomologyKunnethHemiOf` COMPILED (`Built`, 24s).  `CohomologyKunnethStepOf` red on `SphereOddDegree.northPole`
-(unresolvable from `CharClass`), fixed and re-landed fbd5cc37d.  Running (bhp8yi2fb): StepOf, ZeroOf, StepDeltaOf,
-InjectiveOf, SurjOf, SurjZeroOf, DecompOf.  ParityOf goes into the next batch.
+Probe 0911-224614-10401 (lix-b; msi hop died, remote summary read): `CohomologyKunnethHemiOf` COMPILED;
+`CohomologyKunnethStepOf` red on `SphereOddDegree.northPole`, fixed fbd5cc37d.
+
+**Probe 0911-231759-79994 (lix-b, base 3eebc045e, PROBE GREEN, 8826 jobs):** StepOf, ZeroOf, StepDeltaOf,
+InjectiveOf, SurjOf, SurjZeroOf, DecompOf each `Built`.  **Probe 0911-233409-64424 (PROBE GREEN, 8827 jobs):**
+ParityOf `Built`.  All bytes already on origin.  WIRE tops: `CohomologyKunnethParityOf`, `RelHomotopyIdentity`,
+`RelativeSplitField`, `RelativeProdContractibleOf`, `RelativeLocalModelOf`.
 
 ## NEEDS
 
