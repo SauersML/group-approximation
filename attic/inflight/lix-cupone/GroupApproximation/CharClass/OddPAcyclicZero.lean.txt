@@ -61,15 +61,19 @@ theorem fromCoprod_comm :
       = fromCoprod K X 1 ≫ ModuleCat.ofHom (chainBd K X 0) := by
   apply Limits.Sigma.hom_ext
   intro γ
-  rw [← Category.assoc, ← Category.assoc,
-    AffineBarycentricSubdivision.singularBoundary_sigma_ι_formula, ι_fromCoprod,
-    Preadditive.sum_comp]
   apply ModuleCat.hom_ext
   apply LinearMap.ext_ring
-  simp only [Preadditive.zsmul_comp, ι_fromCoprod, ModuleCat.hom_sum, LinearMap.sum_apply,
-    ModuleCat.hom_zsmul, LinearMap.smul_apply, ModuleCat.hom_comp, LinearMap.comp_apply,
-    ModuleCat.hom_ofHom, Finsupp.lsingle_apply]
-  exact (singFreeR_d_single K X 0 γ).symm
+  change (fromCoprod K X 0).hom ((AffineBarycentricSubdivision.singularBoundary K X 0).hom
+      (AffineBarycentricSubdivision.chainGenerator K X (0 + 1) γ))
+    = (((singFreeR K).obj X).d (0 + 1) 0).hom
+      ((fromCoprod K X 1).hom (AffineBarycentricSubdivision.chainGenerator K X 1 γ))
+  rw [AffineBarycentricSubdivision.singularBoundary_chainGenerator_formula, fromCoprod_generator,
+    singFreeR_d_single, map_sum]
+  refine Finset.sum_congr rfl fun i _ => ?_
+  rw [map_smul, fromCoprod_generator, ← Int.cast_smul_eq_zsmul K ((-1 : ℤ) ^ (i : ℕ))]
+  congr 1
+  push_cast
+  ring
 
 /-- **Over a path-connected space every difference of two points is a boundary.** -/
 theorem single_sub_mem_range [PathConnectedSpace X] (σ τ : singularSimplices X 0) :
