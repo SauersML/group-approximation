@@ -40,6 +40,7 @@ abbrev Avoids (s : Finset Delta.toCombMap.Face) : Prop := I.leftFace ∉ s ∧ I
 noncomputable abbrev faceSet (s : Finset Delta.toCombMap.Face) : Finset I.diagram.toCombMap.Face :=
   s.image I.kept
 
+omit [DecidableEq Delta.toCombMap.Dart] in
 theorem off_of_mem {s : Finset Delta.toCombMap.Face} (hs : I.Avoids s) {g : Delta.toCombMap.Face}
     (hg : g ∈ s) : g ≠ I.leftFace ∧ g ≠ I.rightFace :=
   ⟨fun h => hs.1 (h ▸ hg), fun h => hs.2 (h ▸ hg)⟩
@@ -49,8 +50,7 @@ theorem kept_mem_faceSet {s : Finset Delta.toCombMap.Face} {g : Delta.toCombMap.
   Finset.mem_image.mpr ⟨g, hg, rfl⟩
 
 theorem kept_mem_faceSet_iff {s : Finset Delta.toCombMap.Face} (hs : I.Avoids s)
-    {g : Delta.toCombMap.Face} (hg₁ : g ≠ I.leftFace) (hg₂ : g ≠ I.rightFace) :
-    I.kept g ∈ I.faceSet s ↔ g ∈ s := by
+    {g : Delta.toCombMap.Face} : I.kept g ∈ I.faceSet s ↔ g ∈ s := by
   constructor
   · intro h
     obtain ⟨g', hg', heq⟩ := Finset.mem_image.mp h
@@ -70,17 +70,7 @@ theorem faceOf_mem_faceSet_iff {s : Finset Delta.toCombMap.Face} (hs : I.Avoids 
     (d : Delta.toCombMap.Dart) :
     I.diagram.toCombMap.faceOf d ∈ I.faceSet s ↔ Delta.toCombMap.faceOf d ∈ s := by
   rw [I.diagram_faceOf]
-  by_cases h₁ : Delta.toCombMap.faceOf d = I.leftFace
-  · have hm : I.kept (Delta.toCombMap.faceOf d) = I.merged := by rw [h₁]; exact I.kept_leftFace
-    rw [hm, h₁]
-    exact ⟨fun h => (I.merged_not_mem_faceSet hs h).elim, fun h => (hs.1 h).elim⟩
-  · by_cases h₂ : Delta.toCombMap.faceOf d = I.rightFace
-    · have hm : I.kept (Delta.toCombMap.faceOf d) = I.merged := by
-        rw [h₂]
-        exact I.kept_rightFace
-      rw [hm, h₂]
-      exact ⟨fun h => (I.merged_not_mem_faceSet hs h).elim, fun h => (hs.2 h).elim⟩
-    · exact I.kept_mem_faceSet_iff hs h₁ h₂
+  exact I.kept_mem_faceSet_iff hs
 
 theorem faceSet_disjoint_iff {s t : Finset Delta.toCombMap.Face} (hs : I.Avoids s)
     (ht : I.Avoids t) : Disjoint (I.faceSet s) (I.faceSet t) ↔ Disjoint s t := by
@@ -90,19 +80,12 @@ theorem faceSet_disjoint_iff {s t : Finset Delta.toCombMap.Face} (hs : I.Avoids 
     exact h (I.kept_mem_faceSet hgs) (I.kept_mem_faceSet hgt)
   · intro h F hFs hFt
     obtain ⟨g, hg, rfl⟩ := Finset.mem_image.mp hFs
-    have hoff := I.off_of_mem hs hg
-    exact h hg ((I.kept_mem_faceSet_iff ht hoff.1 hoff.2).mp hFt)
+    exact h hg ((I.kept_mem_faceSet_iff ht).mp hFt)
 
 theorem faceSet_inj {s t : Finset Delta.toCombMap.Face} (hs : I.Avoids s) (ht : I.Avoids t)
     (h : I.faceSet s = I.faceSet t) : s = t := by
   ext g
-  by_cases h₁ : g = I.leftFace
-  · rw [h₁]
-    exact ⟨fun h' => (hs.1 h').elim, fun h' => (ht.1 h').elim⟩
-  · by_cases h₂ : g = I.rightFace
-    · rw [h₂]
-      exact ⟨fun h' => (hs.2 h').elim, fun h' => (ht.2 h').elim⟩
-    · rw [← I.kept_mem_faceSet_iff hs h₁ h₂, ← I.kept_mem_faceSet_iff ht h₁ h₂, h]
+  rw [← I.kept_mem_faceSet_iff hs, ← I.kept_mem_faceSet_iff ht, h]
 
 /-! ## Boundaries -/
 
@@ -193,12 +176,12 @@ theorem shelling {s : Finset Delta.toCombMap.Face} (hs : I.Avoids s)
 theorem cellDarts_eq (i : Fin Delta.rCellCount) :
     cellDarts I.diagram (I.cellMap.indexEquiv i) = (cellDarts Delta i).map id := by
   rw [List.map_id]
-  change (I.diagram.faceBoundary (cell I.diagram (I.cellMap.indexEquiv i)).face).darts =
-    (Delta.faceBoundary (cell Delta i).face).darts
+  change (I.diagram.faceBoundary (Embedded.cell I.diagram (I.cellMap.indexEquiv i)).face).darts =
+    (Delta.faceBoundary (Embedded.cell Delta i).face).darts
   rw [I.cellMap.indexed_cell i]
-  change (I.faceBoundary (I.kept (cell Delta i).face)).darts = _
-  rw [I.faceBoundary_kept_darts _ (I.left_not_cell _ (cell_mem Delta i))
-    (I.right_not_cell _ (cell_mem Delta i))]
+  change (I.faceBoundary (I.kept (Embedded.cell Delta i).face)).darts = _
+  rw [I.faceBoundary_kept_darts _ (I.left_not_cell _ (Embedded.cell_mem Delta i))
+    (I.right_not_cell _ (Embedded.cell_mem Delta i))]
 
 theorem outerDarts_eq : outerDarts I.diagram = (outerDarts Delta).map id := by
   rw [List.map_id]
