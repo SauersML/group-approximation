@@ -26,12 +26,21 @@ into the three statements this file translates into the challenge's vocabulary.
 
 The three theorems the configuration selects are not here yet, and this file says so rather
 than spelling them with a `sorry`.  What is here is each of them with one hypothesis in front,
-`GroupApproximation.NinetyNineProblems.ClimbedPowersOutside n`: the `k`-indexed Corollary 4 at
-the limit, which is `sp-tower`'s deliverable.  Every other step of all three is proved.
+`GroupApproximation.NinetyNineProblems.ClimbedPowersOutside n`: one unitary of the rank-`n` limit
+whose stabilisation is null-homotopic and whose `k`-th power stays outside `U₀` whenever a prime
+dividing `n` misses `k`.  Every other step of all three is proved.
+
+That hypothesis is itself reduced to ONE named proposition.  Corollary 4 at the agreed section
+family is a theorem (`GroupApproximation.LIX.Gen.corollary4Powers`), so
+`NinetyNineProblems.climbedPowersOutside_of_lemmaTwoHoldsAtPowers`
+(`Manuscript/NinetyNineProblems/ProblemLIXStrongAssemblyCor4.lean`) gives `ClimbedPowersOutside n`
+from `NinetyNineProblems.LemmaTwoHoldsAtPowers n`: Lemma 2 at every stage of the rank-`n` tower, for
+the section of degree `k`, at every exponent `k` some prime dividing `n` misses.  That proposition
+is the one input the construction still owes (Step C with `k` zeros and Step D mod `p`).
 
 So `Palomar/comparator-lix-strong.json` is not a submittable surface today, and
 `scripts/check_palomar_submission.py` lists it as pending for exactly that reason.  The day
-`ClimbedPowersOutside` becomes a theorem this file gains three one-line wrappers carrying the
+`LemmaTwoHoldsAtPowers` becomes a theorem this file gains three one-line wrappers carrying the
 challenge's signatures verbatim, the configuration moves from the pending list to the enforced
 one, and nothing else changes.
 
@@ -108,10 +117,12 @@ theorem powers_witness_of (A : Type) [CStarAlgebra A] (n : ℕ)
 
 /-- **The stronger theorem**, over the one proposition the construction still owes.
 
-`ClimbedPowersOutside n` is `sp-tower`'s: one unitary of the rank-`n` limit whose stabilisation
-is null-homotopic and whose `k`-th power stays outside `U₀` whenever a prime dividing `n` misses
-`k`.  Everything else — nontriviality, simplicity, separability, and the exchange of the
-contrapositive for the divisibility — is a theorem of the development. -/
+`ClimbedPowersOutside n` is one unitary of the rank-`n` limit whose stabilisation is
+null-homotopic and whose `k`-th power stays outside `U₀` whenever a prime dividing `n` misses `k`.
+It follows from the one remaining named proposition `NinetyNineProblems.LemmaTwoHoldsAtPowers n`
+by `NinetyNineProblems.climbedPowersOutside_of_lemmaTwoHoldsAtPowers`, Corollary 4 being the
+theorem `LIX.Gen.corollary4Powers`.  Everything else — nontriviality, simplicity, separability,
+and the exchange of the contrapositive for the divisibility — is a theorem of the development. -/
 theorem exists_simple_separable_powers_outside_U0_of (n : ℕ) (hn : 2 ≤ n)
     (hclimb : NinetyNineProblems.ClimbedPowersOutside n) :
     ∃ (A : Type) (_ : CStarAlgebra A),
