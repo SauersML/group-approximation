@@ -13,6 +13,7 @@ artifacts:
   - GroupApproximation/KunThom/SequentialComponentFamily.lean
   - GroupApproximation/KunThom/SequentialComponentFamilyBlocks.lean
   - GroupApproximation/KunThom/SequentialComponentFamilyKazhdan.lean
+  - GroupApproximation/KunThom/SequentialComponentFamilyCompanion.lean
 ---
 
 ## Direct proof, machine-checked
@@ -75,6 +76,13 @@ artifacts:
   - Kazhdan: `exists_sequentialDecompositions` and
     `exists_kazhdanPair_on_generators`.
   - All 11 printed closures are `[propext, Classical.choice, Quot.sound]`.
+- Probe GREEN `.0912-142104-91891` for `SequentialComponentFamilyCompanion`.
+  - Fintype instances on the object index, reachable through the family index.
+  - Eventual lower bounds on object scales.
+  - `objectParent` with removed mass and no-object mass negligible.
+  - The retained matching of `ComponentCountingRetainedMatchingNegligible`,
+    instantiated with these objects on `L.gammaDecomposition`.
+  - All 13 printed closures are `[propext, Classical.choice, Quot.sound]`.
 
 **Parallel toolkits on main, not used here.**
 - `RetainedComponentExpansion` and `CentralizerNormalizationPrunedCore`: pruning

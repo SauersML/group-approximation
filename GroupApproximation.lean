@@ -4774,3 +4774,4 @@ import GroupApproximation.KunThom.CountingEndgamePropsSelect
 import GroupApproximation.KunThom.RelativeDataMarkovDeletion
 import GroupApproximation.KunThom.RelativeFunctorImproveFrame
 import GroupApproximation.KunThom.CountingEndgamePropsCounting
+import GroupApproximation.KunThom.SequentialComponentFamilyCompanion
