@@ -24,7 +24,9 @@ lifts of `s_0` and `t_0`. With `A = g_1^-1(00)`, `B' = g_0^-1(01)`, `h = g_0^-1 
 - `tau sigma = 1 + D`, with `F` a nonzero idempotent in `ker pi` and `D in ker pi`;
 - `D^2 = F` and `DF = FD = D`, so `D` is a partial symmetry on `F`;
 - `e' = 2(F - D)` is a nonzero idempotent, and `tau'' = ((1 - F) + 2(F + D)) tau` is another lift of
-  `t_0` with `tau'' sigma = 1 - e'`.
+  `t_0` with `tau'' sigma = 1 - e'`;
+- `(1_(W_1), 1_(W_2), [h]1_(W_1), [h^-1]1_(W_2))` are `2 x 2` matrix units and `e'` is their rank-one
+  idempotent `2[[1,-1],[-1,1]]`. So `e' ~ 1_(W_1) ~ 1_(W_2) ≤ P_0`, and `e' ~ 1` iff `1 ~ 1_(W_1)`.
 
 So for every choice of extending units the lift of the binary Leavitt pair is left invertible exactly
 modulo one nonzero kernel idempotent, and `sigma` is left invertible in `S_-` iff `e' in S_- sigma`.

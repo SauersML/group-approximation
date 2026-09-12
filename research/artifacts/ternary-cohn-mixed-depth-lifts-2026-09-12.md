@@ -98,6 +98,23 @@ left invertible exactly modulo one nonzero kernel idempotent: `tau'' sigma = 1 -
 left invertible in `S_-` iff `e' in S_- sigma`. Its Haar trace mod 3 is `Tr(e') = 2 lambda(F) = 2 * 1/2 = 1`
 (each `W_i` has Haar measure `1/4`), so the mod-3 trace does not forbid removing it.
 
+**Remark 2.3 (the defect is a rotated clopen indicator).** Put `f_1 = 1_(W_1)`, `f_2 = 1_(W_2)`,
+`u = [h] f_1` and `v = [h^-1] f_2`. The products in the proof of item 3 give `vu = f_1` and `uv = f_2`,
+with `u = f_2 u f_1` and `v = f_1 v f_2`. So `(f_1, f_2, u, v)` is a system of `2 x 2` matrix units with
+`F = f_1 + f_2` and `D = u + v`, and in these units `e'` is the rank-one matrix `2[[1,-1],[-1,1]]`.
+Explicitly, with `x = f_1 - u` and `y = 2(f_1 - v)`,
+
+```text
+x y = 2(f_1 - v - u + f_2) = e',        y x = 2(f_1 + vu) = 4 f_1 = f_1,
+```
+
+because `f_1 u = 0` and `v f_1 = 0`. Hence `e' ~ f_1 ~ f_2` (Murray-von Neumann, via `x, y` and `u, v`).
+- `W_2 ⊆ U_0`, so `e' ≲ P_0` holds for every choice of units.
+- `e' ~ 1` iff `1 ~ 1_(W_1)`, a statement about a clopen indicator. It would give `1 ≲ P_0`, and then a
+  Cohn family in `B`, using `P_0 ⊥ P_1` and the swap. So up to equivalence the defect is no new
+  non-function idempotent.
+- The `F_3`-valued Haar trace gives `Tr(1_(W_1)) = 1/4 = 1 = Tr(1)`, so the trace does not obstruct `1 ~ 1_(W_1)`.
+
 ## 3. No equivariant lattice lift
 
 The defect of Section 2 comes from the honest lifts obeying only the XOR law
