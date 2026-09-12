@@ -202,8 +202,8 @@ theorem commutator_perCore_le_of_periodic (m : ℕ) (N : Subgroup (Equiv.Perm �
 /-- `2^i 3^j = 1` in `ℚ` forces `i = j = 0`. -/
 theorem zpow_two_mul_zpow_three_eq_one {i j : ℤ} (h : (2 : ℚ) ^ i * (3 : ℚ) ^ j = 1) :
     i = 0 ∧ j = 0 := by
-  have hq : (2 : ℚ) ^ i ≠ 0 := by positivity
-  have hr : (3 : ℚ) ^ j ≠ 0 := by positivity
+  have hq : (2 : ℚ) ^ i ≠ 0 := zpow_ne_zero i (by norm_num)
+  have hr : (3 : ℚ) ^ j ≠ 0 := zpow_ne_zero j (by norm_num)
   have h2 : padicValRat 2 ((2 : ℚ) ^ i * (3 : ℚ) ^ j) = 0 := by rw [h, padicValRat.one]
   have h3 : padicValRat 3 ((2 : ℚ) ^ i * (3 : ℚ) ^ j) = 0 := by rw [h, padicValRat.one]
   rw [padicValRat.mul (p := 2) hq hr, padicValRat.zpow, padicValRat.zpow] at h2
