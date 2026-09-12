@@ -22,14 +22,14 @@ bound Bernoulli Rokhlin entropy from below?
   `gk-p-inf-cost`.
 * **What superrigidity does see.** A strict pair also creates extensions of the Bernoulli
   base. Cocycle superrigidity forces triviality of every *finite* extension of that base
-  (Theorem 4.1), and under a second import every *compact* one (Remark 4.2).
+  (Theorem 4.1), and under a second import every *compact* one (Remark 4.3).
 * **What a strict pair actually produces.** The extensions every strict pair carries, the
   flip lifts, are relatively weakly mixing: they are relative factors of i.i.d. product
   extensions (Proposition 5.1). Such extensions exist over every countable group and carry
   no cocycle into a compact group, so superrigidity can never contradict a strict pair.
 * **Counting.** In-group partition counting certifies maximal Bernoulli Rokhlin entropy
-  exactly on amenable groups. Property (T) makes every generating set expand, which drives
-  the certified bound to zero (Section 5.4).
+  exactly on amenable groups. Property (T) makes every generating set expand, which caps the
+  certified bound on windows that contain large balls (Section 5.4).
 
 ## 1. Setting
 
@@ -69,25 +69,45 @@ simple, such as the Fournier–Facio group, whose m.a.p. is recorded separately.
 **Theorem 3.1** (Popa, *Cocycle and orbit equivalence superrigidity for malleable actions of
 w-rigid groups*, Invent. Math. 170 (2007) 243–295, Theorem 0.1). Let `G` be a countable group
 containing an infinite normal subgroup `H` such that `(G, H)` has the relative property (T);
-for example, `G` infinite with property (T) and `H = G`. Let `G -> (X_0, mu_0)^G` be a Bernoulli
-action with nontrivial base. Let `V` be a closed subgroup of the unitary group of a separable
-II_1 factor, a class `U_fin` containing every countable discrete group and every second
-countable compact group. Then every measurable cocycle `c: G x X -> V` is cohomologous to a
-homomorphism `G -> V`.
+for example, `G` infinite with property (T) and `H = G`. Let `G ↷ (X, mu)` be an s-malleable
+action whose restriction to `H` is weakly mixing; the standard example is the Bernoulli action
+`([0,1], Leb)^G` with diffuse base. Let `V` be a closed subgroup of the unitary group of a
+separable II_1 factor, a class `U_fin` containing every countable discrete group. Then every
+measurable cocycle `c: G x X -> V` is cohomologous to a homomorphism `G -> V`.
 
-*Trust surface.* Statement-level import. The theorem number and the exact wording of the
-class `U_fin` were not re-verified against the PDF in this lane. Theorem 4.1 below uses only
-finite targets `V`.
+*Trust surface.* Statement-level import. The theorem number and the exact definitions of
+s-malleability and of `U_fin` were not re-verified against the PDF in this lane. Theorem 4.1
+below uses only finite targets `V`, and only the diffuse-base Bernoulli action.
+
+*Scope correction (2026-09-12).* The first version of this section stated Theorem 3.1 for
+Bernoulli actions with an arbitrary nontrivial base. gk-vf-positive (Section 12 of
+`gk-vf-positive-verification-2026-09-12.md`) flagged that the abstract-level statement concerns
+s-malleable actions, so coverage of atomic bases such as `A^G` would have to be read at source.
+Step 0 of the proof of Theorem 4.1 removes the need for it.
 
 ## 4. Finite extensions of Bernoulli over Kazhdan groups without finite quotients
 
-**Theorem 4.1.** Let `G` be a countable group with property (T) and no nontrivial homomorphism
-to a finite group, and `(X, mu) = (X_0, mu_0)^G` a Bernoulli action with nontrivial base. Let
-`pi: (Z, m) -> (X, mu)` be an extension with `(Z, m)` ergodic, such that for `mu`-almost every
-`x` the conditional measure `m_x` is supported on a finite set. Then `pi` is an isomorphism mod
-null sets.
+**Theorem 4.1.** Let `G` be an infinite countable group with property (T) and no nontrivial
+homomorphism to a finite group, and `(X, mu) = (X_0, mu_0)^G` a Bernoulli action with nontrivial
+standard base, atomic or not. Let `pi: (Z, m) -> (X, mu)` be an extension with `(Z, m)` ergodic,
+such that for `mu`-almost every `x` the conditional measure `m_x` is supported on a finite set.
+Then `pi` is an isomorphism mod null sets.
 
 *Proof.*
+0. *Base reduction (added 2026-09-12 after gk-vf-positive, Section 12).* Let `(Y, nu) = ([0,1], Leb)^G`.
+   The space `(X_0 x [0,1], mu_0 (x) Leb)` is a standard probability space without atoms, hence
+   isomorphic to `([0,1], Leb)`. Applied coordinatewise, this makes `(X x Y, mu (x) nu)`
+   equivariantly isomorphic to `([0,1], Leb)^G`. Let `G` act diagonally on `Z x Y`, and put
+   `pi~ = pi x id`.
+   * `pi~` is an extension of `X x Y` whose conditional measure at `(x, y)` is `m_x (x) delta_y`.
+     So it is finite-to-one with the same multiplicity function.
+   * `Z x Y` is ergodic: `Y` is a Bernoulli action of an infinite group, hence mixing and so weakly
+     mixing, and an ergodic action times a weakly mixing one is ergodic.
+   * A finite-to-one extension is an isomorphism mod null sets exactly when its multiplicity is `1`
+     almost everywhere. So `pi~` is an isomorphism exactly when `pi` is.
+
+   So it suffices to treat the base `([0,1], Leb)^G`. That action is s-malleable and weakly mixing,
+   so Theorem 3.1 applies to it in its abstract-level form. Assume this base from now on.
 1. *Constant multiplicity.* Put `n(x) = |supp m_x|`. It is measurable, and invariant because
    `g_* m_x = m_{gx}`. `(X, mu)` is ergodic, so `n(x) = n` almost everywhere. Let `Z_1` be the
    conull invariant set of points `z` with `m_{pi(z)}({z}) > 0`.
@@ -97,10 +117,10 @@ null sets.
 3. *Cocycle.* In these coordinates `g.(x, i) = (gx, c(g, x)(i))`, where
    `c: G x X_1 -> Sym(n)` is a measurable cocycle. The cocycle identity follows from the action
    axioms.
-4. *Superrigidity.* `Sym(n)` is finite, so Theorem 3.1 applies. There are a homomorphism
-   `rho: G -> Sym(n)` and a measurable `f: X_1 -> Sym(n)` with
-   `c(g, x) = f(gx) rho(g) f(x)^-1` for almost every `x` and every `g`. The image of `rho` is a
-   finite quotient of `G`, so `rho = 1`.
+4. *Superrigidity.* `Sym(n)` is finite, and the base is the diffuse-base action of step 0, so
+   Theorem 3.1 applies. There are a homomorphism `rho: G -> Sym(n)` and a measurable
+   `f: X_1 -> Sym(n)` with `c(g, x) = f(gx) rho(g) f(x)^-1` for almost every `x` and every `g`.
+   The image of `rho` is a finite quotient of `G`, so `rho = 1`.
 5. *Untwisting.* `Phi(x, i) = (x, f(x)^-1(i))` satisfies
    `Phi(g.(x, i)) = (gx, f(gx)^-1 c(g, x)(i)) = (gx, f(x)^-1(i))`. So `Phi` conjugates the
    action to `g.(x, j) = (gx, j)`.
@@ -119,8 +139,9 @@ targets. By the Mackey–Zimmer representation, a compact ergodic extension is a
 product `X x_c K/L` with a cocycle `c` into a compact group `K`. The same untwisting, with
 Lemma 2.1 in place of "no finite quotients", then shows that over a Kazhdan group with no
 nontrivial homomorphism to a compact group, every ergodic compact extension of a Bernoulli action
-is trivial. Hence every ergodic extension is relatively weakly mixing. This adds Zimmer's
-structure theorem as a second trust surface, and nothing below depends on it.
+is trivial. Hence every ergodic extension is relatively weakly mixing. The base reduction of step 0
+applies verbatim. This adds Zimmer's structure theorem as a second trust surface, and needs compact
+groups in `U_fin`, which this lane did not re-verify. Nothing below depends on it.
 
 ## 5. The sharp test on strict automata
 
@@ -196,10 +217,13 @@ and hence
 * **Amenable groups.** The supremum equals `1` for every finite `F` exactly when `G` is amenable
   (Følner). Then `H(P) >= log q - eps` for all `eps`, which recovers maximal Bernoulli Rokhlin
   entropy.
-* **Kazhdan groups.** Let `S` be a Kazhdan set. There is `c > 0` with `|F'S| >= (1 + c)|F'|` for
-  every finite `F'`, since a Kazhdan group is nonamenable with a positive isoperimetric constant
-  on `S`. Iterating, `|F' S^r| >= (1 + c)^r |F'|`. So whenever `F` contains `S^r`, the certified
-  bound is at most `(1 + c)^-r log q`, and it tends to `0` as the approximation window grows.
+* **Kazhdan groups.** Let `S` be a finite generating set containing `e`. An infinite group with
+  property (T) is nonamenable, so there is `c > 0` with `|ES| >= (1 + c)|E|` for every finite `E`.
+  Iterating, `|E S^r| >= (1 + c)^r |E|`. If `F` contains a translate `gS^r`, then
+  `|F'F| >= |F'g S^r| >= (1 + c)^r |F'|`, and the certified bound is at most `(1 + c)^-r log q`.
+  *Scope (tightened 2026-09-12 after gk-vf-positive, Section 12).* The window `F` that approximates
+  `C` to within `eps` need not contain balls. So this is not a proved decay along windows: it caps
+  what the mechanism certifies on windows that contain a translate of `S^r`.
 
 Stronger expansion from property (T) therefore makes this mechanism worse. The known way around
 expansion is to count on finite models (sofic entropy), which a nonsofic host does not have.

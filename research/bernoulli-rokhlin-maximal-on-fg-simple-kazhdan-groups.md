@@ -127,8 +127,10 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
     or compact group, so superrigidity can never contradict a strict pair.
   - In-group counting certifies only
     `H(P) >= (log q - eps) sup_{F'} |F'|/|F'F|`. The supremum is `1` for every `F` exactly on
-    amenable groups. Kazhdan expansion `|F'S^r| >= (1+c)^r |F'|` drives the certified bound to
-    `0` as the approximation window grows (artifact Section 5.4).
+    amenable groups. On a Kazhdan host, expansion `|F'gS^r| >= (1+c)^r |F'|` caps the certified
+    bound at `(1+c)^-r log q` whenever the approximating window `F` contains a translate of `S^r`.
+    Windows need not contain balls, so this caps the mechanism; it is not a proved decay (artifact
+    Section 5.4, scope tightened after gk-vf-positive).
   - Where it dies: a lower bound must control the relative Rokhlin entropy of relatively weakly
     mixing extensions of the base. Spectral gap, strong ergodicity and superrigidity are
     orthogonal to it.
