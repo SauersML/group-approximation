@@ -14,8 +14,8 @@ Given `epsilon`, BKM's Section 5 fixes `m`, `delta`, `zeta` and `K`. Put
 the noise `(1-epsilon)^(2d)` brings the high-degree mass below `gamma`, then
 `t = 8d+1`, `tau`, and the source soundness `eta`.
 
-The hypothesis at `(eta, t, m, K)` supplies NP-hard 2-to-1 instances at all large
-alphabet sizes, with admissible pairing families. The transfer claim makes
+The hypothesis at `(eta, t, m, K)` supplies NP-hard 2-to-1 instances at some alphabet
+size `n >= n_0`, with admissible pairing families. The transfer claim makes
 Section 5.2's soundness argument valid on them, and completeness is unchanged.
 
 This route is the weakened-richness analogue of

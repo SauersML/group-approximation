@@ -12,7 +12,8 @@ artifacts:
 
 **OPEN.** The Smooth-Design Rich 2-to-1 Conjecture. There is a function
 `C(K,m)` such that for every `epsilon > 0`, `t >= 1`, `m >= 2` and `K >= 1`,
-for all sufficiently large `n`, `Gap-2-to-1_n[1-epsilon, epsilon]` is NP-hard on
+for arbitrarily large `n` (for every `n_0`, at some `n >= n_0`),
+`Gap-2-to-1_n[1-epsilon, epsilon]` is NP-hard on
 instances whose pairing family at every left vertex is
 
 * `t`-wise uniform: every partial matching of at most `t` pairs has its
