@@ -58,12 +58,12 @@ closes with `#audit_closed_axioms manuscriptSentence_kazhdanProjection`.
    and root-reachable: `OneSidedMFRadical.manuscriptArbitraryPositiveDimensionAlgebraMFDefinition`
    (CurrentManuscriptDefinitionRepairs.lean, via `MFAlgebraDimension.isMFAlgebra_iff`).  The row's
    decl list only names the first declaration; rows/cite-cstar.tsv adds the second.  No new Lean.
-2. L316-320 (abfcbcb3af2b, MIPRE + GoldbringHart Prop. 6.1 / Rem. 6.2) is graded `formalized` with
-   `NonMF.PriorWork.printedNegativeConnesEmbeddingSentence`.  That declaration proves the conclusion
-   (a separable stably finite non-MF C*-algebra exists) through the paper's own reduced group
-   algebra, not along the printed route from the failure of Connes embedding.  Under rule 9 a different
-   route is `partial`; the sentence is a related-work report that no proof uses, so `attribution` with
-   the conclusion decl kept as supplementary is the honest grade.
+2. L316-320 (abfcbcb3af2b, MIPRE + GoldbringHart Prop. 6.1 / Rem. 6.2).
+   `NonMF.PriorWork.printedNegativeConnesEmbeddingSentence` proves the printed conclusion (a separable
+   stably finite non-MF C*-algebra exists) unconditionally, through the reduced group algebra of
+   thm:headline.  The printed route (failure of Connes embedding, from MIP*=RE, then Goldbring-Hart) is
+   credited context that no proof consumes.  I first regraded the row to `partial` (5c11c771e).
+   The lead ruled `formalized` with that note (09-12), and rows/cite-cstar.tsv now carries the ruling.
 3. `MatrixCoronaFinite.MFAlgebraIsStablyFinite` binds `[PartialOrder A] [StarOrderedRing A]`; the
    Prop quantifies over every compatible order, so instantiating the spectral order gives the
    order-free printed sentence.  No action needed.
