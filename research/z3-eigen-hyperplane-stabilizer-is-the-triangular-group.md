@@ -10,8 +10,9 @@ artifacts:
   - research/artifacts/z3-normal-rotation-and-eigen-hyperplane-rigidity-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in Section 2 of the artifact; independent re-derivation requested from
-`w3-vf-nonlinear`).
+**ESTABLISHED** (proof in Section 2 of the artifact). Independently re-derived by `w3-vf-nonlinear`
+(PASS on all four implications, 235c43220c, `research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`
+Section 4).
 
 Use the coordinates of `z3-equivariant-automorphisms-have-constant-normal-rotation`, and write
 `x = s(1,1,1) + v` with `v` in the 2-dimensional summand `V`. Let `T` be a `Z_3`-equivariant

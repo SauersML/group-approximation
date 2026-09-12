@@ -10,8 +10,8 @@ artifacts:
   - research/artifacts/z3-normal-rotation-and-eigen-hyperplane-rigidity-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in Section 1 of the artifact; independent re-derivation requested from
-`w3-vf-nonlinear`).
+**ESTABLISHED** (proof in Section 1 of the artifact). Independently re-derived by `w3-vf-nonlinear`
+(PASS, 235c43220c, `research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md` Section 4).
 
 Let `R` be the cyclic shift on `A^3` over `F_2`, and let `T` be a polynomial automorphism over `F_2`
 with `T o R = R o T`. Over `F_4` use `s = x_0+x_1+x_2`, `u = x_0 + omega x_1 + omega^2 x_2` and its
