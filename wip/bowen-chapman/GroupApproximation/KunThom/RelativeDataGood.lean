@@ -160,7 +160,7 @@ open CompressorNormalizationAssembly CompressorNormalizationAssembly.ClusterFram
 
 /-- The scale of an object of a cluster frame, `(F.system n).scale X`, with the instances of the
 frame. -/
-abbrev frameScale {G : Type} [Group G] {A : SoficApproximation G} {K : Type} [Group K]
+noncomputable abbrev frameScale {G : Type} [Group G] {A : SoficApproximation G} {K : Type} [Group K]
     {ι : K →* G} {R : RetainedComponents A K ι} (F : ClusterFrame R) (n : ℕ) (X : F.Obj n) :
     ℕ :=
   (F.system n).scale X
