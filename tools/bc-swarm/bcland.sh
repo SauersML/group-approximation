@@ -4,20 +4,42 @@
 # shared index or the working tree. Every per-run file (index, path lists, diff, push log) lives in a fresh mktemp
 # directory under $BC/state that is removed on exit, so concurrent runs share nothing except the append-only
 # per-lane push records $BC/state/pushed-<lane>.txt.
+# The base and the post-push tip are resolved with `git ls-remote` and their objects fetched by SHA with
+# --no-write-fetch-head, with retries: no local ref or FETCH_HEAD is written, so concurrent fetches by other lanes in
+# the shared checkout cannot make a landing fail or move its base.
 # Guards (09-12 wipe):
-#  - fetch, rev-parse, read-tree, hash-object, update-index, write-tree and commit-tree must each exit 0;
+#  - rev-parse, read-tree, hash-object, update-index, write-tree and commit-tree must each exit 0;
 #  - the base tree must carry GroupApproximation.lean and lake-manifest.json;
 #  - after read-tree the private index entry count must equal the base tree entry count;
 #  - the new tree's entry count must equal the base count plus the number of genuinely new paths;
 #  - `git diff --no-renames --name-status BASE NEW` may name only the given paths, and only as A or M: nothing is deleted;
 #  - a path that exists on main with different content is refused unless a bcland push by the SAME lane wrote it last;
-#  - the push names refs/heads/main explicitly, and every blob is verified on origin/main afterwards.
+#  - the push names refs/heads/main explicitly; afterwards the pushed commit must be an ancestor of the remote tip, and
+#    each landed blob is compared at that tip (a later commit changing a path is reported, not treated as failure).
 set -uo pipefail
 REPO=/Users/user/nonsofic_existence
 BC=__SCRATCHPAD__/bc
 STATE=$BC/state; mkdir -p "$STATE"
 TAB=$'\t'
 fail() { echo "LAND REFUSED: $1"; exit 1; }
+gitnoise() { grep -vE 'gc\.log|git prune|Automatic cleanup|^warning: The last gc|^$' | tail -3 | tr '\n' ' '; }
+resolve_tip() {
+  TIPSHA=""; local out err="" a
+  for a in 1 2 3 4 5; do
+    out=$(git ls-remote origin refs/heads/main 2>&1)
+    TIPSHA=$(printf '%s\n' "$out" | awk '$2 == "refs/heads/main" { print $1 }')
+    [[ "$TIPSHA" =~ ^[0-9a-f]{40}$ ]] && break
+    TIPSHA=""; err=$(printf '%s\n' "$out" | gitnoise); sleep $((a * 2))
+  done
+  [ -n "$TIPSHA" ] || fail "cannot resolve the origin main tip with ls-remote after 5 attempts: $err"
+  for a in 1 2 3 4 5; do
+    git cat-file -e "$TIPSHA^{commit}" 2>/dev/null && return 0
+    err=$(git fetch -q --no-write-fetch-head origin "$TIPSHA" 2>&1 | gitnoise)
+    git cat-file -e "$TIPSHA^{commit}" 2>/dev/null && return 0
+    sleep $((a * 2))
+  done
+  fail "cannot fetch the objects of ${TIPSHA:0:9} after 5 attempts: $err"
+}
 LANE=${BC_LANE:-}
 [[ "$LANE" =~ ^[a-z0-9][a-z0-9-]*$ ]] || fail "set BC_LANE=<your lane name>; own-push records are kept per lane"
 PUSHED=$STATE/pushed-$LANE.txt
@@ -32,8 +54,7 @@ cd "$REPO" || fail "no repo"
 export GIT_INDEX_FILE=$RUN/index
 CRED='!f() { echo username=SauersML; echo password=$(gh auth token -u SauersML); }; f'
 for try in 1 2 3 4 5 6 7 8; do
-  git fetch -q origin main || fail "git fetch"
-  BASE=$(git rev-parse --verify -q origin/main) || fail "cannot resolve origin/main"
+  resolve_tip; BASE=$TIPSHA
   for root in GroupApproximation.lean lake-manifest.json; do
     git cat-file -e "${BASE}:${root}" 2>/dev/null || fail "origin/main@${BASE:0:9} lacks $root (gutted tree)"
   done
@@ -75,14 +96,13 @@ for try in 1 2 3 4 5 6 7 8; do
   echo "candidate ${NEW:0:9} on ${BASE:0:9} (lane $LANE):"; cat "$RUN/diff"
   if git -c credential.helper= -c credential.helper="$CRED" push origin "${NEW}:refs/heads/main" > "$RUN/push.log" 2>&1; then
     echo "$NEW" >> "$PUSHED"
-    git fetch -q origin main || fail "post-push fetch"
-    TIP=$(git rev-parse origin/main)
-    bad=0
+    resolve_tip; TIP=$TIPSHA
+    git merge-base --is-ancestor "$NEW" "$TIP" || fail "pushed ${NEW:0:9}, but it is not an ancestor of the remote tip ${TIP:0:9}"
+    later=0
     while read -r blob path; do
-      [ "$(git rev-parse --verify -q "${TIP}:${path}")" = "$blob" ] || { echo "VERIFY MISMATCH $path"; bad=1; }
+      [ "$(git rev-parse --verify -q "${TIP}:${path}")" = "$blob" ] || { echo "note: a later commit changed $path by tip ${TIP:0:9}"; later=1; }
     done < "$RUN/blobs"
-    [ $bad = 0 ] || fail "pushed ${NEW:0:9} but a blob differs at origin/main ${TIP:0:9}"
-    echo "LANDED ${NEW:0:9} (tip ${TIP:0:9}); $(wc -l < "$RUN/blobs" | tr -d ' ') paths verified"
+    echo "LANDED ${NEW:0:9} (in tip ${TIP:0:9}); $(wc -l < "$RUN/blobs" | tr -d ' ') paths$([ $later = 0 ] && echo ' verified at the tip' || echo '; see notes')"
     exit 0
   fi
   echo "push rejected (try $try):"; tail -3 "$RUN/push.log"

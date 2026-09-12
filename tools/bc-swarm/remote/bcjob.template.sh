@@ -34,9 +34,15 @@ printf '%s\t%s\t%s\t%s\n' "$TAG" "$LANE" "$TJ0" "$TJL" >> "$CLONE/.nm/lockwait.t
 echo "[job] $(date +%T) clone lock acquired after $((TJL - TJ0)) s"
 [ -e "$CLONE/.nm/PREP_PENDING" ] && summary_fail "PROBE DEFERRED: clone preparation in progress; retry later" 5
 exec 8>"$NMR/mirror.lock"; flock -w 900 8 || summary_fail "PROBE FAILED: mirror lock busy (infra)"
-git -C "$MIR" fetch -q origin 2>/dev/null
+# The probe names an immutable SHA: fetch until the mirror holds it, so a transient fetch failure is retried, not fatal.
+for attempt in 1 2 3 4; do
+  git -C "$MIR" cat-file -e "$SHA^{commit}" 2>/dev/null && break
+  git -C "$MIR" fetch -q origin 2>/dev/null || echo "[job] mirror fetch attempt $attempt failed; retrying"
+  git -C "$MIR" cat-file -e "$SHA^{commit}" 2>/dev/null && break
+  sleep $((attempt * 5))
+done
 exec 8>&-
-git -C "$MIR" cat-file -e "$SHA^{commit}" || summary_fail "PROBE FAILED: MSI mirror lacks $SHA (infra)"
+git -C "$MIR" cat-file -e "$SHA^{commit}" || summary_fail "PROBE FAILED: MSI mirror lacks $SHA after 4 fetch attempts (infra)"
 # G1
 for root in GroupApproximation.lean lake-manifest.json lakefile.toml; do
   git -C "$MIR" cat-file -e "$SHA:$root" 2>/dev/null \

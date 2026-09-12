@@ -9,6 +9,9 @@
 # Rules: run it with Bash run_in_background: true; ONE probe per lane at a time; BATCH (one probe builds every
 # module you land together); never kill a running probe (the remote build holds the clone lock). Probes of all
 # lanes serialize on the clone lock, so a probe may wait for others first.
+# Base: the tip is resolved ONCE with `git ls-remote` (no local ref is written and no lock is taken), and every later
+# git read names that SHA; its objects are fetched by SHA with --no-write-fetch-head. Concurrent fetches in the shared
+# checkout therefore can neither break a probe nor move its base.
 # Evidence: the md5 of every overlay file that COMPILED is recorded with the base SHA, module list and PROBE line,
 # in $BC/lanes/<lane>.green.<tag> when the probe is GREEN and in <lane>.failed.<tag> otherwise. A .failed. record
 # says what compiled in a failed probe; it is never landing evidence.
@@ -39,8 +42,22 @@ mkdir -p "$BC/lanes" "$BC/ov"
 cd "$REPO" || exit 2
 SRCROOT=${BC_SRCROOT:-$REPO}
 [ -d "$SRCROOT" ] || { echo "REFUSED: BC_SRCROOT '$SRCROOT' is not a directory"; exit 2; }
-git fetch -q origin main 2>/dev/null || { echo "PROBE FAILED: git fetch (infra)"; exit 4; }
-SHA=$(git rev-parse --verify -q origin/main) || { echo "PROBE FAILED: cannot resolve origin/main (infra)"; exit 4; }
+gitnoise() { grep -vE 'gc\.log|git prune|Automatic cleanup|^warning: The last gc|^$' | tail -3; }
+SHA=""; GERR=""
+for attempt in 1 2 3 4 5; do
+  GOUT=$(git ls-remote origin refs/heads/main 2>&1)
+  SHA=$(printf '%s\n' "$GOUT" | awk '$2 == "refs/heads/main" { print $1 }')
+  [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] && break
+  SHA=""; GERR=$(printf '%s\n' "$GOUT" | gitnoise); sleep $((attempt * 2))
+done
+[ -n "$SHA" ] || { echo "PROBE FAILED: cannot resolve the origin main tip with ls-remote after 5 attempts (infra). Last git output:"; printf '%s\n' "$GERR"; exit 4; }
+for attempt in 1 2 3 4 5; do
+  git cat-file -e "$SHA^{commit}" 2>/dev/null && break
+  GERR=$(git fetch -q --no-write-fetch-head origin "$SHA" 2>&1 | gitnoise)
+  git cat-file -e "$SHA^{commit}" 2>/dev/null && break
+  sleep $((attempt * 2))
+done
+git cat-file -e "$SHA^{commit}" 2>/dev/null || { echo "PROBE FAILED: cannot fetch the objects of ${SHA:0:9} after 5 attempts (infra). Last git output:"; printf '%s\n' "$GERR"; exit 4; }
 # Guard (09-12 wipe): never probe against a tree that lacks the library root, the manifest or the lakefile.
 for root in GroupApproximation.lean lake-manifest.json lakefile.toml; do
   git cat-file -e "$SHA:$root" 2>/dev/null \
@@ -84,12 +101,12 @@ if [ -z "${BC_FORCE:-}" ] && [ -s "$PEND" ]; then
     echo "note: $rec certified these bytes at base ${RB:0:9}, but synced paths changed up to ${SHA:0:9}; re-probing"
   done
 fi
-"$MSI" true >/dev/null 2>&1 || { echo "PROBE FAILED: msi connection down (infra, not Lean)"; cleanup; exit 4; }
+"$MSI" true </dev/null >/dev/null 2>&1 || { echo "PROBE FAILED: msi connection down (infra, not Lean)"; cleanup; exit 4; }
 tar czf "$OVL.tgz" -C "$OVL" .
 OUT0=$("$MSI" "mkdir -p $CLONE/.nm/ov-$TAG && tar xzf - -C $CLONE/.nm/ov-$TAG && sed -e 's|__TAG__|$TAG|' -e 's|__SHA__|$SHA|' -e 's|__MODS__|$MODS|' -e 's|__LANE__|$LANE|' $BCR/bcjob.template.sh > $CLONE/.nm/job-$TAG.sh && echo UPLOAD_OK" < "$OVL.tgz" 2>&1)
 printf '%s\n' "$OUT0" | grep -q UPLOAD_OK || { echo "PROBE FAILED: overlay upload (infra): $OUT0"; cleanup; exit 4; }
 echo "probe lane=$LANE tag=$TAG base=${SHA:0:9} overlay=$(wc -l < "$PEND" | tr -d ' ') files mods: $MODS"
-OUT=$("$MSI" "bash $P/nm/dispatch.sh $CLONE/.nm/job-$TAG.sh $CLONE/.nm/out-$TAG.txt bc-$LANE ${BC_CPUS:-8}" 2>&1); RC=$?
+OUT=$("$MSI" "bash $P/nm/dispatch.sh $CLONE/.nm/job-$TAG.sh $CLONE/.nm/out-$TAG.txt bc-$LANE ${BC_CPUS:-8}" </dev/null 2>&1); RC=$?
 printf '%s\n' "$OUT"
 COMP=$(printf '%s\n' "$OUT" | sed -n 's/^COMPILED //p')
 PL=$(printf '%s\n' "$OUT" | grep -m1 -E '^PROBE (GREEN|FAILED|DEFERRED)')
