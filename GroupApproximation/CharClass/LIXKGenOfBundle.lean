@@ -60,14 +60,14 @@ def lixKSAbsOf (K : Type) [Field K] (n k : ℕ)
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m))
     (hGe : ∀ m, G m *ᵥ Sum.elim (aVecK n m) 0 = Sum.elim (bVecK n k m) 0) (q : ℕ) :
     Hmod K (lixTotalPair n hGc hGu) q ⟶ Hmod K (lixN n dd) q :=
-  absPullOf K (lixKS n k hGc hGu hGe) q
+  RelativeSupport.absPullOf K (lixKS n k hGc hGu hGe) q
 
 /-- `piStar` over `K`: the absolute pullback along the bundle projection. -/
 def lixPiStarOf (K : Type) [Field K] (n : ℕ)
     {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m)) (q : ℕ) :
     Hmod K (lixN n dd) q ⟶ Hmod K (lixTotalPair n hGc hGu) q :=
-  absPullOf K (lixPi n hGc hGu) q
+  RelativeSupport.absPullOf K (lixPi n hGc hGu) q
 
 /-! ## 2. The base pair with `k+1` punctures, and the `k+1` restrictions -/
 
@@ -109,10 +109,10 @@ def lixKRhoOf (K : Type) [Field K] (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (
 theorem lixK_hcompatOf (K : Type) [Field K] (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1))
     (q : ℕ) :
     lixKRhoOf K n k dd i q ≫ lixKJOf K n k dd q = lixKJlocOf K n k dd i q := by
-  have h : lixKJlocOf K n k dd i q ≫ absPullOf K (𝟙 (lixN n dd)) q
+  have h : lixKJlocOf K n k dd i q ≫ RelativeSupport.absPullOf K (𝟙 (lixN n dd)) q
       = lixKRhoOf K n k dd i q ≫ lixKJOf K n k dd q :=
     relToAbs_naturality K (𝟙 (lixN n dd)) (lixK_mapsTo n k dd i) q
-  rw [absPull_id_eqOf, Category.comp_id] at h
+  rw [RelativeSupport.absPull_id_eqOf, Category.comp_id] at h
   exact h.symm
 
 /-! ## 3. Naturality and the splitting -/
@@ -132,7 +132,8 @@ theorem lixK_hsectionOf (K : Type) [Field K] (n k : ℕ)
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m))
     (hGe : ∀ m, G m *ᵥ Sum.elim (aVecK n m) 0 = Sum.elim (bVecK n k m) 0) (q : ℕ) :
     lixPiStarOf K n hGc hGu q ≫ lixKSAbsOf K n k hGc hGu hGe q = 𝟙 (Hmod K (lixN n dd) q) := by
-  rw [lixPiStarOf, lixKSAbsOf, ← absPull_compOf, lixKS_comp_lixPi, absPull_id_eqOf]
+  rw [lixPiStarOf, lixKSAbsOf, ← RelativeSupport.absPull_compOf, lixKS_comp_lixPi,
+    RelativeSupport.absPull_id_eqOf]
 
 end KGen
 
