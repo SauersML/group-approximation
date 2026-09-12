@@ -6,7 +6,7 @@ title: Every homomorphism from Thompson's V into a characteristic-two rank ultra
 refuted_by:
   - thompson-v-is-f2-linear-sofic
 distinct_from:
-  leavitt-el3-rank-models-over-finite-fields-are-trivial: that is rank triviality for EL_3 over the Leavitt algebras in every characteristic; this is rank triviality for the subgroup V in characteristic two, which implies the binary characteristic-two case of that claim by simplicity of the Leavitt units and is strictly stronger as a statement about V.
+  leavitt-el3-rank-models-over-finite-fields-are-trivial: that is rank triviality for EL_3 over the Leavitt algebras in every characteristic; this is rank triviality for the subgroup V in characteristic two. By simplicity of the Leavitt units it implies the binary characteristic-two case of that claim, so it is at least as strong; the converse is not known, since no nontrivial rank model of V is known that fails to extend to the Leavitt units.
   thompson-v-cantor-system-has-no-covariant-rank-model: that excludes rank models carrying a covariant cylinder algebra; this excludes every rank model, covariant or not.
 artifacts:
   - research/artifacts/thompson-v-rank-models-cantor-covariance-2026-09-12.md
