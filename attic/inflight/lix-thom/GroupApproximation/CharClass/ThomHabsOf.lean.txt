@@ -40,6 +40,7 @@ coefficient equivalence `lhTopEquivOf` of the top absolute group is built from
 set_option autoImplicit false
 
 open CategoryTheory
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 namespace GroupApproximation.CharClass
 
