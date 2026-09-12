@@ -205,6 +205,13 @@ such as the defect factorization.
     family.
 * **Cited, not re-derived.** `signed-thompson-algebra-is-odd-measure-crossed-product`, for `B ⊆ S_-` and
   for "no Dirac measure implies `ker pi`".
+* **Addendum: a missed display slip.**
+  * **What was wrong.** The claim node and its route displayed the correction factor as
+    `(1 − F) + 2(F + D)`. That element is `(1 − F) + e = 1 − e'`, and `(1 − e')(1 + D) = 1 + D`, so it
+    returns `tau sigma` unchanged.
+  * **The correct factor** is `c = (1 − F) + 2e = 1 + D`, as in artifact item 5 and above.
+  * **Who caught it.** This verification missed the display slip. `w4-vf-linear-b` caught it and landed
+    the correction at `67642b6fe3`.
 
 ### 5.2 `no-equivariant-lattice-lift-of-cylinder-idempotents` (Theorem 3.1): PASS, two remarks
 
@@ -332,3 +339,119 @@ This is a third derivation; `gk-vf-linear` Section 50 was the second.
 * **Content.** This is consequence 2 of `lifted-trace-detects-finite-subgroup-projectives` applied to the
   finite group `H = <H_1, H_2>`. The node says so; it is a corollary, not a duplicate.
 * **Cited, not re-derived.** Additivity of `t_p` on `K_0(F_p[G])` is taken from that node.
+* **Amended** by the author at `0a51664ba9`.
+
+## 10. The two-root defect piece and a Kazhdan calibration (w3-gate-bridge-b; b62a0dc006, 6ebb4155b8)
+
+### 10.1 `leavitt-two-root-defect-piece-carries-a-nontrivial-rank-model` (Theorem 1.2, Corollary 1.3): PASS
+
+* **Lemma 1.1.** `sigma(s) q ∈ qM` gives `sigma(s) q = q sigma(s) q`, so `q sigma(s) q sigma(t) q = q sigma(st) q`.
+  Invariance under `s^-1` gives inverses.
+* **(1)** `x'` and `y'` are supported on `[1000]`, so they commute with `Gamma`, and `P` commutes with
+  `sigma(Gamma)`.
+* **(2), the fixed case.**
+  * `q sigma(gamma) q = q` gives `sigma(gamma) q = q`. So `qM ⊆ Fix_r(sigma(Gamma)) = fM` by globality
+    (cited), and `P = fP`.
+  * `sigma(g) f = f` gives `(1−f) sigma(g) f = 0`, hence `(1−f) sigma(g)(1−f) = (1−f) sigma(g)`. So
+    `sigma_W` is unital and multiplicative.
+  * `N'_23 f = 0` gives `(1−f) N'_23 (1−f) = (1−f) N'_23`. The corner product of `sigma_W` is
+    `(1−f) P (1−f) = (1−f) f P (1−f) = 0`.
+  * Corner locality (cited) makes `sigma_W` trivial. Then `sigma(g) = 1 + f sigma(g)(1−f)`. For `a, b` in
+    `fM(1−f)`, `ab = 0`, so `sigma` factors through an abelian group and is trivial by perfection.
+* **(2), rank and injectivity.** `rk(P) > 0` is corner locality at `1000` for the nontrivial `sigma`.
+  Injectivity is simplicity of `R^x`.
+* **(3)**
+  * `iota_0 o iota_P' = iota_(0P')`, recomputed with `T[0P'] = T[P'] T[0]`.
+  * By Lemma 1.1, `(sigma(gamma) − 1) q = q (sigma(gamma) − 1) q` on `Gamma`. So the `P'`-corner product of
+    `tau_Q o iota_0` is `q N^(0P')_23 N^(0P')_12 q`, which is nonzero by corner locality.
+* **Corollary 1.3.**
+  * A prefix replacement `u` with `u[1000] = [0P']` satisfies `u iota_1000(g) u^-1 = iota_(0P')(g)`.
+  * So `q sigma(u) P sigma(u)^-1 q != 0`, and `P = qP` then forces `q sigma(u) q != 0`.
+* **Cited, not re-derived.**
+  * `leavitt-rank-models-kazhdan-fixed-ideals-are-global` in degree `(1,0)`;
+  * audit Lemma 1;
+  * `two-root-identity-is-corner-local-for-leavitt-rank-models`;
+  * perfection and simplicity of `R^x`.
+* **Scope.** Not decision-level. It reproduces the problem on a corner, and gives no bound on the descent
+  (Remark 1.4).
+
+### 10.2 `kazhdan-groups-without-fd-reps-violate-two-root-identity` (Theorem 2.5): PASS
+
+This is a rank-model construction, checked with full care. The model is of `EL_3(A_X)`, not of `R^x`, so
+the gate is untouched.
+
+* **Lemma 2.1.**
+  * Suppose `nu_2(d) = k <= j − 1`. Of the two classes `2^k`, `3·2^k` of `i − b'` mod `2^(k+2)`, exactly
+    one gives `i − a' ≡ 2^(k+1)`.
+  * `W` has length `2^(j+1) >= 2^(k+2)`, so such an `i` exists in `W`.
+  * Valuations `k` and `k+1` lie below `j+1`, so `x(i)` would get two parities.
+  * Locality and `sigma(C^j_a) = C^j_(a−1)` follow.
+* **Matrix units.** `chi_(C_b) u^m = u^m chi_(C_(b−m))`, so `e_ab e_cd = delta_bc e_ad` and
+  `sum e_aa = 1`.
+* **Lemma 2.2.**
+  * `c = [[0,1],[1,1]]` has order 3 and determinant 1.
+  * `x^3 − 1` is separable when the characteristic is not 3, including characteristic 2.
+  * In characteristic 3, commuting involutions diagonalize with `±1`.
+* **Proposition 2.3.**
+  * `EL_3(M_m(F_2)) = SL_(3m)(F_2)`: block transvections give the elementary transvections between
+    blocks, commutators give those inside a block, and all have determinant one.
+  * Over `F_2`, permutation matrices lie in `EL_3(F_2)`, and `x_13(b) = [x_12(1), x_23(b)]`.
+* **Lemma 2.4.**
+  * `rho_J(u) rho_J(f) rho_J(u)^-1 = rho_J(f o sigma)`.
+  * An `f` in `I_X` reading `[−r, r]` vanishes at interior positions, since those windows are windows
+    of `z`. So `rank <= 2r`.
+  * Kernel elements have bounded rank, so `phi` factors through `A_X`.
+* **Theorem 2.5.**
+  * **(1)** Finite type. Property (T) is cited.
+  * **(3)** With `X = E_12 (x) 1` and `Y = E_23 (x) 1`, the tensor square has `N = X(x)1 + 1(x)X + X(x)X`,
+    and `YX = 0`. So `P = Y(x)X + X(x)Y`, two independent pieces of rank `1/9`, total `2/9`. Confirmed
+    directly.
+  * **(4)** `rk [p_(beta,J), rho_J(u)] <= 2`, and `p_(beta,J)` commutes with diagonal matrices.
+  * **(5)**
+    * `u e u^-1 = 1 − e`, so the corner is full and of finite type.
+    * `(g + eI)(I + E_12 e) = (I + E_12 e)(g + eI)`, using `(1−e)e = 0`.
+    * `rk phi(e) = 1/2` gives `rk P_H = 2 · (1/6)^2 = 1/18`.
+    * `Gamma_H` acts as the identity on `F_2^3 (x) phi(e)V`.
+    * `N_12 P_H = XY(x)X + X(x)XY != 0`.
+
+## 11. Characteristic-three rank models of G_3 (w3-gate-char3; 6d56811c0d)
+
+### 11.1 `ternary-leavitt-rank-models-move-z-iff-nontrivial` (Theorem 2.1): PASS, conditional scope as stated
+
+* **Lemma 1.1.** `[K<z>, K<z>] = [K, K]` since `z` is central; then perfection.
+* **Lemma 1.2(a)** holds in any characteristic.
+* **Lemma 1.2(b).**
+  * `ker(A(x)A − I)` is `Hom_(k[x])((k^n, A^(−T)), (k^n, A))`.
+  * The Jordan count gives `sum_nu sum min(a_i, b_j) <= sum_nu g(nu) m(nu^−1)`.
+  * If `nu* != nu*^−1`, then `m(nu*^−1) <= n − g(nu*) <= delta n` and `sum_(nu != nu*) g(nu) <= delta n`.
+    The total is at most `2 delta n^2`, which is below `(1 − delta) n^2` iff `delta < 1/3`.
+* **Lemma 1.2(c).** Perturb representatives to invertible matrices at small rank cost; the signs are
+  ω-almost constant.
+* **Theorem 2.1.**
+  * `iota(G) ∩ <z> = 1`, because `s1t1 != −s1t1` in characteristic three.
+  * `f = 2(1 − sigma(z))` is a central idempotent with `sigma(z) f = −f`.
+  * `T(z) = 1`, and a trivial `T` gives a sign character, which perfection kills.
+* **Conditional scope.** Lemma 1.1 and (4) ⟹ (5) use simplicity of `PG`, which is conditional on the
+  imports of `odd-leavitt-unit-groups-mod-scalars-are-fp-simple`. (1) ⟺ (6) and (6) ⟹ (4) do not.
+* Agrees with `gk-vf-linear` Section 53.
+
+## 12. Nested idempotents with p-regular intersection (w3-kap-kernel; e1289c2f88, amended 0a51664ba9)
+
+### 12.1 `nested-idempotents-from-p-regular-intersections-are-equal` (Theorem 2): PASS
+
+* **Lemma 1.** `h_t H_2 = h_s H_2` forces `h_s^-1 h_t` into `C`.
+* **Step 1.**
+  * `M_n(F_p[C])` is semisimple by Maschke, so `Λ = M_n(F_p[C])(1 − π)` and `x ∈ Λ` iff `x π = 0`.
+  * So `π f = f`, `eps_t π = 0` for `t != 1`, `eps_1 π = π`, and `e π = π`.
+* **Step 2.** `πe` is an idempotent below `e`, equivalent to `π` through `(πe, π)`, inside `M_n(F_p[H_1])`.
+* **Step 3.** `fπ` is an idempotent below `π`, equivalent to `f` through `(f, fπ)`, inside `M_n(F_p[H_2])`.
+* **Step 4.** The equalities force `e = πe` and `π = fπ`, so `e = fπe = fe = f`.
+* **Comparisons** are made in `Q` through LFT1.
+* **Scope.** The theorem allows `f = e`. The no-mixed-defect consequence needs a nonzero defect, as
+  amended.
+
+### 12.2 `modular-nested-equivalence-refutes-leavitt-direct-finiteness`: valid, conditional on the open hole
+
+* **Normalization.** `x' = exf`, `y' = fye` give `x'y' = e x (yx) y e = e` and `y'x' = f`.
+* **Padding.** `(1−e) x = x (1−e) = 0` and `(1−e) y = y (1−e) = 0`, since `(1−e) e = 0` and `ef = fe = f`.
+  So `AB = 1` and `BA = 1 − (e − f) != 1`.

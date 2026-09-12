@@ -7,6 +7,7 @@ title: Pad a properly nested equivalent pair by the complement of the larger ide
 requires:
   - modular-nested-idempotents-equivalent-over-leavitt-units
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md
 ---
 
@@ -18,3 +19,5 @@ artifacts:
   cross term vanishes, so `AB = (1 - e) + e = 1` and `BA = (1 - e) + f = 1 - (e - f)`.
 - **Conclude.** `e - f != 0`, so `BA != 1`. With `alpha = A` and `beta = B` this is the
   root's statement: `F_2[R^x]` is not directly finite.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 12.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid, conditional on the open hole. The normalization x ↦ exf, y ↦ fye and the padding by 1−e give AB = 1, BA = 1 − (e − f).*

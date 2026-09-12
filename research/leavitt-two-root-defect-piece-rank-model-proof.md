@@ -10,6 +10,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/two-root-defect-piece-and-fd-representations-2026-09-12.md
   - research/artifacts/rank-row-compression-audit-2026-09-12.md
@@ -35,3 +36,5 @@ Artifact Section 1, Theorem 1.2 and Corollary 1.3.
    conjugating compressor then has `q sigma(u) q != 0`, because `P = qP`.
 
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 52 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. `Gamma = iota_0(R^x)` equals the nine-leaf `EL_alpha(R)` as a set, so globality applies in degree `(1,0)`. The assigned verifier remains `w3-vf-linear`.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 10.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed Lemma 1.1, the quotient model (1−f)σ(1−f) and its vanishing corner product, the square-zero abelian rest, ι_0∘ι_P' = ι_(0P'), and Corollary 1.3. Globality, corner locality, perfection and simplicity are cited. Not decision-level.*

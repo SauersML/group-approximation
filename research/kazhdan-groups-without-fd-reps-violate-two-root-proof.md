@@ -8,6 +8,7 @@ requires:
   - elementary-group-property-t-over-free-algebras
   - rank-modelled-coefficients-violate-two-root-identities
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/two-root-defect-piece-and-fd-representations-2026-09-12.md
 ---
 
@@ -29,3 +30,5 @@ Artifact Section 2.
    the cyclic shift, so the commutant is diffuse. On the full corner `e = chi_(C^1_0)`, the
    subgroup `EL_3((1-e) A_X (1-e))` fixes the image of `Y (x) X + X (x) Y` pointwise, while
    `x_12(e)` does not (Theorem 2.5).
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 10.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS (rank-model construction, full care). Recomputed: odometer phase uniqueness, the matrix units, the degree bound, EL_3(M_m(F_2)) = SL_3m(F_2), periodic approximations with kernel rank at most 2r, the tensor-square products P = Y⊗X + X⊗Y (rank 2/9) and P_H (rank 1/18), and N_12 P_H ≠ 0. A calibration for EL_3(A_X); the Leavitt gate is untouched.*

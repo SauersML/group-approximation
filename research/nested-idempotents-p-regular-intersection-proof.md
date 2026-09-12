@@ -7,6 +7,7 @@ title: Place a semisimple idempotent of the intersection between the two nested 
 requires:
   - lifted-trace-detects-finite-subgroup-projectives
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md
 ---
 
@@ -24,3 +25,5 @@ artifacts:
 - **Conclusion.** Equal traces force both equalities, so `e = π e = f π e = f e = f`.
 
 Full proof: artifact Sections 1–2.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 12.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: coset components, the Maschke idempotent π with πf = f and eπ = π, the two comparisons πe ~ π ≤ ... and fπ ~ f ≤ π inside single finite group algebras, and e = fπe = f.*
