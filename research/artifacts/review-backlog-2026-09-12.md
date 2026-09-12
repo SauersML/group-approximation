@@ -326,3 +326,43 @@ Checked against §§2–4 of `research/artifacts/nh-unit-type-counterexample-202
   - Three loops over `F_2`: `D = −2`, `K_0 = Z/2` and `K_1 = 0`.
   - The two-vertex example: `D = −2`, and the relation at vertex 2 reads `[v_1] + [v_2] = 0`, so `[1] = 0`.
 - **Unused hypothesis.** "No sources" is harmless and not needed.
+
+## 16. `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` (repair 83fee9c7b): PASS, no K-theory vanishing consumed
+
+Coordinator request, after bh-reviewer's FAIL of the first route (4ba6fa13b). This is a line-by-line pass over
+`char-p-linear-embedding-corner-swindle-proof` and its one new import.
+
+- **`leavitt-tensor-kills-k1-of-coefficient-matrices`, re-derived.**
+  - `φ(r) = s_0 r t_0 + s_1 r t_1` is a unital endomorphism. The cross terms carry `t_0 s_1 = t_1 s_0 = 0`, and
+    `t_i s_i = 1` sits directly between `r` and `r'`.
+  - `φ` fixes `B ⊗ 1`, because `s_i` and `t_i` lie in `1 ⊗ L`.
+  - `ST = I_N`, `TS = I_(2N)`, and `φ(X) = S diag(X,X) T`.
+  - For `U = [[S,0],[0,T]]` and `V = [[T,0],[0,S]]` I checked `UV = VU = I_(3N)` and
+    `U diag(X, X, I_N) V = diag(φ(X), I_(2N))`. So `[X] = [φ(X)] = 2[X] = 0`.
+  - `K_1 = GL/E` then gives `diag(X, I_j) ∈ E_(N+j)` for some `j`. The statement is per element and says nothing
+    about `K_1(R)` beyond the image of `K_1(B)`.
+- **Steps 1–2.** Lemma A stands (review-bh-swarm §5), and `R_d = R_d ⊗ 1 ⊆ R_(d+1)` is unital.
+- **Steps 3–4.**
+  - Each generator gets its own `j_i`.
+  - `X ↦ diag(X, I_(M−N))` is an injective homomorphism `GL_N → GL_M`, and `E_(N+j_i) ⊆ E_M`.
+  - So `H` lands in `E_M` of the stated host `R_(d+1) = B ⊗ L_p`, with `B = R_d`. This is exactly where the
+    Whitehead map failed. For `H = SL_3(F_p[t])` the new map is still a homomorphism.
+- **Step 5.**
+  - `Z(R_(d+1)) = F_p`, because the centre of a tensor product over a field is the tensor product of the centres
+    (`leavitt-center-is-coefficient-field`).
+  - Commuting with every `e_ij(r)` forces `cI` with `c` central.
+  - For `M > N` the last diagonal entry is `1`, so `H` meets `F_p^× I` trivially.
+- **Step 6.** `R_d` is central simple, as a tensor power of the central simple algebra `L_p`. The route uses only
+  the first bullet of part 4 of `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`, which carries no
+  `K`-theory hypothesis.
+- **Inputs consumed.**
+  - Consumed: the swindle lemma, which is unconditional; the centre; part 4, bullet 1 of the host claim. That
+    bullet is a paper argument reading the Lean root-detection proof, with reviewer-2 PASS.
+  - Not consumed: part 2 (`K_1 = K_2 = 0 ⇒ GL_m = E_m`), `K_1(R_(d+1)) = 0`, or any `GL = E`.
+  - In Cairn the route requires the whole host claim, but that claim is ESTABLISHED only as the implication
+    "if `K_1 = K_2 = 0` then …". So no vanishing premise enters the closure.
+- **Bookkeeping.**
+  - The route names `M_0 = N + max j_i` but needs `M >= max(M_0, N+1, 3)`. For `M = N` with all `j_i = 0`, the image
+    can contain the central `−I_N`.
+  - The claim only asserts that some `M_0` exists, so it holds with `M_0 := max(N + max j_i, N+1, 3)`. The name is
+    mismatched, but there is no error.
