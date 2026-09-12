@@ -191,12 +191,18 @@ multiplicativity on good components.
 
 ### Open leaves and owners
 
-* ComponentFamily producer:
-  * pruned cores with an exact Cheeger bound (kt41-g1-alt,
-    `KunThom/CentralizerNormalizationPrunedCore`);
-  * good components and the constructor (kt41-g1-uniform);
-  * per-index decompositions and the `BlockEmbedding` companion
-    (kt41-seq-decomp).
+* ComponentFamily producer: kt41-seq-decomp.
+  `KunThom/SequentialComponentFamilyObjects` (91713c5f5) proves the four
+  fields on the good-component index `objectIndex`:
+  * `objectAction_expands`, with Cheeger constant `D.cheeger / (8 |T|)` at
+    every index;
+  * `objectModel_size`, `objectAction_locallyMultiplicative` and
+    `objectAction_injOn`, each eventually and uniformly over objects.
+  Still open: packaging these as `componentFamily`, and the `BlockEmbedding`
+  companion with negligible uncovered mass. The alternative pruned-core
+  route (`RetainedComponentExpansion`, `CentralizerNormalizationPrunedCore`)
+  and the good-component step (`CentralizerNormalizationUniformGood`) are on
+  main but are not used by this producer.
 * Relative functor (kt41-functor), estimate (7) (kt41-functor-estimate),
   Lemma 4.4 instance (kt41-median-vertex), endgame (kt41-counting-endgame),
   and the transfer of the compressor matching to retained objects
