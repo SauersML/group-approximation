@@ -9,8 +9,6 @@ distinct_from:
   leavitt-hyperlinear-branch-implies-thompson-v-hyperlinear: that records what the hyperlinear branch of the Leavitt fork would cost; this is the opposite answer for V itself, which selects the stable branch.
 artifacts:
   - research/artifacts/thompson-v-one-word-ce-frontier-2026-08-21.md
-refuted_by:
-  - thompson-v-hyperlinear
 ---
 
 **OPEN.** Thompson's group `V = G_(2,1)` admits no injective homomorphism into
@@ -81,6 +79,20 @@ is recorded at `thompson-v-one-word-strict-hs-ceiling`.
   two-generator Bleak--Quick presentation, with `u^6 = v^3 = 1` exact and
   `a = u^3` at energy `2`. Riemannian descent in `d = 6..72` plateaus at a
   maximal relator HS defect of about 1.14--1.27 (random models give about
-  1.41), with no decay in `d`. This is neither near-solution signal nor a
-  certified ceiling, since the optimizer is uncalibrated. Artifact:
-  `research/artifacts/thompson-v-model-probes-2026-09-12.md`.
+  1.41), with no decay in `d`.
+  - **Calibration** (lane `q34-v-models`): from Haar starts the same optimizer
+    never solves a planted control. The control is the same five words raised
+    to their orders in `S_5`, which have exact balanced-spectrum solutions at
+    every `d = 6k` through the 6-dimensional irreducible representation of
+    `S_5`.
+  - **Plateaus:** at `d = 6..48` the control plateaus at the same maximal defect
+    as `V` and as random words of the same lengths, about 1.0--1.3.
+  - **Basin:** the exact control solution attracts descent only from
+    perturbations of operator norm about 0.3 or less. Basin hopping (40 hops,
+    `eps = 0.7`) does not solve the control either.
+  - **Reading:** the `V` plateau is not evidence of a ceiling. A numerical
+    attack on this claim needs a search that first solves the control from
+    generic starts.
+  - **Artifacts:**
+    `research/artifacts/thompson-v-model-probes-2026-09-12.md`,
+    `research/artifacts/thompson-v-hs-probe-calibration-2026-09-12.md`.

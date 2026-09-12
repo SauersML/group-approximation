@@ -6,8 +6,6 @@ title: Thompson's group V is hyperlinear
 distinct_from:
   thompson-v-not-hyperlinear: that is the opposite answer, which selects the HS-stable Steinberg branch; this is the answer every construction on the unstable branch must also produce.
   leavitt-hyperlinear-branch-implies-thompson-v-hyperlinear: that is the stakes lemma saying the Leavitt hyperlinear branch forces this claim; this is the claim itself, a named open problem.
-refuted_by:
-  - thompson-v-not-hyperlinear
 ---
 
 **OPEN.** Thompson's group `V = G_(2,1)` embeds into a tracial matrix
@@ -74,3 +72,13 @@ It is necessary for `leavitt-steinberg-hs-unstable` and for
   representation, uniform almost-representations are near trivial. That says
   nothing about pointwise normalized-HS models, so it neither produces nor
   excludes the models this claim needs.
+- **Numerical search from generic starts** (lane `q34-v-models`, 2026-09-12).
+  - **Setup:** Riemannian descent and basin hopping on the Bleak--Quick
+    presentation, with `u^6 = v^3 = 1` exact and `u^3` at energy `2`.
+  - **Result:** both plateau at a maximal relator HS defect of about 1.1 for
+    `d` up to 48.
+  - **Control:** the same search also fails to solve a planted `S_5` control
+    that has exact models at every `d = 6k`. So finding no near-solutions is
+    not evidence against this claim. A usable search must first solve that
+    control from generic starts.
+  - **Artifact:** `research/artifacts/thompson-v-hs-probe-calibration-2026-09-12.md`.
