@@ -1,0 +1,233 @@
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol
+
+/-!
+# `JeJ` is the ring of finite matrices, and `J/JeJ ≅ F_2[z, z^{-1}]`
+
+`non_mf_groups_exist.tex`, the remark after `prop:torsion-defect-ring`
+(tex lines 1122--1131):
+
+> The Toeplitz--Jacobson algebra `J = F_2⟨s,t | ts=1⟩` has `1-st ≠ 0` of order two,
+> while `J/J(1-st)J ≅ F_2[z,z^{-1}] ≠ 0`, so `1-st` is not full … The algebra `J`
+> acts faithfully on `V = F_2^{(ℕ)}` by the shift, `e = 1-st` is the projection onto
+> the first vector `b_0` of the standard basis `(b_j)`, and `JeJ` is the ring of
+> matrices with finitely many nonzero entries in this basis.
+
+With `V = F_2[X]` and `b_j = X^j`:
+
+* `e (X^N) = [N = 0]`: `e` is the projection onto `b_0`;
+* the matrix units `f_{uv} = s^u e t^v` send `X^N` to `[N = v] X^u`;
+* an element of `J` has finitely many nonzero matrix entries iff it lies in `JeJ`
+  (a finite matrix is a finite combination of the `f_{uv}`; conversely `JeJ` is the
+  kernel of the symbol, and an operator acting as `0` on high monomials with bounded
+  images is a finite matrix);
+* so `JeJ` is the kernel of the surjective symbol `J → F_2[z,z^{-1}]`, and `JeJ ≠ J`.
+-/
+
+namespace GroupApproximation
+namespace Manuscript
+namespace OneSidedMFRadical
+namespace JacobsonSymbol
+
+open TorsionComplementaryIdempotents
+open JacobsonLaurent (BinaryLaurent)
+
+/-! ## The shifts on monomials -/
+
+theorem shiftUp_pow_apply (u : ℕ) (p : JacobsonSpace) :
+    (shiftUp ^ u) p = Polynomial.X ^ u * p := by
+  induction u with
+  | zero => rw [pow_zero, Module.End.one_apply, pow_zero, one_mul]
+  | succ u ih => rw [pow_succ', Module.End.mul_apply, ih, shiftUp_apply, pow_succ', mul_assoc]
+
+theorem shiftDown_pow_X_pow (v N : ℕ) :
+    (shiftDown ^ v) (Polynomial.X ^ N : JacobsonSpace) =
+      if v ≤ N then Polynomial.X ^ (N - v) else 0 := by
+  induction v with
+  | zero => rw [pow_zero, Module.End.one_apply, if_pos (Nat.zero_le N), Nat.sub_zero]
+  | succ v ih =>
+      rw [pow_succ', Module.End.mul_apply, ih]
+      by_cases hv : v ≤ N
+      · rw [if_pos hv, shiftDown_apply, Polynomial.divX_X_pow]
+        by_cases hN : N - v = 0
+        · rw [if_pos hN, if_neg (by omega)]
+        · rw [if_neg hN, if_pos (by omega)]
+          congr 1
+          omega
+      · rw [if_neg hv, if_neg (by omega), map_zero]
+
+/-- **Printed:** `e = 1 - st` is the projection onto the first basis vector. -/
+theorem jacobsonE_apply_X_pow (N : ℕ) :
+    ((1 : Module.End (ZMod 2) JacobsonSpace) - shiftUp * shiftDown) (Polynomial.X ^ N) =
+      if N = 0 then 1 else 0 := by
+  rw [one_sub_shiftUp_mul_shiftDown_apply, Polynomial.coeff_X_pow]
+  by_cases h : N = 0
+  · rw [if_pos h.symm, if_pos h, map_one]
+  · rw [if_neg (fun h' ↦ h h'.symm), if_neg h, map_zero]
+
+/-! ## Matrix units -/
+
+/-- The matrix unit `f_{uv} = s^u e t^v`. -/
+noncomputable def matUnit (u v : ℕ) : Module.End (ZMod 2) JacobsonSpace :=
+  shiftUp ^ u * ((1 : Module.End (ZMod 2) JacobsonSpace) - shiftUp * shiftDown) * shiftDown ^ v
+
+theorem matUnit_X_pow (u v N : ℕ) :
+    matUnit u v (Polynomial.X ^ N) = if N = v then Polynomial.X ^ u else 0 := by
+  rw [matUnit, Module.End.mul_apply, Module.End.mul_apply, shiftDown_pow_X_pow]
+  by_cases hv : v ≤ N
+  · rw [if_pos hv, jacobsonE_apply_X_pow, shiftUp_pow_apply]
+    by_cases hN : N - v = 0
+    · rw [if_pos hN, if_pos (by omega), mul_one]
+    · rw [if_neg hN, if_neg (by omega), mul_zero]
+  · rw [if_neg hv, map_zero, map_zero, if_neg (by omega)]
+
+/-- The matrix unit as an element of `J`. -/
+noncomputable def matUnitJ (u v : ℕ) : ↥jacobsonAlgebra :=
+  jacobsonS ^ u * ((1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT) * jacobsonT ^ v
+
+theorem coe_matUnitJ (u v : ℕ) :
+    ((matUnitJ u v : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) = matUnit u v := by
+  simp [matUnitJ, matUnit, jacobsonS, jacobsonT]
+
+/-- The printed ideal `J(1 - st)J`. -/
+noncomputable abbrev defectIdeal : TwoSidedIdeal ↥jacobsonAlgebra :=
+  TwoSidedIdeal.span ({(1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT} : Set ↥jacobsonAlgebra)
+
+theorem matUnitJ_mem_defectIdeal (u v : ℕ) : matUnitJ u v ∈ defectIdeal := by
+  have he : (1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT ∈ defectIdeal :=
+    TwoSidedIdeal.subset_span (Set.mem_singleton _)
+  exact TwoSidedIdeal.mul_mem_right (I := defectIdeal) _ _
+    (TwoSidedIdeal.mul_mem_left (I := defectIdeal) _ _ he)
+
+/-! ## Finite matrices -/
+
+/-- An endomorphism with finitely many nonzero matrix entries in the basis `(X^j)`. -/
+def IsFiniteMatrix (T : Module.End (ZMod 2) JacobsonSpace) : Prop :=
+  ∃ M : ℕ, (∀ N : ℕ, M ≤ N → T (Polynomial.X ^ N) = 0) ∧
+    ∀ N m : ℕ, M ≤ m → (T (Polynomial.X ^ N)).coeff m = 0
+
+theorem isFiniteMatrix_of_symbol_eq_zero {x : ↥jacobsonAlgebra} (hx : symbol x = 0) :
+    IsFiniteMatrix (x : Module.End (ZMod 2) JacobsonSpace) := by
+  classical
+  obtain ⟨N₀, hN₀⟩ := symbol_spec x
+  have hvan : ∀ N : ℕ, N₀ ≤ N →
+      (x : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ N) = 0 := by
+    intro N hN
+    have h := hN₀ N hN
+    rw [hx, zero_mul] at h
+    exact Polynomial.toLaurent_eq_zero.mp h
+  let D : ℕ := (Finset.range N₀).sup fun N ↦
+    ((x : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ N)).natDegree
+  refine ⟨max N₀ (D + 1), fun N hN ↦ hvan N (le_of_max_le_left hN), fun N m hm ↦ ?_⟩
+  by_cases hN : N₀ ≤ N
+  · rw [hvan N hN, Polynomial.coeff_zero]
+  · apply Polynomial.coeff_eq_zero_of_natDegree_lt
+    have hle : ((x : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ N)).natDegree ≤ D :=
+      Finset.le_sup (f := fun N ↦
+        ((x : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ N)).natDegree)
+        (Finset.mem_range.mpr (by omega))
+    omega
+
+/-- A finite matrix is the combination of matrix units given by its entries. -/
+theorem eq_sum_matUnit {T : Module.End (ZMod 2) JacobsonSpace} {M : ℕ}
+    (h0 : ∀ N : ℕ, M ≤ N → T (Polynomial.X ^ N) = 0)
+    (hc : ∀ N m : ℕ, M ≤ m → (T (Polynomial.X ^ N)).coeff m = 0) :
+    T = ∑ u ∈ Finset.range M, ∑ v ∈ Finset.range M,
+      (T (Polynomial.X ^ v)).coeff u • matUnit u v := by
+  classical
+  refine (Polynomial.basisMonomials (ZMod 2)).ext fun n ↦ ?_
+  rw [Polynomial.coe_basisMonomials, ← Polynomial.X_pow_eq_monomial, LinearMap.sum_apply]
+  simp only [LinearMap.sum_apply, LinearMap.smul_apply, matUnit_X_pow, smul_ite, smul_zero]
+  by_cases hn : n < M
+  · have hinner : ∀ u ∈ Finset.range M,
+        (∑ v ∈ Finset.range M,
+          if n = v then (T (Polynomial.X ^ v)).coeff u • Polynomial.X ^ u else 0) =
+          (T (Polynomial.X ^ n)).coeff u • Polynomial.X ^ u := by
+      intro u _
+      rw [Finset.sum_eq_single n (fun v _ hv ↦ if_neg (Ne.symm hv))
+        (fun hn' ↦ absurd (Finset.mem_range.mpr hn) hn'), if_pos rfl]
+    rw [Finset.sum_congr rfl hinner]
+    have hdeg : (T (Polynomial.X ^ n)).natDegree < M := by
+      by_cases hz : T (Polynomial.X ^ n) = 0
+      · rw [hz, Polynomial.natDegree_zero]
+        omega
+      · rw [Polynomial.natDegree_lt_iff_degree_lt hz]
+        exact (Polynomial.degree_lt_iff_coeff_zero _ M).mpr fun m hm ↦ hc n m hm
+    conv_lhs => rw [Polynomial.as_sum_range' _ M hdeg]
+    refine Finset.sum_congr rfl fun u _ ↦ ?_
+    rw [← Polynomial.C_mul_X_pow_eq_monomial, Polynomial.smul_eq_C_mul]
+  · rw [h0 n (by omega)]
+    symm
+    refine Finset.sum_eq_zero fun u _ ↦ Finset.sum_eq_zero fun v hv ↦ ?_
+    rw [if_neg (fun h ↦ hn (h ▸ Finset.mem_range.mp hv))]
+
+theorem mem_defectIdeal_of_isFiniteMatrix {x : ↥jacobsonAlgebra}
+    (hx : IsFiniteMatrix (x : Module.End (ZMod 2) JacobsonSpace)) : x ∈ defectIdeal := by
+  obtain ⟨M, h0, hc⟩ := hx
+  have hsum := eq_sum_matUnit h0 hc
+  have hJ : x = ∑ u ∈ Finset.range M, ∑ v ∈ Finset.range M,
+      (((x : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ v)).coeff u).val • matUnitJ u v := by
+    apply Subtype.ext
+    conv_lhs => rw [hsum]
+    simp only [AddSubmonoidClass.coe_finset_sum, AddSubmonoidClass.coe_nsmul, coe_matUnitJ]
+    refine Finset.sum_congr rfl fun u _ ↦ Finset.sum_congr rfl fun v _ ↦ ?_
+    rw [← Nat.cast_smul_eq_nsmul (ZMod 2), ZMod.natCast_zmod_val]
+  rw [hJ]
+  exact Finset.sum_mem fun u _ ↦ Finset.sum_mem fun v _ ↦
+    nsmul_mem (matUnitJ_mem_defectIdeal u v) _
+
+/-! ## The kernel of the symbol -/
+
+theorem ker_symbol : TwoSidedIdeal.ker symbol = defectIdeal := by
+  refine le_antisymm (fun x hx ↦ mem_defectIdeal_of_isFiniteMatrix
+    (isFiniteMatrix_of_symbol_eq_zero ((TwoSidedIdeal.mem_ker symbol).mp hx))) ?_
+  rw [TwoSidedIdeal.span_le]
+  rintro _ rfl
+  exact (TwoSidedIdeal.mem_ker symbol).mpr symbol_one_sub
+
+/-- **`JeJ` is the ring of finite matrices.** -/
+theorem mem_defectIdeal_iff (x : ↥jacobsonAlgebra) :
+    x ∈ defectIdeal ↔ IsFiniteMatrix (x : Module.End (ZMod 2) JacobsonSpace) := by
+  constructor
+  · intro hx
+    rw [← ker_symbol] at hx
+    exact isFiniteMatrix_of_symbol_eq_zero ((TwoSidedIdeal.mem_ker symbol).mp hx)
+  · exact mem_defectIdeal_of_isFiniteMatrix
+
+/-- `1 - st` is not full: `JeJ ≠ J`. -/
+theorem defectIdeal_ne_top : defectIdeal ≠ ⊤ := by
+  intro h
+  have h1 : (1 : ↥jacobsonAlgebra) ∈ TwoSidedIdeal.ker symbol := by
+    rw [ker_symbol, h]
+    exact TwoSidedIdeal.mem_top
+  rw [TwoSidedIdeal.mem_ker, map_one] at h1
+  exact one_ne_zero h1
+
+/-- **Printed (tex 1122--1124).**  `J` has `1 - st ≠ 0` of order two, and the symbol
+`J → F_2[z,z^{-1}]` is surjective with kernel `J(1-st)J`, so
+`J/J(1-st)J ≅ F_2[z,z^{-1}] ≠ 0` and `1 - st` is not full. -/
+theorem manuscriptSentence_jacobsonQuotientLaurent :
+    (1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT ≠ 0 ∧
+      (2 : ℕ) • ((1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT) = 0 ∧
+      Function.Surjective symbol ∧ TwoSidedIdeal.ker symbol = defectIdeal ∧
+      (1 : BinaryLaurent) ≠ 0 ∧ defectIdeal ≠ ⊤ :=
+  ⟨jacobson_one_sub_ne_zero, jacobson_two_nsmul_one_sub, symbol_surjective, ker_symbol,
+    one_ne_zero, defectIdeal_ne_top⟩
+
+/-- **Printed (tex 1127--1131).**  `J` acts faithfully on `V` by the shift, `e = 1-st`
+is the projection onto the first basis vector, and `JeJ` is the ring of matrices with
+finitely many nonzero entries. -/
+theorem manuscriptSentence_jacobsonShiftAction :
+    Function.Injective (fun x : ↥jacobsonAlgebra ↦ (x : Module.End (ZMod 2) JacobsonSpace)) ∧
+      (∀ N : ℕ, (((1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT : ↥jacobsonAlgebra) :
+        Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ N) = if N = 0 then 1 else 0) ∧
+      ∀ x : ↥jacobsonAlgebra,
+        x ∈ defectIdeal ↔ IsFiniteMatrix (x : Module.End (ZMod 2) JacobsonSpace) :=
+  ⟨Subtype.coe_injective, fun N ↦ jacobsonE_apply_X_pow N, mem_defectIdeal_iff⟩
+
+end JacobsonSymbol
+end OneSidedMFRadical
+end Manuscript
+end GroupApproximation
+
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonQuotientLaurent
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonShiftAction
