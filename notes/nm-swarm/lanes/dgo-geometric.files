@@ -26,3 +26,4 @@ GroupApproximation/Kazhdan/GHWReductionComplexEmbedding.lean
 GroupApproximation/Kazhdan/GHWInterfaces.lean
 GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
 GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+notes/nm-swarm/reports/dgo-geometric.md

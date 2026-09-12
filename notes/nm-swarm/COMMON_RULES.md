@@ -107,6 +107,13 @@ Manuscript = `non_mf_groups_exist.tex` at origin/main (2022 lines, last edit 73c
   especially root-wired ones, into the same probe. A user in another lane's file: send the lead the one-line fix so
   both land in the same window. Additive new declarations need no grep.
 
+## 23. LOCAL CPU (lead, 09-12 09:30, after two `.{0,250}pat.{0,250}` greps sat at 100% CPU for minutes)
+- Never run `grep -o -E '.{0,N}<pat>.{0,N}'` (or rg/ugrep equivalents) over transcript `*.jsonl` files: the lines are
+  megabytes long and the regex backtracks. The lead kills such processes on sight.
+- Cheap recipe: `grep -n -o -F '<fixed string>' F | cut -d: -f1 | sort -un > lines`, then
+  `awk 'NR==FNR{w[$1];next} FNR in w{i=index($0,"<fixed string>"); print substr($0,i>400?i-400:1,800)}' lines F`.
+- Better: ask the lead (`nonsofic-existence-3a`) for the context instead of sweeping transcripts.
+
 ## 21. USER ORDER 22:45: "we MUST commit and push after LITERALLY EVERY EDIT. an edit NOT PUSHED AND COMMITED TO
 ##     MAIN is UNSAVED. do not clobber other work or overwrite when u push though"
 - After EVERY Edit/Write of a repo file, before probing or anything else, land it at once:
