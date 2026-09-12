@@ -173,6 +173,7 @@ theorem inner_neg_eqBasis_zero_one :
 theorem zero_eq_castSucc : (0 : Fin (n + 1)) = (⟨0, hn⟩ : Fin n).castSucc :=
   Fin.ext (by simp)
 
+include hn in
 theorem last_ne_zero_of_pos : (Fin.last n : Fin (n + 1)) ≠ 0 := by
   intro he
   have hv := congrArg Fin.val he

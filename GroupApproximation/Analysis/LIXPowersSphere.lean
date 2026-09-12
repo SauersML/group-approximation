@@ -329,7 +329,8 @@ theorem ballWall_zero (h₁ : ‖e₁‖ = 1) (h₂ : ‖e₂‖ = 1) (h₁₂ :
 /-- The renormalised generator on the unit sphere, through the ball extension. -/
 theorem normGen_eq_ballWall_mul {y : E} (hy : ‖y‖ = 1) :
     normGen e₁ e₂ U y = (ballWall e₁ e₂ U y)ᴴ * U y := by
-  rw [ballWall_of_norm_eq_one hy] <;> rfl
+  rw [ballWall_of_norm_eq_one hy]
+  rfl
 
 end BallWall
 
