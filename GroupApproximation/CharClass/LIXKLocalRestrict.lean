@@ -119,8 +119,10 @@ theorem xloc_ne_zero_of_restrictTo_ne_zero {k : ℕ} {z : Fin k → X} {C : Set 
   by_cases hji : j = i
   · subst hji
     rw [h0, map_zero, map_zero]
-  · refine restrictTo_relPullback_id_eq_zero B _ (fun y hy hyz => ?_) n _
-    exact hB j hji ((Set.mem_singleton_iff.mp hyz) ▸ hy)
+  · exact restrictTo_relPullback_id_eq_zero (D := ({z j}ᶜ : Set X)) B
+      (mapsTo_compl_puncture hC j)
+      (fun y hy => Set.mem_compl fun hyz => hB j hji (Set.mem_singleton_iff.mp hyz ▸ hy))
+      n (xloc j)
 
 /-! ## 2. The `k`-zero Step C over `F₂`, split discharged -/
 
@@ -135,14 +137,42 @@ theorem relPullback_id_relToAbs {N : Type} [TopologicalSpace N] {A D : Set N}
   rw [RelativeSupport.absPull_id_eq, Category.comp_id] at h'
   exact h'.symm
 
+variable {N : Type} [TopologicalSpace N]
+
+/-- `j` for the pair `(N, C)`, typed at `cohomologyZMod2`. -/
+def kJ (N : Type) [TopologicalSpace N] (C : Set N) (n : ℕ) :
+    relCohomology (ZMod 2) (TopCat.of N) C n ⟶ cohomologyZMod2 (TopCat.of N) n :=
+  relToAbs (ZMod 2) (TopCat.of N) C n
+
+/-- `i`: restriction to the complement of a point, typed at `cohomologyZMod2`. -/
+def kI (N : Type) [TopologicalSpace N] (z : N) (n : ℕ) :
+    cohomologyZMod2 (TopCat.of N) n ⟶
+      cohomologyZMod2 (TopCat.of ↥({z}ᶜ : Set N)) n :=
+  absToSub (X := TopCat.of N) (ZMod 2) ({z}ᶜ : Set N) n
+
+theorem kJ_hexact (z : N) (n : ℕ) :
+    LinearMap.range (kJ N ({z}ᶜ : Set N) n).hom = LinearMap.ker (kI N z n).hom :=
+  relLES_range_eq_ker (TopCat.of N) ({z}ᶜ : Set N) n
+
+/-- `ρᵢ`, typed between the two relative groups. -/
+def kRho {k : ℕ} {z : Fin k → N} {C : Set N} (hC : ∀ y, y ∈ C ↔ ∀ i, y ≠ z i) (i : Fin k)
+    (n : ℕ) :
+    relCohomology (ZMod 2) (TopCat.of N) ({z i}ᶜ : Set N) n ⟶
+      relCohomology (ZMod 2) (TopCat.of N) C n :=
+  relPullback (ZMod 2) (𝟙 (TopCat.of N)) (mapsTo_compl_puncture (X := TopCat.of N) hC i) n
+
+theorem kRho_hcompat {k : ℕ} {z : Fin k → N} {C : Set N} (hC : ∀ y, y ∈ C ↔ ∀ i, y ≠ z i)
+    (i : Fin k) (n : ℕ) : kRho hC i n ≫ kJ N C n = kJ N ({z i}ᶜ : Set N) n :=
+  relPullback_id_relToAbs (mapsTo_compl_puncture (X := TopCat.of N) hC i) n
+
 /-- **Step C's odd side with `k` zeros, over `F₂`, with the split discharged.**
 
 The zeros `z₀, …, z_{k-1}` are distinct points of a T₁ space `N`, `C` is their complement,
 and `x` is a class of `(N, C)`.  Every zero carries the one-zero Step C's line data
 (punctured acyclicity, excision to the local model) and a set `B i` containing it and no other
 zero, on which `x` restricts nontrivially.  If `k` is odd, `j(x) ≠ 0`. -/
-theorem topChernClass_ne_zero_kzero_two_of_restrict {N : Type} [TopologicalSpace N]
-    [T1Space N] {twoR r k : ℕ} (i₀ : Fin k) (z : Fin k → N) (hz : Function.Injective z)
+theorem topChernClass_ne_zero_kzero_two_of_restrict [T1Space N] {twoR r k : ℕ} (i₀ : Fin k)
+    (z : Fin k → N) (hz : Function.Injective z)
     {C : Set N} (hC : ∀ y, y ∈ C ↔ ∀ i, y ≠ z i)
     (hac : ∀ i, PuncturedAcyclic N twoR (z i))
     (absLine : Nonempty (cohomologyZMod2 (TopCat.of N) twoR ≃ₗ[ZMod 2] ZMod 2))
@@ -154,19 +184,17 @@ theorem topChernClass_ne_zero_kzero_two_of_restrict {N : Type} [TopologicalSpace
     (B : Fin k → Set N) (hB : ∀ i j, j ≠ i → z j ∉ B i)
     (hloc : ∀ i, (restrictTo (ZMod 2) (X := TopCat.of N) (B i) C twoR).hom x ≠ 0)
     (hk : ((k : ℕ) : ZMod 2) ≠ 0) :
-    (relToAbs (ZMod 2) (TopCat.of N) C twoR).hom x ≠ 0 := by
+    (kJ N C twoR).hom x ≠ 0 := by
+  haveI : T1Space ↥(TopCat.of N) := ‹T1Space N›
   obtain ⟨xloc, hsplit⟩ := exists_localSplit_two (X := TopCat.of N) z hz hC twoR x
-  have hs : x = ∑ i, (relPullback (ZMod 2) (𝟙 (TopCat.of N))
-      (mapsTo_compl_puncture hC i) twoR).hom (xloc i) := hsplit
-  exact topChernClass_ne_zero_kzero_two i₀ z hac
-    (relToAbs (ZMod 2) (TopCat.of N) C twoR)
-    (fun i => relPullback (ZMod 2) (𝟙 (TopCat.of N)) (mapsTo_compl_puncture hC i) twoR)
-    (fun i => relToAbs (ZMod 2) (TopCat.of N) ({z i}ᶜ : Set N) twoR)
-    (fun i => relPullback_id_relToAbs (mapsTo_compl_puncture hC i) twoR)
-    (fun i => absToSub (X := TopCat.of N) (ZMod 2) ({z i}ᶜ : Set N) twoR)
-    (fun i => relLES_range_eq_ker (TopCat.of N) ({z i}ᶜ : Set N) twoR)
-    absLine exc chartIso hsplit
-    (fun i => xloc_ne_zero_of_restrictTo_ne_zero hC twoR hs i (hB i) (hloc i)) hk
+  have hs : x = ∑ i, (kRho hC i twoR).hom (xloc i) := hsplit
+  have hx : ∀ i, xloc i ≠ 0 := fun i =>
+    xloc_ne_zero_of_restrictTo_ne_zero (X := TopCat.of N) hC twoR hs i (hB i) (hloc i)
+  have hsplit' : LocalSplit (fun i => kRho hC i twoR) x xloc := hs
+  exact topChernClass_ne_zero_kzero_two i₀ z hac (kJ N C twoR) (fun i => kRho hC i twoR)
+    (fun i => kJ N ({z i}ᶜ : Set N) twoR) (fun i => kRho_hcompat hC i twoR)
+    (fun i => kI N (z i) twoR) (fun i => kJ_hexact (z i) twoR)
+    absLine exc chartIso hsplit' hx hk
 
 end LIXKRelMV
 
