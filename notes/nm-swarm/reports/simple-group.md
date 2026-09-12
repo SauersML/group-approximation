@@ -34,9 +34,15 @@ Group.IsFinitelyPresented ↥(stabK Γ K)` (fff-quotient's `isFinitelyPresented_
 in `QTwoFinitelyPresented`.
 
 ## In progress
-Two Lemma 4.6 pieces for fff-quotient's Proposition 4.7: (a) Case 1, `Υ_{Γ₂}(I)' ⊆ ⋃ fⁿ H f⁻ⁿ`, by
-transporting `RstabGerms` through `perHom`; (c) the generators `v_i = u_i s_i⁻¹ u_i⁻¹ s_i` of `H ≅ F_6`,
-through `BrownPresentation`.  Waiting for exact statements from fff-quotient.
+Two Lemma 4.6 pieces for fff-quotient's Proposition 4.7, with the exact statements fff-quotient sent:
+- (a) `HydeLodha/QTwoLemmaFourSixCaseOne` (44d75dddd, green in probe 0912-100944-94062): `upsilonc`
+  (`Υ^c`), `commutator_upsilon_le_upsilonc`, `upsilon_commutator_inter_upsilonc`
+  (`Υ_{Γ₂}(I)' ∩ Υ^c_{Γ₂}(J₀) = Υ_{Γ₂}(J₀)'`, Lemma 4.4 through `perHom`) and
+  `pow_conj_mem_commutator_upsilon` (tex 904–905).
+- (c) `HydeLodha/QTwoLemmaFourSixGenerators` (landed unverified 7db72cfc1, probe running):
+  `brownRels_le_commutator`, `exists_mulEquiv_closure_mul`
+  and `exists_twisted_generators` (`⟨s_i u_i⁻¹ s_i⁻¹ u_i⟩ ≅ F_6` with commutator subgroup `Υ_{Γ₂}(J₀)'`,
+  tex 889–892).
 
 ## Census
 No row yet: the printed sentence is graded through `FournierFacioParagraph`, which also needs the
