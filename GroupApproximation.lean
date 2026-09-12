@@ -4595,6 +4595,9 @@ import GroupApproximation.Dynamics.FinitarySite
 import GroupApproximation.Dynamics.FinitaryTransplant
 import GroupApproximation.Dynamics.FinitarySurjunctivity
 import GroupApproximation.Dynamics.WreathFinitarySite
+import GroupApproximation.Dynamics.DoubleKernel
+import GroupApproximation.Dynamics.DoubleConsequences
+import GroupApproximation.Dynamics.DoubleFinitarySite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
