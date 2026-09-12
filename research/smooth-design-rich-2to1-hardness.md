@@ -11,15 +11,18 @@ artifacts:
 ---
 
 **OPEN.** The Smooth-Design Rich 2-to-1 Conjecture. There is a function
-`C(K,m)` such that for every `epsilon > 0` and every `t >= 1`, for all
-sufficiently large `n`, `Gap-2-to-1_n[1-epsilon, epsilon]` is NP-hard on
+`C(K,m)` such that for every `epsilon > 0`, `t >= 1`, `m >= 2` and `K >= 1`,
+for all sufficiently large `n`, `Gap-2-to-1_n[1-epsilon, epsilon]` is NP-hard on
 instances whose pairing family at every left vertex is
 
 * `t`-wise uniform: every partial matching of at most `t` pairs has its
   uniform-matching probability; and
-* `(K,m,C(K,m))`-smooth for all `m >= 2` and `K >= 1`: the pull-back
-  distribution has density at most `C(K,m) m^(-2n)` at `K`-roughly balanced
-  points.
+* `(K,m,C(K,m))`-smooth: the pull-back distribution has density at most
+  `C(K,m) m^(-2n)` at `K`-roughly balanced points.
+
+Smoothness is required only for the one pair `(m,K)` that the reduction fixes
+from `epsilon`. Requiring it for every `m` at once would force
+`log |F| = omega(n)`, by `pullback-smoothness-needs-exponentially-many-pairings`.
 
 With `noise-test-sound-on-smooth-design-rich-inputs` this implies UGC (route
 `ugc-from-smooth-design-rich-2to1`). The Rich 2-to-1 conjecture, at all large
