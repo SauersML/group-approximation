@@ -1,6 +1,6 @@
 # Lane `lix-descent` (successor of `sp-descent`) — `λ₁ = ((p−1)/2)!`, generic in `p`
 
-Owner of `GroupApproximation/CharClass/OddPDescent*.lean`.  Clone `lix-h`.  Started 2026-09-11 ~21:20 CDT.
+Owner of `GroupApproximation/CharClass/OddPDescent*.lean`.  Clone `spare1` (lix-h was never created).  Started 2026-09-11 ~21:20 CDT.
 
 ## STEP 0 (2026-09-11)
 
@@ -61,7 +61,7 @@ So the two directions differ by the sign `(−1)^{(p−1)/2}`, not by an unrelat
    `Bool.eq_false_of_not_eq_true` + `omega`, the ℕ-multiple coefficient by a `have … := by simp`, and the assembly
    by `Finsupp.sub_apply` / `nsmul_eq_mul`.
 6. `eT_pow_eWedge`, and `eX_succ` in Value: a bare `← Module.End.mul_apply` folds the OUTER application; the three factors are now named.
-7. `eT_eR_apply`: `Fintype.sum_equiv` leaves `(Equiv.addRight 1) b` unreduced; `show` first.
+7. `eT_eR_apply`: `Fintype.sum_equiv` leaves `(Equiv.addRight 1) b` unreduced; `simp only [Equiv.coe_addRight]` (a `show` timed out, see PROBES).
 
 Value (first elaboration ever): `simp`/`simpa` replaced by `simp only … at h; exact h`; `hp1` by `omega`;
 `eTopWord_update_zero` takes no `K`, since theorem variables are included by the statement; a `def` hypothesis
@@ -95,7 +95,7 @@ Value (first elaboration ever): `simp`/`simpa` replaced by `simp only … at h; 
 
 ## GREEN
 
-All nine `OddPDescent*` modules are compiled on main: Word, Clifford, Complex, Shift, Pairing, Domino (1a28ab8df),
+All seven `OddPDescent*` modules are compiled on main: Word, Clifford, Complex, Shift, Pairing, Domino (1a28ab8df),
 Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
 
 ## TRAPS
