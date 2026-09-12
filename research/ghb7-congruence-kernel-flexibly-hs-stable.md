@@ -4,7 +4,7 @@ id: ghb7-congruence-kernel-flexibly-hs-stable
 kind: claim
 title: The torsion-free congruence kernel of GHB_2(7) is flexibly Hilbert--Schmidt stable
 distinct_from:
-  kazhdan-hyperbolic-b2-group-flexibly-hs-stable: that is the existential premise over all hyperbolic Kazhdan groups with b_2 >= 1; this is one explicit instance, the kernel H of the SL_4(F_7) quotient of GHB_2(7)
+  kazhdan-hyperbolic-b2-group-flexibly-hs-stable: that is the existential premise over all hyperbolic Kazhdan groups with b_2 >= 1; this is one explicit instance, the kernel H of the quotient of GHB_2(7) into SL_4(F_7), whose image is Sp_4(F_7)
   sln-z-flexibly-hs-stable: that asks flexible HS stability of an integral lattice, which is residually finite and hyperlinear, so its stability is calibrated against goodness; this asks it for a torsion-free hyperbolic kernel whose residual finiteness and hyperlinearity are both unknown
 ---
 
@@ -44,6 +44,20 @@ non-residually-finite hyperbolic group.
   Frobenius-norm stability by de Chiffre--Glebsky--Lubotzky--Thom, needs `H^2` vanishing,
   which `b_2(H) >= 1380` forbids for the trivial representation. So that method cannot
   apply verbatim, and a normalized-HS stability proof must tolerate a large `H^2`.
-- **Not attempted yet:** a local spectral (Garland or de la Salle type) stability estimate
-  on the links of `Y`, restricted to asymptotic representations that are nontrivial on
-  the edge groups.
+- **Exact invariants (`ghb7-quotient-image-is-sp4-f7`, 2026-09-12).** The image of `ψ` is
+  `Sp_4(F_7)`, not `SL_4(F_7)`. So `[G:H] = 276595200`, `χ(H) = 159091200`,
+  `b_2(H;Q) = 159091199`, and `b_2^(2)(H) = 159091200`
+  (`ghb7-l2-betti-two-is-orbifold-euler-characteristic`).
+- **The cohomological existence scheme is blocked (`ghb7-kernel-blocks-degree-two-newton-stability`).**
+  - **What stability needs.** It is a degree-two existence statement. Degree one, from
+    property (T) or the link spectral gaps of `Y`, gives only rigidity (uniqueness of
+    rounding, (T;FD)).
+  - **Why the scheme fails for `H`.** Solving `δy = c` for the relator-defect cocycle in
+    the `Ad`-module `L²(M)` needs `H^2(H;π) = 0`. For `H` this fails on the trivial summand
+    (`b_2 >= 1380`). Whenever `H` is hyperlinear it also fails on a traceless regular
+    summand of the `Ad`-module of `σ ⊗ σ`, because `b_2^(2)(H) = χ(H) > 0`.
+  - **Consequence.** A local spectral (Garland or de la Salle type) estimate on the links
+    of `Y` controls degree one only, and no degree-two vanishing is available on either
+    summand. A stability proof for `H` must show that defect cocycles avoid the nonzero
+    classes, or use a non-cohomological mechanism.
+  - **Artifact:** `research/artifacts/ghb7-kernel-stability-criterion-2026-09-12.md`.

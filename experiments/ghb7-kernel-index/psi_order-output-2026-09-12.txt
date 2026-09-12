@@ -1,0 +1,15 @@
+invariant forms basis size 1
+B =
+ [[0 0 6 0]
+ [0 0 0 6]
+ [1 0 0 0]
+ [0 1 0 0]]
+alternating (B^T = -B, zero diagonal): True
+det B mod 7 = 1
+each generator preserves B: True
+degree 400 order on PG(3,7) = 138297600 time 0.5
+degree 2400 order on nonzero vectors = 276595200 time 5.1
+|Sp_4(7)| = 276595200  |PSp_4(7)| = 138297600  |SL_4(7)| = 4635182361600
+psi(G) = Sp_4(7): True
+[G:H] = 276595200  [G:H]/2401 = 115200  chi(H) = 159091200  b_2(H) = 159091199
+
