@@ -13,6 +13,9 @@ Section 8 were built on main at `cd999fec9`.
 | `surjunctivity-graph-folds-2026-09-11.md` (`aee566c6b`) | graph-of-groups theorem | PASS |
 | `lef-graph-wreath-surjunctivity-2026-09-12.md` (`a0f24c4cb`) | Theorems 1 and 2 | PASS |
 | `fp-surjunctive-nonsofic-double-2026-09-11.md` (`56ab9e344`) | finite presentation, surjunctivity | PASS |
+| `gottschalk-surjunctivity-fixed-tester-proof` (route body) | subgroup heredity, marked limits, noninjective directed colimits | PASS |
+| `gottschalk-stable-three-factor-reduction-2026-09-08.md` | stable reduction to three unary factors | PASS |
+| `affine-normal-form-reduces-three-factor-surjunctivity` (route body) | recipient-affine normal form | PASS |
 
 No mathematical gap was found. Two routes consumed external theorems only in
 their bodies; those inputs are now claims (Section 8). No route on main
@@ -173,6 +176,60 @@ surjunctivity of the binary Leavitt unit group. The steward's compiled
   form and residual-finiteness theorems only in its body. New claim
   `graph-product-normal-forms-and-rf-permanence` with its `-citation` route;
   the route now requires it.
+
+## 10. The fixed tester
+
+* **Locality.** A cellular automaton over `H <= G`, run on `A^G`, is a product
+  of copies over the cosets of `H`, so surjunctivity passes to subgroups. The
+  memory of any automaton lies in a finitely generated subgroup, so `G` is
+  surjunctive iff every finitely generated subgroup is.
+* **Marked limits.** The injectivity detector `N` comes from compactness of
+  `{(x,y) : x(1) != y(1)}`, covered by the open sets where `tau(x)` and
+  `tau(y)` differ at one coordinate. The missing cylinder `F` exists because
+  the image is closed. Once a ball containing `NM` and `FM` has the same
+  equality table in `G_i`, transport gives:
+  * injectivity, since the outputs on the copy of `N` read only the copy of
+    `NM`, together with translation;
+  * nonsurjectivity, from the copy of `FM`.
+
+  The argument uses only "eventually", so it holds for nets.
+* **Noninjective colimits.** An equality among marked words in the colimit
+  holds at some stage. An inequality in the colimit holds at every stage,
+  because the maps to the colimit are homomorphisms. So the finitely generated
+  subgroups `H_j` converge to `H` as a net.
+* **The host.** The abstract theorem is the standard one. A universal
+  finitely presented group contains every finitely presented group (Higman),
+  and every group is a directed colimit of finitely presented groups with
+  arbitrary maps. The class of surjunctive groups is subgroup-closed and
+  closed under such colimits, so `U surjunctive <=> every group surjunctive`.
+  The node `universal-all-group-subgroup-colimit-class-tester` was not
+  re-derived line by line here; its mathematics is the argument above.
+
+## 11. The three-factor reduction and the affine normal form
+
+* **Expression.** `mu = sum_p mu(p) prod_s delta_(p_s)(X_s)` over `Z/qZ`; exactly
+  one product equals `1` at each input.
+* **One cancellation.** Precompose `F x id` by `S(x,u,v) = (x, u + A(x), v + B(x))`
+  and postcompose by `T(y,r,s) = (y - c r s e_i, r, s)`. Coordinate `i` becomes
+  `F_i - cAB - cuv - cuB - cvA`, the new coordinates are `u + A` and `v + B`,
+  and all other coordinates are unchanged.
+* **Potential.** With `a,b >= 2` and `a + b = d`, the seven new occurrences
+  `uv, uB, vA, u, A, v, B` have lengths `2, b+1, a+1, 1, a, 1, b`, all at most
+  `d - 1`. So `sum 8^length` drops from at least `8^d` to at most
+  `8^d - 8^d + 7.8^(d-1) < 8^d` for that contribution, and the procedure
+  terminates.
+* **Preservation.** Adding identity tracks, and composing with bijective
+  shears, preserves injectivity and surjectivity in both directions. No new
+  spatial addresses appear. The reduction is an honest equivalence, not a
+  restatement: the three-factor class is a genuine subclass, and every
+  automaton is stably equivalent to a member of it.
+* **Affine normal form.** `H(x,u) = (x + u, F(x) - x - u)` equals `T o (F x id) o S`
+  with `S(x,u) = (x, x + u)` and `T(y,w) = (w, y - w)`, both bijective. The
+  fibre is `H^-1(z,w) = {(x, z - x) : F(x) = z + w}`. First-block outputs have
+  own-track coefficient `+1` and read only `u` otherwise. Second-block outputs
+  have own-track coefficient `-1` and read only `x` otherwise. The route into
+  `three-factor-finite-alphabet-ca-are-surjunctive` is valid; its prerequisite
+  is open, so nothing is established by it.
 
 ## 9. Trust surfaces not verified here
 
