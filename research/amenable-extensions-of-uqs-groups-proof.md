@@ -20,7 +20,10 @@ Theorem B, Proposition 3.1 and Corollary 3.2, Section 3 of the artifact.
 4. **Charge.**
    - Right Følner sets make `|F \ F^-|` a small fraction of the number of tiles, contradicting UQS.
    - Over a two-ended quotient `|F \ F^-|` stays bounded, contradicting AQS.
-5. **Heredity.** Extend coset by coset for subgroups, and restrict to a coset for directed unions.
-6. **Ascending HNN extensions.** Their kernel onto `Z` is a directed union of copies of `N`.
+5. **Heredity.** Extend coset by coset for subgroups, keeping the constants. Restrict to a coset for directed unions.
+   That step needs one UQS constant function, or one AQS threshold function, shared by all stages, because a map
+   living at stage `k` contradicts only that stage's constant.
+6. **Ascending HNN extensions.** Their kernel onto `Z` is a directed union of isomorphic copies of `N`, so the stages
+   share `N`'s threshold.
 
 **Verification.** `w3-vf-positive` passed this route (Sections 19.1–19.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`). Scope note: heredity to directed unions needs one UQS constant, or one AQS threshold, shared by all stages. The isomorphic stages of Corollary 3.2 have that.

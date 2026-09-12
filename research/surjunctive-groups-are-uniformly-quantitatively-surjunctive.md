@@ -24,8 +24,10 @@ artifacts:
 - **Sofic groups.** The counting of `product-fibre-garden-of-eden-filter-2026-09-12.md`, Section 3, uses each track's
   missing pattern separately, and its constant depends only on `|B|` and `|W|`. So it gives the property for sofic
   groups. Recorded as a remark, not re-derived.
-- **Heredity.** The property passes to subgroups and directed unions (artifact Proposition 3.1). So it is a local
-  property. Proving it for every f.g. group in a class suffices for the class.
+- **Heredity.** The property passes to subgroups with the same constants, and to directed unions whose stages share
+  one constant function (artifact Proposition 3.1). So it is local only with uniform constants: proving it for the
+  f.g. subgroups of `G` with one shared constant function suffices for `G`, and constants that degenerate along the
+  f.g. subgroups give nothing.
 - **Where it dies: nonsofic surjunctive groups.** The Kun--Thom wreaths and doubles are surjunctive by marked-site
   peeling, which separates finite quotients stratum by stratum and carries no deficit. So neither this property nor
   its asymptotic version (enough for two-ended quotients) is known for any nonsofic group.

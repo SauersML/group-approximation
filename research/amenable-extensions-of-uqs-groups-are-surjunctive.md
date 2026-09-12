@@ -23,7 +23,8 @@ once `(j' - j) log|D| <= K`.
 1. If `N` is UQS, then `G` is surjunctive.
 2. If `N` is AQS and `G/N` is two-ended, then `G` is surjunctive.
 
-**Heredity.** UQS and AQS pass to subgroups and directed unions, with the same constants.
+**Heredity.** UQS and AQS pass to subgroups with the same constants. They pass to directed unions whose stages share one
+constant function (UQS) or one threshold function (AQS).
 
 **Corollary.** If `N` is AQS, every ascending HNN extension `N *_phi` is surjunctive.
 

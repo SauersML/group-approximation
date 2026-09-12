@@ -190,21 +190,31 @@ a pattern `p` on `W`. Take a finite `F <= Q` and put
   long intervals of a finite-index infinite cyclic subgroup over a transversal. Then `j' - j` is bounded while
   `n -> infinity`, and `Psi` contradicts AQS. QED
 
-**Proposition 3.1 (heredity).** UQS and AQS pass to subgroups and to directed unions, with the same constants.
+**Proposition 3.1 (heredity).**
+1. If `N` is UQS with constant function `delta(B,w)`, or AQS with threshold function `n_0(B,w,K)`, every subgroup of `N`
+   has the same property with the same constant or threshold.
+2. Let `N^ = union N_k` be a directed union. Suppose every `N_k` is UQS with one shared constant function
+   `delta(B,w)`, or AQS with one shared threshold function `n_0(B,w,K)`. Then `N^` is UQS, respectively AQS, with that
+   constant or threshold.
+
+Uniformity in part 2 is needed: a forbidden map living at stage `k` contradicts only that stage's constant, so
+constants tending to `0`, or thresholds tending to infinity, along the stages give nothing. (Scope note by
+w3-vf-positive, Section 19 of its verification artifact.)
 
 *Proof.*
 - **Subgroups.** Let `H <= N` and let `Psi` over `H` be a forbidden map. Its memory lies in `H`, so it acts
   independently on left cosets `gH`, and the product over cosets is injective over `N`. Put
   `Y~_i = {y in B^N : (y(gh))_(h in H) in Y_i for all g}`. This is closed, `N`-invariant and proper, and it misses the
   same pattern. The product map lands in `prod Y~_i x full` and is forbidden over `N`.
-- **Directed unions.** A forbidden map over `N^ = union N_k` has its memory, and the windows of the missing
-  patterns, inside some `N_k`. Restricted to the coset `N_k`, it is a forbidden map over `N_k` into the restrictions
-  `Y_i|_(N_k)`, which are proper subshifts missing the same patterns. QED
+- **Directed unions.** A map over `N^ = union N_k` that violates the shared constant has its memory, and the
+  windows of the missing patterns, inside some `N_k`. Restricted to the coset `N_k`, it is a map over `N_k` into the
+  restrictions `Y_i|_(N_k)`, which are proper subshifts missing the same patterns. The parameters `n, j, j', |D|`
+  are unchanged, so it violates the same constant for `N_k`. QED
 
 **Corollary 3.2 (ascending HNN extensions).** Let `phi: N -> N` be an injective endomorphism.
 - If `N` is AQS, the ascending HNN extension `N *_phi` is surjunctive.
-- **Proof.** Its kernel onto `Z` is the directed union of copies `t^-k N t^k` of `N`, which is AQS by
-  Proposition 3.1. Apply Theorem B part 2.
+- **Proof.** Its kernel onto `Z` is the directed union of the copies `t^-k N t^k`. They are isomorphic to `N`, so they
+  share `N`'s AQS threshold, and the union is AQS by Proposition 3.1 part 2. Apply Theorem B part 2.
 
 **Calibration.** For sofic `N`, Theorem B gives nothing new: sofic-by-amenable groups are sofic
 (`sofic-kernel-amenable-quotient-permanence`). The payoff needs UQS or AQS for a nonsofic surjunctive kernel.
