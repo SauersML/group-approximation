@@ -453,3 +453,176 @@ These four claims narrow the unbounded-realizer case of `relative-normalization-
 - **Reading.** The claim is correct as scoped. On regular blocks, excluding realized models is the same
   as proving the cover not residually finite. Off regular blocks, §18.3 says realized models exist
   whenever the cover is sofic.
+
+## 19. Ozawa's SL(3,Z) block algebra (9a4114d4a): three PASS; the open claims are correctly stated
+
+### 19.1 `kazhdan-block-algebras-contain-their-block-ideal`: PASS
+
+- **Isolation.**
+  - `σ ≺ π` gives `1 ⊂ σ ⊗ σ̄ ≺ π ⊗ σ̄`. Property (T) then gives a nonzero intertwiner, so `σ ⊂ π`.
+  - Suppose `σ` lies in the closure of a set `S` of other irreducibles. Then `σ ⊂ ⊕S`, and projecting to
+    a coordinate makes `σ` equivalent to a member of `S`, a contradiction. So `σ_j` is an open point.
+- **Blocks.** The ideal of the open point has one-point spectrum and a faithful `n_j`-dimensional
+  irreducible representation, so it is `M_(n_j)`. Every `σ_i` with `i ≠ j` kills it, so it is the
+  coordinate block.
+- **Quasitraces on `I`.** With `P_m ∈ I` central, `a = aP_m + a(1-P_m)`, and
+  `σ(a(1-P_m)) <= ||σ|| ||a(1-P_m)|| -> 0`. Quasitraces on finite-dimensional corners are traces.
+- The extension step uses `stw01-extensions-preserve-qt-linearity`, which was not re-reviewed.
+
+### 19.2 `sl3z-ozawa-block-corona-has-unique-trace`: PASS, conditional on Bekka's theorem as imported
+
+- **Limit trace.**
+  - `tr σ_k(g) = (Fix_(p_k)(g) - 1)/(p_k^2 + p_k)`.
+  - A non-scalar `3×3` matrix fixes at most `p + 2` projective points, because in the worst case its
+    eigenvectors fill a plane and a line.
+  - A nontrivial `g ∈ SL(3,Z)` is scalar mod `p` for only finitely many `p`.
+- **Uniqueness.** An extreme trace of `A` is an extreme trace of `C*(Γ)` vanishing on the kernel, so a
+  finite factor trace. By Bekka it is finite-dimensional, which §19.1 excludes, or it is `δ_e`.
+- **Nonzero kernel.** The vector states at `[1:0:0]` converge to `1_P`, so `λ_(Γ/P) ≺ ρ_∞`. If `K = 0`,
+  restricting to `P` gives `1_P ≺ λ_P`, which contradicts non-amenability of `P ⊃ SL(2,Z)`.
+- **No traces on `K`.**
+  - The norm-preserving extension `φ` of a bounded trace on `K` satisfies
+    `φ(y^*y) = lim τ(y e_λ^2 y^*) <= φ(yy^*)`. By symmetry `φ` is a trace.
+  - So `φ = cτ_0`, and `τ_0` vanishes on `K = N_(τ_0)`.
+- **Import corrected at 85a9696d7, and the correction checked.**
+  - The lane re-read Bekka (arXiv:math/0609102v2). The theorem is virtual: a finite factor representation
+    is finite-dimensional, or its restriction to some finite-index `Λ` extends to `L(Λ)`.
+  - The added orthogonality step is correct:
+    - pass to the normal core of `Λ`;
+    - `Λ` is ICC, so `φ|_Λ = δ_e`;
+    - a nontrivial `g ∈ SL(3,Z)` has infinite `Λ`-conjugacy class, because a finite-index centralizer
+      contains powers of every `E_ij(1)`;
+    - distinct conjugates `g_i` have `g_j^-1 g_i ∈ Λ \ {e}`, so the vectors `π(g_i)ξ` are orthonormal;
+    - Bessel's inequality gives `m|φ(g)|^2 <= 1` for every `m`, so `φ = δ_e`.
+  - The same commit rewrites artifact Lemma 4.1 without dimension functions:
+    `⊕_m (a-ε)_+ ≲ e_11 ⊗ 1` gives `m σ((a-ε)_+) <= σ(1)`. That is also correct.
+
+### 19.3 `sl3z-ozawa-block-qt-linearity-iff-corona-kernel-invisible`: PASS
+
+- **(2) ⟹ (1).** `σ|_K = 0` gives `K ⊂ N_σ`, so `σ` descends to a quotient of `C*_r(SL(3,Z))`. That
+  quotient is exact, because countable linear groups are exact, and Haagerup's theorem makes the
+  descended quasitrace a trace.
+- **(1) ⟹ (2).** A trace equals `σ(1)τ_0`, which vanishes on `K`.
+- **Sufficient conditions.**
+  - Exact `K`: apply Haagerup on `C*(K,1)`, then the extension lemma of §19.2.
+  - Infinitesimal `a`: `m d_σ((a-ε)_+) <= σ(1)` forces `d_σ = 0`. Then `σ(x) <= σ(y) + ||x-y|| σ(1)` for
+    positive `x, y` passes to the limit.
+
+**Open claims.** `sl3z-ozawa-block-algebra-quasitraces-are-traces` and
+`sl3z-ozawa-block-algebra-has-nontracial-quasitrace` are correctly OPEN. The `refuted_by` edge between them
+names an OPEN claim, so it does not fire.
+
+## 20. `finite-index-edge-hnn-embeds-in-fp-simple-group` and `bliw-locally-finite-tree-actions-embed-in-fp-simple-groups` (b1a8b9632, corrected 4bbd55680): PASS
+
+- **Import.**
+  - Theorem 10.5 checked word for word against the arXiv:2408.05673v2 PDF text extracted on MSI on
+    2026-09-12, line 1309: "Let G be a graph of groups such that all vertex groups are of type Fn and all
+    edge groups have finite index in the vertex groups. Assume that G acts faithfully on its Bass–Serre
+    tree. Then G embeds in a simple group of type Fn."
+  - Theorem B, Theorem C and the definition of `BS_G` agree with the arXiv HTML, checked through WebFetch.
+- **Hypotheses for the one-loop graph of groups.**
+  - `A` is of type `F_2`, and both edge inclusions have finite index.
+  - The kernel of the tree action is `∩_g gAg^-1`, the largest normal subgroup of `K` inside `A`. So
+    faithfulness is exactly the stated hypothesis.
+  - Theorem B applies as well: the action is cocompact and locally finite, and its edge stabilizers are
+    conjugates of `C_2`, which is finitely presented.
+- **(L1), (L2), (L4).** Correct.
+  - A vertex stabilizer acts on finite balls through finite groups whose kernels intersect trivially.
+  - A finitely presented residually finite group has solvable word problem.
+  - Todd–Coxeter decides membership in finite-index subgroups.
+- **(L3): false as landed, correct as corrected.**
+  - As landed, it said an infinite-index edge "cannot be embedded stable letter to stable letter" into an
+    extension with finite-index edges. That is false.
+  - As corrected, `f(C_2) = s f(C_1) s^-1 <= B ∩ sBs^-1 = D_2` by Britton's lemma, and
+    `A/(A ∩ D_i) ↪ B/D_i` bounds the index.
+  - The example checks:
+    - `u = b^-1 s` centralizes `F(a,b)`;
+    - the projection sends `a, s` to the basis `a, b`, so `<a, s>` is free;
+    - `F(a,b)` is normal, so it lies in the kernel.
+  - The matching edits to `bh-embeddability-survives-decidable-edge-hnn` and to item 2 of
+    `stable-permutation-hnn-of-type-a-actor-is-type-a` are consistent.
+- **Impact.** The claim specializes Bux–Llosa Isenrich–Wu to one-vertex graphs of groups and records where
+  the method stops. It adds no Boone–Higman class beyond theirs.
+
+## 21. `thompson-v-sofic-iff-not-permutation-stable` and `cuntz-groupoid-admits-no-folner-sequence` (e03d940c3): PASS
+
+- **Not sofic ⟹ stable.**
+  - `χ(g) = lim_ω |Fix φ_n(g)|/k_n` is a class function. It is positive definite by
+    `Σ c_i c̄_j |Fix(σ_j^-1 σ_i)| = Σ_(x,y) |Σ_i c_i [σ_i x = y]|^2`, up to `o(k_n)`.
+  - By `thompson-v-character-simplex`, `χ = tτ_reg + (1-t)τ_triv`.
+  - If `t > 0` along some `ω`, every `g ≠ e` moves a `t`-fraction of points, and tensor powers amplify the
+    separation, so `V` would be sofic. So under (1), `t = 0` along every `ω`, and the trivial
+    homomorphisms are Hamming-close.
+- **Weakly locally stable ⟹ not sofic.** A sofic, weakly locally stable group is LEF (Bradford,
+  Lemma 2.15), and `V` is not LEF. The remaining implications are definitional.
+- **Reading.** Only the two-point character simplex and non-LEF are used. No property is decided. The
+  content is that Bradford's "evidence that V is stable" is exactly evidence that `V` is not sofic.
+- **Cuntz groupoid.**
+  - The layer-cake identity gives `Σ_s ||s.m - m||_1 >= c_S ||m||_1`, which is where the `1/|S|` comes
+    from.
+  - `r_*` of counting measure intertwines `B_s` with `s`.
+  - The sets `KF_u` partition `KF` by source.
+  - Ma's definitions (arXiv:2110.11548) were not re-read here.
+
+## 22. `fpbs-tree-projected-letter-exchange-nonunimodular` (4c08f019b): PASS
+
+The same three checks as §17.
+- **Index sums.**
+  - At `u`: tail `e1` (index 2); heads `e4`, `e5` (index 1 each).
+  - At `w`: tails `e2`, `e5`; heads `e1`, `e3`.
+  - At `x`: tails `e3`, `e4`; head `e2` (index 2).
+  - So every vertex of `Y` has two outgoing and two incoming exchange edges, and they can be labelled `s`
+    and `t` outward.
+- **Lift.**
+  - Each edge of `A` joins distinct vertices, so `G_A` keeps every orientation and can only exchange `s`
+    with `t`.
+  - Take `D_t = D_s + c` and `τ = ±c` on `t`-edges. Then `D(ε) - τ(ε)` is `D_s` along an exchange edge and
+    `-D_s` against one, so it is `G_A`-invariant, and the potential argument of §17 applies.
+  - The reduction `t -> t^-1` for `D_t = c - D_s` is correct.
+- **Counting.**
+  - `(G_A)_(y_0)` fixes `z` (unique `e2`-successor) and then `y_1` (unique `e3`-successor). Orbit size `1`.
+  - `(G_A)_(y_1)` fixes `z` (unique `e3`-predecessor), and the extension lemma swaps the two
+    `e2`-predecessors of `z`. Orbit size `2`.
+  - Both `y_0` and `y_1` lie over `w`.
+  - The Bass–Kulkarni equations are inconsistent: `e1` gives `N(w) = 2N(u)`, `e2` gives `N(x) = N(u)`, and
+    `e3` demands `N(x) = N(w)`.
+- **Example.** `{(a,0),(a,2),(a,7),(b,1),(b,6),(b,8)}` has `D_b = 8 - D_a`, and it generates `F_2 × Z`
+  through `(1,2)` and `(1,5)`.
+- **Not checked.** The claim in artifact §3 that the whole automorphism group is discrete for the rigid set
+  `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)}`.
+
+## 23. `thompson-f-binomial-pairs-have-common-multiples` (b3c0966d2): PASS
+
+- **Exactness over `K`.** The image of `Z[H]^2 -> Z[H]` is the augmentation ideal, which is free abelian.
+  So the relation sequence stays exact after tensoring with `K`.
+- **`N ≠ 1`.** Otherwise `<a, c>` would be free of rank 2, which Brin–Squier excludes.
+- **Common multiples.**
+  - A basis element of `N/[N,N]` gives `(u, v) ≠ 0` with `u(a-1) + v(c-1) = 0`, and `u ≠ 0` because `K[F]`
+    is a domain.
+  - The involution `g -> g^-1` turns the common left multiple into a common right multiple, since
+    `(1 - a^-1)R = (1 - a)R`.
+- **Items 2 and 3.** They follow from `t(1 - t^-1ht) = (1 - h)t`, and the domain property keeps the product
+  nonzero.
+
+## 24. `char-zero-algebra-unit-hosts-exclude-unipotents` (fb8f58e9b): PASS, one wording remark
+
+- **Step 2.** If `(1+ν)^q` were central, then `q log(1+ν)` would be central, so `ν` would be central. So `u`
+  has infinite order modulo `C`.
+- **Step 4.** `ν = c^-1 u - 1 ∈ B`, and for `p >= k`, `(1+ν)^p ∈ 1 + pB`. So `u^p` is killed by the
+  reduction mod `p`, but it is nontrivial in `G`.
+- **Step 5.** Simplicity forces `[g_i, b] ∈ pB` for infinitely many `p`. By (D) `G~` is then abelian, and a
+  group of prime order `q` would put `u^q` in `C`.
+- **(D).** For free `Z[1/m]`-modules, a coordinate divisible by infinitely many primes is 0. For
+  `M_n(B_0)`, the Nullstellensatz gives `f : B_0 -> L`, `L` a number field, and `p^([L:Q])` divides the
+  numerator of `N(f(b))` for only finitely many `p`.
+- **Wording.** The title says "contain no unipotents". What is excluded is a non-central scalar multiple of
+  a unipotent, as the body states.
+
+## 25. `aut-f4-has-property-t` (95788b924): PASS as a citation
+
+- **Consistent with the literature.**
+  - Nitsche's computer-assisted proof for `Aut(F_4)`.
+  - Kaluba–Nowak–Ozawa for `n = 5`, and Kaluba–Kielak–Nowak for `n >= 6`.
+  - Property (T) passes to quotients.
+- **Caveats.** The node lists the right ones: unrefereed, and the certificate was not rerun. The quotes were
+  not re-extracted here.
