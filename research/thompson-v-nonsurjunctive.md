@@ -34,3 +34,13 @@ Consequences:
 - **Design filters.** A candidate must pass the landed filters: nonsofic forward core,
   triangular tables, holonomy normal form, amenable decoder memory, measure distortion. Its
   memory group must be a nonsofic subgroup of `V`.
+- **Rule-free window screen over `V` (2026-09-12).**
+  - The invariant-output screen now runs over `V` itself, with exact tree-pair arithmetic
+    (`experiments/gottschalk-thompson-v/v_window_screen.py`).
+  - Characters exclude 24 of 56 small windows (14 families, radii up to `2:2`). The GAP stage
+    on the other 32 is pending.
+  - Details: `research/artifacts/thompson-v-window-screen-2026-09-12.md`.
+  - **Blind at large radius.** By `large-window-table-groups-present-the-ambient-group`, the
+    table group of a window above radius `max(ceil(L/2), r_m, |h|)` is `V` itself, so it has no
+    finite image. A survivor at such radii carries no information. There a candidate can only
+    be tested at the level of local rules: a two-copy decoding SAT instance on `SM`.

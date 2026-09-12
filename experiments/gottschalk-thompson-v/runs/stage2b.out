@@ -1,0 +1,94 @@
+/common/software/install/bundle/scripts/registry.msi.umn.edu/shpc_module_library/sagemath/10.7/bin/sage
+32
+gap/v-cfp-order3-1-1.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 3 rels 4] 2s
+gap/v-torsion-2-3-order3-2-2.g rc=0 RESULT SEP_INDEX_3 [SIMPLIFIED gens 2 rels 3] 2s
+gap/v-torsion-2-3-order3-1-1.g rc=0 RESULT SEP_INDEX_3 [SIMPLIFIED gens 2 rels 3] 2s
+gap/v-torsion-2-3-order3-1-2.g rc=0 RESULT SEP_INDEX_3 [SIMPLIFIED gens 2 rels 3] 3s
+gap/v-torsion-2-3-order3-2-1.g rc=0 RESULT SEP_INDEX_3 [SIMPLIFIED gens 2 rels 3] 3s
+gap/alt5-leaves-f-order2-1-1.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 4] 3s
+gap/gl32-leaves-v-order2-1-1.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 5 rels 11] 3s
+gap/t-cfp-half-turn-1-2.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 2 rels 2] 3s
+gap/t-cfp-half-turn-2-1.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 3 rels 3] 3s
+gap/v-cfp-order3-2-1.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 3 rels 4] 2s
+gap/v-cfp-order3-1-2.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 3 rels 4] 3s
+gap/alt5-leaves-f-order2-2-1.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 6] 3s
+gap/alt5-leaves-f-order2-1-2.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 5] 4s
+gap/alt5-leaves-f-order3-1-2.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 4] 4s
+gap/gl32-leaves-v-order2-2-1.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 4 rels 10] 3s
+gap/gl32-leaves-v-order2-1-2.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 3 rels 8] 3s
+gap/t-cfp-half-turn-2-2.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 2 rels 3] 3s
+gap/gl32-leaves-f-order2-1-2.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 4 rels 10] 3s
+gap/gl32-leaves-f-order3-1-2.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 3 rels 7] 3s
+gap/alt5-leaves-f-order3-2-1.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 5] 4s
+gap/gl32-leaves-f-order2-2-1.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 5 rels 15] 4s
+gap/t-cfp-order3-2-2.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 2 rels 3] 3s
+gap/gl32-leaves-f-order3-2-1.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 3 rels 6] 4s
+gap/sym4-leaves-f-2-2.g rc=0 RESULT SURVIVES_TARGETS_AND_INDEX_6 [SIMPLIFIED gens 3 rels 8] 4s
+gap/alt5-leaves-f-order2-2-2.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 7] 3s
+gap/v-cfp-order3-2-2.g rc=0 RESULT SURVIVES_TARGETS_AND_INDEX_6 [SIMPLIFIED gens 3 rels 8] 2s
+gap/alt5-leaves-f-order3-2-2.g rc=0 RESULT SEP_QUOTIENT_A5 [SIMPLIFIED gens 4 rels 9] 4s
+gap/gl32-leaves-v-order2-2-2.g rc=0 RESULT SEP_QUOTIENT_PSL(3,2) [SIMPLIFIED gens 3 rels 10] 3s
+gap/gl32-leaves-f-order3-2-2.g rc=0 RESULT SURVIVES_TARGETS_AND_INDEX_6 [SIMPLIFIED gens 3 rels 11] 5s
+gap/gl32-leaves-f-order2-2-2.g rc=0 RESULT SURVIVES_TARGETS_AND_INDEX_6 [SIMPLIFIED gens 3 rels 13] 6s
+gap/v-cfp-p1-2-2.g rc=0 RESULT SURVIVES_TARGETS_AND_INDEX_6 [SIMPLIFIED gens 3 rels 10] 9s
+gap/gl32-leaves-f-order2-1-1.g rc=124 NO_RESULT [SIMPLIFIED gens 6 rels 9] 1500s
+t-cfp-order3-1-1 character mod 3 OK
+t-cfp-order3-1-2 character mod 3 OK
+t-cfp-order3-2-1 character mod 3 OK
+t-cfp-order3-2-2 permutation image of degree 5 (A5) OK
+t-cfp-half-turn-1-1 character mod 2 OK
+t-cfp-half-turn-1-2 permutation image of degree 7 (PSL(3,2)) OK
+t-cfp-half-turn-2-1 permutation image of degree 7 (PSL(3,2)) OK
+t-cfp-half-turn-2-2 permutation image of degree 7 (PSL(3,2)) OK
+f-plus-p0-1-1 character mod 2 OK
+f-plus-p0-1-2 character mod 2 OK
+f-plus-p0-2-1 character mod 2 OK
+f-plus-p0-2-2 character mod 2 OK
+v-cfp-order2-1-1 character mod 2 OK
+v-cfp-order2-1-2 character mod 2 OK
+v-cfp-order2-2-1 character mod 2 OK
+v-cfp-order2-2-2 character mod 2 OK
+v-cfp-order3-1-1 permutation image of degree 5 (A5) OK
+v-cfp-order3-1-2 permutation image of degree 5 (A5) OK
+v-cfp-order3-2-1 permutation image of degree 5 (A5) OK
+v-cfp-order3-2-2 NO WITNESS
+v-cfp-p1-1-1 character mod 2 OK
+v-cfp-p1-1-2 character mod 2 OK
+v-cfp-p1-2-1 character mod 2 OK
+v-cfp-p1-2-2 NO WITNESS
+v-torsion-2-3-1-1 character mod 2 OK
+v-torsion-2-3-1-2 character mod 2 OK
+v-torsion-2-3-2-1 character mod 2 OK
+v-torsion-2-3-2-2 character mod 2 OK
+v-torsion-2-3-order3-1-1 permutation image of degree 3 (cosets) OK
+v-torsion-2-3-order3-1-2 permutation image of degree 3 (cosets) OK
+v-torsion-2-3-order3-2-1 permutation image of degree 3 (cosets) OK
+v-torsion-2-3-order3-2-2 permutation image of degree 3 (cosets) OK
+sym4-leaves-f-1-1 character mod 2 OK
+sym4-leaves-f-1-2 character mod 2 OK
+sym4-leaves-f-2-1 character mod 2 OK
+sym4-leaves-f-2-2 NO WITNESS
+alt5-leaves-f-order3-1-1 character mod 3 OK
+alt5-leaves-f-order3-1-2 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order3-2-1 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order3-2-2 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-1-1 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-1-2 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-2-1 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-2-2 permutation image of degree 5 (A5) OK
+gl32-leaves-f-order2-1-1 NO WITNESS
+gl32-leaves-f-order2-1-2 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order2-2-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order2-2-2 NO WITNESS
+gl32-leaves-f-order3-1-1 character mod 3 OK
+gl32-leaves-f-order3-1-2 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order3-2-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order3-2-2 NO WITNESS
+gl32-leaves-v-order2-1-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-1-2 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-2-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-2-2 permutation image of degree 7 (PSL(3,2)) OK
+VERIFY_DONE bad=6
+ModuleNotFoundError: No module named 'pysat'
+pysat py3.10 1.9.dev15
+STAGE2B_DONE

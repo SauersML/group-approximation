@@ -1,0 +1,52 @@
+t-cfp-order3-1-1 character mod 3 OK
+t-cfp-order3-1-2 character mod 3 OK
+t-cfp-order3-2-1 character mod 3 OK
+t-cfp-order3-2-2 permutation image of degree 5 (A5) OK
+t-cfp-half-turn-1-1 character mod 2 OK
+t-cfp-half-turn-1-2 permutation image of degree 7 (PSL(3,2)) OK
+t-cfp-half-turn-2-1 permutation image of degree 7 (PSL(3,2)) OK
+t-cfp-half-turn-2-2 permutation image of degree 7 (PSL(3,2)) OK
+f-plus-p0-1-1 character mod 2 OK
+f-plus-p0-1-2 character mod 2 OK
+f-plus-p0-2-1 character mod 2 OK
+f-plus-p0-2-2 character mod 2 OK
+v-cfp-order2-1-1 character mod 2 OK
+v-cfp-order2-1-2 character mod 2 OK
+v-cfp-order2-2-1 character mod 2 OK
+v-cfp-order2-2-2 character mod 2 OK
+v-cfp-order3-1-1 permutation image of degree 5 (A5) OK
+v-cfp-order3-1-2 permutation image of degree 5 (A5) OK
+v-cfp-order3-2-1 permutation image of degree 5 (A5) OK
+v-cfp-p1-1-1 character mod 2 OK
+v-cfp-p1-1-2 character mod 2 OK
+v-cfp-p1-2-1 character mod 2 OK
+v-torsion-2-3-1-1 character mod 2 OK
+v-torsion-2-3-1-2 character mod 2 OK
+v-torsion-2-3-2-1 character mod 2 OK
+v-torsion-2-3-2-2 character mod 2 OK
+v-torsion-2-3-order3-1-1 permutation image of degree 3 (cosets) OK
+v-torsion-2-3-order3-1-2 permutation image of degree 3 (cosets) OK
+v-torsion-2-3-order3-2-1 permutation image of degree 3 (cosets) OK
+v-torsion-2-3-order3-2-2 permutation image of degree 3 (cosets) OK
+sym4-leaves-f-1-1 character mod 2 OK
+sym4-leaves-f-1-2 character mod 2 OK
+sym4-leaves-f-2-1 character mod 2 OK
+alt5-leaves-f-order3-1-1 character mod 3 OK
+alt5-leaves-f-order3-1-2 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order3-2-1 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order3-2-2 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-1-1 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-1-2 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-2-1 permutation image of degree 5 (A5) OK
+alt5-leaves-f-order2-2-2 permutation image of degree 5 (A5) OK
+gl32-leaves-f-order2-1-2 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order2-2-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order3-1-1 character mod 3 OK
+gl32-leaves-f-order3-1-2 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-f-order3-2-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-1-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-1-2 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-2-1 permutation image of degree 7 (PSL(3,2)) OK
+gl32-leaves-v-order2-2-2 permutation image of degree 7 (PSL(3,2)) OK
+VERIFY_DONE bad=0
+VERIFY_EXIT=0
