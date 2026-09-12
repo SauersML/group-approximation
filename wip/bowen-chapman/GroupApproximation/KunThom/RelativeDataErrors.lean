@@ -82,8 +82,10 @@ theorem sum_card_wordCompatFailure_le {Y : FiniteModel} {I : Type*} [Fintype I] 
         (w.map fun l ↦ (A.compatFailure j l).card).length •
           ∑ l, (A.compatFailure j l).card :=
       List.sum_le_card_nsmul _ _ fun x hx ↦ by
-        obtain ⟨l, _, rfl⟩ := List.mem_map.mp hx
-        exact Finset.single_le_sum (fun l' _ ↦ Nat.zero_le _) (Finset.mem_univ l)
+        obtain ⟨l, _, hl⟩ := List.mem_map.mp hx
+        rw [← hl]
+        exact Finset.single_le_sum (fun l' _ ↦ Nat.zero_le ((A.compatFailure j l').card))
+          (Finset.mem_univ l)
     rw [List.length_map, smul_eq_mul] at h2
     have h3 : (A.wordCompatFailure j w).card ≤ w.length * ∑ l, (A.compatFailure j l).card :=
       h1.trans h2
@@ -207,7 +209,8 @@ noncomputable def conjTotal {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥
     (D : CompressorDecomposition C A) (q : G) (n : ℕ) : ℝ :=
   ∑ l : ↥D.retained.data.generators, ∑ i,
     ((conjFailure (D.retained.data.embedding n) (A.map n q) (D.retained.data.blockAction n)
-      (wordBlockAction (D.retained.data.blockAction n) (compressorWords C q)) i l).card : ℝ)
+      (wordBlockAction (L' := ↥D.retained.data.generators) (D.retained.data.blockAction n)
+        (compressorWords C q)) i l).card : ℝ)
 
 /-- Conjugation failures of the inverse of a compressor, over all objects and labels. -/
 noncomputable def conjInvTotal {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
@@ -215,7 +218,8 @@ noncomputable def conjInvTotal {G : Type} [Group G] {Γ : Subgroup G} [Infinite 
     (D : CompressorDecomposition C A) (q : G) (n : ℕ) : ℝ :=
   ∑ l : ↥D.retained.data.generators, ∑ i,
     ((conjFailure (D.retained.data.embedding n) (A.map n q)⁻¹
-      (wordBlockAction (D.retained.data.blockAction n) (compressorWords C q))
+      (wordBlockAction (L' := ↥D.retained.data.generators) (D.retained.data.blockAction n)
+        (compressorWords C q))
       (D.retained.data.blockAction n) i l).card : ℝ)
 
 /-- The parts of the components outside their objects. -/
@@ -284,15 +288,15 @@ theorem compressorMajorant_negligible {G : Type} [Group G] {Γ : Subgroup G} [In
     Negligible.sum Finset.univ _ fun l _ ↦ D.retained.compat_negligible l
   have hconj : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (conjTotal D q) :=
     (ConjugationFailureVanishing.negligible_sum_card_conjFailure A
-      (fun l : ↥C.generatorsΓ ↦ C.embedΓ (l : ↥Γ)) (compressorWords C q) q
-      (compressorWords_prod C hq) (fun n ↦ D.retained.data.embedding n)
+      (fun l : ↥D.retained.data.generators ↦ C.embedΓ (l : ↥Γ)) (compressorWords C q) q
+      (fun s ↦ compressorWords_prod C hq s) (fun n ↦ D.retained.data.embedding n)
       (fun n ↦ D.retained.data.blockAction n) (fun _ _ ↦ rfl)).congr fun n ↦ by
         rw [conjTotal]
         simp only [Nat.cast_sum]
   have hconjInv : Negligible (fun n ↦ (Fintype.card (A.model n) : ℝ)) (conjInvTotal D q) :=
     (ConjugationFailureVanishing.negligible_sum_card_conjFailure_inv A
-      (fun l : ↥C.generatorsΓ ↦ C.embedΓ (l : ↥Γ)) (compressorWords C q) q
-      (compressorWords_prod C hq) (fun n ↦ D.retained.data.embedding n)
+      (fun l : ↥D.retained.data.generators ↦ C.embedΓ (l : ↥Γ)) (compressorWords C q) q
+      (fun s ↦ compressorWords_prod C hq s) (fun n ↦ D.retained.data.embedding n)
       (fun n ↦ D.retained.data.blockAction n) (fun _ _ ↦ rfl)).congr fun n ↦ by
         rw [conjInvTotal]
         simp only [Nat.cast_sum]
@@ -353,7 +357,7 @@ theorem frame_wordError_sum_le {G : Type} [Group G] {Γ : Subgroup G} [Infinite 
           (D.toLocal.compressorMatch (matchingParent D F) q n X)).card : ℝ)) ≤
       blockTotal D hq n + 2 * ∑ X : F.Obj n,
         (((matchingParent D F n X).block \ (F.embedding n).objectImage X).card : ℝ) := by
-    rw [hdom]
+    rw [hdom, blockTotal]
     exact_mod_cast hstarted
   have hrem : (∑ X : F.Obj n,
       (((matchingParent D F n X).block \ (F.embedding n).objectImage X).card : ℝ)) ≤
@@ -369,20 +373,24 @@ theorem frame_wordError_sum_le {G : Type} [Group G] {Γ : Subgroup G} [Infinite 
       fun _ ↦ Nat.cast_nonneg _
   have hconj : (∑ l : ↥D.retained.data.generators, ∑ X : F.Obj n,
       ((conjFailure (F.embedding n) (A.map n q) (F.action n)
-        (wordBlockAction (F.action n) (compressorWords C q)) X l).card : ℝ)) ≤
+        (wordBlockAction (L' := ↥D.retained.data.generators) (F.action n)
+          (compressorWords C q)) X l).card : ℝ)) ≤
       conjTotal D q n :=
     Finset.sum_le_sum fun l _ ↦ sum_subtype_val_le (F.start ≤ n)
       (fun i ↦ ((conjFailure (D.retained.data.embedding n) (A.map n q)
         (D.retained.data.blockAction n)
-        (wordBlockAction (D.retained.data.blockAction n) (compressorWords C q)) i l).card : ℝ))
+        (wordBlockAction (L' := ↥D.retained.data.generators) (D.retained.data.blockAction n)
+          (compressorWords C q)) i l).card : ℝ))
       fun _ ↦ Nat.cast_nonneg _
   have hconjInv : (∑ l : ↥D.retained.data.generators, ∑ X : F.Obj n,
       ((conjFailure (F.embedding n) (A.map n q)⁻¹
-        (wordBlockAction (F.action n) (compressorWords C q)) (F.action n) X l).card : ℝ)) ≤
+        (wordBlockAction (L' := ↥D.retained.data.generators) (F.action n)
+          (compressorWords C q)) (F.action n) X l).card : ℝ)) ≤
       conjInvTotal D q n :=
     Finset.sum_le_sum fun l _ ↦ sum_subtype_val_le (F.start ≤ n)
       (fun i ↦ ((conjFailure (D.retained.data.embedding n) (A.map n q)⁻¹
-        (wordBlockAction (D.retained.data.blockAction n) (compressorWords C q))
+        (wordBlockAction (L' := ↥D.retained.data.generators) (D.retained.data.blockAction n)
+          (compressorWords C q))
         (D.retained.data.blockAction n) i l).card : ℝ))
       fun _ ↦ Nat.cast_nonneg _
   have hL : (0 : ℝ) ≤ Fintype.card ↥D.retained.data.generators := Nat.cast_nonneg _
