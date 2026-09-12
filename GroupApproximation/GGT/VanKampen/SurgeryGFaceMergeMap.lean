@@ -21,7 +21,7 @@ names its faces and allocates a traversal of each of them.
 * `keptFace M a FB g hg`: for an old face `g` off `F₁` and `F₂`, the face of the lift of its
   old traversal `FB g` (`faceOf_eq_keptFace_iff`: a surviving dart lies on it exactly when
   its old face is `g`).  It is injective (`keptFace_inj`) and never the merged face
-  (`keptFace_ne_mergedFace`).
+  (`MergeCycles.keptFace_ne_mergedFace`).
 * `MergeCycles.face_cases`: every face of the deleted map is the merged face or a kept face.
 * `MergeCycles.faceBoundary`: a traversal of every face; the merged face reads the lift of
   `xs ++ ys` (`faceBoundary_mergedFace_map_value`) and a kept face reads the lift of the old
@@ -42,8 +42,6 @@ theorem FaceBoundary.darts_mpr {M : CombMap.{u}} {f g : M.Face} (h : f = g)
   rfl
 
 namespace EdgeDeletion
-
-variable {M : CombMap.{u}}
 
 /-- **Every dart heads a face cycle**, written with the dart as the head. -/
 theorem exists_isFaceCycle_cons (M : CombMap.{u}) (d : M.Dart) :
@@ -67,7 +65,7 @@ noncomputable def mergeCyclesOf (M : CombMap.{u}) (a : M.Dart)
 
 /-- A dart on a face off both sides of the deleted edge, together with its successor, avoids
 the deleted edge. -/
-theorem avoid_of_off {a : M.Dart} {g : M.Face}
+theorem avoid_of_off {M : CombMap.{u}} {a : M.Dart} {g : M.Face}
     (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) {d : M.Dart} (hd : M.faceOf d = g) :
     d ≠ a ∧ d ≠ M.alpha a ∧ M.facePerm d ≠ a ∧ M.facePerm d ≠ M.alpha a := by
   refine ⟨?_, ?_, ?_, ?_⟩
@@ -83,12 +81,12 @@ theorem avoid_of_off {a : M.Dart} {g : M.Face}
     rw [← hd, ← M.faceOf_facePerm d, h]
 
 /-- **A face cycle avoiding the deleted edge lifts** to a face cycle of the deleted map. -/
-theorem isFaceCycle_lift_of_avoid {a : M.Dart} {L : List M.Dart} (hL : M.IsFaceCycle L)
+theorem isFaceCycle_lift_of_avoid {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    {L : List M.Dart} (hL : M.IsFaceCycle L)
     (havoid : ∀ x ∈ L, x ≠ a ∧ x ≠ M.alpha a ∧ M.facePerm x ≠ a ∧
       M.facePerm x ≠ M.alpha a)
     {l : List (Dart M a)} (hl : l.map (value M a) = L) :
     (toCombMap M a).IsFaceCycle l := by
-  classical
   refine isFaceCycle_of_map_value M a hl hL.ne_nil hL.nodup ?_ ?_
   · refine hL.chain.imp_of_mem_imp fun x y hx _ h => ?_
     have h' : M.facePerm x = y := h
@@ -108,8 +106,9 @@ theorem isFaceCycle_lift_of_avoid {a : M.Dart} {L : List M.Dart} (hL : M.IsFaceC
     exact hL.closes
 
 /-- Membership in a lift is membership of the value in the lifted list. -/
-theorem mem_of_map_value_eq {a : M.Dart} {l : List (Dart M a)} {L : List M.Dart}
-    (hl : l.map (value M a) = L) (x : Dart M a) : x ∈ l ↔ value M a x ∈ L := by
+theorem mem_of_map_value_eq {M : CombMap.{u}} {a : M.Dart} {l : List (Dart M a)}
+    {L : List M.Dart} (hl : l.map (value M a) = L) (x : Dart M a) :
+    x ∈ l ↔ value M a x ∈ L := by
   rw [← hl]
   constructor
   · exact List.mem_map_of_mem
@@ -119,90 +118,90 @@ theorem mem_of_map_value_eq {a : M.Dart} {l : List (Dart M a)} {L : List M.Dart}
 
 /-! ## Kept faces -/
 
-section Kept
-
-variable (M) (a : M.Dart) (FB : ∀ g : M.Face, FaceBoundary M g)
-
-theorem exists_keptLift (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
+theorem exists_keptLift (M : CombMap.{u}) (a : M.Dart) (FB : ∀ g : M.Face, FaceBoundary M g)
+    (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
     ∃ l : List (Dart M a), l.map (value M a) = (FB g).darts :=
   exists_map_value_eq M a _ fun d hd =>
     let h := avoid_of_off hg (((FB g).mem_iff d).mp hd)
     ⟨h.1, h.2.1⟩
 
 /-- The lift of the old traversal of a face off both sides of the deleted edge. -/
-noncomputable def keptLift (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
-    List (Dart M a) :=
+noncomputable def keptLift (M : CombMap.{u}) (a : M.Dart) (FB : ∀ g : M.Face, FaceBoundary M g)
+    (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) : List (Dart M a) :=
   Classical.choose (exists_keptLift M a FB g hg)
 
-variable {M a FB}
-
-theorem keptLift_map_value (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
+theorem keptLift_map_value {M : CombMap.{u}} {a : M.Dart} (FB : ∀ g : M.Face, FaceBoundary M g)
+    (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
     (keptLift M a FB g hg).map (value M a) = (FB g).darts :=
   Classical.choose_spec (exists_keptLift M a FB g hg)
 
-theorem keptLift_map_value_of_eq {g g' : M.Face}
+theorem keptLift_map_value_of_eq {M : CombMap.{u}} {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) {g g' : M.Face}
     (hg' : g' ≠ M.faceOf a ∧ g' ≠ M.faceOf (M.alpha a)) (h : g' = g) :
     (keptLift M a FB g' hg').map (value M a) = (FB g).darts := by
   subst h
-  exact keptLift_map_value g' hg'
+  exact keptLift_map_value FB g' hg'
 
-theorem keptLift_isFaceCycle (g : M.Face)
+theorem keptLift_isFaceCycle {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) (g : M.Face)
     (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
     (toCombMap M a).IsFaceCycle (keptLift M a FB g hg) :=
   isFaceCycle_lift_of_avoid (FB g).isFaceCycle
-    (fun d hd => avoid_of_off hg (((FB g).mem_iff d).mp hd)) (keptLift_map_value g hg)
-
-variable (M a FB)
+    (fun d hd => avoid_of_off hg (((FB g).mem_iff d).mp hd)) (keptLift_map_value FB g hg)
 
 /-- **A kept face**: the face of the lift of the old traversal of `g`. -/
-noncomputable def keptFace (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
-    (toCombMap M a).Face :=
-  (toCombMap M a).faceOf ((keptLift M a FB g hg).head (keptLift_isFaceCycle g hg).ne_nil)
+noncomputable def keptFace (M : CombMap.{u}) [DecidableEq M.Dart] (a : M.Dart)
+    (FB : ∀ g : M.Face, FaceBoundary M g) (g : M.Face)
+    (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) : (toCombMap M a).Face :=
+  (toCombMap M a).faceOf ((keptLift M a FB g hg).head (keptLift_isFaceCycle FB g hg).ne_nil)
 
-variable {M a FB}
-
-theorem mem_keptLift_iff (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a))
-    (x : Dart M a) : x ∈ keptLift M a FB g hg ↔ M.faceOf (value M a x) = g := by
-  rw [mem_of_map_value_eq (keptLift_map_value g hg) x]
+theorem mem_keptLift_iff {M : CombMap.{u}} {a : M.Dart} (FB : ∀ g : M.Face, FaceBoundary M g)
+    (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) (x : Dart M a) :
+    x ∈ keptLift M a FB g hg ↔ M.faceOf (value M a x) = g := by
+  rw [mem_of_map_value_eq (keptLift_map_value FB g hg) x]
   exact (FB g).mem_iff (value M a x)
 
 /-- **A surviving dart lies on the kept face of `g` exactly when its old face is `g`.** -/
-theorem faceOf_eq_keptFace_iff (g : M.Face)
+theorem faceOf_eq_keptFace_iff {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) (g : M.Face)
     (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) (x : Dart M a) :
     (toCombMap M a).faceOf x = keptFace M a FB g hg ↔ M.faceOf (value M a x) = g := by
-  rw [keptFace, ← (keptLift_isFaceCycle g hg).mem_iff x]
-  exact mem_keptLift_iff g hg x
+  rw [keptFace, ← (keptLift_isFaceCycle FB g hg).mem_iff x]
+  exact mem_keptLift_iff FB g hg x
 
-theorem faceOf_value_keptLift_head (g : M.Face)
+theorem faceOf_value_keptLift_head {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) (g : M.Face)
     (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
-    M.faceOf (value M a ((keptLift M a FB g hg).head (keptLift_isFaceCycle g hg).ne_nil)) =
+    M.faceOf (value M a ((keptLift M a FB g hg).head (keptLift_isFaceCycle FB g hg).ne_nil)) =
       g :=
-  (faceOf_eq_keptFace_iff g hg _).mp rfl
+  (faceOf_eq_keptFace_iff FB g hg
+    ((keptLift M a FB g hg).head (keptLift_isFaceCycle FB g hg).ne_nil)).mp rfl
 
 /-- Kept faces of different old faces are different. -/
-theorem keptFace_inj {g g' : M.Face} {hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)}
+theorem keptFace_inj {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    {FB : ∀ g : M.Face, FaceBoundary M g} {g g' : M.Face}
+    {hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)}
     {hg' : g' ≠ M.faceOf a ∧ g' ≠ M.faceOf (M.alpha a)}
     (h : keptFace M a FB g hg = keptFace M a FB g' hg') : g = g' :=
-  (faceOf_value_keptLift_head g hg).symm.trans ((faceOf_eq_keptFace_iff g' hg' _).mp h)
+  (faceOf_value_keptLift_head FB g hg).symm.trans ((faceOf_eq_keptFace_iff FB g' hg' _).mp h)
 
-theorem keptFace_congr {g g' : M.Face} (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a))
+theorem keptFace_congr {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) {g g' : M.Face}
+    (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a))
     (hg' : g' ≠ M.faceOf a ∧ g' ≠ M.faceOf (M.alpha a)) (h : g = g') :
     keptFace M a FB g hg = keptFace M a FB g' hg' := by
   subst h
   rfl
 
-end Kept
-
 /-! ## The merged face -/
 
 namespace MergeCycles
 
-variable {a : M.Dart} (C : MergeCycles M a)
-
 /-- **The merged enumeration is nonempty** in a connected map in which some dart survives.
 Otherwise both faces are loops of one dart, so vertex rotation swaps the two darts of the
 edge, and connectedness leaves no third dart. -/
-theorem append_ne_nil (hM : M.IsConnected) (d₀ : Dart M a) : C.xs ++ C.ys ≠ [] := by
+theorem append_ne_nil {M : CombMap.{u}} {a : M.Dart} (C : MergeCycles M a)
+    (hM : M.IsConnected) (d₀ : Dart M a) : C.xs ++ C.ys ≠ [] := by
   intro hnil
   have hxs : C.xs = [] := (List.append_eq_nil_iff.mp hnil).1
   have hys : C.ys = [] := (List.append_eq_nil_iff.mp hnil).2
@@ -221,32 +220,38 @@ theorem append_ne_nil (hM : M.IsConnected) (d₀ : Dart M a) : C.xs ++ C.ys ≠ 
   · exact value_ne M a d₀ h
   · exact value_ne_reverse M a d₀ h
 
-theorem exists_lift : ∃ l : List (Dart M a), l.map (value M a) = C.xs ++ C.ys :=
+theorem exists_lift {M : CombMap.{u}} {a : M.Dart} (C : MergeCycles M a) :
+    ∃ l : List (Dart M a), l.map (value M a) = C.xs ++ C.ys :=
   exists_map_value_eq M a (C.xs ++ C.ys) fun _ hd => C.avoid hd
 
 /-- A lift of the merged enumeration to the deleted map. -/
-noncomputable def lift : List (Dart M a) :=
+noncomputable def lift {M : CombMap.{u}} {a : M.Dart} (C : MergeCycles M a) :
+    List (Dart M a) :=
   Classical.choose C.exists_lift
 
-theorem lift_map_value : C.lift.map (value M a) = C.xs ++ C.ys :=
+theorem lift_map_value {M : CombMap.{u}} {a : M.Dart} (C : MergeCycles M a) :
+    C.lift.map (value M a) = C.xs ++ C.ys :=
   Classical.choose_spec C.exists_lift
 
-theorem lift_length : C.lift.length = C.xs.length + C.ys.length := by
+theorem lift_length {M : CombMap.{u}} {a : M.Dart} (C : MergeCycles M a) :
+    C.lift.length = C.xs.length + C.ys.length := by
   have h := congrArg List.length C.lift_map_value
   rw [List.length_map, List.length_append] at h
   exact h
 
-theorem lift_isFaceCycle (hne : C.xs ++ C.ys ≠ []) : (toCombMap M a).IsFaceCycle C.lift := by
-  classical
-  exact C.isFaceCycle_lift hne C.lift_map_value
+theorem lift_isFaceCycle {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (hne : C.xs ++ C.ys ≠ []) : (toCombMap M a).IsFaceCycle C.lift :=
+  C.isFaceCycle_lift hne C.lift_map_value
 
 /-- **The merged face**: the face of the lift of `xs ++ ys`. -/
-noncomputable def mergedFace (hne : C.xs ++ C.ys ≠ []) : (toCombMap M a).Face :=
+noncomputable def mergedFace {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (hne : C.xs ++ C.ys ≠ []) : (toCombMap M a).Face :=
   (toCombMap M a).faceOf (C.lift.head (C.lift_isFaceCycle hne).ne_nil)
 
 /-- **A surviving dart lies on the merged face exactly when its old face is one of the two
 sides of the deleted edge.** -/
-theorem faceOf_eq_mergedFace_iff (hne : C.xs ++ C.ys ≠ []) (x : Dart M a) :
+theorem faceOf_eq_mergedFace_iff {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (hne : C.xs ++ C.ys ≠ []) (x : Dart M a) :
     (toCombMap M a).faceOf x = C.mergedFace hne ↔
       M.faceOf (value M a x) = M.faceOf a ∨ M.faceOf (value M a x) = M.faceOf (M.alpha a) := by
   rw [mergedFace, ← (C.lift_isFaceCycle hne).mem_iff x,
@@ -256,20 +261,22 @@ theorem faceOf_eq_mergedFace_iff (hne : C.xs ++ C.ys ≠ []) (x : Dart M a) :
   · intro h
     exact C.mem_append_of_faceOf h (value_ne M a x) (value_ne_reverse M a x)
 
-variable (FB : ∀ g : M.Face, FaceBoundary M g)
-
 /-- A kept face is not the merged face. -/
-theorem keptFace_ne_mergedFace (hne : C.xs ++ C.ys ≠ []) (g : M.Face)
-    (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
+theorem keptFace_ne_mergedFace {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ [])
+    (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
     keptFace M a FB g hg ≠ C.mergedFace hne := by
   intro h
-  have hx := faceOf_value_keptLift_head (FB := FB) g hg
-  rcases (C.faceOf_eq_mergedFace_iff hne _).mp h with hc | hc
+  have hx := faceOf_value_keptLift_head FB g hg
+  rcases (C.faceOf_eq_mergedFace_iff hne
+      ((keptLift M a FB g hg).head (keptLift_isFaceCycle FB g hg).ne_nil)).mp h with hc | hc
   · exact hg.1 (hx.symm.trans hc)
   · exact hg.2 (hx.symm.trans hc)
 
 /-- **Every face of the deleted map is the merged face or a kept face.** -/
-theorem face_cases (hne : C.xs ++ C.ys ≠ []) (F : (toCombMap M a).Face) :
+theorem face_cases {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart} (C : MergeCycles M a)
+    (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ [])
+    (F : (toCombMap M a).Face) :
     F = C.mergedFace hne ∨
       ∃ g : M.Face, ∃ hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a),
         F = keptFace M a FB g hg := by
@@ -278,55 +285,63 @@ theorem face_cases (hne : C.xs ++ C.ys ≠ []) (F : (toCombMap M a).Face) :
       M.faceOf (value M a x) = M.faceOf (M.alpha a)
   · exact Or.inl ((C.faceOf_eq_mergedFace_iff hne x).mpr hm)
   · obtain ⟨h1, h2⟩ := not_or.mp hm
-    exact Or.inr ⟨_, ⟨h1, h2⟩, (faceOf_eq_keptFace_iff (FB := FB) _ ⟨h1, h2⟩ x).mpr rfl⟩
+    exact Or.inr ⟨M.faceOf (value M a x), ⟨h1, h2⟩,
+      (faceOf_eq_keptFace_iff FB (M.faceOf (value M a x)) ⟨h1, h2⟩ x).mpr rfl⟩
 
 /-- The traversal of a face known to be a kept face: the lift of the old traversal. -/
-noncomputable def keptBoundary {F : (toCombMap M a).Face}
+noncomputable def keptBoundary {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) {F : (toCombMap M a).Face}
     (hk : ∃ g : M.Face, ∃ hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a),
       F = keptFace M a FB g hg) :
     FaceBoundary (toCombMap M a) F :=
-  (congrArg (FaceBoundary (toCombMap M a)) (Classical.choose_spec (Classical.choose_spec hk))).mpr
-    (keptLift_isFaceCycle (FB := FB) (Classical.choose hk)
+  (congrArg (FaceBoundary (toCombMap M a))
+      (Classical.choose_spec (Classical.choose_spec hk))).mpr
+    (keptLift_isFaceCycle FB (Classical.choose hk)
       (Classical.choose (Classical.choose_spec hk))).toFaceBoundary
 
-theorem keptBoundary_map_value {F : (toCombMap M a).Face}
+theorem keptBoundary_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (FB : ∀ g : M.Face, FaceBoundary M g) {F : (toCombMap M a).Face}
     (hk : ∃ g : M.Face, ∃ hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a),
       F = keptFace M a FB g hg)
     {g : M.Face} (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a))
     (hF : F = keptFace M a FB g hg) :
-    (C.keptBoundary FB hk).darts.map (value M a) = (FB g).darts := by
+    (keptBoundary FB hk).darts.map (value M a) = (FB g).darts := by
   rw [keptBoundary, FaceBoundary.darts_mpr, IsFaceCycle.toFaceBoundary_darts]
-  exact keptLift_map_value_of_eq _
+  exact keptLift_map_value_of_eq FB _
     (keptFace_inj ((Classical.choose_spec (Classical.choose_spec hk)).symm.trans hF))
 
 /-- **A traversal of every face of the deleted map.** -/
-noncomputable def faceBoundary (hne : C.xs ++ C.ys ≠ []) (F : (toCombMap M a).Face) :
-    FaceBoundary (toCombMap M a) F := by
+noncomputable def faceBoundary {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ [])
+    (F : (toCombMap M a).Face) : FaceBoundary (toCombMap M a) F := by
   classical
   exact if hF : F = C.mergedFace hne then
       (congrArg (FaceBoundary (toCombMap M a)) hF).mpr (C.lift_isFaceCycle hne).toFaceBoundary
-    else C.keptBoundary FB ((C.face_cases FB hne F).resolve_left hF)
+    else keptBoundary FB ((C.face_cases FB hne F).resolve_left hF)
 
 /-- The merged face reads the lift of the merged enumeration. -/
-theorem faceBoundary_mergedFace_darts (hne : C.xs ++ C.ys ≠ []) :
+theorem faceBoundary_mergedFace_darts {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ []) :
     (C.faceBoundary FB hne (C.mergedFace hne)).darts = C.lift := by
   rw [faceBoundary, dif_pos rfl, FaceBoundary.darts_mpr, IsFaceCycle.toFaceBoundary_darts]
 
-theorem faceBoundary_mergedFace_map_value (hne : C.xs ++ C.ys ≠ []) :
+theorem faceBoundary_mergedFace_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ []) :
     (C.faceBoundary FB hne (C.mergedFace hne)).darts.map (value M a) = C.xs ++ C.ys := by
   rw [C.faceBoundary_mergedFace_darts FB hne, C.lift_map_value]
 
 /-- A kept face reads the lift of the old traversal. -/
-theorem faceBoundary_keptFace_map_value (hne : C.xs ++ C.ys ≠ []) (g : M.Face)
-    (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
+theorem faceBoundary_keptFace_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ [])
+    (g : M.Face) (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) :
     (C.faceBoundary FB hne (keptFace M a FB g hg)).darts.map (value M a) = (FB g).darts := by
   rw [faceBoundary, dif_neg (C.keptFace_ne_mergedFace FB hne g hg)]
-  exact C.keptBoundary_map_value FB _ hg rfl
+  exact keptBoundary_map_value FB _ hg rfl
 
 /-- **Exactly one face disappears.** -/
-theorem faceCount_add_one (hM : M.IsConnected) (d₀ : Dart M a) :
+theorem faceCount_add_one {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
+    (C : MergeCycles M a) (hM : M.IsConnected) (d₀ : Dart M a) :
     (toCombMap M a).faceCount + 1 = M.faceCount := by
-  classical
   have hbal := faceCount_balance_of_neFace M a C.face_ne
   have hv := vertexCount_eq_of_neFace M a hM d₀ C.face_ne
   omega
