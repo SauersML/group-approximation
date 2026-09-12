@@ -25,7 +25,8 @@ was never created).  Owns (`nm/LIX_LANES.md` + lead rulings 09-11 ~21:40): `Char
 | `4252ac767` | `LerayHirschMVOf` (bijective_lhSum_comapOf, LHOver_supOf) | UNVERIFIED, then compiled (probe 3) |
 | `4ad91fa8a` | PullOf, DeltaLiftOf/SpecOf/CupOf/NaturalOf, DisjointOf, Cover/RankTwo/Shift over K, Tower/TowerTop/Freeness | COMPILED |
 | `6a5fd08ab` | LerayHirschPeel/PeelCP/PeelClosed/ColumnPack over K | COMPILED |
-| (this batch) | `ChernClassesOf` | COMPILED (probe 4) |
+| `dc2f633a8` | `ChernClassesOf` + this report | COMPILED (probe 4) |
+| `d1f4a9b27`, `ad93d6a93` | `ChernEulerBundleOf` (eulerOfBundleOf K hgen, comap, cpTaut, homotopic, zero_of_factors, hasPointCohomology_of_contractibleOf), `LerayHirschChartClassK` (`LH.tautEulerK`) | UNVERIFIED, then compiled (probe 5, same bytes) |
 | attics | e8c44817b, the PullOf/RankTwo fixes, ColumnPack over K | ATTIC |
 
 ## GREEN (with job counts)
@@ -37,6 +38,7 @@ was never created).  Owns (`nm/LIX_LANES.md` + lead rulings 09-11 ~21:40): `Char
 - probe `0911-222934-2669` (nm-b): LerayHirschMVOf, Peel, PeelCP, PeelClosed, ColumnPack COMPILED; ChartGeneral,
   FreeTuple, Ladder, CohomologyLHDegreewise built against the new statements.
 - probe `0911-223543-45625` (nm-b): `✔ [2460/2460] Built GroupApproximation.CharClass.ChernClassesOf`, PROBE GREEN.
+- probe `0911-231924-87562` (nm-b): `✔ [8904/8904] Built GroupApproximation.CharClass.LerayHirschChartClassK`, PROBE GREEN; ChernEulerBundleOf compiled.
 
 ## AUTHORED, UNVERIFIED
 
@@ -60,6 +62,10 @@ was never created).  Owns (`nm/LIX_LANES.md` + lead rulings 09-11 ~21:40): `Char
 - **Additive `Of` twins, F₂ names untouched.**  Every `MayerVietoris*Of`, `CohomologyDelta*Of`, `LerayHirschMVOf`,
   `ChernClassesOf`, `ChernTotalRingOf` is a new module, so no F₂ consumer rebuilds.  `LHOver_sup` stays F₂;
   `LHOver_supOf K` is the generic twin.
+- **The Euler class over K takes the generator as data.**  Over `F₂` `cpGen` is canonical (a line has one nonzero
+  element); over `K` it is not, and `H^*(ℂP^d; K)` is not computed yet, so `eulerOfBundleOf K hgen`.  Naturality,
+  normalisation, homotopy invariance and vanishing through a space without `H²` hold for every `hgen`, which is all
+  lix-thom's GysinTautFields §4 needs.
 - **Chern classes over K take commutativity as data.**  `TotalHOf K X` is only a `DirectSum.GRing`; the base ring
   commutativity and the centrality of pulled-back classes are fields of `LerayHirschDataOf`, produced from even
   concentration (lix-cupone's `mul_comm_of_isEven`).  No `mul_comm` on `TotalHOf`, ever.
