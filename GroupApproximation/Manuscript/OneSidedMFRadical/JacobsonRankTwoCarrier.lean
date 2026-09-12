@@ -45,7 +45,8 @@ theorem glAct_injective (n : ℕ) : Function.Injective (glAct n) := by
 
 /-- The symbol map `GL_n(J) → GL_n(F_2[z,z^{-1}])`. -/
 noncomputable abbrev glSymbolMap (n : ℕ) : GL (Fin n) ↥jacobsonAlgebra →* GL (Fin n) BinaryLaurent :=
-  Matrix.GeneralLinearGroup.map symbol
+  Units.map (symbol.mapMatrix : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra →+*
+    Matrix (Fin n) (Fin n) BinaryLaurent).toMonoidHom
 
 /-- An invertible matrix over `J` with identity symbol acts with finite matrix support. -/
 theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
@@ -56,7 +57,7 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
     intro i j
     have h := congrArg (fun y : GL (Fin n) BinaryLaurent ↦
       (y : Matrix (Fin n) (Fin n) BinaryLaurent) i j) (MonoidHom.mem_ker.mp hg)
-    simpa [Matrix.GeneralLinearGroup.map_apply] using h
+    exact h
   set G : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := (g : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) with hG
   have hfin : ∀ i j : Fin n,
       IsFiniteMatrix ((G i j - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) i j : ↥jacobsonAlgebra) :
@@ -69,7 +70,10 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
   have hbound : ∀ i j, M i j ≤ Mx := by
     intro i j
     calc M i j ≤ ∑ j', M i j' := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ j)
-      _ ≤ Mx := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ i)
+      _ ≤ Mx := by
+        rw [hMx]
+        exact Finset.single_le_sum (f := fun i ↦ ∑ j', M i j') (fun _ _ ↦ Nat.zero_le _)
+          (Finset.mem_univ i)
   have hsplit : ∀ (k l : Fin n) (p : JacobsonSpace),
       ((G k l : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) p =
         ((G k l - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) k l : ↥jacobsonAlgebra) :
@@ -99,7 +103,7 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
   · obtain ⟨l, w⟩ := b
     have hw : Mx ≤ w := by
       by_contra h
-      exact hb (by simp [Finset.mem_sigma]; omega)
+      exact hb (by simp; omega)
     funext k
     rw [hbasis, hsplit, hM0 k l w ((hbound k l).trans hw), zero_add, hone, binaryPowerBasis_apply]
     by_cases h : k = l
@@ -107,7 +111,7 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
       rw [if_pos rfl, Pi.single_eq_same]
     · rw [if_neg h, Pi.single_eq_of_ne h]
   · obtain ⟨l, w⟩ := b
-    have hw : w < Mx := by simpa [Finset.mem_sigma] using hb
+    have hw : w < Mx := by simpa using hb
     refine mem_blockSpan_of_coeff fun k m hm ↦ ?_
     rw [hbasis, hsplit, Polynomial.coeff_add, hMc k l w m ((hbound k l).trans hm), zero_add, hone]
     by_cases h : k = l
@@ -116,15 +120,15 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
 
 /-- The kernel of `GL_n(J) → GL_n(F_2[z,z^{-1}])`, into `GL_fs(V^n)`. -/
 noncomputable def kerToBinaryGLfs (n : ℕ) : (glSymbolMap n).ker →* binaryGLfs n where
-  toFun g := ⟨glAct n g, glAct_mem_binaryGLfs g.2⟩
+  toFun g := ⟨glAct n g.1, glAct_mem_binaryGLfs g.2⟩
   map_one' := Subtype.ext (map_one (glAct n))
-  map_mul' g h := Subtype.ext (map_mul (glAct n) g h)
+  map_mul' g h := Subtype.ext (map_mul (glAct n) g.1 h.1)
 
 theorem kerToBinaryGLfs_injective (n : ℕ) : Function.Injective (kerToBinaryGLfs n) := by
   intro g h hgh
   apply Subtype.ext
   apply glAct_injective n
-  exact congrArg Subtype.val hgh
+  exact congrArg (fun z : binaryGLfs n ↦ (z : BinaryPower n ≃ₗ[ZMod 2] BinaryPower n)) hgh
 
 /-- **The kernel of `GL_n(J) → GL_n(F_2[z,z^{-1}])` is locally finite.** -/
 theorem isLocallyFiniteGroup_ker_glSymbolMap (n : ℕ) : IsLocallyFiniteGroup (glSymbolMap n).ker :=
