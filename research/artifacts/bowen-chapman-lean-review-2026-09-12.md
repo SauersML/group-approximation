@@ -80,21 +80,21 @@ commutators with `A.map n γ` vanish along `atTop`, separately for each
 
 ## F2. Statement fidelity of the challenge
 
-**(a) Printed setting. Status: sent to `bc-palomar`.** Bowen–Chapman,
-arXiv:2511.06586v1, §1: "Let Γ be a finitely generated group, Σ a finite set
-(of colors), and Σ^Γ the Σ-colorings of Γ." Problem 1.1 is posed in that
-setting, so `exists_finitelyGenerated_surjunctive_not_sofic` is the literal
+**(a) Printed setting. Status: fixed by `bc-palomar` at 6ae077316, verified.**
+Bowen–Chapman, arXiv:2511.06586v1, §1: "Let Γ be a finitely generated group, Σ a
+finite set (of colors), and Σ^Γ the Σ-colorings of Γ." Problem 1.1 is posed in
+that setting, so `exists_finitelyGenerated_surjunctive_not_sofic` is the literal
 negative answer. `not_all_surjunctive_groups_sofic` is equivalent, because
 soficity is determined by finitely generated subgroups and surjunctivity passes
-to subgroups, but the docstring should present the finitely generated theorem
-as the printed one.
+to subgroups. The landed challenge header now says both things.
 
-**(b) Direction of the sofic bridge. Status: sent to `bc-palomar`.** The
-challenge concludes `¬ IsSoficGroup`, so the solution needs
-`IsSoficGroup G → IsSofic G`. The non-MF `Palomar/Solution.lean` only exhibits
-models, which is the other direction. The needed direction is a transcription:
-`SoficModel` has the same three fields, and `hammingDistance` is the
-disagreement count divided by the cardinality, as `hammingDist` is.
+**(b) Direction of the sofic bridge. Status: fixed in the WIP solution draft,
+verified at origin/main 0c56757f9.** The challenge concludes `¬ IsSoficGroup`,
+so the solution needs `IsSoficGroup G → IsSofic G`. The non-MF
+`Palomar/Solution.lean` only exhibits models, which is the other direction. The
+draft now has `isSofic_of_isSoficGroup` and `isSoficGroup_iff_isSofic`, a
+transcription through `SoficModel`. It relies on `hammingDist` and
+`hammingDistance` agreeing definitionally, and it is not yet compiled.
 
 **(c) Automaton convention. No defect.** Bowen–Chapman:
 `Φ(c)(x)=ϕ(c(xγ₁),…,c(xγₙ))`. Challenge: `fun c x => φ fun i => c (x * γ i)`.
@@ -117,7 +117,10 @@ injective map over every finite discrete palette to be surjective, where
 `shift k x g = x (k * g)`. With `M` the image of `γ` and
 `μ y = φ (fun i => y ⟨γ i, _⟩)`, `localMap M μ` equals the challenge automaton,
 and it is continuous and equivariant (`continuous_localMap`,
-`localMap_isEquivariant`), so `IsSurjunctive.surjective_localMap` applies.
+`localMap_isEquivariant`), so `IsSurjunctive.surjective_localMap` applies. The
+WIP solution's `isSurjunctive_of_surjunctive` does exactly this. Its equation
+`localMap M μ = cellularAutomaton γ φ` holds by `rfl`, since both sides reduce to
+`fun c x => φ fun i => c (x * γ i)`.
 
 ## F3. The mathematics in the lane briefs
 
@@ -173,8 +176,9 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 7db678817 no campaign module has landed at its final path;
-only WIP snapshots under `wip/bowen-chapman/` exist.
+As of `origin/main` bb216c03d one campaign file has landed at its final path,
+the Palomar challenge (F4(c)). Everything else is a WIP snapshot under
+`wip/bowen-chapman/`.
 
 **(a) Endpoint scaffolds, WIP at cdd4b82df. Status: fixed by `bc-assembly` at
 958615284 (WIP snapshots).** Verified by reading both snapshots on origin/main
@@ -186,11 +190,9 @@ the injective Prop. The header now attributes the sequential form to Kun–Thom
 Theorem 4.1. The original findings were:
 * The statements of `symmetricDouble_fg_surjunctive_not_isSofic` and
   `exists_fg_surjunctive_not_isSofic` match the pinned interface.
-* The Theorem 4.1 input is still the injective
-  `HasSoficCentralizerNormalization`, which no lane will prove after F1. It has
-  to switch to `HasSequentialCentralizerNormalization` and
-  `not_isSofic_symmetricDouble_of_sequentialNormalization`.
-* The header of `EndpointOfInputs` ascribes the faithful-representation form to
+* The Theorem 4.1 input was the injective `HasSoficCentralizerNormalization`,
+  which no lane will prove after F1.
+* The header of `EndpointOfInputs` ascribed the faithful-representation form to
   Kun–Thom Theorem 4.1. The theorem is for sofic representations.
 * The surjunctivity and finite-generation calls agree with the Dynamics
   signatures: `symmetricDouble_finitelyGenerated (G) [Group.FG G] (Γ)` and
@@ -211,10 +213,13 @@ verdicts.**
 * **`BowenChapman/LaurentPairKazhdan.lean` (`bc-kazhdan`).** It calls
   `peripheralEmbedding_injective`, which does not exist; LaurentPair defines
   `peripheralHom_injective`. Sent. The (T) inputs are sound:
-  `finitelyGeneratedRingGeneralRankElementaryPropertyT` is root-imported at
-  7db678817, carries a closed-axioms audit line in
-  `PropertyT/IntegralColumnPlaneClosure.lean`, and covers every finitely
-  generated unital ring in `Type`, including ℤ, `Laurent` and `Poly`.
+  * `finitelyGeneratedRingGeneralRankElementaryPropertyT` is root-imported at
+    7db678817, carries a closed-axioms audit line in
+    `PropertyT/IntegralColumnPlaneClosure.lean`, and covers every finitely
+    generated unital ring in `Type`, including ℤ, `Laurent` and `Poly`;
+  * `AddMonoidAlgebra.finiteType_of_fg` exists at the pin with explicit ring and
+    monoid, and the `AddMonoid.FG` instances for ℕ, ℤ and finite products exist,
+    so the finite-type route resolves.
 * **`Kazhdan/SemidirectProductKazhdan.lean` (`bc-kazhdan`).** The statement
   matches the pinned permanence theorem. The proof goes through a per-vector
   moving-projection estimate, as F3(c) requires.
@@ -222,10 +227,38 @@ verdicts.**
   core `wreath_conj_mem_of_commute` involves no representation, so swapping in
   the sequential Prop only touches the consumer.
 
+**(c) Landed: `Palomar/BowenChapmanChallenge.lean`, 6ae077316. Content: no
+defect. Evidence: flagged.**
+* Imports are Mathlib only. The header quotes Problem 1.1 verbatim, states the
+  finitely generated setting, claims nothing beyond the two compared theorems,
+  and discloses the palette universe and the Hamming form of soficity.
+* The 42-line shared block is byte-identical to the WIP solution's block at
+  origin/main 14ab3c264, and both theorem statements match the pinned interface.
+* The two holes are at lines 103 and 110, exactly the lines pinned in
+  `scripts/check.py` `FORBIDDEN_ALLOWLIST`. The `PalomarBowenChapmanChallenge`
+  lake library has no `warningAsError` and is not a default target.
+* **Evidence flag.** The landing commit says the file "elaborated with exit 0 on
+  MSI against the warm Mathlib oleans". It carries no success line, no md5 and
+  no toolchain line, which the coordinator's landing rule requires. The landed
+  blob's md5 is `ab2b85bc9ecb06e1728aa07917d82420`; the next build of the
+  challenge should quote it with its success line. Sent to `bc-palomar`.
+* **Pending for the solution.** When the solution gains the endpoint import, its
+  import closure grows by thousands of modules. That is where the LIX entry's
+  instance-capture mismatch came from, so the statement-match drivers (WIP
+  `scripts/PalomarBowenChapman{ChallengeType,SolutionType}.lean`) must be rerun
+  at that point, not only now.
+
+**Landing evidence required from here on**, per the coordinator's rule:
+* the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
+* the md5 of the exact landed bytes, checked in the same invocation as the
+  build;
+* repository dependencies from the shared warm oleans;
+* success lines and md5s quoted in the commit message.
+
 **Still to review as they land:** `bc-pair`, `bc-kazhdan`, `bc-rf`,
 `bc-dynamics` / `bc-dynamics-upper`, `bc-double-surj`, `bc-wreath`,
 `kt-norm-paper`, `kt-norm-repo`, `kt-norm-fixedpoint`, `kt-norm-counting`,
-`bc-assembly`, `bc-palomar`.
+`bc-assembly`, and the `bc-palomar` solution.
 
 An informal pass of the permanence chain by another team is not a Lean
 verification; the Lean is reviewed here independently.
