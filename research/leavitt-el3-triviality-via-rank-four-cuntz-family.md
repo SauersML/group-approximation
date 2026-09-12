@@ -33,10 +33,15 @@ model of `R^x`. Put `D = N_23 N_12`.
   not occur.
 
 Either way `sigma` is trivial, which is `leavitt-el3-rank-models-over-finite-fields-are-trivial` for
-`R = L_K(1,2)`. The odd-characteristic case adds only the `p`-nilpotent bookkeeping for
-`N_12^p = 0`; the assembly is characteristic-uniform. The route is valid once the single open
-prerequisite `rank-four-isometry-relations-give-corner-cuntz-family` is established; the other three
-requirements are established.
+`R = L_K(1,2)`. In odd characteristic the first case also needs `N_12^2 = 0`, which `D = 0` forces
+(Framing, item 5). The route is valid once its single open prerequisite,
+`rank-four-isometry-relations-give-corner-cuntz-family`, is established. The other six requirements
+are established.
+
+**Status (lead pass, family R4).** The route is valid and equivalent to the gate. The mechanism first
+proposed for its open prerequisite does not work: every relation it lists lies in `U_4(R)`
+(`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`,
+`unitriangular-data-cannot-assemble-corner-leavitt-families`). See artifact Section L7.
 
 **Minimal form of the second case (lead pass, family R4).** The contradiction uses only
 `T_0 S_0 = e = T_1 S_1` and `T_1 S_0 = 0` in `eMe` with `e != 0`. Then `(T_0 + 1 - e)(S_0 + 1 - e) = 1`,

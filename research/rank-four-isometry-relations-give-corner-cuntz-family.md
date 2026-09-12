@@ -69,10 +69,13 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   - Given the established nodes, this claim is equivalent to the gate, so its content is the
     construction. The first landing did not define `S_j`, `T_i` or `e`. The baseline `tau`
     candidate is the circular matrix-unit extraction (L2, L3).
-  - Kaplansky calibration: an exact corner family inside `F_2[R^x]` would refute direct finiteness
-    of `F_2[R^x]` and make `R^x` non-sofic (Elek--Szabo). So check (a) must use the regularity or
-    rank of `M` at an intermediate step, not only group relations, the Leavitt relations and
-    direct finiteness (L4a).
+  - Kaplansky calibration (corrected by w4-vf-gate, §1.8 of
+    `gk-vf-gate-verification-2026-09-12.md`). An exact corner family inside `F_2[R^x]` would refute
+    direct finiteness of `F_2[R^x]`. Through `nonsurjunctive-from-stable-finiteness-failure`, that
+    would give a Gottschalk counterexample. It is not an absurdity. The earlier Elek--Szabo remark
+    added nothing, because `R^x` is already nonsofic (`openai-leavitt-unit-nonsofic`). The
+    constraint binds checks (a) and (c) jointly: (a) may be ring identities, as long as `e != 0` is
+    certified through the rank on `M` (artifact L4a).
   - The adjacent "cannot see" and "is now a Steinberg identity" wording was an overclaim. `EL_4`
     relations are relations of the same group `EL_3(R)`.
 - **Endpoint, quantitative (lane `w4-r4-approx`, 2026-09-12).** Sources:
