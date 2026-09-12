@@ -509,6 +509,8 @@ Sections 1 and 4.
   - Unipotent involutions of a fixed rank form one class in `GL_N(F_2) = SL_N(F_2)`, and exact
     conjugation preserves `rk(sigma(.) - 1)`.
   - So `f(2r) = f(r)`. The calibration is right: free modules satisfy it, so it cannot refute alone.
+  - **CORRECTED in Section 45.** This bullet passed the corner conjugacy `g ~ g (+) I` without re-deriving it. It fails at
+    the endpoint `r = 3m/2`. Proposition 2 holds only for `1 <= r < 3m/2`.
 - **Route validity.** Given the open prerequisite, the Leavitt no-rank-model theorem (Section 6,
   characteristic two), `EL_3(R) = R^x`, and simplicity of `R^x`, a linear sofic approximation gives
   a nontrivial homomorphism into a characteristic-two rank ultraproduct. The route is valid. It
@@ -1345,6 +1347,8 @@ and `level-group-polynomial-content-2026-09-12.md` Sections 1 to 6.
 - **Leavitt application.**
   - Proposition 2 of the rigidity artifact (verified in Section 17) holds at `N = 3 . 2^(k+1)` for
     `r <= 3 . 2^k/2 = N/4`, exactly the range needed.
+  - **CORRECTED in Section 45.** The endpoint `r = N/4` is not available. The Leavitt application now uses `r < N/4`
+    at levels `N >= 4(D + 2)`. The compressor matrix identity is correct, but it does not give the conjugacy.
   - The compressor matrix check: `u = [[s, 1-st],[0, t]]` has inverse `[[t, 0],[1-st, s]]` on both sides, using `ts = 1`
     and `(1 - st)^2 = 1 - st`, and `u diag(a, 1) u^-1 = diag(sat + 1 - st, 1)`.
 - **Section 6, a remark, not a claim.**
@@ -1523,3 +1527,59 @@ their routes, and artifact Sections 6.1 to 6.3.
   - So both products have order 3, and each pair generates `S_3`.
 - **Section 6.2.** The expansion
   `YX = Y'X' b''a'' + b'' X''Y' + X' Y''a'' + Y''X''` checks, using the commutations `[a', b''] = [a'', b'] = 1`.
+
+## 45. CORRECTION to Sections 17 and 39: the dyadic identity excludes the endpoint; corrected Proposition 2, Lemma 13, Theorem G: PASS
+
+**What was wrong in this artifact.** Section 17 passed Proposition 2 of `el3-rank-ring-rigidity-2026-09-12.md` for all
+`1 <= r <= 3m/2`. It accepted the corner conjugacy `g ~ g (+) I` in `R^x` from the author's compressor attribution without
+re-deriving it. Section 39 then called `r <= N/4` "exactly the range needed" and checked only the compressor matrix
+identity. Lane `gk-l-gate-neg` found the gap (1c7283c42c, e68b687037). The conjugacy fails at the maximal type, so
+Proposition 2 holds only for `1 <= r < N/4`. The matrix identity `u diag(a,1) u^-1 = diag(sat + 1 - st, 1)` is
+correct, but it is a conjugacy in `GL_2(R)`, not between `a` and `sat + 1 - st` in `R^x`, so it cannot justify the step.
+
+**Corrected Proposition 2, re-derived.**
+- **Absorption.** `R = (+)_(|a|=k) s_a R` identifies `R^3` with `F_2^(3m) (x) R` compatibly with `A_k = M_m(F_2)`, so
+  `(R^3, g) ~= W (x) R` as modules with an operator, where `W = (F_2^(3m), g)`.
+  - `g (+) I = s_0 g t_0 + (1 - s_0 t_0)` entrywise, and `R^3 = s_0 R^3 (+) s_1 R^3` with `v -> s_0 v` intertwining. So
+    `(R^3, g (+) I) ~= (R^3, g) (+) (R^3, 1)`.
+- **Conjugacy.** Conjugacy in `GL_3(R)` is isomorphism of modules with an operator.
+  - `W = r J_2 (+) (3m - 2r) J_1`, and `R^j ~= R` for `j >= 1`.
+  - If `3m - 2r >= 1`, both modules are `J_2 (x) R (+) J_1 (x) R`, so they are conjugate.
+  - If `r = 3m/2`, `(R^3, g) ~= J_2 (x) R` has `T = ker n / (ker n cap Im n) = 0`, while the `J_1 (x) R^3` summand of
+    `g (+) I` gives `T ~= R`. So they are not conjugate.
+- Doubling `g = g (x) I_2` gives type `2r`, so `f_(k+1)(2r) = f_(k+1)(r)` for `1 <= r < 3m/2 = N/4`. PASS in the corrected
+  range.
+- **Downstream check.** `dyadic-involution-profiles-kill-bounded-degree-content` (corrected at 1969803707) now assumes
+  `f(2r) = f(r)` at `D + 1` distinct integers `1 <= r <= N/4`.
+  - Step 2 needs only `r >= 1` and `2r <= N/2`, both valid there. Lemma 3 needs `D + 1` points.
+  - The Leavitt application takes `r = 1, ..., D + 1 < N/4`, guaranteed by `N >= 4(D + 2)`. PASS.
+  - The flag-diagonal inheritance I confirmed to that lane still holds, in the corrected range.
+
+**Lemma 13 (root-subgroup compressor): PASS.**
+- `c` sends `e_1 R` and `e_2 R` to `e_1 s_0 R` and `e_2 s_0 R`, and `e_3 R` onto `e_1 s_1 R + e_2 s_1 R + e_3 R ~= R`. It is
+  bijective.
+- On `e_2 s_0 r`, both `c x_12(a) c^-1` and `x_12(s_0 a t_0)` add `e_1 s_0 a r`. On `e_2 s_1 R` the latter adds
+  `e_1 s_0 a t_0 s_1 r = 0`. On the other pieces both are the identity.
+- For `g` in `GL_2(R)`, `e_j s_0 r -> sum_i e_i s_0 g_ij r = sum_i e_i (s_0 g_ij t_0)(s_0 r)`, and it is the identity on the
+  `s_1` parts, since `(1 - s_0 t_0) s_1 = s_1`. That gives `(s_0 g t_0 + 1 - s_0 t_0) (+) 1`.
+- `B = union_k c^-k U_12(R) c^k` is an increasing union of abelian groups normalized by `c`, so `<U_12(R), c>` is
+  metabelian. Recorded as a pointer, correctly.
+
+**Theorem G (6bdbec8cae, `sofic-subgroups-carry-rank-models-violating-two-root-identity`): PASS.**
+- **Bad points.** `B_i` collects multiplicativity failures on `D x D`, `phi(1) != id`, and fixed points of nontrivial `d`,
+  so `|B_i| = o(n_i)`. The complement of `G_i` lies in `B_i` together with the eight preimages `phi(d)^-1(B_i)`, so its size
+  is at most `9|B_i|`.
+- **Orbits.** For `x` in `G_i`:
+  - multiplicativity holds at every `phi(d) x`, so `phi` restricts to an honest action on `O(x)`;
+  - `phi(d) x = phi(d') x` forces `phi(d'^-1 d) x = x`, hence `d = d'`, so `O(x)` has 8 points;
+  - meeting orbits coincide, because `phi(D) y = O(x)` for `y` in `O(x)`.
+- **Correction.** `psi` equals `phi` on the union `U_i` and the identity elsewhere. It is a genuine homomorphism with
+  `d_H(psi(d), phi(d)) <= 9|B_i|/n_i`.
+- **Rank.** `F_2^(U_i)` is free over `F_2[D_8]`, and the value `3/8` comes from Section 44. The model is exact because
+  rank distance is bounded by Hamming distance.
+- **Scope list.**
+  - `<diag(u,u^-1,1), x_12(1), x_23(1)>` lies in `UT_3(R) x| Z` (solvable).
+  - `EL_3(A_inf)` is locally finite.
+  - `F_2[s_0] ~= F_2[x]`, since the monomials `S[0^j]` are independent, so `EL_3(F_2[s_0])` is finitely generated and
+    linear over `F_2(x)`, hence residually finite.
+  - All are sofic.

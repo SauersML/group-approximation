@@ -7,6 +7,7 @@ target: sofic-subgroups-carry-rank-models-violating-two-root-identity
 requires:
   - finite-subgroup-rank-data-cannot-force-two-root-identity
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ Complete proof: artifact Section 6.4.
 - **The rank.** `F_2^(U_i)` is a free `F_2[D]`-module, on which `(h-1)(g-1)` has rank
   `3 |U_i| / 8` (`finite-subgroup-rank-data-cannot-force-two-root-identity`, value computation).
   Its rank on the complement is `0`. So the normalized rank tends to `3/8`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 45 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

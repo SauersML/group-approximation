@@ -25,3 +25,5 @@ Artifact Sections 1–4.
    so every polynomial piece has trivial transvection action, hence trivial `SL_N(F_2)` action.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): Section 39 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
+
+*Correction by `gk-vf-linear` (2026-09-12), Section 45 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: my Section 39 verdict wrongly accepted the dyadic identity up to the endpoint `r = N/4`. The corrected hypothesis (`D + 1` points with `1 <= r <= N/4`) and the Leavitt application at `r < N/4`, `N >= 4(D + 2)`, are re-derived and PASS.*
