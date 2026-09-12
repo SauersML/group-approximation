@@ -88,13 +88,19 @@ and `-[p]` is the index of that unitary, so `-[p] in Zx`.  If `[p]!=0` then
 `[p]` is a nonzero positive element of `Zx`, contradicting singularity.  So
 `[p]=0`, and stable finiteness of `K tensor A` (it is QD) forces `p=0`.
 
-Non-quasidiagonality.  Let `psi_n` be a faithful unital model of `E`.  Lift
-`z` to a partial isometry `V in M_2(E)` with `1-V*V, 1-VV* in M_2(K tensor A)`
-and index class `[1-V*V]-[1-VV*] = x` (sign convention absorbed into `x`).
-In `M_2(M_(k_n))` the approximate partial isometry `psi_n(V)` has source and
-range projections of equal rank, so `(psi_n)_*(x) = 0` for large `n`, using
-the finitely many relations identifying this class with `[p]-[q]` for
-`p,q in M_N(A tensor e_11)`.  Restricting `psi_n` to `A tensor e_11 = A` gives
+Non-quasidiagonality.  Let `psi_n` be a faithful unital model of `E`.  By
+exactness of the six-term sequence, `iota_*(x) = iota_*(d[z]) = 0` in
+`K_0(E)`.  So there are a projection `r` and a partial isometry `w` over `E`
+with `w*w = p (+) r` and `ww* = q (+) r`, where `x = [p]-[q]` and
+`p,q in M_N(A tensor e_11)`.  For large `n`, `X = psi_n(w)` satisfies
+`X*X ~ psi_n(p (+) r)` and `XX* ~ psi_n(q (+) r)`.  Since `X*X` and `XX*` have
+the same nonzero spectrum with multiplicity, the spectral projections near
+`psi_n(p (+) r)` and `psi_n(q (+) r)` have equal rank, so `(psi_n)_*(x) = 0`.
+
+(Existence of a unital extension with index `x`: `K_1(Q(K tensor A)) ~= K_0(A)`
+through the index map, since `K_*(M(K tensor A)) = 0`.  Take a unitary
+`u in Q(K tensor A)` of index `x`, after absorbing matrices into `K`, and the
+unital Busby map `z -> u`.  The resulting `E` is separable.)  Restricting `psi_n` to `A tensor e_11 = A` gives
 a model of `A` that is not asymptotically zero, since `psi_n` is faithful,
 with value `0` on `x`.  This contradicts (1).
 
