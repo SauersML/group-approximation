@@ -44,6 +44,7 @@ theorem act_single {ι : Type v} (g : G) (i : ι) (h : G) (c : ℤ) :
 noncomputable def augZ {ι : Type v} : FreeZG G ι →+ ℤ :=
   Finsupp.liftAddHom fun _ ↦ AddMonoidHom.id ℤ
 
+omit [Group G] in
 theorem augZ_single {ι : Type v} (q : ι × G) (c : ℤ) :
     augZ (Finsupp.single q c : FreeZG G ι) = c := by
   simp only [augZ, Finsupp.liftAddHom_apply_single, AddMonoidHom.id_apply]
@@ -52,7 +53,7 @@ theorem augZ_act {ι : Type v} (g : G) (f : FreeZG G ι) : augZ (act g f) = augZ
   refine Finsupp.induction_linear f ?_ ?_ ?_
   · rw [map_zero, map_zero]
   · intro f f' hf hf'
-    rw [map_add, map_add, hf, hf']
+    rw [map_add, map_add, hf, hf', map_add]
   · rintro ⟨i, h⟩ c
     rw [act_single, augZ_single, augZ_single]
 
@@ -132,7 +133,7 @@ theorem foxD₁_act (s : X → G) (g : G) (f : FreeZG G X) :
   refine Finsupp.induction_linear f ?_ ?_ ?_
   · rw [map_zero, map_zero, map_zero]
   · intro f f' hf hf'
-    rw [map_add, map_add, hf, hf', map_add]
+    rw [map_add, map_add, hf, hf', map_add, map_add]
   · rintro ⟨x, h⟩ c
     rw [act_single, foxD₁_single, foxD₁_single, map_zsmul, map_sub, act_single, act_single,
       mul_assoc]
@@ -161,7 +162,7 @@ theorem foxD₂_act (s : X → G) (rel : ρ → SignedWord X) (g : G) (f : FreeZ
   refine Finsupp.induction_linear f ?_ ?_ ?_
   · rw [map_zero, map_zero, map_zero]
   · intro f f' hf hf'
-    rw [map_add, map_add, hf, hf', map_add]
+    rw [map_add, map_add, hf, hf', map_add, map_add]
   · rintro ⟨r, h⟩ c
     rw [act_single, foxD₂_single, foxD₂_single, map_zsmul, act_act]
 

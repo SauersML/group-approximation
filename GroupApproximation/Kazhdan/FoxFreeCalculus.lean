@@ -96,7 +96,7 @@ theorem mapG_act {ι : Type w} (φ : F →* G) (g : F) (f : FreeZG F ι) :
   refine Finsupp.induction_linear f ?_ ?_ ?_
   · rw [map_zero, map_zero, map_zero]
   · intro f f' hf hf'
-    rw [map_add, map_add, hf, hf', map_add]
+    rw [map_add, map_add, hf, hf', map_add, map_add]
   · rintro ⟨i, h⟩ c
     rw [act_single, mapG_single, mapG_single, act_single, map_mul]
 
