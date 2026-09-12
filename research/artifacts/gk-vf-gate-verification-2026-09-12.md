@@ -510,3 +510,60 @@ Four nodes were deleted as duplicates at b09f639b5d, on the lane's instruction, 
    - The claim is stated for characteristic two only, which is correct: in odd characteristic the braid
      step involves `n_31(-1)`.
 6. **Positivity.** `e YX = YX` gives `rk e >= rk YX > 0` by faithfulness.
+
+### 8.4 Route `leavitt-rank-triviality-via-strict-defect-submultiplicativity`: PASS as a conditional route
+
+**Step 2.** It needs only Theorem 3.1, since `f(2) >= c_* delta`, and `c_* >= delta/(1+eps)`.
+
+**Step 3.** `delta^2/(1+eps) <= theta delta^2`, with `delta > 0`, forces `1/(1+eps) <= theta`.
+- **Why the model can't escape:** the open claim quantifies `theta < 1` uniformly over all nontrivial
+  fixed-point-free models, so the choice of near-minimal model cannot dodge it.
+- **From quotient to model:** a nontrivial `sigma` has a nontrivial fixed-point-free quotient
+  (Lemma 2.1).
+
+**Payoff.** It is as in Section 4.2.
+
+**Scope.** The route depends on the open claim. Its three other inputs PASS (Sections 8.1 to 8.3).
+
+**On my Section 8.2 scope limit.** Lemma 1.1 of the defect-piece artifact already has independent
+passes: w3-vf-linear Section 10.1, and gk-vf-linear Section 52 (reported by w4-gate-descent).
+
+## 10. w4-r4-orth, Section 5 (f25ccc5958): halving is locally finite data. PASS.
+
+No node was added; this section covers an Attempts entry on
+`leavitt-disjoint-cylinder-defects-strictly-submultiplicative`.
+
+**Lemma 5.1.** Conventions: `S[mu] = s_(mu_1)...s_(mu_k)` and `T[mu] = t_(mu_k)...t_(mu_1)`.
+1. **Product formula.** `iota_A(Delta(g)) = S[A0] g T[A0] + S[A1] g T[A1] + 1 - S[A]T[A] = iota_(A0)(g) iota_(A1)(g)`.
+   - The cross terms die because `T[A0] S[A1] = 0`.
+   - `S[A0]T[A0] + S[A1]T[A1] = S[A]T[A]`.
+2. **Images of the unit pair.**
+   - `s_0 S[0] T[10] t_0 = S[00] T[010]` and `s_1 S[0] T[10] t_1 = S[10] T[110]`.
+   - `s_0 S[10] T[11] t_0 = S[010] T[011]` and `s_1 S[10] T[11] t_1 = S[110] T[111]`.
+3. **The permutation `u`.** Its source words `{00, 010, 011, 10, 110, 111}` and target words
+   `{00, 100, 110, 01, 101, 111}` are complete prefix codes, so `u` lies in `V`.
+4. **Conjugation.**
+   - `u S[010] = S[100]` and `T[011] u^-1 = T[110]`.
+   - The refined pairs are `x_12(1) = 1 + S[00]T[100] + S[01]T[101]` and
+     `x_23(1) = 1 + S[100]T[110] + S[101]T[111]`.
+   - Both are recovered.
+5. **Rank equalities.** They follow by conjugating by `sigma(iota_A(u))`, and from Fact 1.2 on `A0, A1`.
+
+**Proposition 5.2.**
+- **Direct product.** `L` is a direct product: the factors commute and meet trivially.
+- **Swap.** `w s_0 = s_1` and `t_0 w = t_1`, so `iota_A(w)` swaps the factors.
+- **Local finiteness.** `UT_3` over an `F_2`-algebra is locally finite, and so is the extension by the
+  swap.
+- **Free profile.** The regular model gives `D_8 x D_8` and the diagonal `D_8` the free profile. There
+  `rk(alpha_0 (x) alpha_1) = (3/8)^2`, so `theta = 1` while every relation used holds.
+
+**Remark 5.3.**
+- **Mixture ranks.** They are `(3/8)(b+c)`, `(3/8)(b+d)`, the diagonal `(3/8)(b+c+d)`, and
+  `f(2) = (9/64) b`.
+- **Forced profile.** Lemma 5.1 forces `c = d = 0`.
+- **Ratio.** `f(2)/delta^2 = 1/b`.
+
+**Remark 5.4.** The free proportion of `V (x) V` is `2p - p^2`, which forces `p` in `{0, 1}`.
+
+**Scope.** A `theta < 1` has to use `sigma` beyond this locally finite group. That agrees with the
+Section 3 and Section 5 firewalls.

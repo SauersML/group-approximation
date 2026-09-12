@@ -27,3 +27,5 @@ Artifact Section 5.
 4. **Payoff.** An `F_2`-linear sofic approximation of the infinite group `R^x` gives a nontrivial
    homomorphism into a rank ultraproduct over `F_2`. So `R^x` is not `F_2`-linear sofic, which
    exhibits a non-linear-sofic group.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 8.4, as a route conditional on the open strict submultiplicativity claim of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
