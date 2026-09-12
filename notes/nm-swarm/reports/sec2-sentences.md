@@ -57,7 +57,7 @@ the place.
 
 | module | carries | state |
 |---|---|---|
-| Kazhdan/GHWCountablePlaces | `AffineAction.smul`, `countableSum`, `exists_weights`; `Haagerup.hasHaagerupProperty_of_countable_sum`; `GHW.hasHaagerupProperty_of_countable_places` | landed unverified at 3a0808fa5; probe running |
+| Kazhdan/GHWCountablePlaces | `AffineAction.smul`, `countableSum`, `exists_weights`; `Haagerup.hasHaagerupProperty_of_countable_sum`; `GHW.hasHaagerupProperty_of_countable_places` | compiled: probe 0912-102206-8083 GREEN at base 2cc8cb4a7, which contains the landing commit 3a0808fa5 (md5 d9fa48bed4d981ce7837349b9eb2d73d); all three `#audit_axioms` give propext, Classical.choice, Quot.sound |
 
 Exact statements:
 `theorem GroupApproximation.Haagerup.hasHaagerupProperty_of_countable_sum {G : Type u} [Group G] [Countable G]
