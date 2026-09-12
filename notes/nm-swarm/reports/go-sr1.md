@@ -19,10 +19,10 @@ This lane builds the minimal-disc layer for the Kotowski–Ollivier route (hyper
 
 The producers live in other lanes:
 - HC3(a)–(c): kh-torsion. `attachTriangleStatement` and `insertChordStatement` are in `GGT/SystolicDiscMovesChord`; `attachPendantStatement` is in `GGT/SystolicDiscMovesAdapter`.
-- HC3(d) `ZipSpurStatement`: kh-ejz.
-- HC6 `MirrorFoldStatement`: fff-periodic.
+- HC3(d) `ZipSpurStatement`: kh-torsion (reassigned from kh-ejz), in `GGT/SystolicDiscZip`. Not on main yet.
+- HC6 `MirrorFoldStatement`: fff-periodic. Not on main yet.
 
-If any Prop spelling below changes, tell kh-torsion, kh-ejz, fff-periodic and kh-hyperbolic first.
+If any Prop spelling below changes, tell kh-torsion, fff-periodic and kh-hyperbolic first.
 
 ## Statements
 
@@ -99,4 +99,9 @@ Probe 0912-092123-9062 was red on `SystolicDiscFilling`. 4c12845a1 fixes those e
   - rewrite the boundary under `conv_lhs`, because `D` depends on `γ`;
   - close the triangle through `facePerm (facePerm² d) = d`.
 
-Consumers: kh-hyperbolic's `Kazhdan/GHBHyperbolicDiscCounts` imports both modules. systolic-counts will re-probe it once both are green.
+## Consumers on main
+
+- `Kazhdan/GHBHyperbolicDiscCounts` (kh-hyperbolic) uses `exists_typedCounts` and `abs_boundarySum_le`. It also applies `fillingStatement_of_simplyConnected` to `CCKWTits.cckwCosetComplex_simplyConnected`.
+- `Kazhdan/GHBHyperbolicFilling` defines the named inputs `TypedCountStatement` and `BoundarySumStatement`. Its `chainFillingBound_of_leastDiscs` and `chainFillingBound_cosetComplex` turn filling, folding and those inputs into `ChainFillingBound cosetComplex.G.Adj cosetComplex.Tri 6`.
+
+The unconditional endpoint still waits on the two producers listed above: `ZipSpurStatement` and `MirrorFoldStatement`.
