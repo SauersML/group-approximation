@@ -44,10 +44,12 @@ Conventions follow `research/artifacts/stw01-certificates-products-universal-tes
   as used in `stw01-kun-thom-reduced-group-algebras-are-qt-linear`.
 
 **External** (source status in §6):
-- **Bekka's operator-algebraic superrigidity** (Invent. Math. 169 (2007)). For
-  `Γ = SL(n,Z)`, `n ≥ 3`, every unitary representation `π` with `π(Γ)''` a finite
-  factor is either finite-dimensional or extends to an isomorphism
-  `L(Γ) ≅ π(Γ)''`.
+- **Bekka's operator-algebraic superrigidity** (arXiv:math/0609102v2; Invent. Math.
+  169 (2007)). For `Γ = SL(n,Z)`, `n ≥ 3`, let `π : Γ → U(M)` have `π(Γ)'' = M` a
+  finite factor. Then either `M` is finite-dimensional, or some finite-index
+  subgroup `Λ` has `π|_Λ` extending to a homomorphism `U(L(Λ)) → U(M)`. The
+  virtual form matters: Lemma 2.2 adds an orthogonality step to get the trace on
+  all of `Γ`.
 - **Hulanicki–Reiter:** `1_H ≺ λ_H` iff `H` is amenable.
 - **Dimension functions** (Blackadar–Handelman, as recalled in Milhøj–Rørdam §2,
   arXiv:2309.17412). For a bounded 2-quasitrace `σ` on unital `A`,
@@ -154,10 +156,26 @@ So `|tr(σ_k(g))| ≤ (p_k + 1)/(p_k² + p_k)` for large `k`. ∎
 combination of traces vanishes on `J_+` only if both terms do. By Krein–Milman
 it suffices to show that every extreme point `τ` of `T(A)` equals `τ_0`. Such a
 `τ` is an extremal trace of `C*(Γ)`, so `π_τ(Γ)''` is a finite factor, and `π_τ`
-vanishes on `J`. By Bekka, one of two cases holds.
-- **`π_τ` is finite-dimensional.** Then it is a multiple of an irreducible
+vanishes on `J`. Put `φ = τ ∘ π_τ` on `Γ`. By Bekka (arXiv:math/0609102, main
+theorem), `π_τ(Γ)''` is finite-dimensional, or some finite-index subgroup `Λ ≤ Γ`
+has `π_τ|_Λ` extending to a homomorphism `U(L(Λ)) → U(π_τ(Γ)'')`.
+- **Finite-dimensional case.** `π_τ` is a multiple of an irreducible
   finite-dimensional representation of `A`, which Lemma 1.2 excludes.
-- **`π_τ` extends to `L(Γ) ≅ π_τ(Γ)''`.** Then `τ = δ_e = τ_0`. ∎
+- **Second case.**
+  1. **Normal subgroup.** Shrinking `Λ` to its normal core keeps finite index and
+     the extension property.
+  2. **`φ` on `Λ`.** `L(Λ)` is a II_1 factor, since `Λ` is ICC, being of finite
+     index in `SL(3,Z)`. So the trace of the finite factor, pulled back, is
+     `δ_e` on `Λ`.
+  3. **Infinite conjugacy classes.** Take `g ≠ e`. If its `Λ`-conjugacy class were
+     finite, `g` would commute with a finite-index subgroup of `Λ`. That subgroup
+     contains a nonzero power of each elementary matrix `E_ij(1)`, so `g` would be
+     scalar and hence `g = e`.
+  4. **Orthonormal vectors.** Choose distinct conjugates `g_i = λ_i g λ_i⁻¹`
+     (`i ≤ m`). Then `g_j⁻¹ g_i ∈ Λ ∖ {e}`, so the vectors `π_τ(g_i) ξ_τ` are
+     orthonormal, and `⟨π_τ(g_i) ξ_τ, ξ_τ⟩ = φ(g)`.
+  5. **Bessel.** `m |φ(g)|² ≤ 1` for every `m`, so `φ(g) = 0`.
+  6. **Conclusion.** `φ = δ_e` and `τ = τ_0`. ∎
 
 **Lemma 2.3 (`K ≠ 0`).**
 - Let `P = Stab_Γ([1:0:0])`, the matrices with first column `(±1, 0, 0)ᵀ`. It
@@ -224,11 +242,20 @@ exactness of `SL(3,Z)`.
 `m·[(a − ε)_+] ≤ [1_A]` in `W(A)` for all `m ∈ N` and `ε > 0`. Then `σ(a) = 0`
 for every bounded 2-quasitrace `σ`.
 
-*Proof.*
-1. `m d_σ((a − ε)_+) ≤ d_σ(1) = σ(1)` for all `m`, so `d_σ((a − ε)_+) = 0`.
-2. For `0 ≤ x ≤ 1`, `x ≤ x^{1/n}`, so `σ(x) ≤ d_σ(x)`. Hence
-   `σ((a − ε)_+) = 0` after scaling.
-3. By the continuity estimate, `σ(a) = lim_{ε → 0} σ((a − ε)_+) = 0`. ∎
+*Proof.* Assume `‖a‖ ≤ 1` and put `x = ⊕_m (a − ε)_+ ∈ M_m(A)`.
+1. **Row approximants.** `x ≲ e_11 ⊗ 1` means there are `r_n ∈ M_m(A)` with
+   `r_n* (e_11 ⊗ 1) r_n → x`. The rows `s_n = (e_11 ⊗ 1) r_n` then satisfy
+   `s_n* s_n → x`.
+2. **Estimate.** Let `σ̃` be the extension of `σ` to `M_m(A)` (Blackadar–Handelman,
+   as recalled in Milhøj–Rørdam §2). By the unital continuity estimate,
+   `σ̃(x) = lim σ̃(s_n* s_n) = lim σ̃(s_n s_n*)`. Since `s_n s_n*` lies in the corner
+   `e_11 M_m(A) e_11 ≅ A` with norm `‖s_n* s_n‖ → ‖x‖ ≤ 1`, this gives
+   `σ̃(x) ≤ σ(1)`.
+3. **Conclusion.** `σ̃(x) = m σ((a − ε)_+)`, so `σ((a − ε)_+) ≤ σ(1)/m` for every
+   `m`. By continuity, `σ(a) = lim_{ε → 0} σ((a − ε)_+) = 0`. ∎
+
+No dimension function is needed. The inputs are the matrix extension, unitary
+invariance, and norm continuity.
 
 **Proposition 4.2 (exact kernel).** In Theorem 3.1, if `K` is exact, then every
 bounded 2-quasitrace on `A` vanishes on `K`, and `QL(B)` holds.
@@ -326,8 +353,19 @@ isometries and no exact orthogonality are needed.
 
 ## 6. Source status
 
-- Bekka (Invent. Math. 169 (2007)) and Milhøj–Rørdam arXiv:2309.17412: the
-  verification from PDF on MSI is recorded in the next section once complete.
+- **Bekka.** The statement was checked against the arXiv abstract of
+  math/0609102v2, fetched 2026-09-12 through the arXiv API.
+  - An earlier draft stated the theorem non-virtually ("extends to `L(Γ)`"). That
+    was wrong.
+  - The actual conclusion extends `π|_Λ` only on a finite-index `Λ`.
+  - Lemma 2.2 now carries the orthogonality step that recovers the trace `δ_e`.
+  - The full PDF was not re-read, because MSI authentication was unavailable
+    (cooldown resets).
+- **Milhøj–Rørdam arXiv:2309.17412 §2**, checked through the ar5iv HTML.
+  - It confirms that 2-quasitraces extend to `M_n(A)` (Blackadar–Handelman) and
+    are norm continuous.
+  - Proposition 4.1 was rewritten to use only these facts, with no dimension
+    functions.
 - Hulanicki–Reiter, [GHW04] and Haagerup: standard; not re-read here.
 - Novelty: none claimed for Lemma 1.1 (Wang 1975, Bekka–de la Harpe–Valette), for
   Lemma 2.4, or for Proposition 4.1. The assembly into Theorem 3.1 and

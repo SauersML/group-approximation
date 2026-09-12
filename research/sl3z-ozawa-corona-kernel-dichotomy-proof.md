@@ -22,13 +22,14 @@ Full proof: `research/artifacts/quasitrace-kazhdan-block-corona-2026-09-12.md` �
 4. **Exact `K`.** `σ` restricted to `C*(K, 1)` is a trace by Haagerup, so `σ|_K`
    is a bounded trace on `K`. By the ideal-extension lemma of
    `sl3z-ozawa-block-corona-unique-trace-proof`, step 4, this is zero.
-5. **Infinitesimal elements.** The dimension function `d_σ` satisfies
-   `m d_σ((a − ε)_+) ≤ σ(1)`, and `σ(x) ≤ d_σ(x)` for `0 ≤ x ≤ 1`. The continuity
-   estimate `|σ(x) − σ(y)| ≤ ‖x − y‖ σ(1)` then gives `σ(a) = 0`.
+5. **Infinitesimal elements.** Suppose `⊕_m (a − ε)_+ ≲ e_11 ⊗ 1`. Then there are
+   rows `s_n` with `s_n* s_n → ⊕_m (a − ε)_+`. By continuity,
+   `m σ((a − ε)_+) = lim σ(s_n s_n*) ≤ σ(1)`. Letting `m → ∞` and then `ε → 0`
+   gives `σ(a) = 0`.
 
 Literature imports:
 - Haagerup's theorem, as in `blackadar-rordam-haagerup-k0-states-are-traces-citation`;
 - exactness of countable linear groups [GHW04], as in
   `stw01-kun-thom-reduced-group-algebras-are-qt-linear`;
-- Blackadar–Handelman dimension functions, as recalled in Milhøj–Rørdam
-  arXiv:2309.17412 §2.
+- extension of 2-quasitraces to `M_n(A)` and norm continuity (Blackadar–Handelman),
+  checked against Milhøj–Rørdam arXiv:2309.17412 §2.

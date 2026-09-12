@@ -17,10 +17,16 @@ Full proof: `research/artifacts/quasitrace-kazhdan-block-corona-2026-09-12.md` �
    - So `lim_k tr(x_k)` exists on `B`, vanishes on `I`, and is `δ_e` on `Γ`.
 2. **Uniqueness.** The traces of `A` form a closed face of the traces of
    `C*(Γ)`. An extreme point is a finite factor representation vanishing on
-   `ker(C*(Γ) → A)`. By Bekka, it is finite-dimensional or extends to `L(Γ)`.
+   `ker(C*(Γ) → A)`. By Bekka, it is finite-dimensional, or `π|_Λ` extends to
+   `L(Λ)` for some finite-index normal `Λ`.
    - The first case is a finite-dimensional representation of `A`, excluded by
      `kazhdan-block-algebras-contain-their-block-ideal`.
-   - The second case is `δ_e`.
+   - In the second case the character is `δ_e` on `Λ`.
+   - Every `g ≠ e` has infinite `Λ`-conjugacy class, since a finite class would
+     make `g` commute with powers of all elementary matrices.
+   - Distinct conjugates `g_i` give orthonormal vectors `π(g_i) ξ`, because
+     `g_j⁻¹ g_i ∈ Λ ∖ {e}`. Their inner products with `ξ` all equal `φ(g)`, so
+     Bessel gives `φ(g) = 0`.
    - By Krein–Milman, `τ_0` is the only trace.
 3. **Nonzero kernel.** Let `ξ_k` be the normalized component of `δ_{[1:0:0]}`
    orthogonal to the constants.
@@ -39,5 +45,7 @@ Literature imports:
 - Bekka, Invent. Math. 169 (2007), main theorem;
 - the Hulanicki–Reiter criterion.
 
-At landing, Bekka's statement had not been re-read from the PDF, because MSI was
-unavailable. The verification status is kept in §6 of the artifact.
+Bekka's statement was checked against the abstract of arXiv:math/0609102v2. The
+theorem is virtual, extending only on a finite-index `Λ`, which is why step 2
+contains the orthogonality argument. The full PDF was not re-read, because MSI
+authentication was unavailable. Status is kept in §6 of the artifact.

@@ -33,9 +33,11 @@ imports named there).**
 2-quasitrace on `A` that charges `K` cannot be a trace.
 
 **Imports, not re-derived:**
-- Bekka, *Operator-algebraic superrigidity for SL_n(Z), n ≥ 3*, Invent. Math. 169
-  (2007): every finite factor representation of `SL(n,Z)`, `n ≥ 3`, is
-  finite-dimensional or extends to `L(Γ)`;
+- Bekka, *Operator-algebraic superrigidity for SL_n(Z), n ≥ 3*, arXiv:math/0609102
+  (Invent. Math. 169 (2007)). If `π(Γ)''` is a finite factor, then it is
+  finite-dimensional, or `π|_Λ` extends to `U(L(Λ))` for some finite-index `Λ`.
+  The virtual case gives trace `δ_e` through an orthogonality argument;
+  see the route.
 - Hulanicki–Reiter amenability criterion;
 - irreducibility and pairwise inequivalence of the `σ_k`, from main.
 
