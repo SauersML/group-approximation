@@ -166,7 +166,6 @@ theorem lixKFarMap_relPullback_ne_zero (K : Type) [Field K] (n k : ℕ) (dd : Fi
     (excisionIsoPointOf K (TopCat.of (Fin (lixRank n dd) → ℂ)) 0 (lixKU n k dd i hGc hGu)
       (isOpen_lixKU n k dd i hGc hGu) (zero_mem_lixKU n k dd i hGc hGu) (2 * lixRank n dd)) h1
   rw [e0, e1, e2]
-  simp only [ModuleCat.hom_comp, LinearMap.coe_comp, Function.comp_apply]
   exact h2
 
 /-! ## 3. The local computation at every zero -/
