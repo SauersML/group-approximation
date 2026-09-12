@@ -69,3 +69,16 @@ every `p in A^Omega`, where `M` is the memory,
   itself. The tree calibration and the coset-shift embedding both show that nothing weaker than
   freeness plus group structure can suffice. Rephrased, the step is to prove the window balance for
   every finite window, or to find one window where it fails.
+* **Untested ideas reported by lanes, not yet nodes (gk-archive, 2026-09-12).**
+  - *gk-decoder-fiber, in its handoff to gk-rokhlin.* Look for a functional on invariant measures of
+    `A^G`, for an arbitrary group, that
+    - is at most `log |A|`;
+    - equals `log |A|` at the uniform measure;
+    - is monotone under injective automata, or additive over a decoder that has a cellular section.
+
+    Test candidates on the flip-lift measure of `strict-split-pairs-carry-positive-entropy-flip-lifts`
+    and on the strictly larger subshift of `strict-split-decoders-have-infinitely-many-sections`. Any
+    such bound would also prove stable finiteness of `F_p[G]` for every group, so it must stay
+    consistent with the Kaplansky lanes.
+  - *gk-free.* Kazhdan `H^1`-vanishing as the missing cancellation in information transport. It is
+    listed above as untested, and no lane has taken it.
