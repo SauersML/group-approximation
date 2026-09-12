@@ -49,12 +49,18 @@ fixed finitely presented torsion-free group `U`.
     not even virtually torsion-free
     (`kun-thom-actors-have-no-torsion-free-finite-index-subgroups`), so they
     give no host of finite index.
-  - **Fournier-Facio's torsion-free nonsofic group.** It is glued from a
-    universal finitely presented torsion-free group
-    (`fournier-facio-torsion-free-skeleton`), so exact Cayley balls are not
-    computable in general. Only certificates carrying explicit derivations of
-    every cancellation, plus a separating quotient for nonvanishing, can be
-    checked there.
+  - **Fournier-Facio's torsion-free nonsofic group.** It is built from a
+    universal finitely presented torsion-free group `U <= P`
+    (`fournier-facio-torsion-free-skeleton`). The final quotient `pi` is
+    controlled only on a finite set; it is injective on `S` by simplicity.
+    Whether `U` survives in `G`, and whether `G` has solvable word problem,
+    is not established (checked against arXiv:2608.02025 §2 by the
+    `nh-fournier-facio` lane). The construction is existential and gives no
+    explicit presentation, so exact Cayley balls are not available.
+  - **Characteristic-zero actors.** The torsion-free finite-index subgroups of
+    `char-zero-kun-thom-actor-has-torsion-free-finite-index-subgroup` have
+    exact multiplication and are admissible hosts. They are residually
+    finite, hence sofic, so they are not tied to nonsoficity.
   - **`E_3(3)` in `SL_3(Z)`.** The explicit admissible host with exact
     multiplication is a torsion-free finite-index subgroup of `SL_3(Z)`, the
     characteristic-zero actor factor:
