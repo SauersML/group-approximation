@@ -62,42 +62,72 @@ moves a point, giving subadditivity from
 
 Fix an injective cellular automaton `tau` over `G` with memory `M`, rule `mu`,
 a local left inverse `sigma` with memory `N`, and a Garden-of-Eden pattern on a
-window `Omega`. Put `K = N M u Omega Omega^-1`, a finite subset of `G`.
+window `Omega`. Put `K = N u M u N M u Omega Omega^-1`, a finite subset of `G`.
 
-Given a finite `H`-set `V` and `phi: F -> H` with `K` in `F`, transport the
-rules to `A^V` by
+Given a finite `H`-set `V` and `phi: F -> H` with `F` symmetric and
+`K K^-1` contained in `F`, transport the rules to `A^V` along
+`psi(g) = phi(g^-1)`:
 
 ```text
-tau_V(z)(v) = mu( ( z( phi(m) v ) )_{m in M} ),
-sigma_V(w)(v) = nu( ( w( phi(n) v ) )_{n in N} ).
+tau_V(z)(v) = mu( ( z( psi(m) v ) )_{m in M} ),
+sigma_V(w)(v) = nu( ( w( psi(n) v ) )_{n in N} ).
 ```
 
-**Lemma 1.1.** If `v` in `V` satisfies `phi(n) phi(m) v = phi(nm) v` for all
+*Convention.* With the house convention `tau(x)(g) = mu((x(gm))_m)`, the
+composite on `G` reads the coordinate `nm`, while the composite on `V` reads
+the point `psi(m) psi(n) v`. Transporting along `phi` itself would model
+`G^op`. Transporting along `psi` corrects the order, because
+`psi(m)psi(n)psi(nm)^-1 = phi(m^-1)phi(n^-1)phi(m^-1 n^-1)^-1` is the
+multiplicative defect of `phi` at the pair `(m^-1, n^-1)`, and separation is
+unchanged because `F` is symmetric. The first version of this artifact
+transported along `phi` directly; gk-vf-positive flagged the reversal
+(Section 8 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).
+
+**Lemma 1.1.** If `v` in `V` satisfies `psi(m) psi(n) v = psi(nm) v` for all
 `n in N`, `m in M`, then `sigma_V tau_V (z)(v) = z(v)` for every `z in A^V`.
 
-*Proof.* Both sides read the same coordinates in the same order once the two
-displayed points agree, and `sigma tau = id` is an identity of local rules. QED
+*Proof.* Put `x(g) = z(psi(g) v)` for `g` in `K`. Then
+`sigma_V tau_V(z)(v) = nu( ( mu( ( z(psi(m)psi(n)v) )_m ) )_n )`. Under the
+hypothesis this is `nu( ( mu( ( x(nm) )_m ) )_n ) = (sigma tau x)(1) = x(1)`,
+because `sigma tau = id` is an identity of local rules, and `x(1) = z(v)`
+because `psi(1) = 1`. QED
 
-So the counting argument needs the set of *bad* vertices to be a small
-fraction of `V`. The bad set for one pair `(n,m)` is
-`{v : phi(n)phi(m)phi(nm)^-1 v != v}`, whose normalized size is exactly
-`l_V( phi(n) phi(m) phi(nm)^-1 )`. Summing over the finitely many pairs:
+**Lemma 1.1 is only a sufficient condition.** At a vertex where a defect moves
+`v`, the transported identity can still hold, for instance when the rules
+ignore the moved coordinates. Below, a *bad* vertex is one where Lemma 1.1
+gives no guarantee, not one where the identity is shown to fail.
+
+So the counting argument needs the vertices where Lemma 1.1 applies to be
+most of `V`. The bad set for one pair `(n,m)` is
+`{v : psi(m)psi(n)psi(nm)^-1 v != v}`, whose normalized size is exactly `l_V`
+of that defect. Summing over the finitely many pairs:
 
 **Proposition 1.2.** If `l_V(phi(a)phi(b)phi(ab)^-1) <= delta` for all
-`a, b` in `K`, then `sigma_V tau_V = id` off a set of vertices of normalized
+`a, b, ab` in `F`, then Lemma 1.1 applies off a set of vertices of normalized
 size at most `|N||M| delta`. If moreover `l_V(phi(g)) >= c'` for `g != 1` in
-`K`, the charts `g -> phi(g)v` are injective on `K` for at least a
-`1 - |K|^2 (1 - c')` fraction of `v`.
+`F`, the charts `g -> psi(g)v` are injective on `K` for at least a
+
+```text
+1 - |K|^2 (1 - c' + 2 delta)
+```
+
+fraction of `v`.
 
 *Proof.* The first half is Lemma 1.1 and a union bound. For the second, the
-chart fails at `v` when `phi(a)v = phi(b)v` for some `a != b` in `K`, i.e.
-when `v` is fixed by `phi(b)^-1 phi(a)`; that set has normalized size
-`1 - l_V(phi(b)^-1phi(a))`, and near-multiplicativity turns
-`phi(b)^-1phi(a)` into `phi(b^-1 a)` up to a defect. QED
+chart fails at `v` when `psi(a)v = psi(b)v` for some `a != b` in `K`, that is
+when `v` is fixed by `psi(b)^-1 psi(a)`, a set of normalized size
+`1 - l_V(psi(b)^-1 psi(a))`. Write `d = phi(b)phi(b^-1)`, the inversion defect
+(`phi(1) = 1`), so `psi(b)^-1 = phi(b^-1)^-1 = d^-1 phi(b)`, and
+`phi(b)phi(a^-1) = d' phi(b a^-1)` with `d'` a multiplicative defect. Then
+`phi(b a^-1) = d'^-1 d psi(b)^-1 psi(a)`, and symmetry with subadditivity give
+`l_V(psi(b)^-1 psi(a)) >= l_V(phi(b a^-1)) - 2 delta >= c' - 2 delta`, since
+`b a^-1 != 1` lies in `F`. A union bound over the at most `|K|^2` ordered pairs
+gives the displayed fraction. The first version stated `1 - |K|^2 (1 - c')`
+and omitted the `2 delta`; corrected after gk-vf-positive's check. QED
 
 **So the counting proof consumes exactly one thing: an `H`-set `V` whose
 Hamming length `l_V` is small on the defects and bounded below on
-`phi(K \ {1})`.** The given length `l` never enters the count. Soficity
+`phi(F \ {1})`.** The given length `l` never enters the count. Soficity
 supplies `V` by fiat. Weak soficity supplies `l`, and the question is whether
 `l` forces such a `V` to exist.
 
@@ -116,15 +146,17 @@ discrete length: `l_V(z) = 1` for every `z != 1`, and `l_V(1) = 0`.
 `phi(a)phi(b)phi(ab)^-1` is trivial, that is if and only if `phi` is an exact
 homomorphism on the relevant products.
 
-*Corollary A.2.* Through the regular action, weakly sofic data of separation
-`c > 0` yield a Gromov--Weiss chart system exactly when they are LEF data.
-No genuinely metric approximation survives the transport.
+*Corollary A.2.* Through the regular action, Lemma 1.1 applies at a positive
+fraction of vertices exactly when the relevant defects are trivial, that is on
+LEF data. No genuinely metric approximation survives as input to the counting
+argument. This does not say that the transported identity fails: the rules may
+ignore the moved coordinates.
 
 This is the precise form of the folklore remark that not every bi-invariant
 metric on a finite group restricts from a Hamming metric. The point for this
 program is sharper: the regular action does not merely lose the metric, it
 sends every nonzero defect to the *maximal* Hamming defect `1`, so no choice
-of constants rescues it.
+of constants rescues the counting guarantee.
 
 **Remark A.3 (the conjugation action pulls the other way).** For `V = H` with
 the conjugation action, `l_V(z) = 1 - |C_H(z)|/|H| = 1 - 1/|z^H|`. Separation
@@ -200,8 +232,9 @@ be small on a large normal subgroup.
 decide it. What is settled here:
 
 * the counting proof consumes an `H`-set, not a metric (Section 1);
-* the regular action converts weakly sofic data into LEF data and nothing
-  weaker (Theorem A and its corollaries);
+* for the counting guarantee, the regular action accepts exactly LEF data and
+  nothing weaker (Theorem A and its corollaries); it does not show that the
+  transported identity fails;
 * the conjugation action fails for the opposite reason (Remark A.3);
 * on simple models the whole metric regime is confined to defects at least
   `c/|H|` (Theorems B and C).
