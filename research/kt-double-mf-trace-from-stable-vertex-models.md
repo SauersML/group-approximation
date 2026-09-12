@@ -4,7 +4,7 @@ id: kt-double-mf-trace-from-stable-vertex-models
 kind: route
 title: Stable-vertex MF-trace models make the canonical double trace an MF trace
 target: reduced-amalgam-canonical-trace-is-mf
-requires: [kt-double-stable-vertex-mf-trace-models, stable-vertex-mf-trace-models-need-inequivalent-marginals]
+requires: [kt-double-stable-vertex-mf-trace-models, stable-vertex-mf-trace-models-need-inequivalent-marginals, vertex-mismatch-needs-nonextendable-clifford-orbits]
 ---
 
 The models of the first prerequisite are operator-norm asymptotic
