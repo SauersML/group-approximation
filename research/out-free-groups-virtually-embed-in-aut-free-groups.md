@@ -47,3 +47,31 @@ This premise feeds `out-fn-bh-via-virtual-embedding-in-aut-fn`.
    G-automorphisms, so it is not clear whether this is possible." That would be
    a type (A) host containing `Out(F_n)`, not an `Aut(F_m)`, so it belongs to
    the target's Attempts.
+4. **No rational cohomological obstruction to a virtual section.**
+   `aut-out-free-abelianized-extension-splits-rationally`: the Fox Jacobian
+   determinant restricts to `(n − 1)`·abelianization on inner automorphisms. So
+   the abelianized extension class is killed by `n − 1`, and
+   `Aut(F_n) → Out(F_n)` is injective on rational cohomology with coefficients
+   pulled back from `Out(F_n)`.
+   - **Consequence.** Transfer or cup-product arguments with such coefficients
+     cannot exclude a virtual section, just as Chen--Salter needed
+     nonabelian input for surfaces.
+   - **Only abelian candidate left.** The integral class, of order dividing
+     `n − 1`, might die on a finite-index subgroup. That was not decided.
+5. **Side choice on rank-one splittings.**
+   `free-splitting-fa-lifts-choose-a-side`, applicable for `n ≥ 5` via (T) for
+   `Aut(F_{n−1})`: a section restricted to the automorphisms of `B` in
+   `⟨p⟩ ∗ B` is either conjugate to the standard lift, or fixes exactly one
+   `B`-vertex of the Bass--Serre tree. This is the analogue of Chen--Salter's
+   Lemma 2.16 (the puncture lies on one side).
+   - **Where it stops.** Chen--Salter conclude with an Euler-class computation
+     on the handle-pushing subgroup `π1(UTΣ_p)`. The free-group partial
+     conjugation subgroup is free and has no central extension, so that step has
+     no direct analogue.
+   - **Not ruled out.** Neither side-choice case has been excluded. Case (N)
+     reduces, on inner automorphisms of `B`, to the same question one rank down.
+   - **Literature.** arXiv queries on 2026-09-12 found nothing on virtual
+     splitting of `Aut(F_n) → Out(F_n)`, but the search was cut short by HTTP
+     429. The Laudenbach-sequence splittings (arXiv:2012.01529, 2310.13527)
+     concern a different extension. Details are in
+     `research/artifacts/bh-aut-out-virtual-section-2026-09-12.md`.
