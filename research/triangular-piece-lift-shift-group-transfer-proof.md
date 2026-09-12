@@ -20,3 +20,8 @@ Artifact Section 4: Lemma 4.1, Theorem 4.2 and Corollary 4.3.
   - A change of free basis along tree edges turns every relation into an HNN relation along one letter.
   - For finite `K`, `H_Z` is then the fundamental group of a finite graph of finite groups.
   - Such a group is virtually free (as for the shift theorem), so its group algebra is stably finite.
+- **Sharpening (Theorem 5.1).** Take a homomorphism into a sofic group that is injective on
+  `S = {1} ∪ supp(x)·supp(c)`.
+  - `psi(c)psi(x) = 1` becomes two-sided downstairs, by Elek–Szabó.
+  - `1 - xc` is supported on `S`, so it is `0` upstairs.
+  - So `a` is invertible, and `pi(a) = s0` would be too.

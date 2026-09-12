@@ -37,6 +37,10 @@ By artifact Lemma 4.1, `a = sum_i [g_i]E_i` is then a left-invertible lift of `s
   - A witness needs a cycle in `Gamma`: at least three pieces whose relative shifts each conjugate a nontrivial
     subgroup of `K` into `K`.
   - The finitely presented shift group `H_Z`, with one 2-cell per cycle, must be non-sofic.
+  - **Sharper** (artifact Theorem 5.1, suggested by `w4-kap-join`). No sofic group may realize the partial-conjugation
+    relations faithfully on the finite ball `S = {1} ∪ supp(x)·supp(c)`. So a candidate dies once a finite group is found
+    that contains `K` and three elements with the required partial conjugations and is injective on `S`. Run that
+    search before any group-ring computation.
   - No candidate `(K, beta, g_i)` has been examined. The first test is `m = 3` with `K` the depth-two constants
     `GL_4(F_2)` and `beta = (0, 10, 11)`: check whether the three relative shifts give nontrivial intersections
     `D_ij`, and whether `H_Z` is visibly sofic, for instance through a finite quotient faithful on `K` whose kernel

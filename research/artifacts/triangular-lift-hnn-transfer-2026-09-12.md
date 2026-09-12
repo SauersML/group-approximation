@@ -197,3 +197,38 @@ finite. So no finite-support `m`-piece lift with this `Gamma` has an acyclic def
   - For `x` in `F_2[G]`, `x^2 ≡ sum_g x_g g^2` modulo commutators, so `tau(x^(2^k)) = sum_(g^(2^k) = 1) x_g`.
   - Hence a nilpotent `x` has `sum_(g a 2-element) x_g = 0`, and so does each of its powers.
   - This filters candidates for `YX`, but it decides none of the data examined here.
+
+## 5. Sharpening: one sofic image of the finite configuration is enough
+
+This sharpening was suggested by lane `w4-kap-join`. Its Theorem 2.6 in
+`research/artifacts/finite-subgroup-combination-defects-2026-09-12.md` has the same shape.
+
+**Theorem 5.1.** Take the setting of Theorem 4.2.
+- **Elements.** In `k[H]` put `x = sum_i [t_i]E_i`, `y = sum_i E_i[t_i^(-1)]`, `N = yx - 1` and
+  `c = (sum_(r < m) (-N)^r) y`.
+- **The ball.** Let `S = {1} ∪ supp(x)·supp(c)`, a finite subset of `H`.
+- **Conclusion.** If some homomorphism `psi : H -> Gamma` into a sofic group is injective on `S`, the configuration
+  does not exist.
+
+*Proof.*
+- **Left inverse.** `N^m = 0` because the digraph is acyclic, so `cx = 1` in `k[H]`.
+- **Downstairs.** `psi(c)psi(x) = 1` in `k[Gamma]`. Group algebras of sofic groups are directly finite
+  (Elek–Szabó), so `psi(x)psi(c) = 1`.
+- **Back upstairs.** `1 - xc` is supported on `S`, and `psi` is injective on `S`, so `psi` is injective on elements
+  supported on `S`. Hence `xc = 1` in `k[H]`.
+- **Contradiction.** `phi(x) = a` is then invertible in `F_2[R^x]`, so `pi(a) = s_0` is invertible in `R`. But
+  `t_0 s_0 = 1` and `s_0 t_0 = P_0 != 1`. QED
+
+**Reading.**
+- **Supports.** `S` is contained in `{1}` together with the words
+  `t_i K (K t_(i_1)^(-1) t_(j_1) K) ... (K t_(i_r)^(-1) t_(j_r) K) K t_l^(-1)` with `r <= m - 1`, each over a pair
+  outside `Z`. So `S` is a finite set of `K`-words with at most `2m` letters.
+- **Stronger than Theorem 4.2.** Theorem 4.2 is the case where `H` itself is sofic. Theorem 5.1 needs only a sofic image
+  faithful on the ball `S`, even when `H_Z` is not sofic.
+- **A finite certificate of death.** A candidate `(K, beta, g_i)` dies as soon as some finite group (or any sofic group)
+  contains a copy of `K` and elements `tau_i` that satisfy the partial-conjugation relations along `Z` and are faithful
+  on `S`. So survivors need a finite configuration of partial conjugations that no sofic group realizes faithfully. A
+  cycle in `Gamma` is necessary but not enough.
+- **Theorem A for infinite `K`.** Put `x = [t]e + (I - e)` and `c = (I - e[t^(-1)](I - e))(e[t^(-1)] + (I - e))`.
+  The same argument shows that the shift equality follows whenever `HNN(K, D)` has a sofic image faithful on
+  `{1} ∪ supp(x)·supp(c)`. Elek–Szabó gives stable finiteness, so matrix sizes are covered.

@@ -31,3 +31,11 @@ finite-support witness needs `m >= 3`, a cycle in `Gamma`, and a non-sofic finit
 `K`, the letters, and one 2-cell per cycle.
 
 For `m = 2` the corollary recovers `finite-support-triangular-two-piece-s0-lifts-do-not-exist`. Artifact Section 4.
+
+**Sharpening** (artifact Theorem 5.1, suggested by lane `w4-kap-join`).
+- **Statement.** It is enough that `H` has one homomorphism into a sofic group that is injective on the finite ball
+  `S = {1} ∪ supp(x)·supp(c)`, where `x = sum [t_i]E_i` and `c` is its left inverse in `k[H]`.
+- **Why.** `cx = 1` passes to the image, where it becomes two-sided by Elek–Szabó. `1 - xc` is supported on `S`, so it
+  vanishes upstairs. Then `a` would be invertible.
+- **Consequence.** A surviving candidate needs a finite configuration of partial conjugations that no sofic group
+  realizes faithfully on `S`. A finite group realizing it certifies the candidate dead.
