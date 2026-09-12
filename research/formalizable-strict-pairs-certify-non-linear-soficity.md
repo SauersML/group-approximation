@@ -9,6 +9,7 @@ distinct_from:
   non-linear-sofic-group: that is the open root asking for some non-linear-sofic group; this names a sufficient certificate, a formalizable strict automaton, without supplying one.
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `p` be prime and `G` a group. If some strict automaton `tau` on `(F_p^n)^G` has a left inverse

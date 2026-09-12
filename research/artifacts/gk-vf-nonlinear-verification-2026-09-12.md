@@ -28,6 +28,8 @@ not by rereading the author's argument. Nothing was run.
 | `fe7e9bf0c` (gk-n-ae-decoder) | `rokhlin-maximality-closed-under-local-embeddings`, `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers` | PASS (Section 22) |
 | `3639943709` (gk-fz-decompose) | `structurally-reversible-automata-are-formalizable`, `formalizable-left-inverse-iff-clean-shear-dilation`, `binary-left-inverse-pairs-extend-over-every-finite-field` | PASS (Section 23) |
 | `cf99b3821` (gk-fz-bennett) | `formalizable-binary-pairs-over-biorderable-groups-are-affine`, `binary-left-inverse-pairs-need-not-be-formalizable`, Lemma C; wiring of both refuted claims and both invalidated routes; the stable targets and their routes | PASS, decision on family F (Section 24) |
+| `1b608cf1e`, `08916adad` (gk-fz-alphabets) | `formalizable-pairs-induce-polynomial-automorphisms-on-constants`, `tame-maps-induce-every-permutation-of-prime-field-cubes`, `sitewise-pairs-over-prime-fields-are-stably-formalizable`, `formalizable-strict-pairs-certify-non-linear-soficity` | PASS (Section 25) |
+| gk-free-neg (Section 6.5) | `marker-involution-is-formalizable-after-regrouping` | PASS (Section 26) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -989,3 +991,85 @@ Checked with maximal care, because it refutes the family's original reduction.
   representative of `tau x id`, so the remark does not decide the stable claims, which ask for
   representatives of `tau x id`.
 - Nothing here decides Gottschalk. The witness is bijective on a residually finite group.
+
+## 25. Prime fields and the alphabet bridge (`1b608cf1e`, `08916adad`, gk-fz-alphabets): PASS
+
+**Proposition 2.1 (diagonal specialization).**
+- `eps : X_(h,i) -> T_i` is a ring homomorphism, and it kills every distinction between memory sites.
+  So it is compatible with representatives on arbitrarily large memories, which is the point of the
+  pressure question.
+- Equivariance gives `tau^*(X_(g,i)) = P_i((X_(gm,j))_(m,j))`, and every variable maps to `T_j`, so
+  `eps(tau^*(X_(g,i))) = p_i(T)` for every `g`.
+- Applying `eps` to `Q_i((tau^*(X_(s,j)))_(s,j)) = X_(1,i)` gives `q_i(p(T)) = T_i`, so `q o p = id`.
+- Pullbacks compose in reverse: `(q o p)^* = p^* o q^*`, so `p^* o q^* = id` and `p^*` is onto.
+  - *Surjective endomorphism of a Noetherian ring is injective, re-derived.* The chain
+    `ker p^* ⊆ ker (p^*)^2 ⊆ ...` stabilizes at some `n`. For `x` in `ker p^*`, surjectivity of
+    `(p^*)^n` gives `x = (p^*)^n(y)`, so `y` is in `ker (p^*)^(n+1) = ker (p^*)^n`, so `x = 0`.
+  - So `p^*` is an automorphism, `q^* = (p^*)^-1`, and `p o q = id` as well.
+- At a constant configuration every variable takes the value `c_i`, so `p(c) = tau(c)(1)`.
+
+**Corollaries 2.2 and 2.3.**
+- In one variable, degrees multiply under composition, so a polynomial automorphism is affine.
+- `|AGL(1,q)| = q(q-1) < q!` for `q >= 4` (at `q = 4`, `12 < 24`), so a non-affine permutation
+  exists. Over prime fields, `p(p-1) = p!` exactly at `p = 2, 3`, so the gap starts at `p = 5`.
+
+**Proposition 3.1 (tame maps induce every permutation).**
+- *Line cycles.* `delta_b = prod_(j != i) (1 - (x_j - b_j)^(p-1))` is the indicator of `b`, since
+  `t^(p-1) = 1` for `t != 0`. So `x_i -> x_i + delta_b` translates one axis-parallel line by `+1` and
+  fixes the rest.
+- *Lemma 3.2, re-derived by evaluation* with right-to-left composition,
+  `alpha = (u a_2 ... a_r)`, `beta = (u b_2 ... b_s)` meeting only at `u`:
+  - `u -> b_s -> b_s -> u -> a_2`;
+  - `a_2 -> a_2 -> u -> b_2 -> b_2`;
+  - `b_2 -> u -> a_r -> a_r -> u`;
+  - `a_k` (`k >= 3`) `-> a_k -> a_(k-1) -> a_(k-1) -> a_k`, fixed, and symmetrically for `b_k`.
+  So the commutator is `(u a_2 b_2)`. It also holds when both cycles are transpositions.
+- *Lemma 3.3.*
+  - Case A with `|S| >= 4` uses 2-transitivity of `Alt(S)`.
+  - Case A with `|S| = 3`: conjugating `(s s' x)` by the two rotations of `S` gives `(s' s'' x)` and
+    `(s'' s x)`; with inverses that is every `(t t' x)`, and together with `Alt(S)` all eight
+    3-cycles of the 4-set, which generate `Alt_4`.
+  - Case B: `gamma = (s x y)` and `delta = (s s' s'')` meet only at `s`, so Lemma 3.2 gives the
+    3-cycle `(s x s')`, which is Case A. Then `gamma` is Case A for `S ∪ {x}`.
+- *`p = 2`.* Line cycles are the hypercube-edge transpositions on a connected graph.
+- *`p` odd, `n >= 2`.* The lines through `u` along two different coordinates meet only at `u`, so
+  Lemma 3.2 gives `(u, u + e_i, u + e_j)`, and those supports connect `F_p^n`.
+- *Odd scaling.* `x_1 -> g x_1` fixes the hyperplane `x_1 = 0` and is a `(p-1)`-cycle on the rest of
+  each of the `p^(n-1)` lines. A `(p-1)`-cycle is odd for `p` odd, and `p^(n-1)` is odd, so the
+  permutation is odd. With `Alt` this gives `Sym`.
+- *`n = 1`.* Degrees multiply, so `T_1 = AGL(1,p)`, which is `Sym(F_p)` only for `p <= 3`.
+
+**Theorem 4.1 (sitewise pairs).**
+- (1) Take `F` a composite of elementary maps inducing `phi`, and use `F`, `F^-1` with memory `{1}`.
+- (2) The constant-configuration map of a sitewise pair is `phi` itself, so Corollary 2.2 applies.
+- (3) `phi (+) id` is a permutation of `F_p^(n+1)` with `n + 1 >= 2`.
+
+**Section 8 (non-linear-soficity certificate).**
+- `tau (+) id_k` is strict iff `tau` is, so Theorem 1 contrapositive gives `M_(n+k)(F_p[G])` not
+  directly finite, hence `F_p[G]` not stably finite.
+- For a field `F` of characteristic `p`, `M_N(F_p[G])` is a unital subring of `M_N(F[G])`, and direct
+  finiteness passes to unital subrings. So `F[G]` is not stably finite either, and
+  `linear-sofic-group-algebra-is-stably-finite` gives the conclusion.
+- *Scope.* Section 3 does not cover non-prime fields `F_(2^m)`, as the author notes. The tame
+  subgroup of `Sym(F_q^n)` there is not claimed.
+
+## 26. Regrouping formalizes the marker involution (Section 6.5, gk-free-neg): PASS
+
+- *Each `S_r` is a track shear over `H = 4Z`.* The marker at `i` reads offsets `±1, ±2, ±3`, whose
+  residues mod 4 are `1, 2, 3`, never `0`. So at cell `4k+r` the polynomial reads only tracks
+  `r ± 1, r ± 2, r ± 3 mod 4`, all different from `r`. The group elements involved are in `4Z`
+  (for instance at `r = 3` the offset `+1` lands on block `4(k+1)`, track `0`), so `S_r` is
+  `H`-equivariant with finite memory. By Section 23 it is a formal involution.
+- *The word equals `tau`.* Lemma 2.1 of Section 24 gives more than pairwise exclusion: if `i` is a
+  marker, the cells `i ± 1` are `1` and are not markers, so flipping any subset of the marker set
+  leaves every marker's reading unchanged, exactly as in Proposition 2.2. So each `S_r` preserves
+  the marker set, and the composite flips every marker cell once.
+- *Formal inverse.* The reversed word, by Section 23.
+- *The Kaplansky payoff.* A strict automaton formalizable over a finite-index `H` makes
+  `M_N(F_2[H])` not directly finite. `M_N(F_2[H])` is a unital subring of `M_N(F_2[G])`, and direct
+  finiteness passes to unital subrings, so `M_N(F_2[G])` is not directly finite either.
+- *Reach.* Finitely generated simple hosts have no proper finite-index subgroup, so this
+  stabilization is unavailable there. That matches my Section 23 scope note: regrouping escapes
+  Theorem A, and here it does so concretely.
+- The one-ancilla word in the same section is recorded as a dead attempt, and the specialization
+  remarks carry no claim. I did not verify them.

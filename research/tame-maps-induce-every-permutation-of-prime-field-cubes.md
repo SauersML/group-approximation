@@ -7,6 +7,7 @@ distinct_from:
   formalizable-pairs-induce-polynomial-automorphisms-on-constants: that constrains formalizable pairs through the constant-configuration map; this computes which permutations formally invertible maps can realize, which is what makes sitewise pairs formalizable after stabilization.
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `p` be prime. The permutations of `F_p^n` induced by composites of elementary maps

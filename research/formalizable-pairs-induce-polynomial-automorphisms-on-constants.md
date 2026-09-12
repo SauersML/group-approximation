@@ -10,6 +10,7 @@ distinct_from:
   formalizable-binary-pairs-over-biorderable-groups-are-affine: that is a leading-term argument over bi-orderable groups forcing binary one-track formal pairs to be a shift plus a constant; this is diagonal specialization over every group and every finite field, constraining only the constant-configuration map.
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `q` be a prime power, `G` any group, and `(tau, sigma)` automata on `(F_q^n)^G` whose left-inverse

@@ -8,6 +8,7 @@ distinct_from:
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that is a characteristic-two calibration of representatives; this is the classification of which sitewise pairs over F_p are formalizable before and after stabilization.
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `p` be prime, `n >= 1`, `G` any group, and `(tau, sigma)` a sitewise bijective pair on

@@ -9,6 +9,7 @@ distinct_from:
   injective-binary-automata-are-stably-formalizable: that stabilizes by identity ancilla tracks; this stabilizes by regrouping along a finite-index subgroup, which decides the Z test case but does not exist on hosts without proper finite-index subgroups.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `tau(x)_i = x_i + m_i(x)` on `{0,1}^Z` with `m_i(x) = [x_(i-3..i+3) = 001*100]`.
