@@ -40,7 +40,8 @@ variable (K : Type) [CommRing K] (X : TopCat.{0})
 
 /-- From Mathlib's coproduct carrier to the `Finsupp` carrier: `ι σ ↦ single σ 1`. -/
 def fromCoprod (m : ℕ) :
-    singularChainGroup K X m ⟶ ModuleCat.of K (singularSimplices X m →₀ K) :=
+    AffineBarycentricSubdivision.singularChainGroup K X m
+      ⟶ ModuleCat.of K (singularSimplices X m →₀ K) :=
   Limits.Sigma.desc (fun σ => ModuleCat.ofHom (Finsupp.lsingle σ))
 
 theorem ι_fromCoprod (m : ℕ) (σ : singularSimplices X m) :
@@ -49,24 +50,30 @@ theorem ι_fromCoprod (m : ℕ) (σ : singularSimplices X m) :
   Limits.Sigma.ι_desc _ σ
 
 theorem fromCoprod_generator (m : ℕ) (σ : singularSimplices X m) :
-    (fromCoprod K X m).hom (chainGenerator K X m σ) = Finsupp.single σ (1 : K) :=
+    (fromCoprod K X m).hom (AffineBarycentricSubdivision.chainGenerator K X m σ)
+      = Finsupp.single σ (1 : K) :=
   congrArg (fun (g : ModuleCat.of K K ⟶ ModuleCat.of K (singularSimplices X m →₀ K)) =>
     g.hom (1 : K)) (ι_fromCoprod K X m σ)
 
 /-- **`fromCoprod` intertwines the two signed differentials at degrees `1 → 0`.** -/
 theorem fromCoprod_comm :
-    singularBoundary K X 0 ≫ fromCoprod K X 0
+    AffineBarycentricSubdivision.singularBoundary K X 0 ≫ fromCoprod K X 0
       = fromCoprod K X 1 ≫ ModuleCat.ofHom (chainBd K X 0) := by
   apply Limits.Sigma.hom_ext
   intro γ
-  rw [← Category.assoc, ← Category.assoc, singularBoundary_sigma_ι_formula, ι_fromCoprod,
-    Preadditive.sum_comp]
   apply ModuleCat.hom_ext
   apply LinearMap.ext_ring
-  simp only [Preadditive.zsmul_comp, ι_fromCoprod, ModuleCat.hom_sum, LinearMap.sum_apply,
-    ModuleCat.hom_zsmul, LinearMap.smul_apply, ModuleCat.hom_comp, LinearMap.comp_apply,
-    ModuleCat.hom_ofHom, Finsupp.lsingle_apply]
-  exact (singFreeR_d_single K X 0 γ).symm
+  change (fromCoprod K X 0).hom ((AffineBarycentricSubdivision.singularBoundary K X 0).hom
+      (AffineBarycentricSubdivision.chainGenerator K X (0 + 1) γ))
+    = (((singFreeR K).obj X).d (0 + 1) 0).hom
+      ((fromCoprod K X 1).hom (AffineBarycentricSubdivision.chainGenerator K X 1 γ))
+  rw [AffineBarycentricSubdivision.singularBoundary_chainGenerator_formula, fromCoprod_generator,
+    singFreeR_d_single, map_sum]
+  refine Finset.sum_congr rfl fun i _ => ?_
+  rw [map_smul, fromCoprod_generator, ← Int.cast_smul_eq_zsmul K ((-1 : ℤ) ^ (i : ℕ))]
+  congr 1
+  push_cast
+  ring
 
 /-- **Over a path-connected space every difference of two points is a boundary.** -/
 theorem single_sub_mem_range [PathConnectedSpace X] (σ τ : singularSimplices X 0) :
@@ -134,7 +141,7 @@ theorem slotLift_tagAt_one_mem {r : ℕ} (t : TupAll X r) (h0 : ∀ l, (t l).1 =
 /-- Every slot of a degree-`0` tuple is a point. -/
 theorem points_of_tupIdx_zero {r : ℕ} (t : TupIdx X r 0) (l : Fin r) : (t.1 l).1 = 0 := by
   have hle : (t.1 l).1 ≤ ∑ m, (t.1 m).1 :=
-    Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ l)
+    Finset.single_le_sum (f := fun m => (t.1 m).1) (fun _ _ => Nat.zero_le _) (Finset.mem_univ l)
   have ht : ∑ m, (t.1 m).1 = 0 := t.2
   omega
 
@@ -170,6 +177,7 @@ theorem single_sub_update_mem_range [PathConnectedSpace X] {r : ℕ} (t t' : Tup
 def mixIdx {r : ℕ} (t t' : TupIdx X r 0) (m : ℕ) : TupIdx X r 0 :=
   ⟨fun l => if (l : ℕ) < m then t'.1 l else t.1 l,
     Finset.sum_eq_zero fun l _ => by
+      show (if (l : ℕ) < m then t'.1 l else t.1 l).1 = 0
       split_ifs
       · exact points_of_tupIdx_zero X t' l
       · exact points_of_tupIdx_zero X t l⟩
