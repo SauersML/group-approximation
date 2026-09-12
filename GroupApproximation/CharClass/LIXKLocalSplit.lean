@@ -207,8 +207,8 @@ theorem exists_relClass_split_of_acyclic (U V : Opens X) (hUV : U ⊔ V = ⊤) (
     {C : Set X} (hCU : C ⊆ (U : Set X)) (hCV : C ⊆ (V : Set X))
     (hUVC : (U : Set X) ∩ (V : Set X) ⊆ C) (x : relCohomology R X C n) :
     ∃ (a : relCohomology R X (U : Set X) n) (b : relCohomology R X (V : Set X) n),
-      x = (relPullback R (𝟙 X) (fun y hy => hCU hy) n).hom a
-        + (relPullback R (𝟙 X) (fun y hy => hCV hy) n).hom b := by
+      x = (relPullback R (𝟙 X) (fun _ hy => hCU hy) n).hom a
+        + (relPullback R (𝟙 X) (fun _ hy => hCV hy) n).hom b := by
   obtain ⟨w, hw, rfl⟩ := relCocycleClass_surjective C n x
   have hφ : (w : singularCochainGroup R X n)
       ∈ relCochainSubmodule R X ((U : Set X) ∩ (V : Set X)) n :=
@@ -217,9 +217,9 @@ theorem exists_relClass_split_of_acyclic (U V : Opens X) (hUV : U ⊔ V = ⊤) (
     exists_relCocycle_split_of_acyclic U V hUV n hacyclic hφ hw
   refine ⟨relCocycleClass R X (U : Set X) n ⟨α, hα⟩ hδα,
     relCocycleClass R X (V : Set X) n ⟨β, hβ⟩ hδβ, ?_⟩
-  rw [relPullback_id_relCocycleClass (fun y hy => hCU hy) n ⟨α, hα⟩ hδα
+  rw [relPullback_id_relCocycleClass (fun _ hy => hCU hy) n ⟨α, hα⟩ hδα
       (relCochainSubmodule_le_of_subset hCU n hα),
-    relPullback_id_relCocycleClass (fun y hy => hCV hy) n ⟨β, hβ⟩ hδβ
+    relPullback_id_relCocycleClass (fun _ hy => hCV hy) n ⟨β, hβ⟩ hδβ
       (relCochainSubmodule_le_of_subset hCV n hβ)]
   have hδ : cochainCoboundary R X n
       (((⟨α, relCochainSubmodule_le_of_subset hCU n hα⟩ : relCochainSubmodule R X C n)
