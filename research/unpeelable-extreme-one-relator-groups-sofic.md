@@ -22,6 +22,13 @@ Together with [[peelable-extreme-one-relator-groups-are-sofic]] this is
 exactly [[torsion-free-two-generator-one-relator-groups-sofic]], and hence all
 of Pestov's Question 4.10.
 
+This class is not the real boundary. [[amenable-envelope-magnus-piece-one-relator-sofic]]
+also closes unpeelable relators whose Magnus piece embeds over a Magnus
+subgroup into an amenable-edge envelope. An example is the nested conjugator
+`a_n U a_n^(-1) X a_n U^(-1) a_n^(-1) Z`, with four top syllables. The smaller
+remainder is [[no-magnus-envelope-one-relator-groups-sofic]], routed by
+`unpeelable-extreme-sofic-via-magnus-envelope`.
+
 ## Attempts
 
 1. **Peel anyway.** *Dies at the third syllable.* With syllables
