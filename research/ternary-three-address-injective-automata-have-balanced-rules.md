@@ -45,3 +45,20 @@ refutes Gottschalk's conjecture.
     has to use relations among `a, b`.
   - **Pressure point.** Their example `x + y + z + [x = (0,1,2)]` sends all three constants to `0`.
     So it is only a pre-injectivity example, never a candidate for injectivity.
+- **Constant background with a unit linear part** (w3-bal-design, `constant-background-kills-unit-linear-defect-rules`, checked in artifact Section 7).
+  - **Unit case for `R`.** Let `1 - a + b` be a unit with inverse `K`, and put `y = tau_K(delta_1)`.
+    - Configurations: `x = 1` off `M`, `x = p + y` on `M`, and `x' = x - y`.
+    - Result: `tau_R(x) = tau_R(x')` unless some translate `hM` with `h != 1` lies in `M ∪ supp(y)` and has
+      `x'|_(hM) = (0,2,2)`.
+    - Why only `x'` matters: `x` shows `p` only at translates with `hM = M`, and those make `<M>` cyclic.
+  - **Non-unit case.** By avoidable patches, an injective `R` gives a linear strict automaton over `G`. So `R`
+    would not be a new kind of counterexample.
+  - **Residue for `R`.** Groups where `1 - a + b` is a unit and the witness above has an absorbed translate.
+    Other backgrounds or right-hand sides may still kill these.
+- **Rigid rules with repeated pairs.** The distinct-pairs corollary does not reach them, because the moved
+  pattern can use every symbol with nonzero augmentation.
+  - Example: `x + y + 2z` with the value at `(0,1,2)` moved from `2` to `0`. It has pairs `{0,1}`, `{1,2}`,
+    `{1,2}`, identity diagonal, and counts `10, 9, 8`.
+  - Constant background `c` still applies, with a weaker exception. Only translates with at most one site
+    outside `M ∪ supp(y)`, at the address where `p_m = c`, can show `p`. Each choice of `c` gives its own
+    finite exception set.
