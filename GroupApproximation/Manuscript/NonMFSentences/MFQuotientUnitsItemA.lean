@@ -1,10 +1,41 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsKappaProof
+import GroupApproximation.Algebra.PeirceElementaryFactorization
 
 /-!
-# The Steinberg displays, and `diag(v,1,…,1) ∈ EL_n(R)`
+# Item (a), the Steinberg displays, and `diag(v,1,…,1) ∈ EL_n(R)`
 
-Two printed sentences of the proof of `thm:mf-quotient-units` that the census
+Printed sentences of the proof of `thm:mf-quotient-units` that the census
 carried only in part.
+
+## Item (a), one carrier per census sentence
+
+The census splits printed item (a) at "Then", into
+
+> (a) There are orthogonal idempotents `e_1, …, e_m` with sum `1`, `m ≥ 4`,
+> such that `e_1, …, e_{m-1}` are pairwise equivalent and `e_m` is equivalent to
+> an idempotent `f ≤ e_1`.
+
+and
+
+> Then `R` is the ring of `m × m` matrices over `T = e_1Re_1`, with identity
+> `diag(1_T, …, 1_T, f)`, whose last column has entries in `Tf` and whose last
+> row has entries in `fT`, and every unit `u` of `R` factors as `u = gvh` with
+> `g` and `h` products of elementary matrices `e_{ij}(x)` of this matrix ring
+> and `v = e_1 + (1-e_1)v(1-e_1)`.
+
+`Algebra/PeirceElementaryFactorization.lean` proves both at once, as the single
+closed proposition `PrintedItemA`.  That is the whole sentence and nothing here
+improves on it; what this module adds is the split, so that each census key has
+a carrier stating exactly its own sentence.
+
+The split is not merely cosmetic in the second half.  `PrintedItemA` asserts the
+matrix identification and the factorization *for the decomposition it builds*.
+`manuscriptSentence_itemAMatrixRingAndFactorization` asserts them for **every**
+decomposition meeting item (a)'s hypotheses, which is what the printed "Then"
+says: the printed sentence is about any such `e_1, …, e_m`, not about one
+chosen family.  It is `printedTwistedPeirceMatrixRing` for the ring and
+`printedItemAShape` for the factorization, which are already stated at that
+generality.
 
 ## The Steinberg displays (tex lines 1227--1233)
 
@@ -242,6 +273,91 @@ theorem manuscriptDiagInElementary : PrintedDiagInElementary := by
   intro R _ _ hR v hv
   exact manuscriptSentence_diagInElementary R hR v hv
 
+/-! ## Item (a), sentence by sentence -/
+
+/-- **Printed item (a), first sentence.**
+
+> There are orthogonal idempotents `e_1, …, e_m` with sum `1`, `m ≥ 4`, such
+> that `e_1, …, e_{m-1}` are pairwise equivalent and `e_m` is equivalent to an
+> idempotent `f ≤ e_1`.
+
+Every clause: orthogonality, sum `1`, pairwise equivalence off the last index,
+and the last index equivalent to a sub-idempotent of the first. -/
+def PrintedItemADecomposition : Prop :=
+  ∀ (R : Type) [Ring R], IsPurelyInfiniteSimpleRing R →
+    ∀ m : ℕ, 4 ≤ m →
+      ∃ (e : Fin m → R) (_ : ∀ i, IsIdempotentElem (e i)) (i₀ last : Fin m)
+        (f : R), IsIdempotentElem f ∧ IdempotentLE f (e i₀) ∧ i₀ ≠ last ∧
+        (∀ i j : Fin m, i ≠ j → e i * e j = 0) ∧ (∑ i, e i = 1) ∧
+        (∀ i j : Fin m, i ≠ last → j ≠ last →
+          IsEquivalentIdempotent R (e i) (e j)) ∧
+        IsEquivalentIdempotent R (e last) f
+
+theorem manuscriptSentence_itemADecomposition : PrintedItemADecomposition := by
+  intro R _ hR m hm
+  obtain ⟨e, hidem, i₀, last, f, hfi, hfle, hne, horth, hsum, hpair, hlast, -, -⟩ :=
+    printedItemA R hR m hm
+  exact ⟨e, hidem, i₀, last, f, hfi, hfle, hne, horth, hsum, hpair, hlast⟩
+
+/-- **Printed item (a), second sentence.**
+
+> Then `R` is the ring of `m × m` matrices over `T = e_1Re_1`, with identity
+> `diag(1_T, …, 1_T, f)`, whose last column has entries in `Tf` and whose last
+> row has entries in `fT`, and every unit `u` of `R` factors as `u = gvh` with
+> `g` and `h` products of elementary matrices `e_{ij}(x)` of this matrix ring
+> and `v = e_1 + (1-e_1)v(1-e_1)`.
+
+Quantified over **every** decomposition meeting item (a)'s hypotheses, which is
+what the printed "Then" means: the sentence is about any such `e_1, …, e_m`.
+The three conjuncts are the printed `Tf` / `fT` support conditions, the printed
+matrix identification, and the printed factorization. -/
+def PrintedItemAMatrixRingAndFactorization : Prop :=
+  ∀ (R : Type) [Ring R], IsPurelyInfiniteSimpleRing R →
+    ∀ (m : ℕ), 4 ≤ m → ∀ (e : Fin m → R) (hidem : ∀ i, IsIdempotentElem (e i)),
+      (∀ i j : Fin m, i ≠ j → e i * e j = 0) → (∑ i, e i = 1) →
+      ∀ i₀ last : Fin m, i₀ ≠ last →
+        (∀ i j : Fin m, i ≠ last → j ≠ last →
+          IsEquivalentIdempotent R (e i) (e j)) →
+        ∀ (f : R) (hfi : IsIdempotentElem f) (hfle : IdempotentLE f (e i₀)),
+          IsEquivalentIdempotent R (e last) f →
+            (∀ M : Matrix (Fin m) (Fin m) (Corner R (e i₀) (hidem i₀)),
+                M ∈ cornerNonUnitalSubring
+                    (twistedIdentity (hidem i₀) hfle last)
+                    (isIdempotentElem_twistedIdentity (hidem i₀) hfi hfle last) ↔
+                  ((∀ i, M i last * ⟨f, hfle.1, hfle.2⟩ = M i last) ∧
+                    ∀ j, (⟨f, hfle.1, hfle.2⟩ : Corner R (e i₀) (hidem i₀))
+                      * M last j = M last j)) ∧
+              Nonempty (R ≃+*
+                Corner (Matrix (Fin m) (Fin m) (Corner R (e i₀) (hidem i₀)))
+                  (twistedIdentity (hidem i₀) hfle last)
+                  (isIdempotentElem_twistedIdentity (hidem i₀) hfi hfle last)) ∧
+              ∀ u : Rˣ, ∃ v : Rˣ,
+                FactorsThrough (peirceElementarySubgroup e) u v ∧
+                (v : R) = e i₀ + (1 - e i₀) * (v : R) * (1 - e i₀)
+
+theorem manuscriptSentence_itemAMatrixRingAndFactorization :
+    PrintedItemAMatrixRingAndFactorization := by
+  intro R _ hR m hm e hidem horth hsum i₀ last hne hpair f hfi hfle hlast
+  obtain ⟨hsupp, hiso⟩ :=
+    printedTwistedPeirceMatrixRing R (Fin m) e hidem horth hsum i₀ last hne
+      hpair f hfi hfle hlast
+      (isIdempotentElem_twistedIdentity (hidem i₀) hfi hfle last)
+  exact ⟨hsupp, hiso,
+    printedItemAShape R hR m hm e hidem horth hsum i₀ last hne hpair f hfi hfle
+      hlast⟩
+
+/-- **Printed item (a), both sentences.**
+
+Not a restatement of `PrintedItemA`: the second conjunct is quantified over
+every decomposition meeting item (a)'s hypotheses, where `PrintedItemA` asserts
+the same clauses for the one decomposition it builds. -/
+def PrintedItemASentences : Prop :=
+  PrintedItemADecomposition ∧ PrintedItemAMatrixRingAndFactorization
+
+theorem manuscriptSentence_itemA : PrintedItemASentences :=
+  ⟨manuscriptSentence_itemADecomposition,
+    manuscriptSentence_itemAMatrixRingAndFactorization⟩
+
 end MFQuotientUnitsItemA
 end GroupApproximation
 
@@ -259,3 +375,8 @@ open GroupApproximation.MFQuotientUnitsItemA
 #audit_axioms manuscriptSentence_diagInElementaryAndCommutator
 #audit_closed_axioms GroupApproximation.MFQuotientUnitsItemA.manuscriptSteinbergDisplays
 #audit_closed_axioms GroupApproximation.MFQuotientUnitsItemA.manuscriptDiagInElementary
+#audit_closed_axioms
+  GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemADecomposition
+#audit_closed_axioms
+  GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemAMatrixRingAndFactorization
+#audit_closed_axioms GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemA

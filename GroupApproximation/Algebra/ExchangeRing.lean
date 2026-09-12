@@ -15,8 +15,8 @@ import GroupApproximation.Meta.AxiomGuard
 This module carries the middle clause, at the generality the sentence states
 it: **every** purely infinite simple ring is an exchange ring, with no
 countability, no algebra structure, and no restriction to Leavitt algebras.
-The citation is P. Ara, *Extensions of exchange rings*, J. Algebra **197**
-(1997), 409--423, and the fact for purely infinite simple rings.
+The citation is P. Ara, *The exchange property for purely infinite simple
+rings*, Proc. Amer. Math. Soc. **132** (2004), no. 9, 2543--2547.
 
 ## The definition
 
