@@ -119,3 +119,114 @@ Here `G` permutes coordinates and the lamp `p_x` flips coordinate `x`.
     by automorphisms, and is not an instance of that theorem.
   - A unital equivariant copy of `k^{+-1}` with the flip inside some `k[A]` with automorphism twists would
     need a fixed-point-free block partition of the dual group. The trivial character rules that out.
+
+## 2. No finite-dimensional representations, so no marked-site certificate
+
+**Proposition 2.1.** If `b_S` is nondegenerate on `V`, then `C_S tensor_k L` is simple for every field
+`L >= k`.
+
+*Proof.*
+- Take a nonzero ideal and an element `a = sum_(v in F) lambda_v c_v` in it with `|F|` minimal.
+- Suppose `|F| >= 2`. Pick `v0 != v1` in `F` and `w` with `b(v0 + v1, w) = 1`.
+- Since `c_w c_v c_w^-1 = (-1)^b(v,w) c_v`, the element `a - (-1)^b(v0,w) c_w a c_w^-1` lies in the ideal.
+  It kills the `v0` term and has coefficient `2 lambda_(v1) != 0` at `v1`, which contradicts minimality.
+- So `a` is a scalar times a unit monomial. QED
+
+**Nondegenerate examples.**
+- **Complete graph on infinite `X`.** The form is `|v||w| - |v cap w|`, and testing against each `e_y`
+  forces `v = 0`.
+- **Compressor graph.** See Example 1.2.
+- **Matching graph.** Nondegenerate by inspection.
+
+**Corollary 2.2.** Let `X` be infinite and `b_S` nondegenerate.
+- For every field `L >= k` and every `n >= 1`, there is no unital `k`-algebra map `A_S -> M_n(L)`.
+- So `A_S` has no unital `k`-algebra map to any algebra that has a unital map to some `M_n(L)`.
+
+*Proof.* The `L`-linear extension `C_S tensor L -> M_n(L)` would be unital, hence injective by 2.1. But
+`C_S tensor L` is infinite-dimensional over `L`. QED
+
+**Corollary 2.3 (the marked-site proofs have nothing to apply to).** Under the same hypotheses:
+- **Group algebras.** `A_S` admits no unital homomorphism into `M_n(k[E])` for any group `E`, because the
+  augmentation is a character.
+- **Marked-site rings.** Nor into any ring `R_r(H,j)` of `diagonal-tensor-orbit-corner-induction-proof`,
+  or `R_r(H,F,beta)` of `twisted-lamp-diagonal-corner-induction-proof`, for `H <= G` residually finite. To
+  reach a matrix algebra from either:
+  - evaluate every `C` factor at infinity;
+  - pass to a finite quotient of `A^j x H` or of `F semidirect H`, through a finite-index normal subgroup of
+    `H` inside the kernel of `beta`;
+  - use the regular representation.
+- **Consequence.** Stable finiteness of `A_S` cannot be proved by separating it with unital maps into group
+  algebras, marked-site crossed products, or residually finite-dimensional rings. Any separating family
+  must use rings with no finite-dimensional representation, such as rank ultraproducts (Section 3). The
+  same holds for `B_X`.
+
+## 3. Rank embeddings: the doubling gate
+
+**Proposition 3.1 (doubling).** For every `S` and `q`, the assignments `d_x = c_x tensor c_x^op` and
+`g -> u_g tensor (u_(g^-1))^op` extend to an injective unital homomorphism
+
+```text
+k[W]  ->  A_S tensor_k A_S^op,       W = F_2 wr_X G.
+```
+
+*Proof.*
+- **The `d_x` commute.** `(c_x tensor c_x^op)(c_y tensor c_y^op) = c_x c_y tensor (c_y c_x)^op`. Swapping
+  the order changes both factors by the same sign, so the `d_x` commute.
+- **Squares.** `d_x^2 = c_x^2 tensor (c_x^2)^op = 1`.
+- **Equivariance.** In `A^op`, `(u_(g^-1))^op c_x^op (u_g)^op = (u_g c_x u_(g^-1))^op = c_(gx)^op`. So
+  conjugation by `u_g tensor (u_(g^-1))^op` sends `d_x` to `d_(gx)`, and the map on `G` is multiplicative.
+- **Injectivity.** The image of `v g` is `+- c_v u_g tensor (c_(g^-1 v) u_(g^-1))^op`, and distinct pairs
+  give distinct basis tensors. QED
+
+**Proposition 3.2 (rank gate).** Assume `X` is infinite, `b_S` is nondegenerate and `G` acts faithfully on
+`X`. Let `sigma : A_S -> R_omega = prod_omega M_(n_i)(k) / ker rho_omega` be unital and injective. Then `W`
+embeds in the unit group of a rank-metric ultraproduct over `k`, with every nontrivial element at
+positive rank distance from `1`. So does `E_S` when `k = F_3`.
+
+*Proof.*
+- **The tensor map.** `tau(y tensor z^op) = (Y_i tensor Z_i^T)_i` defines a homomorphism into
+  `prod_omega M_(n_i^2)(k) / ker`. It is well defined because `rho(Y tensor Z^T) <= min(rho Y, rho Z)`.
+- **Reduce to a Sylvester equation.**
+  - For `w = v g != 1` put `U = c_v u_g`.
+  - `u_(g^-1) c_v = +- U^-1`, so `tau(w)` is represented by `+- X_i tensor X_i^(-T)`, where the `X_i` are
+    invertible representatives of `sigma(U)`.
+  - The kernel of `X tensor X^(-T) -+ 1` is the solution space of `X M = +- M X`. Its dimension is at most
+    `sum_lambda g_X(lambda) a_X(+-lambda) <= n max_lambda g_X(lambda)`, over `lambda in kbar`.
+  - So `rho(tau_i(w) - 1) >= min_lambda rho(X_i - lambda)`.
+- **Concentration would make `U` central.** Suppose that minimum tends to `0` along `omega`, with
+  minimizers `lambda_i`.
+  - Every `a in A_S` with representatives `Z_i` gives `rho([X_i, Z_i]) <= 2 rho(X_i - lambda_i) -> 0`.
+  - Injectivity of `sigma` gives `[U, a] = 0`, so `U` is central.
+- **No central `U` exists.**
+  - A central `c_v u_g` commutes with every `c_x`, so `gx = x` for all `x`, and `g = 1` by faithfulness.
+  - Then `c_v` is central in `C_S`, so `v` is in the radical, which is `0`. So `w = 1`, a contradiction.
+- **The group `E_S`.**
+  - `F_3[E_S] = F_3[W] x A_S`, and `diag(tau_i(.), sigma_i(.) tensor 1_(n_i))` is a unital homomorphism.
+  - A nontrivial element either maps to `w != 1` in `W`, or equals `eps`, which is `-1` on the second
+    block. QED
+
+**Proposition 3.3 (equivalence).** Under the same hypotheses, with `k = F_3`: `E_S` is `F_3`-linear sofic
+iff `A_S` embeds unitally in a rank-metric ultraproduct over `F_3`.
+
+*Proof.*
+- `<=` is Proposition 3.2.
+- `=>`:
+  - By `linear-sofic-group-algebra-is-stably-finite`, `F_3[E_S]` embeds unitally and injectively in some
+    `R_omega`.
+  - `f = (1 - eps)/2` is a nonzero central idempotent. Its image is represented by idempotents of rank `r_i`,
+    and `rho_omega(f) > 0`.
+  - The corner `f R_omega f = prod_omega M_(r_i)(F_3) / ker` receives `A_S = f F_3[E_S]` unitally and
+    injectively. QED
+
+**Consequences.**
+- **Rank proofs are at least as hard as linear soficity.** Proving `A_S` stably finite through rank models
+  over `F_3` is at least as hard as making the Kun--Thom wreath `F_3`-linear sofic. That is the
+  finite-field form of the question recorded over `C` as `kun-thom-wreath-linear-sofic`.
+- **Over `C`.** Propositions 3.1 and 3.2 hold verbatim, so a rank embedding of the complex Clifford skew
+  ring would make `W` complex linear sofic.
+- **A witness decides less.** A one-sided inverse pair in `A_S` would prove `E_S` not `F_3`-linear sofic,
+  but says nothing about `W`.
+- **The gate is open in both directions.** Kun--Thom's centralizer argument kills `eps` in permutation
+  models by rounding near-invariant vectors of the Kazhdan subgroup to exact permutation normalizers. No
+  rank analogue of that rounding is known over finite fields, so rank models with `eps = -1` are not
+  excluded either.
