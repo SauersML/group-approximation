@@ -1194,3 +1194,51 @@ Artifact `research/artifacts/higman-group-gottschalk-host-2026-09-12.md`, Sectio
    - Suppose `beta` extends `theta`. From `c^b = c^2`, `beta` gives `a^(beta(b)) = a^2`. But `G_1^ab = Z = <a>`, where `a` maps to 1 and `a^2` to 2.
    - Every double `G_1 *_K G_1` retracts onto `G_1` and so maps onto `Z`, while `H` has no finite quotients.
    - `doubles-of-surjunctive-groups-are-surjunctive` is cited only for the untwisted remark. The route does not need it, and it is not re-derived here. It carries no verifier verdict on main.
+- **Follow-up.** The author applied the involution extension forward at 98bd38f4a, in Theorem 4.1(5) and the claim node.
+
+## 26. Girth five, Sidon memories and the linear Higman route (w5-free-neg-c, 98bd38f4a, 0d7def017)
+
+Claim `higman-group-has-girth-five-in-its-standard-generators`, route `higman-girth-five-proof`, artifact Section 5.
+**PASS**, with one wording note. Route `higman-stable-finiteness-failure-gives-nonsurjunctivity` is **valid**.
+Found in a sweep of pushed records; no verification request had come in.
+
+**Lemma 5.1.**
+- A trivial word has `x`-exponent sum `0`. A freely reduced word in `x^(+-1)` alone has nonzero sum. So a short trivial word has one `x`, one `x^-1`, and at most two `y`-letters, with `(|k|,|l|)` in `{(1,0),(2,0),(1,1)}`.
+- `x^-1 y^k x y^l = y^(2k+l)`, which vanishes only for `l = -2k`.
+- `x y^k x^-1 y^l = y^(k/2+l)`, which vanishes only for `k` even and `l = -k/2`.
+- Both need `|k|+|l| >= 3`.
+- Words that are not cyclically reduced are conjugate to shorter ones.
+
+**Theorem 5.2.**
+1. **No `d`.** The word lies in `G_1`.
+   - A single piece is covered by Lemma 5.1.
+   - If both `a` and `c` occur, every syllable decomposition has at least two syllables. A trivial word needs a syllable in `<b>`.
+   - A `{b,c}`-syllable containing `c` has coordinate `+-2^j` or `+-1 +- 2^(+-m)`, never `0`.
+   - In `B(a,b)` the syllables in `<b>` have `a`-exponent sum `0`: `a^-1 b^(+-1) a = b^(+-2)`, while `a b a^-1 = b^(1/2)` is not in `<b>`.
+   - The remaining letter gives `b^(+-2) c^(+-1)`, whose `b`-exponent in `B(b,c)` is nonzero.
+   - "No `b`" is the image under `psi`.
+2. **Both `b` and `d`.** Syllables have length at most 3.
+   - Two-letter syllables are never in `F`: `F cap B(a,b) = <a>`, `F cap B(b,c) = <c>`, `F cap <b> = 1`.
+   - Three letters: `b^-1 c^(+-1) b = c^(+-2)` is in `F`, but `b c b^-1 = c^(1/2)` is not.
+   - In `B(a,b)` the `Z[1/2]`-part of a word with at most two `b`s is nonzero.
+   - Mixed `a, b, c` syllables have normal forms `(a^i)(b c^j)`, and so on, differing from `(a^i)(c^j)` by a factor with nonzero `b`-exponent.
+   - With an `F`-syllable present, the word is `c^(+-2) d^(+-1)`, and `d` is not in `F` because `F cap <d> = 1` in `G_2`.
+   - Otherwise at least two alternating syllables lie outside `F`, and the normal form applies.
+
+**Corollary 5.3.** Take `m^-1 m' n'^-1 n = 1` of length at most 4. By Theorem 5.2 it is freely trivial, and in `F(a,b,c,d)` the words `m^-1 m'` with `m != m'` in `{1,a,b,c,d}` are distinct reduced words. The convention matches `binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`.
+
+**Wording note (claim node).** The girth claim's "For automata" paragraph calls "a binary injective unbalanced automaton on `H`" "the form a counterexample takes by `every-injective-ca-has-uniform-single-site-output-law`".
+- That node is **OPEN**.
+- Its transfer route produces an injective automaton with a skewed site law over the alphabet `A^(k+1)`, not a binary one.
+- Counterexamples need not be binary, nor unbalanced at the original alphabet.
+- What is correct: a binary injective unbalanced automaton is one form of counterexample, strict by `unbalanced-effective-rule-certifies-strictness-proof` (Section 6). The Sidon filter excludes only that form.
+- The artifact's Corollary 5.3 states this correctly.
+
+**Linear route.**
+- `BA = I != AB` in `M_n(F_p[H])`: linear automata determine their matrices, and composition corresponds to multiplication.
+- So one of the two automata has a left inverse and is injective.
+- If it were also surjective, the inverse would be two-sided, forcing `AB = I`. So it is strict on `(F_p^n)^H`.
+- The route cannot fire while `higman-group-algebra-not-stably-finite` is OPEN.
+- That claim's attempts hold:
+  - `A(BA) = A` gives `(AB-1)A = 0`.
+  - The support subgroup `K` already carries `BA = I != AB` in `M_n(F_p[K])`, so `K` is nonsofic by Elek–Szabó, and Theorem 1.2 applies.
