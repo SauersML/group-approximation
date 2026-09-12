@@ -75,3 +75,17 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
     direct finiteness (L4a).
   - The adjacent "cannot see" and "is now a Steinberg identity" wording was an overclaim. `EL_4`
     relations are relations of the same group `EL_3(R)`.
+- **Endpoint, quantitative (lane `w4-r4-approx`, 2026-09-12).** Sources:
+  `toeplitz-isometry-defects-have-total-rank-at-least-one`, and Section 3 of
+  `leavitt-ring-rank-approximability-collapse-2026-09-12.md`. This agrees with L1 of the lead pass and
+  adds four points.
+  - **Inequality.** For `S, T in eMe` and `X in Me`, every Sylvester matrix rank function satisfies
+    `rk(X) <= rk(e - TS) + rk(XS)`. The proof is push-through by block elimination, then
+    `X = X(e - ST) + (XS)T`.
+  - **Check (c).** `T_1 S_1 = e` only certifies `T_1 != 0`, so any positive lower bound on `rk(T_1)` is
+    enough. `rk(e) = rk(D)` is not needed.
+  - **Finite level.** The inequality already holds in `M_n(k)` with normalized rank. Approximate
+    relations suffice when their total defect is below `rk(T_1)`.
+  - **Every finite `K`.** The endpoint needs no simplicity and no field hypothesis. This matters because
+    `leavitt-algebra-has-no-unital-rank-model`, which `leavitt-el3-triviality-via-rank-four-cuntz-family`
+    requires, is stated only for `L_(F_2)(1,2)`.

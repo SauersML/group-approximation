@@ -30,6 +30,17 @@ isolates the entire remaining question: whether the **approximate** relations ca
 isometries **approximately proper**, `rk(t_i s_j - delta_ij) -> 0` while `rk(1 - s_i t_i)` stays
 bounded below. That gap is exactly the gate.
 
+**Correction (lane `w4-r4-approx`, 2026-09-12).** The gap is empty and the right-hand side is false.
+- **The gap is empty.** Every Sylvester matrix rank function satisfies `rk(1 - st) = rk(1 - ts)` exactly.
+  So `rk(t_i s_i - 1) -> 0` forces `rk(1 - s_i t_i) -> 0` at the same rate.
+- **The right-hand side is false.** Three relations already give
+  `rk(1 - t_0 s_0) + rk(1 - t_1 s_1) + rk(t_1 s_0) >= 1`
+  (`toeplitz-isometry-defects-have-total-rank-at-least-one`). So no unital `phi` is `1/3`-multiplicative
+  on any `F` containing `0, 1, s_i, t_i`.
+- **So the equivalence holds iff `R^x` is not `F_p`-linear sofic.** It is the gate's negative answer, not
+  an intermediate reformulation. See `ring-rank-approximability-forces-non-linear-soficity` and
+  `ring-rank-approximability-from-leavitt-el3-triviality`.
+
 ## Attempts
 
 - **Forward.** A linear sofic model of `R^x = EL_2(R)` restricts on the `(1,2)` root subgroup to a

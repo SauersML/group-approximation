@@ -123,3 +123,57 @@ the ultraproduct.
 
 So the claim is at least as strong as the payoff, and it follows from the gate instance. It is not an
 easier intermediate step.
+
+## 3. Consequences for family R4
+
+**Corollary 6 (what the end of Plan 1 needs).** Let `M` be a ring with a faithful Sylvester matrix rank
+function, such as a rank ultraproduct, and let `e != 0` be an idempotent. There are no `S, T, X in eMe`
+with `TS = e`, `XS = 0` and `X != 0`.
+
+*Proof.* By Lemma 2, `rk(X) <= rk(e - TS) + rk(XS) = 0`, and `rk` is faithful. ∎
+
+- **What the contradiction needs.** After the assembly of `rank-four-isometry-relations-give-corner-cuntz-family`,
+  the contradiction only needs a nonzero corner, a left-invertible `S` and a nonzero `X` with `XS = 0`.
+  - In the plan's notation, `T_0 S_0 = e`, `T_1 S_0 = 0` and `T_1 != 0` are enough. `T_1 S_1 = e` is only
+    one way to certify `T_1 != 0`.
+  - Check (b), `S_0 T_0 + S_1 T_1 = e`, is not needed, and neither is `T_0 S_1 = 0`.
+  - Check (c), `rk(e) = rk(D)`, can be replaced by any lower bound `rk(X) > 0`.
+- **Finite-level form.** Before passing to the ultraproduct, the same inequality
+  `rk(X) <= rk(e - TS) + rk(XS)` holds in `M_n(k)` with normalized rank. So approximate relations are
+  enough, provided their total defect is below `rk(X)`.
+- **Scope of the endpoint.**
+  - `leavitt-el3-triviality-via-rank-four-cuntz-family` targets every finite `K`, but it requires
+    `leavitt-algebra-has-no-unital-rank-model`, which is stated only for `L_(F_2)(1,2)`.
+  - That node's proof works for every simple ring that is not directly finite. Theorem 3 needs no
+    simplicity at all.
+  - So `toeplitz-isometry-defects-have-total-rank-at-least-one` supplies the endpoint directly, for
+    every `K` and every target field.
+
+**Corollary 7 (Toeplitz defects are visible in every model).** Let `K` be finite of characteristic `p`
+and `R = L_K(1,2)`.
+
+*The evaluation map `F_p[R^x] -> R` is onto.* Its image is a subring. Under `R ~= M_2(R)`, it contains
+`x_12(a) - 1 = e_12(a)` and `x_21(b) - 1 = e_21(b)`, hence `e_12(a) e_21(1) = e_11(a)` and
+`e_21(a) e_12(1) = e_22(a)`. So it is all of `R`.
+
+*The bound.* Choose any lifts `ŝ_i, t̂_i in F_p[R^x]` of `s_i, t_i`. For every Sylvester matrix rank
+function on `F_p[R^x]`, in particular one induced by an `F_p`-linear sofic approximation of `R^x`,
+Theorem 3 gives
+
+```text
+rk(1 - t̂_0 ŝ_0) + rk(1 - t̂_1 ŝ_1) + rk(t̂_1 ŝ_0) >= 1.
+```
+
+All three elements lie in the evaluation kernel. So every linear sofic model of `R^x` gives rank at
+least `1/3` to one of three specific kernel elements, for every choice of lifts. A non-soficity proof
+that works through kernel elements has a concrete target: lifts for which, in every model, all three of
+these kernel elements have rank below `1/3`.
+
+## 4. Where it stops
+
+- **No new route.** Plan 2 adds no route to the gate. The group-to-ring extraction is still
+  `el3-rank-models-factor-through-ring-rank-models`, together with Plan 1.
+- **What Plan 1 must now produce.** Start from a rank model of `EL_4(R)` with `D = N_23 N_12 != 0` and
+  its root maps `n_IJ`. Build a nonzero corner, a left-invertible `S` in it, and a nonzero `X` with
+  `XS = 0`. This is weaker than a full corner Leavitt family.
+- **Theorem 3 is only an endpoint.** It extracts nothing from a model.
