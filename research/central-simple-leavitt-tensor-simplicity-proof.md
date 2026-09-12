@@ -15,7 +15,9 @@ artifacts:
 ---
 
 The Lean theorems behind `binary-leavitt-elementary-group-is-simple` are
-stated for an arbitrary ring `R`.
+stated for an arbitrary ring `R`. This route applies their statements on paper.
+The hypotheses for `B ⊗ L` are discharged by hand, and no Lean instance of
+`B ⊗ L` is built, so nothing here is certified by a build.
 
 - `rootDetection_of_leavittFamily` (`RootDetectionBinary.lean`) needs:
   - `3 <= card ι`;

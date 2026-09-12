@@ -5,16 +5,20 @@ kind: route
 title: Rerun Khanh's criteria over B ⊗ L, normalizing Leavitt reduction by simplicity of B
 target: leavitt-tensor-hosts-acyclic-steinberg-and-fp
 requires:
-  - leavitt-unit-group-finitely-presented
-  - leavitt-steinberg-map-iso-from-rank-three
+  - khanh-acyclicity-and-steinberg-criteria
 artifacts:
   - research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md
+  - research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md
 ---
 
-The two prerequisites are the verified Khanh imports. The general criteria
-used below come from the same verified source: Theorems 2.2 and 5.1, Lemmas
-2.3, 2.4 and 5.2, and the GE, Voronetsky and Krstić--McCool steps. Put
-`R = B ⊗ L` with `B` simple.
+The prerequisite bundles the general statements this transfer uses:
+- Khanh's Theorems 2.2 and 5.1 and Lemmas 2.3, 2.4 and 5.2;
+- the Menal--Moncasi GE remark;
+- Voronetsky's refinement;
+- Krstić--McCool.
+
+None of Khanh's conclusions about `L` itself is used. Put `R = B ⊗ L` with `B`
+simple.
 
 1. **Normalization (artifact Lemma 2.1).** Khanh's Lemma 4.1 argument with
    coefficients in `B` gives `x` and words `η_i` with `η_i* a_i x = c_i ⊗ 1`,

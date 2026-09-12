@@ -2,7 +2,7 @@
 rg: 2
 id: ara-cortinas-leavitt-tensor-k-theory-vanishes
 kind: claim
-title: Tensoring with the binary Leavitt algebra kills the algebraic K-theory of regular supercoherent algebras, so L ⊗ L has trivial K-theory
+title: Over every field, tensoring with the Leavitt algebra L_2 kills the K-theory of regular supercoherent algebras, so L_2 ⊗ L_2 has trivial K-theory
 distinct_from:
   leavitt-unit-group-finitely-presented: that is finite presentability of the unit group of L; this is vanishing of algebraic K-theory for L ⊗ R with R regular supercoherent, a ring invariant with no group presentation in it.
 artifacts:

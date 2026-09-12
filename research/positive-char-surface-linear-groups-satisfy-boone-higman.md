@@ -8,6 +8,7 @@ distinct_from:
   char-two-curve-linear-groups-satisfy-boone-higman: that is characteristic two and transcendence degree at most one inside L^x; this is every prime and transcendence degree at most two.
 artifacts:
   - research/artifacts/boone-higman-prime-field-leavitt-hosts-2026-09-12.md
+  - research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md
 ---
 
 **ESTABLISHED (conditional on the imports behind

@@ -5,18 +5,21 @@ kind: route
 title: Rerun the characteristic-two transfer with odd-p weights, signed transporters and scalar-centre root detection
 target: prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre
 requires:
-  - leavitt-tensor-hosts-acyclic-steinberg-and-fp
-  - central-simple-leavitt-tensor-unit-groups-are-simple
+  - khanh-acyclicity-and-steinberg-criteria
   - leavitt-center-is-coefficient-field
 artifacts:
   - research/artifacts/boone-higman-prime-field-leavitt-hosts-2026-09-12.md
+  - research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md
   - GroupApproximation/Leavitt/DiagonalNormalExtraction.lean
 ---
 
-This follows artifact Sections 1--4.
+This follows artifact Sections 1--4. The characteristic-two host theorem does
+not imply this one, so the route depends only on the general criteria and the
+centre calculation. The arguments below repeat the characteristic-free steps
+instead of citing that claim.
 
-1. **Characteristic-free steps.** Reused from
-   `leavitt-tensor-hosts-khanh-transfer-proof`:
+1. **Characteristic-free steps.** These are the arguments of
+   `leavitt-tensor-hosts-khanh-transfer-proof`, which never use `p = 2`:
    - the division lemma over `B ⊗ L_p`, using `Σ y_k c z_k = 1` and same-length
      words;
    - frame extension, and the compression with `w c(u) w^-1 = c(c(u))`;
@@ -40,7 +43,9 @@ This follows artifact Sections 1--4.
      `W X_2j(c) W^-1 = X_1j(-c)`, from the Steinberg relations alone.
    - So `z = (W_23 W W_23)(W W_23 W)^-1` is central, and `ψ(T) = W z` satisfies
      both presentation relations.
-4. **Simplicity modulo the centre.**
+4. **Simplicity modulo the centre.** This is a paper argument that reads the
+   Lean proof. It is not a Lean theorem, and nothing here is certified by a
+   build.
    - `Z(B ⊗ L_p) = F_p` by `leavitt-center-is-coefficient-field`.
    - In `exists_elGen_mem_of_diagonal`, `hcentral` enters only through
      `center_elementaryGroup_eq_bot_of_units`, to make the chosen `g` noncentral.

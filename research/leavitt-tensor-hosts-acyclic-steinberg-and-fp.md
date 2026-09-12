@@ -9,6 +9,7 @@ distinct_from:
   projective-elementary-fp-kernel-criterion: that criterion asks for finite normal generation of an unstable Steinberg kernel over an arbitrary ring host; here that kernel is proved trivial whenever the host is a simple algebra tensored with L and K_1, K_2 vanish.
 artifacts:
   - research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md
+  - research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md
 ---
 
 **ESTABLISHED (conditional on the imported criteria of Khanh

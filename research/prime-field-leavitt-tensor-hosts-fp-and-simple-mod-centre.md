@@ -9,6 +9,7 @@ distinct_from:
   odd-leavitt-steinberg-reflection-prerequisites: that audits odd-characteristic reflection words and connector lifts inside St_r(L_p); this proves the Steinberg map is an isomorphism over B ⊗ L_p through Brown's presentation with signed transporters.
 artifacts:
   - research/artifacts/boone-higman-prime-field-leavitt-hosts-2026-09-12.md
+  - research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md
 ---
 
 **ESTABLISHED (conditional on the imported criteria of Khanh
@@ -23,6 +24,10 @@ unital `F_p`-algebra, and `R = B ⊗ L_p`.
 4. If `B` is central simple:
    - `E_n(R)` modulo its scalar centre is simple for `n >= 3`;
    - under the hypothesis of (2), `R^x / F_p^x` is simple.
+
+Part 4 is a paper argument that reads the Lean root-detection proof. It is not
+a Lean theorem. `reviewer-2` passed the claim on 2026-09-12
+(`research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md`).
 
 There are two new ingredients.
 - **Quillen's count at odd `p`.** Weights on `H*(V; F_p)` in degrees `0 < j < m`
