@@ -36,6 +36,11 @@ p_c(Cay(Gamma,S)) < p_h <= p_u(Cay(Gamma,S)).
 * Any set such as `D_a = {0,1,3}`, which is symmetric under no translation, so
   orientation reversal of `a`-edges cannot be compensated.
 
+*Update 2026-09-12.* `fpbs-tree-projected-reversible-letter-nonunimodular`
+covers the first example. It covers the second whenever some other letter has a
+decoration set symmetric up to translation. It lifts a group with three vertex
+orbits that reverses only that letter.
+
 **Correction to the root.** The Attempts of
 `fpbs-tree-projected-cayley-graphs-strict-thresholds` said that automorphisms of
 asymmetric or label-dependent decorations reduce to the free group. That holds

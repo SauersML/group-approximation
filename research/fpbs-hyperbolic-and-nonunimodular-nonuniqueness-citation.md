@@ -23,6 +23,19 @@ quasi-transitive graphs together with the critical triangle condition; the
 nonunimodular abstract gives `p_c<p_h<=p_u` for graphs whose automorphism
 group has a nonunimodular quasi-transitive subgroup, and names `T_k x Z^d`.
 
+**Statement read from the source, 2026-09-12.** The v3 TeX source
+(`https://arxiv.org/e-print/1711.02590v3`, `NonunimodularPercolation_Revised5.tex`)
+was read on MSI.
+* Theorem 1.2 (`thm:pcpu`; Conjecture 1.1 shares its counter) reads: "Let G be a connected, locally finite graph,
+  and suppose that Aut(G) has a quasi-transitive nonunimodular subgroup. Then
+  p_c(G)<p_u(G)."
+* The definitions that follow call `Gamma ⊆ Aut(G)` quasi-transitive if it has
+  finitely many orbits on `V`. They call it unimodular if
+  `|Stab_v u| = |Stab_u v|` for all `u, v` in one orbit, where `Stab_x y` is the
+  orbit of `y` under the stabilizer of `x`.
+
+So the theorem needs neither a transitive graph nor a transitive subgroup.
+
 This route asserts only that the cited theorems say what the target records
 them as saying. Neither paper proves the every-generating-set statement of
 `fpbs-benjamini-schramm-universal` for an arbitrary nonamenable group.
