@@ -127,8 +127,11 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
       (`anti-central-state-obstruction-equals-stable-finiteness`).
     - *Support filter.* Witness supports generate subgroups that are not `F_3`-linear sofic
       (`ternary-corner-witnesses-need-non-linear-sofic-support`).
-    - *Weaker sufficient target.* `ternary-anti-central-unit-class-is-nonpositive`: a stable relation
-      `S_-^r ~= S_-^r (+) S_-^k (+) Q`.
+    - *Stable form, equivalent (corrected later on 2026-09-12).*
+      `ternary-anti-central-unit-class-is-nonpositive` (`S_-^r ~= S_-^r (+) S_-^k (+) Q`) is equivalent to
+      this claim, not weaker: halving through `x -> e_- delta(x)` shrinks it to size one. So this claim
+      holds iff `(K_0(S_-), [eps_-])` admits no state
+      (`twisted-leavitt-corner-fullness-equals-absence-of-k0-states`).
     - *Where it dies.* No state on `K_0(S_-)` is known, and none can come from finite-dimensional or
       properly infinite images.
     - Artifact: `research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md`.

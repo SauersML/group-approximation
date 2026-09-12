@@ -4,8 +4,8 @@ id: ternary-anti-central-unit-class-is-nonpositive
 kind: claim
 title: Some positive multiple of the unit class of the ternary anti-central summand is nonpositive in K_0
 distinct_from:
-  ternary-anti-invariant-swap-corner-is-full: that is the unstable corner equation, which implies this condition with k = 1; this is the stable K_0 condition, which allows stabilization and an arbitrary projective complement and still suffices for a counterexample.
-  leavitt-group-algebra-not-stably-finite: that is failure of stable finiteness for the binary group algebra over F_2; this is a K_0 positivity failure on the anti-central summand of the ternary group algebra, strictly stronger than non-stable-finiteness of that summand.
+  ternary-anti-invariant-swap-corner-is-full: that is the corner equation c e_- b = eps_-; this is its K_0 positivity form, equivalent to it by twisted-leavitt-corner-fullness-equals-absence-of-k0-states, and equivalently failure of the rank condition for the anti-central summand.
+  leavitt-group-algebra-not-stably-finite: that is failure of stable finiteness for the binary group algebra over F_2; this is a K_0 positivity failure on the anti-central summand of the ternary group algebra, a condition that implies non-stable-finiteness of that summand.
 artifacts:
   - research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md
 ---
@@ -15,26 +15,40 @@ projective `Q` with
 
     S_-^r ~= S_-^r (+) S_-^k (+) Q,
 
-that is, `k[eps_-] <= 0` in `K_0(S_-)`.
+that is, `k[eps_-] <= 0` in `K_0(S_-)`. Equivalent forms:
+- `[eps_-] <= 0`;
+- `S_-^(n+1)` is a direct summand of `S_-^n` for some `n`, that is, `S_-` fails the rank condition.
 
 **Why it matters.**
 - *It refutes Gottschalk.* By `nonpositive-unit-class-refutes-ternary-surjunctivity`, it gives a
   one-sided pair in `M_r(F_3[G_3])` and hence a strict automaton on `G_3`.
 - *It is exactly what no state can see.* By `anti-central-state-obstruction-equals-stable-finiteness`,
   a state on `(K_0(S_-), [eps_-])` exists iff this claim fails.
-- *It is weaker than the corner equation.* The corner equation implies it with `k = 1`
-  (`anti-invariant-corner-gives-nonpositive-unit-class`).
+- *It is equivalent to the corner equation.*
+  - The corner equation implies it with `k = 1` (`anti-invariant-corner-gives-nonpositive-unit-class`).
+  - Conversely, it gives the corner (`nonpositive-unit-class-gives-anti-invariant-corner`).
+  - Mechanism: `delta(h) = s0 h t0 + s1 h t1` commutes with `w`, so `x -> e_- delta(x)` is a unital
+    homomorphism `S_- -> T`. The induced map on projectives halves the unit class and shrinks any
+    failure of the rank condition to size one (Theorem E of the artifact).
 
 ## Attempts
 
-- *Image.* In `R = L_(F_3)(1,2)` the isomorphism holds trivially, since `R ~= R (+) R`. So this is a
-  lifting problem at matrix size, with more room than the unstable corner equation.
+- *Correction (later on 2026-09-12).* The first version said this condition is weaker than the corner
+  equation, with more room through stabilization. That is withdrawn: the two are equivalent, and
+  stabilization adds nothing.
+- *Image.* In `R = L_(F_3)(1,2)` the isomorphism holds trivially, since `R ~= R (+) R`.
 - *Obstructions ruled out.*
-  - Every additive invariant is inert, because `[eps_-] = 2[e_-]` (Theorem B(i) of the artifact).
+  - Every additive invariant is inert on its own, since the target's only `K_0` consequence is
+    `[eps_-] <= 0` (Theorem B(i) of the artifact).
   - `S_-` has no finite-dimensional images
     (`ternary-anti-central-summand-has-no-finite-dimensional-images`).
-  - The only possible obstruction is a state, and its natural source, a rank function from an
-    `F_3`-linear sofic approximation of `G_3` with `z` acting as `-1`, is the open gate. Property (T)
-    gives no rank rounding over finite fields.
-- *Where it dies today.* No matrix-size lift of `R ~= R (+) R` to `S_-` has been built, and no state on
-  `K_0(S_-)` is known.
+  - The only possible obstruction is a state. Its natural source, a rank function from an
+    `F_3`-linear sofic approximation of `G_3` with `z` acting as `-1`, is the open gate, and property
+    (T) gives no rank rounding over finite fields.
+- *Lifting form* (Section 9 of the artifact).
+  - Every size reduces to a two-pair Cohn family in `S_-`.
+  - Every solution type over `R` reduces to lifting `(s0, s1)` or `(s0, s1 s0)`, through lifts of
+    `GL_1(R) = G` and `GL_2(R) = EL_2(R)`.
+  - The obstruction is invertibility of `1 + E` for a kernel-valued `E`.
+- *Where it dies today.* No lift with invertible `1 + E` is known, and no state on `K_0(S_-)` is
+  known. By Theorem E exactly one of the two exists.

@@ -42,3 +42,11 @@ When `m` divides `q - 1`, this is a unital `m`-pair Cohn family in the corner `T
   It suffices to find a one-sided pair `c a = eps_iota` in `A_iota` whose cyclic cross terms
   `c [g^i] a`, `0 < i < m`, all vanish. When `m` divides `q - 1` this is also necessary. So a
   solution need not lift the image solution: any one-sided pair with vanishing cross terms will do.
+- **Fullness is the absence of states** (lane gk-l3-obstruct, 2026-09-12).
+  - *On one twisted host.* When `m | q - 1`, this corner is full iff the visible factor fails the rank
+    condition, iff its unit class is nonpositive in `K_0`, iff `(K_0(A_iota), [eps_iota])` admits no
+    state (`twisted-leavitt-corner-fullness-equals-absence-of-k0-states`).
+  - *Across finite fields.* The question for all finite fields of one characteristic and arity is one
+    colimit ring (`leavitt-visible-states-are-factorwise-and-colimit-stable`).
+  - *The obstruction hypothesis.* `leavitt-visible-colimit-factors-admit-k0-states` would refute this
+    claim.

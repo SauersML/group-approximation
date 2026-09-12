@@ -19,10 +19,14 @@ Let `R = L_(F_3)(1,2)`, `G = R^x`, `S_- = eps_- F_3[G]`, `u = [eps_-]` in the pr
 3. If `k u <= 0` for some `k >= 1`, then some `M_r(F_3[G])` is not directly finite, and `G` is not
    surjunctive.
 
-So a positivity-type obstruction to the corner equation exists exactly when `S_-` is stably finite
-in the sense of part 2, and the failure of that condition is itself a counterexample. Every additive
-group-valued invariant, including traces mod 3 and the lifted traces `t_(3,k)`, cannot refute the
-equation, because `[eps_-] = 2[e_-]`.
+Here `k u <= 0` for some `k >= 1` iff `u <= 0`. So a state exists exactly when `[eps_-]` is not
+`<= 0`, a condition implied by stable finiteness of `S_-` and weaker in general, and its failure is
+itself a counterexample. No additive group-valued invariant (traces mod 3, the lifted traces
+`t_(3,k)`) refutes the equation on its own: the equation's only `K_0` consequence is `[eps_-] <= 0`,
+and any `K_0`-based refutation of that produces a state by part 2.
 
-Proof: Theorem A and Theorem B(i) of the artifact. The state criterion (Goodearl–Handelman form) is
-proved there by a Hahn–Banach argument, so no import is needed.
+**Converse (added later on 2026-09-12).** `[eps_-] <= 0` gives back the corner equation, so the corner
+equation holds iff no state exists (`twisted-leavitt-corner-fullness-equals-absence-of-k0-states`).
+
+Proof: Theorems A and B(i) of the artifact. The state criterion (Goodearl–Handelman form) is proved
+there by a Hahn–Banach argument, so no import is needed.
