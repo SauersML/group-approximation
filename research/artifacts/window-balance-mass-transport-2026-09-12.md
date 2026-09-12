@@ -64,11 +64,14 @@ decoded value would not depend on `x(g)`), so `g in gNM` is contained in `EM` an
 `q^(|d_N E|)`, the number of patterns on the `N`-boundary of the window. Balance is the statement
 that this factor can be removed.
 
-**Calibration on amenable groups (classical).** If `p_0` on `Omega` is a Garden of Eden, every
-window `F` containing `k` disjoint translates of `Omega` has at most `q^|F| (1 - q^(-|Omega|))^k`
-patterns with nonzero fiber. Proposition 2 forces at least `q^(|int_N F|)` of them. With Folner
-windows `|d_N F| / |F| -> 0` and `k >= |int_(Omega Omega^-1) F| / |Omega Omega^-1|`, this is a
-contradiction. That is Gromov--Weiss surjunctivity for amenable groups, in fiber-count form.
+**Calibration on amenable groups (classical).** If `p_0` on `Omega` is a Garden of Eden, translate
+it so that `1 in Omega`. Every window `F` containing `k` disjoint translates of `Omega` has at most
+`q^|F| (1 - q^(-|Omega|))^k` patterns with nonzero fiber. Proposition 2 forces at least
+`q^(|int_N F|)` of them. A maximal disjoint family of translates `g Omega` inside `F` meets every
+`g Omega` with `g in int_Omega F`, so `k >= |int_Omega F| / |Omega Omega^-1|`. With Folner windows
+`|d_N F| / |F| -> 0`, this is a contradiction. That is Gromov--Weiss surjunctivity for amenable
+groups, in fiber-count form. (Normalization and count as corrected by `w3-vf-positive`, Section 5 of
+`research/artifacts/w3-vf-positive-verification-2026-09-12.md`.)
 
 **Nonamenable groups.** For `N` containing a generating set of a nonamenable subgroup,
 `inf_F |d_N F| / |F| > 0` (Folner criterion). The inequality
