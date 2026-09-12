@@ -36,6 +36,12 @@ Owns `CharClass/LIXStepDGenReal*`, `CharClass/LIXStepDGenTorusP*`. Clone lix-g (
   `sphereTopClassOf (ZMod p) (2n+1) _`; `realTorusModP_lixStage ops n j` (dd := `LIX.Gen.lixDD n j`).
 - No hypothesis on `Y` anywhere: stage 0 (Y a point) is covered.
 
+## REVIEW
+- lx-review (on main md5 62d35b5c = green record 0912-121048-60132): NO DEFECT. `mul_single`'s hypothesis `hptot` is
+  stated at exactly the pulled-back class `hz` identifies with the field's `evenZClass`; `c` is never used as a unit
+  (it only meets `mul_zero`, `smul_zero`; ν may be 0); degree-0 component, other even degrees and odd components
+  checked on paper; stage 0 covered.
+
 ## NEEDS
 - A producer of `OddPTotal.EvenReducedPowers p` (lx-pzero). With it, `T j := Gen.realTorusModP_lixStage ops n j`
   is the torus input of `LemmaTwoPowersModPData n p` (lx-endpoint).
