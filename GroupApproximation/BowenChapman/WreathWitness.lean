@@ -22,8 +22,9 @@ The coset wreath product `CosetWreath = (ℤ/2ℤ) ≀_{G/Γ} G` over the explic
   (`cosetWreath_not_isSofic_of_sequentialNormalization`), because non-normality of
   `Peripheral` supplies an escaping conjugate.
 
-`BowenChapman/WreathWitnessEndpoint` supplies that normalization from property (T)
-and infranormality.
+Sequential centralizer normalization of `Peripheral` is what Kun–Thom Theorem 4.1
+asserts for this pair, since `Peripheral` is infranormal and both groups have
+property (T). It is taken here as a hypothesis, not proved.
 -/
 
 namespace GroupApproximation.BowenChapman
