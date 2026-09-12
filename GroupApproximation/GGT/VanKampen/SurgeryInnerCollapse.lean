@@ -75,6 +75,7 @@ def region : IsDiscRegion Delta.toCombMap R.faces := R.boundary.toDiscRegion
 theorem outer_not_mem : Delta.outerFace ∉ R.faces :=
   fun h => (R.boundary.all_gCells _ h).1 rfl
 
+open scoped Classical in
 /-- Old faces to faces of the collapse: the collapsed faces go to the new face, every
 other face to its kept copy. -/
 noncomputable def faceMap (g : Delta.toCombMap.Face) :
@@ -83,12 +84,12 @@ noncomputable def faceMap (g : Delta.toCombMap.Face) :
   else keptFace Delta.toCombMap R.faces R.region g hg
 
 theorem faceMap_of_mem {g : Delta.toCombMap.Face} (hg : g ∈ R.faces) :
-    R.faceMap g = newFace Delta.toCombMap R.faces R.region :=
-  dif_pos hg
+    R.faceMap g = newFace Delta.toCombMap R.faces R.region := by
+  simp [faceMap, hg]
 
 theorem faceMap_of_not_mem {g : Delta.toCombMap.Face} (hg : g ∉ R.faces) :
-    R.faceMap g = keptFace Delta.toCombMap R.faces R.region g hg :=
-  dif_neg hg
+    R.faceMap g = keptFace Delta.toCombMap R.faces R.region g hg := by
+  simp [faceMap, hg]
 
 /-- The image of a face other than the old exterior is not the kept exterior. -/
 theorem faceMap_ne_outer {g : Delta.toCombMap.Face} (hg : g ≠ Delta.outerFace) :
@@ -189,9 +190,6 @@ noncomputable def diagram : DiscDiagram.{u, w, v} W where
     by_cases hnew : F = newFace Delta.toCombMap R.faces R.region
     · right
       subst hnew
-      change RelLetter.listVal (((replaceGRegionFaceBoundary Delta.toCombMap R.faces R.region
-        Delta.faceBoundary (newFace Delta.toCombMap R.faces R.region)).darts).map
-          (fun d => Delta.label d.1)) = 1
       rw [R.newFace_word]
       exact R.value_one
     · obtain ⟨g, hg, rfl⟩ :=
@@ -205,9 +203,6 @@ noncomputable def diagram : DiscDiagram.{u, w, v} W where
         rw [R.faceMap_of_not_mem (R.cells_avoid C hC)]
         exact keptFace_congr Delta.toCombMap R.faces R.region _ _ _ _ hface
       · right
-        change RelLetter.listVal (((replaceGRegionFaceBoundary Delta.toCombMap R.faces R.region
-          Delta.faceBoundary (keptFace Delta.toCombMap R.faces R.region g hg)).darts).map
-            (fun d => Delta.label d.1)) = 1
         rw [R.keptFace_word g hg]
         exact hone
   boundary_product :=
