@@ -352,7 +352,7 @@ itself: `xor-lift-of-bernoulli-has-positive-fiber-entropy` refutes
 `gottschalk-via-flip-lift-and-zero-fiber-entropy`. Over `F_2` the
 Ornstein--Weiss block map shows that no average works without using the section
 `tau`. The missing ingredient is an averaged fiber-entropy bound that uses
-`tau` and survives nonamenable boundaries. Artifact:
+`tau` and survives nonamenable boundaries. A cellular marker rule also gives infinitely many cellular sections and an equivariant injection of a decorated subshift into the full shift (`strict-split-decoders-have-infinitely-many-sections`). Over amenable groups that contradicts entropy monotonicity; over general groups no monotone invariant is known. Artifact:
 `research/artifacts/decoder-fiber-flip-lifts-2026-09-12.md`.
 
 **Three-factor normal form and the peeling criterion (2026-09-12).** An
