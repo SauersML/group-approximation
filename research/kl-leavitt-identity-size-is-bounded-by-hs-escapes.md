@@ -8,8 +8,7 @@ distinct_from:
   fp-simple-nonhyperlinearity-is-one-word-domination: that identifies nonhyperlinearity of a finitely presented simple group with a one-word energy domination; this reads the same kind of inequality in the opposite direction, as a size fence on algebraic certificates.
 ---
 
-Fix a finite presentation `R^x = <S | R>`; one exists by
-`leavitt-unit-group-finitely-presented`.  Let `w in R^x * <t>` be nonsingular
+Fix any presentation `R^x = <S | R>`, finite or not.  Let `w in R^x * <t>` be nonsingular
 and let `1 != a in R^x` die in `(R^x * <t>)/<<w>>`.  Write the death as an
 identity in `F(S) * <t>`,
 
@@ -23,19 +22,22 @@ substituting them only changes `A`.  Then for every `d >= 1` and every
 `U in U(d)^S`,
 
 ```text
-||a(U) - I||_2  <=  A * max_(r in R) ||r(U) - I||_2.            (KS1)
+||a(U) - I||_2  <=  A * max_(r occurring) ||r(U) - I||_2.       (KS1)
 ```
 
-Consequently a single tuple with relator defect `delta` and mark distance
+Consequently a single tuple with defect `delta` on those relators and mark distance
 `alpha = ||a(U) - I||_2` gives `A >= alpha / delta` for every identity that
 kills `a`, whatever the equation.
 
 ## Use
 
 The computational presentation is the atlas list `T_St` over `A_8 * A_8` of
-`atlas-steinberg-rank-five-translation`.  It presents `St_5(L)`, and by
-`leavitt-steinberg-map-iso-from-rank-three` and the prefix-code isomorphisms it
-presents `R^x` itself.  The optimization probes of `leavitt-steinberg-hs-unstable`
+`atlas-steinberg-rank-five-translation`.  It presents `St_5(L)`.  It presents
+`R^x` itself only through `leavitt-steinberg-map-iso-from-rank-three`, an import
+of the unreviewed v1 preprint arXiv:2609.08428.  Until that import is verified,
+use `T_St` together with the finitely many normal generators of the Steinberg
+kernel that an identity actually uses.  (KS1) then bounds only the identities
+whose relators all lie in `T_St`.  The optimization probes of `leavitt-steinberg-hs-unstable`
 produce exactly such tuples.  Each probe with small `T_St` defect and a far
 atlas word is therefore also an explicit lower bound on the size of every
 Kervaire--Laudenbach certificate over the Leavitt unit group.  A family with
