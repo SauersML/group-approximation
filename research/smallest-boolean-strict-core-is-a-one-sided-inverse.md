@@ -9,6 +9,7 @@ distinct_from:
   two-by-two-single-coincidence-strict-cores-classified: that classifies all six single-coincidence 2 x 2 tables with their alphabet thresholds; this is the row x_a x_b = 1, with the bicyclic realization.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `smallest-boolean-strict-core-proof`.

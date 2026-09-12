@@ -9,6 +9,7 @@ distinct_from:
   thompson-v-coset-stabilizers-contain-copies-of-v: that shows the stabilizer families of the Cantor action contain copies of V, which kills coset peeling; this concerns rewriting the automaton itself through those copies, which leaves every table unchanged.
 artifacts:
   - research/artifacts/thompson-v-linear-counterexample-targets-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `v-self-similar-rewrites-preserve-strict-pairs-proof`.

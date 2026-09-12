@@ -9,6 +9,7 @@ distinct_from:
   triangular-forward-tables-force-surjectivity: that is a group-level exclusion; this is table-level combinatorics, including tables no group or monoid realizes.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `two-by-two-single-coincidence-classification-proof`.

@@ -17,6 +17,8 @@ not by rereading the author's argument. Nothing was run.
 | `5b6ac9c99` (gk-n-klein) | `ternary-adjoint-image-is-balanced`, `klein-level-one-splitting-is-outside-adjoint-image`, `klein-expectation-splits-in-balanced-algebra`, route `level-two-klein-fullness-gives-klein-fullness` | PASS (Section 9) |
 | `3c67b7dbd` (gk-n-klein, Section 7 as claims) | `klein-corner-contains-unital-copy-of-projective-group-algebra`, `adjoint-image-is-stable-under-klein-doubling` | PASS (Section 9) |
 | `222a8b610`, `8b69514ac` (gk-n-highalpha) | `low-degree-strict-pairs-have-one-sided-linear-parts`, `low-degree-invariant-output-reduces-to-corner-fullness`, `unipotent-automata-over-finite-fields-are-surjective`, `low-degree-strict-automata-force-matrix-kaplansky-failure` | PASS (Section 10) |
+| `f9bca65d4` (gk-n-boolean) | `boolean-core-is-uniform-single-demand-network-coding`, `strict-rule-pairs-pass-to-product-alphabets`, `smallest-boolean-strict-core-is-a-one-sided-inverse`, and the Section 6 classification claims | PASS (Section 12) |
+| `8ef1f79d9` (gk-n-thompson-v) | `v-self-similar-rewrites-preserve-strict-pairs`; `thompson-v-is-sofic` confirmed OPEN with no route into it | PASS (Section 13) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
 Section 6 of `invariant-output-descent-and-sensitivity-2026-09-12.md` (the ternary form) was
@@ -54,6 +56,18 @@ Conventions throughout: `tau(x)(g) = f((x(g m))_(m in M))`, with left shifts
 - In characteristic 2 that ring is `R[eps]/(eps^2)` with `eps = 1 + x`. So
   `C(w) = R^x ⋉ (R,+)`, with `w <-> 1` central, and `C(w)/<w> = R^x ⋉ (R/F_2)`.
 - `N(<w>) = C(w)`, since `<w>` has order two.
+
+**Correction to this record (gk-vf-nonlinear, after gk-invariant-output's report).** The implication
+passes, but its hypothesis is never met. I missed this. If `M` normalizes `H`, then `H` is normal
+in `K`.
+- For `n` in `H` and `k` in `K`, `tau(n^-1 . x)(k) = tau(x)(n k) = tau(x)(k (k^-1 n k)) = tau(x)(k)`,
+  because `k^-1 n k` lies in `H`.
+- Translation by `n` therefore does not change the output on the `K`-copy, and injectivity forces
+  `n = 1`.
+
+So Proposition 2 holds only vacuously, and the Leavitt reading above constrains no design
+(`invariant-output-symmetry-must-be-core-free`, landed by gk-p-simple-direct). The author corrected
+the claim at `40131c7208`.
 
 ### 1.2 Odd invariant monomials: PASS
 
@@ -453,3 +467,63 @@ Right multiplication by `S[b'] (x) T[c']` extracts the coefficients uniquely.
   homogeneous of degree 0.
 - `S[b] (x) T[c]^op` has bidegree `(2,-2)`, while degree-zero entries give bidegree `(0,0)`.
 - Examples: the entries of `K_4`, the level-two sign and permutation units, are scalars.
+
+## 12. The Boolean core (`f9bca65d4`, gk-n-boolean): PASS
+
+**Proposition 1.** Source assignments are exactly the class-constant `p`, and the relay and sink
+computation is the left side of `Dec`.
+
+**Theorem 2: product alphabets.**
+- Relay `s` outputs `(mu(p_A(s,.)), p_B(s,1))`, so the sink returns `(p_A(1,1), p_B(1,1))`.
+- A failing `q_A` with constant `q_B` fails in the first coordinate.
+- Corollary 2.3: every `k` divides some `n!`, and surjunctivity descends from `kl` to `k`.
+
+**Proposition 3: discrete forward table.**
+- Cells are independent. Two rows `w`, `w'` with `mu(w) = mu(w')` and `w_1 != w'_1`, with equal
+  other rows, give the sink one input but two demands.
+- So `mu = f o pi_1` and `nu = f^-1 o pi_1`.
+
+**Proposition 4.**
+- *`S = {1}`.* `nu` is onto, hence a permutation.
+- *`T_r` containing `T_f^t`.* A `T_r`-constant `q` is `T_f^t`-constant.
+- *`M = {1}`.* Changing the symbol of the class of `(1,1)` keeps every relay output when
+  `mu(c) = mu(c')`, but changes the demand.
+
+**Theorem 5.**
+- The column copy returns `p(a,b) = p(1,1)` forward and `q(b,a)` in reverse.
+- In additive `Z`, `x_a = 1` and `x_b = -1` give forward values `0,-1,1,0` and reverse values
+  `0,1,-1,0`. So `Z` realizes exactly `T_f` and `T_0`, and surjunctivity of `Z` forces `Enc(T_0)`.
+
+**Theorem 6.2, re-derived row by row.**
+- *`O ~ B`.* `g(c) = mu(c,c)` is a bijection, `nu(y,r) = g^-1(y)`, and the reverse sink returns `d`.
+- *`O ~ A` and `A ~ X`.* The images `I_c` are disjoint, nonempty and |A| in number, so they are
+  singletons.
+- *`B ~ X`.* Each `h_w` is a bijection with `nu(y,z) = h_w^-1(y)` for all `z`, so all `h_w` agree.
+- *`B ~ A`.*
+  - Over two symbols, disjoint `J_0` and `J_1` would make `mu(w,.)` constant, which forces `h_0 = h_1`.
+  - Over three or more symbols, the block code `g_P = id`, `g_Q = (0 1)` decodes forward.
+  - Reverse, case `O' ~ B'`: `e = 2`, `e' = d = 0` gives output `g_P(g_Q(0)) = 1`.
+  - Reverse, otherwise: `e = d = 0`, `e' = 2` gives output `g_Q(0) = 1`.
+  - Both choices are consistent with `T_r`, and `X'` enters only through the block of relay `b`.
+- *Example 6.4.*
+  - `h_1 = (0 2)` fixes 1, and `h_2 = (0 1)` fixes 2.
+  - The reverse relays give `h_0(0) = 0` and `h_2(0) = 1`, and the sink gives `h_1(0) = 2`.
+  - The converse uses injectivity of `w -> h_w(w)`: equal `h_w(w)` gives equal `nu(., z)`, hence
+    equal `h_w`.
+  - Over two symbols this forces `h_0 = h_1`.
+
+## 13. Thompson V self-similar rewrites (`8ef1f79d9`, gk-n-thompson-v): PASS
+
+**The rewrite claim.**
+- An injective homomorphism `phi` preserves and reflects every product coincidence, so both
+  tables are unchanged. By Theorem A of the canonical-table record, strictness is unchanged.
+- For the product pair, `tau_1 x tau_2` with left inverse `sigma_1 x sigma_2` is surjective iff both
+  factors are.
+- So the descent route correctly carries `invalidates:`, and its prerequisite is refuted.
+
+**Decision check.**
+- `thompson-v-is-sofic` is OPEN with no route targeting it.
+- Its consequence routes (`thompson-v-surjunctive-from-soficity`,
+  `thompson-v-stable-finiteness-from-soficity`) cannot complete.
+- `thompson-v-nonsurjunctivity-ascends-to-leavitt-units` and `thompson-v-not-sofic-from-nonsurjunctivity`
+  are valid. Each needs the open root `thompson-v-nonsurjunctive`.

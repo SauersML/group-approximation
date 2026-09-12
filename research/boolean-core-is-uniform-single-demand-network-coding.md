@@ -8,6 +8,7 @@ distinct_from:
   strict-automata-live-on-canonical-table-groups: that fixes a rule pair and finds the only groups it needs; this fixes the pair of tables and studies which rule pairs, over which alphabets, are strict.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `boolean-core-network-coding-proof`.

@@ -8,6 +8,7 @@ distinct_from:
   boolean-core-is-uniform-single-demand-network-coding: that recasts strict data as network codes and proves two filters; this names the simplest family of strict codes and its exact criterion.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `copy-codes-one-sided-table-identities-proof`.

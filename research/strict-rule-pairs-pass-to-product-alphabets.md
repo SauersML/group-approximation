@@ -8,6 +8,7 @@ distinct_from:
   stable-finiteness-reduces-to-prime-field: that moves a linear stable-finiteness failure between fields of one characteristic; this moves arbitrary nonlinear strict data from A to A x B for every finite B.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `strict-rule-pairs-product-alphabets-proof`.

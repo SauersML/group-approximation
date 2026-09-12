@@ -8,6 +8,7 @@ distinct_from:
   strict-rule-pairs-pass-to-product-alphabets: that moves strictness up along multiples of the alphabet size; this shows it cannot always be moved down, with a table whose admissible sizes are exactly n >= 3.
 artifacts:
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `equal-label-table-three-symbol-threshold-proof`.
