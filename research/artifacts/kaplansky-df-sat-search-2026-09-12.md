@@ -121,11 +121,32 @@ here. Sizes: `|B_1| = 9`, `|B_2| = 53`, `|B_3| = 293`.
 In words: no `beta` supported in the radius-3 atlas ball evaluates to `s0` and
 has a left inverse supported in the radius-2 ball, and dually for `t0`.
 
-Running:
-- `v` (3,3), strict mode;
-- atlas (3,3), (2,4), (1,5), (4,2) in target mode, and (2,3), (3,2) with the
-  strict clause;
-- sbatch `kdf-sat-b7`: atlas (3,4), (4,3), (2,5), (5,2) in target mode.
+Also UNSAT: atlas (1,5) in target mode, meaning `supp a` in `B_5` and `supp b` in
+`B_1`, with 78,669 AND variables, in 1.6 s.
+
+**Larger span checks (exact).**
+- `s0` is outside the span of `pi(B_5(V))` (1,231 evaluation rows) and of `pi(B_6(V))` (2,649 rows).
+- `s0` is outside the span of `pi(B_3(eld))` (1,319 rows).
+
+For `V` this holds at every radius, by the invariant below. For `eld` the generators
+generate `EL_D(R) = R^x`, whose evaluations span `R`, so the failure there is a radius
+effect and must end at some radius.
+
+**The invariant behind the V failures:**
+`s0-lifts-cannot-be-supported-in-the-all-ones-stabilizer`. `R` acts on functions of
+binary sequences by `(S[a]T[b] f)(a eta) = f(b eta)`. Units that fix the constant
+function `1` form a subgroup `H_1` containing `V`. For `supp beta` inside `H_1`,
+`pi(beta) 1 = eps(beta) 1`, while `s_0 1` is the indicator of `[0]`. So no lift of `s_0`
+is supported in `V` at any radius. The encoder turns this into a clause: in target
+mode `supp beta` must leave `H_1`, and dually `supp alpha` must leave `H^1` for `t_0`.
+
+**At the 600 s limit, without prune clauses.** Target mode on atlas (3,3) and (2,4) is
+UNKNOWN (85,849 and 84,959 AND variables). The strict clause on `v` (3,3) is also
+UNKNOWN (44,521 variables).
+
+**Running.**
+- sbatch `kdf-sat-b8`: controls, then `v` (3,3) strict and atlas (3,3) target, 2,400 s each. It uses the prune clauses of 7e8a94ac9: both supports odd, and neither support inside the degree-zero units or inside a finite chart group.
+- sbatch `kdf-sat-b7`, unpruned: atlas (3,4), (4,3), (2,5) and (5,2) in target mode.
 
 ## Trust surface
 
