@@ -166,8 +166,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | break the plan | w4-r4-adversary | mechanism dies (c6697aa47b; L7) |
 | approximability node | w4-r4-approx | collapsed |
 | Heisenberg node | w4-heisenberg | dead; firewall landed (f576dccf26); finished |
-| defect gap and descent | w4-gate-descent | gap and two-sided descent established; defect-lowering operation open (L5) |
-| verification | w4-vf-gate | e4d7e1c7fa. PASS: L1, L3 baseline, Plan 3 collapse, 3-eps bound, el4 lemma, reversed-root node. L4a corrected. No decision-level verdict |
+| defect gap and descent | w4-gate-descent | Established, verifier PASS: gap, two-sided descent, near-minimal multiplicativity. Open target: `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, with route `leavitt-rank-triviality-via-strict-defect-submultiplicativity` into `non-linear-sofic-group`. Lead spot-check of the route passes: `f(2) >= c_* delta >= delta^2/(1+eps)` contradicts `theta delta^2` once `eps < 1/theta - 1` |
+| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--9. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
 
