@@ -80,3 +80,23 @@ of the one-coincidence or four-sign-change exceptions. A violation over
   this matches the cyclic-cover node's own remark that its `m >= 2` relators do
   not fold. So the viable remaining attack is genuine curvature redistribution
   on the pictures, not a core substitution.
+- **Substitution and dihedral fences (2026-09-12, lane
+  `kl-curvature-redistribution`, bfa2e6677).**
+  - `kl-substituting-a-short-inner-word-preserves-injectivity`: `v(u)` injects
+    when `v` does and `u` is nonsingular of variable length at most five.
+  - A hand count of degrees and cancellations at length six finds these
+    compositions:
+    - for `+++++-`, outer `z^2 c` with inner `+++-` or `-+++`, and outer
+      `z^4 c` with inner `++-` or `-++`;
+    - for `++++--`, only outer words of length three with inner
+      `h t h' t h''`, which give the settled families `(1,1,1)` and `(1,g,1)`.
+  - `kl-length-six-residue-squares-and-fourth-powers-inject` settles, for every
+    loop order, `(1,1,g,1)` with `g = y`, `(g,1,1,1)` with `g = y^(-1)`,
+    `(1,g,1,1)` with `g = x`, and `(1,1,1,g)` with `g = x^(-1)`. Every
+    composition forces a label equal to a loop coefficient, so no whole shape is
+    a composition.
+  - `kl-two-coefficient-residue-word-with-involution-loops-injects`: `(1,1,1,1)`
+    injects whenever `<x, y>` is hyperlinear, in particular with involution loops.
+  - With involution loops, the case of the Leavitt search, the open shapes are:
+    the seven `+++++-` shapes other than `(1,1,1,1)`, outside the four sub-cases
+    above; and all six `++++--` shapes.
