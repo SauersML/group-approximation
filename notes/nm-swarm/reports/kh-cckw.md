@@ -2,10 +2,9 @@
 
 Helper of kh-hyperbolic on the kotowskiOllivier insurance route
 CCKW GHB(7) → `Hyperbolic.LatticeRouteInput` → `FiniteIndex.sharpExistence_of_latticeRoute_unconditional`.
-Clone nm-f (PREP_PENDING at 21:50: the lixclone2 run for nm-a..nm-h was terminated by signal 15 at 21:34,
-only nm-b finished; nm-f never got its build links).
+Clone nm-c (shared with fff-periodic).
 
-## MODEL TESTS (MSI acn112, seconds; scripts under `$NM/backup/kh-cckw/`, to land in experiments/)
+## MODEL TESTS (MSI, seconds; scripts in `experiments/ghb7_vertex_families/`)
 - `ghb7_model.py`: 11 relators hold; |ψ⟨a,b⟩| = 343, |ψ⟨c,b⟩| = |ψ⟨c,a⟩| = 2401 (normal forms distinct);
   ψ⟨a,b⟩ ∩ ψ⟨c,b⟩ = ψ⟨b⟩, ψ⟨a,b⟩ ∩ ψ⟨c,a⟩ = ψ⟨a⟩, ψ⟨c,b⟩ ∩ ψ⟨c,a⟩ = ψ⟨c⟩;
   links: no alternating relation of length 2 or 4 in ⟨a,b⟩ (girth ≥ 6), none of length 2, 4, 6 in ⟨c,b⟩, ⟨c,a⟩
@@ -15,13 +14,13 @@ only nm-b finished; nm-f never got its build links).
   343/2401 inputs; left multiplication by each generator and inverse stays in the normal form; every normal
   form has 7th power I; (V'a V'b V'c)^7 ≠ I.
 
-## AUTHORED (four new modules; landing unverified, probe waits on the clone)
+## MODULES (all compiled and landed; see LANDED below)
 1. `Kazhdan/GHBQuotientMatrices`: V'a, V'b, V'c as units with literal inverses; the 11 relators, one
    `decide +kernel` theorem each; `psi : GHB 7 →* GL (Fin 4) (ZMod 7)`; `psi_a/b/c`; `psiKer` and
    `psiKer_finiteIndex`.
 2. `Kazhdan/CCKWFiniteSubgroupsStatement`: `KMSGroup.CCKWFiniteOrderConjugateIntoVertex` (cyclic case of 3.1(ii)).
-3. `Kazhdan/GHBQuotientVertexForms`: normal forms + readouts + kernel certificates; image of each vertex group
-   ⊆ normal forms (closure induction), exponent 7; `infinite_ghb7 (hconj)` (no order bounds needed);
+3. `Kazhdan/GHBQuotientVertexFamilies` + `Kazhdan/GHBQuotientVertexForms`: parameter families with polynomial laws;
+   image of each vertex group ⊆ family (closure induction), exponent 7; `infinite_ghb7 (hconj)` (no order bounds needed);
    `injective_psi_comp_u3ToAB/u4ToCB/u4ToCA` from `[Finite (U3 7)]`, `Nat.card (U3 7) ≤ 7^3` (resp. U4, 7^4);
    `eq_one_of_mem_vertex_of_psi_eq_one`; `isPowerTorsionFree_psiKer (hconj) h3 h4`; `infinite_psiKer (hconj)`.
 4. `Kazhdan/GHBLatticeRoute`: `ghb7LatticeRouteInput hconj h3 h4 hhyp hT` and `sharpExistence_of_ghb7Leaves`.
@@ -30,7 +29,7 @@ only nm-b finished; nm-f never got its build links).
 | field | status |
 |---|---|
 | Carrier / groupCarrier / fpCarrier | GHB 7, `KMSGroup.isFinitelyPresented` — proved (landed f2d8712cd) |
-| Sub / subFiniteIndex | `psiKer`, `psiKer_finiteIndex` — authored, proof complete |
+| Sub / subFiniteIndex | `psiKer`, `psiKer_finiteIndex` — proved (315707922) |
 | infiniteCarrier, subInfinite | over `hconj` only |
 | subTorsionFree | over `hconj` + module-2 order bounds (kh-hyperbolic MUST also supply `Finite (U3 7)`, `Finite (U4 7)`: `Nat.card ≤` alone is vacuous for infinite types) |
 | hyperbolic | NOT supplied: open leaf `hhyp : IsHyperbolicGroup (GHB 7)` |
@@ -82,11 +81,10 @@ vertices at distance n span a triangle in S_n with a common neighbour in B_{n−
 Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381/2401 = 1, impossible).
 
 ## NEEDS
-- lead: nm-f clone preparation relaunch (or a different free clone) — every probe of this lane exits 5 until then.
-- kh-hyperbolic (module 2): `Finite (U3 7)`, `Finite (U4 7)`, `Nat.card (U3 7) ≤ 7^3`, `Nat.card (U4 7) ≤ 7^4`
-  (or at general p) — names to wire into `ghb7LatticeRouteInput`.
+- kh-hyperbolic (module 2, `Kazhdan/UnipotentSylowCounts`): `finite_U3_seven`, `finite_U4_seven`,
+  `card_U3_seven_le`, `card_U4_seven_le` — h3/h4 of `ghb7LatticeRouteInput` once compiled.
 - kh-ejz: `HasKazhdanPropertyT.{0,0} (GHB 7)`.
-- owner TBD: `IsHyperbolicGroup (GHB 7)` — (π/3, π/4, π/4) angle assignment with link girths (6, 8, 8), negative
+- go-sr1 (`Kazhdan/GHBHyperbolic*`): `IsHyperbolicGroup (GHB 7)` — (π/3, π/4, π/4) angle assignment with link girths (6, 8, 8), negative
   curvature ⇒ linear isoperimetric inequality over the vertex-group multiplication-table presentation ⇒
   `DiscreteStokes.isHyperbolicGroup_presentedGroup_of_linearIsoperimetric` (compiled producer), then transport
   along the presentation isomorphism (`IsHyperbolicGroup.of_mulEquiv`).
@@ -96,3 +94,21 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - `rw [Nat.card_eq_zero_of_infinite]` matches the FIRST `Nat.card _` (often the finite one) and fails on the
   instance: pass `(α := G)`.
 - Inside a namespace, a local abbrev named `Sub` collides with the root `Sub` class; renamed `psiKer`.
+
+## LANDED (2026-09-11 22:40)
+- 315707922 (compiled, probe 0911-221909-28577): GHBQuotientMatrices (15 s), CCKWFiniteSubgroupsStatement (12 s),
+  GHBQuotientVertexFamilies (56 s; parameter families, symbolic laws, decide on parameters only), GHBQuotientVertexForms
+  (17 s), GHBLatticeRoute (36 s). Earlier unverified copies 025c07e28, 488d092a4; attic d05c85a30.
+- 5819edb5f (compiled, probe 0911-223350-28073): CCKWLinkRelations — `alternating_ne_one_ab/cb/ca`: no relation
+  x1 y1 x2 y2 = 1 with nontrivial factors from the two edge-group intersections, at each vertex group (T3 algebraic core).
+- Cost probe GHBQuotientRelatorCost (not landed): 22-letter relator + 4 inverse checks built in 11 s.
+- The first VertexForms draft (decide over 2401 matrix words) was replaced: it would have run for hours.
+
+## NEXT
+- T1 `Kazhdan/CCKWCosetComplex`: `KMSGroup.CCKW.cosetComplex : Systolic.TriangleComplex (Σ i : Fin 3, GHB 7 ⧸ P i)`,
+  waits for sec4-sentences' `GGT/SystolicDefs` (amended spec with triangle data sent to the lead 22:25).
+- T3 combinatorial half: link cycles of length 4 ↦ alternating relations (links bipartite by type) → `cosetComplex_linksSixLarge`.
+- T2 simple connectivity (Tits' lemma), T5, T7 and `Kazhdan/GHBSharpExistence.lean` (`sharpExistence_ghb7`) once all leaves exist.
+- 023c61d58 (unverified, probe running): CCKWLinkGirthTyped — `KMSGroup.vertexGroup`, `NoAlternatingRelation`,
+  `LinkGirthAtLeast`, `CCKWLinkGirths`; `linkGirthAtLeast_six_vertex0 h3`, `linkGirthAtLeast_eight_vertex1 h4`,
+  `linkGirthAtLeast_eight_vertex2 h4`, `cckwLinkGirths h3 h4` (typed T3 for go-sr1's H-c and kh-hyperbolic's curvature count).
