@@ -72,3 +72,18 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
     share at least two points with cancelling signs.
   * **Dead designs.** Cancellation-free, two-term and difference-free designs are dead.
   * **Scope.** General solutions with `c' != b'*` escape this counting.
+- **Rank obstruction (w3-corner-module, w3-corner-crossed).** A Sylvester rank function `rk` on `B`
+  with `rk(q_[0]) < rk(eps_-)` refutes this claim, because `eps_- = c' q_[0] b'` gives
+  `rk(eps_-) <= rk(q_[0])`.
+  * **Lower bound.** Every rank function has `rk(q_[0]) >= rk(eps_-)/2`. A swap `g` in `V` with
+    `g[0] = [1]` conjugates `q_[0]` to `q_[1]`, and `q_[0] + q_[1] = eps_-`.
+  * **Source.** A sofic model of `V ↷ (M_-, lambda)`: asymptotic permutation representations of `V` on
+    `d_n` points, with clopens modelled by subsets that are asymptotically Boolean and equivariant, with
+    densities tending to `lambda`.
+    - The ultralimit of normalized ranks of `f[g] -> diag(f) perm(g)` is a Sylvester rank function with
+      `rk(1_U) = lambda(U)`, so `rk(q_[0]) = 1/2`.
+    - Any asymptotically rank-multiplicative matrix model of `B` over `F_3` with `rk(q_[0])` bounded away
+      from `rk(eps_-)` also suffices.
+    - The mechanism is stated self-contained, and no literature theorem is cited.
+  * **Status.** No such model is known. A sofic essentially free action makes `V` sofic, which is open.
+    How this compares with the `E ⋊ V` linear-soficity gate above is not settled.

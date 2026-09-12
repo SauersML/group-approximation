@@ -35,3 +35,7 @@ Gottschalk on `L_(F_3)(1,2)^x`. A star design is a finite certificate: all condi
   * the Thompson projection of the support is nonamenable (`odd-measure-corner-witnesses-need-nonamenable-thompson-support`).
 - **Where it dies.** No weight-four orthogonal gadget with images inside `U_[0]` is known over any
   nonamenable subgroup of `V`. Periodic sliding windows over `Z` fail orthogonality at shift three.
+- **Obstruction side.** A star design would rule out every Sylvester rank function on `B` with
+  `rk(q_[0]) < rk(eps_-)`, in particular the rank function coming from any sofic model of
+  `V ↷ (M_-, lambda)`. See the rank-obstruction entry in the Attempts of
+  `odd-measure-crossed-product-unit-below-cylinder-idempotent`.
