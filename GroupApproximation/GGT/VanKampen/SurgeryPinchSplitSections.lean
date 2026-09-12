@@ -83,52 +83,94 @@ theorem regionCandidate_target_isSome (a : { a : RegionCandidate D eps Delta // 
 theorem regionCandidate_sourceArc_darts
     (a : { a : RegionCandidate D eps Delta // I.Avoids a.1 }) :
     (I.regionCandidate a).2.sourceArc.darts = a.val.2.sourceArc.darts :=
-  (CyclicArc.mapTo_darts _ id _).trans (List.map_id _)
+  (CyclicArc.mapTo_darts a.val.2.sourceArc id (I.cellDarts_eq a.val.2.source)).trans
+    (List.map_id _)
 
 theorem regionCandidate_targetArc_darts
     (a : { a : RegionCandidate D eps Delta // I.Avoids a.1 }) :
     (I.regionCandidate a).2.targetArc.darts = a.val.2.targetArc.darts :=
-  (CyclicArc.mapTo_darts _ id _).trans (List.map_id _)
+  (CyclicArc.mapTo_darts a.val.2.targetArc id (I.targetDarts_eq a.val.2.target)).trans
+    (List.map_id _)
 
+theorem mem_boundDarts_iff {Xi : DiscDiagram.{u, w, v} W}
+    (selected : Finset (RegionCandidate D eps Xi)) (interior : Bool) (i : Fin Xi.rCellCount)
+    (d : Xi.toCombMap.Dart) :
+    d ∈ RegionCandidate.boundDarts selected interior i ↔
+      ∃ a ∈ selected, a.2.target.isSome = interior ∧ d ∈ a.cellArcDarts i := by
+  constructor
+  · intro hd
+    obtain ⟨a, ha, hd⟩ := Finset.mem_biUnion.mp hd
+    obtain ⟨ha, hkind⟩ := Finset.mem_filter.mp ha
+    exact ⟨a, ha, hkind, hd⟩
+  · rintro ⟨a, ha, hkind, hd⟩
+    exact Finset.mem_biUnion.mpr ⟨a, Finset.mem_filter.mpr ⟨ha, hkind⟩, hd⟩
+
+theorem mem_unboundDarts_iff {Xi : DiscDiagram.{u, w, v} W}
+    (selected : Finset (RegionCandidate D eps Xi)) (i : Fin Xi.rCellCount)
+    (d : Xi.toCombMap.Dart) :
+    d ∈ RegionCandidate.unboundDarts selected i ↔
+      d ∈ cellDarts Xi i ∧ ¬(d ∈ RegionCandidate.boundDarts selected false i ∨
+        d ∈ RegionCandidate.boundDarts selected true i) := by
+  unfold RegionCandidate.unboundDarts
+  simp only [Finset.mem_sdiff, Finset.mem_union, List.mem_toFinset]
+
+/-- The split keeps every dart, but `I.diagram.toCombMap.Dart` is `Delta.toCombMap.Dart` only
+after unfolding the split, so memberships across the two diagrams are compared in term mode
+(`rw` and `simp` see the mixed membership as ill-typed at instance transparency). -/
 theorem mem_cellArcDarts_regionCandidate_iff
     (a : { a : RegionCandidate D eps Delta // I.Avoids a.1 }) (i : Fin Delta.rCellCount)
-    (d : Delta.toCombMap.Dart) :
-    d ∈ (I.regionCandidate a).cellArcDarts (I.cellMap.indexEquiv i) ↔ d ∈ a.val.cellArcDarts i := by
-  rw [mem_cellArcDarts_iff, mem_cellArcDarts_iff, I.regionCandidate_source_eq_iff,
-    I.regionCandidate_target_eq_some_iff, I.regionCandidate_sourceArc_darts,
-    I.regionCandidate_targetArc_darts]
+    (d : I.diagram.toCombMap.Dart) :
+    d ∈ (I.regionCandidate a).cellArcDarts (I.cellMap.indexEquiv i) ↔ d ∈ a.val.cellArcDarts i :=
+  (mem_cellArcDarts_iff (I.regionCandidate a) (I.cellMap.indexEquiv i) d).trans <|
+    (or_congr
+      (and_congr (I.regionCandidate_source_eq_iff a i)
+        (Iff.of_eq (congrArg (fun l : List I.diagram.toCombMap.Dart => d ∈ l)
+          (I.regionCandidate_sourceArc_darts a))))
+      (and_congr (I.regionCandidate_target_eq_some_iff a i)
+        (Iff.of_eq (congrArg (fun l : List I.diagram.toCombMap.Dart => d ∈ l)
+          (I.regionCandidate_targetArc_darts a))))).trans
+    (mem_cellArcDarts_iff a.val i d).symm
 
-theorem mem_boundDarts_iff (family : Finset (RegionCandidate D eps Delta))
-    (havoid : ∀ a ∈ family, I.Avoids a.1) (interior : Bool) (i : Fin Delta.rCellCount)
-    (d : Delta.toCombMap.Dart) :
-    d ∈ RegionCandidate.boundDarts (I.regionFamily family havoid) interior (I.cellMap.indexEquiv i) ↔
-      d ∈ RegionCandidate.boundDarts family interior i := by
-  unfold RegionCandidate.boundDarts RegionCandidate.ofKind
-  simp only [Finset.mem_biUnion, Finset.mem_filter]
+/-- A transported region has the same darts on the image of a relator cell. -/
+theorem cellArcDarts_regionCandidate
+    (a : { a : RegionCandidate D eps Delta // I.Avoids a.1 }) (i : Fin Delta.rCellCount) :
+    (I.regionCandidate a).cellArcDarts (I.cellMap.indexEquiv i) = a.val.cellArcDarts i :=
+  Finset.ext (I.mem_cellArcDarts_regionCandidate_iff a i)
+
+/-- The retained cell arcs of either kind at a relator cell are unchanged. -/
+theorem boundDarts_regionFamily (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family, I.Avoids a.1) (interior : Bool) (i : Fin Delta.rCellCount) :
+    RegionCandidate.boundDarts (I.regionFamily family havoid) interior (I.cellMap.indexEquiv i) =
+      RegionCandidate.boundDarts family interior i := by
+  refine Finset.ext fun d =>
+    (mem_boundDarts_iff (I.regionFamily family havoid) interior (I.cellMap.indexEquiv i) d).trans
+      (Iff.trans ?_ (mem_boundDarts_iff family interior i d).symm)
   constructor
-  · rintro ⟨a', ⟨ha', hkind⟩, hd⟩
+  · rintro ⟨a', ha', hkind, hd⟩
     obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha'
-    refine ⟨b.val, ⟨b.property, ?_⟩, ?_⟩
-    · rw [← I.regionCandidate_target_isSome ⟨b.val, havoid b.val b.property⟩]
-      exact hkind
-    · exact (I.mem_cellArcDarts_regionCandidate_iff ⟨b.val, havoid b.val b.property⟩ i d).mp hd
-  · rintro ⟨b, ⟨hb, hkind⟩, hd⟩
-    refine ⟨I.regionCandidate ⟨b, havoid b hb⟩, ⟨Finset.mem_map.mpr ⟨⟨b, hb⟩,
-      Finset.mem_attach _ _, rfl⟩, ?_⟩, ?_⟩
-    · rw [I.regionCandidate_target_isSome ⟨b, havoid b hb⟩]
-      exact hkind
-    · exact (I.mem_cellArcDarts_regionCandidate_iff ⟨b, havoid b hb⟩ i d).mpr hd
+    exact ⟨b.val, b.property,
+      (I.regionCandidate_target_isSome ⟨b.val, havoid b.val b.property⟩).symm.trans hkind,
+      (I.mem_cellArcDarts_regionCandidate_iff ⟨b.val, havoid b.val b.property⟩ i d).mp hd⟩
+  · rintro ⟨b, hb, hkind, hd⟩
+    exact ⟨I.regionCandidate ⟨b, havoid b hb⟩,
+      Finset.mem_map.mpr ⟨⟨b, hb⟩, Finset.mem_attach _ _, rfl⟩,
+      (I.regionCandidate_target_isSome ⟨b, havoid b hb⟩).trans hkind,
+      (I.mem_cellArcDarts_regionCandidate_iff ⟨b, havoid b hb⟩ i d).mpr hd⟩
 
 /-- **The unbound darts of a relator cell are unchanged.** -/
 theorem unboundDarts_eq (family : Finset (RegionCandidate D eps Delta))
     (havoid : ∀ a ∈ family, I.Avoids a.1) (i : Fin Delta.rCellCount) :
     RegionCandidate.unboundDarts (I.regionFamily family havoid) (I.cellMap.indexEquiv i) =
-      RegionCandidate.unboundDarts family i := by
-  ext d
-  unfold RegionCandidate.unboundDarts
-  simp only [Finset.mem_sdiff, Finset.mem_union, List.mem_toFinset]
-  rw [I.cellDarts_eq i, List.map_id, I.mem_boundDarts_iff family havoid false i d,
-    I.mem_boundDarts_iff family havoid true i d]
+      RegionCandidate.unboundDarts family i :=
+  Finset.ext fun d =>
+    (mem_unboundDarts_iff (I.regionFamily family havoid) (I.cellMap.indexEquiv i) d).trans <|
+      (and_congr
+        (Iff.of_eq (congrArg (fun l : List I.diagram.toCombMap.Dart => d ∈ l)
+          ((I.cellDarts_eq i).trans (List.map_id _))))
+        (not_congr (or_congr
+          (Finset.ext_iff.mp (I.boundDarts_regionFamily family havoid false i) d)
+          (Finset.ext_iff.mp (I.boundDarts_regionFamily family havoid true i) d)))).trans
+      (mem_unboundDarts_iff family i d).symm
 
 theorem unboundDarts_card (family : Finset (RegionCandidate D eps Delta))
     (havoid : ∀ a ∈ family, I.Avoids a.1) (i : Fin Delta.rCellCount) :
