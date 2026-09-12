@@ -37,11 +37,14 @@ namespace OneSidedMFRadical
 
 open Amenability CStarExactness LiteralNonMFLinearWitness
 
-/-- **The printed implication.**  For every discrete group, if `G` is not
-amenable then `C^*_{\max}(G)` is not nuclear. -/
+/-- **The printed implication**, as a closed proposition: for every discrete
+group, if `G` is not amenable then `C^*_{\max}(G)` is not nuclear. -/
+def PrintedMaximalCStarNotNuclearOfNotAmenable : Prop :=
+  ∀ (G : Type) [Group G], ¬ IsAmenable G →
+    ¬ IsNuclearCStarAlgebra (MaximalGroupCStar G)
+
 theorem manuscriptMaximalCStarNotNuclearOfNotAmenable :
-    ∀ (G : Type) [Group G], ¬ IsAmenable G →
-      ¬ IsNuclearCStarAlgebra (MaximalGroupCStar G) :=
+    PrintedMaximalCStarNotNuclearOfNotAmenable :=
   fun _ _ hG ↦
     LanceMaximal.not_isNuclearCStarAlgebra_maximalGroupCStar_of_not_isAmenable hG
 
