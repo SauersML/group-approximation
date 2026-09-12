@@ -20,13 +20,13 @@ Palomar scripts/workflows, `formalization.yaml`.
 
 ## GREEN
 
-(none yet)
+* probe 0912-101459-43218 (lix-a, acn112 slot 3, base 4b9f8144d, PROBE GREEN, 9458 jobs): `BUILT ProblemLIXStrongAssemblyTwo`, `BUILT ProblemLIXStrongAssemblyOddP`; origin bytes (6c003072f) = green-record md5 (610d4232…, f5efa6fa…). Landed e1cd56947.
 
 ## AUTHORED, UNVERIFIED
 
-* `ProblemLIXStrongAssemblyTwo.lean`, `ProblemLIXStrongAssemblyOddP.lean`: landed unverified e1cd56947; probe 0912-101459-43218 running on lix-a.
+* none.  Palomar surface job (`$LX/palverify.sh`, LIX libs only, strong axioms driver, strong statement drivers, submission self-test) running.
 
-## NEEDS
+## NEEDS (messages sent 09-12: lx-local2b, lx-slice2, lx-kunneth, lx-torusP → bundleP/stepcK-agree, lx-stablyfinite)
 
 * lx-local2b: `LemmaTwoPowersTwoLocalData n` (i.e. `KGen.KZeroLocalData` at every odd exponent / stage / G).
 * lx-kunneth + lx-slice2: `LemmaTwoPowersTwoWuData n` for even `n`.
