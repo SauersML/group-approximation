@@ -140,3 +140,28 @@ in the `Theta = Phi_C` holonomy of
 median size-matching, whose atomic block sizes do not survive in a diffuse
 relative commutant.  These two nodes are the sharpest open statements in this
 region; everything else reduces to them.
+
+## Update 2: the commutant normalization question is a fork between the two goals
+
+Let `N = <<Gamma>>_G` (`= EL_r(R)`).
+1. **Intermediate wreaths are nonsofic** (`kt-intermediate-coset-wreaths-are-nonsofic`,
+   established).  `W_K = C_2 wr_(G/K) G` is nonsofic for every `Gamma <= K <= G`
+   with `N` not in `K`, with no hypothesis on `K`.  Proof: Theorem 4.1 plus the
+   lamp at the coset `K`.
+2. **Normalization criterion.**  For `sigma: G -> U(M)` with
+   `R = sigma(Gamma)' cap M` and `K_sigma = G cap R'`, `R` is `sigma(G)`-normalized
+   iff `N <= K_sigma`.
+3. **Failure answers Q3.4** (`hyperlinear-nonsofic-from-canonical-hs-normalization-failure`).
+   A canonical-trace Connes-embeddable `sigma` with non-normalized `R` gives
+   relative embeddability of `L(K_sigma) <= L(G)` (commutation stabilizers), so
+   `W_(K_sigma)` is hyperlinear, and it is nonsofic by item 1.
+4. **Normalization refutes hyperlinearity** of `W`
+   (`kt-pair-non-hyperlinear-commutant`, existing).
+
+The open fork claim is `kt-canonical-hs-normalization-fails`, equivalent to
+hyperlinearity of some intermediate `W_K`.  It is weaker than hyperlinearity
+of `W` itself, since any qualifying `K` suffices, e.g. `K = EL_r(S) rtimes P`
+for a half-space ring `S` and its parabolic stabilizer `P`.  The earlier node
+text saying a refutation of `kt-centralizer-normalization-hs` is consistent with
+either answer holds only for non-canonical traces; a canonical-trace refutation
+answers Question 3.4.
