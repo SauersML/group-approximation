@@ -43,7 +43,7 @@ theorem repr_blockLin (A : Matrix T T F) (a b : T) :
     B.repr (blockLin B T A (B b)) a = A a b := by
   classical
   rw [blockLin_basis_mem B T A b.2]
-  simp only [Subtype.coe_eta, map_sum, map_smul, Module.Basis.repr_self, Finsupp.coe_finset_sum,
+  simp only [Subtype.coe_eta, map_sum, map_smul, Module.Basis.repr_self, Finsupp.coe_finsetSum,
     Finset.sum_apply, Finsupp.smul_apply, Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one,
     mul_zero]
   rw [Finset.sum_eq_single a]
@@ -123,6 +123,7 @@ theorem blockLin_coeffMatrix {g : M ≃ₗ[F] M} (hg : IsSupportedOn B g T) :
     blockLin B T (coeffMatrix B T (g : M →ₗ[F] M)) = (g : M →ₗ[F] M) := by
   classical
   refine B.ext fun b ↦ ?_
+  simp only [LinearEquiv.coe_coe]
   by_cases hb : b ∈ T
   · rw [blockLin_basis_mem B T _ hb]
     have hsupp : ((B.repr (g (B b))).support : Set β) ⊆ (T : Set β) :=
