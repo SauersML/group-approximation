@@ -4588,6 +4588,7 @@ import GroupApproximation.Dynamics.SurjunctivityResiduallyFinite
 import GroupApproximation.Dynamics.SurjunctivityTransfer
 import GroupApproximation.BowenChapman.ResiduallyFiniteSubstitution
 import GroupApproximation.Kazhdan.SemidirectProductKazhdan
+import GroupApproximation.BowenChapman.LaurentPair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

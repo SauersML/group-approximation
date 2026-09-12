@@ -150,7 +150,7 @@ noncomputable def actorAction : Actor →* MulAut ↥(elementaryGroup (Fin 3) La
     intro A
     apply Subtype.ext
     apply Units.ext
-    ext i j
+    refine Matrix.ext fun i j => ?_
     change substitution 1
         (((A : (Matrix (Fin 3) (Fin 3) Laurent)ˣ) : Matrix (Fin 3) (Fin 3) Laurent) i j) =
       ((A : (Matrix (Fin 3) (Fin 3) Laurent)ˣ) : Matrix (Fin 3) (Fin 3) Laurent) i j
@@ -161,7 +161,7 @@ noncomputable def actorAction : Actor →* MulAut ↥(elementaryGroup (Fin 3) La
     intro A
     apply Subtype.ext
     apply Units.ext
-    ext i j
+    refine Matrix.ext fun i j => ?_
     change substitution (M * N)
         (((A : (Matrix (Fin 3) (Fin 3) Laurent)ˣ) : Matrix (Fin 3) (Fin 3) Laurent) i j) =
       substitution M (substitution N
@@ -221,7 +221,7 @@ theorem peripheralHom_injective : Function.Injective peripheralHom := by
     SemidirectProduct.inl_injective h
   apply Subtype.ext
   apply Units.ext
-  ext i j
+  refine Matrix.ext fun i j => ?_
   have hij : polyToLaurent
         (((A : (Matrix (Fin 3) (Fin 3) Poly)ˣ) : Matrix (Fin 3) (Fin 3) Poly) i j) =
       polyToLaurent
