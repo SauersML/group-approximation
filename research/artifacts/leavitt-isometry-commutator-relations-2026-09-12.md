@@ -61,11 +61,20 @@ elements `s_i t_j` (the level-one matrix units and their off-diagonal partners `
 
 so `N_12` decomposes through the two orthogonal idempotents `e_i = s_i t_i`.
 
-These relations use `t_i s_j = delta_ij` and `s_0 t_0 + s_1 t_1 = 1` directly. By [TR]
-Calibration C they are unavailable to any model of `EL_3(S)` for a coefficient ring `S` with a
-finite-dimensional representation, because no such `S` contains a unital order-two Leavitt
-family. They are therefore of exactly the type a proof of the gate must use, and are not among
-the dead attempts in [TR] Section 5 or [RR] Section 4.
+These relations use `t_i s_j = delta_ij` and `s_0 t_0 + s_1 t_1 = 1` directly. **Jointly** --
+all four for `i, j in {0, 1}` -- they force a unital two-pair Cohn family, which has no unital
+finite-dimensional representation (`rank(TS) <= n < 2n`), so by [TR] Calibration C the joint
+system is unavailable to any model of `EL_3(S)` for a coefficient ring `S` with a
+finite-dimensional representation. Individually it is not:
+
+- the diagonal relation alone uses only `t_0 s_0 = 1`; the Toeplitz subring maps onto `F_2`, and
+  the Calibration C models satisfy it;
+- an off-diagonal relation alone uses only `t_0 s_1 = 0`, which holds in `M_2(F_2)`
+  (`t_0 -> E_11`, `s_1 -> E_22`).
+
+So only the joint system is of the type a proof of the gate must use; it is not among the dead
+attempts in [TR] Section 5 or [RR] Section 4. (Scope sharpened after `gk-vf-linear`'s pass,
+Section 41 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.)
 
 **Status of the connection to `N_23 N_12`.** The target product `N_23 N_12 = n_23(1) n_12(1)`
 has coefficient `1` on both roots. The relations above carry coefficients `t_i`, `s_j`. Bridging

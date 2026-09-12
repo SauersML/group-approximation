@@ -23,10 +23,16 @@ i = j:   A_iB_i + B_iA_i + A_iB_iA_i + B_iA_iB_i + A_iB_iA_iB_i = Z .
 Moreover `1 + n_12(1) = (1 + n_12(e_0))(1 + n_12(e_1))` for the orthogonal idempotents
 `e_i = s_i t_i`, from `s_0 t_0 + s_1 t_1 = 1`.
 
-These identities use the Leavitt isometry relations directly, so by
-`fd-represented-coefficients-violate-two-root-identities` they are not consequences of the group
-relations available over any finitely represented coefficient subring. They are the type of
-input `rank-models-of-el3-satisfy-the-two-root-identities` requires.
+These identities use the Leavitt isometry relations directly. Taken **jointly**, the four
+relations for `i, j in {0, 1}` force a unital two-pair Cohn family, which has no unital
+finite-dimensional representation (`rank(TS) <= n < 2n`). So jointly, by
+`fd-represented-coefficients-violate-two-root-identities`, they are not consequences of the group
+relations available over any finitely represented coefficient subring. Individually they are:
+the diagonal relation alone uses only `t_0 s_0 = 1`, and the Toeplitz subring maps onto `F_2`, so
+the Calibration C models satisfy it; an off-diagonal relation alone uses only `t_0 s_1 = 0`, which
+holds in `M_2(F_2)` (`t_0 -> E_11`, `s_1 -> E_22`). Jointly they are the type of input
+`rank-models-of-el3-satisfy-the-two-root-identities` requires. (Scope sharpened after
+`gk-vf-linear`'s pass, Section 41 of its verification artifact.)
 
 **What this does not do.** It does not prove `N_23 N_12 = 0`. The identities carry coefficients
 `t_i, s_j`; the target product carries coefficient `1`, and no group-relational bridge from the
