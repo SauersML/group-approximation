@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentInduction
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssembly
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52LeastArea
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCount
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -9,14 +10,16 @@ import GroupApproximation.Meta.AxiomGuard
 `Estimating/OsinAppendixAssembly` proves Osin's Lemma 9.7 (arXiv:math/0411039v3) and the
 Greendlinger waist of Lemma 4.4 from O52, Lemma 9.4 and `OsinSection97InputsStatement`,
 whose descent clause is `DescentInput`.  `Estimating/OsinAppendixDescentInduction`
-proves `DescentInput` from the section pocket producer `SectionPocketCutInput`.  This
-module replaces the descent clause by the pocket producer, and discharges O52 by
+proves `DescentInput` from the section pocket producer `SectionPocketCutInput`, and
+`Estimating/OsinAppendixEulerCount` proves `EulerCountInput` from the Euler count of
+`Φ'_M`, `PhiPrimeCountInput`.  This module replaces the descent clause by the pocket
+producer and the Euler clause by `PhiPrimeCountInput`, and discharges O52 by
 `Embedded.o52LeastArea`.
 
 ## What is proved here
 
 * `OsinSection97PocketInputsStatement`: the multiple-edge and loop cut producers, the
-  Euler count, and the section pocket producer, with the quantifier prefix of
+  Euler count of `Φ'_M`, and the section pocket producer, with the quantifier prefix of
   `OsinSection97InputsStatement`;
 * `osinSection97Inputs_of_pocketInputs`: the inputs with `DescentInput`, from O52,
   Lemma 9.4 and the pocket inputs;
@@ -33,8 +36,9 @@ open Embedded
 
 /-- **The section inputs of Osin's Lemma 9.7, with the pocket producer** (G2, G3–G4,
 G6), uniformly in the parameters: the multiple-edge and loop cut producers, the Euler
-count of `Φ'_M` with the planar edge bound, and the section pocket producer, for every
-symmetrized family satisfying `C(ε, μ, λ, c, ρ)` once `ε` and then `ρ` are large. -/
+count of `Φ'_M` (the planar edge bound is proved in `Estimating/OsinAppendixEulerCount`),
+and the section pocket producer, for every symmetrized family satisfying
+`C(ε, μ, λ, c, ρ)` once `ε` and then `ρ` are large. -/
 def OsinSection97PocketInputsStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
@@ -45,12 +49,13 @@ def OsinSection97PocketInputsStatement : Prop :=
             OsinCCondition D W eps mu lambda c rho →
               MultipleEdgeCutInput.{u, w, v} D lambda c eps W ∧
                 LoopCutInput.{u, w, v} D lambda c eps W ∧
-                  EulerCountInput.{u, w, v} D lambda c eps W ∧
+                  PhiPrimeCountInput.{u, w, v} D lambda c eps W ∧
                     SectionPocketCutInput.{u, w, v} D lambda c eps W
 
 /-- **The descent clause from the pocket producer.**  The thresholds combine by maxima;
-at every admissible `ρ`, `descentInput_of_sectionPocketCut` applies, with Lemma 9.4's
-conclusion as its `UnboundInput`. -/
+at every admissible `ρ`, `eulerCountInput_of_phiPrimeCount` gives the Euler clause and
+`descentInput_of_sectionPocketCut` applies, with Lemma 9.4's conclusion as its
+`UnboundInput`. -/
 theorem osinSection97Inputs_of_pocketInputs
     (hO52 : O52LeastAreaStatement.{u, w, v})
     (h94 : OsinLemma94SectionStatement.{u, w, v})
@@ -70,7 +75,9 @@ theorem osinSection97Inputs_of_pocketInputs
   obtain ⟨hleft, hright⟩ := max_le_iff.mp hrho
   obtain ⟨h1, h2⟩ := max_le_iff.mp hleft
   obtain ⟨h3, h4⟩ := max_le_iff.mp hright
-  obtain ⟨hmulti, hloop, heuler, hpocket⟩ := hinRho rho h2 W hcondition
+  obtain ⟨hmulti, hloop, hcount, hpocket⟩ := hinRho rho h2 W hcondition
+  have heuler : EulerCountInput.{u, w, v} D lambda c eps W :=
+    eulerCountInput_of_phiPrimeCount hcount
   have hunbound : UnboundInput.{u, w, v} D lambda c eps rho W :=
     fun Delta cuts hlea hcells S hcard =>
       h94rho rho h1 W hcondition Delta cuts hlea hcells S hcard
