@@ -7,6 +7,7 @@ distinct_from:
   rank-four-isometry-relations-give-corner-cuntz-family: that asserts a nonzero defect assembles a corner Leavitt family; this shows every relation it lists holds in a model of the unitriangular group with nonzero defect where no such family exists, so a proof of it must use sigma outside that group.
   sofic-subgroups-carry-rank-models-violating-two-root-identity: that turns sofic approximations of a sofic subgroup containing D_8 into characteristic-two rank models; this gives an explicit p^2-dimensional model of U_4(R) in every characteristic, applies it to the four-index frame, and shows the corner-family conclusion fails there.
   heisenberg-centre-pairing-constrains-two-root-defect: that is the centre-pairing plan; the same model restricted to U_3(R) has nonzero defect and zero centre pairing, so that plan cannot close from U_3 relations and R ~= R^2 alone.
+  unitriangular-data-cannot-assemble-corner-leavitt-families: the same obstruction, reached independently by w4-heisenberg through the direct-limit regular representation of the locally finite group UT_n(R), with the free rank profile and rk(N_23 N_12) = 3/8; this uses an explicit p^2-dimensional character model in every characteristic, with zero x_13, x_24 and x_14 data, and adds the {3,4}-grouping dictionary and the opposite-root escape.
 artifacts:
   - research/artifacts/rank-four-plan-adversarial-audit-2026-09-12.md
 ---
