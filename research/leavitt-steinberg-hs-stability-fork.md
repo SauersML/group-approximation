@@ -26,3 +26,14 @@ following branches holds:
 The inputs are finite presentability and minimal almost periodicity of `U`,
 quasisimplicity of `U`, and nonsoficity of the relevant central quotients.
 The fork is unconditional, but it does not decide which branch occurs.
+
+**Update 2026-09-12 (Khanh collapse).** By
+`leavitt-steinberg-map-iso-from-rank-three`, `U ~= GL_5(L) ~= L^x ~= Q`, and
+this group is simple. The "central quotient" of the unstable branch is
+therefore `U` itself, and the fork reads:
+
+> `L^x` is normalized-HS stable if and only if it is nonhyperlinear.
+
+See `steinberg-hs-stability-equals-nonhyperlinearity` and the routes
+`leavitt-unit-hyperlinear-from-steinberg-instability` and
+`steinberg-instability-from-leavitt-unit-hyperlinear`.
