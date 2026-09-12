@@ -21,8 +21,8 @@ Lane clone thm-d. The leaf served is `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7
   `typedCountStatement_of_typed τ hτ`, `boundarySumStatement X`, `CCKW.typedCountStatement_cosetComplex`,
   `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold (hzip : Systolic.ZipSpurStatement CCKW.cosetComplex) (hfold : Systolic.MirrorFoldStatement CCKW.cosetComplex) : Hyperbolic.IsHyperbolicGroup (GHB 7)`.
   The lead asked for this signature to stay stable.
-- Open leaves, as assigned by the lead on 09-12:
-  - `Systolic.ZipSpurStatement`: kh-ejz, `Systolic.zipSpur X` in GGT/SystolicDiscZip.lean.
+- Open leaves, as assigned by the lead on 09-12 (hzip reassigned from kh-ejz):
+  - `Systolic.ZipSpurStatement`: kh-torsion, `Systolic.zipSpurStatement X` in GGT/SystolicDiscZip.lean.
   - `Systolic.MirrorFoldStatement`: fff-periodic, `Systolic.mirrorFold X` in GGT/SystolicDiscMirrorFold.lean.
 
 ## LANDED (09-12)
@@ -35,6 +35,10 @@ Lane clone thm-d. The leaf served is `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7
 - 3e6d8448a: this report.
 - 6827a8024 (unverified): decoupling. Filling takes `hfill` and imports SystolicDisc only. The discharge from simple
   connectivity moves into zipFold in DiscCounts. Rule 22 grep: neither changed declaration has another user.
+- 67efd4db8 (unverified): `List.length_nil` in place of the unused `List.length_singleton` in
+  `faceDegree_outer_eq`. Probe 0912-094958-2788 had failed on the omega goal there.
+- Probe 0912-095158-18076 (base 67efd4db8): GHBHyperbolicFilling PROBE GREEN. All four declarations pass
+  `#audit_axioms`; the bytes on main are the probed bytes.
 
 ## EARLIER LANDINGS (09-11/12)
 f2d8712cd KMSGroupPresentation; 8e9bd8324 UnipotentSylowCounts with KazhdanHypSymLocalData; a49d59853
@@ -43,10 +47,10 @@ KazhdanHypSymPowerDisc; 7c06a251d VanKampen/TypedTriangularDiscCounts; 06fa3aa1f
 888400dcc, b2c9d8f50 KazhdanHypGirthEightSpurCountermodel and KazhdanHypSharpExistenceResiduals.
 
 ## NEXT
-- Probe GHBHyperbolicFilling alone (running), and land it normally when green.
 - Re-probe DiscCounts when go-sr1's fixes land, and land normally when green.
-- When `Systolic.zipSpur` and `Systolic.mirrorFold` land:
-  `isHyperbolicGroup_ghb7 : Hyperbolic.IsHyperbolicGroup (GHB 7) := isHyperbolicGroup_ghb7_of_zipFold (zipSpur _) (mirrorFold _)`.
+- When `Systolic.zipSpurStatement` (kh-torsion) and `Systolic.mirrorFold` (fff-periodic) land:
+  `isHyperbolicGroup_ghb7 : Hyperbolic.IsHyperbolicGroup (GHB 7) := isHyperbolicGroup_ghb7_of_zipFold (zipSpurStatement _) (mirrorFold _)`,
+  with the names adjusted to what lands.
 - Wiring: GHBHyperbolic, Filling and DiscCounts join a later root-wiring wave once green, per the lead. The
   Ladder and TypedTriangularDiscCounts are in the current wave, so edits to them or to their imports land NM_ATTIC
   until a probe is green.
