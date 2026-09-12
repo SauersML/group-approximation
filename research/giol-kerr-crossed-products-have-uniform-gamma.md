@@ -14,6 +14,15 @@ though the inclusion `(C(X) subset C(X) rtimes Z)` fails relative uniform
 Gamma and the algebra fails strict comparison. STW record the question as
 open; it is the natural absolute-versus-relative separation candidate.
 
+**Established (2026-09-12)** through `giol-kerr-uniform-gamma-vaccaro-citation`.
+Vaccaro, arXiv:2604.24682v2, Theorem A(2): crossed products of free minimal
+actions of countably infinite FC groups on compact metric spaces have uniform
+property Gamma.  Minimal homeomorphisms of infinite compact spaces are free,
+and `Z` is FC.  So absolute uniform Gamma holds here while the Cartan-relative
+version fails, which separates the two on a natural example.  By CETW Theorem A
+(`uniform-gamma-algebras-satisfy-toms-winter`) this also gives a second reason
+why these non-Z-stable algebras fail strict comparison.
+
 ## Attempts
 
 - Conditional route recorded:
@@ -30,7 +39,8 @@ open; it is the natural absolute-versus-relative separation candidate.
   rules out Cartan-relative Gamma but does not rule out these off-diagonal
   projections.
 - Vaccaro's method (stable rank one plus tracial local homogeneity gives
-  uniform Gamma) covers the AH stable-rank-one setting. Giol--Kerr
-  orbit-breaking stages are recursive subhomogeneous, and the needed
-  continuous selection has not been verified. Stable rank one alone does not
-  supply it.
+  uniform Gamma) covers the AH stable-rank-one setting.  An earlier version
+  of this note judged the Giol--Kerr case unverified.  It is covered by
+  Vaccaro's crossed-product theorem.  That theorem uses Niu's tracial local
+  homogeneity for actions with the uniform Rokhlin property, not stable rank
+  one, and Naryshkin supplies the uniform Rokhlin property for FC groups.

@@ -56,6 +56,18 @@ All PDFs were fetched and converted to text on MSI
     2. that gives tracial almost divisibility (Vaccaro, Theorem 2.2);
     3. with tracially locally finite nuclear dimension, that gives uniform
        Gamma (Winter, through CETW22 Theorem 5.5).
+  - **Also read: the end of Section 4.**
+    - Corollary 4.6: free minimal URP actions of countably infinite amenable
+      groups give uniform Gamma, via Niu's tracial local homogeneity and
+      Theorem 3.6, without stable rank one.
+    - The paragraph after it derives Theorem A(2) for all free minimal
+      FC-group actions from Naryshkin's Corollary E.
+    - Application landed in this lane: the non-Z-stable Giol--Kerr crossed
+      products `C(X) rtimes Z` are free minimal `Z`-actions, so they have
+      uniform Gamma (`giol-kerr-uniform-gamma-vaccaro-citation`).  This closes
+      the Cairn root `giol-kerr-crossed-products-have-uniform-gamma`.  It is
+      not a Toms--Winter witness: uniform Gamma plus non-Z-stability forces
+      failure of strict comparison.
 - K. Mommaerts, arXiv:2606.12134v1: **abstract and pages 1--2 read.**  This is
   the first non-locally-trivial W*-bundle with fixed II_1 factor fibres.  The
   obstruction, failure of uniform spectral gap, concerns non-Gamma fibres.
