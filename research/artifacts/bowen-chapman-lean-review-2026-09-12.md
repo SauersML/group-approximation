@@ -136,7 +136,8 @@ WIP solution's `isSurjunctive_of_surjunctive` does exactly this. Its equation
   elements of the peripheral subgroup lie in the range of `polyToLaurent`,
   whose supports lie in the image of ℕ³.
 
-**(b) `bc-rf`, residual finiteness. Status: gap sent to `bc-rf`, fix proposed.**
+**(b) `bc-rf`, residual finiteness. Status: gap sent to `bc-rf`; fixed at
+dfa8d5e7b, verified (F4(h)).**
 The action on `V_n = (R_n)³` is a genuine left action: the product is
 `(A,M)(B,N) = (A·φ_M(B), MN)`, reduction mod `n` commutes with substitution, and
 `σ̄_M` is a ring hom.
@@ -176,10 +177,12 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 49fe43fa6 three landings touch the campaign: the Palomar
-challenge (6ae077316), the Dynamics base layer (5e2c62ed1) and the site-strata
-leaves (0bfc073cd). Everything else is a WIP snapshot under
-`wip/bowen-chapman/`.
+As of `origin/main` 684f9d301 nine landings touch the campaign: the Palomar
+challenge (6ae077316) and solution (1ad7aa663), the Dynamics base layer
+(5e2c62ed1), the site-strata leaves (0bfc073cd), semidirect (T) (3d4569114), the
+Laurent pair (031156388), residual finiteness (dfa8d5e7b), the coset wreath
+algebra (2d5427380) and the Dynamics upper layer (684f9d301). Everything else is
+a WIP snapshot under `wip/bowen-chapman/`.
 
 **Stale oleans.** The shared MSI checkout's oleans were built at a7bf5d4fc
 (30 August). A private-directory green counts only if every repository
@@ -219,7 +222,8 @@ verdicts.**
   is used only as prose.
 * **`BowenChapman/LaurentPairKazhdan.lean` (`bc-kazhdan`).** It calls
   `peripheralEmbedding_injective`, which does not exist; LaurentPair defines
-  `peripheralHom_injective`. Sent. The (T) inputs are sound:
+  `peripheralHom_injective`. Sent, and fixed in the WIP snapshot, which now uses
+  `MonoidHom.ofInjective peripheralHom_injective`. The (T) inputs are sound:
   * `finitelyGeneratedRingGeneralRankElementaryPropertyT` is root-imported at
     7db678817, carries a closed-axioms audit line in
     `PropertyT/IntegralColumnPlaneClosure.lean`, and covers every finitely
@@ -297,6 +301,77 @@ root-wired. No defect.**
 * The Mathlib pin is unchanged since a7bf5d4fc, so stale oleans do not apply.
   Both root imports are on origin/main, so the orphan scan stays clean.
 
+**(f) Landed: `Kazhdan/SemidirectProductKazhdan`, 3d4569114, root-wired. No
+defect.**
+* The statement matches the pinned permanence theorem, stated for
+  `{N Q : Type u}` at `HasKazhdanPropertyT.{u, v}`.
+* Evidence: pinned toolchain, `-DwarningAsError=true`, `REAL_EXIT=0` and the
+  olean written for the module and both repository dependencies. The quoted md5
+  equals the landed blob.
+* Stale oleans do not apply. The repository closure is exactly `Kazhdan/Kazhdan`
+  and `Kazhdan/KazhdanFixedSpace`, both compiled privately. Their quoted md5s
+  equal their blobs, and the claimed source base a6622e53c agrees with the
+  landing parent on both.
+
+**(g) Landed: `BowenChapman/LaurentPair`, 031156388, root-wired. No defect.**
+* Content as in F4(b). The landed consumer lemmas are `substitution_single`,
+  `actorAction_coe_apply`, `actorAction_elementaryUnit`, `peripheralHom`,
+  `peripheralHom_injective`, `peripheral_eq_range` and `mem_peripheral_iff`.
+* Evidence: `-DwarningAsError=true`, `lp_EXIT=0`, the olean written, and the
+  quoted md5 equals the landed blob.
+* The repository closure is `Leavitt/ElementaryGroup` alone, which has no
+  repository imports. It was compiled privately from blob c420409ca6f3, which is
+  its blob both at the claimed base a9b25c312 and at the landing parent. The
+  evidence names that dependency by git blob id rather than md5, which is
+  equivalent.
+
+**(h) Landed: `BowenChapman/ResiduallyFiniteSubstitution`, dfa8d5e7b,
+root-wired. No defect; it fixes F3(b).**
+* `CongruenceQuotient.residuallyFinite_semidirectProduct_of_expSubst` is
+  general. Take a finite nontrivial commutative ring `k`, subgroups `N` of the
+  units of `Matrix ι ι k[ℤ^ι]` and `Q` of the units of `Matrix ι ι ℤ`, and an
+  action `φ` that substitutes exponents entrywise (hypothesis `hφ`). Then
+  `N ⋊[φ] Q` is residually finite. `hφ` is structural, not a literature input.
+* `eq_one_of_forall_mulVec_substMod_eq` is the two-test separation proposed in
+  F3(b): the standard basis columns force `L = 1`, and then monomials force
+  `R = 1`.
+* The WIP consumer `LaurentPairResiduallyFinite` discharges `hφ` through
+  `substitution_apply_eq_expSubst`, proved by induction on Laurent polynomials.
+  Both `substitution` and `expSubst` map the domain along `v ↦ M *ᵥ v`, and
+  `k = ZMod 2` is finite and nontrivial.
+* Evidence: Mathlib-only imports, pinned toolchain, `-DwarningAsError=true`,
+  `EXIT=0`, the olean written, and the quoted md5 equals the landed blob.
+
+**(i) Landed: `Sofic/WreathCentralizerNormalization`, 2d5427380, root-wired. No
+defect.**
+* The algebraic core as in F4(b), plus `wreath_quotient_fg`.
+* Evidence: `-DwarningAsError=true`, `EXIT=0`, the olean written, and the quoted
+  md5 equals the landed blob.
+* The repository closure is `Algebra/FiniteResidual`,
+  `Algebra/PermutationalWreath` and `Algebra/PermutationalWreathSimple`. All
+  three quoted md5s equal their blobs at the landing parent. Each blob equals
+  main's at 09-11 18:21 CDT (d9a4490a7), the end of the clone's build window, so
+  the clone's oleans were built from current sources.
+
+**(j) Landed: the Dynamics upper layer, 684f9d301, root-wired. No defect.**
+* Six modules: `CosetRegion`, `StratifiedPeeling`, `FinitarySite`,
+  `FinitaryTransplant`, `FinitarySurjunctivity` and `WreathFinitarySite`. Six
+  root imports are added, and the only deletions are the six WIP snapshots.
+* Evidence:
+  * all six quoted md5s equal the landed blobs;
+  * the private probe used `-DwarningAsError=true` and exited 0 for each module;
+  * the mutexed `scripts/remote-build.sh` run reports "Build completed
+    successfully (1187 jobs)";
+  * `FinitarySite.isSurjunctive` and `isSurjunctive_wreath` depend on
+    `[propext, Classical.choice, Quot.sound]`.
+* The repository dependencies are the Dynamics base layer and
+  `Algebra/PermutationalWreath`. The mutexed build rebuilds any stale
+  dependency, so stale oleans do not apply.
+* Content: the landed `FinitarySite` fields are exactly the ones F3(d) was
+  checked against, and `wreathFinitarySite` is a compiled instance, so the
+  fields are satisfiable. The site fields are structural hypotheses, not
+  literature inputs.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
@@ -311,10 +386,12 @@ root-wired. No defect.**
 * `git diff --no-renames --diff-filter=D BASE NEW` is empty unless a deletion is
   intended.
 
-**Still to review as they land:** `bc-dynamics-upper` batch 2, the first
-`bcprobe` landings, `bc-pair`, `bc-kazhdan`, `bc-rf`, `bc-double-surj`,
-`bc-wreath`, `kt-norm-paper`, `kt-norm-repo`, `kt-norm-fixedpoint`,
-`kt-norm-counting`, `bc-assembly`, and the unsuffixed `bc-palomar` solution.
+**Still to review as they land:** the first `bcprobe` landings;
+`LaurentPairInfranormal` (`bc-pair`); `LaurentPairKazhdan` and
+`LaurentPairGeneration` (`bc-kazhdan`); `LaurentPairResiduallyFinite` and
+`WreathWitness`; the double finitary site (`bc-double-surj`); the sequential
+wreath consumer (`bc-wreath`); the four Theorem 4.1 lanes; `bc-assembly`; and the
+unsuffixed `bc-palomar` solution.
 
 ## F5. Main was emptied and restored
 
