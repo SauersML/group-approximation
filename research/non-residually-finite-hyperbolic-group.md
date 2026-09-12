@@ -127,3 +127,12 @@ radical, prime-order torsion in the finite residual, and hence a non-elementary
 finite residual. In particular, excluding persistent degree-two classes (the
 finite-residual shape above) would not settle this root: a free factor `Z`
 converts a finite residual into an infinite one.
+
+**2026-09-11: this root is also the MF question for hyperbolic groups.**
+[[hyperbolic-rf-question-equals-non-mf-question]] proves that a
+non-residually-finite hyperbolic group exists iff a non-MF hyperbolic group
+exists iff an infinite hyperbolic **Kazhdan** group without nontrivial finite
+quotients exists (Kapovich--Wise, Olshanskii's common hyperbolic quotients with
+a Kazhdan partner, Ozawa--Thom). So a counterexample may be assumed to have
+property (T) and no finite quotients at all, and it is automatically a non-MF
+group: [[non-mf-hyperbolic-group]] is this root's MF-program twin.
