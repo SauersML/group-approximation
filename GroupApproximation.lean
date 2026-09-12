@@ -4658,6 +4658,10 @@ import GroupApproximation.KunThom.SequentialComponentFamilyCompletion
 import GroupApproximation.KunThom.SequentialComponentFamilyLevels
 import GroupApproximation.KunThom.CountingEndgameWeights
 import GroupApproximation.KunThom.FixedPointNormalizationScaledBisection
+import GroupApproximation.KunThom.CentralizerToBisectionOverlap
+import GroupApproximation.KunThom.CentralizerToBisectionDefect
+import GroupApproximation.KunThom.CentralizerToBisectionExtension
+import GroupApproximation.KunThom.CentralizerToBisection
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
