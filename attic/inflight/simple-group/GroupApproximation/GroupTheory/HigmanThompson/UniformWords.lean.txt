@@ -168,10 +168,11 @@ theorem wword_apply (ds : List ℕ) (k : ℕ) (t : ℚ) :
         have hpj : (0 : ℚ) ≤ ((m : ℚ) + 2) ^ (ds.getD j 0) := (pow_pos hm _).le
         have hge : ((k : ℚ) + 1) ≤ posMap m (wword m (k + 1) ds) t := by
           rw [hw]
-          have h0 : (0 : ℚ) ≤ t - ((((k + 1 : ℕ) : ℚ)) + j) := by push_cast at h1 ⊢; linarith
+          have h0 : (0 : ℚ) ≤ t - ((k : ℚ) + 1 + j) := by push_cast at h1; linarith
           have h00 : (0 : ℚ) ≤ (psum m ds j : ℚ) := Nat.cast_nonneg _
+          have hprod := mul_nonneg hpj h0
           push_cast
-          nlinarith
+          linarith
         rw [(uword_apply m k d _).2.2 hge, hw]
         simp only [psum, List.getD_cons_succ]
         push_cast
