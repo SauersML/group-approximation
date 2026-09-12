@@ -158,6 +158,34 @@ PALOMAR_CONFIGS = (
     "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
 )
 
+# Configurations whose SOLUTION is still a skeleton.
+#
+# `Palomar/LIXStrongSolution.lean` proves each of the three theorems its
+# configuration selects from one proposition the construction still owes
+# (`GroupApproximation.NinetyNineProblems.ClimbedPowersOutside`), so its
+# theorems carry a hypothesis the challenge's do not, under names ending `_of`.
+# That is the honest state of the work and not a defect, so the pair is checked
+# for everything that is meaningful now -- the configuration's shape, the
+# challenge importing Mathlib alone, the size caps, the files existing, the
+# shared block matching between its own two files -- and is excluded from
+# exactly two rules:
+#
+#   * the challenge-versus-solution SIGNATURE comparison, which cannot hold
+#     until the hypothesis is gone;
+#   * the `formalization.yaml` requirement that every selected theorem be
+#     published in `status.main_results`, because those rows carry
+#     `sorry_count` and an axiom list and so assert a proved result.  Adding
+#     them today would publish a claim that is false.
+#
+# An entry moves from here to `PALOMAR_CONFIGS` on the day its solution's
+# theorems lose their hypotheses, and the metadata rows are added in the same
+# change.  Nothing else about the gate changes.  A pending entry is NOT a
+# weaker submission surface: it is not a submission surface at all, and the
+# summary line says so.
+PALOMAR_PENDING_CONFIGS = (
+    "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
+)
+
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
 # gate itself never names a challenge or a solution -- it derives both from a
 # configuration -- so this list exists only so that a planter can corrupt a
@@ -165,6 +193,8 @@ PALOMAR_CONFIGS = (
 SURFACE_FILES = (
     "Palomar/LIXChallenge.lean", "Palomar/LIXSolution.lean",
     "Palomar/comparator-lix.json",
+    "Palomar/LIXStrongChallenge.lean", "Palomar/LIXStrongSolution.lean",
+    "Palomar/comparator-lix-strong.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -180,11 +210,13 @@ class Pair:
     a different vocabulary.
     """
 
-    def __init__(self, root: Path, config_rel: str, cfg: dict) -> None:
+    def __init__(self, root: Path, config_rel: str, cfg: dict,
+                 pending: bool = False) -> None:
         self.root = root
         self.config_rel = config_rel
         self.config = root / config_rel
         self.cfg = cfg
+        self.pending = pending
         self.challenge = self._module_path(cfg.get("challenge_module"))
         self.solution = self._module_path(cfg.get("solution_module"))
 
@@ -207,15 +239,23 @@ class Pair:
 
 
 def load_pairs(root: Path, f: Findings) -> list[Pair]:
-    """Parse every configuration in `PALOMAR_CONFIGS`.
+    """Parse every configuration, submittable and pending.
 
     A configuration that cannot be read is reported and dropped.  Everything
     downstream is a statement about what the configuration names, so there is
     nothing left to check once it is unreadable -- and saying so once beats
     reporting the same unreadable file under six different rules.
+
+    A pending configuration is loaded on exactly the same terms as a
+    submittable one; the difference lives in the two rules that consult
+    `Pair.pending`, and nowhere else.  Loading it here rather than in a
+    separate pass is what keeps a pending surface from rotting quietly: its
+    files still have to exist, its challenge still has to import Mathlib alone,
+    and its own two copies of the shared block still have to agree.
     """
     pairs: list[Pair] = []
-    for rel in PALOMAR_CONFIGS:
+    for rel, pending in ([(c, False) for c in PALOMAR_CONFIGS]
+                         + [(c, True) for c in PALOMAR_PENDING_CONFIGS]):
         path = root / rel
         if not path.is_file():
             f.add(f"{rel}: missing")
@@ -228,7 +268,7 @@ def load_pairs(root: Path, f: Findings) -> list[Pair]:
         if not isinstance(cfg, dict):
             f.add(f"{rel}: must contain one JSON object")
             continue
-        pairs.append(Pair(root, rel, cfg))
+        pairs.append(Pair(root, rel, cfg, pending))
     return pairs
 
 
@@ -372,16 +412,46 @@ def check_pair(root: Path, pair: Pair, f: Findings) -> None:
                         "challenge may import Mathlib only; a project-local "
                         "import fails mechanical verification at the registry")
 
+    challenge_text = challenge.read_text(encoding="utf-8")
+    solution_text = solution.read_text(encoding="utf-8")
     for name in names:
         short = str(name).split(".")[-1]
         sigs = {}
-        for label, path in (("challenge", challenge), ("solution", solution)):
-            if not re.search(rf"^theorem {re.escape(short)}\b",
-                             path.read_text(encoding="utf-8"), re.MULTILINE):
-                pair.say(f, f"{pair.rel(path)}: does not declare `{short}`, "
-                            f"which the configuration selects as {name}")
-            else:
-                sigs[label] = signature(path, short)
+        if not re.search(rf"^theorem {re.escape(short)}\b", challenge_text,
+                         re.MULTILINE):
+            pair.say(f, f"{pair.rel(challenge)}: does not declare `{short}`, "
+                        f"which the configuration selects as {name}")
+        else:
+            sigs["challenge"] = signature(challenge, short)
+
+        if pair.pending:
+            # The solution proves each selected statement from a proposition
+            # the construction still owes, so it declares `<short>_of` and not
+            # `<short>`; comparing signatures is meaningless until that
+            # hypothesis is gone.  Requiring the `_of` name is what keeps a
+            # pending surface from quietly losing a theorem: it is the one
+            # thing about the pair that is still checkable, and a pending
+            # entry with no check at all would certify nothing.
+            #
+            # The two patterns are disjoint: `_` is a word character, so `\b`
+            # never matches between `<short>` and the `_of` that follows it, and
+            # `^theorem <short>\b` therefore cannot be satisfied by a
+            # declaration of `<short>_of`, nor the reverse.
+            if not re.search(rf"^theorem {re.escape(short)}_of\b", solution_text,
+                             re.MULTILINE):
+                pair.say(f, f"{pair.rel(solution)}: does not declare "
+                            f"`{short}_of`; while this configuration is "
+                            "pending, every theorem it selects must appear in "
+                            "the solution as the `_of` form carrying the "
+                            "outstanding hypothesis")
+            continue
+
+        if not re.search(rf"^theorem {re.escape(short)}\b", solution_text,
+                         re.MULTILINE):
+            pair.say(f, f"{pair.rel(solution)}: does not declare `{short}`, "
+                        f"which the configuration selects as {name}")
+        else:
+            sigs["solution"] = signature(solution, short)
         if len(sigs) != 2:
             continue
         sc, ss = sigs["challenge"], sigs["solution"]
@@ -641,6 +711,16 @@ def check_metadata(root: Path, pairs: list[Pair], f: Findings) -> None:
         if isinstance(declaration, str) and isinstance(config, str):
             published.setdefault(config, set()).add(declaration)
     for pair in pairs:
+        # A pending configuration submits nothing, so the metadata must not
+        # describe it.  A `status.main_results` row carries `sorry_count` and
+        # an axiom list, which together assert a proved result; publishing one
+        # for a theorem whose solution still takes a hypothesis would be a
+        # false claim in the file the registry reads.  The rows are written in
+        # the same change that moves the configuration to `PALOMAR_CONFIGS`.
+        if pair.pending:
+            f.note(f"{pair.config_rel} is pending, so its theorems are "
+                   "deliberately absent from status.main_results")
+            continue
         for name in pair.cfg.get("theorem_names") or []:
             if str(name) not in published.get(pair.config_rel, set()):
                 f.add(f"formalization.yaml: {name} is not listed in "
@@ -719,6 +799,17 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
     ("comparator naming a missing module", "does not resolve to a regular file"),
     ("LIX comparator permitting a fourth axiom",
      "Palomar/comparator-lix.json: permitted_axioms"),
+    # The pending third surface.  Its four calibrations are the four rules it
+    # is still subject to; a pending entry whose planted defects went
+    # unreported would be a configuration listed and checked by nothing.
+    ("strong challenge with a project-local import",
+     "Palomar/LIXStrongChallenge.lean:1:"),
+    ("strong shared block edited on one side",
+     "Palomar/comparator-lix-strong.json: shared block diverges"),
+    ("strong solution missing an `_of` form",
+     "does not declare `exists_simple_separable_order_six_witness_of`"),
+    ("strong comparator permitting a fourth axiom",
+     "Palomar/comparator-lix-strong.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("three arXiv classes", "one or two distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -768,6 +859,24 @@ def plant(name: str, root: Path) -> None:
             "def cornerDiag' (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :", 1))
     elif name == "LIX comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-lix.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "strong challenge with a project-local import":
+        path = root / "Palomar" / "LIXStrongChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrong\n"
+            + path.read_text())
+    elif name == "strong shared block edited on one side":
+        path = root / "Palomar" / "LIXStrongSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def cornerDiag (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :",
+            "def cornerDiag' (A : Type) [CStarAlgebra A] (n : ℕ) (a : A) :", 1))
+    elif name == "strong solution missing an `_of` form":
+        path = root / "Palomar" / "LIXStrongSolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_simple_separable_order_six_witness_of",
+            "theorem exists_simple_separable_order_six_witness_renamed", 1))
+    elif name == "strong comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-lix-strong.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "LIX result dropped from the metadata":
         _edit_metadata(root,
@@ -896,10 +1005,17 @@ def main(argv: list[str]) -> int:
     if f.rows:
         print(f"palomar: {len(f.rows)} finding(s)")
         return 1
-    print(f"palomar: {len(PALOMAR_CONFIGS)} configuration(s) "
+    print(f"palomar: {len(PALOMAR_CONFIGS)} submittable configuration(s) "
           f"({', '.join(PALOMAR_CONFIGS)}) each resolve, with shared block and "
           "every compared signature identical and the challenge importing "
           "Mathlib only; tree and metadata meet the registry minimum")
+    if PALOMAR_PENDING_CONFIGS:
+        print(f"palomar: {len(PALOMAR_PENDING_CONFIGS)} pending configuration(s) "
+              f"({', '.join(PALOMAR_PENDING_CONFIGS)}) resolve, with shared "
+              "block identical and the challenge importing Mathlib only; their "
+              "signatures are NOT compared and their theorems are NOT published "
+              "in formalization.yaml, because their solutions still carry a "
+              "hypothesis -- they are not submission surfaces")
     return 0
 
 

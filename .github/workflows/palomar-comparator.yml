@@ -19,17 +19,26 @@ name: Palomar Comparator
 # A GitHub runner has both a current kernel and a current glibc.
 #
 # WHICH CONFIGURATION.  A submission is exactly one Comparator configuration,
-# and this repository offers two, so this workflow is dispatched once per
-# submission.  The `config` input takes either:
+# and this repository offers three, so this workflow is dispatched once per
+# submission.  The `config` input takes one of:
 #
-#   Palomar/comparator.json       the sofic-not-MF group (the default)
-#   Palomar/comparator-lix.json   the three STW Problem LIX theorems
+#   Palomar/comparator.json              the sofic-not-MF group (the default)
+#   Palomar/comparator-lix.json          the three STW Problem LIX theorems
+#   Palomar/comparator-lix-strong.json   the three strengthened LIX theorems
 #
-# The two values are the entries of `PALOMAR_CONFIGS` in
-# `scripts/check_palomar_submission.py`, which is what keeps this list from
-# going stale silently.  Nothing else here is per-configuration: the build step
-# below builds all four Palomar libraries whichever value is dispatched, so a
-# LIX run does not depend on remembering to change a second field.
+# The three values are the entries of `PALOMAR_CONFIGS` and
+# `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
+# what keeps this list from going stale silently.  Nothing else here is
+# per-configuration: the build step below builds all six Palomar libraries
+# whichever value is dispatched, so a LIX run does not depend on remembering to
+# change a second field.
+#
+# The third value WILL FAIL until the proposition
+# `GroupApproximation.NinetyNineProblems.ClimbedPowersOutside` is discharged:
+# `Palomar/LIXStrongSolution.lean` proves each selected statement from that
+# hypothesis, so the theorems the configuration names do not exist yet.  It is
+# listed here so that the day they do exist the dispatch takes no editing, and
+# `scripts/check_palomar_submission.py` is where that state is recorded.
 #
 # WHY MANUAL ONLY.  It builds two extra toolchains and a Rust kernel checker,
 # and the answer only changes when the Palomar surface changes.  Run it before
@@ -128,15 +137,18 @@ jobs:
         run: lake exe cache get
 
       # Only the Palomar libraries and whatever of the development they pull
-      # in.  With a warm cache this is minutes.  All four are built rather than
+      # in.  With a warm cache this is minutes.  All six are built rather than
       # the pair the dispatched `config` names: Comparator loads the modules the
       # configuration selects out of the environment, so a LIX dispatch against
       # a tree where only the non-MF pair was built fails on a missing module
-      # rather than on anything about the submission.  Building all four keeps
+      # rather than on anything about the submission.  Building all six keeps
       # the step independent of the input, at the cost of minutes on a warm
       # cache.
       - name: Build the Palomar modules
-        run: lake build PalomarChallenge PalomarSolution PalomarLIXChallenge PalomarLIXSolution
+        run: |
+          lake build PalomarChallenge PalomarSolution \
+                     PalomarLIXChallenge PalomarLIXSolution \
+                     PalomarLIXStrongChallenge PalomarLIXStrongSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is

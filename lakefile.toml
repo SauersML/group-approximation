@@ -64,3 +64,25 @@ roots = ["Palomar.LIXChallenge"]
 [[lean_lib]]
 name = "PalomarLIXSolution"
 roots = ["Palomar.LIXSolution"]
+
+# The third Comparator configuration, `Palomar/comparator-lix-strong.json`: the
+# strengthened Problem LIX theorems, where the counterexample's unitary has a
+# class in U(A)/U_0(A) whose order is divisible by every prime dividing the
+# rank, and still vanishes in K_1.  Same protocol as the pair above.
+#
+# NOT in `defaultTargets`, deliberately, and this is the one difference from
+# the other two.  `Palomar/LIXStrongSolution.lean` proves the three statements
+# from one proposition the construction still owes, so its theorems carry a
+# hypothesis the challenge's do not; the configuration is listed as pending in
+# `scripts/check_palomar_submission.py` and is not submittable yet.  A default
+# target is built by every `lake build` in a checkout shared by several agents,
+# and a surface that is deliberately incomplete should not be on that path.
+# Both libraries join `defaultTargets` when the missing proposition lands.
+
+[[lean_lib]]
+name = "PalomarLIXStrongChallenge"
+roots = ["Palomar.LIXStrongChallenge"]
+
+[[lean_lib]]
+name = "PalomarLIXStrongSolution"
+roots = ["Palomar.LIXStrongSolution"]
