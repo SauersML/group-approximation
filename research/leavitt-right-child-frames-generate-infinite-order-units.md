@@ -5,6 +5,7 @@ kind: claim
 title: The ternary tree of Leavitt frames at a cylinder conjugates into degree-zero units, while the frame at the right child, or a coefficient root with an opposite root, already gives units of infinite order
 distinct_from:
   locally-finite-hnn-data-allow-independent-cylinder-defects: that is the rank model with independent defects for identities of one locally finite subgroup plus single conjugations; this decides which configurations of Leavitt frames fit inside one locally finite subgroup and which do not.
+  finite-subgroup-data-cannot-force-defect-submultiplicativity: that says what is left is a unit of infinite order used as a factor; this computes the smallest such configurations, the right-child exchange product (a first generator of Thompson's F) and x_12(s_0) x_21(1), and shows the whole ternary frame tree at a cylinder lies in one locally finite conjugate of the degree-zero units.
 artifacts:
   - research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md
 ---

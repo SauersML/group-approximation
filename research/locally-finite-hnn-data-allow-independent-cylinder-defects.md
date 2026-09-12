@@ -7,6 +7,7 @@ distinct_from:
   unitriangular-data-cannot-assemble-corner-leavitt-families: that is the direct-limit regular model of a locally finite group, used against the two-root gate and the corner Leavitt family; this adds a stable letter for every unit through finite permutation intertwiners, keeps fixed-point-freeness, and shows theta = 1 for products of disjoint cylinder defects.
   near-minimal-defect-models-have-multiplicative-cylinder-defects: that shows rank models of R^x near the minimal defect multiply disjoint defects like independent factors, up to O(eps); this exhibits a model of the relational data with exact independence and defect 3/8.
   sofic-subgroups-carry-rank-models-violating-two-root-identity: that turns a sofic approximation of a sofic subgroup into a model free on one D_8; this builds, with no soficity theorem, a model of an HNN extension over all units with the free profile on every finite subgroup of the locally finite base.
+  finite-subgroup-data-cannot-force-defect-submultiplicativity: that is a consistent regular rank assignment on all finite-subgroup algebras of R^x, invariant under conjugation by every unit and a rank model on each locally finite subgroup; this is one genuine fixed-point-free rank model of an HNN extension, in which the conjugating units are group elements, so words mixing conjugators with elements of L are realized too.
 artifacts:
   - research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md
 ---
