@@ -108,3 +108,29 @@ Put `Γ̂ = π⁻¹(Γ)` and `Ĝ = π⁻¹(G_L) = G`.
 - **The relative criterion survives, as claimed.** `P/SL_3(Z) ≅ Z/2` is abelian, so every commutator in `P` lies in `SL_3(Z)`, and `[gzg⁻¹, γ] ∈ M` for all `g ∈ G`. The refuter kills one proof strategy, not the hinge. That hinge is `sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`, which stays OPEN.
 - **Graph.** The route has `requires: []` with a complete proof, so the claim is established and `refuted_by` on the premise fires. `relative-defect-via-normalizer-split` requires the refuted premise and can no longer fire. That is correct.
 - **The surviving exact form.** For `σ` with trace `δ_e`, `σ(H)'' ≅ L(H)` and `W*(σ(M)) ≅ L(M)`. `E_(L(M))(u_d) = 0` for `d ∉ M`, so `d ∈ M` iff `σ(d) ∈ W*(σ(M))`. Correct.
+
+## 8. Follow-up: `leavitt-cover-finite-quotients-split-over-the-kernel` and the Khanh 4.4 import
+
+`hyperbolic-sofic` requested this review. It was done from the shared-tree copies written at 10:51 CDT, which were **not yet on main** when reviewed (tip bff8f642a). **Verdict: PASS**, with one graph issue.
+
+**`binary-leavitt-unit-group-integrally-acyclic`**, with its `-citation` route. The quote matches Khanh Theorem 4.4 as recorded in `khanh-2609-08428-leavitt-gl-verified-2026-09-11.md`. The downstream consequence is correct: the universal coefficient theorem gives `H²(Q;A) = Hom(H_2(Q;Z),A) ⊕ Ext(H_1(Q;Z),A)` for trivial `A`, and `H_1 = H_2 = 0` kills it for **every** abelian `A`. Both vanishings are needed. PASS.
+
+**`leavitt-cover-finite-quotients-split-over-the-kernel`.**
+1. **Outer action.**
+   - `N` is infinite, normal and Kazhdan, hence non-elementary, so `C_G(N)` is finite (`hyperbolic-nonelementary-centralizer-finite`).
+   - `G` is torsion-free (Belegradek–Osin Corollary 1.2 with `H` torsion-free), so `C_G(N) = 1`.
+   - Hence `G ↪ Aut(N)` and `R^× ↪ Out(N)`: if `g` acts as the inner automorphism by `n ∈ N`, then `n⁻¹g ∈ C_G(N) = 1`.
+   - `Out(N)` contains the infinite simple group `R^×`, so it is not residually finite. Correct, and consistent with Theorem 1.1(e) of Belegradek–Osin.
+2. **Splitting.**
+   - `R^× → Out(N/L)` has finite image, so it is trivial because `R^×` is simple and infinite. Every `g` then acts on `N/L` as an inner automorphism, and `G/L = (N/L)·C` with `C = C_(G/L)(N/L)`, `C ∩ N/L = Z(N/L)` and `C/Z(N/L) ≅ G/N ≅ R^×`.
+   - The extension is central with trivial action, so `H² = 0` splits it: `C = Z(N/L) × s(R^×)`.
+   - `s(R^×)` is perfect and `Z` is central, so `[C,C] = s(R^×) =: K_L`. `K_L` is characteristic in the normal subgroup `C`, hence normal. `K_L ∩ N/L ⊆ K_L ∩ Z = 1`, and `K_L` centralizes `N/L`. So `G/L = N/L × K_L`.
+   - **Uniqueness, stronger than stated.**
+     - A normal complement `K'` commutes with `N/L`, since the intersection is trivial, so `K' ⊆ C`. It is perfect, so `K' ⊆ [C,C] = K_L`, and the Dedekind law gives `K' = K_L`.
+     - An arbitrary complement is the graph of a homomorphism `R^× → N/L`, which is trivial, so even non-normal complements are unique.
+3. **All finite quotients.**
+   - For a normal finite-index `K ⊴ G`, `NK = G` (every finite image of `G` is the image of `N`), and `L = K ∩ N` satisfies item 2.
+   - `K/L` is a normal complement to `N/L`, so `K/L = K_L`, and `G/K ≅ N/L`. Conversely `L ↦ π⁻¹(K_L)` inverts the map. So it is a bijection, and `Ĝ = N̂_G`.
+   - Residual finiteness of `G` is injectivity of `G → N̂_G`. Correct.
+
+**Graph issue.** The claim ends "Derivation: `leavitt-cover-finite-quotients-split-proof`", but no file with that id existed in the shared tree at review time. Landing the claim without that route leaves it OPEN to the compiler, and it would draw the "open claim without `## Attempts`" error under `check --changed`. Land the route with the claim.
