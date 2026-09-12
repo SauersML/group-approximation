@@ -73,3 +73,17 @@ pattern on `{1,h}` with distinct symbols.
   window must therefore realize a nonsofic configuration, today a one-sided
   compression configuration, and the decoder identity must genuinely use those
   relators.
+- *Table filter (2026-09-12).* By `strict-pairs-transfer-to-table-realizations`,
+  every homomorphism from the window's table group into a finite group, or into
+  any group already proved surjunctive, must kill `x_h`. The table group has
+  relators from `S x M` and `H x M`. So candidate windows can be screened on unit
+  products alone, before any rule is tried.
+- *No quotient-ring route (2026-09-12).* By
+  `full-shift-maps-into-two-sided-algebraic-subshifts-are-constant`, the Leavitt
+  kernel subshift receives only the zero automaton from full shifts. So the
+  coset-invariant output cannot be produced by passing through the dual of the
+  Leavitt algebra, or of any other quotient of `F_2[G]`.
+- *The host is not excluded (2026-09-12).* By
+  `gottschalk-counterexamples-lie-outside-the-permanence-closure`, `G` lies outside
+  the closure of the sofic groups under every surjunctivity permanence theorem now
+  available. So no positive method in the graph rules this claim out.
