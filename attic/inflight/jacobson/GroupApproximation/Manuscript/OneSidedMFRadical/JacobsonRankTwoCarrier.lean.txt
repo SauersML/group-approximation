@@ -45,7 +45,8 @@ theorem glAct_injective (n : ℕ) : Function.Injective (glAct n) := by
 
 /-- The symbol map `GL_n(J) → GL_n(F_2[z,z^{-1}])`. -/
 noncomputable abbrev glSymbolMap (n : ℕ) : GL (Fin n) ↥jacobsonAlgebra →* GL (Fin n) BinaryLaurent :=
-  Matrix.GeneralLinearGroup.map symbol
+  Units.map (symbol.mapMatrix : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra →+*
+    Matrix (Fin n) (Fin n) BinaryLaurent).toMonoidHom
 
 /-- An invertible matrix over `J` with identity symbol acts with finite matrix support. -/
 theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
@@ -56,7 +57,7 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
     intro i j
     have h := congrArg (fun y : GL (Fin n) BinaryLaurent ↦
       (y : Matrix (Fin n) (Fin n) BinaryLaurent) i j) (MonoidHom.mem_ker.mp hg)
-    simpa [Matrix.GeneralLinearGroup.map_apply] using h
+    exact h
   set G : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := (g : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) with hG
   have hfin : ∀ i j : Fin n,
       IsFiniteMatrix ((G i j - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) i j : ↥jacobsonAlgebra) :
