@@ -139,16 +139,17 @@ Theorem 1 is silent on every genuinely nonlinear binary design, which is where
 ## 5. What survives
 
 - Over `F_q`, a strict pair with `deg sigma * deg tau < q` is either a matrix Kaplansky pair
-  over `F_p[G]` (for invariant output, matrix corner fullness of `e`), or reduces to a
-  strict unipotent automaton `id + N`.
-- A nonlinear design that is not a disguised linear one must have
+  over `F_p[G]` (for invariant output, matrix corner fullness of `e`), or it reduces to a
+  unipotent automaton `id + N`.
+- By Section 7 the unipotent branch is never strict:
+  `unipotent-automata-over-finite-fields-are-surjective`.
+- So every low-degree strict automaton comes from a matrix one-sided pair
+  (`low-degree-strict-automata-force-matrix-kaplansky-failure`), and on a host where every
+  `M_n(F_p[G])` is directly finite, every low-degree injective automaton is surjective.
+- A nonlinear counterexample that is not a disguised Kaplansky one must have
   `deg sigma * deg tau >= q`. Its decoder identity must use the reduction `x^q = x`.
-- Whether strict unipotent automata exist is open:
-  `unipotent-automata-over-finite-fields-are-surjective`. If they never do, every low-degree
-  strict automaton comes from a matrix one-sided pair
-  (`low-degree-strict-automata-force-matrix-kaplansky-failure`).
 
-## 6. Attempts on the unipotent class
+## 6. Dead first attempts on the unipotent class (superseded by Section 7)
 
 - **Sofic hosts.** Every automaton is surjective there (`sofic-groups-are-surjunctive`), so
   the question lives on nonsofic hosts only.
@@ -163,3 +164,59 @@ Theorem 1 is silent on every genuinely nonlinear binary design, which is where
 - **Iterative solving.** Solving `y = x + N(x)` by `x = y - N(x)` has no contraction in a
   discrete alphabet, and a Garden-of-Eden pattern is not excluded. Dies.
 - **Graded counting on windows.** It needs finite models, so it recovers only the sofic case.
+
+## 7. Theorem 7 (low-degree strict automata are Kaplansky in disguise)
+
+Let `G` be any group, `F = F_q`, and `tau`, `sigma` automata over `F^m` with `tau(0) = 0`,
+`sigma tau = id` and `deg sigma * deg tau < q`. Let `A`, `C` be the linear parts. If `A C = I_m`,
+then `tau sigma = id`, so `tau` is surjective. Consequently:
+
+- **(i)** unipotent automata satisfying the degree bound are never strict;
+- **(ii)** a strict automaton with a low-degree decoder forces `A C != I_m`, so `M_m(F[G])` and
+  `M_(mk)(F_p[G])` are not directly finite;
+- **(iii)** if every `M_n(F_p[G])` is directly finite, every injective automaton over `F_q^m`
+  with a left inverse satisfying the bound is surjective.
+
+*Proof.*
+
+**Formal picture.** Let `P = F[x_(u,i) : u in G, 1 <= i <= m]` be the polynomial ring in
+infinitely many variables. No reduction `x^q = x` is imposed. An automaton `phi` whose local
+rule is a reduced polynomial defines a ring endomorphism `phi^*` of `P`, sending `x_(u,i)` to
+the `i`-th component of `phi(x)(u)`. Each image is a polynomial in finitely many variables.
+Formal composition satisfies `(psi phi)^* = phi^* psi^*`.
+
+**Step 1 (formal and functional composites agree).** As in Theorem 1, every monomial of the
+formal composite `sigma tau` has each exponent at most `deg sigma * deg tau < q`. The same
+holds for `tau sigma`, since the bound is symmetric. A polynomial with all exponents below
+`q` is the reduced representative of the function it computes. So `sigma tau = id` as
+functions gives `sigma tau = id` formally, `tau^* sigma^* = id_P`, and `tau^*` is onto `P`.
+Conversely, `tau sigma = id` formally implies it as functions.
+
+**Step 2 (`tau^*` is injective).** Write `tau^*(x_u) = L_u + H_u`, where `L_u` is the linear
+part, the components of `tau_A`, and every monomial of `H_u` has degree at least 2. For a
+homogeneous polynomial `f` of degree `j`, the degree-`j` part of `tau^*(f)` is
+`f(L) = tau_A^*(f)`, and every other term has larger degree. `tau_A` is a bijective linear
+automaton, because `A C = I` and `C A = I` by Theorem 1. So `tau_A^*` is an automorphism of
+`P` preserving degree, with inverse `tau_C^*`, and `f(L) != 0` whenever `f != 0`.
+
+Now take `f != 0` and let `f_j` be its lowest nonzero homogeneous component. The
+lowest-degree part of `tau^*(f)` is `tau_A^*(f_j) != 0`, so `tau^*(f) != 0`.
+
+**Step 3.** `tau^*` is bijective and `tau^* sigma^* = id`, so `sigma^* = (tau^*)^-1` and
+`sigma^* tau^* = id_P`. That is `tau sigma = id` formally, hence as functions by Step 1. Then
+`tau` is surjective.
+
+For (ii): if `tau` is strict, `A C = I` is impossible, so `C A = I != A C` in `M_m(F[G])`.
+Restriction of scalars along `F_q -> M_k(F_p)` gives the failure over `F_p`. (iii) is the
+contrapositive. QED
+
+**Where the infinite variable set matters.** A surjective endomorphism of a polynomial ring
+in finitely many variables is injective by Noetherianity. In infinitely many variables it need
+not be, which is the algebraic shadow of strictness. Step 2 recovers injectivity from the
+invertible linear part, with no Noetherian argument. So all strictness in low degree lives in
+the linear part, where it is exactly a matrix direct-finiteness failure.
+
+**What this leaves for nonlinear designs.** Genuinely nonlinear counterexamples must have
+`deg sigma * deg tau >= q`: every binary design, and every larger-field design whose decoder
+identity uses `x^q = x`, like the cube-root pair of Example 4. On hosts where `F_p[G]` is stably
+finite at every matrix size, only such high-degree designs can refute Gottschalk.
