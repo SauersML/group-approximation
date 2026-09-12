@@ -5,6 +5,7 @@ kind: claim
 title: An infinite Rokhlin entropy supremum forces maximal Bernoulli entropy, surjunctivity and direct finiteness
 distinct_from:
   residually-finite-groups-are-surjunctive: that is the classical periodic-point base case for residually finite groups; this is Seward's ergodic-theoretic criterion, with no approximation hypothesis on the group.
+  seward-per-group-rokhlin-entropy-of-bernoulli-shifts: that imports Seward's per-group entropy formulas and the product vanishing theorem; this records only the consequence of an infinite supremum, INF => RBS => GOT + KAP, in the form the self-copy routes consume.
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
 ---

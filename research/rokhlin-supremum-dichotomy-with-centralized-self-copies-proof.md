@@ -7,6 +7,7 @@ target: rokhlin-supremum-dichotomy-with-centralized-self-copies
 requires:
   - positive-rokhlin-entropy-action-gives-positive-supremum
   - infinite-rokhlin-supremum-forces-surjunctivity
+  - seward-per-group-rokhlin-entropy-of-bernoulli-shifts
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
   - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md

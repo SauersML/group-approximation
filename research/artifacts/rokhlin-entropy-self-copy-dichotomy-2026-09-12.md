@@ -137,25 +137,30 @@ QED.
 
 **Remark 2.5 (Thompson's V).** The elements of V supported in the cylinder `[0]` form a copy of V. The permutations of the `2^n` cylinders of length `n+1` inside `[1]` give `Sym(2^n)`. These commute with that copy and meet it trivially, so the same dichotomy holds for V.
 
-## 3. One countable host for Gottschalk's conjecture
+## 3. The fixed Gottschalk tester host
 
-Let `U_*` be the two-generator host of `gottschalk-surjunctivity-fixed-two-generator-tester`: `U_*` is surjunctive iff every group is surjunctive. Let `S = Sym_fin(N)`, and put
+Let `U_*` be the two-generator finitely presented host of `whitehead-universal-finitely-presented-container`. It is also the host of `universal-all-group-subgroup-colimit-class-tester` and `gottschalk-surjunctivity-fixed-two-generator-tester`. Every countably generated recursively presented group embeds in `U_*`, and `Tord(U_*) = {2,3,4,...}`.
 
-    Gamma_U = restricted direct sum over i in N of (U_* x S).
+**Proposition 3.1.** `U_*` satisfies Corollary A1. Hence `h^Rok_sup(U_*)` is 0 or infinity, and POS(`U_*`), INF(`U_*`) and RBS(`U_*`) are equivalent.
 
-Splitting N into even and odd indices embeds `Gamma_U x Gamma_U` in `Gamma_U`, and S contains `Sym(n)` for every n. So Corollaries A1 and A2 apply.
+*Proof.* `U_* x U_*` is finitely presented, so it embeds in `U_*`. And `U_*` contains a cyclic group of every order. QED.
 
-**Proposition 3.1.** Suppose `Gamma_U` admits a free ergodic p.m.p. action with positive Rokhlin entropy. Then every group is surjunctive, and Kaplansky's direct finiteness conjecture holds for all groups and fields.
+**Proposition 3.2 (down-passing).** If POS(`U_*`), then POS(`K`) holds for every infinite countably generated recursively presented group `K`.
+
+*Proof.* By 3.1, RBS(`U_*`) holds, so the Bernoulli 2-shift over `U_*` has Rokhlin entropy log 2. Embed `K <= U_*`. The restricted action is free and mixing, hence ergodic. A generating partition for `K` generates for `U_*`, so the Rokhlin entropy of the restriction is at least log 2. QED.
+
+**Proposition 3.3.** Suppose `U_*` admits a free ergodic p.m.p. action with positive Rokhlin entropy. Then every group is surjunctive, and Kaplansky's direct finiteness conjecture holds for all groups and fields.
 
 *Proof.*
-1. By A2, POS(`Gamma_U`) makes `Gamma_U` surjunctive.
-2. Subgroups of surjunctive groups are surjunctive, so `U_*` is surjunctive.
-3. By the tester equivalence, every group is surjunctive.
-4. Gottschalk's conjecture implies Kaplansky's direct finiteness conjecture, as recorded under (S7).
+1. By 3.1 and A2, `U_*` is surjunctive.
+2. By the tester equivalence, every group is surjunctive.
+3. Gottschalk's conjecture implies Kaplansky's, as recorded under (S7).
 
 QED.
 
-Seward's Corollary 7.8 needs POS for every countably infinite group; Proposition 3.1 needs it for one explicit countable group. `Gamma_U` is not finitely generated, but any countable group containing `U_*` and satisfying A1 serves equally well.
+The peer route `rokhlin-maximality-on-tester-covers-every-group` gives maximality for every group from maximality on `U_*`. Combining it with Proposition 3.1, POS for the single group `U_*` is equivalent to Seward's hypothesis that every countably infinite group satisfies POS.
+
+**Remark 3.4.** The first version of this note used `Gamma_U = ⊕_N (U_* x Sym_fin(N))`. That group also satisfies A1 and contains `U_*`, but the container property makes the detour unnecessary. `Gamma_U` is recursively presented, so it embeds in `U_*`, and down-passing in both directions gives POS(`Gamma_U`) iff POS(`U_*`).
 
 ## 4. What this does not do
 
