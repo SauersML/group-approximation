@@ -30,6 +30,18 @@ Consequences:
   maps, because a witness uses finitely many coincidences.
 * The route `rokhlin-maximality-on-tester-covers-every-group` combines this with
   subgroup closure and the fixed tester theorem.
+* **Canonical hosts (2026-09-12).** `Phi` is unchanged by every homomorphism of
+  `<E ∪ F>` that is injective on `P = FE ∪ {1}`.
+  - Present a group by letters for `E` and `F`, with a relator `f e = f' e'` for each
+    coincidence in `G` and `f e = 1` for each product equal to `1`. It realizes the
+    same pattern exactly, since an extra coincidence there would map to one in `G`.
+  - So every deficit pattern has one canonical host, and deficits pass along
+    homomorphisms injective on the points.
+  - Merging points is not monotone. The trivial group has no deficit, and a free
+    group has none but surjects onto every finitely generated group.
+
+  This is Proposition 3 of
+  `research/artifacts/median-matching-entropy-translation-2026-09-12.md`.
 
 **ESTABLISHED 2026-09-12** by
 [[bernoulli-rokhlin-deficit-has-a-finitary-witness-proof]].

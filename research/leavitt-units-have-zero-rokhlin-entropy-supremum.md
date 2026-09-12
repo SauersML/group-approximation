@@ -55,3 +55,28 @@ deficit certificate is finite and checkable.
   give a witness, by the localization. A compression has to run through a nonsoficity
   configuration of `U`, such as the Kazhdan compression `u L u^-1 < L` behind
   `openai-leavitt-unit-nonsofic`. No construction is known.
+- **Invisibility is not enough for strictness.** The surjunctive Kun--Thom wreaths carry
+  nontrivial invisible rigid defects (`surjunctive-groups-carry-invisible-rigid-defects`, part 2).
+  It is open whether invisibility forces a deficit, because INF for those wreaths is unknown.
+- **Nesting.** Nesting is the one part of the configuration not yet used.
+  - A free centralizing factor is inert (`free-centralizer-amalgams-are-surjunctivity-inert`).
+  - Nested defects live in a nonsofic Kazhdan group
+    (`nested-rigid-defects-live-in-nonsofic-kazhdan-groups`).
+  - `U` carries one (`leavitt-units-carry-nested-rigid-defect`).
+- **Median matching (2026-09-12).** Dead as a construction:
+  - the device of `openai-bounded-median-component-matching` needs Kazhdan components to match;
+  - on the uniform Bernoulli shift every `Gamma`-invariant observable is constant;
+  - every finite piece of `U` has boundary proportional to its size.
+
+  `median-matching-has-no-bernoulli-entropy-analogue` records this and invalidates
+  `leavitt-zero-supremum-via-median-matching`. The only output of the device that a certificate
+  can use is invisibility of the defect in finite models, which the localization already requires.
+- **Canonical hosts.** A deficit pattern is realized exactly by its square presentation, and `Phi`
+  is invariant under homomorphisms injective on the points (Proposition 3 of
+  `research/artifacts/median-matching-entropy-translation-2026-09-12.md`). So a certificate over
+  `U` consists of three things:
+  - a finitely presented group with relators of length 2 and 4;
+  - a code `psi` carrying a deficit on it;
+  - a homomorphism to `U` that is injective on the points.
+
+  Merging points is not monotone, so no coarser host needs to be tested.
