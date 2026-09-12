@@ -30,6 +30,19 @@ is the strong end -- `Q` nonhyperlinear implies `U` nonhyperlinear by
 central-quotient permanence, and not conversely -- so the equivalence must
 be stated with `Q`.
 
+**Update 2026-09-12 (Khanh collapse).**
+- **The groups coincide.** `leavitt-steinberg-map-iso-from-rank-three`
+  (Khanh, arXiv:2609.08428v1, Theorem 5.4) makes `St_5(L) -> GL_5(L)` an
+  isomorphism. The prefix codes give `GL_5(L) ~= L^x ~= GL_4(L) = EL_4(L)`.
+  So `U ~= Q ~= L^x`, which is simple (`binary-leavitt-unit-group-is-simple`).
+- **The caution is empty here.** The central kernel above is trivial, and a
+  nontrivial homomorphism into a tracial ultraproduct is injective. So for
+  this ring conditions 1-3 are also equivalent to "`U` is nonhyperlinear" and
+  to "`L^x` is nonhyperlinear".
+- **Graph record.** The branch-level equivalence is recorded as the routes
+  `leavitt-unit-hyperlinear-from-steinberg-instability` and
+  `steinberg-instability-from-leavitt-unit-hyperlinear`.
+
 **Why it matters.**  The fork alone leaves it open whether the stable branch
 is a step toward a nonhyperlinear group or is one.  The equivalence settles
 that: on the stable branch `Q` is an explicit nonhyperlinear group, and `U`
