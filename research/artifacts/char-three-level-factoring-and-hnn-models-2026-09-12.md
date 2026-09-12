@@ -169,11 +169,19 @@ and `φ_g(a) = g a g^(−1)`. There is `X_g ∈ M^x` with `X_g σ_reg(a) X_g^(�
 
 **Remark 2.5 (torsion letters).** Suppose `g^n = 1` and `B_g` is the union of an increasing sequence of
 `g`-invariant finite subgroups `Γ_i`. Then the letter keeps its order.
-- **Size.** `n` divides `[L_j : Γ_i]` for large `j`, because the order of `GL_(2^j)(F_3)` eventually
-  contains every fixed prime power.
-- **Transport.** So `V_j` restricted to `Γ_i` is isomorphic to the restriction of a free
-  `F_3[Γ_i ⋊ <g>]ε₋`-module. Transporting the action of `g` gives `X_j` with `X_j^n = 1` that intertwines
-  `φ_g` on `Γ_i`.
+- **Size.** For each fixed `i`, `n` divides `[L_j : Γ_i]` once `j` is large. The reason: for every prime
+  `p`, the `p`-part of `|GL_(2^j)(F_3)|` grows without bound in `j`, while `|Γ_i|` is fixed.
+  - `i = i(j)` moves with `j`, so the divisibility is built into the choice:
+    `i(j) = max{i <= j : Γ_i ⊆ L_j and n | [L_j : Γ_i]}`, or `0` if there is none.
+  - `i(j) -> ∞`: for any fixed `i_0`, both conditions hold at `i_0` for all large `j`, so `i(j) >= i_0`.
+  - Correction 2026-09-12 from w3-vf-linear (Section 21): the first version asserted divisibility "for
+    large `j`" at the moving index.
+- **Transport.** At `i = i(j) >= 1`, `V_j` restricted to `Γ_i` is free of rank `[L_j : Γ_i] = n·m`.
+  - `F_3[Γ_i ⋊ Z/n]` is free of rank `n` over `F_3[Γ_i]`, and `ε₋` is central because `g` fixes `z`. So
+    `V_j` restricted to `Γ_i` is isomorphic to the restriction of the free module `(F_3[Γ_i ⋊ Z/n]ε₋)^m`.
+  - Transporting the action of the generator of `Z/n` gives `X_j` with `X_j^n = 1` and
+    `X_j σ_j(a) X_j^(−1) = σ_j(φ_g(a))` for `a ∈ Γ_i`. Put `X_j = 1` when `i(j) = 0`.
+  - `[X_j]_ω` is the letter, and its order divides `n`.
 - **Example.** The Thompson three-cycle `[0] -> [10] -> [11] -> [0]`. Its domain is the block group of
   the three cylinders, exhausted by the `g`-invariant block groups with equal suffix length in each block.
 
