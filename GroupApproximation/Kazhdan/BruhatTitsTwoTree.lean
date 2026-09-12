@@ -46,15 +46,15 @@ theorem dispInt_inv_mul_congr {g g' h h' : GL (Fin 2) K}
 def btGraph : SimpleGraph (Vertex v) where
   Adj x y := ∃ g h : GL (Fin 2) K, (QuotientGroup.mk g : Vertex v) = x ∧
     (QuotientGroup.mk h : Vertex v) = y ∧ dispInt v (g⁻¹ * h) = 1
-  symm := by
+  symm := ⟨by
     rintro x y ⟨g, h, rfl, rfl, hgh⟩
     refine ⟨h, g, rfl, rfl, ?_⟩
-    rw [← dispInt_inv, mul_inv_rev, inv_inv]
-    exact hgh
-  loopless := by
+    rw [← dispInt_inv, _root_.mul_inv_rev, inv_inv]
+    exact hgh⟩
+  loopless := ⟨by
     rintro x ⟨g, h, hg, hh, hgh⟩
     have h0 : dispInt v (g⁻¹ * h) = 0 := (mem_stab v).mp (QuotientGroup.eq.mp (hg.trans hh.symm))
-    omega
+    omega⟩
 
 theorem btGraph_adj_mk (g h : GL (Fin 2) K) :
     (btGraph v).Adj (QuotientGroup.mk g) (QuotientGroup.mk h) ↔ dispInt v (g⁻¹ * h) = 1 := by
@@ -85,6 +85,7 @@ theorem level_adj {x y : Vertex v} (hxy : (btGraph v).Adj x y) :
 
 variable {π : K} (hπ : v π = 1)
 
+include hπ in
 theorem level_unique_lower {x y z : Vertex v} (hxy : (btGraph v).Adj x y)
     (hxz : (btGraph v).Adj x z) (hy : level v y + 1 = level v x)
     (hz : level v z + 1 = level v x) : y = z := by
@@ -131,6 +132,7 @@ theorem reachable_diagPow (s : GL (Fin 2) K) (n : ℕ) :
       rw [e, dispInt_diagPow]
       simp
 
+include hπ in
 theorem btGraph_connected : (btGraph v).Connected := by
   haveI : Nonempty (Vertex v) := ⟨QuotientGroup.mk 1⟩
   have hbase : ∀ x : Vertex v, (btGraph v).Reachable (QuotientGroup.mk 1) x := by
@@ -149,6 +151,7 @@ theorem btGraph_connected : (btGraph v).Connected := by
     exact reachable_diagPow v hπ s₁ n
   exact ⟨fun x y ↦ (hbase x).symm.trans (hbase y)⟩
 
+include hπ in
 /-- **The Bruhat--Tits graph is a tree.** -/
 theorem btGraph_isTree : (btGraph v).IsTree :=
   LevelTree.isTree_of_level (level v) (btGraph_connected v hπ) (fun _ _ h ↦ level_adj v h)
@@ -163,6 +166,7 @@ theorem btGraph_isGraphAction : TreeAction.IsGraphAction (GL (Fin 2) K) (btGraph
   have e : (g * a)⁻¹ * (g * b) = a⁻¹ * b := by group
   rw [e]
 
+include hπ in
 /-- **Kazhdan groups have bounded displacement on the Bruhat--Tits tree.** -/
 theorem exists_dispInt_bound_of_hasKazhdanPropertyT {Γ : Type u} [Group Γ]
     (hT : HasKazhdanPropertyT.{u, u} Γ) (ρ : Γ →* GL (Fin 2) K) :

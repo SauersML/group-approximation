@@ -117,17 +117,17 @@ noncomputable def intAction {G : Type u} [Group G] (f : G →* Multiplicative �
     AffineAction.{u, 0} G where
   E := ℝ
   π := 1
-  b g := (Multiplicative.toAdd (f g) : ℝ)
+  b g := ((Multiplicative.toAdd (f g) : ℤ) : ℝ)
   isCocycle g h := by
     have e : Multiplicative.toAdd (f (g * h)) =
         Multiplicative.toAdd (f g) + Multiplicative.toAdd (f h) := by
       rw [map_mul, toAdd_mul]
     show ((Multiplicative.toAdd (f (g * h)) : ℤ) : ℝ) =
-      (Multiplicative.toAdd (f g) : ℝ) + (Multiplicative.toAdd (f h) : ℝ)
+      ((Multiplicative.toAdd (f g) : ℤ) : ℝ) + ((Multiplicative.toAdd (f h) : ℤ) : ℝ)
     rw [e, Int.cast_add]
 
 theorem norm_intAction_b {G : Type u} [Group G] (f : G →* Multiplicative ℤ) (g : G) :
-    ‖(intAction f).b g‖ = |(Multiplicative.toAdd (f g) : ℝ)| :=
+    ‖(intAction f).b g‖ = |((Multiplicative.toAdd (f g) : ℤ) : ℝ)| :=
   Real.norm_eq_abs _
 
 end Haagerup
