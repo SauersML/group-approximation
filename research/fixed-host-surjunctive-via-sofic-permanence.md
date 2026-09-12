@@ -4,7 +4,7 @@ id: fixed-host-surjunctive-via-sofic-permanence
 kind: route
 title: Prove the tester host surjunctive by iterating the permanence theorems from sofic groups
 target: fixed-gottschalk-test-group-is-surjunctive
-requires: [fixed-host-lies-in-sofic-permanence-closure, sofic-groups-are-surjunctive, finitary-split-extension-surjunctivity-permanence, graph-folds-over-surjunctive-groups-are-surjunctive, lef-lamp-graph-wreaths-are-surjunctive]
+requires: [fixed-host-lies-in-sofic-permanence-closure, sofic-groups-are-surjunctive, finitary-split-extension-surjunctivity-permanence, graph-folds-over-surjunctive-groups-are-surjunctive, lef-lamp-graph-wreaths-are-surjunctive, surjunctivity-passes-to-subgroups]
 ---
 
 **Dead.** Invalidated by `fixed-host-outside-sofic-permanence-closure`.
