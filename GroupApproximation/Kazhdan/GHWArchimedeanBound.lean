@@ -1,6 +1,9 @@
 import GroupApproximation.Kazhdan.GHWInterfaces
+import GroupApproximation.Kazhdan.GHWArchimedeanWalls
+import GroupApproximation.Kazhdan.GHWArchimedeanSeparation
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
+import Mathlib.Analysis.SpecialFunctions.Sqrt
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -17,6 +20,13 @@ whose translation part dominates the matrix entries,
   `GL₂(σ) ∘ ρ` (entries are `σ` of entries by definition, and `det` commutes with `σ`).
 * `add_inv_le_two_mul_exp_abs_log`: `a + a⁻¹ ≤ 2 exp |log a|`, the step
   `cosh r ≤ exp r` of the bound.
+* `separationFinite`: the walls separating the base point from its translates have finite shell
+  measure (`Kazhdan/GHWArchimedeanSeparation`), so the wall action of
+  `Kazhdan/GHWArchimedeanWalls` exists.
+* `ghwArchimedeanAffineBound`: the wall action with translation part scaled by `c = κ^{-1/2}`,
+  `κ = 2φ(1)`, pulled back along `ρ`.  For `g = ρ γ` with eigenvalues `a, a⁻¹` of
+  `g g*/|det g|`: `|g_ij|² ≤ Σ |g_kl|² = |det g|(a + a⁻¹) ≤ 2 |det g| exp |log a|` and
+  `|log a| ≤ κ⁻¹ μ(separating walls) = ‖b γ‖²`.
 
 ## Manuscript status
 
@@ -69,9 +79,59 @@ theorem add_inv_le_two_mul_exp_abs_log {a : ℝ} (ha : 0 < a) :
       _ ≤ Real.exp |Real.log a| := Real.exp_le_exp.mpr (neg_le_abs _)
   linarith
 
+open Minkowski
+
+/-- **`SeparationFinite`**: both differences of the half-spaces of the base point and its
+translate have finite shell measure. -/
+theorem separationFinite : Walls.SeparationFinite := fun g ↦
+  ⟨(Wedge.separation_diff_lt_top g).1.ne, (Wedge.separation_diff_lt_top g).2.ne⟩
+
+/-- **GHW, Lemmas 8 and 10 at an archimedean place.** -/
+theorem ghwArchimedeanAffineBound : GHWArchimedeanAffineBound := by
+  intro Γ _ ρ
+  set κ : ℝ := 2 * Wedge.wedgePhi 1 with hκ
+  have hκ0 : 0 < κ := by
+    rw [hκ]
+    linarith [Wedge.wedgePhi_one_pos]
+  refine ⟨(Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ, fun γ i j ↦ ?_⟩
+  set g : GL (Fin 2) ℂ := ρ γ with hg
+  obtain ⟨a, b, ha, -, hab, htr, -, hsep⟩ := Wedge.separation_bound g
+  have hnorm : ‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖ ^ 2 =
+      κ⁻¹ * (shellMeasure (Walls.halfSpace origin ∆ Walls.halfSpace (conjAct g origin))).toReal := by
+    rw [Haagerup.AffineAction.comapHom_b, Walls.wallAction_b, norm_smul, mul_pow,
+      Real.norm_eq_abs, sq_abs, Real.sq_sqrt (inv_nonneg.mpr hκ0.le), Walls.norm_wallCocycle_sq]
+  have hlog : |Real.log a| ≤
+      ‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖ ^ 2 := by
+    rw [hnorm, le_inv_mul_iff₀ hκ0]
+    exact hsep
+  have hentry : ‖(g : Matrix (Fin 2) (Fin 2) ℂ) i j‖ ^ 2 ≤
+      ∑ k : Fin 2, ∑ l : Fin 2, ‖(g : Matrix (Fin 2) (Fin 2) ℂ) k l‖ ^ 2 :=
+    (Finset.single_le_sum (f := fun l ↦ ‖(g : Matrix (Fin 2) (Fin 2) ℂ) i l‖ ^ 2)
+        (fun l _ ↦ sq_nonneg _) (Finset.mem_univ j)).trans
+      (Finset.single_le_sum
+        (f := fun k ↦ ∑ l : Fin 2, ‖(g : Matrix (Fin 2) (Fin 2) ℂ) k l‖ ^ 2)
+        (fun k _ ↦ Finset.sum_nonneg fun l _ ↦ sq_nonneg _) (Finset.mem_univ i))
+  have hb' : b = a⁻¹ := eq_inv_of_mul_eq_one_right hab
+  calc ‖(g : Matrix (Fin 2) (Fin 2) ℂ) i j‖ ^ 2
+      ≤ ∑ k : Fin 2, ∑ l : Fin 2, ‖(g : Matrix (Fin 2) (Fin 2) ℂ) k l‖ ^ 2 := hentry
+    _ = ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ * (a + b) := htr.symm
+    _ ≤ ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ * (2 * Real.exp |Real.log a|) := by
+        rw [hb']
+        exact mul_le_mul_of_nonneg_left (add_inv_le_two_mul_exp_abs_log ha) (norm_nonneg _)
+    _ ≤ ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ *
+          (2 * Real.exp (‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖
+            ^ 2)) :=
+        mul_le_mul_of_nonneg_left
+          (mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr hlog) zero_le_two) (norm_nonneg _)
+    _ = 2 * ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ *
+          Real.exp (‖((Walls.wallAction separationFinite (Real.sqrt κ⁻¹)).comapHom ρ).b γ‖
+            ^ 2) := by ring
+
 end GHW
 end GroupApproximation
 
+#audit_closed_axioms GroupApproximation.GHW.separationFinite
+#audit_closed_axioms GroupApproximation.GHW.ghwArchimedeanAffineBound
 #audit_axioms GroupApproximation.GHW.archimedeanAffineBound_places
 #audit_axioms GroupApproximation.GHW.archimedeanAffineBound_places_fin
 #audit_axioms GroupApproximation.GHW.add_inv_le_two_mul_exp_abs_log
