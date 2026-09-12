@@ -150,3 +150,18 @@ This record called the contrapositive the usable direction. That is withdrawn.
 Both statements are true, so their negations cannot refute Boone--Higman. What
 survives is only that a universal construction must carry these properties on
 the envelopes of inputs that have them.
+
+## Correction, same day: the full-radical target was never open
+
+Section 2 above says no finitely presented simple group in the literature was
+known to have full MF radical. That was false when it was written. Every
+infinite finitely presented simple Kazhdan group has full MF radical, by
+`simple-kazhdan-groups-have-full-mf-radical`, and this graph already carried
+such groups: the torsion-free Titz Mite--Witzel lattices and the Caprace--Rémy
+Kac--Moody lattices. The route `fp-simple-full-mf-radical-via-titz-witzel`
+records the missed derivation. So the contrapositive attack of section 2 was
+vacuous from the start, and not only after the Leavitt import.
+
+Section 3's defect-saturation hole therefore offers no new witness, torsion-free
+or otherwise. The Boone--Higman implication itself is correct but weak: its
+conclusion was already established.
