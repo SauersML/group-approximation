@@ -49,8 +49,12 @@ def geoF : Subgroup (Equiv.Perm ℚ) where
       rw [hg0 t ht, hf0 t ht]
     · show f (g t) = t + ((cf + cg : ℤ) : ℚ)
       have hab : (-(cg : ℚ)) ≤ (cg.natAbs : ℚ) := by
-        have h := Int.neg_le_natAbs (a := cg)
-        exact_mod_cast h
+        have h : -cg ≤ (cg.natAbs : ℤ) := by
+          have h1 := Int.le_natAbs (a := -cg)
+          rwa [Int.natAbs_neg] at h1
+        have h2 := (Int.cast_le (R := ℚ)).mpr h
+        rw [Int.cast_neg, Int.cast_natCast] at h2
+        exact h2
       push_cast at ht
       have h1 : (Tg : ℚ) ≤ t := by
         have h0 : (0 : ℚ) ≤ (Tf : ℚ) := Nat.cast_nonneg Tf
@@ -67,8 +71,9 @@ def geoF : Subgroup (Equiv.Perm ℚ) where
     · rw [Equiv.Perm.inv_eq_iff_eq, hf0 t ht]
     · rw [Equiv.Perm.inv_eq_iff_eq]
       have hab : ((c : ℚ)) ≤ (c.natAbs : ℚ) := by
-        have h := Int.le_natAbs (a := c)
-        exact_mod_cast h
+        have h2 := (Int.cast_le (R := ℚ)).mpr (Int.le_natAbs (a := c))
+        rw [Int.cast_natCast] at h2
+        exact h2
       push_cast at ht
       have h1 : (T : ℚ) ≤ t + ((-c : ℤ) : ℚ) := by push_cast; linarith
       rw [hfT _ h1]
@@ -212,7 +217,7 @@ theorem brownF_le_geoF : brownF m ≤ geoF m := by
   induction g using PresentedGroup.induction_on with
   | H w =>
     induction w using FreeGroup.induction_on with
-    | C1 => simpa using (geoF m).one_mem
+    | C1 => simp
     | of x =>
         rw [brownX_of_fin, brownEval_X]
         exact xg_mem_geoF m x.val
@@ -264,7 +269,7 @@ theorem replicate_apply (d T : ℕ) : ∀ (k : ℕ) (t : ℚ),
         (ih (k + 1) t).1 (by rw [hcast1]; linarith)]
       exact (uword_apply m k d t).1 h1
     · rw [hrep, posMap_append, Equiv.Perm.mul_apply]
-      rcases le_or_lt t ((k : ℚ) + 1) with h4 | h4
+      rcases le_or_gt t ((k : ℚ) + 1) with h4 | h4
       · rw [(ih (k + 1) t).1 (by rw [hcast1]; exact h4), (uword_apply m k d t).2.1 h1 h4]
       · have hw := (ih (k + 1) t).2.1 (by rw [hcast1]; exact h4.le)
           (by rw [hcast1]; push_cast at h2; linarith)
@@ -303,7 +308,7 @@ theorem exists_wword_of_shape (M : ℕ) : ∀ (k : ℕ) (g : ℚ → ℚ), Monot
     refine ⟨[], fun u => ?_⟩
     have hnil : posMap m (wword m k []) u = u := by simp [wword, posMap, brownPos]
     rw [hnil]
-    rcases le_or_lt u k with hu | hu
+    rcases le_or_gt u k with hu | hu
     · exact h0 u hu
     · rw [hC u (by simpa using hu.le), hC0, add_zero]
   | succ M ih =>
@@ -328,7 +333,7 @@ theorem exists_wword_of_shape (M : ℕ) : ∀ (k : ℕ) (g : ℚ → ℚ), Monot
     have h0' : ∀ u : ℚ, u ≤ ((k + 1 : ℕ) : ℚ) → (posMap m (uword m k d₀))⁻¹ (g u) = u := by
       intro u hu
       push_cast at hu
-      rcases le_or_lt u k with h1 | h1
+      rcases le_or_gt u k with h1 | h1
       · rw [h0 u h1, Equiv.Perm.inv_eq_iff_eq, (uword_apply m k d₀ u).1 h1]
       · have hgu : g u = k + ((m : ℚ) + 2) ^ d₀ * (u - k) := by
           have h := hd₀ u (by push_cast; linarith) (by push_cast; linarith)
@@ -363,7 +368,7 @@ theorem exists_wword_of_shape (M : ℕ) : ∀ (k : ℕ) (g : ℚ → ℚ), Monot
     refine ⟨d₀ :: ds, fun u => ?_⟩
     rw [wword, posMap_append, Equiv.Perm.mul_apply, ← hds u]
     show g u = posMap m (uword m k d₀) ((posMap m (uword m k d₀))⁻¹ (g u))
-    rw [Equiv.Perm.apply_inv_self]
+    rw [perm_apply_inv_self]
 
 theorem zpow_exponent_nonneg_of_mem_grid {kk : ℤ} {B : ℕ}
     (h : ((m : ℚ) + 2) ^ kk ∈ Grid (m + 2) B) : 0 ≤ kk + B := by
