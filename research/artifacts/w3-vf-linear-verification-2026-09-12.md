@@ -677,3 +677,37 @@ Both checks above missed this node.
     `psi(s_1) != 1`.
   * Simplicity embeds `V` in `S_(m_k)`, which is impossible.
 * **Scope values.** The regular module has free orbits of size 3, so `d = 2/3`; the natural module has `d = 2/m`.
+
+## 18. Moving-level normal form (w3-gate-construct; 74d1ec087, artifact Section 4)
+
+### 18.1 `rank-models-are-exact-representations-at-moving-finite-levels` (Lemma 9, Proposition 10, Corollary 11): PASS
+
+* **Lemma 9.**
+  * `codim V_0 <= |H|^2 eps n`, and each `s(h)^-1 V_0` has the same codimension.
+  * For `v ∈ U`: `s(k)v ∈ V_0`, and `s(h)s(k)v = s(hk)v ∈ V_0`, so `s(k)U ⊆ U`.
+  * `s(1)` is an invertible idempotent on `U`, hence the identity.
+  * `rho − s` vanishes on `U`, so its rank is at most `codim U`.
+* **Proposition 10.** `{k : N_k >= N_0}` contains `K_1 ∩ ... ∩ K_(N_0) ∩ [N_0, ∞)`, which lies in `ω`. At `k`
+  the error is at most `C_(N_k) eps_(k,N_k) <= 1/N_k`.
+* **Corollary 11(a).** `rho_k(u_13(0,0))` is `o(1)`-close to `sigma_k(x_13(e))`. Transvections are conjugate in
+  `H_(N_k)`, and Lemma 3 applies.
+* **Corollary 11(b).** Rounding the generators and extending along fixed words changes each word by `o(1)`.
+  The result is an injective level-factoring model with displacement tending to `c_0`, so Theorem 4 makes
+  `R^x` LEF, which is impossible.
+* **Corollary 11(c), checked inside `R^x` and not only on `W_∞`.**
+  * Put `r = t0 − sum_(a=1)^M e_(a−1,a)`, so that `x_12(r) = x_12(t0) gamma_M^-1`.
+  * `e t0 e = 0` gives `e_(c−1,c) e_ab = delta_(c,a) e_(a−1,b)`. So `r e_ab = e_ab r = 0` for `a, b < M`, and
+    `x_12(r)` commutes with every `x_ij(e_ab)` generating `H_M`.
+  * If the three corrections were `o(1)`, the Toeplitz defect would be the level-`(M+1)` error of
+    Proposition 7, `rho_k(u_13(M,M))`, of displacement `c_0`.
+* Agrees with `gk-vf-linear` Section 55.
+
+### 18.2 `binary-jacobson-el3-rank-radical-is-the-finitary-kernel` (OPEN): the established dichotomy checks
+
+* **Radical inside `L`.** Regular representations of finite quotients of the residually finite
+  `EL_3(F_2[z, z^-1])` separate points, so the radical lies in `L`.
+* **Radical is `1` or `L`.** `L = GL_fin(F_2) = SL_fin(F_2)` is simple, and a normal subgroup of `E` inside `L` is
+  normal in `L`.
+* **Payoff.** It follows from injectivity of `EL_3(J) -> EL_3(R)` and simplicity of `R^x`.
+* **Partial check on `psi`.** Finite-rank perturbations keep index `−1`, so `S + f` cannot be surjective.
+* **Status.** Open, and not decided here.
