@@ -30,7 +30,13 @@ generated. `K_1` plays no role.
 Laurent structure (ABC Theorem 5.10).
 - **Vanishing:** it is `0` whenever `R` is `K_2`-regular (Weibel: `K_n`-regular
   implies `K_m = KH_m` for `m <= n`), in particular when `B` is regular
-  supercoherent (`ara-cortinas-leavitt-tensor-k-theory-vanishes`).
+  supercoherent (`ara-cortinas-leavitt-tensor-k-theory-vanishes`). Regular
+  coherence of `B` already suffices in degrees `n >= 1`
+  (`regular-coherent-coefficients-kill-leavitt-tensor-k-theory`, re-derived from
+  the ABC proof in 71c5800fc). Supercoherence enters only the negative-degree
+  induction of ABC Lemma 7.2. That claim rests on Waldhausen (Ann. Math. 108,
+  1978) Theorem 4, which has not been read here. So for regular coherent `B` the
+  kernel is trivial and item 3 is automatic.
 - **Expectation:** Nil groups are typically either `0` or infinitely generated, so
   in practice item 3 reduces to vanishing.
 
