@@ -87,3 +87,19 @@ evidence here until it has been scope-checked for abstract rank algebras in char
   - **Route.** `ternary-rank-kill-via-anti-central-defect-deficit` derives this claim from the open
     `ternary-anti-central-disjoint-defects-have-a-strict-deficit`: disjoint defect products are nonzero, and
     compressing along `Q_B D_A` lowers the defect by a fixed factor. An attained minimizer contradicts it.
+- **Outside E ⋊ V is one element (w5-c3-outside, bdc24926b1, c69a5bda20;
+  `research/artifacts/ternary-minus-one-gate-outside-signed-thompson-2026-09-12.md`).**
+  - **Generation, established** (`leavitt-prime-field-units-generated-by-v-and-one-transvection`).
+    `G = ⟨V, x⟩` with `x = 1 + s_00 t_01`. Nonidentity elements of disjoint transvection trees are all conjugate
+    to `x`.
+  - **Support conjugacy, established** (`leavitt-semisimple-torsion-units-conjugate-iff-same-support`).
+    Semisimple torsion units are conjugate iff their spectral supports agree. So `h ~ wd in E ⋊ V`, and every
+    non-central involution is `~ τ_([0])`. The order-8 Singer elements of level-one `GL_2(F_3)` are not conjugate
+    into `E ⋊ V`.
+  - **Firewalled.** Both results give only single-conjugation symmetries, and the anti-central HNN models above
+    realize them. A proof avoiding the V gate must use as a factor a depth-mismatched transvection pair such as
+    `T_(0,1)`, `T_(1,00)`, whose product contains the infinite-order unit `1 + s_0 t_00`.
+  - **Open.** `v-detecting-rank-functions-extend-to-ternary-leavitt-units`. With it, this claim becomes equivalent
+    to the V gate (route `v-augmentation-from-minus-one-gate-and-extension`). Where it dies:
+    - pullback: `G` is Kazhdan and `V` is Haagerup, so every homomorphism `G -> V` is trivial;
+    - `x` has no permutation model.
