@@ -35,9 +35,11 @@ Then `RDD <=> RNORM`. Derivation: `relative-defect-normalization-dichotomy-proof
   `<sigma(G), x> <= S_U`, which contains the relative configuration
   `sigma(M) <= sigma(Gamma) <= sigma(G)` and has a nontrivial defect modulo
   `sigma(M)`.
-- `M = 1`: `N_rel(sigma) = C_{S_U}(sigma(Gamma))`, so `RNORM` is `NORM(sofic)`,
-  which holds by `kun-thom-sofic-centralizer-normalization`, and `RDD` is the
-  established `sofic-groups-kill-rigid-compression-defects`.
+- `M = 1`: `N_rel(sigma) = C_{S_U}(sigma(Gamma))`, so `RNORM` is `NORM(sofic)`.
+  Kun--Thom Theorem 4.1 (`kun-thom-sofic-centralizer-normalization`) gives it
+  only for trace-zero sofic representations. `rigid-compression-defect-normalization-dichotomy`
+  extends it to every homomorphism. `RDD` is then the established
+  `sofic-groups-kill-rigid-compression-defects`.
 - Conjugation by `sigma(Gamma)` always preserves `N_rel(sigma)`, because
   `Gamma` normalizes `M`. Only the strict compressors carry content.
 - `RDD` is `sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`, and

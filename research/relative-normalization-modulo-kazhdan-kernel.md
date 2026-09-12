@@ -20,8 +20,10 @@ N_rel(sigma) = { x in S_U : x sigma(M) x^-1 = sigma(M), [x, sigma(Gamma)] <= sig
 ```
 
 By `relative-defect-normalization-dichotomy` this is equivalent to
-`sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`. The case `M = 1` is
-Kun--Thom Theorem 4.1. Conjugation by `sigma(Gamma)` preserves `N_rel(sigma)`
+`sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`. The case `M = 1`
+follows from Kun--Thom Theorem 4.1, which covers trace-zero sofic
+representations, together with `rigid-compression-defect-normalization-dichotomy`
+for arbitrary homomorphisms. Conjugation by `sigma(Gamma)` preserves `N_rel(sigma)`
 automatically, so only strict compressors matter.
 
 ## Attempts

@@ -25,5 +25,6 @@ This replaces `relative-defect-via-normalizer-split`, whose splitting premise
 is refuted. Unlike `relative-rigid-defect-from-kazhdan-quotient-permanence`,
 it never assumes that `H/M` is sofic. Its premise is exactly equivalent to the
 target, so it adds no strength; its value is the formulation. The whole
-difficulty is concentrated in one ultraproduct statement, and its `M = 1` case
-is Kun--Thom Theorem 4.1.
+difficulty is concentrated in one ultraproduct statement. Its `M = 1` case
+follows from Kun--Thom Theorem 4.1 together with the absolute
+`rigid-compression-defect-normalization-dichotomy`.
