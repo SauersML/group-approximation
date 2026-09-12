@@ -54,3 +54,17 @@ Eden for `tau` on the window `{1, d}`.
   for this claim must force a coincidence that fails in every such wreath. Nesting the
   conjugated centralizing element inside the compressed subgroup is the candidate
   distinction (`nested-rigid-defects-force-nonsurjunctivity`).
+- *The presentation form of the problem, and the abelian layer.* Eliminating the
+  decoder letters (`table-groups-are-memory-holonomy-groups`) turns the design problem
+  into a question about presentations alone: find generators `x_m`, `m in M \ {1}`, and
+  relators each of which is a product of edge labels -- a difference
+  `x_(m') x_m^(-1)` for a balanced identification, a single letter for an anchored one --
+  such that the difference `d = x_(m_1) x_(m_2)^(-1)` is nontrivial and sofic-invisible,
+  and some reverse hinge survives. Two filters follow from the abelianization of that
+  presentation (`table-hosts-have-a-cell-count-betti-lower-bound`,
+  `two-cell-window-differences-die-in-host-abelianization`). The table must carry at
+  least `|S| + |M| - 2` independent coincidences for a Kazhdan or simple host, and it
+  must be anchored: an unanchored table gives `Z * Q`, whose Kazhdan subgroups are all
+  conjugate into `Q`. Neither filter touches this window. The lattice test is vacuous on
+  a commutator, and `d = [u c u^(-1), l]` is one, so the abelian layer screens
+  single-letter windows and says nothing here. The attempt still dies at the same step.
