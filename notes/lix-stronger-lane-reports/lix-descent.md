@@ -121,3 +121,15 @@ Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
 * (lix-descent, 09-11) A theorem statement whose only occurrence of the section variable `p` is inside implicit
   arguments (`eR K ^ k`, `eBot K`, `eIntervalWord i len`) leaves `p` a metavariable, and the error is
   "typeclass instance problem is stuck NeZero (?m k i)".  Name it: `(p := p)`.
+
+## SCOPE 2 (2026-09-11 ~23:00, from lix-steenrod via the lead): the tensor evaluation layer, `CharClass/OddPEval*`
+
+* `OddPEval.lean` — **COMPILED**, probe 0911-233304-55463 (spare1, acn112), PROBE GREEN, on main byte-identical at
+  ab574afd4.  (E1) `tagEvalG`, (E2) `tupEval`, (E3) `gCoboundary` (+ `gCoboundary_zero/_succ`), `tupEval_single`,
+  `tagEvalG_of_eq_zero`, `tagEvalG_zero`, `tupEval_tupUpdate_of_eq`, `tupEval_lc_tupUpdate`, (E4) `tupEval_tupD_single`,
+  (E4') `tupEval_tupD_eq_zero`, (E5) `tupEval_tupT_const`, `tupEval_tupT_pow_const`, (E6) `tupEval_sum_tupT_pow`.
+  Axioms `[propext, Classical.choice, Quot.sound]`.
+* `OddPEvalNatural.lean` — (E7) `tagEvalG_tagPush`, `tupEval_tupMap`; landed unverified.  Not probed: it imports
+  `OddPTupleFunctor`, which has no compiled artifact yet (rule 20: no speculative probe).
+* E8 (`tupEval_add_slot` / `tupEval_smul_slot`) not written; optional, on request.
+* WIRE top: `GroupApproximation.CharClass.OddPEval`.
