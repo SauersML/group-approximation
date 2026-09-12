@@ -1,16 +1,20 @@
 import GroupApproximation.Kazhdan.GHBHyperbolicFilling
+import GroupApproximation.Kazhdan.CCKWTitsGHB
 import GroupApproximation.GGT.SystolicDiscCounts
+import GroupApproximation.GGT.SystolicDiscFilling
+import GroupApproximation.GGT.SystolicDiscMovesChord
+import GroupApproximation.GGT.SystolicDiscMovesAdapter
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The typed count and boundary sums at the coset complex of `GHB(7)`
 
-`GHBHyperbolicFilling.lean` derives `IsHyperbolicGroup (GHB 7)` over four inputs: the zip and
-fold moves of triangulated discs in the coset complex, the typed count `TypedCountStatement`
-(HC11) and the boundary sums `BoundarySumStatement` (HC12).  This module discharges the last
-two, from `Systolic.TriangulatedDisc.exists_typedCounts` with
-`TypedTriangularDiscCounts.faceCount_le_six_mul_boundaryLength`, and from
-`Systolic.TriangulatedDisc.abs_boundarySum_le`:
+`GHBHyperbolicFilling.lean` derives `IsHyperbolicGroup (GHB 7)` over four inputs: filling and
+folding of triangulated discs in the coset complex, the typed count `TypedCountStatement`
+(HC11) and the boundary sums `BoundarySumStatement` (HC12).  This module discharges the count,
+from `Systolic.TriangulatedDisc.exists_typedCounts` with
+`TypedTriangularDiscCounts.faceCount_le_six_mul_boundaryLength`, the sums, from
+`Systolic.TriangulatedDisc.abs_boundarySum_le`, and filling, from simple connectivity:
 
 * `typedCountStatement_of_typed`: in a complex whose triangles have three distinct types
   `τ : V → Fin 3`, a disc meeting the typed girth `6, 8, 8` at its interior vertices has at
@@ -18,7 +22,9 @@ two, from `Systolic.TriangulatedDisc.exists_typedCounts` with
 * `boundarySumStatement`: HC12 holds in every triangle complex;
 * `CCKW.typedCountStatement_cosetComplex`: the coset complex, typed by `Sigma.fst`;
 * `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold`: `IsHyperbolicGroup (GHB 7)` over the zip
-  and fold moves alone.
+  and fold moves alone, with filling from `CCKWTits.cckwCosetComplex_simplyConnected` and the
+  boundary constructors `attachTriangleStatement`, `insertChordStatement`,
+  `attachPendantStatement` (`Systolic.fillingStatement_of_simplyConnected`).
 
 ## Manuscript status
 
@@ -78,8 +84,11 @@ complex. -/
 theorem isHyperbolicGroup_ghb7_of_zipFold (hzip : Systolic.ZipSpurStatement CCKW.cosetComplex)
     (hfold : Systolic.MirrorFoldStatement CCKW.cosetComplex) :
     Hyperbolic.IsHyperbolicGroup (GHB 7) :=
-  isHyperbolicGroup_ghb7_of_discInputs hzip hfold CCKW.typedCountStatement_cosetComplex
-    (GHBHyperbolicStokes.boundarySumStatement _)
+  isHyperbolicGroup_ghb7_of_discInputs
+    (Systolic.fillingStatement_of_simplyConnected CCKWTits.cckwCosetComplex_simplyConnected
+      Systolic.attachTriangleStatement Systolic.insertChordStatement
+      Systolic.attachPendantStatement hzip)
+    hfold CCKW.typedCountStatement_cosetComplex (GHBHyperbolicStokes.boundarySumStatement _)
 
 end GHBQuotient
 end KMSGroup

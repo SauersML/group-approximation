@@ -1,9 +1,6 @@
 import GroupApproximation.Kazhdan.GHBHyperbolic
 import GroupApproximation.Kazhdan.CCKWCosetComplexLinks
-import GroupApproximation.Kazhdan.CCKWTitsGHB
-import GroupApproximation.GGT.SystolicDiscFilling
-import GroupApproximation.GGT.SystolicDiscMovesChord
-import GroupApproximation.GGT.SystolicDiscMovesAdapter
+import GroupApproximation.GGT.SystolicDisc
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -24,12 +21,12 @@ A disc bounding `v :: l ++ [v]` has `|l| + 1` boundary edges (`faceDegree_outer_
 `|Σ| ≤ C₀ F ≤ C₀ · 6 · (|l| + 1)` (`chainFillingBound_of_leastDiscs`).
 
 At the coset complex of `GHB(7)` the link bound is the typed girth `6, 8, 8` of
-`CCKW.cosetComplex_linksLargeAt`, at the order bounds `|U₃(7)| ≤ 7³`, `|U₄(7)| ≤ 7⁴`; filling
-comes from simple connectivity (`CCKWTits.cckwCosetComplex_simplyConnected`) and the three
-boundary constructors `attachTriangleStatement`, `insertChordStatement`,
-`attachPendantStatement` (`CCKW.chainFillingBound_cosetComplex`).  With the letter glue of
-`GHBHyperbolic.lean` this gives `IsHyperbolicGroup (GHB 7)` over the zip and fold moves, the
-typed count and boundary sums (`GHBQuotient.isHyperbolicGroup_ghb7_of_discInputs`).
+`CCKW.cosetComplex_linksLargeAt`, at the order bounds `|U₃(7)| ≤ 7³`, `|U₄(7)| ≤ 7⁴`
+(`CCKW.chainFillingBound_cosetComplex`).  With the letter glue of `GHBHyperbolic.lean` this
+gives `IsHyperbolicGroup (GHB 7)` over filling, folding, the typed count and boundary sums
+(`GHBQuotient.isHyperbolicGroup_ghb7_of_discInputs`).  `GHBHyperbolicDiscCounts.lean`
+discharges filling from simple connectivity and the zip move, and the count and sums from
+`SystolicDiscCounts`.
 
 ## Manuscript status
 
@@ -101,33 +98,30 @@ namespace CCKW
 
 open GHBHyperbolicStokes
 
-/-- **The area input for the coset complex of `GHB(7)`**, over the zip and fold moves, the
-typed count and boundary sums. -/
-theorem chainFillingBound_cosetComplex (hzip : Systolic.ZipSpurStatement cosetComplex)
+/-- **The area input for the coset complex of `GHB(7)`**, over filling, folding, the typed
+count and boundary sums. -/
+theorem chainFillingBound_cosetComplex (hfill : Systolic.FillingStatement cosetComplex)
     (hfold : Systolic.MirrorFoldStatement cosetComplex)
     (hcount : TypedCountStatement cosetComplex (fun x : Vertex => if x.1 = 0 then 6 else 8))
     (hsum : BoundarySumStatement cosetComplex) :
     ChainFillingBound cosetComplex.G.Adj cosetComplex.Tri 6 :=
-  chainFillingBound_of_leastDiscs
-    (Systolic.fillingStatement_of_simplyConnected CCKWTits.cckwCosetComplex_simplyConnected
-      Systolic.attachTriangleStatement Systolic.insertChordStatement
-      Systolic.attachPendantStatement hzip)
-    hfold (cosetComplex_linksLargeAt card_U3_seven_le card_U4_seven_le) hcount hsum
+  chainFillingBound_of_leastDiscs hfill hfold
+    (cosetComplex_linksLargeAt card_U3_seven_le card_U4_seven_le) hcount hsum
 
 end CCKW
 
 namespace GHBQuotient
 
-/-- **`GHB(7)` is hyperbolic**, over the zip and fold moves of triangulated discs in its coset
+/-- **`GHB(7)` is hyperbolic**, over filling and folding of triangulated discs in its coset
 complex, the typed count and boundary sums. -/
-theorem isHyperbolicGroup_ghb7_of_discInputs (hzip : Systolic.ZipSpurStatement CCKW.cosetComplex)
+theorem isHyperbolicGroup_ghb7_of_discInputs (hfill : Systolic.FillingStatement CCKW.cosetComplex)
     (hfold : Systolic.MirrorFoldStatement CCKW.cosetComplex)
     (hcount : GHBHyperbolicStokes.TypedCountStatement CCKW.cosetComplex
       (fun x : CCKW.Vertex => if x.1 = 0 then 6 else 8))
     (hsum : GHBHyperbolicStokes.BoundarySumStatement CCKW.cosetComplex) :
     Hyperbolic.IsHyperbolicGroup (GHB 7) :=
   isHyperbolicGroup_ghb7_of_chainFillingBound
-    (CCKW.chainFillingBound_cosetComplex hzip hfold hcount hsum)
+    (CCKW.chainFillingBound_cosetComplex hfill hfold hcount hsum)
 
 end GHBQuotient
 end KMSGroup
