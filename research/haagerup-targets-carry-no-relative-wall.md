@@ -8,6 +8,8 @@ distinct_from:
   half-space-tail-no-go: that kills half-space tensor towers through tail triviality and a centralized-subgroup hypothesis; this kills every target with the Haagerup property, with no tensor structure and no hypothesis on what the compressor centralizes.
   kt-centralizer-normalization-hs: that is the open normalization question for tracial matrix ultraproducts, which contain property (T) algebras; this settles normalization for all Haagerup targets and says nothing about ultraproducts.
   rigid-compression-defect-normalization-dichotomy: that equates normalization in an approximation class with triviality of rigid defects; this proves normalization outright for one concrete class of targets.
+  steinberg-hyperfinite-hs-stable: that is hyperfinite Hilbert--Schmidt stability of the Leavitt--Steinberg cover in the Dogon--Vigdorovich sense, a statement about one group's almost representations; this is a representation-free no-wall theorem for every infranormal Kazhdan pair in every Haagerup target, and it explains why hyperfinite and amenable-amalgam targets close for that cover.
+  leavitt-kazhdan-relative-commutant-has-no-type-one-part: that computes the shape of the Kazhdan relative commutant in nontrivial Leavitt models, where the finite-dimensional isotypic part is zero; this excludes walls in targets where the Kazhdan image is Haagerup, where that part is everything.
 ---
 
 **ESTABLISHED.** Let `Lambda <= G` be countable groups with `Lambda` having
