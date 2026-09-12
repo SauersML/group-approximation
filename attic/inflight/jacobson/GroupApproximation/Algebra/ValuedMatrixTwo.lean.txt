@@ -291,7 +291,7 @@ theorem dispInt_adj {g h : GL (Fin 2) K} (hgh : dispInt v (g⁻¹ * h) = 1) :
   have t1 := dispInt_mul_le v g (g⁻¹ * h)
   rw [mul_inv_cancel_left] at t1
   have t2 := dispInt_mul_le v h (g⁻¹ * h)⁻¹
-  rw [_root_.mul_inv_rev, inv_inv, mul_inv_cancel_left, dispInt_inv] at t2
+  rw [dispInt_inv, _root_.mul_inv_rev, inv_inv, mul_inv_cancel_left] at t2
   have hdet : vz v (((g⁻¹ * h : GL (Fin 2) K)) : Matrix (Fin 2) (Fin 2) K).det =
       vz v (h : Matrix (Fin 2) (Fin 2) K).det - vz v (g : Matrix (Fin 2) (Fin 2) K).det := by
     rw [vz_det_mul, vz_det_inv]

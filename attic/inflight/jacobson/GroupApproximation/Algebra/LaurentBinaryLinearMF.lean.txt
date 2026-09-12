@@ -102,9 +102,8 @@ form Mal'cev's theorem is stated with. -/
 theorem finiteType_of_algebra (inst : Algebra ℤ BinaryLaurent) :
     @Algebra.FiniteType ℤ BinaryLaurent _ _ inst := by
   have h := instFiniteTypeBinaryLaurent
-  have e : inst = (inferInstance : Algebra ℤ BinaryLaurent) := Subsingleton.elim _ _
-  subst e
-  exact h
+  convert h
+  exact Subsingleton.elim _ _
 
 /-- **Mal'cev for the binary Laurent ring.**  `GL_n(F_2[z,z^{-1}])` is
 residually finite at every rank. -/
