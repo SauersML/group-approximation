@@ -60,22 +60,26 @@ Windows are balls: `S = B_(r_s)(X)` and `M = H . B_(r_m)(X)` for a generating se
 The nine-leaf generators and the atlas charts are those of
 `experiments/nonsofic-certificates/kaplansky-df/sat/dfsat.py`.
 
-## Results so far
+## Results
 
-Radii are `r_m:r_s`.
+Radii are `r_m:r_s`. Every verdict below was replayed in Python from the checker
+(`--verify`), exit 0. Results: `experiments/gottschalk-small-presentations/runs/`
+(commit d99a23cf3).
 
-| Family | Radii | `|S|`, `|M|` | Verdict |
+| Family | Radii | `|S|`, `|M|` | Separating finite image of `U` |
 |---|---|---|---|
-| control-gl2, v-plus-swap, transvections-depth12, transvections-swap, order3-thompson, order3-transvections, mixed-all | 1:1, 1:2, 2:1, 2:2 | up to 58, 100 | dead: character (all 28) |
-| mixed-all-order3 | 1:1, 1:2, 2:1, 2:2 | up to 60, 138 | characters mod 3 fail; dead by permutation images of degree 5 or 6 |
-| atlas-order2, atlas-order3 | 1:1, 1:2, 2:1 | up to 53, 159 | dead: character (all 6) |
-| eld1-compressors-order3 | 1:1 | 13, 33 | dead: character |
-| eld1-compressors-order2 | 1:1, 1:2, 2:1 | up to 93, 160 | survive characters; 1:2 and 2:1 survive coset images of index at most 6 |
-| eld1-compressors-order3 | 1:2, 2:1 | up to 123, 303 | survive characters and coset images of index at most 6 |
-| eld-full-order2 | 1:1 | 35, 68 | survives characters |
+| control-gl2, v-plus-swap, transvections-depth12, transvections-swap, mixed-all | 1:1, 1:2, 2:1, 2:2 | up to 58, 100 | character to `Z/2` (all 20) |
+| order3-thompson, order3-transvections | 1:1, 1:2, 2:1, 2:2 | up to 23, 45 | character to `Z/3` (all 8) |
+| mixed-all-order3 | 1:1, 1:2, 2:1, 2:2 | up to 60, 138 | no character; permutation images of degree 7, 6, 5, 6 |
+| atlas-order2, atlas-order3 | 1:1, 1:2, 2:1 | up to 53, 159 | character to `Z/2` or `Z/3` (all 6) |
+| eld1-compressors-order3 | 1:1 | 13, 33 | character to `Z/3` |
+| eld1-compressors-order2 | 1:1, 1:2, 2:1 | up to 93, 160 | no character, no coset image of index at most 6; epimorphism onto PSL(3,2), degree 7 |
+| eld1-compressors-order3 | 1:2, 2:1 | up to 123, 303 | no character, no coset image of index at most 6; epimorphism onto PSL(3,2), degree 7 |
+| eld-full-order2 | 1:1 | 35, 68 | no character; stage 2 unresolved (22 generators after Tietze, 200 relators) |
 
-Small simple quotients of the surviving windows are being tested now; this table
-will be updated with those verdicts and the replay results.
+So 44 of the 45 windows are dead. In each nine-leaf window the separating image is
+PSL(3,2): the table group sees the corner `GL(3,2)` of the `E_ij(1)`, and the
+compressors do not force enough coincidences to kill `x_h` there.
 
 ## Reading
 
