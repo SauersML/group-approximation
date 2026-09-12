@@ -34,10 +34,11 @@ imports named there).**
 
 **Imports, not re-derived:**
 - Bekka, *Operator-algebraic superrigidity for SL_n(Z), n ≥ 3*, arXiv:math/0609102
-  (Invent. Math. 169 (2007)). If `π(Γ)''` is a finite factor, then it is
-  finite-dimensional, or `π|_Λ` extends to `U(L(Λ))` for some finite-index `Λ`.
-  The virtual case gives trace `δ_e` through an orthogonality argument;
-  see the route.
+  (Invent. Math. 169 (2007)), Theorem 3, checked against the PDF. Every character
+  of `SL_n(Z)`, `n ≥ 3`, is one of:
+  - the character of an irreducible finite-dimensional representation of a
+    congruence quotient;
+  - the trivial extension of a character of the centre, which for `n = 3` is `δ_e`.
 - Hulanicki–Reiter amenability criterion;
 - irreducibility and pairwise inequivalence of the `σ_k`, from main.
 

@@ -45,7 +45,11 @@ Literature imports:
 - Bekka, Invent. Math. 169 (2007), main theorem;
 - the Hulanicki–Reiter criterion.
 
-Bekka's statement was checked against the abstract of arXiv:math/0609102v2. The
-theorem is virtual, extending only on a finite-index `Λ`, which is why step 2
-contains the orthogonality argument. The full PDF was not re-read, because MSI
-authentication was unavailable. Status is kept in §6 of the artifact.
+Checked against the PDF of arXiv:math/0609102v2, pages 1–4. Theorem 3 there says
+that every character of `SL_n(Z)`, `n ≥ 3`, is one of:
+- the character of an irreducible finite-dimensional representation of a
+  congruence quotient;
+- the trivial extension of a character of the centre, which for `n = 3` is `δ_e`.
+
+That gives step 2 directly. The orthogonality argument through Bekka's virtual
+Theorem 1 is an equivalent alternative. Status is kept in §6 of the artifact.

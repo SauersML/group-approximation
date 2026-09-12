@@ -353,14 +353,19 @@ isometries and no exact orthogonality are needed.
 
 ## 6. Source status
 
-- **Bekka.** The statement was checked against the arXiv abstract of
-  math/0609102v2, fetched 2026-09-12 through the arXiv API.
-  - An earlier draft stated the theorem non-virtually ("extends to `L(Γ)`"). That
-    was wrong.
-  - The actual conclusion extends `π|_Λ` only on a finite-index `Λ`.
-  - Lemma 2.2 now carries the orthogonality step that recovers the trace `δ_e`.
-  - The full PDF was not re-read, because MSI authentication was unavailable
-    (cooldown resets).
+- **Bekka.** Checked against the PDF of arXiv:math/0609102v2, pages 1–4, on
+  2026-09-12.
+  - **Theorem 1** (pp. 2–3) is virtual: either `M` is finite-dimensional, or
+    `π|_Λ` extends to a normal homomorphism `L(Λ) → M` for some finite-index `Λ`.
+    An earlier draft stated it non-virtually ("extends to `L(Γ)`"). That was wrong.
+  - **Theorem 3** (p. 4): every character of `SL_n(Z)`, `n ≥ 3`, is either
+    - the character of an irreducible finite-dimensional representation of some
+      congruence quotient `SL_n(Z/NZ)`, or
+    - the trivial extension of a character of the centre.
+  - **Application.** For `SL(3,Z)` the centre is trivial, so the second case is
+    `δ_e`. Extreme traces of `C*(Γ)` are exactly the characters, so Theorem 3
+    gives Lemma 2.2 directly. The orthogonality step through Theorem 1 derives
+    the same conclusion another way.
 - **Milhøj–Rørdam arXiv:2309.17412 §2**, checked through the ar5iv HTML.
   - It confirms that 2-quasitraces extend to `M_n(A)` (Blackadar–Handelman) and
     are norm continuous.
