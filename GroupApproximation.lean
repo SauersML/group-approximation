@@ -4598,6 +4598,7 @@ import GroupApproximation.Dynamics.WreathFinitarySite
 import GroupApproximation.Dynamics.DoubleKernel
 import GroupApproximation.Dynamics.DoubleConsequences
 import GroupApproximation.Dynamics.DoubleFinitarySite
+import GroupApproximation.BowenChapman.LaurentPairResiduallyFinite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
