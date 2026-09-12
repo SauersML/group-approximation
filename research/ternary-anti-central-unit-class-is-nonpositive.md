@@ -84,3 +84,18 @@ that is, `k[eps_-] <= 0` in `K_0(S_-)`. Equivalent forms:
     a state between its evaluation block and its twisted block is not forced. Whether it is `1/2` is open.
   - Also: the F_9 Hadamard corner is the swap corner conjugated by a constant unit
     (`hadamard-spectral-half-is-constant-conjugate-to-swap-idempotent`), so it adds no room.
+- *Relative positivity of the lifted trace* (lane w4-trace-state, artifact
+  `lifted-trace-state-extension-2026-09-12.md`).
+  - The additive 3-adic lifted trace `s_3 = 2 t_3` is defined on all of `K_0(S_-)`, and it obeys every known state
+    law:
+    - `s_3([eps_-]) = 1`;
+    - the lifted trace on every finite subgroup, including Haar measure on clopens;
+    - `s_3 o F_* = s_3/2` and `s_3 o alpha_* = s_3`.
+  - So no equality relation among finite-subgroup projectives changes the lifted trace.
+  - A state exists iff the lifted trace is nonnegative on positive classes spanned by signed-Thompson finite-subgroup
+    projectives (`anti-central-state-exists-iff-lifted-trace-relatively-positive`). So this claim holds iff some stable
+    isomorphism `P (+) S_-^r ~= Q (+) X (+) S_-^r`, with `P, Q` over finite subgroups of `E x| V`, has
+    `trl(P) < trl(Q)`. The negation is the open `anti-central-lifted-trace-is-relatively-positive`.
+  - The complement `X` has negative rational lifted trace. By Kaplansky positivity it has no finite-support
+    idempotent lift over `Z_3[G]`.
+  - Where it stops: no positivity principle is known for traces of infinite-support `Z_3` idempotent lifts.

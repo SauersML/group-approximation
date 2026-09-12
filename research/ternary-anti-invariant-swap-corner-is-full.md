@@ -5,6 +5,7 @@ kind: claim
 title: The swap-averaging idempotent is full in the anti-central summand of the ternary Leavitt group algebra
 refuted_by:
   - ternary-leavitt-units-have-a-nontrivial-char-three-rank-model
+  - anti-central-lifted-trace-is-relatively-positive
 distinct_from:
   projective-ternary-swap-idempotent-is-full: that is the corner equation on the central summand F_3[PG], where the Leavitt evaluation vanishes; this is the corner equation on the complementary summand, through which the Leavitt evaluation factors and where its image equation holds.
   ternary-leavitt-swap-idempotent-is-full: that is the corner equation on the whole group algebra, which implies both halves; this asks only for the anti-central half, which already suffices for a counterexample.
