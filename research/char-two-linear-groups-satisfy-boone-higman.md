@@ -11,8 +11,13 @@ artifacts:
   - research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md
 ---
 
-**OPEN.** Let `K` be a field of characteristic two, and let `H <= GL_n(K)` be
-finitely generated. Then `H` embeds in a finitely presented simple group.
+**ESTABLISHED (2026-09-12)** through
+`char-two-linear-groups-via-leavitt-tensor-powers`, once
+`leavitt-tensor-powers-have-trivial-k-theory` was established. Not independently
+reviewed; see attempt 3.
+
+Let `K` be a field of characteristic two, and let `H <= GL_n(K)` be finitely
+generated. Then `H` embeds in a finitely presented simple group.
 
 *Marked `root` because it is a natural class question in its own right.* The
 Belk--Bleak--Matucci--Zaremsky survey (arXiv:2306.16356v3, Problem 5.3) lists
@@ -34,3 +39,17 @@ exactly `leavitt-tensor-powers-have-trivial-k-theory`.
    `central-simple-leavitt-tensor-unit-groups-are-simple` then make
    `(L^(⊗d))^x` finitely presented and simple once `K_1` and `K_2` vanish.
    *Stops* at `leavitt-tensor-powers-have-trivial-k-theory` for `d >= 3`.
+3. **Settled** (lane `bh-leavitt-nil-k-regularity`, 2026-09-12).
+   - **The crux.** `leavitt-tensor-powers-have-trivial-k-theory` is now
+     established by `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`.
+     The proof writes `L^(⊗d)` as a crossed product by `Z^(d−1)` over a
+     `K`-trivial regular ring, then applies Farrell–Jones with additive
+     coefficients together with Nil vanishing.
+   - **The chain.** So the route of attempt 2 completes, and `cairn why` on MSI
+     reads this root ESTABLISHED.
+   - **What it rests on.** Those imports, and main's earlier ones behind
+     `leavitt-tensor-hosts-acyclic-steinberg-and-fp` and
+     `central-simple-leavitt-tensor-unit-groups-are-simple`. Those earlier
+     imports include `khanh-acyclicity-and-steinberg-criteria`, an unrefereed
+     preprint.
+   - **Not yet done.** The new derivation has not been independently reviewed.

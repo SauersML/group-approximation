@@ -10,9 +10,14 @@ artifacts:
   - research/artifacts/boone-higman-char-p-all-degrees-2026-09-12.md
 ---
 
-**OPEN.** Let `p` be a prime, `L_p = L_(F_p)(1,2)` and `R_d = L_p^(⊗d)`. For
-every `d >= 1` there are infinitely many `m` such that
-`E_m(R_d) / Z(E_m(R_d))` is finitely presented.
+**ESTABLISHED (2026-09-12)** through
+`leavitt-power-projective-e-fp-from-trivial-k-theory`, once
+`prime-field-leavitt-tensor-powers-have-trivial-k-theory` was established. Not
+independently reviewed.
+
+Let `p` be a prime, `L_p = L_(F_p)(1,2)` and `R_d = L_p^(⊗d)`. For every
+`d >= 1` there are infinitely many `m` such that `E_m(R_d) / Z(E_m(R_d))` is
+finitely presented.
 
 With `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` this
 settles `positive-char-linear-groups-satisfy-boone-higman`.
@@ -36,3 +41,8 @@ settles `positive-char-linear-groups-satisfy-boone-higman`.
    - Finite generation of stable `K_2(R_d)` would suffice in a stable range
      where the kernel is central.
    *Not attempted beyond this reduction.*
+4. **Attempt 2 completes.** `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`
+   gives `K_n(R_d) = 0` for every `n` and every `d`. So
+   `prime-field-leavitt-tensor-powers-have-trivial-k-theory` holds, and the route
+   of attempt 2 gives `E_m(R_d) = GL_m(R_d) ≅ R_d^x`, finitely presented for every
+   `m >= 2`.
