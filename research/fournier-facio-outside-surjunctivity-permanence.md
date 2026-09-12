@@ -10,6 +10,7 @@ distinct_from:
   thompson-v-not-sofic: that is the open nonsoficity of Thompson V; this concerns surjunctivity of a torsion-free property-(T) group and its position relative to the permanence classes.
 artifacts:
   - research/artifacts/gottschalk-other-hosts-2026-09-12.md
+  - research/artifacts/fournier-facio-torsion-free-host-constraints-2026-09-12.md
 ---
 
 **OPEN.** Let `G = <Gamma, t_1, t_2>` be the Fournier-Facio finitely presented
@@ -21,9 +22,11 @@ open, and none of the surjunctivity permanence theorems in this graph decides it
 
 This is the one nonsofic host recorded here that is neither reached by a
 permanence theorem nor part of the Leavitt tower `V <= R^x <= A^x`
-(`leavitt-surjunctivity-tower`): as far as is known, `L_{F_2}(1,2)^x` does not
-embed in `G` and `G` does not embed in it, so a Gottschalk counterexample on `G`
-would be a mechanism distinct from the Leavitt one. A non-surjunctive `G` would
+(`leavitt-surjunctivity-tower`). No member of that tower embeds in `G`, because
+each has elements of order two and `G` is torsion-free
+(`leavitt-tower-does-not-embed-in-torsion-free-hosts`). Whether `G` embeds in
+`L_{F_2}(1,2)^x` is not known. So a Gottschalk counterexample on `G` would be a
+mechanism distinct from the Leavitt one. A non-surjunctive `G` would
 be nonsofic, which is already known, so surjunctivity carries no free corollary
 here.
 
@@ -53,3 +56,29 @@ here.
   reduces the universal conjecture to one fixed host, so `G` is not needed for
   the universal question; but its own surjunctivity remains a separate open
   problem, not settled by that reduction.
+- **Torsion-free design constraints (gk-n-ff, 2026-09-12).**
+  - `invariant-output-injective-ca-need-torsion`: no injective automaton on `G`
+    has output invariant under a nontrivial subgroup. That kills the
+    invariant-output architecture and every finite-subgroup corner design, swap
+    and Klein included.
+  - `torsion-free-scalar-df-failure-gives-exotic-idempotents`: a scalar linear
+    counterexample on `G` would first refute Kaplansky's idempotent and
+    zero-divisor conjectures for `G`.
+  - What survives: matrix-size linear designs, and nonlinear designs without
+    output symmetry whose forward table forces a nonsofic core read off the
+    compression of `Gamma`. No candidate is known.
+- **Certification surface.**
+  - The word problem of `G` is not established, since the construction is
+    existential.
+  - A counterexample certificate on `G` needs explicit derivations for forward
+    coincidences and inequalities certified inside `G`.
+  - (W8) of `fournier-facio-nontrivial-quotients-contain-simple-wreath` certifies
+    inequalities inside the embedded `S wr Z`, which has solvable word problem when
+    `S` does. It certifies nothing that involves `Gamma` or `t_2`.
+- **Positive side.**
+  - The structured subgroups `S wr Z`, `Gamma x (+)_(k<=0) J_k` and the tree lamp
+    group are covered by no permanence theorem: `S` is simple and not residually
+    finite, and closure under finite direct products is open.
+  - `sofic-permanence-closure-omits-simple-fa-nonsofic-groups` bears on `G` only
+    through a finitely presented simple nonsofic FA subgroup, and none is recorded.
+  - Details: `research/artifacts/fournier-facio-torsion-free-host-constraints-2026-09-12.md`.
