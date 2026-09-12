@@ -30,6 +30,11 @@ splitting principle for the Chern classes of `LE`.
 The classes of the output are `k ↦ of (2k) (KGen.lixChernDegOf K n dd hgen W k)`, the `γfun` of
 `NinetyNineProblems.LemmaTwoPowersModPData`, so its link to the top class is `rfl` at the consumer.
 
+The Chern classes of `LE` live in the even part of `TopCat.of (↥sphereOne × baseM n dd)`, which is
+`KGen.lixN n dd` only after unfolding a `def`; a type ascription to `TotalHOf K (KGen.lixN n dd)`
+does not find the coercion through it, so the classes are read with `.1` and every equation is
+stated at the type of its left-hand side.
+
 ## Main results
 
 * `Gen.coe_chern_eq_lixChernDegOf` — the Leray–Hirsch Chern classes are the degreewise classes.
@@ -66,9 +71,9 @@ theorem coe_chern_eq_lixChernDegOf (K : Type) [Field K] (n : ℕ) (dd : Fin ℓ 
     (LE : LerayHirschGraded (projMapOf (KGen.lixBundle n G hGc hGu))
       (LH.tautEulerDualK K hgen (KGen.lixBundle n G hGc hGu)) (KGen.lixRank n dd))
     (hhomE : ∀ k : ℕ, ∃ x : TotalPieceOf K (KGen.lixN n dd) (2 * k),
-      ((LerayHirschDataEvenOf.of_graded LE).chern k : TotalHOf K (KGen.lixN n dd))
+      ((LerayHirschDataEvenOf.of_graded LE).chern k).1
         = TotalHOf.of K (KGen.lixN n dd) (2 * k) x) :
-    (fun k => ((LerayHirschDataEvenOf.of_graded LE).chern k : TotalHOf K (KGen.lixN n dd)))
+    (fun k => ((LerayHirschDataEvenOf.of_graded LE).chern k).1)
       = fun k => TotalHOf.of K (KGen.lixN n dd) (2 * k)
           (KGen.lixChernDegOf K n dd hgen (mappingTorus (Vmat n) G circHoriz circHeight) k) := by
   funext k
@@ -96,7 +101,7 @@ def realBundleModP_lixChernDegOf (K : Type) [Field K] (p : ℕ) (hp : 2 ≤ p) (
     (LE : LerayHirschGraded (projMapOf (KGen.lixBundle n G hGc hGu))
       (LH.tautEulerDualK K hgen (KGen.lixBundle n G hGc hGu)) (KGen.lixRank n dd))
     (hhomE : ∀ k : ℕ, ∃ x : TotalPieceOf K (KGen.lixN n dd) (2 * k),
-      ((LerayHirschDataEvenOf.of_graded LE).chern k : TotalHOf K (KGen.lixN n dd))
+      ((LerayHirschDataEvenOf.of_graded LE).chern k).1
         = TotalHOf.of K (KGen.lixN n dd) (2 * k) x)
     (LV : LerayHirschGraded
       (projMapOf (pushforward (Sum.inr : VIdx n dd → VIdx n dd ⊕ VIdx n dd) Sum.inr_injective
@@ -145,8 +150,7 @@ theorem nonempty_realBundleModP_lixChernDegOf_stages (n p : ℕ) [Fact p.Prime]
         Matrix (VIdx n (LIX.Gen.lixDD n j)) (VIdx n (LIX.Gen.lixDD n j)) ℂ) (hGc : Continuous G)
       (hGu : ∀ x, IsCornerUnitary (Vmat n x) (G x)) (k : ℕ),
       ∃ x : TotalPieceOf (ZMod p) (KGen.lixN n (LIX.Gen.lixDD n j)) (2 * k),
-        ((LerayHirschDataEvenOf.of_graded (LE j G hGc hGu)).chern k
-            : TotalHOf (ZMod p) (KGen.lixN n (LIX.Gen.lixDD n j)))
+        ((LerayHirschDataEvenOf.of_graded (LE j G hGc hGu)).chern k).1
           = TotalHOf.of (ZMod p) (KGen.lixN n (LIX.Gen.lixDD n j)) (2 * k) x)
     (LV : ∀ j : ℕ, LerayHirschGraded
       (projMapOf (pushforward
