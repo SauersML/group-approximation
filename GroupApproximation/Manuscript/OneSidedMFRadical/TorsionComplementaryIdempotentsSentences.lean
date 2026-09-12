@@ -7,8 +7,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 `non_mf_groups_exist.tex`, Proposition `prop:torsion-defect-ring` (tex lines
 1072--1120).  One closed `manuscriptSentence_*` theorem per printed sentence of the
-proof, stated at the printed generality and proved along the printed route, citing
-the declarations of the modules
+proof, stated as a named proposition at the printed generality and proved along the
+printed route, citing the declarations of the modules
 
 * `TorsionComplementaryIdempotentsMatrixUnits` (`f_{ij}`),
 * `TorsionComplementaryIdempotentsWeyl` (`w_{ij}`, `r`),
@@ -128,10 +128,12 @@ end FixedRing
 /-- > If `e=0`, then `ReR=0` and `EL_n(R,ReR)=1`, so assume `e≠0`.
 
 (tex line 1084) -/
-theorem manuscriptSentence_zeroIdempotentCase :
-    ∀ (R : Type) [Ring R] (s t : R) (n : ℕ), (1 : R) - s * t = 0 →
-      TwoSidedIdeal.span ({1 - s * t} : Set R) = ⊥ ∧
-        relativeElementary (Fin n) (TwoSidedIdeal.span ({1 - s * t} : Set R)) = ⊥ := by
+def PrintedSentenceZeroIdempotentCase : Prop :=
+  ∀ (R : Type) [Ring R] (s t : R) (n : ℕ), (1 : R) - s * t = 0 →
+    TwoSidedIdeal.span ({1 - s * t} : Set R) = ⊥ ∧
+      relativeElementary (Fin n) (TwoSidedIdeal.span ({1 - s * t} : Set R)) = ⊥
+
+theorem manuscriptSentence_zeroIdempotentCase : PrintedSentenceZeroIdempotentCase := by
   intro R _ s t n he
   rw [he]
   exact ⟨twoSidedIdeal_span_zero, relativeElementary_span_zero⟩
@@ -141,9 +143,12 @@ theorem manuscriptSentence_zeroIdempotentCase :
 
 (tex lines 1085--1087)  `S` is finitely generated and Ershov--Jaikin-Zapirain is
 proved in this repository, at rank three over `S`, then transported to the core. -/
+def PrintedSentencePairSubringCoreKazhdan : Prop :=
+  ∀ (R : Type) [Ring R] (s t : R),
+    HasKazhdanPropertyT.{0, 0} ↥(core ↥(Subring.closure ({s, t} : Set R)))
+
 theorem manuscriptSentence_pairSubringCoreKazhdan :
-    ∀ (R : Type) [Ring R] (s t : R),
-      HasKazhdanPropertyT.{0, 0} ↥(core ↥(Subring.closure ({s, t} : Set R))) := by
+    PrintedSentencePairSubringCoreKazhdan := by
   intro R _ s t
   exact core_hasKazhdanPropertyT
     (NonMFSentences.HeadlineCitationSentences.manuscriptSentence_pairSubringElementaryPropertyT
@@ -153,10 +158,13 @@ theorem manuscriptSentence_pairSubringCoreKazhdan :
 > finite order inside `𝔇_B(L)`.
 
 (tex lines 1087--1089)  At every one-sided inverse pair with `me = 0`, `m > 0`. -/
+def PrintedSentenceCentralFiniteOrderInDefect : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R) (m : ℕ), 0 < m → m • P.e = 0 →
+    ∃ z : ↥(printedB P), (∀ b : ↥(printedB P), Commute z b) ∧ IsOfFinOrder z ∧
+      z ∈ printedDefect (coreOfB P)
+
 theorem manuscriptSentence_centralFiniteOrderInDefect :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R) (m : ℕ), 0 < m → m • P.e = 0 →
-      ∃ z : ↥(printedB P), (∀ b : ↥(printedB P), Commute z b) ∧ IsOfFinOrder z ∧
-        z ∈ printedDefect (coreOfB P) := by
+    PrintedSentenceCentralFiniteOrderInDefect := by
   intro R _ P m hm hme
   refine ⟨printedBZ P, printedBZ_central P, ?_, printedBZ_mem_printedDefect P⟩
   exact isOfFinOrder_iff_pow_eq_one.mpr ⟨m, hm, Subtype.ext (printedZ_pow_eq_one P hme)⟩
@@ -165,30 +173,35 @@ theorem manuscriptSentence_centralFiniteOrderInDefect :
 > `f_{ij}^2=0` for `i≠j`.
 
 (tex lines 1089--1091) -/
-theorem manuscriptSentence_matrixUnits :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      (∀ i j : ℕ, fUnit P i j = P.s ^ i * P.e * P.t ^ j) ∧
-        P.e * P.s = 0 ∧ P.t * P.e = 0 ∧
-        (∀ i j k l : ℕ, fUnit P i j * fUnit P k l = if j = k then fUnit P i l else 0) ∧
-        ∀ i j : ℕ, i ≠ j → fUnit P i j * fUnit P i j = 0 :=
-  fun _ _ P ↦ ⟨fUnit_def P, P.e_mul_s, P.t_mul_e, fUnit_mul P,
-    fun _ _ h ↦ fUnit_mul_self P h⟩
+def PrintedSentenceMatrixUnits : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    (∀ i j : ℕ, fUnit P i j = P.s ^ i * P.e * P.t ^ j) ∧
+      P.e * P.s = 0 ∧ P.t * P.e = 0 ∧
+      (∀ i j k l : ℕ, fUnit P i j * fUnit P k l = if j = k then fUnit P i l else 0) ∧
+      ∀ i j : ℕ, i ≠ j → fUnit P i j * fUnit P i j = 0
+
+theorem manuscriptSentence_matrixUnits : PrintedSentenceMatrixUnits := by
+  intro R _ P
+  exact ⟨fUnit_def P, P.e_mul_s, P.t_mul_e, fUnit_mul P, fun _ _ h ↦ fUnit_mul_self P h⟩
 
 /-- > Write `D(a)=diag(1,1,1,a)`; for `i≠j`,
 > `D(1±f_{ij})=[e_{41}(f_{ii}),e_{14}(±f_{ij})]` lies in `EL_4(S)`.
 
 (tex lines 1091--1092)  The commutators are elements of `EL₄` by construction. -/
-theorem manuscriptSentence_diagonalCommutators :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R) (i j : ℕ), i ≠ j →
-      (((⁅elementaryRoot lastIdx (coreIdx 0) (last_ne_coreIdx 0) (fUnit P i i),
-          elementaryRoot (coreIdx 0) lastIdx (coreIdx_ne_last 0) (fUnit P i j)⁆ :
-          elementaryGroup (Fin 4) R) : (Matrix (Fin 4) (Fin 4) R)ˣ) :
-          Matrix (Fin 4) (Fin 4) R) = lastDiag (1 + fUnit P i j) ∧
-      (((⁅elementaryRoot lastIdx (coreIdx 0) (last_ne_coreIdx 0) (fUnit P i i),
-          elementaryRoot (coreIdx 0) lastIdx (coreIdx_ne_last 0) (-fUnit P i j)⁆ :
-          elementaryGroup (Fin 4) R) : (Matrix (Fin 4) (Fin 4) R)ˣ) :
-          Matrix (Fin 4) (Fin 4) R) = lastDiag (1 - fUnit P i j) :=
-  fun _ _ P _ _ h ↦ ⟨diagPlus_matrix P h, diagMinus_matrix P h⟩
+def PrintedSentenceDiagonalCommutators : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R) (i j : ℕ), i ≠ j →
+    (((⁅elementaryRoot lastIdx (coreIdx 0) (last_ne_coreIdx 0) (fUnit P i i),
+        elementaryRoot (coreIdx 0) lastIdx (coreIdx_ne_last 0) (fUnit P i j)⁆ :
+        elementaryGroup (Fin 4) R) : (Matrix (Fin 4) (Fin 4) R)ˣ) :
+        Matrix (Fin 4) (Fin 4) R) = lastDiag (1 + fUnit P i j) ∧
+    (((⁅elementaryRoot lastIdx (coreIdx 0) (last_ne_coreIdx 0) (fUnit P i i),
+        elementaryRoot (coreIdx 0) lastIdx (coreIdx_ne_last 0) (-fUnit P i j)⁆ :
+        elementaryGroup (Fin 4) R) : (Matrix (Fin 4) (Fin 4) R)ˣ) :
+        Matrix (Fin 4) (Fin 4) R) = lastDiag (1 - fUnit P i j)
+
+theorem manuscriptSentence_diagonalCommutators : PrintedSentenceDiagonalCommutators := by
+  intro R _ P i j h
+  exact ⟨diagPlus_matrix P h, diagMinus_matrix P h⟩
 
 /-- > Let `u` be the compressor of Lemma `lem:ring-compression-cell`, put
 > `w_{ij}=(1+f_{ji})(1-f_{ij})(1+f_{ji})`, `r=w_{14}w_{25}`, and `v=uD(r)`.
@@ -196,15 +209,17 @@ theorem manuscriptSentence_diagonalCommutators :
 (tex lines 1093--1094)  `compressor P` is the `u` of
 `RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell`, with the displayed
 matrix. -/
-theorem manuscriptSentence_compressorWeylAndV :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      ((compressor P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
-          compressorMatrix P ∧
-        (∀ (i j : ℕ) (hij : i ≠ j), ((weylUnit P hij : Rˣ) : R) =
-          (1 + fUnit P j i) * (1 - fUnit P i j) * (1 + fUnit P j i)) ∧
-        rUnit P = weylUnit P one_ne_four * weylUnit P two_ne_five ∧
-        ((printedV P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
-          compressorMatrix P * lastDiag ((rUnit P : Rˣ) : R) := by
+def PrintedSentenceCompressorWeylAndV : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    ((compressor P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
+        compressorMatrix P ∧
+      (∀ (i j : ℕ) (hij : i ≠ j), ((weylUnit P hij : Rˣ) : R) =
+        (1 + fUnit P j i) * (1 - fUnit P i j) * (1 + fUnit P j i)) ∧
+      rUnit P = weylUnit P one_ne_four * weylUnit P two_ne_five ∧
+      ((printedV P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
+        compressorMatrix P * lastDiag ((rUnit P : Rˣ) : R)
+
+theorem manuscriptSentence_compressorWeylAndV : PrintedSentenceCompressorWeylAndV := by
   intro R _ P
   refine ⟨compressor_val P, fun _ _ hij ↦ weylUnit_val_word P hij, rfl, ?_⟩
   rw [printedV, elementaryGroup_val_mul, compressor_val, diagR_matrix]
@@ -212,45 +227,53 @@ theorem manuscriptSentence_compressorWeylAndV :
 /-- > Since `D(r)` centralizes `L`, `vLv^{-1}≤L`.
 
 (tex line 1095) -/
-theorem manuscriptSentence_vCompressesCore :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      (∀ g ∈ core R, Commute (diagR P) g) ∧
-        ∀ g ∈ core R, printedV P * g * (printedV P)⁻¹ ∈ core R :=
-  fun _ _ P ↦ ⟨diagR_commute_core P, printedV_compresses_core P⟩
+def PrintedSentenceVCompressesCore : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    (∀ g ∈ core R, Commute (diagR P) g) ∧
+      ∀ g ∈ core R, printedV P * g * (printedV P)⁻¹ ∈ core R
+
+theorem manuscriptSentence_vCompressesCore : PrintedSentenceVCompressesCore := by
+  intro R _ P
+  exact ⟨diagR_commute_core P, printedV_compresses_core P⟩
 
 /-- > Put `c=D(1+f_{02})`, `y=e_{42}(f_{10})`, `z=D(1+f_{12})`, `ℓ=e_{21}(1)`,
 > `B=⟨L,v,c,y⟩`.
 
 (tex lines 1095--1099) -/
-theorem manuscriptSentence_printedCell :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      ((printedC P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
-          lastDiag (1 + fUnit P 0 2) ∧
-        printedY P = elementaryRoot lastIdx (coreIdx 1) (last_ne_coreIdx 1) (fUnit P 1 0) ∧
-        ((printedZ P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
-          lastDiag (1 + fUnit P 1 2) ∧
-        printedEllTwoOne R =
-          elementaryRoot (coreIdx 1) (coreIdx 0) (coreIdx_injective.ne oneNeZeroFin) 1 ∧
-        printedB P = Subgroup.closure ((core R : Set (elementaryGroup (Fin 4) R)) ∪
-          {printedV P, printedC P, printedY P}) :=
-  fun _ _ P ↦ ⟨printedC_matrix P, rfl, printedZ_matrix P, rfl, rfl⟩
+def PrintedSentencePrintedCell : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    ((printedC P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
+        lastDiag (1 + fUnit P 0 2) ∧
+      printedY P = elementaryRoot lastIdx (coreIdx 1) (last_ne_coreIdx 1) (fUnit P 1 0) ∧
+      ((printedZ P : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
+        lastDiag (1 + fUnit P 1 2) ∧
+      printedEllTwoOne R =
+        elementaryRoot (coreIdx 1) (coreIdx 0) (coreIdx_injective.ne oneNeZeroFin) 1 ∧
+      printedB P = Subgroup.closure ((core R : Set (elementaryGroup (Fin 4) R)) ∪
+        {printedV P, printedC P, printedY P})
+
+theorem manuscriptSentence_printedCell : PrintedSentencePrintedCell := by
+  intro R _ P
+  exact ⟨printedC_matrix P, rfl, printedZ_matrix P, rfl, rfl⟩
 
 /-- > Then `c∈C_B(L)`, and from `rf_{02}r^{-1}=f_{05}`, `rf_{12}r^{-1}=f_{45}`,
 > `f_{02}t^3=f_{05}`, and `t^3f_{45}=f_{12}t^3`, direct multiplication with the
 > displayed `u` gives `vcv^{-1}=e_{14}(f_{02})` and `vzv^{-1}=z`.
 
 (tex lines 1100--1102) -/
-theorem manuscriptSentence_conjugationsByV :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      (⟨printedC P, printedC_mem_printedB P⟩ : ↥(printedB P)) ∈
-          Subgroup.centralizer ((coreOfB P : Subgroup ↥(printedB P)) : Set ↥(printedB P)) ∧
-        ((rUnit P : Rˣ) : R) * fUnit P 0 2 * (((rUnit P)⁻¹ : Rˣ) : R) = fUnit P 0 5 ∧
-        ((rUnit P : Rˣ) : R) * fUnit P 1 2 * (((rUnit P)⁻¹ : Rˣ) : R) = fUnit P 4 5 ∧
-        fUnit P 0 2 * P.t ^ 3 = fUnit P 0 5 ∧
-        P.t ^ 3 * fUnit P 4 5 = fUnit P 1 2 * P.t ^ 3 ∧
-        printedV P * printedC P * (printedV P)⁻¹ =
-          elementaryRoot (coreIdx 0) lastIdx (coreIdx_ne_last 0) (fUnit P 0 2) ∧
-        printedV P * printedZ P * (printedV P)⁻¹ = printedZ P := by
+def PrintedSentenceConjugationsByV : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    (⟨printedC P, printedC_mem_printedB P⟩ : ↥(printedB P)) ∈
+        Subgroup.centralizer ((coreOfB P : Subgroup ↥(printedB P)) : Set ↥(printedB P)) ∧
+      ((rUnit P : Rˣ) : R) * fUnit P 0 2 * (((rUnit P)⁻¹ : Rˣ) : R) = fUnit P 0 5 ∧
+      ((rUnit P : Rˣ) : R) * fUnit P 1 2 * (((rUnit P)⁻¹ : Rˣ) : R) = fUnit P 4 5 ∧
+      fUnit P 0 2 * P.t ^ 3 = fUnit P 0 5 ∧
+      P.t ^ 3 * fUnit P 4 5 = fUnit P 1 2 * P.t ^ 3 ∧
+      printedV P * printedC P * (printedV P)⁻¹ =
+        elementaryRoot (coreIdx 0) lastIdx (coreIdx_ne_last 0) (fUnit P 0 2) ∧
+      printedV P * printedZ P * (printedV P)⁻¹ = printedZ P
+
+theorem manuscriptSentence_conjugationsByV : PrintedSentenceConjugationsByV := by
   intro R _ P
   refine ⟨?_, rUnit_conj_fUnit_zero_two P, rUnit_conj_fUnit_one_two P,
     fUnit_zero_two_mul_t_cube P, t_cube_mul_fUnit_four_five P,
@@ -265,17 +288,19 @@ theorem manuscriptSentence_conjugationsByV :
 > hence `z∈𝔇_B(L)`.
 
 (tex lines 1102--1105) -/
-theorem manuscriptSentence_defectElementAndZ :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      ⁅printedV P * printedC P * (printedV P)⁻¹, printedEllTwoOne R⁆ = printedDefectElt P ∧
-        (⟨printedDefectElt P, printedDefectElt_mem_printedB P⟩ : ↥(printedB P)) ∈
-          printedDefect (coreOfB P) ∧
-        fUnit P 0 2 * fUnit P 1 0 = 0 ∧ fUnit P 1 0 * fUnit P 0 2 = fUnit P 1 2 ∧
-        (((⁅printedY P, printedDefectElt P⁆ : elementaryGroup (Fin 4) R) :
-            (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
-          lastDiag (1 - fUnit P 1 2) ∧
-        ⁅printedY P, printedDefectElt P⁆ = (printedZ P)⁻¹ ∧
-        printedBZ P ∈ printedDefect (coreOfB P) := by
+def PrintedSentenceDefectElementAndZ : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    ⁅printedV P * printedC P * (printedV P)⁻¹, printedEllTwoOne R⁆ = printedDefectElt P ∧
+      (⟨printedDefectElt P, printedDefectElt_mem_printedB P⟩ : ↥(printedB P)) ∈
+        printedDefect (coreOfB P) ∧
+      fUnit P 0 2 * fUnit P 1 0 = 0 ∧ fUnit P 1 0 * fUnit P 0 2 = fUnit P 1 2 ∧
+      (((⁅printedY P, printedDefectElt P⁆ : elementaryGroup (Fin 4) R) :
+          (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) =
+        lastDiag (1 - fUnit P 1 2) ∧
+      ⁅printedY P, printedDefectElt P⁆ = (printedZ P)⁻¹ ∧
+      printedBZ P ∈ printedDefect (coreOfB P)
+
+theorem manuscriptSentence_defectElementAndZ : PrintedSentenceDefectElementAndZ := by
   intro R _ P
   refine ⟨?_, printedDefectElt_mem_printedDefect P, fUnit_mul_of_ne P 0 0 (by decide),
     fUnit_mul_of_eq P 1 0 2, ?_, printedY_printedDefectElt_commutator P,
@@ -291,13 +316,15 @@ theorem manuscriptSentence_defectElementAndZ :
 > `f_{12}f_{02}=f_{02}f_{12}=f_{12}f_{10}=0`, so `⟨z⟩` is central in `B`.
 
 (tex lines 1105--1107) -/
-theorem manuscriptSentence_zCentral :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
-      (∀ g ∈ core R, Commute (printedZ P) g) ∧ Commute (printedZ P) (printedV P) ∧
-        fUnit P 1 2 * fUnit P 0 2 = 0 ∧ fUnit P 0 2 * fUnit P 1 2 = 0 ∧
-        fUnit P 1 2 * fUnit P 1 0 = 0 ∧
-        Commute (printedZ P) (printedC P) ∧ Commute (printedZ P) (printedY P) ∧
-        Subgroup.zpowers (printedBZ P) ≤ Subgroup.center ↥(printedB P) := by
+def PrintedSentenceZCentral : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R),
+    (∀ g ∈ core R, Commute (printedZ P) g) ∧ Commute (printedZ P) (printedV P) ∧
+      fUnit P 1 2 * fUnit P 0 2 = 0 ∧ fUnit P 0 2 * fUnit P 1 2 = 0 ∧
+      fUnit P 1 2 * fUnit P 1 0 = 0 ∧
+      Commute (printedZ P) (printedC P) ∧ Commute (printedZ P) (printedY P) ∧
+      Subgroup.zpowers (printedBZ P) ≤ Subgroup.center ↥(printedB P)
+
+theorem manuscriptSentence_zCentral : PrintedSentenceZCentral := by
   intro R _ P
   refine ⟨printedZ_commute_core P, printedZ_commute_printedV P,
     fUnit_mul_of_ne P 1 2 (by decide), fUnit_mul_of_ne P 0 2 (by decide),
@@ -310,13 +337,15 @@ theorem manuscriptSentence_zCentral :
 /-- > If `me=0` then `z^m=D(1+mf_{12})=1`, and `z≠1` because `tf_{12}s^2=e≠0`.
 
 (tex lines 1107--1108) -/
-theorem manuscriptSentence_zOrderAndNontrivial :
-    ∀ (R : Type) [Ring R] (P : OneSidedInverse R) (m : ℕ),
-      (((printedZ P ^ m : elementaryGroup (Fin 4) R) : (Matrix (Fin 4) (Fin 4) R)ˣ) :
-          Matrix (Fin 4) (Fin 4) R) = lastDiag (1 + m • fUnit P 1 2) ∧
-        (m • P.e = 0 → printedZ P ^ m = 1) ∧
-        P.t * fUnit P 1 2 * P.s ^ 2 = P.e ∧
-        (P.e ≠ 0 → printedZ P ≠ 1) := by
+def PrintedSentenceZOrderAndNontrivial : Prop :=
+  ∀ (R : Type) [Ring R] (P : OneSidedInverse R) (m : ℕ),
+    (((printedZ P ^ m : elementaryGroup (Fin 4) R) : (Matrix (Fin 4) (Fin 4) R)ˣ) :
+        Matrix (Fin 4) (Fin 4) R) = lastDiag (1 + m • fUnit P 1 2) ∧
+      (m • P.e = 0 → printedZ P ^ m = 1) ∧
+      P.t * fUnit P 1 2 * P.s ^ 2 = P.e ∧
+      (P.e ≠ 0 → printedZ P ≠ 1)
+
+theorem manuscriptSentence_zOrderAndNontrivial : PrintedSentenceZOrderAndNontrivial := by
   intro R _ P m
   refine ⟨?_, printedZ_pow_eq_one P, t_mul_fUnit_one_two_mul_s_sq P, printedZ_ne_one P⟩
   rw [elementaryGroup_val_pow, printedZ_matrix, lastDiag_pow,
@@ -327,21 +356,24 @@ theorem manuscriptSentence_zOrderAndNontrivial :
 > homomorphism from `B`, hence from `EL_n(R)`, to an MF group.
 
 (tex lines 1108--1112)  At the printed `S`, for every countable ring `R`. -/
+def PrintedSentenceCriterionKillsCentralElement : Prop :=
+  ∀ (R : Type) [Ring R] [Countable R] (s t : R) (hts : t * s = 1) (m : ℕ), 0 < m →
+    m • (1 - s * t) = 0 →
+      (Subgroup.zpowers (printedBZ (pairSubringInverse s t hts))).Normal ∧
+      Finite ↥(Subgroup.zpowers (printedBZ (pairSubringInverse s t hts))) ∧
+      ((1 : R) - s * t ≠ 0 →
+        Subgroup.zpowers (printedBZ (pairSubringInverse s t hts)) ≠ ⊥) ∧
+      Subgroup.zpowers (printedBZ (pairSubringInverse s t hts)) ≤
+        printedDefect (coreOfB (pairSubringInverse s t hts)) ∧
+      (∀ (M : Type) [Group M], IsOperatorMF M →
+        ∀ f : ↥(printedB (pairSubringInverse s t hts)) →* M,
+          f (printedBZ (pairSubringInverse s t hts)) = 1) ∧
+      ∀ (n : ℕ) (hn : 4 ≤ n) (M : Type) [Group M], IsOperatorMF M →
+        ∀ f : elementaryGroup (Fin n) R →* M,
+          f (pairToRank s t hn (printedZ (pairSubringInverse s t hts))) = 1
+
 theorem manuscriptSentence_criterionKillsCentralElement :
-    ∀ (R : Type) [Ring R] [Countable R] (s t : R) (hts : t * s = 1) (m : ℕ), 0 < m →
-      m • (1 - s * t) = 0 →
-        (Subgroup.zpowers (printedBZ (pairSubringInverse s t hts))).Normal ∧
-        Finite ↥(Subgroup.zpowers (printedBZ (pairSubringInverse s t hts))) ∧
-        ((1 : R) - s * t ≠ 0 →
-          Subgroup.zpowers (printedBZ (pairSubringInverse s t hts)) ≠ ⊥) ∧
-        Subgroup.zpowers (printedBZ (pairSubringInverse s t hts)) ≤
-          printedDefect (coreOfB (pairSubringInverse s t hts)) ∧
-        (∀ (M : Type) [Group M], IsOperatorMF M →
-          ∀ f : ↥(printedB (pairSubringInverse s t hts)) →* M,
-            f (printedBZ (pairSubringInverse s t hts)) = 1) ∧
-        ∀ (n : ℕ) (hn : 4 ≤ n) (M : Type) [Group M], IsOperatorMF M →
-          ∀ f : elementaryGroup (Fin n) R →* M,
-            f (pairToRank s t hn (printedZ (pairSubringInverse s t hts))) = 1 := by
+    PrintedSentenceCriterionKillsCentralElement := by
   intro R _ _ s t hts m hm hme
   haveI : Countable ↥(Subring.closure ({s, t} : Set R)) := Subtype.countable
   have hT :=
@@ -407,13 +439,16 @@ theorem manuscriptSentence_twoCommutatorsKilled :
 (tex lines 1116--1117)  Along the printed route (`TorsionComplementaryIdempotentsSignedPermutations`):
 two Steinberg commutators and at most two signed permutation matrices put every
 `e_{ij}(aeb)` in the kernel, and `ReR` is the additive span of the `aeb`. -/
+def PrintedSentenceSandwichesAndRelativeElementaryKilled : Prop :=
+  ∀ (R : Type) [Ring R] [Countable R] (s t : R), t * s = 1 → ∀ m : ℕ, 0 < m →
+    m • (1 - s * t) = 0 → ∀ n : ℕ, 4 ≤ n → ∀ (M : Type) [Group M], IsOperatorMF M →
+      ∀ f : elementaryGroup (Fin n) R →* M,
+        (∀ (i j : Fin n) (hij : i ≠ j) (a b : R),
+          f (elGen i j hij (a * (1 - s * t) * b)) = 1) ∧
+        relativeElementary (Fin n) (TwoSidedIdeal.span ({1 - s * t} : Set R)) ≤ f.ker
+
 theorem manuscriptSentence_sandwichesAndRelativeElementaryKilled :
-    ∀ (R : Type) [Ring R] [Countable R] (s t : R), t * s = 1 → ∀ m : ℕ, 0 < m →
-      m • (1 - s * t) = 0 → ∀ n : ℕ, 4 ≤ n → ∀ (M : Type) [Group M], IsOperatorMF M →
-        ∀ f : elementaryGroup (Fin n) R →* M,
-          (∀ (i j : Fin n) (hij : i ≠ j) (a b : R),
-            f (elGen i j hij (a * (1 - s * t) * b)) = 1) ∧
-          relativeElementary (Fin n) (TwoSidedIdeal.span ({1 - s * t} : Set R)) ≤ f.ker := by
+    PrintedSentenceSandwichesAndRelativeElementaryKilled := by
   intro R _ _ s t hts m hm hme n hn M _ hM f
   have hroot : elGen (bigIdx hn (coreIdx 1)) (bigIdx hn (coreIdx 0)) (torsionIndexNe hn)
       (1 - s * t) ∈ f.ker :=
@@ -426,10 +461,12 @@ theorem manuscriptSentence_sandwichesAndRelativeElementaryKilled :
 /-- > For `e≠0`, `e_{21}(e)≠1`.
 
 (tex line 1117) -/
-theorem manuscriptSentence_rootNeOne :
-    ∀ (R : Type) [Ring R] (n : ℕ) (hn : 4 ≤ n) (e : R), e ≠ 0 →
-      elementaryRoot (bigIdx hn (coreIdx 1)) (bigIdx hn (coreIdx 0)) (torsionIndexNe hn) e
-        ≠ 1 := by
+def PrintedSentenceRootNeOne : Prop :=
+  ∀ (R : Type) [Ring R] (n : ℕ) (hn : 4 ≤ n) (e : R), e ≠ 0 →
+    elementaryRoot (bigIdx hn (coreIdx 1)) (bigIdx hn (coreIdx 0)) (torsionIndexNe hn) e
+      ≠ 1
+
+theorem manuscriptSentence_rootNeOne : PrintedSentenceRootNeOne := by
   intro R _ n hn e he h
   apply he
   have hval : elementaryUnit (bigIdx hn (coreIdx 1)) (bigIdx hn (coreIdx 0))

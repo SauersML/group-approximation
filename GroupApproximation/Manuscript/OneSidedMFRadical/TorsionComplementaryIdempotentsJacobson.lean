@@ -48,6 +48,10 @@ namespace TorsionComplementaryIdempotents
 
 open GroupApproximation.OneSidedCompressor
 
+/- `IsCDEOperatorMF` asks for a `Countable` instance on the group; over a countable ring
+the elementary group is countable. -/
+attribute [local instance] FullDefectRing.countable_elementaryGroup
+
 /-! ## The printed space and the two shifts -/
 
 /-- The printed `V = 𝔽₂^{(ℕ)}`, as the polynomial ring with its monomial
@@ -163,7 +167,7 @@ theorem shiftDown_pow_mul_shiftUp_pow (j k : ℕ) :
   · rw [if_neg h]
     obtain ⟨d, rfl⟩ :=
       Nat.exists_eq_add_of_le (Nat.le_of_lt (Nat.lt_of_not_le h))
-    rw [pow_add, mul_assoc, shiftDown_pow_mul_shiftUp_pow_self k, mul_one]
+    rw [add_comm k d, pow_add, mul_assoc, shiftDown_pow_mul_shiftUp_pow_self k, mul_one]
     congr 1
     omega
 
@@ -203,7 +207,7 @@ noncomputable def jacobsonNormalSet : Set (Module.End (ZMod 2) JacobsonSpace) :=
 theorem word_mul_sum_mem (a : ℕ × ℕ) (l : List (ℕ × ℕ)) :
     jacobsonWord a * jacobsonSum l ∈ jacobsonNormalSet := by
   induction l with
-  | nil => exact ⟨[], by rw [jacobsonSum_nil, jacobsonSum_nil, mul_zero]⟩
+  | nil => exact ⟨[], by rw [jacobsonSum_nil, mul_zero]⟩
   | cons b l ih =>
       obtain ⟨l', hl'⟩ := ih
       refine ⟨jacobsonMulIdx a b :: l', ?_⟩
@@ -215,7 +219,7 @@ theorem jacobsonNormalSet_mul_mem {x y : Module.End (ZMod 2) JacobsonSpace}
   obtain ⟨lx, rfl⟩ := hx
   obtain ⟨ly, rfl⟩ := hy
   induction lx with
-  | nil => exact ⟨[], by rw [jacobsonSum_nil, jacobsonSum_nil, zero_mul]⟩
+  | nil => exact ⟨[], by rw [jacobsonSum_nil, zero_mul]⟩
   | cons a l ih =>
       obtain ⟨l₁, hl₁⟩ := word_mul_sum_mem a ly
       obtain ⟨l₂, hl₂⟩ := ih
@@ -262,6 +266,9 @@ theorem countable_jacobsonAlgebra : Countable ↥jacobsonAlgebra := by
       jacobsonNormalSet := jacobsonAlgebra_le_normalSubring
   exact (Set.Countable.mono hsub hcount).to_subtype
 
+instance jacobsonAlgebra_countable : Countable ↥jacobsonAlgebra :=
+  countable_jacobsonAlgebra
+
 /-! ## The printed pair inside `J` -/
 
 /-- The printed `s` inside `J`. -/
@@ -271,6 +278,12 @@ noncomputable def jacobsonS : ↥jacobsonAlgebra :=
 /-- The printed `t` inside `J`. -/
 noncomputable def jacobsonT : ↥jacobsonAlgebra :=
   ⟨shiftDown, shiftDown_mem_jacobsonAlgebra⟩
+
+@[simp] theorem jacobsonS_coe :
+    ((jacobsonS : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) = shiftUp := rfl
+
+@[simp] theorem jacobsonT_coe :
+    ((jacobsonT : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) = shiftDown := rfl
 
 theorem jacobsonT_mul_jacobsonS : jacobsonT * jacobsonS = 1 :=
   Subtype.ext shiftDown_mul_shiftUp
