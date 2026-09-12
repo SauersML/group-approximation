@@ -276,8 +276,8 @@ theorem cartan (g : GL (Fin 2) K) :
     have hdet2 : d = ((h' : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) 1 1 - q * p := by
       rw [hd, Matrix.det_fin_two, h'00, one_mul]
     fin_cases i <;> fin_cases j <;>
-      simp [e₁, e₂, du, Matrix.mul_apply, Fin.sum_univ_two, h'00, ← hpdef, ← hqdef, hu,
-        inv_mul_cancel₀ hπn, mul_assoc] <;>
+      simp [e₁, e₂, du, Matrix.mul_apply, Fin.sum_univ_two, Matrix.vecMul, dotProduct, h'00,
+        ← hpdef, ← hqdef, hu, inv_mul_cancel₀ hπn, mul_assoc] <;>
       first
       | ring
       | (rw [hdet2]; ring)
