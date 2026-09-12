@@ -97,3 +97,51 @@ and the sets `W_i`, never the type of the defect. For every choice, the lift of 
 left invertible exactly modulo one nonzero kernel idempotent: `tau'' sigma = 1 - e'`. So `sigma` is
 left invertible in `S_-` iff `e' in S_- sigma`. Its Haar trace mod 3 is `Tr(e') = 2 lambda(F) = 2 * 1/2 = 1`
 (each `W_i` has Haar measure `1/4`), so the mod-3 trace does not forbid removing it.
+
+## 3. No equivariant lattice lift
+
+The defect of Section 2 comes from the honest lifts obeying only the XOR law
+`U_(C xor D) = U_C xor U_D`: the honest lifts of the disjoint pieces `A ⊆ 0` and `1` are not
+orthogonal, since a non-Dirac measure can charge both. One could hope to replace honest lifts by lifts
+that respect intersections as well. The next theorem says that no uniform scheme does.
+
+**Theorem 3.1** (`no-equivariant-lattice-lift-of-cylinder-idempotents`). There is no map `Phi` from
+`Clopen(X)` to `Clopen(M_-)` that is (1) a Boolean algebra homomorphism, (2) `V`-equivariant,
+`Phi(gC) = g Phi(C)`, and (3) Dirac compatible, `delta_x in Phi(C)` iff `x in C`.
+
+*Proof.*
+- *Stone duality.* A Boolean homomorphism `Phi : Clopen(X) -> Clopen(M_-)` is `r^-1` for a unique
+  continuous `r : M_- -> X`. Put `r(mu)` the point of the ultrafilter `{ C : mu in Phi(C) }`.
+- *Compatibility.* Item 3 says the ultrafilter of `delta_x` is the ultrafilter of `x`, so
+  `r(delta_x) = x`. Item 2 gives `mu in Phi(gC)` iff `g^-1 mu in Phi(C)`, so `r(g mu) = g r(mu)`.
+- *Haar invariance.* At a prefix code `P`, the restriction of a measure `mu` to the algebra generated
+  by `P` is an odd `F_2`-function on the atoms of `P`. The Haar measure `lambda` of `M_-` restricts to
+  the uniform distribution on these functions: refine `P` to a common depth, where `lambda` is uniform
+  by definition, and sum over children, an `F_2`-linear surjection with fibers of equal size. An element
+  `g in V` carries the atoms of some prefix code `P` bijectively onto the atoms of a prefix code `Q`, so
+  it carries the uniform distribution at `P` to the uniform distribution at `Q`. Sets determined by
+  restrictions to prefix-code algebras generate the Borel sets of `M_-`, so `g_* lambda = lambda`.
+- *Contradiction.* `nu = r_* lambda` is a `V`-invariant probability measure on `X`. The prefix
+  replacements `{0, 10, 11} -> {00, 01, 1}` and `{0, 10, 11} -> {01, 00, 1}` are elements of `V` mapping
+  `0` onto `00` and onto `01`. So `nu(0) = nu(00) = nu(01)`, and `nu(0) = nu(00) + nu(01)` forces
+  `nu(0) = 0`. The first-letter swap gives `nu(1) = nu(0) = 0`, contradicting `nu(X) = 1`. QED
+
+**Scope.** The theorem is about uniform schemes defined on all clopens at once. A Cohn-family witness
+involves finitely many elements, so it may still use lifts that are lattice compatible on finitely many
+pieces and equivariant for finitely many units. What the theorem excludes is repairing the Section 2
+defect functorially; any witness must make non-functorial choices or use coefficients outside `{0,1}`.
+
+## 4. Where it stops
+
+- *Mixed depth does not help.* For every choice of extending units, the natural lift of `(s_0, t_0)` is
+  left invertible exactly modulo one nonzero kernel idempotent `e'` (Lemma 2.1), and no functorial lattice
+  lift removes it (Theorem 3.1).
+- *Monomial corrections are dead.* Removing `e'` needs some `x` with `x sigma = e'`. A `{0,1}`-valued
+  monomial correction assembling a full Cohn family is a clopen paradoxical system, excluded by
+  `odd-measure-space-has-no-honest-thompson-compression`.
+- *Not yet computed.* The full `2 x 2` Gram matrix with the lift of `s_1`, where the off-diagonal entries
+  `tau_0 sigma_1` also carry kernel defects. Whether the four defects of one skeleton can be arranged so
+  that the whole Gram defect is a single partial symmetry is the next unit.
+- *Escape routes that remain open.* Coefficient functions with values `2` on overlaps (mod-3 cancellation
+  in the grade equations), and supports using units outside `E x| V` such as `1 + s_alpha t_beta`, whose
+  conjugates of honest lifts are honest lifts of non-diagonal idempotents.
