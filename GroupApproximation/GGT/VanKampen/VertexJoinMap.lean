@@ -36,7 +36,7 @@ theorem sigma_apply (z : M.Dart) :
 and `alpha y` along faces. -/
 theorem facePerm_eq :
     (toCombMap M x y).facePerm = M.facePerm * Equiv.swap (M.alpha x) (M.alpha y) := by
-  ext z
+  refine Equiv.ext fun (z : M.Dart) => ?_
   change M.sigma (Equiv.swap x y (M.alpha z)) =
     M.sigma (M.alpha (Equiv.swap (M.alpha x) (M.alpha y) z))
   congr 1
@@ -65,10 +65,14 @@ theorem edgeCount_eq : (toCombMap M x y).edgeCount = M.edgeCount := rfl
 theorem faceCount_eq (hne : M.alpha x ≠ M.alpha y)
     (hface : M.facePerm.SameCycle (M.alpha x) (M.alpha y)) :
     (toCombMap M x y).faceCount = M.faceCount + 1 := by
+  have h : Nat.card (CombMap.Orbit (M.facePerm * Equiv.swap (M.alpha x) (M.alpha y))) =
+      Nat.card (CombMap.Orbit M.facePerm) + 1 := by
+    rw [PermCycleCoordinates.orbit_card_mul_swap_eq]
+    exact PermCycleCoordinates.orbit_card_swap_mul M.facePerm (M.alpha x) (M.alpha y) hne hface
   change Nat.card (CombMap.Orbit (toCombMap M x y).facePerm) =
     Nat.card (CombMap.Orbit M.facePerm) + 1
-  rw [facePerm_eq, PermCycleCoordinates.orbit_card_mul_swap_eq]
-  exact PermCycleCoordinates.orbit_card_swap_mul M.facePerm (M.alpha x) (M.alpha y) hne hface
+  rw [facePerm_eq]
+  exact h
 
 /-- After joining, `x` and `y` lie at the same vertex. -/
 theorem sameCycle_joined (hxy : ¬ M.sigma.SameCycle x y) :

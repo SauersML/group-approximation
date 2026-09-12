@@ -3,6 +3,8 @@ import GroupApproximation.GGT.VanKampen.CombMapEdgeDeletionConnected
 import GroupApproximation.GGT.VanKampen.CombMapEulerUpperBound
 import GroupApproximation.Meta.AxiomGuard
 
+set_option linter.unusedSectionVars false
+
 /-!
 # Folding a pair of consecutive face darts
 
@@ -64,7 +66,6 @@ theorem IsFoldable.ne_prev (h : IsFoldable M p d e) : d ≠ p := by
   apply h.ne_next
   rw [← h.next, hdp, h.prev, hdp]
 
-omit [DecidableEq M.Dart] in
 theorem IsFoldable.ne_alpha_next (h : IsFoldable M p d e) : d ≠ M.alpha e := by
   intro hd
   apply h.not_spur
@@ -74,18 +75,28 @@ theorem joined_facePerm : (joined M p e).facePerm = M.facePerm * Equiv.swap p e 
   show (VertexJoin.toCombMap M (M.alpha p) (M.alpha e)).facePerm = _
   rw [VertexJoin.facePerm_eq, M.alpha_involutive, M.alpha_involutive]
 
+/-- Face rotation of the joined map, at an old dart. -/
+theorem joined_facePerm_apply (z : M.Dart) :
+    (joined M p e).facePerm z = M.facePerm (Equiv.swap p e z) :=
+  congrArg (fun q : Perm (joined M p e).Dart => q z) (joined_facePerm (M := M) (p := p) (e := e))
+
 theorem joined_facePerm_next (h : IsFoldable M p d e) : (joined M p e).facePerm e = d := by
-  rw [joined_facePerm, Perm.mul_apply, Equiv.swap_apply_right, h.prev]
+  rw [joined_facePerm_apply, Equiv.swap_apply_right, h.prev]
 
 theorem joined_facePerm_self (h : IsFoldable M p d e) : (joined M p e).facePerm d = e := by
-  rw [joined_facePerm, Perm.mul_apply, Equiv.swap_apply_of_ne_of_ne h.ne_prev h.ne_next,
-    h.next]
+  rw [joined_facePerm_apply, Equiv.swap_apply_of_ne_of_ne h.ne_prev h.ne_next, h.next]
 
 /-- After joining, the rest of the face runs from `p` to the successor of `e`. -/
 theorem joined_facePerm_prev : (joined M p e).facePerm p = M.facePerm e := by
-  rw [joined_facePerm, Perm.mul_apply, Equiv.swap_apply_left]
+  rw [joined_facePerm_apply, Equiv.swap_apply_left]
 
 theorem joined_alpha (x : M.Dart) : (joined M p e).alpha x = M.alpha x := rfl
+
+/-- The pair is consecutive along its face. -/
+theorem IsFoldable.sameCycle (h : IsFoldable M p d e) : M.facePerm.SameCycle p e := by
+  have hc : M.facePerm.SameCycle p (M.facePerm (M.facePerm p)) :=
+    Perm.SameCycle.rfl.apply_right.apply_right
+  rwa [h.prev, h.next] at hc
 
 /-- **The joined map is planar.** -/
 theorem joined_planar (hM : M.IsPlanar) (h : IsFoldable M p d e) : (joined M p e).IsPlanar := by
@@ -94,8 +105,7 @@ theorem joined_planar (hM : M.IsPlanar) (h : IsFoldable M p d e) : (joined M p e
     exact h.prev_ne_next
   have hface : M.facePerm.SameCycle (M.alpha (M.alpha p)) (M.alpha (M.alpha e)) := by
     rw [M.alpha_involutive, M.alpha_involutive]
-    have hc := (Perm.SameCycle.refl M.facePerm p).apply_right.apply_right
-    rwa [h.prev, h.next] at hc
+    exact h.sameCycle
   exact VertexJoin.planar M (M.alpha p) (M.alpha e) hM h.distinct_ends hne hface
 
 /-- In the joined map the pair `d e` is a digon, different from the face of
@@ -160,8 +170,7 @@ theorem faceCount_eq (hM : M.IsPlanar) (h : IsFoldable M p d e) :
     exact h.prev_ne_next
   have hface : M.facePerm.SameCycle (M.alpha (M.alpha p)) (M.alpha (M.alpha e)) := by
     rw [M.alpha_involutive, M.alpha_involutive]
-    have hc := (Perm.SameCycle.refl M.facePerm p).apply_right.apply_right
-    rwa [h.prev, h.next] at hc
+    exact h.sameCycle
   have hf1 : (joined M p e).faceCount = M.faceCount + 1 :=
     VertexJoin.faceCount_eq M (M.alpha p) (M.alpha e) hne hface
   omega
@@ -169,6 +178,7 @@ theorem faceCount_eq (hM : M.IsPlanar) (h : IsFoldable M p d e) :
 end GroupApproximation.GGT.VanKampen.FoldMap
 
 #audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.joined_facePerm
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.joined_facePerm_apply
 #audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.joined_planar
 #audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.joined_faceOf_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.planar
