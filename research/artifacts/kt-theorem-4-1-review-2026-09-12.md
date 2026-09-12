@@ -814,6 +814,29 @@ So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domina
   pruned-core route (kt41-g1-alt, kt41-g1-uniform) keeps landing. Both routes are
   consistent, and one suffices.
 
+## R20. `32081c854` (kt41-seq-decomp): the packaged `ComponentFamily`. No defect
+
+- **The route.** `componentFamily D hsymm hgen hT enum henum : ComponentFamily K T`
+  fills every field from `SequentialComponentFamilyObjects` (R14):
+  - Cheeger constant `cheeger/(8|T|) > 0`;
+  - `expands`;
+  - `size_tendsTo`;
+  - `locallyMultiplicative`;
+  - `labelsInjective`.
+- **The companion mass.** `uncoveredMass_negligible` covers the non-object components
+  and the pruned points. The mass identity says object sizes plus uncovered mass equal
+  `|S_n|`. That is the `BlockEmbedding` companion's negligible uncovered mass.
+- **Compatibility with `eventually_pairRepairAt` and `exists_joint_pairRepair`, to
+  check at the instance.**
+  - `1 ∈ T`: from `CompressionSetup.generatorsΓ_one`, if `T` is the image of
+    `generatorsΓ`.
+  - A Kazhdan pair `Q ⊆ T`: `Q = T` works because `Γ` has (T).
+  - `[Infinite K]`: the producer's infinite branch.
+  - `h ≤ F.cheeger` eventually, because `h_n → 0`.
+  - `20 ≤ scale` eventually, from `size_tendsTo`.
+- **L1 is closed** for packaging. The remaining L1-adjacent step is instantiating
+  `ScaledPartialClusterSystem` at each index through `ComponentFamily.clusterSystem`.
+
 ## Named statements in the chain without a producer
 
 - `seqNormalizes_distinguished_of_kazhdan`: pinned name only; its file is absent.
