@@ -62,3 +62,21 @@ closure `S*` of `gottschalk-counterexamples-lie-outside-the-permanence-closure`.
     has been built yet.
 - **Also not tried.** Small cancellation embeddings of a Kun–Thom wreath into infinitely
   presented simple groups. Quotients are involved, so balls must be checked directly.
+- **Corrected candidate (w4-simple-q, artifact
+  `research/artifacts/kun-thom-alternating-full-group-2026-09-12.md`).**
+  - *On lamp configurations alone.* `A(W ↷ {0,1}^(G/Gamma))` contains `N semidirect EL_r(R)`,
+    through rigid-stabilizer commutators and because `EL_r(R_+)` is perfect. Containing `[W,W]`
+    is equivalent to containing `SL_d(Z)`. An element whose `SL_d(Z)` image has infinite order
+    preserves no proper clopen set, so fragmentation stops there, and the conditional above
+    stays open.
+  - *Adding a finite quotient `G/K`, `|G/K| >= 3`.* This removes the question: the alternating
+    full group of `{0,1}^(G/Gamma) x G/K` contains `N semidirect [K,K]`, which has finite index
+    in the image of `W`, so it is nonsofic (`kun-thom-product-action-alternating-full-group-is-nonsofic`).
+  - *Open nodes.* Simplicity and finite generation are
+    `kun-thom-product-action-alternating-full-group-is-fg-simple`, which rests on Nekrashevych's
+    theorems, not re-read. The local-embedding step is
+    `kun-thom-full-group-balls-embed-in-permanence-closure`. Route:
+    `permanence-closure-fg-simple-nonsofic-via-kun-thom-full-group`.
+  - *Where the natural hosts die.* O4 wreaths with a marked-site assignment fail at overlapping
+    windows. `H_fin semidirect G` misses varying base parts, and `S*` cannot reach it because
+    `H_fin` is simple. Layered wreaths vary base parts only along layers.

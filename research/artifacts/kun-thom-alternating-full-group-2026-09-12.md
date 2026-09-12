@@ -144,3 +144,43 @@ nonsofic.
 - `Q'` is infinite. Simplicity and finite generation follow from (N1) and (N2) through Lemma 1.1, which is recorded as
   the OPEN `kun-thom-product-action-alternating-full-group-is-fg-simple` until the source is checked.
 - The layer factor `Q_0` does real work. On `C` alone, Proposition 2.5 blocks the same argument for `SL_d(Z)`.
+
+## 4. The open step: local embeddings into S*
+
+By Theorem 1 of `research/artifacts/fg-simple-groups-and-the-permanence-closure-2026-09-12.md`, `Q'` can enter `S*`
+only through (O3). The step is `kun-thom-full-group-balls-embed-in-permanence-closure`: every finite subset of `Q'`
+embeds as a partial multiplication table into a group of `S*`.
+
+**What a ball carries.**
+- (i) *Configuration reading.* Cylinder permutations at overlapping windows, such as 3-cycles on cylinders at `(s,t)`
+  and at `(t,u)`, which do not commute.
+- (ii) *Varying base parts.* A layer 3-cycle acts by different elements of `G` on different pieces.
+- (iii) *The nonsofic witness.* A witness ball of `W/Z` sits inside `Q'` by Proposition 3.1.
+
+**Host 1: permutational wreaths with finite lamps over residually finite bases (O4), marked-site assignment.**
+- *The assignment.* Put `Sym({0,1}^T)` at the site `T` (a window), and send each `g` to itself.
+- *Where it breaks.* A permutation `sigma` at `S` and `g sigma' g^-1` at `gS'` go to lamps at different sites, which
+  commute. Any ball of radius at least 4 containing `sigma`, `sigma'` and `g` contains both orders of their product.
+  So overlapping windows with noncommuting permutations make the assignment non-injective.
+- *Scope.* A partial table may assign differently, so this is where the natural host dies, not an obstruction.
+
+**Host 2: the cylinder-permutation extension `H_fin semidirect G`.**
+- *The group.* `H_fin` is the union over finite `S` of `Sym({0,1}^S)` acting on the coordinates in `S`. It carries
+  (i) and (iii), but its base parts are constant, so it misses (ii).
+- *Simplicity.* The embedding `Sym({0,1}^S) -> Sym({0,1}^S')` for `S < S'` repeats every cycle `2^|S'\S|` times, so
+  its image is even. `H_fin` is therefore a directed union of the simple groups `Alt({0,1}^S)` with `|S| >= 3`, and is
+  simple.
+- *No operation of `S*` reaches it.* It has no epimorphism onto a nontrivial residually finite group, so detection
+  (A1) of O4 fails. O6 needs LEF graph-product kernels, and O7 needs finitely generated kernels.
+- *Peeling fails too.* Transplanting to the coset spaces of the subgroups that neither read nor move the coordinates
+  in `S` gives cosets indexed by continuous maps `C -> {0,1}^S` of unbounded depth, so there are no finite marks to
+  peel.
+
+**Host 3: layered wreaths `(Z/2) wr_(X x Q_0) (K wr Sym(Q_0))`.** They lie in `S*` by O4 because the base is residually
+finite. They carry (ii) only when the pieces are layers, not configuration cylinders.
+
+**Where it stops.**
+- *A new permanence theorem is needed:* surjunctivity, or local embeddability into `S*`, for topological full groups
+  of lamp actions. Even the constant-base-part group `H_fin semidirect G` is not covered.
+- *Negative route:* if `Q'` contains an infinite finitely presented simple nonsofic group, then `Q'` is not in `S*`
+  by `gottschalk-counterexamples-lie-outside-the-permanence-closure`. No such subgroup is known.
