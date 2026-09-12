@@ -399,3 +399,57 @@ Priority review, requested by the coordinator: three named checks and a must-fai
 - Novelty was checked only against Cairn. `{(a,0),(a,1),(b,0),(1,1)}` was the smallest open example recorded
   in Cairn, one case of Choi–Seo Q1.3, which stays open.
 - The lift-check script was not re-run, because MSI was unavailable.
+
+## 18. RNORM realizer claims (548bdf1fd): four PASS, one conditional
+
+These four claims narrow the unbounded-realizer case of `relative-normalization-modulo-kazhdan-kernel`.
+
+### 18.1 `inner-realizers-are-at-least-half-the-sofic-radius`: PASS
+
+- **Nontrivial kernel commutator.** `h = w^-1 g ≠ 1`, because `w ∈ N` and `g ∉ N`. `C_G(N) = 1` gives some
+  `s` with `[h, s] ≠ 1`. The word `d = w^-1 v_s w s^-1` represents `h s h^-1 s^-1`.
+- **Fixed points.** Set `y = W s_B^-1 x` and `a = (Wc)^-1 y`.
+  - Suppose `y ∉ E_n`, `a ∈ A` and `s_B a ∈ A`. Since `c` commutes with `s_B`,
+    `v_s(s~) y = σ_n(g) s_B a = W s_B W^-1 y`, and so `d(s~) x = x`.
+  - The maps `x -> y -> a` are bijections of `B`, so the three failure counts add to at most
+    `e_B + 2ε|B|`.
+- **Radius.** A nontrivial `d` fixing `x` is a violating pair of length `|d| <= 2|w| + L_g + 1`, so
+  `ρ_n(x) < |d|`. For fixed `r` there are finitely many word pairs, which gives `|{ρ_n < r}| = o(|X_n|)`.
+
+### 18.2 `kernel-block-realizers-need-no-centralizer-factor`: PASS
+
+- **Commuting products.** Blockwise commuting products give `[Π, C] = 1`, and `σ(N) <= Π`.
+- **Central extension.** `θ̄ : Q -> C/(C ∩ Π)` lifts through `E' = {(q, e) : θ̄(q) = e(C ∩ Π)}`.
+  - `E'` is a central extension of `Q` by `A_0 = E_0 ∩ Π`, which is central because `Π` commutes with `C`.
+  - `H^2(Q; A_0) = Hom(H_2 Q, A_0) ⊕ Ext(H_1 Q, A_0) = 0`, so a homomorphic section `ψ : Q -> S_U` exists.
+    Only trivial sofic morphisms exist, so `θ̄ = 1`.
+- **Instance.** The inputs `binary-leavitt-unit-group-integrally-acyclic` and
+  `leavitt-unit-group-has-only-trivial-sofic-morphisms` were not re-reviewed.
+
+### 18.3 `kernel-block-realizers-exist-after-small-re-edit`: PASS, conditional on block invariance
+
+- **Few blocks.** A block of size `k` gives every point radius `< k`, because the ball of radius `k` in an
+  infinite `N` has more than `k` elements. So blocks carry `o(|X_n|)` count, and three-point re-edits cost
+  `o(|X_n|)`.
+- **Primitivity.** A 3-cycle preserving a block system has its support in one part: if `a` and `b` lie in
+  different parts, some `d ≠ a` in `P_a` is fixed or sent to `a`.
+  - Chaining the `τ_(i,B)` puts `a, s~_1 a, …, s~_m a` in one part.
+  - That part is `Π_B`-invariant, which contradicts transitivity.
+- **Jordan's theorem.** It gives `Π+_B >= Alt(B)`. A parity-corrected extension of `σ_n(g)|_B` lies in
+  `Alt(B)`.
+- **Dependency.** Step 6 uses `kazhdan-kernel-blocks-invariant-under-sofic-invisible-quotient`, which has
+  no verdict yet (see §8).
+
+### 18.4 `leavitt-cover-regular-realizer-models-iff-residually-finite`: PASS
+
+- **1 ⟹ 2.** `NK_n = G`, so each finite quotient is one block, the Cayley graph of `N/(N ∩ K_n)`. Its
+  expansion is uniform by property (T) of `N`, and every `σ_n(g)` lies in the regular group `Π_B`.
+- **2 ⟹ 1.**
+  - §18.2 on `Y_n` removes the centralizers.
+  - In a regular group, an element with a fixed point is trivial. So relators fail only on whole blocks of
+    total mass `o(|X_n|)`, and `t -> p_B(t)` defines exact homomorphisms `r_B : G -> Π_B` on the rest.
+  - A block with `r_B(g) = 1` consists of fixed points of an approximation of `σ_n(g)`, so mass
+    `δ|X_n|` forces some `r_B(g) ≠ 1`.
+- **Reading.** The claim is correct as scoped. On regular blocks, excluding realized models is the same
+  as proving the cover not residually finite. Off regular blocks, §18.3 says realized models exist
+  whenever the cover is sofic.
