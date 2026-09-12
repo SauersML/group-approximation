@@ -30,59 +30,62 @@ universe u
 
 section Orbits
 
-variable {D : Type u} [Finite D] (p : Perm D) (S : D → Prop) (hS : ∀ x, S (p x) ↔ S x)
+variable {D : Type u} [Finite D]
 
-theorem iff_of_sameCycle {x y : D} (h : p.SameCycle x y) : S x ↔ S y := by
-  have hc := OrbitClassifier.eq_of_sameCycle p S (fun d => propext (hS d)) h
+theorem iff_of_sameCycle (f : Perm D) (S : D → Prop) (hS : ∀ x, S (f x) ↔ S x) {x y : D}
+    (h : f.SameCycle x y) : S x ↔ S y := by
+  have hc := OrbitClassifier.eq_of_sameCycle f S (fun d => propext (hS d)) h
   rw [hc]
 
 /-- **Orbits split along an invariant set.** -/
-theorem card_orbit_subtypePerm_add :
-    Nat.card (Orbit (p.subtypePerm hS)) +
-      Nat.card (Orbit (p.subtypePerm (fun x => not_congr (hS x)))) = Nat.card (Orbit p) := by
+theorem card_orbit_subtypePerm_add (f : Perm D) (S : D → Prop) (hS : ∀ x, S (f x) ↔ S x) :
+    Nat.card (Orbit (f.subtypePerm hS)) +
+      Nat.card (Orbit (f.subtypePerm (p := fun x => ¬ S x) (fun x => not_congr (hS x)))) =
+        Nat.card (Orbit f) := by
   classical
-  let f : D → Orbit (p.subtypePerm hS) ⊕ Orbit (p.subtypePerm (fun x => not_congr (hS x))) :=
+  let g : D → Orbit (f.subtypePerm hS) ⊕
+      Orbit (f.subtypePerm (p := fun x => ¬ S x) (fun x => not_congr (hS x))) :=
     fun x => if hx : S x then Sum.inl (Quotient.mk'' ⟨x, hx⟩) else Sum.inr (Quotient.mk'' ⟨x, hx⟩)
-  have hf : ∀ x y, p.SameCycle x y → f x = f y := by
+  have hg : ∀ x y, f.SameCycle x y → g x = g y := by
     intro x y hxy
-    have hSy := iff_of_sameCycle p S hS hxy
+    have hSy := iff_of_sameCycle f S hS hxy
     by_cases hx : S x
     · have hy : S y := hSy.mp hx
-      simp only [f, dif_pos hx, dif_pos hy]
+      simp only [g, dif_pos hx, dif_pos hy]
       exact congrArg Sum.inl (Quotient.sound (Equiv.Perm.sameCycle_subtypePerm.mpr hxy))
     · have hy : ¬ S y := fun hy => hx (hSy.mpr hy)
-      simp only [f, dif_neg hx, dif_neg hy]
+      simp only [g, dif_neg hx, dif_neg hy]
       exact congrArg Sum.inr (Quotient.sound (Equiv.Perm.sameCycle_subtypePerm.mpr hxy))
-  let e : Orbit p ≃ Orbit (p.subtypePerm hS) ⊕
-      Orbit (p.subtypePerm (fun x => not_congr (hS x))) :=
-    { toFun := Quotient.lift f hf
+  let e : Orbit f ≃ Orbit (f.subtypePerm hS) ⊕
+      Orbit (f.subtypePerm (p := fun x => ¬ S x) (fun x => not_congr (hS x))) :=
+    { toFun := Quotient.lift g hg
       invFun := Sum.elim
-        (Quotient.lift (fun x => (Quotient.mk'' x.1 : Orbit p))
+        (Quotient.lift (fun x => (Quotient.mk'' x.1 : Orbit f))
           (fun _ _ h => Quotient.sound (Equiv.Perm.sameCycle_subtypePerm.mp h)))
-        (Quotient.lift (fun x => (Quotient.mk'' x.1 : Orbit p))
+        (Quotient.lift (fun x => (Quotient.mk'' x.1 : Orbit f))
           (fun _ _ h => Quotient.sound (Equiv.Perm.sameCycle_subtypePerm.mp h)))
       left_inv := by
         intro q
         induction q using Quotient.inductionOn' with
         | h x =>
-          show Sum.elim _ _ (f x) = Quotient.mk'' x
+          show Sum.elim _ _ (g x) = Quotient.mk'' x
           by_cases hx : S x
-          · have hfx : f x = Sum.inl (Quotient.mk'' ⟨x, hx⟩) := dif_pos hx
-            rw [hfx]
+          · have hgx : g x = Sum.inl (Quotient.mk'' ⟨x, hx⟩) := dif_pos hx
+            rw [hgx]
             rfl
-          · have hfx : f x = Sum.inr (Quotient.mk'' ⟨x, hx⟩) := dif_neg hx
-            rw [hfx]
+          · have hgx : g x = Sum.inr (Quotient.mk'' ⟨x, hx⟩) := dif_neg hx
+            rw [hgx]
             rfl
       right_inv := by
         intro s
         rcases s with q | q
         · induction q using Quotient.inductionOn' with
           | h x =>
-            show f x.1 = Sum.inl (Quotient.mk'' x)
+            show g x.1 = Sum.inl (Quotient.mk'' x)
             exact dif_pos x.2
         · induction q using Quotient.inductionOn' with
           | h x =>
-            show f x.1 = Sum.inr (Quotient.mk'' x)
+            show g x.1 = Sum.inr (Quotient.mk'' x)
             exact dif_neg x.2 }
   rw [← Nat.card_sum]
   exact Nat.card_congr e.symm
@@ -112,12 +115,15 @@ theorem restrict_sigma_val (x : (M.restrict S hα hσ).Dart) :
 theorem restrict_facePerm_val (x : (M.restrict S hα hσ).Dart) :
     ((M.restrict S hα hσ).facePerm x).1 = M.facePerm x.1 := rfl
 
+include hα hσ in
 theorem facePerm_invariant (x : M.Dart) : S (M.facePerm x) ↔ S x :=
   (hσ (M.alpha x)).trans (hα x)
 
+include hα in
 /-- The complement of an invariant set is invariant. -/
 theorem compl_alpha (x : M.Dart) : ¬ S (M.alpha x) ↔ ¬ S x := not_congr (hα x)
 
+include hσ in
 theorem compl_sigma (x : M.Dart) : ¬ S (M.sigma x) ↔ ¬ S x := not_congr (hσ x)
 
 theorem restrict_facePerm_eq :
@@ -141,7 +147,8 @@ theorem faceCount_restrict_add :
       Nat.card (Orbit (M.facePerm.subtypePerm (M.facePerm_invariant S hα hσ))) :=
     Nat.card_congr (EdgeSubdivision.orbitEquivOfEq (M.restrict_facePerm_eq S hα hσ))
   have h2 : (M.restrict (fun x => ¬ S x) (M.compl_alpha S hα) (M.compl_sigma S hσ)).faceCount =
-      Nat.card (Orbit (M.facePerm.subtypePerm (fun x => not_congr (M.facePerm_invariant S hα hσ x)))) :=
+      Nat.card (Orbit (M.facePerm.subtypePerm (p := fun x => ¬ S x)
+        (fun x => not_congr (M.facePerm_invariant S hα hσ x)))) :=
     Nat.card_congr (EdgeSubdivision.orbitEquivOfEq
       (M.restrict_facePerm_eq (fun x => ¬ S x) (M.compl_alpha S hα) (M.compl_sigma S hσ)))
   rw [h1, h2]
@@ -174,6 +181,7 @@ theorem eulerCharacteristic_restrict_add :
   unfold CombMap.eulerCharacteristic
   omega
 
+include hα hσ in
 /-- Elementary moves preserve membership in an invariant set. -/
 theorem iff_of_eqvGen {x y : M.Dart} (h : Relation.EqvGen M.Adjacent x y) : S x ↔ S y := by
   induction h with
