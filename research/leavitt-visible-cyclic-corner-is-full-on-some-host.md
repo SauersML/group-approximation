@@ -38,3 +38,7 @@ When `m` divides `q - 1`, this is a unital `m`-pair Cohn family in the corner `T
   gate is not settled that way.
 - **What stays silent under the twist.** Augmentation, commutative quotients and the lifted trace. The
   lifted trace forbids `e_H ~ eps_iota` but not `1 <= e_H`.
+- **Exact reformulation, with no idempotent** (`cyclic-separated-one-sided-pairs-equal-full-corners`).
+  It suffices to find a one-sided pair `c a = eps_iota` in `A_iota` whose cyclic cross terms
+  `c [g^i] a`, `0 < i < m`, all vanish. When `m` divides `q - 1` this is also necessary. So a
+  solution need not lift the image solution: any one-sided pair with vanishing cross terms will do.

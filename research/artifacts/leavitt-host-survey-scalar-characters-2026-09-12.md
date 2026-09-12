@@ -180,3 +180,34 @@ colimit over the finite fields of characteristic `p` containing a primitive `m`-
 - **No ranking of kernels:** no host has been shown to have a smaller or simpler evaluation kernel.
   What the survey shows is monotonicity in `q`, the uniform matrix form under the twist, and the one
   genuine difference at `q = 2`: the augmentation is visible there and there is no twist.
+
+## 7. Separated one-sided pairs
+
+This generalizes Theorem 1, (C) iff (P), of `research/artifacts/ternary-swap-separated-pairs-2026-09-12.md`
+(lane `gk-kdf-structure`) from the swap to every cycle length and every host.
+
+**Theorem 7.** Let `A_iota`, `m`, `g` and `e_H = eps_iota (1/m) sum_k [g^k]` be as in Sections 2
+and 3, with `p` not dividing `m`.
+
+1. If `a, c` in `A_iota` satisfy `c a = eps_iota` and `c [g^i] a = 0` for `0 < i < m`, then
+   `(m c) e_H a = eps_iota`.
+2. If `m` divides `q - 1` and `c' e_H b' = eps_iota`, then with `delta = sum_i zeta^i s_i t_i`,
+
+       a = sum_(j=0)^(m-1) [delta]^j e_H b',   c = (1/m) sum_(j=0)^(m-1) c' e_H [delta]^(-j)
+
+   satisfy `c a = eps_iota` and `c [g^i] a = 0` for `0 < i < m`.
+
+*Proof.*
+- (1): `c e_H a = (1/m) sum_k c [g^k] a = (1/m) c a`.
+- (2): `delta g delta^(-1) = zeta g` gives `[delta]^(-j') [g^i] [delta]^(j') = zeta^(-i j') [g^i]`
+  in `A_iota`, because `[zeta^k]` acts as `zeta^k` there. With `[g^i] e_H = e_H`,
+
+      c [g^i] a = (1/m) sum_(j, j') zeta^(-i j') c' e_H [delta]^(j' - j) e_H b'.
+
+  For `0 < k < m`, `[delta]^k e_H [delta]^(-k)` is the isotypic idempotent of the character
+  `g -> zeta^(-k)`. It differs from `e_H`, so `e_H [delta]^k e_H = e_H ([delta]^k e_H [delta]^(-k)) [delta]^k = 0`.
+  Only `j = j'` survives, which gives `(1/m) sum_j zeta^(-ij) eps_iota`: this is `eps_iota` for
+  `i = 0` and `0` for `0 < i < m`, since `zeta` is primitive of order `m`. QED
+
+At `q = 2` part 1 still applies with `m = 3` (`1/3 = 1`): `c a = 1` and `c[g]a = c[g^2]a = 0` make
+`1 + g + g^2` full in `F_2[L_(F_2)(1,2)^x]`, for the permutation unit `g` of a ternary family.
