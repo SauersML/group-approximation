@@ -258,7 +258,46 @@ counterexample branch in the negative direction, since
   for free Burnside groups "may be challenging" because of Coulon--Steenbock
   product-set growth. Not examined further here.
 
-## 5. Sources read for this note
+## 5. A quantitative floor for ergodic percolation on Kazhdan groups
+
+This section concerns `fpbs-kazhdan-sparse-spines`, not the normal subgroup
+statement. It records why the Hutchcroft--Pete recursion cannot be run
+entirely inside the class of factors of i.i.d.
+
+**Proposition D.** Let `Gamma` have a Kazhdan pair `(S, kappa)`: `S` is
+finite and symmetric, and every unitary representation `pi` without nonzero
+invariant vectors satisfies `max_(s in S) ||pi(s) v - v|| >= kappa ||v||` for
+all `v`. Let `mu` be an ergodic `Gamma`-invariant probability measure on
+`{0,1}^Gamma`, with the shift `(g omega)(h) = omega(g^(-1) h)`, and put
+`p = mu(omega(e) = 1)`. Then
+
+    max_(s in S) mu(omega(s) != omega(e))  >=  kappa^2 p (1 - p).
+
+*Proof.* The Koopman representation on `L^2_0(mu)` has no invariant vectors
+because `mu` is ergodic. The function `f = 1_(omega(e)=1) - p` lies in
+`L^2_0(mu)` with `||f||^2 = p(1-p)`, and `(pi(s) f)(omega) = f(s^(-1) omega) =
+1_(omega(s)=1) - p`. So `||pi(s) f - f||^2 = mu(omega(s) != omega(e))`, and
+the Kazhdan inequality gives the claim. QED
+
+Every finite generating set of a Kazhdan group is a Kazhdan set for some
+`kappa > 0`, so the floor applies to site percolation on every Cayley graph.
+
+**Consequence.** Hutchcroft--Pete, arXiv:1810.11015, Proposition 2.2, build
+invariant percolations `mu_i` with marginal `p` whose adjacent disagreement
+tends to zero, converging weakly to `p delta_V + (1-p) delta_empty`. By
+Proposition D this convergence is impossible inside the ergodic class, and
+every factor of i.i.d. is ergodic. So a proof that keeps every stage a factor
+of i.i.d. can never approach the non-ergodic limit and cannot invoke the
+Glasner--Weiss closedness of ergodic measures through it. Within that class,
+the most the limit argument yields is that the exact thinning of clusters
+must fail at some stage, which is where infinite clusters appear. It supplies
+no positive-frequency cluster, and no sparse factor-of-i.i.d. spine. An
+admissible version of the strategy needs a quantitative condensation
+statement at disagreement at least `kappa^2 p (1-p)`, which Hutchcroft--Pete
+do not provide. This is the dead route
+`fpbs-dead-fiid-hutchcroft-pete-limit-recursion`.
+
+## 6. Sources read for this note
 
 * Hutchcroft--Pete, arXiv:1810.11015v2, pages 1--6 from the PDF: the abstract
   ("It remains open if they have fixed price 1"), Proposition 2.1, and the
