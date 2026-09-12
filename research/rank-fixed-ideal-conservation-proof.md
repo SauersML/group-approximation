@@ -7,6 +7,7 @@ target: rank-ultraproduct-compressors-conserve-fixed-right-ideals
 requires: []
 artifacts:
   - research/artifacts/rank-row-compression-audit-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -26,3 +27,7 @@ Complete direct proof, Section 1 of the artifact. Let `K_i` be the exact common 
     `K_i` and `u_i K_i` agree up to `o(n_i)` dimensions.
   * So compressors preserve `eM`, elements of `Gamma` fix it, and conjugates of those
     fix it too.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 19 of the
+verification artifact). `eM` is the canonical fixed set, so the choice of
+representatives does not matter, and no property (T) is used.

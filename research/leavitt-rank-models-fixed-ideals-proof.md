@@ -11,6 +11,7 @@ requires:
   - binary-leavitt-unit-group-is-simple
 artifacts:
   - research/artifacts/rank-row-compression-audit-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -25,3 +26,6 @@ artifacts:
 * **Conclusion.** `rank-ultraproduct-compressors-conserve-fixed-right-ideals`, with
   `G = R^x`, gives
   `Fix^(a,b)(sigma(Gamma)) = Fix^(a,b)(sigma(<<Gamma>>)) = Fix^(a,b)(sigma(R^x))`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 19 of the
+verification artifact).

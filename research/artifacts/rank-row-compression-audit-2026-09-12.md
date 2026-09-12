@@ -188,6 +188,15 @@ the `W_j` are and `s` is invertible.
 * `A` is one Jordan block, since `x^n - 1 = (x-1)^n` in characteristic two, so its
   invariant subspaces are the `ker(A-1)^j`.
 * Every nonzero invariant subspace contains the all-ones vector, which is not in `W`.
+* The obstruction is linear, not just one dimension. Identify `k^n` with
+  `F_2[x]/((x-1)^n)`, so that `A` is multiplication by `x` and `W` is the set of
+  polynomials of degree `< n/2`.
+  * `ker(A-1)^j` is the ideal `((x-1)^(n-j))`, of dimension `j`.
+  * A nonzero polynomial of degree `< n/2` is not divisible by `(x-1)^(n/2)`, so
+    `dim(ker(A-1)^j ∩ W) = max(0, j - n/2)`.
+  * So every invariant subspace `V` has `dim V + dim W - 2 dim(V ∩ W) >= n/2`.
+
+  (Added by gk-verify-pos, 2026-09-12.)
 
 The Hamming row supplies the missing expansion from property (T) through `l^2(Y_n)`.
 No rank-metric replacement is known. Bachner (arXiv:2408.15614v2, abstract, as recorded

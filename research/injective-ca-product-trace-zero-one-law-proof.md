@@ -9,6 +9,7 @@ requires:
 artifacts:
   - research/artifacts/gottschalk-product-trace-zero-one-law-2026-09-12.md
   - research/artifacts/gottschalk-quantum-compression-2026-09-07.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 3 of the artifact. The onto case uses the prerequisite for `nu = mu`,
@@ -26,3 +27,6 @@ If `tr o Phi` were tracial, conjugation by local permutation unitaries would
 make its diagonal restriction `nu` invariant under local permutations, forcing
 `nu = mu`. The multiplicative domain of `Phi` is `A_G ∩ {P}'`, which is `A_G` only
 when `P = I`, because `A_G` is irreducible.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 20 of the
+verification artifact).
