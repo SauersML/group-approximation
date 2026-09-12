@@ -96,3 +96,17 @@ Marked `root` because it heads a counterexample lane of its own.
   - **Where it stops.** The site set carries the injective, non-surjective copying rule `x -> x o p`, with
     `p(g Gamma) = g t^(-1) Gamma`. It cannot lift through the untwisted wreath, and the proof of that does not
     see the Clifford twist. No design and no proof is known for the complete-graph cover.
+- **Copying rule through the twist** (lane w4-clifford-copy, artifact `clifford-copying-rule-lift-2026-09-12.md`).
+  - **Site-level lifts are shifts.** The site encoding intertwines the copying rule with a bijective right shift over
+    every group mapping onto `G`, and a copy automaton over a group is a right shift, by right cancellation. So the tree
+    Garden of Eden (siblings reading one parent cell) is not an automaton over any group. Every equivariant lift of site
+    data is invariant under `Vtilde_S`, which contains `eps`, and injective automata on `E_S` are bijective on every
+    `Fix_H` with `eps in H` because `W` is surjunctive (`copying-rules-lift-to-clifford-covers-only-as-shifts`). The
+    relation that kills these lifts does not involve the twist.
+  - **Where the twist can act.** For self-dual binary rules the `eps`-odd sector modulo flip is a `W`-subshift of gauge
+    fields with flux `1` on every lamp plaquette, a torsor under the full shift with no invariant base point
+    (`clifford-cover-self-dual-sectors-are-frustrated-flux-shifts`). A character of the memory group detecting `eps`
+    makes the sector map bijective, so a sector witness needs `eps` to be a product of squares and commutators of its
+    memory group.
+  - **Where it stops.** No mechanism turns frustration into non-surjectivity, and whether the frustrated and flat
+    field shifts are conjugate as `W`-subshifts is open.
