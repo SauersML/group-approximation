@@ -42,3 +42,14 @@ branching barriers.
   (`fpbs-hyperbolic-quotient-uniform-fibre-bubble`) does not control l1 mass on
   halfspaces, which contain exponentially many cosets. **Where it dies:** no
   interpolation passes from l2 to halfspace l1 shares.
+* **First-entry decomposition.** BK at the first vertex of an open path in the
+  separating set `pi^(-1)(d_in H_Q)` gives
+  `E_p|K_o ∩ pi^(-1)(H_Q)| <= chi_p sum_{q in d_in H_Q} sigma_p(q)`. So the share
+  is at most the fibre mass of the inner boundary. **Where it stops:** that
+  boundary is an infinite set of cosets, and nothing bounds its mass.
+* **Bypass through rapid decay.** On the route
+  `fpbs-hyperbolic-quotient-via-weighted-fibre-bubble` this premise is not needed.
+  A polynomially weighted critical fibre bubble bounds `||T_(p_c)||` directly
+  through the rapid decay inequality on `Q`
+  (`fpbs-rd-quotient-weighted-bubble-gives-critical-l2`). **Where it stops:** this
+  claim itself remains open. The bypass only removes it from one route.

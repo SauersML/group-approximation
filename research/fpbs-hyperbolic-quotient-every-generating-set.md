@@ -44,3 +44,15 @@ The class contains:
   fibre-concentrated sets, and the groups are not acylindrically hyperbolic
   when `H` is amenable of infinite index. **Where it dies:** the WPD remedy needs
   acylindricity.
+* **One weighted fibre estimate.** Route
+  `fpbs-hyperbolic-quotient-via-weighted-fibre-bubble`:
+  * rapid decay of `Q` (`hyperbolic-groups-have-property-rd`) bounds the fibre
+    operator `S_(p_c)` by a polynomially weighted critical fibre bubble;
+  * `||T_(p_c)|| <= ||S_(p_c)||` then gives `p_c < p_{2->2}`;
+  * no far-halfspace share and no susceptibility bound are used.
+
+  **Where it stops:** the weighted premise
+  `fpbs-rd-quotient-weighted-critical-fibre-bubble` is open. For amenable `H`
+  the unweighted bubble is necessary for the L2 gap
+  (`fpbs-amenable-kernel-l2-gap-forces-fibre-bubble`), so the gap sits between
+  the two bubbles.

@@ -50,3 +50,15 @@ implied by `fpbs-tree-projected-critical-sphere-bubble-below-one`.
   `(2n-1) max_s sigma_p(s)^2 < 1` uniformly. **Where it stops:** that
   nearest-fibre bound is itself unproved, and FKG gives
   `sigma_p(s) >= p E_p|K_o ∩ H|`.
+* **Necessity for amenable kernels.** `fpbs-amenable-kernel-l2-gap-forces-fibre-bubble`:
+  on any Cayley graph with amenable `H`, `p_c < p_{2->2}` forces
+  `sum_q sigma_(p_c)(q)^2 <= ||T_(p_c)||^2 < infinity`. So this premise cannot
+  fail on a graph where the L2 gap holds. **Where it stops:** that is necessity
+  only; it does not prove the premise.
+* **Weighted version, no halfspace premise needed.** Over a quotient with rapid
+  decay exponent `D`, finiteness of
+  `sum_q (1+|q|)^(2D+2) sigma_(p_c)(q)^2` alone bounds `||T_(p_c)||`
+  (`fpbs-rd-quotient-weighted-bubble-gives-critical-l2`; hyperbolic groups have
+  RD by `hyperbolic-groups-have-property-rd`). That weighted premise is the open
+  `fpbs-rd-quotient-weighted-critical-fibre-bubble`. **Where it stops:** it is
+  stronger than this claim by a polynomial weight.
