@@ -36,3 +36,47 @@ The latest version was fetched on 2026-09-12. The arXiv listing shows v1, v2 and
   This is step for step the proof recorded in `kun-thom-wreath-carries-rigid-defect-proof`.
 
 **The reading of "sofic representation" is settled.** It is Definition 2.1: a homomorphism into `S_U` with vanishing trace off the identity, hence injective, for the fixed nonprincipal `U` and an arbitrary sequence `(Y_n)`. A countable sofic `H` has such a representation for every nonprincipal ultrafilter: amplify a sofic approximation so that fixed-point ratios tend to `0` off the identity. Its restriction to `G ≤ H` again satisfies Definition 2.1. The route's step 2 is therefore exactly Theorem 4.1's hypothesis, and the claim's remark that it is "insensitive to how sofic representation is read" is correct.
+
+## 3. The three claims, line by line
+
+### 3.1 `rigid-compression-defect-normalization-dichotomy`, sofic row
+
+- **(U) for sofic groups.** Arzhantseva–Păunescu Definition 1.1 is the ultraproduct form. Amplification gives vanishing trace off the identity, as in Section 2.
+- **NORM ⟹ DD.**
+  - Let `H` be sofic with rigid pair `Γ <= G <= H`, and take `ρ` injective and trace-separating.
+  - `σ = ρ|_G` satisfies Definition 2.1, so Theorem 4.1 says `σ(G)` normalizes `C = C_{S_U}(σ(Γ))`.
+  - For `z ∈ C_H(Γ)`, `ρ(z) ∈ C`, so `ρ(g z g⁻¹) ∈ C` and `ρ([g z g⁻¹, γ]) = 1`.
+  - Injectivity gives `[g z g⁻¹, γ] = 1`. Correct.
+- **not NORM ⟹ not DD.**
+  - If `σ(g) C σ(g)⁻¹ ⊆ C` held for every `g`, the same inclusion for `g⁻¹` would give `C ⊆ σ(g) C σ(g)⁻¹`, i.e. normalization. So a failure exhibits `g` and `z ∈ C` with `σ(g) z σ(g)⁻¹ ∉ C`, and hence a `γ` with a nontrivial commutator.
+  - `H' = <σ(G), z>` is countable because Kazhdan groups are finitely generated. It is sofic by (U).
+  - `σ(Γ)` and `σ(G)` are Kazhdan as quotients of Kazhdan groups.
+  - `σ(P_Γ) ⊆ P_{σ(Γ)}` and `σ(P_Γ)` generates `σ(G)`, so `σ(Γ)` is infranormal in `σ(G)`. Correct.
+
+### 3.2 `kun-thom-wreath-carries-rigid-defect`
+
+- **Rigid pair.** Infranormality and property (T) are intrinsic to `Γ <= G`, so `Γ <= G <= W` is a rigid pair.
+- **The root lamp.** `e_Γ` is fixed by `Γ` because `γΓ = Γ`.
+- **Strict compressor.** If `tΓt⁻¹ = Γ` for every `t ∈ P_Γ`, then `P_Γ <= N_G(Γ)`, a subgroup, so `G = <P_Γ> <= N_G(Γ)`, contradicting non-normality.
+- **The commutator.** For `γ ∈ Γ \ tΓt⁻¹`, `γtΓ = tΓ` iff `t⁻¹γt ∈ Γ` iff `γ ∈ tΓt⁻¹`, which is excluded. With `[a,b] = a b a⁻¹ b⁻¹` the commutator is `e_{tΓ} e_{γtΓ}`, a product of two distinct order-two lamps, hence `≠ 1`. Correct.
+- **Tests.** For normal `Γ` no strict compressor exists and the computation does not start, which is consistent with "only non-normal pairs matter". The computation uses neither residual finiteness nor Theorem E beyond the pair's existence. The node says the same.
+
+### 3.3 `openai-criterion-commuting-factor-is-central`
+
+- **The rigid pair.** `P_Γ ⊇ Γ ∪ {t_i}` generates `G`, so `Γ <= G <= G` is a rigid pair, and `J <= C_G(Γ)`.
+- **Derivation.** `DD(sofic)` gives `t_1 j t_1⁻¹ ∈ C_G(Γ)`. Together with `t_1 J t_1⁻¹ <= Γ`, this places `t_1 J t_1⁻¹` in `Z(Γ)`, so `J ≅ t_1 J t_1⁻¹` is abelian. Correct.
+- **Containment remark.** Under the hypotheses of the original Proposition 2.3 as recorded in `openai-expander-matching-criterion` (infinite finitely generated `Γ, G` with (T), finitely generated `J`, `[Γ, J] = 1`, `Γ ∩ J = 1`, `t_1 J t_1⁻¹ <= Γ`), (ABEL) makes `J` abelian. Abelian groups are locally residually finite, hence LEF. So (ABEL) does contain the original proposition, as the node says. It does not contain the current version, where (T) is asked of `Γ` only together with an expanding-approximation hypothesis. The node scopes itself to "original version, (T) of both groups", which is correct.
+- **Leavitt remark.** Thompson's `V` is infinite, simple and nonabelian, so (ABEL) fails in that configuration. Correct.
+
+## 4. Not verified, and what inherits it
+
+- **The proof of Kun–Thom Theorem 4.1** (v3 Section 4: cluster groupoids, Lemmas 4.2–4.3, the relative functor of a compressor, bounded medians) was not re-derived. It is the single trust surface of every consumer of `DD(sofic)`:
+  - Kun–Thom Theorems A and B as used in the graph;
+  - `openai-criterion-commuting-factor-is-central`;
+  - `weak-mf-groups-can-carry-rigid-defects`, i.e. nonsoficity of the free-lamp amalgams;
+  - the nonsoficity half of `kt-lef-graph-wreaths-surjunctive-and-nonsofic`.
+  In particular, the last one does **not** escape the Kun–Thom trust surface flagged in `review-surjunctive-nonsofic-2026-09-12.md`. Its "direct" nonsoficity argument runs through Theorem 4.1, which is the engine of Kun–Thom's own Theorem A proof.
+- **Out of scope for this pass:**
+  - the sharpness node `compressor-kazhdan-hypothesis-necessary-for-sofic-defects`;
+  - the negative rows of the ladder artifact (Theorems 4–7);
+  - the hyperlinear row `hyperlinear-groups-kill-rigid-compression-defects`, which is open and owned by `nh-rigid-defect-hs`.
