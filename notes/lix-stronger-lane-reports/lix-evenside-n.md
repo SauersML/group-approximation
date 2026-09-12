@@ -75,6 +75,23 @@ Landed unverified: d6009101a + 938aa5bb4 (RealEven), 73ff46a09 + b4d828247 (Real
 0911-233331-59048 on lix-c (acn112, 8849 jobs, PROBE GREEN, BUILT + COMPILED both; md5 910ff65d…, b52eb348… = origin
 bytes).  WIRE top: `GroupApproximation.CharClass.LIXStepDGenReal` (reaches RealEven, LIXLemmaTwoGenGlue).
 
+## Torus fields discharged, and the p = 2 composition (2026-09-12 ~00:10)
+
+COMPILED in probe 0912-000930-45207 (lix-c, acn112, 9310 jobs, PROBE GREEN, BUILT + COMPILED all three; md5 = origin
+bytes): `CharClass/LIXStepDGenRealTorus` (485a00387): `Gen.componentOf_map`, `Gen.componentOf_of_mul` (components over K),
+**`Gen.z_inj_of_degreewise`** (the field `z_inj` from the right-nested cast-free degreewise statement; K form of
+`Gen.tx_inj_of_degreewise`), **`Gen.circle_two_sphereOf`** (H²(S¹;K) = 0 from lix-cupone's `sphere_coh_eq_zero_of_neOf`),
+`Gen.one_ne_zero_of_nonempty` (unit class pulls back to a point), **`Gen.charP_evenPart`, `Gen.expChar_evenPart`**
+(`ExpChar (evenPart (ZMod p) Y) p` for `[Fact p.Prime] [Nonempty Y]`).  `CharClass/LIXStepDGenRealTorusModel` (0d189d933):
+**`Gen.z_inj_torusOf`** (on lix-coeff's model `KnTwo.torusBaseOf Y n = (Y × S^{2n+1}) × S¹`, any nonzero sphere classes,
+through `KnTwo.tx_inj_degree_of_ne_zeroOf`), `Gen.circle_two_torusOf`.  `CharClass/LIXLemmaTwoGenTwo` (0d189d933):
+**`Gen.lemmaTwoFor_powers_two_lixChernOf`** — for even n ≥ 2, every odd k, every stage j,
+`LemmaTwoFor n (lixDD n j) (KGen.bVecK n (k − 1))`, with ONE class on both halves
+(`KGen.lixChernOf n (KGen.lixChern n (lixDD n j))` at N := `KGen.lixN n (lixDD n j)`), from lix-oddside-n's
+`KGen.KZeroLocalData` and the mod-2 `Gen.WuStepDData` at `lixN`.
+Remaining torus fields: the reduced powers only (lix-steenrod).  A trap: `refine DirectSum.ext fun c => ?_` on
+`TotalHOf` leaves `(i : ?) → AddCommMonoid ?` stuck; use `ext c` (probe 0911-235748-53450).
+
 ## NEEDS
 
 * lix-oddside-n: `StepCHalf n (lixDD n j) (KGen.bVecK n (k − 1)) topClass` at the top mod-`p` class.
