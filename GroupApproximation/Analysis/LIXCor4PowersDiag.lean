@@ -340,7 +340,7 @@ theorem isEquatorField_equatorEmb :
       equatorEmb (m + 1) (v : EuclideanSpace ℝ (Fin (2 * (m + 1) + 1))) where
   continuous := (continuous_equatorEmb (m + 1)).comp continuous_subtype_val
   mem v := equatorEmb_mem (m + 1) (norm_sphere (m + 1) v)
-  equator v := re_equatorEmb_last (m + 1) _
+  equator _ := re_equatorEmb_last (m + 1) _
 
 /-- **`Aᴴ ⊕ 1` is null-homotopic in the section algebra over `X₀`.** -/
 theorem wallBlock_one_mem :
