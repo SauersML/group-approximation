@@ -47,10 +47,16 @@ algorithmically complex word problem are not covered by any of these classes.
    homeomorphism group, so automaton groups and contracting rational
    similarity groups cannot handle every input.
 3. **Hosts with a uniform complexity bound.** *Dies as a universal method*:
-   `complexity-bounded-host-classes-are-not-universal` shows that no class of
+   `uniform-wp-bound-excludes-bh-universal-targets` shows that no class of
    groups whose word problems share one recursive time bound contains every
-   decidable input. A successful construction for complex residually finite
-   inputs must output groups with complex word problem.
+   finitely presented residually finite decidable input. A successful
+   construction for complex residually finite inputs must output groups with
+   complex word problem.
+5. **Linear inputs in characteristic two.** Settled for every finitely
+   generated subgroup of `GL_n(F_q[t,t^-1])` and `GL_n(F_q<x_1..x_m>)` with `q`
+   a power of two, by `char-two-laurent-linear-groups-satisfy-boone-higman`.
+   Those groups embed in the finitely presented simple group
+   `L_(F_2)(1,2)^x`. This is a positive family, not a route for all inputs.
 4. **The profinite translation action.** `G` acts faithfully by translation
    on its profinite completion, a Cantor space. Each orbit carries the regular
    action, which has infinitely many orbits of pairs, so this action supplies

@@ -33,8 +33,11 @@ rational homeomorphisms of the boundary. For the input of
 a positive answer must use self-similar groups with infinitely many states.
 
 **(N3) Complex word problem.** By
-`complexity-bounded-host-classes-are-not-universal`, the overgroups for all
-inputs cannot share one recursive time bound on their word problems. Combined
+`uniform-wp-bound-excludes-bh-universal-targets`, whose excluded input is itself
+finitely presented and residually finite, the overgroups for all inputs of this
+claim cannot share one recursive time bound on their word problems. The
+two-generated form `complexity-bounded-host-classes-are-not-universal` is not
+enough here, because its witness is not residually finite. Combined
 with `fp-self-similar-groups-embed-in-fp-simple-groups`, this claim applied to
 algorithmically complex inputs would produce finitely presented simple groups
 with arbitrarily complex word problem, the open root
