@@ -6,6 +6,7 @@ title: Linear soficity over F_3 makes the group algebra directly finite, which n
 target: projective-ternary-swap-idempotent-is-not-full
 requires: [projective-ternary-group-is-f3-linear-sofic, linear-sofic-group-algebra-is-stably-finite]
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
 ---
 
@@ -15,3 +16,5 @@ in `ebar F_3[PG]`. That right ideal does not contain `1`: `1 = ebar z` would giv
 not directly finite. If `PG` is `F_3`-linear sofic, `F_3[PG]` is stably finite, a
 contradiction. The same argument refutes `projective-ternary-klein-idempotent-is-full`,
 since a full `e_K` makes `ebar` full.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 3 of the linear-family verification artifact.*

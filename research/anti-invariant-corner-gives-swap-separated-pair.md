@@ -8,6 +8,7 @@ requires:
   - ternary-anti-invariant-swap-corner-is-full
   - ternary-leavitt-swap-problem-splits-at-central-involution
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-swap-separated-pairs-2026-09-12.md
   - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
@@ -32,3 +33,5 @@ Theorem 1 of the artifact.
 
 Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 27 of the verification artifact).
 The sign `[w][d]b' = -[d]b'` uses `[z] = -1` on `S_-`. This is where the argument fails on `S_+`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12). Re-derived: `d w d = z w`, `[d] e_- [d] = eps_-(2 + [w]) = eps_- - e_-`, the vanishing cross terms `c e_- [d] e_- b = 0`, and the sign flip `[w][d] b' = -[d] b'` on `S_-`. See Section 1 of the linear-family verification artifact.*

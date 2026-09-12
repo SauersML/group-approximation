@@ -8,6 +8,7 @@ requires:
   - ternary-twisted-algebra-has-swap-separated-one-sided-pair
   - ternary-leavitt-swap-problem-splits-at-central-involution
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-swap-separated-pairs-2026-09-12.md
   - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
@@ -27,3 +28,5 @@ This is one half of an equivalence. The reverse route is
 the artifact.
 
 Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 27 of the verification artifact).
+
+*Verified independently by `gk-vf-linear` (2026-09-12). The identity `c' e_- b = 4 c(1 + [w]) a = eps_-` was re-derived from `(1 + [w])^2 = 2(1 + [w])` and `4 = 1`. See Section 1 of the linear-family verification artifact.*
