@@ -3,6 +3,8 @@ rg: 2
 id: component-space-sizes-miss-leavitt-cover-defect
 kind: claim
 title: On the hyperbolic Leavitt cover, sizes read from the measure space of Gamma-components are compressor invariant and blind to host twists
+invalidates:
+  - rnorm-via-component-measure-size
 distinct_from:
   finite-orbit-indices-miss-twists-without-finite-quotients: that shows positive-mass cluster type data has finite orbits, so it cannot see twists from groups without finite quotients; this covers the whole measure space of components, including diffuse type data with infinite orbits, and shows that compressors act on it trivially and host twists act on it as the centralizer does.
   conjugation-invariant-sizes-miss-relative-defect: that shows sizes read from conjugacy invariants of realizer sets alone are compressor invariant, with no property (T); this concerns sizes read relative to sigma(Gamma), the candidates that claim leaves open, and shows they are compressor invariant on the cover because sigma(G) fixes the component algebra pointwise.
