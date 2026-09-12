@@ -108,7 +108,7 @@ structure GradedReducedPowers (p : ℕ) where
   /-- It is a unit. -/
   c_isUnit : IsUnit c
   /-- `P⁰ = c^{d/2}·id` in even degree `d`. -/
-  zero : ∀ (X : TopCat.{0}) {d : ℕ} (hd : Even d) (x : Hmod (ZMod p) X d),
+  zero : ∀ (X : TopCat.{0}) {d : ℕ} (_hd : Even d) (x : Hmod (ZMod p) X d),
     TotalHOf.of (ZMod p) X (d + 2 * 0 * (p - 1)) (op X d 0 x)
       = c ^ (d / 2) • TotalHOf.of (ZMod p) X d x
   /-- The top power in degree two: `P¹ h = h^p`. -/
