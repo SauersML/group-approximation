@@ -242,11 +242,14 @@ namespace Cycles
 
 variable {M : CombMap.{u}} {x y : M.Dart} (C : Cycles M x y)
 
+include C in
 theorem not_sameCycle : ¬ M.facePerm.SameCycle (M.alpha x) (M.alpha y) :=
   fun h => C.face_ne ((M.faceOf_eq_iff _ _).mpr h)
 
+include C in
 theorem alpha_ne : M.alpha x ≠ M.alpha y := fun h => C.face_ne (by rw [h])
 
+include C in
 theorem ne : x ≠ y := fun h => C.face_ne (by rw [h])
 
 theorem faceOf_of_mem_xs {d : M.Dart} (hd : d ∈ C.xs) : M.faceOf d = M.faceOf (M.alpha x) :=
@@ -362,6 +365,7 @@ theorem isFaceCycle_merged :
         (C.ne_alpha_right_of_mem_xs hw)]
       exact hclose
 
+include C in
 /-- **The darts of the merged face** are the darts of the two old faces. -/
 theorem faceOf_merged_iff (e : M.Dart) :
     (toCombMap M x y).faceOf e = (toCombMap M x y).faceOf (M.alpha x) ↔
@@ -382,15 +386,18 @@ theorem faceOf_merged_iff (e : M.Dart) :
       · exact Or.inr (Or.inl h')
       · exact Or.inl (Or.inr h')
 
+include C in
 /-- `alpha y` lies on the merged face. -/
 theorem faceOf_alpha_right :
     (toCombMap M x y).faceOf (M.alpha y) = (toCombMap M x y).faceOf (M.alpha x) :=
   (C.faceOf_merged_iff (M.alpha y)).mpr (Or.inr rfl)
 
+include C in
 /-- **The split map of a planar map is planar.** -/
 theorem planar (hM : M.IsPlanar) (hxy : M.sigma.SameCycle x y) : (toCombMap M x y).IsPlanar :=
   PinchSplit.planar M x y hM hxy C.ne C.not_sameCycle
 
+include C in
 theorem faceCount_add_one : (toCombMap M x y).faceCount + 1 = M.faceCount :=
   PinchSplit.faceCount_add_one M x y C.not_sameCycle
 
