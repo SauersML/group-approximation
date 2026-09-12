@@ -106,7 +106,7 @@ theorem exists_elementaryClosure_isHypEmbedded_of_isAcylindricallyHyperbolic
     elementaryClosureProper_unconditional G D hnvc
   refine ⟨D.elt, isHypEmbedded_elementaryClosure_of_ah3Data G D, ?_, ?_⟩
   · by_contra hall
-    refine hproper (Subgroup.eq_top_iff'.mpr fun x => ?_)
+    refine hproper ((Subgroup.eq_top_iff' _).mpr fun x => ?_)
     by_contra hx
     exact hall ⟨x, hx⟩
   · intro k hk

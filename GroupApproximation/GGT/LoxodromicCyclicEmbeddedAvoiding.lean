@@ -62,8 +62,7 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 theorem nonempty_hullGeneratingSet (G : Type) [Group G]
     [hG : IsAcylindricallyHyperbolic G] : Nonempty (HullGeneratingSet G) := by
   obtain ⟨A, δ, hδ, hacy, hne⟩ := hG.out
-  exact ⟨{ alphabet := A, delta := δ, hyperbolic := hδ, acylindrical := hacy,
-    nonElementary := hne }⟩
+  exact ⟨⟨A, δ, hδ, hacy, hne⟩⟩
 
 /-- **With no nontrivial finite normal subgroup, the whole group is suitable**
 (Hull, Definition 1.4): it acts non-elementarily, and a finite subgroup it
@@ -166,7 +165,7 @@ theorem exists_cyclic_hypEmbedded_avoiding (G : Type) [Group G]
       · exact absurd hx hx0
       · exact hx
   have hemb₁ : D₁.IsHyperbolicallyEmbedded :=
-    (dgoCorollary427 G Unit D₀ D₁ rfl hfin).mp hemb₀
+    (RelGenSet.dgoCorollary427 G Unit D₀ D₁ rfl hfin).mp hemb₀
   refine ⟨y, D₁.base, hinf, fun x hx => Or.inr (Or.inl hx), ⟨D₁, rfl, rfl, hemb₁⟩, ?_⟩
   intro f hf h hh hconj
   by_contra hne
