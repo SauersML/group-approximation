@@ -150,6 +150,26 @@ calculation.
    coefficient one, which is exactly the torsion-free/`infinity`-RF regime.
    Recorded as `simple-kl-via-chen-half-complexity`.
 
+**2026-09-11: second homology and central extensions.**
+`central-extension-kl-schur-criterion` settles the conjecture over central
+extensions of a coefficient group whose own adjunction injects, up to one
+homological condition. The multiplier must kill the Schur kernel
+`ker(H_2(Q) -> H_2(Q_w))`, and that map is onto by
+`nonsingular-adjunction-never-enlarges-schur-multiplier`. So a failure whose
+killed coefficient is central needs a nonzero Schur kernel.
+
+Any nonzero Schur kernel puts a central element in the hyperlinear radical of
+a central extension (`schur-kernel-lies-in-hyperlinear-radical`). This holds
+even over a residually finite coefficient group, and even when no coefficient
+dies. Finite coefficient groups, amenable coefficient subgroups and aspherical
+adjunctions have zero Schur kernel.
+
+The reduced simple form of a counterexample has no center, so this does not
+shorten `kl-holds-over-two-generator-simple-groups`. What it adds is a
+degree-two falsification instrument,
+`some-nonsingular-equation-has-nonzero-schur-kernel`, next to the degree-one
+one.
+
 A seventh non-attempt worth writing down because it looks tempting from
 inside this program: nonsoficity and non-MF-ness of a group are not evidence
 that it violates this claim.  They supply no equation and no identity.
