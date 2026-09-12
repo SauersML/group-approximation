@@ -62,3 +62,31 @@ presented infinite simple group with no free subgroups.
   through universal commutator identities for cylinder 3-cycles, but the
   disjointness bookkeeping for general `Lambda` was not carried out. See the
   artifact, Section 4.
+- **Minimal aperiodic `Z^2` SFTs (case S1).** Live, and a concrete candidate is
+  wired. The details are in `research/artifacts/fp-simple-amenable-z2-sft-2026-09-12.md`.
+  - **Existence.** Such SFTs exist: `minimal-aperiodic-wang-shift-exists`
+    (Labbé, arXiv:1802.03265, Theorem 1).
+  - **The candidate is f.g., infinite and simple.** `D([[Omega_U]])` is, by
+    `minimal-z2-subshift-derived-full-groups-are-fg-simple`
+    (Chornyi--Juschenko--Nekrashevych, Matui, Nekrashevych).
+  - **Every recorded obstruction fails:**
+    `labbe-shift-derived-full-group-escapes-known-obstructions`.
+    - Compressibility fails because of a full-support invariant measure.
+    - The SFT neighbourhood can be `Omega_U` itself.
+    - By `sfts-without-finite-orbits-are-not-residually-finite-actions`,
+      there are no periodic approximations and no residually finite action.
+  - **Suggested mechanism dead as stated.** The idea was that finite
+    presentation forces periodic points. It cannot work through the extension
+    theorem, since the SFT neighbourhood can be `Omega_U`, which has no finite
+    orbit.
+  - **Route.** `fp-simple-amenable-via-labbe-shift-full-group` needs the two
+    open claims `labbe-shift-derived-full-group-is-amenable` and
+    `labbe-shift-derived-full-group-is-finitely-presented`.
+  - **Contrasts.**
+    - Elek--Monod (arXiv:1201.0257) give a different minimal `Z^2` system
+      with `F_2` in its full group.
+    - ChJN (arXiv:1602.04255, line 88) record amenable rank-2 interval
+      exchange realizations as `Z^2` full groups. Whether those systems have
+      periodic approximations, or are residually finite, was not checked.
+    - The Penrose tiling group has the same profile, and its amenability is
+      recorded open (ChJN line 95).
