@@ -90,7 +90,8 @@ theorem knGen_of_injectiveOf (K : Type) [Field K] (n : ℕ) (hn : 1 ≤ n)
   obtain ⟨k, rfl⟩ : ∃ k, n = k + 1 := ⟨n - 1, by omega⟩
   intro Y _ m v c hc
   have hslice := congrArg
-    (pull (knSlice Y (k + 1) (SphereOddDegree.northPole k)) (k + 1 + m)) hc
+    (pull (knSlice Y (k + 1) (GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.northPole k))
+      (k + 1 + m)) hc
   rw [pull_cup, pull_knSlice_knPrYOf, pull_knSlice_knPrYOf,
     pull_knSlice_knPrSOf K Y (k + 1) hn, zero_cup] at hslice
   refine h Y m v ?_
