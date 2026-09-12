@@ -614,7 +614,11 @@ infinite field (`infinite-field-polynomial-strict-pairs-need-kaplansky-failure`)
 The canonical multilinear defect is not an invariant
 (`multilinear-collapse-defect-does-not-obstruct-bijectivity`), so on hosts with
 stably finite prime-field algebras a counterexample is exactly a
-non-formalizable strict pair. Open: `binary-left-inverse-pairs-are-formalizable`,
+non-formalizable strict pair. Formalizability on the original alphabet fails (one-track leading-term theorem, marker
+involution), so `binary-left-inverse-pairs-are-formalizable` is refuted. The surviving
+Kaplansky reduction is stable formalizability with identity ancilla tracks
+(`injective-binary-automata-are-stably-formalizable`), which would give
+`stable-finiteness-forces-binary-surjunctivity`; the broader target is
 which would give `stable-finiteness-forces-binary-surjunctivity`; the broader
 target is `non-surjunctive-group-with-stably-finite-group-algebras`.
 
@@ -668,5 +672,22 @@ re-express the formalizability question. Finite fields never obstruct, since
 left-inverse extensions exist over every `F_(2^k)`
 (`binary-left-inverse-pairs-extend-over-every-finite-field`), so the open step is a
 uniform-degree condition over infinite fields
-(`injective-binary-automata-have-formalizable-left-inverses`). The
+(`injective-binary-automata-have-formalizable-left-inverses`, since refuted on the original alphabet; the stable form above survives). The
 Kaplansky-over-`F_2` payoff needs only some formalizable left inverse.
+
+**Formalizability beyond binary (2026-09-12).** A formalizable pair acts on
+constant configurations by a polynomial automorphism
+(`formalizable-pairs-induce-polynomial-automorphisms-on-constants`), so one-track
+non-affine sitewise pairs over `F_q`, `q >= 4`, are not formalizable. Formally
+invertible maps induce every permutation of `F_p^n` for `n >= 2`
+(`tame-maps-induce-every-permutation-of-prime-field-cubes`), so sitewise pairs over
+prime fields are formalizable after one identity track
+(`sitewise-pairs-over-prime-fields-are-stably-formalizable`). A formalizable strict
+pair certifies non-linear-soficity
+(`formalizable-strict-pairs-certify-non-linear-soficity`). Open: stable
+formalizability over `F_p` (`prime-field-left-inverse-pairs-are-stably-formalizable`)
+would give Kaplansky over `F_p` implies Gottschalk over `p^n` symbols
+(`stable-finiteness-forces-prime-power-surjunctivity`). Product closure never
+reaches alphabets with two distinct prime factors, so the bridge is ascent
+(`strict-rule-pairs-ascend-to-larger-alphabets`, open) or descent; the new route
+into the goal is `gottschalk-via-alphabet-ascent`.
