@@ -13,13 +13,15 @@ generators, with `x_j x_i = x_i x_(j+1)` for `i < j`. For every nonzero `b` in `
 `(1 - x_0) R ∩ b R ≠ 0`.
 
 **Source.** V. Guba, *Systems of equations over the group ring of Thompson's group F*,
-Comm. Algebra 50:12 (2022), as quoted in Theorem 3.18 of Guba's survey
-arXiv:2305.07113v4 (J. Groups Complexity Cryptology 15 (2023)), verbatim:
+arXiv:2201.02308 (Comm. Algebra 50:12 (2022)), Theorem 2, verbatim. The survey
+arXiv:2305.07113v4 restates it as Theorem 3.18.
 
 > Let R = K[F] be a group ring of F over a field K. Then for any element b∈R, the
 > equation (1−x0)u = bv has a non-zero solution in R.
 
-The graph also carries an independent elementary proof by counting normal forms.
+The graph also carries a second proof. It keeps Guba's reduction to `K[M_1]` and his shift
+by `x_0`, and replaces his Theorem 3 (non-freeness of `{phi^k(b)}`, proved by induction on
+homogeneous components) with a dimension count.
 
 **Consequence.** No non-Ore witness for `thompson-f-is-not-amenable` has `1 - x_0` on one
 side. By conjugation invariance (`(1 - g^-1 h g) R = g^-1 (1 - h) R` together with

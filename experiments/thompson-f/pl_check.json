@@ -1,0 +1,124 @@
+{
+ "R2L": {
+  "relations_hold": true,
+  "supports_x_n": {
+   "0": [
+    [
+     "0",
+     "1"
+    ]
+   ],
+   "1": [
+    [
+     "1/2",
+     "1"
+    ]
+   ],
+   "2": [
+    [
+     "3/4",
+     "1"
+    ]
+   ],
+   "3": [
+    [
+     "7/8",
+     "1"
+    ]
+   ],
+   "4": [
+    [
+     "15/16",
+     "1"
+    ]
+   ]
+  },
+  "x2*x0^-1 == x0^-1*x1": true,
+  "copies": {
+   "x0": {
+    "single_bump": true,
+    "support": [
+     "0",
+     "1"
+    ],
+    "affine_power_of_two": true,
+    "is_x0": true,
+    "is_x0_inverse": false
+   },
+   "x1": {
+    "single_bump": true,
+    "support": [
+     "1/2",
+     "1"
+    ],
+    "affine_power_of_two": true,
+    "is_x0": true,
+    "is_x0_inverse": false
+   },
+   "x2": {
+    "single_bump": true,
+    "support": [
+     "3/4",
+     "1"
+    ],
+    "affine_power_of_two": true,
+    "is_x0": true,
+    "is_x0_inverse": false
+   },
+   "x3": {
+    "single_bump": true,
+    "support": [
+     "7/8",
+     "1"
+    ],
+    "affine_power_of_two": true,
+    "is_x0": true,
+    "is_x0_inverse": false
+   },
+   "x1*x0^-1": {
+    "single_bump": true,
+    "support": [
+     "0",
+     "3/4"
+    ],
+    "affine_power_of_two": false
+   },
+   "x0^-1*x1": {
+    "single_bump": true,
+    "support": [
+     "0",
+     "7/8"
+    ],
+    "affine_power_of_two": false
+   },
+   "x2*x0^-1": {
+    "single_bump": true,
+    "support": [
+     "0",
+     "7/8"
+    ],
+    "affine_power_of_two": false
+   },
+   "x2*x1^-1": {
+    "single_bump": true,
+    "support": [
+     "1/2",
+     "7/8"
+    ],
+    "affine_power_of_two": false
+   },
+   "x1^-1*x2": {
+    "single_bump": true,
+    "support": [
+     "1/2",
+     "15/16"
+    ],
+    "affine_power_of_two": false
+   }
+  },
+  "x1x0==x0x2": true
+ },
+ "L2R": {
+  "relations_hold": false
+ }
+}

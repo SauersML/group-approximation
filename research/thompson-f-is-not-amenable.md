@@ -55,9 +55,16 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - three-equation systems `Q_3` in linear forms of `x_0, x_1, x_2` (survey Corollary
     3.13).
 
-  Open candidates named in the survey: the degree-two case `P_(2,2)` and the
-  four-equation system `Q_4`. A witness must also avoid `1 - h` for `h` in those
-  conjugacy classes. Map: `research/artifacts/thompson-f-certificate-shapes-2026-09-12.md`.
+  - either side a unit times a product of twisted binomials `1 + lambda g`, with `g` a
+    one-bump element in the class `O_1`. The class contains `x_0^{+-1}`, all
+    `x_n^{+-1}`, `x_1 x_0^-1`, `x_2 x_1^-1` and all their conjugates
+    (`thompson-f-rescaled-x0-binomials-have-common-multiples`).
+  - every system `Q_k` over `F_2`, and every `Q_k` over any field in which at most one
+    form has all three coefficients nonzero (same claim, item 5).
+
+  Open candidates named in the survey: `Q_4` over fields `≠ F_2` with at least two full
+  trinomial forms, and the degree-two case `P_(2,2)`, with both sides outside the `O_1`
+  product class. Map: `research/artifacts/thompson-f-certificate-shapes-2026-09-12.md`.
 - **Evacuation schemes and bounded flows.** Non-amenability is equivalent to a flow on
   the Cayley graph with bounded values and inflow at least `epsilon` everywhere, or an
   evacuation scheme in which each edge is used at most `C` times. This is survey

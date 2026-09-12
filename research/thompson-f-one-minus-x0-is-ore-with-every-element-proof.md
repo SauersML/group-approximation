@@ -66,6 +66,10 @@ normal forms of degree `c` with letters in `[1, L]`, so `|A| = binom(L + c - 1, 
 `x_1^-1 x_j x_1 = x_(j+1)` holds for `j >= 2`. This is recorded under the open claim
 `thompson-f-one-minus-x1-is-ore-with-every-element`.
 
+**Credit.** Steps 2–4 are Guba's proof of Theorem 2 (arXiv:2201.02308 §3). Step 5 replaces
+his Theorem 3, which he proves by induction on homogeneous components, with a dimension
+count.
+
 **Trust surfaces.**
 - The normal form of `M` and the embedding `M ⊆ F` (Cannon--Floyd--Parry; survey
   arXiv:2305.07113 §1.5 and Lemma 3.8) are quoted.
