@@ -58,7 +58,7 @@ so the two signs add to `b_S(x, y)`, whatever the order on `X`.
    an edge of `S`.
 
 Conditions 2 and 3 hold automatically once `P` contains chains of products computing `t b_i t^(-1) = w_i(b)`,
-`t t^(-1) = 1` and `h = t^(-1) b t`, because `psi` is multiplicative on `P`.
+`t t^(-1) = 1`, `b = v(b_1, ..., b_k)` and `h = t^(-1) b t`, because `psi` is multiplicative on `P`.
 
 **Theorem 1.** If a coordinate realization `phi` of `(F, P)` in `E_(S')(Y)` sees phase data at `x_0`, then
 `lambda(x_0)` and `lambda(h x_0)` are distinct sites of `Y`, joined by an edge of `S'`, and no finite quotient
@@ -91,10 +91,12 @@ complete graph included. The finite table of `E_S` made of `c_o`, `c_(h o)`, `ep
 `gamma`, `h` and the products expressing
 
 ```text
-b_i c_o = c_o b_i,   t b_i t^(-1) = w_i(b),   t t^(-1) = 1,   h = t^(-1) gamma t,
+b_i c_o = c_o b_i,   t b_i t^(-1) = w_i(b),   t t^(-1) = 1,   gamma = v(b),   h = t^(-1) gamma t,
 h c_o = c_(h o) h,   c_o c_(h o) = eps c_(h o) c_o
 ```
 
+Here `v` is a word spelling `gamma` in the generators `b_i`, computed by a chain of products in `P`. That chain is
+what puts `psi(gamma)` in `B'`, as condition 3 requires. Equivalently, take `gamma` among the `b_i`. The table
 has phase data at `o` under every coordinate realization. It has no coordinate realization in any Clifford
 cover, over any group, whose edges are all profinitely separable.
 

@@ -30,6 +30,7 @@ graph included), take the table made of `c_o`, `c_(h o)`, `eps`, generators of `
 and `h`. Its products express:
 - `Gamma` fixing `o`;
 - the ascending relations `t b_i t^(-1) = w_i(b)`;
+- a word `gamma = v(b)` in the generators, so that `psi(gamma)` lies in `B'`;
 - `h = t^(-1) gamma t` and `h c_o = c_(h o) h`;
 - `c_o c_(h o) = eps c_(h o) c_o`.
 
