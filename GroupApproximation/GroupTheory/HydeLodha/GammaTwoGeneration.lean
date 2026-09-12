@@ -46,11 +46,11 @@ variable {Γ : Subgroup (Equiv.Perm ℚ)}
 
 theorem mem_closure_unitSet_of_step (hΓ : Γ ≤ gammaTwo) (hcore : ⁅perCore 4, perCore 4⁆ ≤ Γ)
     {u : Equiv.Perm ℚ} (huΓ : u ∈ Γ) (hu0 : 0 < u 0) (hu1 : u 0 < 1) {h : Equiv.Perm ℚ}
-    (hh : h ∈ Γ) (hk : 1 ≤ ⌊h 0⌋) :
+    (hh : h ∈ Γ) (_hk : 1 ≤ ⌊h 0⌋) :
     ∃ w ∈ Γ, ⌊w 0⌋ = ⌊h 0⌋ - 1 ∧
       (w ∈ Subgroup.closure (unitSet Γ) → h ∈ Subgroup.closure (unitSet Γ)) := by
   obtain ⟨k, hkdef⟩ : ∃ k : ℤ, ⌊h 0⌋ = k := ⟨_, rfl⟩
-  rw [hkdef] at hk ⊢
+  rw [hkdef]
   have hu := hΓ huΓ
   obtain ⟨hui1, hui0⟩ := inv_apply_zero_mem hu hu0 hu1
   have hui := gammaTwo.inv_mem hu
