@@ -141,8 +141,8 @@ theorem eq_sum_matUnit {T : Module.End (ZMod 2) JacobsonSpace} {M : ℕ}
   by_cases hn : n < M
   · have hinner : ∀ u ∈ Finset.range M,
         (∑ v ∈ Finset.range M,
-          if n = v then (T (Polynomial.X ^ v)).coeff u • Polynomial.X ^ u else 0) =
-          (T (Polynomial.X ^ n)).coeff u • Polynomial.X ^ u := by
+          if n = v then (T (Polynomial.X ^ v)).coeff u • (Polynomial.X ^ u : JacobsonSpace) else 0) =
+          (T (Polynomial.X ^ n)).coeff u • (Polynomial.X ^ u : JacobsonSpace) := by
       intro u _
       rw [Finset.sum_eq_single n (fun v _ hv ↦ if_neg (Ne.symm hv))
         (fun hn' ↦ absurd (Finset.mem_range.mpr hn) hn'), if_pos rfl]
@@ -159,7 +159,7 @@ theorem eq_sum_matUnit {T : Module.End (ZMod 2) JacobsonSpace} {M : ℕ}
   · rw [h0 n (by omega)]
     symm
     refine Finset.sum_eq_zero fun u _ ↦ Finset.sum_eq_zero fun v hv ↦ ?_
-    rw [if_neg (fun h ↦ hn (h ▸ Finset.mem_range.mp hv))]
+    rw [if_neg (fun h : n = v ↦ hn (h ▸ Finset.mem_range.mp hv))]
 
 theorem mem_defectIdeal_of_isFiniteMatrix {x : ↥jacobsonAlgebra}
     (hx : IsFiniteMatrix (x : Module.End (ZMod 2) JacobsonSpace)) : x ∈ defectIdeal := by
