@@ -54,11 +54,22 @@ representative `T0 = diag(G, G^2)` exactly to `T1 = diag(I_2, G^2)`. Here `sigma
   four were screened. 359 have exact degree-2 kernels on this window. The
   degree-3 screen on the same window kills 48 of the remaining 192, leaving 144.
 * Among the survivors, those whose inverse carries the four chart leaves to
-  cones of one common length need no screen. `K` and `h^-1 K h` then generate a
-  finite uniform-depth group, and
-  `chart-comparison-must-fuse-torus-classes` (in the special case where the
-  finite image is the actor group itself) kills them. In such a group `T0` and
-  `T1` have different fixed-space dimensions on the natural module.
+  cones of one common length need no screen. The reason is not a direct appeal
+  to `chart-comparison-must-fuse-torus-classes`: the actor group `<K, h>` of
+  `Z_h` need not be finite. Write `Z_h = [h] P_0^h f_0` with
+  `P_0^h = [h^-1] P_0 [h]`. A left inverse `L` of `Z_h` makes `L [h]` a left
+  inverse of `P_0^h f_0`, which lies in `F_2[K']` for `K' = <K, h^-1 K h>`. With
+  uniform depth `d`, `h^-1 K h` acts as `GL_2(F_4)` on the four image cones of
+  length `d`, so both charts act by `F_2`-matrices at depth `D = max(3, d)` and
+  `K'` is finite. Conditional expectation onto `F_2[K']` (Theorem 1 of the torus
+  fusion artifact, applied inside `K'`) and equal regular ranks `32 [K' : K]`
+  make `f_0` and `P_0^h` Murray--von Neumann equivalent in `F_2[K']`. So they
+  have equal ranks on every `F_2[K']`-module. On the span of the points `p.T`
+  with `|p| = D`, `K` acts by natural blocks plus trivial coordinates, where
+  `f_0` has rank `0`, while `h^-1 K h` has at least one natural block, where
+  `P_0^h` has positive rank. This is a contradiction.
+  (Corrected 2026-09-12 by independent re-derivation; the screened conclusion
+  is unchanged.)
 
 ## 4. Rescreen of nonuniform survivors
 
@@ -67,7 +78,7 @@ the tool at commit `8a3807d14` with `--window 3 --rescreen` on the 144 survivors
 of Section 3.
 
 * **Classification of the 144.**
-  * 8 are uniform on the chart, dead by torus fusion.
+  * 8 are uniform on the chart, dead by the uniform-depth argument of Section 3.
   * 24 are non-nesting, including the 8 uniform ones, dead by
     `non-nesting-transporters-cannot-install-chart-comparison`.
   * 120 nest with, or split, a chart leaf.
