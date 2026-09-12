@@ -6,6 +6,7 @@ title: Split the modular group algebra over the central involution
 target: clifford-cover-group-algebra-splits-into-wreath-and-skew-ring
 requires:
   - rf-lamps-preserve-stable-finiteness-for-arbitrary-actions
+  - kun-thom-wreath-stably-finite
 artifacts:
   - research/artifacts/clifford-cover-surjunctivity-test-host-2026-09-12.md
   - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
@@ -16,7 +17,7 @@ Artifact Section 3, Proposition 3.1.
 - The `+` summand is `F_3[W]`.
 - On the `-` summand, `eps = -1` turns the extension relations into the displayed lamp relations, and
   `G` fixes `eps`.
-- `F_3[W]` is stably finite, because the base `G` is residually finite. So direct finiteness of the
+- `F_3[W]` is stably finite by `kun-thom-wreath-stably-finite`. So direct finiteness of the
   product is decided on `A_S`.
 
 **Verification (w3-vf-nonlinear, 2026-09-12): PASS, with one wiring note.**
