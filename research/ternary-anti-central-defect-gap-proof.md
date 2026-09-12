@@ -35,3 +35,5 @@ Artifact Section 2, Theorem 2.1, with Lemma 1.4.
    * **Compression.** `Q_A` commutes with `F_3[iota_A(G)]`, because `iota_A(z)` is central in `iota_A(G)`.
      Compressing along `Q_A` gives an anti-central function whose defect is `N(D_A Q_A)/N(Q_A) >= c_3`.
 5. **Matricial.** Limits of matricial functions are matricial, by the finite-stage diagonal ultraproduct. QED
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 23.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

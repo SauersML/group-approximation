@@ -22,3 +22,5 @@ Artifact Section 1.
    `N(XY) + N(YZ)`. Invertible operations carry it to `[[0, -XYZ],[Y, 0]]`, whose rank is `N(Y) + N(XYZ)`.
 4. **Commuting nilpotents.** Put `a_j = N(x^j P)`. Frobenius applied to `(x, x^j P, x)` gives
    `2 a_(j+1) <= a_j + a_(j+2)`, so `a` is convex with `a_m = 0`, and `a_1 <= (1 - 1/m) a_0`. QED
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 23.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

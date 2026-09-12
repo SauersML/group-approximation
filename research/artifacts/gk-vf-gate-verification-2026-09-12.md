@@ -1028,3 +1028,40 @@ which contradicts `delta >= c_0'`.
   - `(2(1-P))^2 = 2(1-P)` over `F_3`, because `P^2 = 1`.
   - `tau(z) f = -f`.
   - Freeness on all but `o(n)` points gives `rho(f) = 1/2` and the profile.
+
+## 23. w5-c3-descent (backlog)
+
+### 23.1 `sylvester-rank-functions-compress-along-commuting-elements`: PASS
+
+1. **Compression.** `(XY)'P = X'Y'P`, whose rank is at most `N(Y'P)`, and `X'Y'P = X'PY'`, whose rank is at
+   most `N(X'P)`. Direct sums and triangular blocks multiply entrywise by the scalar matrix `P`.
+2. **Commuting idempotents.** `U^2 = 1`, and `U diag(eP, (1-e)P) = [[eP, (1-e)P],[0,0]]`. The column
+   operations use `eP = Pe` and reach `diag(P, 0)`.
+3. **Frobenius.**
+   - Take `col_2 - col_1 Z`, then `row_1 - X row_2`: this reaches `[[0, -XYZ],[Y, 0]]`.
+   - Swapping rows and columns gives the upper triangular `[[YZ, Y],[0, XY]]`.
+4. **Commuting nilpotents.** `2 a_(j+1) <= a_j + a_(j+2)`, since `x^j P x = x^(j+1) P`. Convexity with
+   `a_m = 0` gives `a_1 <= (1 - 1/m) a_0`.
+- **Item 5.** `N(eps_+) = 1 - N(eps_-) = 0`, so `N(X) = N(X eps_-)`.
+- **Consequence in characteristic two.** `N(D_B P) <= N(N^B_12 P) <= N(P)/2` for every abstract Sylvester
+  function.
+
+### 23.2 `ternary-anti-central-two-root-defect-has-a-uniform-gap`: PASS
+
+- **Lemma 1.4: corner locality.**
+  - The pullback kills `D`.
+  - In the quotient by its null ideal, the reversed-root lemma (Section 3.2) gives `N_12^2 = 0`.
+  - `leavitt-rank-functions-killing-two-root-defect-are-augmentation`, stated for characteristic
+    `p > 0` with both conditions, gives the augmentation rank.
+  - `iota_A(G) <= K_N`, and normal subgroups are `G` or lie inside `<z>`, so `K_N = G` and
+    `N(eps_-) = 0`.
+- **Theorem 2.1(1).** Compactness and closedness give the minimum, and it is positive by Lemma 1.4. In
+  characteristic 3 `N_12^3 = [x_12(3)] - 1 = 0`, so Lemma 1.1.4 with `m = 3` gives `N(D) <= N(N_12) <= 2/3`.
+- **Item (2).** Compressing along the central idempotent `eps_-` gives an anti-central function.
+- **Item (3).**
+  - `tau_(X\A) = z tau_A`, so `Q_(X\A) eps_- = 2(1 + [tau_A]) eps_- = (1 - Q_A) eps_-`, because
+    `-1 = 2` in `F_3`.
+  - `V`-conjugation and Lemma 1.1.5 give `N(Q_A) = N(1 - Q_A) = 1/2`.
+  - `Q_A` commutes with `F_3[iota_A(G)]`, and `F_3[iota_A](eps_-) = Q_A`. So the compressed function is
+    anti-central, and `N(D_A Q_A) >= c_3/2`.
+- **Item (4).** `A_M` is closed through the diagonal ultraproduct (Section 8.1), and `A_M ⊆ A_S`.
