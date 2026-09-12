@@ -25,3 +25,5 @@ Section 8.1 of the artifact.
 Trust surface: Blackadar, *K-Theory for Operator Algebras*, Proposition 4.6.2.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): Section 23 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
+
+*Also verified by `gk-vf-linear` (2026-09-12): the Cohn-defect class paragraph, Section 27 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

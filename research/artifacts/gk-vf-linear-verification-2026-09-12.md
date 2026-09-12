@@ -850,3 +850,20 @@ entry on the OPEN claim `ternary-anti-central-summand-has-quaternary-leavitt-fam
     phrases it that way.
   - Requested of the author: restate 4.2 as vanishing of the off-diagonal Gram entries, not as a
     frame with `tau_v sigma_v = 1_-`.
+
+## 27. The ternary Cohn defect class has no characteristic-zero lift (d465300a3, lane gk-l3-kernel): PASS
+
+Item checked: the Cohn-defect paragraph added to `char-zero-liftable-idempotents-are-never-inverse-defects`.
+
+- **The class.** For a unital two-pair Cohn family `tau_i sigma_j = delta_ij eps_-` in `S_-`, put
+  `p = eps_- - sigma_1 tau_1 - sigma_2 tau_2`. The three idempotents are orthogonal, and
+  `sigma_i tau_i ~ eps_-`, so `[eps_-] = 2[eps_-] + [p]` and `[p] = -[eps_-]`.
+- **The lifted trace.** `(1 - [z])/2` is an idempotent of `Z_3[G]`, because `z^2 = 1`, and it reduces
+  to `2(1 - [z]) = eps_-`, since `1/2 ≡ 2` mod 3. Its identity coefficient is `1/2`, so
+  `t_3([eps_-]) = 1/2` and `t_3([p]) = -1/2`. Mod 3 this is `1`, which matches `tau(p) = 1` (Section 15).
+- **No lift.** Any idempotent `P` at any matrix size with `[P] = [p]` has `t_3 = -1/2`. A finite-support
+  idempotent lift `D` over `Z_3` would have `T(D) = -1/2` by conjugacy of lifts, while Kaplansky
+  positivity after embedding the coefficient field in `C` forces `T(D) >= 0` (Section 23). That is a
+  contradiction.
+- **Scope.** By Theorem E (Section 25), every stable failure reduces to a size-one Cohn family, whose
+  defect class is `-[eps_-]`. So this exclusion covers every complement relevant to the corner target.
