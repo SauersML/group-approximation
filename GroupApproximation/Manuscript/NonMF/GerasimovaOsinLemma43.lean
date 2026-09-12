@@ -47,9 +47,10 @@ theorem exists_deep_letter {D : RelGenSet G Unit} (hD : D.IsHyperbolicallyEmbedd
     (hinf : (D.fam () : Set G).Infinite) (R : ℕ) :
     ∃ t : G, t ∈ D.fam () ∧ t ∉ D.relBall () R := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   exact hinf ((hD.locallyFinite () R).subset fun h hh => hcon h hh)
 
+omit [Group G] in
 /-- The letter at an even position of `t f₁ ⋯ t fₙ` is `t`. -/
 theorem getElem?_altWord_two_mul {t : G} {fs : List G} {i : ℕ} (hi : i < fs.length) :
     (altWord t fs)[2 * i]? = some (RelLetter.comp () t) := by
