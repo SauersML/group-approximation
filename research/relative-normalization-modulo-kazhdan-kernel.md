@@ -177,3 +177,31 @@ automatically, so only strict compressors matter.
     - By `bounded-blockwise-inner-realizers-fail-off-kernel`, it cannot do so at
       bounded word length in `N`.
     - None is constructed. **This is where it stops.**
+- **Unbounded blockwise realizers: the regime is the block closure of the
+  kernel, and on regular blocks it is residual finiteness (lane
+  `rnorm-unbounded-realizers`).** Full account in
+  `research/artifacts/rnorm-unbounded-realizers-2026-09-12.md`.
+  - **Scale.** `inner-realizers-are-at-least-half-the-sofic-radius`: on the
+    realized mass, a realizer word of an element outside `N` is at least half
+    the edited sofic radius. Bounded realizers are the fixed-radius case.
+  - **No centralizer factor.** `kernel-block-realizers-need-no-centralizer-factor`:
+    if `sigma(G) <= Pi C`, with `Pi` the block groups `<s_B>` and `C` their
+    centralizers, then acyclicity and trivial sofic morphisms of `R^x` force
+    `sigma(G) <= Pi`.
+  - **Regular blocks.** `leavitt-cover-regular-realizer-models-iff-residually-finite`:
+    a realized approximation with regular (Cayley) kernel blocks on positive
+    mass exists iff `G` is residually finite. If `G` is residually finite, its
+    finite-quotient models realize every element exactly and satisfy every exact
+    transport statement. So a contradiction from realizers plus (T)-exactified
+    transport on regular blocks is a proof that `G` is not residually finite.
+  - **Other blocks: no restriction.** `kernel-block-realizers-exist-after-small-re-edit`:
+    three-point re-edits of product generators make every block group primitive
+    with a 3-cycle, hence alternating by Jordan's theorem. Block invariance then
+    realizes every element. So every sofic approximation of the cover can be
+    re-edited, without changing `sigma`, into realized form, and the realized
+    regime is populated iff `G` is sofic. A contradiction from unbounded
+    realizers is a contradiction from `sigma` alone.
+  - **Red-flag check.** None of this uses property (T) of `G` beyond Kun's
+    blocks, and none of it proves nonsoficity. In a realized injective model the
+    defect lies in `Pi \ sigma(N)`: realizers move `sigma(d)` into the block
+    closure of `sigma(N)`, never into `sigma(N)`. **This is where it stops.**
