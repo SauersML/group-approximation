@@ -32,17 +32,17 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 noncomputable section
 
-variable {X P : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P : TopCat.{0}}
 
 /-! ## 1. The statement over an open set -/
 
 /-- The Euler class, restricted to the part of the total space over `A`. -/
-def lhClass (f : P ⟶ X) (ξ : Hmod2 P 2) (A : Opens X) :
-    Hmod2 (opSpace (opensComap f A)) 2 :=
+def lhClass (f : P ⟶ X) (ξ : Hmod K P 2) (A : Opens X) :
+    Hmod K (opSpace (opensComap f A)) 2 :=
   pull (opIncl (opensComap f A)) 2 ξ
 
 /-- **Leray–Hirsch over an open set of the base.** -/
-def LHOver (f : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) (A : Opens X) : Prop :=
+def LHOver (f : P ⟶ X) (ξ : Hmod K P 2) (r : ℕ) (A : Opens X) : Prop :=
   ∀ n : ℕ, Function.Bijective (lhSum (opensRestrict f A) (lhClass f ξ A) r n)
 
 /-! ## 2. Viewing the statement inside a larger open set -/
@@ -51,7 +51,7 @@ theorem opensComap_mono (f : P ⟶ X) {A C : Opens X} (h : A ≤ C) :
     opensComap f A ≤ opensComap f C := fun _ hp => h hp
 
 /-- **The theorem over `A` gives the theorem over `A` viewed inside `C`.** -/
-theorem LHOver_rel (f : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) (A C : Opens X) (h : A ≤ C)
+theorem LHOver_rel (f : P ⟶ X) (ξ : Hmod K P 2) (r : ℕ) (A C : Opens X) (h : A ≤ C)
     (hA : LHOver f ξ r A) (n : ℕ) :
     Function.Bijective
       (lhSum (opensRestrict (opensRestrict f C) (opRel A C))
@@ -67,7 +67,11 @@ theorem LHOver_rel (f : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) (A C : Opens X) (h :
 
 /-! ## 3. The two-set step -/
 
-/-- **Leray–Hirsch for a union of two open sets.** -/
+/-- **Leray–Hirsch for a union of two open sets.**
+
+Pinned at `ZMod 2` for now: the Mayer–Vietoris step it calls, `bijective_lhSum_comap`,
+still runs on `mvSequence`, which `MayerVietorisElement` constructs over `F₂` only.  The
+pin goes when that sequence exists over `K`; nothing else here needs it. -/
 theorem LHOver_sup (f : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) (A B : Opens X)
     (hA : LHOver f ξ r A) (hB : LHOver f ξ r B) (hAB : LHOver f ξ r (A ⊓ B)) :
     LHOver f ξ r (A ⊔ B) := by
@@ -99,7 +103,7 @@ def topIso (X : TopCat.{0}) : opSpace (⊤ : Opens X) ≅ X where
   inv_hom_id := rfl
 
 /-- **Over `⊤` the relativized statement is the original one.** -/
-theorem LHOver_top (f : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) (h : LHOver f ξ r ⊤) (n : ℕ) :
+theorem LHOver_top (f : P ⟶ X) (ξ : Hmod K P 2) (r : ℕ) (h : LHOver f ξ r ⊤) (n : ℕ) :
     Function.Bijective (lhSum f ξ r n) := by
   refine bijective_lhSum_of_iso f (opensRestrict f ⊤) (topIso X).symm (topIso P).symm
     rfl ξ (lhClass f ξ ⊤) ?_ r n (h n)

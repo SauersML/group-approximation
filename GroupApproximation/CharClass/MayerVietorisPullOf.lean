@@ -152,35 +152,54 @@ theorem mvResWVOf_eq_pull (K : Type) [CommRing K] (U V : Opens X) (hUV : U ⊔ V
     mvResWVOf K U V hUV n
       = cohPullbackK K (subInclusion (Set.inter_subset_right (s := (U : Set X))
           (t := (V : Set X)))) n := by
-  have key : mvHInclVOf K U V n ≫ mvPsiOf K U V hUV n
-      = -((subCxDualHomologyIsoOf K (V : Set X) n).hom
-          ≫ cohPullbackK K (subInclusion (Set.inter_subset_right (s := (U : Set X))
-              (t := (V : Set X)))) n) := by
-    have h2 : mvHInclVOf K U V n ≫ HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n
-        = -HomologicalComplex.homologyMap
+  -- The sign is handled on elements: a `-` inside a composite whose middle object is spelled
+  -- `(mvCoSCOf K U V hUV).X₃` does not match `Preadditive.neg_comp` under instance
+  -- transparency, so it is never rewritten there.
+  have hc : ∀ z : (dualCxOf K (mvCxOf K V)).homology n,
+      (mvInterIsoOf K U V hUV n).hom.hom
+          ((HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n).hom
+            ((HomologicalComplex.homologyMap (mvCxInclVOf K U V) n).hom z))
+        = -(HomologicalComplex.homologyMap
+              (dualMapOf K (subChainCorestrict K X ((U : Set X) ∩ (V : Set X)))) n).hom
+            ((HomologicalComplex.homologyMap
+              (dualMapOf K (subChainInclusion (R := K) ((U : Set X) ∩ (V : Set X)) (V : Set X)
+                Set.inter_subset_right)) n).hom z) := by
+    intro z
+    have h1 : HomologicalComplex.homologyMap (mvCxInclVOf K U V) n
+          ≫ HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n
+        = HomologicalComplex.homologyMap (mvCxInclVOf K U V ≫ (mvCoSCOf K U V hUV).g) n :=
+      (HomologicalComplex.homologyMap_comp _ _ n).symm
+    rw [mvCxInclVOf_comp_g] at h1
+    have h2 : (HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n).hom
+          ((HomologicalComplex.homologyMap (mvCxInclVOf K U V) n).hom z)
+        = -(HomologicalComplex.homologyMap
             (dualMapOf K (subChainInclusion (R := K) ((U : Set X) ∩ (V : Set X)) (V : Set X)
-              Set.inter_subset_right)) n := by
-      have hc := congrArg (fun φ => HomologicalComplex.homologyMap φ n)
-        (mvCxInclVOf_comp_g K U V hUV)
-      simp only [HomologicalComplex.homologyMap_comp, HomologicalComplex.homologyMap_neg] at hc
-      exact hc
-    show mvHInclVOf K U V n ≫ HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n
-        ≫ HomologicalComplex.homologyMap
-            (dualMapOf K (subChainCorestrict K X ((U : Set X) ∩ (V : Set X)))) n
-      = -(HomologicalComplex.homologyMap
-            (dualMapOf K (subChainCorestrict K X (V : Set X))) n
-        ≫ HomologicalComplex.homologyMap
-            (dualMapOf K ((chainCxFunOf K).map (subInclusion (Set.inter_subset_right
-              (s := (U : Set X)) (t := (V : Set X)))))) n)
-    rw [← Category.assoc, h2, Preadditive.neg_comp]
-    have hnat := congrArg (fun φ => HomologicalComplex.homologyMap φ n)
-      (dualMapOf_subChainCorestrict_naturality K
-        (Set.inter_subset_right (s := (U : Set X)) (t := (V : Set X))))
-    simp only [HomologicalComplex.homologyMap_comp] at hnat
-    rw [hnat]
-  show -((subCxDualHomologyIsoOf K (V : Set X) n).inv ≫ mvHInclVOf K U V n
-      ≫ mvPsiOf K U V hUV n) = _
-  rw [key, Preadditive.comp_neg, neg_neg, ← Category.assoc, Iso.inv_hom_id, Category.id_comp]
+              Set.inter_subset_right)) n).hom z :=
+      (hom_apply_of_comp_eq h1 z).trans (congrArg (fun φ => φ.hom z)
+        (HomologicalComplex.homologyMap_neg (dualMapOf K (subChainInclusion (R := K)
+          ((U : Set X) ∩ (V : Set X)) (V : Set X) Set.inter_subset_right)) n))
+    rw [h2]
+    exact map_neg (mvInterIsoOf K U V hUV n).hom.hom _
+  have hnat := congrArg (fun φ => HomologicalComplex.homologyMap φ n)
+    (dualMapOf_subChainCorestrict_naturality K
+      (Set.inter_subset_right (s := (U : Set X)) (t := (V : Set X))))
+  simp only [HomologicalComplex.homologyMap_comp] at hnat
+  apply ModuleCat.hom_ext
+  apply LinearMap.ext
+  intro b
+  rw [mvResWVOf_apply, neg_eq_iff_eq_neg]
+  show (mvInterIsoOf K U V hUV n).hom.hom
+      ((HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n).hom
+        ((HomologicalComplex.homologyMap (mvCxInclVOf K U V) n).hom
+          ((subCxDualHomologyIsoOf K (V : Set X) n).inv.hom b))) = _
+  rw [hc]
+  refine congrArg Neg.neg ?_
+  refine (hom_apply_of_comp_eq hnat _).trans ?_
+  rw [ModuleCat.comp_apply]
+  exact congrArg (HomologicalComplex.homologyMap
+    (dualMapOf K ((chainCxFunOf K).map (subInclusion (Set.inter_subset_right
+      (s := (U : Set X)) (t := (V : Set X)))))) n).hom
+    (iso_hom_inv_applyOf (subCxDualHomologyIsoOf K (V : Set X) n) b)
 
 /-! ## 3. The restrictions from the ambient space -/
 

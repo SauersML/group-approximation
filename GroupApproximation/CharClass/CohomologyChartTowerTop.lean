@@ -52,7 +52,8 @@ which is the side `cup_assoc'` produces. -/
 theorem cup_gen_cupPowE_top_eq_zero (hd : 1 ≤ d + 1) :
     cup (pull (cpPrCP U d) 2 (cpGen (d + 1) hd))
         (cupPowE (pull (cpPrCP U d) 2 (cpGen (d + 1) hd)) (d + 1)) = 0 := by
-  rw [cup_comm, ← cupPowE_succ, cupPowE_pull_eq_zero U d hd (d + 1 + 1) (by omega),
+  rw [cup_comm_of_even_left even_two, ← cupPowE_succ,
+    cupPowE_pull_eq_zero U d hd (d + 1 + 1) (by omega),
     cohCast_zero]
 
 /-! ## 2. The last coefficient -/
@@ -102,7 +103,8 @@ theorem peelTower_top_index_eq_zero (hd : 1 ≤ d + 1) (hd1 : 1 ≤ d) (m j₀ :
     rw [cpTop_eq_pull_cupPowE U d hd, pull_cupPowE]
     exact hz
   refine cpTop_cup_injective_closed U d hd1 (m + 2 * j₀) (a j₀) ?_
-  rw [cup_comm (cpTop U d) (pull (cpPrU U d) (m + 2 * j₀) (a j₀)), htop, cohCast_zero]
+  rw [cup_comm_of_even_left ⟨d + 1, by omega⟩ (cpTop U d) (pull (cpPrU U d) (m + 2 * j₀) (a j₀)),
+    htop, cohCast_zero]
 
 end KnCP
 

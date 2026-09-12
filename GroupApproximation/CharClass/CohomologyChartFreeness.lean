@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.CohomologyChartTowerTop
+import GroupApproximation.CharClass.CupOneComm
 
 /-!
 # Freeness of the peel tower, discharged
@@ -62,7 +63,8 @@ theorem peelTower_top_index_eq_zero_all (hd : 1 ≤ d + 1) (m j₀ : ℕ)
     rw [cpTop_eq_pull_cupPowE U d hd, pull_cupPowE]
     exact hz
   refine cpTop_cup_injective_all U d (m + 2 * j₀) (a j₀) ?_
-  rw [cup_comm (cpTop U d) (pull (cpPrU U d) (m + 2 * j₀) (a j₀)), htop, cohCast_zero]
+  rw [cup_comm_of_even_left ⟨d + 1, by omega⟩ (cpTop U d) (pull (cpPrU U d) (m + 2 * j₀) (a j₀)),
+    htop, cohCast_zero]
 
 /-! ## 2. The tower's equations at normalised degrees -/
 

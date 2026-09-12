@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.CohomologyChartPeelUniq
+import GroupApproximation.CharClass.CupOneComm
 
 /-!
 # The peel tower, and existence of the decomposition
@@ -62,7 +63,7 @@ theorem peel_right (hd : 1 ≤ d + 1) (m : ℕ) (z : Hmod2 (cpProdTop U d) (m + 
   refine ⟨cohCast (Nat.add_comm 2 m) a, y, ?_⟩
   have h := congrArg (cohCast (Nat.add_comm 2 m)) hay
   rw [cohCast_cohCast, cohCast_self, cohCast_add, ← KnHemi.pull_cohCast,
-    cup_comm (pull (cpSnd U (d + 1)) 2 (cpGen (d + 1) hd)) y, cohCast_cohCast,
+    cup_comm_of_even_left even_two (pull (cpSnd U (d + 1)) 2 (cpGen (d + 1) hd)) y, cohCast_cohCast,
     cohCast_self] at h
   exact h
 
