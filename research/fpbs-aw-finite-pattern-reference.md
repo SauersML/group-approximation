@@ -9,4 +9,4 @@ artifacts:
   - research/artifacts/fpbs/torsion-actions.md
 ---
 
-Written proof and scope are in research/artifacts/torsion-actions.md. This is dependency bookkeeping, not formal proof verification.
+Written proof and scope are in research/artifacts/fpbs/torsion-actions.md. This is dependency bookkeeping, not formal proof verification.

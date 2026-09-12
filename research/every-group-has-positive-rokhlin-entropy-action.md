@@ -126,8 +126,8 @@ anywhere refutes it.
 - **Orbit-relation invariants give no lower bound (2026-09-12, gk-p-inf-cost).**
   - All nontrivial finite-alphabet Bernoulli shifts over an infinite group are weakly equivalent
     (`nontrivial-bernoulli-shifts-are-weakly-equivalent`, from Abért–Weiss in both directions). So
-    cost, fixed price, ℓ²-Betti numbers and every weak-equivalence or group invariant take one value
-    on all bases.
+    cost (for finitely generated groups), fixed price, ℓ²-Betti numbers and every weak-equivalence
+    or group invariant take one value on all bases.
   - Their Rokhlin entropy is at most `H(1−p, p) → 0`. So no base-independent lower bound through
     such invariants is positive, on any group (`weak-invariants-give-no-bernoulli-rokhlin-lower-bound`,
     which invalidates `positive-rokhlin-entropy-via-weak-invariant-bounds`).

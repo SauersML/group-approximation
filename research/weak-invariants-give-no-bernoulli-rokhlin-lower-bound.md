@@ -12,16 +12,17 @@ artifacts:
 ---
 
 **ESTABLISHED.** Let `G` be countably infinite and `Φ` a quantity on free p.m.p. actions of `G`
-that is constant on weak-equivalence classes (cost, for instance) or depends on `G` alone
+that is constant on weak-equivalence classes (cost, when `G` is finitely generated) or depends on `G` alone
 (ℓ²-Betti numbers, for instance). Then `Φ` has one value `Φ_B(G)` on all nontrivial finite-alphabet
 Bernoulli shifts. If `F` is any function with `h^Rok_G(k^G, λ^G) ≥ F(Φ(k^G, λ^G))` for all
 nontrivial bases, then `F(Φ_B(G)) ≤ 0`.
 
 Proof: Theorem 3.1 of the artifact. The shifts are weakly equivalent
 (`nontrivial-bernoulli-shifts-are-weakly-equivalent`), while `h^Rok ≤ H(λ) → 0` along
-`λ = (1−p, p)`. For cost this uses `cost-is-constant-on-weak-equivalence-classes`.
+`λ = (1−p, p)`. For cost, with `G` finitely generated, this uses
+`cost-is-constant-on-weak-equivalence-classes`.
 
-**Consequence.** Cost, ℓ²-Betti numbers, fixed price, and every invariant of approximate finite
+**Consequence.** Cost (on finitely generated groups), ℓ²-Betti numbers, fixed price, and every invariant of approximate finite
 statistics of the action cannot prove POS, INF or RBS through a base-independent lower bound, on
 any group. Calibration: over `F_2`, every free action has cost `2`, yet the Bernoulli `(1−p, p)`
 shift has Rokhlin entropy `H(1−p, p) → 0`. Remark 4.1 of the artifact records what the obstruction

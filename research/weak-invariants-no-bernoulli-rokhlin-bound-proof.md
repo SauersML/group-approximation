@@ -13,7 +13,8 @@ artifacts:
 
 Section 3 of the artifact.
 1. All nontrivial finite-alphabet Bernoulli shifts are weakly equivalent, so `Φ` is constant on
-   them. For cost this is by monotonicity; group invariants are constant trivially.
+   them. For cost, with `G` finitely generated, this is Kechris's monotonicity; group invariants are
+   constant trivially.
 2. The time-zero partition generates, so `h^Rok ≤ H(λ)`.
 3. The bases `(1−p, p)` have `H → 0`, so `F(Φ_B) ≤ 0`.
 
