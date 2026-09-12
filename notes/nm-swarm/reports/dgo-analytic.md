@@ -111,9 +111,10 @@ extremality transport is needed.  The only leaf is the planar cut.
   `descentInput_of_sectionPocketCut : … → SectionPocketCutInput → DescentInput`.
   Both modules compiled in probe 0912-100628-69222 (base 08381ed21), classical
   axioms only.
-* `GGT/VanKampen/Estimating/OsinAppendixLemma97Pocket.lean` (4b9f8144d; compiled
-  in probe 0912-101449-41267, base 4b9f8144d, classical axioms only):
-  `OsinSection97PocketInputsStatement` (cut producers, Euler count,
+* `GGT/VanKampen/Estimating/OsinAppendixLemma97Pocket.lean` (4b9f8144d, 42e5d2843;
+  compiled in probe 0912-105301-92538, base 42e5d2843, classical axioms only):
+  `OsinSection97PocketInputsStatement` (cut producers, hull-euler's
+  `PhiPrimeCountInput` through `eulerCountInput_of_phiPrimeCount`,
   `SectionPocketCutInput`), `osinSection97Inputs_of_pocketInputs`,
   `osinLemma97Section_of_pocketInputs` and
   `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`, with O52 given by
@@ -124,6 +125,13 @@ produces it (Estimating/OsinAppendixPocketCutProducer; the empty-side pinch
 case goes through PinchSplit).  The transport fields `cellTransport` and
 `sectionTransport` are the two targets of go-lemma42's
 `DiscDiagram.regionPiece_transport` on hull-select's `DiscDiagram.regionPiece`.
+
+Leaves of the Lemma 4.4 waist on this route
+(`relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`):
+`OsinLemma94SectionStatement` (hull-unbound, hull-count94), `MultipleEdgeCutInput`
+and `LoopCutInput` (G2: hull-select, go-lemma42), `PhiPrimeCountInput`
+(hull-euler), `SectionPocketCutInput` (hull-respell).  O52 is
+`Embedded.o52LeastArea`.
 
 ## Fleet traps found here
 
