@@ -40,6 +40,16 @@ This is equivalent to the goal (Theorem 3 of the artifact), through two routes t
 
   These screens are local: they read only `mu` and coincidences among `M^-1 M M^-1 M`, never the
   decoder.
+- **Where local screens stop (w3-bal-design).**
+  - **Finite subgroups.** A finite subgroup placed generically in a biased binary memory forces
+    balance (`generic-finite-subgroup-memory-forces-binary-balance`).
+  - **Ternary rules.** Over `Z/3` some unbalanced rules on three free memory letters are
+    pre-injective (`pair-distinct-ternary-rules-pre-injective-on-free-memory`). No
+    finite-perturbation screen can exclude them, so their obstruction is global. This bears on the open
+    census case `ternary-three-address-injective-automata-have-balanced-rules`.
+  - **An explicit architecture.** Affine rules with one moved table entry, recorded as the open target
+    `affine-plus-defect-rule-is-injective-on-some-group`. Its linear part must be a unit
+    (`avoidable-patches-of-affine-rules-inherit-linear-injectivity`).
 - **Where a construction must live.** A refuting design needs:
   - a nonsofic memory group, which gives at least two independent cycles in `Gamma_E` unless it is
     a non-sofic one-relator group;

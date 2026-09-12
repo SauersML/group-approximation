@@ -217,3 +217,106 @@ and `Ins_b` is `{0,1}`.
 **Consequence for designs.** Over `F_2`, a design refuting `unbalanced-forward-tables-identify-memory-letters`
 needs an effective memory of at least four elements and a rule that is not monotone. Every screen
 here is local: it reads only `mu` and the coincidences among `M^-1 M` and `M^-1 M M^-1 M`.
+
+## 3. Where local screens stop, and a ternary architecture
+
+Every screen of Section 2 compares two configurations that differ on a finite set. This section records
+one more screen of that kind, and then shows that over larger alphabets such screens can be silent
+on small unbalanced rules.
+
+**Proposition 9 (finite subgroups inside a biased binary memory).** Let `A = {0,1}`, `mu`
+unbalanced, and `tau` injective. Let `K ⊆ M` be a finite subgroup with `|K| >= 2`. Then one of the
+following holds.
+- **(G1) fails.** Two distinct elements of `M \ K` lie in a common left coset `mK` or a common right
+  coset `Km`.
+- **(G2) fails.** Consider the blocks `h` outside `K` that read `K`. Their context sites meet each
+  other, or meet the context sites `K(M \ K)` of the blocks in `K`.
+
+*Proof.* Suppose (G1) and (G2) hold.
+- **Blocks in `K`.** A block `h` in `K` reads all of `K`, at the addresses `k` with `hk` in `K`. Its
+  context sites are `h(M \ K)`. If `hm = h'm'` with `m, m'` in `M \ K`, then `m'` lies in `Km`, so
+  `m = m'` and `h = h'` by (G1). So these context sites are pairwise distinct.
+- **Blocks outside `K`.** Let `h` be outside `K` with `hm` in `K`. Then `m` is not in `K`, and
+  `h = k m^-1`. If also `hm'` is in `K`, then `m^-1 m'` is in `K`, so `m' = m` by (G1). So each
+  such block reads `K` at exactly one address.
+- **Perturb on `K`.** Change `x` on `K` from `u` to `u' != u`.
+  - Give every outside block a context in `Ins_m`. Its sites are private by (G2), and `Ins_m` is
+    nonempty by Lemma 6. Then its output does not change.
+  - The blocks in `K` output `Phi_r(u) = (mu((u(hk))_(k in K), r_h))_(h in K)`, with independent
+    contexts `r_h`. So injectivity makes every `Phi_r` an injective map of `{0,1}^K`, hence a
+    bijection.
+- **Conclusion.** A bijection pushes the uniform law forward to the uniform law, so the coordinate
+  `h = 1` shows `mu(., r_1)` is balanced on the `K`-coordinates for every `r_1`. Then `mu` is
+  balanced, a contradiction. QED
+
+Theorem 8 is the case `K = {1, a}`, `M \ K = {b}`. There (G1) is automatic, and (G2) is the check on
+the eight sites. So designs over hosts full of finite subgroups, such as `R^x` and `V`, cannot put a
+finite subgroup into a biased binary memory generically. The coincidences have to break (G1) or (G2).
+
+**Proposition 10 (pair-distinct ternary rules are pre-injective on free memory).** Let `A = Z/3` and
+`M = {1, a, b}`, with `a, b` free generators of `F(a, b)`. Suppose that at each address `m` every
+insensitive context identifies exactly one fixed pair `P_m` and is injective otherwise, and that
+`P_1`, `P_a`, `P_b` are distinct. Then `tau` over `F(a, b)` is pre-injective.
+
+*Proof.*
+- **Setup.** Let `x`, `x'` differ exactly on a finite nonempty set `F`, with `tau(x) = tau(x')`.
+  Write `C_g = {x(g), x'(g)}`.
+- **Blocks reading one changed site.** Suppose a block reads exactly one changed site `g`, at address
+  `m`. Its output is unchanged only if the context is insensitive and `C_g = P_m`. The pairs are
+  distinct, so this happens at no more than one of the three blocks `g`, `g a^-1`, `g b^-1` reading
+  `g`. Hence each `g` in `F` lies in at least two triangles `hM = {h, ha, hb}` that contain another
+  point of `F`.
+- **The incidence graph is a forest.** In the Cayley tree of `F(a, b)`, the edges `h — ha` and
+  `h — hb` form a claw `C_h`. Claws are edge-disjoint and cover the tree. Suppose the incidence graph
+  between elements and triangles had a cycle `g_0, C_0, g_1, ..., C_(k-1), g_0`. Joining geodesics
+  inside consecutive claws would give a closed walk in the tree. It has no backtracking inside a claw,
+  and none at a junction because claws share no edge. So no such cycle exists.
+- **Counting.** Let `T_F` be the set of triangles with at least two points of `F`. The incidence
+  forest on `F ⊔ T_F` has at most `|F| + |T_F| - 1` edges. It also has at least `2|F|` and at least
+  `2|T_F|` edges, so at least `|F| + |T_F|`. Contradiction. QED
+
+**Example (affine plus one defect).** Put
+
+```text
+mu(x_1, x_a, x_b) = x_1 + x_a + x_b + [ (x_1, x_a, x_b) = (0, 1, 2) ]      over Z/3.
+```
+
+- **Values.** Moving one table entry from `0` to `1` gives value counts `(8, 10, 9)`, so the rule is
+  unbalanced.
+- **Insensitive contexts.** Each address has exactly one: `(x_a, x_b) = (1, 2)` at address `1`, with
+  pair `{0, 1}`; `(x_1, x_b) = (0, 2)` at `a`, with pair `{1, 2}`; `(x_1, x_a) = (0, 1)` at `b`, with
+  pair `{0, 2}`.
+- **Consequence.** Proposition 10 applies. So Lemmas 4 and 6, Corollary 7, Theorem 8 and
+  Proposition 9, and more generally every screen that compares finitely different configurations,
+  say nothing about this rule at three addresses.
+- **Over the free group.** The rule is not injective there, since `F(a, b)` is sofic and injectivity
+  would force balance. So its failure is global: two configurations differing on an infinite set.
+
+**Architecture (open).** An affine-plus-defect rule has the form
+`mu(x) = sum_m c_m x_m + c + t [x|_M = p]`, with `c_m != 0` and `t != 0`.
+- **Minimality.** These are the minimal unbalanced deformations of bijective linear rules. Each
+  address has exactly one insensitive context, and it identifies the pair `{p_m, p_m + t c_m^-1}`.
+- **Over `F_2`.** All these pairs are `{0,1}`, so Lemma 6 applies.
+- **Over `F_q` with `q >= 3`.** The pairs can be chosen distinct, and then local screens can be
+  silent.
+- **What injectivity needs.** A group on which such a rule is injective is not surjunctive, by
+  Proposition 1 applied to the group itself. Write `L` for the linear part and `D` for the defect field.
+  If `x` has a single defect and `x + L^-1(t delta)` has none, the two share an image. When `L` is
+  invertible, injectivity therefore needs every such correction to create a defect somewhere, and the
+  same must hold for every infinite cascade of corrections.
+- **The decoder.** On hosts whose prime-field matrix algebras are stably finite, the decoder must use
+  `x^q = x` (`formal-polynomial-strict-pairs-need-unstable-linearization`).
+
+Recorded as the open construction target `affine-plus-defect-rule-is-injective-on-some-group`.
+
+**Cross-references (w4-bal-census, landed 16:10–16:17 after Section 2).**
+- Independent re-derivation of Theorem 8: `binary-three-address-injective-automata-have-balanced-rules`, in
+  `small-memory-balance-census-2026-09-12.md`.
+- The single-flip part of Lemma 6 as its own node: `binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`.
+- `avoidable-patches-of-affine-rules-inherit-linear-injectivity`. For `q >= 3`, a single-defect affine rule is an
+  avoidable patch, so injectivity forces the linear part to be injective. The architecture above therefore needs
+  `sum_m c_m m` to be a unit of `F_q[G]`, unless `G` already carries a linear strict automaton. In the ternary example
+  that unit is `1 + a + b`.
+- Proposition 10 bears on the open census case `ternary-three-address-injective-automata-have-balanced-rules`. Over free
+  memory, rigid ternary rules with distinct blind pairs have no finite invisible perturbation. A proof of balance there
+  must therefore be global.
