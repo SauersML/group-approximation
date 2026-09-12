@@ -83,6 +83,22 @@ theorem pairImproveCloseAt_restrictFrom {K : Type} [Group K] {T : Finset K}
   intro i j l f hf g hg
   exact himp i.2 i.1 j.1 l.1 f hf g hg
 
+/-- Repair holds for every larger distance factor. -/
+theorem pairRepairAt_mono_distance {K : Type} [Group K] {T : Finset K}
+    {F : ComponentFamily K T} {K₀ h d d' : ℝ} {n : ℕ} (hdd : d ≤ d')
+    (hrep : F.PairRepairAt K₀ h d n) : F.PairRepairAt K₀ h d' n := by
+  intro i l b hb hb'
+  obtain ⟨r, hr, hlt, hle⟩ := hrep i l b hb hb'
+  exact ⟨r, hr, hlt, hle.trans (mul_le_mul_of_nonneg_right hdd (Nat.cast_nonneg _))⟩
+
+/-- Improvement holds for every larger distance factor. -/
+theorem pairImproveCloseAt_mono_distance {K : Type} [Group K] {T : Finset K}
+    {F : ComponentFamily K T} {h d d' : ℝ} {n : ℕ} (hdd : d ≤ d')
+    (himp : F.PairImproveCloseAt h d n) : F.PairImproveCloseAt h d' n := by
+  intro i j l f hf g hg
+  obtain ⟨r, hr, hlt, hle⟩ := himp i j l f hf g hg
+  exact ⟨r, hr, hlt, hle.trans (mul_le_mul_of_nonneg_right hdd (Nat.cast_nonneg _))⟩
+
 /-- A sum over the objects satisfying a proposition is at most the full sum of
 a nonnegative function. -/
 theorem sum_subtype_val_le {ι : Type*} [Fintype ι] (p : Prop) [Decidable p] (c : ι → ℝ)
@@ -168,6 +184,9 @@ structure ClusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K : Type
   threshold_pos : ∀ n, 0 < threshold n
   threshold_small : ∀ n, threshold n ≤ 1 / 100000
   threshold_cheeger : ∀ n, threshold n ≤ R.data.family.cheeger
+  distance_nonneg : ∀ n, 0 ≤ distance n
+  distance_small : ∀ n, distance n ≤ 1 / 5000
+  distance_vanishing : Vanishing distance
   scale_large : ∀ n, start ≤ n → ∀ i, 20 ≤ R.data.family.scale n i
   repair : ∀ n, start ≤ n →
     R.data.family.PairRepairAt repairFactor (threshold n) (distance n) n

@@ -78,7 +78,7 @@ theorem exists_clusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K :
     (K₀ : ℝ) (hK₀ : 4 ≤ K₀) (ρ : ℕ → ℝ) (hρ0 : ∀ n, 0 ≤ ρ n) (hρ : Vanishing ρ) :
     ∃ F : ClusterFrame R, F.repairFactor = K₀ ∧ (∀ n, 0 < F.threshold n) ∧
       Vanishing F.threshold ∧ Vanishing fun n ↦ ρ n / F.threshold n := by
-  obtain ⟨h, d, hpos, htend, _, hev, N₀, hN₀⟩ :=
+  obtain ⟨h, d, hpos, htend, hdtend, hev, N₀, hN₀⟩ :=
     R.data.family.exists_joint_pairRepair K₀ hK₀ hQ hQT R.data.one_mem hκone
       (fun n ↦ Real.sqrt (ρ n)) (tendsto_of_vanishing (vanishing_sqrt hρ0 hρ))
   obtain ⟨N₁, hN₁⟩ := R.data.family.size_tendsTo 360
@@ -90,30 +90,53 @@ theorem exists_clusterFrame {G : Type} [Group G] {A : SoficApproximation G} {K :
     fun n hn ↦ min_eq_left ((le_abs_self _).trans (hN₂ n hn).le)
   have hthrpos : ∀ n, 0 < min (h n) (min (1 / 100000) R.data.family.cheeger) :=
     fun n ↦ lt_min (hpos n) hcap
+  obtain ⟨N₄, hN₄⟩ := vanishing_of_tendsto hdtend (1 / 5000) (by norm_num)
+  have hdsmall : ∀ n, N₄ ≤ n → d n ≤ 1 / 5000 :=
+    fun n hn ↦ (le_abs_self _).trans (hN₄ n hn).le
+  have hdvan : Vanishing fun n ↦ min (max (d n) 0) (1 / 5000) := by
+    intro ε hε
+    obtain ⟨N, hN⟩ := vanishing_of_tendsto hdtend ε hε
+    refine ⟨N, fun n hn ↦ ?_⟩
+    rw [abs_of_nonneg (le_min (le_max_right _ _) (by norm_num))]
+    exact lt_of_le_of_lt ((min_le_left _ _).trans (max_le (le_abs_self _) (abs_nonneg _)))
+      (hN n hn)
   refine ⟨{ threshold := fun n ↦ min (h n) (min (1 / 100000) R.data.family.cheeger)
             repairFactor := K₀
-            distance := d
-            start := max N₀ (max N₁ N₂)
+            distance := fun n ↦ min (max (d n) 0) (1 / 5000)
+            start := max N₀ (max N₁ (max N₂ N₄))
             threshold_pos := hthrpos
             threshold_small := fun n ↦ (min_le_right _ _).trans (min_le_left _ _)
             threshold_cheeger := fun n ↦ (min_le_right _ _).trans (min_le_right _ _)
+            distance_nonneg := fun n ↦ le_min (le_max_right _ _) (by norm_num)
+            distance_small := fun n ↦ min_le_right _ _
+            distance_vanishing := hdvan
             scale_large := ?_
             repair := ?_
             improve := ?_ }, rfl, hthrpos, ?_, ?_⟩
   · intro n hn i
-    have hcard := hN₁ n ((le_max_left N₁ N₂).trans ((le_max_right N₀ _).trans hn)) i
+    have hcard := hN₁ n ((le_max_left N₁ _).trans ((le_max_right N₀ _).trans hn)) i
     show 20 ≤ Fintype.card (R.data.family.model n i) / 18
     omega
   · intro n hn
+    have hn₂ : N₂ ≤ n := (le_max_left N₂ N₄).trans ((le_max_right N₁ _).trans
+      ((le_max_right N₀ _).trans hn))
+    have hn₄ : N₄ ≤ n := (le_max_right N₂ N₄).trans ((le_max_right N₁ _).trans
+      ((le_max_right N₀ _).trans hn))
     show R.data.family.PairRepairAt K₀ (min (h n) (min (1 / 100000) R.data.family.cheeger))
-      (d n) n
-    rw [heq n ((le_max_right N₁ N₂).trans ((le_max_right N₀ _).trans hn))]
-    exact (hN₀ n ((le_max_left N₀ _).trans hn)).1
+      (min (max (d n) 0) (1 / 5000)) n
+    rw [heq n hn₂]
+    exact pairRepairAt_mono_distance (le_min (le_max_left _ _) (hdsmall n hn₄))
+      (hN₀ n ((le_max_left N₀ _).trans hn)).1
   · intro n hn
+    have hn₂ : N₂ ≤ n := (le_max_left N₂ N₄).trans ((le_max_right N₁ _).trans
+      ((le_max_right N₀ _).trans hn))
+    have hn₄ : N₄ ≤ n := (le_max_right N₂ N₄).trans ((le_max_right N₁ _).trans
+      ((le_max_right N₀ _).trans hn))
     show R.data.family.PairImproveCloseAt
-      (min (h n) (min (1 / 100000) R.data.family.cheeger)) (d n) n
-    rw [heq n ((le_max_right N₁ N₂).trans ((le_max_right N₀ _).trans hn))]
-    exact (hN₀ n ((le_max_left N₀ _).trans hn)).2
+      (min (h n) (min (1 / 100000) R.data.family.cheeger)) (min (max (d n) 0) (1 / 5000)) n
+    rw [heq n hn₂]
+    exact pairImproveCloseAt_mono_distance (le_min (le_max_left _ _) (hdsmall n hn₄))
+      (hN₀ n ((le_max_left N₀ _).trans hn)).2
   · exact Vanishing.squeeze (fun n ↦ (hthrpos n).le) (fun n ↦ min_le_left _ _)
       (vanishing_of_tendsto htend)
   · refine vanishing_div_of_sqrt_le hρ0 hρ hthrpos (max N₂ N₃) fun n hn ↦ ?_
