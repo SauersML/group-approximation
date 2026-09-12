@@ -46,3 +46,20 @@ needs an infinite Kazhdan subgroup, and none of them has an instance inside
 `V` or any subgroup of `V`. A proof of this claim needs a mechanism without
 property (T). This is recorded here as a scope statement, not as a separate
 theorem.
+
+## Attempts
+
+The live attacks all target the equivalent one-word ceiling, and each one
+is recorded at `thompson-v-one-word-strict-hs-ceiling`.
+
+- **Porting Fournier-Facio--Rangarajan to normalized HS.** It dies at the
+  nonabelian normalized-HS tangent quotient
+  (`normalized-hs-tangent-quotient-is-nonabelian`) and at the gap between
+  uniform and pointwise defect.
+- **Pure prefix copying.** The affine clone model refutes it.
+- **Coherent alternating packets.** Open at the nonlinear synchronization step
+  (`thompson-v-r5-coherent-alternating-packet`).
+- **Carmichael families.** Open (`thompson-v-r5-coherent-carmichael-family`).
+  The subquadratic-energy variant is refuted, and the common-pivot centralizer
+  subroute is closed.
+- **Kazhdan compression.** It has no instance inside `V`, as above.
