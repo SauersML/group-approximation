@@ -80,3 +80,100 @@ reason that does not involve the twist, and what remains is isolated exactly.
   `ker pi >= <eps>` and surjunctivity of `W`. So any Garden of Eden of a strict automaton on `E_S` extends to no
   configuration fixed by a subgroup containing `eps` (this is the filter of
   `injective-automata-restrict-to-schreier-graph-automata` for `H = <eps>`).
+
+## 2. Theorem 2: self-dual sectors are frustrated flux shifts
+
+Let `E` be any group with a central involution `eps`, `W = E/<eps>`, `e -> ebar` the quotient map, and `A = F_2`.
+Call a rule `mu : F_2^M -> F_2` **self-dual** if `mu(a + 1) = mu(a) + 1`, where `1` is the all-ones vector.
+
+- The **sector** is `Tw = { x in F_2^E : x(eps e) = x(e) + 1 }`. Left translation by `eps` is the global flip
+  `x -> x + 1` on `Tw`.
+- `J(x)(e) = x(eps e) + 1` is an involution of `F_2^E` commuting with left translations, and `Fix(J) = Tw`.
+- `Z(E)` is the set of maps `Theta : W x E -> F_2` with `Theta(w, m m') = Theta(w, m) + Theta(w mbar, m')` and
+  `Theta(w, eps) = 1`, with `W` acting on the first argument.
+- For a generating set `Sigma` of `E`, `Z_omega` is the `W`-subshift of `(F_2^Sigma)^W` of labelled 1-cochains `c` on
+  the Cayley graph of `W` whose sum along every word `r` in `Sigma^(+-1)` with `rbar = 1` equals `omega(r)`, where
+  `r = eps^(omega(r))` in `E`. The value of an inverse letter is read on the reversed edge:
+  `c(w, sigma^(-1)) = c(w sigmabar^(-1), sigma)`.
+
+**Theorem 2.** Let `tau` have a self-dual rule `mu` and memory `M`.
+1. **Sector.** `tau J = J tau`, so `tau(Tw) <= Tw`. If `tau` is injective, `tau(F_2^E) cap Tw = tau(Tw)`.
+2. **Gauge coordinates.** `x -> Theta_x(w, m) = x(e) + x(e m)` (any lift `e` of `w`) is a `W`-equivariant
+   homeomorphism `Tw/flip -> Z(E)`. Restriction to `W x Sigma` identifies `Z(E)` with `Z_omega`.
+3. **Induced automaton.** `Theta_(tau x)(w, m) = Theta_x(w, m) + mu((Theta_x(w, m_i))_i) + mu((Theta_x(w mbar, m_i))_i)`,
+   where each `Theta_x(w, m_i)` is the path sum along a fixed word for `m_i`. This is a `W`-automaton `tau_Z` on
+   `Z_omega`. If `tau` is injective then so is `tau_Z`, and `tau(Tw) = Tw` exactly when `tau_Z` is onto.
+4. **Torsor.** `Z_omega` is a `W`-equivariant torsor under the group shift `Z_0` of flat cochains, and
+   `Z_0 = F_2^W/flip`.
+5. **Detecting characters untwist.** Suppose some homomorphism `theta : E -> Z/2` has `theta(eps) = 1`, and `W` is
+   surjunctive. Then every injective self-dual automaton maps `Tw` onto `Tw`. The same holds when `theta` is defined
+   only on the memory group `H = <M>` (with `eps in H`) and `H/<eps>` is surjunctive.
+6. **Clifford covers.** Let `E = E_S` with `X = G/Gamma` transitive and `Sigma = Sigma_G union {c_o}`. Then `omega` is
+   `0` on the relators of `G` and on `[b, c_o]` for `b in Gamma`, it is `q` on `c_o^2`, and it is `b_S(o, g o)` on the
+   plaquette `[c_o, g c_o g^(-1)]`. These determine `omega`. On the complete graph every plaquette with `g o != o`
+   carries flux `1`. Since `eps = [c_o, c_(g o)]` is a commutator, no character detects `eps` on any memory group
+   containing two lamps at distinct sites, so part 5 never applies there.
+
+*Proof.*
+1. `tau(J x)(e) = mu((x(eps e m) + 1)_m) = mu((x(eps e m))_m) + 1 = J(tau x)(e)`. If `tau(x) in Tw`, then
+   `tau(Jx) = J tau(x) = tau(x)`, so `Jx = x`.
+2. `Theta_x` does not depend on the lift, because `x(eps e) + x(eps e m) = x(e) + x(e m)`. The cocycle identity is
+   `x(e) + x(e m m') = (x(e) + x(e m)) + (x(e m) + x(e m m'))`, and `Theta_x(w, eps) = x(e) + x(e eps) = 1`.
+   Conversely, for `Theta` in `Z(E)` put `x(e) = Theta(1, e)`. Then `x(e) + x(e m) = Theta(ebar, m)` by the cocycle
+   identity, and `x(eps e) = Theta(1, eps) + Theta(1, e) = x(e) + 1`. `Theta_x = Theta_(x')` forces `x' - x` to be
+   constant. `Theta_(L_h x) = hbar.Theta_x`. Both maps are local, so this is a homeomorphism of `Tw/flip`.
+   On generators: `Theta(w, sigma^(-1)) = Theta(w sigmabar^(-1), sigma)` from `Theta(w, 1) = 0`. Path sums along two
+   words for one element of `E` agree, because their quotient word equals `1` in `E` and so has holonomy `0`. A word
+   `r` with `rbar = 1` has holonomy `Theta(w, r) = Theta(w, eps^(omega(r))) = omega(r)`. Conversely, a cochain with
+   these holonomies defines `Theta` by path sums, and the identities follow.
+3. Self-duality gives `mu(a) = a_0 + mu(a + a_0 1)`. With `a_i = x(e m_i)` and `a_0 = x(e)`,
+   `tau(x)(e) = x(e) + mu((Theta_x(w, m_i))_i)`. Subtract the same expression at `e m`. Injectivity passes to `tau_Z`
+   because `tau` commutes with the flip. The last sentence is part 1 read through part 2.
+4. `c, c' in Z_omega` have `c + c'` of holonomy `0`, and flat cochains are coboundaries of `W`-configurations defined
+   by path sums.
+5. `theta` lies in `Tw`, and `L_h theta = theta + theta(h)`, so `Theta_theta(w, m) = theta(m)` is `W`-invariant.
+   Every `x in Tw` is `theta + y` with `y in Fix_(eps) = F_2^W`, and
+   `tau(theta + y)(e) = theta(e) + mu((theta(m_i) + y(e m_i))_i)`. So `tau` is conjugate on `Tw` to the `W`-automaton with
+   rule `a -> mu(a + theta(M))` and memory `Mbar`. It is injective, hence onto. For `theta` on `H = <M>`: `tau` reads
+   only cells in one left coset of `H`, so `F_2^E` splits over left cosets of `H` and `tau` acts on each as the
+   `H`-automaton; `H/<eps>` surjunctive gives the conclusion on each coset.
+6. `g c_o g^(-1) = c_(g o)` holds exactly in `E_S`, `c_o^2 = eps^q`, `Gamma` fixes `o`, and
+   `[c_x, c_y] = eps^(b_S(x,y))`. `W = (Z/2) wr_X G` is presented by the relators of `G`, `c_o^2`, `[b, c_o]` and the
+   plaquettes, and `omega` is additive on products of conjugates of relators because `eps` is central. A character
+   kills commutators, so `theta(eps) = theta([c_o, c_(g o)]) = 0`. QED
+
+**Reading.** In the split case `E = W x Z/2`, `omega = 0`, there is a detecting character, and the sector is the full
+shift modulo flip, where surjunctivity of `W` applies. On `E_S` the sector is the same torsor, but its base point is
+not invariant: the twist is exactly the flux `omega`, which no `W`-invariant cochain carries (an invariant cochain
+has holonomy `0` on every plaquette, since each letter occurs twice in each direction).
+
+## 3. Decoder coincidences and screens for lift designs
+
+| design | encoder memory | decoder memory | forced coincidences | fate |
+|---|---|---|---|---|
+| shift lift `R` of the copying rule | `{s}`, `pi(s) = t^(-1)` | `{s^(-1)}` | none | bijective; also `amenable-decoder-memory-forces-surjectivity` (cyclic decoder group) |
+| tree-style sibling decoder `min` over children | `{s}` | `{s k_j}` | needs `e k_j s = e s` for distinct `k_j` | not an automaton over any group (Theorem 1.3) |
+| Schreier copy "odd one out" on `H\E_S` | several letters | several letters | coincidence partition varies with the vertex | bijective if `eps in H` (Theorem 1.4); needs `H cap <eps> = 1` and infinite-codimension lamp part |
+| self-dual sector designs | must generate a group containing `eps` as a product of squares and commutators | nonamenable | holonomy `omega` on the relators the memory spans | only open case; bijective whenever a character of `<M>` detects `eps` (Theorem 2.5) |
+
+**Screens a sector witness on the complete-graph Kun--Thom cover must pass**, collected:
+- memory group containing `eps` in its own finite residual and nonsofic
+  (`strict-automata-memory-keeps-finite-normal-kernel-residual`);
+- `eps` a product of squares and commutators in the memory group (Theorem 2.5), when the image misses part of the
+  sector;
+- a profinitely invisible read adjacency (`clifford-cover-strict-pairs-read-invisible-adjacency`);
+- nonamenable decoder memory; non-formalizable at every stabilization, since `F_2[E_S]` is stably finite;
+- a Garden of Eden taking different values at `e` and `eps e`.
+
+## 4. Where it stops
+
+- **Decided here.** The copying rule does not lift through the twist in any site-level sense; its lifts are shifts,
+  and site data is invisible to the twist. The relation responsible (right cancellation, `eps in ker pi`,
+  surjunctivity of `W`) is independent of the twist.
+- **Isolated.** For self-dual binary rules the twist acts only through the frustrated flux shift `Z_omega`, a torsor
+  under the full shift with no invariant base point. A strict self-dual automaton on `E_S` whose image misses a
+  configuration of the sector exists iff some self-dual automaton is injective on `F_2^(E_S)` while `tau_Z` misses part
+  of `Z_omega`.
+- **Not known.** No mechanism converts frustration into non-surjectivity, and no invariant of `Z_omega` separates it
+  from `Z_0` as a `W`-subshift. Whether `Z_omega` and `Z_0` are conjugate as `W`-subshifts is open; a conjugacy
+  commuting with the induced automata would settle the sector positively.
