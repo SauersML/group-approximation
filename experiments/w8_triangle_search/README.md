@@ -49,6 +49,15 @@ the three incidences of every row, exact cover of every arc, no cube) and writes
 * Order 3: W(2) has no element of order 3 acting freely on both points and lines
   (such an element fixes a syntheme), so there is nothing to test.
 
+## Which symmetries are available at q = 8
+
+`w8model.py` accepts only an element acting freely on points AND lines, since
+the encoding indexes lambda by orbit representatives and shifts.  Random products
+of symplectic transvections (20000 tries per order, 2026-09-11) found free
+elements of orders 65, 13 and 5, the subgroups of the Singer-type torus, and none
+of orders 3, 9, 15, 39, 45, 117 or 195.  So the free-symmetry searches are the
+three torus subgroups: order 65 (9 orbits), 13 (45 orbits), 5 (117 orbits).
+
 ## Jobs
 
 * Job 407503 (2026-09-11, msismall, 16 cpus, 2 h): order 65, 9 orbits.
