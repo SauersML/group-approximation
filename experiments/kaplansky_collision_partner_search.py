@@ -75,6 +75,16 @@ def fixed_support(words, gens, one):
     return keys, inverses
 
 
+def product_key(left, right):
+    """Exact reduced key of left*right with no memoization.
+
+    multiply_keys and key() are lru-cached without bound; at collision depth 2
+    those caches alone exceeded 16 GB, so bulk products bypass them.
+    """
+    from kaplansky_asymmetric_atlas_search import _reduced_key
+    return _reduced_key.__wrapped__(tuple(sorted(multiply(frozenset(left), frozenset(right)))))
+
+
 def universe(roots, steps, depth, side):
     """BFS: left side grows u -> u*s, right side grows u -> s*u."""
     words = dict(roots)
@@ -85,9 +95,9 @@ def universe(roots, steps, depth, side):
         for u_key, u_word in layer:
             for s_key, s_word in steps:
                 if side == "left":
-                    v_key, v_word = multiply_keys(u_key, s_key), u_word + s_word
+                    v_key, v_word = product_key(u_key, s_key), u_word + s_word
                 else:
-                    v_key, v_word = multiply_keys(s_key, u_key), s_word + u_word
+                    v_key, v_word = product_key(s_key, u_key), s_word + u_word
                 if v_key not in words:
                     words[v_key] = v_word
                     successor.append((v_key, v_word))
@@ -103,7 +113,7 @@ def columns(universe_keys, fixed_keys, side):
         support = set()
         for f_key in fixed_keys:
             left, right = (u_key, f_key) if side == "left" else (f_key, u_key)
-            d = digest(key(multiply(frozenset(left), frozenset(right))))
+            d = digest(product_key(left, right))
             support ^= {d}
         out.append(support)
     return out
