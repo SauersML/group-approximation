@@ -301,3 +301,7 @@ GroupApproximation.CharClass.OddPEvalMultilinear
 GroupApproximation.Algebra.GHWFrobeniusSeparable
 GroupApproximation.Kazhdan.CCKWCosetComplexLocallyFinite
 GroupApproximation.Kazhdan.GHBSharpExistence
+GroupApproximation.Kazhdan.CCKWTitsGHB
+GroupApproximation.GGT.VanKampen.SurgeryPinchSplitExtremal
+GroupApproximation.Kazhdan.GHWArchimedeanSeparation
+GroupApproximation.Kazhdan.GHWArchimedeanBound

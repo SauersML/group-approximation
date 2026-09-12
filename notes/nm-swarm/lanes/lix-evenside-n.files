@@ -1,3 +1,4 @@
 GroupApproximation/CharClass/LIXStepDGenRealTorus.lean
 GroupApproximation/CharClass/LIXStepDGenRealTorusModel.lean
 GroupApproximation/CharClass/LIXLemmaTwoGenTwo.lean
+GroupApproximation/CharClass/LIXStepDGenSplit.lean

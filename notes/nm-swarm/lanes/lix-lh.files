@@ -32,3 +32,5 @@ GroupApproximation/CharClass/MayerVietorisSequenceOf.lean
 GroupApproximation/CharClass/MayerVietorisZeroOf.lean
 GroupApproximation/CharClass/ProjectiveSpaceComputationOf.lean
 GroupApproximation/CharClass/ProjectiveSpaceGenHyp.lean
+GroupApproximation/CharClass/ProjectiveSpaceStableOf.lean
+GroupApproximation/CharClass/ChernEulerIsoOf.lean

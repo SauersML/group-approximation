@@ -11,3 +11,6 @@ GroupApproximation/GGT/KazhdanHypSymPowerDisc.lean
 GroupApproximation/GGT/VanKampen/TypedTriangularDiscCounts.lean
 GroupApproximation/Kazhdan/GHBHyperbolicStokesPolygon.lean
 GroupApproximation/Kazhdan/GHBHyperbolicStokesLadder.lean
+GroupApproximation/Kazhdan/GHBHyperbolic.lean
+GroupApproximation/Kazhdan/GHBHyperbolicFilling.lean
+GroupApproximation/Kazhdan/GHBHyperbolicDiscCounts.lean

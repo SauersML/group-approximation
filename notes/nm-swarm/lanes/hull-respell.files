@@ -18,3 +18,4 @@ GroupApproximation/GGT/RelHypOsin24PublishedHullStep.lean
 GroupApproximation/GGT/RelHypProp23FromHullStep.lean
 GroupApproximation/GGT/HullSCBoundedImageEmbeddingLeastArea.lean
 GroupApproximation/GGT/RelHypProp23FromLeastAreaLeaves.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean
