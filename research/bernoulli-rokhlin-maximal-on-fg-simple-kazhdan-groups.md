@@ -3,6 +3,8 @@ rg: 2
 id: bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups
 kind: claim
 title: Uniform Bernoulli shifts over finitely generated simple Kazhdan groups have Rokhlin entropy equal to base entropy
+refuted_by:
+  - leavitt-units-have-zero-rokhlin-entropy-supremum
 distinct_from:
   bernoulli-rokhlin-entropy-maximal-for-every-group: that is the statement for every countable group; this is its restriction to finitely generated infinite simple Kazhdan groups, equivalent to it by the container embedding and subgroup heredity.
   fg-simple-kazhdan-groups-are-surjunctive: that is surjunctivity on the same class, equivalent to Gottschalk's conjecture; this is the measurable entropy statement on the class, which implies it and has no known converse.

@@ -3,6 +3,8 @@ rg: 2
 id: bernoulli-rokhlin-entropy-maximal-for-every-group
 kind: claim
 title: Every uniform Bernoulli shift over every countable group has Rokhlin entropy equal to its base entropy
+refuted_by:
+  - leavitt-units-have-zero-rokhlin-entropy-supremum
 distinct_from:
   gottschalk-surjunctivity-conjecture: that is surjunctivity of every group; this is a measurable entropy statement that implies it through strict-automaton-lowers-bernoulli-rokhlin-entropy, and no converse is known.
   every-group-has-positive-rokhlin-entropy-action: that asks for one positive-entropy free ergodic action per group; this asks for maximal uniform Bernoulli entropy per group. Per group the first is not known to give the second, but over all groups they are equivalent through positive-rokhlin-everywhere-gives-maximal-bernoulli-entropy and maximal-bernoulli-entropy-everywhere-gives-positive-rokhlin.
