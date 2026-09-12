@@ -39,7 +39,8 @@ consequence of those inputs:
 
 ## Main results
 
-* `Gen.tClassOf`, `Gen.xClassOf`, `Gen.zClass`, `Gen.isEven_zClass`, `Gen.zClass_mul_self`.
+* `Gen.tClassOf`, `Gen.xClassOf`, `Gen.zClass`, `Gen.isEven_zClass`, `Gen.zClass_mul_self`,
+  `Gen.evenZClass`.
 * `Gen.RealTorusModP`, `Gen.RealBundleModP`, `Gen.RealBundleModP.toModPStepDData` — **the
   instance**.
 * `Gen.RealBundleModP.gamma_top_eq_zero` — Step D mod `p` at the real mapping torus.
@@ -114,6 +115,11 @@ theorem zClass_mul_self (q₁ : N ⟶ S₁) (qodd : N ⟶ Sodd) (σ₁ : TotalPi
         rw [hcomm, zClass, ← mul_assoc]
     _ = 0 := by rw [tClassOf_mul_self K q₁ σ₁ hS, zero_mul, zero_mul]
 
+/-- `z = t x` at rank `n` (odd sphere of dimension `2n + 1`), as an element of the even part. -/
+def evenZClass (q₁ : N ⟶ S₁) (qodd : N ⟶ Sodd) (σ₁ : TotalPieceOf K S₁ 1) {n : ℕ}
+    (σodd : TotalPieceOf K Sodd (2 * n + 1)) : evenPart K N :=
+  ⟨zClass K q₁ qodd σ₁ σodd, isEven_zClass K q₁ qodd σ₁ σodd ⟨n, rfl⟩⟩
+
 end Classes
 
 /-! ## 2. The torus data -/
@@ -174,10 +180,6 @@ def evenPN (i : ℕ) : evenPart K N →+ evenPart K N := evenRestrictAdd (T.PN i
 /-- The powers on the even part of `Y`. -/
 def evenPY (i : ℕ) : evenPart K Y →+ evenPart K Y := evenRestrictAdd (T.PY i) (T.PY_even i)
 
-/-- `z`, as an element of the even part of `N`. -/
-def evenZ : evenPart K N :=
-  ⟨zClass K q₁ qodd σ₁ σodd, isEven_zClass K q₁ qodd σ₁ σodd ⟨n, rfl⟩⟩
-
 end RealTorusModP
 
 /-! ## 3. The bundle data, and the instance -/
@@ -220,8 +222,8 @@ structure RealBundleModP {n : ℕ} (p : ℕ) {ℓ : ℕ} (dd : Fin ℓ → ℕ) 
   /-- The diagonal Wu relation `P^i(γ_{i+1}) = c_i·γ_{ip+1} + (decomposables)`, in the even
   part of `N`. -/
   wu : ∀ i : ℕ, IsDecomposable (fun k => (⟨γ k, γ_even k⟩ : evenPart K N)) (i * p + 1)
-    (evenRestrictAdd (T.PN i) (T.PN_even i) ⟨γ (i + 1), γ_even (i + 1)⟩
-      - evenMap K pY (c i) * ⟨γ (i * p + 1), γ_even (i * p + 1)⟩)
+    (evenRestrictAdd (T.PN i) (T.PN_even i) (⟨γ (i + 1), γ_even (i + 1)⟩ : evenPart K N)
+      - evenMap K pY (c i) * (⟨γ (i * p + 1), γ_even (i * p + 1)⟩ : evenPart K N))
 
 namespace RealBundleModP
 
@@ -252,7 +254,7 @@ theorem instability_b (k i : ℕ) (h : k < i + (n + 1)) : T.PY i (B.b k) = 0 := 
 /-- **The instance**: the real mod-`p` data is a `Gen.ModPStepDData` over the even parts. -/
 def toModPStepDData : ModPStepDData n p dd (evenPart K Y) (evenPart K N) B.evenγ where
   ι := evenMap K pY
-  z := T.evenZ
+  z := evenZClass K q₁ qodd σ₁ σodd
   z_mul_z := Subtype.ext (zClass_mul_self K q₁ qodd σ₁ σodd ⟨n, rfl⟩ T.circle_two)
   z_inj u v h := Subtype.ext (T.z_inj u v (congrArg Subtype.val h))
   PH := T.evenPN
@@ -277,8 +279,9 @@ def toModPStepDData : ModPStepDData n p dd (evenPart K Y) (evenPart K N) B.even�
 
 /-- **Step D mod `p` at the real mapping torus.**  If `p ∣ n` and `p` divides every `dⱼ`, the
 Chern class of the bundle at the rank `(∑ⱼ dⱼ) + (n + 1)` vanishes in `H^*(N; K)`. -/
-theorem gamma_top_eq_zero (hp : 2 ≤ p) (hn : 1 ≤ n) [ExpChar (evenPart K Y) p] (hpn : p ∣ n)
-    (hd : ∀ j, p ∣ dd j) : γ ((∑ j, dd j) + (n + 1)) = 0 :=
+theorem gamma_top_eq_zero (B : RealBundleModP p dd T γ) (hp : 2 ≤ p) (hn : 1 ≤ n)
+    [ExpChar (evenPart K Y) p] (hpn : p ∣ n) (hd : ∀ j, p ∣ dd j) :
+    γ ((∑ j, dd j) + (n + 1)) = 0 :=
   congrArg Subtype.val (B.toModPStepDData.gamma_top_eq_zero hp hn hpn hd)
 
 end RealBundleModP
@@ -294,14 +297,14 @@ theorem realWu_of_splitting {n : ℕ} {K : Type} [CommRing K] {N Y S₁ Sodd : T
     (T : RealTorusModP n K pY q₁ qodd σ₁ σodd) {p : ℕ} (hp : 2 ≤ p) {γ : ℕ → TotalHOf K N}
     (hγe : ∀ k, TotalHOf.IsEven (γ k)) {σ A : Type*} [CommRing A] [DecidableEq σ]
     (D : PowerData σ A p) (ρ : evenPart K N →+* A) (hρ : Function.Injective ρ)
-    (hγ : ∀ k, ρ ⟨γ k, hγe k⟩ = D.gamma k)
+    (hγ : ∀ k, ρ (⟨γ k, hγe k⟩ : evenPart K N) = D.gamma k)
     (hP : ∀ (i : ℕ) (x : evenPart K N),
       ρ (evenRestrictAdd (T.PN i) (T.PN_even i) x) = D.P i (ρ x))
     (m : ℤ) (hκ : D.κ = (m : A)) (i : ℕ) :
     IsDecomposable (fun k => (⟨γ k, hγe k⟩ : evenPart K N)) (i * p + 1)
-      (evenRestrictAdd (T.PN i) (T.PN_even i) ⟨γ (i + 1), hγe (i + 1)⟩
+      (evenRestrictAdd (T.PN i) (T.PN_even i) (⟨γ (i + 1), hγe (i + 1)⟩ : evenPart K N)
         - evenMap K pY ((m ^ i * wuCoeff p i : ℤ) : evenPart K Y)
-          * ⟨γ (i * p + 1), hγe (i * p + 1)⟩) :=
+          * (⟨γ (i * p + 1), hγe (i * p + 1)⟩ : evenPart K N)) :=
   wu_field_of_splitting hp (evenMap K pY) D ρ hρ (fun k => ⟨γ k, hγe k⟩) hγ
     (fun i => evenRestrictAdd (T.PN i) (T.PN_even i)) hP m hκ i
 
@@ -358,6 +361,7 @@ end Gen
 #audit_axioms Gen.isEven_zClass
 #audit_axioms Gen.tClassOf_mul_self
 #audit_axioms Gen.zClass_mul_self
+#audit_axioms Gen.evenZClass
 #audit_axioms Gen.RealTorusModP.PN_zClass
 #audit_axioms Gen.RealBundleModP.instability_b
 #audit_axioms Gen.RealBundleModP.toModPStepDData
