@@ -1,4 +1,5 @@
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Isometric
+import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
 import Mathlib.Topology.ContinuousMap.Weierstrass
 import Mathlib.Topology.Algebra.Polynomial
 import GroupApproximation.Meta.AxiomGuard

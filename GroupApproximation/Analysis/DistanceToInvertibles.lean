@@ -126,6 +126,7 @@ theorem distGL_mul_of_mem_unitary {u : A} (hu : u ∈ unitary A) (x : A) :
   have h := distGL_mul_le_of_mem_unitary (Unitary.star_mem hu) (u * x)
   rwa [← mul_assoc, (Unitary.mem_iff.mp hu).1, one_mul] at h
 
+variable [PartialOrder A] [StarOrderedRing A] in
 theorem isUnit_add_algebraMap_of_nonneg {c : A} (hc : 0 ≤ c) {η : ℝ} (hη : 0 < η) :
     IsUnit (c + algebraMap ℝ A η) := by
   rw [← spectrum.zero_notMem_iff ℝ, ← spectrum.add_singleton_eq]
@@ -135,6 +136,7 @@ theorem isUnit_add_algebraMap_of_nonneg {c : A} (hc : 0 ≤ c) {η : ℝ} (hη :
   rw [he] at hte
   linarith
 
+variable [PartialOrder A] [StarOrderedRing A] in
 /-- **`c·s ∈ closure GL(A)` for `c ≥ 0` and `s` invertible.** -/
 theorem nonneg_mul_mem_closure_invertibles {c s : A} (hc : 0 ≤ c) (hs : IsUnit s) :
     c * s ∈ closure (invertibles A) := by

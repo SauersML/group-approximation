@@ -1,4 +1,4 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.NNRpow
+import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 import Mathlib.Topology.Algebra.Order.LiminfLimsup
 import GroupApproximation.Meta.AxiomGuard
 
