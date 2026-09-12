@@ -184,7 +184,7 @@ theorem last_ne_zero_of_pos : (Fin.last n : Fin (n + 1)) ≠ 0 := by
 theorem equatorEmb_apply_zero (a : EuclideanSpace ℝ (Fin (2 * n + 1))) :
     Gen.equatorEmb n a 0 = planeC (eqBasis n hn 0) (eqBasis n hn 1) a := by
   rw [zero_eq_castSucc n hn, Gen.equatorEmb_castSucc, planeC, inner_eqBasis, inner_eqBasis]
-    <;> rfl
+  rfl
 
 theorem planeE_eqBasis_apply (w : ℂ) (j : Fin (2 * n + 1)) :
     planeE (eqBasis n hn 0) (eqBasis n hn 1) w j

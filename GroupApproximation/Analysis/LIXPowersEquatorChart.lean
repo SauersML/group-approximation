@@ -59,7 +59,8 @@ theorem equatorEmb_equatorProj (x : Fin (n + 1) → ℂ) :
       = Function.update x (Fin.last n) (((x (Fin.last n)).im : ℂ) * Complex.I) := by
   funext j
   refine Fin.lastCases ?_ ?_ j
-  · rw [Function.update_self, Gen.equatorEmb_last, equatorProj_eqFwd] <;> rfl
+  · rw [Function.update_self, Gen.equatorEmb_last, equatorProj_eqFwd]
+    rfl
   · intro i
     rw [Function.update_of_ne (Fin.castSucc_lt_last i).ne, Gen.equatorEmb_castSucc,
       equatorProj_eqFwd, equatorProj_eqFwd]
