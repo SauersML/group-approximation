@@ -224,7 +224,7 @@ theorem loop_moves (hwp : ∀ L : List (Letter H), val L = 1 → Relation.EqvGen
   have hT := eqvGen_transfer (hwp (L ++ [c]) hval) v g v.1 hv
   have hD1 : v :: D g (L ++ [c]) ++ [vtx H v.1 (g * val (L ++ [c]))] = (v :: D g L) ++ [v, v] := by
     rw [D_append, hc1, hval, mul_one, vtx_eq_of_rep hv]
-    simp only [List.cons_append, List.append_assoc, List.singleton_append]
+    simp only [List.cons_append, List.append_assoc, List.nil_append]
   have hDnil : v :: D g ([] : List (Letter H)) ++ [vtx H v.1 (g * val ([] : List (Letter H)))] =
       [v] ++ [v] := by
     show [v] ++ [vtx H v.1 (g * 1)] = [v] ++ [v]
@@ -234,7 +234,7 @@ theorem loop_moves (hwp : ∀ L : List (Letter H), val L = 1 → Relation.EqvGen
   have m2 : Moves H ((v :: l) ++ v :: v :: []) ((v :: l) ++ v :: []) := Moves.stutter (v :: l) [] v
   have e1 : Relation.EqvGen (Moves H) (v :: l ++ [v]) ((v :: (l ++ [v])) ++ [v, v]) := by
     have hshape : (v :: (l ++ [v])) ++ [v, v] = (v :: l) ++ v :: v :: [v] := by
-      simp only [List.cons_append, List.append_assoc, List.singleton_append]
+      simp only [List.cons_append, List.append_assoc, List.nil_append]
     rw [hshape]
     exact Relation.EqvGen.symm _ _
       (Relation.EqvGen.trans _ _ _ (Relation.EqvGen.rel _ _ m1) (Relation.EqvGen.rel _ _ m2))
