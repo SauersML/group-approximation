@@ -291,6 +291,16 @@ without completeness.
     `EL_4(C_2)`. Every rank model of `R^x = EL_4(R)` pulls back to `EL_4(C_2)`, so this gives a Cohn-level
     form of the binary gate. The direct implication from the V gate to the binary gate (`V <= R^x`, and
     `R^x` is simple) is not new.
+* **Rank three** (w4-cohn-el3; verified in `gk-vf-gate-verification-2026-09-12.md`).
+  * **Established:** `cohn-pair-compression-embeds-el-2n-into-el-n`. A Cohn pair compresses `EL_2n` into
+    `EL_n`, so `EL_3(C_2)` contains every `EL_m(C_2)`, every `EL_m(J)`, and `V`.
+  * **Established:** `cohn-elementary-group-is-not-lef`. `EL_3(C_2)` contains `EL_4(J)`. The finitely
+    presented Steinberg cover of `EL_4(J)` kills the head root in every finite image.
+  * **Route:** `cohn-coefficient-el3-two-root-identity-from-v-gate`. It derives the L8 target from the OPEN
+    V gate, through the embedding of `V`, the rank-radical dichotomy and the rank-four lift.
+  * **Where L8 sits** (lead). The target lies between the V gate and the binary gate: the V gate implies
+    it, and it implies the binary gate by pullback along `EL_3(C_2) -> EL_3(R)`. So the route adds no new
+    decisive input. It shows that the Cohn question is no harder than the V gate.
 
 ### L9. Adjacent plans from w3-strategist-neg (tracked here; not an R4 lane)
 
@@ -371,5 +381,37 @@ statements say. It is not a re-verification.
     characteristic-three counterpart of the L5 firewalls. Anti-central regular ranks give ternary cylinder
     defects of rank `5/9`, and those defects multiply exactly on every sofic subgroup and every locally
     finite HNN datum.
-  * **Unchanged.** The gap, descent and positivity mechanisms still have no characteristic-three
-    counterpart.
+  * **Superseded** (lead, after later landings). This overrides the characteristic-three column of the table
+    above for the gap row. The results come from lane w5-c3-descent and are verified in
+    `gk-vf-gate-verification-2026-09-12.md`.
+    * **Established: `ternary-anti-central-two-root-defect-has-a-uniform-gap`.**
+      * **Setting.** `R = L_(F_3)(1,2)`. Suppose an anti-central Sylvester rank function `N` on `F_3[G]`
+        exists, meaning `N(eps_-) = 1`.
+      * **Gap.** Then `c_3 = min N(D)` over all such `N` is attained, and `0 < c_3 <= 2/3`.
+      * **Uniform bound.** Every Sylvester rank function has `N(D eps_-) >= c_3 N(eps_-)`.
+      * **Prefixes.** Every anti-central `N` has `N(Q_A) = 1/2` and `N(D_A) >= c_3/2` at every nonempty
+        proper prefix `A`.
+    * **Established: `sylvester-rank-functions-compress-along-commuting-elements`.**
+      * **Compression.** Compressing along an element `P` that commutes with a subalgebra gives a Sylvester
+        rank function.
+      * **Shrinking.** A commuting nilpotent with `x^m = 0` shrinks it by the factor `1 - 1/m`.
+      * **What it avoids.** No regularity or faithfulness is used, so it replaces the range-idempotent
+        corners of the characteristic-two descent. It gives the upper bounds of the two-sided descent for
+        abstract rank functions.
+    * **So:**
+      * a characteristic-three defect gap now exists over anti-central Sylvester rank functions;
+      * descent upper bounds no longer need regularity;
+      * **Descent is established in characteristic three.**
+        `ternary-cylinder-defect-products-descend-in-sign-sectors` shows that products of disjoint cylinder
+        defects shrink by two thirds. They also grow by at least the gap times their anti-central sign
+        sector. The node also supplies the positivity item used below.
+      * **Live question, characteristic three.** The OPEN
+        `ternary-anti-central-disjoint-defects-have-a-strict-deficit` asks for `theta < 1` with
+        `N'(D) <= theta N(D)`, where `N'` is the compression of an anti-central `N` along `Q_B D_A`.
+        * It is the characteristic-three analogue of the strict submultiplicativity question in L5.
+        * Its route `ternary-rank-kill-via-anti-central-defect-deficit` targets
+          `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`, the Sylvester form of the
+          ternary gate.
+        * Both characteristics now have the same shape: the gap and descent are established, and the
+          strict deficit is open.
+      * Characteristic-three near-minimal multiplicativity is not yet recorded here.
