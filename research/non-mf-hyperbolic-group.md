@@ -16,8 +16,15 @@ repository's MF program: by `hyperbolic-rf-question-equals-non-mf-question`, a
 non-MF hyperbolic group exists iff a non-residually-finite one does.  So this
 repository's non-MF theorem for finitely presented groups cannot be upgraded
 to word-hyperbolic witnesses without answering Gromov's question negatively.
-Conversely, a proof that every hyperbolic group is MF would **not** settle
-Gromov's question positively: MF does not imply residual finiteness.
+Conversely, a proof that every hyperbolic group is MF **would** settle Gromov's
+question positively.  For one group MF is much weaker than residual
+finiteness, but quantified over all hyperbolic groups the two statements are
+equivalent: if some hyperbolic group were not residually finite, the Kazhdan
+common quotient of `hyperbolic-rf-question-equals-non-mf-question-proof`
+would be a hyperbolic group that is not MF.  The same argument, stopping at
+Ozawa--Thom's weak quasidiagonality hypothesis, shows that "every hyperbolic
+group is weakly quasidiagonal" is also equivalent to universal residual
+finiteness.
 
 ## Attempts
 
