@@ -895,3 +895,30 @@ which contradicts `delta >= c_0'`.
   - A limit point keeps `rk(1 - [g_i]) >= eta`, and has `rk(iota_P(D)) = 0`.
   - Proposition 1.1 then contradicts it.
 - **Remark 4.2 (convex combinations).** They force `c^Syl(eta) -> 0`. Correct.
+
+## 19. Family SUB: w4-sub-halving, second node
+
+### 19.1 `disjoint-root-halves-row-plus-column-rank-at-most-three-rho`: PASS
+
+1. **Lemma 4.1: subproducts.**
+   - With all `2k` cylinders disjoint, every cross term `S[C_i]T[C'_i] S[C_j]T[C'_j]` vanishes, so the
+     product is `1 + sum S[C_i]T[C'_i]`.
+   - Put `C_i -> D w_i` and `C'_i -> D' w_i` for a complete code `(w_i)`, and send the complement to
+     the complement.
+   - The conjugate is `1 + S[D](sum s_(w_i) t_(w_i))T[D'] = 1 + S[D]T[D']`, so the displacement is `rho`.
+2. **Kernels of sums.** `(1+a)(1+b) - 1 = a + b + ab = (1+a)(a+b)`, so `rk(a+b) = rho`.
+3. **Theorem 4.3: row plus column rank.** Put `K = r.ann(a+b)`, of rank `1 - rho`.
+   - For `x` in `K`, `ax = bx` in characteristic two, so `ax` lies in `aM ∩ bM`.
+   - The kernel of `x |-> ax` on `K` is `r.ann(a) ∩ r.ann(b) = r.ann(Ma + Mb)`, of rank
+     `1 - rk(Ma+Mb)`.
+   - The image rank is at most `2 rho - rk(aM + bM)`, by modularity.
+   - Rank additivity gives `rk(aM+bM) + rk(Ma+Mb) <= 3 rho`.
+4. **Corollary 4.4: independent halves.** The two lower bounds give `4rho - 2rho^2 - 2eta <= 3rho`,
+   so `rho(1 - 2rho) <= 2 eta`.
+5. **Proposition 4.5: near-minimal displacement.**
+   - **Faithfulness.** The argument of Section 13.1 carries over with displacement in place of defect.
+   - **Row sum.** `K = r.ann(b)` is invariant under the cylinder group of `a`, which is disjoint from
+     `b`'s support. So `rk(aK) = rk(Ma + Mb) - rho` and `rk(aK) >= rho_*(1 - rho)`. That gives
+     `rk(Ma+Mb) >= 2rho - rho^2 - eps rho`.
+   - **Column overlap.** Item 3 then gives `rk(aM ∩ bM) >= rho - rho^2 - eps rho`.
+   - **Product.** Faithfulness at `Z = b` gives `rk(ab) <= rho^2 + eps rho`.

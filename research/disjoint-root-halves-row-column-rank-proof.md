@@ -29,3 +29,5 @@ Artifact Section 4.
      `rho_*`.
    * **Overlap.** With `K = r.ann(b)` invariant under the cylinder group of `a`, `rk(aK) >= rho_*(1 - rho)`,
      so `rk(Ma + Mb) >= 2rho - rho^2 - eps rho`. Item 3 then gives the range overlap.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 19.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
