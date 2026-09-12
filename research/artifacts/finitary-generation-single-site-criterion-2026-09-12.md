@@ -91,3 +91,63 @@ which is `< (k+1) log q` once `k > (log 2)/(rho c)`. QED
   recovers `x`. Its entropy is `< log |A^(k+1)|`. This is a Bernoulli Rokhlin-entropy deficit carried by a
   finite-radius generator with explicit constants. `strict-automaton-lowers-bernoulli-rokhlin-entropy`
   reaches a deficit through measurable markers instead.
+
+## 3. The single-site criterion and the finite-radius invariant
+
+**Theorem 2.** For a fixed group `G` the following are equivalent:
+
+1. `G` is surjunctive over every finite alphabet;
+2. every injective automaton on every full shift over `G` has a uniform single-site output law.
+
+*Proof.* (1) ⇒ (2): an injective automaton is bijective, and bijective automata preserve the uniform
+product measure (`bijective-ca-preserve-uniform-bernoulli-measure`), so its site law is uniform.
+(2) ⇒ (1): a strict automaton on `A^G` would give, by Theorem 1, an injective automaton on
+`(A^(k+1))^G` with non-uniform site law. QED
+
+In Cairn, `every-injective-ca-has-uniform-single-site-output-law` carries (2) for all groups. Its routes
+`uniform-single-site-output-law-from-gottschalk` and `gottschalk-via-uniform-single-site-output-law`
+form an intended cycle with the goal.
+
+**Definition.** For a finite alphabet `A`, put
+
+    h_fin(G, A) = inf { H(law of kappa(x)(e)) : kappa : A^G -> B^G injective automaton, B finite }.
+
+**Proposition 3.**
+
+- (a) `h^Rok_G(A^G, mu_A) <= h_fin(G, A) <= log |A|`.
+- (b) If `G` carries a strict automaton on `A^G`, then `h_fin(G, A^(k+1)) < log |A^(k+1)|` for all
+  large `k`.
+- (c) Put FIN(G): `h_fin(G, A) = log |A|` for every `A`. Then maximal Bernoulli Rokhlin entropy for `G`
+  implies FIN(G), and FIN(G) implies that `G` is surjunctive.
+
+*Proof.*
+
+- (a) The partition by `kappa(x)(e)` generates, because its names give `kappa(x)` and a left-inverse
+  automaton gives `x`. So its entropy is at least the Rokhlin entropy. The identity automaton gives the
+  upper bound.
+- (b) This is Theorem 1.
+- (c) The first implication is (a). For the second, taking `B = A`, entropy `log |A|` forces the uniform
+  law, and Theorem 2 finishes. QED
+
+In Cairn the invariant is `injective-ca-images-have-full-single-site-entropy`. Its routes are
+`full-site-entropy-from-bernoulli-rokhlin-maximality` and `uniform-site-law-from-full-site-entropy`.
+
+**Scope.** `h_fin` depends on how the action is coded by automata, so it is not a measure-conjugacy
+invariant. That is why `rokhlin-entropy-is-the-largest-partition-bounded-invariant` does not bound it.
+Still, FIN implies the goal, so a lower bound for `h_fin` is at least as hard as Gottschalk's conjecture.
+
+## 4. Where it stops
+
+- **Counting.** Let `E` be the memory of a left inverse of `kappa`. Then `x|_F` is a function of
+  `kappa(x)|_(F E)`. So `|F| log |A| <= |F E| H(kappa(x)(e))`, and counting certifies only
+  `h_fin >= log |A| sup_F |F|/|F E|`. That equals `log |A|` exactly for amenable groups.
+- **Sofic groups.** They satisfy FIN, because sofic entropy of the Bernoulli shift is `log |A|` and bounds
+  every generating partition from below.
+- **Free groups.** They also follow from Bowen's f-invariant
+  (`free-group-injective-ca-preserve-bernoulli-via-f-invariant`).
+- **Nonsofic hosts.** A proof of FIN on a simple Kazhdan host has to bound one site entropy without finite
+  models. What it may use, and a Rokhlin bound cannot see, is the finite radius of `kappa` and the
+  finite memory `E` of its left inverse. No mechanism using them is known. This lane found none.
+- **Neighbouring lanes.** A window-balance argument needs only the one-site law, by Theorem 2 (lane
+  `w3-bern-window`). Measurable alphabet compressions are generating partitions with fewer atoms, and
+  FIN is their finite-radius counterpart (lane `w3-measurable`).
