@@ -73,7 +73,8 @@ theorem herm_injective : Function.Injective herm := fun v w h => by
 
 theorem isHermitian_herm (v : Fin 4 → ℝ) : (herm v).IsHermitian := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [herm, Matrix.conjTranspose_apply] <;> ring
+  fin_cases i <;> fin_cases j <;> simp [herm, Matrix.conjTranspose_apply]
+  ring
 
 /-- A Hermitian matrix is the matrix of its coordinates. -/
 theorem herm_coords_of_isHermitian {M : Matrix (Fin 2) (Fin 2) ℂ} (hM : M.IsHermitian) :
@@ -122,9 +123,17 @@ theorem lorentzB_eq_polar (v w : Fin 4 → ℝ) :
   simp only [lorentzQ, Pi.add_apply]
   ring
 
-theorem det_gram : gram.det = -1 / 4 := by
-  simp [gram, Matrix.det_succ_row_zero, Fin.sum_univ_succ]
-  norm_num
+/-- The inverse of the Gram matrix. -/
+def gramInv : Matrix (Fin 4) (Fin 4) ℝ :=
+  !![0, 2, 0, 0; 2, 0, 0, 0; 0, 0, -1, 0; 0, 0, 0, -1]
+
+theorem gram_mul_gramInv : gram * gramInv = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [gram, gramInv, Matrix.mul_apply, Fin.sum_univ_succ, Matrix.one_apply]
+
+theorem det_gram_ne_zero : gram.det ≠ 0 :=
+  Matrix.det_ne_zero_of_right_inverse gram_mul_gramInv
 
 /-! ## The action of `GL_2(ℂ)` -/
 
@@ -133,7 +142,7 @@ def conjMat (g : Matrix (Fin 2) (Fin 2) ℂ) :
     Matrix (Fin 2) (Fin 2) ℂ →ₗ[ℝ] Matrix (Fin 2) (Fin 2) ℂ where
   toFun M := g * M * gᴴ
   map_add' M N := by rw [Matrix.mul_add, Matrix.add_mul]
-  map_smul' c M := by simp [Matrix.mul_smul, Matrix.smul_mul]
+  map_smul' c M := by simp
 
 /-- **The action of `g ∈ GL_2(ℂ)` on Minkowski space**:
 `herm (conjAct g v) = |det g|⁻¹ · g (herm v) g*`. -/
@@ -221,18 +230,21 @@ theorem gram_conjAct (g : GL (Fin 2) ℂ) :
       Matrix.dotProduct_mulVec, Matrix.vecMul_transpose]
   ext i j
   have h := hB (Pi.single i 1) (Pi.single j 1)
-  simpa [Matrix.mulVec_single_one, Matrix.single_dotProduct] using h
+  simpa [Matrix.mulVec_single_one] using h
 
 /-- **`det² = 1` for every `conjAct g`.** -/
 theorem det_conjAct_sq (g : GL (Fin 2) ℂ) : LinearMap.det (conjAct g) ^ 2 = 1 := by
   have h := congrArg Matrix.det (gram_conjAct g)
-  rw [Matrix.det_mul, Matrix.det_mul, Matrix.det_transpose, LinearMap.det_toMatrix',
-    det_gram] at h
-  linear_combination (-4 : ℝ) * h
+  rw [Matrix.det_mul, Matrix.det_mul, Matrix.det_transpose, LinearMap.det_toMatrix'] at h
+  have h2 : (LinearMap.det (conjAct g) ^ 2 - 1) * gram.det = 0 := by linear_combination h
+  rcases mul_eq_zero.mp h2 with h3 | h3
+  · linear_combination h3
+  · exact absurd h3 det_gram_ne_zero
 
 theorem abs_det_conjAct (g : GL (Fin 2) ℂ) : |LinearMap.det (conjAct g)| = 1 := by
   have h := det_conjAct_sq g
-  rcases mul_self_eq_one_iff.mp (by rw [← sq]; exact h) with h1 | h1
+  have hm : LinearMap.det (conjAct g) * LinearMap.det (conjAct g) = 1 := by rw [← sq]; exact h
+  rcases mul_self_eq_one_iff.mp hm with h1 | h1
   · rw [h1, abs_one]
   · rw [h1, abs_neg, abs_one]
 
@@ -273,13 +285,15 @@ theorem conjAct_origin_of_mem_unitary {g : GL (Fin 2) ℂ}
   apply herm_injective
   have hgg : (g : Matrix (Fin 2) (Fin 2) ℂ) * (g : Matrix (Fin 2) (Fin 2) ℂ)ᴴ = 1 := by
     rw [← Matrix.star_eq_conjTranspose]
-    exact unitary.mul_star_self_of_mem hg
+    exact Unitary.mul_star_self_of_mem hg
   have hdet : ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ = 1 := by
     have h := congrArg Matrix.det hgg
     rw [Matrix.det_mul, Matrix.det_conjTranspose, Matrix.det_one, Complex.star_def,
       Complex.mul_conj, Complex.normSq_eq_norm_sq] at h
     have h2 : ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ ^ 2 = 1 := by exact_mod_cast h
-    rcases mul_self_eq_one_iff.mp (by rw [← sq]; exact h2) with h1 | h1
+    have hm : ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ * ‖((g : Matrix (Fin 2) (Fin 2) ℂ)).det‖ = 1 := by
+      rw [← sq]; exact h2
+    rcases mul_self_eq_one_iff.mp hm with h1 | h1
     · exact h1
     · exact absurd h1 (by linarith [norm_nonneg ((g : Matrix (Fin 2) (Fin 2) ℂ)).det])
   rw [herm_conjAct, herm_origin, Matrix.mul_one, hgg, hdet, inv_one, one_smul]
