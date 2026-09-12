@@ -12,6 +12,8 @@ artifacts:
   - GroupApproximation/KunThom/CountingEndgameWeights.lean
   - GroupApproximation/KunThom/CountingEndgameRestrict.lean
   - GroupApproximation/KunThom/CountingEndgameSelection.lean
+  - GroupApproximation/KunThom/CountingEndgameRelative.lean
+  - GroupApproximation/KunThom/CountingEndgameBundle.lean
 ---
 
 **ESTABLISHED in Lean.** This is the finite step of the counting in Kun and
@@ -51,7 +53,12 @@ Supporting finite facts, all in namespace `GroupApproximation.CountingEndgame`:
   objects, and with ambient orbits and isotropy groups the one-sided
   inequalities (2) and (3) (`mul_card_orbit_le_card_orbit_map_of_clean`,
   `card_vertexGroup_le_card_vertexGroup_map`) and the two count hypotheses
-  (`card_orbit_lt_add_of_clean`, `card_vertexGroup_lt_two_mul_of_ratio`).
+  (`card_orbit_lt_add_of_clean`, `card_vertexGroup_lt_two_mul_of_ratio`);
+- the lift for any faithful functor between restricted presentations
+  (`exists_bisection_lift_restrict`), and for the bundled relative cluster
+  functor of Lemma 4.3 (`GroupoidPresentation.RelativeClusterFunctor.exists_bisection_lift`),
+  whose functor is injective on objects because every retained object is some
+  `π i` and goes to `i`.
 
 **What this does not give.** The asymptotic assembly of the counting is not
 proved here. That is the choice of the cleanliness scale `ζ_n`, the conull set

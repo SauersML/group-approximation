@@ -11,11 +11,14 @@ artifacts:
   - GroupApproximation/KunThom/CountingEndgameWeights.lean
   - GroupApproximation/KunThom/CountingEndgameRestrict.lean
   - GroupApproximation/KunThom/CountingEndgameSelection.lean
+  - GroupApproximation/KunThom/CountingEndgameRelative.lean
+  - GroupApproximation/KunThom/CountingEndgameBundle.lean
 ---
 
 A derivation in Lean. The modules are imported by `GroupApproximation.lean` and
 built green by the Bowen–Chapman probe (tags 0912-125654-51047,
-0912-131259-52910, 0912-132636-54185, 0912-133947-28849 and 0912-134823-79280). An axiom driver (tag 0912-134623-69207) prints the closures of the
+0912-131259-52910, 0912-132636-54185, 0912-133947-28849, 0912-134823-79280,
+0912-135954-51313 and 0912-140518-86497). An axiom driver (tag 0912-134623-69207) prints the closures of the
 seventeen main declarations; every one uses only `propext`, `Classical.choice`
 and `Quot.sound`.
 
