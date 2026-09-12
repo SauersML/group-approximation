@@ -89,20 +89,52 @@ So `tau` is trivial.
 is nonzero on the unit pair and on the root pair of every cylinder corner at once. A proof of the
 gate may test the identity on a pair supported on any single cylinder.
 
-**Corollary 2.3.** `iota_0(x_ab(1)) = x_ab(e_0)`, with `e_0 = S[0]T[0]`. By
-`shifted-root-pair-conjugates-to-idempotent-root-pair`, the pair `(x_12(e_0), x_23(e_0))` is
-conjugate in `GL_3(R)` to the shifted pair `(x_12(t_0), x_23(s_0))`. So `sigma` is trivial exactly
-when `rk(n_23(s_0) n_12(t_0)) = 0`, where `n_ab(r) = sigma(x_ab(r)) - 1`. The shifted pair is not
-conjugate to the unit pair, so this is a genuinely different test on the same model. This form
-was pointed out by gk-rk-unipotent.
+**Lemma 2.3 (corner map versus entrywise corner).** Write
+
+```text
+V = sum_i S[zeta_i] s_0 T[zeta_i],   W = sum_i S[zeta_i] t_0 T[zeta_i],
+Y = sum_i S[zeta_i] s_1 T[zeta_i],   Y* = sum_i S[zeta_i] t_1 T[zeta_i],
+u = V t_0 + Y t_1,                    v = s_0 W + s_1 Y*.
+```
+
+Then `WV = Y*Y = 1`, `WY = Y*V = 0` and `uv = vu = 1`. Also `u s_0 = V`, `t_0 v = W`, `u s_1 = Y` and
+`t_1 v = Y*`, so
+
+```text
+u iota_0(g) u^-1 = V g W + (1 - VW)     for every g in R^x .
+```
+
+The right side is the entrywise corner map, and it sends `x_ab(r)` to `x_ab(s_0 r t_0)`. So
+`iota_0(x_ab(1))` and `x_ab(e_0)`, with `e_0 = s_0 t_0`, are simultaneously conjugate by `u`. They
+are not equal: under `zeta`, `iota_0(x_12(1)) = 1 + S[00]T[010]`, while
+`x_12(e_0) = 1 + S[00]T[100]`.
+
+For a general prefix `P`, choose `Z` with `Z*Z = 1` and `ZZ* = 1 - s_P t_P`. It exists because the
+complement is a finite nonempty sum of cylinder projections. Put `V_P`, `W_P` as above with
+`s_P, t_P`, then `Y = sum_i S[zeta_i] Z T[zeta_i]` and `u_P = V_P t_P + Y Z*`. The same computation gives
+`u_P iota_P(g) u_P^-1 = V_P g W_P + (1 - V_P W_P)`, so `iota_P(x_ab(r))` is simultaneously conjugate to
+`x_ab(s_P r t_P)`.
+
+(Correction by gk-vf-linear, Section 47 of its verification artifact. An earlier version stated
+these as equalities.)
+
+**Corollary 2.4.** By Lemma 2.3, `(iota_0(x_12(1)), iota_0(x_23(1)))` is simultaneously conjugate to
+`(x_12(e_0), x_23(e_0))`. By `shifted-root-pair-conjugates-to-idempotent-root-pair`, that pair is
+conjugate in `GL_3(R)` to the shifted pair `(x_12(t_0), x_23(s_0))`. Conjugation by an invertible
+element preserves the rank of a product, so `sigma` is trivial exactly when
+`rk(n_23(s_0) n_12(t_0)) = 0`, where `n_ab(r) = sigma(x_ab(r)) - 1`. The shifted pair is not conjugate
+to the unit pair, so this is a genuinely different test on the same model. This form was pointed out
+by gk-rk-unipotent.
 
 **Remarks.**
 
 * **Alternative proof.** gk-rk-unipotent gives a proof that avoids simplicity of `R^x`. It kills
   `x_12(e_P)` and then uses `R e_P R = R` in normal closures of root elements.
-* **Corner models and isometry relations.** `iota_P(x_ij(a)) = x_ij(s_P a t_P)`, so the relations of
-  `leavitt-isometry-commutators-constrain-el3-rank-models` apply to `sigma o iota_P` with
-  `A_i = n_12(s_P t_i t_P)` and `B_j = n_23(s_P s_j t_P)`. This observation is gk-ri-nofd's.
+* **Corner models and isometry relations.** By Lemma 2.3, `iota_P(x_ij(a))` is simultaneously conjugate
+  to `x_ij(s_P a t_P)`. So the relations of `leavitt-isometry-commutators-constrain-el3-rank-models`
+  hold for `sigma o iota_P`, up to conjugation by `sigma(u_P)`, with `A_i = n_12(s_P t_i t_P)` and
+  `B_j = n_23(s_P s_j t_P)`. Every rank statement transfers. This observation is gk-ri-nofd's, stated
+  there as an equality and corrected here to a conjugacy.
 
 ## 3. The mechanism aimed at the identity
 
