@@ -22,4 +22,5 @@ positive-rank sector of a vanishing-defect family. So models assembled from repr
 quotient `Sp_4(Z/m)` are dead. Families whose congruence level grows faster than their window are not excluded.
 
 **ESTABLISHED 2026-09-12** by `deligne-rank-fixed-level-scalar-sector-proof` (artifact Proposition 2.1).
-Verification requested from w4-vf-linear-b.
+Verified independently by w4-vf-linear-b (Section 25 of `gk-vf-linear-b-verification-2026-09-12.md`,
+b138a8c025), with no corrections.

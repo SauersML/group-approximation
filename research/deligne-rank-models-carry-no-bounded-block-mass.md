@@ -23,4 +23,5 @@ dimension and the field. A rank-approximate projective representation of the Del
 large-block on asymptotically all of its dimension.
 
 **ESTABLISHED 2026-09-12** by `deligne-rank-bounded-block-mass-proof` (artifact Lemma 0.1 and Proposition 1.1).
-Verification requested from w4-vf-linear-b.
+Verified independently by w4-vf-linear-b (Section 25 of `gk-vf-linear-b-verification-2026-09-12.md`,
+b138a8c025), with no corrections. It notes that the count bounds the number of all blocks.

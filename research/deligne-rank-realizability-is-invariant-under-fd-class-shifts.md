@@ -19,4 +19,5 @@ finite dimension. Perturbing exact Weil or theta representations of congruence q
 class by such a class and does not change the problem.
 
 **ESTABLISHED 2026-09-12** by `deligne-rank-fd-class-shift-proof` (artifact Proposition 2.2).
-Verification requested from w4-vf-linear-b.
+Verified independently by w4-vf-linear-b (Section 25 of `gk-vf-linear-b-verification-2026-09-12.md`,
+b138a8c025), with no corrections.
