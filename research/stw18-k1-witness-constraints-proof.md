@@ -4,7 +4,7 @@ id: stw18-k1-witness-constraints-proof
 kind: route
 title: Assemble the nonstable K-theory and tracial obstructions for a K1-witness
 target: stw18-k1-witness-constraints
-requires: [stable-rank-one-unital-algebras-are-k1-bijective, strict-comparison-rank-surjectivity-forces-sr1, simple-ah-strict-comparison-is-k1-injective, z-stable-unital-algebras-are-k1-bijective, stw18-finite-trace-boundary-toms-winter, lin-condition-c-boundary-strict-comparison-z-stable, stw58-simple-pure-k1-bijective, urp-crossed-products-satisfy-toms-winter]
+requires: [stable-rank-one-unital-algebras-are-k1-bijective, strict-comparison-rank-surjectivity-forces-sr1, simple-ah-strict-comparison-is-k1-injective, z-stable-unital-algebras-are-k1-bijective, stw18-finite-trace-boundary-toms-winter, lin-condition-c-boundary-strict-comparison-z-stable, stw58-simple-pure-k1-bijective, urp-crossed-products-satisfy-toms-winter, unital-limits-of-k1-injective-algebras-are-k1-injective]
 artifacts:
   - research/artifacts/stw18-k1-route-constraint-map-2026-09-11.md
 ---
@@ -42,4 +42,6 @@ target claim.
 8. For a free minimal action with the uniform Rokhlin property, strict
    comparison of `C(X) ⋊ Gamma` gives Z-stability
    (`urp-crossed-products-satisfy-toms-winter`), which contradicts item 5.
+9. If infinitely many stages were K1-injective, the limit would be
+   K1-injective (`unital-limits-of-k1-injective-algebras-are-k1-injective`).
    Square.
