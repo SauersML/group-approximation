@@ -235,7 +235,18 @@ verdicts.**
   the sequential Prop only touches the consumer.
 
 **(c) Landed: `Palomar/BowenChapmanChallenge.lean`, 6ae077316. Content: no
-defect. Evidence: flagged.**
+defect. Evidence: flagged, then closed by `bc-palomar` at 1ad7aa663, verified.**
+1ad7aa663 lands the solution, the configuration, the three drivers and the
+`PalomarBowenChapmanSolution` library. Its message records a private MSI build
+with Lean 4.32.0 and the md5 checked in the same invocation, exit 0 for the
+challenge (only the hole warnings), for the solution under
+`-DwarningAsError=true`, and for the development closure (`Sofic/Asymptotics`,
+`Sofic/Sofic`, `Dynamics/Surjunctivity`) compiled from main's blobs. All eight
+quoted md5s equal the blobs of that commit. The solution library is not a
+default target. The solution still has only the `_of` forms while the
+configuration names the unsuffixed theorems, so the configuration is correctly
+pending and no gate or workflow mentions it yet. The earlier notes on 6ae077316
+were:
 * Imports are Mathlib only. The header quotes Problem 1.1 verbatim, states the
   finitely generated setting, claims nothing beyond the two compared theorems,
   and discloses the palette universe and the Hamming form of soficity.
@@ -294,12 +305,43 @@ root-wired. No defect.**
   never from the 30 August shared oleans for modules changed since;
 * success lines and md5s quoted in the commit message.
 
-**Still to review as they land:** `bc-pair`, `bc-kazhdan`, `bc-rf`,
-`bc-dynamics-upper` (`FinitarySite`, `FinitarySurjunctivity`,
-`WreathFinitarySite`, `StratifiedPeeling`, `CosetRegion`, `FinitaryTransplant`),
-`bc-double-surj`, `bc-wreath`, `kt-norm-paper`, `kt-norm-repo`,
-`kt-norm-fixedpoint`, `kt-norm-counting`, `bc-assembly`, and the `bc-palomar`
-solution.
+**Mandatory guards for every plumbing push** (coordinator, after F5):
+* the exit status of `read-tree` is checked;
+* the private index holds as many entries as the base tree;
+* `git diff --no-renames --diff-filter=D BASE NEW` is empty unless a deletion is
+  intended.
+
+**Still to review as they land:** `bc-dynamics-upper` batch 2, the first
+`bcprobe` landings, `bc-pair`, `bc-kazhdan`, `bc-rf`, `bc-double-surj`,
+`bc-wreath`, `kt-norm-paper`, `kt-norm-repo`, `kt-norm-fixedpoint`,
+`kt-norm-counting`, `bc-assembly`, and the unsuffixed `bc-palomar` solution.
+
+## F5. Main was emptied and restored
+
+**Status: restored, audited, no content lost.**
+
+* **The event.** Commit becc912bd (11:10:52) deleted 27,762 files and 3,829,822
+  lines, leaving only `research/`. `git diff --shortstat ce16f64eb becc912bd`
+  shows this, and the GitHub tree API showed the live tip 1e52c3688 holding
+  only `notes/` and `research/`. Five more commits landed on the emptied base
+  before the restore. The coordinator traced the cause to a shared landing
+  script whose private index was built by a `read-tree` that failed while the
+  Mac disk was full (418 MiB free); that script is now gated. No campaign lane
+  pushed on the emptied base.
+* **The restore.** Commit 3f71a3a50 has parent bff8f642a and 0 deletions. The
+  GitHub compare `ce16f64eb...3f71a3a50` lists 23 files and no removals, exactly
+  the paths added or edited after the collapse. The coordinator measured 0
+  missing ce16f64eb paths and equal root imports (4530) at b7fe2241a.
+* **Edits against ce16f64eb.** Six paths show deletions against ce16f64eb,
+  each small and each reading as the owner's edit rather than a stale copy:
+  `OddPDiagonalSrc.lean.txt`, `LIXStepDGenReal.lean.txt`, `tpmc.c`,
+  `defect-window-automata-2026-09-12.md`,
+  `nested-rigid-defects-force-nonsurjunctivity.md` and
+  `wip/bowen-chapman/.../FixedPointNormalizationPatching.lean`. Only the last
+  belongs to this campaign.
+* **Campaign landings.** Every campaign landing before ce16f64eb survives with
+  its blob: 031156388, 1ad7aa663, 3d4569114, dfa8d5e7b, 2d5427380 and this
+  review file.
 
 An informal pass of the permanence chain by another team is not a Lean
 verification; the Lean is reviewed here independently.
