@@ -100,7 +100,7 @@ theorem cycles_ne_nil : R.cycles.xs ++ R.cycles.ys ≠ [] :=
 /-! ## The deleted map, its faces and traversals -/
 
 /-- The map with the shared edge deleted. -/
-abbrev map : CombMap.{v} := EdgeDeletion.toCombMap Delta.toCombMap R.dart
+noncomputable abbrev map : CombMap.{v} := EdgeDeletion.toCombMap Delta.toCombMap R.dart
 
 /-- The merged face of the deleted map. -/
 noncomputable def mergedFace : R.map.Face := R.cycles.mergedFace R.cycles_ne_nil
