@@ -223,7 +223,7 @@ theorem equivAtInfinity_of_near_neg {δ C K : ℝ} (hδ : IsHyperbolicSpace δ X
     rw [PNaive.dist_inv_smul hiso]
     exact hgap
   have hflip : ∀ p : ℤ, h ^ p = h⁻¹ ^ (-p) := fun p => by rw [inv_zpow', neg_neg]
-  refine equivAtInfinity_of_near_pos hδ hδ0 hiso hloc' hC hgap' hconv hconv'
+  refine equivAtInfinity_of_near_pos (K := K) hδ hδ0 hiso hloc' hC hgap' hconv hconv'
     (m := fun i => -m i) (m' := fun i => -m' i) (fun i => ?_) (fun i => ?_)
     (N := N) (N' := N') (fun i hi => ?_) (fun i hi => ?_)
   · show dist ((h⁻¹ ^ (-m i)) • w) (x i) ≤ K
