@@ -56,13 +56,16 @@ noncomputable def relatorFaces (Delta : DiscDiagram.{u, w, v} W) :
 
 theorem mem_relatorFaces {Delta : DiscDiagram.{u, w, v} W} {f : Delta.toCombMap.Face} :
     f ∈ Delta.relatorFaces ↔ ∃ C ∈ Delta.relatorCells, C.face = f := by
-  rw [relatorFaces, List.mem_toFinset, List.mem_map]
+  classical
+  simp only [relatorFaces, List.mem_toFinset, List.mem_map]
 
 /-- A disc diagram has exactly `rCellCount` relator faces. -/
 theorem relatorFaces_card (Delta : DiscDiagram.{u, w, v} W) :
     Delta.relatorFaces.card = Delta.rCellCount := by
-  show ((Delta.relatorCells.map RelatorCell.face).toFinset).card = Delta.relatorCells.length
-  rw [List.toFinset_card_of_nodup Delta.relatorCell_faces_nodup, List.length_map]
+  classical
+  simp only [relatorFaces, List.toFinset_card_of_nodup Delta.relatorCell_faces_nodup,
+    List.length_map]
+  rfl
 
 /-- A relator face reads a relator. -/
 theorem isSignedConjugate_faceWord_of_cell (Delta : DiscDiagram.{u, w, v} W)
@@ -130,9 +133,7 @@ theorem leastArea_listVal_word_ne_one {Delta : DiscDiagram.{u, w, v} W}
   have hle := hlea hrp
   have hcount : Delta.rCellCount = (s ++ t).length + 1 := by
     show Delta.relatorCells.length = _
-    rw [hst]
-    simp only [List.length_append, List.length_cons]
-    omega
+    rw [hst, List.length_append, List.length_append, List.length_cons, Nat.add_assoc]
   omega
 
 end DiscDiagram
@@ -174,8 +175,7 @@ theorem CyclicArc.rotated_rotate_pred {Dart : Type v} {cycle : List Dart}
     rw [List.length_dropLast, arc.darts_length]
   rw [← hlen]
   conv_lhs => rw [hsplit]
-  rw [List.rotate_append_length_eq]
-  simp only [List.cons_append]
+  rw [List.rotate_append_length_eq, List.cons_append]
 
 /-- **The face cycle of a cell starting at the last dart of an arc** reads the rest of
 the cell after the arc, then the arc without its last dart. -/
@@ -188,7 +188,7 @@ theorem CyclicArc.eq_rotated_rotate_pred {M : CombMap.{v}} {f : M.Face}
     exact B.isFaceCycle.rotate _
   have hh : (arc.rotated.rotate (arc.length - 1)).head hcyc.ne_nil = arc.darts.getLast h :=
     Option.some.inj ((List.head?_eq_some_head hcyc.ne_nil).symm.trans
-      (by rw [arc.rotated_rotate_pred h]; rfl))
+      (congrArg List.head? (arc.rotated_rotate_pred h)))
   rw [← arc.rotated_rotate_pred h]
   exact hl.eq_of_head_eq hcyc (hhead.trans hh.symm)
 
