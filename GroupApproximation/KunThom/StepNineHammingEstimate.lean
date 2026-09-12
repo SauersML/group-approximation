@@ -1,4 +1,5 @@
-import GroupApproximation.KunThom.StepNineHammingDefects
+import GroupApproximation.KunThom.StepNineHammingReference
+import GroupApproximation.KunThom.RelativeFunctorEstimate
 import GroupApproximation.KunThom.FixedPointNormalizationSummation
 
 /-!
@@ -11,26 +12,25 @@ Theorem 4.1 with
 
 Here `â_n` patches a bisection representing the almost centralizing sequence,
 `b̂_n` patches the bisection built from the relative functor, and `u_n`
-represents a compressor.  The candidate thresholds of the cluster groupoid only
-say that two arrows in one cluster disagree on a bounded fraction of a block,
-which does not sum to `o(|Y_n|)`.  The estimate here separates again, block by
+represents a compressor.  The distance gap of the cluster groupoid only says that
+two arrows in one cluster disagree on a bounded fraction of a block, and that
+does not sum to `o(|Y_n|)`.  So the estimate here separates again, block by
 block, at a scale proportional to the actual equivariance defects of the two
-arrows compared and to the label edit budget of the block.  The thresholds enter
-only through the near bound `hnear`.
+arrows compared and to the label edit budget of the block.  The cluster radius
+enters only through the near bound `hnear`.
 
-* `BlockArrows.card_hammingDisagreement_patch_conj_le_budget`: for arbitrary
+* `BlockArrows.card_hammingDisagreement_patch_conj_le_budget`: take arbitrary
   reference arrows realizing `q⁻¹ · β.patch · q`, with combined defect at most
-  `budget i` on a retained object `i`, the disagreement of `β.patch` with
-  `q · α.patch · q⁻¹` is at most the mass off the glued domain of `α`, plus
+  `budget i` on a retained object `i`.  Then `β.patch` disagrees with
+  `q · α.patch · q⁻¹` on at most the mass off the glued domain of `α`, plus
   `Σ_retained (2 · edit i + 4 · budget i) / cheeger`, plus the full exceptional
   blocks.
 * `BlockEmbedding.stepNineBudget` and
-  `BlockArrows.card_hammingDisagreement_patch_conj_le_stepNine`: the same with
-  the transported arrows `b_{π i}` as references and an explicit budget made of
-  the defect of `a_i`, the missing mass of the two overlap bridges, the
-  compatibility failures of the block actions, the localized label failures of
-  `q` against the words `ws`, and the source defect and actual defect of
-  `b_{π i}`.
+  `BlockArrows.card_hammingDisagreement_patch_conj_le_stepNine`: the same bound
+  with the raw maps of the relative functor as references, i.e. the arrows
+  `b_{π i}` transported through the bridges realized by `q⁻¹`.  The budget is
+  `#defect(a_i)` plus the bound
+  `RelativeFunctorEstimate.card_equivarianceDefect_sandwich_bridge_words_le`.
 * `vanishing_hammingDistance_patch_conj`: the sequential `Vanishing` form.
 -/
 
@@ -47,10 +47,12 @@ namespace BlockArrows
 
 variable {E : BlockEmbedding Y I}
 
-/-- **Step 9 with actual defects.**  Let every retained object `i` carry a
-reference arrow `c i` realizing `q⁻¹ · β.patch · q`, a block action expanding
-with constant `cheeger / 4` at every scale above twice its edit budget, and a
-bound `budget i` on the combined equivariance defect of `α.arrow i` and `c i`.
+/-- **Step 9 with actual defects.**  Every retained object `i` carries:
+* a reference arrow `c i` realizing `q⁻¹ · β.patch · q`;
+* a block action that expands with constant `cheeger / 4` at every scale above
+  twice its edit budget;
+* a bound `budget i` on the combined equivariance defect of `α.arrow i` and `c i`.
+
 If the two arrows are near and the block has room, then `β.patch` disagrees with
 `q · α.patch · q⁻¹` on at most the mass off the glued domain of `α`, plus
 `(2 · edit i + 4 · budget i) / cheeger` per retained object, plus the full
@@ -108,40 +110,49 @@ end BlockArrows
 
 namespace BlockEmbedding
 
-/-- **The step 9 budget of an object.**  For the arrow `a_i = α.arrow i` and the
-matched arrow `b_{π i} = β.arrow (π i)`: the defect of `a_i`; over all labels,
-the missing mass of the bridge realized by `q` from `i` to `π i`, the
-compatibility failures at `i` and of the words at `π i`, and the failures of `q`
-to conjugate a label into its word on `i`; `|L|` times the source defect plus `k`
-times the defect of `b_{π i}`; and over all labels, the missing mass of the
-bridge realized by `q⁻¹` from the image block of `π i` to the image block of `i`,
-the compatibility failures of the words there and of the labels at the image of
-`i`, and the failures of `q⁻¹` to conjugate a word into its label. -/
+/-- **The step 9 budget of an object.**  The budget is the defect of the arrow
+`a_i = α.arrow i` plus the defect bound of the raw map of the relative functor on
+`b_{π i} = β.arrow (π i)`, from
+`RelativeFunctorEstimate.card_equivarianceDefect_sandwich_bridge_words_le`.  That
+bound has three parts:
+* over all labels, the missing range mass of the bridge realized by `q⁻¹` from
+  `π i` to `i`, the compatibility failures of the labels at `i` and of the words
+  at `π i`, and the failures of `q` to carry a label into its word on `i`;
+* `|L|` times the source defect plus `k` times the defect of `b_{π i}`;
+* over all labels, the missing source mass of the bridge realized by `q⁻¹` from
+  the image block of `π i` to the image block of `i`, the compatibility failures
+  of the words there and of the labels at the image of `i`, and the failures of
+  `q⁻¹` to carry a word into its label. -/
 noncomputable def stepNineBudget {L : Type*} [Fintype L] (E : BlockEmbedding Y I)
     (α β : BlockArrows E) (q : Equiv.Perm Y) (A : BlockAction E L) (ws : L → List L)
     (k : ℕ) (π : I → I) (i : I) : ℕ :=
   ((α.arrow i).equivarianceDefect (A.blockAct i) (A.blockAct (α.objEquiv i))).card +
-    (∑ s : L, ((E.bridge q i (π i)).sourceDefect + (A.compatFailure i s).card +
-        (E.bridgeLabelFailure q A (A.wordAction ws) i s).card +
-        ((A.wordAction ws).compatFailure (π i) s).card) +
+    (∑ s : L, ((E.bridge q⁻¹ (π i) i).targetDefect + (A.compatFailure i s).card +
+        (RelativeFunctorEstimate.conjFailure E q A
+          (RelativeFunctorEstimate.wordBlockAction A ws) i s).card +
+        (A.wordCompatFailure (π i) (ws s)).card) +
       Fintype.card L * ((β.arrow (π i)).sourceDefect +
         k * ((β.arrow (π i)).equivarianceDefect (A.blockAct (π i))
           (A.blockAct (β.objEquiv (π i)))).card) +
       ∑ s : L, ((E.bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i)).sourceDefect +
-        ((A.wordAction ws).compatFailure (β.objEquiv (π i)) s).card +
-        (E.bridgeLabelFailure q⁻¹ (A.wordAction ws) A (β.objEquiv (π i)) s).card +
+        (A.wordCompatFailure (β.objEquiv (π i)) (ws s)).card +
+        (RelativeFunctorEstimate.conjFailure E q⁻¹
+          (RelativeFunctorEstimate.wordBlockAction A ws) A (β.objEquiv (π i)) s).card +
         (A.compatFailure (α.objEquiv i) s).card))
 
-/-- The combined defect of `a_i` and the transported `b_{π i}` is at most the step 9
-budget of `i`. -/
+/-- The combined defect of `a_i` and of the raw map of the relative functor on
+`b_{π i}` is at most the step 9 budget of `i`. -/
 theorem card_equivarianceDefect_le_stepNineBudget {L : Type*} [Fintype L] [DecidableEq L]
     (E : BlockEmbedding Y I) (α β : BlockArrows E) (q : Equiv.Perm Y) (A : BlockAction E L)
     (ws : L → List L) {k : ℕ} (hk : ∀ s, (ws s).length ≤ k) (π : I → I) (i : I) :
     ((α.arrow i).equivarianceDefect (A.blockAct i) (A.blockAct (α.objEquiv i))).card +
-        ((E.transportArrow q β (π i) i (α.objEquiv i)).equivarianceDefect (A.blockAct i)
-          (A.blockAct (α.objEquiv i))).card ≤
+        ((sandwich (E.bridge q⁻¹ (π i) i) (E.bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i))
+          (β.arrow (π i))).equivarianceDefect (A.blockAct i)
+            (A.blockAct (α.objEquiv i))).card ≤
       E.stepNineBudget α β q A ws k π i := by
-  have h := E.card_equivarianceDefect_transportArrow_le q β (π i) i (α.objEquiv i) A ws hk
+  have h := RelativeFunctorEstimate.card_equivarianceDefect_sandwich_bridge_words_le E q⁻¹
+    (π i) i (β.objEquiv (π i)) (α.objEquiv i) A ws hk (β.arrow (π i))
+  rw [inv_inv] at h
   unfold stepNineBudget
   omega
 
@@ -151,9 +162,9 @@ namespace BlockArrows
 
 variable {E : BlockEmbedding Y I}
 
-/-- **Step 9 with transported references and the explicit budget.**  On a retained
-object `i` the reference arrow is `b_{π i}` transported back through the bridges
-realized by `q`, and the budget is `BlockEmbedding.stepNineBudget`. -/
+/-- **Step 9 with the raw maps of the relative functor.**  On a retained object
+`i` the reference arrow is `b_{π i}` transported back through the bridges realized
+by `q⁻¹`, and the budget is `BlockEmbedding.stepNineBudget`. -/
 theorem card_hammingDisagreement_patch_conj_le_stepNine [Fintype I] [DecidableEq I]
     {L : Type*} [Fintype L] [DecidableEq L]
     (α β : BlockArrows E) (q : Equiv.Perm Y) (A : BlockAction E L) (ws : L → List L)
@@ -163,7 +174,8 @@ theorem card_hammingDisagreement_patch_conj_le_stepNine [Fintype I] [DecidableEq
     (hexp : ∀ i ∈ good, ∀ m : ℕ, edit i < cheeger * m / 2 →
       HasTaggedExpansionAtScale (A.blockAct i) (cheeger / 4) m)
     (hnear : ∀ i ∈ good, ((α.arrow i).disagreement
-      (E.transportArrow q β (π i) i (α.objEquiv i))).card < 2 * sc i)
+      (sandwich (E.bridge q⁻¹ (π i) i) (E.bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i))
+        (β.arrow (π i)))).card < 2 * sc i)
     (hroom : ∀ i ∈ good, (2 * sc i : ℝ) +
       (2 * edit i + 4 * (E.stepNineBudget α β q A ws k π i : ℝ)) / cheeger + 1 ≤
         Fintype.card (E.model i)) :
@@ -172,8 +184,9 @@ theorem card_hammingDisagreement_patch_conj_le_stepNine [Fintype I] [DecidableEq
         ∑ i ∈ good, (2 * edit i + 4 * (E.stepNineBudget α β q A ws k π i : ℝ)) / cheeger +
         ∑ i ∈ goodᶜ, (Fintype.card (E.model i) : ℝ) :=
   α.card_hammingDisagreement_patch_conj_le_budget β q A good
-    (fun i ↦ E.transportArrow q β (π i) i (α.objEquiv i))
-    (fun i _ ↦ E.realizesOn_transportArrow α β q (π i) i) hcheeger edit
+    (fun i ↦ sandwich (E.bridge q⁻¹ (π i) i)
+      (E.bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i)) (β.arrow (π i)))
+    (fun i _ ↦ E.realizesOn_sandwich_bridge_inv α β q (π i) i) hcheeger edit
     (fun i ↦ (E.stepNineBudget α β q A ws k π i : ℝ)) sc hedit hexp
     (fun i _ ↦ by
       exact_mod_cast E.card_equivarianceDefect_le_stepNineBudget α β q A ws hk π i)
@@ -181,11 +194,11 @@ theorem card_hammingDisagreement_patch_conj_le_stepNine [Fintype I] [DecidableEq
 
 end BlockArrows
 
-/-- **Step 9, sequential form.**  If, along a sequence of models, the mass off the
-glued domains, the exceptional blocks, the retained edit budgets and the retained
-defect budgets are all negligible against the model sizes, then the patched
-bisections `β n` and the conjugated patches `q n · α n · (q n)⁻¹` have vanishing
-Hamming distance. -/
+/-- **Step 9, sequential form.**  Suppose that along a sequence of models four
+quantities are negligible against the model sizes: the mass off the glued domains,
+the exceptional blocks, the retained edit budgets and the retained defect budgets.
+Then the patched bisections `β n` and the conjugated patches `q n · α n · (q n)⁻¹`
+have vanishing Hamming distance. -/
 theorem vanishing_hammingDistance_patch_conj {Y : ℕ → FiniteModel} {I : ℕ → Type u}
     [∀ n, Fintype (I n)] [∀ n, DecidableEq (I n)] {L : Type*} [Fintype L] [DecidableEq L]
     {E : ∀ n, BlockEmbedding (Y n) (I n)} (α β : ∀ n, BlockArrows (E n))

@@ -8,22 +8,21 @@ The last estimate in Kun and Thom's proof of Theorem 4.1 (arXiv:2608.06222v3,
 tex lines 1314--1338) compares the patched bisection `b̂_n` with the conjugate
 `u_n â_n u_n⁻¹` of a patched bisection `â_n` by a compressor permutation `u_n`.
 This file pulls the comparison back through `u_n`.  The Hamming disagreement of
-`b̂` with `u â u⁻¹` has the same size as that of `â` with `u⁻¹ b̂ u`, and on
-the block of an object `i` of `â` the arrow `b_{π i}`, transported back through
-the two bridges realized by `u`, is a reference arrow for `u⁻¹ b̂ u`.
+`b̂` with `u â u⁻¹` has the same size as that of `â` with `u⁻¹ b̂ u`.  On the block
+of an object `i` of `â`, the arrow `b_{π i}` transported back through the bridges
+realized by `u⁻¹` is a reference arrow for `u⁻¹ b̂ u`.  That transported arrow is
+the raw map of the relative functor of Kun--Thom Lemma 4.3 on `b_{π i}`, so estimate
+(7) of `RelativeFunctorEstimate` applies to it directly.
 
 * `card_hammingDisagreement_conj_swap`: `#{p ≠ v w v⁻¹} = #{w ≠ v⁻¹ p v}`.
-* `BlockEmbedding.transportArrow E q β C C' D`: the arrow of block `C` of `β`,
-  entered from block `C'` through the bridge realized by `q` and left into block
-  `D` through the bridge realized by `q⁻¹`.
-* `BlockEmbedding.realizesOn_transportArrow`: the transported arrow realizes
-  `q⁻¹ · β.patch · q` on its source.
+* `BlockEmbedding.realizesOn_sandwich_bridge_inv`: the arrow of block `C` of `β`,
+  transported through the bridges realized by `q⁻¹`, realizes `q⁻¹ · β.patch · q`.
 * `BlockArrows.card_hammingDisagreement_patch_conj_le_references`: `β.patch`
   differs from `q · α.patch · q⁻¹` by at most the mass off the glued domain of
   `α`, the disagreement of every retained arrow of `α` with a reference arrow for
   `q⁻¹ · β.patch · q`, and the full size of the exceptional blocks.
-* `BlockArrows.card_hammingDisagreement_patch_conj_le_transport`: the same with
-  the transported arrows `b_{π i}` as references.
+* `BlockArrows.card_hammingDisagreement_patch_conj_le_sandwich`: the same with the
+  transported arrows `b_{π i}` as references.
 -/
 
 namespace GroupApproximation
@@ -46,36 +45,17 @@ theorem card_hammingDisagreement_conj_swap (p w v : Equiv.Perm Y) :
 
 namespace BlockEmbedding
 
-/-- The arrow of block `C` of a block permutation `β`, transported back through
-the bridge realized by `q` from block `C'` into `C`, and the bridge realized by
-`q⁻¹` from the image block of `C` into block `D`. -/
-noncomputable def transportArrow (E : BlockEmbedding Y I) (q : Equiv.Perm Y)
-    (β : BlockArrows E) (C C' D : I) : FinitePartialBijection (E.model C') (E.model D) :=
-  ((E.bridge q C' C).trans (β.arrow C)).trans (E.bridge q⁻¹ (β.objEquiv C) D)
-
-/-- The transported arrow is `q⁻¹ · β.patch · q` read through the embeddings. -/
-theorem embed_transportArrow_apply [Fintype I] (E : BlockEmbedding Y I)
-    (q : Equiv.Perm Y) (β : BlockArrows E) (C C' D : I) (x : E.model C')
-    (hx : x ∈ (E.transportArrow q β C C' D).source) :
-    E.embed D ((E.transportArrow q β C C' D).apply x hx) =
-      (q⁻¹ * β.patch * q) (E.embed C' x) := by
-  obtain ⟨h₁, h₂⟩ := (mem_trans_source ((E.bridge q C' C).trans (β.arrow C))
-    (E.bridge q⁻¹ (β.objEquiv C) D) x).mp hx
-  obtain ⟨h₃, h₄⟩ := (mem_trans_source (E.bridge q C' C) (β.arrow C) x).mp h₁
-  have hval : (E.transportArrow q β C C' D).apply x hx =
-      (E.bridge q⁻¹ (β.objEquiv C) D).apply
-        ((β.arrow C).apply ((E.bridge q C' C).apply x h₃) h₄) h₂ :=
-    rfl
-  rw [Equiv.Perm.mul_apply, Equiv.Perm.mul_apply, hval, E.embed_bridge_apply,
-    ← β.patch_embed C _ h₄, E.embed_bridge_apply]
-
-/-- **Transported arrows are references.**  For a block permutation `α` whose
-object map sends `C'` to the target block, the arrow of block `C` of `β`
-transported to `C'` realizes `q⁻¹ · β.patch · q` on its source. -/
-theorem realizesOn_transportArrow [Fintype I] (E : BlockEmbedding Y I)
+/-- **Transported arrows are references.**  The arrow of block `C` of `β`,
+transported through the bridges realized by `q⁻¹` into block `C'` and into the
+image block of `C'` under `α`, realizes `q⁻¹ · β.patch · q`.  For `q = u_n` this is
+the raw map of the relative functor of Kun--Thom Lemma 4.3 on the arrow of `C`. -/
+theorem realizesOn_sandwich_bridge_inv [Fintype I] (E : BlockEmbedding Y I)
     (α β : BlockArrows E) (q : Equiv.Perm Y) (C C' : I) :
-    α.RealizesOn (q⁻¹ * β.patch * q) C' (E.transportArrow q β C C' (α.objEquiv C')) :=
-  fun x hx ↦ E.embed_transportArrow_apply q β C C' (α.objEquiv C') x hx
+    α.RealizesOn (q⁻¹ * β.patch * q) C'
+      (sandwich (E.bridge q⁻¹ C C') (E.bridge q⁻¹ (β.objEquiv C) (α.objEquiv C'))
+        (β.arrow C)) := by
+  have h := E.realizesOn_sandwich_bridge β α q⁻¹ C C'
+  rwa [inv_inv] at h
 
 end BlockEmbedding
 
@@ -99,18 +79,20 @@ theorem card_hammingDisagreement_patch_conj_le_references [Fintype I] [Decidable
   exact α.card_hammingDisagreement_patch_le_references (q⁻¹ * β.patch * q) good c hc
 
 /-- **Step 9 with transported references.**  On a retained object `i` the
-reference arrow is the arrow of `β` at the matched block `π i`, transported back
-to the block of `i` through the bridges realized by `q`. -/
-theorem card_hammingDisagreement_patch_conj_le_transport [Fintype I] [DecidableEq I]
+reference arrow is the arrow of `β` at the matched block `π i`, transported back to
+the block of `i` through the bridges realized by `q⁻¹`. -/
+theorem card_hammingDisagreement_patch_conj_le_sandwich [Fintype I] [DecidableEq I]
     (α β : BlockArrows E) (q : Equiv.Perm Y) (π : I → I) (good : Finset I) :
     (hammingDisagreement β.patch (q * α.patch * q⁻¹)).card ≤
       (Finset.univ \ α.domain).card +
         ∑ i ∈ good, ((α.arrow i).disagreement
-          (E.transportArrow q β (π i) i (α.objEquiv i))).card +
+          (sandwich (E.bridge q⁻¹ (π i) i) (E.bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i))
+            (β.arrow (π i)))).card +
         ∑ i ∈ goodᶜ, Fintype.card (E.model i) :=
   α.card_hammingDisagreement_patch_conj_le_references β q good
-    (fun i ↦ E.transportArrow q β (π i) i (α.objEquiv i))
-    (fun i _ ↦ E.realizesOn_transportArrow α β q (π i) i)
+    (fun i ↦ sandwich (E.bridge q⁻¹ (π i) i)
+      (E.bridge q⁻¹ (β.objEquiv (π i)) (α.objEquiv i)) (β.arrow (π i)))
+    (fun i _ ↦ E.realizesOn_sandwich_bridge_inv α β q (π i) i)
 
 end BlockArrows
 

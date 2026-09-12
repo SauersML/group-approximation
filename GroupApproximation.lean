@@ -4638,7 +4638,6 @@ import GroupApproximation.KunThom.CountingEndgameLift
 import GroupApproximation.KunThom.ArrowCountMedian
 import GroupApproximation.KunThom.RelativeFunctorEstimate
 import GroupApproximation.KunThom.StepNineHammingReference
-import GroupApproximation.KunThom.StepNineHammingDefects
 import GroupApproximation.KunThom.StepNineHammingEstimate
 import GroupApproximation.KunThom.CompressorNormalizationAssembly
 import GroupApproximation.KunThom.CentralizerNormalizationPairImprove
@@ -4669,6 +4668,7 @@ import GroupApproximation.KunThom.CountingEndgameRestrict
 import GroupApproximation.KunThom.SequentialComponentFamilyObjects
 import GroupApproximation.KunThom.CentralizerBisectionRepresentationDefects
 import GroupApproximation.KunThom.MedianVertexFormBlocks
+import GroupApproximation.KunThom.StepNineHammingSums
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
