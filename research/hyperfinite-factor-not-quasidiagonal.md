@@ -10,7 +10,20 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
   - research/artifacts/x2-popa-formulations-ingestion-2026-08-30.md
+  - research/artifacts/ozawa-r-not-quasidiagonal-import-2026-09-12.md
 ---
+
+**ESTABLISHED by literature import (2026-09-12).** Ozawa,
+arXiv:2609.08892v1 (submitted 2026-09-08), constructs a unital separable
+MF C\*-algebra `A` whose spatial tensor product with `R` is infinite, and
+concludes that "the hyperfinite II1 factor is not a quasidiagonal
+C*-algebra". The derivation of record is
+`hyperfinite-factor-not-quasidiagonal-ozawa-citation`. The example `A` is
+non-simple and has only non-faithful tracial states. So, by the author's
+own sentence, the result does not resolve Kaplansky's quasitrace problem.
+It also leaves `hyperfinite-factor-mf`, Problem VII and the exact residual
+of X(1) open. The group witness route below and the Attempts section are
+kept as a record; neither is needed any more.
 
 The hyperfinite II₁ factor `R` is not quasidiagonal as a C\*-algebra;
 equivalently (unique faithful trace) `τ_R` is an amenable trace that is not
