@@ -163,8 +163,8 @@ theorem card_commutationDefect_systemBisectionPatch_le
       rw [← D.scale_eq X]
       exact_mod_cast min_le_left _ _
     have hmul := mul_le_mul_of_nonneg_left hmin D.h_pos.le
-    have hfwd := hcand.forwardSmall
-    linarith
+    exact (lt_of_lt_of_le hcand.forwardSmall
+      (div_le_div_of_nonneg_right hmul (by norm_num))).le
   have hsum : ∑ X, D.h * ((Fintype.card (D.model X) / 18 : ℕ) : ℝ) / 2 ≤
       D.h / 36 * Fintype.card Y :=
     (scaledClusterEmbedding D.clusterData ι hinj hdisj).sum_scaleThreshold_le D.h_pos.le
