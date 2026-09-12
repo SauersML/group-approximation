@@ -111,12 +111,10 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
     simp at hl₁rot
   have hl₁cons : l₁.rotate (xs.length + us.length) =
       b₂N :: (l₁.rotate (xs.length + us.length)).tail := by
-    have hhead : (l₁.rotate (xs.length + us.length)).head hl₁rne = b₂N := by
-      apply EdgeDeletion.value_injective M b₁
-      rw [hb₂N]
-      have h := congrArg List.head? hl₁rot
-      rw [List.head?_map, List.head?_eq_some_head hl₁rne] at h
-      exact Option.some.inj h
+    have hv : EdgeDeletion.value M b₁ ((l₁.rotate (xs.length + us.length)).head hl₁rne) = b₂ :=
+      head_eq_of_map_eq hl₁rot hl₁rne (List.cons_ne_nil _ _)
+    have hhead : (l₁.rotate (xs.length + us.length)).head hl₁rne = b₂N :=
+      EdgeDeletion.value_injective M b₁ (hv.trans hb₂N.symm)
     rw [← hhead]
     exact (List.cons_head_tail hl₁rne).symm
   have htail₁ : (l₁.rotate (xs.length + us.length)).tail.map (EdgeDeletion.value M b₁) =
@@ -144,12 +142,10 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
     rintro rfl
     simp at hlS
   have hlScons : lS = (EdgeDeletion.toCombMap M b₁).alpha b₂N :: lS.tail := by
-    have hhead : lS.head hlSne = (EdgeDeletion.toCombMap M b₁).alpha b₂N := by
-      apply EdgeDeletion.value_injective M b₁
-      rw [hvα]
-      have h := congrArg List.head? hlS
-      rw [List.head?_map, List.head?_eq_some_head hlSne] at h
-      exact Option.some.inj h
+    have hv : EdgeDeletion.value M b₁ (lS.head hlSne) = M.alpha b₂ :=
+      head_eq_of_map_eq hlS hlSne (List.cons_ne_nil _ _)
+    have hhead : lS.head hlSne = (EdgeDeletion.toCombMap M b₁).alpha b₂N :=
+      EdgeDeletion.value_injective M b₁ (hv.trans hvα.symm)
     rw [← hhead]
     exact (List.cons_head_tail hlSne).symm
   have htailS : lS.tail.map (EdgeDeletion.value M b₁) = ws := by
@@ -165,8 +161,8 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
         C₁.xs ++ C₁.ys := by
       rw [← hl₁]
       exact List.mem_map.mpr ⟨_, hmemα, rfl⟩
-    rw [hvα] at hv
-    rcases C₁.faceOf_of_mem_append hv with h' | h'
+    have hv' := (congrArg (fun z => z ∈ C₁.xs ++ C₁.ys) hvα).mp hv
+    rcases C₁.faceOf_of_mem_append hv' with h' | h'
     · exact hSP h'
     · exact hSg h'
   obtain ⟨C₂, hC₂x, hC₂y⟩ : ∃ C : EdgeDeletion.MergeCycles (EdgeDeletion.toCombMap M b₁) b₂N,

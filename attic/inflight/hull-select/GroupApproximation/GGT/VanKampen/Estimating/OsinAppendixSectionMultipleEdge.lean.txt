@@ -74,9 +74,11 @@ theorem RegionCandidate.contiguityDegree_lt_mu_of_o52
       hcondition.publishedPiecesSmall
     exact cellWord_length_pos hcondition.toIsSmallCancellation hrho b.2.source
   · have hdeg : b.2.sourceArc.length = 0 ∨ b.2.targetArc.length = 0 := by
-      by_contra h
-      push_neg at h
-      exact hpos ⟨Nat.pos_of_ne_zero h.1, Nat.pos_of_ne_zero h.2⟩
+      rcases Nat.eq_zero_or_pos b.2.sourceArc.length with h1 | h1
+      · exact Or.inl h1
+      rcases Nat.eq_zero_or_pos b.2.targetArc.length with h2 | h2
+      · exact Or.inr h2
+      exact absurd ⟨h1, h2⟩ hpos
     have hbound := b.2.arcLengths_le_of_degenerate target htarget hcondition hlambda hdeg
     have hmono : lambda⁻¹ * (2 * (eps : ℝ) + c) ≤ lambda⁻¹ * (3 * (eps : ℝ) + c) := by
       apply mul_le_mul_of_nonneg_left _ (inv_nonneg.mpr hlambda.le)

@@ -243,6 +243,9 @@ structure RealizedSectionFamily {G : Type u} [Group G] {Lambda : Type w}
     (cuts : SectionCuts D lambda c Delta.boundaryWord)
     extends RealizedRegionFamily D eps Delta where
   respects : ∀ a ∈ family, RegionCandidate.RespectsSections cuts a
+  /-- Both contiguity arcs of every selected region are nonempty.  With an empty arc
+  the source cell, or the target cell or section, is not tied to the geometry. -/
+  nondegenerate : ∀ a ∈ family, 0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length
 
 /-- Total arc length of a realized section family. -/
 def RealizedSectionFamily.weight {G : Type u} [Group G] {Lambda : Type w}

@@ -104,6 +104,7 @@ def empty {G : Type u} [Group G] {Lambda : Type w}
   family := ∅
   pairwise := by intro a ha; simp at ha
   respects := by intro a ha; simp at ha
+  nondegenerate := by intro a ha; simp at ha
 
 end RealizedSectionFamily
 
@@ -172,7 +173,8 @@ theorem exists_globallyDistinguishedSectionFamily
     reduced := R.reduced _ hred
     family := ∅
     pairwise := by intro a ha; simp at ha
-    respects := by intro a ha; simp at ha }
+    respects := by intro a ha; simp at ha
+    nondegenerate := by intro a ha; simp at ha }
   exact exists_globallyDistinguishedSectionFamily_of_seed S R.label_admissible
 
 /-! ## One section is Osin's Lemma 4.4 -/
