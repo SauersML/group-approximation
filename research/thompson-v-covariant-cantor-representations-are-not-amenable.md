@@ -3,6 +3,8 @@ rg: 2
 id: thompson-v-covariant-cantor-representations-are-not-amenable
 kind: claim
 title: No covariant representation of the Cantor system of Thompson's V is Bekka-amenable
+invalidates:
+  - thompson-v-hyperlinear-via-covariant-compressions
 distinct_from:
   thompson-v-cantor-orbits-have-no-folner-sets: that treats finite point sets, the permutation case; this treats every unitary representation carrying a covariant copy of C(Cantor), including Koopman representations and their finite-rank compressions.
 ---
