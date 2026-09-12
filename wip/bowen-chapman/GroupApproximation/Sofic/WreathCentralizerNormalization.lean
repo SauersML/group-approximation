@@ -134,6 +134,24 @@ theorem wreath_conj_mem_of_faithful_commute {G : Type} [Group G] (Γ : Subgroup 
   rw [← map_mul ι, ← map_mul ι] at h
   exact hι h
 
+/-- **The escaping conjugate does not commute.**  If `t⁻¹ γ t ∉ Γ` and `k ≠ 1`,
+then the `t`-conjugate of the one-site lamp `k` at the base coset does not
+commute with `γ` in `K ≀_{G/Γ} G`.  This is the form consumed by the asymptotic
+normalization hypotheses. -/
+theorem wreath_conj_lamp_not_commute {G : Type} [Group G] (Γ : Subgroup G)
+    [DecidableEq (G ⧸ Γ)] {K : Type} [Group K] {k : K} (hk : k ≠ 1) {t γ : G}
+    (hesc : t⁻¹ * γ * t ∉ Γ) :
+    (inr t * inl (Lamp.single (wreathBaseCoset Γ) k) * (inr t)⁻¹ * inr γ :
+        Wreath K G (G ⧸ Γ)) ≠
+      inr γ * (inr t * inl (Lamp.single (wreathBaseCoset Γ) k) * (inr t)⁻¹) := by
+  intro h
+  apply hesc
+  refine wreath_conj_mem_of_commute Γ hk ?_
+  have hconj := wreath_conj_inl_single (K := K) t (wreathBaseCoset Γ) k
+  rw [map_inv] at hconj
+  rw [hconj] at h
+  exact h
+
 /-- **Coset wreath products over a normalizing pair are not sofic.**  If the
 centralizer of `Γ` is normalized by `G` in every faithful permutation-ultraproduct
 representation, and `t⁻¹ γ t ∉ Γ` for some `γ ∈ Γ`, then `K ≀_{G/Γ} G` is not
