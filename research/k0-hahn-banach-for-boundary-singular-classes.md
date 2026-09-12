@@ -23,6 +23,13 @@ K_0-Hahn--Banach property for such `A`.  That covers infinitesimal classes
 
 ## Attempts
 
+- **Not a reduction (2026-09-11).**  By
+  `stw07-trace-invisible-classes-carry-hahn-banach`, applying this claim to
+  `(A tensor K)~` kills every singular class of every separable nuclear
+  quasidiagonal `A`.  So this claim is equivalent to
+  `every-separable-nuclear-qd-algebra-has-k0-hahn-banach`.  The sharpened
+  residual below applies only to algebras whose traces see their ideals.
+
 - **Balancing by trace models: insufficient.**  Models tracking a zero-face
   trace have values `o(k_n)` of undetermined sign.  Every positive
   homomorphism `K_0(A) -> R` is a multiple of a state, hence a trace, hence
