@@ -48,8 +48,9 @@ strict there, a contradiction.
 
 **Not covered.**
 - The window `eld-full-order2` at radii `1:1`: the 30 `E_ij(r)`,
-  `r in {1, s0, s1, t0, t1}`, with `cu, cv`. It survives characters, and stage 2 is
-  unresolved.
+  `r in {1, s0, s1, t0, t1}`, with `cu, cv`. It survives characters, and every
+  2-quotient of class at most 3 (orders `2^140` and `2^1435`) kills `x_h`. The PSL(3,2)
+  quotient search did not finish within 45 minutes, so the window is unresolved.
 - Larger radii, other symmetries `h`, and memories not contained in these balls.
 
 The claim does not bear on `leavitt-unit-group-nonsurjunctive` beyond excluding

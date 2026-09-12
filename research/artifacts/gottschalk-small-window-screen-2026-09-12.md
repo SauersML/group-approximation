@@ -75,7 +75,7 @@ Radii are `r_m:r_s`. Every verdict below was replayed in Python from the checker
 | eld1-compressors-order3 | 1:1 | 13, 33 | character to `Z/3` |
 | eld1-compressors-order2 | 1:1, 1:2, 2:1 | up to 93, 160 | no character, no coset image of index at most 6; epimorphism onto PSL(3,2), degree 7 |
 | eld1-compressors-order3 | 1:2, 2:1 | up to 123, 303 | no character, no coset image of index at most 6; epimorphism onto PSL(3,2), degree 7 |
-| eld-full-order2 | 1:1 | 35, 68 | no character; stage 2 unresolved (22 generators after Tietze, 200 relators) |
+| eld-full-order2 | 1:1 | 35, 68 | unresolved: no character; no 2-quotient of class at most 3 separates (orders 2^140 and 2^1435); the PSL(3,2) quotient search on the Tietze form (22 generators, 200 relators) did not finish in 45 minutes |
 
 So 44 of the 45 windows are dead. In each nine-leaf window the separating image is
 PSL(3,2): the table group sees the corner `GL(3,2)` of the `E_ij(1)`, and the
