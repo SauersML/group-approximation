@@ -1,0 +1,119 @@
+{
+  "packet_order": 32,
+  "packet_order_histogram": {
+    "1": 1,
+    "2": 19,
+    "4": 12
+  },
+  "comb_intersection": {
+    "order": 1,
+    "entries": [
+      {
+        "order": 1,
+        "word_in_Xt0_Xt1_Zs0_Zs1": [],
+        "conjugate_preimage_word": [],
+        "central_in_packet": true
+      }
+    ]
+  },
+  "raw_second_intersection": {
+    "order": 1,
+    "entries": [
+      {
+        "order": 1,
+        "word_in_Xt0_Xt1_Zs0_Zs1": [],
+        "conjugate_preimage_word": [],
+        "central_in_packet": true
+      }
+    ]
+  },
+  "raw_relative_intersection": {
+    "order": 4,
+    "entries": [
+      {
+        "order": 1,
+        "word_in_Xt0_Xt1_Zs0_Zs1": [],
+        "conjugate_preimage_word": [],
+        "central_in_packet": true
+      },
+      {
+        "order": 2,
+        "word_in_Xt0_Xt1_Zs0_Zs1": [2],
+        "conjugate_preimage_word": [2],
+        "central_in_packet": false
+      },
+      {
+        "order": 2,
+        "word_in_Xt0_Xt1_Zs0_Zs1": [3],
+        "conjugate_preimage_word": [3],
+        "central_in_packet": false
+      },
+      {
+        "order": 2,
+        "word_in_Xt0_Xt1_Zs0_Zs1": [2, 3],
+        "conjugate_preimage_word": [2, 3],
+        "central_in_packet": false
+      }
+    ]
+  },
+  "packet_with_raw_closure_status": "finite",
+  "packet_with_raw_closure_order": 512,
+  "packet_with_raw_closure_histogram": {
+    "1": 1,
+    "2": 143,
+    "4": 368
+  },
+  "raw_escape_orders_up_to_256": {
+    "raw_times_Xt0": 4,
+    "raw_times_Xt1": 4,
+    "raw_Xt0_commutator": 2,
+    "raw_Xt1_commutator": 2
+  },
+  "raw_commutator_table": {
+    "c0_commutes_Zs0": false,
+    "c0_commutes_Zs1": true,
+    "c1_commutes_Zs0": true,
+    "c1_commutes_Zs1": false,
+    "c0_commutes_c1": true
+  },
+  "raw_commutator_cell_status": "finite",
+  "raw_commutator_cell_order": 32,
+  "raw_commutator_cell_histogram": {
+    "1": 1,
+    "2": 19,
+    "4": 12
+  },
+  "mixed_double_pauli_table": {
+    "original_centers_equal": true,
+    "raw_centers_equal": true,
+    "original_center_equals_raw_center": false,
+    "original_center_commutes_raw_center": true,
+    "original_center_central_in_mixed_generators": true,
+    "raw_center_central_in_mixed_generators": true,
+    "raw_conjugates_original_center_to_center_product": true,
+    "raw_fixes_raw_center": true,
+    "X0_commutes_C0": true,
+    "X0_commutes_C1": true,
+    "X1_commutes_C0": true,
+    "X1_commutes_C1": true,
+    "A0_order": 2,
+    "A1_order": 2,
+    "A0_is_raw_conjugate_Xt0": true,
+    "A1_is_raw_conjugate_Xt1": true,
+    "A0_commutes_A1": true,
+    "A0_Z0_commutator_is_center_product": true,
+    "A1_Z1_commutator_is_center_product": true
+  },
+  "mixed_double_pauli_closure_status": "finite",
+  "mixed_double_pauli_closure_order": 256,
+  "mixed_double_pauli_closure_histogram": {
+    "1": 1,
+    "2": 111,
+    "4": 144
+  },
+  "coefficient_sign_cell_order": 16,
+  "coefficient_sign_cell_histogram": {
+    "1": 1,
+    "2": 15
+  }
+}

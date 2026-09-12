@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; targeted duplicate checks. Handwritten proofs, not formal verification.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "central-sign-survival-forces-reverse-cancellation": "ESTABLISHED",
+    "decoder-memory-and-separated-cluster-gluing-proof": "COMPLETE",
+    "local-decoders-bound-connected-missing-particle-witnesses": "ESTABLISHED"
+  },
+  "elapsed_seconds": 17.815
+}

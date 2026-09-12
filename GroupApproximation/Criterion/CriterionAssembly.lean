@@ -1,0 +1,128 @@
+import GroupApproximation.Matching.ConservativeMatching
+import GroupApproximation.Kun.KunFixedDecomposition
+import GroupApproximation.Covers.TableCover
+
+/-!
+# Constructing the local criterion data
+
+The two decompositions consumed by the finite matching argument are derived
+here from property `(T)` on the same original finite models.  No subsequence
+or compatibility reindexing is required.
+-/
+
+namespace GroupApproximation
+
+/-- Property `(T)` for the compressed subgroup and the ambient group produces
+all local criterion data from a concrete compression setup and a sofic
+approximation.  No expander decomposition is supplied by the caller. -/
+theorem exists_localCriterionData
+    {G Γ J : Type} [Group G] [Group Γ] [Group J]
+    (C : CompressionSetup G Γ J)
+    (hTG : HasKazhdanPropertyT.{0, 0} G)
+    (hTΓ : HasKazhdanPropertyT.{0, 0} Γ)
+    (A : SoficApproximation G) :
+    Nonempty (LocalCriterionData G Γ J) := by
+  letI : Infinite Γ := C.infiniteΓ
+  letI : Infinite G := Infinite.of_injective C.embedΓ C.embedΓ_injective
+  obtain ⟨DΓ⟩ := KunFixedDecomposition.expanderDecomposition hTΓ
+    C.generatorsΓ C.generatorsΓ_one C.generatorsΓ_symmetric
+    C.generatorsΓ_generate (A.comap C.embedΓ C.embedΓ_injective)
+  obtain ⟨DG⟩ := KunFixedDecomposition.expanderDecomposition hTG
+    C.ambientGenerators C.ambientGenerators_one C.ambientGenerators_symmetric
+    C.ambientGenerators_generate A
+  exact ⟨{
+    setup := C
+    approximation := A
+    gammaDecomposition := DΓ
+    ambientDecomposition := DG }⟩
+
+/-! ## How much of property `(T)` the criterion actually uses
+
+The ambient hypothesis is stronger than the proof consumes.  Property `(T)`
+of `Γ` enters twice: first to decompose the restricted approximation into
+uniform expanders, and then to supply a Kazhdan pair.  Property `(T)` of the
+ambient group `G` enters only to produce the ambient expander decomposition.
+
+The criterion below therefore asks for that decomposition directly and never
+mentions ambient `(T)`.  `exists_localCriterionData` is the specialization in
+which the internally proved decomposition theorem supplies it. -/
+
+/-- **The criterion without ambient `(T)`.**  Only the ambient *decomposition*
+is required; the ambient group itself need not be Kazhdan.  Property `(T)` of
+the compressed subgroup is still used twice, for its own decomposition and for
+the Kazhdan pair of the Kun--Thom obstruction. -/
+theorem isLEF_of_ambientDecomposition
+    {G Γ J : Type} [Group G] [Group Γ] [Group J]
+    [Countable Γ] [Countable J]
+    (C : CompressionSetup G Γ J)
+    (hTΓ : HasKazhdanPropertyT.{0, 0} Γ)
+    (A : SoficApproximation G)
+    (DG : ExpanderDecomposition A C.ambientGenerators) : IsLEF J := by
+  letI : Infinite Γ := C.infiniteΓ
+  letI : Infinite G := Infinite.of_injective C.embedΓ C.embedΓ_injective
+  obtain ⟨DΓ⟩ := KunFixedDecomposition.expanderDecomposition hTΓ
+    C.generatorsΓ C.generatorsΓ_one C.generatorsΓ_symmetric
+    C.generatorsΓ_generate (A.comap C.embedΓ C.embedΓ_injective)
+  let D : LocalCriterionData G Γ J :=
+    { setup := C
+      approximation := A
+      gammaDecomposition := DΓ
+      ambientDecomposition := DG }
+  exact D.selectionOutput.isLEF hTΓ
+
+/-- The fully constructed local criterion forces the witness subgroup to be
+LEF.  Its only remaining inputs are the concrete compression setup, the two
+property-`(T)` proofs, and a sofic approximation of the ambient group. -/
+theorem isLEF_of_soficApproximation
+    {G Γ J : Type} [Group G] [Group Γ] [Group J]
+    [Countable Γ] [Countable J]
+    (C : CompressionSetup G Γ J)
+    (hTG : HasKazhdanPropertyT.{0, 0} G)
+    (hTΓ : HasKazhdanPropertyT.{0, 0} Γ)
+    (A : SoficApproximation G) : IsLEF J := by
+  obtain ⟨D⟩ := exists_localCriterionData C hTG hTΓ A
+  exact D.selectionOutput.isLEF hTΓ
+
+/-- If the ambient group is sofic, the local-to-sequential conversion and the
+fully proved compression criterion force the concrete witness subgroup to be
+LEF. -/
+theorem isLEF_of_isSofic
+    {G Γ J : Type} [Group G] [Group Γ] [Group J]
+    [Countable G] [Countable Γ] [Countable J]
+    (C : CompressionSetup G Γ J)
+    (hTG : HasKazhdanPropertyT.{0, 0} G)
+    (hTΓ : HasKazhdanPropertyT.{0, 0} Γ)
+    (hS : IsSofic G) : IsLEF J := by
+  obtain ⟨A⟩ := soficApproximation_of_isSofic hS
+  exact isLEF_of_soficApproximation C hTG hTΓ A
+
+/-- **Theorem `thm:D` without ambient `(T)`.**  If every sofic approximation of
+`G` admits an ambient expander decomposition, and the witness is not LEF, then
+`G` is not sofic -- with no Kazhdan hypothesis on `G` itself.  The Kazhdan
+hypothesis on the compressed subgroup `Γ` remains, and is used twice. -/
+theorem not_isSofic_of_ambientDecomposition
+    {G Γ J : Type} [Group G] [Group Γ] [Group J]
+    [Countable G] [Countable Γ] [Countable J]
+    (C : CompressionSetup G Γ J)
+    (hTΓ : HasKazhdanPropertyT.{0, 0} Γ)
+    (hdec : ∀ A : SoficApproximation G,
+      Nonempty (ExpanderDecomposition A C.ambientGenerators))
+    (hJ : ¬ IsLEF J) : ¬ IsSofic G := by
+  intro hS
+  obtain ⟨A⟩ := soficApproximation_of_isSofic hS
+  obtain ⟨DG⟩ := hdec A
+  exact hJ (isLEF_of_ambientDecomposition C hTΓ A DG)
+
+/-- A non-LEF witness in a concrete compression setup makes the ambient group
+nonsofic once property `(T)` has been proved for the two relevant groups. -/
+theorem not_isSofic_of_not_isLEF
+    {G Γ J : Type} [Group G] [Group Γ] [Group J]
+    [Countable G] [Countable Γ] [Countable J]
+    (C : CompressionSetup G Γ J)
+    (hTG : HasKazhdanPropertyT.{0, 0} G)
+    (hTΓ : HasKazhdanPropertyT.{0, 0} Γ)
+    (hJ : ¬ IsLEF J) : ¬ IsSofic G := by
+  intro hS
+  exact hJ (isLEF_of_isSofic C hTG hTΓ hS)
+
+end GroupApproximation

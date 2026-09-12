@@ -1,0 +1,13 @@
+{
+  "certificate_verified": true,
+  "field": "F2",
+  "group_order": 20160,
+  "functional_support_size": 9408,
+  "boundary_words_annihilated_with_all_left_translates": 234,
+  "bridge_pairings": [
+    1,
+    1,
+    1,
+    1
+  ]
+}

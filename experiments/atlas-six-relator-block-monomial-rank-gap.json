@@ -1,0 +1,62 @@
+{
+  "field": "GF(2)",
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "atomic_dimension": 4,
+  "candidate_binary_matrices": 65536,
+  "invertible_alignments": 20160,
+  "ordered_record_encoding": "packed matrix uint16 little-endian, then six one-byte residual ranks",
+  "ordered_record_fnv1a64": "0x1b1a97fd388e6e75",
+  "total_rank_histogram": {
+    "1": 1,
+    "2": 3,
+    "3": 13,
+    "4": 176,
+    "5": 1033,
+    "6": 3333,
+    "7": 3343,
+    "8": 2940,
+    "9": 3099,
+    "10": 2368,
+    "11": 1800,
+    "12": 1101,
+    "13": 613,
+    "14": 247,
+    "15": 77,
+    "16": 12,
+    "17": 1
+  },
+  "minimum_total_residual_rank": 1,
+  "minimizer_count": 1,
+  "unique_minimizer_packed_hex": "0x8421",
+  "unique_minimizer_row_hex": "1248",
+  "unique_minimizer_rank_vector": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "unique_minimizer_word_values_row_hex": [
+    "1248",
+    "1248",
+    "1248",
+    "1248",
+    "1248",
+    "1a48"
+  ],
+  "boundary_zero_alignments": 1,
+  "collision_zero_alignments": 4176,
+  "collision_zero_minimum_boundary_rank_sum": 3,
+  "collision_zero_minimum_attainers": 10,
+  "arbitrary_multiplicity_consequence": "For every k and F in GL4(2) wr Sym(k), sum_w rank(pi_F(w)-I) >= k.",
+  "equality_frames": "Exactly the pure permutations of the identical four-dimensional summands.",
+  "status": "PASS"
+}

@@ -1,0 +1,17 @@
+{
+  "order_bound_exclusive": 1000000,
+  "forced_divisor": 2880,
+  "target_count": 9,
+  "targets": [
+    ["A8", 20160],
+    ["PSL(3,4)", 20160],
+    ["O(5,3)", 25920],
+    ["M12", 95040],
+    ["A9", 181440],
+    ["PSL(2,64)", 262080],
+    ["M22", 443520],
+    ["HJ", 604800],
+    ["O(5,4)", 979200]
+  ],
+  "quotient_result": "all nine are already excluded by the exhaustive full-large GQuotients census"
+}

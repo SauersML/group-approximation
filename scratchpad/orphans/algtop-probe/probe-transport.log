@@ -1,0 +1,15 @@
+changed modules: 3
+AlgTop/ComplexProjectivePunctureRetract.lean
+Leavitt/AryWords.lean
+Manuscript/NonMF/TheoremCAssembly.lean
+== lake build GroupApproximation.AlgTop.BundleCalculusTransport  [acn112 13:56:28]
+Build completed successfully (2970 jobs).
+LAKE_EXIT=0
+?? AXIOM CHECK VACUOUS: 0 'depends on axioms' lines in the log -- no #print axioms/#audit_axioms reached, so 'sorryAx: none' would prove NOTHING
+axiom lines seen: 0
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusTransport.lean:
+-- per-target axiom section joins Lean MULTI-LINE axiom lists in full; the RAW remote log is still the authority
+sorryAx: none
+PROBE GREEN
+jobs line: Build completed successfully (2970 jobs)
+SENTINEL=0

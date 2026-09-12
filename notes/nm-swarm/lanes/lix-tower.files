@@ -1,0 +1,9 @@
+GroupApproximation/Analysis/LIXCor4PowersShape.lean
+GroupApproximation/Analysis/LIXCor4PowersField.lean
+GroupApproximation/Analysis/LIXCor4PowersStage.lean
+GroupApproximation/Analysis/LIXCor4PowersAssembly.lean
+GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean
+GroupApproximation/Analysis/LIXCor4PowersDiag.lean
+GroupApproximation/CharClass/OddPWDiagonalRing.lean
+GroupApproximation/CharClass/OddPWDiagonal.lean
+GroupApproximation/CharClass/OddPWDiagonalCounit.lean

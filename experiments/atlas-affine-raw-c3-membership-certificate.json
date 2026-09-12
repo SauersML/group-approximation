@@ -1,0 +1,50 @@
+{
+  "alignment_hex": "00000100000100000100000000000001",
+  "artifact": "atlas-boundary-f2-bridge-ideal.json",
+  "artifact_left_ideal_rank": 20005,
+  "artifact_queue_remaining": 0,
+  "detecting_witness_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "dual_pairings": [
+    {
+      "identity_bit": 1,
+      "pairing_with_1_plus_cycle": 1,
+      "support_size": 9408,
+      "three_cycle_bit": 0,
+      "witness_id": 0
+    },
+    {
+      "identity_bit": 1,
+      "pairing_with_1_plus_cycle": 1,
+      "support_size": 9408,
+      "three_cycle_bit": 0,
+      "witness_id": 1
+    },
+    {
+      "identity_bit": 1,
+      "pairing_with_1_plus_cycle": 1,
+      "support_size": 9408,
+      "three_cycle_bit": 0,
+      "witness_id": 2
+    },
+    {
+      "identity_bit": 1,
+      "pairing_with_1_plus_cycle": 1,
+      "support_size": 9408,
+      "three_cycle_bit": 0,
+      "witness_id": 3
+    }
+  ],
+  "identity_index": 0,
+  "one_plus_three_cycle_not_in_ideal": true,
+  "raw_s3_letter_hex": [
+    "01000000000100000001010000000001",
+    "01000000000101000000010000000001"
+  ],
+  "three_cycle_hex": "01000000000101000001000000000001",
+  "three_cycle_index": 22
+}

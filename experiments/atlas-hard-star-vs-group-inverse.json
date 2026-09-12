@@ -1,0 +1,11 @@
+{
+  "hard_pair": "class 11, forward rotation 0",
+  "q_order": 4,
+  "ell_order": 2,
+  "q_leavitt_star_equals_group_inverse": false,
+  "ell_leavitt_star_equals_group_inverse": false,
+  "correct_certificate_equals_p_001": true,
+  "p_001_nonzero": true,
+  "inverse_substitution_is_zero": true,
+  "inverse_substitution_explanation": "1 + q^-2 + q^2 + q^-2 q^2 = q^-2 + q^2 = 0 because q^4 = 1"
+}

@@ -1,0 +1,43 @@
+{
+  "chart_index": 496,
+  "chart_normalizer_order": 20160,
+  "chart_order": 20160,
+  "conjugators_per_parity": 9999360,
+  "marking_parities": {
+    "dual": {
+      "first_failure_histogram": {
+        "c_19243": 0,
+        "s_0": 9698304,
+        "s_11": 301056,
+        "s_30": 0,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "first_survivor": null,
+      "survivor_count": 0
+    },
+    "natural": {
+      "first_failure_histogram": {
+        "c_19243": 6,
+        "s_0": 9698304,
+        "s_11": 300384,
+        "s_30": 576,
+        "s_44": 72,
+        "s_55": 18
+      },
+      "first_survivor": null,
+      "survivor_count": 0
+    }
+  },
+  "overgroup": "GL(5,2)=PSL(5,2)",
+  "overgroup_order": 9999360,
+  "permutation_degree": 32,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ]
+}

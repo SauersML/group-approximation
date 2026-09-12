@@ -1,0 +1,360 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "A Simple C*-Algebra That Is Not K1-Injective"
+  description: >-
+    This project formalizes, in Lean 4 over Mathlib, a negative answer to the
+    question whether every unital simple C*-algebra is K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
+    records as open and which Schafhauser, Tikuisis and White pose as Problem
+    LIX of "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902). The
+    counterexample is a separable simple unital C*-algebra A, an inductive
+    limit of corner algebras of matrices over C(X), with a unitary u that is
+    not in the connected component of 1 in U(A) although diag(u, 1) is in the
+    connected component of 1 in U(M2(A)). So the class of u vanishes already
+    at the first stabilisation.
+  authors: [Sauers]
+  responsible_maintainers: [SauersML]
+  license: Apache-2.0
+
+classification:
+  arxiv: [math.OA, math.KT]
+  msc2020: ["46L05", "46L80", "55R40"]
+
+sources:
+  - title: A simple C*-algebra that is not K1-injective
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude Fable 5.1
+        role: >-
+          wrote all the prose: the registry abstract, the narrative fields of
+          this file and the docstrings of the Palomar modules
+    note: >-
+      The negative answer to Problem LIX of Palomar/comparator-lix.json is
+      first presented in this project. The argument was committed to this
+      public repository on 2026-09-05 04:40 UTC (fb38f13ad), posted publicly
+      on 2026-09-07 (https://x.com/Sauers_/status/2096961149770043897), and
+      its Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148).
+
+  # Background for the LIX result: the problem and its history, the positive
+  # results the counterexample had to avoid, the construction's ancestry and
+  # the barrier it evades, the topology the obstruction rests on, and the
+  # independent solution.  None is used in the proof.
+
+  - title: "Nuclear C*-algebras: 99 problems"
+    authors: [Christopher Schafhauser, Aaron Tikuisis, Stuart White]
+    year: 2025
+    type: paper
+    id: https://arxiv.org/abs/2506.10902
+    relationship: background
+    note: >-
+      Prints the question as Problem LIX.
+
+  - title: K-Theory for Operator Algebras
+    authors: [Bruce Blackadar]
+    year: 1998
+    type: book
+    id: https://doi.org/10.1017/9781009701907
+    relationship: background
+    note: >-
+      Second edition, MSRI Publications 5, Cambridge University Press. Example
+      8.1.2(d): the nonsimple failure of injectivity, with a class killed by
+      one stabilisation. After 8.1.3: whether U(A)/U0(A) -> K1(A) is an
+      isomorphism for simple unital A "remains an open problem", the earliest
+      reference we found for the question answered here.
+
+  - title: Homotopy-abelian Lie groups
+    authors: [S. Araki, I. M. James, Emery Thomas]
+    year: 1960
+    type: paper
+    id: https://doi.org/10.1090/s0002-9904-1960-10487-9
+    relationship: background
+    note: >-
+      Bull. Amer. Math. Soc. 66:324-326. The homotopy fact behind Blackadar's
+      Example 8.1.2(d).
+
+  - title: K-theory for certain C*-algebras
+    authors: [Joachim Cuntz]
+    year: 1981
+    type: paper
+    id: https://doi.org/10.2307/1971137
+    relationship: background
+    note: >-
+      Ann. of Math. (2) 113:181-197. Purely infinite simple C*-algebras are
+      K1-bijective, so the counterexample cannot be purely infinite.
+
+  - title: The homotopy groups of the unitary groups of noncommutative tori
+    authors: [Marc A. Rieffel]
+    year: 1987
+    type: paper
+    relationship: background
+    note: >-
+      J. Operator Theory 17(2):237-254. Theorem 2.10: stable rank one implies
+      K1-injectivity, so the counterexample has stable rank at least two.
+
+  - title: >-
+      Approximation by normal elements with finite spectra in C*-algebras of
+      real rank zero
+    authors: [Huaxin Lin]
+    year: 1996
+    type: paper
+    id: https://doi.org/10.2140/pjm.1996.173.443
+    relationship: background
+    note: >-
+      Pacific J. Math. 173(2):443-489. Lemma 2.1: real rank zero implies
+      K1-injectivity, so the counterexample has real rank at least one.
+
+  - title: Nonstable K-theory for Z-stable C*-algebras
+    authors: [Xinhui Jiang]
+    year: 1997
+    type: paper
+    id: https://arxiv.org/abs/math/9707228
+    relationship: background
+    note: >-
+      Z-stable C*-algebras are K-stable, in particular K1-injective, so the
+      counterexample is not Z-stable.
+
+  - title: Nonstable K-theory for operator algebras
+    authors: [Klaus Thomsen]
+    year: 1991
+    type: paper
+    id: https://doi.org/10.1007/bf00569449
+    relationship: background
+    note: >-
+      K-Theory 4:245-267. Introduces K-stability; the stage-two witness here
+      is a failure of it at n = 1, k = 0.
+
+  - title: Comparison of projections and unitary elements in simple C*-algebras
+    authors: [Jesper Villadsen]
+    year: 2002
+    type: paper
+    id: https://doi.org/10.1515/crll.2002.065
+    relationship: background
+    note: >-
+      J. Reine Angew. Math. 549:23-45. Theorem 12: simple separable unital
+      nuclear algebras that are not K1-surjective, the surjectivity analogue
+      of the question settled here.
+
+  - title: Simple C*-algebras with perforation
+    authors: [Jesper Villadsen]
+    year: 1998
+    type: paper
+    id: https://doi.org/10.1006/jfan.1997.3168
+    relationship: background
+    note: >-
+      J. Funct. Anal. 154:110-116. With the 1999 paper, the architecture of
+      the construction here: simple inductive limits in which a topological
+      obstruction survives the limit.
+
+  - title: On the stable rank of simple C*-algebras
+    authors: [Jesper Villadsen]
+    year: 1999
+    type: paper
+    id: https://doi.org/10.1090/S0894-0347-99-00314-8
+    relationship: background
+    note: >-
+      J. Amer. Math. Soc. 12(4):1091-1102. Simple inductive limits over
+      products of projective spaces with point-evaluation summands, the
+      template of the tower here.
+
+  - title: A class of simple C*-algebras with stable rank one
+    authors: [George A. Elliott, Toan M. Ho, Andrew S. Toms]
+    year: 2009
+    type: paper
+    id: https://doi.org/10.1016/j.jfa.2008.08.001
+    relationship: background
+    note: >-
+      J. Funct. Anal. 256:307-322. Simple diagonal AH limits have stable rank
+      one, so are K1-injective; this is why the point evaluations here are
+      twisted by a line bundle.
+
+  - title: Tensorial permanence of K-stability for diagonal AH-algebras
+    authors: [Apurva Seth]
+    year: 2026
+    type: paper
+    id: https://doi.org/10.1112/blms.70398
+    relationship: background
+    note: >-
+      Bull. London Math. Soc. 58 (arXiv:2512.04780). Simple infinite-dimensional
+      unital diagonal AH algebras are K-stable; the same barrier as
+      Elliott-Ho-Toms.
+
+  - title: The stable homotopy of the classical groups
+    authors: [Raoul Bott]
+    year: 1959
+    type: paper
+    id: https://doi.org/10.2307/1970106
+    relationship: background
+    note: >-
+      Ann. of Math. (2) 70:313-337. pi_4(U(2)) = Z/2 and pi_4(U(3)) = 0, the
+      unstable class the witness is built from.
+
+  - title: Vector Bundles and K-Theory
+    authors: [Allen Hatcher]
+    year: 2017
+    type: book
+    id: https://pi.math.cornell.edu/~hatcher/VBKT/VB.pdf
+    relationship: background
+    note: >-
+      Version 2.2. Clutching functions (1.2) and the Euler/top-Chern identity
+      (Prop. 3.13).
+
+  - title: Characteristic Classes
+    authors: [John W. Milnor, James D. Stasheff]
+    year: 1974
+    type: book
+    id: https://doi.org/10.1515/9781400881826
+    relationship: background
+    note: >-
+      Annals of Mathematics Studies 76. Thom class, mod-2 characteristic
+      classes and the Wu formula, the tools of the mod-2 argument.
+
+  - title: Cohomology Operations
+    authors: [N. E. Steenrod, D. B. A. Epstein]
+    year: 1962
+    type: book
+    id: https://doi.org/10.1515/9781400881673
+    relationship: background
+    note: >-
+      Annals of Mathematics Studies 50. The Steenrod squares and their axioms.
+
+  - title: Les i-carrés dans une variété grassmannienne
+    authors: [Wen-Tsün Wu]
+    year: 1950
+    type: paper
+    id: https://doi.org/10.1142/9789812791085_0003
+    relationship: background
+    note: >-
+      C. R. Acad. Sci. Paris 230 (1950); the identifier is the 2008 reprint in
+      his Selected Works. The Wu formula, used on the even side of the
+      obstruction.
+
+  - title: Properly infinite C(X)-algebras and K1-injectivity
+    authors: [Étienne Blanchard, Randi Rohde, Mikael Rørdam]
+    year: 2008
+    type: paper
+    id: https://doi.org/10.4171/jncg/21
+    relationship: background
+    note: >-
+      J. Noncommut. Geom. 2:263-282. K1-injectivity for properly infinite
+      algebras, the other open branch of the question.
+
+  - title: A simple C*-algebra which is not K1-injective
+    authors: [Andrew S. Toms]
+    year: 2026
+    type: paper
+    id: https://arxiv.org/abs/2609.09535
+    relationship: background
+    note: >-
+      Independent solution of Problem LIX, posted 2026-09-08, by a different
+      method; not used here.
+
+automation:
+  methods:
+    - method: agent
+      models: [GPT-5.6 Sol, Claude Fable 5.1, Claude Opus 5, Claude Sonnet 5]
+      framework: Codex and Claude Code
+      tool_setup: >-
+        Astra, a custom proof tool, for the mathematics; Claude Code and Codex
+        agents for the Lean development.
+  notes: >-
+    The LIX problem was solved by Astra, using a custom proof tool. All prose
+    of the submission was written by Claude Fable 5.1: the registry abstract,
+    the narrative fields of this file and the docstrings of the Palomar
+    modules. The Lean formalisation was produced by Claude Opus 5, Claude
+    Sonnet 5 and GPT-5.6 Sol agents under the author's direction.
+
+review:
+  status: self-assessed
+
+repository:
+  role: substantive-development
+
+related_formalizations:
+  - id: https://github.com/akopjan/HamSandwich/tree/76202dbbb6610ffcebbccfbf7a56f833a4c2a376
+    relationship: builds-on
+    note: >-
+      The mod-2 singular cohomology used by the LIX obstruction (cochains,
+      cup products, the cohomology of spheres) is a namespace-isolated Lean
+      4.32 port of the HamSandwich library, in
+      GroupApproximation/ThirdParty/HamSandwich, with the upstream revision
+      and the porting record in its UPSTREAM.md. The characteristic classes,
+      Steenrod squares, Thom class and the obstruction itself are this
+      project's own.
+
+status:
+  # Axiom closures computed by scripts/PalomarAxioms.lean and
+  # scripts/PalomarLIXAxioms.lean, checked by .github/workflows/palomar-check.yml.
+  scope: >-
+    Palomar/LIXChallenge.lean states that not every nontrivial simple unital
+    C*-algebra is K1-injective, that the counterexample can be taken separable,
+    and that it can be taken to fail K1-injectivity at the first
+    stabilisation; Palomar/LIXSolution.lean proves these.
+  main_results:
+    - declaration: ProblemLIX.not_all_simple_unital_k1Injective
+      file: Palomar/LIXSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-lix.json
+
+    - declaration: ProblemLIX.exists_separable_simple_not_k1Injective
+      file: Palomar/LIXSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-lix.json
+
+    - declaration: ProblemLIX.exists_separable_simple_stage_two_witness
+      file: Palomar/LIXSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-lix.json
+
+fidelity:
+  divergences: >-
+    Simplicity is Mathlib's IsSimpleRing, which asks
+    that the only two-sided ideals be zero and the whole algebra, while
+    C*-simplicity asks this of closed ideals only; for a unital C*-algebra the
+    two agree, because a proper two-sided ideal of a unital Banach algebra
+    misses a neighbourhood of the unit and so has proper closure, and the
+    development proves this (isSimpleCStar_iff_isSimpleRing). K1-injectivity
+    is stated elementwise: every unitary whose stabilisation diag(u, 1, ..., 1)
+    is null-homotopic in some Mn(A) is null-homotopic in A. This is the
+    direct-limit description of the kernel of U(A)/U0(A) -> K1(A); the group
+    K1(A) itself is not constructed. Mathlib's C*-structure on Mn(A) needs a
+    partial order on A making it a star-ordered ring, and the challenge fixes
+    this order to the spectral order; there is only one such order, but the
+    statement fixes it and does not prove uniqueness. All algebras range over
+    Type 0, and the counterexample is in Type 0.
+
+
+alignment:
+  statements:
+    - source: >-
+        Problem LIX (are all unital simple C*-algebras K1-injective?): no,
+        not every nontrivial simple unital C*-algebra is K1-injective.
+      lean: ProblemLIX.not_all_simple_unital_k1Injective
+      module: Palomar.LIXChallenge
+      status: proved
+
+    - source: >-
+        Problem LIX with the counterexample separable: there is a separable
+        simple unital C*-algebra that is not K1-injective.
+      lean: ProblemLIX.exists_separable_simple_not_k1Injective
+      module: Palomar.LIXChallenge
+      status: proved
+
+    - source: >-
+        Problem LIX, sharp form: there is a separable simple unital
+        C*-algebra A with a unitary u not connected to 1 in U(A) although
+        diag(u, 1) is connected to 1 in U(M2(A)), so the class of u vanishes
+        at the first stabilisation.
+      lean: ProblemLIX.exists_separable_simple_stage_two_witness
+      module: Palomar.LIXChallenge
+      status: proved
+
+acknowledgements: >-
+  Built on Lean 4 and Mathlib. The mod-2 singular cohomology layer is a port
+  of akopjan/HamSandwich (Apache-2.0).

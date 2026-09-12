@@ -1,0 +1,25 @@
+{
+  "scope": "Exploration additions only; original universal goals remain OPEN.",
+  "new_claim_nodes": 7,
+  "new_open_hypothesis_nodes": 1,
+  "formal_verification": false,
+  "source_note": "Written arguments and imported Schramm estimate are distinct from finite replay checks.",
+  "artifacts": {
+    "research/artifacts/exploration-pivotal-projections.md": {
+      "bytes": 24694,
+      "sha256": "7c2d505ee1d9fb085ee2122b5cdc9d900f698a037e16fa962781b19fae6872c0"
+    },
+    "scripts/replay_exploration.py": {
+      "bytes": 8241,
+      "sha256": "2c329e0c86c6f513c21eb63164e59f2437025dd302ff32ab0e25159ec5b022a8"
+    },
+    "research/artifacts/exploration-replay.json": {
+      "bytes": 4242,
+      "sha256": "c7337b162f7e13e50a7602711a0c6dc7d1efd3be5bb00bb9798c2a04962f6ee9"
+    },
+    "research/artifacts/exploration-cairn-check.json": {
+      "bytes": 315,
+      "sha256": "1f6c25de6df27c15c4a512d9b981fc101e678a333e8447b139a7f2cf1fe73f6f"
+    }
+  }
+}

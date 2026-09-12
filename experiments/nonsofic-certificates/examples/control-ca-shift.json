@@ -1,0 +1,9 @@
+{
+  "type": "gottschalk-ca",
+  "expect": "FAIL",
+  "note": "Control: the shift by g has the shift by g^-1 as inverse, so it is surjective and no pattern is a Garden of Eden.",
+  "alphabet": 2,
+  "tau": {"memory": ["@g"], "rule": [0, 1]},
+  "sigma": {"memory": ["@g^-1"], "rule": [0, 1]},
+  "orphan": {"cells": ["@e", "@u"], "values": [1, 0]}
+}

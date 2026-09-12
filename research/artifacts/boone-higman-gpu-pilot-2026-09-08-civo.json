@@ -1,0 +1,17 @@
+{
+  "hostname": "bh-pilot-1788898359",
+  "region": "lon1",
+  "started": 1788898359.5491424,
+  "deadline": 1788901059.5491424,
+  "hourly_usd": 1.09,
+  "total_cap_usd": 20,
+  "pilot_max_base_usd": 1.09,
+  "instance_id": null,
+  "sshkey_id": "9519cf09-d9e5-46d0-ba29-b6db391dc2a9",
+  "watchdog_pid": 121124,
+  "outcome": "failed",
+  "error": "Civo POST instances HTTP 403: gpu_count_exceeded; The requested number of GPU units exceeds the maximum provisionable GPU counts available in the region",
+  "deletion_confirmed": true,
+  "finished": 1788898362.9161358,
+  "base_cost_upper_estimate_usd": 0
+}

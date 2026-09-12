@@ -1,0 +1,20 @@
+notes: orphan module sweep, 101 GroupApproximation orphans classified
+
+Independently recomputed the transitive import closure from
+GroupApproximation.lean (matches the assigned count of 101 landed-but-
+unreachable modules) and classified every one as DEAD (81), INTENTIONAL (6),
+or WIRE (14), with git-history and content evidence for each cluster.
+
+Two items flagged for a second look: Analysis/STW22AntipodalFactorialPair's
+4-file chain proves the XXII endpoint's "missing conjunct" (its own docstring
+says so) and sits unwired; and the ChernCommonZeroBridge/Topology/* cluster is
+a complete, audit-gated alternate proof of the XXII counterexample's
+Chern-class input, classified DEAD (superseded by the landed operator-
+algebraic route) but flagged as low-confidence since nothing in the corpus
+explicitly says the two routes converge.
+
+No .lean files touched; GroupApproximation.lean was not edited (lanes don't
+wire).
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

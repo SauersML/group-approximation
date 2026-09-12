@@ -1,0 +1,17 @@
+notes: STW tree finding corrected with build evidence — never compiled, broken three ways
+
+Replaces this lane's earlier "sorry-free, worth a decision" characterization
+of STW/ + STWProblems.lean with the lead's build result: Flow.lean passes but
+with two instance-diamond warnings that would be hard errors under the
+GroupApproximation lib's warningAsError flag; FockPair.lean has two real
+failed-tactic proof errors; CuntzCalkin.lean cannot even resolve its own
+sibling import (STW has no lakefile entry, so the module prefix does not
+exist). States the sharper mechanism plainly: a file outside every lakefile
+target is not merely unbuilt, it is exempt from the lib's flags and cannot
+reference its own siblings. Records the decision the lead made: abandoned
+work, not a live effort to wire and not a supersession (a superseded route at
+least worked once) -- a source of ideas for Problem LV, not of theorems.
+Read at origin/main c2167cd8b25789da2d23f00af4177d4be0776ae9.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

@@ -1,0 +1,79 @@
+STW/: repaired, moved under GroupApproximation/, and green end to end
+
+STW/Actual/{Flow,FockPair,CuntzCalkin}.lean and root STWProblems.lean had never
+been compiled by anything: STW is not a lakefile lean_lib, so no target ever
+named them and lake build never touched them. Moved the three Actual/ files
+plus their aggregator (STW/Actual.lean) under GroupApproximation/STW/, so they
+compile as ordinary named modules of the existing GroupApproximation lib
+(lake build GroupApproximation.STW.Actual.<Flow|FockPair|CuntzCalkin>), and
+rewired their internal STW.Actual.* imports and STWProblems.lean's dangling
+one accordingly; Lean namespaces (STW.Actual) are unaffected by the file move.
+Root import wiring is left to the lead, per convention.
+
+Every first-elaboration error, fixed on its own merits, none by re-proving
+mathematics:
+
+* Flow.lean -- `[CStarAlgebra A]` never resolved: the file imported
+  Mathlib.Analysis.CStarAlgebra.Basic, which does not define the class (that
+  is Mathlib.Analysis.CStarAlgebra.Classes); added the import. Renamed `def at`
+  to `atTime` -- `at` is a reserved tactic-syntax token and cannot be a
+  declaration name, and using it desynced the parser for the rest of the file,
+  producing a cascade of unrelated-looking "invalid binder annotation" errors
+  that were really this one problem. Removed a redundant `[One A]` binder
+  ([Ring A] already supplies it) that produced two instance-diamond warnings,
+  hard errors under this lib's -DwarningAsError=true.
+
+* FockPair.lean -- a `.symm` in `prefixOp_star_mul_of_ne` was backwards
+  against the current `ContinuousLinearMap.adjoint_inner_left`'s argument
+  order (found by reading against the pinned Mathlib before ever building,
+  confirmed by the build once reached). `ext f` was over-eagerly chaining into
+  `lp`'s own extensionality one level further than the proof anticipated,
+  turned a vector-level goal into a coordinate-level one, and broke a `change`
+  needing the vector level; fixed by `apply ContinuousLinearMap.ext; intro f`
+  to stop at exactly one level. `inner_self_eq_zero`'s scalar field was left
+  as a metavariable with nothing in the bare goal `z = 0` to pin it to `CC`;
+  supplied `(𝕜 := ℂ)` explicitly. A trailing `simp` after `rw [hz]` made no
+  progress because simp's discrimination-tree indexing does not equate the
+  constant `(0 : FockIndex -> CC)` with the lambda shape `tsum_zero`'s pattern
+  expects even though they are defeq; replaced with `exact tsum_zero`, which
+  checks defeq directly.
+
+* CuntzCalkin.lean -- never got past its own first line before (`import
+  STW.Actual.FockPair` had no module to resolve, since STW carried no lakefile
+  entry), so every fault below is a genuine first fault, all shallow: missing
+  `open scoped InnerProductSpace` (present in FockPair.lean, not inherited
+  across the import) caused a raw parse failure on `⟪·,·⟫_ℂ` that cascaded
+  into several unrelated-looking errors; `calkinPrefix` is a plain `def` and
+  does not unfold for `rw`'s pattern matching without `unfold` first; the same
+  `ext f`-over-recursion as FockPair.lean's, fixed the same way (`ext f y`);
+  `calkinPrefix_range_sum`'s closing `simpa` tried to bridge
+  `essentialStar (A * star A)` against `essentialStar A * star (essentialStar A)`
+  by unfolding definitions and hoping simp's default set would also fire
+  `map_mul`/`map_star` in the right order, and it normalized the
+  ContinuousLinearMap `*` to `∘SL` (`mul_def` is itself a simp lemma) before
+  `map_mul` ever saw a product to distribute over; replaced with an explicit
+  three-line bridge (`map_mul`, `map_star`, then `map_sub`/`map_one` on the
+  whole difference) that never lets simp choose the order; two `rw`s later
+  in the same theorem needed a `prefixMap b w`-shaped term that the surrounding
+  `change` had stated as the defeq-but-not-syntactically-equal `b :: w`, fixed
+  with a `show ... from` wrapper at each site rather than moving the `change`
+  (which would have broken a different, already-correct rewrite next to it).
+
+All five files probed green together (lixprobe10.sh lix-meta
+GroupApproximation.STW.Actual GroupApproximation.STWProblems, 8677 jobs,
+LAKE_EXIT=0, sorryAx: none) after each was probed green individually first.
+No #audit_axioms/#audit_closed_axioms lines anywhere in the tree -- it is
+infrastructure (definitions, structures, the four Cuntz relations for two
+concrete Fock-space generators in the Calkin algebra, STW Problem LV's
+C*-flow/cocycle-conjugacy vocabulary), not an endpoint claim, so there is
+nothing to audit-gate; the landing gate's per-declaration check is therefore
+vacuous here by content, not evaded.
+
+Checked for duplication before landing, not assumed absent: grepped every
+reachable module for "Cuntz" -- the only hits are the unrelated
+Cuntz-Pedersen-equivalence cluster and the STW22/XXII files, none of which
+build a concrete pair of Cuntz-relation isometries. This is not a supersession
+of anything reachable; it is new, previously-unreachable-and-uncompiled
+content now compiling for the first time.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

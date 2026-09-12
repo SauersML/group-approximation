@@ -1,0 +1,265 @@
+{
+  "compact_degree_two_dimension": 440,
+  "correction_variable_count": 30360,
+  "full_degree_two_dimension": 37830,
+  "prime": 61,
+  "projective_degree": 3783,
+  "reached_depth": 6,
+  "records": [
+    {
+      "centered_correction_squared_norms": [
+        5103,
+        5131
+      ],
+      "centered_maximum_absolute_coefficients": [
+        1,
+        1
+      ],
+      "correction_supports": [
+        5103,
+        5131
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 1,
+      "modulus": 2,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        15019,
+        15011
+      ],
+      "centered_maximum_absolute_coefficients": [
+        2,
+        2
+      ],
+      "correction_supports": [
+        7582,
+        7601
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 2,
+      "modulus": 4,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        51685,
+        49986
+      ],
+      "centered_maximum_absolute_coefficients": [
+        4,
+        4
+      ],
+      "correction_supports": [
+        8153,
+        8214
+      ],
+      "direct_module_diagnostics": [
+        {
+          "depth": 0,
+          "elimination_updates": 27019,
+          "initial_equations": 15132,
+          "initial_nonzeros": 114982,
+          "modulus": 8,
+          "peak_active_nonzeros": 114983,
+          "residual_equations": 2,
+          "unit_pivots": 11051
+        },
+        {
+          "depth": 1,
+          "elimination_updates": 0,
+          "initial_equations": 2,
+          "initial_nonzeros": 1800,
+          "modulus": 4,
+          "peak_active_nonzeros": 1800,
+          "residual_equations": 2,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 2,
+          "elimination_updates": 1,
+          "initial_equations": 2,
+          "initial_nonzeros": 1800,
+          "modulus": 2,
+          "peak_active_nonzeros": 1800,
+          "residual_equations": 0,
+          "unit_pivots": 1
+        }
+      ],
+      "direct_module_elapsed_seconds": 1.0040463620098308,
+      "direct_module_solve": true,
+      "greedy_hensel_solvable": false,
+      "level": 3,
+      "modulus": 8,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        205693,
+        204146
+      ],
+      "centered_maximum_absolute_coefficients": [
+        8,
+        8
+      ],
+      "correction_supports": [
+        8851,
+        8799
+      ],
+      "direct_module_diagnostics": [
+        {
+          "depth": 0,
+          "elimination_updates": 27031,
+          "initial_equations": 15132,
+          "initial_nonzeros": 114982,
+          "modulus": 16,
+          "peak_active_nonzeros": 114983,
+          "residual_equations": 2,
+          "unit_pivots": 11051
+        },
+        {
+          "depth": 1,
+          "elimination_updates": 0,
+          "initial_equations": 2,
+          "initial_nonzeros": 1924,
+          "modulus": 8,
+          "peak_active_nonzeros": 1924,
+          "residual_equations": 2,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 2,
+          "elimination_updates": 1,
+          "initial_equations": 2,
+          "initial_nonzeros": 1924,
+          "modulus": 4,
+          "peak_active_nonzeros": 1924,
+          "residual_equations": 0,
+          "unit_pivots": 1
+        },
+        {
+          "depth": 3,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 2,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        }
+      ],
+      "direct_module_elapsed_seconds": 1.157733608968556,
+      "direct_module_solve": true,
+      "greedy_hensel_solvable": false,
+      "level": 4,
+      "modulus": 16,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        1299901,
+        1274002
+      ],
+      "centered_maximum_absolute_coefficients": [
+        16,
+        16
+      ],
+      "correction_supports": [
+        11056,
+        10915
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 5,
+      "modulus": 32,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        3233789,
+        3243234
+      ],
+      "centered_maximum_absolute_coefficients": [
+        32,
+        32
+      ],
+      "correction_supports": [
+        9298,
+        9244
+      ],
+      "direct_module_diagnostics": [
+        {
+          "depth": 0,
+          "elimination_updates": 27037,
+          "initial_equations": 15132,
+          "initial_nonzeros": 114982,
+          "modulus": 64,
+          "peak_active_nonzeros": 114983,
+          "residual_equations": 2,
+          "unit_pivots": 11051
+        },
+        {
+          "depth": 1,
+          "elimination_updates": 0,
+          "initial_equations": 2,
+          "initial_nonzeros": 2020,
+          "modulus": 32,
+          "peak_active_nonzeros": 2020,
+          "residual_equations": 2,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 2,
+          "elimination_updates": 1,
+          "initial_equations": 2,
+          "initial_nonzeros": 2020,
+          "modulus": 16,
+          "peak_active_nonzeros": 2020,
+          "residual_equations": 0,
+          "unit_pivots": 1
+        },
+        {
+          "depth": 3,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 8,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 4,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 4,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 5,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 2,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        }
+      ],
+      "direct_module_elapsed_seconds": 1.3319155379431322,
+      "direct_module_solve": true,
+      "greedy_hensel_solvable": false,
+      "level": 6,
+      "modulus": 64,
+      "solvable": true
+    }
+  ],
+  "requested_depth": 6,
+  "two_cell_orientation_torsion_orbits": [
+    33,
+    63
+  ]
+}

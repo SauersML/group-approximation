@@ -1,0 +1,175 @@
+import GroupApproximation.Algebra.FinitaryLinearGroup
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+
+/-!
+# Block stabilizers of the finitary linear group are general linear groups
+
+`non_mf_groups_exist.tex`, the remark after `prop:torsion-defect-ring`
+(tex lines 1141--1145), identifies the finitary group with a directed union of
+matrix groups, `⋃_N SL_N(F_2)`.  This module supplies the identification of
+each piece: for a finite set `T` of basis indices, the automorphisms supported on
+`T` are exactly the block matrices
+
+`B b ↦ ∑_{a ∈ T} A a b • B a` for `b ∈ T`,  `B b ↦ B b` for `b ∉ T`,
+
+with `A` invertible, and `A ↦` that automorphism is an injective homomorphism
+`GL_T(F) → Aut(M)`.  So `supportedOn B T ≃* GL_T(F)`.
+-/
+
+namespace GroupApproximation
+namespace FinitaryLinear
+
+universe u v w
+
+variable {F : Type u} [Field F] {M : Type v} [AddCommGroup M] [Module F M]
+  {β : Type w} [DecidableEq β] (B : Module.Basis β F M) (T : Finset β)
+
+open Matrix
+
+/-- The linear map acting by the matrix `A` on the basis vectors of `T` and by
+the identity on the other basis vectors. -/
+noncomputable def blockLin (A : Matrix T T F) : M →ₗ[F] M :=
+  B.constr F fun b ↦ if hb : b ∈ T then ∑ a : T, A a ⟨b, hb⟩ • B a else B b
+
+theorem blockLin_basis_mem (A : Matrix T T F) {b : β} (hb : b ∈ T) :
+    blockLin B T A (B b) = ∑ a : T, A a ⟨b, hb⟩ • B a := by
+  simp [blockLin, Module.Basis.constr_basis, hb]
+
+theorem blockLin_basis_not_mem (A : Matrix T T F) {b : β} (hb : b ∉ T) :
+    blockLin B T A (B b) = B b := by
+  simp [blockLin, Module.Basis.constr_basis, hb]
+
+theorem repr_blockLin (A : Matrix T T F) (a b : T) :
+    B.repr (blockLin B T A (B b)) a = A a b := by
+  classical
+  rw [blockLin_basis_mem B T A b.2]
+  simp only [Subtype.coe_eta, map_sum, map_smul, Module.Basis.repr_self, Finsupp.coe_finsetSum,
+    Finset.sum_apply, Finsupp.smul_apply, Finsupp.single_apply, smul_eq_mul, mul_ite, mul_one,
+    mul_zero]
+  rw [Finset.sum_eq_single a]
+  · simp
+  · intro c _ hc
+    simp [Subtype.coe_injective.ne hc]
+  · simp
+
+theorem blockLin_injective : Function.Injective (blockLin B T) := by
+  intro A A' h
+  ext a b
+  rw [← repr_blockLin B T A a b, ← repr_blockLin B T A' a b, h]
+
+theorem blockLin_one : blockLin B T (1 : Matrix T T F) = LinearMap.id := by
+  classical
+  refine B.ext fun b ↦ ?_
+  by_cases hb : b ∈ T
+  · rw [blockLin_basis_mem B T 1 hb, LinearMap.id_apply, Finset.sum_eq_single ⟨b, hb⟩]
+    · simp
+    · intro a _ ha
+      rw [Matrix.one_apply_ne ha, zero_smul]
+    · simp
+  · rw [blockLin_basis_not_mem B T 1 hb, LinearMap.id_apply]
+
+theorem blockLin_mul (A A' : Matrix T T F) :
+    blockLin B T (A * A') = blockLin B T A ∘ₗ blockLin B T A' := by
+  classical
+  refine B.ext fun b ↦ ?_
+  by_cases hb : b ∈ T
+  · rw [LinearMap.comp_apply, blockLin_basis_mem B T _ hb, blockLin_basis_mem B T A' hb,
+      map_sum]
+    simp only [map_smul, blockLin_basis_mem B T A (Subtype.property _), Subtype.coe_eta,
+      Matrix.mul_apply, Finset.sum_smul, Finset.smul_sum, smul_smul]
+    rw [Finset.sum_comm]
+    refine Finset.sum_congr rfl fun c _ ↦ Finset.sum_congr rfl fun a _ ↦ ?_
+    rw [mul_comm]
+  · rw [LinearMap.comp_apply, blockLin_basis_not_mem B T _ hb, blockLin_basis_not_mem B T _ hb,
+      blockLin_basis_not_mem B T _ hb]
+
+/-- The automorphism of `M` given by an invertible block matrix. -/
+noncomputable def blockEquiv (A : (Matrix T T F)ˣ) : M ≃ₗ[F] M :=
+  LinearEquiv.ofLinear (blockLin B T A) (blockLin B T ↑A⁻¹)
+    (by rw [← blockLin_mul, Units.mul_inv, blockLin_one])
+    (by rw [← blockLin_mul, Units.inv_mul, blockLin_one])
+
+@[simp] theorem blockEquiv_apply (A : (Matrix T T F)ˣ) (x : M) :
+    blockEquiv B T A x = blockLin B T A x := rfl
+
+/-- **The block homomorphism** `GL_T(F) → Aut(M)`. -/
+noncomputable def blockHom : (Matrix T T F)ˣ →* (M ≃ₗ[F] M) where
+  toFun := blockEquiv B T
+  map_one' := LinearEquiv.ext fun x ↦ by
+    simp [blockLin_one]
+  map_mul' A A' := LinearEquiv.ext fun x ↦ by
+    simp [blockLin_mul]
+
+theorem blockHom_apply (A : (Matrix T T F)ˣ) (x : M) : blockHom B T A x = blockLin B T A x := rfl
+
+theorem blockHom_injective : Function.Injective (blockHom B T) := by
+  intro A A' h
+  apply Units.ext
+  apply blockLin_injective B T
+  ext x
+  exact congrArg (fun g : M ≃ₗ[F] M ↦ g x) h
+
+theorem blockHom_mem_supportedOn (A : (Matrix T T F)ˣ) : blockHom B T A ∈ supportedOn B T := by
+  refine IsSupportedOn.of_basis (fun b hb ↦ blockLin_basis_not_mem B T _ hb) fun b hb ↦ ?_
+  rw [blockHom_apply, blockLin_basis_mem B T _ hb]
+  exact Submodule.sum_mem _ fun a _ ↦ Submodule.smul_mem _ _ (basis_mem_blockSpan B a.2)
+
+/-- The block matrix read off an automorphism: `A a b = B.repr (g (B b)) a`. -/
+noncomputable def coeffMatrix (g : M →ₗ[F] M) : Matrix T T F :=
+  fun a b ↦ B.repr (g (B b)) a
+
+/-- An automorphism supported on `T` is the block map of its coefficient matrix. -/
+theorem blockLin_coeffMatrix {g : M ≃ₗ[F] M} (hg : IsSupportedOn B g T) :
+    blockLin B T (coeffMatrix B T (g : M →ₗ[F] M)) = (g : M →ₗ[F] M) := by
+  classical
+  refine B.ext fun b ↦ ?_
+  simp only [LinearEquiv.coe_coe]
+  by_cases hb : b ∈ T
+  · rw [blockLin_basis_mem B T _ hb]
+    have hsupp : ((B.repr (g (B b))).support : Set β) ⊆ (T : Set β) :=
+      (Module.Basis.mem_span_image B).mp (hg.maps _ (basis_mem_blockSpan B hb))
+    have hsupp' : (B.repr (g (B b))).support ⊆ T := by exact_mod_cast hsupp
+    conv_rhs => rw [← B.linearCombination_repr (g (B b))]
+    rw [Finsupp.linearCombination_apply,
+      Finsupp.sum_of_support_subset (B.repr (g (B b))) hsupp' (fun i a ↦ a • B i)
+        (fun i _ ↦ zero_smul F (B i))]
+    rw [← Finset.sum_coe_sort T]
+    exact Finset.sum_congr rfl fun a _ ↦ rfl
+  · rw [blockLin_basis_not_mem B T _ hb]
+    exact (hg.fix b hb).symm
+
+/-- **Every automorphism supported on `T` is a block matrix.** -/
+theorem supportedOn_le_range : supportedOn B T ≤ (blockHom B T).range := by
+  intro g hg
+  have hginv : IsSupportedOn B g⁻¹ T := IsSupportedOn.inv hg
+  let A := coeffMatrix B T (g : M →ₗ[F] M)
+  let A' := coeffMatrix B T (g⁻¹ : M ≃ₗ[F] M)
+  have hAA' : A * A' = 1 := by
+    apply blockLin_injective B T
+    rw [blockLin_mul, blockLin_coeffMatrix B T hg, blockLin_coeffMatrix B T hginv, blockLin_one]
+    ext x
+    simp
+  have hA'A : A' * A = 1 := by
+    apply blockLin_injective B T
+    rw [blockLin_mul, blockLin_coeffMatrix B T hg, blockLin_coeffMatrix B T hginv, blockLin_one]
+    ext x
+    simp
+  refine ⟨⟨A, A', hAA', hA'A⟩, LinearEquiv.ext fun x ↦ ?_⟩
+  rw [blockHom_apply]
+  exact congrArg (fun f : M →ₗ[F] M ↦ f x) (blockLin_coeffMatrix B T hg)
+
+theorem range_blockHom : (blockHom B T).range = supportedOn B T := by
+  refine le_antisymm ?_ (supportedOn_le_range B T)
+  rintro _ ⟨A, rfl⟩
+  exact blockHom_mem_supportedOn B T A
+
+/-- **`supportedOn B T ≃* GL_T(F)`.** -/
+noncomputable def supportedOnEquivGL : supportedOn B T ≃* (Matrix T T F)ˣ :=
+  ((MonoidHom.ofInjective (blockHom_injective B T)).trans
+    (MulEquiv.subgroupCongr (range_blockHom B T))).symm
+
+end FinitaryLinear
+end GroupApproximation
+
+#audit_axioms GroupApproximation.FinitaryLinear.range_blockHom
+#audit_axioms GroupApproximation.FinitaryLinear.blockHom_injective

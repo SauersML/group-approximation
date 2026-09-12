@@ -1,0 +1,13 @@
+{
+ "status": "ok",
+ "id": "fpbs-cut-burnside-network-target",
+ "kind": "claim",
+ "node_status": "OPEN",
+ "why": [
+  "fpbs-cut-burnside-network-target [OPEN] \u2014 Construct vanishing fractional-cut repair budgets for odd Burnside Bernoulli seeds",
+  "frontier hole: no live routes into it \u2014 prove it directly (a route with requires: []) or decompose it with a new route",
+  "live routes waiting on it: fpbs-cut-burnside-completion-route",
+  "if established: completes fpbs-cut-burnside-completion-route -> fpbs-burnside-upper-cost-one; root fpbs-burnside-upper-cost-one: cheapest mapped plan 1 -> 0",
+  "if refuted (establish the negation): dead-ends fpbs-cut-burnside-completion-route (fpbs-burnside-upper-cost-one keeps 0 other live route(s))"
+ ]
+}

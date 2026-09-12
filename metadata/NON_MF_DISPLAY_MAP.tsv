@@ -1,0 +1,51 @@
+# Display assignments for the non-MF manuscript.
+#
+# key<TAB>status<TAB>decls<TAB>note.  Generated companion:
+# metadata/NON_MF_DISPLAY_CENSUS.tsv, which must not be edited.  The key is
+# printed by scripts/display_census.py: for a display block it is the first
+# twelve hex digits of the sha256 of the normalized block body, and for a line
+# the prose \eqref's individually it is the sha256 of the LABEL, so that
+# rewording such a line does not move its row.
+#
+# Statuses:
+#   carrier               the named declarations state this displayed identity
+#   notation-only         the display introduces a symbol the prose names; it
+#                         asserts nothing, and decls name the defined object
+#   derivation-of:<key>   an intermediate step of a proof whose conclusion is
+#                         graded at that SENTENCE key.  Such a row names NO
+#                         declarations: the grade says the step is not
+#                         separately stated in Lean, and naming one would be
+#                         the overreach the sentence map's rules forbid.  The
+#                         target must resolve in the sentence census and must
+#                         not itself be unassigned.
+# A key with no row here reads `unassigned`, the state --check rejects.
+#
+# The rule the sentence map lives by applies here too: a `carrier` row names a
+# declaration that already earns its place in the development.  Writing one in
+# order to fill a row turns a gate green without adding knowledge.
+#
+# Opened 2026-08-29 by census-lane for issue #51's display subtask.  The six
+# rows below are the labelled equations of Section 5 and the defect definition,
+# taken from the printed-item table that
+# Manuscript/OneSidedMFRadical/PrintedLeavittEquations.lean already maintains
+# for that section; the remaining displays are untriaged and read `unassigned`.
+# The workflow therefore runs regeneration, --verify-links and --verify-decls,
+# and NOT --check: a --check today would be a permanent red on work nobody has
+# done yet, which is worse than an honest count of what is ungraded.
+294c99de85d2	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.printedDefect GroupApproximation.Manuscript.OneSidedMFRadical.printedDefectSet GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence40_printedDefect_display	eq:intrinsic-defect. The displayed normal closure is rfl-equal to printedDefect, with the compressors quantified individually as printed rather than through the subgroup they generate. Same declarations as the sentence row 56d73653208a, which grades the prose introducing the display.
+a388db19c8b5	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.printed_leavitt_delta GroupApproximation.LeavittFamily.p0_add_s1t1	eq:leavitt. printed_leavitt_delta is the Kronecker form t_i s_j = delta_ij over the concrete R, and p0_add_s1t1 is the completeness relation s0t0 + s1t1 = 1.
+1694f1608ead	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptIntroductionMFDefinition	The literal MF-definition theorem contains the displayed operator-norm multiplicative convergence for every g and h.
+adc6e7597473	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalizedMFModelSeparation	The normalized MF-model theorem contains the displayed positive limsup separation for every nonidentity element.
+3d92ca022225	notation-only	GroupApproximation.compressionSet	This display defines Comp_G(L), represented exactly by compressionSet L.
+8c392f3c01dc	notation-only	GroupApproximation.hsNormSq GroupApproximation.hsLengthSq	This display fixes normalized Hilbert--Schmidt notation; hsNormSq and hsLengthSq are the squared normalized trace formulas used throughout the formalization.
+eed32a21d493	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedOpAlmostRepresentationDefinition	The printed almost-representation theorem states the displayed multiplicative defect convergence exactly.
+8e484c78a3af	derivation-of:b093f3c88101		These three estimates are the displayed proof calculation establishing that the Hilbert--Schmidt null elements form a normal subgroup.
+35804834b871	notation-only	GroupApproximation.NormMatrixCStarCorona	The stable-finiteness lemma's display names the same norm matrix corona at coordinate sizes m_n.
+40003ca9bf0f	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportCommutantEquality	This theorem is exactly the displayed equality Ad(V(u))(C_2(V,L)) = C_2(V,L).
+312fa496158f	carrier	GroupApproximation.opNorm_adConj_sub_le_two_mul GroupApproximation.l2_opNorm_conjDouble_sub_le_two	These declarations state the displayed two-Lipschitz estimate for conjugation actions, in operator norm and on the Hilbert--Schmidt matrix space used in the proof.
+c57ad6c551ec	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectHS	This is exactly the printed defect-Hilbert--Schmidt theorem: every d in the printed intrinsic defect tends to the identity in normalized Hilbert--Schmidt norm.
+383951735318	carrier	GroupApproximation.NormalKazhdanUltraproduct.nk_07_conjugate_proj	Normality of K gives exactly the displayed conjugation invariance of its Kazhdan projection.
+84f43ab3bcaa	carrier	GroupApproximation.canonicalMaximalTrace_generator_one GroupApproximation.canonicalMaximalTrace_generator_of_ne_one	These two formulas are exactly the displayed values of the canonical trace on group generators.
+f7ec7accdecd	notation-only	GroupApproximation.LiteralNonMFLinearWitness.WitnessGroup	WitnessGroup is definitionally the displayed affine--Clifford semidirect product.
+f29ff5543db8	carrier	GroupApproximation.CliffordWitnessLocallyRFByInt.witnessGroupEquivShiftKernelByInt GroupApproximation.CliffordWitnessLocallyRFByInt.ShiftKernel	The equivalence and kernel definition are exactly the displayed reassociation.
+acfb5c00fe87	carrier	GroupApproximation.ElementaryDoubleSwap.root_commutator_doubleSwap GroupApproximation.ElementaryDoubleSwap.double_commutator_doubleSwap	The two printed commutators for the involution, with Lean indices starting at zero.

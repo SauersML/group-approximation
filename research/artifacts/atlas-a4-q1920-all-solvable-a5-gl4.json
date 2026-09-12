@@ -1,0 +1,23 @@
+{
+  "method": "Reduce a perfect split solvable-by-A5 subgroup of GL4(3) to order 60*2^a*3^b with 0<=a<=7 and 0<=b<=5. Enumerate the complete GAP PerfectGroups library at those orders, retain groups whose solvable radical is the full kernel, quotient is A5, and A5 complements exist. Candidates with nontrivial 3-core cannot act faithfully and irreducibly in characteristic three; compute all four-dimensional irreducible image orders for the remaining candidates.",
+  "candidate_count": 29,
+  "nontrivial_3_core_count": 20,
+  "zero_3_core_count": 9,
+  "zero_3_core_profiles_as_order_id_radical_order_complement_classes_four_dimensional_image_orders": [
+    [60, 1, 1, 1, [60]],
+    [960, 1, 16, 4, [60]],
+    [960, 2, 16, 1, [60]],
+    [1920, 1, 32, 4, [60]],
+    [1920, 7, 32, 1, [60]],
+    [3840, 1, 64, 2, [60]],
+    [3840, 2, 64, 2, [60]],
+    [3840, 3, 64, 4, [60]],
+    [7680, 1, 128, 2, [60]]
+  ],
+  "nontrivial_3_core_histogram": {
+    "81": 9,
+    "243": 11
+  },
+  "faithful_nontrivial_solvable_radical_count": 0,
+  "scope": "This is exhaustive for perfect split solvable-by-A5 action images on an irreducible four-dimensional F3 chief factor. It does not prove that every z-carrying chief factor of an arbitrary solvable seam kernel has total dimension four."
+}

@@ -1,0 +1,131 @@
+{
+  "chart_index": 506,
+  "chart_normalizer_order": 20160,
+  "chart_order": 20160,
+  "double_coset_sizes": [
+    20160,
+    4233600,
+    5644800,
+    302400
+  ],
+  "marking_parities": {
+    "graph": {
+      "double_coset_records": [
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 19008,
+            "s_11": 1152,
+            "s_30": 0,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 20160,
+          "survivor_count": 0
+        },
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 4205952,
+            "s_11": 27644,
+            "s_30": 4,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 4233600,
+          "survivor_count": 0
+        },
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 5628096,
+            "s_11": 16704,
+            "s_30": 0,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 5644800,
+          "survivor_count": 0
+        },
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 299520,
+            "s_11": 2880,
+            "s_30": 0,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 302400,
+          "survivor_count": 0
+        }
+      ],
+      "first_survivor": null,
+      "survivor_count": 0
+    },
+    "inner": {
+      "double_coset_records": [
+        {
+          "first_failure_histogram": {
+            "c_19243": 1,
+            "s_0": 19008,
+            "s_11": 1140,
+            "s_30": 8,
+            "s_44": 2,
+            "s_55": 1
+          },
+          "size": 20160,
+          "survivor_count": 0
+        },
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 4205952,
+            "s_11": 27630,
+            "s_30": 18,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 4233600,
+          "survivor_count": 0
+        },
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 5628096,
+            "s_11": 16704,
+            "s_30": 0,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 5644800,
+          "survivor_count": 0
+        },
+        {
+          "first_failure_histogram": {
+            "c_19243": 0,
+            "s_0": 299520,
+            "s_11": 2880,
+            "s_30": 0,
+            "s_44": 0,
+            "s_55": 0
+          },
+          "size": 302400,
+          "survivor_count": 0
+        }
+      ],
+      "first_survivor": null,
+      "survivor_count": 0
+    }
+  },
+  "overgroup": "M23",
+  "overgroup_order": 10200960,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ]
+}

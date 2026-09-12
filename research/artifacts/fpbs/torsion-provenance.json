@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-08",
+  "new_nodes": [
+    "fpbs-aw-finite-pattern-input",
+    "fpbs-aw-finite-pattern-reference",
+    "fpbs-torsion-finite-repair-relative-cost",
+    "fpbs-finite-pattern-paid-repair-proof",
+    "fpbs-bounded-centralizer-relative-cost",
+    "fpbs-centralizer-disjoint-detours-proof",
+    "fpbs-burnside-embedding-input",
+    "fpbs-burnside-algebra-reference",
+    "fpbs-burnside-common-upper-cost",
+    "fpbs-mutual-subgroup-cost-comparison-proof",
+    "fpbs-normalized-cost-induction-input",
+    "fpbs-normalized-induction-reference",
+    "fpbs-burnside-explicit-action-pair",
+    "fpbs-burnside-sheet-compression-proof",
+    "fpbs-burnside-positive-upper-cost",
+    "fpbs-burnside-upper-cost-one"
+  ],
+  "new_node_count": 16,
+  "base_bundle": "fixed-price-percolation-spectral-spike-cairn.zip",
+  "scope": "Additive written-proof research continuation; neither universal conjecture solved.",
+  "sources": [
+    {
+      "key": "AW",
+      "url": "https://arxiv.org/html/1103.1063v2",
+      "used": "Theorem 1 and Corollary 2"
+    },
+    {
+      "key": "DS",
+      "url": "https://arxiv.org/html/2608.20472v1",
+      "used": "torsion detour mechanism; centralizer and embedding inputs; infimum versus fixed price distinction"
+    },
+    {
+      "key": "I",
+      "url": "https://arxiv.org/abs/math/0210191",
+      "used": "large odd exponent noncyclic subgroup embedding"
+    },
+    {
+      "key": "G",
+      "url": "https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf",
+      "used": "Proposition 2.33 and Corollary 2.35, page 15; screenshot inspected"
+    },
+    {
+      "key": "AN",
+      "url": "https://arxiv.org/html/math/0701361v3",
+      "used": "do not substitute infimum index formula for an action restriction formula"
+    }
+  ],
+  "limitations": [
+    "No formal proof assistant verification",
+    "No priority claim",
+    "No determination of c_n=1 or c_n>1",
+    "No upper bound uniform in radius for the earlier pivotal obstruction"
+  ]
+}

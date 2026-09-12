@@ -1,0 +1,26 @@
+notes: orphan sweep -- three more WIRE files broken (main red twice), sorry-count table added
+
+Second build against this report's WIRE bucket: 3 of the 7 modules wired at
+20e64a97c did not compile (GGT/KazhdanHypGirthEightGeodesicWord.lean:115
+rewrite failed; GGT/KazhdanHypGirthEightGenericProducers.lean:63,78,160 type
+mismatches and :84,87 declaration uses sorry; GGT/DGOLemma421FourGon fails
+alongside them), unwired at dcee3ff04. Two of the failures carry a
+compiler-reported sorry -- previously the corpus's only reachable sorries
+were the four in TheoremCAssembly.lean.
+
+Rewrote the WIRE-section caveat: a WIRE verdict here means three checked
+claims (dependencies present, no duplicate declaration name, no literal
+sorry/admit token in this file's own source), explicitly not "compiles" and
+not "introduces no new admitted debt". Marked the three broken GGT files
+individually with their exact errors and revert commit. Added a per-file
+sorry/admit grep table across all 14 WIRE candidates (zero hits everywhere,
+including the file the build flagged) with the likely explanation: Lean's
+elaborator can synthesize a sorryAx to recover from a genuine type error, so
+a compiler "uses sorry" diagnostic need not correspond to an author-written
+token -- offered as a hypothesis for the lead to confirm against the build
+log, not as a contradiction of it. Updated the build-status and summary
+tables to match: net result of two build attempts is 7 of 11 tested WIRE
+files broken, 4 confirmed compiling, 3 (KTheory) never attempted.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

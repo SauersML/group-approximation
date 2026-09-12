@@ -1,0 +1,355 @@
+import GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents
+import Mathlib.Algebra.Polynomial.Inductions
+import Mathlib.Data.ZMod.Basic
+
+/-!
+# The Toeplitz--Jacobson algebra `J = 𝔽₂⟨s,t | ts = 1⟩`
+
+`non_mf_groups_exist.tex`, the remark after Proposition
+`prop:torsion-defect-ring` (tex lines 1108--1115):
+
+> The Toeplitz--Jacobson algebra `J = 𝔽₂⟨s,t | ts=1⟩` has `1-st ≠ 0` of order
+> two … Proposition `prop:torsion-defect-ring` shows that `EL_n(J)` is not MF
+> for `n ≥ 4`.  … The algebra `J` acts faithfully on `V = 𝔽₂^{(ℕ)}` by the
+> shift, `e = 1-st` is the projection onto the first basis vector.
+
+This module builds `J` as the printed shift algebra and settles the clauses
+that follow from the proposition already proved.
+
+## The model
+
+`V` is `𝔽₂[X]`, which is `𝔽₂^{(ℕ)}` with the monomials as basis, and
+
+* `s` is multiplication by `X` — the shift up;
+* `t` is `Polynomial.divX` — the shift down, `(t p)ₙ = pₙ₊₁`.
+
+Then `ts = 1` because `divX (X p) = p`, and `e = 1 - st` sends `p` to `C(p₀)`:
+the printed projection onto the first basis vector.  In particular `e ≠ 0`, and
+`2e = 0` because the whole endomorphism ring is an `𝔽₂`-module.
+
+`J` is `Subring.closure {s, t}`, the unital subring the two shifts generate,
+which is the printed `𝔽₂⟨s,t | ts=1⟩`.
+
+## Countability
+
+`J` sits inside an uncountable endomorphism ring, so its countability — a
+standing hypothesis of `prop:torsion-defect-ring` — is a theorem rather than an
+instance.  It is the printed normal form in the only direction needed: the set
+of finite sums of words `s^i t^j` is closed under multiplication, because
+`t^j s^k` is again a single power of `s` or of `t`, so it is a subring
+containing `s` and `t` and therefore contains `J`; and it is the range of a map
+from `List (ℕ × ℕ)`.  Linear independence of the words is never used.
+-/
+
+namespace GroupApproximation
+namespace Manuscript
+namespace OneSidedMFRadical
+namespace TorsionComplementaryIdempotents
+
+open GroupApproximation.OneSidedCompressor
+
+/- `IsCDEOperatorMF` asks for a `Countable` instance on the group; over a countable ring
+the elementary group is countable. -/
+attribute [local instance] FullDefectRing.countable_elementaryGroup
+
+/-! ## The printed space and the two shifts -/
+
+/-- The printed `V = 𝔽₂^{(ℕ)}`, as the polynomial ring with its monomial
+basis. -/
+abbrev JacobsonSpace : Type := Polynomial (ZMod 2)
+
+theorem zmodTwo_add_self (a : ZMod 2) : a + a = 0 := by
+  revert a
+  decide
+
+/-- The printed shift up `s`: multiplication by `X`. -/
+noncomputable def shiftUp : Module.End (ZMod 2) JacobsonSpace where
+  toFun p := Polynomial.X * p
+  map_add' p q := by ring
+  map_smul' a p := by
+    simp only [RingHom.id_apply]
+    exact mul_smul_comm a Polynomial.X p
+
+/-- The printed shift down `t`: `Polynomial.divX`, `(t p)ₙ = pₙ₊₁`. -/
+noncomputable def shiftDown : Module.End (ZMod 2) JacobsonSpace where
+  toFun p := p.divX
+  map_add' _ _ := Polynomial.divX_add
+  map_smul' a p := by
+    simp only [RingHom.id_apply]
+    refine Polynomial.ext fun n ↦ ?_
+    simp [Polynomial.coeff_divX]
+
+@[simp] theorem shiftUp_apply (p : JacobsonSpace) :
+    shiftUp p = Polynomial.X * p := rfl
+
+@[simp] theorem shiftDown_apply (p : JacobsonSpace) :
+    shiftDown p = p.divX := rfl
+
+/-- **The printed relation `ts = 1`.** -/
+theorem shiftDown_mul_shiftUp : shiftDown * shiftUp = 1 := by
+  refine LinearMap.ext fun p ↦ ?_
+  refine Polynomial.ext fun n ↦ ?_
+  rw [Module.End.mul_apply, shiftUp_apply, shiftDown_apply,
+    Polynomial.coeff_divX, Polynomial.coeff_X_mul, Module.End.one_apply]
+
+/-- **The printed `e = 1 - st` is the projection onto the first basis
+vector.** -/
+theorem one_sub_shiftUp_mul_shiftDown_apply (p : JacobsonSpace) :
+    ((1 : Module.End (ZMod 2) JacobsonSpace) - shiftUp * shiftDown) p
+      = Polynomial.C (p.coeff 0) := by
+  have h := Polynomial.X_mul_divX_add p
+  show p - Polynomial.X * p.divX = Polynomial.C (p.coeff 0)
+  rw [sub_eq_iff_eq_add, add_comm]
+  exact h.symm
+
+/-- **Printed:** `1 - st ≠ 0`. -/
+theorem one_sub_shiftUp_mul_shiftDown_ne_zero :
+    (1 : Module.End (ZMod 2) JacobsonSpace) - shiftUp * shiftDown ≠ 0 := by
+  intro h
+  have happ := congrArg (fun f : Module.End (ZMod 2) JacobsonSpace ↦ f 1) h
+  simp only [one_sub_shiftUp_mul_shiftDown_apply, LinearMap.zero_apply,
+    Polynomial.coeff_one_zero] at happ
+  exact one_ne_zero (Polynomial.C_eq_zero.mp happ)
+
+/-- Every endomorphism of an `𝔽₂`-module has additive order dividing two. -/
+theorem end_add_self (f : Module.End (ZMod 2) JacobsonSpace) : f + f = 0 := by
+  refine LinearMap.ext fun p ↦ ?_
+  refine Polynomial.ext fun n ↦ ?_
+  simp [zmodTwo_add_self]
+
+theorem two_nsmul_end_eq_zero (f : Module.End (ZMod 2) JacobsonSpace) :
+    (2 : ℕ) • f = 0 := by
+  rw [two_nsmul]
+  exact end_add_self f
+
+theorem end_neg_eq_self (f : Module.End (ZMod 2) JacobsonSpace) : -f = f :=
+  neg_eq_of_add_eq_zero_left (end_add_self f)
+
+/-! ## The printed algebra `J` -/
+
+/-- **Printed:** `J = 𝔽₂⟨s,t | ts=1⟩`, the unital subring generated by the two
+shifts. -/
+noncomputable def jacobsonAlgebra : Subring (Module.End (ZMod 2) JacobsonSpace) :=
+  Subring.closure ({shiftUp, shiftDown} : Set (Module.End (ZMod 2) JacobsonSpace))
+
+theorem shiftUp_mem_jacobsonAlgebra : shiftUp ∈ jacobsonAlgebra :=
+  Subring.subset_closure (by simp)
+
+theorem shiftDown_mem_jacobsonAlgebra : shiftDown ∈ jacobsonAlgebra :=
+  Subring.subset_closure (by simp)
+
+/-! ### The printed normal form, in the direction countability needs -/
+
+/-- The printed word `s^i t^j`. -/
+noncomputable def jacobsonWord (ij : ℕ × ℕ) :
+    Module.End (ZMod 2) JacobsonSpace :=
+  shiftUp ^ ij.1 * shiftDown ^ ij.2
+
+theorem shiftDown_pow_mul_shiftUp_pow_self (i : ℕ) :
+    shiftDown ^ i * shiftUp ^ i = 1 := by
+  induction i with
+  | zero => simp
+  | succ i ih =>
+      rw [pow_succ, pow_succ', mul_assoc, ← mul_assoc shiftDown shiftUp,
+        shiftDown_mul_shiftUp, one_mul, ih]
+
+/-- `t^j s^k` is again a single power: `s^{k-j}` if `j ≤ k`, `t^{j-k}` if
+not. -/
+theorem shiftDown_pow_mul_shiftUp_pow (j k : ℕ) :
+    shiftDown ^ j * shiftUp ^ k =
+      if j ≤ k then shiftUp ^ (k - j) else shiftDown ^ (j - k) := by
+  by_cases h : j ≤ k
+  · rw [if_pos h]
+    obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le h
+    rw [pow_add, ← mul_assoc, shiftDown_pow_mul_shiftUp_pow_self j, one_mul]
+    congr 1
+    omega
+  · rw [if_neg h]
+    obtain ⟨d, rfl⟩ :=
+      Nat.exists_eq_add_of_le (Nat.le_of_lt (Nat.lt_of_not_le h))
+    rw [add_comm k d, pow_add, mul_assoc, shiftDown_pow_mul_shiftUp_pow_self k, mul_one]
+    congr 1
+    omega
+
+/-- The index of the product of two printed words. -/
+def jacobsonMulIdx (a b : ℕ × ℕ) : ℕ × ℕ :=
+  if a.2 ≤ b.1 then (a.1 + (b.1 - a.2), b.2) else (a.1, (a.2 - b.1) + b.2)
+
+theorem jacobsonWord_mul (a b : ℕ × ℕ) :
+    jacobsonWord a * jacobsonWord b = jacobsonWord (jacobsonMulIdx a b) := by
+  have hmid := shiftDown_pow_mul_shiftUp_pow a.2 b.1
+  have hassoc : shiftUp ^ a.1 * shiftDown ^ a.2 * (shiftUp ^ b.1 * shiftDown ^ b.2)
+      = shiftUp ^ a.1 * (shiftDown ^ a.2 * shiftUp ^ b.1) * shiftDown ^ b.2 := by
+    rw [mul_assoc, mul_assoc, mul_assoc]
+  rw [jacobsonWord, jacobsonWord, jacobsonWord, jacobsonMulIdx, hassoc, hmid]
+  by_cases h : a.2 ≤ b.1
+  · rw [if_pos h, if_pos h, pow_add]
+  · rw [if_neg h, if_neg h, pow_add, mul_assoc]
+
+/-- A finite sum of printed words. -/
+noncomputable def jacobsonSum (l : List (ℕ × ℕ)) :
+    Module.End (ZMod 2) JacobsonSpace :=
+  (l.map jacobsonWord).sum
+
+theorem jacobsonSum_nil : jacobsonSum [] = 0 := rfl
+
+theorem jacobsonSum_cons (a : ℕ × ℕ) (l : List (ℕ × ℕ)) :
+    jacobsonSum (a :: l) = jacobsonWord a + jacobsonSum l := rfl
+
+theorem jacobsonSum_append (l₁ l₂ : List (ℕ × ℕ)) :
+    jacobsonSum (l₁ ++ l₂) = jacobsonSum l₁ + jacobsonSum l₂ := by
+  rw [jacobsonSum, jacobsonSum, jacobsonSum, List.map_append, List.sum_append]
+
+/-- The set of finite sums of printed words. -/
+noncomputable def jacobsonNormalSet : Set (Module.End (ZMod 2) JacobsonSpace) :=
+  Set.range jacobsonSum
+
+theorem word_mul_sum_mem (a : ℕ × ℕ) (l : List (ℕ × ℕ)) :
+    jacobsonWord a * jacobsonSum l ∈ jacobsonNormalSet := by
+  induction l with
+  | nil => exact ⟨[], by rw [jacobsonSum_nil, mul_zero]⟩
+  | cons b l ih =>
+      obtain ⟨l', hl'⟩ := ih
+      refine ⟨jacobsonMulIdx a b :: l', ?_⟩
+      rw [jacobsonSum_cons, jacobsonSum_cons, mul_add, jacobsonWord_mul, hl']
+
+theorem jacobsonNormalSet_mul_mem {x y : Module.End (ZMod 2) JacobsonSpace}
+    (hx : x ∈ jacobsonNormalSet) (hy : y ∈ jacobsonNormalSet) :
+    x * y ∈ jacobsonNormalSet := by
+  obtain ⟨lx, rfl⟩ := hx
+  obtain ⟨ly, rfl⟩ := hy
+  induction lx with
+  | nil => exact ⟨[], by rw [jacobsonSum_nil, zero_mul]⟩
+  | cons a l ih =>
+      obtain ⟨l₁, hl₁⟩ := word_mul_sum_mem a ly
+      obtain ⟨l₂, hl₂⟩ := ih
+      refine ⟨l₁ ++ l₂, ?_⟩
+      rw [jacobsonSum_append, hl₁, hl₂, jacobsonSum_cons, add_mul]
+
+/-- The finite sums of printed words form a subring. -/
+noncomputable def jacobsonNormalSubring :
+    Subring (Module.End (ZMod 2) JacobsonSpace) where
+  carrier := jacobsonNormalSet
+  zero_mem' := ⟨[], jacobsonSum_nil⟩
+  one_mem' := ⟨[(0, 0)], by
+    rw [jacobsonSum_cons, jacobsonSum_nil, add_zero, jacobsonWord, pow_zero,
+      pow_zero, mul_one]⟩
+  add_mem' := by
+    rintro x y ⟨l₁, rfl⟩ ⟨l₂, rfl⟩
+    exact ⟨l₁ ++ l₂, jacobsonSum_append l₁ l₂⟩
+  neg_mem' := by
+    rintro x ⟨l, rfl⟩
+    exact ⟨l, (end_neg_eq_self (jacobsonSum l)).symm⟩
+  mul_mem' := fun hx hy ↦ jacobsonNormalSet_mul_mem hx hy
+
+/-- **The printed normal form, one inclusion.**  Every element of `J` is a
+finite sum of words `s^i t^j`. -/
+theorem jacobsonAlgebra_le_normalSubring :
+    jacobsonAlgebra ≤ jacobsonNormalSubring := by
+  rw [jacobsonAlgebra, Subring.closure_le]
+  rintro x hx
+  simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
+  rcases hx with rfl | rfl
+  · exact ⟨[(1, 0)], by
+      rw [jacobsonSum_cons, jacobsonSum_nil, add_zero, jacobsonWord, pow_zero,
+        pow_one, mul_one]⟩
+  · exact ⟨[(0, 1)], by
+      rw [jacobsonSum_cons, jacobsonSum_nil, add_zero, jacobsonWord, pow_zero,
+        pow_one, one_mul]⟩
+
+/-- **`J` is countable.**  This is a standing hypothesis of
+`prop:torsion-defect-ring`, and a theorem here because the ambient
+endomorphism ring is not countable. -/
+theorem countable_jacobsonAlgebra : Countable ↥jacobsonAlgebra := by
+  have hcount : jacobsonNormalSet.Countable := Set.countable_range _
+  have hsub : (jacobsonAlgebra : Set (Module.End (ZMod 2) JacobsonSpace)) ⊆
+      jacobsonNormalSet := jacobsonAlgebra_le_normalSubring
+  exact (Set.Countable.mono hsub hcount).to_subtype
+
+instance jacobsonAlgebra_countable : Countable ↥jacobsonAlgebra :=
+  countable_jacobsonAlgebra
+
+/-! ## The printed pair inside `J` -/
+
+/-- The printed `s` inside `J`. -/
+noncomputable def jacobsonS : ↥jacobsonAlgebra :=
+  ⟨shiftUp, shiftUp_mem_jacobsonAlgebra⟩
+
+/-- The printed `t` inside `J`. -/
+noncomputable def jacobsonT : ↥jacobsonAlgebra :=
+  ⟨shiftDown, shiftDown_mem_jacobsonAlgebra⟩
+
+@[simp] theorem jacobsonS_coe :
+    ((jacobsonS : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) = shiftUp := rfl
+
+@[simp] theorem jacobsonT_coe :
+    ((jacobsonT : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) = shiftDown := rfl
+
+theorem jacobsonT_mul_jacobsonS : jacobsonT * jacobsonS = 1 :=
+  Subtype.ext shiftDown_mul_shiftUp
+
+/-- **Printed:** `1 - st ≠ 0` in `J`. -/
+theorem jacobson_one_sub_ne_zero :
+    (1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT ≠ 0 := by
+  intro h
+  refine one_sub_shiftUp_mul_shiftDown_ne_zero ?_
+  have hcoe := congrArg
+    (fun x : ↥jacobsonAlgebra ↦ (x : Module.End (ZMod 2) JacobsonSpace)) h
+  simpa using hcoe
+
+/-- **Printed:** `1 - st` has additive order two in `J`. -/
+theorem jacobson_two_nsmul_one_sub :
+    (2 : ℕ) • ((1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT) = 0 := by
+  refine Subtype.ext ?_
+  have hcoe : ((((2 : ℕ) • ((1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT)) :
+      ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace)
+      = (2 : ℕ) • ((1 : Module.End (ZMod 2) JacobsonSpace) -
+        shiftUp * shiftDown) := by
+    push_cast
+    rfl
+  rw [hcoe, two_nsmul_end_eq_zero]
+  simp
+
+/-! ## The printed conclusion for `J` -/
+
+/-- **Printed:** "Proposition `prop:torsion-defect-ring` shows that `EL_n(J)` is
+not MF for `n ≥ 4`." -/
+def PrintedJacobsonElementaryNotMF : Prop :=
+  ∀ n : ℕ, 4 ≤ n → ¬ IsCDEOperatorMF (elementaryGroup (Fin n) ↥jacobsonAlgebra)
+
+/-- Closed proof: the Toeplitz--Jacobson algebra is countable, carries a
+one-sided inverse pair, and its complementary idempotent is nonzero of additive
+order two, so the proposition applies. -/
+theorem manuscriptJacobsonElementaryNotMF : PrintedJacobsonElementaryNotMF := by
+  intro n hn
+  haveI : Countable ↥jacobsonAlgebra := countable_jacobsonAlgebra
+  exact not_isCDEOperatorMF_of_pair jacobsonS jacobsonT jacobsonT_mul_jacobsonS
+    (by norm_num) jacobson_two_nsmul_one_sub jacobson_one_sub_ne_zero hn
+
+/-- **Printed:** the relative elementary group of the printed ideal sits inside
+the MF radical of `EL_n(J)`. -/
+def PrintedJacobsonRelativeElementaryInRadical : Prop :=
+  ∀ n : ℕ, 4 ≤ n →
+    relativeElementary (Fin n)
+        (TwoSidedIdeal.span {(1 : ↥jacobsonAlgebra) - jacobsonS * jacobsonT}) ≤
+      MFQuotientUnits.mfHomKernel (elementaryGroup (Fin n) ↥jacobsonAlgebra)
+
+theorem manuscriptJacobsonRelativeElementaryInRadical :
+    PrintedJacobsonRelativeElementaryInRadical := by
+  intro n hn
+  haveI : Countable ↥jacobsonAlgebra := countable_jacobsonAlgebra
+  exact relativeElementary_le_mfHomKernel jacobsonS jacobsonT
+    jacobsonT_mul_jacobsonS (by norm_num) jacobson_two_nsmul_one_sub hn
+
+end TorsionComplementaryIdempotents
+end OneSidedMFRadical
+end Manuscript
+end GroupApproximation
+
+open GroupApproximation
+
+#audit_closed_axioms
+  Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptJacobsonElementaryNotMF
+
+#audit_closed_axioms
+  Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptJacobsonRelativeElementaryInRadical

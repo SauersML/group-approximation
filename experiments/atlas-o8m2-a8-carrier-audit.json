@@ -1,0 +1,18 @@
+{
+  "A8_ambient_centralizer_order": 3,
+  "A8_ambient_class_size": 1632,
+  "A8_ambient_conjugacy_classes": 1,
+  "A8_ambient_normalizer": "(3xA8):2",
+  "A8_ambient_normalizer_order": 120960,
+  "A8_divisible_maximal_carrier_orders": [
+    120960,
+    1451520
+  ],
+  "A8_per_Sp6_carrier": 36,
+  "Sp6_carriers": 136,
+  "Sp6_carriers_per_A8": 3,
+  "ambient": "O8-(2)",
+  "ambient_order": 197406720,
+  "orthogonal_and_direct_factor_A8_fuse": true,
+  "relative_graph_parity_absorbed_by_ambient_normalizer": true
+}

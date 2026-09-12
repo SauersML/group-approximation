@@ -1,0 +1,32 @@
+{
+  "method": "Construct Omega_8^+(2), its singular-vector parabolic 2^6:A8, enumerate the two A5 Levi classes and all invariant order-32 radical submodules, select the unique Q1920 module class, and exhaust Aut(Q) modulo ambient-normalizer automorphisms for both exact marked tuples.",
+  "ambient_profile": {
+    "Omega8plus2_order": 174182400,
+    "nonzero_vector_orbit_sizes": [135, 120],
+    "singular_parabolic_order": 1290240,
+    "radical_order": 64,
+    "Levi_order": 20160,
+    "A5_Levi_class_count": 2,
+    "A5_class_invariant_order32_counts": [3, 1],
+    "A5_class_matching_module_counts": [0, 1],
+    "parabolic_Q_class_count": 1,
+    "Q_normalizer_order": 7680,
+    "Aut_Q_order": 7680,
+    "induced_normalizer_automorphism_order": 3840,
+    "embedding_twist_count": 2
+  },
+  "markings": [
+    {
+      "embedding_profiles": [[8, 0, 0], [72, 0, 0]],
+      "total_collision_involutions": 0,
+      "total_full_seam_pairs": 0
+    },
+    {
+      "embedding_profiles": [[8, 0, 0], [72, 0, 0]],
+      "total_collision_involutions": 0,
+      "total_full_seam_pairs": 0
+    }
+  ],
+  "embedding_profile_fields": ["pointwise_A_centralizer_order", "faithful_collision_involution_count", "faithful_full_seam_pair_count"],
+  "scope": "This exhausts the canonical singular-parabolic Q1920 class in Omega_8^+(2), for every embedding twist and both markings. It does not classify arbitrary finite completions of the moved-module amalgam."
+}

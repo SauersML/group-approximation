@@ -1,0 +1,221 @@
+{
+  "compact_degree_two_dimension": 328,
+  "correction_variable_count": 22988,
+  "full_degree_two_dimension": 28630,
+  "prime": 53,
+  "projective_degree": 2863,
+  "reached_depth": 6,
+  "records": [
+    {
+      "centered_correction_squared_norms": [
+        3782,
+        3836
+      ],
+      "centered_maximum_absolute_coefficients": [
+        1,
+        1
+      ],
+      "correction_supports": [
+        3782,
+        3836
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 1,
+      "modulus": 2,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        11718,
+        11752
+      ],
+      "centered_maximum_absolute_coefficients": [
+        2,
+        2
+      ],
+      "correction_supports": [
+        5766,
+        5815
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 2,
+      "modulus": 4,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        39956,
+        36856
+      ],
+      "centered_maximum_absolute_coefficients": [
+        4,
+        4
+      ],
+      "correction_supports": [
+        6200,
+        5963
+      ],
+      "direct_module_diagnostics": [
+        {
+          "depth": 0,
+          "elimination_updates": 20476,
+          "initial_equations": 11452,
+          "initial_nonzeros": 87226,
+          "modulus": 8,
+          "peak_active_nonzeros": 87227,
+          "residual_equations": 4,
+          "unit_pivots": 8365
+        },
+        {
+          "depth": 1,
+          "elimination_updates": 0,
+          "initial_equations": 4,
+          "initial_nonzeros": 2908,
+          "modulus": 4,
+          "peak_active_nonzeros": 2908,
+          "residual_equations": 4,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 2,
+          "elimination_updates": 3,
+          "initial_equations": 4,
+          "initial_nonzeros": 2908,
+          "modulus": 2,
+          "peak_active_nonzeros": 2908,
+          "residual_equations": 0,
+          "unit_pivots": 1
+        }
+      ],
+      "direct_module_elapsed_seconds": 0.7704944009892642,
+      "direct_module_solve": true,
+      "greedy_hensel_solvable": false,
+      "level": 3,
+      "modulus": 8,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        244564,
+        249192
+      ],
+      "centered_maximum_absolute_coefficients": [
+        8,
+        8
+      ],
+      "correction_supports": [
+        8072,
+        7994
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 4,
+      "modulus": 16,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        732852,
+        758216
+      ],
+      "centered_maximum_absolute_coefficients": [
+        16,
+        16
+      ],
+      "correction_supports": [
+        8897,
+        8898
+      ],
+      "greedy_hensel_solvable": true,
+      "level": 5,
+      "modulus": 32,
+      "solvable": true
+    },
+    {
+      "centered_correction_squared_norms": [
+        2396148,
+        2284824
+      ],
+      "centered_maximum_absolute_coefficients": [
+        32,
+        32
+      ],
+      "correction_supports": [
+        6917,
+        6760
+      ],
+      "direct_module_diagnostics": [
+        {
+          "depth": 0,
+          "elimination_updates": 20512,
+          "initial_equations": 11452,
+          "initial_nonzeros": 87226,
+          "modulus": 64,
+          "peak_active_nonzeros": 87227,
+          "residual_equations": 4,
+          "unit_pivots": 8365
+        },
+        {
+          "depth": 1,
+          "elimination_updates": 0,
+          "initial_equations": 4,
+          "initial_nonzeros": 3348,
+          "modulus": 32,
+          "peak_active_nonzeros": 3348,
+          "residual_equations": 4,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 2,
+          "elimination_updates": 3,
+          "initial_equations": 4,
+          "initial_nonzeros": 3348,
+          "modulus": 16,
+          "peak_active_nonzeros": 3348,
+          "residual_equations": 0,
+          "unit_pivots": 1
+        },
+        {
+          "depth": 3,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 8,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 4,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 4,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        },
+        {
+          "depth": 5,
+          "elimination_updates": 0,
+          "initial_equations": 0,
+          "initial_nonzeros": 0,
+          "modulus": 2,
+          "peak_active_nonzeros": 0,
+          "residual_equations": 0,
+          "unit_pivots": 0
+        }
+      ],
+      "direct_module_elapsed_seconds": 1.0015635470626876,
+      "direct_module_solve": true,
+      "greedy_hensel_solvable": false,
+      "level": 6,
+      "modulus": 64,
+      "solvable": true
+    }
+  ],
+  "requested_depth": 6,
+  "two_cell_orientation_torsion_orbits": [
+    29,
+    55
+  ]
+}

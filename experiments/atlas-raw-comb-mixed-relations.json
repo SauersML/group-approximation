@@ -1,0 +1,18 @@
+{
+  "radius": 3,
+  "raw_closure_order": 512,
+  "finite_generator_indices": [1, 2, 3, 4, 5],
+  "comb_generators_normalize_raw_closure": false,
+  "comb_generator_action_on_raw_generators": {
+    "0": {"0": 1, "1": 2, "2": 23, "3": null, "4": null},
+    "1": {"0": 1, "1": 2, "2": 3, "3": 4, "4": null},
+    "2": {"0": 37, "1": null, "2": 3, "3": 4, "4": null},
+    "3": {"0": 1, "1": 2, "2": 3, "3": 4, "4": null},
+    "4": {"0": 1, "1": 2, "2": 3, "3": 4, "4": null}
+  },
+  "free_product_ball_size": 685,
+  "level_sizes": [1, 10, 78, 596],
+  "mixed_collision_buckets": 167,
+  "shortest_collision_length": 2,
+  "shortest_collision_buckets": 18
+}

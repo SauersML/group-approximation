@@ -1,0 +1,296 @@
+import GroupApproximation.GGT.HullSCLemma51ShorteningBranch
+import GroupApproximation.GGT.HullSCRelativeLeastAreaDiagram
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 5.1 area induction at the restricted certificate hypothesis
+
+Osin's Lemma 4.4 supplies certificates at least-area diagrams with a
+quasi-geodesic boundary, and nowhere else.  This file runs the part of Osin's
+proof of Lemma 5.1 that such certificates actually feed: the induction on
+boundary length producing a **linear relative area** (Osin, arXiv:math/0411039v3,
+proof of Lemma 5.1, equations (18)--(21)).
+
+## The one place the certificate is used
+
+`exists_relativeDehnCut_of_kernelBoundary`
+(`GGT/HullSCLemma44RelativeBoundary.lean`) consumes its certificate hypothesis
+at exactly **one** diagram, the one it builds for the prescribed word.  The
+least-area construction `exists_relativeLeastAreaDiagram_of_boundaryWord`
+(`GGT/HullSCRelativeLeastAreaDiagram.lean`) returns a least-area diagram with
+`Z.boundaryWord = boundaryWord` on the nose, and
+`hasQuasiGeodesicSpelling_iff_of_letterwise` says
+`Z.HasQuasiGeodesicSpelling` is decided by `Z.boundaryWord` alone.  So
+**certificates at least-area diagrams with a quasi-geodesic spelling suffice
+whenever the prescribed word is quasi-geodesic**:
+`exists_relativeDehnCut_of_quasiGeodesicKernelWord`.
+
+## The step Osin's induction takes
+
+A Dehn cut names a relator with a long contiguity along the prescribed word
+itself, so a word that doubles back on itself need not have one.  Osin does not
+ask for it: "Suppose first that `p` is not `(1/2,0)`-quasi-geodesic" — then the
+word is replaced by a shorter one.  `RelativeDehnStepAt` is that disjunction.
+In the algebraic area of `RelativeLinearKernelArea` a shorter spelling of the
+same element costs nothing, because area is attached to the element, so
+`relativeLinearKernelArea_of_dehnSteps` is the induction of
+`relativeLinearKernelArea_of_dehnCuts` with a second, free branch.
+
+`relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates` supplies the step at
+every kernel word: take a letterwise spelling; if it is `(1/4,1)`-quasi-geodesic
+the certificates give a cut, and otherwise
+`exists_shorter_admissible_of_not_quasiGeodesic` gives the shortening.
+`relativeLinearKernelArea_of_quasiGeodesicCertificates` is the same conclusion
+from certificates at every reduced diagram with a quasi-geodesic spelling, which
+restrict to the least-area ones.
+
+## What is NOT reduced here, and why
+
+No *geometric* transfer is stated over the step hypothesis.  Its hypothesis would
+be weaker than `RelativeDehnTransferStatement`'s, so it would imply that
+statement, and `not_relativeDehnTransferStatement`
+(`GGT/HullSCLemma44DehnTransferRefutation.lean`) refutes it at the grid quotient
+of `F₂`.  The passage from linear area to hyperbolic embeddedness needs the
+uniform relator-length bound of `BoundedRelativeLinearAreaTransferStatement`.
+-/
+
+namespace GroupApproximation
+namespace HullSC
+
+open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
+
+universe u v w
+
+/-! ## The cut, at the restricted certificate hypothesis -/
+
+/-- **A cut for a quasi-geodesic kernel word, from certificates asked only at
+least-area diagrams with a quasi-geodesic spelling.**
+
+This is `exists_relativeDehnCut_of_kernelBoundary` with the certificate
+hypothesis narrowed.  The narrowing costs nothing here because the proof uses
+the certificate at one diagram only, which can be taken least-area, and whose
+designated boundary word is the prescribed one. -/
+theorem exists_relativeDehnCut_of_quasiGeodesicKernelWord
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram))
+    (boundaryWord : List G)
+    (hword : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod)
+    (hne : boundaryWord.prod ≠ 1) (hmap : q boundaryWord.prod = 1)
+    {outer : List (GGT.RelLetter G Lambda)}
+    (hadm : RelWord.IsAdmissible D outer)
+    (houter : outer.map GGT.RelLetter.val = boundaryWord)
+    (hqg : GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 outer) :
+    Nonempty (RelativeDehnCut D W eps q boundaryWord) := by
+  have hnormal : boundaryWord.prod ∈
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W) :=
+    mem_normalClosure_of_map_eq_one q hker hmap
+  obtain ⟨Z, hZboundary⟩ := exists_relativeLeastAreaDiagram_of_boundaryWord
+    D W hsc.toIsSmallCancellation boundaryWord boundaryWord.prod hword hne
+    hnormal
+  have hZqg : Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling :=
+    (hasQuasiGeodesicSpelling_iff_of_letterwise Z.toRelativeReducedDiagram hadm
+      (houter.trans hZboundary.symm)).mpr hqg
+  obtain ⟨K⟩ := hcert boundaryWord.length Z hZqg
+  have hcut := exists_relativeDehnCut_of_kernel_rotated D hsc hmu hrho K q hker
+  rw [K.boundaryWord_eq, hZboundary] at hcut
+  exact hcut
+
+/-! ## The step of Osin's length induction -/
+
+/-- **One step of Osin's length induction.**  Either a relator applies along the
+word, or the word is replaced by a strictly shorter one with the same value. -/
+def RelativeDehnStepAt {G : Type u} {Q : Type v} [Group G] [Group Q]
+    {Lambda : Type w} (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda))) (eps : ℕ) (q : G →* Q)
+    (boundaryWord : List G) : Prop :=
+  Nonempty (RelativeDehnCut D W eps q boundaryWord) ∨
+    ∃ w : List G, IsWord D.alphabet.carrier w w.prod ∧
+      w.prod = boundaryWord.prod ∧ w.length < boundaryWord.length
+
+/-- A cut is a step. -/
+theorem relativeDehnStepAt_of_cut {G : Type u} {Q : Type v} [Group G] [Group Q]
+    {Lambda : Type w} {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {eps : ℕ} {q : G →* Q}
+    {boundaryWord : List G}
+    (h : Nonempty (RelativeDehnCut D W eps q boundaryWord)) :
+    RelativeDehnStepAt D W eps q boundaryWord := Or.inl h
+
+/-- **Linear relative area from a step at every kernel word.**  This is the
+boundary-length induction of `relativeLinearKernelArea_of_dehnCuts`, with the
+shortening branch added: a strictly shorter spelling of the same element is
+filled by the induction hypothesis at no extra cost, since area is a property of
+the element. -/
+theorem relativeLinearKernelArea_of_dehnSteps
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda))) (eps : ℕ)
+    (q : G →* Q)
+    (hsteps : ∀ boundaryWord : List G,
+      IsWord D.alphabet.carrier boundaryWord boundaryWord.prod →
+      boundaryWord.prod ≠ 1 → q boundaryWord.prod = 1 →
+        RelativeDehnStepAt D W eps q boundaryWord) :
+    RelativeLinearKernelArea D W q := by
+  intro boundaryWord hword hmap
+  let P : ℕ → Prop := fun length =>
+    ∀ word : List G, word.length = length →
+      IsWord D.alphabet.carrier word word.prod → q word.prod = 1 →
+        ∃ area : ℕ, area ≤ word.length ∧
+          RelatorDefectBudget.IsRelatorProduct
+            (GGT.RelLetter.listVal '' W) area word.prod
+  have hlinear : ∀ length : ℕ, P length := by
+    intro length
+    induction length using Nat.strong_induction_on with
+    | _ length ih =>
+      intro word hlength hword' hmap'
+      by_cases hone : word.prod = 1
+      · refine ⟨0, Nat.zero_le _, ?_⟩
+        rw [hone]
+        exact RelatorDefectBudget.IsRelatorProduct.one
+      · rcases hsteps word hword' hone hmap' with ⟨⟨C⟩⟩ | ⟨w', hw', hval, hlen⟩
+        · have hshortLength :
+              C.contiguity.shortenedBoundaryWord.length < length := by
+            rw [← hlength]
+            exact C.length_lt
+          have hshortMap :
+              q C.contiguity.shortenedBoundaryWord.prod = 1 :=
+            C.quotient_value.trans hmap'
+          obtain ⟨area, hareaLength, harea⟩ :=
+            ih C.contiguity.shortenedBoundaryWord.length hshortLength
+              C.contiguity.shortenedBoundaryWord rfl C.shortenedWord_isWord
+                hshortMap
+          let conjugator : G := C.contiguity.boundaryBefore.prod *
+            (GGT.RelLetter.listVal C.contiguity.leftSide)⁻¹
+          have hbase : RelatorDefectBudget.IsRelatorProduct
+              (GGT.RelLetter.listVal '' W) 1
+                (GGT.RelLetter.listVal C.relator) :=
+            RelatorDefectBudget.IsRelatorProduct.base
+              ⟨C.relator, C.relator_mem, rfl⟩
+          have hstep : RelatorDefectBudget.IsRelatorProduct
+              (GGT.RelLetter.listVal '' W) (1 + area)
+                (conjugator * GGT.RelLetter.listVal C.relator *
+                  conjugator⁻¹ *
+                    C.contiguity.shortenedBoundaryWord.prod) :=
+            (hbase.conj conjugator).mul harea
+          refine ⟨1 + area, ?_, ?_⟩
+          · have hle : C.contiguity.shortenedBoundaryWord.length < word.length :=
+              C.length_lt
+            omega
+          · have hrotated : RelatorDefectBudget.IsRelatorProduct
+                (GGT.RelLetter.listVal '' W) (1 + area)
+                (word.rotate C.contiguity.rotation).prod := by
+              rw [C.contiguity.rotatedBoundaryWord_prod_eq_conjugate_relator_mul_shortened]
+              exact hstep
+            rw [word_prod_eq_conj_rotate_prod word C.contiguity.rotation]
+            exact hrotated.conj _
+        · have hw'len : w'.length < length := by
+            rw [← hlength]
+            exact hlen
+          have hw'map : q w'.prod = 1 := by
+            rw [hval]
+            exact hmap'
+          obtain ⟨area, hareaLength, harea⟩ := ih w'.length hw'len w' rfl hw' hw'map
+          refine ⟨area, by omega, ?_⟩
+          rw [← hval]
+          exact harea
+  exact hlinear boundaryWord.length boundaryWord rfl hword hmap
+
+/-- **The step at every kernel word, from certificates at least-area
+quasi-geodesic diagrams.**  Osin's case split: a `(1/4,1)`-quasi-geodesic
+letterwise spelling gives a cut, and any other spelling is strictly longer than a
+geodesic word for the same element. -/
+theorem relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram))
+    (boundaryWord : List G)
+    (hword : IsWord D.alphabet.carrier boundaryWord boundaryWord.prod)
+    (hne : boundaryWord.prod ≠ 1) (hmapq : q boundaryWord.prod = 1) :
+    RelativeDehnStepAt D W eps q boundaryWord := by
+  obtain ⟨outer, hadm, houter⟩ :=
+    exists_letterwise_spelling D boundaryWord hword.letters
+  by_cases hqg : GGT.VanKampen.IsLambdaCQuasiGeodesicWord D (1 / 4) 1 outer
+  · exact Or.inl (exists_relativeDehnCut_of_quasiGeodesicKernelWord D hsc
+      hmu hrho q hker hcert boundaryWord hword hne hmapq hadm houter hqg)
+  · obtain ⟨outer', hadm', hval', hlen'⟩ :=
+      exists_shorter_admissible_of_not_quasiGeodesic D hadm hqg
+    refine Or.inr ⟨outer'.map GGT.RelLetter.val, ⟨?_, rfl⟩, ?_, ?_⟩
+    · intro x hx
+      obtain ⟨a, ha, rfl⟩ := List.mem_map.mp hx
+      exact RelativeBoundaryContiguity.val_mem_alphabet_of_isLetter D
+        (hadm' a ha)
+    · have hleft : (outer'.map GGT.RelLetter.val).prod =
+          GGT.RelLetter.listVal outer' := rfl
+      rw [hleft, hval', listVal_of_letterwise_spelling houter]
+    · rw [List.length_map, ← length_of_letterwise_spelling houter]
+      exact hlen'
+
+/-- **Osin's Lemma 5.1, linear relative area, at least-area certificates.**
+Every quotient-null word on the source relative alphabet is a product of at most
+its length many conjugates of relator values, from certificates asked only at
+least-area diagrams with a quasi-geodesic spelling. -/
+theorem relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R),
+      Z.toRelativeReducedDiagram.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z.toRelativeReducedDiagram)) :
+    RelativeLinearKernelArea D W q :=
+  relativeLinearKernelArea_of_dehnSteps D W eps q
+    (relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates D hsc hmu hrho q hker
+      hcert)
+
+/-- **Osin's Lemma 5.1, linear relative area, at the reduced-diagram certificate
+hypothesis**, which restricts to the least-area one. -/
+theorem relativeLinearKernelArea_of_quasiGeodesicCertificates
+    {G : Type u} {Q : Type v} [Group G] [Group Q] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))}
+    {eps rho : ℕ} {mu : ℝ}
+    (hsc : RelWord.IsLemma44Input D W eps mu rho)
+    (hmu : mu ≤ 1 / 1000) (hrho : 20 * (eps + 1) ≤ rho)
+    (q : G →* Q)
+    (hker : q.ker =
+      Subgroup.normalClosure (GGT.RelLetter.listVal '' W))
+    (hcert : ∀ (R : ℕ) (Z : RelativeReducedDiagram D W R),
+      Z.HasQuasiGeodesicSpelling →
+        Nonempty (RelativeDiagramCertificate D W eps mu Z)) :
+    RelativeLinearKernelArea D W q :=
+  relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates D hsc hmu hrho q hker
+    (fun R Z hZ => hcert R Z.toRelativeReducedDiagram hZ)
+
+end HullSC
+end GroupApproximation
+
+#audit_axioms GroupApproximation.HullSC.exists_relativeDehnCut_of_quasiGeodesicKernelWord
+#audit_axioms GroupApproximation.HullSC.relativeDehnStepAt_of_cut
+#audit_axioms GroupApproximation.HullSC.relativeLinearKernelArea_of_dehnSteps
+#audit_axioms GroupApproximation.HullSC.relativeDehnStepAt_of_quasiGeodesicLeastAreaCertificates
+#audit_axioms GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicLeastAreaCertificates
+#audit_axioms GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicCertificates

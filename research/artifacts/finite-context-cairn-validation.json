@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "base_commit": "7b46916e4ec935e8cf99561fec0bf2de9fb65988",
+  "published_first_milestone": "e79d4bebddf5721922f5f81b3c603909879e46db",
+  "cairn_check_changed": {
+    "status": "ok",
+    "findings": [],
+    "unlocked": {
+      "established": [
+        "local-context-hierarchy-converges-to-full-group-norm"
+      ],
+      "refuted": [],
+      "last_missing": [],
+      "invalidated": [],
+      "plan_cost": []
+    }
+  },
+  "cairn_preview": {
+    "status": "ok",
+    "added": [
+      "local-context-full-group-norm-limit-proof",
+      "local-context-hierarchy-converges-to-full-group-norm"
+    ],
+    "removed": [],
+    "status_changed": [],
+    "dup_warnings": [],
+    "direct_proof_assertions": [
+      "local-context-full-group-norm-limit-proof"
+    ],
+    "frontier_added": [],
+    "frontier_removed": []
+  },
+  "verification_scope": "Cairn checks graph structure, not mathematical validity. Exact replay checks the committed finite data; the general theorems have written proofs and no Lean verification.",
+  "source_sha256": {
+    "experiments/finite_context_energy_audit.py": "845d639f0716f601ee67667e4931a78bcc2ccc679c27502c31b1a83f6821079e",
+    "experiments/test_finite_context_energy_audit.py": "4e242c149f30759e10cf818cd4f86d1265705f102d94e093e8c0c1e71d8e88fd",
+    "research/artifacts/finite-context-relator-energy.md": "9bc21db5211c72674d1c7a75224e07d2b3a00c8788939723e64a91370e71cd07",
+    "research/artifacts/local-context-and-global-norm-hierarchies.md": "f63cd98932f014698b690fc04140346d289e5f7e0463748178eb5bbc29789d55",
+    "research/artifacts/finite-context-heisenberg-witness.json": "f1486453b001b69cb20e33ba3c508194e862ce455c70c0eb135a004b62c0b31b",
+    "research/artifacts/finite-context-energy-replay.json": "39865af4169d18a37dc1bea78240426b8e82aa3eb0039361cc10fc825442ac3b",
+    "research/local-context-hierarchy-converges-to-full-group-norm.md": "6a9ce99ff8d014115b5451b41974d94ba348d26c5a452ef60dcd23706c99db04",
+    "research/local-context-full-group-norm-limit-proof.md": "670d391f06f6be1d9a15789646de0f971f6a5df0bc6e3328b98fe45d40605786"
+  }
+}

@@ -1,0 +1,673 @@
+{
+  "schema_version": 1,
+  "manuscript": "non_mf_groups_exist.tex",
+  "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
+  "claims": [
+    {
+      "id": "thm:headline",
+      "environment": "mainthm",
+      "title": "the unit group of the binary Leavitt algebra",
+      "statement_sha256": "9ff26c02f67232f3233889bf57e7af2691a296656ee145981991d7cf47379ae1",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:full-defect-ring",
+        "cor:one-sided-ring-maximal"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/UnitGroupHeadline",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:amenable-trace",
+      "environment": "mainthm",
+      "title": "an amenable nonquasidiagonal trace",
+      "statement_sha256": "fd5e8e843bdc16bb85fdb6edb78ff62c4b1b4265499f968ad61e79a1cfb55ac7",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:clifford-locally-rf"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
+          "declaration": "GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:torsion-free",
+      "environment": "mainthm",
+      "title": "a torsion-free example",
+      "statement_sha256": "0f22bdbc41845388688686999b9e05e6c3fac43b3e1710f3e6fccbf871c17b3c",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:compression-criterion",
+        "lem:saturation"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Fournier-Facio, Section 2",
+        "Hull, Corollary 7.4"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "prop:mf-residual-calculus",
+      "environment": "lemma",
+      "title": "",
+      "statement_sha256": "ecb686f574393db8e4a8995dc9ebc6baf70bc501f116f63d80e7c92c530285c9",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/MFAlgebra",
+          "declaration": "GroupApproximation.isCDEOperatorMF_of_faithful_corona_map",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedDefinitions",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.allMFTargetsKill_iff_allCoronasKill",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "lem:stable-finite",
+      "environment": "lemma",
+      "title": "",
+      "statement_sha256": "12b54d31ee357bdbe9b992c08840a3f17a8e8335a57ebc1acc5001a7b89df455",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/StableFiniteness",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:kazhdan-projection-order",
+      "environment": "lemma",
+      "title": "one-sided order for the Kazhdan projection",
+      "statement_sha256": "78a8518bf9f125620339f4942f373b1285cc3896c108b27d82466af0a9376abe",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/KazhdanProjectionOrderLiteral",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptLiteralMaximalCStarKazhdanProjectionOrder",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:transport",
+      "environment": "theorem",
+      "title": "one-sided Kazhdan transport",
+      "statement_sha256": "ea1a79197adebc1082475d3f87d41ca599818d911f71cbbf7b23260ea14e4ac6",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:stable-finite",
+        "lem:kazhdan-projection-order"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/TransportPrintedRoute",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.TransportPrintedRoute.manuscriptPrintedTransportHS",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:defect-hs",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "9cd9906cadb9f40e44232f57408a57d8b86f3d5d1ab0e53f1e21f398047a5015",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:transport"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/DefectHS",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedDefectShadow",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:central-corona-corner",
+      "environment": "lemma",
+      "title": "central corona corners",
+      "statement_sha256": "9e5172a5a3b3c9049644b6f784fbc1142c02304ee77dc2229887de6ed2576ec4",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/CentralCoronaCorner",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/CentralCoronaCornerPrintedRoute",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerPrintedRoute.manuscriptPrintedCentralCoronaCorner",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:normal-kazhdan",
+      "environment": "theorem",
+      "title": "normal Kazhdan subgroups",
+      "statement_sha256": "1f32f2e43a9d04319fb6417118bbdaae5a180732950356e487b908587e0f2d30",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:central-corona-corner"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/NormalKazhdan",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/NormalKazhdanPrintedRoute",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:compression-criterion",
+      "environment": "theorem",
+      "title": "one-sided compression criterion",
+      "statement_sha256": "6a12cc5c9da9a89f40e055c2b6b5f44c93087c2d02a7efc22c04ab007c9f7da6",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "cor:defect-hs",
+        "thm:normal-kazhdan",
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedCriterion",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedCriterion",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:max-infinite",
+      "environment": "proposition",
+      "title": "proper one-sided compression",
+      "statement_sha256": "4aa947568f70be77e73f7cb262a579bface708796949a655e34bf4296944c670",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:kazhdan-projection-order"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/StrictCompressionFromPrinted",
+          "declaration": "GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/QuasiRegularWitness",
+          "declaration": "GroupApproximation.QuasiRegularWitness.baseVector_apply_base",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/ProperIsometryStrictOrder",
+          "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:two-copies",
+      "environment": "lemma",
+      "title": "two copies",
+      "statement_sha256": "ae493857a220c7f92c4145a6c45d4a92b7df020d7bcb82e67102498c4f047ddc",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted.manuscriptTwoCopiesLemma",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:rank-two",
+      "environment": "lemma",
+      "title": "normal generation in rank two",
+      "statement_sha256": "e63af4e3d95effbd68c7bb2c5a9da72fa157d85bfc22250c19b9ced30bd140c4",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted.manuscriptRankTwoNormalGeneration",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:ring-compression-cell",
+      "environment": "lemma",
+      "title": "a rank-four compression cell",
+      "statement_sha256": "767343a3e934b030578b6499ad35f1b8cb324d1e217cbb1edbb79d48afb3c0cc",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankFourCompressionCellPrinted",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:full-defect-ring",
+      "environment": "theorem",
+      "title": "full complementary idempotents",
+      "statement_sha256": "e63470727eea78cf357965dee92e0e77930a6b2ca9974aa2c41e50a05ea36cdf",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "thm:compression-criterion",
+        "lem:two-copies",
+        "lem:rank-two"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/UniversalGroupSigma",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "cor:simple-infinite-ring",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "f006d747da7cd1a7d27babcdc5c6cfb0d9d1a5ebed32eb471702ec4849757ab3",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "thm:full-defect-ring"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptSimpleInfiniteRingRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "cor:one-sided-ring-maximal",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "33d0d2e3fd62a8c12c9e1e32ddbcb46f2ba1443b4362a0614e4be008adcaf0e4",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "thm:full-defect-ring",
+        "prop:max-infinite"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptUnitGroupNotMFAllCharacteristics",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "prop:torsion-defect-ring",
+      "environment": "proposition",
+      "title": "torsion complementary idempotents",
+      "statement_sha256": "9a8a7b086e9576e66407e6b3d76b9a38d75d75f6cc4c1aeb38044b9f38767883",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:compression-criterion",
+        "lem:ring-compression-cell"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:mf-quotient-units",
+      "environment": "theorem",
+      "title": "MF quotients of unit groups",
+      "statement_sha256": "9a3d230f944e9c9537fcdc546e518a5a20cd4965273af643819ef988b23cdb25",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "thm:full-defect-ring"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaProof",
+          "declaration": "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/MFQuotientCanonicalKOne",
+          "declaration": "GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOneAtBaseRing",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "cor:leavitt-mf-quotient",
+      "environment": "corollary",
+      "title": "Leavitt unit groups",
+      "statement_sha256": "e86f121406d4b4adb79c4eab43175a009cff6609f51545b101a20e469b3a14ab",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:mf-quotient-units"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Khanh--Thanh, proof of Theorem 7.2"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:factorization-nonmf-trace",
+      "environment": "theorem",
+      "title": "canonical-trace obstruction",
+      "statement_sha256": "a5e27a26d6434afe3e288ad3cfc188e11cac23f47c28fc459294303ca2afa9bf",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NinetyNineProblems/ProblemXGroups",
+          "declaration": "GroupApproximation.NinetyNineProblems.manuscriptCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/NinetyNineProblems/ProblemXGroups",
+          "declaration": "GroupApproximation.NinetyNineProblems.canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "prop:locally-rf-by-z-trace",
+      "environment": "proposition",
+      "title": "amenable extensions of locally residually finite groups",
+      "statement_sha256": "b47f20fe0f7619d450dc6c727c84c32272181fa452592f1a309fe2f17b7c87c0",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/AmenableExtensionAmenableTrace",
+          "declaration": "GroupApproximation.AmenableExtensionTrace.manuscriptPrintedAmenableExtensionTrace",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:clifford-self-embedding",
+      "environment": "proposition",
+      "title": "Clifford obstruction from a proper self-embedding",
+      "statement_sha256": "1b982e11d288a72d079daa37895db0fbca7ae953e51368bfffab66beb8c75b0f",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "thm:compression-criterion"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CliffordWitnessDirectDefect",
+          "declaration": "GroupApproximation.CliffordWitnessDirectDefect.manuscriptCliffordWitnessNotIsOperatorMF",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/CliffordWitnessDirectDefect",
+          "declaration": "GroupApproximation.CliffordWitnessDirectDefect.manuscriptMapSignEqOneOfIsOperatorMFTarget",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "prop:clifford-locally-rf",
+      "environment": "proposition",
+      "title": "the locally residually finite case",
+      "statement_sha256": "c75afeb8d4778221b99345af645441124f475b94d43aa94233446819c87c0999",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:clifford-self-embedding",
+        "prop:locally-rf-by-z-trace",
+        "thm:factorization-nonmf-trace"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CliffordWitnessSoficPrinted",
+          "declaration": "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:hull",
+      "environment": "theorem",
+      "title": "Hull's small cancellation theorem",
+      "statement_sha256": "9ecfd1cb0869511a9431a1ace3972417c069e0346daabd2c13c27e86747f7560",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Hull, Theorem 7.1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:saturation",
+      "environment": "lemma",
+      "title": "saturation",
+      "statement_sha256": "2f55113239cea07fdf12f82e5e27406ffdd70eeeccc86bfa4e134c6f6dd94b44",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:hull"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Osin, Lemma 7.1",
+        "Hull, Theorem 3.12",
+        "Hull, Corollary 5.7 and Lemma 5.8"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "cor:regular-nonmf-algebra",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "9930780730b10195d3f2ecbd5f139e5b64e02917a9b357a3a50689d2670413d0",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:torsion-free"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Osin, Theorem 1.2",
+        "Dahmani--Guirardel--Osin, Theorem 2.35",
+        "Gerasimova--Osin, Theorem 1.1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "boundary_configurations": 1116,
+  "nested_partition_sign_cases": 92160,
+  "two_atom_moment_cases": 369,
+  "scope": "Exact finite rational checks only; no infinite theorem verification."
+}

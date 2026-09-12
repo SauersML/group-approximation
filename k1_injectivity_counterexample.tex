@@ -1,0 +1,610 @@
+\IfFormatAtLeastTF{2025-06-01}{\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}}{}
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{etoolbox}
+\usepackage[letterpaper,textwidth=5.6in,textheight=\textheight,hmarginratio=1:1]{geometry}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newif\ifanonymous
+\anonymousfalse
+\ifanonymous
+  \newcommand{\paperauthor}{Anonymous}
+\else
+  \input{coderepo.tex}
+  \newcommand{\paperauthor}{\paperauthorname}
+\fi
+\hypersetup{pdftitle={A simple unital C*-algebra that is not K_1-injective},pdfauthor={\paperauthor},pdfsubject={K_1-injectivity, simple C*-algebras, Problem LIX of Schafhauser-Tikuisis-White},pdfkeywords={K_1-injectivity, simple C*-algebras, AH algebras, Murray-von Neumann equivalence, Wu formula, Steenrod squares}}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
+% Machine-readable source metadata attaching a printed statement to an
+% accompanying Lean~4 declaration.  The macro is intentionally invisible in
+% the PDF; the web edition and audit scripts consume its two arguments.
+% Each \leanverified marker identifies a selected printed statement and a Lean
+% declaration intended to prove it.  The markers do not assert line-by-line
+% verification of the prose or complete sentence-census coverage of the
+% manuscript.
+\newcommand{\leanverified}[2]{\ignorespaces}
+\allowdisplaybreaks
+\raggedbottom
+\emergencystretch=1.5em
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{plain}
+\newtheorem{mainthm}{Theorem}
+\renewcommand{\themainthm}{\Alph{mainthm}}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\U}{\operatorname{U}}
+\newcommand{\Uz}{\operatorname{U}_0}
+\newcommand{\Sq}{\operatorname{Sq}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\tr}{\operatorname{tr}}
+
+\title{A simple unital C*-algebra that is not $K_1$-injective}
+\author{\paperauthor}
+\date{10 September 2026}
+
+\begin{document}
+\begin{abstract}
+We answer a question that Blackadar's book records as open and that
+Schafhauser, Tikuisis and White pose as Problem LIX of their list: there is a
+unital simple separable C*-algebra $A$ and a unitary $v \in \U(A)$ with
+$v \notin \Uz(A)$ and $\operatorname{diag}(v,1) \in \Uz(M_2(A))$, so the
+canonical map $\U(A)/\Uz(A) \to K_1(A)$ is not injective.  The algebra is an
+inductive limit of homogeneous algebras over products of a sphere with complex
+projective spaces, with twisted point evaluations as connecting maps.  The
+unitary $v$ comes from the nonzero element of $\pi_4(\U(2)) \cong \mathbb Z/2$,
+and the proof that $v$ is not null-homotopic in $A$ reduces to the
+non-isomorphism of two vector bundles of the same rank, which we prove by
+computing the top mod-2 Chern class of a mapping torus in two ways.  The proof
+is formalised in Lean~4.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+A unital C*-algebra $A$ is \emph{$K_1$-injective} when the canonical map
+\[
+  \kappa_A \colon \U(A)/\Uz(A) \longrightarrow K_1(A)
+\]
+is injective, where $\Uz(A)$ is the connected component of the identity in the
+unitary group $\U(A)$.  Since $K_1(A)$ is the direct limit of the groups
+$\U(M_n(A))/\Uz(M_n(A))$ along $u \mapsto \operatorname{diag}(u,1)$, the map
+$\kappa_A$ is injective when every unitary $v \in \U(A)$ with
+$\operatorname{diag}(v,1,\dots,1) \in \Uz(M_n(A))$ for some $n$ already lies in
+$\Uz(A)$.
+
+Blackadar \cite[8.1.2(d)]{Bl} gives the classical example of a nonsimple
+algebra for which injectivity fails, resting on a theorem of Araki, James and
+Thomas \cite{AJT}: for $A = C(\U(2) \times \U(2), M_2)$ and
+the two coordinate unitaries $u$ and $v$, the products $uv$ and $vu$ lie in
+different components of $\U(A)$, while $\operatorname{diag}(uv,1)$ and
+$\operatorname{diag}(vu,1)$ lie in the same component of $\U(M_2(A))$.  For
+simple algebras the map is injective in several large classes: purely infinite simple algebras \cite{Cu}, algebras of stable
+rank one \cite{Ri}, algebras of real rank zero \cite{Li}, and
+$\mathcal Z$-stable algebras \cite{Ji}.  Blackadar wrote in 1998 that for
+simple unital $A$ the map is expected to be an isomorphism, ``although this
+remains an open problem'' \cite[\S 8.1]{Bl}.  Villadsen \cite{Vi02} then showed
+that surjectivity can fail for simple separable unital nuclear algebras.
+Schafhauser, Tikuisis and White record injectivity as the open direction and
+pose it as Problem LIX of their list \cite{STW}: is every unital simple
+C*-algebra $K_1$-injective?  The answer is no.
+
+\begin{mainthm}
+\label{thm:main}
+There is a unital simple separable C*-algebra $A$ that is not
+$K_1$-injective.  Explicitly, there is a unitary $v \in \U(A)$ with
+$v \notin \Uz(A)$ and $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.
+\leanverified{thm:main}{GroupApproximation.NinetyNineProblems.not\_problemLIX}
+\leanverified{thm:main-separable}{GroupApproximation.NinetyNineProblems.exists\_separable\_simple\_unital\_not\_k1Inj}
+\leanverified{thm:main-stage-two}{ProblemLIX.exists\_separable\_simple\_stage\_two\_witness}
+\end{mainthm}
+
+The algebra $A$ is an inductive limit of homogeneous algebras over the spaces
+$S^4 \times \prod_{i<j} \CP^{d_i}$, of the kind introduced by Villadsen
+\cite{Vi98,Vi99}, with twisted point evaluations as connecting maps.  The
+point evaluations, at a sequence of points with dense tails, make the limit
+simple.  The twist, by the tautological line bundle of the new projective
+factor, is necessary: a simple inductive limit of this shape with untwisted
+point evaluations has stable rank one \cite{EHT}, so is $K_1$-injective by
+\cite{Ri}, and is even $K$-stable \cite{Se}.
+
+The unitary $v$ is the image in $A$ of the clutching function
+$u \colon S^4 \to \U(2)$ of the rank-two bundle $F = x^{\perp}$ over
+$S^5 \subset \C^3$; it represents the nonzero element of
+$\pi_4(\U(2)) \cong \mathbb Z/2$ \cite[p.~315]{Bo}.  Since $\operatorname{diag}(u,1)$
+is null-homotopic in $\U(3)$, $\operatorname{diag}(v,1) \in \Uz(M_2(A))$.  It
+remains to show $v \notin \Uz(A)$.  A null-homotopy of $v$ in $A$
+gives one at a finite stage $A_j$, and a null-homotopy at stage $j$ gives an
+isomorphism of vector bundles $F \oplus H \cong \mathbf 1^2 \oplus H$ over
+$S^5 \times \prod_{i<j} \CP^{d_i}$, where $H$ is the sum of the twisted line
+bundles.  Lemma~\ref{lem:two} says that no such isomorphism exists.  Its proof
+is a mod-2 computation: from an isomorphism one builds a bundle of rank $r$
+over the manifold $S^1 \times S^5 \times \prod_{i<j} \CP^{d_i}$ of dimension
+$2r$, whose top mod-2 Chern class is nonzero because the bundle has a section
+with a single nondegenerate zero, and zero by the Wu formula because the
+dimensions $d_i$ are even.
+
+The whole proof is formalised in Lean~4 over Mathlib, in the repository
+\href{https://github.com/SauersML/group-approximation}{SauersML/group-approximation};
+the argument given here is the one formalised.  Independently, Toms \cite{To}
+has given a different solution of Problem LIX, starting from the same class in
+$\pi_4(\U(2))$ but trapping it with higher-rank matrices and a spin bordism
+obstruction.
+
+\section{The algebra}
+\label{sec:algebra}
+
+\subsection{Bundles as projections}
+
+Write $\CP^d$ for the space of rank-one projections in $M_{d+1}(\C)$, $S^4$
+for the four-sphere and $S^5$ for the unit sphere of $\C^3$.  A complex vector
+bundle over a compact Hausdorff space $X$ is a continuous projection-valued
+map, that is, a projection $p \in M_K(C(X))$; an isomorphism of bundles is a
+Murray--von Neumann equivalence of projections, and the algebra of sections of
+the endomorphism bundle of $p$ is the corner $p\, M_K(C(X))\, p$.
+
+\subsection{The tower}
+
+Set $d_i = 2^{\,i+1}$ and, for $j \geq 0$,
+\[
+  Y_j \;=\; \prod_{i<j} \CP^{d_i},
+  \qquad
+  X_j \;=\; S^4 \times Y_j,
+  \qquad
+  H_j \;=\; \bigoplus_{i<j} L_i^{\oplus d_i},
+\]
+where $L_i$ is the tautological line bundle of the $i$-th projective factor,
+pulled back to $Y_j$.  Put $E_j = \mathbf 1^2 \oplus H_j$ and
+\[
+  A_j \;=\; E_j \, M(C(X_j)) \, E_j .
+\]
+The bundle $E_j$ has rank $2 + \sum_{i<j} d_i = 2^{\,j+1}$.
+
+\subsection{The connecting maps and the limit}
+
+Since $X_{j+1} = X_j \times \CP^{d_j}$ and $E_{j+1} = E_j \oplus L_j^{\oplus
+d_j}$, and since the multiplicity $d_j$ equals the rank of $E_j$, a fixed
+unitary identification of the fibre $E_j(x_j)$ with $\C^{d_j}$ lets the value
+$a(x_j)$ of $a \in A_j$ at a point $x_j \in X_j$ act on
+$L_j \otimes \C^{d_j} = L_j^{\oplus d_j}$.  The connecting map
+$\varphi_j \colon A_j \to A_{j+1}$ is
+\[
+  \varphi_j(a)(x,z) \;=\; a(x) \,\oplus\, \bigl(a(x_j) \otimes 1_{L_j,\,z}\bigr),
+  \qquad x \in X_j,\ z \in \CP^{d_j},
+\]
+where the base points $x_j \in X_j$ are chosen so that, for every $k$, the
+images of $x_j$ for $j \geq k$ under the coordinate projections $X_j \to X_k$
+are dense in $X_k$.  Each $\varphi_j$ is an injective unital $*$-homomorphism.
+Let $A$ be the inductive limit, with injective unital maps
+$\iota_j \colon A_j \to A$ whose images have dense union.  The algebra $A$ is
+separable, since each $A_j$ is.
+
+$A$ is simple.  Let $J$ be a nonzero closed two-sided ideal of $A$ and pick a
+positive $b \in J$ of norm one.  Since the images of the $A_k$ are dense,
+there are $k$ and a positive $a' \in A_k$ with $\|\iota_k(a') - b\| <
+\tfrac14$, and then $a = (a' - \tfrac14)_+$ is a nonzero positive element of
+$A_k$ with $\iota_k(a) \in J$, because for positive elements at distance less
+than $\varepsilon$ the cut-down $(a' - \varepsilon)_+$ lies in the closed ideal
+generated by the other \cite[Lemma~2.2]{KR}.  Pick $i \geq k$ such that the
+image of $x_i$ in $X_k$ lies in the open set where $a$ does not vanish.  Then
+the point-evaluation summand of $\varphi_{k,i+1}(a)$ is nonzero at every
+point of $X_{i+1}$, and a section that is nonzero in every fibre generates
+$A_{i+1}$ as a closed ideal, because the fibres are full matrix algebras.  So
+$J$ contains $\iota_{i+1}(A_{i+1})$, and in particular $1$.
+
+\subsection{The generator}
+
+Over $S^5$, the projection $F(x) = \mathbf 1_3 - x x^{*}$ has rank two.  For
+unit vectors $a, b \in \C^3$ with $a^{*}b \neq 0$ there is an explicit unitary
+carrying $a$ to $b$: the product of the Householder reflections through $a$
+and through $a + \lambda b$, where the phase $\lambda = a^{*}b/|a^{*}b|$ makes
+the inner product of the two vectors real, followed by a rephasing of the
+target.  Composing two such transports, from $e_3$ to the normalised midpoint
+of $e_3$ and $x$ and from there to $x$, gives a unitary $\sigma_+(x)$ with
+$\sigma_+(x)\, e_3 = x$; both inner products involved equal
+$(1 + e_3^{*}x)/\|e_3 + x\|$, so $\sigma_+$ is defined and continuous on
+$S^5 \setminus \{-e_3\}$.  The same construction from $-e_3$, composed with
+the reflection through $e_3$, gives $\sigma_-(x)$ with $\sigma_-(x)\, e_3 = x$
+on $S^5 \setminus \{e_3\}$.  Both $\sigma_{\pm}(x)$ map $e_3^{\perp}$ onto
+$F(x)$.  On the equatorial $S^4$ the unitary $\sigma_+(x)^{*}\sigma_-(x)$
+fixes $e_3$, so
+\[
+  \sigma_+(x)^{*}\sigma_-(x) \;=\; \operatorname{diag}(u(x), 1),
+  \qquad u \colon S^4 \longrightarrow \U(2),
+\]
+with $u(x)$ acting on $e_3^{\perp} \cong \C^2$.  Thus $u$ is the clutching
+function of $F$: $F$ is obtained from the trivial
+rank-two bundles $\sigma_{\pm}(e_3^{\perp})$ over the two closed hemispheres by
+gluing along $u$.  Since $\sigma_+$ extends over the northern hemisphere and
+$\sigma_-$ over the southern one, $\operatorname{diag}(u,1)$ is
+null-homotopic in $\U(3)$.
+
+At stage $0$ we have $H_0 = 0$ and $A_0 = M_2(C(S^4))$, so $u \in \U(A_0)$.
+The witness of Theorem~\ref{thm:main} is $v = \iota_0(u)$.
+
+\section{Reduction to a statement about bundles}
+\label{sec:reduction}
+
+Write $u_j$ for the image of $u$ in $A_j$.  Each connecting map adds a block
+evaluated at a fixed point, so
+\[
+  u_j \;=\; u \oplus c_j
+\]
+for a unitary $c_j$ of $H_j$ over $Y_j$; in particular $c_j$ does not depend
+on the $S^4$ coordinate.
+
+\begin{lemma}
+\label{lem:stage}
+If $u_j \in \Uz(A_j)$, then $F \oplus H_j \cong \mathbf 1^2 \oplus H_j$ over
+$S^5 \times Y_j$.
+\end{lemma}
+
+\begin{proof}
+A unitary $g$ of $\mathbf 1^2 \oplus H_j$ over $S^4 \times Y_j$ determines a
+bundle over $S^5 \times Y_j$, obtained by gluing the restrictions of
+$\mathbf 1^2 \oplus H_j$ to the two closed hemispheres along $g$.  Homotopic
+unitaries give isomorphic bundles, a unitary that extends over one hemisphere
+gives $\mathbf 1^2 \oplus H_j$, and gluing along $u \oplus 1$ gives
+$F \oplus H_j$.  Since $c_j$ does not depend on the sphere coordinate,
+$1 \oplus c_j$ extends over a hemisphere, so gluing along
+$u \oplus c_j = (u \oplus 1)(1 \oplus c_j)$ still gives $F \oplus H_j$.  If
+$u \oplus c_j$ is null-homotopic, this bundle is isomorphic to
+$\mathbf 1^2 \oplus H_j$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:limit}
+If $v \in \Uz(A)$, then $u_j \in \Uz(A_j)$ for some $j$.
+\end{lemma}
+
+\begin{proof}
+A path from $v$ to $1$ in $\U(A)$ is compact, so for some $j$ it lies within
+distance $\tfrac18$ of $\iota_j(A_j)$.  Choose points $p_0 = v, p_1, \dots,
+p_n = 1$ along the path with $\|p_i - p_{i+1}\| < \tfrac18$, and elements
+$a_i \in A_j$ with $\|\iota_j(a_i) - p_i\| < \tfrac18$, taking $a_0 = u_j$
+and $a_n = 1$.  Each $a_i$ is invertible, and its unitary part
+$w_i = a_i |a_i|^{-1}$ satisfies $\|\iota_j(w_i) - p_i\| \leq
+3\|\iota_j(a_i) - p_i\| < \tfrac38$, so
+$\|w_i - w_{i+1}\| < \tfrac38 + \tfrac18 + \tfrac38 < 2$.  Hence the
+spectrum of $w_i^{*}w_{i+1}$ avoids $-1$, and
+$t \mapsto w_i \exp\bigl(t \log(w_i^{*}w_{i+1})\bigr)$ is a path in
+$\U(A_j)$ from $w_i$ to $w_{i+1}$.  Concatenating these paths joins $u_j$ to
+$1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} from Lemma~\ref{lem:two}]
+If $v \in \Uz(A)$, Lemma~\ref{lem:limit} gives $u_j \in \Uz(A_j)$ for some
+$j$, and Lemma~\ref{lem:stage} gives $F \oplus H_j \cong \mathbf 1^2 \oplus
+H_j$ over $S^5 \times Y_j$, contradicting Lemma~\ref{lem:two} with $l = j$.
+So $v \notin \Uz(A)$.  On the other hand
+$\operatorname{diag}(u,1) \in \Uz(M_2(A_0))$, since it is null-homotopic
+already in $\U(3)$, and applying $\iota_0 \otimes \mathrm{id}_{M_2}$ gives
+$\operatorname{diag}(v,1) \in \Uz(M_2(A))$.
+\end{proof}
+
+\section{The bundle obstruction}
+\label{sec:modtwo}
+
+\begin{lemma}
+\label{lem:two}
+Let $d_i = 2^{\,i+1}$ for $i < l$, and let
+\[
+  M \;=\; S^5 \times \prod_{i<l} \CP^{d_i},
+  \qquad m = \sum_{i<l} d_i ,
+  \qquad H = \bigoplus_{i<l} L_i^{\oplus d_i}.
+\]
+Over $M$ the bundles $F \oplus H$ and $\mathbf 1^2 \oplus H$, both of rank
+$2+m$, are not isomorphic.
+\leanverified{lem:two}{GroupApproximation.CharClass.lemmaTwoHolds}
+\end{lemma}
+
+The argument uses only that the $d_i$ are even and positive.
+
+Both bundles are subbundles of $V = \mathbf 1^3 \oplus H$, of rank $r = 3+m$:
+with $e$ the constant section $e_3$ of $\mathbf 1^3$ and $s$ the section
+$x \mapsto x$, we have $F \oplus H = V - ss^{*}$ and
+$\mathbf 1^2 \oplus H = V - ee^{*}$.
+
+The argument is a mod-2 characteristic class computation.  We write
+$\gamma_i$ for the mod-2 Chern classes and $\gamma = \sum_i \gamma_i$ for the
+total class, and all cohomology has coefficients in $\F_2$.
+
+\subsection{The setting}
+
+Fix $l$, put $m = \sum_{i<l} d_i$ and $r = 3+m$, and let $M$, $H$ and $V$ be
+as above.  Everything happens over the closed manifold
+\[
+  N \;=\; S^1 \times M
+\]
+of dimension $1 + 5 + 2m = 2r$, so $H^{2r}(N) \cong \F_2$.
+
+\subsection{Step A: from an isomorphism to a unitary}
+
+Suppose $F \oplus H \cong \mathbf 1^2 \oplus H$, that is, $V - ss^{*}$ and
+$V - ee^{*}$ are Murray--von Neumann equivalent.  Extending an equivalence by
+$e \mapsto s$ gives a continuous unitary $g$ of the corner of $V$ with
+$g e = s$.
+
+\subsection{Step B: the mapping torus}
+
+Cut $S^1$ at two points into two arcs and let $W_g$ be the bundle over
+$N = S^1 \times M$ obtained from $V \times \mathrm{arc}$ on each arc by gluing
+with the identity at one seam and with $g$ at the other.  Then $W_g$ has rank
+$r$ and restricts to $V$ on each slice $\{t\} \times M$.
+
+\subsection{Step C: \texorpdfstring{$\gamma_r(W_g) \neq 0$}{gamma\_r(W\_g) is nonzero}}
+
+Write the arc as $t \in [0,1]$, with the seams at $t = 0$ and $t = 1$ glued
+by the identity and by $g$, and write a point of $M$ as $(x, y)$ with
+$x \in S^5$ and $y \in Y = \prod_{i<l} \CP^{d_i}$.  Let $\chi \colon [0,1]
+\to [0,1]$ be continuous, equal to $0$ near the ends and to $1$ near
+$\tfrac12$, and let $\tau$ be a continuous section of $H$ with a single
+nondegenerate zero $y_0$, obtained by choosing on each factor $\CP^{d_i}$
+sections of $L_i$ that vanish simultaneously at one point only.  The section
+\[
+  \sigma(t, x, y) \;=\; \bigl((1-t)\,e_3 + t\,x,\ \chi(t)\,\tau(y)\bigr)
+  \;\in\; \mathbf 1^3 \oplus H
+\]
+satisfies $\sigma(0, \cdot) = e$ and $\sigma(1, \cdot) = s = ge$, so it is
+compatible with the gluing and defines a section of $W_g$.  Its first
+component vanishes only for $x = -\tfrac{1-t}{t}\,e_3$, that is, at
+$t = \tfrac12$ and $x = -e_3$, where the second component is $\tau(y)$; so
+$\sigma$ has exactly one zero, $z = (\tfrac12, -e_3, y_0)$.  At $z$ the
+derivative sends $(\delta t, \xi, \eta)$, with $\xi \in T_{-e_3}S^5$ and
+$\eta \in T_{y_0}Y$, to $(-2\,\delta t\, e_3 + \tfrac12 \xi,\ d\tau_{y_0}\eta)$,
+a real-linear isomorphism $\R \oplus T_{-e_3}S^5 \oplus T_{y_0}Y \to
+\C^3 \oplus \C^m$.  So in a chart at $z$ the section is a local
+homeomorphism onto a neighbourhood of the origin in $\C^r$, by the inverse
+function theorem.
+
+Let $U \in H^{2r}(W_g, W_g \setminus 0)$ be the Thom class of $W_g$.  Pulling
+back along $\sigma$, viewed as a map of pairs $(N, N \setminus z) \to
+(W_g, W_g \setminus 0)$, gives $\sigma^{*}U \in H^{2r}(N, N \setminus z)$, and
+by the Gysin identity of Lemma~\ref{lem:hclass} the image of $\sigma^{*}U$
+in $H^{2r}(N)$ is $\sigma^{*}\pi^{*}\gamma_r(W_g) = \gamma_r(W_g)$.  Since
+$\sigma$ has a single nondegenerate zero, $\sigma^{*}U$ is the generator of
+$H^{2r}(N, N \setminus z) \cong \F_2$ (Lemmas~\ref{lem:hres} and
+\ref{lem:hsq}), and the map $H^{2r}(N, N \setminus z) \to H^{2r}(N)$ is an
+isomorphism, by a Mayer--Vietoris computation for the punctured manifold
+$N \setminus z$.  So $\gamma_r(W_g) \neq 0$.
+
+\subsection{Step D: \texorpdfstring{$\gamma_r(W) = 0$}{gamma\_r(W) is zero}}
+
+Let $W$ be any rank-$r$ bundle over $N$ that restricts to $V$ on a slice.  By
+the K\"unneth theorem over $\F_2$,
+\[
+  H^{*}(N) \;=\; H^{*}(Y) \oplus t\,H^{*}(Y) \oplus x\,H^{*}(Y)
+  \oplus tx\,H^{*}(Y),
+\]
+with $t$ the class of $S^1$ and $x$ the class of $S^5$, so $t^2 = x^2 = 0$.
+Only the first and the last summand lie in even degrees, so
+\[
+  \gamma(W) \;=\; a + tx\,b, \qquad a, b \in H^{*}(Y),
+\]
+and $\gamma_k(W) = a_k + tx\,b_k$ with $a_k \in H^{2k}(Y)$ and
+$b_k \in H^{2k-6}(Y)$.  Restricting to the slice gives
+$a = \gamma(V) = \prod_i (1+h_i)^{d_i}$, where $h_i \in H^2(\CP^{d_i})$ is the
+mod-2 Chern class of $L_i$.  Since each $d_i$ is even and $(1+h)^2 = 1 + h^2$
+over $\F_2$, $a$ is a polynomial in the $h_i^2$; so $a_0 = 1$, $a_q = 0$ for
+odd $q$, and $a_q = 0$ for $q > m$.
+
+The Wu formula \cite[Problem 8-A]{MS}, applied to the realification of $W$,
+gives for the mod-2 Chern classes
+\[
+  \Sq^{2i}\gamma_{i+1}(W) \;=\; \sum_{j=0}^{i} \gamma_{i-j}(W)\,\gamma_{i+1+j}(W).
+\]
+Take the $tx$-component of both sides.  Since $\Sq^{n}t = \Sq^{n}x = 0$ for
+$n > 0$, the Cartan formula gives $\Sq^{n}(tx\,c) = tx\,\Sq^{n}c$, and
+$\Sq^{2i}b_{i+1} = 0$ because $b_{i+1}$ has degree $2i-4 < 2i$.  So the
+$tx$-component of the right side vanishes:
+\[
+  \sum_{j=0}^{i} \bigl(a_{i-j}\,b_{i+1+j} + b_{i-j}\,a_{i+1+j}\bigr) \;=\; 0,
+  \qquad\text{that is,}\qquad
+  \sum_{q+k = 2i+1} a_q\,b_k \;=\; 0 .
+\]
+By strong induction on odd $k$, $b_k = 0$: in the relation with $2i+1 = k$,
+the term $q = 0$ is $b_k$, the terms with odd $q$ vanish because $a_q = 0$,
+and the terms with even $q \geq 2$ have $k - q$ odd and smaller, so they
+vanish by induction.  Finally $r = m+3$ is odd, so
+$\gamma_r(W) = a_r + tx\,b_r = 0$, since $a_r = 0$ as $r > m$ and $b_r = 0$
+as $r$ is odd.
+
+\subsection{Conclusion}
+
+Step~D applies to $W_g$, which restricts to $V$ on a slice, and gives
+$\gamma_r(W_g) = 0$, while Step~C gives $\gamma_r(W_g) \neq 0$.  So no
+unitary $g$ as in Step~A exists, and $F \oplus H$ and $\mathbf 1^2 \oplus H$
+are not isomorphic.  This proves Lemma~\ref{lem:two}.
+
+\section{Three lemmas used in Step C}
+\label{sec:stepc}
+
+Throughout this section $E = W_g$ is the rank-$r$ bundle of Step~B over the
+$2r$-manifold $N$, $\pi \colon E \to N$ is the projection, $U$ is its Thom
+class, $\sigma$ is the section of Step~C and $z$ is its zero.  The Thom class
+is constructed on the projective completion $P(E \oplus \mathbf 1)$: by the
+Leray--Hirsch theorem, $H^{*}(P(E \oplus \mathbf 1))$ is a free module over
+$H^{*}(N)$ with basis $1, \xi, \dots, \xi^{r}$, where $\xi$ is the mod-2 Chern
+class of the tautological line bundle, and $U$ is the class whose
+Leray--Hirsch coordinates are $(\gamma_r, \gamma_{r-1}, \dots, \gamma_1, 1)$.
+The total space $E$ sits in $P(E \oplus \mathbf 1)$ as the affine chart, the
+complement of $P(E)$, and $\xi$ restricts to zero on it.
+
+\begin{lemma}[Gysin identity]
+\label{lem:hclass}
+The image of $U$ under $H^{2r}(E, E \setminus 0) \to H^{2r}(E)$ is
+$\pi^{*}\gamma_r(E)$.
+\leanverified{sec:hclass}{GroupApproximation.CharClass.lixHclass}
+\end{lemma}
+
+\begin{proof}
+The image of $U$ in $H^{2r}(P(E \oplus \mathbf 1))$ is
+$\sum_{i=0}^{r} \pi^{*}(\gamma_{r-i}) \smile \xi^{i}$.  Restricting to the
+affine chart $E$ kills $\xi$, so only the term $i = 0$ survives, and it is
+$\pi^{*}\gamma_r$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:hres}
+Let $B$ be a trivialising open neighbourhood of $z$ in $N$.  The restriction
+\[
+  H^{2r}(E,\,E \setminus 0) \longrightarrow
+  H^{2r}\bigl(E|_B,\,E|_B \setminus 0\bigr)
+\]
+is injective.
+\leanverified{sec:hres}{GroupApproximation.CharClass.injective\_lixRes}
+\end{lemma}
+
+\begin{proof}
+The Thom isomorphism identifies $H^{2r}(E, E \setminus 0)$ with $H^0(N)$,
+which is one-dimensional because $N$ is connected, with generator $U$.  So it
+suffices to show that $U$ restricts to a nonzero class over $B$.  Since
+$z \in B$, restriction to the fibre over $z$ factors through restriction over
+$B$, so it suffices that $U$ restricts to a nonzero class over the point $z$.
+Leray--Hirsch coordinates restrict coordinatewise, and the last coordinate of
+$U$ is $1 \in H^0(N)$, which restricts to $1 \in H^0(\{z\}) \neq 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:hsq}
+Let $\phi$ be a chart of $N$ at $z$ in which $\sigma$ is a local
+homeomorphism onto a neighbourhood of the origin in $\C^r$.  The class
+$\sigma^{*}U \in H^{2r}(N, N \setminus z)$, read in the chart $\phi$, agrees
+with the restriction of $U$ to the fibre $(E_z, E_z \setminus 0)$, read in a
+trivialisation of $E$ near $z$.  In particular $\sigma^{*}U$ generates
+$H^{2r}(N, N \setminus z) \cong \F_2$.
+\leanverified{sec:hsq}{GroupApproximation.CharClass.lixHsq}
+\end{lemma}
+
+\begin{proof}
+Both sides are pullbacks of $U$ along maps of pairs into
+$(E, E \setminus 0)$, but reading $\sigma^{*}U$ in the chart involves the
+inverse of an excision isomorphism; composing both sides with the excision
+removes it.  We then restrict to a small neighbourhood of $z$ on which the
+chart reads the section.  What remains are two
+pullbacks along explicit maps of pairs: on one side a point goes to the value
+of the section at its chart image, on the other to the point of the fibre over
+$z$ with the given coordinates.  These maps are homotopic through maps of
+pairs, up to composing one of them with a real-linear automorphism of
+$\C^{r} = \R^{2r}$ coming from the derivative of the section at $z$; the
+automorphism is real-linear because the identification of the tangent space
+with $\C^r$ comes from the real dimension count $6 + 2m = 2r$.  The relative
+cohomology groups involved, that of the punctured neighbourhood and that of
+$(\C^r, \C^r \setminus 0)$, are one-dimensional over $\F_2$, so any two
+isomorphisms between them coincide.  Hence the homotopy can be replaced by
+its two ends and the automorphism induces the identity, and the two pullbacks
+agree.  The second statement follows from Lemma~\ref{lem:hres}.
+\end{proof}
+
+\section*{Provenance}
+
+The problem was solved by Astra, using a custom proof tool.  The prose of
+this paper was written by Claude Fable 5.1 (Anthropic).  The Lean
+formalisation was carried out by AI agents under the author's direction; its
+mod-2 singular cohomology layer is a port of the HamSandwich library
+\cite{HS}.
+
+\begin{thebibliography}{STW}
+\raggedright
+
+\bibitem{AJT}
+S. Araki, I. M. James and E. Thomas,
+Homotopy-abelian Lie groups,
+\emph{Bull. Amer. Math. Soc.} \textbf{66} (1960), 324--326.
+
+\bibitem{Bl}
+B. Blackadar,
+\emph{K-Theory for Operator Algebras}, 2nd ed.,
+Math. Sci. Res. Inst. Publ. 5, Cambridge University Press, 1998.
+
+\bibitem{Bo}
+R. Bott,
+The stable homotopy of the classical groups,
+\emph{Ann. of Math. (2)} \textbf{70} (1959), 313--337.
+
+\bibitem{Cu}
+J. Cuntz,
+K-theory for certain C*-algebras,
+\emph{Ann. of Math. (2)} \textbf{113} (1981), 181--197.
+
+\bibitem{EHT}
+G. A. Elliott, T. M. Ho and A. S. Toms,
+A class of simple C*-algebras with stable rank one,
+\emph{J. Funct. Anal.} \textbf{256} (2009), 307--322.
+
+\bibitem{HS}
+akopjan,
+\emph{HamSandwich: a formalization of the odd-degree theorem for spheres,
+Borsuk--Ulam and the ham sandwich theorem in Lean 4},
+\url{https://github.com/akopjan/HamSandwich}, revision 76202db.
+
+\bibitem{Ji}
+X. Jiang,
+Nonstable K-theory for $\mathcal Z$-stable C*-algebras,
+arXiv:math/9707228 (1997).
+
+\bibitem{KR}
+E. Kirchberg and M. R\o rdam,
+Non-simple purely infinite C*-algebras,
+\emph{Amer. J. Math.} \textbf{122} (2000), 637--666.
+
+\bibitem{Li}
+H. Lin,
+Approximation by normal elements with finite spectra in C*-algebras of real
+rank zero,
+\emph{Pacific J. Math.} \textbf{173} (1996), 443--489.
+
+\bibitem{MS}
+J. W. Milnor and J. D. Stasheff,
+\emph{Characteristic Classes},
+Ann. of Math. Stud. 76, Princeton University Press, 1974.
+
+\bibitem{Ri}
+M. A. Rieffel,
+The homotopy groups of the unitary groups of non-commutative tori,
+\emph{J. Operator Theory} \textbf{17} (1987), 237--254.
+
+\bibitem{STW}
+C. Schafhauser, A. Tikuisis and S. White,
+Nuclear C*-algebras: 99 problems,
+arXiv:2506.10902 (2025).
+
+\bibitem{Se}
+A. Seth,
+Tensorial permanence of $K$-stability for diagonal AH-algebras,
+\emph{Bull. Lond. Math. Soc.} \textbf{58} (2026), \doi{10.1112/blms.70398}.
+
+\bibitem{To}
+A. S. Toms,
+A simple C*-algebra which is not $K_1$-injective,
+arXiv:2609.09535 (2026).
+
+\bibitem{Vi98}
+J. Villadsen,
+Simple C*-algebras with perforation,
+\emph{J. Funct. Anal.} \textbf{154} (1998), 110--116.
+
+\bibitem{Vi99}
+J. Villadsen,
+On the stable rank of simple C*-algebras,
+\emph{J. Amer. Math. Soc.} \textbf{12} (1999), 1091--1102.
+
+\bibitem{Vi02}
+J. Villadsen,
+Comparison of projections and unitary elements in simple C*-algebras,
+\emph{J. Reine Angew. Math.} \textbf{549} (2002), 23--45.
+
+\end{thebibliography}
+
+\end{document}

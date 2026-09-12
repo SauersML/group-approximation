@@ -1,0 +1,102 @@
+{
+  "status": "ok",
+  "scope": "Native Cairn parse/reference/artifact lint, exact route prerequisites, compiled statuses and scoped duplicate checks. Written mathematical reviews separately verified recursive head centralization, exact finite-dimensional collapse, the square-root-two monomial gap, the factor-six neighborhood bound, the fixed-size permuted-block compactness proof, and the finitely generated amenable ray comparison with its explicit literature input. This is not Lean kernel verification or a clean whole-workspace audit. The unrestricted shifted matrix gap and non-MF existence goal remain OPEN.",
+  "nodes": {
+    "jacobson-stable-letter-closes-boundary-recursion": "ESTABLISHED",
+    "jacobson-bilateral-stable-letter-proof": "COMPLETE",
+    "jacobson-shift-gap-characterizes-mark-collapse": "ESTABLISHED",
+    "jacobson-shift-relative-corona-lifting-proof": "COMPLETE",
+    "jacobson-shift-mixed-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-shift-gap": "OPEN",
+    "jacobson-shift-exact-representations-kill-head": "ESTABLISHED",
+    "jacobson-shift-commuting-heads-dimension-proof": "COMPLETE",
+    "jacobson-shift-monomial-models-have-a-uniform-gap": "ESTABLISHED",
+    "jacobson-shift-permutation-rounding-gap-proof": "COMPLETE",
+    "jacobson-shift-block-permutation-models-have-a-gap": "ESTABLISHED",
+    "jacobson-shift-active-block-compactness-proof": "COMPLETE",
+    "finitely-generated-recursive-centralization-is-mf-compatible": "ESTABLISHED",
+    "seven-ray-recursive-centralization-countermodel-proof": "COMPLETE",
+    "amenable-implies-operator-mf": "ESTABLISHED",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN",
+    "jacobson-full-boundary-forces-six-coordinate-packet": "ESTABLISHED",
+    "jacobson-full-boundary-packets-have-compatible-regular-models": "ESTABLISHED",
+    "jacobson-boundary-cell-reconstructs-finite-root-packet": "ESTABLISHED"
+  },
+  "prerequisites": {
+    "jacobson-bilateral-stable-letter-proof": [
+      "jacobson-full-boundary-forces-six-coordinate-packet",
+      "jacobson-full-boundary-packets-have-compatible-regular-models"
+    ],
+    "jacobson-shift-relative-corona-lifting-proof": [
+      "jacobson-stable-letter-closes-boundary-recursion",
+      "jacobson-full-boundary-packets-have-compatible-regular-models",
+      "jacobson-boundary-cell-reconstructs-finite-root-packet"
+    ],
+    "property-t-free-existence-via-jacobson-shift-gap": [
+      "jacobson-stable-letter-closes-boundary-recursion",
+      "jacobson-shift-gap-characterizes-mark-collapse",
+      "jacobson-shift-mixed-gap"
+    ],
+    "jacobson-shift-commuting-heads-dimension-proof": [
+      "jacobson-stable-letter-closes-boundary-recursion"
+    ],
+    "jacobson-shift-permutation-rounding-gap-proof": [
+      "jacobson-shift-exact-representations-kill-head",
+      "jacobson-shift-gap-characterizes-mark-collapse"
+    ],
+    "jacobson-shift-active-block-compactness-proof": [
+      "jacobson-shift-exact-representations-kill-head",
+      "jacobson-shift-gap-characterizes-mark-collapse"
+    ],
+    "seven-ray-recursive-centralization-countermodel-proof": [
+      "amenable-implies-operator-mf"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "broader_findings_count": 1362,
+  "broader_findings_by_kind": {
+    "artifact": 1361,
+    "cycle": 1
+  },
+  "broader_findings_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-shift-models-broader-findings-2026-09-08.json",
+  "broader_findings_sha256": "4e7746af85394ba1651c34fa5553f78e08e7b37052865f17fe904fd591d7f33e",
+  "source_sha256": {
+    "notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md": "ce348d8a52fdf1a68d47312d6291f74d0bc273e45e3a24824de9f0f78b9970ed",
+    "research/amenable-implies-operator-mf.md": "6d55dbf0cd8c787212bad5e235b93309b0491a4a241824041a2d359a80563a67",
+    "research/artifacts/finitely-generated-amenable-recursive-centralization-countermodel-2026-09-08.md": "d0d18b4e6454be22e64565d49a64dd905280d2888598446549abe166369e0f58",
+    "research/artifacts/jacobson-boundary-packet-relative-rounding-2026-09-08.md": "1e40c70d59912ac8f92b1b3c616115781fe3f79fb645e61e0942d3362e48105a",
+    "research/artifacts/jacobson-full-boundary-opposite-roots-and-gl6-packet-2026-09-08.md": "923ee651c58af142649773485ce9d9a94c8168072b1eab5c768a0e5ea87b55b1",
+    "research/artifacts/jacobson-gl6-boundary-compatible-regular-profiles-2026-09-08.md": "34a6949be6838ce4d39511c6274376b9710f78260a6531c3f5e86ad1de028999",
+    "research/artifacts/jacobson-shift-exact-collapse-and-monomial-gap-2026-09-08.md": "b10081bab8a56f309cba783a9fb78c2ba94753b04f1ff67f2be2e6eb1daee65f",
+    "research/artifacts/jacobson-shifted-gl3-and-boundary-gl5-packets-2026-09-08.md": "bfef399b1efdcf791bd0447e4d7cd71bbf1a720c80d468fb544a4c189f882a68",
+    "research/artifacts/jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md": "fd96a26c27ebd22fe670e1f47a2241da3ceb3ffe2b3b78e9197646d2efa1e3d6",
+    "research/artifacts/jacobson-two-braid-reduction-2026-09-07.md": "dfdac49afa4d5c1e7a11760149bd7bf50087d6231f770b496c77dbd1d8b0380e",
+    "research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md": "5ff6500bfa233b788062a3e196ec80eba717570d168d8c29618cdd6753e87ae6",
+    "research/finitely-generated-recursive-centralization-is-mf-compatible.md": "59f3e761e682d886d5571f52c229c94672c995df05153d607ee1ab0c95d8cbdb",
+    "research/jacobson-bilateral-stable-letter-proof.md": "fa40e159a173362184a32dc89d95ddb21f0a53f3d45f1c76bbaa8b263c9af7f7",
+    "research/jacobson-boundary-cell-reconstructs-finite-root-packet.md": "154c3511697f308084c0864fa619b4b9e1136544fd71ae5a1f2b191ca0b19c6c",
+    "research/jacobson-full-boundary-forces-six-coordinate-packet.md": "af1bcb94c8d377db6e375db9cf3fb6b82964d4bc82319037be185067a94c7d5c",
+    "research/jacobson-full-boundary-packets-have-compatible-regular-models.md": "bcdf6855e0e5c6d397109359633fb706ef59b99f83d51bcc7ff0e6d8a4828614",
+    "research/jacobson-shift-active-block-compactness-proof.md": "ab69fc795a522a50541459e1c11c976f39f94ea028dd9c8eb10f25e25716da6f",
+    "research/jacobson-shift-block-permutation-models-have-a-gap.md": "580eed4e02c289eabaf6d0c553592927d5cadde950036bbab7dcb1de3e0b598a",
+    "research/jacobson-shift-commuting-heads-dimension-proof.md": "4defdc80509eb88c5321d27c85dfe693bb949782b41a2107d31ec8897fbdac4b",
+    "research/jacobson-shift-exact-representations-kill-head.md": "ec9f171d71d135b4135a5028ae67c257552c93f8dc67d22f61fec3c8b3777f73",
+    "research/jacobson-shift-gap-characterizes-mark-collapse.md": "09d987a96285bce63eca5e434fa436a597ce9031a66af1d778d278b1643d8467",
+    "research/jacobson-shift-mixed-gap.md": "ef140fa65c87bff65115690a89498b30852393c6845014de9c9ecd25fd6f3d52",
+    "research/jacobson-shift-monomial-models-have-a-uniform-gap.md": "1e9380f5422b62de52bd821fa7558113c84bc54c77258880108a4c47ec05786e",
+    "research/jacobson-shift-permutation-rounding-gap-proof.md": "44b64fc28c9fe5d2d5429c5f0351c8f37342d71ad0b085653a9e34e9004fbd7c",
+    "research/jacobson-shift-relative-corona-lifting-proof.md": "99211509b92c8cfcc207778bc8e5be8bb133ac53fe0603a5ebffeead36e4e2c1",
+    "research/jacobson-stable-letter-closes-boundary-recursion.md": "badead6db12ffdab4d9ce3cf71f246943decbd488268cad98cb9998ed5ed914e",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "d5221fc104d6e30698306edc225ea99c9bfecf2dddb7f1d84b09e0493e006dd4",
+    "research/property-t-free-existence-via-jacobson-shift-gap.md": "00476c7dcd685a3a7b3a5768f581cc14fa1c3ebbcd65f1eb7e460190277a4ecf",
+    "research/seven-ray-recursive-centralization-countermodel-proof.md": "e7f30eeadfcc9d6447808f561ff367e388d6a4b1ac46cbf7a21fed3c3909e0cc",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "archive_sha256": "9a2796cec0f6ff8a7cb809eb461fa547d9a8b6be1e1a222388b07572933b41d1",
+  "validator_sha256": "7865c79b1a1c5dfbcedc0bd73765b94088a69ec1ebfb52e704fd91a8263c4e17",
+  "claims": 7396,
+  "routes": 7557,
+  "elapsed_seconds": 4.372
+}

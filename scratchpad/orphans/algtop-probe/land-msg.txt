@@ -1,0 +1,25 @@
+AlgTop: fix BundleCalculusProjection/UnitSection so Group 4 can compile
+
+BundleCalculusProjection.lean: a stale `exact UnitaryConj.refl _` after
+`rw [Set.mem_setOf_eq]` had already closed the goal inside
+`unitaryConj_of_preconnected` ("No goals to be solved"); deleted the extra
+line. Also removed six now-genuinely-unused `simp only` arguments (hpp/hqq/
+add_mul/mul_add duplicated across four algebraic-identity blocks), each
+promoted to a hard build error by this lib's warningAsError.
+
+BundleCalculusUnitSection.lean: `subst hi` in
+`murrayVonNeumannEquiv_rankOneProj_single` eliminates the theorem parameter
+`i₀` (substituting it for the more recently bound `i`), so the later
+`by_cases hj : j = i₀` referenced an identifier `subst` had already retired;
+changed to `by_cases hj : j = i`. Also added `omit [...] in` to eight
+theorems whose auto-included section variables (`Fintype ι`/`DecidableEq ι`)
+their proofs don't use, each likewise promoted to a hard error.
+
+Both probed green in isolation (2963 jobs, PROBE GREEN,
+notes/orphan-module-sweep-2026-09-07.md's Group 4 assignment). Not wired:
+BundleCalculusTransport.lean still fails independently (two heartbeat
+timeouts + a type mismatch, unrelated to these two fixes) and
+Invariant/ModelBridge/Pullback transitively depend on it, so they remain
+untested. Root import list untouched; the lead wires.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

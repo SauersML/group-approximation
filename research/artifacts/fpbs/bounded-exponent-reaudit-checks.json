@@ -1,0 +1,459 @@
+{
+  "status": "PASS",
+  "exact_assertions": 48584,
+  "exact_assertions_by_category": {
+    "all_labelings_exact_generated_relation": 5952,
+    "all_labelings_paid_repair": 5952,
+    "bounded_witness_union": 906,
+    "centralizer_coset_identity": 6546,
+    "commuting_transversal_generates_edges": 906,
+    "detour_selected_start": 4924,
+    "exact_product_failure_mean": 9,
+    "exact_selector_mean": 9,
+    "exact_uniform_failure_bound": 9,
+    "first_return_properties": 2982,
+    "first_return_word_closes": 2982,
+    "group_associativity": 11,
+    "hitting_set_centralizer_count": 906,
+    "large_centralizer_witness": 906,
+    "maximal_packing_hitting_set": 906,
+    "power_fiber_in_centralizer": 13744,
+    "quaternion_absorption_first_return_two": 7,
+    "quaternion_after_absorption_disjoint_singletons": 7,
+    "quaternion_root_centralizes_subgroup": 7,
+    "quaternion_shared_external_root": 7,
+    "transversal_cost": 906
+  },
+  "finite_groups": [
+    {
+      "group": "C3",
+      "order": 3,
+      "exponent": 3,
+      "subgroups": 2
+    },
+    {
+      "group": "C4",
+      "order": 4,
+      "exponent": 4,
+      "subgroups": 3
+    },
+    {
+      "group": "C6",
+      "order": 6,
+      "exponent": 6,
+      "subgroups": 4
+    },
+    {
+      "group": "C8",
+      "order": 8,
+      "exponent": 8,
+      "subgroups": 4
+    },
+    {
+      "group": "C2xC2xC2",
+      "order": 8,
+      "exponent": 2,
+      "subgroups": 16
+    },
+    {
+      "group": "C4xC2",
+      "order": 8,
+      "exponent": 4,
+      "subgroups": 8
+    },
+    {
+      "group": "S3",
+      "order": 6,
+      "exponent": 6,
+      "subgroups": 6
+    },
+    {
+      "group": "D8",
+      "order": 8,
+      "exponent": 4,
+      "subgroups": 10
+    },
+    {
+      "group": "Q8",
+      "order": 8,
+      "exponent": 4,
+      "subgroups": 6
+    },
+    {
+      "group": "A4",
+      "order": 12,
+      "exponent": 6,
+      "subgroups": 10
+    },
+    {
+      "group": "S4",
+      "order": 24,
+      "exponent": 12,
+      "subgroups": 30
+    }
+  ],
+  "exhaustive_coloring_models": [
+    {
+      "group": "C8",
+      "subgroup_order": 2,
+      "element": 1,
+      "witness_sizes": [
+        3
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "26/27"
+    },
+    {
+      "group": "C8",
+      "subgroup_order": 4,
+      "element": 1,
+      "witness_sizes": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "16/81"
+    },
+    {
+      "group": "C2xC2xC2",
+      "subgroup_order": 4,
+      "element": 4,
+      "witness_sizes": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "16/81"
+    },
+    {
+      "group": "C4xC2",
+      "subgroup_order": 2,
+      "element": 2,
+      "witness_sizes": [
+        3
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "26/27"
+    },
+    {
+      "group": "S3",
+      "subgroup_order": 2,
+      "element": 2,
+      "witness_sizes": [
+        1,
+        2
+      ],
+      "colorings": 64,
+      "failure_probability_q_one_third": "16/27"
+    },
+    {
+      "group": "D8",
+      "subgroup_order": 2,
+      "element": 2,
+      "witness_sizes": [
+        3,
+        1
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "52/81"
+    },
+    {
+      "group": "Q8",
+      "subgroup_order": 1,
+      "element": 1,
+      "witness_sizes": [
+        3
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "26/27"
+    },
+    {
+      "group": "Q8",
+      "subgroup_order": 2,
+      "element": 1,
+      "witness_sizes": [
+        1,
+        1
+      ],
+      "colorings": 256,
+      "failure_probability_q_one_third": "4/9"
+    },
+    {
+      "group": "A4",
+      "subgroup_order": 3,
+      "element": 3,
+      "witness_sizes": [
+        1,
+        2,
+        2
+      ],
+      "colorings": 4096,
+      "failure_probability_q_one_third": "128/243"
+    }
+  ],
+  "total_exhaustive_colorings": 5952,
+  "shared_root_models": [
+    {
+      "elementary_rank": 0,
+      "initial_subgroup_order": 1,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 2
+    },
+    {
+      "elementary_rank": 1,
+      "initial_subgroup_order": 2,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 4
+    },
+    {
+      "elementary_rank": 2,
+      "initial_subgroup_order": 4,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 8
+    },
+    {
+      "elementary_rank": 3,
+      "initial_subgroup_order": 8,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 16
+    },
+    {
+      "elementary_rank": 4,
+      "initial_subgroup_order": 16,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 32
+    },
+    {
+      "elementary_rank": 5,
+      "initial_subgroup_order": 32,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 64
+    },
+    {
+      "elementary_rank": 6,
+      "initial_subgroup_order": 64,
+      "shared_root": [
+        -1,
+        0
+      ],
+      "disjoint_detours_after_absorption": 128
+    }
+  ],
+  "numerical_parameter_checks": [
+    {
+      "N": 2,
+      "h": 3,
+      "q": 0.6051479953058617,
+      "k": 2,
+      "log_failure_bound": -1.8584885118967762,
+      "log_one_over_h": -1.0986122886681098
+    },
+    {
+      "N": 2,
+      "h": 8,
+      "q": 0.5098334950844045,
+      "k": 5,
+      "log_failure_bound": -3.5650506982411807,
+      "log_one_over_h": -2.0794415416798357
+    },
+    {
+      "N": 2,
+      "h": 32,
+      "q": 0.3290961059667699,
+      "k": 11,
+      "log_failure_bound": -4.390423182606128,
+      "log_one_over_h": -3.4657359027997265
+    },
+    {
+      "N": 2,
+      "h": 256,
+      "q": 0.14717625281443433,
+      "k": 38,
+      "log_failure_bound": -6.049690433210658,
+      "log_one_over_h": -5.545177444479562
+    },
+    {
+      "N": 2,
+      "h": 1000,
+      "q": 0.0831129068134555,
+      "k": 84,
+      "log_failure_bound": -7.288759010598447,
+      "log_one_over_h": -6.907755278982137
+    },
+    {
+      "N": 2,
+      "h": 1000000,
+      "q": 0.0037169221888498387,
+      "k": 3717,
+      "log_failure_bound": -13.841539704329486,
+      "log_one_over_h": -13.815510557964274
+    },
+    {
+      "N": 3,
+      "h": 3,
+      "q": 0.9014003682776524,
+      "k": 2,
+      "log_failure_bound": -3.348194203635181,
+      "log_one_over_h": -1.0986122886681098
+    },
+    {
+      "N": 3,
+      "h": 8,
+      "q": 0.8040731770787362,
+      "k": 4,
+      "log_failure_bound": -4.159868229195638,
+      "log_one_over_h": -2.0794415416798357
+    },
+    {
+      "N": 3,
+      "h": 32,
+      "q": 0.6005628920566579,
+      "k": 10,
+      "log_failure_bound": -4.473435781826421,
+      "log_one_over_h": -3.4657359027997265
+    },
+    {
+      "N": 3,
+      "h": 256,
+      "q": 0.3512113098572173,
+      "k": 45,
+      "log_failure_bound": -5.924103821417757,
+      "log_one_over_h": -5.545177444479562
+    },
+    {
+      "N": 3,
+      "h": 1000,
+      "q": 0.23995086122428846,
+      "k": 120,
+      "log_failure_bound": -7.116052886550196,
+      "log_one_over_h": -6.907755278982137
+    },
+    {
+      "N": 3,
+      "h": 1000000,
+      "q": 0.030231914099688457,
+      "k": 15116,
+      "log_failure_bound": -13.821867152154377,
+      "log_one_over_h": -13.815510557964274
+    },
+    {
+      "N": 4,
+      "h": 8,
+      "q": 0.9397114008495406,
+      "k": 3,
+      "log_failure_bound": -5.312681919006323,
+      "log_one_over_h": -2.0794415416798357
+    },
+    {
+      "N": 4,
+      "h": 32,
+      "q": 0.7549908450488103,
+      "k": 9,
+      "log_failure_bound": -5.064649142709063,
+      "log_one_over_h": -3.4657359027997265
+    },
+    {
+      "N": 4,
+      "h": 256,
+      "q": 0.5048928079723479,
+      "k": 44,
+      "log_failure_bound": -6.062117345013805,
+      "log_one_over_h": -5.545177444479562
+    },
+    {
+      "N": 4,
+      "h": 1000,
+      "q": 0.37941504630897604,
+      "k": 127,
+      "log_failure_bound": -7.133240162863407,
+      "log_one_over_h": -6.907755278982137
+    },
+    {
+      "N": 4,
+      "h": 1000000,
+      "q": 0.08023651337681643,
+      "k": 26746,
+      "log_failure_bound": -13.81933605937115,
+      "log_one_over_h": -13.815510557964274
+    },
+    {
+      "N": 8,
+      "h": 32,
+      "q": 0.9659795688650605,
+      "k": 5,
+      "log_failure_bound": -7.68163393609595,
+      "log_one_over_h": -3.4657359027997265
+    },
+    {
+      "N": 8,
+      "h": 256,
+      "q": 0.7899447013274424,
+      "k": 29,
+      "log_failure_bound": -6.18062990729513,
+      "log_one_over_h": -5.545177444479562
+    },
+    {
+      "N": 8,
+      "h": 1000,
+      "q": 0.6847852116662325,
+      "k": 98,
+      "log_failure_bound": -7.176475417646491,
+      "log_one_over_h": -6.907755278982137
+    },
+    {
+      "N": 8,
+      "h": 1000000,
+      "q": 0.3149075857398366,
+      "k": 44987,
+      "log_failure_bound": -13.817694429430436,
+      "log_one_over_h": -13.815510557964274
+    },
+    {
+      "N": 16,
+      "h": 256,
+      "q": 0.9321491789143728,
+      "k": 16,
+      "log_failure_bound": -6.857194094129111,
+      "log_one_over_h": -5.545177444479562
+    },
+    {
+      "N": 16,
+      "h": 1000,
+      "q": 0.8678891572491295,
+      "k": 58,
+      "log_failure_bound": -7.374072281560561,
+      "log_one_over_h": -6.907755278982137
+    },
+    {
+      "N": 16,
+      "h": 1000000,
+      "q": 0.5885435945359353,
+      "k": 39237,
+      "log_failure_bound": -13.818211205265026,
+      "log_one_over_h": -13.815510557964274
+    }
+  ],
+  "scope": "Exact finite algebra/counting and separate numerical parameter checks only. Not a formal verification of infinite-action cost theorems, Held or Burnside inputs, novelty, or either universal conjecture."
+}

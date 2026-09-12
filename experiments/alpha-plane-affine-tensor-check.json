@@ -1,0 +1,33 @@
+{
+  "exact": {
+    "explicit_rational_tensor_word_checks": 1152,
+    "slope_energies": [
+      "0",
+      "3152/4225",
+      "99/65",
+      "51/65"
+    ],
+    "F": "6451/8450"
+  },
+  "numerical": {
+    "complex_unitary_tables_checked": 36,
+    "fields": [
+      4,
+      8,
+      16
+    ],
+    "dimensions": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "max_affine_correlation_error": 2.8865798697677433e-15,
+    "min_amplified_F": 0.5321774512737389
+  },
+  "additive_actions": {
+    "exact_additive_action_pairs": 9,
+    "max_product_table_identity_error": 2.6645352591003757e-15
+  },
+  "scope": "Finite checks of algebraic identities and amplification bounds; not a proof of the qualitative premise or nonhyperlinearity."
+}

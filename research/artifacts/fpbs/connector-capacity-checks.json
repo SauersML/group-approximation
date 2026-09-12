@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "scope": "Exact finite rational identities and finite repaired connectivity only.",
+  "overlap_matrix": {
+    "families": 575,
+    "probability_cases": 1725,
+    "moment_entries": 13590,
+    "paley_zygmund_bounds": 1725,
+    "optimized_disjoint_cases": 16,
+    "common_bottleneck_cases": 33
+  },
+  "finite_S3_action": {
+    "partitions": 203,
+    "coefficient_cases": 1218,
+    "defect_subadditivity": 7308,
+    "restriction_defect_cases": 77952,
+    "adaptive_root_families": 6090,
+    "repaired_labelings": 64960,
+    "root_energy_bounds": 6090,
+    "expected_cost_bounds": 1015
+  },
+  "not_verified": [
+    "measurable partition separation in infinite actions",
+    "hyperfinite exhaustion and regular representation limits",
+    "Osin bounded-word theorem and Burnside nonamenability",
+    "the new infinite mathematical deductions",
+    "existence of the low-cost capacity witnesses",
+    "universal Fixed Price and Benjamini-Schramm"
+  ]
+}

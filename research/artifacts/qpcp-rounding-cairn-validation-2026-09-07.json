@@ -1,0 +1,93 @@
+{
+  "base_commit": "9f449db1fbc7aa514bd6082431e21b9f7ac665a3",
+  "exact_certificate_path": "research/artifacts/qpcp-rounding-exact-certificate-2026-09-07.json",
+  "exact_certificate_sha256": "4b72da75bd69cc8c2c0e38312052214a0f643de1be0e5104824fd9bbbb222673",
+  "nodes": {
+    "amplified-hamiltonian-has-a-constant-cost-rounder": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "OPEN",
+      "status_reasons": []
+    },
+    "amplifier-preserves-yes-energy-below-the-floor": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "OPEN",
+      "status_reasons": []
+    },
+    "combinatorial-gap-and-rounder-give-energy-gap": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "status_reasons": [
+        "via route combinatorial-gap-and-rounder-give-energy-gap-proof"
+      ]
+    },
+    "local-syndrome-port-domination-at-each-gadget": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "OPEN",
+      "status_reasons": []
+    },
+    "locality-preserving-constant-combinatorial-gap": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "OPEN",
+      "status_reasons": []
+    },
+    "nonorthogonal-pair-forbids-single-term-syndrome-ports": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "status_reasons": [
+        "via route nonorthogonal-pair-forbids-single-term-syndrome-ports-proof"
+      ]
+    },
+    "qpcp-from-anchored-amplifier": {
+      "blocked_on": [
+        "locality-preserving-constant-combinatorial-gap",
+        "amplifier-preserves-yes-energy-below-the-floor",
+        "amplified-hamiltonian-has-a-constant-cost-rounder"
+      ],
+      "kind": "route",
+      "status": "OPEN",
+      "status_reasons": []
+    },
+    "qpcp-rounder-from-combinatorial-soundness-alone": {
+      "blocked_on": [],
+      "kind": "route",
+      "status": "INVALIDATED",
+      "status_reasons": [
+        "invalidated by established claim qubit-pairs-have-half-gap-and-unbounded-rounder-cost"
+      ]
+    },
+    "quantum-pcp-constant-gap-local-hamiltonian": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "OPEN",
+      "status_reasons": []
+    },
+    "qubit-pairs-have-half-gap-and-unbounded-rounder-cost": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "ESTABLISHED",
+      "status_reasons": [
+        "via route qubit-pairs-have-half-gap-and-unbounded-rounder-cost-proof"
+      ]
+    },
+    "syndrome-conditioned-exactifier-exists": {
+      "blocked_on": [],
+      "kind": "claim",
+      "status": "OPEN",
+      "status_reasons": []
+    }
+  },
+  "observed_validation": {
+    "command": "bin/cairn check --changed && bin/cairn preview",
+    "exit_code": 0,
+    "source_check": "clean"
+  },
+  "quantum_pcp_proved": false,
+  "scope": "Working-tree Cairn integration of paired-projector proofs; ordinary mathematical proofs, not Lean checking.",
+  "wolfram_status": "Context and evaluator calls returned HTTP 404; Wolfram script unexecuted."
+}

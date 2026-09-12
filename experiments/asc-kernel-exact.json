@@ -1,0 +1,22 @@
+{
+  "W_cov_on_the_same_vectors": {
+    "left": {
+      "cosets_not_annihilated": 0,
+      "max_abs": 0
+    },
+    "right": {
+      "cosets_not_annihilated": 114,
+      "max_abs": 4
+    }
+  },
+  "annihilates_H_fixed_space_exactly": true,
+  "cosets": 120,
+  "kernel_inclusion_holds_exactly": true,
+  "max_abs_convolution_coefficient_by_side": {
+    "left": 0,
+    "right": 1516
+  },
+  "subgroup_order": 168,
+  "support_W_pkt": 101,
+  "words_skipped": []
+}

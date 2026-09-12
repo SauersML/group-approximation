@@ -1,0 +1,131 @@
+import GroupApproximation.CharClass.LIXStepDGenModP
+import GroupApproximation.CharClass.ParityPDataNarrow
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Step D mod `p` at rank `n`, with the reduced powers asked only where they are used
+
+Lane `lx-slice2` of the LIX strongest swarm (finding of `lx-review`, design of `lx-design`).
+
+`Gen.ModPStepDData` (`CharClass/LIXStepDGenModP.lean`) asks for `P⁰ = id` on every class, the
+Cartan formula and `P^{>0} z = 0`, and uses the three only to derive `ParityPData.pH_z_mul`,
+whose one use is right after `P^i (b (i + 1)) = 0`.  Raw reduced powers fail `P⁰ = id`
+(`P⁰ z = (−1)^{n+1} z`), so the producers would owe a normalisation nothing needs.
+
+`Gen.ModPStepDDataN` replaces the three fields by the vanishing form
+`pH_z_mul_zero : PR i r = 0 → PH i (z * ι r) = 0`, exactly the field of lx-splitK's
+`ParityPDataN`.  `Gen.pH_z_mul_zero_of_cartan` derives it from the Cartan formula,
+`PH 0 z = c · z` for any `c`, and `PH i z = 0` for `i > 0`, for a producer that has those.  The
+old structure is untouched.
+
+## Main declarations
+
+* `Gen.pH_z_mul_zero_of_cartan` — the field, from Cartan with an arbitrary `P⁰ z`.
+* `Gen.ModPStepDDataN` — the narrowed hypotheses.
+* `Gen.ModPStepDDataN.toParityPDataN` — **the instance**.
+-/
+
+set_option autoImplicit false
+set_option linter.unusedSectionVars false
+
+namespace GroupApproximation.CharClass
+
+open ParityP
+
+namespace Gen
+
+/-- **The vanishing form of `P(z · ι r) = z · ι (P r)`, from the Cartan formula.**  Only the
+`j = 0` term of the Cartan sum survives `PH j z = 0` for `j > 0`, and it carries `PH i (ι r) =
+ι (PR i r) = 0`.  The value `c` of `P⁰ z` is never used. -/
+theorem pH_z_mul_zero_of_cartan {R H : Type*} [CommRing R] [CommRing H] {ι : R →+* H} {z : H}
+    {PH : ℕ → H →+ H} {PR : ℕ → R →+ R} (c : H) (h0 : PH 0 z = c * z)
+    (cartan : ∀ (i : ℕ) (u v : H),
+      PH i (u * v) = ∑ j ∈ Finset.range (i + 1), PH j u * PH (i - j) v)
+    (pH_z : ∀ i : ℕ, 0 < i → PH i z = 0) (pH_ι : ∀ (i : ℕ) (r : R), PH i (ι r) = ι (PR i r))
+    (i : ℕ) (r : R) (hr : PR i r = 0) : PH i (z * ι r) = 0 := by
+  rw [cartan, Finset.sum_eq_single 0]
+  · rw [h0, Nat.sub_zero, pH_ι, hr, map_zero, mul_zero]
+  · intro j _ hj
+    rw [pH_z j (Nat.pos_of_ne_zero hj), zero_mul]
+  · intro h
+    exact absurd (Finset.mem_range.mpr (Nat.succ_pos i)) h
+
+/-- **The hypotheses of Step D mod `p` at rank `n`, narrowed.**  The fields of
+`Gen.ModPStepDData` with `pH_zero`, `cartan` and `pH_z` replaced by `pH_z_mul_zero`. -/
+structure ModPStepDDataN (n p : ℕ) {ℓ : ℕ} (dd : Fin ℓ → ℕ) (R H : Type*) [CommRing R]
+    [CommRing H] (γ : ℕ → H) where
+  /-- The Künneth inclusion `H^*(Y) → H^*(N)`. -/
+  ι : R →+* H
+  /-- The class `z = t x`, of weight `n + 1`. -/
+  z : H
+  /-- `z² = 0`. -/
+  z_mul_z : z * z = 0
+  /-- Künneth: the `z`-component is well defined. -/
+  z_inj : ∀ u v : R, ι u + z * ι v = 0 → v = 0
+  /-- The reduced powers on the even part of `H^*(N)`. -/
+  PH : ℕ → H →+ H
+  /-- The reduced powers on `H^*(Y)`. -/
+  PR : ℕ → R →+ R
+  /-- Naturality through the Künneth inclusion. -/
+  pH_ι : ∀ (i : ℕ) (r : R), PH i (ι r) = ι (PR i r)
+  /-- `P^i` kills `z · ι r` when it kills `r` (`pH_z_mul_zero_of_cartan`). -/
+  pH_z_mul_zero : ∀ (i : ℕ) (r : R), PR i r = 0 → PH i (z * ι r) = 0
+  /-- The `H^*(Y)`-component of `γ k`, of weight `k`. -/
+  a : ℕ → R
+  /-- The `z H^*(Y)`-component of `γ k`, indexed by the total index. -/
+  b : ℕ → R
+  /-- The Künneth decomposition of the Chern classes. -/
+  γ_eq : ∀ k : ℕ, γ k = ι (a k) + z * ι (b k)
+  /-- Instability at the rank-`n` weight. -/
+  instability : Instability PR b (n + 1)
+  /-- The degree-two generators `hⱼ`. -/
+  gen : Fin ℓ → R
+  /-- The slice class of `W` is `∏ⱼ (1 + hⱼ)^{dⱼ}`. -/
+  slice : ∀ q : ℕ, a q = (sliceClass Finset.univ gen dd).coeff q
+  /-- The leading coefficient of the diagonal Wu relation. -/
+  c : ℕ → R
+  /-- The leading coefficient is a unit. -/
+  c_isUnit : ∀ i : ℕ, IsUnit (c i)
+  /-- The diagonal Wu relation: `P^i(γ_{i+1}) = c_i·γ_{ip+1} + (decomposables)`. -/
+  wu : ∀ i : ℕ, IsDecomposable γ (i * p + 1)
+    (PH i (γ (i + 1)) - ι (c i) * γ (i * p + 1))
+
+namespace ModPStepDDataN
+
+variable {n p ℓ : ℕ} {dd : Fin ℓ → ℕ} {R H : Type*} [CommRing R] [CommRing H] {γ : ℕ → H}
+
+/-- **The instance.**  The narrowed rank-`n` data is a `ParityPDataN p`: the Frobenius support
+comes from the slice class, the instability field from the weight, and every other field is
+carried over. -/
+def toParityPDataN (D : ModPStepDDataN n p dd R H γ) (hp : 2 ≤ p) (hn : 1 ≤ n)
+    [ExpChar R p] (hd : ∀ j, p ∣ dd j) : ParityPDataN p R H where
+  p_two_le := hp
+  ι := D.ι
+  z := D.z
+  z_mul_z := D.z_mul_z
+  z_inj := D.z_inj
+  PH := D.PH
+  PR := D.PR
+  pH_ι := D.pH_ι
+  pH_z_mul_zero := D.pH_z_mul_zero
+  γ := γ
+  a := D.a
+  b := D.b
+  γ_eq := D.γ_eq
+  a_eq_zero := fun q hq => by
+    rw [D.slice q]
+    exact sliceClass_coeff_eq_zero_of_not_dvd p (by omega) Finset.univ D.gen dd
+      (fun j _ => hd j) hq
+  pR_b_succ := pR_b_succ_of_instability (by omega) D.instability
+  c := D.c
+  c_isUnit := D.c_isUnit
+  wu := D.wu
+
+end ModPStepDDataN
+
+end Gen
+
+#audit_axioms Gen.pH_z_mul_zero_of_cartan
+#audit_axioms Gen.ModPStepDDataN.toParityPDataN
+
+end GroupApproximation.CharClass

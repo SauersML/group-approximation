@@ -1,0 +1,239 @@
+{
+  "field": "Q",
+  "group": "A8 ~= GL(4,2)",
+  "zero_derivatives": 24,
+  "central_survivors": [
+    11,
+    30,
+    44,
+    55
+  ],
+  "centrality_generators": 6,
+  "selected_s8_partitions": 12,
+  "self_conjugate_s8_partitions": [
+    [
+      4,
+      2,
+      1,
+      1
+    ],
+    [
+      3,
+      3,
+      2
+    ]
+  ],
+  "covered_a8_complex_irreducibles": 14,
+  "covers_every_a8_irrep": true,
+  "global_representation_matrix_denominator": "1814400",
+  "global_row_certificate_denominator": "74129444573184000",
+  "cross_characteristic_exceptional_prime_support": [
+    [
+      2,
+      22
+    ],
+    [
+      3,
+      11
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      7,
+      3
+    ],
+    [
+      11,
+      1
+    ],
+    [
+      13,
+      1
+    ],
+    [
+      1181,
+      1
+    ]
+  ],
+  "records": [
+    {
+      "partition": [
+        8
+      ],
+      "dimension": 1,
+      "seed_row_rank": 0,
+      "common_kernel_dimension": 1,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "1",
+      "row_certificate_denominator": "1",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        7,
+        1
+      ],
+      "dimension": 7,
+      "seed_row_rank": 7,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "420",
+      "row_certificate_denominator": "56",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        6,
+        2
+      ],
+      "dimension": 20,
+      "seed_row_rank": 20,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "3600",
+      "row_certificate_denominator": "7560",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        6,
+        1,
+        1
+      ],
+      "dimension": 21,
+      "seed_row_rank": 21,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "2520",
+      "row_certificate_denominator": "2580480",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        5,
+        3
+      ],
+      "dimension": 28,
+      "seed_row_rank": 28,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "2160",
+      "row_certificate_denominator": "3888000",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        5,
+        2,
+        1
+      ],
+      "dimension": 64,
+      "seed_row_rank": 64,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "8640",
+      "row_certificate_denominator": "74998224000",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        5,
+        1,
+        1,
+        1
+      ],
+      "dimension": 35,
+      "seed_row_rank": 34,
+      "common_kernel_dimension": 1,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "5040",
+      "row_certificate_denominator": "10080",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        4,
+        4
+      ],
+      "dimension": 14,
+      "seed_row_rank": 12,
+      "common_kernel_dimension": 2,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "72",
+      "row_certificate_denominator": "60",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        4,
+        3,
+        1
+      ],
+      "dimension": 70,
+      "seed_row_rank": 70,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "8640",
+      "row_certificate_denominator": "61585920",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        4,
+        2,
+        2
+      ],
+      "dimension": 56,
+      "seed_row_rank": 55,
+      "common_kernel_dimension": 1,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "5760",
+      "row_certificate_denominator": "18662400",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        4,
+        2,
+        1,
+        1
+      ],
+      "dimension": 90,
+      "seed_row_rank": 90,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "25920",
+      "row_certificate_denominator": "54344908800",
+      "phase_in_left_ideal_block": true
+    },
+    {
+      "partition": [
+        3,
+        3,
+        2
+      ],
+      "dimension": 42,
+      "seed_row_rank": 42,
+      "common_kernel_dimension": 0,
+      "target_rank_increment": 0,
+      "target_on_common_kernel_rank": 0,
+      "representation_matrix_denominator": "1728",
+      "row_certificate_denominator": "47900160",
+      "phase_in_left_ideal_block": true
+    }
+  ],
+  "phase_in_generated_left_ideal": true
+}

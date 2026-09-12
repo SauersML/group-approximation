@@ -1,0 +1,34 @@
+{
+  "graph": {
+    "H6_fan_candidates": 336,
+    "H6_liftable_pairs": 1262,
+    "H6_rectangle_pairs": 1262,
+    "collision_order_histogram": {"2": 1863, "4": 891},
+    "full_packet_survivors": 2754,
+    "marking_parity": "graph",
+    "packet_collision_q14_survivors": 0,
+    "packet_collision_survivors": 0,
+    "packet_frame_cells": {"extension": 2724, "subfield": 30},
+    "packet_q14_survivors": 486,
+    "pinned_intertwiner_checks": [[0, 10], [1, 10], [2, 10], [3, 10], [4, 10]],
+    "projective_centralizer": 180,
+    "q14_survivor_collision_order_histogram": {"2": 486},
+    "structured_candidates": 227160
+  },
+  "inner": {
+    "H6_fan_candidates": 336,
+    "H6_liftable_pairs": 1262,
+    "H6_rectangle_pairs": 1262,
+    "collision_order_histogram": {"2": 1863, "4": 891},
+    "full_packet_survivors": 2754,
+    "marking_parity": "inner",
+    "packet_collision_q14_survivors": 0,
+    "packet_collision_survivors": 0,
+    "packet_frame_cells": {"extension": 2724, "subfield": 30},
+    "packet_q14_survivors": 729,
+    "pinned_intertwiner_checks": [[0, 10], [1, 10], [2, 10], [3, 10], [4, 10]],
+    "projective_centralizer": 180,
+    "q14_survivor_collision_order_histogram": {"2": 729},
+    "structured_candidates": 227160
+  }
+}

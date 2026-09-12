@@ -1,0 +1,33 @@
+{
+  "boundary_sha256": "71653c1fd0be242b34dc71dac9dde0bf01db6e5a11d87f7671c5c1eada3dfea6",
+  "checks": [
+    {"bound": 0, "status": "False"},
+    {"bound": 1, "status": "False"},
+    {"bound": 2, "status": "False"},
+    {"bound": 3, "status": "False"},
+    {"bound": 4, "status": "False"},
+    {"bound": 5, "status": "False"},
+    {"bound": 6, "status": "False"},
+    {"bound": 7, "status": "False"},
+    {"bound": 8, "status": "False"},
+    {"bound": 9, "status": "False"},
+    {"bound": 10, "status": "False"},
+    {"bound": 11, "status": "True", "support": 11}
+  ],
+  "first_target": 1,
+  "linear_seed_support": 26,
+  "lower_bound": 11,
+  "optimal": true,
+  "second_target": 7,
+  "start_bound": 0,
+  "selected_sources": [77, 101, 103, 108, 111, 138, 144, 151, 157, 219, 245],
+  "solver": {
+    "python-sat": "1.9.dev13",
+    "pycryptosat": "5.14.7"
+  },
+  "source_rank": 260,
+  "stop_bound": 11,
+  "target_rank": 130,
+  "upper_bound": 11,
+  "verified": true
+}

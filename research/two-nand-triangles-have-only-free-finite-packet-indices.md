@@ -1,0 +1,116 @@
+---
+rg: 2
+id: two-nand-triangles-have-only-free-finite-packet-indices
+kind: claim
+title: Two glued S4 NAND triangles have only free finite-packet indices and exact finite models
+distinct_from:
+  nand-triangle-relative-k1-is-a-finite-packet-index: that computes the single-cycle atom-difference generator; this computes the first simultaneous coupling of two such generators through a shared edge or a shared variable.
+  odd-nand-phase-return-has-exact-finite-models: that realizes one odd return in dimension three; this gives the edge-shared dimension-three and variable-shared dimension-six joint models and computes both phase words simultaneously.
+  coherent-balanced-context-permutations-would-give-a-ce-trace: that proves a global no-CE BCS cannot make all incidence gauges coherent; this rules out a new obstruction at the smallest two-cycle overlap only.
+---
+
+Take two minimal NAND triangles, with `1` denoting the minus eigenvalue of a
+Boolean sign.  Glue them either along a complete two-variable NAND edge or
+along one variable.  Impose only the shared-marginal equations, the local
+plus-sheet transports, and the odd phase-return identities.  In both cases
+the simultaneous relative-index lattice is torsion-free, the two central
+returns create no new phase, and the whole gluing has an exact finite signed-
+permutation model.
+
+## A complete shared edge
+
+Let the triangles be `(a,b,c)` and `(a,b,d)`.  Exact-one/NAND support on both
+triangles leaves precisely the three global assignments
+
+```text
+(a,b,c,d)=1000, 0100, 0011.                            (TNT1)
+```
+
+Thus `c=d` in the joint three-dimensional model.  Both local packets are the
+standard rank-one three-atom packet, and the shared edge `(a,b)` identifies
+their full atom algebras, not merely their coarse traces.
+
+Choose `a` as separator.  The two oriented relative classes are
+
+```text
+delta_c=[e_(a=0,b=0,c=1)]-[e_(a=0,b=1,c=0)],
+delta_d=[e_(a=0,b=0,d=1)]-[e_(a=0,b=1,d=0)].           (TNT2)
+```
+
+Equation `(TNT1)` gives `delta_d=delta_c` (or its negative if the second
+cycle orientation is reversed).  Hence the two-cycle lattice is
+
+```text
+(Z delta_c directSum Z delta_d)/(delta_d-minus_or_plus delta_c)
+isomorphic to Z.                                       (TNT3)
+```
+
+No torsion is produced.  The signed permutations used for the first triangle
+also serve the second because `c=d`.  With one common `J=-I_3`,
+
+```text
+W_(abc)=J,       W_(abd)=J,
+W_(abc) W_(abd)^(-1)=1,       W_(abc) W_(abd)=1.       (TNT4)
+```
+
+Thus neither the difference nor the sum of the two returned phases yields a
+new central mark.
+
+## One shared variable
+
+Let the triangles be `(a,b,c)` and `(a,d,e)`.  Use a six-dimensional basis
+consisting of
+
+```text
+two copies of 10000,
+01010, 01001, 00110, 00101.                            (TNT5)
+```
+
+The coordinates are ordered `(a,b,c,d,e)`.  On either triangle, each of its
+three exact-one atoms has rank two.  Therefore each local context is exactly
+a two-fold amplification of the standard S4 NAND packet, and their `a`
+marginals agree.
+
+On the four-point `a=0` grid, the two relative differences are the row and
+column classes
+
+```text
+delta_(bc)=[b]-[c]=(1,1,-1,-1),
+delta_(de)=[d]-[e]=(1,-1,1,-1).                        (TNT6)
+```
+
+They are linearly independent in the `K_0` lattice of the joint atom
+algebra.  Sharing the coarse `a` projection imposes no relation between
+them, so the simultaneous relative group contributed by the two cycles is
+
+```text
+Z delta_(bc) directSum Z delta_(de).                   (TNT7)
+```
+
+Again there is no torsion.  Every required equal-rank sheet transport can be
+chosen as a permutation of the six basis vectors: for each local variable,
+fix its minus atom and biject the other two rank-two atoms.  All signs and
+transports consequently lie in the finite signed permutation group
+
+```text
+(C_2)^6 semidirect S_6.                                 (TNT8)
+```
+
+The odd return theorem applies to both amplified triangles with the same
+`J=-I_6`, so the phase equations are again `(TNT4)`.
+
+Changing either cycle orientation negates its free generator and changes no
+conclusion.  Changing the permitted rank-preserving sheet matching only
+conjugates the displayed permutations inside a finite symmetric group.
+Therefore every rank-balanced two-triangle gluing of these two incidence
+types, with no relations beyond shared marginals and the local phase-return
+cell, has an exact finite model.
+
+This does not assert residual finiteness for arbitrary 2-complexes of finite
+packets: additional 2-cells can encode arbitrary finitely presented
+quotients.  It proves the bounded point needed here.  A torsion or
+nonmatricial central class cannot first appear from coupling two minimal NAND
+cycle indices along one edge or one variable.  Any successful global BCS
+holonomy must involve at least a larger cycle network or an additional
+relation not generated by these local packet identifications.
+

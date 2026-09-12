@@ -1,0 +1,277 @@
+{
+  "status": "passed",
+  "graph": "T_4 x Z",
+  "scope": "Finite deterministic barrier runs and exact rational probability identities; not a near-critical query upper bound",
+  "barriers": [
+    {
+      "wall_radius": 0,
+      "beta": 1,
+      "queries": 12,
+      "proved_query_lower_bound": 0,
+      "open_answers": 11,
+      "closed_answers": 1,
+      "certified_path_length": 3,
+      "transcript_probability_at_one_half": "2^(-12)"
+    },
+    {
+      "wall_radius": 0,
+      "beta": 2,
+      "queries": 10,
+      "proved_query_lower_bound": 0,
+      "open_answers": 9,
+      "closed_answers": 1,
+      "certified_path_length": 3,
+      "transcript_probability_at_one_half": "2^(-10)"
+    },
+    {
+      "wall_radius": 0,
+      "beta": 4,
+      "queries": 10,
+      "proved_query_lower_bound": 0,
+      "open_answers": 9,
+      "closed_answers": 1,
+      "certified_path_length": 3,
+      "transcript_probability_at_one_half": "2^(-10)"
+    },
+    {
+      "wall_radius": 1,
+      "beta": 1,
+      "queries": 60,
+      "proved_query_lower_bound": 5,
+      "open_answers": 57,
+      "closed_answers": 3,
+      "certified_path_length": 5,
+      "transcript_probability_at_one_half": "2^(-60)"
+    },
+    {
+      "wall_radius": 1,
+      "beta": 2,
+      "queries": 58,
+      "proved_query_lower_bound": 5,
+      "open_answers": 55,
+      "closed_answers": 3,
+      "certified_path_length": 5,
+      "transcript_probability_at_one_half": "2^(-58)"
+    },
+    {
+      "wall_radius": 1,
+      "beta": 4,
+      "queries": 58,
+      "proved_query_lower_bound": 5,
+      "open_answers": 55,
+      "closed_answers": 3,
+      "certified_path_length": 5,
+      "transcript_probability_at_one_half": "2^(-58)"
+    },
+    {
+      "wall_radius": 2,
+      "beta": 1,
+      "queries": 216,
+      "proved_query_lower_bound": 22,
+      "open_answers": 211,
+      "closed_answers": 5,
+      "certified_path_length": 7,
+      "transcript_probability_at_one_half": "2^(-216)"
+    },
+    {
+      "wall_radius": 2,
+      "beta": 2,
+      "queries": 214,
+      "proved_query_lower_bound": 22,
+      "open_answers": 209,
+      "closed_answers": 5,
+      "certified_path_length": 7,
+      "transcript_probability_at_one_half": "2^(-214)"
+    },
+    {
+      "wall_radius": 2,
+      "beta": 4,
+      "queries": 214,
+      "proved_query_lower_bound": 22,
+      "open_answers": 209,
+      "closed_answers": 5,
+      "certified_path_length": 7,
+      "transcript_probability_at_one_half": "2^(-214)"
+    },
+    {
+      "wall_radius": 3,
+      "beta": 1,
+      "queries": 696,
+      "proved_query_lower_bound": 75,
+      "open_answers": 689,
+      "closed_answers": 7,
+      "certified_path_length": 9,
+      "transcript_probability_at_one_half": "2^(-696)"
+    },
+    {
+      "wall_radius": 3,
+      "beta": 2,
+      "queries": 694,
+      "proved_query_lower_bound": 75,
+      "open_answers": 687,
+      "closed_answers": 7,
+      "certified_path_length": 9,
+      "transcript_probability_at_one_half": "2^(-694)"
+    },
+    {
+      "wall_radius": 3,
+      "beta": 4,
+      "queries": 694,
+      "proved_query_lower_bound": 75,
+      "open_answers": 687,
+      "closed_answers": 7,
+      "certified_path_length": 9,
+      "transcript_probability_at_one_half": "2^(-694)"
+    },
+    {
+      "wall_radius": 4,
+      "beta": 1,
+      "queries": 2148,
+      "proved_query_lower_bound": 236,
+      "open_answers": 2139,
+      "closed_answers": 9,
+      "certified_path_length": 11,
+      "transcript_probability_at_one_half": "2^(-2148)"
+    },
+    {
+      "wall_radius": 4,
+      "beta": 2,
+      "queries": 2146,
+      "proved_query_lower_bound": 236,
+      "open_answers": 2137,
+      "closed_answers": 9,
+      "certified_path_length": 11,
+      "transcript_probability_at_one_half": "2^(-2146)"
+    },
+    {
+      "wall_radius": 4,
+      "beta": 4,
+      "queries": 2146,
+      "proved_query_lower_bound": 236,
+      "open_answers": 2137,
+      "closed_answers": 9,
+      "certified_path_length": 11,
+      "transcript_probability_at_one_half": "2^(-2146)"
+    },
+    {
+      "wall_radius": 5,
+      "beta": 1,
+      "queries": 6516,
+      "proved_query_lower_bound": 721,
+      "open_answers": 6505,
+      "closed_answers": 11,
+      "certified_path_length": 13,
+      "transcript_probability_at_one_half": "2^(-6516)"
+    },
+    {
+      "wall_radius": 5,
+      "beta": 2,
+      "queries": 6514,
+      "proved_query_lower_bound": 721,
+      "open_answers": 6503,
+      "closed_answers": 11,
+      "certified_path_length": 13,
+      "transcript_probability_at_one_half": "2^(-6514)"
+    },
+    {
+      "wall_radius": 5,
+      "beta": 4,
+      "queries": 6514,
+      "proved_query_lower_bound": 721,
+      "open_answers": 6503,
+      "closed_answers": 11,
+      "certified_path_length": 13,
+      "transcript_probability_at_one_half": "2^(-6514)"
+    },
+    {
+      "wall_radius": 6,
+      "beta": 1,
+      "queries": 19632,
+      "proved_query_lower_bound": 2178,
+      "open_answers": 19619,
+      "closed_answers": 13,
+      "certified_path_length": 15,
+      "transcript_probability_at_one_half": "2^(-19632)"
+    },
+    {
+      "wall_radius": 6,
+      "beta": 2,
+      "queries": 19630,
+      "proved_query_lower_bound": 2178,
+      "open_answers": 19617,
+      "closed_answers": 13,
+      "certified_path_length": 15,
+      "transcript_probability_at_one_half": "2^(-19630)"
+    },
+    {
+      "wall_radius": 6,
+      "beta": 4,
+      "queries": 19630,
+      "proved_query_lower_bound": 2178,
+      "open_answers": 19617,
+      "closed_answers": 13,
+      "certified_path_length": 15,
+      "transcript_probability_at_one_half": "2^(-19630)"
+    },
+    {
+      "wall_radius": 7,
+      "beta": 1,
+      "queries": 58992,
+      "proved_query_lower_bound": 6551,
+      "open_answers": 58977,
+      "closed_answers": 15,
+      "certified_path_length": 17,
+      "transcript_probability_at_one_half": "2^(-58992)"
+    },
+    {
+      "wall_radius": 7,
+      "beta": 2,
+      "queries": 58990,
+      "proved_query_lower_bound": 6551,
+      "open_answers": 58975,
+      "closed_answers": 15,
+      "certified_path_length": 17,
+      "transcript_probability_at_one_half": "2^(-58990)"
+    },
+    {
+      "wall_radius": 7,
+      "beta": 4,
+      "queries": 58990,
+      "proved_query_lower_bound": 6551,
+      "open_answers": 58975,
+      "closed_answers": 15,
+      "certified_path_length": 17,
+      "transcript_probability_at_one_half": "2^(-58990)"
+    }
+  ],
+  "branch_configurations": 4096,
+  "open_square_certificates": 88208,
+  "finite_boundary_checks": 32,
+  "bernoulli_checks": [
+    {
+      "q": "1/5",
+      "depth_two_mean": "49/25",
+      "depth_two_independent_min_mean": "15964824253893809/11920928955078125",
+      "wall_branch_series": "320/231"
+    },
+    {
+      "q": "1/3",
+      "depth_two_mean": "3",
+      "depth_two_independent_min_mean": "62763494525/31381059609",
+      "wall_branch_series": "24/25"
+    },
+    {
+      "q": "1/2",
+      "depth_two_mean": "19/4",
+      "depth_two_independent_min_mean": "28440197/8388608",
+      "wall_branch_series": "2/5"
+    },
+    {
+      "q": "4/5",
+      "depth_two_mean": "229/25",
+      "depth_two_independent_min_mean": "91919225629961789/11920928955078125",
+      "wall_branch_series": "5/226"
+    }
+  ],
+  "elapsed_seconds": 3.611
+}

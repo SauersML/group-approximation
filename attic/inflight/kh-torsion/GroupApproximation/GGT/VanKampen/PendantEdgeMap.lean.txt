@@ -1,0 +1,161 @@
+import GroupApproximation.GGT.VanKampen.CombMapEdgeInsertion
+import GroupApproximation.GGT.VanKampen.PermOrbitOption
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Attaching a pendant edge at a corner
+
+A new edge is attached at the vertex corner just before the dart `b`, and its
+far end is a new vertex of valence one.  The two new darts are `some none`,
+leaving the old vertex of `b`, and `none`, leaving the new vertex; the old darts
+are embedded by `some ∘ some`.  Vertex rotation inserts `some none` immediately
+before `b` and fixes `none`.
+
+The map gains one vertex and one edge and keeps its faces.  The face through the
+corner now reads the two new darts, out and back, immediately before `b`
+(`facePerm_eq`).  Connectedness and planarity are preserved.  On labelled discs
+this is the move inserting a cancelling pair `u u⁻¹` into a face word.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.PendantEdge
+
+open Equiv
+
+universe u
+
+variable (M : CombMap.{u}) (b : M.Dart)
+
+/-- The map with a pendant edge attached before `b`. -/
+noncomputable def toCombMap : CombMap.{u} where
+  Dart := EdgeInsertion.Dart M
+  dartFintype := inferInstance
+  alpha := EdgeInsertion.alpha M
+  sigma := Equiv.optionCongr (PermOrbitInsert.insertBefore M.sigma b)
+  alpha_involutive := EdgeInsertion.alphaFun_involutive M
+  alpha_fixedPointFree := EdgeInsertion.alpha_fixedPointFree M
+
+/-- The far end of the pendant edge has valence one. -/
+theorem sigma_none : (toCombMap M b).sigma none = none := rfl
+
+/-- **The map gains one vertex.** -/
+theorem vertexCount_eq : (toCombMap M b).vertexCount = M.vertexCount + 1 := by
+  change Nat.card (CombMap.Orbit (Equiv.optionCongr (PermOrbitInsert.insertBefore M.sigma b))) =
+    Nat.card (CombMap.Orbit M.sigma) + 1
+  rw [PermOrbitOption.orbit_card, Nat.card_congr (PermOrbitInsert.orbitEquiv M.sigma b)]
+
+/-- **The map gains one edge.**  Edges only see edge reversal, which is that of
+edge insertion. -/
+theorem edgeCount_eq : (toCombMap M b).edgeCount = M.edgeCount + 1 :=
+  EdgeInsertion.edgeCount_eq M b b
+
+/-- **Face rotation**, dart by dart.  The two new darts are inserted, out and
+back, immediately before `b` in its face. -/
+theorem facePerm_apply (x : EdgeInsertion.Dart M) :
+    (toCombMap M b).facePerm x =
+      PermOrbitInsert.insertBefore (PermOrbitInsert.insertBefore M.facePerm b) (some b) x := by
+  classical
+  rcases x with _ | (_ | d)
+  · change some (PermOrbitInsert.insertBefore M.sigma b none) = _
+    rw [PermOrbitInsert.insertBefore_none, PermOrbitInsert.insertBefore_none]
+  · change (none : EdgeInsertion.Dart M) = _
+    rw [PermOrbitInsert.insertBefore_some, PermOrbitInsert.insertBefore_none, if_pos rfl]
+  · have hf : M.facePerm d = M.sigma (M.alpha d) := rfl
+    change some (PermOrbitInsert.insertBefore M.sigma b (some (M.alpha d))) = _
+    rw [PermOrbitInsert.insertBefore_some, PermOrbitInsert.insertBefore_some,
+      PermOrbitInsert.insertBefore_some, hf]
+    by_cases h : M.sigma (M.alpha d) = b
+    · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => by cases h')]
+    · rw [if_neg h, if_neg (fun h' => h (Option.some.inj h'))]
+
+/-- **Face rotation.** -/
+theorem facePerm_eq : (toCombMap M b).facePerm =
+    PermOrbitInsert.insertBefore (PermOrbitInsert.insertBefore M.facePerm b) (some b) :=
+  Equiv.ext (facePerm_apply M b)
+
+/-- **The faces are unchanged in number.** -/
+theorem faceCount_eq : (toCombMap M b).faceCount = M.faceCount := by
+  have h : Nat.card (CombMap.Orbit (PermOrbitInsert.insertBefore
+      (PermOrbitInsert.insertBefore M.facePerm b) (some b))) =
+      Nat.card (CombMap.Orbit M.facePerm) := by
+    rw [Nat.card_congr (PermOrbitInsert.orbitEquiv
+        (PermOrbitInsert.insertBefore M.facePerm b) (some b)),
+      Nat.card_congr (PermOrbitInsert.orbitEquiv M.facePerm b)]
+  change Nat.card (CombMap.Orbit (toCombMap M b).facePerm) = Nat.card (CombMap.Orbit M.facePerm)
+  rw [facePerm_eq]
+  exact h
+
+/-- One old rotation step is reached in the new map, through the new dart when
+the old successor is `b`. -/
+theorem reachable_embed_sigma (d : M.Dart) :
+    Relation.EqvGen (toCombMap M b).Adjacent (EdgeInsertion.embed M d)
+      (EdgeInsertion.embed M (M.sigma d)) := by
+  classical
+  by_cases h : M.sigma d = b
+  · have h1 : (toCombMap M b).sigma (EdgeInsertion.embed M d) = some none := by
+      change some (PermOrbitInsert.insertBefore M.sigma b (some d)) = some none
+      rw [PermOrbitInsert.insertBefore_some, if_pos h]
+    have h2 : (toCombMap M b).sigma (some none) = EdgeInsertion.embed M (M.sigma d) := by
+      change some (PermOrbitInsert.insertBefore M.sigma b none) = some (some (M.sigma d))
+      rw [PermOrbitInsert.insertBefore_none, h]
+    exact Relation.EqvGen.trans _ (some none) _ (Relation.EqvGen.rel _ _ (Or.inr h1))
+      (Relation.EqvGen.rel _ _ (Or.inr h2))
+  · apply Relation.EqvGen.rel
+    right
+    change some (PermOrbitInsert.insertBefore M.sigma b (some d)) = some (some (M.sigma d))
+    rw [PermOrbitInsert.insertBefore_some, if_neg h]
+
+/-- Every old walk lifts to the new map. -/
+theorem reachable_embed {x y : M.Dart} (hxy : Relation.EqvGen M.Adjacent x y) :
+    Relation.EqvGen (toCombMap M b).Adjacent (EdgeInsertion.embed M x)
+      (EdgeInsertion.embed M y) := by
+  induction hxy with
+  | rel x y hxy =>
+      rcases hxy with hxy | hxy
+      · exact Relation.EqvGen.rel _ _ (Or.inl (congrArg (EdgeInsertion.embed M) hxy))
+      · rw [← hxy]
+        exact reachable_embed_sigma M b x
+  | refl x => exact Relation.EqvGen.refl _
+  | symm x y _ ih => exact Relation.EqvGen.symm _ _ ih
+  | trans x y z _ _ ih₁ ih₂ => exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
+
+/-- The old dart reached from a dart of the new map. -/
+def oldRoot : EdgeInsertion.Dart M → M.Dart
+  | none => b
+  | some none => b
+  | some (some d) => d
+
+theorem reachable_oldRoot (d : EdgeInsertion.Dart M) :
+    Relation.EqvGen (toCombMap M b).Adjacent d (EdgeInsertion.embed M (oldRoot M b d)) := by
+  have h2 : (toCombMap M b).sigma (some none) = EdgeInsertion.embed M b := by
+    change some (PermOrbitInsert.insertBefore M.sigma b none) = some (some b)
+    rw [PermOrbitInsert.insertBefore_none]
+  rcases d with _ | (_ | d)
+  · exact Relation.EqvGen.trans _ (some none) _
+      (Relation.EqvGen.rel _ _ (Or.inl (rfl : (toCombMap M b).alpha none = some none)))
+      (Relation.EqvGen.rel _ _ (Or.inr h2))
+  · exact Relation.EqvGen.rel _ _ (Or.inr h2)
+  · exact Relation.EqvGen.refl _
+
+/-- **Attaching a pendant edge keeps the map connected.** -/
+theorem connected (hM : M.IsConnected) : (toCombMap M b).IsConnected := by
+  intro x y
+  exact Relation.EqvGen.trans _ _ _ (reachable_oldRoot M b x)
+    (Relation.EqvGen.trans _ _ _ (reachable_embed M b (hM _ _))
+      (Relation.EqvGen.symm _ _ (reachable_oldRoot M b y)))
+
+/-- **Attaching a pendant edge keeps the map planar.** -/
+theorem planar (hM : M.IsPlanar) : (toCombMap M b).IsPlanar := by
+  refine ⟨connected M b hM.1, ?_⟩
+  have h := hM.2
+  unfold CombMap.eulerCharacteristic at h ⊢
+  rw [vertexCount_eq, edgeCount_eq, faceCount_eq]
+  omega
+
+end GroupApproximation.GGT.VanKampen.PendantEdge
+
+#audit_axioms GroupApproximation.GGT.VanKampen.PendantEdge.vertexCount_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.PendantEdge.edgeCount_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.PendantEdge.facePerm_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.PendantEdge.faceCount_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.PendantEdge.connected
+#audit_axioms GroupApproximation.GGT.VanKampen.PendantEdge.planar

@@ -1,0 +1,149 @@
+{
+  "status": "passed_task_graph",
+  "execution": "MSI acn112, shared project storage; archive-fed pinned Cairn core; no local code execution.",
+  "scope": "Full captured graph comparison plus dependency-closed fpbs graph validation with unchanged Cairn parser, linter, compiler and changed-claim duplicate checker. Global baseline errors are retained explicitly. Raw CLI checks exceeded their time limits during NFS source loading. No Lean proof verification or resolution of Benjamini-Schramm.",
+  "cairn_sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
+  "baseline_archive_sha256": "bcb82207709152332d55b997d2998e97570990b1df0ddc35b7f596d2a9b8e9e1",
+  "overlay_archive_sha256": "5817b531ca3d93a77bd690ce53e471a7cc36f6f7fca37b7e4033e8e06062d22a",
+  "claims": 7755,
+  "routes": 7924,
+  "task_claims": 217,
+  "task_routes": 222,
+  "task_findings": [],
+  "new_findings": [],
+  "full_snapshot_clean": false,
+  "baseline_findings": [
+    [
+      "error",
+      "id",
+      "research/quadratic-fiber-weights-and-tail-sentinels-control-prefix-recodings.md: missing or malformed id (want a kebab-case slug), got 'quadratic-fiber-weights-and-tail-sentinels-control-prefix-recodings'"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/fp-full-binary-cantor-groups-have-type-a-actions.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/full-binary-cantor-groups-have-copy-stabilizers.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/full-cantor-boolean-atom-orbits-and-embedding-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/full-cantor-prefix-compression-and-partition-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/shell-envelopes-are-full-cantor-groups.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ]
+  ],
+  "findings": [
+    [
+      "error",
+      "id",
+      "research/quadratic-fiber-weights-and-tail-sentinels-control-prefix-recodings.md: missing or malformed id (want a kebab-case slug), got 'quadratic-fiber-weights-and-tail-sentinels-control-prefix-recodings'"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/fp-full-binary-cantor-groups-have-type-a-actions.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/full-binary-cantor-groups-have-copy-stabilizers.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/full-cantor-boolean-atom-orbits-and-embedding-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/full-cantor-prefix-compression-and-partition-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/shell-envelopes-are-full-cantor-groups.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ],
+    [
+      "error",
+      "artifact",
+      "research/shell-local-patching-and-independent-germ-fullness-proof.md: artifact not found: research/artifacts/boone-higman-full-cantor-clopen-action-2026-09-08.md (want a working-tree path or a <rev>:<path> pin)"
+    ]
+  ],
+  "duplicate_findings": [],
+  "removed_nodes": [],
+  "new_open_claims": [],
+  "state_changes": {
+    "fpbs-critical-quotient-palm-moments-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-critical-quotient-palm-moments": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-critical-quotient-sprinkling-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-critical-quotient-sprinkling": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-unimodular-critical-quotients-can-have-zero-pu-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-unimodular-critical-quotients-can-have-zero-pu": [
+      null,
+      "ESTABLISHED"
+    ],
+    "fpbs-weighted-expansion-allows-zero-uniqueness-proof": [
+      null,
+      "COMPLETE"
+    ],
+    "fpbs-weighted-expansion-allows-zero-uniqueness": [
+      null,
+      "ESTABLISHED"
+    ]
+  },
+  "selected_statuses": {
+    "fpbs-critical-cluster-stability-modulus": "ESTABLISHED",
+    "fpbs-finite-spectrum-total-variation-continuity": "ESTABLISHED",
+    "fpbs-uniqueness-spectrum-critical-remainder": "ESTABLISHED",
+    "fpbs-integrated-sensitivity-universal": "OPEN",
+    "fpbs-benjamini-schramm-universal": "OPEN",
+    "fpbs-fixed-price-universal": "OPEN"
+  },
+  "overlay_source_sha256": {
+    "research/artifacts/fpbs/critical-quotient-replay.json": "d25e2f6dbcd662b8ead46f994fb0b618bdeb6a554e7791db565679e84bf3c0e3",
+    "research/artifacts/fpbs/critical-quotient-sprinkling.md": "27e3a749390b1a24ca9eb28fd9e4871d03db8d89b718bd1077c9b61829e2d798",
+    "research/artifacts/fpbs/scripts/replay_critical_quotient.py": "25f9990ec72a7210b07094953fcb8d8efb08baa95a5a5444bdf9b801b28d800d",
+    "research/fpbs-benjamini-schramm-universal.md": "7dd6e1175db0945cf2ab18e5814a29b69b0d10f2cdc2f774e8244c68a9bafd5a",
+    "research/fpbs-critical-quotient-palm-moments-proof.md": "e1edb19d43e8c63efa2c868cd3d1865b1a83589e0a0c8e81d0ae8fe51884a144",
+    "research/fpbs-critical-quotient-palm-moments.md": "71665b2357d17b942fc084b579c0ad08cc537cd26de29d958c54629e8ef587c3",
+    "research/fpbs-critical-quotient-sprinkling-proof.md": "d0b9528ca0b685de950d84027a6f29ce6d0fe608b997206bf43898ddd7da273d",
+    "research/fpbs-critical-quotient-sprinkling.md": "3b2a79a223de37ac2c69a2edb14fb483fa88bac39e000e0163bb23c0c7a9982d",
+    "research/fpbs-unimodular-critical-quotients-can-have-zero-pu-proof.md": "c96e9a413a4829122b0097377c26bd6a9159334450a12624214a6b77fac2d474",
+    "research/fpbs-unimodular-critical-quotients-can-have-zero-pu.md": "1eabf8ea8c6b520fd17d3c2813738345ebde767c6cc24cfbca25c81eb972c5d1",
+    "research/fpbs-weighted-expansion-allows-zero-uniqueness-proof.md": "8e5719206605c8487c15786b0cd3bda09d0b91ea63786626de820534c91a1c4e",
+    "research/fpbs-weighted-expansion-allows-zero-uniqueness.md": "f85b72f7c7672981a6480586f5128d533bf9ec720ace56143170a6ce88d3dd31"
+  },
+  "elapsed_seconds": 22.078
+}

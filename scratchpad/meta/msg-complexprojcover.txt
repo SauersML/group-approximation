@@ -1,0 +1,26 @@
+AlgTop: finish the ComplexProjectiveProduct tail -- Cover fixed, chain fully green
+
+Completes the dependency chain ComplexProjectiveProduct (Group 3) needs:
+ComplexProjectiveSphere -> Cover -> PunctureRetract -> Puncture -> Hyperplane
+-> Chart -> Basic (reachable). Puncture and PunctureRetract were fixed and
+landed already; this is the last file with its own bugs, Cover.lean:
+
+* `entry_zero_zero_eq_one` -- `Fin.sum_univ_one` no longer fires on
+  `Fin (0 + 1)` (the unreduced numeral form this file's `CP 0` produces, as
+  opposed to the literal `Fin 1` the lemma is stated for); replaced with
+  `Fin.sum_univ_succ` + `Fin.sum_univ_zero`, which unfold the sum recursively
+  regardless of whether the numeral is reduced.
+* `eq_basePoint_zero` -- `Subsingleton (Fin (0 + 1))` failed to synthesize for
+  the same reason (instance search does not reduce `0 + 1` to `1` the way
+  `simp`/`norm_num` would); added it explicitly via
+  `inferInstanceAs (Subsingleton (Fin 1))`, which forces the defeq check
+  `simp`/instance-search alone were not doing.
+
+Probed alone (its dependency chain has nothing to do with the SingularCohomology
+question in progress separately): `Build completed successfully (8661 jobs)`,
+confirmed twice (once as a genuine fresh build, once as a cache-hit replay of
+the identical result). `ComplexProjectiveSphere` and `ComplexProjectiveProduct`
+(the Group-3 module itself) both probe green standalone with this fix in place
+-- the tail is finished.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

@@ -1,0 +1,18 @@
+{
+  "boundary_relations": 234,
+  "support_size_histogram": [
+    [
+      6,
+      178
+    ],
+    [
+      8,
+      56
+    ]
+  ],
+  "two_support_derivatives": 0,
+  "two_support_ratios_in_h": 0,
+  "subgroup_generated_by_h_ratios_order": 1,
+  "subgroup_generated_by_h_ratios_is_h": false,
+  "ratio_records": []
+}

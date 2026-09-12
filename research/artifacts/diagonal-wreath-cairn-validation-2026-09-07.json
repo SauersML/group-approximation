@@ -1,0 +1,17 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; duplicate checks on eight touched nodes. This checks the research graph rather than a proof assistant formalization.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "diagonal-tensor-orbit-corner-induction-proof": "COMPLETE",
+    "leavitt-unit-group-algebra-not-directly-finite": "OPEN",
+    "leavitt-unit-group-nonsurjunctive": "OPEN",
+    "one-invertible-certificate-fiber-forces-global-invertibility": "ESTABLISHED",
+    "rf-lamp-permutational-wreaths-satisfy-stable-finiteness": "ESTABLISHED",
+    "rf-lamps-preserve-stable-finiteness-for-arbitrary-actions": "ESTABLISHED",
+    "rf-lamps-with-finite-stabilizers-preserve-direct-finiteness": "ESTABLISHED",
+    "wreath-finiteness-transfers-from-product-closed-classes": "ESTABLISHED"
+  },
+  "elapsed_seconds": 15.354
+}

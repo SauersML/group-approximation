@@ -1,0 +1,26 @@
+{
+  "bordered_search": {
+    "core14_base": {"invertible_borders_tested": 1024, "survivor": null},
+    "reverse22_base": {"invertible_borders_tested": 1024, "survivor": null}
+  },
+  "dimension": 6,
+  "forward_representative": {
+    "first_hex": "01000000000100000000010100000100",
+    "second_hex": "01010000000100000000010000000001"
+  },
+  "relations": {
+    "collision_19243": 1,
+    "forward_distinct": 1,
+    "rank_three_core_occurrences": 14
+  },
+  "z3_exact_boolean_screen": {
+    "all_invertible_relative_matrices": "unsat",
+    "escape_from_rank_three_commutant": "unsat",
+    "matrix_entries": 36,
+    "inverse_entries": 36,
+    "unrestricted_conflicts": 1647477,
+    "unrestricted_runtime_seconds": 151.52,
+    "escape_conflicts": 1375140,
+    "escape_runtime_seconds": 118.66
+  }
+}

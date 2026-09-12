@@ -1,0 +1,119 @@
+---
+rg: 2
+id: canonical-or3-nonincidence-cap-commutator-payment
+kind: claim
+title: Canonical OR3 links pay every nonincidence cap commutator
+distinct_from:
+  raw-prefix-covariance-reduces-to-nonincidence-cap-commutators: that proves this payment is sufficient and gives a minimal exact witness that it is necessary; this must derive the payment from ordinary actuator words on canonical matrix types.
+  full-support-factor-refutes-exact-exhaustive-typed-cap-chain: that forbids imposing the payment as representation-universal exact typed rows; this asks for a canonical-matrix-only estimate which need not hold in the full-support perfect factor.
+---
+
+**OPEN.**  Fix the `R_edge`/OR3 instance and its finite context order.  In a
+canonical finite-matrix tuple, exactify the local Fano packets and select a
+profile `q_1,...,q_m` with the positive sequential mass supplied by
+`fano-maximal-cap-overlap-has-positive-sequential-mass`.  Construct ordinary
+actuator words with bounded overlap and an exact marked infinite completion
+such that their squared normalized-HS energy `E_word` forces
+
+```text
+sum_(j,x: x notin c_j) ||[B_x,q_j]||_2^2
+ <= C E_word+o(1),                                    (NCP1)
+```
+
+or the strictly weaker prefix-compressed version sufficient term-by-term in
+`(RPC3)`.  The constant may depend on the fixed instance and profile menu,
+but not on matrix dimension.
+
+By `raw-prefix-covariance-reduces-to-nonincidence-cap-commutators`, the
+ordinary incidence coefficient rows already pay all pairs with `x in c_j`,
+and one common coarea threshold pays the source-cut boundary.  Hence `(NCP1)`
+is sufficient for `(SPA12)`, polar correction, and the common-source POVM
+decoder.
+
+The estimate must be genuinely canonical-matrix-only.  Adding the
+commutators in `(NCP1)` as exact relations would produce the exhaustive typed
+chain forbidden by the full-support perfect factor.  Moreover the exact
+seven-dimensional triangle in the reduction claim has zero incidence energy
+but nonincidence energy and raw-prefix energy both equal to `1/7`; no proof
+from local cap identities alone can establish `(NCP1)`.  A successful
+actuator must therefore charge the first context omitted by each transported
+variable, rather than adding another local cap label or repeating the
+incidence covariance rows.
+
+## Attempts
+
+- **Impose every nonincidence commutator as a relator.**  This makes `(NCP1)`
+  immediate, but it is exactly the representation-universal exhaustive typed
+  chain ruled out by
+  `full-support-factor-refutes-exact-exhaustive-typed-cap-chain`; the intended
+  full-support perfect model does not extend.
+- **Derive the missing rows by occurrence-local telescoping.**  The exact
+  seven-dimensional Berge triangle in
+  `raw-prefix-covariance-reduces-to-nonincidence-cap-commutators` has all
+  occurrence rows zero while the first omitted-context term has squared norm
+  `1/7`, so no local rearrangement or better Cauchy--Schwarz estimate can work.
+- **Live attack.**  Charge only the prefix-compressed nonincidence terms on
+  canonical matrix types, using a cycle actuator coupled to the common mark.
+  This is weaker than globally centralizing every cap and is the remaining
+  opening not covered by either exact-completeness obstruction above.
+- **Finite Bass--Serre actor and canonical moment tests.**
+  `canonical-fano-free-product-defeats-finite-actor-payment` computes a free
+  Fano-cap commutator of canonical squared norm `1/2`.  Every finite
+  graph-of-groups actor extends on that same canonical base type with zero
+  actor defect.  Hence neither finite packet transport nor canonical side
+  tests can prove the uncompressed `(NCP1)`.  The live attack must use the
+  weaker prefix-compressed payload and a genuinely non-Bass--Serre two-cell
+  or infinite actor tied to it.
+- **Prefix-compress inside a selected finite type.**
+  `canonical-b7-or3-corner-defeats-finite-prefix-actors` lifts the complete
+  seven-dimensional triangle, including its Gram cut, into the rational
+  natural block of `B_7`.  Its selected canonical source has mass `1/46080`
+  and its prefix defect has squared norm `1/92160`; every finite Bass--Serre
+  actor still extends with zero defect.  Thus selected-type compression does
+  not rescue a finite actor.  The sole remaining opening is a
+  payload-sensitive non-Bass--Serre two-cell or an infinite actor which fails
+  canonical extension while retaining the exact marked completion.
+- **Attach one non-Bass--Serre curvature/Clifford two-cell.**
+  `b7-faithful-two-cell-retains-or3-prefix-defect` removes the residually
+  finite loophole left by the Bass--Serre audit.  Any relative two-cell group
+  which is residually finite while retaining B7 has canonical finite-quotient
+  countermodels with prefix defect `1/92160`.  In the smallest
+  direct coupling, the paid local observable and global variable have the
+  same multiplicative commutator with the omitted cap reflection, but the
+  oriented additive corner remains `|e_4><e_0|`.  Thus scalar/projective
+  curvature and finite Clifford holonomy are insufficient.  A surviving
+  finite presentation must fail relative residual finiteness at B7 and must
+  authenticate the oriented source Gram without imposing universal exact
+  covariance; otherwise an infinite actor is necessary.
+- **Attach a non-residually-finite actor beside the prefix payload.**  Failure
+  of relative residual finiteness is necessary but not sufficient.
+  `exact-fd-wandering-reflection-promotion-can-remain-sofic` gives a finitely
+  presented sofic actor whose distinguished word dies in every exact finite
+  dimensional representation while its canonical compressed error stays at
+  full density.  Thus a Thompson-simple or exact-FD-invisible factor placed
+  beside `(BTF8)` does not pay it.  The infinite actor must enter the same
+  oriented source-to-target row with a dimension-independent HS modulus; an
+  uncoupled direct product, central product, or packet amalgam still leaves
+  the canonical B7 corner untouched.
+- **Use a finite-state conjugacy clock on the payload packet.**  This is now
+  excluded as a class by
+  `b7-normalizing-conjugacy-clocks-are-residually-finite`.  A clock which
+  normalizes B7 through a packet automorphism generates a finite-by-cyclic
+  group; adding any consistent bounded return makes the total actor finite.
+  Both cases are residually finite and retain the canonical defect.  The
+  exact clock `T=(2 6)` already conjugates the global variable to its paid c3
+  observable, fixes the source and carrier, and has nontrivial curvature
+  against the omitted cap, yet fixes `|e_4><e_0|`.  Thus the next actor must
+  be non-automorphic after compression or use a carrier depending on its
+  multiplicity action.
+- **Use the smallest proper-corner/Leavitt return.**  The analytic rank
+  mechanism is exact and optimal:
+  `or3-fixed-proper-corner-return-hits-regular-firewall` takes
+  `H=supp(D^*D)<=P`, `F=P-H`, and proves for every unitary `U` that
+  `||D||_2^2<=||(FUP)^*(FUP)-P||_2^2`.  In B7 this is the sharp ledger
+  `P=e_0+e_1`, `H=e_0`, `F=e_1`, with canonical floor `1/92160`.  But if
+  source fullness is a fixed Leavitt, Halmos, Julia, or group-algebra block
+  consequence, the regular trace forces `H=0`; applying it exhaustively also
+  violates full-support exact completeness.  Thus the proper-corner geometry
+  is solved, while the sole remaining step is a nonfunctorial finite-matrix
+  authentication of its source Gram.

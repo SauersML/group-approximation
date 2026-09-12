@@ -1,0 +1,135 @@
+{
+  "date": "2026-09-08",
+  "scope": "Explicit one-vertex almost-abelian capture, conditional positive-central support erasure, and a counterexample to automatic spectral-cut leakage budgets. No unrestricted Iwahori stability or group-existence theorem is asserted.",
+  "execution": "MSI acn112, existing isolated source cache on /projects/standard. One process at a time, with a 45-second timeout on each graph check and preview. No local code or builds; no GPU resources used by this validation.",
+  "committed_source_overlay": "5456099b3f9b569cc00d89d7b11160ee1c14523c",
+  "comparison_baseline": "312939c7ad115a6b5b3dbacfda597f354d742e42",
+  "check": {
+    "status": "ok",
+    "claims": 7277,
+    "routes": 7436,
+    "findings": [
+      {
+        "severity": "warning",
+        "rule": "cycle",
+        "message": "dependency cycle through claims: sl3-hnn-admits-no-amalgamated-free-haar-unitary -> projective-trace-square-transfer-for-sl3-pair -> sl3-pair-relative-commutant-route -> sl3-hnn-admits-no-amalgamated-free-haar-unitary"
+      }
+    ],
+    "newly_dead": [],
+    "newly_detached": []
+  },
+  "preview": {
+    "status": "ok",
+    "added": [
+      "commuting-iwahori-pairs-have-quadratic-rank-repair",
+      "commuting-iwahori-repair-from-finite-character-support",
+      "dilution-obstructs-flat-quadratic-iwahori-repair",
+      "dual-boundary-mask-kills-native-second-marginal",
+      "flat-iwahori-step-fails-on-a-diluted-character",
+      "forward-memory-lifts-exclude-strict-cellular-sections",
+      "free-abelianized-cover-is-torsion-free",
+      "free-abelianized-cover-reflects-mf",
+      "free-abelianized-cover-torsion-free-proof",
+      "irreducible-dimension-lock-refutes-strict-iwahori-tubes",
+      "iwahori-a4-spectral-cut-leakage-proof",
+      "iwahori-cyclic-capture-from-fifteen-and-twenty-four",
+      "iwahori-polynomial-step-from-spectral-gate",
+      "iwahori-spectral-cuts-need-independent-leakage-control",
+      "iwahori-spectral-residual-gate-has-polynomial-step",
+      "iwahori-stratum-reconciliation-from-central-rank-surgery",
+      "iwahori-support-erasure-has-linear-commutator-leakage",
+      "jacobson-boundary-amalgam-gap-characterizes-mark-collapse",
+      "jacobson-boundary-amalgam-mixed-gap",
+      "jacobson-boundary-amalgam-relative-lifting-proof",
+      "jacobson-boundary-cell-reconstructs-finite-root-packet",
+      "jacobson-boundary-fano-addition-proof",
+      "jacobson-double-rank-one-root-orbit-cannot-extend",
+      "jacobson-double-root-fiber-sign-standard-proof",
+      "jacobson-first-root-normal-form-and-overlap-polar-proof",
+      "jacobson-first-root-packet-admits-coherent-relative-correction",
+      "jacobson-full-boundary-forces-six-coordinate-packet",
+      "jacobson-linear-gauge-augmentation-proof",
+      "jacobson-linear-head-gauge-and-ts-augmentation",
+      "jacobson-mixed-cells-reconstruct-full-first-level-root-packet",
+      "jacobson-opposite-root-steinberg-closure-proof",
+      "jacobson-root-orbit-shared-multiplicity-proof",
+      "jacobson-single-rank-one-root-orbit-cannot-extend",
+      "jacobson-ts-cell-excludes-monomial-natural-head-models",
+      "jacobson-ts-cell-monomial-off-diagonal-proof",
+      "jacobson-ts-split-bilinear-root-proof",
+      "lift-forward-identity-and-descend-the-reverse",
+      "modular-multiplicities-reconcile-at-quadratic-rank-cost",
+      "modular-multiplicity-repair-by-common-central-surgery",
+      "modular-strata-have-linear-coordinates-and-rank-splits",
+      "modular-stratum-coordinates-via-spectral-alignment",
+      "modular-vertex-chart-control-from-central-splitting",
+      "modular-vertex-charts-have-uniform-schatten-control",
+      "native-second-marginal-forces-even-feedback-collisions",
+      "one-almost-abelian-iwahori-vertex-has-linear-capture",
+      "pinch-and-round-retained-iwahori-residuals",
+      "property-t-free-existence-via-jacobson-boundary-amalgam-gap",
+      "strict-iwahori-repair-has-no-uniform-hs-neighborhood",
+      "torsion-finite-datum-proof",
+      "torsion-free-central-cover-forces-abelian-finite-subgroups",
+      "torsion-free-central-cover-obstruction-proof",
+      "torsion-free-countable-non-mf-from-abelianized-cover",
+      "torsion-is-a-finite-datum-torsion-freeness-is-not"
+    ],
+    "removed": [],
+    "status_changed": [
+      {
+        "id": "iwahori-torsion-multiplicity-stratum-reconciliation",
+        "from": "OPEN",
+        "to": "ESTABLISHED"
+      }
+    ],
+    "dup_warnings": [],
+    "direct_proof_assertions": [
+      "dual-boundary-mask-kills-native-second-marginal",
+      "free-abelianized-cover-torsion-free-proof",
+      "iwahori-a4-spectral-cut-leakage-proof",
+      "iwahori-cyclic-capture-from-fifteen-and-twenty-four",
+      "jacobson-linear-gauge-augmentation-proof",
+      "lift-forward-identity-and-descend-the-reverse",
+      "modular-vertex-chart-control-from-central-splitting",
+      "pinch-and-round-retained-iwahori-residuals",
+      "torsion-finite-datum-proof",
+      "torsion-free-central-cover-obstruction-proof"
+    ],
+    "frontier_added": [
+      "free-abelianized-cover-reflects-mf",
+      "jacobson-boundary-amalgam-mixed-gap"
+    ],
+    "frontier_removed": [
+      "iwahori-torsion-multiplicity-stratum-reconciliation"
+    ]
+  },
+  "selected_statuses": {
+    "one-almost-abelian-iwahori-vertex-has-linear-capture": "ESTABLISHED",
+    "iwahori-cyclic-capture-from-fifteen-and-twenty-four": "COMPLETE",
+    "iwahori-support-erasure-has-linear-commutator-leakage": "ESTABLISHED",
+    "pinch-and-round-retained-iwahori-residuals": "COMPLETE",
+    "iwahori-spectral-cuts-need-independent-leakage-control": "ESTABLISHED",
+    "iwahori-a4-spectral-cut-leakage-proof": "COMPLETE",
+    "iwahori-local-global-defect-question": "OPEN",
+    "non-hyperlinear-group": "OPEN"
+  },
+  "manual_audits": {
+    "one_vertex_capture": "Root and charge independently checked all word identities, the fifteenth and twenty-fourth powers, the Bezout cubic estimate, all constants, and nearest-cube-root rounding with constant one half. The same endpoint works simultaneously in every stated norm.",
+    "support_erasure": "Arithmetic supplied the proof; root and braid independently checked pinching, rank-local polar completion, simultaneous HS/operator bounds, preservation of the common center and negative sector, and whole-unitary residual telescoping before compression.",
+    "spectral_cut": "Braid supplied the explicit three-dimensional endpoint and perturbation; root and charge independently multiplied the residual-energy matrix and checked its eigenvalue separation, dilution, leakage ratios, and explicit repair. The inverse-square-root threshold asymptotic follows from the same displayed limits."
+  },
+  "verification_boundary": "Cairn checks graph structure and dependency closure, not the handwritten mathematics or Lean correctness. The rank and leakage budget for a useful support projection is an assumption; the spectral example refutes only an automatic budget for its specified raw cut. First-vertex commutators need not be controlled by general Iwahori defect.",
+  "source_sha256": {
+    "research/one-almost-abelian-iwahori-vertex-has-linear-capture.md": "4e8953e0cbd9122b4581a0fbbdf82048b132f750a828d282f5c70a4d3e2646bd",
+    "research/iwahori-cyclic-capture-from-fifteen-and-twenty-four.md": "4cb9a385261458fd9498e36d77acd16a5de45c97956962fc3500d88d462f81e1",
+    "research/artifacts/one-vertex-abelian-iwahori-capture-2026-09-08.md": "7e2e5c993baf9e9fb3156c5d56058abe4d73ae2eef88d72b0a740cf7454a9eda",
+    "research/iwahori-support-erasure-has-linear-commutator-leakage.md": "42adcff9d0da8b55df4e1845f420f49ffcf3e922d31fe9d6c7cb309fe4588204",
+    "research/pinch-and-round-retained-iwahori-residuals.md": "8590fb47664847b4411476796f7ccdf643645e5006f6ee4c5d7b9aa74e7243f9",
+    "research/artifacts/iwahori-support-erasure-and-linear-leakage-2026-09-08.md": "2c83d89803d4500e06c6f1fc14479845829908b33020dfa4ace2aab74c3d138e",
+    "research/iwahori-spectral-cuts-need-independent-leakage-control.md": "d357512247e28c1615111cdd54603ef7647b0b10f5c237745d86f1026f4253b8",
+    "research/iwahori-a4-spectral-cut-leakage-proof.md": "a73f5d8e2dbf0c036333e4e10b011fc47e40f15f3e8ce0a92f1a55a124c68de3",
+    "research/artifacts/iwahori-spectral-threshold-leakage-counterexample-2026-09-08.md": "6a2487142c337e6dcd7de25b48add2d2b1f4c02759831c8994b266802223f055",
+    "research/iwahori-local-global-defect-question.md": "8c55620d229b20f82fbfbee04c9af8dae901a5f9738e8f3c73e3bad328dceb18"
+  }
+}

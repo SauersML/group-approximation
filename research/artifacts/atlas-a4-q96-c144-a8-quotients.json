@@ -1,0 +1,26 @@
+{
+  "ambient": "A8",
+  "ambient_order": 20160,
+  "certificate": [
+    [2, 4, 7, 1, 5, 3, 6, 8],
+    [2, 4, 6, 1, 5, 7, 3, 8],
+    [6, 3, 2, 7, 8, 1, 4, 5],
+    [3, 6, 1, 7, 8, 2, 4, 5],
+    [1, 2, 5, 7, 8, 4, 6, 3],
+    [2, 1, 4, 3, 6, 5, 8, 7]
+  ],
+  "certificate_generator_order": ["r", "z", "c", "u", "t", "s"],
+  "epimorphism_classes": 24,
+  "faithful_vertex_classes": 4,
+  "faithful_vertex_orders": [36, 96, 24, 144],
+  "large_core_order_profile": {
+    "3,3,3,7": 2,
+    "3,3,7,7": 2
+  },
+  "vertex_order_histogram": {
+    "36,48,24,36": 8,
+    "36,48,24,144": 8,
+    "36,96,24,36": 4,
+    "36,96,24,144": 4
+  }
+}

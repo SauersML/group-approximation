@@ -1,0 +1,102 @@
+{
+  "block_law": {
+    "latent_and_noise_states": 64,
+    "true_mean": "1/4",
+    "wrong_mean": "0"
+  },
+  "exact_exhaustions": [
+    {
+      "N": 4,
+      "ambient_inputs_exhausted": 16,
+      "decoder_error_probabilities": [
+        "9/64",
+        "103/128",
+        "103/128"
+      ],
+      "rho": "1/2",
+      "scope": "finite regression; asymptotic heaviness is proved in the Markdown artifact",
+      "selected_singleton_coefficients": [
+        "1/2",
+        "5/16",
+        "1/2"
+      ]
+    },
+    {
+      "N": 16,
+      "ambient_inputs_exhausted": 65536,
+      "decoder_error_probabilities": [
+        "8526591/16777216",
+        "174113581/268435456",
+        "183901081/268435456",
+        "428036537/536870912",
+        "433549037/536870912",
+        "439061537/536870912",
+        "444574037/536870912",
+        "489824037/536870912",
+        "491511537/536870912",
+        "493199037/536870912",
+        "494886537/536870912",
+        "496574037/536870912",
+        "498261537/536870912",
+        "499949037/536870912",
+        "501636537/536870912"
+      ],
+      "rho": "1/2",
+      "scope": "finite regression; asymptotic heaviness is proved in the Markdown artifact",
+      "selected_singleton_coefficients": [
+        "11244997/33554432",
+        "2442793/8388608",
+        "2663593/8388608",
+        "8149047/67108864",
+        "7481967/67108864",
+        "110463/1048576",
+        "3306171/33554432",
+        "2397501/33554432",
+        "523359/8388608",
+        "4208787/67108864",
+        "4106547/67108864",
+        "5047617/67108864",
+        "4389987/67108864",
+        "1022313/16777216",
+        "1083153/16777216"
+      ]
+    }
+  ],
+  "schema": 1,
+  "selector_checks": [
+    {
+      "N": 4,
+      "max_point_incidence": 2,
+      "pair_star_density": "1"
+    },
+    {
+      "N": 16,
+      "max_point_incidence": 2,
+      "pair_star_density": "1/5"
+    },
+    {
+      "N": 64,
+      "max_point_incidence": 2,
+      "pair_star_density": "1/21"
+    },
+    {
+      "N": 256,
+      "max_point_incidence": 2,
+      "pair_star_density": "1/85"
+    },
+    {
+      "N": 16384,
+      "max_point_incidence": 2,
+      "pair_star_density": "1/5461"
+    }
+  ],
+  "sufficient_threshold": {
+    "N_at_least": 16384,
+    "dimensions": "even",
+    "error_strictly_below": "1/262144",
+    "influence_at_least": "1/16",
+    "rho": "1/2",
+    "singleton_coefficient_at_least": "1/4"
+  },
+  "theorem_scope": "refutes the proposed affine glue and star-density lemmas; UGC remains open"
+}

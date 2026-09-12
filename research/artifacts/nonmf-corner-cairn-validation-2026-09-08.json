@@ -1,0 +1,95 @@
+{
+  "status": "ok",
+  "scope": "Written independent audits of the ascending HNN identification, exact two-defect formula and full-packet cutoff counterexample. Remote exact Jacobson coefficient identities, S3 central projection replay, three-factor permutation intertwining, group-order and spectral-layer bounds. Native Cairn parsing, scoped reference/artifact lint, exact prerequisites, compiled statuses, duplicate and cycle checks. Both matrix gaps and the full objective remain open. This is not Lean kernel verification or a clean whole-workspace audit.",
+  "algebra_replay": {
+    "status": "PASS",
+    "exact_checks": 6299,
+    "jacobson_ring_checks": 1653,
+    "central_cut_regular_S3_defect_ranks": {
+      "trivial": 5,
+      "sign": 5,
+      "standard": 8
+    },
+    "three_factor_intertwiner_degree": 216,
+    "scope": "Exact identities and integer bounds; no large GL regular matrix enumeration, uniform matrix gap, or kernel proof is claimed."
+  },
+  "nodes": {
+    "jacobson-coherent-group-is-an-ascending-corner-extension": "ESTABLISHED",
+    "jacobson-unilateral-root-extraction-and-hnn-normal-form-proof": "COMPLETE",
+    "jacobson-central-cut-compressors-have-balanced-defects": "ESTABLISHED",
+    "jacobson-commuting-projection-and-fusion-balance-proof": "COMPLETE",
+    "jacobson-full-packet-spectral-cuts-do-not-preserve-norm": "ESTABLISHED",
+    "jacobson-finite-regular-block-cut-counterexample-proof": "COMPLETE",
+    "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy": "ESTABLISHED",
+    "jacobson-shift-representation-is-faithful": "ESTABLISHED",
+    "jacobson-shift-literal-quotient-is-laurent-times-z": "ESTABLISHED",
+    "binary-jacobson-active-cycle-generates-rank-three": "ESTABLISHED",
+    "jacobson-coherent-matrix-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-coherent-gap": "OPEN",
+    "jacobson-shift-mixed-gap": "OPEN",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN"
+  },
+  "prerequisites": {
+    "jacobson-unilateral-root-extraction-and-hnn-normal-form-proof": [
+      "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy",
+      "jacobson-shift-representation-is-faithful",
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "binary-jacobson-active-cycle-generates-rank-three"
+    ],
+    "jacobson-commuting-projection-and-fusion-balance-proof": [
+      "jacobson-coherent-group-is-an-ascending-corner-extension"
+    ],
+    "jacobson-finite-regular-block-cut-counterexample-proof": [],
+    "property-t-free-existence-via-jacobson-coherent-gap": [
+      "jacobson-coherent-quotient-has-four-word-gap-criterion",
+      "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy",
+      "jacobson-coherent-matrix-gap"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "broader_findings_count": 1568,
+  "broader_findings_by_kind": {
+    "artifact": 1567,
+    "cycle": 1
+  },
+  "broader_findings_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-corner-broader-findings-2026-09-08.json",
+  "broader_findings_sha256": "1b82db79bfba660a27fd91a248e57d53629b7fee1b954a46981296e8962761aa",
+  "source_sha256": {
+    "notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md": "ce348d8a52fdf1a68d47312d6291f74d0bc273e45e3a24824de9f0f78b9970ed",
+    "notes/PROPERTY_T_FREE_MF_ATTEMPT_2026-08-26.md": "b48a926042804cd3be7aafad110b82a6496aa933e101608e4d4a9cef99d33a6e",
+    "research/artifacts/fullness-corner-and-order-two-reduction-2026-09-08.md": "db884897e2237a8aded962a014f7df10073386332ca32cf2d4137580c9fb2540",
+    "research/artifacts/jacobson-central-cut-compressors-have-balanced-defects-2026-09-08.md": "febccd0f9a438f040719762b5d9d3dbb4e17724488bbb99a7d9803d4ea1297ee",
+    "research/artifacts/jacobson-coherent-group-is-an-ascending-corner-extension-2026-09-08.md": "e36ede121fd96eb85a599ebced547929a05cd6eb465d2b2d0e268cc3a0bc3284",
+    "research/artifacts/jacobson-coherent-quotient-and-four-word-matrix-gap-2026-09-08.md": "7c9cc211ad15e5ab58d9cc656c47fb4f98120e2943fa9689435d4f0c2355e0a3",
+    "research/artifacts/jacobson-coherent-quotient-is-the-faithful-literal-group-2026-09-08.md": "92789ed4cf989ad277e3705518631701df590b1b8fe4884b7128a9077c487fa2",
+    "research/artifacts/jacobson-full-packet-spectral-cuts-do-not-preserve-norm-2026-09-08.md": "302bf6acf7e31bdece9942ba51e53763a66d1256c28cf5575b970515b02b6d04",
+    "research/artifacts/jacobson-stable-letter-laurent-quotient-and-local-inner-action-2026-09-08.md": "6c3e2118e3fb415fb01298713712c183cf8a15945be15cba4ecc7c9be051620f",
+    "research/artifacts/jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md": "fd96a26c27ebd22fe670e1f47a2241da3ceb3ffe2b3b78e9197646d2efa1e3d6",
+    "research/artifacts/jacobson-two-braid-reduction-2026-09-07.md": "dfdac49afa4d5c1e7a11760149bd7bf50087d6231f770b496c77dbd1d8b0380e",
+    "research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md": "5ff6500bfa233b788062a3e196ec80eba717570d168d8c29618cdd6753e87ae6",
+    "research/binary-jacobson-active-cycle-generates-rank-three.md": "a8ad827cd315a52951dbd0f612fb9fbf0677fb7e7520e46a24d62e6c8723c3bf",
+    "research/jacobson-central-cut-compressors-have-balanced-defects.md": "7ec47a536dd417b4aa75209d0330f95e6bf32eb5e45cbabafdc00084b34ef5b4",
+    "research/jacobson-coherent-group-is-an-ascending-corner-extension.md": "9a40e01a13b3123006bd4e8624b1ebb0198b97bca0869d3c2b6177598ea605d5",
+    "research/jacobson-coherent-matrix-gap.md": "379ec23f0c5ba4e6549283579bd0c48b8c4717389aecf8e760bbecd7661e1cbc",
+    "research/jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy.md": "cc4fe0e295c7456cf31cb491fd41de8af2def63f0b5ed7d0a1b3f65db843f362",
+    "research/jacobson-commuting-projection-and-fusion-balance-proof.md": "f023af7a39d536e192d4559638d02f2794c3ccdea810dd3b7723b2b3e0485770",
+    "research/jacobson-finite-regular-block-cut-counterexample-proof.md": "65981e7f7a90543f6454996500b573828203c966433ecb9acc363c94a431fe26",
+    "research/jacobson-full-packet-spectral-cuts-do-not-preserve-norm.md": "69ecaf698b86bee82b596a129291d45b37cc42d5e4d109629bfd79fcfc9f6260",
+    "research/jacobson-shift-literal-quotient-is-laurent-times-z.md": "eb36089bae81bf9469fd65e41ac054b349f8d1fd0b92686101e7dde778c1c93a",
+    "research/jacobson-shift-mixed-gap.md": "85b306fe2c4ae206837fe85214efcc68a1e69c57eaaa9cd7c4cc6ef7f389fd9d",
+    "research/jacobson-shift-representation-is-faithful.md": "ad60727781f8dfea7618cb52a86fda2f9fa53f6f31fa881e13cfcb632884ad1f",
+    "research/jacobson-unilateral-root-extraction-and-hnn-normal-form-proof.md": "8ab018133d7204ad8028767a44671baca26fbd802e50a7b058b7cf6aa9250a4e",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "f9064cd2e79ecf496e217fb3d36314b4738048613ba795bf1b56aa638defeb0d",
+    "research/property-t-free-existence-via-jacobson-coherent-gap.md": "f0442c43edb2016dc19de3312e5ebbf782c740964dc4b1d52f5b3fa41aaf33ad",
+    "scratchpad/nonmf-corner-validation-20260908.py": "cea11cec53fe77ac1ac0a78c094cfdbbd32aabfb91ee9d4daf7d5b5db2b9d5d4",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "archive_sha256": "eb9b11baf5b154a9fbe52cc0d9f9dd8d0714311a4ca141b4e8e294f75e2a9329",
+  "validator_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/tools/validate_nonmf_corner_20260908.py",
+  "validator_sha256": "cea11cec53fe77ac1ac0a78c094cfdbbd32aabfb91ee9d4daf7d5b5db2b9d5d4",
+  "claims": 7488,
+  "routes": 7651,
+  "elapsed_seconds": 4.662
+}

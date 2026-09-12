@@ -1,0 +1,321 @@
+# landed, awaiting root wiring (tops)
+8cdb6b3fb rescue-lix gate A: GroupApproximation.Analysis.LIXLemmaSixFrameGeneric GroupApproximation.Analysis.LIXPowersAngle GroupApproximation.CharClass.KroneckerContractible GroupApproximation.CharClass.LIXKCount GroupApproximation.CharClass.LIXKGenSection GroupApproximation.CharClass.OddPDescentPairing GroupApproximation.CharClass.ParityPAxiomGuard
+09-09-orphans (landed after green probes on 09-09, never wired; per sec2-sentences): GroupApproximation.Sofic.AffineHNNBaseRealization GroupApproximation.Manuscript.NonMFSentences.CompressionSentencesB GroupApproximation.Manuscript.NonMFSentences.IntroSentences
+# NOT wirable yet (unverified landings): 1b3021bfe sec2-sentences (9 NonMFSentences modules), b9d6e90f0 hull-bridge (13 GGT/Algebra modules)
+# 19:31 base root build of f643c96ea GREEN in lead (13957 jobs). Wiring wave 1 waits for copynow2 to finish (it copies from lead).
+# unverified landings (NOT wirable until compiled): 63fba645d hull-select, 4491fd865 simple-group, 89fb5c8a7/5c9d75b10 sec5, 156fb35dd/e611980a5/dc5512411 go-sr1, a3a0c7c5f/dcbb7b6bf dgo-geometric, 100539f34/460831be0 dgo-analytic, e9fd7d78a leavitt-k1, cd9e63074 torsion-ring, leavitt-ge (21 modules), 888400dcc kh-hyperbolic, 7a8d4d6f8 hull-respell, 63544ec9e jacobson, 1b3021bfe sec2, b9d6e90f0 hull-bridge
+# 19:45 hull-select probe 0911-193731 COMPILED (landing normally; wire after LANDED confirmed): GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSections GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionCounting GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPieces GroupApproximation.GGT.VanKampen.ShelledDiscDiagram GroupApproximation.GGT.VanKampen.Estimating.SelectionOrderedDichotomy (SelectionDichotomy edit is an existing, already-wired module)
+# 20:00 hull-unbound COMPILED+LANDED normally: GroupApproximation.GGT.VanKampen.Estimating.UnboundWordPolygonMonotone GroupApproximation.GGT.VanKampen.Estimating.UnboundScaledCounterexample GroupApproximation.GGT.VanKampen.Estimating.SingletonFaceRegion GroupApproximation.GGT.VanKampen.SurgeryInnerCollapse
+# 20:00 hull-bridge DehnTransferRefutation BUILT (re-landing normally): GroupApproximation.GGT.HullSCLemma44DehnTransferRefutation
+# 20:05 kh-hyperbolic COMPILED (bytes identical to 888400dcc): GroupApproximation.GGT.KazhdanHypSharpExistenceResiduals GroupApproximation.GGT.KazhdanHypGirthEightLinearIsoperimetric   (NOT KazhdanHypGirthEightSpurCountermodel: red)
+# 20:10 rescue-lix gate B GREEN landed dd28464fc (38 CharClass edits + 13 new compiled). UPDATED LIX TOPS (supersede the gate-A list above; LIXKCount no longer a top):
+LIX-TOPS: GroupApproximation.Analysis.LIXLemmaSixFrameGeneric GroupApproximation.Analysis.LIXPowersAngle GroupApproximation.CharClass.KroneckerContractible GroupApproximation.CharClass.LIXKGenSection GroupApproximation.CharClass.OddPDescentPairing GroupApproximation.CharClass.ParityPAxiomGuard GroupApproximation.CharClass.LIXKGenPunctured GroupApproximation.CharClass.LIXKRelativeMV GroupApproximation.CharClass.LIXKStepCTwo GroupApproximation.CharClass.LIXKStepCWired GroupApproximation.CharClass.LIXShapeGenericRank GroupApproximation.CharClass.LIXStepDGenAxiomCheck GroupApproximation.CharClass.RelHomotopyInvariance
+# DO NOT wire e76e62198 (gate C pending)
+# 20:18 kh-torsion COMPILED+LANDED 39c49c45: GroupApproximation.Algebra.FreeResolutionPrimeOrder GroupApproximation.GGT.KazhdanHypCopyMateParity
+# 20:20 agp-units COMPILED: GroupApproximation.KOne.AlgebraicKOneNestedUnion (bytes on main 11ce37cb0); MFQuotientUnitsItemA/ExchangeRing are existing modules (edits landed 8a992fe6d)
+# 20:25 dgo-geometric COMPILED+LANDED 95447a0f1: GroupApproximation.Manuscript.NonMF.LoxodromicHypEmbeddedClosureProof GroupApproximation.GGT.LoxodromicCyclicEmbeddedAvoiding
+# 20:22 simple-group COMPILED (bytes on main): GroupApproximation.GroupTheory.HydeLodha.StrictMonoTorsionFree
+# 20:24 leavitt-k1 COMPILED: GroupApproximation.KOne.LeavittDegreeZeroTower (bytes on main); edits LeavittKOnePowerColimit/LeavittKOneFormula landed 269ee355a (existing modules)
+# 20:28 hull-bridge COMPILED+LANDED 3e770c34a: GroupApproximation.GGT.HullSCRelativeLeastAreaDiagram GroupApproximation.Algebra.DiscreteStokes GroupApproximation.Algebra.DiscreteStokesArea
+# 20:32 hull-respell COMPILED (bytes on main): GroupApproximation.GGT.HullSCUnconeClosingJump GroupApproximation.GGT.HullSCUnconeCosetAvoidance GroupApproximation.GGT.HullSCUnconeTriangleConnectors
+# 20:36 go-sr1 COMPILED (bytes on main): GroupApproximation.Manuscript.NonMF.GerasimovaOsinTheorem11Slice GroupApproximation.Manuscript.NonMF.GerasimovaOsinSpectralRadius GroupApproximation.Manuscript.NonMF.GerasimovaOsinGeometricInputs
+# 20:38 simple-group COMPILED+LANDED fa5105fd0: GroupApproximation.GroupTheory.DoubleCosetFinitePresentation GroupApproximation.GroupTheory.HigmanThompson.GridAffine GroupApproximation.GroupTheory.HigmanThompson.Generators GroupApproximation.GroupTheory.HigmanThompson.CompactE
+# 20:48 kh-torsion COMPILED+LANDED afb9bb73: GroupApproximation.GGT.VanKampen.SpikeDeletion GroupApproximation.GGT.KazhdanHypCactusDeletionCounting
+# 20:52 leavitt-k1 COMPILED+LANDED 7a8eb3c29: GroupApproximation.KOne.LeavittShiftDecomposition
+# 21:00 leavitt-ge COMPILED (evidence green.0911-202552-95150; tops only matter at wiring): GroupApproximation.KOne.AryPrefixCodes GroupApproximation.KOne.AryPencilEntry GroupApproximation.KOne.AryPencilCodeMoves GroupApproximation.KOne.AryRefineStep GroupApproximation.KOne.AryStackDichotomy GroupApproximation.KOne.AryWindowProductClosure GroupApproximation.KOne.AryGradedComponents GroupApproximation.KOne.AryShapeCalculus GroupApproximation.KOne.AryCylinderCornerRank GroupApproximation.KOne.AryRankNormalForm GroupApproximation.KOne.AryPureTailNilpotency GroupApproximation.KOne.AryNilpotentTailKill GroupApproximation.KOne.AryZeroKOne GroupApproximation.KOne.AryWidthTwoReduction GroupApproximation.KOne.AryEntrywiseKill GroupApproximation.KOne.AryOppositeTranspose GroupApproximation.KOne.AryPencilForm GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDecompositionResidual
+# 21:05 kh-hyperbolic COMPILED+LANDED b2c9d8f50: GroupApproximation.GGT.KazhdanHypGirthEightSpurCountermodel
+# 21:10 leavitt-k1 COMPILED+LANDED 20b945cd9 (wave 2): GroupApproximation.KOne.FiniteRankDeterminant
+# 21:12 jacobson COMPILED+LANDED 8e0bf35e2 (wave 2): GroupApproximation.Algebra.FinitaryLinearGroup GroupApproximation.Kazhdan.HaagerupKazhdanFinite GroupApproximation.Kazhdan.TreeHalfSpaces GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFourSentences GroupApproximation.Kazhdan.HalfSpaceBoundedOrbits
+# 21:20 leavitt-ge ALL 26 COMPILED, verified landings 48e1d481/f81b2de1 (wave 2): tops GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDecompositionClosed GroupApproximation.KOne.AryRefineLoopDischarge GroupApproximation.KOne.AryCodeChangeUnits GroupApproximation.KOne.AryCodeSupply GroupApproximation.KOne.AryWindowNonnegReduction GroupApproximation.KOne.AryWindowNonposReduction GroupApproximation.KOne.AryPencilReshape GroupApproximation.KOne.AryThetaStable (rebuild evidence list at wave time)
+# 21:25 hull-unbound COMPILED (wave 2): GroupApproximation.GGT.VanKampen.SurgeryInnerCollapseDarts GroupApproximation.GGT.VanKampen.SurgeryInnerCollapseRegions
+# 21:25 agp-units COMPILED (wave 2): GroupApproximation.Algebra.PeirceElementaryCornerUnits GroupApproximation.Leavitt.BinaryLeavittAllRanksUnits GroupApproximation.Manuscript.NonMFSentences.IntroUnitGroupSentences GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsSteinberg GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsCornerUnits GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsItemB GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsStepOnePrinted
+# 21:30 hull-bridge COMPILED+LANDED 07a36877d (wave 2): GroupApproximation.Algebra.DiscreteStokesPaths GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer
+# 21:40 rescue-lix COMPILED+LANDED 9d5cf111f (wave 2, top later = LIXPowersExport after C3): GroupApproximation.Analysis.LIXPowersPinch GroupApproximation.Analysis.LIXPowersNormalise
+# 21:40 leavitt-k1 COMPILED+LANDED 464137f63 (wave 2): GroupApproximation.KOne.RegularizedDeterminant
+# 21:42 kh-torsion COMPILED+LANDED 789b1b55 (wave 2): GroupApproximation.GGT.VanKampen.OneFaceWordTrivial GroupApproximation.GGT.VanKampen.EdgeDeletionFaces GroupApproximation.GGT.KazhdanHypLiteralFilling
+# 21:45 dgo-geometric COMPILED+LANDED ce8419e51 (wave 2): GroupApproximation.GGT.PNaiveShadow GroupApproximation.GGT.PNaiveTransversal GroupApproximation.GGT.PNaiveChain GroupApproximation.GGT.PNaiveDoubleCoset GroupApproximation.GGT.AcylindricalEllipticOrEscaping
+# 21:50 hull-respell COMPILED (wave 2): GroupApproximation.GGT.HullSCCyclicPeripheralRemoval GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves GroupApproximation.GGT.HullSCUnconeExpansion GroupApproximation.GGT.HullSCUnconeCosetCoordinates GroupApproximation.GGT.HullSCAuxiliaryAdjoinFinite
+# 21:50 dgo-analytic COMPILED (wave 2): GroupApproximation.Algebra.NaiveFreeProductProperty GroupApproximation.Manuscript.NonMF.NaiveFreeProductAtAcylindricallyHyperbolic GroupApproximation.Algebra.PingPongTranslates GroupApproximation.Analysis.GroupHilbertSubsetProjection GroupApproximation.Analysis.PowersAveragingUniqueTrace GroupApproximation.Manuscript.NonMF.DGO235UniqueTraceFromAveraging
+# 21:55 torsion-ring COMPILED+LANDED 016b44a73 (wave 2): GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotentsSignedPermutations GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotentsDefect
+# 21:55 hull-select COMPILED+LANDED 1452a624b (wave 2): GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionMultipleEdge GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInduction
+# 22:00 sec3-sentences COMPILED (wave 2): GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences GroupApproximation.Manuscript.NonMFSentences.OneSidedCorollarySentences
+# 22:05 agp-units SCOPE COMPLETE, all compiled (wave 2): GroupApproximation.KOne.AlgebraicKOneNestedUnion GroupApproximation.Algebra.PeirceElementaryCornerUnits GroupApproximation.Leavitt.BinaryLeavittAllRanksUnits GroupApproximation.Manuscript.NonMFSentences.IntroUnitGroupSentences GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsSteinberg GroupApproximation.Manuscript.NonMFSentences.CountableAbelianMFPrintedRoute GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsCornerUnits GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsItemB GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsStepOnePrinted GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsOffLastCorner GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsCongruencePrinted
+# 22:05 jacobson COMPILED+LANDED 445d77ea2 (wave 2): GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwoInert
+# simple-group 09-11 ~21:00
+GroupApproximation.GroupTheory.HigmanThompson.BrownPresentation
+GroupApproximation.GroupTheory.HydeLodha.HigmanEpstein
+GroupApproximation.GroupTheory.HigmanThompson.UniformWords
+# sec3-sentences
+GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps
+# rescue-lix powers + gate tops
+GroupApproximation.Analysis.LIXPowersExport
+# torsion-ring
+GroupApproximation.Manuscript.NonMF.TorsionComplementaryIdempotentsSentences
+GroupApproximation.Manuscript.NonMF.TorsionComplementaryIdempotentsJacobson
+GroupApproximation.Manuscript.NonMF.TorsionComplementaryIdempotentsIdeal
+# hull-respell verified
+GroupApproximation.GGT.HullSCCyclicPeripheralRemoval
+GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves
+GroupApproximation.GGT.HullSCAuxiliaryAdjoinFinite
+GroupApproximation.GGT.HullSCUnconeExpansion
+GroupApproximation.GGT.HullSCUnconePathPoints
+# sec3 remaining
+GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences
+GroupApproximation.Manuscript.NonMFSentences.OneSidedCorollarySentences
+GroupApproximation.Manuscript.NonMFSentences.FullDefectAllRanksSentences
+GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark
+GroupApproximation.Manuscript.NonMFSentences.UniversalRingSentences
+# dgo-geometric b913437ec
+GroupApproximation.GGT.PNaiveUniform
+GroupApproximation.GGT.GerasimovaOsinCyclicWord
+GroupApproximation.GGT.OsinChainLemma
+GroupApproximation.GGT.OsinQuasiFixedProduct
+GroupApproximation.GGT.OsinFarQuasiStabilizer
+# kh-torsion
+GroupApproximation.GGT.VanKampen.VertexJoinMap
+GroupApproximation.GGT.VanKampen.FoldMap
+GroupApproximation.GGT.VanKampen.PendantEdgeMap
+GroupApproximation.GGT.VanKampen.PendantEdgeWalks
+# hull-respell
+GroupApproximation.GGT.HullSCUnconeLemmaA
+GroupApproximation.GGT.HullSCUnconeWalk
+GroupApproximation.GGT.HullSCUnconeLemmaB
+GroupApproximation.GGT.HullSCUnconeSides
+GroupApproximation.GGT.HullSCUnconeCosetCoordinates
+GroupApproximation.GGT.HullSCUnconeClosingJump
+GroupApproximation.GGT.HullSCUnconeCosetAvoidance
+GroupApproximation.GGT.HullSCUnconeTriangleConnectors
+# sec5 8688f1f89
+GroupApproximation.GGT.GromovSequentialBoundary
+GroupApproximation.GGT.AcylindricallyHyperbolicLimitSetEasy
+GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences
+GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral
+# hull-bridge 98ec0a5bb
+GroupApproximation.Algebra.LinearStokesQuadrangle
+GroupApproximation.GGT.HullSCLemma51EmbeddedBridge
+GroupApproximation.GGT.HullSCLemma44BoundedBridge
+# go-sr1 compiled
+GroupApproximation.GGT.GerasimovaOsinLemma43
+# kh-hyperbolic f2d8712cd
+GroupApproximation.Kazhdan.KMSGroupPresentation
+# kh-torsion 988a30a5 compiled
+GroupApproximation.GGT.KazhdanHypSymRelators
+# leavitt-ge b89dd8b5 Fox 1-4
+GroupApproximation.Algebra.FoxComplexZ
+GroupApproximation.Algebra.FoxComplexLowExact
+GroupApproximation.Algebra.FreeGroupFoxHomotopy
+GroupApproximation.Algebra.FoxFreeCalculus
+# dgo-analytic 2a711b6bd / d748a8d40 (verify paths at wave time)
+NaiveFreeProductPingPong PowersAveragingComposition DGO235PrintedFromGeometry PowersAveragingFromPartition PowersPingPongEstimate
+# 21:40 jacobson dd809cfb0/710cc4c94, leavitt-k1 M1-M3, simple-group CompactRangeA, dgo-analytic 17 (P_naive chain top), kh-torsion SymRelators
+GroupApproximation.Algebra.FinitaryLinearBlocks
+GroupApproximation.Algebra.LaurentBinaryLinearMF
+GroupApproximation.Algebra.ValuedMatrixTwo
+GroupApproximation.Algebra.FinitaryLinearBinarySimple
+GroupApproximation.Algebra.FinitaryLinearBinarySLUnion
+GroupApproximation.KOne.ToeplitzWordSpace
+GroupApproximation.GroupTheory.HigmanThompson.CompactRangeA
+GroupApproximation.Manuscript.NonMF.DGO235FromNaiveFreeProduct
+GroupApproximation.Algebra.NaiveFreeProductProperty
+GroupApproximation.Algebra.PingPongTranslates
+GroupApproximation.Analysis.GroupHilbertSubsetProjection
+GroupApproximation.Analysis.PowersAveragingUniqueTrace
+GroupApproximation.Analysis.PowersAveragingFromPowersProperty
+GroupApproximation.Analysis.ConjugateAveragingCriterion
+GroupApproximation.Manuscript.NonMF.DGO235UniqueTraceFromAveraging
+GroupApproximation.Manuscript.NonMF.DGO235FromPowersProperty
+GroupApproximation.Manuscript.NonMF.DGO235PowersRoute
+GroupApproximation.Manuscript.NonMF.NaiveFreeProductAtAcylindricallyHyperbolic
+# kh-torsion f15bd829
+GroupApproximation.GGT.KazhdanHypLiteralFillingDegree
+GroupApproximation.GGT.VanKampen.PendantEdgeDiagram
+GroupApproximation.GGT.KazhdanHypSymmetrizedFilling
+# 21:50 sec4, sec2, dgo-analytic tops, hull-respell C1/C3, jacobson, leavitt-k1, hull-select FaceCycle
+GroupApproximation.Analysis.KestenAmenability
+GroupApproximation.Analysis.LanceMaximalReiter
+GroupApproximation.Analysis.LanceMaximalNuclear
+GroupApproximation.Sofic.CliffordWitnessHSRemark
+GroupApproximation.Manuscript.OneSidedMFRadical.MaximalCStarWNotNuclearUnconditional
+GroupApproximation.Manuscript.NonMFSentences.CompressionSentencesA
+GroupApproximation.Manuscript.NonMFSentences.CompressionSentencesB
+GroupApproximation.Manuscript.NonMFSentences.TransportCharacterizationIffSentence
+GroupApproximation.Manuscript.NonMFSentences.CentralCoronaCornerRanks
+GroupApproximation.Manuscript.NonMFSentences.HSOperatorNormGapSentences
+GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionExistenceSentence
+GroupApproximation.Manuscript.NonMF.SimpleUniqueTraceFromNaiveFreeProduct
+GroupApproximation.Manuscript.NonMF.DGO235PowersRoute
+GroupApproximation.Analysis.PowersAveragingSingleClass
+GroupApproximation.GGT.HullSCLemma44BoundedJointRespellingHullRelator
+GroupApproximation.GGT.HullSCBoundedImageEmbedding
+GroupApproximation.GGT.HullSCBoundedImageEmbeddingLeastArea
+GroupApproximation.GGT.RelHypOsin24PublishedHullStep
+GroupApproximation.GGT.RelHypProp23FromHullStep
+GroupApproximation.GGT.RelHypProp23FromLeastAreaLeaves
+GroupApproximation.GGT.HullSCUnconeThin
+GroupApproximation.GGT.VanKampen.FaceCycle
+# wave 2 launched 21:57:      149 evidence-checked modules (/private/tmp/claude-501/-Users-user-nonsofic-existence/77122910-de5a-4e59-a488-7cea550292c5/scratchpad/nm/wave2.mods)
+# 22:00 post-wave-2 queue: lix-cupone 19c641d25, leavitt-k1 chain, go-sr1 Lemma48/Prop36, sec5 0939b7d4f, dgo-geometric cebe6f695
+GroupApproximation.CharClass.KroneckerSphere
+GroupApproximation.KOne.LeavittKOneScalarKernel
+GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea
+GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion
+GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints
+GroupApproximation.Manuscript.NonMF.GerasimovaOsinTheorem11Closed
+GroupApproximation.Manuscript.NonMF.GerasimovaOsinSection2Printed
+GroupApproximation.CharClass.CupOneTotal
+GroupApproximation.Manuscript.NonMFSentences.CompressionSentencesB2
+GroupApproximation.Manuscript.NonMFSentences.MFRadicalQuotientBlockSumSentences
+# 22:10 simple-group compiled
+GroupApproximation.GroupTheory.FinitePresentationExtension
+GroupApproximation.GroupTheory.FGAbelianFinitePresentation
+GroupApproximation.GroupTheory.CasingPair
+GroupApproximation.GroupTheory.AscendingHNNRecognition
+GroupApproximation.GroupTheory.HydeLodha.CommutatorGeneration
+GroupApproximation.GroupTheory.HigmanThompson.CompactRangeB
+GroupApproximation.GroupTheory.HigmanThompson.CompactRangeA
+GroupApproximation.GroupTheory.HigmanThompson.CompactTrunc
+GroupApproximation.GroupTheory.HigmanThompson.CompactCore
+GroupApproximation.GroupTheory.HigmanThompson.CompactCoreGerms
+GroupApproximation.GroupTheory.HigmanThompson.PLMoves
+GroupApproximation.GroupTheory.HigmanThompson.ResidueInvariance
+GroupApproximation.GroupTheory.HigmanThompson.GeometricF
+GroupApproximation.GroupTheory.HigmanThompson.CompactConj
+# 22:15 fff-periodic compiled
+GroupApproximation.GroupTheory.HydeLodha.PeriodicDisplacement
+GroupApproximation.GroupTheory.HydeLodha.GammaOrbits
+# 22:20 hull-component/hull-bridge compiled
+GroupApproximation.GGT.RelativeCosetPieces
+GroupApproximation.GGT.HullSCLemma51QuotientStokes
+GroupApproximation.GGT.HullSCLemma51EmbeddedProducer
+# 22:25 dgo-analytic H2, kh-hyperbolic bridges
+GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssembly
+GroupApproximation.GGT.KazhdanHypGirthEightHyperbolicityBridge
+GroupApproximation.GGT.KazhdanHypGirthEightHyperbolicityFromFilling
+# 22:30 jacobson + sec2 compiled
+GroupApproximation.Kazhdan.HalfSpaceBoundedOrbits
+GroupApproximation.Kazhdan.TreeHalfSpaces
+GroupApproximation.Kazhdan.LevelTreeAcyclic
+GroupApproximation.Kazhdan.HaagerupKazhdanFinite
+GroupApproximation.Kazhdan.HaagerupUnion
+GroupApproximation.Kazhdan.HaagerupAffineSums
+GroupApproximation.Kazhdan.BruhatTitsTwoTree
+GroupApproximation.Algebra.FinitaryLinearGroup
+GroupApproximation.Algebra.FinitaryLinearBlocks
+GroupApproximation.Algebra.FinitaryLinearBinarySimple
+GroupApproximation.Algebra.FinitaryLinearBinarySLUnion
+GroupApproximation.Algebra.FinitaryLinearBinaryPower
+GroupApproximation.Algebra.FinitaryLinearTransvections
+GroupApproximation.Algebra.FinitaryLinearFiniteRank
+GroupApproximation.Algebra.LaurentBinaryLinearMF
+GroupApproximation.Algebra.LaurentBinaryPlaces
+GroupApproximation.Algebra.LaurentBinaryHaagerup
+GroupApproximation.Algebra.ValuedMatrixTwo
+GroupApproximation.Algebra.ValuedMatrixTwoCartan
+GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwoInert
+GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFourSentences
+GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonLaurentKazhdanFinite
+GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol
+GroupApproximation.Manuscript.NonMFSentences.HSNullNormalSubgroupSentences
+GroupApproximation.Manuscript.NonMFSentences.DyadicReductionSeparation
+GroupApproximation.GroupTheory.HigmanThompson.RstabIso
+GroupApproximation.GroupTheory.HigmanThompson.Proximal
+# 22:40 lix-coeff 9d6fc7dbc, lix-evenside-n 8b8f85baf, lix-lh 3b4df4ec0
+GroupApproximation.CharClass.RelHomotopyIdentity
+GroupApproximation.CharClass.RelativeSplitField
+GroupApproximation.CharClass.RelativeSubspaceIsoOf
+GroupApproximation.CharClass.RelativeProdContractibleOf
+GroupApproximation.CharClass.RelativeLocalModelOf
+GroupApproximation.CharClass.CohomologyKunnethSplitOf
+GroupApproximation.CharClass.CohomologyKunnethSphereOf
+GroupApproximation.CharClass.LIXStepDGenHalf
+GroupApproximation.CharClass.CohomologyChartRankTwoInterface
+GroupApproximation.CharClass.CohomologyChartInduction
+GroupApproximation.CharClass.CohomologyChartGenBridge
+GroupApproximation.CharClass.ProjectiveSpaceGenHyp
+GroupApproximation.CharClass.ChernTotalRingOf
+GroupApproximation.CharClass.MayerVietorisSequenceOf
+GroupApproximation.CharClass.MayerVietorisZeroOf
+# wave 3 launched 23:05:      116 evidence-checked modules (/private/tmp/claude-501/-Users-user-nonsofic-existence/77122910-de5a-4e59-a488-7cea550292c5/scratchpad/nm/wave3.mods)
+# 23:05 post-wave-3
+GroupApproximation.Analysis.LIXPowersEquator
+GroupApproximation.GroupTheory.HydeLodha.QTwoStatement
+# 23:25 post-wave-3 compiled
+GroupApproximation.CharClass.LerayHirschChartClassK
+GroupApproximation.CharClass.ChernEulerBundleOf
+GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences
+GroupApproximation.Manuscript.NonMFSentences.IntroSentences
+GroupApproximation.Manuscript.NonMFSentences.KorchaginFullSequenceSentence
+GroupApproximation.GroupTheory.HydeLodha.GammaTwo
+GroupApproximation.GroupTheory.HydeLodha.CommutatorGeneration
+GroupApproximation.GroupTheory.HydeLodha.GammaTwoLambda
+GroupApproximation.GroupTheory.HydeLodha.GammaTwoStabilizer
+GroupApproximation.GroupTheory.HydeLodha.GammaTwoPeriodic
+GroupApproximation.GroupTheory.HydeLodha.GammaTwoCoreMoves
+GroupApproximation.GroupTheory.HydeLodha.GammaTwoGeneration
+GroupApproximation.GroupTheory.HydeLodha.GammaTwoSimple
+GroupApproximation.GroupTheory.HydeLodha.QTwoStatement
+GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationDefs
+GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationMove
+GroupApproximation.CharClass.ParityPWuAxiomGuard
+GroupApproximation.Kazhdan.CCKWLinkGirthTyped
+GroupApproximation.Analysis.LIXPowersEquatorChart
+GroupApproximation.GroupTheory.HigmanThompson.RstabGerms
+GroupApproximation.PropertyT.ThreeVertexDuality
+GroupApproximation.PropertyT.ThreeVertexClosure
+GroupApproximation.Kazhdan.GHWPlaces
+GroupApproximation.Algebra.ValuationWithTopInt
+GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonFiniteMatrices
+GroupApproximation.Kazhdan.GHWInterfaces
+# 23:40 LIX + counts
+GroupApproximation.Analysis.LIXCor4PowersDiag
+GroupApproximation.CharClass.CohomologyKunnethDecompOf
+GroupApproximation.CharClass.RelHomotopyIdentity
+GroupApproximation.CharClass.RelativeSplitField
+GroupApproximation.CharClass.RelativeProdContractibleOf
+GroupApproximation.CharClass.RelativeLocalModelOf
+GroupApproximation.CharClass.ThomBridgeTotalOf
+GroupApproximation.CharClass.ThomProjectivePuncturedOf
+GroupApproximation.CharClass.ThomTopLineOf
+GroupApproximation.CharClass.GysinPairRetractOf
+GroupApproximation.CharClass.ThomStepCLocalOf
+GroupApproximation.CharClass.GysinSphereOf
+GroupApproximation.CharClass.ThomBridgeChartHom
+GroupApproximation.GGT.VanKampen.TypedTriangularDiscCounts
+GroupApproximation.CharClass.LIXKGenStepCHalf
+GroupApproximation.CharClass.LIXKGenTopLine
+GroupApproximation.CharClass.LIXKGenBaseChart
+GroupApproximation.CharClass.LIXLemmaTwoGenGlue
+GroupApproximation.CharClass.OddPEval
+GroupApproximation.CharClass.LIXStepDGenReal
+GroupApproximation.CharClass.OddPAcyclic
+GroupApproximation.CharClass.OddPTupleFunctor
+GroupApproximation.GGT.HullSCLemma51LetterFacts
+GroupApproximation.GGT.RelativeCosetPieces
+GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrongAssemblyHalves
+GroupApproximation.GGT.VanKampen.SurgeryPinchSplitDiagram
+GroupApproximation.Kazhdan.GHWArchimedeanWedge
+GroupApproximation.CharClass.ChernClassesEvenOf
+GroupApproximation.CharClass.ChernGammaBridgeOf
+GroupApproximation.CharClass.OddPEvalNatural
+GroupApproximation.CharClass.OddPEvalMultilinear
+GroupApproximation.Algebra.GHWFrobeniusSeparable
+GroupApproximation.Kazhdan.CCKWCosetComplexLocallyFinite
+GroupApproximation.Kazhdan.GHBSharpExistence
+GroupApproximation.Kazhdan.CCKWTitsGHB
+GroupApproximation.GGT.VanKampen.SurgeryPinchSplitExtremal
+GroupApproximation.Kazhdan.GHWArchimedeanSeparation
+GroupApproximation.Kazhdan.GHWArchimedeanBound
+GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeRegions
+GroupApproximation.GGT.SystolicDiscMovesChord
+# 09-12 09:52 root build 0912-093924-26528 (33 modules, base 64b5cb016) FAILED only on duplicate
+#   EdgeInsertion.embed_injective (EdgeInsertionFaceCycles:164 vs rooted CombMapEdgeKeptFaces:18). kh-torsion asked to rename/remove.
+# 09-12 ~10:05 wave 4 launched (40 modules = wave 2 minus EdgeInsertionFaceCycles and its dependent SystolicDiscMovesChord,
+#   plus CCKWTitsGHB SurgeryPinchSplitExtremal GHWArchimedeanSeparation GHWArchimedeanBound SurgeryGFaceMergeRegions
+#   GHBHyperbolic GHBHyperbolicFilling LIXPowersEquatorChart); dupcheck.py predicted 0 collisions at cd999fec9
+# pending kh-torsion's embed_injective fix (NM_ATTIC + green probe):
+GroupApproximation.GGT.VanKampen.EdgeInsertionFaceCycles
+GroupApproximation.GGT.SystolicDiscMovesChord
+# kh-hyperbolic: GHBHyperbolicDiscCounts waits on go-sr1's red SystolicDiscFilling/SystolicDiscCounts
+# 10:10 sec5-sentences GREEN 0912-100330-38574 (base e04551169, bytes 8f7a8f1e1)
+GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeMerged
+GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundMerged

@@ -1,0 +1,21 @@
+{
+ "status": "ok",
+ "id": "fpbs-collapse-exponential-pivotal-spikes",
+ "kind": "claim",
+ "node_status": "ESTABLISHED",
+ "why": [
+  "fpbs-collapse-exponential-pivotal-spikes [ESTABLISHED via fpbs-sharpness-russo-exponential-spike-proof] \u2014 Threshold collapse forces exponential conditional pivotal counts at exponential near-critical scales",
+  "derivation:",
+  "  fpbs-collapse-exponential-pivotal-spikes \u2713 via fpbs-sharpness-russo-exponential-spike-proof",
+  "    fpbs-transitive-sharpness-linear-lower-bound \u2713 via fpbs-duminil-copin-tassion-sharpness-input  (direct proof)",
+  "    fpbs-uniqueness-spectral-atom-decomposition \u2713 via fpbs-infinite-membership-covariance-proof",
+  "      fpbs-bernoulli-lazy-covariance-bound \u2713 via fpbs-finite-tensor-regular-representation-proof  (direct proof)",
+  "      fpbs-all-parameter-finite-cluster-spectrum \u2713 via fpbs-finite-cluster-sign-coloring-proof",
+  "        fpbs-bernoulli-lazy-covariance-bound \u2713 via fpbs-finite-tensor-regular-representation-proof  (direct proof)",
+  "    fpbs-critical-walk-correlation \u2713 via fpbs-critical-walk-correlation-reference  (direct proof)",
+  "    fpbs-integrated-pivotal-total-budget \u2713 via fpbs-russo-total-budget-proof",
+  "      fpbs-critical-walk-correlation \u2713 via fpbs-critical-walk-correlation-reference  (direct proof)",
+  "why it matters: fpbs-benjamini-schramm-universal -> fpbs-collapse-exponential-pivotal-spikes",
+  "live routes waiting on it: fpbs-universal-pivotal-rate-contradiction-route"
+ ]
+}

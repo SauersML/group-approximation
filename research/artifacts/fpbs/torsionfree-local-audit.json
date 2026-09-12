@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-09",
+  "scope": "Written deductions and finite tests; not independent or formal mathematical verification.",
+  "universal_fixed_price": "OPEN",
+  "universal_benjamini_schramm": "OPEN",
+  "new_nodes": 26,
+  "new_written_claims": 13,
+  "novelty": "Not established; no priority claim.",
+  "imported_inputs": [
+    {
+      "source": "Gaboriau arXiv:1011.2294v1",
+      "use": "Definitions and infinite-class cost lower bound only"
+    },
+    {
+      "source": "Sapir arXiv:1012.1325v4 Theorem 3.7",
+      "use": "Greendlinger lemma"
+    },
+    {
+      "source": "Gruber-Sisto arXiv:1408.4488v3",
+      "use": "Torsion-free graphical C(7); Lemmas 2.15,2.17; Theorem 1.3"
+    },
+    {
+      "source": "Choi-Seo arXiv:2508.08932v2",
+      "use": "Existing nonuniqueness theorem for acylindrically hyperbolic groups"
+    }
+  ],
+  "not_assumed": [
+    "Previous broad bounded-exponent theorem",
+    "Previous two-generator cost theorem",
+    "Universal finite-index action-cost formula",
+    "Cost-one graphing attained",
+    "Connectivity of a limiting graphing",
+    "A free pullback action through a noninjective endomorphism"
+  ],
+  "finite_checks": {
+    "status": "PASS",
+    "assertions": 68833,
+    "deletion_labelings": 26843
+  },
+  "exact_paths_confirmed": {
+    "proof": "/mnt/data/fixed-price-torsionfree-local.md",
+    "checks": "/mnt/data/fixed-price-torsionfree-checks.json",
+    "audit": "/mnt/data/fixed-price-torsionfree-audit.json"
+  },
+  "files": {
+    "fixed-price-torsionfree-local.md": {
+      "sha256": "f5fef18f1b9e63844c5a58cff54eda6460847545b8446ef9ef496e4872f27222",
+      "bytes": 21891
+    },
+    "fixed-price-torsionfree-checks.json": {
+      "sha256": "5b5e076b12b8fa799d10e4b3b88baedc4f09e236377f89adbbf21f00880f0892",
+      "bytes": 2915
+    },
+    "replay_torsionfree_local.py": {
+      "sha256": "26c07b57f0831d7a54c53685c3f5a097ba6e83347919f4019ed6b42375133d3b",
+      "bytes": 11736
+    }
+  },
+  "cairn": {
+    "status": "ok",
+    "findings": [],
+    "claims": 148,
+    "routes": 142,
+    "meaning": "Dependency bookkeeping only, not mathematical verification."
+  }
+}

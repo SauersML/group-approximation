@@ -1,0 +1,13 @@
+{
+  "ambient_permutation_degree": 288,
+  "cycle_rank": 1,
+  "edge_regular_multiplicities": {
+    "F36_C144_C3xC3": 32,
+    "J24_C144_C2": 144,
+    "Q96_F36_V4": 72,
+    "Q96_J24_A4": 24
+  },
+  "unresolved_condition": "one permutation double coset around the four-vertex square",
+  "vertex_orders": {"C144": 144, "F36": 36, "J24": 24, "Q96": 96},
+  "vertex_regular_copies": {"C144": 2, "F36": 8, "J24": 12, "Q96": 3}
+}

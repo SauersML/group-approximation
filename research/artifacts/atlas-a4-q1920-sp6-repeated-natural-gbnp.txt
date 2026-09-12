@@ -1,0 +1,192 @@
+REPEATED_MODULE label=[ "Sp6-natural", 1, 1 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 2, 2, 2 ] K_indecomposable_dimensions=
+[ 1, 2, 2, 1 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 1, 1 ] module_dimension=
+6 centralizer_dimension=6 relation_count=37
+REPEATED_V4_RESULT label=[ "Sp6-natural", 1, 1 ] gb_count=
+6 identity_coordinates=[ 0, 0, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 1, 1 ]
+full_groebner_basis=
+ x0 
+ x1 
+ x2 
+ x3 
+ x4 
+ x5 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 1, 2 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 2, 2, 2 ] K_indecomposable_dimensions=
+[ 1, 1, 2, 2 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 1, 2 ] module_dimension=
+6 centralizer_dimension=6 relation_count=39
+REPEATED_V4_RESULT label=[ "Sp6-natural", 1, 2 ] gb_count=
+6 identity_coordinates=[ 0, 1, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 1, 2 ]
+full_groebner_basis=
+ x0 
+ x1 + Z(2)^0 
+ x2 
+ x3 
+ x4 
+ x5 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 1, 3 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 2, 2, 1, 1 ] K_indecomposable_dimensions=
+[ 2, 2, 2 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 1, 3 ] module_dimension=
+6 centralizer_dimension=8 relation_count=57
+REPEATED_V4_RESULT label=[ "Sp6-natural", 1, 3 ] gb_count=
+8 identity_coordinates=[ 0, 0, 0, 0, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 1, 3 ]
+full_groebner_basis=
+ x0 
+ x1 
+ x2 
+ x3 
+ x4 
+ x5 
+ x6 
+ x7 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 1, 4 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 1, 2, 2, 1 ] K_indecomposable_dimensions=
+[ 2, 2, 2 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 1, 4 ] module_dimension=
+6 centralizer_dimension=8 relation_count=59
+REPEATED_V4_RESULT label=[ "Sp6-natural", 1, 4 ] gb_count=
+8 identity_coordinates=[ 0, 0, 0, 1, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 1, 4 ]
+full_groebner_basis=
+ x0 
+ x1 
+ x2 
+ x3 + Z(2)^0 
+ x4 
+ x5 
+ x6 
+ x7 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 2, 1 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 1, 2, 1, 2 ] K_indecomposable_dimensions=
+[ 2, 2, 2 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 2, 1 ] module_dimension=
+6 centralizer_dimension=8 relation_count=51
+REPEATED_V4_RESULT label=[ "Sp6-natural", 2, 1 ] gb_count=
+8 identity_coordinates=[ 0, 0, 0, 0, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 2, 1 ]
+full_groebner_basis=
+ x0 
+ x1 
+ x2 
+ x3 
+ x4 
+ x5 
+ x6 
+ x7 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 2, 2 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 2, 1, 2, 1 ] K_indecomposable_dimensions=
+[ 2, 2, 2 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 2, 2 ] module_dimension=
+6 centralizer_dimension=8 relation_count=55
+REPEATED_V4_RESULT label=[ "Sp6-natural", 2, 2 ] gb_count=
+8 identity_coordinates=[ 0, 0, 1, 0, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 2, 2 ]
+full_groebner_basis=
+ x0 
+ x1 
+ x2 + Z(2)^0 
+ x3 
+ x4 
+ x5 
+ x6 
+ x7 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 2, 3 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 2, 2, 2 ] K_indecomposable_dimensions=
+[ 2, 1, 2, 1 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 2, 3 ] module_dimension=
+6 centralizer_dimension=6 relation_count=42
+REPEATED_V4_RESULT label=[ "Sp6-natural", 2, 3 ] gb_count=
+6 identity_coordinates=[ 0, 1, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 2, 3 ]
+full_groebner_basis=
+ x0 
+ x1 + Z(2)^0 
+ x2 
+ x3 
+ x4 
+ x5 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+REPEATED_MODULE label=[ "Sp6-natural", 2, 4 ] Q_indecomposable_dimensions=
+[ 6 ] A_indecomposable_dimensions=[ 2, 2, 2 ] K_indecomposable_dimensions=
+[ 1, 1, 2, 2 ] Q_composition_dimensions=[ 1, 4, 1 ]
+REPEATED_V4_BASE label=[ "Sp6-natural", 2, 4 ] module_dimension=
+6 centralizer_dimension=6 relation_count=41
+REPEATED_V4_RESULT label=[ "Sp6-natural", 2, 4 ] gb_count=
+6 identity_coordinates=[ 0, 0, 0, 0, 0, 1 ] identity_forced=true
+REPEATED_V4_CERTIFICATE label=[ "Sp6-natural", 2, 4 ]
+full_groebner_basis=
+ x0 
+ x1 
+ x2 
+ x3 
+ x4 
+ x5 + Z(2)^0 
+identity_normal_forms=
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0

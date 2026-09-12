@@ -1,0 +1,60 @@
+{
+  "corner_trace": "1/2",
+  "transported_corner_overlap": "1/4",
+  "transported_corner_overlap_square": "1/4",
+  "angle_variance": "0",
+  "reflection_group_commutator_hs_sq": "0",
+  "commutator_equals_32_angle_variance": true,
+  "transported_corners_commute": true,
+  "common_product_is_projection": true,
+  "common_trace": "1/4",
+  "common_support_size": 37,
+  "common_coefficient_l1": "11/4",
+  "common_lies_under_raw_corner": false,
+  "common_lies_under_comb_corner": false,
+  "common_equals_transported_pauli_carrier": false,
+  "transported_pauli_carrier_support_size": 4,
+  "transported_pauli_carrier_coefficient_l1": "1",
+  "common_transported_pauli_carrier_overlap": "1/16",
+  "common_transported_pauli_carrier_overlap_square": "3/64",
+  "common_transported_pauli_carrier_angle_variance": "1/64",
+  "common_commutes_transported_pauli_carrier": false,
+  "common_transported_pauli_carrier_reflection_commutator_hs_sq": "1/2",
+  "common_transported_pauli_carrier_reflection_product_cube_is_identity": false,
+  "common_transported_pauli_carrier_reflection_product_cube_trace": "1/4",
+  "common_transported_pauli_carrier_reflection_product_fourth_is_identity": true,
+  "common_transported_pauli_carrier_reflection_product_fourth_trace": "1",
+  "derived_holonomy_carrier_is_projection": true,
+  "derived_holonomy_carrier_trace": "1/8",
+  "derived_holonomy_carrier_lies_under_raw_corner": false,
+  "derived_holonomy_carrier_raw_corner_overlap": "1/16",
+  "derived_holonomy_carrier_lies_under_comb_corner": false,
+  "derived_holonomy_carrier_comb_corner_overlap": "1/16",
+  "derived_holonomy_carrier_commutes_with_both_reflections": [true, true],
+  "derived_holonomy_carrier_quarter_cut_overlaps": ["1/16", "1/16"],
+  "derived_holonomy_carrier_reflections_anticommute": true,
+  "common_raw_cut_overlaps": {
+    "(-1, -1)": "3/64",
+    "(-1, 1)": "3/64",
+    "(1, -1)": "3/64",
+    "(1, 1)": "3/64"
+  },
+  "common_comb_cut_overlaps": {
+    "(-1, -1)": "1/32",
+    "(-1, 1)": "1/32",
+    "(1, -1)": "1/32",
+    "(1, 1)": "1/32"
+  },
+  "common_commutes_raw_cuts": {
+    "(-1, -1)": false,
+    "(-1, 1)": false,
+    "(1, -1)": false,
+    "(1, 1)": false
+  },
+  "common_commutes_comb_cuts": {
+    "(-1, -1)": false,
+    "(-1, 1)": false,
+    "(1, -1)": false,
+    "(1, 1)": false
+  }
+}

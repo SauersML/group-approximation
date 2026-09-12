@@ -1,0 +1,10 @@
+{
+  "status": "all_exact_comparisons_passed",
+  "cases": 391,
+  "reference_seconds": 0.4257619922282174,
+  "worklist_seconds": 0.0168164650676772,
+  "reduction_speedup": 25.31816231977143,
+  "elapsed_seconds": 0.49335234495811164,
+  "source_sha256": "a0373225504a56d6cd239cea81245e623b483647dd274c7ab16bea4d1ec00ae4",
+  "scope": "Exact old/new key comparisons on expanded identities, deterministic mixed-prefix sums, all 144 atlas-generator products, and all 109 radius-two elements; no conjecture resolution"
+}

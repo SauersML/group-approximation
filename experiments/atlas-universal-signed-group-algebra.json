@@ -1,0 +1,92 @@
+{
+  "coefficient_fields": [
+    "F_3",
+    "F_5",
+    "F_7",
+    "F_11",
+    "F_13",
+    "F_1181"
+  ],
+  "group": "GL(4,2) ~= A8",
+  "group_order": 20160,
+  "certified_zero_derivatives": 24,
+  "central_survivors": [
+    11,
+    30,
+    44,
+    55
+  ],
+  "centrality_generators": 6,
+  "seed_rows": 48,
+  "prime_summaries": [
+    {
+      "prime": 3,
+      "left_ideal_rank_reached": 149,
+      "queued_rows_remaining": 126,
+      "left_translations_processed": 135,
+      "phase_in_generated_left_ideal": true,
+      "maximum_row_support": 17,
+      "average_row_support": 7.691275,
+      "certificate_basis_operations": 149,
+      "certificate_phase_reductions": 7
+    },
+    {
+      "prime": 5,
+      "left_ideal_rank_reached": 149,
+      "queued_rows_remaining": 126,
+      "left_translations_processed": 135,
+      "phase_in_generated_left_ideal": true,
+      "maximum_row_support": 17,
+      "average_row_support": 7.738255,
+      "certificate_basis_operations": 149,
+      "certificate_phase_reductions": 7
+    },
+    {
+      "prime": 7,
+      "left_ideal_rank_reached": 149,
+      "queued_rows_remaining": 126,
+      "left_translations_processed": 135,
+      "phase_in_generated_left_ideal": true,
+      "maximum_row_support": 17,
+      "average_row_support": 7.738255,
+      "certificate_basis_operations": 149,
+      "certificate_phase_reductions": 7
+    },
+    {
+      "prime": 11,
+      "left_ideal_rank_reached": 149,
+      "queued_rows_remaining": 126,
+      "left_translations_processed": 135,
+      "phase_in_generated_left_ideal": true,
+      "maximum_row_support": 17,
+      "average_row_support": 7.738255,
+      "certificate_basis_operations": 149,
+      "certificate_phase_reductions": 7
+    },
+    {
+      "prime": 13,
+      "left_ideal_rank_reached": 149,
+      "queued_rows_remaining": 126,
+      "left_translations_processed": 135,
+      "phase_in_generated_left_ideal": true,
+      "maximum_row_support": 17,
+      "average_row_support": 7.738255,
+      "certificate_basis_operations": 149,
+      "certificate_phase_reductions": 7
+    },
+    {
+      "prime": 1181,
+      "left_ideal_rank_reached": 149,
+      "queued_rows_remaining": 126,
+      "left_translations_processed": 135,
+      "phase_in_generated_left_ideal": true,
+      "maximum_row_support": 17,
+      "average_row_support": 7.738255,
+      "certificate_basis_operations": 149,
+      "certificate_phase_reductions": 7
+    }
+  ],
+  "all_phases_in_generated_left_ideal": true,
+  "certificate_sha256": "c5c0a8df3190f1c601c8244add8d38fe6de53f5bf7ab90c7019e916d5ef3c2ed",
+  "elapsed_seconds": 31.993
+}

@@ -1,0 +1,22 @@
+notes: update orphan sweep -- Chern cluster content-verified, XXII gap flagged top priority
+
+Follow-up to 0927623bcfb7c5ebe7cbc1fe3e4917408dbc14d8 after the lead's review:
+
+- ChernCommonZeroBridge/Topology/* cluster reclassified from "low-confidence
+  DEAD" to DEAD-with-certainty. Traced the wired XXII endpoint's actual
+  dependency chain (STW22UnconditionalCore -> STW22AntipodalBlockData ->
+  AntipodalBlockOffDiagonal) and confirmed by grep it never touches
+  TautologicalCommonZero/CommonZeroProperty -- the landed proof discharges its
+  topological input via a bespoke, block-specific derivation of the same base
+  Borsuk-Ulam theorem, not via the general Chern-class/tautological-bundle
+  route this cluster provides. Named the precise replacement declarations.
+  Also flagged ChernCompressionMatrix.lean as wired-but-functionally-unused.
+- Promoted the STW22FactorialCore -> ... -> STW22AntipodalFactorialPair chain
+  to a separate TOP PRIORITY section: it proves the XXII endpoint's missing
+  conjunct (IsFactorialTraciallyCompletePair), independently verified by the
+  lead.
+- Marked KTheory/* as NEEDS-PROBE per the lead's instruction, not a WIRE
+  recommendation.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Rb9Py8X5e5F54Vgz7J5dy8

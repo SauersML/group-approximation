@@ -1,0 +1,35 @@
+{
+  "maximum_word_depth": 2,
+  "generator_names": [
+    "raw",
+    "comb",
+    "raw*",
+    "comb*",
+    "x0",
+    "x1",
+    "z0",
+    "z1"
+  ],
+  "distinct_reduced_expression_keys_by_minimum_depth": [1, 7, 40],
+  "total_distinct_reduced_expression_keys": 48,
+  "exact_conjugator_count": 0,
+  "exact_conjugators": [],
+  "maximum_overlap": "1/16",
+  "maximum_possible_overlap_for_equality": "1/4",
+  "best_words": [
+    "1",
+    "raw",
+    "comb",
+    "comb*",
+    "raw raw",
+    "raw comb",
+    "raw comb*",
+    "comb raw",
+    "comb comb",
+    "comb comb*",
+    "comb* raw",
+    "comb* comb",
+    "comb* comb*",
+    "x0 x0"
+  ]
+}

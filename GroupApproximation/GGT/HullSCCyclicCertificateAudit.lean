@@ -1,0 +1,25 @@
+import GroupApproximation.GGT.HullSCRelativeExteriorArcConversion
+import GroupApproximation.GGT.VanKampen.ExteriorArcCounterexample
+import GroupApproximation.GGT.HullSCLemma44NormalPolygon
+import GroupApproximation.GGT.HullSCLemma49Assemble
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Assurance gate for the cyclic certificate repairs
+
+The conversion and the fixed-relator refutation are closed endpoints.
+The Dehn-cut and Lemma 4.9 adapters still take their stated geometric
+certificates or Greendlinger input; the ordinary axiom gate checks their
+proof closures without representing those conditional results as completed
+literature theorems.
+-/
+
+#audit_closed_axioms GroupApproximation.HullSC.relativeExteriorArcConversionAtWordRotatedStatement
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.ExteriorArcCounterexample.not_relativeExteriorArcConversionAtWordStatement
+#audit_axioms GroupApproximation.HullSC.RelativeBoundaryContiguity.not_all_rotation_zero
+#audit_axioms GroupApproximation.HullSC.exists_relativeDehnCut_of_certificate
+#audit_axioms GroupApproximation.HullSC.exists_relativeDehnCut_of_kernel
+#audit_axioms GroupApproximation.HullSC.exists_normalTriangleCornerCut_of_prod_ne_one
+#audit_axioms GroupApproximation.HullSC.exists_lemma49ExteriorArc_of_certificate
+#audit_axioms GroupApproximation.HullSC.exists_rebasedLemma49Cell_of_relativeGreendlinger
+#audit_axioms GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger

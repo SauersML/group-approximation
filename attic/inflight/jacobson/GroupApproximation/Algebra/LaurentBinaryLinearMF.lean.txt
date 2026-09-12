@@ -1,0 +1,165 @@
+import GroupApproximation.Algebra.Malcev
+import GroupApproximation.Algebra.MalcevLinear
+import GroupApproximation.Leavitt.ElementaryGroup
+import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Algebra.Polynomial.Laurent
+import Mathlib.Data.Finsupp.Encodable
+
+/-!
+# The binary Laurent ring `F_2[z, z^{-1}]` and its linear groups
+
+The paragraph of `non_mf_groups_exist.tex` following
+`prop:torsion-defect-ring` (lines 1108--1137) computes the MF radical of
+`EL_n(J)` for the Toeplitz--Jacobson algebra `J = F_2<s,t | ts = 1>`.  One
+clause of that computation is entirely about the quotient ring and does not
+mention `J` at all:
+
+> "the quotient `EL_n(F_2[z,z^{-1}])` is residually finite, so MF"
+> (`non_mf_groups_exist.tex` lines 1120--1121)
+
+This file proves exactly that clause, for the literal ring
+`F_2[z,z^{-1}] = LaurentPolynomial (ZMod 2)` and at every rank `n`.
+
+The route is the one the manuscript names: `F_2[z,z^{-1}]` is a finitely
+generated integral domain, so Mal'cev's theorem
+(`residuallyFinite_generalLinearGroup`, `Algebra/Malcev.lean`) makes
+`GL_n(F_2[z,z^{-1}])` residually finite, and residual finiteness of a
+countable group gives the cofinite-corona MF property
+(`isOperatorMF_of_residuallyFinite`).  Both properties then descend to every
+subgroup, in particular to `EL_n(F_2[z,z^{-1}])` and to every group that
+embeds in `GL_n(F_2[z,z^{-1}])` -- which is how the clause is used: the
+quotient of `EL_n(J)` by the kernel of `EL_n(J) -> EL_n(F_2[z,z^{-1}])`
+embeds in the target.
+
+The two ring-theoretic inputs Mal'cev's theorem needs are supplied here as
+instances.  Both come from Mathlib's presentation of the Laurent ring as the
+localization of `F_2[X]` away from `X`
+(`LaurentPolynomial.isLocalization`): the localization of a domain at powers
+of a nonzero element is a domain, and a localization away from one element is
+of finite presentation, hence of finite type, over the polynomial ring, which
+is itself of finite type over `ℤ` because `F_2` is finite.
+-/
+
+namespace GroupApproximation
+namespace JacobsonLaurent
+
+universe u
+
+/-- The manuscript's `\F_2[z,z^{-1}]`: the Laurent polynomial ring over the
+two-element field. -/
+abbrev BinaryLaurent : Type := LaurentPolynomial (ZMod 2)
+
+/-! ## The two ring-theoretic inputs of Mal'cev's theorem -/
+
+/-- Powers of `X` are nonzerodivisors in `F_2[X]`, which is what makes the
+Laurent ring a localization at nonzerodivisors. -/
+theorem powers_X_le_nonZeroDivisors :
+    Submonoid.powers (Polynomial.X : Polynomial (ZMod 2)) ≤
+      nonZeroDivisors (Polynomial (ZMod 2)) := by
+  intro x hx
+  obtain ⟨n, rfl⟩ := hx
+  exact pow_mem (mem_nonZeroDivisors_of_ne_zero Polynomial.X_ne_zero) n
+
+/-- `F_2[z,z^{-1}]` is an integral domain. -/
+instance instIsDomainBinaryLaurent : IsDomain BinaryLaurent :=
+  IsLocalization.isDomain_of_le_nonZeroDivisors
+    (M := Submonoid.powers (Polynomial.X : Polynomial (ZMod 2)))
+    BinaryLaurent powers_X_le_nonZeroDivisors
+
+/-- `F_2[z,z^{-1}]` is a finitely generated `ℤ`-algebra: `F_2[X]` is, and the
+Laurent ring is a localization of it away from a single element. -/
+instance instFiniteTypeBinaryLaurent : Algebra.FiniteType ℤ BinaryLaurent := by
+  haveI hpoly : Algebra.FiniteType ℤ (Polynomial (ZMod 2)) := inferInstance
+  haveI : Algebra.FinitePresentation (Polynomial (ZMod 2)) BinaryLaurent :=
+    IsLocalization.Away.finitePresentation (Polynomial.X : Polynomial (ZMod 2))
+  haveI hloc : Algebra.FiniteType (Polynomial (ZMod 2)) BinaryLaurent :=
+    inferInstance
+  exact Algebra.FiniteType.trans hpoly hloc
+
+/-- `F_2[z,z^{-1}]` is countable. -/
+instance instCountableBinaryLaurent : Countable BinaryLaurent :=
+  AddMonoidAlgebra.coeff_injective.countable
+
+/-- Matrices over `F_2[z,z^{-1}]` form a countable ring. -/
+instance instCountableBinaryLaurentMatrix (n : ℕ) :
+    Countable (Matrix (Fin n) (Fin n) BinaryLaurent) :=
+  inferInstanceAs (Countable (Fin n → Fin n → BinaryLaurent))
+
+/-- `GL_n(F_2[z,z^{-1}])` is countable. -/
+instance instCountableBinaryLaurentGL (n : ℕ) :
+    Countable (Matrix.GeneralLinearGroup (Fin n) BinaryLaurent) :=
+  Function.Injective.countable
+    (f := fun g : Matrix.GeneralLinearGroup (Fin n) BinaryLaurent =>
+      (g : Matrix (Fin n) (Fin n) BinaryLaurent))
+    fun _ _ h => Units.ext h
+
+/-! ## Residual finiteness and MF -/
+
+/-- The finite-type property for every `ℤ`-algebra structure on the Laurent ring: all
+`ℤ`-algebra structures on a ring coincide, so this is the instance above in whatever
+form Mal'cev's theorem is stated with. -/
+theorem finiteType_of_algebra (inst : Algebra ℤ BinaryLaurent) :
+    @Algebra.FiniteType ℤ BinaryLaurent _ _ inst := by
+  have h := instFiniteTypeBinaryLaurent
+  convert h
+  exact Subsingleton.elim _ _
+
+/-- **Mal'cev for the binary Laurent ring.**  `GL_n(F_2[z,z^{-1}])` is
+residually finite at every rank. -/
+instance residuallyFinite_binaryLaurentGL (n : ℕ) :
+    Group.ResiduallyFinite (Matrix.GeneralLinearGroup (Fin n) BinaryLaurent) :=
+  @residuallyFinite_generalLinearGroup BinaryLaurent _ _ (finiteType_of_algebra _) n
+
+/-- Residual finiteness of `GL_n(F_2[z,z^{-1}])` passes to every subgroup. -/
+theorem residuallyFinite_subgroup (n : ℕ)
+    (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) BinaryLaurent)) :
+    Group.ResiduallyFinite H :=
+  MalcevLinear.residuallyFinite_of_injective H.subtype
+    (Subgroup.subtype_injective H)
+
+/-- `EL_n(F_2[z,z^{-1}])` is residually finite. -/
+theorem residuallyFinite_binaryLaurentElementary (n : ℕ) :
+    Group.ResiduallyFinite (elementaryGroup (Fin n) BinaryLaurent) :=
+  residuallyFinite_subgroup n _
+
+/-- `GL_n(F_2[z,z^{-1}])` is operator-MF: it is countable and residually
+finite. -/
+theorem isOperatorMF_binaryLaurentGL (n : ℕ) :
+    IsOperatorMF (Matrix.GeneralLinearGroup (Fin n) BinaryLaurent) :=
+  isOperatorMF_of_residuallyFinite
+
+/-- **The printed clause.**  `EL_n(F_2[z,z^{-1}])` is residually finite, so
+MF (`non_mf_groups_exist.tex` lines 1120--1121, in the paragraph after
+`prop:torsion-defect-ring`). -/
+theorem manuscriptSentence_laurentElementaryResiduallyFiniteMF :
+    ∀ n : ℕ,
+      Group.ResiduallyFinite (elementaryGroup (Fin n) BinaryLaurent) ∧
+        IsOperatorMF (elementaryGroup (Fin n) BinaryLaurent) := by
+  intro n
+  refine ⟨residuallyFinite_binaryLaurentElementary n, ?_⟩
+  exact (isOperatorMF_binaryLaurentGL n).subgroup _
+
+/-- Every group embedding in `GL_n(F_2[z,z^{-1}])` is residually finite and
+operator-MF.  This is the form in which the clause is consumed: the quotient
+of `EL_n(J)` by the kernel of the reduction map embeds in the target. -/
+theorem isOperatorMF_of_injective_into_binaryLaurentGL {G : Type u} [Group G]
+    {n : ℕ} (φ : G →* Matrix.GeneralLinearGroup (Fin n) BinaryLaurent)
+    (hφ : Function.Injective φ) :
+    Group.ResiduallyFinite G ∧ IsOperatorMF G :=
+  ⟨MalcevLinear.residuallyFinite_of_injective φ hφ,
+    (isOperatorMF_binaryLaurentGL n).comap φ hφ⟩
+
+/-- The printed clause as a closed package, with no leading binder. -/
+theorem printedBinaryLaurentQuotientPackage :
+    (∀ n : ℕ, Group.ResiduallyFinite (elementaryGroup (Fin n) BinaryLaurent)) ∧
+      (∀ n : ℕ, IsOperatorMF (elementaryGroup (Fin n) BinaryLaurent)) :=
+  ⟨fun n => (manuscriptSentence_laurentElementaryResiduallyFiniteMF n).1,
+    fun n => (manuscriptSentence_laurentElementaryResiduallyFiniteMF n).2⟩
+
+#audit_axioms manuscriptSentence_laurentElementaryResiduallyFiniteMF
+#audit_axioms isOperatorMF_of_injective_into_binaryLaurentGL
+#audit_closed_axioms printedBinaryLaurentQuotientPackage
+
+end JacobsonLaurent
+end GroupApproximation

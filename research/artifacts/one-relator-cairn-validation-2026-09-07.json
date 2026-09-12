@@ -1,0 +1,54 @@
+{
+  "cairn_command": "bin/cairn check --changed --json",
+  "cairn_findings": [],
+  "cairn_status": "ok",
+  "claim_statuses": {
+    "berlai-mixed-conjugator-example-is-sofic": "ESTABLISHED",
+    "linton-shell-sofic": "OPEN",
+    "magnus-staggered-chain-sofic": "OPEN",
+    "nonsofic-one-relator-group": "OPEN",
+    "one-relator-groups-sofic": "OPEN",
+    "one-sided-conjugator-one-relator-groups-are-sofic": "ESTABLISHED",
+    "single-block-conjugator-one-relator-groups-are-sofic": "ESTABLISHED",
+    "triangular-conjugate-bs-chains-are-sofic": "ESTABLISHED"
+  },
+  "date": "2026-09-07",
+  "examined_commit": "c9db663eb9cda7bb7d9a115d6cfef78729e1a00a",
+  "lean_verified": false,
+  "replay": {
+    "all_passed": true,
+    "counts": {
+      "attachment_identity_sets": 64,
+      "finite_peeling_schedules": 360,
+      "negative_controls": 5,
+      "one_sided_identities": 1800,
+      "schreier_identities": 11760,
+      "single_block_parameters": 3920
+    },
+    "not_checked": [
+      "Sofic permanence",
+      "Bass-Serre normal forms",
+      "Lean formalization",
+      "Universal one-relator soficity"
+    ],
+    "random_seed": 20260907,
+    "scope": "Exact free-group identities and finite dependency schedules only.",
+    "single_block_case_counts": {
+      "diagonal": 384,
+      "new-x": 768,
+      "new-y": 768,
+      "new-z": 384,
+      "zero-block": 784,
+      "zero-prefix": 448,
+      "zero-suffix": 384
+    }
+  },
+  "scope": "Cairn checks graph consistency; the replay checks exact finite word identities and schedules. Group-theoretic arguments are written proofs using cited permanence theorems.",
+  "source_sha256": {
+    "experiments/one_relator_cyclic_peeling_check.py": "6fa82da84356ee949df98bf6069a774434159dc89a183e2d1f0d3b2669c7071a",
+    "research/artifacts/mixed-conjugator-one-relator-proof-2026-09-07.md": "da5a9c760c203128aee864936ff0a19845819a5697c5000db12d6b454c57b72e",
+    "research/artifacts/one-relator-cyclic-peeling-replay-2026-09-07.json": "2b5b5375848d10b68441407d809de9cb6534ac0f49b42d326c6bd2a4436042cb",
+    "research/artifacts/triangular-bs-chain-proof-2026-09-07.md": "1c21c99b36839f4c14278e84f66fdce7c6e1c122b80d0b770a05671b978ce122"
+  },
+  "universal_question_resolved": false
+}

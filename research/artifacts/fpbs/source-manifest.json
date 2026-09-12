@@ -1,0 +1,38 @@
+{
+  "notes/TRUE_ROUTED_HOLONOMY_PHASE_REPAIR.md": {
+    "sha256": "341e1c694633cdbdb9eb4d2e14861954914070c366af306d1d87ca7e0de118b3",
+    "bytes": 15074
+  },
+  "research/non-ce-relation-is-not-treeable.md": {
+    "sha256": "21318a1e6396824a2a200c9320b3ce3453823e08d21df58d83bcaf4fdb6a0efb",
+    "bytes": 3313
+  },
+  "research/non-ce-relation-not-treeable-proof.md": {
+    "sha256": "eec21f200aa055300f8f13b7f8c03c42e0706e12367dc3ccdd60bd5a84e93479",
+    "bytes": 4084
+  },
+  "research/sl2-homogeneous-action-is-not-treeable.md": {
+    "sha256": "75818e4f97cdb61fe4385b96b6b34bc422911569b872961505aaca2c4396f527",
+    "bytes": 2344
+  },
+  "tools/cairn.py": {
+    "sha256": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7",
+    "bytes": 237632
+  },
+  "tools/math_explainer.css": {
+    "sha256": "ef9a81c95c05f66eaa1d9c7817c96021a9af650d2c966965f9c8998ff8c79e6a",
+    "bytes": 3457
+  },
+  "tools/math_explainer.js": {
+    "sha256": "00b9c4fe1e878d4453b134b881717054315652dacbcf1e0a5dd712fa422efc62",
+    "bytes": 101590
+  },
+  "tools/math_macros.js": {
+    "sha256": "87e142c5ac77d85b61993ca3824afd41961c9aec8612546f877fdd25491f38e6",
+    "bytes": 1136
+  },
+  "tools/math_normalize.js": {
+    "sha256": "19754b36a620adc2874764a50093a42e7575af42884dabefa86e724028ea0aec",
+    "bytes": 1483
+  }
+}

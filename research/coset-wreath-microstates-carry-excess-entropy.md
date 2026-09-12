@@ -1,0 +1,205 @@
+---
+rg: 2
+id: coset-wreath-microstates-carry-excess-entropy
+kind: claim
+title: If the summit coset wreath group is hyperlinear its microstate spaces carry a macroscopic non-conjugate parameter family
+artifacts:
+  - research/artifacts/coset-wreath-cartan-entropy-2026-08-22.md
+distinct_from:
+  no-spherical-leak-in-matrix-ultraproducts: that asks to EXCLUDE one enemy unitary in the commutant; this asks to MULTIPLY enemies - to show that hyperlinear models of the wreath, if any exist, must come in d^2-scale non-conjugate families - an existence-of-moduli target with the opposite polarity, played against the Cartan entropy ceiling.
+  hnn-hyperlinearity-is-amalgamated-free-haar-unitary: that is an exact characterization of carrier hyperlinearity by one amalgamated-free Haar unitary; this is a counting strengthening on the wreath side, whose payoff is a contradiction with strong 1-boundedness rather than with the collapse.
+---
+
+Claim (OPEN): if `W_3` — the coset Bernoulli wreath over
+`(SL_3(Z[1/3]), SL_3(Z))` — is hyperlinear, then
+
+```text
+h(L(W_3)) > 0,                                                   (EX1)
+```
+
+i.e. some (equivalently, by Hayes' generator-independence of `h`,
+every) generating tuple of `L(W_3)` admits, at SOME fixed precision
+`epsilon > 0` and scale `d -> infinity` along a subsequence, at least
+`exp(c d^2)` microstates that are pairwise `epsilon`-SEPARATED MODULO
+UNITARY CONJUGATION (a packing bound; mere pairwise non-conjugacy
+gives no lower bound on `h`).
+
+Together with the THEOREM
+`coset-wreath-hyperlinearity-forces-strong-one-boundedness`
+(`h(L(W_3)) <= 0` unconditionally), (EX1) makes `W_3` non-hyperlinear:
+this claim is exactly as strong as the goal on this branch, but its
+mathematical content is of a genuinely different species from every
+other open hole of the program — a LOWER bound on microstate counting
+(construct many models) instead of an exclusion (kill one model).
+
+What a witness must produce (ANCHORED FORM, matching Hayes'
+definition, source-verified 2026-08-22: coverings are counted relative
+to a pinned microstate sequence of one diffuse element): for each
+large `d` in a sequence, an almost-representation `pi_d` of `Gamma`
+with regular-ish trace, an equivariant commuting lamp family realizing
+the Bernoulli moments, AND — with the microstate of one fixed diffuse
+element (say a fixed self-adjoint generator of the lamp algebra)
+PINNED — at least `exp(c d^2)` completions that are pairwise
+`epsilon`-separated at some fixed `epsilon > 0`, surviving every
+window/tolerance tightening along the `d`-sequence.  Pinning one
+diffuse coordinate is what quotients out the global conjugation orbit,
+so this is exactly the fiber count of the fibration form below.
+
+## Attempts
+
+- **Congruence-commutant dimension counting (where the moduli live).**
+  For microstates of the regular trace of `Lambda = SL_3(Z)` factoring
+  approximately through `SL_3(Z/m)`, the commutant of `pi_d|_Lambda`
+  has dimension `>= c_m d^2` — macroscopic room for the lamp `k` at
+  every fixed level.  Dies, so far, at constraint (a): the cross-coset
+  commutations `[k, gamma k gamma^{-1}] ~ 0` and the vanishing of mixed
+  Bernoulli moments cut the torsor by an amount nobody has bounded
+  below; and at (b): a `U(pi(Lambda)')`-family can be partially absorbed
+  by conjugations fixing `pi(Gamma)` approximately.  The quantitative
+  question — does a positive-dimension quotient survive — is precisely
+  the hole.
+- **The intrinsic commutant ratio is abelian and quadratically null.**
+  `summit-wreath-intrinsic-lattice-commutant-is-abelian` computes
+
+  ```text
+  L(Lambda)' cap L(W_3)=L^infinity(X)^Lambda.
+  ```
+
+  Every nonidentity crossed-product Fourier coefficient is killed by its
+  infinite `Lambda`-conjugacy orbit.  Hence the canonical relative
+  commutant which contains the base lamp is abelian.  Uniformly over all
+  abelian matrix algebras `B_d<=M_d`, the unitary covering number is only
+  `(C/epsilon)^d=exp(o(d^2))`.  Thus raw `Lambda`-central lamp freedom does
+  not yield `(EX1)`: quadratic packing must come from extrinsic nonabelian
+  growth of the approximate matrix commutants, or from inequivalent
+  embeddings of the abelian algebra after pinning.  A `p=3` transfer modulus
+  absorbs the former into the `Gamma`-central gauge, while a surviving
+  macroscopic quotient is a quadratic family of transfer enemies.  This
+  makes the finite-level commutant-ratio branch a multiplicity strengthening
+  of the same arithmetic transfer wall, not an independent entropy source.
+- **Exact finite congruence-wreath torsors are entirely gauge/subquadratic.**
+  `finite-congruence-wreath-lamp-torsors-are-subquadratic-gauge` performs the
+  quotient that the raw commutant count omits.  Uniform Bernoulli lamp
+  moments make the joint eigenspace choices one homogeneous `U(d)` orbit.
+  The finite actor table reduces the residual block gauges to discrete
+  irreducible multiplicities, and the full mixed regular character pins the
+  representation to a multiple of the finite wreath regular representation.
+  Even for growing exact packets, the number of representation classes is at
+  most `exp(d log(d+1))=exp(o(d^2))`.  Hence fixed/growing exact congruence
+  packet models cannot prove `(EX1)` by commutant dimension.  A witness must
+  retain approximate relative moduli which are not correctable to the finite
+  wreath table and are not one global-conjugacy orbit.
+- **The relative tangent quotient at every exact finite packet is zero.**
+  `finite-wreath-relative-tangent-moduli-vanish` computes the linearized
+  fiber, not just the exact representation classes.  Finite-group averaging
+  gives `H^1(H,u(d)_Ad rho)=0`.  If the actor tuple is held fixed, every
+  cocycle vanishing on the actor is a coboundary generated by
+  `rho(Q)'`, hence is absorbed by an actor-fixing conjugation.  For
+  `rho=k lambda_H` the raw kernel really has dimension
+  `d^2(1-|H|^(-1))`, but every direction is orbit tangent.  Approximate
+  full-table cocycles are within `3 epsilon+2 eta` of such a relative
+  coboundary, uniformly in `d` and `|H|`.  Therefore an `(EX1)` witness must
+  remain nonlinear/far from exact finite packets or exploit the
+  presentation-to-growing-table loss; infinitesimal commutant freedom fails.
+- **The presentation-to-table loss is exactly Dehn area plus moving quotient
+  kernels.**  `wreath-ball-area-controls-only-true-group-cells`
+  proves
+
+  ```text
+  Def(true radius-R table) <= Dehn_G(3R) Def(presentation).
+  ```
+
+  Every vanishing-defect sequence has a diagonal radius `R_d->infinity` on
+  which this true table defect still vanishes.  Thus merely invoking fast
+  area growth does not construct entropy.  On the other hand, multiplication
+  cells of a finite congruence quotient lift to moving kernel words which are
+  generally nontrivial in `W_3`; presentation defect gives them no bound.
+  This is why the finite-group tangent contraction does not yet cover all
+  microstates.  The remaining witness/compiler dichotomy is precise: either
+  control those moving kernel cells from regular-character data, or build
+  `c d^2` non-conjugate models supported in them while preserving every
+  diagonal true-ball table.
+- **Moving congruence kernels have zero real tangent dimension.**
+  `finite-image-summit-wreath-relative-h1-vanishes` applies
+  inflation--restriction to the actual infinite group `W_3`.  The kernel of
+  any finite-image representation projects to a finite-index property-`(T)`
+  subgroup of `Gamma` and has an exponent-two lamp kernel; its abelianization
+  is torsion.  Hence it has no homomorphisms into the real adjoint module, and
+  `H^1(W_3,u(d)_Ad rho)=0`.  The actor-fixed relative tangent vanishes as
+  well.  Therefore the moving quotient-kernel seam cannot carry even one
+  infinitesimal real parameter, let alone `c d^2`; any entropy witness there
+  must be genuinely nonlinear and uniformly far from finite-image models.
+- **Pointwise local rigidity has no automatic uniform Newton upgrade.**
+  `bernoulli-adjoint-gauges-fence-uniform-wreath-newton` separates the two
+  extra inputs: a dimension-independent transverse cochain gap near every
+  finite-image representation, and a global theorem capturing every
+  small-defect canonical tuple in one of those neighbourhoods.  Neither
+  follows from `H^1=0`.  More sharply, biased Bernoulli representations give
+  exact infinite-dimensional adjoint Hilbert--Schmidt operators of unit
+  distance from the commutant whose displacement by every fixed generator
+  tends to zero.  Thus property `(T)` of the actor plus the lamp Cartan cannot
+  supply a uniform full gauge gap.  The remaining finite-dimensional
+  transverse version is not refuted: finite-dimensionalizing this witness is
+  itself the unresolved coset-action approximation interface.
+- **Freeness inside is not enough (calibration).**  `h` is not monotone
+  under subalgebras: `L(F_2) subset L(F_2) tensor R` with
+  `h(ambient) = 0`.  So free subgroups of `Gamma`, or the Bass–Serre
+  freeness of mixed lamp words (the kernel-loop observation that the
+  free multi-block choice reproduces the regular trace of the carrier
+  `H`), do NOT by themselves force (EX1).  Any attempt must count
+  moduli of models of ALL of `W_3`, not exhibit free structure inside.
+- **Amalgam lower bounds blocked by the non-amenable edge.**  For the
+  `SL_2` wreath, `W = (A rtimes Lambda) *_{A rtimes C} (A rtimes
+  Lambda')` from Serre's amalgam `SL_2(Z[1/2]) = SL_2(Z) *_{Gamma_0(2)}
+  SL_2(Z)'`; all known free-entropy lower bounds for amalgamated free
+  products (Brown–Dykema–Jung style) need an AMENABLE edge algebra, and
+  the edge here is `A rtimes Gamma_0(2)`, non-amenable.  At `SL_3`
+  there is no splitting at all ((T) implies (FA)).  So current
+  technology cannot prove (EX1); the hole calls for a relative/local
+  entropy count of the lamp torsor given the base, or an auxiliary
+  algebra whose entropy is computable from CE of `W_3`.
+- **Fibration form and the two-sided squeeze (sharpened 2026-08-22).**
+  Microstates of `W_3` fiber over microstates of `Gamma`; by Brown's
+  convex structure with property (T), the base classes are discrete, so
+  excess entropy must live in a FIBER: the space of admissible lamp
+  families over one fixed `Gamma`-model, modulo the absorbing
+  conjugations — unitaries almost commuting with the `Gamma`-image,
+  i.e. (in the limit) `U(pi(Gamma)' cap M)`, acting on lamp families
+  drawn from `U(pi(Lambda)' cap M)`.  So the hole's quantitative
+  content is a COMMUTANT RATIO: does the `Lambda`-central admissible
+  torsor exceed the `Gamma`-commutant absorption at scale `c d^2`?
+  This squeezes the fork from both sides: if the p = 3 collapse holds,
+  the torsor is empty and the commutant route
+  (`nonhyperlinear-coset-wreath-from-p3-collapse`) closes the goal; if
+  the collapse fails EXPONENTIALLY (torsor bigger than absorption at
+  `d^2`-scale), this route closes the goal instead.  The only
+  surviving hyperlinear scenario is a razor-thin middle: a nonempty
+  `Lambda`-central torsor that is exactly conjugation-null at every
+  scale.  (Caveat for rigor: the absorption picture above is stated at
+  the ultraproduct level; a proof must run at finite level in Hayes'
+  covering-number definitions, where "almost commuting" carries the
+  precision parameter.)
+- **Euler-characteristic calibration: the base can never supply the
+  moduli (2026-08-22).**  For the base groups the virtual deformation
+  dimension of `d`-dimensional representation varieties modulo
+  conjugation is `-chi . d^2 + O(d)`; `chi(SL_2(Z[1/2])) = chi(SL_2(Z))
+  + chi(SL_2(Z)) - chi(Gamma_0(2)) = -1/12 - 1/12 + 1/4 = +1/12 > 0`
+  (Serre amalgam), so base deformations have NEGATIVE virtual dimension
+  `-d^2/12`: rigidity pressure, consistent with `h = 0` for the base
+  and with the (tau) infinitesimal-rigidity theorems of the Iwahori
+  lane; at `SL_3` property (T) kills base moduli outright.  Any (EX1)
+  witness must therefore draw its `c d^2` parameters PURELY from the
+  lamp sector — matching `hnn-carrier-factor-has-no-free-entropy-excess`
+  (the carrier, with no lamp masa, is unconditionally entropy-starved;
+  only the wreath's infinitely generated lamp direction can carry
+  moduli, since it contributes no negative Euler characteristic).
+- **Two-sidedness, honestly.**  If `W_3` is hyperlinear then by the
+  companion theorem `h(L(W_3)) = 0` — i.e. (EX1) is then FALSE and this
+  claim is exactly the goal disjunct.  The route's practical value is
+  the moduli-flip: every constructive enemy probe (e.g. the p = 2 flat
+  tower with its Weyl-cohomological torsor and in-band automorphism
+  freedom) now doubles as an (EX1)-witness attempt — if the
+  construction's recorded freedom survives conjugation at scale
+  `c d^2`, the construction refutes hyperlinearity instead of
+  supporting it.  Constructions should therefore always report their
+  moduli count modulo conjugation.

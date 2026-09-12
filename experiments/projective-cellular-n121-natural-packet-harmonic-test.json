@@ -1,0 +1,25 @@
+{
+  "harmonic_packet_rank": 0,
+  "level": 121,
+  "packet": "projective-cellular-n121-fundamental-circuit-screen.json",
+  "records": [
+    {
+      "boundary_pairing_l2_squared": 74,
+      "boundary_pairing_maximum_absolute_coefficient": 3,
+      "boundary_pairing_support": 18,
+      "boundary_pairing_zero": false,
+      "cycle_residual_zero": true,
+      "kernel_row": 310,
+      "packet_index": 0
+    },
+    {
+      "boundary_pairing_l2_squared": 95,
+      "boundary_pairing_maximum_absolute_coefficient": 3,
+      "boundary_pairing_support": 21,
+      "boundary_pairing_zero": false,
+      "cycle_residual_zero": true,
+      "kernel_row": 586,
+      "packet_index": 1
+    }
+  ]
+}

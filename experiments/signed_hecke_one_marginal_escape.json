@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "W_is_unitary": true,
+    "projections_are_idempotent": true,
+    "projections_are_orthogonal": true,
+    "projections_are_self_adjoint": true,
+    "projections_sum_to_identity": true,
+    "signed_marginal_is_fixed": true
+  },
+  "dimension": 4,
+  "projection_escapes_root_block": [
+    true,
+    true,
+    false,
+    false
+  ],
+  "projection_free_word_supports": [
+    [
+      "1",
+      "h1 h2^-1",
+      "h2 h1^-1"
+    ],
+    [
+      "1",
+      "h1 h2^-1",
+      "h2 h1^-1"
+    ],
+    [
+      "1"
+    ],
+    [
+      "1"
+    ]
+  ],
+  "signs": [
+    1,
+    1,
+    -1,
+    -1
+  ]
+}

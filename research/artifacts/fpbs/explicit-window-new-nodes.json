@@ -1,0 +1,20 @@
+[
+  "fpbs-ew-dehn-input",
+  "fpbs-ew-dehn-input-proof",
+  "fpbs-ew-three-subgroups",
+  "fpbs-ew-three-subgroups-proof",
+  "fpbs-ew-embedded-tree",
+  "fpbs-ew-embedded-tree-proof",
+  "fpbs-ew-survival",
+  "fpbs-ew-survival-proof",
+  "fpbs-ew-spectral",
+  "fpbs-ew-spectral-proof",
+  "fpbs-ew-nb-majorant",
+  "fpbs-ew-nb-majorant-proof",
+  "fpbs-ew-window",
+  "fpbs-ew-window-proof",
+  "fpbs-ew-separation",
+  "fpbs-ew-separation-proof",
+  "fpbs-ew-finite-replay",
+  "fpbs-ew-finite-replay-proof"
+]

@@ -1,0 +1,1 @@
+rank_d2=4 rank_d3=4 H2_dimension=2 first_generator_nonzero=true

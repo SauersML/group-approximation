@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; duplicate checks on the three touched nodes.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "certificate-controlled-routing-is-surjunctive": "ESTABLISHED",
+    "certificate-routing-bernoulli-balance-proof": "COMPLETE",
+    "leavitt-unit-group-nonsurjunctive": "OPEN"
+  },
+  "elapsed_seconds": 17.501
+}

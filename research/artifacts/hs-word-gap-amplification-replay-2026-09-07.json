@@ -1,0 +1,27 @@
+{
+  "arithmetic": "exact integers and fractions.Fraction",
+  "group_specific_gap_established": false,
+  "lean_verified": false,
+  "matrix_replay": {
+    "explicit_word_tensor_checks": 935,
+    "maximum_materialized_dimension": 512,
+    "noncommuting_and_scalar_phase_controls": "passed",
+    "words": 187
+  },
+  "negative_control": {
+    "candidate_polynomial_trace": "-2 for every coefficient N",
+    "marked_word": "x",
+    "marked_word_energy": "2",
+    "presentation": "<x | x^2=1>",
+    "purpose": "A hyperlinear group passes the amplifier replay and refutes its own gap.",
+    "relator_energy": "0"
+  },
+  "nonhyperlinear_group_constructed": false,
+  "scalar_replay": {
+    "rational_mark_checks": 2080,
+    "rational_relator_checks": 10400,
+    "zero_mark": "linear inequality is immediate; no exponent is chosen"
+  },
+  "schema_version": 1,
+  "scope": "Finite replay of amplifier identities and bounds only."
+}

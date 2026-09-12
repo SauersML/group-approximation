@@ -1,0 +1,242 @@
+import GroupApproximation.Algebra.FinitaryLinearBlocks
+import GroupApproximation.Leavitt.PreusserAssembly
+import GroupApproximation.Algebra.ExchangeRing
+import GroupApproximation.PropertyTT.RingHypotheses
+import Mathlib.LinearAlgebra.Matrix.Transvection
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Over `F_2` the finitary linear group is infinite and simple
+
+`non_mf_groups_exist.tex`, the remark after `prop:torsion-defect-ring`
+(tex lines 1141--1145):
+
+> `Rad_MF(EL_n(J)) = EL_n(J,JeJ) ≅ ⋃_N SL_N(F_2)`, an infinite simple locally
+> finite group.
+
+Local finiteness is `FinitaryLinear.isLocallyFiniteGroup_finitary`.  This module
+proves the other two adjectives for the finitary group of any `F_2`-vector space
+with a basis indexed by an infinite set.
+
+* Over `F_2` every invertible matrix is elementary
+  (`elementaryGroup_zmodTwo_eq_top`): Mathlib's reduction to transvections and
+  diagonal matrices, and an invertible diagonal matrix over `F_2` is `1`.
+* `EL_T(F_2)` is simple for `#T ≥ 3`, by the repository's proof of Preusser's
+  sandwich theorem (`PreusserAssembly.isSimpleGroup_via_preusser`): `F_2` is a
+  simple ring with trivial central units and single-sandwich division.
+* So every block stabilizer `supportedOn B T` with `#T ≥ 3` is simple
+  (`supportedOnEquivGL`), and the finitary group, the directed union of those
+  stabilizers, is simple: a nontrivial normal subgroup meets a block containing
+  any prescribed element in a nontrivial normal subgroup of that simple block.
+* It is infinite: the transvections `B b₀ ↦ B b₀ + B b` are pairwise distinct.
+-/
+
+namespace GroupApproximation
+namespace FinitaryLinear
+
+open Matrix
+
+universe v w
+
+/-! ## Elementary matrices over `F_2` -/
+
+section Elementary
+
+variable (ι : Type*) [Fintype ι] [DecidableEq ι]
+
+/-- **Over `F_2` every invertible matrix is elementary.** -/
+theorem elementaryGroup_zmodTwo_eq_top : elementaryGroup ι (ZMod 2) = ⊤ := by
+  classical
+  refine eq_top_iff.mpr fun u _ ↦ ?_
+  have hdet : det (u : Matrix ι ι (ZMod 2)) ≠ 0 :=
+    det_ne_zero_of_right_inverse (B := ((u⁻¹ : (Matrix ι ι (ZMod 2))ˣ) : Matrix ι ι (ZMod 2)))
+      u.mul_inv
+  have h2 : ∀ x : ZMod 2, x ≠ 0 → x = 1 := by decide
+  have key : ∃ v ∈ elementaryGroup ι (ZMod 2), (v : Matrix ι ι (ZMod 2)) = u := by
+    refine diagonal_transvection_induction_of_det_ne_zero
+      (fun A ↦ ∃ v ∈ elementaryGroup ι (ZMod 2), (v : Matrix ι ι (ZMod 2)) = A)
+      (u : Matrix ι ι (ZMod 2)) hdet ?_ ?_ ?_
+    · intro D hD
+      have hD1 : D = fun _ ↦ 1 := by
+        funext i
+        refine h2 _ fun h0 ↦ hD ?_
+        rw [det_diagonal]
+        exact Finset.prod_eq_zero (Finset.mem_univ i) h0
+      refine ⟨1, Subgroup.one_mem _, ?_⟩
+      rw [hD1, diagonal_one]
+      rfl
+    · intro t
+      exact ⟨elementaryUnit t.i t.j t.hij t.c, elementaryUnit_mem _ _ _ _, rfl⟩
+    · rintro A A' - - ⟨v, hv, rfl⟩ ⟨w, hw, rfl⟩
+      exact ⟨v * w, Subgroup.mul_mem _ hv hw, Units.val_mul v w⟩
+  obtain ⟨v, hv, hvu⟩ := key
+  rw [← Units.ext hvu]
+  exact hv
+
+/-- `F_2` has single-sandwich division: `a⁻¹ * a * 1 = 1` for `a ≠ 0`. -/
+theorem hasSingleSandwichDivision_zmodTwo : HasSingleSandwichDivision (ZMod 2) :=
+  fun a ha ↦ ⟨a⁻¹, 1, by rw [mul_one, inv_mul_cancel₀ ha]⟩
+
+/-- **`EL_ι(F_2)` is simple for `#ι ≥ 3`**, through the repository's proof of
+Preusser's sandwich theorem. -/
+theorem isSimpleGroup_elementaryGroup_zmodTwo (hcard : 3 ≤ Fintype.card ι) :
+    IsSimpleGroup (elementaryGroup ι (ZMod 2)) := by
+  classical
+  haveI : Nontrivial ι := Fintype.one_lt_card_iff_nontrivial.mp (by omega)
+  obtain ⟨i, j, hij⟩ := exists_pair_ne ι
+  refine PreusserAssembly.isSimpleGroup_via_preusser hcard ?_
+    (IsExchangeRing.hasFiniteRightExchangePartitions
+      (isExchangeRing_of_singleSandwich hasSingleSandwichDivision_zmodTwo)) ?_
+  · intro u _
+    exact congrArg Units.val (Subsingleton.elim u 1)
+  · refine ⟨⟨⟨elementaryUnit i j hij 1, elementaryUnit_mem i j hij 1⟩, 1, ?_⟩⟩
+    intro h
+    have hij' := congrArg
+      (fun z : elementaryGroup ι (ZMod 2) ↦ ((z : (Matrix ι ι (ZMod 2))ˣ) : Matrix ι ι (ZMod 2)) i j) h
+    simp [elementaryUnit, Matrix.one_apply_ne hij] at hij'
+
+/-- `GL_ι(F_2)` is simple for `#ι ≥ 3`. -/
+theorem isSimpleGroup_units_matrix_zmodTwo (hcard : 3 ≤ Fintype.card ι) :
+    IsSimpleGroup (Matrix ι ι (ZMod 2))ˣ := by
+  haveI := isSimpleGroup_elementaryGroup_zmodTwo ι hcard
+  haveI : Nontrivial (Matrix ι ι (ZMod 2))ˣ :=
+    (elementaryGroup ι (ZMod 2)).subtype_injective.nontrivial
+  refine IsSimpleGroup.isSimpleGroup_of_surjective (elementaryGroup ι (ZMod 2)).subtype fun u ↦ ?_
+  have hu : u ∈ elementaryGroup ι (ZMod 2) := by
+    rw [elementaryGroup_zmodTwo_eq_top]
+    exact Subgroup.mem_top u
+  exact ⟨⟨u, hu⟩, rfl⟩
+
+end Elementary
+
+/-! ## The finitary group over `F_2` -/
+
+section Binary
+
+variable {M : Type v} [AddCommGroup M] [Module (ZMod 2) M] {β : Type w}
+  (B : Module.Basis β (ZMod 2) M)
+
+/-- Every block stabilizer on at least three basis indices is simple. -/
+theorem isSimpleGroup_supportedOn_zmodTwo (T : Finset β) (hT : 3 ≤ T.card) :
+    IsSimpleGroup (supportedOn B T) := by
+  classical
+  haveI := isSimpleGroup_units_matrix_zmodTwo (↥T) (by simpa using hT)
+  haveI : Nontrivial (supportedOn B T) := (supportedOnEquivGL B T).symm.injective.nontrivial
+  exact IsSimpleGroup.isSimpleGroup_of_surjective (supportedOnEquivGL B T).symm.toMonoidHom
+    (supportedOnEquivGL B T).symm.surjective
+
+/-- The inclusion of a block stabilizer into the finitary group. -/
+def supportedOnToFinitary (T : Finset β) : supportedOn B T →* finitary B where
+  toFun x := ⟨x, supportedOn_le_finitary B T x.2⟩
+  map_one' := rfl
+  map_mul' _ _ := rfl
+
+/-- **Over `F_2`, the finitary group of a space with at least three basis
+vectors is simple.** -/
+theorem isSimpleGroup_finitary_zmodTwo (hβ : ∃ T : Finset β, 3 ≤ T.card) :
+    IsSimpleGroup (finitary B) := by
+  classical
+  obtain ⟨T₀, hT₀⟩ := hβ
+  haveI : Nontrivial (finitary B) := by
+    haveI := isSimpleGroup_supportedOn_zmodTwo B T₀ hT₀
+    obtain ⟨x, y, hxy⟩ := exists_pair_ne (supportedOn B T₀)
+    refine ⟨⟨supportedOnToFinitary B T₀ x, supportedOnToFinitary B T₀ y, fun h ↦ hxy ?_⟩⟩
+    exact Subtype.ext (congrArg (fun z : finitary B ↦ (z : M ≃ₗ[ZMod 2] M)) h)
+  refine ⟨fun N hN ↦ ?_⟩
+  rcases N.bot_or_exists_ne_one with hbot | ⟨g, hgN, hg1⟩
+  · exact Or.inl hbot
+  right
+  refine eq_top_iff.mpr fun h _ ↦ ?_
+  obtain ⟨Tg, hTg⟩ := (mem_finitary B).mp g.2
+  obtain ⟨Th, hTh⟩ := (mem_finitary B).mp h.2
+  let T : Finset β := T₀ ∪ Tg ∪ Th
+  have hT3 : 3 ≤ T.card :=
+    le_trans hT₀ (Finset.card_le_card fun x hx ↦ by simp [T, hx])
+  haveI := isSimpleGroup_supportedOn_zmodTwo B T hT3
+  have hgS : (g : M ≃ₗ[ZMod 2] M) ∈ supportedOn B T :=
+    hTg.mono fun x hx ↦ by simp [T, hx]
+  have hhS : (h : M ≃ₗ[ZMod 2] M) ∈ supportedOn B T :=
+    hTh.mono fun x hx ↦ by simp [T, hx]
+  let NT : Subgroup (supportedOn B T) := N.comap (supportedOnToFinitary B T)
+  haveI hNT : NT.Normal := hN.comap _
+  have hgNT : (⟨g, hgS⟩ : supportedOn B T) ∈ NT := hgN
+  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal NT hNT with hbotT | htopT
+  · exfalso
+    have h1 : (⟨g, hgS⟩ : supportedOn B T) = 1 := by
+      rw [hbotT] at hgNT
+      exact Subgroup.mem_bot.mp hgNT
+    exact hg1 (Subtype.ext (congrArg (fun z : supportedOn B T ↦ (z : M ≃ₗ[ZMod 2] M)) h1))
+  · have hmem : (⟨h, hhS⟩ : supportedOn B T) ∈ NT := by
+      rw [htopT]
+      exact Subgroup.mem_top _
+    exact hmem
+
+/-- The transvection `x ↦ x + (coefficient of B b₀ in x) • B b`. -/
+noncomputable def binaryTransvection (b₀ b : β) : M →ₗ[ZMod 2] M :=
+  LinearMap.id + (B.coord b₀).smulRight (B b)
+
+theorem binaryTransvection_apply (b₀ b : β) (x : M) :
+    binaryTransvection B b₀ b x = x + B.coord b₀ x • B b := rfl
+
+theorem coord_basis_of_ne {b c : β} (h : b ≠ c) : B.coord c (B b) = 0 := by
+  classical
+  simp [Module.Basis.coord_apply, Module.Basis.repr_self, h]
+
+theorem coord_basis_self (b : β) : B.coord b (B b) = 1 := by
+  simp [Module.Basis.coord_apply, Module.Basis.repr_self]
+
+theorem binaryTransvection_mul_self {b₀ b : β} (hb : b ≠ b₀) :
+    binaryTransvection B b₀ b ∘ₗ binaryTransvection B b₀ b = LinearMap.id := by
+  refine LinearMap.ext fun x ↦ ?_
+  have hc : ∀ c : ZMod 2, c + c = 0 := by decide
+  rw [LinearMap.comp_apply, binaryTransvection_apply, binaryTransvection_apply, map_add, map_smul,
+    coord_basis_of_ne B hb, smul_zero, add_zero, add_assoc, ← add_smul, hc, zero_smul, add_zero,
+    LinearMap.id_apply]
+
+/-- The transvection as an automorphism (it is its own inverse over `F_2`). -/
+noncomputable def binaryTransvectionEquiv {b₀ b : β} (hb : b ≠ b₀) : M ≃ₗ[ZMod 2] M :=
+  LinearEquiv.ofLinear (binaryTransvection B b₀ b) (binaryTransvection B b₀ b)
+    (binaryTransvection_mul_self B hb) (binaryTransvection_mul_self B hb)
+
+theorem binaryTransvectionEquiv_mem_finitary {b₀ b : β} (hb : b ≠ b₀) :
+    binaryTransvectionEquiv B hb ∈ finitary B := by
+  classical
+  refine (mem_finitary B).mpr ⟨{b₀, b}, IsSupportedOn.of_basis (fun c hc ↦ ?_) fun c hc ↦ ?_⟩
+  · have hc0 : c ≠ b₀ := fun h ↦ hc (by simp [h])
+    show B c + B.coord b₀ (B c) • B b = B c
+    simp [Module.Basis.coord_apply, Module.Basis.repr_self, hc0]
+  · show B c + B.coord b₀ (B c) • B b ∈ blockSpan B {b₀, b}
+    exact Submodule.add_mem _ (basis_mem_blockSpan B hc)
+      (Submodule.smul_mem _ _ (basis_mem_blockSpan B (by simp)))
+
+/-- **The finitary group over `F_2` of a space with infinitely many basis
+vectors is infinite.** -/
+theorem coord_binaryTransvection_basis (b₀ b c : β) :
+    B.coord c (binaryTransvection B b₀ b (B b₀)) = B.coord c (B b₀) + B.coord c (B b) := by
+  rw [binaryTransvection_apply, map_add, map_smul, coord_basis_self, one_smul]
+
+theorem infinite_finitary_zmodTwo [Infinite β] : Infinite (finitary B) := by
+  classical
+  obtain ⟨b₀⟩ := (inferInstance : Nonempty β)
+  haveI : Infinite ↥(({b₀} : Set β)ᶜ) := (Set.finite_singleton b₀).infinite_compl.to_subtype
+  let f : ↥(({b₀} : Set β)ᶜ) → finitary B := fun b ↦
+    ⟨binaryTransvectionEquiv B (Set.mem_compl_singleton_iff.mp b.2),
+      binaryTransvectionEquiv_mem_finitary B (Set.mem_compl_singleton_iff.mp b.2)⟩
+  refine Infinite.of_injective f fun b c hbc ↦ ?_
+  by_contra hne
+  have hne' : (c : β) ≠ b := fun h ↦ hne (Subtype.ext h.symm)
+  have hb0 : b₀ ≠ (b : β) := Ne.symm (Set.mem_compl_singleton_iff.mp b.2)
+  have hval := congrArg (fun z : finitary B ↦ B.coord b ((z : M ≃ₗ[ZMod 2] M) (B b₀))) hbc
+  simp only [f, binaryTransvectionEquiv, LinearEquiv.ofLinear_apply,
+    coord_binaryTransvection_basis, coord_basis_of_ne B hb0, coord_basis_self,
+    coord_basis_of_ne B hne', zero_add] at hval
+  exact one_ne_zero hval
+
+end Binary
+
+end FinitaryLinear
+end GroupApproximation
+
+#audit_axioms GroupApproximation.FinitaryLinear.elementaryGroup_zmodTwo_eq_top
+#audit_axioms GroupApproximation.FinitaryLinear.isSimpleGroup_finitary_zmodTwo
+#audit_axioms GroupApproximation.FinitaryLinear.infinite_finitary_zmodTwo

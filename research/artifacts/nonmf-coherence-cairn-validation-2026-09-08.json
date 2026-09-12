@@ -1,0 +1,88 @@
+{
+  "status": "ok",
+  "scope": "Exact finite-field/permutation replay of both complete GL3 tables, the shared positive root, mixed relators, the omitted opposite-root equation and the nonidentity coherence word. Native Cairn parsing, reference/artifact lint, exact prerequisites, compiled statuses and scoped duplicate/cycle checks. Separate written audits verified the authenticated boundary factor, literal-kernel equivalence, Weyl translation identities and conditional third finite packet, using Steinberg Section6 Theorem9 only for the finite-field presentation. The actual coherence equation, unrestricted matrix gap and full non-MF objective remain unresolved. This is not Lean kernel verification or a clean whole-workspace audit.",
+  "finite_replay": {
+    "degree": 168,
+    "finite_factor_orders": [
+      168,
+      168
+    ],
+    "dihedral_order": 8,
+    "mixed_cell_packet_order": 24,
+    "full_multiplication_tables_checked": 2,
+    "shared_positive_root_exact": true,
+    "both_mixed_relators_exact": true,
+    "shared_opposite_root_exact": false,
+    "coherence_word_is_identity": false,
+    "coherence_word_order": 2,
+    "coherence_word_moved_points": 16,
+    "scope": "Countermodel to omission of opposite-root gluing only; not a model of Lambda or Theta_shift."
+  },
+  "nodes": {
+    "jacobson-positive-root-gluing-misses-laurent-coherence": "ESTABLISHED",
+    "jacobson-168-point-coset-twist-countermodel-proof": "COMPLETE",
+    "jacobson-coherence-defect-is-an-orthogonal-translation": "ESTABLISHED",
+    "jacobson-finite-weyl-and-boundary-splitting-proof": "COMPLETE",
+    "jacobson-stable-letter-closes-boundary-recursion": "ESTABLISHED",
+    "jacobson-shift-head-generates-normal-finitary-kernel": "ESTABLISHED",
+    "jacobson-shift-literal-quotient-is-laurent-times-z": "ESTABLISHED",
+    "jacobson-shift-head-dies-in-amenable-targets": "ESTABLISHED",
+    "jacobson-shift-surviving-head-has-a-tracial-core": "ESTABLISHED",
+    "jacobson-shift-gap-characterizes-mark-collapse": "ESTABLISHED",
+    "jacobson-shift-mixed-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-shift-gap": "OPEN",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN"
+  },
+  "prerequisites": {
+    "jacobson-168-point-coset-twist-countermodel-proof": [],
+    "jacobson-finite-weyl-and-boundary-splitting-proof": [
+      "jacobson-stable-letter-closes-boundary-recursion",
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "jacobson-shift-head-dies-in-amenable-targets"
+    ],
+    "property-t-free-existence-via-jacobson-shift-gap": [
+      "jacobson-stable-letter-closes-boundary-recursion",
+      "jacobson-shift-gap-characterizes-mark-collapse",
+      "jacobson-shift-mixed-gap"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "broader_findings_count": 1470,
+  "broader_findings_by_kind": {
+    "artifact": 1470
+  },
+  "broader_findings_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-coherence-broader-findings-2026-09-08.json",
+  "broader_findings_sha256": "85dd2d0ffe28bf2836317881495a2706c607e6aac8e5f61e5d41efa7e34f1187",
+  "source_sha256": {
+    "notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md": "ce348d8a52fdf1a68d47312d6291f74d0bc273e45e3a24824de9f0f78b9970ed",
+    "research/artifacts/jacobson-missing-laurent-coherence-word-and-finite-cell-countermodel-2026-09-08.md": "3d290f3a97013cfa6b5d9a2fe5fb0846d992f89f2e2611bb557f002a82f3e70a",
+    "research/artifacts/jacobson-recursive-head-dies-in-amenable-targets-2026-09-08.md": "3c82e5942fab2b51a12fd331097c13c85aa25b38c360d6ecc1bbac641e80f0e2",
+    "research/artifacts/jacobson-recursive-packets-generate-finitary-linear-kernel-2026-09-08.md": "542f4b4f42788ef61e5545a29b8f4e94e44a728d06ddbd55c746f5e3a147f550",
+    "research/artifacts/jacobson-stable-letter-laurent-quotient-and-local-inner-action-2026-09-08.md": "36b0b6ba373dcede00ad3b1a86b3dd0fb5fe8b1db96448bc69f40d26309f596a",
+    "research/artifacts/jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md": "fd96a26c27ebd22fe670e1f47a2241da3ceb3ffe2b3b78e9197646d2efa1e3d6",
+    "research/artifacts/jacobson-surviving-head-has-a-tracial-core-2026-09-08.md": "32680d0c291fffbca2853eae51eceb58711d05f4a8f1016601145a37d224f807",
+    "research/artifacts/jacobson-two-braid-reduction-2026-09-07.md": "dfdac49afa4d5c1e7a11760149bd7bf50087d6231f770b496c77dbd1d8b0380e",
+    "research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md": "5ff6500bfa233b788062a3e196ec80eba717570d168d8c29618cdd6753e87ae6",
+    "research/jacobson-168-point-coset-twist-countermodel-proof.md": "eaf527dc2fc20ab29b301fea40dad68d4741e569ba5f4eb765388beec727a842",
+    "research/jacobson-coherence-defect-is-an-orthogonal-translation.md": "19f7ae22218e9c867cf4c8231b100f6dd913fecc7d00f1b2aad8a05e6e5a949e",
+    "research/jacobson-finite-weyl-and-boundary-splitting-proof.md": "a3dc804072799cc540dbd9320e1778c0dbe9a60ce5e3531f492d26c583da1d6b",
+    "research/jacobson-positive-root-gluing-misses-laurent-coherence.md": "a7a67639c6231b62f3d0d57f8501463a63c3cca61030008c7b0222c928ea3c74",
+    "research/jacobson-shift-gap-characterizes-mark-collapse.md": "09d987a96285bce63eca5e434fa436a597ce9031a66af1d778d278b1643d8467",
+    "research/jacobson-shift-head-dies-in-amenable-targets.md": "2bab2edfc57d693fd7a3e9e6938154415f0eb4bb345f5d30b97833e1a4feb810",
+    "research/jacobson-shift-head-generates-normal-finitary-kernel.md": "125d408525cb7bf39ff59d1e4157caec755ca3ce58e3c6e216caaf0e6749b272",
+    "research/jacobson-shift-literal-quotient-is-laurent-times-z.md": "e18bc871b5969480daa308fab56f96ad4d8a1c44f537e81279fac57ed03f74c9",
+    "research/jacobson-shift-mixed-gap.md": "250b91d1aeb9a4ba5fb46e197f3b962350dfc5f28deeb318fa22a5b88fc23a72",
+    "research/jacobson-shift-surviving-head-has-a-tracial-core.md": "39a1b0825547ce95f56bcc369f3916c886edf451f9ad5b25b11f0890a8639f76",
+    "research/jacobson-stable-letter-closes-boundary-recursion.md": "badead6db12ffdab4d9ce3cf71f246943decbd488268cad98cb9998ed5ed914e",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "d5221fc104d6e30698306edc225ea99c9bfecf2dddb7f1d84b09e0493e006dd4",
+    "research/property-t-free-existence-via-jacobson-shift-gap.md": "00476c7dcd685a3a7b3a5768f581cc14fa1c3ebbcd65f1eb7e460190277a4ecf",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "archive_sha256": "769ba469fd04f9b7706037c89cce3a936c636656d002903e559245616672abc6",
+  "validator_sha256": "553bd711e6dca392cdd05e2c1b98609db8c1901409613ed5f13410da9bb71874",
+  "claims": 7437,
+  "routes": 7599,
+  "elapsed_seconds": 5.117
+}

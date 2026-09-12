@@ -1,0 +1,157 @@
+import GroupApproximation.KOne.ToeplitzRankTwo
+import GroupApproximation.KOne.LeavittKOneWhitehead
+import GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula
+
+/-!
+# A scalar killed in `K₁(L_k(1,d))` is a `(d-1)`-st power
+
+`non_mf_groups_exist.tex`, `cor:leavitt-mf-quotient` (tex 1297–1318) and the
+introduction (tex 243–247):
+
+> `H/EL_d(R) ≅ K₁(R) ≅ k^×/(k^×)^{d-1}`.
+
+`Manuscript/OneSidedMFRadical/LeavittKOneFormula.lean` splits the second
+isomorphism into `ScalarSurjective` and `ScalarKernel`.  This module proves
+**`ScalarKernel` at every field `k` and every `d ≥ 2`**, with no literature input:
+
+* `scalarKernel` --- `ker (α : k^× → K₁(L_k(1,d))) ≤ (k^×)^{d-1}`;
+* `alpha_ker_eq` --- together with the exponent relation, `ker α = (k^×)^{d-1}`;
+* `exists_injective_scalarQuotient` --- `k^×/(k^×)^{d-1}` embeds in `K₁(L_k(1,d))`
+  through `α`;
+* `printedLeavittKOneFormula_of_scalarSurjective` --- the printed second
+  isomorphism from the surjectivity clause alone.
+
+## The proof
+
+Let `c ∈ ker α`.  The stable `K₁` is the rank-two Whitehead quotient
+(`KOneDescent.aryLeavitt_kappa_ker`), so `diag(c, 1) ∈ EL₂(L_k(1,d))`.  Lift the
+elementary word to two copies of the Toeplitz space of words: the lift `ε` is a
+product of units `1 + X` in off-diagonal positions, each with regularized
+determinant `1`, so `regDet ε = 1` (`ToeplitzWords.exists_lift_of_mem_elementaryGroup`).
+Entrywise, `ε` agrees with `diagOp c = diag(c, 1)` modulo finite rank, because two
+free-algebra elements with the same image in `L_k(1,d)` act on words up to finite
+rank (`ToeplitzWords.finiteRank_rho_sub_of_quotientMap_eq`).  So `g' = diagOp(c)⁻¹ ε`
+is a finite-rank perturbation of the identity and
+
+    `1 = regDet ε = regDet (diagOp c) · regDet g' = c · (fdet g')^{1-d}`,
+
+using `regDet (diagOp c) = c` and `regDet g' · (fdet g')^d = fdet g'`.  Hence
+`c = (fdet g')^{d-1}`.
+
+The invariant is the regularized determinant of `KOne/RegularizedDeterminant.lean`
+on the first-letter splitting `V ≃ k × V^d` of the word space: a determinant of
+`g` measured against `g^{⊕d}`, which is exactly what makes a scalar `λ` and
+`λ^d` indistinguishable and nothing coarser.
+-/
+
+namespace GroupApproximation
+
+namespace RegularizedDet
+
+section Helpers
+
+variable {k : Type*} [Field k] {U : Type*} [AddCommGroup U] [Module k U] [FiniteDimensional k U]
+  {V : Type*} [AddCommGroup V] [Module k V] {ι : Type*} [Fintype ι]
+
+/-- A finite-rank perturbation of the identity is tame.  (Stated for an arbitrary space so
+that the cancellation `(g - 1) + 1 = g` is rewritten in the ring structure of `Module.End`.) -/
+theorem tame_of_finiteRank_sub_one (e : V ≃ₗ[k] U × (ι → V)) {g : Module.End k V}
+    (hg : FiniteRankDet.FiniteRank (g - 1)) : Tame e g := by
+  have h := (tame_of_finiteRank e hg).add e (tame_one e)
+  rwa [sub_add_cancel] at h
+
+end Helpers
+
+end RegularizedDet
+
+namespace Manuscript
+namespace OneSidedMFRadical
+namespace LeavittKOneFormula
+
+open FiniteRankDet RegularizedDet ToeplitzWords AryLeavitt AlgebraicK
+
+variable (k : Type) [Field k] (d : ℕ)
+
+/-- **`ScalarKernel`: a scalar killed by `κ` in `K₁(L_k(1,d))` is a `(d-1)`-st power.**
+Every field `k`, every `d ≥ 2`. -/
+theorem scalarKernel (hd : 2 ≤ d) : ScalarKernel k d := by
+  intro c hc
+  rw [MonoidHom.mem_ker, alpha_apply] at hc
+  have hstable : scalarUnits k d c ∈ MatrixDiagonalization.stableUnits (AryLeavittAlgebra k d) := by
+    rw [← KOneDescent.aryLeavitt_kappa_ker k d hd, MonoidHom.mem_ker]
+    exact hc
+  rw [MatrixDiagonalization.mem_stableUnits_iff] at hstable
+  obtain ⟨ε, -, hεd, hεl⟩ := exists_lift_of_mem_elementaryGroup hstable
+  have hfr : FiniteRank ((ε : Module.End k (Fin 2 → Space k d)) -
+      ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))) :=
+    finiteRank_sub_diagOp_of_lifts c hεl
+  set g' : (Module.End k (Fin 2 → Space k d))ˣ := (diagOp c)⁻¹ * ε with hg'
+  have hg'fr : FiniteRank ((g' : Module.End k (Fin 2 → Space k d)) - 1) := by
+    rw [hg', Units.val_mul]
+    exact FiniteRank.inv_mul_sub_one (diagOp c) hfr
+  have hg'tame : Tame (split2 k d) (g' : Module.End k (Fin 2 → Space k d)) :=
+    tame_of_finiteRank_sub_one (split2 k d) hg'fr
+  have hsplit : ε = diagOp c * g' := by
+    rw [hg', ← mul_assoc, mul_inv_cancel, one_mul]
+  have h1 : (c : k) * regDet (split2 k d) g' = 1 := by
+    rw [← regDet_diagOp (d := d) c, ← regDet_mul _ (tame_diagOp c) hg'tame, ← hsplit, hεd]
+  have h2 := regDet_mul_fdet_pow (split2 k d) hg'fr
+  rw [Fintype.card_fin] at h2
+  have hne : fdet (g' : Module.End k (Fin 2 → Space k d)) ≠ 0 := by
+    intro h0
+    have hinv := fdet_units_mul_inv g' hg'fr
+    rw [h0, zero_mul] at hinv
+    exact zero_ne_one hinv
+  have h3 : fdet (g' : Module.End k (Fin 2 → Space k d)) ^ d
+      = (c : k) * fdet (g' : Module.End k (Fin 2 → Space k d)) := by
+    calc fdet (g' : Module.End k (Fin 2 → Space k d)) ^ d
+        = ((c : k) * regDet (split2 k d) g') * fdet (g' : Module.End k (Fin 2 → Space k d)) ^ d := by
+          rw [h1, one_mul]
+      _ = (c : k) * (regDet (split2 k d) g' * fdet (g' : Module.End k (Fin 2 → Space k d)) ^ d) := by
+          ring
+      _ = (c : k) * fdet (g' : Module.End k (Fin 2 → Space k d)) := by
+          rw [h2]
+  have h4 : fdet (g' : Module.End k (Fin 2 → Space k d)) ^ (d - 1) *
+      fdet (g' : Module.End k (Fin 2 → Space k d))
+      = fdet (g' : Module.End k (Fin 2 → Space k d)) ^ d := by
+    rw [← pow_succ, Nat.sub_add_cancel (by omega : 1 ≤ d)]
+  refine ⟨Units.mk0 (fdet (g' : Module.End k (Fin 2 → Space k d))) hne, ?_⟩
+  refine Units.ext ?_
+  simp only [powMonoidHom_apply, Units.val_pow_eq_pow_val, Units.val_mk0]
+  exact mul_right_cancel₀ hne (h4.trans h3)
+
+/-- **`ker α = (k^×)^{d-1}`**, at every field and every `d ≥ 2`. -/
+theorem alpha_ker_eq (hd : 2 ≤ d) : (alpha k d).ker = unitPowSubgroup k (d - 1) :=
+  le_antisymm (scalarKernel k d hd) (unitPowSubgroup_le_ker k d hd)
+
+/-- **`k^×/(k^×)^{d-1}` embeds in `K₁(L_k(1,d))` through the scalar map.** -/
+theorem exists_injective_scalarQuotient (hd : 2 ≤ d) :
+    ∃ φ : kˣ ⧸ unitPowSubgroup k (d - 1) →* AlgebraicKOne (AryLeavittAlgebra k d),
+      Function.Injective φ ∧ ∀ c : kˣ, φ (QuotientGroup.mk c) = alpha k d c := by
+  refine ⟨(QuotientGroup.kerLift (alpha k d)).comp
+      (QuotientGroup.quotientMulEquivOfEq (alpha_ker_eq k d hd).symm).toMonoidHom, ?_, ?_⟩
+  · simp only [MonoidHom.coe_comp, MulEquiv.coe_toMonoidHom]
+    exact (QuotientGroup.kerLift_injective _).comp (MulEquiv.injective _)
+  · intro c
+    simp only [MonoidHom.coe_comp, Function.comp_apply, MulEquiv.coe_toMonoidHom,
+      QuotientGroup.quotientMulEquivOfEq_mk, QuotientGroup.kerLift_mk]
+
+/-- **The printed second isomorphism of `cor:leavitt-mf-quotient` from the
+surjectivity clause alone**: the kernel clause is `scalarKernel`. -/
+theorem printedLeavittKOneFormula_of_scalarSurjective (hd : 2 ≤ d)
+    (hsurj : ScalarSurjective k d) : PrintedLeavittKOneFormula k d :=
+  printedLeavittKOneFormula_of_inputs k d hd hsurj (scalarKernel k d hd)
+
+end LeavittKOneFormula
+end OneSidedMFRadical
+end Manuscript
+end GroupApproximation
+
+/-! ### Axiom audit -/
+
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula.scalarKernel
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula.alpha_ker_eq
+#audit_axioms
+  GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula.exists_injective_scalarQuotient
+#audit_axioms
+  GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula.printedLeavittKOneFormula_of_scalarSurjective

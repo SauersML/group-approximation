@@ -1,0 +1,41 @@
+{
+  "all_checks_pass": true,
+  "records": [
+    {
+      "endpoint": "z1z2",
+      "allowed_rank": 4,
+      "forbidden_rank": 6,
+      "allowed_spin_dimension": 4,
+      "forbidden_spin_dimension": 8,
+      "forbidden_endpoint_half_dimension": 4,
+      "anticommuting_basis_partners": [
+        2,
+        4
+      ]
+    },
+    {
+      "endpoint": "z0z2",
+      "allowed_rank": 4,
+      "forbidden_rank": 6,
+      "allowed_spin_dimension": 4,
+      "forbidden_spin_dimension": 8,
+      "forbidden_endpoint_half_dimension": 4,
+      "anticommuting_basis_partners": [
+        0,
+        4
+      ]
+    },
+    {
+      "endpoint": "z0z1",
+      "allowed_rank": 4,
+      "forbidden_rank": 6,
+      "allowed_spin_dimension": 4,
+      "forbidden_spin_dimension": 8,
+      "forbidden_endpoint_half_dimension": 4,
+      "anticommuting_basis_partners": [
+        0,
+        2
+      ]
+    }
+  ]
+}

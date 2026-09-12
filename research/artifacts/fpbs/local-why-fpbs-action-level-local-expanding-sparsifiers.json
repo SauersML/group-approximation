@@ -1,0 +1,19 @@
+{
+ "status": "ok",
+ "id": "fpbs-action-level-local-expanding-sparsifiers",
+ "kind": "claim",
+ "node_status": "ESTABLISHED",
+ "why": [
+  "fpbs-action-level-local-expanding-sparsifiers [ESTABLISHED via fpbs-finite-pattern-local-action-proof] \u2014 The controlled original-edge sparsifiers exist inside each given free action",
+  "derivation:",
+  "  fpbs-action-level-local-expanding-sparsifiers \u2713 via fpbs-finite-pattern-local-action-proof",
+  "    fpbs-all-generating-sets-local-sparsifiers \u2713 via fpbs-arbitrary-generators-backbone-proof",
+  "      fpbs-cycle-deletion-half-boundary \u2713 via fpbs-cycle-deletion-boundary-proof  (direct proof)",
+  "      fpbs-short-disjoint-torsion-detours \u2713 via fpbs-ball-growth-centralizer-packing-proof  (direct proof)",
+  "      fpbs-local-selector-repair-geometry \u2713 via fpbs-local-selector-route-proof  (direct proof)",
+  "      fpbs-burnside-nonamenable-two-generator-input \u2713 via fpbs-burnside-nonamenability-reference  (direct proof)",
+  "      fpbs-burnside-embedding-input \u2713 via fpbs-burnside-algebra-reference  (direct proof)",
+  "    fpbs-aw-finite-pattern-input \u2713 via fpbs-aw-finite-pattern-reference  (direct proof)",
+  "live routes waiting on it: fpbs-prime-order-backbone-cost-proof"
+ ]
+}

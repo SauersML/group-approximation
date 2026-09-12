@@ -1,0 +1,381 @@
+---
+rg: 2
+id: tailored-checks-to-common-marked-group-extensions
+kind: claim
+title: Translate the finite tailored-game check library to common marked ordinary group extensions
+artifacts:
+  - research/artifacts/meta-recursive-qca-audit-2026-08-22.md
+distinct_from:
+  one-round-v4-lamps-wordize-a-bcs-losing-projection: that wordizes one losing projection after its answer PVM and Bob observable have been selected; this must select the intended type in every marked canonical extension and keep all checks on one decoded strategy.
+  bcs-projective-kernel-phase-compilation: that asks for one global projective phase with a quantitative BCS energy comparison; this permits a finite family of extension gadgets and only qualitative CE nonextendability.
+  common-complete-approximation-specific-nemesis-compiler: that states the finished machine-indexed compiler; this is its smallest source-specific TailoredMIP groupification cell.
+---
+
+For the finite check family `(L_c)_(c in C)` of the fixed tailored gap game,
+construct a recursively presented ordinary base group `Gamma_0`, rational
+mark `p`, and finite extension gadgets `E_c` such that:
+
+1. the perfect ZPC-IRS strategy gives one exact, possibly properly infinite,
+   representation of `Gamma_0` which extends every `E_c` simultaneously and
+   detects `p`;
+2. every marked canonical matrix-ultraproduct representation of `Gamma_0`
+   decodes one common CE game strategy `S`;
+3. extension through `E_c` forces `L_c=0` in that same decoded strategy.
+
+Then every marked CE base type is excluded by at least one `E_c`, while all
+gadgets share the perfect infinite completion.  This is exactly the missing
+ordinary-group transducer.
+
+## Canonical controlled-reflection router interface
+
+For one context, let `q=q_++q_-` be the rational truth-table corner from
+`finite-one-hot-algebraic-corners-reduce-to-stabilizers`, let `C` be the
+selector involution, and let `X` be an arbitrary reflection commuting with
+that context's readable algebra. A local router would expose a group element
+`Y` satisfying on the authenticated carrier
+
+```text
+qYq=q_+ + q_-X.                                         (TCG0)
+```
+
+The robust version may depend on a fixed lower bound `beta>0` for the carrier
+mass and need only hold on canonical-profile microstates: after finite-group
+and spectral rounding, vanishing ordinary relator defect must make the
+normalized corner-HS defect in `(TCG0)` vanish. No modulus uniform as `beta`
+tends to zero is needed. Running `beta=2^(-k)` and applying
+`canonical-profile-collapse-compactness` supplies qualitative mark collapse.
+
+This local controlled-reflection router is a useful sufficient *cell*, but is
+not by itself sufficient for the full TailoredMIP compilation. Different
+noncommuting contexts have different projections `q_c`; positive mass in each
+one does not produce one common decoded strategy, and products of the selected
+projections need not be projections or retain mass. The closure argument also
+requires the common-carrier/coherent-verifier clause already present in items
+1--3 above. This is the correction recorded by
+`finite-product-selected-type-mark-does-not-align-carriers` and by the
+remaining cross-context clause of
+`hyperoctahedral-router-interface-for-fanizza`.
+
+## Attempts
+
+- The V4 lamp construction makes `1-2L_c` an ordinary word in the intended
+  selected representation.  Its abstract finite-group representations retain
+  unwanted selector types, so wordization does not imply clause 3.
+- Giving every check an independently decoded strategy defeats `(TCN1)` by
+  direct sums.  The answer PVMs, readable IRS control and repeated player
+  observables must be shared literally or through one positive-density marked
+  carrier.
+- Guarding each check on a separate direct-sum branch gives common infinite
+  completeness but also lets a finite approximation turn off every guard.
+  Canonical packet mass must force at least one active common branch.
+- A proper-isometry deletion of the losing projection would prove clause 3
+  by finite trace, while a properly infinite completion could absorb it.
+  Realizing that partial isometry as an ordinary unitary group-extension
+  relation is the same one-sided proper-corner return already isolated in
+  `type-filtered-proper-corner-return-actuator`.
+
+## Exact block-encoding reduction and why it stops
+
+Write one losing polynomial, after clearing a common scalar, as
+
+```text
+P=sum_(j=1)^m a_j w_j,       M=sum_j |a_j|,
+```
+
+where the `w_j` are unitary words.  On an `m`-point ancilla choose
+`xi=sum_j sqrt(|a_j|/M)e_j` and put
+
+```text
+W=sum_j |e_j><e_j| tensor phase(a_j)w_j,
+q=|xi><xi| tensor 1.
+```
+
+Then `W` is unitary and
+
+```text
+qWq=(P/M)q.                                            (TCG1)
+```
+
+Thus finite LCU/block encoding reduces every tailored check exactly to one
+zero-compression condition `qWq=0`.  It also shows that no analytic
+approximation or enumeration issue remains.
+
+But `(TCG1)` uses two operations not supplied representation-functorially by
+ordinary group words: the selected rank-one ancilla projection `q`, and the
+controlled word `W`.  Finite signed corners realize both in the intended
+packet, but arbitrary representations contain all ancillary character types
+and free multiplicity spaces.  Replacing `qWq=0` by the global group relation
+
+```text
+(1-2q)W(1-2q)=-W
+```
+
+is not equivalent: it forces `W` to exchange `q` and `1-q`, hence forces
+equal carrier dimensions and constrains the whole complementary block.
+That stronger relation need not hold in the common perfect strategy.
+Allowing a surplus complement restores completeness but again requires a
+partial isometry with prescribed initial corner, the proper-corner return
+gate above.
+
+Consequently the smallest controlled-circuit formulation of this claim is:
+groupify one selected finite ancilla packet so that every marked canonical
+representation has the same `q`, admits the controlled words in `(TCG1)`,
+and turns `qWq=0` into an ordinary extension condition without constraining
+the unused complement.  This is the exact controlled-`U`/corner-equality
+gate; LCU itself does not solve it.
+
+The final zero-compression relation is now solved when the compiled source
+is a two-cycle of one payload word.
+`central-marked-two-cycle-zero-compression-cell` uses two gradings and the
+ordinary relation `wzw^-1=yz`; on the selected
+joint atom it gives `q w q=0`, while the complementary central sector admits
+arbitrary `w`.  Conversely every zero-compression pair with a two-periodic
+selected orbit extends that cell.  Thus the remaining syntax gap in the
+general reduction is strictly a **two-cycle ordinary payload block
+encoding** of the losing polynomial.  An involutive Hermitian dilation
+would suffice, but is stronger than necessary and the usual `2 x 2`
+dilation remains additive rather than an ordinary word.
+
+At the operator level even this two-cycle hypothesis costs only one
+selected-stabilizer corrector.
+`stabilizer-corrector-hermitianizes-zero-compression` proves that every pair
+`QWQ=0` admits a unitary `S` stabilizing
+`Q` for which `SW` is an involution and has the same zero compression.  The
+remaining ordinary-group syntax is therefore narrower still: wordize one
+payload-compatible auxiliary `s` which fixes the selected small atom.  A
+full finite-packet normalizer is too strong and reintroduces the established
+multiplicity-orientation obstruction.
+
+Nor can one replace selected-atom stabilization by the superficially simpler
+relations `[s,H]=1` for the whole finite selector packet `H`.
+`selector-packet-central-corrector-fails-on-a-three-cycle` gives the exact
+four-character countermodel: a three-cycle payload has zero compression to
+one character atom, but diagonal packet-central correctors preserve its
+three-cycle support and can never make the corrected payload involutive.  The
+unrestricted stabilizer corrector still exists there (and even normalizes the
+packet), so this closes only the packet-central wordization shortcut; the
+selected-stabilizer and typewise nontransport readout gates remain live.
+
+Allowing a selector-group normalizer has an exact, less pessimistic boundary.
+`selector-normalizer-corrector-has-an-atom-permutation-criterion` shows that
+for a block-monomial payload with atom permutation `sigma`, a normalizer
+inducing `alpha` works precisely when `alpha` fixes the selected atom and
+`(alpha sigma)^2=1`.  Independent multiplicity gauges then absorb every
+payload block, so this does not create the projective payload collapse of a
+full-matrix normalizer.  But the required `alpha` need not belong to the
+actual finite selector-group automorphism image: the regular `C_4` packet
+with `sigma=(0 1 2)` is a four-character exact counterexample.  Thus a
+normalizer wordization must certify this permutation condition for its
+specific packet; normalizer availability is not automatic.
+
+Outside the block-monomial face even the full selected-atom diagonal
+normalizer can fail.  `c3-payload-defeats-selector-normalizer-correctors`
+gives a rational real-orthogonal `3 x 3` payload with `qWq=0` for the regular
+`C_3` character packet.  The only allowed row permutations are identity and
+the swap of the two nontrivial characters, and in both cases asymmetric
+off-diagonal moduli prevent `SW` from being self-adjoint.  Hence the general
+operator corrector cannot be wordized merely by allowing an arbitrary
+finite selector normalizer; a surviving transducer must either establish the
+block-monomial permutation criterion in its intended face or genuinely leave
+the selector normalizer.
+
+An exact subgroup-HNN/Bass--Serre stabilizer word cannot supply that escape.
+`finite-character-one-sided-stabilizer-is-its-normalizer` proves that for a
+one-dimensional finite-character atom `q=e_(H,chi)`, even the one-sided
+identity `q s q=s q` saturates the Hecke intersection norm and forces
+`sHs^-1=H` with `chi` preserved.  Thus every exact same-atom group-word
+stabilizer is already a packet normalizer.  The remaining escape must stay
+genuinely one-sided--a source-to-larger-target proper section with a paid
+complement--or infer the return only after finite-matrix correction; it
+cannot close the section to an exact same-atom stabilizer loop.
+
+For affine Fourier payloads, the SELECT side can now be made substantially
+smaller and representation-rigid.  `extraspecial-common-gauge-fourier-controller`
+uses only the rank-`k` Pauli packet: Stone--von Neumann uniqueness and the
+relations `[C,Z_i]=1`, `[C,X_i]=W_i` force one common right gauge, while the
+compression to the uniform `X`-fixed atom is exactly the trivial-character
+projection of the payload `F_2^k` representation.  This removes the full
+coordinate-lamp wreath packet and its unwanted spin sectors.  It does not
+finish the claim: for `k>1` the uniform source is a joint Pauli atom rather
+than one spectral half, so ordinary-word enforcement of its zero compression
+is still precisely the authenticated selected-atom stabilizer gate.
+
+There is now one exact positive reduction inside that gate.
+`finite-cocycle-select-forces-one-common-lcu-gauge` groupifies SELECT for a
+uniform finite-group/cocycle word list and forces every coordinate
+orientation to one common right unitary, which does not change the HS norm of
+the average.  In particular this handles the Fourier average of one affine
+character atom.  It does not handle a general coefficient list without
+imposing the cocycle multiplication relations on the payload, and for a
+character group of order greater than two its uniform projection has rank
+`1/|K|`, so the remaining zero-compression condition is still the selected
+small-corner return actuator rather than a balanced grading relation.  The
+construction uses the reducing free lamp-character orbit of a wreath packet;
+it therefore does not claim that SELECT normalizes the full control matrix
+algebra and is consistent with the normalizer no-go below.
+
+## Four-cell character-HNN composition audit
+
+The common-gauge, extraspecial, stabilizer-corrector, and marked two-cycle
+cells do not compose for a general commuting-context atom of rank `k>1`.
+The first three steps are compatible: after correcting the extraspecial
+controller one has an involution
+
+```text
+V=SC,       VX_iV=U_iX_i,       VU_iV=U_i,
+```
+
+and the authentic source is the character idempotent
+
+```text
+q=2^(-(k+1))(1-J) product_i(1+X_i).
+```
+
+The mismatch is at the fourth source interface. The literal source of
+`central-marked-two-cycle-zero-compression-cell` has canonical density
+`1/4`; `q` has density `2^(-(k+1))`, so the two projections cannot be
+identified when `k>1` while the Pauli subgroup embeds.
+
+Allowing a character-idempotent HNN source-target cell does not repair this.
+`extraspecial-character-hnn-two-cycle-forces-global-parity` computes the
+exact character-intersection criterion:
+
+```text
+qVq=0  iff  U_a=JX_c for some a,c.                    (TCG3)
+```
+
+In the intended tensor-spin completion `(TCG3)` forces `U_a=-1`. This says
+that every payload character lies in one affine hyperplane, whereas the
+desired Fourier zero test says only that the trivial character is absent.
+For `k>1`, the direct sum of all nontrivial payload characters has zero
+trivial-character projection but satisfies no global relation `U_a=-1`.
+It is an exact completion of the SELECT controller with `S=1`, and it cannot
+extend the proposed character-HNN two-cycle.
+
+This is a composition obstruction, not another rejection of common-gauge
+SELECT: the common gauge cancels exactly, and the Hermitian corrector can be
+chosen exactly. Nor does it merely reuse the finite-normalizer fixed-face
+countermodel: the calculation permits a nonnormal HNN target and shows that
+one sign-reversing source-target intersection is itself equivalent to the
+too-strong global parity. The surviving local transducer must authenticate
+the full small character carrier while enforcing zero trivial-character
+mass by something other than a single Hecke source-target intersection.
+
+A tempting repair is to allow one common unknown left orientation and seek
+one word with blocks `Aw_j`: the prepared compression would be
+`A(P/M)`, so its zero set and HS norm are correct.  However
+`transitive-control-normalizer-forces-projectively-equal-payloads` proves
+that covariance of a finite irreducible control packet forces all `w_j` to
+be projectively equal.  Enlarging the normalized packet by the payload
+ratios admits the intended wreath-product module but loses the
+representation-wide shared-`A` conclusion.  Hence this repair returns to
+the same selected induced-type gate rather than closing it.
+
+## Finite verifier-type reduction
+
+There is nevertheless a rigorous weakening of the required synchronization,
+recorded as
+`finite-tailored-checks-reduce-to-typewise-positive-loss-gadgets`.
+Partition the finite check set into its finitely many local predicate/gate
+types `C=disjointUnion_(t in T) C_t`, and put
+
+```text
+epsilon_t(S)=sum_(c in C_t) beta_c tau_S(L_c).
+```
+
+Then `(TCN1)` gives
+
+```text
+max_t epsilon_t(S) >= 1/(2|T|).                         (TCG2)
+```
+
+It would therefore suffice to construct one extension gadget `E_t` per
+type, all sharing the perfect infinite completion, such that extension of a
+CE base type through `E_t` forces `epsilon_t=0`.  The multiplicity
+orientation need only be common inside `C_t`: by
+`transitive-controller-orbit-common-twist-preserves-zero-lcu` it factors
+harmlessly from the typewise zero test.  Different types may retain
+unrelated gauges.  If a CE base type extended every `E_t`, `(TCG2)` would be
+contradicted.
+
+This does **not** mean that partitioning by syntactic type constructs the
+common orientation used in the preceding sentence.  The theorem
+`transitive-controller-orbit-common-twist-preserves-zero-lcu` applies only
+after the intended payload controllers form an actual transitive orbit and
+satisfy its conjugacy condition `(TCO4)`.  Arbitrary occurrences of the same
+gate type have different payload words; forcing `(TCO4)` adds relations not
+satisfied by the common perfect strategy, while independently renamed orbit
+copies no longer evaluate one common decoded strategy.  The type partition
+reduces the soundness quantifier exactly, but the typewise nontransport
+holonomy readout must still build the required common payload orbit or avoid
+LCU factorization altogether.
+
+## Signed-Hecke transporter audit
+
+The balanced signed-Hecke atlas supplies exactly the local prerequisites:
+one common finite packet type, equal-rank atoms, sign-preserving pairwise
+matchings, and hence coherent transporters along a chosen spanning tree.
+It does **not** supply the hypothesis that all full payload controllers of a
+type are one equivariant orbit.  On every non-tree incidence the remaining
+ordered product is an arbitrary multiplicity-space cycle holonomy, as in
+`oracular-local-block-detectors-miss-balanced-cycle-holonomy`.
+
+Approximation-specific extension profiles give a useful dichotomy but do not
+remove this last datum.  A type can be challenged by adjoining its proposed
+equivariant transporters:
+
+- if the actual CE base type has no such extension, that transporter gadget
+  is already its nemesis;
+- if it does extend, the common-orientation factorization is available, but
+  soundness still requires an ordinary word or corner relation whose zero
+  compression is exactly `epsilon_t`.
+
+Every gadget made solely of the balanced finite-sheet transports passes the
+second branch with arbitrary monodromy; this is the exact finite model in
+`finite-sheet-transport-networks-are-exactly-matricial`.  Killing the
+monodromy by coherent coordinate identifications would instead manufacture
+a forbidden finite-dimensional perfect strategy by
+`coherent-balanced-context-permutations-would-give-a-ce-trace`.
+
+Two natural readouts are now excluded more sharply by
+`cycle-holonomy-is-square-gauge-and-reynolds-invisible`.  A phase clause
+`V^2=J` on a freshly existential chord only chooses a point of its full
+commutant torsor and is satisfiable in every matrix multiplicity.  An adjoint
+Reynolds comparison is identically fixed by that commutant and has zero cycle
+defect.  Moving the transporter names into the common base makes the phase
+observable, but then incompatible bespoke phase clauses cannot share the
+perfect completion.  The readout must therefore tie the chord to a
+payload-sensitive coefficient or proper corner, not merely to its packet
+covariance or Reynolds projection.
+
+Thus the finite-type scheme closes all analytic gauge bookkeeping and makes
+transporter nonexistence adversarially useful.  Its smallest remaining cell
+is a **typewise nontransport holonomy readout**: on types admitting the
+transporters, turn the residual cycle relative position into the selected
+zero corner without forcing global finite-sheet coherence.  This is the
+same block-escaping signed-Hecke chord, now needed for only one of finitely
+many verifier types rather than for one globally oriented circuit.
+
+Two natural readouts do not yet provide that chord.
+`existential-cycle-gauge-absorbs-square-and-reynolds-readouts` proves that an
+auxiliary chord transporter can set its return to any unitary in the shared
+marginal commutant.  Hence `W^2=J` merely chooses a square-root gauge, while
+the marginal adjoint Reynolds projection is fixed by every such gauge.  A
+central square becomes useful only for a raw lift already fixed by the base;
+a Reynolds comparison becomes useful only after it includes a larger
+context algebra and is therefore already nontransport.  The surviving
+phase-sensitive option is the one-sided charged proper-corner section.
+
+Nor can approximation-specificity be obtained by replacing each losing
+projector with a tailored finite overgroup or finite-subgroup HNN actor.
+`canonical-types-extend-every-finite-bass-serre-actor` proves that **every**
+canonical matrix-ultraproduct base representation extends through every such
+actor: all finite subgroup restrictions have the regular character, and
+trace-preserving embeddings of a finite-dimensional group algebra into the
+ultraproduct factor are unitarily conjugate.  Those conjugating unitaries are
+the stable letters.  In particular an injection `K->H` always has canonical
+fixed-space order `tau(e_H)=1/|H|<=1/|K|=tau(e_K)`; payload-dependent choice
+of the literal subgroups cannot reverse it.  Thus surrogate finite actors have no canonical
+extension-profile resolving power, even when chosen check by check.  A
+successful nemesis must add a non-Bass--Serre two-cell between its
+intertwiners or an infinite actor tied to the losing carrier.

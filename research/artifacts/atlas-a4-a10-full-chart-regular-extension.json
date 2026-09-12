@@ -1,0 +1,11 @@
+{
+  "90_Reg_A8_restricted_F_copies": 100800,
+  "90_Reg_A8_restricted_K_copies": 302400,
+  "F_order": 18,
+  "K_order": 6,
+  "Reg_A10_restricted_F_copies": 100800,
+  "Reg_A10_restricted_K_copies": 302400,
+  "a8_regular_copies_per_chart": 90,
+  "ambient_permutation_degree": 1814400,
+  "underlying_vertex_graph": "A8_0--F--A10--K--A8_1"
+}

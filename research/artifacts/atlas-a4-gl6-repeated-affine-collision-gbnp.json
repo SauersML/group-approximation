@@ -1,0 +1,102 @@
+{
+  "statement": "Every A-central solution of the marked collision equations on H_K^m is the identity, for every m>=1, both faithful Q1920 markings, and all four A5-complement classes K",
+  "field": "F2",
+  "base_module_dimension": 6,
+  "marked_Q_image": "Q=2^5:A5 of order 1920",
+  "module": "the homogeneous linearization H_K of the affine action Q on Q/K",
+  "transverse_subgroup": "A=<r,u>=S3",
+  "coefficient_ring": "the free associative algebra F2<x_0,...,x_(d-1)> for a computed basis of End_A(H_K)",
+  "matrix_relations": [
+    "C^2=I",
+    "(C*T)^3=I",
+    "T*C*S*C*T^-1*C*S*T*C=I"
+  ],
+  "orbit_parameters": {
+    "Q_markings": 2,
+    "A5_complement_classes_per_marking": 4,
+    "total_slices": 8
+  },
+  "gbnp_version": "1.1.0",
+  "slices": [
+    {
+      "marking": 1,
+      "complement_class": 1,
+      "centralizer_dimension": 8,
+      "base_relation_count": 43,
+      "base_groebner_basis": ["x1+1", "x3", "x4+x2", "x5+x2+x0+1", "x6+x2+x0", "x7+1", "x2*x0+x0*x2", "x2^2+x0*x2+x0^2"],
+      "collision_remainders_mod_base": ["x0", "x2"],
+      "identity_coordinates": [0, 1, 0, 0, 0, 1, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 1,
+      "complement_class": 2,
+      "centralizer_dimension": 6,
+      "base_relation_count": 40,
+      "base_groebner_basis": ["x1", "x2+x0", "x4+x3", "x5+1", "x3*x0+x0*x3", "x3^2+x0*x3+x0^2"],
+      "collision_remainders_mod_base": ["x0", "x3"],
+      "identity_coordinates": [0, 0, 0, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 1,
+      "complement_class": 3,
+      "centralizer_dimension": 8,
+      "base_relation_count": 49,
+      "base_groebner_basis": ["x1", "x2+x0", "x4", "x5+x3+1", "x6+x0", "x7+1", "x3*x0+x0*x3", "x3^2+x0*x3+x0^2+x0+1"],
+      "collision_remainders_mod_base": ["x0", "x3+x0+1"],
+      "identity_coordinates": [0, 0, 0, 1, 0, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 1,
+      "complement_class": 4,
+      "centralizer_dimension": 6,
+      "base_relation_count": 38,
+      "base_groebner_basis": ["x2+x1+x0", "x3+x0", "x4", "x5+1", "x1*x0+x0*x1", "x1^2+x0*x1+x0^2"],
+      "collision_remainders_mod_base": ["x0", "x1"],
+      "identity_coordinates": [0, 0, 0, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "complement_class": 1,
+      "centralizer_dimension": 6,
+      "base_relation_count": 38,
+      "base_groebner_basis": ["x2", "x3+x1+x0", "x4+x0", "x5+1", "x1*x0+x0*x1", "x1^2+x0*x1+x0^2"],
+      "collision_remainders_mod_base": ["x0", "x1"],
+      "identity_coordinates": [0, 0, 0, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "complement_class": 2,
+      "centralizer_dimension": 8,
+      "base_relation_count": 52,
+      "base_groebner_basis": ["x0+1", "x1", "x4", "x5+x3", "x6+x2", "x7+1", "x3*x2+x2*x3", "x3^2+x2*x3+x2^2"],
+      "collision_remainders_mod_base": ["x2", "x3"],
+      "identity_coordinates": [1, 0, 0, 0, 0, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "complement_class": 3,
+      "centralizer_dimension": 6,
+      "base_relation_count": 38,
+      "base_groebner_basis": ["x2+x1+x0+1", "x3+x0+1", "x4+x1", "x5+1", "x1*x0+x0*x1", "x1^2+x0*x1+x0^2+x1+1"],
+      "collision_remainders_mod_base": ["x1", "x1+x0+1"],
+      "identity_coordinates": [1, 0, 0, 0, 0, 1],
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "complement_class": 4,
+      "centralizer_dimension": 8,
+      "base_relation_count": 55,
+      "base_groebner_basis": ["x0+1", "x1", "x2", "x4", "x6+x5", "x7+1", "x5*x3+x3*x5", "x5^2+x3*x5+x3^2"],
+      "collision_remainders_mod_base": ["x3", "x5"],
+      "identity_coordinates": [1, 0, 0, 0, 0, 0, 0, 1],
+      "identity_forced": true
+    }
+  ]
+}

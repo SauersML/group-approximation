@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-09",
+  "status": "written deductions and finite checks; no universal solution",
+  "new_cairn_nodes": 17,
+  "cairn_check": {
+    "status": "ok",
+    "findings": [],
+    "claims": 93,
+    "routes": 87,
+    "dead_work": [],
+    "detached_tops": [],
+    "newly_dead": [],
+    "newly_detached": [],
+    "unlocked": {
+      "established": [],
+      "refuted": [],
+      "last_missing": [],
+      "invalidated": [],
+      "plan_cost": []
+    },
+    "compose_hints": [],
+    "outputs_written": true
+  },
+  "goal_statuses": {
+    "fpbs-fixed-price-universal": "OPEN",
+    "fpbs-benjamini-schramm-universal": "OPEN",
+    "fpbs-cap-construction-target": "OPEN",
+    "fpbs-cap-hyperfinite-barrier": "ESTABLISHED",
+    "fpbs-cap-adaptive-repair": "ESTABLISHED"
+  },
+  "mathematical_review": "Not independently refereed or formally verified. All new infinite arguments are in the proof note; computational checks are finite only.",
+  "inherited_material": "Retained as provenance, not comprehensively re-audited in this continuation.",
+  "finite_check_status": "passed",
+  "sha256": {
+    "fixed-price-connector-capacity.md": "aec455eca0f37d198012b97bbd07a93ebfbe1c94da62beea54994ab740d1aac7",
+    "fixed-price-connector-capacity-checks.json": "9a5eb9102fb83910e64f591f17819a0938e0bdf2ccdbe6b9cfeab33f68bdded1",
+    "replay_connector_capacity.py": "f006bf44648cdd3c1c5e8b180e7fd542d6fad1e544ca1dd84d241b06f280f5c1"
+  }
+}

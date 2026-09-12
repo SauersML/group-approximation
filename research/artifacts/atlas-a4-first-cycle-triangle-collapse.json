@@ -1,0 +1,19 @@
+{
+  "A4_vertex_image_order": 1,
+  "F_image_order": 6,
+  "H_image_order": 6,
+  "J_image_order": 6,
+  "J_original_order": 288,
+  "P_order": 6,
+  "generator_image_orders": {
+    "c": 2,
+    "r": 1,
+    "t": 1,
+    "u": 1,
+    "z": 3
+  },
+  "gersten_stallings_angles": ["pi/2", "pi/2", "pi/3"],
+  "gersten_stallings_angle_sum": "4pi/3",
+  "lower_bound_quotient": "S3=<z,c>",
+  "method": "GAP 4.14 exact Todd-Coxeter upper bound plus explicit S3 lower quotient"
+}

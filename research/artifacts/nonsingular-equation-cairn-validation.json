@@ -1,0 +1,61 @@
+{
+  "cairn": {
+    "check_command": "bin/cairn check --changed --json",
+    "claims": 7183,
+    "findings": [],
+    "node_statuses": {
+      "kervaire-laudenbach-holds-for-mf": "ESTABLISHED",
+      "kervaire-laudenbach-nonsingular-conjecture": "OPEN",
+      "nonsingular-adjunction-preserves-approximation-radicals": "ESTABLISHED",
+      "nonsingular-equations-preserve-matrix-certificates": "ESTABLISHED"
+    },
+    "preview_duplicate_warnings": [],
+    "preview_status": "ok",
+    "routes": 7331,
+    "scope": "Graph consistency and declared proof dependencies; not formal mathematical verification.",
+    "status": "ok"
+  },
+  "exact_replay": {
+    "checks": {
+      "distinct_power_roots": 988,
+      "false_commutative_simplifications_detected": 12,
+      "new_variable_solution_maps_compared": 2,
+      "noncommuting_root_packets": 12,
+      "power_degree_cases": 32,
+      "regular_off_diagonal_planes": 4908,
+      "singular_equation_trial_roots_rejected": 4
+    },
+    "compare_report_passed": true,
+    "path": "research/artifacts/nonsingular-equation-replay.json",
+    "status": "pass"
+  },
+  "formal_verification": "not performed",
+  "major_open_problem_solved": false,
+  "proof_milestone_commit": "284018a0e9db344113b65b7c38d515d79623322c",
+  "remaining_step": "Exclude a nontrivial coefficient kernel inside Rad_MF(G) intersect Rad_hyp(G), or exhibit a verified nonsingular counterexample identity.",
+  "schema_version": 1,
+  "source_sha256": {
+    "experiments/flexible_hs_metric_audit.py": "1676cb0309e5ecd78815dc83c8baf7bf8d7f47cc2b6be283fa44e1a75dc332ee",
+    "experiments/nonsingular_equation_audit.py": "f85b51f4ba3c959a061aa61e3eb56ef077601df6f130c8b02be50e364889e017",
+    "experiments/test_nonsingular_equation_audit.py": "f97a6143032c99adf37af3b612466d47b2a55c5b6ca4eaf0fc80322f9a38b6e5",
+    "research/artifacts/nonsingular-equations-and-approximation-radicals.md": "3c23ee11dec7c6d5d314d8332a8fc93814c8f44fe88ae3314b57c8dcbed46e8e",
+    "research/kervaire-laudenbach-holds-for-mf.md": "53d3fe452fe8065c287c51ac2189d47a00a11ebb64328dff7f892b27f2d2cd7c",
+    "research/kervaire-laudenbach-mf-overgroup-proof.md": "2478b57bebf049cb4045acd8325698cdc0dfa5281d3b7ce04d4417a9e9b111a5",
+    "research/nonsingular-adjunction-preserves-approximation-radicals.md": "848469ec3d30e8d5e3a4b1912f9c44aa4b0920b827f0f7ce2b0d142011f0391f",
+    "research/nonsingular-equations-preserve-matrix-certificates.md": "54d3ef9560b55fbbabed4114ef3018b10fd61108120f32a86dc5493836015e2b",
+    "research/nonsingular-matrix-certificate-conservation-proof.md": "7c3276250a2125c8f745eb738d779cd9396458b3ecb810842be07267fc60e2f7",
+    "research/nonsingular-radical-conservation-proof.md": "7b2cb9964e1e44fea98ad5bca0a1132327d4c436d29cb60e837358ce0389d318"
+  },
+  "status": "pass",
+  "unit_tests": {
+    "command": "python -m unittest discover -s experiments -p 'test_nonsingular_equation_audit.py' -v",
+    "status": "pass",
+    "tests_run": 6
+  },
+  "validation_worktree_base": "284018a0e9db344113b65b7c38d515d79623322c",
+  "wolfram": {
+    "error": "HTTP 404 before computation",
+    "status": "unavailable",
+    "used_as_proof_evidence": false
+  }
+}

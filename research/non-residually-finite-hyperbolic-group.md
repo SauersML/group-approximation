@@ -1,0 +1,142 @@
+---
+rg: 2
+id: non-residually-finite-hyperbolic-group
+kind: claim
+title: A word-hyperbolic group that is not residually finite
+root: true
+distinct_from:
+  oyakawa-graph-wreath-rf-iff-acting-group-rf: that is an established equivalence inside one construction, saying that a residual finiteness failure there is always inherited from the acting group; this is the open existence question that construction was hoped to settle, and the equivalence is precisely why it does not
+  persistent-degree-two-class-on-hyperbolic-group: that is the cohomological input to one of the four live routes, a statement about classes and finite-index subgroups of a group already known to be residually finite; this is the counterexample target itself, which three other routes reach without any cohomology
+  exact-stably-finite-non-mf-reduced-group-algebra: that is a proved C-star statement about the quotient witness W — exact, stably finite, not MF; this is an open group-theoretic existence question about hyperbolic groups and their finite quotients, and no operator algebra appears in it
+  nonsofic-hyperbolic-group: that claim demands a hyperbolic group that is not sofic, which is strictly stronger — non-soficity implies failure of residual finiteness, but this claim is also satisfied by a group that is sofic and not residually finite, which is exactly the shape of this repository's own literal group E
+artifacts:
+  - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
+  - research/artifacts/periodic-higman-cofinite-spectrum-2026-09-04.md
+  - research/artifacts/periodic-higman-all-primes-2026-09-05.md
+  - notes/HYPERBOLIC_FINITE_RESIDUAL_REDUCTION_2026-09-07.md
+---
+
+Produce a word-hyperbolic group that is not residually finite, or prove that
+none exists.
+
+This is the long-standing question usually attributed to Gromov.  It remains
+open in the primary sources rechecked on 2026-09-07: Cui--Wan,
+arXiv:2604.04007 (5 April 2026), say in their
+§1.2 that residual finiteness of every hyperbolic group is still an open
+conjecture.  None of the constructions recorded below changes that status.
+
+## Why it sits in this program
+
+Two of this program's objects sit directly above and below it.
+
+Above: `nonsofic-hyperbolic-group`.  A non-sofic group is never residually
+finite, so a non-sofic hyperbolic group settles this claim as a corollary
+(`non-rf-hyperbolic-from-nonsofic-hyperbolic`).  That is the *only* logical
+traffic between the two, and it runs one way.  The graph carries the weaker
+demand separately because three of the four live attacks below reach it
+without saying anything about soficity, and because the converse fails —
+this repository's own literal group `E` is sofic and not residually finite
+(`literal-group-sofic`, `literal-mark-quotient-finite-residual`), so a
+non-residually-finite hyperbolic group need not be a second non-soficity
+mechanism.
+
+Below: nothing.  A resolution in the *positive* direction — every hyperbolic
+group is residually finite — would not close any hole in this graph either;
+it would remove `nonsofic-hyperbolic-group` as a Q3.4 candidate, since
+residually finite groups are sofic.
+
+## Attempts
+
+Four live routes, none of which this graph can yet walk:
+
+- `non-rf-hyperbolic-from-nonsofic-hyperbolic` — inherit it from a non-sofic
+  hyperbolic group.  Blocked exactly where `nonsofic-hyperbolic-group` is
+  blocked, i.e. on the Chapman--Peled estimate.
+- `non-rf-hyperbolic-via-relative-dehn-filling` — build the counterexample
+  *relatively* hyperbolic with residually finite peripherals and fill.  The
+  filling step is proved; the input claim
+  `non-rf-relatively-hyperbolic-with-rf-peripherals` is open and, by that very
+  reduction, is not easier than this one.
+- `non-rf-hyperbolic-via-persistent-central-extension` — a finite central
+  extension of a residually finite hyperbolic group whose class survives
+  restriction to every finite-index subgroup.  The criterion is classical and
+  established here (`finite-central-extension-rf-iff-virtually-splits`); the
+  cohomological input `persistent-degree-two-class-on-hyperbolic-group` is
+  open, and the nearest arithmetic sources push the other way.
+- `non-rf-hyperbolic-via-rips-kernel` — a hyperbolic Rips extension of a
+  non-residually-finite quotient whose kernel has no finite quotients.
+  Belegradek--Osin supply everything except the kernel condition, and that
+  condition is `rips-kernel-without-finite-quotients`, which is open and
+  adjacent to circularity.
+
+Four older attacks are recorded dead, each with its own route and its own
+obstruction: transplanting this program's finite-residual compression witness
+into a hyperbolic ambient group
+(`non-rf-hyperbolic-via-compression-transplant`), its free-lamp repair
+(`non-rf-hyperbolic-via-free-lamp-compression`), Oyakawa's hyperbolic
+graph-wreath products (`non-rf-hyperbolic-via-oyakawa-graph-wreath`), and
+routing a known non-residually-finite group through Hull's small-cancellation
+theorem (`non-rf-hyperbolic-via-hull-routing`).
+
+The periodic-Higman missing-period route is now dead as well.
+`periodic-higman-spectrum-contains-every-prime`, proved on 2026-09-05,
+puts every prime in the spectrum, refuting
+`periodic-higman-large-prime-period-gap` and invalidating
+`non-rf-hyperbolic-via-periodic-higman`. Every filling `G_m` with `m>=2`
+has a finite quotient detecting all four base generators. The proof uses
+explicit algebraic matrices, a primitive-divisor theorem, certified root
+bounds, exact resultants, and an order-two model in `PSL_2(5)`.
+
+An earlier shortcut had already failed:
+`periodic-higman-spectrum-contains-three` gives an exact
+`PSL_2(11)` certificate with period three, refuting
+`periodic-higman-spectrum-has-no-odd-primes` and invalidating
+`non-rf-hyperbolic-via-odd-period-exclusion`.  Borisov--Sapir's residual
+finiteness theorem for the *unfilled* injective free-group mapping torus is a
+second consistency check: the torsion filling is indispensable, not a
+cosmetic step.
+
+This root remains OPEN. The periodic-Higman missing-period premise is
+refuted. The finite quotients just constructed do not prove that these
+fillings are residually finite: separation of arbitrary nonidentity words
+is still unproved.
+
+The finite-kernel approach now has an exact scope:
+[[finite-kernel-nonrf-has-central-prime-reduction]] and
+[[finite-hyperbolic-residual-iff-persistent-class]] prove that it is
+equivalent to finding a hyperbolic group with finite nontrivial finite
+residual. The reduction isolates the invisible kernel before taking a
+prime quotient, and applies even when the original finite kernel is
+noncentral. This supplies no such group and no treatment of an arbitrary
+infinite residual. The full proof and the correction to the explanatory
+finite-index inclusion are recorded in the new artifact.
+
+**2026-09-11: this root and Lück's virtual torsion-freeness root are one
+question.** [[hyperbolic-rf-question-equals-vtf-question]] proves that a
+non-residually-finite hyperbolic group exists iff a non-virtually-torsion-free
+one does; a deep Dehn filling of a residual element of infinite order turns it
+into invisible torsion. The routes
+`non-vtf-hyperbolic-via-residual-cyclic-filling`,
+`non-rf-hyperbolic-from-non-vtf-hyperbolic`,
+`residual-prime-torsion-via-free-factor` and
+`non-rf-hyperbolic-from-residual-prime-torsion` record the equivalence cycle.
+The strongest equivalent shape is
+[[hyperbolic-group-trivial-radical-residual-prime-torsion]]: trivial finite
+radical, prime-order torsion in the finite residual, and hence a non-elementary
+finite residual. In particular, excluding persistent degree-two classes (the
+finite-residual shape above) would not settle this root: a free factor `Z`
+converts a finite residual into an infinite one.
+
+**2026-09-11 audit: the first three hyperbolic assertions are equivalent;
+the MF extension is unresolved.**
+[[hyperbolic-rf-vtf-kazhdan-equivalence]] proves that a non-residually-finite
+hyperbolic group exists iff a non-virtually-torsion-free one exists iff an
+infinite hyperbolic Kazhdan group without nontrivial finite quotients exists.
+A non-MF hyperbolic group would imply all three, because residually finite
+groups are MF. The former reverse implication used an unsupported passage
+from MF to weak quasidiagonality. Therefore
+[[hyperbolic-rf-question-equals-non-mf-question]] is an open four-way target,
+not an established extension of this equivalence. The full audited proofs
+and the exact MF gap are in
+`research/artifacts/hyperbolic-four-statements-audit-2026-09-11.md`.

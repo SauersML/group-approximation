@@ -1,0 +1,42 @@
+changed modules: 5
+AlgTop/BundleCalculusUnitSection.lean
+AlgTop/ComplexProjectivePuncture.lean
+GGT/VanKampen/Estimating/UnboundComponentSplit.lean
+GGT/VanKampen/Estimating/UnboundSmallMuCounterexample.lean
+Manuscript/OneSidedMFRadical/MFQuotientUnitsKappaResidue.lean
+== lake build GroupApproximation.AlgTop.BundleCalculusInvariant GroupApproximation.AlgTop.BundleCalculusModelBridge GroupApproximation.AlgTop.BundleCalculusProjection GroupApproximation.AlgTop.BundleCalculusPullback GroupApproximation.AlgTop.BundleCalculusTransport GroupApproximation.AlgTop.BundleCalculusUnitSection  [acn112 13:51:06]
+✖ [2972/2975] Building GroupApproximation.AlgTop.BundleCalculusTransport (26s)
+error: GroupApproximation/AlgTop/BundleCalculusTransport.lean:118:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/AlgTop/BundleCalculusTransport.lean:131:2: Type mismatch
+  murrayVonNeumannEquiv_of_path ?m.23 ?m.25
+has type
+  MurrayVonNeumannEquiv (?m.22 0) (?m.22 1)
+but is expected to have type
+  MurrayVonNeumannEquiv (P 0) (P 1)
+error: GroupApproximation/AlgTop/BundleCalculusTransport.lean:133:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.AlgTop.BundleCalculusTransport
+error: build failed
+LAKE_EXIT=1
+?? AXIOM CHECK VACUOUS: 0 'depends on axioms' lines in the log -- no #print axioms/#audit_axioms reached, so 'sorryAx: none' would prove NOTHING
+axiom lines seen: 0
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusInvariant.lean:
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusModelBridge.lean:
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusProjection.lean:
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusPullback.lean:
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusTransport.lean:
+-- axioms declared in GroupApproximation/AlgTop/BundleCalculusUnitSection.lean:
+-- per-target axiom section joins Lean MULTI-LINE axiom lists in full; the RAW remote log is still the authority
+sorryAx: none
+PROBE FAILED
+jobs line: 
+SENTINEL=0

@@ -1,0 +1,71 @@
+{
+  "experiment": "invertible-direction-schur-compiler",
+  "field_convention": "GF(2^n) in polynomial basis; hexadecimal values encode coefficient bit-vectors",
+  "result": "passed",
+  "records": [
+    {
+      "arity": 1,
+      "matrix_size": 2,
+      "modulus": "0x7",
+      "a0": "0x2",
+      "directions": ["0x1"],
+      "affine_values": ["0x2", "0x3"],
+      "reciprocals": ["0x3", "0x2"],
+      "reciprocal_rank": 2,
+      "truth_tables_verified": 4,
+      "spin_dimension": 4,
+      "derivative_ranks": [2],
+      "search_trials": 1
+    },
+    {
+      "arity": 2,
+      "matrix_size": 4,
+      "modulus": "0x13",
+      "a0": "0xc",
+      "directions": ["0xa", "0xd"],
+      "affine_values": ["0xc", "0x1", "0x6", "0xb"],
+      "reciprocals": ["0xa", "0x1", "0x7", "0x5"],
+      "reciprocal_rank": 4,
+      "truth_tables_verified": 16,
+      "spin_dimension": 16,
+      "derivative_ranks": [4, 4],
+      "search_trials": 2
+    },
+    {
+      "arity": 3,
+      "matrix_size": 8,
+      "modulus": "0x11b",
+      "a0": "0xa0",
+      "directions": ["0xf", "0xf7", "0x4e"],
+      "affine_values": ["0xa0", "0xee", "0x57", "0x19", "0xaf", "0xe1", "0x58", "0x16"],
+      "reciprocals": ["0xfb", "0x1e", "0xbf", "0x3f", "0x62", "0xd", "0x18", "0x60"],
+      "reciprocal_rank": 8,
+      "truth_tables_verified": 256,
+      "spin_dimension": 256,
+      "derivative_ranks": [8, 8, 8],
+      "search_trials": 3
+    },
+    {
+      "arity": 4,
+      "matrix_size": 16,
+      "modulus": "0x1100b",
+      "a0": "0x6e8d",
+      "directions": ["0x762", "0x932e", "0xb0eb", "0x2ce6"],
+      "affine_values": ["0x6e8d", "0x426b", "0xde66", "0xf280", "0xfda3", "0xd145", "0x4d48", "0x61ae", "0x69ef", "0x4509", "0xd904", "0xf5e2", "0xfac1", "0xd627", "0x4a2a", "0x66cc"],
+      "reciprocals": ["0x6a29", "0xf1bb", "0x38cd", "0x8a72", "0x588d", "0xa724", "0x5628", "0x2f46", "0x2c83", "0xaa9", "0x496a", "0x612a", "0x1dfb", "0x423b", "0x8864", "0x2ae3"],
+      "reciprocal_rank": 16,
+      "truth_tables_verified": 65536,
+      "spin_dimension": 65536,
+      "derivative_ranks": [16, 16, 16, 16],
+      "search_trials": 3
+    }
+  ],
+  "remote": {
+    "node": "acn116",
+    "partition": "sioux",
+    "python_module": "python3/3.12.4_anaconda2024.06-1_libmamba",
+    "elapsed_seconds": 0.66,
+    "peak_rss_kb": 15900,
+    "shared_output": "/projects/standard/hsiehph/sauer354/cairn-signal/invertible-direction-schur.json"
+  }
+}

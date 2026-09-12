@@ -1,0 +1,79 @@
+{
+  "order_bound_exclusive": 10000000,
+  "forced_order_divisor": 2880,
+  "complete_simple_target_count": 15,
+  "containment_census": [
+    ["A8", 20160, 0, 0],
+    ["PSL(3,4)", 20160, 2, 0],
+    ["O(5,3)", 25920, 0, 0],
+    ["M12", 95040, 0, 0],
+    ["A9", 181440, 0, 0],
+    ["PSL(2,64)", 262080, 0, 0],
+    ["M22", 443520, 2, 0],
+    ["HJ", 604800, 0, 0],
+    ["O(5,4)", 979200, 0, 0],
+    ["O(7,2)", 1451520, 0, 1],
+    ["A10", 1814400, 0, 0],
+    ["PSU(4,3)", 3265920, 2, 0],
+    ["O(5,5)", 4680000, 0, 0],
+    ["PSL(4,3)", 6065280, 0, 0],
+    ["PSL(5,2)", 9999360, 2, 0]
+  ],
+  "containment_columns": [
+    "simple_group",
+    "order",
+    "Q_mod_center_embedding_classes",
+    "Q_embedding_classes"
+  ],
+  "marked_collision_census_per_marking": [
+    {
+      "simple_group": "PSL(3,4)",
+      "Q_image_order": 960,
+      "embedding_classes": 2,
+      "normalizer_indices": [24, 24],
+      "centralizer_order_histogram": [[1, 48]],
+      "collision_candidates": 0
+    },
+    {
+      "simple_group": "M22",
+      "Q_image_order": 960,
+      "embedding_classes": 2,
+      "normalizer_indices": [12, 24],
+      "centralizer_order_histogram": [[2, 36]],
+      "collision_candidates": 0
+    },
+    {
+      "simple_group": "O(7,2)",
+      "Q_image_order": 1920,
+      "embedding_classes": 1,
+      "normalizer_indices": [4],
+      "centralizer_order_histogram": [[4, 2], [12, 2]],
+      "collision_candidates": 0
+    },
+    {
+      "simple_group": "PSU(4,3)",
+      "Q_image_order": 960,
+      "embedding_classes": 2,
+      "normalizer_indices": [24, 24],
+      "centralizer_order_histogram": [[3, 48]],
+      "collision_candidates": 0
+    },
+    {
+      "simple_group": "PSL(5,2)",
+      "Q_image_order": 960,
+      "embedding_classes": 2,
+      "normalizer_indices": [4, 4],
+      "centralizer_order_histogram": [[6, 8]],
+      "collision_candidates": 0
+    }
+  ],
+  "marking_count": 2,
+  "collision_equations": [
+    "c^2=1",
+    "[c,r]=1",
+    "[c,u]=1",
+    "(c*t)^3=1",
+    "t*c*s*c*t^-1*c*s*t*c=1"
+  ],
+  "result": "no marked collision candidate in any eligible simple host below 10^7"
+}

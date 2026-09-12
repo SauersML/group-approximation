@@ -1,0 +1,35 @@
+{
+  "group_order": 8192,
+  "positive_character_fiber": 4096,
+  "negative_character_fiber": 4096,
+  "positive_nonidentity_elements": 4095,
+  "positive_nonidentity_conjugacy_classes": 511,
+  "class_size_distribution": {
+    "1": 15,
+    "2": 152,
+    "4": 128,
+    "8": 24,
+    "16": 192
+  },
+  "normal_closure_size_distribution": {
+    "2": 15,
+    "4": 152,
+    "8": 128,
+    "16": 24,
+    "32": 192
+  },
+  "classes_hitting_an_internal_root": 480,
+  "shortest_internal_root_normal_word_length_distribution": {
+    "1": 10,
+    "2": 470
+  },
+  "classes_missing_every_internal_root": 31,
+  "missed_class_and_closure_size_distribution": {
+    "1,2": 11,
+    "2,4": 16,
+    "4,8": 4
+  },
+  "msi_job": 17032181,
+  "msi_cpus": 1,
+  "arithmetic": "exact F2 bit-packed matrices"
+}

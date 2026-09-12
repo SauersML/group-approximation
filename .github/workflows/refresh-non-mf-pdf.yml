@@ -1,0 +1,137 @@
+# Keep the committed PDF in step with the source, always.
+#
+# The attested pipeline in `build-non-mf-pdf.yml` is the publication gate: it
+# runs the full checks and produces a signed, attested artifact, and it starts
+# only after Lean Prover CI has accepted the exact source revision.  That is the
+# right shape for a release and the wrong shape for a working copy -- Prover CI
+# takes hours, so between manuscript pushes the committed PDF drifts behind the
+# TeX and a reader of the repository sees a document that no longer exists.
+#
+# This workflow closes that window.  It rebuilds and commits the PDF on every
+# push that touches the manuscript, with no gates and no attestation, and the
+# commit says so.  It cannot loop: the path filter watches the TeX, and the
+# commit it makes touches only the PDF.
+name: Refresh non-MF PDF
+
+# 2026-08-17: the push trigger moved to draft-non-mf-pdf.yml, which is the
+# single fast path -- it never cancels an in-flight build, publishes through
+# publish_pdf_commit.py's unchanged-source guard, and a quarter-hour schedule
+# heals any lost build.  Running both workflows per tex push made them race
+# each other's PDF commit: this workflow's rebase retry hits a binary merge
+# conflict on the PDF whenever the draft workflow lands first, and the loser
+# fails loudly while doubling load on starved runners.  Keep this workflow
+# dispatch-only, for rebuilding on demand.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# One refresh at a time, and the newest source wins: an in-flight build of a
+# superseded revision is worth nothing.
+concurrency:
+  group: refresh-non-mf-pdf
+  cancel-in-progress: true
+
+env:
+  TEX_FILE: non_mf_groups_exist.tex
+  PDF_FILE: non_mf_groups_exist.pdf
+  # TeX Live 2025, pinned by digest, and deliberately NOT the 2026 image the
+  # attested release uses.  Two independent reasons, both measured:
+  #   1. On 2026, tagpdf aborts at \tableofcontents with
+  #      "tag \l__tag_name_sec/10000_tl is not known", then feeds that
+  #      unexpanded name into \directlua and dies on "invalid escape sequence
+  #      near ''\l'".  Fatal, no output PDF.  The same source compiles clean
+  #      on 2025 with tagging on.
+  #   2. Rendering page two of three builds: 2025 with tagging on is clean;
+  #      2026 prints every section number on top of the first letter of its
+  #      title.
+  # Do not "unify" this with the release image without re-rendering the
+  # contents page.  This pin has now been reverted twice by whole-tree
+  # commits, and each revert left the committed PDF stale for hours.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
+
+jobs:
+  refresh:
+    name: Rebuild the committed PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+
+      - name: Build the PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build && mkdir -p build
+          # Pin the timestamp to the source commit so an unchanged manuscript
+          # rebuilds to an unchanged file and produces no commit.
+          source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          docker run --rm \
+            -e SOURCE_DATE_EPOCH="$source_epoch" \
+            -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
+            -v "$GITHUB_WORKSPACE:/work" -w /work \
+            "$TEXLIVE_IMAGE" \
+            bash -euo pipefail -c '
+              latexmk -lualatex -outdir=build -interaction=nonstopmode \
+                -halt-on-error -file-line-error "$1"
+            ' _ "$TEX_FILE"
+          test -s "build/${PDF_FILE}"
+
+      - name: Refuse a PDF with unresolved references
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="build/${TEX_FILE%.tex}.log"
+          if grep -q 'LaTeX Warning: There were undefined references' "$log"; then
+            echo "::error::the build left undefined references; not committing"
+            grep -n 'undefined' "$log" | head -20
+            exit 1
+          fi
+
+      - name: Commit it if it changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "build/${PDF_FILE}" "${PDF_FILE}"
+          if git diff --quiet -- "${PDF_FILE}"; then
+            echo "PDF already current; nothing to commit"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${PDF_FILE}"
+          git commit \
+            -m "build: refresh non-MF PDF (draft; unattested)" \
+            -m "Rebuilt from ${GITHUB_SHA} by the refresh workflow, so the committed PDF matches the committed source.  No gates and no attestation ran: the signed artifact still comes from the attested release pipeline."
+          # Another session may have pushed while we built.  Never rebase a
+          # binary across the race -- it can only conflict.  The PDF is a
+          # derived file and the newest source always wins: if the tex moved,
+          # this build is already stale and the draft workflow's schedule
+          # will heal it; if only other files moved, re-seat this build's PDF
+          # on the new tip and push again.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "pushed on attempt ${attempt}"
+              exit 0
+            fi
+            git fetch origin main
+            if ! git diff --quiet HEAD origin/main -- "${TEX_FILE}"; then
+              echo "tex moved on origin; abandoning this stale PDF build"
+              exit 0
+            fi
+            git reset --hard origin/main
+            cp "build/${PDF_FILE}" "${PDF_FILE}"
+            if git diff --quiet -- "${PDF_FILE}"; then
+              echo "tip already carries this PDF; nothing to push"
+              exit 0
+            fi
+            git add "${PDF_FILE}"
+            git commit \
+              -m "build: refresh non-MF PDF (draft; unattested)" \
+              -m "Rebuilt from ${GITHUB_SHA}; re-seated on the moved tip, whose ${TEX_FILE} is identical."
+          done
+          echo "::error::could not push the refreshed PDF after five attempts"
+          exit 1

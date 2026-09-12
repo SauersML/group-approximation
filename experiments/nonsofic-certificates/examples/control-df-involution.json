@@ -1,0 +1,7 @@
+{
+  "type": "kaplansky-df",
+  "expect": "FAIL",
+  "note": "Control: [u][u] = 1 on both sides, so no direct-finiteness failure.",
+  "alpha": ["@u"],
+  "beta": ["@u"]
+}

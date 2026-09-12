@@ -1,0 +1,15 @@
+{
+  "exact_solutions": 1,
+  "inner_conjugators_scanned": 20160,
+  "link_refuted_by_inner_conjugator": false,
+  "solutions": [
+    {
+      "is_identity": true,
+      "max_word_linear_energy": 0,
+      "sum_linear_energy": 0,
+      "t_hex": "01000000000100000000010000000001",
+      "words_with_nonzero_linear": 0
+    }
+  ],
+  "words": 234
+}

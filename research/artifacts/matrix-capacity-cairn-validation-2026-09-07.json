@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "scope": "Full graph compilation and artifact/reference lint; duplicate checks on the four touched nodes.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "leavitt-matrix-amplification-in-unit-group-algebra": "ESTABLISHED",
+    "leavitt-unit-group-algebra-not-directly-finite": "OPEN",
+    "lifted-trace-bounds-unital-matrix-parts": "ESTABLISHED",
+    "lifted-trace-matrix-divisibility-proof": "COMPLETE"
+  },
+  "elapsed_seconds": 14.772
+}

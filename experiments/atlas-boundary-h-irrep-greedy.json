@@ -1,0 +1,230 @@
+{
+  "field": "Q",
+  "boundary_relations": 234,
+  "unique_group_elements_in_derivatives": 127,
+  "selected_s8_partitions": 12,
+  "union_greedy_certificate_indices": [
+    0,
+    11,
+    30,
+    44,
+    55
+  ],
+  "union_greedy_certificate_size": 5,
+  "covers_every_a8_irrep": true,
+  "records": [
+    {
+      "partition": [
+        8
+      ],
+      "dimension": 1,
+      "boundary_kernel_dimension": 1,
+      "h_fixed_dimension": 1,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [],
+      "greedy_certificate_size": 0
+    },
+    {
+      "partition": [
+        7,
+        1
+      ],
+      "dimension": 7,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        0
+      ],
+      "greedy_certificate_size": 2
+    },
+    {
+      "partition": [
+        6,
+        2
+      ],
+      "dimension": 20,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        44,
+        30,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        6,
+        1,
+        1
+      ],
+      "dimension": 21,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        0
+      ],
+      "greedy_certificate_size": 2
+    },
+    {
+      "partition": [
+        5,
+        3
+      ],
+      "dimension": 28,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        0
+      ],
+      "greedy_certificate_size": 2
+    },
+    {
+      "partition": [
+        5,
+        2,
+        1
+      ],
+      "dimension": 64,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        44,
+        30,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        5,
+        1,
+        1,
+        1
+      ],
+      "dimension": 35,
+      "boundary_kernel_dimension": 1,
+      "h_fixed_dimension": 1,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        44,
+        30,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        4,
+        4
+      ],
+      "dimension": 14,
+      "boundary_kernel_dimension": 2,
+      "h_fixed_dimension": 2,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        30,
+        44,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        4,
+        3,
+        1
+      ],
+      "dimension": 70,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        44,
+        30,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        4,
+        2,
+        2
+      ],
+      "dimension": 56,
+      "boundary_kernel_dimension": 1,
+      "h_fixed_dimension": 1,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        44,
+        30,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        4,
+        2,
+        1,
+        1
+      ],
+      "dimension": 90,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        44,
+        30,
+        55
+      ],
+      "greedy_certificate_size": 4
+    },
+    {
+      "partition": [
+        3,
+        3,
+        2
+      ],
+      "dimension": 42,
+      "boundary_kernel_dimension": 0,
+      "h_fixed_dimension": 0,
+      "h_variation_rank_on_boundary_kernel": 0,
+      "kernels_equal": true,
+      "greedy_certificate_indices": [
+        11,
+        0
+      ],
+      "greedy_certificate_size": 2
+    }
+  ],
+  "all_boundary_kernels_are_h_fixed": true,
+  "all_boundary_kernels_equal_h_fixed_spaces": true
+}

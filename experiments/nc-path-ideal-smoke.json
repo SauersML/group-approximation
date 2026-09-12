@@ -1,0 +1,15 @@
+{
+  "generators": ["x", "y", "z"],
+  "relations": {
+    "r": [
+      ["1", ["x", "y"]],
+      ["-1", []]
+    ]
+  },
+  "target": [
+    ["1", ["z", "x", "y"]],
+    ["-1", ["z"]]
+  ],
+  "max_degree": 3,
+  "expected_certificate": "z * r"
+}

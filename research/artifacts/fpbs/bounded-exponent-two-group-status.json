@@ -1,0 +1,18 @@
+{
+ "status": "ok",
+ "id": "fpbs-bounded-exponent-two-groups-fixed-price",
+ "kind": "claim",
+ "node_status": "ESTABLISHED",
+ "why": [
+  "fpbs-bounded-exponent-two-groups-fixed-price [ESTABLISHED via fpbs-held-subgroup-transfer-fixed-price-proof] \u2014 Every countably infinite bounded-exponent 2-group has fixed price one",
+  "derivation:",
+  "  fpbs-bounded-exponent-two-groups-fixed-price \u2713 via fpbs-held-subgroup-transfer-fixed-price-proof",
+  "    fpbs-held-infinite-abelian-two-subgroup-input \u2713 via fpbs-held-original-theorem-reference  (direct proof)",
+  "    fpbs-bounded-exponent-subgroup-relative-cost \u2713 via fpbs-centralizer-saturation-first-return-proof",
+  "      fpbs-first-return-torsion-detours \u2713 via fpbs-first-return-paid-repair-proof",
+  "        fpbs-finite-partition-derandomization \u2713 via fpbs-finite-partition-coloring-proof  (direct proof)",
+  "      fpbs-centralizer-cheap-extension \u2713 via fpbs-centralizer-transversal-proof",
+  "        fpbs-finite-partition-derandomization \u2713 via fpbs-finite-partition-coloring-proof  (direct proof)",
+  "    fpbs-finite-locally-finite-cost-input \u2713 via fpbs-finite-tree-telescoping-cost-proof  (direct proof)"
+ ]
+}

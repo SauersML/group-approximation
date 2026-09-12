@@ -1,0 +1,310 @@
+# Conditional findings of `scripts/sentence_census.py --verify-unconditional`
+# that are known and written up.  One line per accepted finding:
+#
+#     <detector> <declaration>  -- why it is accepted
+#
+# This register is not a budget.  A finding not listed here fails the gate, and
+# a line here that matches nothing fails it too -- so a discharged item cannot
+# be left behind to license its own return.  There is no count anywhere in the
+# mechanism, so there is no number a reviewer can raise instead of discharging
+# the debt.
+#
+# It is the companion of metadata/NON_MF_UNCONDITIONAL_BASELINE.txt, which
+# registers the same kind of finding on the badge surface.  Two registers
+# because they are two surfaces: the badge gate classifies the declarations the
+# manuscript cites in `\leanverified`, and this one classifies the much larger
+# set the sentence map names.  Sharing one file would make "stale" ambiguous.
+#
+# Opened 2026-08-30 by census-lane for issue #53, with every finding of the day
+# listed, so that the two-status split lands without changing pass or fail and
+# the interesting event -- a NEW conditional row -- fails from that day.
+#
+# Extended the same day, when two blind spots in `classify` were closed at once:
+# a cited CARRIER (a `structure` or a `def ... : Prop` named as the thing that
+# proves a sentence) was never classified at all, because `classify` reads
+# premises and a carrier has none; and a REFUTATION was registered as a producer
+# of the name it refutes, so proving a citation false made it read as available.
+# The nine findings the two fixes uncovered are listed below.  None of them is a
+# new defect in the manuscript -- they were always there, and the gate could not
+# see them.
+#
+# ---------------------------------------------------------------------------
+# REMOVED 2026-09-07 (lead-authorized): this section registered twelve
+# `PrintedFournierFacioData`/commutator-in-defect declarations, all conditional
+# on the same cited FFF package.  Every one of them is now stale: verified for
+# each that its only citing map row(s) are themselves orphaned (stale overlay
+# keys, matching no live sentence -- `lem:commutator-in-defect` is no longer a
+# printed environment, folded into `thm:torsion-free`'s proof).  One,
+# `PrintedFournierFacioData.conjFactor_def`, is still cited by a LIVE row
+# (`02b6bf87400f`, "Put S=tJt^{-1}."), but `--verify-unconditional` reports no
+# finding for it regardless -- checked directly, not assumed -- so a line for
+# it would itself be stale.  Flagged to the lead rather than silently
+# resolved: worth checking whether `conjFactor_def`'s signature changed to no
+# longer take `PrintedFournierFacioData` as a hypothesis the classifier scans.
+#
+# ---------------------------------------------------------------------------
+# REMOVED 2026-09-07 (lead-authorized): this section registered
+# `conditional-debt` findings for `TheoremC.kazhdan_map_coreRange`,
+# `TheoremC.manuscriptWitnessCommutatorInDefect`, and
+# `TheoremC.manuscriptTorsionFreeFullMFRadical` -- all `LiteratureInputs`- or
+# `Configuration`-conditional, inhabited only through the three placeholders
+# -- `sorry`s -- at `TheoremCDebts.lean`.  All three are now stale: their only citing map rows
+# (`e77f50531f0f`, `51799cd48a23`, `907cd2df4f8a`) are themselves orphaned
+# (stale overlay keys, no live sentence -- the whole `lem:commutator-in-defect`
+# passage they narrate is gone from the tex).  Note the underlying situation
+# has NOT improved: `TheoremCDebts.lean` no longer exists,
+# `TheoremCAssembly.lean` inherited its four `sorry`s -- and
+# `--verify-unconditional` reports no finding at all for
+# `manuscriptTorsionFreeFullMFRadical` any more -- a confirmed blind spot in
+# `classify` after a file rename, not a fix, flagged to the lead. These three
+# declarations are removed here purely because nothing live cites them any
+# more, not because they became sound.
+#
+# ---------------------------------------------------------------------------
+# open-predicate: pre-existing, and the only finding this gate reported before
+# 2026-08-30.
+open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdan  -- premise is the corpus predicate HSVanishes on every OpAlmostRepresentation, which nothing produces
+#
+# ---------------------------------------------------------------------------
+# carrier-data: the row names a Prop or structure nothing produces, ALONGSIDE
+# the theorem that carries the sentence.
+#
+# `classify` cannot tell those two citations apart, and the conservative
+# reading is the right default: a row whose ONLY citation is an unproduced
+# carrier claims more than the kernel holds.  Each row below also cites the
+# theorem named in its line, which is what actually proves the printed
+# sentence, so the carrier is vocabulary and not the claim.  A line goes when
+# its row stops naming the carrier, or when the carrier acquires a producer.
+carrier-data GroupApproximation.IsStronglyOperatorMF  -- tex row 837b7cffa562 also cites not_isStronglyOperatorMF_of_not_isOperatorMF, which proves the printed sentence; nothing produces a strongly-operator-MF datum and the sentence says so
+carrier-data GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishes  -- tex row c36b6021a802 also cites manuscriptCompressionDefectHSInvisible; HSVanishes is the vocabulary the sentence introduces, and the same predicate is registered above as an open-predicate premise of manuscriptPrintedNormalKazhdan
+#
+# ---------------------------------------------------------------------------
+# carrier-debt: the same shape, where the carrier IS produced but only through
+# `sorry`.  Strictly worse than carrier-data -- an undischarged carrier is
+# visibly a citation, and this one reads as settled -- so each line names the
+# debt it waits on.
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): carrier-debt GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.HullQuotientNG
+# REMOVED 2026-09-07 (lead-authorized): `TheoremC.PrintedTorsionFreeFullMFRadical`
+# was registered here, cited only by tex row `907cd2df4f8a`.  That row is now
+# a stale overlay key (no live sentence matches it), so the line matches
+# nothing and is removed; see the `conditional-debt` section above for the
+# same row's other citation and the blind-spot note.
+#
+# ---------------------------------------------------------------------------
+# open-predicate: uncovered by the refutation fix.  `IsStronglyOperatorMF` used
+# to count as discharged because `not_isStronglyOperatorMF_of_not_isOperatorMF`
+# -- a proof that a group does NOT satisfy it -- registered as a producer.
+open-predicate GroupApproximation.IsStronglyOperatorMF.isOperatorMF  -- the projection's premise is the strong-convergence datum itself, which nothing produces; the row's assertion is carried by the refutation, not by this projection
+#
+# ---------------------------------------------------------------------------
+# Opened 2026-09-07 by census-lane, lead-approved (the lead pre-approved these
+# exact citations for thm:full-defect-ring and its two corollaries, over the
+# single printed Ershov--Jaikin-Zapirain citation
+# FinitelyGeneratedRingGeneralRankElementaryPropertyT, with the
+# PrimeCharUnconditional siblings unconditional).  No lines are needed here,
+# though: while drafting this register, `--verify-unconditional` stopped
+# reporting any finding at all for the four `...FromEJZ` declarations,
+# apparently because `PropertyT/IntegralColumnPlaneClosure.lean`'s
+# `finitelyGeneratedRingGeneralRankElementaryPropertyT` (commit 343a1c4a4,
+# "Prove the Ershov--Jaikin-Zapirain theorem in every characteristic") is a
+# hypothesis-free -- and free of the placeholder tactic in that file and its
+# two direct dependencies, not independently audited further -- producer of
+# the premise.  If that holds
+# up under `#audit_closed_axioms` and CI, thm:full-defect-ring and its
+# corollaries are no longer conditional at all and belong in
+# `scripts/regenerate_non_mf_claim_manifest.py`'s `EXACT_TARGETS` once badged
+# -- see notes/nonmf-lane-reports/census.md.  Flagged to the lead rather than
+# acted on here: this lane found it in a shared, concurrently-edited tree by
+# `classify` going quiet, not by auditing the proof, and `classify` has at
+# least one known blind spot already (see the removed
+# `TheoremC.manuscriptTorsionFreeFullMFRadical` line above).
+#
+# thm:torsion-free and cor:relative-quotient, along the printed proof
+# (TorsionFreePrintedTheorem.lean, TorsionFreeRelativeQuotient.lean), are
+# conditional on the manuscript's own cited literature: Fournier-Facio's
+# construction (Section 2) and Hull's Theorem 7.1 with Osin's Lemma 7.1
+# (both packaged as closed Props the manuscript cites, not reductions this
+# repository is closing), and cor:relative-quotient additionally on Hull's
+# common quotient theorem (Corollary 7.4).
+#
+# cor:regular-nonmf-algebra, along the printed proof
+# (Manuscript/NonMF/RegularNonMFAlgebra.lean), adds two more citations on top
+# of the FournierFacioParagraph/HullPrintedInputs pair above: Dahmani-
+# Guirardel-Osin's Theorem 2.35 and Gerasimova-Osin's Theorem 1.1, both
+# packaged as closed Props the manuscript cites.
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra
+#
+# thm:mf-quotient-units, along the printed proof (Manuscript/OneSidedMFRadical/
+# MFQuotientUnits.lean), is conditional on four Props quoted from Ara-
+# Goodearl-Pardo's Theorem 2.4 and Corollary 1.7 (the corner-matrix reduction,
+# the K_1 surjection with kernel [H,H], the Menal-Moncasi elementary
+# reduction, and the first step of the AGP argument) -- literature citations,
+# not reductions this repository is closing.  A fifth finding under the same
+# detector, the generic hypothesis IsPurelyInfiniteSimpleRing R reached
+# through PrintedMFQuotientUnits, is the theorem's own quantifier and not an
+# additional external input; the one line below covers all five since
+# matching is by (detector, declaration) pair.  thm:full-defect-ring's own
+# rank-two premise this theorem also takes is NOT conditional -- it is
+# unconditionally closed and classify() does not flag it.
+#
+# The sentence-level carriers of thm:mf-quotient-units's printed proof
+# (Manuscript/OneSidedMFRadical/MFQuotientUnitsSentences.lean, ring-b-alg
+# lane) are conditional on the same four Ara-Goodearl-Pardo Props, one
+# sentence at a time; each also reaches IsPurelyInfiniteSimpleRing R through
+# PrintedMFQuotientUnits, the theorem's own quantifier and not an additional
+# input, same shape as printedMFQuotientUnits_of_agp above.
+#
+# thm-e's sentence-level carriers of thm:torsion-free/cor:relative-quotient/
+# cor:regular-nonmf-algebra's printed proofs
+# (Manuscript/NonMF/TorsionFreePrintedSentences.lean), one citation of each
+# already-registered literature Prop, one sentence at a time.
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraSimpleUniqueTraceStableRank
+#
+# `manuscriptSentence_theoremQuotientTrivial` takes "every homomorphism from Q
+# to an MF group is trivial" as an explicit inline premise rather than a named
+# Prop -- classify() reads this as a suspicious inlined statement, but the
+# census row that cites this declaration also cites
+# `manuscriptSentence_theoremHomsTrivial` (the immediately preceding printed
+# sentence), which proves exactly that premise unconditionally.  The
+# modularization is internal to this lane's proof, not an external citation;
+# accepted as such.
+inlined-statement GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial  -- premise "every homomorphism from Q to an MF group is trivial" is proved unconditionally by the sibling carrier manuscriptSentence_theoremHomsTrivial, cited in the same census row; internal proof modularization, not an external citation
+#
+# quant-collapse's sentence-level carriers of prop:linear-collapse's printed
+# proof (Manuscript/OneSidedMFRadical/QuantitativeCollapseSentences.lean) take
+# the proposition's own printed hypothesis, "every homomorphism from G to an
+# MF group is trivial", as an explicit inline binder rather than a named
+# Prop -- classify() reads this as a suspicious inlined statement, but it is
+# the sentence's own printed premise, carried forward exactly as printed, not
+# an external citation.  Per the lane: unconditional proof-modularization,
+# gated by #audit_axioms rather than #audit_closed_axioms because the
+# hypothesis is a genuine printed binder, not a stand-in for an unproved step.
+#
+# cor:leavitt-mf-quotient's general-d clause (Manuscript/OneSidedMFRadical/
+# LeavittMFQuotientGeneral.lean, rank-four lane) is conditional on
+# PrintedKhanhThanhCommutatorInElementary k d, deliberately weaker than the
+# printed Khanh-Thanh citation (GL_d(R)=EL_d(R).D_d(k)): it states only
+# commutator(GL_d(R)) <= elementaryGroup (Fin d) R.  The other two
+# inclusions (Theorem B at rank d, and the countable-abelian-implies-MF
+# step) are unconditional.
+#
+# ---------------------------------------------------------------------------
+# Added 2026-09-11 by the census lane of the non-MF verbatim swarm (lead session
+# nonsofic-existence-41).  These four findings were already failing this gate on
+# main at f643c96ea (--verify-unconditional: 4 new) because the rows citing them
+# landed without register lines.  Each row is graded `partial`, never formalized,
+# and each debt has an owner lane working to discharge it by PROOF (user order:
+# no literature inputs ever).  A line goes the day its carrier gets a closed producer.
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarWNotNuclear_of_quotient
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): carrier-data GroupApproximation.LeavittKOneScalar.PrintedKhanhThanhDiagonalDecomposition
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): open-predicate GroupApproximation.LeavittKOneScalar.scalarSurjective_of_khanhThanh
+# REMOVED 2026-09-11 by the census merge (stale: matches no finding at origin; the premise gained a producer or its row stopped naming it): conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra
+carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.Configuration  -- row dab2f2bfe084 (partial since the 2026-09-11 strength audit; it was graded definition off this structure): "G_0 is obtained there as a common quotient ... by Hull's theorem [Corollary 7.4]"; Configuration is produced only through declarations resting on TheoremCAssembly's open admissions; owners simple-group, hull-*
+#
+# ---------------------------------------------------------------------------
+# Added 2026-09-11 by lane go-lemma42 for the census merge of the swarm's rows (lead session
+# nonsofic-existence-41).  The merged rows grade the Section 5 statements and proof sentences over the
+# declarations that carry them today.  Every finding below sits on a row graded `partial` (one exception,
+# marked, is a printed hypothesis on a `formalized` row), and every missing clause has an owner lane proving
+# it (user order: no literature inputs ever).  A line goes the day its premise gets a closed producer or its
+# row stops naming the declaration.
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.PrintedTorsionFreeTheorem  -- rows 0f22bdbc4184 (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeTheorem_of_leastAreaLeaves  -- rows 0f22bdbc4184 (partial): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeTheorem_of_leastAreaLeaves  -- rows 0f22bdbc4184 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeTheorem_of_leastAreaLeaves  -- rows 0f22bdbc4184 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.PrintedTorsionFreeTheoremOsin  -- rows 0f22bdbc4184 (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptTorsionFreeTheoremOsin_of_leastAreaLeaves  -- rows 0f22bdbc4184 (partial): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptTorsionFreeTheoremOsin_of_leastAreaLeaves  -- rows 0f22bdbc4184 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptTorsionFreeTheoremOsin_of_leastAreaLeaves  -- rows 0f22bdbc4184 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheorem_of_hullLeaves  -- rows 0f22bdbc4184 (partial): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheorem_of_hullLeaves  -- rows 0f22bdbc4184 (partial): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheorem_of_hullLeaves  -- rows 0f22bdbc4184 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheoremOsin_of_hullLeaves  -- rows 0f22bdbc4184 (partial): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheoremOsin_of_hullLeaves  -- rows 0f22bdbc4184 (partial): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheoremOsin_of_hullLeaves  -- rows 0f22bdbc4184 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.manuscriptRegularNonMFAlgebra_of_leastAreaLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.manuscriptRegularNonMFAlgebra_of_leastAreaLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.manuscriptRegularNonMFAlgebra_of_leastAreaLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptRegularNonMFAlgebraOsin_of_leastAreaLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptRegularNonMFAlgebraOsin_of_leastAreaLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptRegularNonMFAlgebraOsin_of_leastAreaLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebra_of_hullLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebra_of_hullLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebra_of_hullLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.manuscriptSentence_cornerPassesUp  -- row a4b5b1a0504a (formalized): the premise FullDefectPair (Corner R p hp) is the printed hypothesis of the sentence itself ("if the ring pRp, with unit p, satisfies the hypothesis"), carried exactly as printed; not a citation
+conditional-debt GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves  -- rows 8aead549f1fe 4895f03fdf5f bcc99703f838 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+buried-conditional GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves  -- rows 8aead549f1fe 4895f03fdf5f bcc99703f838 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+conditional-debt GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves  -- rows 8aead549f1fe 4895f03fdf5f bcc99703f838 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+buried-conditional GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves  -- rows 8aead549f1fe 4895f03fdf5f bcc99703f838 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+conditional-debt GroupApproximation.HullSC.hullInputsCorrected_of_quasiGeodesicLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+buried-conditional GroupApproximation.HullSC.hullInputsCorrected_of_quasiGeodesicLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.PrintedHullSmallCancellationCurrent  -- rows 8aead549f1fe 4895f03fdf5f (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedGeneral.printedHullSmallCancellationCurrent_of_lemma44_of_lemma49  -- rows 8aead549f1fe 4895f03fdf5f (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheorem_of_leastAreaLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheorem_of_leastAreaLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.PrintedHullSmallCancellationOsin  -- rows 8aead549f1fe 4895f03fdf5f (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheoremOsin_of_leastAreaLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheoremOsin_of_leastAreaLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.PrintedHullSmallCancellationLimitSet  -- rows 8aead549f1fe 4895f03fdf5f (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptHullTheoremLimitSet_of_leastAreaLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptHullTheoremLimitSet_of_leastAreaLeaves  -- rows 8aead549f1fe 4895f03fdf5f (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_oneStep  -- rows bcc99703f838 (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullInductionOnTargetsGeneral_of_oneStep  -- rows bcc99703f838 (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_leastAreaLeaves  -- rows bcc99703f838 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_leastAreaLeaves  -- rows bcc99703f838 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullInductionOnTargetsGeneral_of_leastAreaLeaves  -- rows bcc99703f838 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullInductionOnTargetsGeneral_of_leastAreaLeaves  -- rows bcc99703f838 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.HullSC.hullTowerGeneral_of_oneStep  -- rows bcc99703f838 (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_hullKernelRemark  -- rows bcc99703f838 (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.printedSaturationNoOmega_of_leastAreaLeaves  -- rows 2f55113239ce (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.printedSaturationNoOmega_of_leastAreaLeaves  -- rows 2f55113239ce (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptSaturationOsin_of_leastAreaLeaves  -- rows 2f55113239ce (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptSaturationOsin_of_leastAreaLeaves  -- rows 2f55113239ce (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+carrier-data GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.PrintedSaturationLimitSet  -- rows 2f55113239ce (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptSaturationLimitSet_of_leastAreaLeaves  -- rows 2f55113239ce (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptSaturationLimitSet_of_leastAreaLeaves  -- rows 2f55113239ce (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationPairAndHullAgain_of_leaves  -- rows 2d1cd22e5f49 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationPairAndHullAgain_of_leaves  -- rows 2d1cd22e5f49 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea.manuscriptSentence_saturationPairAndHullAgain_of_leastAreaLeaves  -- rows 2d1cd22e5f49 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea.manuscriptSentence_saturationPairAndHullAgain_of_leastAreaLeaves  -- rows 2d1cd22e5f49 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationApplyHullNoOmega_of_leaves  -- rows 2f997e5af4e6 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationApplyHullNoOmega_of_leaves  -- rows 2f997e5af4e6 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea.manuscriptSentence_saturationApplyHullNoOmega_of_leastAreaLeaves  -- rows 2f997e5af4e6 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea.manuscriptSentence_saturationApplyHullNoOmega_of_leastAreaLeaves  -- rows 2f997e5af4e6 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves  -- rows 8097c371f35d (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves  -- rows 8097c371f35d (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.GGT.RelHyp.osin24HullStep_of_boundedLeaves  -- rows 8097c371f35d (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.GGT.RelHyp.osin24HullStep_of_boundedLeaves  -- rows 8097c371f35d (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.GGT.RelHyp.osin24HullStep_of_boundedLeaves  -- rows 8097c371f35d (partial): Hull's Lemma 4.4 and one-step quotient statements, produced only from the open Theorem 7.1 leaves; owners hull-respell, hull-bridge, sec5-sentences
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.FournierFacioParagraph  -- rows 8097c371f35d (partial): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.fournierFacioParagraph_of_literatureInputs  -- rows 8097c371f35d (partial): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion
+# REMOVED by the census merge at 83abbbdb4 (stale: matches no finding): open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.fournierFacioParagraph_of_literatureInputs
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.fournierFacioParagraph_of_leastAreaLeaves  -- rows 8097c371f35d (partial): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.fournierFacioParagraph_of_leastAreaLeaves  -- rows 8097c371f35d (partial): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.fournierFacioParagraph_of_leastAreaLeaves  -- rows 8097c371f35d (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves  -- rows 8097c371f35d (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves  -- rows 8097c371f35d (partial): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves  -- rows 8097c371f35d (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_theoremApplySaturationNoOmega_of_leaves  -- rows 721da4c14d11 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_theoremApplySaturationNoOmega_of_leaves  -- rows 721da4c14d11 (partial): the historical quasi-geodesic leaves of Hull Theorem 7.1 (EstimatingUnboundOutputStatement is refuted on main, and no producer exists for the old bridge), cited beside the least-area route that replaces them; owners hull-select, hull-unbound, hull-bridge, hull-respell, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea.manuscriptSentence_theoremApplySaturationNoOmega_of_leastAreaLeaves  -- rows 721da4c14d11 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea.manuscriptSentence_theoremApplySaturationNoOmega_of_leastAreaLeaves  -- rows 721da4c14d11 (partial): over the two least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.PrintedRegularNonMFAlgebra  -- rows 7b1fa3182135 8b1ec28a0e73 (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+carrier-debt GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.PrintedRegularNonMFAlgebraOsin  -- rows 7b1fa3182135 8b1ec28a0e73 (partial): the printed statement named as vocabulary beside the leaf-conditional producers the rows cite; it is produced only through the open Hull 7.1 and FFF S2 leaves; owners sec5-sentences, hull-*, simple-group, kh-*
+open-predicate GroupApproximation.ReducedGroupCStarTrace.powersAveragingEstimate_of_naiveFreeProductProperty  -- row f2bf6328169e (partial until GerasimovaOsinTheorem11Closed compiles): an intermediate lemma cited beside the closed endpoint dgoTheorem235Printed; NaiveFreeProductProperty G is the group property that NaiveFreeProductAtAcylindricallyHyperbolicProof establishes at acylindrically hyperbolic groups; owners dgo-analytic, dgo-geometric, go-sr1
+#
+# Added by the census merge at a04e741f2 (lane go-lemma42, lead session nonsofic-existence-41): every line sits on a row graded partial, except a printed hypothesis where the line says so; a line goes the day its premise gets a closed producer or its row stops naming the declaration.
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): over the least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement and its letter pullback), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): over the least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement and its letter pullback), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+open-predicate GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraLimitSet_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): FFF S2 needs a finitely presented torsion-free infinite simple group (FinitelyPresentedInfiniteSimpleStatement, Hyde-Lodha), not yet produced; owner simple-group
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraLimitSet_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): Fournier-Facio's G_0 is fed by TheoremC.KotowskiOllivierStatement (a torsion-free hyperbolic property-(T) group), not yet produced; owners kh-hyperbolic, kh-torsion
+buried-conditional GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraLimitSet_of_hullLeaves_closedGO  -- rows dce7a9ff4e83 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): over the least-area leaves of Hull Theorem 7.1 (RelativeGreendlingerQuasiGeodesicLeastAreaStatement, RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement and its letter pullback), not yet produced; owners hull-select, hull-unbound, hull-bridge, sec5-sentences
+conditional-debt GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_closedCitations  -- rows 7b1fa3182135 8b1ec28a0e73 (census merge a04e741f2): the Fournier-Facio paragraph (FFF S2) is produced only through TheoremCAssembly's open admissions until KotowskiOllivierStatement and FinitelyPresentedInfiniteSimpleStatement are proved; owners simple-group, kh-hyperbolic, kh-torsion

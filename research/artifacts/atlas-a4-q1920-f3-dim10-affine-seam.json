@@ -1,0 +1,61 @@
+{
+  "field": 3,
+  "marked_module": {
+    "marking": 1,
+    "module_index": 6,
+    "dimension": 10,
+    "Q_image_order": 1920,
+    "A_fixed_dimension": 3,
+    "End_A_dimension": 19
+  },
+  "groebner_basis": [
+    "v0^2 - 1",
+    "x0 + 1",
+    "x1",
+    "x2",
+    "x3",
+    "x4",
+    "x5",
+    "x6",
+    "x7",
+    "x8 - 1",
+    "x9",
+    "x10",
+    "x11",
+    "x12",
+    "x13",
+    "x14",
+    "x15",
+    "x16",
+    "x17",
+    "x18",
+    "v1",
+    "v2"
+  ],
+  "collision_involution": [
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 0, 0, 0, 0, 2, 0],
+    [0, 0, 0, 0, 2, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 2, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 2, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+  ],
+  "translation_vector": [1, 1, 0, 2, 1, 2, 0, 2, 0, 0],
+  "verified": {
+    "all_reduced_seam_relators": true,
+    "c_nonidentity": true,
+    "z_nonidentity": true,
+    "Q_order": 1920,
+    "F_order": 36,
+    "J_order": 24,
+    "linear_completion_order": 30720,
+    "affine_completion_order": 1813985280,
+    "forward_subgroup_r_z_b_order": 324
+  },
+  "missing_full_packet_relator": "(z*b)^3=1",
+  "full_forward_vertex_order_required": 144
+}

@@ -1,0 +1,118 @@
+{
+  "status": "ok",
+  "scope": "Independent written audits of the actual literal-column LEF construction, dual-boundary argument, full finite-dimensional residual, and finite generation. Sparse binary replay of even-cycle identities, every reduced word through length seven in both charts, and coefficient covariance and separation. No exponentially large permutation matrices are constructed. Native Cairn validation uses frozen prior snapshots plus a current scoped overlay; it is not a mathematical kernel check or a clean audit of the entire current shared worktree. The full non-MF objective and unrestricted matrix gap remain open.",
+  "algebra_replay": {
+    "status": "PASS",
+    "exact_checks": 16157,
+    "even_cycles": [
+      {
+        "n": 8,
+        "binary_dimension": 16,
+        "first_commutator_defect_rank": 2,
+        "second_commutator_defect_rank": 4,
+        "r_squared_exact": true,
+        "second_relation_exact": true
+      },
+      {
+        "n": 16,
+        "binary_dimension": 32,
+        "first_commutator_defect_rank": 2,
+        "second_commutator_defect_rank": 4,
+        "r_squared_exact": true,
+        "second_relation_exact": true
+      },
+      {
+        "n": 32,
+        "binary_dimension": 64,
+        "first_commutator_defect_rank": 2,
+        "second_commutator_defect_rank": 4,
+        "r_squared_exact": true,
+        "second_relation_exact": true
+      }
+    ],
+    "patch_replay": {
+      "n": 20,
+      "max_word_length": 7,
+      "words": 382,
+      "starting_vectors_per_word": 40
+    },
+    "column_evaluations": [
+      {
+        "n": 16,
+        "inspected_columns": 4,
+        "test_space_dimension": 32,
+        "image_rank": 32,
+        "mark_nonzero": true
+      },
+      {
+        "n": 32,
+        "inspected_columns": 8,
+        "test_space_dimension": 32,
+        "image_rank": 32,
+        "mark_nonzero": true
+      }
+    ]
+  },
+  "nodes": {
+    "jacobson-literal-column-normalizer-is-lef": "ESTABLISHED",
+    "jacobson-even-cycle-dual-patches-and-column-evaluations-proof": "COMPLETE",
+    "jacobson-whole-column-normalizer-has-marked-lef-models": "ESTABLISHED",
+    "jacobson-column-first-actor-quotient-retains-full-column": "ESTABLISHED",
+    "jacobson-coherent-group-is-an-ascending-corner-extension": "ESTABLISHED",
+    "jacobson-coherent-matrix-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-coherent-gap": "OPEN",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN"
+  },
+  "prerequisites": {
+    "jacobson-even-cycle-dual-patches-and-column-evaluations-proof": [
+      "jacobson-whole-column-normalizer-has-marked-lef-models",
+      "jacobson-coherent-group-is-an-ascending-corner-extension"
+    ],
+    "property-t-free-existence-via-jacobson-coherent-gap": [
+      "jacobson-coherent-quotient-has-four-word-gap-criterion",
+      "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy",
+      "jacobson-coherent-matrix-gap"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "source_sha256": {
+    "research/artifacts/jacobson-coherent-group-is-an-ascending-corner-extension-2026-09-08.md": "e36ede121fd96eb85a599ebced547929a05cd6eb465d2b2d0e268cc3a0bc3284",
+    "research/artifacts/jacobson-literal-column-normalizer-is-lef-2026-09-08.md": "92b03a03c9c35d66cf0a204729ffb806cb3baccf7edd10c6c9f9b39fb3b34fac",
+    "research/artifacts/jacobson-recursive-head-dies-in-amenable-targets-2026-09-08.md": "3c82e5942fab2b51a12fd331097c13c85aa25b38c360d6ecc1bbac641e80f0e2",
+    "research/jacobson-coherent-group-is-an-ascending-corner-extension.md": "9a40e01a13b3123006bd4e8624b1ebb0198b97bca0869d3c2b6177598ea605d5",
+    "research/jacobson-coherent-matrix-gap.md": "98293f4ff785489bf93aeb5231de41eff52fc081ead9934b406ad4f3b9c66796",
+    "research/jacobson-column-first-actor-quotient-retains-full-column.md": "d257e8e80d67aea2edf34d01915b95da47170283d120e1207fa623564a83fde2",
+    "research/jacobson-even-cycle-dual-patches-and-column-evaluations-proof.md": "0db95a7628e1b54345413ea71a5ebdad2492f954c146bc0e85d713314d0fd8f1",
+    "research/jacobson-literal-column-normalizer-is-lef.md": "5971e58e3abda6e9450fd4967e38017a1a7786a2518949a0c73083a26888529f",
+    "research/jacobson-whole-column-normalizer-has-marked-lef-models.md": "5cac93ac1b3940cac09509142718d16289c32633bf3278009d24ff1e2339631b",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "f9064cd2e79ecf496e217fb3d36314b4738048613ba795bf1b56aa638defeb0d",
+    "research/property-t-free-existence-via-jacobson-coherent-gap.md": "f0442c43edb2016dc19de3312e5ebbf782c740964dc4b1d52f5b3fa41aaf33ad",
+    "scratchpad/nonmf-literal-column-validation-20260908.py": "155ff98676364344d9045e674cef9503f8f9671fea28839066178bdcf7ef2b79",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "source_archives": [
+    {
+      "path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-column-source.tar",
+      "sha256": "17eee7875e2f36581a2bf290888aff7d704838721b3dfedf8966ac6317eeedbd"
+    },
+    {
+      "path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-column-relator-overlay.tar",
+      "sha256": "d690058177c5db2727c9e69ad3c7c90ecf13b6a27d7285876f4ab1ba3d518375"
+    },
+    {
+      "path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-literal-column-overlay.tar",
+      "sha256": "205e771893df6173b489751b526d7df21f7437edb3bcb900d210dfd7e5529b7d"
+    }
+  ],
+  "validator_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/tools/validate_nonmf_literal_column_20260908.py",
+  "validator_sha256": "155ff98676364344d9045e674cef9503f8f9671fea28839066178bdcf7ef2b79",
+  "broader_findings_count": 1635,
+  "broader_findings_by_kind": {
+    "artifact": 1635
+  },
+  "broader_findings_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-literal-column-broader-findings-2026-09-08.json",
+  "broader_findings_sha256": "9eae69a24c3fe0bbc21f6268dc94670a2c378fc600da03cfdda780557456b6f4",
+  "elapsed_seconds": 4.293
+}

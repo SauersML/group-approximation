@@ -1,0 +1,67 @@
+{
+  "four_leaf_code": [
+    "00",
+    "01",
+    "10",
+    "11"
+  ],
+  "raw_scalar_terms": [
+    "000 000*",
+    "001 11*",
+    "01 01*",
+    "10 10*",
+    "11 001*"
+  ],
+  "comb_scalar_terms": [
+    "000 00*",
+    "001 111*",
+    "010 01*",
+    "011 1101*",
+    "100 10*",
+    "101 11001*",
+    "11 11000*"
+  ],
+  "projection_certificates": {
+    "hard_pair": "class 11, forward rotation 0",
+    "maximum_word_depth": 6,
+    "ambient_expansion_terms": 210,
+    "generated_span_rank": 77,
+    "p_11": [
+      "q",
+      "l",
+      "q*",
+      "l*",
+      "q q*",
+      "l q",
+      "q* l",
+      "q* l*",
+      "l* q",
+      "l* l",
+      "q* l q",
+      "q* l* q",
+      "q* l* l",
+      "l* l q",
+      "q* l* l q"
+    ],
+    "p_001": [
+      "l* l",
+      "q* q* l* l",
+      "l* l q q",
+      "q* q* l* l q q"
+    ]
+  },
+  "partial_isometries": {
+    "a0_formula": "u* p_11",
+    "a0_reduced": "11000 11*",
+    "a1_formula": "u* p_001 r p_11",
+    "a1_reduced": "111 11*"
+  },
+  "verified_identities": [
+    "a0* a0 = p_11",
+    "a0 a0* = p_11000",
+    "a1* a1 = p_11",
+    "a1 a1* = p_111",
+    "p_11000 p_111 = p_111 p_11000 = 0"
+  ],
+  "properly_infinite_projection": "p_11"
+}

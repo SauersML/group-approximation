@@ -1,0 +1,185 @@
+import GroupApproximation.GGT.VanKampen.CactusRealization
+import GroupApproximation.GGT.VanKampen.RelativeCactus
+import GroupApproximation.GGT.HullSCRelativeGreendlingerStatement
+
+/-!
+# Relative disc realizations
+
+This file states the generic realization object for a
+`HullSC.RelativeReducedDiagram`.  It includes an equivalence between the
+algebraic cells and the relator cells of a planar diagram, equality of every
+cell word, equality of the outer word, and diagram reducedness.
+
+For the reduced diagrams coming from Hull's oriented least-area construction,
+the explicit cactus proves all four fields.  The common input now includes the
+nonempty-relator field forced by `FaceBoundary.nonempty`, so the same cactus
+also proves the unrestricted generic statement.
+-/
+
+namespace GroupApproximation
+namespace GGT
+namespace VanKampen
+
+open GroupApproximation.HullSC
+
+universe u w
+
+/-- A planar realization of a common relative reduced diagram, with its
+algebraic and planar relator cells identified in order. -/
+structure RelativeDiscRealization
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda))) {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) where
+  diagram : DiscDiagram.{u, w, 0} W
+  cellIndex : Fin Z.cells.length ≃ Fin diagram.rCellCount
+  cellWord_eq : ∀ i : Fin Z.cells.length,
+    (diagram.relatorCells.get (cellIndex i)).word = (Z.cells.get i).relator
+  outerWord_eq : diagram.boundaryWord =
+    Z.boundaryWord.map
+      (GGT.RelLetter.base : G → GGT.RelLetter G Lambda)
+  reduced : diagram.Reduced
+
+/-- The generic realization statement for the common reduced-diagram input. -/
+def RelativeDiscRealizationStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    (W : Set (List (GGT.RelLetter G Lambda))) (R : ℕ)
+    (Z : RelativeReducedDiagram D W R),
+    Nonempty (RelativeDiscRealization D W Z)
+
+namespace RelativeDiscRealization
+
+/-- The shared cactus supplies a realization for every generic reduced input. -/
+noncomputable def of_generic
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) :
+    RelativeDiscRealization D W Z where
+  diagram := HullSC.RelativeReducedDiagram.cactusDiscDiagram Z
+  cellIndex := HullSC.RelativeReducedDiagram.cellIndexEquiv Z
+  cellWord_eq := HullSC.RelativeReducedDiagram.cellIndexEquiv_word Z
+  outerWord_eq := HullSC.RelativeReducedDiagram.cactusDiscDiagram_boundaryWord Z
+  reduced := HullSC.RelativeReducedDiagram.cactusDiscDiagram_reduced Z
+
+/-- Every algebraic cell represented by a planar relator face has a nonempty
+relator word. -/
+theorem cellRelator_ne_nil
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    {Z : RelativeReducedDiagram D W R}
+    (_C : RelativeDiscRealization D W Z) (i : Fin Z.cells.length) :
+    (Z.cells.get i).relator ≠ [] := by
+  exact Z.cell_relator_ne_nil i
+
+/-- An algebraic diagram containing an empty relator cell has no realization
+with a one-to-one planar relator-cell correspondence. -/
+theorem not_nonempty_of_empty_cell
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    {Z : RelativeReducedDiagram D W R}
+    (i : Fin Z.cells.length) (hi : (Z.cells.get i).relator = []) :
+    ¬ Nonempty (RelativeDiscRealization D W Z) := by
+  rintro ⟨C⟩
+  exact C.cellRelator_ne_nil i hi
+
+theorem exists_of_generic
+    {G : Type u} [Group G] {Lambda : Type w}
+    {D : GGT.RelGenSet G Lambda}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : RelativeReducedDiagram D W R) :
+    Nonempty (RelativeDiscRealization D W Z) :=
+  ⟨of_generic Z⟩
+
+end RelativeDiscRealization
+
+end VanKampen
+end GGT
+
+namespace HullSC
+namespace Lemma44OrientedRelatorDiagram
+
+open GGT.VanKampen
+
+/-- The cell indices of an oriented algebraic diagram and its cactus relator
+cells are canonically equivalent by their common finite index. -/
+def cactusCellIndexEquiv
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R) :
+    Fin Z.cells.length ≃ Fin Z.cactusDiscDiagram.rCellCount where
+  toFun i := ⟨i, by
+    change i.val < Z.cactusRelatorCells.length
+    rw [HullSC.Lemma44OrientedRelatorDiagram.cactusRelatorCells,
+      List.length_ofFn]
+    exact i.isLt⟩
+  invFun j := ⟨j, by
+    have hj : j.val < Z.cactusRelatorCells.length := j.isLt
+    rw [HullSC.Lemma44OrientedRelatorDiagram.cactusRelatorCells,
+      List.length_ofFn] at hj
+    exact hj⟩
+  left_inv i := by apply Fin.ext; rfl
+  right_inv j := by apply Fin.ext; rfl
+
+/-- The cactus cell at the canonical index has the corresponding algebraic
+relator word. -/
+theorem cactusCellIndexEquiv_word
+    {G : Type u} [Group G] {Lambda : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram A W R)
+    (i : Fin Z.cells.length) :
+    (Z.cactusDiscDiagram.relatorCells.get
+      (Z.cactusCellIndexEquiv i)).word = (Z.cells.get i).relator := by
+  change ((List.ofFn fun j : Fin Z.cells.length ↦
+    Z.cactusRelatorCell j).get (Z.cactusCellIndexEquiv i)).word = _
+  rw [List.get_ofFn]
+  change (Z.cellAt _).relator = (Z.cellAt i).relator
+  apply congrArg HullSC.Lemma44OrientedRelatorCell.relator
+  apply congrArg Z.cellAt
+  apply Fin.ext
+  rfl
+
+/-- The cactus realizes the common relative reduced diagram obtained from an
+oriented least-area Hull diagram. -/
+noncomputable def relativeDiscRealization
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram D.alphabet W R) :
+    RelativeDiscRealization D W (Z.toRelativeReducedDiagram D) where
+  diagram := Z.cactusDiscDiagram
+  cellIndex := Z.cactusCellIndexEquiv
+  cellWord_eq := Z.cactusCellIndexEquiv_word
+  outerWord_eq := Z.cactusDiscDiagram_boundaryWord
+  reduced := Z.cactusRealization.reduced
+
+end Lemma44OrientedRelatorDiagram
+end HullSC
+
+namespace GGT
+namespace VanKampen
+
+/-- Every common relative reduced diagram has the explicit planar cactus
+realization, with one relator face per algebraic cell. -/
+theorem relativeDiscRealizationStatement : RelativeDiscRealizationStatement := by
+  intro G _ Lambda D W R Z
+  exact RelativeDiscRealization.exists_of_generic Z
+
+/-- Every common relative diagram produced by Hull's oriented least-area
+construction has the required planar realization. -/
+theorem relativeDiscRealization_of_oriented
+    {G : Type u} [Group G] {Lambda : Type w}
+    (D : GGT.RelGenSet G Lambda)
+    {W : Set (List (GGT.RelLetter G Lambda))} {R : ℕ}
+    (Z : HullSC.Lemma44OrientedRelatorDiagram D.alphabet W R) :
+    Nonempty (RelativeDiscRealization D W (Z.toRelativeReducedDiagram D)) :=
+  ⟨Z.relativeDiscRealization D⟩
+
+end VanKampen
+end GGT
+end GroupApproximation

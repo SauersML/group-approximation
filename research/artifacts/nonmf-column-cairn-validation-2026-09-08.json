@@ -1,0 +1,130 @@
+{
+  "status": "ok",
+  "scope": "Independent written audits of the elementary linear LEF construction, exact finite-dimensional residual and finite-generation proofs, explicit missing actor relation, and faithful quotient corona model with no coordinate base-commutant lift. Remote exact binary linear windows, Jacobson ring word, and packed SL3(F4) coset/phase replay. Native Cairn parsing, scoped reference/artifact lint, exact prerequisites, compiled statuses, duplicate and cycle checks. Both unrestricted matrix gaps and the full non-MF objective remain open. This is not Lean kernel verification or a clean whole-workspace audit.",
+  "algebra_replay": {
+    "status": "PASS",
+    "exact_checks": 364209,
+    "linear_windows": [
+      {
+        "n": 2,
+        "test_dimension": 8,
+        "model_dimension_over_F2": 11,
+        "actor_r_squared_defect_rank": 0,
+        "mark_nonzero": true
+      },
+      {
+        "n": 3,
+        "test_dimension": 18,
+        "model_dimension_over_F2": 22,
+        "actor_r_squared_defect_rank": 0,
+        "mark_nonzero": true
+      },
+      {
+        "n": 4,
+        "test_dimension": 32,
+        "model_dimension_over_F2": 37,
+        "actor_r_squared_defect_rank": 0,
+        "mark_nonzero": true
+      },
+      {
+        "n": 5,
+        "test_dimension": 50,
+        "model_dimension_over_F2": 56,
+        "actor_r_squared_defect_rank": 0,
+        "mark_nonzero": true
+      },
+      {
+        "n": 6,
+        "test_dimension": 72,
+        "model_dimension_over_F2": 79,
+        "actor_r_squared_defect_rank": 0,
+        "mark_nonzero": true
+      }
+    ],
+    "finite_field": {
+      "order": 4,
+      "SL3_order": 60480,
+      "constant_group_order": 168,
+      "cosets": 360,
+      "radius": 2,
+      "degree_histogram": {
+        "168": 360
+      },
+      "distance_histogram": {
+        "0": 1,
+        "1": 168,
+        "2": 191
+      }
+    },
+    "scope": "Finite binary linear actions, literal ring word, and packed SL3(F4) coset/phase labels. Infinite-sequence and residual assertions are written audited proofs; no uniform marked matrix gap is proved."
+  },
+  "nodes": {
+    "jacobson-whole-column-normalizer-has-marked-lef-models": "ESTABLISHED",
+    "jacobson-finite-linear-extension-models-proof": "COMPLETE",
+    "jacobson-corona-centralizer-does-not-lift-to-base-commutants": "ESTABLISHED",
+    "jacobson-finite-field-coset-phase-proof": "COMPLETE",
+    "jacobson-coherent-group-is-an-ascending-corner-extension": "ESTABLISHED",
+    "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy": "ESTABLISHED",
+    "jacobson-shift-literal-quotient-is-laurent-times-z": "ESTABLISHED",
+    "jacobson-coherent-matrix-gap": "OPEN",
+    "property-t-free-existence-via-jacobson-coherent-gap": "OPEN",
+    "jacobson-shift-mixed-gap": "OPEN",
+    "nonhyperlinear-property-t-free-explicit-mf-witness": "OPEN"
+  },
+  "prerequisites": {
+    "jacobson-finite-linear-extension-models-proof": [],
+    "jacobson-finite-field-coset-phase-proof": [
+      "jacobson-coherent-group-is-an-ascending-corner-extension",
+      "jacobson-shift-literal-quotient-is-laurent-times-z",
+      "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy"
+    ],
+    "property-t-free-existence-via-jacobson-coherent-gap": [
+      "jacobson-coherent-quotient-has-four-word-gap-criterion",
+      "jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy",
+      "jacobson-coherent-matrix-gap"
+    ]
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicates": [],
+  "broader_findings_count": 1637,
+  "broader_findings_by_kind": {
+    "artifact": 1637
+  },
+  "broader_findings_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/nonmf-column-broader-findings-2026-09-08.json",
+  "broader_findings_sha256": "3dfc270719dc72f8826c809ed0c05f41c0d4a68c12ab8c3baf31203d254086dc",
+  "source_sha256": {
+    "notes/PROPERTY_T_FREE_CONTEXT_ENERGY_2026-09-07.md": "ce348d8a52fdf1a68d47312d6291f74d0bc273e45e3a24824de9f0f78b9970ed",
+    "research/artifacts/jacobson-coherent-group-is-an-ascending-corner-extension-2026-09-08.md": "e36ede121fd96eb85a599ebced547929a05cd6eb465d2b2d0e268cc3a0bc3284",
+    "research/artifacts/jacobson-coherent-quotient-and-four-word-matrix-gap-2026-09-08.md": "7c9cc211ad15e5ab58d9cc656c47fb4f98120e2943fa9689435d4f0c2355e0a3",
+    "research/artifacts/jacobson-coherent-quotient-is-the-faithful-literal-group-2026-09-08.md": "92789ed4cf989ad277e3705518631701df590b1b8fe4884b7128a9077c487fa2",
+    "research/artifacts/jacobson-corona-centralizer-does-not-lift-to-base-commutants-2026-09-08.md": "1c416914287e20fd4b819476cd9704148cc1decb28a0208649550061053435ef",
+    "research/artifacts/jacobson-stable-letter-laurent-quotient-and-local-inner-action-2026-09-08.md": "6c3e2118e3fb415fb01298713712c183cf8a15945be15cba4ecc7c9be051620f",
+    "research/artifacts/jacobson-stable-letter-recursion-and-matrix-gap-2026-09-08.md": "fd96a26c27ebd22fe670e1f47a2241da3ceb3ffe2b3b78e9197646d2efa1e3d6",
+    "research/artifacts/jacobson-two-braid-reduction-2026-09-07.md": "dfdac49afa4d5c1e7a11760149bd7bf50087d6231f770b496c77dbd1d8b0380e",
+    "research/artifacts/jacobson-whole-column-normalizer-has-marked-lef-models-2026-09-08.md": "e6685434b4744753768ce32af36de2021be2e867ea18b8ad7cdc64f9b175d054",
+    "research/artifacts/nonhyperlinear-normal-augmentation-source-audit-2026-08-30.md": "5ff6500bfa233b788062a3e196ec80eba717570d168d8c29618cdd6753e87ae6",
+    "research/jacobson-coherent-group-is-an-ascending-corner-extension.md": "9a40e01a13b3123006bd4e8624b1ebb0198b97bca0869d3c2b6177598ea605d5",
+    "research/jacobson-coherent-matrix-gap.md": "a04b1de4e78fdaf70c80656099df2fbab84a3eeb60bfda297903e39ff44194ad",
+    "research/jacobson-coherent-quotient-is-faithful-and-has-mf-dichotomy.md": "cc4fe0e295c7456cf31cb491fd41de8af2def63f0b5ed7d0a1b3f65db843f362",
+    "research/jacobson-corona-centralizer-does-not-lift-to-base-commutants.md": "678ddad0cdd3dab7f64e95dd4ca307890a85ed4dbcd82943ddba88352c2cd40c",
+    "research/jacobson-finite-field-coset-phase-proof.md": "cc5a83c50531baecb1b85a81cbb52931c28b6a3bb86c8743f82db832c5835a8a",
+    "research/jacobson-finite-linear-extension-models-proof.md": "af2b4fa7117c30cdd39bbabacef0e4f2e44aacdfb168e3be9bb23b7318a8d8a6",
+    "research/jacobson-shift-literal-quotient-is-laurent-times-z.md": "eb36089bae81bf9469fd65e41ac054b349f8d1fd0b92686101e7dde778c1c93a",
+    "research/jacobson-shift-mixed-gap.md": "85b306fe2c4ae206837fe85214efcc68a1e69c57eaaa9cd7c4cc6ef7f389fd9d",
+    "research/jacobson-whole-column-normalizer-has-marked-lef-models.md": "9f4d6be0866d106a94cec3eae9b3be2a46a8f44a8e39d036020b1b8916581014",
+    "research/nonhyperlinear-property-t-free-explicit-mf-witness.md": "f9064cd2e79ecf496e217fb3d36314b4738048613ba795bf1b56aa638defeb0d",
+    "research/property-t-free-existence-via-jacobson-coherent-gap.md": "f0442c43edb2016dc19de3312e5ebbf782c740964dc4b1d52f5b3fa41aaf33ad",
+    "scratchpad/nonmf-column-replay-20260908.py": "9962415612cc7bec00d8956f81c361c68b423e594b4fc3c83f0d595370c542ad",
+    "scratchpad/nonmf-column-validation-20260908.py": "5844b26e086b5658bb281febe33ef6d65af3c9ce655332f736cedb8a82dec2ba",
+    "tools/cairn.py": "930d827b5db677c5988277245fb90c6d0359d6a235119e709a941691ba7ce9f7"
+  },
+  "archive_sha256": "17eee7875e2f36581a2bf290888aff7d704838721b3dfedf8966ac6317eeedbd",
+  "validator_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/tools/validate_nonmf_column_20260908.py",
+  "validator_sha256": "5844b26e086b5658bb281febe33ef6d65af3c9ce655332f736cedb8a82dec2ba",
+  "replay_remote_path": "/projects/standard/hsiehph/sauer354/cairn-nonmf-direct-20260908/tools/nonmf_column_replay_snapshot.py",
+  "replay_sha256": "9962415612cc7bec00d8956f81c361c68b423e594b4fc3c83f0d595370c542ad",
+  "claims": 7500,
+  "routes": 7663,
+  "elapsed_seconds": 4.671
+}

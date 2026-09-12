@@ -1,0 +1,14 @@
+{
+  "status": "ok",
+  "scope": "Full snapshot graph compilation and artifact/reference lint; duplicate checks on five touched nodes. This checks the research graph rather than a proof assistant formalization.",
+  "errors": [],
+  "duplicates": [],
+  "nodes": {
+    "boolean-secants-do-not-supply-operator-left-inverses": "ESTABLISHED",
+    "certificate-linear-counterexamples-compile-to-lamp-algebras": "ESTABLISHED",
+    "injective-automata-have-local-stable-secant-dilations": "ESTABLISHED",
+    "leavitt-unit-group-nonsurjunctive": "OPEN",
+    "local-secant-shear-dilation-and-sector-proof": "COMPLETE"
+  },
+  "elapsed_seconds": 16.407
+}

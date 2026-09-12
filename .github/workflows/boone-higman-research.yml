@@ -1,0 +1,264 @@
+name: Boone-Higman research checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/bh_*.py'
+      - 'research/boone-higman-*.md'
+      - 'research/ck-quotient-*.md'
+      - 'research/elementary-root-kernel-*.md'
+      - 'research/ring-simple-envelope-*.md'
+      - 'research/rank-four-*.md'
+      - 'research/decidable-group-ring-has-fp-projective-simple-host.md'
+      - 'research/finite-fullness-simulation-theorem-for-rings.md'
+      - 'research/steinberg-finite-presentation-and-kazhdan-theorem.md'
+      - 'research/steinberg-finiteness-kazhdan-citation.md'
+      - 'research/finite-marking-normal-generator-cover*.md'
+      - 'research/ck-steinberg-marked-cover*.md'
+      - 'research/ck-cover-quotient-kernel-dichotomy*.md'
+      - 'research/normalizing-subgroups-*.md'
+      - 'research/fg-central-extension-*.md'
+      - 'research/projective-elementary-*.md'
+      - 'research/zigzag-cyclic-shift-*.md'
+      - 'research/shift-envelope-*.md'
+      - 'research/cyclic-shift-finite-prefix-*.md'
+      - 'research/finite-ray-*.md'
+      - 'research/regular-enumeration-*.md'
+      - 'research/regular-enumerations-can-*.md'
+      - 'research/regular-free-shift-*.md'
+      - 'research/free-shift-*.md'
+      - 'research/effective-free-shift-*.md'
+      - 'research/decidable-inputs-have-computable-non-fp-shell-envelopes.md'
+      - 'research/relative-automorphism-*.md'
+      - 'research/regular-cyclic-twisted-*.md'
+      - 'research/bffhz-*.md'
+      - 'research/cantor-prefix-*.md'
+      - 'research/contracting-srn-*.md'
+      - 'research/boundary-orbit-*.md'
+      - 'research/rational-homeomorphism-*.md'
+      - 'research/rational-transducer-*.md'
+      - 'research/rational-shell-*.md'
+      - 'research/rational-regular-shell-*.md'
+      - 'research/arithmetic-shell-*.md'
+      - 'research/arithmetic-near-shift-*.md'
+      - 'research/arithmetic-shift-conjugacy-*.md'
+      - 'research/odometer-prefix-*.md'
+      - 'research/a5-arithmetic-germs-*.md'
+      - 'research/a5-arithmetic-near-group-*.md'
+      - 'research/odd-odometer-*.md'
+      - 'research/terminated-digit-*.md'
+      - 'research/fixed-base-shells-*.md'
+      - 'research/shell-digit-resolution-*.md'
+      - 'research/a5-even-shell-charts-*.md'
+      - 'research/a5-residue-charts-*.md'
+      - 'research/shell-affine-germ-*.md'
+      - 'research/shell-envelope-and-one-singularity-*.md'
+      - 'research/shell-localized-centralizer-*.md'
+      - 'research/a5-free-product-has-simple-arithmetic-shell-envelope.md'
+      - 'research/free-product-bijective-base-*.md'
+      - 'research/a5-arithmetic-shell-*.md'
+      - 'research/decidable-fp-groups-need-not-embed-in-rational-group.md'
+      - 'research/kms-complexity-*.md'
+      - 'research/shell-cantor-*.md'
+      - 'research/shell-prefix-germ-*.md'
+      - 'research/shell-near-index-*.md'
+      - 'research/shell-fp-*.md'
+      - 'research/shell-simple-neighborhood-*.md'
+      - 'research/shell-prefix-core-*.md'
+      - 'research/shell-finite-ray-*.md'
+      - 'research/shell-germ-group-*.md'
+      - 'research/shell-germ-fp-*.md'
+      - 'research/shell-germ-ascending-*.md'
+      - 'research/shell-parity-*.md'
+      - 'research/shell-recursive-*.md'
+      - 'research/shell-localized-*.md'
+      - 'research/shell-finite-prefix-*.md'
+      - 'research/shell-finite-perturbation-*.md'
+      - 'research/shell-finite-point-*.md'
+      - 'research/shell-coset-*.md'
+      - 'research/shell-finite-biindex-*.md'
+      - 'research/shell-double-coset-*.md'
+      - 'research/shell-independent-*.md'
+      - 'research/three-shell-*.md'
+      - 'research/cantor-punctured-*.md'
+      - 'research/decidable-fp-groups-embed-in-perfect-decidable-fp-groups.md'
+      - 'research/mitosis-and-virtually-free-*.md'
+      - 'research/perfect-input-shell-*.md'
+      - 'research/shell-perfect-input-*.md'
+      - 'research/perfect-decidable-inputs-*.md'
+      - 'research/perfect-shell-*.md'
+      - 'research/general-shell-*.md'
+      - 'research/virtually-cyclic-inputs-have-fp-shell-stabilizers.md'
+      - 'research/decidable-inputs-have-fp-shell-stabilizers.md'
+      - 'research/decidable-inputs-have-fp-shell-envelopes.md'
+      - '.github/workflows/boone-higman-research.yml'
+  workflow_dispatch:
+    inputs:
+      lean_preflight:
+        description: Replay authored Lean controls using existing caches only
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: boone-higman-research-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  lean-preflight:
+    if: github.event_name == 'workflow_dispatch' && inputs.lean_preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Restore existing Lean toolchain
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+          fail-on-cache-miss: true
+      - name: Restore existing compiled dependencies
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          fail-on-cache-miss: true
+      - name: Replay authored positive and negative controls without building
+        run: |
+          set -euo pipefail
+          sudo install -d -o "$(id -u)" -g "$(id -g)" /projects/standard/bh-preflight
+          bh_lean="$("$HOME/.elan/bin/elan" which lean)"
+          test -x "$bh_lean"
+          "$bh_lean" --version
+          python3 experiments/bh_gpu_verify.py /projects/standard/bh-preflight \
+            --project "$GITHUB_WORKSPACE" --lean "$bh_lean" --preflight
+      - name: Retain authored controls and Lean diagnostics
+        if: always()
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
+        with:
+          name: boone-higman-lean-preflight
+          path: /projects/standard/bh-preflight/verification
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          fetch-depth: 0
+      - name: Check pilot source syntax
+        run: python3 -m py_compile experiments/bh_civo_pilot.py experiments/bh_gpu_pilot.py experiments/bh_gpu_verify.py experiments/bh_shift_cyclic_check.py
+      - name: Check the exact finite counterexample
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'experiments')
+          from bh_gpu_verify import false_control_witness
+          Path('bh-false-control.json').write_text(json.dumps(false_control_witness(), indent=2) + '\n')
+          PY
+      - name: Check the exact cyclic shift germ index
+        run: python3 experiments/bh_shift_cyclic_check.py > bh-shift-cyclic-arithmetic.json
+      - name: Validate Cairn and export the current goal
+        run: |
+          bin/cairn check
+          bin/cairn why boone-higman-conjecture --json > bh-goal.json
+          bin/cairn why ck-quotient-corner-has-infinite-bi-index --json > bh-quotient-obstruction.json
+          bin/cairn why ring-simple-envelope-characteristic-obstruction --json > bh-ring-characteristic.json
+          bin/cairn why rank-four-elementary-center-obstructs-simplicity --json > bh-ring-center.json
+          bin/cairn why finite-fullness-simulation-theorem-for-rings --json > bh-ring-refuted-premise.json
+          bin/cairn why decidable-group-ring-has-fp-projective-simple-host --json > bh-ring-open-host.json
+          bin/cairn why ck-steinberg-marked-cover --json > bh-steinberg-cover.json
+          bin/cairn why finite-marking-normal-generator-cover --json > bh-marking-cover.json
+          bin/cairn why ck-cover-quotient-kernel-dichotomy --json > bh-cover-kernel-dichotomy.json
+          bin/cairn why normalizing-subgroups-separate-double-cosets --json > bh-normalizer-separation.json
+          bin/cairn why fg-central-extension-of-fp-group-is-fp --json > bh-projective-central-extension.json
+          bin/cairn why projective-elementary-fp-kernel-criterion --json > bh-projective-finiteness.json
+          bin/cairn why projective-elementary-simplicity-forces-simple-ring --json > bh-projective-simple-ring.json
+          bin/cairn why zigzag-cyclic-shift-envelope-is-finitely-presented --json > bh-shift-cyclic.json
+          bin/cairn why shift-envelope-fp-enumerations-are-countable --json > bh-shift-countability.json
+          bin/cairn why cyclic-shift-finite-prefix-cannot-decide-fp --json > bh-shift-finite-prefix.json
+          bin/cairn why infinite-shift-higman-compiler --json > bh-shift-open-compiler.json
+          bin/cairn why finite-ray-shift-envelopes-require-virtually-cyclic-input --json > bh-shift-finite-ray.json
+          bin/cairn why regular-enumeration-displacement-bounds-growth --json > bh-shift-displacement.json
+          bin/cairn why relative-automorphism-fp-host-reflects-base-presentation --json > bh-automorphism-fp-reflection.json
+          bin/cairn why regular-cyclic-twisted-core-is-decidable-mif-non-fp --json > bh-automorphism-counterexample-core.json
+          bin/cairn why bffhz-computable-core-fp-upgrade-is-false --json > bh-automorphism-obstruction.json
+          bin/cairn why bffhz-action-image-is-finitely-presented --json > bh-automorphism-refuted-premise.json
+          bin/cairn why boone-higman-via-bffhz-action-image --json > bh-automorphism-disabled-route.json
+          bin/cairn why cantor-prefix-subgroup-detects-every-normal-kernel --json > bh-cantor-normal-kernel.json
+          bin/cairn why contracting-srn-rational-stabilizers-are-fp --json > bh-boundary-wreath-stabilizers.json
+          bin/cairn why boundary-orbit-cyclic-wreath-has-fp-simple-envelope --json > bh-boundary-wreath-envelope.json
+          bin/cairn why boundary-orbit-wreath-actor-has-infinite-abelianization --json > bh-boundary-wreath-charge.json
+          bin/cairn why rational-homeomorphism-subgroups-have-exponential-wp --json > bh-finite-state-word-problem.json
+          bin/cairn why decidable-fp-groups-need-not-embed-in-rational-group --json > bh-finite-state-nonembedding.json
+          bin/cairn why shell-cantor-embeddings-are-finite-germ-extensions --json > bh-shell-realization.json
+          bin/cairn why shell-prefix-germ-is-not-normal-or-finite-index --json > bh-shell-germ-obstruction.json
+          bin/cairn why shell-fp-stabilizer-forces-fp-germ-group --json > bh-shell-necessary-germ-presentation.json
+          bin/cairn why shell-prefix-core-detects-finite-ray-enumerations --json > bh-shell-prefix-core.json
+          bin/cairn why virtually-cyclic-inputs-have-fp-shell-stabilizers --json > bh-shell-virtually-cyclic-control.json
+          bin/cairn why shell-germ-group-has-index-two-fiber-product --json > bh-shell-germ-fiber-product.json
+          bin/cairn why shell-germ-fp-is-an-ascending-hnn-gate --json > bh-shell-germ-ascending-hnn.json
+          bin/cairn why shell-recursive-presentations-compute-enumerations --json > bh-shell-computable-enumerations.json
+          bin/cairn why cantor-punctured-prefix-groups-detect-word-problem --json > bh-shell-recursive-word-problem.json
+          bin/cairn why shell-finite-prefix-cannot-certify-presentation --json > bh-shell-finite-prefix-limit.json
+          bin/cairn why shell-finite-point-stabilizers-are-finitely-generated --json > bh-shell-point-stabilizers.json
+          bin/cairn why cantor-prefix-markings-compute-clopen-action --json > bh-shell-spatial-reconstruction.json
+          bin/cairn why shell-coset-induction-preserves-core-freeness --json > bh-shell-induced-action.json
+          bin/cairn why shell-finite-biindex-hosts-require-large-intersections --json > bh-shell-host-intersections.json
+          bin/cairn why terminated-digit-host-has-infinite-shell-biindex --json > bh-shell-digit-host-biindex.json
+          bin/cairn why terminated-digit-boundary-sets-have-prefix-transport --json > bh-shell-digit-boundary-transport.json
+          bin/cairn why terminated-digit-fiber-stabilizer-is-finitely-generated --json > bh-shell-digit-full-stabilizer.json
+          bin/cairn why terminated-digit-fiber-stabilizer-repairs-shell-action --json > bh-shell-digit-enlarged-action.json
+          bin/cairn why perfect-shell-actions-have-fp-permutation-extensions --json > bh-shell-open-permutation-extension.json
+          bin/cairn why boone-higman-via-enlarged-shell-stabilizers --json > bh-shell-open-enlarged-route.json
+          bin/cairn why perfect-shell-pairs-have-finite-biindex-fp-hosts --json > bh-shell-open-overgroup-host.json
+          bin/cairn why boone-higman-via-shell-stabilizer-overgroups --json > bh-shell-open-overgroup-route.json
+          bin/cairn why decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-envelope.json
+          bin/cairn why boone-higman-via-fp-shell-envelopes --json > bh-shell-open-envelope-route.json
+          bin/cairn why decidable-fp-groups-embed-in-perfect-decidable-fp-groups --json > bh-shell-perfect-wrapper.json
+          bin/cairn why perfect-input-shell-envelopes-are-simple --json > bh-shell-perfect-simplicity.json
+          bin/cairn why rational-shell-permutations-are-eventually-periodic --json > bh-shell-rational-permutations.json
+          bin/cairn why rational-regular-shell-actions-require-virtually-cyclic-input --json > bh-shell-rational-action-boundary.json
+          bin/cairn why arithmetic-shell-envelopes-have-decidable-word-problem --json > bh-shell-arithmetic-word-problem.json
+          bin/cairn why shell-envelope-and-one-singularity-wp-are-equivalent --json > bh-shell-local-global-word-problem.json
+          bin/cairn why regular-enumerations-can-make-near-shift-free-product --json > bh-shell-generic-free-shift.json
+          bin/cairn why free-shift-shell-relations-are-finitely-certified --json > bh-shell-generic-finite-certificates.json
+          bin/cairn why free-shift-shell-envelopes-are-not-finitely-presented --json > bh-shell-generic-presentation-obstruction.json
+          bin/cairn why decidable-inputs-have-computable-non-fp-shell-envelopes --json > bh-shell-computable-presentation-failure.json
+          bin/cairn why arithmetic-near-shift-actions-have-mixed-relations --json > bh-shell-arithmetic-mixed-relation.json
+          bin/cairn why odometer-prefix-groups-have-fg-index-kernels --json > bh-shell-odometer-index-kernel.json
+          bin/cairn why a5-arithmetic-germs-embed-in-fp-odometer-host --json > bh-shell-odometer-germ-host.json
+          bin/cairn why a5-arithmetic-near-group-obeys-parity-charge-constraint --json > bh-shell-odometer-parity-constraint.json
+          bin/cairn why terminated-digit-carries-form-finite-injection-nucleus --json > bh-shell-digit-nucleus.json
+          bin/cairn why fixed-base-shells-embed-in-contracting-rsg --json > bh-shell-digit-faithful-lift.json
+          bin/cairn why a5-arithmetic-shell-envelope-embeds-in-fp-simple-group --json > bh-shell-digit-a5-simple-host.json
+          bin/cairn why a5-free-product-has-simple-arithmetic-shell-envelope --json > bh-shell-a5-arithmetic-action.json
+          bin/cairn why a5-arithmetic-shell-envelope-is-finitely-presented --json > bh-shell-open-a5-presentation.json
+          bin/cairn why perfect-decidable-inputs-have-fp-shell-envelopes --json > bh-shell-open-perfect-envelope.json
+          bin/cairn why boone-higman-via-perfect-shell-envelopes --json > bh-shell-open-perfect-route.json
+          bin/cairn why decidable-inputs-have-fp-shell-stabilizers --json > bh-shell-open-stabilizers.json
+          bin/cairn why boone-higman-via-shell-germ-stabilizers --json > bh-shell-open-route.json
+      - name: Retain structural validation and exact finite witness
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
+        with:
+          name: boone-higman-research-checks
+          path: |
+            bh-false-control.json
+            bh-goal.json
+            bh-quotient-obstruction.json
+            bh-ring-*.json
+            bh-steinberg-cover.json
+            bh-marking-cover.json
+            bh-cover-kernel-dichotomy.json
+            bh-normalizer-separation.json
+            bh-projective-*.json
+            bh-shift-*.json
+            bh-automorphism-*.json
+            bh-cantor-*.json
+            bh-boundary-wreath-*.json
+            bh-finite-state-*.json
+            bh-shell-*.json

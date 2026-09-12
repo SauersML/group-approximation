@@ -1,0 +1,74 @@
+---
+rg: 2
+id: balanced-router-pauli-holonomy-interface
+kind: claim
+title: Expose the two Pauli quarter reflections through balanced derived-packet routers
+distinct_from:
+  derived-lifted-gauge-reset-spin-bridge: that renews a gauge selector at equal Schur spin scale; this asks only for two fixed Boolean Hecke phases and their common return comparison.
+  mixed-relations-force-holonomy-or-transverse-recovery: that states the complete atlas dichotomy; this is the narrowed algebraic implementation of its holonomy branch.
+---
+
+OPEN.  The exact Pauli calculation has reduced the holonomy branch to a
+finite truth-router interface.
+
+Both quarter carriers are joint Boolean cuts of fixed involution selectors:
+
+```text
+F=(1-C_0)(1-C_1)/4,
+G=(1-D_0)(1-D_1)/4.                                  (BRH1)
+```
+
+Their reflections `2F-1` and `2G-1` are the truth-table phase which is `+1`
+only on the joint negative assignment and `-1` elsewhere (up to the chosen
+global sign).  By `hyperoctahedral-balanced-word-truth-table`, each such phase
+is a balanced word in one router and constants from a fixed derived
+hyperoctahedral packet.  By
+`full-conjugation-table-cancels-router-multiplicity`, the word is robust in an
+arbitrary representation once the router's full conjugation table is named.
+
+Construct one finite incidence satisfying all of:
+
+1. the first router reads `(C_0,C_1)` and the second reads `(D_0,D_1)` on the
+   actual atlas carrier;
+2. all hyperoctahedral constants remain in one common finite type, so no
+   second-layer multiplicity action changes the truth word;
+3. gauge-doubling makes the selector translations honest symmetries of the
+   exact marked representation;
+4. the mixed rank-five return word requires the two derived truth phases to
+   have trivial commutator (or identifies them after a named return); and
+5. the exact nontrivial marked representation extends, using properly
+   infinite multiplicity if needed.
+
+Conditions (1)--(4), together with
+`canonical-trace-tests-robustify-pauli-quarter-holonomy`, give an immediate
+fixed normalized-HS contradiction: the return asks for zero energy while the
+canonical trace window forces energy `1/2-o(1)`.  Condition (5) is the
+completeness firewall; without it, imposing the return may simply collapse
+the mark algebraically.
+
+The exact packet has an additional option: the two truth phases already
+generate `D_8`, and their central negative cut has trace `1/8`.  Instead of
+forcing their commutator to vanish immediately, the incidence may use that
+cut as the next derived Pauli carrier.  This aligns the holonomy branch with
+the gauge-renewal program and avoids throwing away the positive-density
+obstruction after one cell.  The exact balance and derivedness statements are
+proved in `pauli-quarter-holonomy-is-balanced-derived-reset`.
+
+The truth-table and analytic-floor parts are proved.  The remaining work is
+the finite equal-type incidence plus its exact properly infinite extension.
+
+The reflections need not themselves become ordinary group words if this
+interface is used with `group-algebra-mark-reverse-kleene-collapse`.  Since
+both carrier projections are finite rational group-algebra expressions, so
+are their reflections, their commutator, and its negative spectral cut.  Any
+one of these may be the Kleene mark.  This removes the former **word exposure
+of the mark** requirement.  It does not remove semantic incidence: the
+nonhalting estimates must still force the chosen polynomial mark to zero,
+and the halting completion must keep it nonzero.
+
+The derived trace-`1/8` carrier is transverse rather than already localized:
+its overlap with either old trace-half coefficient corner is `1/16`, and it
+is contained in neither.  Consequently the D8 carrier cannot simply be
+renamed as the active semantic carrier.  Any closure theorem must still
+couple it to the BCS/gauge sector; omitting that incidence would silently
+assume the main remaining step.

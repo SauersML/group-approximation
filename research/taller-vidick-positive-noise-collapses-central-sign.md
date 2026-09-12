@@ -1,0 +1,128 @@
+---
+rg: 2
+id: taller-vidick-positive-noise-collapses-central-sign
+kind: claim
+title: Every positive-noise Taller--Vidick LCS has trivial central sign
+artifacts:
+  - research/taller-vidick-positive-noise-central-collapse-proof.md
+distinct_from:
+  taller-vidick-positive-noise-fixed-support-reweighting: that proves the equation support is independent of the positive noise weight; this identifies a two-equation certificate inside that common support which forces the solution-group sign to be trivial.
+  reverse-kleene-does-not-remove-tv-completeness-loss: that isolates an unknown certificate-dependent crossing gap; here the certificate that J equals one is explicit and exists for every positive-noise output, independently of the source instance.
+  perfect-completeness-constant-soundness-lcs-compiler: that asks for a different exact compiler; this proves that neither reweighting nor flagging strategies can make the published positive-noise LCS presentation perfectly complete.
+---
+
+Fix finite `(u,B,pi)` satisfying the nonempty-constraint hypothesis in
+Definition 4.1 of Taller--Vidick, arXiv:2507.22444v2, and let
+
+```text
+0<epsilon<1.
+```
+
+Let `Gamma_epsilon` be the solution group of the finite LCS underlying
+`L^epsilon(u,B,pi)`, with distinguished central involution `J`. Then
+
+```text
+J=1 in Gamma_epsilon.                                  (TVC1)
+```
+
+In fact, `J` has a certificate using two test equations (besides the
+standard involution relations). Fix any supported `(W,U,C)`, any
+`f in F_U`, and any `g in F_W`. Lift `f` to `W` by restriction to
+`U`. The two masks
+
+```text
+mu_+(y)= f(y|_U),       mu_-(y)= -f(y|_U)               (TVC2)
+```
+
+both have positive probability. For the first use the query `f`, and for
+the second use `-f`. In both cases `g'=fgmu=g`, while folding identifies
+the first LCS variable because
+
+```text
+s_U(-f)=s_U(f),         m_(-f)=-m_f.                    (TVC3)
+```
+
+Thus the two equations have literally the same left-hand side and opposite
+right-hand sides. Their quotient is `J`, proving `(TVC1)`.
+
+There is also a direct value gap. Let `q_+` and `q_-` be the sampling
+probabilities of these two full equation contexts. In either equation the
+last two occurrences are the same variable, so the parity relation fixes
+the first answer deterministically to `m_f` or `-m_f`. Bob receives that
+shared first-variable query with probability `1/3`. No response
+distribution for Bob can agree with both opposite deterministic answers.
+Thus, for arbitrary finite-dimensional or commuting strategies,
+
+```text
+omega(L^epsilon(u,B,pi))
+  <= 1 - min(q_+,q_-)/3 < 1.                            (TVC4)
+```
+
+Consequently no positive-noise output of the published test has a perfect
+commuting or finite-dimensional strategy, regardless of whether the source
+BCS has a perfect strategy. Changing the positive mask weights, taking
+one-sided limits of strategies, or attaching a strategy-level accept flag
+without changing the equation support cannot create perfect completeness:
+the same finite presentation still contains the certificate `J=1`.
+
+This does not obstruct a genuinely different zero-noise presentation. At
+`epsilon=0` only the constant-one mask is supported, so the two masks in
+`(TVC2)` are not both available in general. The exact remaining seam is
+therefore presentation-level: replace the full-support noisy test by new
+finite equations whose perfect models survive while retaining a
+dimension-independent decoder.
+
+## Exact support-design boundary
+
+For an arbitrary mask support `M subseteq F_W` sampled independently of
+the query function `f`, the two-equation mechanism above is absent exactly
+when
+
+```text
+not (f^up in M and -f^up in M)
+for every lifted query function f^up(y)=f(y|_U).         (TVC5)
+```
+
+This does permit supports larger than the zero-noise singleton. Let
+`S subseteq C` be the positive assignment support of the honest perfect
+model in this outer context. Perfect completeness forces, and is forced
+locally by,
+
+```text
+M subseteq A_S={mu:mu(phi)=1 for every phi in S}.        (TVC6)
+```
+
+For nonempty `S`, `A_S` is antipodal-free, so `(TVC6)` implies
+`(TVC5)`. If `S` is a proper subset of the full assignment cube then
+`A_S` contains nonconstant masks, giving genuine larger sub-supports.
+
+But every probability law supported on `A_S` obeys
+
+```text
+E_mu product_(phi in beta) mu(phi)=1
+for every beta subseteq S.                              (TVC7)
+```
+
+Thus a larger exact-complete sub-support avoids central collapse only by
+leaving all Fourier characters inside the honest spectrum undamped. In
+particular, strict damping of every folded non-dictator odd character is
+compatible with perfect completeness only when `|S|<=2`; if `|S|>=3`,
+choose any three-point `beta subseteq S` in `(TVC7)`.
+
+This is the exact mask-law boundary. It agrees with
+`perfect-correlated-masks-have-undamped-conditioned-spectrum`: the remaining
+route must alter the test so that high-degree honest-spectrum characters are
+decoded by additional relations, or start from a native LCS gap. Neither
+independent masks, correlated masks, anchoring, nor a direct-sum flag changes
+this conclusion.
+
+There is now a sharp parity-gadget closure as well.
+`lcs-parity-gadgets-preserve-odd-dictator-affine-hull` proves that any finite
+binary LCS extension which gives every honest atom a scalar extension also
+gives every odd product of those extensions.  On the full folded long code
+this unavoidable scalar projection has exactly `2^{|S|-1}` points.  Thus
+adding auxiliary LCS variables or further parity equations cannot eliminate
+the undamped odd modes; the remaining escape must break atomwise scalar
+extendability through cross-context nonclassical structure, leave the affine
+predicate language before groupification, or start from a native LCS gap.
+

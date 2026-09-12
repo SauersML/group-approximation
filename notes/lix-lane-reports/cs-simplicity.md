@@ -1,0 +1,189 @@
+# cs-simplicity
+
+Owns `Analysis/CStarSimple.lean`, `Analysis/LIXSimplicity.lean`,
+`Analysis/LIXSimplicityInstance*.lean`.
+
+## 1. GREEN
+
+| module | job count |
+|---|---|
+| `Analysis/CStarSimple` | 2988 |
+| `Analysis/LIXSimplicity` | 2988 |
+| `Analysis/LIXSimplicityInstance` | 2988 |
+
+All three probed together via `ccprobe.sh cs-simplicity Analysis.CStarSimple
+Analysis.LIXSimplicity Analysis.LIXSimplicityInstance`: `ERROR_LINES=0`,
+`Build completed successfully (2988 jobs)`, `PROBE GREEN`, no warnings, no
+`sorry`/`axiom`/`admit`/`opaque`.  Re-confirmed after the session hand-off with a **forced
+rebuild** rather than a replay — the log carries `Built GroupApproximation.Analysis.CStarSimple`,
+`Built … LIXSimplicity` and `Built … LIXSimplicityInstance`, not `Replayed`, so the green is
+about the source now on `main` and not about a cached artifact.
+
+**The lane's endpoint is reached.**  `GroupApproximation.LIX.lixLimit_isSimpleCStar :
+IsSimpleCStar LIXLimit` is proved **unconditionally** in cs-limit's `Analysis/LIXLimitSimple.lean`
+(not my file; I did not duplicate it), by composing my `CStarTower.isSimpleCStar_limit_of_ne_zero`
+with cs-stages' `STW59.isFull_climb_of_ne_zero`, matched to `lixTower` by `lixTower_succHom`,
+which is `rfl`.  Probed the whole chain end to end: `Build completed successfully (3020 jobs)`,
+`ERROR_LINES=0`, `PROBE GREEN`, every module in the chain `Built` rather than `Replayed`, and a
+lexical scan of all ten modules from `CStarSimple` to `LIXLimitSimple` finds no
+`sorry`/`admit`/`axiom`/`opaque`/`native_decide`.  Deliverable 3 of the lane brief
+("`IsSimpleCStar A` for the LIX limit") is therefore discharged.
+
+**Axiom audit (review task, 2026-09-05).**  Run in my own clone with no file on `main`: a scratch
+`.lean` outside `GroupApproximation/` in the clone root, elaborated with `lake env lean`, then
+deleted.  Both gates pass and agree:
+
+```
+#audit_axioms       GroupApproximation.LIX.lixLimit_isSimpleCStar
+#audit_closed_axioms GroupApproximation.LIX.lixLimit_isSimpleCStar
+-- 'GroupApproximation.LIX.lixLimit_isSimpleCStar' depends on axioms:
+--   [propext, Classical.choice, Quot.sound]
+```
+
+Nothing outside the classical allowlist, and `#audit_closed_axioms` accepts it, which is the
+stronger statement: `auditClosedAxiomsOf` (`Meta/AxiomGuard.lean:81`) rejects any declaration
+whose elaborated type `isForall`, so the theorem is an advertised *closed* proposition and not a
+hypothesis-taking implication whose axiom closure merely happens to be clean.  `IsSimpleCStar
+LIXLimit` is stored as an application, so it passes for the same reason `¬ ProblemLIX` does.
+
+## 2. What is delivered
+
+* `Analysis/CStarSimple.lean` — `IsSimpleCStar (A : Type u) [CStarAlgebra A]`
+  (`∀ I : Ideal A, I.IsTwoSided → IsClosed (I : Set A) → I = ⊥ ∨ I = ⊤`, no order, no
+  `Nontrivial`, universe-polymorphic — this is the exact definition `cs-endpoint` asked for),
+  `IsSimpleCStar.eq_bot_or_eq_top`, `IsSimpleCStar.eq_top_of_mem`, `IsSimpleCStar.of_starAlgEquiv`,
+  `isSimpleCStar_iff_isSimpleRing`, `isTwoSided_closure` (closure of a two-sided ideal of a
+  topological ring is two-sided — `Ideal.closure` only proves the left-ideal half).
+* `Analysis/LIXSimplicity.lean` — the positive-cutdown argument, off the unavailable
+  C⋆-quotient (see TRAPS 1 below, unchanged from the previous session): `posCut`, `sqrtPosCut`,
+  `resCut`, `invCut`; `cfc_mem_of_isClosed`; `IsFull`, `IsFullIn`, `IsFullIn.isFull`,
+  `isFullIn_of_sum_eq_one`, `isFull_of_sum_eq_one`, `one_mem_of_isFull`; `mem_of_mul_self_le`
+  (closed two-sided ideals are hereditary); `exists_ge_nonneg_mem_approx`;
+  `exists_ge_mem_ideal_of_nonneg`; `eq_top_of_stagewise_full`; `isSimpleCStar_of_stagewise_full`.
+* `Analysis/LIXSimplicityInstance.lean` — the packaging layer, now **two** layers deep:
+  * `StagewiseFullTower A` / `StagewiseFullTower.isSimpleCStar` — the bundled hypothesis
+    (stages, closedness, monotonicity, density, stagewise fullness) and its simplicity theorem,
+    as before.
+  * `isFullIn_of_isFull_map`, `isClosed_range` — transport of fullness and closedness along a
+    ⋆-homomorphism, as before.
+  * **New this session**: `nonneg_iff_of_injective` — an injective unital ⋆-homomorphism of
+    C⋆-algebras reflects positivity, for *any* compatible `StarOrderedRing` structure on either
+    side. Proved by chaining `StarOrderedRing.nonneg_iff_spectrum_nonneg` (valid for any such
+    order — the C⋆-order is unique) with `IsSelfAdjoint.map_spectrum_real` (spectral permanence
+    of an injective ⋆-hom, `Mathlib.Analysis.CStarAlgebra.Hom`) both ways. Mathlib does not yet
+    have this fact (its own `Unitization.inr_le_iff` carries a `-- TODO: prove the more general
+    result for star monomorphisms and use it here`), so this is new content, not a citation.
+  * **New this session**: `CStarTower.stagewiseFullTower` / `CStarTower.isSimpleCStar_limit` —
+    the *concrete* bridge from `Analysis/LIXLimitTower`'s/`Analysis/LIXLimitCompletion`'s
+    `CStarTower A` (cs-limit's structure, green, see NEEDS below for the exact names) to
+    `IsSimpleCStar T.Limit`, given fullness stated **entirely inside the finite stages**, with
+    the finite stages' own order: `∀ k (a : A k), 0 ≤ a → a ≠ 0 → ∃ j ≥ k, IsFull (T.climb j k
+    a)`. This is exactly the shape a stage lane naturally proves (no reference to the limit's
+    order or to `T.limIota` needed in the hypothesis at all — `nonneg_iff_of_injective` and
+    `isFullIn_of_isFull_map` absorb all of the cross-algebra bookkeeping inside the proof).
+  * `CStarTower.stagewiseFullTowerOfNeZero` / `CStarTower.isSimpleCStar_limit_of_ne_zero` — the
+    **positivity-free** entry point, for a tower (like the LIX one) whose fullness argument never
+    uses positivity: the hypothesis is `∀ k (a : A k), a ≠ 0 → ∃ j ≥ k, IsFull (T.climb j k a)`.
+    Formally weaker as a theorem, since it demands more of the tower; what it buys is that the
+    finite stages then need **no order instances at all**, because `nonneg_iff_of_injective` was
+    the only reason `stagewiseFullTower` asked for `[∀ n, PartialOrder (A n)]` and
+    `[∀ n, StarOrderedRing (A n)]`.  Both entry points are kept: `isSimpleCStar_limit` demands
+    less of the tower, this one demands less of the ambient setup.  cs-stages reports that their
+    fullness proof does not use positivity, so either will do; pitfall three of the interface
+    review (uniform order instances on every stage) simply disappears with this one.
+
+## 3. NEEDS
+
+Only one thing remains before the LIX-specific instantiation is one line:
+
+### From `cs-stages` (not yet landed as of this report — no `connect`/`connect_injective`/fullness
+theorem found in `Analysis/LIXStageAlgebra.lean` or `Analysis/LIXConnectingMapPoints.lean` yet)
+
+```lean
+namespace STW59
+def connect (i : ℕ) : StageAlgebra i →⋆ₐ[ℂ] StageAlgebra (i + 1)
+theorem connect_injective (i : ℕ) : Function.Injective (connect i)
+-- and, with `T := CStarTower.ofInjective connect connect_injective`, `T.climb` as in
+-- Analysis/LIXLimitTower (composite of `connect`):
+theorem fullness (k : ℕ) (a : StageAlgebra k) (h0 : 0 ≤ a) (hne : a ≠ 0) :
+    ∃ j, k ≤ j ∧ GroupApproximation.LIX.IsFull (T.climb j k a)
+```
+
+`0 ≤ a` under whatever `[PartialOrder (StageAlgebra k)] [StarOrderedRing (StageAlgebra k)]`
+instance the stage lane installs — `nonneg_iff_of_injective` makes the choice irrelevant, as
+long as it is a genuine `StarOrderedRing` (the order is then forced to be the spectral one,
+Mathlib's `CStarAlgebra.instNonnegSpectrumClass'` holds for any such instance). `IsFull` needs
+no order at all.
+
+Once `connect`/`connect_injective`/`fullness` exist, the whole instantiation is:
+
+```lean
+def STW59.tower : LIX.CStarTower STW59.StageAlgebra :=
+  LIX.CStarTower.ofInjective STW59.connect STW59.connect_injective
+
+theorem STW59.isSimpleCStar : LIX.IsSimpleCStar STW59.tower.Limit :=
+  STW59.tower.isSimpleCStar_limit STW59.fullness
+  -- needs `[Nontrivial STW59.tower.Limit]`, free from `[Nontrivial (StageAlgebra 0)]`
+  -- via `CStarTower.instNontrivialLimit` (cs-limit, already green).
+```
+
+(cs-endpoint should confirm `STW59.tower.Limit` is the same limit algebra `cs-limit`'s
+`T.exists_unitary_witness` is stated about — from `cs-limit`'s report it is, since both consume
+the same `CStarTower.ofInjective STW59.connect STW59.connect_injective`.)
+
+### cs-limit's actual interface (corrected from my earlier speculative names — read directly
+from `Analysis/LIXLimitTower.lean`/`Analysis/LIXLimitCompletion.lean`, both green)
+
+```lean
+structure CStarTower (A : ℕ → Type u) [∀ n, CStarAlgebra (A n)]
+CStarTower.ofInjective : (∀ n, A n →⋆ₐ[ℂ] A (n+1)) → (∀ n, Injective (φ n)) → CStarTower A
+T.climb (i k : ℕ) : A k → A i                    -- total, junk 0 when k > i
+T.Limit                                           -- := UniformSpace.Completion T.Colim
+T.limIota (i : ℕ) : A i →⋆ₐ[ℂ] T.Limit           -- isometric, injective
+T.limIota_climb (h : k ≤ i) : T.limIota i (T.climb i k a) = T.limIota k a
+T.stage (i : ℕ) : StarSubalgebra ℂ T.Limit        -- = (T.limIota i).range
+T.mem_stage_iff, T.limIota_mem_stage, T.isClosed_stage, T.stage_mono, T.dense_iUnion_stage
+```
+
+My earlier `LIXLimit`/`lixStage`/`lixStage_full` names in this file were placeholders written
+before cs-limit's actual module existed; the NEEDS section above replaces them with the real
+interface. `cs-limit` did **not** register a competing `PartialOrder`/`StarOrderedRing` instance
+on `T.Limit` (checked: `LIXLimitCompletion.lean` has none), so installing
+`CStarAlgebra.spectralOrder T.Limit` / `CStarAlgebra.spectralOrderedRing T.Limit` locally at the
+instantiation site is safe.
+
+## 4. TRAPS
+
+1. **The manuscript's quotient route is unavailable in this repo** (unchanged from last report):
+   `Analysis/CStarIdealQuotient`'s C⋆-identity for the quotient norm is not proved, so there is
+   no CFC on `B ⧸ I`. Replaced by an argument that never leaves `B`: `d (a - ε) d = c c` with
+   `d = cfc (√ ∘ (·-ε)₊) a`, then `c c ≤ d b d ∈ I`, then heredity of closed two-sided ideals
+   (`mem_of_mul_self_le`).
+2. **Heredity without an approximate unit** (unchanged): `0 ≤ s`, `s s ≤ v ∈ I ⟹ s ∈ I` via the
+   resolvent `r_δ = δ (v + δ)⁻¹` written as a functional calculus of `v`.
+3. **`Ideal.closure` is only a left ideal in Mathlib** (unchanged): `I.closure.IsTwoSided` has to
+   be supplied by hand, and it costs two corrections rather than one.  `map_mem_closure` has to
+   solve `f x =?= a * b` and takes the first-order splitting `f := (a * ·)`, `x := b`, which
+   contradicts the `hx : a ∈ closure I` in hand — pin it with `(f := fun x => x * b)`.  And the
+   continuity lemma is `continuous_mul_const`; `mulRight_continuous`, the mirror of what
+   `Ideal.closure`'s own proof uses, is `@[deprecated (since := "2026-02-20")]` at this pin
+   (`Mathlib/Topology/Algebra/Monoid.lean:110`), so under `-DwarningAsError=true` it is itself an
+   error.  Both were live errors in probe round 1.
+4. **`NonUnitalStarAlgHom.isometry`/`.norm_map` live in `Mathlib.Analysis.CStarAlgebra.Hom`**,
+   which is only `public import`ed by the umbrella `Mathlib.lean`, *not* transitively reachable
+   through the `ContinuousFunctionalCalculus.{Order,Isometric,Unique}` imports
+   `Analysis/LIXSimplicity` already carries. A file that wants it (e.g. for
+   `isClosed_range`/`nonneg_iff_of_injective`) must `import Mathlib.Analysis.CStarAlgebra.Hom`
+   explicitly — the "Unknown constant" error this produces gives no hint that the fix is an
+   import, since the name really does exist at the pin.
+5. **A `def` returning a `structure` whose field is `noncomputable` must itself be
+   `noncomputable`**, even though the `def` itself does no computation — `stage := T.stage`
+   inside a `where`-block silently makes the whole definition depend on the noncomputable
+   `CStarTower.stage`.  Ordinary "consider marking it as `noncomputable`" error, easy fix.
+6. **Mathlib does not yet have "injective ⋆-monomorphism is an order embedding for the spectral
+   order"** — confirmed absent (only a `TODO` comment on the unitization-inclusion special case
+   in `Unitization.lean`'s `inr_le_iff`) — so `nonneg_iff_of_injective` had to be proved from
+   scratch. It goes through cleanly in eight lines once phrased via
+   `StarOrderedRing.nonneg_iff_spectrum_nonneg` (works for *any* compatible order, since a
+   C⋆-algebra's order is pinned) plus `IsSelfAdjoint.map_spectrum_real`; no CFC-of-CFC or
+   sum-of-squares reasoning needed.

@@ -1,0 +1,26 @@
+changed modules: 3
+GGT/HullSCLemma44JointRelabel.lean
+GGT/KazhdanHypGirthEightGenericProducers.lean
+GGT/VanKampen/Estimating/InteriorIncidenceComponentRealization.lean
+== lake build GroupApproximation.GGT.ElementaryOsinNormalClosed  [acn112 14:32:36]
+ℹ [3613/3653] Built GroupApproximation.Sofic.KazhdanCornerCompression (11s)
+  [apply] abel_nf
+ℹ [3631/3653] Built GroupApproximation.Sofic.HullSuitabilityGeometry (25s)
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Build completed successfully (3653 jobs).
+LAKE_EXIT=0
+?? AXIOM CHECK VACUOUS: 0 'depends on axioms' lines in the log -- no #print axioms/#audit_axioms reached, so 'sorryAx: none' would prove NOTHING
+axiom lines seen: 0
+-- axioms declared in GroupApproximation/GGT/ElementaryOsinNormalClosed.lean:
+-- per-target axiom section joins Lean MULTI-LINE axiom lists in full; the RAW remote log is still the authority
+sorryAx: none
+PROBE GREEN
+jobs line: Build completed successfully (3653 jobs)
+-- per-target ATTEMPTED check: lake aborts a multi-target invocation on the FIRST failure,
+   so 'not in the failure list' can mean NEVER ATTEMPTED rather than passed:
+   attempted   GroupApproximation.GGT.ElementaryOsinNormalClosed
+SENTINEL=0

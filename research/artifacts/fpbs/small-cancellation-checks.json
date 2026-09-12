@@ -1,0 +1,179 @@
+{
+  "scope": "Finite word, probability, and repair checks only; not formal theorem verification.",
+  "piece_profiles": [
+    {
+      "first_index": 1,
+      "primes": [
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13
+      ],
+      "distinct_symmetrized_words": 130,
+      "largest_piece_seen": 19
+    },
+    {
+      "first_index": 1,
+      "primes": [
+        13,
+        17,
+        13,
+        17,
+        13,
+        17,
+        13,
+        17,
+        13,
+        17
+      ],
+      "distinct_symmetrized_words": 130,
+      "largest_piece_seen": 19
+    },
+    {
+      "first_index": 1,
+      "primes": [
+        13,
+        17,
+        19,
+        23,
+        29,
+        31,
+        37,
+        41,
+        43,
+        47
+      ],
+      "distinct_symmetrized_words": 130,
+      "largest_piece_seen": 19
+    },
+    {
+      "first_index": 20,
+      "primes": [
+        13,
+        17,
+        19,
+        23,
+        29
+      ],
+      "distinct_symmetrized_words": 230,
+      "largest_piece_seen": 47
+    }
+  ],
+  "free_subgroup_tests": {
+    "cyclically_reduced_words_in_two_squared_generators": 9856,
+    "additional_long_even_run_words": 100,
+    "relator_indices_checked": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "omitted_relator_tests": {
+    "omitted_index_and_power_cases": 42
+  },
+  "finite_regular_actions": [
+    {
+      "dihedral_order": 6,
+      "labelings": 64,
+      "probabilities": [
+        "1/3",
+        "1/2",
+        "2/3"
+      ]
+    },
+    {
+      "dihedral_order": 8,
+      "labelings": 256,
+      "probabilities": [
+        "1/3",
+        "1/2",
+        "2/3"
+      ]
+    },
+    {
+      "dihedral_order": 10,
+      "labelings": 1024,
+      "probabilities": [
+        "1/3",
+        "1/2",
+        "2/3"
+      ]
+    },
+    {
+      "dihedral_order": 12,
+      "labelings": 4096,
+      "probabilities": [
+        "1/3",
+        "1/2",
+        "2/3"
+      ]
+    }
+  ],
+  "variable_length_probabilities": {
+    "support_length_profiles": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        2,
+        3
+      ],
+      [
+        1,
+        2,
+        3,
+        4
+      ],
+      [
+        3,
+        3,
+        3
+      ]
+    ],
+    "rational_probabilities": [
+      "1/3",
+      "1/2",
+      "2/3"
+    ]
+  },
+  "assertions_by_family": {
+    "rotation_deduplication": 14988,
+    "C_prime_one_sixth_pairs": 51490,
+    "piece_length_bound": 51490,
+    "free_subgroup_expansion_reduced": 9856,
+    "free_subgroup_no_half_relator": 9856,
+    "long_even_run_no_half_relator": 100,
+    "omitted_root_no_half_relator": 42,
+    "dihedral_disjoint_cycle_supports": 4,
+    "dihedral_cycle_relations": 18,
+    "paid_repair_connected_labelings": 5440,
+    "union_probability_exact": 12,
+    "variable_length_union_probability": 15
+  },
+  "total_assertions": 143311,
+  "all_passed": true,
+  "not_verified": [
+    "Greendlinger lemma",
+    "infinite presentation algebra",
+    "measurable selection and infinite cost infima",
+    "acylindrical hyperbolicity theorem",
+    "Choi-Seo percolation theorem",
+    "novelty or priority",
+    "either universal conjecture"
+  ],
+  "script_sha256": "87874674394e33a50809d8d10fb036b688d85d09a3bb014f1082d8401e941b7c"
+}

@@ -1,0 +1,431 @@
+{
+  "all_checks_pass": true,
+  "records": [
+    {
+      "m": 8,
+      "threshold": 48,
+      "marked_bipartitions": 72,
+      "low_marked_bipartitions": [
+        {
+          "lambda": [
+            7
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 8
+        },
+        {
+          "lambda": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 8
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            7
+          ],
+          "weight": 7,
+          "degree": 8
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": 7,
+          "degree": 8
+        }
+      ],
+      "minimum_marked_degree": 8,
+      "complement_spectrum_checked": false
+    },
+    {
+      "m": 10,
+      "threshold": 80,
+      "marked_bipartitions": 199,
+      "low_marked_bipartitions": [
+        {
+          "lambda": [
+            9
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 10
+        },
+        {
+          "lambda": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 10
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            9
+          ],
+          "weight": 9,
+          "degree": 10
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": 9,
+          "degree": 10
+        }
+      ],
+      "minimum_marked_degree": 10,
+      "complement_spectrum_checked": true
+    },
+    {
+      "m": 12,
+      "threshold": 120,
+      "marked_bipartitions": 502,
+      "low_marked_bipartitions": [
+        {
+          "lambda": [
+            11
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 12
+        },
+        {
+          "lambda": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 12
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            11
+          ],
+          "weight": 11,
+          "degree": 12
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": 11,
+          "degree": 12
+        }
+      ],
+      "minimum_marked_degree": 12,
+      "complement_spectrum_checked": false
+    },
+    {
+      "m": 14,
+      "threshold": 168,
+      "marked_bipartitions": 1183,
+      "low_marked_bipartitions": [
+        {
+          "lambda": [
+            13
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 14
+        },
+        {
+          "lambda": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 14
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            13
+          ],
+          "weight": 13,
+          "degree": 14
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": 13,
+          "degree": 14
+        }
+      ],
+      "minimum_marked_degree": 14,
+      "complement_spectrum_checked": false
+    },
+    {
+      "m": 16,
+      "threshold": 224,
+      "marked_bipartitions": 2642,
+      "low_marked_bipartitions": [
+        {
+          "lambda": [
+            15
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 16
+        },
+        {
+          "lambda": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 16
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            15
+          ],
+          "weight": 15,
+          "degree": 16
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": 15,
+          "degree": 16
+        }
+      ],
+      "minimum_marked_degree": 16,
+      "complement_spectrum_checked": false
+    },
+    {
+      "m": 18,
+      "threshold": 288,
+      "marked_bipartitions": 5644,
+      "low_marked_bipartitions": [
+        {
+          "lambda": [
+            17
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 18
+        },
+        {
+          "lambda": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mu": [
+            1
+          ],
+          "weight": 1,
+          "degree": 18
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            17
+          ],
+          "weight": 17,
+          "degree": 18
+        },
+        {
+          "lambda": [
+            1
+          ],
+          "mu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "weight": 17,
+          "degree": 18
+        }
+      ],
+      "minimum_marked_degree": 18,
+      "complement_spectrum_checked": false
+    }
+  ]
+}

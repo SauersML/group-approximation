@@ -1,0 +1,84 @@
+{
+  "cellular_input_sha256": "099bdca771f2d3ec645ea9c794163d415ce7d4a63ad7570bdfacf28c17e099b0",
+  "d2_dimensions": [
+    1940,
+    2028
+  ],
+  "d2_rational_rank": 1308,
+  "elapsed_seconds": 2.476082670968026,
+  "exact_index_diagnostics": [
+    {
+      "divided_residual_rows": 4,
+      "elimination_updates": 7846,
+      "initial_active_equations": 2025,
+      "initial_nonzeros": 9480,
+      "peak_active_nonzeros": 19103,
+      "residual_equations": 7,
+      "residual_row_gcd_histogram": {
+        "1": 3,
+        "5": 4
+      },
+      "round": 0,
+      "unit_pivots": 1306
+    },
+    {
+      "divided_residual_rows": 3,
+      "elimination_updates": 6,
+      "initial_active_equations": 7,
+      "initial_nonzeros": 2682,
+      "peak_active_nonzeros": 2682,
+      "residual_equations": 3,
+      "residual_row_gcd_histogram": {
+        "11": 3
+      },
+      "round": 1,
+      "unit_pivots": 1
+    },
+    {
+      "divided_residual_rows": 0,
+      "elimination_updates": 2,
+      "initial_active_equations": 3,
+      "initial_nonzeros": 1137,
+      "peak_active_nonzeros": 1137,
+      "residual_equations": 0,
+      "residual_row_gcd_histogram": {},
+      "round": 2,
+      "unit_pivots": 1
+    }
+  ],
+  "h1_torsion_invariant_factors": [
+    831875
+  ],
+  "h1_torsion_is_cyclic": true,
+  "h1_torsion_order": 831875,
+  "h1_torsion_order_prime_factors": {
+    "11": 3,
+    "5": 4
+  },
+  "level": 121,
+  "primary_parts": [
+    {
+      "cyclic_primary_part": true,
+      "minimum_generator_count": 1,
+      "modular_rank": 1307,
+      "order_exponent": 4,
+      "prime": 5
+    },
+    {
+      "cyclic_primary_part": true,
+      "minimum_generator_count": 1,
+      "modular_rank": 1307,
+      "order_exponent": 3,
+      "prime": 11
+    }
+  ],
+  "profile_seconds": 0.2111738990060985,
+  "projective_degree": 16093,
+  "proof": "Sat(im d2)/im d2 is Tor(coker d2)=Tor(H1); its order is the exact row-lattice saturation index. For each prime, the rational-to-modular rank drop is the primary generator count.",
+  "rational_coinvariant_dimensions": [
+    721,
+    2028,
+    1940,
+    654
+  ]
+}

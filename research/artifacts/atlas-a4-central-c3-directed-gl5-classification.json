@@ -1,0 +1,29 @@
+{
+  "central_constraints": [
+    {"bit": 0, "first_hex": "01000000000100000000000100000101", "occurrences": 2, "second_hex": "01000000010100000000010000000001", "tree_indices": [7031, 7077]},
+    {"bit": 1, "first_hex": "01000000000100000000000100000101", "occurrences": 2, "second_hex": "01010000000100000000010000000001", "tree_indices": [7030, 7052]},
+    {"bit": 2, "first_hex": "01000000000100000000010100000100", "occurrences": 2, "second_hex": "01000000010100000000010000000001", "tree_indices": [7027, 7076]},
+    {"bit": 3, "first_hex": "01000000000100000000010100000100", "occurrences": 2, "second_hex": "01010000000100000000010000000001", "tree_indices": [7026, 7051]},
+    {"bit": 4, "first_hex": "01000000010100000000010000000001", "occurrences": 2, "second_hex": "01000000000100000000000100000101", "tree_indices": [6969, 7117]},
+    {"bit": 5, "first_hex": "01000000010100000000010000000001", "occurrences": 2, "second_hex": "01000000000100000000010100000100", "tree_indices": [6968, 7113]},
+    {"bit": 6, "first_hex": "01010000000100000000010000000001", "occurrences": 2, "second_hex": "01000000000100000000000100000101", "tree_indices": [6936, 7116]},
+    {"bit": 7, "first_hex": "01010000000100000000010000000001", "occurrences": 2, "second_hex": "01000000000100000000010100000100", "tree_indices": [6935, 7112]}
+  ],
+  "core_plus_collision_gl5_positions": 216,
+  "distinct_central_constraints": 8,
+  "gl5_central_satisfaction_mask_histogram": {
+    "0x0": 54,
+    "0x30": 34,
+    "0xc0": 34,
+    "0xf0": 94
+  },
+  "reverse_half_completion": {
+    "collision_19243_is_identity": true,
+    "core_word_occurrences_satisfied": 14,
+    "forward_central_word_occurrences_satisfied": 0,
+    "full_packet_word_occurrences_satisfied": 22,
+    "relative_chart_matrix_hex": "01000000000000010000000000000100000001000001000100",
+    "reverse_central_word_occurrences_satisfied": 8
+  },
+  "word_occurrences": 16
+}
