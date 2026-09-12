@@ -43,6 +43,7 @@ namespace KGen
 open scoped Matrix
 open CategoryTheory
 open GroupApproximation.STW59
+open GroupApproximation.CharClass.LH
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 set_option linter.unusedSectionVars false

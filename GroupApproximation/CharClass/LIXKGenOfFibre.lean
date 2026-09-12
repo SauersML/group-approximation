@@ -84,6 +84,15 @@ theorem lixKPtTriv_symm_apply (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1
   rw [Bundle.intert_self, Matrix.one_mulVec, Matrix.mulVec_mulVec,
     lixKGFrame_conjTranspose_mul, Matrix.one_mulVec]
 
+/-- The inverse trivialisation over the singleton, as an isomorphism of spaces.  Named with its
+type so that `TopCat.isoOfHomeo` never has to infer its objects from a bare homeomorphism. -/
+def lixKPtTrivIso (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1))
+    {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
+    (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m)) :
+    TopCat.of (↥(lixKPtSet n k dd i) × (Fin (lixRank n dd) → ℂ)) ≅
+      TopCat.of (Bundle.Total ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i))) :=
+  TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu).symm
+
 /-! ## 2. The fibre map, factored through the singleton -/
 
 /-- **The fibre map is: slice at the zero, trivialise back, include.** -/
@@ -92,7 +101,7 @@ theorem lixKFibreMap_eq_slice (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m)) :
     cmap (lixKFibreMap n k dd i hGc hGu)
       = RelativeSupport.sliceMap (lixKPt n k dd i) (Fin (lixRank n dd) → ℂ)
-        ≫ ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+        ≫ ((lixKPtTrivIso n k dd i hGc hGu).hom
           ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i))) := by
   apply TopCat.hom_ext
   apply ContinuousMap.ext
@@ -107,7 +116,7 @@ theorem lixKPtTriv_symm_mapsTo (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 
     {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m)) :
     ∀ q ∈ {q : ↥(lixKPtSet n k dd i) × (Fin (lixRank n dd) → ℂ) | q.2 ≠ 0},
-      (ConcreteCategory.hom (TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom) q ∈
+      (ConcreteCategory.hom (lixKPtTrivIso n k dd i hGc hGu).hom) q ∈
         ((Subtype.val : Bundle.Total ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i))
             → ↥(lixKPtSet n k dd i) × (Gen.VIdx n dd ⊕ Gen.VIdx n dd → ℂ)) ⁻¹'
           Bundle.puncturedSet ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i))) := by
@@ -129,7 +138,7 @@ theorem lixKPtTriv_mapsTo (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1))
     ∀ w ∈ ((Subtype.val : Bundle.Total ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i))
             → ↥(lixKPtSet n k dd i) × (Gen.VIdx n dd ⊕ Gen.VIdx n dd → ℂ)) ⁻¹'
           Bundle.puncturedSet ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i))),
-      (ConcreteCategory.hom (TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.inv) w ∈
+      (ConcreteCategory.hom (lixKPtTrivIso n k dd i hGc hGu).inv) w ∈
         {q : ↥(lixKPtSet n k dd i) × (Fin (lixRank n dd) → ℂ) | q.2 ≠ 0} :=
   fun w hw h0 => hw.2 ((Bundle.totalTrivStdOn_snd_eq_zero_iff (lixBundle n G hGc hGu)
     (lixKZero n k dd i) (lixKPtSet n k dd i) (lixKPtSet_subset_trivSet n k dd i hGc hGu)
@@ -154,44 +163,44 @@ theorem lixKFibre_relPullback_ne_zero_of_restrict (K : Type) [Field K] (n k : �
   have htriv := lixKPtTriv_symm_mapsTo n k dd i hGc hGu
   have hslice := RelativeSupport.slice_mapsTo (lixKPt n k dd i) (puncturedSet (lixRank n dd))
   have h23 : ∀ q ∈ {q : ↥(lixKPtSet n k dd i) × (Fin (lixRank n dd) → ℂ) | q.2 ≠ 0},
-      (ConcreteCategory.hom ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+      (ConcreteCategory.hom ((lixKPtTrivIso n k dd i hGc hGu).hom
         ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i)))) q
         ∈ lixPuncturedInTotal n hGc hGu :=
     fun q hq => hinc _ (htriv q hq)
   have h123 : ∀ y ∈ puncturedSet (lixRank n dd),
       (ConcreteCategory.hom (RelativeSupport.sliceMap (lixKPt n k dd i) (Fin (lixRank n dd) → ℂ)
-        ≫ ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+        ≫ ((lixKPtTrivIso n k dd i hGc hGu).hom
           ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i))))) y
         ∈ lixPuncturedInTotal n hGc hGu :=
     fun y hy => h23 _ (hslice y hy)
   have e0 : relPullback K (cmap (lixKFibreMap n k dd i hGc hGu))
         (lixKFibreMap_mapsTo n k dd i hGc hGu) (2 * lixRank n dd)
       = relPullback K (RelativeSupport.sliceMap (lixKPt n k dd i) (Fin (lixRank n dd) → ℂ)
-          ≫ ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+          ≫ ((lixKPtTrivIso n k dd i hGc hGu).hom
             ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i)))) h123
           (2 * lixRank n dd) :=
     relPullback_eq_of_eq K (lixKFibreMap_eq_slice n k dd i hGc hGu)
       (lixKFibreMap_mapsTo n k dd i hGc hGu) (2 * lixRank n dd)
   have e1 : relPullback K (RelativeSupport.sliceMap (lixKPt n k dd i) (Fin (lixRank n dd) → ℂ)
-          ≫ ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+          ≫ ((lixKPtTrivIso n k dd i hGc hGu).hom
             ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i)))) h123
           (2 * lixRank n dd)
-      = relPullback K ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+      = relPullback K ((lixKPtTrivIso n k dd i hGc hGu).hom
             ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i))) h23
           (2 * lixRank n dd)
         ≫ relPullback K (RelativeSupport.sliceMap (lixKPt n k dd i) (Fin (lixRank n dd) → ℂ))
           hslice (2 * lixRank n dd) :=
     relPullback_comp K _ _ hslice h23 h123 (2 * lixRank n dd)
-  have e2 : relPullback K ((TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom
+  have e2 : relPullback K ((lixKPtTrivIso n k dd i hGc hGu).hom
             ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i))) h23
           (2 * lixRank n dd)
       = relPullback K (cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKPtSet n k dd i)))
           hinc (2 * lixRank n dd)
-        ≫ relPullback K (TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm.hom htriv
+        ≫ relPullback K (lixKPtTrivIso n k dd i hGc hGu).hom htriv
           (2 * lixRank n dd) :=
     relPullback_comp K _ _ htriv hinc h23 (2 * lixRank n dd)
   have h1 := ne_zero_of_isoOf
-    (relPairIso K (TopCat.isoOfHomeo (lixKPtTriv n k dd i hGc hGu)).symm htriv
+    (relPairIso K (lixKPtTrivIso n k dd i hGc hGu) htriv
       (lixKPtTriv_mapsTo n k dd i hGc hGu) (2 * lixRank n dd)) hres
   have h2 := ne_zero_of_isoOf
     (RelativeSupport.relCohomologyProdIsoGenOf K inferInstance (lixKPt n k dd i)
