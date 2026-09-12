@@ -55,3 +55,12 @@ second nonsoficity mechanism, the other open lane for which is
   Cantor set, not on configurations `A^V`, and no candidate automaton over
   `V` is recorded. The negative Leavitt lane is
   `leavitt-unit-group-nonsurjunctive`.
+- **Permutation stability.** Equivalent to this claim, by
+  `thompson-v-sofic-iff-not-permutation-stable`. A proof must show that every almost-homomorphism
+  of `V` into symmetric groups is close to the trivial one.
+  - Bradford (arXiv:2211.15249v2, p. 4) reads his local stability theorem for derived subgroups
+    of full groups of minimal subshifts as evidence that `V` is stable.
+  - That theorem goes through his IRS criterion for amenable groups (Theorem 1.7) and Zheng's IRS
+    classification, and `V` is not amenable.
+  - No stability technique for a nonamenable group without finite quotients is recorded
+    (`research/artifacts/thompson-v-soficity-stability-and-full-groups-2026-09-12.md`, Section 2).

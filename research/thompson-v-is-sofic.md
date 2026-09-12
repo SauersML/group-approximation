@@ -31,3 +31,17 @@ Consequences:
   `thompson-v-not-sofic`). No construction reaches that.
 - **Haagerup property.** `thompson-v-has-haagerup-property` supplies proper affine isometric
   actions, not permutation models. No passage from a-T-menability to soficity is known.
+- **Full-group soficity theorems.** Dead for `V` (lane `thompson-v-soficity`; see
+  `research/artifacts/thompson-v-soficity-stability-and-full-groups-2026-09-12.md`, Section 3,
+  sources read from the PDFs).
+  - Ma, arXiv:2110.11548v1, Theorem 7.5, needs a Følner sequence for the groupoid. The Cuntz
+    groupoid has none (`cuntz-groupoid-admits-no-folner-sequence`), so that theorem cannot
+    certify `V`.
+  - The LEF theorems for full groups (Grigorchuk--Medynets; Ma, arXiv:2209.00580v4) cannot
+    contain `V`, which is not LEF.
+  - Models with an almost-equivariant coordinate map to the Cantor set keep a fixed proportion of
+    boundary, with any multiplicity or internal state (artifact Corollary 3.3).
+- **Stability dictionary.** By `thompson-v-sofic-iff-not-permutation-stable`, this claim is the
+  failure of permutation stability of `V`, in any of Bradford's four senses. Bradford,
+  arXiv:2211.15249v2, p. 4, lists `V` among full-group relatives "not known to be sofic", and reads
+  his results as evidence that `V` is stable, that is, against this claim.
