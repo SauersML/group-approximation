@@ -44,3 +44,18 @@ certificate sits across both factors.
   in the other. Neither is available for two nonsofic factors.
 - **First open test instance.** Two surjunctive groups with no LEF factor and no wreath structure, for
   example two finitely presented surjunctive nonsofic doubles of Kun–Thom pairs.
+- **Update (w3-products, 2026-09-12): that test instance is covered.** Finitary split structures pass to
+  products over the product base (`finitary-split-structures-pass-to-direct-products`). For a fixed
+  surjunctive `G`, the class of second factors `K` with `G x K` surjunctive contains the LEF permanence
+  closure: LEF groups, subgroups, local embeddings, finitary split extensions and graph folds
+  (`products-with-lef-permanence-closure-factors-are-surjunctive`). So `D x D` for Kun–Thom doubles `D`,
+  and `G x W`, `G x D` for every surjunctive `G`, are surjunctive. The claim stays open only for two factors
+  outside that closure. That includes every group containing a finitely presented simple nonsofic FA
+  subgroup, such as `R^x` and the tester `U`.
+- **Fibre plus compactness (w3-products).** Reading `A^(G x H)` as `(A^H)^G` makes `tau` an automaton over
+  `G` with the compact alphabet `A^H`. Truncating to a finite window `E` of `H` gives a self-map only when
+  `E M_H ⊆ E`, which fails for infinite `<M_H>`. Closing the device needs exact finite total realizations of
+  the `H`-coordinate tables, which is LEF data, so it reaches the closure theorem above and no further.
+  Sofic realizations break the decoder identity on a positive fraction of points, and the repair is a count
+  over an infinite `G`-direction alphabet. Artifact
+  `research/artifacts/w3-products-permanence-closure-2026-09-12.md`, Section 3.
