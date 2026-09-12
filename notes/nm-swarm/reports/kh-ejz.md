@@ -67,10 +67,43 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
 
 ## Current assignment (2026-09-12)
 Hyde–Lodha Proposition 4.7, alongside fff-quotient:
-`HydeLodha.StabKFinitelyPresented Γ` (GroupTheory/HydeLodha/QTwoFinitelyPresented.lean). kh-ejz takes one
-separable sub-lemma that fff-quotient is not writing; the statement and path are agreed before any Lean is
-written. Edits to the rooted Q2 modules (QTwoFinitelyPresented, QTwoFinitePresentationShort,
-QTwoBrownTriangle, QTwoFinitePresentationLong) land NM_ATTIC until green.
+`HydeLodha.StabKFinitelyPresented Γ` (GroupTheory/HydeLodha/QTwoFinitelyPresented.lean). Edits to the rooted
+Q2 modules (QTwoFinitelyPresented, QTwoFinitePresentationShort, QTwoBrownTriangle,
+QTwoFinitePresentationLong) land NM_ATTIC until green.
+
+Split agreed with fff-quotient. kh-ejz writes two orphan modules. fff-quotient's QTwoFinitePresentationStabK
+(induction over `Finset.induction_on_max`) imports both and uses these exact names and binders. kh-ejz
+stays out of Restrict, StabK, StabKSplit, Derived and the L4.6 assembly. Landed ba54a571f
+(NM_UNVERIFIED); probe pending.
+
+`GroupTheory/HydeLodha/QTwoFinitePresentationProduct.lean` ("R = ∏ …; R' ⊆ R₁ ⊆ Γ_K ⊆ R; casing pair"):
+```lean
+def commuteSupHom {G : Type*} [Group G] (A B : Subgroup G)
+    (hcomm : ∀ a ∈ A, ∀ b ∈ B, Commute a b) : ↥A × ↥B →* G
+theorem range_commuteSupHom … : (commuteSupHom A B hcomm).range = A ⊔ B
+theorem isFinitelyPresented_sup_of_commute {G : Type*} [Group G] (A B : Subgroup G)
+    (hcomm : ∀ a ∈ A, ∀ b ∈ B, Commute a b) (hdisj : A ⊓ B = ⊥)
+    [Group.IsFinitelyPresented ↥A] [Group.IsFinitelyPresented ↥B] :
+    Group.IsFinitelyPresented ↥(A ⊔ B)
+theorem isFinitelyPresented_of_commutator_le {G : Type*} [Group G] (N H K : Subgroup G)
+    (hNH : N ≤ H) (hHK : H ≤ K) (hKN : ⁅K, K⁆ ≤ N) [Group.FG ↥K]
+    [Group.IsFinitelyPresented ↥N] : Group.IsFinitelyPresented ↥H
+theorem commutator_sup_le_of_commute {G : Type*} [Group G] (A B N : Subgroup G)
+    (hcomm : ∀ a ∈ A, ∀ b ∈ B, Commute a b) (hA : ⁅A, A⁆ ≤ N) (hB : ⁅B, B⁆ ≤ N) :
+    ⁅A ⊔ B, A ⊔ B⁆ ≤ N
+```
+`GroupTheory/HydeLodha/QTwoFinitePresentationNormal.lean` ("Since Γ is 1-periodic, Γ_K = Γ_{K+ℤ}"):
+```lean
+def normalShift (k₀ t : ℚ) : ℚ := k₀ + Int.fract (t - k₀)
+theorem normalShift_mem_Ioo {k₀ t : ℚ} (ht : normalShift k₀ t ≠ k₀) :
+    k₀ < normalShift k₀ t ∧ normalShift k₀ t < k₀ + 1
+theorem dyadic6_normalShift {k₀ t : ℚ} (ht : Dyadic6 t) : Dyadic6 (normalShift k₀ t)
+theorem stabK_eq_upsilon_inf_stabK {Γ : Subgroup (Equiv.Perm ℚ)} (hΓ : Γ ≤ gammaTwo)
+    {K : Set ℚ} {k₀ : ℚ} (hk₀ : k₀ ∈ K) :
+    stabK Γ K = upsilon Γ k₀ (k₀ + 1) ⊓ stabK Γ (normalShift k₀ '' K \ {k₀})
+```
+Model check at K = {k₀}: K' = ∅, so `stabK Γ {k₀} = upsilon Γ k₀ (k₀ + 1)`. The commutator bound needs no
+normality of N, because ⁅a₁b₁, a₂b₂⁆ = ⁅a₁, a₂⁆⁅b₁, b₂⁆ when A and B commute.
 
 ## Landing rule
 Edits to EJZAngleGHB, EJZAngleSylowFour and GHBLatticeRouteKazhdan land with NM_ATTIC until a probe is
