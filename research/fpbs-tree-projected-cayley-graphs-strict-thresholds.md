@@ -32,10 +32,21 @@ checked. The fibres are cut sets, which gives an exact criterion.
   `fpbs-tree-projected-via-critical-sphere-bubble` reduces the claim to
   `fpbs-tree-projected-critical-sphere-bubble-below-one`, which is equivalent to
   the L2 gap on these graphs. **Where it stops:** that critical estimate is open.
-* **Nonunimodular structure.** For asymmetric or label-dependent height sets,
-  tree automorphisms preserving labels, orientations and height sets reduce to
-  the free group itself. **Where it dies:** there is no nonunimodular
-  quasi-transitive subgroup to use.
+* **Nonunimodular structure.**
+  * *Covered case.* `fpbs-tree-projected-translate-symmetric-nonunimodular`
+    settles the subclass of `F_n x Z` in which every decoration set is a translate
+    of one set `D` with `c - D = D`. Examples: `{(a,0),(a,1),(b,0),(b,1),(1,1)}`
+    and `{(a,0),(a,1),(b,5),(b,6)}`. Every tree automorphism lifts with a height
+    potential, and the lifted end stabilizer is closed, transitive and
+    nonunimodular. The earlier note here, that automorphisms "reduce to the free
+    group itself", holds only for automorphisms preserving labels and
+    orientations.
+  * **Where it dies:** when decoration sets differ in shape, as in
+    `{(a,0),(a,1),(b,0),(1,1)}` with `D_a = {0,1}` and `D_b = {0}`, only
+    color-preserving tree automorphisms lift. Within those, the stabilizer of an
+    end has infinitely many orbits, one for each color word of the ray to the
+    end, so it is not quasi-transitive. This is not a proof that no other
+    nonunimodular subgroup of `Aut(X)` exists.
 * **Large rank.** `fpbs-tree-projected-large-rank-strict-thresholds` settles the
   claim whenever `v + 2 m sqrt(2n-1) < 2n-1`, where `v` counts the vertical
   generators and `m` is the largest multiplicity over a letter. It uses the tree
