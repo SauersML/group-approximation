@@ -33,7 +33,10 @@ infinite, stable rank one, real rank zero, Z-stable), the component group
 embeds in K1 and is abelian.
 
 The theorem refutes STW Problem LIX a second time, with a commutator as
-witness. No other named problem is claimed. Complete proof, written by
+witness. No other named problem is claimed. For credit: Toms,
+arXiv:2609.09535v1 (8 Sep 2026), independently gives a negative answer to
+LIX. His witness is an order-two class detected by spin bordism, with
+K1 = 0. As stated there, his Theorem 1.1 has no nonabelian component group. Complete proof, written by
 the lix-sweep lane; not yet independently reviewed.
 
 The construction is the twisted factorial tower with base
