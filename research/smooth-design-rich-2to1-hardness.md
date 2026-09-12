@@ -26,9 +26,10 @@ from `epsilon`. Requiring it for every `m` at once would force
 `log |F| = omega(n)`, by `pullback-smoothness-needs-exponentially-many-pairings`.
 
 With `noise-test-sound-on-smooth-design-rich-inputs` this implies UGC (route
-`ugc-from-smooth-design-rich-2to1`). The Rich 2-to-1 conjecture, at all large
-alphabet sizes as BKM's Section 5 uses it, implies it: all pairings form an
-admissible family.
+`ugc-from-smooth-design-rich-2to1`). Conversely, UGC implies it (route
+`smooth-design-rich-2to1-from-ugc`): pad the alphabet with equality constraints
+and apply BKM's Appendix B, whose all-pairings families are admissible. So
+SD-Rich is **equivalent** to UGC. Only the construction target is weaker.
 
 By `pullback-smoothness-needs-exponentially-many-pairings` an admissible family
 has at least about `m^n` members, but it may be much smaller than the set of all
