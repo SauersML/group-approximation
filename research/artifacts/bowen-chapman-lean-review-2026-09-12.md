@@ -178,11 +178,16 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 039c5af15, twenty-six campaign modules or batches have
-landed, plus two docstring fixes (d4c4f667e, 2f01a8ac1). The eight most recent
-are the witness given normalization at the pair (F4(t)), the coset wreath
-witness (F4(u)), and six component-counting landings for Theorem 4.1 (F4(v),
-F4(w), F4(y), F4(z)). The earlier eighteen are: the Palomar
+As of `origin/main` 78d1e47fe, twenty-eight campaign modules or batches have
+landed, plus two docstring fixes (d4c4f667e, 2f01a8ac1). The ten most recent
+are:
+* the witness given normalization at the pair (F4(t));
+* the coset wreath witness (F4(u));
+* six component-counting landings for Theorem 4.1 (F4(v), F4(w), F4(y), F4(z));
+* the producer skeleton (F4(aa));
+* the step-9 summation (F4(bb)).
+
+The earlier eighteen are: the Palomar
 challenge (6ae077316), solution (1ad7aa663) and pending gate registration
 (73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
 (0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
@@ -726,6 +731,23 @@ defect.**
   message pins it as `seqNormalizes_distinguished_of_kazhdan` in
   `KunThom/CompressorNormalizationCore.lean`. That module is not on main at
   2498eefe6, and the landed module docstring does not refer to it.
+
+**(bb) Landed: `KunThom/FixedPointNormalizationSummation`, 462e29bd5,
+root-wired. No defect.**
+* This is the step-9 summation of the last Hamming estimate in the proof of
+  Kun–Thom Theorem 4.1:
+  * `card_hammingDisagreement_patch_le_reseparation` bounds the disagreement
+    between a patched permutation and its target by
+    `offDomain + Σ_good x C + Σ_exceptional |C|`, given per-block reference
+    arrows, near bounds, room, tagged expansion and a combined defect bound;
+  * `vanishing_hammingDistance_of_card_le` turns a negligible pointwise count
+    into a vanishing Hamming distance.
+  The module claims no endpoint.
+* Probe evidence: record `kt-norm-fixedpoint.green.0912-123511-62372` at base
+  039c5af15 carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `2186b4c5…`. The commit message cites the tag. The 6-module import closure did
+  not change.
+* One root import is added. The only deletion is the WIP snapshot.
 
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
