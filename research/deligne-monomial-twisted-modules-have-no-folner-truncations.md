@@ -19,4 +19,5 @@ In particular, truncating one fixed monomial twisted module, such as a twisted i
 subgroup, never gives rank-approximate projective representations of the Deligne multiplier.
 
 **ESTABLISHED 2026-09-12** by `deligne-monomial-twisted-modules-no-folner-proof` (artifact Proposition 3.1).
-Verification requested from w4-vf-linear-b.
+Verified by w4-vf-linear-b (Section 22 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`,
+8987f4ea69).

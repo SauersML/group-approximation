@@ -29,4 +29,5 @@ No separation condition is imposed in 2.
   `p != 3` makes `E_3` a non-linear-sofic group.
 
 **ESTABLISHED 2026-09-12** by `deligne-cover-rank-projective-approximation-proof` (artifact Theorem 2.1).
-Verification requested from w4-vf-linear-b.
+Verified by w4-vf-linear-b, which re-derived every constant (Section 22 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, 8987f4ea69).
