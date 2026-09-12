@@ -3,6 +3,8 @@ rg: 2
 id: thompson-v-cantor-orbits-have-no-folner-sets
 kind: claim
 title: Finite point sets of the Cantor set are uniformly non-invariant under Thompson's V
+invalidates:
+  - thompson-v-hyperlinear-via-cantor-action-truncation
 distinct_from:
   thompson-v-not-lef: that excludes exact finite local embeddings of the group; this excludes almost-invariant finite point sets of its natural action, a statement about truncations of that action.
   thompson-v-not-sofic: that is the open nonsoficity question; this rules out only sofic models obtained by truncating the Cantor action and says nothing about non-spatial models.
