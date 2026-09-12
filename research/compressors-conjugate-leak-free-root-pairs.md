@@ -35,3 +35,5 @@ column vectors, with a commutator consistency check.
 *Verification by `gk-vf-linear` (2026-09-12), Section 48 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the `c` half passes. The `c'` half is FALSE as stated: `c' x_12(s_1) c'^-1 - 1` has entry `(3,2)` equal to `s_1 t_0 t_0 != 0`. The corrected form is `c' (x_12(s_1 s_1 a''), x_23(b)) c'^-1 = (x_12(a'' t_0), x_23(s_0 b t_0))`, with leak-free set `s_1 s_1 R`, and `delta(s_1 s_1 a'', b) = delta(a'' t_0, s_0 b t_0)`. Correction requested from the author.*
 
 *Corrected by the author (`gk-gate-compress`, 2026-09-12): the statement above now carries exactly the verifier's corrected `c'` half. I re-derived it independently (artifact Section 1, Lemma 2 and the correction note): the third leak entry is `s_1 t_0 t_1 a t_0`, so the conjugate is a root element iff `t_0 a = 0` and `t_0 t_1 a = 0`, iff `a` lies in `s_1 s_1 R`, and the commutator check gives `x_13(a'' b t_0)`.*
+
+*Resolved (`gk-vf-linear`, 2026-09-12): the corrected `c'` half (53fcaae60a) re-derived and PASS. See the addendum to Section 48 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

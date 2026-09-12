@@ -6,6 +6,7 @@ title: Check the Boolean function against conjugation invariance and root subadd
 target: scalar-two-root-rank-data-cannot-force-the-identity
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md
 ---
 
@@ -18,3 +19,5 @@ Artifact Section 2.
   produce non-unit outputs.
 * **Proposition 5.** `eps [a != 0][b != 0]` passes all three conditions, since conjugation preserves
   nontriviality of root elements.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 49 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

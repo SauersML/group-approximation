@@ -1732,3 +1732,38 @@ artifact writes both as "`t_1 t_0`" and uses the literal product `t_1 . t_0` in 
 - *Downstream.* Only the claim, its route and the artifact cite this claim. Nothing else consumes the false half.
 - *Requested correction.* Replace `s_1 R` with `s_1 s_1 R`, and `x_12(t_1 a' t_0)` with `x_12(a'' t_0)`, in the claim, in
   Lemma 2, in Corollary 3 and in its check. Use `T[10]` or `t_0 t_1` for the adjoint word throughout.
+
+**Section 48 addendum: the correction (53fcaae60a) PASS.** Lemma 2's second bullet, Corollary 3, the commutator check and
+the claim now carry the corrected `c'` half. I re-checked the proof as written.
+- `s_1 t_0 a t_0 = 0` iff `t_0 a t_0 = 0`, cancelling `s_1` by `t_1`, iff `t_0 a = 0`.
+- `s_1 t_0 t_1 a t_0 = 0` iff `t_0 t_1 a = 0`.
+- Both together give `a = s_1 t_1 a` and `t_1 a = s_1 t_1 t_1 a`, so `a = s_1 s_1 t_1 t_1 a`.
+- The surviving entry is `t_1 t_1 s_1 s_1 a'' t_0 = a'' t_0`.
+- The check gives column 3 equal to `(a'' b t_0, 0, 0)`.
+The verdict on `compressors-conjugate-leak-free-root-pairs` is now PASS as corrected.
+
+## 49. Scalar two-root rank data cannot force the identity (f4cbbb4ea9, lane gk-gate-compress): PASS
+
+Items checked: `scalar-two-root-rank-data-cannot-force-the-identity`, route `scalar-two-root-rank-data-calibration-proof`, and
+artifact Section 2.
+
+- **Unit moves.** `diag(g_1, g_2, g_3) x_ij(a) diag(...)^-1 = x_ij(g_i a g_j^-1)`, and `GL_3(R) = EL_3(R)`.
+  - So `delta(u, v) = delta(1,1)` for units `u, v`.
+  - `diag(w,w,w)` fixes `x_23(1)` and sends `x_12(e_0)` to `x_12(e_1)`, which gives `delta(e_0,1) = delta(e_1,1)`.
+- **Lemma 4, with the corrected `c'`.**
+  - *Forward moves.* `c` requires `b = b' t_1 t_1`, a zero divisor with `b s_0 = 0`. `c'` requires `a = s_1 s_1 a''`, with
+    `t_0 a = 0`.
+  - *Inverse moves.* These start from `(s_0 a t_0, s_0 b')` or `(a'' t_0, s_0 b t_0)`. Each of these entries is killed by
+    `s_1` on the right or by `t_1` on the left, so none is a unit.
+  - So every compressor move, in either direction, has a non-unit input, while unit moves preserve unit pairs.
+  - By induction, chains of elementary moves from `(1,1)` reach only unit pairs. The lemma is about elementary moves only,
+    as stated, not about arbitrary conjugacy in `GL_3(R)`.
+- **Subadditivity.**
+  - `n_12(a + a') = X + X' + XX'` with `X, X'` commuting and square-zero, so `Y n_12(a+a') = YX(1 + X') + YX'`.
+  - `n_23(b + b') X = YX + (1 + Y) Y'X`.
+  - Units do not raise rank, which gives both inequalities.
+- **Proposition 5.** `x_12(a) != 1` iff `a != 0`, and conjugation preserves nontriviality, so (i) holds. If `a + a' != 0`,
+  then one of `a`, `a'` is nonzero, so (ii) holds. (iii) is immediate. So `eps [a != 0][b != 0]` meets (i)–(iii) with
+  value `eps` at `(1,1)`.
+- **Scope.** This is exactly what the title says: scalar `delta`-data under same-shape conjugacy, subadditivity and
+  vanishing. Operator identities are not covered.
