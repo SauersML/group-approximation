@@ -48,6 +48,33 @@ Proved without hypotheses (probe 0912-094259-57545; the axioms of both are withi
 the second discharges the `(A, hA)` input of `hasHaagerupProperty_of_places`.  Separation and Bound are not root-wired.
 Algebra/GHWFrobeniusSeparable is in the root-wiring wave; edits to it land with NM_ATTIC until a probe is green.
 
+## GHW char 0: countably many places
+
+Status 2026-09-12.  The lead assigned sec2 one whole file of the char-0 half.  dgo-geometric owns GHWCharZeroFiniteness
+and GHWCharZero and agreed the statements below; jacobson owns char p.  A finite set of σ does not suffice: for ℤ[t] the
+finiteness hypothesis of `hasHaagerupProperty_of_places` fails.  So the σ are countable, with bounds that depend on
+the place.
+
+| module | carries | state |
+|---|---|---|
+| Kazhdan/GHWCountablePlaces | `AffineAction.smul`, `countableSum`, `exists_weights`; `Haagerup.hasHaagerupProperty_of_countable_sum`; `GHW.hasHaagerupProperty_of_countable_places` | landed unverified at 3a0808fa5; probe running |
+
+Exact statements:
+`theorem GroupApproximation.Haagerup.hasHaagerupProperty_of_countable_sum {G : Type u} [Group G] [Countable G]
+{ι : Type} [Countable ι] (A : ι → AffineAction.{u, v} G)
+(hproper : ∀ C : ι → ℝ, {g : G | ∀ i, ‖(A i).b g‖ ≤ C i}.Finite) : HasHaagerupProperty.{u, v} G`
+
+`theorem GroupApproximation.GHW.hasHaagerupProperty_of_countable_places {K : Type} [Field K] {Γ : Type} [Group Γ]
+[Countable Γ] (ρ : Γ →* GL (Fin 2) K) (hρ : Function.Injective ρ) {k : ℕ}
+(v : Fin k → AddValuation K (WithTop ℤ)) (π : Fin k → K) (hπ : ∀ j, v j (π j) = 1)
+{ι : Type} [Countable ι] (σ : ι → (K →+* ℂ)) (S : Set K)
+(hS : ∀ (γ : Γ) (a b : Fin 2), ((ρ γ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) a b ∈ S)
+(hfin : ∀ (C : ι → ℝ) (N : ℕ), {a : K | a ∈ S ∧ (∀ i, ‖σ i a‖ ≤ C i) ∧
+∀ j, (((-(N : ℤ)) : ℤ) : WithTop ℤ) ≤ v j a}.Finite) : HasHaagerupProperty.{0, 0} Γ`
+
+Weights: enumerate G by e and inject ι into ℕ by f.  Put M_i = ∑_{k ≤ f i} ‖b_i(e k)‖ and w_i = 2^{-f i}/(1 + M_i).
+Then (w_i b_i(g))_i is in ℓ².  A bound ‖b g‖ ≤ R gives ‖b_i g‖ ≤ R/w_i for every i.
+
 ## Census
 
 Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no declarations
