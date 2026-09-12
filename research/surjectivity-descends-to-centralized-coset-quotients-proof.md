@@ -18,3 +18,5 @@ Section 2 of the artifact.
    passes to `taubar`.
 4. If `tau` is bijective and `y` is `B`-invariant, its unique preimage `x` satisfies
    `tau(R_b x) = R_b y = y`. So `R_b x = x`, and every factor is onto.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 13 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

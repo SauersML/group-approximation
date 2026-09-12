@@ -24,3 +24,5 @@ the finitely many pairs gives the stated form.
 
 The proof is complete and uses no hypothesis on the length `l`, which is why
 the conclusion holds for every weakly sofic approximation.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 8.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Correction: "so the identity fails at every vertex unless the defect is trivial" should read "so Lemma 1.1 guarantees the identity at no vertex unless the defect is trivial".

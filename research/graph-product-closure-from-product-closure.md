@@ -27,3 +27,5 @@ rectangle-clause axiomatization preserves surjunctivity under directed colimits.
 
 **Cycle.** This route and `product-closure-from-graph-product-closure` form a deliberate equivalence
 cycle.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 6.4 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Valid as a conditional route.

@@ -42,8 +42,8 @@ multiplicative defects and bounded below on `phi(F \ {1})`. The given length
 **The regular action dies, maximally.** By
 `regular-action-makes-weak-sofic-defects-maximal`, translation on `V = H` has
 `l_V(z) = 1` for every `z != 1`. A nonzero defect therefore acquires the
-largest possible Hamming defect, and the transported identity
-`sigma_V tau_V = id` holds at no vertex. Through the regular action, weakly
+largest possible Hamming defect, and Lemma 1.1 guarantees the transported identity
+`sigma_V tau_V = id` at no vertex (corrected by gk-vf-positive; see Section 8.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Through the regular action, weakly
 sofic data give a chart system exactly when they are already LEF data.
 
 **The conjugation action dies for the opposite reason.** On finite simple

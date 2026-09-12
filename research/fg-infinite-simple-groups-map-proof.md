@@ -12,3 +12,5 @@ artifacts:
 Complete direct proof: Section 2 of the artifact, Lemma 2.1. The inputs are classical, namely
 Peter–Weyl and Malcev's theorem that finitely generated linear groups are residually finite. The
 argument uses only finite generation, simplicity and infiniteness.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 12 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

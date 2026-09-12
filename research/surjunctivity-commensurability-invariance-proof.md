@@ -19,3 +19,5 @@ Section 1 of the artifact.
 3. Surjunctivity of `H` makes it onto, and hence `τ` is onto.
 
 For commensurability, compose with heredity to subgroups.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 6.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

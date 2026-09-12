@@ -34,3 +34,5 @@ Proved in Section 1 of the artifact via
 `F = (F o E^{-1}) o E` with `F o E^{-1}` certificate-fixing and injective; the
 fiber dichotomy gives the corrected-tail equivalence. Established by the
 companion route.
+
+**Correction 2026-09-12** (gk-vf-positive, Section 7.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). The peeling lemma passes. The "sufficient nonlinear instance" is withdrawn. For nonlinear `N_Y`, `sum_(k<D) (-N_Y)^(k)` is not an inverse of `X + N_Y(X)`, even when `N_Y o N_Y = 0`, because `(I+N)(x - N(x)) = x - N(x) + N(x - N(x))`. The artifact example `x(g) + x(g+1)x(g+2)` over `F_2` is not injective: both constant configurations map to `0`. Valid nonlinear instances are composites of track shears inside the block, `(u,v) -> (u + f(v,Y), v)` and `(u,v) -> (u, v + h(u,Y))` with arbitrary local `f` and `h`, whose inverses are the opposite shears. The "uniformly bounded local inverse" hypothesis is automatic once every `Phi_Y` is bijective.

@@ -15,3 +15,5 @@ Proposition 1.1 of the artifact.
 2. The permutation action on `G/H` has a normal kernel of finite index.
 3. The kernel is not trivial, since `G` is infinite and does not embed in a finite symmetric group. By simplicity the kernel is `G`.
 4. So every element fixes the coset `H`, and `H = G`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 3.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

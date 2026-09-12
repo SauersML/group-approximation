@@ -19,3 +19,5 @@ Section 4 of the artifact.
 3. If `E` is surjunctive: `E_0` is surjunctive, and `E/N` by commensurability invariance.
 4. For the equivalence of hypotheses: a finite quotient injective on `N` has kernel of finite index
    meeting `N` trivially, and the normal core of `E_0` is such a kernel.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 6.3 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

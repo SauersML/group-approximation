@@ -21,3 +21,5 @@ Section 3 of the artifact.
    - The image of `rho o tau` is `rho(tau(A^G))`. It is proper when `rho` is onto, and otherwise it
      lies in `rho(A^G)`.
 4. **Products:** the image lies in `tau(A^G) x B^G`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 13 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

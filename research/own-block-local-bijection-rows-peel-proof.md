@@ -22,3 +22,5 @@ surjective. Hence `F'` is injective, `F` is surjective iff `F'` is, and `F'`
 surjective implies `F` surjective. The graded-nilpotent inverse
 `sum_{k<D} (-N_Y)^{(k)}` is a finite composite of local functions, so a
 graded-nilpotent own part is a valid `Phi_Y`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 7.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Correction: the last sentence, on graded-nilpotent own parts, is withdrawn. Nonlinear `N` does not invert as `sum (-N)^(k)`; use track shears instead.

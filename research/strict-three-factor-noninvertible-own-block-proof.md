@@ -25,3 +25,5 @@ non-invertible own-block nonlinearity; the minimal instance of the latter is the
 central three-cycle row, which by
 `central-c3-quadratic-surjunctivity-iff-direct-finiteness` is equivalent to
 characteristic-two direct finiteness.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 7.3 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

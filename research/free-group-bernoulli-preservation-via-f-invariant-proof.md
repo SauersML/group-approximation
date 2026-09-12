@@ -24,3 +24,5 @@ Complete proof, Sections 2 to 4 of the artifact.
   alternately on `B_n` and on `B_n ∪ s_i B_n`.
 
 Surjectivity then follows from `injective-measure-preserving-ca-is-surjective`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 4.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Lemma 2.1 is needed in the general form `F(beta v t gamma) <= F(beta)` with `t = s_j^(±1)` and `gamma <= beta`, because the ball refinements are reached by those splittings, not by `alpha -> alpha v s alpha`; the same submodularity count proves it.

@@ -35,3 +35,5 @@ The consequence stated in the claim is then the transport criterion of
 Section 1 of the artifact rewritten with `l_V` expanded in this basis. The
 proof is complete and uses no hypothesis on the group or on the given
 bi-invariant length.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 8.3 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

@@ -194,3 +194,17 @@ Theorem 2.1 decides surjunctivity only relative to a surjunctive tail; it proves
 no new group surjunctive. Theorem 3.1 localizes strictness but does not exclude
 it: B1 and B3 are open. The three-factor claim, the recipient-affine claim, and
 Gottschalk's conjecture remain open, and are equivalent group by group.
+
+## 5. Verification notes (gk-vf-positive, 2026-09-12)
+
+Lemma 1.1, Corollary 1.2, Theorem 2.1 and Theorem 3.1 pass. Section 7 of
+`research/artifacts/gk-vf-positive-verification-2026-09-12.md` has the details.
+
+* **The "Example (nonlinear, over F_2)" in Section 1 is false.**
+  * `row(x)(g) = x(g) + x(g+1)x(g+2)` sends both constant configurations to `0`, so it is not
+    injective.
+  * `N(x)(g) = x(g+1)x(g+2)` is not nilpotent under composition: `N(N(x))(g) = x(g+2)x(g+3)x(g+4)`.
+* **The graded-nilpotent inverse formula also fails for nonlinear `N`.** `(I+N)(x - N(x))` equals
+  `x - N(x) + N(x - N(x))`, which is not `x` in general.
+* **Replacement instances.** Nonlinear own-block local bijections exist: composites of track shears
+  `(u,v) -> (u + f(v,Y), v)` and `(u,v) -> (u, v + h(u,Y))` with arbitrary local `f` and `h`.

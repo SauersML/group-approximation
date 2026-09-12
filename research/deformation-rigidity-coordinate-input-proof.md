@@ -28,3 +28,5 @@ Sections 0–3 of the artifact.
   cosets of `<s>`.
 * The finite-fibre remark in Section 4 of the artifact is not part of this
   route. The sibling lane `gk-p-inf-kazhdan` owns it.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 10 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

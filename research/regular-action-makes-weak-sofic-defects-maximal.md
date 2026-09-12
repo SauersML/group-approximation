@@ -35,3 +35,5 @@ Hamming defect, so no choice of constants rescues the transport.
 Section 2 of the artifact has the proof and the companion computation for the
 conjugation action, where separation is free and near-multiplicativity is
 impossible instead.
+
+**Correction 2026-09-12** (gk-vf-positive, Section 8.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). The computation passes. The consequence overstates. Lemma 1.1 of the artifact gives a *sufficient* condition for the transported identity at a vertex, and a nontrivial defect makes that condition fail at every vertex. What follows is that the defect hypothesis of the Gromov–Weiss count (Proposition 1.2, `delta < 1`) holds iff every defect is trivial. It does not follow that `sigma_H tau_H = id` fails at a positive fraction of vertices, since the rules may ignore the moved coordinates. Read "holds at a positive fraction of vertices only if" as "is guaranteed by the counting argument only if".

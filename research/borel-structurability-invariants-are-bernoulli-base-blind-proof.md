@@ -18,3 +18,5 @@ Proposition 1.1 of the artifact.
    `2^G -> q^G`. It preserves stabilizers, so it maps free points to free points.
 3. An equivariant map between free actions is bijective from each orbit onto an orbit, so the
    inclusion is class-bijective and `J(Free(2^G)) <= J(Free(q^G))`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 9 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

@@ -20,3 +20,5 @@ Proposition 3.1 of the artifact.
   4. Direct finiteness gives `tau o sigma = id`, so `tau` is onto.
 - **Iterates:** if `tau^(n+1)(A^G) = tau^n(A^G)`, then applying `sigma^n` gives
   `tau(A^G) = A^G`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 13 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

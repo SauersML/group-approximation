@@ -16,3 +16,5 @@ Section 3 of the artifact.
    them. For cost this is by monotonicity; group invariants are constant trivially.
 2. The time-zero partition generates, so `h^Rok ≤ H(λ)`.
 3. The bases `(1−p, p)` have `H → 0`, so `F(Φ_B) ≤ 0`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 5.3 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

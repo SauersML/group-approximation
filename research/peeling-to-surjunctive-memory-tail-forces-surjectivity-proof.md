@@ -21,3 +21,5 @@ it is injective iff its `H`-copy is and surjective iff its `H`-copy is. The
 `F^{(k)}` is surjective, and so is `F`. The empty-tail case is the trivial
 subgroup; the residually finite, free, polycyclic, amenable and sofic cases use
 that those groups are surjunctive.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 7.2 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

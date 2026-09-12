@@ -16,3 +16,5 @@ Proposition 4 of the artifact.
    `tau(n^-1 . x) = tau(x)`.
 3. Injectivity gives `n^-1 . x = x` for all `x`, and the shift is free, so `n = 1`.
 4. For the memory group, restrict `tau` to `Gamma`, where the invariance holds for `g in Gamma`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 13 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

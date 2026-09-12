@@ -18,3 +18,5 @@ Section 2 of the artifact.
    products are coordinatewise.
 2. `G x L` contains `G` with index `|L|`, so it is surjunctive by commensurability invariance.
 3. Corollary 1 of the table-realization theorem then makes `G x K` surjunctive.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 6.2 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

@@ -18,3 +18,5 @@ Section 1 of the artifact.
 3. The pullback `y -> y o psi_c` is injective because `psi_c` is onto. It is onto iff `psi_c` is
    injective, since the two points of a nontrivial fibre carry equal values in every image.
 4. A finite `K` has no proper conjugate into itself.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 13 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

@@ -18,3 +18,5 @@ subgroups `H_S = {n : n|_S = 1}`. The coset space `H_U\W` is read as the group
 then a finite-memory map there, invariant under `A^U x G_U`. The coset-region lemma
 needs exactly the surjunctivity of `A^U x G_U`. The full argument is in the
 artifact's "If" section, steps 1–8.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 11 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

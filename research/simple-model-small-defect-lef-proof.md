@@ -35,3 +35,5 @@ translation. The composite `F -> H_F -> Sym(H_F)` is multiplicative on `F`,
 and by `regular-action-makes-weak-sofic-defects-maximal` every nontrivial image
 has normalized Hamming length `1`. So it is a sofic approximation with defect
 `0` and separation `1`. Surjunctivity then comes from the prerequisite.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 8.2 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

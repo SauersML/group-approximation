@@ -16,3 +16,5 @@ Sections 1 and 2 of the artifact.
 2. The imported Abért–Weiss selector approximates the iid label law on `W ∪ F W`, which realizes
    the cylinder statistics of any finite-alphabet Bernoulli shift inside a free action.
 3. Apply it in both directions.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 5.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Trust surface: `fpbs-aw-finite-pattern-input` is worded for a Bernoulli parameter; the lemma uses arbitrary finite bases, which Abert-Weiss cover.
