@@ -6,6 +6,7 @@ title: No class of groups with one recursive word-problem time bound contains ev
 distinct_from:
   decidable-fp-groups-need-not-embed-in-rational-group: that treats rational homeomorphism hosts, a single-exponential bound and a finitely presented residually finite input; this treats every class of hosts sharing any recursive time bound, with a two-generated input built here.
   rational-homeomorphism-subgroups-have-exponential-wp: that proves a word-problem bound for one class of hosts; this is the general principle turning any such bound into a non-universality theorem.
+  uniform-wp-bound-excludes-bh-universal-targets: that is the same principle with a finitely presented residually finite excluded input, through the Kharlampovich--Myasnikov--Sapir realization theorem, and it implies this one; this proves the weaker two-generated form with no citation, from an explicit graph-shift group.
 artifacts:
   - research/artifacts/boone-higman-self-similar-and-complexity-2026-09-11.md
 ---
