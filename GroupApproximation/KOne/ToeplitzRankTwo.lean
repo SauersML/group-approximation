@@ -59,13 +59,13 @@ noncomputable def split2 :
 
 variable (k d) in
 /-- Read coordinate `a` of the split rank-two space. -/
-def prj (a : Fin 2) :
+noncomputable def prj (a : Fin 2) :
     ((Fin 2 → k) × (Fin d → (Fin 2 → Space k d))) →ₗ[k] k × (Fin d → Space k d) :=
   (LinearMap.proj a).prodMap (LinearMap.pi fun i : Fin d => LinearMap.proj a ∘ₗ LinearMap.proj i)
 
 variable (k d) in
 /-- Insert into coordinate `a` of the split rank-two space. -/
-def sgl (a : Fin 2) :
+noncomputable def sgl (a : Fin 2) :
     (k × (Fin d → Space k d)) →ₗ[k] ((Fin 2 → k) × (Fin d → (Fin 2 → Space k d))) :=
   (LinearMap.single k (fun _ : Fin 2 => k) a).prodMap
     (LinearMap.pi fun i : Fin d =>
@@ -77,7 +77,8 @@ theorem prj_comp_sgl_of_ne {a b : Fin 2} (h : a ≠ b) : prj k d b ∘ₗ sgl k 
   · simp [prj, sgl, Pi.single_eq_of_ne (Ne.symm h)]
 
 /-- `X` in position `(a, b)`. -/
-def entry (a b : Fin 2) (X : Module.End k (Space k d)) : Module.End k (Fin 2 → Space k d) :=
+noncomputable def entry (a b : Fin 2) (X : Module.End k (Space k d)) :
+    Module.End k (Fin 2 → Space k d) :=
   LinearMap.single k (fun _ : Fin 2 => Space k d) a ∘ₗ X ∘ₗ LinearMap.proj b
 
 theorem entry_mul_entry_of_ne {a b : Fin 2} (h : a ≠ b) (X Y : Module.End k (Space k d)) :
@@ -91,10 +92,12 @@ theorem conj_split2_entry (a b : Fin 2) (X : Module.End k (Space k d)) :
   · by_cases h : a' = a
     · subst h
       simp [entry, sgl, prj]
+      rfl
     · simp [entry, sgl, prj, Pi.single_eq_of_ne h]
   · by_cases h : a' = a
     · subst h
       simp [entry, sgl, prj]
+      rfl
     · simp [entry, sgl, prj, Pi.single_eq_of_ne h]
 
 theorem sep_split2_entry (a b : Fin 2) (X : Module.End k (Space k d)) :
@@ -130,16 +133,12 @@ theorem finiteRank_entry (a b : Fin 2) {X : Module.End k (Space k d)} (hX : Fini
 /-! ### Elementary units -/
 
 /-- The unit `1 + X` in position `(a, b)` with `a ≠ b`. -/
-def genUnit {a b : Fin 2} (h : a ≠ b) (X : Module.End k (Space k d)) :
+noncomputable def genUnit {a b : Fin 2} (h : a ≠ b) (X : Module.End k (Space k d)) :
     (Module.End k (Fin 2 → Space k d))ˣ where
   val := 1 + entry a b X
   inv := 1 - entry a b X
-  val_inv := by
-    rw [mul_sub, mul_one, add_mul, one_mul, entry_mul_entry_of_ne h]
-    abel
-  inv_val := by
-    rw [sub_mul, one_mul, mul_add, mul_one, entry_mul_entry_of_ne h]
-    abel
+  val_inv := one_add_mul_one_sub_of_mul_self (entry_mul_entry_of_ne h X X)
+  inv_val := one_sub_mul_one_add_of_mul_self (entry_mul_entry_of_ne h X X)
 
 theorem tame_genUnit {a b : Fin 2} (h : a ≠ b) {X : Module.End k (Space k d)}
     (hX : Tame (split k d) X) :
@@ -170,7 +169,8 @@ theorem pi_single_add_single (w : Fin 2 → Space k d) : Pi.single 0 (w 0) + Pi.
   fin_cases a <;> simp
 
 /-- The `(a, b)` entry of an operator on two copies. -/
-def ent (a b : Fin 2) (Z : Module.End k (Fin 2 → Space k d)) : Module.End k (Space k d) :=
+noncomputable def ent (a b : Fin 2) (Z : Module.End k (Fin 2 → Space k d)) :
+    Module.End k (Space k d) :=
   LinearMap.proj a ∘ₗ Z ∘ₗ LinearMap.single k (fun _ : Fin 2 => Space k d) b
 
 theorem ent_add (a b : Fin 2) (Z Z' : Module.End k (Fin 2 → Space k d)) :
@@ -198,7 +198,7 @@ theorem ent_one (a b : Fin 2) :
   by_cases h : a = b
   · subst h
     simp
-  · simp [h, Pi.single_eq_of_ne h]
+  · simp [h]
 
 theorem ent_entry (a' b' a b : Fin 2) (X : Module.End k (Space k d)) :
     ent a' b' (entry a b X) = if a' = a ∧ b' = b then X else 0 := by
@@ -209,18 +209,21 @@ theorem ent_entry (a' b' a b : Fin 2) (X : Module.End k (Space k d)) :
   · by_cases hb : b' = b
     · subst ha hb
       simp
-    · simp [ha, hb, Pi.single_eq_of_ne (Ne.symm hb)]
-  · simp [ha, Pi.single_eq_of_ne ha]
+    · simp [ha, hb]
+  · simp [ha]
 
 /-- An operator whose four entries have finite rank has finite rank. -/
 theorem finiteRank_of_ent {Z : Module.End k (Fin 2 → Space k d)}
     (h : ∀ a b : Fin 2, FiniteRank (ent a b Z)) : FiniteRank Z := by
   have hZ : Z = entry 0 0 (ent 0 0 Z) + entry 0 1 (ent 0 1 Z) + entry 1 0 (ent 1 0 Z)
       + entry 1 1 (ent 1 1 Z) := by
-    refine LinearMap.ext fun v => funext fun a => ?_
-    have hv : Pi.single 0 (v 0) + Pi.single 1 (v 1) = v := pi_single_add_single v
-    conv_lhs => rw [← hv]
-    fin_cases a <;> simp [entry, ent]
+    refine LinearMap.ext fun v => ?_
+    show Z v = Pi.single 0 (Z (Pi.single 0 (v 0)) 0) + Pi.single 0 (Z (Pi.single 1 (v 1)) 0)
+      + Pi.single 1 (Z (Pi.single 0 (v 0)) 1) + Pi.single 1 (Z (Pi.single 1 (v 1)) 1)
+    have h1 := pi_single_add_single (Z (Pi.single 0 (v 0)))
+    have h2 := pi_single_add_single (Z (Pi.single 1 (v 1)))
+    conv_lhs => rw [← pi_single_add_single v, map_add, ← h1, ← h2]
+    abel
   rw [hZ]
   exact (((finiteRank_entry 0 0 (h 0 0)).add (finiteRank_entry 0 1 (h 0 1))).add
     (finiteRank_entry 1 0 (h 1 0))).add (finiteRank_entry 1 1 (h 1 1))
@@ -241,13 +244,7 @@ theorem Lifts.mul {Z Z' : Module.End k (Fin 2 → Space k d)}
   refine ⟨x0 * y0 + x1 * y1, ?_, ?_⟩
   · rw [map_add, map_mul, map_mul, hx0, hx1, hy0, hy1, Matrix.mul_apply, Fin.sum_univ_two]
   · rw [ent_mul, map_add, map_mul, map_mul]
-    have hrw : ent a 0 Z * ent 0 b Z' + ent a 1 Z * ent 1 b Z'
-          - (rho k d x0 * rho k d y0 + rho k d x1 * rho k d y1)
-        = ((ent a 0 Z - rho k d x0) * ent 0 b Z' + rho k d x0 * (ent 0 b Z' - rho k d y0))
-          + ((ent a 1 Z - rho k d x1) * ent 1 b Z' + rho k d x1 * (ent 1 b Z' - rho k d y1)) := by
-      noncomm_ring
-    rw [hrw]
-    exact ((hr0.mul_right _).add (hs0.mul_left _)).add ((hr1.mul_right _).add (hs1.mul_left _))
+    exact FiniteRank.add_sub_add (FiniteRank.mul_sub_mul hr0 hs0) (FiniteRank.mul_sub_mul hr1 hs1)
 
 theorem lifts_one :
     Lifts (1 : Module.End k (Fin 2 → Space k d)) (1 : Matrix (Fin 2) (Fin 2) (AryLeavittAlgebra k d)) := by
@@ -255,8 +252,7 @@ theorem lifts_one :
   refine ⟨if a = b then 1 else 0, ?_, ?_⟩
   · rw [Matrix.one_apply]
     split_ifs <;> simp
-  · rw [ent_one]
-    split_ifs <;> simp [finiteRank_zero]
+  · exact finiteRank_sub_of_eq (by rw [ent_one]; split_ifs <;> simp)
 
 theorem lifts_genUnit {a b : Fin 2} (h : a ≠ b) (x : Free k d) :
     Lifts (genUnit h (rho k d x) : Module.End k (Fin 2 → Space k d))
@@ -265,10 +261,14 @@ theorem lifts_genUnit {a b : Fin 2} (h : a ≠ b) (x : Free k d) :
   refine ⟨(if a' = b' then 1 else 0) + (if a' = a ∧ b' = b then x else 0), ?_, ?_⟩
   · show _ = (1 + Matrix.single a b (quotientMap k d x) : Matrix (Fin 2) (Fin 2) _) a' b'
     rw [Matrix.add_apply, Matrix.one_apply, Matrix.single_apply, map_add]
-    split_ifs <;> simp_all
-  · show FiniteRank (ent a' b' (1 + entry a b (rho k d x)) - _)
+    fin_cases a <;> fin_cases b <;> fin_cases a' <;> fin_cases b' <;>
+      first
+      | exact absurd rfl h
+      | simp
+  · refine finiteRank_sub_of_eq ?_
+    show ent a' b' (1 + entry a b (rho k d x)) = _
     rw [ent_add, ent_one, ent_entry, map_add]
-    split_ifs <;> simp [finiteRank_zero]
+    split_ifs <;> simp
 
 /-- **Every element of `EL₂(L_k(1,d))` has a tame lift with regularized determinant one.** -/
 theorem exists_lift_of_mem_elementaryGroup
@@ -297,7 +297,7 @@ theorem exists_lift_of_mem_elementaryGroup
         = elementaryUnit i j hij (quotientMap k d (-x0)) := by
       refine Units.ext ?_
       show 1 - Matrix.single i j (quotientMap k d x0) = 1 + Matrix.single i j (quotientMap k d (-x0))
-      rw [map_neg, Matrix.single_neg, sub_eq_add_neg]
+      rw [map_neg, ← Matrix.single_neg, sub_eq_add_neg]
     rw [show (RingQuot.mkAlgHom k (Relation k d) x0) = quotientMap k d x0 from rfl, hinv]
     refine ⟨genUnit hij (rho k d (-x0)) * ε, ?_, ?_, ?_⟩
     · exact Tame.mul _ (tame_genUnit hij (tame_rho (-x0))) hεt
@@ -318,14 +318,14 @@ noncomputable def diagOp (c : kˣ) : (Module.End k (Fin 2 → Space k d))ˣ wher
     fin_cases a <;> simp [entry, smul_smul]
 
 theorem tame_diagOp (c : kˣ) :
-    Tame (split2 k d) (diagOp c : Module.End k (Fin 2 → Space k d)) :=
+    Tame (split2 k d) ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d)) :=
   (tame_entry 0 0 ((tame_one (split k d)).smul _ (c : k))).add _ (tame_entry 1 1 (tame_one _))
 
 theorem conj_split2_diagOp (c : kˣ) :
-    (split2 k d).conj (diagOp c : Module.End k (Fin 2 → Space k d))
+    (split2 k d).conj ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))
       = (LinearMap.pi fun a : Fin 2 =>
           ((if a = 0 then (c : k) else 1) • (LinearMap.id : k →ₗ[k] k)) ∘ₗ LinearMap.proj a).prodMap
-          (piMap (Fin d) (diagOp c : Module.End k (Fin 2 → Space k d))) := by
+          (piMap (Fin d) ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))) := by
   show (split2 k d).conj (entry 0 0 ((c : k) • 1) + entry 1 1 1) = _
   rw [map_add, conj_split2_entry, conj_split2_entry, map_smul, conj_one]
   refine LinearMap.ext fun p => Prod.ext (funext fun a => ?_) (funext fun i => funext fun a => ?_)
@@ -336,7 +336,7 @@ theorem det_diagScale (c : kˣ) :
     LinearMap.det (LinearMap.pi fun a : Fin 2 =>
       ((if a = 0 then (c : k) else 1) • (LinearMap.id : k →ₗ[k] k)) ∘ₗ LinearMap.proj a) = c := by
   rw [LinearMap.det_pi, Fin.prod_univ_two]
-  simp [LinearMap.det_smul]
+  simp
 
 /-- **`regDet (diag(c, 1)) = c`.** -/
 theorem regDet_diagOp (c : kˣ) : regDet (split2 k d) (diagOp c) = c := by
@@ -347,7 +347,7 @@ noncomputable def diagEnt (c : kˣ) (a b : Fin 2) : Free k d :=
   if a = b then (if a = 0 then algebraMap k (Free k d) (c : k) else 1) else 0
 
 theorem rho_diagEnt (c : kˣ) (a b : Fin 2) :
-    rho k d (diagEnt c a b) = ent a b (diagOp c : Module.End k (Fin 2 → Space k d)) := by
+    rho k d (diagEnt c a b) = ent a b ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d)) := by
   show _ = ent a b (entry 0 0 ((c : k) • 1) + entry 1 1 1)
   rw [ent_add, ent_entry, ent_entry]
   fin_cases a <;> fin_cases b <;> simp [diagEnt, Algebra.algebraMap_eq_smul_one]
@@ -365,17 +365,17 @@ theorem finiteRank_sub_diagOp_of_lifts (c : kˣ) {Z : Module.End k (Fin 2 → Sp
     (hZ : Lifts Z ((MatrixDiagonalization.diagUnit
       (Units.map (algebraMap k (AryLeavittAlgebra k d)).toMonoidHom c) :
         (Matrix (Fin 2) (Fin 2) (AryLeavittAlgebra k d))ˣ) : Matrix (Fin 2) (Fin 2) _)) :
-    FiniteRank (Z - (diagOp c : Module.End k (Fin 2 → Space k d))) := by
+    FiniteRank (Z - ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))) := by
   refine finiteRank_of_ent fun a b => ?_
   obtain ⟨x, hx, hr⟩ := hZ a b
   have hq : quotientMap k d x = quotientMap k d (diagEnt c a b) := by
     rw [hx, quotientMap_diagEnt]
   have hdiff := finiteRank_rho_sub_of_quotientMap_eq hq
-  rw [ent_sub, ← rho_diagEnt]
-  have hrw : ent a b Z - rho k d (diagEnt c a b)
-      = (ent a b Z - rho k d x) + (rho k d x - rho k d (diagEnt c a b)) := by abel
-  rw [hrw]
-  exact hr.add hdiff
+  have hdiff' : FiniteRank (rho k d x - ent a b ((diagOp (d := d) c : (Module.End k (Fin 2 → Space k d))ˣ) : Module.End k (Fin 2 → Space k d))) := by
+    rw [← rho_diagEnt]
+    exact hdiff
+  rw [ent_sub]
+  exact hr.sub_trans hdiff'
 
 end ToeplitzWords
 end GroupApproximation
