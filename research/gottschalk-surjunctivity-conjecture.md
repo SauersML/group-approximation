@@ -396,7 +396,7 @@ the Leavitt algebra. So the linear route into
 `left-invertible-lift-of-s0-in-leavitt-group-algebra` and
 `leavitt-evaluation-kernel-unitization-not-directly-finite`. Killing both
 proves `leavitt-unit-group-algebra-is-directly-finite`, and then every
-injective `F_2`-linear automaton over `R^x` is surjective.
+injective `F_2`-linear automaton over `R^x` is surjective. The visible lifting problem is equivalent to finding lifts `a` of `s_0` and `b` of `t_0` with `b a` a unit of `F_2[R^x]`, and `b a - 1` nilpotent suffices. Its positive direction is gated by `binary-leavitt-unit-group-is-f2-linear-sofic`: `F_2`-linear soficity of `R^x` kills both lifting problems.
 
 **Logical form (2026-09-12).** A group is not surjunctive exactly when some
 pair of local rules satisfies the decoder identity on the realized forward
@@ -457,3 +457,34 @@ trace-level premise in the style of Kaplansky's characteristic-zero proof can be
 an intermediate step. The missing count lives at per-site logarithmic scale,
 where `strict-automaton-lowers-bernoulli-rokhlin-entropy` and the open
 `bernoulli-rokhlin-entropy-maximal-for-every-group` act.
+
+**Corrected tails (2026-09-12).** `surjectivity-reduces-to-offset-corrected-tails`
+extends the peeling criterion to rows with surviving offsets, provided the row is
+linear in its own block and the linear part is invertible for every value of the
+later blocks. Solve the row for zero: the automaton is surjective exactly when
+its corrected tail, the later rows evaluated at that solution, is surjective.
+Such steps mix with the zero-offset steps. The recipient-affine normal form peels
+in one such step to a copy of the original automaton. So offsets are not an
+obstruction by themselves. The difficulty sits in the corrected tails, together
+with own-block nonlinearity and non-invertible own-linear parts, which this move
+does not reach. Artifact: `research/artifacts/offset-corrected-peeling-2026-09-12.md`.
+
+**Rokhlin entropy route (2026-09-12).** A strict injective automaton on `q`
+symbols with Garden-of-Eden window `Omega` gives every amplified uniform Bernoulli
+shift `(A^k)^G` Rokhlin entropy at most `k(log q - delta/D) + log 3`, where
+`delta = -log(1 - q^-|Omega|)` and `D = |Omega Omega^-1|`
+(`strict-automaton-lowers-bernoulli-rokhlin-entropy`). The proof is
+self-contained: independent markers code the missing pattern, and amplification
+pays the marker cost. With Seward's imported per-group formula, the Rokhlin
+supremum of a counterexample host is below `(floor(D log 3/delta) + 1) log q`
+(`strict-automaton-bounds-rokhlin-supremum`). Maximal Bernoulli entropy passes to
+subgroups and up finite index, and a deficit is witnessed by one finite
+configuration of translates (`bernoulli-rokhlin-deficit-has-a-finitary-witness`).
+So maximality is closed under directed colimits, and the tester host `U` decides
+it for every group. `gottschalk-via-maximal-bernoulli-rokhlin-entropy` needs the
+open claim `bernoulli-rokhlin-entropy-maximal-for-every-group`, which two routes
+make equivalent to `every-group-has-positive-rokhlin-entropy-action`, and
+`fixed-tester-surjunctive-via-rokhlin-entropy` needs maximality on `U` only.
+Over nonamenable groups window entropy is not an invariant, which kills the naive
+image-subshift argument (`gottschalk-via-window-entropy-deficit`). No lower bound
+on Bernoulli Rokhlin entropy is known for any nonsofic group.
