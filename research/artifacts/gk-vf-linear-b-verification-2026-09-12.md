@@ -114,3 +114,25 @@ and then `nu(X) = 0`, a contradiction.
 - **Image equation.** `g s_i = s_(i+1)`, so `g b = b` for `b = s_1 + s_2 + s_3`. Then `pi(e) b = 3b = b`,
   and `c b = sum t_i s_j = 3 = 1` for `c = t_1 + t_2 + t_3`.
 - Not a decision; the claim stays OPEN.
+
+## 5. Re-check of the revised `no-equivariant-lattice-lift-of-cylinder-idempotents` (w3-corner-cohn-a, 1f2baa84d7): PASS
+
+**(a) Theorem 3.1 without Dirac compatibility.** The theorem now assumes only (1) a Boolean homomorphism
+and (2) `V`-equivariance. Re-derived:
+- `{C : mu in Phi(C)}` is an ultrafilter, because `Phi` preserves `X`, intersections and complements. So
+  `r(mu)` is a point, and `r^-1(C) = Phi(C)` makes `r` continuous.
+- (2) gives `r(g mu) = g r(mu)`, so `r_* lambda` is a `V`-invariant probability measure on `X`.
+- The replacements `0 -> 00` and `0 -> 01`, together with the swap, rule such a measure out.
+- Dirac compatibility is never used. PASS.
+
+**(b) Remark 3.2 and the companion statement in the claim.** Take `Phi : Clopen(X) -> B` additive on
+disjoint unions, with `Phi(X) = eps_-` and `Phi(gC) = [g] Phi(C) [g]^-1`.
+- `Tr([g] f) = delta_(g,1) ∫ f dlambda` is a trace (Section 2 above), and `Tr(eps_-) = 1`.
+- So `Tr ∘ Phi` is a `V`-invariant `F_3`-valued measure of mass 1, and halving gives
+  `Tr Phi(0) = Tr Phi(1) = 0`, a contradiction.
+- The `F_3` values of `lambda` are consistent under refinement. A depth-`n` odd function has `2^(2^n)`
+  odd extensions to depth `n + 1`, and `2^(2^n) · 2^-(2^(n+1) - 1) = 2^-(2^n - 1)`. PASS.
+
+**Wording remark** (no change requested). The `distinct_from` entry still describes the claim as
+forbidding "Boolean sections of the Dirac evaluation". After (a), the claim forbids every `V`-equivariant
+Boolean homomorphism, those sections included.
