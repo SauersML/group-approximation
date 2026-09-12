@@ -672,7 +672,7 @@ left-inverse extensions exist over every `F_(2^k)`
 (`binary-left-inverse-pairs-extend-over-every-finite-field`), so the open step is a
 uniform-degree condition over infinite fields
 (`injective-binary-automata-have-formalizable-left-inverses`, since refuted on the original alphabet; the stable form above survives). The
-Kaplansky-over-`F_2` payoff needs only some formalizable left inverse.
+Kaplansky-over-`F_2` payoff needs only some formalizable left inverse. Formalizability depends on the regrouping: the marker involution, not formalizable over `Z`, is formalizable over `4Z` (`subset-stable-marker-flips-are-virtually-formalizable`), while over `Q` no regrouping helps (`marker-involution-over-rationals-is-not-virtually-formalizable`). So the surviving Kaplansky-over-`F_2` route asks for formal pairs after regrouping inside finitely generated groups (`injective-automata-over-fg-groups-are-virtually-formalizable`).
 
 **Formalizability beyond binary (2026-09-12).** A formalizable pair acts on
 constant configurations by a polynomial automorphism
