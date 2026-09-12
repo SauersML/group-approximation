@@ -4789,3 +4789,4 @@ import GroupApproximation.KunThom.RelativeDataGood
 import GroupApproximation.KunThom.RelativeDataErrorsVanishing
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyRelativeData
 import GroupApproximation.KunThom.CompressorNormalizationCore
+import GroupApproximation.BowenChapman.Endpoint
