@@ -19,7 +19,9 @@ Fix a surjunctive group `G` and put `P(G) = {K : G x K surjunctive}`. Then `P(G)
 
 Consequences:
 - **The closure.** The smallest class `Cl(LEF)` containing LEF groups and closed under these operations lies
-  inside `P(G)` for every surjunctive `G`. It is closed under finite direct products.
+  inside `P(G)` for every surjunctive `G`. Products `K_1 x K_2` of members are surjunctive. They are also
+  members of `Cl(LEF)`, by induction over `K_2` with `K_1` fixed (Section 1.4 of
+  `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).
 - **Known witnesses.** For every surjunctive `G`, `G x W` and `G x D` are surjunctive, where `W` is a
   Kun–Thom wreath and `D` a Kun–Thom double. In particular `D x D` is surjunctive.
 - **The open case.** The product question stays open only when both factors lie outside `Cl(LEF)`, which

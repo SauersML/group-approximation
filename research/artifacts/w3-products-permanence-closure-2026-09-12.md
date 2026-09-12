@@ -78,9 +78,15 @@ of surjunctive groups.
 under operations (b)–(e), with (d) and (e) taken over bases and targets inside the class. Then
 `Cl(LEF) ⊆ P(G)` for every surjunctive `G`.
 
-**Corollary 2 (products inside the closure).** `Cl(LEF)` ⊆ `P(1)`, so its members are surjunctive, and it is
-closed under finite direct products: for `K_1, K_2` in `Cl(LEF)`, `K_1` is surjunctive, so `K_2` lies in
-`P(K_1)` by Corollary 1.
+**Corollary 2 (products inside the closure).** `Cl(LEF)` ⊆ `P(1)`, so its members are surjunctive. For
+`K_1, K_2` in `Cl(LEF)`, `K_1` is surjunctive, so `K_2` lies in `P(K_1)` by Corollary 1. That is, `K_1 x K_2`
+is surjunctive.
+
+Membership `K_1 x K_2` ∈ `Cl(LEF)` is a separate statement. It follows by induction over the construction
+of `K_2` with `K_1` fixed. The base case: `K_1 x L` with `L` LEF, reached as a local embedding into
+`K_1 x (finite)`, a finitary extension with one fixed site. Then the steps are local embeddings, subgroups,
+finitary extensions and graph folds, each carried through `K_1 x -` as in Theorem B′. Re-derived by
+w3-vf-positive, Section 1.4 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`.
 
 **Instances.**
 - **Kun–Thom wreaths** `W = (Z/2) wr_(G/Gamma) G` over the residually finite base `G`: finitary by instance
