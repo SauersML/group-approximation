@@ -116,3 +116,19 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     `(s_i, t_i)` into `S_-`, and allows the quaternary family `(s_i s_j, t_j t_i)`, which suffices
     (`anti-central-ternary-summand-has-no-binary-leavitt-family`,
     `ternary-anti-central-summand-has-quaternary-leavitt-family`).
+  - *gk-l3-obstruct, invariant census (2026-09-12).*
+    - *Traces and K_0 are inert.* Every additive invariant of `K_0(S_-)` is inert, because
+      `[eps_-] = 2[e_-]`. That covers traces mod 3 and the lifted traces `t_(3,k)`.
+    - *No finite-dimensional images.* `S_-` has none:
+      `ternary-anti-central-summand-has-no-finite-dimensional-images`.
+    - *Only a state can obstruct.* A corner solution forces `[eps_-] <= 0`, so the only possible
+      obstruction is a state on `(K_0(S_-), [eps_-])`. Such a state exists iff no multiple of the unit
+      class is nonpositive, and failure of that condition is already a counterexample
+      (`anti-central-state-obstruction-equals-stable-finiteness`).
+    - *Support filter.* Witness supports generate subgroups that are not `F_3`-linear sofic
+      (`ternary-corner-witnesses-need-non-linear-sofic-support`).
+    - *Weaker sufficient target.* `ternary-anti-central-unit-class-is-nonpositive`: a stable relation
+      `S_-^r ~= S_-^r (+) S_-^k (+) Q`.
+    - *Where it dies.* No state on `K_0(S_-)` is known, and none can come from finite-dimensional or
+      properly infinite images.
+    - Artifact: `research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md`.
