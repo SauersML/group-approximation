@@ -352,7 +352,8 @@ gk-l3-corner.)
 **Withdrawn dichotomy.** The first version said the kernel mass lives at infinite depth, so that a
 witness needs infinite support. Both halves are wrong.
 
-- **The kernel mass is at finite depth** (lane gk-l3-free).
+- **The kernel mass is at finite depth** (`odd-measure-kernel-carries-almost-all-haar-mass`, lane
+  gk-l3-free).
   - At depth `n` the cylinder involutions generate `C_2^(2^n)`, whose odd characters are the
     `2^(2^n - 1)` odd-weight vectors of `F_2^(2^n)`. Haar measure on the odd character space pushes
     forward to the uniform measure on these vectors.
@@ -366,9 +367,10 @@ witness needs infinite support. Both halves are wrong.
 
 **What is proved about supports.**
 - Proposition 4.3 and Corollary 4.5 exclude constant supports.
-- Inside the signed Thompson crossed product, lane gk-l3-free shows that the Thompson projection of
-  the support subgroup must be nonamenable, because an abelian-by-amenable support group has a stably
-  finite group algebra.
+- Inside the signed Thompson crossed product, the Thompson projection of the support subgroup must be
+  nonamenable (`odd-measure-corner-witnesses-need-nonamenable-thompson-support`, lane gk-l3-free). The
+  kernel `L ∩ E` is locally finite, hence sofic. So an amenable projection makes the support group
+  sofic, and its group algebra stably finite.
 - Nothing here excludes non-constant, finitely supported families. For example, Hadamard constants
   combined with the non-constant Thompson units `g, h` of Section 3.
 

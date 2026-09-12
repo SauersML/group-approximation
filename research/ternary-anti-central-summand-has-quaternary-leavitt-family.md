@@ -43,8 +43,9 @@ a counterexample to Gottschalk's conjecture on `G`.
   - The Hadamard frame cancels every cross term. As stated this was false: a unital quaternary family
     in a finite-dimensional algebra is impossible.
   - The kernel mass sits at infinite depth. It already has Haar measure `1 - 2^(n+1-2^n)` at depth `n`
-    (lane gk-l3-free).
+    (`odd-measure-kernel-carries-almost-all-haar-mass`).
   - A witness needs infinite support. That statement is equivalent to nonexistence, not a no-go.
 - *Where it dies today.* Nothing proved here excludes non-constant finitely supported families, such as
   Hadamard constants combined with non-constant Thompson units. Inside the signed Thompson crossed
-  product, the Thompson projection of the support must be nonamenable (lane gk-l3-free).
+  product, the Thompson projection of the support must be nonamenable
+  (`odd-measure-corner-witnesses-need-nonamenable-thompson-support`).
