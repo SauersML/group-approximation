@@ -285,7 +285,26 @@ has honest finite-dimensional modules. Through a polynomial subring
 `F_q[t] <= R` they model the subgroup `EL_3(F_q[t]) <= EL_3(R)`. By Section 5, an
 extension to `EL_3(R)` cannot stay block unipotent on every root subgroup; it must
 break block unipotence on root elements `x_ij(a)` with `a` outside the subring.
-Section 5 does not exclude a hybrid that is block unipotent on the subring's root
-subgroups and non-additive on the others. The matrix units `u_ij = psi_ij(1)` and
-corners `p_i` of Step 1 still exist for such a hybrid, but Step 3 needs block
-support of `psi_1j(a)` for every `a` in `R`.
+Section 5 alone does not exclude a hybrid that is block unipotent on the subring's
+root subgroups and arbitrary on the others, because Step 3 needs block support of
+`psi_1j(a)` for every `a` in `R`. In characteristic two the hybrid is dead anyway.
+`matrix-unit-root-rank-models-of-simple-el3-are-trivial` (gk-l-gate-neg, 384d050274)
+needs block support only of the six unit root elements, and the hybrid has it through
+Step 1: `sigma(x_ij(1)) = 1 + u_ij` with `u_ij` in `p_i M p_j`.
+
+**Check of the complement case** (gk-l-gate-pos, characteristic two). Put
+`V' = (1 - p_1 - p_2 - p_3)V`, on which the `x_ij(1)` act trivially, and
+`n = sigma(x_13(a)) - 1`. Commuting with `x_12(1)` and `x_23(1)` leaves
+`n = d P + c E_13 + f E_1' + g E_'3 + h E_''`, with `P` the block identity on the three
+copies of `W`. Unipotence gives `d^2 = 0`. The relation `[x_13(a), x_32(1)] = x_12(a)`
+gives `sigma(x_12(a)) = 1 + c(1 + d) E_12 + g(1 + d) E_'2`. The expansion
+`x_13(a) = [x_12(a), x_23(1)]` then forces `d = f = h = 0`. Next,
+`[x_21(1), x_13(a)] = x_23(a)` gives `sigma(x_23(a)) = 1 + c E_23`, and the expansion
+`x_13(a) = [x_12(1), x_23(a)]` forces `g = 0`. So a complement acted on trivially by
+the unit root elements adds no intertwiner terms.
+
+**Surviving shape.** In characteristic two, a nontrivial model must restrict to
+`SL_3(F_2) = EL_3(F_2)` as something other than `(natural (x) W) (+) trivial`. That
+claim is stated only in characteristic two. The ternary host `L_(F_3)(1,2)^x`, where
+`(1 + n)^(-1) = 1 - n + n^2`, is not covered, and the signed propagation is not
+recorded here.
