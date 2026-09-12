@@ -24,5 +24,15 @@ lattice has the congruence subgroup property.
   finite-index subgroups, so every finite-index subgroup of `Γ` has finite
   abelianization.  Failure of the property therefore cannot be shown by a
   finite-index subgroup with infinite abelianization.
-- **Status boundary.**  The literature status of this property for `Sp(n,1)`
-  lattices was not re-read in this pass; nothing here depends on it.
+- **Literature status (read 2026-09-12 by lit-scout-2 from the PDF on MSI).**
+  - **Open.** Lubotzky, *Some more non-arithmetic rigid groups*, Contemp. Math.
+    387 (2005), arXiv:1105.4785, §4: "The question whether L satisfies the
+    congruence subgroup property ... is still open ... As of now, the answer is
+    not known for any single such L." Here `L` is a uniform `Sp(n,1)` lattice.
+  - **The payoff is his.** Remark 4.2 there states that one such `L` with CSP
+    gives a hyperbolic group without finite-index subgroups.
+  - **Related.** Tholozan--Tsouvalas, arXiv:2207.14356, p. 1, tie residual
+    finiteness of Kapovich's examples to this conjecture.
+- **Weaker hypothesis.** `sp21-lattice-few-alternating-and-large-rank-quotients`
+  already suffices; `sp21-simple-quotient-bound-from-congruence-property`
+  derives it from this claim.

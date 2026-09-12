@@ -11,6 +11,13 @@ requires:
   - hyperbolic-group-relative-to-maximal-elementary-subgroup
 ---
 
+**Credit.** This implication is Lubotzky, *Some more non-arithmetic rigid
+groups*, Contemp. Math. 387 (2005), arXiv:1105.4785, §4, Remark 4.2: "If there
+is one such uniform lattice L satisfying CSP, then there exists a hyperbolic
+group without any finite index subgroup". lit-scout-2 read it from the PDF on
+2026-09-12. The argument below is an independent write-up of the same
+mechanism. No novelty is claimed.
+
 Let `Γ` be the lattice with the congruence subgroup property.  It is cocompact
 in `Sp(2,1)`, so it is non-elementary hyperbolic (Švarc--Milnor), and torsion-free.
 
