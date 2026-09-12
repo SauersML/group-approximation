@@ -72,7 +72,7 @@ theorem faceOf_mem_faceSet_iff {s : Finset Delta.toCombMap.Face} (hs : I.Avoids 
   rw [I.diagram_faceOf]
   exact I.kept_mem_faceSet_iff hs
 
-theorem faceSet_disjoint_iff {s t : Finset Delta.toCombMap.Face} (hs : I.Avoids s)
+theorem faceSet_disjoint_iff {s t : Finset Delta.toCombMap.Face} (_hs : I.Avoids s)
     (ht : I.Avoids t) : Disjoint (I.faceSet s) (I.faceSet t) ↔ Disjoint s t := by
   simp only [Finset.disjoint_left]
   constructor
