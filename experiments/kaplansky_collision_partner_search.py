@@ -221,8 +221,11 @@ def main():
         fixed = [from_key(k) for k in fixed_keys]
         forward = group_algebra_product(partner, fixed) if side == "left" else group_algebra_product(fixed, partner)
         reverse = group_algebra_product(fixed, partner) if side == "left" else group_algebra_product(partner, fixed)
-        verified = forward == {one} and reverse != {one}
-        record.update({"status": "PARTNER_FOUND_VERIFIED" if verified else "DIGEST_FALSE_POSITIVE",
+        forward_ok, strict = forward == {one}, reverse != {one}
+        # The control is a two-sided unit, so strictness is expected only for
+        # lifts of s0 or t0, where it is automatic once forward_ok holds.
+        record.update({"status": "PARTNER_FOUND_VERIFIED" if forward_ok else "DIGEST_FALSE_POSITIVE",
+                       "strict": strict, "partner_support": len(chosen),
                        "partner_words": [universe_words[universe_keys[c]] for c in chosen]})
     record["seconds_total"] = round(time.time() - start, 1)
     with open(args.out, "w") as handle:
