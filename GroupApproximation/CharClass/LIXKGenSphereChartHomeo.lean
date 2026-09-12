@@ -37,7 +37,7 @@ def chartScale (n : ℕ) (w : ChartBase n) : ℝ := (max 1 (Real.sqrt (chartQ n 
 
 theorem continuous_chartScale (n : ℕ) : Continuous (chartScale n) :=
   ((continuous_const.max (Real.continuous_sqrt.comp (continuous_chartQ n))).inv₀
-    fun w => ne_of_gt (lt_of_lt_of_le one_pos (le_max_left _ _)))
+    fun _ => ne_of_gt (lt_of_lt_of_le one_pos (le_max_left _ _)))
 
 /-- The clamped chart point. -/
 def chartClamp (n : ℕ) (w : ChartBase n) : ChartBase n := chartScale n w • w
@@ -116,7 +116,8 @@ theorem one_sub_chartQ_inv (n : ℕ) (z : ↥(unitVectors (Fin (n + 1)))) :
       = ((z : Fin (n + 1) → ℂ) 0).re ^ 2 + ((z : Fin (n + 1) → ℂ) 0).im ^ 2 := by
     rw [Complex.sq_norm, Complex.normSq_apply]
     ring
-  show 1 - (((z : Fin (n + 1) → ℂ) 0).im ^ 2 + ∑ j, ‖(z : Fin (n + 1) → ℂ) j.succ‖ ^ 2) = _
+  show 1 - (((z : Fin (n + 1) → ℂ) 0).im ^ 2 + ∑ j : Fin n, ‖(z : Fin (n + 1) → ℂ) j.succ‖ ^ 2)
+    = _
   linarith
 
 /-! ## 3. The partial homeomorphism -/
