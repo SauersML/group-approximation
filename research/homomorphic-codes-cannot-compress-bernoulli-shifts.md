@@ -8,6 +8,7 @@ distinct_from:
   linear-invariant-output-automata-fail-augmentation: that excludes linear automata with involution-invariant output over F_2; this excludes every homomorphic or affine alphabet-compressing code over every countable group, almost everywhere.
 artifacts:
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a countable group, `A, B` finite groups with `|B| < |A|`, and `tau: A^G -> B^G`

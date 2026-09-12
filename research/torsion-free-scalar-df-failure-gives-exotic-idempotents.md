@@ -9,6 +9,7 @@ distinct_from:
   stable-finiteness-failure-refutes-surjunctivity: that turns a matrix one-sided pair into a strict automaton; this constrains the scalar pairs that could feed it on torsion-free hosts.
 artifacts:
   - research/artifacts/fournier-facio-torsion-free-host-constraints-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED.** Let `k` be a field, `G` a group, and `alpha, beta in k[G]` with

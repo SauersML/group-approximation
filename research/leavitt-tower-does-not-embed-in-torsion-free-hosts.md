@@ -8,6 +8,7 @@ distinct_from:
   fournier-facio-outside-surjunctivity-permanence: that records the Fournier-Facio group's surjunctivity as open and outside permanence; this settles one direction of its embedding relation with the Leavitt tower.
 artifacts:
   - research/artifacts/fournier-facio-torsion-free-host-constraints-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED.** Let `R = L_(F_2)(1,2)`. The unit `u = 1 + s_0 t_1` satisfies

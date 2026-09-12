@@ -8,6 +8,7 @@ distinct_from:
   compressed-coset-shifts-carry-strict-equivariant-embeddings: that builds strict self-embeddings of a compressed coset shift; this shows the free Bernoulli shift has no nonconstant measurable factor into such a coset shift, so those embeddings cannot be pulled back onto it.
 artifacts:
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a countable group, `K <= G` infinite, `A, B` finite, and `mu` the uniform product measure

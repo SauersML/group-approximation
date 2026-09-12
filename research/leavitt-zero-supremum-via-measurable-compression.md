@@ -7,6 +7,7 @@ target: leavitt-units-have-zero-rokhlin-entropy-supremum
 requires: [measurable-alphabet-compression-over-leavitt-units, seward-per-group-rokhlin-entropy-of-bernoulli-shifts, positive-rokhlin-entropy-makes-leavitt-units-surjunctive]
 artifacts:
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 1 of the artifact. Let `tau: A^U -> B^U` be the code given by the first prerequisite. The

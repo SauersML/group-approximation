@@ -8,6 +8,7 @@ distinct_from:
   full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant: that is the general constancy lemma for maps into coset shifts with infinite stabilizers; this applies it to invariant-output automata and draws the torsion-free consequence.
 artifacts:
   - research/artifacts/fournier-facio-torsion-free-host-constraints-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED.** Let `G` be a group, `A` a finite alphabet with `|A| >= 2`,

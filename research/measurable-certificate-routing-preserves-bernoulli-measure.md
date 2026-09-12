@@ -8,6 +8,7 @@ distinct_from:
   injective-measure-preserving-ca-is-surjective: that shows a measure-preserving injective automaton is surjective; this shows a routing code that is injective almost everywhere is forced to preserve the measure.
 artifacts:
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a countable group, `C, D` finite alphabets with `|D| >= 2`, and `mu = mu_C x mu_D` the

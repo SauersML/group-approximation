@@ -11,6 +11,8 @@ not by rereading the author's argument. Nothing was run.
 | `4660e1411` (gk-invariant-output) | `normalizing-invariant-output-descends-to-quotient`, `invariant-output-rules-need-odd-invariant-monomials`, `right-symmetric-sensitivity-profile-admits-no-decoder` | PASS; the third is strengthened in Section 1.3 |
 | `6be1b3b31` (gk-design-group) | `strict-automata-live-on-canonical-table-groups`, `triangular-forward-tables-force-surjectivity` | PASS |
 | `a1b4a47cc` (gk-three-factor) | `table-groups-are-memory-holonomy-groups`, `amenable-decoder-memory-forces-surjectivity`, `unicyclic-strict-designs-present-nonsofic-one-relator-groups` | PASS |
+| `de231f8c9` (gk-n-ff) | `invariant-output-injective-ca-need-torsion`, `leavitt-tower-does-not-embed-in-torsion-free-hosts`, `torsion-free-scalar-df-failure-gives-exotic-idempotents` | PASS (Section 5) |
+| `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
 Section 6 of `invariant-output-descent-and-sensitivity-2026-09-12.md` (the ternary form) was
 already covered by Sections 23–24 of `gk-verify-pos-permanence-chain-2026-09-12.md`, including
@@ -175,3 +177,78 @@ Strictness makes `U_E` non-surjunctive, hence nonsofic.
 - `triangular-forward-tables-force-surjectivity-proof` requires Theorem A's claim and
   `residually-finite-groups-are-surjunctive`.
 - No missing prerequisite was found. Nothing here establishes the goal or a Leavitt root.
+
+## 5. Torsion-free host constraints (`de231f8c9`, gk-n-ff): PASS
+
+**Proposition 2.1: invariant output forces a finite symmetry.**
+- `F(x)(gH) = tau(x)(g)` is well defined by invariance and continuous.
+- It is equivariant: `F(g'.x)(gH) = tau(x)(g'^-1 g) = (g'.F(x))(gH)`.
+- For infinite `H` the verified constancy lemma
+  (`full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant`, negative-side record)
+  makes `F`, and so `tau`, constant. That contradicts injectivity on `A^G` with `|A| >= 2`.
+- The torsion-free consequence follows because nontrivial subgroups of torsion-free groups are
+  infinite.
+
+**The Leavitt tower does not embed in torsion-free hosts.**
+- `u = 1 + s_0 t_1` has `u^2 = 1 + 2 s_0 t_1 + s_0 (t_1 s_0) t_1 = 1` over `F_2`.
+- `s_0 t_1 = S[0]T[1]` is a basis monomial of the normal form, since `0` and `1` do not both end
+  in `1`. So `u != 1`.
+- Every member of the tower contains `R^x` or finite symmetric groups.
+
+**Proposition 3.1: a one-sided pair gives a nontrivial idempotent.**
+- `e = alpha beta` has `e^2 = alpha (beta alpha) beta = e`.
+- `beta e alpha = 1` gives `e != 0`, and `e(1 - e) = 0` exhibits zero divisors.
+- Trust surface: the tester transfer through `kaplansky-three-properties-fixed-fp-torsion-free-tester`
+  is quoted, not re-derived.
+
+Sections 4–5 of that artifact are status prose, and no established claim rests on them.
+- Trust surfaces: clause (W8) and the solvable word problem of `S wr Z`.
+
+## 6. Measurable compression (`02e8d9a28`, `73e17dbd7`, gk-n-ae-decoder): PASS
+
+**Proposition 1.**
+- The translates of `beta = {tau(x)(1) = b}` read every coordinate of `tau`.
+- Lusin–Souslin makes the restriction of `tau` to the conull `X_0` a Borel isomorphism onto its
+  image. So `beta` generates modulo null sets, and `h^Rok <= log |B|`.
+
+**Corollary 2 / the route.**
+- Seward's per-group formula gives `h_sup(U) < log |A|`.
+- The zero-or-infinity dichotomy then gives `0`, and infinite-entropy actions are excluded through
+  POS = INF.
+- Both prerequisites were passed earlier (gk-verify-pos Sections 13 and 24). The route needs the
+  open compression claim, so it establishes nothing.
+
+**Theorem A: routing preserves the measure.**
+1. *Transport.*
+   - Equivariance with `h = g^-1` gives `rho_c(g) = 1` iff `rho_(g^-1.c)(1) = g^-1`.
+   - Shift invariance of `mu_C` gives `E N = sum_g P(rho_c(1) = g^-1) = 1`.
+2. *Every site is read.*
+   - For almost every `c` the section `X_0^c` is conull.
+   - A fixed-point-free symbol flip at an unread coordinate `h` preserves `mu_D` and does not
+     change `tau(c, .)`. Injectivity on a conull set therefore forces every `h` to be read.
+   - Measurability is fine, because the bad set of `c` is a countable union over `h`.
+3. *In-degree one.* `N` is a nonnegative integer with `N >= 1` almost surely and `E N = 1`, so
+   `N = 1` almost surely. Equivariance, `#rho_c^-1(h) = N(h^-1.c)`, plus countability gives
+   bijectivity.
+4. *Measure.* A coordinate bijection followed by coordinatewise symbol permutations preserves the
+   uniform product measure. Fubini finishes.
+
+**Theorem B: Bernoulli factors to infinite-stabilizer coset shifts are trivial.**
+- `f = F(.)(K)` is `K`-invariant.
+- `K` acts mixingly: `kP` misses `Q` outside the finite set `Q P^-1 ∩ K`. So `f` is almost
+  everywhere constant.
+- Equivariance, invariance of `mu` and countably many cosets extend the constant to every coset.
+
+**Proposition 5: homomorphic codes cannot compress.**
+- `tau` of a constant configuration is shift-fixed, hence constant. So `tau` restricts to a
+  homomorphism `A -> B`, which has a nontrivial kernel element `a` because `|B| < |A|`.
+- `tau(x c_a) = tau(x)` while `x c_a != x`.
+- Multiplication by `c_a` preserves the measure, so no conull set of injectivity exists. Target
+  translations change nothing.
+
+**Sections 5–6 of that artifact.**
+- *Continuous codes that are injective almost everywhere are pre-injective.* A finite collision is
+  decided on a finite window, so swapping the pattern gives a positive-measure family of collisions.
+- *Ascent along subgroups.* Coset-wise extension is well defined by equivariance, and Fubini keeps
+  injectivity almost everywhere.
+- The Bartholdi–Kielak calibration is quoted.
