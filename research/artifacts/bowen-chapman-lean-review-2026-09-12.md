@@ -542,7 +542,17 @@ root-wired. No defect.**
 * Three root imports are added. The only deletions are the WIP snapshots.
 
 **(t) Landed: `BowenChapman/EndpointOfNormalization`, 017bdb868, root-wired.
-Content: no defect. Docstring: one overclaim, sent to `bc-assembly`.**
+Content: no defect. Docstring: one overclaim, sent to `bc-assembly`; fixed at
+d4c4f667e, verified.**
+* **The fix, d4c4f667e.** The commit modifies only `EndpointOfNormalization` and
+  `EndpointOfInputs`. In both files everything after the module docstring is
+  byte-identical to the parent. The new headers say the remaining hypothesis is
+  Theorem 4.1 in sequential form at this pair and that "This module does not
+  prove it". `EndpointOfInputs` now points to `EndpointOfNormalization` instead
+  of the missing `Endpoint`. Record `bc-assembly.green.0912-122316-10960`
+  carries `# PROBE GREEN`, names both modules, and holds both landed md5s
+  (`5c415557…`, `8eefafa1…`). The commit message cites the tag, and neither
+  file contains a gated token.
 * `symmetricDouble_fg_surjunctive_not_isSofic_of_normalization (hnormalization :
   HasSequentialCentralizerNormalization Peripheral)` concludes the pinned
   three-part statement: finitely generated, surjunctive and not sofic. Its one
@@ -567,7 +577,16 @@ Content: no defect. Docstring: one overclaim, sent to `bc-assembly`.**
 * One root import is added. Nothing is deleted.
 
 **(u) Landed: `BowenChapman/WreathWitness`, db1d74e04, root-wired. Content: no
-defect. Docstring: one overclaim, sent to `bc-wreath`.**
+defect. Docstring: one overclaim, sent to `bc-wreath`; fixed at 2f01a8ac1,
+verified.**
+* **The fix, 2f01a8ac1.** The commit modifies only `WreathWitness.lean`. The
+  diff replaces the two header lines naming `WreathWitnessEndpoint` with
+  "Sequential centralizer normalization of `Peripheral` is what Kun–Thom
+  Theorem 4.1 asserts for this pair, … It is taken here as a hypothesis, not
+  proved." The import and declaration lines are unchanged, and the parent blob
+  was the landed `bd87ec50…`. Record `bc-wreath.green.0912-122336-11961` carries
+  `# PROBE GREEN`, names the module, and holds the landed md5 `9c053fb9…`. The
+  commit message cites the tag.
 * `cosetWreath_fg`, `cosetWreath_isSurjunctive` and
   `cosetWreath_not_isSofic_of_sequentialNormalization` give the backup witness
   `(ℤ/2ℤ) ≀_{G/Γ} G` over the explicit pair. Nonsoficity takes
@@ -603,6 +622,27 @@ root-wired. No defect.**
   a34857837 carries `# PROBE GREEN`, names the module, and holds the landed md5
   `225b5cb9…`. The 6-module import closure did not change.
 * One root import is added. Nothing is deleted.
+
+**(x) The endpoint-side axiom pass, probe 0912-122205-6338. Partly verified.**
+* The driver `BcAxiomDriver.lean` (md5 `642406c4…`, a probe overlay, never
+  landed) prints the axioms of ten declarations:
+  * `symmetricDouble_fg_surjunctive_not_isSofic_of_normalization` and
+    `symmetricDouble_not_isSofic_of_leaves`;
+  * `cosetWreath_fg`, `cosetWreath_isSurjunctive` and
+    `cosetWreath_not_isSofic_of_sequentialNormalization`;
+  * `ambient_hasKazhdanPropertyT`, `peripheral_hasKazhdanPropertyT`,
+    `peripheral_isInfranormal` and `ambient_residuallyFinite`;
+  * `Surjunctivity.isSurjunctive_symmetricDouble`.
+  The first covers `ambient_fg`, `ambient_countable` and `peripheral_not_normal`
+  transitively.
+* **Verified.** The record `bc-infra.green.0912-122205-6338` carries
+  `# PROBE GREEN`. Since 592299efd any `sorryAx` in the log fails a probe with
+  rc=6, so no incomplete proof sits under these declarations.
+* **Not independently verified.** The claim that each depends on exactly
+  `[propext, Classical.choice, Quot.sound]` is reported by `bc-infra`, and
+  `bc-assembly` read the log. The record does not contain the `#print axioms`
+  lines. I asked `bc-infra` to append them to such records and to fail the probe
+  on any other axiom.
 
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
