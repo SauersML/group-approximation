@@ -266,11 +266,76 @@ universal bound would prove Gottschalk's conjecture. By
 finiteness of `F_p[G]` for every group. That statement is open for nonsofic groups,
 and other lanes are attacking it negatively on the binary Leavitt unit group.
 
-## 6. Status
+## 6. A cellular choice of packing centers, and a decorated embedding
+
+Section 7 of the 2026-09-07 artifact notes that its packing centers are chosen
+externally, not by a cellular rule. A marker rule chooses them cellularly.
+
+**Theorem.** Let `G` be infinite and `tau, sigma` a split pair with
+`tau sigma != id`, with `D, W, p, u, v` as in Section 2 and `Delta = W W^-1`.
+Fix a site `q` and a symbol `a in A`, and for `z in A^G` put
+
+```text
+J(z) = { h : z has p at h, z(hq) = a, and for every delta in Delta \ {e}
+             it is not the case that (z has p at h delta and z(h delta q) = a) }.
+```
+
+1. The translates `hW`, `h in J(z)`, are pairwise disjoint, and `J(g.z) = g J(z)`.
+2. `F(z) = tau(z)` with `u(d)` written at `hd` for all `h in J(z)` and
+   `d in D` is a cellular automaton with `sigma F = id`. If `q` avoids the finite
+   set `W ∪ Delta^-1 W`, then `F != tau`. Varying `q` gives infinitely many
+   distinct cellular sections of `sigma`. A bijective `sigma` has exactly one
+   section, its inverse.
+3. The closed invariant subshift
+   `Y = { (z, xi) in (A x {0,1})^G : xi(h) = 0 for all h not in J(z) }` embeds
+   injectively and equivariantly into `A^G` through
+   `Phi(z, xi) = tau(z)` with `u(d)` written at `hd` for `h in J(z)` with
+   `xi(h) = 1`. Moreover `sigma Phi(z, xi) = z`, `Phi(z, 0) = tau(z)`, and
+   `Y != A^G x {0}`.
+
+*Proof.* (1) If `h` and `h' = h delta` both lie in `J(z)` with `delta != e`, the
+condition at `h` forbids exactly what `h'` satisfies. So `J(z)` contains no two
+points differing by an element of `Delta \ {e}`. If `hW` meets `h'W` then
+`h' in h Delta`, so the translates are disjoint. Membership of `h` reads `z` on
+the finite set `hW ∪ {hq} ∪ ⋃_delta (h delta W ∪ {h delta q})`, and every clause is
+translation invariant.
+
+(2) `F` is well defined because the replacement sets are disjoint, and it is
+local and equivariant by (1). The guard lemma with `J = J'` gives `sigma F = id`.
+For `F != tau`, prescribe `z = p` on `W`, `z(q) = a`, and `z(delta q) != a` for
+`delta in Delta \ {e}`. These sites are pairwise distinct and none lies in `W`,
+by the choice of `q`. Then `e in J(z)`, so `F(z)(e) = u(e) != v(e) = tau(z)(e)`.
+Choose `q_1, q_2, ...` recursively, each outside the finite set of sites used
+by the earlier ones together with `W ∪ Delta^-1 W`. For `i < j`, prescribing
+`z(q_j) != a` in addition keeps `e in J_(q_i)(z)` and removes `e` from
+`J_(q_j)(z)`, so `F_(q_i) != F_(q_j)`. If `sigma` is bijective, `sigma F = id`
+forces `F = sigma^-1`.
+
+(3) `Y` is closed and invariant because its defining condition is local and
+equivariant. `Phi` is continuous and equivariant for the same reason, and
+`sigma Phi(z, xi) = z` by the guard lemma. For injectivity, `y = Phi(z, xi)`
+determines `z = sigma(y)`, hence `J(z)`. For `h in J(z)` only the flip at `h`
+touches the site `h`, and `tau(z)(h) = v(e)`, so `xi(h) = 1` exactly when
+`y(h) = u(e)`. Off `J(z)`, `xi` vanishes by definition. Finally `(z, xi)` with
+`e in J(z)` and `xi = 1` at `e` only lies in `Y \ (A^G x {0})`. QED
+
+**Consequences and limits.** `Phi` restricts to `tau` on `A^G x {0}`. The full
+shift `A^G` therefore contains an equivariant injective image of a subshift that
+strictly contains a copy of itself, with one extra bit at a cellularly chosen
+independent set of guard occurrences. Over an amenable group this is
+contradictory, since topological entropy is monotone under injective factor
+maps and `h(Y) >= log|A| + P(e in J) log 2`. For a general group no such
+monotone invariant is known. The decorations vanish on constant configurations,
+so this embedding does not contradict anything on fixed points. It also does not
+contradict the 2026-09-07 remark that a full larger shift cannot embed.
+
+## 7. Status
 
 * Established: the converse route (`countable-transitive-decoder-fiber-from-gottschalk`),
-  the flip lift (`strict-split-pairs-carry-positive-entropy-flip-lifts`), and the
-  XOR counterexample (`xor-lift-of-bernoulli-has-positive-fiber-entropy`).
+  the flip lift (`strict-split-pairs-carry-positive-entropy-flip-lifts`), the
+  XOR counterexample (`xor-lift-of-bernoulli-has-positive-fiber-entropy`), and the
+  marker sections with the decorated embedding
+  (`strict-split-decoders-have-infinitely-many-sections`).
 * Refuted: `ca-bernoulli-lifts-have-zero-fiber-entropy`. The route
   `gottschalk-via-flip-lift-and-zero-fiber-entropy` is dead.
 * Open, and equivalent to the goal: `injective-ca-admit-countable-transitive-decoder-fiber`.

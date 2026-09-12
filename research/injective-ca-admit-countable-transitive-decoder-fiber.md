@@ -35,9 +35,15 @@ uncountable topological fibers can have point-mass conditional measures.
 Section 7's rectangular projection is an explicit counterexample to that
 measure inference, while leaving this equal-alphabet claim unresolved.
 
-The guard construction does not provide a cellular choice of packing
-centers or an embedding of an extra full alphabet. Neither extra step may
-be assumed when trying to remove the present prerequisite.
+The guard construction does not provide an embedding of an extra full
+alphabet, and such an embedding would fail on constant configurations. It
+may not be assumed when trying to remove the present prerequisite. A cellular
+choice of packing centers *is* available (2026-09-12): a marker rule selects
+disjoint guard occurrences locally. It yields infinitely many cellular
+sections and an injective equivariant map from a decorated subshift
+`Y ⊋ A^G x {0}` into `A^G` (`strict-split-decoders-have-infinitely-many-sections`).
+Over an amenable group that embedding contradicts entropy monotonicity. Over a
+general group no monotone invariant is known.
 
 *Equivalence recorded (2026-09-12).* The converse route
 `countable-transitive-decoder-fiber-from-gottschalk` derives this claim from the
