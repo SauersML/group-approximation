@@ -1180,3 +1180,75 @@ Both depend on the unrefereed Khanh criteria.
 - **Novelty.** The frontier artifact on main records no published positive-characteristic linear class, and the
   BBMZ list has no item for it. So this is a new class, not an answer to a posed question. It covers the finitely
   presented metabelian groups of Problem 5.3(7) that are linear in positive characteristic.
+- **Cairn state (MSI, tip f5e532502).**
+  - ESTABLISHED: `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`,
+    `leavitt-tensor-powers-have-trivial-k-theory`, `prime-field-leavitt-tensor-powers-have-trivial-k-theory`,
+    `leavitt-power-projective-elementary-groups-finitely-presented`, `char-two-linear-groups-satisfy-boone-higman`
+    and `positive-char-linear-groups-satisfy-boone-higman`.
+  - `boone-higman-conjecture` is OPEN.
+  - The derivation tree of `positive-char-linear-groups-satisfy-boone-higman` bottoms out in citation nodes for
+    Khanh, Ara–Cortiñas, the centre of `L`, Bartels–Farrell–Lück, Bartels–Reich and Bartels–Lück, and in the
+    direct proofs of the crossed-product decomposition and the Hochschild dimension bound.
+
+## 33. Guba's Question 1 (survey Question 3.20) and twisted binomials in K[F] (4f3e5243a, fd68ee7ab): PASS
+
+Priority review, requested by the coordinator.
+
+**Fidelity.** Checked against the arXiv:2201.02308 TeX source extracted on MSI (`eqgrring.tex`,
+`\begin{que}\label{x1b}`), verbatim: "Let $R=K[F]$ be a group ring of $F$ over a field $K$. Is it true that for any
+element $b\in R$, the equation $(1-x_1)u=bv$ has a non-zero solution in $R$?" The claim's quote agrees word for word.
+- **Field.** `K` is arbitrary.
+- **Side.** `1 - x_1` multiplies on the left, so the question asks for a common right multiple. `K[F]` is a domain,
+  so for `b ≠ 0` a nonzero solution means exactly `(1 - x_1)R ∩ bR ≠ 0`.
+- **Generators.** Guba's `x_i` come from `<x_0, x_1, … | x_j x_i = x_i x_(j+1), i < j>`, with
+  `x_n = x_0^-(n-1) x_1 x_0^(n-1)`. His paper uses no PL model.
+- **Status.** The abstract says "The corresponding fact for $1-x_1$ instead of $1-x_0$ remains open."
+
+**Conventions.**
+- **Which realization.** The CFP maps under right-to-left composition satisfy Guba's relations: the supports give
+  `x_1^-1 x_2 x_1 = x_3`, and the lane's `pl_check.py` checks the rest.
+- **Why the choice does not matter.** The argument uses only three kinds of fact: supports of elements, the
+  subgroups `F_[p,1]`, and isomorphisms between those subgroups. Inversion leaves all three unchanged, so the proof
+  holds for either composition convention.
+- **Guba's automorphism.** `α : x_0 ↦ x_0^-1, x_1 ↦ x_1 x_0^-1` is used only for the mirror form.
+
+**Proof of `thompson-f-one-minus-x1-is-ore-with-every-element`.**
+- **Step 1.** `ψ_g = Ad(ρ)∘Ad(t)` maps `F_[p_g,1]` onto `F` and sends `g` to `x_0^(±1)`. On `[1/2,3/4]`,
+  `ρ x_1 ρ^-1(s) = 2 x_1((s+1)/2) - 1 = s/2`. Guba's Theorem 2 transfers, and `(1 - x_0^-1)R = (1 - x_0)R`.
+- **Step 2.** With `p_1 <= … <= p_m`, `R_(j+1) ⊆ R_j`. A nonzero `w` in the inner intersection lies in `R_j`. Guba
+  at `g_j` gives `wz ≠ 0` in `(1 - g_j)R_j`, and right ideals absorb `z`.
+- **Step 3.** `t(1 - t^-1 h t) = (1 - h)t` puts `bv` in `(1 - h)R`, and `bv ≠ 0` because `K[F]` is a domain.
+- **The imported Theorem 2.** Checked against the TeX source: Theorem `x0b`, proved through Theorem `bphi`.
+- **The lane's own proof of Theorem 2.** Its dimension count also checks. Inserting a letter into a normal form
+  raises only the inserted index, by at most the length, and `(N+1)|A|` outgrows `(4^(D+1)/3)|A|`.
+
+**`thompson-f-twisted-x0-binomial-is-ore-with-every-element` and `thompson-f-rescaled-x0-binomials-have-common-multiples`: PASS.**
+- **Weighted coset test.** On a coset, `(x_0 - μ)R` becomes `(t - μ)K[t^(±1)]`. So membership is vanishing at
+  `μ = -1/λ`, and `x_0^k y - μ^k y` lies in the ideal.
+- **Families.**
+  - Sort the bumps by right endpoint.
+  - Conjugates of the next bump by elements supported in `[P_j, q_j]` fix `q_(j+1)`, so they share that right
+    endpoint.
+  - Lemma D nests them innermost first.
+  - Lemma A: `K[F]` is free over `K[H]` on right coset representatives, so common multiples descend.
+- **Members.** Under right-to-left composition, the support of `x_1 x_0^-1` was rechecked by hand: `(0, 3/4)`,
+  identity on `[3/4, 1]`.
+- **Item 5.**
+  - A form with two nonzero coefficients is a unit times `1 + λg` with `g ∈ O_1`.
+  - Over `F_2`, the only form with three nonzero coefficients is `x_0 + x_1 + x_2`. Equal forms can share one
+    unknown, so (a) covers every system, and `Q_k` over `F_2` is settled.
+  - Over other fields, systems with two distinct full trinomials stay open, as the node says.
+- **b3c0966d2.** Already PASS in §23.
+
+**Novelty (bounded).**
+- The survey arXiv:2305.07113v4 (October 2023) still lists the question, so it was open then.
+- Semantic Scholar lists two citing records of arXiv:2201.02308: that survey, and one titled "R. Thompson's group F
+  and its group algebras", whose author and year were not returned. Semantic Scholar rate-limited this review
+  (HTTP 429), so that record was not inspected. Priority should not be claimed until it has been read.
+- The lane's arXiv title and abstract searches found no later answer. This review's arXiv API queries returned no
+  entries, which settles nothing.
+
+**Reading.**
+- This answers a published question in the positive.
+- It does not touch amenability of `F`. `C_+` and `O_1` contain only one-bump elements, and a non-Ore pair must
+  avoid the product class of item 3 of the rescaled-binomial claim.
