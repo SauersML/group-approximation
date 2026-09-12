@@ -825,3 +825,68 @@ label sets in Corollary C.1. `co-amenable-fixed-configurations-lie-in-injective-
   - The transposition `00x <-> 01x` gives `mu[00] = mu[01]`, so `mu[0] = 2 mu[0]`, hence `mu[0] = 0`.
   - The first-letter swap then kills `[1]`.
 - **The remaining remarks** are prose, and nothing consumes them.
+
+### 13.6 Correction to 13.5 (raised by w3-vf-nonlinear)
+
+13.5 called the route `simple-host-formalizability-specializes-to-the-v-marker` valid. It does not
+type-check.
+- **What the prerequisite gives.** Representatives `tau~` and `sigma~` of the pair `(tau_g, tau_g)` with
+  `sigma~ o tau~ = id` formally. They may be different polynomials.
+- **What the target asks.** A single `tau~` with `tau~ o tau~ = id` formally.
+- **Why converting fails.** It is not automatic. Even with `F_2[V]` directly finite, which is open,
+  `sigma~ - tau~` vanishes pointwise, not formally.
+
+The fix is to state the marker targets in pair form. That is recorded in Section 14 of
+`w3-vf-nonlinear-verification-2026-09-12.md` (`1eebf61c8e`), and the author has it. The other items in 13.5
+stand: the dihedral subgroup, the reformulation, and the OPEN statuses.
+
+## 16. Products with a sofic factor: single-fibre filter and quantitative surjunctivity (w4-free-pos-b, `6cc69a89fd`)
+
+Verdict: **PASS** for `strict-product-automata-have-no-single-fibre-garden-of-eden` (Theorem F), with one
+harmless normalization. Theorem Q and the count showing sofic groups are QS are correct as stated.
+`products-with-a-sofic-factor-are-surjunctive` and `surjunctive-groups-are-quantitatively-surjunctive`
+correctly read OPEN, and the route `sofic-factor-products-via-quantitative-surjunctivity` is valid and
+cannot fire.
+
+### 16.1 Lemmas 1.1 and 1.2. PASS.
+
+- **Normalization.** Take `pi_1 = id`. It is standard, and it costs at most one more `epsilon` in the good
+  fraction. Without it, the decoded value at `v` is `y(g)(v.1)`.
+- **(1).** At good `v`, `(v.k_n).k_m = v.(k_n k_m)` with `k_n, k_m, k_n k_m` in `P`. Points `v.k` with `k` in
+  `P` are distinct, so address coincidences are exactly those of `NM` in `G x K`, and the configuration
+  `x(g',k') = y(g')(v.k')` is well defined on the finite read set. The decoder identity returns `x(g,1)`.
+- **(2).** `z` on `EM` is well defined: equal addresses have equal `G`-parts, and equal `K`-parts in `P`.
+  `tau(z)(e) = tau_V(y)(g e_G)(v.e_K)`, since `(v.e_K).k_m = v.(e_K k_m)`, so a realization would make `p`
+  appear.
+- **Lemma 1.2.** The stored track gives the bad points, and (1) gives the good ones.
+
+### 16.2 Theorem F. PASS.
+
+- **Blocks.** `w` lies in `v.E_K` iff `v = pi_e^-1(w)` for some `e` in `E_K`, so `w` is in at most `|E_K|`
+  blocks, and a block meets at most `|E_K|^2` blocks, itself included. Greedy selection gives
+  `|V'| >= (1 - epsilon)|V| / (|E_K|^2 + 1)`.
+- **Column count.** With `e_G = 1`, Lemma 1.1(2) rules out the transported `p` on each disjoint block at
+  every column, so `|C| <= q^|V| (1 - q^(-|E|))^(|V'|)`.
+- **Choice of `epsilon`.** The exponent
+  `epsilon log q + ((1 - epsilon)/(|E_K|^2 + 1)) log(1 - q^(-|E|))` is negative for small `epsilon`, and
+  depends only on `q` and `E`. The symbol set is then smaller than `q^|V|`.
+- **Contradiction.** A sitewise injection into `A^V`, composed with `Psi`, is an injective automaton on
+  `(A^V)^G` that misses a symbol. This contradicts surjunctivity of `G` over the alphabet `A^V`.
+
+### 16.3 Theorem Q and the sofic QS count. PASS, as a conditional and as prose.
+
+- **QS implies surjunctive.** Take `n = 1`, `j = j' = 0`. A strict automaton maps into its proper image.
+- **Theorem Q.** `Y` is closed, invariant and proper. By Lemma 1.1(2) every good block track lies in `Y` at
+  every `g`.
+  - The domain is `(A^V)^G = (B^n x D^j)^G`, with `B = A^(E_K)`, `D = A`, `n = |V'|`, `j = |R|`.
+  - The target has `j' = |R| + |V_bad|`.
+  - QS applies once `epsilon |V| log q < delta_Y (1 - epsilon)|V| / (|E_K|^2 + 1)`. `delta_Y` depends only on
+    `Y`, so this holds for small `epsilon`.
+- **The sofic count.**
+  - With `Phi` fixed, inputs at good points are recovered, which gives the lower bound
+    `(1 - epsilon')(n log|B| + j log|D|)` per point.
+  - Missing windows on `c|Omega|` disjoint places per track, with bad points at full alphabet, give the upper
+    bound `n log|B| + nc log(1 - |B|^(-|W|)) + j' log|D|`.
+  - Letting `epsilon' -> 0` gives `delta_Y = -log(1 - |B|^(-|W|)) / (|W|^2 + 1)`.
+  - This is recorded as known inside the OPEN node, not as a separate established claim, and nothing
+    consumes it as a node.

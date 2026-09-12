@@ -7,6 +7,7 @@ target: strict-product-automata-have-no-single-fibre-garden-of-eden
 requires: []
 artifacts:
   - research/artifacts/product-fibre-garden-of-eden-filter-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Sections 1–2 of the artifact.
@@ -20,3 +21,5 @@ Sections 1–2 of the artifact.
   `q^|V| (1 - q^(-|E|))^((1-epsilon)|V|/(|E_K|^2+1)) q^(epsilon |V|) < q^|V|` symbols for small `epsilon`
   and large `|V|`.
 - **Contradiction.** Composing with a symbolwise injection into `A^V` gives a strict automaton over `G`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 16.1–16.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`), with the harmless normalization pi_1 = id.

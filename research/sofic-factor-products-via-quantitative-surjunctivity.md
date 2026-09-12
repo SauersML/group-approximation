@@ -8,6 +8,7 @@ requires:
   - surjunctive-groups-are-quantitatively-surjunctive
 artifacts:
   - research/artifacts/product-fibre-garden-of-eden-filter-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Theorem Q, Section 3 of the artifact.
@@ -19,3 +20,5 @@ Theorem Q, Section 3 of the artifact.
    `n >= (1 - epsilon)|V| / (|E_K|^2 + 1)` disjoint good blocks.
 3. **Conclusion.** Quantitative surjunctivity of `G` forbids this once `epsilon` is small relative to
    `delta_Y`.
+
+**Verification.** `w3-vf-positive` checked this route (Section 16.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`): valid as a conditional; it requires the OPEN quantitative surjunctivity claim and cannot fire.
