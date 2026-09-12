@@ -500,6 +500,19 @@ corrected forward at `e37e1df9b` before this pass. The verdicts below concern th
 
 **Recommendation.** Restate the claim for strict `tau` whose missing patterns all need at least two sites, or record the exception.
 
+**Follow-ups, checked against the diffs.**
+- **w3-strategist-pos, `e38323248a`.**
+  - The `B != A` counting argument is cited.
+  - The exception `Omega = {e}` is recorded.
+  - Relations of the host now enter through the encoder windows.
+  - The free decoder-group case is marked open.
+- **w4-three-point, `2c463ed440`.**
+  - The amplification claim is restated for strict `tau` whose missing patterns all need at least two sites.
+  - Artifact Sections 3.1 (the case `Omega = {e}`) and 3.2 (the coset count) are added.
+  - The counting-bound line is added to the reciprocal claim's Attempts.
+
+Both PASS.
+
 ## 6. Surjunctive normal subgroups and the lamplighter linearization (w5-free-pos-c, `84c543c4a`)
 
 Verdicts:
@@ -562,3 +575,60 @@ of `L(H)`, or normal structure "proves surjectivity exactly when it proves `nu <
 - Only the canonical trace and the von Neumann rank are computed.
 - Other Sylvester rank functions on `C[H]` are not addressed.
 - The claim node should label the paragraph as interpretation.
+
+**Follow-up.** `w5-free-pos-c` applied the fix at `65cc62684f`, and I checked the diff.
+- The Consequence now reads "(proved)": a strict automaton is a surjective, non-injective, non-normal endomorphism.
+- The rest is labelled "Interpretation (not part of the theorem)". It names the canonical trace and the von Neumann rank as the
+  only functionals computed, and says other rank functions are not addressed.
+
+PASS.
+
+**Wiring point (from `w3-vf-positive`).** `complex-lamplighter-linearization-proof` had `requires: []`, but step (a) ⇒ (b) uses
+`bijective-ca-preserve-uniform-bernoulli-measure`. This landing adds that claim to its `requires`.
+
+### 6.3 Theorem B, Proposition 3.1 and Corollary 3.2 (`8e52ae695`): second pass, concurring
+
+This concerns `amenable-extensions-of-uqs-groups-are-surjunctive`.
+- `w3-vf-positive` gave the verdict (PASS) in Section 19 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`, with the
+  verdict line on the route.
+- This section is an independent second pass, done before its handoff arrived. It adds no verdict line.
+- Both passes found the same scope point on directed unions.
+
+**The transplant.**
+- The decoder obeys Lemma 2.1: `sigma(y)_q` reads the coordinates `q Sbar`. So for `q` in `F^-` it recovers `x_q` from `tau_F(x)`.
+- Storing `x` on `F^+ \ F^-` makes `Psi` injective.
+
+**Tiles.** A maximal disjoint family `q_i Wbar` in `F'` gives `|F'| <= n |Wbar Wbar^-1|`.
+- On each tile the transported pattern sits at coordinates `(q_i wbar, n n_(i,w))`.
+- The map `w -> (q_i wbar, n_(i,w))` is injective, so `Z_i` is proper.
+
+**Bookkeeping.** `j = |F^+| - n|Wbar|` and `j' = |F| - n|Wbar| + |F^+ \ F^-|`, so `j' - j = |F \ F^-|`.
+
+**Part 1.**
+- Right multiplication by `s` maps `F \ F s^-1` onto `F s \ F`, so `|F \ F^-| <= sum_(s in Sbar) |F s \ F| <= |Sbar| eps |F|`.
+- In the same way `|F \ F'| <= |Wbar| eps |F|`, and so `n >= (1 - |Wbar| eps)|F| / |Wbar Wbar^-1|`.
+- UQS at `B = A^(Wbar)`, `w = |W|`, `D = A` gives the contradiction.
+
+**Part 2.**
+- Take `F = I_L R`, with `I_L` an interval of length `L` in a finite-index `<c>` and `R` a right transversal.
+- Right multiplication by `s` permutes the cosets and shifts each interval by a bounded amount `a(r,s)`. So `|F s \ F|` is bounded
+  independently of `L`, while `n -> infinity`, and AQS gives the contradiction.
+
+**Proposition 3.1.**
+- **Subgroups.** The memory lies in `H`, so the same local rule over `N` acts coset by coset, and it is injective.
+  - `Y~_i` is closed, `N`-invariant and proper. Changing the base point in a coset is a left shift, which `Y_i` absorbs.
+- **Directed unions.**
+  - The memory and the finitely many missing windows lie in one `N_k`.
+  - Restricting to the coset `N_k` gives an injective automaton over `N_k`. Its target restrictions `Y_i|_(N_k)` miss the same
+    patterns.
+
+**Corollary 3.2.**
+- `phi(N) = t N t^-1 <= N` makes `t^-k N t^k` increasing.
+- The copies are isomorphic to `N`, hence share its constants.
+- The kernel onto `Z` is their union, and the quotient `Z` is two-ended.
+
+**Wording point.** Proposition 3.1 and the claim's Heredity line say directed unions keep UQS and AQS "with the same constants".
+- As proved, the union inherits the property only when all `N_k` share one `delta(B,w)`, or for AQS one `n_0(B,w,K)`.
+- A directed union of UQS groups whose constants tend to `0` is not covered.
+- Corollary 3.2 is unaffected, because the copies are isomorphic.
+- Please state the uniformity hypothesis.

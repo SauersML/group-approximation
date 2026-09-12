@@ -4,7 +4,8 @@ id: complex-lamplighter-linearization-proof
 kind: route
 title: Pull back locally constant functions, compare traces, and pass normality to absolute continuity
 target: complex-lamplighter-linearizations-are-normal-iff-surjective
-requires: []
+requires:
+  - bijective-ca-preserve-uniform-bernoulli-measure
 artifacts:
   - research/artifacts/amenable-extension-surjunctivity-transfer-2026-09-12.md
 ---
