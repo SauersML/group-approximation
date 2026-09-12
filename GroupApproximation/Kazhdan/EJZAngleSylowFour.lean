@@ -151,7 +151,8 @@ theorem sq_inner_le_of_z_moving (ρ : G →* (E ≃ₗᵢ[ℝ] E)) {p : ℕ} {a 
   have hsplit : inner ℝ u (ρ (b ^ 0) u) +
       ∑ m ∈ (Finset.range p).erase 0, inner ℝ u (ρ (b ^ m) u) =
         ∑ m ∈ Finset.range p, inner ℝ u (ρ (b ^ m) u) :=
-    Finset.add_sum_erase _ _ (Finset.mem_range.mpr hp0)
+    Finset.add_sum_erase (Finset.range p) (fun m ↦ inner ℝ u (ρ (b ^ m) u))
+      (Finset.mem_range.mpr hp0)
   have h0 : inner ℝ u (ρ (b ^ 0) u) = ‖u‖ ^ 2 := by simp
   have hsum : ∑ m ∈ Finset.range p, inner ℝ u (ρ (b ^ m) u) ≤ 2 * ‖u‖ ^ 2 := by
     rw [← hsplit, h0]
