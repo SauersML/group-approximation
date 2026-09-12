@@ -1,0 +1,188 @@
+import GroupApproximation.GroupTheory.HydeLodha.PeriodicCore
+import GroupApproximation.GroupTheory.HydeLodha.GammaTwo
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The `1`-periodic copy of `F_6` lies in `Γ₂`
+
+Hyde–Lodha, Proposition 1.4(2): "each element of the `1`-periodic action of `F_{η_n}` satisfies
+Definition 1.2, hence lies in `Γ_n`."  For `n = 2`, `η = 6 = 4 + 2`:
+
+* `perHom_strictMono`, `perHom_gridAffine`: the periodic extension of a grid-affine element of
+  `F_{6,1}` is strictly increasing and grid-affine at the same level and bound;
+* `perHom_hlCond`: its slopes are powers of `6 = 2·3`, and it preserves `⌊·⌋`, so condition (3) holds
+  with `i = j`;
+* `perHom_mem_gammaTwo`.
+-/
+
+namespace GroupApproximation
+namespace HydeLodha
+
+open HigmanThompson
+
+theorem gridAffine_mono_slopes {m : ℕ} {Ω Ω' : Submonoid ℚ} (h : Ω ≤ Ω') {f : ℚ → ℚ} {N B : ℕ}
+    (hf : GridAffine m Ω f N B) : GridAffine m Ω' f N B :=
+  ⟨fun k => by
+    obtain ⟨s, hs, hsB, haff⟩ := hf.slope k
+    exact ⟨s, h hs, hsB, haff⟩, hf.value⟩
+
+theorem six_zpow_eq (i : ℤ) : (((4 : ℕ) : ℚ) + 2) ^ i = (2 : ℚ) ^ i * (3 : ℚ) ^ i := by
+  rw [← mul_zpow]
+  norm_num
+
+theorem powSlopes_le_slopes23 : powSlopes 4 ≤ slopes23 := by
+  rintro s ⟨i, rfl⟩
+  exact ⟨i, i, six_zpow_eq i⟩
+
+section Periodic
+
+variable {m : ℕ}
+
+theorem perHom_eq_of_mem_Icc (f : ↥(compactF m 1)) {j : ℤ} {t : ℚ} (h1 : (j : ℚ) ≤ t)
+    (h2 : t ≤ j + 1) : perHom m f t = j + (f : Equiv.Perm ℚ) (t - j) := by
+  rcases lt_or_eq_of_le h2 with h2 | h2
+  · have hfl : ⌊t⌋ = j := Int.floor_eq_iff.mpr ⟨h1, h2⟩
+    rw [perHom_apply, hfl, ← Int.self_sub_floor, hfl]
+  · have e : (j : ℚ) + 1 = ((j + 1 : ℤ) : ℚ) := by push_cast; ring
+    have e2 : ((j + 1 : ℤ) : ℚ) - j = 1 := by push_cast; ring
+    rw [h2, perHom_apply, e, Int.floor_intCast, Int.fract_intCast, e2,
+      compactF_fix_nonpos f.2 le_rfl, compactF_fix_one f.2 le_rfl]
+    push_cast
+    ring
+
+theorem perHom_strictMono (f : ↥(compactF m 1)) : StrictMono (perHom m f) := by
+  intro s t hst
+  rw [perHom_apply, perHom_apply]
+  obtain ⟨hs0, hs1⟩ := compactF_mem_Ico f.2 (Int.fract_nonneg s) (Int.fract_lt_one s)
+  obtain ⟨ht0, ht1⟩ := compactF_mem_Ico f.2 (Int.fract_nonneg t) (Int.fract_lt_one t)
+  rcases lt_or_eq_of_le (Int.floor_mono hst.le) with hlt | heq
+  · have h : ((⌊s⌋ : ℤ) : ℚ) + 1 ≤ ⌊t⌋ := by
+      have h' : ⌊s⌋ + 1 ≤ ⌊t⌋ := hlt
+      exact_mod_cast h'
+    linarith
+  · rw [heq]
+    have hfr : Int.fract s < Int.fract t := by
+      rw [← Int.self_sub_floor, ← Int.self_sub_floor, heq]
+      linarith
+    have h := compactF_strictMono f.2 hfr
+    linarith
+
+/-- **Grid affinity of the periodic extension.** -/
+theorem perHom_gridAffine (f : ↥(compactF m 1)) {Ω : Submonoid ℚ} {N B : ℕ}
+    (hf : GridAffine (m + 2) Ω (f : Equiv.Perm ℚ) N B) :
+    GridAffine (m + 2) Ω (perHom m f) N B := by
+  have hcast : (((m + 2 : ℕ) : ℚ)) = (m : ℚ) + 2 := by push_cast; ring
+  have hpos : (0 : ℚ) < ((m : ℚ) + 2) ^ N := pow_pos mTwo_pos N
+  have hinv : ((m : ℚ) + 2) ^ N * (((m : ℚ) + 2) ^ N)⁻¹ = 1 := mul_inv_cancel₀ hpos.ne'
+  have hstep : ∀ k : ℤ, gridPt (m + 2) N k ≤ gridPt (m + 2) N (k + 1) := by
+    intro k
+    rw [gridPt_le_iff]
+    have e : gridPt (m + 2) N (k + 1) * (((m + 2 : ℕ) : ℚ)) ^ N = ((k + 1 : ℤ) : ℚ) := by
+      unfold gridPt
+      exact div_mul_cancel₀ _ (mPow_pos N).ne'
+    rw [e]
+    push_cast
+    linarith
+  have hshift : ∀ k j : ℤ, gridPt (m + 2) N (k - j * ((m : ℤ) + 2) ^ N) = gridPt (m + 2) N k - j := by
+    intro k j
+    simp only [gridPt, hcast, div_eq_mul_inv]
+    push_cast
+    linear_combination (-(j : ℚ)) * hinv
+  have hint : ∀ k : ℤ, ∃ j : ℤ, (j : ℚ) ≤ gridPt (m + 2) N k ∧
+      gridPt (m + 2) N (k + 1) ≤ j + 1 := by
+    intro k
+    refine ⟨⌊gridPt (m + 2) N k⌋, Int.floor_le _, ?_⟩
+    by_contra h
+    have hj : (((⌊gridPt (m + 2) N k⌋ + 1 : ℤ)) : ℚ) ∈ Grid (m + 2) N := int_mem_grid N _
+    refine not_between_consecutive hj ⟨?_, ?_⟩
+    · push_cast
+      exact Int.lt_floor_add_one _
+    · push_cast
+      exact not_le.mp h
+  refine ⟨fun k => ?_, fun k => ?_⟩
+  · obtain ⟨j, hj1, hj2⟩ := hint k
+    obtain ⟨s, hsΩ, hsB, haff⟩ := hf.slope (k - j * ((m : ℤ) + 2) ^ N)
+    have e2 : k - j * ((m : ℤ) + 2) ^ N + 1 = (k + 1) - j * ((m : ℤ) + 2) ^ N := by ring
+    rw [e2, hshift, hshift] at haff
+    refine ⟨s, hsΩ, hsB, fun t ht1 ht2 => ?_⟩
+    rw [perHom_eq_of_mem_Icc f (le_trans hj1 ht1) (le_trans ht2 hj2),
+      perHom_eq_of_mem_Icc f hj1 (le_trans (hstep k) hj2)]
+    have h := haff (t - j) (by linarith) (by linarith)
+    rw [h]
+    ring
+  · obtain ⟨j, hj1, hj2⟩ := hint k
+    rw [perHom_eq_of_mem_Icc f hj1 (le_trans (hstep k) hj2), ← hshift]
+    exact grid_add (int_mem_grid B j) (hf.value _)
+
+theorem floor_perHom (f : ↥(compactF m 1)) (t : ℚ) : ⌊perHom m f t⌋ = ⌊t⌋ :=
+  floor_perFun f.2 t
+
+end Periodic
+
+/-- **Condition (3) for the periodic `F_6`.** -/
+theorem perHom_hlCond (f : ↥(compactF 4 1)) : HLCond (perHom 4 f) := by
+  intro x hx
+  obtain ⟨-, ⟨N, B, hA⟩, -⟩ := f.2.1
+  have hfr : Int.fract x ∈ Set.Ico (0 : ℚ) 1 := ⟨Int.fract_nonneg x, Int.fract_lt_one x⟩
+  have hy : ∀ M, Int.fract x ∉ Grid (4 + 2) M := by
+    intro M hM
+    apply hx
+    refine ⟨M, ?_⟩
+    have e : x = ⌊x⌋ + Int.fract x := (Int.floor_add_fract x).symm
+    rw [e]
+    exact grid_add (int_mem_grid M _) hM
+  obtain ⟨hp, hq⟩ := floor_bracket (m := 4 + 2) N (Int.fract x)
+  have hpy : gridPt (4 + 2) N ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ < Int.fract x := by
+    refine lt_of_le_of_ne hp fun h => hy N ?_
+    rw [← h]
+    exact gridPt_mem N _
+  have hp0 : 0 ≤ gridPt (4 + 2) N ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ := by
+    unfold gridPt
+    have h1 : (0 : ℤ) ≤ ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ :=
+      Int.floor_nonneg.mpr (mul_nonneg hfr.1 (pow_nonneg (Nat.cast_nonneg _) N))
+    have h2 : (0 : ℚ) ≤ ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ := by exact_mod_cast h1
+    positivity
+  have hq1 : gridPt (4 + 2) N (⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ + 1) ≤ 1 := by
+    by_contra h
+    have h1 : ((1 : ℤ) : ℚ) ∈ Grid (4 + 2) N := int_mem_grid N 1
+    refine not_between_consecutive h1 ⟨?_, ?_⟩
+    · push_cast
+      linarith [hfr.2]
+    · push_cast
+      exact not_le.mp h
+  obtain ⟨s, ⟨i, rfl⟩, -, haff⟩ := hA.slope ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋
+  set p := gridPt (4 + 2) N ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ with hpdef
+  set q := gridPt (4 + 2) N (⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋ + 1) with hqdef
+  have hxdec : x = ⌊x⌋ + Int.fract x := (Int.floor_add_fract x).symm
+  refine ⟨⌊x⌋ + p, ⌊x⌋ + q, i, i, by linarith, by linarith, fun t ht1 ht2 => ?_, ?_⟩
+  · have hj1 : ((⌊x⌋ : ℤ) : ℚ) ≤ t := by linarith
+    have hj2 : t ≤ ((⌊x⌋ : ℤ) : ℚ) + 1 := by linarith
+    have hj1' : ((⌊x⌋ : ℤ) : ℚ) ≤ ⌊x⌋ + p := by linarith
+    have hj2' : (⌊x⌋ : ℚ) + p ≤ ((⌊x⌋ : ℤ) : ℚ) + 1 := by linarith
+    rw [perHom_eq_of_mem_Icc f hj1 hj2, perHom_eq_of_mem_Icc f hj1' hj2', six_zpow_eq i]
+    have h := haff (t - ⌊x⌋) (by linarith) (by linarith)
+    have e : (⌊x⌋ : ℚ) + p - ⌊x⌋ = p := by ring
+    rw [e, h, six_zpow_eq i]
+    ring
+  · rw [sub_self, floor_perHom f x, sub_self]
+
+/-- **The periodic `F_6` lies in `Γ₂`.** -/
+theorem perHom_mem_gammaTwo (f : ↥(compactF 4 1)) : perHom 4 f ∈ gammaTwo := by
+  obtain ⟨-, ⟨N, B, hA⟩, ⟨Ni, Bi, hAi⟩⟩ := f.2.1
+  have hinvA : GridAffine (4 + 2) (powSlopes 4) ((f⁻¹ : ↥(compactF 4 1)) : Equiv.Perm ℚ) Ni Bi :=
+    hAi
+  have hinv : ⇑(perHom 4 f)⁻¹ = ⇑(perHom 4 f⁻¹) := by rw [map_inv]
+  refine ⟨⟨perHom_strictMono f,
+    ⟨N, B, gridAffine_mono_slopes powSlopes_le_slopes23 (perHom_gridAffine f hA)⟩,
+    ⟨Ni, Bi, ?_⟩⟩, fun t => ?_, perHom_hlCond f⟩
+  · rw [hinv]
+    exact gridAffine_mono_slopes powSlopes_le_slopes23 (perHom_gridAffine f⁻¹ hinvA)
+  · have h := perHom_add_int 4 f t 1
+    push_cast at h
+    exact h
+
+#audit_axioms GroupApproximation.HydeLodha.perHom_gridAffine
+#audit_axioms GroupApproximation.HydeLodha.perHom_mem_gammaTwo
+
+end HydeLodha
+end GroupApproximation
