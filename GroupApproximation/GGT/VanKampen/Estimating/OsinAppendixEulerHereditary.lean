@@ -177,7 +177,7 @@ theorem hasEndpointClosedPlanarEdgeBound_of_phiData
     | true => exact Or.inl rfl
     | false =>
         right
-        obtain ⟨j, hj⟩ := e.exists_target
+        obtain ⟨j, hj⟩ := InteriorEdge.exists_target (selected := family) e
         simp [sideCell, hj]
   have hbound := card_le_of_endpoints P vertices hV hne
   rwa [Finset.card_map] at hbound
