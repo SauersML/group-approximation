@@ -46,3 +46,16 @@ claim is the 3-manifold case of that alternative.
   infinite groups, and the fibered cover's product-coordinate metric fails to
   be left-invariant because the monodromy has infinite conjugacy orbits
   (`fpbs-split-product-metric-needs-finite-conjugacy-orbits`).
+* **Transport graphing using every return time.** Use `t` together with the
+  fibre generators restricted to a small set `A`, applied at every return of
+  the `t`-orbit to `A`, not only the first. This needs no `N`-invariant factor.
+  `fpbs-twisted-level-graph-generates-cyclic-extension` proves that the graphing
+  generates iff a random twisted return graph on the fibre group is connected.
+  For the Bernoulli shift that graph is independent twisted level percolation.
+  Route `fpbs-hyperbolic-3-manifold-fixed-price-via-twisted-levels` derives
+  this claim from its connectivity. **Where it waits:**
+  `fpbs-twisted-level-percolation-connected` is open. There are no finite
+  clusters, so what remains is ruling out infinitely many infinite clusters on
+  a nonamenable group, where Burton–Keane fails. The analogous graph for
+  `F_2 = F_infinity semidirect Z` is disconnected, so the argument must use
+  finite generation of the fibre group.
