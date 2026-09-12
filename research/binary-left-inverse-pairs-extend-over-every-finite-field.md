@@ -8,6 +8,7 @@ distinct_from:
   low-degree-strict-pairs-have-one-sided-linear-parts: that extracts one-sided linear parts from a pair over F_q with deg sigma * deg tau < q; this constructs extensions over every F_(2^k) whose slicewise rules read traces of degree 2^(k-1), with no degree bound claimed either way.
 artifacts:
   - research/artifacts/formalizability-by-shear-decomposition-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `tau`, `sigma` be automata on `(F_2^n)^G` with `sigma o tau = id`. For every `k >= 1` there are

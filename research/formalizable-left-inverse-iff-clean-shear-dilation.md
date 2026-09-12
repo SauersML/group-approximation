@@ -8,6 +8,7 @@ distinct_from:
   injective-binary-automata-have-formalizable-left-inverses: that is the open universal statement for some left inverse; this proves, automaton by automaton, that it is the same as the existence of a clean structurally reversible dilation.
 artifacts:
   - research/artifacts/formalizability-by-shear-decomposition-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `tau` be an automaton on `(F_2^n)^G`. The following are equivalent:

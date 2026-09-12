@@ -26,6 +26,7 @@ not by rereading the author's argument. Nothing was run.
 | `b7fef0670` (gk-n-defect) | `garden-of-eden-windows-fold-modulo-every-hinge-closure`, `transposed-hinges-are-conjugated-commutators` | PASS (Section 20) |
 | `746491973` (gk-n-thompson-v) | routes `thompson-v-direct-finiteness-failure-from-swap-fullness`, `thompson-v-nonsurjunctive-from-direct-finiteness-failure`; Propositions 2.1–2.3, Lemma 3.1, Corollary 3.2, Proposition 9.1 | PASS (Section 21) |
 | `fe7e9bf0c` (gk-n-ae-decoder) | `rokhlin-maximality-closed-under-local-embeddings`, `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers` | PASS (Section 22) |
+| `3639943709` (gk-fz-decompose) | `structurally-reversible-automata-are-formalizable`, `formalizable-left-inverse-iff-clean-shear-dilation`, `binary-left-inverse-pairs-extend-over-every-finite-field` | PASS (Section 23) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -800,3 +801,87 @@ verified stable-finiteness criterion. Both are valid, and every target claim sta
 - `Rad(W) <= N_0` is prose-level, supported by Step 3 applied to `Γ̂`.
 - Section 1's absences in Seward's papers were read from ar5iv extractions and are not verified
   here, as the author notes.
+
+## 23. Formalizability by shear decomposition (`3639943709`, gk-fz-decompose): PASS
+
+**Proposition 1.1: gates are formally invertible.**
+- A track shear sends `X_(g,i)` to `X_(g,i) + f((X_(gm,j))_(m in M, j != i))` and fixes every
+  `X_(g,j)` with `j != i`.
+- The second application therefore reads the unchanged variables `X_(gm,j)`, `j != i`, at every
+  memory site, and coordinate `i` becomes `X_(g,i) + 2f = X_(g,i)` in `F_2[X]`.
+- This needs only that `f` reads no coordinate `i` at any site. The memory is arbitrary, and a
+  constant term in `f` is allowed.
+- `L in GL_n(F_2)` has formal inverse `L^-1`, and a constant translation is a formal involution.
+
+**Corollary 1.3.** Formal substitution is associative, so for `W = g_1 o ... o g_r` the reversed
+word `g_r^-1 o ... o g_1^-1` is a two-sided formal inverse.
+
+**Proposition 1.4: regrouping.**
+- With `G = ⊔_(t in T) H t`, put `y(h)_t = x(ht)`, which is `H`-equivariant for left shifts.
+- Writing `tm = h'(t,m) t'(t,m)` with `h'` in `H` and `t'` in `T` gives
+  `tau(x)(ht) = mu((y(h h'(t,m))_(t'(t,m)))_m)`. That is an `H`-automaton on `(A^T)^H` with finite
+  memory, in the same variables `X_(ht,i)`.
+- A unital subring of a directly finite ring is directly finite: if `ba = 1` there, then `ab = 1` in
+  the big ring, and `ab` lies in the subring.
+- *Scope note, not claim-level.* After regrouping, "formalizable" means formalizable as
+  `H`-automata. The representatives may depend on the coset representative `t`, and an `H`-formal
+  word need not be formally `G`-equivariant. This is exactly what the linearization theorem over
+  `H` consumes. The claim node states the regrouped case on the regrouped alphabet, which is
+  consistent with this.
+
+**Remark 1.5.** A word of bijections is bijective, and a strict automaton is not.
+
+**Theorem 2.1.**
+- *(a) => (b).* `T(x,y) = (x, y + tau~(x))` is the product of `n` shears on the `y`-tracks. They
+  read only `x`-tracks, so they commute. `S` is the same on the `x`-tracks reading only `y`, and `P`
+  lies in `GL_(2n)(F_2)`.
+  - Formally, `T~(X,0) = (X, tau~(X))` and `S~(X, tau~(X)) = (X + sigma~(tau~(X)), tau~(X)) = (0, tau~(X))`,
+    since `X + X = 0`. Then `P` gives `(tau~(X), 0)`.
+- *(b) => (a).*
+  - `sigma = pi_1 o W' o iota_0` is a composite of automata.
+  - Evaluating the formal identity at Boolean points gives `W(x,0) = (tau(x),0)`, so `sigma tau = id`.
+  - Formally, `W~' o W~ = id` in the variables `(X, Y)`. Substituting `Y = 0` gives
+    `W~'(W~(X,0)) = (X,0)`, and `W~(X,0) = (tau~(X),0)` is a polynomial identity. So
+    `sigma~(tau~(X)) = X`. Only formal cleanliness of the ancillas is used.
+- *Proposition 2.2.* For any left inverse `sigma`, which exists by compactness,
+  `P(S(x, tau(x))) = P(x + sigma(tau(x)), tau(x)) = (tau(x), 0)` as functions.
+
+**Theorem 3.1: finite-field extensions.**
+- *Dual basis.* `Tr(gamma_i^2 beta_(j+1)) = Tr((gamma_i beta_j)^2) = Tr(gamma_i beta_j) = delta_ij`, so
+  `gamma_i^2 = gamma_(i+1)`.
+- *Slices.* `x = Sum_j Tr(gamma_j x) beta_j` is the expansion in the dual pair.
+- *Extension.* For Boolean `x`, `x^(j) = Tr(gamma_j) x`, and `Sum_j Tr(gamma_j) beta_j = 1`, so
+  `tau_k(x) = tau(x)`.
+  - *Side remark.* The normalization `tau(0) = 0` is harmless but not needed. The `tau(0)` term has
+    coefficient `Sum_j (1 + Tr gamma_j) beta_j = Tr(beta) + 1`, and `Tr(beta) = 1` for a normal basis
+    generator, since otherwise the `beta_j` would sum to `0`.
+- *Left inverse.* `Tr(gamma_i tau_k(x)) = Sum_j tau(x^(j)) Tr(gamma_i beta_j) = tau(x^(i))`, because
+  the `tau(x^(j))` are Boolean. So `sigma_k tau_k(x) = Sum_j x^(j) beta_j = x`.
+- *Frobenius.* `(x^2)^(j) = Tr(gamma_(j-1)^2 x^2) = x^(j-1)`, so
+  `tau_k(x^2) = Sum_i tau(x^(i)) beta_i^2 = (tau_k(x))^2`, using additivity of Frobenius and Boolean
+  coefficients.
+- *Strictness.* A configuration all of whose slices are images is an image: take `x = Sum z_j beta_j`
+  with `tau(z_j) = y^(j)`. So a non-image Boolean `w` gives the non-image `w beta_0`.
+
+**Corollary 3.2.**
+- `q o p - X` has total degree at most `deg q deg p = d`.
+- A nonzero polynomial whose degree in each variable is below `|F|` does not vanish on all of `F^N`,
+  and `2^k > d` gives that.
+
+**The open target and its routes.**
+- `formalizable-left-inverses-reduce-surjunctivity-to-kaplansky` is valid.
+  - By definition, stable finiteness of `F_2[G]` makes every `M_n(F_2[G])` directly finite.
+  - The formal identity for some left inverse then gives `tau o sigma = id` by Theorem 1 of
+    `formal-polynomial-strict-pairs-need-unstable-linearization` (Section 7 here), which normalizes
+    `tau(0)` internally.
+  - It needs strictly less than `formalizable-pairs-reduce-surjunctivity-to-kaplansky`, which stays
+    valid.
+- `every-pair-formalizable-gives-formalizable-left-inverses` is valid. The compactness left inverse
+  (Lemma 4 of the canonical-table record, Section 2 here) plus the universal formalizability claim
+  gives it.
+- The Attempts reading "on a stably finite host no strict automaton has a formalizable left inverse"
+  is Theorem 1 again.
+
+`injective-binary-automata-have-formalizable-left-inverses`, `binary-left-inverse-pairs-are-formalizable`
+and `stable-finiteness-forces-binary-surjunctivity` all stay OPEN. No non-formalizable pair and no
+formalization of a strict pair has been claimed.

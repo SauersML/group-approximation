@@ -8,6 +8,7 @@ distinct_from:
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that calibrates one sitewise Toffoli pair whose canonical representatives are not formal; this proves every word of gates with arbitrary memories is formalizable, including after regrouping along a finite-index subgroup.
 artifacts:
   - research/artifacts/formalizability-by-shear-decomposition-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a group and `A = F_2^n`. The following gates on `A^G` are formally invertible:
