@@ -695,6 +695,38 @@ defect. Evidence: tags not cited, sent to `kt-norm-counting`.**
   to "the probe record named in the landing log", and no such log is on main or
   in the campaign scratchpad. The records were found by md5 match instead.
 
+**(aa) Landed: `KunThom/NormalizationProducer`, 0365e49a5, root-wired. No
+defect.**
+* **The producer skeleton.**
+  `hasSequentialCentralizerNormalization_of_kazhdan_infranormal_of_core` takes
+  `[Countable G]`, (T) for `G` and `Γ`, `IsInfranormal Γ` and a per-compressor
+  core
+  `hcore : ∀ C : CompressionSetup G ↥Γ PUnit.{1}, (∀ g, C.embedΓ g = g) →
+  SeqNormalizes Γ C.distinguished`,
+  and concludes `HasSequentialCentralizerNormalization Γ`.
+* **The core is not over-quantified.** Its conclusion depends only on the
+  element `C.distinguished` of `G`. Kun–Thom Theorem 4.1 at `Γ ≤ G` gives
+  `SeqNormalizes Γ g` for every `g ∈ G`, so it implies `hcore` for every setup.
+  The hypothesis is therefore not stronger than the theorem it stands for, unlike
+  the injective Prop of F1.
+* The finite algebra is landed:
+  * `exists_finset_compressors_generate`: finitely many compressors generate a
+    finitely generated group;
+  * `CompressionSetup.ofCompressor`: a criterion setup for each compressor;
+  * the normal case for finite infranormal `Γ`.
+* The pinned producer `hasSequentialCentralizerNormalization_of_kazhdan_infranormal`
+  is not claimed, and the module docstring names `hcore` as the analytic content
+  of Theorem 4.1.
+* Probe evidence: record `kt-norm-repo.green.0912-123326-57477` at base
+  fe7446d1d carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `b857521f…`. The commit message cites the tag. The 8-module import closure did
+  not change.
+* One root import is added. Nothing is deleted.
+* **The open leaf is now `hcore`,** the per-compressor analytic core. The commit
+  message pins it as `seqNormalizes_distinguished_of_kazhdan` in
+  `KunThom/CompressorNormalizationCore.lean`. That module is not on main at
+  2498eefe6, and the landed module docstring does not refer to it.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
@@ -710,8 +742,9 @@ defect. Evidence: tags not cited, sent to `kt-norm-counting`.**
   intended.
 
 **Still to review as they land:**
-* the producer of `HasSequentialCompressorNormalization` under property (T) and
-  infranormality, i.e. the analytic core of Theorem 4.1, from the four
+* the per-compressor core `seqNormalizes_distinguished_of_kazhdan` (F4(aa)),
+  which is the analytic core of Theorem 4.1, and the one-line pinned producer
+  `hasSequentialCentralizerNormalization_of_kazhdan_infranormal`, from the
   Theorem 4.1 lanes;
 * `WreathWitness` and `WreathWitnessEndpoint` (`bc-wreath`, WIP at 7d220e568);
 * the final `Endpoint` (`bc-assembly`);
