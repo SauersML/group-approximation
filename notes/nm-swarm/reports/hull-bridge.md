@@ -22,10 +22,11 @@ Route approved: nonplanar induction on the quotient ball radius, one Osin move p
 (M1: shorten any non-geodesic cyclic subword; M2: certificate cut), face relations at cosets,
 induction hypothesis on quotient-ball stretches.
 
-## In flight (landed unverified)
+## Compiled for the letter pullback
 - GGT/HullSCLemma51LetterWords (inverse respelling, one peripheral letter per coset in a geodesic).
-- GGT/HullSCLemma51FaceRelation (bounded products, coset letters, face relation split).
-- Next: GGT/HullSCLemma51LetterMoves, GGT/HullSCLemma51LetterPullback.
+- GGT/HullSCLemma51FaceRelation (bounded products, coset letters, face relations, face_relation_split).
+- GGT/HullSCLemma51LetterMoves (shortcut, certificate cut with geodesic sides, cross-coset exclusion).
+- The induction (D), GGT/HullSCLemma51LetterPullback, belongs to hull-component.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
