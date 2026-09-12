@@ -66,7 +66,14 @@ three torus subgroups: order 65 (9 orbits), 13 (45 orbits), 5 (117 orbits).
   1–15, 110 min each.  **Result: UNKNOWN**, no run decided.  All cyclic subgroups
   of order 65 of Sp(4,8) are conjugate, so a decision either way would settle
   every table invariant under an element of order 65; none was reached.
-* Pre-approved follow-up if that returns UNSAT or unknown: order 13 (45 orbits),
-  `sbatch --export=ALL,ORDER=13 run_search.sbatch`.
+* Job 431244 (2026-09-11, 16 cpus): order 13, 45 orbits.  CNF 20,612,325
+  variables and 61,942,275 clauses; encoding 1:40 wall, 1.0 GB.  8 CaDiCaL runs.
+  The job was cancelled at about 21:45 to cut compute (user order "dont do
+  unnecessary msi compute"), before any run reported.  **Result: none**; all eight
+  run logs are empty.
 
-Results are recorded here when the jobs finish.
+The search is closed.  Theorem C's Kotowski–Ollivier input is now taken through
+the lattice route: the Kac–Moody–Steinberg group GHB(7) of Caprace–Conder–Kaluba–
+Witzel, with a certified finite quotient SL₄(F₇)
+(`experiments/kms_ghb7_quotient`, `Kazhdan/KMSGroupPresentation.lean`).  Do not
+relaunch without asking the lead.
