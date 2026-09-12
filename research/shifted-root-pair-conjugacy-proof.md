@@ -6,6 +6,7 @@ title: Check the explicit intertwiner entrywise, and separate the unit pair by t
 target: shifted-root-pair-conjugates-to-idempotent-root-pair
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ Complete proof: artifact Section 6.1.
   `1 = s_0 t_0 + s_1 s_0 t_0 t_1 + s_1 s_1 t_1 t_1`.
 - **Non-conjugacy.** The common kernel modulo the image sum is `e_1 R / e_1 R = 0` for the unit
   pair, and `(e_1 R (+) e_2 s_1 R) / e_1 R ~= s_1 R != 0` for the shifted pair.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 44 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

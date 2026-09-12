@@ -6,6 +6,7 @@ title: Free modules restrict to free modules and are isomorphism invariant, and 
 target: finite-subgroup-rank-data-cannot-force-two-root-identity
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Complete proof: artifact Section 6.3.
     basis elements. So its rank is `3`, and `r_D = 3/8`.
   - `g = x_12(1)` and `h = x_23(1)` generate `UT_3(F_2) ~= D_8`, since
     `x_12(1) x_23(1) = 1 + E_12 + E_23 + E_13` has order `4`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 44 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

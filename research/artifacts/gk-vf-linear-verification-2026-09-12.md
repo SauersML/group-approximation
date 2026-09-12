@@ -1481,3 +1481,45 @@ Items checked:
     direct finiteness turns `s_0 t_0 + s_1 t_1 = 1` into `0 = 1` in characteristic two.
 - **Section 6 bound.** `rk(N_12 N_23 - n_12(t_i) n_23(s_i)) <= delta(1,1) + delta(t_i, s_i)` follows from Proposition 1,
   because both products agree with `n_13(1)` up to their defects.
+
+## 44. Shifted root pair and finite-subgroup rank data (8831a28b31, lane gk-rk-unipotent, artifact el3-two-root-identities Section 6): PASS
+
+Items checked: `shifted-root-pair-conjugates-to-idempotent-root-pair`, `finite-subgroup-rank-data-cannot-force-two-root-identity`,
+their routes, and artifact Sections 6.1 to 6.3.
+
+- **The invariant `T`.** Simultaneous conjugation carries kernels and images to kernels and images, so `T` is invariant up to
+  isomorphism.
+  - *Unit pair.* The common kernel is `e_1 R`, contained in the image sum `e_1 R + e_2 R`, so `T = 0`.
+  - *Shifted pair.* `t_0 v = 0` iff `v = s_1 t_1 v`, and left multiplication by `s_0` is injective. So the common kernel is
+    `e_1 R + e_2 s_1 R`, the image sum is `e_1 R + e_2 s_0 R`, and `s_0 R cap s_1 R = 0`. Hence `T ~= s_1 R != 0`.
+  - *Idempotent pair.* The common kernel is `e_1 R + e_2 e_1 R + e_3 e_1 R`, where `e_2` in "`e_2 e_1 R`" is the basis column
+    and `e_1` the idempotent. The image sum is `e_1 e_0 R + e_2 e_0 R`. So `T ~= R/e_0 R + (e_1 R)^2 ~= R`.
+  - So the shifted pair is not conjugate to the unit pair.
+- **The explicit intertwiner.**
+  - `g(e_0 E_12)` has second column `(t_0 e_0, s_1 s_0 t_1 e_0, 0) = (t_0, 0, 0)`.
+  - `(t_0 E_12) g` has first row `t_0 (row 2 of g) = (0, t_0, 0)`, using `t_0 s_1 = 0`.
+  - `g(e_0 E_23)` has entry `(2,3)` equal to `(s_0 t_0 + s_1 s_1 s_0 t_1) e_0 = e_0`, and `(s_0 E_23) g` has second row
+    `s_0 (0, 0, t_0)`, also giving `e_0`.
+  - *Invertibility.* The four terms of row 2 have ranges `s_0 R, s_1 s_0 R, s_1 s_1 s_0 R, s_1 s_1 s_1 R`, from the prefix code
+    `0, 10, 110, 111`.
+    - Injective: `gv = 0` forces `t_0 v_1 = t_1 v_1 = 0`, `t_0 v_2 = t_1 v_2 = 0` and `t_0 v_3 = t_1 v_3 = 0`, so `v = 0`.
+    - Surjective: `v_1 = s_0 w_1 + s_1 t_0 t_1 w_2`, `v_2 = s_0 t_0 w_2 + s_1 t_0 t_1 t_1 w_2` and
+      `v_3 = s_0 w_3 + s_1 t_1 t_1 t_1 w_2` give `gv = w`, using the prefix-code decomposition of 1.
+  - So `g` lies in `GL_3(R) = EL_3(R)`.
+- **Theorem F (free profile).**
+  - `(1 + E_12)(1 + E_23)` has square `1 + E_13 != 1`, so it has order 4, and `UT_3(F_2) ~= D_8`.
+  - `F_2[D_8]` has basis `1, x, y, xy, yx, xyx, yxy, xyxy` with `x^2 = y^2 = 0` and `xyxy = yxyx`. Left multiplication by
+    `yx` sends `1, y, yx` to `yx, yxy, xyxy` and kills the rest (for example `yx . yxy = xyx . y^2 = 0`). Its rank is 3, so
+    `r_D = 3/8`.
+  - Restriction holds because `F_2[L] ~= F_2[K]^([L:K])`. Isomorphism invariance holds because isomorphic groups have
+    isomorphic regular modules.
+  - The scope of the consequence is stated accurately: it excludes only arguments built from relations inside finite
+    subgroups, inclusions, conjugacies and per-subgroup rank data.
+- **Side facts.**
+  - `<x_12(1), x_12(t_0), x_23(1), x_23(s_0)>` is Heisenberg with root parts `span{1, t_0}` and `span{1, s_0}` and central part
+    `span{1, s_0, t_0}`, since `t_0 s_0 = 1`. Its order is `4 . 4 . 8 = 128`.
+  - `[[0, t_0],[s_0, 1]]^2 = [[1, t_0],[s_0, 1 + s_0 t_0]]`, and its cube is `[[t_0 s_0, 2 t_0],[s_0 + s_0 t_0 s_0, 1]] = 1`.
+  - `[[e_1, s_0],[t_0, 1]]^2 = [[1, s_0],[t_0, 0]]`, and its cube is 1.
+  - So both products have order 3, and each pair generates `S_3`.
+- **Section 6.2.** The expansion
+  `YX = Y'X' b''a'' + b'' X''Y' + X' Y''a'' + Y''X''` checks, using the commutations `[a', b''] = [a'', b'] = 1`.
