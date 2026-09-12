@@ -148,9 +148,10 @@ Every item below was checked against its consumer.
   `SplitStepDDataN` with `pH_z_mul_zero`.  The flag producer works on even parts with `hzero_root`,
   `hzero_one`, `hone_pos`, Cartan for a root times a root product, `hone` (`m = 1`), `hhigh`, and
   naturality at the Chern classes.
-* lx-torusP: `Gen.RealTorusModP` on even parts, with `P_z` (produced by `Gen.P_z_of_sphereFactor`,
-  `CharClass/LIXStepDGenTorusPModel`) and `z_mul_zero`; `PN_zero`, `P_t`, `P_x` and the general
-  `cartan` are dropped.
+* lx-torusP, **verified at origin `205a479d0` (lx-review audit)**: `Gen.RealTorusModP` is on even
+  parts and has `P_z` (`Gen.P_z_of_sphereFactor`, `CharClass/LIXStepDGenTorusPModel`), but it STILL
+  carries `PN_zero : ∀ x, PN 0 x = x` and an unguarded `cartan`.  `z_mul_zero` is not there.  An earlier
+  version of this entry recorded the planned restatement as landed; it was not.
 * lx-pzero, `CharClass/OddPTotal*`: producer `TotalReducedPowers` (`D X q j`, `ptot`, `ptot_mul` on
   even classes, `top_two`, `bad_two` = V in degree 2, unit `μ`, `zero_cp`) → consumer
   `EvenReducedPowers`.  The consumer has the graded `P`, a subring `Good` of junk-free classes with
@@ -160,6 +161,22 @@ Every item below was checked against its consumer.
   `pH_z_mul_zero` for every even `w`, with no generation theorem for `H^*(∏ ℂP)`.
 * lx-redpow, `CharClass/OddPRedPow`: `oddDClass p hp q j hj x`, `oddDClass_mk`, `oddDClass_natural`;
   `redPow` is `cohCast` of the same class map at `j = (q−2i)(p−1)`.
+
+**Routing gaps on the odd-prime path (lx-review, origin `c1b23d84a`; rechecked at `205a479d0`).**  The
+narrowed structures exist, but the path `LemmaTwoPowersModPData` actually runs still goes through the
+strong forms:
+* (a) `RealBundleModP.toModPStepDData` sets `pH_zero := T.PN_zero` and `cartan := T.cartan`, then goes
+  through `ModPStepDData.toParityPData` (`LIXStepDGenModP:142`, strong `pH_z_mul_of_cartan`) to
+  `ParityPData:471`.  Needed: `ModPStepDDataN` with `pH_z_mul_zero` and `toParityPDataN` into
+  `ParityPDataN` (lx-slice2), then `RealBundleModP.toModPStepDDataN` (lx-torusP).
+* (b) `RealTorusModP`: replace `PN_zero` and the general `cartan` with
+  `z_mul_zero : ∀ i r, PY i r = 0 → PN i (evenZClass … * evenMap K pY r) = 0`, produced by
+  `EvenReducedPowers.mul_single` and `P_z` (lx-torusP).
+* (c) `LIXStepDGenBundleP`/`BundlePLix` consume the strong `HasSplittingP` and `realWu_of_splitting`
+  (strong `PowerData`, `hP ∀ x`).  Needed: `realWu_of_splittingN` over `PowerDataN` and
+  `wu_field_of_splittingN` (lx-torusP owns `LIXStepDGenReal*`), then the switch in lx-bundleP.
+* Reds created by the restatements: `LIXStepDGenTorusPModel.ofEven` uses the removed `ops.zero N` and the
+  now Good-guarded `ops.cartan N`, and `BundleP`/`BundlePLix` use the removed `T.PN_even`.
 
 ## 5. Model tests
 
