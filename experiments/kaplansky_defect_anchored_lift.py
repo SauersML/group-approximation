@@ -72,6 +72,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--target", choices=("s0", "t0"), required=True)
     parser.add_argument("--correction-radius", type=int, default=3)
+    parser.add_argument("--pool-radius", type=int, default=2)
     parser.add_argument("--depth", type=int, default=1)
     parser.add_argument("--max-support", type=int, default=41)
     parser.add_argument("--out", required=True)
@@ -82,26 +83,45 @@ def main():
     target_value = S0 if args.target == "s0" else T0
     side = "left" if args.target == "s0" else "right"
     generators, ball, words = cayley_ball(args.correction_radius)
+    gens = tuple(key(g) for _, g in generators)
+    # Atlas balls alone never reach the deep monomials of D (radii 3-5 were
+    # infeasible), so the correction pool also contains d*g and g*d for d in D
+    # and g in a small atlas ball.
+    pool = {}
+    for i, g in enumerate(ball):
+        w = tuple(words[i])
+        pool.setdefault(key(g), (g, w, cps.word_key(tuple(reversed(w)), gens, one)))
+    _, small_ball, small_words = cayley_ball(args.pool_radius)
+    for name, d, d_inv in defect:
+        for i, g in enumerate(small_ball):
+            w = tuple(small_words[i])
+            g_inv = cps.word_key(tuple(reversed(w)), gens, one)
+            left, right = mul(d, g), mul(g, d)
+            pool.setdefault(key(left), (left, (name,) + w, cps.product_key(g_inv, key(d_inv))))
+            pool.setdefault(key(right), (right, w + (name,), cps.product_key(key(d_inv), g_inv)))
+    pool_items = list(pool.values())
     residual = add(target_value, evaluate_sum([e for _, e, _ in defect]))
-    particular, dependencies = affine_leavitt_solutions(ball, residual, parity=0)
+    particular, dependencies = affine_leavitt_solutions([v for v, _, _ in pool_items], residual, parity=0)
     record = {"target": args.target, "side": side, "defect_labels": [n for n, _, _ in defect],
-              "correction_radius": args.correction_radius, "depth": args.depth}
+              "correction_radius": args.correction_radius, "pool_radius": args.pool_radius,
+              "pool_size": len(pool_items), "depth": args.depth}
     if particular is None:
-        record["status"] = "NO_EVEN_CORRECTION_IN_BALL"
+        record["status"] = "NO_EVEN_CORRECTION_IN_POOL"
     else:
         best = descend(particular, dependencies)
-        chosen = [i for i in range(len(ball)) if (best >> i) & 1]
+        chosen = [i for i in range(len(pool_items)) if (best >> i) & 1]
         support = {}
         for name, value, inverse in defect:
             support[key(value)] = ((name,), key(inverse))
-        gens = tuple(key(g) for _, g in generators)
         for i in chosen:
-            k = key(ball[i])
-            inv = cps.word_key(tuple(reversed(words[i])), gens, one)
+            value, w, inv = pool_items[i]
+            k = key(value)
             if k in support:
                 del support[k]
             else:
-                support[k] = (tuple(words[i]), inv)
+                support[k] = (w, inv)
+        for k, (_, inv) in support.items():
+            assert cps.product_key(k, inv) == one
         fixed_keys = list(support)
         assert len(fixed_keys) % 2 == 1
         assert equal(evaluate_sum([from_key(k) for k in fixed_keys]), target_value)
