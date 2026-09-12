@@ -86,3 +86,22 @@ trace-compatible and sufficient (`ternary-anti-central-summand-has-quaternary-le
   - Where it dies: a witness needs some `x` with `x sigma = e'`. `{0,1}`-valued monomial corrections are
     Haar-excluded. What is left is coefficients `2` on overlaps, units outside `E x| V`, or a skeleton for
     the lifts of `s_1` making the whole `2 x 2` Gram defect a single partial symmetry (not yet computed).
+  - **Resolved, dead** (lane w4-cohn-gram, `mixed-depth-leavitt-lift-is-a-left-zero-divisor`).
+    - `sigma e' = 0` and `e' tau = 0`. So no `x` with `x sigma = e'` exists.
+    - No `2 x 2` Gram matrix containing `sigma` or `tau` is invertible, whatever the lifts of `s_1` are.
+    - The defect is annihilated, not removable.
+- *Zero-divisor filters for entries in the crossed product* (lane w4-cohn-gram,
+  `crossed-product-zero-divisor-filters-2026-09-12.md`).
+  - **Non-zero-divisors.** Every Cohn entry must be a non-zero-divisor on the appropriate side, also after
+    multiplication by units. Inside `B`, zero divisors are read on fibre operators over `F_3[V]`
+    (`crossed-product-zero-divisors-are-detected-on-fibres`).
+  - **Monomial and peeling.** An entry in `B` with column weight or image multiplicity at most one is a
+    unit or a two-sided zero divisor (`monomial-crossed-product-elements-are-units-or-zero-divisors`).
+    More generally, an entry whose column peeling stops or terminates in finitely many rounds is dead
+    (`triangular-crossed-product-elements-are-units-or-zero-divisors`). This includes three-piece
+    honest lifts of `s_0`.
+  - **Expansion.** A family inside `B` needs `|N_(sigma_1)(J) ∪ N_(sigma_2)(J)| >= 2|J|` on every finite set
+    of every orbit, and a non-hyperfinite coefficient relation
+    (`hyperfinite-coefficient-graphing-excludes-corner-witnesses`).
+  - **Where it dies.** Untouched: entries in `B` whose peeling keeps a positive-measure core with at least
+    two live points per column, and units outside `E x| V` used additively.

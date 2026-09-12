@@ -110,3 +110,18 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
     Haar mass `1/4`, not a new non-function idempotent.
   * **Status.** `Tr(1_(W_1)) = 1/4 = 1 = Tr(eps_-)` in `F_3`, so the mod-3 trace allows it. No equivalence
     `eps_- ~ 1_(W_1)` is known. Monomial ones are dead by `odd-measure-space-has-no-honest-thompson-compression`.
+  * **Annihilated (w4-cohn-gram).** `sigma e' = 0` and `e' tau = 0`
+    (`mixed-depth-leavitt-lift-is-a-left-zero-divisor`). So `sigma` has no left inverse in any overring.
+    What remains is the equivalence `eps_- ~ 1_(W_1)` above, which is itself an instance of this claim.
+- **Zero-divisor filters (w4-cohn-gram, `crossed-product-zero-divisor-filters-2026-09-12.md`).**
+  * **Partner anywhere.** Suppose `c' q_[0] b' = eps_-` with `b' in B` and `c'` anywhere in `S_-`. Then
+    `q_[0] b'` has column weight `>= 2` and image multiplicity `>= 2` on nonempty clopens
+    (`monomial-crossed-product-elements-are-units-or-zero-divisors`). This extends the cancellation-free
+    no-go for star designs to every partner.
+  * **Peeling.** The column peeling of `q_[0] b'` neither stops nor terminates
+    (`triangular-crossed-product-elements-are-units-or-zero-divisors`).
+  * **Expansion.** If also `c' in B`, then every finite set `J` of every orbit has `|N(J)| >= |J|` with
+    `N(J) ⊆ U_[0]`, and the coefficient relation of `b'` is not hyperfinite
+    (`hyperfinite-coefficient-graphing-excludes-corner-witnesses`). This refines the nonamenable-support
+    no-go above.
+  * **Where it dies.** Witnesses whose peeling keeps a positive-measure core are untouched.

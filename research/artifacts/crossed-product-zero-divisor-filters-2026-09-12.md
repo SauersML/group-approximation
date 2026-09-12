@@ -232,3 +232,160 @@ would give `q_[0] = eps_-`. Apply Theorem 3.1. QED
   through sums.
 - *What survives.* An entry in `B` needs genuine collisions with mod-3 cancellation, both among its columns
   and among its images, and injective fibre operators at every `mu`.
+
+## 4. Peeling: triangular elements are units or zero divisors
+
+Theorem 3.1 is the first round of a peeling procedure. Work in the fibre at a base point `mu`, with basis
+`delta_k` of `F_3[V]`. The *column* `k` is `x_mu delta_k = sum_g b_g(k mu) delta_(gk)`, and its *points*
+are the `gk` with `b_g(k mu) != 0`.
+
+**Peeling.** Put `Col_1 = Pt_1 = V`, the live columns and live points. At round `r`:
+- the *live degree* of `k in Col_r` is the number of its points lying in `Pt_r`;
+- the round *stops* if some live column has live degree `0`, or two distinct live columns of live
+  degree `1` share their live point;
+- otherwise let `L_r` be the live columns of live degree `1` and `M_r` their live points, matched
+  bijectively. Put `Col_(r+1) = Col_r \ L_r` and `Pt_(r+1) = Pt_r \ M_r`.
+
+**Uniformity.** Whether `k` is live at round `r`, and whether it lies in `L_r`, is decided by the
+coefficients `b_g(w k mu)` for words `w` of bounded length in `F^(±1)`, together with group identities in
+`V`. So it depends only on `k mu`, through finitely many locally constant functions.
+- So there are clopen sets `E_r ⊆ M_-`, independent of `mu`, with `k in L_r` iff `k mu in E_r`.
+- The stop condition, and liveness after round `r`, are clopen in the same sense.
+- The peeling *terminates* if, for some `r_0`, no fibre has a live column after round `r_0` and no
+  fibre ever stops.
+
+**Theorem 4.1.** Let `x in B`.
+1. If the peeling stops in some fibre, `x` is a left zero divisor.
+2. If the peeling terminates, `x` is a unit of `B`.
+3. Otherwise, after every round the live columns form a nonempty clopen set. In a round that removes
+   nothing, every live column has live degree at least `2`. Removed columns and removed points always
+   have equal Haar measure.
+
+Under `c_x <= 1`, round one either stops or removes every column. So the left-hand half of Theorem 3.1
+under that hypothesis is the case `r_0 = 1`.
+
+*Proof.*
+- *Back-substitution.* Let `v in F_3[V]` be supported on points removed in rounds `< r`.
+  - Let `s` be the largest round meeting `supp v`. Each `p in M_s ∩ supp v` is the live point of a unique
+    column `k_p in L_s`, with entry `d_p != 0` at `p`. Every other point of `k_p` was removed before
+    round `s`.
+  - So `v - x_mu ( sum_p (v(p)/d_p) delta_(k_p) )` is supported on points removed in rounds `< s`.
+  - After at most `r - 1` steps, `v = x_mu eta` with `eta` supported on columns removed in rounds `< r`.
+- *1, a dead column.* If `k in Col_r` has live degree `0`, all points of `k` were removed before round `r`.
+  Back-substitution gives `x_mu delta_k = x_mu eta` with `eta` supported on earlier columns. So
+  `delta_k - eta` is a nonzero kernel vector, and Theorem 2.1 makes `x` a left zero divisor.
+- *1, a shared point.* Let `k != k'` in `Col_r` have live degree `1`, the same live point `p`, and entries
+  `d, d'` there. Then `v = d' x_mu delta_k - d x_mu delta_(k')` vanishes at `p`, and its other points were
+  removed before round `r`. Back-substitution gives the nonzero kernel vector
+  `d' delta_k - d delta_(k') - eta`.
+- *2, the diagonal part.*
+  - Suppose no stop occurs and every column is removed by round `r_0`. Let `E_(r,g) ⊆ M_-` be the clopen
+    set of `mu` for which the column `1` at base `mu` lies in `L_r` with live point `g`.
+  - Put `D = sum_(r <= r_0, g) [g] b_g 1_(E_(r,g))`, the diagonal entries, and `N = x - D`.
+  - Every column is removed exactly once, so `c_D = 1`. No two removed columns share a point, so
+    `n_D <= 1`, and then `n_D = 1` by `∫ n_D = ∫ c_D = 1`.
+  - By Theorem 3.1(d), `D` is a unit.
+- *2, the nilpotent part.*
+  - In the fibre, `N` sends a column of round `r` to points removed in rounds `< r`, and `D^-1` sends a
+    point of round `s` to the column removed with it. So `D^-1 N` maps each column of round `r` into the
+    span of columns of rounds `< r`, and `(D^-1 N)^(r_0)` vanishes in every fibre.
+  - Fibres are faithful, because `z_mu delta_1 = sum_g b_g(mu) delta_g`. So `(D^-1 N)^(r_0) = 0` in `B`.
+  - Hence `x = D (1 + D^-1 N)` is a unit, with inverse `sum_(i < r_0) (-D^-1 N)^i D^-1`.
+- *3.* The removed columns of round `r` are matched to the removed points by the translations `g` on the
+  pieces `E_(r,g)`. These are disjoint, and their images are disjoint, so by Haar invariance the measures
+  agree. Clopenness is the uniformity remark. QED
+
+**Corollary 4.2.** Let `x in B` be left invertible in `S_-` and not a unit, for instance a Cohn isometry
+`sigma_j` or a corner witness `q_[0] b'`. Then its peeling neither stops nor terminates. The same holds for
+`tau*` when `tau in B` is right invertible in `S_-` and not a unit. So every such entry keeps a nonempty
+clopen set of live columns, of equal measure to the live points, after every round.
+
+**Example 4.3 (a three-piece honest lift beyond Theorem 3.1).** Let
+- `g_1 : 00x -> 000x, 01x -> 001x, 10x -> 01x, 11x -> 1x`;
+- `g_2 : 00x -> 000x, 01x -> 001x, 10x -> 1x, 11x -> 01x`;
+- `g_3 : 00x -> 00x, 01x -> 1x, 1x -> 01x`;
+
+and `x = [g_1] P_00 + [g_2] P_01 + [g_3] P_1`, so `pi(x) = s_0`.
+
+- *Why Theorem 3.1 misses it.* `c_x = 3` on `T = U_00 ∩ U_01 ∩ U_1`, and `n_x` takes the values `2` and `3`.
+- *Types.* Classify a point `nu` by its values `(a, b, c, d)` on `(000, 001, 01, 1)`. The pieces are
+  `g_1 P = g_2 P = (000, 001, X \ 00)` and `g_3 P = (00, 1, 01)`. A point receives a weight-one column
+  in exactly the types `(1,0,0,0)`, `(0,1,0,0)`, `(0,0,1,0)`, `(1,1,1,0)`, `(1,0,1,1)` and `(0,1,1,1)`, and
+  in each of these exactly one.
+- *Round one.* It removes all weight-one columns without a shared point.
+- *Round two.* A column `mu in T` has points `g_1 mu` and `g_2 mu`, one of type `(1,1,1,0)` and one of type
+  `(1,1,0,1)`, and a point `g_3 mu` of type `(1,0,1,1)` or `(0,1,1,1)`. So its only live point has type
+  `(1,1,0,1)`. That point is also the live point of a second column of `T`, `g_2^-1 g_1 mu` or
+  `g_1^-1 g_2 mu`, whose value on `10` differs. So round two stops, and `x` is a left zero divisor.
+
+Proposition 1.1 is the analogous two-piece computation, which stops in round one.
+
+## 5. Expansion, and hyperfinite coefficient graphings
+
+**Setting.**
+- *Graphing.* For `x_1, ..., x_r in B` the *coefficient graphing* `Gamma` joins `mu` and `g mu`, for
+  `g != 1`, whenever some `x_l` has `b_g(mu) != 0`. It has bounded degree.
+- *Relation.* `R_Gamma` is the equivalence relation `Gamma` generates. It is contained in the orbit
+  relation of `V`, it is generated by countably many partial translations, and `lambda` is invariant for
+  it. So the mass transport principle holds:
+  `∫ sum_(nu ~ mu) F(mu, nu) dlambda(mu) = ∫ sum_(mu ~ nu) F(mu, nu) dlambda(nu)` for Borel `F >= 0`.
+- *Neighbourhoods.* For a finite set `J` in one orbit, `N_x(J)` is the set of points of the columns of `x`
+  at `J` in the orbit module. It lies in `J` together with the `Gamma`-neighbours of `J`.
+
+**Proposition 5.1 (expansion).**
+1. If `sigma_1, sigma_2, tau_1, tau_2 in B` satisfy `tau_i sigma_j = delta_ij eps_-`, then every finite set
+   `J` in every orbit has `|N_(sigma_1)(J) ∪ N_(sigma_2)(J)| >= 2|J|`.
+2. If `b', c' in B` satisfy `c' q_[0] b' = eps_-`, then `x = q_[0] b'` has `N_x(J) ⊆ U_[0]` and
+   `|N_x(J)| >= |J|` for every finite `J`.
+
+*Proof.* The orbit module is a `B`-module. In case 1, `(xi_1, xi_2) -> sigma_1 xi_1 + sigma_2 xi_2` maps
+`l(J)^2` into `l(N_(sigma_1)(J) ∪ N_(sigma_2)(J))`, and applying `tau_i` recovers `xi_i`. So the map is
+injective. Case 2 is the same with `c'` as the left inverse, and `q_[0]` confines the image to `U_[0]`. QED
+
+**Remark 5.2.** By Hall's theorem for locally finite graphs, case 1 gives on every orbit an assignment of
+two distinct points of `N(mu)` to each `mu`, injective overall: an orbitwise paradoxical matching
+subordinate to the columns. No measurable one exists, since measure-preserving partial translations
+would carry `lambda` twice into `lambda`. So the matchings a witness forces are non-measurable.
+
+**Theorem 5.3.** Let `Gamma` be the coefficient graphing of `sigma_1, sigma_2` in case 1 of Proposition
+5.1, or of `b'` in case 2. Then `R_Gamma` is not `lambda`-hyperfinite.
+
+*Proof.*
+- *Exhaustion.* Suppose `R_Gamma` is the union, off a null invariant set, of increasing finite Borel
+  subrelations `R_n`. Let `∂_n` be the set of `mu` with a `Gamma`-neighbour outside `[mu]_(R_n)`.
+  - Each neighbour of `mu` lies in `[mu]_(R_n)` for `n` large, and `mu` has boundedly many neighbours.
+  - So `lambda(∂_n) -> 0`. Fix `n` with `lambda(∂_n) < 1/2`.
+- *Case 1.* For a class `C` of `R_n` put `C° = C \ ∂_n`.
+  - `N_(sigma_j)(C°) ⊆ C`, so Proposition 5.1 gives `2|C°| <= |C|`.
+  - Mass transport with `F(mu, nu) = 1_(M_- \ ∂_n)(nu) / |[mu]_(R_n)|` on `R_n` gives
+    `lambda(M_- \ ∂_n) = ∫ |C°|/|C| <= 1/2`, which contradicts `lambda(∂_n) < 1/2`.
+- *Case 2.* `|C°| <= |C ∩ U_[0]|`. Transporting `1_(U_[0])` in the same way gives
+  `lambda(M_- \ ∂_n) <= lambda(U_[0]) = 1/2`, the same contradiction. QED
+
+**Corollary 5.4 (degree two).**
+- *Case 1.* No Cohn family inside `B` has a coefficient graphing of `sigma_1, sigma_2` in which every point
+  has at most two neighbours.
+  - Components are then finite, rays, or lines. A finite component `K` would give `2|K| <= |K|`.
+  - A segment `J` of `m >= 3` consecutive points of an infinite component has `|N(J)| <= m + 2 < 2m`.
+- *Case 2.* The same holds for `b'` in case 2.
+  - A finite component `K` has `|K| <= |K ∩ U_[0]|`, so `K ⊆ U_[0]`.
+  - Every segment has at most two points in `U_[1]`, so each infinite component meets `U_[1]` in at most
+    two points.
+  - Mass transport makes a Borel set meeting every infinite class in finitely many points null. So
+    `lambda(U_[1]) = 0`, which is false.
+
+These arguments are pointwise in case 1, and need no measure there.
+
+**Reading.**
+- *Refines the support no-go.* `odd-measure-corner-witnesses-need-nonamenable-thompson-support` needs
+  the group generated by the supports to project onto a nonamenable subgroup of `V`. Theorem 5.3 needs
+  the relation generated by the pieces where the coefficients are nonzero to be non-hyperfinite.
+  - A witness whose Thompson projection is amenable has `R_Gamma` inside a pmp orbit relation of an
+    amenable group, which is hyperfinite (Ornstein–Weiss). That fact is cited only for this comparison
+    and is used in no proof.
+  - A nonamenable support group can still carry a hyperfinite coefficient relation, for instance when
+    the coefficient pieces are small. Theorem 5.3 excludes those too.
+- *Where the gate sits.* A Cohn family inside `B` needs coefficient pieces that expand by a factor of two
+  on every finite set of every orbit. They must generate a non-hyperfinite relation, and they must admit
+  only non-measurable paradoxical matchings. That is the regime of the `F_3`-linear soficity gate for
+  `E x| V`, and nothing in this artifact decides it.
