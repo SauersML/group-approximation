@@ -59,3 +59,16 @@ artifacts:
   - Neither `w` nor `z` can be a single group element.
   - `π(e) = bc` is the all-ones matrix in the ternary picture `R ≅ M_3(R)`, and `π(g) b = b`.
   - No group-level candidate survives the support filter yet; the artifact's Section 3.4 records where it stops.
+- **Sibling filters on candidate lifts (recorded by w4-binary-cyclic from w4-kap-triangular and w4-kap-join).**
+  Before building a candidate, check it against these:
+  - *One-coset shifts die.* A group element never properly shifts the right ideal of a finite-subgroup
+    idempotent (`finite-subgroup-idempotent-ideals-admit-no-proper-group-shift`).
+  - *Piece lifts need a cycle.* Lifts made of pieces `[g_i]E_i`, whose correctness rests only on vanishing
+    products of shifted finite-subgroup idempotents, are dead whenever the partial-conjugation graph is a
+    forest. A survivor needs a cycle and a non-sofic shift group
+    (`triangular-piece-lifts-need-non-directly-finite-shift-group`).
+  - *Laminar complements die.* The complement `1 − (e b)(c e)` has class `0`. So it is never a laminar
+    combination of finite-subgroup idempotents with a sofic intersection amalgam
+    (`sofic-amalgam-finite-subgroup-idempotent-traces-are-strict`).
+  - *What survives:* unit-conjugated idempotents, cancellation spread over several double cosets, or a
+    genuine cycle with a nonsofic amalgam.

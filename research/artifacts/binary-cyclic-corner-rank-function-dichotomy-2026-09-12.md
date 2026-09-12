@@ -148,6 +148,18 @@ group.
 - *Quaternary host `(4, 2, 3)`.* Let `Ψ` be the `F_4`-linear extension of coefficientwise Frobenius on `L`.
   It swaps `eps_iota` and `eps_(iota²)`. Averaging `rk` with `rk o Ψ` gives `rk(eps_iota) > 0` whenever
   `rk(1 - [ω]) > 0`, because `1 - [ω] = (1 - [ω])(eps_iota + eps_(iota²))`.
+- *A symmetry of the quaternary factor* (checked at the suggestion of `w4-hadamard-f3`).
+  - *Definition.* Let `*` be the `F_4`-linear anti-automorphism of `L` with `s_i* = t_i`, and let
+    `τ(x) = (x*)^(-1)` on `G`.
+  - *Action.* `τ` inverts the scalars, and `g* = s_1 t_2 + s_2 t_3 + s_3 t_1 = g^(-1)`, so `τ(g) = g`.
+    Since `δ* = δ`, `τ(δ) = δ^(-1)`.
+  - *The composite.* `θ = Ψ ∘ τ`, extended `F_4`-linearly, is an involutive ring automorphism of
+    `F_4[G]`. It fixes every scalar (`λ -> λ^(-2) = λ`), `g`, `δ = φ(δ^(-1))`, `eps_iota` and `e_1`.
+  - *States.* `θ` preserves `A_iota` and the unit class, so any state on `(K_0(A_iota), [eps_iota])` can
+    be averaged into a `θ`-invariant one. This only normalizes a state; it does not produce one.
+  - *Binary level.* `θ` restricts to `τ` on `R^x`, which fixes `e`, so the solution set of `c e b = 1`
+    is `τ`-stable. The anti-automorphism `[x] -> [x*]` fixes `e` as well, so solutions come in transpose
+    pairs: `c e b = 1` gives `b^♯ e c^♯ = 1`.
 
 ## 3. Finite-subgroup classes and where the lift stops
 
