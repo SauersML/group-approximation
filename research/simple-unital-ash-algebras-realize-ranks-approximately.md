@@ -47,11 +47,30 @@ Payoff:
   rank within `delta n_k` of `Tr c`.
   - *Untwisted diagonal attaching maps.*  Every level has a diagonal model: a
     commutative coordinate algebra `C(Omega)`, with ranks equal to counts of
-    coordinates in an open set.  The extension becomes a staggering problem:
-    turn boundary coordinates off and designed coordinates on in a
-    threshold-ordered way.  A proof with defect `O(1/N)` per level for minimal
-    block size `N` is in progress, and level accumulation is not yet
-    controlled.
+    coordinates in an open set.  The extension over a collar (CW pairs,
+    neighborhood retractions) becomes a staggering problem: boundary
+    coordinates switch off and designed coordinates switch on at
+    coordinate-dependent times.
+    - With a matrix amplification `M_L` whose digits are reserved one per
+      level, switching times are exactly equidistributed and the count
+      interpolates with error `O(1/L)` per level.  But this realizes only
+      `L` times the profile.  That is free in any algebra
+      (`rank-density-from-approximate-rank-division`), so it does not bear on
+      the problem.
+    - Without amplification, the switching labels must be equidistributed
+      inside every inherited on-set of each block.  Those on-sets are
+      decision lists over the chain of levels, and Halton-type labels give
+      per-block discrepancy about `(log N)^(2l)/N` with `l` levels and minimal
+      block size `N`, plus additive accumulation over levels.  So the argument
+      closes only under a growth condition relating the number of RSH levels
+      to block sizes along the tower.  It is not unconditional.
+- **Reduction to division (established).**
+  `rank-density-from-approximate-rank-division` shows rank density needs only
+  approximate integer division of rank functions.  For ASH algebras the
+  question is whether large-multiplicity connecting maps and the attaching
+  maps admit continuous `1/L` sub-selections of summands up to small tracial
+  error.  This is the ASH form of the soft-divider hinge recorded on STW
+  XXVII.
   - *Twisted attaching maps.*  The support of the forced boundary element can
     be a nontrivial subbundle.  Extending it with rank drop at most `delta n_k`
     is obstructed by characteristic classes when `delta n_k` is below about
