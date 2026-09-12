@@ -9,6 +9,7 @@ distinct_from:
   lef-lamp-graph-wreaths-are-surjunctive: that proves surjunctivity is closed under local embeddings and applies it to LEF lamps; this proves the entropy version, which needs only the products of the configuration and no missing cylinder.
 artifacts:
   - research/artifacts/kun-thom-wreath-rokhlin-test-case-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Say `H` locally embeds into a class `C` when every finite `S ⊂ H` containing `1` has an injective

@@ -8,6 +8,7 @@ distinct_from:
   kun-thom-wreath-bernoulli-rokhlin-maximal: that is the open maximality question over the Kun--Thom wreath; this is a necessary condition any deficit over it must meet.
 artifacts:
   - research/artifacts/kun-thom-wreath-rokhlin-test-case-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be residually finite, `X` a `G`-set, `B` a nontrivial finite abelian group,

@@ -25,6 +25,7 @@ not by rereading the author's argument. Nothing was run.
 | `ad664ec25`, `9baaf4657` (gk-n-defect) | `table-hosts-have-a-cell-count-betti-lower-bound`, `two-cell-window-differences-die-in-host-abelianization`, Corollary 3.2 free factor | PASS (Section 17) |
 | `b7fef0670` (gk-n-defect) | `garden-of-eden-windows-fold-modulo-every-hinge-closure`, `transposed-hinges-are-conjugated-commutators` | PASS (Section 20) |
 | `746491973` (gk-n-thompson-v) | routes `thompson-v-direct-finiteness-failure-from-swap-fullness`, `thompson-v-nonsurjunctive-from-direct-finiteness-failure`; Propositions 2.1–2.3, Lemma 3.1, Corollary 3.2, Proposition 9.1 | PASS (Section 21) |
+| `fe7e9bf0c` (gk-n-ae-decoder) | `rokhlin-maximality-closed-under-local-embeddings`, `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers` | PASS (Section 22) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -769,3 +770,33 @@ Section 3 of that artifact is a design target, recorded as prose.
 **Routes.** `thompson-v-direct-finiteness-failure-from-swap-fullness` uses Proposition 2.2 with the
 involution `w` of `V`, and `thompson-v-nonsurjunctive-from-direct-finiteness-failure` uses the
 verified stable-finiteness criterion. Both are valid, and every target claim stays OPEN.
+
+## 22. Rokhlin maximality under local embeddings; Kun–Thom wreath witnesses (`fe7e9bf0c`, gk-n-ae-decoder): PASS
+
+**Theorem 2.1 (local embeddings).**
+- The joint law of `x(1)`, `x|_E` and `(x(fe))_(f,e)` under the product measure is determined by the
+  coincidence pattern among `1`, `E` and `FE`. So `Φ` depends only on that pattern.
+- On `S = {1} ∪ E ∪ F ∪ FE`, `eta(fe) = eta(f) eta(e)`, and `eta(1)^2 = eta(1)` forces `eta(1) = 1`.
+- Injectivity preserves every equality among those points in both directions.
+- The finitary-witness claim turns a deficit into a configuration with `Φ < log q`.
+
+**Theorem 4.1 (Kun–Thom wreath witnesses).**
+- *Step 1.* Products and inverses keep lamp supports inside the `π(K)`-orbits of the generators'
+  sites.
+- *Step 2.* A locally finite kernel under an amenable `π(K)` makes `K` amenable, hence sofic.
+- *Step 3: residual finiteness when every stabilizer is closed.*
+  - For `h o_i != h' o_i`, `h^-1 h'` lies outside `S_i`. Closedness gives a finite-index normal `Δ`
+    with `h^-1 h'` outside `S_i Δ`, and `S_i Δ` is a subgroup because `Δ` is normal.
+  - The map `h o_i -> h S_i Δ` is well defined, equivariant and injective on the finite support `T`.
+  - `Δ` acts trivially on `π(K)/(S_i Δ)`, since `Δ S_i Δ = S_i Δ`.
+  - Summing lamps over fibres (`B` is abelian) gives the homomorphism
+    `V -> B^(Ō) ⋊ π(K)/Δ`. Because each fibre meets `T` at most once, it keeps `n != 0`.
+  - The actor part is detected by residual finiteness of `π(K) <= G`.
+- *Step 4.* `K` is residually finite, hence sofic, and carries no witness.
+
+**Remarks.**
+- The profinite topology of `π(K)` is finer than the topology inherited from `G`. So a closed
+  `gΓg^-1` in `G` gives a closed stabilizer in `π(K)`, and non-closedness propagates up to `Γ`.
+- `Rad(W) <= N_0` is prose-level, supported by Step 3 applied to `Γ̂`.
+- Section 1's absences in Seward's papers were read from ar5iv extractions and are not verified
+  here, as the author notes.
