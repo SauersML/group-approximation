@@ -1,4 +1,4 @@
-# Intrinsic sizes on the automaton monoid: retract chains and self-similar retract posets
+# Intrinsic sizes on the automaton monoid: retract chains, retract posets, representations
 
 Lane `w3-simple-direct`, 2026-09-12. Target: `fg-simple-kazhdan-groups-are-surjunctive`.
 
@@ -13,6 +13,8 @@ This artifact tests the sizes built from the monoid alone, with no measure and n
 Supports the Cairn claims:
 - `retract-images-of-full-shifts-have-infinite-descending-chains`
 - `strict-automata-copy-the-retract-poset-below-their-image`
+- `directly-finite-ring-images-of-ca-monoids-kill-retracts`
+- `retract-images-of-full-shifts-are-not-disjoint-unions`
 
 Nothing here decides the target.
 
@@ -95,3 +97,77 @@ heights, widths, lengths of maximal chains) takes equal values at the full shift
 retract whenever a strict automaton exists. Such a size separates `A^G` from its proper retracts only
 on a group already known to be surjunctive, so it cannot be the input of a proof.
 
+## 3. Representations into directly finite rings, and K-theory of the monoid algebra
+
+Write the monoid product of `CA(G;A)` as composition.
+
+**Proposition 3.1.** Let `S` be a directly finite ring and `rho : CA(G;A) -> (S, ·)` a monoid
+homomorphism. If `sigma o tau = id`, then `rho(tau o sigma) = 1`. Hence `G` is surjunctive on `A` as
+soon as some such `rho` has `rho(f) != 1` for every idempotent automaton `f != id`. Every injective
+`rho` qualifies, and so does an anti-homomorphism, since `S^op` is directly finite too.
+
+*Proof.* `rho(sigma) rho(tau) = 1`, so `rho(tau) rho(sigma) = 1`. If `tau` were strict, `f = tau o sigma`
+would be an idempotent automaton different from `id` with `rho(f) = 1`. []
+
+Directly finite targets include every ring with a faithful Sylvester rank function, for instance a rank
+ultraproduct of matrix algebras. If `ab = 1`, then `ba` is idempotent and
+`rk(ba) >= rk(a (ba) b) = rk(1) = 1`, so `rk(1 - ba) = 1 - rk(ba) = 0` and `ba = 1`.
+
+**Proposition 3.2.** Let `k` be a field. In the monoid algebra `k[CA(G;A)]`, a strict pair gives the
+nonzero idempotent `p = 1 - tau o sigma` with `[p] = 0` in `K_0`. Indeed `tau o sigma` and `1` are
+Murray–von Neumann equivalent through `tau` and `sigma`, and `[1] = [tau o sigma] + [p]`. The
+augmentation `k[CA(G;A)] -> k` sends `1 - f` to `0` for every idempotent automaton `f`, so the state it
+induces never separates. A state on `(K_0, [1])` that is positive on `[1 - f]` for every idempotent
+automaton `f != id` would prove surjunctivity on `A`; producing one is Proposition 3.1 at the level of
+`K_0`.
+
+**Remark 3.3 (the representations the monoid carries).** Without finite models, `CA(G;A)` acts in three
+natural ways, all separating idempotents from `id`, and none lands in a directly finite ring:
+- on `A^G`, by continuous self-maps of a Cantor set;
+- on `C(A^G, k)` by pullback `h -> h o tau`, an anti-homomorphism into the endomorphisms of an
+  infinite-dimensional space, which are not directly finite. Its multiplicative refinement at constant
+  configurations is the formal Jacobian of family F. That is defined only on formalizable pairs and lands
+  in `M_n(F_p[G])`, so it consumes Kaplansky stable finiteness
+  (`formal-polynomial-strict-pairs-need-unstable-linearization`);
+- on invariant probability measures, by pushforward through affine maps. A size there is a measure
+  functional; for the uniform Bernoulli measure it is `every-injective-ca-preserves-uniform-bernoulli-measure`.
+
+Restricted to linear automata over `F_p^n`, a separating `rho` proves `M_n(F_p[G])` directly finite, so
+Proposition 3.1 is at least as strong as Kaplansky's direct finiteness at that matrix size.
+
+## 4. Grothendieck invariants of subshifts
+
+**Proposition 4.1.** Let `G` be infinite. No retract image of `A^G` is a disjoint union of two nonempty
+subshifts.
+
+*Proof.* Let `X = f(A^G)`, where `f` has memory `M`, and suppose `X = X_1 ⊔ X_2` with `X_1`, `X_2`
+nonempty subshifts. `X_1` is clopen in `X`, so for some finite `W` and some set `P` of `W`-patterns,
+`x in X_1` iff `x|_W in P`. Choose `g` with `W M ∩ g W M` empty, which `G` being infinite allows. Take
+`y in X_1`, `z in X_2` and `f`-preimages `y'`, `z'`. Let `w` agree with `y'` on `W M` and with `g.z'` on
+`g W M`, and put `x = f(w)`. Then `x|_W = y|_W`, so `x in X_1`. Also `x|_(gW) = (g.z)|_(gW)`, so
+`(g^-1.x)|_W = z|_W`, which puts `g^-1.x`, hence `x`, in `X_2`. That is a contradiction. []
+
+**Consequence 4.2.** In a Grothendieck group of subshifts modulo conjugacy with `[X ⊔ Y] = [X] + [Y]`,
+retract images are indecomposable, so no relation writes `[A^G]` as `[f(A^G)]` plus a remainder. Every
+conjugacy-invariant class, additive or multiplicative (`[X × Y] = [X][Y]`), is equal at `A^G` and at
+`tau(A^G)` when `tau` is strict, because `tau` is a conjugacy onto its image. No such class can record
+the drop.
+
+## 5. Where it stops
+
+- **Built from the monoid alone,** each candidate fails in one of three ways:
+  - infinite on every infinite group: chain heights (Corollary 1.3);
+  - equal at `A^G` and `tau(A^G)` whenever a strict `tau` exists: lattice invariants and conjugacy
+    classes (Corollary 2.2, Consequence 4.2);
+  - reduces to a representation into a directly finite ring that separates idempotents, which restates
+    the problem (Propositions 3.1, 3.2).
+- **The sizes on record come from outside the monoid:**
+  - Følner entropy and sofic counting, which are finite models;
+  - Bernoulli measure preservation, which is equivalent to the goal;
+  - formal Jacobians into `M_n(F_p[G])`, which consume Kaplansky and exist only on formalizable pairs.
+- **The known surjunctive nonsofic groups** (the Kun–Thom wreaths and doubles) get their size by peeling
+  and local transfer into sofic or residually finite groups, i.e. from borrowed finite models. A finitely
+  generated simple Kazhdan host has no finite quotient to borrow from.
+- **Open, no candidate known:** for one finitely generated simple nonsofic group, a representation of
+  `CA(G;A)` into a directly finite ring that separates idempotent automata from `id` and uses no finite
+  models.

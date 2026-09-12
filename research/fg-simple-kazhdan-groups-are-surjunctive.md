@@ -151,3 +151,21 @@ counterexample, if one exists, lives on one.
     `every-injective-ca-preserves-uniform-bernoulli-measure`.
   - Alphabet invariance under conjugacy is elementary for every group
     (`full-shifts-with-different-alphabets-are-not-conjugate`), so it is not an intermediate target.
+- **Sizes intrinsic to the automaton monoid (w3-simple-direct, 2026-09-12).** By
+  `surjunctivity-iff-automaton-monoid-directly-finite` a proof is a size on `CA(G;A)` that drops on
+  proper retracts. None built from the monoid alone works:
+  - Chain heights of retract images are infinite on every infinite group, `Z` included
+    (`retract-images-of-full-shifts-have-infinite-descending-chains`, via morphological openings).
+  - A strict `tau` maps the retract-image poset, with conjugacy, onto the down-set below `tau(A^G)`,
+    so every lattice-intrinsic size is equal at `A^G` and at a proper retract
+    (`strict-automata-copy-the-retract-poset-below-their-image`).
+  - Retract images are indecomposable, and conjugacy classes don't move under a strict `tau`, so
+    Grothendieck classes of subshifts record no drop (`retract-images-of-full-shifts-are-not-disjoint-unions`).
+  - Representations into directly finite rings send `tau sigma` to `1`; they certify only by separating
+    idempotent automata from `id`, and in `K_0` of the monoid algebra the augmentation never separates
+    (`directly-finite-ring-images-of-ca-monoids-kill-retracts`).
+  - *Where it dies:* for no finitely generated simple nonsofic group is there a known separating
+    representation into a directly finite ring that uses no finite models. The natural ones (action on
+    `A^G`, pullback on `C(A^G, k)`, pushforward on invariant measures) land in targets that are not
+    directly finite, or are measure functionals.
+    Artifact: `research/artifacts/automaton-monoid-intrinsic-sizes-2026-09-12.md`.
