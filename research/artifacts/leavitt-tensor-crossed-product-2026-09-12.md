@@ -84,10 +84,12 @@ These differ, so `u_1` and `u_2` do not commute.
 
 **Examples of sub-crossed products.**
 - `H = Z(e_(d−1) − e_d)` gives `C ∗ H = L_0^(⊗(d−2)) ⊗ L ⊗ L`.
-- `H = Z(e_1 − e_2)` gives `C ∗ H = B ⊗ L_0^(⊗(d−2)) ⊗ L`, where `B` is the
-  algebraic Bernoulli crossed product of `leavitt-tensor-powers-are-not-left-coherent`.
+- For `d >= 3`, `H = Z(e_1 − e_2)` gives `C ∗ H = B ⊗ L_0^(⊗(d−3)) ⊗ L`, where
+  `B` is the algebraic Bernoulli crossed product of
+  `leavitt-tensor-powers-are-not-left-coherent`.
 
-In particular the intermediate crossed products are not coherent.
+The crossed product `C ∗ Λ = L^(⊗d)` is not coherent, by that node, while the
+coefficient ring `C` is regular supercoherent (§3).
 
 ## 3. The coefficient ring
 
