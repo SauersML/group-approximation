@@ -126,3 +126,87 @@ ternary cylinders. It contains `g` and the `π_M`, and it is `D`-stable, so Theo
 `T` a state with value `[f] -> 1` after normalizing by `2/3`. So statement 5 fails, and so does 1, as it
 must, because group algebras of locally finite groups are directly finite. Only a nonsofic `D`-stable host
 can carry a solution.
+
+## 3. Rank functions on the complement corner
+
+**Proposition C.** Let `G = R^x` and `A = F_2[G]`.
+- (a) Let `N` be a Sylvester matrix rank function on `T` with `N(f) = 1`. Then `rk_N = N ∘ ψ'` is a Sylvester
+  matrix rank function on `A` with `rk_N(1 - [g]) = 2/3`. So `rk_N != rk_ε`, and `rk_N` detects every
+  nontrivial group element (`simple-group-rank-functions-are-augmentation-or-detecting`).
+- (b) Conversely, if `rk` is a Sylvester matrix rank function on `A` other than `rk_ε`, then `rk(f) > 0`, and
+  `N(X) = rk(X)/rk(f)`, for matrices `X` over `T`, is a Sylvester matrix rank function on `T` with `N(f) = 1`.
+
+So `F_2[R^x]` carries a rank function other than the augmentation rank iff `T` carries a normalized
+Sylvester matrix rank function.
+
+*Proof.*
+- (a) Rank functions pull back along unital ring homomorphisms. By Lemma 1.2(d),
+  `ψ'(1 - [g]) = (f_(K_3) + f_(K_4))(1 - [D(g)])`. The characters with kernel `K_3` or `K_4` are nontrivial
+  on `D(g)`. So this element is invertible in the commutative algebra `(f_(K_3) + f_(K_4)) F_2[A_9]`, which
+  is `F_4 × F_4`, and its `N`-rank equals `N(f_(K_3) + f_(K_4))`. For a Sylvester rank function, orthogonal
+  idempotents add and equivalent idempotents have equal rank (`w4-binary-cyclic`, Section 2.1). The
+  `f_K` inside `f` are equivalent in `T` (proof of Theorem B, 4 => 5), so each has rank `1/3`, which gives
+  `2/3`.
+- (b) `(1 - [g]) f = 1 - [g]`, because `[g] e = e`. If `rk(f) = 0`, then `rk(1 - [g]) = 0`, so `g` lies in the
+  normal subgroup `N_rk`. `G` is simple (`binary-leavitt-unit-group-is-simple`), so `N_rk = G` and
+  `rk = rk_ε`. The Sylvester axioms for `N` are inherited, because matrices over `T` are matrices over `A`.
+  QED
+
+**Corollary C.1 (the binary chain).** Consider three statements.
+- (NR) Every Sylvester matrix rank function on `F_2[R^x]` is `rk_ε`. Equivalently, every one kills the
+  two-root defect `D` (`leavitt-rank-functions-killing-two-root-defect-are-augmentation`). This is
+  `sylvester-rank-functions-on-leavitt-units-kill-two-root-defect`.
+- (NR_T) `T` carries no Sylvester matrix rank function with `N(f) = 1`.
+- (NS_T) `(K_0(T), [T])` admits no state.
+
+Here is how they relate.
+- **(NR) <=> (NR_T).** Proposition C.
+- **Fullness <=> (NS_T).** Theorem B.
+- **(NS_T) => (NR_T).** A normalized rank function restricts to a state on idempotent classes.
+- **The missing step, U1_T.** (NR_T) => (NS_T), that is, every state on `(K_0(T), [T])` is realized by
+  some normalized Sylvester matrix rank function on `T`. This is
+  `binary-complement-corner-states-give-sylvester-rank-functions`.
+- **With U1_T.** The Sylvester two-root gate gives fullness, hence Kaplansky failure and a Gottschalk
+  counterexample (route `binary-counterexample-from-rank-kill-and-state-realization`). All four statements
+  (fullness, (NS_T), (NR_T), (NR)) then coincide.
+
+**Remark C.2 (comparison with the ternary chain).**
+- **Ternary.** Family UPG needs the same step for the central factor `S_- = eps_- F_3[G_3]`
+  (`ternary-anti-central-states-give-sylvester-rank-functions`), and a further step to pass from rank
+  functions to the characteristic-three gate.
+- **Binary.**
+  - No character splits the augmentation off, so the corner `T` is not central.
+  - Theorem B and Proposition C replace the central splitting with the halving homomorphism `ψ'`.
+  - In return, the binary gate needs no extra step: (NR) is already the Sylvester form of the gate.
+- **One question behind both.** For a unital ring `S` satisfying the rank condition, is some state on
+  `(K_0(S), [S])` realized by a Sylvester matrix rank function? The general answer was not checked against
+  the literature here; lane `w4-upg-kill` holds that search.
+
+## 4. Where it stops
+
+**Proposition 4.1 (states on `T` can be normalized).** Restricted to `T`, `ψ'` is a ring endomorphism
+`x -> f D(x)` of `T`, with `ψ'(f) = f_(K_3) + f_(K_4)`. For a state `s_T`, the functional
+`(3/2) s_T ∘ K_0(ψ'|_T)` is again a state. The state space is compact and convex, and this map is affine
+and continuous, so Markov–Kakutani gives a state with `s_T ∘ K_0(ψ'|_T) = (2/3) s_T` whenever any state
+exists. This normalizes a state but does not produce one. Compare `twisted-leavitt-k0-states-can-be-chosen-halving-invariant`.
+
+**Corollary 4.2 (division rings give nothing).** `T` admits no unital ring homomorphism into `M_n(D)` for a
+division ring `D` of characteristic two.
+- *Proof.* Composing with `ψ'` gives a unital homomorphism `A -> M_n(D)` whose normalized rank is not
+  `rk_ε`, by Proposition C(a). That contradicts Section 2.2 of the binary cyclic artifact: an element of
+  `R^x` of order `2^k > 2n` would map to a unipotent matrix of smaller order. QED
+- *Consequence.* So U1_T cannot come from Cohn–Malcolmson localizations into division rings. A rank function
+  on `T` must be non-division and non-matricial of bounded size, like the rank-ultraproduct models behind
+  linear soficity.
+
+**The additive shadow.** On `K_0(T)` the 2-adic lifted trace (`lifted-trace-detects-finite-subgroup-projectives`),
+normalized by `3/2`, gives `[T] -> 1`, `[f_K T] -> 1/3` and `d_k -> 3^(-k)`. It satisfies every relation of
+Lemma 1.2 and the invariance of Proposition 4.1. It is additive but not positive, so it is not a state.
+The criterion of `anti-central-state-exists-iff-lifted-trace-relatively-positive` has an obvious binary
+analogue, which was not worked out here.
+
+**Open, in order of cost.**
+1. U1_T for `T`, and its ternary twin for `S_-`. The literature search belongs to `w4-upg-kill`.
+2. The Sylvester gate (NR), where the binary gate lanes work.
+3. A direct state on `T`. By Theorem B it refutes the corner, and by Proposition C, given U1_T, it gives a
+   detecting rank function on `F_2[R^x]`.

@@ -72,3 +72,16 @@ artifacts:
     (`sofic-amalgam-finite-subgroup-idempotent-traces-are-strict`).
   - *What survives:* unit-conjugated idempotents, cancellation spread over several double cosets, or a
     genuine cycle with a nonsofic amalgam.
+- **Binary Theorem E and the upgrade chain (w5-binary-upg, 2026-09-12).** Let `T = (1 − e) F_2[R^x] (1 − e)`.
+  - *State criterion (established):* this claim holds iff `(K_0(T), [T])` has no state, iff `T` fails the
+    rank condition, iff every state of `F_2[R^x]` gives `[e]` the value `1`
+    (`binary-cyclic-corner-full-iff-complement-corner-has-no-state`). The proof uses two halving homomorphisms,
+    `e D(·)` and `(1 − e) D(·)`, and the tower `[1 − e] = 3[e − e_(C_3²)]`.
+  - *Rank functions (established):* normalized rank functions on `T` are exactly the non-augmentation rank
+    functions on `F_2[R^x]` (`binary-complement-corner-rank-functions-pull-back-to-units`). `T` has no unital
+    map into matrices over a characteristic-two division ring.
+  - *Chain:* the Sylvester two-root gate plus the open step `binary-complement-corner-states-give-sylvester-rank-functions`
+    gives this claim (route `binary-counterexample-from-rank-kill-and-state-realization`).
+  - *Where it stops:* that step is ring theory, whether a `K_0` state is realized by a Sylvester rank
+    function. No input specific to `T` is known beyond the halving map.
+  - Source: `research/artifacts/binary-cyclic-corner-complement-states-2026-09-12.md`.
