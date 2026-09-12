@@ -73,3 +73,14 @@ that is, `k[eps_-] <= 0` in `K_0(S_-)`. Equivalent forms:
   - So this claim holds iff no halving-invariant state exists. Such a state is forced to take the value
     `2^(-k)` on the tower `F_*^k([eps_-])`, and any state source can be averaged into one.
   - Where it stops: no state and no Cohn family is known.
+- *States are forced on the signed Thompson group* (lane w4-hadamard-f3, artifact
+  `hadamard-spectral-conjugacy-and-forced-states-2026-09-12.md`, Section 2).
+  - Every state on `(K_0(S_-), [eps_-])` gives Haar measure on the clopen indicators of `M_-`. On every
+    idempotent matrix over `eps_- F_3[K]`, for `K` a finite subgroup of `E x| V` or a conjugate of one, it gives
+    the lifted trace `2 dim / |K|` (`anti-central-k0-states-equal-lifted-trace-on-signed-thompson`).
+  - So a state has no freedom on the locally finite part of the signed Thompson group. This claim holds iff
+    that forced data does not extend to a state.
+  - Where it can see `h`: the semidihedral group `<w, d, h>` is not conjugate into `E x| V`, and the split of
+    a state between its evaluation block and its twisted block is not forced. Whether it is `1/2` is open.
+  - Also: the F_9 Hadamard corner is the swap corner conjugated by a constant unit
+    (`hadamard-spectral-half-is-constant-conjugate-to-swap-idempotent`), so it adds no room.
