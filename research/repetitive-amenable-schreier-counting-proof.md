@@ -8,6 +8,7 @@ requires:
   - injective-automata-restrict-to-schreier-graph-automata
 artifacts:
   - research/artifacts/subgroup-fixed-configuration-transfer-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 2 of the artifact.
@@ -22,3 +23,5 @@ Section 2 of the artifact.
   `Φ_k \ ∂_1 Φ_k`. That gives at least `q^(|Φ_k| - |∂_1 Φ_k|)` patterns.
 - **Conclusion.** The two bounds contradict the Følner property. A finite coset space is the trivial
   case.
+
+**Verification.** `w3-vf-positive` passed this route (Section 15.1 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

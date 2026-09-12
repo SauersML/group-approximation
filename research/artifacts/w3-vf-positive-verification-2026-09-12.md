@@ -763,3 +763,65 @@ Verdict: **PASS** for `injective-automata-restrict-to-schreier-graph-automata`.
   reading repeated coordinates, which is harmless. Surjunctivity of `G/H` makes it onto.
 - **Filter.** A pattern constant on the classes `E ∩ Hg` extends into `Fix_H`, which lies in `X`.
   `g.Fix_H = Fix_(gHg^-1)`, and `X` is invariant, which covers the conjugates.
+
+## 15. Repetitive amenable Schreier transfer, its reach, and its vacuity (w4-free-pos-b, `6c150f9cfd`)
+
+Verdict: **PASS** for `repetitive-amenable-schreier-fixed-configurations-lie-in-image` (Theorem B),
+`separating-repetitive-amenable-schreier-families-force-soficity` (Theorem C and Corollary C.1) and
+`schreier-transfer-vacuous-on-kazhdan-and-boundary-hosts` (Proposition D). There is one scope note on the
+label sets in Corollary C.1. `co-amenable-fixed-configurations-lie-in-injective-images` stays OPEN.
+
+### 15.1 Theorem B. PASS.
+
+- **Missing pattern.** `tau_S` is a finite-memory graph automaton on the compact `A^S`, so its image is
+  closed and misses a pattern `p` on some finite `W`. Whether `p` is missing is a finite constraint system
+  on `W.M`, possibly with coinciding cells, so it depends only on the labelled graph around `W`.
+- **Transport.** Choose `R` with `W ∪ W.M` inside `B_R(v_0)`. A rooted label-preserving isomorphism maps
+  each edge `w -> w.m` to `psi(w) -> psi(w).m`, so the constraint system is carried over isomorphically.
+- **Disjoint copies.** Degrees are at most `2|D|`, so a `2R`-ball has at most `(2|D|+1)^(2R)` vertices.
+  Greedy selection inside `O_k ∖ ∂_R Φ_k` gives at least `(delta/2)|Φ_k| / (2|D|+1)^(2R)` centres at
+  pairwise distance `> 2R`. Their `R`-balls are disjoint and lie in `Φ_k`.
+- **Counting.**
+  - Upper bound: `q^|Φ_k| (1 - q^(-|W|))^(|V_k|)`.
+  - Lower bound: `sigma_S` reads `v.N`, inside `Φ_k` for `v` in `I_k ⊇ Φ_k ∖ ∂_1 Φ_k`. So restrictions
+    determine `y|_(I_k)`, which ranges over `q^(|I_k|)` values.
+  - The comparison gives `|∂_1 Φ_k| / |Φ_k| >= c (-log_q(1 - q^(-|W|)))`, against the Følner property.
+- **Uniform recurrence.** Each interior vertex of `Φ_k` has an occurrence within distance `L`, and each
+  occurrence serves at most `(2|D|+1)^L` vertices. So the density is positive along every Følner sequence.
+- **(a).** An injective self-map of a finite set is onto.
+
+### 15.2 Theorem C and Corollary C.1. PASS, one scope note.
+
+- **Partial action.** Right multiplication by `g^-1` is a bijection of `S`, so its restriction is a
+  partial injection and extends to a permutation of `Φ_k`.
+- **Defect.** For `v` outside `∂_2 Φ_k`, `(v.h^-1).g^-1 = v.(gh)^-1`, and `(gh)^-1` lies in `D` because
+  `gh` lies in `F`. So the defect is at most `|∂_2 Φ_k| / |Φ_k|`.
+- **Separation.** `g^-1 = 1·g^-1` lies in `F F^-1 ∖ {1}`, so it is not in `H_F`, and the base edge
+  labelled `g^-1` is not a loop. The same holds at every vertex whose 1-ball matches the base, and those
+  have lower density `>= delta/2` after removing `∂_1`.
+- **Amplification.** `fix_(Ω^r) = fix_Ω^r`, and the defects add at most `r`-fold. Choose `r`, then `k`.
+- **Corollary C.1, local embedding case.** A normal `H` with `H ∩ F F^-1 = {1}` makes the quotient map
+  injective and multiplicative on `F`. Every finite set lies in some `F ⊇ F_0`, so Corollary 1 of
+  `strict-pairs-transfer-to-table-realizations` applies.
+- **Scope note.** Theorem C needs Følner sets and density for the labels `F ∪ F^-1`. When `G` is finitely
+  generated and the admissibility label set `D` generates `G`, the `(F ∪ F^-1)`-labelled 1-ball is
+  determined by a `D`-ball of bounded radius. So "repetitive amenable" with respect to `D` supplies the
+  hypothesis. For groups that are not finitely generated, admissibility must be taken with label sets
+  containing `F`. The corollary is correct under that reading.
+
+### 15.3 Proposition D. PASS.
+
+- **Simple Kazhdan hosts.**
+  - Coset restriction reduces to the memory group, so take `D` generating `G`. Then an amenable connected
+    Schreier graph means co-amenability.
+  - `simple-kazhdan-groups-have-no-proper-co-amenable-subgroups` (passed in Section 3.1 of
+    `gk-vf-positive-verification-2026-09-12.md`) leaves only `H = G`.
+  - Injective automata permute the `q` constant configurations. The normal subgroups are `1` (circular)
+    and `G`.
+- **Measure-free actions.** `Lambda(f) = m(g G_y |-> f(g y))` is well defined on cosets, positive, unital
+  and invariant, so Riesz gives an invariant probability measure.
+- **Thompson's `V`.**
+  - The element `0 -> 00, 10 -> 01, 11 -> 1` maps `[0]` onto `[00]`.
+  - The transposition `00x <-> 01x` gives `mu[00] = mu[01]`, so `mu[0] = 2 mu[0]`, hence `mu[0] = 0`.
+  - The first-letter swap then kills `[1]`.
+- **The remaining remarks** are prose, and nothing consumes them.

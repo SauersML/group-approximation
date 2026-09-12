@@ -7,6 +7,7 @@ target: separating-repetitive-amenable-schreier-families-force-soficity
 requires: []
 artifacts:
   - research/artifacts/subgroup-fixed-configuration-transfer-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 3 of the artifact.
@@ -21,3 +22,5 @@ Section 3 of the artifact.
   and defect at most `r` times the boundary fraction. Choose `r`, then `Φ`.
 - **Reach.** A normal separating `H` makes `G -> G/H` injective and multiplicative on `F`, which is a
   local embedding into `G/H`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 15.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

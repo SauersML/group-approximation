@@ -8,6 +8,7 @@ requires:
   - simple-kazhdan-groups-have-no-proper-co-amenable-subgroups
 artifacts:
   - research/artifacts/subgroup-fixed-configuration-transfer-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 4 of the artifact.
@@ -21,3 +22,5 @@ Section 4 of the artifact.
   - For `V`, invariance under `0 -> 00, 10 -> 01, 11 -> 1` gives `mu[0] = mu[00]`. The transposition
     `00 <-> 01` gives `mu[00] = mu[01]`, so `mu[0] = 2 mu[0] = 0`. The swap `0 <-> 1` gives
     `mu[1] = mu[0] = 0`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 15.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).
