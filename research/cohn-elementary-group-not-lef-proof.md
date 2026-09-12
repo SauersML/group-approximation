@@ -26,3 +26,5 @@ The proof is in artifact Section 3, Theorem 3.1.
    `x_13(Q) != 1`, contradicting step 1.
 3. **Subgroups.** LEF passes to subgroups, and `EL_4(J) <= EL_m(C_2)` by the compression and the
    unital embedding `J -> C_2`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 24.3 (the finite presentation of St_4(J) is imported at statement level) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

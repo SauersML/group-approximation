@@ -31,3 +31,5 @@ The proof is in artifact Section 1 (Lemmas 1.1–1.2, Theorem 1.3, Remark 1.5) a
      their complements are preserved.
 6. **V.** `psi_3` applied to `phi(V) (+) 1_4 <= EL_6(C_2)` gives `V' <= EL_3(C_2)`. It meets `K`
    trivially by step 5, because `pi o phi` is injective.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 24.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

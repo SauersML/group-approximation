@@ -1065,3 +1065,47 @@ which contradicts `delta >= c_0'`.
   - `Q_A` commutes with `F_3[iota_A(G)]`, and `F_3[iota_A](eps_-) = Q_A`. So the compressed function is
     anti-central, and `N(D_A Q_A) >= c_3/2`.
 - **Item (4).** `A_M` is closed through the diagonal ultraproduct (Section 8.1), and `A_M ⊆ A_S`.
+
+## 24. w5-cohn-lef (74e4783d63)
+
+### 24.1 `cohn-pair-compression-embeds-el-2n-into-el-n`: PASS
+
+1. **The Cohn pair.**
+   - `q s_i = s_i - s_i = 0`, `t_j q = 0`, and `q^2 = q`.
+   - `iota(x) iota(y) = sum s_a x_ab (t_b s_c) y_cd t_d = iota(xy)`, and `t_c iota(x) s_d = x_cd`.
+   - `iota(x) q = q iota(x) = 0`.
+   - So `psi_n(g) psi_n(h) = psi_n(gh)`, with `psi_n(1) = (1 - q) + q = 1`, and `psi_n` is injective.
+2. **Cross-block generators.** The diagonal blocks are `1_2`, which go to `1 - q + q = 1`, and
+   `iota(c E_ab) = s_a c t_b`.
+3. **Same-block generators.** For `a != b`, `x_((i,a),(i,b))(c) = [x_((i,a),(j,0))(c), x_((j,0),(i,b))(1)]`.
+   These are distinct indices, and `n >= 2` gives a `j`.
+4. **Kernels.** `pi o psi = psi^R o pi`, where `psi^R` is the injective Leavitt isomorphism. So `K` maps
+   into `K`, and complements into complements.
+5. **Iteration.** Upper-left inclusion into `EL_(3·2^k)` followed by repeated compression gives
+   `EL_m -> EL_3`, and `J -> C_2` (Section 14.2) gives `EL_m(J) <= EL_3(C_2)`.
+6. **`V'`.** `phi(V) (+) 1_4 <= EL_6(C_2)` (Section 17.1, Whitehead). `V' ∩ K = 1` because `pi o phi` and
+   `psi^R` are injective.
+
+### 24.2 Route `cohn-coefficient-el3-two-root-identity-from-v-gate`: PASS as a conditional route
+
+- **The kernel is normal.** `ker sigma ⊇ V' != 1`, so it is one of `1`, `K`, `G` (Section 14.2).
+- **It is not `K`.** `V' ∩ K = 1`, so `ker sigma = G`.
+- **Conclusion.** Every model is trivial, and the identity holds.
+
+### 24.3 `cohn-elementary-group-is-not-lef`: PASS, with one import at statement level
+
+1. **Matrix units in `J`.** `Q S = 0` and `T Q = 0`, so `Q T^b S^c Q = delta_bc Q`, and
+   `e_ab e_cd = delta_bc e_ad` with `e_ab = S^a Q T^b`.
+2. **Pigeonhole.** In characteristic two some `x_13(r)` dies, with `r = e_a0 + e_(a'0)` and `a != a'`.
+3. **The commutator chain.**
+   - `[x_13(r), x_32(1)] = x_12(r)`.
+   - `[x_31(e_0a), x_12(r)] = x_32(e_0a r) = x_32(e_00) = x_32(Q)`, because `a != a'`.
+   - `[x_13(1), x_32(Q)] = x_12(Q)`.
+   - `[x_12(Q), x_23(1)] = x_13(Q)`.
+   - All four are Steinberg relations in the indices `1, 2, 3`.
+4. **The finitely presented cover.** A LEF partial embedding of the finite set of generators, relator
+   prefixes and word prefixes defines `St_4(J) -> H` with `H` finite and `x_13(Q) != 1`. Steps 2 and 3 in
+   `H` then contradict this.
+   - **Import.** `St_4(J)` is finitely presented. That is imported at statement level from
+     `steinberg-finite-presentation-and-kazhdan-theorem`, and I did not re-derive it.
+5. **Subgroups.** LEF passes to subgroups, and `EL_4(J) <= EL_m(C_2)` by Section 24.1.

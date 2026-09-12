@@ -25,3 +25,5 @@ This route is valid, conditional on the open V gate. The proof is artifact Corol
 3. **The identity follows.** Every model is trivial, so `N_23 N_12 = 0` holds in every model.
 
 Together with the landed ordering this gives: V gate ⇒ this claim ⇒ the binary gate for `R^x`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 24.2 (valid as a route conditional on the open V gate) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
