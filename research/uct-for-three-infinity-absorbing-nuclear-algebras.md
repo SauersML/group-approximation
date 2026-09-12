@@ -21,7 +21,10 @@ serve in place of `3`.
   criterion covers `O_2 ⋊_α Z_p` for every prime `p`: the UCT follows when some
   `γ(D_2)` is regular in the crossed product.  Cartan-respecting automorphisms
   of order three are harmless
-  (`cartan-respecting-o2-automorphisms-give-uct-crossed-products`).  The abstract
-  read states the `M_{2^∞}` relation only, and no odd-prime analogue has been
-  checked from the source.  Dies at the same wall as the half at `2`: exotic
-  automorphisms with no invariant Cartan subalgebra.
+  (`cartan-respecting-o2-automorphisms-give-uct-crossed-products`).  The
+  odd-prime analogue is now checked from the source: Barlak--Li II Theorem 4.16
+  at `p = 3` makes this half exactly equivalent to
+  `o2-z3-actions-fix-a-cartan-subalgebra`
+  (`barlak-li-p-half-iff-zp-actions-fix-cartan`, route
+  `uct-three-half-via-z3-actions-on-o2`).  Dies at the same wall as the half at
+  `2`: exotic automorphisms with no invariant Cartan subalgebra.
