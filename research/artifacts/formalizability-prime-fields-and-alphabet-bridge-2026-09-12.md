@@ -94,7 +94,14 @@ Over prime fields this happens exactly for `p >= 5`.
 - **The identification of the alphabet with `F_q^n` matters.** `F_4` as one track has non-formalizable
   sitewise pairs, and `F_2^2` has none (Section 4). On `F_2^n` with `n >= 2`, track shears give many
   formal non-affine pairs, so `n = 1` is rigid while `n >= 2` stays open for strict automata.
-- **Not checked here:** whether the leading-term argument runs over one track `F_p` for odd `p`.
+- **Every prime.** gk-fz-bennett confirms that the leading-term argument runs over one track `F_q` for
+  every prime power `q`, over bi-orderable groups (scope paragraph of
+  `formalizable-binary-pairs-over-biorderable-groups-are-affine`, its artifact Section 3A).
+  - The formalizable pairs are exactly `x -> a·x(gm) + b`, `a != 0`.
+  - A non-affine witness: swap `0 <-> 1` at cells whose six-cell neighborhood is `0 0 1 1 0 0`. Marker
+    exclusion only uses those six neighborhood values, so the map is an involution.
+  - So one-track rigidity holds at every prime over bi-orderable groups. On such groups it supersedes the
+    constant-configuration obstruction, which still covers every group.
 
 ## 3. Formally invertible maps induce every permutation of `F_p^n`, `n >= 2`
 
@@ -198,6 +205,11 @@ Section 6.3).
      bijective, hence `tau` bijective.
 - **Route** `prime-power-surjunctivity-specializes-to-binary-powers`: the `p = 2` instance is
   `stable-finiteness-forces-binary-surjunctivity`.
+- **Regrouping** along a finite-index `H <= G` is a second stabilization with the same payoff, since
+  stable finiteness of `F_p[G]` passes to `F_p[H]`. It formalizes the marker involution on `Z` after
+  regrouping along `4Z` (`marker-involution-is-formalizable-after-regrouping`, lane gk-free-neg). The
+  claims here stabilize by tracks only, the one form that exists on finitely generated infinite simple
+  hosts, which have no proper finite-index subgroup.
 - **What the odd-`p` statement adds:** Kaplansky over any single prime field `F_p` would suffice for
   `p`-power alphabets. By `stable-finiteness-reduces-to-prime-field`, stable finiteness over one field of
   characteristic `p` is equivalent to stable finiteness over `F_p`.
