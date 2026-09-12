@@ -8,14 +8,14 @@
 
 R := Integers mod 16;;
 one := One(R);;
-E := function(i, j, a) local m; m := IdentityMat(3, R); m[i][j] := a*one; return m; end;;
+ElMat := function(i, j, a) local m; m := IdentityMat(3, R); m[i][j] := a*one; return m; end;;
 Dg := function(a, b, c) return DiagonalMat([a*one, b*one, c*one]); end;;
 inv3 := Inverse(3*one);;
 
-G16 := Group([E(1,2,1), E(2,1,1), E(2,3,1), E(3,2,1), E(1,3,1), E(3,1,1)]);;
+G16 := Group([ElMat(1,2,1), ElMat(2,1,1), ElMat(2,3,1), ElMat(3,2,1), ElMat(1,3,1), ElMat(3,1,1)]);;
 Print("|SL_3(Z/16)| = ", Size(G16), "  expected ", 168*2^24, "\n");
 
-Igens := [E(1,2,1), E(1,3,1), E(2,3,1), E(2,1,2), E(3,1,2), E(3,2,2),
+Igens := [ElMat(1,2,1), ElMat(1,3,1), ElMat(2,3,1), ElMat(2,1,2), ElMat(3,1,2), ElMat(3,2,2),
           Dg(-1,-1,1), Dg(1,-1,-1), DiagonalMat([3*one, inv3, one]), DiagonalMat([one, 3*one, inv3])];;
 I16 := Group(Igens);;
 Print("|I/K_4| = ", Size(I16), "  expected ", 2^27, "\n");
@@ -57,7 +57,8 @@ for M1 in M1s do
       found := [M1, M2, "empty"];
       break;
     fi;
-    sol := SolutionMat(rows, List(rows, r -> Z(2)));
+    # chi with rows * chi = (1,...,1): SolutionMat(M, v) solves x * M = v, so transpose
+    sol := SolutionMat(TransposedMat(rows), List(rows, r -> Z(2)));
     if sol <> fail then
       nSolvable := nSolvable + 1;
       found := [M1, M2, sol];
