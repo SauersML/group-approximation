@@ -54,11 +54,11 @@ restriction.**  `htaut` says the Leray–Hirsch class of `P(p ⊕ 1)` restricts 
 class of `P(p)`. -/
 theorem thomData_total_of_tautOf (K : Type) [Field K] [CompactSpace X] [T2Space X]
     (p : Bundle X ι) {r : ℕ} (hr : 1 ≤ r)
-    {ξ₊ : Hmod K (TopCat.of (Bundle.Proj p.plusOne)) 2}
+    {ξPlus : Hmod K (TopCat.of (Bundle.Proj p.plusOne)) 2}
     {ξ : Hmod K (TopCat.of (Bundle.Proj p)) 2}
-    (htaut : pull (sInclusion (Set.range (Bundle.projIncl p))) 2 ξ₊
+    (htaut : pull (sInclusion (Set.range (Bundle.projIncl p))) 2 ξPlus
       = pull (hyperIso p).hom 2 ξ)
-    (L₊ : LerayHirschGraded (projMapOf p.plusOne) ξ₊ (r + 1))
+    (LPlus : LerayHirschGraded (projMapOf p.plusOne) ξPlus (r + 1))
     (L : LerayHirschGraded (projMapOf p) ξ r) :
     ∃ (jm : ↥(relCohomology K (TopCat.of (Bundle.Total p))
           ((Subtype.val : Bundle.Total p → X × (ι → ℂ)) ⁻¹' Bundle.puncturedSet p)
@@ -68,8 +68,8 @@ theorem thomData_total_of_tautOf (K : Type) [Field K] [CompactSpace X] [T2Space 
       LinearMap.range jm = LinearMap.ker (ThomDeg.restrictMap (R := K)
         (M := fun i : Fin (r + 1) => Hmod K (TopCat.of X) (2 * r - 2 * (i : ℕ)))
         (fun i => chernMulOf (hyperLHOf p L) i)) :=
-  thomData_total_of_lerayHirschOf K p (hyperProj p) rfl ξ₊
-    (pull (hyperIso p).hom 2 ξ) htaut hr L₊ (hyperLHOf p L)
+  thomData_total_of_lerayHirschOf K p (hyperProj p) rfl ξPlus
+    (pull (hyperIso p).hom 2 ξ) htaut hr LPlus (hyperLHOf p L)
 
 /-! Audited on every build: `#audit_axioms` fails the build if a closure leaves the
 classical allowlist. -/
