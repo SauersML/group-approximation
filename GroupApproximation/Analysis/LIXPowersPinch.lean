@@ -142,7 +142,7 @@ theorem angleRaw_saturate_high {k j : ℕ} {φ : ℝ} (hφ : -Real.pi ≤ φ)
   linarith
 
 /-- **Above its own slab, the clamp saturates low.** -/
-theorem angleRaw_saturate_low {k j : ℕ} {φ : ℝ} (hφ : -Real.pi ≤ φ) (hjk : j ≤ k)
+theorem angleRaw_saturate_low {k j : ℕ} {φ : ℝ} (_hφ : -Real.pi ≤ φ) (hjk : j ≤ k)
     (hj : slabIndex k φ < j) : angleRaw k j 1 φ ≤ 0 := by
   have hpi : 0 < Real.pi := Real.pi_pos
   set a : ℝ := ((k : ℝ) + 1) * (φ + Real.pi) / (2 * Real.pi) with ha
@@ -297,8 +297,8 @@ time `1` is the single composite `W ∘ ψ_k`.
 This is the instance of `Powers.PinchIdentification` that
 `exists_partialIsometry_pow_pullback` consumes; with it, §1.3 items 1--3 close for the
 agreed `ψ_k`. -/
-theorem pinchIdentification_angleRepar (h₁ : ‖e₁‖ = 1) (h₂ : ‖e₂‖ = 1)
-    (h₁₂ : inner ℝ e₁ e₂ = (0 : ℝ)) (k : ℕ)
+theorem pinchIdentification_angleRepar (_h₁ : ‖e₁‖ = 1) (_h₂ : ‖e₂‖ = 1)
+    (_h₁₂ : inner ℝ e₁ e₂ = (0 : ℝ)) (k : ℕ)
     (hwall : ∀ y : E, ‖y‖ ≤ 1 → W (wallRetract e₁ e₂ y) = 1) :
     PinchIdentification W (angleFam e₁ e₂ k) (joinPowNeg e₁ e₂ k) (k + 1) := by
   intro y hy
