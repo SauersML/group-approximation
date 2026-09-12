@@ -85,7 +85,7 @@ theorem isEven_of (K : Type) [CommRing K] (X : TopCat.{0}) {i : ℕ} (hi : Even 
 
 theorem isEven_one (K : Type) [CommRing K] (X : TopCat.{0}) : IsEven (1 : TotalHOf K X) := by
   rw [← of_one K X]
-  exact isEven_of K X even_zero _
+  exact isEven_of K X Even.zero _
 
 /-- **Products of even classes are even.** -/
 theorem IsEven.mul {K : Type} [CommRing K] {X : TopCat.{0}} {x y : TotalHOf K X}
