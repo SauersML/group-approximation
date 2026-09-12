@@ -172,3 +172,46 @@ with an involution symmetry over `F_2` must have:
   (`strict-automaton-tables-present-an-invisible-window-difference`).
 
 None of this constructs an automaton or excludes one over `R^x`.
+
+## 6. The honest-idempotent form in characteristic three
+
+Over `F_2` an involution-invariant output forbids linear rules. Over `F_3` it does
+not. By `linear-invariant-output-automata-fail-augmentation` (part 3), for an
+involution `w` and `e = 2(1 + w)`, the averaging idempotent in characteristic `3`,
+an injective `F_3`-linear automaton with `<w>`-invariant output exists iff
+`c e b = 1` for some `b, c` in `F_3[G]`. The automaton is `tau_(eb)`, with left
+inverse `tau_c` (`tau_a tau_b = tau_(ab)`). By
+`invariant-output-injective-automata-need-invisible-symmetry` it is not surjective.
+
+The natural host is `G_3 = L_(F_3)(1,2)^x`, nonsofic by
+`d-ary-leavitt-groups-nonsofic-over-finite-fields`. There
+`w = s0 t1 + s1 t0` is an involution: `w^2 = s0 t0 + s1 t1 = 1`.
+
+**The image solves the corner equation.** In `R_3 = L_(F_3)(1,2)` put
+`bbar = s0 + s1` and `cbar = 2(t0 + t1)`. Then
+
+```text
+cbar bbar = 2(t0 s0 + t0 s1 + t1 s0 + t1 s1) = 2 * 2 = 1,
+w s0 = s1,  w s1 = s0,  so  e bbar = 2(2 s0 + 2 s1) = s0 + s1 = bbar,
+```
+
+hence `cbar e bbar = 1`, while `(e bbar) cbar = 2(s0 + s1)(t0 + t1)` is an idempotent
+below `e`, so it is not `1`. In `M_2(R_3)` coordinates `e = 2[[1,1],[1,1]]` is the
+projection onto the diagonal copy of `R_3`, which is isomorphic to `R_3`.
+
+**What this form changes.** Over `F_2` the half projection `s0 t0` is the image of
+`(1 + u)(1 + v)`, which is not idempotent in `F_2[G]`. Here `e` is an honest
+idempotent of the group algebra. The question is exactly whether the right
+permutation module `e F_3[G_3] = F_3[<w>\G_3]` contains `F_3[G_3]` as a direct
+summand. Two standard obstructions say nothing here:
+
+- the canonical trace gives `tr(e) = 2` in `F_3`, and traces of idempotents are not
+  ordered in characteristic `3`, so the characteristic-zero Kaplansky argument is
+  unavailable;
+- augmentation gives `eps(e) = 2 * 2 = 1`, with no contradiction.
+
+The obstruction that does bind is soficity: linear soficity forces stable
+finiteness (`linear-sofic-group-algebra-is-stably-finite`). So the product
+coincidences of any certificate must present a group outside that class. The
+lifting problem from `R_3` to `F_3[G_3]` is the same wall as the binary Kaplansky
+lift (`direct-finiteness-not-inherited-by-quotients`). No certificate is claimed.
