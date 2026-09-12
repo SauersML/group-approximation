@@ -5,7 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 import GroupApproximation.BowenChapman.LaurentPair
 import GroupApproximation.Kazhdan.Kazhdan
 import GroupApproximation.Sofic.InfranormalCompressionPair
-import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
+import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
 
 /-!
 # The nonsoficity of the Bowen–Chapman witness from its leaves
@@ -21,13 +21,14 @@ hypothesis:
 * `Ambient` is countable;
 * `Ambient` and `Peripheral` have property `(T)`;
 * `Peripheral` is infranormal and not normal in `Ambient`;
-* in every faithful permutation-ultraproduct representation of a countable
-  `(T)` group, the centralizer of an infranormal `(T)` subgroup is normalized
-  by the whole group (Kun–Thom, arXiv:2608.06222, Theorem 4.1).
+* along every sofic approximation of a countable `(T)` group `G`, a sequence of
+  permutations that asymptotically commutes with an infranormal `(T)` subgroup
+  `Γ` still asymptotically commutes with `Γ` after conjugation by any element
+  of `G` (Kun–Thom, arXiv:2608.06222, Theorem 4.1, in sequential form).
 
 The hypotheses are stated exactly as the declarations that discharge them, so a
 mismatch between a statement and its consumer is an elaboration error here.
-`GroupApproximation.BowenChapman.Endpoint` applies this theorem with every
+`GroupApproximation.BowenChapman.Endpoint` makes the same derivation with every
 hypothesis replaced by its proof.
 -/
 
@@ -35,8 +36,8 @@ namespace GroupApproximation.BowenChapman
 
 /-- **Nonsoficity of the witness, from its leaves.**  Non-normality supplies a
 compressor `t` and a mark `γ ∈ Peripheral` with `t⁻¹ γ t ∉ Peripheral`; the
-normalization theorem at the pair supplies centralizer normalization; the
-landed double reduction then makes the symmetric double nonsofic. -/
+normalization theorem at the pair supplies sequential centralizer
+normalization; the double bridge then makes the symmetric double nonsofic. -/
 theorem symmetricDouble_not_isSofic_of_leaves
     (hcount : Countable Ambient)
     (hTambient : HasKazhdanPropertyT.{0, 0} Ambient)
@@ -45,11 +46,11 @@ theorem symmetricDouble_not_isSofic_of_leaves
     (hnotNormal : ¬ Peripheral.Normal)
     (hnormalization : ∀ {G : Type} [Group G] [Countable G] {Γ : Subgroup G},
       HasKazhdanPropertyT.{0, 0} G → HasKazhdanPropertyT.{0, 0} ↥Γ →
-        IsInfranormal Γ → HasSoficCentralizerNormalization Γ) :
+        IsInfranormal Γ → HasSequentialCentralizerNormalization Γ) :
     ¬ IsSofic (SymmetricDouble Ambient Peripheral) := by
   haveI := hcount
   obtain ⟨t, γ, hγ, hesc⟩ := exists_escape_of_not_normal hnotNormal
-  exact not_isSofic_symmetricDouble_of_centralizerNormalization Peripheral
+  exact not_isSofic_symmetricDouble_of_sequentialNormalization Peripheral
     (hnormalization hTambient hTperipheral hinf) (t := t) hγ hesc
 
 end GroupApproximation.BowenChapman

@@ -2,12 +2,11 @@
 Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
-import GroupApproximation.BowenChapman.EndpointOfInputs
 import GroupApproximation.BowenChapman.LaurentPairInfranormal
 import GroupApproximation.BowenChapman.LaurentPairKazhdan
 import GroupApproximation.BowenChapman.LaurentPairGeneration
 import GroupApproximation.BowenChapman.LaurentPairResiduallyFinite
-import GroupApproximation.KunThom.CentralizerNormalization
+import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
 import GroupApproximation.Dynamics.DoubleFinitarySite
 import GroupApproximation.Dynamics.DoubleConsequences
 import GroupApproximation.Dynamics.SurjunctivityTransfer
@@ -32,8 +31,11 @@ with `EL₃(ℤ)` acting by monomial substitution.
 * **Surjunctive.**  `G` is residually finite, hence surjunctive, and a double
   of a surjunctive group is surjunctive.
 * **Not sofic.**  `G` and `Γ` have property `(T)`, and `Γ` is infranormal but
-  not normal, so centralizers of `Γ` in permutation ultraproducts are
-  normalized by `G`, which makes the double nonsofic.
+  not normal in `G`.  Along every sofic approximation of `G`, a sequence of
+  permutations that asymptotically commutes with `Γ` keeps commuting with `Γ`
+  after conjugation by any element of `G` (Kun–Thom, arXiv:2608.06222,
+  Theorem 4.1, proved in `GroupApproximation.KunThom`).  A compressor that
+  moves an element of `Γ` out of `Γ` then makes the double nonsofic.
 -/
 
 namespace GroupApproximation.BowenChapman
@@ -49,10 +51,12 @@ theorem symmetricDouble_fg_surjunctive_not_isSofic :
   refine ⟨symmetricDouble_finitelyGenerated Ambient Peripheral, ?_, ?_⟩
   · exact Surjunctivity.isSurjunctive_symmetricDouble Peripheral
       Surjunctivity.isSurjunctive_of_residuallyFinite
-  · exact symmetricDouble_not_isSofic_of_leaves inferInstance
-      ambient_hasKazhdanPropertyT peripheral_hasKazhdanPropertyT
-      peripheral_isInfranormal peripheral_not_normal
-      hasSoficCentralizerNormalization_of_kazhdan_infranormal
+  · obtain ⟨t, γ, hγ, hesc⟩ := exists_escape_of_not_normal peripheral_not_normal
+    exact not_isSofic_symmetricDouble_of_sequentialNormalization Peripheral
+      (hasSequentialCentralizerNormalization_of_kazhdan_infranormal
+        ambient_hasKazhdanPropertyT peripheral_hasKazhdanPropertyT
+        peripheral_isInfranormal)
+      (t := t) hγ hesc
 
 /-- **Bowen–Chapman, Problem 1.1, answered negatively.**  Some finitely
 generated group is surjunctive and not sofic. -/
