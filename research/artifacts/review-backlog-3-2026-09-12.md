@@ -319,6 +319,47 @@ These queue entries carry "Independently re-derived 2026-09-12 by gk-verify-pos:
   - `surjunctivity-is-axiomatized-by-rectangle-clauses` (fb5e07c43, §15);
   - `positive-rokhlin-entropy-makes-leavitt-units-surjunctive` (5a2a793cd, §13).
 
+## 17. `fpbs-twisted-level-graph-generates-cyclic-extension` (aede48402): PASS
+
+Checked against `fpbs-twisted-level-graph-generates-cyclic-extension-proof`.
+
+- **Return moves.** `t^(-m) s t^m = φ^(-m)(s)`, because `tut^(-1) = φ(u)`. So the path `z → t^m z → s t^m z → φ^(-m)(s) z` realizes each `G_A`-edge inside `R_(Φ_A)`.
+- **Only if.**
+  - A `Φ_A`-path between two points of one `N`-orbit has total `t`-exponent 0, since the action is free.
+  - I re-derived the rewriting `t^(a_k)s_k ⋯ s_1 t^(a_0) = ∏_j φ^(-b_j)(s_j)`, with `b_j = a_0 + ⋯ + a_(j−1)`.
+  - Each `s`-move at `t^(b_j)z_j`, forward from `A` or backward into `A`, is the `G_A`-edge `{z_j, z_(j+1)}` at level `b_j`. So the path is a `G_A`-path, and `R_(Φ_A) ∩ R_N` is exactly "connected in `G_A`".
+- **Bernoulli labels.**
+  - `t^m(ux) ∈ A` iff `x(u^(-1)t^(-m)) < δ`.
+  - `(u,m) ↦ u^(-1)t^(-m)` is injective, by uniqueness of the normal form `ut^k` in `N ⋊ Z`. So the open pairs are independent with probability `δ`.
+  - Freeness identifies the orbit with `N`.
+- **Cost.** `C(b_Γ) <= 1 + |S|δ`, and aperiodic relations cost at least 1.
+- **Free-group check.**
+  - The edge `{u, x_(−m)u}` is present iff `(u,m)` or `(x_(−m)u, m)` is open, which has probability at most `2δ`.
+  - Tree edges with disjoint endpoint sets use disjoint pairs, and there are infinitely many such edges.
+  - So for `δ < 1/2` some tree edge is almost surely missing, and a subgraph of a tree missing an edge is disconnected.
+  - This matches `F_2` having cost 2.
+
+## 18. `random-complex-group-no-quotients-below-exp-pn` (1bca9dba4): PASS
+
+Checked against `random-complex-no-quotients-below-exp-pn-proof`. Meshulam's statements are taken as quoted.
+
+- **Expansion.**
+  - `(φ_u·φ)(u,v) = 1`, so `φ_u·φ` is supported on the edges opposite `u`, and there it records violated triangles.
+  - Each violated triangle is counted once at each of its three vertices. So `Σ_u ||φ_u·φ|| = 3||d_1φ||`, which gives `||d_1φ|| >= (n/3)||[φ]||`.
+  - Whether a triangle is violated is gauge-invariant (holonomy is conjugated), so `||d_1φ||` is a class invariant.
+- **First moment.**
+  - There are at most `(n^2/2)^k |G|^k` classes of weight `k`, and each survives with probability `<= exp(−pnk/3)`.
+  - So `Pr <= Σ_k r_G^k <= 2r_G` once `r_G <= 1/2`. That holds eventually for every `|G| <= N`, since `r_G <= (n^2/2)exp(−5pn/24)`.
+- **Union bound.**
+  - There are at most `2N` simple groups of order at most `N` (Kimmerle–Lyons–Sandling–Teague).
+  - The bound `2N · n^2 N exp(−pn/3) = 2n^2 exp(−pn/12)` tends to 0 exactly when `pn − 24 log n → ∞`. I re-did the exponent arithmetic with `N = exp(pn/8)`.
+
+## 19. `barlak-li-uct-iff-z2-z3-actions-fix-cartan` (17e477373) and `barlak-li-p-half-iff-zp-actions-fix-cartan` (b214f717f): PASS as literature imports; source not re-read here
+
+- **Consistency of the two nodes.** Theorem 1.4 (= Corollary 4.17) is Theorem 4.16 at `p = 2, 3`, combined with Barlak–Szabó Proposition 4.16. The node for `p` records the source's 3 ⟹ 1 through Kirchberg's Theorem I and the Barlak–Szabó action `γ` with `O_2 ⋊_γ Z_p ~_KK M_(p^∞)^(p−1)`. The chain is coherent.
+- **Why the primes 2 and 3 suffice.** The UCT class has two-out-of-three permanence for extensions. `A` sits in an extension with `A ⊗ M_(2^∞)`, `A ⊗ M_(3^∞)` and `A ⊗ C([0,1], M_(6^∞))`, through a dimension-drop algebra KK-equivalent to `C`. That is the standard reason two coprime primes capture every separable nuclear algebra. It matches Theorem 1.4 as quoted.
+- The MSI extraction of arXiv:1704.04939v2 is recorded in the citation routes. This pass did not re-read the PDF.
+
 ## Overlap noted after landing
 
 §4 and §5 are also discussed in `review-kazhdan-hyperbolic-hs-2026-09-12.md`, and §4 in `review-major-swarm-2026-09-12.md`. Their headers did not name those ids, so the queue filter kept them. These sections are independent second reads.
