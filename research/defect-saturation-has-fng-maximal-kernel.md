@@ -45,11 +45,22 @@ construction. It is therefore not a restatement of its consequence.
    so no argument that uses only this adjective list can succeed. What is not
    excluded is that the specific routing quotient used to build `G` has one
    maximal kernel with a finite normal generating set.
-3. **Choose the kernel inside the construction.** *Deferred at an identified
-   step.* `G` is built by a Hull--Osin routing quotient chosen to make the
-   compression defect normally generate, not to be maximal. Nothing in that
-   construction is set up to control the normal lattice above the defect, and
-   no invariant in the graph reads finite normal generation off the routing
-   data. This is the concrete next step for the lane: determine whether the
-   routing quotient can be iterated to a maximal one while keeping each stage
-   finitely normally generated.
+3. **Iterate the routing quotient until it is maximal.** *Dies.* Every
+   Hull--Osin small-cancellation quotient is again acylindrically hyperbolic,
+   and acylindrically hyperbolic groups are SQ-universal, hence never simple.
+   So no finite stage is a maximal quotient. A maximal kernel reached as the
+   union of a strictly ascending chain `K_1 < K_2 < ...` is never finitely
+   normally generated: finitely many normal generators would all lie in some
+   `K_N`, forcing `K_N = K_(N+1)`. A finitely normally generated maximal kernel
+   therefore has to come from a quotient map that is not a small-cancellation
+   limit.
+
+## Status of the payoff
+
+The consequence this claim was built to deliver, `fp-simple-full-mf-radical-group`,
+is now established independently by the binary Leavitt unit group
+(`fp-simple-full-mf-radical-via-leavitt-unit-group`). This claim stays open as a
+question about one group's normal lattice. If it holds, it would give a
+*torsion-free* finitely presented simple group with full MF radical, provided
+the simple quotient inherits torsion-freeness, which is not automatic. The
+Leavitt witness has torsion.
