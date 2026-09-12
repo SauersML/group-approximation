@@ -144,8 +144,8 @@ noncomputable def diagram : DiscDiagram.{u, w, v} W where
     · right
       have hF' : F = (faceEquiv Delta.toCombMap b).symm (faceEquiv Delta.toCombMap b F) :=
         ((faceEquiv Delta.toCombMap b).symm_apply_apply F).symm
-      rw [hF', allBoundary_darts, expanded_word_value]
-      exact hval
+      rw [hF', allBoundary_darts]
+      exact (expanded_word_value Delta b letter _).trans hval
   boundary_product := by
     have hvalues : (Delta.relatorCells.map (cell Delta b)).map RelatorCell.value =
         Delta.relatorCells.map RelatorCell.value := by
@@ -156,8 +156,8 @@ noncomputable def diagram : DiscDiagram.{u, w, v} W where
       show (allBoundary Delta.toCombMap b Delta.faceBoundary
           ((faceEquiv Delta.toCombMap b).symm Delta.outerFace)).darts =
         (Delta.faceBoundary Delta.outerFace).darts.flatMap (expand Delta.toCombMap b) from
-        allBoundary_darts Delta.toCombMap b Delta.faceBoundary Delta.outerFace,
-      expanded_word_value]
+        allBoundary_darts Delta.toCombMap b Delta.faceBoundary Delta.outerFace]
+    exact congrArg (fun x : G => x⁻¹) (expanded_word_value Delta b letter _).symm
 
 /-- The exterior traversal of the new diagram is the expanded old one. -/
 theorem outerDarts_eq :

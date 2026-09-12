@@ -26,7 +26,7 @@ first statements of P1 and P2:
   null word that bounds no disc.
 
 Literal fillings must therefore be taken over the symmetrized family, in which a
-face may read a triangle word or its formal inverse.
+face may read a triangle word or its formal inverse (`KazhdanHypSymRelators`).
 -/
 
 namespace GroupApproximation
@@ -105,7 +105,9 @@ theorem toAdd_boundaryValue (Delta : DiscDiagram.{u, w, v} W) (m : ℤ)
       ∑ f ∈ Finset.univ.erase Delta.outerFace,
         Multiplicative.toAdd (χ (RelLetter.listVal (Delta.faceWord f))) =
       ∑ f, Multiplicative.toAdd (χ (RelLetter.listVal (Delta.faceWord f))) :=
-    Finset.add_sum_erase Finset.univ _ (Finset.mem_univ Delta.outerFace)
+    Finset.add_sum_erase Finset.univ
+      (fun f => Multiplicative.toAdd (χ (RelLetter.listVal (Delta.faceWord f))))
+      (Finset.mem_univ Delta.outerFace)
   have hsub : (Delta.relatorCells.map RelatorCell.face).toFinset ⊆
       Finset.univ.erase Delta.outerFace := by
     intro f hf
@@ -177,12 +179,13 @@ theorem toAdd_degree_triangleRelatorWord
         Multiplicative.ofAdd (1 : ℤ) := by
     rintro ⟨x, b⟩ hb
     cases b
-    · exact absurd hb (by decide)
+    · cases hb
     · exact degreeCharacter_letterValue_true x
   have h3 : Multiplicative.toAdd (Multiplicative.ofAdd (1 : ℤ) *
       (Multiplicative.ofAdd (1 : ℤ) * (Multiplicative.ofAdd (1 : ℤ) * 1))) = 3 := rfl
-  rw [hval, map_mul, map_mul, map_mul, map_one, hlet _ (hpos 0), hlet _ (hpos 1),
-    hlet _ (hpos 2), h3]
+  rw [hval, map_mul (degreeCharacter Generator), map_mul (degreeCharacter Generator),
+    map_mul (degreeCharacter Generator), map_one (degreeCharacter Generator),
+    hlet _ (hpos 0), hlet _ (hpos 1), hlet _ (hpos 2), h3]
 
 /-- Every relator word of a positive table has degree three. -/
 theorem toAdd_degree_of_mem (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
@@ -244,7 +247,7 @@ theorem not_leastLiteralDiscLocalData_of_girthEightChecks
   have hne : FreeGroup.invRev (TriangularHodgeLayer.letters (T j)) ≠ [] := by
     apply List.ne_nil_of_length_pos
     rw [FreeGroup.invRev_length, TriangularHodgeLayer.letters_eq_three]
-    decide
+    exact Nat.zero_lt_succ _
   have hlist : FreeGroup.invRev (TriangularHodgeLayer.letters (T j)) =
       [((T j 2).1, false), ((T j 1).1, false), ((T j 0).1, false)] := by
     rw [TriangularHodgeLayer.letters_eq_three]
