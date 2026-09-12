@@ -22,6 +22,12 @@ This is premise (i) of `fpbs-hyperbolic-quotient-fibre-estimates-l2-gap`. By
 `fpbs-fibre-bubble-forces-mean-field-susceptibility` it already gives
 `chi_p ≍ (p_c-p)^(-1)`, and it gives `E_(p_c)|K_o ∩ H| < infinity`.
 
+Each `sigma_p(q)` is nondecreasing and left-continuous in `p`, being a supremum
+of finite-volume connection probabilities. By monotone convergence the supremum
+equals the critical fibre bubble, so the claim is the single critical statement
+`sum_q sigma_(p_c)(q)^2 < infinity`. On tree-projected generating sets it is
+implied by `fpbs-tree-projected-critical-sphere-bubble-below-one`.
+
 ## Attempts
 
 * **From the L2 conjecture (not a proof).** For amenable `H`, the fibre bubble
