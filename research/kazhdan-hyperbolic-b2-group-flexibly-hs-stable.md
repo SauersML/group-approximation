@@ -54,11 +54,19 @@ contrapositively: if all hyperbolic groups are hyperlinear, this claim is false.
   normal subgroups. So a cover is never easier to stabilize than its quotient.
 - **`Ã_2` Ballmann--Świątkowski groups are not candidates.** They act properly and
   cocompactly on Euclidean buildings, contain `Z^2`, and so are not hyperbolic.
-- **`GHB(7)`.** It is Caprace--Conder--Kaluba--Witzel's group; its property (T) is
-  proved in `GroupApproximation/Kazhdan/EJZAngleGHB.lean`. It is a complex of finite
-  groups, so it has torsion, and `b_2` only makes sense on a torsion-free finite-index
-  subgroup. Getting one needs virtual torsion-freeness first. There is no stability
-  input.
+- **`GHB(7)`: now an explicit certified candidate, stability open.** It is
+  Caprace--Conder--Kaluba--Witzel's KMS group `G_{HB_2}(7)`, with property (T) compiled
+  in `GroupApproximation/Kazhdan/EJZAngleGHB.lean`. It has torsion, and `b_2(GHB(7);Q) = 0`.
+  - **The torsion-free kernel.** The kernel `H` of the vertex-injective quotient
+    `ψ : GHB(7) → SL_4(F_7)` (CCKW Prop 7.15; relator checks and vertex injectivity compiled)
+    is torsion-free of finite index by CCKW Theorem 3.1(iv).
+  - **Its invariants.** `H` acts freely on the CAT(−1) triangle complex. Counting cells gives
+    `χ(H) = [G:H]·1381/2401`, so `b_2(H;Q) >= 1380`.
+    See `ghb7-congruence-kernel-hyperbolic-kazhdan-with-large-b2` (established) and
+    `research/artifacts/ghb7-kernel-certified-candidate-2026-09-12.md`.
+  - **What is left.** The premise reduces to the single explicit statement
+    `ghb7-congruence-kernel-flexibly-hs-stable`, through the route
+    `kazhdan-hyperbolic-b2-stability-via-ghb7-kernel`. There is no stability input yet.
 - **Cocompact `Sp(2,1)` lattices.** They are linear, hence hyperlinear and residually
   finite, so they fall under the hyperlinear bullet above. Their `b_2` has not been
   verified from a source.
