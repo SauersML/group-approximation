@@ -123,6 +123,25 @@ anywhere refutes it.
   - then `X = Y × Z` is free and `X_N = Y` has `W/N`-entropy log 2;
   - but `h_W(X) = h_W(Y) + h_W(Z) = 0 + ε`.
   Soficity of the lamp quotient gives nothing through the invariant factor.
+- **Orbit-relation invariants give no lower bound (2026-09-12, gk-p-inf-cost).**
+  - All nontrivial finite-alphabet Bernoulli shifts over an infinite group are weakly equivalent
+    (`nontrivial-bernoulli-shifts-are-weakly-equivalent`, from Abért–Weiss in both directions). So
+    cost, fixed price, ℓ²-Betti numbers and every weak-equivalence or group invariant take one value
+    on all bases.
+  - Their Rokhlin entropy is at most `H(1−p, p) → 0`. So no base-independent lower bound through
+    such invariants is positive, on any group (`weak-invariants-give-no-bernoulli-rokhlin-lower-bound`,
+    which invalidates `positive-rokhlin-entropy-via-weak-invariant-bounds`).
+  - By Seward's Theorem 1.10 a Bernoulli lower bound is a lower bound for `h_sup(G)`. On Kazhdan hosts
+    the first-order group invariants are trivial there: infimal cost `1`, and `β^(2)_1 = 0` by
+    Gaboriau's inequality.
+- **Free subrelations transfer nothing (idea, not landed as a claim).** For nonamenable `G`, the orbit
+  relation of the Bernoulli shift `[0,1]^G` contains the orbit relation of a free p.m.p. action of
+  `F_2` (Gaboriau–Lyons, *A measurable-group-theoretic solution to von Neumann's problem*, Invent.
+  Math. 177 (2009)). `F_2` is sofic, so that subaction has entropy lower bounds. No transfer to
+  `h^Rok_G` is known:
+  - a `G`-generating partition need not generate along the smaller `F_2`-orbits;
+  - the `F_2` generators act through cocycles into `G` with infinitely many values, so recording them
+    costs unbounded entropy.
 - **What is left.** A lower bound for any nonsofic group needs a counting
   mechanism that is not a sofic approximation. The sources read here
   (arXiv:1501.03367, 1602.06680, 1805.08279, 0812.2718) derive lower bounds only
