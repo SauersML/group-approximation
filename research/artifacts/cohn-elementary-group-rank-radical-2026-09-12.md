@@ -169,3 +169,70 @@ binary-jacobson-el3-rank-radical-is-the-finitary-kernel
   residually finite, so models exist and the radical question is `1` versus `L`. For `C_2` the
   quotient is the simple group `R^x`, so the question is `1` versus everything, and every model
   construction must represent the finitary kernel faithfully.
+
+## 4. Thompson's V inside the rank-four Cohn group, and the ordering of gates
+
+**Proposition 4.1 (V lifts).** Let `V <= R^x` act by prefix replacements. There is an injective
+homomorphism `phi : V -> GL_2(C_2)` with `pi(phi(g)) = diag(g, 1)`. Since `V` is perfect,
+`phi(V) (+) 1_2 <= EL_4(C_2)`.
+*Proof.*
+1. **The countable set.** Let `E` be the set of eventually-zero sequences in `{0,1}^N`. A prefix
+   replacement preserves eventual zeros, so `V` acts on `E` by permutations through its boundary
+   action. `E = {w 1 0^inf : w in W} ⊔ {0^inf}`.
+2. **Transport.** Identify `w 1 0^inf` with `delta_w` in the first copy of `F_2[W]`, and `0^inf` with
+   `delta_empty` in the second copy. Fix every other basis vector of the second copy.
+   - Take `g` given by complete prefix codes `nu_i -> mu_i`. Its permutation operator agrees with
+     `sum_i s_(mu_i) t_(nu_i) (+) 1` except on finitely many basis vectors: the internal nodes of the
+     codes, and `delta_empty` of the second copy.
+   - So its matrix entries lie in `C_2`: the corrections are finitary units `s_alpha q t_beta`,
+     `s_alpha q`, `q t_beta` and `q`.
+3. **Homomorphism.** The transport is independent of `g`, and the Toeplitz representation of
+   `M_2(C_2)` on `F_2[W]^2` is faithful, so `phi` is a homomorphism. `pi` kills finitary entries,
+   which gives `diag(g, 1)`.
+4. **Rank four.** By Whitehead's lemma, `[a, b] (+) 1_2 in EL_4(C_2)` for `a, b in GL_2(C_2)`, and
+   `V` is perfect. QED
+
+**Proposition 4.2 (rank four).** Lemmas 2.2 and 2.3 and Theorem 2.4 hold for `G_4 = EL_4(C_2)`, with
+the same proofs. Here `K_4 = GL_fin(W x {1,...,4}, F_2)`, and the quotient is
+`EL_4(R) = GL_4(R) ~ R^x`, which is simple.
+
+**Corollary 4.3 (ordering).** Every arrow below is proved.
+
+```text
+Jacobson radical claim  ==>  EL_3(C_2) has no nontrivial model  ==>  EL_4(C_2) has no nontrivial model
+thompson-v-has-no-nontrivial-f2-rank-model                        ==>  EL_4(C_2) has no nontrivial model
+EL_4(C_2) has no nontrivial model  ==>  R^x has no nontrivial model
+```
+
+*Proof.*
+- **`EL_3` to `EL_4`.** A nontrivial model of `G_4` yields an injective one (Proposition 4.2). It
+  restricts injectively to `EL_3(C_2) <= G_4`.
+- **`V` to `EL_4`.** Under the V gate, a model of `G_4` is trivial on `phi(V) (+) 1_2`. Its kernel is
+  normal and contains `phi(V)`, which meets `K_4` trivially, so the kernel is `G_4`.
+- **`EL_4` to `R^x`.** `G_4 <= EL_4(R) ~ R^x`, and nontrivial models of `R^x` are injective. QED
+
+**Reading.** The rank-four Cohn group is a common weakening of the Cohn `EL_3` question and the V
+gate. Any nontrivial model of it must represent both the finitary kernel `K_4` and a copy of `V`
+faithfully.
+
+## 5. Screens for a faithful model of `EL_3(C_2)` (where a construction stops)
+
+* **Algebra-like models die.** Compressions `x_ab(r) -> 1 + P r P E_ab` of the Toeplitz module to a
+  subspace `P` satisfy the commutator relations up to the ranks of `P - T_i S_i` and `T_1 S_0`, where
+  `S_i = P s_i P` and `T_i = P t_i P`. By `toeplitz-isometry-defects-have-total-rank-at-least-one`
+  these defects total at least `rk(P)/3`. This is (C3) of the Toeplitz assembly note, recorded here
+  for `C_2`.
+* **Uniform displacement on the kernel.** A nontrivial model is injective (Theorem 2.4), and all
+  finitary transvections are conjugate in `K`. So `rk(sigma(t) - 1) = d > 0` is the same for every
+  transvection `t in K`.
+  - `K` contains `GL_m(F_2)` for every `m`, so a model restricts to representations of every
+    `GL_m(F_2)` with transvection displacement `d`.
+  - The natural module, and tensor powers of bounded degree, displace transvections by `O(1/m)`. So
+    a faithful model needs representations of unbounded degree, such as permutation modules on
+    growing flag sets or exterior powers of middle degree.
+  - Heuristic, no source checked: polynomially bounded dimension should force bounded degree, and
+    so vanishing displacement.
+* **Level factoring.** `transvection-displacement-forces-exact-local-embedding` turns level-factoring
+  models with positive displacement into exact local embeddings. `EL_3(C_2)` surjects onto the
+  finitely presented infinite simple group `R^x`. That does not decide whether `EL_3(C_2)` is LEF,
+  and I found no argument either way.

@@ -37,3 +37,22 @@ artifacts:
 - **Where it stops.** No rank model of `EL_3(C_2)` with `N_23 N_12 != 0` is known. No argument that
   forces the identity from the Cohn relations alone is known either. Models that are nontrivial on
   the kernel are new territory.
+- **What this claim is (w4-cohn-el3, 2026-09-12; 013740e0da; artifact
+  `research/artifacts/cohn-elementary-group-rank-radical-2026-09-12.md`).**
+  - **Tensor squares.** For any unital `S`, the identity holds in every characteristic-two rank model
+    of `EL_3(S)` iff every such model is trivial. The tensor square of an identity-satisfying model
+    has product `u_23 (x) u_12 + u_12 (x) u_23`, of rank `2 rk(N_12)^2`
+    (`two-root-identity-in-all-models-iff-no-nontrivial-model`).
+  - **Structure of `G = EL_3(C_2)`** (`cohn-elementary-group-rank-radical-is-trivial-or-everything`).
+    - The kernel is `K = GL_fin(W x 3, F_2)`, which is simple with trivial centralizer.
+    - The normal subgroups are `1`, `K` and `G`.
+    - `C_2` embeds unitally in `L(1,3)` and so in `R`, so `G <= R^x`.
+    - The rank radical is `1` or `G`.
+  - **So this claim holds iff `EL_3(C_2)` has no injective characteristic-two rank model.** A model
+    with kernel `K` is a pullback, and it yields an injective model through `G <= EL_3(R)`. So the
+    "new territory" is exactly the faithful models.
+  - **Chain.** `binary-jacobson-el3-rank-radical-is-the-finitary-kernel` implies this claim (route
+    `cohn-el3-two-root-identity-from-jacobson-rank-radical`), and this claim implies that `R^x` has
+    no nontrivial characteristic-two rank model. Neither arrow is known to reverse.
+  - **Completeness.** It is load-bearing for the binary gate exactly when `EL_3(C_2)` is
+    characteristic-two linear sofic.
