@@ -28,3 +28,13 @@ surjectivity for three-point-decoder strict pairs.
   `|N| >= 3` when `tau` has no smaller left inverse, but no enlargement.
 - **Where it dies.** A lower bound past three points needs an argument that every left inverse must read the whole
   recoded block, or the anchor window, and none is known in general.
+- **Where the claim as stated fails** (w4-vf-positive-b, Section 5.4 of
+  `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+  - *The constructed left inverse.* Its memory is exactly `N_tau Omega^-1 (Omega Omega^-1 ∪ Omega)`.
+  - *The exception.* Suppose the image of `tau` avoids one symbol at a site, so `Omega = {e}`. Then that memory is `N_tau`,
+    three points, and the site law is still skewed. So the claim fails for every such `tau`.
+  - *What this means for a proof.* A proof of the claim as stated would show that no strict automaton with a three-point left
+    inverse avoids a symbol. For such automata the proposed reduction runs.
+  - *The remaining case.* When `|Omega| >= 2` and `<s, t>` is nonamenable, the constructed memory has more than three points,
+    by a coset count.
+  - *Recommendation.* Restate the claim for strict `tau` whose missing patterns all need at least two sites.

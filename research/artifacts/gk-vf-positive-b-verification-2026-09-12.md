@@ -407,3 +407,95 @@ Verdicts:
   - "Counting arguments work on permutation-like models only" and "a proof has to linearize on the group side first" are
     heuristics.
   - The claim node should label that paragraph as a heuristic.
+
+**Follow-up.** `w4-linsofic-surj` applied every point at `42f9fdbadc`, and I checked the diff:
+- linear control over every field, citing Section 4.1.4, with the width renamed `b`;
+- (c) ⇒ (b) now embeds `lambda(F(D))`;
+- the precise transfer constant, stated for the orbit under conjugation;
+- the site-pullbacks title now reads "rank at least n minus one";
+- Remark 3.2 records the basis dependence;
+- the interpretation is relabelled Heuristic 3.3.
+
+PASS.
+
+## 5. Random-order transport and three-point decoders (w3-strategist-pos `bbbb6ba4ee`; w4-three-point `e87f4c60f5`, `e37e1df9b`)
+
+These lanes were reassigned from `w3-vf-positive`. That verifier had commented to w4-three-point by message, and the lane
+corrected forward at `e37e1df9b` before this pass. The verdicts below concern the current versions.
+
+- **`injective-ca-random-order-transport-identity`: PASS.**
+- **Corollary 2 and the two cycle routes: PASS.** The routes are `full-site-entropy-via-random-order-transport-domination` and
+  `random-order-transport-domination-from-full-site-entropy`. They record an intended equivalence and establish nothing.
+- **`transport-identity-gives-reciprocal-memory-entropy-bound`, current version: PASS.** One wording point.
+- **Lemma 3.1 of `three-point-decoder-transport-obstruction-2026-09-12.md`: PASS.**
+- **`skewed-marginal-amplification-enlarges-decoder-memory` (OPEN): stated too broadly.** It fails when the image of `tau` avoids a
+  symbol (Section 5.4).
+
+### 5.1 The transport identity. PASS.
+
+- **Input side.** Fix an order realization and list `N` increasingly. The chain rule gives
+  `sum_i I(x(e); y(n_i) | y(n_1), ..., y(n_(i-1)), U = u) = I(x(e); y|_N | U = u) = log |A|`, because `U` is independent of `x` and
+  `x(e) = nu(y|_N)`. Averaging over `U` keeps the value.
+- **Output side.** The joint law of `(x, y, U)` is invariant under left translation, `kappa` is equivariant, and the order is defined
+  pointwise from `U`. So `t_n(g) = t_n(e)`, and at `g = n^-1` the term is the one displayed.
+- **Check on `Z` (artifact 2.5), recomputed on both sides.**
+  - Output terms: `3/2` and `1/2` bits.
+  - Input terms: `t_0 = 3/2` (2 bits if `1 ≺ 0`, else 1) and `t_1 = 1/2` (1 bit if `0 ≺ 1`, else 0).
+  - Both sides sum to `2`.
+- **Tree calibration (2.1).** Mass out of a vertex is `log |A|` and mass in is `(1/2) log |A|`. Re-derived.
+- **Proposition 3.** With `1 ≺ 0` and `-1 ≺ 0` the output-side sum is `2 + 1 = 3` bits, while `H(y(0)) = 2`. PASS.
+- **3.1.** For independent `X_i`, `sum_i I(X_i; Y) <= I(X_1, ..., X_k; Y)`. PASS.
+- **Wording point.** This concerns artifact 3.3 and the Attempts line "Amenable decoder memory. Holds" on the domination node.
+  - For `B = A`, `amenable-decoder-memory-forces-surjectivity` gives bijectivity, hence a uniform site law.
+  - For `B != A` that theorem does not apply. The conclusion still holds by counting inside `Gamma = <N>`:
+    `x|_F` is a function of `y|_(FN)`, so `|F| log |A| <= |FN| H(y(e))`, and right Følner sets of `Gamma` give
+    `H(y(e)) >= log |A|`.
+
+### 5.2 The reciprocal bound, current version. PASS.
+
+- **Proofs.** The subadditivity proof is re-derived. The second derivation uses `A_n <= H(y(e) | Z_n, U) <= H(y(e))`, and the
+  per-term form in Remark 1.2 is correct.
+- **Wording point.** The bound is the case `F = {e}` of the counting bound `H(y(e)) >= log |A| sup_F |F|/|FN|`, already on main in
+  Section 4 of the single-site artifact.
+  - That bound beats `1/|N|` over some nonamenable decoder memories.
+  - Example: `N = {e, s, t}` with `s, t` generating a free semigroup, and `F_L` the positive words of length at most `L`. Then
+    `F_L N = F_(L+1)`, so `|F_L| / |F_L N| -> 1/2 > 1/3`.
+  - A line in the claim's Attempts would keep `1/|N|` from being read as the best elementary constant.
+
+### 5.3 Lemma 3.1. PASS.
+
+- **No anchors.** A constant track `0` has no anchors. If `|D| >= 2`, an anchor needs the symbols `1` and `0` at once. If
+  `D = {e}`, take the constant different from `1`.
+- **Restriction.** With constant tracks `2..k`, `kappa(x) = (x_0, tau(x_1), c_2, ..., c_k)`, where `tau` sends constants to
+  constants. Substituting the constants gives a left inverse of `tau` that reads within `N`.
+
+### 5.4 The constructed left inverse, and the case `Omega = {e}`
+
+**Memory of the constructed left inverse.**
+- To decode `x_j(e) = nu(y_j on N_tau)`, the decoder of Step 4 checks, for each `n` in `N_tau` and `omega` in `Omega`, whether
+  `h = n omega^-1` is an anchor. That reads track `0` on `h D`.
+- If `h` is an anchor, it inverts `beta` on the block, which reads track `j` on `h Omega`.
+- So its memory is `N_tau Omega^-1 (Omega Omega^-1 ∪ Omega)`.
+
+**`Omega = {e}`.**
+- If the image of `tau` avoids one symbol at a site, take `Omega = {e}`. Then `D = {e}`, the anchors are the sites where `x_0 = 1`,
+  and the blocks are single sites.
+- The constructed left inverse then has memory `N_tau`, which is three points when `N_tau = {e, s, t}`.
+- Theorem 1 of the single-site artifact still skews the site law: its classes are singletons, and the last class is empty.
+
+**Consequences.**
+- **Where the claim fails.** `skewed-marginal-amplification-enlarges-decoder-memory` fails for every strict `tau` that has a
+  three-point left inverse and whose image avoids a symbol.
+- **What a proof would give.** A proof of the claim as stated would show that no such `tau` exists. Three-point domination would
+  also rule them out.
+- **Where the reduction works.** For those `tau`, the reduction proposed on `three-point-decoder-memory-injective-ca-are-surjective`
+  runs as stated.
+
+**`|Omega| >= 2` and `<s, t>` nonamenable: the constructed memory has more than three points.**
+- It contains `N_tau X` with `X = Omega^-1 Omega`, and `X` contains some `x != e`.
+- Suppose `N_tau X = N_tau`. Right multiplication gives `N_tau x = N_tau` for each `x` in `X`, so `N_tau` is a union of left cosets
+  of the finite group `H = <X>`.
+- Then `|H|` divides `3` and `|H| >= 2`, so `H = N_tau` and `<s, t>` is finite. That is a contradiction.
+- Other left inverses are not controlled. Lemma 3.1 is the only general lower bound.
+
+**Recommendation.** Restate the claim for strict `tau` whose missing patterns all need at least two sites, or record the exception.
