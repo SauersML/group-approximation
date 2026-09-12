@@ -1,7 +1,6 @@
 import GroupApproximation.CharClass.OddPProductEval
 import GroupApproximation.CharClass.OddPEvalMultilinear
 import GroupApproximation.CharClass.OddPTopPowerAWChain
-import GroupApproximation.CharClass.OddPDiagonalSrc
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -850,29 +849,6 @@ theorem awTup_tupMap {Y : TopCat.{0}} (f : X ⟶ Y) (r k : ℕ) (y : tupMod K X 
   simp only [LinearMap.comp_apply] at h1 h2 h3 h4
   rw [h1, h2, h3, h4, tupAllMap_awTupAll]
 
-variable (X)
-
-/-- **The degree-`0` value**: the constant tuple of a point goes to the constant tuple of that
-point, at twice the arity. -/
-theorem awTup_diagPt (r : ℕ) (x : stdSimplexTop 0 ⟶ X) :
-    awTup K X r 0 (Finsupp.single (diagPt X r x) (1 : K))
-      = Finsupp.single (diagPt X (2 * r) x) (1 : K) := by
-  apply tupIncl_injective K X 0
-  have h := LinearMap.congr_fun (tupIncl_comp_awTup K X r 0) (Finsupp.single (diagPt X r x) 1)
-  simp only [LinearMap.comp_apply] at h
-  rw [h, tupIncl_single, tupIncl_single, awTupAll_single]
-  have hcuts : awCuts (diagPt X r x).1 = {fun _ => 0} := by
-    show (Fintype.piFinset fun _ : Fin r => Finset.range (0 + 1)) = {fun _ => 0}
-    rw [zero_add, Finset.range_one]
-    exact Fintype.piFinset_singleton (fun _ => 0)
-  rw [hcuts, Finset.sum_singleton]
-  congr 1
-  funext s
-  simp only [awTupOf, tupInterleave]
-  split_ifs
-  · exact vtx_id_self _
-  · exact (TopPow.vtx_congr _ _ monotone_id (by rfl) fun j _ => by simp).trans (vtx_id_self _)
-
 end DegreeK
 
 #audit_axioms gCupFun_piSingle
@@ -884,7 +860,6 @@ end DegreeK
 #audit_axioms awTup_tupD
 #audit_axioms awTup_tupT
 #audit_axioms awTup_tupMap
-#audit_axioms awTup_diagPt
 
 end
 
