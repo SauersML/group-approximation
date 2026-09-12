@@ -62,8 +62,14 @@ is trivial.
   - so the Leavitt structure has to enter any proof here.
 - **Instance-specific tools (artifact Sections 4 and 4b).**
   - The level subgroups `SL_(3 n^k)(K)`.
-  - The doubling identity `g = g (x) I_n` and the compressor corner `g ~ g (+) I`, which give
-    `f(2r) = f(r)` on involution types for `n = 2`.
+  - The doubling identity `g = g (x) I_n`, and the corner copy `g ~ g (+) I` by absorption
+    whenever `g` has a trivial Jordan summand. For `n = 2` these give `f(2r) = f(r)` on
+    involution types `1 <= r < N/4` in `SL_N(F_2)`, `N = 3·2^(k+1)`. The endpoint `r = N/4`
+    is excluded, and an earlier version wrongly attributed the conjugacy to the nine-leaf
+    compressor (artifact Section 4, corrected).
+  - Per-finite-subgroup data cannot force the gate identity (lane `gk-rk-unipotent`), so a
+    proof must use an infinite subgroup. Artifact Section 4f gives an explicit compressor
+    `c x_12(a) c^-1 = x_12(s_0 a t_0)` and the amenable subgroup `<U_12(R), c>`, as a pointer.
   - `x_12(1)` as a product of `n^k` commuting conjugates of itself, for every `n`.
   - Conjugacy `x_12(e_S) ~ x_12(1)` for a sum `e_S` of `|S|` distinct level idempotents holds
     exactly when `|S| ≡ 1 mod (n-1)`, since `Im(x_12(e_S) - 1) ~= e_S R ~= R^|S|` and

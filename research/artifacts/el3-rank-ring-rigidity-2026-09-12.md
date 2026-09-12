@@ -102,23 +102,33 @@ Let `R = L_(F_2)(1,2)` and `m = 2^k`. The level-`k` matrix units `s_a t_b` with
 
 * **Doubling is an identity.** `s_a t_b = s_(a0) t_(b0) + s_(a1) t_(b1)`, so under the
   level-`(k+1)` identification every `g` in `H_k` equals `g (x) I_2` in `H_(k+1)`.
-* **The compressor gives a corner.** The compressor of the nine-leaf configuration acts on
-  coefficients by `a -> s_0 a t_0`, which sends `g` in `H_k` to `g (+) I_(3m)` in
-  `H_(k+1)`, the copy of `g` on the prefix-`0` coordinates. So `g (+) I` is conjugate to
-  `g` inside `R^x`.
+* **The corner copy.** `g (+) I = s_0 g t_0 + (1 - s_0 t_0)` lies in `H_(k+1)`, as the copy
+  of `g` on the prefix-`0` coordinates.
+  * *Absorption.* `R ~= F_2^m (x) R` compatibly with `A_k`, so as a module over `<g>`,
+    `R^3 ~= W (x) R` with `W = F_2^(3m)` the natural module. Left multiplication by `s_0`
+    splits `(R^3, g (+) I) ~= (R^3, g) (+) (R^3, 1)`.
+  * *When they are conjugate.* If `W` has a trivial Jordan summand, both modules are
+    `J_2 (x) R (+) J_1 (x) R`, using `R^j ~= R` for `j >= 1`. An isomorphism is an element of
+    `GL_3(R) = EL_3(R)` conjugating `g` to `g (+) I`.
+  * *When not (correction, 2026-09-12).* An earlier version attributed this conjugacy to the
+    nine-leaf compressor, which is wrong. At the maximal type `r = 3m/2` there is no trivial
+    summand, and `T = ker(g-1) / (ker(g-1) ∩ Im(g-1))` is `0` for `g` but `R` for `g (+) I`.
+    So they are not conjugate there.
 * **Involution classes.** In `SL_N(F_2)` the involutions `1 + N` with `N^2 = 0` and
   `rank N = r` form one conjugacy class. Put `f_(k+1)(r) = rk(sigma(g_r) - 1)` for such an
   element `g_r` of `H_(k+1)`. It is well defined because conjugation inside `H_(k+1)` is
   exact in `M`.
 
 **Proposition 2.** For every rank model `sigma` of `R^x` over any field of characteristic
-`2`, every `k` and every `1 <= r <= 3m/2`: `f_(k+1)(2r) = f_(k+1)(r)`.
+`2`, every `k` and every `1 <= r < 3m/2`: `f_(k+1)(2r) = f_(k+1)(r)`. In terms of
+`N = 6m`, the size of `H_(k+1)`, the range is `1 <= r < N/4`. The endpoint `r = 3m/2` is
+excluded (correction, 2026-09-12).
 
-*Proof.* Take `g` in `H_k` of type `r`.
+*Proof.* Take `g` in `H_k` of type `r < 3m/2`, so `g` has a trivial Jordan summand.
 * Its double `g (x) I_2` is `g` itself, and has type `2r` in `H_(k+1)`, so
   `f_(k+1)(2r) = rk(sigma(g) - 1)`.
-* Its compressed copy `g (+) I` has type `r` in `H_(k+1)` and is conjugate to `g` in
-  `R^x`, so `f_(k+1)(r) = rk(sigma(g) - 1)`.
+* Its corner copy `g (+) I` has type `r` in `H_(k+1)` and is conjugate to `g` in `R^x` by
+  absorption, so `f_(k+1)(r) = rk(sigma(g) - 1)`.
 QED
 
 **Calibration.**
@@ -463,6 +473,44 @@ the instance claim `leavitt-el3-rank-models-over-finite-fields-are-trivial`, wit
 `non-linear-sofic-via-leavitt-el3-rank-triviality`. The class statement of Section 5 implies it
 through `leavitt-el3-rank-triviality-from-ring-rank-rigidity`, but a linear sofic `EL_3` over
 some other simple ring would refute only the class statement.
+
+## 4f. Infinite subgroups: an explicit compressor of a root subgroup
+
+Lane `gk-rk-unipotent` shows that per-finite-subgroup data cannot force the gate identity.
+The free profile on every finite subgroup of `R^x` is invariant under restriction and
+conjugation, and has `rk(N_23 N_12) = 3/8`. So any proof must use `sigma` on an infinite
+subgroup. This section records the first infinite subgroup with explicit structure.
+
+**Lemma 13 (root-subgroup compressor).** Let `R = L_(F_2)(1,2)`. Define `c` in `GL_3(R)` by
+`c(e_1 r) = e_1 s_0 r` and `c(e_2 r) = e_2 s_0 r`, and let `c` map `e_3 R` isomorphically
+onto `e_1 s_1 R (+) e_2 s_1 R (+) e_3 R`, which is `~= R`. Then for every `a` in `R`
+
+```text
+c x_12(a) c^-1 = x_12(s_0 a t_0),      c x_21(a) c^-1 = x_21(s_0 a t_0),
+```
+
+and more generally `c (g (+) 1) c^-1 = (s_0 g t_0 + (1 - s_0 t_0)) (+) 1` for `g` in
+`GL_2(R)` acting on the first two coordinates.
+
+*Proof.* `c` is bijective, since its image is `e_1 s_0 R (+) e_2 s_0 R (+) e_1 s_1 R (+) e_2 s_1 R (+) e_3 R`.
+Check `x_12` on the three pieces of this decomposition:
+* on `e_1 s_0 R` both sides are the identity;
+* on `c(e_2 r) = e_2 s_0 r` both sides give `e_2 s_0 r + e_1 s_0 a r`;
+* on `c(e_3 R)` both sides are the identity, because `s_0 a t_0 s_1 = 0`.
+The `GL_2` statement is the same computation on the first two coordinates. QED
+
+**The subgroup.** `c U_12(R) c^-1 = U_12(s_0 R t_0)`, a proper subgroup of `U_12(R)`. So
+`H = <U_12(R), c>` is `B semidirect <c>`, where `B = union_k c^-k U_12(R) c^k` is an
+increasing union of elementary abelian `2`-groups. `H` is metabelian, hence amenable and sofic.
+
+**Where it stops.**
+* `H` contains no `U_23`, so it cannot see `N_23 N_12`.
+* Adding `x_23(1)` makes `c x_23(b) c^-1` a non-root element, and the subgroup
+  `<GL_2(R) (+) 1, c>` is nonamenable.
+* No rank-metric uniqueness theorem for amenable groups with torsion is available.
+  `amenable-domain-linear-sofic-models-are-unique` needs a domain, and `F_2[H]` has zero
+  divisors.
+* This is recorded as a pointer, not a route.
 
 ## 5. The claim
 
