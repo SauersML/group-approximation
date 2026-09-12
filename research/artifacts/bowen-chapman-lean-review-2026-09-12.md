@@ -624,7 +624,19 @@ root-wired. No defect.**
   `225b5cb9…`. The 6-module import closure did not change.
 * One root import is added. Nothing is deleted.
 
-**(x) The endpoint-side axiom pass, probe 0912-122205-6338. Partly verified.**
+**(x) The endpoint-side axiom pass. Verified from the probe record of the rerun
+C4, 0912-123010-42120.**
+* **The rerun.** Record `bc-infra.green.0912-123010-42120`, at base e8868748d,
+  carries `# PROBE GREEN` and ten `# axioms` lines. Each reads exactly
+  `[propext, Classical.choice, Quot.sound]`, for the ten declarations listed
+  below. The driver's md5 is still `642406c4…`, and it has ten `#print axioms`
+  lines, which matches the recorded count.
+* **Provenance correction.** The first pass (0912-122205-6338) was read by
+  `bc-infra`, which grepped the MSI build log and relayed the lines.
+  `bc-assembly` did not read the log. Only C4's record makes the closure
+  auditable from the scratchpad.
+
+The earlier notes on the first pass:
 * The driver `BcAxiomDriver.lean` (md5 `642406c4…`, a probe overlay, never
   landed) prints the axioms of ten declarations:
   * `symmetricDouble_fg_surjunctive_not_isSofic_of_normalization` and
@@ -744,6 +756,20 @@ I read `bcprobe.sh` in the campaign scratchpad and
   exits 6 otherwise. Calibration C2 (0912-120851-53807) left only a `.failed.`
   record. The template source is still to be read once it lands under
   `tools/bc-swarm/`.
+
+* **(4) Axiom closures are now recorded and gated (8e6af1f6b, verified).** The
+  commit modifies only the two scripts.
+  * The template collects every `depends on axioms` line printed from an overlay
+    file, joined across line breaks, as `AXIOMS <decl>: [...]`.
+  * The probe fails with rc=7 when any closure names an axiom other than
+    `propext`, `Classical.choice` or `Quot.sound`, or when the number of closures
+    differs from the overlay's `#print axioms` count.
+  * `bcprobe.sh` copies the closures into the record as `# axioms` lines. The
+    already-green shortcut refuses an axiom driver whose record count differs.
+  * Calibration C3 (0912-122954-40955) used a plant with one extra `axiom`. It
+    left only `bc-infra.failed.0912-122954-40955`, with `# PROBE FAILED rc=7
+    (axiom outside [propext, Classical.choice, Quot.sound]:
+    bcCalibrationExtraAxiom)` and both closure lines, and no `.green.` record.
 
 The original findings:
 
