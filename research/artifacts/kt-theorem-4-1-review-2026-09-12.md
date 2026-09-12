@@ -751,6 +751,49 @@ So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domina
   `β.objEquiv (π i) = π (α.objEquiv i)`, i.e. `b_{π i}` lands at `π(ā i)`. The
   counting endgame selects `good` inside that set, as the paper's `E_n` does.
 
+## R17. `774e93214` (kt41-bisection-rep-b): representing-patch bound. (C) still open
+
+- **The finite bounds are sound.**
+  - `sourceDefect_representingArrow_le`.
+  - `card_hammingDisagreement_representingPatch_le_leakage`:
+    `#(patch ≠ v) ≤ #uncovered + 2·Σ leakage + 2·Σ_{bad} |X|`.
+  - `mul_sum_card_compl_overlapGood_le`: for blocks of at most `K·scale` points,
+    `(h/2)·(bad mass) ≤ K·(total defects)`.
+- **(C) is not resolved.** `D` is still the global-scale `PartialClusterSystem`.
+  - The new mass bound needs every block to have at most `K·scale` points. Under one
+    global scale that fails for approximations whose component sizes spread over many
+    dyadic classes (F1's example).
+  - Per-band systems lose the candidate arrows that join components of comparable size
+    on opposite sides of a band boundary.
+  - The per-object restatement stands as the fix. `ced0eb674` supplies its per-block
+    lower bound.
+- **The Cairn note** says Hamming estimates must patch `representingArrows v`, not the
+  `Quotient.out` representatives. That is not forced.
+  - Reseparation (R3, R16) bounds the disagreement between any two candidates in one
+    cluster by their actual defects over the Cheeger constant.
+  - Both are candidates at threshold `h_n`, so this is `≤ h_n·|X|/(36·cheeger)` per
+    block plus the edit budget, and it sums to `o(|Y|)`.
+  - Patching the representing arrows is still the cleaner instantiation.
+
+## R18. Landings 13:49–13:51. No defect
+
+- **`15ab7a622` `CentralizerNormalizationUniformSelection`** (kt41-g1-uniform).
+  - `goodComponent` fixes the predicate of `exists_goodComponents`, with negligible
+    bad mass, diverging sizes and uniform raw error bounds.
+  - `card_completedCollision_le`: a completed collision is an ambient agreement or an
+    exit from the component. So collisions of two distinct elements are uniformly a
+    vanishing fraction of good components.
+- **`00c13c452` `CountingEndgameSelection`** (kt41-counting-endgame).
+  - `selected F a sel`: the objects where the target condition, the orbit count and the
+    isotropy index hold. This is the paper's `E_n`.
+  - `exists_bisection_lift_selected` has no per-object hypothesis. The remaining work
+    only bounds the weight of the complement, as in the paper.
+  - It is stated over abstract groupoids, so it is not tied to a cluster-system frame.
+- **`e15257dda`, blueprint.** It names kt41-seq-decomp's `SequentialComponentFamilyObjects`
+  as the `ComponentFamily` producer. That settles R13's two-route note. The pruned-core
+  and good-component routes stay on main, unused by this producer. The packaging
+  `componentFamily` and the `BlockEmbedding` companion are still open.
+
 ## Named statements in the chain without a producer
 
 - `seqNormalizes_distinguished_of_kazhdan`: pinned name only; its file is absent.
