@@ -24,6 +24,7 @@ not by rereading the author's argument. Nothing was run.
 | `16cc6319c` (gk-free-wild) | `mixed-bigon-difference-graphs-present-vh-square-complexes`, `cubulated-hyperbolic-table-cores-carry-no-strict-pair`, Lemma D | PASS (Section 16) |
 | `ad664ec25`, `9baaf4657` (gk-n-defect) | `table-hosts-have-a-cell-count-betti-lower-bound`, `two-cell-window-differences-die-in-host-abelianization`, Corollary 3.2 free factor | PASS (Section 17) |
 | `b7fef0670` (gk-n-defect) | `garden-of-eden-windows-fold-modulo-every-hinge-closure`, `transposed-hinges-are-conjugated-commutators` | PASS (Section 20) |
+| `746491973` (gk-n-thompson-v) | routes `thompson-v-direct-finiteness-failure-from-swap-fullness`, `thompson-v-nonsurjunctive-from-direct-finiteness-failure`; Propositions 2.1–2.3, Lemma 3.1, Corollary 3.2, Proposition 9.1 | PASS (Section 21) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -617,8 +618,16 @@ Sections 7.3 and 7.5 of that artifact are heuristic prose with no claim attached
 - `L` has rank at most `b_1(Gamma_E)`, so `rank H^ab >= |P| - [(|S|-1)(|M|-1) + 1]`.
   - The algebra checks: `(|S|-1)(|M|-1) + 1 = |S||M| - |S| - |M| + 2`.
 - *Scope note.* In the 2 x 2 sanity check with a discrete table the difference graph is
-  disconnected, so the displayed connected bound does not literally apply. The component-corrected
-  bound does, and gives rank 2. This is not a claim-level issue.
+  disconnected, so the displayed connected bound does not literally apply. This is not a
+  claim-level issue.
+  - The author corrected the disconnected remark at `a2a813c847`, and the corrected counts
+    re-derive.
+  - With `c` components, `b_1(Gamma_E) = |S||M| - |P| - |S| + c`, so
+    `rank Hol_M(E)^ab >= |P| - (|S|-1)(|M|-1) - c`.
+  - Since `U_E = Hol_M(E) * F_(c-1)`, the bound `b_1(U_E) >= |P| - (|S|-1)(|M|-1) - 1` holds
+    verbatim.
+  - In the discrete 2 x 2 case (`c = 2`) this gives `b_1(U_E) >= 2` and `b_1(Hol) >= 1`, which
+    matches `Z * Z` and `Z`. The earlier text, "`|S| - c` in place of `|S| - 1`", overstated it.
 
 **Proposition 3.1.**
 - Zero anchor charge on every cycle gives `psi(L) = 0`, so `psi` descends onto `Z`.
@@ -727,3 +736,36 @@ realization over `K` is bijective, and all hinge words of some minimal `P` die i
 `[u c u^-1, l] = d`.
 
 Section 3 of that artifact is a design target, recorded as prose.
+
+## 21. Thompson V linear targets, first batch (`746491973`, gk-n-thompson-v): PASS
+
+**Proposition 2.1.**
+- `e^2 = 4(1 + 2w + w^2) = 4(2 + 2w) = 8(1+w) = 2(1+w)` mod 3.
+- `e_h^2 = 1 + h^2 + h^4 + 2(h + h^2 + h^3) = 1 + h + h^2` mod 2.
+
+**Proposition 2.2.** `(1-e)a = 0`, so `ad = 1` would force `1 - e = 0`.
+
+**Proposition 2.3.**
+- `w e = 2(w + 1) = e`.
+- Conversely `e a = 2(a + wa) = 4a = a`.
+- A unit `a` with `wa = a` forces `w = 1`.
+
+**No single permutation term.** `d(1+w) = g^-1`, and multiplying by `1 - w` on the right gives
+`g^-1(1-w) = d(1 - w^2) = 0`.
+
+**Lemma 3.1 and Corollary 3.2.**
+- On `M = F_3[Omega]`, with `Omega` the one-sided sequences, `s_i delta_x = delta_(ix)` and
+  `t_i delta_(jx) = delta_(ij) delta_x` satisfy the Leavitt relations.
+- Elements of `V` act by permutation matrices, so every element of the image has equal row and
+  column sums.
+- `s0 + s1` has column sums `2` and row sums `1`. `2(t0 + t1)` has column sums `2` and row sums
+  `2 + 2 = 1`.
+- Unequal actions on `M` mean unequal elements of `R`. Faithfulness is not needed.
+
+**Proposition 9.1.**
+- `h e_h = e_h` since `h^3 = 1`, and `e_h a = 3a = a` over `F_2`.
+- The trace-zero idempotent `h + h^2 = 1 - e_h` checks.
+
+**Routes.** `thompson-v-direct-finiteness-failure-from-swap-fullness` uses Proposition 2.2 with the
+involution `w` of `V`, and `thompson-v-nonsurjunctive-from-direct-finiteness-failure` uses the
+verified stable-finiteness criterion. Both are valid, and every target claim stays OPEN.

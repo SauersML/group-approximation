@@ -8,6 +8,7 @@ requires:
   - thompson-v-ternary-swap-idempotent-is-full
 artifacts:
   - research/artifacts/thompson-v-linear-counterexample-targets-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Proposition 2.2 of the artifact, at `p = 3`. From `c e b = 1` with `e = 2(1+w) != 1`, put
