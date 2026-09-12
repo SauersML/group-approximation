@@ -39,3 +39,13 @@ converse is subgroup heredity.
 
 **Consequences.** `kun-thom-group-doubles-are-surjunctive`. General
 amalgams `A *_C B` with `A != B` are not covered.
+
+**Lean.** Formalized in `GroupApproximation/Dynamics/DoubleFinitarySite.lean`
+(landed 53d1db321): `Surjunctivity.isSurjunctive_symmetricDouble` and
+`Surjunctivity.isSurjunctive_symmetricDouble_iff`, for every subgroup of every
+group, with no further hypotheses. The free-kernel model and its isomorphism
+with the double are `DoubleKernel.Model` and `DoubleKernel.doubleModelEquiv` in
+`Dynamics/DoubleKernel.lean`. The finitary site is
+`DoubleKernel.doubleFinitarySite`. Its support `L(w)` is the set of letters of
+one finite generating set for `w`, together with `x_0`, rather than the
+letters of the reduced word; the proof needs only that the set is finite.
