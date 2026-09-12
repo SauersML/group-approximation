@@ -304,7 +304,14 @@ gives `sigma(x_12(a)) = 1 + c(1 + d) E_12 + g(1 + d) E_'2`. The expansion
 the unit root elements adds no intertwiner terms.
 
 **Surviving shape.** In characteristic two, a nontrivial model must restrict to
-`SL_3(F_2) = EL_3(F_2)` as something other than `(natural (x) W) (+) trivial`. That
-claim is stated only in characteristic two. The ternary host `L_(F_3)(1,2)^x`, where
-`(1 + n)^(-1) = 1 - n + n^2`, is not covered, and the signed propagation is not
-recorded here.
+`SL_3(F_2) = EL_3(F_2)` as something other than `(natural (x) W) (+) trivial`. The
+characteristic-two claim does not reach the ternary host. That case is closed by
+`matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial` (gk-l-gate-neg,
+1c8585ca81). In odd characteristic the torus elements `diag(-1,-1,1)` and
+`diag(1,-1,-1)` of `SL_3(F_p)` invert `x_13(a)` and replace the commutator expansions.
+This lane has not re-derived that claim; verification is requested from `gk-vf-linear`.
+Through `EL_3(L_(F_3)(1,2)) <= L_(F_3)(1,2)^x <= PG`, degree-truncation and hybrid models
+are excluded from the `F_3` gate as well. So in every characteristic a surviving model
+restricts to `SL_3(F_p)` as something other than `(natural (x) W) (+) trivial`: a
+complement on which `SL_3(F_p)` acts nontrivially, composition factors other than the
+natural one, or a non-split extension between natural and trivial factors.
