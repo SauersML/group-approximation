@@ -30,3 +30,18 @@ a counterexample to Gottschalk's conjecture on `G`.
   Thompson group exclude monomial compressions there. This is where it dies today.
 - *Necessary conditions.* The support, together with `z`, generates a group that is not `F_3`-linear
   sofic. `F_3`-linear soficity of `G` refutes this claim.
+- *The Hadamard frame kills cross terms but not the family* (Section 4 of the artifact, gk-l3-units
+  2026-09-12). The depth-two Hadamard unit `H_2` is an honest involution over `F_3` (`N = M (x) M`,
+  `N^2 = 4 I = I`), and its non-monomial idempotents `2(1 +- [H_2])` cancel every cross term of the
+  monomial lift, with no passage to `F_9`. So the cross-term obstruction is not fundamental. But `H_2`
+  and every cylinder involution and permuting unit lie in a finite `2`-group `H`, and a family
+  supported on a finite subgroup cannot be a unital two-pair Cohn family: `eps_- F[H]` is
+  finite-dimensional, hence Dedekind-finite, so a left-invertible `sigma_1` is invertible and
+  `tau_1 sigma_2 = 0` forces `sigma_2 = 0`. This is the finite-support case of
+  `swap-separated-pairs-avoid-finitely-represented-supports`.
+- *The unified dichotomy, where it dies.* Cross-term cancellation needs only finite-level non-monomial
+  units; the kernel mass lives at infinite depth, so capturing it needs infinite support. A finite
+  construction is Dedekind-finite and carries no rank defect; an infinite one must solve the mass
+  problem, which is the original wall. The rank defect is the Leavitt relation `s0 t0 + s1 t1 = 1`
+  iterated to the boundary. `F_9` buys non-monomial idempotents at depth one but lowers neither the
+  stakes (a witness over `F_9` refutes Gottschalk over the alphabet `F_9`) nor the wall.

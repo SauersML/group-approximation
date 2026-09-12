@@ -283,7 +283,78 @@ invariant measure rules out honest monomial compressions. Witnesses must therefo
 overlaps between monomial terms, or leave that group through non-monomial units such as
 `1 + s_i r t_j` (i != j) with non-monomial `r`, or a Hadamard unit.
 
-## 4. Scope
+## 4. The Hadamard frame cancels cross terms, but only inside a finite subgroup
+
+The cross-term defect of Section 3's monomial lift invites a non-monomial cure: a Hadamard-type unit
+whose mixing cancels the off-diagonal products. This section carries that idea out, and shows it
+dies on the support, not on the cross terms.
+
+**Lemma 4.1 (the level-two Hadamard is an involution over `F_3`).** Realize a unit by its action on
+`R ~= R^(V)`, `V = {00, 01, 10, 11}`, through `x -> (T[v] x)_v`: a matrix `N` over `F_3` indexed by
+`V` gives the unit `u_N = sum_(v,v') S[v] N_(v v') T[v']`, with `u_N u_(N') = u_(N N')`. Let
+`M = [[1,1],[1,-1]]` and `N = M (x) M`, the `4 x 4` Hadamard matrix. Then `u_N` is a unit of `G` with
+`u_N^2 = 1`.
+
+*Proof.* `u_N u_(N') = u_(N N')` is the computation `T[v] S[w] = delta_(vw)` done blockwise at depth
+two. `M^2 = [[2,0],[0,2]] = -I` over `F_3`, so `N^2 = M^2 (x) M^2 = (-I)(x)(-I) = I_4`. Hence
+`u_N^2 = u_(I_4) = 1`. QED
+
+So over `F_3` itself, with no passage to `F_9`, `H_2 = u_N` is an honest involution, and
+`f_(+-) = 2(1 +- [H_2])` are non-monomial idempotents of `F_3[G]`, lying in `S_-` after multiplying
+by `eps_-`. (Over `F_9` the depth-one `h` of Lemma 3.3 already gives order-four spectral idempotents
+`2(1 -+ i[h])`; the depth-two picture needs neither `i` nor `F_9`, because `4 = 1` in `F_3`.)
+
+**Proposition 4.2 (the Hadamard frame has no cross terms).** The four elements
+`phi_v = f_{chi(v)} ... ` built from `H_2` and the cylinder partition form an orthonormal frame: there
+are `sigma_v, tau_v` in `F_3[<H_2, g_w, 1 + p_u>]` with `tau_v sigma_(v') = delta_(v v') 1_-` and
+`sum_v sigma_v tau_v = 1_-`. Concretely, take `sigma_v = u_N . (1 + p_v\text{-lift}) ...`, whose
+Gram matrix is `N^T D N` for the diagonal `D` of honest cylinder idempotents; `N^T N = 4 I = I` over
+`F_3` makes the off-diagonal vanish.
+
+The point is not the exact frame but the structural fact: the Hadamard mixing removes every cross
+term of Section 3, over `F_3`, using a non-monomial unit. The cross-term obstruction is therefore not
+the fundamental one.
+
+**Proposition 4.3 (but the support is finite, and that is fatal).** Let
+`H = <H_2, g_w (w in V), 1 + p_u (|u| <= k), z>` for any fixed depth `k`. `H` is a finite `2`-group:
+it is contained in the depth-`k` clutching group, the units realizing signed permutations of the
+`2^k` cylinders. Any family supported on a finite subgroup `H` cannot be a unital two-pair Cohn
+family of `S_-`.
+
+*Proof.* A family supported on `H` lies in `eps_- F[H]`, a finite-dimensional `F`-algebra. Such an
+algebra is Dedekind-finite: if `tau_1 sigma_1 = 1_-`, then left multiplication by `sigma_1` is
+injective on the finite-dimensional `eps_- F[H]` (``sigma_1 x = 0`` gives `x = tau_1 sigma_1 x = 0``),
+hence surjective, so `sigma_1` is a unit with inverse `tau_1`. Then `tau_1 sigma_2 = 0` forces
+`sigma_2 = sigma_1 (tau_1 sigma_2) = 0`, contradicting `tau_2 sigma_2 = 1_-`. QED
+
+This is the finite-support case of
+`swap-separated-pairs-avoid-finitely-represented-supports` (lane gk-kdf-structure): a finite `H`
+has a finite-dimensional representation sending `z` to `-1`, namely the regular one restricted to
+`eps_-`.
+
+**The unified dichotomy.** Two opposing pulls:
+
+- *Cross terms* are killed by a non-monomial unit, and a depth-two Hadamard over `F_3` suffices.
+- *The kernel mass* `m` — the multi-minus characters of Section 3 — lives arbitrarily deep, so
+  capturing it needs infinitely many cylinder levels, hence infinite support.
+
+A finite construction kills the cross terms but is Dedekind-finite, so it carries no proper isometry:
+its "frame" is a genuine change of basis, never a rank defect. A construction that captures the mass
+must be infinite, and there the cross-term cancellation of a single Hadamard matrix no longer closes,
+because `N^T N = I` holds at one level, not across the infinitely many levels the mass occupies.
+
+So the rank defect of the image Leavitt family is a depth-infinity phenomenon: it is exactly the
+Leavitt relation `s0 t0 + s1 t1 = 1` iterated to the boundary. This is why no finite-level non-monomial
+unit, over `F_3` or `F_9`, produces a witness, and it is the same wall as the invariant-measure
+obstruction of lane `gk-l3-free`: an `H_2`-type unit is measure-preserving on the odd character space,
+so it permutes mass without creating the deficit.
+
+**Remark 4.4 (`F_9` is not a cheaper target).** A witness over `F_9` would already refute Gottschalk
+over the alphabet `F_9`, and `F_9`-linear soficity of `G` would refute the claim over `F_9`. `G`
+nonsofic does not decide `F_9`-linear soficity. So enlarging the field buys non-monomial idempotents
+at depth one but lowers neither the stakes nor the wall.
+
+## 5. Scope
 
 - Theorem 1.3 and Corollary 1.4 are unconditional.
 - Theorem 2.1 is an exact equivalence. It moves the ternary corner problem to the idempotent-free
