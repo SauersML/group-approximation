@@ -157,3 +157,133 @@ then `N` is the augmentation rank. In particular `N(eps_-) = 0`.
 * **Consequence:** the gap is abstract, and its minimum is attained in both scopes.
 * **Calibration:** Lemma 1.4 is the only place where "R has no rank function" enters. Over a coefficient ring
   that has a rank function, the honest models of `EL_3` have `D = 0`.
+
+## 3. Descent
+
+**Setting.**
+* `N` lies in `A_S`.
+* `A_1, ..., A_k, B` are pairwise disjoint nonempty proper cylinders with proper union.
+* `C = X \ (A_1 ∪ ... ∪ A_k)`. It contains `B`, and `C \ B` is nonempty.
+* `P_k = D_(A_1) ... D_(A_k)`, with commuting factors because the subgroups `iota_(A_i)(G)` commute.
+* `f(k) = N(P_k)` with `f(0) = 1`, and `h_k = N(Q_B P_k)`.
+* `R_s`, for `s` in `{±}^k`, are the joint sign idempotents of `[tau_(A_1)], ..., [tau_(A_k)]`, all commuting
+  with `P_k`. Put `pi(s) = prod_i s_i` and `R_± = sum over pi(s) = ±1 of R_s`.
+
+By Fact 1.5, all these values depend only on `k`.
+
+**Theorem 3.1 (S).**
+1. `f(k+1) <= (2/3) f(k)`, hence `f(k) <= (2/3)^k`. This holds for every Sylvester rank function on `F_3[G]`.
+2. `f(k+1) >= N(D_B Q_B P_k) >= c_3 h_k`.
+3. `N(Q_B R_s P_k) = N(R_s P_k)/2` whenever `pi(s) = +1`. So `h_k >= N(R_+ P_k)/2`.
+4. If `h_k = 0`, then `f(k+1) = 0`. So `f(k+1) > 0` iff `h_k > 0`.
+
+*Proof.*
+1. `f(k+1) = N(D_B P_k)`. `N^B_12 = F_3[iota_B](N_12)` commutes with `P_k` and has cube `0`, so Lemma 1.1.4
+   gives `N(D_B P_k) <= N(N^B_12 P_k) <= (2/3) N(P_k)`.
+2. **First inequality.** `D_B Q_B P_k = Q_B D_B P_k`, so it is submultiplicativity.
+   **Second inequality.** It is trivial if `h_k = 0`, so suppose `h_k > 0`.
+   * `E = Q_B P_k` commutes with `F_3[iota_B(G)]`: `Q_B` because `tau_B = iota_B(z)` is central in
+     `iota_B(G)`, and `P_k` because the cylinders are disjoint.
+   * So `N' = N^(iota_B)_E` is a Sylvester rank function (Lemma 1.2).
+   * It is anti-central, because `F_3[iota_B](eps_-) = Q_B` and `N(Q_B E) = N(E)`.
+   * By Theorem 2.1.1, `N'(D) = N(D_B Q_B P_k)/h_k >= c_3`.
+3. **Sign on the sector.** Put `Y = R_s P_k eps_-`. Then
+   `[tau_C] Y = [z] prod_i [tau_(A_i)] Y = -pi(s) Y = -Y`. So `[tau_(C\B)] Y = [tau_C][tau_B] Y = -[tau_B] Y`,
+   and `Q_(C\B) Y = (1 - Q_B) Y`.
+   **Swap.** Take `u` in `V` that fixes every `A_i` pointwise and swaps `B` with `C \ B`. It commutes with
+   `P_k`, `R_s` and `eps_-`, and `u Q_B u^-1 = Q_(C\B)`. By Lemma 1.1.1 and 1.1.5:
+   `N(Q_B R_s P_k) = N(Q_(C\B) R_s P_k) = N((1 - Q_B) Y) = N((1 - Q_B) R_s P_k)`.
+   **Halves.** Lemma 1.1.3 splits `N(R_s P_k)` into these two equal halves. Summing over sectors, again by
+   Lemma 1.1.3, gives `h_k >= N(R_+ P_k)/2`.
+4. Suppose `h_k = 0` and `f(k) > 0`.
+   * By Fact 1.5, `h_k = 0` for every configuration of this shape, in particular for `(A_1, ..., A_k, Bw)`
+     with `w` any nonempty proper prefix.
+   * `N'' = N^(iota_B)_(P_k)` is a Sylvester rank function.
+   * `1 - [tau_w] = 2 Q_w` and `F_3[iota_B](Q_w) = Q_(Bw)`, so `N''(1 - [tau_w]) = N(Q_(Bw) P_k)/f(k) = 0`.
+   * So `tau_w` lies in `K_(N'')`, which is normal and not contained in `<z>`. Hence `K_(N'') = G`, and `N''` is
+     the augmentation rank (Lemma 1.3).
+   * Then `f(k+1) = N(D_(Bw') P_k) = f(k) N''(D_(w')) = 0`, because the augmentation of every `N_ab` is `0`.
+   QED
+
+**Corollary 3.2.** Suppose some `beta > 0` gives `N(R_+ P_k) >= beta f(k)` for every `k` and every `N` in
+`A_S`. Then `(beta c_3/2) f(k) <= f(k+1) <= (2/3) f(k)`.
+
+**Remark 3.3 (what is lost relative to characteristic two).**
+* **The pullback is only half anti-central.** The pullback `N o F_3[iota_B]` of an anti-central `N` is not
+  anti-central, since `iota_B(z) = tau_B`. Only its `Q_B`-part is. The `(1 - Q_B)`-part is a model of
+  `PG = G/<z>` through `iota_B`, and no gap is known for it. Characteristic two has no such split.
+* **Odd sectors.** On sectors with `pi(s) = -1`, `[tau_C]` acts by `+1`, so the complement's unit group acts
+  through `PG` and the half split fails. There `h_k` can be smaller than `f(k)/2`.
+* **Globality does not port.** In characteristic two it (Lemma 3.0 there) makes the complement act without
+  fixed vectors. A characteristic-three version would need `iota_B(G)` finitely generated, with `G` generated
+  by its compressors, as in the matricial `rank-ultraproduct-compressors-conserve-fixed-right-ideals`. It
+  would still leave the `pi(s) = -1` sectors.
+* **Near-minimal multiplicativity does not port.** Proposition 4.1 of the characteristic-two artifact needs
+  the unrestricted lower bound `f(k+1) >= c_* f(k)`, and also kernel corners, which are annihilator ideals.
+  Neither is available.
+
+## 4. Scope of each characteristic-two step
+
+"Yes" means the step holds as stated in that scope; "via" names the replacement.
+
+| characteristic-two step | abstract, char 2 | matricial, char 3 | abstract, char 3 |
+|---|---|---|---|
+| Fact 1.1(a),(b): annihilators, modular lattice | no (needs a regular ring) | yes | no, and not needed |
+| Fact 1.1(c): square zero bounds corner rank by 1/2 | yes, via Frobenius (Lemma 1.1.4) | yes, bound 2/3 | yes, bound 2/3 |
+| Fact 1.1(d): images of annihilator ideals | no | yes | no |
+| Lemma 2.1: fixed-point-free quotient | no (range idempotent) | yes, but unnecessary | via compression along `eps_-` |
+| Lemma 2.2: displacement through annihilators | no | yes, needs finite generation | via `N(eps_-) = 1` |
+| Lemma 2.3: compactness | yes | yes | yes, minimum attained |
+| Theorem 2.4: gap | see below | Theorem 2.1 | Theorem 2.1 |
+| Lemma 3.0: globality | no | not established for `G_3` | no |
+| Theorem 3.1: upper bound | yes, via Lemma 1.1.4 | yes, 2/3 | yes, 2/3 |
+| Theorem 3.1: lower bound | no (range corner) | sector-limited only | sector-limited, via Lemma 1.2 |
+| Proposition 4.1: near-minimal multiplicativity | no (kernel corners) | no | no |
+
+**Theorem 2.4 in abstract characteristic two.** Its lower bound holds over functions with full augmentation
+row rank, `N([1 - g_1, ..., 1 - g_4]) = 1`. The proof is compactness plus
+`leavitt-rank-functions-killing-two-root-defect-are-augmentation`: the augmentation rank gives that row rank
+`0`. But passing from an arbitrary nontrivial function to one of full row rank needs the fixed ideal, and that
+step does not port.
+
+## 5. Where it stops, and the route to the No branch
+
+**Minimizers exist.** `c_3` is attained in both scopes. So closing the No branch along this line needs one
+operation that takes a minimizer to an anti-central function of strictly smaller defect, or any
+contradiction at a minimizer.
+
+**The literal port does not close.** Transcribing `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`
+to characteristic three gives nothing, because its payoff runs through near-minimal multiplicativity
+(Remark 3.3). What does port is Theorem 3.1.2 at `k = 1`: `N(D_B Q_B D_A) >= c_3 N(Q_B D_A)`.
+* **On main.** That transcription is `ternary-disjoint-cylinder-defects-strictly-submultiplicative` (lane
+  `w5-c3-submult`). Its payoff paragraph assumes the near-minimal port, which Remark 3.3 shows is unavailable
+  in both scopes.
+* **Its firewall.** `anti-central-sofic-data-cannot-force-defect-submultiplicativity` gives regular profiles
+  with `rk(N_12) = 2/3`, meeting the bound of Lemma 1.1.4, `rk(D_A) = 5/9`, and exactly multiplicative disjoint
+  defects. Check item 2 below against it first.
+
+**Target** (`ternary-anti-central-disjoint-defects-have-a-strict-deficit`, OPEN). There is `theta < 1` such
+that for every `N` in `A_S`, and every pair of disjoint nonempty proper cylinders `A`, `B` with proper union:
+1. `N(D_A D_B) > 0`;
+2. the compressed anti-central function `N'(X) = N(F_3[iota_B](X) Q_B D_A)/N(Q_B D_A)` has
+   `N'(D) <= theta N(D)`.
+
+**Route** (`ternary-rank-kill-via-anti-central-defect-deficit`).
+1. Suppose `A_S` is nonempty, and take a minimizer `N_0` with `N_0(D) = c_3`.
+2. Item 1 and Theorem 3.1.4 make `N_0(Q_B D_A) > 0`.
+3. Theorem 3.1.2 gives `N_0'(D) >= c_3 = N_0(D)`, while item 2 gives `N_0'(D) <= theta N_0(D) < N_0(D)`.
+4. So `A_S` is empty.
+5. Any `N` with `N(1 - [z]) > 0` has `N(eps_-) = N(1 - [z]) > 0`, and would compress into `A_S` by
+   Theorem 2.1.2. So every Sylvester rank function on `F_3[G]` kills `1 - [z]`. That is
+   `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`.
+
+**What the target asks.**
+* **Independent factors.** In an independent tensor configuration the compressed function is a copy of the
+  factor at `B`, so `theta = 1`. The target asks that compressing along a disjoint defect strictly lowers the
+  defect, which independent factors never do.
+* **So a proof must use the Leavitt relations.** The characteristic-two firewalls on halving data and on
+  finite-subgroup data are the first things to re-check in characteristic three.
+* **Positivity.** Item 1 is open in both scopes. By Theorem 3.1.4 its failure means that the complement of `A`
+  acts centrally on the range of `D_A`: a disjoint two-root identity for the model.
+* **Calibration.** Over coefficient rings that have rank functions, honest models have all defects `0`, so the
+  question is vacuous there.

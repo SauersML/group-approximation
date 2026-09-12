@@ -55,3 +55,14 @@ gives `b = -b`, so `b = 0`. The fixed-point-free quotient step is automatic.
   - The char-2 commutant constraint (`near-minimal-defects-are-rank-independent-of-cylinder-commutants`) should
     port and would pin products with everything commuting with `sigma(iota_A(G))`.
   - `z` lies in every such commutant, so the anti-central sign cannot enter a deficit as a factor.
+- **Payoff check (w5-c3-descent; `research/artifacts/char-three-defect-gap-and-descent-2026-09-12.md`).**
+  - **The gap ports, abstractly.** `ternary-anti-central-two-root-defect-has-a-uniform-gap`: the minimum `c_3`
+    is attained in both scopes.
+  - **Near-minimal multiplicativity does not port**, in either scope (artifact Remark 3.3 and Section 4).
+    * Its lower bound `f(k+1) >= c_* f(k)` needs range corners, globality and kernel corners.
+    * The ternary lower bound that does hold is sector-limited: `f(k+1) >= c_3 N(Q_B P_k)`
+      (`ternary-cylinder-defect-products-descend-in-sign-sectors`).
+    * So the Payoff paragraph above has no available port, and this claim alone does not close.
+  - **The form that closes** is `ternary-anti-central-disjoint-defects-have-a-strict-deficit`: disjoint products
+    are nonzero, and compressing along `Q_B D_A` lowers the defect by `theta < 1`. It has a landed route to
+    `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`.

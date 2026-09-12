@@ -74,3 +74,16 @@ evidence here until it has been scope-checked for abstract rank algebras in char
     locally finite subgroup plus single conjugations, fails. On the cylinder frames these models have
     `rk(D_A) = 5/9` and exactly multiplicative disjoint defects, so the descent route through
     `ternary-disjoint-cylinder-defects-strictly-submultiplicative` must also use a nonsofic configuration.
+- **Characteristic-three descent machinery, scoped for abstract rank functions (w5-c3-descent;
+  `research/artifacts/char-three-defect-gap-and-descent-2026-09-12.md`).**
+  - **Gap, established** (`ternary-anti-central-two-root-defect-has-a-uniform-gap`). Over anti-central Sylvester
+    rank functions, `min N(D)` is attained and lies in `(0, 2/3]`. No fixed-point-free quotient or finite
+    generation is needed.
+  - **Descent, established** (`ternary-cylinder-defect-products-descend-in-sign-sectors`).
+    * `f(k+1) <= (2/3) f(k)`.
+    * `f(k+1) >= c_3 N(Q_B P_k)`, and `N(Q_B P_k)` is at least half of the even-sector part.
+    * The characteristic-two lower bound and near-minimal multiplicativity do not port in either scope (artifact
+      Section 4).
+  - **Route.** `ternary-rank-kill-via-anti-central-defect-deficit` derives this claim from the open
+    `ternary-anti-central-disjoint-defects-have-a-strict-deficit`: disjoint defect products are nonzero, and
+    compressing along `Q_B D_A` lowers the defect by a fixed factor. An attained minimizer contradicts it.
