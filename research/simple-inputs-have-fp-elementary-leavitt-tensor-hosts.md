@@ -76,3 +76,25 @@ equivalent to `boone-higman-conjecture`
    - *Still missing:* the Steinberg kernel condition for such `B ⊗ L`, and the
      universality of the host family. No single host or fixed family can serve,
      by `no-fp-simple-algebra-hosts-every-decidable-algebra`.
+7. **Completion hosts (lane `bh-steinberg-hosts`).** Start from a finitely
+   presented `B` with `S <= B^x`, for instance `B = F_2[P]` for a Higman overgroup
+   `P`, and complete along a recursion `psi : B -> M_d(B)`.
+   - *Existence and finite presentation are free.*
+     `nekrashevych-completions-contain-their-coefficients`: `O_psi` is finitely
+     presented, contains `B` whenever `psi` is injective, and is strongly graded
+     over `lim M_(d^n)(B)`. No residual finiteness is forced.
+   - *Simplicity is the wall.* By `saturated-invariant-ideals-block-completion-simplicity`,
+     every saturated invariant ideal survives. A recursion natural in `B` can
+     never give a simple completion.
+   - *Monomial recursions are dead for simple inputs.*
+     `simple-monomial-completions-kill-the-tree-action-kernel`: in a simple
+     completion along a group wreath recursion, every subgroup without finite
+     quotients maps to `1`.
+   - *Flat group-algebra hosts are dead for regular coherence.*
+     `coherent-flat-group-algebra-hosts-force-fp-infinity`: a left coherent host
+     containing `F_2[S]` flatly as a summand forces `FP_infinity` subgroups, and
+     `Z wr Z` is not `FP_2`. So the unit-only form of this premise is forced.
+   - *What is left.* A non-monomial injective recursion on a finitely presented
+     `B ∋ S` whose saturated invariant closure of `S - 1` reaches `1`, together
+     with the kernel condition for `O_psi ⊗ L`. No candidate is known for any
+     infinite simple `S`. See `research/artifacts/bh-steinberg-hosts-2026-09-12.md`.

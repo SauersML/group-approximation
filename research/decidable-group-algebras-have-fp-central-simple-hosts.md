@@ -46,3 +46,13 @@ route `boone-higman-via-central-simple-leavitt-tensor-host`.
 4. **Complexity test.** A proof must produce algebras `B` with arbitrarily hard
    decidable word problems. Nothing in the statement conflicts with that,
    unlike fixed hosts.
+5. **Regular supercoherent hosts (lane `bh-steinberg-hosts`).** The sufficient
+   condition in the statement cannot hold for hosts of the usual shape once
+   `G ⊇ Z wr Z`. By `coherent-flat-group-algebra-hosts-force-fp-infinity`, a left
+   coherent `B` that contains `F_2[G]` flatly as a right-module summand forces
+   every finitely generated subgroup of `G` to be of type `FP_infinity`, and
+   `Z wr Z` is not even `FP_2`. That shape includes a free module with `1` in a
+   basis, and crossed-product, free-product and HNN hosts over `F_2[G]`.
+   *Not a refutation*: the statement asks only for vanishing `K_1` and `K_2` of
+   `B ⊗ L`, and allows non-coherent or non-flat hosts. A proof must obtain the
+   `K`-theory without regular coherence, or embed `F_2[G]` non-flatly.
