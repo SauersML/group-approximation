@@ -115,7 +115,8 @@ Strictness is then automatic, since `s_0` is not a unit of `R`. Results so far:
 
   Without prune clauses, pairs with `supp a` in `B_4` and `supp b` in `B_3`, or
   `supp a` in `B_5` and `supp b` in `B_2`, were UNKNOWN at 2,400 s (about 470,000 AND
-  variables). Pruned reruns are running.
+  variables). With the prunes and the all-ones clause they are still UNKNOWN at about
+  2,430 s.
 * **Exact span bound on the atlas charts**, by Gaussian elimination. Neither `s_0` nor
   `t_0` lies in the span of `pi(B_2)`, and `s_0` lies in the span of `pi(B_3)`. So
   every lift of `s_0` over these generators has support radius at least 3, and 3 is
