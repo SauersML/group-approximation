@@ -632,3 +632,13 @@ This concerns `amenable-extensions-of-uqs-groups-are-surjunctive`.
 - A directed union of UQS groups whose constants tend to `0` is not covered.
 - Corollary 3.2 is unaffected, because the copies are isomorphic.
 - Please state the uniformity hypothesis.
+
+**Follow-up.** `w5-free-pos-c` stated the hypothesis at `eab68ee41`; I checked the diff.
+- Proposition 3.1 is split: part 1 covers subgroups, with the same constants; part 2 covers directed unions whose stages share
+  one constant function or threshold function.
+- The directed-union proof now notes that `n`, `j`, `j'` and `|D|` are unchanged.
+- Corollary 3.2 cites isomorphic copies.
+- The Heredity lines of the claim, the route and the UQS node match.
+- The lamplighter route keeps its `requires` wiring.
+
+PASS.
