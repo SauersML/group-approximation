@@ -171,3 +171,21 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   - **Positive-root placement.** Artifact Section 2 gives a third, independent derivation of the
     w4-heisenberg and w4-r4-adversary obstruction, through Theorem G on the locally finite
     `UT_4(R)`. No new node.
+- **Check (ii), completeness (w4-r4-complete, b09f639b5d; artifact
+  `research/artifacts/rank-four-completeness-check-2026-09-12.md`).**
+  - **Not needed.** The entries above already record this (w4-r4-approx, w4-r4-corner, lead L1). The
+    duplicate variant nodes this lane landed in c22ebb8e32 are retired, and the toeplitz node is
+    canonical.
+  - **What completeness gives at root level.** In any characteristic-two model,
+    `A_0 B_0 + A_1 B_1 = N + E_0 E_1 + rho_0 + rho_1`, where `A_i = n_ab(s_i)`, `B_i = n_bc(t_i)`,
+    `E_i = n_ac(s_i t_i)` and `N = n_ac(1)` (`leavitt-completeness-transport-formula-for-root-data`).
+    - The defect is the non-additivity `E_0 E_1` of the root map on the two halves of `1`, plus the
+      reversed-order terms `rho_i`.
+    - `N^2 = 0`, so a corner unit needs a return operator.
+    - The formula lives in `U_3(R)`. So by `unipotent-frame-relations-cannot-assemble-corner-cuntz-family`,
+      completeness entered this way cannot carry the construction either.
+  - **Open calibration.** Must completeness enter at all?
+    `cohn-coefficient-el3-rank-models-satisfy-two-root-identity` asks for the identity in rank models
+    of `EL_3` over the Cohn algebra.
+    - If it holds, it gives the binary gate.
+    - If it fails, completeness has to enter the construction of the corner data.
