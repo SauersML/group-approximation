@@ -27,3 +27,14 @@ the pair lies either over `(s_0, t_0)` or over `(1, 1)`.
 So no such pair exists.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): exhaustiveness comes from the established normal forms, so the route is valid. See Section 5 of the linear-family verification artifact.*
+
+## An intended cycle (2026-09-12)
+
+With `kernel-unitization-df-from-unit-group-algebra-df` this route closes a deliberate
+equivalence cycle between direct finiteness of `F_2 1 + ker(pi)` and direct finiteness of the
+whole group algebra. The cycle warning it draws is informational. Every node on the cycle is
+OPEN, so nothing is established through it.
+
+The kernel-corner transfer (`leavitt-kaplansky-failures-have-invisible-witnesses`) makes the
+first prerequisite unnecessary for this target: `leavitt-df-from-kernel-unitization-df` needs
+only the second. This route stays valid.
