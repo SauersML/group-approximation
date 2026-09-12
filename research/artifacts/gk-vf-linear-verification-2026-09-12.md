@@ -1669,3 +1669,15 @@ Items checked: `two-root-identity-is-corner-local-for-leavitt-rank-models`, rout
 - **Section 3 (audit).** Spot check of placement: `S[10000]T[100010]` has domain and range inside `[1]`, so it annihilates
   and is annihilated by the units on `[0]`, and `x'` commutes with `Gamma`. The rest is prose, correctly not landed as a
   route.
+
+**Section 47 addendum: the correction (851def4ec3) PASS.** Artifact Lemma 2.3 and Corollary 2.4 of
+`two-root-identity-nonsofic-mechanism-2026-09-12.md` now state conjugacies. I re-derived the general-prefix form.
+- *Setup.* Take `Z*Z = 1` and `ZZ* = 1 - s_P t_P`. Then `Z = (1 - s_P t_P)Z`, so `t_P Z = 0 = Z* s_P`.
+- *Units.* With `Y = sum_i S[zeta_i] Z T[zeta_i]`, `u_P = V_P t_P + Y Z*` and `v_P = s_P W_P + Z Y*`:
+  - `W_P Y = 0` and `Y* V_P = 0`, and `YY* = 1 - V_P W_P`, `Y*Y = 1`;
+  - so `u_P v_P = V_P W_P + YY* = 1` and `v_P u_P = s_P t_P + ZZ* = 1`.
+- *Intertwining.* `u_P s_P = V_P`, `t_P v_P = W_P`, `u_P Z = Y` and `Z* v_P = Y*`. Hence
+  `u_P iota_P(g) v_P = V_P g W_P + YY* = V_P g W_P + (1 - V_P W_P)`.
+- *Entrywise action.* `V_P S[zeta_a] = S[zeta_a] s_P` and `T[zeta_b] W_P = t_P T[zeta_b]`, so this map sends
+  `x_ab(r)` to `x_ab(s_P r t_P)`.
+- *Existence of `Z`.* The complement `1 - s_P t_P` is a nonzero sum of cylinder idempotents, so its range is `~= R`.
