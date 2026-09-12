@@ -54,3 +54,13 @@ this is equivalent to the statement that every bounded 2-quasitrace on the coron
   `Σ ρ_∞(s) ⊗ ρ̄(s)` has no invariant vectors and its Kazhdan projection is zero
   (artifact §5, item 3). The known non-exactness of `B` may sit entirely in the
   non-split extension by `⊕M`.
+- **Stability of `K`.** A third sufficient condition, independent of exactness and of
+  Cuntz infinitesimality: if `K` is stable then every bounded 2-quasitrace on `A`
+  vanishes on `K`, since its restriction to the stable ideal is zero
+  (`stw01-stable-algebras-are-bounded-quasitrace-invisible`); route
+  `sl3z-ozawa-block-qt-via-stable-kernel` via the open
+  `sl3z-ozawa-corona-trace-kernel-is-stable`. It reduces the host case to one
+  Hjelmborg–Rørdam stability question. The growing blocks `n_k → ∞` give room to
+  halve trace-thin elements, but the halving witness must land inside `K`, the same
+  membership wall as the infinitesimality route. See
+  `research/artifacts/quasitrace-corona-kernel-stability-2026-09-12.md`.
