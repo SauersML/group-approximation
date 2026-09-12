@@ -96,8 +96,8 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   from isomorphisms of finite subgroups. If `T_i S_j = delta_ij e` and `rk(e) = rk(N_23 N_12)` followed
   from these, the regular model would give idempotents `S_i T_i`, each of rank at least `rk(e) = 3/8`.
   With completeness they are orthogonal and `rk(e) >= 2 rk(e)`. Even without completeness,
-  `T_0 S_0 = e = T_1 S_1`, `T_1 S_0 = 0` already make `S_0 T_0`, `S_1 T_1` orthogonal subidempotents of
-  `e` of rank at least `rk(e)`. So at least one check must use `sigma` on negative root elements or
+  `T_0 S_0 = e = T_1 S_1`, `T_1 S_0 = 0` already make `S_0 T_0`, `S_1 T_1` idempotents in `eMe`, each of rank at least `rk(e)`, with `S_1 T_1 S_0 T_0 = 0`. Then
+  `S_0 T_0 (e - S_1 T_1)` and `S_1 T_1` are orthogonal idempotents in `eMe`, and `rk(e) >= 2 rk(e)`. So at least one check must use `sigma` on negative root elements or
   torus units, jointly on a nonsofic subgroup
   (`unitriangular-data-cannot-assemble-corner-leavitt-families`, artifact Section 3).
 - **Adversarial pass (w4-r4-adversary, c6697aa47b and 9fd9898e8e; artifact
