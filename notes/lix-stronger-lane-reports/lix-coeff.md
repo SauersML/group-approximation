@@ -59,16 +59,18 @@ Probe plan once lix-k exists (one small closure first): (1) `RelHomotopyIdentity
 | `CohomologyKunnethStepOf` | `pull_sInclusion_knPrYOf`, `pull_knSlice_knPrS{,_const}Of`, `sphereNextOf`, `KnGenOf`, `knGen_of_injectiveOf`, `knGenOf_smul` | `[Field K]` | dcdfecefa |
 | `CohomologyKunnethZeroOf` | `exists_zeroGenOf`, `zeroGenOf`, `mvRes{U,V}Of_zeroGenOf`, `pull_const_zeroGen_{pos,neg}Of`, `knGen_zeroGenOf` | `[Field K]` | dcdfecefa |
 
-Drafts held (imports not on main yet): `CohomologyKunnethStepDeltaOf` (`injective_sphereNextOf`, against
-`MVDelta.mvDeltaOf_naturality`, `MVDelta.mvDeltaOf_cup`), `CohomologyKunnethInjectiveOf`
-(`one_ne_zero_unitOf`, `sphereGenOf`, `ne_zero_of_knGenOf`, `knGen_sphereTopClassOf`, `kunnethSecondInjectiveOf`,
-`kunnethInjectiveOf`) in `$NM/backup/lix-coeff/draft/`.
+| `CohomologyKunnethStepDeltaOf` | `injective_sphereNextOf` (over lix-lh's `MVDelta.mvDeltaOf_naturality`, `MVDelta.mvDeltaOf_cup`) | `[Field K]` | 190c7a03f |
+| `CohomologyKunnethInjectiveOf` | `one_ne_zero_unitOf`, `sphereGenOf`, `knGen_sphereGenOf`, `ne_zero_of_knGenOf`, `knGen_sphereTopClassOf`, `kunnethSecondInjectiveOf`, `kunnethInjectiveOf` | `[Field K]` | 190c7a03f |
+
+Next probe (one batch, when lix-lh's `MayerVietorisPullOf` compiles): `CohomologyKunnethHemiOf`, `StepOf`,
+`ZeroOf`, `StepDeltaOf`, `InjectiveOf`.
 
 ## NEEDS
 
-* lix-lh: a compiled `MayerVietorisPullOf` (HemiOf re-probe), then `CohomologyDeltaNaturalOf`
-  (`MVDelta.mvDeltaOf_naturality`) and `CohomologyDeltaCupOf` (`MVDelta.mvDeltaOf_cup`): StepDelta,
-  Injective, then Surj*/Decomp over K (three `add_self_eq_zero_two` sites become `sub_self`/`sub_eq_zero`).
+* lix-lh: a compiled sha for `MayerVietorisPullOf` (red at b5f0dee2f: 166:6, 175:30, 165:54) and for
+  `CohomologyDeltaNaturalOf` / `CohomologyDeltaCupOf` (landed unverified b7f9acbdf / 447d9146f).
+* Then Surj*/Decomp over K: three `add_self_eq_zero_two` sites become `sub_self`/`sub_eq_zero`, and
+  `MVDelta.mvDeltaOf_spec` carries `aU| − aV| = α`.
 
 ## TRAPS
 
