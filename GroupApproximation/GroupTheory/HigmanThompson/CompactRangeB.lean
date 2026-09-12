@@ -54,7 +54,7 @@ theorem xg_zero_inv_pow_translation (j : ℕ) : ∀ t : ℚ, (((j + 1) * (m + 2)
 theorem xg_zero_zpow_translation (j : ℤ) : ∀ t : ℚ, (((j.natAbs + 1) * (m + 2) : ℕ) : ℚ) ≤ t →
     (xg m 0 ^ j) t = t + j * ((m : ℚ) + 1) := by
   intro t ht
-  rcases le_or_lt 0 j with hj | hj
+  rcases le_or_gt 0 j with hj | hj
   · obtain ⟨j', rfl⟩ := Int.eq_ofNat_of_zero_le hj
     rw [zpow_natCast, xg_zero_pow_translation m j' t (by simpa using ht)]
     simp
@@ -172,7 +172,8 @@ theorem compConjInv_mem_geoF (hr : 1 ≤ r) {h : Equiv.Perm ℚ} (hh : h ∈ com
   obtain ⟨N, B, hA⟩ := compConjInvFun_gridAffine m r hh J hfix
   obtain ⟨Ni, Bi, hAi⟩ := compConjInvFun_gridAffine m r hhinv J hfix'
   have hr' : (1 : ℚ) ≤ r := by exact_mod_cast hr
-  obtain ⟨⟨hhm, -, -⟩, hh0, -⟩ := hh
+  have hparts := hh
+  obtain ⟨⟨hhm, -, -⟩, hh0, -⟩ := hparts
   refine ⟨⟨fun u u' huu' => ?_, ⟨N, B, hA⟩, ⟨Ni, Bi, hAi⟩⟩, fun u hu => ?_, r + J, 0,
     fun u hu => ?_⟩
   · show compEinv m r (h (compE m r u)) < compEinv m r (h (compE m r u'))
@@ -196,7 +197,7 @@ theorem compactF_le_map (hr : 1 ≤ r) : compactF m r ≤ (geoF m).map (compConj
   have hzC : ∀ t : ℚ,
       compE m r ((r : ℚ) - 1 + (((k.natAbs + 1) * (m + 2) + k.natAbs * (m + 1) : ℕ) : ℚ)) ≤ t →
       t < r → compConjHom m r (xg m 0 ^ k) t = (r : ℚ) - ((r : ℚ) - t) * ((m : ℚ) + 2) ^ (-k) :=
-    fun t h1 h2 => compConj_near m r (xg_zero_zpow_translation m k) h1 h2
+    fun t h1 h2 => compConj_near m r hr (xg_zero_zpow_translation m k) h1 h2
   set t₁ := compE m r ((r : ℚ) - 1 + (((k.natAbs + 1) * (m + 2) + k.natAbs * (m + 1) : ℕ) : ℚ))
     with ht₁
   have ht₁r : t₁ < r := compE_lt m r _
