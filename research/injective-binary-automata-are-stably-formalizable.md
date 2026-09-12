@@ -131,3 +131,14 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
     over `Z` with reflection symmetry (`dihedral-marker-involution-is-formalizable`).
   - **What gates cannot do.** For strict `tau`, a formal pair has a surjective, non-injective encoder
     pullback, so no word in formal automorphisms supplies it.
+- **Finite-group shadows never obstruct with one ancilla on `Z_3`** (w4-z3-rotation, 14718661ef,
+  `z3-equivariant-permutations-are-stably-realizable`).
+  - **What is proved.** Every shift-equivariant permutation of `{0,1}^(Z_3)`, extended by an identity
+    track, is the shadow of an equivariant polynomial automorphism of `A^6`.
+  - **Mechanism.** Commutators of line-controlled level flips with level-controlled `SL_2(F_4)` shears
+    give level-dependent rotations.
+  - **Consequence.** The one-track candidate `z3-weight-one-rotation-is-not-an-automorphism-shadow`,
+    and the order-three control of `own-block-local-bijection-rows-peel`, are stably formalizable. So
+    neither witnesses against this claim.
+  - **Where a witness must live.** Formal cancellation on infinite hosts, not one-track rigidity on
+    finite groups.
