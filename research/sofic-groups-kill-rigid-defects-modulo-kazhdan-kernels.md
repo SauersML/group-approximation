@@ -63,6 +63,18 @@ hyperbolic group is sofic, the Leavitt cover
   all act freely, with `N` ergodic. A proof has to see
   `[g z g^-1, gamma] not in M` from inside one block. Partition, orbit and
   fixed-algebra data carry nothing.
+- **Split `sigma(z)` as `sigma(M)` times an exact centralizer (refuted).**
+  `relative-defect-via-normalizer-split` would prove this claim, but its
+  premise `relative-element-splits-into-m-times-centralizer` is false
+  (`outer-automorphism-mod-kernel-refutes-centralizer-splitting`). A splitting
+  makes `z` act on `Gamma` as an inner automorphism by `M`. Transpose-inverse on
+  `SL_3(Z)`, which is trivial modulo `M = SL_3(Z)`, is not inner. Any repair has
+  to tolerate outer automorphisms that are trivial modulo `M`.
+- **Exact von Neumann form.** For `d in H`, `d in M` if and only if
+  `sigma(d) in W*(sigma(M))`, because `E_(L(M))(u_d) = 0` off `M`. So for the
+  defect elements it is enough to show `||E_(W*(sigma(M))) sigma(d)||_2 > 0`.
+  Analytic lower bounds therefore suffice, and no exact group identity is
+  needed.
 - **Canonical trace sees nothing of `H/M`.** At canonical trace the spectral
   measure of `M`'s Laplacian is that of the regular representation. That has
   a gap at `0` and no kernel, so the Kazhdan projection of `M` has trace `0` in

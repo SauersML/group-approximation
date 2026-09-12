@@ -3,13 +3,21 @@ rg: 2
 id: relative-element-splits-into-m-times-centralizer
 kind: claim
 title: A relatively centralizing element splits as a Kazhdan-kernel element times an exact centralizer
+refuted_by:
+  - outer-automorphism-mod-kernel-refutes-centralizer-splitting
 distinct_from:
   sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels: that is the group-level relative criterion, a statement about commutators in H; this is the permutation-model splitting of the single element sigma(z) in the universal sofic group, which together with the Kun--Thom normalization theorem yields that criterion.
   sofic-groups-kill-rigid-compression-defects: that is the established absolute criterion, the case M = 1 where the splitting is just sigma(z) in C(sigma(Gamma)); this allows a normal Kazhdan subgroup M and asks the mod-M ambiguity to be absorbable into sigma(M).
   kun-thom-sofic-centralizer-normalization: that is the imported theorem that sigma(G) normalizes C(sigma(Gamma)); this is the extra input, an M-valued cocycle triviality, that the relative criterion needs beyond it.
 ---
 
-**OPEN.** Let `H` be a countable sofic group, let `M` be a normal subgroup of
+**REFUTED** by `outer-automorphism-mod-kernel-refutes-centralizer-splitting`.
+A splitting forces `z` to act on `Gamma` as an inner automorphism by an
+element of `M`. In `SL_3(Z) ⋊ <transpose-inverse>`, with
+`M = Gamma = G = SL_3(Z)`, that fails, and a product with the Kun--Thom pair
+gives a non-normal version. The relative criterion itself is unaffected.
+
+As originally stated: let `H` be a countable sofic group, let `M` be a normal subgroup of
 `H` with property (T), and let `M <= Gamma <= G <= H` be a rigid pair (`Gamma`
 and `G` Kazhdan, `Gamma` infranormal in `G`). Fix a nonprincipal ultrafilter
 `U`, a sequence of finite sets `(Y_n)`, and an injective sofic representation
