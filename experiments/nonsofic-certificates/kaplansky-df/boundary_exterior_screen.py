@@ -238,6 +238,28 @@ for trial in range(4):
 candidates["phi_plus_phiinv"] = [stage_units([phi, phi.inverse()]), stage_ga(P0)]
 candidates["phi_plus_mu"] = [stage_units([phi, mu]), stage_ga(P0)]
 
+def xor_vecs(vecs):
+    out = set()
+    for v in vecs:
+        out ^= v
+    return out
+
+
+def verify_kernel(stages, basis_used, ker):
+    """Independent recomputation of a kernel certificate in dual mode."""
+    L.set_dual(True)
+    try:
+        v = xor_vecs(basis_used[i] for i in ker)
+        ok_nonzero = bool(v)
+        ok_f0 = apply_ga(f0, v) == v
+        w = v
+        for st in stages:
+            w = st(w)
+        return {"nonzero": ok_nonzero, "f0_fixes": ok_f0, "Z_kills": not w}
+    finally:
+        L.set_dual(False)
+
+
 results = {}
 for name, stages in candidates.items():
     t1 = time.time()
@@ -245,7 +267,68 @@ for name, stages in candidates.items():
     results[name] = {"kernel_found": ker is not None,
                      "kernel_size": None if ker is None else len(ker),
                      "seconds": round(time.time() - t1, 2)}
+    if ker is not None and name in ("phi", "phi_dressed_0", "phi_plus_mu"):
+        results[name]["verified"] = verify_kernel(stages, basis, ker)
 LOG["results"] = results
+
+
+def complete_codes(max_size):
+    codes = {("",)}
+    frontier = [("",)]
+    while frontier:
+        new = []
+        for code in frontier:
+            if len(code) >= max_size:
+                continue
+            for i, leaf in enumerate(code):
+                child_code = tuple(sorted(code[:i] + (leaf + "0", leaf + "1") + code[i + 1:]))
+                if child_code not in codes:
+                    codes.add(child_code)
+                    new.append(child_code)
+        frontier = new
+    return sorted(codes, key=lambda c: (len(c), c))
+
+
+# --- family: every single Thompson transporter with codes of size <= FAMILY_MAX ---
+FAMILY_MAX = 4
+for i, a in enumerate(args):
+    if a == "--family-max":
+        FAMILY_MAX = int(args[i + 1])
+codes = [c for c in complete_codes(FAMILY_MAX) if len(c) >= 2]
+seen = set()
+survivors = []
+count = 0
+t2 = time.time()
+for dom in codes:
+    for rng_code in codes:
+        if len(dom) != len(rng_code):
+            continue
+        for perm in itertools.permutations(rng_code):
+            try:
+                tr = L.thompson_unit(list(dom), list(perm))
+            except ValueError:
+                continue
+            if tr.key in seen or tr.is_identity():
+                continue
+            seen.add(tr.key)
+            count += 1
+            stages = [stage_units([tr]), stage_ga(P0)]
+            if kernel_of(stages, basis) is None:
+                survivors.append({"domain": list(dom), "range": list(perm)})
+LOG["family"] = {"max_code_size": FAMILY_MAX, "transporters": count,
+                 "degree2_window_survivors": len(survivors), "seconds": round(time.time() - t2, 2)}
+
+# re-screen survivors in degree 3 on the same window
+if survivors and DEGREE == 2:
+    basis3 = sector_basis(f0, 3, WINDOW)
+    LOG["f0_sector_rank_degree3_window"] = len(basis3)
+    still = []
+    for s in survivors:
+        tr = L.thompson_unit(s["domain"], s["range"])
+        if kernel_of([stage_units([tr]), stage_ga(P0)], basis3) is None:
+            still.append(s)
+    LOG["family"]["degree3_window_survivors"] = len(still)
+    LOG["family"]["degree3_survivor_list"] = still[:200]
 LOG["seconds_total"] = round(time.time() - t0, 2)
 with open(OUT, "w") as fh:
     json.dump(LOG, fh, indent=1, sort_keys=True)
