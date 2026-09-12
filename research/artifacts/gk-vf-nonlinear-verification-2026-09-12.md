@@ -1320,6 +1320,14 @@ as verified in Section 27, and I sent both to the author.
   input.
 - `injective-binary-automata-are-stably-formalizable` stays OPEN.
 
+**Resolved.** The author corrected the entry forward at `5d91bbb6a4`, and I checked it on main:
+- uniqueness is now stated only for bijective encoders, and for strict `tau` formalizability is the
+  existence of some terminating choice (finite degree, finite total memory);
+- "period one" is no longer a condition; every layer is `G`-equivariant, and regrouping is described
+  as relaxing representatives to `H`-equivariance, which does not decide the `Z`-equivariant ancilla
+  question;
+- the frontmatter and the first 84 lines of the node are unchanged, and the claim still reads OPEN.
+
 ## 31. Kari-type blocks and regrouping (`77278f6fd`, gk-fz-kari): PASS
 
 Both claims are OPEN and the import is flagged as unread from source, so nothing here is
