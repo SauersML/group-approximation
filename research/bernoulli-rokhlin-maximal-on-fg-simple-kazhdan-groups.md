@@ -56,7 +56,16 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - Koopman and property-(T) detectors, which are blind to the base;
   - restriction and co-induction, which bound only from above;
   - localization, vacuous on hosts with full sofic radical;
-  - median matching (`median-matching-has-no-bernoulli-entropy-analogue`).
+  - median matching (`median-matching-has-no-bernoulli-entropy-analogue`);
+  - cost, ℓ²-Betti numbers, fixed price and every other weak-equivalence or group invariant. All
+    nontrivial Bernoulli shifts are weakly equivalent, so such an invariant has one value on every
+    base, while the Rokhlin entropy is at most the base entropy, which tends to `0`
+    (`weak-invariants-give-no-bernoulli-rokhlin-lower-bound`, gk-p-inf-cost). On this class the
+    group-level candidates for bounding `h_sup` vanish too:
+    - infimal cost `1` (`fpbs-kazhdan-groups-have-cost-one`);
+    - `β^(2)_1 = 0`, by Gaboriau's inequality (`fpbs-amen2-betti-cost-input`).
+    Only the maximal (Bernoulli) cost, which is the open fixed-price question, and the higher
+    ℓ²-Betti numbers remain, with no known relation to `h_sup`.
 
   **Refuter to watch:** `leavitt-units-have-zero-rokhlin-entropy-supremum`, since `U` is a host of this
   class. Its twins are `every-group-has-positive-rokhlin-entropy-action` and
