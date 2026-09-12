@@ -1045,3 +1045,85 @@ statements of the four premises at 200b50c18.
   (H1), `hs-stable-vertex-rounding-for-every-model`, a flexible Hilbert–Schmidt stability statement for the
   higher-rank Kazhdan group `EL_r(F_q[x_1..x_d])`, together with the other premises of the Theorem A endgame.
 - Strict HS stability is impossible there (Becker–Lubotzky), and flexible HS stability of such groups is open.
+
+## 31. Type [A_2] actions, one-relator groups and HS stability (12bd1722d, b3a43bc19, 677c04019)
+
+### 31.1 `a2-action-with-non-finitely-presented-image`: PASS; it answers FFWZ Question 5.8
+
+- **`normalizer-extension-of-type-a-actor-is-a2-cover` checks.**
+  - `Π(γ,w) = γφ(w)` is a homomorphism, and the semidirect product has a finite presentation.
+  - The projection of a point stabilizer to `F_m` contains the kernel of the action on the finitely many
+    `Γ`-orbits. Its kernel `Stab_Γ(x)` is finitely generated.
+  - `ΓQ/Γ ≅ Q/(Q ∩ Γ)` is a quotient of `ΓQ` by the normal closure of finitely many elements.
+- **`Q ∩ Γ = 1`** (not spelled out in the node).
+  - On a brick, an element of `SV_V` changes prefixes in only finitely many coordinates.
+  - If `δ_w` agreed with a branch `h_v τ_g h_u^-1` on `B(u)`, then `w(κ(s)) = κ(g^-1 s)` for all `κ ∈ B(u)`
+    and all `s` outside a finite set, which forces `w = 1`.
+  - `w ↦ δ_w` is injective, so `Q ≅ Z wr Z`, which is not finitely presented (Baumslag). The kernel is
+    `ker φ`.
+- **`twisted-btb-clopen-action-is-type-a`, checked in outline.**
+  - Clopen sets are brick unions, and splitting a brick raises the count by one.
+  - `SV_G` is transitive on brick partitions with the same number of pieces.
+  - Orbits of tuples are classified by the pattern of nonempty atoms.
+  - The stabilizer is `D(U) × D(U^c)`.
+  - The atom-matching step (5) was not re-read line by line.
+- **Item 3.** That the simple quotient of `SV_(G~)` is not finitely presented rests on
+  `abstract-btb-simple-quotient-fp-gate`, which was not reviewed here.
+
+### 31.2 `a2-kernel-removal-forces-recursive-kernel`: PASS
+
+- **(a).** Membership in each stabilizer is decidable, because it and the finitely many nontrivial double
+  cosets are complementary r.e. sets. The kernel is co-r.e.
+- **(b).** A sharp embedding gives `G/K ↪ G′/K′`, which is finitely presented. So `K` is r.e., hence recursive.
+- **(c).** The transvections `r_a` give `α_w(x_1) = x_1 w(x_2)`, and `α_w ∈ K` iff `w(g) = 1` for every
+  `g ∈ Γ`. That is many-one reduction from the mixed identities, and `A/K` is not recursively presented when
+  they are not recursive.
+- `a2-pairs-embed-in-a2-pairs-with-fng-kernels` (FFWZ Question 5.9) is correctly OPEN.
+
+### 31.3 One-relator groups: four PASS
+
+- **`baumslag-gersten-base-is-elliptic-in-every-tree-action`: PASS.**
+  - `ℓ(a) = nℓ(a)` makes `a` elliptic.
+  - Case A uses the fixed-set projection.
+  - In case B the nested fixed trees have a unique common end `ξ`, and `β_ξ` vanishes on `N` and on `b`. So
+    every element of `B` is elliptic, and by Serre `B` fixes a vertex, which must lie in `∩T_j`.
+  - In the midpoint case, the pointwise stabilizer of the edge contains `<a^2, b^2> ≅ BS(1, n^2)`.
+- **`magnus-moldavanskii-hierarchy-with-decidable-edges`: PASS as a citation**, through the Linton–Nyberg-Brodda
+  survey.
+- **`magnus-hnn-permanence-forces-one-relator-boone-higman`: PASS as a conditional theorem.**
+  - Step 2: the rewritten relator is cyclically reduced and shorter, and Tietze moves give `H*_β ≅ G`.
+  - Step 3: `<b> ≅ Z` by the Freiheitssatz, `σ_x(r_3) = αγ - γα = 0`, and at most `n-1` letters other than `x`
+    remain.
+  - The node itself says that on the data the induction uses, the premise is equivalent to the conclusion.
+    So this is a reformulation with one extra hypothesis, not progress on the one-relator problem by itself.
+- **`virtually-free-by-cyclic-groups-satisfy-boone-higman` and `free-generalized-bs-groups-have-type-a-overgroups`:
+  PASS.**
+  - BLIW Remark 12.7 plus closure of `B_A` under finite-index overgroups.
+  - For `k <= 1`, `K <= F(x,y) ⋊_ψ Z ∈ BS_(F_2)`.
+  - No novelty is claimed, correctly.
+- `one-relator-groups-satisfy-boone-higman` and `bh-embeddability-survives-magnus-subgroup-hnn` are correctly OPEN.
+
+### 31.4 HS stability: two PASS
+
+- **`injective-limit-trace-flexible-hs-repair-is-strict`: PASS, conditional on Jung's (1) ⟹ (2) and on Connes.**
+  - Step 1 moves the limit trace onto the flexible corrections, with error `2(1 - d/D)`.
+  - Step 3 pads `σ_(k(n))` to dimension exactly `d_n`, with trace error `<= 2 d_n^-1/2`, because
+    `e_(k(n)) <= d_n^1/2`.
+  - Both matrix models are microstates of `X` along `ω`. Tubularity in every size `k = d_n` then conjugates
+    them.
+- **`amenable-flexible-hs-stability-is-strict-hs-stability`: PASS.**
+  - Flexible corrections make `τ` a limit of finite-dimensional characters, so `τ` is trivial on `Rad_fd`.
+  - `L_τ(Γ) = π_τ(Q)''` is injective for amenable `Q`.
+  - The contradiction with `η_n >= c` along `ω` checks.
+- **Reading.** A group separating flexible from strict HS stability needs a non-amenable maximal almost periodic
+  quotient. `flexibly-but-not-strictly-hs-stable-group-exists` is correctly OPEN.
+
+### 31.5 Cairn state of the non-hyperlinear chain
+
+`cairn why` at d6a3a0d44 (detached MSI job):
+- `theorem-e-vertex-rounds-to-unit-type-representations` is OPEN.
+- Its route `theorem-e-vertex-unit-type-via-deep-root-mass` has every premise in hand except
+  `hs-stable-vertex-rounding-for-every-model`, which is (H1).
+- `non-hyperlinear-group` is OPEN.
+- The same run printed `requires is mandatory` errors for two route files of other lanes:
+  `leavitt-ternary-frame-tree-uniformization-proof` and `locally-finite-hnn-regular-rank-model-proof`.
