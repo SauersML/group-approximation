@@ -77,6 +77,19 @@ is trivial.
     conjugacy).
   - So a contradiction must use coefficients outside `A_inf`: `s_0`-type coefficients and
     Thompson `V`.
+- **Rank extraction from root displacement: dead as a standalone route** (lane `gk-rk-free`;
+  artifact `root-displacement-rank-extraction-2026-09-12.md`).
+  - The displacement function `rho(a) = rk(sigma(x_12(a)) - 1)` is Weyl and unit invariant,
+    `<= 1/2`, subadditive, with `rho(ab) <= 2 min(rho(a), rho(b))` and `rho/4 <= rho(a) <= 2 rho`
+    for every nonzero `a`. Orthogonal idempotent root tuples are simultaneously conjugate
+    (`leavitt-rank-models-have-uniform-root-displacement`).
+  - All of this is realized by `(1 - epsilon)` trivial `(+)` `epsilon` free models of the dyadic
+    root group, at every displacement in `[0, 1/2]`
+    (`dyadic-root-displacement-data-admit-trivial-plus-free-models`). The extracted function is
+    Boolean, not a Sylvester rank function.
+  - It does not see the gate identity `N_23 N_12 = 0` of
+    `el3-unit-root-matrix-units-iff-two-root-identities`: natural block models over the locally
+    matricial algebra and free models both have uniform displacement.
 - **Surviving shapes to cover.** Nontrivial complements. Natural and dual pieces together.
   Other composition factors (adjoint, Steinberg, projectives). Non-split extensions. Free or
   projective content on finite subgroups, glued through level-changing units such as `s_0`
