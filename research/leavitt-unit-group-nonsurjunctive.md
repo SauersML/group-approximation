@@ -263,3 +263,16 @@ orbit-complement gate. These are exact rejections of specified constructions.
 The positive quadratic artifact additionally rules out all nearest-two
 cyclic bilinear feedback and all scalar two-term selectors as possible
 strict encoders over any group. The headline construction remains open.
+
+**Evasion map (2026-09-12).** Three established claims narrow where a
+counterexample can live:
+- `gottschalk-counterexamples-lie-outside-the-permanence-closure`: this group lies
+  outside the closure of the sofic groups under every surjunctivity permanence
+  theorem now available, so no positive method rules it out.
+- `strict-pairs-transfer-to-table-realizations`: a certificate's product tables
+  must fold its orphan cells under every homomorphism into a finite or already
+  surjunctive group. Candidate windows can be screened on unit products before
+  any rule is tried.
+- `full-shift-maps-into-two-sided-algebraic-subshifts-are-constant`: the Leavitt
+  kernel subshift receives only the zero automaton from full shifts. So no
+  construction can pass through the dual of the Leavitt algebra.
