@@ -28,5 +28,12 @@ question as out of reach while no nonsofic group was known.
 * Finitely generated: `G` is finitely generated and acts transitively on
   `G/Gamma`, so `G` and one lamp generate `W`.
 
+**Second, independent witness.** The group double `G *_Gamma G` of the same
+pair.
+* Not sofic: `kt-pair-group-double-is-nonsofic`.
+* Surjunctive: `kun-thom-group-doubles-are-surjunctive`.
+
+Both witnesses come from `finitary-split-extension-surjunctivity-permanence`.
+
 This does not decide Gottschalk's conjecture, and it does not decide whether
 the first nonsofic group, the binary Leavitt unit group, is surjunctive.
