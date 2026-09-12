@@ -9,6 +9,7 @@ distinct_from:
   stw01-modular-test-pair-algebra-is-universal-order-pair: that is the structural identification C*(1, h, k) ~= U; this is the quasitrace additivity question on U.
 artifacts:
   - research/artifacts/stw01-universal-order-pair-test-2026-09-12.md
+  - research/artifacts/stw01-order-pair-rescaling-2026-09-12.md
 ---
 
 Let `U` be the universal unital C*-algebra of two elements `h_0, k_0` with
@@ -30,12 +31,22 @@ sigma(h_0 + k_0) = sigma(h_0) + sigma(k_0).
   `U -> Q` (`stw01-modular-single-pair-via-universal-order-pair`).
 - That claim implies Problem I (`stw01-problem-i-via-modular-single-pair`).
 
+A second, direct route is `stw01-problem-i-via-universal-order-pair`. It uses the affine
+rescaling `stw01-order-pair-defects-rescale-generic-defects` and needs no AW*-factor,
+dilation or group algebra.
+
 The graph records only the forward routes, so that no dependency cycle is created.
 
 **Why it is recorded separately.** It mentions no group: two positive contractions tied
 by one order relation. By `stw01-modular-test-pair-algebra-is-universal-order-pair`,
 `U ~= C*(1, h, k)` inside `C*(PSL_2(Z))`, so this is the modular test with the ambient
 algebra removed. `U` is not exact, since it surjects onto `Q`.
+
+**The order relation gives no leverage.** By
+`stw01-order-pair-defects-rescale-generic-defects`, every non-additive positive pair
+reappears as an order pair with `sp(h_0) ⊂ [1/2, 1/2 + eps]`, `k_0` within `eps` of a scalar
+and squeezed to `(1 - 4 eps - 4 eps^2)(h_0 - h_0^2) <= k_0`, with defect multiplied by `eps`.
+So this claim is generic additivity after an affine change of coordinates.
 
 ## Attempts
 
@@ -55,3 +66,24 @@ algebra removed. `U` is not exact, since it surjects onto `Q`.
   two-projection subalgebras `C*(e_j, p)`, and no free-product formula applies. The test
   rewrites as pinching invariance of `sigma_2` on one positive `2 x 2` matrix, which is the
   generic form of linearity. Artifact, Section 4.
+- **Spectral localization along `h_0`; the room `h_0 - h_0^2 - k_0`.** Dead (lane
+  `quasitrace-universal-order-pair`). `h_0` is not central, and by
+  `stw01-order-pair-defects-rescale-generic-defects` witnesses exist with `sp(h_0)` in one
+  window of width `eps` at `1/2`, with `h_0 - h_0^2` within `eps^2` of `1/4`, and with room of
+  norm at most `eps + eps^2`, the same order as the defect. The endpoints `0, 1` and the size
+  of the room carry nothing. Rescaling artifact, Section 3.
+- **Free-product model and residual finite-dimensionality.** `U ~= C*(1, h, S c S)` inside
+  `C([0,1]) * C([0,1])` with `S = (h - h^2)^(1/2)` (Douglas), and `U` is RFD directly, because
+  compressions of order pairs are order pairs. Neither helps: quasitraces on `U` need not
+  extend to the free product, whose linearity is already equivalent to Problem I, and
+  pointwise limits of finite-dimensional traces are traces. Rescaling artifact, Section 4.
+- **Norm-local exact approximation inside `U`.** Quasitraces are Lipschitz on `A_+`
+  (`|sigma(a) - sigma(b)| <= ||a - b|| sigma(1)`), so additivity would follow from approximating
+  `(h_0, k_0)` inside `U` by pairs generating exact subalgebras `E`. Dead: a functional-calculus
+  correction inside `E` makes the approximants an order pair, giving *-homomorphisms
+  `U -> E` close to the identity on finite sets. That makes the inclusion of `U` nuclear, so
+  `U` would be exact, and it is not. Rescaling artifact, Section 5.
+- **Non-additive dimension function (negative side).** A non-additive lower semicontinuous
+  dimension function on `Cu(U)` is a counterexample to Problem I, and by
+  `stw01-quasitrace-crux-is-awstar-factor-w-star` needs a type `II_1` AW*-factor with no large
+  W*-corner. No construction is known. Rescaling artifact, Section 6.
