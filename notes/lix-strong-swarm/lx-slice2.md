@@ -41,6 +41,15 @@ Consumer: lx-endpoint's `NinetyNineProblems.LemmaTwoPowersTwoWuData n` (e1cd5694
 `σ₁ := fun _ => sphereTopClass 1 (by omega)`, `σodd := fun _ => sphereTopClass (2*n+1) (by omega)`,
 data `fun j G hGc hGu => CharClass.Gen.nonempty_wuStepDData_lixN n j G hGc hGu` under `[NeZero n]`.
 
+## FROZEN (lx-endpoint consumes them, 58f87fe90)
+The binders and result types of `Gen.wuStepDData_lixN` and `Gen.nonempty_wuStepDData_lixN`, as on main at 2531bd9ee:
+`(n : ℕ) [NeZero n] (j : ℕ) (G : baseM n (LIX.Gen.lixDD n j) → Matrix (VIdx n (LIX.Gen.lixDD n j)) (VIdx n (LIX.Gen.lixDD n j)) ℂ)
+(hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat n m) (G m))`, with the objects `KnLix.prY/prS1/prSodd n (lixDD n j)`,
+`sphereTopClass 1 _`, `sphereTopClass (2 * n + 1) _`, and γ = `KGen.lixChernOf n (KGen.lixChern n (lixDD n j)) (mappingTorus (Vmat n) G circHoriz circHeight)`.
+`ProblemLIXStrongAssemblyTwoWu` (lx-endpoint) discharges `LemmaTwoPowersTwoWuData n` with them (probe 0912-115408-95665), so
+`lemmaTwoHoldsAtPowers_two_pow_holds m` and `exists_isSimpleRing_separable_hasK1InjPowerWitness_two_pow m` are theorems.
+Any change: SendMessage lx-endpoint first.  Proof bodies may change freely.
+
 ## AUTHORED, UNVERIFIED
 - none.
 
