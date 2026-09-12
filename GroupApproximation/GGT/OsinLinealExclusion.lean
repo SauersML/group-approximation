@@ -57,7 +57,7 @@ theorem exists_near_axis_pow (hiso : IsIsometricAction G X) {g : G} {w : X} {K :
   refine ⟨n / (k : ℤ), ?_⟩
   have hk' : (0 : ℤ) < k := by exact_mod_cast hk
   have hsplit : g ^ n = (g ^ k) ^ (n / (k : ℤ)) * g ^ (n % (k : ℤ)) := by
-    rw [← zpow_natCast, ← zpow_mul, ← zpow_add, Int.ediv_add_emod]
+    rw [← zpow_natCast, ← zpow_mul, ← zpow_add, Int.mul_ediv_add_emod]
   have hr0 : 0 ≤ n % (k : ℤ) := Int.emod_nonneg n (by omega)
   have hrk : n % (k : ℤ) < k := Int.emod_lt_of_pos n hk'
   have hrem : dist w ((g ^ (n % (k : ℤ))) • w) ≤
