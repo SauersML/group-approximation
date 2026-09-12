@@ -659,3 +659,14 @@ and mutually equivalent (`finite-direct-products-of-surjunctive-groups-are-surju
 The finite-normal-subgroup residue is open, with test instance the center of
 Deligne's triple cover of `Sp_4(Z)` (`finite-normal-subgroups-do-not-affect-surjunctivity`).
 Quotient closure is equivalent to the conjecture (`surjunctivity-passes-to-quotients`).
+
+**Formalizability by decomposition (2026-09-12).** Words in track shears are
+formalizable but bijective (`structurally-reversible-automata-are-formalizable`).
+Clean ancillas in a shear dilation are exactly a formalizable left inverse
+(`formalizable-left-inverse-iff-clean-shear-dilation`), so decompositions only
+re-express the formalizability question. Finite fields never obstruct, since
+left-inverse extensions exist over every `F_(2^k)`
+(`binary-left-inverse-pairs-extend-over-every-finite-field`), so the open step is a
+uniform-degree condition over infinite fields
+(`injective-binary-automata-have-formalizable-left-inverses`). The
+Kaplansky-over-`F_2` payoff needs only some formalizable left inverse.
