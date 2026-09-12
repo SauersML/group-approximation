@@ -35,3 +35,12 @@ a defect that survives evaluation, and so it is a lift of `(s_0, t_0)`.
   (`finite-precision-lifted-trace-obstruction`). A defect has lifted trace zero.
   Classifying the idempotents of `K` up to equivalence, even partially, would
   bound where a defect can sit. This is not done.
+* **Equivalent to the positive root (2026-09-12).**
+  - By the kernel-corner transfer (`leavitt-kaplansky-failures-have-invisible-witnesses`),
+    this claim is equivalent to `leavitt-unit-group-algebra-is-directly-finite`.
+  - `kernel-unitization-df-from-unit-group-algebra-df` records the trivial direction.
+  - The sentence above, that every failure would be a lift of `(s_0, t_0)`, is therefore
+    vacuous: direct finiteness of `K^+` rules out every failure, visible ones included.
+  - The proposed Peirce analysis attacks the whole Kaplansky question for `R^x`. It may
+    restrict to the single corner `zSz`, `z = [1] + [g] + [g^2]`: every failure transports
+    into it, with defect `delta(d) z`.

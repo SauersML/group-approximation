@@ -68,5 +68,20 @@ merged into this one on 2026-09-12; the mapping of ids is in its artifact.
   `leavitt-primitive-corner-recursive-extension` satisfies `rho lambda = pi`. It maps
   invisible pairs to invisible pairs in the primitive corner and converts neither
   normal form into the other.
-* **Converting from the visible problem.** Not known in either direction. Direct sums
-  of defect modules stay in their class, because `R (+) R ~= R`.
+* **Converting from the visible problem.** Visible implies invisible (2026-09-12).
+  `leavitt-unit-group-algebra-embeds-in-kernel-corner` embeds `S` unitally in the kernel
+  corner `zSz` by `x -> delta(x) z`, with `z = [1] + [g] + [g^2]` the block of the
+  constants' algebra `F_2[S_3]` that evaluation kills.
+  `leavitt-kaplansky-failures-have-invisible-witnesses` then turns every one-sided pair of
+  `S` into a pair over `1` with defect in `K`. Consequences:
+  * this claim is equivalent to `leavitt-unit-group-algebra-not-directly-finite`;
+  * every obstruction in this list obstructs the whole Kaplansky question for `R^x`, so the
+    kernel is not a tamer place to look;
+  * one corner decides it: `S` is directly finite iff `zSz` is.
+
+  Invisible to visible is still unknown, so a visible witness is sufficient and may be
+  strictly stronger. Direct sums of defect modules stay in their class, because
+  `R (+) R ~= R`. The independent derivation is in
+  `research/artifacts/leavitt-invisible-corner-transfer-2026-09-12.md`. Over `F_3` the analog
+  holds on the anti-central summand at level two
+  (`ternary-anti-central-failures-transfer-into-kernel-corners`).

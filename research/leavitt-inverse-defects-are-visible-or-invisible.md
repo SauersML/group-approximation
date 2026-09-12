@@ -43,6 +43,13 @@ unital binary Leavitt family in `k[G]`. In case (V) the defect lifts `s_1 t_1`,
 which is equivalent to `1` in `R`. So a witness to (V*) lifts the pair
 `(s_0, t_0)` exactly but cannot be completed to a lift of the whole family.
 
+**Collapse on the existence side (2026-09-12).** The two normal forms are nested, not
+independent. `leavitt-kaplansky-failures-have-invisible-witnesses` converts every pair,
+visible ones included, into an invisible pair through the kernel-corner embedding
+`x -> delta(x) z + (1 - z)` of `leavitt-unit-group-algebra-embeds-in-kernel-corner`. So `S`
+is not directly finite if and only if (I*). (V*) implies (I*), and the converse is unknown.
+The normalization above still holds pair by pair.
+
 **Two proofs.** The orbit theorem this rests on has two routes. The elementary one
 is `leavitt-one-sided-pairs-unit-translates-proof`, through monomial pure
 infiniteness. The imported one is
