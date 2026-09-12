@@ -70,7 +70,7 @@ All the lifted traces compared here are rationals given by LFT1, and `Q ∩ Z_p`
 
 ## 3. Consequences
 
-- **No mixed defect.** If `BA = I` and `I - AB = e - f` with `e`, `f` as in Theorem 2, then
+- **No mixed defect.** If `BA = I` and `I - AB = e - f != 0` with `e`, `f` as in Theorem 2, then
   `[e] = [e - f] + [f]` and a defect has class `0`, so `t_p(e) = t_p(f)` and `e = f`,
   a contradiction.
 - **No proper equivalence.** Equivalent idempotents have equal lifted traces, so `f ~ e`

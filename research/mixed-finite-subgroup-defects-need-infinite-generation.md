@@ -11,10 +11,15 @@ artifacts:
 ---
 
 Let `p` be prime, `G` a group, and `H_1, H_2 <= G` finite subgroups. Let
-`e in M_n(F_p[H_1])` and `f in M_n(F_p[H_2])` be idempotents with `0 != f <= e`
-(that is `ef = fe = f`), and suppose the idempotent difference `e - f` is a
-Kaplansky defect: `e - f = I_n - AB` for some `A, B in M_n(F_p[G])` with
-`BA = I_n`.
+`e in M_n(F_p[H_1])` and `f in M_n(F_p[H_2])` be idempotents with `f <= e` and
+`f != e` (that is `ef = fe = f`), and suppose the nonzero idempotent difference
+`e - f` is a Kaplansky defect: `e - f = I_n - AB` for some `A, B in M_n(F_p[G])`
+with `BA = I_n`.
+
+*Amended 2026-09-12 after `w3-vf-linear` Section 9.1.* The hypothesis is `f != e`;
+`f != 0` is not needed. With `f = e` the difference is `0 = I - AB` for `A = B = I`,
+so that case must be excluded. With the amendment the claim is consequence 2 of
+`lifted-trace-detects-finite-subgroup-projectives` applied at `H = <H_1, H_2>`.
 
 **Claim.** If `H = <H_1, H_2>` is finite, no such configuration exists.
 
@@ -49,11 +54,11 @@ and `d F_p[G]^n` is its complement. The lifted trace
 (`lifted-trace-detects-finite-subgroup-projectives`, LFT1). Hence
 
 ```text
-t_p([d F_p[G]^n]) = t_p([e F_p[G]^n]) - t_p([f F_p[G]^n]) > 0
+t_p([d F_p[G]^n]) = t_p([(e - f) F_p[G]^n]) > 0
 ```
 
-because `e - f`, `e`, `f` are all nonzero idempotents of the single finite
-group algebra `M_n(F_p[H])` and `e - f != 0` (as `f < e`). But a defect module
+because `e - f` is a nonzero idempotent of the single finite group algebra
+`M_n(F_p[H])` (as `f < e`). But a defect module
 has `t_p = 0`: `d = I - AB` with `BA = I` gives
 `[d F_p[G]^n] = [F_p[G]^n] - [(AB) F_p[G]^n] = 0` in `K_0`, since both are free
 of rank `n` (`AB` is idempotent and `A` trivialises its range). So

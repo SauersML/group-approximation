@@ -21,8 +21,9 @@ trace.
 ## 1. The finite-join case
 
 **Theorem.** Let `H_1, H_2 <= G` be finite, `e in M_n(F_p[H_1])`,
-`f in M_n(F_p[H_2])` idempotents with `0 != f <= e`. If `H = <H_1, H_2>` is
-finite, then `e - f` is not a Kaplansky defect.
+`f in M_n(F_p[H_2])` idempotents with `f <= e` and `f != e`. If `H = <H_1, H_2>` is
+finite, then `e - f` is not a Kaplansky defect. (`f = e` must be excluded: then
+`e - f = 0 = I - AB` with `A = B = I`. Corrected after `w3-vf-linear` Section 9.1.)
 
 *Proof.* `e, f in M_n(F_p[H])` with `H` finite, so `e - f` is a nonzero
 idempotent of `M_n(F_p[H])`. The lifted trace `t_p` is additive and, on

@@ -20,8 +20,9 @@ idempotents with `f <= e` (`ef = fe = f`), and suppose `t_p([e]) = t_p([f])` for
 trace of `lifted-trace-detects-finite-subgroup-projectives`. Then `e = f`.
 
 Consequences:
-- **No mixed defect.** No pair `BA = I` has defect `I - AB = e - f` with `e`, `f` as above: a
-  defect has lifted trace `0`, which forces `t_p(e) = t_p(f)` and hence `e = f`.
+- **No mixed defect.** No pair `BA = I` has a nonzero defect `I - AB = e - f` with `e`, `f` as
+  above: a defect has lifted trace `0`, which forces `t_p(e) = t_p(f)`, hence `e = f` and the
+  defect is `0`.
 - **No proper equivalence.** `f ~ e` in `M_n(F_p[G])` forces `e = f`.
 - **The join may be infinite.** `H_1` and `H_2` need not lie in a common finite subgroup.
 - **Binary candidates killed.** Over `F_2` this kills every candidate built from two finite
