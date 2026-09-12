@@ -223,7 +223,7 @@ for all `m` at once would force `log |F| = omega(n)` by Theorem C.)
 * **SD-Rich + Theorem B ⟹ UGC.** Given `epsilon`, BKM's choices fix `m, delta,
   zeta, K`. Take `C_0 = C(K,m)`, then `gamma`, then `d` so that
   `(1-epsilon)^(2d)` beats `gamma`, then `t = 8d+1`, then `eta`. Apply SD-Rich
-  at `(eta, t)` and Corollary B.
+  at `(eta, t, m, K)` and Corollary B.
 * **Rich 2-to-1 at all large `n` ⟹ SD-Rich.** The family of all pairings is
   `t`-wise uniform for every `t <= n` and smooth with BKM's `C(K,m)` (Lemma 4.2).
   BKM's Section 5 already uses the Rich 2-to-1 conjecture at arbitrarily large
