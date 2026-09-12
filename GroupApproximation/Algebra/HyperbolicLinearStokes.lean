@@ -124,7 +124,13 @@ theorem linearStokes_of_isSlimTriangles {S : Set Q} (hS : IsSymmetricGeneratingS
       have hδ0 : (0 : ℤ) ≤ δ := Nat.cast_nonneg δ
       rw [hlen] at hclosed ⊢
       push_cast
-      nlinarith
+      have hx : (6 : ℤ) ≤ 6 * ((δ : ℤ) + 1) := by linarith
+      have hx2 : 6 * ((δ : ℤ) + 1) ≤ (6 * ((δ : ℤ) + 1)) ^ 2 := by nlinarith
+      have hk4 : (n : ℤ) ≤ 4 * (6 * ((δ : ℤ) + 1)) ^ 2 := by linarith
+      have hsq : (n : ℤ) ^ 2 ≤ 4 * (6 * ((δ : ℤ) + 1)) ^ 2 * n := by
+        rw [sq]
+        exact mul_le_mul_of_nonneg_right hk4 hn0
+      exact le_trans hclosed hsq
     have hnk : 2 * (6 * (δ + 1)) < n := not_le.mp hsmall
     have hTn : l.take n = l := by
       rw [← hlen, List.take_length]
@@ -258,8 +264,8 @@ theorem linearStokes_of_isSlimTriangles {S : Set Q} (hS : IsSymmetricGeneratingS
       · unfold Hyperbolic.IsBetween at hq
         have h1 := wordDist_triangle hS b q (b * (l.take t).prod)
         have h2 := wordDist_comm hS q (b * (l.take t).prod)
-        have h3 := wordDist_triangle hS (b * (l.take (t - 3 * (δ + 1))).prod)
-          (b * (l.take t).prod) q
+        have h3 := wordDist_triangle hS (b * (l.take (t - 3 * (δ + 1))).prod) q
+          (b * (l.take t).prod)
         have h4 := wordDist_comm hS q b
         have h5 := wordDist_comm hS b (b * (l.take (t - 3 * (δ + 1))).prod)
         omega
