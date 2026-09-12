@@ -60,8 +60,10 @@ abbrev Src (b : ℕ) : Type _ := Monoid.Coprod ↥N (FreeGroup (Fin b))
 /-- The map `N ∗ F_b → G`. -/
 def phi : Src N b →* G := Coprod.lift N.subtype (FreeGroup.lift ℓ)
 
+omit hN in
 theorem phi_inl (n : N) : phi N ℓ (Coprod.inl n) = (n : G) := Coprod.lift_apply_inl _ _ n
 
+omit hN in
 theorem phi_inr (w : FreeGroup (Fin b)) : phi N ℓ (Coprod.inr w) = FreeGroup.lift ℓ w :=
   Coprod.lift_apply_inr _ _ w
 
