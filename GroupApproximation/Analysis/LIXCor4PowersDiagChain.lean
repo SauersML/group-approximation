@@ -181,7 +181,7 @@ theorem sectionBlockMat_conjTranspose_mul {U : ↥(STW59.Gen.sphereEven n) → M
     (hU : Continuous U) (hu : ∀ v, (U v)ᴴ * U v = 1) :
     (sectionBlockMat n U hU)ᴴ * sectionBlockMat n U hU = 1 := by
   rw [sectionBlockMat, Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero,
-    Matrix.conjTranspose_zero, Matrix.conjTranspose_one, Matrix.fromBlocks_multiply,
+    Matrix.conjTranspose_one, Matrix.fromBlocks_multiply,
     sphereMatAt_conjTranspose_mul 0 hU hu]
   simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.one_mul]
   exact Matrix.fromBlocks_one
@@ -190,7 +190,7 @@ theorem sectionBlockMat_mul_conjTranspose {U : ↥(STW59.Gen.sphereEven n) → M
     (hU : Continuous U) (hu : ∀ v, U v * (U v)ᴴ = 1) :
     sectionBlockMat n U hU * (sectionBlockMat n U hU)ᴴ = 1 := by
   rw [sectionBlockMat, Matrix.fromBlocks_conjTranspose, Matrix.conjTranspose_zero,
-    Matrix.conjTranspose_zero, Matrix.conjTranspose_one, Matrix.fromBlocks_multiply,
+    Matrix.conjTranspose_one, Matrix.fromBlocks_multiply,
     sphereMatAt_mul_conjTranspose 0 hU hu]
   simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add, Matrix.one_mul]
   exact Matrix.fromBlocks_one
@@ -224,7 +224,8 @@ theorem diagChainN_sectionBlock (U : ↥(STW59.Gen.sphereEven n) → Matrix (Fin
   fin_cases i <;> fin_cases j <;>
     simp [sumProd, sectionBlock, sectionBlockMat, sphereMatAt_apply, coe_sphereUnitary,
       coe_sphereStage, STW59.Gen.blockUnitary_def, STW59.Gen.coe_stageAlgebra_one,
-      stageProj_zero_eq_one, Matrix.one_apply, apply_ite (fun f : C(STW59.Gen.baseX n 0, ℂ) => f w)]
+      stageProj_zero_eq_one, Matrix.one_apply, CStarMatrix.one_apply, Sum.inl.injEq,
+      apply_ite (fun f : C(STW59.Gen.baseX n 0, ℂ) => f w)]
 
 /-- **The transport of `U₀`.**  If `U ⊕ 1` is null-homotopic in the section algebra over `X₀`, then
 `diag(U ⊕ 1_{H₀}, 1)` is null-homotopic in `M₂(A₀)`. -/
