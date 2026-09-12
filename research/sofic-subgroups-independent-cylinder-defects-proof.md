@@ -30,3 +30,5 @@ Artifact Section 2, Theorem 2.1.
      This is because `phi_i(g)^l` agrees with `phi_i(g^l)` off `o(n_i)` points, and `phi_i(g^l)` has `o(n_i)` fixed points.
    * The fixed space of a permutation over `F_2` has dimension equal to its number of cycles, which here is at most
      `n_i/N + o(n_i)`. So `rk Fix sigma(g) = 0`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 28.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

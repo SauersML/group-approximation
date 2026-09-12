@@ -1297,3 +1297,42 @@ row-plus-column bound is attained: `3/4 + 3/4 = 3 · (1/2)`.
 3. **Conjugation.** `tau_A a tau_A = tau tau_A tau_(vA) v = tau z v = -a`.
 4. **Conclusion.** `S(a)` is closed under `x |-> -x`, which exchanges `p_+` and `p_-`. So `S(a) = {p_+, p_-}`,
    and the corollary holds.
+
+## 28. w5-sub-fock (2cf82d01d7, 0d600e4efd)
+
+### 28.1 Proposition 1.1: the Toeplitz pair is finite-subgroup data. PASS
+
+- **(a)** In characteristic two `X^2 = x_12(2 t0) = 1`. `[X,Y] = x_13(t0 s0) = x_13(1)`, and for involutions
+  `[X,Y] = (XY)^2`, so `XY` has order 4.
+- **(b)** The `(1,3)` entry of a product is `a_13 + b_13 + a_12 b_23`, and `span(1,t0) span(1,s0) = span(1, s0, t0)`
+  since `t0 s0 = 1`. The grading puts `1, s0, t0` in degrees `0, +1, -1`, so they are independent and the order is
+  `128`. The generators are `x_13(s0) = [x,Y]`, `x_13(t0) = [X,y]` and `x_13(1) = [x,y]`.
+- **(c)** It is a regular module, and the free count gives `3/8`.
+
+### 28.2 `sofic-subgroups-carry-independent-cylinder-defects`: PASS
+
+1. **The model.** Permutation matrices of the sofic approximation give a homomorphism into the rank
+   ultraproduct.
+2. **Freeness.**
+   - Keep the points where the finitely many identities of `K` hold at every point of their `K`-trajectory and no
+     nontrivial element fixes the point. This set is invariant, has `n_i - o(n_i)` points, and carries an honest
+     free action.
+   - Rank on a free module of rank `m` is `m dim(alpha F_2[K])`.
+3. **Defects.** Disjoint frames commute and meet trivially, `F_2[D_8^k]` is a tensor product, and
+   `dim(D F_2[D_8]) = 3`, which gives `(3/8)^k`.
+4. **Fixed vectors.**
+   - For `l <= N`, `phi_i(g)^l = phi_i(g^l)` off `o(n_i)` points, and `phi_i(g^l)` has `o(n_i)` fixed points. So
+     only `o(n_i)` points lie on cycles of length at most `N`.
+   - Over `F_2`, `dim Fix` equals the number of cycles, which is at most `n_i/N + o(n_i)`, so the normalized rank of
+     the fixed space is at most `1/N`.
+5. **Scope.** Relation-only arguments. The global gap and near-minimal inputs are not covered, as stated.
+
+### 28.3 `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`: PASS
+
+- **One coefficient set.** Each `C_ij` is additive, and signed permutations conjugate `x_ij(r)` to
+  `x_(pi(i)pi(j))(±r)`, so there is one set `C`, closed under negation.
+- **Products.** `[x_ij(a), x_jk(b)] = x_ik(ab)`.
+- **(a)** `C` contains `1, s0, t0`, so `C ⊇ J`, and the generators lie in `EL_3(J)`.
+- **(b)** `p = s0 t1 + s1 t0` lies in `R_0`, with `p s0 = s1` and `t0 p = t1`. So `C = R`, and
+  `G' = EL_3(R) = R^x`.
+- **`F_3`.** The same argument works, because `EL_3(F_3)` contains the signed permutations.
