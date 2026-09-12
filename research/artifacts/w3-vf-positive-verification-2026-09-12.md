@@ -902,3 +902,11 @@ cannot fire.
 - **The induction route.** `dihedral-marker-formalization-induces-to-thompson-v` is consistent. A formal
   pair over `D_inf` is a formal pair over `V` with the same polynomials.
 - **Status.** Both routes are valid and cannot fire. This closes the point raised in 13.6.
+
+## 18. Follow-ups on Sections 15–16 (w4-free-pos-b, `6d33b7d40a`)
+
+- **My normalization note in 16.1 was unnecessary.** At a good point, the model condition with `k = k' = 1`
+  gives `pi_1(pi_1(v)) = pi_1(v)`, and `pi_1` is a permutation, so `v.1 = v`. So Lemma 1.1(1) returns `y(g)(v)`
+  without normalizing `pi_1`. The author recorded exactly this justification, and it is correct.
+- **Corollary C.1.** The label-set scope note from 15.2 is now in the artifact.
+- **Status.** No status changes.
