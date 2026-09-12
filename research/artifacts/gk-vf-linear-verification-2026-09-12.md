@@ -1959,3 +1959,22 @@ Attempts entries on `projective-ternary-group-is-f3-linear-sofic` and `rank-mode
   - *Projectivity.* `sign` is projective over `F_3[<z>]`, since `|<z>| = 2`, and induction preserves projectivity. So the
     restriction to `x_12(F_3) ~= Z/3` is free, and `(x - 1)^2 != 0` there.
   - This is exact for the finite group, which is all the Attempts entry claims.
+
+**Section 50 addendum: quantitative truncation bound (cd762e2b8, artifact Proposition 3.1b) PASS.**
+- **Lemma 3.1a.**
+  - Intersection bound: `v = ex = fy` gives `v = (e - e^2)x + efy`, so `dim(im e cap im f) <= rank(e - e^2) + rank(ef)`.
+  - Sum bound: `ex = (e+f)ex - fex + (e - e^2)x`, and symmetrically for `f`.
+  - Combining with `rank e + rank f = dim(im e + im f) + dim(im e cap im f)` gives the stated inequality.
+- **Compression errors.** `(ST)_W - S_W T_W = P S (1-P) T|_W`. Its rank is at most `d_T(W)`, because `1 - P` kills `W` on
+  `TW + W`.
+- **Almost-idempotents.**
+  - `sum e_C = P . 1|_W = 1_W` exactly.
+  - `e_C^2 - e_C` and `e_C e_D` are compression errors of rank at most `beta dim W`.
+- **Rounding the units.** `sigma(h_i)` is injective, so `ker S_i` embeds in `sigma(h_i)W cap ker P`. That maps injectively into
+  `(sigma(h_i)W + W)/W`, giving corank at most `beta dim W` and hence invertible `A_i` within that rank.
+- **Covariance defect.** Replacing `A_i` by `S_i` costs `2 beta`. Exact covariance cancels the main terms. The two compression
+  errors cost `d_(rho(1_C)) + d_(h_i) <= 2 beta + beta`, using `d_(T+T') <= d_T + d_(T')`. So `eps <= 5 beta`.
+- **Counting.**
+  - With `e_[0] = e_[00] + e_[01]` exactly, Lemma 3.1a gives `m([0]) >= m([00]) + m([01]) - 6 beta`.
+  - `|m(h_i C) - m(C)| <= eps` then gives `m([0]) <= 2eps + 6beta`, and likewise `m([1]) <= 2eps + 6beta`.
+  - Subadditivity on `e_[0] + e_[1] = 1_W` gives `1 <= 4 eps + 12 beta <= 32 beta`.
