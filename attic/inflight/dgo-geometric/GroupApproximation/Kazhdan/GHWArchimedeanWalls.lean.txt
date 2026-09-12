@@ -84,22 +84,33 @@ theorem coeFn_koopmanEquiv (g : GL (Fin 2) ℂ) (f : Lp ℝ 2 shellMeasure) :
   exact Lp.coeFn_compMeasurePreserving f _
 
 /-- **The Koopman representation of `GL_2(ℂ)` on `L²(shell)`.** -/
+theorem koopmanEquiv_one : koopmanEquiv 1 = 1 := by
+  apply LinearIsometryEquiv.ext
+  intro f
+  rw [LinearIsometryEquiv.coe_one, id]
+  refine Lp.ext ((coeFn_koopmanEquiv 1 f).trans (Filter.EventuallyEq.of_eq ?_))
+  funext v
+  show (f : (Fin 4 → ℝ) → ℝ) (conjAct 1⁻¹ v) = (f : (Fin 4 → ℝ) → ℝ) v
+  rw [inv_one, conjAct_one, LinearMap.id_apply]
+
+theorem koopmanEquiv_mul (g h : GL (Fin 2) ℂ) :
+    koopmanEquiv (g * h) = koopmanEquiv g * koopmanEquiv h := by
+  apply LinearIsometryEquiv.ext
+  intro f
+  rw [LinearIsometryEquiv.coe_mul, Function.comp_apply]
+  refine Lp.ext ((coeFn_koopmanEquiv (g * h) f).trans ?_)
+  refine ((coeFn_koopmanEquiv g (koopmanEquiv h f)).trans ?_).symm
+  refine ((measurePreserving_conjAct_shell g⁻¹).quasiMeasurePreserving.ae_eq_comp
+    (coeFn_koopmanEquiv h f)).trans (Filter.EventuallyEq.of_eq ?_)
+  funext v
+  show (f : (Fin 4 → ℝ) → ℝ) (conjAct h⁻¹ (conjAct g⁻¹ v)) =
+    (f : (Fin 4 → ℝ) → ℝ) (conjAct (g * h)⁻¹ v)
+  rw [mul_inv_rev, conjAct_mul, LinearMap.comp_apply]
+
 def koopman : GL (Fin 2) ℂ →* (Lp ℝ 2 shellMeasure ≃ₗᵢ[ℝ] Lp ℝ 2 shellMeasure) where
   toFun := koopmanEquiv
-  map_one' := by
-    ext f : 1
-    refine Lp.ext ((coeFn_koopmanEquiv 1 f).trans (Filter.EventuallyEq.of_eq ?_))
-    rw [inv_one, conjAct_one]
-    rfl
-  map_mul' g h := by
-    ext f : 1
-    rw [LinearIsometryEquiv.coe_mul, Function.comp_apply]
-    refine Lp.ext ((coeFn_koopmanEquiv (g * h) f).trans ?_)
-    refine ((coeFn_koopmanEquiv g (koopmanEquiv h f)).trans ?_).symm
-    refine ((measurePreserving_conjAct_shell g⁻¹).quasiMeasurePreserving.ae_eq_comp
-      (coeFn_koopmanEquiv h f)).trans (Filter.EventuallyEq.of_eq ?_)
-    rw [mul_inv_rev, conjAct_mul]
-    rfl
+  map_one' := koopmanEquiv_one
+  map_mul' := koopmanEquiv_mul
 
 theorem coeFn_koopman (g : GL (Fin 2) ℂ) (f : Lp ℝ 2 shellMeasure) :
     (koopman g f : (Fin 4 → ℝ) → ℝ) =ᵐ[shellMeasure] f ∘ conjAct g⁻¹ :=
@@ -124,7 +135,7 @@ def wallCocycle (hfin : SeparationFinite) (g : GL (Fin 2) ℂ) : Lp ℝ 2 shellM
 theorem indicator_diff_sub_indicator_diff (A B : Set (Fin 4 → ℝ)) (v : Fin 4 → ℝ) :
     (A \ B).indicator (fun _ => (1 : ℝ)) v - (B \ A).indicator (fun _ => (1 : ℝ)) v =
       A.indicator (fun _ => (1 : ℝ)) v - B.indicator (fun _ => (1 : ℝ)) v := by
-  by_cases hA : v ∈ A <;> by_cases hB : v ∈ B <;> simp [Set.indicator_apply, hA, hB]
+  by_cases hA : v ∈ A <;> by_cases hB : v ∈ B <;> simp [hA, hB]
 
 theorem coeFn_wallCocycle (hfin : SeparationFinite) (g : GL (Fin 2) ℂ) :
     (wallCocycle hfin g : (Fin 4 → ℝ) → ℝ) =ᵐ[shellMeasure]
@@ -162,7 +173,7 @@ theorem isCocycle_wallCocycle (hfin : SeparationFinite) :
   by_cases a1 : v ∈ halfSpace (conjAct (g * h) origin) <;>
     by_cases a2 : v ∈ halfSpace (conjAct g origin) <;>
       by_cases a3 : v ∈ halfSpace origin <;>
-        simp [Set.indicator_apply, a1, a2, a3, e1, e2]
+        simp [a1, a2, a3, e1, e2]
 
 /-- **‖b(g)‖² is the measure of the separating walls.** -/
 theorem norm_wallCocycle_sq (hfin : SeparationFinite) (g : GL (Fin 2) ℂ) :
@@ -171,8 +182,8 @@ theorem norm_wallCocycle_sq (hfin : SeparationFinite) (g : GL (Fin 2) ℂ) :
   have hsep : MeasurableSet (halfSpace origin ∆ halfSpace (conjAct g origin)) :=
     (measurableSet_halfSpace _).symmDiff (measurableSet_halfSpace _)
   rw [← real_inner_self_eq_norm_sq, MeasureTheory.L2.inner_def]
-  have hae : (fun v => ⟪(wallCocycle hfin g : (Fin 4 → ℝ) → ℝ) v,
-      (wallCocycle hfin g : (Fin 4 → ℝ) → ℝ) v⟫_ℝ) =ᵐ[shellMeasure]
+  have hae : (fun v => inner ℝ ((wallCocycle hfin g : (Fin 4 → ℝ) → ℝ) v)
+      ((wallCocycle hfin g : (Fin 4 → ℝ) → ℝ) v)) =ᵐ[shellMeasure]
       (halfSpace origin ∆ halfSpace (conjAct g origin)).indicator 1 := by
     filter_upwards [coeFn_wallCocycle hfin g] with v hv
     rw [hv, Real.inner_apply]
@@ -219,6 +230,7 @@ theorem Haagerup.AffineAction.comapHom_b {G Γ : Type} [Group G] [Group Γ]
 end GroupApproximation
 
 #audit_axioms GroupApproximation.GHW.Walls.conjAct_preimage_halfSpace
+#audit_axioms GroupApproximation.GHW.Walls.koopmanEquiv_mul
 #audit_axioms GroupApproximation.GHW.Walls.koopman
 #audit_axioms GroupApproximation.GHW.Walls.isCocycle_wallCocycle
 #audit_axioms GroupApproximation.GHW.Walls.norm_wallCocycle_sq
