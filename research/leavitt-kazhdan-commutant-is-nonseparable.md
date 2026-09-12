@@ -36,12 +36,19 @@ separable.
   particular `A_0 = sigma(J)''`, or `A_0` equal to any separable algebra built
   from the complementary corner, is excluded. The commutant is always strictly
   and hugely larger than the complementary group factor.
-- **Where a negative 6.2(a) instance must live.** A negative instance of
-  Alekseev--Thom Open Problem 6.2(a) is what the unstable branch needs by the
-  heat-rounding artifact. It cannot be detected by separability. It must be a
-  non-separable type `II_1` commutant that is not an ultraproduct of coordinate
-  algebras. Growth under the compressor, `A_0 <= A_1 ~= A_0`, has to happen
-  without a slowly varying central height.
+- **Separability cannot detect a negative 6.2(a) instance.** By (13) of the
+  heat-rounding artifact, the unstable branch needs a negative instance of
+  Alekseev--Thom Open Problem 6.2(a).
+  - **What such an instance is.** It is, by definition, a relative commutant
+    that is not an ultraproduct of coordinate algebras.
+  - **Two different algebras.** The commutant in (13) is the native corner
+    `pi(L)' cap M` of a canonical `H`-model. It is not the nine-leaf
+    `A_0 = sigma(Gamma)' cap qMq` of this node. The same proof makes both
+    non-separable.
+  - **So separability decides nothing.** Internal and non-internal type
+    `II_1` commutants are both non-separable. For `A_0`, growth under the
+    compressor, `A_0 <= A_1 ~= A_0`, has to happen without a slowly varying
+    central height.
 - **Scope.** Nothing here obstructs faithful models. Like the type-I screen, it
   fixes the shape any witness must have.
 
