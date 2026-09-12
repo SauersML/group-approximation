@@ -1,4 +1,6 @@
 import GroupApproximation.CharClass.LIXKGenStepCWired
+import GroupApproximation.CharClass.LIXKGenBaseChart
+import GroupApproximation.CharClass.LIXKGenTopLine
 import GroupApproximation.CharClass.LIXLemmaTwoGenGlue
 import GroupApproximation.Meta.AxiomGuard
 
@@ -15,8 +17,12 @@ exponent `e` with `p ∤ e` and every stage `j`.
 
 This file states, at `p = 2`, exactly that half from the `k`-zero Step C of
 `CharClass/LIXKGenStepCWired.lean`, with the data that Step C still takes collected into ONE named
-proposition `KGen.KZeroStepCData` per corner unitary.  It is a reshaping, not a discharge: every
-field of `KZeroStepCData` is an open leaf with a named route (see `LIXKGenStepCWired`'s header).
+proposition `KGen.KZeroStepCData` per corner unitary.  Two of Step C's inputs are DISCHARGED here:
+the excision/chart identification at every zero, by `KGen.lixKRelModelIso`
+(`CharClass/LIXKGenBaseChart.lean`), and the top line `H^{2r}(N; F₂) ≃ F₂`, by
+`KGen.absEquiv_lixN` (`CharClass/LIXKGenTopLine.lean`).  Every remaining field of
+`KZeroStepCData` is an open leaf with a named route (see `LIXKGenStepCWired`'s header), so this
+is a reshaping of those leaves, not their discharge.
 
 ## Main declarations
 
@@ -42,21 +48,16 @@ set_option linter.unusedSectionVars false
 variable {ℓ : ℕ}
 
 /-- **The open data of the `k`-zero Step C at rank `n`, for one corner unitary `G` and one class
-`gamma`**: `H^{2r}(N; F₂)` is a line; at every zero, an excision/chart identification of the
-single-puncture relative group with the local model; a relative class `u` of the bundle pair whose
-section pullback splits into local classes, all nonzero; and `u` restricting to `π^* gamma`. -/
+`gamma`**: a relative class `u` of the bundle pair whose section pullback splits into local
+classes, all nonzero, and `u` restricting to `π^* gamma`.  The top line and the identification of
+each single-puncture relative group with the local model are not data: they are
+`KGen.absEquiv_lixN` and `KGen.lixKRelModelIso`. -/
 def KZeroStepCData (n k : ℕ) (dd : Fin ℓ → ℕ)
     {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m))
     (hGe : ∀ m, G m *ᵥ Sum.elim (aVecK n m) 0 = Sum.elim (bVecK n k m) 0)
     (gamma : cohomologyZMod2 (lixN n dd) (2 * lixRank n dd)) : Prop :=
-  Nonempty (cohomologyZMod2 (lixN n dd) (2 * lixRank n dd) ≃ₗ[ZMod 2] ZMod 2) ∧
-  ∃ (chart : Fin (k + 1) → ModuleCat.{0} (ZMod 2))
-    (_exc : ∀ i, relCohomology (ZMod 2) (lixN n dd)
-      ({lixKZero n k dd i}ᶜ : Set (↥sphereOne × Gen.baseM n dd)) (2 * lixRank n dd) ≅ chart i)
-    (_chartIso : ∀ i, chart i ≅ relCohomology (ZMod 2) (TopCat.of (Fin (lixRank n dd) → ℂ))
-      (puncturedSet (lixRank n dd)) (2 * lixRank n dd))
-    (u : relCohomology (ZMod 2) (lixTotalPair n hGc hGu) (lixPuncturedInTotal n hGc hGu)
+  ∃ (u : relCohomology (ZMod 2) (lixTotalPair n hGc hGu) (lixPuncturedInTotal n hGc hGu)
       (2 * lixRank n dd))
     (xloc : ∀ i : Fin (k + 1), relCohomology (ZMod 2) (lixN n dd)
       ({lixKZero n k dd i}ᶜ : Set (↥sphereOne × Gen.baseM n dd)) (2 * lixRank n dd)),
@@ -79,9 +80,11 @@ theorem stepCHalf_two_of_kZeroStepCData (n k : ℕ) (hodd : Odd (k + 1)) (dd : F
         (topClass (mappingTorus (Gen.Vmat n) G circHoriz circHeight))) :
     Gen.StepCHalf n dd (bVecK n k) topClass := by
   intro G hGc hGu hGe
-  obtain ⟨absLine, _chart, exc, chartIso, _u, _xloc, hsplit, hx, hclass⟩ :=
-    hdata G hGc hGu hGe
-  exact lixK_topClass_ne_zero_two_odd n k hodd hdd hGc hGu hGe absLine exc chartIso hsplit hx
+  obtain ⟨_u, _xloc, hsplit, hx, hclass⟩ := hdata G hGc hGu hGe
+  exact lixK_topClass_ne_zero_two_odd n k hodd hdd hGc hGu hGe (absEquiv_lixN n dd hdd)
+    (chart := fun _ => relCohomology (ZMod 2) (TopCat.of (Fin (lixRank n dd) → ℂ))
+      (puncturedSet (lixRank n dd)) (2 * lixRank n dd))
+    (fun i => lixKRelModelIso n k dd i (2 * lixRank n dd)) (fun _ => Iso.refl _) hsplit hx
     hclass
 
 /-- **The exponent-facing form**, at every stage `j` of the rank-`n` tower and every odd exponent
