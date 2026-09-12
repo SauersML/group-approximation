@@ -32,6 +32,12 @@ the Toeplitz pair. A nontrivial model must give the finitary `SL_fin(F_2)` spann
 units `s0^a e t0^b` positive rank displacement through maps that are neither algebra-like nor
 monomial (artifact, Section 5).
 
-The argument transfers to `L_K(1,n)` over any finite field. There `x_12(e)` is non-central, and the
-unit group is perfect and simple modulo scalars (see the odd Leavitt fp-simplicity node), so the
-kernel contains a non-central normal subgroup and `σ` has abelian image, hence is trivial.
+**Transfer, scoped to the recorded cases** (scope from `gk-vf-linear`, Section 42 of its
+verification artifact). The same argument gives triviality for `EL_3(L)` with `L = L_(F_p)(1,2)`,
+`p` odd. There `EL_3(L) ≅ L^x` is perfect and simple modulo its central scalars
+(`odd-leavitt-unit-groups-mod-scalars-are-fp-simple`). `x_12(e)` is non-central, so `ker σ` is a
+non-central normal subgroup and `σ` has abelian image; by perfection `σ` is trivial.
+
+For other `(K, n)` the step needs `EL_3(L_K(1,n))` simple modulo its centre. No node records that,
+and `M_3(L_K(1,n)) ≅ L_K(1,n)` holds only when `(n−1) | 2`. So the transfer is not claimed there.
+Theorem A's first step, `φ(e) = 0` and hence `σ(x_12(e)) = 1`, holds for every `(K, n)`.
