@@ -62,5 +62,23 @@ algebras, and via mapping cones plus Kirchberg--Phillips the problem is
 equivalent to every Kirchberg algebra with trivial K-theory being `O_2`;
 (iv) Winter's microcosm: the strongly self-absorbing case is Problem
 XIII (`stw99-problem-xiv2-ssa-embeds-in-q-oinfty` and its finite part are
-the concentrated forms).  No approach is recorded here beyond the
-literature; this node exists as the parent of Problems III, IV, V.
+the concentrated forms).  This node is also the parent of Problems III, IV, V.
+
+Dead ends on the negative side (uct-problem lane, 2026-09-12; details in
+`research/artifacts/stw-uct-per-prime-cartan-2026-09-12.md`):
+
+* **Equivariant K-theoretic classification.**  An outer strongly approximately
+  inner `Z_(p^n)`-action on `O_2` that is `KK^G`-equivalent to an action on a
+  type I algebra fixes a Cartan subalgebra
+  (`bootstrap-class-zp-actions-on-o2-fix-a-cartan`).  Cartan-fixing holds at every
+  prime or at most one (`o2-zp-cartan-fixing-all-primes-or-at-most-one`).  So a
+  witness needs, at all primes but at most one, an action outside the equivariant
+  bootstrap class, which Köhler, Meyer--Nadareishvili and Gabe--Szabó cannot
+  name.  Dies there.
+* **Property (T) compression rigidity.**  The mechanisms behind this
+  repository's non-MF and nonsofic theorems live on non-amenable groups, whose
+  group C\*-algebras are not nuclear.  Dies at nuclearity.
+* **Ozawa's Kazhdan projections** (arXiv:2609.08892,
+  `hyperfinite-factor-not-quasidiagonal`).  The MF algebra built there has only
+  non-faithful tracial states, so it gives no faithful non-quasidiagonal trace
+  for `stw99-ii-implies-ix1`.  Dies at faithfulness.
