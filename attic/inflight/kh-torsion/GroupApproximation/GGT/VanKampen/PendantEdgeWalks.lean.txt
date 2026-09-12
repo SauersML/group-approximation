@@ -35,8 +35,7 @@ theorem step_embed (d : M.Dart) :
       if M.facePerm d = b then some none else some (some (M.facePerm d)) := by
   rw [facePerm_apply, insertBefore_some, insertBefore_some]
   by_cases h : M.facePerm d = b
-  · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => Option.noConfusion h'),
-      if_pos h]
+  · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => by cases h'), if_pos h]
   · rw [if_neg h, if_neg (fun h' => h (Option.some.inj h')), if_neg h]
 
 /-- The walk replacing an old dart along its face. -/

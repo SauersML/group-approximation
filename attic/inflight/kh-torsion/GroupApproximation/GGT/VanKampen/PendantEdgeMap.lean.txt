@@ -64,7 +64,7 @@ theorem facePerm_apply (x : EdgeInsertion.Dart M) :
     rw [PermOrbitInsert.insertBefore_some, PermOrbitInsert.insertBefore_some,
       PermOrbitInsert.insertBefore_some, hf]
     by_cases h : M.sigma (M.alpha d) = b
-    · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => Option.noConfusion h')]
+    · rw [if_pos h, if_neg (fun h' : (none : Option M.Dart) = some b => by cases h')]
     · rw [if_neg h, if_neg (fun h' => h (Option.some.inj h'))]
 
 /-- **Face rotation.** -/
