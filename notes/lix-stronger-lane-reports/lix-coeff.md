@@ -5,6 +5,74 @@ Owns `CharClass/Coeff*`, `Relative*` (not RelativeSupport), `RelHomotopy*`, `Coh
 `CohomologyAssoc*`, `CohomologyMayerVietoris*`, `CohomologyKunneth*`, `CohomologyLH*`
 (`MayerVietoris*` and `CohomologyDelta*` went to lix-lh, 21:40).
 
+## STOPPED 2026-09-12 (lead nonsofic-existence-3a)
+
+User ruling 09-12: "LIX is too low impact. we should only do things HIGHER impact than non-MF".  This lane stops.
+Nothing is deleted.
+
+**State at stop (origin 0ac9f4538).**  All 19 files in `lanes/lix-coeff.files` are byte-identical to origin/main.
+There are no in-flight edits, no unverified files and no running probe.  Every module in the tables below compiled on MSI
+with its own `Built` line: probes 0911-215900-88704, 0911-224614-10401, 0911-231759-79994, 0911-233409-64424,
+0911-235942-72699 and 0912-001208-59872 (the last green).  `attic/inflight/lix-coeff/…/RelativeLocalModelOf.lean.txt` is
+byte-identical to the compiled module on main.
+
+**Relaunch target, not started (no module written, no sha).**  Residual (b) of lix-evenside-n's
+`Gen.lemmaTwoFor_powers_two_lixChernOf` (`CharClass/LIXLemmaTwoGenTwo.lean`) is its binder `data`, a mod-2
+`Gen.WuStepDData n dd (pY j) (q₁ j) (qodd j) (σ₁ j) (σodd j) γ`.  Here `dd := LIX.Gen.lixDD n j`,
+`γ := KGen.lixChernOf n (KGen.lixChern n dd) (mappingTorus (Vmat n) G circHoriz circHeight)` for continuous `G` with
+`∀ m, IsCornerUnitary (Vmat n m) (G m)`, and `N := KGen.lixN n dd`.  This lane's share is the two fields below plus the
+binders `pY`, `q₁`, `qodd`, `hS₁`, `hSodd`.  lix-evenside-n owns `sq_b`, `split`, `slice` and the Cartan input.
+The residual fields, verbatim from `CharClass/LIXStepDGenData.lean`:
+
+```lean
+tx_inj : ∀ u v : TotalH Y,
+  TotalH.map p u + Wu.tClass q₁ σ₁ * sphereClass qodd σodd * TotalH.map p v = 0 → v = 0
+gamma_eq : ∀ k : ℕ,
+  γ k = TotalH.map p (a k)
+    + Wu.tClass q₁ σ₁ * sphereClass qodd σodd * TotalH.map p (b k)
+```
+
+**Spellings agreed with lix-evenside-n (09-12).**  Every name below is reserved, and none of the `KnLix.*` names are declared yet.
+
+* `Y j := TopCat.of (baseY dd)`, `S₁ j := TopCat.of (Sphere 1)` (defeq `sphereOne`),
+  `Sodd j := TopCat.of (Sphere (2 * n + 1))`.
+* `KnLix.torusHomeo n dd : (↥sphereOne × Gen.baseM n dd) ≃ₜ KnTwo.torusBaseOf (baseY dd) n`, built from
+  `KGen.unitVectorsHomeo n` and two `Homeomorph.prodComm`.  `KnLix.lixIso n dd := TopCat.isoOfHomeo (torusHomeo n dd)`.
+* `pY j := KnLix.prY n dd := (lixIso n dd).hom ≫ KnTwo.prYOf (baseY dd) n`.  Likewise `q₁ j := KnLix.prS1 n dd`
+  (via `KnTwo.prS1Of`) and `qodd j := KnLix.prSodd n dd` (via `KnTwo.prSoddOf`).
+* `σ₁ j := sphereTopClass 1 _` and `σodd j := sphereTopClass (2 * n + 1) _`.  `hS₁ j := hasSphereCohomology_sphere 1 _`
+  and `hSodd j := hasSphereCohomology_sphere (2 * n + 1) _`.
+* `KnLix.tx_inj n dd` is `tx_inj` verbatim at these objects.
+* `KnLix.chern_split n dd d (hd : Even d) (x : Hmod2 N d)` states
+  `∃ α β, (d < 2 * n + 2 → β = 0) ∧ TotalH.of N d x = TotalH.map (prY n dd) (TotalH.of _ d α) + Wu.tClass (prS1 n dd) σ₁ * Gen.sphereClass (prSodd n dd) σodd * TotalH.map (prY n dd) (TotalH.of _ (d - (2 * n + 2)) β)`.
+* `KnLix.chern_split_mappingTorus` is that statement at `d = 2 * k` for `γ k`.  `choose` then gives
+  `a k := TotalH.of _ (2k) α` and `b k := TotalH.of _ (2k − (2n+2)) β`, and `β = 0` below `2n + 2` feeds `sq_b`.
+* `Gen.ChernSplitN` was only ever proposed in lix-evenside-n's message and was never written.
+
+**Planned route (for a restart).**
+
+1. `CharClass/CohomologyKunnethTorusDecompOf.lean`, generic over `[Field K]`:
+   * `KnHemi.kunneth_decomposition_of_ne_zeroOf` is `kunneth_decompositionOf` for any nonzero top class `t`.
+     Rescale `b` by `c⁻¹`, where `t = c • sphereTopClassOf` (`sphere_coh_top_eq_smulOf`).
+   * `KnTwo.decomp_even_topOf`: for `KnHemi.NoOddCohomologyOf K Y`, nonzero `σ₁`, `σodd` and even `c`, every
+     `z` in degree `1 + ((2n+1) + c)` of `torusBaseOf Y n` has the form
+     `pull (prYOf Y n) _ a + cup (pull (prS1Of Y n) 1 σ₁) (cup (pull (prSoddOf Y n) (2n+1) σodd) (pull (prYOf Y n) c b))`.
+     Peel the circle, then the odd sphere.  The odd-degree pieces vanish (`even_pulled_back_of_odd_sphereOf`,
+     `eq_zero_of_noOddOf`).
+   * `KnTwo.decomp_even_lowOf`: an even degree `d < 2n + 2` is pulled back from `Y` (`kunneth_lowOf`).
+2. `CharClass/CohomologyKunnethLixN.lean`, namespace `KnLix`, mod 2:
+   * `tx_inj` is `Gen.tx_inj_of_degreewise`, fed `KnTwo.tx_inj_degree_of_ne_zeroOf (ZMod 2) (baseY dd) n …` moved
+     across `lixIso` (`pull_comp`, `Iso.inv_hom_id`, `pull_id`, `pull_add`, `pull_cup`).
+   * `chern_split` comes from the two model lemmas with `noOddCohomology_baseY dd`, then
+     `KnTwo.totalH_of_cohCast`, `TotalH.of_mul`, `TotalH.map_of`, `Wu.tClass_eq_of` and `Gen.sphereClass_eq_of`.
+   * The rank-two template is `CharClass/ParityEvenTransport.lean` (`lix_htx_inj`, `lix_gamma_eq`).
+   * Unprobed risk: in the `…Of` lemmas, `ZMod 2` reaches `CommRing` through `Field`, while `Hmod2` uses
+     `ZMod.commRing`.  They should agree at default transparency.
+
+**Trap.**  In the shared tree, `git diff origin/main -- <path>` reports a file as deleted when the stale shared index
+does not track it (685 `GroupApproximation` paths at 0ac9f4538, all present on disk).  Compare bytes instead:
+`git show origin/main:<path> | cmp - <path>`.
+
 ## STEP 0 (2026-09-11 21:30 CDT)
 
 Predecessor work is all on origin/main: `Coeff{AxiomCheck,Cohomology,Field,Leibniz,Line}`,
