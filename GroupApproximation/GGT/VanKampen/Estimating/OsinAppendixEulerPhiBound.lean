@@ -127,7 +127,7 @@ theorem card_le_of_linked (P : PhiData family E) (V : Finset (Fin Delta.rCellCou
       · exact hV a ha true
       · exact hV a ha false
     have hpair : ({sideCell a true, sideCell a false} : Finset (Fin Delta.rCellCount)).card = 2 :=
-      Finset.card_pair (P.sideCell_ne ha)
+      Finset.card_pair_eq_two_iff.mpr (P.sideCell_ne ha)
     exact hpair ▸ Finset.card_le_card hsub
   exact CombMap.edgeBound_of_subdividedGraph (phiMap family E) (phiSubdividedGraph P)
     (phiMap_planar P hlinked ha) hc (phiMap_dartCount P) (phiMap_vertexCount_le P V hV)
