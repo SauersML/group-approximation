@@ -30,12 +30,16 @@ as second factor. The only change needed is that the second factor be nuclear.
   the block representation of `SL(3,Z)`, whose generated algebra `D` is not
   nuclear (`ozawa-leg-algebra-carries-non-amenable-trace`). A nuclear subalgebra
   of R containing `D` would force `D` to be exact.
-  - Undecided: whether `C*(⊕_k π_k(SL(3,Z)))` is exact.
-  - Heuristic against: its blocks come from the expander family of Schreier
-    graphs on `P²(F_p)`, and uniform Roe algebras of box spaces of Kazhdan groups
-    are not exact.
-  - Also undecided: the minimal slice algebra of the isometry.
-- **Nuclear second factor.** The spectral-gap projection `q` needs property (T)
-  only for `G`. The obstruction is the second factor: it must contain blocks of
-  the representation with trace weights `c^{-k}`, and the algebra those blocks
-  generate is `D`. So this attempt reduces to the same exactness question.
+  - Decided, dead: `D = C*(⊕_k π_k(SL(3,Z)))` is not exact
+    (`kazhdan-fd-block-representation-algebras-are-not-exact`, a Wassermann-type
+    Kazhdan-projection certificate). So no nuclear algebra contains `D` or `D̄`.
+  - The minimal slice algebra is the wrong object. The right slices of the Kazhdan
+    projection `q` lie in the nuclear ideal `⊕_k B(H̄_k)` (block norms `≤ 1/d_k`),
+    yet `q ∉ M ⊗_min ⊕_k B(H̄_k)`. See
+    research/artifacts/uct-ozawa-leg-exactness-2026-09-12.md §4.
+- **Nuclear second factor.** Dead as formulated. The spectral-gap projection is
+  formed from `Σ_s σ(s) ⊗ π̄(s)`, and any second factor containing that element
+  contains `π̄(G) ⊃` a copy of `D̄`, which is not exact. What survives is a second
+  factor containing no copy of `π̄(G)`, reached by a different construction of the
+  infinite projection. The certificate does not reach such a factor, and for it
+  exactness plus a faithful trace would already give this claim.

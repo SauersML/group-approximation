@@ -25,6 +25,11 @@ Conclusions:
 
 Consequence for `nuclear-factor-with-infinite-mf-tensor-exists`: Ozawa's proper
 isometry, with the right legs as printed, cannot be read inside a nuclear
-subalgebra of R unless `D` is exact. Exactness of `D` is not decided here. The
-minimal slice algebra of the isometry, which need not contain all of `D`, is not
-decided either.
+subalgebra of R unless `D` is exact.
+
+**Update 2026-09-12:** `D` is not exact (`kazhdan-fd-block-representation-algebras-are-not-exact`),
+so no nuclear algebra contains `D` or `D̄`. That result does not decide whether some
+second factor containing no copy of `π̄(G)` carries the isometry. The right slices of
+the Kazhdan projection already lie in the nuclear ideal `⊕_k B(H̄_k)` while the
+projection itself does not lie in `M ⊗_min ⊕_k B(H̄_k)`, so the slice algebra is not
+the relevant object (research/artifacts/uct-ozawa-leg-exactness-2026-09-12.md §4).
