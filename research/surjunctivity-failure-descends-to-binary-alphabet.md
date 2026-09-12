@@ -36,3 +36,15 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
   - So an `A`-configuration cannot be written equivariantly in binary, and no binary strict
     automaton results.
 - No literature source was checked for this statement.
+- **Reformulation and the marker obstruction** (w3-alphabet). Descent is equivalent to an equivariant
+  continuous binary coding with a one-sided inverse: an equivariant continuous injection
+  `e : A^K -> {0,1}^K` with equivariant continuous retraction `r`, `r o e = id`, `e(A^K)` clopen; then
+  `e o tau o r` (identity off the image) is a strict automaton on `{0,1}^K`. The only known binary coding
+  is block coding over a finite subgroup `H <= K` with `2^{|H|} >= |A|`, whose encoding step needs an
+  equivariant marking of `K/H` (an equivariant transversal), a coloring/SFT datum a group need not admit.
+  On a finitely generated infinite simple group — the hosts the conjecture reduces to — there is no proper
+  finite-index subgroup and no nontrivial finite quotient, and a finite `H` has infinite-index normalizer,
+  so no equivariant marking of `K/H` exists and block-code descent is unavailable on exactly those hosts.
+  Any descent proof for the target hosts must give a markerless equivariant binary coding; none is known.
+  This marker argument is a structural sketch, not a formalized theorem. Artifact
+  `research/artifacts/alphabet-ascent-and-binary-descent-2026-09-12.md`, Section 3.
