@@ -81,3 +81,73 @@ the image of `Γ` in `GL(U_i)`. For injectivity, `a ≠ 1` acts on `F_qΓ` with 
 `Λ(U)^(⊗m)` [needs] vanishing proportion over 3-subgroups". Theorem 1.2 gives vanishing NON-FREE
 proportion over every finite subgroup, in every characteristic. So the intertwiner step of the Fock idea
 holds. Section 2 builds the letters. Section 3 shows what locality does not give.
+
+## 2. Fock-local letters
+
+**Support.** `g ∈ G` is *supported on* a clopen `A` if `g` preserves `LC(A)` and acts as the identity on
+`LC(A^c)`. Examples: elements of `V` fixing `A^c` pointwise, and level elements that mix only
+cylinders inside `A`. For such `g` put `B_g^A = {a ∈ L : a preserves LC(A), g a g^(−1) ∈ L}` and
+`φ_g(a) = g a g^(−1)`. Then `φ_g(a)` also preserves `LC(A)`, and it agrees with `a` on `LC(A^c)`.
+
+**Definition 2.1.** Let `I ⊆ G` be countable, and fix a support `A_g` for each `g ∈ I`. The group
+`𝒢_loc(I)` has generators `L ∪ {t_g : g ∈ I}` and relations:
+* **(R1)** the relations of `L`;
+* **(R2)** `t_g a t_g^(−1) = φ_g(a)` for `a ∈ B_g^(A_g)`;
+* **(R3)** `[t_g, a] = 1` for `a ∈ L` supported on `A_g^c`;
+* **(R4)** `[t_g, t_h] = 1` whenever `A_g ∩ A_h = ∅`.
+
+`t_g -> g` defines a homomorphism `𝒢_loc(I) -> G`. For (R3) and (R4), elements with disjoint supports
+act blockwise on `LC(A) ⊕ LC(A^c)` and commute. `G` acts faithfully on `U_∞`, because `R` is simple.
+
+**Theorem 2.2 (Fock-local extension).** For every countable `I`, the Fock tower `σ_Λ` of Corollary 1.4
+extends to a homomorphism `𝒢_loc(I) -> M^x`, injective on `L`, with `σ(t_g) = [X_(g,j) ⊗ 1]_ω` and
+`X_(g,j) ∈ GL(Λ(U_(A_g)^(j)))`. The relations (R3) and (R4) hold exactly at every stage.
+
+*Proof.* Fix `g ∈ I`, `A = A_g`, and stages `j` at least the depth of `A`, so that
+`S_j = S_A^(j) ⊗ S_(A^c)^(j)` with `S_A^(j) = Λ(U_A^(j))`.
+1. **Exhaustion.** Put `Γ_i = B_g^A ∩ L_i`. These are finite and increasing, with union `B_g^A`. Let `c(i)`
+   be the least level containing `Γ_i ∪ φ_g(Γ_i)` and at least the depth of `A`.
+2. **Two actions on one factor.** For `j >= c(i)` and `a ∈ Γ_i`, put `ρ(a) = Λ(a|_(U_A^(j)))` and
+   `ρ'(a) = Λ(φ_g(a)|_(U_A^(j)))`.
+   - For `a ∈ L_c` preserving `LC(A)`, `U_A^(j)|_a = U_A^(c) ⊗ F_q^(2^(j−c))`. So
+     `ρ ≅ Λ(W)^(⊗2^(j−c))` with `W = U_A^(c)`, and the same holds for `ρ'`.
+   - Both actions factor through `Γ_i/K` with the same kernel `K`: `a` acts trivially on `LC(A)` iff
+     `φ_g(a)` does, since `g|_(LC(A))` is invertible.
+   - Theorem 1.2, applied to the two faithful images, bounds the non-free proportions by some
+     `δ_(i,j) -> 0` as `j -> ∞` with `i` fixed.
+3. **Local intertwiners.** Corollary 1.3 gives `X_(g,j) ∈ GL(S_A^(j))` with
+   `rk(X ρ(a) X^(−1) − ρ'(a)) <= δ_(i,j) · dim S_A^(j)` for all `a ∈ Γ_i`.
+   - Choose `i(j) = max{i <= j : c(i) <= j, δ_(i,j) <= 1/i}`, or `0` if there is none, with `X_(g,j) = 1`
+     in that case. For fixed `i_0` both conditions hold once `j` is large, so `i(j) -> ∞`.
+4. **(R2).** Let `a ∈ B_g^A`. For `ω`-almost all `j`, `a ∈ Γ_(i(j))`, and
+   `Λ(a) = ρ(a) ⊗ Λ(a|_(U_(A^c)))`, `Λ(φ_g(a)) = ρ'(a) ⊗ Λ(a|_(U_(A^c)))`. So
+   `(X ⊗ 1) Λ(a) (X ⊗ 1)^(−1) − Λ(φ_g(a)) = (X ρ(a) X^(−1) − ρ'(a)) ⊗ Λ(a|)`, of normalized rank
+   `<= 1/i(j) -> 0`.
+5. **(R3).** If `a ∈ L` is supported on `A^c`, then `Λ(a) = 1 ⊗ Λ(a|)`, which commutes with `X ⊗ 1` exactly.
+6. **(R4).** If `A_g ∩ A_h = ∅`, then `S_j = S_(A_g) ⊗ S_(A_h) ⊗ S_rest` through one associative wedge
+   isomorphism, and `X_(g,j) ⊗ 1 ⊗ 1` commutes with `1 ⊗ X_(h,j) ⊗ 1` exactly.
+7. **Injectivity** on `L` is Corollary 1.4. QED
+
+**Remark 2.3 (characteristic three, anti-central).** Restrict to `S_j^odd`, the `−1`-eigenspace of
+`σ_Λ(z)` (parity). The letters can be chosen even, so they preserve `S_j^odd`.
+- `z_A` (`−1` on `LC(A)`, `+1` on `LC(A^c)`) lies in `Γ_i` for large `i`, is central there, and
+  `φ_g(z_A) = z_A`.
+- In Corollary 1.3, choose `z_A`-stable complements inside each parity eigenspace. The matched free parts
+  have equal eigenspace dimensions, so `X` preserves the parity grading.
+- So `𝒢_loc(I)` has an injective-on-`L` anti-central rank model, with the Haar law up to vanishing error.
+- In characteristic two no grading is needed.
+
+**Consequence 2.4 (sharpening the "no" direction).** Every relation of `G` that follows from (R1)–(R4)
+holds in a rank model injective on `L`, which is anti-central in characteristic three. Consequence 2.6
+of `research/artifacts/char-three-level-factoring-and-hnn-models-2026-09-12.md` listed "commutation of
+disjointly supported depth-changing elements" among the relations a triviality proof might use. On its
+own, together with support-preserving partial conjugations, that relation forces nothing. A proof that
+every rank model of `G_3` (or of `R^x`) is trivial must use at least one of:
+* **(a)** a multiplication-table relation `t_g t_h = t_(gh)` between letters with overlapping supports;
+* **(b)** a partial conjugation `t_g a t_g^(−1) = φ_g(a)` by a level element `a` that moves mass between
+  `A_g` and `A_g^c`. Such elements lie in `B_g ∖ B_g^(A_g)`. The HNN model of Theorem 2.3 there realizes
+  these, but without locality;
+* **(c)** a Steinberg commutator among non-level root elements with overlapping supports, such as
+  `[x_12(t0), x_23(s0)] = x_13(1)`.
+
+No single model realizing (R1)–(R4) together with the full-domain partial conjugations is known.
