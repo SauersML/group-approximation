@@ -139,3 +139,41 @@ automatically, so only strict compressors matter.
     `Gamma_s`-components, with the compressor refinement factor and its fibre
     counts, i.e. the Kun--Thom orbit and isotropy sizes with counting replaced
     by measure. None is constructed. **This is where it stops.**
+- **Measure-type sizes on the space of components: blind on the cover
+  (lane `rnorm-infinite-orbit-measure`).**
+  `component-space-sizes-miss-leavitt-cover-defect`. The candidate
+  `component-measure-size-separates-compressor-images` is refuted, and the
+  route `rnorm-via-component-measure-size` is invalidated.
+  - **The component space is fixed by `sigma(G)`.** Let `M` be infinite and
+    Kazhdan, and suppose every homomorphism `G/M -> S_U` is trivial. Then block
+    invariance gives `D^M = D^(t Gamma t^-1) = D^Gamma = D^G`. So the
+    refinement factor is the identity, its fibre counts are `1`, and Kun--Thom's
+    compressor map on components is the identity.
+  - **Compressors act trivially.** Realized twists act on components through
+    `Act(q) = Ad(R(q))|_(D^Gamma)`. That also carries their precomposition
+    action on corner classes `[sigma|_Gamma p]`, which is the diffuse,
+    infinite-orbit type data. Since `Act(eps_t(q)) = Act(q)`, no size read from
+    it separates `B` from `eps_t(B)`.
+  - **Host twists act as the centralizer.** If `z in G` and `[z, Gamma] <= M`,
+    then `Act([sigma(z)]) = Act(1)`. On the cover this covers all of
+    `Q = C_(R^x)(EL_alpha(R))`, including `A`.
+  - **`Out(N)` form.** `Out_N(Gamma_s)` embeds in `C_Out(N)(EL_alpha(R))`, and
+    `eps_u` is conjugation by `u^-1`.
+    - The witness `[z]` lies outside `eps_u(Out_N(Gamma_s))` for every `sigma`.
+    - The corner stabilizers `Q_s(p)` are strictly compressed at every `p`.
+    - Normalization for `sigma` would force `Q_s <= C_Out(N)(R^x)`, which meets
+      `R^x` trivially.
+  - **Red-flag check.** This obstruction consumes property (T) of `N` and the
+    nonsoficity of `R^x`, through block invariance, but no soficity of `G`. It
+    holds whether or not the cover is sofic. It says nothing in amenable hosts
+    and nothing about Thompson's `V`.
+  - **Surviving shape.** The between-component half of Theorem 4.1 has nothing
+    to run on. The within-component half has infinite relative isotropy
+    `Q_s(p)`, so integer indices fail as well.
+    - A size must be read inside single `N`-blocks, where `sigma(G)` acts as one
+      approximate `G`-set.
+    - It must separate twists centralizing `EL_alpha(R)` in `Out(N)` from twists
+      centralizing `R^x`.
+    - By `bounded-blockwise-inner-realizers-fail-off-kernel`, it cannot do so at
+      bounded word length in `N`.
+    - None is constructed. **This is where it stops.**
