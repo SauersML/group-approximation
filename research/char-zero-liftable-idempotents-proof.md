@@ -6,6 +6,7 @@ title: The lifted trace of a finite-support characteristic-zero lift is a Kaplan
 target: char-zero-liftable-idempotents-are-never-inverse-defects
 requires: [lifted-trace-detects-finite-subgroup-projectives]
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-kernel-normal-forms-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Section 8.1 of the artifact.
   unity on `H2 H1`, or all zero. They are units, so `f e = f` forces `H2 H1 = H2`.
 
 Trust surface: Blackadar, *K-Theory for Operator Algebras*, Proposition 4.6.2.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 23 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

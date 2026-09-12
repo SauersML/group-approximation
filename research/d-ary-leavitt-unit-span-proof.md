@@ -6,6 +6,7 @@ title: Off-diagonal corners are square-zero, diagonal corners are products of tw
 target: leavitt-units-span-every-d-ary-leavitt-algebra
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-host-survey-scalar-characters-2026-09-12.md
 ---
 
@@ -24,3 +25,5 @@ from `{0, 1}` to `{1, ..., d}`. Write `U` for the additive span of the units.
 
 Over `F_q`, scalar multiples of units are units, so `U` is an `F_q`-subspace, and the evaluation of the
 group algebra is onto.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 24 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

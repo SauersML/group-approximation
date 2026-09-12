@@ -6,6 +6,7 @@ title: Commutation with the unit matrix units and two commutator expansions forc
 target: matrix-unit-root-rank-models-of-simple-el3-are-trivial
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ expands as `xy + yx + xyx + yxy + xyxy`.
   `p_1 M p_1`.
 - That corner is directly finite. `ts = 1 != st` and simplicity of `R` give `p_1 = 0`, and
   the displacement bound of artifact Corollary 4 then kills every root element.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 22 (one ordering slip in artifact step 5: (1+D')C', not C'(1+D'); not load-bearing. Scope sharpening: block support of the six unit root elements on orthogonal idempotents already implies the matrix-unit hypotheses) of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

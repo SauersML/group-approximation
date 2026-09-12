@@ -644,3 +644,135 @@ Items checked:
     direct finiteness.
   - `F_2[V]` is a unital subalgebra of `F_2[R^x]` through the tower, so the ascent route is valid.
   - The soficity route is valid and conditional, and `thompson-v-is-sofic` is open.
+
+## 22. Matrix-unit root elements force triviality (384d05027, lane gk-l-gate-neg): PASS, one ordering slip, one scope sharpening
+
+Items checked: `matrix-unit-root-rank-models-of-simple-el3-are-trivial`, route
+`matrix-unit-root-rank-models-propagation-proof`, and artifact `el3-rank-ring-rigidity-2026-09-12.md`
+Sections 4b (Lemma 3, Corollary 4, Proposition 5) and 4c (Proposition 6, Corollary 7). Every
+entrywise computation below was redone from scratch.
+
+**Block coordinates.** With `u_ij u_jk = u_ik` and `u_ij u_ji = p_i`, the map
+`m -> (u_1k m u_l1 | u_1k m f | f m u_l1 | f m f)` identifies `M` with a generalized `4 x 4` matrix
+ring over `T = p_1 M p_1`, with `u_ij = E_ij`. Pressure point 3: the hypothesis `u_ij u_ji = p_i` is
+what makes this identification faithful.
+
+**Lemma 3.**
+- `x_ij(a)^2 = x_ij(2a) = 1`, so `(1 + n)^2 = 1 + n^2` forces `n^2 = 0`.
+- With `g = 1 + x`, `h = 1 + y` and `g^-1 = g`: `[g, h] = (gh)^2 = 1 + (x + y + xy)^2`.
+- Expanding, `(x + y + xy)^2 = xy + yx + xyx + yxy + xyxy`, and the image bound
+  `Im n_13(a) <= Im y + x Im y` follows.
+
+**Proposition 6, re-derived.**
+1. **Step 1, pressure point 1.** `x_13(a)` commutes with `x_12(1)` and `x_23(1)`, since `j != k` and
+   `i != l` in the Steinberg rule. For `Z = (z_kl)`:
+   - `E_12 Z = Z E_12` gives `z_22 = z_11`, `z_21 = z_23 = z_24 = 0` and `z_21 = z_31 = z_41 = 0`;
+   - `E_23 Z = Z E_23` gives `z_33 = z_22`, `z_31 = z_32 = z_34 = 0` and `z_12 = z_32 = z_42 = 0`.
+   The survivors are `D` at `(1,1), (2,2), (3,3)`, `C` at `(1,3)`, `P` at `(1,4)`, `Q` at `(4,3)` and `S`
+   at `(4,4)`, including the complement rows and columns.
+2. **Step 2.** `[x_13(a), x_32(1)] = x_12(a)`. The terms are `Z E_32 = C E_12 + D E_32 + Q E_42`,
+   `E_32 Z = D E_32`, `Z E_32 Z = CD E_12 + D^2 E_32 + QD E_42`, and `E_32 Z E_32 = Z E_32 Z E_32 = 0`.
+   So `X = C(1+D) E_12 + D^2 E_32 + Q(1+D) E_42`, as stated.
+3. **Step 3, pressure point 2.** `[x_12(a), x_23(1)] = x_13(a)`. With `A = C(1+D)`, `B = Q(1+D)` and
+   `D2 = D^2`, the five terms sum to
+   `A(1+D2) E_13 + D2(1+D2) E_33 + B(1+D2) E_43 + D2 E_22 + A D2 E_12 + D2^2 E_32 + B D2 E_42 + D2 E_23`.
+   The `(1,1)` entry is 0, so `D = 0`. Then the `(1,4)` and `(4,4)` entries give `P = S = 0`, with
+   `A = C` and `B = Q`.
+4. **Step 4.** `x_23(a)` commutes with `x_13(1)` and `x_21(1)`. The same entrywise comparison gives
+   `Z' = D'(E_11+E_22+E_33) + C' E_23 + P' E_24 + Q' E_43 + S' E_44`.
+5. **Step 5.** `[x_12(1), x_23(a)] = x_13(a)`. The terms are `E_12 Z' = D' E_12 + C' E_13 + P' E_14`,
+   `Z' E_12 = D' E_12`, `E_12 Z' E_12 = 0` and `Z' E_12 Z' = D'^2 E_12 + D'C' E_13 + D'P' E_14`. So
+   `n_13(a) = D'^2 E_12 + (1+D')C' E_13 + (1+D')P' E_14`, with no `(4,3)` entry, hence `Q = 0`.
+   - *Ordering slip, not load-bearing.* The artifact writes `C'(1+D')` and `P'(1+D')`. The correct
+     factors are `(1+D')C'` and `(1+D')P'`, with `D'` on the left, because `yxy = Z'E_12Z'` puts `D'`
+     first. Only the absence of the `(4,3)` entry is used.
+6. **Step 6.** Each commutator leaves only the `xy` term:
+   - `[x_21(1), x_13(a)]` gives `n_23(a) = C E_23`;
+   - `[x_23(a), x_31(1)]` gives `n_21(a) = C E_21`;
+   - `[x_32(1), x_21(a)]` gives `n_31(a) = C E_31`;
+   - `[x_31(a), x_12(1)]` gives `n_32(a) = C E_32`.
+7. **Step 7.**
+   - `C(a) E_12 C(b) E_12 = 0` gives additivity.
+   - `[x_12(a), x_23(b)] = x_13(ab)` leaves `C(a)C(b) E_13`, so `C` is multiplicative.
+   - `n_12(1) = u_12` gives `C(1) = p_1`.
+
+**Corollary 7, pressure point 4.**
+- In the corner, `xy = p_1` makes `yx` an idempotent below `p_1` with `rk(yx) >= rk(x yx y) = rk(p_1)`.
+  So `p_1 - yx` is a rank-null idempotent, hence 0.
+- `C(t)C(s) = p_1` forces `C(1 - st) = 0`, and simplicity forces `p_1 = 0`.
+- Then `u_1j = 0`, `u_ij = u_i1 u_1j = 0` and `p_i = u_ij u_ji = 0`, so `n_ij(a) = C(a)E_ij = 0`
+  directly. Corollary 4 is not even needed.
+
+**Scope sharpening.** The matrix-unit hypotheses follow from block support of the unit root
+elements alone. Suppose `sigma(x_ij(1)) - 1` lies in `p_i M p_j` for pairwise orthogonal idempotents
+`p_i`.
+- The block calculus of Section 14 gives `u_ij u_jk = u_ik` from `[x_ij(1), x_jk(1)] = x_ik(1)`.
+- `p_i' = u_ij u_ji` is an idempotent independent of `j`, with `u_ij` in `p_i' M p_j'`.
+- `u_ij` still kills the enlarged complement `f' = 1 - sum p_i'`.
+So the claim applies to every model whose six unit root elements are block unipotent on orthogonal
+idempotents, with no matrix-unit hypothesis stated.
+
+**Section 4b, Proposition 5.**
+- `e = s_w t_w` with `eR ~= R` via `s_w`.
+- `N = E_12` is an isomorphism `e_2 R -> e_1 R` that kills `e_1 R + e_3 R`.
+- `N' = e E_12` is an isomorphism `e_2 eR -> e_1 eR` that kills `B' = e_1(1-e)R + e_2(1-e)R + e_3 R`.
+- `B'` is free of rank `2(2^k - 1) + 1`, so `B' ~= R ~= e_3 R`.
+- The compatibility check: `N'(e_2 s_w r) = e_1 s_w t_w s_w r = e_1 s_w r = g(N(e_2 r))`.
+- So `x_12(1)` and `x_12(s_w t_w)` are conjugate in `GL_3(R) = R^x`, and the product decomposition is
+  additivity plus `sum s_w t_w = 1`.
+- Counting remarks:
+  - every nontrivial element of `P_k` is `x_12(e_S)` with `e_S R ~= R`, so the displacement is
+    uniform;
+  - `g - 1` has rank `1/2` on free `F_2[P_k]`-modules;
+  - the hyperplane sum gives about `1/4`.
+
+## 23. Characteristic-zero-liftable idempotents are never inverse defects (e55b7ec28, lane gk-l3-kernel): PASS
+
+Items checked: `char-zero-liftable-idempotents-are-never-inverse-defects`, route
+`char-zero-liftable-idempotents-proof`, and Sections 8.0 to 8.3 of
+`ternary-anti-central-kernel-normal-forms-2026-09-12.md`.
+
+- **Conjugacy of lifts, pressure point 1.** For idempotents `E ≡ E'` mod `p` in `M_n(c_0(G, Z_p))`,
+  `W = E'E + (1 - E')(1 - E) ≡ 1` is invertible. `E'W = E'E = WE`, so `E' = W E W^-1`, and the
+  continuous cyclic trace `T` agrees on the two lifts. So `t_p([d]) = T(D)` for any idempotent lift
+  `D`.
+- **Defects have zero trace, pressure point 2.** Take finite-support lifts `A0, C0` of `ca = 1`.
+  - `C0A0 ≡ 1`, so it is invertible.
+  - `P = A0 (C0A0)^-1 C0` is idempotent and lifts `ac`, and `T(P) = T((C0A0)^-1 C0 A0) = n + m`.
+  - So `T(1 - P) = 0` on a lift of `d (+) 0_m`, and by conjugacy `T(D) = 0`.
+- **Positivity, pressure point 3.**
+  - The coefficients of `D` generate a finitely generated extension of `Q`, which embeds in `C`.
+  - The image `x` of `D` is a nonzero idempotent of `M_n(C[G])`, with `T(x) = sigma(T(D))`.
+  - Kaplansky's argument: `p = x x*(1 + (x - x*)(x* - x))^-1` is a projection with `xp = p` and `px = x`.
+    Then `T(x) = T(px) = T(xp) = T(p) = T(p*p) > 0`, by faithfulness: `T(y*y) = sum ||y_ij delta_1||^2`,
+    and `y delta_1 = 0` forces `y = 0`.
+  - So `T(D) != 0`, and `d` is not a defect.
+- **The `e ~ f < e` case.** Padding `x + (1 - e)`, `y + (1 - e)` gives a pair with defect exactly `e - f`,
+  so it is covered.
+- **Linear characters, pressure point 4.** The fibre of `H2 x H1 -> H2H1` over `h2h1` is
+  `{(h2 k, k^-1 h1) : k in K = H1 cap H2}`. The coefficient of `FE` there is
+  `psi2(h2)^-1 psi1(h1)^-1 sum_k psi2(k)^-1 psi1(k) / (|H1||H2|)`.
+  - If the characters disagree on `K`, then `FE = 0 != F`.
+  - Otherwise every point of `H2H1` has a unit coefficient, so `FE = F` forces `H2H1 = H2`, hence
+    `H1 <= H2` and `psi2|H1 = psi1`.
+  - The converse is the direct sum computation.
+- **Level coherence, pressure point 5.** `S[gamma]T[gamma'] = S[gamma 0]T[gamma' 0] + S[gamma 1]T[gamma' 1]`
+  gives `Theta_(2^(k+1))(a (x) I_2) = Theta_(2^k)(a)`, so finitely many constants lie in one finite
+  `Theta(GL_(2^K)(F_3))`.
+- Trust surface: the established lifted-trace node and Kaplansky positivity, which is proved inline.
+
+## 24. Units span every d-ary Leavitt algebra (7471b241e, lane gk-lp-hosts): PASS
+
+Items checked: `leavitt-units-span-every-d-ary-leavitt-algebra` and route `d-ary-leavitt-unit-span-proof`.
+
+- **Square-zero elements.** For `i != j`, `n = s_i a t_j` satisfies `n^2 = s_i a (t_j s_i) a t_j = 0`,
+  so `n = (1 + n) - 1` is a difference of units.
+- **Products.** For square-zero `n` and `m`, `nm = (1+n)(1+m) - (1+n) - (1+m) + 1` lies in the
+  additive span of units.
+- **Diagonal terms.** `s_i a t_i = (s_i a t_j)(s_j t_i)`, a product of two square-zero elements, using
+  `t_j s_j = 1`.
+- **Decomposition.** `a = sum_(i,k) s_i t_i a s_k t_k = sum_(i,k) s_i (t_i a s_k) t_k`, and each term is
+  one of the two kinds above.
+- So the additive group generated by the units is all of `A`. For `A = L_(F_q)(1,d)`, the evaluation
+  `F_q[A^x] -> A` is onto for every `d >= 2`. This closes the scope remark of Section 9: Theorem 3(5)
+  of the survey holds as stated.
