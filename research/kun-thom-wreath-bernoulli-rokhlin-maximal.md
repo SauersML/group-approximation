@@ -72,3 +72,14 @@ reach the binary Leavitt unit group or the tester host.
   two folded points, but on the shift they carry independent symbols. The restriction to the invisible
   lamps is a featureless locally finite Bernoulli action. A saving must couple invisible lamps with a
   nonamenable actor part through a non-closed stabilizer, and no measurable device for that is known.
+- **Exact sofic radical (2026-09-12).** `kun-thom-wreath-sofic-radical-is-fibre-parity-kernel`:
+  `Rad_sof(W)` is exactly the fibre-even lamp configurations over `G/N`, where
+  `N = EL_r(R) = Γ̂`, and `W/Rad_sof(W) = (Z/2) wr_(G/N) G` is residually finite.
+  - The upper bound of `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers`
+    is attained.
+  - Every witness folds on a nontrivial fibre-even configuration.
+  - Any count through a sofic quotient of `W` factors through `W_N` and cannot see
+    such a fold. This includes transport along models of the residually finite
+    actor with fibre sums.
+  - A lower bound has to work inside one `N`-fibre, where the rigid defect collapses
+    lamps in every sofic model.
