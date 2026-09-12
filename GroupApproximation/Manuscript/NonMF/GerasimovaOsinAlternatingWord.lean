@@ -35,7 +35,9 @@ open GroupApproximation.GGT.OsinComponents
 
 universe u
 
-variable {G : Type u} [Group G]
+section Combinatorics
+
+variable {G : Type u}
 
 /-- Gerasimova–Osin's word `t f₁ t f₂ ⋯ t fₙ` over `X ⊔ H`. -/
 def altWord (t : G) : List G → List (RelLetter G Unit)
@@ -53,16 +55,6 @@ theorem length_altWord (t : G) (fs : List G) : (altWord t fs).length = 2 * fs.le
   | cons f fs ih =>
     simp only [altWord_cons, List.length_cons, ih]
     ring
-
-/-- The element spelled by `t f₁ ⋯ t fₙ` is `(t f₁) ⋯ (t fₙ)`. -/
-theorem listVal_altWord (t : G) (fs : List G) :
-    RelLetter.listVal (altWord t fs) = (fs.map fun f => t * f).prod := by
-  induction fs with
-  | nil => rfl
-  | cons f fs ih =>
-    rw [altWord_cons, listVal_cons, listVal_cons, ih, List.map_cons, List.prod_cons,
-      ← mul_assoc]
-    rfl
 
 theorem getElem?_altWord_even (t : G) (fs : List G) (i : ℕ) :
     (altWord t fs)[2 * i]? = fs[i]?.map fun _ => RelLetter.comp () t := by
@@ -97,18 +89,6 @@ theorem getElem?_altWord (t : G) (fs : List G) (i : ℕ) :
     have h2 : (2 * k + 1) / 2 = k := by omega
     rw [getElem?_altWord_odd, if_neg h1, h2]
 
-theorem isLetter_altWord (D : RelGenSet G Unit) {t : G} (ht : t ∈ D.fam ())
-    {fs : List G} (hfs : ∀ f ∈ fs, f ∈ D.base) : ∀ a ∈ altWord t fs, D.IsLetter a := by
-  induction fs with
-  | nil => simp
-  | cons f fs ih =>
-    intro a ha
-    simp only [altWord_cons, List.mem_cons] at ha
-    rcases ha with rfl | rfl | ha
-    · exact ht
-    · exact hfs f List.mem_cons_self
-    · exact ih (fun g hg => hfs g (List.mem_cons_of_mem _ hg)) a ha
-
 /-- **(W1)**: the letters alternate. -/
 theorem isWOne_altWord (t : G) (fs : List G) : WWord.IsWOne (altWord t fs) := by
   intro i x y hx hy
@@ -120,6 +100,34 @@ theorem isWOne_altWord (t : G) (fs : List G) : WWord.IsWOne (altWord t fs) := by
   · rw [if_pos (by omega)] at hy
     obtain ⟨_, _, e⟩ := Option.map_eq_some_iff.mp hy
     cases e
+
+end Combinatorics
+
+section Group
+
+variable {G : Type u} [Group G]
+
+/-- The element spelled by `t f₁ ⋯ t fₙ` is `(t f₁) ⋯ (t fₙ)`. -/
+theorem listVal_altWord (t : G) (fs : List G) :
+    RelLetter.listVal (altWord t fs) = (fs.map fun f => t * f).prod := by
+  induction fs with
+  | nil => rfl
+  | cons f fs ih =>
+    rw [altWord_cons, listVal_cons, listVal_cons, ih, List.map_cons, List.prod_cons,
+      ← mul_assoc]
+    rfl
+
+theorem isLetter_altWord (D : RelGenSet G Unit) {t : G} (ht : t ∈ D.fam ())
+    {fs : List G} (hfs : ∀ f ∈ fs, f ∈ D.base) : ∀ a ∈ altWord t fs, D.IsLetter a := by
+  induction fs with
+  | nil => simp
+  | cons f fs ih =>
+    intro a ha
+    simp only [altWord_cons, List.mem_cons] at ha
+    rcases ha with rfl | rfl | ha
+    · exact ht
+    · exact hfs f List.mem_cons_self
+    · exact ih (fun g hg => hfs g (List.mem_cons_of_mem _ hg)) a ha
 
 /-- **(W2)**: the only subgroup letter is `t`. -/
 theorem isWTwo_altWord (D : RelGenSet G Unit) {R : ℕ} {t : G} (ht : t ∉ D.relBall () R)
@@ -157,9 +165,11 @@ theorem isWThree_altWord (D : RelGenSet G Unit) (t : G) {fs : List G}
       cases e
     · rw [if_neg hi] at hy
       obtain ⟨f, hf, e⟩ := Option.map_eq_some_iff.mp hy
-      cases e
+      rw [← RelLetter.base.inj e]
       cases lam
       exact hfs f (List.mem_of_getElem? hf)
+
+end Group
 
 end GerasimovaOsinWords
 end NonMF

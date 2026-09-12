@@ -1,6 +1,8 @@
 import Mathlib.Algebra.Order.Chebyshev
 import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 import Mathlib.Data.Set.Card
+import Mathlib.Data.Real.Basic
+import Mathlib.Algebra.Group.Pointwise.Finset.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -45,6 +47,7 @@ namespace GroupApproximation
 namespace GerasimovaOsinCombing
 
 open Classical
+open scoped Pointwise
 
 /-- **A symmetric `G`-equivariant generalized combing** with a pseudolength and upper
 bounds `growth` for `γ` and `radius` for `ρ` (Gerasimova–Osin, Definitions 2.1–2.2, (2), (3)). -/
@@ -154,7 +157,7 @@ noncomputable def weight (T : Finset G) (α : G → ℝ) (g s' : G) : ℝ :=
 
 /-- **Step 1, at one point `g`.** -/
 theorem sq_sum_le_growth_mul {n : ℕ} (T : Finset G) (hTS : ∀ s ∈ T, s ∈ S)
-    (hTn : ∀ s ∈ T, D.len s ≤ n) (α β : G → ℝ) (hα : ∀ s, 0 ≤ α s) (g : G) :
+    (hTn : ∀ s ∈ T, D.len s ≤ n) (α β : G → ℝ) (_hα : ∀ s, 0 ≤ α s) (g : G) :
     (∑ s ∈ T, α s * β (s⁻¹ * g)) ^ 2
       ≤ (D.growth (D.radius n) : ℝ) *
           ∑ s' ∈ T, weight D S htri T α g s' * β (s'⁻¹ * g) ^ 2 := by
@@ -195,7 +198,7 @@ theorem sq_sum_le_growth_mul {n : ℕ} (T : Finset G) (hTS : ∀ s ∈ T, s ∈ 
     refine Finset.sum_congr rfl fun x _ => ?_
     rw [Finset.mul_sum]
     refine Finset.sum_congr rfl fun s' hs' => ?_
-    rw [(Finset.mem_filter.mp hs').2, weight]
+    rw [← (Finset.mem_filter.mp hs').2, weight]
   rw [hsplit]
   calc _ ≤ _ := hcs1
     _ ≤ (D.growth m : ℝ) * ∑ x ∈ X, (∑ s ∈ T.filter (fun s => x ∈ D.comb 1 s), α s ^ 2) *
@@ -203,6 +206,7 @@ theorem sq_sum_le_growth_mul {n : ℕ} (T : Finset G) (hTS : ∀ s ∈ T, s ∈ 
         mul_le_mul_of_nonneg_left (Finset.sum_le_sum hcs2) (Nat.cast_nonneg _)
     _ = _ := by rw [hcollapse]
 
+include htri in
 /-- **Gerasimova–Osin, Lemma 2.5**, squared, for finitely supported nonnegative
 coefficients. -/
 theorem sum_sq_conv_le {n : ℕ} (T : Finset G) (hTS : ∀ s ∈ T, s ∈ S)
@@ -243,17 +247,18 @@ theorem sum_sq_conv_le {n : ℕ} (T : Finset G) (hTS : ∀ s ∈ T, s ∈ S)
     have hexpand : ∑ s' ∈ T, ∑ t ∈ Y, weight D S htri T α (s' * t) s' * β t ^ 2
         = ∑ s ∈ T, ∑ t ∈ Y, α s ^ 2 * β t ^ 2 *
             ((T.filter fun s' => sigma D S htri (s' * t) s' ∈ D.comb 1 s).card : ℝ) := by
-      simp only [weight, Finset.sum_filter, Finset.sum_mul]
+      simp only [weight, Finset.sum_filter, Finset.sum_mul, Finset.card_filter, Nat.cast_sum,
+        Finset.mul_sum]
       rw [Finset.sum_comm]
-      refine Finset.sum_congr rfl fun t _ => ?_
+      conv_lhs => arg 2; ext t; rw [Finset.sum_comm]
       rw [Finset.sum_comm]
-      rw [Finset.sum_comm]
-      refine Finset.sum_congr rfl fun s _ => ?_
-      rw [Finset.sum_comm, Finset.card_filter, Nat.cast_sum, Finset.mul_sum]
-      refine Finset.sum_congr rfl fun s' _ => ?_
+      refine Finset.sum_congr rfl fun s _ => Finset.sum_congr rfl fun t _ =>
+        Finset.sum_congr rfl fun s' _ => ?_
       split_ifs <;> simp
-    rw [hexpand, Finset.sum_mul_sum]
-    refine Finset.sum_le_sum fun s hs => Finset.sum_le_sum fun t _ => ?_
+    rw [hexpand, Finset.sum_mul_sum, Finset.mul_sum]
+    refine Finset.sum_le_sum fun s hs => ?_
+    rw [Finset.mul_sum]
+    refine Finset.sum_le_sum fun t _ => ?_
     have hcount := card_filter_sigma_le D S htri T hTS hTn s t
     have hcount' : ((T.filter fun s' => sigma D S htri (s' * t) s' ∈ D.comb 1 s).card : ℝ)
         ≤ K * K := by rw [hK]; exact_mod_cast hcount

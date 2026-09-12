@@ -105,7 +105,7 @@ theorem continuous_mult (γ β : ℝ) : Continuous (mult γ β) :=
 theorem rho_mul_self_eq_one {γ u : ℝ} (hγ : 0 < γ) (hu : γ ^ 2 < u) : rho γ u * u = 1 := by
   rw [rho, max_eq_left hu.le, inv_mul_cancel₀ (lt_trans (by positivity) hu).ne']
 
-theorem rho_mul_mul_rho_le {γ u : ℝ} (hγ : 0 < γ) (hu : 0 ≤ u) :
+theorem rho_mul_mul_rho_le {γ u : ℝ} (hγ : 0 < γ) (_hu : 0 ≤ u) :
     rho γ u * u * rho γ u ≤ γ⁻¹ ^ 2 := by
   have hm := max_sq_pos hγ u
   have h1 : u ≤ max u (γ ^ 2) := le_max_left _ _
@@ -186,9 +186,7 @@ theorem rordam_pointwise {γ β u : ℝ} (hγ : 0 < γ) (hβ0 : 0 < β) (hβ1 : 
           rw [div_le_iff₀ h1β]
           nlinarith
         rw [hmult, lft, hcut, hphiβ, hphiγ]
-        first
-          | (field_simp; ring)
-          | field_simp
+        field_simp
       · have hmax : max t γ = t := max_eq_left hB.le
         have htt : t / t = 1 := div_self ht_pos.ne'
         have hcut : cut β (hgt γ (t * t)) = 1 - β := by
@@ -203,14 +201,11 @@ theorem rordam_pointwise {γ β u : ℝ} (hγ : 0 < γ) (hβ0 : 0 < β) (hβ1 : 
           rw [le_div_iff₀ h1β]
           nlinarith
         rw [hmult, lft, hcut, hphiβ, hphiγ]
-        first
-          | (field_simp; ring)
-          | field_simp
+        field_simp
     rw [hML]
     have hval : (1 - (t - γ * β) / t) * (t * t) * (1 - (t - γ * β) / t) = (γ * β) ^ 2 := by
-      first
-        | (field_simp; ring)
-        | field_simp
+      field_simp
+      ring
     rw [hval]
 
 /-! ## Farah–Rørdam, Lemma 2 -/
@@ -267,7 +262,7 @@ theorem exists_isUnit_cfc_mul_eq {x z : A} (hz : IsUnit z) {γ : ℝ} (hγ : 0 <
     refine cfc_congr fun u _ => ?_
     by_cases hu : u ≤ γ ^ 2
     · simp only [hGvan u hu, zero_mul]
-    · push_neg at hu
+    · push Not at hu
       simp only [rho_mul_self_eq_one hγ hu, mul_one]
   have hb : cfc G (x * star x) * z = cfc G (x * star x) * x * e := by
     have h1 : cfc G (x * star x) * x * (star p * (z - x)) = cfc G (x * star x) * (z - x) := by
@@ -319,7 +314,8 @@ theorem exists_norm_eq_one_distGL_eq_one (h : ¬ Dense (invertibles A)) :
     rw [hbdef, star_mul, hφsa.star_eq, mul_assoc, ← mul_assoc (cfc (phi γ) (star a * a)),
       ← cfc_mul (phi γ) (phi γ) (star a * a) (continuous_phi hγ).continuousOn
         (continuous_phi hγ).continuousOn, ← mul_assoc,
-      mul_cfc_star_mul_self_mul_star a _ ((continuous_phi hγ).mul (continuous_phi hγ))]
+      mul_cfc_star_mul_self_mul_star a (fun x => phi γ x * phi γ x)
+        ((continuous_phi hγ).mul (continuous_phi hγ))]
     rfl
   have hb_norm : ‖b‖ ≤ 1 := by
     have h : ‖star b * b‖ ≤ 1 := by
@@ -337,7 +333,7 @@ theorem exists_norm_eq_one_distGL_eq_one (h : ¬ Dense (invertibles A)) :
     rw [hd1] at hn
     exact ⟨b, le_antisymm hb_norm hn, hd1⟩
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   have hdb0 := distGL_nonneg b
   set β : ℝ := (distGL b + 1) / 2 with hβdef
   have hβ0 : 0 < β := by rw [hβdef]; linarith
@@ -365,6 +361,8 @@ theorem exists_norm_eq_one_distGL_eq_one (h : ¬ Dense (invertibles A)) :
   have hkey' : cfc (fun u => cut β (hgt γ u)) (a * star a) * s
       = a * cfc (lft γ β) (star a * a) := hkey
   set w : A := cfc (fun u => mult γ β u * cut β (hgt γ u)) (a * star a) * s with hwdef
+  letI : PartialOrder A := CStarAlgebra.spectralOrder A
+  letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
   have hw_closure : w ∈ closure (invertibles A) := by
     refine nonneg_mul_mem_closure_invertibles (cfc_nonneg fun u _ => ?_) hs
     exact mul_nonneg (le_trans hγ.le (le_max_left _ _)) (le_max_right _ _)
