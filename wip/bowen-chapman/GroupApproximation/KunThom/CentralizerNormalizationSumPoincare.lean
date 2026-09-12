@@ -153,13 +153,13 @@ theorem card_left_filter_rowDegree_ne_one_le
     (Finset.univ.filter fun x : X ↦ rowDegree (sumModel X Z) U (Sum.inl x) ≠ 1).card ≤
       (badRows (sumModel X Z) U).card := by
   classical
-  rw [← Finset.card_image_of_injective _ Sum.inl_injective]
-  refine Finset.card_le_card fun w hw ↦ ?_
-  rw [Finset.mem_image] at hw
-  obtain ⟨x, hx, rfl⟩ := hw
-  rw [Finset.mem_filter] at hx
-  rw [mem_badRows]
-  exact hx.2
+  refine Finset.card_le_card_of_injOn (fun x : X ↦ (Sum.inl x : sumModel X Z)) ?_ ?_
+  · intro x hx
+    rw [Finset.mem_coe, Finset.mem_filter] at hx
+    rw [Finset.mem_coe, mem_badRows]
+    exact hx.2
+  · intro x₁ _ x₂ _ h
+    exact Sum.inl_injective h
 
 /-- Bad rows lying over the right summand are bad rows of the union. -/
 theorem card_right_filter_rowDegree_ne_one_le
@@ -167,13 +167,13 @@ theorem card_right_filter_rowDegree_ne_one_le
     (Finset.univ.filter fun z : Z ↦ rowDegree (sumModel X Z) U (Sum.inr z) ≠ 1).card ≤
       (badRows (sumModel X Z) U).card := by
   classical
-  rw [← Finset.card_image_of_injective _ Sum.inr_injective]
-  refine Finset.card_le_card fun w hw ↦ ?_
-  rw [Finset.mem_image] at hw
-  obtain ⟨z, hz, rfl⟩ := hw
-  rw [Finset.mem_filter] at hz
-  rw [mem_badRows]
-  exact hz.2
+  refine Finset.card_le_card_of_injOn (fun z : Z ↦ (Sum.inr z : sumModel X Z)) ?_ ?_
+  · intro z hz
+    rw [Finset.mem_coe, Finset.mem_filter] at hz
+    rw [Finset.mem_coe, mem_badRows]
+    exact hz.2
+  · intro z₁ _ z₂ _ h
+    exact Sum.inr_injective h
 
 /-- Bad columns lying over the left summand are bad columns of the union. -/
 theorem card_left_filter_columnDegree_ne_one_le
@@ -181,13 +181,13 @@ theorem card_left_filter_columnDegree_ne_one_le
     (Finset.univ.filter fun x : X ↦ columnDegree (sumModel X Z) U (Sum.inl x) ≠ 1).card ≤
       (badColumns (sumModel X Z) U).card := by
   classical
-  rw [← Finset.card_image_of_injective _ Sum.inl_injective]
-  refine Finset.card_le_card fun w hw ↦ ?_
-  rw [Finset.mem_image] at hw
-  obtain ⟨x, hx, rfl⟩ := hw
-  rw [Finset.mem_filter] at hx
-  rw [mem_badColumns]
-  exact hx.2
+  refine Finset.card_le_card_of_injOn (fun x : X ↦ (Sum.inl x : sumModel X Z)) ?_ ?_
+  · intro x hx
+    rw [Finset.mem_coe, Finset.mem_filter] at hx
+    rw [Finset.mem_coe, mem_badColumns]
+    exact hx.2
+  · intro x₁ _ x₂ _ h
+    exact Sum.inl_injective h
 
 /-- Bad columns lying over the right summand are bad columns of the union. -/
 theorem card_right_filter_columnDegree_ne_one_le
@@ -195,13 +195,13 @@ theorem card_right_filter_columnDegree_ne_one_le
     (Finset.univ.filter fun z : Z ↦ columnDegree (sumModel X Z) U (Sum.inr z) ≠ 1).card ≤
       (badColumns (sumModel X Z) U).card := by
   classical
-  rw [← Finset.card_image_of_injective _ Sum.inr_injective]
-  refine Finset.card_le_card fun w hw ↦ ?_
-  rw [Finset.mem_image] at hw
-  obtain ⟨z, hz, rfl⟩ := hw
-  rw [Finset.mem_filter] at hz
-  rw [mem_badColumns]
-  exact hz.2
+  refine Finset.card_le_card_of_injOn (fun z : Z ↦ (Sum.inr z : sumModel X Z)) ?_ ?_
+  · intro z hz
+    rw [Finset.mem_coe, Finset.mem_filter] at hz
+    rw [Finset.mem_coe, mem_badColumns]
+    exact hz.2
+  · intro z₁ _ z₂ _ h
+    exact Sum.inr_injective h
 
 /-- Levels below and above one are contained in the bad set. -/
 theorem card_filter_lt_one_le_ne_one {ι : Type*} [Fintype ι] (g : ι → ℕ) :
