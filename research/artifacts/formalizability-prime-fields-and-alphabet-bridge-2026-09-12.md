@@ -19,7 +19,9 @@ Gottschalk over alphabets of size `2^n`) is extended here as follows.
 1. **Odd primes need stabilization.** Any formalizable pair induces a polynomial automorphism on
    constant configurations (Section 2). Over one track `F_q` with `q >= 4`, every non-affine
    sitewise permutation is therefore a bijective pair with no formalizing representatives, on every
-   group. So the naive analogue of the binary claim is false for `F_p`, `p >= 5`.
+   group. So the naive analogue of the binary claim is false for `F_p`, `p >= 5`. The binary claim
+   itself fails on one track over bi-orderable groups, by gk-fz-bennett's leading-term argument, so
+   stabilization is necessary at every prime.
 2. **One identity track repairs sitewise pairs.** Formally invertible polynomial maps of
    `F_p^n`, `n >= 2`, induce every permutation of `F_p^n` (Section 3, self-contained proof). Every
    sitewise pair over a prime field is formalizable after adding one identity track (Section 4).
@@ -79,9 +81,20 @@ formalizable pair over `F_q` acts on constant configurations by `t -> a t + b`, 
 bijective and has **no** formalizing representatives, on every group, even allowing larger memories.
 Over prime fields this happens exactly for `p >= 5`.
 
-*Scope.* This does not contradict `binary-left-inverse-pairs-are-formalizable`, which is over `F_2^n`,
-where every permutation is affine-tame (Section 3). It shows that the identification of the alphabet
-with `F_q^n` matters: `F_4` as one track has non-formalizable sitewise pairs, and `F_2^2` does not.
+*Scope.*
+- **Over `F_2` this obstruction is empty.** On one track `AGL(1,2) = Sym(F_2)`, and for `n >= 2` every
+  permutation of `F_p^n` is realizable (Section 3). So it says nothing against
+  `binary-left-inverse-pairs-are-formalizable`.
+- **That claim fails anyway.** On one track over bi-orderable groups it is refuted by a different,
+  leading-term argument (`formalizable-binary-pairs-over-biorderable-groups-are-affine`, gk-fz-bennett,
+  cf99b38215).
+- **The two obstructions are complementary.** This one works over every group and every one-track field
+  with `q >= 4`, but sees only constant configurations. That one sees windows, but needs a bi-ordering
+  and one track.
+- **The identification of the alphabet with `F_q^n` matters.** `F_4` as one track has non-formalizable
+  sitewise pairs, and `F_2^2` has none (Section 4). On `F_2^n` with `n >= 2`, track shears give many
+  formal non-affine pairs, so `n = 1` is rigid while `n >= 2` stays open for strict automata.
+- **Not checked here:** whether the leading-term argument runs over one track `F_p` for odd `p`.
 
 ## 3. Formally invertible maps induce every permutation of `F_p^n`, `n >= 2`
 
@@ -171,7 +184,11 @@ Section 6.3).
 
 - **Open:** `prime-field-left-inverse-pairs-are-stably-formalizable`. For every prime `p`, every group and
   every `n`, every left-inverse pair on `(F_p^n)^G` is stably formalizable. At `p = 2` it is implied by
-  `binary-left-inverse-pairs-are-formalizable` (take `k = 0`).
+  `binary-left-inverse-pairs-are-formalizable` with `k = 0`, but that unstabilized claim is refuted on one
+  track over bi-orderable groups (`binary-left-inverse-pairs-need-not-be-formalizable`). The binary
+  stabilized case is lane gk-free-neg's `injective-binary-automata-are-stably-formalizable`, which this
+  claim implies at `p = 2` (`prime-field-stable-formalizability-specializes-to-binary`). So stabilization
+  is necessary at every prime.
 - **Open:** `stable-finiteness-forces-prime-power-surjunctivity`. If `F_p[G]` is stably finite, `G` is
   surjunctive over every alphabet of size `p^n`.
 - **Route** `stable-formalizability-reduces-prime-power-surjunctivity`:
