@@ -124,10 +124,15 @@ theorem continuousOn_chartZeroVec (n k : ℕ) (j : Fin (k + 1)) :
   rcases eq_or_ne i 0 with rfl | hi
   · have h0 : ContinuousAt (fun v : ChartBase n => sphereChartVec n v 0) w :=
       ((continuous_apply 0).comp (continuous_sphereChartVec n)).continuousAt
-    have hk := (continuousAt_kSect k j (neg_sphereChartVec_zero_mem_slitPlane hw)).comp h0
-    simpa only [chartZeroVec_apply_zero] using hk
-  · have h := ((continuous_apply i).comp (continuous_sphereChartVec n)).continuousAt (x := w)
-    simpa only [chartZeroVec_apply_of_ne n k j _ hi] using h
+    have hk : ContinuousAt (fun v : ChartBase n => kSect k j (sphereChartVec n v 0)) w :=
+      (continuousAt_kSect k j (neg_sphereChartVec_zero_mem_slitPlane hw)).comp
+        (f := fun v : ChartBase n => sphereChartVec n v 0) h0
+    simp only [chartZeroVec_apply_zero]
+    exact hk
+  · have h : ContinuousAt (fun v : ChartBase n => sphereChartVec n v i) w :=
+      ((continuous_apply i).comp (continuous_sphereChartVec n)).continuousAt
+    simp only [chartZeroVec_apply_of_ne n k j _ hi]
+    exact h
 
 end KGen
 
