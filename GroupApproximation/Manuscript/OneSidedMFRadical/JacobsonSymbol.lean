@@ -103,7 +103,7 @@ theorem mul (h₁ : IsBandedWith T₁ p₁) (h₂ : IsBandedWith T₂ p₂) :
     ring
   rw [Finset.sum_congr rfl hterm, ← Finset.mul_sum, ← map_sum, ← hsum, map_mul, hfp,
     Polynomial.toLaurent_X_pow, mul_assoc, mul_assoc, ← T_add]
-  congr 2
+  congr 3
   omega
 
 end IsBandedWith

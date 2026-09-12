@@ -21,10 +21,16 @@ namespace GroupApproximation
 namespace ValuedMatrixTwo
 
 open Matrix
+open Classical
 
 universe u
 
 variable {K : Type u} [Field K] (v : AddValuation K (WithTop ℤ))
+
+/-- The matrix of `mkOfDetNeZero A h` is `A`. -/
+theorem coe_mkOfDetNeZero (A : Matrix (Fin 2) (Fin 2) K) (h : A.det ≠ 0) :
+    ((Matrix.GeneralLinearGroup.mkOfDetNeZero A h : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = A :=
+  rfl
 
 /-- A matrix with integral entries and determinant of valuation zero lies in `S`. -/
 theorem mem_stab_of {g : GL (Fin 2) K} (hg : EntriesGe v (g : Matrix (Fin 2) (Fin 2) K) 0)
@@ -75,7 +81,7 @@ theorem exists_corner_min (g : GL (Fin 2) K) :
     intro i j hij
     fin_cases i <;> fin_cases j <;> simp [w] at hij ⊢ <;> rw [vz_one]
   have hw : w ∈ stab v := mem_stab_of v hwI (by
-    simp only [w, Matrix.GeneralLinearGroup.mkOfDetNeZero_val, Matrix.det_fin_two_of, mul_zero,
+    simp only [w, coe_mkOfDetNeZero, Matrix.det_fin_two_of, mul_zero,
       one_mul, zero_sub]
     rw [vz_neg v one_ne_zero, vz_one])
   have h1I : EntriesGe v ((1 : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) 0 := by
@@ -97,7 +103,8 @@ theorem exists_corner_min (g : GL (Fin 2) K) :
   · exact key 1 1 h1 h1I h1 h1I (by simp)
   · exact key 1 w h1 h1I hw hwI (by simp [w, Matrix.mul_apply, Fin.sum_univ_two])
   · exact key w 1 hw hwI h1 h1I (by simp [w, Matrix.mul_apply, Fin.sum_univ_two])
-  · exact key w w hw hwI hw hwI (by simp [w, Matrix.mul_apply, Fin.sum_univ_two])
+  · exact key w w hw hwI hw hwI
+      (by simp [w, Matrix.mul_apply, Fin.sum_univ_two, Matrix.vecMul, dotProduct])
 
 variable {π : K} (hπ : v π = 1)
 
@@ -176,7 +183,7 @@ theorem cartan (g : GL (Fin 2) K) :
   set c : K := (((a * g * b : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) 0 0)⁻¹ with hc
   have hc0 : c ≠ 0 := inv_ne_zero hne
   let sc : GL (Fin 2) K := Matrix.GeneralLinearGroup.mkOfDetNeZero (c • 1)
-    (by simp [Matrix.det_smul, hc0])
+    (by simp [hc0])
   have hsc : sc ∈ stab v := by
     have hgeS : EntriesGe v ((sc : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) (vz v c) := by
       have := (entriesGe_one (v := v)).smul hc0
@@ -184,7 +191,7 @@ theorem cartan (g : GL (Fin 2) K) :
     have hminS := le_entryMin v hgeS
     have hnn := dispInt_nonneg v sc
     have hdetS : vz v ((sc : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K).det = 2 * vz v c := by
-      simp only [sc, Matrix.GeneralLinearGroup.mkOfDetNeZero_val, Matrix.det_smul, Fintype.card_fin,
+      simp only [sc, coe_mkOfDetNeZero, Matrix.det_smul, Fintype.card_fin,
         Matrix.det_one, mul_one]
       rw [vz_pow v hc0]
       push_cast
@@ -197,7 +204,7 @@ theorem cartan (g : GL (Fin 2) K) :
   have hh'M : ((h' : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) =
       c • ((a * g * b : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) := by
     rw [hh', Units.val_mul]
-    simp only [sc, Matrix.GeneralLinearGroup.mkOfDetNeZero_val, Matrix.smul_mul, one_mul]
+    simp only [sc, coe_mkOfDetNeZero, Matrix.smul_mul, one_mul]
   have h'00 : ((h' : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) 0 0 = 1 := by
     rw [hh'M, Matrix.smul_apply, smul_eq_mul, hc, inv_mul_cancel₀ hne]
   have hge' : EntriesGe v ((h' : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) 0 := by
@@ -214,9 +221,9 @@ theorem cartan (g : GL (Fin 2) K) :
   set d : K := ((h' : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K).det with hd
   have hd0 : d ≠ 0 := det_ne_zero h'
   have hvd : vz v d = dispInt v g := by
-    have := hdisp'
-    unfold dispInt at this
-    rw [hmin'] at this
+    have h2 := hdisp'
+    unfold dispInt at h2 ⊢
+    rw [hmin'] at h2
     rw [hd]
     omega
   set n : ℕ := (dispInt v g).toNat with hn
@@ -264,15 +271,15 @@ theorem cartan (g : GL (Fin 2) K) :
     · simp [du, Matrix.det_fin_two, hvu]
   have heq : e₁ * h' * e₂ = du * diagPow v hπ n := by
     refine Matrix.GeneralLinearGroup.ext fun i j ↦ ?_
-    rw [Units.val_mul, Units.val_mul, Units.val_mul, diagPow_val]
+    rw [Units.val_mul (e₁ * h') e₂, Units.val_mul e₁ h', Units.val_mul du (diagPow v hπ n),
+      diagPow_val]
     have hdet2 : d = ((h' : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) 1 1 - q * p := by
       rw [hd, Matrix.det_fin_two, h'00, one_mul]
     fin_cases i <;> fin_cases j <;>
-      simp [e₁, e₂, du, Matrix.mul_apply, Fin.sum_univ_two, h'00, ← hpdef, ← hqdef, hu,
-        inv_mul_cancel₀ hπn, mul_assoc] <;>
-      first
-      | ring
-      | (rw [hdet2]; ring)
+      simp [e₁, e₂, du, Matrix.mul_apply, Fin.sum_univ_two, Matrix.vecMul, dotProduct, h'00,
+        ← hpdef, ← hqdef, hu, inv_mul_cancel₀ hπn, mul_assoc]
+    rw [hdet2]
+    ring1
   refine ⟨a⁻¹ * sc⁻¹ * e₁⁻¹ * du, ?_, e₂⁻¹ * b⁻¹, ?_, ?_⟩
   · exact (stab v).mul_mem ((stab v).mul_mem ((stab v).mul_mem ((stab v).inv_mem ha)
       ((stab v).inv_mem hsc)) ((stab v).inv_mem he₁)) hdu
@@ -327,7 +334,7 @@ theorem lower_neighbour {a : GL (Fin 2) K} (ha : dispInt v a = 1) {n : ℕ}
         rw [hval] at hij ⊢
         exact entriesGe_entryMin v a 1 j hij
     have hdetP : vz v ((Pinv : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K).det = -1 := by
-      simp only [Pinv, Matrix.GeneralLinearGroup.mkOfDetNeZero_val, Matrix.det_fin_two_of, mul_one,
+      simp only [Pinv, coe_mkOfDetNeZero, Matrix.det_fin_two_of, mul_one,
         mul_zero, sub_zero]
       rw [vz_inv v hπ0, vz_pi v hπ]
     have hdet : vz v ((Pinv * a : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K).det =

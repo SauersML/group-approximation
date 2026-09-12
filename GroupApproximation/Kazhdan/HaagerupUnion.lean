@@ -148,6 +148,7 @@ theorem isPositiveDefinite_extendByZero (H : Subgroup G) {f : H → ℝ}
       ⟪∑ i ∈ F, c i • gramVector H p i, ∑ j ∈ F, c j • gramVector H p j⟫_ℝ := by
     simp only [sum_inner, inner_sum, real_inner_smul_left, real_inner_smul_right, hker]
     refine Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ ?_
+    rw [real_inner_comm (gramVector H p i) (gramVector H p j)]
     ring
   rw [hsum]
   exact real_inner_self_nonneg
