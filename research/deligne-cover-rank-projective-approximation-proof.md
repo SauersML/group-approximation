@@ -28,3 +28,10 @@ Artifact Section 2.
     `j` and `3 - j`.
 
 The cut needs `3` invertible in the field, which is why `p != 3`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 22 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md` (8987f4ea69): PASS, every constant re-derived.*
+- *Camouflage defect. Kernel of `X tensor C_o - 1` has dimension at most `d` even when `p | o`, and `r(σ(z^i) - 1) >= 1 - ε`.*
+- *Rounding. `M^3 - 1` gives `3ε`, and the commutator bounds are `8ε`, `16ε` and `24ε`.*
+- *Heavy sector `r(P_j) >= (δ - 3ε)/2`, compression count `33ε`, invertibility repair `135ε`.*
+- *Directedness fixes one `j`, and the contragredient symmetry exchanges `j` and `3 - j`.*
+- *Corollary 2.5. An `F_p` rank model is an `F`-model for every `F` of characteristic `p`, because rank is unchanged under extension of scalars. The established `linear-sofic-group-algebra-is-stably-finite` then applies.*

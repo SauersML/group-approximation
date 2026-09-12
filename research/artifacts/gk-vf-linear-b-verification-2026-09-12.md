@@ -673,8 +673,10 @@ a cycle, and a non-sofic amalgam.
       in all.
     - **Uniform `j`.** One `j` works everywhere, by monotonicity in `(B, ε)` and directedness.
   - **2 <=> 3.** `ρ^v = (ρ^T)^-1` has multiplier `w^((3-j)a)`, and `r(X^-1 - Y^-1) = r(X - Y)`.
-  - **Scope.** The separation constant `δ` of the linear sofic model is fixed, so `66ε/(δ - 3ε) -> 0`. The
-    corollary's appeal to `linear-sofic-group-algebra-is-stably-finite` was not re-checked.
+  - **Scope.** The separation constant `δ` of the linear sofic model is fixed, so `66ε/(δ - 3ε) -> 0`.
+  - **Corollary 2.5: PASS.** An `F_p` rank model is an `F`-model for every `F` of characteristic `p`, because normalized
+    rank is invariant under extension of scalars. `linear-sofic-group-algebra-is-stably-finite` is established on main,
+    and that step was not re-derived here.
 
 ## 23. Addenda and further requests
 
@@ -736,3 +738,48 @@ have equal measure, and so do the live ones.
 - **Scope.** A homomorphism `S^m -> S` with `S` nonabelian simple is trivial, or a projection followed by an
   automorphism, because normal subgroups of `S^m` are products of factors. Excluding these layers is correct.
 - Section 1.5 (the anticommuting pair in `G_3`) was not checked.
+
+## 24. `anti-central-state-exists-iff-lifted-trace-relatively-positive` (w4-trace-state, 3a85cf1f0f): PASS
+
+**Proposition 1.1.**
+- **Parts 1–2.** `t_3` is additive and equals `dim/|K|` on finite-subgroup projectives. `t_3(eps_-) = 1/2` over `<z>`, so
+  `s_3(u) = 1`.
+  - *Clopens.* `E_c` has order `2^n` and `2^(n-1)` odd characters, so `trl(1_U) = 2m/2^n = lambda(U)`.
+  - *Semidihedral blocks.* `eps_- F_3[SD]` has dimension 8 and equals `M_2 x M_2`. Each block unit has
+    `trl = 2·4/16 = 1/2`.
+- **Part 3, halving.**
+  - *Idempotent.* `e~_- = (1-z)(1+w)/4` is idempotent, since `((1±x)/2)^2 = (1±x)/2` for involutions. It lifts
+    `e_- = eps_-·(1+w)/2`, because `2 = 1/2` in `F_3`.
+  - *Commutation.* `w δ(g) = s0 g t1 + s1 g t0 = δ(g) w`, and `z` is central. So `e~_- δ_*(P)` is an idempotent lifting
+    `psi(p)`.
+  - *Identity coefficient.* It equals `(a_1 - a_z + a_w - a_(zw))/4`, where all four elements are involutions.
+    - `a_w = a_(zw) = 0`, because `M(δ(g))` is diagonal and `M(w)`, `M(zw)` are off-diagonal.
+    - `a_z = -a_1`, because `e~_- P = P` forces `zP = -P`.
+    - So the coefficient is `a_1/2`, and summing over `i` gives `t_3(psi(p)) = t_3(p)/2`.
+  - *Not re-derived.* The Morita step `F_*([p]) = [psi(p)]` was read from census §7.2 as stated.
+- **Part 4.** `alpha` fixes `z` and preserves identity coefficients.
+
+**Corollaries 1.2–1.3.**
+- *No equality relation.* `Q -> Q_3` is injective.
+- *Witness class.* With `f = (e_- b)(c e_-)`, `f^2 = f`, `f <= e_-`, and `f ~ eps_-` via `x = e_- b`, `y = c e_-`.
+  So `[e_-] = [eps_-] + [h]` and `s_3([h]) = 1/2 - 1 = -1/2`.
+
+**Lemma 2.1 (relative states extend).**
+- *Bounds.* Both bound sets are nonempty (`m = -nu`, `m' = nu`), so `α >= -n` and `β <= n`. `k'(kx - m) + k(m' - k'x) = km' - k'm`
+  lies in `M ∩ P`, so `α <= β`.
+- *Well defined.* If `jx = m_0 ∈ M` with `j > 0`, then `g(m_0)/j` belongs to both bound sets. So `α = β = g(m_0)/j = γ`.
+- *Positivity.* `j > 0` gives `g(-m)/j <= α <= γ`, `j < 0` gives `γ <= β <= g(m)/|j|`, and `j = 0` is immediate.
+- *Maximality.* Zorn's lemma finishes.
+
+**Theorem 2.2.**
+- *Order unit.* Every finitely generated projective is a summand of some `S_-^n`, so `u` is an order unit.
+- *Part 2.* A state is `>= 0` on `K_0^+`. Conversely, apply Lemma 2.1.
+- *Part 3.* `anti-central-k0-states-equal-lifted-trace-on-signed-thompson` (PASS, Section 12 and 23.1) forces
+  `s = trl` on `H_fin(H)`.
+- *Part 4.* The input `twisted-leavitt-corner-fullness-equals-absence-of-k0-states` (Theorem E) was not re-checked
+  here. With it, `x = [P] - [Q] = [X]` with `trl(x) < 0` is the displayed stable isomorphism. For the witness,
+  `trl(e_- S_-) = 1/2 < 1 = trl(eps_- S_-)`.
+
+**Reading.** The swap corner is full iff some stable isomorphism among finite-subgroup projectives of `E x| V`, with a
+free complement `X`, drops the lifted trace. The claim node's sentence "Parts 4 and 5 use … which is not yet verified"
+is now out of date: that input passed in Sections 12 and 23.1.

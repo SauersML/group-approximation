@@ -24,3 +24,11 @@ Sections 1–2 of the artifact.
   Zorn's lemma, with the one-step extension value chosen between the sup and inf of the rational bounds.
 - **Part 4:** necessity from the forced-states theorem; sufficiency from part 3 with `L = H_fin(H)`.
 - **Part 5:** part 4 together with Theorem E. The witness class comes from census Theorem A(a).
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 24 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the rational values of the lifted trace, and the clopen and semidihedral values;*
+- *halving through `(1-z)(1+w)/4`, with `a_w = a_(zw) = 0` and `a_z = -a_1`;*
+- *the witness class `-1/2`;*
+- *the one-step extension (bounds, well-definedness, positivity), and Theorem 2.2 on top of the forced-states theorem (Sections 12 and 23.1).*
+
+*Not re-derived: Theorem E, and the census Morita step `F_*([p]) = [psi(p)]`.*

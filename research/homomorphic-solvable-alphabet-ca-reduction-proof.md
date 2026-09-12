@@ -21,3 +21,10 @@ Section 1.3 of the artifact.
 - **Base case.** An injective `F_p`-linear automaton on `(F_p^n)^G` is surjective when `M_n(F_p[G])` is
   directly finite (the linear surjunctivity–stable finiteness equivalence).
 - **Converse.** That is the required node.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 23.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the homomorphic local rule preserving the derived series and the p-filtration, via `[K^S, K^S] = [K,K]^S`;*
+- *the three snake steps;*
+- *the scope exclusion for nonabelian simple layers.*
+
+*The base case cites the Ceccherini-Silberstein–Coornaert equivalence without re-derivation.*
