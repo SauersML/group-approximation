@@ -89,3 +89,21 @@ residually finite `G`.
 and orthogonal and sum to `1`. The first summand is `F_3[E_S / <eps>] = F_3[W]`. In the second, `eps`
 acts as `-1`, which gives the displayed relations. `G` fixes `eps`, so it acts on the lamp algebra by site
 permutations. QED
+
+## 4. Where a witness in A_S can live
+
+**4.1 Support filter.** Suppose `b a = 1 != a b` in `A_S`, with every group element in the supports lying
+in `Vtilde_S semidirect H` for a subgroup `H <= G`. Then the pair lies in the anti-central factor of
+`F_3[Vtilde_S semidirect H]`, padded as in Section 3. If that group were sofic, its group algebra would be
+stably finite (sofic implies linear sofic implies stably finite), which is impossible. So
+`Vtilde_S semidirect H` is not sofic, and `H` is nonamenable.
+
+**4.2 The spinor obstruction to the obvious rank models.** For a finite site set `V`, `Cl_(F_3)(V)` is a
+central simple algebra, for even `|V|`, acting on its spinor module. A site permutation `pi` is implemented
+by an invertible operator `U_pi`. For a transposition `(v w)` one can take `U = 1 + c_v c_w`, since
+`(c_v c_w)^2 = -1` and `U` is invertible.
+
+`U - 1 = c_v c_w` is invertible, so it has full normalized rank. So even when a sofic approximation of the
+site action has Hamming-small multiplicativity defects `sigma(h) sigma(k) sigma(hk)^-1`, the implementing
+operators differ by operators of large rank. The spinor construction does not produce rank models of `A_S`,
+and a proof of stable finiteness of `A_S` along these lines needs another carrier.

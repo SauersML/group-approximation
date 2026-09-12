@@ -31,3 +31,17 @@ group ring `A_S` of `clifford-cover-group-algebra-splits-into-wreath-and-skew-ri
     implements it.
   - A witness needs a mechanism other than a finite-fiber site map, for example isometry-like elements
     built from lamp unitaries along the orbit structure of `u`.
+- **Support filter (artifact Section 4.1).** Let `a, b` be a witness pair whose supports involve only
+  group elements in `Vtilde_S semidirect H` for a subgroup `H <= G`. If `Vtilde_S semidirect H` is sofic,
+  then `F_3[Vtilde_S semidirect H]` is stably finite (`linear-sofic-group-algebra-is-stably-finite`; sofic
+  implies linear sofic). Its anti-central factor contains the pair, which is a contradiction. So any
+  witness generates `H` with `Vtilde_S semidirect H` not sofic. In particular `H` is nonamenable, since
+  `Vtilde_S` is locally finite.
+- **The naive spinor model fails (artifact Section 4.2).** A Hamming-sofic approximation of the site
+  action does not give rank models of `A_S` by the obvious construction.
+  - Automorphisms of `Cl(V_n)` permuting sites are implemented on the spinor module by operators.
+  - Even a transposition of two sites is implemented by an element like `1 + c_v c_w`, whose distance to
+    `1` has full normalized rank.
+  - So Hamming-small defects of the site permutations become rank-large defects in the model.
+  - Rank models of `A_S` would need a different carrier than spinor modules of finite site pieces. This is
+    where linear soficity of the Clifford cover itself is undecided.
