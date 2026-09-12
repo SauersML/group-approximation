@@ -1,0 +1,38 @@
+---
+rg: 2
+id: two-patch-ternary-rules-reduce-to-linear-strictness
+kind: claim
+title: A ternary three-address rule that differs from an affine rule at two patterns sharing a symbol is injective only where its linear part is a linear strict automaton
+distinct_from:
+  distinct-symbol-patch-ternary-rules-reduce-to-linear-strictness: that settles one patch with distinct symbols; this is two patches, where the one-coordinate breaker fails on the support of the delta preimage whenever every coordinate carries two patch symbols.
+  single-patch-ternary-rules-reduce-to-linear-strictness: that settles one patch with a repeated symbol.
+artifacts:
+  - research/artifacts/distinct-symbol-patch-collision-2026-09-12.md
+---
+
+**OPEN.** Let `A = F_3`, `G` a group, `M = {m_1, m_2, m_3}` three distinct elements, and `lambda` affine with
+linear automaton `L`. Let `mu = lambda + t_p [pattern = p] + t_q [pattern = q]` with `p != q`, nonzero weights,
+and some symbol occurring in both `p` and `q`. If `tau_mu` is injective over `G`, then `L` is an injective,
+non-surjective linear automaton over `G`.
+
+A two-patch rule is at distance 2 from its affine rule. Together with the single-patch reductions, this is
+the next case of `ternary-three-address-injective-automata-have-balanced-rules` beyond linear strict
+automata. A counterexample refutes Gottschalk's conjecture.
+
+## Attempts
+
+- **Non-unit case: done.** The shared symbol makes `avoidable-patches-of-affine-rules-inherit-linear-injectivity`
+  apply, so `L` is injective. A non-unit linear part is then not surjective.
+- **Coordinate breakers** (artifact Proposition 4). Theorem 1's scheme runs at coordinate `i` only if
+  `p_i = q_i`. If `p` and `q` differ at every coordinate, no single-coordinate breaker survives at any site
+  where the delta preimage is nonzero.
+- **Constant background** (artifact Proposition 5). In the unit case a collision holds except on the windows
+  carrying `M \ P_c` into `M ∪ N^-1`, for each admissible background `c` and each choice of patch. The
+  residue is finite but grows when the patches use `c` at more addresses.
+- **Seed.** `(x_1 - x_a + x_b) + [(0,1,2)] + [(1,2,0)]` uses two patch symbols at every address. Both unit-case
+  methods leave a residue there. Unused freedoms:
+  - break the two configurations at different sites;
+  - cancel equal-weight occurrences `(0,1,2)` and `(1,2,0)` where the preimage reads `(1,1,1)`;
+  - vary the background near the support.
+- **Where it stops.** No collision is known for the seed over a group where `1 - a + b` is a unit and its
+  inverse support absorbs single-address translates. No obstruction to such a collision is known either.

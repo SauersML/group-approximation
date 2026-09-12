@@ -125,3 +125,69 @@ distance at least 2 from every affine rule (Section 3).
 **Relation to Theorem 13'** (`constant-background-kills-unit-linear-defect-rules`). Its absorbed-translate
 residue and the danger case of the reference artifact were two residues of the same unit case. For
 single patches both are now empty.
+
+## 3. Several patches: where the methods stop
+
+Every ternary three-address rule is `mu = lambda + sum_(r in Pi) t_r [pattern = r]` for a nearest affine
+`lambda`. A rule at distance at least 2 from every affine rule has `|Pi| >= 2`. Two distinct affine
+functions on `F_3^3` agree on at most 9 of 27 patterns, so `lambda` is unique once `|Pi| <= 8`. Write
+`Pi_m = {r_m : r in Pi}` for the symbols the patches use at address `m`.
+
+**Transfer.** If some symbol occurs in every patch, `avoidable-patches-of-affine-rules-inherit-linear-injectivity`
+still applies. So an injective `tau_mu` forces `L` injective. If `ell = sum c_m m` is not a unit, `L` is then
+not surjective, since a bijective linear automaton has a linear automaton inverse. So `L` is a linear strict
+automaton. Only the unit case is new.
+
+**Proposition 4 (one-coordinate breakers).** Let `L(d) = -t_p delta_h` for some `p` in `Pi`. Keeping every
+patch off coordinate `i` at a free site `w`, in both `x` and `x + d`, forbids `Pi_i ∪ (Pi_i - d(w))`. This set
+has at most two symbols for every value of `d(w)` iff `|Pi_i| = 1`. If `|Pi_i| = 2`, it is all of `F_3` at
+every site with `d(w) != 0`.
+
+*Proof.* A 2-subset of `F_3` moved by a nonzero translation is a different 2-subset, and the two cover
+`F_3`. QED
+
+So the scheme of Theorem 1 runs at coordinate `i` only when all patches agree there. When every coordinate
+carries two patch symbols, no single-coordinate breaker survives on `supp d`.
+
+**Proposition 5 (several patches on a constant background).** This extends Theorem 13' of
+`unbalanced-design-memory-collisions-2026-09-12.md`. The proof is the same.
+- **Setup.** Let `ell` be a unit with inverse `kappa = sum_(n in N) k_n n`, and re-root so `1` is in `M`.
+  Fix `p` in `Pi` with weight `t = t_p`, and a symbol `c` with `(c, c, c)` not in `Pi`. Put
+  `P_c = {m : c in Pi_m}`, and assume `M \ P_c` is nonempty.
+- **Configurations.** `x(s) = c` off `M`, `x(m) = p_m + t k_(m^-1)` on `M`, and `x'(s) = x(s) - t k_(s^-1)`.
+- **Conclusion.** Suppose `x|_M` is not in `Pi`. Suppose also that every window `h != 1` with
+  `h(M \ P_c) ⊆ M ∪ N^-1` has the same patch contribution `sum_r t_r [x|_(hM) = r]` in `x` and in `x'`.
+  Then `tau_mu(x) = tau_mu(x')` and `x != x'`.
+
+*Proof.*
+- **Linear part.** `L x' = L x - t delta_1`, and `x'|_M = p`.
+- **Window `1`.** It gains `t` in `x'` and nothing in `x`.
+- **Other windows.** A window `h != 1` with a site `hm` outside `M ∪ N^-1` at an address `m` outside `P_c`
+  reads `c` there in both configurations, and no patch has `c` at `m`. The remaining windows are the
+  hypothesis. QED
+
+- **What it buys.** In the unit case the collision fails only on finitely many windows. These are the
+  translates carrying `M \ P_c` into `M ∪ N^-1`, one family for each admissible background `c` and each
+  choice of `p`. Equal-weight occurrences in both configurations are allowed, which Theorem 13' did not use.
+- **How it weakens.** The residue grows as `|P_c|` grows. With two patch symbols at every coordinate, each
+  `M \ P_c` is a single address, and every window meeting `M ∪ N^-1` at that address is dangerous.
+
+**Seed (smallest open instance).** `mu_2 = (x_1 - x_a + x_b) + [x|_M = (0,1,2)] + [x|_M = (1,2,0)]`.
+- **Its data.**
+  - `Pi_1 = {0,1}`, `Pi_a = {1,2}`, `Pi_b = {0,2}`: two symbols at every address.
+  - Both patches use every symbol, so the transfer applies.
+  - The diagonal is the identity.
+  - Counts: 10 preimages of `0`, 8 of `1`, 9 of `2`.
+  - Distance 2 from `x_1 - x_a + x_b`, and at least 16 from every other affine rule.
+- **What is known.**
+  - If `1 - a + b` is not a unit of `F_3[G]`, an injective `mu_2` gives a linear strict automaton.
+  - If it is a unit, Proposition 4 blocks the coordinate breaker on `supp d`. Proposition 5 leaves windows
+    carrying one address into `M ∪ N^-1`. Each background symbol leaves one family: `0` at address `a`,
+    `1` at `b`, `2` at `1`.
+- **Freedoms not yet used.**
+  - Break `x` and `x + d` at different sites of the same window.
+  - Let `x` show `(0,1,2)` and `x + d` show `(1,2,0)` at a window where `d = (1,1,1)`. The weights are
+    equal, so the contributions cancel.
+  - Vary the background, a Hall-type assignment near `supp d`.
+- **Status.** Open. It is a candidate design seed: an injective realization over a group where
+  `1 - a + b` is a unit would refute Gottschalk.

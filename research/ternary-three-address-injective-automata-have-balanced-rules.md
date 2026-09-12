@@ -74,3 +74,21 @@ refutes Gottschalk's conjecture.
       is a constant `kappa` on `M` with `kappa (c_1 + c_2 + c_3) = -epsilon`, and only under further
       value coincidences (artifact 2.2).
     - Rules at distance at least 2 from every affine rule.
+- **Every single patch now reduces to linear strictness** (w5-bal-distinct,
+  `distinct-symbol-patch-ternary-rules-reduce-to-linear-strictness`, artifact
+  `distinct-symbol-patch-collision-2026-09-12.md`).
+  - **Distinct symbols.** The danger case closes over every placement with no commutation hypothesis.
+    Break every window at coordinate `i`, break the one dangerous window at a second site, and read
+    the failure off `L(d_0)(m_(i+1) m_i^-1) = 0`. All three indices stuck gives `c_1 = c_2 = c_3 = -S`,
+    so `S = 0`, contradicting `kappa S = -epsilon`.
+  - **Constant patches.** Constant configurations collide.
+  - **Net.** A rule differing from an affine rule at one pattern is injective only where its linear
+    part is a linear strict automaton over `F_3`.
+- **Several patches** (same artifact, Section 3; open claim
+  `two-patch-ternary-rules-reduce-to-linear-strictness`).
+  - **Transfer.** If the patches share a symbol, avoidable patches still apply, so only a unit linear
+    part is new.
+  - **Proposition 4.** The coordinate breaker survives only at coordinates where all patches agree.
+  - **Proposition 5.** On a constant background, several patches leave a finite absorbed-translate
+    residue.
+  - **Seed.** `(x_1 - x_a + x_b) + [(0,1,2)] + [(1,2,0)]`, with two patch symbols at every address. Open.
