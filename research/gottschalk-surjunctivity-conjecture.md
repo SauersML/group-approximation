@@ -605,16 +605,18 @@ over the colimit of finite fields (`leavitt-visible-cyclic-corner-is-full-on-som
 The family now has its own counterexample root,
 `some-finite-field-leavitt-unit-group-nonsurjunctive`.
 
-**Formal identities reduce to Kaplansky (2026-09-12).** If a strict pair's
-left-inverse identity holds as a polynomial identity, without `x^q = x`, then its
-linearization at a constant configuration is a one-sided inverse that is not
-two-sided (`formal-polynomial-strict-pairs-need-unstable-linearization`). So on a
-group with stably finite prime-field group algebras, a nonlinear counterexample
-must use the collapse `x^q = x` essentially. Over infinite fields no polynomial
-strict pair escapes Kaplansky
-(`infinite-field-polynomial-strict-pairs-need-kaplansky-failure`), and in
-characteristic 0 none exists at all. Open target:
-`non-surjunctive-group-with-stably-finite-group-algebras`.
+**Formal identities reduce to Kaplansky (2026-09-12).** A strict pair whose
+left-inverse identity is formal for some representatives is a matrix Kaplansky
+pair (`formal-polynomial-strict-pairs-need-unstable-linearization`). This covers
+low-degree pairs, affine decoders, decoders with disjoint encoder footprints
+(`disjoint-footprint-decoders-force-kaplansky-failure`), and every pair over an
+infinite field (`infinite-field-polynomial-strict-pairs-need-kaplansky-failure`).
+The canonical multilinear defect is not an invariant
+(`multilinear-collapse-defect-does-not-obstruct-bijectivity`), so on hosts with
+stably finite prime-field algebras a counterexample is exactly a
+non-formalizable strict pair. Open: `binary-left-inverse-pairs-are-formalizable`,
+which would give `stable-finiteness-forces-binary-surjunctivity`; the broader
+target is `non-surjunctive-group-with-stably-finite-group-algebras`.
 
 **Direct arguments on simple hosts (2026-09-12).** One-site Hilbert hotels are
 strict only on stabilizers properly conjugated into themselves, so never on the
@@ -630,21 +632,22 @@ only passes strictness up from central quotients of the memory group
 symmetries must be core-free (`invariant-output-symmetry-must-be-core-free`).
 Artifact: `research/artifacts/simple-host-direct-attack-2026-09-12.md`.
 
-**Low-degree nonlinearity is linear in disguise (2026-09-12).** Take an automaton
-over `F_q^m` whose left inverse satisfies `deg sigma * deg tau < q`. Under that
-bound formal and functional composites agree, and the lowest homogeneous part of
-the pullback on `F[x_u : u in G]` is its linear part. If the linear parts form a
-unit, the automaton is surjective
-(`unipotent-automata-over-finite-fields-are-surjective`). A strict low-degree
-automaton forces `C A = I != A C` over `F_q[G]`, and over `F_p` at size `mk`
-(`low-degree-strict-automata-force-matrix-kaplansky-failure`). Low-degree
-invariant-output designs die when `p | |H|`, and otherwise are matrix
-corner-fullness equations for the averaging idempotent
+**Low-degree nonlinearity is linear in disguise (2026-09-12).** The general theorem
+is `formal-polynomial-strict-pairs-need-unstable-linearization`: a left-inverse
+identity that holds formally forces bijectivity once `M_n(k[G])` is directly
+finite. Over `F_q^m` with `deg sigma * deg tau < q` the identity is formal, which
+gives the low-degree case: unipotent automata are surjective
+(`unipotent-automata-over-finite-fields-are-surjective`), and a strict low-degree
+automaton forces `C A = I != A C` over `F_q[G]` and over `F_p` at size `mk`
+(`low-degree-strict-automata-force-matrix-kaplansky-failure`). Two results need no
+formal identity. Low-degree invariant-output designs die when `p | |H|` and
+otherwise are matrix corner-fullness equations for the averaging idempotent
 (`low-degree-invariant-output-reduces-to-corner-fullness`). Words in square linear
-automata and reversible automata are strict only through a strict linear factor.
-So on hosts where `F_p[G]` is stably finite, only designs with degree product at
-least `q`, whose decoder identity uses `x^q = x` (every binary design), can refute
-Gottschalk. The cube-root pair on `F_8` shows the bound is sharp in kind.
+and reversible automata are strict only through a strict linear factor, with no
+degree bound (`linear-reversible-words-strict-via-strict-linear-factor`). So on
+hosts where `F_p[G]` is stably finite, only designs whose decoder identity uses
+`x^q = x` essentially (every binary design) can refute Gottschalk. The cube-root
+pair on `F_8` shows the bound is sharp in kind.
 
 **Closure properties (2026-09-12).** Surjunctivity is a commensurability invariant
 (`surjunctivity-is-a-commensurability-invariant`); `G x K` is surjunctive for `G`
