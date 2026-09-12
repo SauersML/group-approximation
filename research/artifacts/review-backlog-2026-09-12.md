@@ -458,3 +458,58 @@ Coordinator request, after bh-reviewer's FAIL of the first route (4ba6fa13b). Th
     `r = |Γ\X_0|/|G\X_0|` equals the covolume ratio, and it is rational.
 - **Remark.** The Platonov closure and the lamplighter instances are flagged as unchecked, and the claim does not
   use them.
+
+## 22. `fpbs-tree-projected-translate-symmetric-nonunimodular` (f17fe39a8): PASS
+
+- **Source, verified from the PDF.** Hutchcroft arXiv:1711.02590 (PDF dated 2020-02-26) was fetched and extracted on
+  MSI (`lit-groups/hutchcroft-1711.02590.txt`).
+  - Theorem 1.2: "Let G be a connected, locally finite graph, and suppose that Aut(G) has a quasi-transitive
+    nonunimodular subgroup. Then p_c(G) < p_u(G)." The abstract adds `p_c < p_h <= p_u`.
+  - A subgroup `Γ` is unimodular iff `|Stab_u v| = |Stab_v u|` for all `u, v` in one orbit. Closedness is not
+    required.
+  - Item 2 of `fpbs-hyperbolic-and-nonunimodular-nonuniqueness` matches the source. That claim records no verdict of
+    its own.
+- **Step 1.** `D_(s^(-1)) = −D − a = D − c − a` is a translate of `D`, and translates of a finite nonempty set are
+  unique. Reversal gives `t(ē, f̄) = −t(e,f)`.
+- **Step 2.** `φ(ē)` is the reversal of `φ(e)`, so `δ_φ` is antisymmetric, and the potential exists on the tree.
+- **Step 3.**
+  - A horizontal edge with difference `d ∈ D(e)` maps to one over `φe` with difference `d + t(e,φe) ∈ D(φe)`.
+  - Vertical edges stay in their fibre.
+  - The inverse is the lift of `φ^(-1)`, with `h_(φ^(-1)) = −h_φ ∘ φ^(-1) + const`, so non-edges are also preserved.
+- **Step 4.**
+  - `δ_(φψ) = δ_ψ + δ_φ ∘ ψ`.
+  - Closedness: if `φ_j(v_0) = w` eventually, then `φ_j` maps the ray `[v_0, ξ)` onto the unique ray `[w, ξ)`, so
+    limits fix `ξ`.
+  - `Aut(T)_ξ` is vertex-transitive. Hutchcroft only needs quasi-transitivity.
+- **Step 5.**
+  - An element fixing `u = (g,0)` fixes `g`, `ξ` and hence `p`, and sends `v` to `(p, t(e,e)) = v`.
+  - An element fixing `v` sends `u` to `(φg, −t(e,φe))`. Its height is a function of `φg`, and `Aut(T)_(ξ,p)` is
+    transitive on the `2n − 1` neighbours of `p` off the ray.
+  - So `|Stab_u v| = 1 ≠ 2n − 1 = |Stab_v u|`. This is Hutchcroft's definition directly, and no Trofimov/BLPS
+    equivalence is needed.
+- **Known case.** `S = B^(±1) × {0} ∪ {(1, ±1)}` gives `T_(2n) □ Z`, covered by Hutchcroft Corollary 1.3. The
+  claim reproduces it with `D = {0}`, `c = 0`.
+
+## 23. Cairn state of the linear-group Boone–Higman chain (coordinator request, follows §16)
+
+MSI `cairn check` at 4667e71ee, which contains §16: EXIT 0, 0 ERROR.
+
+- **The embedding.** `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` is ESTABLISHED via
+  `char-p-linear-embedding-corner-swindle-proof`. Its closure is the swindle lemma, the centre, the prime-field host
+  claim and Khanh. The Whitehead route shows ✗, invalidated by `whitehead-diagonal-map-is-not-multiplicative`.
+- **The finite-presentation premise.** `positive-char-linear-groups-satisfy-boone-higman` is OPEN. Its only live
+  route waits on this chain, every link OPEN:
+  - `leavitt-power-projective-elementary-groups-finitely-presented`;
+  - `leavitt-power-projective-e-fp-from-trivial-k-theory`;
+  - `prime-field-leavitt-tensor-powers-have-trivial-k-theory`;
+  - `prime-field-leavitt-powers-k-theory-via-coherence`;
+  - `leavitt-tensor-powers-are-left-coherent`.
+- **Characteristic two and the conjecture.** `char-two-linear-groups-satisfy-boone-higman` is OPEN, through
+  `leavitt-tensor-powers-have-trivial-k-theory` and the same coherence claim. `boone-higman-conjecture` is OPEN.
+- **Coherence.** `cairn why leavitt-tensor-powers-are-left-coherent` reports a frontier hole with no live routes. If
+  it is established, the cascade establishes `char-two-linear-groups-satisfy-boone-higman`,
+  `leavitt-power-projective-elementary-groups-finitely-presented` and `positive-char-linear-groups-satisfy-boone-higman`.
+- **Conclusion.** The linear-group Boone–Higman claims stay OPEN while coherence is open.
+- **Routing gap, not an error.** Attempt 3 of `leavitt-power-projective-elementary-groups-finitely-presented`, finite
+  normal generation of the unstable Steinberg kernel, would bypass coherence and `K_1`. It is recorded as an attempt,
+  not as a route.
