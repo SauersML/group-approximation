@@ -38,6 +38,23 @@ for each generating set, one parameter with infinitely many infinite clusters.
   generating set gives a non-Cartesian graph (`fpbs-mixed-gen-set-not-cartesian`);
   in both cases the nonunimodular structure is lost.
 
+* **Tree-projected mixed sets of `F_n x Z` (partial, 2026-09-12).** The structure
+  is not always lost. For generating sets projecting into a free basis, its
+  inverses and `1`, lifted tree automorphisms give a closed quasi-transitive
+  nonunimodular subgroup in two cases:
+  * some decoration set is symmetric up to translation
+    (`fpbs-tree-projected-reversible-letter-nonunimodular`);
+  * two decoration sets agree up to translation and reflection
+    (`fpbs-tree-projected-letter-exchange-nonunimodular`).
+
+  **Where it dies:** rigid decorations. For
+  `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)}` the whole automorphism group is
+  discrete (Section 3 of
+  `research/artifacts/fpbs-f2xz-all-generating-sets-2026-09-12.md`), so
+  Question 1.3 cannot be reduced to Hutchcroft's theorem. Choi–Seo Question 1.3,
+  verbatim from the TeX source (2026-09-12): "Does every Cayley graph of
+  $F_{2} \times \Z$ have a nonuniqueness phase?"
+
 * **Nonuniqueness at the uniqueness threshold (weak form only).** Peres,
   *Percolation on nonamenable products at the uniqueness threshold*, Ann. IHP 36
   (2000) 395--406, Theorem 1.1 (read from source 2026-09-11): on the Cartesian

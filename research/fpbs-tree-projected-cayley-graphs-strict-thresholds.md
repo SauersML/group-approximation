@@ -6,7 +6,7 @@ title: Tree-projected Cayley graphs of cyclic-by-free groups have strict thresho
 root: true
 distinct_from:
   fpbs-product-every-generating-set: that asks for every generating set of a direct product; this asks only for generating sets projecting into a free basis of the free quotient, but allows arbitrary height decorations and non-split cyclic-by-free groups.
-  fpbs-hyperbolic-and-nonunimodular-nonuniqueness: that covers graphs whose automorphism group has a quasi-transitive nonunimodular subgroup; here such a subgroup is known only when some decoration set is symmetric up to translation, so the remaining graphs are outside it.
+  fpbs-hyperbolic-and-nonunimodular-nonuniqueness: that covers graphs whose automorphism group has a quasi-transitive nonunimodular subgroup; here such a subgroup is known only when some decoration set is symmetric up to translation or two decoration sets agree up to translation and reflection, and for rigid decorations such as {(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)} none exists.
   fpbs-hyperbolic-quotient-every-generating-set: that is the every-generating-set class over any hyperbolic quotient; this is the tree-projected subclass, where fibres are cut sets and an exact finite-radius criterion exists.
 ---
 
@@ -25,9 +25,16 @@ theorem. For `F_n x Z`, a single decoration set symmetric up to translation
 gives a closed quasi-transitive nonunimodular subgroup, so Hutchcroft
 arXiv:1711.02590 applies: `fpbs-tree-projected-reversible-letter-nonunimodular`.
 That covers `{(a,0),(a,1),(b,0),(1,1)}` and every set in which some letter
-carries at most two heights. Still open:
-* sets in which no decoration set is symmetric up to translation, such as
-  `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,3),(1,1)}`;
+carries at most two heights. Two letters whose decoration sets agree up to
+translation and reflection also give one:
+`fpbs-tree-projected-letter-exchange-nonunimodular`, covering
+`{(a,0),(a,1),(a,3),(b,0),(b,1),(b,3),(1,1)}`. Still open:
+* *rigid* decorations, in which the oriented shapes `D_s`, `-D_s` are pairwise
+  distinct up to translation, such as
+  `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)}`. For that set the whole
+  automorphism group is discrete (Section 3 of
+  `research/artifacts/fpbs-f2xz-all-generating-sets-2026-09-12.md`), so no
+  nonunimodular argument exists and a proof must work on unimodular graphs;
 * non-split groups.
 
 The fibres are cut sets, which gives an exact criterion.
@@ -55,12 +62,19 @@ The fibres are cut sets, which gives an exact criterion.
     automorphisms have infinitely many orbits. The automorphism group of the
     covering tree of a three-vertex edge-indexed graph has three orbits instead,
     reverses only that letter, and has modular ratio `1/2`.
-  * **Where it dies:** when no decoration set is symmetric up to translation, as
-    in `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,3),(1,1)}`, lifted tree automorphisms
-    must keep every orientation. They may still exchange letters whose
-    decoration sets are translates of each other. No quasi-transitive
-    nonunimodular group of such automorphisms was found. This is not a proof
-    that no nonunimodular subgroup of `Aut(X)` exists.
+  * *Covered case, two exchangeable letters.*
+    `fpbs-tree-projected-letter-exchange-nonunimodular` settles `F_n x Z`
+    whenever `D_t = D_s + c` or `D_t = c - D_s` for two letters, e.g.
+    `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,3),(1,1)}`. The covering tree of a
+    directed edge-indexed graph on three vertices keeps every orientation,
+    exchanges the two letters, and has modular ratio `1/2`.
+  * **Where it dies:** rigid decorations. When the oriented shapes are pairwise
+    distinct up to translation and the vertical part is `{(1,±1)}`, every
+    fibre-preserving automorphism lies in the discrete group `Gamma ⋊ Z/2`. For
+    `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)}`, triangle counts make every
+    automorphism fibre-preserving, so `Aut(X)` itself is discrete and unimodular
+    (Section 3 of `research/artifacts/fpbs-f2xz-all-generating-sets-2026-09-12.md`).
+    Hutchcroft's theorem cannot reach this graph.
 * **Large rank.** `fpbs-tree-projected-large-rank-strict-thresholds` settles the
   claim whenever `v + 2 m sqrt(2n-1) < 2n-1`, where `v` counts the vertical
   generators and `m` is the largest multiplicity over a letter. It uses the tree

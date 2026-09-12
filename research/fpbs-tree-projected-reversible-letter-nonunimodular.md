@@ -44,6 +44,12 @@ with `c = k + l`. So the claim covers every tree-projected generating set of
   letter it may reverse.
 * Non-split cyclic-by-free groups.
 
+*Update 2026-09-12.* `fpbs-tree-projected-letter-exchange-nonunimodular` covers
+the first example, since `D_a = D_b`. Rigid sets, in which all oriented shapes
+differ, such as `{(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)}`, have no
+nonunimodular symmetry at all (Section 3 of
+`research/artifacts/fpbs-f2xz-all-generating-sets-2026-09-12.md`).
+
 **Mechanism.** Take the covering tree of an edge-indexed graph on three vertices
 `u, w, x`:
 * the `s_0`-edges `u–w` and `w–x` carry indices `2:1` and `1:2`;
