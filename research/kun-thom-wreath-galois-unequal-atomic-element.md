@@ -3,17 +3,33 @@ rg: 2
 id: kun-thom-wreath-galois-unequal-atomic-element
 kind: claim
 title: A Kun--Thom wreath has an integral self-adjoint element with purely atomic spectrum and Galois-unequal conjugate masses
+refuted_by:
+  - finite-spectrum-integral-elements-obey-determinant
 distinct_from:
   determinant-conjecture-counterexample-exists: that asks for any violating group and matrix; this asks for one specific shape, a purely atomic Galois-unequal spectrum, over one specific nonsofic group
   determinant-violation-needs-nonsofic-support-subgroup: that is a necessary condition on supports; this is a concrete witness shape that would meet it
 ---
 
-**OPEN.** For a Kun--Thom wreath `W = (Z/2) wr_(G/Gamma) G`
-(`kun-thom-nonsofic-wreath`), find a self-adjoint `A in M_n(Z[W])` whose
-spectral measure is purely atomic at algebraic integers, with two Galois
-conjugates carrying different von Neumann multiplicity. By
-`atomic-serre-measures-are-equal-weight-real-orbits` such an `A` violates the
-determinant conjecture.
+**REFUTED.** Claim: for a Kun--Thom wreath `W = (Z/2) wr_(G/Gamma) G`
+(`kun-thom-nonsofic-wreath`) there is a self-adjoint `A in M_n(Z[W])` whose
+spectral measure is purely atomic on finitely many algebraic integers, with two
+Galois conjugates carrying different von Neumann multiplicity. By
+`atomic-serre-measures-are-equal-weight-real-orbits` such an `A` would violate
+the determinant conjecture.
+
+"Finitely many atoms" is the hypothesis of that atomic theorem. The trace is
+faithful, so the claim asks for finite spectrum.
+
+**Refuter.** `finite-spectrum-integral-elements-obey-determinant`, for every
+group:
+- a finite-spectrum integral self-adjoint matrix has spectral projections in
+  `M_n(K[G])`;
+- Zalesskii's theorem makes their traces rational;
+- a rational trace that is a Galois-equivariant function of the eigenvalue is
+  the same on conjugates.
+
+No group, sofic or not, carries this shape. An unequal-mass violation needs
+infinite spectrum, which that claim records as the residual shape.
 
 ## Attempts
 

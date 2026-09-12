@@ -21,6 +21,11 @@ artifacts:
 - The model failure is `integer-moment-measure-with-negative-log-determinant`:
   conjugate algebraic eigenvalues carrying unequal von Neumann multiplicity,
   with no continuous part compensating.
+- **The violating self-adjoint matrix must have infinite spectrum.** Over every
+  group, finite-spectrum integral matrices have rational, Galois-equal masses
+  and satisfy every Serre inequality
+  (`finite-spectrum-integral-elements-obey-determinant`, via Zalesskii's
+  theorem). So the model failure above cannot occur with finitely many atoms.
 
 ## Attempts
 
@@ -35,7 +40,17 @@ artifacts:
   proper quotient trace, not `mu_A`, because `Gamma` is not profinitely
   closed. So they certify neither side. A violation would have to live on the
   part of the spectrum that the profinite shadow does not see.
-- **Galois-unequal multiplicities.** A self-adjoint `A` with atoms at `phi^2`
-  and `phi^-2` carrying unequal multiplicity and no other spectrum violates the
-  conjecture. Galois invariance of L^2-multiplicity is the property to break.
-  It is known for sofic groups; for the nonsofic groups it is untested.
+- **Galois-unequal multiplicities with finite spectrum.** Dead for every
+  group. A self-adjoint `A` with atoms at `phi^2` and `phi^-2` carrying unequal
+  multiplicity and no other spectrum would violate the conjecture. But its
+  spectral projections are polynomials in `A` over `Q(sqrt 5)`, so they lie in
+  the group algebra, and Zalesskii's theorem makes their traces rational, hence
+  equal on conjugates (`finite-spectrum-integral-elements-obey-determinant`).
+  This kills `determinant-counterexample-via-galois-unequal-atoms`.
+- **Galois-unequal multiplicities with infinite spectrum.** Open. An isolated
+  algebraic atom has its projection in `C*_r(G)`, not in `K[G]`, so neither
+  Zalesskii nor soficity controls its trace. Galois invariance of
+  L^2-multiplicity is known for sofic groups
+  (`vn-rank-galois-invariant-for-torsion-free-groups` records the torsion-free
+  question). Unequal atoms alone do not violate the conjecture; the rest of the
+  spectrum must not compensate.
