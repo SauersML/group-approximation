@@ -36,12 +36,14 @@ def ProjectedAngle (A B C : Submodule ℝ E) [C.HasOrthogonalProjection] (epsilo
     |inner ℝ (Cᗮ.starProjection a) (Cᗮ.starProjection b)| ≤
       epsilon * ‖Cᗮ.starProjection a‖ * ‖Cᗮ.starProjection b‖
 
+omit [CompleteSpace E] in
 /-- A subspace with an orthogonal projection is closed. -/
 theorem isClosed_of_hasOrthogonalProjection (K : Submodule ℝ E) [K.HasOrthogonalProjection] :
     IsClosed (K : Set E) := by
   rw [← K.orthogonal_orthogonal]
   exact Kᗮ.isClosed_orthogonal
 
+omit [CompleteSpace E] in
 /-- The projection to `Cᗮ` of `A ⊔ C` lies in the projection of `A`. -/
 theorem map_sup_le_map (A C : Submodule ℝ E) [C.HasOrthogonalProjection] :
     (A ⊔ C).map (Cᗮ.starProjection : E →ₗ[ℝ] E) ≤ A.map (Cᗮ.starProjection : E →ₗ[ℝ] E) := by
@@ -52,6 +54,7 @@ theorem map_sup_le_map (A C : Submodule ℝ E) [C.HasOrthogonalProjection] :
   rw [map_add, Submodule.starProjection_orthogonal_apply_eq_zero hc, add_zero]
   exact Submodule.mem_map_of_mem ha
 
+omit [CompleteSpace E] in
 /-- Under a projected angle `ε < 1`, a vector orthogonal to `C` in the closures of both `A + C`
 and `B + C` vanishes. -/
 theorem eq_zero_of_projectedAngle (A B C : Submodule ℝ E) [C.HasOrthogonalProjection]
@@ -187,7 +190,7 @@ theorem epsilonOrthogonal_of_projectedAngles (V₁ V₂ V₃ : Submodule ℝ E)
         obtain ⟨hr0, hr12⟩ := hr
         rw [← Submodule.inf_orthogonal] at hr12
         exact Submodule.inner_right_of_mem_orthogonal
-          (Submodule.le_topologicalClosure _ (Submodule.mem_sup_right ⟨⟨hr0, hr12.1⟩, hr12.2⟩))
+          (Submodule.le_topologicalClosure _ (Submodule.mem_sup_right (show r ∈ Z' from ⟨⟨hr0, hr12.1⟩, hr12.2⟩)))
           hwC
     let w : E := v - C.starProjection v
     have hq2 : V₂ᗮ.starProjection w ∈ V₂ᗮ := V₂ᗮ.starProjection_apply_mem w
@@ -205,7 +208,7 @@ theorem epsilonOrthogonal_of_projectedAngles (V₁ V₂ V₃ : Submodule ℝ E)
     have hq0 : V₂ᗮ.starProjection w = 0 :=
       eq_zero_of_projectedAngle V₃ V₁ V₂ he₂1 hA₂ hq2 hq32 hq12
     have hw2 : w ∈ V₂ := by
-      have h := Submodule.starProjection_apply_eq_zero_iff.mp hq0
+      have h := (V₂ᗮ).starProjection_apply_eq_zero_iff.mp hq0
       rwa [Submodule.orthogonal_orthogonal] at h
     have hwbot : w ∈ V₂ ⊓ V₃ := ⟨hw2, hw3⟩
     rw [h₂₃] at hwbot
