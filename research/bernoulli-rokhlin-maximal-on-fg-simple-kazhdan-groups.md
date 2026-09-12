@@ -109,10 +109,11 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
     measure-free Borel combinatorics cannot separate bases.
   - With factor non-monotonicity (Bowen) and lane gk-p-inf-cost's weak-equivalence blindness, a lower
     bound on this host must be a measure-isomorphism invariant that sees exact generation.
-  - Topological target: `full-shifts-with-different-alphabets-are-not-conjugate`. It follows from the
-    every-group form of maximality (`alphabet-conjugacy-invariance-from-bernoulli-maximality`), and a
-    conjugacy across alphabet sizes over a host would give both a strict automaton and a Bernoulli
-    deficit certificate.
+  - Topological alphabet invariance (`full-shifts-with-different-alphabets-are-not-conjugate`) is
+    elementary for every group: a conjugacy bijects the `|A|` constant configurations. So it is not
+    an intermediate target. The measurable form, where fixed points are null, is
+    `measurable-alphabet-compression-over-leavitt-units`. (Corrected 2026-09-12: this line first
+    called it an open target.)
   - Artifact: `research/artifacts/gk-p-inf-wild-borel-and-topological-2026-09-12.md`.
 - **Property (T) and superrigidity, tested on extensions (gk-p-inf-kazhdan, 2026-09-12).** Artifact
   `research/artifacts/kazhdan-superrigidity-bernoulli-extensions-2026-09-12.md`.

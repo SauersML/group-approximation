@@ -20,3 +20,8 @@ Proposition 3.2 of the artifact.
 
 The same argument works group by group: `h^Rok_G(A^G) = log |A|` for `G` alone suffices, which is
 RBS(G) in `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`.
+
+**Redundant (2026-09-12).** The target is established directly by
+`full-shifts-with-different-alphabets-are-not-conjugate-proof`: a conjugacy bijects the constant
+configurations. The measurable analogue, where this entropy argument has content because fixed
+points are null, is `measurable-alphabet-compression-over-leavitt-units`.

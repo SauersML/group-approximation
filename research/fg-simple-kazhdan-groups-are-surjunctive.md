@@ -136,3 +136,18 @@ counterexample, if one exists, lives on one.
     elements (Section 5 of the artifact).
   - *Invariant-output filter.* The symmetry must be core-free in the memory group
     (`invariant-output-symmetry-must-be-core-free`).
+- **Topological counting (gk-p-inf-wild, 2026-09-12).** Artifact
+  `research/artifacts/gk-p-inf-wild-borel-and-topological-2026-09-12.md`, Section 5.
+  - *Periodic points.* On these hosts the only finite fixed-point set is the `|A|` constant
+    configurations, since a finite-index subgroup of an infinite simple group is the whole group. A
+    strict automaton merely permutes them, and the residually-surjunctive argument has no quotient
+    to use.
+  - *Finite subgroups.* For nontrivial finite `F`, `[G:N(F)]` is infinite, so `Fix_F(A^G)` is a full
+    shift over `N(F)/F` with Cantor alphabet `A^(N(F)\G)`. A strict automaton restricts to the same
+    rule on the Schreier graph of `F\G`, and no count applies.
+  - *Other invariants.* Ball pattern counts are not monotone under codes (Ornstein–Weiss code
+    `2^(F_2)` onto `4^(F_2)`). The image of a strict automaton is nowhere dense, so clopen invariants
+    do not restrict. Homology with coefficients `C(A^G, Z)` reduces to
+    `every-injective-ca-preserves-uniform-bernoulli-measure`.
+  - Alphabet invariance under conjugacy is elementary for every group
+    (`full-shifts-with-different-alphabets-are-not-conjugate`), so it is not an intermediate target.

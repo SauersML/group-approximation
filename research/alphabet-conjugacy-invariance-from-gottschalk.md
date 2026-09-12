@@ -21,3 +21,8 @@ Proposition 3.1 of the artifact.
    surjunctivity of `G`.
 
 The same argument works group by group: surjunctivity of `G` alone suffices.
+
+**Redundant (2026-09-12).** The target is established directly by
+`full-shifts-with-different-alphabets-are-not-conjugate-proof`: a conjugacy bijects the constant
+configurations. This route stays only as a record that the topological conclusion is too weak to
+separate the goal from anything.
