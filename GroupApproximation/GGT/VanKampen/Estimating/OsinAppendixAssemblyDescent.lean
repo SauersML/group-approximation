@@ -18,7 +18,11 @@ the two geometric producers of that induction and assembles them:
 * `exists_exteriorUniqueAt_of_merge_step` — from a cell of the class, a realized
   family with a cell of the class having at most one exterior region per section;
 * `exists_sectionSelection_of_exteriorUniqueAt` — such a cell gives one region per
-  section, pairwise distinct, of total degree above `1 − 13μ`.
+  section, pairwise distinct, of total degree above `1 − 13μ`;
+* `osinLemma97bConclusion_of_exteriorUniqueAt` — hence clause (b), with Osin's
+  disjointness from the compatibility of the family;
+* `descentInput_of_merge_step` — `DescentInput` from the two producers, O52 and the
+  numeric parameter conditions.
 
 ## Why the step carries Corollary 9.6 at the pocket (approved 2026-09-11, "F2")
 
@@ -323,6 +327,58 @@ theorem exists_sectionSelection_of_exteriorUniqueAt
     unfold RealizedSectionFamily.ExteriorLarge at hlarge
     linarith
 
+/-! ## Clause (b) and `DescentInput` -/
+
+/-- **Clause (b) at a cell of the class with at most one exterior region per
+section.**  "There is an `R`-cell `Π` of `Δ` and disjoint `ε`-contiguity subdiagrams
+`Γ_j` of `Π` to sections `q_j`, `j = 1, …, r`, of `∂Δ` (some of them may be absent)
+such that `Σ_j (Π, Γ_j, q_j) > 1 − 13μ`."  Distinct sections get distinct regions
+because target arcs are nonempty (`RealizedSectionFamily.nondegenerate`), and
+distinct members of the family are compatible. -/
+theorem osinLemma97bConclusion_of_exteriorUniqueAt
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda} {lambda c mu : ℝ}
+    {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (T : RealizedSectionFamily D lambda c eps Delta cuts) (i : Fin T.diagram.rCellCount)
+    (hlarge : T.ExteriorLarge mu i) (huniq : T.ExteriorUniqueAt i)
+    (hmuUpper : mu ≤ 1 / 16) (hpos : 0 < ((cell T.diagram i).word.length : ℝ)) :
+    OsinLemma97bConclusion mu T := by
+  obtain ⟨source, present, region, hmem, hsrc, htarget, hdistinct, hsum⟩ :=
+    exists_sectionSelection_of_exteriorUniqueAt T i hlarge huniq
+      (fun a ha => (T.nondegenerate a ha).2) hmuUpper hpos
+  exact ⟨source, present, region, hsrc, htarget,
+    fun j hj k hk hjk =>
+      T.pairwise (region j) (hmem j hj) (region k) (hmem k hk) (hdistinct j hj k hk hjk),
+    hsum⟩
+
+/-- **`DescentInput` from the merge and step producers.**  The cell of
+Corollary 9.6 above `1 − 11μ` lies in the class at `1 − 13μ`; the induction on
+`m(Π)` gives a cell of the class with at most one exterior region per section; and
+that cell gives clause (b).  The inductive assumption enters only through the step
+producer (see the module header on "F2"). -/
+theorem descentInput_of_merge_step
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
+    {lambda c mu : ℝ} {eps rho : ℕ}
+    (measure : ∀ (Delta : DiscDiagram.{u, w, v} W)
+      (cuts : SectionCuts D lambda c Delta.boundaryWord)
+      (T : RealizedSectionFamily D lambda c eps Delta cuts), Fin T.diagram.rCellCount → ℕ)
+    (hmerge : OsinDescentMergeInput.{u, w, v} D lambda c mu eps W measure)
+    (hstep : OsinDescentStepInput.{u, w, v} D lambda c mu eps W measure)
+    (hO52 : O52LeastAreaStatement.{u, w, v})
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ)) :
+    DescentInput.{u, w, v} D lambda c mu eps W := by
+  intro Delta cuts hlea _hcells _hbelow S _hloops _hmulti h11
+  obtain ⟨i, hi⟩ := h11
+  have hT : S.toRealizedSectionFamily.ExteriorLarge mu i :=
+    RealizedSectionFamily.exteriorLarge_of_gt_eleven S.toRealizedSectionFamily i hmu.le hi
+  obtain ⟨T', i', hlarge', huniq'⟩ :=
+    exists_exteriorUniqueAt_of_merge_step measure hmerge hstep hO52 hcondition hlambda hmu
+      hrho hlarge hlea S.toRealizedSectionFamily i hT
+  exact ⟨T', osinLemma97bConclusion_of_exteriorUniqueAt T' i' hlarge' huniq' hmuUpper
+    (cellWord_length_pos hcondition.toIsSmallCancellation hrho i')⟩
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinDescentMergeInput
@@ -332,3 +388,5 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.RealizedSectionFamily.sum_exteriorAt_le_sum_sections
 #audit_axioms GroupApproximation.GGT.VanKampen.SectionCuts.eq_of_targetsSectionIndex
 #audit_axioms GroupApproximation.GGT.VanKampen.exists_sectionSelection_of_exteriorUniqueAt
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma97bConclusion_of_exteriorUniqueAt
+#audit_axioms GroupApproximation.GGT.VanKampen.descentInput_of_merge_step
