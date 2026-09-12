@@ -6,6 +6,7 @@ title: Free modules of equal rank give exact intertwiners at every stage of the 
 target: level-unit-hnn-extensions-have-anti-central-rank-models
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/char-three-level-factoring-and-hnn-models-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Section 2 of the artifact: Theorem 2.1, Theorem 2.3, Corollary 2.4, Remark 2.5 a
 3. **Extension.** Independent choices for countably many letters give the multiple HNN extension.
 4. **Torsion.** When `n | [L_j : Γ_i]` and `Γ_i` is `g`-invariant, transport the free
    `F_3[Γ_i ⋊ <g>]ε₋`-structure. Then `X_j^n = 1`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 21.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS (rank-model construction, full care). Recomputed: eps_- idempotent, free of rank [L_j:Γ], injectivity via rank 2r/|Γ|, i(j) → ∞, exact X_j from free modules of equal rank, and the HNN extension. Precision remark on Remark 2.5: n | [L_j : Γ_i] holds for fixed i while i(j) moves with j, so the divisibility must be built into the choice of i(j). The repair costs nothing.*

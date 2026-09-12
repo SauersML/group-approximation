@@ -764,3 +764,57 @@ Both checks above missed this node.
   * `x_0` fixes `0^∞` (slope `|00| − |0| = +1`) and `1^∞` (slope `|1| − |11| = −1`), and no other point.
   * `x_0` lies in `F` and has no non-fixed periodic points, so `Fix(x_0^k) = Fix(x_0)`, with slopes `±k`.
 * **Scope.** The revealing-pair remark is correctly marked unverified and unused.
+
+## 21. Level-factoring and HNN models in characteristic three (w4-char3-construct; c48c760e43, 861b813c16)
+
+### 21.1 `char-three-level-factoring-models-of-leavitt-units-are-trivial` (Theorem 1.4): PASS, conditional scope
+
+* **Lemma 1.1(a).** In characteristic three a transvection has order three. A projective module is free over
+  `<t>`, so `t − 1` has rank `2/3` of its dimension.
+* **Lemma 1.3 over `F_3`.**
+  * A non-scalar `x` has some `v` with `xv ∉ F_3 v`.
+  * With `u^-1 = 1 − B` we get `[x,u] = (1 + A)(1 − B) = 1 + A − B`, since `AB = 0`.
+  * `N != 0`, because `N y = psi(y) xv − φ(y) v` with `xv` and `v` independent.
+  * Second commutator: `(1+N) u'' (1+N)^-1 = 1 + (w + Nw) ⊗ chi`, using `chi o N = 0`. Then
+    `[1+N, u''] = 1 + Nw ⊗ chi`, using `chi(w) = 0`.
+* **Theorem 1.4.**
+  * **(2)** The centre of `GL_m(F_3)` is `{±1}`.
+  * **(3)** `Phi` is a homomorphism into the algebraic ultraproduct of the `PGL_(m_k)(F_3)`.
+  * **(4)** `Phi(w) = 1` forces `tau'_k(w) = ±1`, so `sigma'(w)` is central and `w ∈ Z(G)` by injectivity of
+    `sigma'`. Simplicity of `PG` gives `Z(G) = <z>`.
+  * **(5)** `G / ker Phi` embeds in an algebraic ultraproduct, so it is LEF, hence sofic, against the cited
+    nonsoficity of `G` and `PG`.
+* **Conditional scope.** Rests on:
+  * simplicity of `PG` (`odd-leavitt-unit-groups-mod-scalars-are-fp-simple`, with its imports);
+  * nonsoficity of `G` and of `PG` (cited);
+  * Theorem 2.1 of the characteristic-three gate (Section 11.1 above).
+* **Corollary 1.5(b).** The twisted regular module `F_3[GL_m(F_3)] eps_-` is projective, since `z` has order two,
+  which is prime to three.
+
+### 21.2 `level-unit-hnn-extensions-have-anti-central-rank-models` (Theorem 2.1, Theorem 2.3, Corollary 2.4): PASS, one precision remark
+
+This is a rank-model construction, checked with full care. It models HNN extensions of `L`, not `G_3`, so the gate is
+untouched.
+
+* **Theorem 2.1.**
+  * `((1 − [z])/2)^2 = (2 − 2[z])/4 = eps_-`.
+  * `F_3[L_j]` is free over `F_3[<z>]`, so `dim V_j = |L_j|/2`.
+  * Level compatibility gives exact multiplicativity for `j >= j_0`.
+  * Coset decomposition with central `eps_- ∈ F_3[Γ]` gives freeness of rank `[L_j : Γ]`.
+  * **Injectivity.** For `a ∉ {1, z}` the supports `{a, az}` and `{1, z}` are disjoint, so `[a] eps_- != eps_-`. The
+    rank of `[a] − 1` is `r >= 1` on `F_3[Γ] eps_-`, hence `2r/|Γ|` at every stage.
+* **Theorem 2.3.**
+  * `B_g` is a subgroup containing `z`, and `phi_g` fixes `z`, hence `eps_-`.
+  * `i(j) -> ∞`, since for fixed `i_0` the level `j >= max(i_0, c(i_0))` works.
+  * At stage `j`, `V_j` is free of rank `[L_j : Γ_i]` over `F_3[Γ_i] eps_-` through `sigma_j`, and through
+    `sigma_j o phi_g`, since `phi_g(Γ_i) ∋ z` has the same order. Free modules of equal rank are isomorphic, which
+    gives an exact `X_j`.
+  * A fixed `a` lies in `Γ_(i(j))` for ω-almost all `j`.
+* **Corollary 2.4.** The defining relations hold in `M^x`, and `t_g -> g` respects them.
+* **Precision remark (Remark 2.5, torsion letters).**
+  * **The gap.** "`n` divides `[L_j : Γ_i]` for large `j`" holds for each fixed `i`, since `ν_ℓ |GL_(2^j)(F_3)| -> ∞`
+    for every prime `ℓ`. But `i = i(j)` moves with `j`, and `|Γ_(i(j))|` grows too.
+  * **Repair.** Put the divisibility into the choice: take `i(j) = max{i <= j : c(i) <= j` and
+    `n | [L_j : Γ_i]}`. For fixed `i_0` all conditions hold for large `j`, so `i(j) -> ∞` still.
+  * **Transport step.** `F_3[Γ_i ⋊ Z/n]` is free of rank `n` over `F_3[Γ_i]`, and `eps_-` stays central because
+    `phi_g` fixes `z`. So the transported generator gives `X_j^n = 1` with the intertwining property.

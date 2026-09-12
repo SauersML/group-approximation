@@ -10,6 +10,7 @@ requires:
   - d-ary-leavitt-groups-nonsofic-over-finite-fields
   - projective-leavitt-unit-groups-mod-scalars-are-nonsofic
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/char-three-level-factoring-and-hnn-models-2026-09-12.md
 ---
 
@@ -29,3 +30,5 @@ Section 1 of the artifact: Lemmas 1.1–1.3, Theorem 1.4 and Corollary 1.5.
 4. **Contradiction.** `G/ker Φ` is `G` or `PG`. It embeds in an algebraic ultraproduct of finite groups,
    hence is sofic. That contradicts `d-ary-leavitt-groups-nonsofic-over-finite-fields` and
    `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 21.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS, conditional on simplicity of PG and nonsoficity of G and PG. Recomputed: Lemma 1.3 over F_3 ([x,u] = 1 + A − B, [1+N,u''] = 1 + Nw⊗chi); central errors ±1; ker Phi inside Z(G) = <z> by injectivity of sigma∘iota; and algebraic ultraproduct ⟹ LEF ⟹ sofic.*
