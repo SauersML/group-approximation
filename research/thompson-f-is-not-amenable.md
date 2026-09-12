@@ -34,7 +34,12 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   reported to point toward non-amenability. Elder–Rogers, arXiv:1608.06703,
   "identify two potential sources of error" in that method (abstract). Dies:
   finite data cannot certify an asymptotic growth rate, and this graph has read
-  none of the numerical values.
+  none of the numerical values. That is now a theorem:
+  `thompson-f-moment-data-cannot-certify-nonamenability` shows that finitely many
+  exact closed-walk counts are always matched by a symmetric measure reaching
+  `+-1`. So no finite cogrowth computation, however exact, proves `||P|| < 1`.
+  Such data certify only lower bounds on `||P||`, via orthogonal-polynomial zeros
+  (`experiments/thompson-f/cogrowth_exact.py`).
 - **Non-Ore certificate.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   non-amenability is equivalent to a pair `a, b` in `K[F]` with no nonzero common
   multiple. A finite search can propose candidate pairs, but ruling out every
