@@ -7,6 +7,7 @@ target: higman-group-splits-as-amalgams-over-free-subgroups
 requires: []
 artifacts:
   - research/artifacts/higman-group-gottschalk-host-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -26,3 +27,10 @@ Artifact Section 1, Theorem 1.1.
 **Literature input, not a Cairn node:** amalgams of sofic groups over amenable subgroups are sofic
 (Elek--Szabo, as cited by `amenable-envelope-magnus-piece-sofic-proof`; not re-read by this lane). It is
 used only for the soficity bullet.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently.
+- The stable and base roles in `B(a,b)`, `B(b,c)`, `B(c,d)` and `B(d,a)` hold, via the quotients to `Z`.
+- Alternating powers are nontrivial by the normal form.
+- `F_ac` is free on `{a,c}` in both factors, so the identification is an isomorphism.
+- The union presentation is `H`'s, and the relabelling permutes the relators.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 23.)

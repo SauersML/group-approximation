@@ -9,6 +9,7 @@ requires:
   - sofic-kernel-amenable-quotient-permanence
 artifacts:
   - research/artifacts/higman-group-gottschalk-host-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -29,3 +30,9 @@ The same argument runs on `G_3 *_(F_bd) G_4`.
 **Literature input, not a Cairn node:** graphs of groups with sofic vertex groups and amenable edge groups
 are sofic (Elek--Szabo for amalgams, Ciobanu--Holt--Rees for graphs of groups, as cited by
 `amenable-envelope-magnus-piece-sofic-proof`; not re-read by this lane).
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently.
+- The elliptic case is Serre's lemma.
+- In the fixed-end case, the Busemann kernel consists of elliptic elements fixing rays to one end. Finitely many share a subray, so the kernel is locally in vertex stabilizers.
+- Otherwise the minimal subtree of a f.g. group has finite quotient, and cyclic edge groups would make `S` sofic.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 23.)

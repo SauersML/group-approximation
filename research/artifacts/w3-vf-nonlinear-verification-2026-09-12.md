@@ -1013,3 +1013,154 @@ The artifact asserts that (i) gives `pi_S(w) = 0` directly. That is false.
   **PASS** on the corrected statement.
 - **Root bullet.** The Attempts bullet of `kun-thom-wreath-lamp-quotient-nonsurjunctive` names both memberships.
 - **Scope.** No other node cites the claim.
+
+## 22. Copying-rule lifts and self-dual flux sectors (w4-clifford-copy, 80c36addf4, b59fcb8226)
+
+Artifact `research/artifacts/clifford-copying-rule-lift-2026-09-12.md`. **Both claims PASS.**
+
+**Theorem 1: `copying-rules-lift-to-clifford-covers-only-as-shifts`.**
+1. **Lift.**
+   - `iota(h.x)(e) = x(pi(h)^-1 pi(e) o) = (L_h iota x)(e)`.
+   - `iota` is injective because `pi` is onto.
+   - `R(iota x)(e) = x(pi(e) t^-1 o) = x(p(pi(e) o))`.
+   - The inverse of `R` is the shift by `s^-1`.
+2. **Invariance.** `ker pi` acts trivially on `X`, so `L_k phi(x) = phi(x)`.
+3. **Copy automata.**
+   - The cells `e m` are distinct.
+   - If `P(e)` lies outside `eM`, changing the cell `P(e)` alone changes the output with the inputs fixed, which is a contradiction.
+   - Since the `x(e m)` are arbitrary, `mu` is the projection onto `a_(j(e))`. `mu` does not depend on `e`, and `|A| >= 2` fixes the coordinate, so `j` is constant.
+4. **Clifford covers.**
+   - `Fix_H <= Fix_(eps)`.
+   - Part 4 of `injective-automata-restrict-to-schreier-graph-automata`, with `<eps>` normal and `E_S/<eps> = W` surjunctive, gives `Fix_(eps) <= tau(A^E)`.
+   - Part 1 gives `tau(Fix_H) = tau(A^E) cap Fix_H = Fix_H`.
+   - That node assumes a left-inverse automaton. An injective automaton has one: the inverse on the image is a sliding block code, extended arbitrarily.
+   - The cofinite-lamp node states exactly the complete-graph and induced-matching cases used.
+
+**Remarks checked.**
+- **Block example.** `(c_1 c_2 c_3 c_4)^2 = eps^(6+4q) = 1`, and disjoint blocks commute (`eps^16`). The block products map injectively to `V`, so their group misses `eps`.
+- **Sibling reads.** `s^-1 k_j s` maps to `t k_j t^-1` in `Gamma`. Correct.
+
+**Theorem 2: `clifford-cover-self-dual-sectors-are-frustrated-flux-shifts`.**
+1. **Sector.**
+   - `tau(Jx)(e) = mu((x(eps e m)+1)_m) = J(tau x)(e)` by self-duality.
+   - `J` is an involution commuting with `L_h` because `eps` is central.
+   - If `tau(x) in Tw`, injectivity gives `Jx = x`.
+2. **Gauge coordinates.**
+   - `Theta_x` does not depend on the lift: `x(eps e)+x(eps e m) = x(e)+x(e m)` on `Tw`.
+   - The cocycle identity holds, and `Theta(w, eps) = 1`.
+   - Inverse: `x(e) = Theta(1,e)` gives `x(e)+x(e m) = Theta(ebar, m)` and `x(eps e) = x(e)+1`.
+   - `Theta(w,1) = 0` gives the inverse-letter rule.
+   - A word with `rbar = 1` equals `eps^(omega(r))`, so its holonomy is `omega(r)`. Two words for one element differ by holonomy `0`.
+3. **Induced automaton.**
+   - `a_0 + mu(a + a_0 1) = mu(a)` in both cases `a_0 = 0, 1`.
+   - `tau(x)(e) = x(e) + mu((Theta_x(w,m_i))_i)`, and subtracting at `e m` gives the formula.
+   - Self-duality makes `tau` commute with the flip, so `tau_Z` is injective.
+4. **Torsor.** Differences are flat, flat cochains are coboundaries of `F_2^W`, and `Z_omega` is nonempty.
+5. **Detecting character.**
+   - `theta in Tw`, and `L_h theta = theta + theta(h)`.
+   - `x = theta + y` with `y in Fix_(eps)`.
+   - `tau(theta+y)(e) = theta(e) + mu((theta(m_i) + y(e m_i))_i)` is a `W`-automaton, and it is injective, hence onto.
+   - The memory-group version works coset by coset over left cosets of `H = <M>`. Each coset is `eps`-stable, and `H/<eps> <= W` is surjunctive, since surjunctivity passes to subgroups by induction.
+6. **Clifford flux.**
+   - The relators of `G`, `c_o^2` and `[b, c_o]` (`b in Gamma`), together with the plaquettes, present `(Z/2) wr_X G`.
+   - `omega` is additive on products of conjugates of relators because `eps` is central.
+   - `[c_o, c_(go)] = eps^(b_S(o, go))`, and `eps` is a commutator, so every character kills it.
+   - The "Reading" count holds: each letter occurs four times in a plaquette word, so an invariant cochain has holonomy `0`.
+
+**Scope note (not blocking).** The design filter in the claim's Payoff and the artifact's Section 3 ("`eps` a product of squares and commutators of the memory group") is Theorem 2.5 read backwards. It needs `<M>/<eps>` surjunctive, for example `W` surjunctive, and the Payoff sentence does not say so. `eps notin <M>^2 [<M>,<M>]` iff some character of `<M>` detects `eps`.
+**Applied forward at 40a888c890.** The claim's Payoff, the artifact's Section 3 table and the screen list now state
+the hypothesis. It holds on the Kun–Thom cover because `<M>/<eps> <= W`, and `W` is surjunctive there.
+
+## 23. Higman's group splittings and edge-group filter (w5-free-neg-c, 933b7aa5e7)
+
+Artifact `research/artifacts/higman-group-gottschalk-host-2026-09-12.md`, Sections 1–2. **Both claims PASS.** So do Lemma 2.1 and Remark 2.2.
+
+**`higman-group-splits-as-amalgams-over-free-subgroups`.**
+- **Pieces.** `B(a,b)` has `a` as stable letter (quotient to `Z` with `a -> 1`, `b -> 0`, because `b = 2b`). `B(b,c)` has `c` in the base. So `a^k in <b>` forces `k = 0`, and `c^l = b^m` forces `m = 0` and then `l = 0`.
+- **`G_2`.** In `B(c,d)`, `c` is the stable letter. In `B(d,a)`, `a` is in the base, and `a^l = d^m` forces `m = 0`.
+- **Freeness.** Alternating nonzero powers of `a` and `c` lie in the two factors outside the amalgamated subgroup, so the normal form theorem makes them nontrivial.
+- **Amalgam.** `F_ac` is free on `{a,c}` in both factors, so the identification is an isomorphism. The union presentation is `H`'s.
+- **Second splitting.** `a -> b -> c -> d -> a` permutes the four relators cyclically.
+- **Soficity.** `BS(1,2)` is amenable, and amalgams over `Z` are sofic by Elek–Szabó, a standard import.
+
+**`nonsofic-subgroups-of-higman-group-have-free-edge-groups`.**
+- **Every element elliptic.** Serre's lemma gives a fixed vertex, so `S` is in a conjugate of `G_i`.
+- **Fixed end with a hyperbolic element.**
+  - The kernel of the Busemann map consists of elliptic elements fixing the end, each fixing a ray.
+  - Finitely many rays to one end share a subray, so `K` is locally in vertex stabilizers, hence sofic.
+  - `S/K <= Z`, so `sofic-kernel-amenable-quotient-permanence` applies.
+  - With no hyperbolic element, we are in the elliptic case.
+- **Otherwise.**
+  - There is a minimal subtree. `S` is f.g., so the quotient is finite: it sits inside the finite quotient of `S.Y`, where `Y` is the hull of `v` and its images under the generators.
+  - The graph of groups has sofic vertex groups and edge groups `S cap g F_ac g^-1`.
+  - If all edge groups were amenable, Ciobanu–Holt–Rees would make `S` sofic.
+  - Amenable subgroups of free groups are cyclic.
+
+**Lemma 2.1.**
+- `g x^k x' = g x' x^(2k)`, so `p_x` is well defined.
+- The fibres are `g <x' x x'^-1> / <x>`, with `(x' x x'^-1)^2 = x`.
+- `x' x x'^-1 = x^m` would give `x^(2m-1) = 1` with `2m-1` odd, which is impossible for `x != 1` in torsion-free `H`. So `p_x` is exactly two-to-one.
+- Onto: `g<x> = p_x(g x'^-1 <x>)`. So `y -> y o p_x` is injective and not surjective.
+
+**Remark 2.2.**
+- `R(y)(g) = y(g x')`.
+- For `h = x' x^k x'^-1`: `R(y)(g h) = y(g x' x^k) = R(y)(g)`.
+- Conversely, `y(g) = z(g x'^-1)` inverts it on `x'<x>x'^-1`-invariant `z`.
+- So `R` maps `Fix_(<x>)` onto the proper subshift `Fix_(x'<x>x'^-1)`. Correct.
+
+**Wording slip (artifact only).** The last sentence of Corollary 1.3 says "memory reads only three consecutive Baumslag–Solitar pieces". Three consecutive pieces `B(a,b), B(b,c), B(c,d)` generate all of `H`. It should say "three consecutive generators", as the claim node does. Neither claim needs the corollary's surjunctivity, which follows from soficity of `G_i` alone.
+
+## 24. Distinct-symbol single patches (w5-bal-distinct, 8f3bc78c74)
+
+Claim `distinct-symbol-patch-ternary-rules-reduce-to-linear-strictness`, route `distinct-symbol-patch-linear-reduction-proof`.
+Artifact `research/artifacts/distinct-symbol-patch-collision-2026-09-12.md`, Sections 1–2. **PASS**, with no
+findings.
+
+**Step 0.**
+- `L(d)(g) = L(d_0)(h^-1 g) = -epsilon delta_h`.
+- On `hM`, `x' = p` and `x = e`, with `e_beta = p_beta - d_0(m_beta)`.
+- If `L` is bijective, `d_0 = L^-1(-epsilon delta_1)` has finite support.
+
+**Step 1.**
+- `phi_i^-1(hM) = {h m_beta m_i^-1}`.
+- Off `hM`, avoiding `{p_i, p_i - d(w)}` leaves one symbol and breaks both configurations at the `i`-th site.
+- At `g_beta`, `beta != i`, the `i`-th site `h m_beta` carries `x' = p_beta != p_i`, and `x = e_beta`.
+- `x` does not show `p` at `h`, because `L(d)(h) != 0` gives `d != 0` on `hM`.
+
+**Step 2.**
+- Danger at every `i` puts every `p_i` in the image of `e`, so `e` is a bijection.
+- `p^-1 e` has no fixed point, so it is a 3-cycle.
+- `p_beta -> e_beta` is a fixed-point-free 3-cycle of `F_3`, that is, a translation. So `d_0 = kappa != 0` on `M`.
+- `kappa S = L(d_0)(1) = -epsilon`, so `S != 0`.
+- The index map `i -> p^-1(p_i + kappa)` is a 3-cycle. A transposition of addresses conjugates it to the inverse cycle, so WLOG `p_(i+1) = p_i + kappa` and `e_beta = p_(beta-1)`.
+
+**Step 3.**
+- **Danger translate.** `e_beta = p_i` gives `beta = i+1`, so the translate is `t = h m_(i+1) m_i^-1`. `g_(i+2)` is safe, since `e_(i+2) = p_(i+1)`.
+- **Other sites of `t`.** Position `j` of `t` is `h u_j` with `u_j = m_(i+1) m_i^-1 m_j`.
+- **Forced site.** `x = e_gamma = p_(gamma-1)`, which equals `p_j` only if `gamma = j+1`.
+- **Free site.**
+  - `w_j` is the `i`-th site of the single translate `w_j m_i^-1`, which is not among `h, t, g_(i+2)`.
+  - Forbidding `{p_i, p_i - d(w_j), p_j}` exhausts `F_3` only when `p_i - d(w_j)` is the third symbol. That gives `d_0(u_(i+1)) = kappa` for `j = i+1` (third symbol `p_i - kappa`) and `d_0(u_(i+2)) = -kappa` for `j = i+2`.
+  - Changing `x(w_j)` keeps every other translate broken: `h` is fixed on `hM`, and `g_(i+2)` and the translates with `i`-th site off `hM` are broken at their `i`-th sites.
+- **Stuck `i`.**
+  - `j = i+1` fails in either sub-case with `d_0(u_(i+1)) = kappa`.
+  - `j = i+2` fails with `d_0(u_(i+2)) = kappa`, via `u_(i+2) = m_i`, or with `-kappa`.
+- **Linear equation.** `L(d_0)(m_(i+1) m_i^-1) = 0`, with sites `m_(i+1), u_(i+1), u_(i+2)` at positions `i, i+1, i+2`, reads `c_i kappa + c_(i+1) kappa + c_(i+2) d_0(u_(i+2)) = 0`.
+  - The value `+kappa` gives `kappa S = 0`, which is impossible.
+  - The value `-kappa` gives `S = 2 c_(i+2)`, so `c_(i+2) = -S`.
+
+**Step 4.**
+- All three indices stuck gives `S = 3(-S) = 0`, which is impossible.
+- At a non-stuck `i`: `P(x') = delta_h`, because every other translate carries a symbol other than `p_i` at its `i`-th site.
+- `P(x) = 0`, so the two configurations collide.
+
+**Z instance.** `L(d_0)(0) = 1+1+2 = 1 = -epsilon` with `epsilon = 2`, and `L(d_0)(1) = 1+1+2*2 = 0`.
+- Index 1: `u_2 = 2 = m_3` and `d_0(u_3) = d_0(3) = 2 = -kappa`, so it is stuck, and `c_3 = 2 = -S`.
+- Index 2: `u_3 = 3 notin M` with `d_0(3) != kappa`, so it is not stuck.
+
+**Corollaries.**
+- **Corollary 2.** A distinct-symbol patch contains `p_1`, so patterns avoiding `p_1` are unpatched. The avoidable-patch node gives `L` injective, and Theorem 1 gives it non-surjective.
+- **Corollary 3.**
+  - Two equal symbols: Section 19's claim, after relabelling addresses.
+  - Constant patch: the diagonal `c' -> S c' + c_0` is a bijection or constant, and changing one value leaves a non-injective map on constant configurations.
+  - In the constant and two-equal abelian sub-cases the conclusion is vacuous: no injective rule exists.

@@ -7,6 +7,7 @@ target: clifford-cover-self-dual-sectors-are-frustrated-flux-shifts
 requires: []
 artifacts:
   - research/artifacts/clifford-copying-rule-lift-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Complete direct proof, artifact Section 2.
@@ -21,3 +22,15 @@ Complete direct proof, artifact Section 2.
   memory-group version works coset by coset; surjunctivity passes to subgroups (standard induction).
 - **Clifford flux.** `[c_x, c_y] = eps^(b_S(x,y))`, `c_o^2 = eps^q`, and `omega` is additive on products of conjugates
   of relators since `eps` is central. Characters kill commutators.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently.
+- `J` commutes with `tau`.
+- `Theta` does not depend on the lift, and its inverse `x(e) = Theta(1,e)` lies in `Tw`.
+- Holonomy is `omega(r)` because `r = eps^(omega(r))`.
+- `mu(a) = a_0 + mu(a + a_0 1)`.
+- Flat differences are coboundaries.
+- A character gives `tau(theta + y) = theta +` a `W`-automaton. The cosets of `<M>` are `eps`-stable.
+- Plaquette flux is `b_S`, and `eps` is a commutator.
+
+Scope note: the Payoff design filter needs `<M>/<eps>` surjunctive
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 22).
