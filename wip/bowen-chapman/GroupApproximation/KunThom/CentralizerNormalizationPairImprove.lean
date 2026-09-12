@@ -255,7 +255,7 @@ variable {F}
 open Classical in
 /-- Natural-number size facts for a counterexample to repair. -/
 theorem sizes {K₀ h' d : ℝ} {n : ℕ} (B : F.BadArrow K₀ h' d n)
-    (hK0 : 0 ≤ K₀ * h') (hK : K₀ * h' ≤ 1 / 100000) (hone : (1 : K) ∈ T) :
+    (hK : K₀ * h' ≤ 1 / 100000) (hone : (1 : K) ∈ T) :
     1 ≤ min (F.scale n B.i) (F.scale n B.l) ∧
       100 * B.b.sourceDefect ≤ min (F.scale n B.i) (F.scale n B.l) ∧
       100 * B.b.targetDefect ≤ min (F.scale n B.i) (F.scale n B.l) ∧
@@ -319,7 +319,7 @@ theorem swap_isEpsilonGood {K₀ η d : ℝ} {n : ℕ} (B : F.BadArrow K₀ η d
     IsEpsilonGood (sumModel (F.model n B.i) (F.model n B.l))
       (Finset.univ.image (sumAction (F.tags n B.i) (F.tags n B.l))) (K₀ * η)
       B.b.swapPerm := by
-  obtain ⟨_, _, _, h18, _, _, _⟩ := B.sizes hK0 hK hone
+  obtain ⟨_, _, _, h18, _, _, _⟩ := B.sizes hK hone
   obtain ⟨hmin1, _, _⟩ := nat_min_facts (F.scale n B.i) (F.scale n B.l)
   have hsum : Fintype.card (sumModel (F.model n B.i) (F.model n B.l)) =
       Fintype.card (F.model n B.i) + Fintype.card (F.model n B.l) := Fintype.card_sum
@@ -371,7 +371,7 @@ theorem exists_repair {K₀ η ζ : ℝ} {k n : ℕ} (B : F.BadArrow K₀ η (20
   haveI : Nonempty T := ⟨⟨1, hone⟩⟩
   have hK0 : 0 ≤ K₀ * η := mul_nonneg (by linarith only [hK₀]) hη.le
   have hK : K₀ * η ≤ 1 / 100000 := by linarith only [hηζ, hζ]
-  obtain ⟨hm1, hsd100, htd100, h18, h90, h17, hXm⟩ := B.sizes hK0 hK hone
+  obtain ⟨hm1, hsd100, htd100, h18, h90, h17, hXm⟩ := B.sizes hK hone
   obtain ⟨hmin1, hmin2, hmin3⟩ := nat_min_facts (F.scale n B.i) (F.scale n B.l)
   have hc := F.cheeger_pos
   have hTc : (1 : ℝ) ≤ T.card := by exact_mod_cast Finset.card_pos.mpr ⟨(1 : K), hone⟩
@@ -556,14 +556,14 @@ theorem eventually_pairRepairAt
   let actZ : ∀ N, K → Equiv.Perm (modelZ N) := fun N ↦ F.act (seq N) (bad N).l
   have hposX : ∀ N, 0 < Fintype.card (modelX N) := by
     intro N
-    obtain ⟨hm1, _, _, h18, _, _, _⟩ := (bad N).sizes hK0 hK hone
+    obtain ⟨hm1, _, _, h18, _, _, _⟩ := (bad N).sizes hK hone
     obtain ⟨hmin1, _, _⟩ := nat_min_facts (F.scale (seq N) (bad N).i)
       (F.scale (seq N) (bad N).l)
     show 0 < Fintype.card (F.model (seq N) (bad N).i)
     omega
   have hposZ : ∀ N, 0 < Fintype.card (modelZ N) := by
     intro N
-    obtain ⟨hm1, _, _, _, _, h17, _⟩ := (bad N).sizes hK0 hK hone
+    obtain ⟨hm1, _, _, _, _, h17, _⟩ := (bad N).sizes hK hone
     obtain ⟨hmin1, _, _⟩ := nat_min_facts (F.scale (seq N) (bad N).i)
       (F.scale (seq N) (bad N).l)
     show 0 < Fintype.card (F.model (seq N) (bad N).l)
