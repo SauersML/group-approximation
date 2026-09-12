@@ -85,3 +85,16 @@ artifacts:
   - *Where it stops:* that step is ring theory, whether a `K_0` state is realized by a Sylvester rank
     function. No input specific to `T` is known beyond the halving map.
   - Source: `research/artifacts/binary-cyclic-corner-complement-states-2026-09-12.md`.
+- **Weakly finite form (w5-wf-binary, 2026-09-12).** Theorem W of
+  `research/artifacts/binary-weakly-finite-representations-2026-09-12.md`.
+  - *Equivalences:* this claim holds iff `T` has no nonzero weakly finite image
+    (`binary-complement-corner-has-no-weakly-finite-image`, route
+    `binary-cyclic-corner-from-no-weakly-finite-complement-image`). That in turn holds iff every
+    homomorphism from `L_(F_2)(1,2)^x` into the unit group of a weakly finite ring of characteristic two is
+    trivial (`binary-corner-weakly-finite-images-are-unit-representations`).
+  - *From fullness, elementary:* `c e b = 1` makes `φ(e)` invertible in any weakly finite image, so `φ([g]) = 1`.
+  - *The converse:* it uses Theorems B and C.
+  - *Consequence:* the statement no longer mentions `g`. Every averaging corner covered by Theorem B is full
+    simultaneously, or none is.
+  - *Dead targets:* division rings of characteristic two (`C_3²` would lie in a finite field), matrices over
+    them, and commutative rings.
