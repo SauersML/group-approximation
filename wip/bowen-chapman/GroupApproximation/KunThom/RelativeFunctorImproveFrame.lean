@@ -75,9 +75,11 @@ theorem bridgeMass_le_of_matched {G : Type} [Group G] {A : SoficApproximation G}
     Finset.mem_coe.mp (ClusterMetric.matchingInverse π hsurj X).2
   have h := hbridge _ hm
   rw [← targetDefect_bridge_inv (F.embedding n) (A.map n q)
-      (ClusterMetric.matchingInverse π hsurj X).1 (π (ClusterMetric.matchingInverse π hsurj X).1),
+      (ClusterMetric.matchingInverse π hsurj X).1
+      (π (ClusterMetric.matchingInverse π hsurj X).1),
     ← sourceDefect_bridge_inv (F.embedding n) (A.map n q)
-      (ClusterMetric.matchingInverse π hsurj X).1 (π (ClusterMetric.matchingInverse π hsurj X).1),
+      (ClusterMetric.matchingInverse π hsurj X).1
+      (π (ClusterMetric.matchingInverse π hsurj X).1),
     ClusterMetric.apply_matchingInverse π hsurj X] at h
   omega
 
