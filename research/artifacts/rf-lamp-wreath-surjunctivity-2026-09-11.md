@@ -205,7 +205,19 @@ automaton over `K` by (F1).
 On `R`, `rho(y)|_R` depends only on `y|_(RP) = (u, w|_E)`, so it equals `w|_R`.
 
 The formula `rho^-1(w)|_R = first component of Psi^-1(w|_R, w|_E)`, with
-`rho^-1(w) = w` off `R`, gives the stated form of `rho^-1`. QED
+`rho^-1(w) = w` off `R`, gives the stated form of `rho^-1`. Explicitly, let
+`D` be a finite `K`-memory for `Psi^-1`, and let `f_1,...,f_(r+q)` be the
+chosen representatives of `R` and `E`. At `g = k h_i` in `R`, the inverse
+reads coordinates `k d f_j = g (h_i^-1 d f_j)`. Thus a single finite
+`G`-memory for `rho^-1` is
+
+```text
+{1} union union_(1 <= i <= r, 1 <= j <= r+q) h_i^-1 D f_j.
+```
+
+The rule depends only on the right `K`-coset containing `g`, so is
+left-`K`-invariant. If `R` is empty, `rho` is the identity and memory `{1}`
+suffices. QED
 
 ## 4. Peeling the strata
 
@@ -228,8 +240,8 @@ refines cardinality.
 
 **Base case.** For `U = empty`, `rho_empty = tau_empty` is an injective
 cellular automaton over `G` (Lemma 1.1). It is bijective because `G` is
-surjunctive, with inverse a cellular automaton by (F1). Condition (b) is
-vacuous because `Q_empty = G`.
+surjunctive, with inverse a cellular automaton by (F1). Choose
+`F_empty = {1}`. Condition (b) is vacuous because `Q_empty = G`.
 
 **Inductive step.** Let `|U| >= 1` and define `rho_U` by (a).
 * Every `Sigma_(U')` is a bijective finite-memory map commuting with left
@@ -328,7 +340,10 @@ The inverse commutes with the same translations. QED
   * Gottschalk's conjecture.
   * Surjunctivity of the binary Leavitt unit group `L_(F_2)(1,2)^x`, which is
     not a permutational wreath product.
-  * Surjunctivity of Kun--Thom group doubles `G *_Gamma G`.
+
+  The later artifact `finitary-split-extension-surjunctivity-2026-09-11.md`
+  extends this argument to group doubles `G *_Gamma G`; the wreath theorem
+  alone does not cover them.
 
   What it does show: the (T)-compression nonsoficity mechanism, in its
   permutational-wreath form over a surjunctive base, cannot produce a

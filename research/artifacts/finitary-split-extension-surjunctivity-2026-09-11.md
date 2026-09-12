@@ -135,19 +135,90 @@ By Lemma 1.1 of [W], every `tau_U` is injective.
 * Every map built from `tau_U` also commutes with left multiplication by
   `Q_U` on the fiber coordinate, since (T) multiplies on the right.
 
-**Slices.** For `V` contained in `U`, the fibers of `B^(Q_U x G)` over the
-left cosets `cQ_V` are identified with `B^(Q_V x G)` by `v -> q_c v`. The
-choice of `q_c` does not matter, because the relevant maps commute with left
-`Q_V`-translation. The slicewise extension `phi^[U]` acts as `phi` on each
-fiber. Away from the strata of `U\V`, `tau_U = tau_V^[U]` on each fiber
-(analogue of Lemma 2.3 of [W]).
+**Canonical coset-extension lemma.** Let `H <= K` be finite groups and let
+`phi` be a map on `B^(H x G)` commuting with left `H`-translations. For
+`y in B^(K x G)` and `k in K`, put `y_k(h,g) = y(kh,g)` and define
 
-**Peeling.** With `A^U` replaced by `Q_U` and products replaced by left
-cosets, Proposition 4.1 of [W] and its proof hold verbatim.
-* Its steps (1)-(3) use only the strata, slice compatibility, and the
-  pointwise-identity property of inverses off `Q_(U')`.
-* The final step applies Lemma 3.1 of [W] with `K = G_U`, which is
-  surjunctive as a subgroup of `G`.
+```text
+Ext_H^K(phi)(y)(k,g) = phi(y_k)(1,g).                              (E)
+```
+
+This acts as a copy of `phi` on each left coset of `H` in `K`. Indeed, for
+`h in H`, the configuration `y_(kh)` is the left translate of `y_k` by
+`h^-1`, so equivariance gives
+`phi(y_(kh))(1,g) = phi(y_k)(h,g)`. Thus the restriction of the output to
+`kH x G`, in the coordinates `h -> kh`, is exactly `phi(y_k)`. This also
+shows independence of the coset representative.
+
+The extension commutes with left `K`-translations directly from (E).
+It preserves identities and composition, since on each coset it applies
+the corresponding original maps. In particular, if `phi` is bijective,
+its inverse is `Ext_H^K(phi^-1)`. If `phi` fixes every coordinate over
+`g` outside a region `R` in `G`, its extension has the same property.
+If `phi`, viewed on `(B^H)^G`, has finite memory `P` in `G`, its extension
+on `(B^K)^G` has the same memory: computing the output at `(k,g)` reads
+only coordinates `(kh,gp)` with `h in H` and `p in P`. Finally, any
+commutation with left translations by a subgroup of `G` is preserved,
+because these translations commute with taking `y_k`.
+
+These extensions are transitive. For `J <= H <= K` and a left-`J`-equivariant
+map `psi`,
+
+```text
+Ext_H^K(Ext_J^H(psi)) = Ext_J^K(psi).
+```
+
+To check this at `(k,g)`, (E) first restricts `y` to `kH`, then restricts
+that configuration to the coset `J` at the identity of `H`. The resulting
+configuration on `J x G` is `j,t -> y(kj,t)`, exactly the restriction used
+on the right. This proves the equality without choosing representatives
+or assuming that any subgroup is normal.
+
+**Slices.** Coherence of the `iota` maps gives `Q_V <= Q_U` whenever
+`V` is contained in `U`. For a left-`Q_V`-equivariant map `phi`, write
+`phi^[U] = Ext_(Q_V)^(Q_U)(phi)`. By (A2) and coherence, away from the
+strata of `U\V` the coefficients satisfy `c^U_m(g) = c^V_m(g)` in `Q_V`.
+Formula (T) therefore gives `tau_U = tau_V^[U]` at every coordinate over
+such `g`, the analogue of Lemma 2.3 of [W]. All the inductively constructed
+maps are equivariant in their own fiber groups: this holds for `tau_U`
+by (T), and is preserved by extension, composition, and inversion by the
+lemma above.
+
+**Peeling.** We now apply the induction of Proposition 4.1 of [W] with
+fiber group `Q_U` in place of `Abar^U`. To distinguish the support region
+from the fiber group, call the region
+`R_U = intersection_(s in U) Z_s F_U^-1`; it is called `Q_U` in [W].
+The induction constructs
+`rho_U = Sigma_(U'_k) o ... o Sigma_(U'_1) o tau_U`, where the proper
+subsets `U'_j` follow one fixed order refining cardinality and
+`Sigma_(U') = (rho_(U')^-1)^[U]`.
+
+For the empty subset the fiber group is trivial, so surjunctivity of `G`
+makes `rho_empty = tau_empty` bijective with a finite-memory inverse.
+At the induction step, the extension lemma makes each `Sigma_(U')` a
+bijective finite-memory map commuting with left `G_U`-translations;
+thus `rho_U` is injective and has these latter two properties. Choose
+the memory windows and `F_U` as in the "Windows" paragraph of [W].
+For `g` outside `R_U`, put `V = {s in U : g F_U meets Z_s}`, a proper
+subset of `U`. The three ingredients of the shrinking-window argument
+in [W] now hold as follows:
+
+1. If `U'` is not contained in `V`, the window avoids `R_(U')`. The
+   induction hypothesis says `rho_(U')` fixes every coordinate there;
+   its inverse does too, and the extension lemma transfers this identity
+   to `Sigma_(U')`.
+2. On the window, slice compatibility gives `tau_U = tau_V^[U]`.
+3. For `U'` properly contained in `V`, transitivity of extension gives
+   `(rho_(U')^-1)^[U] = ((rho_(U')^-1)^[V])^[U]`.
+
+Consequently the stages preceding `V`, on their shrinking windows, form
+`rho_V^[U]`; the stage `V` cancels it; and the later stages fix the
+coordinate over `g`. Hence `rho_U` is the identity off `R_U`.
+The region `R_U` is a finite union of right cosets of `G_U`, by the strata
+calculation. Lemma 3.1 of [W], with `K = G_U`, `R = R_U` and finite
+alphabet `B^(Q_U)`, makes `rho_U` bijective with a finite-memory inverse.
+Here `G_U` is surjunctive as a subgroup of `G`; the inverse retains both
+the `G_U`-equivariance and the fiber equivariance needed by the induction.
 
 This gives bijectivity of `rho_S` and hence surjectivity of `tau_S`. QED
 
