@@ -90,3 +90,17 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
     linear-sofic gate that binds this claim.
   - *gk-kdf-lift.* For pairs lying over `(s0, t0)`, lifts `a`, `b` with `b a - 1` nilpotent already
     give a left inverse `(b a)^-1 b`. That shortcut was never tried on the ternary half.
+- *Self-similarity (gk-l3-corner, 2026-09-12).* The attempt: make the image solution exact using
+  the `delta` matrix-ring amplification, the corner embedding `iota` and the Klein splitting. Where
+  each part dies:
+  - *Amplification.* It lifts `Theta`: `pi o Phi = Theta o M_2(pi)`. It carries every lift defect
+    injectively, so the recursion from `S_-` to `M_2(S_-)` is stationary.
+  - *Equivariance.* No nonzero element of `k[G]` is an exact `delta`- or `iota`-equivariant lift of
+    `s_i` or `t_i` (`self-similar-leavitt-intertwiners-have-no-exact-lift`). An exact family must
+    break equivariance, with the breaking terms in `ker pi`.
+  - *Dyadic constants.* Every amplification matrix unit lies in the locally finite dyadic constant
+    subgroup, whose group algebra is stably finite. A witness needs units of non-uniform prefix depth.
+  - *`iota` and the Klein splitting.* `iota` mixes `S_+` and `S_-`, and the Klein splitting sees
+    only `S_+`.
+
+  Section 2 of `research/artifacts/leavitt-self-similarity-exactness-2026-09-12.md`.
