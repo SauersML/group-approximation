@@ -95,7 +95,6 @@ theorem foldList_avoid (h : IsFoldable M p d e) (l : List M.Dart) :
   unfold foldImage at hxy
   split_ifs at hxy with h1 h2
   · cases hxy
-  · cases hxy
     exact ⟨h.ne_next, h.ne_alpha_next⟩
   · cases hxy
     exact ⟨fun hx => h1 (Or.inr hx), h2⟩
