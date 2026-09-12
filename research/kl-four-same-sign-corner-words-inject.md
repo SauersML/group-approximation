@@ -30,9 +30,9 @@ path with trivial label: another corner of the same type carries the same
 label, or a corner of the other type carries the inverse label. Otherwise it
 is *light*. Let `r` be the number of light corners.
 
-1. If `r >= 4`, then `<G, t | w>` is aspherical and `G -> (G * <t>)/<<w>>` is
-   injective.
-2. If `r = 3`, the same conclusion holds provided:
+1. If `r >= 4`, then `G -> (G * <t>)/<<w>>` is injective, and every reduced
+   spherical picture over `<G, t | w>` is empty.
+2. If `r = 3`, the same conclusions hold provided:
    - (D4) every reduced closed path of length four in `Theta` made of light
      edges has nontrivial label; and
    - (A2) no loop label at a vertex `v` is the label of a reduced closed path
@@ -60,13 +60,31 @@ corners may have any coincidence pattern.
   directly, involution loops included.
 - **Every length.** Over any group, a violating word has at most three light
   same-sign corners. So every other same-sign corner repeats a label of its
-  own type or inverts a label of the other type. Violations are therefore
-  coincidence-saturated. The label-`1` corners inside powers coincide as soon
-  as there are two of one type, or one of each type. This matches the
+  own type or inverts a label of the other type, and violations are
+  coincidence-saturated. Label-`1` corners inside powers coincide as soon as
+  there are two of one type, or one of each type. This matches the
   near-periodicity forced by `kl-small-cancellation-words-inject-every-coefficient-group`.
-- **Schur kernel.** Asphericity gives a zero Schur kernel
-  (`aspherical-adjunction-has-zero-schur-kernel`), so no word covered here can
-  certify `some-nonsingular-equation-has-nonzero-schur-kernel`.
+- **Schur kernel, conditionally.** Bogley--Pride state that an orientable
+  relative presentation with no nonempty reduced spherical picture has an
+  aspherical relative 2-complex; this was not read at source. Granting it,
+  `aspherical-adjunction-has-zero-schur-kernel` gives a zero Schur kernel, so
+  no word covered here can certify
+  `some-nonsingular-equation-has-nonzero-schur-kernel`.
+
+## Provenance and novelty
+
+- **Weight conditions.** These follow Bogley--Pride, Proc. Edinburgh Math.
+  Soc. 35 (1992), Section 2.2, through the verbatim restatement in
+  Ahmad--Al-Mulla--Edjvet, arXiv:1604.00163v2. Bogley--Pride was not reached.
+  The derivation proves injectivity directly by a curvature count, so their
+  theorem that asphericity gives an embedding is not used.
+- **What was checked.** Per Klyachko--Thom, Algebr. Geom. Topol. 17 (2017),
+  Remark 1.2, Kervaire--Laudenbach is solved over arbitrary groups for
+  lengths three, four and five (Howie; Edjvet--Howie; Evangelidou). No
+  length-six theorem over arbitrary groups was found.
+- **Novelty unchecked.** Edjvet--Juhász, *Non-singular equations over groups*
+  I (Algebra Colloq. 18 (2011)) and II (Comm. Algebra 38 (2010)), treat
+  torsion and were not read.
 
 DERIVATION
 kl-four-same-sign-corner-words-weight-proof
