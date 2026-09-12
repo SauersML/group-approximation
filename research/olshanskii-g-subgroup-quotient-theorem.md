@@ -15,8 +15,9 @@ subgroup `X <= G` put
 E(X) = intersection of E(x) over the infinite-order elements x of X,
 ```
 
-the unique maximal finite subgroup of `G` normalized by `X`, and let `K(X)` be
-the kernel of the conjugation action of `X` on `E(G)`.
+the unique maximal finite subgroup of `G` normalized by `X`, and put
+`K(X) = C_X(E(X))`, the kernel of the conjugation action of `X` on `E(X)`.
+When `E(X) = E(G)`, this is also the kernel of the action on `E(G)`.
 
 1. **Characterization.**  A non-elementary subgroup `X` is a *G-subgroup*
    (for every finite `M subset G` some epimorphism of `G` onto a

@@ -9,7 +9,7 @@ artifacts:
 
 Let `G` be hyperbolic relative to a finite collection of finitely generated
 peripheral subgroups `{P_1, …, P_m}`.  For every finite subset
-`F ⊂ G ∖ {1}` there are finite subsets `B_i ⊂ P_i ∖ {1}` such that: for any
+`F ⊂ G` there are finite subsets `B_i ⊂ P_i ∖ {1}` such that: for any
 choice of normal subgroups `N_i ⊴ P_i` with `N_i ∩ B_i = ∅`, the quotient
 
 ```text
@@ -18,6 +18,9 @@ G_bar = G / <<N_1 ∪ … ∪ N_m>>
 
 is hyperbolic relative to the images `{P_i / N_i}`, each natural map
 `P_i / N_i -> G_bar` is injective, and the quotient map is injective on `F`.
+
+To protect a nonidentity element `w`, take `F = {1, w}`. Injectivity on the
+singleton `{w}` alone does not imply that its image is nonidentity.
 
 This is the algebraic counterpart of Thurston's hyperbolic Dehn surgery
 theorem: Osin, *Peripheral fillings of relatively hyperbolic groups*,

@@ -18,10 +18,11 @@ Let `G` be hyperbolic relative to finitely generated residually finite
 1 != w in R_f(G) = intersection of the kernels of all G -> finite.
 ```
 
-Apply `relatively-hyperbolic-dehn-filling` to the finite set `F = {w}`: it
+Apply `relatively-hyperbolic-dehn-filling` to the finite set `F = {1, w}`: it
 returns finite sets `B_i ⊂ P_i ∖ {1}` such that any `N_i ⊴ P_i` avoiding `B_i`
 fills to a quotient `π : G → G_bar` that is hyperbolic relative to `{P_i/N_i}`
-and injective on `{w}`.
+and injective on `{1, w}`. Including the identity is essential: injectivity
+on a singleton would say nothing about whether the witness survives.
 
 **Choose the fillings finite-index.**  For each `b ∈ B_i` residual finiteness
 of `P_i` gives a finite-index normal subgroup of `P_i` missing `b`;
