@@ -93,3 +93,15 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   the level of the relation. For Kazhdan relations that is expected to collapse as in the subgroup
   case, but it is not proved here. Artifact Section 3. Any surviving mechanism has to meet the five
   conditions of artifact Section 4.
+- **Borel and topological invariants (gk-p-inf-wild, 2026-09-12).**
+  - `borel-structurability-invariants-are-bernoulli-base-blind`, via
+    `seward-tucker-drob-free-borel-actions-map-to-2-shift`: every invariant of free Borel actions
+    that is monotone under class-bijective maps is constant on the free parts of all full shifts. So
+    measure-free Borel combinatorics cannot separate bases.
+  - With factor non-monotonicity (Bowen) and lane gk-p-inf-cost's weak-equivalence blindness, a lower
+    bound on this host must be a measure-isomorphism invariant that sees exact generation.
+  - Topological target: `full-shifts-with-different-alphabets-are-not-conjugate`. It follows from the
+    every-group form of maximality (`alphabet-conjugacy-invariance-from-bernoulli-maximality`), and a
+    conjugacy across alphabet sizes over a host would give both a strict automaton and a Bernoulli
+    deficit certificate.
+  - Artifact: `research/artifacts/gk-p-inf-wild-borel-and-topological-2026-09-12.md`.
