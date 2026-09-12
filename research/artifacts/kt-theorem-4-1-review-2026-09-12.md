@@ -29,7 +29,9 @@ audits the mathematics:
 | R6 | relative-functor finite lemmas | match the sentences of the proof of Lemma 4.3 |
 | R7 | scale-defect fix | real on both halves, conditional on L1, F1 and F2 |
 | R8 | in-flight modules on disk, 13:00–13:17, now landed | pre-landing review: no defect; they resolve F1 and F2 |
-| R9 | landings 13:08–13:26 | per-pair groupoid: laws check out and compose with the cluster system; **(A) no `ClusterMetric` for the per-pair presentation**; **(B) the assembly's `Rel F` must cover every compressor** |
+| R9 | landings 13:08–13:26 | per-pair groupoid: laws check out and compose with the cluster system; (A) no `ClusterMetric` for the per-pair presentation, **resolved by `514dba1a6`** (R11); **(B) the assembly's `Rel F` must cover every compressor** |
+| R10 | landings 13:29–13:32 | no defect |
+| R11 | `514dba1a6`, `08e96b025` | pair-radius metric resolves (A); single median application correct |
 
 ## R1. The sequential Prop against Theorem 4.1
 
@@ -529,6 +531,83 @@ paper's steps:
   - the additive inequality comes from an edited expander.
 
   This matches kt41-g1-alt's recipe.
+
+## R10. Landings 13:29–13:32. No defect
+
+- **`54691ccdf` `ComponentCountingRetainedMatchingSums`.** Over the retained domain,
+  the symmetric differences are at most the block matching error over `Acc` plus twice
+  the removed mass. The parent map is injective, so each removed part is counted at
+  most twice. The unmatched weight is charged to non-acceptable blocks, empty blocks
+  and the matching error.
+- **`9105379d6` `SequentialComponentFamily{Pruning,Completion,Levels}`.** This is
+  L1.
+  - `exists_prune`: `h|U| ≤ 2B`, and inner expansion with factor 8 off `U`, under
+    `10B ≤ h|Y|`.
+  - `completion_hasCheegerLowerBound`: `h/(8|T|)`, the tagged-to-directed factor
+    `|T|`.
+  - Being good at level `k` bounds `budget/cheeger` by `|C|/(k+1)` through the level
+    error. So the pruned mass `≤ 2B/h` is a vanishing fraction uniformly over good
+    components as `level → ∞`. That is what the uniform `locallyMultiplicative` needs,
+    since a completed product failure is an ambient failure or an image in `U`.
+  - Label injectivity comes through `card_sub_le_collision_add_of_completion_eq`
+    against the collision term of the level error.
+- **`9d805743d` `RelativeFunctorEstimateMatching`.** Each bridge's missing mass, for
+  `q` and for `q⁻¹`, is at most `|q Q_C △ Q_D|`, or the block form plus the removed
+  masses. This is `β` for `relativeFunctor`.
+- **`b5b7dbc72` `CountingEndgameWeights`.**
+  - `card_lt_add_of_ratio`:
+    `oX + oX' ≥ (1 − ζ)(cX + cX') ≥ 2(1 − ζ)·oD/ρ > oD` for `ρ < 2(1 − ζ)`. This is
+    the `horbit` input of `exists_bisection_lift`, i.e. the splitting.
+  - `lt_two_mul_of_ratio`: isotropy index `< 2`.
+  - `sum_compl_image_le`: the completion weight.
+  - `mul_sum_le_of_dirty`: the orbits with `θ > ζ` weigh at most
+    `ν(B)/(ζ(1 − ε))`. This is the paper's "`ℓ`-clean", given `ν(B)/ζ_n → 0`.
+
+## R11. Landings 13:35–13:36
+
+### `514dba1a6` (kt41-functor): pair radii in `ClusterMetric`. Resolves (A)
+
+- **The metric.** `ClusterMetric.radius : I → I → ℕ`. The instances
+  `ScaledFinitePartialClusterData.clusterMetric` and
+  `ScaledPartialClusterSystem.clusterMetric` (radius `2·min(scale X, scale Y)`) take
+  their fields directly from `Near`, `near_of_lt_eight`, `improve_close` and
+  `self_small`.
+- **The functor budgets, rederived from the landed triangle chains:**
+  - **`hrespects`.** `twoSidedDisagreement_transport_le` gives
+    `2ρ_XY + β_X + β_Y + r_P(X,Y)`, and the target is `8·r_Q(X,Y)`.
+  - **`hcomp`.** `transport_comp_le` with:
+    - `f` and `g` self-small at their pairs;
+    - `v.sourceDefect ≤ β_Y`;
+    - closeness in `Q` at the outer pair.
+
+    This gives
+    `ρ_XZ + ρ_XY + ρ_YZ + 2β_X + 2β_Y + 2β_Z + r_P(X,Z) + r_P(X,Y) + r_P(Y,Z) + r_Q(X,Z)`,
+    and the target is `8·r_Q(X,Z)`.
+  - **`hfaithful`.** `transport_reflect_le` gives
+    `5β_X + 5β_Y + 2ρ_XY + 2·r_P(X,Y) + r_Q(X,Y)`, and the target is `8·r_P(X,Y)`.
+  - **Estimate (7).** `< r_Q(X,Y) + ρ_XY`.
+- **At the intended instance.**
+  - Matched objects have scales within `1 + o(1)`, and objects joined by a candidate
+    within `11/10`.
+  - The left sides are about `4.4·r_Q`, `3.1·r_P` and `r_P` plus the small `ρ, β`.
+  - `ρ` comes from `repair_spec`'s `d·|model|` bound, and `β` from
+    `RelativeFunctorEstimateMatching`.
+
+### `08e96b025` `ArrowCountMedian`: one median application. No defect
+
+`arrowCount = o·k`. The single application is correct:
+- **Drift.** `(1 − ζ)·o(π i) ≤ o(i)` and `k(π i) ≤ k(i)` give
+  `(1 − ζ)·arrowCount(π i) ≤ arrowCount(i)`. That is the one-sided hypothesis of
+  `localRatio_negligible`.
+- **Concentration.** Lemma 4.4 gives `arrowCount(i) ≤ (1 + η)·arrowCount(π i)` on a
+  conull family.
+- **Isotropy.** `k(i) ≤ ((1 + η)/(1 − ζ))·k(π i) < 2·k(π i)` for `η + 2ζ < 1`.
+- **Orbit ratio.** Because `k(π i) ≤ k(i)`, `o(i) ≤ (1 + η)·o(π i)`.
+- **Splitting at `i` and `ā i`.** `a < (1 − ζ)(o + o')` from `1 + η < 2(1 − ζ)`.
+
+The paper applies Lemma 4.4 twice, to `o_n` and to `k_n`. The product version needs
+only the two one-sided inequalities the paper already has, so it is a genuine
+simplification.
 
 ## Named statements in the chain without a producer
 
