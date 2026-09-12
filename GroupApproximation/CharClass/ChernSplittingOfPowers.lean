@@ -26,7 +26,7 @@ negative, since `P¹(−h) = m·(−h)^p` at odd `p` and signs are invisible at 
 ## Main results
 
 * `SplittingDataOf` — the geometric input over `K`.
-* `evenCoe`, `evenCoe_esymmOn` — the inclusion of the even part as a ring hom.
+* `evenCoe` — the inclusion of the even part as a ring hom.
 * `SplittingDataOf.powerData` — the `PowerData` of the roots on the even part of `F`.
 * `hasSplittingP_of_splittingDataOf` — **the producer**.
 * `ParityP.HasSplittingP.elim` — the destructuring form the rank-`n` bridge consumes.
@@ -57,31 +57,30 @@ theorem evenCoe_injective (K : Type) [CommRing K] (X : TopCat.{0}) :
     Function.Injective (evenCoe K X) :=
   fun _ _ h => Subtype.ext h
 
-theorem evenCoe_esymmOn (K : Type) [CommRing K] (X : TopCat.{0}) {σ : Type*} (s : Finset σ)
-    (y : σ → Gen.evenPart K X) (k : ℕ) :
-    evenCoe K X (esymmOn s y k) = esymmOn s (fun l => evenCoe K X (y l)) k := by
-  simp only [esymmOn_def, map_sum, map_prod]
-
 /-! ## 2. The geometric input -/
 
 /-- **Splitting data over `K`.**  `F` is the flag space of a bundle over `N`, `root l` its roots
 in degree two, and `chern_split` says that the pullback of `γ k` is the `k`-th elementary
-symmetric function of the roots. -/
+symmetric function of the roots.  Both sides live in the even parts, which are commutative;
+the whole ring `TotalHOf K F` is not, so `esymmOn` cannot be formed there. -/
 structure SplittingDataOf (K : Type) [CommRing K] (N F : TopCat.{0}) (r : ℕ)
-    (γ : ℕ → TotalHOf K N) where
+    (γ : ℕ → Gen.evenPart K N) where
   /-- The flag bundle projection. -/
   proj : F ⟶ N
   /-- The roots, of cohomological degree two. -/
   root : ℕ → TotalPieceOf K F 2
   /-- The pullback is injective on cohomology. -/
   pull_injective : Function.Injective (TotalHOf.map K proj)
-  /-- Whitney on the flag bundle: `π^* γ_k = e_k(roots)`. -/
+  /-- Whitney on the flag bundle: `π^* γ_k = e_k(roots)`, in the even part of `F`. -/
   chern_split : ∀ k : ℕ,
-    TotalHOf.map K proj (γ k) = esymmOn (Finset.range r) (fun l => TotalHOf.of K F 2 (root l)) k
+    Gen.evenMap K proj (γ k)
+      = esymmOn (Finset.range r)
+          (fun l => (⟨TotalHOf.of K F 2 (root l), TotalHOf.isEven_of K F even_two (root l)⟩ :
+            Gen.evenPart K F)) k
 
 namespace SplittingDataOf
 
-variable {K : Type} [CommRing K] {N F : TopCat.{0}} {r : ℕ} {γ : ℕ → TotalHOf K N}
+variable {K : Type} [CommRing K] {N F : TopCat.{0}} {r : ℕ} {γ : ℕ → Gen.evenPart K N}
   (S : SplittingDataOf K N F r γ)
 
 /-- The roots, as elements of the even part of `F`. -/
@@ -105,18 +104,15 @@ def powerData {p : ℕ} (PF : ℕ → TotalHOf K F →+ TotalHOf K F)
     apply evenCoe_injective K F
     rw [map_sum]
     refine (hcartan n (u : TotalHOf K F) v).trans (Finset.sum_congr rfl fun j _ => ?_)
-    rw [map_mul]
-    rfl
+    exact (map_mul (evenCoe K F) _ _).symm
   s := Finset.range r
   y := S.evenRoot
   κ := (m : Gen.evenPart K F)
   p_y_one := fun k => by
     apply evenCoe_injective K F
-    rw [map_mul, map_pow, map_intCast]
     exact hone (S.root k)
   p_y_high := fun k j hj => by
     apply evenCoe_injective K F
-    rw [map_zero]
     exact hhigh (S.root k) j hj
 
 end SplittingDataOf
@@ -127,8 +123,7 @@ end SplittingDataOf
 `γ` and reduced powers on `N` and `F` compatible with the projection give `HasSplittingP` for the
 even Chern classes, with the reduced powers of `N` restricted to the even part. -/
 theorem hasSplittingP_of_splittingDataOf {K : Type} [CommRing K] {p : ℕ} {N F : TopCat.{0}}
-    {r : ℕ} {γ : ℕ → TotalHOf K N} (hγe : ∀ k, TotalHOf.IsEven (γ k))
-    (S : SplittingDataOf K N F r γ)
+    {r : ℕ} {γ : ℕ → Gen.evenPart K N} (S : SplittingDataOf K N F r γ)
     (PN : ℕ → TotalHOf K N →+ TotalHOf K N)
     (hPN : ∀ (i : ℕ) (x : TotalHOf K N), TotalHOf.IsEven x → TotalHOf.IsEven (PN i x))
     (PF : ℕ → TotalHOf K F →+ TotalHOf K F)
@@ -142,15 +137,13 @@ theorem hasSplittingP_of_splittingDataOf {K : Type} [CommRing K] {p : ℕ} {N F 
     (hhigh : ∀ (h : TotalPieceOf K F 2) (j : ℕ), 2 ≤ j → PF j (TotalHOf.of K F 2 h) = 0)
     (hnat : ∀ (i : ℕ) (x : TotalHOf K N),
       PF i (TotalHOf.map K S.proj x) = TotalHOf.map K S.proj (PN i x)) :
-    HasSplittingP p (fun k => (⟨γ k, hγe k⟩ : Gen.evenPart K N))
-      (fun i => Gen.evenRestrictAdd (PN i) (hPN i)) m := by
+    HasSplittingP p γ (fun i => Gen.evenRestrictAdd (PN i) (hPN i)) m := by
   refine ⟨Gen.evenPart K F, inferInstance, ℕ, inferInstance,
     S.powerData PF hPF hzero hcartan m hone hhigh, Gen.evenMap K S.proj, ?_, ?_, ?_, rfl⟩
   · intro a b hab
     exact Subtype.ext (S.pull_injective (congrArg Subtype.val hab))
   · intro k
-    apply evenCoe_injective K F
-    exact (S.chern_split k).trans (evenCoe_esymmOn K F (Finset.range r) S.evenRoot k).symm
+    exact S.chern_split k
   · intro i x
     apply evenCoe_injective K F
     exact (hnat i (x : TotalHOf K N)).symm
