@@ -1,0 +1,8 @@
+GroupApproximation/GroupTheory/HydeLodha/CommutatorGeneration.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwo.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwoCoreMoves.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwoGeneration.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwoLambda.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwoPeriodic.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwoSimple.lean
+GroupApproximation/GroupTheory/HydeLodha/GammaTwoStabilizer.lean

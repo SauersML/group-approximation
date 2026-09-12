@@ -1,0 +1,13 @@
+GroupApproximation/KOne/LeavittDegreeZeroTower.lean
+GroupApproximation/KOne/LeavittShiftDecomposition.lean
+GroupApproximation/KOne/LeavittKOnePowerColimit.lean
+GroupApproximation/Manuscript/OneSidedMFRadical/LeavittKOneFormula.lean
+GroupApproximation/KOne/FiniteRankDeterminant.lean
+GroupApproximation/KOne/RegularizedDeterminant.lean
+GroupApproximation/KOne/ToeplitzWordSpace.lean
+GroupApproximation/KOne/ToeplitzLeavittLift.lean
+GroupApproximation/KOne/ToeplitzRankTwo.lean
+GroupApproximation/KOne/LeavittKOneScalarKernel.lean
+GroupApproximation/Manuscript/NonMFSentences/LeavittKOneFormulaSentences.lean
+GroupApproximation/KOne/LeavittKOneScalarQuotient.lean
+GroupApproximation/Manuscript/NonMFSentences/LeavittKOneQuotientEvaluations.lean

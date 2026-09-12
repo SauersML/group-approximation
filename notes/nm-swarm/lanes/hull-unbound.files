@@ -1,0 +1,11 @@
+GroupApproximation/GGT/VanKampen/Estimating/UnboundScaledCounterexample.lean
+GroupApproximation/GGT/VanKampen/Estimating/UnboundWordPolygonMonotone.lean
+GroupApproximation/GGT/VanKampen/Estimating/SingletonFaceRegion.lean
+GroupApproximation/GGT/VanKampen/SurgeryInnerCollapse.lean
+GroupApproximation/GGT/VanKampen/SurgeryInnerCollapseDarts.lean
+GroupApproximation/GGT/VanKampen/SurgeryInnerCollapseRegions.lean
+GroupApproximation/GGT/VanKampen/GFaceSplitFaces.lean
+GroupApproximation/GGT/VanKampen/SurgeryInnerCollapseMerged.lean
+GroupApproximation/GGT/VanKampen/GFaceSplitCorners.lean
+GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOne.lean

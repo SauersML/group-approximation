@@ -1,0 +1,16 @@
+GroupApproximation/CharClass/GysinFromGraded.lean
+GroupApproximation/CharClass/GysinPairRetractOf.lean
+GroupApproximation/CharClass/GysinPairTautOf.lean
+GroupApproximation/CharClass/GysinRetractOf.lean
+GroupApproximation/CharClass/GysinSphereOf.lean
+GroupApproximation/CharClass/ThomBridgeChart.lean
+GroupApproximation/CharClass/ThomBridgeChartHom.lean
+GroupApproximation/CharClass/ThomBridgeTotalOf.lean
+GroupApproximation/CharClass/ThomBundlePair.lean
+GroupApproximation/CharClass/ThomChernDegreewiseOf.lean
+GroupApproximation/CharClass/ThomDataOf.lean
+GroupApproximation/CharClass/ThomHabsOf.lean
+GroupApproximation/CharClass/ThomKunnethOf.lean
+GroupApproximation/CharClass/ThomStepCEulerOf.lean
+GroupApproximation/CharClass/ThomStepCLocalOf.lean
+GroupApproximation/CharClass/ThomToolkitInstanceOf.lean

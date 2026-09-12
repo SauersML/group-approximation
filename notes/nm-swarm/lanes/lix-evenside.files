@@ -1,0 +1,5 @@
+GroupApproximation/CharClass/ParityPTwistSymm.lean
+GroupApproximation/CharClass/ParityPWuValue.lean
+GroupApproximation/CharClass/ParityPDecomposable.lean
+GroupApproximation/CharClass/ParityPWuComponent.lean
+GroupApproximation/CharClass/ParityPWuTransport.lean

@@ -1,0 +1,11 @@
+GroupApproximation/CharClass/LIXKGenSect.lean
+GroupApproximation/CharClass/LIXKGenChart.lean
+GroupApproximation/CharClass/LIXKGenDeriv.lean
+GroupApproximation/CharClass/LIXKGenLocalHomeo.lean
+GroupApproximation/CharClass/LIXKGenSectInverse.lean
+GroupApproximation/CharClass/LIXKGenSector.lean
+GroupApproximation/CharClass/LIXKGenBundle.lean
+GroupApproximation/CharClass/LIXKGenStepCWired.lean
+GroupApproximation/CharClass/LIXKGenChartZero.lean
+GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean
+GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean
