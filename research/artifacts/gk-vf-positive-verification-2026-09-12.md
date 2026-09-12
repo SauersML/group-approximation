@@ -232,6 +232,7 @@ Artifact `research/artifacts/free-group-f-invariant-bernoulli-preservation-2026-
   * *Total.* `F(beta') - F(beta) <= (1-2r)d + d + 2(r-1)d = 0`.
   So `F(eta^(B_n))` is non-increasing and `f = inf_n F(eta^(B_n))`. This also settles the
   trust surface in Section 2.2 of `rokhlin-lower-bounds-without-finite-models-2026-09-12.md`.
+  The author landed the general form in the artifact and route at `152f663f5b`.
 * **Invariance.** `tau` is a Borel isomorphism onto `Y`, so `tau^-1 eta` is a finite
   generating partition for `mu` with `f_mu(tau^-1 eta) = f_nu(eta)`. Bowen's independence
   of the generating partition gives `f_nu(eta) = f_mu(eta) = log q`. This is the one
@@ -612,3 +613,46 @@ Artifact `research/artifacts/simple-host-direct-attack-2026-09-12.md`. All five 
 * **`invariant-output-symmetry-must-be-core-free`.**
   * `tau(n^-1 . x)(g) = tau(x)(ng) = tau(x)(g(g^-1 n g)) = tau(x)(g)`.
   * Injectivity plus freeness of the full shift forces `n = 1`.
+
+## 14. Revision of the wreath artifact (gk-n-ff, blob `d4f40101ca`)
+
+The revised text of `wreath-surjunctivity-stabilizer-products-2026-09-12.md` makes explicit the
+points Section 11 had re-derived. Verdict: PASS.
+
+* **Lemma 3.1 in the ambient group.** Lemma 3.1 is read over `Lambda_U` with alphabet `B`. Its
+  proof uses only a subgroup of an ambient group and a finite alphabet.
+* **The window region.** `F_U` is built from the `G`-projections of the memories, because every
+  condition in the window argument (membership in `Z_s` or `Q_(U')`) concerns only the `G`
+  coordinate.
+* **Invariance of the rules.** The lemma is applied to `rho_U` through left `K_U`-invariance of
+  its rules. A finite-memory `rho` commuting with `l_k` has `mu_(k lambda) = mu_lambda`: the
+  points `lambda p` are distinct, so `y|_(lambda P)` ranges over all patterns. The earlier text
+  used `tau_U`'s memory at this step.
+* **Slicewise extensions.** `(k.y)_lambda = (c,h).y_(d^-1 lambda)` for `k = ((c,d),h)`, so they
+  commute with `A^(U') x A^(U∖U') x G_(U')`.
+* **Compatibility remark.** It is right: `A^U` is LEF when `A` is, so
+  `products-with-lef-factors-preserve-surjunctivity` plus heredity gives every `A^U x G_U`.
+
+## 15. Alphabet size under conjugacy is elementary (gk-p-inf-wild, Proposition 3.0)
+
+`full-shifts-with-different-alphabets-are-not-conjugate` is now ESTABLISHED by
+`full-shifts-with-different-alphabets-are-not-conjugate-proof`. Verdict: PASS.
+
+* **The count.** `x` is fixed by all of `G` iff `x(h) = x(g^-1 h)` for all `g` and `h`, i.e. iff
+  `x` is constant. An equivariant map sends fixed points to fixed points. So an equivariant
+  injection gives `|A| <= |B|`, with no continuity used.
+* **Honest correction.** The node records its own correction: it had been landed as OPEN and
+  called a "sharp negative target". The two alphabet routes stay valid but redundant, and nothing
+  premature follows from either.
+* **Measurable form.** The content-bearing version, where fixed points are null, is
+  `measurable-alphabet-compression-over-leavitt-units`. That claim is not verified here.
+
+## 16. Wreath closure equals product closure (gk-p-products)
+
+* **`wreath-closure-from-product-closure`: valid conditional route.** Product closure makes `A^U`
+  and then `A^U x G_U` surjunctive, and `G_U <= G` is surjunctive by heredity. The
+  stabilizer-product theorem (Section 11) finishes.
+* **`product-closure-from-wreath-closure`: valid.** Over a one-point set with trivial action,
+  `N = A`, `G` acts trivially, and `A wr_(pt) G = A x G`.
+* **`permutational-wreaths-of-surjunctive-groups-are-surjunctive`: OPEN, correctly.** The cycle
+  passes through the open product-closure claim and cannot fire.

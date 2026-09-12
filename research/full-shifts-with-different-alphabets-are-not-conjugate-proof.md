@@ -20,3 +20,5 @@ Proposition 3.0 of the artifact.
 
 Neither continuity nor anything about `G` beyond equivariance is used. The same count works for
 every finite-index subgroup `K`, with `|A|^[G:K]` points fixed by `K`.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 15 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).

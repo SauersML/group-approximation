@@ -20,3 +20,5 @@ Let `A` and `G` be surjunctive, `X` a `G`-set, and `U` a finite subset of `X`.
 4. The stabilizer-product reduction then makes `A wr_X G` surjunctive.
 
 **Cycle.** With `product-closure-from-wreath-closure`, this is a deliberate equivalence cycle.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 16 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Valid as a conditional route.

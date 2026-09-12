@@ -15,3 +15,5 @@ wreath products gives binary product closure.
 
 This is the converse half of `wreath-closure-from-product-closure`, and the pair forms a deliberate
 equivalence cycle.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 16 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).
