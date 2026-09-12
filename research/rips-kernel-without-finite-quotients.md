@@ -57,6 +57,21 @@ in isolation, have no finite quotients.
   subgroup of a hyperbolic group with hyperbolic quotient is exactly the
   configuration the construction supplies only in the direction it was built
   for.  No control over the finite residual comes out.
+- **Use a quotient with no finite quotients, such as the Leavitt unit group
+  (2026-09-12).** Over such a quotient the kernel stays the whole problem.
+  - **Leavitt quotient.** By
+    `acyclic-quotientless-extension-completion-is-kernel-completion`, over a
+    perfect quotient `Q` with no finite quotients and `H_2(Q;Z) = 0` (for
+    example `R^x`), every finite image of the kernel splits off:
+    `G/K ≅ Q x N/K`. So `G` and `N` have the same finite quotients and
+    profinite completion. `leavitt-kazhdan-cover-rf-iff-kernel-rf` then makes a
+    torsion-free hyperbolic cover of `R^x` residually finite exactly when `N`
+    is.
+  - **Any quotient without finite quotients.** A finite-quotient-free `G` forces
+    every finite image of `N` to be abelian. A Kazhdan `N` then contains the
+    finite-index subgroup `[N,N]`, which has no finite quotient at all: this
+    target again, one finite index down.
+  - **Artifact.** `research/artifacts/hyperbolic-no-finite-quotient-leavitt-cover-2026-09-12.md`.
 - **Where it stands.**  The route this claim serves is one implication away
   from the answer, and the missing implication is a strengthening of a
   published theorem that its authors flagged as adjacent to the open problem.
