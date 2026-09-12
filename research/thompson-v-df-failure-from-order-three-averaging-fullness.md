@@ -8,6 +8,7 @@ requires:
   - thompson-v-order-three-averaging-idempotent-is-full
 artifacts:
   - research/artifacts/thompson-v-linear-counterexample-targets-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Proposition 2.2 of the artifact at `p = 2`, with `e = e_h = 1 + h + h^2 != 1`.

@@ -19,6 +19,11 @@ not by rereading the author's argument. Nothing was run.
 | `222a8b610`, `8b69514ac` (gk-n-highalpha) | `low-degree-strict-pairs-have-one-sided-linear-parts`, `low-degree-invariant-output-reduces-to-corner-fullness`, `unipotent-automata-over-finite-fields-are-surjective`, `low-degree-strict-automata-force-matrix-kaplansky-failure` | PASS (Section 10) |
 | `f9bca65d4` (gk-n-boolean) | `boolean-core-is-uniform-single-demand-network-coding`, `strict-rule-pairs-pass-to-product-alphabets`, `smallest-boolean-strict-core-is-a-one-sided-inverse`, and the Section 6 classification claims | PASS (Section 12) |
 | `8ef1f79d9` (gk-n-thompson-v) | `v-self-similar-rewrites-preserve-strict-pairs`; `thompson-v-is-sofic` confirmed OPEN with no route into it | PASS (Section 13) |
+| `bfe4d46e8` (gk-n-twocycle) | `free-memory-injectivity-forces-universal-bijectivity` | PASS (Section 14) |
+| `4aa38fd07` (gk-n-ae-decoder) | `bernoulli-codes-descend-to-window-subgroup`, `strict-kazhdan-compression-gives-no-bernoulli-deficit` | PASS (Section 15) |
+| `16cc6319c` (gk-free-wild) | `mixed-bigon-difference-graphs-present-vh-square-complexes`, `cubulated-hyperbolic-table-cores-carry-no-strict-pair`, Lemma D | PASS (Section 16) |
+| `ad664ec25`, `9baaf4657` (gk-n-defect) | `table-hosts-have-a-cell-count-betti-lower-bound`, `two-cell-window-differences-die-in-host-abelianization`, Corollary 3.2 free factor | PASS (Section 17) |
+| `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
 Section 6 of `invariant-output-descent-and-sensitivity-2026-09-12.md` (the ternary form) was
@@ -527,3 +532,157 @@ computation is the left side of `Dec`.
   `thompson-v-stable-finiteness-from-soficity`) cannot complete.
 - `thompson-v-nonsurjunctivity-ascends-to-leavitt-units` and `thompson-v-not-sofic-from-nonsurjunctivity`
   are valid. Each needs the open root `thompson-v-nonsurjunctive`.
+
+## 14. Injectivity over a surjunctive cover (`bfe4d46e8`, gk-n-twocycle): PASS
+
+**Theorem G.**
+- *Step 1.* Over surjunctive `H`, injective implies bijective, and Curtis–Hedlund–Lyndon gives a
+  cellular inverse.
+- *Step 2.*
+  - `tau_H` is the product over left `K_H`-cosets of copies of `tau_(K_H)`, so each copy is
+    bijective.
+  - The inverse of the copy is continuous and equivariant on `A^(K_H)`, hence a cellular automaton
+    over `K_H`, with memory `S_H` inside `K_H`.
+  - Extending coset-wise gives `tau_H^-1`.
+- *Step 3.*
+  - For `s` in `S_H` and `m` in `M`, `g phi(s) rho_G(m) = g phi(s rho_H(m))`, because both factors
+    lie in `K_H`.
+  - So `phi` preserves equalities and products equal to `1`. The realized forward table over `G`
+    is coarser than the one over `H`, which is forward sufficient.
+  - Lemma 2 of the canonical-table record gives `sigma_G tau_G = id`, and the reverse composite
+    is symmetric.
+  - Address collisions in `G` are handled by Lemma 1.
+- *Corollary G1.* Free groups are residually finite, and every assignment of letters extends to a
+  homomorphism.
+- *Corollary G2.* This is the contrapositive, with compatibility meaning `phi o rho_H = rho_G` on the
+  memory group.
+
+## 15. Window descent and the Kun–Thom calibration (`4aa38fd07`, gk-n-ae-decoder): PASS
+
+**Lemma 7.2 (descent to the window subgroup).**
+- `((gk)^-1 . x)(k') = x(g k k')`, so the output on `gK` reads only `gK`.
+- With `z(k) = x(gk)`, `(k^-1 . z)(k') = x(g k k')`, so the output on `gK` is `tau_K(z)`.
+- *(<=)* A countable product of conull sets is conull, and the product map is injective on it.
+- *(=>)* Inputs that differ only on one coset have outputs that differ only there. So for almost
+  every exterior configuration, injectivity on the conull section is injectivity of `tau_K` on a
+  conull set.
+
+**Proposition 7.4 (the Kun–Thom actor has no deficit).**
+- A residually finite `G` is sofic, and by the localization theorem (gk-verify-pos Section 21) it
+  is Rokhlin-maximal.
+- Proposition 1 then excludes compression.
+- The strict compressor is contextual, not used in the proof. Existence re-derived: take `A` in
+  `SL_d(Z)` with `A N^d` a proper subset of `N^d`, such as `[[1,1],[0,1]] (+) I`.
+  - It induces an automorphism of `F_q[x^±]` that maps `F_q[x]` onto a proper subring `S`.
+  - `EL_r(S)` is proper in `EL_r(F_q[x])`, since `e_12(a)` with `a` outside `S` is not in it.
+- So the prose-only citation of part 2 of `surjunctive-groups-carry-invisible-rigid-defects` is not
+  load-bearing, and the route's `requires:` are complete.
+
+Sections 7.3 and 7.5 of that artifact are heuristic prose with no claim attached.
+
+## 16. VH square-complex table cores (`16cc6319c`, gk-free-wild): PASS
+
+**Theorem B.**
+- *Parallel same-orientation edge.* The tree gives `w_s = w_s' delta_t`, and the relator
+  `w_s = w_s' delta_e` becomes `delta_t = delta_e`.
+  - With `delta_t = x_h x_v^-1` and `delta_e = x_v' x_h'^-1`, this is `x_h x_v^-1 x_h' x_v'^-1 = 1`.
+- *Reversed edge.* `w_s' = w_s delta_e` gives `delta_t delta_e = 1`, which is the HV word
+  `x_h x_v^-1 x_h'' x_v''^-1`.
+- Theorem H, with one component, keeps all of `M'` as generators.
+- *Converse.* `(s_q, v_q) ~ (1, h_q)` is the edge `1 -> s_q` with label `x_(h_q) x_(v_q)^-1`, and
+  `(s_q, h'_q) ~ (1, v'_q)` is the parallel edge with label `x_(v'_q) x_(h'_q)^-1`. The relator is
+  the square `q`.
+
+**Proposition C.**
+- Trust surface: Agol plus Haglund–Wise gives residual finiteness, hence soficity.
+- It then contradicts `forward-relations-of-a-counterexample-have-a-nonsofic-core`.
+
+**Lemma D.**
+- In `F_2[G]`, `s m_1 + s m_2 + s' m_1 + s' m_2 = 0`, with `s m_1 != s m_2` and `s m_1 != s' m_1`. So
+  `s m_1 = s' m_2` and `s m_2 = s' m_1`.
+- Hence `m_2 m_1^-1 = s'^-1 s = m_1 m_2^-1`, which is a nontrivial involution.
+
+**Remarks.**
+- The Wise and Burger–Mozes properties in Section 3 are quoted.
+- `strict-automaton-on-lattice-in-product-of-trees` stays OPEN.
+
+## 17. The abelian layer of table hosts (`ad664ec25`, `9baaf4657`, gk-n-defect): PASS
+
+**Lemma 1.1.** The relators are the cycle holonomies. Labels abelianize to
+`v_e = e_m' - e_m`, with `e_1 = 0`, and a cycle basis generates `L`.
+
+**Theorem 2.1.**
+- Spanning trees of the classes give `|S||M| - |P|` edges, so `b_1(Gamma_E) = |S||M| - |P| - |S| + 1`.
+- `L` has rank at most `b_1(Gamma_E)`, so `rank H^ab >= |P| - [(|S|-1)(|M|-1) + 1]`.
+  - The algebra checks: `(|S|-1)(|M|-1) + 1 = |S||M| - |S| - |M| + 2`.
+- *Scope note.* In the 2 x 2 sanity check with a discrete table the difference graph is
+  disconnected, so the displayed connected bound does not literally apply. The component-corrected
+  bound does, and gives rank 2. This is not a claim-level issue.
+
+**Proposition 3.1.**
+- Zero anchor charge on every cycle gives `psi(L) = 0`, so `psi` descends onto `Z`.
+- Subgroups with finite abelianization map to `0`.
+
+**Corollary 3.2.**
+- `x_m' x_m^-1 = d_m' d_m^-1` with `d_m = x_m x_(m_0)^-1`, and `{t} ∪ {d_m}` is a free basis
+  (Nielsen). So the relators avoid `t`, and `Hol = Z * Q`.
+- A group with (T) has FA, so it is conjugate into a factor, and infinite subgroups of `Z` are not
+  Kazhdan.
+
+**Theorem 4.1.**
+- `Omega^-1 Omega = {1, d, d^-1}` meets the sofic radical, and the radical is a subgroup. So `d` lies
+  in `Rad_sof(H)`, which is inside `[H,H]`, since `H^ab` is sofic.
+- The image of `m_1 m_2^-1` is `e_(m_1) - e_(m_2) + L`.
+- *Corollary 4.2.* `psi(e_d) = 1`.
+
+## 18. Binary averaging target over Thompson V (`86a10e7e9`, gk-n-thompson-v): PASS
+
+**The element `h`.** It cyclically permutes the cylinders `00 -> 01 -> 1 -> 00` and has order
+three. `e_h = 1 + h + h^2` is idempotent over `F_2`, since `3 = 1`.
+
+**Both routes.**
+- *DF failure.* `a = e_h b` and `d = c e_h` give `d a = c e_h b = 1`. If `a d = 1`, then `1` lies in
+  `e_h F_2[V]`, which forces `e_h = 1`, but `h != 1`.
+- *Ascent.* `F_2[V]` is a unital subalgebra of `F_2[R^x]`.
+- The target claim `thompson-v-order-three-averaging-idempotent-is-full` is OPEN.
+
+## 19. Disjoint footprints, the multilinear defect and formalizability (`260815a21`, gk-free-neg): PASS
+
+**Theorem 5 (DF).**
+- A decoder monomial `c prod Y_(s,j)` becomes `c prod mu_j((X_(gsm))_(m in F_j))`.
+- (DF) makes the cell sets `g s F_j` of distinct variables in one monomial pairwise disjoint, and
+  multilinearity in `Y` forbids repeating a factor. A product of reduced polynomials in disjoint
+  variable sets is reduced, and so is a sum of reduced terms.
+- The composite equals `X_(g,i)` on `F_q`-points, so it is `X_(g,i)` formally, by uniqueness of
+  reduced representatives. Theorem 1 finishes.
+- Affine decoders satisfy (DF).
+- Restriction of scalars along `F_q -> M_k(F_p)`, as in Section 10.
+
+**6.1 calibration, recomputed.**
+- *Multilinear representatives.*
+  - `tau = T_2 T_1` gives `(a + b(c+ab), b, c+ab)`, which reduces to `(a + ab + bc, b, c + ab)`.
+  - `sigma = T_1 T_2` gives `(a + bc, b, c + (a+bc)b)`, which reduces to `(a + bc, b, c + ab + bc)`.
+- *The formal composite.*
+  - First coordinate: `a + ab + bc + b(c + ab) = a + ab + ab^2`.
+  - Third coordinate: `c + ab + (a + ab + bc)b + b(c + ab) = c + bc + b^2 c`.
+- *Jacobians at `(1,0,0)`.*
+  - Row 1 of `J_tau` is `(1+b, a+c, b) = (1,1,0)`, and row 3 is `(b, a, 1) = (0,1,1)`.
+  - Row 3 of `J_sigma` is `(b, a+c, 1+b) = (0,1,1)`.
+  - `J_sigma J_tau = I + e_12`, with row 3 `(0, 0, 1)` because `1 + 1 = 0`.
+- *Unreduced representatives compose formally.*
+  - First coordinate: `a + bc + ab^2 + b(c + ab) = a`.
+  - Third coordinate: `c + ab + (a + bc + ab^2)b + b^2(c + ab) = c`.
+
+**6.2.**
+- Adding `(X_h^2 - X_h)P` changes the linearization at a Boolean point by `P(c)`, since
+  `2c - 1 = 1` in characteristic 2.
+- A shear `x_i -> x_i + f(x_(-i))` is a formal involution in characteristic 2.
+- With `f` the indicator of a point, it swaps the two endpoints of one hypercube edge.
+- Transpositions along the edges of a connected graph generate the symmetric group on its vertices.
+
+**6.3 Bennett form.**
+- `V(x,0) = (tau(x), x + sigma(tau(x)))`.
+- `J_(S o T) = [[1,b],[0,1]] [[1,0],[a,1]] = [[1+ba, b],[a,1]] = [[D, b],[a,1]]` in characteristic 2.
+
+`binary-left-inverse-pairs-are-formalizable` and `stable-finiteness-forces-binary-surjunctivity`
+stay OPEN, and nothing here establishes them.

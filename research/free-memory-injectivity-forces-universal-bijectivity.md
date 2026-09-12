@@ -9,6 +9,7 @@ distinct_from:
   bijective-designs-force-every-finite-presentation: that forces any presentation through a decoder's shared addresses while the encoder stays injective over the free group; this shows such encoders are always bijective, so a counterexample's encoder needs relations for injectivity itself.
 artifacts:
   - research/artifacts/bijective-forcing-of-table-cores-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `free-memory-injectivity-bijectivity-proof`.

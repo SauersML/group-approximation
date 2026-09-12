@@ -9,6 +9,7 @@ distinct_from:
   invariant-output-automata-have-only-nonlinear-decoders: that rules out linear decoders under an even-order output symmetry by augmentation; this shows every decoder with disjoint monomial footprints, linear ones included, makes a strict pair a matrix Kaplansky pair, with no symmetry hypothesis.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `F = F_q`, `G` a group, and `tau`, `sigma` automata on `(F^n)^G` with `sigma o tau = id`.

@@ -9,6 +9,7 @@ distinct_from:
   unicyclic-strict-designs-present-nonsofic-one-relator-groups: that treats one independent cycle and produces a one-relator host; this bounds the abelianization of the host for every cycle number.
 artifacts:
   - research/artifacts/table-abelianization-and-cell-count-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `table-host-cell-count-betti-proof`.

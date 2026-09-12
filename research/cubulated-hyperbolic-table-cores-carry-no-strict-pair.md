@@ -8,6 +8,7 @@ distinct_from:
   cprime-one-sixth-presentations-are-hyperlinear: that concerns hyperlinearity of a presentation; this is a design filter on forward tables of automata.
 artifacts:
   - research/artifacts/vh-lattice-table-hosts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `cubulated-hyperbolic-table-core-filter-proof`.

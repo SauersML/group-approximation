@@ -8,6 +8,7 @@ distinct_from:
   formal-polynomial-strict-pairs-need-unstable-linearization: that shows a formal left-inverse identity forces bijectivity under direct finiteness; this shows even a reversible pair can fail to be formal in its canonical representatives, so the invariant to study is formalizability, not the multilinear defect.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Over the alphabet `F_2^3`, with coordinates `(a, b, c)`, let `T_1(a,b,c) = (a, b, c + ab)` and

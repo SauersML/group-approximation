@@ -9,6 +9,7 @@ distinct_from:
   linear-scale-rank-conservation-does-not-kill-defects: that calibrates the rank-metric conservation theorem on the literal group E; this calibrates Bernoulli entropy deficits on the Kun--Thom actor.
 artifacts:
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `Gamma = EL_r(F_q[x_1..x_d]) < G` be the Kun--Thom Theorem E pair of

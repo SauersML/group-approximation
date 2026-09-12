@@ -8,6 +8,7 @@ distinct_from:
   unicyclic-strict-designs-present-nonsofic-one-relator-groups: that treats difference graphs with one independent cycle; this treats graphs whose cycle space is spanned by parallel edges of opposite type, giving square presentations with many relators.
 artifacts:
   - research/artifacts/vh-lattice-table-hosts-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `mixed-bigon-vh-square-complex-proof`.

@@ -8,6 +8,7 @@ distinct_from:
   bernoulli-rokhlin-maximality-passes-to-subgroups: that transfers entropy maximality along subgroup inclusions; this transfers almost-everywhere injectivity of one code in both directions, through the left cosets of its window subgroup.
 artifacts:
   - research/artifacts/measurable-alphabet-compression-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a countable group, `K <= G`, `A, B` finite, and `f: A^K -> B` Borel. Define

@@ -9,6 +9,7 @@ distinct_from:
   table-hosts-have-a-cell-count-betti-lower-bound: that bounds the rank of the host's abelianization by a cell count; this is a membership condition on one specific element of that abelianization.
 artifacts:
   - research/artifacts/table-abelianization-and-cell-count-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `two-cell-window-abelian-death-proof`.
