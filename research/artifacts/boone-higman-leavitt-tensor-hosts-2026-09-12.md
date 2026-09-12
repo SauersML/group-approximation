@@ -167,4 +167,186 @@ the hypothesis. The steps use only `e, f` in `R`.
 `1 <= n <= N` exactly when `K_i(R) = 0` for `1 <= i <= N`. With `K_1 = 0`,
 `H_2(GL_∞(R)) = K_2(R)`.
 
-<!-- part B: transfer, simplicity, L⊗L, linear groups, reductions -->
+## 4. Transfer of Khanh's conclusions
+
+**Theorem 4.1 (acyclicity by degree).** Let `N >= 1` and suppose `K_i(R) = 0`
+for `1 <= i <= N`. Then `H_n(GL_r(R), Z) = 0` for `1 <= n <= N` and every
+`r >= 1`. If every `K_i(R)`, `i >= 1`, vanishes, every `GL_r(R)` is integrally
+acyclic.
+
+*Proof.* Khanh's proof of Theorem 2.2 is an induction on `n`. Step `n` uses:
+- `H_t(R^x) = 0` for `0 < t < n`;
+- hypothesis (1) in degree `n` only, through the stabilizer inclusion
+  `J_(1,n+2) -> Γ_(n+3)` of Lemma 2.4;
+- hypothesis (2) at `r = n+3` only.
+
+Proposition 3.1 and Remark 3.2 give (1) in degrees `<= N`. Corollary 2.5 gives
+(2) at every `r`. The ranks are then transported by leaf coordinates
+`GL_r(R) ≅ R^x`. `∎`
+
+**Theorem 4.2.** Suppose `K_1(R) = K_2(R) = 0`.
+1. `GL_m(R) = E_m(R)` for every `m >= 2`.
+2. `St_r(R) -> GL_r(R)` is an isomorphism for every `r >= 3`.
+3. If `B` is a finitely presented ring, then `R^x` is finitely presented.
+
+*Proof.*
+1. This is Khanh's proof of Lemma 5.3.
+   - Menal--Moncasi GE applies by Corollary 2.3: every invertible matrix is a
+     product of elementary and invertible diagonal matrices.
+   - `H_1(R^x) = 0` by Theorem 4.1, so every unit is a product of commutators
+     and `diag(u,1) ∈ E_2(R)`.
+2. This is Khanh's proof of Theorem 5.4.
+   - `St_3(R)` is perfect. With `H_2(GL_3(R)) = 0`, the five-term sequence
+     gives `N_3 = [St_3, N_3]`, and Lemma 5.2 gives `j_3(N_3) = 1` in `St_4`.
+   - Corollary 2.5 makes `|X_4(R)|` simply connected, and part 1 gives
+     hypothesis (1) of Theorem 5.1. So `φ_4` is an isomorphism.
+   - Voronetsky's refinement uses only the Leavitt identities, so it carries
+     rank four to every `r >= 3`.
+3. Write `B = Z<b_1, ..., b_p>/(finitely many relators)`. Then `R` is the ring
+   with the following generators and relators:
+   - generators `b_1, ..., b_p, e, f, s, t`;
+   - the relators of `B`;
+   - `2, se-1, tf-1, sf, te, es+ft-1` (Khanh (6.1));
+   - the commutators of each `b_j` with `e, f, s, t`.
+
+   Krstić--McCool Theorem 3 makes `St_5(R)` finitely presented. Part 2 and leaf
+   coordinates give `R^x ≅ GL_5(R) ≅ St_5(R)`. `∎`
+
+## 5. Simplicity
+
+**Theorem 5.1.** Let `B` be central simple.
+- For every `n >= 3`, `E_n(R)` is a simple group.
+- If `K_1(R) = K_2(R) = 0`, then `R^x ≅ GL_3(R) = E_3(R)` is simple, infinite
+  and nonabelian.
+
+*Proof.* The Lean theorem `rootDetection_of_leavittFamily` in
+`GroupApproximation/Leavitt/RootDetectionBinary.lean` is stated for an
+arbitrary ring with three inputs:
+- a Leavitt family, here `e, f, e*, f*`;
+- the division property `x != 0 -> ∃ a b, a x b = 1`, here Corollary 2.3;
+- the condition that every central unit is `1`. Here a central unit lies in
+  `Z(R) = F_2` (Corollary 2.3), so it is `1`.
+
+Then `isSimpleGroup_of_rootDetection` in
+`GroupApproximation/Leavitt/ElementarySimplicity.lean` gives simplicity of
+`E_n(R)`, `n >= 3`. The second assertion uses Theorem 4.2(1). The roots
+`x_12(s_0^k)` are distinct, and `[x_12(1), x_23(1)] = x_13(1)`. `∎`
+
+## 6. The square `L ⊗ L`
+
+**Theorem 6.1.** `(L ⊗ L)^x` is a finitely presented, simple, infinite and
+integrally acyclic group, and `St_r(L ⊗ L) -> GL_r(L ⊗ L)` is an isomorphism
+for `r >= 3`.
+
+*Proof.* Take `B = L`.
+- `L` is central simple (`leavitt-center-is-coefficient-field`, and Corollary
+  2.3 with `B = F_2`) and a finitely presented ring (Khanh (6.1)).
+- Ara--Cortiñas Lemma 6.1 makes `L` regular supercoherent, and their
+  Proposition 6.2 gives `K_*(L ⊗ L) = 0`.
+- Apply Theorems 4.1, 4.2 and 5.1. `∎`
+
+Ara--Cortiñas Example 5.2 shows `L ⊗ L` is not Morita equivalent to `L`.
+Whether the unit groups `(L ⊗ L)^x` and `L^x` are isomorphic is not settled
+here.
+
+## 7. Linear groups of characteristic two
+
+**Lemma 7.1 (Laurent realization).** Let `d >= 1` and let
+`h ∈ F_2[t_1, ..., t_d]` be nonzero. There is a unital injective ring map
+`F_2[t_1, ..., t_d][1/h] -> L^(⊗d)`.
+
+*Proof.* Induction on `d`.
+- **`d = 1`.** Put `f = t h`, which is monic over `F_2`. Steps 3--4 of
+  `char-two-curve-linear-groups-proof` give
+  `F_2[t][1/h] ⊆ F_2[t][1/f] -> M_(deg f)(F_2[g^±]) -> M_(deg f)(L) ≅ L`.
+- **`d >= 2`.**
+  - Write `h ∈ C_0[t_d]` with `C_0 = F_2[t_1, ..., t_(d-1)]` and leading
+    coefficient `c != 0`. Put `C = C_0[1/c]` and `f = t_d h / c ∈ C[t_d]`,
+    monic of degree `>= 1`. Then `1/h = t_d/(c f)`, so
+    `F_2[t_1, ..., t_d][1/h] ⊆ C[t_d][1/f]`.
+  - `T |-> t_d`, `g |-> f(t_d)` identifies `C[g^±][T]/(f(T) - g)` with
+    `C[t_d][1/f]`. Since `f(T) - g` is monic in `T`, this is a free
+    `C[g^±]`-module with basis `1, T, ..., T^(deg f - 1)`. Multiplication gives
+    a unital injection `C[t_d][1/f] -> M_(deg f)(C[g^±])`.
+  - `C[g^±] = C ⊗ F_2[g^±]` embeds in `L^(⊗(d-1)) ⊗ L`. Use induction for `C`,
+    the Thompson-unit embedding `F_2[g^±] -> L` of
+    `char-two-laurent-linear-groups-proof`, and injectivity of tensor products
+    of injective maps over a field.
+  - Finally `M_k(L^(⊗d)) ≅ L^(⊗d)` through leaf coordinates in one factor. `∎`
+
+**Theorem 7.2.** Let `K` be a field of characteristic two, and let
+`H <= GL_n(K)` be finitely generated.
+- `H` embeds in `(L^(⊗max(d,1)))^x`, where `d` is the transcendence degree of
+  the field generated by the entries of the generators and their inverses.
+
+*Proof.*
+1. If `d = 0`, the entries lie in a finite field, `H` is finite, and it embeds
+   in `GL_N(F_2) <= L^x`.
+2. Otherwise the entry field is finite, of degree `m`, over `F_2(t_1, ..., t_d)`
+   for a transcendence basis. The regular representation gives
+   `H <= GL_(nm)(F_2(t_1, ..., t_d))`.
+3. Clearing denominators gives `H <= GL_(nm)(F_2[t_1, ..., t_d][1/h])`.
+4. Apply Lemma 7.1 and leaf coordinates. `∎`
+
+**Corollary 7.3.** Every finitely generated linear group over a field of
+characteristic two with transcendence degree at most two embeds in the finitely
+presented simple group `(L ⊗ L)^x`, so it satisfies Boone--Higman.
+- Examples: the finitely generated subgroups of `GL_n(F_q(t_1, t_2))`,
+  `SL_n(F_q[t_1, t_2])` for `n >= 3` (finitely generated by Suslin's
+  `SL_n = E_n`), and `Z/2 wr Z^2 <= GL_2(F_2[t_1^±, t_2^±])`.
+- Finite products of such groups embed through block-diagonal matrices.
+
+**Corollary 7.4 (conditional).** If `K_1(L^(⊗d)) = K_2(L^(⊗d)) = 0` for every
+`d >= 3`, then every finitely generated linear group in characteristic two
+satisfies Boone--Higman.
+
+*Proof.* `L^(⊗d) = L^(⊗(d-1)) ⊗ L`. A tensor product of central simple algebras
+over a field is central simple, and a tensor product of finitely presented
+algebras is finitely presented. Apply Theorems 4.2, 5.1 and 7.2. `∎`
+
+## 8. What stays open
+
+### 8.1 Tensor powers
+- **`KH` vanishes.** ABC Theorem 8.6 gives `KH(A ⊗ L) = hofiber(-1) = 0` for
+  every ring `A`, so `KH(L^(⊗d)) = 0` for every `d`.
+- **Sufficient conditions for `K_1 = K_2 = 0`.** Either of these suffices:
+  - `K_2`-regularity of `L^(⊗d)` (ABC Section 8, Vorst);
+  - regular supercoherence of `L^(⊗(d-1))` (Ara--Cortiñas Proposition 6.2).
+- **Transferring Lemma 6.1.** Its proof uses two ingredients: flatness of the
+  universal localization `P(E) -> L(E)`, and regular coherence of
+  `P(E)[t_1, ..., t_n]`.
+  - Flatness passes to `P(E) ⊗ S -> L(E) ⊗ S` by base change.
+  - The missing lemma is regular coherence of the free algebras
+    `S[t_1, ..., t_n]<e,f>` for `S = L^(⊗(d-2))`. It may already be in Gersten,
+    *K-theory of free rings* (1974), or Waldhausen (1978); neither was read.
+
+### 8.2 The universal reduction
+**Proposition 8.1.** Let `G` be finitely generated, and suppose `F_2[G]`
+embeds unitally in a finitely presented central simple `F_2`-algebra `B` with
+`K_1(B ⊗ L) = K_2(B ⊗ L) = 0`. Then `G <= B^x <= (B ⊗ L)^x`, which is finitely
+presented and simple by Theorems 4.2 and 5.1. So `G` satisfies Boone--Higman.
+
+- **Sufficient condition.** Regular supercoherence of `B` suffices for the
+  `K`-theory condition (Ara--Cortiñas Proposition 6.2).
+- **Complexity.** The complexity wall
+  (`complexity-bounded-host-classes-are-not-universal`) is respected: `B` may
+  have arbitrarily hard word problems.
+- **What changes from the old ring lane.** `boone-higman-via-projective-ring-host`
+  must finitely normally generate an unstable Steinberg kernel over an
+  arbitrary host (`projective-elementary-fp-kernel-criterion`). After
+  tensoring with `L`, that kernel is trivial once `K_1` and `K_2` vanish. What
+  remains is an existence problem for algebras.
+- **Literature.** Evans--Mandelberg--Neff (1975) give the algebra analogue of
+  the classical weak half (a simple algebra embedded in a finitely presented
+  one), not finitely presented simple hosts.
+
+### 8.3 Limits and trust
+- **Odd characteristic.** Khanh's Section 2 is written for `p = 2` (the weights
+  of Lemma 2.3, and `w_ij^2 = 1` in Theorem 5.1). Not attempted.
+- **Novelty.** The Belk--Bleak--Matucci--Zaremsky survey arXiv:2306.16356v3
+  lists `GL_n(Z)` as known and `GL_n(Q)` as open. Zaremsky arXiv:2405.09722
+  settles `GL_n(Q)`. A web search on 2026-09-12 found no positive-characteristic
+  linear class. This is a bounded check.
+- **Trust surface.** Khanh's preprint is unrefereed. The transfer here rereads
+  its general criteria and replaces the two `L`-specific steps. It does not
+  re-derive his spectral sequence.
