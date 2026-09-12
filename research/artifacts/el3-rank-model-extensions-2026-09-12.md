@@ -223,6 +223,21 @@ a block upper triangular representative `g_i`, meaning `g_i` maps `W_(i,r)` into
 `W_(i,1) (+) ... (+) W_(i,r)`. Put `D_i(x) = sum_t pi_(i,t) x pi_(i,t)`, with `pi_(i,t)` the
 projections of the decomposition.
 
+**Remark (invertible representatives; step supplied by `gk-vf-linear`, Section 38).** A
+triangular representative need not be an invertible matrix, so it has to be perturbed into one.
+* Let `h_i` be a triangular representative of `sigma(g^-1)`. Then `g_i h_i` represents `1`, so
+  `rk(g_i h_i - 1) = o(n_i)`.
+* By Lemma 6 below, `rk(D_i(g_i h_i) - 1) <= rk(g_i h_i - 1)` and `D_i(g_i h_i) = D_i(g_i) D_i(h_i)`.
+  So `rk(D_i(g_i)) >= n_i - o(n_i)`, and the nullities of the diagonal blocks of `g_i` total
+  `n_i - rk(D_i(g_i)) = o(n_i)`.
+* Add to each singular diagonal block a correction of rank equal to its nullity that makes it
+  invertible. The corrections are block diagonal, so triangularity is kept and the total change
+  has rank `o(n_i)`.
+
+The perturbed representative is block triangular with invertible diagonal blocks, hence
+invertible. From here on triangular representatives are taken invertible, which is what
+Proposition 7(b), (c) and Theorem 8.3 use.
+
 **Lemma 6.** For block upper triangular `x, y` in `M_n(k)`:
 1. `D(xy) = D(x) D(y)`, and `D(x)` is invertible when `x` is;
 2. `rk(D(x)) <= rk(x)`.
@@ -322,3 +337,41 @@ of any claim.
   The total lower-triangular part over many pieces need not be rank-null, so Proposition 7
   does not apply as stated.
 * **Two-sided mixing (S1) and other composition factors (S2)** are unchanged.
+
+### 4.4 The two root identities on the diagonal
+
+Question from lane `gk-l-gate-neg`: does the diagonal reduction commute with the two root
+identities of `el3-unit-root-matrix-units-iff-two-root-identities`, `N_12^2 = 0` and
+`N_23 N_12 = 0`? It does, in the strongest useful form.
+
+Keep the setting of Section 4.2. Write `D_i(g_i) = (+)_t rho_(i,t)(g)` and
+`N^(i,t)_ab = rho_(i,t)(x_ab(1)) - 1`.
+
+**Proposition 9.**
+1. **Descent and additivity.** For any noncommutative polynomial `P` in the six displacements
+   `N_ab = sigma(x_ab(1)) - 1`, put `P^D = P(N^D)` with `N^D_ab = sigma_D(x_ab(1)) - 1`. Then
+   `rk(P^D) <= rk(P)`, and `rk(P^D) = lim_omega sum_t rk(P(N^(i,t))) / n_i`. So an identity
+   `P = 0` descends from `sigma` to `sigma_D`. It holds for `sigma_D` exactly when it holds on
+   the diagonal blocks in dimension-weighted average.
+2. **Localized gate.** Let `R` be a unital algebra of characteristic `p` with no unital ring
+   homomorphism into any characteristic-`p` rank ultraproduct, for instance a simple ring that
+   is not directly finite, and let `char k = p`. Suppose
+   `sum_t rk((N^(i,t)_12)^2) + rk(N^(i,t)_23 N^(i,t)_12) = o(n_i)`; in characteristic two only
+   the second term is needed. Then `sigma` is trivial.
+
+*Proof.*
+1. The representatives `g_i - 1` of the displacements are block triangular, and so is any
+   polynomial in them. `D_i` is additive and multiplicative on block triangular matrices, with
+   `D_i(1) = 1`, so `D_i(P(N_i)) = P(D_i(N_i))`. Lemma 6.2 gives the inequality. A block
+   diagonal matrix has rank equal to the sum of its block ranks, which gives the additivity.
+2. By 1, `sigma_D` satisfies both identities in `M`. By
+   `el3-unit-root-matrix-units-iff-two-root-identities`, its unit root elements act by matrix
+   units. By `matrix-unit-rank-models-extract-ring-rank-models` and the hypothesis on `R`,
+   `sigma_D` is trivial. By `flag-preserving-rank-models-of-el3-reduce-to-their-diagonal`,
+   `sigma` is trivial.
+QED
+
+*Reading.* For a flag-preserving model the gate identity need not be verified on `sigma`,
+where the off-diagonal extension terms enter the products. It suffices to verify it on the
+diagonal blocks, each an almost representation on `o(n_i)` dimensions, in weighted average.
+The extension part is invisible to the gate.
