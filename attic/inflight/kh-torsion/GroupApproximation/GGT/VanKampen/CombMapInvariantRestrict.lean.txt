@@ -181,8 +181,8 @@ theorem eulerCharacteristic_restrict_add :
   unfold CombMap.eulerCharacteristic
   omega
 
-/-- Elementary moves preserve membership in an invariant set. -/
 include hα hσ in
+/-- Elementary moves preserve membership in an invariant set. -/
 theorem iff_of_eqvGen {x y : M.Dart} (h : Relation.EqvGen M.Adjacent x y) : S x ↔ S y := by
   induction h with
   | rel x y h =>
