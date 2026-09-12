@@ -141,3 +141,16 @@ additional odd selector characters.
   exact projective central-sign gluing identity. A lock that holds only in
   finite matrices (type (b)) is already nonhyperlinearity-strength. Screen
   candidates in the left regular representation first.
+- **The projective escape is closed by odd tensor closure.**
+  `odd-tensor-closure-kills-projective-zpc-gluing-identities` shows that no
+  complete transducer, whatever its noncommuting auxiliaries or projective
+  packets, has an exact gluing identity unless the source support meets a
+  trilinear condition. The relevant scalar sector comes from the source, not
+  from the gadget: the observables `(Z_c, Z_d, U_q)` commute in every ZPC model,
+  and the tensor cube of complete models realizes their ternary sums. In the
+  two-atom form: if an atom `(s,t)` carries both payload signs, every support
+  atom `(s',t')` must satisfy `s_(p(s'))=t_(p(t'))`. With singleton labels this
+  says the incident contexts' branch labels determine each other on the
+  support. So the escape named in the pp bullet above is not available. A
+  non-circular transducer must use source-specific label rigidity, or
+  transport words outside the theorem's scope.
