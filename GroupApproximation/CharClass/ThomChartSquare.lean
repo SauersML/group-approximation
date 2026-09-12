@@ -117,7 +117,7 @@ theorem bridgeTotalRestrict [CompactSpace X] [T2Space X] (p : Bundle X ι)
       (fun z hz => (Bundle.projInclOn_mem_notZeroOpensSet_iff p U z).mpr hz) n)
     (relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U))
       (fun z hz => projInclOn_range_mapsTo p U z hz) n)
-    (chartSquare p U n) (hyperSquare p U n) x
+    (chartSquare p U n) (hyperSquare (ZMod 2) p U n) x
 
 /-! Audited on every build: `#audit_axioms` prints the axiom closure and
 **fails the build** if it leaves the classical allowlist, which `#print axioms`

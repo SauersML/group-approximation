@@ -45,15 +45,15 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X X' P P' : TopCat.{0}}
+variable {K : Type} [CommRing K] {X X' P P' : TopCat.{0}}
 
 /-- **The Leray–Hirsch combination is natural.**  Over a square of spaces with the
 degree-two class pulling back to the degree-two class, the combination of the
 pulled-back coefficients is the pullback of the combination. -/
 theorem pull_lhMap (f : X' ⟶ X) (g : P' ⟶ P) (π : P ⟶ X) (π' : P' ⟶ X')
-    (hsq : g ≫ π = π' ≫ f) (ξ : Hmod2 P 2) (ξ' : Hmod2 P' 2)
+    (hsq : g ≫ π = π' ≫ f) (ξ : Hmod K P 2) (ξ' : Hmod K P' 2)
     (hξ : pull g 2 ξ = ξ') (r n : ℕ)
-    (a : (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ))) :
+    (a : (i : Fin (lhDomainCard r n)) → Hmod K X (n - 2 * (i : ℕ))) :
     pull g n (lhMap π ξ r n a)
       = lhMap π' ξ' r n (fun i => pull f (n - 2 * (i : ℕ)) (a i)) := by
   simp only [lhMap]
@@ -69,11 +69,11 @@ Stated as a uniqueness principle rather than about a chosen coefficient family, 
 that a consumer who already has a family in hand identifies it rather than
 producing a second one. -/
 theorem lhCoeff_natural (f : X' ⟶ X) (g : P' ⟶ P) (π : P ⟶ X) (π' : P' ⟶ X')
-    (hsq : g ≫ π = π' ≫ f) (ξ : Hmod2 P 2) (ξ' : Hmod2 P' 2)
+    (hsq : g ≫ π = π' ≫ f) (ξ : Hmod K P 2) (ξ' : Hmod K P' 2)
     (hξ : pull g 2 ξ = ξ') (r n : ℕ)
     (hinj : Function.Injective (lhMap π' ξ' r n))
-    (a : (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ)))
-    (b : (i : Fin (lhDomainCard r n)) → Hmod2 X' (n - 2 * (i : ℕ)))
+    (a : (i : Fin (lhDomainCard r n)) → Hmod K X (n - 2 * (i : ℕ)))
+    (b : (i : Fin (lhDomainCard r n)) → Hmod K X' (n - 2 * (i : ℕ)))
     (hb : lhMap π' ξ' r n b = pull g n (lhMap π ξ r n a)) :
     b = fun i : Fin (lhDomainCard r n) => pull f (n - 2 * (i : ℕ)) (a i) := by
   apply hinj

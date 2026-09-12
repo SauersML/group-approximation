@@ -1,7 +1,7 @@
 import GroupApproximation.CharClass.LerayHirschSquares
 import GroupApproximation.CharClass.ProjectiveSpaceRing
 import GroupApproximation.CharClass.CohomologyAssoc
-import GroupApproximation.CharClass.SteenrodCupOne
+import GroupApproximation.CharClass.CupOneComm
 
 /-!
 # Cupping with the class shifts a column term up one index
@@ -10,6 +10,11 @@ The general-rank Leray–Hirsch ladder is a downward induction on the degree: pe
 power of the generator off with the projective-factor Künneth, recurse, and put the
 peel back.  Putting it back is this lemma, and it is the only place where the cup
 product's associativity and commutativity are used at all.
+
+The commutation is `sp-cupone`'s `cup_comm_of_even_left`, discharged by `even_two`:
+the class being moved is the degree-two generator, so the Koszul sign `(−1)^{2q}`
+is `1` and the conclusion is the unsigned one the `rw` chain below expects.  There
+is no unsigned `cup_comm` over `K` and there must not be — it is false at odd `p`.
 
 The degrees are the point.  A term at index `i` in degree `m` carries a coefficient
 of degree `m - 2i`, and at index `i+1` in degree `m+2` it carries `m + 2 - 2(i+1)`,
@@ -32,7 +37,7 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X P : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P : TopCat.{0}}
 
 /-- **Cupping with the class raises the power by one.**
 
@@ -41,16 +46,16 @@ coefficient degree is a truncated subtraction.  Handing `lhTerm` a degree of the
 form `m + 2 - 2 * (i + 1)` and asking Lean to see it as `m - 2 * i` is a `whnf`
 loop, not a cheap unification, so the shift is proved here in the form where every
 degree is a sum and converted at the point of use. -/
-theorem cup_cupPowE_succ (π : P ⟶ X) (ξ : Hmod2 P 2) (k i : ℕ) (a : Hmod2 X k) :
+theorem cup_cupPowE_succ (π : P ⟶ X) (ξ : Hmod K P 2) (k i : ℕ) (a : Hmod K X k) :
     cohCast (by omega : 2 + (k + 2 * i) = k + 2 * (i + 1))
         (cup ξ (cup (pull π k a) (cupPowE ξ i)))
       = cup (pull π k a) (cupPowE ξ (i + 1)) := by
-  rw [cup_comm ξ, cohCast_cohCast, cupPowE_succ, ← cup_assoc]
+  rw [cup_comm_of_even_left even_two ξ, cohCast_cohCast, cupPowE_succ, ← cup_assoc]
 
 /-- **The same in column form.**  The coefficient crosses unchanged, and the cast
 that says so is written out rather than left to unification, which is what keeps
 the statement elaborable. -/
-theorem lhTerm_succ (π : P ⟶ X) (ξ : Hmod2 P 2) (m j : ℕ) (a : Hmod2 X (m - 2 * j)) :
+theorem lhTerm_succ (π : P ⟶ X) (ξ : Hmod K P 2) (m j : ℕ) (a : Hmod K X (m - 2 * j)) :
     lhTerm π ξ (m + 2) (j + 1) (cohCast (by omega : m - 2 * j = m + 2 - 2 * (j + 1)) a)
       = cohCast (Nat.add_comm 2 m) (cup ξ (lhTerm π ξ m j a)) := by
   by_cases h : 2 * j ≤ m

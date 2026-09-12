@@ -71,7 +71,7 @@ end Bundle
 
 /-! ## The factorisation on relative cohomology -/
 
-variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
+variable (K : Type) [CommRing K] {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
 
 /-- **Restricting twice is restricting, then restricting.**  The direct
 restriction to a point of the ambient base never appears, so the subtype of a
@@ -92,12 +92,12 @@ theorem relPullback_totalInclOn_comp (p : Bundle X ι) (U : Set X) (V : Set ↥U
       (ConcreteCategory.hom
         (cmap (Bundle.totalInclOn (p.restrictTo U) V) ≫ cmap (Bundle.totalInclOn p U))) w
         ∈ {v : Bundle.Total p | (v : X × (ι → ℂ)) ∈ Bundle.puncturedSet p}) :
-    relPullback (ZMod 2)
+    relPullback K
         (cmap (Bundle.totalInclOn (p.restrictTo U) V) ≫ cmap (Bundle.totalInclOn p U))
         hVU n
-      = relPullback (ZMod 2) (cmap (Bundle.totalInclOn p U)) hU n
-        ≫ relPullback (ZMod 2) (cmap (Bundle.totalInclOn (p.restrictTo U) V)) hV n :=
-  relPullback_comp (ZMod 2) _ _ hV hU hVU n
+      = relPullback K (cmap (Bundle.totalInclOn p U)) hU n
+        ≫ relPullback K (cmap (Bundle.totalInclOn (p.restrictTo U) V)) hV n :=
+  relPullback_comp K _ _ hV hU hVU n
 
 /-! Audited on every build: `#audit_axioms` prints the closure **and fails the
 build** if it leaves the classical allowlist, which `#print axioms` does not. -/

@@ -31,7 +31,8 @@ namespace GroupApproximation.CharClass
 
 noncomputable section
 
-variable {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι]
+variable (K : Type) [CommRing K] {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι]
+  [DecidableEq ι]
 
 /-- **The inclusion carries the hyperplane to the hyperplane.**  Immediate from
 `cc-bundle`'s commutation, which is definitional. -/
@@ -46,16 +47,16 @@ theorem projInclOn_range_mapsTo (p : Bundle X ι) (U : Set X)
 conditions of `relPullback_id_comm` discharged, so `bridgeTotal_natural`'s second
 hypothesis is one application. -/
 theorem hyperSquare (p : Bundle X ι) (U : Set X) (n : ℕ) :
-    (relPullback (ZMod 2) (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
+    (relPullback K (𝟙 (TopCat.of (Bundle.Proj p.plusOne)))
         (fun _ hz => range_projIncl_subset_notZero p hz) n)
-        ≫ relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U))
+        ≫ relPullback K (cmap (Bundle.projInclOn p.plusOne U))
           (fun z hz => projInclOn_range_mapsTo p U z hz) n
-      = relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U))
+      = relPullback K (cmap (Bundle.projInclOn p.plusOne U))
           (fun z hz => (Bundle.projInclOn_mem_notZeroOpensSet_iff p U z).mpr hz) n
-        ≫ (relPullback (ZMod 2)
+        ≫ (relPullback K
           (𝟙 (TopCat.of (Bundle.Proj (p.restrictTo U).plusOne)))
           (fun _ hz => range_projIncl_subset_notZero (p.restrictTo U) hz) n) :=
-  relPullback_id_comm (cmap (Bundle.projInclOn p.plusOne U)) _ _ _ _
+  relPullback_id_comm K (cmap (Bundle.projInclOn p.plusOne U)) _ _ _ _
     (fun z hz => range_projIncl_subset_notZero p
       (projInclOn_range_mapsTo p U z hz))
     (fun z hz => range_projIncl_subset_notZero p

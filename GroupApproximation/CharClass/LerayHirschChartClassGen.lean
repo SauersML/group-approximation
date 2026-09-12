@@ -60,6 +60,34 @@ def tautEulerOf (p : Bundle X ι) : Hmod2 (TopCat.of (Proj p)) 2 :=
     (trace_pushforward_one (tautEmbOf ι) (tautEmbOf_injective ι) (tautLine p)
       (trace_tautLine p))
 
+/-- **The dual tautological class**, `ξ = e(O(1))` where `tautEulerOf` is
+`e(O(−1))`.  This is the class the classical Grothendieck relation is stated with,
+and it is the one that makes `∏ (ξ + a_i) = 0` hold over **any** coefficient ring
+with the honest Chern roots `a_i`: on the locus where the tautological line is the
+`i`-th summand the factor is `−a_i + a_i` and dies by `neg_add_cancel`, where the
+mod-2 proof killed `a_i + a_i` by `add_self`.  See `CharClass/ChernRelation.lean`'s
+`Conventions` block, which is the one place the convention is fixed.
+
+Over `ZMod 2` this is the same element as `tautEulerOf p`, but only
+**propositionally** — `-x` is not syntactically `x` — so a mod-2 call site that
+names `tautEulerOf` needs `tautEulerDual_eq` to meet a generic statement phrased
+with the dual.  That rewrite is spent twice in this tree, in the split relation and
+in the Chern bridge, and `sp-thom` reports that two of their four consumer sites do
+not need it at all, because `pull` is additive and both a vanishing statement and a
+naturality equation survive negation on both sides. -/
+def tautEulerDual (p : Bundle X ι) : Hmod2 (TopCat.of (Proj p)) 2 :=
+  -tautEulerOf p
+
+/-- **The `F₂` bridge.**  Over `ZMod 2` the dual class is the same element, because
+`x + x = 0`.  This is the only thing the mod-2 layer needs in order to be unaffected
+by the switch, and it is why the switch is safe to make while the `F₂` surface is
+still a verified artifact. -/
+theorem tautEulerDual_eq (p : Bundle X ι) : tautEulerDual p = tautEulerOf p := by
+  have h : tautEulerOf p + tautEulerOf p = 0 := by
+    rw [← two_smul (ZMod 2) (tautEulerOf p), show (2 : ZMod 2) = 0 from by decide,
+      zero_smul]
+  exact neg_eq_iff_add_eq_zero.2 h
+
 /-- The workhorse with the common index size given by an equation rather than
 definitionally.  `subst` reduces it to the definitional form; without it the index
 arithmetic is a truncated subtraction over a variable and the application is an

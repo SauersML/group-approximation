@@ -255,6 +255,21 @@ theorem smallAnnShortComplex_shortExact (R : Type) [CommRing R] (X : TopCat.{0})
 
 /-! ## 3. Acyclicity -/
 
+/-- **The small-annihilator complex is acyclic, over any field.**  The field is
+needed: this is the dual of a quasi-isomorphism being a quasi-isomorphism, which
+rests on the coefficient being injective as a module over itself.  Consumers that
+want to stay at `[CommRing R]` should take this as a hypothesis rather than
+strengthen their binder — `sp-oddside`'s `LIXKRelativeMV` does exactly that. -/
+theorem smallAnnComplexOf_acyclic (K : Type) [Field K] (X : TopCat.{0})
+    (𝒰 : OpenCoverData X) : (smallAnnComplex K X 𝒰).Acyclic :=
+  (smallAnnShortComplex_shortExact K X 𝒰).acyclic_X₁
+    (inferInstanceAs (QuasiIso (dualMap K (smallChainsInclusion K X 𝒰))))
+
+theorem isZero_smallAnnComplexOf_homology (K : Type) [Field K] (X : TopCat.{0})
+    (𝒰 : OpenCoverData X) (n : ℕ) :
+    IsZero ((smallAnnComplex K X 𝒰).homology n) :=
+  (HomologicalComplex.exactAt_iff_isZero_homology _ _).1 (smallAnnComplexOf_acyclic K X 𝒰 n)
+
 /-- **The small-annihilator complex is acyclic.**  This is the small-simplices
 theorem, dualized: restricting a cochain to small chains is a quasi-isomorphism, so
 its kernel has vanishing cohomology. -/

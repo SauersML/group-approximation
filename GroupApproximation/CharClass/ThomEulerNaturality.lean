@@ -23,10 +23,13 @@ gives
 j^*(σ^* u) = σ^*(j_E^* u) = σ^*(π^* γ_r(E)) = γ_r(E).
 ```
 
-The statement is over `ModuleCat.{0} (ZMod 2)`, where the vendored singular cohomology
-lives, and the hypotheses are the three squares that `cc-relative` (naturality of `j^*`
-for maps of pairs, need (B5)), `cc-bundle` (the zero section and the projection,
-(C1)/(C2)) and `cc-projective` ((D1)) owe.
+The statement is over `ModuleCat.{0} R` for an arbitrary ring `R` of coefficients — the
+diagram chase never divides, never commutes two classes and never uses `1 = -1`, so the
+odd-primary case of the stronger programme is the same theorem.  At `R = ZMod 2` it is the
+statement the mod-2 answer consumes, and `R` is inferred from the morphisms, so every
+existing call site is unchanged.  The hypotheses are the three squares that `cc-relative`
+(naturality of `j^*` for maps of pairs, need (B5)), `cc-bundle` (the zero section and the
+projection, (C1)/(C2)) and `cc-projective` ((D1)) owe.
 
 Both a categorical form (commuting triangles/squares of `ModuleCat` morphisms) and a
 pointwise form are provided, since peers may deliver either.
@@ -60,7 +63,8 @@ end Bridge
 
 section Naturality
 
-variable {HrelE HE HX HrelX : ModuleCat.{0} (ZMod 2)}
+variable {R : Type*} [Ring R]
+variable {HrelE HE HX HrelX : ModuleCat.{0} R}
 
 /-- **`j^*(σ^* u) = γ_r`, pointwise hypotheses.**
 

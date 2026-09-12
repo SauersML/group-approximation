@@ -26,6 +26,10 @@ peer lanes deliver it.
   two modules each linearly equivalent to `R` (with `R` finite) is injective.
 * `ne_zero_of_surjective_of_linearEquiv` — the same, in the form actually used:
   a nonzero class stays nonzero.
+* `injective_of_surjective_of_line`, `ne_zero_of_surjective_of_line` — the same two
+  statements over an arbitrary **field**, with no finiteness hypothesis.  These are what
+  the stronger programme uses over `F_p`; see their docstrings for why the finite proof
+  does not transport and what replaces it.
 * `surjective_of_exact_of_subsingleton` — exactness at the middle term of
   `M → N → P` with `P` a subsingleton makes `M → N` surjective; this is how the
   long exact sequence of the pair delivers the surjectivity hypothesis once
@@ -82,6 +86,54 @@ theorem surjective_of_exact_of_subsingleton [Subsingleton P]
 
 end Finite
 
+section Field
+
+variable {K : Type*} [Field K]
+variable {M N : Type*} [AddCommGroup M] [Module K M] [AddCommGroup N] [Module K N]
+
+/-- **A surjection between two lines over a field is injective**, with no finiteness.
+
+`injective_of_surjective_of_linearEquiv` above transports the map to a surjective self-map
+of `R` and then uses that `R` is finite.  That argument is unavailable over an arbitrary
+field, and the stronger programme needs the statement at `K = ZMod p` for every prime and,
+in the abstract-field layers, at a `K` with no `Finite` instance in sight.  The replacement
+is the reason the finite case was ever true: in the coordinates `eM`, `eN` the map is
+multiplication by the single scalar `c = eN (f (eM.symm 1))`, surjectivity makes `c` a unit,
+and multiplication by a unit is injective.  No `Finite`, no counting, no characteristic. -/
+theorem injective_of_surjective_of_line (eM : M ≃ₗ[K] K) (eN : N ≃ₗ[K] K)
+    {f : M →ₗ[K] N} (hf : Surjective f) : Injective f := by
+  have key : ∀ x : K, eN (f (eM.symm x)) = x * eN (f (eM.symm 1)) := by
+    intro x
+    have h1 : eM.symm x = x • eM.symm 1 := by
+      have h := map_smul eM.symm x (1 : K)
+      rwa [smul_eq_mul, mul_one] at h
+    rw [h1, map_smul, map_smul, smul_eq_mul]
+  have hne : eN (f (eM.symm 1)) ≠ 0 := by
+    obtain ⟨m, hm⟩ := hf (eN.symm 1)
+    intro h0
+    have h2 : eN (f (eM.symm (eM m))) = 1 := by
+      rw [LinearEquiv.symm_apply_apply, hm, LinearEquiv.apply_symm_apply]
+    rw [key, h0, mul_zero] at h2
+    exact zero_ne_one h2
+  intro a b hab
+  have ha := key (eM a)
+  have hb := key (eM b)
+  rw [LinearEquiv.symm_apply_apply] at ha hb
+  rw [hab] at ha
+  exact eM.injective (mul_right_cancel₀ hne (ha.symm.trans hb))
+
+/-- **A surjection between two lines over a field does not kill anything.**  The field twin
+of `ne_zero_of_surjective_of_linearEquiv`, and the form Step C uses over `F_p`: the relative
+Euler class is a nonzero element of `H^{2r}(N, N ∖ z; K)`, so its restriction `γ_r` is
+nonzero. -/
+theorem ne_zero_of_surjective_of_line (eM : M ≃ₗ[K] K) (eN : N ≃ₗ[K] K)
+    {f : M →ₗ[K] N} (hf : Surjective f) {x : M} (hx : x ≠ 0) : f x ≠ 0 := by
+  intro hfx
+  refine hx (injective_of_surjective_of_line eM eN hf ?_)
+  rw [hfx, map_zero]
+
+end Field
+
 namespace ModuleCat
 
 variable {R : Type*} [Ring R] [Finite R]
@@ -93,6 +145,12 @@ theorem ne_zero_of_surjective_of_linearEquiv {M N : ModuleCat.{0} R}
     (eM : M ≃ₗ[R] R) (eN : N ≃ₗ[R] R) {f : M ⟶ N} (hf : Surjective f.hom)
     {x : M} (hx : x ≠ 0) : f.hom x ≠ 0 :=
   CharClass.ne_zero_of_surjective_of_linearEquiv eM eN hf hx
+
+/-- `ModuleCat` restatement of `ne_zero_of_surjective_of_line`, the field twin above. -/
+theorem ne_zero_of_surjective_of_line {K : Type*} [Field K] {M N : ModuleCat.{0} K}
+    (eM : M ≃ₗ[K] K) (eN : N ≃ₗ[K] K) {f : M ⟶ N} (hf : Surjective f.hom)
+    {x : M} (hx : x ≠ 0) : f.hom x ≠ 0 :=
+  CharClass.ne_zero_of_surjective_of_line eM eN hf hx
 
 omit [Finite R] in
 /-- `ModuleCat` restatement of `surjective_of_exact_of_subsingleton`. -/

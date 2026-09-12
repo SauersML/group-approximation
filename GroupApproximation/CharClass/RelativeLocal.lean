@@ -56,6 +56,24 @@ def excisionIsoPoint (X : TopCat.{0}) [T1Space X] (z : X) (V : Set X) (hV : IsOp
 
 /-! ## 2. Homeomorphism invariance of pairs -/
 
+/-- **(B4) over any coefficient ring.**  `relPairIso` already carries `(R) [CommRing R]`,
+so this is a substitution; no field is needed here. -/
+def relCohomologyCongrOf (K : Type) [CommRing K] {X Y : Type}
+    [TopologicalSpace X] [TopologicalSpace Y]
+    (e : X ≃ₜ Y) (A : Set X) (B : Set Y) (hAB : e '' A = B) (n : ℕ) :
+    relCohomology K (TopCat.of X) A n ≅ relCohomology K (TopCat.of Y) B n :=
+  relPairIso K (TopCat.isoOfHomeo e.symm)
+    (fun y hy => by
+      show e.symm y ∈ A
+      rw [← hAB] at hy
+      obtain ⟨x, hx, rfl⟩ := hy
+      rwa [e.symm_apply_apply])
+    (fun x hx => by
+      show e x ∈ B
+      rw [← hAB]
+      exact ⟨x, hx, rfl⟩)
+    n
+
 /-- **(B4)** A homeomorphism carrying `A` onto `B` induces an isomorphism of the
 relative cohomology of the pairs `(X, A)` and `(Y, B)`. -/
 def relCohomologyCongr {X Y : Type} [TopologicalSpace X] [TopologicalSpace Y]

@@ -18,7 +18,7 @@ copies of `H^0(X)`.  Rather than let the index type vary with the degree, which
 would make the connecting map change shape, the junk is cut out by a subgroup:
 
 ```text
-lhDomain X r n  =  { c : ∀ i : Fin r, H^{n-2i}(X)  //  c i = 0 whenever 2i > n }.
+lhDomainOf K X r n  =  { c : ∀ i : Fin r, H^{n-2i}(X)  //  c i = 0 whenever 2i > n }.
 ```
 
 Everything then acts componentwise.  The connecting map lands in the subgroup for
@@ -49,27 +49,15 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X U V W : TopCat.{0}}
+section Domain
 
-/-! ## 1. The two Mayer–Vietoris facts -/
-
-/-- **The two facts the Leray–Hirsch ladder uses beyond the sequence itself.** -/
-structure MVFacts (mv : MVSequence X U V W) : Prop where
-  /-- The connecting map is linear over classes pulled back from the ambient space.
-  This is the ladder's connecting-map rung. -/
-  delta_cup : ∀ (p q : ℕ) (a : Hmod2 W p) (b : Hmod2 X q),
-      mv.δ (p + q) (cup a (mv.resWU q (mv.resU q b)))
-        = cohCast (by omega) (cup (mv.δ p a) b)
-  /-- Exactness at the left end, `0 → H^0(X) → H^0(U) ⊕ H^0(V)`. -/
-  exactZero : ∀ x : Hmod2 X 0, mv.resU 0 x = 0 → mv.resV 0 x = 0 → x = 0
-
-/-! ## 2. The degree-`n` term of the column -/
+variable (K : Type) [CommRing K] (X : TopCat.{0})
 
 /-- The degree-`n` term of the shifted sum: families indexed by `Fin r` with the
 `i`-th entry in `H^{n-2i}`, cut down by the vanishing that removes the summands
 truncated subtraction would otherwise invent. -/
-def lhDomain (X : TopCat.{0}) (r n : ℕ) :
-    AddSubgroup ((i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) where
+def lhDomainOf (r n : ℕ) :
+    AddSubgroup ((i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) where
   carrier := {c | ∀ i : Fin r, n < 2 * (i : ℕ) → c i = 0}
   add_mem' {a b} ha hb := by
     intro i hi
@@ -83,24 +71,51 @@ def lhDomain (X : TopCat.{0}) (r n : ℕ) :
     show -a i = 0
     rw [ha i hi, neg_zero]
 
-@[simp] theorem lhDomain_coe_apply {r n : ℕ} (c : lhDomain X r n) (i : Fin r) :
-    (c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i
-      = (c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i := rfl
+/-- The mod-2 spelling of the column, kept reducible so that the 28 files naming
+`lhDomain` — eleven of them outside this directory — are byte-unchanged.  `X` is
+the section variable, deliberately: an explicit binder of the same name would
+shadow it, and shadowing a `variable` is not a bet worth taking on a cold clone. -/
+abbrev lhDomain (r n : ℕ) :
+    AddSubgroup ((i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) :=
+  lhDomainOf (ZMod 2) X r n
 
-theorem lhDomain_vanish {r n : ℕ} (c : lhDomain X r n) (i : Fin r) (hi : n < 2 * (i : ℕ)) :
-    (c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i = 0 :=
+end Domain
+
+variable {K : Type} [CommRing K] {X U V W : TopCat.{0}}
+
+/-! ## 1. The two Mayer–Vietoris facts -/
+
+/-- **The two facts the Leray–Hirsch ladder uses beyond the sequence itself.**
+The coefficient is implicit: `mv` determines it. -/
+structure MVFacts (mv : MVSequenceOf K X U V W) : Prop where
+  /-- The connecting map is linear over classes pulled back from the ambient space.
+  This is the ladder's connecting-map rung. -/
+  delta_cup : ∀ (p q : ℕ) (a : Hmod K W p) (b : Hmod K X q),
+      mv.δ (p + q) (cup a (mv.resWU q (mv.resU q b)))
+        = cohCast (by omega) (cup (mv.δ p a) b)
+  /-- Exactness at the left end, `0 → H^0(X) → H^0(U) ⊕ H^0(V)`. -/
+  exactZero : ∀ x : Hmod K X 0, mv.resU 0 x = 0 → mv.resV 0 x = 0 → x = 0
+
+/-! ## 2. The degree-`n` term of the column -/
+
+@[simp] theorem lhDomain_coe_apply {r n : ℕ} (c : lhDomainOf K X r n) (i : Fin r) :
+    (c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i
+      = (c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i := rfl
+
+theorem lhDomain_vanish {r n : ℕ} (c : lhDomainOf K X r n) (i : Fin r) (hi : n < 2 * (i : ℕ)) :
+    (c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i = 0 :=
   c.2 i hi
 
-theorem lhDomain_ext {r n : ℕ} {c d : lhDomain X r n}
-    (h : ∀ i : Fin r, (c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i
-      = (d : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i) : c = d :=
+theorem lhDomain_ext {r n : ℕ} {c d : lhDomainOf K X r n}
+    (h : ∀ i : Fin r, (c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i
+      = (d : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i) : c = d :=
   Subtype.ext (funext h)
 
 /-! ## 3. The five maps, componentwise -/
 
 /-- Restriction to `U`, on the column. -/
-def colResU (mv : MVSequence X U V W) (r n : ℕ) : lhDomain X r n →+ lhDomain U r n where
-  toFun c := ⟨fun i => mv.resU _ ((c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i), by
+def colResU (mv : MVSequenceOf K X U V W) (r n : ℕ) : lhDomainOf K X r n →+ lhDomainOf K U r n where
+  toFun c := ⟨fun i => mv.resU _ ((c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i), by
     intro i hi
     dsimp only
     rw [lhDomain_vanish c i hi, map_zero]⟩
@@ -108,8 +123,8 @@ def colResU (mv : MVSequence X U V W) (r n : ℕ) : lhDomain X r n →+ lhDomain
   map_add' a b := lhDomain_ext fun i => by dsimp only; exact map_add _ _ _
 
 /-- Restriction to `V`, on the column. -/
-def colResV (mv : MVSequence X U V W) (r n : ℕ) : lhDomain X r n →+ lhDomain V r n where
-  toFun c := ⟨fun i => mv.resV _ ((c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i), by
+def colResV (mv : MVSequenceOf K X U V W) (r n : ℕ) : lhDomainOf K X r n →+ lhDomainOf K V r n where
+  toFun c := ⟨fun i => mv.resV _ ((c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i), by
     intro i hi
     dsimp only
     rw [lhDomain_vanish c i hi, map_zero]⟩
@@ -117,8 +132,8 @@ def colResV (mv : MVSequence X U V W) (r n : ℕ) : lhDomain X r n →+ lhDomain
   map_add' a b := lhDomain_ext fun i => by dsimp only; exact map_add _ _ _
 
 /-- Restriction `U → U ∩ V`, on the column. -/
-def colResWU (mv : MVSequence X U V W) (r n : ℕ) : lhDomain U r n →+ lhDomain W r n where
-  toFun c := ⟨fun i => mv.resWU _ ((c : (i : Fin r) → Hmod2 U (n - 2 * (i : ℕ))) i), by
+def colResWU (mv : MVSequenceOf K X U V W) (r n : ℕ) : lhDomainOf K U r n →+ lhDomainOf K W r n where
+  toFun c := ⟨fun i => mv.resWU _ ((c : (i : Fin r) → Hmod K U (n - 2 * (i : ℕ))) i), by
     intro i hi
     dsimp only
     rw [lhDomain_vanish c i hi, map_zero]⟩
@@ -126,8 +141,8 @@ def colResWU (mv : MVSequence X U V W) (r n : ℕ) : lhDomain U r n →+ lhDomai
   map_add' a b := lhDomain_ext fun i => by dsimp only; exact map_add _ _ _
 
 /-- Restriction `V → U ∩ V`, on the column. -/
-def colResWV (mv : MVSequence X U V W) (r n : ℕ) : lhDomain V r n →+ lhDomain W r n where
-  toFun c := ⟨fun i => mv.resWV _ ((c : (i : Fin r) → Hmod2 V (n - 2 * (i : ℕ))) i), by
+def colResWV (mv : MVSequenceOf K X U V W) (r n : ℕ) : lhDomainOf K V r n →+ lhDomainOf K W r n where
+  toFun c := ⟨fun i => mv.resWV _ ((c : (i : Fin r) → Hmod K V (n - 2 * (i : ℕ))) i), by
     intro i hi
     dsimp only
     rw [lhDomain_vanish c i hi, map_zero]⟩
@@ -138,11 +153,11 @@ def colResWV (mv : MVSequence X U V W) (r n : ℕ) : lhDomain V r n →+ lhDomai
 where `2i > n` the source entry already vanishes, so both branches agree, and the
 branch is there only to supply the degree identity `n - 2i + 1 = n + 1 - 2i`,
 which holds precisely when `2i ≤ n`. -/
-def colDelta (mv : MVSequence X U V W) (r n : ℕ) :
-    lhDomain W r n →+ lhDomain X r (n + 1) where
+def colDelta (mv : MVSequenceOf K X U V W) (r n : ℕ) :
+    lhDomainOf K W r n →+ lhDomainOf K X r (n + 1) where
   toFun c := ⟨fun i =>
       if h : 2 * (i : ℕ) ≤ n then
-        cohCast (by omega) (mv.δ _ ((c : (i : Fin r) → Hmod2 W (n - 2 * (i : ℕ))) i))
+        cohCast (by omega) (mv.δ _ ((c : (i : Fin r) → Hmod K W (n - 2 * (i : ℕ))) i))
       else 0, by
     intro i hi
     dsimp only
@@ -158,25 +173,25 @@ def colDelta (mv : MVSequence X U V W) (r n : ℕ) :
     · rw [dif_pos h, dif_pos h, dif_pos h, map_add, cohCast_add]
     · rw [dif_neg h, dif_neg h, dif_neg h, add_zero]
 
-@[simp] theorem colResU_apply (mv : MVSequence X U V W) (r n : ℕ) (c : lhDomain X r n)
+@[simp] theorem colResU_apply (mv : MVSequenceOf K X U V W) (r n : ℕ) (c : lhDomainOf K X r n)
     (i : Fin r) :
-    ((colResU mv r n c : (i : Fin r) → Hmod2 U (n - 2 * (i : ℕ))) i)
-      = mv.resU _ ((c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i) := rfl
+    ((colResU mv r n c : (i : Fin r) → Hmod K U (n - 2 * (i : ℕ))) i)
+      = mv.resU _ ((c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i) := rfl
 
-@[simp] theorem colResV_apply (mv : MVSequence X U V W) (r n : ℕ) (c : lhDomain X r n)
+@[simp] theorem colResV_apply (mv : MVSequenceOf K X U V W) (r n : ℕ) (c : lhDomainOf K X r n)
     (i : Fin r) :
-    ((colResV mv r n c : (i : Fin r) → Hmod2 V (n - 2 * (i : ℕ))) i)
-      = mv.resV _ ((c : (i : Fin r) → Hmod2 X (n - 2 * (i : ℕ))) i) := rfl
+    ((colResV mv r n c : (i : Fin r) → Hmod K V (n - 2 * (i : ℕ))) i)
+      = mv.resV _ ((c : (i : Fin r) → Hmod K X (n - 2 * (i : ℕ))) i) := rfl
 
-@[simp] theorem colResWU_apply (mv : MVSequence X U V W) (r n : ℕ) (c : lhDomain U r n)
+@[simp] theorem colResWU_apply (mv : MVSequenceOf K X U V W) (r n : ℕ) (c : lhDomainOf K U r n)
     (i : Fin r) :
-    ((colResWU mv r n c : (i : Fin r) → Hmod2 W (n - 2 * (i : ℕ))) i)
-      = mv.resWU _ ((c : (i : Fin r) → Hmod2 U (n - 2 * (i : ℕ))) i) := rfl
+    ((colResWU mv r n c : (i : Fin r) → Hmod K W (n - 2 * (i : ℕ))) i)
+      = mv.resWU _ ((c : (i : Fin r) → Hmod K U (n - 2 * (i : ℕ))) i) := rfl
 
-@[simp] theorem colResWV_apply (mv : MVSequence X U V W) (r n : ℕ) (c : lhDomain V r n)
+@[simp] theorem colResWV_apply (mv : MVSequenceOf K X U V W) (r n : ℕ) (c : lhDomainOf K V r n)
     (i : Fin r) :
-    ((colResWV mv r n c : (i : Fin r) → Hmod2 W (n - 2 * (i : ℕ))) i)
-      = mv.resWV _ ((c : (i : Fin r) → Hmod2 V (n - 2 * (i : ℕ))) i) := rfl
+    ((colResWV mv r n c : (i : Fin r) → Hmod K W (n - 2 * (i : ℕ))) i)
+      = mv.resWV _ ((c : (i : Fin r) → Hmod K V (n - 2 * (i : ℕ))) i) := rfl
 
 end
 

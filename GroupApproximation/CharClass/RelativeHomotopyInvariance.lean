@@ -109,6 +109,73 @@ theorem exact_relToAbs_absToSub (Z : TopCat.{0}) (S : Set Z) (n : ℕ) :
   exact_of_comp_of_mem_range _ _ (relToAbs_comp_absToSub (ZMod 2) Z S (n + 1))
     (fun y hy => relLES_exact_abs (ZMod 2) Z S (n + 1) y hy)
 
+/-! ## 2b. The same, over any coefficient ring
+
+Additive twins of §0-§2.  Every input already carries `(R : Type) [CommRing R]`
+— `absToSub`, `relDelta`, `relToAbs`, `absToSub_comp_relDelta`,
+`relDelta_comp_relToAbs`, `relToAbs_comp_absToSub` and the three `relLES_exact_*`
+— so these are substitutions and need no field.
+
+The coefficient is **implicit** in the three module-level bridges, because the
+`ModuleCat` arguments determine it, and **explicit** in the rest, whose arguments
+are spaces, subsets and degrees (§0c). -/
+
+theorem comp_apply_eq_zeroOf {K : Type} [CommRing K] {M N P : ModuleCat.{0} K}
+    {u : M ⟶ N} {v : N ⟶ P} (h : u ≫ v = 0) (x : M) : v.hom (u.hom x) = 0 := by
+  rw [← ModuleCat.comp_apply, h]
+  rfl
+
+theorem exact_of_comp_of_mem_rangeOf {K : Type} [CommRing K] {M N P : ModuleCat.{0} K}
+    (u : M ⟶ N) (v : N ⟶ P) (hcomp : u ≫ v = 0)
+    (hker : ∀ y, v.hom y = 0 → ∃ x, u.hom x = y) :
+    Function.Exact u.hom v.hom := by
+  intro y
+  constructor
+  · intro h
+    obtain ⟨x, hx⟩ := hker y h
+    exact ⟨x, hx⟩
+  · rintro ⟨x, rfl⟩
+    exact comp_apply_eq_zeroOf hcomp x
+
+theorem linearMap_comp_of_squareOf {K : Type} [CommRing K] {M₁ M₂ N₁ N₂ : ModuleCat.{0} K}
+    {a : M₁ ⟶ M₂} {b : M₂ ⟶ N₂} {c : M₁ ⟶ N₁} {d : N₁ ⟶ N₂}
+    (h : a ≫ b = c ≫ d) : d.hom.comp c.hom = b.hom.comp a.hom := by
+  apply LinearMap.ext
+  intro x
+  rw [LinearMap.comp_apply, LinearMap.comp_apply, ← ModuleCat.comp_apply,
+    ← ModuleCat.comp_apply, h]
+
+/-- The pullback on the cohomology of the ambient spaces, over `K`. -/
+abbrev absPullOf (K : Type) [CommRing K] (f : X ⟶ Y) (m : ℕ) :
+    (cochainCx K Y).homology m ⟶ (cochainCx K X).homology m :=
+  HomologicalComplex.homologyMap
+    ((singularCochainComplexFunctor K (ModuleCat.of K K)).map f.op) m
+
+/-- The pullback on the cohomology of the subspaces, over `K`. -/
+abbrev subPullOf (K : Type) [CommRing K] (f : X ⟶ Y) {A : Set X} {B : Set Y}
+    (hf : ∀ x ∈ A, (ConcreteCategory.hom f) x ∈ B) (m : ℕ) :
+    (cochainCx K (TopCat.of B)).homology m ⟶ (cochainCx K (TopCat.of A)).homology m :=
+  HomologicalComplex.homologyMap
+    ((singularCochainComplexFunctor K (ModuleCat.of K K)).map (restrictPairMap f hf).op) m
+
+/-- Exactness at `H^n(A; K)`: the restriction, then the connecting map. -/
+theorem exact_absToSub_relDeltaOf (K : Type) [CommRing K] (Z : TopCat.{0}) (S : Set Z) (n : ℕ) :
+    Function.Exact (absToSub K S n).hom (relDelta K Z S n).hom :=
+  exact_of_comp_of_mem_rangeOf _ _ (absToSub_comp_relDelta K Z S n)
+    (fun y hy => relLES_exact_sub K Z S n y hy)
+
+/-- Exactness at `H^{n+1}(Z, S; K)`: the connecting map, then `j^*`. -/
+theorem exact_relDelta_relToAbsOf (K : Type) [CommRing K] (Z : TopCat.{0}) (S : Set Z) (n : ℕ) :
+    Function.Exact (relDelta K Z S n).hom (relToAbs K Z S (n + 1)).hom :=
+  exact_of_comp_of_mem_rangeOf _ _ (relDelta_comp_relToAbs K Z S n)
+    (fun y hy => relLES_exact_rel K Z S n y hy)
+
+/-- Exactness at `H^{n+1}(Z; K)`: `j^*`, then the restriction. -/
+theorem exact_relToAbs_absToSubOf (K : Type) [CommRing K] (Z : TopCat.{0}) (S : Set Z) (n : ℕ) :
+    Function.Exact (relToAbs K Z S (n + 1)).hom (absToSub K S (n + 1)).hom :=
+  exact_of_comp_of_mem_rangeOf _ _ (relToAbs_comp_absToSub K Z S (n + 1))
+    (fun y hy => relLES_exact_abs K Z S (n + 1) y hy)
+
 /-! ## 3. The five lemma over the sequence of the pair -/
 
 /-- **A map of pairs bijective on both absolute theories is bijective on the

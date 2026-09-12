@@ -40,9 +40,97 @@ statement about `Polynomial A` and is proved here once and for all.
 
 The relation is written with `+` signs, `p = X^r + γ₁ X^{r-1} + ⋯ + γ_r`, so
 that in the split case `p = ∏ (X + y_k)` and `γ_k` is the `k`-th elementary
-symmetric function of the roots **with no sign**.  Over `ZMod 2` — the only
-coefficient ring this project ever uses — signs are invisible anyway, and this
-convention is the one that makes `γ(L) = X + e(L)` for a line bundle.
+symmetric function of the roots **with no sign**; this is also the convention that
+makes `γ(L) = X + e(L)` for a line bundle.
+
+**1. The choice is free, and it used not to look free.**  This file's docstring
+used to say that over `ZMod 2` signs are invisible anyway.  That was **true**, and
+it was true because of two choices that have both since changed: the tree took the
+class of the projective bundle to be `e(taut)`, whose roots are `y = −a` for the
+honest Chern roots `a`, and it worked only over `F₂`, where nothing distinguishes
+`y` from `a`.  Neither is forced.  Take instead `ξ = e(O(1))`, the Euler class of
+the **dual** of the tautological line, which is the class the classical statement
+uses.  Then `c_r(π^*E ⊗ O(1)) = ∏ (ξ + a_i) = 0` over **any** ring, with the honest
+Chern roots and `+` signs: on the locus where the tautological line is the `i`-th
+summand `O(1) = L_i⁻¹`, so the factor is `−a_i + a_i` and dies by
+`neg_add_cancel`, where the mod-2 proof killed `a_i + a_i` by `add_self`.
+
+**So the `y_l` of `∏ (X + y_l)` above ARE the classical Chern roots, and
+`γ_k = e_k(y) = c_k` with no sign at all.**  That is the lead's ruling of
+2026-09-10 15:50, `notes/LIX_STRONGER_PROGRAM_2026-09-10.md` §1.5, "Ruling on the
+roots"; it is stated there and pointed at here, and it is not to be restated
+anywhere else.  The morning's formulation — that the roots are the negatives of the
+usual ones — is **retired**: it described the old relation, the one written with
+`e(taut)`.  The deleted `ZMod 2` sentence was likewise not wrong, it was about a
+tree that made two other choices.
+
+**2. This file fixes the convention, and nothing else may.**  The splitting
+principle, the Chern layer and the even side all point at this paragraph instead of
+restating it.  Restating it is how the next lane to touch one of the three restates
+it differently, and the mismatch then surfaces as a sign in a Wu relation, which is
+the hardest place to find one.
+
+**3. Moving between the two conventions is `φ : h ↦ −h`, and that is a licence,
+not a curiosity** (`sp-design`, third pass).  The two conventions differ by exactly
+the ring automorphism `φ` of `H^*(Y)`, which exists because `H^*(∏ ℂP^{d_i})` is
+generated in degree two: `φ(c_j) = e_j(−a) = (−1)^j e_j(a)`.  That `φ` commutes
+with the total reduced power `P` rests on exactly **two sign identities in `F_p`**:
+
+```text
+(-1)^p = -1        and        (-1)^(i * (p-1)) = 1
+```
+
+Each holds at **every** prime, and this is the checkable form of the claim rather
+than an atmospheric one.
+
+**There are exactly two because there are two levels, and each has its own sign to
+clear.**  `φ` acts on a weight-`w` homogeneous element by `(−1)^w`, one sign per
+generator.  Then:
+
+* `(−1)^p = −1` is what makes `φ` commute with the **total** `P` on the degree-two
+  generators: `P(φh) = −h − h^p` against `φ(Ph) = −h + (−h)^p`, and equality is
+  exactly that identity.  It extends to everything else because `P` and `φ` are
+  both ring maps.
+* `(−1)^{i(p−1)} = 1` is what makes `φ` commute with each **graded piece** `P^i`:
+  on weight `w`, `P^i(φx) = (−1)^w P^i x` while `φ(P^i x) = (−1)^{w + i(p−1)} P^i x`.
+  This is the same computation that makes every weight component of `E_j` scale by
+  the same `(−1)^j`, so it is the identity the **Wu covariance actually consumes**.
+
+Do not delete the second as redundant.  A reader who meets two identities with one
+job between them will suspect one is spare, and the one they will drop is the
+second — which is the one the even side uses.
+
+Each identity holds for **two different reasons**, and neither reason is an
+instance of the other:
+
+* at odd `p`, because the relevant exponent is even — `p` is odd in the first
+  identity, `p − 1` is even in the second — so every weight component of `E_j`
+  scales by the same `(−1)^j` and the Wu relations, the Frobenius step and the
+  conclusion are all covariant, so anything proved in one convention transfers to
+  the other term by term;
+* at `p = 2`, because `−1 = 1` in `F₂`.  Equivalently and more usefully, `φ` is
+  there the **identity**, so the `F₂` layer does not see the change at all and
+  stays green without re-proof — which is why the switch is safe to make now rather
+  than after the `F₂` surface is retired.
+
+At `p = 2` the odd-`p` reason does **not** apply, since `p − 1` is odd there; `φ`
+commutes with `P` for the other reason.  A reader who keeps only the uniform
+identity, without both reasons, has a sentence one step away from "signs are
+invisible over `ZMod 2`" — the sentence this paragraph exists to have deleted.
+
+*Provenance, because it is the argument for recording both halves, and because the
+two halves were found by different **methods** rather than merely by different
+people — which tells the next reader which method to reach for at the next sign.*
+`sp-coeff` reached the identity **symbolically**, did not see that it needs two
+reasons, and had one of the two wrong: the check was performed in `ℤ`, where the
+two sides genuinely disagree at `p = 2`, rather than in `F_p`, where the classes
+live and where they agree.  `sp-design` reached the two reasons from the **failure
+of the odd-`p` justification** at `p = 2` — the argument fails there, not the
+conclusion — and did not see that the identities are uniform.  Neither had it
+whole, and the useful output was the disagreement rather than either reading.
+
+A check performed in the wrong setting reads exactly like a check.  That one erred
+toward extra caution, which is the kind nobody pushes back on.
 -/
 
 set_option autoImplicit false

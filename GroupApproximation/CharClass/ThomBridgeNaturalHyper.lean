@@ -35,7 +35,7 @@ namespace GroupApproximation.CharClass
 
 noncomputable section
 
-variable {X Y : TopCat.{0}}
+variable (K : Type) [CommRing K] {X Y : TopCat.{0}}
 
 /-- **Shrinking the subspace commutes with pulling back.**  Both routes are
 `relPullback` along `f`; the identity composes away on either side. -/
@@ -47,12 +47,12 @@ theorem relPullback_id_comm (f : Y ⟶ X) {A B : Set X} {A' B' : Set Y}
     (hfid : ∀ y ∈ A', (ConcreteCategory.hom (f ≫ 𝟙 X)) y ∈ B)
     (hidf : ∀ y ∈ A', (ConcreteCategory.hom (𝟙 Y ≫ f)) y ∈ B)
     (n : ℕ) :
-    relPullback (ZMod 2) (𝟙 X) hAB n ≫ relPullback (ZMod 2) f hA n
-      = relPullback (ZMod 2) f hB n ≫ relPullback (ZMod 2) (𝟙 Y) hA'B' n := by
-  have hL := relPullback_comp (ZMod 2) f (𝟙 X) hA hAB hfid n
-  have hR := relPullback_comp (ZMod 2) (𝟙 Y) f hA'B' hB hidf n
+    relPullback K (𝟙 X) hAB n ≫ relPullback K f hA n
+      = relPullback K f hB n ≫ relPullback K (𝟙 Y) hA'B' n := by
+  have hL := relPullback_comp K f (𝟙 X) hA hAB hfid n
+  have hR := relPullback_comp K (𝟙 Y) f hA'B' hB hidf n
   rw [← hL, ← hR]
-  exact relPullback_eq_of_eq (ZMod 2)
+  exact relPullback_eq_of_eq K
     ((Category.comp_id f).trans (Category.id_comp f).symm) hfid n
 
 /-! Audited on every build: `#audit_axioms` prints the closure **and fails the

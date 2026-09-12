@@ -31,7 +31,7 @@ namespace GroupApproximation.CharClass
 
 noncomputable section
 
-variable {W X Y Z : TopCat.{0}}
+variable (K : Type) [CommRing K] {W X Y Z : TopCat.{0}}
 
 /-- **A commuting square of spaces gives a commuting square of relative
 pullbacks.**  The six map-of-pairs conditions are arguments, so the statement
@@ -46,11 +46,11 @@ theorem relPullback_comm_of_map_eq (a : Y ⟶ X) (b : W ⟶ Y) (c : Z ⟶ X) (d 
     (hba : ∀ x ∈ D, (ConcreteCategory.hom (b ≫ a)) x ∈ A)
     (hdc : ∀ x ∈ D, (ConcreteCategory.hom (d ≫ c)) x ∈ A)
     (n : ℕ) :
-    relPullback (ZMod 2) a ha n ≫ relPullback (ZMod 2) b hb n
-      = relPullback (ZMod 2) c hc n ≫ relPullback (ZMod 2) d hd n := by
-  rw [← relPullback_comp (ZMod 2) b a hb ha hba n,
-    ← relPullback_comp (ZMod 2) d c hd hc hdc n]
-  exact relPullback_eq_of_eq (ZMod 2) hcomm hba n
+    relPullback K a ha n ≫ relPullback K b hb n
+      = relPullback K c hc n ≫ relPullback K d hd n := by
+  rw [← relPullback_comp K b a hb ha hba n,
+    ← relPullback_comp K d c hd hc hdc n]
+  exact relPullback_eq_of_eq K hcomm hba n
 
 /-! Audited on every build: `#audit_axioms` prints the closure **and fails the
 build** if it leaves the classical allowlist, which `#print axioms` does not. -/

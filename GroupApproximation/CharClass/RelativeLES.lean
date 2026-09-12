@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.RelativeCochains
+import GroupApproximation.CharClass.CoeffCohomology
 
 /-!
 # The long exact sequence of a pair
@@ -44,6 +45,10 @@ def relToAbs (R : Type) [CommRing R] (X : TopCat.{0}) (A : Set X) (n : ℕ) :
 def absToSub (R : Type) [CommRing R] {X : TopCat.{0}} (A : Set X) (n : ℕ) :
     (cochainCx R X).homology n ⟶ (cochainCx R (TopCat.of A)).homology n :=
   HomologicalComplex.homologyMap (pairRestriction R A) n
+
+/-- `i^*` is the cohomology pullback of the inclusion, over any coefficient ring. -/
+theorem absToSub_eq_cohPullbackOf (K : Type) [CommRing K] (A : Set X) (n : ℕ) :
+    absToSub K A n = cohPullbackK K (sInclusion A) n := rfl
 
 /-- `i^*` is the cohomology pullback of the inclusion of the subspace. -/
 theorem absToSub_eq_cohPullback (A : Set X) (n : ℕ) :

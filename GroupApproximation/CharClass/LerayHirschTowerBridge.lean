@@ -10,7 +10,7 @@ growing.  Same content, opposite order, related by `i ↦ k - i`.
 
 Neither convention is free.  Theirs is forced by cast-freeness — degrees written as
 `m + 2 * j` with the power on the right are the only arrangement in which the
-successor step is definitional — and `lhTerm`'s is forced by `lhDomain` being
+successor step is definitional — and `lhTerm`'s is forced by `lhDomainOf K` being
 published.  So a reindex has to exist, and it belongs on this side, where the
 repackaging lives; that keeps truncated subtraction out of the producer's file
 entirely.
@@ -34,13 +34,13 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X P : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P : TopCat.{0}}
 
 /-- **A tower summand is a column term at the reflected index.**  The coefficient of
 `ξ^(k-i)` in degree `m + 2k` carries degree `m + 2i`, which is what the column
 records at index `k - i`. -/
-theorem lhTerm_of_tower (π : P ⟶ X) (ξ : Hmod2 P 2) (m k i : ℕ) (hi : i ≤ k)
-    (a : Hmod2 X (m + 2 * i)) :
+theorem lhTerm_of_tower (π : P ⟶ X) (ξ : Hmod K P 2) (m k i : ℕ) (hi : i ≤ k)
+    (a : Hmod K X (m + 2 * i)) :
     lhTerm π ξ (m + 2 * k) (k - i)
         (cohCast (by omega : m + 2 * i = m + 2 * k - 2 * (k - i)) a)
       = cohCast (by omega : m + 2 * i + 2 * (k - i) = m + 2 * k)

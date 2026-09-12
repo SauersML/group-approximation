@@ -31,7 +31,7 @@ noncomputable section
 
 namespace LH
 
-variable {X P Q : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P Q : TopCat.{0}}
 
 /-- **`LerayHirschGraded` transports along an isomorphism of total spaces over one
 base.**  `e` identifies the total spaces, `hπ` says it lies over the base and `hξ`
@@ -39,7 +39,7 @@ that it carries the class to the class.  Both are equations rather than
 assumptions about `e`, so the statement holds of whatever supplies them. -/
 theorem lerayHirschGraded_of_iso (e : Q ≅ P)
     (π : P ⟶ X) (πQ : Q ⟶ X) (hπ : e.hom ≫ π = πQ)
-    (ξ : Hmod2 P 2) (ξQ : Hmod2 Q 2) (hξ : pull e.hom 2 ξ = ξQ)
+    (ξ : Hmod K P 2) (ξQ : Hmod K Q 2) (hξ : pull e.hom 2 ξ = ξQ)
     {r : ℕ} (L : LerayHirschGraded π ξ r) : LerayHirschGraded πQ ξQ r :=
   lerayHirschGraded_of_bijective πQ ξQ r fun n =>
     bijective_lhSum_of_iso πQ π (Iso.refl X) e

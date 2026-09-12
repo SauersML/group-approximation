@@ -36,7 +36,7 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X X' P P' : TopCat.{0}}
+variable {K : Type} [CommRing K] {X X' P P' : TopCat.{0}}
 
 /-- **The coefficients of a restriction are the restrictions of the coefficients.**
 
@@ -45,9 +45,9 @@ The base downstairs is arbitrary: for a contractible one every coefficient below
 the top sits in a positive degree and dies, which is how a top-coefficient
 argument survives restriction. -/
 theorem lhCoeff_natural_eq (f : X' ⟶ X) (g : P' ⟶ P) (π : P ⟶ X) (π' : P' ⟶ X')
-    (hsq : g ≫ π = π' ≫ f) (ξ : Hmod2 P 2) (ξ' : Hmod2 P' 2)
+    (hsq : g ≫ π = π' ≫ f) (ξ : Hmod K P 2) (ξ' : Hmod K P' 2)
     (hξ : pull g 2 ξ = ξ') {r : ℕ} (L : LerayHirschGraded π ξ r)
-    (L' : LerayHirschGraded π' ξ' r) (n : ℕ) (z : Hmod2 P n) :
+    (L' : LerayHirschGraded π' ξ' r) (n : ℕ) (z : Hmod K P n) :
     L'.lhCoeff n (pull g n z)
       = fun i : Fin (lhDomainCard r n) =>
           pull f (n - 2 * (i : ℕ)) (L.lhCoeff n z i) :=

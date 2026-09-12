@@ -18,6 +18,9 @@ restrictions to the intersection agree, and in a zero group they do.
 
 * `bijective_resPair` — **the pair of restrictions is bijective** in a degree
   where the intersection vanishes in that degree and the one below.
+
+Generic in the coefficient ring `K`, which the Mayer–Vietoris sequence determines; the
+proof is two lines of exactness and uses no property of `F₂`.
 -/
 
 set_option autoImplicit false
@@ -30,19 +33,19 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X U V W : TopCat.{0}}
+variable {K : Type} [CommRing K] {X U V W : TopCat.{0}}
 
 /-- **The pair of restrictions is bijective where the intersection is acyclic.**
 Both halves are one line of Mayer–Vietoris: a class killed by both restrictions
 comes from the intersection one degree down, and a pair is in the image as soon as
 its two restrictions to the intersection agree, which in a zero group is
 automatic. -/
-theorem bijective_resPair (mv : MVSequence X U V W) (n : ℕ)
-    (hWn : ∀ w : Hmod2 W n, w = 0) (hWn1 : ∀ w : Hmod2 W (n + 1), w = 0) :
+theorem bijective_resPair (mv : MVSequenceOf K X U V W) (n : ℕ)
+    (hWn : ∀ w : Hmod K W n, w = 0) (hWn1 : ∀ w : Hmod K W (n + 1), w = 0) :
     Function.Bijective
-      (fun z : Hmod2 X (n + 1) => (mv.resU (n + 1) z, mv.resV (n + 1) z)) := by
+      (fun z : Hmod K X (n + 1) => (mv.resU (n + 1) z, mv.resV (n + 1) z)) := by
   constructor
-  · have hzero : ∀ z : Hmod2 X (n + 1),
+  · have hzero : ∀ z : Hmod K X (n + 1),
         mv.resU (n + 1) z = 0 → mv.resV (n + 1) z = 0 → z = 0 := by
       intro z hU hV
       obtain ⟨w, hw⟩ := (mv.exact_X n z).mp ⟨hU, hV⟩

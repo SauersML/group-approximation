@@ -269,6 +269,36 @@ theorem isIso_excision (hUV : U ⊔ V = ⊤) (n : ℕ) :
   show IsIso (HomologicalComplex.homologyMap (excisionShortComplex U V hUV (ZMod 2)).g n)
   exact isIso_of_mono_of_epi _
 
+/-- **Excision over any coefficient field.**  The binder is `[Field K]`, not
+`[CommRing K]`, and that is not a porting artefact: this route to excision goes
+through the acyclicity of the small-annihilator complex, which is the dual of a
+quasi-isomorphism being a quasi-isomorphism, which holds because the coefficient
+is injective as a module over itself.  Over a general commutative ring the
+dualizing functor is not exact and the statement fails. -/
+theorem isIso_excisionOf (K : Type) [Field K] (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    IsIso (relPullback K (sInclusion (V : Set X)) (excision_mapsTo U V) n) := by
+  have hS := excisionShortExact U V hUV K
+  have h₁ : IsZero (((excisionShortComplex U V hUV K).X₁).homology n) :=
+    isZero_smallAnnComplexOf_homology K X (twoSetCover U V hUV) n
+  have h₂ : IsZero (((excisionShortComplex U V hUV K).X₁).homology (n + 1)) :=
+    isZero_smallAnnComplexOf_homology K X (twoSetCover U V hUV) (n + 1)
+  have hmono : Mono (HomologicalComplex.homologyMap
+      (excisionShortComplex U V hUV K).g n) :=
+    (hS.homology_exact₂ n).mono_g (h₁.eq_of_src _ _)
+  have hepi : Epi (HomologicalComplex.homologyMap
+      (excisionShortComplex U V hUV K).g n) :=
+    (hS.homology_exact₃ n (n + 1) rfl).epi_f (h₂.eq_of_tgt _ _)
+  show IsIso (HomologicalComplex.homologyMap (excisionShortComplex U V hUV K).g n)
+  exact isIso_of_mono_of_epi _
+
+/-- The excision isomorphism `H^n(X, U; K) ≅ H^n(V, U ∩ V; K)`, over a field. -/
+def excisionIsoOf (K : Type) [Field K] (hUV : U ⊔ V = ⊤) (n : ℕ) :
+    relCohomology K X (U : Set X) n ≅
+      relCohomology K (TopCat.of (V : Set X))
+        (excisedSub (U : Set X) (V : Set X)) n :=
+  haveI := isIso_excisionOf U V K hUV n
+  asIso (relPullback K (sInclusion (V : Set X)) (excision_mapsTo U V) n)
+
 /-- The excision isomorphism `H^n(X, U; F₂) ≅ H^n(V, U ∩ V; F₂)`. -/
 def excisionIso (hUV : U ⊔ V = ⊤) (n : ℕ) :
     relCohomology (ZMod 2) X (U : Set X) n ≅

@@ -37,7 +37,7 @@ open CategoryTheory
 
 noncomputable section
 
-variable {X U V W P UP VP WP : TopCat.{0}}
+variable {K : Type} [CommRing K] {X U V W P UP VP WP : TopCat.{0}}
 
 /-! ## 0. Products -/
 
@@ -70,31 +70,42 @@ theorem bijective_prodMap {M M' N N' : Type*} [AddCommGroup M] [AddCommGroup M']
       _ = (z.1, z.2) := by rw [ha, hb]
       _ = z := rfl
 
+/-- **The ladder's middle map, written so that its application is a difference.**
+`AddMonoidHom.coprod f g` is `(a, b) ↦ f a + g b`; the Mayer–Vietoris middle map is
+the *difference* of the two restrictions, so the ladder takes `coprod f (-g)`, and
+this is the equation that lets a square stated with `-` be applied to it.  Over
+`F₂` the tree wrote `coprod f g` and paid for it with `add_self`. -/
+theorem coprod_neg_apply {A B C : Type*} [AddCommGroup A] [AddCommGroup B] [AddCommGroup C]
+    (f : A →+ C) (g : B →+ C) (x : A × B) :
+    (AddMonoidHom.coprod f (-g)) x = f x.1 - g x.2 := by
+  show f x.1 + (-g) x.2 = f x.1 - g x.2
+  rw [AddMonoidHom.neg_apply, ← sub_eq_add_neg]
+
 /-! ## 1. The squares in the shape the ladder takes -/
 
-variable {mvX : MVSequence X U V W} {mvP : MVSequence P UP VP WP}
+variable {mvX : MVSequenceOf K X U V W} {mvP : MVSequenceOf K P UP VP WP}
 
 /-- The class on the intersection is the double restriction, and also the
 pullback along the composed inclusion.  Both spellings are needed: the ladder's
 hypotheses use the first, `lhSum_delta` uses the second. -/
-theorem xiW_eq (pP : MVPulls mvP) (ξ : Hmod2 P 2) :
+theorem xiW_eq (pP : MVPulls mvP) (ξ : Hmod K P 2) :
     mvP.resWU 2 (mvP.resU 2 ξ) = pull (pP.jU ≫ pP.iU) 2 ξ := by
   rw [pP.resWU_eq, pP.resU_eq, pull_comp]
 
 /-- **The two restriction squares to the intersection, combined.**  This is the
 ladder's outer square, at both ends. -/
 theorem lhSum_pair (pX : MVPulls mvX) (pP : MVPulls mvP) (L : MVLadder pX pP)
-    (ξ : Hmod2 P 2) (r n : ℕ) (a : lhDomain U r n) (b : lhDomain V r n) :
+    (ξ : Hmod K P 2) (r n : ℕ) (a : lhDomainOf K U r n) (b : lhDomainOf K V r n) :
     lhSum L.πW (mvP.resWU 2 (mvP.resU 2 ξ)) r n
-        (colResWU mvX r n a + colResWV mvX r n b)
+        (colResWU mvX r n a - colResWV mvX r n b)
       = mvP.resWU n (lhSum L.πU (mvP.resU 2 ξ) r n a)
-        + mvP.resWV n (lhSum L.πV (mvP.resV 2 ξ) r n b) := by
-  rw [map_add, lhSum_resWU pX pP L, lhSum_resWV pX pP L, ← resW_compat]
+        - mvP.resWV n (lhSum L.πV (mvP.resV 2 ξ) r n b) := by
+  rw [map_sub, lhSum_resWU pX pP L, lhSum_resWV pX pP L, ← resW_compat]
 
 /-- **The connecting square**, with the class on the intersection written as the
 double restriction. -/
 theorem lhSum_delta' (pX : MVPulls mvX) (pP : MVPulls mvP) (L : MVLadder pX pP)
-    (hP : MVFacts mvP) (ξ : Hmod2 P 2) (r n : ℕ) (c : lhDomain W r n) :
+    (hP : MVFacts mvP) (ξ : Hmod K P 2) (r n : ℕ) (c : lhDomainOf K W r n) :
     lhSum L.π ξ r (n + 1) (colDelta mvX r n c)
       = mvP.δ n (lhSum L.πW (mvP.resWU 2 (mvP.resU 2 ξ)) r n c) := by
   rw [xiW_eq pP, lhSum_delta pX pP L hP]
@@ -104,13 +115,13 @@ theorem lhSum_delta' (pX : MVPulls mvX) (pP : MVPulls mvP) (L : MVLadder pX pP)
 /-- **The four lemma at the left end.**  In degree `0` both Mayer–Vietoris
 sequences begin, so the five lemma has no room; the argument is written out. -/
 theorem bijective_lhSum_zero (pX : MVPulls mvX) (pP : MVPulls mvP)
-    (L : MVLadder pX pP) (hX : MVFacts mvX) (hP : MVFacts mvP) (ξ : Hmod2 P 2)
+    (L : MVLadder pX pP) (hX : MVFacts mvX) (hP : MVFacts mvP) (ξ : Hmod K P 2)
     (r : ℕ)
     (hU : ∀ n : ℕ, Function.Bijective (lhSum L.πU (mvP.resU 2 ξ) r n))
     (hV : ∀ n : ℕ, Function.Bijective (lhSum L.πV (mvP.resV 2 ξ) r n))
     (hW : ∀ n : ℕ, Function.Bijective (lhSum L.πW (mvP.resWU 2 (mvP.resU 2 ξ)) r n)) :
     Function.Bijective (lhSum L.π ξ r 0) := by
-  have key : ∀ c : lhDomain X r 0, lhSum L.π ξ r 0 c = 0 → c = 0 := by
+  have key : ∀ c : lhDomainOf K X r 0, lhSum L.π ξ r 0 c = 0 → c = 0 := by
     intro c hc
     have h1 : colResU mvX r 0 c = 0 := by
       apply (hU 0).1
@@ -126,7 +137,7 @@ theorem bijective_lhSum_zero (pX : MVPulls mvX) (pP : MVPulls mvP)
     rw [lhDomain_zero_apply]
     have he : 0 - 2 * (i : ℕ) = 0 := Nat.zero_sub _
     have h0 : cohCast he
-        ((c : (j : Fin r) → Hmod2 X (0 - 2 * (j : ℕ))) i) = 0 :=
+        ((c : (j : Fin r) → Hmod K X (0 - 2 * (j : ℕ))) i) = 0 :=
       hX.exactZero _ (by rw [resU_cohCast, hu, cohCast_zero])
         (by rw [resV_cohCast, hv, cohCast_zero])
     exact (cohCast_eq_zero_iff _ _).mp h0
@@ -137,9 +148,10 @@ theorem bijective_lhSum_zero (pX : MVPulls mvX) (pP : MVPulls mvP)
   · intro b
     obtain ⟨a, ha⟩ := (hU 0).2 (mvP.resU 0 b)
     obtain ⟨a', ha'⟩ := (hV 0).2 (mvP.resV 0 b)
-    have hcompat : colResWU mvX r 0 a + colResWV mvX r 0 a' = 0 := by
+    have hcompat : colResWU mvX r 0 a = colResWV mvX r 0 a' := by
+      refine sub_eq_zero.mp ?_
       apply (hW 0).1
-      rw [map_zero, lhSum_pair pX pP L, ha, ha', ← resW_compat, add_self]
+      rw [map_zero, lhSum_pair pX pP L, ha, ha', ← resW_compat, sub_self]
     obtain ⟨c, hc1, hc2⟩ := (colExactSum mvX r 0 a a').mp hcompat
     refine ⟨c, ?_⟩
     have h1 : mvP.resU 0 (lhSum L.π ξ r 0 c) = mvP.resU 0 b := by
@@ -155,21 +167,22 @@ theorem bijective_lhSum_zero (pX : MVPulls mvX) (pP : MVPulls mvP)
 /-- **The Mayer–Vietoris step in positive degrees**, by the five lemma applied to
 the column and the sequence of the total space. -/
 theorem bijective_lhSum_succ (pX : MVPulls mvX) (pP : MVPulls mvP)
-    (L : MVLadder pX pP) (hX : MVFacts mvX) (hP : MVFacts mvP) (ξ : Hmod2 P 2)
+    (L : MVLadder pX pP) (hX : MVFacts mvX) (hP : MVFacts mvP) (ξ : Hmod K P 2)
     (r : ℕ)
     (hU : ∀ n : ℕ, Function.Bijective (lhSum L.πU (mvP.resU 2 ξ) r n))
     (hV : ∀ n : ℕ, Function.Bijective (lhSum L.πV (mvP.resV 2 ξ) r n))
     (hW : ∀ n : ℕ, Function.Bijective (lhSum L.πW (mvP.resWU 2 (mvP.resU 2 ξ)) r n))
     (m : ℕ) : Function.Bijective (lhSum L.π ξ r (m + 1)) := by
   refine bijective_of_ladder
-    (AddMonoidHom.coprod (colResWU mvX r m) (colResWV mvX r m))
+    (AddMonoidHom.coprod (colResWU mvX r m) (-colResWV mvX r m))
     (colDelta mvX r m)
     (AddMonoidHom.prod (colResU mvX r (m + 1)) (colResV mvX r (m + 1)))
-    (AddMonoidHom.coprod (colResWU mvX r (m + 1)) (colResWV mvX r (m + 1)))
-    (AddMonoidHom.coprod (mvP.resWU m) (mvP.resWV m))
-    (mvP.δ m)
-    (AddMonoidHom.prod (mvP.resU (m + 1)) (mvP.resV (m + 1)))
-    (AddMonoidHom.coprod (mvP.resWU (m + 1)) (mvP.resWV (m + 1)))
+    (AddMonoidHom.coprod (colResWU mvX r (m + 1)) (-colResWV mvX r (m + 1)))
+    (AddMonoidHom.coprod (mvP.resWU m).toAddMonoidHom (-(mvP.resWV m).toAddMonoidHom))
+    (mvP.δ m).toAddMonoidHom
+    (AddMonoidHom.prod (mvP.resU (m + 1)).toAddMonoidHom (mvP.resV (m + 1)).toAddMonoidHom)
+    (AddMonoidHom.coprod (mvP.resWU (m + 1)).toAddMonoidHom
+      (-(mvP.resWV (m + 1)).toAddMonoidHom))
     (AddMonoidHom.prodMap (lhSum L.πU (mvP.resU 2 ξ) r m)
       (lhSum L.πV (mvP.resV 2 ξ) r m))
     (lhSum L.πW (mvP.resWU 2 (mvP.resU 2 ξ)) r m)
@@ -179,6 +192,7 @@ theorem bijective_lhSum_succ (pX : MVPulls mvX) (pP : MVPulls mvP)
     (lhSum L.πW (mvP.resWU 2 (mvP.resU 2 ξ)) r (m + 1))
     ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_
   · intro a
+    rw [coprod_neg_apply, coprod_neg_apply]
     exact lhSum_pair pX pP L ξ r m a.1 a.2
   · intro a
     exact lhSum_delta' pX pP L hP ξ r m a
@@ -191,19 +205,27 @@ theorem bijective_lhSum_succ (pX : MVPulls mvX) (pP : MVPulls mvP)
         mvP.resV (m + 1) (lhSum L.π ξ r (m + 1) a))
     rw [h1, h2]
   · intro a
+    rw [coprod_neg_apply, coprod_neg_apply]
     exact lhSum_pair pX pP L ξ r (m + 1) a.1 a.2
   · intro x
     rw [colExactW mvX r m x]
     constructor
     · rintro ⟨a, b, hab⟩
-      exact ⟨(a, b), hab⟩
+      exact ⟨(a, -b), by rw [coprod_neg_apply]; simpa using hab⟩
     · rintro ⟨y, hy⟩
-      exact ⟨y.1, y.2, hy⟩
+      refine ⟨y.1, -y.2, ?_⟩
+      rw [coprod_neg_apply] at hy
+      simpa [sub_eq_add_neg] using hy
   · intro x
     rw [← colExactX mvX hX r m x]
     exact prod_eq_zero_iff _ _
   · intro x
-    have h := colExactSum mvX r (m + 1) x.1 x.2
+    have h : (AddMonoidHom.coprod (colResWU mvX r (m + 1))
+          (-colResWV mvX r (m + 1))) x = 0
+        ↔ ∃ c : lhDomainOf K X r (m + 1),
+          colResU mvX r (m + 1) c = x.1 ∧ colResV mvX r (m + 1) c = x.2 := by
+      rw [coprod_neg_apply, sub_eq_zero]
+      exact colExactSum mvX r (m + 1) x.1 x.2
     constructor
     · intro hx
       obtain ⟨c, hc1, hc2⟩ := h.mp hx
@@ -213,18 +235,25 @@ theorem bijective_lhSum_succ (pX : MVPulls mvX) (pP : MVPulls mvP)
     · rintro ⟨c, hc⟩
       exact h.mpr ⟨c, congrArg Prod.fst hc, congrArg Prod.snd hc⟩
   · intro x
-    rw [mvP.exact_W m x]
+    -- `mvP.δ m` reaches the ladder through `LinearMap.toAddMonoidHom`, which `rw`
+    -- cannot see past; `Iff.trans` crosses it by defeq.
+    refine Iff.trans (mvP.exact_W m x) ?_
     constructor
     · rintro ⟨a, b, hab⟩
-      exact ⟨(a, b), hab⟩
+      exact ⟨(a, -b), by rw [coprod_neg_apply]; simpa using hab⟩
     · rintro ⟨y, hy⟩
-      exact ⟨y.1, y.2, hy⟩
+      refine ⟨y.1, -y.2, ?_⟩
+      rw [coprod_neg_apply] at hy
+      simpa [sub_eq_add_neg] using hy
   · intro x
-    rw [← mvP.exact_X m x]
-    exact prod_eq_zero_iff _ _
+    exact Iff.trans (prod_eq_zero_iff (mvP.resU (m + 1) x) (mvP.resV (m + 1) x))
+      (mvP.exact_X m x)
   · intro x
-    have h : mvP.resWU (m + 1) x.1 + mvP.resWV (m + 1) x.2 = 0
-        ↔ mvP.resWU (m + 1) x.1 = mvP.resWV (m + 1) x.2 := add_eq_zero_iff_eq _ _
+    have h : (AddMonoidHom.coprod (mvP.resWU (m + 1)).toAddMonoidHom
+          (-(mvP.resWV (m + 1)).toAddMonoidHom)) x = 0
+        ↔ mvP.resWU (m + 1) x.1 = mvP.resWV (m + 1) x.2 := by
+      rw [coprod_neg_apply]
+      exact sub_eq_zero
     constructor
     · intro hx
       obtain ⟨y, hy1, hy2⟩ := (mvP.exact_sum (m + 1) x.1 x.2).mp (h.mp hx)
@@ -243,7 +272,7 @@ theorem bijective_lhSum_succ (pX : MVPulls mvX) (pP : MVPulls mvP)
 basis of the cohomology of the part of the total space over each of `U`, `V` and
 `U ∩ V`, it is a basis over the whole base. -/
 theorem bijective_lhSum (pX : MVPulls mvX) (pP : MVPulls mvP)
-    (L : MVLadder pX pP) (hX : MVFacts mvX) (hP : MVFacts mvP) (ξ : Hmod2 P 2)
+    (L : MVLadder pX pP) (hX : MVFacts mvX) (hP : MVFacts mvP) (ξ : Hmod K P 2)
     (r : ℕ)
     (hU : ∀ n : ℕ, Function.Bijective (lhSum L.πU (mvP.resU 2 ξ) r n))
     (hV : ∀ n : ℕ, Function.Bijective (lhSum L.πV (mvP.resV 2 ξ) r n))

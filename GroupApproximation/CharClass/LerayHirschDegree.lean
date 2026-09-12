@@ -7,7 +7,7 @@ The Leray–Hirsch theorem for a projective bundle `π : P → X` with fibre
 `ℂP^{r-1}` says that in each degree
 
 ```text
-H^n(P; F₂)  ≅  ⨁_{i < r,  2i ≤ n}  H^{n-2i}(X; F₂) · ξ^i,        ξ = e(taut).
+H^n(P; K)  ≅  ⨁_{i < r,  2i ≤ n}  H^{n-2i}(X; K) · ξ^i,        ξ = e(taut).
 ```
 
 Stating that in Lean means naming the index set.  Writing it as `Fin r` with
@@ -20,11 +20,11 @@ The pay-off is at `n = 2r`, where `lhDomainCard r (2r) = r`: the whole domain
 survives, and the decomposition of `ξ^r` in it *is* the Grothendieck relation
 
 ```text
-ξ^r  =  ∑_{i<r} π^*(γ_{r-i}) ⌣ ξ^i        (mod 2 there are no signs),
+ξ^r  =  ∑_{i<r} π^*(γ_{r-i}) ⌣ ξ^i        (the `+` convention of ChernRelation),
 ```
 
-so the mod-2 Chern classes are read off with their degrees correct by
-construction: `γ_k ∈ H^{2k}(X; F₂)`.  That is what this file delivers, and it
+so the Chern classes are read off with their degrees correct by
+construction: `γ_k ∈ H^{2k}(X; K)`.  That is what this file delivers, and it
 needs no ring structure and no graded commutativity — only the Leray–Hirsch
 bijection, which enters as a `structure` field.
 
@@ -38,7 +38,7 @@ view is the one that loses the grading, which is why this file exists.
 * `lhDomainCard`, `lhMap` — the index count and the Leray–Hirsch combination.
 * `LerayHirschGraded` — the bijection in every degree, as a structure.
 * `lhCoeff`, `lhCoeff_unique` — the coefficients of a class, and their uniqueness.
-* `gamma` — the mod-2 Chern classes, `γ_k ∈ H^{2k}(X;F₂)`, with `γ_0 = 1`,
+* `gamma` — the Chern classes, `γ_k ∈ H^{2k}(X; K)`, with `γ_0 = 1`,
   `γ_k = 0` above the rank, and the defining relation `gamma_relation`.
 -/
 
@@ -73,12 +73,12 @@ theorem lt_rank_of_lhDomain {r n : ℕ} (i : Fin (lhDomainCard r n)) : (i : ℕ)
 
 /-! ## 2. The Leray–Hirsch combination -/
 
-variable {X P : TopCat.{0}}
+variable {K : Type} [CommRing K] {X P : TopCat.{0}}
 
 /-- The Leray–Hirsch combination in degree `n`:
 `(a_i) ↦ ∑_{i} π^*(a_i) ⌣ ξ^i`, the `i`-th summand taken from `H^{n-2i}(X)`. -/
-def lhMap (π : P ⟶ X) (ξ : Hmod2 P 2) (r n : ℕ)
-    (a : (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ))) : Hmod2 P n :=
+def lhMap (π : P ⟶ X) (ξ : Hmod K P 2) (r n : ℕ)
+    (a : (i : Fin (lhDomainCard r n)) → Hmod K X (n - 2 * (i : ℕ))) : Hmod K P n :=
   ∑ i : Fin (lhDomainCard r n),
     cohCast (Nat.sub_add_cancel (two_mul_le_of_lhDomain i))
       (cup (pull π (n - 2 * (i : ℕ)) (a i)) (cupPowE ξ (i : ℕ)))
@@ -88,26 +88,26 @@ def lhMap (π : P ⟶ X) (ξ : Hmod2 P 2) (r n : ℕ)
 structure field because its proof is the Mayer–Vietoris induction over a finite
 trivializing cover of the base, which lives downstream of this lane's peers; a
 consumer only ever needs the bijection. -/
-structure LerayHirschGraded (π : P ⟶ X) (ξ : Hmod2 P 2) (r : ℕ) : Prop where
+structure LerayHirschGraded (π : P ⟶ X) (ξ : Hmod K P 2) (r : ℕ) : Prop where
   /-- The Leray–Hirsch map is bijective in every degree. -/
   bij : ∀ n : ℕ, Function.Bijective (lhMap π ξ r n)
 
 namespace LerayHirschGraded
 
-variable {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ} (L : LerayHirschGraded π ξ r)
+variable {π : P ⟶ X} {ξ : Hmod K P 2} {r : ℕ} (L : LerayHirschGraded π ξ r)
 
 /-- The Leray–Hirsch coefficients of a class. -/
-def lhCoeff (n : ℕ) (z : Hmod2 P n) :
-    (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ)) :=
+def lhCoeff (n : ℕ) (z : Hmod K P n) :
+    (i : Fin (lhDomainCard r n)) → Hmod K X (n - 2 * (i : ℕ)) :=
   (Equiv.ofBijective _ (L.bij n)).symm z
 
-@[simp] theorem lhMap_lhCoeff (n : ℕ) (z : Hmod2 P n) :
+@[simp] theorem lhMap_lhCoeff (n : ℕ) (z : Hmod K P n) :
     lhMap π ξ r n (L.lhCoeff n z) = z :=
   (Equiv.ofBijective _ (L.bij n)).apply_symm_apply z
 
 /-- **Uniqueness of the coefficients.** -/
-theorem lhCoeff_unique (n : ℕ) (z : Hmod2 P n)
-    (c : (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ)))
+theorem lhCoeff_unique (n : ℕ) (z : Hmod K P n)
+    (c : (i : Fin (lhDomainCard r n)) → Hmod K X (n - 2 * (i : ℕ)))
     (h : lhMap π ξ r n c = z) : c = L.lhCoeff n z :=
   (L.bij n).injective (by rw [h, L.lhMap_lhCoeff])
 
@@ -116,16 +116,16 @@ theorem lhCoeff_unique (n : ℕ) (z : Hmod2 P n)
 end LerayHirschGraded
 
 /-- The Leray–Hirsch family concentrated in the `ξ^0` slot. -/
-def concentrated (r n : ℕ) (a : Hmod2 X n) :
-    (i : Fin (lhDomainCard r n)) → Hmod2 X (n - 2 * (i : ℕ)) :=
+def concentrated (r n : ℕ) (a : Hmod K X n) :
+    (i : Fin (lhDomainCard r n)) → Hmod K X (n - 2 * (i : ℕ)) :=
   fun i => if h : (i : ℕ) = 0 then cohCast (by omega) a else 0
 
-theorem concentrated_zero (r n : ℕ) (a : Hmod2 X n) (hr : 0 < lhDomainCard r n) :
+theorem concentrated_zero (r n : ℕ) (a : Hmod K X n) (hr : 0 < lhDomainCard r n) :
     concentrated r n a ⟨0, hr⟩ = a := rfl
 
 /-- The Leray–Hirsch combination of the concentrated family is the pullback. -/
-theorem lhMap_concentrated (π : P ⟶ X) (ξ : Hmod2 P 2) (r n : ℕ)
-    (hr : 0 < lhDomainCard r n) (a : Hmod2 X n) :
+theorem lhMap_concentrated (π : P ⟶ X) (ξ : Hmod K P 2) (r n : ℕ)
+    (hr : 0 < lhDomainCard r n) (a : Hmod K X n) :
     lhMap π ξ r n (concentrated r n a) = pull π n a := by
   unfold lhMap
   rw [Finset.sum_eq_single (⟨0, hr⟩ : Fin (lhDomainCard r n))]
@@ -147,13 +147,13 @@ theorem lhMap_concentrated (π : P ⟶ X) (ξ : Hmod2 P 2) (r n : ℕ)
 
 namespace LerayHirschGraded
 
-variable {π : P ⟶ X} {ξ : Hmod2 P 2} {r : ℕ} (L : LerayHirschGraded π ξ r)
+variable {π : P ⟶ X} {ξ : Hmod K P 2} {r : ℕ} (L : LerayHirschGraded π ξ r)
 
 /-- **The projection is injective on cohomology.**  This is the half of
 Leray–Hirsch that the splitting principle runs on: pulling back to the flag
 bundle loses nothing. -/
 theorem pull_injective (L : LerayHirschGraded π ξ r) (hr : 0 < r) (n : ℕ) :
-    Function.Injective (pull (K := ZMod 2) π n) := by
+    Function.Injective (pull (K := K) π n) := by
   have hcard : 0 < lhDomainCard r n := lt_min hr (Nat.succ_pos _)
   intro a b hab
   have h : lhMap π ξ r n (concentrated r n a) = lhMap π ξ r n (concentrated r n b) := by
@@ -163,28 +163,28 @@ theorem pull_injective (L : LerayHirschGraded π ξ r) (hr : 0 < r) (n : ℕ) :
   rw [concentrated_zero, concentrated_zero] at hval
   exact hval
 
-/-! ## 5. The mod-2 Chern classes -/
+/-! ## 5. The Chern classes -/
 
 /-- The Leray–Hirsch coefficients of `ξ^r`.  At degree `2r` the index set is the
 whole of `Fin r` (`lhDomainCard_two_mul`), so this family *is* the Grothendieck
 relation. -/
-def gammaCoeff : (i : Fin (lhDomainCard r (2 * r))) → Hmod2 X (2 * r - 2 * (i : ℕ)) :=
+def gammaCoeff : (i : Fin (lhDomainCard r (2 * r))) → Hmod K X (2 * r - 2 * (i : ℕ)) :=
   L.lhCoeff (2 * r) (cupPowE ξ r)
 
 /-- **The defining relation**, `ξ^r = ∑_{i<r} π^*(γ_{r-i}) ⌣ ξ^i`. -/
 theorem lhMap_gammaCoeff : lhMap π ξ r (2 * r) L.gammaCoeff = cupPowE ξ r :=
   L.lhMap_lhCoeff (2 * r) (cupPowE ξ r)
 
-/-- The `k`-th mod-2 Chern class for `1 ≤ k ≤ r`, read off the relation.  Its
+/-- The `k`-th Chern class for `1 ≤ k ≤ r`, read off the relation.  Its
 degree is `2k` by construction: the coefficient of `ξ^{r-k}` lies in
 `H^{2r - 2(r-k)}(X) = H^{2k}(X)`. -/
-def gammaOf (k : ℕ) (hk1 : 0 < k) (hkr : k ≤ r) : Hmod2 X (2 * k) :=
+def gammaOf (k : ℕ) (hk1 : 0 < k) (hkr : k ≤ r) : Hmod K X (2 * k) :=
   cohCast (show 2 * r - 2 * (r - k) = 2 * k by omega)
     (L.gammaCoeff ⟨r - k, by rw [lhDomainCard_two_mul]; omega⟩)
 
-/-- **The mod-2 Chern classes** `γ_k(E) ∈ H^{2k}(X; F₂)`, with the conventions
+/-- **The Chern classes** `γ_k(E) ∈ H^{2k}(X; K)`, with the conventions
 `γ_0 = 1` and `γ_k = 0` above the rank. -/
-def gamma (k : ℕ) : Hmod2 X (2 * k) :=
+def gamma (k : ℕ) : Hmod K X (2 * k) :=
   if h : 0 < k ∧ k ≤ r then L.gammaOf k h.1 h.2
   else if hk : k = 0 then cohCast (show (0 : ℕ) = 2 * k by omega) (one X)
   else 0

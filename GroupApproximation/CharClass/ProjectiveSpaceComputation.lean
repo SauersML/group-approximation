@@ -86,9 +86,9 @@ def cpGenerator
       ∃ (a : Hmod2 (chartSpace d) 0) (b : Hmod2 (punctSpace d) 0),
         (mv d).resWU 0 a + (mv d).resWV 0 b = w)
     (d : ℕ) (hd : 1 ≤ d) : Hmod2 (CPtop d) 2 :=
-  lineGen (by simpa using (cohomology_CPtop_line mv hsum d 1 hd).some)
+  lineGen (K := ZMod 2) (by simpa using (cohomology_CPtop_line mv hsum d 1 hd).some)
 
-/-- **The degree-zero hypothesis, from counting alone.**
+/-- **The degree-zero hypothesis, from the line structure alone.**
 
 Every class of `H^0(W)` is a sum of restrictions from `H^0(U)` and `H^0(V)`, as
 soon as all four of `H^0` of the ambient space, the two opens and the
@@ -96,22 +96,26 @@ intersection are lines.  No identification of the Mayer–Vietoris restrictions
 with honest pullbacks is needed, which is what makes the projective-space
 computation independent of that identification.
 
-The argument is a count.  If restriction from `U` hits the generator of `H^0(W)`
-we are done, and likewise for `V`.  Otherwise both restrictions kill their
-generators, so exactness at `H^0(U) ⊕ H^0(V)` produces classes on the ambient
-space restricting to `(gen, 0)` and to `(0, gen)`.  Both are nonzero, hence both
-are *the* generator of `H^0(X)`, hence equal — but one restricts to the generator
-of `H^0(U)` and the other to zero. -/
-theorem exists_sum_eq_of_lines {X U V W : TopCat.{0}} (mv : MVSequence X U V W)
-    (eX : Hmod2 X 0 ≃ₗ[ZMod 2] ZMod 2) (eU : Hmod2 U 0 ≃ₗ[ZMod 2] ZMod 2)
-    (eV : Hmod2 V 0 ≃ₗ[ZMod 2] ZMod 2) (eW : Hmod2 W 0 ≃ₗ[ZMod 2] ZMod 2)
-    (w : Hmod2 W 0) :
-    ∃ (a : Hmod2 U 0) (b : Hmod2 V 0), mv.resWU 0 a + mv.resWV 0 b = w := by
-  rcases eq_zero_or_eq_of_line eW (lineGen_ne_zero eW) w with hw | hw
-  · exact ⟨0, 0, by rw [map_zero, map_zero, add_zero, hw]⟩
-  subst hw
-  rcases eq_zero_or_eq_of_line eW (lineGen_ne_zero eW) (mv.resWU 0 (lineGen eU)) with hU0 | hU0
-  · rcases eq_zero_or_eq_of_line eW (lineGen_ne_zero eW) (mv.resWV 0 (lineGen eV)) with hV0 | hV0
+If restriction from `U` does not kill the generator of `H^0(U)`, its image spans
+`H^0(W)` and the required `a` is a scalar multiple of that generator — this is
+where the restrictions being `K`-**linear** rather than merely additive is used,
+and it is the whole reason the fields of `MVSequenceOf` carry linearity.
+Likewise for `V`.  Otherwise both restrictions kill their generators, so
+exactness at `H^0(U) ⊕ H^0(V)` produces classes `x`, `x'` on the ambient space
+restricting to `(gen, 0)` and to `(0, gen)`.  Both are nonzero, so `x' = c • x`
+with `c ≠ 0`, and then `0 = res_U x' = c • gen_U` contradicts the generator being
+nonzero.
+
+Over `F₂` the scalars are all `1` and this is the mod-2 counting argument the file
+used to carry, verbatim. -/
+theorem exists_sum_eq_of_lines {K : Type} [Field K] {X U V W : TopCat.{0}}
+    (mv : MVSequenceOf K X U V W)
+    (eX : Line K (Hmod K X 0)) (eU : Line K (Hmod K U 0))
+    (eV : Line K (Hmod K V 0)) (eW : Line K (Hmod K W 0))
+    (w : Hmod K W 0) :
+    ∃ (a : Hmod K U 0) (b : Hmod K V 0), mv.resWU 0 a + mv.resWV 0 b = w := by
+  by_cases hU0 : mv.resWU 0 (lineGen eU) = 0
+  · by_cases hV0 : mv.resWV 0 (lineGen eV) = 0
     · -- both restrictions kill their generators; exactness gives two classes on `X`
       exfalso
       obtain ⟨x, hxU, hxV⟩ := (mv.exact_sum 0 (lineGen eU) 0).mp (by rw [hU0, map_zero])
@@ -124,12 +128,14 @@ theorem exists_sum_eq_of_lines {X U V W : TopCat.{0}} (mv : MVSequence X U V W)
         intro h
         rw [h, map_zero] at hx'V
         exact lineGen_ne_zero eV hx'V.symm
-      have hxx : x = x' := by
-        rw [eq_lineGen_of_ne_zero eX hxne, eq_lineGen_of_ne_zero eX hx'ne]
-      rw [hxx, hx'U] at hxU
-      exact lineGen_ne_zero eU hxU.symm
-    · exact ⟨0, lineGen eV, by rw [map_zero, zero_add, hV0]⟩
-  · exact ⟨lineGen eU, 0, by rw [map_zero, add_zero, hU0]⟩
+      obtain ⟨c, hc0, hc⟩ := exists_ne_zero_smul_of_line eX hxne hx'ne
+      have hgen : c • lineGen eU = 0 := by
+        rw [← hxU, ← map_smul, ← hc, hx'U]
+      exact smul_ne_zero_of_line eU (lineGen_ne_zero eU) hc0 hgen
+    · obtain ⟨c, hc⟩ := exists_smul_of_line eW hV0 w
+      exact ⟨0, c • lineGen eV, by rw [map_zero, zero_add, map_smul, ← hc]⟩
+  · obtain ⟨c, hc⟩ := exists_smul_of_line eW hU0 w
+    exact ⟨c • lineGen eU, 0, by rw [map_zero, add_zero, map_smul, ← hc]⟩
 
 /-- `H^0` of the punctured space is a line: it is homotopy equivalent to `ℂP^d`,
 which is nonempty and path connected. -/

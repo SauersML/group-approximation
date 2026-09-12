@@ -245,14 +245,19 @@ theorem relPullback_eq_of_path_param (R : Type) [CommRing R]
     relPullback R f hf n = relPullback R g hg n := by
   refine relPullback_eq_of_homotopy R hf hg
     { toFun := fun p => (ConcreteCategory.hom Hm) (γ p.1, p.2)
-      continuous_toFun := (ConcreteCategory.hom Hm).continuous.comp
-        ((γ.continuous.comp continuous_fst).prodMk continuous_snd)
-      map_zero_left := fun x =>
-        (congrArg (fun p : P => (ConcreteCategory.hom Hm) (p, x)) γ.source).trans
-          (congrArg (fun m : TopCat.of E ⟶ Y => (ConcreteCategory.hom m) x) hbf)
-      map_one_left := fun x =>
-        (congrArg (fun p : P => (ConcreteCategory.hom Hm) (p, x)) γ.target).trans
-          (congrArg (fun m : TopCat.of E ⟶ Y => (ConcreteCategory.hom m) x) hbg) } ?_ n
+      continuous_toFun := by
+        exact (ConcreteCategory.hom Hm).continuous.comp
+          ((γ.continuous.comp continuous_fst).prodMk continuous_snd)
+      map_zero_left := fun x => by
+        have hs : (ConcreteCategory.hom (sliceMap b E ≫ Hm)) x
+            = (ConcreteCategory.hom Hm) (b, x) := rfl
+        exact (congrArg (fun p : P => (ConcreteCategory.hom Hm) (p, x)) γ.source).trans
+          (hs.symm.trans (congrArg (fun m : TopCat.of E ⟶ Y => (ConcreteCategory.hom m) x) hbf))
+      map_one_left := fun x => by
+        have hs : (ConcreteCategory.hom (sliceMap b' E ≫ Hm)) x
+            = (ConcreteCategory.hom Hm) (b', x) := rfl
+        exact (congrArg (fun p : P => (ConcreteCategory.hom Hm) (p, x)) γ.target).trans
+          (hs.symm.trans (congrArg (fun m : TopCat.of E ⟶ Y => (ConcreteCategory.hom m) x) hbg)) } ?_ n
   intro t x hx
   exact hHm (γ t, x) hx
 

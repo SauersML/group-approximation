@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.RelativeCochains
+import GroupApproximation.CharClass.CoeffField
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.H1ClassifierZMod2
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.BarycentricSubdivisionChainMap
 
@@ -71,6 +72,31 @@ instance dualFunctorZMod2_preservesEpimorphisms :
     intro x
     exact hh x
 
+/-- `Hom(-, K)` turns monomorphisms into epimorphisms over any **field**: a field is
+injective as a module over itself (`moduleInjective_of_field`).  This is the one
+place in the relative layer where `[CommRing K]` is genuinely not enough, and it
+is why excision and the small-annihilator acyclicity carry a field binder. -/
+instance dualFunctorOf_preservesEpimorphisms (K : Type) [Field K] :
+    (dualFunctor K).PreservesEpimorphisms where
+  preserves {A B} f hf := by
+    haveI := hf
+    haveI : Mono f.unop := inferInstance
+    haveI : Module.Injective K K := moduleInjective_of_field K K
+    rw [ModuleCat.epi_iff_surjective]
+    intro ψ
+    obtain ⟨h, hh⟩ := Module.Injective.out (R := K) (Q := K)
+      (f.unop).hom ((ModuleCat.mono_iff_injective f.unop).1 inferInstance) ψ.hom
+    refine ⟨ModuleCat.ofHom h, ?_⟩
+    show f.unop ≫ ModuleCat.ofHom h = ψ
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    exact hh x
+
+instance dualFunctorOf_preservesHomology (K : Type) [Field K] :
+    (dualFunctor K).PreservesHomology :=
+  Functor.preservesHomology_of_preservesEpis_and_kernels _
+
 instance dualFunctorZMod2_preservesHomology :
     (dualFunctor (ZMod 2)).PreservesHomology :=
   Functor.preservesHomology_of_preservesEpis_and_kernels _
@@ -89,6 +115,13 @@ abbrev dualMap (R : Type) [CommRing R] {K L : ChainComplex (ModuleCat.{0} R) ℕ
     (f : K ⟶ L) : dualCx R L ⟶ dualCx R K :=
   ((dualFunctor R).mapHomologicalComplex _).map
     ((HomologicalComplex.opFunctor (ModuleCat.{0} R) (ComplexShape.down ℕ)).map f.op)
+
+/-- **The dual of a quasi-isomorphism is a quasi-isomorphism** over any field. -/
+instance relDualMapOf_quasiIso (K : Type) [Field K] {C D : ChainComplex (ModuleCat.{0} K) ℕ}
+    (f : C ⟶ D) [QuasiIso f] : QuasiIso (dualMap K f) :=
+  inferInstanceAs (QuasiIso (((dualFunctor K).mapHomologicalComplex _).map
+    ((HomologicalComplex.opFunctor (ModuleCat.{0} K)
+      (ComplexShape.down ℕ)).map f.op)))
 
 /-- **The dual of a quasi-isomorphism is a quasi-isomorphism** over `ZMod 2`. -/
 instance dualMap_quasiIso {K L : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ} (f : K ⟶ L)

@@ -105,7 +105,7 @@ theorem bridgeChart_natural (p : Bundle X ι) (U : Set X) (n : ℕ)
       = relPullback (ZMod 2) (cmap (Bundle.projInclOn p.plusOne U)) hc n
         ≫ (bridgeChart (p.restrictTo U) n).hom := by
   rw [bridgeChart_hom_eq p n ha, bridgeChart_hom_eq (p.restrictTo U) n hd]
-  refine relPullback_comm_of_map_eq _ _ _ _ ?_ ha hb hc hd hba hdc n
+  refine relPullback_comm_of_map_eq (ZMod 2) _ _ _ _ ?_ ha hb hc hd hba hdc n
   apply TopCat.Hom.ext
   exact ContinuousMap.ext fun v => bridgeChartIncl_natural p U v
 

@@ -47,7 +47,7 @@ noncomputable section
 /-- **The degree-2 generator of `H^*(ℂP^d; F₂)`** for `d ≥ 1`.  Canonical: an
 `F₂`-line has exactly one nonzero element. -/
 def cpGen (d : ℕ) (hd : 1 ≤ d) : Hmod2 (CPtop d) 2 :=
-  lineGen (by simpa using ((hasCPCohomology_CP d).1 1 hd).some)
+  lineGen (K := ZMod 2) (by simpa using ((hasCPCohomology_CP d).1 1 hd).some)
 
 theorem cpGen_ne_zero (d : ℕ) (hd : 1 ≤ d) : cpGen d hd ≠ 0 :=
   lineGen_ne_zero _

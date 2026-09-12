@@ -5,7 +5,7 @@ import GroupApproximation.CharClass.ProjectiveSpaceCohomology
 # Mayer–Vietoris packaged as `cc-projective`'s `MVSequence`
 
 `CharClass/ProjectiveSpaceCohomology.lean` computes `H^*(ℂP^n; F₂)` from a
-`structure MVSequence X U V W`: four restrictions and a connecting map, all as additive
+`structure MVSequence X U V W`: four restrictions and a connecting map, all as `K`-linear
 maps, with the three exactness statements in element form.  This file builds that
 structure for a two-element open cover from `CharClass/MayerVietorisElement.lean`.
 
@@ -26,11 +26,11 @@ variable {X : TopCat.{0}}
 `ProjectiveSpaceCohomology` consumes. -/
 def mvSequence (U V : Opens X) (hUV : U ⊔ V = ⊤) :
     MVSequence X (mvU U) (mvU V) (mvInter U V) where
-  resU n := (mvResU U V hUV n).hom.toAddMonoidHom
-  resV n := (mvResV U V hUV n).hom.toAddMonoidHom
-  resWU n := (mvResWU U V hUV n).hom.toAddMonoidHom
-  resWV n := (mvResWV U V hUV n).hom.toAddMonoidHom
-  δ n := (mvDelta U V hUV n).hom.toAddMonoidHom
+  resU n := (mvResU U V hUV n).hom
+  resV n := (mvResV U V hUV n).hom
+  resWU n := (mvResWU U V hUV n).hom
+  resWV n := (mvResWV U V hUV n).hom
+  δ n := (mvDelta U V hUV n).hom
   exact_X n x := mvExactX U V hUV n x
   exact_sum n a b := mvExactSum U V hUV n a b
   exact_W n w := mvExactW U V hUV n w
