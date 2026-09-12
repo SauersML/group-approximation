@@ -31,7 +31,11 @@ any commutative C\*-algebra.  If established, this refutes
 * Dually, at the same primes the UCT fails to ascend along a Rokhlin action:
   some unital Kirchberg algebra `B` with a Rokhlin `Z_r`-action and
   `B ⋊ Z_r ≅ O_2` fails the UCT
-  (`o2-zp-cartan-fixing-iff-rokhlin-uct-ascent`).
+  (`o2-zp-cartan-fixing-iff-rokhlin-uct-ascent`).  The action on `O_2` never
+  has the Rokhlin property itself. If it did, its crossed product would satisfy
+  the UCT (`gardella-rokhlin-actions-preserve-uct`), and part (a) of
+  `barlak-li-p-half-iff-zp-actions-fix-cartan` would give an invariant Cartan
+  subalgebra.
 * It does not decompose over nuclear UCT algebras (`willett-yu-decomposability-forces-uct`).
   As a trivial-K Kirchberg algebra it has weak complexity rank one but not
   complexity rank one.
