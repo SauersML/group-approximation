@@ -247,3 +247,114 @@ QED
   - the regularity or rank of `M` at some intermediate step (L4a);
   - a mechanism, not reducible to Steinberg telescoping, that bounds `Delta_row` and `Delta_rev`
     under `D != 0`.
+
+**Addendum to Section 4** (w4-r4-corner, ef454c9283; w4-vf-gate §6, b7cec288d7).
+- **Verdict:** w4-vf-gate passed `index-three-corner-placement-holds-only-modulo-two-root-defects`.
+- **Positivity of this placement's `e`:** in characteristic two,
+  `opposite-unit-root-product-vanishes-only-for-trivial-models` makes `n_31(1) n_13(1)` nonzero in
+  every nontrivial model, so `rk(e) > 0`.
+- **What remains open:** only the deviation terms `Delta_row` and `Delta_rev`.
+
+## 5. Redirect: strict submultiplicativity through halving
+
+**Target.** `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` (R4 lead redirect).
+
+**Setting.** Section 1 of `research/artifacts/two-root-defect-descent-gap-2026-09-12.md`:
+- `R = L_(F_2)(1,2)`, with code `(0, 10, 11)`, so `x_12(1) = 1 + S[0]T[10]` and
+  `x_23(1) = 1 + S[10]T[11]`;
+- `N^A_ab = sigma(iota_A(x_ab(1))) - 1` and `D_A = N^A_23 N^A_12`;
+- `delta = rk(D_A)` for proper `A`, and `f(2) = rk(D_A D_B)` for disjoint `A, B` with proper union.
+
+**Verdict.** No `theta < 1` lemma came out. The halving relation, listed on the claim as "open, and
+the natural input", is data of a locally finite group. Its regular rank model satisfies every
+consequence of it with `theta = 1` exactly.
+
+**Lemma 5.1 (diagonal halving).** Let `Delta(r) = s_0 r t_0 + s_1 r t_1`, a unital ring endomorphism
+of `R`. For every proper cylinder `A` and every `g` in `R^x`:
+
+```text
+iota_A(Delta(g)) = iota_(A0)(g) iota_(A1)(g) .
+```
+
+The dyadic permutation
+
+```text
+u = S[00]T[00] + S[100]T[010] + S[110]T[011] + S[01]T[10] + S[101]T[110] + S[111]T[111]
+```
+
+lies in `V` and satisfies `u Delta(x_ab(1)) u^-1 = x_ab(1)` for `(a,b) = (1,2), (2,3)`. Put
+`X_i = N^(Ai)_12` and `Y_i = N^(Ai)_23`. Then
+
+```text
+rk( (Y_0 + Y_1 + Y_0 Y_1)(X_0 + X_1 + X_0 X_1) ) = rk(Y_0 X_0) = rk(Y_1 X_1) = delta ,
+rk( Y_0 X_0 Y_1 X_1 ) = f(2) .
+```
+
+*Proof.*
+- **Product formula.** `T[A0] S[A1] = 0`, and `S[A0]T[A0] + S[A1]T[A1] = S[A]T[A]`. Expanding the
+  product gives `S[A0] g T[A0] + S[A1] g T[A1] + 1 - S[A]T[A] = iota_A(Delta(g))`.
+- **The images of the unit pair.** `Delta(x_12(1)) = 1 + S[00]T[010] + S[10]T[110]` and
+  `Delta(x_23(1)) = 1 + S[010]T[011] + S[110]T[111]`.
+- **Conjugation by `u`.** `u` sends source cylinders to target cylinders:
+  - `00 -> 00`, `010 -> 100`, `011 -> 110`;
+  - `10 -> 01`, `110 -> 101`, `111 -> 111`.
+
+  Both lists are cylinder partitions. So `u` carries these elements to
+  `1 + S[00]T[100] + S[01]T[101] = x_12(1)` and `1 + S[100]T[110] + S[101]T[111] = x_23(1)`.
+- **First rank equality.** `sigma(iota_A(Delta(x_ab(1)))) - 1 = X_0 + X_1 + X_0 X_1` for `ab = 12`,
+  and similarly `Y_0 + Y_1 + Y_0 Y_1` for `ab = 23`. Conjugating by `sigma(iota_A(u))` gives the
+  first rank equality. The others are Fact 1.2 of the descent artifact. QED
+
+This is the prepend form of the descent artifact's append halving, and of the branch split of
+`el3-two-root-violation-splits-over-leavitt-branches`.
+
+**Proposition 5.2 (halving is locally finite data).**
+- **The group.** Let `L = iota_(A0)(UT_3(R)) x iota_(A1)(UT_3(R))`, a direct product because the
+  cylinders are disjoint. It is locally finite: `UT_3` over an `F_2`-algebra has exponent dividing 4
+  and is nilpotent.
+- **With the swap.** `iota_A(w)`, with `w = s_0 t_1 + s_1 t_0`, swaps the two factors, so
+  `L x| <iota_A(w)>` is again locally finite.
+- **What the regular model satisfies.** Take the regular rank model of `L x| <iota_A(w)>` (Theorem G
+  of `sofic-subgroups-carry-rank-models-violating-two-root-identity`). Every finite subgroup acts
+  freely on almost all points, so the model satisfies:
+  - every relation of `L` and of the swap;
+  - the identities of Lemma 5.1;
+  - the three rank equalities.
+- **The numbers there.** `K = <X_0, Y_0> x <X_1, Y_1> = D_8 x D_8` and the diagonal `D_8` act freely,
+  so `delta = 3/8` and `f(2) = (3/8)^2 = delta^2`.
+- **Consequence.** An argument that derives `f(2) <= theta delta^2` with `theta < 1` from `sigma`
+  restricted to `L x| <iota_A(w)>`, together with the rank equalities of Lemma 5.1, applies to this
+  model and fails there. That covers the halving and branch-split relations and the swap.
+
+QED
+
+**Remark 5.3 (free-type profiles are supermultiplicative).** Let the `K`-module be a mixture of the
+trivial module, `F (x) 1`, `1 (x) F` and `F (x) F`, in proportions `a, c, d, b`, where `F` is the
+regular `F_2[D_8]`-module.
+- **The ranks.**
+  - `rk(Y_0X_0) = (3/8)(b + c)` and `rk(Y_1X_1) = (3/8)(b + d)`.
+  - The diagonal defect has rank `(3/8)(b + c + d)`, because the diagonal `D_8` acts freely on all
+    three non-trivial summands.
+  - `f(2) = (9/64) b`.
+- **What Lemma 5.1 forces.** `c = d = 0`, then `f(2) = (3/8) delta`, and so `f(2)/delta^2 = 1/b >= 1`.
+- **Conclusion.** On free-type profiles halving never gives a deficit. It gives equality only for the
+  fully free profile, `b = 1`, `delta = 3/8`.
+
+**Remark 5.4 (exact tensor configurations).** Suppose `sigma` acts on `iota_(A0)(R^x) x iota_(A1)(R^x)`
+as `rho_0 (x) rho_1`, and let `V_i` be the `UT_3(F_2)`-module of `rho_i`.
+- **The constraint.** Lemma 5.1 imposes `phi(V_0 (x) V_1) = phi(V_0) = phi(V_1)`, where `phi(V)` is the
+  normalized rank of `(h - 1)(g - 1)` on `V`.
+- **Mixed profiles.** For `V = trivial^(1-p) (+) F^p` the diagonal value is `(3/8)(2p - p^2)`, so
+  `p` is `0` or `1`.
+- **No contradiction.** The free module is a fixed point.
+
+**Where this stops.**
+- **What a proof needs.** `theta < 1` has to use `sigma` jointly on a nonsofic subgroup containing
+  `D_A` and `D_B`. Every relation above lives in a locally finite group.
+- **Not tested here:**
+  - opposite roots at a child cylinder, which generate a copy of `R^x`;
+  - the compressors `c, c'`;
+  - the nine-leaf configuration.
+- **The candidate identity.** The block root groups `1 + S[0] r T[1]` of `GL_2(R) = R^x`, normalized
+  by the torus `iota_0(R^x) x iota_1(R^x)` through `r -> d_0 r d_1^-1`, are the natural place a
+  tensor configuration of the torus could fail. I found no identity bounding `f(2)` through them.

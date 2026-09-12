@@ -45,3 +45,20 @@ than vanishing.
   * `D_A` expands into two child-triple defects plus cross terms on four disjoint cylinders. This
     ties depth-`j` defects to depth-`j+1` defects, which independent tensor factors need not respect.
   * No bound extracted yet (artifact Section 5).
+- **Halving relation: locally finite data, so it cannot give `theta < 1` (w4-r4-orth, 2026-09-12;
+  artifact `research/artifacts/rank-four-orthogonality-check-2026-09-12.md`, Section 5).**
+  * **Prepend form.** `iota_A(Delta(g)) = iota_(A0)(g) iota_(A1)(g)` with
+    `Delta(r) = s_0 r t_0 + s_1 r t_1`. A dyadic permutation `u` in `V` carries
+    `Delta(x_ab(1))` back to `x_ab(1)`. So the defect of the diagonal `D_8` inside
+    `<X_0,Y_0> x <X_1,Y_1>` has rank `delta`, as do both child defects, and the child product has
+    rank `f(2)`.
+  * **Why it dies.** All of these relations, the swap `iota_A(w)` included, live in the locally finite
+    group `L x| <iota_A(w)>`, with `L = iota_(A0)(UT_3(R)) x iota_(A1)(UT_3(R))`. Its regular rank
+    model (Theorem G) satisfies them together with the rank equalities, and there
+    `delta = 3/8` and `f(2) = delta^2`, so `theta = 1`.
+  * **Free-type mixtures.** On mixtures of trivial and free factor modules, halving forces
+    `f(2) = (3/8) delta` and `f(2)/delta^2 = 1/b >= 1`. That is supermultiplicative unless the profile
+    is fully free.
+  * **Still untested:** opposite roots at a child cylinder, the compressors, the nine-leaf
+    configuration, and the block root groups of `GL_2(R)` normalized by the torus
+    `iota_0(R^x) x iota_1(R^x)`.
