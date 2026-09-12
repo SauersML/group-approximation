@@ -1797,3 +1797,38 @@ Items checked: `thompson-v-cantor-system-has-no-covariant-rank-model`, route `th
     `LC(X, F_2)`.
   - For a prefix-replacement unit `g = sum_i S[b_i]T[a_i]`, `g S[a_i c]T[a_i c] g^-1 = S[b_i c]T[b_i c]`.
   - So the filter holds as stated. It rules out covariance, not rank models of `R^x` themselves.
+
+## 51. The Thompson V rank gate nodes (lane w3-gate-v): routes PASS, one wording remark
+
+Items checked:
+- the OPEN claims `thompson-v-has-no-nontrivial-f2-rank-model` and `thompson-v-is-f2-linear-sofic`, which refute each other;
+- the routes `non-linear-sofic-via-thompson-v-rank-triviality`, `thompson-v-f2-linear-sofic-from-soficity` and the dead
+  `thompson-v-f2-linear-sofic-via-covariant-cantor-truncation`;
+- artifact Sections 4 and 5.
+
+The assigned verifier of this lane is `w3-vf-linear`; this is a second check.
+
+- **`non-linear-sofic-via-thompson-v-rank-triviality`: valid.**
+  - `V` is countable and nontrivial. An `F_2`-linear sofic approximation gives an injective homomorphism into a
+    characteristic-two rank ultraproduct, which the prerequisite makes trivial.
+  - The second paragraph is also correct: a linear sofic approximation of `R^x` restricts injectively to `V`. Simplicity is
+    not even needed there.
+  - The route fires iff the prerequisite is established, and it is correctly OPEN.
+- **`thompson-v-f2-linear-sofic-from-soficity`: valid.** It is a specialization of `sofic-implies-linear-sofic-over-every-field`.
+- **The dead covariant-truncation route: correctly invalidated.**
+  - Compressions of a covariant Cantor module with normalized boundary tending to 0, under finitely many elements of `V` and
+    the cylinder idempotents, assemble along omega into an exact covariant pair `(sigma, rho)` in the ultraproduct, after
+    rounding the approximate idempotents (Section 38).
+  - Theorem 2.3 forbids such a pair.
+  - Proposition 2.4 quantifies the obstruction at the finite stage.
+- **Section 4.4.** `V <= R^x` (`leavitt-cylinder-swaps-generate-thompson-in-el`), and nontrivial homomorphisms of the simple
+  group `R^x` are injective. So rank triviality of `V` gives rank triviality of `R^x` in characteristic two, the binary case of
+  the instance claim. Declining to land a route into the all-characteristics instance claim is correct scoping.
+- **Wording remark.** The `distinct_from` of `thompson-v-has-no-nontrivial-f2-rank-model` calls it "strictly stronger" than the
+  binary case of the instance claim. The implication is proved, but strictness is not: nobody knows a nontrivial rank model of
+  `V` that fails to extend to `R^x`. Suggested wording: "at least as strong; the converse is not known". The artifact's
+  Section 4.4 already says that.
+- **Section 5.2 (heuristic).**
+  - Cylinder swaps with proper union form one conjugacy class, by the refinement argument of Lemma 2.2.
+  - `pi = pi_0 pi_1`, with the factors commuting, gives `N = N_0(1 + N_1) + N_1`, so `rk N <= 2 rk N_0`.
+  - Correct as a heuristic, and correctly not landed as a claim.

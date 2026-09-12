@@ -17,3 +17,5 @@ under `V` and under the cylinder idempotents, and read off the compressed matric
 defect at least `1/4` for four explicit prefix replacements. So the compressions never converge to a
 rank model. This is the rank-metric counterpart of the dead tracial route
 `thompson-v-hyperlinear-via-cantor-action-truncation`.
+
+*Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: correctly invalidated. Vanishing-boundary compressions would assemble into an exact covariant rank model, which Theorem 2.3 forbids.*

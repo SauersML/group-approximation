@@ -15,3 +15,5 @@ with `G = V` and `F = F_2`.
 
 By simplicity of `L_(F_2)(1,2)^x`, which contains `V`, the same prerequisite also makes the binary Leavitt
 units not `F_2`-linear sofic. See artifact Section 4.
+
+*Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the route is valid and conditional, and its prerequisite is correctly OPEN.*
