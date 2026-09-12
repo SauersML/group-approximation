@@ -73,6 +73,16 @@ theorem, not the universal goal. The binary Leavitt unit group is not in the
 class. Any counterexample must avoid permutational wreath products with
 residually finite lamps over a surjunctive base.
 
+The same proof needs only a finitary site structure on a split kernel:
+residually finite site projections, translated supports, and stabilizer
+invariance (`finitary-split-extension-surjunctivity-permanence`). It
+therefore also covers every group double `G *_Gamma G` of a surjunctive `G`
+(`doubles-of-surjunctive-groups-are-surjunctive`). In particular the
+nonsofic Kun--Thom doubles are surjunctive
+(`kun-thom-group-doubles-are-surjunctive`). Counterexamples must also avoid
+these doubles. General amalgams, non-split extensions, the Leavitt unit group,
+Thompson's `V` and the Fournier--Facio group remain outside the method.
+
 The finite-observable approach now yields the quantitative criterion
 split-ca-defects-force-linear-observable-rank: a strict encoder has a
 positive defect seed generating a tower of dimension n delta. It does
