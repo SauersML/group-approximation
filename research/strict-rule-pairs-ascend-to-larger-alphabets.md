@@ -54,3 +54,15 @@ Owned by lane gk-fz-alphabets, at gk-n-boolean's request.
   Boolean artifact, Section 6, verified by gk-vf-nonlinear at 370dc8c2b3.
 - **Where it stops.** No known construction adds a single symbol while keeping the forward identity on
   `T_f`. Every working extension is a product.
+- **Passive-block involution codes ascend** (w3-alphabet, `passive-block-involution-codes-ascend`,
+  established by its `-proof`). A control-involution code `mu = nu = g_{control}(data)` with `g_v`
+  block-preserving involutions and a block fixed pointwise by every `g_v` extends by one symbol (adjoin
+  it to that passive block as a global fixed point), preserving the decoder identity on `T_f` and the
+  reverse failure on `T_r`. So such tables have upward-closed admissible sizes. Every classified strict
+  table is a copy code or such a code (`x_a = x_b`: `g_P = id`, `g_Q = (0\,1)`, `Q` passive; the triple:
+  `h_0 = id`, `h_1 = (0\,2)`, `h_2 = (0\,1)`, passive `{3,...}`), which re-derives the `n >= 3` evidence
+  from one mechanism. **Reduction:** general ascent holds if every strict pair is equivalent to a copy
+  code or to a control-involution code with a passive block. The passive-block mechanism needs `∗` a
+  *fixed point* of involutions; an *absorbing* `∗` breaks the decoder identity as the erasure symbol
+  does, which is why a general strict pair, lacking a canonical fixed-point extension, is not covered.
+  Artifact `research/artifacts/alphabet-ascent-and-binary-descent-2026-09-12.md`, Sections 1-2.
