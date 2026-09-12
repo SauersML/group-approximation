@@ -7,6 +7,7 @@ target: linear-decoders-with-coboundary-functionals-admit-no-section
 requires: []
 artifacts:
   - research/artifacts/ornstein-weiss-decoder-sections-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Direct proof, Section 5 of `research/artifacts/ornstein-weiss-decoder-sections-2026-09-12.md`.
@@ -19,3 +20,8 @@ Direct proof, Section 5 of `research/artifacts/ornstein-weiss-decoder-sections-2
 2. **Item 1.** `Q(x) = <tau(x), v>` solves the coboundary equation for `<x, q>`, which Lemma K1 excludes.
 3. **Item 2.** Kernel translates of the section image give invariant sets of measure `1/|ker L|`, which
    ergodicity excludes.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently. It covers the adjoint identity,
+the cylinder corrections for `k >= 1` and `k < 0`, and the several-coset partial-sum conjugacy. It also covers the
+surjectivity of `L` and the disjoint equal-measure translates in item 2
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 15).

@@ -8,6 +8,7 @@ requires:
   - finite-group-formalizability-equals-equivariant-automorphism
 artifacts:
   - research/artifacts/z3-rotation-stable-realization-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Sections 0–2.
@@ -29,3 +30,8 @@ Artifact Sections 0–2.
    subgroup has order 24, so `<K, rho>` is all of it.
 6. **Formalizability.** The stable form of `finite-group-formalizability-equals-equivariant-automorphism`
    converts each realization into a stable formalization.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: averaging restricts to
+`3f = f`; the four cases of Lemma 1; `Q` acts by `omega^2` at level 1 and by `1` at level 0; `diag(omega^2, omega)
+omega^2 = diag(omega, 1)`; the identification with `rho x id` via `u(Rx) = omega u(x)`; and index 3 in a group of
+order 36 (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 12).

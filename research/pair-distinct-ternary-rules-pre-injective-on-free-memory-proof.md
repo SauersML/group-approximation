@@ -7,6 +7,7 @@ target: pair-distinct-ternary-rules-pre-injective-on-free-memory
 requires: []
 artifacts:
   - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact, Section 3, Proposition 10.
@@ -23,3 +24,8 @@ Artifact, Section 3, Proposition 10.
   at a junction.
 - **Counting.** On `F ⊔ T_F`, where `T_F` is the set of triangles meeting `F` at least twice, the
   forest has at most `|F| + |T_F| - 1` edges but at least `max(2|F|, 2|T_F|)` edges.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently. Claws `{h—ha, h—hb}`
+partition the edges of the Cayley tree, so an incidence cycle would give a closed walk without backtracking,
+and the edge count is contradictory (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`,
+Section 16).

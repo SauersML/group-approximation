@@ -7,6 +7,7 @@ target: constant-background-kills-unit-linear-defect-rules
 requires: []
 artifacts:
   - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact, Section 4, Theorem 13, Lemma 12 and Corollary 14.
@@ -23,3 +24,8 @@ Artifact, Section 4, Theorem 13, Lemma 12 and Corollary 14.
     `0`. If `p` uses every symbol, then `sum c_m = sum c_m^-1 = 0`.
   - An injective linear automaton that is not a unit is not surjective: a bijective linear
     automaton has a linear inverse automaton.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: `L x' = L x - t delta_1`,
+some `k_(m^-1) != 0` from the coefficient of `1` in `ell kappa`, the background windows, the `F_3` arithmetic
+of Corollary 14, and Theorem 13' (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`,
+Section 16).

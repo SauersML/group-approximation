@@ -7,6 +7,7 @@ target: generic-finite-subgroup-memory-forces-binary-balance
 requires: []
 artifacts:
   - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 The proof is Proposition 9 of the artifact, Section 3. Suppose `mu` is unbalanced.
@@ -23,3 +24,7 @@ The proof is Proposition 9 of the artifact, Section 3. Suppose `mu` is unbalance
   of contexts.
 - **Balance.** Its coordinate at `h = 1` balances `mu(., r)` for every context `r`, so `mu` is
   balanced.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: right cosets give distinct
+inside context sites, left cosets give single-address outside readers, and a bijection of `{0,1}^K` balances
+each slice (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 16).

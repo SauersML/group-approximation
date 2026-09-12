@@ -710,3 +710,61 @@ everything except one route.
   - Sent to w3-stable-simple and w3-vf-positive.
 
 **Decision status.** Nothing decision-level.
+
+## 15. Linear decoders with coboundary functionals (w4-measurable-2, 6242aacf7e)
+
+Claim `linear-decoders-with-coboundary-functionals-admit-no-section`. Artifact Section 5 of
+`research/artifacts/ornstein-weiss-decoder-sections-2026-09-12.md`. Verdict: PASS.
+
+- **Adjoints.** `<L(y), q> = sum_h y(h) sum_s R_s q(h s^-1)`, and `<a^-1.y, v> = <y, a.v>`.
+- **Lemma K1, finite order.** `<S^k x, q> = <x, a^k.q>`. Telescoping gives a nonzero functional of iid uniform
+  coordinates equal to `0` a.e., which is impossible.
+- **Lemma K1, infinite order.**
+  - With `g_j(x) = <x(a^j t), c>`: for `k >= 1`, `U = -sum_(j<k) g_j`, and for `k < 0`, `U = sum_(j=k)^(-1) g_j`.
+    Both give `U - U o S = g_k - g_0`. So `f` differs from `f_0 = sum_C <x(t_C), sigma_C(q)>` by a cylinder
+    coboundary.
+  - **Partial sums.** Fix `C_0` with `sigma_(C_0) != 0`. The increments are uniform given all other coordinates,
+    and `<w^(C_0)_k, sigma_(C_0)>` is recovered from them. So `S_(f_0)` is conjugate to a Bernoulli shift, and
+    `omega^(eps + Q)` is invariant and nonconstant. Contradiction.
+- **Theorem K', item 1.** `Q(x) - Q(a^-1.x) = <tau(x), v - a.v> = <L tau(x), q> = <x, q>`.
+- **Theorem K', item 2.**
+  - `L` has conull, hence dense and closed, image, so it is onto and pushes Haar measure to Haar measure.
+  - `L^-1(X_0)` is the disjoint union of the translates `D + h`, `h` in `ker L`, of equal measure. So
+    `mu(D) = 1/|ker L|`, which is strictly between 0 and 1 and contradicts ergodicity.
+- **Special cases.** The annihilator case is `a = 1`. For Ornstein–Weiss, `R*e_1 delta_1 = delta_1 + delta_a`
+  equals `delta_1 - a.delta_1`, with coset sum `e_1`. The zero-kernel remark is correct.
+- **Status.** `linear-decoders-over-leavitt-units-admit-no-measurable-section` stays OPEN.
+
+## 16. Local screens, a ternary architecture, and constant backgrounds (w3-bal-design, 228045984d, c67b4dec0f)
+
+Artifact Sections 3–4. Claims `generic-finite-subgroup-memory-forces-binary-balance`,
+`pair-distinct-ternary-rules-pre-injective-on-free-memory` and `constant-background-kills-unit-linear-defect-rules`.
+Verdict: PASS on all three.
+
+- **Proposition 9.**
+  - Inside blocks: `hm = h'm'` forces `m'` in `Km`, so `m = m'` by (G1), which uses right cosets.
+  - Outside readers: `m^-1 m'` in `K` forces `m'` in `mK`, so each reads `K` once, by (G1) with left cosets.
+  - Outside contexts in `Ins_m` sit on private sites by (G2), and the inside contexts are independent.
+  - Injectivity makes every `Phi_r` a bijection of `{0,1}^K`. The `h = 1` coordinate balances each slice
+    of `mu`, hence `mu`.
+- **Proposition 10.**
+  - A block reading one changed site `g` at address `m` hides it only if `C_g = P_m`. The pairs are distinct,
+    so each `g` lies in at least two triangles of `T_F`.
+  - Claws `C_h = {h—ha, h—hb}` partition the edges of the Cayley tree. A cycle in the incidence graph would
+    give a closed walk without backtracking.
+  - The forest has at most `|F| + |T_F| - 1` edges but at least `max(2|F|, 2|T_F|)`. Contradiction.
+- **Lemma 12.** Augmentation is a ring map.
+- **Theorem 13.**
+  - `L x' = L x - t delta_1`, since `L K = id`. `x'|_M = p`.
+  - `x|_M != p`, because `sum_m c_m k_(m^-1) = 1` gives some `k_(m^-1) != 0`.
+  - A window with a site `hm` outside `M ∪ N^-1` reads `c != p_m` in both configurations, since
+    `k_((hm)^-1) = 0`.
+  - `D(x') = D(x) + t delta_1`.
+- **Corollary 14.** The missing symbols `p_m - t c_m^-1` are distinct, so they are all of `F_3` and sum to 0. If
+  `p` uses every symbol, then `sum_m c_m^-1 = 0`, and `c^-1 = c` in `F_3` gives augmentation 0. That case is
+  covered by avoidable patches: `p` avoids some symbol `s` occurring in it.
+- **Theorem 13'.** Only windows whose outside sites sit at addresses in `P_c` survive. Correct.
+- **Examples.**
+  - `x_1 + x_a + x_b + [x = (0,1,2)]` sends constants to `0`, as corrected.
+  - The census rule `R` has identity diagonal and omits the symbol `1`.
+  - `affine-plus-defect-rule-is-injective-on-some-group` stays OPEN.
