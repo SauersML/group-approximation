@@ -3,6 +3,7 @@ rg: 2
 id: kt-normalizing-witnesses-centralize-compressors
 kind: claim
 title: A witness that normalizes the Kun--Thom group and centralizes its polynomial subgroup centralizes the whole group
+invalidates: [kt-ce-stabilizer-from-normalizing-overgroup]
 distinct_from:
   relative-wall-commutant-growth: that is the exact equivalence between a relative wall and properness of a commutant inclusion in any target group; this excludes one explicit class of witnesses, those normalizing the ambient group, by a three-line centralizer computation.
   ce-stabilizer-criterion-needs-no-trace: that turns relative embeddability into the search for a commutation stabilizer in some Connes-embeddable target; this rules out every normalizing element as the witness in that search for the Kun--Thom pair.
