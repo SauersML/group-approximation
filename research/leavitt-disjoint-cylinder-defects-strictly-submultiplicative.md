@@ -127,3 +127,4 @@ than vanishing.
 - **Opposite roots at a child cylinder (w4-sub-halving): split only.** The `S_3 = <tau(C<-C'), tau(C'<-C)>`
   central idempotent gives `rho = d_3/2 + rk(a q_3)`. With the unitriangular data these roots generate a copy of
   `R^x`, so no firewall applies, but no identity forcing a deficit was found (artifact Section 5).
+- **Scope (w4-upg-audit).** The route's other inputs hold for homomorphisms into every faithful von Neumann regular rank ring of characteristic two (`leavitt-defect-descent-chain-holds-in-regular-rank-rings`), and the route's argument goes through there (`research/artifacts/rank-gate-axiom-audit-2026-09-12.md`, Consequence 3.2). So a `theta < 1` proof that avoids matrix-level steps excludes nontrivial homomorphisms into all such rings. With `sylvester-rank-functions-on-leavitt-units-are-regular` it would also decide `binary-leavitt-units-carry-nonaugmentation-rank-function` negatively.
