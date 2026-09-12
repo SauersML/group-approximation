@@ -70,7 +70,12 @@ candidate must carry non-residually-finite-dimensional entry behaviour such as
 a one-sided inverse pair.  From ten variable occurrences on, a candidate must
 also be nearly periodic: a word without an exact repeated block of about a
 sixth of its length satisfies relative `C'(1/6)` and injects every coefficient
-group (`kl-small-cancellation-words-inject-every-coefficient-group`).
+group (`kl-small-cancellation-words-inject-every-coefficient-group`).  A
+candidate whose `t`-exponents are all `+-1` must have same-sign corner labels
+that are not free, or a sign-change coefficient absorbed by them
+(`kl-unit-exponent-words-inject-when-same-sign-corners-are-free`).  This covers
+all window cyclic-cover words and settles the length-six classes `+++-+-` and
+`++-++-` generically (`kl-length-six-four-sign-change-words-inject`).
 
 What remains is the conjunction of two independent problems.  The analytic
 problem is the stable branch: `R^x` must have full hyperlinear radical.  The
