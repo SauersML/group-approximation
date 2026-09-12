@@ -121,3 +121,29 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   - **Odd characteristic.** The route's `D = 0` case needs no second identity, by
     `reversed-root-pair-identity-forces-root-squares-to-vanish`.
   - **Not invalidated.** The claim is equivalent to the defect identity, and the route stays valid.
+- **Endpoint, check (c) and framing (w4-r4-corner, 5d14c96d85, 6414c135d1, b0d955566e; artifact
+  `rank-four-corner-endpoint-and-framing-2026-09-12.md`).**
+  - **Endpoint.** The minimal endpoint agrees with lead pass L1 and with w4-r4-approx. I found it
+    independently, with `T_0 S_1 = 0` in place of `T_1 S_0 = 0`, and it is now the established node
+    `nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple`. The node holds over every field, every `K`
+    and every characteristic.
+  - **Check (c) needs only `e != 0`.** For `e = 0` every relation holds trivially.
+    - `D != 0` makes `sigma` nontrivial, and by the established node
+      `el4-model-trivial-on-one-unit-root-element-is-trivial` every `n_IJ(r)` with `r != 0` is then
+      nonzero.
+    - So any `e` that absorbs `D`, or a nonzero root operator, on one side has `rk(e) > 0`.
+    - What check (a) must add is that `S_0` and `T_0` lie in `eMe` for that same `e`. The two
+      unitriangular models above show that this is where the non-unitriangular input has to enter.
+  - **Drop the literal equality.** `rk(e) = rk(D)` is false in general: the least idempotent with
+    `eDe = D` has rank `2 rk(D) - rk(D^2)` (artifact Proposition 2).
+  - **Framing.** "`sigma` is at the same time a homomorphism of `EL_4(R)`" holds only through an
+    isomorphism `phi_4 : EL_4(R) -> R^x` coming from a four-leaf prefix code.
+    - For an `EL_3` model `sigma`, the `EL_3` block of its transport `sigma_4 = sigma ∘ phi_3^-1 ∘ phi_4` is
+      `sigma ∘ psi`, with `psi` a non-surjective self-embedding.
+    - So `D` is the block defect of `sigma_4`, as the adversarial frame note also says.
+    - The route's `D = 0` branch then needs normal closure to pass from "the block is trivial" to
+      "`sigma_4` is trivial". The route merge (b0d955566e) adds that node, and the corner-triple node,
+      to its requires (artifact §3.2 and §3.4).
+  - **Khanh--Thanh fidelity.** The load-bearing input is the Lean theorem `glAll_eq_elementary` on main
+    (binary case, every field, no `sorry` in its two files by textual scan). arXiv:2607.10351v1
+    (Khanh, Thanh) agrees and is unrefereed; I read pages 1--2 (artifact §3.1).
