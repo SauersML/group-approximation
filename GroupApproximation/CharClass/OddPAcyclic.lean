@@ -198,7 +198,7 @@ theorem exists_tupIncl_eq {r : ℕ} (m : ℕ) (w : tupAllMod K X r) (hw : w ∈ 
   refine ⟨Finsupp.comapDomain Subtype.val w Subtype.val_injective.injOn, ?_⟩
   rw [tupIncl, Finsupp.lmapDomain_apply]
   refine Finsupp.mapDomain_comapDomain Subtype.val Subtype.val_injective w ?_
-  rw [Set.range_coe_subtype]
+  rw [Subtype.range_coe_subtype]
   exact hw
 
 /-! ## 2. The assembly -/
