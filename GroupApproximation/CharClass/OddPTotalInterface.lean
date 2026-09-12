@@ -1,38 +1,45 @@
 import GroupApproximation.CharClass.LIXStepDGenRealEven
+import GroupApproximation.CharClass.ProjectiveSpaceCover
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The reduced powers at an odd prime, as the Step D producers consume them
 
 Two named structures, stated before anything produces them, so that the lanes that consume the
-reduced powers (`Gen.RealTorusModP`, the splitting principle over `K`, `Gen.RealBundleModP`) and
-the lanes that construct them (the equivariant diagonal, the classes `redPow`, additivity, the top
-power and the `P⁰` constant, the Cartan formula) meet at one citable name each.
+reduced powers and the lanes that construct them meet at one citable name each.
 
-* `OddPTotal.EvenReducedPowers p` — the consumer-facing form.  For every space `X`, additive
-  operations `P X i` on the even part `Gen.evenPart (ZMod p) X` (the commutative ring the even side
-  of Step D lives in), natural along pullback, with `P⁰ = id`, the Cartan formula, the degree shift
-  `d ↦ d + 2i(p − 1)`, instability, and `P¹ h = κ·h^p` on degree-two classes for an integer `κ`
-  that is a unit mod `p`.
-* `OddPTotal.GradedReducedPowers p` — the producer-facing form, one degree at a time and not
-  normalised: operations `op X d i : H^d(X; F_p) → H^{d + 2i(p−1)}(X; F_p)`, natural, unstable,
-  with `P⁰ = c^{d/2}·id` in even degrees for a unit `c`, the top power `P¹ h = h^p` in degree two,
-  and the Cartan formula for two classes of even degree.
+* `OddPTotal.TotalReducedPowers p` — the producer-facing form.  The classes
+  `D X q j : H^q(X; F_p) → H^{pq − j}(X; F_p)` of the equivariant construction, natural in `X`,
+  and the total power `ptotOf D X q x = Σ_{j even} [D_j x]`, multiplicative on classes of even
+  degree.  Besides naturality and multiplicativity, the fields are:
+  - `unit_zero`: `D_0` of the unit is the unit;
+  - `top_two`: the top power in degree two, `[D_0 h] = h^p`;
+  - `bad_two`: the vanishing of `[D_j h]` in degree two at the indices `j ∉ {0, 2(p − 1)}`;
+  - `zero_cp`: the constant `μ` of `[D_{2(p−1)}]` on `H²(ℂP^M)`, a unit.
+* `OddPTotal.EvenReducedPowers p` — the consumer-facing form.
+  - Graded operations `P X i` on the even part `Gen.evenPart (ZMod p) X`, normalised by
+    `μ^{-(k − i)}` in degree `2k`.  They are natural for all classes, with the degree shift and
+    instability.
+  - The ring endomorphism `Ptot X` and the subring `Good X` of junk-free classes, on which the
+    Cartan formula holds.  `Good X` contains every degree-two class and is natural.
+  - `mul_single`: `P^i` passes through a class whose total power is a multiple of itself.
+  - `P⁰ 1 = 1`, `P⁰ = id` on `H²(ℂP^M)`, and `P¹ h = h^p` in degree two.
 
-`OddPTotalPackaging.lean` turns the second into the first: normalise by `c^{-d/2}` in degree `d`
-and assemble over the grading.
+`OddPTotalPackaging.lean` proves `TotalReducedPowers p → EvenReducedPowers p`.
 
-## Why only even degrees
+## What is not here, and why
 
-Every class the even side touches is even: the Chern classes, the Chern roots, the slice
-generators, and `z = t x`.  In even degrees the construction is sign-free.  Every `W`-index
-`(d − 2i)(p − 1)` is even, the reduced coproduct coefficient at two even indices is `1`, the
-odd–odd coefficient vanishes mod `p`, and the Koszul sign of two even classes is `+1`.  The
-normalisation constant is multiplicative there too.  In odd degrees `P⁰ = c_q·id` with
-`c_1 = ((p − 1)/2)!`, and the Cartan formula carries `(−1)^{qq'(p−1)/2}`; no consumer needs either.
-The one product of two odd classes used so far, `t·x` in `Gen.RealTorusModP.PN_zClass`, is
-replaced by `P^{>0} z = 0`.  That follows from naturality along the projection to
-`S¹ × S^{2n+1}`, the degree shift, and the vanishing of the torus cohomology above its dimension.
+There is no `P⁰ = id` on arbitrary classes and no Cartan formula for arbitrary classes.  `P⁰` on
+all of `H^q` is a universal-example statement (`K(ℤ/p, q)`), which singular chains built by
+acyclic models do not give.  The graded Cartan formula on arbitrary even classes needs the
+vanishing of above-range classes `[D_a x]`, `a > q(p − 1)`, which has no cheap singular-chain
+proof.  Neither is consumed:
+
+* on the flag space the operations meet only 1, the Chern roots (Euler classes of line bundles,
+  pulled back from `H²(ℂP^M)`) and products of roots, all in `Good`;
+* on the mapping torus the class `z = t x` has a single-component total power (its target
+  degrees on `S¹ × S^{2n+1}` are `0` and `2n + 2`), so `mul_single` gives
+  `P^i(z·ι r) = c·z·ι(P^i r)` for every even class `r`.
 -/
 
 set_option autoImplicit false
@@ -54,24 +61,76 @@ def evenOf (K : Type) [CommRing K] (X : TopCat.{0}) {d : ℕ} (hd : Even d)
     (c : TotalPieceOf K X d) : (evenOf K X hd c : TotalHOf K X) = TotalHOf.of K X d c :=
   rfl
 
+/-- The degrees in which the reduced powers of a class of degree `d` live: `d + 2s(p − 1)`. -/
+def GoodDeg (p d e : ℕ) : Prop := d ≤ e ∧ (e - d) % (2 * (p - 1)) = 0
+
+instance (p d e : ℕ) : Decidable (GoodDeg p d e) := by
+  unfold GoodDeg; infer_instance
+
+/-- **The total reduced power** of a class of degree `q`, from the family of classes
+`[D_j] : H^q → H^{pq − j}`: the sum of `[D_j x]` over the even indices `j ≤ pq`. -/
+def ptotOf {p : ℕ}
+    (D : ∀ (X : TopCat.{0}) (q j : ℕ), Hmod (ZMod p) X q →+ Hmod (ZMod p) X (p * q - j))
+    (X : TopCat.{0}) (q : ℕ) : Hmod (ZMod p) X q →+ TotalHOf (ZMod p) X :=
+  ∑ j ∈ Finset.range (p * q + 1),
+    if j % 2 = 0 then (TotalHOf.of (ZMod p) X (p * q - j)).comp (D X q j) else 0
+
+/-- **The reduced powers as the equivariant construction delivers them.**
+
+Producers:
+* `D`, `natural`: the classes `[D_j]` (`lx-redpow`), additive by R9 (`lx-additive`);
+* `ptot_mul`: the comparison of equivariant diagonals (`lx-cartan-b`);
+* `unit_zero`, `top_two`: the top power (`lx-toppower`);
+* `bad_two`: V in degree two (`lx-cartan-b`);
+* `μ`, `zero_cp`: the `P⁰` constant on `H²(ℂP^M)` and its unit property (`lx-toppower`,
+  `lx-design`).
+
+Consumer: `OddPTotal.TotalReducedPowers.toEven`. -/
+structure TotalReducedPowers (p : ℕ) where
+  /-- The class `[D_j x] ∈ H^{pq − j}(X; F_p)` of a class `x ∈ H^q(X; F_p)`. -/
+  D : ∀ (X : TopCat.{0}) (q j : ℕ), Hmod (ZMod p) X q →+ Hmod (ZMod p) X (p * q - j)
+  /-- Naturality along pullback. -/
+  natural : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) (q j : ℕ) (x : Hmod (ZMod p) Y q),
+    pull f (p * q - j) (D Y q j x) = D X q j (pull f q x)
+  /-- `[D_0 1] = 1`. -/
+  unit_zero : ∀ X : TopCat.{0},
+    TotalHOf.of (ZMod p) X (p * 0 - 0) (D X 0 0 (one X)) = 1
+  /-- The total power is multiplicative on classes of even degree. -/
+  ptot_mul : ∀ (X : TopCat.{0}) {q q' : ℕ} (_hq : Even q) (_hq' : Even q')
+      (x : Hmod (ZMod p) X q) (y : Hmod (ZMod p) X q'),
+    ptotOf D X (q + q') (cup x y) = ptotOf D X q x * ptotOf D X q' y
+  /-- The top power in degree two: `[D_0 h] = h^p`. -/
+  top_two : ∀ (X : TopCat.{0}) (h : Hmod (ZMod p) X 2),
+    TotalHOf.of (ZMod p) X (p * 2 - 0) (D X 2 0 h) = TotalHOf.of (ZMod p) X 2 h ^ p
+  /-- In degree two only the indices `0` and `2(p − 1)` contribute. -/
+  bad_two : ∀ (X : TopCat.{0}) (h : Hmod (ZMod p) X 2) (j : ℕ), j % 2 = 0 → j ≠ 0 →
+    j ≠ 2 * (p - 1) → D X 2 j h = 0
+  /-- The `P⁰` constant in degree two. -/
+  μ : ZMod p
+  /-- It is a unit. -/
+  μ_isUnit : IsUnit μ
+  /-- `[D_{2(p−1)} h] = μ·h` on `H²(ℂP^M)`. -/
+  zero_cp : ∀ (M : ℕ) (h : Hmod (ZMod p) (CPtop M) 2),
+    TotalHOf.of (ZMod p) (CPtop M) (p * 2 - 2 * (p - 1)) (D (CPtop M) 2 (2 * (p - 1)) h)
+      = μ • TotalHOf.of (ZMod p) (CPtop M) 2 h
+
 /-- **The reduced powers on the even part of mod-`p` cohomology**, in the form the Step D
 producers consume.
 
-Consumers: `Gen.RealTorusModP` (`PN`, `PY`, `PN_zero`, `cartan`, `natural`, `PY_unstable`, and
-`P^{>0} z = 0` through `shift`), the splitting principle over `K` (the `ParityP.PowerData` on the
-flag space, with `κ` the integer of `hone`), and `Gen.RealBundleModP.wu`.  Producer:
-`OddPTotal.GradedReducedPowers.toEven` (lane `lx-pzero`). -/
+Consumers:
+* the flag space (`lx-splitK`): the roots are Euler classes, hence in `Good` (`good_two`), and
+  their products are in `Good` because it is a subring.  So `cartan`, `zero_one` and `zero_cp`
+  with naturality give the narrowed `PowerData`, with `degree_two` (`κ = 1`) and `unstable`.
+* the mapping torus (`lx-torusP`, `lx-slice2`): `natural`, `shift`, `unstable`, and `mul_single`
+  for `z = t x`.
+
+Producer: `OddPTotal.TotalReducedPowers.toEven` (lane `lx-pzero`). -/
 structure EvenReducedPowers (p : ℕ) where
   /-- The reduced power `P^i` on the even part of `H^*(X; F_p)`. -/
   P : ∀ (X : TopCat.{0}), ℕ → Gen.evenPart (ZMod p) X →+ Gen.evenPart (ZMod p) X
   /-- Naturality along pullback. -/
   natural : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) (i : ℕ) (x : Gen.evenPart (ZMod p) Y),
     P X i (Gen.evenMap (ZMod p) f x) = Gen.evenMap (ZMod p) f (P Y i x)
-  /-- `P⁰ = id`. -/
-  zero : ∀ (X : TopCat.{0}) (x : Gen.evenPart (ZMod p) X), P X 0 x = x
-  /-- The Cartan formula. -/
-  cartan : ∀ (X : TopCat.{0}) (i : ℕ) (u v : Gen.evenPart (ZMod p) X),
-    P X i (u * v) = ∑ j ∈ Finset.range (i + 1), P X j u * P X (i - j) v
   /-- `P^i` raises the degree by `2i(p − 1)`. -/
   shift : ∀ (X : TopCat.{0}) (i : ℕ) {d : ℕ} (hd : Even d) (c : TotalPieceOf (ZMod p) X d),
     ∃ c' : TotalPieceOf (ZMod p) X (d + 2 * i * (p - 1)),
@@ -80,47 +139,44 @@ structure EvenReducedPowers (p : ℕ) where
   /-- Instability: `P^i` vanishes on classes of degree `< 2i`. -/
   unstable : ∀ (X : TopCat.{0}) (i : ℕ) {d : ℕ} (hd : Even d) (c : TotalPieceOf (ZMod p) X d),
     d < 2 * i → P X i (evenOf (ZMod p) X hd c) = 0
-  /-- The normalisation constant of the degree-two relation, as an integer. -/
-  κ : ℤ
-  /-- The constant is a unit mod `p`. -/
-  κ_isUnit : IsUnit (κ : ZMod p)
-  /-- `P¹ h = κ·h^p` on classes of degree two. -/
+  /-- The total power, unnormalised, as a ring endomorphism of the even part. -/
+  Ptot : ∀ X : TopCat.{0}, Gen.evenPart (ZMod p) X →+* Gen.evenPart (ZMod p) X
+  /-- Naturality of the total power. -/
+  ptot_natural : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) (x : Gen.evenPart (ZMod p) Y),
+    Ptot X (Gen.evenMap (ZMod p) f x) = Gen.evenMap (ZMod p) f (Ptot Y x)
+  /-- The junk-free classes, on which the Cartan formula holds. -/
+  Good : ∀ X : TopCat.{0}, Subring (Gen.evenPart (ZMod p) X)
+  /-- Pullbacks of junk-free classes are junk-free. -/
+  good_natural : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) (x : Gen.evenPart (ZMod p) Y),
+    x ∈ Good Y → Gen.evenMap (ZMod p) f x ∈ Good X
+  /-- Every class of degree two is junk-free. -/
+  good_two : ∀ (X : TopCat.{0}) (c : TotalPieceOf (ZMod p) X 2),
+    evenOf (ZMod p) X even_two c ∈ Good X
+  /-- A homogeneous class whose total power vanishes outside the degrees `d + 2s(p − 1)` is
+  junk-free. -/
+  good_of_components : ∀ (X : TopCat.{0}) {d : ℕ} (hd : Even d) (c : TotalPieceOf (ZMod p) X d),
+    (∀ e : ℕ, e % 2 = 0 → ¬ GoodDeg p d e →
+      TotalHOf.component (ZMod p) X e (Ptot X (evenOf (ZMod p) X hd c) : TotalHOf (ZMod p) X)
+        = 0) →
+    evenOf (ZMod p) X hd c ∈ Good X
+  /-- The Cartan formula on junk-free classes. -/
+  cartan : ∀ (X : TopCat.{0}) (i : ℕ) (u v : Gen.evenPart (ZMod p) X), u ∈ Good X → v ∈ Good X →
+    P X i (u * v) = ∑ j ∈ Finset.range (i + 1), P X j u * P X (i - j) v
+  /-- `P^i` passes through a homogeneous class whose total power is a multiple of itself. -/
+  mul_single : ∀ (X : TopCat.{0}) {q : ℕ} (hq : Even q) (z : TotalPieceOf (ZMod p) X q)
+      (ν : ZMod p),
+    (Ptot X (evenOf (ZMod p) X hq z) : TotalHOf (ZMod p) X) = ν • TotalHOf.of (ZMod p) X q z →
+    ∃ c : ZMod p, ∀ (i : ℕ) (w : Gen.evenPart (ZMod p) X),
+      (P X i (evenOf (ZMod p) X hq z * w) : TotalHOf (ZMod p) X)
+        = c • (TotalHOf.of (ZMod p) X q z * (P X i w : TotalHOf (ZMod p) X))
+  /-- `P⁰ 1 = 1`. -/
+  zero_one : ∀ X : TopCat.{0}, P X 0 1 = 1
+  /-- `P⁰ = id` on `H²(ℂP^M)`; with `natural`, on every Euler class of a line bundle. -/
+  zero_cp : ∀ (M : ℕ) (c : TotalPieceOf (ZMod p) (CPtop M) 2),
+    P (CPtop M) 0 (evenOf (ZMod p) (CPtop M) even_two c) = evenOf (ZMod p) (CPtop M) even_two c
+  /-- `P¹ h = h^p` in degree two. -/
   degree_two : ∀ (X : TopCat.{0}) (c : TotalPieceOf (ZMod p) X 2),
-    P X 1 (evenOf (ZMod p) X even_two c)
-      = (κ : Gen.evenPart (ZMod p) X) * evenOf (ZMod p) X even_two c ^ p
-
-/-- **The reduced powers degree by degree, as the cochain construction delivers them**, before
-normalisation and only consulted in even degrees where it matters.
-
-Producers: the classes `op` with naturality and instability from `redPow` (R3, R6–R8) and additivity
-(R9); `zero` and `top_two` from the top power and the `P⁰` constant; `cartan` from the comparison
-of equivariant diagonals.  Consumer: `OddPTotal.GradedReducedPowers.toEven`. -/
-structure GradedReducedPowers (p : ℕ) where
-  /-- The reduced power `P^i : H^d(X; F_p) → H^{d + 2i(p−1)}(X; F_p)`. -/
-  op : ∀ (X : TopCat.{0}) (d i : ℕ), Hmod (ZMod p) X d →+ Hmod (ZMod p) X (d + 2 * i * (p - 1))
-  /-- Naturality along pullback. -/
-  natural : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) (d i : ℕ) (x : Hmod (ZMod p) Y d),
-    pull f (d + 2 * i * (p - 1)) (op Y d i x) = op X d i (pull f d x)
-  /-- Instability. -/
-  unstable : ∀ (X : TopCat.{0}) (d i : ℕ) (x : Hmod (ZMod p) X d), d < 2 * i → op X d i x = 0
-  /-- The `P⁰` constant in degree two. -/
-  c : ZMod p
-  /-- It is a unit. -/
-  c_isUnit : IsUnit c
-  /-- `P⁰ = c^{d/2}·id` in even degree `d`. -/
-  zero : ∀ (X : TopCat.{0}) {d : ℕ} (_hd : Even d) (x : Hmod (ZMod p) X d),
-    TotalHOf.of (ZMod p) X (d + 2 * 0 * (p - 1)) (op X d 0 x)
-      = c ^ (d / 2) • TotalHOf.of (ZMod p) X d x
-  /-- The top power in degree two: `P¹ h = h^p`. -/
-  top_two : ∀ (X : TopCat.{0}) (x : Hmod (ZMod p) X 2),
-    TotalHOf.of (ZMod p) X (2 + 2 * 1 * (p - 1)) (op X 2 1 x) = TotalHOf.of (ZMod p) X 2 x ^ p
-  /-- The Cartan formula for two classes of even degree. -/
-  cartan : ∀ (X : TopCat.{0}) {d d' : ℕ} (_hd : Even d) (_hd' : Even d') (k : ℕ)
-      (x : Hmod (ZMod p) X d) (y : Hmod (ZMod p) X d'),
-    TotalHOf.of (ZMod p) X (d + d' + 2 * k * (p - 1)) (op X (d + d') k (cup x y))
-      = ∑ i ∈ Finset.range (k + 1),
-          TotalHOf.of (ZMod p) X (d + 2 * i * (p - 1)) (op X d i x)
-            * TotalHOf.of (ZMod p) X (d' + 2 * (k - i) * (p - 1)) (op X d' (k - i) y)
+    P X 1 (evenOf (ZMod p) X even_two c) = evenOf (ZMod p) X even_two c ^ p
 
 end
 
@@ -128,8 +184,10 @@ end OddPTotal
 
 #audit_axioms OddPTotal.evenOf
 #audit_axioms OddPTotal.coe_evenOf
+#audit_axioms OddPTotal.GoodDeg
+#audit_axioms OddPTotal.ptotOf
+#audit_axioms OddPTotal.TotalReducedPowers
 #audit_axioms OddPTotal.EvenReducedPowers
-#audit_axioms OddPTotal.GradedReducedPowers
 
 end CharClass
 end GroupApproximation
