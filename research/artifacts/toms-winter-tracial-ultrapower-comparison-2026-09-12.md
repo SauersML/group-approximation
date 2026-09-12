@@ -260,3 +260,63 @@ conjecture follows from:
   Both produce non-subequivalent projections with dominated traces.  A
   counterexample to `(Q_tr)` among strict-comparison algebras needs an
   obstruction to central halving that no pair of projections detects.
+
+## 4. One cycle on locally finite nuclear dimension: existence versus centrality
+
+Throughout this section `A` is unital, simple, exact, non-elementary, with
+strict comparison and locally finite nuclear dimension.
+
+**4.1 Rank density plus comparison gives unital matrix algebras in `A^omega`.**
+Suppose rank density holds.
+- By the quadratic selection equivalence there is a projection `e` in `A^omega`
+  with `sigma(e) = 1/k` for every limit trace.  It is represented by near
+  projections `b_n` with `sup_tau |tau(b_n) - 1/k| -> 0` and defect tending to 0.
+- By the Theorem, `e <~ 1 - e`.  Iterate: `e_j <= 1 - (e_1 + ... + e_(j-1))`,
+  which has trace `(k-j+1)/k >= 1/k`, and equal traces give equivalence.
+- After `k` steps `1 - sum e_j` has zero trace, hence vanishes in `A^omega`.
+- The partial isometries give matrix units of a unital `M_k` inside `A^omega`.
+
+This copy is not central.  Uniform Gamma needs the central version, and
+CETW's uniform McDuff property is the central unital version.
+
+**4.2 What is new, and what is not.**
+- On this locus, strict comparison plus rank density already gives purity
+  and then Z-stability, by the established chain.  So 4.1 adds nothing to
+  Toms--Winter on this locus.
+- It locates the two failure modes separately.
+  - **Existence failure** (no rank density): the tracial ultrapower has no
+    projection of some continuous profile.
+  - **Centrality failure** (rank density, no Gamma): matrix algebras exist
+    in `A^omega` but none is approximately central.  With strict comparison
+    this mode is impossible on the locus.
+- So a Toms--Winter counterexample with locally finite nuclear dimension is
+  an existence failure.  That is exactly failure of approximate integer
+  division of ranks of layer-cake elements (`rank-density-from-approximate-rank-division`).
+
+**4.3 Why comparison does not divide.**  Let `Q` be a projection in `A^omega`
+with profile `L tau(a)`, obtained from the layer-cake element `b_L`.
+- Division asks for `R <= Q` with `L` orthogonal equivalent copies below `Q`
+  and profile `tau(a) - epsilon`.
+- At a single extreme trace this is easy: the GNS factor is the hyperfinite
+  II_1 factor, and Kaplansky density approximates there.
+- Glimm's lemma inside the hereditary subalgebra of a representing near
+  projection gives a nonzero divisor, but its profile is uncontrolled.
+- Greedy accumulation of such divisors increases the profile by uncontrolled
+  amounts at different traces.  Countable saturation of `A^omega` realizes
+  countably many conditions only when each finite set of them is approximately
+  satisfiable, and "profile at least `tau(a) - epsilon` everywhere" is the
+  statement itself.
+- The Theorem supplies uniqueness, so any two candidate divisors with ordered
+  profiles are nested up to equivalence.  It never supplies a candidate.
+
+So the lfnd crux is unchanged:
+
+```text
+(D)  strict comparison  =>  for every b in M_infty(A)_+, L, eta there is y with
+     |L d_tau(y) - d_tau(b)| < eta for all tau.
+```
+
+The only new constraint is that any obstruction to `(D)` must coexist with
+perfect projection comparison in `A^omega`.  A certificate of the form "these
+two near projections cannot be compared" is ruled out; the certificate has to
+be "no near projection of this profile exists".
