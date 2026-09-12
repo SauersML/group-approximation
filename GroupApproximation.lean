@@ -4604,6 +4604,7 @@ import GroupApproximation.BowenChapman.LaurentPairKazhdan
 import GroupApproximation.BowenChapman.LaurentPairGeneration
 import GroupApproximation.KunThom.NormalizationFromCriterion
 import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
+import GroupApproximation.BowenChapman.EndpointOfInputs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
