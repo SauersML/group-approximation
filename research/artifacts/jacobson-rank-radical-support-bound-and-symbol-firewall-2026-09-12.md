@@ -158,3 +158,90 @@ QED
 in `sigma(H)`. `K_1` is a nonabelian simple subgroup of `H`, so `sigma(K_1) = 1`. In the rank row
 that is item (3) of Proposition 1 applied to one finite simple group `K_0`. So no rounding of
 `sigma(K_0)` is needed. What is needed is to transport commutation with `sigma(H)` along `sigma(u)`.
+
+## 3. A symbol firewall
+
+**Theorem 3.** Let `n >= 3` and `B <= EL_n(J)`. Then `B` is amenable iff its symbol image
+`pi(B) <= EL_n(F_2[z, z^(-1)])` is amenable.
+
+*Proof.* `B ∩ ker pi` lies in `{g : g - 1 in M_n(F)}`, which is locally finite (Section 0), so it is
+amenable. Extensions of amenable groups by amenable groups are amenable, and quotients of amenable
+groups are amenable. QED
+
+**Corollary 4 (the cell and its neighbours).** Let `Lambda <= H` have amenable symbol image. Then
+`B_Lambda := <L, u, Lambda> <= E_4` is amenable.
+
+*Proof.* `pi(u) = diag(z, z, z, z^(-3))` commutes with `pi(H) <= EL_3(F_2[z, z^(-1)]) (+) 1`. So
+`pi(B_Lambda)` is a quotient of `Z x pi(Lambda)`. Apply Theorem 3. QED
+
+Instances.
+* **(a) Constants.** `Lambda = EL_3(F_2)`, with finite symbol image. `B_Lambda` contains:
+  * `u`, `c`, every `K_j` of Proposition 2, and the whole finitary kernel;
+  * all constants and their compressions `x_ij(S^k T^k)`;
+  * the head.
+
+  Every relation of Proposition 2 holds in it, including `[c, u^j x_23(1) u^(-j)] = 1` for `j >= 0`,
+  `u^(-1) x_23(1) u = w_0 x_23(1)`, and `[u c u^(-1), x_23(1)] = x_13(Q)`.
+* **(b) Tilted constants.** `Lambda = <x_12(T), x_23(T), x_21(S), x_32(S)>`. With
+  `d = diag(z, z^2, z^3)`, `pi(Lambda) = d SL_3(F_2) d^(-1)`, since `d x_12(1) d^(-1) = x_12(z^(-1))`,
+  `d x_23(1) d^(-1) = x_23(z^(-1))`, `d x_21(1) d^(-1) = x_21(z)` and `d x_32(1) d^(-1) = x_32(z)`.
+  So Toeplitz root elements occur in amenable subgroups containing the head.
+* **(c) One root direction.** `Lambda = <x_12(F_2[T])>`, where `pi(Lambda)` is abelian. Likewise any
+  single root subgroup, or any subgroup of the upper unitriangular group `UT_3(J)`, whose symbol
+  image is nilpotent.
+
+**Corollary 5 (faithful models in every row).** Each `B_Lambda` above is countable and amenable, hence
+sofic.
+* **Rank models.** Permutation matrices from a sofic approximation give, over every field, an
+  injective homomorphism into a rank ultraproduct with `rk(sigma(g) - 1) >= 1/2` for `g != 1`. A
+  permutation with at most `eps n` fixed points has at most `eps n + (1 - eps)n/2` cycles, and
+  `ker(P - 1)` consists of the functions constant on cycles. So these models retain the head with
+  `c_0 >= 1/2`.
+* **Hamming and Hilbert–Schmidt.** The same approximation gives faithful models in both.
+
+**Consequence for the target.** For every `Lambda` with amenable symbol image, some head-retaining
+rank model of `B_Lambda` exists. So a proof that every rank model of `E_4` kills the head must
+evaluate `sigma` on a set of elements whose symbols generate a nonamenable subgroup of
+`EL_3(F_2[z, z^(-1)])`. The conclusion cannot follow from the relations inside any single subgroup
+with amenable symbol image.
+* **Smallest natural sets.** The constants together with one Toeplitz root element, such as
+  `x_12(T)`. Their symbols generate `EL_3(F_2[z^(-1)])`, which is infinite and Kazhdan. This is
+  where the operator-norm proof spends property (T).
+* **For Proposition 1(3).** The transport of `sigma(K_0)`'s commutation along `sigma(u)` fails in
+  some model of `B_Lambda`. A proof must use the commutation of `sigma(K_0)` with elements of `H`
+  outside every such `B_Lambda`. Constants alone and tilts alone do not suffice; both are needed
+  together.
+
+## 4. Where it stops
+
+**What a proof has to combine.**
+* **(i)** The normal form at moving levels: exact level representations with transvection
+  displacement `c_0` and uniform displacement `>= c_0/4`
+  (`rank-models-are-exact-representations-at-moving-finite-levels`).
+* **(ii)** The commuting finite simple cell `K_0 <= C(H)` and its lamps (Proposition 2).
+* **(iii)** Relations among constants and Toeplitz root elements, jointly. By Section 3 neither
+  family alone carries any obstruction.
+
+It must do this without a spectral gap. Property (T) gives no rank rounding
+(`kazhdan-group-rank-models-admit-no-expander-decomposition`), and the rank row lacks a faithful size
+(Theorem 10 of the ladder artifact).
+
+**Two mechanisms checked.**
+* **Odd-order averaging** (a characteristic-two replacement for the Kazhdan projection). Over `F_2`,
+  averaging idempotents exist for odd-order finite subgroups, for example Singer cycles
+  `C_(2^m - 1) <= GL_m(F_2)`. They give genuine equivariant splittings in `M`. But a sum
+  `sum_(i<N) sigma(h_i) x sigma(h_i)^(-1)` can have rank up to `N rk(x)`, so an average with an
+  unbounded number of terms is not rank-contractive. So an average over a growing finite subgroup
+  cannot play the Kazhdan projection's role of the operator-norm proof, where coefficients of
+  `l^1`-norm one keep errors bounded. Only exact identities with boundedly many terms act at linear
+  scale. This is a remark, not a theorem: it rules out the direct transcription only.
+* **Block idempotents of the cell.** The Steinberg module of `GL_3(F_2)` is a block of defect zero.
+  Its block idempotent `eps_St` is central in `F_2[GL_3(F_2)]` and has boundedly many terms. So
+  `sigma(eps_St(K_0))` is an idempotent in `C_M(sigma(H))`, and its `u`-conjugate
+  `sigma(eps_St(K_1))` lies in `sigma(F_2[H])`. Transporting commutation for this one idempotent is
+  a bounded-term instance of Proposition 1(3). I found no argument, and no model where it fails
+  that does not already fail at (3).
+
+**Open.** A rank argument for the target through the Toeplitz relations among `x_12(S)`, `x_12(T)`
+and the constants, on the level-`N` pieces of Proposition 2, is the remaining input. Lanes on the
+same gate are `w4-sub-weyl`, `w4-cohn-el3` and `w4-rankfn`.

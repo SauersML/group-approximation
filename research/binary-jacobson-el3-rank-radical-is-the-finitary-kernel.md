@@ -134,3 +134,31 @@ intersection of the kernels of all rank models) is `L`.
     the head, and the normal form applies verbatim.
   * Construct the level corrections coherently in `M`, or show the coherence equations force the
     transvection `ρ_k(u_13(M,M))` into the corrections at a rank cost `c_0`.
+* **Block 2 is not a block; the transfer is one transport step (w4-jacobson-radical, 2026-09-12).**
+  Source: `research/artifacts/jacobson-rank-radical-support-bound-and-symbol-firewall-2026-09-12.md`,
+  Section 1.
+  * **Normalization already supplies the bound.** In the operator-norm proof, the bound of
+    `binary-finitary-transvection-uniformly-controls-active-rank` only confines the active part to
+    rank `C·r_n`, so that Hilbert norms rescaled by `r_n` stay bounded. In normalized rank a
+    head-retaining model has displacement `c_0 > 0`. Every nontrivial finitary element displaces
+    `>= c_0/4`, so the support bound holds with `C = 4/c_0` at every stage, whatever the
+    natural-module content. The cutoffs `e_n` become `1`, and all error terms vanish in `M`.
+  * **What is left.** `σ` kills the head iff `σ(u c u^(−1)) = σ(x_12(Q))` commutes with `σ(x_23(1))`.
+    That is commutant transport along `u` for the cell's own data. It is Theorem 10 of the ladder
+    artifact with `A(L) = C_U(L)`, where (A3) and rounding are absent.
+* **The cell is a finite simple commutant cell** (`jacobson-compression-cell-is-a-commuting-lamplighter`).
+  * `c` lies in `K_0 = u^(−1) GL_3(F_2)_(index 0) u <= C_E(H)`, and `u K_0 u^(−1) <= H`.
+  * The conjugates `u^j K_0 u^(−j)` pairwise commute.
+  * So the transport needed is for one finite simple group, and no rounding of `σ(K_0)` is required.
+* **Symbol firewall** (`jacobson-amenable-symbol-subgroups-are-amenable`).
+  * A subgroup of `EL_n(J)` is amenable iff its Laurent symbol image is.
+  * `π(u)` is the scalar `z` on the Kazhdan block. So `<L, u, Λ>` is amenable whenever `π(Λ)` is
+    amenable, and it retains the head in faithful rank models over every field.
+  * Instances:
+    * the cell together with all constants `EL_3(F_2)`;
+    * the tilted constants `<x_12(T), x_23(T), x_21(S), x_32(S)>`, whose symbol image is
+      `diag(z,z^2,z^3) SL_3(F_2) diag(z,z^2,z^3)^(−1)`.
+  * **Consequence.** A proof must evaluate `σ` on elements whose symbols generate a nonamenable
+    group, for example the constants together with one Toeplitz root element. Its symbols generate
+    `EL_3(F_2[z^(−1)])`. Averages with an unbounded number of terms are not rank-contractive, so this
+    input cannot enter through an averaged projection.
