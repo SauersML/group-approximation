@@ -42,3 +42,18 @@ the augmentation rank.
 - **What a proof needs.** Relations among infinite-order, depth-changing elements, or among two finite
   subgroups generating an infinite subgroup (`v-rank-models-are-trivial-plus-free-on-odd-cycle-trees`,
   artifact Proposition 2.1: finite data never force triviality).
+
+- **Audit for abstract rank functions** (w5-v-infinite-order, artifact
+  `research/artifacts/thompson-v-rank-models-fixed-rank-and-wandering-freeness-2026-09-12.md`, Section 3.1).
+  - **Holds abstractly:** the torsion law and uniform displacement. They use only unit invariance, subadditivity,
+    additivity on orthogonal idempotents, Fourier inversion and group theory, so they hold for every Sylvester rank
+    function on `F_3[V]` (the torsion law with `p = 5`).
+  - **Holds but vacuous here:** the covariance theorem holds abstractly, but needs covariant cylinder idempotents
+    in the target, so it says nothing on `F_3[V]` alone.
+  - **[matricial]:** the covariance finite form, its truncation bound, and the symmetric-group stage theorem.
+- **Reformulation** (`v-rank-torsion-constant-equals-global-fixed-rank`).
+  - **Equivalence:** this claim is equivalent to `a_5(rk) = phi_V(rk) = 1` for every rank function on `F_3[V]`.
+  - **What any other rank function looks like:** `phi_V < 1`, regular odd torsion on the part that is not fixed,
+    and free wandering elements (`v-rank-models-act-freely-by-wandering-elements`).
+  - **Matricial only:** the compression to a reduced model has no abstract version yet.
+  - **Where it dies:** amenable configurations are inert (artifact Section 3.2).

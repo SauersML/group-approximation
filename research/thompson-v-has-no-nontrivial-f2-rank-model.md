@@ -72,3 +72,16 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
   - **No power-conjugacy.** `y ~ y^2` would give `rk((y-1)^2) = rk(y-1)`, but that route is unavailable
     for `x_0`. Slopes at fixed points are conjugacy invariants, and `x_0^k` has slopes `+k` and `-k`
     (artifact Section 3).
+
+- **Fixed rank and wandering freeness** (w5-v-infinite-order; artifact
+  `research/artifacts/thompson-v-rank-models-fixed-rank-and-wandering-freeness-2026-09-12.md`).
+  - **Proved** for abstract Sylvester rank functions in every characteristic, hence for models:
+    - the torsion constant `a_p` equals the fixed rank `phi_V` (`v-rank-torsion-constant-equals-global-fixed-rank`);
+    - every element with a wandering clopen, `x_0` included, has `rk q([x]) >= 1 - phi_V` for `q != 0`
+      (`v-rank-models-act-freely-by-wandering-elements`).
+  - **[matricial]** Every nontrivial model compresses to a nontrivial model with no fixed vectors. There torsion is
+    regular and wandering elements are free.
+  - **Where it dies.** That is sofic behaviour. The Følner rank functions of the amenable subgroups these arguments
+    use satisfy all of it: lamps along wandering orbits, `BS(1,2)`-type partial conjugacies, locally finite torsion.
+    With Elek–Szabó uniqueness (imported, artifact Section 3.2) they also satisfy `V`-conjugacy invariance on those
+    subgroups. A proof needs relations in a non-amenable subgroup, and any proof shows `V` is not sofic.
