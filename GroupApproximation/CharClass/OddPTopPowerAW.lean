@@ -53,6 +53,8 @@ def clampHom (a k : ℕ) (v : ℕ → ℕ) (hv : Monotone v) : (⦋a⦌ : Simple
     ((clampHom a k v hv).toOrderHom j : ℕ) = min (v j.val) k :=
   rfl
 
+section Faces
+
 variable {X : TopCat.{0}}
 
 /-- **The sub-simplex of `σ` on the clamped vertices** `min (v 0) k, …, min (v a) k`, tagged with
@@ -75,7 +77,8 @@ theorem vtx_congr {k : ℕ} (σ : singularSimplices X k) {a a' : ℕ} {v v' : �
     apply Fin.ext
     rw [clampHom_apply, clampHom_apply]
     exact hvv j.val (Nat.le_of_lt_succ j.isLt)
-  simp only [vtx, hf]
+  unfold vtx
+  rw [hf]
 
 /-- **A sub-simplex of a sub-simplex is a sub-simplex**, on the composed vertex map, as soon as the
 inner map stays below the outer degree. -/
@@ -114,6 +117,7 @@ theorem faceSimplex_eq_vtx (n : ℕ) (i : Fin (n + 2)) (σ : singularSimplices X
     apply Fin.ext
     rw [clampHom_apply]
     show (i.succAbove j : ℕ) = min (succAb i.val j.val) (n + 1)
+    have hj1 := j.isLt
     by_cases hj : j.val < i.val
     · rw [Fin.succAbove_of_castSucc_lt i j (by rw [Fin.lt_iff_val_lt_val, Fin.coe_castSucc]; exact hj)]
       simp only [succAb, if_pos hj, Fin.coe_castSucc]
@@ -128,20 +132,25 @@ theorem faceSimplex_eq_vtx (n : ℕ) (i : Fin (n + 2)) (σ : singularSimplices X
 /-- **The boundary of a tagged simplex of positive degree, as a sum of sub-simplices.** -/
 theorem tagBd_eq_sum (K : Type) [CommRing K] (n : ℕ) (σ : singularSimplices X (n + 1)) :
     tagBd K X ⟨n + 1, σ⟩
-      = ∑ l ∈ Finset.range (n + 2),
+      = ∑ l ∈ Finset.range (n + 1 + 1),
           ((-1 : K) ^ l) • Finsupp.single (vtx σ n (succAb l) (succAb_mono l)) (1 : K) := by
-  rw [tagBd_succ_eq_sum, ← Fin.sum_univ_eq_sum_range
-    (fun l => ((-1 : K) ^ l) • Finsupp.single (vtx σ n (succAb l) (succAb_mono l)) (1 : K))]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [faceSimplex_eq_vtx n i σ, ← Int.cast_smul_eq_zsmul K, Int.cast_pow, Int.cast_neg,
-    Int.cast_one]
+  rw [tagBd_succ_eq_sum]
+  have h : ∀ i : Fin (n + 2),
+      ((-1 : ℤ) ^ (i : ℕ)) • Finsupp.single (⟨n, faceSimplex X n i σ⟩ : TagSimp X) (1 : K)
+        = ((-1 : K) ^ (i : ℕ)) •
+            Finsupp.single (vtx σ n (succAb (i : ℕ)) (succAb_mono (i : ℕ))) (1 : K) := fun i => by
+    rw [faceSimplex_eq_vtx n i σ, ← Int.cast_smul_eq_zsmul K, Int.cast_pow, Int.cast_neg,
+      Int.cast_one]
+  rw [Finset.sum_congr rfl fun i _ => h i]
+  exact Fin.sum_univ_eq_sum_range
+    (fun l => ((-1 : K) ^ l) • Finsupp.single (vtx σ n (succAb l) (succAb_mono l)) (1 : K)) (n + 2)
 
 /-- **The boundary of a sub-simplex of positive degree** is the sum of the sub-simplices on the
 composed face maps. -/
 theorem tagBd_vtx (K : Type) [CommRing K] {k : ℕ} (σ : singularSimplices X k) (a : ℕ) {v : ℕ → ℕ}
     (hv : Monotone v) :
     tagBd K X (vtx σ (a + 1) v hv)
-      = ∑ l ∈ Finset.range (a + 2),
+      = ∑ l ∈ Finset.range (a + 1 + 1),
           ((-1 : K) ^ l) • Finsupp.single (vtx σ a (v ∘ succAb l) (hv.comp (succAb_mono l))) (1 : K) := by
   have h := tagBd_eq_sum K a (vtx σ (a + 1) v hv).2
   refine h.trans (Finset.sum_congr rfl fun l _ => ?_)
@@ -166,11 +175,13 @@ def awFront (τ : TagSimp X) (i : ℕ) : TagSimp X := vtx τ.2 i id monotone_id
 def awBack (τ : TagSimp X) (i : ℕ) : TagSimp X :=
   vtx τ.2 (τ.1 - i) (fun j => j + i) (addRight_mono i)
 
+end Faces
+
 /-! ## 4. Appending a slot -/
 
 section Concat
 
-variable (K : Type) [CommRing K] (X)
+variable (K : Type) [CommRing K] (X : TopCat.{0})
 
 /-- Append a tagged simplex as the last slot. -/
 def snocT {r : ℕ} (t : TupAll X r) (τ : TagSimp X) : TupAll X (r + 1) := Fin.snoc t τ
@@ -183,7 +194,8 @@ def catLin (r : ℕ) : tupAllMod K X r →ₗ[K] (TagSimp X →₀ K) →ₗ[K] 
 theorem catLin_single_left {r : ℕ} (t : TupAll X r) (c : TagSimp X →₀ K) :
     catLin K X r (Finsupp.single t 1) c
       = Finsupp.linearCombination K (fun τ => Finsupp.single (snocT X t τ) (1 : K)) c := by
-  rw [catLin, Finsupp.linearCombination_single, one_smul]
+  unfold catLin
+  rw [Finsupp.linearCombination_single, one_smul]
 
 theorem catLin_single {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
     catLin K X r (Finsupp.single t 1) (Finsupp.single τ 1) = Finsupp.single (snocT X t τ) 1 := by
@@ -195,14 +207,17 @@ def degSetT (r d : ℕ) : Set (TupAll X r) := {t | ∑ j, (t j).1 = d}
 theorem sum_snocT {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
     ∑ j, (snocT X t τ j).1 = ∑ j, (t j).1 + τ.1 := by
   rw [Fin.sum_univ_castSucc]
-  simp only [snocT, Fin.snoc_castSucc, Fin.snoc_last]
+  unfold snocT
+  rw [Fin.snoc_last]
+  simp only [Fin.snoc_castSucc]
 
 theorem tupPre_snocT_castSucc {r : ℕ} (t : TupAll X r) (τ : TagSimp X) (j : Fin r) :
     tupPre (snocT X t τ) j.castSucc = tupPre t j := by
   rw [tupPre_eq_sum_range, tupPre_eq_sum_range, Fin.coe_castSucc]
   refine Finset.sum_congr rfl fun l hl => ?_
   have hlr : l < r := lt_trans (Finset.mem_range.mp hl) j.isLt
-  simp only [tupDeg, dif_pos hlr, dif_pos (Nat.lt_succ_of_lt hlr)]
+  unfold tupDeg
+  rw [dif_pos hlr, dif_pos (Nat.lt_succ_of_lt hlr)]
   exact congrArg Sigma.fst (Fin.snoc_castSucc (α := fun _ => TagSimp X) τ t ⟨l, hlr⟩)
 
 theorem tupPre_snocT_last {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
@@ -210,7 +225,8 @@ theorem tupPre_snocT_last {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
   rw [tupPre_eq_sum_range, Fin.val_last, tupTot_eq_sum_range]
   refine Finset.sum_congr rfl fun l hl => ?_
   have hlr : l < r := Finset.mem_range.mp hl
-  simp only [tupDeg, dif_pos hlr, dif_pos (Nat.lt_succ_of_lt hlr)]
+  unfold tupDeg
+  rw [dif_pos hlr, dif_pos (Nat.lt_succ_of_lt hlr)]
   exact congrArg Sigma.fst (Fin.snoc_castSucc (α := fun _ => TagSimp X) τ t ⟨l, hlr⟩)
 
 /-- Differentiating an earlier slot commutes with appending. -/
@@ -222,26 +238,32 @@ theorem slotBd_castSucc_snocT {r : ℕ} (t : TupAll X r) (τ : TagSimp X) (j : F
       catLin K X r y (Finsupp.single τ 1) = ((catLin K X r).flip (Finsupp.single τ 1)) y :=
     fun _ => rfl
   rw [hflip, map_smul, Finsupp.apply_linearCombination]
-  congr 1
+  refine congrArg (fun z => ((-1 : K) ^ tupPre t j) • z) ?_
   have ht : snocT X t τ j.castSucc = t j := Fin.snoc_castSucc (α := fun _ => TagSimp X) τ t j
   rw [ht]
   refine tupLC_congr_fun K (fun τ' => ?_) _
   show Finsupp.single (Function.update (snocT X t τ) j.castSucc τ') (1 : K)
     = catLin K X r (Finsupp.single (Function.update t j τ') 1) (Finsupp.single τ 1)
-  rw [catLin_single, snocT, snocT, Fin.snoc_update]
+  rw [catLin_single]
+  unfold snocT
+  rw [Fin.snoc_update]
 
 /-- Differentiating the appended slot. -/
 theorem slotBd_last_snocT {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
     slotBd K X (Fin.last r) (Finsupp.single (snocT X t τ) 1)
       = ((-1 : K) ^ (∑ j, (t j).1)) • catLin K X r (Finsupp.single t 1) (tagBd K X τ) := by
   rw [slotBd_single, slotBdGen, tupPre_snocT_last, catLin_single_left]
-  congr 1
-  have hl : snocT X t τ (Fin.last r) = τ := Fin.snoc_last (α := fun _ => TagSimp X) τ t
-  rw [hl]
-  refine tupLC_congr_fun K (fun τ' => ?_) _
-  show Finsupp.single (Function.update (snocT X t τ) (Fin.last r) τ') (1 : K)
-    = Finsupp.single (snocT X t τ') 1
-  rw [snocT, snocT, Fin.update_snoc_last]
+  have hLC : Finsupp.linearCombination K
+        (fun τ' => Finsupp.single (Function.update (snocT X t τ) (Fin.last r) τ') (1 : K))
+        (tagBd K X (snocT X t τ (Fin.last r)))
+      = Finsupp.linearCombination K (fun τ' => Finsupp.single (snocT X t τ') (1 : K))
+          (tagBd K X τ) := by
+    have hl : snocT X t τ (Fin.last r) = τ := Fin.snoc_last (α := fun _ => TagSimp X) τ t
+    rw [hl]
+    refine tupLC_congr_fun K (fun τ' => ?_) _
+    unfold snocT
+    rw [Fin.update_snoc_last]
+  rw [hLC]
 
 /-- **The concatenation law on a basis tuple.** -/
 theorem tupDAll_catLin_single {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
@@ -249,7 +271,7 @@ theorem tupDAll_catLin_single {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
       = catLin K X r (tupDAll K X r (Finsupp.single t 1)) (Finsupp.single τ 1)
         + ((-1 : K) ^ (∑ j, (t j).1)) • catLin K X r (Finsupp.single t 1) (tagBd K X τ) := by
   rw [catLin_single, tupDAll, LinearMap.sum_apply, Fin.sum_univ_castSucc, slotBd_last_snocT]
-  congr 1
+  refine congrArg (· + _) ?_
   rw [tupDAll, LinearMap.sum_apply, map_sum, LinearMap.sum_apply]
   exact Finset.sum_congr rfl fun j _ => slotBd_castSucc_snocT K X t τ j
 
@@ -274,26 +296,26 @@ theorem tupDAll_catLin_of_mem {r d : ℕ} {x : tupAllMod K X r}
     (((catLin K X r).flip (Finsupp.single τ 1)).comp (tupDAll K X r)
       + ((-1 : K) ^ d) • (catLin K X r).flip (tagBd K X τ))
     (degSetT X r d) (fun t ht => by
-      simp only [LinearMap.comp_apply, LinearMap.flip_apply, LinearMap.add_apply,
-        LinearMap.smul_apply]
+      show tupDAll K X (r + 1) (catLin K X r (Finsupp.single t 1) (Finsupp.single τ 1))
+        = catLin K X r (tupDAll K X r (Finsupp.single t 1)) (Finsupp.single τ 1)
+          + ((-1 : K) ^ d) • catLin K X r (Finsupp.single t 1) (tagBd K X τ)
       rw [tupDAll_catLin_single, show (∑ j, (t j).1) = d from ht]) hx
-  simp only [LinearMap.comp_apply, LinearMap.flip_apply, LinearMap.add_apply,
-    LinearMap.smul_apply] at h
   exact h
 
 /-- Appending a simplex of degree `e` to a tuple of total degree `d` gives total degree `d + e`. -/
 theorem catLin_mem {r d : ℕ} {x : tupAllMod K X r}
     (hx : x ∈ Finsupp.supported K K (degSetT X r d)) (τ : TagSimp X) :
     catLin K X r x (Finsupp.single τ 1) ∈ Finsupp.supported K K (degSetT X (r + 1) (d + τ.1)) := by
+  classical
   have h := eq_on_supported K X ((catLin K X r).flip (Finsupp.single τ 1))
     (Finsupp.lmapDomain K K fun t => snocT X t τ) (degSetT X r d) (fun t _ => by
       rw [LinearMap.flip_apply, catLin_single, Finsupp.lmapDomain_apply, Finsupp.mapDomain_single])
     hx
-  rw [LinearMap.flip_apply] at h
-  rw [h, Finsupp.lmapDomain_apply]
+  rw [LinearMap.flip_apply, Finsupp.lmapDomain_apply] at h
+  rw [h]
   refine (Finsupp.mem_supported K _).mpr fun t' ht' => ?_
   obtain ⟨t, ht, rfl⟩ := Finset.mem_image.mp (Finsupp.mapDomain_support ht')
-  show ∑ j, (snocT X t τ j).1 = d + τ.1
+  show (∑ j, (snocT X t τ j).1) = d + τ.1
   rw [sum_snocT, show (∑ j, (t j).1) = d from (Finsupp.mem_supported K x).mp hx ht]
 
 end Concat
@@ -302,14 +324,15 @@ end Concat
 
 section Diagonal
 
-variable (K : Type) [CommRing K] (X)
+variable (K : Type) [CommRing K] (X : TopCat.{0})
 
 /-- **The `r`-fold Alexander–Whitney diagonal** of a tagged simplex, left-nested:
 `AW^{(0)}(τ)` is the empty tuple when `τ` is a point and `0` otherwise, and
 `AW^{(r+1)}(τ) = Σ_{i ≤ deg τ} AW^{(r)}(τ[0..i]) ⊗ τ[i..deg τ]`. -/
-def awAll : (r : ℕ) → TagSimp X → tupAllMod K X r
-  | 0, τ => if τ.1 = 0 then Finsupp.single (Fin.elim0 : TupAll X 0) 1 else 0
-  | r + 1, τ => ∑ i ∈ Finset.range (τ.1 + 1),
+def awAll (r : ℕ) (τ : TagSimp X) : tupAllMod K X r :=
+  match r with
+  | 0 => if τ.1 = 0 then Finsupp.single (Fin.elim0 : TupAll X 0) 1 else 0
+  | r + 1 => ∑ i ∈ Finset.range (τ.1 + 1),
       catLin K X r (awAll r (awFront τ i)) (Finsupp.single (awBack τ i) 1)
 
 /-- The linear extension of the diagonal to chains. -/
@@ -318,7 +341,8 @@ def awLin (r : ℕ) : (TagSimp X →₀ K) →ₗ[K] tupAllMod K X r :=
 
 theorem awLin_single (r : ℕ) (τ : TagSimp X) :
     awLin K X r (Finsupp.single τ 1) = awAll K X r τ := by
-  rw [awLin, Finsupp.linearCombination_single, one_smul]
+  show Finsupp.linearCombination K (awAll K X r) (Finsupp.single τ 1) = awAll K X r τ
+  rw [Finsupp.linearCombination_single, one_smul]
 
 theorem awAll_zero (τ : TagSimp X) :
     awAll K X 0 τ = if τ.1 = 0 then Finsupp.single (Fin.elim0 : TupAll X 0) 1 else 0 :=
@@ -337,8 +361,8 @@ theorem awAll_mem (r : ℕ) (τ : TagSimp X) :
     rw [awAll_zero]
     split_ifs with h
     · refine Finsupp.single_mem_supported K 1 ?_
-      show ∑ j : Fin 0, ((Fin.elim0 : TupAll X 0) j).1 = τ.1
-      rw [Finset.univ_eq_empty, Finset.sum_empty, h]
+      show (∑ j : Fin 0, ((Fin.elim0 : TupAll X 0) j).1) = τ.1
+      rw [Fin.sum_univ_zero, h]
     · exact Submodule.zero_mem _
   | succ r ih =>
     rw [awAll_succ]

@@ -34,9 +34,11 @@ noncomputable section
 
 namespace TopPow
 
-variable {X : TopCat.{0}}
-
 /-! ## 1. Faces of sub-simplices, split at an end -/
+
+section Faces
+
+variable {X : TopCat.{0}}
 
 theorem tagBd_vtx_last (K : Type) [CommRing K] {k : ℕ} (σ : singularSimplices X k) (a : ℕ)
     {v : ℕ → ℕ} (hv : Monotone v) :
@@ -71,11 +73,13 @@ theorem awBack_face {n : ℕ} (σ : singularSimplices X (n + 1)) (v i : ℕ) (hi
     show j + i ≤ n
     omega
 
+end Faces
+
 /-! ## 3. The binary law -/
 
 section Binary
 
-variable (K : Type) [CommRing K] {M : Type} [AddCommGroup M] [Module K M]
+variable {X : TopCat.{0}} (K : Type) [CommRing K] {M : Type} [AddCommGroup M] [Module K M]
   (B : (TagSimp X →₀ K) →ₗ[K] (TagSimp X →₀ K) →ₗ[K] M)
 
 /-- The front half at a cut `i + 1`: the interior faces of the front, and its last face. -/
@@ -83,7 +87,7 @@ theorem aw_term_front (n : ℕ) (σ : singularSimplices X (n + 1)) (i : ℕ) (hi
     B (tagBd K X (awFront (⟨n + 1, σ⟩ : TagSimp X) (i + 1)))
         (Finsupp.single (awBack (⟨n + 1, σ⟩ : TagSimp X) (i + 1)) 1)
       = ∑ l ∈ Finset.range (i + 1), ((-1 : K) ^ l) •
-          B (Finsupp.single (vtx σ i (id ∘ succAb l) (monotone_id.comp (succAb_mono l))) 1)
+          B (Finsupp.single (vtx σ i (succAb l) (succAb_mono l)) 1)
             (Finsupp.single (vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1))) 1)
         + ((-1 : K) ^ (i + 1)) •
           B (Finsupp.single (vtx σ i id monotone_id) 1)
@@ -100,9 +104,10 @@ theorem aw_term_front (n : ℕ) (σ : singularSimplices X (n + 1)) (i : ℕ) (hi
       split_ifs <;> omega
   rw [hback, hfront, tagBd_vtx_last, hlast, map_add, map_sum, LinearMap.add_apply,
     LinearMap.sum_apply, map_smul, LinearMap.smul_apply]
-  congr 1
-  refine Finset.sum_congr rfl fun l _ => ?_
-  rw [map_smul, LinearMap.smul_apply]
+  refine congrArg (· + _) (Finset.sum_congr rfl fun l _ => ?_)
+  have hid : vtx σ i (id ∘ succAb l) (monotone_id.comp (succAb_mono l))
+      = vtx σ i (succAb l) (succAb_mono l) := rfl
+  rw [hid, map_smul, LinearMap.smul_apply]
 
 /-- The back half at a cut `i ≤ n`: the interior faces of the back, and its first face. -/
 theorem aw_term_back (n : ℕ) (σ : singularSimplices X (n + 1)) (i : ℕ) (hi : i ≤ n) :
@@ -127,8 +132,7 @@ theorem aw_term_back (n : ℕ) (σ : singularSimplices X (n + 1)) (i : ℕ) (hi 
       split_ifs <;> omega
   rw [hback, hfront, tagBd_vtx_first, hzero, map_add, map_sum, map_smul, pow_zero, one_smul,
     smul_add, Finset.smul_sum]
-  congr 1
-  refine Finset.sum_congr rfl fun l _ => ?_
+  refine congrArg (· + _) (Finset.sum_congr rfl fun l _ => ?_)
   rw [map_smul, smul_smul, ← pow_add]
 
 theorem aw_term_front_zero (n : ℕ) (σ : singularSimplices X (n + 1)) :
@@ -164,7 +168,7 @@ theorem binary_aw (n : ℕ) (σ : singularSimplices X (n + 1)) :
           + ((-1 : K) ^ i) • B (Finsupp.single (awFront (⟨n + 1, σ⟩ : TagSimp X) i) 1)
               (tagBd K X (awBack (⟨n + 1, σ⟩ : TagSimp X) i)))
       = ∑ i ∈ Finset.range (n + 1), ∑ l ∈ Finset.range (i + 1), ((-1 : K) ^ l) •
-            B (Finsupp.single (vtx σ i (id ∘ succAb l) (monotone_id.comp (succAb_mono l))) 1)
+            B (Finsupp.single (vtx σ i (succAb l) (succAb_mono l)) 1)
               (Finsupp.single (vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1))) 1)
         + ∑ i ∈ Finset.range (n + 1), ∑ l ∈ Finset.range (n - i + 1), ((-1 : K) ^ (i + (l + 1))) •
             B (Finsupp.single (vtx σ i id monotone_id) 1)
@@ -176,16 +180,16 @@ theorem binary_aw (n : ℕ) (σ : singularSimplices X (n + 1)) :
         aw_term_front K B n σ i (Nat.le_of_lt_succ (Finset.mem_range.mp hi)),
       Finset.sum_congr rfl fun i hi =>
         aw_term_back K B n σ i (Nat.le_of_lt_succ (Finset.mem_range.mp hi)),
-      Finset.sum_add_distrib, Finset.sum_add_distrib, add_add_add_comm, ← Finset.sum_add_distrib]
-    have hE : ∑ i ∈ Finset.range (n + 1),
-        (((-1 : K) ^ (i + 1)) •
+      Finset.sum_add_distrib, Finset.sum_add_distrib, add_add_add_comm]
+    have hE : ∑ i ∈ Finset.range (n + 1), ((-1 : K) ^ (i + 1)) •
             B (Finsupp.single (vtx σ i id monotone_id) 1)
               (Finsupp.single (vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1))) 1)
-          + ((-1 : K) ^ i) •
+        + ∑ i ∈ Finset.range (n + 1), ((-1 : K) ^ i) •
             B (Finsupp.single (vtx σ i id monotone_id) 1)
-              (Finsupp.single (vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1))) 1))
-        = 0 :=
-      Finset.sum_eq_zero fun i _ => by rw [pow_succ, mul_neg_one, neg_smul, neg_add_cancel]
+              (Finsupp.single (vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1))) 1)
+        = 0 := by
+      rw [← Finset.sum_add_distrib]
+      exact Finset.sum_eq_zero fun i _ => by rw [pow_succ, mul_neg_one, neg_smul, neg_add_cancel]
     rw [hE, add_zero]
   -- the right side: each face `d_v σ` lands in the front family (`v ≤ i`) or the back one
   have hR : ∑ v ∈ Finset.range (n + 1 + 1), ((-1 : K) ^ v) •
@@ -193,7 +197,7 @@ theorem binary_aw (n : ℕ) (σ : singularSimplices X (n + 1)) :
             B (Finsupp.single (awFront (vtx σ n (succAb v) (succAb_mono v)) i) 1)
               (Finsupp.single (awBack (vtx σ n (succAb v) (succAb_mono v)) i) 1)
       = ∑ i ∈ Finset.range (n + 1), ∑ l ∈ Finset.range (i + 1), ((-1 : K) ^ l) •
-            B (Finsupp.single (vtx σ i (id ∘ succAb l) (monotone_id.comp (succAb_mono l))) 1)
+            B (Finsupp.single (vtx σ i (succAb l) (succAb_mono l)) 1)
               (Finsupp.single (vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1))) 1)
         + ∑ i ∈ Finset.range (n + 1), ∑ l ∈ Finset.range (n - i + 1), ((-1 : K) ^ (i + (l + 1))) •
             B (Finsupp.single (vtx σ i id monotone_id) 1)
@@ -205,18 +209,16 @@ theorem binary_aw (n : ℕ) (σ : singularSimplices X (n + 1)) :
     have hin : i ≤ n := Nat.le_of_lt_succ (Finset.mem_range.mp hi)
     rw [← Finset.sum_range_add_sum_Ico _ (show i + 1 ≤ n + 1 + 1 by omega),
       Finset.sum_Ico_eq_sum_range, show n + 1 + 1 - (i + 1) = n - i + 1 by omega]
-    congr 1
-    · refine Finset.sum_congr rfl fun v hv => ?_
-      have hvi : v ≤ i := Nat.le_of_lt_succ (Finset.mem_range.mp hv)
+    refine congrArg₂ (· + ·) (Finset.sum_congr rfl fun v hv => ?_)
+      (Finset.sum_congr rfl fun l _ => ?_)
+    · have hvi : v ≤ i := Nat.le_of_lt_succ (Finset.mem_range.mp hv)
       have hlow : vtx σ (n - i) (succAb v ∘ fun j => j + i) ((succAb_mono v).comp (addRight_mono i))
           = vtx σ (n - i) (fun j => j + (i + 1)) (addRight_mono (i + 1)) :=
         vtx_congr σ _ _ rfl fun j _ => by
           simp only [Function.comp_apply, succAb]
           split_ifs <;> omega
       rw [awFront_face σ v i hin, awBack_face σ v i hin, hlow]
-      rfl
-    · refine Finset.sum_congr rfl fun l _ => ?_
-      have hfr : vtx σ i (succAb (i + 1 + l)) (succAb_mono (i + 1 + l)) = vtx σ i id monotone_id :=
+    · have hfr : vtx σ i (succAb (i + 1 + l)) (succAb_mono (i + 1 + l)) = vtx σ i id monotone_id :=
         vtx_congr σ _ _ rfl fun j hj => by
           simp only [id_eq, succAb]
           split_ifs <;> omega
@@ -237,7 +239,7 @@ end Binary
 
 section Chain
 
-variable (K : Type) [CommRing K] (X)
+variable (K : Type) [CommRing K] (X : TopCat.{0})
 
 /-- **The iterated Alexander–Whitney diagonal is a chain map**: `d (AW^{(r)} τ) = AW^{(r)} (∂τ)`. -/
 theorem tupDAll_awAll (r : ℕ) (τ : TagSimp X) :
@@ -245,17 +247,23 @@ theorem tupDAll_awAll (r : ℕ) (τ : TagSimp X) :
   induction r generalizing τ with
   | zero =>
     have h0 : tupDAll K X 0 = 0 := by
-      simp only [tupDAll, Finset.univ_eq_empty, Finset.sum_empty]
+      rw [tupDAll, Fin.sum_univ_zero]
     rw [h0, LinearMap.zero_apply]
     obtain ⟨_ | n, σ⟩ := τ
     · rw [tagBd_zero, map_zero]
     · rw [tagBd_eq_sum, map_sum]
       rcases n with _ | n
-      · rw [Finset.sum_range_succ, Finset.sum_range_one, map_smul, map_smul, awLin_single,
-          awLin_single, awAll_zero, awAll_zero, if_pos rfl, if_pos rfl, pow_zero, pow_one, one_smul,
-          neg_smul, one_smul, add_neg_cancel]
+      · have hpt : ∀ l : ℕ, awLin K X 0
+            (((-1 : K) ^ l) • Finsupp.single (vtx σ 0 (succAb l) (succAb_mono l)) 1)
+              = ((-1 : K) ^ l) • Finsupp.single (Fin.elim0 : TupAll X 0) 1 := fun l => by
+          rw [map_smul, awLin_single, awAll_zero, if_pos (vtx_fst σ 0 (succAb l) (succAb_mono l))]
+        rw [Finset.sum_congr rfl fun l _ => hpt l, ← Finset.sum_smul,
+          show (∑ l ∈ Finset.range (0 + 1 + 1), (-1 : K) ^ l) = 0 by simp [Finset.sum_range_succ],
+          zero_smul]
       · refine (Finset.sum_eq_zero fun l _ => ?_).symm
-        rw [map_smul, awLin_single, awAll_zero, if_neg (Nat.succ_ne_zero n), smul_zero]
+        rw [map_smul, awLin_single, awAll_zero,
+          if_neg (show (vtx σ (n + 1) (succAb l) (succAb_mono l)).1 ≠ 0 from Nat.succ_ne_zero n),
+          smul_zero]
   | succ r ih =>
     obtain ⟨k, σ⟩ := τ
     have hterm : ∀ i ∈ Finset.range (k + 1),
@@ -276,14 +284,13 @@ theorem tupDAll_awAll (r : ℕ) (τ : TagSimp X) :
     rcases k with _ | n
     · have h1 : tagBd K X (awFront (⟨0, σ⟩ : TagSimp X) 0) = 0 := rfl
       have h2 : tagBd K X (awBack (⟨0, σ⟩ : TagSimp X) 0) = 0 := rfl
-      rw [Finset.sum_range_one, h1, h2, tagBd_zero, map_zero, map_zero, map_zero,
-        LinearMap.zero_apply, smul_zero, add_zero]
+      rw [Finset.sum_range_succ, Finset.sum_range_zero, zero_add, h1, h2, tagBd_zero]
+      simp
     · rw [tagBd_eq_sum, map_sum]
       refine (binary_aw K ((catLin K X r).comp (awLin K X r)) n σ).trans ?_
       refine Finset.sum_congr rfl fun v _ => ?_
       rw [map_smul, awLin_single, awAll_succ]
-      congr 1
-      refine Finset.sum_congr rfl fun i _ => ?_
+      refine congrArg (fun z => ((-1 : K) ^ v) • z) (Finset.sum_congr rfl fun i _ => ?_)
       rw [LinearMap.comp_apply, awLin_single]
 
 end Chain
@@ -292,7 +299,7 @@ end Chain
 
 section Natural
 
-variable (K : Type) [CommRing K] {Y : TopCat.{0}} (f : X ⟶ Y)
+variable (K : Type) [CommRing K] {X Y : TopCat.{0}} (f : X ⟶ Y)
 
 theorem tagPush_vtx {k : ℕ} (σ : singularSimplices X k) (a : ℕ) (v : ℕ → ℕ) (hv : Monotone v) :
     tagPush f (vtx σ a v hv) = vtx (pushSimplex f k σ) a v hv := by
@@ -311,9 +318,13 @@ theorem tagPush_awBack (τ : TagSimp X) (i : ℕ) : tagPush f (awBack τ i) = aw
 theorem tupPush_snocT {r : ℕ} (t : TupAll X r) (τ : TagSimp X) :
     tupPush f (snocT X t τ) = snocT Y (tupPush f t) (tagPush f τ) := by
   funext j
-  refine Fin.lastCases ?_ (fun j => ?_) j
-  · simp only [tupPush, snocT, Fin.snoc_last]
-  · simp only [tupPush, snocT, Fin.snoc_castSucc]
+  induction j using Fin.lastCases with
+  | last =>
+    show tagPush f (Fin.snoc t τ (Fin.last r)) = Fin.snoc (fun l => tagPush f (t l)) (tagPush f τ) (Fin.last r)
+    rw [Fin.snoc_last, Fin.snoc_last]
+  | cast j =>
+    show tagPush f (Fin.snoc t τ j.castSucc) = Fin.snoc (fun l => tagPush f (t l)) (tagPush f τ) j.castSucc
+    rw [Fin.snoc_castSucc, Fin.snoc_castSucc]
 
 theorem tupAllMap_catLin {r : ℕ} (x : tupAllMod K X r) (τ : TagSimp X) :
     tupAllMap K f (r + 1) (catLin K X r x (Finsupp.single τ 1))
@@ -336,8 +347,7 @@ theorem tupAllMap_awAll (r : ℕ) (τ : TagSimp X) :
     show _ = if τ.1 = 0 then _ else _
     split_ifs
     · rw [tupAllMap_single]
-      congr 1
-      exact Subsingleton.elim _ _
+      exact congrArg (fun t => Finsupp.single t (1 : K)) (Subsingleton.elim _ _)
     · exact map_zero _
   | succ r ih =>
     rw [awAll_succ, awAll_succ, map_sum]
