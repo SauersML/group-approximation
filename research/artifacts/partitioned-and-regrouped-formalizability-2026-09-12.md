@@ -72,6 +72,12 @@ left-inverse pair needs a formally non-invertible layer. This agrees with
 `injective-binary-automata-are-stably-formalizable`: any realization of `tau x id` is formally dirty
 at `y = 0`.
 
+To be explicit about that consistency (point raised by gk-vf-nonlinear, Section 31): a word of
+formally invertible pieces is bijective, so it cannot *be* `tau x id` for a strict `tau`. A clean
+shear dilation `W` of `formalizable-left-inverse-iff-clean-shear-dilation` is also bijective, but it
+only *restricts* to `tau` on the zero-ancilla slice, with its extra tracks returning to zero. Both
+statements hold, and neither contradicts the other.
+
 ## 3. Over the integers: Kari-type decompositions
 
 *Trust note.* Kari, "Representation of reversible cellular automata with block permutations",
