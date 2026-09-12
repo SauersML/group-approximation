@@ -227,3 +227,74 @@ Read against `research/artifacts/w-bundle-sigma-finite-dim-triviality-2026-09-12
   - Fatou gives `F = P/Q` with `Q(0) = 1`, so the poles are roots of the monic reversed polynomial, hence algebraic integers. Then `m(T) = 0`.
 - **Capacity formula.** `cap(p^(-1)E) = cap(E)^(1/2)` for `p = x^2` gives `sqrt(b^2 - a^2)/2`.
 - **Trust surface.** Pólya's theorem as imported (`polya-integer-series-rational-off-small-capacity`), not re-read from the 1928 source.
+
+## 13. `tf-kazhdan-hyperbolic-alternating-kernels-not-separating` (b42f86698): PASS
+
+- **Literature, re-read from `/scratch.global/sauer354/lit2/2210.00730.txt` on MSI.**
+  - **CK1 (§1.2).** `G_HC(1)(p)` "maps onto G_(F_p;(1;1;2)) by sending the triple (a;b;c) to (τ(2);τ(1);τ(1)), see Corollary 4.2". The two groups are "infinite hyperbolic as soon as p is an odd prime; they have property (T) if p ≥ 7 (resp. p ≥ 11)".
+  - **CK2.** Corollary 1.3(i), with `n = 3`, gives `Alt((p^(3ℓ) − p^3)/ℓ)` for `p ≥ 5` and every prime `ℓ ≥ 3`.
+  - **CK3.** Corollary 6.3 needs `n ≥ 3`, `p > max e_i`, `R` an `F_p`-algebra, and `max e_i > 1`. All four hold for `e = (1,1,2)`, `R = F_p` and `p ≥ 7`.
+  - **CK4.** Remark 6.4 matches.
+- **Belegradek–Osin.** Corollary 1.2 of v4, torsion-free clause included. Already PASS in `review-hyperbolic-leavitt-cover-2026-09-12.md`.
+- **Step 1.** A finite kernel would make `G_(F_p,(1,1,2))` hyperbolic, yet it contains an infinite torsion subgroup. So the kernel is infinite, and it has an element of infinite order.
+- **Steps 2–3.**
+  - A torsion-free cocompact `Sp(2,1)` lattice is a valid `H`.
+  - Property (T) passes to `N` and then to `G`.
+  - `M` is infinite and lies in every `N_ℓ`. The `N_ℓ` are distinct because the degrees grow.
+- **Against the root.** `sp21-noncongruence-simple-kernels-separate-points` asks that each `g ≠ 1` lie in only finitely many alternating kernels. Every `g ∈ M ∖ {1}` lies in all the `N_ℓ`, so the failure has exactly that form.
+
+## 14. `kl-length-six-one-coincidence-words-inject` (0eab892a4): PASS
+
+- **Patterns.**
+  - In `++++--` the same-sign corners are three P-edges and one N-edge. In `+++++-` they are four P-edges.
+  - The coincidence is `P_i N` in (F1), or `P_i = P_j` in (F2) and (F3).
+  - Conditions 1–2 exclude a second coincidence. The node omits `h = u`, but that gives `kappa = 1 ∈ <lambda>`, so it is excluded too.
+- **Admissible cycles, recomputed.** Every identity below checks, so (WT2) holds. (WT1) is `4 = n − 2`.
+  - Powers of the light 2-cycle give `lambda^k`.
+  - A loop plus a light closed path gives `y lambda^k` or `x lambda'^k`.
+  - A heavy P-edge gives `u g^(-1) lambda^(-m)` and `u h^(-1) lambda^m`, with `<lambda>g = <lambda>h`.
+  - A heavy N-edge gives `u^(-1) lambda^m g`.
+  - In (F2): `n lambda^m` and `g^(-1) lambda^(-m)`, with `n = g^(-1) lambda`.
+- **Curvature.** This is the section of the four-corner route, which had no prior review.
+  - `Σκ = 2π(V − E + Σχ) = 4π`.
+  - `κ(v) = 0` by (WT1).
+  - Simply connected interior regions have `κ ≤ 0` by (WT2), and multiply connected regions have `κ ≤ 0`.
+  - The cap region has `κ ≤ 2π`. The argument is correct.
+- **Scope note, not load-bearing.** The "length six over any group" paragraph omits the class `++++++`. Levin's theorem covers it.
+- **Trust surfaces.**
+  - The Bogley–Pride weight conditions, taken through the Ahmad–Al-Mulla–Edjvet restatement.
+  - The relative van Kampen and dipole steps.
+  - Novelty is unverified, because Edjvet–Juhász II was not read. The node says so.
+
+## 15. `necklace-realizable-measures-can-violate-serre` (977b479e2): PASS
+
+- **Step 1.**
+  - `Tr τ(S^j)` counts closed words, and rotation preserves closure.
+  - If `u^m` is closed, then `u` is closed, because `G` is torsion-free.
+  - Primitive orbits have size `d`, so `#X_j = Σ_(d|j) d p_d` with `p_d ≥ 0`.
+- **Step 2.**
+  - `det φ = 4` (recomputed), and `φ(S_σ)` is six distinct elements of `S_ν`.
+  - `Φ` is injective, rotation-equivariant, and preserves value `0` in both directions.
+  - Hence `p_d(P(T_σ)) ≤ p_d(P(T_ν))`.
+- **Step 3.** The bracket satisfies `23 p_d(ν) − p_d(σ) ≥ 22 p_d(ν) ≥ 0`, and Möbius inversion is unique.
+- **Input.** Positivity of `μ = 23ν − σ` and `∫ log|x| dμ < 0` come from `euler-integral-measure-violates-serre-inequality`, PASS in `review-major-swarm-2026-09-12.md` §8.
+
+## 16. Quasitrace modular-group test (c9a5c4a2c): PASS, with no ESTABLISHED node
+
+The landing adds one open claim (`stw01-modular-group-algebra-quasitraces-are-traces`) and two implication routes. It establishes nothing, so no false establishment can occur here.
+- **Step 4'.**
+  - `c*c = a^2 + b + (a − a^2 − b) = a`, so `r = c a^(-1) c*` is a projection.
+  - `r_11 = a` and `r_12 = r_21 = b^(1/2)`, so `f_1 r f_2 r f_1 = b ⊕ 0 ⊕ 0`.
+  - `g(a) = y` because the `λ_i` are distinct.
+- **Step 5'.**
+  - The Blackadar–Handelman extension keeps the defect on `z ⊕ 0 ⊕ 0`.
+  - Restricting to `B` and pulling back along the surjection `C^3 * C^2 → B` gives a non-linear bounded 2-quasitrace.
+- **Quotient route.** `P_3 → C^4 * C^2 → C^3 * C^2` is a unital surjection. `F_2`, `SL_2(Z)` and `B_3` all surject onto `PSL_2(Z)`.
+- **Inputs.**
+  - Steps 0–3 and (I1)–(I4), as reviewed in `review-quasitrace-three-projections-2026-09-12.md`.
+  - The `K_0 = Z^4` remark rests on Cuntz, who was not read. It is marked heuristic.
+
+## 17. Queue status (poll at a0a334392)
+
+- **Start list: complete.** Sixteen sections, with one scope error (§0, corrected forward in 7f2c5157f) and no other failure.
+- **Not reviewed.** Main added 108 files marked ESTABLISHED between c9a5c4a2c and a0a334392. Twelve are the queue items above or this pass's own node. The other 96 were not reviewed here and were not cross-checked against other review artifacts.
