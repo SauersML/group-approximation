@@ -47,6 +47,18 @@ Main declarations, by module:
 | `LIXKGenHclass` | **`lixHclass n`**: `jE (lixThomClassTerm n) = π^* (lixChern n dd W _ _ r)`. This is LEAF (5). |
 | `LIXKGenStepCHalfTop` | **`KZeroLocalData`** (only `xloc`, `hsplit`, `hx`, with `u := lixThomClassTerm n`), `kZeroStepCData_of_kZeroLocalData`, **`stepCHalf_two_lixChernOf`** and **`stepCHalf_two_powers_lixChernOf`** at `topClass := fun W => lixChernOf n (lixChern n dd) W ((∑ j, dd j) + (n + 1))`, the glue's `γfun` spelling |
 
+## Local square at p = 2: this lane's half of the split with lix-oddside (2026-09-12)
+
+lix-oddside owns `LIXKGenLocalEta`, `Linear`, `Homotopy`, `Legs`, `Square` and `Nonzero`. This lane owns the three files below. The convention is `(n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1)) {G} (hGc) (hGu)`, with `dd` explicit.
+
+| module | state | main declarations |
+|---|---|---|
+| `LIXKGenLocalPair` | COMPILED (as an import in probe 0912-003310-54233), landed at 0f038ff96 | `otherZeros`, `lixKTrivSet` (trivSet ∩ otherZerosᶜ), **`lixKTrivBall`**, `lixKTrivBall_subset`, `_subset_target`, `isOpen_`, `lixKZero_mem_`, **`lixKZero_notMem_lixKTrivBall`**, `contractibleSpace_lixKTrivBall`, `lixKZeroInBall`, `lixKBundlePairIso`, `two_le_two_mul_lixRank`, **`lixKLocalPairIsoClosed`** |
+| `LIXKGenLocalRes` | GREEN (probe 0912-003310-54233), landed at fee3cc504 | `lixKTotalInclOn_mapsTo`, **`lixKRes`**, **`lixKRes_lixThomClassTerm_ne_zero`** |
+| `LIXKGenLocalNbhd` | landed UNVERIFIED at 416ff8bad; probe running | `lixKHsqRad` (cap `1/(n+2)`), **`lixKHsqBall`**, `lixKBC_image_lixKHsqBall_subset`, `_subset_bc_source`, `_subset_fc_source`, `zero_mem_`, `norm_lt_half_of_mem_`, `chartQ_lt_one_of_mem_`, `chartQ_le_one_of_mem_`, `circCoord_mem_Ioo_of_mem_`, **`smul_mem_lixKHsqBall`**, **`lixKU`**, `isOpen_lixKU`, `zero_mem_lixKU`, `lixKU_subset_target`, `symm_mem_lixKHsqBall`, **`lixKULine`**, `lixKShrinkMap`, `lixKShrink_mapsTo`, **`injective_lixKShrink`** |
+
+One maths change from rank two: the cap is `1/(n+2)`, not `1/2`. `chartQ n` has `n + 1` squared terms, so a cap of `1/2` only gives `chartQ < (n+1)/4`. With `1/(n+2)` it gives `chartQ < (n+1)/(n+2)² < 1`.
+
 ## Model tests (MSI acn112, scripts in `nm/lixoddn/`)
 
 - `ksect_modeltest.py`: 315 checks, 0 failures.
