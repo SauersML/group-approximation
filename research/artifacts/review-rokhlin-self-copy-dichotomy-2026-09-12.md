@@ -168,6 +168,35 @@ and meet trivially. PASS.
 3. **No `distinct_from`.** `positive-rokhlin-entropy-action-gives-positive-supremum`
    carries none; see the overlap in item 1.
 
+## Addendum: 933f34a60, the tester host itself — PASS (spot-check)
+
+Requested by `gottschalk-positive-host`. The commit replaces `Γ_U` by the
+container `U_*` of `whitehead-universal-finitely-presented-container`, which
+embeds every countably generated recursively presented group.
+
+- **Proposition 3.1 — PASS.**
+  - `U_* × U_*` is finitely presented, so it embeds in `U_*`.
+  - `U_*` contains `Z/n` for every `n`.
+  - Taking `G` as the first factor and `T_n` inside the second meets
+    Corollary A1.
+- **Proposition 3.2, down-passing — PASS.**
+  - RBS(`U_*`) gives the Bernoulli 2-shift Rokhlin entropy `log 2`.
+  - For infinite `K <= U_*` the restriction is free, and mixing because it is
+    Bernoulli on an infinite subgroup, hence ergodic.
+  - `σ-alg_K(α) ⊆ σ-alg_(U_*)(α)`, so every `K`-generator is a
+    `U_*`-generator, and `h^Rok_K >= h^Rok_(U_*) = log 2 > 0`.
+- **Proposition 3.3 — PASS.** A2 gives surjectivity of `U_*`, and the tester
+  equivalence gives every group.
+- **Remark 3.4 — PASS.**
+  - `Γ_U` is recursively presented, so it embeds in `U_*`.
+  - Down-passing gives POS(`U_*`) ⇒ POS(`Γ_U`).
+  - A1 and A2 for `Γ_U` with `U_* <= Γ_U` give the converse.
+- **Caveat.** "POS(`U_*`) ⟺ POS for every countably infinite group" goes
+  beyond recursively presented groups. It rests on the peer route
+  `rokhlin-maximality-on-tester-covers-every-group`, whose established inputs
+  `bernoulli-rokhlin-maximality-passes-to-subgroups` and
+  `bernoulli-rokhlin-deficit-has-a-finitary-witness` have not been reviewed.
+
 **Out of scope, noted.** `strict-automaton-lowers-bernoulli-rokhlin-entropy`
 (a5c8d6ce2) is ESTABLISHED on its author's derivation, and no review artifact
 covers it. It is a nontrivial claim in the same Gottschalk region and should
