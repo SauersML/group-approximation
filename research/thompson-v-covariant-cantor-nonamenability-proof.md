@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: thompson-v-covariant-cantor-representations-are-not-amenable-proof
+id: thompson-v-covariant-cantor-nonamenability-proof
 kind: route
 title: An invariant state on B(H) restricts to an invariant measure, and cylinders halve
 target: thompson-v-covariant-cantor-representations-are-not-amenable
