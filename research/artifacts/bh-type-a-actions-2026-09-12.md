@@ -93,7 +93,7 @@ This answers the open item "which literature envelopes are type (A) actors" in `
 - **Open claim** `a2-pairs-embed-in-a2-pairs-with-fng-kernels`: FFWZ Question 5.9, first part, verbatim.
 - **Route** `pbh-via-bh-and-a2-kernel-removal` into `permutational-boone-higman-conjecture`: BH + FFWZ Theorem C + kernel removal ⇒ PBH. With `boone-higman-via-permutational-boone-higman` it forms an intended conditional cycle, and it does not fire while BH is open.
 - **Attempts recorded:**
-  - normalizer covers are removable;
+  - normalizer covers are removable when the normalizing group sits inside a finitely presented normalizing group that meets Γ trivially, which covers the §5 example;
   - a recursive kernel is necessary, and for Theorem C actors this reduces to recursiveness of mixed identities;
   - removing mixed identities instead is BFFHZ Question 3.4, also open.
 
