@@ -6,7 +6,7 @@ title: One two-generator nonsofic group tests division-ring embeddability of tor
 distinct_from:
   two-generator-fp-torsion-free-master-tester: that tests the domain, idempotent and unit properties through finite patterns; this tests embeddability into a division ring, a priori stronger than being a domain, through a colimit of integer-valued rank functions.
   raag-out-mcg-virtual-all-field-division-rings: that proves division-ring embeddings for explicit geometric classes; this is a one-group equivalence for all torsion-free groups and proves no embedding by itself.
-  higman-group-sterile-yet-division-embeddable: that is division-ring embeddability of one specific group; this is a universal tester for the property.
+  linear-sterility-does-not-obstruct-division-embedding: that is division-ring embeddability of Higman's group despite total finite-dimensional sterility; this is a universal tester for the property over all torsion-free groups.
 ---
 
 Let `E` be the two-generator finitely presented torsion-free group of
