@@ -69,5 +69,17 @@ five points.
 - **Scope under stabilization.** With a second track, `V` has multiplicity two, and non-uniform
   equivariant automorphisms such as `(s, v_1 + s v_2, v_2)` exist. So this is a one-track test, and it
   says nothing about `injective-binary-automata-are-stably-formalizable`.
+- **With one ancilla track `rho` IS realized** (w4-z3-rotation, `z3-equivariant-permutations-are-stably-realizable`,
+  artifact `z3-rotation-stable-realization-2026-09-12.md`).
+  - **Mechanism.** Commute a level flip controlled by the line `l` with the shear word of `A in SL_2(F_4)`
+    controlled by `s_1`, where `A` fixes `l` with eigenvalue `omega`. The result rotates `l` by
+    `omega^2` at `s_1 = 1` and by `omega` at `s_1 = 0`, and fixes everything else.
+  - **Assembly.** Take the product over the five lines, compose with the diagonal shift and the
+    level-controlled `diag(omega^2, omega)`. The shadow is `u_1 -> omega^(s_1) u_1`, which is `rho x id`.
+  - **Scope.** Every equivariant permutation of `{0,1}^(Z_3)` is stably formalizable with one track,
+    so this claim is only a one-track question. The analogue of `lambda` that survives is the constant
+    normal determinant `delta in F_4^×`, and it does not constrain shadows.
+  - **Why the one-track case differs.** On one track, `V` has multiplicity one, so no controlled flip
+    can separate lines. That is the room the ancilla adds.
 
 Artifact, Sections 3–5.
