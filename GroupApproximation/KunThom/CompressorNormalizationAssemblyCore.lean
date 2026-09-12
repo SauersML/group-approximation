@@ -26,9 +26,12 @@ whose embedding is the inclusion, which is the shape of the core consumed by
   `CountingEndgame.CompressorRelativeData.concentrated_of_oneSided` and
   `CountingEndgame.CompressorRelativeData.transported`.
 
-`seqNormalizes_distinguished_of_steps` is the result.  Its open hypotheses are the
-matching error and `hmatching`, `hrep`, `hfunctor` and `hhamming`, all stated over
-these concrete types.
+`seqNormalizes_distinguished_of_guardedSteps` is the result.  Its open hypotheses are
+the matching error and `hmatching`, `hrep`, `hfunctor` and `hhamming`, all stated over
+these concrete types.  Like `hrep` and `hfunctor`, `hhamming` is needed only at frames
+with the repair factor of the setup and a vanishing threshold.
+`seqNormalizes_distinguished_of_steps` is the same with `hhamming` required at every
+frame.
 -/
 
 namespace GroupApproximation
@@ -75,7 +78,7 @@ def normalizedSetup {G : Type} [Group G] {Γ : Subgroup G} (C : CompressionSetup
     exact h)
 
 /-- **The forward inclusion for the distinguished compressor, over concrete data.** -/
-theorem seqNormalizes_distinguished_of_steps {G : Type} [Group G] [Countable G]
+theorem seqNormalizes_distinguished_of_guardedSteps {G : Type} [Group G] [Countable G]
     {Γ : Subgroup G} [Infinite ↥Γ]
     (hTG : HasKazhdanPropertyT.{0, 0} G) (hTΓ : HasKazhdanPropertyT.{0, 0} ↥Γ)
     (C : CompressionSetup G ↥Γ PUnit.{1}) (hembed : ∀ g : ↥Γ, C.embedΓ g = (g : G))
@@ -122,6 +125,42 @@ theorem seqNormalizes_distinguished_of_steps {G : Type} [Group G] [Countable G]
     (fun _ D v hv ↦ generatorDefect_vanishing D.retained v fun s _ ↦ hv (s : G) s.2)
     hmatching hrep hfunctor (fun _ _ _ M ↦ M.oneSided) (fun _ _ _ M h ↦ M.concentrated_of_oneSided h)
     (fun _ _ _ M h a ↦ M.transported h a) hhamming
+
+/-- The forward inclusion for the distinguished compressor, with `hhamming` required at
+every frame.  `seqNormalizes_distinguished_of_guardedSteps` needs it only at frames with
+the repair factor of the setup and a vanishing threshold. -/
+theorem seqNormalizes_distinguished_of_steps {G : Type} [Group G] [Countable G]
+    {Γ : Subgroup G} [Infinite ↥Γ]
+    (hTG : HasKazhdanPropertyT.{0, 0} G) (hTΓ : HasKazhdanPropertyT.{0, 0} ↥Γ)
+    (C : CompressionSetup G ↥Γ PUnit.{1}) (hembed : ∀ g : ↥Γ, C.embedΓ g = (g : G))
+    (matchingError : ∀ {A : SoficApproximation G},
+      CompressorDecomposition (normalizedSetup C hembed) A → ℕ → ℝ)
+    (hmatching : ∀ (A : SoficApproximation G)
+      (D : CompressorDecomposition (normalizedSetup C hembed) A),
+        (∀ n, 0 ≤ matchingError D n) ∧ Vanishing (matchingError D))
+    (hrep : ∀ (A : SoficApproximation G)
+      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained),
+        F.repairFactor = compressorRepairFactor (normalizedSetup C hembed) →
+          Vanishing F.threshold → ∀ v : ∀ n, Equiv.Perm (A.model n),
+            (∀ γ ∈ Γ, A.AlmostCommutes v γ) →
+              (Vanishing fun n ↦ generatorDefect D.retained v n / F.threshold n) →
+                ∃ a : ∀ n, F.Bis n,
+                  Vanishing fun n ↦ hammingDistance (A.model n) (v n) (F.patch n (a n)))
+    (hfunctor : ∀ (A : SoficApproximation G)
+      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained),
+        F.repairFactor = compressorRepairFactor (normalizedSetup C hembed) →
+          Vanishing F.threshold →
+            (Vanishing fun n ↦ matchingError D n / F.threshold n) →
+              Nonempty (CountingEndgame.CompressorRelativeData C.distinguished F))
+    (hhamming : ∀ (A : SoficApproximation G)
+      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained)
+      (M : CountingEndgame.CompressorRelativeData C.distinguished F) (a b : ∀ n, F.Bis n),
+        M.Transported a b →
+          Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
+            (A.map n C.distinguished * F.patch n (a n) * (A.map n C.distinguished)⁻¹)) :
+    SeqNormalizes Γ C.distinguished :=
+  seqNormalizes_distinguished_of_guardedSteps hTG hTΓ C hembed matchingError hmatching hrep
+    hfunctor fun A D F _ _ M a b h ↦ hhamming A D F M a b h
 
 end CompressorNormalizationAssembly
 end GroupApproximation
