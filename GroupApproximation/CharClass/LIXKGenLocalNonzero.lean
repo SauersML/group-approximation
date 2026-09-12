@@ -84,8 +84,10 @@ theorem kGenLocalNonzero_lixThomClassTerm (n k : ℕ) {dd : Fin ℓ → ℕ}
     {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
     (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m))
     (hGe : ∀ m, G m *ᵥ Sum.elim (aVecK n m) 0 = Sum.elim (bVecK n k m) 0) :
-    KGenLocalNonzero n k hGc hGu hGe (lixThomClassTerm n hGc hGu) := fun i =>
-  ⟨lixKTrivBall n k dd i hGc hGu, fun j hj => lixKZero_notMem_lixKTrivBall n k dd i hGc hGu j hj,
+    KGenLocalNonzero n k hGc hGu hGe (lixThomClassTerm n hGc hGu) := by
+  intro i
+  exact ⟨lixKTrivBall n k dd i hGc hGu,
+    fun j hj => lixKZero_notMem_lixKTrivBall n k dd i hGc hGu j hj,
     lixKRestrict_lixThomClassTerm_ne_zero n k dd i hGc hGu hGe⟩
 
 /-- **The local data of the `k`-zero Step C, for every rank, exponent, stage and field.** -/
