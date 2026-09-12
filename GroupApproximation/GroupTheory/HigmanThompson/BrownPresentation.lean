@@ -161,7 +161,7 @@ theorem brown_move (q : List ℕ) : ∀ k : ℕ, ∃ q' p' : List ℕ,
         _ = (brownX m (j + m + 1))⁻¹ * ((brownPos m q')⁻¹ * brownPos m p') := by rw [h]
         _ = (brownPos m ((j + m + 1) :: q'))⁻¹ * brownPos m p' := by
             simp only [brownPos, mul_inv_rev, mul_assoc]
-    · exact ⟨q, [], by simp [brownPos, mul_assoc]⟩
+    · exact ⟨q, [], by simp [brownPos]⟩
     · obtain ⟨q', p', h⟩ := ih (k + m + 1)
       refine ⟨j :: q', p', ?_⟩
       have hr : brownX m k * (brownX m j)⁻¹ = (brownX m j)⁻¹ * brownX m (k + m + 1) := by
