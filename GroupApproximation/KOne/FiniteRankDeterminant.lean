@@ -1,5 +1,6 @@
 import Mathlib.LinearAlgebra.Determinant
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+import Mathlib.Tactic.NoncommRing
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -148,7 +149,7 @@ theorem det_restrict_eq_fdet {f : Module.End k V} {U : Submodule k V} [FiniteDim
       LinearMap.id_apply, Submodule.Quotient.eq]
     refine ⟨(x : V), ?_⟩
     simp only [LinearMap.sub_apply, Module.End.one_apply, Submodule.coe_subtype,
-      Submodule.coe_sub, LinearMap.restrict_coe_apply]
+      Submodule.coe_sub, LinearMap.coe_restrict_apply]
   rw [hQ, LinearMap.det_id, mul_one]
   have hconj : ((Submodule.comapSubtypeEquivOfLe h : W ≃ₗ[k] LinearMap.range (f - 1)) :
         W →ₗ[k] LinearMap.range (f - 1)) ∘ₗ (f.restrict hU).restrict hW ∘ₗ
@@ -238,7 +239,7 @@ theorem fdet_eq_det_of_comp_eq {M : Type*} [AddCommGroup M] [Module k M] [Finite
     refine LinearMap.ext fun y => Subtype.ext ?_
     obtain ⟨x, rfl⟩ := (LinearEquiv.ofInjective (f := j) hj).surjective y
     simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.symm_apply_apply,
-      LinearMap.restrict_coe_apply, LinearEquiv.ofInjective_apply]
+      LinearMap.coe_restrict_apply, LinearEquiv.ofInjective_apply]
     exact (LinearMap.congr_fun hcomm x).symm
   rw [← hconj, LinearMap.det_conj]
 
@@ -261,7 +262,7 @@ theorem fdet_of_comp_eq (j : V →ₗ[k] V') (hj : Function.Injective j)
   refine fdet_eq_det_of_comp_eq (j ∘ₗ (LinearMap.range (f - 1)).subtype) hj'
     (f := f.restrict (mapsTo_range_sub_one f)) ?_ ?_
   · refine LinearMap.ext fun x => ?_
-    simp only [LinearMap.comp_apply, Submodule.coe_subtype, LinearMap.restrict_coe_apply]
+    simp only [LinearMap.comp_apply, Submodule.coe_subtype, LinearMap.coe_restrict_apply]
     exact LinearMap.congr_fun hcomm (x : V)
   · intro y hy
     obtain ⟨z, hz, rfl⟩ := hrange hy
@@ -319,12 +320,10 @@ theorem fdet_prodMap {U : Type*} [AddCommGroup U] [Module k U] [FiniteDimensiona
     LinearMap.det_prodMap, fdet]
   · refine LinearMap.ext fun p => ?_
     simp only [LinearMap.comp_apply, LinearMap.prodMap_apply, LinearMap.id_apply,
-      Submodule.coe_subtype, LinearMap.restrict_coe_apply]
+      Submodule.coe_subtype, LinearMap.coe_restrict_apply]
   · rintro _ ⟨p, rfl⟩
     refine ⟨((A - 1) p.1, ⟨(B - 1) p.2, ⟨p.2, rfl⟩⟩), ?_⟩
-    refine Prod.ext ?_ ?_ <;>
-      simp [LinearMap.prodMap_apply, LinearMap.id_apply, Submodule.coe_subtype,
-        LinearMap.sub_apply, Module.End.one_apply]
+    refine Prod.ext ?_ ?_ <;> simp
 
 /-- **Diagonal block formula.**  `fdet (g ⊕ ⋯ ⊕ g) = (fdet g) ^ |ι|`. -/
 theorem fdet_pi {ι : Type*} [Fintype ι] {g : Module.End k V} (hg : FiniteRank (g - 1)) :
