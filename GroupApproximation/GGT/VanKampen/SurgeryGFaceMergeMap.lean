@@ -165,9 +165,8 @@ theorem mem_keptLift_iff {M : CombMap.{u}} {a : M.Dart} (FB : ∀ g : M.Face, Fa
 theorem faceOf_eq_keptFace_iff {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
     (FB : ∀ g : M.Face, FaceBoundary M g) (g : M.Face)
     (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a)) (x : Dart M a) :
-    (toCombMap M a).faceOf x = keptFace M a FB g hg ↔ M.faceOf (value M a x) = g := by
-  rw [keptFace, ← (keptLift_isFaceCycle FB g hg).mem_iff x]
-  exact mem_keptLift_iff FB g hg x
+    (toCombMap M a).faceOf x = keptFace M a FB g hg ↔ M.faceOf (value M a x) = g :=
+  ((keptLift_isFaceCycle FB g hg).mem_iff x).symm.trans (mem_keptLift_iff FB g hg x)
 
 theorem faceOf_value_keptLift_head {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
     (FB : ∀ g : M.Face, FaceBoundary M g) (g : M.Face)
@@ -253,13 +252,11 @@ sides of the deleted edge.** -/
 theorem faceOf_eq_mergedFace_iff {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
     (C : MergeCycles M a) (hne : C.xs ++ C.ys ≠ []) (x : Dart M a) :
     (toCombMap M a).faceOf x = C.mergedFace hne ↔
-      M.faceOf (value M a x) = M.faceOf a ∨ M.faceOf (value M a x) = M.faceOf (M.alpha a) := by
-  rw [mergedFace, ← (C.lift_isFaceCycle hne).mem_iff x,
-    mem_of_map_value_eq C.lift_map_value x]
-  constructor
-  · exact C.faceOf_of_mem_append
-  · intro h
-    exact C.mem_append_of_faceOf h (value_ne M a x) (value_ne_reverse M a x)
+      M.faceOf (value M a x) = M.faceOf a ∨ M.faceOf (value M a x) = M.faceOf (M.alpha a) :=
+  ((C.lift_isFaceCycle hne).mem_iff x).symm.trans
+    ((mem_of_map_value_eq C.lift_map_value x).trans
+      ⟨C.faceOf_of_mem_append,
+        fun h => C.mem_append_of_faceOf h (value_ne M a x) (value_ne_reverse M a x)⟩)
 
 /-- A kept face is not the merged face. -/
 theorem keptFace_ne_mergedFace {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
@@ -306,9 +303,11 @@ theorem keptBoundary_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dar
     {g : M.Face} (hg : g ≠ M.faceOf a ∧ g ≠ M.faceOf (M.alpha a))
     (hF : F = keptFace M a FB g hg) :
     (keptBoundary FB hk).darts.map (value M a) = (FB g).darts := by
-  rw [keptBoundary, FaceBoundary.darts_mpr, IsFaceCycle.toFaceBoundary_darts]
-  exact keptLift_map_value_of_eq FB _
-    (keptFace_inj ((Classical.choose_spec (Classical.choose_spec hk)).symm.trans hF))
+  have h1 : (keptBoundary FB hk).darts =
+      keptLift M a FB (Classical.choose hk) (Classical.choose (Classical.choose_spec hk)) :=
+    (FaceBoundary.darts_mpr _ _).trans (IsFaceCycle.toFaceBoundary_darts _)
+  exact (congrArg (List.map (value M a)) h1).trans (keptLift_map_value_of_eq FB _
+    (keptFace_inj ((Classical.choose_spec (Classical.choose_spec hk)).symm.trans hF)))
 
 /-- **A traversal of every face of the deleted map.** -/
 noncomputable def faceBoundary {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
@@ -323,7 +322,8 @@ noncomputable def faceBoundary {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dar
 theorem faceBoundary_mergedFace_darts {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
     (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ []) :
     (C.faceBoundary FB hne (C.mergedFace hne)).darts = C.lift := by
-  rw [faceBoundary, dif_pos rfl, FaceBoundary.darts_mpr, IsFaceCycle.toFaceBoundary_darts]
+  rw [faceBoundary, dif_pos rfl]
+  exact (FaceBoundary.darts_mpr _ _).trans (IsFaceCycle.toFaceBoundary_darts _)
 
 theorem faceBoundary_mergedFace_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
     (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ []) :

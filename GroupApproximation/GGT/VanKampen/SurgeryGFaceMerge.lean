@@ -146,8 +146,9 @@ def label (x : R.map.Dart) : RelLetter G Lambda :=
 
 theorem map_label (l : List R.map.Dart) :
     l.map R.label = (l.map (EdgeDeletion.value Delta.toCombMap R.dart)).map Delta.label := by
-  rw [List.map_map]
-  rfl
+  induction l with
+  | nil => rfl
+  | cons x t ih => exact congrArg (List.cons (R.label x)) ih
 
 /-- The traversals of the deleted map. -/
 noncomputable def faceBoundary (F : R.map.Face) : FaceBoundary R.map F :=
@@ -156,17 +157,16 @@ noncomputable def faceBoundary (F : R.map.Face) : FaceBoundary R.map F :=
 /-- A kept face reads the old face word. -/
 theorem keptFace_word {g : Delta.toCombMap.Face} (hg : g ≠ R.first ∧ g ≠ R.second) :
     (R.faceBoundary (R.keptFace g)).darts.map R.label = Delta.faceWord g := by
-  rw [R.keptFace_of_off hg, R.map_label]
-  exact congrArg (List.map Delta.label)
-    (R.cycles.faceBoundary_keptFace_map_value Delta.faceBoundary R.cycles_ne_nil g hg)
+  rw [R.keptFace_of_off hg]
+  exact (R.map_label _).trans (congrArg (List.map Delta.label)
+    (R.cycles.faceBoundary_keptFace_map_value Delta.faceBoundary R.cycles_ne_nil g hg))
 
 /-- The merged face reads `xs ++ ys`. -/
 theorem mergedFace_word :
     (R.faceBoundary R.mergedFace).darts.map R.label =
-      (R.cycles.xs ++ R.cycles.ys).map Delta.label := by
-  rw [R.map_label]
-  exact congrArg (List.map Delta.label)
-    (R.cycles.faceBoundary_mergedFace_map_value Delta.faceBoundary R.cycles_ne_nil)
+      (R.cycles.xs ++ R.cycles.ys).map Delta.label :=
+  (R.map_label _).trans (congrArg (List.map Delta.label)
+    (R.cycles.faceBoundary_mergedFace_map_value Delta.faceBoundary R.cycles_ne_nil))
 
 /-! ## The merged face is a G-face -/
 
@@ -193,14 +193,14 @@ theorem cycle_value_one {g : Delta.toCombMap.Face} (hg : g ≠ Delta.outerFace)
     (((Delta.faceBoundary g).mem_iff _).mp (List.head_mem _)).trans hd.symm
   obtain ⟨k, hk, hrot⟩ := hB.exists_rotate_eq hcyc hface
   rw [← hrot, List.map_rotate]
-  exact word_rotate_value_one _ (by rw [List.length_map]; exact hk) (R.gFace_value hg hcells)
+  exact word_rotate_value_one _ (by rw [List.length_map]; exact hk) (gFace_value hg hcells)
 
 theorem first_value : RelLetter.listVal ((R.dart :: R.cycles.xs).map Delta.label) = 1 :=
-  R.cycle_value_one R.first_ne_outer (fun C hC => (R.cells_avoid C hC).1) R.cycles.cycO rfl
+  cycle_value_one R.first_ne_outer (fun C hC => (R.cells_avoid C hC).1) R.cycles.cycO rfl
 
 theorem second_value :
     RelLetter.listVal ((Delta.toCombMap.alpha R.dart :: R.cycles.ys).map Delta.label) = 1 :=
-  R.cycle_value_one R.second_ne_outer (fun C hC => (R.cells_avoid C hC).2) R.cycles.cycG rfl
+  cycle_value_one R.second_ne_outer (fun C hC => (R.cells_avoid C hC).2) R.cycles.cycG rfl
 
 /-- **The merged face reads a trivial element.** -/
 theorem mergedFace_value :
@@ -238,12 +238,9 @@ noncomputable def diagram : DiscDiagram.{u, w, v} W where
   planar := EdgeDeletion.planar_of_neFace Delta.toCombMap R.dart Delta.planar R.outerDart
     R.face_ne
   label := R.label
-  label_alpha := fun x => by
-    show Delta.label (EdgeDeletion.value Delta.toCombMap R.dart
-        (EdgeDeletion.alpha Delta.toCombMap R.dart x)) =
-      RelWord.inv (Delta.label (EdgeDeletion.value Delta.toCombMap R.dart x))
-    rw [EdgeDeletion.alpha_val]
-    exact Delta.label_alpha _
+  label_alpha := fun x =>
+    (congrArg Delta.label (EdgeDeletion.alpha_val Delta.toCombMap R.dart x)).trans
+      (Delta.label_alpha _)
   outerFace := R.keptFace Delta.outerFace
   faceBoundary := R.faceBoundary
   relatorCells := Delta.relatorCells.map R.cell
@@ -318,9 +315,14 @@ noncomputable def keep (d : Delta.toCombMap.Dart) : R.diagram.toCombMap.Dart :=
     EdgeDeletion.ofValue Delta.toCombMap R.dart d h.1 h.2
   else R.outerDart
 
+theorem keep_of_off {d : Delta.toCombMap.Dart}
+    (h : d ≠ R.dart ∧ d ≠ Delta.toCombMap.alpha R.dart) :
+    R.keep d = EdgeDeletion.ofValue Delta.toCombMap R.dart d h.1 h.2 :=
+  dif_pos h
+
 theorem val_keep {d : Delta.toCombMap.Dart} (h : d ≠ R.dart ∧ d ≠ Delta.toCombMap.alpha R.dart) :
     R.val (R.keep d) = d := by
-  rw [keep, dif_pos h]
+  rw [R.keep_of_off h]
   rfl
 
 theorem keep_val (x : R.diagram.toCombMap.Dart) : R.keep (R.val x) = x :=
@@ -399,9 +401,9 @@ theorem faceOf_keep_merged {d : Delta.toCombMap.Dart}
 theorem faceBoundary_kept_map_val (g : Delta.toCombMap.Face)
     (hg : g ≠ R.first ∧ g ≠ R.second) :
     (R.diagram.faceBoundary (R.kept g)).darts.map R.val = (Delta.faceBoundary g).darts := by
-  show (R.cycles.faceBoundary Delta.faceBoundary R.cycles_ne_nil (R.keptFace g)).darts.map
-      (EdgeDeletion.value Delta.toCombMap R.dart) = _
-  rw [R.keptFace_of_off hg]
+  have hk : R.kept g = EdgeDeletion.keptFace Delta.toCombMap R.dart Delta.faceBoundary g hg :=
+    R.keptFace_of_off hg
+  rw [hk]
   exact R.cycles.faceBoundary_keptFace_map_value Delta.faceBoundary R.cycles_ne_nil g hg
 
 /-- **The merged face reads `xs ++ ys`**, where `dart :: xs` and `alpha dart :: ys` are the
