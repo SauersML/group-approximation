@@ -1,4 +1,4 @@
-import GroupApproximation.CharClass.LIXStepDGenTorusPModel
+import GroupApproximation.CharClass.LIXStepDGenTorusPPtot
 import GroupApproximation.CharClass.CohomologyKunnethLixN
 import GroupApproximation.Meta.AxiomGuard
 
@@ -7,7 +7,7 @@ import GroupApproximation.Meta.AxiomGuard
 
 Lane `lx-torusP` of the LIX strongest swarm (`notes/LIX_STRONGER_PROGRAM_2026-09-10.md`, §1.4–1.5).
 
-`Gen.realTorusModP_ofIso` (`CharClass/LIXStepDGenTorusPModel.lean`) builds `Gen.RealTorusModP` at
+`Gen.realTorusModP_ofIso` (`CharClass/LIXStepDGenTorusPPtot.lean`) builds `Gen.RealTorusModP` at
 any space isomorphic to the Künneth model.  This file instantiates it at the real mapping-torus base
 `KGen.lixN n dd` through `lx-kunneth`'s model isomorphism `KnLix.lixIso n dd`, with the projections
 `KnLix.prY`, `KnLix.prS1`, `KnLix.prSodd` and the canonical sphere classes `sphereTopClassOf`, which
