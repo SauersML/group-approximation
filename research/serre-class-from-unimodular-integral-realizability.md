@@ -40,6 +40,25 @@ finite integral networks with degree at most `D`.
 - **Limit:** `integral-spectral-limits-satisfy-serre-inequalities` then gives the
   claim at the limit.
 
+**Equivalent form: the Lück--Sauer--Wegner conjecture.** This claim is
+equivalent to `measure-theoretic-determinant-conjecture` (arXiv:0903.2925):
+every measured equivalence relation `R` has `det_N(R)(A) >= 1` for every matrix
+`A` over its integral groupoid ring `ZR`. See Theorem 1 of the artifact
+`research/artifacts/unimodular-networks-mdc-2026-09-12.md`.
+- **Network to relation** (route `unimodular-network-serre-via-mdc`).
+  - i.i.d. uniform labels make the network rigid.
+  - Mass transport is exactly what makes the root-moving relation on labeled
+    rooted networks a measured equivalence relation.
+  - The weights form a self-adjoint element of `ZR` whose spectral measure is `mu`.
+- **Relation to network** (route `mdc-via-unimodular-network-serre`). A
+  self-adjoint `B in M_n(ZR)` is a unimodular integral network on
+  `orbit x {1..n}`, and its expected root measure is the spectral measure of
+  `B`.
+
+Elek--Lippner prove MDC for sofic relations (arXiv:0906.3619) by the same
+approximation mechanism as the sofic case above. So a counterexample needs a
+nonsofic relation.
+
 ## Attempts
 
 - **Measure-level invariants of trace measures (dead).** Any invariant preserved by
@@ -55,7 +74,29 @@ finite integral networks with degree at most `D`.
   - It cannot be the whole proof, because nonsofic unimodular networks exist:
     Bowen–Chapman–Lubotzky–Vidick refuted the Aldous–Lyons conjecture.
   - Cayley networks of nonsofic groups, such as `openai-leavitt-unit-nonsofic`, are not limits of finite networks.
-- **Mass transport plus integrality, with no approximation (not built).**
-  - The finite proof uses that the product of the nonzero eigenvalues of an integer matrix is a nonzero integer, i.e. a global determinant. An infinite network has no such object.
-  - A replacement would be a Fuglede–Kadison-type determinant for unimodular networks, defined through the mass transport principle, together with a Jensen-type or multiplicativity formula that forces integrality.
-  - Neither is established. Nothing on main produces an integer from a unimodular network without a finite approximant.
+- **A determinant built from mass transport (exists; the bound is open).**
+  - The finite proof uses a global integer: the product of the nonzero
+    eigenvalues of an integer matrix. An infinite network has no such object.
+  - A mass-transport determinant does exist: the Fuglede--Kadison determinant
+    of `N(R)` for the relation of the labeled network (route
+    `unimodular-network-serre-via-mdc`). The bound `det >= 1` for it is exactly
+    `measure-theoretic-determinant-conjecture`.
+  - This determinant cannot be integer valued, so no Jensen-type or
+    multiplicativity formula can force integrality. Sofic integral networks
+    have determinants `sqrt 5` and `4^p`
+    (`unimodular-averaging-loses-determinant-integrality`).
+- **Integrality of necklace numbers under mass transport (dead).**
+  - Root moments are averages over roots. A two-vertex network has
+    `N_1 = 5/2` (`unimodular-averaging-loses-determinant-integrality`).
+  - So the integer necklace numbers of
+    `torsion-free-integral-zeta-is-an-integer-euler-product` have no network
+    analogue. Mass transport equates averages but never makes them integers.
+- **A nonsofic counterexample (not built).**
+  - By Elek--Lippner and the equivalence above, a counterexample's labeled
+    relation is nonsofic.
+  - Main records a nonsofic relation,
+    `non-ce-property-t-equivalence-relation-exists`. It is not Connes
+    embeddable, hence not sofic by Elek--Lippner's embedding theorem.
+  - But that relation is a property (T) envelope of a non-co-hyperlinear IRS,
+    and none of its groupoid-ring elements has a computable spectral measure.
+    The Bowen–Chapman–Lubotzky–Vidick networks are not explicit either.
