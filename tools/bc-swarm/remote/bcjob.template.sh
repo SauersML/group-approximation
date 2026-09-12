@@ -110,7 +110,17 @@ while IFS= read -r p; do
   if [ -f "$b.olean" ] && { [ "$b.olean" -nt "$p" ] || [ "$b.trace" -nt "$p" ] || [ "$b.olean.hash" -nt "$p" ]; }; then echo "COMPILED $p"; fi
 done < "$CLONE/.nm/ovpaths-$TAG"
 tail -3 "$LOG"
-if [ $RC -eq 0 ] && grep -q 'Build completed successfully' "$LOG"; then echo "PROBE GREEN"; else echo "PROBE FAILED rc=$RC"; fi
+# Palomar libs build without warningAsError, so an incomplete proof there is only a warning. Gate on it, except for
+# the deliberate holes of Palomar/*Challenge.lean.
+HOLES=$(grep -E 'declaration uses .sorry.|sorryAx' "$LOG" | grep -vE 'Palomar/[A-Za-z0-9_]*Challenge\.lean:' | head -5)
+if [ $RC -eq 0 ] && grep -q 'Build completed successfully' "$LOG" && [ -z "$HOLES" ]; then
+  echo "PROBE GREEN"
+elif [ $RC -eq 0 ] && [ -n "$HOLES" ]; then
+  echo "--- incomplete proofs outside a challenge file (first 5):"; printf '%s\n' "$HOLES"
+  RC=6; echo "PROBE FAILED rc=$RC (incomplete proof outside a challenge file)"
+else
+  echo "PROBE FAILED rc=$RC"
+fi
 echo "REAL_EXIT=$RC"
 rm -rf "$OV" "$CLONE/.nm/ovpaths-$TAG" "$CLONE/.nm/todo-$TAG" "$CLONE/.nm/tree-$TAG" "$CLONE/.nm/delta-$TAG" \
   "$CLONE/.nm/disk-$TAG" "$CLONE/.nm/missing-$TAG" "$CLONE/.nm/extra-$TAG"

@@ -9,9 +9,11 @@
 # Rules: run it with Bash run_in_background: true; ONE probe per lane at a time; BATCH (one probe builds every
 # module you land together); never kill a running probe (the remote build holds the clone lock). Probes of all
 # lanes serialize on the clone lock, so a probe may wait for others first.
-# Evidence: md5 of every overlay file that COMPILED is recorded in $BC/lanes/<lane>.green.<tag>, with the base
-# SHA, module list and PROBE line. Bytes already recorded GREEN for the same module list are refused (exit 0,
-# ALREADY GREEN); set BC_FORCE=1 only when a new base genuinely has to be certified.
+# Evidence: the md5 of every overlay file that COMPILED is recorded with the base SHA, module list and PROBE line,
+# in $BC/lanes/<lane>.green.<tag> when the probe is GREEN and in <lane>.failed.<tag> otherwise. A .failed. record
+# says what compiled in a failed probe; it is never landing evidence.
+# Bytes already recorded GREEN for the same module list are refused (exit 0, ALREADY GREEN) only when no synced path
+# changed between that record's base and the current origin/main; BC_FORCE=1 re-certifies regardless.
 # Output ends with PROBE GREEN / PROBE FAILED / PROBE DEFERRED (exit 5: clone preparation in progress) and REAL_EXIT=<rc>.
 # BC_SRCROOT=<dir> reads the overlay files from <dir>/<repo-relative path> instead of the shared tree (infra calibration
 # plants live there, so a deliberately red file never sits in the shared checkout); git and the base SHA still come from the repo.
@@ -21,6 +23,7 @@ REPO=/Users/user/nonsofic_existence
 MSI=/Users/user/msi-node/msi
 P=/projects/standard/__MSI_GROUP__/__MSI_USER__; BCR=$P/bc; CLONE=$P/bc_clones/bc
 ROSTER=" bc-pair bc-kazhdan bc-rf kt-norm-paper kt-norm-repo kt-norm-fixedpoint kt-norm-counting bc-dynamics bc-dynamics-upper bc-double-surj bc-wreath bc-assembly bc-palomar bc-review bc-infra "
+SYNC_PATHS="GroupApproximation GroupApproximation.lean Palomar lakefile.toml lake-manifest.json lean-toolchain"
 usage() { echo "usage: bcprobe.sh <lane> <overlay files...> -- <Module.Name...>"; exit 2; }
 LANE=${1:-}; [ -n "$LANE" ] || usage; shift
 case "$ROSTER" in *" $LANE "*) ;; *) echo "REFUSED: unknown lane '$LANE'"; exit 2;; esac
@@ -63,13 +66,17 @@ if [ -z "${BC_FORCE:-}" ] && [ -s "$PEND" ]; then
   for rec in "$BC"/lanes/"$LANE".green.*; do
     [ -f "$rec" ] || continue
     grep -qxF "# mods $MODS" "$rec" || continue
-    grep -q '^# PROBE GREEN' "$rec" || continue
+    grep -qx '# PROBE GREEN' "$rec" || continue
     miss=0
     while IFS= read -r line; do grep -qxF "$line" "$rec" || { miss=1; break; }; done < "$PEND"
-    if [ $miss -eq 0 ]; then
-      echo "ALREADY GREEN: these bytes and modules are recorded in $rec (base $(sed -n 's/^# base //p' "$rec" | cut -c1-9)); not re-probing"
+    [ $miss -eq 0 ] || continue
+    RB=$(sed -n 's/^# base //p' "$rec")
+    if [ "$RB" = "$SHA" ] || { git cat-file -e "$RB^{commit}" 2>/dev/null \
+         && [ -z "$(git diff --name-only "$RB" "$SHA" -- $SYNC_PATHS | head -1)" ]; }; then
+      echo "ALREADY GREEN: these bytes and modules are recorded in $rec at base ${RB:0:9}, and no synced path changed up to ${SHA:0:9}; not re-probing"
       cleanup; exit 0
     fi
+    echo "note: $rec certified these bytes at base ${RB:0:9}, but synced paths changed up to ${SHA:0:9}; re-probing"
   done
 fi
 "$MSI" true >/dev/null 2>&1 || { echo "PROBE FAILED: msi connection down (infra, not Lean)"; cleanup; exit 4; }
@@ -82,9 +89,12 @@ printf '%s\n' "$OUT"
 COMP=$(printf '%s\n' "$OUT" | sed -n 's/^COMPILED //p')
 PL=$(printf '%s\n' "$OUT" | grep -m1 -E '^PROBE (GREEN|FAILED|DEFERRED)')
 if [ -n "$COMP" ]; then
+  KIND=failed; [ "$PL" = "PROBE GREEN" ] && KIND=green
+  REC=$BC/lanes/$LANE.$KIND.$TAG
   { echo "# base $SHA"; echo "# tag $TAG"; echo "# mods $MODS"; echo "# srcroot $SRCROOT"; echo "# $PL"
-    while IFS= read -r line; do p="${line#*  }"; printf '%s\n' "$COMP" | grep -qxF "$p" && echo "$line"; done < "$PEND"; } > "$BC/lanes/$LANE.green.$TAG"
-  echo "recorded compiled evidence ($(printf '%s\n' "$COMP" | wc -l | tr -d ' ') files): $BC/lanes/$LANE.green.$TAG"
+    while IFS= read -r line; do p="${line#*  }"; printf '%s\n' "$COMP" | grep -qxF "$p" && echo "$line"; done < "$PEND"; } > "$REC"
+  echo "recorded compiled evidence ($(printf '%s\n' "$COMP" | wc -l | tr -d ' ') files): $REC"
+  [ "$KIND" = green ] || echo "NOT GREEN: $REC lists what compiled in a failed probe; it is never landing evidence"
 fi
 [ -n "$PL" ] || echo "PROBE FAILED: no summary came back (msi hop died? rc=$RC). Remote output: $CLONE/.nm/out-$TAG.txt"
 echo "REAL_EXIT=$RC"
