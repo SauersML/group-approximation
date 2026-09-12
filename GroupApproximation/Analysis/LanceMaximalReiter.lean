@@ -1,4 +1,6 @@
 import GroupApproximation.Analysis.LancePositiveDefinite
+import Mathlib.Data.Matrix.Basic
+import Mathlib.Analysis.Complex.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -58,7 +60,7 @@ theorem le_two_mul_sqrt_mul_sqrt {R A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B)
   · subst hA0
     rw [Real.sqrt_zero, mul_zero, zero_mul]
     by_contra hR
-    push_neg at hR
+    rw [not_le] at hR
     have hden : 0 < 2 * (B + 1) := by positivity
     have hden' : 2 * (B + 1) ≠ 0 := hden.ne'
     have hq : 0 < R / (2 * (B + 1)) := div_pos hR hden
@@ -74,7 +76,7 @@ theorem le_two_mul_sqrt_mul_sqrt {R A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B)
     · subst hB0
       rw [Real.sqrt_zero, mul_zero]
       by_contra hR
-      push_neg at hR
+      rw [not_le] at hR
       have hR' : R ≠ 0 := hR.ne'
       have hnum : 0 < 2 * (A + 1) / R := div_pos (by positivity) hR
       have htpos : 0 < Real.sqrt (2 * (A + 1) / R) := Real.sqrt_pos.mpr hnum
@@ -95,24 +97,24 @@ theorem le_two_mul_sqrt_mul_sqrt {R A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B)
       have hq : 0 < Real.sqrt B := Real.sqrt_pos.mpr hBpos
       have hp0 : Real.sqrt A ≠ 0 := hp.ne'
       have hq0 : Real.sqrt B ≠ 0 := hq.ne'
-      have hA' : A = Real.sqrt A ^ 2 := (Real.sq_sqrt hA).symm
-      have hB' : B = Real.sqrt B ^ 2 := (Real.sq_sqrt hB).symm
+      have hAA : Real.sqrt A * Real.sqrt A = A := Real.mul_self_sqrt hA
+      have hBB : Real.sqrt B * Real.sqrt B = B := Real.mul_self_sqrt hB
       have hpq : 0 < Real.sqrt A / Real.sqrt B := div_pos hp hq
       have htpos : 0 < Real.sqrt (Real.sqrt A / Real.sqrt B) := Real.sqrt_pos.mpr hpq
-      have ht2 : Real.sqrt (Real.sqrt A / Real.sqrt B) ^ 2 =
-          Real.sqrt A / Real.sqrt B := Real.sq_sqrt hpq.le
+      have ht2 : Real.sqrt (Real.sqrt A / Real.sqrt B) ^ 2 = Real.sqrt A / Real.sqrt B :=
+        Real.sq_sqrt hpq.le
       have hh := h _ htpos
-      have e1 : Real.sqrt (Real.sqrt A / Real.sqrt B) ^ 2 * B =
-          Real.sqrt A * Real.sqrt B := by
-        rw [ht2]
-        nth_rewrite 1 [hB']
-        rw [pow_two, ← mul_assoc, div_mul_cancel₀ _ hq0]
-      have e2 : A / Real.sqrt (Real.sqrt A / Real.sqrt B) ^ 2 =
-          Real.sqrt A * Real.sqrt B := by
-        rw [ht2, div_div_eq_mul_div]
-        nth_rewrite 1 [hA']
-        rw [pow_two, mul_assoc, mul_div_cancel_left₀ _ hp0]
-      rw [e1, e2] at hh
+      have e1 : Real.sqrt A / Real.sqrt B * B = Real.sqrt A * Real.sqrt B := by
+        calc Real.sqrt A / Real.sqrt B * B
+            = Real.sqrt A / Real.sqrt B * (Real.sqrt B * Real.sqrt B) := by rw [hBB]
+          _ = Real.sqrt A * Real.sqrt B := by rw [← mul_assoc, div_mul_cancel₀ _ hq0]
+      have e2 : A / (Real.sqrt A / Real.sqrt B) = Real.sqrt A * Real.sqrt B := by
+        calc A / (Real.sqrt A / Real.sqrt B)
+            = Real.sqrt A * Real.sqrt A * Real.sqrt B / Real.sqrt A := by
+              rw [div_div_eq_mul_div, hAA]
+          _ = Real.sqrt A * Real.sqrt B := by
+              rw [mul_assoc, mul_div_cancel_left₀ _ hp0]
+      rw [ht2, e1, e2] at hh
       linarith
 
 /-- The squared difference of two square roots, bounded by the diagonal terms
@@ -134,6 +136,7 @@ theorem starInner_lTrans_left (g : G) (ξ η : G →₀ ℂ) :
   rw [lTrans_lTrans, inv_mul_cancel, lTrans_one] at h
   exact h.symm
 
+omit [Group G] in
 theorem l2NormSq_smul (c : ℂ) (ξ : G →₀ ℂ) :
     l2NormSq (c • ξ) = ‖c‖ ^ 2 * l2NormSq ξ := by
   rw [l2NormSq_eq_sum Finsupp.support_smul, l2NormSq, Finset.mul_sum]
@@ -230,8 +233,11 @@ theorem PairPositive.sum_cross_re_le (hD : PairPositive D) (g : G)
     (∑ l, (qform (D g) (b l) (a l) + qform (D g⁻¹) (a l) (b l))).re ≤
       t ^ 2 * (∑ l, (qform (D 1) (b l) (b l)).re) +
         (∑ l, (qform (D 1) (a l) (a l)).re) / t ^ 2 := by
-  rw [Complex.re_sum, Finset.mul_sum, Finset.sum_div, ← Finset.sum_add_distrib]
-  exact Finset.sum_le_sum fun l _ ↦ hD.cross_re_le g (a l) (b l) ht
+  rw [Complex.re_sum, Finset.mul_sum, div_eq_mul_inv, Finset.sum_mul,
+    ← Finset.sum_add_distrib]
+  refine Finset.sum_le_sum fun l _ ↦ ?_
+  rw [← div_eq_mul_inv]
+  exact hD.cross_re_le g (a l) (b l) ht
 
 /-! ## Mass, correlations, cross terms -/
 
@@ -265,11 +271,13 @@ variable [DecidableEq G]
 def supp (d : ι → Y → (G →₀ ℂ)) : Finset G :=
   Finset.univ.biUnion fun l ↦ Finset.univ.biUnion fun y ↦ (d l y).support
 
+omit [Group G] in
 theorem support_subset_supp (d : ι → Y → (G →₀ ℂ)) (l : ι) (y : Y) :
     (d l y).support ⊆ supp d := fun _ hx ↦
   Finset.mem_biUnion.mpr ⟨l, Finset.mem_univ _,
     Finset.mem_biUnion.mpr ⟨y, Finset.mem_univ _, hx⟩⟩
 
+omit [Group G] in
 theorem eq_zero_of_not_mem_supp {d : ι → Y → (G →₀ ℂ)} {x : G}
     (hx : x ∉ supp d) (l : ι) (y : Y) : d l y x = 0 :=
   Finsupp.notMem_support_iff.mp fun h ↦ hx (support_subset_supp d l y h)

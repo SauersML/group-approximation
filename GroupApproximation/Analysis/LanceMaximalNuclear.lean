@@ -200,7 +200,9 @@ theorem linearMap_eq_sum_single {A : Type*} [AddCommGroup A] [Module ℂ A]
   refine Finset.sum_congr rfl fun y _ ↦ ?_
   rw [map_sum]
   refine Finset.sum_congr rfl fun y' _ ↦ ?_
-  rw [← map_smul, Matrix.smul_single, smul_eq_mul, mul_one]
+  have hunit : Matrix.single y y' (M y y') = M y y' • Matrix.single y y' (1 : ℂ) := by
+    rw [Matrix.smul_single, smul_eq_mul, mul_one]
+  rw [hunit, map_smul]
 
 /-- Replacing both factors of `a⋆ b` by nearby elements. -/
 theorem norm_star_mul_sub_star_mul_le {A : Type*} [NonUnitalCStarAlgebra A]
@@ -247,10 +249,11 @@ theorem norm_canonicalMaximalTrace_le (a : MaximalGroupCStar G) :
     _ ≤ ‖deltaOne G‖ * (‖((maximalGroupCStarToReduced G a : ReducedGroupCStar G) :
           GroupHilbert G →L[ℂ] GroupHilbert G)‖ * ‖deltaOne G‖) :=
         mul_le_mul_of_nonneg_left (ContinuousLinearMap.le_opNorm _ _) (norm_nonneg _)
-    _ = ‖maximalGroupCStarToReduced G a‖ := by
+    _ = ‖((maximalGroupCStarToReduced G a : ReducedGroupCStar G) :
+          GroupHilbert G →L[ℂ] GroupHilbert G)‖ := by
         rw [GroupVonNeumann.norm_deltaOne G, one_mul, mul_one]
-        rfl
-    _ ≤ ‖a‖ := NonUnitalStarAlgHom.norm_apply_le _ _
+    _ = ‖maximalGroupCStarToReduced G a‖ := rfl
+    _ ≤ ‖a‖ := NonUnitalStarAlgHom.norm_apply_le (maximalGroupCStarToReduced G) a
 
 /-- **The pairing formula.**  For finite combinations of generators,
 `τ(u_g⋆ (∑ c₁(s) u_s)⋆ (∑ c₂(t) u_t)) = ∑ₛ conj(c₁ s) c₂(s g)`, which is the
@@ -288,7 +291,6 @@ theorem trace_star_gen_mul_star_mul (c₁ c₂ : G →₀ ℂ) (g : G) :
     (fun x b ↦ (starRingEnd ℂ) b * (lTrans g (Finsupp.equivMapDomain (Equiv.inv G) c₂)) x)
   rw [Finsupp.sum_equivMapDomain, Finsupp.sum]
   refine Finset.sum_congr rfl fun s _ ↦ ?_
-  dsimp only
   rw [map_sum]
   have hval : (lTrans g (Finsupp.equivMapDomain (Equiv.inv G) c₂)) ((Equiv.inv G) s) =
       c₂ (s * g) := by
@@ -333,7 +335,6 @@ theorem corr_eq_trace (Y : FiniteModel) (D : G → Matrix Y Y ℂ)
           star (∑ s ∈ (c k (e y)).support, c k (e y) s • maximalGroupCStarGenerator G s) *
             ∑ t ∈ (c k (e y')).support, c k (e y') t • maximalGroupCStarGenerator G t) := by
   rw [corr]
-  dsimp only
   rw [Finset.mul_sum, map_sum, Finset.sum_comm]
   refine Finset.sum_congr rfl fun y _ ↦ ?_
   rw [Finset.mul_sum, map_sum, Finset.sum_comm]
@@ -349,7 +350,7 @@ theorem hasInvariantMean_of_isNuclearCStarAlgebra_maximalGroupCStar
   classical
   refine hasInvariantMean_of_almostInvariantVectors fun F ε hε ↦ ?_
   set δ : ℝ := min ε 1 / 16 with hδdef
-  have hδpos : 0 < δ := by positivity
+  have hδpos : 0 < δ := by rw [hδdef]; positivity
   have hδ1 : δ ≤ 1 / 16 := by
     have := min_le_right ε 1
     rw [hδdef]
@@ -380,14 +381,13 @@ theorem hasInvariantMean_of_isNuclearCStarAlgebra_maximalGroupCStar
         (fun _ _ ↦ Finset.sum_nonneg fun _ _ ↦ norm_nonneg _) (Finset.mem_univ k))
   set L : ℝ := (K + 1) * ((n : ℝ) + 1) * (2 * M + 1) with hLdef
   have hLpos : 0 < L := mul_pos (mul_pos (by linarith) (by linarith)) (by linarith)
-  have hL0 : L ≠ 0 := hLpos.ne'
   set η : ℝ := min 1 (δ / L) with hηdef
   have hηpos : 0 < η := lt_min one_pos (div_pos hδpos hLpos)
   have hη1 : η ≤ 1 := min_le_left _ _
   have hηL : L * η ≤ δ := by
     have hle : η ≤ δ / L := min_le_right _ _
     calc L * η ≤ L * (δ / L) := mul_le_mul_of_nonneg_left hle hLpos.le
-      _ = δ := by field_simp
+      _ = δ := by rw [mul_div_assoc', mul_div_cancel_left₀ δ hLpos.ne']
   have happrox : ∀ k i, ∃ c : G →₀ ℂ,
       ‖(∑ s ∈ c.support, c s • maximalGroupCStarGenerator G s) - P k i‖ ≤ η :=
     fun k i ↦ exists_finsupp_approx G (P k i) hηpos
@@ -402,7 +402,7 @@ theorem hasInvariantMean_of_isNuclearCStarAlgebra_maximalGroupCStar
         ∑ y, ∑ y', D g y y' • ∑ k, star (P k (e y)) * P k (e y') := by
       rw [linearMap_eq_sum_single Y up (down (gen g))]
       refine Finset.sum_congr rfl fun y _ ↦ Finset.sum_congr rfl fun y' _ ↦ ?_
-      rw [hP]
+      exact congrArg (fun z ↦ D g y y' • z) (hP y y')
     have hrec_g : ‖up (down (gen g)) - gen g‖ ≤ δ :=
       hrec (gen g) (Finset.mem_image.mpr ⟨g, hg, rfl⟩)
     have hterm : ∀ y y' : Y, ‖∑ k, star (Q k (e y)) * Q k (e y') -

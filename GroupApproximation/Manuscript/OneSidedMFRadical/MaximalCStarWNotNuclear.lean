@@ -41,8 +41,9 @@ permanence property and from nothing else.  At the approximation-property
 definition used here, that permanence property is the Choi--Effros lifting
 theorem, and it is **not proved in this repository**.
 
-It is worth recording why it cannot be routed around, since two natural
-attempts fail for the same reason.
+Two natural attempts to route around it fail, and they are recorded here.  A
+third route does work and is not a quotient argument at all: see the note after
+the list.
 
 * *Descending the approximation.*  Given completely positive contractions
   `α : C^*_{\max}(W) → D` and `β : D → C^*_{\max}(W)` with `β ∘ α ≈ id` on the
@@ -54,25 +55,32 @@ attempts fail for the same reason.
   positive in the reduced algebra and not in the maximal one.  The two positive
   cones differ on exactly that operator system, which is what
   `C^*_{\max} ≠ C^*_λ` means.
-* *Running Lance's argument at the maximal algebra.*  The invariant mean is
-  built from a unital completely positive map `B(ℓ²G) → L(G)`, and any
-  covariant pair for the action of `G` on `ℓ^∞(G)` has its unitary part weakly
-  contained in the left regular representation.  So no faithful representation
-  of `C^*_{\max}(W)` sits inside such a system, and the nonamenability
-  obstruction only ever sees the reduced algebra.
+* *Running the hypertrace form of Lance's argument at the maximal algebra.*  That
+  invariant mean is built from a unital completely positive map
+  `B(ℓ²G) → L(G)`, and any covariant pair for the action of `G` on `ℓ^∞(G)` has
+  its unitary part weakly contained in the left regular representation.  So no
+  faithful representation of `C^*_{\max}(W)` sits inside such a system.
 
-The gap is therefore carried in the type, as a **named proposition quantified
-over all C⋆-algebras and all surjections** — never as a premise tailored to
-`W`, and never folded into a conclusion.  `#audit_closed_axioms` is run only on
-the unconditional statements.
+The route that works never extends a map to `B(ℓ²G)`: the approximation maps of
+`C^*_{\max}(G)` give a positive-definite matrix kernel `g ↦ down(u_g)` and a Choi
+factorization of `up`, the canonical trace turns them into correlations of
+finitely supported vectors, and a Reiter vector built from those correlations is
+almost invariant (`Analysis/LanceMaximalReiter`, `Analysis/LanceMaximalNuclear`).
+`NuclearCStarQuotientInput` stays unproved and is still the hypothesis of
+`manuscriptMaximalCStarWNotNuclear_of_quotient` below, carried in the type as a
+**named proposition quantified over all C⋆-algebras and all surjections**; the
+printed sentence no longer depends on it.
 
 ## Manuscript status
 
-The clause "`W` is not amenable" is carried, hypothesis-free.  The clause
-"`C^*_{\max}(W)` is not nuclear" is carried only over
-`NuclearCStarQuotientInput` and **must not be badged**.  The unconditional
-non-nuclearity proved here is about `C^*_λ(W)`, which is a different algebra
-from the printed one.
+The clause "`W` is not amenable" is carried, hypothesis-free.  In this module
+the clause "`C^*_{\max}(W)` is not nuclear" is carried only over
+`NuclearCStarQuotientInput`, and `manuscriptMaximalCStarWNotNuclear_of_quotient`
+must not be badged.  **The printed clause itself is now closed elsewhere**:
+`Manuscript/OneSidedMFRadical/MaximalCStarWNotNuclearUnconditional` proves it with
+no hypothesis, from Lance's theorem at the maximal algebra
+(`Analysis/LanceMaximalNuclear`), which needs no quotient permanence.  The
+unconditional non-nuclearity proved here is about `C^*_λ(W)`.
 -/
 
 namespace GroupApproximation
