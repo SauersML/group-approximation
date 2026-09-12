@@ -54,6 +54,30 @@ tend to zero (`kt-patched-bisection-commutation-vanishes-with-threshold`), so
 the aggregate defects must be `o(h |Y|)`. Choosing that rate is part of the
 scale parameter step.
 
+## Frame defect: this does not compose with the chain
+
+The statements above are proved for the global-scale `PartialClusterSystem`:
+one threshold `h`, one `scale`, and `17 · scale ≤ |X|` for every object. The
+Theorem 4.1 chain runs on `ScaledPartialClusterSystem`, with per-object scale
+`|X| / 18` and pair scale `min (scale X) (scale Z)`. `CompressorNormalizationAssembly`'s
+`hrep` has to return bisections of that presentation. Two consequences, found
+by kt41-review (`research/artifacts/kt-theorem-4-1-review-2026-09-12.md`, R12):
+
+* No producer gives `PartialClusterSystem.improveExists` for approximate
+  component actions, so these bisections cannot be fed to the functor or to
+  counting.
+* At one global scale the count bound does not bound the mass outside
+  `overlapGood v`: components can be far larger than `scale`.
+
+The per-scale forward half, including the mass bound for bad objects, is owned
+by lane kt41-bisection-rep on the landed `BlockEmbedding.bridge` API.
+`BlockEmbedding.overlapArrow` duplicates `bridge`, and
+`exists_perm_extending_fiberwise` does the job of
+`CountingEndgame.exists_bisection_extend`. What carries over unchanged is the
+finite arithmetic: uniqueness of candidate targets, the class-preserving
+extension, the Hamming bound for arrows realizing `v`, and the candidate
+criterion from forward and inverse defects.
+
 ## Plan correction
 
 The patch of `BlockPatching.bisectionArrows b` takes each arrow through
