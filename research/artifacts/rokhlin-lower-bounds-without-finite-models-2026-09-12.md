@@ -61,7 +61,7 @@ Bowen, *A measure-conjugacy invariant for free group actions*, Ann. of Math. (2)
 The lower bound `f <= H(P)` for every finite generating `P` needs one more input from Bowen's proof: `F` does not increase under the splittings that pass from `P^n` to `P^(n+1)`. Given that, `f <= F(P) <= H(P)`, so `h^Rok(X) >= f(X)` for free-group actions with a finite generating partition.
 
 - **Bernoulli shifts.** With `f = log|A|`, the Bernoulli shift over `F_r` has Rokhlin entropy `log|A|`, proved along a tree with no finite models.
-- **Trust surface.** The invariance theorem is imported in the graph as `bowen-f-invariant-is-a-measure-conjugacy-invariant`, landed by `gk-p-bernoulli-mass`. The splitting monotonicity used for the one-sided bound is quoted from memory of Bowen's argument, and its lemma number is not recorded. No node of this lane depends on it, so it enters this artifact only as a mechanism model.
+- **Trust surface.** The invariance theorem is imported in the graph as `bowen-f-invariant-is-a-measure-conjugacy-invariant`, landed by `gk-p-bernoulli-mass`. The splitting monotonicity used for the one-sided bound, `F(beta join t gamma) <= F(beta)` for `t = s_j^(±1)` and `gamma <= beta`, was re-derived from submodularity by `gk-vf-positive` (Section 4.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`), in the form the ball refinements need. No node of this lane depends on it, so it still enters this artifact only as a mechanism model.
 
 ### 2.3 Where it stops
 
