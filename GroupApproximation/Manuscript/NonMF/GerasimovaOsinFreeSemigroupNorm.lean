@@ -85,6 +85,7 @@ theorem norm_rightRegularOperator_apply (g : G) (V : GroupHilbert G) :
     ‖rightRegularOperator G g V‖ = ‖V‖ :=
   (rightRegular G g).norm_map V
 
+open Classical in
 /-- The coordinates of the identity point mass. -/
 theorem deltaOne_apply (x : G) : deltaOne G x = if x = 1 then 1 else 0 := by
   classical
@@ -132,7 +133,7 @@ theorem reducedTwoNorm_pow_sq_of_free (T : Finset G) (c : G → ℂ)
       GroupVonNeumann.norm_deltaOne, one_pow]
   | succ n ih =>
     have hsupp := pow_translationSum_deltaOne_support T c n
-    rw [pow_succ, mul_translationSum_deltaOne, norm_sum_sq_of_pairwise_inner_eq_zero]
+    rw [pow_succ (translationSum T c) n, mul_translationSum_deltaOne, norm_sum_sq_of_pairwise_inner_eq_zero]
     · rw [Finset.sum_congr rfl fun g _ => by
           rw [norm_smul, mul_pow, norm_rightRegularOperator_apply],
         ← Finset.sum_mul, ih, pow_succ, mul_comm]
@@ -194,7 +195,7 @@ theorem l2SpectralRadius_translationSum_of_free (T : Finset G) (c : G → ℂ)
 theorem reducedTwoNorm_leftRegular_mul (t : G) (x : ReducedGroupCStar G) :
     reducedTwoNorm (reducedLeftRegular G t * x) = reducedTwoNorm x := by
   rw [reducedTwoNorm, reducedTwoNorm, MulMemClass.coe_mul, mul_apply_eq_comp]
-  exact (leftRegular G t).norm_map _
+  exact (GroupApproximation.ReducedGroupCStarTrace.leftRegular G t).norm_map _
 
 /-- `λ(t) · ∑_{g ∈ F} c(g) λ(g) = ∑_{h ∈ tF} c(t⁻¹h) λ(h)`. -/
 theorem leftRegular_mul_translationSum [DecidableEq G] (t : G) (F : Finset G) (c : G → ℂ) :
