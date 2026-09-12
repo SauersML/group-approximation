@@ -99,18 +99,24 @@ imposes two conditions:
 
 Strictness is then automatic, since `s_0` is not a unit of `R`. Results so far:
 
-* **Thompson `V`**, generators `A, B, C, P`. `s_0` is not in the `F_2`-span of
-  `pi(B_r(V))` for `r <= 4`, so no lift of `s_0` is supported in those balls. This
-  is exact Gaussian elimination.
+* **Thompson `V`**, generators `A, B, C, P`, at every radius. By
+  `s0-lifts-cannot-be-supported-in-the-all-ones-stabilizer`, no lift of `s_0` is
+  supported in `V`. The exact span computations on `pi(B_r(V))` for `r <= 6` are
+  instances of it.
 * **Nine-leaf `EL_D` generators** of `openai-nine-leaf-leavitt-configuration`.
-  `s_0` is not in the span of `pi(B_2)`, again by Gaussian elimination.
-* **The two `GL(4,2)` atlas charts**, which generate all of `R^x`. Here `s_0` lies
-  in the span of `pi(B_3)`, but the solver finds no pair
-  - with `supp a` in `B_3` and `supp b` in `B_2` (15,529 AND variables, UNSAT in 2.1 s);
-  - with `supp a` in `B_3` and `supp b` in `B_1`;
-  - with `supp a` in `B_5` and `supp b` in `B_1` (UNSAT in 1.6 s).
+  `s_0` is not in the span of `pi(B_3)`, by Gaussian elimination. These generators
+  generate all of `R^x`, so this is only an effect of the radius.
+* **The two `GL(4,2)` atlas charts**, which generate all of `R^x`. `s_0` lies in the
+  span of `pi(B_3)`, but the solver finds no pair
+  - with `supp a` and `supp b` both in `B_3` (85,849 AND variables). This is UNSAT
+    in 82 s with the valid prune clauses of 7e8a94ac9, and UNKNOWN at 600 s without them;
+  - with `supp a` in `B_3` and `supp b` in `B_2` or `B_1`;
+  - with `supp a` in `B_5` and `supp b` in `B_1`.
+
+  Without prune clauses, pairs with `supp a` in `B_4` and `supp b` in `B_3`, or
+  `supp a` in `B_5` and `supp b` in `B_2`, were UNKNOWN at 2,400 s (about 470,000 AND
+  variables). Pruned reruns are running.
 
 Where it dies: every support tried so far is too small. The UNSAT verdicts are
-CryptoMiniSat outputs without proof logs, so they record where nothing was found
-and certify nothing. Larger radii are running. Details:
-`research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
+CryptoMiniSat outputs without proof logs, so they record where nothing was found and
+certify nothing. Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
