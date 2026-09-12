@@ -43,3 +43,9 @@ Then `sigma` is trivial.
 `PG`. So an `F_3`-linear sofic approximation of either group restricts to `SL_3(F_3)` as
 something other than `(natural (x) W) (+) trivial`. That excludes the degree-truncation and
 hybrid constructions from `projective-ternary-group-is-f3-linear-sofic`.
+
+**Dual natural shape (`gk-vf-linear`, Section 29, eda113e5ce).** Transpose-inverse
+`EL_3(R) ~= EL_3(R^op)`, `x_ij(a) -> x_ji(-a)`, reduces `(dual natural (x) W) (+) trivial` to
+this theorem over the simple, not directly finite ring `R^op`, so those models are trivial
+too. Models with positive free content on `SL_3(F_p)` never meet the hypothesis
+(`free-rank-models-on-sl3-admit-no-block-support`).

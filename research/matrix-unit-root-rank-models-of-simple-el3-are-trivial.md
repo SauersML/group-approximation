@@ -40,3 +40,11 @@ Leavitt unit group in characteristic two, however it acts outside the subring. T
 degree truncations, approximate modules over subrings, and hybrids that are block unipotent
 on a polynomial subring. So a nontrivial characteristic-two model must restrict to
 `SL_3(F_2) = EL_3(F_2)` as something other than `(natural (x) W) (+) trivial`.
+
+**Dual natural shape (`gk-vf-linear`, verification artifact Section 29, eda113e5ce).**
+Transpose-inverse is an isomorphism `EL_3(R) -> EL_3(R^op)` sending `x_ij(a)` to `x_ji(-a)`,
+and `R^op` is simple and not directly finite. So a model with
+`sigma(x_ij(1)) = 1 - u'_ji` for matrix units `u'` is of matrix-unit form over `R^op`, and it
+is trivial as well. So `(dual natural (x) W) (+) trivial` is excluded too. Models with positive
+free content on `SL_3(F_2)` never meet the hypothesis
+(`free-rank-models-on-sl3-admit-no-block-support`).

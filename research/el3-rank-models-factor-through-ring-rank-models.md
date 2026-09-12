@@ -7,6 +7,7 @@ distinct_from:
   block-unipotent-rank-models-of-leavitt-el3-are-trivial: that excludes one family of models, those acting on root subgroups by block unipotents, for the Leavitt algebra; this asserts that every model of EL_3 over every simple characteristic-p ring without a ring rank model is trivial, with no additivity or block hypothesis.
   f2-linear-sofic-groups-kill-rigid-compression-defects: that is the rank row of the compression mechanism, which needs property (T) of the compressor group; this uses only the Steinberg relations and the ring structure, with no property (T) and no compression.
   leavitt-algebra-has-no-unital-rank-model: that is the ring-level non-embedding of one algebra; this transfers any such ring-level non-embedding to the elementary group EL_3.
+  leavitt-el3-rank-models-over-finite-fields-are-trivial: that is the Leavitt instance over finite fields, which carries the payoff on its own route; this is the class statement over every simple characteristic-p ring without a ring rank model, which one linear sofic EL_3 over any such ring would refute.
 artifacts:
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
@@ -120,5 +121,18 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
     - diffuse flags of unbounded length at finite stages, where the nilpotency bound fails.
   - Not landed as a route: "every model admits such a flag" is equivalent to triviality
     given the theorem.
+- **Overreach guard (2026-09-12).** The payoff is now also carried by the instance claim
+  `leavitt-el3-rank-models-over-finite-fields-are-trivial`, which has its own route into
+  `non-linear-sofic-group`. This class statement implies it
+  (`leavitt-el3-rank-triviality-from-ring-rank-rigidity`).
+- **Dual natural shapes: killed** (`gk-vf-linear`, Section 29): transpose-inverse
+  `EL_3(R) ~= EL_3(R^op)` reduces them to the matrix-unit theorems over `R^op`.
+- **Free content: a calibration, not a kill.** `free-rank-models-on-sl3-admit-no-block-support`:
+  - positive free content on `SL_3(F_p)` makes `rk(N_23 N_12) > 0`, so block support never
+    applies;
+  - free models exist for `EL_3(lim M_(p^k)(F_p))`, whose ring has a rank model;
+  - so summand-level block support is not the general mechanism.
+  - For a nonsofic host, free-like survivors are monomial on each finite subgroup in their own
+    bases and glue those bases non-monomially along level-changing units (artifact Section 4e).
 - **Hamming analogue: open.** That a sofic approximation of `EL_3(R)` yields a rank model
   of `R` would reprove nonsoficity of `R^x` with no property (T).
