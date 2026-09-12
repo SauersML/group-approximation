@@ -353,3 +353,188 @@ This feeds the determinant-conjecture region.
 - **Trace check.** `log|det B| = 0` matches the sum of the two root integrals.
 - **Scope.** The claim is an obstruction to one proof strategy and makes no
   statement about the conjecture itself. That is what it says.
+
+---
+
+## 14. `sp21-pro-p-finite-rank-iff-finite-pro-p-congruence-kernel` (bceef65d2): PASS, conditional on (SR) with no boundedness hypothesis
+
+Route `sp21-pro-p-finite-rank-congruence-kernel-proof`, `requires: []`. This feeds
+`non-residually-finite-hyperbolic-group` through the Sp(2,1) pro-p lane.
+
+- **(⇐).** A finite extension of the p-adic analytic group `Δ̄_p` has finite rank.
+  Correct.
+- **Step 1.** `Δ₀ = Δ ∩ U` has finite index in `Δ`. Its image in `U^ab` is dense.
+  If `𝔭 ≠ [𝔭,𝔭]`, then `U^ab` is infinite, and a finite dense subgroup would be
+  closed, so `Δ₀^ab` is infinite. That contradicts Kostant's (T) for Sp(n,1).
+  Correct.
+- **Step 2.** For perfect `𝔭`, `𝔯 = [𝔭,𝔭] ∩ 𝔯 = [𝔭,𝔯]` lies in the nilradical, so
+  `ad 𝔯` is nilpotent. If `ad 𝔯 = 0`, then `[𝔭,𝔭] = 𝔰` and `𝔯 = 0`. Otherwise:
+  - the Zariski closure of `Ad(Δ₀)` equals that of `Ad(U)`, and has a unipotent
+    radical;
+  - the cocycle argument through `V = R_u/[R_u,R_u]` is correct, given (SR) on
+    the reductive quotient and (V).
+- **Step 3.** `Ad(U)` is compact, so the representation to which (SR) is applied
+  has bounded image in a p-adic group. The step is valid only because (SR), as
+  recorded in `sp21-bounded-rank-simple-quotients-almost-all-congruence-proof`,
+  is stated for every field `L` of characteristic 0 with no boundedness
+  hypothesis. Given that, the rest is correct:
+  - `Ad|_𝔫 = F ∘ π_Δ` with `F` continuous;
+  - `exp(ad X|_𝔫) = id` on `ker π_Δ ∩ W₃` forces `𝔫` abelian, hence `0`;
+  - so `ker π_Δ ∩ U` is discrete and compact, and `ker π_Δ` is finite.
+- **Trust surface, not re-read here.** (SR) in this form is Margulis's
+  arbitrary-field superrigidity. Two ingredients were not checked:
+  - Corlette and Gromov–Schoen supply the archimedean and nonarchimedean cases;
+  - Margulis's argument then deduces the global form.
+  (V) is Raghunathan's vanishing theorem plus (T). (L) is Lazard and
+  Lubotzky–Mann.
+- **Consistency.** No contradiction with an expected CSP failure. An
+  infinite-rank non-congruence completion has no Lie algebra, so the (⇒)
+  argument never touches it.
+
+## 15. `sp21-golod-shafarevich-test-gives-infinite-pro-p-rank` (bceef65d2): PASS
+
+Route `sp21-golod-shafarevich-test-proof`, `requires: []`.
+
+- **(H).** Injectivity of `H²(Δ̂_p;F_p) -> H²(Δ;F_p)` holds for every finitely
+  generated `Δ`.
+  - Take a central extension of `Δ̂_p` by `F_p` that splits over `Δ`.
+  - The resulting homomorphism from `Δ` lands in a pro-p group, so it extends
+    to `Δ̂_p` and splits the extension.
+  So the minimal relation count of `Δ̂_p` is at most `dim H²(Δ;F_p)`.
+- **Inequality.** For `d >= 3`, `t = 2/d ∈ (0,1)` gives `1 − dt + rt² = −1 + 4r/d²`,
+  which is negative exactly when `r < d²/4`. Correct. For `d = 2`, the bound
+  forces `r = 0`, so `Δ̂_p` is free pro-p. Correct.
+- **Conclusion.** Pro-p Schreier gives rank `1 + p^n(rank F − 1)` for index `p^n`,
+  and finite rank bounds the ranks of all closed subgroups. Correct.
+- **Imports, not re-read.** Golod–Shafarevich–Vinberg and Zelmanov (free pro-p
+  subgroups in Golod–Shafarevich groups) are standard.
+- **Consequence bullet.** An infinite pro-p congruence kernel of `Δ <= Γ(p)`
+  makes the full congruence kernel infinite, so CSP fails. Correct, through §14.
+
+---
+
+## Boone–Higman region
+
+`leavitt-power-projective-elementary-groups-finitely-presented` (925b9eabd)
+appeared in pass 1's candidate list, but it is OPEN, so it gets no verdict.
+
+## 16. `boone-higman-type-a-class-closed-under-finite-extensions` (aaf915679): PASS
+
+Route `type-a-class-finite-extensions-proof`.
+
+- **Subgroups and products.** Correct, given part (a) of
+  `type-a-actions-closed-under-products-and-finite-wreaths`.
+- **Finite-index overgroups.** `[G : H] = k` gives `G ↪ H wr S_k`
+  (Kaloujnine–Krasner, the induced monomial representation). Then
+  `H wr S_k <= Γ wr S_k`, which is an actor by part (b). Correct.
+- **Envelope and word problem.** These come from Zaremsky's Corollary B
+  (`type-a-action-gives-boone-higman-for-subgroups`). A finitely generated
+  subgroup of a finitely presented simple group has solvable word problem.
+  Correct.
+- **Scope.** The node does not claim closure of the plain Boone–Higman class. It
+  credits BFFHZ and Zaremsky Prop. 5.6 for the known statement. Correct and
+  properly credited.
+- **Not reviewed here.** `type-a-actions-closed-under-products-and-finite-wreaths`
+  and the Corollary B import.
+
+## 17. `self-similar-hosts-contain-only-residually-finite-groups` (e481186d6): PASS
+
+Route `self-similar-hosts-rf-proof`.
+
+- **Steps 1–3.** Level stabilizers of a faithful action on a locally finite rooted
+  tree are normal of finite index and intersect trivially, which passes to
+  subgroups. An infinite residually finite group is not simple. Correct, and
+  self-similarity is not used, as the node says.
+- **Step 4.** V is finitely presented, infinite and simple. Correct.
+- **Not reviewed here.** The consequence bullets about Röver–Nekrashevych hosts
+  cite `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf` and
+  `deligne-lattice-embeds-in-no-rover-nekrashevych-group`. Those are separate
+  nodes, not covered by this verdict.
+
+## 18. `rover-nekrashevych-word-problem-reduces-to-self-similar-group` (f811430c1): PASS
+
+Route `rover-nekrashevych-wp-reduction-proof`, `requires: []`.
+
+- **Refinement.** From `f(uxζ) = v w(xζ) = v w(x) w|_x(ζ)`, the triple
+  `(ux, v w(x), w|_x)` is correct. The section word follows the letter path, so
+  its length grows by at most `c0` per letter.
+- **Bounds.** Code lengths grow additively, at most `D` per generator.
+  Decoration lengths grow at most geometrically. So the list has
+  `2^(O(l))` triples, each of length `2^(O(l))`.
+- **Identity test.** If `f = id`, each `[u_i]` maps onto `[v_i]`, so `u_i = v_i`.
+  Then `w_i` fixes every end, and faithfulness gives `w_i = 1` in `G`. Correct.
+- **Time.** `d^(Dl)` calls on words of length `2^(c1 l)`, which gives (RN1).
+  Substitution for finitely generated subgroups changes only `c`.
+- **Generation.** `V_d(G) = <V_d, G>` is standard.
+- **Novelty.** None claimed. It is the standard tree-pair normal form.
+
+## 19. `type-a-actions-closed-under-products-and-finite-wreaths` (aaf915679 region): PASS against the graph's definition
+
+Route `type-a-products-finite-wreaths-proof`, `requires: []`. It checks the four
+clauses of the definition recorded in
+`type-a-action-gives-boone-higman-for-subgroups`: faithful, finitely presented
+group, finitely generated point stabilizers, finitely many orbits of
+two-element subsets.
+
+- **(a) Products.** Faithfulness, finite presentation and stabilizers
+  `Stab(s) × Γ_2` are correct. Mixed pairs `{s,t}` are moved independently by
+  the two factors, so their orbits correspond to pairs of point orbits, which
+  are finite in number by Remark 1.
+- **(b) Wreaths.**
+  - `Γ^k` has index `k!` and is finitely presented.
+  - `Stab(s,i) = {(γ,σ) : σ(i)=i, γ_i ∈ Stab_Γ(s)}` contains
+    `Stab_Γ(s) × Γ^(k−1)` with finite index.
+  - Same-block pairs reduce to the first block, and cross-block pairs to blocks
+    1 and 2 with independent coordinates. Correct.
+- **Not verified here.** Whether this four-clause definition matches Zaremsky's
+  arXiv:2405.18354 type (A) exactly. The graph's definition node was not
+  re-read against the source.
+
+---
+
+## Kervaire–Laudenbach region
+
+## 20. `kl-even-syllable-words-reduce-to-shorter-equations` (2f2c6c4e1): PASS
+
+Route `kl-even-syllable-reduction-proof`, which requires
+`kl-length-at-most-five-equations-are-solvable` (not reviewed here).
+
+- **Lemma.** `|t| = dk` makes `<t^d>` cyclic of order `k = |z|_H`, so the
+  amalgam `P = H *_(z=t^d) C` exists and both factors inject. `w = v(t^d)`
+  dies in `P`. So `G ↪ H ↪ P` factors through `(G*<t>)/<<w>>`. The case `k = 1`
+  is included. Correct.
+- **Shift normalization.** Recomputed. `t ↦ s c^(-1)` sends the word to the
+  displayed one, because `(s c^(-1))^(-1) = c s^(-1)`. With `c = n^(-1)`:
+  - the P-labels become `n a_i`;
+  - `y' = n y n^(-1)`;
+  - the N-label becomes `1`.
+- **(E1).** The word becomes `s^4 y' s^(-2) x = v(s²)` with `v = z² y' z^(-1) x`.
+- **(E2).** The word becomes `s² g s² y' s^(-2) x = v(s²)` with `v = z g z y' z^(-1) x`.
+- **Degree and length.** In both cases `v` has variable length 3 and
+  `deg_z v = 1`.
+  - Length-three equations over arbitrary groups are covered by the required
+    claim (Howie's length-three theorem is the classical input).
+  - Cyclic reduction only shortens.
+- **Not reviewed here.** The four-corner light-corner counts in the claim body
+  are commentary, not used by the proof.
+
+## 21. `kl-sign-index-two-infinite-order-loops-inject` (9532bc88e): PASS, inheriting the weight-test import
+
+Route `kl-sign-index-two-infinite-order-loops-proof`, `requires: []`.
+
+- **Star graph.** There are two vertices `t^±`. The `n − 2` same-sign corners
+  join distinct vertices, and exactly two opposite-sign corners give one loop
+  at each vertex. Correct when the sign sequence has two changes.
+- **(WT1).** `Σθ = n − 2`. Correct.
+- **(WT2).** Same-sign edges alternate vertices, so a closed path uses an even
+  number of them, and any use gives weight at least 2. A path avoiding them
+  stays on one loop without backtracking, so its label is `y^k` or `x^k` with
+  `k ≠ 0`. That label is nontrivial for infinite order, so the path is not
+  admissible. Correct.
+- **Other hypotheses.** `p ≠ q` gives orientability, and "not a proper power" is
+  assumed. Correct.
+- **Trust surface.** The weight test's consequences (injectivity and diagrammatic
+  reducibility) are imported through Ahmad–Al-Mulla–Edjvet's restatement of
+  Bogley–Pride. The node says so, and it was not re-read here.
+- **Credit.** The node flags this as a likely restatement of Stallings' and
+  Clifford–Goldstein's theorems. That is appropriate.
