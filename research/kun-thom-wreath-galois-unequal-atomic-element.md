@@ -28,6 +28,12 @@ determinant conjecture.
 - **Lamp-corner model.** With `P = 1 + e_Gamma`, the corner `P X P` for
   `X in Z[G]` is `X` restricted to a random union of right cosets of `Gamma`
   (`wreath-lamp-corner-is-coset-percolation`). `Gamma`-supported `X` gives only
-  sofic atoms. The untested case is letters outside `Gamma` joining open
-  cosets. The next test is the atom masses of finite open clusters of cosets
-  under a compressing letter `t` with `t Gamma t^(-1)` properly inside `Gamma`.
+  sofic atoms.
+- **Finite coset clusters under one compressing letter.** Dead: blocks are
+  infinite, so there are no finite clusters
+  (`compressing-letter-joins-whole-coset-blocks`).
+- **Support of one-letter corners.** Lamps, `Gamma` and one compressing `t`
+  generate a sofic group unless some orbit wreath of `Gamma` is nonsofic
+  (`one-letter-wreath-support-reduces-to-gamma-orbit-wreaths`). Next test:
+  is `t Gamma t^(-1)` infranormal in `Gamma` for the Theorem E pair? If not,
+  the witness needs several compressing letters generating a Kazhdan group.
