@@ -1767,3 +1767,33 @@ artifact Section 2.
   value `eps` at `(1,1)`.
 - **Scope.** This is exactly what the title says: scalar `delta`-data under same-shape conjugacy, subadditivity and
   vanishing. Operator identities are not covered.
+
+## 50. No covariant rank model of Thompson's V (lane w3-gate-v): PASS, second independent derivation
+
+Items checked: `thompson-v-cantor-system-has-no-covariant-rank-model`, route `thompson-v-covariant-rank-model-halving-proof`, and
+`thompson-v-rank-models-cantor-covariance-2026-09-12.md` Sections 2 and 3. The assigned verifier named on the claim is
+`w3-vf-linear`; this is a second derivation from the rank-gate family verifier.
+
+- **Lemma 2.1.**
+  - *(a)* `rk(axb) <= rk(x)` in both directions.
+  - *(b)* With approximate idempotents `e_k, f_k` and rank-null cross products:
+    - `im e_k cap im f_k` lies in `im(e_k - e_k^2) + im(e_k f_k)`, which has dimension `o(n_k)`;
+    - `im e_k` lies in `im(e_k + f_k) + im(e_k^2 - e_k) + im(f_k e_k)`, and symmetrically for `f_k`;
+    - so `rank(e_k + f_k) >= rank e_k + rank f_k - o(n_k)`.
+- **Lemma 2.2.** Splitting cylinders equalizes the counts on both sides. The cylinders of `A` and of `X \ A` form a complete
+  prefix code, so one prefix replacement maps `A` onto `B`.
+- **Theorem 2.3.**
+  - `mu(A) = rk(rho(1_A))` is additive on disjoint clopens and invariant under `V` by covariance.
+  - By transitivity `mu` is constant, equal to `c`, on proper nonempty clopens.
+  - Then `mu([0]) = mu([00]) + mu([01])` gives `c = 2c`, while `mu([0]) + mu([1]) = 1`. Contradiction.
+- **Proposition 2.4.**
+  - The four replacements are between complete prefix codes, and `h_1[0] = [00]`, `h_2[0] = [01]`, `h_3[1] = [10]`,
+    `h_4[1] = [11]`.
+  - `|m(h_i C) - m(C)| <= eps`, since `rank(A e_C A^-1) = rank(e_C)`.
+  - So `m([0]) >= 2m([0]) - 2eps` and `m([1]) >= 2m([1]) - 2eps`, giving `1 <= 4 eps`.
+  - The remark that `sigma` need not be almost multiplicative is correct.
+- **Section 3.4.**
+  - `S[a]T[a]` are orthogonal idempotents summing to 1 over any complete prefix code, and they span a unital copy of
+    `LC(X, F_2)`.
+  - For a prefix-replacement unit `g = sum_i S[b_i]T[a_i]`, `g S[a_i c]T[a_i c] g^-1 = S[b_i c]T[b_i c]`.
+  - So the filter holds as stated. It rules out covariance, not rank models of `R^x` themselves.
