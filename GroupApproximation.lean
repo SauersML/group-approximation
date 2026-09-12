@@ -4682,6 +4682,7 @@ import GroupApproximation.KunThom.ConjugationFailureVanishing
 import GroupApproximation.KunThom.ScaledBisectionConverse
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyFrame
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyThreshold
+import GroupApproximation.KunThom.CountingEndgameRelative
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
