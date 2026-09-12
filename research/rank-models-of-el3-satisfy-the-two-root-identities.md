@@ -115,3 +115,20 @@ payoff is `non-linear-sofic-group`.
   `EL_3(A_inf)`, and residually finite Kazhdan subgroups such as `EL_3(F_2[s_0])`. A proof must
   use `sigma` jointly on a nonsofic subgroup containing both root elements, and would prove that
   subgroup nonsofic (artifact Section 6.4).
+- **Corner locality, and the nine-leaf mechanism aimed at the identity (gk-gate-nonsofic, 2026-09-12).**
+  - `two-root-identity-is-corner-local-for-leavitt-rank-models` (e5f2fbc35f), established: for
+    a char-2 rank model `sigma` of `R^x`, `sigma` trivial ⟺ the identity holds on the unit pair ⟺
+    it holds on `iota_P(unit pair)` for any single cylinder `P`. Through
+    `shifted-root-pair-conjugates-to-idempotent-root-pair`, it is also equivalent to
+    `rk(n_23(s_0) n_12(t_0)) = 0`. So the pair may sit inside `C_G(Gamma)` for the nine-leaf `Gamma`.
+  - Audit (artifact `research/artifacts/two-root-identity-nonsofic-mechanism-2026-09-12.md`,
+    Section 3), with `x', y'` on `[1000]`:
+    - The defect piece `Q = im(N_23' N_12')` is almost invariant under `sigma(Gamma)`, not fixed.
+    - Globality `leavitt-rank-models-kazhdan-fixed-ideals-are-global` rounds only fixed ideals.
+    - Single-piece rounding is refuted for Kazhdan groups over finite fields (the half-degree
+      truncation in `kazhdan-group-rank-models-admit-no-expander-decomposition`).
+    - `<Gamma, x', y', u>` contains `Gamma` and is nonsofic, so the calibrations do not pre-empt the
+      argument. It dies at (K).
+  - A rescue must use data that counterexample lacks: the compression relation with property (T) of
+    the compressor group, the absence of finite-dimensional representations of `R^x`, or the global
+    fixed-ideal condition.
