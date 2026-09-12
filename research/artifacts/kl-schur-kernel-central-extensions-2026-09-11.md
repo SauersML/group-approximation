@@ -398,3 +398,42 @@ and the non-hyperlinearity of `E_3`.
 More generally, for a **finite** central `Z` the cut-down of S4 is exact in the
 corona: `p_chi = |Z|^(-1) sum_z chi(z)^(-1) psi(z)`. Then S2 with `N = N_op`
 gives `alpha_H(K_2(Q, w)) <= Rad_MF(E)`.
+
+## S10. The Schur kernel is relation-module homology
+
+Let `Y = Q * <t>`, `N = <<w>>_Y`, `X = Y/N`, and let `M = N^ab` be the relation
+module, a `ZX`-module by conjugation. Assume `q : Q -> X` is injective; this
+holds for every hyperlinear `Q`.
+
+**Claim.** There is an exact sequence
+
+    H_3(Q) -> H_3(X) -> H_1(X; M) -> H_2(Q) --q_*--> H_2(X) -> M_X -> H_1(Q) (+) Z -> H_1(X) -> 0,
+
+so `K_2(Q, w) = H_1(X; M) / image(H_3(X))`.
+
+*Proof.* Gruenberg's sequence for `1 -> N -> Y -> X -> 1` is
+`0 -> M -> ZX (x)_(ZY) IY -> IX -> 0`. For a free product,
+`IY = ZY (x)_(ZQ) IQ (+) ZY (x)_(Z<t>) I<t>`, and `I<t> = Z<t>(t-1)` is free, so
+the middle term is `(ZX (x)_(ZQ) IQ) (+) ZX`. Take the long exact sequence in
+`X`-homology. Since `q` is injective, `ZX` is free over `ZQ`, and Shapiro's
+lemma gives `H_n(X; ZX (x)_(ZQ) IQ) = H_n(Q; IQ) = H_(n+1)(Q)` for `n >= 1`.
+Also `H_n(X; ZX) = 0` and `H_n(X; IX) = H_(n+1)(X)` for `n >= 1`. The degree-zero
+terms are `H_1(Q) (+) Z` and `H_1(X)`. Dimension shifting is natural, so the
+middle map is `q_*`. ∎
+
+**Consequences.**
+
+* If `H_1(X; M) = 0`, in particular if `M` is a free `ZX`-module, the Schur
+  kernel vanishes. This is the algebraic form of S3.
+* A Schur-kill certificate is a class of `H_1(X; M_w)` that does not come from
+  `H_3(X)`. For `sp4-schur-kernel-meets-the-deligne-triple-class`, the relation
+  module of the adjunction over `Sp_4(Z)` must carry first homology whose image
+  in `H_2(Sp_4(Z))` pairs nontrivially with `c_1 mod 3`.
+* **Exact reformulation of the Deligne target.** `Sp_4(Z)` is residually finite,
+  hence hyperlinear, so its coefficient map injects. S5(ii) with `E = E_3` then
+  shows the target is equivalent to the following: there is a nonsingular
+  `w~ in E_3 * <t>` with `z = 1` in `(E_3 * <t>)/<<w~, [z, t]>>`. The word
+  problem of `E_3` is decidable: represent elements as pairs
+  `(gamma, k mod 3)` and multiply with Meyer's cocycle. So a proposed identity
+  can be checked exactly. No finite, linear or amenable invariant can prune the
+  search, by S2, S7 and Deligne's theorem.
