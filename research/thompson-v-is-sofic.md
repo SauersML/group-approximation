@@ -36,7 +36,7 @@ Consequences:
   sources read from the PDFs).
   - Ma, arXiv:2110.11548v1, Theorem 7.5, needs a Følner sequence for the groupoid. The Cuntz
     groupoid has none (`cuntz-groupoid-admits-no-folner-sequence`), so that theorem cannot
-    certify `V`.
+    certify `V`. Dead route: `thompson-v-sofic-via-folner-full-group-theorem`.
   - The LEF theorems for full groups (Grigorchuk--Medynets; Ma, arXiv:2209.00580v4) cannot
     contain `V`, which is not LEF.
   - Models with an almost-equivariant coordinate map to the Cantor set keep a fixed proportion of

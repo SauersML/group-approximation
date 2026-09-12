@@ -3,6 +3,8 @@ rg: 2
 id: cuntz-groupoid-admits-no-folner-sequence
 kind: claim
 title: The Cuntz groupoid of Thompson's V is not fiberwise amenable and has no Folner sequence
+invalidates:
+  - thompson-v-sofic-via-folner-full-group-theorem
 distinct_from:
   thompson-v-cantor-orbits-have-no-folner-sets: that bounds the boundary of finite point sets under V; this transfers the bound, with multiplicities, to finite subsets of the source fibres of the germ groupoid, which is the hypothesis of Ma's soficity theorem for full groups.
   thompson-v-covariant-cantor-representations-are-not-amenable: that excludes Bekka-amenable covariant unitary representations of the Cantor system; this is a counting statement about source fibres of the groupoid and involves no representation.
@@ -28,7 +30,8 @@ arXiv:2110.11548v1 (read from the PDF):
 3. Ma's Theorem 7.5 ("Let G be a second countable minimal groupoid that admits a Følner sequence.
    Then [[G]] is sofic.") and his Corollary D(1) therefore cannot certify that `V` is sofic. His
    approximations restrict the full group to finite range sets `r(T_n u_n)`, and Theorem 2 of the
-   artifact shows that every such restriction keeps a fixed proportion of boundary.
+   artifact shows that every such restriction keeps a fixed proportion of boundary. The route
+   `thompson-v-sofic-via-folner-full-group-theorem` records this dead attempt.
 
 The same count gives artifact Corollary 3.3: a finite model of `V` with an almost-equivariant
 map to `X` has defect bounded below, with any multiplicity and whatever relations the model
