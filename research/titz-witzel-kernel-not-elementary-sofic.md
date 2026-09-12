@@ -8,6 +8,7 @@ invalidates:
 distinct_from:
   titz-witzel-soficity-is-one-finite-csp: that reduces soficity to a finite permutation gate and lists closure routes that do not apply; this proves that no chain of the four elementary closure operations can reach the kernel at all.
   titz-witzel-same-building-sofic-donor-collapses: that excludes a sofic donor lattice on the same building; this excludes every elementary sofic construction and every nontrivial marked limit.
+  fp-simple-groups-escape-soft-hyperlinear-permanence: that kills marked-limit and residual-amenability certificates for hyperlinearity of finitely presented simple groups; this uses Cornulier's theorem to exclude the full elementary sofic closure, including amenable extensions and direct limits, for the Titz--Witzel kernels.
 artifacts:
   - research/artifacts/titz-witzel-radu-sublattice-2026-09-11.md
 ---
