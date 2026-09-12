@@ -3,6 +3,7 @@ rg: 2
 id: nested-two-finite-subgroup-idempotents-have-strict-rank
 kind: claim
 title: Strict nesting between idempotents supported in two finite subgroups forces a strict rational rank gap
+invalidates: [modular-nested-equivalence-refutes-leavitt-direct-finiteness]
 distinct_from:
   lifted-trace-detects-finite-subgroup-projectives: that directly separates nested idempotents in one common finite subgroup; this permits the two finite support subgroups to generate an arbitrary infinite subgroup and transfers only the nesting equations to a finite-group amalgam.
   leavitt-balanced-corners-separated-modulo-four: that treats one explicit cubic pair in a common finite subgroup; this treats every pair in two possibly different finite subgroups, in all matrix sizes and characteristics.
