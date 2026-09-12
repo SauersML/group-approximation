@@ -694,3 +694,17 @@ not 2-norm controlled (`||Ad(diag(-1,1,..,1)) - 1|| = 2` while the
 matrix is 2-norm close to `1`).  Independently, Kirchberg's theorem
 (`binary-leavitt-unit-group-fails-factorization-property`) means a
 positive answer would not make the canonical trace of `H` amenable.
+
+**Import the Kun--Thom non-hyperlinear chain (2026-09-12, lane
+`hyperlinear-nonsofic-l-times`).** Not available as it stands. The chain
+decides only the coset wreath `W` over the Theorem E pair. It reaches `Q`
+only through `kun-thom-wreath-embeds-in-leavitt-unit-group` (OPEN), and the
+Theorem E actor is linear over no field of positive characteristic, so no
+matrix embedding over a commutative subring of `L` exists. Run internally on
+the nine-leaf pair, the chain's rounding premise (H1) is equivalent to `Q`
+being nonhyperlinear (`leavitt-pair-vertex-rounding-is-nonhyperlinearity`),
+because every `EL_3` corner is `Q` and `Q` is minimally almost periodic.
+Any hyperlinear model of `Q` therefore has no genuine skeleton: on every
+minimally almost periodic subgroup it stays at distance `sqrt 2` from all
+genuine representations. See
+`research/artifacts/hyperlinear-nonsofic-l-times-2026-09-12.md`.

@@ -35,3 +35,10 @@ extend to trace-preserving representations of `G`.
   generating set `F`.
 - **Genuine coordinate models.** They satisfy it trivially. The content is models with no genuine
   coordinate structure, which is exactly where `kt-centralizer-normalization-hs` is open.
+- **Scope (2026-09-12, lane `hyperlinear-nonsofic-l-times`).** Read literally over every infranormal,
+  non-normal Kazhdan pair, this claim contains the nine-leaf Leavitt pair. There it is equivalent to
+  nonhyperlinearity of `L_(F_2)(1,2)^x` (`leavitt-pair-vertex-rounding-is-nonhyperlinearity`), because
+  both configuration groups are the unit group, which is minimally almost periodic. So the general form
+  implies the unit group is not hyperlinear, and a hyperlinearity proof for that group refutes the
+  general form. The Theorem E instance `theorem-e-vertex-rounds-to-unit-type-representations`, whose
+  vertex has rich finite images, is unaffected.
