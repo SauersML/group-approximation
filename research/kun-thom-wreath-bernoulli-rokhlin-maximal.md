@@ -57,3 +57,18 @@ reach the binary Leavitt unit group or the tester host.
   orthocomplement of the constants is `λ_W^⊕N`. So
   `koopman-lambda-singular-part-has-zero-rokhlin-entropy` gives no information
   here.
+- **Seward's normal-subgroup results (2026-09-12).** Krieger I and II and *Weak containment and
+  Rokhlin entropy*, read through ar5iv, contain no lower bound through a normal subgroup, an amenable
+  kernel or a quotient. `W` is amenable-by-residually-finite, the direction soficity does not pass
+  (artifact `kun-thom-wreath-rokhlin-test-case-2026-09-12.md`, Section 1).
+- **Local embeddings transfer.** `rokhlin-maximality-closed-under-local-embeddings`: maximality passes
+  along injective partial multiplication tables. With Lemma 4.1 of the LEF-wreath artifact, maximality
+  for every LEF lamp reduces to finite lamps over the same actor and graph.
+- **Witnesses need non-closed stabilizers.** `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers`:
+  a deficit witness generates `K` with `π(K)` nonamenable and a lamp-site stabilizer that is not
+  profinitely closed in `π(K)`. Otherwise `K` is residually finite. `Rad(W)` lies in the lamp
+  configurations with zero sum on the fibres of `G/Γ -> G/Γ̂`.
+- **Deficit through invisible lamps.** Dies at a named step (artifact Section 5). Models identify the
+  two folded points, but on the shift they carry independent symbols. The restriction to the invisible
+  lamps is a featureless locally finite Bernoulli action. A saving must couple invisible lamps with a
+  nonamenable actor part through a non-closed stabilizer, and no measurable device for that is known.
