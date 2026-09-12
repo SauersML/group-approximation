@@ -853,3 +853,135 @@ checked here was falsely established.
 For commits after 8987f4ea6, `swarm5-reviewer` covers Thompson groups and full groups, Strong Atiyah,
 Baum–Connes and Kadison–Kaplansky, quasitraces, weak soficity, and Gottschalk and direct finiteness. This
 artifact continues with the other topics.
+
+## 29. Artin groups, tree torsion, UCT ascent and the Iwahori census (16:45–16:50)
+
+### 29.1 `c-tilde-artin-groups-satisfy-permutational-boone-higman` (21dfc8888): PASS; a new case of BBMZ Problem 5.3(13)
+
+- **Identification** (`c-tilde-artin-groups-are-punctured-plane-braid-groups`, citation of Allcock).
+  - `x ↦ 2cos(2πx)` is the quotient by `<x ↦ x+1, x ↦ -x>`. It is free off `½Z` and lands in `C - {±2}`.
+  - For coordinates avoiding `½Z`, `x_j ± x_k ∉ Z` says exactly that the images differ.
+  - So `V_0/(Z^n : 2^n) = Conf_n(C - {±2})`. The π_1 statement for affine types is Nguyễn's, cited through
+    Allcock.
+- **Embedding.**
+  - Fadell–Neuwirth: `Conf_(n+2)(C) -> Conf_2(C)` is a bundle with fibre `Conf_n(P)`, and `S_n` acts
+    fibrewise and freely.
+  - `Conf_2(C) ≅ C × C^×` is aspherical, so `π_1 UConf_n(P)` injects into `π_1(E)`.
+  - `E -> UConf_(n+2)(C)` is a covering of degree `[S_(n+2) : S_n] = (n+2)(n+1)`. So `A(C̃_n) <= B_(n+2)`,
+    in agreement with Charney–Crisp.
+- **Boone–Higman.**
+  - `B_m <= Aut(F_m)` (Artin representation).
+  - `Aut(F_m)` satisfies PBH by BFFHZ Theorem A, and PBH passes to subgroups.
+  - Zaremsky Corollary B gives the finitely presented simple envelope.
+- **Status of the problem.** BFFHZ v2 (April 2025) and BBMZ v3 Remark 5.4 (May 2025) both list the Euclidean
+  types other than `Ã_n`, `C̃_2` and `G̃_2` as open, which includes `C̃_n` for `n >= 3`. The consequence
+  follows from published results in a few lines, and the lane's novelty search was bounded (arXiv abstracts
+  through 2609.01868). It is a genuine new case, but a light one, and priority should be claimed only after a
+  fuller search.
+
+### 29.2 `spherical-artin-groups-are-linear-over-q-x-y` and `admissibly-oriented-artin-groups-split-over-free-groups` (21dfc8888): PASS as citations
+
+- Crisp's embedding into products of types A, D and E, together with faithfulness of the Krammer–Digne–
+  Cohen–Wales representations over `Q(x,y)`, gives faithful block sums. This is consistent with the
+  literature. The statements were read through Paris's survey.
+- Jankiewicz's Theorem 4.3 is quoted with its scope. Finite index of the edge group is not claimed, and that
+  is correct.
+- `spherical-artin-groups-satisfy-boone-higman` and `admissibly-oriented-artin-groups-satisfy-boone-higman`
+  are correctly OPEN.
+
+### 29.3 `regular-tree-torsion-orders-have-primes-at-most-degree` (08a7771c7): PASS
+
+The orders of the level images divide `|Aut(B_n)| = (d!)^(1+⋯+d^(n-1))`. They form a divisibility chain
+bounded by `m`, so they stabilize, and faithfulness gives `m = m_N`.
+
+### 29.4 `cycle-transposition-lef-group-has-no-regular-tree-action` (08a7771c7): PASS
+
+- **Word problem.**
+  - For `n >= 4l+5`, a point with `|x̃| >= l+2` stays at residues in `[2, n-2]`, so `τ` never acts and
+    `w_n(x) = x + e(w)`.
+  - A point with `|x̃| <= l+1` stays in `[-2l-1, 2l+1]`, where `0` and `1` are the only preimages of their
+    residues.
+  - So `w = 1` iff (a), (b) and (c) hold, which is polynomial.
+- **One-coordinate elements.**
+  - `c_k = [τ, σ^k τ σ^-k]` is supported on `{n : n | k ± 1}`, and `g_p = [c_(p+1), c_(p-1)]` is supported
+    at `n = p` only.
+  - In coordinate `p` the two 3-cycles overlap in two points, so they do not commute.
+- **Alt(p).** `π_p` is injective on the normal closure. `π_p(Γ) = Sym(p)` (a `p`-cycle and an adjacent
+  transposition), so the normal closure is `Alt(p)`.
+- **Consequences.** Items 4–5 follow from §29.3 and `|Alt(p)| > d!` for `p > d`.
+- `rf-higman-embedding-for-decidable-groups` is correctly OPEN. Its quote of Kharlampovich–Myasnikov–Sapir
+  was not re-extracted here.
+
+### 29.5 `o2-zp-cartan-fixing-iff-rokhlin-uct-ascent` (8f6d0119c): PASS, conditional on Barlak–Li and Izumi
+
+- **`Asc_p ⟹ D_p`.**
+  - The crossed product by an outer action is a unital Kirchberg algebra.
+  - Izumi makes `α` approximately representable, so `α̂` is Rokhlin.
+  - Takai gives `B ⋊ Z_p ≅ M_p(O_2) ≅ O_2`.
+- **`D_p ⟹ Asc_p`.**
+  - Approximate representability, lifted through `C^β`, gives strong approximate innerness.
+  - **Outerness.** If `β_1 = Ad(v)` with `v^p = 1`, then `z = v^* w` has order `p`. It commutes with `C` and
+    with `w`, and its zeroth Fourier coefficient vanishes. So it is a non-scalar central unitary in
+    `C ⋊ Z_p ≅ B ⊗ M_p`, which contradicts simplicity.
+  - Cartan-fixing then gives the UCT for `B ⊗ M_p`, and so for `B`.
+- **Reading.** It is a restatement, and it proves no case, as the node says.
+- `izumi-rokhlin-approximately-representable-duality`: PASS as a citation.
+
+### 29.6 `sl3-z2-iwahori-index-8-torsion-free-misses-level-4` (6bb076985): PASS on the reduction; census output not rerun
+
+- **Index and quotient.** `[I:W] = [U : W̄][K_1 : K]`. `V = K_1/K_2` is the trace-zero `3×3` matrices over
+  `F_2`, of order `2^8`, and `S = K/K_2` is `W̄`-invariant.
+- **Involutions.** A rank-2 idempotent `ē` lifts to an idempotent `e` over `Z_2`. `I - 2e` is an involution
+  of determinant `1` in the coset `I + 2ē + K_2`. So `S` must avoid all `28 = 7·4` rank-2 idempotents.
+- **Small codimension.** A hyperplane avoiding them would contain an avoiding codimension-2 subspace.
+- **Census.** No codimension-2 subspace avoids the idempotents, and none of the 1500 avoiding codimension-3
+  subspaces is `U`-invariant. This is recorded in `experiments/strong-atiyah-sl3z/iwahori_level4_census.out`
+  and was not rerun here.
+- `sl3-z2-iwahori-has-torsion-free-subgroup-of-index-8` is correctly OPEN.
+
+### 29.7 `fpbs-sphere-fibre-operator-iff-critical-fibre-l2` (4a1570fd4): PASS
+
+Checked against artifact Theorem A.
+- **(a) ⟹ (b).**
+  - Right multiplication by `g_q` maps `Γ_q` onto `Γ_(q_0)`, and Harris–FKG with translation invariance
+    gives `σ_p(q) <= p^-L σ_p(q_0)`.
+  - `σ_p(q_0) <= N(σ_(p,R_0)) <= θ`, because `N(f) >= f(q_0)`.
+  - The sphere cut gives `N(C_(p,R_0)) <= θ N(σ_p)`. `N(σ_p) <= χ_p < ∞` below `p_c`, so the bound absorbs.
+  - The pointwise increasing limit passes to `p_c`, since `N` is lower semicontinuous.
+- **(b) ⟹ (c).**
+  - Averaging the sphere cut over `r ∈ [0, m]` uses `Σ_r σ_(p,r) <= σ_p`, since the spheres are disjoint.
+  - With `n + 1 >= e N_p` each block gains a factor `1/e`, and `n < e N_p` gives the stated rate.
+- **(c) ⟹ (a).** A sphere of large radius.
+- **L2 gap.** It rests on the fibre-summed operator import (F4) and Hutchcroft's openness (F5), both on main.
+- **Reading.** The equivalence settles nothing about whether the conditions hold, as the node says. Over
+  amenable kernels with rapid-decay quotients, the two premises are shown to be as hard as critical L2
+  boundedness.
+
+### 29.8 KL length-six residue shapes (a63352293, 2cf7bde45): two PASS, conditional on the weight-test import
+
+**`kl-three-coincidence-residue-words-inject-with-room-for-loops`.**
+- **(WT1).** `Σθ = 3 + α + (1-α) = 4 = n - 2`.
+- **(WT2).**
+  - `h >= 2` gives weight `>= 2`.
+  - Pure loop cycles give `α k_y >= 2` or `(1-α) k_x >= 2`.
+  - `m = 1, h = l = 1` is exactly (C1). `m = 1, h = 0` is exactly (C2).
+  - For `m >= 2`, at least `m - 1` light–light junctions on each side carry nonzero powers, so the weight is
+    `>= 2`.
+- The curvature step is inherited from `kl-four-same-sign-corner-words-weight-proof`.
+
+**`kl-involution-loop-residue-with-interior-light-label-injects`.**
+- **Claim A.**
+  - `m = 1, h = l = 1`: `W = 1 + (|i|+|j|)/2`. (I1) and (I3) exclude the trivial labels with `|i| + |j| <= 2`,
+    so admissible cycles have `W >= 5/2`.
+  - `h = 0, l = 2`: `W = 1` is excluded by (I2), and `W = 3/2` has a nontrivial label.
+  - `m = 2, h = 1`: `W = 2` forces the single pattern whose label is excluded by (I4).
+- **Transfer count.**
+  - Each receiving region pairs a heavy corner (`c_0` or `c_3`, heavy in both shapes) with a loop corner,
+    and the pairs are disjoint. So `W(A) >= 3k/2`.
+  - `k >= 2` gives `κ <= 2π - kπ <= 0`, and `k = 1` gives `κ <= 0` by Claim A2.
+  - The boundary region stays `<= 2π`, and the total `<= 2π < 4π` is a contradiction.
+- **Not checked.** The face tracing that assigns the regions across each loop-square arc was checked only
+  against the corner order `c_0, …, c_5`. It was not redrawn.
+
+**Import gap.** Both proofs rest on the Ahmad–Al-Mulla–Edjvet restatement of the Bogley–Pride weight test and
+on standard picture calculus. The lanes record this themselves, and it was not re-read here.
