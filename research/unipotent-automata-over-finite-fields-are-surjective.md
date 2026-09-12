@@ -6,6 +6,7 @@ title: Injective automata of the form identity plus higher-order terms over F_q 
 distinct_from:
   sofic-groups-are-surjunctive: that proves every automaton surjective on sofic hosts; this proves one normal-form class surjective on every host, under a degree bound on the decoder.
   gottschalk-surjunctivity-conjecture: that is every automaton on every host; this is only automata with invertible linear part and a low-degree decoder, and it says nothing about decoders of degree product at least q.
+  formal-polynomial-strict-pairs-need-unstable-linearization: that is the general form, any pair whose left-inverse identity holds formally over any field, bijective once the matrix group algebra is directly finite; this is the finite-field special case where the bound deg sigma * deg tau < q supplies formality and the linear part is assumed invertible, proved through lowest homogeneous parts instead of units of the composition monoid.
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
   - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
@@ -29,6 +30,10 @@ recovers injectivity with no Noetherian input.
 
 **Scope.** On `F_8`, the pair `x^3`, `y^5` is bijective with zero linear part and degree
 product `15 >= 8`. The bound is needed for Step 1, and the invertible linear part for Step 2.
+
+**General form.** The degree bound is used only to make the left-inverse identity formal. Any
+formal identity gives the same conclusion: see `formal-polynomial-strict-pairs-need-unstable-linearization`
+(lane gk-free-neg, landed 12:53, before this claim), which covers every field and every degree.
 
 Established 2026-09-12 by `unipotent-automata-over-finite-fields-are-surjective-proof`. The
 first dead attempts (measure marginals, the scaling torus, iterative solving) are recorded in

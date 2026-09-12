@@ -6,6 +6,7 @@ title: A strict automaton over F_q with deg sigma * deg tau below q forces a mat
 distinct_from:
   stable-finiteness-failure-refutes-surjunctivity: that is the converse direction, a matrix one-sided pair gives a strict linear automaton; this proves that every low-degree strict automaton comes from such a pair.
   low-degree-strict-pairs-have-one-sided-linear-parts: that is the established dichotomy, a pair or a unipotent automaton; this is its consequence once the unipotent branch is shown never strict.
+  formal-polynomial-strict-pairs-need-unstable-linearization: that is the general form, any strict pair whose left-inverse identity holds formally forces a matrix direct-finiteness failure, over any field and of any degree; this is the finite-field special case in which the bound deg sigma * deg tau < q makes the functional identity formal.
 artifacts:
   - research/artifacts/low-degree-strict-pairs-linear-parts-2026-09-12.md
   - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
@@ -26,6 +27,11 @@ automaton over `F_q^m` whose left inverse satisfies the degree bound is surjecti
 - For invariant output this is `low-degree-invariant-output-reduces-to-corner-fullness`.
 - Genuinely nonlinear counterexamples need degree product at least `q`. That covers every binary
   design, and every larger-field design whose decoder identity uses the reduction `x^q = x`.
+
+**General form.** The degree bound is used only to make the identity formal. The same conclusion
+holds for every formal left-inverse identity, over any field and of any degree:
+`formal-polynomial-strict-pairs-need-unstable-linearization` (lane gk-free-neg, landed 12:53,
+before this claim). This claim is its low-degree finite-field case.
 
 Established 2026-09-12 by `low-degree-kaplansky-failure-via-unipotent-surjectivity`, from
 `low-degree-strict-pairs-have-one-sided-linear-parts` and
