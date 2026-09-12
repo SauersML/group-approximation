@@ -35,3 +35,5 @@ Artifact Section 2.
 4. **Gap (Theorem 2.4).**
    * Set `c_0 = c(1/4)`; by `V`-conjugacy it serves for every proper cylinder.
    * Upper bounds: `(1-f)N^A_12` is square-zero in the corner, and `D_A = D_A(1-f)`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 8.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

@@ -34,3 +34,5 @@ This is Section 5, Proposition 5 of the artifact. Relabel indices so that `(I, J
    faithfulness whenever `sigma` is nontrivial.
 
 **Calibration.** In the honest model `EL_4(F_2) <= GL_4(F_2)`, `YX = E_31 E_13 = E_33 != 0`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 9.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

@@ -27,3 +27,5 @@ Artifact Section 3.
    `D_(A_k)...D_(A_1)M` for `A_j = 0^(j-1)1000`.
    * The upper bound needs only commutation and square zero, so it holds in any model.
    * The lower bound passes through the fixed-point-free quotient.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 8.2 (Corollary 3.2 item 1 relies on the defect-piece artifact, not re-derived here) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

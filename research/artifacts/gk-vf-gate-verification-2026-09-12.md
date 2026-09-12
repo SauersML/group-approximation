@@ -404,3 +404,109 @@ Four nodes were deleted as duplicates at b09f639b5d, on the lane's instruction, 
 
 **Return operator.** `NWNW = NW`, and the completeness defect of `S_i = A_i`, `T_i = B_i W` is
 `(E_0 E_1 + rho_0 + rho_1) W`.
+
+## 8. w4-gate-descent (e24abed257, 3116be756a)
+
+### 8.1 `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`: PASS
+
+**Lemma 2.1: the quotient model.**
+1. **Homomorphism.** `sigma(g) f = f` gives `(1-f) sigma(g) f = 0`, so `sigma_W` is multiplicative.
+2. **No fixed vectors.**
+   - A fixed `x` in `(1-f)M` gives `c(g) = f sigma(g) x`, and `c(gh) = c(g) + sigma(g) c(h) = c(g) + c(h)`,
+     because `sigma(g)` fixes `fM`.
+   - Perfection kills `c`, so `x` lies in `fM ∩ (1-f)M = 0`.
+3. **Nontrivial.** A trivial `sigma_W` lands `sigma` in `1 + fM(1-f)`, which is abelian because
+   `fM(1-f) fM(1-f) = 0`.
+4. **The defect.** `N f = 0` gives `(1-f) N_23 (1-f) N_12 (1-f) = (1-f) D_A`.
+
+**Lemma 2.2: displacement.**
+- `Fix_r` is the intersection of the four right annihilators `(1 - z_i x_i) M`.
+- Finite intersections of principal right ideals are principal in a regular ring, and have rank at
+  least `1 - sum rk(x_i)`.
+
+**Lemma 2.3: compactness.**
+1. Along the sequence, fix one maximizing generator.
+2. For each `n`, finitely many relations and ranks hold within `1/n` at some level in the ultrafilter
+   set.
+3. Near-invertible lifts are fixed at rank cost `eps`.
+4. A finitely generated field of characteristic two is finite over some `F_2(t_1..t_d)`, so it embeds in
+   `Omega`, and ranks do not change.
+5. The ultralimit is an exact homomorphism with `[1000]` corner product of rank `0`.
+6. `two-root-identity-is-corner-local-for-leavitt-rank-models` holds over every field of characteristic
+   two, and its (3)⇒(1) with `P = 1000` makes the ultralimit trivial.
+7. That contradicts displacement at least `eta`.
+
+**Theorem 2.4: the gap.**
+- **Lower bound.** Apply Lemmas 2.2 and 2.3 in the renormalized corner `(1-f)M(1-f)`. Pass from `[1000]`
+  to any proper cylinder by the prefix-replacement `u` of Fact 1.2.
+- **Upper bounds.**
+  - `((1-f) N_12 (1-f))^2 = 0`, since `N_12^2 = 0` and `N f = 0`. Fact 1.1(c) gives `rk(1-f)/2`.
+  - `D_A = D_A(1-f)` gives `rk D_A <= rk(1-f)`.
+
+**The facts used.**
+- **Fact 1.1.** Parts (a) to (d) are standard dimension-function facts for regular rings.
+- **Fact 1.2.** I re-derived it:
+  - `T[A] S[B] = 0` for disjoint cylinders, so `iota_A` and `iota_B` commute;
+  - `u = sum S[B_i] T[A_i] + sum S[C'_j] T[C_j]` satisfies `u S[A_i] = S[B_i]` and `T[A_i] u^-1 = T[B_i]`.
+- **Fact 1.3.** It holds.
+
+### 8.2 `nested-two-root-defect-pieces-decay-geometrically-both-ways`: PASS
+
+**Lemma 3.0.**
+- The case `A = 0` is the globality claim in degree `(1,0)`.
+- For other `A`, `sigma(u) fM = fM`.
+
+**Theorem 3.1.**
+- **Upper bound.**
+  - `N^B_12 PM = P N^B_12 M` lies in `Q_k`, so `N q_k = q_k N q_k` and `(q_k N q_k)^2 = q_k N^2 q_k = 0`.
+  - `f(k+1) = rk(D_B q_k) <= rk(N^B_12 q_k) <= f(k)/2`.
+- **Lower bound.**
+  - `tau = q_k sigma(iota_B(.)) q_k` is a model, because `Q_k` is invariant.
+  - A `tau`-fixed `v` in `Q_k` is `sigma(iota_B(R^x))`-fixed, hence lies in `fM = 0`.
+  - `iota_B o iota_1000 = iota_(B1000)`, and `B1000` is disjoint from every `A_i`.
+  - So the `[1000]` defect of `tau` is `D_(B1000) q_k`, whose rank is `f(k+1)` by V-transitivity on the
+    configuration `(A_1..A_k, B1000)`, which still has proper union.
+
+**Corollary 3.2.**
+- **Rank bounds.** `delta_1 <= rk(1-f)` and `delta_k >= rk((1-f) Q_k) = rk(1-f) f_W(k)`.
+- **No limit corner.** Its rank is below `delta_k -> 0`.
+- **Not re-derived.** Item 1 rests on Lemma 1.1 of the defect-piece artifact. I did not re-derive that
+  artifact, which is `w3-vf-linear`'s item.
+
+### 8.3 `near-minimal-defect-models-have-multiplicative-cylinder-defects`: PASS
+
+**Proposition 4.1.**
+1. **The kernel corner.** `K = r.ann(P)` has rank `1 - f(k)` by Fact 1.1(a).
+   - It is invariant because `P` commutes with `sigma(iota_B(.))`.
+   - Its model is fixed-point-free by Lemma 3.0, and nontrivial since `rk k >= 1/2` for `k >= 1`.
+   - Hence `rk(D_(B1000) k) >= c_* (1 - f(k))`.
+2. **The triangular count.**
+   - `TM -> J/K` is onto, with kernel `TM ∩ K ⊇ TK`, so `rk J - rk K <= rk TM - rk TK`.
+   - By Fact 1.1(d), `rk J - rk K = rk(PJ) = rk(PTM) = rk(TP) = f(k+1)`.
+   - `rk TM = delta`, by V-conjugacy.
+3. **Algebra.** `f(k+1) <= delta - c_*(1 - f(k))`, with `c_* >= delta/(1+eps)`, gives
+   `f(k+1) <= delta f(k) + eps delta`.
+4. **The iterate.** Put `e_k = f(k) - delta^k`. Then `e_1 = 0` and `|e_(k+1)| <= eps delta + delta |e_k|`,
+   so `|e_k| <= eps delta/(1 - delta) <= 2 eps delta`.
+
+## 9. w4-r4-corner, second landing (ef454c9283)
+
+### 9.1 `opposite-unit-root-product-vanishes-only-for-trivial-models`: PASS
+
+1. **The braid relation over `Z`.**
+   - `x(1) y(-1) x(1) = [[0,1],[-1,0]] = y(-1) x(1) y(-1)`, re-derived in Section 3.1.
+   - With `-1 = 1` in `R` it becomes `x_13(1) x_31(1) x_13(1) = x_31(1) x_13(1) x_31(1)`.
+2. **The expansion.** Using `X^2 = Y^2 = 0` and `2X = 0`:
+   - `(1+X+Y+XY)(1+X) = 1 + Y + XY + YX + XYX`;
+   - symmetrically `1 + X + XY + YX + YXY`;
+   - so `Y + XYX = X + YXY`.
+3. **The collapse.** `YX = 0` kills both `XYX` and `YXY`, so `X = Y`.
+4. **The finish.**
+   - `x_13(1)` commutes with `x_12(r)`, since `3 != 1` and `1 != 2`.
+   - `x_32(r) = [x_31(1), x_12(r)]`, so `sigma(x_32(r)) = 1`.
+   - Section 2.2 then gives triviality.
+5. **Scope.**
+   - For another pair `(I,J)`, use any third index `K`.
+   - The claim is stated for characteristic two only, which is correct: in odd characteristic the braid
+     step involves `n_31(-1)`.
+6. **Positivity.** `e YX = YX` gives `rk e >= rk YX > 0` by faithfulness.

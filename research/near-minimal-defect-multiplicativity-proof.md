@@ -25,3 +25,5 @@ Put `P = D_(A_1)...D_(A_k)` and `B = A_(k+1)`.
    * so `delta >= c_*(1 - f(k)) + f(k+1)`.
 4. **Upper bound.** Combining with `c_* >= delta/(1+eps)` gives `f(k+1) <= delta f(k) + eps delta`.
    Iterating with `delta <= 1/2` gives `|f(k) - delta^k| <= 2 eps delta`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 8.3 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
