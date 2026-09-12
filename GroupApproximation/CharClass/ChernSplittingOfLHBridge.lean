@@ -30,6 +30,7 @@ namespace CharClass
 
 open CategoryTheory
 open GroupApproximation.STW59
+open GroupApproximation.CharClass.LH
 
 noncomputable section
 
