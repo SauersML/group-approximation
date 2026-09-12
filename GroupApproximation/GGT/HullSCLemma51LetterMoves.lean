@@ -35,11 +35,6 @@ variable {G : Type u} [Group G] {Lambda : Type w}
 def IsRelGeodesic (D : GGT.RelGenSet G Lambda) (u : List (GGT.RelLetter G Lambda)) : Prop :=
   u.length = wordNorm D.alphabet.carrier (GGT.RelLetter.listVal u)
 
-/-- A rotation of an admissible word is admissible. -/
-theorem isAdmissible_rotate {D : GGT.RelGenSet G Lambda} {u : List (GGT.RelLetter G Lambda)}
-    (hu : RelWord.IsAdmissible D u) (r : ℕ) : RelWord.IsAdmissible D (u.rotate r) :=
-  fun a ha => hu a (List.mem_rotate.mp ha)
-
 /-- **A subword of a geodesic word is geodesic.** -/
 theorem IsRelGeodesic.infix {D : GGT.RelGenSet G Lambda}
     {α s β : List (GGT.RelLetter G Lambda)} (hadm : RelWord.IsAdmissible D (α ++ s ++ β))
