@@ -204,9 +204,20 @@ consistent with `augmentation-blocks-unital-leavitt-family`.
   Use the averaging idempotent `(1 + g + g^2)/3` of the constant `C_3`: its natural
   representation has no nonzero fixed vector, so it evaluates to `0`, and the constant
   and scalar copies still commute and meet trivially.
-* Over `F_3` this trick is unavailable. A subgroup of `GL_2(F_3)` of order prime to 3
-  acting without nonzero fixed vectors is a 2-group whose involutions act fixed-point
-  freely, so it contains `-I`, and `-I = delta(-1)` lies in the scalar copy. The
-  ternary lanes use the central splitting at `-1` instead
+* Over `F_3` the level-one trick is unavailable. A subgroup of `GL_2(F_3)` of order
+  prime to 3 is a 2-group. If its order is at least 4 it contains `-I`: an element of
+  order 4 squares to `-I`, and two commuting non-scalar involutions `diag(1,-1)`,
+  `diag(-1,1)` multiply to `-I`. A single non-scalar involution has eigenvalue `1`, so it
+  has a nonzero fixed vector. And `-I = delta(-1)` lies in the scalar copy. The ternary
+  lanes also use the central splitting at `-1`
   (`ternary-leavitt-swap-problem-splits-at-central-involution`).
+* **Correction (2026-09-12): the transfer does hold over `F_3`, at level two.**
+  - Use `Theta_4 : M_4(R) -> R`, with scalar copy `sum_(|alpha| = 2) S[alpha] q T[alpha]`.
+  - Take a cyclic subgroup of order 5 in `GL_4(F_3)` acting irreducibly (5 is a primitive
+    prime divisor of `3^4 - 1`). It has no nonzero fixed vector, meets the scalars
+    `{I, -I}` only in `I`, and its averaging idempotent is killed by the natural
+    representation.
+  - The general criterion, for every finite field and every type `(1,d)`, is
+    `leavitt-invisible-half-universal-over-every-finite-field` (lane `gk-l2-invisible`).
+    The level-one sentence above limits only the level-one construction.
 * Nothing here decides (V*), (I*) or direct finiteness of `S`.
