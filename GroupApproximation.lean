@@ -4589,6 +4589,12 @@ import GroupApproximation.Dynamics.SurjunctivityTransfer
 import GroupApproximation.BowenChapman.ResiduallyFiniteSubstitution
 import GroupApproximation.Kazhdan.SemidirectProductKazhdan
 import GroupApproximation.BowenChapman.LaurentPair
+import GroupApproximation.Dynamics.CosetRegion
+import GroupApproximation.Dynamics.StratifiedPeeling
+import GroupApproximation.Dynamics.FinitarySite
+import GroupApproximation.Dynamics.FinitaryTransplant
+import GroupApproximation.Dynamics.FinitarySurjunctivity
+import GroupApproximation.Dynamics.WreathFinitarySite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
