@@ -57,3 +57,22 @@ fails the criterion under both orderings, so the remaining difficulty is
 exactly the offsets and own-block nonlinearity that survive in every ordering.
 The shear move itself cannot lower the factor bound to two, since a `1 + 2`
 split raises the potential. That concerns this move only.
+
+2026-09-12 (lane gk-logic, which absorbs gk-three-factor): two further results.
+
+- **Logical form.** For each fixed group, this claim is Gottschalk's assertion.
+  By `surjunctivity-is-axiomatized-by-rectangle-clauses` it says that every
+  strict rectangle clause holds. With a decider for the word problem, a
+  counterexample search is `Sigma^0_1`
+  (`surjunctivity-recognition-has-a-pi2-upper-bound`). By
+  `surjunctivity-recognition-dichotomy`, if the claim fails for some group, the
+  finite presentations of nonsurjunctive groups are not recursively enumerable.
+- **Corrected tails.** `surjectivity-reduces-to-offset-corrected-tails` peels a
+  row that is linear in its own block, with any offset, once the own-linear part
+  is invertible for every value of the later blocks. Surjectivity is then
+  equivalent to surjectivity of the corrected tail, the later rows evaluated where
+  the row vanishes. The recipient-affine form peels in one such step to a copy of
+  the original automaton. So a surviving offset in a uniformly invertible row is
+  not an obstruction by itself; the obstruction sits in the corrected tail.
+  Own-block nonlinearity and non-invertible own-linear parts are not reached by
+  this move.
