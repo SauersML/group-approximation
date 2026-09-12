@@ -129,3 +129,36 @@ least one edge.
   `complete-graph-clifford-cover-center-dies-in-finite-quotients`.
 
 So the separated finite-normal theorem reaches no finite-degree cover and not the complete-graph cover.
+
+*Proof of the first bullet.* A finite `G`-set through which `X = G/Gamma` factors is `G/L` with `L >= Gamma`
+the stabilizer of the image of `o`. Adjacency `{a Gamma, b Gamma}` depends only on `a^(-1) b`, and descends
+to `G/L` exactly when `D(S)` is `L`-bi-invariant. Fibres are independent exactly when `D(S)` misses `L`.
+
+## 2. Inseparable sites and infranormal subgroups
+
+**Lemma 2.1.** Sites in different `G`-orbits are separable. For `X = G/Gamma`, `K a Gamma = K b Gamma`
+exactly when `a^(-1) b in K Gamma`. So `a Gamma`, `b Gamma` are profinitely inseparable exactly when
+`a^(-1) b in Gammabar`.
+
+*Proof.* `K\X` maps onto the orbit set of `X`. For one orbit, `b Gamma in K a Gamma = a K Gamma`, since `K`
+is normal. QED
+
+**Lemma 2.2** (`infranormal-subgroups-have-normal-profinite-closure`). Let `Gamma <= G`, and suppose
+`P_Gamma = { t in G : t Gamma t^(-1) <= Gamma }` generates `G`. Then `K Gamma` is normal in `G` for every
+finite-index normal `K`, and `Gammabar` is normal.
+
+*Proof.* Let `t in P_Gamma` and `f : G -> G/K`. Then `f(t Gamma t^(-1)) <= f(Gamma)`. Both are finite and
+conjugate, so they have the same order and are equal. Hence `K t Gamma t^(-1) = K Gamma`, and since
+`t K t^(-1) = K`, `t (K Gamma) t^(-1) = K Gamma`. The normalizer of `K Gamma` is a subgroup containing
+`P_Gamma`, so it is `G`. An intersection of normal subgroups is normal. QED
+
+**Remark 2.3 (where the Kun--Thom phase sits).**
+- Under Lemma 2.2 the profinitely inseparable pairs of `G/Gamma` are the pairs inside one fibre of
+  `G/Gamma -> G/Gammabar`.
+- For `t in P_Gamma`, `t^(-1) Gamma t <= t^(-1) Gammabar t = Gammabar`. So the edge `{o, h o}` with
+  `h = t^(-1) gamma t` outside `Gamma`, which carries the marked word of `kun-thom-clifford-radical-phase`
+  and makes `E_S` nonsofic, joins two inseparable sites.
+- A non-normal infranormal `Gamma` is not profinitely closed, since `Gammabar` is normal.
+- **Theorem E pair.** `Gamma = EL_r(F_q[x_1..x_d])` lies in `N = EL_r(F_q[x_1^(+-1)..x_d^(+-1)])`, which is
+  normal in `G = N semidirect SL_d(Z)` with residually finite quotient `SL_d(Z)`. So `N` is closed and
+  `Gammabar <= N`, and `G/Gammabar` is infinite.
