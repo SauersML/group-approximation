@@ -114,3 +114,103 @@ with `lim_ω d_k > 0`. Then `σ` is trivial. The same holds for level-factoring 
   simple, hence not LEF.
 - **Characteristic three:** the kernel of `Φ` can be `<z>`, so both `G` and `PG` must be non-LEF.
 - **Sources:** nonsoficity of both is on main. For `PG`, finite presentation and simplicity also suffice.
+
+## 2. The twisted regular tower and single-letter partial conjugations
+
+**Theorem 2.1 (twisted regular tower).** Let `ε₋ = (1 − [z])/2`, a central idempotent of `F_3[L_j]`. Put
+`V_j = F_3[L_j] ε₋`, of dimension `n_j = |L_j|/2`. For `a ∈ L_j`, let `σ_j(a)` be left multiplication by
+`[a]` on `V_j`, and put `σ_j(a) = 1` for `a ∉ L_j`.
+- Then `σ_reg = lim_ω σ_j : L -> M^x` is an injective anti-central homomorphism.
+- For every finite subgroup `Γ ∋ z` of `L` and every `j` with `Γ ⊆ L_j`, `V_j` is a free
+  `F_3[Γ]ε₋`-module of rank `[L_j : Γ]`.
+
+*Proof.*
+- **Homomorphism.** For `a, b ∈ L_(j_0)`, `σ_j(a) σ_j(b) = σ_j(ab)` for every `j >= j_0`, because the level
+  embeddings are compatible.
+- **Anti-central.** `σ_j(z) = −1` on `V_j`.
+- **Freeness.** `F_3[L_j] = ⊕_(c ∈ Γ\L_j) F_3[Γ] c` as left `F_3[Γ]`-modules, and `ε₋` is central.
+- **Injectivity.**
+  - `σ(z) − 1 = −2` is invertible.
+  - If `a ∉ <z>`, put `Γ = <a, z>`. Since `[a]ε₋ != ε₋`, the operator `[a] − 1` has some rank `r >= 1` on
+    `F_3[Γ]ε₋`.
+  - Freeness then gives normalized rank `2r/|Γ|` at every stage `j`. QED
+
+**Remark 2.2.**
+- **Haar law.** `E ⊆ L`, and freeness over the finite tori is exactly the Haar law of
+  `anti-central-rank-models-see-haar-measure-on-signed-diagonal`. On every finite subgroup the statistics
+  are those of the twisted regular representation.
+- **Level-factoring.** `σ_reg` is level-factoring on `L`, with `τ_j` the inclusion and projective share
+  one. So by Theorem 1.4 it has no extension to `G` that is level-factoring on all of `G`.
+
+**Theorem 2.3 (single-letter partial conjugations).** For `g ∈ G` put `B_g = {a ∈ L : g a g^(−1) ∈ L}`
+and `φ_g(a) = g a g^(−1)`. There is `X_g ∈ M^x` with `X_g σ_reg(a) X_g^(−1) = σ_reg(φ_g(a))` for every
+`a ∈ B_g`.
+
+*Proof.*
+1. **The domain.** `B_g` is a subgroup of `L` containing `z`, and `φ_g : B_g -> L` is an injective
+   homomorphism fixing `z`.
+2. **A finite exhaustion.** Put `Γ_i = B_g ∩ L_i`. These are finite and increasing, with union `B_g`.
+   - Let `c(i)` be the least level containing `Γ_i ∪ φ_g(Γ_i)`.
+   - Put `i(j) = max{i <= j : c(i) <= j}`, or `0` if there is none. It is nondecreasing and tends to
+     infinity.
+3. **Exact intertwiners at each stage.** Let `i = i(j) >= 1`.
+   - `V_j` is a free `F_3[Γ_i]ε₋`-module of rank `[L_j : Γ_i]` through `σ_j`.
+   - It is also free of the same rank through `a -> σ_j(φ_g(a))`, since `φ_g(Γ_i) ⊆ L_j` has the same
+     order and contains `z`.
+   - Free modules of equal rank are isomorphic, so some `X_j ∈ GL(V_j)` has
+     `X_j σ_j(a) = σ_j(φ_g(a)) X_j` for all `a ∈ Γ_i`. Put `X_j = 1` when `i(j) = 0`.
+4. **The limit.** A fixed `a ∈ B_g` lies in `Γ_(i(j))` for `ω`-almost all `j`. So `X_g = [X_j]_ω` works,
+   with inverse `[X_j^(−1)]_ω`. QED
+
+**Corollary 2.4 (HNN extensions).** Let `I ⊆ G` be countable, and put
+`Ĝ_I = <L, t_g (g ∈ I) | t_g a t_g^(−1) = φ_g(a) for a ∈ B_g>`.
+- Then `σ_reg` extends to `Ĝ_I` by `t_g -> X_g`, with the `X_g` chosen independently.
+- The map `Ĝ_I -> G`, `t_g -> g`, is a homomorphism, and it is onto for `I = G`.
+
+**Remark 2.5 (torsion letters).** Suppose `g^n = 1` and `B_g` is the union of an increasing sequence of
+`g`-invariant finite subgroups `Γ_i`. Then the letter keeps its order.
+- **Size.** `n` divides `[L_j : Γ_i]` for large `j`, because the order of `GL_(2^j)(F_3)` eventually
+  contains every fixed prime power.
+- **Transport.** So `V_j` restricted to `Γ_i` is isomorphic to the restriction of a free
+  `F_3[Γ_i ⋊ <g>]ε₋`-module. Transporting the action of `g` gives `X_j` with `X_j^n = 1` that intertwines
+  `φ_g` on `Γ_i`.
+- **Example.** The Thompson three-cycle `[0] -> [10] -> [11] -> [0]`. Its domain is the block group of
+  the three cylinders, exhausted by the `g`-invariant block groups with equal suffix length in each block.
+
+**Consequence 2.6 (for the "no" direction).**
+- **What holds.** Every relation of `G` that follows from the relations of `L`, single-letter partial
+  conjugations, and orders of torsion letters as in Remark 2.5, holds in an anti-central model injective
+  on `L`.
+- **What a proof needs.** A proof that every characteristic-three rank model of `G` is trivial must use
+  a relation of `G` that fails in `Ĝ_G`. Such a relation involves two or more letters outside `L`, with
+  intermediate products outside `L`. Examples:
+  - the multiplication table of `V` on depth-changing elements, `t_g t_h = t_(gh)`;
+  - commutation of disjointly supported depth-changing elements of `V`;
+  - Steinberg commutators of two non-level root elements, such as `[x_12(t0), x_23(s0)] = x_13(1)` for
+    the compressor pair. Neither factor nor the product lies in `L`.
+- **Family R4.** The rank-four assembly uses relations of the third kind.
+
+## 3. Where the construction stops
+
+- **Outside the level image.** Depth-changing letters must be represented away from the level
+  representation (Theorem 1.4 with Remark 2.2).
+- **The coherence cocycle.**
+  - For `g, h ∈ G`, `c(g,h) = X_g X_h X_(gh)^(−1)` commutes with `σ_reg(B_(g,h))`, where
+    `B_(g,h) = B_h ∩ φ_h^(−1)(B_g)`.
+  - Each `X_g` is unique up to the commutant of `σ_reg(B_g)`.
+  - A model of `G` extending `σ_reg` is the same thing as a commutant correction of the intertwiners that
+    satisfies every relation of `G`. This records the shape of the remaining freedom. It is a
+    restatement, not a reduction.
+- **Locality via Fock space: an idea with a gap.**
+  - **The seed.** `Λ^odd(F_3^(2^j))` carries the exact Haar law on the depth-`j` torus at the minimal
+    dimension `2^(2^j − 1)`.
+  - **Locality.** `Λ(U ⊕ U') = Λ(U) ⊗ Λ(U')` turns clopen partitions into tensor factors. A letter
+    supported on a clopen `A` could then act on the `A`-factor. Disjointly supported letters would commute
+    automatically, as even operators on different factors.
+  - **The gap.** Intertwiners need the block restrictions `⊗_i Λ(U)^(⊗ m_i)` and `⊗_i Λ(U)^(⊗ m'_i)`, with
+    exponents that differ by depth, to be rank-close after conjugation.
+    - For elements of order prime to three the characters decay, so they are.
+    - For 3-subgroups this needs the non-projective part of `Λ(U)^(⊗m)` to have vanishing proportion. That
+      is not proved here.
+  - **Level images are excluded anyway.** A Fock extension whose letters lie in `Λ(GL)` would be
+    level-factoring with positive displacement, which Theorem 1.4 excludes.
