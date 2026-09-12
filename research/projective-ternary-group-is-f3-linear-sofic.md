@@ -59,7 +59,7 @@ idempotent refutes this claim (`non-linear-sofic-via-projective-ternary-swap-ful
   - formally polynomial strict pairs linearize to Kaplansky
     (`formal-polynomial-strict-pairs-need-unstable-linearization`, gk-free-neg);
   - pairs with `deg sigma . deg tau < 3` force a matrix Kaplansky pair
-    (`low-degree-strict-automata-force-matrix-kaplansky-failure`, gk-n-highalpha, pending
-    verification).
+    (`low-degree-strict-automata-force-matrix-kaplansky-failure`, gk-n-highalpha,
+    verified by gk-vf-nonlinear).
   Over `PG` the gate leaves only decoders whose degree product is at least three and which
   use `x^3 = x`.

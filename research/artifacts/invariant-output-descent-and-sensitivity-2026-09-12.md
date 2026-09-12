@@ -412,6 +412,12 @@ injective with right-`H`-invariant output.
   `x^q = x`, is bijective over any host with stably finite `M_n(F_q[G])`. A nonlinear
   design that escapes the rank gate must use the collapse `x^q = x` in its decoder
   identity.
-- **Alphabet-independent screens.** Descent through normalizing memory (Proposition 2),
-  the canonical table groups, the triangular filter and the nonsofic forward core all
-  hold over every finite alphabet.
+- **Alphabet-independent screens.** These hold over every finite alphabet:
+  - the core-free condition on the symmetry (the Section 2 correction);
+  - the canonical table groups, the triangular filter and the nonsofic forward core;
+  - the free-memory screen (`free-memory-injectivity-forces-universal-bijectivity`,
+    gk-n-twocycle): an encoder injective over the free group on its memory letters, or over
+    any surjunctive cover mapping onto the realization, is bijective over every compatible
+    image. So a strict encoder's injectivity must itself come from nonsofic relations.
+  - Low degree (`low-degree-strict-automata-force-matrix-kaplansky-failure`, verified): a
+    pair with `deg sigma . deg tau < q` has linear parts forming a matrix Kaplansky pair.
