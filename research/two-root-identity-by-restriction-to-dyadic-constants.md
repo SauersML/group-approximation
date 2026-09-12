@@ -7,6 +7,7 @@ target: rank-models-of-el3-satisfy-the-two-root-identities
 requires:
   - dyadic-constant-el3-rank-models-satisfy-two-root-identity
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-self-similarity-2026-09-12.md
 ---
 
@@ -17,3 +18,5 @@ The implication itself is valid. A rank model of `EL_3(L_(F_2)(1,2))` restricts 
 `EL_3(D)`, and `x_ab(1)` lies in `EL_3(D)`. So the identity over `D` would give the identity over
 the Leavitt algebra. But the identity over `D` is false, so the uniform self-similar tower cannot
 carry a proof.
+
+*`gk-vf-linear` (2026-09-12), Section 43 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: the implication is valid, and the invalidation is correct, because the dyadic constants have a unital rank model whose tensor-square model violates the identity.*

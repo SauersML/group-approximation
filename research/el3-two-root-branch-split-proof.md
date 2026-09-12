@@ -7,6 +7,7 @@ target: el3-two-root-violation-splits-over-leavitt-branches
 requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-self-similarity-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Artifact Sections 2–3.
   (the prerequisite).
 - **The bound.** `iota_0` is an injective endomorphism (`t_0 s_0 = 1`) with
   `iota_0(x_ab(1)) = x_ab(e_0)`, and rank is subadditive.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 43 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

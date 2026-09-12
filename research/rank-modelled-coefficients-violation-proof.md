@@ -6,6 +6,7 @@ title: Tensor-square the natural model through the rank model of the coefficient
 target: rank-modelled-coefficients-violate-two-root-identities
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-self-similarity-2026-09-12.md
 ---
 
@@ -18,3 +19,5 @@ Artifact Section 4, Theorem 3.
   `rk(A (x) A - A' (x) A') <= 2 rk(A - A')` after normalization, and it is multiplicative.
 - **The product.** Unitality puts `x_ab(1)` at `(1 + E_ab)^((x)2)`. Since `E_23 E_12 = 0`, the
   product `N_23 N_12` is `E_23 (x) E_12 + E_12 (x) E_23`, of normalized rank `2/9`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 43 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

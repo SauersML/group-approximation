@@ -1437,3 +1437,47 @@ their routes, and `el3-rank-model-toeplitz-assembly-2026-09-12.md` Sections 1 to
   - For other `(K, n)`, `EL_3(L)` need not be the unit group, since `M_3(L) ~= L` iff `(n - 1) | 2`, and no landed node
     records simplicity modulo centre.
   - The transfer is therefore established only for those recorded cases. Nothing else rests on it.
+
+## 43. Branch split, rank-modelled calibration, and the refuted dyadic shortcut (1ce1d7bd6a, lane gk-ri-selfsim): PASS
+
+Items checked:
+- `el3-two-root-violation-splits-over-leavitt-branches` and route `el3-two-root-branch-split-proof`;
+- `rank-modelled-coefficients-violate-two-root-identities` and route `rank-modelled-coefficients-violation-proof`;
+- the REFUTED `dyadic-constant-el3-rank-models-satisfy-two-root-identity`, the dead route
+  `two-root-identity-by-restriction-to-dyadic-constants`, and artifact Sections 2 to 5.
+
+- **Proposition 1.** `(1+X)(YX)(1+Y) = YX + XYX + YXY + XYXY`, so `n_ik(ab) - XY` is exactly the rest of the five-term
+  expansion. `1 + X` and `1 + Y` are units, so the defect has rank `rk(YX)`.
+  - *Invariance.* `diag(u, v, w)` sends `x_12(a)` to `x_12(u a v^-1)`, `x_23(b)` to `x_23(v b w^-1)`, and `x_13(ab)` to
+    `x_13(u ab w^-1)`. Permutation matrices relabel the triple.
+- **Proposition 2.**
+  - `[x_12(e_0), x_23(e_1)] = x_13(e_0 e_1) = 1` and symmetrically, so the branches commute.
+  - `1 + N_12 = (1 + a_0)(1 + a_1)`.
+  - I redid the nine products of `(b_0 + b_1 + b_0 b_1)(a_0 + a_1 + a_0 a_1)`:
+    `P_0, P_0 a_1, P_0 b_1, P_0 P_1, P_1, P_1 a_0, P_1 b_0, b_0 a_1, b_1 a_0`. For example
+    `b_1 a_0 a_1 = a_0 b_1 a_1 = P_1 a_0`, and `b_0 b_1 a_0 a_1 = b_0 a_0 b_1 a_1 = P_0 P_1`. The grouping checks.
+  - *Swap.* `w^2 = s_0 t_0 + s_1 t_1 = 1`, `w s_0 = s_1`, `t_0 w = t_1`, so `w e_0 w = e_1`. `W = diag(w,w,w) = W^-1` lies
+    in `GL_3(R) = EL_3(R)`.
+  - *Branch maps.* `iota_i(g) = s_i g t_i + (1 - e_i)` is multiplicative, because `t_i(1 - e_i) = 0 = (1 - e_i)s_i`, and
+    injective via `t_i iota_i(g) s_i = g`. It sends `x_ab(1)` to `x_ab(e_i)`, so `P_0` is the branch two-root product.
+    The bound is subadditivity of rank.
+- **Theorem 3.**
+  - `nu = GL_3(phi)` lands in the rank ultraproduct `M_3(M_omega)`.
+  - *Well defined.* `A (x) A - A' (x) A' = (A - A') (x) A + A' (x) (A - A')`, and
+    `rank(X (x) Y) <= rank X . 3n_i`, giving normalized rank at most `2 rk(A - A')`.
+  - *Multiplicative.* Exact multiplicativity of the tensor square plus well-definedness give multiplicativity modulo
+    rank-null sequences.
+  - *The product.* In `N_23 N_12` with `N_ab = E_ab (x) 1 + 1 (x) E_ab + E_ab (x) E_ab`, every term containing `E_23 E_12`
+    vanishes. What remains is `E_23 (x) E_12 + E_12 (x) E_23`, with images `e_2 (x) e_1` and `e_1 (x) e_2` from
+    `e_3 (x) e_2` and `e_2 (x) e_3`. That is rank 2 out of 9, normalized `2/9`.
+- **Corollary 4.**
+  - `D_k ~= M_(2^k)(F_2)` sits in `D_(k+1)` by `a -> a (x) I_2`, and `a -> (a (x) I_(2^(n-k)))_n` is a unital rank model
+    of `D`.
+  - `s_i s_u t_v t_i = s_(iu) t_(iv)`, so `iota_i(x_ab(d)) = x_ab(s_i d t_i)` lies in `EL_3(D)`.
+  - `W` lies in `GL_6(F_2) = EL_3(D_1)`.
+  - So the dyadic shortcut is false, and the dead route is correctly invalidated. Its implication is valid, but its
+    prerequisite is false.
+  - `D` together with `s_0, t_0` generates `R`, since `s_1 = w s_0` and `t_1 = t_0 w`. `R` has no rank model because
+    direct finiteness turns `s_0 t_0 + s_1 t_1 = 1` into `0 = 1` in characteristic two.
+- **Section 6 bound.** `rk(N_12 N_23 - n_12(t_i) n_23(s_i)) <= delta(1,1) + delta(t_i, s_i)` follows from Proposition 1,
+  because both products agree with `n_13(1)` up to their defects.
