@@ -535,7 +535,7 @@ fullness of the swap idempotent in `F_3[PG]`, is invisible to it. That fullness
 holds in the adjoint image algebra `R (x) R^op` with explicit witnesses, and
 witnesses in the span of `g (x) g^-1` are open
 (`projective-ternary-swap-idempotent-is-full`). The projective ternary group is
-its own counterexample root, `projective-ternary-leavitt-group-nonsurjunctive`.
+its own counterexample root, `projective-ternary-leavitt-group-nonsurjunctive`. `F_3`-linear soficity of the unit group, which linear soficity of `PG` implies, would kill both halves (gate `projective-ternary-group-is-f3-linear-sofic`).
 
 **F_2-linear-sofic gate for R^x (2026-09-12).** Both Kaplansky lifting problems
 sit behind `binary-leavitt-unit-group-is-f2-linear-sofic`, whose negative side is
@@ -548,7 +548,7 @@ normalization proof fails in the rank metric exactly at rounding into expanding
 pieces and at one-piece transport, where compressors can rotate multiplicity
 coordinates. Every rank model of `R^x` must have the nine-leaf Kazhdan subgroup
 fixing exactly what `R^x` fixes (`leavitt-rank-models-kazhdan-fixed-ideals-are-global`).
-Neither direction of the gate is decided.
+Property (T) supplies no rank-metric rounding: `EL_3(F_2[t])` has irreducible `F_2`-models with almost-invariant degree truncations in every dimension, expander decompositions of them leak linearly, and the rank ultraproduct has a diffuse relative commutant (`kazhdan-group-rank-models-admit-no-expander-decomposition`, `kazhdan-rank-ultraproducts-can-have-diffuse-commutants`). So the rounding step of the Hamming normalization proof has no rank form from (T), over any finite field. Neither direction of the gate is decided.
 
 **Entropy route, universal form (2026-09-12).** Since a strict automaton lowers
 amplified Bernoulli Rokhlin entropy, maximal Bernoulli Rokhlin entropy for every
@@ -564,7 +564,7 @@ injective automata (`every-injective-ca-preserves-uniform-bernoulli-measure`) is
 equivalent to the conjecture by two routes. The tree calibration
 (`end-fixing-tree-symmetries-carry-strict-automata`) shows that a proof must use
 that the index set is a group. No lower bound on Bernoulli Rokhlin entropy is
-known for any nonsofic group. The zero side over the Leavitt units is `leavitt-units-have-zero-rokhlin-entropy-supremum`, a measurable target weaker than a strict automaton. Artifact:
+known for any nonsofic group. The zero side over the Leavitt units is `leavitt-units-have-zero-rokhlin-entropy-supremum`, a measurable target weaker than a strict automaton. Median matching, the one mechanism that sees the nonsoficity of the Leavitt units, has no Bernoulli entropy analogue (`median-matching-has-no-bernoulli-entropy-analogue`); a deficit certificate over them is a square presentation with a code and a homomorphism injective on the points. Artifact:
 `research/artifacts/gottschalk-tree-calibration-and-bernoulli-preservation-2026-09-12.md`.
 
 **Ternary host settled as nonsofic (2026-09-12).** The corner homomorphism
