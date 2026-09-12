@@ -7,6 +7,7 @@ target: binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective
 requires: []
 artifacts:
   - research/artifacts/small-memory-balance-census-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 3 of the artifact.
@@ -16,3 +17,7 @@ Section 3 of the artifact.
   distinct from each other and from `h`.
 - **The flip is invisible.** Every site that reads `x(h)` is some `h m^-1`, and it sees `r_m` on
   its other coordinates. So flipping `x(h)` changes no output.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently. The content equals Lemma 6
+of `research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md`
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 9.1).

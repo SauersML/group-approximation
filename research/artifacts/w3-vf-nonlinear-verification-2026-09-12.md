@@ -429,3 +429,284 @@ Artifact: `research/artifacts/clifford-cover-orbital-localization-2026-09-12.md`
     and `G/Gammabar` is infinite. Correct.
 
 **Decision status.** Nothing decision-level. `kun-thom-clifford-cover-nonsurjunctive` stays OPEN.
+
+## 8. Screens a biased binary rule must pass (w3-bal-design, 5a73418397)
+
+Artifact Section 2. Claims `monotone-binary-injective-rules-are-copies` and
+`three-address-binary-injective-rules-are-balanced`. Verdict: PASS on both.
+
+- **Lemma 4.** Perturb the constant `c` at site `1`. The output at `h` reads site `1` only when `h = m^-1`,
+  at the single address `m`, with `c` everywhere else. So if every such output is unchanged, `tau` collides.
+- **Lemma 5.**
+  - Background `0` gives `mu(0) = 0` and `mu(e_t) = 1`, so `mu >= x_t` by monotonicity. Background `1`
+    gives `mu <= x_t'`.
+  - Evaluating at `e_t` gives `t' = t`. Nonincreasing rules are the complement.
+- **Lemma 6.** A never-blind coordinate makes `mu = x_m + g(rest)`, which is balanced. If the sets `D_m` are
+  pairwise disjoint, the contexts `r_m` sit on distinct sites other than `1`, and the flip at `1` is
+  invisible. This is the same statement as w4-bal-census's Sidon theorem (Section 9.1).
+- **Corollary 7.**
+  - The cross-coincidences among `D_1 = {a,b}`, `D_a = {a^-1, a^-1 b}`, `D_b = {b^-1, b^-1 a}` are exactly
+    `a^2 = 1`, `b^2 = 1`, `(a^-1 b)^2 = 1`, `ab = 1`, `b = a^2` and `a = b^2`. I checked all twelve pairs.
+  - The last three make `<a,b>` cyclic, and two of the first three make it dihedral. So exactly one
+    involution relation holds.
+  - With `a^2 = 1` the only shared variable is the site `a`, read as address `a` by block `1` and as
+    address `1` by block `a`. So satisfiability means the projections meet, and injectivity forces
+    complementary singletons.
+- **Theorem 8.**
+  - Re-rooting and relabelling reduce to `a^2 = 1`, and input complementation normalizes the projections.
+    The normal form `mu(x_1,0,x_b) = x_1 + f(x_b)` and `mu(1,1,x_b) = f(x_b)` follows.
+  - I rechecked all 28 coincidences among `1, a, b, ab, b^-1, b^-1 a, ab^-1, ab^-1 a`. Each gives `a = 1`,
+    `b = 1`, `a = b`, a cyclic relation, `b^2 = 1`, `(ba)^2 = 1` or `ab = ba`, and each makes `<a,b>` amenable.
+  - **Double flip.** Blocks `1` and `a` both see `(0,0) -> (1,1)` in their first two coordinates, so both
+    output `f`. Blocks `b^-1` and `a b^-1` read a flipped site only at address `b`, with private contexts
+    chosen in `Ins_b`.
+- **Example.** `mu = x_1 + x_1 x_a x_b` has `Ins_1 = {(1,1)}`, while `pi_(x_1)(Ins_a) = {0,1}`. So the first
+  row already fails. Correct.
+
+## 9. Small-memory balance census (w4-bal-census)
+
+Artifact: `research/artifacts/small-memory-balance-census-2026-09-12.md`.
+
+### 9.1 `binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`. Verdict: PASS.
+
+- Lemma 3.1 is as in Section 8.
+- **Sidon condition.** Sidon means the sets `{m^-1 m'}` are pairwise disjoint and have distinct elements,
+  so the sites `h m^-1 m'` are distinct and not `h`. The flipped site is read only by the sites `h m^-1`,
+  each at one coordinate in context `r_m`.
+- **Duplicate content.** This is w3-bal-design's Lemma 6 under another name. The authors should link the two
+  with `distinct_from` or cite one from the other.
+- **Remark 3.4, corrected example.** `R = x - y + z` over `F_3`, patched at `(0,2,2)` from `0` to `1`.
+  - Constants map to themselves.
+  - The blind pairs are `{0,1}` for `x` at `(2,2)`, `{1,2}` for `y` at `(0,2)`, and `{0,2}` for `z` at `(0,2)`.
+  - The symbols have 8, 10 and 9 preimages. Correct.
+
+### 9.2 `binary-three-address-injective-automata-have-balanced-rules` (Theorem 4.1). Verdict: PASS. It duplicates a claim.
+
+- **Step 1.**
+  - Constants force `mu(000) != mu(111)`.
+  - Flipping the constant `1` is invisible unless `T` contains a weight-two vector. Flipping `0` is
+    visible for `w <= 3`.
+  - Up to address permutation, which is (R2) followed by relabelling, the survivors are `{000,110}`,
+    `{000,100,110}`, `{000,110,001}` and `{000,110,101}`.
+- **Blind sets.** I recomputed all four tables.
+- **Case (2).** The only conflict is `hb^-1`, `hb^-1 a` both in `{hb, h a^-1 b}`, which means `a = b^2`, or
+  `b^2 = 1` together with `(b^-1 a)^2 = 1`.
+- **Case (3a).** Choice A conflicts only if `a^2 = 1`, and choice B only if `b^2 = 1`.
+- **Case (3b).** Both context sites are forced to `1` only under `ab = 1`, `a = b^2`, `b = a^2`, or `b^2 = 1`
+  with `(b^-1 a)^2 = 1`.
+- **Case (3c), the pressure point.**
+  - The single flip conflicts iff `a^2 = 1`, `b^2 = 1`, `ab = 1`, `b = a^2` or `a = b^2`.
+  - For the double flip of `h, ha` with `a^2 = 1`, the reading sites are `h, ha, hb^-1, h a b^-1`.
+    `mu(u,v,0) = [u = v]`.
+  - The 0-sites are `hb, hab, hb^-1, h a b^-1` and the 1-sites are `h b^-1 a, h a b^-1 a`. Every
+    coincidence gives `b^2 = a`, `aba = b^-1` or `ab = ba`. With `a^2 = 1`, `aba = b^-1` gives `(ab)^2 = 1`,
+    which is dihedral.
+  - None of the sites is `h` or `ha`. Correct.
+- **Duplicate, now resolved.** The statement equals `three-address-binary-injective-rules-are-balanced`
+  (w3-bal-design). The census lane deleted its own claim at 1346a8425d. Its route
+  `binary-three-address-balance-census-proof` now targets w3-bal-design's claim, as a second, independent
+  proof.
+
+### 9.3 `avoidable-patches-of-affine-rules-inherit-linear-injectivity` (Proposition 5.2). Verdict: PASS.
+
+- Take `d != 0` in the kernel of `tau_(lambda_0)`. For `q >= 3` choose `x(g)` outside `{s, s - d(g)}`. Then
+  `x` and `x + d` avoid `s`, so `tau_mu = tau_lambda` on both, and `tau_lambda(x + d) = tau_lambda(x)`.
+- A bijective linear automaton has a linear automaton inverse, and `tau_C tau_A = tau_(CA)` gives the unit
+  dichotomy.
+- **Unit example.** Over `Z x Z/3`, `(a(1 - c))^3 = a^3 (1 - c^3) = 0` in characteristic 3. Correct.
+- Proposition 5.1 (common blind pair, `q >= 3`, Sidon) is Theorem 3.2 with `c -> d`. Correct.
+
+## 10. Equal-alphabet sofic codes and non-enlarging cascades (w4-measurable-2, ee172a42df, 6cbc61470f)
+
+Artifact: `research/artifacts/non-expanding-sofic-cascades-2026-09-12.md`.
+
+### 10.1 `injective-same-alphabet-sofic-codes-preserve-uniform-measure` (Lemma 1). Verdict: PASS on all pressure points.
+
+- **Step 1.** Lusin–Souslin gives a Borel decoder. Cylinder density applies for the pushforward measure.
+  The union bound gives `< eps + |D| eps/(|D|+1) < 2 eps`, and invariance gives (1.2).
+- **Step 2.** The uniform law is the unique entropy maximizer, and adding `1` to `F` does not decrease `c`.
+  (2.1) is subadditivity of conditional entropy plus Fano, with `h_2` increasing on `[0, 1/2]`.
+- **Laws at good points, (3.1) and (3.2).**
+  - `y(v.d) = s_eps((x(v.(dw)))_w)` needs `d, w, dw` in `Q`.
+  - The chart `q -> v.q` is a function on `Q` that is injective, so coincidences among `{1} ∪ DW`, and among
+    `FW`, match those in `K`. With iid uniform `x` the joint laws agree.
+- **Lower bound.** `H(x) <= H(y) + sum_v H(x(v) | y)`, with Fano at good points.
+- **Shearer.**
+  - `v -> v.f` is a permutation, so a bad point spoils at most `|F|` points, and `|V minus V'| <= |F| eta |V|`.
+  - For `u` in `V'` the preimages `v_f` are distinct, because a good chart is injective on `F`. So the
+    multiplicity is `|F|`.
+  - The bookkeeping `sum over v of H(y|S_v) <= |V||F| log q - (1 - eta)|V| c + |V||F| delta'` is correct.
+- **Final inequality.** `(1 - eta) c/|F| <= delta + delta' + (|F| + 1) eta log q`. `Q` is fixed for each
+  `eps`, so `eta -> 0` first and then `eps -> 0` is legitimate.
+- **Coset lifting.** `S(y)(gk) = S_K(z_g)(k)` with `z_g(k) = y(gk)`. Inputs on distinct cosets are
+  independent. Correct.
+
+### 10.2 `non-enlarging-sofic-window-cascades-cannot-compress` (Theorem G, Proposition H). Verdict: PASS.
+
+- Step 0 is as in Theorem C (Section 2.1).
+- **Step 1.** (R) uses Theorem A, and (P) holds by definition. (W) descends, then Part 1 applies, and at equal
+  alphabets Part 2 plus coset lifting applies. Induction gives items 1–3.
+- **Item 4.**
+  - Intersect translates to make the injectivity set invariant.
+  - A uniform output would make the Borel inverse on the image an a.e.-injective equivariant code into a
+    smaller alphabet over the sofic window. Extend it equivariantly off the image, for example by a constant.
+  - That contradicts Part 1.
+- **Item 5** is as in Theorem C.
+- **Proposition H.** `T_i(x)(g) = (x(g u_i ... u_1))` with `u_l` in `{1, w_l}`, and each `w_l` occurs. The last
+  stage combines the square with `f`, so `m - 1` stages enlarge. Cyclic windows are sofic.
+- **Continuous-decoder remark.** Full support plus continuity turns `sigma tau = id` a.e. into an identity
+  everywhere. Composing with `B -> A` gives a strict automaton, by Curtis–Hedlund–Lyndon. Correct.
+
+## 11. Invisible adjacency and saturated covers (w4-clifford-nonlinear, e4a8abdf92, 0ccfbb0f1e, 69189171a9, a7e5d049ae)
+
+Artifact Sections 3–4. Transfer input: `strict-pairs-transfer-to-table-realizations`. It needs
+`phi(sm) = phi(s) phi(m)`, `phi(wm) = phi(w) phi(m)`, and `phi(w) != phi(w')` whenever `p(w) != p(w')`, and
+nothing more.
+
+### 11.1 Coordinates
+
+- **Group law.** Merging normal words gives `beta(u, gv)`, which counts cross pairs and `q` on overlaps.
+  Reordering `c_(g y_1) ... c_(g y_l)` costs `gamma(v, g)`. So products read `b_S` only on `R(a,m)`.
+- **Consequence 0.1.** Consequence 0.1 is correct. Including pairs inside `supp u_a` in `R` is harmless.
+
+### 11.2 `clifford-cover-strict-pairs-read-invisible-adjacency` (Theorems B, B', B''). Verdict: PASS.
+
+- **Cleanliness passes to smaller `K`.**
+  - `K x != K y` implies `K' x != K' y`.
+  - An orbit coincidence at `K'` maps to one at `K`, and the image pair stays proper because `g` permutes
+    `K\X`.
+- **Theorem B.**
+  - `K` is the intersection of the `K_E`, and every read edge is `K`-clean.
+  - `Sbar` is `G`-invariant, and its pullback `S'` is a finite pullback.
+  - Read edges lie in `S'`, and a read non-edge is either inside a fibre or excluded by cleanliness. So
+    `b_(S') = b_S` on `R`.
+  - Corollary A.1 and Consequence 0.1 then let the transfer produce a strict pair on a surjunctive group.
+- **Coset form.** `K Gamma g K Gamma = K Gamma g Gamma` for normal `K`. Each failing condition is downward
+  closed in `K`, and there are finitely many, so one holds for all `K`.
+- **Theorem B'.**
+  - Two paths to one site differ by `Hol_i`, so the map is well defined.
+  - Injectivity is the negated conclusion. Moves are equivariant, and the finite order extends.
+  - In the complete graph `beta` and `gamma` see only order and equality.
+  - `X'` has finitely many orbits and closed point stabilizers, so Theorem C applies, with `G` surjunctive.
+- **Theorem B'', the pressure point.**
+  - `lambda(w x_0) = psi(w) psi(Hol_i^U)` is well defined, since closed paths lie in `Hol_i^U`. It is injective
+    because `w^-1 w'` lies outside `K_U Hol_i^U`, by the failure of (2) at finitely many pairs.
+  - `phi(u, s, g_a) = (lambda u, s, psi[g_a])` is exact on the needed products, since the `U`-relators hold
+    and the signs are order data.
+  - Transfer only needs Omega pairs with different pattern values kept apart. Different lamp or sign
+    coordinates stay apart through `lambda`. Equal ones stay apart through the failure of (1).
+  - The target `Vtilde(X'') semidirect U/K_U` is finite, so no surjunctivity of `G` is used.
+  - For residually finite `G`, (1) cannot hold, since `U -> G` separates. Correct.
+
+### 11.3 `profinitely-saturated-clifford-covers-are-surjunctive` (Theorem C) and Remark 4.1. Verdict: PASS.
+
+- **One `K`.** Saturation conditions 1 and 2 give, for each edge of `R_F`, a `K` separating its endpoints
+  and splitting its orbit from each non-edge. Both properties pass to smaller `K`, so one `K` serves all of
+  them.
+- **Conclusion.** `S'` agrees with `S` on `R_F`, and Consequence 0.1 embeds the table of `F`. Corollary 1 of
+  the transfer theorem (local embeddings) finishes.
+- **Instance 3, `S_cross`.**
+  - `D = G minus Gammabar` is `Gamma`-bi-invariant and symmetric, with no loops.
+  - Condition 1 is Lemma 2.1. Condition 2 holds because a non-edge `g'` in `Gammabar` collapses to one point
+    in every `K\X`.
+  - Finite pullback iff `[G : Gammabar]` is finite. Finitely many subgroups lie above a finite-index `Gammabar`,
+    so the directed family `K Gamma` attains `Gammabar`.
+- **Instance 4.** `G/Gammabar` is infinite, and `G` is residually finite, hence surjunctive. Correct.
+- **Remark 4.1.**
+  - Some `t` in `P_Gamma` has `t Gamma t^-1 != Gamma`, so the chain `Gamma < t^-1 Gamma t < ...` is strictly
+    increasing inside the normal `Gammabar`, and the index is infinite.
+  - If `g` is not in `Gammabar`, `cl(Gamma g Gamma) ⊇ Gammabar g Gammabar = g Gammabar`, by continuity of
+    multiplication and normality.
+  - A non-edge in that closure lies in `K Gamma g Gamma` for every `K`, so its orbit is never split and
+    saturation fails. Saturation would therefore force the infinitely many sites `g gammabar o` to be
+    neighbours of `o`.
+
+**Decision status.** Nothing decision-level. The Clifford root and `finite-normal-subgroups-do-not-affect-surjunctivity`
+stay OPEN. Theorem C settles one instance of the latter's residue in the predicted direction.
+
+## 12. Stable realization of Z_3-equivariant permutations (w4-z3-rotation, 14718661ef)
+
+Claim `z3-equivariant-permutations-are-stably-realizable`. Artifact:
+`research/artifacts/z3-rotation-stable-realization-2026-09-12.md`. Verdict: PASS.
+
+- **Coordinates.**
+  - `v = x + s(1,1,1)` has coordinate sum `4s = 0`, and 3 is odd, so `(s_1, v_1, s_2, v_2)` are linear coordinates.
+  - `1 + R + R^2` kills `V`, so `F_2[R]` acts on `V` as `F_4`.
+  - Boolean points number 64: four fixed, and 20 free orbits indexed by `F_2^2 x P^1(F_4)`.
+- **(M1).** `e_12(s_1 c)` is triangular, because `s_1` is untouched, and it is its own inverse and equivariant.
+  `SL_2(F_4) = E_2(F_4)`, so `Y_A` realizes `A` at level 1 only.
+- **(M2), the pressure point.** On Boolean points, `p + p o R + p o R^2` restricts to `f + f o R + f o R^2 = 3f = f`
+  for invariant `f`, and the averaged polynomial is invariant. `X_f` is an equivariant involution.
+- **Lemma 1, the pressure point.** `A` preserves `l minus 0` and its complement, so `f_l(A^(±1) u) = f_l(u)`.
+  - For `u` not on `l`, `Y_A Y_A^-1 = id` at a fixed level.
+  - At level 1, `u -> omega^-1 u = omega^2 u`, then `X`, nothing, `X`.
+  - At level 0, `X`, then `Y_A` gives `omega u`, then `X`.
+  - `diag(omega, omega^2)` has determinant 1 and fixes `[1:0]` with eigenvalue `omega`, and transitivity
+    gives every `l`.
+- **Theorem 2, the pressure point.**
+  - The `C_l` act on disjoint sets and commute. `Q = R o (prod C_l)^-1` acts by `omega · omega = omega^2`
+    at level 1 and `omega · omega^2 = 1` at level 0.
+  - `B = diag(omega^2, omega)` has determinant 1, and `B omega^2 = diag(omega, 1)`.
+  - `u(Rx) = omega u(x)`. The weight-one orbit is `s_1 = 1, u_1 != 0`, and `111` has `u = 0`. So the shadow
+    is `rho x id`.
+- **Corollary 3.** `G_tri x id` realizes `K x id`. `[E : K] = 3`, and 24 does not divide 36, so
+  `<K, rho> = E`.
+- **Stable formalizability.** It follows from the verified stable form of
+  `finite-group-formalizability-equals-equivariant-automorphism`.
+- **Scope.** The `delta(T)` remark is correct, since `delta deltabar = 1` in `F_4[s]` forces a constant. It is
+  not load-bearing. `z3-weight-one-rotation-is-not-an-automorphism-shadow` stays OPEN.
+
+## 13. Ornstein–Weiss decoders have no measurable sections (w4-measurable-2, 2734d41a42)
+
+Claim `ornstein-weiss-type-decoders-admit-no-measurable-section`. Artifact:
+`research/artifacts/ornstein-weiss-decoder-sections-2026-09-12.md`. Verdict: PASS.
+
+- **Lemma K0, finite order.** `(S^k x)(h) = x(a^k h)`. Every `S^k` preserves `mu_A`, so the identity holds at
+  all `S^k x` at once. Telescoping gives `sum_(k<N) lambda(x(a^k)) = 0` a.e., but that sum is uniform on `Z/n`.
+- **Lemma K0, infinite order.**
+  - `p(Sx) = p(x) - f(x)` makes `F = omega^(eps + p)` invariant under `S_f`, and `F(x, eps+1) = omega F`.
+  - The right cosets `<a>h` are `S`-invariant. `f` reads only coordinate `1`, so `S_f = (S_1)_f x S_rest`.
+  - **Partial sums.** Equal fibres of `lambda` give `w_k <-> (lambda(w_k), r_k)`. `(w, eps) -> (s, r)` is a
+    bijection carrying the measure to uniform, because `s_0` and the iid increments form a linear bijective
+    image of a uniform product. It conjugates to the shift, since `s'_k = s_(k+1)`.
+  - A product of mixing systems is mixing, so `S_f` is ergodic, a contradiction.
+- **Theorem K.** `tau(x)(a) = tau(a^-1.x)(1)` gives `p(x) - p(a^-1.x) = lambda(x(1))`.
+- **Corollary.** Ornstein–Weiss is the case `A = (Z/2)^2`, `B = Z/2`, `lambda` the first coordinate, `beta = id`.
+  Only the row along `a` is used, so any second element may be used in place of `b`.
+- **Kernel stages (Section 3).** If `L(y + m) = L(y)` and translation by `m` preserves `mu`, then
+  `X_0 ∩ (X_0 - m)` is conull. So `L` is not a.e.-injective. The indicator of a left coset of `F_2` lies in
+  the kernel of the ascended `phi`. Correct.
+
+## 14. Formalizability on finitely generated simple hosts (w3-stable-simple, Sections 3–5)
+
+w3-vf-positive passed this region (its artifact, Sections 13–13.5). This independent pass agrees on
+everything except one route.
+
+- **Theorem 5.**
+  - `L_u L_v = L_(uv)` holds as polynomial substitutions, and `L_B(x ± L_A w) = L_B x` holds formally when
+    `BA = 0`.
+  - Odd characteristic: `(1 - s)^p = 1 - s^p = 0`.
+- **Corollary 6.**
+  - `S(hs) = S(h)`, so `L_N(Gamma(S))(h) = S(h)(S(hm) + S(hsm))`.
+  - The six cells `h, hs, hm, hms, hsm, hsms` are pairwise distinct iff `sm != ms`, and I checked all 15 pairs.
+  - A multilinear quadratic in distinct variables is not affine.
+  - D-infinity case: `S(g^k s g) = S(k-1)`, giving `c(k) = S(k)(S(k-1) + S(k+1))` on both tracks.
+- **Dihedral pair in `V`.** `sgs(0w) = 0 a^-1(w) = g^-1(0w)`, symmetrically on `1w`, and `s` is not in `<g>`.
+- **Routes.**
+  - `simple-host-formalization-reduces-surjunctivity-to-kaplansky` is valid and cannot fire.
+  - `dihedral-marker-formalization-induces-to-thompson-v` is valid: a single representative over `D` is a
+    single representative over `V`.
+- **Finding, route invalid as stated:** `simple-host-formalizability-specializes-to-the-v-marker`.
+  - The prerequisite `binary-left-inverse-pairs-over-fg-simple-groups-are-formalizable` gives representatives
+    `tau~` and `sigma~` of the pair `(tau_g, tau_g)`, which may be different polynomials, with
+    `sigma~ o tau~ = id`.
+  - The target `thompson-v-marker-involution-is-formalizable` asks for one representative with
+    `tau~ o tau~ = id`.
+  - Nothing converts one into the other without direct finiteness of `F_2[V]`, which is open.
+  - So the route, and the sentence "a refutation of the V object refutes the target", overreach.
+  - **Fix.** State the V-marker target, and if wanted the dihedral one, in pair form: some representatives
+    `tau~`, `sigma~` of `tau_g` satisfy `sigma~ o tau~ = id` formally. The dihedral route stays valid, since
+    single representatives give a pair.
+  - Sent to w3-stable-simple and w3-vf-positive.
+
+**Decision status.** Nothing decision-level.

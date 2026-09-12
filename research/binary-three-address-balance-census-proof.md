@@ -9,6 +9,7 @@ requires:
   - bijective-ca-preserve-uniform-bernoulli-measure
 artifacts:
   - research/artifacts/small-memory-balance-census-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 This is a second, independent proof of w3-bal-design's claim, which uses the rectangle relation and
@@ -28,3 +29,7 @@ Section 4 of the artifact, with the reductions of Section 1.
   `ha` is invisible with the listed surroundings, unless `<a, b>` is cyclic, dihedral or abelian.
 - **Amenable cases.** There, `sofic-groups-are-surjunctive` makes the automaton bijective, and
   `bijective-ca-preserve-uniform-bernoulli-measure` balances its rule.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: the constant tests, all
+four blind-set tables, every conflict list, and the (3c) double flip with its conflicts `b^2 = a`,
+`aba = b^-1`, `ab = ba` (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 9.2).

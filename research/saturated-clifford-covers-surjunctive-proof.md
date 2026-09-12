@@ -11,6 +11,7 @@ requires:
   - strict-pairs-transfer-to-table-realizations
 artifacts:
   - research/artifacts/clifford-cover-orbital-localization-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 4, Theorem C.
@@ -22,3 +23,7 @@ Artifact Section 4, Theorem C.
   Theorem A, the separated finite-normal theorem, and the lamp-wreath theorem.
 - **Embedding and transfer.** The identity on coordinates embeds the multiplication table of `F` into
   `E_(S')`. Corollary 1 of the table-realization theorem then makes `E_S` surjunctive.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently, including the cross graph
+(finite pullback iff `[G : Gammabar]` is finite), the Kun–Thom instance, and Remark 4.1
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 11.3).

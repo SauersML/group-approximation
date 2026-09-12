@@ -12,6 +12,7 @@ requires:
   - profinitely-saturated-clifford-covers-are-surjunctive
 artifacts:
   - research/artifacts/clifford-cover-orbital-localization-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 3.
@@ -27,3 +28,11 @@ Artifact Section 3.
   `w Hol_i-bar` in the `i`-th orbit of `X' = disjoint union of G/Hol_i-bar`. This map is well defined,
   injective, equivariant for the read moves, and order-embeddable. The complete graph on `X'` has closed
   stabilizers, so it is saturated and `E(X')` is surjunctive. Transfer as before.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS**, including Theorem B'' (artifact Section 3). Re-derived
+independently:
+- cleanliness passes to smaller `K`, and `K Gamma g K Gamma = K Gamma g Gamma`;
+- the holonomy map is well defined and order-embeddable;
+- in B'', `lambda` is well defined, and `phi` is exact on the needed products;
+- the transfer only needs distinguished Omega pairs kept apart, which the failure of (1) supplies.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Sections 11.1–11.2.)

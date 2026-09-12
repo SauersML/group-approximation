@@ -7,6 +7,7 @@ target: monotone-binary-injective-rules-are-copies
 requires: []
 artifacts:
   - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact, Section 2, Lemmas 4 and 5.
@@ -20,3 +21,6 @@ Artifact, Section 2, Lemmas 4 and 5.
   `mu <= x_t'`.
 - **Conclusion.** Evaluating at `e_t` gives `t = t'`, so `mu = x_t`.
 - **Nonincreasing rules.** These are the same argument with the output complemented.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 8).

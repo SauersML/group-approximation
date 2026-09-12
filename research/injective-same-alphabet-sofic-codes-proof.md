@@ -7,6 +7,7 @@ target: injective-same-alphabet-sofic-codes-preserve-uniform-measure
 requires: []
 artifacts:
   - research/artifacts/non-expanding-sofic-cascades-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Direct proof, Section 2 of `research/artifacts/non-expanding-sofic-cascades-2026-09-12.md`.
@@ -22,3 +23,7 @@ Direct proof, Section 2 of `research/artifacts/non-expanding-sofic-cascades-2026
    - Letting `eta -> 0` and then `eps -> 0` forces `c <= 0`.
 
 Part 1 (`|B| >= |A|`) comes out of the same lower bound.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: the approximation order,
+the good-chart laws, the Shearer cover with multiplicity `|F|` off `|F| eta |V|` points, and the order of
+limits (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 10.1).

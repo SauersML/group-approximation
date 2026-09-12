@@ -9,6 +9,7 @@ requires:
   - bijective-ca-preserve-uniform-bernoulli-measure
 artifacts:
   - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact, Section 2: Lemma 6, Corollary 7 and Theorem 8.
@@ -21,3 +22,7 @@ Artifact, Section 2: Lemma 6, Corollary 7 and Theorem 8.
 - **The rest.** Everything else is a finite check on the eight sites
   `1, a, b, ab, b^-1, b^-1 a, a b^-1, a b^-1 a`. Every coincidence among them makes `<a, b>` cyclic,
   dihedral or abelian.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: the twelve
+cross-coincidences of Corollary 7, the 28 site coincidences of Theorem 8, and the double flip
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 8).

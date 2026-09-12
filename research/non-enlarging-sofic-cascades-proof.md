@@ -11,6 +11,7 @@ requires:
   - single-maximal-stage-routed-codes-cannot-compress
 artifacts:
   - research/artifacts/non-expanding-sofic-cascades-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 3 of `research/artifacts/non-expanding-sofic-cascades-2026-09-12.md`.
@@ -27,3 +28,7 @@ Section 3 of `research/artifacts/non-expanding-sofic-cascades-2026-09-12.md`.
 5. **Item 5** is steps 3–4 of the single-stage theorem.
 
 Proposition H in Section 4 is an explicit cascade and needs no inputs.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently, including the equivariant
+extension of the inverse in item 4, Proposition H and the continuous-decoder remark
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 10.2).
