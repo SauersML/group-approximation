@@ -61,7 +61,7 @@ Bowen, *A measure-conjugacy invariant for free group actions*, Ann. of Math. (2)
 The lower bound `f <= H(P)` for every finite generating `P` needs one more input from Bowen's proof: `F` does not increase under the splittings that pass from `P^n` to `P^(n+1)`. Given that, `f <= F(P) <= H(P)`, so `h^Rok(X) >= f(X)` for free-group actions with a finite generating partition.
 
 - **Bernoulli shifts.** With `f = log|A|`, the Bernoulli shift over `F_r` has Rokhlin entropy `log|A|`, proved along a tree with no finite models.
-- **Trust surface.** The monotonicity step is quoted from memory of Bowen's argument, and the lemma number is not recorded. No established node depends on it, so it enters this artifact only as a mechanism model.
+- **Trust surface.** The invariance theorem is imported in the graph as `bowen-f-invariant-is-a-measure-conjugacy-invariant`, landed by `gk-p-bernoulli-mass`. The splitting monotonicity used for the one-sided bound is quoted from memory of Bowen's argument, and its lemma number is not recorded. No node of this lane depends on it, so it enters this artifact only as a mechanism model.
 
 ### 2.3 Where it stops
 
@@ -85,7 +85,7 @@ A nonamenable `G` carries factor-of-iid percolations whose clusters contain tree
 
 Combining this artifact with the landed Attempts and the sibling lanes' obstructions, a lower bound for Bernoulli Rokhlin entropy on a simple Kazhdan host must:
 1. use no finite models, since the host is nonsofic;
-2. be an isomorphism invariant of the `G`-action that is not factor-monotone and not weak-containment-monotone, because nontrivial Bernoulli shifts over the host factor onto each other and are weakly equivalent (`gk-p-inf-wild`, `gk-p-inf-cost`);
+2. be an isomorphism invariant of the `G`-action that is not factor-monotone and not weak-containment-monotone, because nontrivial Bernoulli shifts over the host factor onto each other and are weakly equivalent (`nontrivial-bernoulli-shifts-are-weakly-equivalent`; `gk-p-inf-wild`, `gk-p-inf-cost`);
 3. not see only the Koopman representation, which is base-blind (Attempts of `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups`);
 4. not be induced from a proper subgroup or a proper treed subrelation, because co-amenability collapses (Proposition 1.1, Sections 2.3 and 3);
 5. not decompose along trees or cube complexes, because of FA and FW.
