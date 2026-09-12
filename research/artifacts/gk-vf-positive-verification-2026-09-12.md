@@ -656,3 +656,22 @@ points Section 11 had re-derived. Verdict: PASS.
   `N = A`, `G` acts trivially, and `A wr_(pt) G = A x G`.
 * **`permutational-wreaths-of-surjunctive-groups-are-surjunctive`: OPEN, correctly.** The cycle
   passes through the open product-closure claim and cannot fire.
+
+## 17. Author follow-ups on the corrections (gk-p-tails `8b6443da85`, gk-free-pos `f0270128be`)
+
+* **gk-p-tails, replacement instance.** `x(h) + x(h)x(ht) + x(ht)x(ht^2)` over `F_2`, with `t` of
+  order three. Verdict: PASS.
+  * On each left coset of `<t>`, with `(a,b,c) = (x(h), x(ht), x(ht^2))`, it acts as
+    `(a,b,c) -> (a+ab+bc, b+bc+ca, c+ca+ab)`, using `ht^3 = h`.
+  * Evaluating all eight vectors: `000, 100, 010, 001, 111` are fixed, and
+    `110 -> 011 -> 101 -> 110`. So the map permutes `F_2^3` on every coset, and the row is a
+    nonlinear own-block local bijection.
+  * Its inverse is local by compactness.
+  * The track shears are correctly marked as adding no scope beyond type (O).
+* **gk-free-pos, transport convention and constant.** Verdict: PASS.
+  * Transporting along `psi(g) = phi(g^-1)` gives `sigma_V tau_V(z)(v) = z(v)` whenever
+    `psi(m)psi(n)v = psi(nm)v` for all `n` in `N` and `m` in `M`. Put `x(g) = z(psi(g)v)` on
+    `NM ∪ {1}`: the local identity holds for every pattern, including constrained ones, and
+    `psi(1) = 1`.
+  * `psi(m)psi(n)psi(nm)^-1` is `phi`'s defect at `(m^-1, n^-1)`, so symmetric `F` suffices.
+  * The constant `1 - |K|^2(1 - c' + 2 delta)` with `KK^-1` in `F` matches Section 8.4.
