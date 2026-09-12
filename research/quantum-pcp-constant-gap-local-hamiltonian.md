@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
   - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
   - research/artifacts/qpcp-fixed-term-chain-2026-09-07.md
+  - research/artifacts/qpcp-positive-shift-audit-2026-09-11.md
 distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that is a no-go about transporting classical PCP soundness onto contextual tracial PVM assignments inside this repository's microstate program; this is the external complexity-theoretic conjecture about tensor-site local Hamiltonians, with a fixed finite-dimensional Hilbert space and a state-weighted energy.
   binary-pcp-coordinate-atlas-in-hs-microstates: that compiles a classical constant-query PCP into group words with normalized-HS energy; this is a statement about quantum local Hamiltonians and makes no reference to group approximation.
@@ -85,6 +86,24 @@ resolution. For that family, a finite-cost construction requires
 does not refute the amplified constant-gap construction. No full QPCP
 proof is claimed by this obstruction.
 
+**2026-09-11 positive shift audit.** Replacing every term by
+`(1-epsilon)h_a+epsilon I` keeps locality, local dimension and descriptions,
+and scales the promise gap by `1-epsilon`. It also makes exact combinatorial
+soundness, bare rounder cost and trivial syndrome ports vacuous
+(`positive-shift-trivializes-exact-combinatorial-soundness`). Applied to the
+standard inverse-polynomial reduction, it satisfies every requirement of the
+anchored route except the YES margin, and a shifted root witness satisfies the
+whole criterion (`anchored-criterion-components-are-shift-satisfiable`). So
+`qpcp-from-anchored-amplifier` reduces this claim to
+`amplifier-preserves-yes-energy-below-the-floor`, which is equivalent to it;
+the route `yes-margin-criterion-from-quantum-pcp` records the converse. The
+same theorem shows that robust combinatorial soundness with a positive
+tolerance is energy soundness up to constants. An amplifier must therefore
+deliver energy or robust soundness, or keep frustration-free YES outputs.
+The latter, for a QMA-hardness reduction with exactly implementable term
+measurements, also places QMA inside QMA_1, which Aaronson's quantum oracle
+(arXiv:0806.0450) rules out for quantumly relativizing proofs.
+
 ## Attempts
 
 - **Ordinary energy gap amplification.**  Killed for this target by
@@ -107,3 +126,10 @@ proof is claimed by this obstruction.
   rounder on a positive-combinatorial-gap family is equivalent to its
   uniform NO-side energy floor. Proving that bound and a complete hardness
   reduction is still required.
+- **Exact combinatorial soundness plus syndrome technology, without a YES
+  margin.** Vacuous: the shifted standard reduction meets (LPC1), a
+  constant rounder, compatible local ports, the exactifier, the uniform kernel
+  resolution, and the anchor and recursion inequalities, while its YES margin
+  is inverse polynomial (`anchored-criterion-components-are-shift-satisfiable`).
+  (LPC1) as written is now established by `lpc1-from-shifted-kitaev-reduction`.
+  That records the vacuity; it is not progress toward this claim.

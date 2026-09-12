@@ -5,6 +5,7 @@ kind: claim
 title: A locality-preserving amplifier delivers a constant combinatorial gap at constant alphabet
 artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
+  - research/artifacts/qpcp-positive-shift-audit-2026-09-11.md
 ---
 
 Criterion (C) of the attack.  There is a polynomial-time reduction from a QMA
@@ -39,6 +40,19 @@ two reasons recorded in
    (LPC1) asks for constant gap **and** constant alphabet simultaneously.
 
 Update this node, do not weaken it, when the preprint appears.
+
+**2026-09-11: (LPC1) as written holds trivially.** Shifting every term of the
+standard 2-local QMA-complete reduction to `(1-epsilon)h_a+epsilon I` gives
+combinatorial gap one on every instance, at constant locality and qubit
+dimension (`lpc1-from-shifted-kitaev-reduction`, from
+`positive-shift-trivializes-exact-combinatorial-soundness`). This claim is
+therefore ESTABLISHED, but that is not progress toward quantum PCP. The same
+reduction's YES margin is inverse polynomial, and at a common reduction the
+margin requirement `amplifier-preserves-yes-energy-below-the-floor` is
+equivalent to the root claim
+(`anchored-criterion-components-are-shift-satisfiable`). The provenance
+questions above still matter for what the Bafna--Nguyen--Zhang template
+proves jointly with completeness. They do not decide (LPC1) by itself.
 
 **Provenance update, checked 2026-09-07.** The official
 [FOCS 2026 accepted-paper list](https://focs.computer.org/2026/accepted-papers/)

@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/qpcp-syndrome-rounding-audit-2026-08-25.md
   - research/artifacts/qpcp-syndrome-primal-dual-2026-09-07.md
   - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
+  - research/artifacts/qpcp-positive-shift-audit-2026-09-11.md
 ---
 
 Criterion (A) of the attack. Each NO-instance output `H'` of the same
@@ -39,6 +40,23 @@ input support resolutions, uniform local positive spectral bounds, and
 bounded occurrence. It can supply the bare rounder without an efficient
 physical measurement. Its resolution construction is also open; neither
 spanning the permitted subspaces nor normalizing their projectors proves it.
+
+**2026-09-11 positive shift audit.** Every construction clause below this node
+is met by the shifted standard reduction:
+- the cost clause with `C=1/epsilon`;
+- compatible local syndrome effects and port domination, using trivial
+  single-flag ports with `C_0=1/epsilon` and `R=1`;
+- the conditioned exactifier;
+- the uniform kernel resolution with `delta=epsilon`;
+- the anchor and backward recursion inequalities.
+
+That reduction's YES margin is inverse polynomial. So these clauses constrain
+an amplifier only jointly with
+`amplifier-preserves-yes-energy-below-the-floor`, and a construction satisfying
+them is not evidence toward the root unless the same reduction carries a
+constant margin (`anchored-criterion-components-are-shift-satisfiable`). The
+syndrome technology keeps its intended use for an amplifier that carries the
+margin.
 
 ## Attempts
 

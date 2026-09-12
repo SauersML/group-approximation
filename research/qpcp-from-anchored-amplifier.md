@@ -48,3 +48,18 @@ Alternatively, `rounder-from-uniform-kernel-resolution` gives the bare
 rounder through a global identity resolution and uniform local spectra.
 That alternative still requires an open construction for the same
 amplifier and does not supply the YES margin or reduction.
+
+## 2026-09-11: this route is an equivalence
+
+By `anchored-criterion-components-are-shift-satisfiable`, the shifted standard
+reduction meets (LPC1), the constant rounder and every syndrome clause below
+it, with an inverse-polynomial YES margin. A shifted root witness meets all
+four prerequisites for one reduction. The only prerequisite carrying promise
+content is `amplifier-preserves-yes-energy-below-the-floor`, and that claim is
+equivalent to the target (`yes-margin-criterion-from-quantum-pcp` is the
+converse). The route is valid, but it reduces the target to an equivalent
+claim; it does not factor the problem. A factoring attack needs a requirement
+the positive shift does not meet, for example robust soundness with a positive
+tolerance, frustration-free YES outputs, or a locality-reducing composition
+step after energy amplification, as in the Dinur architecture of
+Bergamaschi--Metger--Vidick--Zhang (arXiv:2510.01333).
