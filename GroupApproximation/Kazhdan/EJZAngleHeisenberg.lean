@@ -159,7 +159,7 @@ theorem sq_inner_le_of_center_moving (ρ : G →* (E ≃ₗᵢ[ℝ] E)) {p : ℕ
       (exists_pow_mul_eq_pow hz hp0.ne' hcop) hua (apply_translate_of_fixed ρ hza hzb m hua) huZ
   have hsum : ∑ m ∈ Finset.range p, inner ℝ u (ρ (b ^ m) u) = ‖u‖ ^ 2 := by
     rw [Finset.sum_eq_single 0 hgram (fun h ↦ absurd (Finset.mem_range.mpr hp0) h)]
-    simp [real_inner_self_eq_norm_sq]
+    simp
   have hT := norm_sq_translateSum ρ hb u
   rw [hsum] at hT
   have hcs := sq_inner_le_of_translateSum ρ b p u hwb
