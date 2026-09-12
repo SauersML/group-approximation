@@ -147,3 +147,27 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   - **Khanh--Thanh fidelity.** The load-bearing input is the Lean theorem `glAll_eq_elementary` on main
     (binary case, every field, no `sorry` in its two files by textual scan). arXiv:2607.10351v1
     (Khanh, Thanh) agrees and is unrefereed; I read pages 1--2 (artifact §3.1).
+- **Check (a), one fixed opposite-root placement (w4-r4-orth; artifact
+  `research/artifacts/rank-four-orthogonality-check-2026-09-12.md`).**
+  - **Definition.** `S(b) = n_31(b) n_13(1)` and `T(a) = n_34(a) n_43(1)`. Take `e` to be the range
+    idempotent of `n_31(1) n_13(1)`, and put `S_j = e S(s_j) e`, `T_i = e T(t_i) e`. In honest models
+    this is the corner family at index 3, with `e = E_33`.
+  - **Identity** (`index-three-corner-placement-holds-only-modulo-two-root-defects`). In any rings,
+    `T(a) S(b) = n_31(ab) W n_13(1) + Delta_row + Delta_rev`.
+    - `W` is a unit.
+    - `Delta_row` contains the same-row product `n_31(b) n_34(a)`.
+    - `Delta_rev` contains the reversed product `n_41(b) n_34(a)`.
+
+    For `t_i s_j = 0` only the two deviation terms remain.
+  - **Where it dies.**
+    - The deviation terms are block-support failures. They vanish in honest models and lie in the
+      kernel of the natural representation into `M_4(R)`: the circular shape of L3.
+    - Bounding them under `D != 0` is the gate.
+    - The identity is unchanged with index 4 replaced by 2, so the fourth index adds no room to this
+      placement.
+  - **Cross terms need the joint relations.** In the regular representation of
+    `EL_4(M_2(F_2)) = SL_8(F_2)`, with `t_1 -> E_22` and `s_0 -> E_11`, the cross term `T(t_1) S(s_0)` is
+    nonzero. So `t_1 s_0 = 0` and the Steinberg relations alone do not kill it.
+  - **Positive-root placement.** Artifact Section 2 gives a third, independent derivation of the
+    w4-heisenberg and w4-r4-adversary obstruction, through Theorem G on the locally finite
+    `UT_4(R)`. No new node.
