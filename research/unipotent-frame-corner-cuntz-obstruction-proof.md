@@ -32,3 +32,5 @@ Proof, artifact Section 1.
      opposite unit root element and `x_IJ(R)` generate `EL_2(R) = GL_2(R) ~= R^x`.
    - The regular sofic model of the nilpotent group `U_4(R)` gives the position-symmetric
      rank profile `1 - 1/p`, and in characteristic two `rk(N_23 N_12) = 3/8`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 3.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

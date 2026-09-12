@@ -20,3 +20,5 @@ This is Section 1, Theorem 1 of the artifact.
 4. **Consequences.**
    - For `S` in `eM` with `T_0 S = 0`: `S = eS = S_0 T_0 S = 0`.
    - With `S = S_1` and `T_1 S_1 = e`: `e = 0`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 2.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

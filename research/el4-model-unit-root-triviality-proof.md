@@ -30,3 +30,5 @@ So `N` contains every root subgroup, and `N = EL_4(R)`.
 **Part 2.** From `x_IJ(r)` in `N`, both `x_IK(rb) = [x_IJ(r), x_JK(b)]` and
 `x_LK(arb) = [x_LI(a), x_IK(rb)]` are in `N`. Simplicity gives `sum_m a_m r b_m = 1`, so
 `x_LK(1) = prod_m x_LK(a_m r b_m)` is in `N`, and Part 1 applies.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 2.2 (all twelve commutators checked in order, and Part 2 over simple rings) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

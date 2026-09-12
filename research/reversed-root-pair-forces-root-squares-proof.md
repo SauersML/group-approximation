@@ -22,3 +22,5 @@ Proof, artifact Section 5. No characteristic is used.
    `X^-1` commutes with `N_ij`. Hence `N_jk X^-1 Y^-1 N_ij = N_jk N_ij X^-1 = 0`.
 4. **Squares.** `N_ik^2 = N_ij (N_jk X^-1 Y^-1 N_ij) N_jk X^-1 Y^-1 = 0`. Every root `ik` of `EL_3`
    has a middle index `j`, so every square vanishes. QED
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Sections 1.3 and 3.2, re-derived independently of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
