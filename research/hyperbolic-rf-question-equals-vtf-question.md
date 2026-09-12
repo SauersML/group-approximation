@@ -77,8 +77,23 @@ Requested by the coordinator. Sources read, all from their arXiv PDFs
   engulfing and residual-finiteness statements only. Neither states this
   equivalence.
 
-No prior statement of the residual-finiteness / virtual-torsion-freeness
-equivalence was found in these sources. The primary Kapovich–Wise paper was not
-accessible (publisher paywall, no arXiv copy found), so a statement there beyond
-the quoted theorem is not excluded. The Dehn-filling proof here stands as this
-graph's route.
+**Correction (same day).** The equivalence *is* prior art, as this node's own
+paragraph above and `universal-hyperbolic-vtf-iff-rf` already record; the sweep
+above missed that source. Read verbatim from the publisher PDF (EMS Press,
+DOI 10.4171/CMH/107):
+- D. T. Wise, *Complete square complexes*, Comment. Math. Helv. 82 (2007),
+  §9, pp. 713–714. The section opens: "We also show that two well-known
+  questions concerning the residual finiteness of word-hyperbolic groups are
+  equivalent."
+- **Proposition 9.2**: "If all word-hyperbolic groups are virtually
+  torsion-free, then all word-hyperbolic groups are residually finite." The
+  text notes the converse, since a hyperbolic group has finitely many torsion
+  conjugacy classes.
+- The proof uses Lemma 9.1 and **Theorem 9.3** (Delzant, Gromov, Ol'shanskiĭ:
+  for each infinite-order `g`, some `G/<<g^n>>`, `n > 1`, is hyperbolic with
+  `g != 1`). An alternative uses `K = <G, t | [g,t]^n>`.
+
+So `universal-hyperbolic-vtf-iff-rf` is confirmed against the source. The
+Dehn-filling route here is a second proof of the same power-quotient idea, not a
+new equivalence. The Kapovich–Wise quotation above remains accurate for what it
+covers.
