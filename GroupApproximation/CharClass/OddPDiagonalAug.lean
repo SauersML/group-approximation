@@ -1,6 +1,9 @@
 import GroupApproximation.CharClass.OddPTupleFunctor
 import GroupApproximation.CharClass.OddPAcyclic
 import GroupApproximation.CharClass.AcyclicModelsExistence
+-- `Field (ZMod p)` for `[Fact p.Prime]`: the acyclicity exports are stated over a field, and nothing
+-- else in this closure provides the instance
+import Mathlib.Algebra.Field.ZMod
 
 /-!
 # The augmentations of the odd-primary comparison, and the acyclicity of the target
@@ -259,13 +262,20 @@ theorem oddTgt_obj_d (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) (k : ℕ) :
   tupCx_d p X r s hs k
 
 omit [NeZero p] in
-/-- lix-cupone's export, stated at the commutative-ring structure of `ZMod p` the target uses. -/
+/-- lix-cupone's export, stated at the commutative-ring structure of `ZMod p` the target uses.
+
+The export is stated over `[Field K]`, so at `K = ZMod p` its carriers use `Field.toCommRing`, while
+the target uses `ZMod.commRing p`.  Applying the export to `y hy` in one term leaves the `Field`
+instance pending while `hy` is unified against the export's hypothesis, and the unifier then unfolds
+`tupD` on both sides (a heartbeat timeout).  The `have` elaborates the export with its instance
+synthesized, so the remaining check compares the two ring structures only. -/
 theorem tupD_exists_preimage_stdSimplexTop_zmod [Fact p.Prime] (n r k : ℕ)
     (y : tupMod (ZMod p) (stdSimplexTop n) r (k + 1))
     (hy : tupD (ZMod p) (stdSimplexTop n) r k y = 0) :
     ∃ z : tupMod (ZMod p) (stdSimplexTop n) r (k + 2),
-      tupD (ZMod p) (stdSimplexTop n) r (k + 1) z = y :=
-  tupD_exists_preimage_stdSimplexTop (ZMod p) n r k y hy
+      tupD (ZMod p) (stdSimplexTop n) r (k + 1) z = y := by
+  have h := tupD_exists_preimage_stdSimplexTop (ZMod p) n r k
+  exact h y hy
 
 /-- **The target is acyclic on the models.** -/
 theorem oddTgt_acyclicOnModels [Fact p.Prime] (r s : ℕ) (hs : r ∣ s * p) :
