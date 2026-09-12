@@ -59,3 +59,20 @@ equivalent to `boone-higman-conjecture`
    `K_1` hypothesis and only finite normal generation of one unstable kernel.
    This is why this claim, not the old premise, is the weakest known sufficient
    algebra premise on this route.
+6. **Correction: the wall is overstated (lane `bh-algebra-envelopes`).** This
+   premise needs only `S -> B^x`, not `F_2[S] ⊆ B`.
+   - *Units without group algebras.* `full-group-units-embed-in-steinberg-algebras`
+     puts topological full groups into Steinberg algebra units, while
+     `full-group-algebra-to-steinberg-algebra-not-injective` shows the canonical
+     group-algebra map has a kernel.
+   - *What that makes of algebra BH.* `algebra-boone-higman-conjecture` is
+     sufficient for the existence of `B` but not necessary.
+   - *The real existence question.* A finitely presented central simple algebra
+     whose unit group contains `S`. Candidates: Steinberg algebras of finite-type
+     ample groupoids, matrix algebras over them, tensor products with `L`.
+   - *Where new cases come from.* New Boone--Higman cases need unit groups
+     larger than topological full groups. If `S` lies in a full group with fp
+     simple derived subgroup, group BH already holds there.
+   - *Still missing:* the Steinberg kernel condition for such `B ⊗ L`, and the
+     universality of the host family. No single host or fixed family can serve,
+     by `no-fp-simple-algebra-hosts-every-decidable-algebra`.
