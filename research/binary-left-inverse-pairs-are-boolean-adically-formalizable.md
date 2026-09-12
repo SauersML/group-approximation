@@ -39,6 +39,15 @@ finite memory.
 - **Consequence for the Kaplansky route:** a positive formalization theorem must bound
   the memory and degree growth of the `delta_k`; a negative invariant must see that
   growth. Associated-graded cohomology is blind to it, since every graded piece vanishes.
+- **Two ways termination can fail (Chinese remainder).** In finitely many variables
+  `F`, the ideal `(X_h^2 + X_h : h in F)` is the vanishing ideal of the Boolean cube.
+  That is the intersection, hence the product, of the pairwise coprime maximal ideals
+  `m_c`, `c in {0,1}^F`. So `I^k = prod_c m_c^k`, and the completion is
+  `prod_c F_2[[X - c]]`. A bounded-memory Boolean-adic solution is a tuple of local power
+  series at the Boolean points, and termination can fail in two ways: the memory of the
+  `delta_k` grows without bound, or the memory stays bounded while some local series has
+  infinite degree. Neither growth has been computed for the marker involution, or for
+  the marker involution times the identity (gk-free-neg's one-ancilla test).
 - **Open:** an invariant that measures the growth and detects the marker involution
   directly, and whether it survives ancilla tracks
   (`injective-binary-automata-are-stably-formalizable`).
