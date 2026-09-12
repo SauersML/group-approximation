@@ -41,6 +41,7 @@ namespace CharClass
 namespace Gen
 
 open CategoryTheory
+open scoped Matrix
 open GroupApproximation.STW59
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
