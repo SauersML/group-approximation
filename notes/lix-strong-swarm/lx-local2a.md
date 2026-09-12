@@ -53,9 +53,15 @@ Declarations (namespace `GroupApproximation.CharClass.KGen`, binders `(n k : ℕ
   Attic copies went up earlier at 8db017184, while the tower chain was absent from origin after the becc912bd restore.
 - lx-lhK-a's tower chain is on origin at 3c6fbec99.  Its bytes equal disk, and `peelTowerOf`, `exists_peelTowerOf`,
   `cupPowE_pull_eq_zeroOf` and `CPRingOf` match the spellings S1/S2 use.
-- The group probe (S1+S2, one probe on lix-b) is HELD until lx-lhK-a's probe 5 ends.  Probe 4 (0912-113840-34864) was red on
-  an import-only defect in `CohomologyChartPeelUniqOf` below the tower chain.  Probing first would compile the same chain
-  twice and inherit the red.
+- GREEN (S1+S2), with real `Built` lines, from clone lix-i, log `.nm/build-0912-120941-56371.log` (base 5edf273be, a
+  descendant of 60eceb761, where both blobs equal the authored bytes `9b99e1d563f6` / `50a6e795b8fd`):
+  `Built GroupApproximation.CharClass.LerayHirschTowerSumOf (167s)`, `Built GroupApproximation.CharClass.LerayHirschFreeTupleOf (22s)`,
+  `Build completed successfully (9048 jobs)`, EXIT=0.  `lhTerm_succ_rightOf`, `peelTower_eq_sumOf`, `lhTerm_eq_zero_of_rankOf`,
+  `peelTower_eq_range_sumOf` and `exists_freeTupleOf` each report `[propext, Classical.choice, Quot.sound]`.
+- My own group probe 0912-121650-81535 (lix-b, base b808f7634) printed PROBE GREEN, 8998 jobs.  It carries no evidence: the log
+  has no line for either module (0 rebuilt; the COMPILED lines are artifacts restored by input hash).  Its only use is as a
+  consistency check at the later tip.  Probe 4 of lx-lhK-a (0912-113840-34864) had been red on an import-only defect in
+  `CohomologyChartPeelUniqOf`; probe 5 (0912-120703-48079) was green before mine launched.
 
 ## SPLIT (independent sub-tasks for helpers)
 - None open in this lane.  The coefficient-free geometry of the rank-n local square is complete and green, and
