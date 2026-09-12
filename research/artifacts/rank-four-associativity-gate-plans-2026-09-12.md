@@ -228,6 +228,21 @@ route `el3-rank-triviality-via-defect-piece-covariance`. w4-r4-adversary has bee
   orthogonality must use `sigma` outside that locally finite subgroup (L7), most likely on the
   prefix replacements that do not preserve measure. That is also where the endpoint gets its
   contradiction.
+* **Audit** (w4-r4-adversary, ca519f534e; artifact `covariant-diagonal-plan-adversarial-audit-2026-09-12.md`).
+  The claim is not refuted, and its route stays valid.
+  * **Joins exist.** In a rank ultraproduct, every countable family of principal right ideals has a
+    join. That settles the "if the spans have ranks" caveat above.
+  * **The first lemma is automatic.** By `covariant-monotone-cylinder-families-in-rank-models-are-constant`,
+    every covariant, refinement-monotone family of principal right or left ideals indexed by proper
+    cylinders is constant. This holds in every rank model, whatever `N_23 N_12` is. Orthogonal cylinder
+    families are monotone, so covariant orthogonal diagonals are zero. "Orthogonality is the missing
+    input" therefore names the contradiction; it is not a step toward it.
+  * **What the span coincidence gives.** If `N_(b,a1)(y) N_(a0,b)(z) = 0` for all coefficients on one
+    frame of disjoint cylinders `(a0, b, a1)` (with `a ∪ b != X`, as in the node), then `sigma` is
+    trivial. This is the known direction, that a nontrivial model violates the identity, now with a
+    group-theoretic proof.
+  * **Kill tests.** The join test fails. The Toeplitz test is consistent, because that algebra has no
+    depth-changing units. The one remaining test is the gate itself.
 
 **(b) Abstract Sylvester rank functions and characteristic three.** This bears on step (U2) of
 `ternary-counterexample-from-rank-triviality-and-state-upgrade`. The table records what the landed
