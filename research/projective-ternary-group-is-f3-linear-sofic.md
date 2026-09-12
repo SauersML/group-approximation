@@ -63,3 +63,13 @@ idempotent refutes this claim (`non-linear-sofic-via-projective-ternary-swap-ful
     verified by gk-vf-nonlinear).
   Over `PG` the gate leaves only decoders whose degree product is at least three and which
   use `x^3 = x`.
+- *A weaker input already pays for the anti-central half* (w3-gate-char3, 2026-09-12).
+  - **What suffices.** Any nontrivial characteristic-three rank model of `PG`, with no separation
+    required, gives an injective model of the unit group that moves `z`. So it kills
+    `ternary-anti-invariant-swap-corner-is-full` (`ternary-leavitt-rank-models-move-z-iff-nontrivial`).
+  - **Converse.** An anti-central model of the unit group squares to a nontrivial model of `PG`.
+  - **The existence question.** It is `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`, and
+    this claim implies it.
+  - **What any such model must satisfy.** Haar law on the signed diagonal
+    (`anti-central-rank-models-see-haar-measure-on-signed-diagonal`), and the torus normal form
+    `N_12 = A − A^2` (`ternary-rank-model-root-element-torus-normal-form`).

@@ -162,3 +162,18 @@ payoff is `non-linear-sofic-group`.
   - Where it dies: no uniform bound `delta_(k+1) >= c · delta_k` on the nested defect pieces, and no
     ring map from `R` into a defect corner built from the restricted model. A proof must use that
     `R` has no rank model, or the compression relation.
+- **Characteristic three, ternary Leavitt units** (w3-gate-char3, artifact
+  `research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md`).
+  - **The gate.** For `R = L_(F_3)(1,2)` the gate is the single claim
+    `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`. A model moving `z = −1`, an injective
+    model, an anti-central model, and a nontrivial model of `R^x/{±1}` all exist together
+    (`ternary-leavitt-rank-models-move-z-iff-nontrivial`).
+  - **Corner locality.** It holds with perfection plus simplicity modulo scalars in place of simplicity,
+    and the extraction needs both odd-characteristic identities.
+  - **Torus normal form.** `N_12 = A − A^2` with `A` flipping torus weights, so the first identity is
+    `A^2 = 0` (`ternary-rank-model-root-element-torus-normal-form`).
+  - **Haar law.** Anti-central models carry Haar measure on the signed diagonal
+    (`anti-central-rank-models-see-haar-measure-on-signed-diagonal`). Projective content of level groups
+    satisfies that law and violates `A^2 = 0`.
+  - **Where it dies.** Same place as in characteristic two: relations whose coefficients are
+    measure-changing partial isometries, not code-level constants.

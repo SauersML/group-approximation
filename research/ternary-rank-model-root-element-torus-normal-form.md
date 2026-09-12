@@ -9,8 +9,9 @@ artifacts:
   - research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof in the artifact, Section 5; independent verification requested from
-`w3-vf-linear`). Let `R = L_(F_3)(1,2)` and `G = R^x = GL_3(R) = EL_3(R)`, identified through the prefix code
+**ESTABLISHED** (proof in the artifact, Section 5). `gk-vf-linear` independently re-derived it, PASS
+with no corrections (Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`).
+Verification by `w3-vf-linear` is also requested. Let `R = L_(F_3)(1,2)` and `G = R^x = GL_3(R) = EL_3(R)`, identified through the prefix code
 `(0, 10, 11)`, so that `x_12(1) = 1 + S[0]T[10]`. The constant sign matrices form
 `T_3 = <τ_0, τ_10, τ_11>`, with `τ_0 τ_10 τ_11 = z = −1`.
 
