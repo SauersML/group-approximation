@@ -10,9 +10,21 @@ distinct_from:
 
 **OPEN.** Let `H` and `K` be infinite finitely generated groups such that
 `G = H x K` has no infinite amenable wq-normal subgroup. Then every Cayley graph
-of `G` has `p_c < p_u`. Both factors are then nonamenable, because an infinite
-amenable `K` would give the normal subgroup `{1} x K`. Examples are `F_2 x F_2`
-and products of nonelementary hyperbolic groups.
+of `G` has `p_c < p_u`.
+
+**The class is exactly the products whose factors have only finite amenable
+subgroups.** Suppose `H` is infinite and `A <= K` is infinite amenable. Then
+`{1} x A` is wq-normal in `H x K`. Take any intermediate subgroup `I`. If
+`H x {1}` is not contained in `I`, an element of it outside `I` centralizes
+`{1} x A`. Otherwise, any element outside `I` conjugates `I` onto a subgroup
+containing the normal subgroup `H x {1}`. This lemma is bs-1's; I checked it
+by hand. Conversely, if both factors have only finite amenable subgroups, `G`
+has no infinite amenable subgroup at all, since one of its projections would be
+infinite and amenable. So both factors are nonamenable torsion groups. **Not in
+this class:** `F_2 x F_2` and every product with an element of infinite order
+in a factor (take `A` cyclic). **Example in the class:** a product of two
+Ol'shanskii Tarski monsters, which are nonamenable with all proper subgroups
+finite.
 
 ## Attempts
 
