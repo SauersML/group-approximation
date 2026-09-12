@@ -990,3 +990,33 @@ would keep the route alive even if the class statement fails for some non-finite
     `z = Theta(-I)`, in one finite `Theta(GL_(2^K)(F_3))`, and Proposition 4.3 applies there. PASS.
   - *Diagnostics.* The kernel mass sitting at finite depth (Proposition 7 above) supersedes the withdrawn
     "infinite-depth" dichotomy.
+
+## 31. Tensor-shape calibration (154ca52a5, audit artifact Section 8): PASS, one wording remark
+
+Item checked: Section 8 of `leavitt-unit-rank-model-construction-audit-2026-09-12.md`.
+
+- **The characteristic-two formula.**
+  - `x_ij(1) = 1 + E` and `(1 + E)^-1 = 1 + E`, so `rho^(-T)(x_ij(1)) = 1 + E'` with `E' = E_ji`.
+  - The tensor product is `1 + N` with `N = E (x) 1 + 1 (x) E' + E (x) E'`.
+  - `N^2 = 0`: the squares vanish, the two cross terms `(E (x) 1)(1 (x) E')` and `(1 (x) E')(E (x) 1)` add to
+    `2 E (x) E' = 0`, and every product containing `E^2` or `E'^2` vanishes.
+- **The calibration argument is sound.**
+  - `rho_k (x) rho_k^(-T)` is an honest faithful homomorphism of `EL_3(F_2[t])`.
+  - Restricted to `SL_3(F_2)` it is `(natural (x) dual)^(k^2) = gl_3^(k^2)`.
+  - The eight-dimensional adjoint composition factor is not natural, so the unit root elements are not
+    block supported (Section 29).
+  - So any block-support argument using only the characteristic, `N^p = 0`, regular-ring
+    ranges and kernels, and the Steinberg relations would prove a false statement. It must use
+    simplicity and non-direct-finiteness of `R`.
+- **Wording remark.** "with no trivial summand to split off" is not accurate. In characteristic `!= 3`,
+  `gl_3 = F I (+) sl_3`, because `tr(I) = 3` is invertible, so natural (x) dual does have a trivial summand.
+  The calibration survives, since the adjoint summand `sl_3` is irreducible of dimension 8 and its unit
+  root elements are not block supported. Suggested wording: "natural (x) dual = trivial (+) adjoint, and
+  the adjoint summand has no block-supported unit roots".
+- **Tensor constructions die for `R`.**
+  - `L_K(1,n)` is central simple over `K`, and a central simple algebra tensored with a simple algebra is
+    simple, in every dimension. So every `R^((x) a) (x) (R^op)^((x) b)` is simple.
+  - `(t_0 (x) 1)(s_0 (x) 1) = 1` while `s_0 t_0 (x) 1 != 1` (the tensor product is over a field), so it is
+    not directly finite.
+  - So it has no nonzero homomorphism into a corner of a rank ultraproduct (Sections 6 and 14). Approximate
+    modules over these tensor algebras, including approximate bimodules, give nothing.
