@@ -32,10 +32,11 @@ def oppositeFamily (F : CompleteMatrixFamily A ι) : CompleteMatrixFamily Aᵐ�
       rw [if_pos rfl, if_pos rfl, op_one]
     · rw [if_neg (Ne.symm h), if_neg h, op_zero]
   complete := by
-    rw [show (∑ i, op (F.right i) * op (F.left i)) = op (∑ i, F.left i * F.right i) from by
-      rw [op_sum]
-      exact Finset.sum_congr rfl fun i _ ↦ (op_mul _ _).symm]
-    rw [F.complete, op_one]
+    have h : op (∑ i, F.left i * F.right i) = ∑ i, op (F.right i) * op (F.left i) := by
+      rw [show op (∑ i, F.left i * F.right i) =
+          MulOpposite.opAddEquiv (∑ i, F.left i * F.right i) from rfl, map_sum]
+      exact Finset.sum_congr rfl fun i _ ↦ op_mul _ _
+    rw [← h, F.complete, op_one]
 
 end CompleteMatrixFamily
 

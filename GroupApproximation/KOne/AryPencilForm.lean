@@ -22,6 +22,7 @@ variable {A : Type*} [Ring A] {ι : Type*} [Fintype ι] [DecidableEq ι]
 variable (F : CompleteMatrixFamily A ι)
 variable {k : Type*} [Field k] [Algebra k A]
 
+omit [Fintype ι] [DecidableEq ι] in
 theorem ofFn_snoc_eq_append {m : ℕ} (f : Fin m → ι) (r : ι) :
     List.ofFn (Fin.snoc f r : Fin (m + 1) → ι) = List.ofFn f ++ [r] := by
   rw [List.ofFn_succ', List.concat_eq_append]
