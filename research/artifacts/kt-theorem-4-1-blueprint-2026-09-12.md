@@ -145,4 +145,63 @@ multiplicativity on good components.
 
 ## Status
 
-Nothing in this blueprint is proved yet beyond the declarations it cites.
+### Landed on main
+
+* `2458bbc45`: G1a–G1e at source scale, in six modules
+  `KunThom/CentralizerNormalization{FiberCoarea,SumPoincare,Parameters,
+  CrossingRepair,SumApproximation,Improve}`. They contain `ComponentFamily`,
+  `ImproveCloseAt`, `eventually_improveCloseAt` and `exists_joint_improvement`.
+  G1b is split into coarea hypotheses (`FiberCoarea`) and a two-summand
+  Poincaré inequality (`SumPoincare`). G1c is
+  `repairRelation_extractCrossing_candidate_and_close`. G1d is
+  `exists_repairParameters`. G1e packs counterexamples into
+  `sumApproximation` and applies `exists_pairProduct_relation_eventually`
+  with `b = 1`.
+* `fb4a81460` (kt41-g1-build): `Matching/ScaledPartialClusterGroupoid`, the
+  per-pair-radius version of `FinitePartialClusterData` and its presentation.
+* `87c53ad0c`:
+  * `KunThom/CentralizerNormalizationPairImprove`: `PairRepairAt`,
+    `PairImproveCloseAt`, `eventually_pairRepairAt`,
+    `pairImproveCloseAt_of_pairRepairAt`, `exists_joint_pairRepair` and
+    `hasTaggedExpansionAtScale_of_cheeger`.
+  * `KunThom/CentralizerNormalizationClusterSystem`:
+    `ScaledPartialClusterSystem`, `clusterData`, `presentation`,
+    `presentation_rel` and `ComponentFamily.clusterSystem`.
+
+### Changes to the plan
+
+* **Scales.** Objects of different sizes need their own scale, so
+  `scale X = |model X| / 18`. Arrows use the pair scale
+  `min (scale X) (scale Y)`, which is symmetric, so inverses need no repair.
+  The crossing repair runs at threshold `h/2`, and the spare factor converts
+  the source scale to the pair scale. A candidate forces
+  `10 · scale X ≤ 11 · scale Y` (`scale_comparable`), which keeps every
+  groupoid law below the eight-radius gap.
+* **Lemma 4.2(2).** The raw arrow of the relative functor has defects up to
+  `K₀` times the threshold, where `K₀` depends on the word lengths of the
+  conjugated generators. `PairRepairAt K₀` repairs single arrows; improvement
+  of composites is the case `K₀ = 4`.
+* **Objects.** `ComponentFamily.expands` is an exact directed Cheeger bound,
+  and `componentCompletedAction` only gives tagged expansion above a scale.
+  So the objects are pruned cores, i.e. `MaximalCutRepair.retained` of the
+  completed generator graph with completed actions on the core, following
+  `Matching/EssentialExpanderRepair`.
+* **Tagged expansion.** `taggedBoundary` maps onto `directedBoundary`, so the
+  constant is `1` and label injectivity is not needed for expansion.
+
+### Open leaves and owners
+
+* ComponentFamily producer:
+  * pruned cores with an exact Cheeger bound (kt41-g1-alt,
+    `KunThom/CentralizerNormalizationPrunedCore`);
+  * good components and the constructor (kt41-g1-uniform);
+  * per-index decompositions and the `BlockEmbedding` companion
+    (kt41-seq-decomp).
+* Relative functor (kt41-functor), estimate (7) (kt41-functor-estimate),
+  Lemma 4.4 instance (kt41-median-vertex), endgame (kt41-counting-endgame),
+  and the transfer of the compressor matching to retained objects
+  (kt-norm-counting).
+* Gap 4, Hamming summation (kt-norm-fixedpoint).
+* Assembly: `seqNormalizes_distinguished_of_kazhdan` in
+  `KunThom/CompressorNormalizationCore`, which gives
+  `hasSequentialCentralizerNormalization_of_kazhdan_infranormal`.
