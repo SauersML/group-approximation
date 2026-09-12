@@ -26,4 +26,6 @@ comparison of positive elements with respect to a nonempty trace simplex. If
 7. `A` refutes both STW Problem XVIII and STW Problem XXIII;
 8. `A` is not a crossed product `C(X) ⋊ Gamma` of a free minimal action with the
    uniform Rokhlin property; in particular it is not any free minimal
-   `C(X) ⋊ Z^d`.
+   `C(X) ⋊ Z^d`;
+9. in every presentation of `A` as a unital injective inductive limit, all
+   but finitely many stages fail K1-injectivity.
