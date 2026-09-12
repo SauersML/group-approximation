@@ -9,6 +9,7 @@ requires:
   - natural-leavitt-pair-lifts-have-partial-symmetry-defect
 artifacts:
   - research/artifacts/crossed-product-zero-divisor-filters-2026-09-12.md
+  - research/artifacts/gk-vf-linear-b-verification-2026-09-12.md
 ---
 
 Proposition 1.1 of the artifact.
@@ -24,3 +25,10 @@ Proposition 1.1 of the artifact.
   `e' = z sigma e' = 0`.
 - A Gram matrix `T Sigma` with an inverse `N` makes `Sigma` left invertible. But `Sigma` kills the column
   carrying `e'` in the slot of `sigma`. Dually, the row carrying `e'` in the slot of `tau` kills `T`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 7 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *`sigma F`, and all four terms of `sigma D`, with both cross terms emptied by total mass;*
+- *`*` fixes `C(M_-, F_3)` pointwise, `sigma* = tau` and `D* = D`;*
+- *`e' != 0`, and the Gram-matrix argument for columns and for rows.*
+
+*Scope: natural lifts only, for every `g_0, g_1`. The `s_1` remark cites an artifact section not yet on main and was not checked.*

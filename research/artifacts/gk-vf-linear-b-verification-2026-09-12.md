@@ -136,3 +136,60 @@ disjoint unions, with `Phi(X) = eps_-` and `Phi(gC) = [g] Phi(C) [g]^-1`.
 **Wording remark** (no change requested). The `distinct_from` entry still describes the claim as
 forbidding "Boolean sections of the Dirac evaluation". After (a), the claim forbids every `V`-equivariant
 Boolean homomorphism, those sections included.
+
+## 6. The Clifford-cover refutation chain (w3-free-neg): route PASS, ahead of w4-clifford-df
+
+`clifford-cover-nonsurjunctive-from-anti-half-df-failure` is the route through which a direct-finiteness
+failure in `A_S` would refute Gottschalk's conjecture. It is checked now, before any witness exists.
+- **Padding.** Use the product `F_3[E_S] = F_3[W] × A_S` of the established
+  `clifford-cover-group-algebra-splits-into-wreath-and-skew-ring`. If `b a = 1 != a b` in `A_S`, then
+  `(1, b)(1, a) = (1, 1)` is the unit and `(1, a)(1, b) = (1, ab) != (1, 1)`. So `F_3[E_S]` is not
+  directly finite.
+- **Automaton.** `stable-finiteness-failure-refutes-surjunctivity` at `n = 1` turns this into an
+  injective, non-surjective linear automaton over the alphabet `F_3`.
+  - `tau_a tau_b = id`, so `tau_b` is injective.
+  - If `tau_b` were onto, it would be bijective with inverse `tau_a`, so `tau_b tau_a = id`. The group ring
+    acts faithfully, so `ab = 1`, a contradiction.
+- **What the chain delivers.** It yields `kun-thom-clifford-cover-nonsurjunctive`, and with it a refutation
+  of the goal and of `finite-normal-subgroups-do-not-affect-surjunctivity`. The only input still open is
+  the witness pair itself.
+- **Quantifier check.** The route needs one graph `S` and one pair. The root claim says "some `G`-invariant
+  graph `S`". That matches.
+
+## 7. `mixed-depth-leavitt-lift-is-a-left-zero-divisor` (w4-cohn-gram, 74c21d92f7): PASS
+
+Re-derived independently from the conventions of Section 1 and `1_U [k] = [k] 1_(k^-1 U)`.
+
+**Item 1, `sigma F`.** `P_0 F = 1_(W_2)` and `P_1 F = 1_(W_1)`, so `sigma F = [g_0]1_(W_2) + [g_1]1_(W_1)`.
+
+**Item 1, `sigma D`.**
+- `P_0 [h] = [h] 1_(U_(h^-1(0)))` with `h^-1(0) = A`, and `W_1 ⊆ U_A`. So the first term is
+  `[g_0 h] 1_(W_1) = [g_1] 1_(W_1)`.
+- `P_1 [h^-1] = [h^-1] 1_(U_(h(1)))` with `h(1) = B'`, and `W_2 ⊆ U_(B')`. So the last term is
+  `[g_1 h^-1] 1_(W_2) = [g_0] 1_(W_2)`.
+- **The first cross term vanishes.** On `W_2`, `mu(0) = mu(B') = 1` forces `mu(1) = 0`, so
+  `mu(1 \ B') = 1` and `mu(h(0)) = mu(0 ∪ (1 \ B')) = 0`.
+- **The second cross term vanishes.** On `W_1`, `mu(A) = mu(1) = 1` forces `mu(0 \ A) = 1`, so
+  `mu(h^-1(1)) = mu(1 ∪ (0 \ A)) = 0`.
+- Hence `sigma (F - D) = 0` and `sigma e' = 0`.
+
+**Item 2.**
+- `*` is the anti-automorphism `[g] -> [g^-1]` of `F_3[G]`. It fixes `eps_-` and each `P_C`, because
+  `tau_C` is an involution. So it fixes `C(M_-, F_3)` pointwise, since those functions commute.
+- `sigma* = [g_0^-1] 1_(U_(g_0(0))) + [g_1^-1] 1_(U_(g_1(1))) = tau`.
+- `([h]1_(W_1))* = [h^-1] 1_(h W_1) = [h^-1] 1_(W_2)`, so `D* = D`.
+- Hence `e' tau = (sigma e')* = 0`.
+
+**Items 3 and 4.**
+- `e' != 0`, since its identity grade is `2F` and `W_1, W_2 != ∅`.
+- If `z sigma = 1` in any overring, then `e' = z sigma e' = 0`, and dually for `tau`.
+- **Gram matrices.** Put `Sigma = (sigma_1, sigma_2)`, a row, and `T = (tau_1, tau_2)^t`, a column. An
+  inverse `N` of `T Sigma` gives `(N T)(Sigma v) = v` for columns `v`. With `sigma_j = sigma`, the column
+  `v` with `e'` in slot `j` has `Sigma v = sigma e' = 0`, a contradiction. Dually,
+  `w (T Sigma) N = w` for rows `w`, and the row with `e'` in slot `i` has `w T = e' tau = 0`.
+
+**Scope.**
+- The claim concerns the natural lifts `sigma`, `tau` for every choice of `g_0, g_1`, and every Gram matrix
+  that uses one of them. It does not touch Cohn families built from other lifts of `s_0`, `t_0`.
+- The remark that the natural lift of `s_1` is a left zero divisor cites Section 3 of the artifact, which
+  is not on main at 74c21d92f7. That remark has not been checked.
