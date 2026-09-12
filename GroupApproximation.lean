@@ -4635,6 +4635,7 @@ import GroupApproximation.Matching.ScaledPartialClusterGroupoid
 import GroupApproximation.KunThom.ComponentCountingRetainedMatching
 import GroupApproximation.KunThom.SequentialContradiction
 import GroupApproximation.KunThom.CountingEndgameLift
+import GroupApproximation.KunThom.ArrowCountMedian
 import GroupApproximation.KunThom.RelativeFunctorEstimate
 import GroupApproximation.KunThom.StepNineHammingReference
 import GroupApproximation.KunThom.StepNineHammingDefects
