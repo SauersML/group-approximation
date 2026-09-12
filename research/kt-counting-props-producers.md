@@ -31,8 +31,17 @@ all four and proves three of the hypotheses about them. Namespace
   - the bundled relative cluster functor between them (Kun–Thom, Lemma 4.3);
   - negligible unmatched weight, unretained weight and missing bridge mass;
   - matched objects at most twice the size of their matches.
+- For `t` itself, estimate (7) of Lemma 4.3, with bridges realized by `A(t)⁻¹`.
+  - The fields are `estimateError`, `estimate` and `estimateError_le`.
+  - Every representative of the image of the class of a representative `c` lies
+    within `estimateError n X Z` of the transport of `c` through those bridges.
+  - The error is at most three times the scale of the image of `X`.
 
 The matched family is the one retained domain. Nothing below deletes from it.
+
+Estimate (7) is what ties the functor to `A(t)`. Without it, twisting the functor by
+automorphisms of its target objects keeps every other field, and `hhamming` is false
+in general. The three producers below do not read it.
 
 **The Props.**
 - `OneSided`: `f (π q n i) ≤ (1 + κ q n) f i` off a family `Bad q n` of negligible

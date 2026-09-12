@@ -16,9 +16,11 @@ artifacts:
 
 A derivation in Lean. The modules are imported by `GroupApproximation.lean` and
 built green by the Bowen–Chapman probe (tags 0912-142742-32070, 0912-143059-52238,
-0912-143628-84665 and 0912-144801-43926). An axiom driver (tag 0912-145249-68503)
-prints the closures of the three producers and the main lemmas. Every one uses only
-`propext`, `Classical.choice` and `Quot.sound`.
+0912-143628-84665 and 0912-144801-43926). The estimate (7) fields of
+`CompressorRelativeData` came later, at e9606bafe. They were probed with every module
+importing them at tag 0912-165949-37457. An axiom driver (tag 0912-145249-68503) prints
+the closures of the three producers and the main lemmas. It ran before those fields
+were added. Every closure uses only `propext`, `Classical.choice` and `Quot.sound`.
 
 1. **Sizes and scales** (tex lines 1133–1156). Along every arrow of a scaled cluster
    groupoid the block size at most doubles, because matched scales agree up to
