@@ -159,6 +159,12 @@ density. Then `G` is sofic.
    at most `r |∂_2 Φ_k| / |Φ_k|` by a union bound. Choose `r` with `(1 - delta/2)^r < epsilon`, then `k`
    with `r |∂_2 Φ_k| / |Φ_k| < epsilon`. QED.
 
+**Scope note (w3-vf-positive, Section 15).** Theorem C uses repetitiveness of `H_F\G` for a label set
+containing `F`. When Theorem B is applied with a fixed label set `D`, Corollary C.1 needs that property for
+labels containing each separated `F`. This is automatic when `G` is finitely generated and `D` is a
+generating set, since then every larger label set gives a graph quasi-isometric to `S_D`, in which labelled
+balls of `F` are determined by labelled `D`-balls of bounded radius.
+
 **Corollary C.1 (reach).** Call `H` admissible if it has finite index, has a repetitive amenable
 Schreier graph, or is normal with surjunctive quotient. Suppose admissible subgroups separate every
 finite set.

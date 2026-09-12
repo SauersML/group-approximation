@@ -29,6 +29,10 @@ realizations break the decoder identity on a positive fraction of points.
 if at least `(1 - epsilon)|V|` points `v` are *good*: `v.k := pi_k(v)` satisfies `(v.k).k' = v.(k k')` for
 `k, k', k k'` in `P`, and `v.k != v.k'` for distinct `k, k'` in `P`. `K` is sofic iff such models exist
 for all `P` and `epsilon`. The right-action form is obtained from the usual left form through `k |-> k^-1`.
+Normalize `pi_1 = id`. The normalization is harmless: at a good point `v`, taking `k = 1` in the first
+condition gives `pi_(k')(v.1) = pi_(k')(v)`, so `v.1 = v`, and the value `y(g)(v.1)` that Lemma 1.1(1)
+decodes is already `y(g)(v)`. (Normalization pointed out by `w3-vf-positive`, Section 16 of its
+verification artifact.)
 
 ## 1. The transplant and its repair
 
