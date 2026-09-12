@@ -26,6 +26,12 @@ a finitely generated subfield of `Q_p`, embedded in `C`, Kaplansky positivity on
 * **Linear characters.** For linear-character idempotents `e = E_(psi1)`, `f = E_(psi2)` of finite
   subgroups of order prime to `p`, `f e = f` iff `H1 <= H2` and `psi2|H1 = psi1`. So mixed pairs of
   linear characters collapse into one finite subgroup, where `[e] - [f]` has positive lifted trace.
+* **Cohn defects.** The same applies to classes of negative lifted trace. If
+  `tau_i sigma_j = delta_ij eps_-` is a unital two-pair Cohn family in the ternary anti-central
+  summand `S_-`, its defect `p` has `[p] = -[eps_-]`. Since `eps_-` lifts to `(1 - [z])/2`,
+  `t_3([p]) = -1/2`, a negative rational, which agrees with `tau(p) = 1` modulo `3`. So no idempotent
+  in the class of `p`, at any matrix size, has a finite-support characteristic-zero lift. By lane
+  `gk-l3-obstruct`'s size reduction, this is the only complement that matters for the corner target.
 * **Surviving defects are genuinely modular.** No finite-support idempotent lift exists. For a
   difference of finite-subgroup idempotents, the order relation must hold only modulo `p`, which
   needs cancellation from non-linear characters or from `p`-singular subgroups.
