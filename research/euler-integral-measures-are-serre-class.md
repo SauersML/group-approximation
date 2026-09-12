@@ -7,9 +7,17 @@ distinct_from:
   integral-spectral-limits-satisfy-serre-inequalities: that derives the Serre inequalities from approximation by integer matrices; this asks whether exact arithmetic integrality of the moment zeta series suffices, with no approximation
   serre-class-measures-are-integral-spectral-limits: that is the converse realization question for Serre-class measures; this is a sufficient arithmetic criterion for membership in the class
   atomic-serre-measures-are-equal-weight-real-orbits: that characterizes the finitely atomic members of the Serre class; this concerns measures with continuous parts, which is where the question is open
+refuted_by:
+  - euler-integral-measure-violates-serre-inequality
 ---
 
-**OPEN.** Let `mu` be a finite positive Borel measure on a compact real interval.
+**REFUTED** by `euler-integral-measure-violates-serre-inequality`. The measure
+`23 law((x+1/x)(y+1/y)(z+1/z)) - law(x+1/x+y+1/y+z+1/z)` over `Z^3` is positive
+and satisfies the hypothesis for every `Q`. At `Q = x` its log integral is
+`-m(x+1/x+y+1/y+z+1/z) < 0`. The hypothesis is closed under Z-linear
+combinations; the conclusion only under positive ones.
+
+Original statement: let `mu` be a finite positive Borel measure on a compact real interval.
 Suppose that for every `Q in Z[x]` the moments `m_j(Q) = integral Q^j d mu` are
 integers and
 
