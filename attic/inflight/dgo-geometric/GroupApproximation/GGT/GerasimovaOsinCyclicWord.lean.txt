@@ -253,6 +253,7 @@ theorem powWord_ne_base (a : Fin 4 → G) (e : ℤ) (i : ℕ) (x : G) :
   · exact getElem?_blockWord_ne_base 3 (posPre_ne_base a) (a 3) _ i x
   · exact getElem?_blockWord_ne_base 0 (negPre_ne_base a) (a 0)⁻¹ _ i x
 
+omit [Group G] in
 theorem isWOne_posWord (a : Fin 4 → G) (n : ℕ) : WWord.IsWOne (posWord a n) :=
   isWOne_blockWord_of_noBase 3 (posPre_ne_base a) (a 3) n
 
