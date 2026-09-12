@@ -134,3 +134,17 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - Where it dies: a lower bound must control the relative Rokhlin entropy of relatively weakly
     mixing extensions of the base. Spectral gap, strong ergodicity and superrigidity are
     orthogonal to it.
+- **Finite-radius generation (w3-inf-a, 2026-09-12).** Minimising the single-site entropy of injective
+  automaton images, `h_fin`, gives an invariant that sees exact, finite-radius generation. It is
+  `injective-ca-images-have-full-single-site-entropy`, with `h^Rok <= h_fin <= log |A|`.
+  - **Sandwich.** Maximal Rokhlin entropy implies FIN (`h_fin = log |A|`), and FIN implies the goal.
+    The second implication rests on `strict-automata-give-injective-ca-with-skewed-site-marginals`: a
+    strict automaton gives an injective endomorphism of `(A^(k+1))^G` with non-uniform site law and a
+    finite-radius Rokhlin deficit.
+  - **Single-site criterion.** Group by group, surjunctivity is equivalent to
+    `every-injective-ca-has-uniform-single-site-output-law`.
+  - **Obstructions.** `h_fin` is not a conjugacy invariant, so the partition-bounded obstruction misses
+    it, but its lower bound is at least as hard as the goal. Counting gives only
+    `log |A| sup |F|/|F E|`.
+  - **Open.** Bounding one site entropy on a simple Kazhdan host without finite models. No mechanism is
+    known. Artifact `finitary-generation-single-site-criterion-2026-09-12.md`.
