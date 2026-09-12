@@ -557,6 +557,11 @@ names an OPEN claim, so it does not fire.
   Lemma 2.15), and `V` is not LEF. The remaining implications are definitional.
 - **Reading.** Only the two-point character simplex and non-LEF are used. No property is decided. The
   content is that Bradford's "evidence that V is stable" is exactly evidence that `V` is not sofic.
+- **Flexible stability (added at a47626583): correct.**
+  - `V` is infinite and simple, so every action of `V` on a finite set is trivial.
+  - A flexible correction on `Y_n >= X_n` with `|Y_n \ X_n| = o(|X_n|)` therefore makes each `φ_n(g)` fix all
+    but `o(|X_n|)` points, and that rules out separating almost-homomorphisms.
+  - The two directions give: not sofic ⟹ stable ⟹ flexibly stable ⟹ no sofic approximation.
 - **Cuntz groupoid.**
   - The layer-cake identity gives `Σ_s ||s.m - m||_1 >= c_S ||m||_1`, which is where the `1/|S|` comes
     from.
