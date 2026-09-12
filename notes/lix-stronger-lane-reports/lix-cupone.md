@@ -68,12 +68,20 @@ Sign model test (`backup/lix-cupone/oddp_acyclic_signs.py`, acn112, seconds): ch
 contraction data, GREEN; negative control (unsigned slotS) fails the slot relations H1/H2 but not the composite
 identity — the composite is sign-insensitive on its support, confirming §3.4(A).
 
-## Scope 3 (2026-09-12): odd-p Chern layer inputs over K (UNVERIFIED, probing)
+## Scope 3 (2026-09-12): odd-p Chern layer inputs over K — COMPILED
 
-`CupVanishRepOf` (`exists_cocycle_vanishing_onOf`, `cocycleClassK_eq_zero_of_mem_smallAnnOf(_pos)`,
-`cup_eq_zero_of_absToSub_eq_zeroOf`), `CupVanishIterateOf` (`pull_cup_eq_zero_of_supOf`,
-`prod_eq_zero_of_coverOf` with the ORDERED `List` product, since `TotalHOf K X` is not commutative),
-`CohomologyTotalNontrivialOf` (`one_ne_zero_cohZeroOf`, `nontrivial_totalHOf` + instance).
+| file | contents | evidence |
+|---|---|---|
+| `CupVanishRepOf` | K-twin of `CartanCoverRep`, `CupVanishSmallAnn`, `CupVanishCover`: `exists_cocycle_vanishing_onOf`, `exists_smallAnn_preimageOf`, `cocycleClassK_eq_zero_of_mem_smallAnnOf(_posOf)`, `cup_eq_zero_of_absToSub_eq_zeroOf`; closed `printedCupVanishTwoSet` | compiled line in 0912-003754-78332, landed 8f8fc1ab8 |
+| `CupVanishIterateOf` | K-twin of `CupVanishSub`, `CupVanishIterate`: `pull_cup_eq_zero_of_supOf`, `eq_zero_of_pull_opIncl_topOf`, `pull_cup_eq_zero_of_eq_supOf`, `exists_prod_vanishing_on_coverSupOf`, `prod_eq_zero_of_coverOf` with the ORDERED `List` product (`TotalHOf K X` is not commutative); closed `printedCupVanishCover` | compiled line in 0912-003754-78332, landed 9b557a363 |
+| `CohomologyTotalNontrivialOf` | `cocycleClassK_zero_injectiveOf`, `one_ne_zero_cohZeroOf`, `nontrivial_totalHOf` + instance; closed `printedCohomologyTotalNontrivial` | 0912-004700-28881 PROBE GREEN, landed 1e3038157 |
+
+Probe 0912-003754-78332 exited rc=1.  Of its modules, only CohomologyTotalNontrivialOf has no compiled line,
+and it was fixed at 1e3038157.  The bytes on main match every compiled md5 above.  The planned
+`CupVanishCoverOf` and `CupVanishSubOf` are not separate files.  Their theorems are
+`cup_eq_zero_of_absToSub_eq_zeroOf` (RepOf §3) and `pull_cup_eq_zero_of_supOf` (IterateOf), so separate
+files would only duplicate declarations.  The `*Of` files add no new definitions: `opTopIso` and
+`coverSup` carry no coefficients and are reused from `CupVanishIterate`.
 
 Also compiled this session: `CohomologyLHDegreewiseOf` (lix-coeff's file, handed over), no edits needed.
 
