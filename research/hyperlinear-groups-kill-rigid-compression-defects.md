@@ -28,7 +28,11 @@ Exactly one of two landmarks follows.
   - so is every free-lamp amalgam `G *_Gamma (Gamma x K)`
     (`weak-mf-groups-can-carry-rigid-defects`);
   - so is the Leavitt configuration, since its commuting factor, Thompson's
-    `V`, is nonabelian.
+    `V`, is nonabelian;
+  - so is the torsion-free Fournier--Facio group, whose defect contains its
+    simple factor (`fournier-facio-nonhyperlinear-via-rigid-defect`).
+    Conversely, a hyperlinear Fournier--Facio group would refute this claim
+    (`hyperlinear-rigid-defect-from-fournier-facio`).
 
   This gives `non-hyperlinear-group`, through the equivalence with
   `kt-centralizer-normalization-hs` and its existing route.

@@ -84,3 +84,18 @@ bookkeeping.
    exactly the open question, not a construction step.
 
 So the positive tensor model is on hold behind gates 2 and 3.
+
+**Two structural facts (2026-09-12).**
+
+- *Rigid defect.*  `Gamma <= G` is a rigid pair whose defect contains
+  `pi(S)` (`fournier-facio-group-carries-rigid-defect`).  So this claim implies
+  `hyperlinear-group-carries-nontrivial-rigid-defect`
+  (`hyperlinear-rigid-defect-from-fournier-facio`).  It refutes the hyperlinear
+  defect criterion for every rigid configuration at once, and is at least as
+  strong as a counterexample to `kt-centralizer-normalization-hs`.
+- *No universality.*  `P` contains a universal finitely presented torsion-free
+  group `U`.  If `pi` were injective on `U`, `G` would contain every
+  recursively presented torsion-free group, and this claim would be equivalent
+  to their joint hyperlinearity.  The construction does not give this.
+  Hull's Theorem 7.1(b) makes `pi` injective only on a finite ball, and
+  injectivity on `S` comes from simplicity, which `U` lacks.
