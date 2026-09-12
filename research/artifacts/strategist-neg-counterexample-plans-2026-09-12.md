@@ -154,3 +154,55 @@ plan asks for a partial converse, in two steps.
   produce the counterexample directly.
 - **Cost.** (U1) is ring theory with no group input. That is cheap to test, and a literature
   counterexample would end it fast.
+
+## 3. Plan 2 (rank 2): diagonal covariance on the two-root defect piece
+
+### 3.1 Statement
+
+**Claim** `leavitt-two-root-defect-piece-forces-covariant-diagonal` (OPEN). Let `R = L_(F_2)(1,2)` and take
+a characteristic-two rank model of `R^x` violating the two-root identity. On the defect piece
+`Q = im(N'_23 N'_12)` of `leavitt-two-root-defect-piece-carries-a-nontrivial-rank-model`, or on some
+nested piece `Q_k`, the model carries a family of idempotents `e_w`, indexed by cylinders `w`, such that:
+- `e_(w0) + e_(w1) = e_w`, with the two summands orthogonal;
+- for `v` in `V` intersected with the nine-leaf subgroup, acting by prefix replacement on `w`,
+  `sigma(v) e_w sigma(v)^-1 = e_(v.w)`;
+- `rk(e_w) > 0` for some proper `w`.
+
+### 3.2 Why it is decisive
+
+- **The obstruction.** By `thompson-v-cantor-system-has-no-covariant-rank-model`, no covariant family of
+  this kind exists: all proper cylinders then share one rank `c`, and `c = 2c`.
+- **So the defect vanishes.** The claim contradicts `delta > 0`, which gives `N_23 N_12 = 0` in every
+  char-2 rank model. By corner locality that is `leavitt-el3-rank-models-over-finite-fields-are-trivial`
+  in characteristic two.
+- **Binary payoff.** `R^x` is not `F_2`-linear sofic, the first non-linear-sofic group.
+- **With Plan 1's ternary analogue** it would also feed the ternary counterexample route.
+
+### 3.3 First lemma to try
+
+For a pair of disjoint cylinders `(w, w')` with nonempty complement, put `V_(w,w')` = the span of the
+images of `sigma(1 + s_w y t_(w')) - 1` over `y` in `R`.
+- **Covariance.** `sigma(v) V_(w,w') sigma(v)^-1 = V_(vw, vw')` exactly, since
+  `v s_w y t_(w') v^-1 = s_(vw) y t_(vw')` when `v` replaces prefixes.
+- **Refinement.**
+  - `V_(w0,w') <= V_(w,w')`, because the root group at `(w0,w')` sits inside the one at `(w,w')`.
+  - `V_(w,w') <= V_(w0,w') + V_(w1,w')`, because `s_w y t_(w') = s_(w0)(t_0 y)t_(w') + s_(w1)(t_1 y)t_(w')`.
+    The two terms have product zero, so `N_(A+B) = N_A + N_B + N_A N_B`.
+- **If these spans have well-defined ranks** (a finiteness issue: joins of countably many idempotents need
+  not exist in a rank ultraproduct), transitivity gives them one common rank `c`. The inclusions then
+  force `rk(V_(w0,w') cap V_(w1,w')) = c`, so the refined images coincide up to rank zero.
+
+What remains:
+- **Corner locality.** Triviality holds iff `rk(n_23(s_0) n_12(t_0)) = 0`. Combine it with coinciding
+  images, and the dual statement for kernels, to show that the defect product has rank zero.
+- **Idempotents.** Alternatively, produce the orthogonal idempotents `e_w` from the image spaces on `Q`.
+  Coinciding images alone are not orthogonal, so orthogonality is the missing input.
+
+### 3.4 What could kill it
+
+- **The join issue.** It can kill the span ranks. Replace spans by finitely generated sub-root-groups,
+  and check that covariance survives.
+- **The Toeplitz Kazhdan group.** `kazhdan-groups-without-fd-reps-violate-two-root-identity` violates the
+  identity. Any mechanism proving the identity must fail there. Its coefficient algebra `C(X,F_2) ⋊ Z`
+  has no Leavitt halving, so check that the argument really uses `s_0, s_1`.
+- **The adversary.** Ask `w4-r4-adversary` to attack the mechanism.
