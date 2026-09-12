@@ -110,17 +110,21 @@ is trivial.
       flags in `M` are not needed.
 - **Bounded-degree level content (lane `gk-rk-composition`, edfa936ea7).**
   - `dyadic-involution-profiles-kill-bounded-degree-content`, established. It is a finite-group
-    statement about a level group `SL_N(F_2)` with `N >= 4(D+1)`. Suppose the restriction is an
-    orthogonal sum of trivial, projective and strict-polynomial pieces `F(V_N, V_N*)` of degree
-    at most `D`, and the involution profile satisfies `f(2r) = f(r)`. Then every polynomial piece
-    is trivial.
+    statement about a level group `SL_N(F_2)`. Suppose the restriction is an orthogonal sum of
+    trivial, projective and strict-polynomial pieces `F(V_N, V_N*)` of degree at most `D`, and
+    the involution profile satisfies `f(2r) = f(r)` at `D + 1` integers `1 <= r <= N/4`. Then
+    every polynomial piece is trivial.
     - Proof: on `F(V_N, V_N*)` the displacement of a rank-`r` involution is a polynomial in `r`
       of degree at most `D` with value `0` at `r = 0`, and dyadic invariance at `D + 1`
       integers kills it.
-  - Proposition 2 supplies the identity for every char-two model of `L_K(1,2)^x`, and so does the
-    diagonal of any flag above. So natural, dual, natural-plus-dual, adjoint `V (x) V*`, and
-    bounded tensor, exterior or symmetric content never occur as nonzero orthogonal level-group
-    pieces, including as graded pieces of such flags.
+  - Proposition 2 supplies the identity for `1 <= r < N/4` for every char-two model of
+    `L_K(1,2)^x`, and so does the diagonal of any flag above. So at levels `N >= 4(D + 2)`,
+    natural, dual, natural-plus-dual, adjoint `V (x) V*`, and bounded tensor, exterior or
+    symmetric content never occur as nonzero orthogonal level-group pieces, including as graded
+    pieces of such flags.
+  - Scope correction (1969803707): the first version used the endpoint `r = N/4` with
+    `N >= 4(D+1)`. Proposition 2 fails there, since the corner conjugacy needs a trivial Jordan
+    summand (lane `gk-l-gate-neg`). The bound is now `N >= 4(D + 2)`.
   - Projective pieces, the Steinberg module included, have profile `1/2` and survive with free
     content, as do pieces whose degree grows with `N`.
   - Artifact `research/artifacts/level-group-polynomial-content-2026-09-12.md`.
