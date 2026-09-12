@@ -19,12 +19,18 @@ branch of `redPow`, so no `OddPInstab*` file is needed.
   `NaturalCocycleOp` (`op`, `natural`, `cocycle`), R4 `NaturalCocycleOp.class_add_coboundary`, `.classMap`,
   `.classMap_mk`, `.classMap_natural`.
 
+* `CharClass/OddPShufflePrimRoot.lean` — probe 0912-114940-79720 (lix-m, acn112 slot 0, base 924105b04): PROBE GREEN,
+  `BUILT`, 2165 jobs, no errors, `#audit_axioms` classical only.  Bytes on main at 18724c88c (landed unverified
+  with the probe launch; same bytes as the green record).  Declarations listed under the model-test entry below.
+
 ## AUTHORED, UNVERIFIED
-* `CharClass/OddPRedPow.lean` (on main at 1a447ee02; imports lx-diag's `OddPCochain`, itself unverified): `oddDOp`,
-  `oddDClass` at every index `j ≤ pq` with `oddDClass_mk`, `oddDClass_natural`; `redPow_index_le`, `redPow_deg`,
-  R6 `redPow p hp q i : Hmod (ZMod p) X q → Hmod (ZMod p) X (q + 2 * i * (p - 1))`, R7 `redPow_eq_zero_of_lt`,
-  R8 `redPow_mk`, `pull_cohCast_redPow`, `redPow_natural`.  One probe once lx-diag's chain is green.
-* `CharClass/OddPShufflePrimRoot.lean` (landing unverified now; probe on lix-m launched with the landing):
+* `CharClass/OddPRedPow.lean` (imports lx-diag's `OddPCochain`, itself unverified): `oddPRedPow_neZero` (local instance
+  `NeZero p` from `Fact p.Prime`, so `oddD`'s `[NeZero p]` resolves without relying on the pin's instance path),
+  `oddDOp`, `oddDClass` at every index `j ≤ pq` with `oddDClass_mk`, `oddDClass_natural` (operation passed
+  explicitly); `redPow_index_le`, `redPow_deg`, R6 `redPow p hp q i : Hmod (ZMod p) X q → Hmod (ZMod p) X
+  (q + 2 * i * (p - 1))`, R7 `redPow_eq_zero_of_lt`, R8 `redPow_mk` (through `congrArg cohCast`, no trailing
+  `rfl`), `pull_cohCast_redPow`, `redPow_natural`.  One probe once lx-diag's chain is green.
+* σ_r layer (GREEN above), for the record of what it contains:
   permutations `mulPermFun`, `mulPermFun_injective`, `mulPerm (p r) (hr : Nat.Coprime r p)`, `@[simp] mulPerm_val`,
   `finRotate_pow_val`, `finRotate_pow_eq_of_mod_eq`, `mulPerm_mul_finRotate_pow` (`M*R^s = R^(rs)*M`),
   `mulPerm_mul_finRotate` (`M*R = R^r*M`), `mulPerm_inv_mul_finRotate_pow` (`M⁻¹*R^r = R*M⁻¹`),

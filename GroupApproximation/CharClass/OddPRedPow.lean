@@ -11,6 +11,7 @@ For a cocycle `u ∈ C^q(X; F_p)` the cochain operation `D_j(u) ∈ C^{pq−j}(X
 `2i > q`.
 
 * `oddDOp` — `D_j` as a `NaturalCocycleOp`.
+* `oddDClass` — its class map at every index `j ≤ pq`, with `oddDClass_mk` and `oddDClass_natural`.
 * `redPow_deg`, `redPow_index_le` — the degree identity and the index bound.
 * `redPow` — the reduced power; `redPow_eq_zero_of_lt` — instability below degree `2i`.
 * `redPow_mk` — the value on the class of any cocycle representative.
@@ -27,6 +28,13 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
 namespace GroupApproximation.CharClass
 
 noncomputable section
+
+/-- A prime is nonzero, as the instance `oddD` asks for.  Local, so that the reduced powers need only
+`[Fact p.Prime]` whatever instance path the pin provides. -/
+theorem oddPRedPow_neZero (p : ℕ) [Fact p.Prime] : NeZero p :=
+  ⟨(Fact.out : p.Prime).ne_zero⟩
+
+attribute [local instance] oddPRedPow_neZero
 
 /-- **`D_j` as a natural cocycle operation**, at every index `j ≤ pq`. -/
 def oddDOp (p : ℕ) [Fact p.Prime] (hp : Odd p) (q j : ℕ) (hj : j ≤ p * q) :
@@ -49,13 +57,13 @@ theorem oddDClass_mk (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q j
     (hu : cochainCoboundary (ZMod p) X q u = 0) :
     oddDClass p hp q j hj (cocycleClassK (ZMod p) X q u hu)
       = cocycleClassK (ZMod p) X (p * q - j) (oddD p q j u) (oddD_cocycle p hp q j hj u hu) :=
-  NaturalCocycleOp.classMap_mk _ X u hu
+  NaturalCocycleOp.classMap_mk (oddDOp p hp q j hj) X u hu
 
 /-- **Naturality of `oddDClass`.** -/
 theorem oddDClass_natural (p : ℕ) [Fact p.Prime] (hp : Odd p) {X Y : TopCat.{0}} (f : X ⟶ Y)
     (q j : ℕ) (hj : j ≤ p * q) (x : Hmod (ZMod p) Y q) :
     pull f (p * q - j) (oddDClass p hp q j hj x) = oddDClass p hp q j hj (pull f q x) :=
-  NaturalCocycleOp.classMap_natural _ f x
+  NaturalCocycleOp.classMap_natural (oddDOp p hp q j hj) f x
 
 /-- The index of `P^i` in degree `q` is at most `pq`. -/
 theorem redPow_index_le (p q i : ℕ) : (q - 2 * i) * (p - 1) ≤ p * q :=
@@ -97,8 +105,10 @@ theorem redPow_mk (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q i : 
           (cocycleClassK (ZMod p) X (p * q - (q - 2 * i) * (p - 1))
             (oddD p q ((q - 2 * i) * (p - 1)) u)
             (oddD_cocycle p hp q ((q - 2 * i) * (p - 1)) (redPow_index_le p q i) u hu)) := by
-  rw [redPow, dif_pos h, NaturalCocycleOp.classMap_mk]
-  rfl
+  rw [redPow, dif_pos h]
+  exact congrArg (cohCast (redPow_deg p q i h))
+    (NaturalCocycleOp.classMap_mk (oddDOp p hp q ((q - 2 * i) * (p - 1)) (redPow_index_le p q i))
+      X u hu)
 
 /-- Pullback commutes with a degree cast. -/
 theorem pull_cohCast_redPow {K : Type} [CommRing K] {X Y : TopCat.{0}} (f : X ⟶ Y) {m m' : ℕ}
@@ -121,6 +131,8 @@ end GroupApproximation.CharClass
 
 open GroupApproximation.CharClass
 
+#audit_axioms oddDClass_mk
+#audit_axioms oddDClass_natural
 #audit_axioms redPow_deg
 #audit_axioms redPow
 #audit_axioms redPow_eq_zero_of_lt
