@@ -145,3 +145,114 @@ regular-ring proof of L1 excludes every regular homomorphism. With `sylvester-ra
 - `three-address-binary-injective-rules-are-balanced` (E✓, two proof routes).
 - `single-patch-ternary-rules-reduce-to-linear-strictness` (E, pending w3-vf-nonlinear).
 - `three-point-decoder-memory-injective-ca-are-surjective` (O) is not wired into any route.
+
+## 4. Near-misses, ranked
+
+Ranked by decisiveness, then by how specific the remaining lemma is (a technical lemma rather than a known
+open problem restated).
+
+1. **C1, two lemmas from a Gottschalk counterexample.**
+   - **(K):** `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`. Every Sylvester matrix rank
+     function on F_3[G_3] has rk(1 − [z]) = 0. The char-3 Sylvester gate of V implies it.
+   - **U1b:** `anti-central-weakly-finite-images-carry-rank-functions`. A nonzero weakly finite quotient W of S_-,
+     with all K_0 states faithful on idempotent matrices and G_3 embedded with z ↦ −1, carries a Sylvester
+     matrix rank function. The certificate form is `anti-central-triangular-certificates-flatten-to-minors`.
+   - **Why this ranks first:** U1b has no group input.
+   - **Kill test:** a W with the rank condition but no rank function. Such a W needs a non-idempotent triangular
+     step at a mixed minor (c1b9da39b).
+2. **L3, one lemma from `non-linear-sofic-group`.** `cohn-coefficient-el3-rank-models-satisfy-two-root-identity`,
+   equivalently that EL_3(C_2) has no injective characteristic-two rank model (013740e0d). It is itself fed by
+   `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`. The route out is landed here.
+3. **L1, one lemma from the landmark, both premises verified.** The strict submultiplicativity deficit θ < 1.
+   Section 2 lists what the lemma can no longer use. The live input is at least two letters outside one locally
+   finite subgroup, the natural candidate being the Toeplitz quarter defect of Fock compressors.
+4. **C3, one lemma from a counterexample.** The ternary swap corner. Equivalent forms:
+   - the nonpositive unit class;
+   - failure of lifted-trace relative positivity.
+   It is the one-lemma form of C1.
+5. **C2, two lemmas.** The binary Sylvester gate plus the binary state upgrade, as C1 with (K) replaced by
+   rk(D) = 0.
+6. **L4 and L4′, one lemma.** The Sylvester gates of V, in characteristic 2 and in characteristic 3. Either makes
+   V nonsofic. L4′ also gives (K).
+7. **C5, one lemma per host.** A stable-finiteness failure of one algebra. None of these has a candidate.
+8. **Positive side.** Maximal Bernoulli Rokhlin entropy is one lemma from the goal, and a known hard problem.
+   Every other positive route is a restatement.
+
+No new open claim is needed for a near-miss. Each remaining lemma is already a node. The gaps were three missing
+routes out of existing nodes, landed in Section 5.
+
+## 5. Routes landed by this synthesis
+
+- **`non-linear-sofic-via-cohn-el3-two-root-identity`.** Requires the Cohn claim, the reversed-root identity, the
+  matrix-unit criterion, extraction, and no unital rank model. Target: `non-linear-sofic-group`.
+- **`anti-central-rank-functions-from-certificate-flattening`.** Requires the flattening claim and the certificate
+  criterion. Target: (U1).
+- **`non-linear-sofic-via-thompson-v-ternary-augmentation`.** Requires the char-3 V gate. Target:
+  `non-linear-sofic-group`.
+
+## 6. Load-bearing nodes and roster coverage
+
+The five open nodes whose resolution settles the most chains:
+
+| node | settles | roster (RULES.md WAVE 4–5) | gap |
+|---|---|---|---|
+| `thompson-v-ternary-rank-functions-are-augmentation`, with binary twin `thompson-v-has-no-nontrivial-f2-rank-model` | C1 (K), V nonsofic, L4′; if false, the E⋊V corner witnesses die | w5-c3-signed-thompson (landed the equivalence), w5-v-infinite-order (binary) | No lane is named for the char-3 V gate itself. w4-gate-v2's torsion theorem covers odd p ≠ char only, so 3-cycles over F_3 are untreated. |
+| `anti-central-weakly-finite-images-carry-rank-functions` (U1b), with the flattening claim | C1 (U1); with (K), a counterexample | w4-upg-state, w4-upg-kill, w5-red-upg; binary twin w5-binary-upg | covered |
+| `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, with ternary twin `ternary-disjoint-cylinder-defects-strictly-submultiplicative` | L1, L1′, and L2 via regularity | w4-sub-*, w5-c3-submult, w5-c3-descent | See the three gaps below this table. |
+| `sylvester-rank-functions-on-leavitt-units-kill-two-root-defect` | L2, C2 | w4-tensor-rankfn, w5-binary-upg | `sylvester-rank-functions-on-leavitt-units-are-regular` has no route out and no named owner |
+| `ternary-anti-invariant-swap-corner-is-full` (fan-out 7) | C3, and through Theorem E everything in C1 | implicit through C1 | none; attack it through C1's two lemmas |
+
+**SUB gaps.**
+- All three SUB lanes ended at firewalls.
+- No lane is assigned to the one live input class: multi-letter relations such as V's multiplication table,
+  disjoint commutation of depth-changing letters, or the Fock compressors' Toeplitz quarter.
+- The ternary twin has no route out, and its descent premises (char-3 defect gap, near-minimal multiplicativity)
+  are not on main.
+
+**Positive-side gap.** `bernoulli-rokhlin-entropy-maximal-for-every-group` has fan-out 7 and no wave-4 or wave-5
+lane since w3-inf-b finished.
+
+## 7. Duplicates, contradictions and wiring defects
+
+- **No two-sided established refutation.** At tip d7f44c4644, all 419 `refuted_by` pairs were checked against
+  first body markers, and none has both ends ESTABLISHED.
+- **Invalidated goal routes.** The goal's two INVALIDATED routes are window entropy deficit and flip lift, both
+  invalidated inline. That matches the steward.
+- **Roots without routes.** `kun-thom-wreath-lamp-quotient-nonsurjunctive` has no incoming route.
+  `higman-group-nonsurjunctive` has none either, and is missing from the goal's `refuted_by`. That is the
+  steward's edit.
+- **Over-strong requirement.** `ternary-counterexample-from-rank-triviality-and-state-upgrade` requires the
+  all-fields, all-n EL_3 triviality claim, where only (F_3, n = 2) is used. It is superseded by the
+  Sylvester-form route, and its author could mark it so.
+- **Duplicate names for the binary gate.** The same gate, or a sufficient form of it, has at least 15 names:
+  - equivalent restatements: `rank-models-of-el3-satisfy-the-two-root-identities`, `leavitt-el3-rank-models-over-finite-fields-are-trivial`
+    (binary instance), `leavitt-corner-deviations-vanish-along-levels`, `rank-four-isometry-relations-give-corner-cuntz-family`,
+    `leavitt-two-root-defect-piece-forces-covariant-diagonal`, `leavitt-unit-linear-soficity-is-ring-rank-approximability`
+    (collapsed), `el3-rank-models-factor-through-ring-rank-models` (class form), `f2-linear-sofic-groups-kill-rigid-compression-defects`;
+  - negations: `binary-leavitt-unit-group-is-f2-linear-sofic`, `binary-leavitt-units-carry-nonaugmentation-rank-function`;
+  - stronger forms: `sylvester-rank-functions-on-leavitt-units-kill-two-root-defect`;
+  - sufficient forms: `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, `some-commutant-element-distorts-defect-range-rank`,
+    `cohn-coefficient-el3-rank-models-satisfy-two-root-identity`, `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`,
+    `thompson-v-has-no-nontrivial-f2-rank-model`.
+  - Consequences: 13 of the routes into `non-linear-sofic-group` are restatements of one open gate, so counting
+    routes overstates progress. Treat them as one front.
+- **Duplicate forms of (U1).** Five names:
+  - `ternary-anti-central-states-force-nontrivial-rank-models` (rank-model form, superseded);
+  - `ternary-anti-central-states-give-sylvester-rank-functions` (Sylvester form);
+  - `anti-central-triangular-certificates-flatten-to-minors` (certificate form);
+  - `anti-central-weakly-finite-images-carry-rank-functions` (U1b);
+  - `rank-condition-rings-carry-sylvester-rank-functions` (general).
+  All are now wired into (U1).
+- **Established premises with no verdict line on their proof routes, in decisive chains:**
+  - `anti-central-rank-condition-gives-weakly-finite-image` (C1, U1a);
+  - `binary-complement-corner-rank-functions-pull-back-to-units` (C2);
+  - `ternary-leavitt-swap-problem-splits-at-central-involution` (C3);
+  - `near-minimal-defect-ranges-are-rank-faithful-for-the-commutant` (L1′; its stronger twin is verified);
+  - `binary-leavitt-unit-group-is-simple` (EL_3 ring rigidity route);
+  - `leavitt-unit-group-carries-nontrivial-rigid-defect` (rigid compression route);
+  - `strict-automata-live-on-canonical-table-groups` (unbalanced-table route);
+  - `injective-ca-random-order-transport-identity` (random-order transport).
+  None is known wrong. The first two sit in the counterexample chains and should be verified first.
+- **Name drift.** Reports and lead messages cite `binary-three-address-injective-automata-have-balanced-rules`. Main
+  has `three-address-binary-injective-rules-are-balanced`, with two independent proof routes from w3-bal-design
+  and w4-bal-census, both verified.
