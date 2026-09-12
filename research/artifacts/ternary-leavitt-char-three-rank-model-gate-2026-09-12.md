@@ -205,3 +205,68 @@ be the joint eigen-idempotents of `σ(T_3)`, `N = σ(x_12(1)) − 1`, and `A = �
   weight-flipping part.
 - **What a construction must satisfy.** It must be free modulo `z` on reflection tori (Theorem 4.1) and far
   from monomial (`monomial-rank-models-are-hamming-models`, since `G` is nonsofic).
+
+## 7. Scope: abstract Sylvester rank functions
+
+Answers the (U2) question of `ternary-anti-central-states-force-nontrivial-rank-models`. This is a scope
+extension, and its verification is requested.
+
+An *abstract rank algebra* is an `F_3`-algebra `M` with a Sylvester matrix rank function `ρ` that is positive
+on nonzero idempotents, as in Section 2 of `ternary-corner-state-sources-2026-09-12.md`. An *abstract rank
+model* of a group `H` is a homomorphism `H -> M^x` into one. Rank ultraproducts of matrix algebras are
+abstract rank algebras, so every abstract statement specializes to Sections 2–5.
+
+The axioms give, as used in Theorem 2.1(c) of that artifact:
+- (F1) `ρ` is additive on orthogonal idempotents;
+- (F2) `ρ(u a u^−1) = ρ(a)` for units `u`, since `ρ(ab) <= min(ρ(a), ρ(b))`;
+- (F3) for an idempotent `f` with `ρ(f) > 0`, `x -> ρ(x)/ρ(f)` on matrices over `fMf` is a Sylvester matrix
+  rank function, positive on nonzero idempotents.
+
+**Proposition 7.1.** For abstract rank models:
+- (a) conditions 1, 2, 3 and 6 of Theorem 2.1 are equivalent, and 4 ⟺ 5 ⟹ 3;
+- (b) Corollary 3.1 holds;
+- (c) Theorem 4.1 and Corollary 4.2 hold;
+- (d) Proposition 5.1(a)–(b) hold for every homomorphism from `G` into the units of any `F_3`-algebra, with no
+  rank function, and 5.1(c) holds for abstract anti-central models.
+
+*Proof.*
+- (a) Lemma 1.1, (2) ⟹ (3), (4) ⟹ (5) and (5) ⟹ (3) are group theory plus the injectivity of `ι` and
+  `π∘ι`. In (1) ⟹ (6), `f = 2(1 − σ(z))` is a nonzero idempotent, so `ρ(f) > 0` and (F3) applies.
+- (b) Theorem 2.1 of `ternary-corner-state-sources-2026-09-12.md` is stated for abstract rank algebras. Apply
+  it with `Γ = G`, together with (a).
+- (c) The half split uses (F1), (F2) and `ρ(1) = 1`. The atom computation uses (F1). The inversion is
+  arithmetic.
+- (d) Every step of 5.1(a)–(b) is a ring identity:
+  - joint eigen-idempotents exist because `2` is invertible;
+  - components are cut out by commuting with `σ(τ_11)` and `σ(τ_0 τ_10)`;
+  - `N^3 = 0` because `(1 + N)^3 = 1 + N^3` in characteristic three.
+
+  5.1(c) is (c) at the code `(0, 10, 11)`. QED
+
+**Not covered.**
+- **(6) ⟹ (4)**, from anti-central models of `G` to models of `PG`. Lemma 1.2 uses Kronecker products at
+  each matrix level, multiplicativity of rank under them, and Jordan forms. The lane has no tensor-square
+  construction for abstract rank functions, so this transfer stands only for rank ultraproducts.
+- **Remark 3.4's equivalence** of "no" with the two identities. It cites
+  `matrix-unit-rank-models-extract-ring-rank-models`, whose scope this section does not audit.
+
+**Corollary 7.2 (rank functions are models).** Let `N` be a Sylvester matrix rank function on
+`S_- = eps_- F_3[G]` with `N(eps_-) = 1`. Then:
+- `ker N = {a : N(a) = 0}` is a two-sided ideal;
+- `N` descends to `S_-/ker N`, which is an abstract rank algebra;
+- `g -> eps_-[g] + ker N` is an abstract anti-central rank model of `G`.
+
+*Proof.*
+- **The ideal.** `N(ab) <= min(N(a), N(b))`, and `N(a + b) <= N(a) + N(b)` because `a + b` is the product of
+  `(1 1)`, `diag(a, b)` and `(1 1)^T`.
+- **Descent.** A matrix with entries in `ker N` is a sum of terms `E_ij x_ij`, each of rank at most
+  `N(x_ij) = 0`. So `N` is constant on classes, and positive on every nonzero class.
+- **The model.** `eps_-[g]` is a unit of `S_-` with inverse `eps_-[g^−1]`, and `eps_-[z] = −eps_-`. Also
+  `N(2 eps_-) = 1`, so `−1 != 1` in the quotient. QED
+
+**Consequence for the state upgrade.**
+- (U1) alone gives an abstract anti-central rank model (Corollary 7.2), which is the same as a nontrivial one
+  (Proposition 7.1(a)). So `ternary-counterexample-from-rank-triviality-and-state-upgrade` can skip (U2),
+  provided the "No" branch is proved in the abstract form: every abstract rank model of `G` is trivial.
+- That abstract "No" is stronger than the matrix form. The landed triviality results for matrix-unit,
+  unipotent-valued and flag-preserving models need their own scope check, which this section does not do.

@@ -30,3 +30,18 @@ non-linear-soficity.
 - 2026-09-12 `w3-strategist-neg`: proposed in artifact Section 2. First lemma: a `K_0`-order-embedding
   into a regular ring, for instance by universal localization. First kill test: a ring with the rank
   condition but no Sylvester matrix rank function.
+- 2026-09-12 `w3-gate-char3`: (U2) is skippable on the gate side, with one exception
+  (`research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md`, Section 7; scope extension,
+  verification requested).
+  - **What holds abstractly.** These hold for any `F_3`-algebra with a Sylvester matrix rank function positive
+    on nonzero idempotents:
+    - the equivalence of z-moving, nontrivial, injective and anti-central models of `G`;
+    - the corner kill;
+    - the Haar law on the signed diagonal;
+    - the torus normal form, whose first two parts need no rank function at all.
+  - **Not covered.** The transfer from anti-central models of `G` to models of `PG` uses Kronecker products
+    and Jordan forms. This claim's route does not use it.
+  - **(U1) gives a model directly.** A rank function `N` on `S_-` with `N(eps_-) = 1` is itself an abstract
+    anti-central model, in `S_-/ker N` (Corollary 7.2). So (U1) plus the abstract "No" branch suffices.
+  - **The price.** "No" must then be proved for abstract rank algebras, which is stronger than the matrix
+    form. The landed triviality nodes need their own scope check, not done here.

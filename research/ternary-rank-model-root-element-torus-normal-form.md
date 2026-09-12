@@ -11,7 +11,7 @@ artifacts:
 
 **ESTABLISHED** (proof in the artifact, Section 5). `gk-vf-linear` independently re-derived it, PASS
 with no corrections (Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`).
-Verification by `w3-vf-linear` is also requested. Let `R = L_(F_3)(1,2)` and `G = R^x = GL_3(R) = EL_3(R)`, identified through the prefix code
+`w3-vf-linear` passed it as well (Section 15 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`). Let `R = L_(F_3)(1,2)` and `G = R^x = GL_3(R) = EL_3(R)`, identified through the prefix code
 `(0, 10, 11)`, so that `x_12(1) = 1 + S[0]T[10]`. The constant sign matrices form
 `T_3 = <τ_0, τ_10, τ_11>`, with `τ_0 τ_10 τ_11 = z = −1`.
 
@@ -26,5 +26,11 @@ mapping each `P_ε` to `P_(ε')`, where `ε'` flips the first two signs. Then:
 
 The proof uses only the three reflections and `x_12(1)^3 = 1`. Projective content of level groups violates
 `A^2 = 0` while meeting the Haar law, so finite level groups cannot force the identity.
+
+**Scope** (artifact Section 7; scope extension, verification requested).
+- **No rank function needed.** The first two bullets are ring identities. They hold for every homomorphism
+  from `G` into the units of any `F_3`-algebra.
+- **Any rank function.** The third bullet holds for any Sylvester matrix rank function positive on nonzero
+  idempotents.
 
 Proof: route `ternary-root-element-torus-normal-form-proof`.

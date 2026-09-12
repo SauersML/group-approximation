@@ -12,7 +12,7 @@ artifacts:
 
 **ESTABLISHED** (proof in the artifact, Sections 1–2). `gk-vf-linear` independently re-derived it, PASS
 with no corrections (Section 53 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`).
-Verification by `w3-vf-linear` is also requested. Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = −1`, `PG = G/<z>` and `ι(g) = s0 g t0 + s1 t1`.
+`w3-vf-linear` passed it as well (Section 11.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`). Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = −1`, `PG = G/<z>` and `ι(g) = s0 g t0 + s1 t1`.
 A *rank model* is a homomorphism into the units of a rank ultraproduct of matrix algebras over fields of
 characteristic three. The following are equivalent:
 
@@ -34,5 +34,12 @@ Consequences:
 - Equivalently, a solution of the ternary corner equation leaves `G` and `PG` without any nontrivial
   characteristic-three rank model, so neither is `F_3`-linear sofic.
 - The open gate is the single question `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`.
+
+**Scope** (artifact Section 7; scope extension, verification requested).
+- **What holds abstractly.** Conditions 1, 2, 3 and 6 are equivalent, and the consequence for the ternary
+  corner holds, for homomorphisms into any `F_3`-algebra with a Sylvester matrix rank function positive on
+  nonzero idempotents. Conditions 4 and 5 imply them there.
+- **Matrix-only.** The implication from 6 to 4 uses Kronecker products and Jordan forms, so it is established
+  only for rank ultraproducts of matrix algebras.
 
 Proof: route `ternary-leavitt-rank-models-move-z-proof`.

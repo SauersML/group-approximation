@@ -12,7 +12,7 @@ artifacts:
 
 **ESTABLISHED** (proof in the artifact, Section 4). `gk-vf-linear` independently re-derived it, PASS
 with no corrections (Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`).
-Verification by `w3-vf-linear` is also requested. Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = −1`, and let `H = E ⋊ V` be the signed Thompson
+`w3-vf-linear` passed it as well (Section 15 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`). Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = −1`, and let `H = E ⋊ V` be the signed Thompson
 group of `signed-thompson-algebra-is-odd-measure-crossed-product`, with
 `F_3[H] eps_- ≅ C(M_-, F_3) ⋊ V`.
 
@@ -31,5 +31,9 @@ Consequences:
   `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model` must carry this law.
 - It recovers the corner exclusion of `anti-central-rank-models-kill-ternary-corner-witnesses` on subgroups
   containing `H`: the cylinder idempotent `q_0` has rank `1/2 < 1`.
+
+**Scope** (artifact Section 7; scope extension, verification requested). The proof uses only additivity on
+orthogonal idempotents, invariance under conjugation, and normalization. So the statement holds for any
+`F_3`-algebra with a Sylvester matrix rank function positive on nonzero idempotents.
 
 Proof: route `anti-central-haar-diagonal-proof`.
