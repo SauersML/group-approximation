@@ -9,6 +9,7 @@ distinct_from:
   injective-binary-automata-are-stably-formalizable: that allows identity tracks with Z-equivariant representatives and covers strict automata over every group; this allows regrouping and covers only bijective automata over Z.
 artifacts:
   - research/artifacts/partitioned-and-regrouped-formalizability-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **OPEN.** For every bijective automaton `tau` on `{0,1}^Z` there is `m >= 1` such that `tau`,

@@ -5,6 +5,7 @@ kind: claim
 title: Every reversible cellular automaton over the integers is, after grouping cells into blocks, a translation composed with block permutations along two translated partitions
 artifacts:
   - research/artifacts/partitioned-and-regrouped-formalizability-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **OPEN here, as an imported statement not read from source.** Let `A` be finite and `F` a bijective

@@ -34,6 +34,7 @@ not by rereading the author's argument. Nothing was run.
 | `4443cada1` (gk-free-wild) | `shear-designs-are-strict-iff-their-key-automaton-is`, `private-origin-rows-force-permutation-encoders`, `vh-lattices-surjunctive-when-a-factor-maps-faithfully`, Corollary H, the mixed-bigon scope correction | PASS (Section 28) |
 | `2740990165` (gk-fz-decompose) | `subset-stable-marker-flips-are-virtually-formalizable`, `marker-involution-over-rationals-is-not-virtually-formalizable`, route `virtual-formalizability-reduces-surjunctivity-to-kaplansky` | PASS (Section 29) |
 | `d2fb445ab`, `91ef83465` (gk-fz-counter) | `finite-group-formalizability-equals-equivariant-automorphism`, `formalizable-pairs-restrict-to-finite-quotients`, `order-three-equivariant-plane-automorphisms-are-linear`, `z3-level-preserving-automorphisms-rotate-uniformly` | PASS (Section 30) |
+| `77278f6fd` (gk-fz-kari) | partition lemma F1 and F2, route `kari-words-give-virtual-formalizability-over-integers`, the re-derivations of Sections 2.1–2.4 | PASS (Section 31) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1218,6 +1219,42 @@ directions work.
   within the theorem's scope, not only its HNN corollary. That theorem was passed by gk-verify-pos.
 - *Consequences.* The last bullet is honest: on virtually simple lattices the filter excludes
   nothing, because `F_V ∩ Gamma_s != 1` and embedding a finite-index subgroup already suffices.
+
+## 31. Kari-type blocks and regrouping (`77278f6fd`, gk-fz-kari): PASS
+
+Both claims are OPEN and the import is flagged as unread from source, so nothing here is
+decision-level. I did not check Kari 1996 either.
+
+**Partition lemma F1.** `h` is defined on `R x L` by choosing preimages, so well-definedness is
+exactly the displayed chain: `rho(a) = rho(a')` gives `f(a,b) = f(a',b)`, that is `lambda(b)(a')`,
+and `lambda(b) = lambda(b')` turns it into `f(a',b')`.
+
+**F2.** From the inverse `G(y)_i = g(y_(i-1), y_i)` applied to a configuration with
+`x_(i-1) = c`, `x_i = a`, `x_(i+1) = d`, we get `a = g(f(c,a), f(a,d)) = g(lambda(a)(c), rho(a)(d))`.
+So the pair `(lambda(a), rho(a))` determines `a`.
+- The missing counting step `|A| = |L| |R|` is correctly flagged; without it the two maps are only
+  injective, respectively factoring, not bijective.
+
+**Route validity, granting the import.**
+- *Aligned blocks.* After regrouping along `mZ`, a block permutation acting independently on each
+  block is sitewise on the regrouped alphabet `{0,1}^m`. For `m >= 2` that is `n >= 2`, so Theorem 4.1
+  part 1 applies with no identity track. A one-bit sitewise permutation over `F_2` is the identity or
+  the complement, both affine.
+- *Offset blocks.* Conjugating by translation by the offset carries the offset partition to the
+  aligned one, and in the regrouped picture a translation by `j` permutes tracks and shifts some of
+  them by `m`. That is an `mZ`-equivariant linear automaton with a linear inverse, hence formal.
+- *Composition.* Formal pairs compose.
+
+**Sections 2.1–2.4.**
+- 2.1 matches the landed route, checked in Section 29.
+- 2.2 re-derives the shear condition: for `g = hc`, `gs` lies in `Hc` iff `c s c^-1` lies in `H`, iff
+  `s` lies in `H` by normality. Same computation as Section 29, and it cites the landed node rather
+  than duplicating it.
+- 2.3 is a corollary of landed nodes, correctly not landed again.
+- 2.4 is consistent with `formalizable-left-inverse-iff-clean-shear-dilation`, and the distinction is
+  worth stating: a word of formally invertible pieces is bijective, so it cannot *be* `tau x id` for a
+  strict `tau`, while the clean dilation `W` of Section 23 is bijective and merely *restricts* to
+  `tau` on the zero-ancilla slice. Both statements hold, and 2.4 does not contradict Theorem 2.1.
 
 ## 30. Finite levels and `Z_3` rigidity (`d2fb445ab`, `91ef83465`, gk-fz-counter): PASS
 
