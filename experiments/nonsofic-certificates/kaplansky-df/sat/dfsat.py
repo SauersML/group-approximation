@@ -62,6 +62,31 @@ def generators(L, family):
         gens["u"] = tu(dom, [a + "0" for a in alpha] + [a + "1" for a in alpha] + zeta)
         gens["v"] = tu(dom, [a + "0" for a in alpha] + zeta + [a + "1" for a in alpha])
         return gens
+    if family == "atlas":
+        # The two GL(4,2) charts of experiments/atlas_two_chart_search.py, two generators
+        # each, as in four_generator_atlas(): words (0,1,2) and (3,5,4) in the adjacent
+        # transvections (0,1),(1,0),(1,2),(2,1),(2,3),(3,2). They generate all of R^x.
+        leaves = {1: ["01", "1", "000", "001"], 2: ["00", "1", "010", "011"]}
+        adjacent = [(0, 1), (1, 0), (1, 2), (2, 1), (2, 3), (3, 2)]
+
+        def matrix(word):
+            m = [[int(i == j) for j in range(4)] for i in range(4)]
+            for index in word:
+                r, c = adjacent[index]
+                t = [[int(i == j) for j in range(4)] for i in range(4)]
+                t[r][c] ^= 1
+                m = [[sum(m[i][k] & t[k][j] for k in range(4)) & 1 for j in range(4)]
+                     for i in range(4)]
+            return m
+
+        gens = {}
+        for f in (1, 2):
+            for word in ((0, 1, 2), (3, 5, 4)):
+                m = matrix(word)
+                columns = [sum(m[i][j] << i for i in range(4)) for j in range(4)]
+                gens["chart%d_%s" % (f, "".join(map(str, word)))] = \
+                    L.corner_matrix_unit(leaves[f], columns)
+        return gens
     raise ValueError("unknown family %r" % family)
 
 
@@ -228,7 +253,7 @@ def certificate(A, B, xs, ys, note):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--lib", required=True, help="directory holding leavitt.py and groupalg.py")
-    ap.add_argument("--family", required=True, choices=["v", "eld", "leavitt-control"])
+    ap.add_argument("--family", required=True, choices=["v", "eld", "atlas", "leavitt-control"])
     ap.add_argument("--ra", type=int, default=1)
     ap.add_argument("--rb", type=int, default=1)
     ap.add_argument("--no-strict", action="store_true")
