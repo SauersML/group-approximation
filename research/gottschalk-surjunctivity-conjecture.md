@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - higman-group-nonsurjunctive
   - kun-thom-wreath-lamp-quotient-nonsurjunctive
   - deligne-triple-cover-nonsurjunctive
   - kun-thom-clifford-cover-nonsurjunctive
@@ -767,3 +768,11 @@ domination (`amenable-decoder-memory-forces-surjectivity`). The first open case 
 `three-point-decoder-memory-injective-ca-are-surjective`. Exactness transfer, free
 subrelations with the f-invariant, and symbol symmetrization die on paper. Artifact:
 `research/artifacts/random-order-decoder-transport-2026-09-12.md`, Section 4.
+
+**Higman host (2026-09-12).** Higman's torsion-free perfect group with no finite
+quotients splits as `<a,b,c> *_<a,c> <c,d,a> = <b,c,d> *_<b,d> <d,a,b>` over rank-two free
+groups with sofic factors (`higman-group-splits-as-amalgams-over-free-subgroups`). The
+memory of any strict factor must split over nonabelian free edge groups in both
+splittings (`nonsofic-subgroups-of-higman-group-have-free-edge-groups`). Its four
+two-to-one copying maps on `H/<x>` are restrictions of right translations, so they carry
+no strictness of the full shift. Open root: `higman-group-nonsurjunctive`.
