@@ -1,0 +1,280 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDarts
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPieces
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixLeastAreaCut
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The multiple-edge half of `(∗)`, from the cut and the inductive hypothesis
+
+Osin, arXiv:math/0411039v3, proof of Lemma 9.7(a): "Suppose that there are
+multiple edges in `Φ_M`.  That is, there are two distinguished `ε`-contiguity
+subdiagrams `Θ_1` and `Θ_2` between some `R`-cells `Π_1` and `Π_2`.  Consider a
+subdiagram `Ξ` in `Δ` such that: (i) `∂Ξ = s_1 t_1 s_2 t_2`, where `s_j` is a
+side arc of `Θ_j` and `t_j` is a subpath of `∂Π_j`, `j = 1, 2`; (ii) `Ξ` does not
+contain `Π_1` and `Π_2`. … by the inductive assumption, there is an `R`-cell `Π`
+in `Ξ` and `ε`-contiguity subdiagrams `Γ_1, …, Γ_4` of `Π` to `s_1, t_1, s_2,
+t_2` … such that `(Π, Γ_1, s_1) + ⋯ + (Π, Γ_4, t_2) > 1 − 13μ`.  On the other
+hand `(Π, Γ_2, t_1) + (Π, Γ_4, t_2) < 2μ` by Lemma 4.3 … `(Π, Γ_1, s_1) < μ/2` …
+Similarly `(Π, Γ_3, s_2) < μ/2`.  Thus [the sum] `< 3μ`.  We obtain a
+contradiction since `1 − 13μ > 3μ` for `μ < 1/16`."
+
+This file proves that contradiction from one named geometric input,
+`OsinMultipleEdgeCut` (input G2 of lane `hull-select`): the subdiagram `Ξ`, its
+four sections with `s_1, s_2` short, and the transport of the regions of an
+O-equivalent copy of `Ξ` to `t_1, t_2` into cell-to-cell regions of an
+O-equivalent copy of `Δ`, with their degrees.  Together with
+`O52LeastAreaStatement`, every numeric step is proved: O52 as a degree bound,
+Osin's side-arc estimate at the short sections, and the final count.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded
+
+/-! ## Least area along an O-equivalence -/
+
+/-- Least area is preserved by an O-equivalence: same relator count, same
+boundary word. -/
+theorem OEquivalentDiscDiagram.leastArea {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {Delta Xi : DiscDiagram.{u, w, v} W}
+    (E : OEquivalentDiscDiagram Delta Xi) (hlea : Delta.LeastArea) : Xi.LeastArea := by
+  intro m hm
+  have hvalue : Xi.boundaryValue = Delta.boundaryValue := by
+    show RelLetter.listVal Xi.boundaryWord = RelLetter.listVal Delta.boundaryWord
+    rw [E.boundaryWord_eq]
+  rw [hvalue] at hm
+  rw [E.rCellCount_eq]
+  exact hlea hm
+
+/-! ## The two degree bounds -/
+
+/-- **O52 as a degree bound at a least-area diagram.** -/
+theorem RegionCandidate.contiguityDegree_lt_mu_of_o52
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
+    {eps rho : ℕ} {mu lambda c : ℝ} {Xi : DiscDiagram.{u, w, v} W}
+    (hO52 : O52LeastAreaStatement.{u, w, v})
+    (hcondition : OsinCCondition D W eps mu lambda c rho) (hrho : 0 < rho)
+    (hlea : Xi.LeastArea) (b : RegionCandidate D eps Xi)
+    {target : Fin Xi.rCellCount} (htarget : b.2.target = some target)
+    (hne : b.2.source ≠ target) :
+    b.contiguityDegree < mu := by
+  have equations : b.2.PieceEquations :=
+    { target := target
+      target_eq := htarget
+      whole_ne := hO52 b.2 target htarget hlea hne }
+  apply b.contiguityDegree_lt_mu equations hcondition.toIsSmallCancellation
+    hcondition.publishedPiecesSmall
+  exact cellWord_length_pos hcondition.toIsSmallCancellation hrho b.2.source
+
+/-- **Osin's side-arc estimate as a degree bound**: a region to a section of
+length at most `ε` has degree below `μ/2` once `λ⁻¹(3ε + c) < (μ/2)ρ`. -/
+theorem RegionCandidate.contiguityDegree_lt_half_mu_of_shortSection
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
+    {eps rho : ℕ} {mu lambda c : ℝ} {Xi : DiscDiagram.{u, w, v} W}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
+    {word : List (RelLetter G Lambda)} (cuts : SectionCuts D lambda c word)
+    (hword : Xi.boundaryWord = word) {j : Fin cuts.count}
+    (hshort : cuts.cut j.succ - cuts.cut j.castSucc ≤ eps)
+    (a : RegionCandidate D eps Xi) (h : RegionCandidate.TargetsSectionIndex cuts j a) :
+    a.contiguityDegree < mu / 2 := by
+  have hbound := RegionCandidate.sourceArc_length_le_of_shortSection hword a h
+    hcondition hlambda hshort
+  have hlong : rho ≤ (cell Xi a.2.source).word.length :=
+    hcondition.long (cell Xi a.2.source).word (cell Xi a.2.source).word_mem
+  have hlongR : (rho : ℝ) ≤ ((cell Xi a.2.source).word.length : ℝ) := by
+    exact_mod_cast hlong
+  have hpos : (0 : ℝ) < ((cell Xi a.2.source).word.length : ℝ) :=
+    cellWord_length_pos hcondition.toIsSmallCancellation hrho a.2.source
+  have hhalf : (0 : ℝ) ≤ mu / 2 := by linarith
+  have hmul : mu / 2 * (rho : ℝ) ≤ mu / 2 * ((cell Xi a.2.source).word.length : ℝ) :=
+    mul_le_mul_of_nonneg_left hlongR hhalf
+  unfold RegionCandidate.contiguityDegree
+  rw [div_lt_iff₀ hpos]
+  linarith
+
+/-! ## The cut, as a named input -/
+
+/-- **The cut of two selected regions between the same pair of cells** (input G2
+of lane `hull-select`).  A least-area subdiagram `Ξ` with at least one and fewer
+relator cells than `Δ`, whose boundary is four sections `s_1 t_1 s_2 t_2`, the
+side arcs `s_1, s_2` of length at most `ε`.  A region to `t_1` or `t_2` in any
+O-equivalent copy of `Ξ` becomes, after gluing that copy back, a region of an
+O-equivalent copy of `Δ` to a relator cell (`Π_1` or `Π_2`) from another cell,
+with the same contiguity degree. -/
+structure OsinMultipleEdgeCut {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (Delta : DiscDiagram.{u, w, v} W) where
+  enclosed : DiscDiagram.{u, w, v} W
+  leastArea : enclosed.LeastArea
+  rCellCount_pos : 0 < enclosed.rCellCount
+  rCellCount_lt : enclosed.rCellCount < Delta.rCellCount
+  sections : SectionCuts D lambda c enclosed.boundaryWord
+  count_eq : sections.count = 4
+  side_short : ∀ j : Fin sections.count, ((j : ℕ) = 0 ∨ (j : ℕ) = 2) →
+    sections.cut j.succ - sections.cut j.castSucc ≤ eps
+  transport : ∀ j : Fin sections.count, ((j : ℕ) = 1 ∨ (j : ℕ) = 3) →
+    ∀ (Xi : DiscDiagram.{u, w, v} W), OEquivalentDiscDiagram enclosed Xi →
+      ∀ a : RegionCandidate D eps Xi,
+        RegionCandidate.TargetsSectionIndex sections j a →
+          ∃ (Y : DiscDiagram.{u, w, v} W) (b : RegionCandidate D eps Y)
+            (t : Fin Y.rCellCount),
+            Nonempty (OEquivalentDiscDiagram Delta Y) ∧
+              b.2.target = some t ∧ b.2.source ≠ t ∧
+              b.contiguityDegree = a.contiguityDegree
+
+/-- **Osin's contradiction.**  Clause (b) at the enclosed subdiagram, O52 at the
+ambient least-area class, and the side-arc estimate at the two short sections
+give a degree sum at most `3μ` that exceeds `1 − 13μ`, impossible for
+`μ ≤ 1/16`. -/
+theorem OsinMultipleEdgeCut.false_of_below
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
+    {lambda c mu : ℝ} {eps rho : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (cut : OsinMultipleEdgeCut D lambda c eps Delta)
+    (hO52 : O52LeastAreaStatement.{u, w, v})
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
+    (hlea : Delta.LeastArea)
+    (hb : ∃ T : GloballyDistinguishedSectionFamily D lambda c eps cut.enclosed
+        cut.sections, OsinLemma97bConclusion mu T.toRealizedSectionFamily) :
+    False := by
+  obtain ⟨T, _source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
+    T.equiv.boundaryWord_eq
+  have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤
+      (if (j : ℕ) = 0 ∨ (j : ℕ) = 2 then mu / 2 else mu) := by
+    intro j hj
+    have hj4 : (j : ℕ) < 4 := by
+      have hlt := j.isLt
+      have hc := cut.count_eq
+      omega
+    by_cases hside : (j : ℕ) = 0 ∨ (j : ℕ) = 2
+    · rw [if_pos hside]
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_half_mu_of_shortSection
+        hcondition hlambda hmu hrho hlarge cut.sections hboundary
+        (cut.side_short j hside) (region j) (htargets j hj))
+    · rw [if_neg hside]
+      have hcell : (j : ℕ) = 1 ∨ (j : ℕ) = 3 := by omega
+      obtain ⟨Y, b, t, ⟨EY⟩, htarget, hne, hdeg⟩ :=
+        cut.transport j hcell T.diagram T.equiv (region j) (htargets j hj)
+      rw [← hdeg]
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hrho
+        (EY.leastArea hlea) b htarget hne)
+  have hle := Finset.sum_le_sum hbound
+  have htotal : (∑ j ∈ present, (if (j : ℕ) = 0 ∨ (j : ℕ) = 2 then mu / 2 else mu)) ≤
+      ∑ j : Fin cut.sections.count, (if (j : ℕ) = 0 ∨ (j : ℕ) = 2 then mu / 2 else mu) := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ present)
+    intro j _ _
+    split_ifs <;> linarith
+  have hfour : (∑ j : Fin cut.sections.count,
+      (if (j : ℕ) = 0 ∨ (j : ℕ) = 2 then mu / 2 else mu)) = 3 * mu := by
+    have hc := cut.count_eq
+    revert hc
+    generalize cut.sections.count = n
+    intro hn
+    subst hn
+    simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
+    norm_num <;> ring
+  linarith
+
+/-! ## Loops -/
+
+/-- **The cut of a selected region from a cell to itself** (input G2 of lane
+`hull-select`, loop case).  Osin: "it is easy to show that `Φ_M` can not contain
+loops either.  The only difference is that the subdiagram `Ξ` will be bounded by
+`st`, where `l(s) < ε` and `t` is a subpath of `∂Π_1`."  Two sections: the side
+arc `s` of length at most `ε`, and the arc `t` of the cell, whose regions
+transport to cell-to-cell regions of an O-equivalent copy of `Δ`. -/
+structure OsinLoopCut {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (Delta : DiscDiagram.{u, w, v} W) where
+  enclosed : DiscDiagram.{u, w, v} W
+  leastArea : enclosed.LeastArea
+  rCellCount_pos : 0 < enclosed.rCellCount
+  rCellCount_lt : enclosed.rCellCount < Delta.rCellCount
+  sections : SectionCuts D lambda c enclosed.boundaryWord
+  count_eq : sections.count = 2
+  side_short : ∀ j : Fin sections.count, (j : ℕ) = 0 →
+    sections.cut j.succ - sections.cut j.castSucc ≤ eps
+  transport : ∀ j : Fin sections.count, (j : ℕ) = 1 →
+    ∀ (Xi : DiscDiagram.{u, w, v} W), OEquivalentDiscDiagram enclosed Xi →
+      ∀ a : RegionCandidate D eps Xi,
+        RegionCandidate.TargetsSectionIndex sections j a →
+          ∃ (Y : DiscDiagram.{u, w, v} W) (b : RegionCandidate D eps Y)
+            (t : Fin Y.rCellCount),
+            Nonempty (OEquivalentDiscDiagram Delta Y) ∧
+              b.2.target = some t ∧ b.2.source ≠ t ∧
+              b.contiguityDegree = a.contiguityDegree
+
+/-- **Osin's loop contradiction**: the degree sum is at most `μ/2 + μ`, below
+`1 − 13μ`. -/
+theorem OsinLoopCut.false_of_below
+    {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda}
+    {lambda c mu : ℝ} {eps rho : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (cut : OsinLoopCut D lambda c eps Delta)
+    (hO52 : O52LeastAreaStatement.{u, w, v})
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
+    (hlea : Delta.LeastArea)
+    (hb : ∃ T : GloballyDistinguishedSectionFamily D lambda c eps cut.enclosed
+        cut.sections, OsinLemma97bConclusion mu T.toRealizedSectionFamily) :
+    False := by
+  obtain ⟨T, _source, present, region, _hmem, _hsource, htargets, _hdistinct, hsum⟩ := hb
+  have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
+    T.equiv.boundaryWord_eq
+  have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤
+      (if (j : ℕ) = 0 then mu / 2 else mu) := by
+    intro j hj
+    have hj2 : (j : ℕ) < 2 := by
+      have hlt := j.isLt
+      have hc := cut.count_eq
+      omega
+    by_cases hside : (j : ℕ) = 0
+    · rw [if_pos hside]
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_half_mu_of_shortSection
+        hcondition hlambda hmu hrho hlarge cut.sections hboundary
+        (cut.side_short j hside) (region j) (htargets j hj))
+    · rw [if_neg hside]
+      have hcell : (j : ℕ) = 1 := by omega
+      obtain ⟨Y, b, t, ⟨EY⟩, htarget, hne, hdeg⟩ :=
+        cut.transport j hcell T.diagram T.equiv (region j) (htargets j hj)
+      rw [← hdeg]
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 hO52 hcondition hrho
+        (EY.leastArea hlea) b htarget hne)
+  have hle := Finset.sum_le_sum hbound
+  have htotal : (∑ j ∈ present, (if (j : ℕ) = 0 then mu / 2 else mu)) ≤
+      ∑ j : Fin cut.sections.count, (if (j : ℕ) = 0 then mu / 2 else mu) := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ present)
+    intro j _ _
+    split_ifs <;> linarith
+  have htwo : (∑ j : Fin cut.sections.count, (if (j : ℕ) = 0 then mu / 2 else mu)) =
+      3 * mu / 2 := by
+    have hc := cut.count_eq
+    revert hc
+    generalize cut.sections.count = n
+    intro hn
+    subst hn
+    simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
+    norm_num <;> ring
+  linarith
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLoopCut.false_of_below
+#audit_axioms GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.leastArea
+#audit_axioms GroupApproximation.GGT.VanKampen.RegionCandidate.contiguityDegree_lt_mu_of_o52
+#audit_axioms GroupApproximation.GGT.VanKampen.RegionCandidate.contiguityDegree_lt_half_mu_of_shortSection
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgeCut.false_of_below
