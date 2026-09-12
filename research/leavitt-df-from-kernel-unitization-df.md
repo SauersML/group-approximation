@@ -17,3 +17,7 @@ one-sided pair in `K^+`, contradicting the first. So `F_2[R^x]` is directly fini
 This replaces the need for both negations in
 `leavitt-direct-finiteness-from-both-lifting-problems-failing`. Excluding invisible pairs
 already excludes visible ones.
+
+This route and `kernel-unitization-df-from-unit-group-algebra-df` form a deliberate
+equivalence cycle between direct finiteness of `K^+` and direct finiteness of the whole
+group algebra. The cycle establishes nothing on its own.
