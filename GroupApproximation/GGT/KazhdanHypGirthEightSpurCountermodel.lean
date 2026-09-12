@@ -45,6 +45,8 @@ untouched by this, and so is `removeBaseCells`, whose own obligation is
 satisfied vacuously by the spur (it has no inner faces at all).
 -/
 
+set_option linter.unusedSectionVars false
+
 namespace GroupApproximation
 namespace GGT
 namespace GirthEightSpur
@@ -94,7 +96,7 @@ theorem spur_sameCycle_sigma (d e : Bool) :
     rw [spur_sigma, one_zpow] at hi
     exact hi
   · rintro rfl
-    exact ⟨0, by simp⟩
+    exact Equiv.Perm.SameCycle.refl _ _
 
 theorem spur_vertexOf_injective : Function.Injective spurCombMap.vertexOf := by
   intro d e h
@@ -115,16 +117,16 @@ theorem spur_faceOf_eq (d e : Bool) : spurCombMap.faceOf d = spurCombMap.faceOf 
   rw [CombMap.faceOf_eq_iff]
   rcases d with _ | _ <;> rcases e with _ | _
   · exact Equiv.Perm.SameCycle.refl _ _
-  · exact ⟨1, by rw [spur_facePerm]; simp⟩
-  · exact ⟨1, by rw [spur_facePerm]; simp⟩
+  · exact ⟨1, by rw [spur_facePerm, zpow_one]; exact spurAlpha_false⟩
+  · exact ⟨1, by rw [spur_facePerm, zpow_one]; exact spurAlpha_true⟩
   · exact Equiv.Perm.SameCycle.refl _ _
 
 instance spur_face_subsingleton : Subsingleton spurCombMap.Face := by
   constructor
   intro f g
-  obtain ⟨d, rfl⟩ := Quotient.mk''_surjective (s := Equiv.Perm.SameCycle.setoid
+  obtain ⟨d, rfl⟩ := Quotient.mk''_surjective (s₁ := Equiv.Perm.SameCycle.setoid
     spurCombMap.facePerm) f
-  obtain ⟨e, rfl⟩ := Quotient.mk''_surjective (s := Equiv.Perm.SameCycle.setoid
+  obtain ⟨e, rfl⟩ := Quotient.mk''_surjective (s₁ := Equiv.Perm.SameCycle.setoid
     spurCombMap.facePerm) g
   exact spur_faceOf_eq d e
 
@@ -133,28 +135,28 @@ instance spur_face_nonempty : Nonempty spurCombMap.Face :=
 
 theorem spur_faceCount : spurCombMap.faceCount = 1 := by
   have : Unique spurCombMap.Face := uniqueOfSubsingleton (spurCombMap.faceOf true)
-  simpa [CombMap.faceCount] using Nat.card_unique (α := spurCombMap.Face)
+  simp [CombMap.faceCount]
 
 /-- Both darts lie on the single edge. -/
 theorem spur_edgeOf_eq (d e : Bool) : spurCombMap.edgeOf d = spurCombMap.edgeOf e := by
   rw [CombMap.edgeOf_eq_iff]
   rcases d with _ | _ <;> rcases e with _ | _
   · exact Or.inl rfl
-  · exact Or.inr (by simp)
-  · exact Or.inr (by simp)
+  · exact Or.inr spurAlpha_false
+  · exact Or.inr spurAlpha_true
   · exact Or.inl rfl
 
 instance spur_edge_subsingleton : Subsingleton spurCombMap.Edge := by
   constructor
   intro f g
-  obtain ⟨d, rfl⟩ := Quotient.mk''_surjective (s := spurCombMap.edgeSetoid) f
-  obtain ⟨e, rfl⟩ := Quotient.mk''_surjective (s := spurCombMap.edgeSetoid) g
+  obtain ⟨d, rfl⟩ := Quotient.mk''_surjective (s₁ := spurCombMap.edgeSetoid) f
+  obtain ⟨e, rfl⟩ := Quotient.mk''_surjective (s₁ := spurCombMap.edgeSetoid) g
   exact spur_edgeOf_eq d e
 
 theorem spur_edgeCount : spurCombMap.edgeCount = 1 := by
   have : Nonempty spurCombMap.Edge := ⟨spurCombMap.edgeOf true⟩
   have : Unique spurCombMap.Edge := uniqueOfSubsingleton (spurCombMap.edgeOf true)
-  simpa [CombMap.edgeCount] using Nat.card_unique (α := spurCombMap.Edge)
+  simp [CombMap.edgeCount]
 
 /-! ### Planarity -/
 
@@ -162,8 +164,8 @@ theorem spur_isConnected : spurCombMap.IsConnected := by
   intro d e
   rcases d with _ | _ <;> rcases e with _ | _
   · exact Relation.EqvGen.refl _
-  · exact Relation.EqvGen.rel _ _ (Or.inl (by simp))
-  · exact Relation.EqvGen.rel _ _ (Or.inl (by simp))
+  · exact Relation.EqvGen.rel _ _ (Or.inl spurAlpha_false)
+  · exact Relation.EqvGen.rel _ _ (Or.inl spurAlpha_true)
   · exact Relation.EqvGen.refl _
 
 theorem spur_isPlanar : spurCombMap.IsPlanar := by
@@ -243,7 +245,6 @@ noncomputable def spurDiscDiagram :
     obtain ⟨a, ha, rfl⟩ := hx
     simp only [HullSC.RelWord.revInv, List.mem_reverse, List.mem_map] at ha
     obtain ⟨b, hb, rfl⟩ := ha
-    simp only [List.mem_map] at hb
     obtain ⟨d, -, rfl⟩ := hb
     rw [spurLetter_inv]
     exact spurLetter_val
