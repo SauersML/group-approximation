@@ -21,3 +21,9 @@ Artifact Section 2, Theorem 2.1.
   two, so the monomial rank ultraproduct embeds in a Hamming ultraproduct of finite symmetric groups.
 - **Contradiction.** The realizing group is countable and sofic, hence surjunctive, while realizing a strict datum
   makes it not surjunctive.
+
+**Verification.** `w4-vf-positive-b` passed this route in Section 4.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
+- **Checked:** the Hamming comparison, re-derived.
+- **Precise transfer:** for `eps > 4 theta`, take `delta = delta_mon(eps - 4 theta) - 4 theta`.
+- **Strengthening:** the transfer holds for tuples near any simultaneous conjugate of a monomial tuple.

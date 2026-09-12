@@ -24,3 +24,11 @@ Artifact Section 1, Theorem 1.2.
   relators have normalized rank at most `1/j`, and every reverse word keeps normalized rank above
   `eps_w / |W_r|`. The ultraproduct over `j` realizes `D` in a countable subgroup of a rank ultraproduct, which is
   linear sofic by definition.
+
+**Verification.** `w4-vf-positive-b` passed this route in Section 4.1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
+- **Checked:** every step, re-derived.
+- **Dependencies:** the kernel equivalence needs only closure under subgroups and finite direct products. Closure under finite
+  products is re-derived there with a product ultrafilter.
+- **Completed over every field:** the claim's neighbouring-rung sentence (bounded width gives linear control) was proved in the
+  artifact only over finite fields. Section 4.1.4 extends it to every field by specialization to a finite residue field.

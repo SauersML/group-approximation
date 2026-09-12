@@ -18,3 +18,11 @@ Artifact Section 3, Proposition 3.1.
 - **Jump.** For `a = I + J` the columns are `e_i + 1`. The pairwise products are `e_i + e_j + 1` and the diagonal
   defects are `2 e_i`. In odd characteristic or characteristic zero they span `F^n`. In characteristic two, with
   `n` even and `n >= 4`, they span the sum-zero hyperplane.
+
+**Verification.** `w4-vf-positive-b` passed Proposition 3.1 (a)–(c) in Section 4.3 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
+- **Checked:** every part, re-derived.
+- **Scope:** `E` depends on a chosen coordinate algebra, while word ranks do not. So the proposition shows that no fixed coordinate
+  algebra is rank-stable.
+- **Heuristic, not consumed:** the claim's Interpretation paragraph. It also conflates permutation matrices with the monomial
+  tuples, which are counted on `F^x × {1, ..., N}`.
