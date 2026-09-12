@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - kun-thom-wreath-lamp-quotient-nonsurjunctive
   - deligne-triple-cover-nonsurjunctive
   - kun-thom-clifford-cover-nonsurjunctive
   - strict-automaton-on-lattice-in-product-of-trees
@@ -726,18 +727,43 @@ injective rule needs at least four memory elements and is never monotone
 (`three-address-binary-injective-rules-are-balanced`,
 `monotone-binary-injective-rules-are-copies`).
 
-**Numeric window relations do not force balance (2026-09-12).** If the decoder memory
-is amenable, decoder fiber decay alone forces a uniform site law. If it is
-nonamenable, unbalanced measures satisfy every numerical relation an injective image
-is known to satisfy: translation invariance, integral finitely dependent counts, the
-decoder decay `q^(-|int_N E|)`, a null cylinder, and the whole 2026-09-08 uniform Gibbs
-bridge (unique uniform Gibbs measure, weak mixing, completion counts divisible by
-`q^{|I_E|}`). The witnesses are iid merge measures once `q^(1-theta) >= 2`, AND at
-`q = 2` once the decoder memory contains a free radius-2 ball, and sitewise
-projections at every `q = r^k` with `k >= 1/(1-theta)`. So mass transport, local
+**Numeric window relations do not force balance (2026-09-12, corrected after
+verification).** If the decoder memory is amenable, decoder fiber decay alone forces a
+uniform site law. If it is nonamenable, unbalanced measures satisfy every numerical
+relation an injective image is known to satisfy (translation invariance, integral
+finitely dependent counts, the decoder decay `q^(-|int_N E|)`, a null cylinder, and the
+2026-09-08 uniform Gibbs bridge) in three alphabet regimes: iid merge measures when
+`q^(1-theta) >= 2`; sitewise projections, the Gibbs bridge included, when `q = r^k` with
+`k >= 1/(1-theta)`; and AND measures at `q = 2` when the decoder memory contains a free
+radius-2 ball (`numeric-window-relations-do-not-force-balance`, which invalidates
+`balance-from-numeric-window-relations`). In those regimes mass transport, local
 permutations, cofinal windows and count-level telescoping cannot remove the boundary
-factor on any nonamenable decoder group (`numeric-window-relations-do-not-force-balance`,
-which invalidates `balance-from-numeric-window-relations`). A proof of balance must use
-the pointwise identity `sigma o tau = id` on the group's own coincidence pattern, or
-maximal Bernoulli Rokhlin entropy. Open gap: binary alphabets over weakly nonamenable
-decoder groups. Artifact: `research/artifacts/numeric-window-relations-no-go-2026-09-12.md`.
+factor. Among the inputs examined, those not shown consistent with imbalance are the
+pointwise identity `sigma o tau = id` on the group's own coincidence pattern; INF; a
+direct lower bound on single-site entropy (`injective-ca-images-have-full-single-site-entropy`);
+and a numerical argument at `q = 2` for decoder memories with no free radius-2 ball,
+combined with an alphabet descent into that class
+(`surjunctivity-failure-descends-to-binary-alphabet`, open). That list classifies the
+inputs examined; it is not a theorem. Sections 1-4 passed verification. Artifact:
+`research/artifacts/numeric-window-relations-no-go-2026-09-12.md`.
+
+**Lamp quotients of the Kun--Thom wreath (2026-09-12).** `W/U` with `U <= K_even` is
+nonsofic with `Rad_sof = K_even/U`. It is surjunctive when `U` is closed under
+permutation maps (`residually-permutational-lamp-extensions-are-surjunctive`). A strict
+realization must read a nonzero lamp of `U` as a forward coincidence
+(`strict-lamp-quotient-realizations-need-lamp-hinges`), so a counterexample needs a
+non-closed submodule. The family is now its own counterexample root,
+`kun-thom-wreath-lamp-quotient-nonsurjunctive`.
+
+**Random-order decoder transport (2026-09-12).** An injective automaton with decoder
+memory `N` sends conditional mutual information from input to output sites under an iid
+random order. Its total into one site is `log|A|` over every group
+(`injective-ca-random-order-transport-identity`), and on the end-fixing tree it fails
+with the modular ratio 2. Domination of that total by the site entropy
+(`injective-ca-random-order-transport-is-dominated`) is equivalent to full single-site
+entropy, by two routes forming an intended cycle. Per-realization domination fails on
+`Z`, so a proof must average over the random order. Amenable decoder memory already gives
+domination (`amenable-decoder-memory-forces-surjectivity`). The first open case is
+`three-point-decoder-memory-injective-ca-are-surjective`. Exactness transfer, free
+subrelations with the f-invariant, and symbol symmetrization die on paper. Artifact:
+`research/artifacts/random-order-decoder-transport-2026-09-12.md`, Section 4.
