@@ -57,6 +57,16 @@ It is necessary for `leavitt-steinberg-hs-unstable` and for
   finitely presented and simple, so every marked group close enough to `V` is
   `V` itself, and there is no decomposition over a proper amenable subgroup to
   exploit. This dies before it starts.
+- **Gluing regular packet models.** Every generator lies in a finite packet
+  `Sym(P)` for a non-uniform complete prefix code `P`, and the regular
+  representation of `Sym(P)` is non-spatial. The gluing dies at coherence.
+  Packets for different generators need different codes, and their regular
+  models must be identified around the refinement squares of the code poset.
+  In dimension `d`, compact packing (`thompson-v-r5-cap-implies-one-word-collapse`)
+  forces this coherence to fail at order one on packets of size above about
+  `d`, when the named transpositions are literal conjugates of the marked word.
+  A model must be regular on shallow packets and order-one non-multiplicative
+  at depth about `log_2 d`.
 - **Operator-norm stability.** Fournier-Facio--Rangarajan give uniform stability
   for submultiplicative norms. Since `V` has no nontrivial finite-dimensional
   representation, uniform almost-representations are near trivial. That says
