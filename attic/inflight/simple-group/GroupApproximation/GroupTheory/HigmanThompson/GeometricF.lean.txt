@@ -49,8 +49,12 @@ def geoF : Subgroup (Equiv.Perm ℚ) where
       rw [hg0 t ht, hf0 t ht]
     · show f (g t) = t + ((cf + cg : ℤ) : ℚ)
       have hab : (-(cg : ℚ)) ≤ (cg.natAbs : ℚ) := by
-        have h := Int.neg_le_natAbs (a := cg)
-        exact_mod_cast h
+        have h : -cg ≤ (cg.natAbs : ℤ) := by
+          have h1 := Int.le_natAbs (a := -cg)
+          rwa [Int.natAbs_neg] at h1
+        have h2 := (Int.cast_le (R := ℚ)).mpr h
+        rw [Int.cast_neg, Int.cast_natCast] at h2
+        exact h2
       push_cast at ht
       have h1 : (Tg : ℚ) ≤ t := by
         have h0 : (0 : ℚ) ≤ (Tf : ℚ) := Nat.cast_nonneg Tf
@@ -67,8 +71,9 @@ def geoF : Subgroup (Equiv.Perm ℚ) where
     · rw [Equiv.Perm.inv_eq_iff_eq, hf0 t ht]
     · rw [Equiv.Perm.inv_eq_iff_eq]
       have hab : ((c : ℚ)) ≤ (c.natAbs : ℚ) := by
-        have h := Int.le_natAbs (a := c)
-        exact_mod_cast h
+        have h2 := (Int.cast_le (R := ℚ)).mpr (Int.le_natAbs (a := c))
+        rw [Int.cast_natCast] at h2
+        exact h2
       push_cast at ht
       have h1 : (T : ℚ) ≤ t + ((-c : ℤ) : ℚ) := by push_cast; linarith
       rw [hfT _ h1]
@@ -212,7 +217,7 @@ theorem brownF_le_geoF : brownF m ≤ geoF m := by
   induction g using PresentedGroup.induction_on with
   | H w =>
     induction w using FreeGroup.induction_on with
-    | C1 => simpa using (geoF m).one_mem
+    | C1 => simp
     | of x =>
         rw [brownX_of_fin, brownEval_X]
         exact xg_mem_geoF m x.val
