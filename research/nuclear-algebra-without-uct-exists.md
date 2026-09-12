@@ -7,6 +7,7 @@ distinct_from:
   stw99-problem-ii-nuclear-uct: that is the positive assertion; this is its negation, which lands as a refutation of it when established.
 artifacts:
   - research/artifacts/stw-uct-reduction-map-2026-09-11.md
+  - research/artifacts/stw-uct-per-prime-cartan-2026-09-12.md
 ---
 
 **OPEN.**  There is a separable nuclear C\*-algebra that is not KK-equivalent to
@@ -22,6 +23,11 @@ any commutative C\*-algebra.  If established, this refutes
   twisted étale groupoid (`barlak-li-cartan-subalgebras-force-uct`).  If it is
   `O_2 ⋊_α Z_p`, then `α` leaves no Cartan subalgebra invariant
   (`cartan-respecting-o2-automorphisms-give-uct-crossed-products`).
+* At every prime `r` except at most one, some outer strongly approximately inner
+  `Z_r`-action on `O_2` fixes no Cartan subalgebra
+  (`o2-zp-cartan-fixing-all-primes-or-at-most-one`).  Each such action is
+  `KK^(Z_r)`-equivalent to no action on a type I algebra
+  (`bootstrap-class-zp-actions-on-o2-fix-a-cartan`).
 * It does not decompose over nuclear UCT algebras (`willett-yu-decomposability-forces-uct`).
   As a trivial-K Kirchberg algebra it has weak complexity rank one but not
   complexity rank one.
@@ -51,3 +57,18 @@ any commutative C\*-algebra.  If established, this refutes
   quasidiagonal trace makes a nuclear algebra MF, hence quasidiagonal, so
   finite crossed products of unital nuclear algebras carrying an invariant
   faithful quasidiagonal trace give no candidate.  Not pursued further.
+* **Equivariant K-theoretic classification.**  Köhler's UCT for `Z/p`, its
+  square-free extension (Meyer--Nadareishvili, arXiv:2604.12529v2), Meyer's range
+  result and the Gabe--Szabó dynamical Kirchberg--Phillips theorem classify the
+  pointwise outer cyclic actions in the equivariant bootstrap class.  Every
+  strongly approximately inner one of prime power order fixes a Cartan subalgebra
+  (`bootstrap-class-zp-actions-on-o2-fix-a-cartan`), so no action these tools
+  describe gives a witness.  Dies at the boundary of the equivariant bootstrap
+  class.
+* **Property (T) rigidity from this repository.**  The compression mechanisms
+  behind the non-MF and nonsofic results live on non-amenable groups, whose
+  group C\*-algebras are not nuclear.  Ozawa's Kazhdan-projection construction
+  (arXiv:2609.08892, imported as `hyperfinite-factor-not-quasidiagonal`) yields an
+  MF algebra with only non-faithful tracial states, so it supplies no faithful
+  non-quasidiagonal trace for `stw99-ii-implies-ix1`.  Dies at nuclearity and
+  faithfulness.
