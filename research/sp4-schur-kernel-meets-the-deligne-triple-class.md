@@ -39,6 +39,13 @@ finite.
    `aspherical-adjunction-has-zero-schur-kernel`. The equation must have a
    non-aspherical relative presentation, with an identity among relations
    whose `Sp_4(Z)`-regions carry Maslov content.
-3. **Direct search.** Not started. A search needs a free-group identity
+3. **Small or amenable coefficient packets.** Dead by
+   `amenable-coefficients-have-zero-schur-kernel`. Localization sends the
+   killed class back to the coefficient subgroup \`B\`, which must be
+   non-amenable with non-Connes-embeddable \`L_(alpha|B)(B)\`, and the class
+   must be invisible to every finite quotient of \`B\`. Packets inside
+   unipotent or solvable subgroups, or inside \`SL_2(Z) x SL_2(Z)\` (Schur
+   multiplier seen by its finite abelianization), are excluded.
+4. **Direct search.** Not started. A search needs a free-group identity
    `r in [F', R_Y][F', <<w~>>]` for a presentation of `Sp_4(Z)`, plus
    evaluation of Meyer's signature cocycle modulo three on `r`.

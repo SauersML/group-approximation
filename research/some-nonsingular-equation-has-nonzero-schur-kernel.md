@@ -34,14 +34,20 @@ companion of `kervaire-laudenbach-nonsingular-conjecture`.
    relative presentations). Dead:
    `aspherical-adjunction-has-zero-schur-kernel`. Recorded as
    `schur-kernel-search-over-aspherical-adjunctions`.
-3. **Classes seen by projective approximations.** Excluded in general. A
+3. **Amenable coefficients.** Dead:
+   `amenable-coefficients-have-zero-schur-kernel`. By
+   `schur-kernel-localizes-to-coefficient-subgroup`, the killed class comes
+   from the coefficient subgroup. For amenable coefficients, twisted regular
+   representations detect every class there. Recorded as
+   `schur-kernel-search-with-amenable-coefficients`.
+4. **Classes seen by projective approximations.** Excluded in general. A
    killed class must vanish under the multiplier of every projective unitary
    homomorphism of `Q`, in any norm and any matrix sizes. So the class must
    be projectively invisible. Candidates come from classes that finite
    quotients and known projective representations do not see, like the
    Maslov class of `Sp_4(Z)` beyond its metaplectic reduction.
-4. **From a central Kervaire--Laudenbach failure.** Live reduction
+5. **From a central Kervaire--Laudenbach failure.** Live reduction
    `nonzero-schur-kernel-from-central-kl-failure`. A failure over a central
    extension whose quotient adjunction injects forces a nonzero Schur kernel.
-5. **Deligne.** Open as `sp4-schur-kernel-meets-the-deligne-triple-class`,
+6. **Deligne.** Open as `sp4-schur-kernel-meets-the-deligne-triple-class`,
    which gives the stronger central collapse for `E_3` directly.
