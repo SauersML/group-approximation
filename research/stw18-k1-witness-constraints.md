@@ -23,4 +23,7 @@ comparison of positive elements with respect to a nonempty trace simplex. If
 5. `A` is not Z-stable;
 6. the extreme tracial boundary is not compact finite-dimensional, and the
    tracial cone has no basis satisfying Lin's condition (C);
-7. `A` refutes both STW Problem XVIII and STW Problem XXIII.
+7. `A` refutes both STW Problem XVIII and STW Problem XXIII;
+8. `A` is not a crossed product `C(X) ⋊ Gamma` of a free minimal action with the
+   uniform Rokhlin property; in particular it is not any free minimal
+   `C(X) ⋊ Z^d`.
