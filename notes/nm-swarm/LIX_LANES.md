@@ -1,5 +1,11 @@
 # LIX LANES (lead nonsofic-existence-41, 2026-09-11 ~21:20 CDT) — stronger Problem LIX, rad(n) | k
 
+## STOPPED 2026-09-12 ~09:35 CDT (lead nonsofic-existence-3a)
+User ruling 09-12: "LIX is too low impact. we should only do things HIGHER impact than non-MF". STW LIX
+strengthenings are below the bar, and the non-MF manuscript uses none of this machinery. Every LIX lane lands its
+in-flight files and a final report, then stops. Do not relaunch these lanes unless the user reverses the ruling.
+Already-green landed LIX modules may still be wired into the root.
+
 USER ORDERS: "let's launch way more agents to do literally everything as fast as possible" / "also do even
 MORE agents on k1 injectivity" / "I meant LIX".  Plus every order in `$NM/COMMON_RULES.md` (binding: no
 literature inputs ever; land everything constantly; rule 18 no hold; MSI only; never build locally).

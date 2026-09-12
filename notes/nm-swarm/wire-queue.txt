@@ -299,3 +299,5 @@ GroupApproximation.CharClass.ChernGammaBridgeOf
 GroupApproximation.CharClass.OddPEvalNatural
 GroupApproximation.CharClass.OddPEvalMultilinear
 GroupApproximation.Algebra.GHWFrobeniusSeparable
+GroupApproximation.Kazhdan.CCKWCosetComplexLocallyFinite
+GroupApproximation.Kazhdan.GHBSharpExistence
