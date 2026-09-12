@@ -207,3 +207,62 @@ translations and the same shear. Candidate sources of non-consequence:
   syntactic consequence of the forward relators.
 
 These are open design directions, not results.
+
+## 7. Injectivity over a surjunctive cover forces bijectivity everywhere
+
+Section 5 shows the relators forced in Theorem F come only from the decoder's choice of
+shared addresses. The same encoder has a decoder with private addresses, which needs no
+relators at all. This section shows that is the general situation: an encoder injective
+without relations is bijective everywhere.
+
+**Theorem G.** Let `mu : A^M -> A` be a rule on formal memory addresses. Let `H` be a
+surjunctive group with a realization `rho_H : M -> H`, `rho_H(1_M) = 1`, over which the
+encoder `tau_H` is injective. Let `rho_G : M -> G` be a realization in a group `G`, and
+suppose some homomorphism `phi : K_H -> G` from `K_H = <rho_H(M)>` satisfies
+`phi o rho_H = rho_G`. Then the encoder `tau_G` is bijective.
+
+*Proof.*
+1. **Bijective over `H`.** `tau_H` is injective and `H` is surjunctive, so `tau_H` is
+   bijective. By Curtis–Hedlund–Lyndon its inverse is a cellular automaton.
+2. **The inverse lives on the memory group.** `tau_H` acts on each left coset
+   `h K_H` independently, as a copy of its restriction to `K_H`. So its inverse also
+   reads only the coset of the site. By compactness and equivariance the inverse has
+   finite memory `S_H` inside `K_H`, with some rule `nu`. Put `sigma_H` for this
+   automaton; then `sigma_H tau_H = id = tau_H sigma_H`.
+3. **Push the inverse down.** Let `sigma_G` have memory `phi(S_H)` and rule `nu`.
+   Addresses may collide.
+   - The forward composite over `G` reads the points `g phi(s) rho_G(m) = g phi(s rho_H(m))`.
+     Equal products in `H` stay equal in `G`, and products equal to `1` stay `1`.
+   - So the forward table over `G` dominates the forward table over `H`, which is
+     forward sufficient because `sigma_H tau_H = id` (Lemma 1 of the canonical-table
+     artifact).
+   - By coarsening (Lemma 2 there), `sigma_G tau_G = id`. The reverse composite reads
+     `g rho_G(m) phi(s) = g phi(rho_H(m) s)`, and the same argument gives
+     `tau_G sigma_G = id`. QED
+
+**Corollary G1 (free memory).** Suppose `mu` is injective over the free group `F(M')`, with
+the non-identity memory letters realized as free generators. Then `mu` is bijective over
+every group and every realization.
+
+*Proof.* Free groups are residually finite, hence surjunctive
+(`residually-finite-groups-are-surjunctive`). Any assignment of the letters extends to a
+homomorphism `F(M') -> G`. Apply Theorem G. QED
+
+**Corollary G2 (the encoder of a counterexample).** Suppose `tau` is strict over `G`. Take
+any surjunctive group `H` whose realization of the memory maps compatibly onto
+`<rho_G(M)>`. Then the encoder over `H` is not injective. This covers the free group on
+the memory letters and every residually finite, amenable or sofic cover. So the
+injectivity of a counterexample's encoder is itself created by relations that fail in
+every surjunctive cover. Not only its non-surjectivity needs nonsofic structure.
+
+**Where it applies.**
+- **Shift–shear encoders.** They are injective over the free group, so Corollary G1
+  recovers Lemma 4.
+- **Linear rules.** A strict linear encoder `tau_a` needs `a` to have no one-sided inverse
+  in `F_2[H]` for every such cover `H`. Otherwise `tau_a` would be injective over `H`.
+
+**Relation to the surjunctive-cover obstruction.**
+`forward-memory-lifts-exclude-strict-cellular-sections` starts from a given decoder whose
+forward rectangle lifts injectively to a surjunctive cover. Theorem G assumes only that
+the encoder is injective over the cover. It uses the cover's own inverse, needs no
+decoder and no injective lift, and concludes bijectivity for every compatible image.
