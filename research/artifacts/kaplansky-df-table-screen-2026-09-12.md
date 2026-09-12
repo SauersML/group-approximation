@@ -71,7 +71,21 @@ generators of `V`, the six `E_ij(1)` of the nine-leaf corner, and the compressor
 
 ## 4. Results
 
-(pending: filled from the MSI runs)
+Run `r1` on acn112, started 2026-09-12 16:36 CDT. Radii are `ra:rb` and the windows are
+balls. At radius `1:1` the table group is the cover `G_4`. The cells are all of `B_2`, and
+every cell lies in `BA u {1}`. The class columns count classes of at least two cells.
+
+| window | `|A|`, `|B|` | cells | relators | classes after stage 1 | compact presentation | stage 2 and verdict |
+|---|---|---|---|---|---|---|
+| v 1:1 | 8, 8 | 44 | 64 | 10 (sizes 2–8) | 6 generators, 10 relators | pending |
+| atlas 1:1 | 9, 9 | 53 | 81 | 20 (all of size 2) | 4 generators, 8 relators | pending |
+| v-eld1 1:1 | 18, 18 | 259 | 324 | 81 (sizes 2–8) | 16 generators, 45 relators | pending |
+| eld 1:1 | 35, 35 | 933 | 1,225 | 338 | see run log | pending |
+
+Every window survives stage 1. That is expected. A character of `G_4` sees only the
+abelianization, and the products in `B_2` have many abelian coincidences, so stage 1
+separates only the cells with distinct abelian images. Separating the rest needs the
+nonabelian images of stage 2.
 
 ## 4. Trust surface
 
