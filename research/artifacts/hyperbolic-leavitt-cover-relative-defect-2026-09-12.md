@@ -227,6 +227,27 @@ sofic approximation of the cover is already N-invariant. The relative defect
 N-expander block, where elements of `N` and of `G \ N` alike act freely and `N`
 is ergodic.
 
+## 7b. Finite quotients of the cover (THEOREM 7)
+
+Node: `leavitt-cover-finite-quotients-split-over-the-kernel`.
+
+- **Outer action.** `G` is torsion-free (Belegradek--Osin Corollary 1.2 with a
+  torsion-free source) and `N` is non-elementary. So `C_G(N) = 1`, and
+  `R^x` embeds in `Out(N)`.
+- **Splitting.** For every `L <= N` normal in `G` of finite index in `N`, the
+  outer action of `R^x` on `N/L` is trivial, by simplicity. The central
+  extension `C_(G/L)(N/L)` of `R^x` splits, because Khanh Theorem 4.4 gives
+  `H_1 = H_2 = 0`. This gives `G/L = N/L x K_L` with a unique complement.
+- **Consequences.**
+  - The finite quotients of `G` are exactly the `N/L`.
+  - The profinite completion of `G` equals the completion of `N` along the
+    `G`-invariant finite-index subgroups.
+  - `G` is residually finite iff the canonical inner realizers
+    `g -> (N/L-coordinate of g)_L` separate `G`.
+- **For RDD.** In every finite model, the relative defect lands in the image of
+  `N`. RDD for this host is therefore at least as strong as non-residual
+  finiteness of `G`.
+
 ## 8. Relation to other lanes
 
 - `hyperbolic-rf`: Theorem 1 gives a hyperbolic Kazhdan group all of whose
