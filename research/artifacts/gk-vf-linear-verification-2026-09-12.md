@@ -1943,3 +1943,19 @@ assigned verifier is `w3-vf-linear`; this is a second derivation.
 - **Remark 5.2.** On a free `F_3[Z/3]`-module, `(x - 1)^2 != 0`, because `F_3[x]/(x^3 - 1) = F_3[x]/((x-1)^3)`. So projective
   content of level groups violates `A^2 = 0`. The claim about the twisted regular representation's Haar law is prose and was not
   re-derived.
+
+**Section 54 addendum (fbcba57d8, bookkeeping and Attempts entries).** The citations of Section 54 on both claims are accurate. The
+Attempts entries on `projective-ternary-group-is-f3-linear-sofic` and `rank-models-of-el3-satisfy-the-two-root-identities` also check.
+- A nontrivial model of `PG` gives an injective, z-moving model of `G` (Section 53). An anti-central model squares to a model of
+  `PG`. `F_3`-linear soficity of `PG` implies the existence gate.
+- I completed the prose step that Section 54 had left underived: the twisted regular representation of a level group has the Haar
+  law and violates `A^2 = 0`.
+  - *Setting.* `H_k = GL_(2^k)(F_3)` contains `z = -I` and the depth-`k` torus `T_k` of sign matrices, one reflection per leaf.
+  - *Decomposition.* `z` is central, so Mackey gives `Res_(T_k) Ind_(<z>)^(H_k)(sign) = ⊕_(T_k \ H_k) Ind_(<z>)^(T_k)(sign)`.
+    Over `F_3`, `Ind_(<z>)^(T_k)(sign)` is the sum of the characters `chi` of the elementary abelian 2-group `T_k` with
+    `chi(z) = -1`, each once.
+  - *Haar law.* These characters are the sign patterns with an odd number of minus signs, so every odd pattern has weight `2^(1-2^k)`.
+    That is the Haar law at the depth-`k` code.
+  - *Projectivity.* `sign` is projective over `F_3[<z>]`, since `|<z>| = 2`, and induction preserves projectivity. So the
+    restriction to `x_12(F_3) ~= Z/3` is free, and `(x - 1)^2 != 0` there.
+  - This is exact for the finite group, which is all the Attempts entry claims.
