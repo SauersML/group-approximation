@@ -189,3 +189,53 @@ left-inverse pair `(tau, sigma)` over a finitely generated simple group admits r
 - **What a proof for strict pairs must supply.** A strict pair needs a formal pair whose encoder pullback
   `tau~*` on `k[X_(G x [n])]` is surjective but not injective. No word in formal automorphisms has this
   property, so gate constructions, including zero-divisor shears, cannot produce one.
+
+## 5. Test objects on Thompson's `V`
+
+**A dihedral pair inside `V`.** Let `a in F <= V` have infinite order, acting on Cantor space
+`{0,1}^N` by prefix replacement. Put
+- `g(0w) = 0 a(w)` and `g(1w) = 1 a^(-1)(w)`;
+- `s(0w) = 1w` and `s(1w) = 0w`.
+
+Both lie in `V`, `s^2 = 1`, and `sgs = g^(-1)`: on `0w`, `sgs(0w) = s(1 a^(-1)(w)) = 0 a^(-1)(w)`, and
+symmetrically on `1w`. Also `s` is not in `<g>`, because `g` preserves the two halves and `s` swaps them.
+So `D = <g, s>` is infinite dihedral. Since `V <= L_(F_2)(1,2)^x` (the Leavitt tower), everything below
+induces up to the binary Leavitt unit group.
+
+**The object.** `tau_g` flips cell `h` exactly when
+`(x(hg^(-3)), x(hg^(-2)), x(hg^(-1)), x(hg), x(hg^2), x(hg^3)) = (0, 0, 1, 1, 0, 0)`. It acts on every
+left coset `h<g>` as the integer marker involution, so it is a bijective involution and its own unique
+left inverse.
+- **Open:** `thompson-v-marker-involution-is-formalizable`, and the smaller
+  `dihedral-marker-involution-is-formalizable`.
+- **Passing up.** A formalization over `D` induces one over `V`, with the same polynomials.
+- **Specialization.** The restricted target `binary-left-inverse-pairs-over-fg-simple-groups-are-formalizable`
+  specializes to the `V` object, so a refutation of the `V` object refutes it.
+
+**What is known about the object.**
+1. **Where the encoder memory must go.** By Corollary 3, every bi-orderable quotient of the encoder memory
+   group kills `g`. So the memory leaves `<g>` and every subgroup that maps onto `Z` nontrivially on `g`.
+   `D` evades this: a bi-orderable image of `D` is torsion-free, so it kills `s`, and then
+   `g = s g^(-1) s` maps to its own inverse, hence to `1`.
+2. **Over `D` it is two tracks over `Z`.** Write `a(k) = x(g^k)` and `b(k) = x(g^k s)`.
+   - A rule at cell `1` reads `g^j` and `g^j s`. At `a`-cells it reads `a(k+j)` and `b(k+j)`. At `b`-cells
+     it reads `b(k−j)` and `a(k−j)`.
+   - So one-track `D`-automata are exactly two-track `Z`-automata whose `b`-rule is the `a`-rule reflected
+     with the tracks swapped, and the formal identity on `b`-cells follows from `a`-cells by the symmetry
+     `s`.
+   - The marker is palindromic, so `tau_g = tau_Z x tau_Z`. Formalizing the `D` object means formalizing
+     `tau_Z x tau_Z` over `Z` with reflection symmetry.
+   - Theorem A needs one track, and here a top variable can cancel between the two components.
+3. **Zero-divisor gates on `D`.** For each reflection `r_i = g^i s`, `N_i = 1 + r_i` pairs `a(k)` with
+   `b(k+i)`.
+   - The shears of Theorem 5 built on `N_i` add one bit to both members of each pair, while reading only
+     linear functionals of the pair sums `a(k') + b(k'+i)`. So they preserve those pair sums.
+   - `tau_Z x tau_Z` changes the pair sums at marked cells, so no single gate realizes it. Whether words
+     in gates for several `i`, together with units of `F_2[D]`, realize it is open.
+4. **Two-sidedness.** `M_2(F_2[Z])` is directly finite, by determinants. So any formalization of the `D`
+   object is two-sided, and the translates of the encoder components are algebraically independent.
+5. **Regrouping.** `<g^4>` is normal of finite index in `D`, and the regrouped object is two copies of
+   the regrouped integer marker. So the `D` object is formalizable after regrouping. What is open is full
+   `D`-equivariance.
+6. **Finite quotients of `D`.** Refutations through the dihedral quotients `D_n` would refute the `D`
+   object but not pass up to `V`, since `V` has no nontrivial finite quotient.

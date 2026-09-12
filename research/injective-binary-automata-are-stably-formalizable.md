@@ -112,3 +112,22 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   ancilla test object is a reversible binary cellular automaton over a finitely generated simple
   group (for instance a first-letter-swap involution inside Thompson's `V` or the Leavitt unit group
   acting on Cantor space); none is on record.
+- **Finitely generated simple hosts (w3-stable-simple, 47275abc1f and cee710f2ff).**
+  - **No refutation reaches them.** No nontrivial finitely generated simple group is bi-orderable
+    (`finitely-generated-simple-groups-are-not-biorderable`). So one-track affine rigidity, and with it
+    the marker refutations over `Z` and `Q`, never apply there, not even at one track. Formal pairs push
+    forward only along quotients of the encoder memory group
+    (`formal-pairs-push-along-quotients-of-the-encoder-memory-group`), and that is void once the memory
+    generates the simple host.
+  - **One track already has room.** Hosts with a non-central involution, including `V` and
+    `L_(F_2)(1,2)^x`, carry non-affine one-track formal involutions
+    (`non-central-involutions-carry-nonaffine-formal-involutions`, built from zero-divisor shears in
+    `zero-divisor-shears-are-formal-automorphisms`).
+  - **A restricted plain target is live.** `binary-left-inverse-pairs-over-fg-simple-groups-are-formalizable`
+    needs no ancilla. It already gives the per-host Kaplansky payoff through
+    `simple-host-formalization-reduces-surjunctivity-to-kaplansky`.
+  - **First test objects.** The marker involution along an infinite-order dihedral element of `V`
+    (`thompson-v-marker-involution-is-formalizable`), and its dihedral core, which is `tau_Z x tau_Z`
+    over `Z` with reflection symmetry (`dihedral-marker-involution-is-formalizable`).
+  - **What gates cannot do.** For strict `tau`, a formal pair has a surjective, non-injective encoder
+    pullback, so no word in formal automorphisms supplies it.
