@@ -305,7 +305,8 @@ theorem keptBoundary_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dar
     (keptBoundary FB hk).darts.map (value M a) = (FB g).darts := by
   have h1 : (keptBoundary FB hk).darts =
       keptLift M a FB (Classical.choose hk) (Classical.choose (Classical.choose_spec hk)) :=
-    (FaceBoundary.darts_mpr _ _).trans (CombMap.IsFaceCycle.toFaceBoundary_darts _)
+    (FaceBoundary.darts_mpr (Classical.choose_spec (Classical.choose_spec hk)) _).trans
+      (CombMap.IsFaceCycle.toFaceBoundary_darts _)
   exact (congrArg (List.map (value M a)) h1).trans (keptLift_map_value_of_eq FB _
     (keptFace_inj ((Classical.choose_spec (Classical.choose_spec hk)).symm.trans hF)))
 
@@ -323,7 +324,8 @@ theorem faceBoundary_mergedFace_darts {M : CombMap.{u}} [DecidableEq M.Dart] {a 
     (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ []) :
     (C.faceBoundary FB hne (C.mergedFace hne)).darts = C.lift := by
   rw [faceBoundary, dif_pos rfl]
-  exact (FaceBoundary.darts_mpr _ _).trans (CombMap.IsFaceCycle.toFaceBoundary_darts _)
+  exact (FaceBoundary.darts_mpr (rfl : C.mergedFace hne = C.mergedFace hne) _).trans
+    (CombMap.IsFaceCycle.toFaceBoundary_darts _)
 
 theorem faceBoundary_mergedFace_map_value {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
     (C : MergeCycles M a) (FB : ∀ g : M.Face, FaceBoundary M g) (hne : C.xs ++ C.ys ≠ []) :
