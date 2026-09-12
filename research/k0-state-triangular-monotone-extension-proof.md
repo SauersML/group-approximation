@@ -22,3 +22,8 @@ Section 4 of the artifact.
    `anti-central-state-exists-iff-lifted-trace-relatively-positive`.
 6. **Conclude.** A positive functional on `G` with value 1 at `u` is a Sylvester rank function, by Theorem
    2.1(a) of `sylvester-rank-functions-iff-no-triangular-certificate`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 37.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *well-definedness via the hypothesis applied both ways to `e (+) f'` and `e' (+) f`;*
+- *positivity with `K' = M (+) K`;*
+- *the one-step extension lemma (Section 24), and Theorem 2.1(a).*

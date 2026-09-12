@@ -26,3 +26,8 @@ Artifact Section 3, Theorem 3.
    - `f = 2(1-u)` is a nonzero idempotent in characteristic three, commuting with `rho(iota(G))`.
    - `x -> f·rho(iota(x))` is a unital ring map into `fWf` with `[z] -> -f`.
    - `fWf` is weakly finite (padding by `1 - f`), and so is the image subring. QED
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 36.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS, conditional on simplicity of `PG` as recorded on its node. Re-derived independently:*
+- *the normal-subgroup trichotomy via perfection;*
+- *injectivity of `ρ∘ι`;*
+- *`f^2 = 8(1 - u) = f`, the commutation with `ρ(ι(G))`, and `[z] -> fu = 2(u - 1) = -f`, so `eps_+` dies.*

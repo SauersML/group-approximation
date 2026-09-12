@@ -19,3 +19,7 @@ Section 1 of the artifact.
    columns of `A` and `Z_1`.
 4. **Compress and clear.** Compressing by `diag(f, g)` gives `[[f, fDg], [0, g]]`, and right multiplication
    by `[[f, -fDg], [0, g]]` gives `f (+) g`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 37.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the rows of `W𝓡`, and the vanishing lower-left block of `𝓛W𝓡`;*
+- *the compression `[[f, fDg], [0, g]]`, and the clearing product.*

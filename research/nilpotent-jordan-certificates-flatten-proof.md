@@ -20,3 +20,8 @@ Section 2 of the artifact. Induction on `j`, starting from `f <~ u`.
 3. **End.** At `j = k`, `u^k = 0`, and `I_((k-1)n) (+) 0 <~ I_((k-1)n)`. The retract gives
    `k[f] <= (k-1)n[A]`.
 4. **Kill test.** `f = diag(1,1,1,0)` with `n = 4` and `k = 3` gives `I_9 <~ I_8`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 37.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the Frobenius conjugation `[[0, I], [-UV, 0]]`;*
+- *Lemma S applied with `A = u^j`, `Z_1 = I_((j-1)n)`, `B = u`, `C = I_n`, where `f^((+)j)` is idempotent;*
+- *the end at `u^k = 0`, the `K_0` retract, and `I_9 <~ f^((+)3) <~ I_8`.*

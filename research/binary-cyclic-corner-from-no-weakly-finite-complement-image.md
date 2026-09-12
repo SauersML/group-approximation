@@ -18,3 +18,5 @@ Artifact Theorem W, (b) => (a).
 **Nothing is lost.** The first requirement is also necessary for the target (artifact Theorem W, (a) => (c)
 => (b), elementary). So this route turns the binary corner into a statement about weakly finite rings, with
 no states and no rank functions.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 35 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. Chain checked: Theorem C (Section 29.4), then Theorem B 6 ⇒ 1 (Section 32.3). The converse (a) ⇒ (c) ⇒ (b) is elementary and was also checked.*

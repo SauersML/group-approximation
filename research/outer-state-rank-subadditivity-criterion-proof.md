@@ -19,3 +19,8 @@ Section 3 of the artifact.
 4. **Triangular bound.** `separated-triangular-steps-flatten-to-minors` with empty padding gives
    `f (+) g <~ [[X, C], [0, Y]]`.
 5. **Minimality.** This is item 2 of `rank-functions-extending-a-state-are-pinned-on-regular-elements`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 37.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *`βα = f` with `e' = αβ` an idempotent below `e`;*
+- *`ρ^s(I_1) = 1`, `ρ^s(X) <= q`, and `f <~ 0 ⟹ f = 0`;*
+- *superadditivity, the triangular bound via Lemma S with empty padding, and minimality.*
