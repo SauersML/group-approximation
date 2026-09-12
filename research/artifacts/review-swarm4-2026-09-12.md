@@ -1348,3 +1348,155 @@ element $b\in R$, the equation $(1-x_1)u=bv$ has a non-zero solution in $R$?" Th
   `c-linear-sofic-group-carries-nontrivial-rigid-defect` are correctly OPEN, and they refute each other. Exactly one
   of the routes `non-linear-sofic-via-c-rank-row-defect` (existence of a non-linear-sofic group) and
   `linear-sofic-nonsofic-via-c-rank-row-defect` (Arzhantseva–Paunescu Question 8.5) has a true prerequisite.
+
+## 36. `birman-sequence-genus-three-does-not-virtually-split` (8a632b1e1, 53f80e1e6): Lemmas A–D PASS, Section 3 transfer PLAUSIBLE
+
+**What is claimed.** An adaptation of Chen–Salter (arXiv:1804.11235v1, Theorem A, `g >= 4`) to genus 3, at the
+level of the mapping class group. If true, it is a new theorem. The lane made no novelty search.
+
+**Where Chen–Salter need `g >= 4`, checked against the PDF text extracted on MSI.** The explicit uses are exactly
+(G1)–(G4) of the artifact:
+- line 292/338: the Torelli centralizer `Z^(2g-3)` beats the bound 3;
+- line 274: Lemma 2.9(2) needs both sides of genus `>= 2`;
+- line 451: Lemma 2.16 needs the same;
+- line 468: Section 3 needs a separating curve with `p, q >= 2`.
+
+No other occurrence of a genus bound was found.
+
+**The replacements check.**
+- **Lemma A.**
+  - Step 2 works at the mapping-class-group level. A pants decomposition through `a` and `b` gives `Z^6` of twist
+    powers commuting with `x`, and `σ` is injective. An empty CRS forces a pseudo-Anosov with virtually cyclic
+    centralizer. A CRS `{b′}` or `{b′,b″}` with a pseudo-Anosov on the genus-2 component has centralizer rank `<= 3`.
+  - Step 3: McCarthy gives `ψ^j = φ^i` in `Mod(C̃)`. Forgetting `∗` gives `T_δ^(rj) = 1` in `Mod(S^)`, which is
+    false, because `x^k` is a boundary multitwist of `S`.
+- **Lemma B.** The same three steps work for a separating curve bounding a one-holed torus.
+- **Lemma C.**
+  - Both `T̃` and `R̃` miss `∗`, so (F) makes `ρ_(T̃)(σ(h))` trivial for `h` in the genus-2 disk-pushing group.
+    `ρ_P` is trivial (thrice-punctured sphere). The cutting sequence gives `σ(D″) ⊆ Mod(R̃) × <T_(c_T)>`.
+  - The central extension `D″` of a finite-index subgroup of `π_1(Σ_2)` has nonzero rational Euler class, since
+    restriction is injective on `H^2(-;Q)`. The five-term sequence kills the centre in `H_1(D″;Q)`, so `ν` vanishes
+    on it, against `ν(T_c^(kN)) ≠ 0`.
+  - Only the genus-2 side is used, which is exactly why Chen–Salter's two-sided Lemma 2.15 is not needed.
+- **Lemma D.** Commuting single lifts are disjoint. Nesting would make `c_1` and `c_2` isotopic after forgetting
+  `∗`. So `∗` avoids one of the two tori.
+
+**What was not verified line by line: Chen–Salter Section 3 with `p = 2` over `Mod` instead of Torelli.**
+- A grep of the extracted text shows Section 3 using Torelli as the ambient group:
+  - `I(Σ_(p,1,∗))` is defined as a full preimage;
+  - the action `λ : I(Σ_(p,∗)) -> Aut(H)`;
+  - diagram (6).
+- The cohomological §3.4 works with rational cohomology of surface groups.
+- The grep found no use of the trivial action of Torelli on homology. But the transfer of §§3.1–3.4 to finite-index
+  subgroups of `Mod`, with `σ(Mod(R) ∩ L)` supported on `R̃` by Lemma D and (F), was not re-derived here.
+- Chen–Salter's argument descends from Mess's 1990 preprint, which contained an error.
+
+**Verdict.**
+- Lemmas A–D and the replacement logic: PASS.
+- Section 3 transfer: PLAUSIBLE, not verified.
+- Before this is reported as a theorem, someone should check Chen–Salter §§3.1–3.4 line by line over `Mod`, and run
+  a novelty search.
+- `genus-three-mcg-has-no-covering-lift-to-marked-covers` inherits the same status.
+- `closed-surface-mapping-class-groups-satisfy-boone-higman` stays OPEN either way.
+
+## 37. Metabelian Boone–Higman, Problem 5.3(7) (38595d4da): eight PASS
+
+- **`fg-metabelian-groups-embed-in-products-of-coprimary-quotients`: PASS.**
+  - P. Hall makes `G′` a Noetherian `ZQ`-module. Lasker–Noether gives coprimary quotients.
+  - `P_i ∩ Z` is `pZ`, giving exponent a power of `p`, or `0`, giving a torsion-free quotient.
+  - Remeslennikov and Wehrfritz give linearity. Factors of equal characteristic merge by a block sum over a common
+    field.
+  - **Mixing is unavoidable.** A finitely generated soluble linear group in characteristic `p` has virtually
+    unipotent derived subgroup, hence torsion, so `Z wr Z` is not linear there. A finitely generated linear group in
+    characteristic 0 is virtually torsion-free, so `Z/p wr Z` is not linear there.
+- **`function-field-soluble-groups-embed-in-fp-self-similar-groups`: PASS.**
+  - Kolchin–Mal'cev triangularization over a finite extension `K′`, then `S`-integers with `|S| >= 3`.
+  - `[[b,v],[0,λ]] ↦ (y ↦ λ^-1(by + v))` identifies `B_(n+1)(O_S)/O_S^×` with `A_S`.
+  - Bux plus the finitely generated central `S`-units give finite presentation.
+  - Zaremsky's Example 4.7 with `x` a nonzero nonunit of the Dedekind domain `O_S` (finite residue fields, Krull
+    intersection) gives self-similarity.
+- **`principal-ideal-affine-groups-are-self-similar` and `function-field-borel-groups-are-fp-for-three-places`: PASS as
+  citations.** Both routine deductions check: mutual stability passes to subgroups because right scaling by `x`
+  commutes with left matrix multiplication, and `B_n = B^SL_n ⋊ O_S^×`.
+- **`rover-nekrashevych-groups-are-highly-transitive`: PASS.**
+  - This is BFFHZ Remark 3.5.
+  - The elementary check: cone counts are invariant mod `d-1`, and `c(P) = 1-k = c(P′)` lets the complements be
+    matched.
+  - A nontrivial normal subgroup is dense in `Sym(O)`: its closure is a closed normal subgroup of `Sym(O)`, and those
+    are only `1` and `Sym(O)`.
+- **`fp-simple-highly-transitive-groups-satisfy-pbh`: PASS as a citation** of BFFHZ Theorem C.
+- **`fp-self-similar-subgroups-satisfy-permutational-boone-higman`: PASS.**
+  - Zaremsky's envelope `[V_(d′)(G), V_(d′)(G)]` is highly transitive, so Theorem C (iii) ⟹ (i) applies to all its
+    subgroups.
+  - Part (b) is restriction of scalars into `Z[1/m]^N ⋊ GL_N(Z[1/m])`.
+- **`global-field-soluble-linear-products-satisfy-boone-higman`: PASS.**
+  - This is a combination of the above with closure of `B_A` under finite-index overgroups and products.
+  - Instances: Baumslag's `B_p`, already covered by Kochloukova–Sidki with Zaremsky, and mixed products such as
+    `B_2 × B_3 × BS(1,6)`, which are finitely presented metabelian groups covered by no earlier envelope.
+  - A light but genuine set of new instances of Problem 5.3(7). No priority is claimed, correctly.
+- **`fp-metabelian-groups-satisfy-boone-higman`: correctly OPEN.** The reduction to (P) is exact.
+- **`baumslag-char-zero-metabelian-group-is-not-self-similar`: PASS.**
+  - Step 0: a faithful state-closed action has trivial joint core.
+  - Step 1:
+    - an abelian subgroup meeting `R` lies in `R`, because `x` and `1+x` are multiplicatively independent;
+    - normal subgroups meet `R` in nonzero ideals, because `Z[P] -> R` is onto;
+    - finite-index restriction is birational (`x ∈ Q(x^m, (1+x)^m)`), which gives a conductor.
+  - Step 2, case (a):
+    - `g^m = x^a(1+x)^b`, and the only rational roots of unity are `±1`;
+    - Mason–Stothers bounds `deg(-g) <= 1`, and the Möbius maps give `|Aut R| = 6`;
+    - `λ ∈ R` by dividing out the primes of `N`, using that `R/pR` is a domain.
+  - Step 3: `J = ∩_σ σ(J_1)` is a nonzero `Aut(R)`-stable ideal inside every `H_i`, mapped into itself by every `f_i`.
+  - This is an obstruction to applying Zaremsky's Theorem 1.1 to `B` itself, and it excludes nothing else.
+
+## 38. Leavitt cover residual finiteness, Kazhdan sectors, and Cartan subalgebras (b6b6b4058, 4f6f914eb, 2558a1877)
+
+### 38.1 `acyclic-quotientless-extension-completion-is-kernel-completion` and `leavitt-kazhdan-cover-rf-iff-kernel-rf`: PASS
+
+- **Splitting.**
+  - `G -> Out(N/K)` has finite image and factors through `Q`, so it is trivial. So `C·(N/K) = G/K` and
+    `C ∩ N/K = Z(N/K)`.
+  - The central extension `1 -> Z -> C -> Q -> 1` splits because `H^2(Q; Z) = 0` for perfect `Q` with `H_2 Q = 0`.
+  - `S = [C,C]` is characteristic, so `G/K = S × N/K`.
+- **Finite quotients.** They are the `N/K`. Finitely many `G`-conjugates give admissible subgroups, since `N` is
+  finitely generated.
+- **Sharpness.** A perfect central extension by a finite quotient of `H_2 Q` shows the Schur multiplier hypothesis is
+  needed.
+- **Instance.**
+  - `R^×` is integrally acyclic and infinite simple.
+  - If `N` is residually finite, then `g ∈ R_f(G)` centralizes `N`, since `[g,N] ⊆ R_f(G) ∩ N = R_f(N) = 1`.
+  - So `N` is cyclic, because centralizers in torsion-free hyperbolic groups are cyclic, and then `G` is virtually
+    cyclic. That contradicts `G ↠ R^× ⊇ Z^2`.
+- **Reading.** Correctly scoped: on this cover, Gromov's question is exactly residual finiteness of the kernel.
+
+### 38.2 `kazhdan-kernel-isotypic-sectors-extend-within-kernel-closure`: PASS
+
+- **Types are fixed.** Wang finiteness of `Irr_d(N)`. `Q` acts on a finite set, so trivially.
+- **Inner outer part.** Schur splitting `π(g)|_(H_ρ) = U(g) ⊗ W(g)`. `Q -> N(K)/K` lands in a compact Lie group,
+  hence in a finitely generated linear group, hence it is residually finite and so trivial.
+- **Bounded multiplicity.** On a type I commutant `⊕_(k <= m) M_k(Z_k)`, evaluating at characters gives projective
+  representations `Q -> PU(k)`, which are trivial. The ratio `λ_g(χ)/λ_g(χ′)` is a homomorphism `Q -> T`, also trivial.
+- **Sharpness.** The examples (finite quotients; infinite multiplicity) check.
+
+### 38.3 `bounded-multiplicity-kazhdan-sectors-miss-leavitt-cover-defect`: PASS, conditional on block invariance
+
+- On `H_b` every `σ(g)` lies in the strong closure of `T·σ(N)`.
+- Realizer sets `x M_s C_s` are invariant under conjugation by `σ(N)`, because `x` normalizes `M_s` and `C_s` commutes
+  with `σ(Γ̂) ⊇ σ(N)`. So compressed and host twists have the same `S_b`.
+- It depends on `kazhdan-kernel-blocks-invariant-under-sofic-invisible-quotient`, like §8. It is an obstruction to a
+  method, correctly scoped, and the "what survives" paragraph names the unbounded-multiplicity sectors.
+
+### 38.4 UCT and Cartan subalgebras (2558a1877): three PASS, one correctly OPEN
+
+- **`li-simple-finite-nuclear-dimension-cartan-iff-uct`: PASS as a citation** of Li, arXiv:1802.01190, Corollary 1.4.
+- **`uct-cartan-trivial-k-kirchberg-uct-iff-cartan`: PASS.**
+  - With `K_* = 0` the UCT gives `KK(A,A) = 0`, and Kirchberg–Phillips gives `A ≅ O_2`.
+  - `D_2 ⊆ O_2` is Cartan.
+  - Barlak–Li: a Cartan subalgebra in a separable nuclear algebra gives the UCT.
+- **`uct-cartan-nontrivial-m2-bundle-over-s4-has-no-cartan`: PASS.**
+  - Conditional expectations onto masas of `M_2` are unique, and fibre dimension 2 is forced everywhere.
+  - The masa field is continuous, so it gives a line subbundle of the `SO(3)`-bundle `V`.
+  - On `S^4`, `H^1(S^4; Z/2) = H^2(S^4; Z) = 0` trivializes `L` and `L^⊥`, contradicting the nonzero clutching class.
+  - `A ⊗ K ≅ C(S^4) ⊗ K`, because `H^3(S^4; Z) = 0`.
+  - It is known (Li–Renault), and the masa-with-expectation strengthening is correctly credited as elementary.
+- **`uct-cartan-trivial-k-kirchberg-without-cartan-exists`: correctly OPEN.** It is exactly the UCT problem in
+  Kirchberg's test class.
