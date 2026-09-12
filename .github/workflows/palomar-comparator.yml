@@ -34,9 +34,11 @@ name: Palomar Comparator
 # change a second field.
 #
 # The third value WILL FAIL until the proposition
-# `GroupApproximation.NinetyNineProblems.ClimbedPowersOutside` is discharged:
-# `Palomar/LIXStrongSolution.lean` proves each selected statement from that
-# hypothesis, so the theorems the configuration names do not exist yet.  It is
+# `GroupApproximation.NinetyNineProblems.LemmaTwoHoldsAtPowers` is discharged:
+# `Palomar/LIXStrongSolution.lean` proves each selected statement from
+# `NinetyNineProblems.ClimbedPowersOutside`, which follows from that one
+# proposition (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`), so the
+# theorems the configuration names do not exist yet.  It is
 # listed here so that the day they do exist the dispatch takes no editing, and
 # `scripts/check_palomar_submission.py` is where that state is recorded.
 #

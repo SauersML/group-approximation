@@ -161,9 +161,10 @@ PALOMAR_CONFIGS = (
 # Configurations whose SOLUTION is still a skeleton.
 #
 # `Palomar/LIXStrongSolution.lean` proves each of the three theorems its
-# configuration selects from one proposition the construction still owes
-# (`GroupApproximation.NinetyNineProblems.ClimbedPowersOutside`), so its
-# theorems carry a hypothesis the challenge's do not, under names ending `_of`.
+# configuration selects from `GroupApproximation.NinetyNineProblems.ClimbedPowersOutside`,
+# which follows from the one proposition the construction still owes,
+# `NinetyNineProblems.LemmaTwoHoldsAtPowers` (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`),
+# so its theorems carry a hypothesis the challenge's do not, under names ending `_of`.
 # That is the honest state of the work and not a defect, so the pair is checked
 # for everything that is meaningful now -- the configuration's shape, the
 # challenge importing Mathlib alone, the size caps, the files existing, the
