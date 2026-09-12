@@ -20,14 +20,23 @@ Higman–Thompson layer, the finite-presentation tools, Lemma 4.4 and Theorem 4.
   (vertex and edge stabilizers, `isFinitelyPresented_of_hom_int`), `QTwoBrownCover` (finitely many
   double cosets), `QTwoBrown` (`isFinitelyPresented_of_stabK_triangle`).
 
-## On main, probe running
-- `HydeLodha/QTwoFinitelyPresented`: Theorem 4.8 and `FinitelyPresentedInfiniteSimpleStatement` over the
-  named hypotheses `StabKFinitelyPresented` (HL Proposition 4.7, fff-quotient) and `VertexHTriangle`
-  (triangle count, go-lemma42, `QTwoBrownTriangle`).
+- `HydeLodha/QTwoFinitelyPresented` (47c4e98a0, probe 0912-092138-12304): Theorem 4.8 and
+  `FinitelyPresentedInfiniteSimpleStatement` over the named hypotheses `StabKFinitelyPresented` (HL
+  Proposition 4.7, fff-quotient) and `VertexHTriangle`.  The triangle count is discharged by
+  `vertexHTriangle hQ hΓ` (go-lemma42's `vertexH_triangle`, `QTwoBrownTriangle`), giving
+  `isFinitelyPresented_of_qTwo_le_of_stabK`, `isFinitelyPresented_qTwo_of_stabK` and
+  `finitelyPresentedInfiniteSimpleStatement_of_stabK` over Proposition 4.7 alone.
 
 ## Residual
-`isFinitelyPresented_stabK` and `vertexH_triangle`. When both land, `isFinitelyPresented_qTwo` and the
-closed `finitelyPresentedInfiniteSimpleStatement` are one-line terms in `QTwoFinitelyPresented`.
+Only `StabKFinitelyPresented Γ := ∀ K : Set ℚ, K.Finite → K.Nonempty → (∀ k ∈ K, Dyadic6 k) →
+Group.IsFinitelyPresented ↥(stabK Γ K)` (fff-quotient's `isFinitelyPresented_stabK`).  When it lands,
+`isFinitelyPresented_qTwo` and the closed `finitelyPresentedInfiniteSimpleStatement` are one-line terms
+in `QTwoFinitelyPresented`.
+
+## In progress
+Two Lemma 4.6 pieces for fff-quotient's Proposition 4.7: (a) Case 1, `Υ_{Γ₂}(I)' ⊆ ⋃ fⁿ H f⁻ⁿ`, by
+transporting `RstabGerms` through `perHom`; (c) the generators `v_i = u_i s_i⁻¹ u_i⁻¹ s_i` of `H ≅ F_6`,
+through `BrownPresentation`.  Waiting for exact statements from fff-quotient.
 
 ## Census
 No row yet: the printed sentence is graded through `FournierFacioParagraph`, which also needs the
