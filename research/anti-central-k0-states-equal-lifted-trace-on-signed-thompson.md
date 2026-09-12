@@ -28,3 +28,5 @@ among finite-subgroup projectives of `H` that the lifted trace forbids, such as 
 `H`: every order-eight element of `H` with fourth power `z` is conjugate to its negative, and `hw` is not. Its
 anti-central algebra is `M_2(F_3) x M_2(F_3)`, and the split `t` of a state between the evaluation block and the
 twisted block is not determined by part 2. Whether `t = 1/2` for every state is open. Remark 2.3 of the artifact.
+The transpose-inverse automorphism fixes `H` pointwise and exchanges the two blocks, so a state can always be averaged
+to `t = 1/2` (`anti-central-k0-states-can-be-chosen-transpose-invariant`).

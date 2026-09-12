@@ -181,3 +181,59 @@ from clopen indicators to all idempotent matrices over finite subgroups of `H`, 
 - *So `t = s(c_1)` is free* as far as Theorem 2.1 is concerned: its restriction to `<w, d>` is forced, but the split
   between `B_1` and `B_2` is not. A state that sees `h` is a choice of `t`, together with the analogous block splits on
   other finite subgroups not conjugate into `H`, extending the forced values. Whether every state has `t = 1/2` is open.
+  Section 3 shows `t` can always be normalized to `1/2`.
+
+## 3. The transpose-inverse automorphism, and where it stops
+
+Let `*` be the involution of `R` with `s_i^* = t_i`: an `F_3`-linear anti-automorphism with `(xy)^* = y^* x^*`.
+
+**Proposition 3.1.** `alpha(g) = (g^*)^(-1)` is an automorphism of `G` with the following properties.
+1. `alpha` fixes `H = E x| V` pointwise.
+2. `alpha` fixes `z`, `w` and `d`, and `alpha(delta(g)) = delta(alpha(g))`, where `delta(g) = s0 g t0 + s1 g t1`.
+3. On constants, `M(alpha(g)) = (M(g)^T)^(-1)`. So `alpha(h) = h^(-1) = zh` and `alpha(hw) = -hw`, and on
+   `SD = <w, d, h>` it is the sign twist `g -> z^(chi(g)) g`, where `chi` has kernel `<w, d>`.
+4. The linear extension `alpha_*` is a unital automorphism of `S_-` fixing `eps_-` and `e_-`. It exchanges the
+   blocks `c_1` and `c_2` of Remark 2.3.
+
+*Proof.*
+- *Automorphism.* `((gk)^*)^(-1) = (k^* g^*)^(-1) = (g^*)^(-1)(k^*)^(-1)`.
+- *Part 1.* `P_C^* = P_C`, so `tau_C^* = tau_C` and `alpha(tau_C) = tau_C^(-1) = tau_C`. A monomial unit
+  `g = sum S[alpha_i] T[beta_i]` has `g^* = sum S[beta_i] T[alpha_i] = g^(-1)`, so `alpha(g) = g`.
+- *Part 2.* `z^* = z`, `w^* = w = w^(-1)`, `d^* = d = d^(-1)`, and `delta(g)^* = delta(g^*)`.
+- *Part 3.* `t_i g^* s_j = (t_j g s_i)^*`, and scalars are fixed. For the symmetric `h`, `alpha(h) = h^(-1)`.
+  `hw = [[1,1],[-1,1]]` has transpose `[[1,-1],[1,1]]`, and `[[1,-1],[1,1]] [[1,1],[-1,1]] = [[2,0],[0,2]] = -I`,
+  so `alpha(hw) = -hw`.
+- *Part 4.* `alpha_*([h]) = [z][h] = -[h]` in `S_-`, `[w]` and `[d]` are fixed. So `rho_1 o alpha_* = rho_1 (x) chi = rho_2`
+  on `eps_- F_3[SD]`, and `alpha_*(c_1) = c_2`. QED
+
+**Corollary 3.2.** If `(K_0(S_-), [eps_-])` admits a state, it admits a state `s` with:
+- `s o alpha_* = s`;
+- `s o F_* = s / 2`, for the halving map `F` of `twisted-leavitt-k0-states-can-be-chosen-halving-invariant`;
+- `s(c_1) = s(c_2) = 1/2`.
+Every such state also satisfies Theorem 2.1.
+
+*Proof.*
+- *Commuting.* `alpha_*` fixes `e_-`, `[d]` and the matrix units `e_-, e_-[d], [d]e_-, 1_- - e_-`, and commutes with
+  `delta_*`. So it commutes with `psi(x) = e_- delta_*(x)`, with `Phi = M_2(psi)`, and with the Morita identification
+  `M_2(T) ~= S_-`. Hence `alpha_*` and `F_*` commute on `K_0(S_-)`.
+- *Fixed point.* `s -> s o alpha_*` and `s -> 2 s o F_*` are commuting continuous affine self-maps of the compact
+  convex state space (step 3 of the halving artifact). A commuting family of such maps has a common fixed point
+  (Markov–Kakutani).
+- *Values.* `s(c_1) = s(alpha_* c_1) = s(c_2)`, and `c_1 + c_2 = eps_-`. QED
+
+**Remark 3.3 (what the normalization says).**
+- The one free datum of Remark 2.3 is exchanged by an automorphism fixing all the forced data. So no argument that
+  only uses `H`, `delta` and `e_-` can force `t`. Averaging makes it agree with the lifted trace.
+- Other finite subgroups escape `H` as well. For example, the unipotent `[[1,1],[0,1]]` satisfies `(x - 1)^2 = 0`, while
+  a Thompson three-cycle `p` of cylinders has `(p - 1)^2 != 0`. So `GL_2(F_3)` is not conjugate into `H`, and its
+  modular blocks carry further unforced splits.
+- *The natural candidate.* The lifted trace is additive, conjugation invariant, positive, `alpha`-invariant, and
+  compatible with Theorem 2.1 on the union of all finite-subgroup algebras of `G`. A state on `(K_0(S_-), [eps_-])`
+  extending it would refute the swap corner. No extension is known, and no `K_0` relation between finite-subgroup
+  projectives with different lifted traces is known either.
+
+**Where it stops.**
+- *Design side.* No candidate. The F_9 Hadamard line is the swap corner (Section 1), and every design must break the
+  lifted trace between finite-subgroup projectives of `H`, through elements outside finite subgroups (Theorem 2.1).
+- *State side.* A state, if one exists, can be taken `alpha`- and halving-invariant, equal to the lifted trace on the
+  finite subgroups of `H` and on `SD`. Its existence is the negation of the corner and remains open.
