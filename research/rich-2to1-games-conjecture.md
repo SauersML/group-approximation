@@ -39,6 +39,13 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
   close to one. The published result's full-richness hypothesis is not
   supplied by the affine direction distribution. This leaves open tests
   or input families with additional structure.
+* **Stop at an intermediate algebraic family.** **Dead for the noise test:**
+  `separated-small-pairing-families-defeat-the-noise-test` extends the affine
+  obstruction to every separated pairing family of subexponential size, e.g.
+  affine or bounded-degree polynomial involutions. Route
+  `ugc-via-subexponential-pairing-enrichment` records the kill. The pairing
+  distribution at a left vertex must carry entropy linear in the alphabet size
+  before this test applies.
 * **Glue the affine orientations analytically.** **Dead:**
   `affine-orientation-glue-lemma` is refuted, and its conditional hardness
   route is invalidated. The historical endgame proposal
