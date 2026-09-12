@@ -644,3 +644,70 @@ The same three checks as §17.
   - Property (T) passes to quotients.
 - **Caveats.** The node lists the right ones: unrefereed, and the certificate was not rerun. The quotes were
   not re-extracted here.
+
+## 26. Mapping class groups and Out(F_n) (ce98de0fc): the four established claims PASS
+
+### 26.1 `outer-covering-lifts-are-virtual-sections`: PASS
+
+- **Unique roots.** If `N` is torsion-free and every nontrivial centralizer is cyclic, then `x^k = y^k ≠ 1`
+  puts `x` and `y` in `C(x^k) = <z>`, and torsion-freeness gives `x = y`.
+- **(i).**
+  - Let `θ` fix a finite-index `H` pointwise. Each `γ` has some `γ^k ∈ H` with `k >= 1`, by pigeonhole on
+    cosets. Unique roots then give `θ(γ) = γ`.
+  - So the extension is unique, and uniqueness makes `σ` a homomorphism.
+- **(ii).**
+  - On the kernel `L′` of the permutation action on `P`, every representative fixes `p̃`. `F_*` depends only
+    on the class rel `P`.
+  - A covering representative gives `f′(x) = x` and `f′_* π_* = π_* F_*`. So `f′_*` extends `λ̄(f)` from
+    `H = π_* π_1(Σ̃, p̃)`.
+  - By (i), all admissible `f′` induce the same automorphism. Based Dehn–Nielsen–Baer then makes `[f′]` in
+    `Mod(Σ, x)` well defined.
+  - Products of covering representatives cover the products, so `σ` is a homomorphism, and forgetting `x`
+    returns `f`.
+- **Converse.** Take the trivial cover and `P = {x}`.
+
+### 26.2 `closed-mcgs-have-no-covering-lift-to-marked-covers`: PASS, conditional on Chen–Salter
+
+- **Route.** §26.1(ii), then Theorem A of Chen–Salter. Injectivity of `λ` is never used.
+- **Scope.** The notes are right: unbranched covers only, genus 3 not covered, and non-covering embeddings
+  not excluded.
+- **Dead route.** `closed-mcg-bh-via-covering-lift-to-marked-cover` has `requires: []` and dies only through
+  `invalidates:`. So it fires if the invalidator ever loses its proof route. At landing the invalidator's
+  route requires only §26.1 and the Chen–Salter import, both with working routes.
+
+### 26.3 `birman-exact-sequence-does-not-virtually-split`: PASS as a citation
+
+- It agrees with the literature: Chen–Salter, arXiv:1804.11235, Theorem A, for `g >= 4`.
+- **Genus 2 splits virtually.**
+  - By Birman–Hilden, every class has a representative commuting with the hyperelliptic involution, unique
+    up to symmetric isotopy.
+  - On the finite-index pure subgroup, those representatives fix each Weierstrass point.
+- The quote was not re-extracted here.
+
+### 26.4 `punctured-surface-mcgs-satisfy-permutational-boone-higman`: PASS as a citation
+
+- The case summary matches the shape of their argument:
+  - Dehn–Nielsen–Baer into `Aut(F_n)` for two or more punctures;
+  - the double cover for one puncture;
+  - capping boundary components;
+  - the hyperelliptic quotient in genus 2.
+- The quotes were not re-extracted here.
+
+### 26.5 The open roots and premises: correctly stated
+
+- **Named open cases.** `closed-surface-mapping-class-groups-satisfy-boone-higman` and
+  `out-free-groups-satisfy-boone-higman` are the open parts of BBMZ Problem 5.3(2) and 5.3(3).
+  - The item wording and the open status agree with the verbatim BBMZ list on main
+    (`research/artifacts/boone-higman-frontier-2026-09-12.md`, lines 96–97 and 117–118): closed surfaces
+    of genus `>= 3`, and `Out(F_n)` for `n >= 3`.
+  - Their routes require OPEN premises, so neither root is established.
+- **`out-free-groups-virtually-embed-in-aut-free-groups`.** Correctly OPEN.
+  - Attempt 2 is right: restriction to a characteristic `K` gives `Aut(F_n)/K ↪ Out(K)`, since by §26.1(i)
+    the kernel is `Inn(K)`.
+  - The node honestly records that the literature status of virtual splitting of
+    `Aut(F_n) -> Out(F_n)` for `n >= 3` was not determined. This review did not determine it either.
+- **`closed-mcgs-virtually-embed-in-punctured-mcgs`.** Correctly OPEN.
+  - Attempt 2's reading of Aramayona–Souto is right. A closed surface has no punctures to forget and no
+    boundary to delete, and it is a subsurface only of itself. So the full group has no nontrivial map to a
+    bordered or punctured target of genus `<= 2g-1`.
+  - Finite-index subgroups are untouched, as the node says.
