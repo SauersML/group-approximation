@@ -237,6 +237,7 @@ theorem GridAffine.comp {f finv g : ℚ → ℚ} {Nf Bf Ni Bi Ng Bg : ℕ}
     rw [max_eq_left (le_max_left Nf (Bi + max Ng Ni))] at h2
     exact h2
 
+omit hm in
 /-- Raising the bound. -/
 theorem GridAffine.mono_bound {f : ℚ → ℚ} {N B B' : ℕ} (hf : GridAffine m Ω f N B)
     (hB : B ≤ B') : GridAffine m Ω f N B' := by
@@ -262,7 +263,7 @@ theorem GridAffine.glue {f g₁ g₂ : ℚ → ℚ} {N B : ℕ} (h₁ : GridAffi
   have hside : ∀ k : ℤ, gridPt m N (k + 1) ≤ p ∨ p ≤ gridPt m N k := by
     intro k
     by_contra h
-    push_neg at h
+    rw [not_or, not_le, not_le] at h
     exact not_between_consecutive hp ⟨h.2, h.1⟩
   refine ⟨fun k => ?_, fun k => ?_⟩
   · have hab : gridPt m N k ≤ gridPt m N (k + 1) := by
@@ -303,7 +304,7 @@ slopes have inverses in `Ω ∩ Grid m B'`, has a grid-affine inverse (at the le
 values).  On a level-`B` grid interval no value `f (k / m^N)` lies strictly inside, so the
 interval sits inside the image of one affine piece. -/
 theorem GridAffine.inverse {f finv : ℚ → ℚ} {N B B' : ℕ} (hf : GridAffine m Ω f N B)
-    (hmono : StrictMono f) (hleft : ∀ x, finv (f x) = x) (hright : ∀ y, f (finv y) = y)
+    (hmono : StrictMono f) (_hleft : ∀ x, finv (f x) = x) (hright : ∀ y, f (finv y) = y)
     (hinv : ∀ k : ℤ, ∀ s : ℚ, AffineOn f (gridPt m N k) (gridPt m N (k + 1)) s →
       s⁻¹ ∈ Ω ∧ s⁻¹ ∈ Grid m B') :
     GridAffine m Ω finv B (N + B' + B) := by
@@ -401,6 +402,7 @@ theorem GridAffine.inverse {f finv : ℚ → ℚ} {N B B' : ℕ} (hf : GridAffin
     have hprod := grid_mul hsB' (grid_sub (gridPt_mem (m := m) B k') (hf.value k))
     exact grid_mono (by omega) hprod
 
+omit hm in
 /-- An affine map `t ↦ s t + b` with `s ∈ Ω` and `s, b ∈ Grid m B` is grid-affine. -/
 theorem gridAffine_affine {s b : ℚ} {B : ℕ} (hsΩ : s ∈ Ω) (hsB : s ∈ Grid m B)
     (hb : b ∈ Grid m B) : GridAffine m Ω (fun t => s * t + b) 0 B := by
@@ -423,11 +425,17 @@ end GridAffineLemmas
 
 /-! ## The group -/
 
+theorem perm_apply_inv_self (f : Equiv.Perm ℚ) (x : ℚ) : f (f⁻¹ x) = x :=
+  Equiv.apply_symm_apply f x
+
+theorem perm_inv_apply_self (f : Equiv.Perm ℚ) (x : ℚ) : f⁻¹ (f x) = x :=
+  Equiv.symm_apply_apply f x
+
 theorem strictMono_perm_inv {f : Equiv.Perm ℚ} (hf : StrictMono f) : StrictMono ⇑f⁻¹ := by
   intro x y hxy
   by_contra h
   have h' := hf.monotone (not_lt.mp h)
-  rw [Equiv.Perm.apply_inv_self, Equiv.Perm.apply_inv_self] at h'
+  rw [perm_apply_inv_self, perm_apply_inv_self] at h'
   exact absurd hxy (not_lt.mpr h')
 
 section Group
@@ -443,16 +451,21 @@ def PLGroup : Subgroup (Equiv.Perm ℚ) where
   one_mem' := ⟨strictMono_id, ⟨0, 0, gridAffine_id⟩, ⟨0, 0, gridAffine_id⟩⟩
   mul_mem' := by
     rintro f g ⟨hfm, ⟨Nf, Bf, hf⟩, ⟨Nfi, Bfi, hfi⟩⟩ ⟨hgm, ⟨Ng, Bg, hg⟩, ⟨Ngi, Bgi, hgi⟩⟩
-    refine ⟨?_, ⟨_, _, ?_⟩, ⟨_, _, ?_⟩⟩
-    · show StrictMono (⇑f ∘ ⇑g)
+    have hmono : StrictMono ⇑(f * g) := by
+      show StrictMono (⇑f ∘ ⇑g)
       exact hfm.comp hgm
-    · show GridAffine m Ω (⇑f ∘ ⇑g) _ _
-      exact hg.comp hgi hf hgm (fun y => Equiv.Perm.apply_inv_self g y)
-    · have hinv : ⇑(f * g)⁻¹ = ⇑g⁻¹ ∘ ⇑f⁻¹ := by
-        ext x
-        simp [mul_inv_rev, Equiv.Perm.mul_apply]
+    have hcomp : GridAffine m Ω ⇑(f * g) (max Ng (Bgi + max Nf Ngi))
+        (Bf + max (Bg + max Ng (Bgi + max Nf Ngi)) Nf) := by
+      show GridAffine m Ω (⇑f ∘ ⇑g) _ _
+      exact hg.comp hgi hf hgm (fun y => perm_apply_inv_self g y)
+    have hinv : ⇑(f * g)⁻¹ = ⇑g⁻¹ ∘ ⇑f⁻¹ := by
+      ext x
+      simp [mul_inv_rev, Equiv.Perm.mul_apply]
+    have hcompi : GridAffine m Ω ⇑(f * g)⁻¹ (max Nfi (Bf + max Ngi Nf))
+        (Bgi + max (Bfi + max Nfi (Bf + max Ngi Nf)) Ngi) := by
       rw [hinv]
-      exact hfi.comp hf hgi (strictMono_perm_inv hfm) (fun y => Equiv.Perm.inv_apply_self f y)
+      exact hfi.comp hf hgi (strictMono_perm_inv hfm) (fun y => perm_inv_apply_self f y)
+    exact ⟨hmono, ⟨_, _, hcomp⟩, ⟨_, _, hcompi⟩⟩
   inv_mem' := by
     rintro f ⟨hfm, hf, hfi⟩
     refine ⟨strictMono_perm_inv hfm, hfi, ?_⟩

@@ -131,7 +131,7 @@ theorem exists_block {u : ℚ} (hu : (r : ℚ) - 1 ≤ u) : ∃ i : ℕ, ∃ w :
 
 theorem compE_lt (u : ℚ) : compE m r u < r := by
   have hp : (0 : ℚ) < (m : ℚ) + 2 := mTwo_pos
-  rcases le_or_lt u ((r : ℚ) - 1) with h | h
+  rcases le_or_gt u ((r : ℚ) - 1) with h | h
   · rw [compE_of_le m r h]
     linarith
   obtain ⟨i, w, hw0, hwq, rfl⟩ := exists_block m r h.le
@@ -171,10 +171,10 @@ theorem compE_strictMono : StrictMono (compE m r) := by
   intro u u' huu'
   have hp : (0 : ℚ) < (m : ℚ) + 2 := mTwo_pos
   have hq : (0 : ℚ) < (m : ℚ) + 1 := mOne_pos m
-  rcases le_or_lt u' ((r : ℚ) - 1) with h' | h'
+  rcases le_or_gt u' ((r : ℚ) - 1) with h' | h'
   · rw [compE_of_le m r (le_trans huu'.le h'), compE_of_le m r h']
     exact huu'
-  rcases le_or_lt u ((r : ℚ) - 1) with h | h
+  rcases le_or_gt u ((r : ℚ) - 1) with h | h
   · rw [compE_of_le m r h]
     exact lt_of_le_of_lt h (lt_compE_of_gt m r h')
   obtain ⟨i, w, hw0, hwq, rfl⟩ := exists_block m r h.le
@@ -196,7 +196,7 @@ theorem compE_strictMono : StrictMono (compE m r) := by
     nlinarith
 
 theorem compE_surj {t : ℚ} (ht : t < r) : ∃ u, compE m r u = t := by
-  rcases le_or_lt t ((r : ℚ) - 1) with h | h
+  rcases le_or_gt t ((r : ℚ) - 1) with h | h
   · exact ⟨t, compE_of_le m r h⟩
   have hp : (0 : ℚ) < (m : ℚ) + 2 := mTwo_pos
   have hp1 : (1 : ℚ) < (m : ℚ) + 2 := by linarith [(Nat.cast_nonneg m : (0 : ℚ) ≤ m)]

@@ -132,7 +132,7 @@ structure Data where
   wd_spec : ∀ h, piH H e (wd h) = h
   /-- Generators of each edge stabilizer. -/
   E : (t : T) → Finset (edgeStab H (t : G))
-  E_spec : ∀ t, Subgroup.closure (E t : Set (edgeStab H (t : G))) = ⊤
+  E_spec : ∀ t : T, Subgroup.closure (E t : Set (edgeStab H (t : G))) = ⊤
   /-- An expression `t⁻¹ = a · t₁ · b`. -/
   invL : T → H
   invT : T → T
@@ -149,7 +149,7 @@ structure Data where
   outL : T → T → H → H
   outT : T → T → H → T
   outR : T → T → H → H
-  out_spec : ∀ t' t (a : H), (t' : G) * (a : G) * (t : G) =
+  out_spec : ∀ (t' t : T) (a : H), (t' : G) * (a : G) * (t : G) =
     (outL t' t a : G) * (outT t' t a : G) * (outR t' t a : G)
 
 variable {H e T}
@@ -160,8 +160,8 @@ def relators (D : Data H e T) : Set (FreeGroup (Fin n ⊕ T)) :=
   (⋃ t : T, (fun x : edgeStab H (t : G) =>
     FreeGroup.of (Sum.inr t) * iota T (D.wd (conjHom H t x)) * (FreeGroup.of (Sum.inr t))⁻¹ *
       (iota T (D.wd (x : H)))⁻¹) '' (D.E t : Set (edgeStab H (t : G)))) ∪
-  Set.range (fun t : T => if ht : (t : G) ∈ H then
-    FreeGroup.of (Sum.inr t) * (iota T (D.wd ⟨t, ht⟩))⁻¹ else 1) ∪
+  Set.range (fun t : {t : T // (t : G) ∈ H} =>
+    FreeGroup.of (Sum.inr t.1) * (iota T (D.wd ⟨t.1, t.2⟩))⁻¹) ∪
   Set.range (fun t : T => (FreeGroup.of (Sum.inr t))⁻¹ *
     (iota T (D.wd (D.invL t)) * FreeGroup.of (Sum.inr (D.invT t)) *
       iota T (D.wd (D.invR t)))⁻¹) ∪
@@ -187,11 +187,10 @@ theorem mem_relators_edge (D : Data H e T) (t : T) {x : edgeStab H (t : G)} (hx 
   unfold relators
   exact Or.inl (Or.inl (Or.inl (Or.inr (Set.mem_iUnion.mpr ⟨t, x, Finset.mem_coe.mpr hx, rfl⟩))))
 
-theorem mem_relators_id (D : Data H e T) (t : T) :
-    (if ht : (t : G) ∈ H then FreeGroup.of (Sum.inr t) * (iota T (D.wd ⟨t, ht⟩))⁻¹ else 1) ∈
-      relators D := by
+theorem mem_relators_id (D : Data H e T) (t : T) (ht : (t : G) ∈ H) :
+    FreeGroup.of (Sum.inr t) * (iota T (D.wd ⟨t, ht⟩))⁻¹ ∈ relators D := by
   unfold relators
-  exact Or.inl (Or.inl (Or.inr ⟨t, rfl⟩))
+  exact Or.inl (Or.inl (Or.inr ⟨⟨t, ht⟩, rfl⟩))
 
 theorem mem_relators_inv (D : Data H e T) (t : T) :
     (FreeGroup.of (Sum.inr t))⁻¹ * (iota T (D.wd (D.invL t)) * FreeGroup.of (Sum.inr (D.invT t)) *
@@ -220,10 +219,8 @@ theorem relators_subset_ker (D : Data H e T) : relators D ⊆ ((phi H e T).ker :
     simp only [map_mul, map_inv, phi_iota, D.wd_spec, phi_of_inr, coe_conjHom]
     group
   · show phi H e T _ = 1
-    by_cases ht : (t : G) ∈ H
-    · rw [dif_pos ht, map_mul, map_inv, phi_iota, D.wd_spec, phi_of_inr]
-      exact mul_inv_cancel _
-    · rw [dif_neg ht, map_one]
+    rw [map_mul, map_inv, phi_iota, D.wd_spec, phi_of_inr]
+    exact mul_inv_cancel _
   · show phi H e T _ = 1
     simp only [map_mul, map_inv, phi_iota, D.wd_spec, phi_of_inr]
     rw [← D.inv_spec t]
@@ -333,8 +330,7 @@ theorem left_move (D : Data H e T) (t : T) (c : edgeStab H ((t : G)⁻¹)) :
 
 theorem gen_of_mem (D : Data H e T) (t : T) (ht : (t : G) ∈ H) :
     q D (FreeGroup.of (Sum.inr t)) = sigma D ⟨t, ht⟩ := by
-  have hrel := q_eq_one_of_mem D (mem_relators_id D t)
-  rw [dif_pos ht] at hrel
+  have hrel := q_eq_one_of_mem D (mem_relators_id D t ht)
   simp only [map_mul, map_inv, q_wd] at hrel
   exact mul_inv_eq_one.mp hrel
 

@@ -41,12 +41,11 @@ theorem xfun_of_le {k : ℕ} {t : ℚ} (h : t ≤ k) : xfun m k t = t := by
 theorem xfun_of_mem {k : ℕ} {t : ℚ} (h1 : (k : ℚ) ≤ t) (h2 : t ≤ k + 1) :
     xfun m k t = k + ((m : ℚ) + 2) * (t - k) := by
   unfold xfun
-  split_ifs with ha hb
+  split_ifs with ha
   · have ht : t = k := le_antisymm ha h1
     rw [ht]
     ring
   · rfl
-  · exact absurd h2 hb
 
 theorem xfun_of_ge {k : ℕ} {t : ℚ} (h : (k : ℚ) + 1 ≤ t) : xfun m k t = t + ((m : ℚ) + 1) := by
   unfold xfun
@@ -107,17 +106,17 @@ theorem xg_comm {i j : ℕ} (hij : i < j) :
   have hcast : ((j + m + 1 : ℕ) : ℚ) = (j : ℚ) + m + 1 := by push_cast; ring
   ext t
   simp only [Equiv.Perm.mul_apply, xg_apply]
-  rcases le_or_lt t i with h1 | h1
+  rcases le_or_gt t i with h1 | h1
   · rw [xfun_of_le (show t ≤ (j : ℚ) by linarith), xfun_of_le h1,
       xfun_of_le (show t ≤ ((j + m + 1 : ℕ) : ℚ) by rw [hcast]; linarith)]
-  rcases le_or_lt t (i + 1) with h2 | h2
+  rcases le_or_gt t (i + 1) with h2 | h2
   · rw [xfun_of_le (show t ≤ (j : ℚ) by linarith), xfun_of_mem h1.le h2,
       xfun_of_le (show (i : ℚ) + ((m : ℚ) + 2) * (t - i) ≤ ((j + m + 1 : ℕ) : ℚ) by
         rw [hcast]; nlinarith)]
-  rcases le_or_lt t j with h3 | h3
+  rcases le_or_gt t j with h3 | h3
   · rw [xfun_of_le h3, xfun_of_ge h2.le,
       xfun_of_le (show t + ((m : ℚ) + 1) ≤ ((j + m + 1 : ℕ) : ℚ) by rw [hcast]; linarith)]
-  rcases le_or_lt t (j + 1) with h4 | h4
+  rcases le_or_gt t (j + 1) with h4 | h4
   · rw [xfun_of_mem h3.le h4, xfun_of_ge (show (i : ℚ) + 1 ≤ j + ((m : ℚ) + 2) * (t - j) by
         nlinarith), xfun_of_ge (show (i : ℚ) + 1 ≤ t by linarith),
       xfun_of_mem (show ((j + m + 1 : ℕ) : ℚ) ≤ t + ((m : ℚ) + 1) by rw [hcast]; linarith)
@@ -136,9 +135,9 @@ theorem xg_fix {k : ℕ} {t : ℚ} (h : t ≤ k) : xg m k t = t := xfun_of_le h
 theorem le_xg (k : ℕ) (t : ℚ) : t ≤ xg m k t := by
   have hm0 : (0 : ℚ) ≤ (m : ℚ) := by positivity
   rw [xg_apply]
-  rcases le_or_lt t k with h1 | h1
+  rcases le_or_gt t k with h1 | h1
   · rw [xfun_of_le h1]
-  rcases le_or_lt t (k + 1) with h2 | h2
+  rcases le_or_gt t (k + 1) with h2 | h2
   · rw [xfun_of_mem h1.le h2]
     nlinarith
   · rw [xfun_of_ge h2.le]
@@ -155,7 +154,7 @@ theorem lt_xg_of_mem {k : ℕ} {t : ℚ} (h1 : (k : ℚ) < t) : t < xg m k t := 
   have hm : (0 : ℚ) < (m : ℚ) + 2 := mTwo_pos
   have hm0 : (0 : ℚ) ≤ (m : ℚ) := by positivity
   rw [xg_apply]
-  rcases le_or_lt t (k + 1) with h2 | h2
+  rcases le_or_gt t (k + 1) with h2 | h2
   · rw [xfun_of_mem h1.le h2]
     nlinarith
   · rw [xfun_of_ge h2.le]
