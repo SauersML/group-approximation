@@ -126,8 +126,9 @@ Subtract the first from `rank e + rank f`. QED
 - **Defects.** `e_C^2 - e_C = -P rho(1_C)(1-P) rho(1_C)|_W` and `e_C e_D = -P rho(1_C)(1-P) rho(1_D)|_W`,
   so both have rank at most `beta dim W`.
 - **Rounding the units.** `S_i = sigma(h_i)_W` has corank at most `d_(h_i)(W)`, because
-  `ker S_i` embeds in `(sigma(h_i)W + W)/W`. Changing `S_i` on a complement of its kernel gives
-  `A_i in GL(W)` with `rank(A_i - S_i) <= beta dim W`.
+  `ker S_i` embeds in `(sigma(h_i)W + W)/W`. Keep `S_i` on a complement of `ker S_i`, and on `ker S_i`
+  replace it with a linear bijection onto a complement of `im S_i`. This gives `A_i in GL(W)` with
+  `rank(A_i - S_i) <= dim ker S_i <= beta dim W`.
 - **Covariance defect.** For `C = [0]` or `[1]`, `rank(A_i e_C A_i^(-1) - e_(h_i C)) = rank(A_i e_C - e_(h_i C) A_i)`.
   - Replacing `A_i` by `S_i` costs `2 beta dim W`.
   - The exact terms cancel by covariance.
