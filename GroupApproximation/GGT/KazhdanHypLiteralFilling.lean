@@ -57,7 +57,7 @@ def LiteralRelatorOnlyFilling
     (cells : List (FreeGroup Generator)),
     word ≠ [] →
     (∀ x ∈ cells, RelatorDefectBudget.IsSignedConjugate
-      (GGT.RelLetter.listVal '' triangleRelatorWords T) x) →
+      (GGT.RelLetter.listVal '' triangleRelatorWords.{0} T) x) →
     cells.prod = PresentedGroupRelatorReplay.word word →
     ∃ Delta : VanKampen.DiscDiagram.{0, 0, 0} (triangleRelatorWords T),
       Delta.boundaryWord = word.map signedFreeRelLetter ∧
@@ -210,7 +210,7 @@ theorem nonempty_powerDisc_of_literalRelatorOnlyFilling
     (word := (List.replicate n D.word).flatten) ?_ ?_)⟩
   · rw [D.boundary_eq, List.map_flatten, List.map_replicate]
   · intro Delta' hboundary' hrelatorOnly'
-    have hmin := Nat.find_min' hex ⟨{
+    have hmin : Nat.find hex ≤ Delta'.rCellCount := Nat.find_min' hex ⟨{
       word := D₀.word
       represents := D₀.represents
       diagram := Delta'

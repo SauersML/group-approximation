@@ -199,7 +199,7 @@ theorem listVal_faceBoundary_eq_one_of_faceCount_eq_one {G : Type w} [Group G]
   have hwalk : B.darts = orbitWalk M.facePerm (B.darts.head B.nonempty) (m + 1) := by
     rw [← hm]
     exact eq_orbitWalk_of_isChain M.facePerm B.darts _ B.chain
-      (List.head?_eq_head B.nonempty)
+      (List.head?_eq_some_head B.nonempty)
   have hperiod : (M.facePerm ^ (m + 1)) (B.darts.head B.nonempty) =
       B.darts.head B.nonempty := by
     have hc := B.closes
@@ -252,7 +252,8 @@ theorem listVal_faceBoundary_eq_one_of_faceCount_eq_one {G : Type w} [Group G]
   have hB : GGT.RelLetter.listVal (B.darts.map label) = 1 ↔
       GGT.RelLetter.listVal
         ((orbitWalk M.facePerm (M.facePerm d) (k + 1 + 1)).map label) = 1 := by
-    rw [hrot, List.map_rotate, hwalk]
+    rw [hrot, List.map_rotate]
+    conv_lhs => rw [hwalk]
     have hlen : j + 1 ≤
         ((orbitWalk M.facePerm (B.darts.head B.nonempty) (k + 1 + 1)).map label).length := by
       rw [List.length_map, length_orbitWalk]
@@ -322,8 +323,8 @@ theorem listVal_faceBoundary_eq_one_of_faceCount_eq_one {G : Type w} [Group G]
     | zero => intro _; rfl
     | succ i ih' =>
         intro hi
-        rw [orbitWalk_succ', orbitWalk_succ', List.map_append, ih' (by omega), List.map_cons,
-          List.map_nil, hstep i (by omega)]
+        rw [orbitWalk_succ', orbitWalk_succ']
+        erw [List.map_append, ih' (by omega), List.map_cons, List.map_nil, hstep i (by omega)]
   have hWne : orbitWalk (EdgeDeletion.toCombMap M d).facePerm d₀ (k + 1) ≠ [] := by
     simp [orbitWalk_succ]
   have hWnd : (orbitWalk (EdgeDeletion.toCombMap M d).facePerm d₀ (k + 1)).Nodup := by
