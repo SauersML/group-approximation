@@ -22,6 +22,12 @@ A counterexample may be sought over any torsion-free group: if `Det(E)`
 holds, a non-integral kernel dimension over any torsion-free `H` forces one
 over `E` by the same tester.
 
+Without any determinant hypothesis this claim already has an algebraic payoff:
+it makes `Qbar[G]` embed in a division ring for every torsion-free group `G`
+(corollary in `division-ring-embedding-torsion-free-one-group-tester`).  So a
+torsion-free group algebra over `Qbar` with no division-ring embedding, for
+instance one with a zero divisor, refutes this claim.
+
 ## Attempts
 
 * **Sofic Lueck approximation.**  Dead:
