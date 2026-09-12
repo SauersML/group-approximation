@@ -58,10 +58,12 @@ Each item follows from an established rounding theorem, along a subsequence.
   slightly rotated `theta(A)` (Ioana's tensor deformation) is not nearly
   idempotent once the deformation is macroscopic. Section 3.1 of the
   heat-rounding boundary artifact shows the defect tends to `1/4`.
-- **Non-CP exact idempotents.** `E_D+E_(FDF*)-E_C` for mutually unbiased
-  diagonal algebras is idempotent and trace preserving but not CP. Its Choi
-  matrix has eigenvalue `-1/d` on a subspace of dimension at least `d^2-2d`.
-  No UCP approximant has been found.
+- **Non-CP exact idempotents are uniformly excluded.** For any two
+  mutually unbiased masas, `Q=E_D+E_C-E_scalar` has exact distance
+  `1/3` from every UCP competitor, by
+  `mub-sum-idempotents-have-uniform-cp-distance`. This excludes the
+  proposed vanishing-perturbation construction in all dimensions. The
+  optimizer `(id+E_D+E_C)/3` has idempotence defect exactly `2/9`.
 - **Group twirls.** Averages over average-case almost-representations of
   finite groups round, by Gowers--Hatami plus the dimension-change corner
   theorem. A counterexample cannot be a twirl of that kind.

@@ -71,8 +71,10 @@ idempotent ones, is left open in Kitaev, arXiv:2405.02434v2, Section 1.2.
   average-case almost-representations of finite groups round, by
   Gowers--Hatami followed by the dimension-change corner theorem of Section
   10.
-- **Non-algebra exact idempotents.** The self-adjoint trace-preserving
-  idempotent `E_D+E_(FDF*)-E_C`, for two mutually unbiased diagonal
-  algebras, is not completely positive. Its Choi matrix has eigenvalue
-  `-1/d` with multiplicity at least `d^2-2d`. Whether UCP maps can approximate such an
-  idempotent in the infinity-to-2 norm is not settled here.
+- **Non-algebra exact idempotents are uniformly excluded.** For two
+  mutually unbiased masas, `Q=E_D+E_C-E_scalar` has exact distance
+  `1/3` from all UCP maps in the normalized `infinity->2` norm, by
+  `mub-sum-idempotents-have-uniform-cp-distance`. The optimum is attained
+  by `(id+E_D+E_C)/3`, whose idempotence defect is `2/9`. Thus the
+  small negative Choi eigenvalues cannot be repaired by a perturbation
+  tending to zero in the required norm.
