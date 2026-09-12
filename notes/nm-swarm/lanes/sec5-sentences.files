@@ -27,3 +27,4 @@ GroupApproximation/Manuscript/NonMF/TorsionFreeAlgebraSentencesClosed.lean
 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
 GroupApproximation/GGT/VanKampen/SurgeryGFaceMerge.lean
 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeDarts.lean
+GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeRegions.lean
