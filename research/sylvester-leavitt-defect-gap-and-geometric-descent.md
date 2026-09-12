@@ -10,7 +10,8 @@ artifacts:
   - research/artifacts/sylvester-class-a-defect-chain-2026-09-12.md
 ---
 
-**ESTABLISHED** (on paper, lane `w5-regular-rankfn`; verification requested from `w4-vf-gate`) by
+**ESTABLISHED** (lane `w5-regular-rankfn`; verified PASS by `w4-vf-gate`, Section 26 of
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, fbcf9d2005) by
 `sylvester-leavitt-defect-gap-descent-proof`.
 
 Let `R = L_(F_2)(1,2)`, `D = ([x_23(1)] - 1)([x_12(1)] - 1)` in `F_2[R^x]` through `R^x = EL_3(R)`, and
