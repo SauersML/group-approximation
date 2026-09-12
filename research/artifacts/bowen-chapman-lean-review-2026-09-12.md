@@ -176,9 +176,16 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` bb216c03d one campaign file has landed at its final path,
-the Palomar challenge (F4(c)). Everything else is a WIP snapshot under
+As of `origin/main` 49fe43fa6 three landings touch the campaign: the Palomar
+challenge (6ae077316), the Dynamics base layer (5e2c62ed1) and the site-strata
+leaves (0bfc073cd). Everything else is a WIP snapshot under
 `wip/bowen-chapman/`.
+
+**Stale oleans.** The shared MSI checkout's oleans were built at a7bf5d4fc
+(30 August). A private-directory green counts only if every repository
+dependency's olean was built from source byte-identical to main.
+`lake-manifest.json` and `lean-toolchain` are unchanged since a7bf5d4fc, so
+Mathlib-only builds are not exposed.
 
 **(a) Endpoint scaffolds, WIP at cdd4b82df. Status: fixed by `bc-assembly` at
 958615284 (WIP snapshots).** Verified by reading both snapshots on origin/main
@@ -241,24 +248,58 @@ defect. Evidence: flagged.**
   MSI against the warm Mathlib oleans". It carries no success line, no md5 and
   no toolchain line, which the coordinator's landing rule requires. The landed
   blob's md5 is `ab2b85bc9ecb06e1728aa07917d82420`; the next build of the
-  challenge should quote it with its success line. Sent to `bc-palomar`.
+  challenge should quote it with its success line. Sent to `bc-palomar`. The
+  stale-olean rule does not bite here, because the file imports Mathlib only.
 * **Pending for the solution.** When the solution gains the endpoint import, its
   import closure grows by thousands of modules. That is where the LIX entry's
   instance-capture mismatch came from, so the statement-match drivers (WIP
   `scripts/PalomarBowenChapman{ChallengeType,SolutionType}.lean`) must be rerun
   at that point, not only now.
 
+**(d) Landed: the Dynamics base layer, 5e2c62ed1, root-wired. No defect.**
+* Seven modules: `Surjunctivity`, `Transplant`, `SurjunctivitySubgroup`,
+  `FiniteMemory`, `CosetSlice`, `SurjunctivityResiduallyFinite`,
+  `SurjunctivityTransfer`. All seven root imports are on origin/main.
+* The evidence meets the rule:
+  * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
+  * one invocation doing upload, md5 and compile;
+  * `exit=0` with the olean present for every module;
+  * `#print axioms` giving `[propext, Classical.choice, Quot.sound]` for
+    `IsSurjunctive.surjective_localMap`, `isSurjunctive_of_isResiduallyFinite`,
+    `isSurjunctive_of_residuallyFinite`, `IsSurjunctive.of_mulEquiv`,
+    `IsSurjunctive.of_injective`, `IsSurjunctive.subgroup` and
+    `isResiduallyFinite_iff_group_residuallyFinite`.
+* All seven md5s quoted in the message equal the landed blobs.
+* Stale oleans do not apply. The one repository dependency outside the batch is
+  `Algebra.FiniteResidual`, which is unchanged since a7bf5d4fc and which, as the
+  message states, was compiled privately from main's source. The remaining
+  imports are modules of the same batch.
+* Content: `shift`, `IsEquivariant`, `localMap` and `IsSurjunctive` are exactly
+  the definitions checked in F2(e), and `isSurjunctive_of_residuallyFinite
+  [Group.ResiduallyFinite G]` is the form the endpoint scaffold uses.
+
+**(e) Landed: `Dynamics/SiteStrata` and `Dynamics/SubsetSchedule`, 0bfc073cd,
+root-wired. No defect.**
+* Both import Mathlib only. The message quotes "Build completed successfully
+  (845 jobs), exit 0" from `scripts/remote-build.sh`, and both quoted md5s equal
+  the landed blobs.
+* The Mathlib pin is unchanged since a7bf5d4fc, so stale oleans do not apply.
+  Both root imports are on origin/main, so the orphan scan stays clean.
+
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
 * the md5 of the exact landed bytes, checked in the same invocation as the
   build;
-* repository dependencies from the shared warm oleans;
+* repository dependencies from oleans built from source identical to main,
+  never from the 30 August shared oleans for modules changed since;
 * success lines and md5s quoted in the commit message.
 
 **Still to review as they land:** `bc-pair`, `bc-kazhdan`, `bc-rf`,
-`bc-dynamics` / `bc-dynamics-upper`, `bc-double-surj`, `bc-wreath`,
-`kt-norm-paper`, `kt-norm-repo`, `kt-norm-fixedpoint`, `kt-norm-counting`,
-`bc-assembly`, and the `bc-palomar` solution.
+`bc-dynamics-upper` (`FinitarySite`, `FinitarySurjunctivity`,
+`WreathFinitarySite`, `StratifiedPeeling`, `CosetRegion`, `FinitaryTransplant`),
+`bc-double-surj`, `bc-wreath`, `kt-norm-paper`, `kt-norm-repo`,
+`kt-norm-fixedpoint`, `kt-norm-counting`, `bc-assembly`, and the `bc-palomar`
+solution.
 
 An informal pass of the permanence chain by another team is not a Lean
 verification; the Lean is reviewed here independently.
