@@ -9,6 +9,7 @@ requires:
   - strict-automata-live-on-canonical-table-groups
 artifacts:
   - research/artifacts/unbalanced-design-memory-collisions-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 The argument follows Proposition 1 and Corollary 2 of the artifact.
@@ -21,3 +22,8 @@ The argument follows Proposition 1 and Corollary 2 of the artifact.
   `rho(M)`, so the effective rule would be balanced.
 - **Over the table group.** Lemma 5 of the canonical-table artifact says `rho_E` has forward table
   `>= E`, and its collision partition is that of the letters `x_m` in `U_E`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: the one-site law at the
+distinct points `rho(M)`, measure preservation of bijections, the sofic-quotient remark, and the `F_2`
+top-coefficient criterion for robust unbalance
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 6).

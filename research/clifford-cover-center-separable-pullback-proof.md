@@ -7,6 +7,7 @@ target: clifford-cover-center-separable-iff-graph-is-finite-pullback
 requires: []
 artifacts:
   - research/artifacts/clifford-cover-orbital-localization-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 1, Theorem A.
@@ -17,3 +18,7 @@ Artifact Section 1, Theorem A.
 - **Only if.** Given `f` with `f(eps) != 1`, the images `f(c_x)` form a finite `G`-set under conjugation.
   Adjacency is exactly non-commutation of images. The kernel `K` of the permutation action makes the site
   map factor through `K\X`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently, including both corollaries:
+the `L`-bi-invariance criterion, infinite degree from `[L : Gamma] = infinity`, and the complete-graph case
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 7.1).
