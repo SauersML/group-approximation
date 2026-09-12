@@ -306,15 +306,28 @@ In particular `p_c < p_u` follows from `b_R(p_c) < 1` for one finite radius `R`.
    finite-volume connection probabilities. So `sup_(p<p_c) b_(R_0)(p) = 1 - eta`.
 2. Lemma 4.1 with `r = R_0 - 1` bounds `chi^H_p <= C_(R_0-1)(p_c) + 1`
    uniformly for `p < p_c`.
-3. Hence `b_j <= |S_Q(j)| (chi^H_p)^2` is bounded for each `j < R_0`.
+3. Each `b_j` with `j < R_0` is bounded uniformly for `p < p_c`.
+   *Correction 2026-09-12:* an earlier version wrote `b_j <= |S_Q(j)| (chi^H_p)^2`,
+   which assumes `sigma_p(q) <= chi^H_p`. That was never proved.
+   The last-crossing bound `fpbs-tree-projected-branch-share-last-crossing-bound`
+   (item 4), with `chi^(s)_p <= chi^H_p`, gives instead
+   `sigma_p(w) <= chi^H_p (p M chi^H_p)^(|w|)`, where `M = max_s m_s`. So
+   `b_j <= |S_Q(j)| c^2 (Mc)^(2j)` with `c = C_(R_0-1)(p_c) + 1`.
    Lemma 4.2 gives `b_(k R_0 + j) <= (1-eta)^k b_j`.
 4. So `B^H_p <= (sum_(j<R_0) b_j)/eta` uniformly: premise (i).
 5. Also `max_(|w|=D) sigma_p(w) <= b_D^(1/2) -> 0` uniformly. A branch `beta_w`
    at depth `D` has share `E|K_o ∩ pi^(-1)beta_w| <= sigma_p(w) chi_p`, by BK
    through `Gamma_w`.
-6. Far halfspaces pull back into a bounded number of branches at depth
-   `>= D/lambda - C`. This is the shadow comparison for a convex-cocompact
-   embedding of the tree in `H^2`. So `sh(D) -> 0`: premise (ii).
+6. Far halfspaces pull back into at most `N_R = |B_(F_n)(R)|` branches, each at
+   depth `>= D/lambda - C'`, with `R` and `C'` depending only on `Phi`. The
+   earlier text only asserted this. It is now proved in the route
+   `fpbs-tree-projected-sphere-bubble-l2-equivalence-proof`, step (⇐5):
+   * the projection angle is obtuse, so `[Phi(a),x]` passes near the projection
+     `z`;
+   * by the Morse lemma, every tree geodesic from `a` into `Phi^(-1)(H)` meets
+     one fixed ball `B(r_0,R)`.
+   With step 5, `sh(D) <= N_R max_(|w| >= D/lambda - C') sigma_p(w) -> 0`:
+   premise (ii).
 7. Theorem 3.1 applies. QED.
 
 By submultiplicativity, the criterion is that the critical fibre-sphere bubble

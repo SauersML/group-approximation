@@ -27,7 +27,11 @@ Structure of the proof:
 * Fibres are cut sets, so `sigma_p(wu) <= sigma_p(w) sigma_p(u)` and
   `b_(R+R') <= b_R b_(R')`.
 * Left-continuity in `p` and the tube excursion bound make the bubble below one
-  uniform below `p_c`.
+  uniform below `p_c`. The last-crossing bound
+  (`fpbs-tree-projected-branch-share-last-crossing-bound`) bounds the finitely
+  many smaller spheres.
+* By the Morse lemma, far halfspaces pull back into boundedly many deep
+  branches. The two gaps found by review are written out in the proof route.
 * That gives both premises of `fpbs-hyperbolic-quotient-fibre-estimates-l2-gap`.
 * The converse is `B^H_(p_c) <= ||T_(p_c)||^2`.
 
