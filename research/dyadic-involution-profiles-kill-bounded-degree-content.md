@@ -15,7 +15,7 @@ artifacts:
 `research/artifacts/gk-vf-linear-verification-2026-09-12.md`, ead15402a3). The pass covers the
 polynomial Jordan count, additivity over orthogonal pieces, the projective profile `1/2`, and the
 dyadic identity for flag diagonals. Let `k` be a field of characteristic
-`2`, `M` a ring with a faithful normalized Sylvester rank function, `N >= 4(D + 1)`,
+`2`, `M` a ring with a faithful normalized Sylvester rank function,
 `H = SL_N(F_2)` and `sigma : H -> M^x` a homomorphism. Write `f(r) = rk(sigma(g_r) - 1)` for an
 involution `g_r = 1 + n` with `n^2 = 0` and `rank n = r`. Suppose:
 
@@ -23,7 +23,7 @@ involution `g_r = 1 + n` with `n^2 = 0` and `rank n = r`. Suppose:
   `sigma(H)`. On each corner `e_i M e_i ~= M_(d_i)(k) (x) C_i`, `sigma` acts as `rho_i (x) 1`,
   where `rho_i` is trivial, projective, or `F_i(V_N, V_N*)` for a strict polynomial bifunctor
   `F_i` of total degree at most `D`;
-* `f(2r) = f(r)` for every integer `1 <= r <= N/4`.
+* `f(2r) = f(r)` at `D + 1` distinct integers `r` with `1 <= r <= N/4`.
 
 Then every polynomial `rho_i` is trivial.
 
@@ -45,7 +45,14 @@ symmetric and divided powers of bounded degree, each with free and trivial compl
 * Restrictions that do not split orthogonally.
 
 **Leavitt instance.** For `R = L_K(1,2)` with `char K = 2`, Proposition 2 of
-`research/artifacts/el3-rank-ring-rigidity-2026-09-12.md` supplies the dyadic identity on every
-level group `SL_(3·2^(k+1))(F_2)` inside `R^x`. So no char-two rank model of `R^x` has a nonzero
-bounded-degree polynomial piece at a level group with orthogonal trivial, projective and
+`research/artifacts/el3-rank-ring-rigidity-2026-09-12.md` supplies the dyadic identity for
+`1 <= r < N/4` on every level group `SL_N(F_2)`, `N = 3·2^(k+1)`, inside `R^x`. That gives
+`D + 1` points once `N >= 4(D + 2)`. So no char-two rank model of `R^x` has a nonzero
+bounded-degree polynomial piece at such a level group with orthogonal trivial, projective and
 polynomial complements (artifact Section 5).
+
+**Scope correction (2026-09-12).** The first version assumed the identity at every
+`1 <= r <= N/4` with `N >= 4(D + 1)`, and the Leavitt instance used the endpoint `r = N/4`.
+Proposition 2 holds only below the endpoint: at the maximal type the corner conjugacy
+`g ~ g (+) I` fails (lane `gk-l-gate-neg`). The hypothesis is now `D + 1` points and the
+instance's level bound is `N >= 4(D + 2)`. The finite-group argument is unchanged.

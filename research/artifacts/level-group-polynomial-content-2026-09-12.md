@@ -21,12 +21,13 @@ Results:
    total degree at most `D` in `V` and `V*`, the displacement of `g_r` is a polynomial in `r`
    of degree at most `D` that vanishes at `r = 0`.
 2. **Dyadic rigidity kills bounded-degree content** (Sections 3 and 4). Suppose `f(2r) = f(r)`
-   for `1 <= r <= N/4`, `N >= 4(D+1)`, and `sigma` splits into orthogonal invariant pieces that
-   are trivial, projective, or polynomial of degree at most `D`. Then every polynomial piece is
-   trivial.
+   at `D + 1` distinct integers `1 <= r <= N/4`, and `sigma` splits into orthogonal invariant
+   pieces that are trivial, projective, or polynomial of degree at most `D`. Then every polynomial
+   piece is trivial.
 3. **Leavitt application** (Section 5). For `R = L_K(1,2)`, `char K = 2`, Proposition 2 of
-   `research/artifacts/el3-rank-ring-rigidity-2026-09-12.md` gives the dyadic identity at every
-   level group `SL_(3·2^(k+1))(F_2)`. So natural, dual, natural-plus-dual, adjoint `V (x) V*`,
+   `research/artifacts/el3-rank-ring-rigidity-2026-09-12.md` gives the dyadic identity for
+   `1 <= r < N/4` at every level group `SL_N(F_2)`, `N = 3·2^(k+1)`, hence at `D + 1` points once
+   `N >= 4(D + 2)`. So natural, dual, natural-plus-dual, adjoint `V (x) V*`,
    and tensor, exterior and symmetric powers of bounded degree never occur as orthogonal pieces
    at level groups. Projective pieces, the Steinberg module included, have profile exactly
    `1/2`, like free content, and survive.
@@ -117,11 +118,12 @@ roots, so it is the zero polynomial. So `c_j = 0` for `j >= 1`, and `c_0 = Q(0) 
 ## 4. Theorem A
 
 **Theorem A** (`dyadic-involution-profiles-kill-bounded-degree-content`). Let
-`N >= 4(D + 1)`, `H = SL_N(F_2)`, and `sigma : H -> M^x` as in Section 0. Suppose:
+`H = SL_N(F_2)` and `sigma : H -> M^x` as in Section 0. Suppose:
 
 * `1 = sum_i e_i` is a finite orthogonal decomposition into H-pieces, each trivial,
   projective, or polynomial of degree at most `D`;
-* `f(2r) = f(r)` for every integer `1 <= r <= N/4`.
+* `f(2r) = f(r)` at `D + 1` distinct integers `r` with `1 <= r <= N/4`. For example, at every
+  integer `1 <= r < N/4`, once `N >= 4(D + 2)`.
 
 Then every polynomial piece is trivial.
 
@@ -133,8 +135,9 @@ Then every polynomial piece is trivial.
    f(r)  =  w_proj / 2  +  Q(r),      Q(r) = sum_(i polynomial) rk(e_i) P_(F_i)(r) / d_i ,
    ```
    where `Q` is a rational polynomial of degree at most `D` with `Q(0) = 0`.
-2. **Dyadic rigidity.** The identity `f(2r) = f(r)` holds at the integers `1, ..., floor(N/4)`,
-   and `floor(N/4) >= D + 1`. So `Q(2r) = Q(r)` at `D + 1` integers, and Lemma 3 gives `Q = 0`.
+2. **Dyadic rigidity.** Each hypothesis point has `1 <= r` and `2r <= N/2`, so both `f(r)` and
+   `f(2r)` are given by the formula of step 1, and the projective constant cancels. So
+   `Q(2r) = Q(r)` at `D + 1` integers, and Lemma 3 gives `Q = 0`.
 3. **Each piece dies.** At `r = 1`, each summand `rk(e_i) P_(F_i)(1) / d_i` is a normalized rank,
    hence nonnegative, and the summands add to `0`. For a piece with `e_i != 0`, faithfulness
    gives `rk(e_i) > 0`, so `P_(F_i)(1) = 0`. Every transvection acts trivially on `F_i(V, V*)`,
@@ -154,16 +157,25 @@ Let `R = L_K(1,2)` with `char K = 2`, and take the level groups
 `H_k = EL_3(M_(2^k)(F_2)) = SL_(3·2^k)(F_2)` inside `EL_3(R) = R^x`.
 
 **Input: Proposition 2** of `research/artifacts/el3-rank-ring-rigidity-2026-09-12.md` (lane
-`gk-l-gate-neg`). For every characteristic-two rank model `sigma` of `R^x` and every `k`, the
-profile of `sigma` on `H_(k+1)` satisfies `f_(k+1)(2r) = f_(k+1)(r)` for
-`1 <= r <= 3·2^k / 2 = N_(k+1)/4`. Its ingredients:
+`gk-l-gate-neg`), in its corrected range. For every characteristic-two rank model `sigma` of
+`R^x` and every `k`, the profile of `sigma` on `H_(k+1)` satisfies `f_(k+1)(2r) = f_(k+1)(r)`
+for `1 <= r < 3·2^k / 2 = N_(k+1)/4`. Its ingredients:
 
 * **Doubling.** `g` in `H_k` equals `g (x) I_2` in `H_(k+1)`.
-* **Compressor.** For `ts = 1`, `u = [[s, 1 - st], [0, t]]` is invertible in `GL_2(R)`, with
-  inverse `[[t, 0], [1 - st, s]]`, and `u diag(a, 1) u^(-1) = diag(s a t + 1 - st, 1)`. The
-  artifact uses this to identify `g (+) I` with `g` inside `R^x`.
+* **Absorption.** For `g` in `H_k` of type `r`, `(R^3, g) ~= W (x) R` with `W = F_2^(3·2^k)`.
+  When `W` has a trivial Jordan summand, which happens exactly when `r < 3·2^k / 2`, absorbing
+  it identifies `g` with its copy `g (+) I` in `H_(k+1)` up to conjugacy in `GL_3(R) = R^x`.
 
-**Consequence.** At every level `N = 3·2^(k+1) >= 4(D + 1)`: if `sigma|_(H_(k+1))` splits into
+**Scope correction (2026-09-12).** The first version of this section, like Proposition 2, used
+the range `r <= N_(k+1)/4` and attributed the corner conjugacy to the compressor matrix
+`u = [[s, 1 - st], [0, t]]`. The matrix identity `u diag(a, 1) u^(-1) = diag(s a t + 1 - st, 1)`
+is correct, but it is not what gives the conjugacy. At the endpoint `r = 3·2^k / 2` the conjugacy
+fails: `T = ker n / (ker n ∩ Im n)` is `0` for `g` and nonzero for `g (+) I`. Lane
+`gk-l-gate-neg` found this and corrected Section 4 of its artifact. Theorem A now asks only for
+`D + 1` hypothesis points, so the application avoids the endpoint at the cost of one unit in the
+level bound: `N >= 4(D + 2)` instead of `4(D + 1)`.
+
+**Consequence.** At every level `N = 3·2^(k+1) >= 4(D + 2)`: if `sigma|_(H_(k+1))` splits into
 orthogonal trivial, projective and degree-`<= D` polynomial pieces, the polynomial pieces are
 trivial. In particular no char-two rank model of `R^x` restricts at a level group to
 * `natural (x) W (+) trivial`,
@@ -224,7 +236,8 @@ identity, never force triviality. A proof must use at least one of:
   covers non-split gluing whenever the flag is invariant under the whole group. Level-group
   structure that is invariant only under `H` is not reached.
 * **Unbounded degree.** Content whose polynomial degree grows with the level escapes Lemma 3,
-  which needs `D + 1 <= N/4`. Degree comparable to `N` can push the profile close to `1/2`, the
+  which needs `D + 1` hypothesis points, and at level groups those lie strictly below `N/4`, so
+  `D + 2 <= N/4`. Degree comparable to `N` can push the profile close to `1/2`, the
   free profile.
 * **Projective content.** Its profile is identically `1/2`, so the involution lever cannot
   distinguish it from free content. Any further progress there needs the non-constant root
