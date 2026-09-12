@@ -62,3 +62,14 @@ two-sided reduced mass is the part that uses the regular representation.
   So moment, zeta and capacity tests cannot force integer component masses at any
   capacity. A witness, or a proof of integrality, has to use the group through the
   algebra (assembly or index theory), not only through the arithmetic of `mu_a`.
+- **Torsion-free lattices in reductive Lie groups, e.g. `Gamma(3) <= SL_3(Z)`
+  (2026-09-12).** By `unconditional-spectra-of-kk-witnesses-cross-the-gap`, a
+  witness on these hosts must satisfy three conditions:
+  - it has capacity at least `1`;
+  - its support generates a subgroup without (RD);
+  - its `l^1(G)`-spectrum crosses the reduced gap, and so does its spectrum in every
+    unconditional completion inside `C*_r(G)`.
+  The fence is not vacuous, by `sl3z-has-no-spectral-unconditional-completion`.
+  Trace limits along congruence towers compute a candidate's trace but cannot decide
+  whether it is an integer (`research/artifacts/kk-sl3z-congruence-2026-09-12.md`,
+  Section 3).

@@ -110,3 +110,32 @@ refute this root.
   Baum--Connes is not known for either, and even `SL_3(Z)` is open. No
   construction of a gapped spectral measure is known for them. Nonsoficity
   obstructs approximation arguments, not the conjecture.
+- **Torsion-free subgroups of `SL_3(Z)`, e.g. `Gamma(3)` and `E_3(3)` (2026-09-12,
+  lane `kk-torsion-free-congruence`).** Details and verbatim quotations are in
+  `research/artifacts/kk-sl3z-congruence-2026-09-12.md`.
+  - *Status: open.* No source claims the conjecture for these groups.
+    - Fuchs (arXiv:math/0612023, p. 4) calls Kadison--Kaplansky "still unsolved" for
+      these lattices, with Baum--Connes "unproved even for SL(3, Z) or its principal
+      congruence subgroups".
+    - Gomez Aparicio--Julg--Valette (arXiv:1905.10081), Kammeyer--Lück--Rüping
+      (arXiv:1401.0876) and Bartels--Lück--Reich--Rüping (arXiv:1204.2418) all record
+      Baum--Connes for `SL_n(Z)`, `n >= 3`, as open.
+    - arXiv abstract searches on 2026-09-12 found nothing newer.
+  - *A fence, not a proof:* `unconditional-spectra-of-kk-witnesses-cross-the-gap`.
+    Lafforgue's unconditional assembly and the L2-index theorem apply to torsion-free
+    discrete subgroups of reductive Lie groups. On those groups, every unconditional
+    completion, `l^1` included, has only trivial idempotents and integer idempotent
+    traces. So a witness has three features:
+    - spectral capacity at least `1`;
+    - a support generating a subgroup without (RD);
+    - a spectrum in every unconditional completion that crosses the reduced gap.
+  - *Where it stops:* `sl3z-has-no-spectral-unconditional-completion` (Lafforgue). No
+    unconditional completion is spectral in `C*_r(SL_3(Z))`. The obstruction already
+    sits on the amenable subgroup `Z^2 ⋊ Z`.
+  - *Congruence trace limits: dead as a proof method.* Over any residually finite
+    group, the trace of a gapped reduced spectral projection is the limit of eigenvalue
+    fractions over finite quotients (artifact, Section 3). This yields no integrality:
+    - the formula never uses torsion-freeness, and every quotient has torsion;
+    - the ultralimit trace on the congruence completion is just the reduced trace;
+    - a Kazhdan gap isolates only the trivial representation.
+    The limits compute candidate traces but cannot certify integrality or its failure.
