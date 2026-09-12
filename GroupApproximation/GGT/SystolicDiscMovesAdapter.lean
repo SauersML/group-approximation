@@ -37,8 +37,6 @@ theorem ofFn_pow_eq_map_orbitWalk {D : Type*} {W : Type*} (p : Equiv.Perm D) (g 
   | n + 1, x => by
       rw [List.ofFn_succ, orbitWalk_succ, List.map_cons, ← ofFn_pow_eq_map_orbitWalk p g n (p x)]
       congr 1
-      funext k
-      rw [Fin.val_succ, pow_succ, Equiv.Perm.mul_apply]
 
 /-- A face cycle returns to its head after its length. -/
 theorem isFaceCycle_pow_length {M : CombMap.{0}} {l : List M.Dart} (hl : M.IsFaceCycle l) :
@@ -152,4 +150,4 @@ end GroupApproximation.Systolic
 #audit_axioms GroupApproximation.Systolic.CycleDisc.toTriangulatedDisc
 #audit_axioms GroupApproximation.Systolic.CycleDisc.exists_of_triangulatedDisc
 #audit_axioms GroupApproximation.Systolic.split_boundary
-#audit_closed_axioms GroupApproximation.Systolic.attachPendantStatement
+#audit_axioms GroupApproximation.Systolic.attachPendantStatement

@@ -185,7 +185,7 @@ theorem insertChord {s t : List D.map.Dart} {du dv : D.map.Dart}
       exact TriangleComplex.tri_rotate (TriangleComplex.tri_rotate htri)
     · exact absurd (by rw [hL]; simp) hx
     · by_cases hyu : y = du
-      · subst hyu
+      · rw [hyu]
         show (N.facePerm ^ 3) (EdgeInsertion.embed D.map du) = EdgeInsertion.embed D.map du ∧
           X.Tri (chordLab D du b (EdgeInsertion.embed D.map du))
             (chordLab D du b (N.facePerm (EdgeInsertion.embed D.map du)))
@@ -194,7 +194,7 @@ theorem insertChord {s t : List D.map.Dart} {du dv : D.map.Dart}
         rw [perm_pow_two_apply, hstep_u, hstep_v, hlab_u, hlab_v, hlab_n]
         exact htri
       · by_cases hyv : y = dv
-        · subst hyv
+        · rw [hyv]
           show (N.facePerm ^ 3) (EdgeInsertion.embed D.map dv) = EdgeInsertion.embed D.map dv ∧
             X.Tri (chordLab D du b (EdgeInsertion.embed D.map dv))
               (chordLab D du b (N.facePerm (EdgeInsertion.embed D.map dv)))
@@ -303,5 +303,5 @@ end GroupApproximation.Systolic
 
 #audit_axioms GroupApproximation.Systolic.CycleDisc.chordLab_sigma
 #audit_axioms GroupApproximation.Systolic.CycleDisc.insertChord
-#audit_closed_axioms GroupApproximation.Systolic.insertChordStatement
-#audit_closed_axioms GroupApproximation.Systolic.attachTriangleStatement
+#audit_axioms GroupApproximation.Systolic.insertChordStatement
+#audit_axioms GroupApproximation.Systolic.attachTriangleStatement
