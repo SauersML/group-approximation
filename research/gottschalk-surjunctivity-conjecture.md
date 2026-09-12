@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - ternary-leavitt-unit-group-nonsurjunctive
   - leavitt-unit-group-nonsurjunctive
 distinct_from:
   gottschalk-surjunctivity-fixed-two-generator-tester: that establishes a reduction to one group; this is the universal conjecture itself, still unresolved here.
@@ -412,3 +413,31 @@ undecidable and the nonsurjunctive finite presentations are not recursively
 enumerable. On one host with decidable word problem the search stays
 `Sigma^0_1`. None of this decides the conjecture. Artifact:
 `research/artifacts/gottschalk-rectangle-clauses-and-recognition-2026-09-12.md`.
+
+**Canonical table groups (2026-09-12).** A rule pair has a strict realization
+in some group exactly when it is strict over the table group `U_E` of some
+minimal forward-sufficient partition `E`
+(`strict-automata-live-on-canonical-table-groups`). Every realization of `E`
+receives a homomorphism from `U_E`, which only coarsens the reverse table, so no
+choice of group helps beyond `U_E`. Forward partitions that Tietze-eliminate
+triangularly give free table groups and bijective automata
+(`triangular-forward-tables-force-surjectivity`). Every one-relator partition is
+triangular, so a strict design needs a non-eliminable core of at least two
+coincidences, and that core presents a nonsofic group. Artifact:
+`research/artifacts/canonical-table-groups-for-automaton-designs-2026-09-12.md`.
+
+**Invariant-output architecture (2026-09-12).** If the memory normalizes the
+symmetry, an invariant-output automaton is a strict automaton on the quotient
+memory group (`normalizing-invariant-output-descends-to-quotient`). Over `F_2`
+the encoder needs a nonzero linear part and an odd number of invariant
+monomials, and norm rules die (`invariant-output-rules-need-odd-invariant-monomials`).
+A single-site sensitivity profile with a right symmetry of order divisible by the
+alphabet size admits no decoder of any degree
+(`right-symmetric-sensitivity-profile-admits-no-decoder`). Over `F_3` the
+swap-averaging idempotent is a genuine group-algebra idempotent, and the corner
+equation `c e b = 1` already holds in `L_(F_3)(1,2)`. Lifting it to
+`F_3[L_(F_3)(1,2)^x]` would give an injective linear automaton with
+swap-invariant output, hence a counterexample
+(`ternary-leavitt-swap-idempotent-is-full`); the ternary Leavitt unit group is
+now its own counterexample root, `ternary-leavitt-unit-group-nonsurjunctive`.
+Artifact: `research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md`.
