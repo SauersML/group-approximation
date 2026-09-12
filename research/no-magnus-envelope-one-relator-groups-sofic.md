@@ -25,7 +25,11 @@ With [[amenable-envelope-magnus-piece-one-relator-sofic]] this gives
    subgroups with `F_-` elliptic. Every group in this class therefore has, in
    every zero-exponent basis, Magnus pieces with no such relative splitting.
    One-ended hyperbolic pieces with trivial relative JSJ decomposition are the
-   model case.
+   model case. The converse is also in place:
+   [[relative-amenable-hierarchy-magnus-one-relator-sofic]] shows that a finite
+   chain of such splittings, descending to `F_-` through the vertex groups that
+   contain it, already suffices. The remaining core is
+   [[no-magnus-hierarchy-one-relator-groups-sofic]].
 2. **Profinite gluing.** *No permanence theorem.* In the model case the piece
    is virtually special and `F_-` is quasiconvex, hence separable. Residual
    finiteness of `S *_F B` from a residually finite `B` with separable `F`
