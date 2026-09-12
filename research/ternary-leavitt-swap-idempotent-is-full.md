@@ -6,6 +6,7 @@ title: The swap-averaging idempotent of the ternary Leavitt unit group is full i
 distinct_from:
   leavitt-unit-group-algebra-not-directly-finite: that is the scalar Kaplansky question for the binary unit group over F_2, where the half projection is not an idempotent of the group algebra; this is a corner equation for an honest group-algebra idempotent of a different group in characteristic three.
   leavitt-group-algebra-not-stably-finite: that asks for a matrix one-sided inverse over F_2 of the binary unit group; this asks that one averaging idempotent of the ternary unit group be Murray--von Neumann above 1 over F_3.
+  leavitt-corner-one-sided-lift-exists: that asks for a one-sided invertible pair inside the binary corner at the order-three idempotent g + g^2, lifting a Leavitt defect; this asks, over F_3 and a different group, for 1 to sit below the swap-averaging idempotent itself, which is invariant-output data rather than a corner defect.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
 ---
