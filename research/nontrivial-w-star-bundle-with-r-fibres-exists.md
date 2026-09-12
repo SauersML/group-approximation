@@ -44,14 +44,13 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
 - **Uniform spectral gap: not available.**  Mommaerts's obstruction to local
   triviality needs full fibres, and `R` has property Gamma.  His Remark 4.8
   knows no other obstruction.
-- **Smallest base shape.**  Take the one-point compactification of the disjoint
-  union of the cubes `[0,1]^n`.
-  - A witness over it is trivial over each cube and fails local triviality only
-    at the added point.
-  - What is needed: the rate at which central approximate halving projections
-    exist over the `n`-th cube, in Ozawa's Theorem 15 (ii), must degenerate as
-    `n → ∞`.
-  - No construction is known.
+- **Countable-dimensional bases: dead, including the former smallest shape.**
+  This shape was the one-point compactification of the disjoint union of the
+  cubes `[0,1]^n`, with central halving rates degenerating over the `n`-th cube.
+  - `r-fibre-w-star-bundle-sigma-finite-dim-base-is-trivial` shows every R-fibre bundle over a countable union of closed finite-dimensional compacta is trivial.
+  - It also gives `Z(M) ⊆ K^(∞)`, the stable kernel of the derived sequence of points with no finite-dimensional neighbourhood.
+  - Why the rates cannot degenerate: exact central matrix units lifted from the added point are uniformly good on a neighbourhood. They are patched to the finite-dimensional remainder by one flip unitary, at a cost independent of dimension.
+  - A witness base must contain a nonempty closed set all of whose nonempty relatively open subsets are infinite-dimensional, e.g. a Hilbert cube. Every two-piece patching scheme must fail there.
 - **Algebras without uniform Gamma.**  Toms's AH algebra
   (`toms-ah-counterexample-to-uniform-gamma`) would give a witness if its trace
   simplex were Bauer.  Its paper does not address this, and it was not checked.

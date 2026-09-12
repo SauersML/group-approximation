@@ -36,6 +36,10 @@ In particular every unital Toms--Winter counterexample with a Bauer trace simple
 has such an extreme trace, and its strict closure is a nontrivial `R`-fibre
 bundle (`nontrivial-w-star-bundle-with-r-fibres-exists`).  This sharpens
 Mommaerts's Remark 4.7 (arXiv:2606.12134), which asks only that the base be
-infinite-dimensional.  For example, over the one-point compactification of
-the disjoint union of the cubes `[0,1]^n`, a nontrivial bundle is trivial over
-each cube and fails local triviality only at the added point.
+infinite-dimensional.  The sharper statement
+`r-fibre-w-star-bundle-sigma-finite-dim-base-is-trivial` confines `Z(M)` to
+the stable kernel `K^(∞)` of the derived sequence `K_inf, (K_inf)_inf, …`.
+- An earlier example here said that, over the one-point compactification of
+  the disjoint union of the cubes `[0,1]^n`, a nontrivial bundle would fail local
+  triviality only at the added point.
+- That example is vacuous: every R-fibre bundle over that base is trivial.

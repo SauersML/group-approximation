@@ -65,9 +65,12 @@ A unital counterexample to Toms--Winter would be such an algebra, by
     twisting invariants are dead.
   - A Bauer witness answers BBSTWW Question 3.14
     (`nontrivial-w-star-bundle-with-r-fibres-exists`).
-  - Smallest shape: the base is the one-point compactification of the
-    disjoint union of the cubes `[0,1]^n`.  On cube `n` the central halving
-    rate must degenerate as `n` grows while every pair of projections still
-    compares.
+  - Countable-dimensional boundaries are dead, including the former smallest
+    shape, the one-point compactification of the disjoint union of cubes
+    (`r-fibre-w-star-bundle-sigma-finite-dim-base-is-trivial`).  Every Bauer
+    algebra whose extreme boundary is a countable union of closed
+    finite-dimensional sets has uniform Gamma.  So a witness boundary must
+    contain a nonempty closed set whose nonempty relatively open subsets are all
+    infinite-dimensional.
   - Mommaerts's uniform spectral gap obstruction (arXiv:2606.12134) concerns
     non-Gamma fibres and gives nothing here.
