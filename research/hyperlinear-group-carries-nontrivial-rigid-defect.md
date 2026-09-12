@@ -9,6 +9,8 @@ distinct_from:
   hyperlinear-wreath-model: that asks for a hyperlinear model of one specific wreath candidate; this asks for any hyperlinear group with a nontrivial rigid defect.
 artifacts:
   - research/artifacts/rigid-compression-defect-ladder-2026-09-11.md
+refuted_by:
+  - hyperlinear-groups-kill-rigid-compression-defects
 ---
 
 **OPEN.** There are a countable hyperlinear group `H` and

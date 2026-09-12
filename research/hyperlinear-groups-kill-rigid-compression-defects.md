@@ -10,6 +10,8 @@ distinct_from:
   hs-expander-block-decomposition: that is a structural decomposition input for the Leavitt pair; this is the defect criterion that such inputs would feed.
 artifacts:
   - research/artifacts/rigid-compression-defect-ladder-2026-09-11.md
+refuted_by:
+  - hyperlinear-group-carries-nontrivial-rigid-defect
 ---
 
 **OPEN, and a win--win.** The claim: for every countable hyperlinear group

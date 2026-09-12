@@ -9,6 +9,8 @@ artifacts:
 distinct_from:
   titz-witzel-soficity-is-one-finite-csp: that is the established equivalence between soficity of this kernel and a marked three-permutation gate; this is the open soficity assertion itself.
   titz-witzel-exact-kazhdan-mf-radical-over-z: that proves every clause of the torsion-free exact-radical target except soficity; this is the one missing clause, for the smallest kernel.
+refuted_by:
+  - titz-witzel-kernel-nonsofic
 ---
 
 **OPEN.**  Let `K = Gamma_1^2` be the smallest Titz Mite--Witzel lattice

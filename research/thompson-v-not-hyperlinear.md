@@ -9,6 +9,8 @@ distinct_from:
   leavitt-hyperlinear-branch-implies-thompson-v-hyperlinear: that records what the hyperlinear branch of the Leavitt fork would cost; this is the opposite answer for V itself, which selects the stable branch.
 artifacts:
   - research/artifacts/thompson-v-one-word-ce-frontier-2026-08-21.md
+refuted_by:
+  - thompson-v-hyperlinear
 ---
 
 **OPEN.** Thompson's group `V = G_(2,1)` admits no injective homomorphism into

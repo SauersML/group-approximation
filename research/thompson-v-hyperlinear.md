@@ -6,6 +6,8 @@ title: Thompson's group V is hyperlinear
 distinct_from:
   thompson-v-not-hyperlinear: that is the opposite answer, which selects the HS-stable Steinberg branch; this is the answer every construction on the unstable branch must also produce.
   leavitt-hyperlinear-branch-implies-thompson-v-hyperlinear: that is the stakes lemma saying the Leavitt hyperlinear branch forces this claim; this is the claim itself, a named open problem.
+refuted_by:
+  - thompson-v-not-hyperlinear
 ---
 
 **OPEN.** Thompson's group `V = G_(2,1)` embeds into a tracial matrix

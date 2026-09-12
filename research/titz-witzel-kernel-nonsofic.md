@@ -11,6 +11,8 @@ distinct_from:
 artifacts:
   - research/artifacts/titz-witzel-sofic-structure-audit-2026-08-26.md
   - research/artifacts/titz-witzel-radu-sublattice-2026-09-11.md
+refuted_by:
+  - titz-witzel-kernel-sofic
 ---
 
 **OPEN.**  This is the negation of `titz-witzel-kernel-sofic`.  If
