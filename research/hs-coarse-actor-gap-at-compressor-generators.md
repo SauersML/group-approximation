@@ -42,6 +42,16 @@ This is hypothesis (H2') of `hs-rounding-and-actor-gap-force-ccr`, required for 
 - **One Kazhdan group.** Even the one-level decomposition at a group's own generators is open
   (`hs-one-level-expander-block-decomposition`). (b) needs it for the actor at `S`, with a gap that sees
   the compressors.
+- **Liftable masa form (lane `nh-h2-coarse-gap`, ae240e9f4).**
+  - `hs-block-gap-iff-liftable-masa-of-actor-commutant`: (a) is equivalent to `prod_U C_n` lying in
+    `sigma(G)' cap M`. Given (a), a bounded gap form holds with the Kazhdan constant of `S` iff that
+    algebra is maximal abelian there.
+  - Under (H1) and (a), clause (c) is claimed automatic. If that holds, (c) can be dropped from this claim.
+  - Per-block homogeneous (b) is stronger than the bounded form. Whether the median step of
+    `hs-rounding-and-actor-gap-force-ccr` runs on the bounded form alone is not yet checked.
+- **Few aspect scales bypass the gap.** `ccr-under-vertex-rounding-from-few-aspect-scales`: under (H1),
+  `eps_n <= 18 (N_n delta_n)^(1/3)`, with `N_n` the number of occupied dyadic windows of `zeta_A` and `delta_n` the
+  transport defect. So this claim is needed only when `zeta_A` spreads over at least about `1/delta_n` scales.
 - **Compressor transport clause.** Not asked, and not appendable in general
   (`nonmonomial-multiplicity-obstructs-hs-compressor-transport`). Transport comes from (H1) through the
   intertwiner of `vertex-rounding-reduces-ccr-to-commutant-excess`.
