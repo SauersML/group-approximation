@@ -4578,6 +4578,13 @@ import GroupApproximation.CharClass.OddPAcyclicZeroAug
 import GroupApproximation.CharClass.CohomologyTotalNontrivialOf
 import GroupApproximation.Dynamics.SiteStrata
 import GroupApproximation.Dynamics.SubsetSchedule
+import GroupApproximation.Dynamics.Surjunctivity
+import GroupApproximation.Dynamics.Transplant
+import GroupApproximation.Dynamics.SurjunctivitySubgroup
+import GroupApproximation.Dynamics.FiniteMemory
+import GroupApproximation.Dynamics.CosetSlice
+import GroupApproximation.Dynamics.SurjunctivityResiduallyFinite
+import GroupApproximation.Dynamics.SurjunctivityTransfer
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
