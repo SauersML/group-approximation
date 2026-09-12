@@ -6,6 +6,7 @@ title: Propagate block support to every root, read off the corner ring homomorph
 target: matrix-unit-rank-models-extract-ring-rank-models
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
@@ -24,3 +25,5 @@ Complete proof: artifact Section 2.
   contains `[x_ik(a), x_kj(1)] = x_ij(a)` for every `a`, so `sigma` is trivial.
 
 [RR] = `research/artifacts/el3-rank-ring-rigidity-2026-09-12.md`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 35 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

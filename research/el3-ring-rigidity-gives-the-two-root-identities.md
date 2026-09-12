@@ -7,6 +7,7 @@ target: rank-models-of-el3-satisfy-the-two-root-identities
 requires:
   - el3-rank-models-factor-through-ring-rank-models
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -15,3 +16,5 @@ hold.
 
 This route and `two-root-identities-give-el3-ring-rigidity` form an intended equivalence cycle.
 Neither claim establishes the other on its own.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 35 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

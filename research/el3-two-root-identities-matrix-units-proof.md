@@ -6,6 +6,7 @@ title: Squares and reversed composable products vanish, so commutators become pr
 target: el3-unit-root-matrix-units-iff-two-root-identities
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Complete proof: artifact Section 1.
   times a unit commuting with `N_x`. So the ordered pairs `(ab, cd)` with `b != c` reduce to
   four orbits, and the proof uses only the squares and the reversed-composable orbit
   `N_23 N_12`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 35 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

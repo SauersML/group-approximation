@@ -9,6 +9,7 @@ requires:
   - el3-unit-root-matrix-units-iff-two-root-identities
   - matrix-unit-rank-models-extract-ring-rank-models
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -25,3 +26,5 @@ Why sufficient (artifact Section 3):
   route.
 - **Intended equivalence cycle.** This route and `el3-ring-rigidity-gives-the-two-root-identities`
   form an intended cycle. Neither claim establishes the other on its own.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 35 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

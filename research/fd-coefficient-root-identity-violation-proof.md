@@ -6,6 +6,7 @@ title: Push the model through a finite general linear group and act by the regul
 target: fd-represented-coefficients-violate-two-root-identities
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-two-root-identities-2026-09-12.md
 ---
 
@@ -20,3 +21,5 @@ Complete proof: artifact Section 4.
   positive normalized rank.
 - **Cross-check.** `gk-l-gate-pos`'s natural tensor dual model of `EL_3(F_2[t])` also has
   `N_23 N_12 != 0` (artifact Section 4).
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 35 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
