@@ -78,3 +78,19 @@ is the Borel inverse of `tau` on its image.
   closedness in the profinite topology of the subgroup a witness generates, and nonsoficity of that
   subgroup. Artifact:
   `research/artifacts/defect-coupled-routed-codes-2026-09-12.md`.
+- **Cascades of stages (2026-09-12, w4-measurable-2).** Dead unless some stage enlarges the alphabet:
+  `non-enlarging-sofic-window-cascades-cannot-compress`.
+  - **Result.** Take any number of routing, measure-preserving and sofic-window stages, with windows that
+    together may generate `U`. If no stage enlarges the alphabet, the uniform measure is kept at every stage.
+  - **Key step.** `injective-same-alphabet-sofic-codes-preserve-uniform-measure`: a Borel code between
+    equal-alphabet full shifts over a sofic group that is injective almost everywhere preserves the uniform
+    measure, by Fano and Shearer counting on models.
+  - **Constraints on a compressing cascade.** It must first enlarge at a sofic-window stage, which leaves a
+    measure that is non-uniform on every coset of that window. It may shrink only where it reads a non-uniform
+    measure.
+  - **Limit of the method.** Enlarging cascades along cyclic windows realize every continuous code, so beyond
+    non-enlargement the stages carry no accounting. The problem is then the composite pattern of the localization
+    theorem.
+  - **Continuous case.** A compression with continuous encoder and decoder is a strict automaton.
+
+  Artifact: `research/artifacts/non-expanding-sofic-cascades-2026-09-12.md`.
