@@ -366,3 +366,95 @@ Coordinator request, after bh-reviewer's FAIL of the first route (4ba6fa13b). Th
     can contain the central `−I_N`.
   - The claim only asserts that some `M_0` exists, so it holds with `M_0 := max(N + max j_i, N+1, 3)`. The name is
     mismatched, but there is no error.
+
+## 17. `leavitt-tensor-elementary-host-criterion` (d886a82ec): PASS, inheriting the Khanh and Krstić–McCool statements
+
+- **Step 1.** `B ⊗ L ≅ F_2⟨X ⊔ Y⟩/(rel_B, rel_L, [x, y])`. Commuting generators give commuting subalgebras. Add
+  `2 = 0` to present it as a ring.
+- **Step 2.** `b ↦ b ⊗ 1` is injective, since `L ≠ 0` is free over the field.
+- **Steps 3–4.** Step 3 is §13. Step 4 is part 1 of `central-simple-leavitt-tensor-unit-groups-are-simple`
+  (review-boone-higman-leavitt-tensor-hosts: PASS).
+- **Step 5.**
+  - **Krstić–McCool.** Finite presentation of `St_n(R)` is Krstić–McCool Theorem 3, as quoted in Khanh Theorem 6.1
+    (`khanh-acyclicity-and-steinberg-criteria` item 6; review-bh-swarm §1: PASS at statement level, from
+    `lit-groups/khanh-clean.txt`). The primary source is JPAA 141 (1999) and is not on arXiv. No Krstić–McCool text
+    is among the MSI literature files, so the quotation is secondary.
+  - **Neumann's lemma.** `fp-quotient-iff-kernel-finitely-normally-generated` has no verdict. It is B. H. Neumann's
+    lemma: for finitely presented `P ↠ Q` with kernel `K`, `Q` is finitely presented iff `K` is finitely normally
+    generated. Finite presentability does not depend on the finite generating set, and finitely many relators of
+    `Q` normally generate `K` modulo those of `P`.
+- **Scope.** This is a criterion. `K_(2,n)` is not shown finitely normally generated for any `B`.
+
+## 18. `fpbs-sphere-cut-fibre-tails-decay-exponentially` (6f0d6a546): PASS
+
+- **Cut.** `|π(xs)| − |π(x)| ∈ {−1, 0, 1}`, so a path from `o` to `Γ_q` with `|q| >= R` meets `π^(-1)(S_Q(R))`.
+- **BK.**
+  - Splitting a simple open path at its first crossing `y` gives edge-disjoint witnesses.
+  - `H` is normal, so `y^(-1)Γ_q = Γ_(q'^(-1)q)`.
+  - Summing gives `σ_p(q) <= Σ_(|q'|=R) σ_p(q') σ_p(q'^(-1)q)`.
+- **Norm.** Since `|q'^(-1)q| >= |q| − R >= m`, one has `σ_p 1_(>=R+m) <= λ(σ_(p,R))(σ_p 1_(>=m))` pointwise. That
+  is item 1. By sharpness `σ_p ∈ ℓ^1` for `p < p_c`.
+- **Uniformity up to `p_c`, re-derived.**
+  - `||λ(a)|| <= ||λ(b)||` for `0 <= a <= b`, so `θ` bounds every `p < p_c`.
+  - `T_0 <= Σ_(|q|<R_0) σ_p(q)^2 + θT_0`, with `T_0 < ∞`.
+  - FKG along a bounded word gives `σ_p(q) <= p^(-L) σ_p(q'')` with `|q''| = R_0`, and
+    `b_(R_0) <= ||λ(σ_(p,R_0))||^2 <= θ`.
+  - `P_p(o ↔ x)` is an increasing limit of polynomials, so monotone convergence carries the bound to `p_c`.
+- **Necessary rate.**
+  - `χ_(p_c) <= Σ_m (|S_Q(m)| T_m)^(1/2)`, which is finite if `e^h θ^(1/R_0) < 1`.
+  - But `χ_(p_c) = ∞`, so `θ^(1/R_0) >= e^(−h)`, and the hypothesis fails over subexponential quotients.
+
+## 19. `fpbs-rd-weighted-bubble-iff-sphere-fibre-operator-below-one` (6f0d6a546): PASS, free-quotient remark overstated
+
+- **Equivalences.**
+  - (b)⇒(c): rapid decay on `S_Q(R_0) ⊆ B_Q(R_0)`.
+  - (c)⇒(d),(e): §18.
+  - (d)⇒(e)⇒(a): summation by parts.
+  - (a)⇒(b): `C^2(1+R)^(2D) b_R <= C^2 W_D/(1+R)^2 → 0`.
+  - The dichotomy is the negation of (b)⇔(d).
+- **Overstated remark.** The claim, and artifact §3, say Haagerup's inequality turns (b) into
+  `(1+R_0)^2 b_(R_0) < 1` "on every generating set, with no tree-projection hypothesis".
+  - Haagerup's `||λ(f)|| <= (R+1)||f||_2` holds for spheres of the *free-basis* length. Here `|·|` is the
+    `π(S)`-length, and the two coincide only when `π(S) ⊆ {1} ∪ B^(±1)`.
+  - For other `S`, a `π(S)`-sphere lies in a free-basis ball of radius `cR`. Rapid decay then holds with an
+    `S`-dependent constant and a larger exponent, so only the general form `C^2(1+R_0)^(2D) b_(R_0) < 1` is available.
+  - Switching to the free-basis length does not help, because edges can then change the length by more than one,
+    which breaks the sphere cut of §18.
+  - The equivalence is unaffected. Suggested wording: "When `π(S) ⊆ {1} ∪ B^(±1)` for a free basis `B`, (b) reads
+    `(1+R_0)^2 b_(R_0) < 1`; otherwise it carries the rapid-decay constants of the `π(S)`-length."
+
+## 20. `atiyah-amalgam-rank-from-cohn-coproduct` (426690471): PASS
+
+- **Item 1.** `X = D_A ∩ U(C)` is a subring containing `K[C]`. An `x ∈ X` invertible in `U(C)` has the same inverse in
+  `U(A)`, and that inverse lies in `D_A`. So `X` is division closed, and `D_C ⊆ X`.
+- **Item 2.**
+  - The inclusions agree on `D_C`, which gives `φ`.
+  - `K[G]` has the coproduct property over `K[C]`: algebra maps are unit-group homomorphisms agreeing on `C`, and
+    those extend over `A *_C B`. This gives `ψ`.
+  - `φψ` equals the inclusion on `A ∪ B`, hence on `K[G]`.
+- **Item 3.**
+  - `rk_G ∘ φ` is a Sylvester rank function on `R`, and `rk_G(M) = rk_G(φψM)`.
+  - Integrality for every `Y` forces integral kernel dimensions over `K[G]`, and `Z ⊆ (1/lcm)Z`.
+  - If `G` has torsion the hypothesis fails already at `1 + g`, so the implication is vacuous there.
+- **Item 4.** `Y = PQ` through `r` columns gives `rk(φY) <= rk(φP) <= r`. A non-integral `rk_G(M)` therefore lies
+  strictly below the integer `ρ_R(ψM)`.
+- **Context.** The Linnell and Cohn statements are flagged as not re-read, and nothing uses them.
+
+## 21. `tree-action-with-elliptic-stabilizers-kills-lattice-transfer` (aa5d531db): PASS, conclusion 3 understated
+
+- **Steps 1–3.**
+  - A finite `F ⊆ Γ_v` lies in a compact `K`, and `Γ ∩ K` is finite, so `Γ_v = 1` by torsion-freeness.
+  - An inversion `γ` would give `γ^2 ∈ Γ_v = 1`.
+  - Vertex stabilizers of `Aut(T)` are open, so the image of `Γ` is discrete.
+- **Step 4.**
+  - A group acting freely without inversions on a tree is free (Serre, *Trees*, I.3.3), and free groups satisfy
+    Strong Atiyah (Linnell).
+  - The import `tree-by-elliptic-lattices-satisfy-strong-atiyah` with `H_1 = N = 1` is correct but unnecessary.
+    Conclusion 3 could read "`Γ` is free".
+- **Step 5.**
+  - `Δ_k` is a matrix over `Z[Γ]`, so `b_k^(2)(X;Γ) ∈ Z`.
+  - `free-cocompact-lattices-proportional-l2-betti` has no verdict. On its ratio: Haar unfolding gives
+    `|Γ\O| = covol(Γ)/μ(Aut(X)_(v_O))` on each `Aut(X)`-orbit `O` of vertices. So the vertex-orbit ratio
+    `r = |Γ\X_0|/|G\X_0|` equals the covolume ratio, and it is rational.
+- **Remark.** The Platonov closure and the lamplighter instances are flagged as unchecked, and the claim does not
+  use them.
