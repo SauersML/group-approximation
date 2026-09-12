@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.CohomologyChartRankTwoInterface
 import GroupApproximation.CharClass.ProjectiveSpaceStable
+import GroupApproximation.CharClass.CupOneComm
 
 /-!
 # The projective-factor Künneth at every rank, by induction on the fibre
@@ -179,7 +180,8 @@ theorem cpSplit_one : CPSplit 1 := by
   refine ⟨cohCast (Nat.add_comm m 2) a, pull (cpPrU V 0) m b, ?_⟩
   have hz' := congrArg (cohCast (Nat.add_comm m 2)) hab
   rw [cohCast_cohCast, cohCast_self, cohCast_add, ← KnHemi.pull_cohCast] at hz'
-  rw [hz', cup_comm (pull (cpPrU V 0) m b) (cpTaut V), cohCast_cohCast, cohCast_self]
+  rw [hz', cup_comm_of_even_right even_two (pull (cpPrU V 0) m b) (cpTaut V), cohCast_cohCast,
+    cohCast_self]
 
 /-! ## 5. The inductive step -/
 

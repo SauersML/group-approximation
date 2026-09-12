@@ -1,6 +1,7 @@
 import GroupApproximation.CharClass.ProjectiveSpaceRingEntry
 import GroupApproximation.CharClass.CohomologyChartSplit
 import GroupApproximation.CharClass.SteenrodCupOne
+import GroupApproximation.CharClass.CupOneComm
 import GroupApproximation.CharClass.ChernEulerSqOne
 
 /-!
@@ -55,7 +56,7 @@ theorem cpGenHyp_of_cupPowE_ne_zero (d : ℕ)
         rw [← h1, cohCast_cohCast, cohCast_self]
       rw [h2]
       show cohCast he.symm (cup (cupPowE (cpGen d hd) j) (cpGen d hd)) = _
-      rw [cup_comm, cohCast_cohCast]
+      rw [cup_comm_of_even_right even_two, cohCast_cohCast]
       exact cohCast_self _ _
   · refine ⟨0, ?_⟩
     rw [cup_zero]

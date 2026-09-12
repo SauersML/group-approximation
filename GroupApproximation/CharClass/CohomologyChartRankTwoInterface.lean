@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.CohomologyChartTautClass
 import GroupApproximation.CharClass.SteenrodCupOne
+import GroupApproximation.CharClass.CupOneComm
 
 /-!
 # Rank-two Leray–Hirsch, in `cc-projective`'s interface shape
@@ -111,7 +112,7 @@ theorem exists_of_mvResV_eq_zero' (d k m : ℕ) (hk : 2 * d + 1 + m + 1 = k)
 theorem cup_cpTaut (n : ℕ) (b : Hmod2 (TopCat.of U) n) :
     cup (pull (cpPrU U 0) n b) (cpTaut U)
       = cohCast (Nat.add_comm 2 n) (cup (cpTop U 0) (pull (cpPrU U 0) n b)) := by
-  rw [cpTop_zero_eq_cpTaut, cup_comm]
+  rw [cpTop_zero_eq_cpTaut, cup_comm_of_even_right even_two (pull (cpPrU U 0) n b) (cpTaut U)]
 
 set_option maxHeartbeats 1000000 in
 theorem lhSurj (n : ℕ) (z : Hmod2 (cpProdTop U 0) (n + 2)) :

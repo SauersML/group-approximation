@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.CohomologyChartInduction
+import GroupApproximation.CharClass.CupOneComm
 
 /-!
 # From Gysin surjectivity to the product form
@@ -44,8 +45,8 @@ theorem cpGenHyp_of_cup_right_surjective (d : ℕ)
   obtain ⟨b, hb⟩ := hsurj hd k (cohCast (Nat.add_comm 2 k) c)
   refine ⟨b, ?_⟩
   have h := congrArg (cohCast (Nat.add_comm k 2)) hb
-  rw [cohCast_cohCast, cohCast_self, cup_comm b (cpGen d hd), cohCast_cohCast,
-    cohCast_self] at h
+  rw [cohCast_cohCast, cohCast_self, cup_comm_of_even_right even_two b (cpGen d hd),
+    cohCast_cohCast, cohCast_self] at h
   exact h
 
 /-- The bridge in the shape the Gysin layer hands over.  `GysinData` for the
