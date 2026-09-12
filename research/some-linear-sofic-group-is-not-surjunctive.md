@@ -15,26 +15,31 @@ artifacts:
 **OPEN.** For some prime `p` there is an `F_p`-linear sofic group that is not surjunctive.
 
 **Matrix form.** By `linear-sofic-surjunctivity-is-a-rank-implication-per-datum`, this holds iff some strict
-datum `D` and prime `p` admit, for every reverse word `w`, some `eps_w > 0` and tuples of invertible matrices over
-`F_p` whose forward relators have normalized rank tending to `0` while `w` keeps normalized rank at least `eps_w`.
+datum `D` and prime `p` satisfy the following. For every reverse word `w` there are `eps_w > 0` and tuples of
+invertible matrices over `F_p` whose forward relators have normalized rank tending to `0`, while `w` keeps normalized
+rank at least `eps_w`.
 
 **What a witness group `K` would be.**
-- **Nonsofic.** By `sofic-groups-are-surjunctive`.
-- **Stably finite over `F_p`.** By `linear-sofic-group-algebra-is-stably-finite`. So its strict automata are
-  nonlinear, and over `p`-power alphabets no strict pair is formalizable, even after identity tracks
-  (`formalizable-strict-pairs-certify-non-linear-soficity`).
+- **Nonsofic,** by `sofic-groups-are-surjunctive`.
+- **Stably finite over `F_p`,** by `linear-sofic-group-algebra-is-stably-finite`.
+  - So its strict automata are nonlinear.
+  - Over `p`-power alphabets no strict pair on it is formalizable, even after adding identity tracks
+    (`formalizable-strict-pairs-certify-non-linear-soficity`).
 - **Weakly sofic.** So it refutes `metric-ultraproducts-of-finite-groups-are-surjunctive`, and the goal.
 
 ## Attempts
 
-- **Monomial tuples never witness.** On monomial tuples the implication holds for every strict datum
-  (`gromov-weiss-is-the-monomial-case-of-the-rank-implication`). The same holds for tuples within small rank of
-  monomial ones, generator by generator, so witnessing tuples stay far from monomial.
-- **The rules cannot be run on witnessing tuples.** The coordinatewise product through which nonlinear rules are
-  evaluated is not stable under small rank errors (`site-pullbacks-are-discontinuous-in-the-rank-metric`). So no
-  counting of configurations applies, and a witness is invisible to Gromov–Weiss counting by construction.
-- **Test host.** If `binary-leavitt-unit-group-is-f2-linear-sofic` and `leavitt-unit-group-nonsurjunctive` both hold,
-  `R^x` witnesses at `p = 2`. Neither is decided.
-- **Where it stops.** No strict datum has been tested against nonmonomial tuples. The natural far-from-monomial
-  family is unipotent tuples, which carry relations that no Hamming model carries
-  (`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`).
+- **Monomial tuples never witness.**
+  - On monomial tuples the implication holds for every strict datum, at one reverse word `w_mon`
+    (`gromov-weiss-is-the-monomial-case-of-the-rank-implication`).
+  - It transfers to tuples near any conjugate of a monomial tuple.
+  - So witnessing tuples stay far from the conjugation orbit of monomial tuples.
+- **Heuristic: the rules give no counting on witnessing tuples.** A fixed coordinate algebra is not stable under
+  small rank errors (`site-pullbacks-are-discontinuous-in-the-rank-metric`). So no coordinatewise evaluation of the
+  rules is controlled on such tuples. This is a heuristic, not a theorem.
+- **Test host.** If `binary-leavitt-unit-group-is-f2-linear-sofic` and `leavitt-unit-group-nonsurjunctive` both
+  hold, `R^x` witnesses at `p = 2`. Neither is decided.
+- **Where it stops.**
+  - No strict datum has been tested against tuples far from monomial.
+  - The natural such family is unipotent tuples. They carry relations that no Hamming model carries
+    (`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`).

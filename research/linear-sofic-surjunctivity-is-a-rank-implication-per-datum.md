@@ -9,9 +9,11 @@ distinct_from:
   linear-sofic-group-algebra-is-stably-finite: that passes from linear soficity to stable finiteness of the group algebra, which only sees linear automata; this is the exact linear sofic condition for every strict datum, nonlinear rules included.
 artifacts:
   - research/artifacts/linear-sofic-rung-rank-implication-2026-09-12.md
+  - research/artifacts/gk-vf-positive-b-verification-2026-09-12.md
 ---
 
-**ESTABLISHED** by `linear-sofic-rank-implication-per-datum-proof`.
+**ESTABLISHED** by `linear-sofic-rank-implication-per-datum-proof`. w4-vf-positive-b re-derived it
+independently and it passed (Section 4 of its verification artifact).
 
 Let `F` be a field and `D` a strict datum, with free group `F(D)`, forward relators `R_f(D)` and reverse words
 `W_r(D)` as in `metric-ultraproduct-bounded-width-closure-2026-09-12.md`. The following are equivalent.
@@ -22,12 +24,20 @@ Let `F` be a field and `D` a strict datum, with free group `F(D)`, forward relat
   also satisfies `rk(rho(w) - 1) <= eps n`.
 
 **Consequence.** `linear-sofic-groups-are-surjunctive` holds iff, over every prime field, every strict datum has
-such a reverse word. The rung is a statement about matrix tuples and group words only; the rules `mu` and `nu`
+such a reverse word. The rung is a statement about matrix tuples and group words only. The rules `mu` and `nu`
 enter only through which data are strict.
 
-**Neighbouring rungs.** Bounded conjugacy width of one reverse word (the weakly sofic rung) gives the stronger
-linear control `rk(rho(w) - 1) <= C max_r rk(rho(r) - 1)`, with `C` the width. Whether the rank implication
-implies linear control is open.
+**Neighbouring rungs.** Suppose one reverse word `w` has bounded conjugacy width `b` over the forward relators, which
+is the weakly sofic rung. Then over every field it satisfies the stronger linear control
+`rk(rho(w) - 1) <= b max_r rk(rho(r) - 1)`.
+- **Over a finite field:** apply the rank length inside the finite group `rho(F(D))`.
+- **Over any field:** specialize the finitely generated coefficient ring of the tuple at a maximal ideal that
+  misses a maximal nonzero minor of `rho(w) - 1`.
+  - The residue field is finite, the generators stay invertible, and the rank of `rho(w) - 1` is unchanged.
+  - Relator ranks can only drop.
+  - Sources: artifact Remark 1.4, and w4-vf-positive-b Section 4.1.4.
+
+Whether the rank implication implies linear control is open.
 
 ## Attempts
 

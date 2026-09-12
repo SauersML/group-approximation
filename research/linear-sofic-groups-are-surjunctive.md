@@ -47,13 +47,15 @@ contains `sofic-groups-are-surjunctive`, and it exceeds it on any linear sofic n
     below `eps n` whenever all forward relators have rank at most `delta n`, in every invertible matrix tuple
     (`linear-sofic-surjunctivity-is-a-rank-implication-per-datum`). The rules enter only through strictness.
   - *Gromov–Weiss is the monomial case.* That implication holds on monomial tuples for every strict datum, and on
-    tuples near monomial ones (`gromov-weiss-is-the-monomial-case-of-the-rank-implication`). The content of the
-    claim is tuples far from monomial.
-  - *Counting does not extend.* The coordinatewise product through which nonlinear rules are evaluated vanishes
-    in defect only at permutation matrices, and a rank-one perturbation gives it full rank
-    (`site-pullbacks-are-discontinuous-in-the-rank-metric`). So Gromov–Weiss counting has no rank-metric version.
-    A proof must linearize on the group side first, as the recorded route does, or find a rank-visible invariant of
-    the rule pair.
+    tuples near any conjugate of a monomial tuple (`gromov-weiss-is-the-monomial-case-of-the-rank-implication`).
+    The content of the claim is tuples far from that conjugation orbit.
+  - *Counting, heuristically.* A fixed coordinate algebra is preserved only by permutation matrices, and a rank-one
+    perturbation of the identity gives a multiplicativity defect of rank at least `n - 1`
+    (`site-pullbacks-are-discontinuous-in-the-rank-metric`). This suggests Gromov–Weiss counting has no rank-metric
+    version, so a proof would linearize on the group side first, as the recorded route does, or find a rank-visible
+    invariant of the rule pair. It is a heuristic, not a theorem.
+  - *Verification.* All three landed claims passed w4-vf-positive-b (Section 4 of
+    `gk-vf-positive-b-verification-2026-09-12.md`), which asked for the corrections now landed.
   - *Negation.* `some-linear-sofic-group-is-not-surjunctive` (open). A strict datum whose reverse words avoid the
     linear sofic kernel makes `F(D)/N_lin(F_p)(D)` linear sofic, not surjunctive and not sofic.
   - *Where it stops.* No proof for nonlinear automata, and no separating datum. Whether the rank implication
