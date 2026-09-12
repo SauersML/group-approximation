@@ -139,10 +139,20 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   `CCKW.cckwFiniteOrderConjugateIntoVertex_of_systolicLeaves hT6 hsc hconn h3 h4 : CCKWFiniteOrderConjugateIntoVertex`;
   `sharpExistence_ghb7_of_systolicLeaves hT6 hsc hconn h3 h4 hhyp hT : Hyperbolic.SharpExistence`.
 
+- a0d00d445 (landed unverified, orphan; probe running): `Kazhdan/GHBSharpExistenceSystolic` spends kh-ejz's
+  `card_U3_seven_le`, `card_U4_seven_le` and property (T) (via `GHBQuotient.sharpExistence_of_ghb7ConjHyp`, 8085b58cd):
+  `cckwFiniteOrderConjugateIntoVertex_of_fixedCliqueTits hT6 hsc hconn : CCKWFiniteOrderConjugateIntoVertex`,
+  `sharpExistence_ghb7_of_fixedCliqueTitsHyp hT6 hsc hconn hhyp : Hyperbolic.SharpExistence`.
+- Connectivity offer (lead, 09-12): leavitt-ge declined for now. CCKWTitsPresentation compiled (probe 0912-093840-19657,
+  5bef74495); CCKWTitsGHB still red, being fixed, names unchanged. Fallback `CCKW.cosetComplex_connected` (via `exists_typedWord`
+  and `CCKWTits.connected_of_generated`, TypedWords green bytes) is drafted in my scratchpad and NOT landed, so it doesn't duplicate.
+- Asked sec4-sentences for a self-contained generic piece of T6 (local-finiteness/link side); no reply yet.
+
 ## REMAINING for hconj
 - T6: replace `hT6` by sec4-sentences' fixed-clique theorem once it compiles (restate the draft Prop to its exact binders).
-- T2: replace `hsc`, `hconn` by `CCKWTits.cckwCosetComplex_simplyConnected`, `cckwCosetComplex_connected` once CCKWTitsGHB compiles.
-- Then `hconj` is closed over the order bounds only; `sharpExistence_ghb7_of_systolicLeaves` keeps `h3`, `h4`, `hhyp`, `hT`.
+- T2: when CCKWTitsGHB compiles, add `sharpExistence_ghb7_of_fixedCliqueHyp hT6 hhyp` beside the Tits one, feeding
+  `CCKWTits.cckwCosetComplex_simplyConnected`, `CCKWTits.cckwCosetComplex_connected`.
+- After both, `hconj` is closed and `SharpExistence` from GHB(7) rests on `hhyp` only (kh-ejz / kh-hyperbolic).
 
 ## TRAPS (09-12)
 - `decide +kernel` over `∀ … : Fin 3, … → False` (or an atomic `= …` conclusion) failed to synthesize `Decidable`; the same shape with
