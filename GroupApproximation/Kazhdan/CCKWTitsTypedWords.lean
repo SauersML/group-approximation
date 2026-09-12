@@ -1,4 +1,5 @@
 import GroupApproximation.Kazhdan.CCKWTitsMoves
+import Mathlib.Tactic.Group
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -66,7 +67,7 @@ def TypedMove (L L' : List (Letter H)) : Prop :=
 
 theorem val_base {mid mid' : List (Letter H)} (hb : BaseMove mid mid') : val mid = val mid' := by
   cases hb with
-  | merge i p q => simp only [val, Subgroup.coe_mul, mul_one, mul_assoc]
+  | merge i p q => simp only [val, Subgroup.coe_mul, mul_one]
   | drop i => simp only [val, Subgroup.coe_one, mul_one]
   | retype i j p hp => rfl
 
@@ -111,8 +112,8 @@ theorem mid_moves {mid mid' : List (Letter H)} (hb : BaseMove mid mid')
       (P ++ [w] ++ D h mid' ++ w' :: rest) := by
   cases hb with
   | merge i p q =>
-      have e : vtx H i (h * ↑p) = vtx H i (h * ↑p * ↑q) :=
-        vtx_eq_of_rep (rep_vtx_mul i (h * ↑p) q)
+      have e : vtx H i (h * (p : G)) = vtx H i (h * (p : G) * (q : G)) :=
+        vtx_eq_of_rep (rep_vtx_mul i (h * (p : G)) q)
       show Relation.EqvGen (Moves H) (P ++ [w] ++ [vtx H i (h * ↑p), vtx H i (h * ↑p * ↑q)] ++ w' :: rest)
         (P ++ [w] ++ [vtx H i (h * ↑(p * q))] ++ w' :: rest)
       rw [e, Subgroup.coe_mul, ← mul_assoc]
@@ -211,7 +212,7 @@ theorem loop_moves (hwp : ∀ L : List (Letter H), val L = 1 → Relation.EqvGen
     Relation.EqvGen (Moves H) (v :: l ++ [v]) [v] := by
   obtain ⟨g, hv⟩ := exists_rep v
   obtain ⟨L, hm, hlast⟩ := encode v (l ++ [v]) g hv hl
-  have hr : Rep H v (g * val L) := hlast v (by simp)
+  have hr : Rep H v (g * val L) := hlast v (List.getLast?_concat (l := v :: l))
   set c : Letter H := ⟨v.1, ⟨(g * val L)⁻¹ * g, mem_of_rep_rep hr hv⟩⟩ with hc
   have hval : val (L ++ [c]) = 1 := by
     rw [val_append]
@@ -271,7 +272,7 @@ theorem reachable_trace (L : List (Letter H)) :
       intro v g hv i
       have h1 := reachable_of_rep hv (rep_vtx_mul a.1 g a.2)
       have h2 := ih (vtx H a.1 (g * a.2)) (g * a.2) (rep_vtx _ _) i
-      rw [← mul_assoc] at h2
+      rw [val, ← mul_assoc]
       exact h1.trans h2
 
 /-- **Generated groups have connected coset complexes.** -/
