@@ -52,3 +52,22 @@ kernel dimension `r·b_k^(2)(X;G)`, which is irrational.
   irreducible torsion-free lattices outside class `C` (Burger–Mozes-type square
   complexes). No such complex is known to carry an irrational L²-Betti number, and the
   non-contractibility requirement rules out the square complexes themselves.
+* **Tree actions with locally elliptic stabilizers.** *Dead* by
+  `tree-action-with-elliptic-stabilizers-kills-lattice-transfer`: if any subgroup of
+  `Aut(X)` containing `Γ` acts on a locally finite tree with locally elliptic vertex
+  stabilizers, `Γ` is free, and every value on `X` is rational.
+  - *Intended instances:* elliptic-by-tree automorphism groups, pending Platonov's
+    extension closure for local ellipticity, which was not read from source.
+  - *Candidate:* Cayley complexes of the free lamplighters `Z/p ≀ F_n` (Lehner–Wagner
+    irrational values), if `Aut(X)` preserves the lamp-forgetting map to the tree of `F_n`.
+    Unchecked.
+* **Amenable hosts.** *Reduction pending source verification*
+  (research/artifacts/atiyah-lattice-complex-2026-09-12.md §3). If the groups acting freely
+  and cocompactly on `X` are amenable, the torsion-free `Γ` would have zero divisors in
+  `C[Γ]`.
+  - *Inputs:* Tamari/Kielak Ore domains, Elek's algebraic-to-analytic zero-divisor transfer
+    for amenable groups, and Linnell's rank argument. The last two were stated from memory
+    and are not verified.
+  - *Consequence:* an amenable witness would also refute `kaplansky-zero-divisor-conjecture`
+    on a torsion-free amenable group that is not elementary amenable. That applies to all
+    the published lamplighter examples over amenable bases.
