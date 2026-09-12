@@ -43,7 +43,8 @@ theorem matUnit_apply (u v : ℕ) (p : JacobsonSpace) :
     matUnit u v p = p.coeff v • Polynomial.X ^ u := by
   have h : matUnit u v = (Polynomial.lcoeff (ZMod 2) v).smulRight (Polynomial.X ^ u) := by
     refine (Polynomial.basisMonomials (ZMod 2)).ext fun N ↦ ?_
-    rw [Polynomial.coe_basisMonomials, ← Polynomial.X_pow_eq_monomial, matUnit_X_pow,
+    simp only [Polynomial.coe_basisMonomials]
+    rw [← Polynomial.X_pow_eq_monomial, matUnit_X_pow,
       LinearMap.smulRight_apply, Polynomial.lcoeff_apply, Polynomial.coeff_X_pow]
     by_cases hN : N = v
     · rw [if_pos hN, if_pos hN.symm, one_smul]
@@ -53,7 +54,8 @@ theorem matUnit_apply (u v : ℕ) (p : JacobsonSpace) :
 theorem matUnit_mul (u v w x : ℕ) :
     matUnit u v * matUnit w x = if v = w then matUnit u x else 0 := by
   refine (Polynomial.basisMonomials (ZMod 2)).ext fun N ↦ ?_
-  rw [Polynomial.coe_basisMonomials, ← Polynomial.X_pow_eq_monomial, Module.End.mul_apply,
+  simp only [Polynomial.coe_basisMonomials]
+  rw [← Polynomial.X_pow_eq_monomial, Module.End.mul_apply,
     matUnit_X_pow]
   by_cases hNx : N = x
   · rw [if_pos hNx, matUnit_X_pow]
@@ -81,7 +83,7 @@ theorem matUnitJ_mul (u v w x : ℕ) :
 /-- Matrices over `J` act on `V^n` by `(m x)_i = Σ_j m_{ij}(x_j)`. -/
 noncomputable def matrixAct (n : ℕ) :
     Matrix (Fin n) (Fin n) ↥jacobsonAlgebra →+* Module.End (ZMod 2) (BinaryPower n) :=
-  ((Matrix.endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm :
+  ((endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm :
       Matrix (Fin n) (Fin n) (Module.End (ZMod 2) JacobsonSpace) →+*
         Module.End (ZMod 2) (Fin n → JacobsonSpace)).comp
     jacobsonAlgebra.subtype.mapMatrix
@@ -93,9 +95,8 @@ theorem matrixAct_apply (n : ℕ) (m : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra
 theorem matrixAct_injective (n : ℕ) : Function.Injective (matrixAct n) := by
   intro m m' h
   have h2 : jacobsonAlgebra.subtype.mapMatrix m = jacobsonAlgebra.subtype.mapMatrix m' :=
-    (Matrix.endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm.injective h
-  ext i j
-  exact Subtype.ext (congrFun (congrFun h2 i) j)
+    (endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm.injective h
+  exact Matrix.ext fun i j ↦ Subtype.ext (congrFun (congrFun h2 i) j)
 
 /-- **`EL_n(J)` acting on `V^n`.** -/
 noncomputable def blockAct (n : ℕ) :
@@ -181,9 +182,9 @@ theorem blockAct_commutator_matUnit (n : ℕ) {i k : Fin n} (hik : i ≠ k) {u v
   set A : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := Matrix.single i k (matUnitJ u v) with hA
   set B : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := Matrix.single k i (matUnitJ v v) with hB
   have hAA : A * A = 0 := by
-    rw [hA, Matrix.single_mul_single_of_ne _ _ _ hik.symm]
+    rw [hA, Matrix.single_mul_single_of_ne (c := matUnitJ u v) i k i hik.symm (matUnitJ u v)]
   have hBB : B * B = 0 := by
-    rw [hB, Matrix.single_mul_single_of_ne _ _ _ hik]
+    rw [hB, Matrix.single_mul_single_of_ne (c := matUnitJ v v) k i k hik (matUnitJ v v)]
   have hAB : A * B = Matrix.single i i (matUnitJ u v) := by
     rw [hA, hB, Matrix.single_mul_single_same, matUnitJ_mul, if_pos rfl]
   have hBA : B * A = 0 := by

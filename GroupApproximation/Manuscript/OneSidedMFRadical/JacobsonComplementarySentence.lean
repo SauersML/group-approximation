@@ -23,6 +23,9 @@ namespace JacobsonSymbol
 
 open TorsionComplementaryIdempotents
 
+/- `IsCDEOperatorMF` asks for a `Countable` instance on the group. -/
+attribute [local instance] FullDefectRing.countable_elementaryGroup
+
 /-- **Printed (tex 1157--1159).**  Fullness gives trivial MF images at every rank `n ≥ 2`;
 torsion of the defect gives non-MF at rank four with no fullness (witnessed by `J`). -/
 def PrintedTwoResultsComplementary : Prop :=
