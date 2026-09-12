@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.HullSuitabilityGeometry
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Shadows and north--south dynamics under the four-point condition

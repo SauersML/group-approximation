@@ -46,8 +46,8 @@ theorem dist_pow_smul_le_sum_of_pow_eq_one {c : G} {p : ℕ} (hp : 0 < p)
   have hmod : c ^ n = c ^ (n % p) := by
     conv_lhs => rw [← Nat.mod_add_div n p, pow_add, pow_mul, hcp, one_pow, mul_one]
   rw [hmod]
-  exact Finset.single_le_sum (fun r _ => dist_nonneg)
-    (Finset.mem_range.mpr (Nat.mod_lt n hp))
+  exact Finset.single_le_sum (f := fun r : ℕ => dist x ((c ^ r) • x))
+    (fun r _ => dist_nonneg) (Finset.mem_range.mpr (Nat.mod_lt n hp))
 
 /-- **A bounded positive orbit is a bounded orbit.**  Negative powers move the
 basepoint as far as the corresponding positive powers. -/
