@@ -43,9 +43,10 @@ So it suffices to exclude pairs with `1 in A ⊆ B(ra)` and `1 in B ⊆ B(rb)`.
 at radius one and returns `A = B = {1, t}`, which the exact check confirms has
 no uniquely represented product (`runs-up/e33-up-r11-control.json`).
 
-**Runs.** Radii `(2,2)` and `(2,3)` are UNSAT (`runs-up/e33-up-r22.json`,
-`runs-up/e33-up-r23.json`). Together with the normalization this proves items
-1 and 2 of the claim.
+**Runs.** Radii `(2,2)`, `(2,3)`, `(3,3)` and `(2,4)` are UNSAT
+(`runs-up/e33-up-r22.json`, `runs-up/e33-up-r23.json`,
+`runs-up/e33-up-r33.json`, `runs-up/e33-up-r24.json`). With the normalization,
+`(3,3)` proves item 1 of the claim and `(2,4)` proves the first half of item 2.
 
 **Inversion.** `(A, B) -> (B^(-1), A^(-1))` reverses every expression
 `g = ab` into `g^(-1) = b^(-1) a^(-1)`, so it preserves the no-unique-product

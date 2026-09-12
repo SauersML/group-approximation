@@ -77,8 +77,8 @@ fixed finitely presented torsion-free group `U`.
     Gardam-style SAT census on its balls is in `experiments/zero-divisor-tf/`.
   - **Field-independent census on `E_3(3)`.** A zero divisor over any field
     needs a support pair without a uniquely represented product. SAT excludes
-    such pairs with radii `(2,2)` and `(2,3)` in either order
-    (`e33-no-unique-product-pairs-of-small-radius`). So no zero divisor over
-    any field has supports of these radii. The `(3,3)` and `(2,4)` instances
-    were still running on MSI when this bullet landed; outputs go to
-    `/projects/standard/hsiehph/sauer354/zero-divisor-tf/runs-up/`.
+    such pairs with radii at most `(3,3)`, and with radii `(2,4)` or `(4,2)`
+    (`e33-no-unique-product-pairs-of-small-radius`). So a zero divisor on
+    this host, over any field, needs `rad_L(supp alpha) + rad_R(supp beta) >= 7`
+    or one radius at least 5. The next instance, `(3,4)`, has about 9 million
+    pairs; `(3,3)` already took 86 minutes of CaDiCaL.

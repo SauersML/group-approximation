@@ -1,0 +1,17 @@
+{
+ "host": "E_3(3) in SL_3(Z)",
+ "question": "no-unique-product pair (A,B) with 1 in A, 1 in B, A in B(ra), B in B(rb)",
+ "ra": 2,
+ "rb": 4,
+ "size_A": 121,
+ "size_B": 8569,
+ "pairs": 1036849,
+ "cells": 549721,
+ "singleton_cells": 331944,
+ "max_cell": 121,
+ "vars": 1082309,
+ "clauses": 4230489,
+ "build_seconds": 14.01,
+ "solve_seconds": 577.06,
+ "result": "UNSAT"
+}

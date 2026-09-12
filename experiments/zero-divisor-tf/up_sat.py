@@ -159,11 +159,21 @@ def main():
     rep.update({"vars": cnf.nv, "clauses": len(cnf.clauses), "build_seconds": round(time.time() - t0, 2)})
     t1 = time.time()
     solver = Solver(name="cadical153", bootstrap_with=cnf.clauses)
-    timer = threading.Timer(args.time_limit, solver.interrupt)
+    limit_state = {"fired_unenforced": False}
+
+    def stop():
+        # python-sat's CaDiCaL backend has no interrupt, so a fired limit is only recorded.
+        try:
+            solver.interrupt()
+        except NotImplementedError:
+            limit_state["fired_unenforced"] = True
+
+    timer = threading.Timer(args.time_limit, stop)
     timer.start()
     res = solver.solve_limited(expect_interrupt=True)
     timer.cancel()
     rep["solve_seconds"] = round(time.time() - t1, 2)
+    rep["time_limit_fired_but_not_enforced"] = limit_state["fired_unenforced"]
     if res is None:
         rep["result"] = "TIMEOUT"
     elif res is False:
