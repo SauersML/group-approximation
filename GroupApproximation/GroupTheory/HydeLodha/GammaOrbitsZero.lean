@@ -105,11 +105,11 @@ theorem gammaTwo_resEq_preimage_one {f : Equiv.Perm ℚ} (hf : f ∈ gammaTwo) (
         rw [hfc] at h'
         exact h'
       simp [Int.floor_eq_zero_iff.mpr ⟨hfx0, hfx1⟩, Int.floor_eq_zero_iff.mpr ⟨hx0, hx1⟩])
-    obtain rfl : j' = i' := by omega
+    have hji : j' = i' := by omega
     have e : (2 : ℚ) ^ i' * (3 : ℚ) ^ i' = (((4 : ℕ) : ℚ) + 2) ^ i' * ((1 : ℤ) : ℚ) := by
       rw [← mul_zpow]
       norm_num
-    rw [hs, e] at haff
+    rw [hs, hji, e] at haff
     have hε : gridPt 6 L (0 + i + 1) - gridPt 6 L (0 + (i : ℤ)) ∈ Grid 6 L :=
       grid_sub (gridPt_mem L _) (gridPt_mem L _)
     exact resEq_of_affineOn_pow hple haff hε
