@@ -59,7 +59,7 @@ theorem lixKRestrict_lixThomClassTerm_ne_zero (n k : ℕ) (dd : Fin ℓ → ℕ)
   rw [relPullback_lixKGL_chain n k dd i hGc hGu hGe, relPullback_lixKGR_chain n k dd i hGc hGu,
     ← lixKRes_eq n k dd i hGc hGu, ← lixKBundlePairIso_hom_eq n k dd i hGc hGu,
     ← lixKProdIso_hom_eq n k dd i hGc hGu, ← lixKExcF_hom_eq n k dd i] at hEq
-  have hL := congrArg (fun f => f.hom (lixThomClassTerm n hGc hGu)) hEq
+  have hL := LinearMap.congr_fun (congrArg ModuleCat.Hom.hom hEq) (lixThomClassTerm n hGc hGu)
   simp only [ModuleCat.hom_comp, LinearMap.coe_comp, Function.comp_apply] at hL
   rw [h0, map_zero] at hL
   have hx : (excisionIsoPoint (TopCat.of (Fin (lixRank n dd) → ℂ))

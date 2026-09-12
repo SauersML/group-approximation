@@ -149,7 +149,10 @@ theorem relPullback_lixKGL_chain (n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k 
       (LIXKRelMV.sInclusion_mapsTo_preimage (X := lixN n dd) (lixKTrivBall n k dd i hGc hGu)
         ((lixKZeroSet n k dd)ᶜ : Set (↥sphereOne × Gen.baseM n dd)))
       (lixKSectionTotal_mapsTo n k hGc hGu hGe) hbs (2 * lixRank n dd)
+  -- the composite's middle object is spelled over `↥sphereOne × baseM` on one side and over the
+  -- carrier of `lixN n dd` on the other, so the closing `rfl` needs default transparency
   rw [s1, s2]
+  rfl
 
 /-- **The right leg**: the restriction of the bundle pair to the neighbourhood of `z_i`, the
 trivialisation, the slice at `z_i`, the excision at the origin, and the shrink to `lixKU`. -/
