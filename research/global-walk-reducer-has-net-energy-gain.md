@@ -52,3 +52,10 @@ independently of `t` is unnecessary.
 - A one-call polynomial bound on output bit length is insufficient for
   the intended iteration. The explicit linear bound above closes that
   representation issue but supplies no mathematical locality reduction.
+- [[local-or-simulation-has-linear-normalized-loss]] excludes a family
+  of faithful clausewise simulators with fixed local encoding depth and
+  loss `L_t=o(t)`: on a tensor-OR clause their loss is at least
+  `t/(k_0 b^D)` with exact vacuum preservation. Fixed ancillas and
+  noncommuting output terms do not avoid this bound. The requested
+  instance-level map only controls ground energy, so it is not refuted;
+  a successful construction may use that weaker obligation.
