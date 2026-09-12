@@ -316,3 +316,6 @@ GroupApproximation.GGT.SystolicDiscMovesChord
 GroupApproximation.GGT.VanKampen.EdgeInsertionFaceCycles
 GroupApproximation.GGT.SystolicDiscMovesChord
 # kh-hyperbolic: GHBHyperbolicDiscCounts waits on go-sr1's red SystolicDiscFilling/SystolicDiscCounts
+# 10:10 sec5-sentences GREEN 0912-100330-38574 (base e04551169, bytes 8f7a8f1e1)
+GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeMerged
+GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundMerged

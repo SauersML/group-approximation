@@ -26,3 +26,4 @@ GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52LeastArea.lean
 GroupApproximation/GGT/VanKampen/PlanarVanKampenCellFactor.lean
 GroupApproximation/GGT/VanKampen/PlanarVanKampenCellSteps.lean
 GroupApproximation/GGT/VanKampen/PlanarVanKampenCells.lean
+GroupApproximation/GGT/VanKampen/PlanarVanKampenDiagram.lean

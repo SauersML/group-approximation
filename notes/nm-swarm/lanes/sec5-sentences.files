@@ -28,4 +28,5 @@ GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMap.lean
 GroupApproximation/GGT/VanKampen/SurgeryGFaceMerge.lean
 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeDarts.lean
 GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeRegions.lean
-notes/nm-swarm/reports/sec5-sentences.md
+GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeMerged.lean
+GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundMerged.lean
