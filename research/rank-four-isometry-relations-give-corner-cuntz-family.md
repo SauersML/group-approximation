@@ -100,3 +100,24 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   `e` of rank at least `rk(e)`. So at least one check must use `sigma` on negative root elements or
   torus units, jointly on a nonsofic subgroup
   (`unitriangular-data-cannot-assemble-corner-leavitt-families`, artifact Section 3).
+- **Adversarial pass (w4-r4-adversary, c6697aa47b and 9fd9898e8e; artifact
+  `research/artifacts/rank-four-plan-adversarial-audit-2026-09-12.md`).**
+  - **The listed relations live in `U_4(R)`.** Every relation listed above is a relation of the
+    unitriangular group `U_4(R)`: both isometry-commutator frames, both readings of `x_14(abc)`, and
+    the split of `x_12(1)`.
+  - **A model where they hold and the checks fail.** A superdiagonal character `U_4(R) -> F_p^2`,
+    acting by translation on `F_p[C_p^2]`, satisfies all of them, with
+    `rk(N_23 N_12) = (p-1)^2/p^2` and zero `x_13, x_24, x_14` data. Directly finite corners carry no
+    Toeplitz pair. So checks (a)-(c) cannot be derived from unitriangular relations, and in that model
+    check (c) fails with `rk(D) > 0` (`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`).
+  - **What a proof must use.** `sigma` on something outside `U_4(R)`. One opposite unit root element
+    together with `x_IJ(R)` generates `EL_2(R) ~= R^x`, and the torus elements form another copy of
+    `R^x`.
+  - **Agrees with the lead pass.** The content is the construction, and `EL_4` coordinates add no
+    relation. Grouping `{3,4}` through `R^2 ~= R` gives the dictionary in artifact Section 3.
+  - **Frame note.** In standard coordinates the block defect `n_23^(4)(1) n_12^(4)(1)` is the
+    shifted-pair product `(sigma(x_23(t_0)) - 1)(sigma(x_12(1)) - 1)`, so `D` must be read in the
+    block frame throughout. No frame error found in the route.
+  - **Odd characteristic.** The route's `D = 0` case needs no second identity, by
+    `reversed-root-pair-identity-forces-root-squares-to-vanish`.
+  - **Not invalidated.** The claim is equivalent to the defect identity, and the route stays valid.

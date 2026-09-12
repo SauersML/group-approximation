@@ -177,3 +177,16 @@ payoff is `non-linear-sofic-group`.
     satisfies that law and violates `A^2 = 0`.
   - **Where it dies.** Same place as in characteristic two: relations whose coefficients are
     measure-changing partial isometries, not code-level constants.
+- **One identity decides in every characteristic (w4-r4-adversary, 9fd9898e8e).**
+  `reversed-root-pair-identity-forces-root-squares-to-vanish`: for any homomorphism
+  `sigma : EL_3(R) -> M^x`, `N_23 N_12 = 0` forces `N_ab^2 = 0` for every root.
+  - **Proof.** Weyl symmetry spreads the reversed pair to `N_jk N_ij = 0`. Then
+    `N_ik = N_ij N_jk X^-1 Y^-1` and `Y^-1 N_ij = N_ij`, so `N_ik^2 = 0`.
+  - **Consequence.** The first identity is redundant in odd characteristic too. That includes the
+    characteristic-three extraction, which the entry above records as needing both identities.
+- **Unitriangular relations: die (w4-r4-adversary, c6697aa47b).**
+  - **Which plans.** Plan 1's four-index frame and Plan 2's centre pairing use only relations of
+    `U_4(R)`.
+  - **Why they die.** `U_4(R)` has an explicit model with `rk(N_23 N_12) = (p-1)^2/p^2` in every
+    characteristic (`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`).
+  - **What escapes.** One opposite unit root element already generates a copy of `R^x`.

@@ -56,3 +56,16 @@ rank pieces unless the defect vanishes.
   `research/artifacts/heisenberg-and-rank-four-positive-root-firewall-2026-09-12.md`). The claim's
   conclusion is untouched; it is the gate. A proof must use `sigma` as an operator outside the
   unitriangular group, jointly on a nonsofic subgroup.
+- **Unitriangular calibration: dies as written (w4-r4-adversary, c6697aa47b).**
+  - **The model.** The homomorphism `U_3(R) -> F_p^2 -> GL(F_p[C_p^2])`, through the superdiagonal
+    entries, has `rk(N_23 N_12) = (p-1)^2/p^2` and `beta = 0`. It satisfies every relation of
+    `U_3(R)`, and `R ~= R^2` is a property of `R` alone.
+  - **What fails.** No contradiction "unless `D = 0`" follows from `U_3` relations, bounded rank of
+    `n_13(R)`, and `R.R = R` (`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`).
+  - **Rank symmetry does not help.** The regular sofic model of the nilpotent group `U_3(R)` has
+    position-symmetric ranks `1 - 1/p` and nonzero centre data, and in characteristic two
+    `rk(D) = 3/8` (`sofic-subgroups-carry-rank-models-violating-two-root-identity`). So conjugation
+    invariance read as rank equalities across positions does not help.
+  - **What a proof must use.** The first lemma must use operator conjugation by Weyl or opposite root
+    elements, and those generate a copy of `R^x` (artifact
+    `research/artifacts/rank-four-plan-adversarial-audit-2026-09-12.md`, Section 3).
