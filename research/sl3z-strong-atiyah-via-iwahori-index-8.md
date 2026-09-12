@@ -22,6 +22,10 @@ Let `W <= I <= SL_3(Z_2)` be torsion-free of index 8 in `I`, so
 For `A` over `C[SL_3(Z)]`, `rk(A) = rk_{H_j}(res A)/[G:H_j]` lies in
 `(1/168)Z cap (1/5616)Z = (1/24)Z`, since `gcd(168, 5616) = 24`.
 
+**Dead (2026-09-12).** Its first requirement is refuted by
+`sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48`: no torsion-free
+open subgroup of `SL_3(Z_2)` has index 168.
+
 The route also records the converse direction of the reduction. Every
 torsion-free open `W <= SL_3(Z_2)` whose index has 2-adic valuation 3 is
 conjugate into `I` with index 8. Its image in `SL_3(F_2)` has no elements of order

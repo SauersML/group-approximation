@@ -4,8 +4,10 @@ Lane `strong-atiyah-kazhdan-group`, 2026-09-12. The task was to prove the Strong
 Atiyah Conjecture (SAC) for some infinite torsion-free property (T) group, since
 `atiyah-coproduct-inner-rank` recorded that none was known. That record is wrong,
 and this note says so from source. It then pivots to the named open case
-`SL_3(Z)`, reduces it to a finite 2-adic question, and settles half of that
-question.
+`SL_3(Z)`, reduces the index method to a finite 2-adic question, and settles that
+question negatively. Every torsion-free open subgroup of `SL_3(Z_p)` has index
+divisible by 48, so the index method stops at denominator 48, one factor of 2
+short of the Strong Atiyah value 24.
 
 ## 1. Status from source (arXiv LaTeX sources fetched and read on MSI)
 
@@ -130,6 +132,33 @@ subgroup containing no image of an involution of `SL_3(Z_2)`? Involutions form
 two classes over `Z_2` (Diederichsen--Reiner: `diag(1,-1,-1)` and
 `swap + (-1)`), so the forbidden set is the intersection of two
 `SL_3(Z/16)`-conjugacy classes with `I/K_4`. A quick global refutation fails:
-`Phi^3(I) <= K_2` contains no involution. The next step is a GAP pc-group search
-on MSI through the three index-2 steps, testing the last step by linear algebra
-over `M''/Phi(M'')`.
+`Phi^3(I) <= K_2` contains no involution. The GAP pc-group search on MSI settled it:
+`experiments/strong-atiyah-sl3z/iwahori_index8_search.g`, sbatch 556104, about 3 minutes,
+with log in `iwahori_index8_search.out`.
+- **Sanity checks:** `|SL_3(Z/16)| = 168 * 2^24` and `|I/K_4| = 2^27`.
+- **Forbidden set:** the mod-16 involution classes have sizes 7168 and 86016,
+  and 27648 of their elements lie in `I/K_4`.
+- **Search:** it visited all 7 maximal subgroups and 69 second-level subgroups,
+  deciding the last step by linear algebra over `M''/Phi(M'')`.
+- **Result:** no torsion-free index-8 subgroup of `I` exists.
+
+## 5. Consequence: the index method stops at 48
+
+Landed as `sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48`: for
+every prime `p`, every torsion-free open subgroup of `SL_3(Z_p)` has index
+divisible by 48.
+- `S_4` acts freely on cosets, so 24 divides the index.
+- For odd `p`, a Sylow 2-subgroup of `SL_3(F_p)` of order at least 16 lifts and
+  acts freely.
+- For `p = 2`, valuation 3 would force index 8 in the Iwahori, which the search
+  excludes.
+
+By density and the congruence subgroup property, every finite-index `H <= SL_3(Z)`
+with torsion-free closure in some `SL_3(Z_p)` has index divisible by 48. So
+restriction to such subgroups yields exactly `rk in (1/48)Z`, the bound already
+landed. The route `sl3z-strong-atiyah-via-iwahori-index-8` is dead.
+
+Reaching the Strong Atiyah value 24 for `SL_3(Z)` needs another idea. One is a
+torsion-free subgroup of 2-adic index valuation 3 satisfying Strong Atiyah for a
+reason other than a torsion-free `p`-adic closure. Another is the crossed-product
+condition in `sl3z-satisfies-strong-atiyah` (Attempt 3).

@@ -6,11 +6,17 @@ title: The pro-2 Iwahori subgroup of SL_3(Z_2) has a torsion-free open subgroup 
 distinct_from:
   sl3-z2-iwahori-index-8-torsion-free-misses-level-4: that is the established census showing such a subgroup cannot contain the level-4 kernel; this asks whether one exists at all.
   sl3z-satisfies-strong-atiyah: that is the Strong Atiyah statement for SL_3(Z); this is the finite 2-adic group-theoretic input which implies it.
+refuted_by:
+  - sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48
 artifacts:
   - research/artifacts/strong-atiyah-kazhdan-groups-2026-09-12.md
 ---
 
-**OPEN.** Let `I <= SL_3(Z_2)` be the preimage of the upper unitriangular group
+**REFUTED** (2026-09-12) by
+`sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48`, through an
+exhaustive mod-16 search.
+
+Let `I <= SL_3(Z_2)` be the preimage of the upper unitriangular group
 of `SL_3(F_2)`, so `[SL_3(Z_2):I] = 21`. The claim: some open subgroup `W <= I` of
 index 8 contains no element of finite order. Equivalently, `SL_3(Z_2)` has a
 torsion-free open subgroup of index 168.
@@ -31,6 +37,9 @@ no image of an involution. There are two involution classes over `Z_2`,
 2. **Global Frattini refutation.** Every index-8 subgroup contains
    `Phi^3(I)`, which lies in `K_2` and so has no involutions. No quick
    refutation.
-3. **Next.** A GAP pc-group search on MSI through three index-2 steps, with the
-   last step decided by linear algebra over `M''/Phi(M'')`. Not yet run: MSI
-   auth was locked out for this lane's window.
+3. **Exhaustive pc-group search, done.** A GAP search on MSI (sbatch 556104,
+   `experiments/strong-atiyah-sl3z/iwahori_index8_search.{g,out}`) went through
+   all 7 maximal subgroups of `I/K_4` and all 69 second-level subgroups. It
+   decided the last step by linear algebra over `M''/Phi(M'')`, against the
+   27648 images of involutions. No torsion-free index-8 subgroup exists. The
+   claim is false.

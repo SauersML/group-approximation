@@ -1,0 +1,22 @@
+stage=start Sat Sep 12 16:49:02 CDT 2026
+|SL_3(Z/16)| = 2818572288  expected 2818572288
+|I/K_4| = 134217728  expected 134217728
+class sizes mod 16: A 7168  B 86016
+forbidden involution images in I/K_4: 27648
+Frattini rank of P: 27
+forbidden elements in Phi^3(P): 0
+index-2 subgroups of P: 7
+Syntax warning: Unbound global variable in iwahori_index8_search.g:49
+    if ForAny(T2, t -> t in F) then continue; fi;
+                            ^
+Syntax warning: Unbound global variable in iwahori_index8_search.g:53
+    rows := List(T2, t -> List(ExponentsOfPcElement(pcg, Image(hom, t)), x -> \
+x*Z(2)));
+                                                    ^^^
+Syntax warning: Unbound global variable in iwahori_index8_search.g:53
+    rows := List(T2, t -> List(ExponentsOfPcElement(pcg, Image(hom, t)), x -> \
+x*Z(2)));
+                                                               ^^^
+M1 visited 7  M2 visited 69
+RESULT: no torsion-free index-8 subgroup of I exists
+stage=done rc=0 Sat Sep 12 16:51:49 CDT 2026

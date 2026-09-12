@@ -28,12 +28,17 @@ Established so far: the denominator divides 48
    Sylow 2-subgroup of `SL_3(F_p)` has order divisible by 16. It lifts to
    `SL_3(Z_p)` and meets every torsion-free open subgroup trivially, so every
    such index has 2-adic valuation at least 4.
-2. **A torsion-free open subgroup of `SL_3(Z_2)` of index 168.** Live route
-   `sl3z-strong-atiyah-via-iwahori-index-8`. It reduces the claim to the finite
-   question `sl3-z2-iwahori-has-torsion-free-subgroup-of-index-8`. Candidates
-   containing the level-4 kernel are excluded by exhaustive census
-   (`sl3-z2-iwahori-index-8-torsion-free-misses-level-4`). The remaining search
-   is in `I/K_4`, of order `2^27`.
+2. **A torsion-free open subgroup of `SL_3(Z_2)` of index 168.** Dead. The route
+   `sl3z-strong-atiyah-via-iwahori-index-8` needed
+   `sl3-z2-iwahori-has-torsion-free-subgroup-of-index-8`, which is refuted by
+   exhaustive search: `sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48`.
+   For every prime `p`, every torsion-free open subgroup of `SL_3(Z_p)` has index
+   divisible by 48. So restricting ranks to finite-index subgroups with a
+   torsion-free `p`-adic closure, where Farkas--Linnell applies, can never beat
+   denominator 48. That bound is already established. Reaching 24 needs a
+   different idea: a subgroup satisfying Strong Atiyah that does not embed in a
+   torsion-free `p`-adic analytic group through its closure, or the
+   crossed-product argument below.
 3. **Crossed product.** With `H = Gamma(3)`, `D(G) = D(H) * SL_3(F_3)` is
    semisimple Artinian. SAC is equivalent to every simple module having
    `D(H)`-dimension divisible by 234. Not attacked: nothing on main computes
