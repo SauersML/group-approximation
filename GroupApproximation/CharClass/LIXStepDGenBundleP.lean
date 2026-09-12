@@ -1,5 +1,4 @@
-import GroupApproximation.CharClass.LIXStepDGenReal
-import GroupApproximation.CharClass.ChernSplittingOfPowers
+import GroupApproximation.CharClass.LIXStepDGenBundlePWuN
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,9 +17,11 @@ is stated as what its producer proves, and none of them mentions `a`, `b` or `c`
   of `z = t x`.  This is a statement about the torus only.
 * **The slice**: a section `s` of `π_Y` killing `z`, along which the Chern classes pull back to the
   coefficients of `∏ⱼ (1 + hⱼ)^{dⱼ}`.
-* **The splitting principle** (`ParityP.HasSplittingP`), with an integer normalisation `m` that is
-  a unit and `p = 0` on `Y`.  It gives `wu`, and `c i = m^i · wuCoeff p i` with its unit property,
-  through `Gen.realWu_of_splitting` and `ParityP.isUnit_wuLeading`.
+* **The splitting principle, narrowed** (`ParityP.HasSplittingPN`), with an integer normalisation
+  `m` that is a unit and `p = 0` on `Y`.  It gives `wu`, and `c i = m^i · wuCoeff p i` with its unit
+  property, through `Gen.realWu_of_hasSplittingPN` (`CharClass/LIXStepDGenBundlePWuN.lean`).  The narrowed
+  form asks the reduced powers to intertwine only at the classes `γ (i + 1)`, which is what the
+  reduced powers of the torus can supply.
 
 The components `a`, `b` are chosen from the Künneth statement.  The slice field holds for the
 chosen `a` because the section reads it off:
@@ -52,7 +53,7 @@ namespace Gen
 /-- **The Künneth input of the bundle data.**  Every class of `N` in even degree `2k` is a pullback
 from `Y` plus `z = t x` times a pullback of degree `2(k − (n + 1))`, and the second summand vanishes
 below the weight `n + 1` of `z`.  At the mapping torus `N = S¹ × S^{2n+1} × Y` over a field this is
-Künneth with two sphere factors and no odd cohomology on `Y`. -/
+Künneth with two sphere factors and no odd cohomology on `Y` (`KnLix.evenKunnethSplitOf`). -/
 def EvenKunnethSplitOf (n : ℕ) (K : Type) [CommRing K] {N Y S₁ Sodd : TopCat.{0}}
     (pY : N ⟶ Y) (q₁ : N ⟶ S₁) (qodd : N ⟶ Sodd)
     (σ₁ : TotalPieceOf K S₁ 1) (σodd : TotalPieceOf K Sodd (2 * n + 1)) : Prop :=
@@ -127,8 +128,8 @@ variable {n p ℓ : ℕ} {dd : Fin ℓ → ℕ} {K : Type} [CommRing K] {N Y S�
 
 /-- **The producer of `Gen.RealBundleModP`.**  From the torus data `T`, a homogeneous family `Γ`
 of even classes (the Chern classes, `Γ k` in degree `2k`), the Künneth input, a section `s` of
-`π_Y` killing `z` along which `Γ` pulls back to the slice class, and the splitting principle with a
-unit normalisation `m` and `p = 0` on `Y`. -/
+`π_Y` killing `z` along which `Γ` pulls back to the slice class, and the narrowed splitting principle
+with a unit normalisation `m` and `p = 0` on `Y`. -/
 def realBundleModP_of_split (hp : 2 ≤ p) (T : RealTorusModP n K pY q₁ qodd σ₁ σodd)
     (Γ : ℕ → evenPart K N)
     (hhom : ∀ k : ℕ, ∃ x : TotalPieceOf K N (2 * k),
@@ -139,7 +140,7 @@ def realBundleModP_of_split (hp : 2 ≤ p) (T : RealTorusModP n K pY q₁ qodd �
     (gen : Fin ℓ → evenPart K Y)
     (hslice : ∀ q : ℕ, evenMap K s (Γ q) = (sliceClass Finset.univ gen dd).coeff q)
     (m : ℤ) (hpY : (p : evenPart K Y) = 0) (hm : IsUnit (m : evenPart K Y))
-    (hwu : HasSplittingP p Γ (fun i => evenRestrictAdd (T.PN i) (T.PN_even i)) m) :
+    (hwu : HasSplittingPN p Γ T.PN m) :
     RealBundleModP p dd T (fun k => (Γ k : TotalHOf K N)) where
   γ_even k := mem_evenPart.mp (Γ k).2
   a k := TotalHOf.of K Y (2 * k) (bundlePA hsplit Γ hhom k)
@@ -158,10 +159,8 @@ def realBundleModP_of_split (hp : 2 ≤ p) (T : RealTorusModP n K pY q₁ qodd �
       Subtype.ext (bundlePA_eq_map hsplit Γ hhom s hs hsz q)
     exact h.trans (hslice q)
   c i := ((m ^ i * wuCoeff p i : ℤ) : evenPart K Y)
-  c_isUnit i := isUnit_wuLeading hpY hm i
-  wu i := by
-    obtain ⟨A, _, σ, _, D, ρ, hρ, hγ, hP, hκ⟩ := hwu
-    exact realWu_of_splitting T hp (fun k => mem_evenPart.mp (Γ k).2) D ρ hρ hγ hP m hκ i
+  c_isUnit i := isUnit_realWuLeading hpY hm i
+  wu i := realWu_of_hasSplittingPN T hp Γ m hwu i
 
 /-- **Step D mod `p` at the top index, from the three inputs.**  If `p ∣ n` and `p` divides every
 `dⱼ`, the class at the rank `(∑ⱼ dⱼ) + (n + 1)` vanishes. -/
@@ -176,7 +175,7 @@ theorem gamma_top_eq_zero_of_split (hp : 2 ≤ p) (hn : 1 ≤ n) (hpn : p ∣ n)
     (gen : Fin ℓ → evenPart K Y)
     (hslice : ∀ q : ℕ, evenMap K s (Γ q) = (sliceClass Finset.univ gen dd).coeff q)
     (m : ℤ) (hpY : (p : evenPart K Y) = 0) (hm : IsUnit (m : evenPart K Y))
-    (hwu : HasSplittingP p Γ (fun i => evenRestrictAdd (T.PN i) (T.PN_even i)) m)
+    (hwu : HasSplittingPN p Γ T.PN m)
     [ExpChar (evenPart K Y) p] :
     (Γ ((∑ j, dd j) + (n + 1)) : TotalHOf K N) = 0 :=
   (realBundleModP_of_split hp T Γ hhom hsplit s hs hsz gen hslice m hpY hm hwu).gamma_top_eq_zero
