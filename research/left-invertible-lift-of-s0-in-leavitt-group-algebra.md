@@ -166,3 +166,16 @@ certify nothing. Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12
     `f_11 S` to `s_0 t_0 R ~= R`.
   - So a visible defect cannot be absorbed by invisible modules. Its rank-one
     evaluation has to come from the visible summand itself.
+* **Collision-depth fences (2026-09-12, lane `kdf-structural-candidates`).** By
+  `left-partners-lie-in-collision-universes`, a partner of a fixed lift lies in
+  `A^(-1)(A A^(-1))^r`, so fixed lifts are searched exhaustively by depth `r` with
+  exact `F_2` elimination; any hit is automatically strict. Exact misses:
+  - the eleven-term lift of `leavitt-cross-atlas-eleven-term-s0-lift`, left
+    partners, depth 2 (universe 92,585);
+  - the five-term `t_0` lift of `eleven-term-s0-lift-has-no-radius-four-left-inverse`,
+    right partners, depth 4 (universe 202,193);
+  - new defect-anchored lifts of `s_0` and `t_0` of support 13, carrying `u`, `j`,
+    `u j u^(-1)`, `gamma` and the rigid defect `[u j u^(-1), gamma] != 1`, at depth 1.
+  In every instance peeling removes all columns: each candidate partner element makes
+  a product that nothing else in the universe reproduces. These are fences, not
+  no-gos. Details: `research/artifacts/kaplansky-collision-partner-search-2026-09-12.md`.
