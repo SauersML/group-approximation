@@ -88,3 +88,23 @@ payoff is `non-linear-sofic-group`.
   A proof must use `sigma` on a subgroup not contained in any finite subgroup, for example
   `<diag(u, u^-1, 1), x_12(1)>` with `u` of infinite order, or joint ranks across finite subgroups
   generating an infinite group (artifact Section 6.3).
+- **Uniform self-similar tower: dies (gk-ri-selfsim, 2026-09-12).**
+  - `rank-modelled-coefficients-violate-two-root-identities` (1ce1d7bd6a): any unital coefficient
+    ring with a unital rank model has a natural tensor-square model of `EL_3` with
+    `rk(N_23 N_12) = 2/9`.
+  - The dyadic constants `D = colim M_(2^k)(F_2)` carry every uniform self-similar relation:
+    `iota_0`, `iota_1`, `diag(w,w,w)`, `x_ab(1) = iota_0(x_ab(1)) iota_1(x_ab(1))`, and the constant
+    block coordinates. They have such a model, so
+    `dyadic-constant-el3-rank-models-satisfy-two-root-identity` is refuted and
+    `two-root-identity-by-restriction-to-dyadic-constants` is dead.
+  - "No finite-dimensional representation" is not enough. A proof needs relations whose
+    coefficient subring has no unital rank model, and `D` together with `s_0, t_0` already
+    generates `L_(F_2)(1,2)`.
+- **Branch split: exact, but an upper bound only (gk-ri-selfsim).**
+  `el3-two-root-violation-splits-over-leavitt-branches` gives
+  `N_23 N_12 = P_0(1+a_1+b_1+P_1) + P_1(1+a_0+b_0) + (b_0 a_1 + b_1 a_0)`, where the branch
+  products `P_i` are conjugate by `sigma(diag(w,w,w))`. It also gives the defect factorization
+  `n_13(ab) = XY + (1+X)(YX)(1+Y)`. This bounds `rk(N_23 N_12)` above by branch and cross terms;
+  tensor-type branches give no lower bound.
+  - Open next unit: a contracting bridge from `delta(1,1)` to `delta(t_i, s_i)`. The factorization
+    gives `rk(N_12 N_23 - n_12(t_i) n_23(s_i)) <= delta(1,1) + delta(t_i, s_i)`.
