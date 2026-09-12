@@ -32,12 +32,14 @@ empty.  In particular, for a non-UCT `A`, at most one prime `p` makes
 
 Proof: `coprime-uhf-stabilizations-detect-uct-proof`.
 
-**Credit.**  The literature read for this lane (Dadarlat 2003;
-Brown--Browne--Willett--Wu 2020; Willett--Yu; Jaime--Willett; the STW problem
-list) does not state (CU1) or the filter.  The argument is the dimension-drop
-trick and may well be folklore; it is recorded here with a complete proof and
-no priority claim.  The literature uses coprime primes the same way:
-Barlak--Li II (arXiv:1704.04939v2) Theorem 1.4 needs exactly `p = 2` and `p = 3`
-(`barlak-li-uct-iff-z2-z3-actions-fix-cartan`), and their introduction cites
-Barlak--Szabó Theorem 4.17 for the reduction of Problem II to `Z_p`-crossed
-products of `O_2`.
+**Credit (corrected 2026-09-12).**  The forward direction of (CU1) for UHF types
+`p^∞` and `q^∞` with `p`, `q` relatively prime is Barlak--Szabó, *Rokhlin actions
+of finite groups on UHF-absorbing C\*-algebras*, Trans. Amer. Math. Soc. 369
+(2017), arXiv:1403.7312, Proposition 4.16, proved with the same dimension-drop
+algebra and the Jiang--Su algebra as its stationary limit.  The earlier note that
+no source read states (CU1) is withdrawn.  The filter reformulation is recorded
+here without priority claim.  Their Theorem 4.17 characterizes Problem II through
+`Z_p`- and `Z_q`-crossed products of `O_2` for any two primes, and Barlak--Li II
+Corollary 4.17 cites Proposition 4.16 for the pair `2, 3`
+(`barlak-li-uct-iff-z2-z3-actions-fix-cartan`).  Sources:
+`research/artifacts/stw-uct-per-prime-cartan-2026-09-12.md`.
