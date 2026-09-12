@@ -318,9 +318,10 @@ def agreeHomotopy (n k : ℕ) {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Ge
   continuous_toFun := by
     have hrot : Continuous fun q : unitInterval × ↥(agreeBall n k dd 0) =>
         rotPt n dd (norm_rotPath k i (q.1 : ℝ)) q.2.1 :=
-      continuous_rotPt_param n dd ((continuous_rotPath k i).comp
-        (continuous_subtype_val.comp continuous_fst)) (fun q => norm_rotPath k i (q.1 : ℝ))
-        (continuous_subtype_val.comp continuous_snd)
+      continuous_rotPt_param n dd
+        (c := fun q : unitInterval × ↥(agreeBall n k dd 0) => rotPath k i (q.1 : ℝ))
+        ((continuous_rotPath k i).comp (continuous_subtype_val.comp continuous_fst))
+        (fun q => norm_rotPath k i (q.1 : ℝ)) (continuous_subtype_val.comp continuous_snd)
     have hP := (continuous_mappingTorus_lix n hGc).comp hrot
     have hβ : Continuous fun q : unitInterval × ↥(agreeBall n k dd 0) =>
         Sum.elim (0 : Gen.VIdx n dd → ℂ) (blockSouth (aVecK n) (bVecK n k)

@@ -127,10 +127,15 @@ theorem rotPt_injective (n : ℕ) (dd : Fin ℓ → ℕ) {c : ℂ} (hc : ‖c‖
     intro h0
     rw [h0, norm_zero] at hc
     exact zero_ne_one hc
-  have h1 : p.1 = q.1 := congrArg Prod.fst h
-  have h3 : p.2.2 = q.2.2 := congrArg (fun r => r.2.2) h
-  have h2v : rotVec n c (p.2.1 : Fin (n + 1) → ℂ) = rotVec n c (q.2.1 : Fin (n + 1) → ℂ) :=
-    congrArg (fun r : ↥sphereOne × Gen.baseM n dd => (r.2.1 : Fin (n + 1) → ℂ)) h
+  have h1 : p.1 = q.1 := by
+    have h' := congrArg (fun r : ↥sphereOne × Gen.baseM n dd => r.1) h
+    exact h'
+  have h3 : p.2.2 = q.2.2 := by
+    have h' := congrArg (fun r : ↥sphereOne × Gen.baseM n dd => r.2.2) h
+    exact h'
+  have h2v : rotVec n c (p.2.1 : Fin (n + 1) → ℂ) = rotVec n c (q.2.1 : Fin (n + 1) → ℂ) := by
+    have h' := congrArg (fun r : ↥sphereOne × Gen.baseM n dd => (r.2.1 : Fin (n + 1) → ℂ)) h
+    exact h'
   have h2 : p.2.1 = q.2.1 := by
     refine Subtype.ext (funext fun j => ?_)
     have hj := congrFun h2v j
@@ -297,12 +302,13 @@ theorem rotPath_one (k i : ℕ) : rotPath k i 1 = kUnity k ^ i := by
 
 /-- **The homotopy from the identity of `N` to the rotation by `kUnity k ^ i`.** -/
 def rotHomotopy (n k : ℕ) (dd : Fin ℓ → ℕ) (i : ℕ) :
-    ContinuousMap.Homotopy (𝟙 (lixN n dd)).hom (rotMap n dd (norm_kUnity_pow k i)).hom where
+    TopCat.Homotopy (𝟙 (lixN n dd)) (rotMap n dd (norm_kUnity_pow k i)) where
   toFun q := rotPt n dd (norm_rotPath k i (q.1 : ℝ)) q.2
   continuous_toFun :=
-    continuous_rotPt_param n dd ((continuous_rotPath k i).comp
-      (continuous_subtype_val.comp continuous_fst)) (fun q => norm_rotPath k i (q.1 : ℝ))
-      continuous_snd
+    continuous_rotPt_param n dd
+      (c := fun q : unitInterval × ↥(lixN n dd) => rotPath k i (q.1 : ℝ))
+      ((continuous_rotPath k i).comp (continuous_subtype_val.comp continuous_fst))
+      (fun q => norm_rotPath k i (q.1 : ℝ)) continuous_snd
   map_zero_left p := by
     show rotPt n dd (norm_rotPath k i ((0 : unitInterval) : ℝ)) p = p
     exact rotPt_of_eq_one n dd _ (by rw [Set.Icc.coe_zero, rotPath_zero]) p
