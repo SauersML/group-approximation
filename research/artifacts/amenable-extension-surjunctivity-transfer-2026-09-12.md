@@ -141,3 +141,83 @@ Put `F = Wbar` and `F^+ = F Mbar`.
    particular it is not sofic and does not lie in the permanence closure `S*`.
 3. **Where it is vacuous.** On a simple group the normal closure is the whole group, so Theorem A says
    nothing on the payoff hosts. It restricts designs over non-simple memory groups and table groups.
+
+## 3. Decoders that read across cosets: amenable quotients
+
+**Definition (uniform quantitative surjunctivity, UQS).** A group `N` is *uniformly quantitatively
+surjunctive* if, for every finite alphabet `B` and every `w >= 1`, there is `delta(B,w) > 0` with the
+following property. Take any finite alphabet `D`, any `n >= 1` and `j, j' >= 0` with
+`(j' - j) log|D| < delta(B,w) n`, and subshifts `Y_1, ..., Y_n` of `B^N`, each missing some pattern on a window
+of at most `w` elements. Then no injective automaton maps `(B^n x D^j)^N` into `(Y_1 x ... x Y_n) x (D^(j'))^N`.
+
+- **Relation to QS.** UQS implies `surjunctive-groups-are-quantitatively-surjunctive`'s property: take all `Y_i`
+  equal. The difference is that different tracks may miss different patterns, with a constant depending only on
+  `|B|` and the window size.
+- **Sofic groups (remark, not re-derived).** The counting in Section 3 of
+  `product-fibre-garden-of-eden-filter-2026-09-12.md` treats each track's missing pattern separately, and its
+  constant depends only on `|B|` and `|W|`. So it gives UQS for sofic groups.
+
+**Definition (asymptotic version, AQS).** `N` is *asymptotically quantitatively surjunctive* if, for every `B`,
+`w` and `K >= 0`, there is `n_0` such that the same maps do not exist when `n >= n_0` and
+`(j' - j) log|D| <= K`. UQS implies AQS, with `n_0 > K / delta(B,w)`.
+
+**Theorem B.** Let `N` be a normal subgroup of `G` with amenable quotient `Q = G/N`.
+1. If `N` is UQS, then `G` is surjunctive.
+2. If `N` is AQS and `Q` is two-ended, then `G` is surjunctive.
+
+*Proof.* Let `tau` be injective with a left-inverse automaton `sigma` of memory `S`, and suppose `X = tau(A^G)` misses
+a pattern `p` on `W`. Take a finite `F <= Q` and put
+`F^+ = F Mbar`, `F^- = {q in F : q Sbar <= F}` and `F' = {q : q Wbar <= F}`.
+- **Tiles.** Choose `q_1, ..., q_n` in `F'` with the tiles `T_i = q_i Wbar` pairwise disjoint and the family
+  maximal. Every `q in F'` lies in some `q_i Wbar Wbar^-1`, so `n >= |F'| / |Wbar Wbar^-1|`.
+- **The transplant.** `Psi(x) = (tau_F(x), x|_(F^+ \ F^-))` on `(A^(F^+))^N`. The decoder restricted to the coordinates
+  of `F` is an automaton over `N` returning `x_q` for `q in F^-` (Lemma 2.1 applied to `sigma`). So `Psi` is an
+  injective automaton over `N`.
+- **Where the image lies.** Write `s_(q_i) w = n_(i,w) s_(q_i wbar)`. Every `tau_F(x)` lies in
+  `Z_1 x ... x Z_n x (A^(F \ union T_i))^N`, where `Z_i` is the subshift of `(A^(T_i))^N` with
+  `(z_(q_i wbar)(n n_(i,w)))_(w in W) != p` for all `n`. The map `w -> (q_i wbar, n_(i,w))` is injective, so `Z_i` is
+  proper and misses a pattern on `|W|` sites. Identify `A^(T_i)` with `B = A^(Wbar)`.
+- **Bookkeeping.** The source is `(B^n x A^j)^N` with `j = |F^+| - n|Wbar|`. The target's full track has
+  `j' = |F \ union T_i| + |F^+ \ F^-|`. So `j' - j = |F \ F^-|`.
+- **Part 1.** Take `F` right Følner: `|F K \ F| <= eps|F|` for `K = Sbar union Wbar`. Then
+  `|F \ F^-| <= |Sbar| eps |F|` and `|F \ F'| <= |Wbar| eps |F|`, so `n >= (1 - |Wbar| eps)|F| / |Wbar Wbar^-1|`. For
+  small `eps`, `(j' - j) log|A| < delta(B,|W|) n`, and `Psi` contradicts UQS.
+- **Part 2.** For two-ended `Q`, choose `F` large with `|F \ F^-|` bounded independently of `|F|`: take unions of
+  long intervals of a finite-index infinite cyclic subgroup over a transversal. Then `j' - j` is bounded while
+  `n -> infinity`, and `Psi` contradicts AQS. QED
+
+**Proposition 3.1 (heredity).** UQS and AQS pass to subgroups and to directed unions, with the same constants.
+
+*Proof.*
+- **Subgroups.** Let `H <= N` and let `Psi` over `H` be a forbidden map. Its memory lies in `H`, so it acts
+  independently on left cosets `gH`, and the product over cosets is injective over `N`. Put
+  `Y~_i = {y in B^N : (y(gh))_(h in H) in Y_i for all g}`. This is closed, `N`-invariant and proper, and it misses the
+  same pattern. The product map lands in `prod Y~_i x full` and is forbidden over `N`.
+- **Directed unions.** A forbidden map over `N^ = union N_k` has its memory, and the windows of the missing
+  patterns, inside some `N_k`. Restricted to the coset `N_k`, it is a forbidden map over `N_k` into the restrictions
+  `Y_i|_(N_k)`, which are proper subshifts missing the same patterns. QED
+
+**Corollary 3.2 (ascending HNN extensions).** Let `phi: N -> N` be an injective endomorphism.
+- If `N` is AQS, the ascending HNN extension `N *_phi` is surjunctive.
+- **Proof.** Its kernel onto `Z` is the directed union of copies `t^-k N t^k` of `N`, which is AQS by
+  Proposition 3.1. Apply Theorem B part 2.
+
+**Calibration.** For sofic `N`, Theorem B gives nothing new: sofic-by-amenable groups are sofic
+(`sofic-kernel-amenable-quotient-permanence`). The payoff needs UQS or AQS for a nonsofic surjunctive kernel.
+
+## 4. Where it stops
+
+- **No nonsofic kernel is known to be UQS or AQS.** The Kun--Thom wreaths and doubles are proved surjunctive by
+  marked-site peeling. That argument separates finite quotients stratum by stratum and carries no deficit, so it
+  proves neither property. A proof would have to carry a per-track deficit through each peeled stratum.
+- **What a failure of AQS looks like.** A surjunctive `N`, and injective automata over `N` from full shifts into `n`
+  proper subshift tracks plus a full track `K` symbols larger, for unboundedly large `n`. Plain surjunctivity
+  forbids this only when `K = 0`.
+- **Theorem A is the `K = 0` case.** It needs no quantitative property, because a decoder inside the kernel loses
+  no boundary.
+- **Twisted extensions need the uniform version.** In a split extension that is not a direct product, the tiles
+  carry different transported patterns (offsets `s_q n_w s_q^-1` times a cocycle in `N`). That is why UQS has to allow
+  different missing patterns on different tracks. For `G = N x Q` all tiles agree, and the existing
+  single-subshift QS suffices for Theorem B part 1.
+- **The payoff hosts.** Simple Kazhdan groups have no normal subgroup with amenable quotient other than finite
+  index. So neither theorem reaches the Leavitt unit groups.

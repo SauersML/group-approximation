@@ -29,6 +29,10 @@ The finite-index case is `surjunctivity-is-a-commensurability-invariant`.
   does not forbid such a map. A deficit that grows with `n` is needed.
   - For an amenable quotient, the deficit must be linear in `n`.
   - For a two-ended quotient, `|F \ F^-|` is bounded, so any deficit that tends to infinity is enough.
+- **Conditional transfer (artifact Section 3).** `amenable-extensions-of-uqs-groups-are-surjunctive` pays the boundary
+  with a deficit uniform over tracks missing different patterns. Over two-ended quotients an asymptotic deficit
+  suffices, which covers ascending HNN extensions. The missing input is
+  `surjunctive-groups-are-uniformly-quantitatively-surjunctive`, and it is not known for any nonsofic group.
 - **Characteristic-zero linearization (artifact Section 1.3).** It gives no access. The complex linearization of
   a strict automaton is a non-normal endomorphism of `C[Z/q wr G]`, and trace or rank arguments see only
   `tau_* lambda << lambda`.
