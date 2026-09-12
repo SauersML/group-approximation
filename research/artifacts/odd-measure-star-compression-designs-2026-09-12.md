@@ -103,3 +103,41 @@ So `V` acts essentially freely on `(M_-, lambda)`: off a null set, every orbit i
   opposite sign, or three with equal products (`1 + 1 + 1 = 0`), and so on.
 * **Average image multiplicity on `U_[0]` is at least `2`.** This follows from part 1 with `c >= 1`
   and `lambda(U_[0]) = 1/2`.
+
+## 5. Finite certificates, difference-free designs, and where it stops
+
+Supports the open claim `odd-measure-crossed-product-has-star-compression-design` and the route
+`star-compression-design-solves-odd-measure-target`.
+
+**Finite certificate.**
+* Each `a_g` depends on `mu` through finitely many clopen values.
+* Let `P` be a finite clopen partition of `X` refining `[0]`, every clopen the `a_g` read, and their
+  translates by the finitely many elements of `F^-1 F`.
+* Then `q_[0] x = x` and (2.1) for every `k in F^-1 F` are identities of `F_3`-valued functions on the
+  finite set `M_-^P` of odd vectors. For `k` outside `F^-1 F`, (2.1) is empty.
+* So a star design is a finite object: the elements of `F` as prefix-code pairs, and truth tables of
+  the `a_g` on `M_-^P`. Checking it is a finite computation inside `H`, whose word problem is
+  decidable. This fits the one-decidable-host rule.
+
+**Proposition 5.1 (difference-free designs are dead).** Suppose the differences `g^-1 g'` for
+distinct `g, g' in F` are pairwise distinct. Then `F` carries no star design.
+
+*Proof.* The component of `x* x` at `k = g^-1 g'` has the single term `(a_g a_(g')) o g`, so it
+vanishes iff `a_g a_(g') = 0`. So the coefficient supports are pairwise disjoint, `n <= 1`
+everywhere, and Theorem 4.1(2) fails. QED
+* In particular two-term designs are dead.
+* **Reading.** In group terms, Theorem 4.1(3) says a collision at the base point `mu` needs the
+  difference `k` for at least two pairs `(h, hk)` contributing at `mu`. So memory sets must contain
+  repeated differences, not merely nonamenable projections.
+
+**Where it stops.**
+* No star design is known.
+* **Gadgets.** The natural gadgets are weight-four signed columns. Over `F_3` the four rows of the
+  `4 x 4` Hadamard matrix are orthonormal, since each norm is `4 = 1` and the pairings are `0`; three
+  shared points with equal products also cancel. A design must chain such gadgets through the
+  nonamenable part of `V`, with every image inside `U_[0]`.
+* **Over `Z`.** A periodic window of length four with signs `p` needs `p_3 p_0 = 0` at shift three,
+  which is impossible. This is consistent with amenability forbidding compressions.
+* **Beyond Theorem 4.1.** Obstructions reduce to the `F_3`-linear soficity gate of `E ⋊ V`
+  (Section 7(a) of the crossed-product artifact). General solutions with `c' != b'*` escape the square
+  counting entirely.

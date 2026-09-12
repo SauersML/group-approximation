@@ -61,3 +61,14 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
   `1 mod 3`, with cross terms cancelling mod 3, or equivalently non-function idempotents equivalent
   to `eps_-`. No such cover has been constructed, and no obstruction to one is known. Section 8 of
   the artifact.
+- **Star designs, a sufficient self-adjoint case (w3-corner-crossed).** `x* x = eps_-` with
+  `q_[0] x = x` solves this claim with `b' = x` and `c' = x*`. The route is
+  `star-compression-design-solves-odd-measure-target`, and existence is the open claim
+  `odd-measure-crossed-product-has-star-compression-design`.
+  * **Freeness.** `V` acts essentially freely on `(M_-, lambda)`
+    (`thompson-action-on-odd-measures-is-essentially-free`).
+  * **Weight theorem** (`star-compression-designs-need-weight-four-colliding-columns`). In every star
+    design, colliding weight-four columns carry at least half the Haar mass, and colliding columns
+    share at least two points with cancelling signs.
+  * **Dead designs.** Cancellation-free, two-term and difference-free designs are dead.
+  * **Scope.** General solutions with `c' != b'*` escape this counting.
