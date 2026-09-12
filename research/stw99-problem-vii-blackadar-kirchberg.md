@@ -57,8 +57,12 @@ K_0-Hahn--Banach property.  That property now splits into three parts:
   (`stw07-sign-changing-qd-trace-values-kill-class`);
 - a singular class is never strictly one-signed on all traces
   (`stw07-singular-classes-change-sign-or-sit-on-boundary`);
-- the rest is the exact X(1) residual plus the boundary hole
-  `k0-hahn-banach-for-boundary-singular-classes`.
+- classes that vanish on a trace with a UCT kernel quotient seeing them
+  rationally are killed (`stw07-quotient-trace-zero-nontorsion-class-is-killed`).
+
+But `stw07-trace-invisible-classes-carry-hahn-banach` shows that stabilized
+unitization makes every class trace-invisible, so the property is exactly a
+question about trace-invisible classes.
 
 On the negative side, the negation root
 `blackadar-kirchberg-counterexample-exists` has the explicit mechanism
