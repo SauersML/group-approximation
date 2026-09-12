@@ -31,6 +31,14 @@ with the moves `x -> g_a x` used by the products. Some component, with base site
 `Hol <= Stab(x_0)`, contains two distinct sites `w x_0` and `w' x_0` with `w^(-1) w'` in the profinite
 closure of `Hol`.
 
+**Table-group form (complete graph, any `G`, artifact Theorem B'').** Let `U` be the group presented by
+the `G`-parts of the needed products. Then either:
+- two `Omega` elements with equal lamp and sign coordinates have `G`-part difference in `Res_fin(U)`; or
+- some component has distinct read sites whose difference lies in the profinite closure of its holonomy
+  group in `U`.
+
+The proof realizes the table in a finite Clifford group, so no surjunctivity of `G` is needed.
+
 For the Kun--Thom pair (by `infranormal-subgroups-have-normal-profinite-closure`), the tables must do two
 things:
 - force a holonomy subgroup at some site whose profinite closure leaves that site's stabilizer;
