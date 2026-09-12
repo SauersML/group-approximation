@@ -108,3 +108,10 @@ payoff is `non-linear-sofic-group`.
   tensor-type branches give no lower bound.
   - Open next unit: a contracting bridge from `delta(1,1)` to `delta(t_i, s_i)`. The factorization
     gives `rk(N_12 N_23 - n_12(t_i) n_23(s_i)) <= delta(1,1) + delta(t_i, s_i)`.
+- **Sofic subgroups: die, by calibration (gk-rk-unipotent, 2026-09-12).**
+  `sofic-subgroups-carry-rank-models-violating-two-root-identity`: every sofic subgroup of
+  `EL_3(R)` containing `x_12(1)` and `x_23(1)` has a rank model, from its sofic approximation,
+  which is free on `D_8`, so `rk(N_23 N_12) = 3/8`. Covered: `UT_3(R)` and its torus extensions,
+  `EL_3(A_inf)`, and residually finite Kazhdan subgroups such as `EL_3(F_2[s_0])`. A proof must
+  use `sigma` jointly on a nonsofic subgroup containing both root elements, and would prove that
+  subgroup nonsofic (artifact Section 6.4).

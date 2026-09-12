@@ -133,3 +133,19 @@ is trivial.
   - Bounded-degree polynomial pieces are excluded at level groups by Proposition 2 (lane
     `gk-rk-composition`). Coefficients from the Jacobson subring `F_2<s_0, t_0 | t_0 s_0 = 1>`
     alone never force triviality, so a proof must use the Cuntz relation.
+- **Finite and sofic subgroups cannot carry the proof (gk-rk-unipotent, 2026-09-12).**
+  - `finite-subgroup-rank-data-cannot-force-two-root-identity`. Take the free profile
+    `rank lambda_K / |K|` on every finite subgroup. It respects restriction and every conjugacy,
+    and has `rk(N_23 N_12) = 3/8`. So relations inside finite subgroups, conjugacy between them
+    and per-subgroup ranks cannot force the identity. That covers the isometry commutators, the
+    splitting through `e_0` and `e_1`, Leavitt and Thompson conjugacy, and level-group counting.
+    The shifted pair `(x_12(t_0), x_23(s_0))` is not conjugate to the unit pair
+    (`shifted-root-pair-conjugates-to-idempotent-root-pair`).
+  - `sofic-subgroups-carry-rank-models-violating-two-root-identity`. Every sofic subgroup
+    containing `x_12(1)` and `x_23(1)` has a rank model, from its sofic approximation, with
+    `rk(N_23 N_12) = 3/8`. Covered: `UT_3(R)` and its torus extensions, `EL_3(A_inf)`, and residually
+    finite Kazhdan subgroups such as `EL_3(F_2[s_0])`.
+  - So a proof must use `sigma` jointly on a nonsofic subgroup containing both root elements, and
+    would prove that subgroup nonsofic. The known source of such subgroups is the nine-leaf
+    compression configuration. Artifact `research/artifacts/el3-two-root-identities-2026-09-12.md`,
+    Sections 6.3 and 6.4.

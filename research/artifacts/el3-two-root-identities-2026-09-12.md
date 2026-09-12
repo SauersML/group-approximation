@@ -347,3 +347,49 @@ approximation drove every finite subgroup toward free behaviour, the free profil
 generic profile. Then the gate would be exactly the question of whether the free profile extends
 to infinite subgroups of `R^x`. I have not checked this against the literature on non-projective
 parts of tensor powers, and nothing rests on it.
+
+### 6.4 Sofic subgroups cannot carry the argument either
+
+Section 6.3 excludes finite subgroups. This section excludes every sofic subgroup, one subgroup at
+a time, through genuine rank models.
+
+**Theorem G.** Let `S` be sofic and `D = <g, h> <= S` dihedral of order `8`. Every sofic
+approximation `phi_i : S -> Sym(n_i)` gives a rank model `sigma = [P_i]` of `S` over `F_2` with
+`rk((sigma(h) - 1)(sigma(g) - 1)) = 3/8`.
+
+*Proof.*
+* **The model.** For permutation matrices, `rk(P - Q) / n <= d_H(P, Q)`, so asymptotic
+  multiplicativity in Hamming distance gives an honest homomorphism into the rank ultraproduct.
+* **Bad points.** Let `B_i` be the points `x` with `phi(d) phi(d') x != phi(dd') x` for some
+  `d, d'` in `D`, or `phi(1) x != x`, or `phi(d) x = x` for some `d != 1`. Then `|B_i| = o(n_i)`.
+* **Good points.** Put `G_i = { x not in B_i : phi(d) x not in B_i for all d }`, so
+  `|G_i| >= n_i - 9|B_i|`. For `x` in `G_i`, put `O(x) = { phi(d) x : d in D }`.
+  * *Invariant:* `phi(d'') phi(d) x = phi(d''d) x`.
+  * *Eight distinct points:* `phi(d) x = phi(d') x` gives `phi(d'^-1 d) x = x`, hence `d = d'`.
+  * *Regular action:* `phi(d_1) phi(d_2) y = phi(d_1 d_2) y` for `y` in `O(x)`.
+  * *Disjoint:* two such orbits that meet are equal, since each is a single regular orbit.
+* **Correcting the action.** Let `U_i` be their union, and `psi(d) = phi(d)` on `U_i` and the
+  identity elsewhere. Then `psi : D -> Sym(n_i)` is an honest homomorphism with
+  `d_H(psi(d), phi(d)) <= 9 |B_i| / n_i`, so `sigma|D = [P(psi)]`.
+* **The rank.** `F_2^(U_i)` is a free `F_2[D]`-module of rank `|U_i| / 8`, on which `(h-1)(g-1)`
+  has rank `3 |U_i| / 8` (Section 6.3). On the complement it acts as `0`. So the normalized rank
+  tends to `3/8`.
+QED
+
+**Consequence.** Every sofic subgroup `S` of `EL_3(R)` containing `x_12(1)` and `x_23(1)` has a rank
+model violating `N_23 N_12 = 0`. So no property of `sigma|S` shared by all rank models of `S`
+can force the identity. The same goes for a joint argument through several subgroups, whenever
+the subgroup they generate is sofic. Covered:
+* `UT_3(R)`, and `<diag(u, u^-1, 1), x_12(1), x_23(1)>` inside `UT_3(R) ⋊ Z`, which is solvable;
+* `EL_3(A_inf)` and the level groups, which are locally finite;
+* residually finite Kazhdan subgroups such as `EL_3(F_2[s_0])`. Since `F_2[s_0]` is a polynomial
+  ring, `EL_3(F_2[s_0])` is finitely generated and linear over a commutative ring, hence residually
+  finite.
+
+A proof must therefore use `sigma` jointly on a **nonsofic** subgroup containing `x_12(1)` and
+`x_23(1)`, and restricted to that subgroup it would prove the subgroup nonsofic. The only known
+mechanism producing nonsofic subgroups of `R^x` is the nine-leaf compression configuration
+(Kazhdan subgroup, compressor, commuting element). So the gate asks for a rank-metric proof on
+that configuration, where property (T) gives no rounding
+(`kazhdan-group-rank-models-admit-no-expander-decomposition`) and the permutation-specific steps
+fail (`research/artifacts/rank-row-compression-audit-2026-09-12.md`).
