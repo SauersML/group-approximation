@@ -10,6 +10,7 @@ requires:
   - sofic-kernel-amenable-quotient-permanence
 artifacts:
   - research/artifacts/radu-lattice-strict-automaton-screens-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -29,3 +30,8 @@ Section 4 of the artifact.
    `sofic-kernel-amenable-quotient-permanence`.
 4. **Generation.** `cx = zc` makes `<A,x> = <A,z> = P_xz`, and `zaz = b`, `yby = c` make one
    horizontal letter together with `V` generate `Gamma_R`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently from the complete square
+table. Rows with `v = y` keep `y`, and rows with `v` in `{x,z}` keep `{x,z}`. In `P_xz`, `a` and `b` fix
+the path and `c` reflects it, so the kernel is `A_ev` and the quotient embeds in `D_infinity`
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 5.4).

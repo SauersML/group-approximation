@@ -316,5 +316,33 @@ read from the PDF. They are not re-derived here.
   closure, then nonsurjunctive `K` by subgroup heredity. That is a Gottschalk counterexample and a
   refutation of `fg-simple-kazhdan-groups-are-surjunctive`. The equivalence with `pi_1(S_R)` is correct.
 
-**Decision status.** Nothing decision-level. `radu-bmw-lattice-nonsurjunctive` and
-`strict-automaton-on-lattice-in-product-of-trees` stay OPEN.
+### 5.4 `radu-bmw-coordinate-subgroups-are-sofic` and the linear target (65da28695b). Verdict: PASS.
+
+- **Letter-closure, the pressure point.**
+  - Rows with `v = y` are `(a,y) -> (y,a)`, `(b,y) -> (y,c)`, `(c,y) -> (y,b)`, so `v' = y`.
+  - Rows with `v` in `{x,z}` have `v'` in `{x,z}`: `a` and `b` keep the letter, and `c` swaps `x <-> z`.
+  - Inverting rows gives the same for pushing vertical letters leftward.
+  - With unique normal forms, `A.{1,y}` and `A.D` are exactly the subgroups `P_y` and `P_xz`. Both are
+    proper, since neither contains both `y` and `x`.
+- **`P_y = A ⋊ <y>`.** `y a y = a`, `y b y = c`, `y c y = b`. `A = C_2 * C_2 * C_2` has index 2, so
+  `P_y` is virtually free.
+- **`P_xz`, the pressure point.**
+  - `L = P_xz / A` is in bijection with the reduced `{x,z}`-words, and it is a bi-infinite path.
+  - `a` and `b` fix every vertex, and `c` reflects the path by swapping letters. So `A` acts through the
+    `c`-parity character, and any element fixing `A` as a vertex lies in `A`. The kernel is `A_ev`, of
+    index 2 in `A`, virtually free and sofic.
+  - The quotient embeds in `Aut(L) = D_infinity`, which is amenable. So `P_xz` is sofic by
+    `sofic-kernel-amenable-quotient-permanence`.
+- **Generation.** `cxc = z` gives `<A,x> = <A,z> = P_xz`, and adding `y` gives all letters. `zaz = b`,
+  `zbz = a`, `yby = c`, `ycy = b` show one horizontal letter with `V` generates `Gamma_R`.
+- **Screen.** If no memory element has `y` in its vertical part, the memory lies in `P_xz`. If none
+  has `x` or `z`, it lies in `P_y`. Correct.
+- **`radu-bmw-lattice-group-algebra-not-stably-finite` (open) and its route.**
+  - The route `radu-bmw-stable-finiteness-failure-gives-nonsurjunctivity` is valid and cannot fire.
+  - Support filter: a pair supported in a sofic `S` would make `S` nonsurjunctive, which is impossible.
+  - For odd `p`, characters kill `(1+t)/2`. For `p = 2`, `(1+t)^2 = 0` supplies the torsion that
+    Lemma D demands, and characters into `F_2^x` are trivial. All correct as scoped.
+
+**Decision status.** Nothing decision-level. `radu-bmw-lattice-nonsurjunctive`,
+`radu-bmw-lattice-group-algebra-not-stably-finite` and `strict-automaton-on-lattice-in-product-of-trees`
+stay OPEN.
