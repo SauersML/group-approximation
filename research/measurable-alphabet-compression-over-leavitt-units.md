@@ -43,3 +43,14 @@ is the Borel inverse of `tau` on its image.
 - **What remains.** A synergistic code: one output symbol recording a nonlinear function of input
   symbols along a compressor `u Gamma u^-1 < Gamma`, decodable because `Gamma` has no invariant
   observables. No construction is known. Section 4 of the artifact.
+- **Homomorphic and linear codes.** Dead: `homomorphic-codes-cannot-compress-bernoulli-shifts`.
+  A code that is a group homomorphism, or linear or affine over a finite field, kills a nonzero
+  constant and so collides everywhere. Combining many symbols linearly does not help.
+- **Continuous codes and pre-injectivity.** A continuous code injective almost everywhere is
+  pre-injective (Section 6 of the artifact). Pre-injectivity is not enough: Bartholdi–Kielak
+  (J. Eur. Math. Soc. 2019; a literature remark, not imported) give pre-injective non-surjective
+  automata over every nonamenable group, sofic ones included. So the target is strictly between
+  pre-injectivity and injectivity.
+- **Ascent.** Compressions over a subgroup induce compressions over the whole group through left
+  cosets (Section 6). A compression over Thompson's `V` would give one over `U`, and would prove `V`
+  nonsofic.

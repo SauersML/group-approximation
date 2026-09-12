@@ -165,3 +165,44 @@ independent symbol, Theorem A forbids storing it by moving it, and Theorem B for
 cosets of `Gamma`. The open mechanism is a joint code: one output symbol recording a nonlinear function
 of symbols spread along `g, gu, gu^2, ...`, which is decodable only because `Gamma` has no invariant
 observables. No construction is known.
+
+## 5. Homomorphic codes cannot compress
+
+**Proposition 5.** Let `G` be countable, `A, B` finite groups with `|B| < |A|`, and
+`tau: A^G -> B^G` an equivariant map that is a group homomorphism for the pointwise product. Then
+`tau` is not injective on any set of full uniform measure. The same holds for `tau` composed with a
+translation of `B^G`, and in particular for every `F`-linear or affine equivariant code
+`(F^m)^G -> (F^n)^G` with `m > n` over a finite field `F`.
+
+*Proof.* A constant configuration `c_a` is fixed by every shift, so `tau(c_a)` is shift-fixed, hence
+constant. So `tau` restricts to a homomorphism `A -> B` on constants. Since `|B| < |A|` it has a
+nontrivial kernel element `a`. For every `x`, `tau(x c_a) = tau(x) tau(c_a) = tau(x)`, and `x c_a != x`.
+Right multiplication by `c_a` is a measure-preserving bijection of `A^G`. If `tau` were injective on
+a conull set `S`, then `S ∩ S c_a^-1` would be conull, and each `x` in it would give a pair
+`x != x c_a` in `S` with equal images. A translation `y -> y b` of the target changes nothing. QED
+
+So synergy by linear combination is dead over every group: any compression is genuinely nonlinear
+(non-homomorphic).
+
+## 6. Continuous codes, pre-injectivity, and ascent along subgroups
+
+**Continuous codes are pre-injective.** Let `tau` be continuous with finite memory `M`. Suppose
+`x != x'` differ exactly on a finite set `W` with `tau(x) = tau(x')`. Whether that equality holds
+depends only on `x` restricted to `W M^-1 M`. So swapping the pattern `x|_W` for `x'|_W` inside the
+positive-measure cylinder of configurations agreeing with `x` on `W M^-1 M` is a measure-preserving
+bijection onto a disjoint cylinder that preserves `tau`. On a conull set of injectivity this is
+impossible. So a continuous code that is injective almost everywhere is pre-injective.
+
+**Calibration (literature remark, not imported).** Pre-injectivity alone is not the target.
+Bartholdi and Kielak (J. Eur. Math. Soc., 2019) show that every nonamenable group carries a
+pre-injective automaton that is not surjective. That includes sofic groups, where no measurable
+compression exists by maximality. So the measurable target sits strictly between pre-injectivity and
+injectivity: injectivity on a conull set.
+
+**Ascent.** Let `K <= G` and let `tau_K: A^K -> B^K` be a compression over `K`. For `x` in `A^G` and a
+left coset `gK`, put `x_g(k) = x(gk)` and `y(gk) = tau_K(x_g)(k)`. Changing the representative to `gk'`
+replaces `x_g` by the left shift `k'^-1.x_g`, and equivariance of `tau_K` makes `y` well defined. `y` is
+`G`-equivariant, and by Fubini over the countably many cosets it is injective almost everywhere. So
+compressions ascend along subgroups. This matches `bernoulli-rokhlin-maximality-passes-to-subgroups`.
+A compression over Thompson's `V` would transfer to `U` and, by the localization theorem, prove `V`
+nonsofic.
