@@ -240,6 +240,42 @@ bounded 2-quasitrace on `A` vanishes on `K`, and `QL(B)` holds.
 3. By Lemma 2.4 it extends to a trace on `A`, equal to `c τ_0`, which vanishes on
    `K`. ∎
 
+**Proposition 4.3 (displacement).** Let `A` be unital, `a ∈ A_+` with `‖a‖ ≤ 1`,
+and `σ` a bounded 2-quasitrace. Suppose there are unitaries `u_1, …, u_m ∈ A` with
+`‖a_i a_j‖ ≤ δ` for `i ≠ j`, where `a_i = u_i a u_i*`. Then
+
+    σ(a) ≤ σ(1)/m + (m + 1) δ^{1/4} σ(1).
+
+So if such families exist for every `m` and `δ > 0`, then `σ(a) = 0` for every
+bounded 2-quasitrace, and also for every trace.
+
+*Proof.*
+1. **Small off-diagonal products.** For positive contractions `b, c`,
+   `‖b^{1/2} c^{1/2}‖² = ‖c^{1/2} b c^{1/2}‖`, and
+   `‖c^{1/2} b c^{1/2}‖² ≤ ‖b c b‖ ≤ ‖bc‖`. So `‖b^{1/2} c^{1/2}‖ ≤ ‖bc‖^{1/4}`.
+2. **The row matrix.** Let `X ∈ M_m(A)` have first row `(a_1^{1/2}, …, a_m^{1/2})`
+   and zeros elsewhere. Then `XX* = (Σ_i a_i) ⊕ 0`, and `X*X = D + E` with
+   `D = diag(a_1, …, a_m)` and `‖E‖ ≤ m δ^{1/4}`.
+3. **Norm of the sum.** `‖Σ a_i‖ = ‖X*X‖ ≤ 1 + m δ^{1/4}`.
+4. **Estimate.** Let `σ̃` be the extension of `σ` to `M_m(A)`. It is unitarily
+   invariant, additive on the commuting diagonal, and continuous:
+   `|σ̃(x) − σ̃(y)| ≤ ‖x − y‖ σ̃(1_m) = m ‖x − y‖ σ(1)`. Hence
+
+       m σ(a) = σ̃(D) ≤ σ̃(X*X) + m² δ^{1/4} σ(1)
+              = σ(Σ a_i) + m² δ^{1/4} σ(1)
+              ≤ (1 + m δ^{1/4}) σ(1) + m² δ^{1/4} σ(1).
+
+   Dividing by `m` gives the bound. ∎
+
+**Corollary 4.4.** The quasitrace-null positive elements form the positive part of
+the closed ideal `∩_σ N_σ`. So in Theorem 3.1, `K` is invisible to quasitraces
+whenever it is generated, as a closed ideal of `A`, by elements admitting
+approximately orthogonal unitary translates in `A`.
+
+This is the approximate, internal form of
+`stw01-orthogonal-multiplier-isometries-kill-bounded-quasitraces`: no multiplier
+isometries and no exact orthogonality are needed.
+
 ## 5. Where the attacks stop
 
 1. **Charging `K` with a dimension function.** A quasitrace charging `K` needs
