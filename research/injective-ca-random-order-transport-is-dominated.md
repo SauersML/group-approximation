@@ -37,3 +37,8 @@ form. It is kept because it isolates the conditionings as the whole difficulty a
 - **Discarded on the way** (artifact Section 4): exactness transfer (left equivariance, no right Folner sets),
   free subrelations with the f-invariant (not generating, and a conjugacy invariant), symbol symmetrization
   (orbits break uniformity).
+- **Reciprocal lower bound, and its tightness** (`transport-identity-gives-reciprocal-memory-entropy-bound`,
+  e87f4c60f5). The identity plus `I(.;y(e)|.) <= H(y(e))` per term gives only `H(y(e)) >= (log |A|)/|N|`. Domination is
+  the constant-`1` case. Since the per-term bound is attained (the `Z` bijective example, artifact 2.5), domination
+  needs an upper bound on the transport sum that is not a sum of per-term entropy bounds, i.e. it needs realizability
+  beyond Shannon inequalities plus the identity.

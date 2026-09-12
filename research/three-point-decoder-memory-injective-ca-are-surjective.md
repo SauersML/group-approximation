@@ -27,3 +27,16 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
   question is whether it holds for a reason that uses no finite model.
 - **Pointwise versions fail.** A single order realization can violate domination even for bijective automata
   (artifact 3.2). Averaging over the random order is required.
+- **Transport gives only a reciprocal bound** (`transport-identity-gives-reciprocal-memory-entropy-bound`,
+  e87f4c60f5). The identity plus the per-term bound `I(.;y(e)|.) <= H(y(e))` yields only
+  `H(y(e)) >= (log |A|)/3`; the per-term bound is tight, so no term-by-term argument reaches domination. A proof must
+  use realizability (`y` a finite block code of i.i.d. `x`), not only the information relations at the seven sites.
+- **Amplification does not reduce this claim** (`skewed-marginal-amplification-enlarges-decoder-memory`, e87f4c60f5).
+  The skewed amplification of a strict `tau` has left-inverse memory `N_tau ∪ W_anchor ∪ W_block`, not three points,
+  so three-point domination does not feed the surjectivity reading by amplification. Read the claim either as the
+  `h_fin` statement for three-point-decoder automata, or attack single-site domination for the enlarged-memory `kappa`.
+- **Caution on the free case.** "The free case `<s,t> = F_2` is sofic, hence already true" is about soficity of the
+  decoder memory group, not of the host `G`. The coset argument of `amenable-decoder-memory-forces-surjectivity`
+  reduces it to pre-injectivity of a surjective automaton over `F_2`, and GOE's surjective-implies-pre-injective
+  direction fails on `F_2` (Bartholdi). So the free-`Gamma` case needs its own justification and should be treated as
+  open; the amenable mechanism closes exactly the amenable-`<s,t>` cases.
