@@ -38,7 +38,7 @@ Implementation: `experiments/kaplansky_collision_partner_search.py`.
 **Defect-anchored lifts** (`experiments/kaplansky_defect_anchored_lift.py`).
 Per-factor rigidity makes each factor of a strict pair non-`F_2`-linear-sofic,
 and the only mechanism against linear soficity on `Q` is the rigid defect of
-`leavitt-unit-group-carries-nontrivial-rigid-defect`. So the lift carries the
+`leavitt-unit-group-carries-nontrivial-rigid-defect`. So the lift starts from the
 configuration:
 - `u`, the nine-leaf compressor of `openai-nine-leaf-leavitt-configuration`;
 - `j = 1 + S[1000]T[1000] + S[10000]T[10001] + S[10001]T[10000]`, in `J = V_(1000)`;
@@ -53,6 +53,10 @@ The evaluation is completed to `s_0` (or `t_0`) by an even correction.
 - **What works:** a pool of 1,570 units, the radius-3 ball together with `d g`
   and `g d` for `d in D` and `g` in the radius-2 ball. It gives a correction of
   support 10 after kernel descent, and a lift of support 13 for both `s_0` and `t_0`.
+- **Caveat.** The correction cancels the compressor `u` itself. The final lifts
+  carry `j`, `x`, `gamma`, `c` and two defect translates (`j p_0 p_6`, `x p_4`),
+  plus atlas words, but not `u`. So they anchor the defect commutator, not the
+  compressor.
 
 ## 3. Results (all exact misses)
 
@@ -65,16 +69,17 @@ The evaluation is completed to `s_0` (or `t_0`) by an even correction.
 | FIVE_T0 (5) | right | 3 | 14,639 | 0 | no partner |
 | FIVE_T0 (5) | right | 4 | 202,193 | 0 | no partner (sbatch 531540, 11 min) |
 | defect-anchored s0 (13) | left | 1 | 1,343 | 0 | no partner |
+| defect-anchored s0 (13) | left | 2 | 127,107 | 0 | no partner (sbatch 532418, 12 min) |
 | defect-anchored t0 (13) | right | 1 | 1,260 | 0 | no partner |
+| defect-anchored t0 (13) | right | 2 | 109,608 | 0 | no partner (sbatch 532418, 14 min) |
 
 Runs are on MSI under `/projects/standard/hsiehph/sauer354/kdf-structural/runs/`.
 In every instance the peeling step removes all columns: each universe element
 produces some product that no other element of the universe reproduces. So a
 partner of these lifts needs cancellations that first appear beyond these depths.
 
-**Pending.** ELA1 at depth 2 (about 100,000 universe elements) and FIVE_T0 at
-depth 4. The first attempts were OOM-killed by unbounded lru caches, since fixed
-(a88f5744f).
+The first depth-2 and depth-4 attempts were OOM-killed by unbounded lru caches;
+fixed in a88f5744f.
 
 ## 4. Not attempted
 
