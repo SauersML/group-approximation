@@ -441,3 +441,19 @@ swap-invariant output, hence a counterexample
 (`ternary-leavitt-swap-idempotent-is-full`); the ternary Leavitt unit group is
 now its own counterexample root, `ternary-leavitt-unit-group-nonsurjunctive`.
 Artifact: `research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md`.
+
+**The operator-algebraic trace route is closed (2026-09-12).** By
+`injective-ca-product-trace-zero-one-law`, for an injective automaton over an
+infinite group the image measure either equals the uniform measure or is
+singular to it: a strict image is null, because a Garden of Eden has infinitely
+many disjoint translates. Every state extending the product trace takes the
+encoder's range projection to 0 or 1, and the compression is tracial, or
+multiplicative, exactly in the onto case.
+`bijective-ca-preserve-uniform-bernoulli-measure` holds over every group. So the
+matrix-observable prerequisite `injective-ca-pullbacks-extend-to-matrix-observables`
+is the goal restated, and the converse route
+`matrix-observable-extension-from-surjunctivity` makes a deliberate cycle. No
+trace-level premise in the style of Kaplansky's characteristic-zero proof can be
+an intermediate step. The missing count lives at per-site logarithmic scale,
+where `strict-automaton-lowers-bernoulli-rokhlin-entropy` and the open
+`bernoulli-rokhlin-entropy-maximal-for-every-group` act.
