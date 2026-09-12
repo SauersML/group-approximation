@@ -4610,6 +4610,7 @@ import GroupApproximation.BowenChapman.EndpointOfInputs
 import GroupApproximation.KunThom.FixedPointNormalizationPatching
 import GroupApproximation.KunThom.FixedPointNormalizationBisection
 import GroupApproximation.KunThom.FixedPointNormalizationComparison
+import GroupApproximation.BowenChapman.EndpointOfNormalization
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
