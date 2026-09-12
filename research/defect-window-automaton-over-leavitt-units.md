@@ -6,6 +6,7 @@ title: Some injective automaton over the Leavitt unit group has a Garden of Eden
 distinct_from:
   leavitt-units-carry-injective-invariant-output-automaton: that asks for an output constant on cosets of a finite subgroup, where the Garden of Eden is automatic; this asks for an arbitrary injective automaton whose Garden-of-Eden window is the pair {1, d} for a commutator d of the nonsoficity configuration.
   strict-automaton-tables-present-an-invisible-window-difference: that is the established necessary condition that some window difference is sofic-invisible in the table group; this is an open construction problem that places the window on the one element the compression mechanism is known to make invisible.
+  nested-rigid-defects-force-nonsurjunctivity: that asks that a nested defect configuration force strictness in every group carrying it; this asks for one explicit automaton over the Leavitt units whose Garden-of-Eden window is a defect pair.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
 ---
@@ -46,3 +47,10 @@ Eden for `tau` on the window `{1, d}`.
   the `Gamma`-letters and the ambient letters, the nesting relators, and a non-LEF
   presentation for the `J`-letters. No rule pair is known whose forward
   sufficiency needs a Kazhdan presentation. This is where the attempt dies today.
+- *The Kun--Thom screen.* By `surjunctive-groups-carry-invisible-rigid-defects`, the
+  surjunctive Kun--Thom wreaths already carry a nontrivial sofic-invisible rigid defect
+  with the whole configuration present: a Kazhdan pair, a strict compressor and a
+  centralizing involution. So the configuration relations never suffice, and a table
+  for this claim must force a coincidence that fails in every such wreath. Nesting the
+  conjugated centralizing element inside the compressed subgroup is the candidate
+  distinction (`nested-rigid-defects-force-nonsurjunctivity`).
