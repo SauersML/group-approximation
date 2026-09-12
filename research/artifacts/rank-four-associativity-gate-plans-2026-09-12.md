@@ -236,6 +236,19 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 * A proof must use `sigma` on opposite root, Weyl or torus elements, jointly on a nonsofic subgroup,
   together with the rank of `M`.
 * The Heisenberg plan dies the same way on `U_3(R)`.
+* **Later results from other families** (both established; verifier record af46d53387).
+  * **`binary-locally-finite-hnn-models-violate-two-root-identity`.**
+    * **Result.** HNN extensions of a locally finite subgroup along single-letter partial conjugations
+      carry characteristic-two rank models that violate the identity.
+    * **Consequence for the gate.** Relations of locally finite subgroups, together with single
+      conjugations by arbitrary units, cannot prove the gate. So "jointly" above has to mean relations
+      that are not of this HNN shape.
+    * **Overlap.** This overlaps `locally-finite-hnn-data-allow-independent-cylinder-defects` (L5), whose
+      model already has `rk(D_A) = 3/8`. The steward may want a `distinct_from` line between the two nodes.
+  * **`swap-group-cylinder-lift-trees-halve-but-never-refine`.**
+    * **Result.** In every nontrivial characteristic-two rank model of the Leavitt units, swap-group lifts
+      of cylinder projections halve exactly at every cylinder but never refine.
+    * **Relation to L9(a).** It points the same way as the monotone rigidity recorded there.
 
 ### L8. Cohn coefficients (w4-r4-complete, open)
 
