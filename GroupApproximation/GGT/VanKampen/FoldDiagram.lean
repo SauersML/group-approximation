@@ -202,8 +202,8 @@ noncomputable def transport : DiscTransport Delta where
       rw [hyd]
       refine List.mem_filterMap.mpr ⟨Delta.toCombMap.alpha e,
         ((Delta.faceBoundary _).mem_iff _).mpr rfl, ?_⟩
-      simp [foldImage, fun h' : Delta.toCombMap.alpha e = d => h.ne_alpha_next h'.symm,
-        Delta.toCombMap.alpha_fixedPointFree e]
+      have hαd : Delta.toCombMap.alpha e ≠ d := fun h' => h.ne_alpha_next h'.symm
+      simp [foldImage, hαd, Delta.toCombMap.alpha_fixedPointFree e]
     · refine ⟨Delta.toCombMap.faceOf (EdgeDeletion.value (joined Delta.toCombMap p e) e x),
         hmem _ ?_⟩
       refine List.mem_filterMap.mpr ⟨_, ((Delta.faceBoundary _).mem_iff _).mpr rfl, ?_⟩
