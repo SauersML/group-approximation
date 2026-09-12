@@ -176,3 +176,24 @@ Checked line by line.
     coordinatewise.
   * Finiteness is used exactly where it is available: the memory, the
     supports, `S`, `Abar`, and the union of strata cosets.
+
+## 6. Not verified
+
+* **The proof of Kun--Thom Theorem A.** Nonsoficity of both witnesses rests
+  on an unrefereed preprint (v3). Only its statement was checked.
+* **Exhaustive novelty.** The web-search budget was exhausted and arXiv search
+  endpoints were blocked during the review. Only the three sources above and
+  Bowen--Chapman's current version were read. I found no earlier statement of
+  a surjunctive nonsofic group or of Theorem 1, but this is a bounded check.
+* **No formal verification.** Nothing here is in Lean.
+
+## 7. Minor notes, no action needed for correctness
+
+* The "What this does not settle" remark in the wreath artifact still lists
+  surjunctivity of the Kun--Thom doubles, which the finitary artifact settled
+  the same day. This is stale text in the author's artifact, not an error in
+  any claim.
+* The finitary artifact transfers the peeling "verbatim". The only
+  non-literal points are the left-coset slicing and representative
+  independence. They are correct (Section 2 above), and the graph-folds
+  artifact spells them out.
