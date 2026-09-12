@@ -1,4 +1,6 @@
 import GroupApproximation.Matching.FinitePartialBijection
+import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
+import Mathlib.Data.Fintype.BigOperators
 
 /-!
 # Patching block arrows into a permutation
@@ -232,8 +234,8 @@ theorem card_commutationDefect_patch_le {L : Type*} [Fintype L]
         ∑ C, ((β.arrow C).equivarianceDefect (A.blockAct C)
           (A.blockAct (β.objEquiv C))).card := by
   classical
-  set t := hammingDisagreement (β.patch * A.act s) (A.act s * β.patch) with ht
-  set F := A.globalCompatFailure s with hF
+  set t := hammingDisagreement (β.patch * A.act s) (A.act s * β.patch)
+  set F := A.globalCompatFailure s
   have hsplit := Finset.card_sdiff_add_card_inter t β.domain
   have hleft : (t \ β.domain).card ≤ (Finset.univ \ β.domain).card :=
     Finset.card_le_card

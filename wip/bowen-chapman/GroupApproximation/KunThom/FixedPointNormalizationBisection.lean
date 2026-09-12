@@ -108,9 +108,8 @@ theorem card_commutationDefect_bisectionPatch_le
         2 * ((clusterAction (ι := ι) (hinj := hinj) (hdisj := hdisj) (D := D)
           act).globalCompatFailure s).card +
         ∑ _X : I, D.h * D.scale / 2 := by
-  set β := bisectionArrows (ι := ι) (hinj := hinj) (hdisj := hdisj) b with hβ
+  set β := bisectionArrows (ι := ι) (hinj := hinj) (hdisj := hdisj) b
   set A := clusterAction (ι := ι) (hinj := hinj) (hdisj := hdisj) (D := D) act
-    with hA
   have hcount := β.card_commutationDefect_patch_le A s
   have hdef : ∀ X : I,
       (((β.arrow X).equivarianceDefect (A.blockAct X)
