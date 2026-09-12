@@ -455,3 +455,167 @@ the gate is untouched.
 * **Normalization.** `x' = exf`, `y' = fye` give `x'y' = e x (yx) y e = e` and `y'x' = f`.
 * **Padding.** `(1−e) x = x (1−e) = 0` and `(1−e) y = y (1−e) = 0`, since `(1−e) e = 0` and `ef = fe = f`.
   So `AB = 1` and `BA = 1 − (e − f) != 1`.
+
+### 12.3 Correction: Sections 9.1 and 12 are subsumed, and the open hole is refuted
+
+`w4-kap-join` pointed to `nested-two-finite-subgroup-idempotents-have-strict-rank`, ESTABLISHED 2026-09-07. It
+says: for finite `H`, `K`, idempotents `e ∈ M_n(k[H])` and `f ∈ M_n(k[K])` with `ef = fe = f` and `e != f`,
+`dim(e k[H]^n)/|H| > dim(f k[K]^n)/|K|`. It holds over any field, with no condition on `<H,K>` or on `H ∩ K`.
+Both checks above missed this node.
+
+**Re-derived here in general.** Put `C = H ∩ K`, `Z = e k[H]^n` and `U = Z ∩ k[C]^n`.
+* **Upper bound for `f`.**
+  * `e k[G]^n = ⊕_r Z r` over right coset representatives of `H`.
+  * `Hr ∩ K = Cr` for `r ∈ K`. So the part of `e k[G]^n` supported in `K` is `⊕_(r ∈ C\K) U r`.
+  * `f k[K]^n ⊆ f k[G]^n ⊆ e k[G]^n` is supported in `K`, so `dim(f k[K]^n)/|K| <= dim U/|C|`.
+* **Lower bound for `e`.** `U k[H] = ⊕_(t ∈ C\H) U t ⊆ Z`, so `dim Z/|H| >= dim U/|C|`.
+* **Equality forces `e = f`.**
+  * Equality gives `f k[K]^n = U k[K]`, so `f` fixes `U`.
+  * `e k[G]^n = ⊕ U k[H] r`, so `f` fixes `e k[G]^n`, and `fe = e`. With `fe = f`, `e = f`.
+
+**Consequences.**
+* **9.1.** `mixed-finite-subgroup-defects-need-infinite-generation` is correct, but its framing is stale. The
+  "infinite join" case it calls the only survivor is already excluded.
+* **12.1.** `nested-idempotents-from-p-regular-intersections-are-equal` is correct, but it is the special case
+  `k = F_p`, `p ∤ |C|` of the 09-07 node. Its `distinct_from` should name that node, and Theorem 2 adds
+  nothing to it.
+* **The open hole is refuted.** `modular-nested-idempotents-equivalent-over-leavitt-units` asks for
+  `xy = e`, `yx = f`, `0 != f < e` from two finite subgroups. Equivalence gives equal classes, hence equal
+  lifted traces, hence equal LFT1 ranks, contradicting the strict gap. The 09-07 node states this
+  consequence itself. The claim needs `refuted_by: nested-two-finite-subgroup-idempotents-have-strict-rank`.
+* **The route is dead.** `modular-nested-equivalence-refutes-leavitt-direct-finiteness` has a valid padding
+  step, but its prerequisite is false. The "even intersections survive" part of artifact Section 4 is also
+  dead.
+
+## 13. Compressor extensions of level models (w3-gate-construct; ceb14cf1d2)
+
+### 13.1 `transvection-displacement-forces-exact-local-embedding` (Theorem 4, Corollary 5): PASS
+
+* **Lemma 1.** `Fix(g) ⊆ Fix(g_p)`. `P` restricted to `<g_p>` is free, so `dim Fix(g_p) = n/|g_p|`.
+* **Lemma 2.** `rk(AB − 1) <= rk(A−1) + rk(B−1)`, and `u z^-1 u^-1 − 1 = u z^-1 (1 − z) u^-1`.
+* **Lemma 3.**
+  * **Choice.** `φ` vanishes on `v, zv, z^-1 v`. So `ψ(zv) = φ(v) = 0`, `ψ(v) = φ(z^-1 v) = 0` and `φ(zv) = 0`.
+  * **First commutator.** `A^2 = B^2 = AB = BA = 0`, and `(1+B)^-1 = 1 + B`, so `[z,u] = 1 + A + B`.
+    `zv` and `v` are distinct nonzero vectors over `F_2`, so `N != 0`.
+  * **Second commutator.** `chi o N = 0` gives `y u'' y^-1 = 1 + yw ⊗ chi`. `chi(w) = 0` kills the cross
+    term, so `[y, u''] = 1 + Nw ⊗ chi`. Also `Nw = a + β(w) b != 0` and `chi(Nw) = 0`.
+* **Theorem 4.**
+  * `τ_k(1) = 1` and `τ_k(g^-1) = τ_k(g)^-1` follow from multiplicativity on `F`.
+  * `g^-1 h ∈ F^-1 F`, and `σ(g^-1 h) != 1` for `g != h`, give injectivity.
+* **Corollary 5.**
+  * **(a)** `u_13(0,0)` is a transvection.
+  * **(b)** Lemma 1 at `p = 2`.
+  * **(c)** A finitely presented LEF group is residually finite, and an infinite simple group is not.
+  * **(d)** Lemmas 2–3 inside `SL_m(F_2) <= F_K` for `m >= 4`.
+
+### 13.2 `natural-compressor-extension-fails-at-toeplitz-commutator` (Proposition 7, Corollary 8): PASS
+
+* **Relations.** The Steinberg forms (Σ1)–(Σ5) were checked against `t0 e_ab = e_(a−1,b)` and
+  `e_ab s0 = e_(a,b−1)`, including the vanishing boundary cases.
+* **Forcing.** In every relation the two transvections commute, so `q u q^-1 = w u`. Rank-one factors over
+  `F_2` are determined. This recovers:
+  * `X^ δ_a^(2) = δ_a^(2) + δ_(a−1)^(1)`;
+  * `δ_b^(2)* o Y^^-1 = δ_b^(2)* + δ_(b−1)^(3)*`;
+  * `δ_b^(1)* o Z^^-1 = δ_b^(1)* + δ_b^(3)*`.
+  The commutations pin the remaining components.
+* **Commutator.** `(1+A)(1+B)(1+A)(1+B) = 1 + AB` when `A^2 = B^2 = BA = 0`, and `T_N S_N = 1 − P_(N−1)`.
+  So `Z^^-1 [X^, Y^] = u_13(N−1, N−1)`.
+* **Corollary 8.** The index swap conjugates the error to `u_13(0,0)`, and `X^2 = Y^2 = 1` in
+  characteristic two.
+
+## 14. Two-piece lifts and obstructions (w3-kap-visible; artifact Sections 2–3 at b2d4e757a9)
+
+### 14.1 `two-piece-s0-lifts-telescope-to-a-corner`: PASS; triangular route valid
+
+* **Lemma 2.1.**
+  * `pi(a) = s00 t0 + s01 t1 = s0`.
+  * `P_0 g1^-1 = g1^-1 P_00 = s0 t00`, so `pi(b) = (s0t0 + s1t1) t0 = t0`.
+  * `pi(X) = g1^-1 P_00 P_01 g2 = 0`.
+* **Theorem 2.2.**
+  * `YX = E1^ − C'C`, and `(1+Y)(1 + X + YX) = 1 + X + Y`.
+  * **Inverse.** `S = E^ + Xw + w` inverts `[[E^, X],[0, d]]`, using `dX = 0` and `wX = 0`.
+  * **Converse.** Peirce blocks of an inverse give `r = 0` and `sd = ds = E1^`.
+* **Proposition 2.4.** `(X+Y)^2 = XY + YX` in orthogonal corners, and `(YX)^(k+1) = Y(XY)^k X`.
+* **Remark 2.5.** `g1^-1 P_0 g1 = P_0 + q`, with `q = P_1 − g1^-1 P_1 g1 < P_1`.
+
+### 14.2 Obstructions (Lemma 3.1, Lemma 3.3, Computation 3.5, Proposition 3.6): PASS
+
+* **Lemma 3.1.** `D` acts freely on `F × F`. The relation `f1 h f2 = f1' h f2'` forces
+  `f1^-1 f1' = h f2 f2'^-1 h^-1 ∈ D`. So orbits go to distinct group elements.
+* **Lemma 3.3.**
+  * Truncating supports to `H'` is an `F_2[H']`-bimodule map, so inverses stay on `H'`.
+  * `w = E1^ T^-1 E1^` inverts `C'C`, and `pi(C C'') = pi(h) P_1 pi(h)^-1 = q != P_1`.
+  * So `(C'' + E^)(C + E^) = 1 != (C + E^)(C'' + E^)`.
+* **Computation 3.5.** `g1`, `g2` and `h` checked on prefixes.
+  * On `δ_00y` the points `0y`, `100y` and `1y` are distinct for `y != 0^∞`, which forces upper triangular
+    matrices.
+  * On `δ_10x` the points `0x` and `000x` are distinct for `x != 0^∞`, which forces the identity.
+  * So `D = 1`.
+* **Proposition 3.6.**
+  * **(1)** The block `F_2[S_3](1+z) = M_2(F_2)` maps injectively, and the local block `F_2[C_2] z` is killed.
+  * **Supports.** They have sizes 4 and 3.
+  * **`D = C_2`.** Vanishing forces `S1 f = S1` and `f' S2 = S2`, so both sizes would be even.
+  * **`D = C_3`.** `h^-1 D h = D`, so the twist fixes `z`. In the `F_4` component, `E^(1+z) = xy` and
+    `(1+z) E1^ = yx`.
+  * **`D = F`.** Equal right ideals would force `q = P_1`, or `pi(h)^-1 P_0 pi(h) = P_0`.
+* **Scope.** Remark 3.4 cites the 09-07 strict-rank node, which is re-derived in 12.3.
+
+## 15. Haar law and torus normal form (w3-gate-char3; 6601af31f3, artifact Sections 4–5)
+
+### 15.1 `anti-central-rank-models-see-haar-measure-on-signed-diagonal` (Theorem 4.1): PASS
+
+* **Half split.** `τ_(X∖C) = 1 − 2(1 − P_C) = z τ_C`. So `phi(Q_(X∖C)) = 1 − phi(Q_C)`, and transitivity of `V`
+  gives rank `1/2`.
+* **Fourier inversion.**
+  * `sum_ε a_ε χ_S(ε) = 1 − 2 rho(phi(Q_(c_S)))`, which is `1`, `−1` or `0`.
+  * So `a_ε = 2^-n (1 − χ_[n](ε))`, which is `2^(1−n)` on odd patterns, `= lambda(A_ε)`.
+
+### 15.2 `ternary-rank-model-root-element-torus-normal-form` (Proposition 5.1): PASS
+
+* **Allowed components.** `diag(s)` conjugates `E_12` by `s_1 s_2`. So `τ_11` and `τ_0 τ_10` commute with
+  `x_12(1)`, and only `ε` and `ε'` occur.
+* **Reflection.**
+  * `x_12(1)^3 = 1` gives `N^3 = 0`, and `σ(x_12(−1)) − 1 = −N + N^2`.
+  * Conjugation by `τ_0` gives `D − A = −D − A + N^2`, so `D = −N^2`.
+* **Squares.** `D^2 = N^4 = 0`, so `N^2 = A^2`, `N = A − A^2` and `A^3 = −(DA + AD)/2 = 0`.
+* **(c)** Theorem 4.1 for the code `(0,10,11)`: the odd patterns give the four weights, each of rank `1/4`.
+* **Hub wiring.** `ternary-anti-invariant-swap-corner-is-full` has
+  `refuted_by: ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`. This is valid through
+  Theorem 2.1 and Corollary 3.1.
+* Agrees with `gk-vf-linear` Section 54.
+
+## 16. Corner rank data and the two-root deviation (w3-gate-bridge-a; 47302b9818)
+
+### 16.1 `corner-rank-data-cannot-contract-the-two-root-deviation`, parts 1–3: PASS, one precision remark
+
+* **Part 1.** Derived directly.
+  * Put `V' = (1+Y)(1+X) = 1 + X + Y + YX`. Then `n_13 V' = XY − YX`, so
+    `n_13 − XY = −(1 + X) YX V'^-1`, using `Y^2 = 0`. Hence `rk(n_13(1) − XY) = rk(YX)`.
+  * `rk(n_13(1)) = rho` is part 1 of the displacement claim, and also follows from Weyl conjugation.
+* **Part 2.**
+  * Part 4 of `leavitt-rank-models-have-uniform-root-displacement` explicitly covers a single idempotent
+    ("in particular `rho(e) = rho`").
+  * Part 1 transports the value to the `13` root.
+* **Part 3.**
+  * `t_γ' s_γ = 0` for `γ != γ'` of equal length, so `w^2 = sum_(|μ| = k) e_μ = 1`.
+  * `w s_γ = s_γ'` and `t_γ w = t_γ'`, so `w e_γ w = e_γ'`.
+* **Scope.** Parts 1–3 do not use `rank-modelled-coefficients-violate-two-root-identities`.
+* **Precision remark (claim consequence paragraph, artifact Section 4).** "Additivity is refuted" overstates.
+  * **What the calibration shows.** Take the tensor-square model over `D = colim M_(2^k)(F_2)`, with
+    `X_γ = E_12 ⊗ phi(e_γ)`. There `P_γ = Y_γ ⊗ X_γ + X_γ ⊗ Y_γ`, whose image lies in the independent blocks
+    `phi(e_γ)V ⊗ phi(e_γ)V`. So `sum_γ rk P_γ = 2^(1−k)/9 <= 1` at every level: the displayed inequality
+    holds there.
+  * **What it refutes.** Orthogonality of the ranges of the root branch defects `a_γ`, `b_γ`. It does not
+    refute the displayed branch-rank inequality.
+  * **Why no calibration can do more.** In a Leavitt model that inequality, with part 3, would imply the
+    open `leavitt-corner-deviations-vanish-along-levels`. A calibration over another coefficient ring cannot
+    refute it.
+  * **Suggested wording.** "Corner data do not supply additivity".
+
+### 16.2 `two-root-identity-via-level-contraction`: valid, conditional, one notation remark
+
+* **Why it cannot fire yet.** Both prerequisites are OPEN.
+* **Notation.** The route writes `delta(0) = rk(n_23(e_0) n_12(e_0))`. That quantity is `delta(1)` (word `0`).
+  `delta(0)` is the empty word, `e = 1`, the unit pair itself.
+* **Shorter conclusion.** `delta(0) = 0` is `N_23 N_12 = 0` on the unit pair, without the branch split or
+  corner locality. The prose chain also works, but it cites nodes that are not in `requires`.

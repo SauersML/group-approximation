@@ -6,6 +6,7 @@ title: Factor the product into a square-zero unit times a Peirce-triangular elem
 target: two-piece-s0-lifts-telescope-to-a-corner
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/binary-visible-lift-two-piece-telescoping-2026-09-12.md
 ---
 
@@ -15,3 +16,5 @@ Artifact Section 2: Lemma 2.1, Theorem 2.2, Corollary 2.3, Proposition 2.4 and R
   `C'C` is invertible in the corner. The converse direction reads the Peirce blocks of an inverse.
 - **Nilpotency.** `(X+Y)^2 = XY + YX`, and `XY` and `YX` lie in orthogonal corners.
 - **Corner reading.** `pi(X) = pi(Y) = 0`, and `g1^(-1) P_0 g1 = P_0 + g1^(-1) P_01 g1`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 14.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: Lemma 2.1, the factorization (1+Y)(1+X+YX), both Peirce directions of Theorem 2.2, Proposition 2.4 and Remark 2.5.*

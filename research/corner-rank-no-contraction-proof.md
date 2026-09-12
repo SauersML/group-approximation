@@ -9,6 +9,7 @@ requires:
   - leavitt-rank-models-have-uniform-root-displacement
   - leavitt-gl-equals-el-and-perfect-unit-group
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/corner-rank-contraction-obstruction-2026-09-12.md
 ---
 
@@ -36,3 +37,5 @@ artifacts:
 The consequence paragraph of the claim quotes the refutation of branch-rank additivity from
 `rank-modelled-coefficients-violate-two-root-identities` without re-deriving it, and that node is
 not a prerequisite of the three parts proved here.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 16.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS for parts 1–3. Part 1 was derived directly as n_13 − XY = −(1+X)YX V'^-1; part 4 of the displacement claim covers single idempotents. Precision remark on the claim's consequence paragraph: the cited calibration satisfies Σ_γ rk P_γ = 2^(1−k)/9 <= 1, so it refutes orthogonality of the root branch defects a_γ, b_γ, not the displayed branch-rank inequality.*

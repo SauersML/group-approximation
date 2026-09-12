@@ -9,6 +9,7 @@ requires:
   - leavitt-corner-deviations-are-level-independent
   - leavitt-corner-deviations-vanish-along-levels
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/corner-rank-contraction-obstruction-2026-09-12.md
 ---
 
@@ -34,3 +35,5 @@ isolates the two halves that remain after
 `corner-rank-data-cannot-contract-the-two-root-deviation` removes every contraction available from
 corner data: additivity of branch ranks is refuted, and the root displacements are exactly constant
 across levels.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 16.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid and conditional; both prerequisites are OPEN. Notation: rk(n_23(e_0)n_12(e_0)) is delta(1). delta(0) is the unit pair itself, so delta(0) = 0 is N_23N_12 = 0 directly.*

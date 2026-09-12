@@ -8,9 +8,12 @@ requires:
   - two-piece-s0-lifts-telescope-to-a-corner
   - two-piece-s0-lift-with-triangular-defect-exists
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/binary-visible-lift-two-piece-telescoping-2026-09-12.md
 ---
 
 The open claim supplies data with `X = 0` or `Y = 0`. By item 4 of the telescoping claim, `b a = 1 + N` with
 `N^2 = 0`, so `b a` is a unit. By item 3, `(ba)^(-1) b` is a left inverse of the lift `a` of `s0`. Artifact Section 2,
 Corollary 2.3.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 14.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid, conditional on the open claim. X = 0 or Y = 0 gives ba = 1 + N with N² = 0.*

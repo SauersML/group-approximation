@@ -21,3 +21,5 @@ artifacts:
   root's statement: `F_2[R^x]` is not directly finite.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 12.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: valid, conditional on the open hole. The normalization x ↦ exf, y ↦ fye and the padding by 1−e give AB = 1, BA = 1 − (e − f).*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 12.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Update: DEAD. The padding step is valid, but the prerequisite modular-nested-idempotents-equivalent-over-leavitt-units is refuted by nested-two-finite-subgroup-idempotents-have-strict-rank: equivalence gives equal lifted traces, and the strict gap forbids that for f < e.*

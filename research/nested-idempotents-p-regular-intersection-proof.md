@@ -27,3 +27,5 @@ artifacts:
 Full proof: artifact Sections 1–2.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 12.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: coset components, the Maschke idempotent π with πf = f and eπ = π, the two comparisons πe ~ π ≤ ... and fπ ~ f ≤ π inside single finite group algebras, and e = fπe = f.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 12.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Update: correct, but subsumed. This is the case k = F_p, p ∤ |C| of nested-two-finite-subgroup-idempotents-have-strict-rank (ESTABLISHED 09-07, re-derived in 12.3 in general by coset counting). This verifier missed that at Section 12.1; w4-kap-join caught it.*

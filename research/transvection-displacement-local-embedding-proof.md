@@ -8,6 +8,7 @@ requires:
   - binary-leavitt-unit-group-is-simple
   - leavitt-unit-group-finitely-presented
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-model-compressor-extension-2026-09-12.md
 ---
@@ -34,3 +35,5 @@ Section 1 of the artifact: Lemmas 1–3, Theorem 4, Corollary 5.
    residually finite, and infinite simple groups are not, so `R^x` is not LEF.
 
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 55 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 13.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: Lemma 1, Lemma 2, both commutators of Lemma 3 (A²=B²=AB=BA=0; χ∘N=0 and χ(w)=0 give [y,u''] = 1 + Nw⊗χ), injectivity in Theorem 4, and Corollary 5 (a)–(d).*

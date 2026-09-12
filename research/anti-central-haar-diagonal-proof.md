@@ -6,6 +6,7 @@ title: Halve every reflection by Thompson transitivity, then invert the sign-pat
 target: anti-central-rank-models-see-haar-measure-on-signed-diagonal
 requires: [signed-thompson-algebra-is-odd-measure-crossed-product, odd-measure-space-has-no-honest-thompson-compression]
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md
 ---
@@ -24,3 +25,5 @@ artifacts:
 Details: artifact Section 4.
 
 *Second independent derivation by `gk-vf-linear` (2026-09-12), Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 15.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the half split through τ_(X∖C) = zτ_C and V-transitivity, and the Fourier inversion a_ε = 2^(−n)(1 − χ_[n](ε)).*
