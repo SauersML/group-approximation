@@ -18,4 +18,4 @@ Written derivation.
 3. **Fixed price for the cover.** `Gamma'` is finitely generated, so every free p.m.p. action of `Gamma'` has cost at most `C(b_(Gamma'))`, by `fpbs-bernoulli-maximal-cost`. Every such action also has cost at least `1`. So `Gamma'` has fixed price one.
 4. **Transfer to `Gamma`.** A finite-index subgroup is commensurated. By item 3 of `fpbs-fibered-3-manifold-cost-inputs`, `C(R_(Gamma↷X)) <= C(R_(Gamma'↷X)) = 1` for every free p.m.p. action of `Gamma`, so `Gamma` has fixed price one.
 
-This route is dependency bookkeeping for a written deduction, not a formal verification. It stays open while `fpbs-twisted-level-percolation-connected` is open.
+This route is dependency bookkeeping for a written deduction, not a formal verification. It is invalidated by `fpbs-twisted-level-percolation-disconnected-at-low-density`, which proves `fpbs-twisted-level-percolation-connected` false at small density. Step 2 needs connectivity for arbitrarily small `delta`, and that never holds.

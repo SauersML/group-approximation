@@ -53,9 +53,12 @@ claim is the 3-manifold case of that alternative.
   generates iff a random twisted return graph on the fibre group is connected.
   For the Bernoulli shift that graph is independent twisted level percolation.
   Route `fpbs-hyperbolic-3-manifold-fixed-price-via-twisted-levels` derives
-  this claim from its connectivity. **Where it waits:**
-  `fpbs-twisted-level-percolation-connected` is open. There are no finite
-  clusters, so what remains is ruling out infinitely many infinite clusters on
-  a nonamenable group, where Burton–Keane fails. The analogous graph for
-  `F_2 = F_infinity semidirect Z` is disconnected, so the argument must use
-  finite generation of the fibre group.
+  this claim from its connectivity. **Where it dies (2026-09-12):**
+  `fpbs-twisted-level-percolation-disconnected-at-low-density` shows that
+  independent twisted level percolation is almost surely disconnected at
+  small density, for every torsion-free hyperbolic `N semidirect Z`. Relative
+  hyperbolicity with respect to `<t>` charges `t`-excursions linearly, so the
+  number of paths is exponential while each path costs `delta^(l/2)`. So the
+  route is invalidated. The same graphing with a set `A` whose open levels are
+  strongly correlated along `t`-orbits is not ruled out, because only the
+  probability step uses independence.
