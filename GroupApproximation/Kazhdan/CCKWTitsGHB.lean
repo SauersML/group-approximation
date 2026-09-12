@@ -46,15 +46,15 @@ theorem vertexGroup_two :
   rfl
 
 theorem comm_mem {G : Type*} [Group G] {K : Subgroup G} {x y : G} (hx : x ∈ K) (hy : y ∈ K) :
-    comm x y ∈ K :=
+    KMSGroup.comm x y ∈ K :=
   mul_mem (mul_mem (mul_mem (inv_mem hx) (inv_mem hy)) hx) hy
 
 theorem comm3_mem {G : Type*} [Group G] {K : Subgroup G} {x y z : G} (hx : x ∈ K) (hy : y ∈ K)
-    (hz : z ∈ K) : comm3 x y z ∈ K :=
+    (hz : z ∈ K) : KMSGroup.comm3 x y z ∈ K :=
   comm_mem (comm_mem hx hy) hz
 
 theorem comm4_mem {G : Type*} [Group G] {K : Subgroup G} {x y z w : G} (hx : x ∈ K) (hy : y ∈ K)
-    (hz : z ∈ K) (hw : w ∈ K) : comm4 x y z w ∈ K :=
+    (hz : z ∈ K) (hw : w ∈ K) : KMSGroup.comm4 x y z w ∈ K :=
   comm_mem (comm3_mem hx hy hz) hw
 
 theorem gen_mem_closure {j : Fin 3} {s : Fin 3} (hs : s ∈ ghbStype j) :
@@ -68,15 +68,15 @@ theorem relator_mem_closure (r : FreeGroup (Fin 3)) (hr : r ∈ relators 7) :
   have a0 : ga ∈ Subgroup.closure (FreeGroup.of '' ghbStype 0) :=
     gen_mem_closure (Set.mem_insert _ _)
   have b0 : gb ∈ Subgroup.closure (FreeGroup.of '' ghbStype 0) :=
-    gen_mem_closure (Set.mem_insert_of_mem _ rfl)
+    gen_mem_closure (Set.mem_insert_of_mem _ (Set.mem_singleton _))
   have c1 : gc ∈ Subgroup.closure (FreeGroup.of '' ghbStype 1) :=
     gen_mem_closure (Set.mem_insert _ _)
   have b1 : gb ∈ Subgroup.closure (FreeGroup.of '' ghbStype 1) :=
-    gen_mem_closure (Set.mem_insert_of_mem _ rfl)
+    gen_mem_closure (Set.mem_insert_of_mem _ (Set.mem_singleton _))
   have c2 : gc ∈ Subgroup.closure (FreeGroup.of '' ghbStype 2) :=
     gen_mem_closure (Set.mem_insert _ _)
   have a2 : ga ∈ Subgroup.closure (FreeGroup.of '' ghbStype 2) :=
-    gen_mem_closure (Set.mem_insert_of_mem _ rfl)
+    gen_mem_closure (Set.mem_insert_of_mem _ (Set.mem_singleton _))
   simp only [relatorList, List.mem_cons, List.not_mem_nil, or_false] at hr'
   rcases hr' with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
   · exact ⟨0, pow_mem a0 7⟩
