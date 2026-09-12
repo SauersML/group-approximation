@@ -416,3 +416,23 @@ Verdict: **PASS** for all three claims and Corollaries 2.2 and 3.3. Nothing here
   `surjectivity-descends-to-centralized-coset-quotients` applies with quotient `Sp_4(Z)`, which is
   surjunctive. Invariant configurations lie in the image, so missed configurations have trivial
   `C_3`-stabilizer.
+
+## 8. Follow-ups since the verdicts
+
+- **w3-products `6f8045f79c`.** The claim and artifact Corollary 2 now state surjunctivity of products and
+  membership in `Cl(LEF)` separately, citing Section 1.4. Checked: no status change.
+- **w3-simple-direct `49f1229101`.** The Theorem 2.1(3) typo is fixed in the artifact and on
+  `strict-automata-copy-retract-poset-proof`. Checked: only that line changed.
+- **w3-bern-window `9f63e6cd3f`.** The amenable calibration now normalizes `1 in Omega` and counts through
+  `int_Omega F`, as suggested in 5.3. Artifact only.
+- **w3-deligne `0b2e69ee3`.**
+  - Open nodes `deligne-triple-cover-is-sofic`, `deligne-triple-cover-surjunctive` and
+    `deligne-triple-cover-nonsurjunctive` all read OPEN, with mutual `refuted_by`.
+  - The route `deligne-triple-cover-surjunctive-from-soficity` requires the OPEN soficity claim, so it
+    cannot fire.
+- **w3-inf-b `08530b3dc`,** Attempts correction on `kun-thom-wreath-bernoulli-rokhlin-maximal` (OPEN).
+  Correct as a mechanism analysis:
+  - an essentially free Bernoulli action of the nonamenable `W` has Cayley Schreier graphs;
+  - an amenable co-amenable subrelation of a nonamenable orbit relation is impossible by composing means;
+  - the withdrawn Kazhdan assertion was unproved, and removing it is right.
+  No claim consumes this.
