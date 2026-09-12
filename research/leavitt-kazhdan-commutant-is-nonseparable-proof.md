@@ -49,6 +49,15 @@ summand. So it is diffuse, and Step 2 gives `(NS)`. For `A_k`, `Ad sigma(u)^k`
 is a trace-preserving automorphism of `M` carrying `A_0` onto `A_k`, so `A_k`
 is non-separable as well.
 
-Countable saturation of ultraproducts over free ultrafilters on `N` is standard
-in continuous model theory (Ben Yaacov--Berenstein--Henson--Usvyatsov; Farah--Hart--Sherman).
-Step 2 is written out directly so that no model-theoretic statement is imported.
+**Sources.**
+- **Countable saturation.** Ultraproducts over free ultrafilters on `N` are
+  countably saturated: Farah--Hart--Sherman II, arXiv:1004.0741,
+  Proposition 4.11. That paper does not state the atomic-or-non-separable
+  dichotomy.
+- **The dichotomy, verified.** Popa, arXiv:1308.3982 (J. Funct. Anal. 266,
+  2014), Section 1, says: for `M = prod_omega M_n` with finite factors
+  `M_n`, `dim M_n -> infinity`, and `P` separable, "P' cap M = B0 (+) B1,
+  with B0 atomic and B1 diffuse and having no separable direct summand".
+  The corner in Step 1 satisfies these hypotheses.
+- **Self-contained.** Step 2 is written out directly, so nothing beyond these
+  statements is imported.
