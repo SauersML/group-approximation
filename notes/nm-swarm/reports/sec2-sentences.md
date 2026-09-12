@@ -32,7 +32,7 @@ to jacobson, except step (4), which sec2 wrote.
 |---|---|---|
 | Kazhdan/GHWArchimedeanWedge | wedge geometry at the archimedean places | compiled (4197466c8) |
 | Kazhdan/GHWArchimedeanSeparation | spectral reduction; `SeparationFinite` for every g; κ·\|log a\| ≤ μ(Δ) with κ = 2φ(1) | compiled: probe 0912-093859-21657 BUILT at 448d1bf45 (base 0ac9f4538) |
-| Kazhdan/GHWArchimedeanBound | adapters `archimedeanAffineBound_places(_fin)` compiled; `separationFinite`, `ghwArchimedeanAffineBound` not yet compiled | on main (6d8971521). Probe 0912-093859-21657 was red at one rewrite (`norm_smul` across the `comapHom` carrier); fixed at 6d8971521, re-probe running |
+| Kazhdan/GHWArchimedeanBound | adapters `archimedeanAffineBound_places(_fin)` compiled; `separationFinite`, `ghwArchimedeanAffineBound` | compiled: probe 0912-094259-57545 GREEN at 6d8971521 (base 9b29a2730); both endpoints pass `#audit_closed_axioms` |
 | Algebra/GHWFrobeniusSeparable | step (4): `GroupApproximation.GHW.exists_separable_frobenius_embedding` | compiled: probe 0912-092155-16446 GREEN at base 87ab7e225; axioms propext, Classical.choice, Quot.sound |
 
 Step (4), exact statement:
@@ -42,9 +42,11 @@ Algebra.IsSeparable L K' ∧ ∀ x : K, ((φ x : K') : K) = x ^ p ^ e`.
 The proof takes K' := separableClosure L K and e := the exponent of K / K'.  The map φ is
 `IsPurelyInseparable.iterateFrobenius`.
 
-Next: re-probe Bound at 6d8971521. Targets: `GroupApproximation.GHW.separationFinite : Walls.SeparationFinite` and
-`GroupApproximation.GHW.ghwArchimedeanAffineBound : GHWArchimedeanAffineBound`. Algebra/GHWFrobeniusSeparable is in the
-root-wiring wave; edits to it land with NM_ATTIC until a probe is green.
+Proved without hypotheses (probe 0912-094259-57545; the axioms of both are within the classical allowlist):
+`GroupApproximation.GHW.separationFinite : Walls.SeparationFinite` and
+`GroupApproximation.GHW.ghwArchimedeanAffineBound : GHWArchimedeanAffineBound`.  Through `archimedeanAffineBound_places_fin`
+the second discharges the `(A, hA)` input of `hasHaagerupProperty_of_places`.  Separation and Bound are not root-wired.
+Algebra/GHWFrobeniusSeparable is in the root-wiring wave; edits to it land with NM_ATTIC until a probe is green.
 
 ## Census
 
