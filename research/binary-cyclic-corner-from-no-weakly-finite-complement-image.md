@@ -1,0 +1,20 @@
+---
+rg: 2
+id: binary-cyclic-corner-from-no-weakly-finite-complement-image
+kind: route
+title: With no weakly finite image the complement corner fails the rank condition, so the binary cyclic corner is full
+target: binary-cyclic-averaging-idempotent-is-full-on-leavitt-units
+requires: [binary-complement-corner-has-no-weakly-finite-image, rank-condition-rings-have-weakly-finite-images, binary-cyclic-corner-full-iff-complement-corner-has-no-state]
+artifacts:
+  - research/artifacts/binary-weakly-finite-representations-2026-09-12.md
+---
+
+Artifact Theorem W, (b) => (a).
+1. By the first requirement, `T = f F_2[R^x] f` has no nonzero weakly finite image.
+2. By `rank-condition-rings-have-weakly-finite-images`, applied to the unital ring `T`, the corner `T` fails
+   the rank condition.
+3. By `binary-cyclic-corner-full-iff-complement-corner-has-no-state` (6 => 1), `c e b = 1` is solvable.
+
+**Nothing is lost.** The first requirement is also necessary for the target (artifact Theorem W, (a) => (c)
+=> (b), elementary). So this route turns the binary corner into a statement about weakly finite rings, with
+no states and no rank functions.
