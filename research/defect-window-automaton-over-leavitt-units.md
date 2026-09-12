@@ -31,13 +31,17 @@ Eden for `tau` on the window `{1, d}`.
   as padding adds only free letters. By
   `strict-automaton-tables-present-an-invisible-window-difference`, the table
   group with the window products must kill `x_d` in every sofic quotient.
-- *Where a small core dies.* Suppose the needed coincidences force only one
-  compression relator `u l u^-1 = l'` and one commutation `[c, l] = 1` among the
-  configuration letters. After eliminating `l'`, the core is
-  `<u> * <l, c | [l, c]> = Z * Z^2`. That group is residually finite, and `d` is
-  nontrivial in it, so `d` survives in a finite quotient and no such design can
-  have this window. The forward partition must force enough to kill `d` in every
-  sofic quotient. Within current knowledge that means the whole criterion
+- *Where a small core dies.* Suppose the needed coincidences impose on the
+  configuration letters only one compression relator `u l u^-1 = l'` and one
+  commutation `[c, l] = 1`, and every other relator peels with a private generator
+  (`forward-relations-of-a-counterexample-have-a-nonsofic-core`). With formal
+  letters the relators themselves peel, so the group is free. Even with the S- and
+  M-letters of `u, l, c` identified, eliminating `l'` gives
+  `<u> * <l, c | [l, c]> = Z * Z^2`. In that group `d` is the reduced alternating
+  word `u c u^-1 . l . u c^-1 u^-1 . l^-1`, hence nontrivial, and the group is
+  residually finite. So `d` survives in a finite quotient, contradicting the
+  required invisibility, and no such design has this window. The forward
+  partition must force enough to kill `d` in every sofic quotient. Within current knowledge that means the whole criterion
   (`openai-expander-matching-criterion`): a presentation giving property (T) to
   the `Gamma`-letters and the ambient letters, the nesting relators, and a non-LEF
   presentation for the `J`-letters. No rule pair is known whose forward
