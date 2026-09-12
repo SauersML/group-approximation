@@ -3,6 +3,8 @@ rg: 2
 id: sofic-permanence-closure-omits-simple-fa-nonsofic-groups
 kind: claim
 title: Extensions, graphs of groups, colimits and marked limits of sofic groups contain no finitely presented simple nonsofic FA group
+distinct_from:
+  gottschalk-counterexamples-lie-outside-the-permanence-closure: that closes the sofic groups under the landed permanence operations, including local embeddability and Arzhantseva--Gal extensions, and needs no property FA; this adds FA and survives arbitrary extensions, all graphs of groups and marked limits, so it also excludes permanence theorems not yet proved.
 artifacts:
   - research/artifacts/fixed-host-permanence-closure-obstruction-2026-09-12.md
 ---
