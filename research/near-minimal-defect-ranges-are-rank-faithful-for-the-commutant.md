@@ -4,6 +4,7 @@ id: near-minimal-defect-ranges-are-rank-faithful-for-the-commutant
 kind: claim
 title: At near-minimal defect, the range of a frame-triple defect sees every element of the commutant of its clopen cylinder group at its full rank
 distinct_from:
+  near-minimal-defects-are-rank-independent-of-cylinder-commutants: that is the same range, kernel and triangular count for elements commuting with one cylinder group iota_A(R^x), found independently by w4-sub-weyl; this states it for the commutant of any clopen cylinder group G_U and for matrices over it, and carries the weaker sufficient distortion target.
   near-minimal-defect-models-have-multiplicative-cylinder-defects: that controls products of disjoint cylinder defects; this controls every element and matrix of the commutant of a clopen cylinder group, which is the general form, and it isolates what a strict deficit has to distort.
 artifacts:
   - research/artifacts/halving-expansion-and-commutant-faithfulness-2026-09-12.md
