@@ -188,3 +188,55 @@ is the common refinement. An element of `H n K` permutes both partitions by pref
 So a star inside `V` is a star of subgroups of symmetric groups on cylinder partitions. Its pairwise
 intersections lie in the symmetric groups of the common refinements, as in Example 2.4. This fact is
 standard, and the proof above is included only to make the search checkable.
+
+## 4. V-hosted stars without block symmetries occur in a finite symmetric group
+
+**Proposition 4.1 (label realization).** Let `H_0, ..., H_k <= V` be finite, and choose cylinder
+partitions `P_s` with `H_s <= Sigma(P_s)`. Suppose that for all `s != t`, every element of `H_s n H_t`
+maps each piece of `P_s \ P_t` and each piece of `P_t \ P_s` to itself. Then the configuration occurs in
+the finite group `Sym(Y)`, where `Y` is the set of cylinders that are pieces of some `P_s`. So no nonzero
+laminar combination over these subgroups has `t_p <= 0`.
+
+*Proof.*
+1. **The actions.** Let `psi_s(h)` permute `P_s <= Y` as `h` permutes the pieces, and fix `Y \ P_s`. An
+   element of `Sigma(P_s)` fixing every piece is the identity, because it is a prefix replacement of each
+   piece onto itself. So `psi_s` is injective.
+2. **Agreement on intersections.** Let `g in H_s n H_t`.
+   - On `P_s n P_t`, `psi_s(g)` and `psi_t(g)` both apply the geometric action of `g`.
+   - On `P_s \ P_t` and `P_t \ P_s`, both fix every point: by hypothesis for the partition `g`'s own
+     subgroup uses, and because the other `psi` fixes labels outside its partition.
+   - Elsewhere both fix everything.
+3. **Exact intersections.** Suppose `psi_s(h) = psi_t(h')` with `h in H_s` and `h' in H_t`.
+   - This permutation fixes `P_s \ P_t` and `P_t \ P_s` pointwise, so `h` is the identity on
+     `X \ union(P_s n P_t)`. That set equals `union(P_s \ P_t) = union(P_t \ P_s)`. The same holds for `h'`.
+   - On the common pieces `h` and `h'` are the same prefix replacements between the same pieces.
+   - So `h = h'` as homeomorphisms, and it lies in `H_s n H_t`. Thus `psi_s(H_s) n psi_t(H_t) = psi(D_st)`.
+4. **Conclusion.** Theorem 2.6 of the `w4-kap-join` artifact applies with `Gamma = Sym(Y)`. QED
+
+**Example 4.2 (an essential triangle in `V` with an infinite join, which still dies).** Put
+`U_1 = [000]`, `U_2 = [001]`, `U_3 = [010]`, `U_4 = [011]`, `U_5 = [10]`, `U_6 = [11]`, and take:
+- `P_0 = {U_1, U_2, U_3, [0110], [0111], U_5, U_6}` (`U_4` split);
+- `P_1 = {U_1, U_2, U_3, U_4, U_5, [110], [111]}` (`U_6` split);
+- `P_2 = {U_1, [0010], [0011], U_3, U_4, U_5, U_6}` (`U_2` split);
+- `H_s = Sigma(P_s) ~= S_7`.
+
+Each split region is the unique piece of its shape, so it is fixed pointwise by every intersection. The
+intersections are:
+- `D_01 = Sym{U_1, U_2, U_3, U_5}`;
+- `D_12 = Sym{U_1, U_3, U_4, U_5}`;
+- `D_02 = Sym{U_1, U_3, U_5, U_6}`;
+- triple intersection `Sym{U_1, U_3, U_5}`.
+
+So:
+- **Essential.** Every edge is essential: `(U_1 U_2) in D_01 \ H_2`, `(U_3 U_4) in D_12 \ H_0` and
+  `(U_5 U_6) in D_02 \ H_1`.
+- **Infinite join.** With `t = (010x <-> 0110x) in H_0` and `(U_3 U_4) in H_1`, the composite
+  `g = (U_3 U_4) t` maps `[010]` into `[0100]`, so `g` has infinite order.
+- **Still dead.** The hypothesis of Proposition 4.1 holds, so the configuration occurs in `Sym(12)` and
+  carries no overfilled star.
+
+**Corollary 4.3 (block symmetries).** An overfilled star with all subgroups in `V` has the following
+property for every choice of partitions `P_s` with `H_s <= Sigma(P_s)`: some intersection element moves a
+piece of `P_s \ P_t` to a different piece. That element exchanges two regions with the same relative
+substructure: two pieces of `P_s` that are subdivided identically in `P_t`, or that sit at the same address
+inside two pieces of `P_t`.

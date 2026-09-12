@@ -80,8 +80,13 @@ artifacts:
 - **Search inside `V`.** `finite-subgroups-of-thompson-v-permute-a-canonical-partition`: every finite
   `H <= V` sits in `Sigma(P_H) ~= Sym(|P_H|)` for a canonical coarsest cylinder partition, and
   `H n K <= Sigma(P_H ^ P_K)`. So V-hosted stars can be enumerated from partitions and tested with the
-  essential-graph criterion. No essential V-hosted triangle with an infinite join has been exhibited
-  yet.
+  essential-graph criterion.
+- **Label realization in `V`.** `v-hosted-stars-without-block-symmetries-occur-in-finite-groups`: if
+  every intersection element fixes all non-common partition pieces, the configuration occurs in
+  `Sym(union of the P_s)` with exact intersections, so it is dead. Artifact Example 4.2 is an essential
+  triangle of `S_7`'s in `V` with `S_4` intersections and an infinite join; it lives in `Sym(12)`. A
+  V-hosted survivor needs *block symmetries*: intersection elements exchanging non-common pieces with
+  identical relative substructure.
 - **Where it stops.** No overfilled star has been constructed, and there is no obstruction for
   essential cycles whose amalgam has no sofic quotient injective on the union of the vertex groups.
   Candidate amalgams are colimits of nonpositively curved triangles of finite groups, such as hyperbolic
