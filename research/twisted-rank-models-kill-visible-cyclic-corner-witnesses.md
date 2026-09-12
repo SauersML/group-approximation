@@ -10,7 +10,8 @@ artifacts:
   - research/artifacts/quaternary-twisted-corner-census-2026-09-12.md
 ---
 
-**ESTABLISHED.** Let `q = p^r`, `d >= 2`, and `m >= 2` admissible with `p ∤ m` and `m | q − 1`. Let `g`
+**ESTABLISHED** (independently re-derived by lane `w3-vf-linear`: Section 2 of
+`research/artifacts/w3-vf-linear-verification-2026-09-12.md`, commit 2e937868ed). Let `q = p^r`, `d >= 2`, and `m >= 2` admissible with `p ∤ m` and `m | q − 1`. Let `g`
 be the `m`-cycle permutation unit of an `m`-ary Leavitt family in `L_(F_q)(1,d)`, `δ = Σ_i ζ^i s_i t_i`
 with `ζ` of order `m`, and `e_1 = eps_iota (1/m) Σ_k [g^k]`, where `eps_iota` is the idempotent of the
 inclusion character of the scalars `Z = F_q^x`. Let `Γ` contain `Z`, `g` and `δ`, and put
