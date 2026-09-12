@@ -9,6 +9,5 @@ artifacts:
   - research/artifacts/kl-schur-kernel-central-extensions-2026-09-11.md
 ---
 
-The Leavitt unit group is superperfect (Khanh, arXiv:2609.08428v1, unverified
-here), so its own Schur multiplier is zero. The kill therefore lives over the
+The Leavitt unit group is superperfect (Khanh, arXiv:2609.08428v1, Theorem 4.4; see `leavitt-unit-group-finitely-presented`), so its own Schur multiplier is zero. The kill therefore lives over the
 amalgam `R^x *_(<a>) (<a> x Z)`, not over `R^x` itself.

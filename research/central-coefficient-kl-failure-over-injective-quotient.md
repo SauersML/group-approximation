@@ -27,7 +27,7 @@ arithmetic groups, can be tested.
    open. Even if that holds, only the centralized quotient is decided.
    Survival in the plain quotient still has to fail.
 2. **Leavitt unit group.** It does not fit this shape. The unit group has
-   trivial center, and Khanh (arXiv:2609.08428v1, a preprint not verified here)
+   trivial center, and Khanh (arXiv:2609.08428v1; whole-paper check recorded at `leavitt-steinberg-map-iso-from-rank-three`)
    proves it is acyclic, with `St_r(L) -> GL_r(L)` an isomorphism for
    `r >= 3`. So it has no nontrivial central extension at all, and the
    Steinberg covers of `L_(F_2)(1,2)` add none. Its Kervaire--Laudenbach status
