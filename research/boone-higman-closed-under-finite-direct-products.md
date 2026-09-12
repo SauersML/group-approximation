@@ -30,14 +30,14 @@ presented simple group.
     applied to the product pair.
 - **From MIF envelopes.** Enlarge `S` and `T` to finitely presented simple MIF
   groups (BFFHZ Question 3.4, `fp-simple-groups-embed-in-fp-simple-mif-groups`),
-  then use BFFHZ Theorem C (iv)⇒(i) and closure of `B_A` under products. The
-  route node `bh-direct-products-via-mif-envelopes` was drafted by lane
-  `bh-metabelian-5-3-7` and is not yet on main.
+  then use BFFHZ Theorem C (iv)⇒(i) and closure of `B_A` under products. Route:
+  `bh-direct-products-via-mif-envelopes`.
 
 **Why it matters.** It is step (P) of `fp-metabelian-groups-satisfy-boone-higman`.
 A finitely generated metabelian group embeds in a product of linear groups over
 fields of different characteristics, and the known envelopes for those factors
-live in different hosts. That lane's draft was not yet on main when this node landed.
+live in different hosts. The embedding is Wehrfritz's Corollary 1.2, recorded in
+`fg-metabelian-groups-embed-in-products-of-coprimary-quotients`.
 
 **Sources checked** (PDF texts extracted on MSI; see the artifact for line numbers).
 - **BBMZ survey** (arXiv:2306.16356v3): no closure under direct products is stated
