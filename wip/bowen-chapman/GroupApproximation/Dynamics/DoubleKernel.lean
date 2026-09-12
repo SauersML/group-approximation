@@ -10,6 +10,11 @@ import GroupApproximation.Sofic.WeakMFNonsoficDouble
 
 For a pointed group set, the kernel model has one free generator at every
 non-base site. Translation acts by changing the basepoint in each generator.
+
+For a subgroup `Γ ≤ A` and the coset space `A ⧸ Γ` pointed at the trivial
+coset, the symmetric double `A *_Γ A` is isomorphic to the semidirect product
+of this free kernel by `A` (`doubleModelEquiv`). The first copy of `A` goes to
+the acting group, and the second copy of `g` goes to `(e_(g x₀)⁻¹, g)`.
 -/
 
 namespace GroupApproximation.Surjunctivity.DoubleKernel
@@ -123,6 +128,12 @@ theorem secondCopy_eq_inr {g : G} (hg : g • x₀ = x₀) :
   · simp [hg]
   · rfl
 
+theorem secondCopy_eq_inl_mul_inr (g : G) :
+    secondCopy x₀ g =
+      SemidirectProduct.inl (letter x₀ (g • x₀))⁻¹ * SemidirectProduct.inr g := by
+  rw [← SemidirectProduct.inl_left_mul_inr_right (secondCopy x₀ g), secondCopy_left,
+    secondCopy_right]
+
 section Double
 
 variable (A : Type u) [Group A] (Γ : Subgroup A)
@@ -137,6 +148,10 @@ theorem subgroup_fixes_base (γ : Γ) : (γ : A) • baseSite A Γ = baseSite A 
   change QuotientGroup.leftRel Γ ((γ : A) * 1) 1
   rw [QuotientGroup.leftRel_apply]
   simpa only [mul_one] using Γ.inv_mem γ.property
+
+theorem smul_baseSite (g : A) : g • baseSite A Γ = (QuotientGroup.mk g : A ⧸ Γ) := by
+  change (QuotientGroup.mk (g * 1) : A ⧸ Γ) = QuotientGroup.mk g
+  rw [mul_one]
 
 noncomputable def modelCopy : ∀ b, DoubleFactor A b →* Model A Γ
   | true => SemidirectProduct.inr
@@ -257,6 +272,39 @@ theorem fromModel_toModel : (fromModel A Γ).comp (toModel A Γ) = MonoidHom.id 
     change (difference A Γ (g * 1))⁻¹ * inDouble A Γ true g = inDouble A Γ false g
     simp only [mul_one, difference]
     group
+
+/-- The difference of the two copies of `g` is the letter of the coset of `g`. -/
+theorem toModel_difference (g : A) :
+    toModel A Γ (difference A Γ g) =
+      SemidirectProduct.inl (letter (baseSite A Γ) (QuotientGroup.mk g)) := by
+  rw [difference, map_mul, map_inv, toModel_inDouble, toModel_inDouble]
+  change SemidirectProduct.inr g * (secondCopy (baseSite A Γ) g)⁻¹ = _
+  rw [secondCopy_eq_inl_mul_inr, mul_inv_rev, mul_inv_cancel_left, map_inv, inv_inv,
+    smul_baseSite]
+
+theorem toModel_fromModel : (toModel A Γ).comp (fromModel A Γ) = MonoidHom.id _ := by
+  apply SemidirectProduct.hom_ext
+  · apply freeHom_ext
+    rintro ⟨c, hc⟩
+    obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective c
+    have hletter : (FreeGroup.of ⟨QuotientGroup.mk g, hc⟩ : Kernel (baseSite A Γ)) =
+        letter (baseSite A Γ) (QuotientGroup.mk g) :=
+      (letter_of (baseSite A Γ) ⟨QuotientGroup.mk g, hc⟩).symm
+    change toModel A Γ (fromModel A Γ
+        (SemidirectProduct.inl (FreeGroup.of ⟨QuotientGroup.mk g, hc⟩))) =
+      SemidirectProduct.inl (FreeGroup.of ⟨QuotientGroup.mk g, hc⟩)
+    rw [hletter, fromModel_inl, kernelToDouble_letter]
+    exact toModel_difference A Γ g
+  · apply MonoidHom.ext
+    intro g
+    change toModel A Γ (fromModel A Γ (SemidirectProduct.inr g)) = SemidirectProduct.inr g
+    rw [fromModel_inr, toModel_inDouble]
+    rfl
+
+/-- The symmetric double is isomorphic to its free-kernel semidirect model. -/
+noncomputable def doubleModelEquiv : SymmetricDouble A Γ ≃* Model A Γ :=
+  MonoidHom.toMulEquiv (toModel A Γ) (fromModel A Γ) (fromModel_toModel A Γ)
+    (toModel_fromModel A Γ)
 
 end Double
 
