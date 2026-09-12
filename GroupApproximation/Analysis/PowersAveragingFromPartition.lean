@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.GroupHilbertSubsetProjection
+import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
 import GroupApproximation.Analysis.ReducedGroupCStarSpan
 import GroupApproximation.Analysis.OrthogonalProjectionSumEstimate
 
@@ -93,16 +94,18 @@ theorem subsetProjection_add_of_partition {C D : Set G} (hdisj : Disjoint C D)
     (hunion : C ∪ D = Set.univ) :
     subsetProjection G C + subsetProjection G D = 1 := by
   refine ContinuousLinearMap.ext fun x ↦ lp.ext (funext fun g ↦ ?_)
-  rw [ContinuousLinearMap.add_apply, lp.coeFn_add, Pi.add_apply,
+  rw [add_apply, lp.coeFn_add, Pi.add_apply,
     subsetProjection_apply, subsetProjection_apply]
   have hg : g ∈ C ∪ D := by rw [hunion]; exact Set.mem_univ g
   rcases hg with hC | hD
   · have hnD : g ∉ D := Set.disjoint_left.mp hdisj hC
     rw [indicatorSymbol_of_mem G hC, indicatorSymbol_of_notMem G hnD, one_mul,
       zero_mul, add_zero]
+    exact rfl
   · have hnC : g ∉ C := Set.disjoint_right.mp hdisj hD
     rw [indicatorSymbol_of_notMem G hnC, indicatorSymbol_of_mem G hD, one_mul,
       zero_mul, zero_add]
+    exact rfl
 
 /-! ## The set-theoretic interface -/
 
@@ -116,7 +119,7 @@ theorem leftRegularOperator_mul_subsetProjection (g : G) (S : Set G) :
         rw [star_leftRegularOperator_mul_self, mul_one]
     _ = leftRegularOperator G g * subsetProjection G S *
           star (leftRegularOperator G g) * leftRegularOperator G g := by
-        rw [mul_assoc]
+        simp only [mul_assoc]
     _ = subsetProjection G (g • S) * leftRegularOperator G g := by
         rw [leftRegularOperator_conj_subsetProjection]
 
@@ -146,9 +149,8 @@ theorem norm_average_le_of_partition
     ‖(n : ℂ)⁻¹ • ∑ i : Fin n,
         leftRegularOperator G (g i) * a * star (leftRegularOperator G (g i))‖
       ≤ 2 * ‖a‖ / Real.sqrt n := by
-  set 𝔅 := GroupHilbert G →L[ℂ] GroupHilbert G
-  set P : 𝔅 := subsetProjection G C with hP
-  set Q : 𝔅 := subsetProjection G D with hQ
+  set P : (GroupHilbert G →L[ℂ] GroupHilbert G) := subsetProjection G C with hP
+  set Q : (GroupHilbert G →L[ℂ] GroupHilbert G) := subsetProjection G D with hQ
   -- `a = a Q + Q a P`.
   have hsplit : a = a * Q + Q * a * P := by
     have hPQ : P + Q = 1 := subsetProjection_add_of_partition G hdisj hunion
@@ -161,18 +163,19 @@ theorem norm_average_le_of_partition
     rw [hlhs, hrhs, hPaP, add_zero] at expand
     exact expand
   -- The three families.
-  set A : Fin n → 𝔅 := fun i ↦
+  set A : Fin n → (GroupHilbert G →L[ℂ] GroupHilbert G) := fun i ↦
     leftRegularOperator G (g i) * a * star (leftRegularOperator G (g i)) with hA
-  set B : Fin n → 𝔅 := fun i ↦
+  set B : Fin n → (GroupHilbert G →L[ℂ] GroupHilbert G) := fun i ↦
     leftRegularOperator G (g i) * (a * P) * star (leftRegularOperator G (g i)) with hB
-  set R : Fin n → 𝔅 := fun i ↦ subsetProjection G (g i • D) with hR
+  set R : Fin n → (GroupHilbert G →L[ℂ] GroupHilbert G) := fun i ↦
+    subsetProjection G (g i • D) with hR
   -- The `Rᵢ` are pairwise orthogonal self-adjoint contractions.
   have hRstar : ∀ i, star (R i) = R i := fun i ↦ subsetProjection_star G _
   have hRnorm : ∀ i, ‖R i‖ ≤ 1 := fun i ↦ norm_subsetProjection_le_one G _
   have hRorth : ∀ i j, i ≠ j → R i * R j = 0 := fun i j hij ↦
     subsetProjection_mul_of_disjoint G (hg i j hij)
   -- Norm bounds on `A` and `B`.
-  have hconj : ∀ (x : 𝔅) (i : Fin n),
+  have hconj : ∀ (x : (GroupHilbert G →L[ℂ] GroupHilbert G)) (i : Fin n),
       ‖leftRegularOperator G (g i) * x * star (leftRegularOperator G (g i))‖ ≤ ‖x‖ := by
     intro x i
     have h1 : ‖leftRegularOperator G (g i) * x * star (leftRegularOperator G (g i))‖
@@ -181,8 +184,8 @@ theorem norm_average_le_of_partition
     have h2 : ‖leftRegularOperator G (g i) * x‖ ≤ ‖leftRegularOperator G (g i)‖ * ‖x‖ :=
       norm_mul_le _ _
     have h3 : ‖star (leftRegularOperator G (g i))‖ ≤ 1 := by
-      rw [norm_star]
-      exact norm_leftRegularOperator_le_one G (g i)
+      rw [star_leftRegularOperator]
+      exact norm_leftRegularOperator_le_one G (g i)⁻¹
     nlinarith [norm_nonneg x, norm_nonneg (leftRegularOperator G (g i)),
       norm_nonneg (leftRegularOperator G (g i) * x),
       norm_leftRegularOperator_le_one G (g i), h1, h2, h3]
@@ -201,7 +204,8 @@ theorem norm_average_le_of_partition
     have hRi : R i = leftRegularOperator G (g i) * Q *
         star (leftRegularOperator G (g i)) := by
       rw [hR, hQ, leftRegularOperator_conj_subsetProjection]
-    have hvu : ∀ X : 𝔅, star (leftRegularOperator G (g i)) *
+    have hvu : ∀ X : (GroupHilbert G →L[ℂ] GroupHilbert G),
+        star (leftRegularOperator G (g i)) *
         (leftRegularOperator G (g i) * X) = X := by
       intro X
       rw [← mul_assoc, star_leftRegularOperator_mul_self, one_mul]
@@ -254,12 +258,10 @@ theorem norm_average_le_of_partition
     rw [norm_smul, norm_inv, Complex.norm_natCast]
   rw [hnormsmul]
   have hnpos : (0 : ℝ) < (n : ℝ) := by exact_mod_cast hn
-  have hcast : (n : ℝ) = Real.sqrt n * Real.sqrt n :=
-    (Real.mul_self_sqrt (Nat.cast_nonneg n)).symm
   have hfinal : (n : ℝ)⁻¹ * (2 * (Real.sqrt n * ‖a‖)) = 2 * ‖a‖ / Real.sqrt n := by
-    rw [hcast]
-    field_simp
-    ring
+    calc (n : ℝ)⁻¹ * (2 * (Real.sqrt n * ‖a‖)) = 2 * ‖a‖ * (Real.sqrt n / n) := by ring
+      _ = 2 * ‖a‖ * (1 / Real.sqrt n) := by rw [Real.sqrt_div_self']
+      _ = 2 * ‖a‖ / Real.sqrt n := by ring
   calc (n : ℝ)⁻¹ * ‖∑ i : Fin n, A i‖
       ≤ (n : ℝ)⁻¹ * (2 * (Real.sqrt n * ‖a‖)) := by
         exact mul_le_mul_of_nonneg_left htotal (le_of_lt (inv_pos.mpr hnpos))
@@ -287,6 +289,7 @@ theorem coe_reducedAverageSum (a : ReducedGroupCStar G) (n : ℕ) (g : Fin n →
   rw [AddSubmonoidClass.coe_finsetSum]
   refine Finset.sum_congr rfl fun i _ ↦ ?_
   rw [MulMemClass.coe_mul, MulMemClass.coe_mul, StarMemClass.coe_star]
+  rfl
 
 /-- **Powers' averaging estimate from a partition, inside `C*_r(G)`.**
 
