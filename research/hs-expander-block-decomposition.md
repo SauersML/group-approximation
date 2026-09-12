@@ -94,22 +94,52 @@ for every self-adjoint `x in q_A M_d q_A`.
 
 ### Compressor transport of fine blocks
 
-For each `t in {u,v}` and every fine atom `p_j`, there is a fine atom
-`p_(sigma_t(j))` such that
+For each `t in {u,v}` there is a map `sigma_t` on the fine atoms such that
 
 ```text
-||phi(t)p_j phi(t)^* - p_(sigma_t(j))||_2 <= eps(delta),
-tau(p_(sigma_t(j))) >= tau(p_j)-eps(delta).
+sum_j ||phi(t) p_j phi(t)^* - p_(sigma_t(j))||_2^2 <= eps(delta).
 ```
 
-No injectivity of `sigma_t` is assumed at this stage; the later median and
-majority argument is what extracts the matching on the nonexceptional mass.
+This is mass-weighted.  It is the tracial form of estimate `(5)` of
+`official/counterexample.tex`, which bounds total unmatched vertex mass.
+
+*Corrected 2026-09-11.*  The former clause bounded each atom separately:
+`||phi(t)p_j phi(t)^* - p_(sigma_t(j))||_2 <= eps(delta)` and
+`tau(p_(sigma_t(j))) >= tau(p_j)-eps(delta)`.  By
+`hs-per-atom-compressor-clause-is-vacuous`, that holds with `sigma_t = id` on
+every atom of trace at most `eps(delta)^2/4` and yields no multiplicative size
+drift, so it could not feed the median step.
+
+No injectivity of `sigma_t` is assumed.  Atoms sharing an image carry total
+trace at most `8 eps(delta)` (`hs-per-atom-compressor-clause-is-vacuous-proof`).
 
 This is the exact structural input used by
 `tracial-median-from-block-decomposition` and
 `hs-block-decomposition-to-steinberg-stable`: the fine `Gamma` atoms define
 the block-size observable, the coarse `G` atoms provide its fiberwise medians,
 and the two compressors provide the one-sided size drift.
+
+## This claim is equivalent to the stable branch (2026-09-11)
+
+This hole does not decompose `leavitt-steinberg-hs-stable`; it restates it.
+
+* **Forward.**  By `transported-gap-masa-kills-leavitt-hs-models`, the fine
+  clauses and the `u`-transport clause alone force every almost-representation
+  sequence of `G` to tend to `1`, so the branch follows
+  (`hs-blocks-select-stable-branch-through-masa-transport`).  The coarse
+  blocks, the median step, the majority matching and the compressor `v` are
+  not needed.  The reason: a positive scalar adjoint gap makes the fine atom
+  algebra a masa of the ultraproduct relative commutant of `Gamma`, and no
+  masa of that commutant can be carried back into it by `u` while the
+  Thompson copy `J` survives.
+* **Converse.**  By `stable-branch-trivializes-hs-block-programme`, on the
+  stable branch rank-one atoms satisfy every clause
+  (`hs-block-decomposition-from-stable-branch`).
+
+So on the unstable branch this claim fails in every faithful model, and a
+proof of it is a proof excluding faithful models.  Only bounded observables
+are ever fed to the gap clauses (step 2 of that derivation), so the anti-spike
+issue below concerns a stronger statement than any consumer uses.
 
 ## Why the claim is application-specific
 

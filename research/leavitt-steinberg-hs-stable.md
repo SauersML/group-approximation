@@ -142,6 +142,38 @@ faithful on each root subgroup.  In the regular representation those root
 algebras are diffuse, so the finite coefficient-quotient argument cannot be
 reused at factor level.
 
+**The normalized-HS differential, settled (2026-09-11).**  Both proved
+mechanisms have now been transcribed, and each fails at a named step.
+
+* *Operator norm (non-MF).*  It fails at the transport of the Kazhdan
+  projection by `Ad V_n(u)`.  Two-norm multiplicativity gives no operator
+  control of conjugation: `hs-analogue-of-normal-kazhdan-criterion-is-false`.
+* *Hamming (nonsofic).*  Its conservation, majority matching and median steps
+  transcribe; `hs-per-atom-compressor-clause-is-vacuous` records the corrected,
+  mass-weighted compressor clause they need.  Kun's expander components do
+  not transcribe.  Normalized HS cannot see their vector-level gap, and the
+  only tracially visible gap, the adjoint one, makes the block algebra a masa
+  of the Kazhdan relative commutant.  Transporting such a masa by `u` is
+  algebraically fatal to every nontrivial model:
+  `transported-gap-masa-kills-leavitt-hs-models`.
+
+Hence the block programme below is exact but not a reduction.
+`stable-branch-trivializes-hs-block-programme` proves that
+`hs-expander-block-decomposition` is equivalent to this claim.  Modulo the
+universal one-level theorem, `leavitt-hs-block-compatibility` is equivalent
+too.  A proof along these lines must exclude faithful models directly, and
+any faithful model must realize the strict relative-commutant tower
+described in the masa claim.
+
+The remaining non-restated inputs in this region are universal statements
+about Kazhdan groups:
+
+* `hs-one-level-expander-block-decomposition`, which only needs bounded
+  witnesses; and
+* coordinate capture of Kazhdan relative commutants.
+
+Neither mentions `L`.
+
 **Where the branch is actually decided.**  The only mechanism that has ever
 closed a question of this shape for this group is the one that proved `Q`
 nonsofic: Kun's expander decomposition, a conservation identity, and a
