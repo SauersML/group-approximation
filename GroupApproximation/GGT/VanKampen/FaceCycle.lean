@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.CyclicFaceBoundary
+import GroupApproximation.GGT.VanKampen.FaceBoundaryRotation
 import GroupApproximation.GGT.VanKampen.OneFaceWordTrivial
 import GroupApproximation.Meta.AxiomGuard
 
@@ -90,7 +91,7 @@ theorem exists_rotate_cons (_hl : M.IsFaceCycle l) {a : M.Dart} (ha : a ∈ l) :
     ∃ (k : ℕ) (rest : List M.Dart), k ≤ l.length ∧ l.rotate k = a :: rest := by
   obtain ⟨s, t, rfl⟩ := List.append_of_mem ha
   refine ⟨s.length, t ++ s, by simp only [List.length_append, List.length_cons]; omega, ?_⟩
-  exact (List.rotate_append_length_eq s (a :: t)).trans (List.cons_append a t s)
+  exact (List.rotate_append_length_eq s (a :: t)).trans List.cons_append
 
 /-- Two face cycles of one face are rotations of each other. -/
 theorem exists_rotate_eq {l₁ l₂ : List M.Dart} (h₁ : M.IsFaceCycle l₁)
@@ -103,7 +104,7 @@ theorem exists_rotate_eq {l₁ l₂ : List M.Dart} (h₁ : M.IsFaceCycle l₁)
   have e₁ := eq_orbitWalk_of_isChain M.facePerm (l₁.rotate k) (l₂.head h₂.ne_nil)
     (h₁.rotate k).chain (by simp [hrot])
   have e₂ := eq_orbitWalk_of_isChain M.facePerm l₂ (l₂.head h₂.ne_nil) h₂.chain
-    (List.head?_eq_head h₂.ne_nil)
+    (List.head?_eq_some_head h₂.ne_nil)
   have hlen : (l₁.rotate k).length = l₂.length := by
     rw [List.length_rotate, h₁.length_eq, h₂.length_eq, hface]
   rw [e₁, hlen]
