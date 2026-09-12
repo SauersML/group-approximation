@@ -68,6 +68,19 @@ theorem printedKhanhThanhDecomposition_everyArity : PrintedKhanhThanhDecompositi
 theorem scalarSurjective_everyArity : ScalarSurjectiveEveryArity :=
   fun k _ d hd ↦ scalarSurjective_holds k d hd
 
+/-- "So `[H,H] ≤ EL_d(R)`" at every field and every `d ≥ 2`, as one closed proposition. -/
+def CommutatorInElementaryPrintedEveryArity : Prop :=
+  ∀ (k : Type) [Field k] (d : ℕ), 2 ≤ d →
+    commutator (Matrix (Fin d) (Fin d) (AryLeavittAlgebra k d))ˣ ≤
+      elementaryGroup (Fin d) (AryLeavittAlgebra k d)
+
+/-- **Closed carrier of the printed consequence** "So `[H,H] ≤ EL_d(R)`": the printed-route
+lemma instantiated with the closed decomposition. -/
+theorem manuscriptSentence_commutatorInElementaryPrinted :
+    CommutatorInElementaryPrintedEveryArity :=
+  fun k _ d hd ↦ commutator_le_elementaryGroup_of_printedDecomposition k d hd
+    (printedKhanhThanhDecomposition_everyArity k d hd)
+
 end KhanhThanhDiagonal
 end OneSidedMFRadical
 end Manuscript
