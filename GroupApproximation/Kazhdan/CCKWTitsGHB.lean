@@ -28,21 +28,21 @@ theorem vertexGroup_zero :
     vertexGroup 0 = (Subgroup.closure (FreeGroup.of '' ghbStype 0)).map (PresentedGroup.mk (relators 7)) := by
   show Subgroup.closure {a 7, b 7} =
     (Subgroup.closure (FreeGroup.of '' ({0, 1} : Set (Fin 3)))).map (PresentedGroup.mk (relators 7))
-  rw [Subgroup.map_closure, Set.image_image, Set.image_insert_eq, Set.image_singleton]
+  rw [MonoidHom.map_closure, Set.image_image, Set.image_insert_eq, Set.image_singleton]
   rfl
 
 theorem vertexGroup_one :
     vertexGroup 1 = (Subgroup.closure (FreeGroup.of '' ghbStype 1)).map (PresentedGroup.mk (relators 7)) := by
   show Subgroup.closure {c 7, b 7} =
     (Subgroup.closure (FreeGroup.of '' ({2, 1} : Set (Fin 3)))).map (PresentedGroup.mk (relators 7))
-  rw [Subgroup.map_closure, Set.image_image, Set.image_insert_eq, Set.image_singleton]
+  rw [MonoidHom.map_closure, Set.image_image, Set.image_insert_eq, Set.image_singleton]
   rfl
 
 theorem vertexGroup_two :
     vertexGroup 2 = (Subgroup.closure (FreeGroup.of '' ghbStype 2)).map (PresentedGroup.mk (relators 7)) := by
   show Subgroup.closure {c 7, a 7} =
     (Subgroup.closure (FreeGroup.of '' ({2, 0} : Set (Fin 3)))).map (PresentedGroup.mk (relators 7))
-  rw [Subgroup.map_closure, Set.image_image, Set.image_insert_eq, Set.image_singleton]
+  rw [MonoidHom.map_closure, Set.image_image, Set.image_insert_eq, Set.image_singleton]
   rfl
 
 theorem comm_mem {G : Type*} [Group G] {K : Subgroup G} {x y : G} (hx : x ∈ K) (hy : y ∈ K) :
