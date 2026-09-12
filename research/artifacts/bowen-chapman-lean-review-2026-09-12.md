@@ -178,7 +178,8 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 2f1092457 eighteen landings touch the campaign: the Palomar
+As of `origin/main` 017bdb868 nineteen landings touch the campaign (the
+nineteenth is the witness given normalization at the pair, F4(t)): the Palomar
 challenge (6ae077316), solution (1ad7aa663) and pending gate registration
 (73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
 (0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
@@ -502,8 +503,9 @@ defect.**
   F4(p).
 * Design note sent to `bc-assembly`, optional: the derivation uses
   `hnormalization` only at `Peripheral ≤ Ambient`, so a leaf
-  `HasSequentialCentralizerNormalization Peripheral` would also admit a
-  pair-specific producer.
+  `HasSequentialCentralizerNormalization Peripheral` would also allow a
+  pair-specific producer. `bc-assembly` covered this with a separate module,
+  F4(t).
 * Probe evidence: record `bc-assembly.green.0912-120804-51046` at base
   bac03055a carries `# PROBE GREEN`, names the module, and holds the landed md5
   `d9d5b17f…`. The 60-module import closure did not change between the record
@@ -536,6 +538,31 @@ root-wired. No defect.**
   6146a3480 carries `# PROBE GREEN`, names all three modules, and holds all
   three landed md5s. The 10-module import closure did not change.
 * Three root imports are added. The only deletions are the WIP snapshots.
+
+**(t) Landed: `BowenChapman/EndpointOfNormalization`, 017bdb868, root-wired.
+Content: no defect. Docstring: one overclaim, sent to `bc-assembly`.**
+* `symmetricDouble_fg_surjunctive_not_isSofic_of_normalization (hnormalization :
+  HasSequentialCentralizerNormalization Peripheral)` concludes the pinned
+  three-part statement: finitely generated, surjunctive and not sofic. Its one
+  hypothesis is Theorem 4.1 at the explicit pair only.
+* Every other input is a landed proof:
+  * finite generation, via `symmetricDouble_finitelyGenerated` and `ambient_fg`;
+  * surjunctivity, via `isSurjunctive_symmetricDouble`,
+    `isSurjunctive_of_residuallyFinite` and `ambient_residuallyFinite`;
+  * nonsoficity, via `exists_escape_of_not_normal peripheral_not_normal` and
+    `not_isSofic_symmetricDouble_of_sequentialNormalization`, whose
+    `[Countable Ambient]` comes from the landed `ambient_countable` instance.
+* **Docstring overclaim.** The module header says the remaining hypothesis is
+  supplied from Kun–Thom Theorem 4.1, "proved in `GroupApproximation.KunThom`",
+  by `GroupApproximation.BowenChapman.Endpoint`. Neither exists on main yet:
+  only the generation step and the patching toolkit have landed, and
+  `HasSequentialCompressorNormalization` has no producer. Proposed rewording:
+  "the Theorem 4.1 lanes aim to supply it".
+* Probe evidence: record `bc-assembly.green.0912-121349-70497` at base
+  28b2f31cd carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `11a5bccd…`. The 296-module import closure did not change between the record
+  base and the landing parent.
+* One root import is added. Nothing is deleted.
 
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
