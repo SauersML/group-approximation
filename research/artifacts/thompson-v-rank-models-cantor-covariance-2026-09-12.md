@@ -125,3 +125,69 @@ unital ring homomorphism `rho` of the diagonal subalgebra into the same `M`, cov
 `sigma|_V` is impossible. The diagonal subalgebra alone has rank models (its dyadic "Haar" model),
 so this is a filter specific to covariance. It is weaker than `leavitt-algebra-has-no-unital-rank-model`
 in what it represents, and it uses only `V`.
+
+**3.5. What the theorem uses: halving, not only covariance.** The proof needs elements that map a
+clopen set onto a proper clopen subset of itself, as `h_1` maps `[0]` onto `[00]`. Measure-preserving
+Cantor systems admit covariant rank models. For instance a `Z`-subshift with its Haar or uniform measure
+has dyadic covariant models, since the cylinder idempotent ranks can follow the invariant measure.
+`w3-gate-bridge-b` noted the case `EL_3(C(X,F_2) ⋊ Z)`. So the obstruction comes from the
+paradoxical, non-measure-preserving part of `V`, the same part behind
+`thompson-v-cantor-orbits-have-no-folner-sets`.
+
+## 4. The V rank gate
+
+**4.1. Nodes.**
+- `thompson-v-is-f2-linear-sofic` (open): `V` embeds in a characteristic-two matrix rank ultraproduct.
+- `thompson-v-has-no-nontrivial-f2-rank-model` (open): every homomorphism from `V` into such an
+  ultraproduct is trivial.
+
+Each refutes the other. `V` is simple, so a nontrivial homomorphism is injective.
+
+**4.2. Soficity feeds the positive side.** If `V` is sofic, then `sofic-implies-linear-sofic-over-every-field`
+gives an injective homomorphism into a characteristic-two rank ultraproduct. The route is
+`thompson-v-f2-linear-sofic-from-soficity`.
+
+**4.3. The negative side feeds `non-linear-sofic-group`.** If every characteristic-two rank model of `V`
+is trivial, `V` is not `F_2`-linear sofic. The route is `non-linear-sofic-via-thompson-v-rank-triviality`.
+
+**4.4. Restriction from the Leavitt units.** `V <= R^x = L_(F_2)(1,2)^x` by
+`leavitt-cylinder-swaps-generate-thompson-in-el`, and `R^x` is simple by `binary-leavitt-unit-group-is-simple`.
+- Any nontrivial homomorphism `phi` from `R^x` into any group has trivial kernel, so it restricts
+  injectively to `V`.
+- Hence: `V` rank-trivial in characteristic two implies `R^x` rank-trivial in characteristic two, which
+  implies `R^x` is not `F_2`-linear sofic.
+- The converse direction is not available. `R^x` rank-trivial says nothing about homomorphisms of `V` that
+  do not extend.
+- The graph's instance claim `leavitt-el3-rank-models-over-finite-fields-are-trivial` quantifies over every
+  characteristic and arity. This gives only its binary characteristic-two case, so no route into it is landed.
+
+**4.5. Scope in the characteristic.** `thompson-v-linear-witness-supports-kill-g-in-rank-models` needs a rank
+target of the same characteristic as the group algebra (`w3-v-linear`). So a nontrivial `F_2` rank model of `V`
+refutes only the binary target `thompson-v-order-three-averaging-idempotent-is-full`. The ternary swap target
+`thompson-v-ternary-swap-idempotent-is-full` needs a characteristic-three model of `V`.
+
+## 5. Where each direction stops
+
+**5.1. Constraints on any rank model of `V`.**
+- **Not covariant.** It carries no covariant copy of the cylinder algebra (Theorem 2.3).
+- **Not monomial.** Monomial models are Hamming models (`monomial-rank-models-are-hamming-models`), so a
+  monomial model would make `V` sofic. That is open, and it is the harder question.
+- **Not built from the algebra.** It is not multiplicative on the Leavitt algebra
+  (`leavitt-algebra-has-no-unital-rank-model`, applied to the prefix-replacement units).
+- **No finite shortcut.** It does not factor through any finite group or finite-dimensional
+  representation, since `V` is infinite and simple.
+
+**5.2. Involution calculus in characteristic two (heuristic, not a claim).**
+- For a cylinder swap `pi = pi_(a<->b)`, `N = pi - 1` has `N^2 = 0`.
+- Swaps whose union is not all of `X` are conjugate in `V`.
+- `pi = pi_0 pi_1` with `pi_i = pi_(ai<->bi)` commuting and conjugate to `pi`. So
+  `N = N_0 + N_1 + N_0 N_1`, all three have one rank `r`, and `r <= 2r + rk(N_0 N_1)`.
+- Trivial-plus-free displacement data satisfy all of this, so displacement alone decides nothing, as for
+  the Leavitt roots (`dyadic-root-displacement-data-admit-trivial-plus-free-models`).
+- **Untested.** Whether the conjugating element `h` with `h pi_0 h^(-1) = pi`, together with the
+  commutation, forces `rk(N_0 N_1) = 0`. If it did, `rk(N) = rk(N_0 + N_1)`. Even then additivity would
+  need independence of the images of `N_0` and `N_1`, which is exactly what covariance would supply and
+  Theorem 2.3 forbids.
+
+**5.3. Positive direction.** No construction is known. What survives Section 5.1: non-monomial,
+non-covariant models whose cylinder swaps displace a positive rank uniformly on each conjugacy class.

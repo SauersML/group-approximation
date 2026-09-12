@@ -3,6 +3,7 @@ rg: 2
 id: thompson-v-cantor-system-has-no-covariant-rank-model
 kind: claim
 title: The Cantor system of Thompson's V has no covariant rank model over any field
+invalidates: [thompson-v-f2-linear-sofic-via-covariant-cantor-truncation]
 distinct_from:
   thompson-v-covariant-cantor-representations-are-not-amenable: that is the unitary statement that covariant representations are not Bekka-amenable, proved with the trace; this is the rank-metric statement over any field, proved with the rank of cylinder idempotents, and it constrains linear sofic models rather than Hilbert-Schmidt ones.
   monomial-rank-models-are-hamming-models: that says permutation-type rank models are sofic models; this excludes every rank model carrying a covariant copy of the cylinder algebra, monomial or not.
