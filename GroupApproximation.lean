@@ -4636,6 +4636,9 @@ import GroupApproximation.KunThom.ComponentCountingRetainedMatching
 import GroupApproximation.KunThom.SequentialContradiction
 import GroupApproximation.KunThom.CountingEndgameLift
 import GroupApproximation.KunThom.RelativeFunctorEstimate
+import GroupApproximation.KunThom.StepNineHammingReference
+import GroupApproximation.KunThom.StepNineHammingDefects
+import GroupApproximation.KunThom.StepNineHammingEstimate
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
