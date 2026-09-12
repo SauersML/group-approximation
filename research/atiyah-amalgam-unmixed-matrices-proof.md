@@ -7,21 +7,27 @@ target: atiyah-amalgam-unmixed-matrices-reduce-to-factors
 requires: []
 ---
 
-Let `H <= G` and pick right coset representatives `G = ⊔_i H g_i`. As a left
-`H`-set `G` is a disjoint union of copies of `H`, so
+Let `H <= G` and pick left coset representatives `G = ⊔_i g_i H`. Then
 
 ```text
-l^2(G) ≅ ⊕_i l^2(H) g_i
+l^2(G) = ⊕_i g_i l^2(H),
 ```
 
-as a Hilbert `N(H)`-module, and right multiplication `r_M` by
-`M in M_(m,n)(K[H])` preserves each summand `l^2(H)^m g_i` and acts on it as
-the corresponding operator over `H`. Hence
+and right multiplication `r_M` by `M in M_(m,n)(K[H])` preserves each summand
+`g_i l^2(H)^m`, because `g_i h' h` lies in `g_i H`. Left translation by
+`g_i^(-1)` commutes with `r_M` and carries that summand onto `l^2(H)^m`, where
+`r_M` is the corresponding operator over `H`. Hence
 
 ```text
-ker(r_M on l^2(G)^m) ≅ ⊕_i ker(r_M on l^2(H)^m) g_i
-                     = N(G) ⊗_(N(H)) ker(r_M on l^2(H)^m).
+ker(r_M on l^2(G)^m) = ⊕_i g_i ker(r_M on l^2(H)^m)
+                     = N(G) ⊗_(N(H)) ker(r_M on l^2(H)^m),
 ```
+
+the induced module.
+
+*Correction, 2026-09-12 (lane `review-backlog-2`):* an earlier version used
+right cosets `H g_i` and said `r_M` preserves `l^2(H) g_i`. That is false
+unless `g_i` normalizes `H`. The claim itself is unaffected.
 
 The von Neumann dimension is invariant under induction (Lück, *L^2-Invariants*,
 Theorem 6.29(2)): `dim_(N(G)) (N(G) ⊗_(N(H)) V) = dim_(N(H)) V`. Applying it to

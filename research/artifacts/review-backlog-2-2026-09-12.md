@@ -538,3 +538,155 @@ Route `kl-sign-index-two-infinite-order-loops-proof`, `requires: []`.
   Bogley–Pride. The node says so, and it was not re-read here.
 - **Credit.** The node flags this as a likely restatement of Stallings' and
   Clifford–Goldstein's theorems. That is appropriate.
+
+---
+
+## Strong Atiyah, zero divisors, UCT
+
+## 22. `atiyah-amalgam-unmixed-matrices-reduce-to-factors` (62ce755fb): PASS; route text corrected (wrong coset side)
+
+Route `atiyah-amalgam-unmixed-matrices-proof`, `requires: []`.
+
+- **The claim is correct.** It is the standard induction principle: for
+  `H <= G` and `M` over `K[H]`, `dim_(N(G)) ker r_M = dim_(N(H)) ker r_M`.
+- **The written proof used the wrong cosets.** It decomposed
+  `ℓ²(G) = ⊕_i ℓ²(H g_i)` over right cosets and asserted that right
+  multiplication by `M ∈ M(K[H])` preserves each summand. That is false: `h'g_i h`
+  lies in `H g_i h`, which is not `H g_i` unless `g_i` normalizes `H`.
+- **Correct version.** Take left cosets `G = ⊔ g_i H`. Right multiplication by
+  `K[H]` preserves each `g_i ℓ²(H)`, and left translation by `g_i^(-1)`
+  intertwines it with `r_M` on `ℓ²(H)`. So `ker r_M^G = ⊕ g_i ker r_M^H`, the
+  induced module. Its projection has the same `(e,e)` coefficient as over `H`,
+  which is Lück Thm 6.29(2) in this case.
+- **Action taken.** The route text was corrected forward in the same commit as
+  this verdict. The graph structure is unchanged.
+- **Consequence paragraph.** Correct. A matrix `gM'` has kernel
+  `(ker r_(M'))·g^(-1)`, and right translation is a unitary commuting with the
+  left action. Support inside `A ∪ C = A` or `B` gives an integer when Strong
+  Atiyah holds there.
+
+## 23. `atiyah-kazhdan-edge-blocks-both-permanence-routes` (62ce755fb): PASS as a statement about two routes; one overstatement
+
+Route `atiyah-kazhdan-edge-blocks-routes-proof`, `requires: []`.
+
+- **Route 2, Hughes-free division rings.** An infinite Kazhdan `C` is finitely
+  generated with finite abelianization, so `G` is not locally indicable. The
+  Jaikin-Zapirain framework needs local indicability. Correct.
+- **Route 1, dimension-flatness.** The route says the amenable proof of
+  flatness (Lück 6.37) "is not available". That is correct. The claim goes
+  further and says "this flatness fails". That flatness of `N(C)` over `C[C]`
+  fails for nonamenable `C` is known when `C` contains `F_2`, by induction from
+  `F_2`. For torsion Kazhdan groups without free subgroups it is Lück's open
+  converse. The hosts named in the node, kernel amalgams over subgroups of
+  `EL_r(F_q[x])`, are finitely generated linear and nonamenable, so they contain
+  `F_2` by Tits. For them the statement is true. As a general statement about
+  infinite (T) groups, "fails" should read "is not available".
+- **Scope.** "Both general methods" names two frameworks. It does not claim that
+  no other framework exists (Linnell's class `C`, Schick's approximation
+  classes). Fine as recorded.
+
+## 24. `zero-divisor-host-is-not-virtually-compact-special` (1b3f3d7c0): PASS; part (2) needs "torsion-free" or Scott's core theorem
+
+Route `zero-divisor-host-not-special-proof`, which requires
+`fisher-sanchez-peralta-special-and-3-manifold-domains` (import, not reviewed
+here).
+
+- **Part (1).** A zero divisor in `k[H] <= k[G']` contradicts embedding `k[G']` in
+  a division ring. Correct.
+- **Part (2).** The route assumes `G'` is torsion-free. The claim statement drops
+  that: "not a subgroup of the fundamental group of any compact 3-manifold".
+  The gap closes because `H` is finitely generated and torsion-free. Scott's
+  core theorem makes `H` itself the fundamental group of a compact 3-manifold,
+  and a torsion-free one, so the division-ring input applies to `H` directly.
+  The claim is correct with that one sentence added.
+- **Kazhdan hosts survive.** Four steps, all correct:
+  - Haglund–Wise gives a RAAG embedding;
+  - RAAGs have the Haagerup property;
+  - Haagerup passes to finite-index overgroups;
+  - (T) together with Haagerup forces finiteness.
+  `E_3(3) <= Γ(3)` is torsion-free and has finite index in `SL_3(Z)`.
+
+## 25. `ozawa-leg-algebra-carries-non-amenable-trace` (97a393101): PASS
+
+Route `ozawa-leg-algebra-trace-proof`, `requires: []`.
+
+- **Fixed points.** A non-scalar element of `GL_3(F_p)` has fixed points only on
+  projectivized eigenspaces, each of dimension at most 2. So it has at most
+  `p+2` fixed points. Correct.
+- **Scalar mod infinitely many primes.** Such an element is `aI` with `a³ = 1` in
+  `Z`, so it is `1`. Correct.
+- **Characters.** `(fix − 1)/(p² + p) <= 1/p → 0`. The weak* limit is a trace
+  with `τ(π(g)) = δ_(g,1)`.
+- **Non-nuclearity.** Nuclear `D` gives injective `π_τ(D)''` (Choi–Effros,
+  Connes). A trace-preserving expectation onto `L(SL_3(Z))` would then make
+  `SL_3(Z)` amenable, which it is not. Correct.
+- **Not reviewed here.** The 2026-09-12 update paragraph cites
+  `kazhdan-fd-block-representation-algebras-are-not-exact`, a separate node.
+
+---
+
+## Citation claims whose source check is blocked
+
+The MSI wrapper's authentication breaker was set during this pass, so no
+further PDFs could be fetched or extracted on MSI. These verdicts are therefore
+as-recorded only, and they say so.
+
+## 26. `elementary-linear-semidir-pair-relative-t` (a85688a49): PASS as a statement of known results; source not re-read here
+
+- **Recorded statement.** The node gives relative (T) for
+  `(EL_2(R) ⋉ R², R²)` for finitely generated associative unital `R`. It credits
+  Shalom (commutative) and Kassabov (general), through Ershov–Jaikin-Zapirain–
+  Kassabov arXiv:1102.0031, which was checked 2026-08-20.
+- **Consistency.** The general case follows from the free associative ring
+  `Z<x_1..x_k>` by passing to quotients: relative (T) passes to images of pairs.
+  This matches the literature as I know it.
+- **Not done.** The PDF was downloaded on MSI but not extracted before the
+  breaker was set, so the exact theorem number and wording are unverified here.
+- **Load bearing.** `shallow-nonunit-root-mass-proof` and two expander-tape
+  routes consume only existence of a finite relative Kazhdan set, which is what
+  the node imports.
+
+## 27. `fpbs-hyperbolic-and-nonunimodular-nonuniqueness` (d8b684376): PASS, split trust
+
+- **Item 2 (nonunimodular).** Verified from the PDF by pass 1 (§22 there):
+  Hutchcroft arXiv:1711.02590 Theorem 1.2.
+- **Item 1 (hyperbolic).** Recorded from the arXiv abstract of 1804.10191 only.
+  The statement ("nonamenable, Gromov hyperbolic, quasi-transitive graph ⟹
+  `p_c < p_u`") matches the abstract as the node quotes it. The theorem
+  statement in the paper was not read here.
+- **Scope.** The node correctly limits itself to graph-level results and does not
+  claim the every-generating-set quantifier.
+
+## 28. `hyperbolic-groups-have-property-rd` (2e72893b8): PASS as a classical import; primary papers not re-read
+
+- **Credits.** Jolissaint (1990) for the statement, de la Harpe (1988) for Gromov
+  hyperbolic groups. Standard.
+- **Constants.** The `R = 0` remark is harmless: `max(C,1)(1+R)^D` dominates.
+- **Not done.** Chatterji's survey could not be re-extracted on MSI.
+
+## 29. `three-laurent-f2-k2-rank-six-kernel-is-three-symbols` (d0b02f9c0): PASS as computation; the two Weibel statements are unverified here
+
+Route `three-laurent-f2-k2-rank-six-kernel-is-three-symbols-proof`,
+`requires: []`. This is on the derivation of `fp-surjunctive-nonsofic-group-exists`.
+
+- **Stability.**
+  - `R = F_2[x_1^±, x_2^±, x_3^±]` has Krull dimension 3, so Bass stable rank
+    is at most 4.
+  - van der Kallen: `K_2(n,R) -> K_2(n+1,R)` is onto for `n >= sr+1` and
+    injective for `n >= sr+2`.
+  - So `K_2(6,R) ≅ K_2(R)`. Consistent with "`r >= 3+3`".
+- **Fundamental theorem, recomputed.**
+  - `K_1(F_2) = K_2(F_2) = 0`, and `NK = 0` for regular rings.
+  - `K_2(R_1) = 0`, `K_1(R_1) = Z x_1`, `K_2(R_2) = Z{x_1,x_2}`,
+    `K_1(R_2) = R_2^x / F_2^x = Z x_1 ⊕ Z x_2`.
+  - `K_2(R) = Z{x_1,x_2} ⊕ Z{x_1,x_3} ⊕ Z{x_2,x_3}`.
+  - `{x,x} = {x,−1} = 0` in characteristic 2. Correct.
+- **Presentation.** Three elements generating `K_2(6,R)` as a group also normally
+  generate it, since it is a normal subgroup containing their normal closure.
+  No centrality is needed. With Krstić–McCool finite presentation of `St_6(R)`,
+  `E_6(R)` is finitely presented (§1). Correct.
+- **Not done.** Weibel's *K-book* Remark III.5.5.2 and Theorem V.6.3 were not
+  re-read. The stable-rank bound used above is the classical Bass/van der
+  Kallen statement, recalled, not checked at source.
+- **Coverage.** The fp double itself was already passed in
+  `review-reviewer2-queue-2026-09-12.md` §2 (KT v3 trust surface).
