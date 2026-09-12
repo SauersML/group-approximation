@@ -109,3 +109,46 @@ at the wedge point, where every generator is 1.
 *(c)* A product zero count multiplies each coordinate by ±1, as in §5 of
 the finite-abelian proof. The five-lemma argument of NCG 3(d) then applies
 verbatim. □
+
+## 3. One arm S^{2i−1}×S^{2j−1}×Y
+
+NCG Theorem 3 holds verbatim with S¹×S^{2n−1} replaced by
+S^{2i−1}×S^{2j−1}, where i+j=n+1. Only the following facts were used there,
+and each still holds:
+
+- dim X = (2i−1)+(2j−1)+2m = 2r, and H^{2r}(X;Z)=Z.
+- Σ(S^{2i−1}×S^{2j−1}) ≃ S^{2i}∨S^{2j}∨S^{2n+1}. So
+  K^0(S^{2i−1}×S^{2j−1}) = Z⊕Z·q^*κ and K^1 = Z². The Chern character
+  q^*x of q^*κ generates H^{2n}, since the collapse q to S^{2n} has
+  degree one. Hence K^0(X)=K^0(Y)⊕q^*κ·K^0(Y), and the Euler image is
+  n!Z, as in NCG 3(a).
+- The kernel is central, and Q^* is an isomorphism on kernels (NCG 3(b)).
+- The commutator of a_i∘pr_1⊕1_H and a_j∘pr_2⊕1_H equals
+  Q^*(⟨a_i,a_j⟩∘pr⊕1_H). At Y=pt it has order N(n,i) by Proposition A.
+  For general Y it keeps that order through the tautological blocks.
+
+In particular, when n=3 and i=j=2, the commutator generates the whole
+central kernel Z/6.
+
+## 4. The simple limit
+
+**Theorem C.** For every finite list (n_α,i_α) as in §2 there are a
+separable simple unital nuclear stably finite AH algebra B, with unique
+trace and stable rank two, and unitaries u_α, v_α in B such that:
+
+1. U(B)/U_0(B) → K_1(B) is surjective with central kernel ⊕_α Z/n_α!;
+2. [u_α,v_α] has order N_α and lies in coordinate α of the kernel, while
+   distinct pairs commute pointwise;
+3. K_1(B) is free abelian of countably infinite rank.
+
+In particular, taking i_α=1 and n_α=d_α, the commutator subgroup contains
+the prescribed finite abelian group ⊕_α Z/d_α.
+
+**Proof.** Use the tower of NCG §3 with X_0 replaced by the wedge above:
+r_k = R·2^k, X_k = X_0×∏_{l<k}CP^{r_l}, and dense-tail twisted evaluation
+maps. Theorem B(c) makes every connecting map injective on components and
+an isomorphism on kernels. The remaining limit arguments (simplicity,
+unique trace, Nistor's stable-rank bound, exactness of direct limits, and
+continuity of K_1) are exactly those of NCG §3. Stable rank one is
+excluded because [u_1,v_1] is a nontrivial element of the kernel of the
+K_1 map. □
