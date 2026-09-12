@@ -22,13 +22,17 @@ It is implied by STW Problem VII.
 
 ## Attempts
 
-- **Trace-sign decomposition.**  Route
-  `k0-hahn-banach-from-traces-and-boundary` splits the property.  Singular
-  classes changing sign on quasidiagonal traces are killed.  Singular classes
-  are never strictly one-signed on all traces.  What remains is (i) the exact
-  residual of X(1), so that all traces are quasidiagonal, and (ii) the
-  boundary case.
-- **Necessity of (i) for this route.**  If some algebra has a class positive
-  on quasidiagonal traces but not on all traces, the property fails outright
-  (`stw07-qd-trace-positive-class-kills-qd-extension`).  So the exact X(1)
-  residual cannot simply be dropped from the route.
+- **Trace-sign theorems settle only trace-visible classes.**  Singular classes
+  changing sign on quasidiagonal traces are killed
+  (`stw07-sign-changing-qd-trace-values-kill-class`).  So are classes
+  vanishing on a trace whose UCT kernel quotient sees them rationally
+  (`stw07-quotient-trace-zero-nontorsion-class-is-killed`).  But
+  `stw07-trace-invisible-classes-carry-hahn-banach` makes every class
+  trace-invisible in `(A tensor K)~` without changing whether it is killed.
+  So the property is exactly a statement about trace-invisible classes, and
+  route `k0-hahn-banach-from-traces-and-boundary` is only a restatement.
+- **Obstruction side.**  If some algebra has a singular class positive on its
+  quasidiagonal traces, the property fails outright
+  (`stw07-qd-trace-positive-class-kills-qd-extension`).  That requires a
+  nonquasidiagonal trace and a non-UCT nuclear quotient
+  (`stw07-trace-obstruction-forces-nonqd-trace-and-non-uct`).
