@@ -73,8 +73,10 @@ QTwoFinitePresentationLong) land NM_ATTIC until green.
 
 Split agreed with fff-quotient. kh-ejz writes two orphan modules. fff-quotient's QTwoFinitePresentationStabK
 (induction over `Finset.induction_on_max`) imports both and uses these exact names and binders. kh-ejz
-stays out of Restrict, StabK, StabKSplit, Derived and the L4.6 assembly. Landed ba54a571f
-(NM_UNVERIFIED); probe pending.
+stays out of Restrict, StabK, StabKSplit, Derived and the L4.6 assembly. Landed ba54a571f,
+green probe 0912-103148-88562 (base a5013a01c, both modules BUILT, `stabK_eq_upsilon_inf_stabK` on
+propext, Classical.choice, Quot.sound). fff-quotient's QTwoFinitePresentationStabK (ec1a3f2ae) consumes all
+seven statements below.
 
 `GroupTheory/HydeLodha/QTwoFinitePresentationProduct.lean` ("R = ∏ …; R' ⊆ R₁ ⊆ Γ_K ⊆ R; casing pair"):
 ```lean
