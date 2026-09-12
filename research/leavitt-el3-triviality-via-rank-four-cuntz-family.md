@@ -9,8 +9,11 @@ requires:
   - leavitt-algebra-has-no-unital-rank-model
   - el3-unit-root-matrix-units-iff-two-root-identities
   - matrix-unit-rank-models-extract-ring-rank-models
+  - el4-model-trivial-on-one-unit-root-element-is-trivial
+  - nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple
 artifacts:
   - research/artifacts/rank-four-associativity-gate-plans-2026-09-12.md
+  - research/artifacts/rank-four-corner-endpoint-and-framing-2026-09-12.md
 ---
 
 Let `K` be a finite field of characteristic `p`, `R = L_K(1,2)`, and `sigma : EL_3(R) -> M^x` a rank
@@ -38,6 +41,20 @@ requirements are established.
 `T_0 S_0 = e = T_1 S_1` and `T_1 S_0 = 0` in `eMe` with `e != 0`. Then `(T_0 + 1 - e)(S_0 + 1 - e) = 1`,
 and direct finiteness of `M` gives `S_0 T_0 = e`, so `T_1 = T_1 S_0 T_0 = 0` and `e = T_1 S_1 = 0`.
 Completeness `S_0 T_0 + S_1 T_1 = e` is not used. Artifact Section L1.
+
+**Framing (w4-r4-corner).** Artifact `rank-four-corner-endpoint-and-framing-2026-09-12.md`,
+Sections 3.2 and 3.4.
+1. **Which model the case split runs on.** `EL_3(R)` and `EL_4(R)` are identified with `R^x` only
+   through prefix-code isomorphisms `phi_3` and `phi_4`. So run the case split on the transport
+   `sigma_4 = sigma ∘ phi_3^-1 ∘ phi_4 : EL_4(R) -> M^x`. Its `EL_3` block is `sigma ∘ psi` for a
+   non-surjective self-embedding `psi`. So `D` above means the block defect of `sigma_4`, not
+   `sigma`'s own `N_23 N_12`.
+2. **First case.** The block `sigma ∘ psi` is trivial. `el4-model-trivial-on-one-unit-root-element-is-trivial`
+   then makes `sigma_4` trivial, and with it `sigma`.
+3. **Finite `K != F_2`.** `leavitt-algebra-has-no-unital-rank-model` is stated for `F_2` only. For every
+   finite `K`, both exclusions (of `R -> p_1 M p_1`, and of the corner family) are covered by
+   `nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple`.
+4. **Conclusion.** The route is valid, with these two established requirements added.
 
 Payoff: through the target's own routes, `non-linear-sofic-group` for `K = F_2`, `n = 2`, and the
 non-`F_p`-linear-soficity of `R^x` and of `PG`.
