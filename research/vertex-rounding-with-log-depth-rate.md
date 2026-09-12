@@ -5,7 +5,7 @@ kind: claim
 title: Every trace-preserving representation of the Theorem E actor rounds on the vertex with transport defect beating the log of the maximal non-unit depth
 distinct_from:
   hs-stable-vertex-rounding-for-every-model: that is (H1) with no rate; this asks for (H1) together with the quantitative condition delta_n^2 log(1 + D_n) -> 0 against the intrinsic maximal non-unit depth.
-  theorem-e-vertex-rounds-to-unit-type-representations: that is unit-type rounding itself; this is a quantitative form of (H1) that implies it through nonunit-root-mass-log-depth-scale-bound.
+  theorem-e-vertex-rounds-to-unit-type-representations: that is unit-type rounding itself; this is a quantitative form of (H1) that implies it through nonunit-root-mass-log-depth-scale-bound, and by log-depth-rate-rounding-is-equivalent-to-unit-type is also implied by it.
   nonunit-root-mass-log-depth-scale-bound: that is the established conditional bound; this is the open rate hypothesis it consumes.
   vertex-rounding-deep-nonunit-root-mass-vanishes: that asks the deep non-unit mass of the supplied roundings to vanish with no rate; this asks for roundings whose defect beats the log of their maximal non-unit depth, which kills that mass for those roundings.
   laurent-vertex-rounds-for-every-model: that rounds the Laurent vertex, which needs no rate; this rounds the polynomial vertex with a rate.
@@ -49,3 +49,15 @@ By `nonunit-root-mass-log-depth-scale-bound` this gives unit-type rounding (rout
   - The remaining structure is the covariant lamp family, which is what the endgame itself contradicts.
 - **Strict stability.** Impossible (Becker–Lubotzky arXiv:1809.00632, abstract). This claim is flexible, and
   flexible HS stability of higher-rank Kazhdan groups is open.
+- **Not a weaker target: equivalent to the crux.** By `log-depth-rate-rounding-is-equivalent-to-unit-type`, this
+  claim holds for `σ` exactly when `theorem-e-vertex-rounds-to-unit-type-representations` does. It also holds exactly
+  when some (H1) rounding has `μ_n(depth_nu > 1) -> 0`.
+  - A unit-type rounding has `D = 0`, so it meets the rate with nothing to prove.
+  - So proving the rate is proving the crux. A model where the defect cannot beat `log D` refutes the crux for that `σ`.
+  - Tools tried for a rate that fail, with reasons in `research/artifacts/nh-log-depth-rate-2026-09-12.md` §3:
+    - the Heisenberg atom count, which scales with the dimension;
+    - truncation at a fixed depth, which is circular;
+    - dimension conservation under the compressor, which relates quotient rings only by containment;
+    - Landazuri–Seitz-type representation growth, which bounds dimension from below and so cannot cap `D`;
+    - the uniform spectral gap, which is already spent per block;
+    - Laurent extension, which gives no control on the Laurent generators.
