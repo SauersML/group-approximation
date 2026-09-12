@@ -4,7 +4,7 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # GHW Theorem 4: countable subgroups of `GL_2` over a field
 
-`non_mf_groups_exist.tex`, the remark after `prop:torsion-defect-ring` (tex lines 1145--1147):
+`non_mf_groups_exist.tex`, the remark after `prop:torsion-defect-ring` (tex lines 1146--1147):
 
 > Every countable subgroup of `GL_2` over a field has the Haagerup property~[GHW, Theorem 4], …
 
@@ -27,7 +27,7 @@ zero (`CharP.char_is_prime_or_zero` at `ringChar K`), so the finitely generated 
 
 ## Manuscript status
 
-Tex 1145--1147, first clause: `partial` (the union over the two finitely generated cases).
+Tex 1146--1147, first clause: `partial` (the union over the two finitely generated cases).
 -/
 
 namespace GroupApproximation
@@ -35,7 +35,7 @@ namespace GHW
 
 open Haagerup
 
-/-- **GHW Theorem 4, printed (tex 1145--1147).**  "Every countable subgroup of
+/-- **GHW Theorem 4, printed (tex 1146--1147).**  "Every countable subgroup of
 $\mathrm{GL}_2$ over a field has the Haagerup property~\cite[Theorem~4]{GHW}."  Fields range over
 `Type`. -/
 def PrintedGHWTheoremFour : Prop :=
