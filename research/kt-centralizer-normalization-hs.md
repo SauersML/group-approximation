@@ -47,7 +47,12 @@ independent of `invariant-cartan-completion`: that one goes through Corollary D
 and an invariant masa, this one through Theorem A and a relative commutant, and
 neither is known to imply the other. Both, if established, refute
 `hyperlinear-wreath-model`; both, if refuted, are consistent with either answer
-to Q3.4.
+to Q3.4.  (Scope correction, 2026-09-11, forward note by lane q34-wreath; the
+original 2026-08-14 authoring session has no live address.  The sentence holds
+only for refutations by non-canonical traces.  A refutation by a
+canonical-trace Connes-embeddable `sigma` answers Q3.4 negatively: see
+`kt-canonical-hs-normalization-fails` and
+`hyperlinear-nonsofic-from-canonical-hs-normalization-failure`.)
 
 `hs-expander-block-decomposition` is the natural first input — it is the HS
 transcription of Kun's decomposition, which is what Kun–Thom feed into
