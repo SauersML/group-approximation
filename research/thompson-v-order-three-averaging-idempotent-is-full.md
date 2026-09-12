@@ -30,3 +30,15 @@ artifact). Then `F_2[V]` is not directly finite
   purely infinite simple. So solutions exist after evaluation. The problem is to find them inside
   `F_2[V]`, where operators on the sequence module have balanced row and column sums (Lemma 3.1).
 - **Gate.** False if `V` is sofic or `F_2`-linear sofic.
+- **Support filter (w3-v-linear, 2026-09-12).** By `full-averaging-idempotent-kills-its-element-in-rank-models`
+  and `thompson-v-linear-witness-supports-kill-g-in-rank-models`, a witness `b, c` forces every
+  characteristic-2 rank model of `H = <h, supp b, supp c>` to kill `h`. So `h` lies in the finite
+  residual of `H`, and `H` is not residually finite, LEF, sofic or `F_2`-linear sofic. `h` preserves
+  the cyclic order of prefixes, so it lies in Thompson's `T`, which is simple. A `T`-internal
+  search passes the filter.
+- **Kernel copy (w3-v-linear).** `thompson-v-direct-finiteness-failures-transfer-into-kernel`: with
+  `x, y` 3-cycles of depth-3 prefixes inside `[0]` and `[1]`, `q = (x+x^2)(y+y^2)` is a nonzero
+  kernel idempotent. The depth-3 tail-diagonal embedding gives an injective unital map
+  `F_2[V] -> qF_2[V]q` killed by the Leavitt evaluation.
+- **Where it dies.** Neither result decides the target. No non-monomial candidate inside a
+  non-residually-finite subgroup is known.

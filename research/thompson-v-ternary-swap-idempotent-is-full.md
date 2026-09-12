@@ -28,3 +28,17 @@ finite (`thompson-v-direct-finiteness-failure-from-swap-fullness`).
 - **Obstructions tried.** Augmentation, the identity-coefficient trace, finite-dimensional
   representations and invariant densities are all consistent with the equation (Section 4).
 - **Gate.** False if `V` is sofic or `F_3`-linear sofic.
+- **Support filter (w3-v-linear, 2026-09-12).** By `full-averaging-idempotent-kills-its-element-in-rank-models`
+  and `thompson-v-linear-witness-supports-kill-g-in-rank-models`, a witness `b, c` forces every
+  characteristic-3 rank model of `H = <w, supp b, supp c>` to kill `w`. So `w` lies in the finite
+  residual of `H`, and `H` is not residually finite, LEF, sofic or `F_3`-linear sofic. No witness
+  lives, together with `w`, in a locally finite, residually finite, amenable or linear subgroup.
+  `w` lies in Thompson's `T`, which is simple, so a `T`-internal search is the smallest one the
+  filter allows.
+- **Kernel copy (w3-v-linear).** `thompson-v-direct-finiteness-failures-transfer-into-kernel`: with
+  `x, y` the swaps of `00, 01` and `10, 11`, `q = (1-x)(1-y)` is a nonzero kernel idempotent. The
+  tail-diagonal embedding gives an injective unital `mu : F_3[V] -> qF_3[V]q` killed by the Leavitt
+  evaluation. A witness therefore has an evaluation-invisible copy, a corner equation for the swap
+  of the tails inside `qF_3[V]q`.
+- **Where it dies.** Neither result decides the target. A construction needs non-monomial
+  combinations inside a non-residually-finite subgroup such as `T`, and no candidate is known.
