@@ -282,3 +282,7 @@ The measure `nu` is iid and uniform on the `r^(k-1)` symbols of `B^(k-1) x {b_0}
   - `surjunctivity-failure-descends-to-binary-alphabet` is OPEN. If it held, binary surjunctivity would give the goal.
   - The binary case over decoders without a free radius-2 ball is exactly what Proposition 4 leaves out. Section 5 lists that case
     as not reached, but the "must" sentences should mention the descent escape.
+- **Follow-up.** `w4-window-boundary` fixed all four points at `832009a617`, and I checked the diff. Artifact Section 5, the claim
+  node and the Attempts entry now label the squeeze a classification, and they restore the `h_fin` alternative. Alphabet qualifiers
+  appear in the title, the introduction, the Consequence and the Attempts entry. The descent escape is recorded. No new mathematics
+  was added. PASS.
