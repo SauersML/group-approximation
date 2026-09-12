@@ -1,4 +1,5 @@
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorPresentation
+import GroupApproximation.KunThom.CentralizerNormalizationClusterSystem
 import GroupApproximation.Matching.FinitePartialClusterGroupoid
 import GroupApproximation.Matching.PartialBijectionSandwich
 
@@ -11,16 +12,18 @@ bridges at its source and target and then improved.  Every check that the result
 is a functor is a count closed by the distance gap of the target clusters.  This
 file isolates what those counts need from a presentation.  The functor can then
 be assembled on any cluster groupoid, whether its radius is one number or depends
-on the object.
+on the pair of objects.
 
 * `GroupoidPresentation.ClusterMetric`: the representatives are partial
-  bijections between finite models, and every object carries a radius.  Related
-  representatives are closer than the radius of their source, and representatives
-  closer than eight radii are related.  The unit is the identity, composites are
-  close to the composed representatives, and every representative has missing
-  mass below the radius.
-* `FinitePartialClusterData.clusterMetric`: the cluster groupoid of
-  `FinitePartialClusterData` is a cluster metric with constant radius.
+  bijections between finite models, and every pair of objects carries a radius.
+  Related representatives are closer than the radius of their pair, and
+  representatives closer than eight radii are related.  The unit is the identity,
+  composites are close to the composed representatives at the radius of the outer
+  pair, and every representative has missing mass below the radius.
+* `FinitePartialClusterData.clusterMetric`: constant radius.
+* `ScaledFinitePartialClusterData.clusterMetric` and
+  `ScaledPartialClusterSystem.clusterMetric`: the pair radius
+  `2 * min (scale X) (scale Y)` of the scaled cluster groupoid.
 * `twoSidedDisagreement_transport_le`, `twoSidedDisagreement_transport_refl_le`,
   `twoSidedDisagreement_transport_comp_le` and
   `twoSidedDisagreement_transport_reflect_le`: the four triangle chains behind
@@ -35,23 +38,23 @@ namespace GroupoidPresentation
 
 /-- A groupoid presentation whose representatives are partial bijections between
 finite models, with the distance facts used by the relative cluster functor.  The
-radius used for representatives from `X` to `Y` is the radius of `X`. -/
+radius used for representatives from `X` to `Y` is `radius X Y`. -/
 structure ClusterMetric {I : Type u} (P : GroupoidPresentation.{u, v} I) where
   /-- The finite model of an object. -/
   model : I → FiniteModel
   /-- The partial bijection of a representative. -/
   val : ∀ {X Y : I}, P.Rep X Y → FinitePartialBijection (model X) (model Y)
-  /-- The cluster radius at an object. -/
-  radius : I → ℕ
+  /-- The cluster radius of a pair of objects. -/
+  radius : I → I → ℕ
   lt_of_rel : ∀ {X Y : I} {f g : P.Rep X Y}, P.rel X Y f g →
-    (val f).twoSidedDisagreement (val g) < radius X
+    (val f).twoSidedDisagreement (val g) < radius X Y
   rel_of_lt : ∀ {X Y : I} {f g : P.Rep X Y},
-    (val f).twoSidedDisagreement (val g) < 8 * radius X → P.rel X Y f g
+    (val f).twoSidedDisagreement (val g) < 8 * radius X Y → P.rel X Y f g
   val_one : ∀ X : I, val (P.one X) = FinitePartialBijection.refl (model X)
   comp_close : ∀ {X Y Z : I} (f : P.Rep X Y) (g : P.Rep Y Z),
-    (val (P.comp f g)).twoSidedDisagreement ((val f).trans (val g)) < radius X
+    (val (P.comp f g)).twoSidedDisagreement ((val f).trans (val g)) < radius X Z
   self_small : ∀ {X Y : I} (f : P.Rep X Y),
-    (val f).sourceDefect + (val f).targetDefect < radius X
+    (val f).sourceDefect + (val f).targetDefect < radius X Y
 
 end GroupoidPresentation
 
@@ -63,7 +66,7 @@ noncomputable def clusterMetric {I : Type u} [Fintype I] (D : FinitePartialClust
     D.presentation.ClusterMetric where
   model := D.model
   val {X Y} (f : D.Rep X Y) := f.1
-  radius _ := D.radius
+  radius _ _ := D.radius
   lt_of_rel := by
     intro _ _ _ _ h
     exact h
@@ -75,6 +78,56 @@ noncomputable def clusterMetric {I : Type u} [Fintype I] (D : FinitePartialClust
   self_small {X Y} (f : D.Rep X Y) := D.self_small f.1 f.2
 
 end FinitePartialClusterData
+
+namespace ScaledFinitePartialClusterData
+
+/-- The cluster groupoid of `ScaledFinitePartialClusterData` is a cluster metric at
+its pair radius. -/
+noncomputable def clusterMetric {I : Type u} [Fintype I]
+    (D : ScaledFinitePartialClusterData I) : D.presentation.ClusterMetric where
+  model := D.model
+  val {X Y} (f : D.Rep X Y) := f.1
+  radius := D.radius
+  lt_of_rel := by
+    intro _ _ _ _ h
+    exact h
+  rel_of_lt := by
+    intro _ _ f g h
+    exact D.near_of_lt_eight (f := f) (g := g) h
+  val_one _ := rfl
+  comp_close {X Y Z} (f : D.Rep X Y) (g : D.Rep Y Z) := D.improve_close f.1 f.2 g.1 g.2
+  self_small {X Y} (f : D.Rep X Y) := D.self_small f.1 f.2
+
+theorem clusterMetric_radius {I : Type u} [Fintype I] (D : ScaledFinitePartialClusterData I)
+    (X Y : I) : D.clusterMetric.radius X Y = D.radius X Y :=
+  rfl
+
+theorem clusterMetric_val {I : Type u} [Fintype I] (D : ScaledFinitePartialClusterData I)
+    {X Y : I} (f : D.Rep X Y) : D.clusterMetric.val (X := X) (Y := Y) f = f.1 :=
+  rfl
+
+end ScaledFinitePartialClusterData
+
+namespace ScaledPartialClusterSystem
+
+/-- The cluster groupoid of a scaled partial cluster system is a cluster metric at
+the pair radius `2 * min (scale X) (scale Y)`. -/
+noncomputable def clusterMetric {I : Type u} [Fintype I] {L : Type*} [Fintype L]
+    [DecidableEq L] [Nonempty L] (D : ScaledPartialClusterSystem I L) :
+    D.presentation.ClusterMetric :=
+  D.clusterData.clusterMetric
+
+theorem clusterMetric_radius {I : Type u} [Fintype I] {L : Type*} [Fintype L]
+    [DecidableEq L] [Nonempty L] (D : ScaledPartialClusterSystem I L) (X Y : I) :
+    D.clusterMetric.radius X Y = 2 * min (D.scale X) (D.scale Y) :=
+  rfl
+
+theorem clusterMetric_val {I : Type u} [Fintype I] {L : Type*} [Fintype L]
+    [DecidableEq L] [Nonempty L] (D : ScaledPartialClusterSystem I L) {X Y : I}
+    (f : D.clusterData.Rep X Y) : D.clusterMetric.val (X := X) (Y := Y) f = f.1 :=
+  rfl
+
+end ScaledPartialClusterSystem
 
 namespace FinitePartialBijection
 
