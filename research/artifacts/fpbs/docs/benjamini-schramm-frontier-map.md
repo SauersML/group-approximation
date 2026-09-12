@@ -222,13 +222,30 @@ any subgroup), the hypothesis is equivalent to `chi^I_p < infinity` for some
 (2 ⇒ 1), to arbitrary infinite subgroups, with no amenability and no
 wq-normality.
 
-**(c) Critical finiteness on thin subgroups.** This depends on the critical
-two-point bound `tau_(p_c)(u,v) <= gr(G)^(-d(u,v)/2)`, which is still being
-checked against its source. If it holds, then every infinite subgroup `I` with
-`limsup |S^n ∩ I|^(1/n) < gr(G)^(1/2)` has
-`chi^I_(p_c(G)) <= sum_n |S_n ∩ I| gr^(-n/2) < infinity`. In particular this
-holds for any subgroup of subexponential ambient growth, such as the cyclic
-subgroup of an undistorted element of infinite order.
+**(c) Critical finiteness on thin subgroups is not available.** The hoped-for
+input was pointwise exponential decay of `tau_(p_c)(u,v)` in `d(u,v)`. The
+source, Hutchcroft arXiv:1605.05301v1 (read 2026-09-12), proves something
+weaker. Its Theorem 2 says that on every quasi-transitive graph of exponential
+growth
+
+    kappa_(p_c)(n) := inf{tau_(p_c)(x,y) : d(x,y) <= n} <= gr(G)^(-n).
+
+The proof has three steps:
+1. Harris–FKG gives supermultiplicativity of `kappa_p`;
+2. for `p < p_c`, `kappa_p(n) |B(n)| <= chi_p < infinity`, and Fekete gives the
+   bound;
+3. left-continuity of `sup_n kappa_p(n)^(1/n)` passes it to `p_c`.
+
+This bounds only the *weakest* connection at each distance. It says nothing
+about the two-point function along a given subgroup. So `chi^I_(p_c(G))` is not
+known to be finite for any thin `I`: that is the mean-field prediction of
+Section 4.2 of `relative-susceptibility-reduction.md`, still unproved.
+
+Along a cyclic subgroup, `a_k = tau_p(e,g^k)` is supermultiplicative, so
+critical finiteness would follow from `lim_k a_k(p_c)^(1/k) < 1`. The
+ball-counting argument does not reach this, because it controls only the
+infimum over a ball. Paragraph (d) is therefore a conditional decomposition
+with two open inputs, not progress on the premise of (b).
 
 **(d) The crux.** Call `D(I)` the statement `chi^I_p -> infinity` as
 `p ↑ p_c(I;G)`: relative susceptibility diverges at the relative threshold.
