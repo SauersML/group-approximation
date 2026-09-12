@@ -16,13 +16,19 @@ dimension, to a genuine representation.
 By `kazhdan-hyperbolic-hs-stability-kills-hyperlinearity` this gives a
 non-hyperlinear hyperbolic group, which is both nonsofic and not residually finite.
 
-## Candidates (not source-verified in this node)
+## Candidates
 
-* **Gromov density-model random groups at density in `(1/3, 1/2)`.** They are
-  Kazhdan and hyperbolic. If the presentation complex is aspherical,
-  `b_2 = #relators - #generators >= 1`. Dogon's 2023 theorems already list them
-  for the infinite cyclic extension; see
+* **Gromov density-model random groups at density in `(1/3, 1/2)`.** Source-verified
+  in `density-random-group-hyperbolic-kazhdan-with-positive-b2`: w.o.p. torsion-free,
+  hyperbolic, Kazhdan, with a finite aspherical presentation complex and
+  `b_2 = |R| - m >= 1`. That is existence w.o.p., with no certified presentation.
+  Dogon's 2023 theorems already list them for the infinite cyclic extension; see
   `kazhdan-weak-ucp-stability-is-flexible-stability`.
+* **Hyperlinear candidates.** Stability of a hyperlinear candidate forces a persistent
+  prime degree-two class (`hs-stable-hyperlinear-kazhdan-hyperbolic-forces-persistent-class`),
+  so it is no easier than Gromov's question.
+* **Square complexes with projective-plane links are not candidates.** They are CAT(0)
+  cube complexes, so they admit no Kazhdan instance.
 * **Mid-range Linial--Meshulam groups `π_1(Y(n, n^(-1+η)))`.** They are hyperbolic
   and Kazhdan a.a.s. (`random-complex-mid-range-pair-properties`, plus Garland--Żuk
   for λ < 1/2), with `b_2(Y) = χ(Y) - 1 ~ p·C(n,3)`. For `b_2(π_1 Y)` one must
