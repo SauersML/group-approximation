@@ -27,9 +27,16 @@ group. Then β^(2)(G) ≤ nrk(G) − 1." Both statements were read from the PDF 
 ## What changes
 
 - The torsion-free Osin–Thom inequality was an imagined second road to the
-  Wiegold problem, the Levin conjecture, torsion-free Kervaire (already
-  Klyachko's theorem) and a case of Whitehead asphericity. That road is closed
-  for arbitrary countable torsion-free groups.
+  Wiegold problem (since solved by Chen–Lodha, below), the Levin conjecture,
+  torsion-free Kervaire (already Klyachko's theorem) and a case of Whitehead
+  asphericity. That road is closed for arbitrary countable torsion-free groups.
+- The Wiegold problem is solved by other means. L. Chen and Y. Lodha, *The
+  Wiegold problem and free products of left-orderable groups*,
+  arXiv:2510.26073 (v1 30 October 2025, v2 1 December 2025), abstract: "We
+  show that any free product of nontrivial left-orderable groups has normal
+  rank greater than one. This solves the Wiegold problem by taking free
+  products of finitely generated perfect left-orderable groups". Read from the
+  arXiv abstract page on 2026-09-12.
 - The counterexamples are not finitely generated. A finitely generated
   torsion-free form of the inequality is not refuted by this source.
 - `torsion-breaks-l2-normal-rank-bound` and its dead KL route are unaffected.
