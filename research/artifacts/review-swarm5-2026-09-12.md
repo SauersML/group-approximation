@@ -303,6 +303,62 @@ The conclusion is correct, and the missing citation is now recorded in the claim
 All verified. The rest of part 1 and the W × Z instance argument check out: W ∩ Z = 1,
 CS(v,d,p) ≤ W × Z is normal, and it has finite index by dimension.
 
+## 10. `sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48` (f626b6a00). PASS (computation trusted)
+
+- **(a) 24 | n.** A finite F ≤ SL_3(Z_p) acts freely on SL_3(Z_p)/W, because
+  F ∩ gWg⁻¹ is a finite subgroup of a torsion-free group. The det-1 signed
+  permutation matrices form S_4, of order 24.
+- **(b) Odd p, 16 | n.** v_2|SL_3(F_p)| = v_2(p²−1) + v_2(p−1) ≥ 4. The Sylow
+  2-subgroup lifts through the pro-p kernel by profinite Schur–Zassenhaus.
+- **(c) p = 2.**
+  - **2-group image.** An element of order 3 or 7 in the image gives a nontrivial finite
+    pro-q part of the closure of a cyclic subgroup, so the image of W is a 2-group.
+  - **Index.** After conjugation W ≤ I, and [I : W] = 8.
+  - **Frattini chain.** M_1 ⊇ Φ(K_1) ⊇ K_2, M_2 ⊇ Φ(K_2) = K_3, K ⊇ Φ(K_3) = K_4.
+    Φ(K_1) ⊇ K_2 holds because [K_1, K_1]K_3 ⊇ K_2, from [E_ij, E_jk] and
+    [E_ij, E_ji] = E_ii − E_jj, together with K_3 = Φ(K_2), since K_2 is uniform.
+    I rechecked this.
+  - **Forbidden set.** W ≤ I is pro-2, so it is torsion-free iff it has no involution.
+    Over Z_2 the rank-3 det-1 involutions are trivial⊕sign⊕sign and regular⊕sign; I
+    checked both. Because W ⊇ K_4, the forbidden set is exactly the image of the
+    involutions in I/K_4.
+  - **Search design.** Index-2 chains with χ: M_2/Φ(M_2) → F_2 decide exactly.
+- **Not rerun.** The GAP enumeration (sbatch 556104, log on main) and the class sizes
+  7168, 86016 and 27648 were not recomputed.
+- **Consequence paragraph.** Correct: by CSP the closure H̄ is open, and density
+  gives equal indices.
+- **Graph.** The dead route `sl3z-strong-atiyah-via-iwahori-index-8` now requires a
+  refuted claim, as it should. `sl3z-satisfies-strong-atiyah` correctly stays OPEN.
+
+## 11. `sl3z-ozawa-block-qt-via-stable-kernel` and open `sl3z-ozawa-corona-trace-kernel-is-stable` (34a0e47ad). PASS (route logic)
+
+No claim becomes established. The route is valid:
+1. a bounded 2-quasitrace restricts to one on the ideal K, since M_2(K) ⊆ M_2(A);
+2. stable algebras carry no nonzero bounded quasitrace;
+3. the existing corona equivalence then applies.
+
+It fires only if the open stability claim is established. The Attempts text is candid
+about the membership wall.
+
+## 12. `stw01-order-pair-defects-rescale-generic-defects` and route `stw01-problem-i-via-universal-order-pair` (d1681b9a9). PASS ×2
+
+**The rescaling claim.**
+- h − h² = ¼ − ε²x², so (¼ − ε²)1 ≤ h − h² ≤ ¼·1.
+- s ≥ 0 because ε + ε² ≤ 6/25 < ¼, and k ≤ (s+ε)1 ≤ (¼ − ε²)1 ≤ h − h², so (OP)
+  holds.
+- Squeeze: 4s(h − h²) ≤ s1 ≤ k.
+- Defect: h + k, h and k lie in C*(1, x+y), C*(1, x) and C*(1, y), and a quasitrace is
+  linear on commutative C*-subalgebras. So D(h, k) = εD(x, y).
+
+**The Problem I route.**
+- Additivity on A_+ gives linearity through a_+ + b_+ + (a+b)_− = (a+b)_+ + a_− + b_−;
+  with σ(z*z) = σ(zz*) that makes σ a trace.
+- Normalize so that x, y are contractions.
+- With ε = 1/5 and s = 0, pull back along ψ: σ∘ψ is a bounded 2-quasitrace on U with
+  defect (1/5)tD(x, y) ≠ 0.
+
+Correct. Problem I stays OPEN, because the route requires the open additivity claim.
+
 ---
 
 **Corrections landed with this artifact:**
