@@ -18,3 +18,7 @@ Lemma 4.1).
    `M_n(F[E_3])`.
 2. `stable-finiteness-failure-refutes-surjunctivity` turns it into an injective non-surjective linear
    automaton on `(F^n)^(E_3)`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 27 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication.*
+- *The padding goes through the central idempotents of `<z>`, which needs `w ∈ F` and `p != 3`.*
+- *The automaton lemma needs a finite `F`. A witness over any field of characteristic `p` descends to a finite field: the entries generate a finitely generated `F_p`-domain, and a nonzero entry of `AB - I` survives modulo some maximal ideal with finite residue field.*

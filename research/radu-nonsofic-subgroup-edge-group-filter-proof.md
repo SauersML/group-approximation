@@ -26,3 +26,9 @@ The same argument runs on the horizontal tree, with `V`, `E_a` and `V_a`.
 **Literature input, not a Cairn node:** graphs of groups with sofic vertex groups and amenable edge groups
 are sofic. For amalgams this is Elek–Szabó, and for HNN extensions and graphs of groups Ciobanu–Holt–Rees,
 both as cited by `amenable-envelope-magnus-piece-sofic-proof`. This lane did not re-read those sources.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 26.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS, given the combination theorem, which was not re-read. Re-derived independently:*
+- *Serre's fixed point in the elliptic case;*
+- *the Busemann kernel is locally elliptic, since each elliptic element fixing `ω` fixes a ray;*
+- *the finite quotient of the minimal subtree;*
+- *a nonamenable subgroup of a virtually free group contains `F_2`.*

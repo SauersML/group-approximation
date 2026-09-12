@@ -781,5 +781,227 @@ have equal measure, and so do the live ones.
   `trl(e_- S_-) = 1/2 < 1 = trl(eps_- S_-)`.
 
 **Reading.** The swap corner is full iff some stable isomorphism among finite-subgroup projectives of `E x| V`, with a
-free complement `X`, drops the lifted trace. The claim node's sentence "Parts 4 and 5 use … which is not yet verified"
-is now out of date: that input passed in Sections 12 and 23.1.
+finitely generated projective complement `X`, not necessarily free, drops the lifted trace. (Corrected
+2026-09-12: an earlier version of this sentence said "free complement". The theorem allows any finitely generated
+projective `X`.) The claim node's sentence "Parts 4 and 5 use … which is not yet verified" was out of date, and
+w4-trace-state updated it at 59f40d9b4e.
+
+## 25. Deligne rank rigidity (w4-deligne-projective; b5d74fa414, 70a38c933e): PASS
+
+### 25.1 Lemma 0.1 (window lemma): PASS
+
+- **Presentation.** `E_3` is finitely presented, as an extension of the finitely presented `Sp_4(Z)` by a finite
+  group. So its finite-index subgroup `E_Λ` is finitely presented.
+- **Generators.** `s(n)`, for `n ∈ Y_Λ`, together with `z` generate `E_Λ`.
+- **Positive words.** `s(n)s(n^-1) = z^(a(n,n^-1)) s(1) = z^(a(n,n^-1))`, so `s(n)^-1 = z^(-a(n,n^-1)) s(n^-1)`, and
+  `z^-1 = z^2`. So every relator is a positive word.
+- **Invariant.** `σ(y_1 … y_i) = w^(j k_i) ρ(g_i)`.
+  - For a letter `s(n)`: `s(g_i) z^(k_i) s(n) = s(g_i n) z^(k_i + a(g_i,n))`, then (EX) at `(g_i, n)`.
+  - `ρ(1) = 1` from `(1,1)`, since `a(1,1) = 0` and `ρ(1)` is invertible.
+- **Relators.** At the end of a relator, `s(g_L) z^(k_L) = 1` with `s(1) = 1` forces `g_L = 1` and `k_L ≡ 0 mod 3`.
+  So `σ` is a homomorphism with `σ(z) = w^j ≠ 1`.
+- **Contradiction.** Malcev gives a finite quotient of `σ(E_Λ)` separating `σ(z)`, hence a finite-index
+  `L ≤ E_Λ` missing `z`. Its normal core in `E_3` has finite index and misses `z`, which contradicts
+  `Res_fin(E_3) = ⟨z⟩`.
+- **Uniformity.** `B_Λ` and `R_Λ` depend only on the presentation, not on `K`, `j` or `W`.
+
+### 25.2 Proposition 1.1 (no bounded block mass): PASS
+
+- Every pair of `R_0` has `g, h, gh ∈ B_0`, so each defect operator preserves every `V_i`, and its rank adds over
+  the blocks.
+- The restrictions are invertible. Lemma 0.1 gives every block some pair with integer defect at least 1.
+- So the number of blocks is at most `Σ_(R_0) D_ρ <= |R_0| ε d`, and blocks of dimension at most `m` carry at most
+  `m |R_0| ε d`.
+- This bounds the number of all invariant summands, not only the small ones.
+
+### 25.3 Proposition 2.1 (no fixed-level scalar sectors): PASS
+
+- **Lemma 2.0.** `μ ≠ 0` gives `XV = V`, so `rank X >= dim V`.
+- **Proof.** On `V` the defect operator at `(n, n')` is a scalar. If that scalar is nonzero, its rank is at least
+  `dim V > εd`. So `λ` is exact on `R_Λ`.
+  - `λ(n) ≠ 0`, since `ρ(n)` is invertible.
+  - `V ≠ 0`.
+  - Lemma 0.1 with `W` one-dimensional is contradicted.
+
+### 25.4 Proposition 2.2 (invariance under class shifts): PASS
+
+- **Tensoring.** The defect operator of `ρ ⊗ π` is the old defect operator tensored with the invertible
+  `β(g,h)π(gh)`. Its rank is `e` times the old rank, so the normalized defect is unchanged.
+- **Contragredient.** `π^v(g)π^v(h) = ((π(g)π(h))^T)^-1 = β(g,h)^-1 π^v(gh)`.
+- **Rescaling.** Multiplying each `ρ(g)` by `λ(g)` multiplies the defect operator at `(g,h)` by `λ(g)λ(h)`.
+- **Fields.** On a finite `B` the entries of `π` lie in a finite field, so the models stay over finite fields.
+
+### 25.5 Section 3, the conditional rank Schur transfer: implications PASS, conditional claims OPEN
+
+**Lemma 3.2 (extension).**
+- `ι` is unital and preserves rank, so it maps `I` into `I'`, `G(R)` into `G(R')` and `A(R)` into `A(R')`.
+- It is injective on `A(R)`: distinct scalars differ by rank distance 1.
+- The product of lifts of `φ(c_i)` with `t_n` is within rank `1/n` of `λ_n 1`, so it lies in `A(R')`. Changing the
+  lifts changes the product only by a central scalar.
+
+**Lemma 3.3 (projective classes vanish on the Schur kernel).**
+- `ι` is a morphism of central extensions over `ιbar`, with kernel map `ι|_A`.
+- Naturality gives `ev(f_* c) = f ∘ ev(c)` and `ev(q^* c) = ev(c) ∘ q_*`. So `ι|_A ∘ β_φ = β_(φ') ∘ q_*`, and
+  injectivity of `ι|_A` finishes.
+
+**Theorem 3.4 (Schur kernel in the rank radical).**
+- **Characters.** `Z` is central, finite abelian, of order prime to `p`, so `Fbar[Z]` splits into characters. The
+  `E_χ` commute with `ψ(E)` and sum to 1, with `ψ(z) = Σ χ(z)E_χ`.
+- **Idempotent rounding.** For `x ∈ M_d(Fbar)`, let `e` be the spectral idempotent of the generalized
+  1-eigenspace. Then `rank(x - e) <= rank(x^2 - x)`:
+  - on the generalized 0-space, `x` is nilpotent and `x - 1` is invertible;
+  - on the generalized 1-space, `x` is invertible;
+  - elsewhere, both factors are invertible.
+  So corners are rank ultraproducts with renormalized rank, and `rk(E_χ) > 0`.
+- **Corner.** `ψ_χ` is multiplicative, and `ψ_χ(z) = χ(z)1`.
+- **Classes.** A morphism of central extensions with kernel map `χ` gives `φ^*[G(R_χ)] = χ_* α`, hence
+  `β_φ = χ ∘ α_H`. Lemma 3.3 then forces `χ(z_0) = 1`.
+
+**Corollary 3.5 (Deligne).**
+- `C_3` has order prime to `p`, and `α_H(x) ≠ 0` generates it.
+- An `F_p`-linear sofic approximation, after extending scalars, gives a homomorphism into `G(R)` with
+  `rk(ψ(z) - 1) >= δ`.
+
+**Routes.** `char-p-schur-radical-from-rank-root-solvability`, `deligne-rank-collapse-via-sp4-schur-kernel` and
+`non-linear-sofic-via-deligne-rank-central-collapse` PASS as implications.
+
+**Equivalent forms in `deligne-central-mark-dies-in-char-p-rank-models`: correct.**
+- `Rad_rk,p(E_3) ⊆ ⟨z⟩`, because `Sp_4(Z)` is residually finite, hence `F_p`-linear sofic, and separates every
+  element outside `⟨z⟩` through the quotient.
+- If some homomorphism separates `z`, it also separates `z^2`: an element of order 3 has
+  `rank(ψ(z)^2 - 1) = rank(ψ(z) - 1)`. A weighted block sum with an embedding of `Sp_4(Z)` then separates every
+  nontrivial element.
+
+**Power words (Section 3.3, Attempts on an OPEN claim).** `N_(ps)^p` has kernel dimensions `min(pk, ps)`, so it
+has `p` Jordan blocks of size `s`. Consistent.
+
+## 26. Radu's BMW lattice (w4-radu-f2; 9455d4a271, 85b6407404, eb6760902f): PASS
+
+### 26.1 Relations and first-level actions: PASS
+
+**Relations.** Each relator gives its relations:
+- `axax` gives `ax = xa`; `ayay` gives `ay = ya`; `bxbx` gives `bx = xb`;
+- `azbz` gives `az = zb` and `za = bz`;
+- `bycy` gives `by = yc` and `yb = cy`;
+- `cxcz` gives `cx = zc` and `xc = cz`.
+
+All fourteen listed relations check.
+
+**First-level actions.**
+- `A` on `{xA, yA, zA}`:
+  - `a` and `b` fix all three;
+  - `cxA = zcA = zA`, `czA = xcA = xA` and `cyA = ybA = yA`;
+  - so `c -> (x z)`.
+- `V` on `{aV, bV, cV}`:
+  - `x -> id`;
+  - `ybV = cyV = cV` and `ycV = byV = bV`, so `y -> (b c)`;
+  - `zaV = bzV = bV`, `zbV = azV = aV` and `zcV = cxV = cV`, so `z -> (a b)`;
+  - the image is `S_3`.
+
+### 26.2 Theorem A and Corollary A′ (two amalgam splittings): PASS
+
+**Normalizers.**
+- `yay = a`, `yby = c` and `ycy = b`, so `P_y = A x| <y>`.
+- `x(cac)x = cz a zc = c(zaz)c = cbc`, using `zaz = b` from `za = bz`. So `x` normalizes `A_ev`.
+
+**Stabilizers.**
+- `A_y = A`, since every letter fixes `yA`.
+- `A_x = A_ev`, the kernel of the `c`-parity.
+
+**Kurosh counts.**
+- `A_ev`: `a` and `b` each fix two cosets, and `c` fixes none. So `A_ev ≅ C_2^(*4)`, with `χ = -1`.
+- `V_a`: `x` fixes three cosets, and `y`, `z` fix one each. That gives 5 involution classes. The index-three
+  subgroup has `χ = -3/2 = χ(C_2^(*5))`, so there is no free factor.
+
+**Bass–Serre.**
+- Vertically: two edge orbits `{y}` and `{x, z}`. Half-edge groups `A` and `A_ev`, and a segment quotient. So
+  `Γ_R = P_y *_A A *_(A_ev) E_x = P_y *_(A_ev) E_x`.
+- Horizontally: one edge orbit, and `Γ_R = V *_(V_a) E_a`.
+
+**Euler characteristic.** `1/4` three ways:
+- `-1/4 - 1/2 + 1`;
+- `-1/2 - 3/4 + 3/2`;
+- `1 - 6/2 + 9/4`.
+
+**Corollary A′.** `k[-]` carries pushouts of groups to pushouts of algebras.
+
+### 26.3 Theorem B (the edge-group filter): PASS, with one literature input not re-read
+
+**Case analysis.**
+- *All elements elliptic.* A finitely generated group then fixes a vertex (Serre).
+- *A hyperbolic element and a fixed end `ω`.*
+  - An elliptic element fixing `ω` and a vertex `v` maps the ray `[v, ω)` to itself, so it fixes that ray pointwise.
+  - Finitely many rays to `ω` share a subray. So the Busemann kernel is locally elliptic, hence locally virtually
+    free, and the quotient is contained in `Z`.
+- *Otherwise.* The minimal subtree has a finite quotient graph.
+  - Vertex groups are subgroups of virtually free groups.
+  - A nonamenable subgroup of a virtually free group contains `F_2`.
+
+**Literature input.** The combination theorem for sofic vertex groups and amenable edge groups (Elek–Szabó,
+Ciobanu–Holt–Rees) was not re-read here, as the lane flags.
+
+### 26.4 Lemma C1 and Proposition C2 (no finite-subgroup defect): PASS
+
+**Order bound.** A finite `H` fixes a point, preserves its open cell, and permutes that cell's vertices freely. So
+`|H| <= 4`.
+
+**Involutions.**
+- An involution fixing an edge midpoint is a letter conjugate.
+- On a square, an involution carrying a corner to an adjacent corner is a letter.
+- One carrying it to the opposite corner is `hv`. It has order 2 iff `hv = vh`, which gives the rows `(a,x)`,
+  `(a,y)` and `(b,x)`, from `axax`, `ayay` and `bxbx`.
+
+**Order four.**
+- *No `C_4`.* A generator carrying a corner to an adjacent corner is a letter, of order 2.
+- *Klein.* Closure forces `v' = v` and `h' = h`, a commuting square.
+
+**Abelianization.**
+- `azbz` gives `a = b`, `bycy` gives `b = c`, and `cxcz` gives `x = z`. Basis `a, x, y`.
+- The letters map to `a, a, a, x, y, x`.
+- `ax`, `ay` and `bx` map to `a+x`, `a+y`, `a+x`, all nonzero, and the three pairs are independent.
+- So every finite subgroup injects.
+
+**Proposition C2.**
+- *`p = 2`.* `F_2[H]` is local, so idempotent matrices are similar to `diag(I_r, 0)`, and the augmentation decides
+  both parts.
+- *Odd `p`.* `F_p[H]` is a product of copies of `F_p` over `±1` characters. They extend to `Γ_R` by injectivity into
+  `(Z/2)^3`, and both parts follow.
+
+## 27. Implication routes owed a verdict line, and one amendment: PASS
+
+**`multi-piece-triangular-lift-gives-left-invertible-s0-lift`** (w4-kap-triangular).
+- `X_ij X_kl = 0` unless `j = k`. So `N^m` is a sum over directed paths of length `m`, and it vanishes for an acyclic
+  digraph on `m` vertices.
+- `(ba)^-1 b` is a left inverse.
+- `π(a) = Σ g_i P_(β_i)` acts as `s_0` cylinder by cylinder.
+
+**`f9-hadamard-fullness-from-swap-corner-fullness`** (w4-hadamard-f3). `(c W^-1)(W e_- W^-1)(W b) = c e_- b`
+(Section 9).
+
+**`oriented-clifford-skew-rings-sf-from-matrix-lamp-wreath`** (w4-clifford-df). Section 14.
+
+**`kun-thom-clifford-skew-rings-sf-from-f3-linear-soficity`** (w4-clifford-df).
+- The target is over `F_3` for every graph, and so is the input.
+- `M_n(F_3[E_S]) = M_n(F_3[W]) x M_n(A_S)`, so a one-sided pair in `A_S`, padded, is one in `F_3[E_S]`.
+
+**`deligne-cover-nonsurjunctive-from-twisted-algebra-failure`** (w4-deligne-twisted).
+- *Padding.* Through the central idempotents of `<z>`, which exist when `w ∈ F` and `p != 3`.
+- *Finite field.* The automaton lemma needs `F` finite. A witness over any field of characteristic `p` descends to
+  one:
+  - the entries generate a finitely generated `F_p`-domain `D`;
+  - a nonzero entry of `AB - I` is not nilpotent, so it survives modulo some maximal ideal `m`, since `D` is a
+    Jacobson ring;
+  - `D/m` is finite.
+
+**`deligne-cover-stable-finiteness-from-rank-projective-models`.** The characteristics match the target: every `p != 3`
+through the rank-projective claim, and `p = 3` directly. An `F_p`-model is an `F`-model.
+
+**`non-linear-sofic-via-deligne-twisted-algebra-failure`.** This is the contrapositive of
+`linear-sofic-group-algebra-is-stably-finite`, and the target only asks for some field.
+
+**Amendment fe98f9469e** to `clifford-skew-ring-rank-models-give-linear-sofic-wreath`.
+- A central `c_v u_g` forces `gx = x` for all `x`, then `b(x, v) = 0` for all `x`, hence `v = 0` by nondegeneracy, and
+  `g` central.
+- Faithfulness gives `g = 1`.
+- For residually finite `G`, block-sum at stage `n` with the regular representation of a finite quotient separating
+  the first `n` such elements. Each fixed `g` is separated at distance at least `1/4` on a cofinite set of stages. PASS.

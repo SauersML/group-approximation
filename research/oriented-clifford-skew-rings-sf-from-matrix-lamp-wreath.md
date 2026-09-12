@@ -17,3 +17,5 @@ artifacts:
 - `matrix-lamp-wreath-algebras-are-stably-finite` then makes `B_X` stably finite.
 - Proposition 1.1 embeds `A_S` unitally in `B_X`, so matrices over `A_S` embed in matrices over `B_X`.
 - A one-sided inverse pair would survive the embedding.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 14 and 27 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. A unital subring of a stably finite ring is stably finite. The input `matrix-lamp-wreath-algebras-are-stably-finite` is OPEN.*

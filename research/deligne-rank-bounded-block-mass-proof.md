@@ -20,3 +20,8 @@ Artifact Lemma 0.1 and Proposition 1.1.
    one at some window pair.
 3. **Count.** The blocks of dimension at most `m` number at most `|R_0| eps d`, so they carry at most
    `m |R_0| eps d` dimensions.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 25.1–25.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *positive relator words, and the prefix invariant `σ(y_1…y_i) = w^(j k_i) ρ(g_i)`;*
+- *`ρ(1) = 1` from `(1,1)`, Malcev, and the normal core against the finite residual;*
+- *block additivity of the defect, with integer defect at least 1 per block.*

@@ -16,3 +16,5 @@ Artifact Proposition 2.2.
 2. **Inverse class.** The contragredient of `pi` realizes `beta^(-1)`.
 3. **Cohomologous cocycles.** Rescaling each `rho(g)` by `lambda(g)` turns an `alpha'`-model into an
    `alpha' . delta(lambda)`-model with the same defect.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 25.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently: the defect operator times an invertible `β(g,h)π(gh)`, the contragredient identity, the rescaling by `λ(g)λ(h)`, and finite fields on finite windows.*

@@ -17,3 +17,5 @@ Artifact Proposition 2.1, through Lemma 0.1.
 2. **Window lemma.** For the finite-index subgroup `E_Lambda`, exactness on its presentation window defines a
    homomorphism `E_Lambda -> K^x` with `z -> w^j`. Its image is residually finite, so some finite-index
    subgroup of `E_Lambda` misses `z`. Its normal core in `E_3` contradicts the finite residual.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 25.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently: a nonzero scalar defect on `V` has rank at least `dim V > eps d`; `λ(n) ≠ 0`; and Lemma 0.1 with `W` one-dimensional.*

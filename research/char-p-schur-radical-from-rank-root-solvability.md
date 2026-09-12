@@ -20,3 +20,11 @@ Artifact Lemmas 3.2 and 3.3 and Theorem 3.4.
    `Fbar[Z]`, which exist because `|Z|` is prime to `p`. Some corner has `psi(z) = chi(z) 1` with `chi(z_0) != 1`.
 4. **Contradiction.** That corner is a morphism of central extensions, so `beta_phi = chi o alpha_H`, and step 2
    gives `chi(z_0) = 1`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 25.5 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. Re-derived independently:*
+- *the amplification is injective on scalars, and lift choices change the word only by a central scalar;*
+- *naturality of `ev` in both variables;*
+- *the exact isotypic cut, with idempotent rounding `rank(x - e) <= rank(x^2 - x)`;*
+- *`β_φ = χ ∘ α_H`.*
+
+*The input `rank-ultraproduct-unit-groups-solve-nonsingular-equations` is OPEN.*

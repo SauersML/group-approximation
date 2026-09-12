@@ -26,3 +26,5 @@ All four claims on it are equivalent, and all are OPEN. Each link is a valid imp
 
 The Hadamard spectral corner and the swap corner are the same problem. Neither direction establishes any claim
 on the cycle alone.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 9 and 27 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. `(c W^-1)(W e_- W^-1)(W b) = c e_- b`.*

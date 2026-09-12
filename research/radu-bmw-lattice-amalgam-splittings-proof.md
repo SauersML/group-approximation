@@ -24,3 +24,9 @@ Artifact Section 1, Theorem A and Corollary A′.
   * `a` inverts its edge, with stabilizer `E_a`, and the quotient is `o -- m_a` with half-edge group `V_a`.
 * **Checks.** The Euler characteristic is `1/4` from both splittings and from the complex. The
   algebra statement is the group-algebra functor applied to the pushouts.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 26.1–26.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *all fourteen relations from `(RE1)`, and both first-level actions;*
+- *normalizers `yby = c` and `x(cac)x = cbc`, and the stabilizers `A_y = A`, `A_x = A_ev`;*
+- *Kurosh counts `C_2^(*4)` and `C_2^(*5)`;*
+- *Bass–Serre on the subdivided trees, and `χ = 1/4` three ways.*

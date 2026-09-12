@@ -16,3 +16,5 @@ Artifact Corollary 3.5.
    killed class `x` with `alpha_H(x) != 0` in `Z/3`.
 2. **Radical.** For `p != 3` the center `C_3` has order prime to `p`, so the rank Schur radical theorem puts
    `alpha_H(x)` in `Rad_rk,p(E_3)`. It generates `C_3`, so `z in Rad_rk,p(E_3)`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 25.5 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. Both inputs are OPEN.*

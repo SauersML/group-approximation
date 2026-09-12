@@ -17,3 +17,5 @@ artifacts:
    artifact). An `F_p`-model is an `F`-model for every field `F` of characteristic `p`, so
    `linear-sofic-group-algebra-is-stably-finite` makes `F[E_3]` stably finite.
 2. **Characteristic three.** Established directly.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 22 and 27 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. The characteristics match the target: every `p != 3` through the rank-projective claim, and `p = 3` directly. Rank is invariant under extension of scalars.*

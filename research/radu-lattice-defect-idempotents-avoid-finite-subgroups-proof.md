@@ -21,3 +21,9 @@ Artifact Section 3, Lemma C1 and Proposition C2.
   inverse over a field is two-sided.
 * **Odd `p`.** Split `F_p[H]` into characters and extend each one to `Gamma_R`. Every component of a corner
   idempotent then has full rank, and every component of the defect vanishes.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 26.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the fixed cell and free action on its vertices;*
+- *involutions on squares need a commuting row, and no `C_4` exists because adjacent moves are letters;*
+- *the abelianization `a = b = c` and `x = z`, with basis `a, x, y`, into which every finite subgroup injects;*
+- *the local ring plus augmentation for `p = 2`, and extended characters for odd `p`.*

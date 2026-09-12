@@ -15,3 +15,5 @@ artifacts:
    finite for a finite field `F` of characteristic `p != 3`.
 2. By `linear-sofic-group-algebra-is-stably-finite`, `E_3` is not `F`-linear sofic.
 3. Since `F_p`-models are `F`-models, `E_3` is not `F_p`-linear sofic either.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 27 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. This is the contrapositive of `linear-sofic-group-algebra-is-stably-finite`, and the target asks only for some field.*
