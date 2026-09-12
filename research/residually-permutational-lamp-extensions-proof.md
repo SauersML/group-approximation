@@ -9,6 +9,7 @@ requires:
   - rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive
 artifacts:
   - research/artifacts/kun-thom-lamp-quotient-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Take a strict pair over `E = V x| Q` with its finite set `F`. Finitely many separating maps
@@ -18,3 +19,8 @@ carry different symbols. Their sum into `direct_sum_(disjoint union Y_i) prod A_
 product with residually finite lamps over `Q`. It respects every product of `F` and separates
 the window pairs. The transfer theorem gives a strict pair there, which contradicts the rf-lamp
 wreath theorem. Theorem B of the artifact, with Lemmas 3.1--3.2 for the binary form.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS on Theorem B.** Lemma 3.1's proof applies a functional on
+`A[2]`, which is not a subgroup for nonabelian `A`. It is repaired by using the elementary abelian coordinate images
+`pi_y(phi(V))`, which are constant along `Q`-orbits. The statement is unaffected
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 17.2).

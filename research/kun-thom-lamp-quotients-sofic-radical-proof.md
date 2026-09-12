@@ -8,6 +8,7 @@ requires:
   - kun-thom-wreath-sofic-radical-is-fibre-parity-kernel
 artifacts:
   - research/artifacts/kun-thom-lamp-quotient-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `q : W -> H_U` be the quotient map. A homomorphism `psi` from `H_U` into a sofic group gives
@@ -15,3 +16,6 @@ Let `q : W -> H_U` be the quotient map. A homomorphism `psi` from `H_U` into a s
 `H_U/(K_even/U) = W/K_even = W_N` is residually finite by part 2 of the radical theorem, hence
 sofic. So `K_even/U` is the kernel of a homomorphism into a sofic group. Theorem A of the
 artifact.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 17.1).

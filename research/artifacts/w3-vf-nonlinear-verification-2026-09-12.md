@@ -708,6 +708,14 @@ everything except one route.
     `tau~`, `sigma~` of `tau_g` satisfy `sigma~ o tau~ = id` formally. The dihedral route stays valid, since
     single representatives give a pair.
   - Sent to w3-stable-simple and w3-vf-positive.
+- **Follow-up, repaired at e0b01243d3.** Re-checked on main.
+  - `thompson-v-marker-involution-is-formalizable` and `dihedral-marker-involution-is-formalizable` are now in
+    pair form: representatives `tau~`, `sigma~` of the marker, possibly different, with `sigma~ o tau~ = id`.
+  - Step 3 of `simple-host-formalizability-specializes-to-the-v-marker` gives exactly that, so the route is now
+    valid, and a refutation of the V object refutes the prerequisite.
+  - `dihedral-marker-formalization-induces-to-thompson-v` still carries a pair to a pair with the same
+    polynomials.
+  - w3-vf-positive recorded the same correction in its Section 13.6.
 
 **Decision status.** Nothing decision-level.
 
@@ -734,6 +742,9 @@ Claim `linear-decoders-with-coboundary-functionals-admit-no-section`. Artifact S
 - **Special cases.** The annihilator case is `a = 1`. For Ornstein–Weiss, `R*e_1 delta_1 = delta_1 + delta_a`
   equals `delta_1 - a.delta_1`, with coset sum `e_1`. The zero-kernel remark is correct.
 - **Status.** `linear-decoders-over-leavitt-units-admit-no-measurable-section` stays OPEN.
+- **Route `linear-decoder-sections-excluded-by-maximality`.** It is valid. `L o tau = id` a.e. makes `tau` a.e.-injective
+  into `p^m` symbols, so Proposition 1 gives Rokhlin entropy at most `m log p < m' log p`. It cannot fire while
+  `bernoulli-rokhlin-entropy-maximal-for-every-group` is OPEN.
 
 ## 16. Local screens, a ternary architecture, and constant backgrounds (w3-bal-design, 228045984d, c67b4dec0f)
 
@@ -768,3 +779,104 @@ Verdict: PASS on all three.
   - `x_1 + x_a + x_b + [x = (0,1,2)]` sends constants to `0`, as corrected.
   - The census rule `R` has identity diagonal and omits the symbol `1`.
   - `affine-plus-defect-rule-is-injective-on-some-group` stays OPEN.
+
+## 17. Lamp quotients of the Kun–Thom coset wreath (w4-free-neg-b, 1a6206f6ee)
+
+Artifact: `research/artifacts/kun-thom-lamp-quotient-hosts-2026-09-12.md`.
+
+### 17.1 `kun-thom-lamp-quotients-have-lamp-sofic-radical` (Theorem A). Verdict: PASS.
+
+- A homomorphism `H_U -> S`, with `S` sofic, composed with `q` kills `Rad_sof(W) = K_even`. So `K_even/U` lies in
+  `Rad_sof(H_U)`.
+- `H_U / (K_even/U) = W_N` is residually finite by part 2 of `kun-thom-wreath-sofic-radical-is-fibre-parity-kernel`,
+  hence sofic. So `Rad_sof(H_U) = K_even/U`.
+- `H_U` is nonsofic iff `U != K_even`.
+
+### 17.2 `residually-permutational-lamp-extensions-are-surjunctive` (Theorem B, Lemmas 3.1–3.2, Corollary 3.3, Example 3.4). Verdict: PASS on the claim, with one proof gap in Lemma 3.1 and its fix.
+
+- **Theorem B.**
+  - The diagonal `Q`-action on `Y = ⊔ Y_i` and the product `A = prod A_i` combine finitely many `phi_i` into one
+    equivariant `phi`.
+  - `psi(v,g) = (phi(v), g)` is a homomorphism because `phi(g v') = g phi(v')`. Distinguished Omega pairs with
+    equal `Q`-parts stay apart in their `i`-th factor.
+  - Transfer then contradicts `rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive`.
+- **Lemma 3.1, the gap.** The proof applies a linear functional on `A[2]`. For nonabelian residually finite `A`,
+  `A[2]` is not a subgroup. **Fix.**
+  - Use `B_y = pi_y(phi(V))`, the coordinate image of an elementary abelian 2-group, hence elementary abelian.
+    Equivariance gives `B_(gy) = B_y` along `Q`-orbits, since `Q` acts trivially on `A`.
+  - Choose a functional on `B_(y_0)` that detects `phi(v)(y_0)`, apply it along the orbit of `y_0`, and put `0`
+    elsewhere. The statement is unaffected. Sent to the author.
+- **Lemma 3.2.** This is Frobenius reciprocity for `P = Ind_Gamma^G F_2`: finitely supported `Gamma`-fixed `c`,
+  with `phi_c(e_(g Gamma)) = g c`.
+- **Closure.** `V_U` is residually permutational iff `U` is closed, by Lemmas 3.1–3.2.
+- **Corollary 3.3.** `0` is closed via the identity map, `U_K` via `Y = G/K` with `c = e_K`, and intersections are
+  closed. `U_K != K_even` when `K != N`.
+- **Example 3.4.**
+  - `phi_c` kills `e_Gamma + e_(n Gamma)` iff `n c = c`, so `c` is `L`-fixed and `phi_c` factors through `F_2[G/L]`.
+  - The edge graph `g Gamma — g n Gamma` has components `g L / Gamma`, using `g gamma Gamma = g Gamma` and reversed
+    edges. Even configurations on a component are sums of path edges, so `U_n = U_L`.
+
+### 17.3 `strict-lamp-quotient-realizations-need-lamp-hinges` (Theorem D). Verdict: PASS.
+
+- `q o rho~ = rho` gives `E_(rho~) <= E_rho` and `F_(rho~) <= F_rho`.
+- If `E_(rho~)` were in `𝓕_D`, `tau_(rho~)` would be injective over surjunctive `W`, hence bijective. That puts
+  `F_(rho~)` in `𝓡_D`, and by coarsening `F_rho` too, contradicting strictness.
+- A coincidence of `E_rho` absent from `E_(rho~)` has a hinge in `ker q = U`, and it is nonzero.
+
+### 17.4 Section 5 (Proposition 5.1, Lemmas 5.2–5.3, Example 5.4). Verdict: correct as scoped.
+
+- **Proposition 5.1.** The generators `s~ m~ (sm)~^-1` and `w~ m~ (wm)~^-1` lie in `U`. Distinguished lifts differ
+  outside `U`, hence outside `U_0`.
+- **Lemma 5.2.** Correct, given that the profinite closure of `Gamma` is `N`. That fact is cited from the radical
+  theorem and not re-derived here.
+- **Lemma 5.3.** Hecke operators `T_D` with `D` a finite union of finite `Gamma`-orbits.
+- **Example 5.4.** `(ab + ba) c = 0` iff `b^-1 a^-1 b a c = c`. Undecided, as stated.
+
+## 18. Complete-graph Clifford covers: the phase barrier (w4-clifford-complete, 871c1885cf)
+
+Artifact: `research/artifacts/clifford-cover-phase-barrier-2026-09-12.md`, Sections 0–2.
+
+### 18.1 `phase-windows-have-no-separated-clifford-realization` (Theorem 1). Verdict: PASS, with one scope note on Corollary 1.1.
+
+- **Signs.** `beta(e_x, e_y) = [y < x] b(x,y)` and `beta(e_y, e_x) = [x < y] b(y,x)`, which sum to `b(x,y)` whatever
+  the order.
+- **Group parts.** `psi` extends to `U`, so `psi(1) = 1`, and `phi(c_x) = c_(lambda x)`.
+- **Adjacent.** The realization keeps the sign coordinate of both transposed products. So
+  `b_(S')(lambda x_0, lambda h x_0) = b_S(x_0, h x_0) = 1`.
+- **Inseparable.**
+  - `f(psi t) f(B') f(psi t)^-1 ⊆ f(B')`, both finite of equal order, so they are equal, and `f(psi h)` lies in
+    `f(B')`.
+  - So `psi(h) = k beta`, and `beta` fixes `lambda(x_0)` because each `psi(b_i)` does, by the move
+    `x_0 -> b_i x_0`.
+  - So `K lambda(h x_0) = K lambda(x_0)`.
+- **Scope note on Corollary 1.1.** Condition 3 needs `psi(gamma)` in `B'`. The listed products give `h = t^-1 gamma t`
+  but no word for `gamma` in the `b_i`. Take `gamma` among the generators `b_i`, or add a chain of products spelling
+  `gamma`. Sent to the author.
+- **Remark 1.3.** In `Z[1/2] semidirect Z`, `t a t^-1 = a^2` and `h = 1/2`, which is outside `<a>`. The cover is
+  locally finite by solvable. Correct.
+
+### 18.2 `clifford-cover-cofinite-lamp-subgroups-contain-the-center` (Lemma 2). Verdict: PASS.
+
+- Lifts of `u, u'` in `H cap Vtilde_S` have commutator `eps^(b(u,u'))`, since lifts differ centrally.
+- **Complete graph.** `b(e_a + e_b, e_a + e_c) = 0 + 1 + 1 + 1 = 1`, using `b(a,a) = 0`.
+- **Induced matching.** `b(e_(a_i) + e_(a_j), e_(b_i) + e_(b_k)) = 1 + 0 + 0 + 0`. Bounded degree with infinitely many
+  edges gives an infinite induced matching, greedily.
+- **Consequence 2.1.** Correct as scoped.
+
+### 18.3 Artifact Sections 3–5 (Propositions 3–4, the copying rule). Verdict: correct; no claim nodes.
+
+- **Proposition 3.** `Hol` is the image of the fundamental group of a finite labelled graph, so it is finitely generated,
+  and it lies in `Stab(x_0)`. f.g.-closedness gives `cl(Hol) <= Stab(x_0)`, which contradicts Theorem B'.
+  - In residually finite groups, locally finite subgroups are f.g.-closed, since finite subgroups are closed.
+- **Proposition 4.**
+  - `lambda(w x_0) = w Hol_i^U` is well defined, since closed paths lie in `Hol_i^U`.
+  - It is injective: `w^-1 w'` in `Hol_i^U` maps into `Stab(x_0)`.
+  - Distinct `G`-parts stay distinct in `U`, because `U -> G` sends `[g]` to `g`.
+  - Transfer gives the strict pair on `U` over `Y`.
+- **Copying rule (Section 5).**
+  - `p(g Gamma) = g t^-1 Gamma` is well defined because `t Gamma t^-1 <= Gamma`.
+  - Its fibres are `t^-1 Gamma t / Gamma`, of size `[Gamma : t Gamma t^-1]`.
+  - So `x -> x o p` is injective and not surjective. It is a remark only.
+
+**Decision status.** Nothing decision-level. `kun-thom-wreath-lamp-quotient-nonsurjunctive` and
+`kun-thom-clifford-cover-nonsurjunctive` stay OPEN.

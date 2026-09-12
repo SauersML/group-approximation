@@ -9,6 +9,7 @@ requires:
   - strict-automata-live-on-canonical-table-groups
 artifacts:
   - research/artifacts/kun-thom-lamp-quotient-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 The quotient map carries the lift to the realization, so the lift's tables refine the
@@ -18,3 +19,6 @@ sufficient, and so would the coarser reverse table of `rho` (Lemmas 2--3 of the 
 table-group artifact), which makes `tau_rho` surjective. So the lift's forward table is
 insufficient. A coincidence present for `rho` and absent for the lift has a hinge word that dies
 in `W/U` without being trivial in `W`. Theorem D of the artifact.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 17.3).

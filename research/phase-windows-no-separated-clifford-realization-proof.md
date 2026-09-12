@@ -7,6 +7,7 @@ target: phase-windows-have-no-separated-clifford-realization
 requires: []
 artifacts:
   - research/artifacts/clifford-cover-phase-barrier-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Complete direct proof, artifact Section 1.
@@ -19,3 +20,8 @@ Complete direct proof, artifact Section 1.
   saturation condition 1.
 - **Kun--Thom instance.** `Gamma = EL_r(F_q[x_1, ..., x_d])` with `r >= 3` is finitely generated. The ascending
   element `t` and the phase element `h = t^(-1) gamma t` are the data of `kun-thom-clifford-radical-phase`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS**, with one scope note. Re-derived independently: the sign sum,
+the finite-quotient step `psi(h) in K B'`, and the fixing of `lambda(x_0)` by `B'`. In the Kun–Thom instance the table
+must spell `gamma` as one of the `b_i`, or as a word in them, so that condition 3 holds
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 18.1).

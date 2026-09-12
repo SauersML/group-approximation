@@ -7,6 +7,7 @@ target: clifford-cover-cofinite-lamp-subgroups-contain-the-center
 requires: []
 artifacts:
   - research/artifacts/clifford-cover-phase-barrier-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Complete direct proof, artifact Section 2.
@@ -17,3 +18,6 @@ Complete direct proof, artifact Section 2.
 - **Induced matching `{a_i, b_i}`.** By pigeonhole, distinct `i, j, k` have `e_(a_i) = e_(a_j)` and
   `e_(b_i) = e_(b_k)` modulo `L_H`. Then `b_S(e_(a_i) + e_(a_j), e_(b_i) + e_(b_k)) = 1`, because only the pair
   `{a_i, b_i}` is adjacent.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently, including `b(a,a) = 0` and greedy
+extraction of an induced matching (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 18.2).
