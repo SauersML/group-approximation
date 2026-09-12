@@ -7,7 +7,7 @@ import GroupApproximation.Meta.AxiomGuard
 # The printed answer group `k^×/(k^×)^{d-1}`, and its two printed evaluations
 
 `non_mf_groups_exist.tex`, the two sentences that follow
-`cor:leavitt-mf-quotient` (tex lines 1267--1269):
+`cor:leavitt-mf-quotient` (tex lines 1320--1322):
 
 > For `d=2` the quotient is trivial for every countable field `k`, so every
 > homomorphism from `L_k(1,2)^×` to an MF group is trivial.
@@ -36,10 +36,15 @@ first sentence as carried and the second as an admitted gap:
 
 The gap has two halves, and they are independent.  One is the *identification*
 of `H/EL_d(R)` with `Q(k,d)`, i.e. the Khanh--Thanh half of
-`cor:leavitt-mf-quotient`, which is still open (see
-`LeavittKOneFormula.ScalarSurjective` and `.ScalarKernel`).  The other is the
-*evaluation* of `Q(k,d)` at a finite field, which is what this module closes.
-Nothing here asserts the identification, and nothing here depends on it.
+`cor:leavitt-mf-quotient`.  The other is the *evaluation* of `Q(k,d)` at a finite
+field, which is what this module closes.  Nothing here asserts the
+identification, and nothing here depends on it.
+
+Both halves are now closed.  The identification is
+`LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula`, from
+`KhanhThanhDiagonal.scalarSurjective_holds` and `LeavittKOneFormula.scalarKernel`,
+and `LeavittKOneQuotientEvaluations` composes it with this module, so both printed
+sentences hold at the printed quotient of `L_k(1,d)`.
 
 ## What is proved
 
@@ -135,14 +140,15 @@ end FiniteField
 
 /-! ### The printed sentences -/
 
-/-- **Printed sentence, tex line 1269.**
+/-- **Printed sentence, tex line 1322.**
 
 > For `k=𝔽_q` the quotient is cyclic of order `gcd(q-1,d-1)`.
 
 The evaluation clause, at every finite field and every `d ≥ 2`, with `q` read
 as `Nat.card k`.  What this does *not* assert is the identification of the
 printed quotient `H/EL_d(R)` with `k^×/(k^×)^{d-1}`; that is
-`LeavittKOneFormula.PrintedLeavittKOneFormula`, still open. -/
+`LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula`, and the sentence at the
+printed quotient is `LeavittKOneQuotientEvaluations.manuscriptSentence_quotientCyclicFiniteField`. -/
 def PrintedLeavittScalarQuotientFiniteField : Prop :=
   ∀ (k : Type) [Field k] [Finite k] (d : ℕ), 2 ≤ d →
     IsCyclic (kˣ ⧸ (powMonoidHom (d - 1) : kˣ →* kˣ).range) ∧
@@ -155,16 +161,17 @@ theorem manuscriptSentence_leavittScalarQuotientFiniteField :
   exact ⟨isCyclic_quotient_powMonoidHom_range kˣ (d - 1),
     card_units_quotient_pow k (d - 1)⟩
 
-/-- **Printed sentence, tex line 1267, arithmetic clause.**
+/-- **Printed sentence, tex line 1320, arithmetic clause.**
 
 > For `d=2` the quotient is trivial for every countable field `k`.
 
 At `d = 2` the printed answer group `k^×/(k^×)^{d-1}` is trivial, for every
 field and with no countability hypothesis.  (The sentence's second clause,
 that every homomorphism from `L_k(1,2)^×` to an MF group is then trivial, is
-carried elsewhere by
+carried by
 `FullDefectRingEJZUnconditional.manuscriptLeavittMFQuotientTwoAllCharacteristics`,
-which does not go through this group.) -/
+which does not go through this group, and, along the printed "so", by
+`LeavittKOneQuotientEvaluations.manuscriptSentence_quotientTrivialRankTwo`.) -/
 def PrintedLeavittScalarQuotientRankTwo : Prop :=
   ∀ (k : Type) [Field k] (d : ℕ), d = 2 →
     Subsingleton (kˣ ⧸ (powMonoidHom (d - 1) : kˣ →* kˣ).range)
