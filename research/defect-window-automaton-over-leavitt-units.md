@@ -76,3 +76,24 @@ Eden for `tau` on the window `{1, d}`.
   conjugate into `Q`. Neither filter touches this window. The lattice test is vacuous on
   a commutator, and `d = [u c u^(-1), l]` is one, so the abelian layer screens
   single-letter windows and says nothing here. The attempt still dies at the same step.
+- *Re-aimed at the hinge: the window lies in every hinge closure, and the defect is a
+  transposed hinge.*
+  - By `garden-of-eden-windows-fold-modulo-every-hinge-closure`, the window `{1, d}` forces
+    `d` into the normal closure of the hinge words of every minimal reverse-sufficient
+    partition of the pair's table group. The reverse hinges must normally generate the
+    defect: inside its own tables the design must do to `d` what soficity does.
+  - By `transposed-hinges-are-conjugated-commutators`, transposing a forward identification
+    `(s,m) ~ (s',m')` leaves the hinge `s'^(-1) [m'^(-1) m, s m] s'`. For the rooted
+    identification `(u c^(-1) u^(-1) l^(-1), l) ~ (1, u c^(-1) u^(-1))` it is exactly `d`.
+  - So the most direct rule pair forces that identification, and every minimal reverse
+    partition needs its transpose. Such a pair is strict over every realization in which
+    its forward partition holds and `d != 1`, the Leavitt unit group included. It would
+    refute Gottschalk even with its Garden of Eden on some other window.
+  - It dies at the rules: no rule pair is known whose reverse sufficiency needs the
+    transpose of an identification its forward sufficiency needs. The transpose always
+    suffices when `S = {1}` or `M = {1}`
+    (`boolean-core-is-uniform-single-demand-network-coding`). The rooted identification
+    holds over the free group on the memory letters, so by
+    `free-memory-injectivity-forces-universal-bijectivity` the pair must also need cycle
+    relators that fail in every surjunctive cover of its memory group, the nesting relator
+    for instance.
