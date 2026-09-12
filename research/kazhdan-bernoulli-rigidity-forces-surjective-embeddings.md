@@ -23,3 +23,9 @@ dynamics, and rigid Bernoulli dynamics admit no strict self-embeddings". Taking
 - *Refuted* by `compressed-coset-shifts-carry-strict-equivariant-embeddings`:
   the pullback along the compressor surjection `gV_1 -> g u^-1 V_1` is a strict
   continuous equivariant injection of `A^(G/V_1)`.
+- *s-malleability and the cocycle superrigidity hypotheses.* The product shift
+  `[0,1]^(G/V_1)` is s-malleable, by rotating every coordinate identically, and
+  it is weakly mixing on `G`, since `G/V_1` is one infinite orbit. So it also
+  meets the hypotheses of Popa's cocycle superrigidity theorem, while carrying
+  the same strict pullback. See
+  `deformation-rigidity-gives-no-coordinate-level-bernoulli-input`.

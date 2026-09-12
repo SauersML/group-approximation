@@ -52,3 +52,17 @@ preserve `mu_A`.
   `leavitt-stable-finiteness-equals-direct-finiteness`), which fails to preserve
   the counting-additive structure the uniform measure sees. This special case is
   itself open.
+- **Popa superrigidity and deformation/rigidity, 2026-09-12.**
+  `deformation-rigidity-gives-no-coordinate-level-bernoulli-input`. It rests on
+  three facts:
+  - a strict image measure and its graph joining are singular to the product
+    measures, the only measures the s-malleable deformation acts on;
+  - the compressed coset shift `[0,1]^(U/V_1)` is s-malleable and weakly mixing
+    on `U`, the hypotheses of cocycle superrigidity, and still carries a strict
+    continuous equivariant injection;
+  - `x -> (x(g) + x(gs))_g` over an element `s` of infinite order is a
+    measure-preserving, non-injective automaton over `U`.
+
+  Freeness of the index set enters Popa's theory only through conjugacy-invariant
+  conclusions. So the theory cannot supply the window-balance identity this claim
+  needs.
