@@ -58,10 +58,15 @@ PCPs, whose resolution is needed to construct a quantum PCP with nontrivial
 
 - It bears on `quantum-pcp-constant-gap-local-hamiltonian` through the
   fault-tolerance roadmap of Anshu--Breuckmann--Nguyen (arXiv:2309.16475). It
-  does not prove the conjecture, and its classical gap is inverse
-  polylogarithmic rather than constant, so it does not supply the constant
-  combinatorial gap that `qpcp-from-anchored-amplifier` needs.
-- Its detection-only compilation has the same shape as this region's
-  conversion of soft violations into local fault syndromes, which makes it the
-  natural classical object to compare the region's rounder against.
-- Forwarded on 2026-09-11 to the fork `quantum-pcp`.
+  does not prove the conjecture.
+- Correction from the `quantum-pcp` lane (2026-09-11): the exact combinatorial
+  gap (LPC1) is already established trivially in this graph by
+  `positive-shift-trivializes-exact-combinatorial-soundness` and
+  `lpc1-from-shifted-kitaev-reduction`, so this source must not be cited as
+  supplying (LPC1). Its place is beside `whole-time-slice-corruption-costs-inverse-depth`,
+  as a candidate classical ingredient for the open hole
+  `locality-reduction-with-amplifier-independent-loss` on the route
+  `qpcp-by-dinur-iteration`. It does not discharge that hole: its gap is
+  inverse polylogarithmic and the construction is classical.
+- Forwarded on 2026-09-11 to the fork `quantum-pcp`, which wired it into the
+  region itself.
