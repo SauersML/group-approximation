@@ -151,7 +151,11 @@ Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
   this block was authored, probed or landed. Nothing was in flight: the tree copies of `OddPEval`, `OddPEvalNatural`
   and `OddPEvalMultilinear` are byte-identical to main, and `attic/inflight/lix-descent/` does not exist.
 * Interface on main the block would use:
-  * lix-steenrod's Δ0–Δ6: `OddPDiagonal.lean`, landed 7e2fb5081.
+  * lix-steenrod's Δ0–Δ6: `OddPDiagonal.lean`, landed 7e2fb5081 but NEVER COMPILED. Its import
+    `OddPDiagonalAug` (93494e31f) is red at probe 0912-092529-64114: a heartbeat timeout in
+    `tupD_exists_preimage_stdSimplexTop_zmod`. So `OddPDiagonalSrc` (b07f2e96c) and `OddPDiagonal` were never
+    built. A restart has to make those three modules green before R1 can compile. The candidate fix is in
+    `notes/lix-stronger-lane-reports/lix-steenrod.md` under RED.
   * E1–E8 from `OddPEval*` (above).
   * `oddDiff`, `oddDiffW_castSucc`, `oddDiffS_succ`: `OddPSource`.
   * `altCoeff`: `OddPResolution`.
