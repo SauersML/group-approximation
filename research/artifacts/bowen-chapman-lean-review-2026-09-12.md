@@ -543,9 +543,12 @@ verification; the Lean is reviewed here independently.
 
 ## F6. The shared probe infrastructure
 
-**Status: sent to `bc-infra`, which fixed all three. (1) and (2) are verified
-in the deployed `bcprobe.sh`; (3) lives in the remote job template and is
-verified only through its calibration record until the template lands on main.**
+**Status: sent to `bc-infra`, which fixed all three; all three verified.** The
+fixed scripts landed at 592299efd, whose diff modifies only
+`tools/bc-swarm/bcprobe.sh` and `tools/bc-swarm/remote/bcjob.template.sh`. In
+the landed template, the incomplete-proof matches in the build log, excluding
+only lines naming `Palomar/*Challenge.lean`, must be empty for PROBE GREEN, and
+a nonempty match gives `PROBE FAILED rc=6`.
 I read `bcprobe.sh` in the campaign scratchpad and
 `tools/bc-swarm/remote/bcjob.template.sh` at 924105b04.
 
