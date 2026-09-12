@@ -271,3 +271,21 @@ decomposition, either some root subgroup acts non-additively, meaning
 `(sigma(x_ij(a)) - 1)(sigma(x_ij(b)) - 1)` is not rank-null for some `a, b`, or the
 square-zero parts are not simultaneously supported on orthogonal blocks. No
 construction and no obstruction is known for this remaining class.
+
+**Host family.** Sections 1 and 5 hold for every field `K` and every `L_K(1,n)` with
+`n >= 2`, and Section 6 holds over every finite field. So they apply to the whole
+host family landed by `gk-lp-hosts` (22e71610d0, 4da43c6520), including `F_3` and
+`F_4`, because every finite-field Leavitt unit group is nonsofic
+(`d-ary-leavitt-groups-nonsofic-over-finite-fields`).
+
+**Degree-truncation building blocks.** The diffuse honest models of `EL_3(F_q[t])`
+(`kazhdan-rank-ultraproducts-can-have-diffuse-commutants`) are block unipotent:
+`e_ij(a)` acts on `F_(q^k)^3` as `1 + a(alpha) E_ij`. They exist because `F_q[t]`
+has honest finite-dimensional modules. Through a polynomial subring
+`F_q[t] <= R` they model the subgroup `EL_3(F_q[t]) <= EL_3(R)`. By Section 5, an
+extension to `EL_3(R)` cannot stay block unipotent on every root subgroup; it must
+break block unipotence on root elements `x_ij(a)` with `a` outside the subring.
+Section 5 does not exclude a hybrid that is block unipotent on the subring's root
+subgroups and non-additive on the others. The matrix units `u_ij = psi_ij(1)` and
+corners `p_i` of Step 1 still exist for such a hybrid, but Step 3 needs block
+support of `psi_1j(a)` for every `a` in `R`.
