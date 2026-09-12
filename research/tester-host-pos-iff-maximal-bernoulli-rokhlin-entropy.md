@@ -20,6 +20,8 @@ Let `U` be the fixed two-generator finitely presented host of `whitehead-univers
 
 **Positive entropy passes down (3).** RBS(`U`) gives the Bernoulli 2-shift over `U` Rokhlin entropy `log 2`. Let `K <= U` be infinite. The restriction to `K` is free and mixing, hence ergodic. A partition generating for `K` also generates for `U`, so the Rokhlin entropy for `K` is at least `log 2`. Every countably generated recursively presented group embeds in `U`.
 
+**Scope of the reviewed part.** reviewer-2 checked parts (1)–(3) (`review-rokhlin-self-copy-dichotomy-2026-09-12.md`), and so does the Gottschalk consequence `positive-rokhlin-entropy-on-one-host-proves-gottschalk`. The next sentence reaches every countable group, not only recursively presented ones. It depends on the peer route `rokhlin-maximality-on-tester-covers-every-group`, whose inputs `bernoulli-rokhlin-maximality-passes-to-subgroups` and `bernoulli-rokhlin-deficit-has-a-finitary-witness` are established but have not been independently reviewed.
+
 Consequently POS for the single group `U` is equivalent to Seward's hypothesis that every countably infinite group satisfies POS:
 - one direction is specialization;
 - for the other, POS(`U`) gives RBS(`U`), which gives maximality for every group by `rokhlin-maximality-on-tester-covers-every-group`, and RBS implies POS for each group.
