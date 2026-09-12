@@ -10,7 +10,9 @@ artifacts:
   - research/artifacts/boone-higman-char-p-all-degrees-2026-09-12.md
 ---
 
-**OPEN.** For every prime `p` and every `d >= 3`, with `L_p = L_(F_p)(1,2)`,
+**ESTABLISHED (2026-09-12)** through
+`prime-field-leavitt-powers-k-theory-via-all-degree-vanishing`. For every prime
+`p` and every `d >= 3`, with `L_p = L_(F_p)(1,2)`,
 `K_1(L_p^(⊗d)) = K_2(L_p^(⊗d)) = 0`.
 
 It is true for `d = 1, 2`: Ara--Brustenga--Cortiñas Theorem 7.6, and
@@ -43,3 +45,12 @@ Ara--Cortiñas Lemma 6.1 with Proposition 6.2 over `k = F_p`, as used in
      flat universal localization of `L_p^(⊗(d−2))<e,f>`, and flat universal
      localizations inherit coherence.
    - Only the twisted Nil groups remain.
+4. **Settled over every field.**
+   `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees` gives
+   `K_n(L_k(1,2)^(⊗d)) = 0` for all `n`, every field `k` and every `d`.
+   - The proof never passes through `L_p^(⊗(d−1))`. It writes `L_p^(⊗d)` as a
+     crossed product over the semihereditary, `K`-trivial ring
+     `L_0^(⊗(d−1)) ⊗ L_p` by `Z^(d−1)`, and applies the Farrell–Jones conjecture
+     with additive coefficients.
+   - The twisted Nil terms that occur are over that regular coherent ring, and
+     vanish by Bartels–Lück.

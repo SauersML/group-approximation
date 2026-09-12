@@ -9,8 +9,9 @@ artifacts:
   - research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md
 ---
 
-**OPEN.** For every `d >= 3`, with `L = L_(F_2)(1,2)`,
-`K_1(L^(⊗d)) = K_2(L^(⊗d)) = 0`.
+**ESTABLISHED (2026-09-12)** through
+`leavitt-tensor-powers-k-theory-via-all-degree-vanishing`. For every `d >= 3`,
+with `L = L_(F_2)(1,2)`, `K_1(L^(⊗d)) = K_2(L^(⊗d)) = 0`.
 
 It is true for `d = 1, 2` (`ara-cortinas-leavitt-tensor-k-theory-vanishes`).
 With `leavitt-tensor-hosts-acyclic-steinberg-and-fp`, it would make every
@@ -105,3 +106,17 @@ With `leavitt-tensor-hosts-acyclic-steinberg-and-fp`, it would make every
    - What remains is attempt 4: vanishing of `NK(L_0 ⊗ A; φ^(±1))` in degrees
      `1` and `2` for `A = L^(⊗(d−1))`, by an argument that does not pass
      through coherence. Or, as in attempt 1, `K_2`-regularity of `L^(⊗d)`.
+8. **Settled through the Farrell–Jones conjecture.** Lane
+   `bh-leavitt-nil-k-regularity`, 2026-09-12.
+   - **The decomposition.** `L^(⊗d)` is a crossed product `C ∗ Z^(d−1)` over
+     `C = L_0^(⊗(d−1)) ⊗ L` (`leavitt-tensor-powers-are-twisted-crossed-products`).
+     `C` is semihereditary, its polynomial extensions are regular coherent, and
+     `K(C) ≃ 0` (`leavitt-crossed-product-coefficient-ring-is-k-trivial`).
+   - **Assembly.** Farrell–Jones with additive coefficients for `Z^(d−1)`
+     (Bartels–Farrell–Lück, in the Bartels–Reich framework) computes
+     `K(L^(⊗d))` from `K(C)` and from skew Laurent rings `C_φ[t, t^−1]`.
+   - **The Nil terms.** Every `C[Z^m]` is regular coherent, so the twisted Nil
+     terms of those rings vanish (Bartels–Lück), and every coefficient is zero.
+   - **Result.** `K_n(L^(⊗d)) = 0` for every `n` and every field:
+     `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`. The
+     non-coherent intermediate rings of attempt 7 never enter the computation.
