@@ -111,7 +111,7 @@ theorem map_lixSliceN_lixChernOf (n : ℕ) {dd : Fin ℓ → ℕ}
           (mappingTorus (Vmat n) G circHoriz circHeight) k)
       = TotalH.of (TopCat.of (baseY dd)) (2 * k)
           (LH.chernOf (comap (lixSliceMapN n dd p1 q) (KGen.lixBundle n G hGc hGu))
-            (KGen.lixRank n dd) (fun y => KGen.rank_lixBundle n G hGc hGu _)
+            (KGen.lixRank n dd) (fun _ => KGen.rank_lixBundle n G hGc hGu _)
             (KGen.one_le_lixRank n dd) k) := by
   rw [KGen.lixChernOf_mappingTorus n (KGen.lixChern n dd) hGc hGu k, TotalH.map_of]
   exact congrArg (TotalH.of (TopCat.of (baseY dd)) (2 * k))
