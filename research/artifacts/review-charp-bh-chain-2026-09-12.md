@@ -199,30 +199,93 @@ in a finitely presented simple group."
 
 That claim's own `distinct_from` note records the same contrast.
 
-## 5. Khanh criteria for every `d`: see §7
+## 5. Khanh criteria for every `d`: PASS, re-read at source
 
-The import node quotes these statements:
-- **Theorem 2.2:** "nonzero unital F_2-algebras" with `A^2 ≅ A`. The odd-`p` form is the graph's own adaptation
-  (reviewer-2 §3, PASS).
-- **Theorem 5.1:** "a nonzero unital ring of characteristic two", with the signed adaptation for odd `p`.
-- **Lemma 5.2:** "any unital ring".
-- **Krstić–McCool:** "every finitely presented associative unital ring and every `n >= 4`".
+Read from `lit-groups/khanh-clean.txt` on MSI (the extracted text of arXiv:2609.08428v1), 2026-09-12.
+- **Section 2 scope (line 82):** "All rings in this section are nonzero unital F2-algebras." Theorem 2.2 (lines
+  106–112) needs only `A^2 ≅ A`, the standard inclusions acting as zero on `H_n`, and connectivity of `X_r(A)`.
+- **Theorem 5.1 (line 640):** "Let B be a nonzero unital ring of characteristic two, and fix n ≥ 4", with hypotheses
+  (1)–(3) on `B`.
+- **Lemma 5.2 (line 774):** "For any unital ring B and m ≥ 3".
+- **Krstić–McCool (lines 886–889):** "Stn(B) is finitely presented for every finitely presented associative unital ring
+  B and every n ≥ 4". A finitely presented ring is a quotient of a free associative unital `Z`-algebra on finitely many
+  generators by a finitely generated two-sided ideal.
 
-None of them bounds the number of tensor factors or assumes regularity. The re-check against the source text is in §7.
+**For every `d`.**
+- None of these statements bounds the number of tensor factors or assumes regularity or coherence.
+- `R_d = L_p^(⊗d)` is a finitely presented ring in Khanh's sense:
+  - generators: `4d`, the four Leavitt generators in each factor;
+  - relations: `p`, the Leavitt relations in each factor (his (6.1) per factor), and commutation between generators of
+    different factors.
+- **At `p = 2`** the criteria apply as written, which is the characteristic-two root.
+- **At odd `p`** Sections 2 and 5 do not apply as written: the source scope is `F_2`-algebras and characteristic two.
+  The graph's odd-`p` adaptation (Quillen weights at `p`, signed transporters with the central correction `z`) is its
+  own argument, PASS by reviewer-2 §3. This is a trust surface for the odd-`p` root only.
 
-## 6. Literature and novelty: see §7
+## 6. Literature and novelty: bounded, not re-verified here
+
+- **Survey text.** I could not re-extract BBMZ arXiv:2306.16356v3 or Zaremsky arXiv:2405.09722: no extracted copies
+  were found on MSI outside Cairn clones.
+  - Two attempts at the arXiv API returned 503 (17:47 and 17:52 CDT), so there was no 2025–26 listing either.
+  - The record rests on `boone-higman-frontier-2026-09-12.md`, whose lane read these sources from their PDFs, and on
+    reviewer-2 §4.
+- **Named open classes.** BBMZ Problem 5.3 names 13 classes. The only linear item is `GL_n(Q)` (item 5), in
+  characteristic zero, which Zaremsky settled.
+- **Positive characteristic.** No source in the frontier table states any positive-characteristic linear class. The
+  table includes BFFHZ 2503.21882v2 and FFWZ 2603.24687v2.
+  - EMN [57] "rings of characteristic p" is the algebra analogue of the weak Boone–Higman theorem. It is not a finitely
+    presented simple envelope for groups.
+- **Asked?** The class is not a named open question in these sources. It is the characteristic-`p` counterpart of
+  item 5, chosen by this graph.
+- **Novelty.** Plausible, on a bounded search. Credit and priority are not established.
 
 ## 7. MSI results
 
-Pending: the detached job `/scratch.global/sauer354/charp-chain-review/why.sh`.
+Detached job `/scratch.global/sauer354/charp-chain-review/why2.sh` on acn112. It cloned `--shared` at GitHub main
+`2c463ed44`, which contains 2b19d1c07, d34e26446 and this artifact's first landing. Python 3.12.
 
-## 8. Overall verdict, before the MSI results
+A first job ran at a stale MSI checkout (`ad9aaff10`, without `tools/cairn.py`) and produced nothing. I discarded it.
 
-**PASS**, on the scope reviewed, conditional on:
-- the out-of-scope `K`-theory vanishing step;
-- the recorded trust surfaces: Khanh arXiv:2609.08428v1 is unrefereed; Menal–Moncasi, Voronetsky and Krstić–McCool
-  are quoted through Khanh; the simplicity step applies Lean theorems on paper.
+**`cairn why` statuses:**
+- `positive-char-linear-groups-satisfy-boone-higman`: ESTABLISHED via `positive-char-linear-groups-via-leavitt-projective-elementary`.
+- `char-two-linear-groups-satisfy-boone-higman`: ESTABLISHED via `char-two-linear-groups-via-leavitt-tensor-powers`.
+- `leavitt-power-projective-elementary-groups-finitely-presented`: ESTABLISHED via `leavitt-power-projective-e-fp-from-trivial-k-theory`.
+- `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups`: ESTABLISHED via `char-p-linear-embedding-corner-swindle-proof`.
+- `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`: ESTABLISHED via `prime-field-leavitt-tensor-hosts-proof`.
+- `leavitt-tensor-hosts-acyclic-steinberg-and-fp` and `central-simple-leavitt-tensor-unit-groups-are-simple`:
+  ESTABLISHED.
+- `boone-higman-conjecture`: OPEN, with every route open.
 
-No FAIL or GAP found. Bookkeeping, not errors:
+**What the derivations show.** Both derivations match §0.
+- The only extra nodes are the out-of-scope `K`-theory chain:
+  - `leavitt-tensor-powers-are-twisted-crossed-products`;
+  - `leavitt-crossed-product-coefficient-ring-is-k-trivial`;
+  - `ara-cortinas-leavitt-tensor-k-theory-vanishes`;
+  - `leavitt-tensor-global-dimension-bound`;
+  - the Bartels–Farrell–Lück, Bartels–Reich and Bartels–Lück imports.
+- The characteristic-two derivation also pulls in the reviewed `d <= 2` chain through
+  `char-two-surface-linear-groups-satisfy-boone-higman`.
+- No node outside §0 and the `K`-theory chain enters.
+- `cairn why` printed 11 graph warnings. They are the known open-claim cycles reported by `cairn-integrator-3`.
+
+## 8. Overall verdict
+
+**PASS** on everything in scope. No FAIL and no GAP. So no graph change, and both roots read ESTABLISHED as intended.
+
+**Conditional on:**
+1. **The `K`-theory vanishing step,** reviewed separately: `review-charp-bh-kthy-2026-09-12.md`, PASS for the Nil step,
+   with Farrell–Jones PASS by `bh-fj-twisted-crossed-product`.
+2. **Trust surfaces:**
+   - Khanh arXiv:2609.08428v1 is unrefereed. Its criteria were re-read at source here (§5), but their proofs were not
+     re-derived.
+   - Menal–Moncasi, Voronetsky and Krstić–McCool are quoted through Khanh.
+   - The odd-`p` Quillen weights and signed Steinberg comparison are the graph's own adaptation (reviewer-2 §3).
+   - The simplicity step applies Lean root-detection theorems on paper, for rings no Lean instance builds.
+   - Nothing on the chain is in Lean as a positive-characteristic statement.
+3. **Novelty,** which is bounded (§6).
+
+**Bookkeeping, not errors:**
 - The `M_0` name mismatch in the embedding route (review-backlog §16).
 - The finite-presentation claim says "infinitely many `m`" but proves every `m >= 2`.
+- The characteristic-two route lists `char-two-surface-linear-groups-satisfy-boone-higman` as a prerequisite, which it
+  never needs, because Lemma 7.1 is proved at every `d`.
