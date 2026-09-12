@@ -11,6 +11,7 @@ requires:
   - binary-leavitt-unit-group-is-simple
   - leavitt-gl-equals-el-and-perfect-unit-group
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/two-root-identity-nonsofic-mechanism-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ Artifact Section 2.
    (`binary-leavitt-unit-group-is-simple`) then kills `sigma`.
 
 The converse implications are immediate.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 47 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`. Theorem 2.2 passes. Artifact Corollary 2.3's `iota_0(x_ab(1)) = x_ab(e_0)` holds only up to simultaneous conjugation by one unit `u = V t_0 + Y t_1`, which preserves every rank statement.*

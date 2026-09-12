@@ -1629,3 +1629,43 @@ Items checked: `anti-central-rank-models-kill-ternary-corner-witnesses`, route
   - *Requested correction.* Replace "implies that filter" on the claim (distinct_from and Consequences) and in artifact
     Corollary 3.2 with "complements that filter: weaker model hypothesis, larger support group `<H, d>`". Nothing
     established rests on the implication, and no route encodes it.
+
+## 47. The two-root identity is corner-local (e5f2fbc35f, lane gk-gate-nonsofic): theorem PASS; Corollary 2.3 and one remark hold only up to conjugacy
+
+Items checked: `two-root-identity-is-corner-local-for-leavitt-rank-models`, route `two-root-identity-corner-locality-proof`, and
+`two-root-identity-nonsofic-mechanism-2026-09-12.md` Sections 1 and 2.
+
+- **Lemma 2.1.**
+  - `TS = 1`, `T(1 - ST) = 0` and `(1 - ST)S = 0` give `iota_P(g) iota_P(h) = S gh T + (1 - ST)^2 = iota_P(gh)`, with
+    `iota_P(1) = 1`.
+  - `T iota_P(g) S = g`, so `iota_P` is injective.
+- **Theorem 2.2.**
+  - *Per-model chain.* In characteristic two every `N_ab^2 = 0`, and `N_23 N_12 = 0` gives matrix units by Theorem A with
+    Weyl symmetry (Section 35). Theorem D then gives `p_1 = 0` or a unital homomorphism `R -> p_1 M p_1`. The latter is
+    excluded because corners of rank ultraproducts are directly finite and `R` is simple and not directly finite
+    (Sections 6 and 22).
+  - *(3) implies (1).* `tau = sigma o iota_P` is a rank model of `R^x`. Its unit pair values are
+    `sigma(iota_P(x_ab(1)))` under the same code identification `R^x = EL_3(R)`, so (3) is `tau`'s two-root identity and
+    `tau` is trivial. `iota_P(R^x)` is nontrivial and `R^x` is simple, so `ker sigma = R^x`.
+  - PASS. This uses only that `iota_P` is an endomorphism of the group.
+- **Corollary 2.3, and the remark `iota_P(x_ij(a)) = x_ij(s_P a t_P)`: false as literal equalities, true up to one
+  simultaneous conjugation.**
+  - *Counterexample.* Under the code `zeta = (0, 10, 11)`, `x_12(1) = 1 + S[0]T[10]`. So `iota_0(x_12(1)) = 1 + S[00]T[010]`,
+    while `x_12(e_0) = 1 + S[0] e_0 T[10] = 1 + S[00]T[100]`. These are distinct basis monomials.
+  - *Why.* The entrywise corner map `iota'_0((g_ij)) = (s_0 g_ij t_0) + (1 - e_0)I` is, in `R`, `g -> VgW + (1 - VW)` with
+    `V = sum_i S[zeta_i] s_0 T[zeta_i]` and `W = sum_i S[zeta_i] t_0 T[zeta_i]`, so `WV = 1`. That is a different isometry
+    from `s_0`.
+  - *Repair.* Choose an isometry `Y` with `YY* = 1 - VW` (the complement is `~= R^3 ~= R`), and put `u = V t_0 + Y t_1`,
+    `v = s_0 W + s_1 Y*`.
+    - `WY = 0` and `Y*V = 0`, so `uv = VW + YY* = 1` and `vu = 1`.
+    - `u s_0 = V` and `t_0 v = W`, so `u iota_0(g) u^-1 = VgW + Y t_1 s_1 Y* = iota'_0(g)`.
+    - Hence `(iota_0(x_12(1)), iota_0(x_23(1)))` is simultaneously conjugate in `R^x` to `(x_12(e_0), x_23(e_0))`.
+  - Every rank statement in Corollary 2.3 and in the isometry remark therefore holds as stated. So does
+    "`sigma` trivial iff `rk(n_23(s_0) n_12(t_0)) = 0`", through Section 44. Only the equalities must be read as
+    conjugacies.
+  - *Requested correction.* "`iota_0(x_ab(1))` is conjugate, by one unit, to `x_ab(e_0)`", and likewise for general `P`.
+- **Section 1.** `G = <Gamma, u, v> = EL_D(R) = R^x` is recorded, so subgroups containing the configuration are all of `R^x`.
+  Correct as a remark.
+- **Section 3 (audit).** Spot check of placement: `S[10000]T[100010]` has domain and range inside `[1]`, so it annihilates
+  and is annihilated by the units on `[0]`, and `x'` commutes with `Gamma`. The rest is prose, correctly not landed as a
+  route.
