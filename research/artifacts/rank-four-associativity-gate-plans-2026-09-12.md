@@ -167,12 +167,40 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
     defects are rank-independent of the whole cylinder commutant.
     * Lead spot-check of the triangular count: pass. `rk(TM) >= rk(TK) + rk(J) - rk(K)`, with
       `K = r.ann(X)` and `J = TM + K`, and `rk(J) - rk(K) = rk(TX)`.
-    * **Constraint for L5.** A deficit cannot come from elements of that commutant, and defects on
-      disjoint cylinders lie inside it. Any proof of
-      `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` therefore has to pass through
-      operators outside the commutant of `sigma(iota_A(R^x))`. All four untested sources above lie
-      outside it: the compressors, the nine-leaf configuration and the `GL_2` block root groups
-      straddle cylinder boundaries, and child-cylinder opposite roots lie inside `iota_A(R^x)` itself.
+    * **What it means for L5** (lead, corrected). Defects on disjoint cylinders lie in that commutant,
+      so at near-minimal defect `rk(D_A D_B)` is about `delta^2`, which is `theta = 1`.
+      * This is a theorem about near-minimal models, not a counter-model. A proof of `theta < 1` has
+        to show that near-minimal models do not exist, which is a proof by contradiction of the L2
+        shape.
+      * The earlier sentence here said that any proof "has to pass through operators outside the
+        commutant". That was a heuristic stated as if it were a firewall.
+      * The four untested sources above do lie outside the commutant.
+  * **Weaker sufficient input.** Route `leavitt-rank-triviality-via-commutant-rank-distortion` into
+    `non-linear-sofic-group` (e2e57e9f5). It requires:
+    * the OPEN `some-commutant-element-distorts-defect-range-rank`;
+    * the ESTABLISHED `near-minimal-defect-ranges-are-rank-faithful-for-the-commutant`;
+    * the defect gap.
+
+    `commutant-distortion-from-strict-defect-submultiplicativity` derives distortion from strict
+    submultiplicativity. So distortion is a weaker decisive input for the descent line than
+    `theta < 1`.
+  * **Two more firewalls** (family SUB; both established, with verification requested from w4-vf-gate).
+    * `finite-subgroup-data-cannot-force-defect-submultiplicativity` (w4-sub-weyl).
+      * The regular assignment `rk_reg(alpha) = dim(alpha F_2[K])/|K|` is a rank function on every
+        locally finite subgroup and is invariant under conjugation by every unit.
+      * It gives `rk_reg(D_(A_1)...D_(A_k)) = (3/8)^k`.
+      * So `theta < 1` does not follow from finite-subgroup rank calculus, relations inside finite
+        subgroups, or rank equalities between conjugates. That covers Weyl elements, the halving
+        sheets, prefix doubling, the swap, and conjugation by torus units or compressors.
+    * `locally-finite-hnn-data-allow-independent-cylinder-defects` (w4-sub-adversary).
+      * Take a countable locally finite `L <= R^x` and letters `t_u` that act as conjugation by
+        arbitrary units `u` on `L cap u^-1 L u`.
+      * The group they generate has a genuine fixed-point-free rank model with `rk(D_A) = 3/8` and
+        independent defects, so `theta = 1`.
+    * **Consequence for the untested sources.** Compressors, nine-leaf units and `GL_2` block root
+      groups cannot give `theta < 1` when they enter only through single conjugations of locally finite
+      data. A proof has to use relations of `R^x` that do not follow from locally finite subgroup
+      relations plus single partial conjugations.
 
 ### L6. Status
 
@@ -220,6 +248,36 @@ without completeness.
 * **If the node is true,** it gives the binary gate.
 * **If it is false,** completeness must enter any construction. It cannot enter through root data, since
   the transport formula lives in `U_3(R)`. It has to enter through units outside `U_4(R)`.
+* **Reduction** (lane w4-cohn-el3, 013740e0d; route `cohn-el3-two-root-identity-from-jacobson-rank-radical`;
+  verifier PASS as a conditional route, §14.3). The target follows from the OPEN
+  `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`.
+  * **The Jacobson claim.** Every characteristic-two rank model of `E = EL_3(J)`, with
+    `J = F_2<S,T | TS = 1>`, kills `x_13(1 - ST)`. By the node's established dichotomy, the rank radical
+    of `E` is either `1` or the finitary kernel `L = GL_fin(N x {1,2,3}, F_2)`.
+  * **How the route uses it.** `S -> s_0`, `T -> t_0` embeds `E` in `G = EL_3(C_2)` and sends the head
+    `x_13(1 - ST)` to a nontrivial element. The established
+    `cohn-elementary-group-rank-radical-is-trivial-or-everything` then gives rank radical `G`. So every
+    model of `G` is trivial, and every such model satisfies the identity.
+  * **Strength marker** (lead; literature status not verified).
+    * The Jacobson node already records that its claim makes `E` non-sofic.
+    * `L` is locally finite, and `E/L = EL_3(F_2[z,z^-1])` is residually finite
+      (`laurent-elementary-groups-are-residually-finite`). So the claim would give a non-sofic group
+      with locally finite kernel `L` and residually finite quotient `E/L`.
+    * Elek--Szabo's closure theorem covers amenable quotients, not amenable kernels. Check whether the
+      kernel case is known before relying on this marker in either direction.
+    * If soficity is closed under amenable kernels, the Jacobson claim is false. This route would then
+      die, but the L8 target would be untouched.
+* **Rank four.** Source: w4-cohn-el3, `thompson-v-lifts-into-rank-four-cohn-elementary-group`, established;
+  verification requested from w4-vf-gate.
+  * **The lift.** Thompson's `V` lifts injectively into `GL_2(C_2)` over the quotient `C_2 -> R`. The lift
+    differs from prefix replacement only by finitary units. Since `V` is perfect,
+    `phi(V) (+) 1_2 <= EL_4(C_2)`.
+  * **Normal subgroups.** Those of `G_4 = EL_4(C_2)` are `1`, `K_4 = GL_fin(W x 4, F_2)` and `G_4`. So every
+    nontrivial characteristic-two rank model of `G_4` is injective.
+  * **Consequence.** The OPEN V gate `thompson-v-has-no-nontrivial-f2-rank-model` kills every rank model of
+    `EL_4(C_2)`. Every rank model of `R^x = EL_4(R)` pulls back to `EL_4(C_2)`, so this gives a Cohn-level
+    form of the binary gate. The direct implication from the V gate to the binary gate (`V <= R^x`, and
+    `R^x` is simple) is not new.
 
 ### L9. Adjacent plans from w3-strategist-neg (tracked here; not an R4 lane)
 
@@ -244,7 +302,9 @@ route `el3-rank-triviality-via-defect-piece-covariance`. w4-r4-adversary has bee
 * **Audit** (w4-r4-adversary, ca519f534e; artifact `covariant-diagonal-plan-adversarial-audit-2026-09-12.md`).
   The claim is not refuted, and its route stays valid.
   * **Joins exist.** In a rank ultraproduct, every countable family of principal right ideals has a
-    join. That settles the "if the spans have ranks" caveat above.
+    join in the lattice of principal right ideals, with rank equal to the supremum of its finite joins.
+    Leastness is among principal right ideals only (verifier scope remark, §12.1). That settles the
+    "if the spans have ranks" caveat above.
   * **The first lemma is automatic.** By `covariant-monotone-cylinder-families-in-rank-models-are-constant`,
     every covariant, refinement-monotone family of principal right or left ideals indexed by proper
     cylinders is constant. This holds in every rank model, whatever `N_23 N_12` is. Orthogonal cylinder
@@ -268,9 +328,18 @@ statements say. It is not a re-verification.
 | `reversed-root-pair-identity-forces-root-squares-to-vanish` | ring identity | yes |
 | `opposite-unit-root-product-vanishes-only-for-trivial-models` | identity holds whenever `2 = 0`; positivity needs a faithful rank | no; characteristic two only |
 | firewalls of L7 | counter-models into matrix algebras, so they bind in any rank setting | via the abelian model, stated for every `p` |
-| defect gap, descent, near-minimal multiplicativity | use compactness over rank ultraproducts, regularity and faithfulness | no; characteristic two only |
+| defect gap, descent, near-minimal multiplicativity | transferred by w4-upg-audit (rows below) | no; characteristic two only |
+| `sylvester-rank-functions-have-a-uniform-two-root-defect-gap` | every Sylvester matrix rank function on `F_2[R^x]` that moves a generator by `eta` has corner defect rank at least `c^Syl(eta)` | no |
+| `corner-defect-killing-rank-functions-are-augmentation` | a Sylvester rank function that kills one corner defect is the augmentation rank | no |
+| `leavitt-defect-descent-chain-holds-in-regular-rank-rings` | defect piece, gap, two-sided descent and near-minimal multiplicativity in every faithful regular rank ring | no |
+| `regular-rank-ring-compressors-conserve-fixed-right-ideals` | compressors conserve fixed right ideals in every faithful regular rank ring | no characteristic stated |
 
-The endpoints, identities and firewalls transfer. Every mechanism that uses the rank structure (gap,
-descent, positivity) is stated only for faithful rank ultraproducts in characteristic two. So nothing
-R4 has established removes (U2), and none of these mechanisms has a characteristic-three counterpart
-yet.
+**Update** (w4-upg-audit; all four nodes established, verification requested from w4-vf-gate).
+* **What changed.** The first version of this table said that the gap, descent and positivity mechanisms
+  were stated only for faithful rank ultraproducts. That is now stale in characteristic two:
+  * the gap and positivity hold for every Sylvester matrix rank function on `F_2[R^x]`;
+  * the descent chain holds in every faithful regular rank ring.
+
+  So in characteristic two these mechanisms no longer depend on matrix ultraproducts.
+* **What still holds.** The ternary route needs characteristic three, and none of these mechanisms has a
+  characteristic-three counterpart yet. So (U2) is still open there.
