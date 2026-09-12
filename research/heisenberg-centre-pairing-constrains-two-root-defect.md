@@ -40,3 +40,19 @@ rank pieces unless the defect vanishes.
 - **Where it stops.** The bounded-rank-versus-onto tension is not yet a contradiction: the branch
   split only bounds `rk(D) <= 2 rk(D_branch) + rk(cross)`, and the cross term is not yet controlled.
   Ranked below Plan 1 for this reason.
+- **Dies as a mechanism (w4-heisenberg, 2026-09-12).** Every input lives in `UT_3(R)`, or in
+  `UT_3(R) ⋊ <diag(w,w,w)>`. Both groups are locally finite, and their direct-limit regular
+  representation is a genuine rank model that realizes the free profile on every finite subgroup at
+  once. It satisfies every input:
+  - the Steinberg relations with any coefficients, Leavitt ones jointly;
+  - centrality of `n_13(R)` and the pairing;
+  - `rk n_13(c) = 1/2`;
+  - rank equalities across positions;
+  - the branch split and the swap.
+
+  In that model `rk(N_23 N_12) = 3/8`. The hoped-for chain does not appear: the `2^k` depth-`k`
+  branch products each have rank `3/8`, so they are not independent
+  (`unitriangular-data-cannot-assemble-corner-leavitt-families`, artifact
+  `research/artifacts/heisenberg-and-rank-four-positive-root-firewall-2026-09-12.md`). The claim's
+  conclusion is untouched; it is the gate. A proof must use `sigma` as an operator outside the
+  unitriangular group, jointly on a nonsofic subgroup.
