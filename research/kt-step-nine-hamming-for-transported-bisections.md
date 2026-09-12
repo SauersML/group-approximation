@@ -31,10 +31,14 @@ bridges realized by `A(t)⁻¹`, with an error `ε n X Z` of at most `3 · scale
 This is the conclusion of the `hhamming` binder of
 `CompressorNormalizationAssembly.seqNormalizes_distinguished_of_guardedSteps`.
 
-## What a consumer must supply
+## Consumers
 
-* The words: `compressorWords`, `compressorWordBound`, `compressorWords_length_le` and
-  `compressorWords_prod` of the normalized setup. The distinguished compressor is a
-  compressor.
-* Estimate (7) for `M`, with its error bound. `CompressorRelativeData` has no such
-  field yet, so the binder cannot be discharged from this node alone.
+* Since `e9606bafe`, `CompressorRelativeData` carries estimate (7) and its error bound as
+  the fields `estimateError`, `estimate` and `estimateError_le`, in exactly the shape of
+  `h7` and `hε`.
+* `seqNormalizes_distinguished_of_kazhdan_of_functor`
+  (module `KunThom/CompressorNormalizationCore`, `b38b013f3`) applies this theorem with
+  those fields and the words `compressorWords` of the normalized setup.
+  `compressorWords_prod` states its product over letters coerced to `K` through the
+  `List` monad, and `RelativeDataMarkov.prod_map_bind_coe` converts it into the form of
+  `hws`.
