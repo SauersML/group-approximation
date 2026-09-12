@@ -107,7 +107,7 @@ theorem manuscriptSentence_binarySLUnionInfiniteSimpleLocallyFinite :
     isSimpleGroup_finitary_zmodTwo binaryBasis ⟨Finset.range 3, by simp⟩
   haveI : Nontrivial binarySLUnion := e.symm.injective.nontrivial
   exact ⟨blockSL_injective, Infinite.of_injective e.symm e.symm.injective,
-    isSimpleGroup_of_surjective e.symm.toMonoidHom e.symm.surjective,
+    IsSimpleGroup.isSimpleGroup_of_surjective e.symm.toMonoidHom e.symm.surjective,
     (isLocallyFiniteGroup_finitary binaryBasis).comap e.toMonoidHom e.injective⟩
 
 end FinitaryLinear

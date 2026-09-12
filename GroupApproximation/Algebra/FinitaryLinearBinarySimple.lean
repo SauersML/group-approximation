@@ -101,7 +101,7 @@ theorem isSimpleGroup_units_matrix_zmodTwo (hcard : 3 ≤ Fintype.card ι) :
   haveI := isSimpleGroup_elementaryGroup_zmodTwo ι hcard
   haveI : Nontrivial (Matrix ι ι (ZMod 2))ˣ :=
     (elementaryGroup ι (ZMod 2)).subtype_injective.nontrivial
-  refine isSimpleGroup_of_surjective (elementaryGroup ι (ZMod 2)).subtype fun u ↦ ?_
+  refine IsSimpleGroup.isSimpleGroup_of_surjective (elementaryGroup ι (ZMod 2)).subtype fun u ↦ ?_
   have hu : u ∈ elementaryGroup ι (ZMod 2) := by
     rw [elementaryGroup_zmodTwo_eq_top]
     exact Subgroup.mem_top u
@@ -119,9 +119,10 @@ variable {M : Type v} [AddCommGroup M] [Module (ZMod 2) M] {β : Type w}
 /-- Every block stabilizer on at least three basis indices is simple. -/
 theorem isSimpleGroup_supportedOn_zmodTwo (T : Finset β) (hT : 3 ≤ T.card) :
     IsSimpleGroup (supportedOn B T) := by
+  classical
   haveI := isSimpleGroup_units_matrix_zmodTwo (↥T) (by simpa using hT)
   haveI : Nontrivial (supportedOn B T) := (supportedOnEquivGL B T).symm.injective.nontrivial
-  exact isSimpleGroup_of_surjective (supportedOnEquivGL B T).symm.toMonoidHom
+  exact IsSimpleGroup.isSimpleGroup_of_surjective (supportedOnEquivGL B T).symm.toMonoidHom
     (supportedOnEquivGL B T).symm.surjective
 
 /-- The inclusion of a block stabilizer into the finitary group. -/
@@ -164,7 +165,7 @@ theorem isSimpleGroup_finitary_zmodTwo (hβ : ∃ T : Finset β, 3 ≤ T.card) :
     have h1 : (⟨g, hgS⟩ : supportedOn B T) = 1 := by
       rw [hbotT] at hgNT
       exact Subgroup.mem_bot.mp hgNT
-    exact hg1 (Subtype.ext (congrArg Subtype.val h1))
+    exact hg1 (Subtype.ext (congrArg (fun z : supportedOn B T ↦ (z : M ≃ₗ[ZMod 2] M)) h1))
   · have hmem : (⟨h, hhS⟩ : supportedOn B T) ∈ NT := by
       rw [htopT]
       exact Subgroup.mem_top _
@@ -179,7 +180,7 @@ theorem binaryTransvection_apply (b₀ b : β) (x : M) :
 
 theorem coord_basis_of_ne {b c : β} (h : b ≠ c) : B.coord c (B b) = 0 := by
   classical
-  simp [Module.Basis.coord_apply, Module.Basis.repr_self, Finsupp.single_apply, h]
+  simp [Module.Basis.coord_apply, Module.Basis.repr_self, h]
 
 theorem coord_basis_self (b : β) : B.coord b (B b) = 1 := by
   simp [Module.Basis.coord_apply, Module.Basis.repr_self]
@@ -203,7 +204,7 @@ theorem binaryTransvectionEquiv_mem_finitary {b₀ b : β} (hb : b ≠ b₀) :
   refine (mem_finitary B).mpr ⟨{b₀, b}, IsSupportedOn.of_basis (fun c hc ↦ ?_) fun c hc ↦ ?_⟩
   · have hc0 : c ≠ b₀ := fun h ↦ hc (by simp [h])
     show B c + B.coord b₀ (B c) • B b = B c
-    simp [Module.Basis.coord_apply, Module.Basis.repr_self, Finsupp.single_apply, hc0]
+    simp [Module.Basis.coord_apply, Module.Basis.repr_self, hc0]
   · show B c + B.coord b₀ (B c) • B b ∈ blockSpan B {b₀, b}
     exact Submodule.add_mem _ (basis_mem_blockSpan B hc)
       (Submodule.smul_mem _ _ (basis_mem_blockSpan B (by simp)))
@@ -217,8 +218,8 @@ theorem coord_binaryTransvection_basis (b₀ b c : β) :
 theorem infinite_finitary_zmodTwo [Infinite β] : Infinite (finitary B) := by
   classical
   obtain ⟨b₀⟩ := (inferInstance : Nonempty β)
-  haveI : Infinite (({b₀} : Set β)ᶜ) := (Set.finite_singleton b₀).infinite_compl.to_subtype
-  let f : (({b₀} : Set β)ᶜ) → finitary B := fun b ↦
+  haveI : Infinite ↥(({b₀} : Set β)ᶜ) := (Set.finite_singleton b₀).infinite_compl.to_subtype
+  let f : ↥(({b₀} : Set β)ᶜ) → finitary B := fun b ↦
     ⟨binaryTransvectionEquiv B (Set.mem_compl_singleton_iff.mp b.2),
       binaryTransvectionEquiv_mem_finitary B (Set.mem_compl_singleton_iff.mp b.2)⟩
   refine Infinite.of_injective f fun b c hbc ↦ ?_
