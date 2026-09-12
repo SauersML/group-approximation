@@ -336,3 +336,52 @@ can commute with Q, as the same artifact proves using the
 translation stabilizers of its fibers. A proposed nonlinear
 encoding therefore still needs a separate argument that its
 conjugated rule has the required linear-feedback form.
+
+**Decoder fibers, measured (2026-09-12).** The countable-fiber route is an
+exact reformulation, not a weakening. The converse route
+`countable-transitive-decoder-fiber-from-gottschalk` makes its prerequisite
+equivalent to this goal, and the two routes form a deliberate cycle. The fiber
+zero-one law now has an established measure form,
+`strict-split-pairs-carry-positive-entropy-flip-lifts`. A strict split pair
+carries an invariant factor-of-iid lift of uniform Bernoulli through the
+decoder whose identity coordinate has conditional entropy at least
+`log 2 / (|A|^|W| |WW^-1|)`. Over amenable groups a Følner average of this
+bound recovers surjunctivity. Single-site fiber entropy contradicts nothing by
+itself: `xor-lift-of-bernoulli-has-positive-fiber-entropy` refutes
+`ca-bernoulli-lifts-have-zero-fiber-entropy` and kills
+`gottschalk-via-flip-lift-and-zero-fiber-entropy`. Over `F_2` the
+Ornstein--Weiss block map shows that no average works without using the section
+`tau`. The missing ingredient is an averaged fiber-entropy bound that uses
+`tau` and survives nonamenable boundaries. Artifact:
+`research/artifacts/decoder-fiber-flip-lifts-2026-09-12.md`.
+
+**Three-factor normal form and the peeling criterion (2026-09-12).** An
+independent re-derivation confirms the stable three-factor reduction group by
+group and shows it is an equivalence.
+`gottschalk-specializes-to-three-factor-class` and
+`three-factor-class-specializes-to-recipient-affine` close the cycles, so both
+open claims are the conjecture in normal form, not smaller targets.
+`controlled-self-linear-feedback-ca-are-surjunctive` proves the peeling
+criterion over every group and finite ring. An injective automaton is
+surjective once some ordering of its track blocks makes each row, with the
+earlier blocks set to zero, linear in its own block under controllers reading
+only later blocks, with invertible constant part. This contains the 09-08
+bipartite and target-multiplicative theorems. The recipient-affine normal form
+fails the criterion under both orderings, so what remains is exactly offsets or
+own-block nonlinearity that survive every ordering. Artifact:
+`research/artifacts/three-factor-audit-and-controlled-feedback-2026-09-12.md`.
+
+**No permanence route to the tester host (2026-09-12).**
+`fixed-host-outside-sofic-permanence-closure` shows that the host `U` of the
+fixed tester is not built from sofic groups by subgroups, directed colimits,
+finitary split extensions, graph folds or LEF-lamp graph wreaths. `U` contains
+the binary Leavitt unit group, a finitely presented simple nonsofic Kazhdan
+group, and no member of that class contains such a group. So
+`fixed-host-lies-in-sofic-permanence-closure` is refuted and
+`fixed-host-surjunctive-via-sofic-permanence` is dead. Every landed
+surjunctivity permanence theorem is one of these operations, so iterating them
+reaches neither `U` nor the Leavitt unit group. A positive proof on the host has
+to handle automata on a simple nonsofic Kazhdan group directly. Subgroup
+heredity now has its own node, `surjunctivity-passes-to-subgroups`, and the dead
+route names it as a prerequisite. Artifact:
+`research/artifacts/fixed-host-permanence-closure-obstruction-2026-09-12.md`.
