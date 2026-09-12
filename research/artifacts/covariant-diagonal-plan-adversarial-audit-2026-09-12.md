@@ -31,7 +31,8 @@ ideal. `M` is von Neumann regular, and `rk` is faithful on principal right ideal
 `rk A = rk B`, then `A = B`, because `B = A ⊕ C` with `rk C = 0`.
 
 **Proposition 1.** For a countable family `(A_n)` of principal right ideals, there is a principal right
-ideal `J` that contains every `A_n` and lies inside every right ideal containing them all. Moreover
+ideal `J` that contains every `A_n` and lies inside every principal right ideal containing them all
+(corrected forward after `w4-vf-gate` §12: leastness is among principal right ideals). Moreover
 `rk J = sup_n rk(A_1 + ... + A_n)`. Dually, countable meets exist.
 
 *Proof.*
@@ -39,7 +40,8 @@ ideal `J` that contains every `A_n` and lies inside every right ideal containing
    The conditions `e^2 = e`, `e f_n = f_n` for all `n`, and `rk(e) <= s` are finitely satisfiable, by
    `e = f_N`. They are closed conditions in the rank metric. Metric ultraproducts along a nonprincipal
    ultrafilter on `N` are countably saturated, so some idempotent `e` satisfies all of them.
-2. **Leastness.** If `K` contains every `A_n`, then `K ∩ eM` contains every `J_n`, so its rank is at
+2. **Leastness.** If a principal right ideal `K` contains every `A_n`, then `K ∩ eM`, which is principal
+   because `M` is regular, contains every `J_n`, so its rank is at
    least `s = rk(eM)`. By faithfulness, `eM ⊆ K`.
 3. **Meets.** Same argument, with `f_n e = e` and `rk(e) >= s − 1/m` for every `m`.
 

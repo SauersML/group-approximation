@@ -20,7 +20,8 @@ artifacts:
 - `V` is Thompson's group acting on `X = {0,1}^N` by prefix replacement, and `sigma : V -> M^x` is a
   homomorphism.
 
-1. **Joins exist.** Countable families of principal right ideals have joins, of rank equal to the
+1. **Joins exist.** Countable families of principal right ideals have joins in the lattice of principal
+   right ideals, of rank equal to the
    supremum of their finite joins; dually, countable meets exist. This follows from countable saturation
    and faithfulness of rank.
 2. **Monotone rigidity.** Let `A_w`, over proper cylinders `w`, be principal right ideals with
