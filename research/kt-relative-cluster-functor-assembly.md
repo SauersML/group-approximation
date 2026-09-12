@@ -9,6 +9,8 @@ distinct_from:
 artifacts:
   - GroupApproximation/KunThom/RelativeFunctorMetric.lean
   - GroupApproximation/KunThom/RelativeFunctorAssembly.lean
+  - GroupApproximation/KunThom/RelativeFunctorBundle.lean
+  - GroupApproximation/KunThom/RelativeFunctorScaled.lean
 ---
 
 **ESTABLISHED, proved here, as an implication from explicit finite hypotheses.**
@@ -43,6 +45,22 @@ namespace `GroupApproximation.GroupoidPresentation.ClusterMetric`.
 - Estimate (7), `twoSidedDisagreement_sandwich_lt_of_ofRep_eq`: every representative
   of `F [b]` lies within `radius (obj X) (obj Y) + ρ X Y` of the raw map.
 - `nonempty_hom_relativeFunctor`: connected retained objects have connected images.
+
+**Bundled form.** `GroupoidPresentation.RelativeClusterFunctor P R D` (module
+`KunThom/RelativeFunctorBundle`) consists of:
+- a bijection `π` from `D` onto `R`;
+- a morphism of the restricted presentations from `R` to `D` with
+  `F (π i) = i`;
+- faithfulness.
+
+Producers:
+- `ClusterMetric.relativeClusterFunctor`, for any cluster metric, with object map
+  `matchingInverse π`.
+- `ScaledPartialClusterSystem.relativeClusterFunctor` (module
+  `KunThom/RelativeFunctorScaled`), for the scaled cluster groupoid. There the three
+  numerical families are proved (`relativeFunctor_{respects,comp,faithful}_of_small`)
+  from three bounds: `100 · β X ≤ scale X`, `100 · ρ X Y ≤ min (scale X) (scale Y)`,
+  and matched scales within `11 / 10`.
 
 **Hypotheses (open leaves of the assembly).**
 - `himprove`: every raw map has an improvement within `ρ X Y`. For the scaled
