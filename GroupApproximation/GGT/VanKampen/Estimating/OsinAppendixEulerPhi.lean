@@ -34,9 +34,11 @@ theorem cell_face_injective (Delta : DiscDiagram.{u, w, v} W) :
   intro i j h
   have hnodup := Delta.relatorCell_faces_nodup
   have hi : i.1 < (Delta.relatorCells.map RelatorCell.face).length := by
-    simpa [DiscDiagram.rCellCount] using i.2
+    rw [List.length_map]
+    exact i.2
   have hj : j.1 < (Delta.relatorCells.map RelatorCell.face).length := by
-    simpa [DiscDiagram.rCellCount] using j.2
+    rw [List.length_map]
+    exact j.2
   have hget : (Delta.relatorCells.map RelatorCell.face)[i.1]'hi =
       (Delta.relatorCells.map RelatorCell.face)[j.1]'hj := by
     simpa [cell, List.getElem_map] using h
@@ -93,29 +95,23 @@ theorem cross_alpha (a : RegionCandidate D eps Delta) (side cellSide : Bool)
 theorem exists_cross (a : RegionCandidate D eps Delta)
     (hnondeg : 0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length) (side cellSide : Bool) :
     ∃ d, cross a side cellSide = some d := by
-  have hne : ∀ s : Bool,
-      (if s then a.2.sourceArc.darts else a.2.targetArc.darts) ≠ [] := by
-    intro s
-    cases s with
-    | true =>
-        simp only [if_true]
-        intro h
-        have := a.2.sourceArc.darts_length
-        rw [h] at this
-        simp at this
-        omega
-    | false =>
-        simp only [if_false]
-        intro h
-        have := a.2.targetArc.darts_length
-        rw [h] at this
-        simp at this
-        omega
+  have hsrc : a.2.sourceArc.darts ≠ [] := by
+    intro h
+    have := a.2.sourceArc.darts_length
+    rw [h] at this
+    simp at this
+    omega
+  have htgt : a.2.targetArc.darts ≠ [] := by
+    intro h
+    have := a.2.targetArc.darts_length
+    rw [h] at this
+    simp at this
+    omega
   have hsome : ∃ p, (if side then a.2.sourceArc.darts.head? else a.2.targetArc.darts.head?) =
       some p := by
     cases side with
-    | true => exact ⟨_, List.head?_eq_head (hne true)⟩
-    | false => exact ⟨_, List.head?_eq_head (hne false)⟩
+    | true => exact ⟨_, List.head?_eq_some_head hsrc⟩
+    | false => exact ⟨_, List.head?_eq_some_head htgt⟩
   obtain ⟨p, hp⟩ := hsome
   cases cellSide with
   | true => exact ⟨p, by simp only [cross, if_true]; exact hp⟩
@@ -131,7 +127,7 @@ theorem faceOf_cross_true (a : RegionCandidate D eps Delta) (hinterior : a.2.tar
       have hmem := a.2.sourceArc.mem_cycle_of_mem_darts (List.mem_of_mem_head? h)
       exact faceOf_of_mem_cellDarts hmem
   | false =>
-      simp only [cross, if_true, if_false] at h
+      simp only [cross, if_true] at h
       obtain ⟨j, hj⟩ := Option.isSome_iff_exists.mp hinterior
       have hmem := a.2.targetArc.mem_cycle_of_mem_darts (List.mem_of_mem_head? h)
       rw [hj] at hmem
@@ -155,7 +151,7 @@ theorem mem_cycle_cross_false (a : RegionCandidate D eps Delta) (hinterior : a.2
       simp only [List.mem_append]
       exact Or.inl (Or.inl (Or.inl hmem))
   | false =>
-      simp only [cross, if_true, if_false] at hp
+      simp only [cross, if_true] at hp
       have hmem : Delta.toCombMap.alpha p ∈ a.2.targetArc.reverseDarts := by
         simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse]
         exact ⟨p, List.mem_of_mem_head? hp, rfl⟩
@@ -190,7 +186,11 @@ theorem PhiData.sideCell_ne (P : PhiData family E) {a : RegionCandidate D eps De
     (ha : a ∈ E) : sideCell a true ≠ sideCell a false := by
   obtain ⟨j, hj⟩ := Option.isSome_iff_exists.mp (P.interior a ha)
   have hloop := P.noLoop a ha
-  simp only [sideCell, if_true, hj, Option.getD_some]
+  have hfalse : sideCell a false = j := by
+    show a.2.target.getD a.2.source = j
+    simp only [hj, Option.getD_some]
+  show a.2.source ≠ sideCell a false
+  rw [hfalse]
   intro h
   exact hloop (by rw [hj, h])
 
@@ -231,8 +231,10 @@ theorem PhiData.cross_unique (P : PhiData family E) {a b : RegionCandidate D eps
         exact eq_of_face_mem_of_face_mem P.pairwise (hfam a ha) (hfam b hb)
           (faceOf_cross_false a (P.interior a ha) h) (faceOf_cross_false b (P.interior b hb) h')
     | true =>
-        have hα := (cross_alpha a s false d).mpr h
-        have hα' := (cross_alpha b s' false d).mpr h'
+        have hα : cross a s false = some (Delta.toCombMap.alpha d) :=
+          (cross_alpha a s true d).mpr h
+        have hα' : cross b s' false = some (Delta.toCombMap.alpha d) :=
+          (cross_alpha b s' true d).mpr h'
         exact eq_of_face_mem_of_face_mem P.pairwise (hfam a ha) (hfam b hb)
           (faceOf_cross_false a (P.interior a ha) hα) (faceOf_cross_false b (P.interior b hb) hα')
   subst hregion
@@ -387,12 +389,13 @@ theorem collapsed_faceOf_eq_of_face_eq {d d' : Delta.toCombMap.Dart}
         have hstep := CombMap.faceOf_facePerm (collapsedMap family)
           ⟨(Delta.toCombMap.facePerm ^ m) d, not_regionInternal_of_face_not_mem hm⟩
         rw [collapsed_facePerm_of_face_not_mem hm] at hstep
+        have hsucc : (Delta.toCombMap.facePerm ^ (m + 1)) d =
+            Delta.toCombMap.facePerm ((Delta.toCombMap.facePerm ^ m) d) := by
+          rw [pow_succ', Perm.mul_apply]
         rw [hfm, ← hstep]
-        exact congrArg (collapsedMap family).faceOf
-          (Subtype.ext (by rw [pow_succ', Perm.mul_apply]))
-  obtain ⟨-, hfn⟩ := hpow n
-  rw [hfn]
-  exact congrArg (collapsedMap family).faceOf (Subtype.ext hn)
+        exact congrArg (collapsedMap family).faceOf (Subtype.ext hsucc.symm)
+  obtain ⟨_, hfn⟩ := hpow n
+  exact hfn.trans (congrArg (collapsedMap family).faceOf (Subtype.ext hn))
 
 variable (P : PhiData family E)
 
