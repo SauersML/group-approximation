@@ -25,10 +25,11 @@ theorem symmetricDouble_finitelyGenerated (G : Type u) [Group G] [Group.FG G]
     have hg : inDouble G Γ b g ∈ Subgroup.closure (inDouble G Γ b '' (S : Set G)) := by
       rw [← MonoidHom.map_closure, hS]
       exact ⟨g, Subgroup.mem_top g, rfl⟩
-    apply Subgroup.closure_mono (t := T) ?_ hg
-    cases b
-    · exact Set.subset_union_left
-    · exact Set.subset_union_right
+    have hsub : inDouble G Γ b '' (S : Set G) ⊆ T := by
+      cases b
+      · exact Set.subset_union_left
+      · exact Set.subset_union_right
+    exact Subgroup.closure_mono hsub hg
   refine Group.fg_iff.mpr ⟨T, ?_,
     ((S : Set G).toFinite.image _).union ((S : Set G).toFinite.image _)⟩
   apply eq_top_iff.mpr

@@ -228,7 +228,7 @@ theorem cosetDifference_translate (g : A) (q : A ⧸ Γ) :
   | h h =>
     change difference A Γ (g * h) * (difference A Γ (g * 1))⁻¹ =
       inDouble A Γ true g * difference A Γ h * (inDouble A Γ true g)⁻¹
-    simp only [difference, map_mul, map_one, mul_one]
+    simp only [difference, map_mul, mul_one]
     group
 
 theorem kernelToDouble_equivariant (g : A) :
