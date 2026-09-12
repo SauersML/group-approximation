@@ -45,3 +45,34 @@ max_(s ∈ F_Δ) ||σ_n(s) - ρ_n(s)||_2  ->  0     along U.
   - Regular trace and a trace-zero symmetry in the vertex commutant can be added to any model by tensoring with
     finite-quotient models and `1_2`, without changing the root spectra of a rounding.
   - See artifact §5.
+- **Enlarge the centralized subgroup, then reduce to one property (T) question (lane `nh-laurent-commutant`).**
+  The `H_i` obstruction above is not fatal: the defect `W_i` centralizes far more than `H_i`, and the correct
+  larger group has finite abelianization.
+  - **Full off-corner commutation (Steinberg calculus, rigorous).** For `W_i = ρ'(x_23(x_i^(-1)))^* σ(e_23(x_i^(-1)))`,
+    conjugation by `e_23(x_i^(-1))` is trivial on any root `(c,d)` with `c ≠ 3` and `d ≠ 2`, and on `(2,3)` itself.
+    So `W_i` commutes **exactly in M** with the FULL root groups `π(e_cd(R_+))` for every `(c,d)` with `c ≠ 3, d ≠ 2`,
+    and with the full `π(e_23(R_+))` — not merely with `e_cd(x_i R_+)`. Only the transpose-support of the defect root
+    stays confined: row 3 `(3,k)` and column 2 `(k,2)` sit at level `(x_i)` (via `[e_23(x_i^(-1)), e_3k(x_i a)] = e_2k(a)`
+    etc.), and the corner `(3,2)` at level `(x_i^2)`.
+  - **Define `K_i`** = the mixed-level root-graded subgroup with `X_α = R_+` for `α` off row 3 / column 2 (and `α=(2,3)`),
+    `X_α = (x_i)` for `α ∈ {(3,k),(k,2): k ∉ {2,3}}`, and `X_{(3,2)} = (x_i^2)`. It is closed under the Steinberg
+    commutators (`[X_{(3,k)},X_{(k,2)}] = e_32((x_i^2)) = X_{(3,2)}`), `W_i` centralizes it, and `π_n(K_i) = π_n(Γ)`
+    at every finite level (since `x_i` is a unit in `A_n`).
+  - **`H_i` fails (T); this is exactly the recorded gap.** Reduce `mod (x_i^2)`: the ideal `(x_i)` becomes the
+    square-zero ideal `J = (x_i)/(x_i^2) ≅ R_+/(x_i)`, and `⟨e_α(J)⟩` is ABELIAN and infinite. So `H_i` (ideal-only,
+    `(x_i)` non-idempotent) has an infinite abelian quotient, hence no property (T). No fixed-generator spectral-gap
+    argument over `H_i` can bridge the unbounded-degree `x_i^(m_n-1)`.
+  - **`K_i` has FINITE abelianization for `r ≥ 4`.** Using a third index `l ∉ {2,3,k}`, every confined direction is a
+    single commutator of `K_i` generators: `e_3k(x_i a) = [e_3l(x_i a), e_lk(1)]`, `e_k2(x_i a) = [e_kl(1), e_l2(x_i a)]`,
+    `e_32(x_i^2 a) = [e_31(x_i a), e_12(x_i b)]`. So all `(x_i)`- and `(x_i^2)`-level directions die in `K_i^{ab}`, and the
+    full-ring part is elementary of rank `≥ 2` (finite abelianization). The infinite-abelianization obstruction that kills
+    `H_i` is DEFEATED by the extra full commutation.
+  - **Reduction (rigorous).** If `K_i` has property (T) with a fixed finite generating set, the Kazhdan projection applied
+    to `Ad π_n|_{K_i}` gives `W_i ∈ ∏_U π_n(K_i)' = ∏_U π_n(Γ)' = π(Γ)' ∩ M` (the last equality is `Γ`'s own (T)). By
+    `laurent-extension-agrees-iff-inverse-defects-commute` item 2 this yields `σ∘q = ρ'` on `St_r(L)`. So **the converse,
+    hence Laurent = unit-type on `St_r(L)`, follows from property (T) of `K_i` (`r ≥ 4`).**
+  - **Remaining crux: is `K_i` Kazhdan?** A relative-(T) question in the Ershov–Jaikin-Zapirain / EJZ-Kassabov
+    "groups graded by root systems" framework. The ideal levels `(x_i), (x_i^2)` are non-idempotent (the enemy of
+    relative (T)) but are commutator-generated from the full-ring root groups, which is the input their spectral criterion
+    uses. Not settled here; if `K_i` is (T) the converse holds, and the `St_r(L) → Δ` / `K_2` descent above is the only
+    remaining gap to the full Laurent claim.
