@@ -125,7 +125,7 @@ theorem tx_inj_degree_of_ne_zeroOf (K : Type) [Field K] (Y : Type) [TopologicalS
   have hs1 : pull (knSlice (midBaseOf Y n) 1
         (GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.northPole 0)) 1
         (pull (prS1Of Y n) 1 σ₁) = 0 :=
-    pull_knSlice_knPrSOf K (midBaseOf Y n) 1 (by omega)
+    KnHemi.pull_knSlice_knPrSOf K (midBaseOf Y n) 1 (by omega)
       (GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.northPole 0) σ₁
   -- the circle slice kills the `t x` term, so the first summand vanishes
   have hU : pull (knPrY Y (2 * n + 1)) (1 + ((2 * n + 1) + c)) α = 0 := by
