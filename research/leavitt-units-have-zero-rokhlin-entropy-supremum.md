@@ -105,3 +105,10 @@ deficit certificate is finite and checkable.
   its points, with a strict `Phi` inequality. Its folds must run through a nonsoficity configuration of
   `U`, such as the nested defect of `leavitt-units-carry-nested-rigid-defect`, and not through
   median matching.
+- **Measurable compression (2026-09-12).** `leavitt-zero-supremum-via-measurable-compression`
+  reduces the target to `measurable-alphabet-compression-over-leavitt-units`: a Borel code into
+  fewer symbols that is injective almost everywhere. Two mechanisms are excluded over every group.
+  Routing codes that keep a certificate are measure-preserving almost everywhere
+  (`measurable-certificate-routing-preserves-bernoulli-measure`). Codes passing through coset shifts
+  with infinite stabilizers are constant (`bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`).
+  What remains is a synergistic nonlinear code along a compressor.
