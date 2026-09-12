@@ -122,7 +122,7 @@ non-central `z`, and Theorem 4 confines relator errors to the centre. For
 
 **Remark 7 (arbitrary finite groups).** For projective `π_k` over any finite `H_k`, Lemma 1 alone
 forces relator errors of order prime to `p`. More is false in general: in `S_3` over `F_2`, every
-commutator of an element of order 3 is odd, and `C_3` acts trivially on the projective
+commutator of an element of order 3 has odd order, and `C_3` acts trivially on the projective
 `F_2[S_3/C_3]`.
 
 ## 2. Exact finitary block structure forces the truncated shifts
