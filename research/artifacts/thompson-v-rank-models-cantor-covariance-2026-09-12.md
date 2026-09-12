@@ -98,13 +98,50 @@ defect of four elements matters.
 
 ## 3. Consequences
 
-**3.1. Truncations of the Cantor action.** Let `U` be a covariant linear representation of `V`
-and `LC(X,F)`, for instance `LC(X,F)` itself, or any module over the crossed product
-`LC(X,F) ⋊ V`. Compress it to a finite-dimensional subspace that is almost invariant under the
-four elements `h_i` and the four depth-two idempotents. The induced data meet the hypotheses of
-Proposition 2.4, with `eps` bounded by the boundary sizes. So every such compression has
-covariance defect at least `1/4`. No rank model of `V` arises as a covariant truncation of the
-Cantor action.
+**3.1. Truncations of the Cantor action.** Let `E` carry a covariant linear representation
+`(sigma, rho)` of `V` and `LC(X,F)`: for instance `LC(X,F)` itself, or any module over the
+crossed product `LC(X,F) ⋊ V`. For a finite-dimensional subspace `W ⊆ E`, fix a projection `P`
+onto `W` and put `T_W = P T|_W`.
+- **Boundary.** Put `d_T(W) = dim(TW + W) - dim W`. Let `beta` be the largest `d_T(W)/dim W` over
+  the eight operators `sigma(h_i)` and `rho(1_C)` for depth-two `C`.
+- **Compression errors.** `(ST)_W - S_W T_W = P S (1-P) T|_W` has rank at most `d_T(W)`.
+
+This subsection carries out the rounding step that the original prose left implicit
+(`w3-vf-linear`, Section 7). The step keeps the idempotents as they are and rounds only the units.
+
+**Lemma 3.1a (almost-idempotent additivity).** For `e, f` in `End(W)`,
+`rank(e + f) >= rank e + rank f - 2 rank(e^2-e) - rank(f^2-f) - 2 rank(ef) - rank(fe)`.
+
+*Proof.* The proof of Lemma 2.1(b) gives two facts:
+- `dim(im e ∩ im f) <= rank(e-e^2) + rank(ef)`;
+- `im e + im f ⊆ im(e+f) + im(e^2-e) + im(fe) + im(f^2-f) + im(ef)`.
+
+Subtract the first from `rank e + rank f`. QED
+
+**Proposition 3.1b.** With `beta` as above, `beta >= 1/32`. So no sequence of subspaces with
+`beta -> 0` exists, and no rank model of `V` arises as a covariant truncation of the Cantor action.
+
+*Proof.* Put `e_C = rho(1_C)_W` for the four depth-two cylinders.
+- **Exact sum.** `sum e_C = 1_W` exactly.
+- **Defects.** `e_C^2 - e_C = -P rho(1_C)(1-P) rho(1_C)|_W` and `e_C e_D = -P rho(1_C)(1-P) rho(1_D)|_W`,
+  so both have rank at most `beta dim W`.
+- **Rounding the units.** `S_i = sigma(h_i)_W` has corank at most `d_(h_i)(W)`, because
+  `ker S_i` embeds in `(sigma(h_i)W + W)/W`. Changing `S_i` on a complement of its kernel gives
+  `A_i in GL(W)` with `rank(A_i - S_i) <= beta dim W`.
+- **Covariance defect.** For `C = [0]` or `[1]`, `rank(A_i e_C A_i^(-1) - e_(h_i C)) = rank(A_i e_C - e_(h_i C) A_i)`.
+  - Replacing `A_i` by `S_i` costs `2 beta dim W`.
+  - The exact terms cancel by covariance.
+  - The compression errors cost `d_(rho(1_C))(W) + d_(h_i)(W) <= 3 beta dim W`, since `d` of `rho(1_[0])` is at most the sum over `[00], [01]`.
+  - So `eps <= 5 beta`.
+- **Counting.** Run the proof of Proposition 2.4 with Lemma 3.1a in place of exact additivity:
+  - `m([0]) >= m([00]) + m([01]) - 6 beta >= 2 m([0]) - 2 eps - 6 beta`, so `m([0]) <= 2 eps + 6 beta`;
+  - likewise `m([1]) <= 2 eps + 6 beta`;
+  - `1 <= m([0]) + m([1])`, by subadditivity of rank and the exact sum.
+  - So `1 <= 4 eps + 12 beta <= 32 beta`. QED
+
+With exact idempotents, the counting step reads `1 <= 4 eps`, which is Proposition 2.4. Only the
+eight boundaries matter; neither multiplicativity of `sigma` nor invariance under other elements
+is used.
 
 **3.2. Dyadic permutation models do not extend covariantly.** The dyadic constant subgroup
 `D = colim Sym(2^n)` has the natural permutation modules `F^(2^(n+j))`. These are covariant for

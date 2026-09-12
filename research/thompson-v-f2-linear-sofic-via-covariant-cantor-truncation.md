@@ -14,9 +14,10 @@ artifacts:
 instance `LC(X, F_2)` with `f -> f o g^(-1)`, to finite-dimensional subspaces that are almost invariant
 under `V` and under the cylinder idempotents, and read off the compressed matrices.
 
-`thompson-v-cantor-system-has-no-covariant-rank-model` shows every such compression has covariance
-defect at least `1/4` for four explicit prefix replacements. So the compressions never converge to a
-rank model. This is the rank-metric counterpart of the dead tracial route
+`thompson-v-cantor-system-has-no-covariant-rank-model` rules these out quantitatively. By artifact
+Proposition 3.1b, every compression has boundary ratio at least `1/32` for one of eight operators: the
+four prefix replacements `h_i` of Proposition 2.4, or the four depth-two cylinder idempotents. So the
+compressions never converge to a rank model. This is the rank-metric counterpart of the dead tracial route
 `thompson-v-hyperlinear-via-cantor-action-truncation`.
 
 *Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: correctly invalidated. Vanishing-boundary compressions would assemble into an exact covariant rank model, which Theorem 2.3 forbids.*
