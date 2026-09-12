@@ -2168,3 +2168,44 @@ steps. This is prose on an OPEN claim.
   - The rewritten reduction of `leavitt-corner-deviations-are-level-independent` to `delta(0) = delta(1)` is correct, and it states
     correctly that no route requires it.
   - `leavitt-corner-deviations-vanish-along-levels` now states that it is the binary gate. Correct.
+
+## 57. Abstract rank algebras: scope extension of the characteristic-three gate results (b2d18c682, lane w3-gate-char3): PASS, second derivation
+
+Items checked: artifact Section 7 of `ternary-leavitt-char-three-rank-model-gate-2026-09-12.md` (Proposition 7.1 and Corollary 7.2); the Scope paragraphs of
+`ternary-leavitt-rank-models-move-z-iff-nontrivial`, `anti-central-rank-models-see-haar-measure-on-signed-diagonal` and
+`ternary-rank-model-root-element-torus-normal-form`; and the Attempts entry on the OPEN
+`ternary-anti-central-states-force-nontrivial-rank-models`. The assigned verifier is `w3-vf-linear` (its Section 24). This is a second
+derivation.
+
+- **Axioms (F1)–(F3).**
+  - *(F1)* For orthogonal idempotents take `A = (e; f)` and `B = (e, f)`. Then `A = ABA` and `B = BAB`, so
+    `rho(BA) <= rho(A) <= rho(AB) <= rho(B) <= rho(BA)`, and `rho(e+f) = rho(diag(e,f)) = rho(e) + rho(f)`.
+  - *(F2)* Submultiplicativity on both sides.
+  - *(F3)* The axioms of a Sylvester matrix rank function are inherited by matrices over `fMf` after dividing by `rho(f) > 0`,
+    and so is positivity on nonzero idempotents.
+- **Proposition 7.1(a).**
+  - Lemma 1.1 and the injectivity of `iota` and `pi o iota` are group theory.
+  - In (1) ⟹ (6), `f = 2(1 - sigma(z))` is a nonzero idempotent, so `rho(f) > 0`, and `fMf` is an abstract rank algebra by (F3).
+  - The claimed pattern, 1 ⟺ 2 ⟺ 3 ⟺ 6 and 4 ⟺ 5 ⟹ 3, holds.
+  - (6) ⟹ (4) is correctly left for rank ultraproducts only: the tensor-square rank lemma needs Kronecker products and Jordan forms.
+- **(b), the corner kill.** Theorem 2.1 of the state-sources artifact (Section 46) uses only (F1), (F2) and `rho(f) > 0`.
+- **(c), the Haar law.** The half split uses (F1), (F2) and normalization. The atom identity uses (F1) on orthogonal atom indicators.
+  The Fourier inversion is arithmetic.
+- **(d), the torus normal form.** Parts (a) and (b) are ring identities.
+  - The joint eigen-idempotents `(1 +- sigma(tau))/2` exist because `2` is invertible.
+  - Commuting involutions separate the components, since `P^s_+ N P^s_- = N P^s_+ P^s_- = 0`.
+  - `(1+N)^3 = 1 + N^3` in characteristic three, and `(1+N)^-1 - 1 = -N + N^2`.
+  - So no rank function is needed.
+- **Corollary 7.2.**
+  - *`ker N` is an ideal.* `N(ab) <= min(N(a), N(b))`, and `a + b = (1 1) diag(a,b) (1 1)^T` gives `N(a+b) <= N(a) + N(b)`.
+  - *Descent.* A matrix with one entry `x` has rank `N(x)`, via permutations and `N(x (+) 0) = N(x)`. Matrix subadditivity then gives
+    `|N(X) - N(Y)| <= N(X - Y) = 0` whenever `X` and `Y` agree modulo `ker N` entrywise. The induced function is a Sylvester matrix
+    rank function, positive on nonzero classes.
+  - *The model.* `eps_-[g]` is a unit of `S_-` with `eps_-[z] = -eps_-`, and `N(eps_- - (-eps_-)) = N(2 eps_-) = 1 > 0`. So
+    `g -> eps_-[g] + ker N` is an abstract anti-central model.
+- **The OPEN state-upgrade claim.**
+  - The payoff logic is correct. "No abstract rank model", together with the upgrade, leaves no state. Then `k u <= 0` (Section 11,
+    Theorem A(b)), and Theorem A(c) gives non-directly-finite matrices over `F_3[G_3]`.
+  - (U1) is correctly marked open. A state on `K_0` is induced by a matrix rank function, but does not extend to one in general, and
+    `S_-` is not regular.
+  - The Attempts entry is right that skipping (U2) needs the abstract form of "No", which is stronger than the matrix form.
