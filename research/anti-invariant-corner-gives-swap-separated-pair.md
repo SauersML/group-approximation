@@ -9,6 +9,7 @@ requires:
   - ternary-leavitt-swap-problem-splits-at-central-involution
 artifacts:
   - research/artifacts/ternary-swap-separated-pairs-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -28,3 +29,6 @@ Let `c e_- b = eps_-` in `S_-`.
 
 This is the reverse half of an equivalence with `swap-separated-pair-gives-anti-invariant-corner`.
 Theorem 1 of the artifact.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 27 of the verification artifact).
+The sign `[w][d]b' = -[d]b'` uses `[z] = -1` on `S_-`. This is where the argument fails on `S_+`.

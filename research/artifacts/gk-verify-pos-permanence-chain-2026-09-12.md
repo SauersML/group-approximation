@@ -887,6 +887,49 @@ the invalidation sits on the right route.
   * The square presentation maps onto the pattern without extra coincidences.
   * Free groups are sofic, hence maximal, so merging points is not monotone.
 
+## 27. Swap-separated one-sided pairs on the anti-central summand (gk-kdf-structure, 88683e59ab)
+
+Reviewed: `ternary-swap-separated-pairs-2026-09-12.md` (`32ac8deab`), the open claim
+`ternary-twisted-algebra-has-swap-separated-one-sided-pair`, and the routes
+`swap-separated-pair-gives-anti-invariant-corner` and
+`anti-invariant-corner-gives-swap-separated-pair`. Verdict: PASS, no correction needed.
+
+* **(0.2).**
+  * `d w d = z w` and `d^2 = 1` give `w d = d z w`. With `[z] = -1` on `S_-`, `[w][d] = -[d][w]`.
+  * `e_-[d] = 2([d] + [w][d]) = [d] . 2(1 - [w])`, and `2(1 - [w]) = 2 + [w] = eps_- - e_-` in
+    `F_3`. So `e_- [d] e_- = [d](eps_- - e_-) e_- = 0`.
+  * `(1 + [w])^2 = 2 + 2[w] = 2(1 + [w])`, and `[w] e_- = 2([w] + 1) = e_-`.
+* **(P) => (C).** `c(1 + [w]) . 2(1 + [w]) a = 4 c (1 + [w]) a = ca + c[w]a`.
+* **(C) => (P).**
+  * `(c'' + c''[d])(b' + [d]b') = 2 c''b' + 2 c''[d]b'`, with `c''[d]b' = c e_-[d]e_- b = 0`. So
+    `chat a = 4 eps_- = eps_-`.
+  * `[w]b' = b'` and `[w][d]b' = [d][z][w]b' = -[d]b'`. So `[w]a = 2(b' - [d]b')`, and
+    `chat [w] a = 2(c''b' - c''[d]b' + c''[d]b' - c''b') = 0`.
+* **(P) <=> (E).**
+  * Given (P), `p = ac` is an idempotent with `ca = eps_-`, and `p[w]p = a(c[w]a)c = 0`.
+  * Given (E), `p ~ eps_-` supplies `a` in `p S_-` and `c` in `S_- p` with `ac = p` and
+    `ca = eps_-`. Then `c[w]a = c p [w] p a = 0`.
+* **(X) => (P).** `c'a = u(ca - m c[w]a) = u(eps_- - m^2) = eps_-`, and
+  `c'[w]a = u(c[w]a - m c[w][w]a) = u(m - m) = 0`. No commutation is needed, and a nilpotent `m`
+  makes `eps_- - m^2` a unit.
+* **Section 2.**
+  * The image pair `(s0, t0)` has `t0 w s0 = t0 s1 = 0`.
+  * The translations preserve (P), because `eps_-` is central.
+  * A unital map to a field gives `eps(c)eps(a) = 1` and `eps(c)eps([w])eps(a) = 0`, with
+    `eps([w])` a unit, which is a contradiction. So (P) fails on `S_+ = F_3[PG]` and in every
+    group algebra.
+  * `S_-` has no unital map to a commutative ring.
+  * On `S_+`, `[d]` commutes with `[w]`, and the sign that separates the swap is lost.
+* **Statement fidelity.** `S_- = eps_- S ~= S/(1 + [z])S`, because `eps_+ = 2(1 + [z])` generates
+  the same ideal. `e_- = eps_- . 2(1 + [w])`, and (C) is exactly
+  `ternary-anti-invariant-swap-corner-is-full`.
+* **Wiring.** The two routes form a deliberate equivalence cycle between two open claims. A least
+  fixpoint never fires it, and both routes are valid implications. The refutation route
+  `anti-invariant-swap-corner-refutes-ternary-surjunctivity` still consumes (C).
+* **Scope trust.** The trace remark `tr(p + [w]p[w]) = 4 = 1` holds. The finite-dimensional
+  representation remark rests on perfectness of `G` and simplicity of `PG`, which are recorded
+  elsewhere.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by

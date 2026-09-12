@@ -9,6 +9,7 @@ requires:
   - ternary-leavitt-swap-problem-splits-at-central-involution
 artifacts:
   - research/artifacts/ternary-swap-separated-pairs-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -24,3 +25,5 @@ Let `c a = eps_-` and `c [w] a = 0` in `S_-`.
 This is one half of an equivalence. The reverse route is
 `anti-invariant-corner-gives-swap-separated-pair`, so the dependency cycle is deliberate. Theorem 1 of
 the artifact.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 27 of the verification artifact).
