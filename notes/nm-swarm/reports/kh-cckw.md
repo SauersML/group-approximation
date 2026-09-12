@@ -124,10 +124,25 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - CCKWCosetCliques (compiled, probe 0912-001329-67224): `cosetComplex_cliqueFree_four` (T5, types), `cosetAction_eq_of_mem_clique`,
   `cckwFiniteOrderConjugateIntoVertex_of_invariantCliques (hfix)` (T7 over the invariant-clique leaf).
 
+## RELAUNCH 09-12 (lead rulings: connectivity, local finiteness, hfix wrapper, GHBSharpExistence)
+- Connectivity is NOT mine to write: leavitt-ge's `Kazhdan/CCKWTitsGHB` (e6610abbc, unverified) already states
+  `CCKWTits.cckwCosetComplex_connected : CCKW.cosetComplex.G.Connected` beside T2 `cckwCosetComplex_simplyConnected`. No duplicate.
+- afd49c3ff (landed unverified; then PROBE GREEN 0912-092455-47253 on nm-c, base e725a36e2, BUILT; bytes on main = green record):
+  `Kazhdan/CCKWCosetComplexLocallyFinite` —
+  `finite_vertexGroup [Finite (U3 7)] [Finite (U4 7)] (i : Fin 3) : Finite (vertexGroup i)` (ranges of u3ToAB/u4ToCB/u4ToCA),
+  `cosetComplex_locallyFinite [Finite (U3 7)] [Finite (U4 7)] : ∀ v : Vertex, (cosetComplex.G.neighborSet v).Finite`.
+  Spelling sent to sec4-sentences: T6 takes `∀ v, (X.G.neighborSet v).Finite` (Prop), not `[LocallyFinite]` (data).
+- e725a36e2 (landed unverified; then same PROBE GREEN, BUILT): `Kazhdan/GHBSharpExistence` over named leaves —
+  `CCKW.SystolicInvariantCliqueStatement : Prop` (draft T6 shape: finite Γ, ρ : Γ →* (X.G ≃g X.G), SimplyConnected, Connected,
+  LinksSixLarge, neighborSet finite, triangle preservation ⇒ ∃ σ : Finset V, σ.Nonempty ∧ X.G.IsClique σ ∧ ∀ γ, ∀ x ∈ σ, ρ γ x ∈ σ);
+  `CCKW.invariantCliques_of_systolicInvariantClique hT6 hsc hconn h3 h4` (= the `hfix` of CCKWCosetCliques, Γ := zpowers g);
+  `CCKW.cckwFiniteOrderConjugateIntoVertex_of_systolicLeaves hT6 hsc hconn h3 h4 : CCKWFiniteOrderConjugateIntoVertex`;
+  `sharpExistence_ghb7_of_systolicLeaves hT6 hsc hconn h3 h4 hhyp hT : Hyperbolic.SharpExistence`.
+
 ## REMAINING for hconj
-- `hfix`: from sec4-sentences' T6 `exists_invariant_clique` (Γ := zpowers g, ρ := cosetAction ∘ subtype, hρ := tri_cosetAction),
-  with `cosetComplex.G.Connected` (unowned: from generation of GHB(7) by the vertex groups), T2 `SimplyConnected cosetComplex`
-  (leavitt-ge) and `cosetComplex_linksSixLarge`.
+- T6: replace `hT6` by sec4-sentences' fixed-clique theorem once it compiles (restate the draft Prop to its exact binders).
+- T2: replace `hsc`, `hconn` by `CCKWTits.cckwCosetComplex_simplyConnected`, `cckwCosetComplex_connected` once CCKWTitsGHB compiles.
+- Then `hconj` is closed over the order bounds only; `sharpExistence_ghb7_of_systolicLeaves` keeps `h3`, `h4`, `hhyp`, `hT`.
 
 ## TRAPS (09-12)
 - `decide +kernel` over `∀ … : Fin 3, … → False` (or an atomic `= …` conclusion) failed to synthesize `Decidable`; the same shape with
