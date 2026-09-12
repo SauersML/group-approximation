@@ -49,3 +49,27 @@ claim holds.  If `R^x` is not hyperlinear, the radical bound says nothing.
    statement: `T^2 = I + E_12` has no solution in `GL_2(Fbar_2)`, since the
    square of a unipotent `2 x 2` matrix in characteristic two is the identity.
    It does have one after amplifying to `GL_4`.
+5. **Thompson's V is a necessary sub-case.**  `thompson-v-kl-from-leavitt-kl`
+   derives `kl-holds-over-thompson-v` from this claim, and
+   `leavitt-kl-violation-from-thompson-v-violation` turns every violation over
+   `V` into a violation here.  So a positive proof must in particular solve
+   every nonsingular equation over `V`, a finitely presented infinite simple
+   group with torsion where no known positive theorem applies either.
+6. **Homology and Schur multipliers.**  Dead as certificates.  `R^x` is
+   integrally acyclic (`leavitt-steinberg-map-iso-from-rank-three`, (KH1) at
+   `r = 1`).
+   - The relative complex `X_w = K(R^x,1) v S^1 u_w e^2` has `H_1 = Z/|m|`
+     and `H_k = 0` for `k >= 2`, for every `w` of degree `m`.  A violation
+     forces `pi_1(X_w) = C_|m|` (`kl-simple-failure-leaves-only-the-cyclic-quotient`,
+     `binary-leavitt-unit-group-is-simple`), and then `pi_2(X_w) = Z^(|m|-1)`;
+     at `m = +-1` the complex is contractible.  Neither outcome contradicts
+     anything homological.
+   - Over `R^x` itself Schur injectivity is vacuous, since `H_2(R^x) = 0`.
+   - The recorded cycle with `universal-schur-injectivity-for-nonsingular-adjunctions`
+     enters only through `kl-failure-yields-a-schur-kill`, the direction used
+     here.  For `Q_a = R^x *_(<a>) (<a> x Z)`, Mayer--Vietoris with
+     `H_2(<a>) = H_2(R^x) = 0` gives `H_2(Q_a) = H_1(<a>)`, the torus class
+     and nothing else.  The same sequence over `R^x_w` shows that the torus
+     class survives exactly when `<a> -> R^x_w` is injective.  So Schur
+     injectivity over the family `{Q_a}` is a restatement of this claim, not
+     a reduction.
