@@ -21,10 +21,12 @@ Identify `A` with `Z/q`, put `H = Z/q wr G`, and write `C[H] = LC(A^G) x|_alg G`
 4. For infinite `G` and injective `tau`, these are equivalent: `tau` is surjective; `Phi_tau` preserves the canonical
    trace; `Phi_tau` extends to a normal endomorphism of `L(H)`; `nu << lambda`.
 
-**Consequence.** A strict automaton is a surjective, non-injective, non-normal *-endomorphism of `C[Z/q wr G]`. Every
-characteristic-zero argument built from traces, Sylvester rank functions of `L(H)`, or normal von Neumann structure
-over `(A^G, lambda)` proves surjectivity exactly when it proves `nu << lambda`. That is
-`every-injective-ca-preserves-uniform-bernoulli-measure`, equivalent to the goal. So Kaplansky-type positivity in
-characteristic zero gives no independent access to Gottschalk's conjecture.
+**Consequence (proved).** A strict automaton is a surjective, non-injective, non-normal *-endomorphism of `C[Z/q wr G]`.
+
+**Interpretation (not part of the theorem).** The theorem computes only the canonical trace and the von Neumann rank
+function of `L(H)`. For those two, detecting surjectivity is exactly proving `nu << lambda`, which is
+`every-injective-ca-preserves-uniform-bernoulli-measure`, equivalent to the goal. Our reading is that characteristic-zero
+arguments of this kind give no independent access to the conjecture. This is not proved: other Sylvester rank
+functions on `C[Z/q wr G]`, and non-tracial characteristic-zero invariants, are not addressed.
 
 Proof: Section 1.3 of the linked artifact.

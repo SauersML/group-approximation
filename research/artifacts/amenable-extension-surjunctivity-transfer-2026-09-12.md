@@ -88,11 +88,15 @@ on `C[L]`.
    `nu(K) > 0`. (d) => (a): `nu` is invariant and absolutely continuous with respect to the ergodic `lambda`,
    so `nu = lambda`. Then `X` is closed with full measure, hence `X = A^G`. QED
 
-**Consequence (exact reach).** A strict automaton linearizes to a surjective, non-injective,
-non-normal *-endomorphism of the lamplighter algebra `C[Z/q wr G]`. Every argument that uses traces,
-Sylvester rank functions of `L(H)`, or normal von Neumann structure over `(A^G, lambda)` proves
-surjectivity exactly when it proves `nu << lambda`, which is `every-injective-ca-preserves-uniform-bernoulli-measure`
-in other notation. Characteristic-zero positivity (Kaplansky's trace) gives no access beyond it.
+**Consequence (proved).** A strict automaton linearizes to a surjective, non-injective,
+non-normal *-endomorphism of the lamplighter algebra `C[Z/q wr G]`.
+
+**Interpretation (not a theorem).** Theorem C computes only the canonical trace and the von Neumann rank
+function of `L(H)`, together with normality over `(A^G, lambda)`. For these, detecting surjectivity is exactly
+proving `nu << lambda`, which is `every-injective-ca-preserves-uniform-bernoulli-measure` in other notation. Our
+reading is that characteristic-zero positivity (Kaplansky's trace) gives no independent access. That is not
+proved: other Sylvester rank functions on `C[Z/q wr G]`, and non-tracial invariants, are not addressed.
+(Wording requested by w4-vf-positive-b, §6 of its verification artifact.)
 
 **Remark (the finite-dimensional filtration).** The local functions of radius `s`, `V_s = span{chi_xi :
 supp xi in g B_s for some g}`, form a permutation module `C (+) (+)_O C[G/F_O]` with finite stabilizers,
