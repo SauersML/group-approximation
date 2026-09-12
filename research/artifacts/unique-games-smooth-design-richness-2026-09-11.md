@@ -224,15 +224,20 @@ for all `m` at once would force `log |F| = omega(n)` by Theorem C.)
   zeta, K`. Take `C_0 = C(K,m)`, then `gamma`, then `d` so that
   `(1-epsilon)^(2d)` beats `gamma`, then `t = 8d+1`, then `eta`. Apply SD-Rich
   at `(eta, t, m, K)` and Corollary B.
-* **Rich 2-to-1 at all large `n` ⟹ SD-Rich.** The family of all pairings is
-  `t`-wise uniform for every `t <= n` and smooth with BKM's `C(K,m)` (Lemma 4.2).
-  BKM's Section 5 already uses the Rich 2-to-1 conjecture at arbitrarily large
-  alphabets for fixed `eta`.
+* **UGC ⟹ SD-Rich.** Pad a hard unique game with equality constraints on an
+  extra coordinate, which preserves value and reaches arbitrarily large
+  alphabets. Then apply BKM Appendix B. The family of all pairings is `t`-wise
+  uniform for every `t <= n` and smooth with BKM's `C(K,m)` (Lemma 4.2). So
+  SD-Rich (for arbitrarily large `n`) is equivalent to UGC; see Cairn route
+  `smooth-design-rich-2to1-from-ugc`.
 * **Size.** By Theorem C every admissible family has at least about `m^n`
   members. It need not be all `(2n-1)!!` pairings.
 
-**Remark (families much smaller than all pairings exist; sketch, not claimed in
-Cairn).**
+**Remark (families much smaller than all pairings exist).** Complete proof in
+Cairn route `smooth-pairing-design-composition-proof`. It uses a Carathéodory
+vertex of the `2t`-wise uniformity polytope, with support
+`(2n)_(2t)^2 + 1`, in place of the Kuperberg--Lovett--Peled citation below,
+which was not checked against the source.
 
 1. Let `Q` be `M` independent uniform pairings. For balanced `z`, the number of
    `pi in Q` making `z` pair-constant is Binomial with mean at most
