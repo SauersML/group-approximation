@@ -41,4 +41,9 @@ group-ring element, and `Z^3` satisfies the determinant conjecture. The
 determinant conjecture itself is untouched. What dies is every approximation-free
 proof that uses only moment congruences of single operators. Such a proof must
 also use realizability of the spectral measure, or complete positivity across
-integral matrix images, not just integrality of one-variable moments.
+integral matrix images, not just integrality of one-variable moments. The
+moment-level forms of both are refuted by the same `mu`
+(`necklace-realizable-measures-can-violate-serre`):
+- realizable necklace counts for every nonnegative integral matrix image;
+- complete positivity of the moment functional.
+What is left is realizability as an operator's spectral measure.
