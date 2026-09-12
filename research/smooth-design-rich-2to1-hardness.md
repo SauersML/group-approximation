@@ -31,8 +31,8 @@ admissible family.
 
 By `pullback-smoothness-needs-exponentially-many-pairings` an admissible family
 has at least about `m^n` members, but it may be much smaller than the set of all
-pairings. A sketch in the artifact composes a `2t`-wise uniform permutation
-family with a random smooth family, of size about `m^n n^(O(t)) poly(n)`. The
+pairings: `smooth-pairing-designs-of-size-m-to-the-n-exist` gives admissible
+distributions with support `m^n n^(O(t))`. The
 point of this formulation: the outer PCP must realize a low-degree design with
 a density comparison, not the uniform distribution.
 
@@ -56,9 +56,14 @@ a density comparison, not the uniform distribution.
   (`separated-small-pairing-families-defeat-the-noise-test`).
 * **Keep the matchings learnable.** On such instances the test is no more sound
   than the derived unique game (`derived-unique-game-lower-bounds-the-noise-test`),
-  so the hardness would have to come from a unique game already. Lane `ugc-2`
-  is working on the barrier question: can a source of bounded entropy per left
-  vertex produce smooth `t`-wise uniform pairing distributions?
+  so the hardness would have to come from a unique game already
+  (`bkm-test-transparent-on-learnable-games`). The barrier does not reach
+  generic admissible families: random exponential families are unlearnable
+  even by list decoders (`random-exponential-pairing-families-are-unlearnable`).
+  It still acts through every decodable *feature* of the matching
+  (`noise-test-transparent-on-decodable-matching-features`). So an outer
+  construction that keeps an ancestral feature recoverable, such as an `F_lin`
+  direction, needs the split game to be hard on its own.
 * **Open.** A new outer construction whose left vertices see exponentially many
   kernel partitions forming a smooth `t`-wise uniform family, while keeping the
   soundness of the proved 2-to-1 theorem. None is supplied.
