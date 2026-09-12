@@ -105,9 +105,8 @@ theorem z_inj_of_degreewise (K : Type) [CommRing K] {N Y S₁ Sodd : TopCat.{0}}
       TotalHOf.map K pY u + zClass K q₁ qodd σ₁ σodd * TotalHOf.map K pY v = 0 → v = 0 := by
   intro u v huv
   rw [zClass, mul_assoc, tClassOf, xClassOf, TotalHOf.map_of, TotalHOf.map_of] at huv
-  refine DirectSum.ext fun c => ?_
-  show TotalHOf.component K Y c v = TotalHOf.component K Y c 0
-  rw [map_zero]
+  ext c
+  show TotalHOf.component K Y c v = 0
   refine h c (TotalHOf.component K Y (1 + ((2 * n + 1) + c)) u) (TotalHOf.component K Y c v) ?_
   have hc := congrArg (TotalHOf.component K N (1 + ((2 * n + 1) + c))) huv
   rw [map_add, map_zero, componentOf_map, componentOf_of_mul, componentOf_of_mul,
