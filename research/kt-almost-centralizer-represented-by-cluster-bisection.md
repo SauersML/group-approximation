@@ -81,9 +81,20 @@ criterion from forward and inverse defects.
 ## Plan correction
 
 The patch of `BlockPatching.bisectionArrows b` takes each arrow through
-`Quotient.out`. It can differ from `v` on up to `2 · scale` points per object,
-and that total is not `o(|Y|)`. Hamming estimates against `v` must use
-`representingArrows v`: its arrows are exactly the overlap arrows on good
-objects, and they represent the same bisection.
+`Quotient.out`. The distance gap alone only says that representative lies
+within `2 · scale` of the overlap arrow of `v`, and `2 · scale` per object does
+not sum to `o(|Y|)`. There are two ways out.
+
+* Patch the specific candidate arrows, e.g. `representingArrows v`, whose
+  arrows are exactly the overlap arrows on good objects and represent the same
+  bisection. Then no further estimate is needed.
+* Keep the `Quotient.out` representatives, and re-separate
+  (`BlockPatching.card_disagreement_le_of_reseparation`,
+  `card_hammingDisagreement_patch_le_reseparation`). This needs expansion at a
+  fixed constant `c₀` at the vanishing scale `≈ (h / c₀) · scale`. Both arrows
+  have defect below `h · scale / 2`, so they disagree on `≲ (h / c₀) · scale`
+  points, which sums to `o(|Y|)` when the threshold `h → 0`. A frame whose only
+  expansion constant is the threshold `h` itself does not supply this: then
+  `c₀ = h`, and re-separation gives back `scale / 2`.
 
 Derivation: `kt-almost-centralizer-represented-by-cluster-bisection-proof`.
