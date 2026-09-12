@@ -48,3 +48,11 @@ The payoff is `stable-finiteness-forces-binary-surjunctivity`, through the route
   automata.
 - **Where it stops.** Every formal pair known after regrouping is a gate word, hence bijective. No
   mechanism produces formal representatives for a strict automaton.
+- **Block decompositions (gk-fz-kari).** For bijective automata over `Z`, the imported Kari decomposition
+  into block permutations along translated partitions reduces virtual formalizability to sitewise tame
+  permutations, invertible linear maps and structural gates (`reversible-automata-over-integers-are-block-permutation-words`,
+  route `kari-words-give-virtual-formalizability-over-integers` into
+  `reversible-binary-automata-over-integers-virtually-formalizable`). Words of formally invertible pieces
+  represent bijections, so decompositions reach no strict automaton: for strict `tau` a formal pair needs a
+  formally non-invertible layer, and on memory groups without proper finite-index subgroups block methods
+  reach only equivariant partitioned words (artifact `partitioned-and-regrouped-formalizability-2026-09-12.md`).
