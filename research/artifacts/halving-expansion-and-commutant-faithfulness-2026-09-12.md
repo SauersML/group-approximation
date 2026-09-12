@@ -25,7 +25,13 @@ Lemma 3.0 and the infimum `c_*` are those of
   `theta = 1`. This is Proposition 5.2 of `research/artifacts/rank-four-orthogonality-check-2026-09-12.md`
   (lane `w4-r4-orth`, f25ccc5958). The same model satisfies Theorem 2.1 exactly for unitriangular
   inputs.
-* **Sections 4 and 5** (landed next): root-group halves, and where it stops.
+* **Section 4 (established): root-group halves.** Every subproduct of disjoint transvections is conjugate
+  to one transvection, so two disjoint halves `a, b` have `rk(a) = rk(b) = rk(a+b) = rho`. That forces
+  `rk(aM + bM) + rk(Ma + Mb) <= 3 rho` (Theorem 4.3). So halves independent as left and right ideals
+  displace `0` or `1/2`. At near-minimal displacement the ranges of disjoint halves overlap in rank at
+  least `rho - rho^2 - eps rho` (Proposition 4.5). Claim
+  `disjoint-root-halves-row-plus-column-rank-at-most-three-rho`.
+* **Section 5.** The opposite-root `S_3` at a child pair splits `rho = d_3/2 + rk(a q_3)`. Where it stops.
 
 ## 1. The halving expansion
 
@@ -154,3 +160,131 @@ that every nontrivial fixed-point-free characteristic-two rank model `sigma` of 
 
 (C) allows any element of the commutant: `sigma` of opposite roots, torus units and `V`-elements supported
 off `U`, where no locally finite firewall applies.
+
+## 3. The halving expansion dies at a locally finite group
+
+**Proposition 3.1.** Let `P, Q` be disjoint proper cylinders with proper union.
+* **Where the data live.** The children `a, b, c, d` of Lemma 1.2 are `sigma` of `x_12(e_0), x_12(e_1),
+  x_23(e_0), x_23(e_1)` in the `iota_P` frame, so every element of Lemma 1.2 lies in the image of
+  `F_2[iota_P(UT_3(R))]`. Products with the same data at `Q` lie in the image of `F_2[L]`, with
+  `L = iota_P(UT_3(R)) x iota_Q(UT_3(R))`. `L` is locally finite, because `UT_3` over an `F_2`-algebra is
+  nilpotent of exponent dividing 4.
+* **The regular model of `L`** (item 2 of `unitriangular-data-cannot-assemble-corner-leavitt-families`)
+  satisfies:
+  * `rk(D_P) = rk(X) = rk(Y) = 3/8`, the free `D_8` profile;
+  * `rk(cb) = rk(da) = 1/4`, the free `(Z/2)^2` profile;
+  * `rk(D_P D_Q) = 9/64 = rk(D_P) rk(D_Q)`, so `theta = 1`;
+  * `rk(TZ) = rk(T) rk(Z)` for `T` in `F_2[iota_P(UT_3(R))]` and `Z` in `F_2[iota_Q(UT_3(R))]`, so the
+    conclusion of Theorem 2.1 holds with `eps = 0` for unitriangular inputs;
+  * every rank equality between elements of `F_2[L]` induced by conjugation in `R^x`, since regular
+    ranks are invariant under isomorphisms of finite subgroups.
+
+So no derivation of `theta < 1` can use only: the halving identities at every depth, the relations of
+`L`, conjugacy rank equalities inside `F_2[L]`, square zero, the Sylvester calculus, and Theorem 2.1 for
+unitriangular inputs.
+
+*Proof.*
+* **`D_8` profile.** For `e` in `{1, e_0, e_1}`, `x_12(e)` and `x_23(e)` are involutions with central
+  commutator `x_13(e) != 1`, so they generate `H_3(F_2) ~= D_8` on the same generators. The rank `3/8` is
+  item 3 of the unitriangular firewall node.
+* **`(Z/2)^2` profile.** `x_23(e_0)` and `x_12(e_1)` commute, because `e_1 e_0 = 0`. They generate
+  `(Z/2)^2`, where `(g-1)(h-1)` has regular rank `1/4`.
+* **Products.** `F_2[H_P x H_Q] = F_2[H_P] (x) F_2[H_Q]` for finite `H_P`, `H_Q`, and regular ranks
+  multiply on simple tensors. QED
+
+**Cited.** Lane `w4-r4-orth` proved the same at f25ccc5958 (Proposition 5.2 of
+`research/artifacts/rank-four-orthogonality-check-2026-09-12.md`), in the prepend form
+`iota_A(Delta(g)) = iota_(A0)(g) iota_(A1)(g)` with the swap `iota_A(w)` included. Mixtures of trivial and
+free modules give `f(2)/delta^2 >= 1` there.
+
+## 4. Root-group halves
+
+Every transvection nilpotent `sigma(tau(C <- C')) - 1` with `C ∪ C'` proper has one rank `rho`
+(Lemma 1.1). The root group `{1 + xi : xi in p_U R p_W}`, for disjoint clopen `U, W`, is normalized by the
+block torus `G_U x G_W`. Halving refines it into commuting disjoint pieces, all of rank `rho`.
+
+**Lemma 4.1 (subproducts).** Let `(C_i <- C'_i)`, `1 <= i <= k`, be pairs whose `2k` cylinders are pairwise
+disjoint with proper union, and `q_i = sigma(tau(C_i <- C'_i)) - 1`. For every nonempty `S`,
+`rk(prod_(i in S)(1 + q_i) - 1) = rho`.
+
+*Proof.* `prod_(i in S) tau(C_i <- C'_i) = 1 + sum_(i in S) S[C_i]T[C'_i]`. Take disjoint cylinders `D, D'`
+with proper union and a complete prefix code `(w_i)_(i in S)`. A prefix replacement sending `C_i -> D w_i`,
+`C'_i -> D' w_i` and complement to complement conjugates the product to
+`1 + sum S[D w_i]T[D' w_i] = tau(D <- D')`. QED
+
+**Lemma 4.2 (kernels of sums).** If `a, b` commute and `a^2 = b^2 = 0`, then `a + b + ab = (1+a)(a+b)`, so
+`rk((1+a)(1+b) - 1) = rk(a + b)` and the two kernels agree.
+
+**Theorem 4.3 (row plus column).** Let `a, b` be commuting square-zero elements of `M` with
+`rk(a) = rk(b) = rk(a+b) = rho`. Then
+
+```text
+rk(aM + bM) + rk(Ma + Mb)  <=  3 rho .
+```
+
+This applies to the nilpotents of two disjoint transvection pairs with proper union, in every
+characteristic-two rank model of `R^x` (Lemmas 4.1 and 4.2).
+
+*Proof.* `K = r.ann(a+b)` has rank `1 - rho`. On `K`, `x -> ax` has kernel `r.ann(a) ∩ r.ann(b)` and
+image `aK`, which lies in `aM ∩ bM` because `ax = bx` there. So
+`1 - rho <= rk(r.ann(a) ∩ r.ann(b)) + rk(aM ∩ bM)`. In a regular ring `r.ann(a) ∩ r.ann(b) = r.ann(Ma + Mb)`
+has rank `1 - rk(Ma + Mb)`, and `rk(aM ∩ bM) = 2 rho - rk(aM + bM)`. QED
+
+The bound is attained by `a = E_12`, `b = E_13` in `M_3(F_2)`.
+
+**Corollary 4.4 (independent halves displace 0 or 1/2).** If also `rk(aM + bM) >= 2rho - rho^2 - eta` and
+`rk(Ma + Mb) >= 2rho - rho^2 - eta`, then `rho (1 - 2 rho) <= 2 eta`. Independent tensor factors attain both
+with `eta = 0`, so there `rho` is `0` or `1/2`. The regular models of locally finite groups have
+`rho = 1/2`, with equality in Theorem 4.3.
+
+**Proposition 4.5 (near-minimal displacement overlaps the ranges of halves).** Let `rho_*` be the infimum
+of `rho` over nontrivial fixed-point-free models; `rho_* >= c_0 > 0` because `rho >= delta`. Suppose
+`rho(sigma) <= (1+eps) rho_*`. Then:
+1. For clopen proper `U`, a transvection nilpotent `q` whose pair has union a proper subset of `U`, and
+   `Z` in `M_n(C_U)`, `|rk(qZ) - rho rk(Z)| <= eps rho/(1+eps)`.
+2. For disjoint halves `a, b` with proper union: `rk(Ma + Mb) >= 2rho - rho^2 - eps rho`, hence
+   `rk(aM ∩ bM) >= rho - rho^2 - eps rho`, while `rk(ab) <= rho^2 + eps rho`.
+
+*Proof.*
+1. This is the proof of Theorem 2.1 with `rho_*` in place of `c_*`. Corner models of `G_U` have displacement
+   at least `rho_*`, and pairs inside `U` move into the model frame by `V ∩ G_U`.
+2. Choose `U` containing the pair of `a`, disjoint from the pair of `b`, with the pair of `a` a proper subset.
+   `K = r.ann(b)` is invariant, so `rk(aK) >= rho_*(1 - rho)`. Then `r.ann(a) ∩ r.ann(b)` is the kernel of
+   `a` on `K`, of rank at most `(1 - rho)(1 - rho/(1+eps))`, which gives the first bound. Theorem 4.3 gives
+   `rk(aM + bM) <= rho + rho^2 + eps rho`, hence the overlap. Item 1 with `Z = b` bounds `rk(ab)`. QED
+
+**Remark 4.6.** At near-minimal displacement with `rho` bounded away from `1/2`, the ranges of disjoint
+halves overlap in rank about `rho - rho^2`. That is inside `r.ann(a) ∩ bM`, far above the product range
+`abM` of rank about `rho^2`. So `b` maps `r.ann(a)` almost into `aM`. Theorem 4.3 and Proposition 4.5
+locate this overlap but do not turn it into a commutant distortion of a defect range (Proposition 2.3).
+Either the overlap is excluded, which forces `rho_* = 1/2`, or it is realized.
+
+## 5. Opposite roots at a child cylinder, and where it stops
+
+**Lemma 5.1 (the opposite-root `S_3` split).** For a pair `(C, C')` with proper union, `tau(C <- C')` and
+`tau(C' <- C)` generate `GL_2(F_2) ~= S_3`, and `omega = tau(C <- C') tau(C' <- C)` has order `3`. Put
+`q_3 = sigma(1 + omega + omega^2)`, `d_3 = rk(sigma(omega) - 1)` and `a = sigma(tau(C <- C')) - 1`. Then
+`q_3` is the idempotent onto `Fix_r(sigma(omega))`, `rk(q_3) = 1 - d_3`, and
+
+```text
+rho  =  d_3 / 2  +  rk(a q_3) ,        so        d_3/2  <=  rho  <=  1/2 .
+```
+
+*Proof.*
+* **Splitting.** In characteristic two `epsilon = 1 + omega + omega^2` is a central idempotent of `F_2[S_3]`,
+  with `epsilon F_2[S_3] ~= F_2[C_2]` and `(1 - epsilon) F_2[S_3] ~= M_2(F_2)`. It projects onto
+  `Fix(omega)`, because `3` is invertible.
+* **Complement.** On `(1 - q_3)M` the image of `M_2(F_2)` is unital, so this corner is a matrix-unit module.
+  There `tau - 1` acts as a rank-one matrix unit, of rank `rk(1 - q_3)/2 = d_3/2`.
+* **Fixed part.** On `q_3 M`, `a` is square-zero, and `q_3` commutes with `a`. QED
+
+**Where it stops.**
+* **Opposite roots at a child cylinder.** With the unitriangular data of the frame they generate
+  `EL_2(e_0 R e_0) ~= R^x`, so no locally finite firewall applies. The only identities found are Lemma 5.1
+  and Theorem 4.3, which split and bound ranks without distorting a defect-range rank.
+* **The nine-leaf configuration** was not examined in this lane. Weyl elements and compressors belong to
+  `w4-sub-weyl`.
+* **Live questions.**
+  * (C) of Proposition 2.3.
+  * Whether near-minimal displacement can carry the range overlap of Proposition 4.5, or must have
+    `rho_* = 1/2`.

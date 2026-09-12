@@ -105,3 +105,25 @@ than vanishing.
   * **Where a `theta < 1` argument must live.** It has to use identities from the escaping
     configurations beyond single conjugation, or a global input: the defect gap through corner
     locality, globality, or compactness.
+- **Halving expansion, parent form (w4-sub-halving, 2026-09-12): dies at the same locally finite group.**
+  In the `iota_P` frame the halving is coefficient additivity `x_12(1) = x_12(e_0) x_12(e_1)`, so
+  `D_P = (gamma zeta - 1)(alpha beta - 1)` with children in `iota_P(UT_3(R))`. For a disjoint `Q`, everything
+  lies in `iota_P(UT_3(R)) x iota_Q(UT_3(R))`. Its regular model has `rk(D_P) = rk(X) = rk(Y) = 3/8`, cross
+  terms of rank `1/4`, and `rk(D_P D_Q) = 9/64` (artifact
+  `research/artifacts/halving-expansion-and-commutant-faithfulness-2026-09-12.md`, Section 3, agreeing with
+  `w4-r4-orth` above).
+- **General form (w4-sub-halving): commutant faithfulness.**
+  `near-minimal-defect-ranges-are-rank-faithful-for-the-commutant`: at near-minimal defect, the range of a
+  frame-triple defect is rank-faithful, up to `eps/(1+eps)`, for every element and matrix of the commutant of
+  its clopen cylinder group. So this claim is the instance `Z = D_A` of the weaker sufficient statement
+  `some-commutant-element-distorts-defect-range-rank` (route
+  `commutant-distortion-from-strict-defect-submultiplicativity`), which closes the gate by route
+  `leavitt-rank-triviality-via-commutant-rank-distortion`.
+- **Block root groups normalized by the torus (w4-sub-halving): bound, no deficit.** Disjoint transvection
+  halves `a, b` satisfy `rk(a) = rk(b) = rk(a+b) = rho`, so `rk(aM + bM) + rk(Ma + Mb) <= 3 rho`
+  (`disjoint-root-halves-row-plus-column-rank-at-most-three-rho`). Halves independent in rows and columns
+  displace `0` or `1/2`. At near-minimal displacement their ranges overlap in rank at least
+  `rho - rho^2 - eps rho`. None of this distorts a defect-range rank.
+- **Opposite roots at a child cylinder (w4-sub-halving): split only.** The `S_3 = <tau(C<-C'), tau(C'<-C)>`
+  central idempotent gives `rho = d_3/2 + rk(a q_3)`. With the unitriangular data these roots generate a copy of
+  `R^x`, so no firewall applies, but no identity forcing a deficit was found (artifact Section 5).
