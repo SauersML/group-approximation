@@ -39,7 +39,13 @@ counterexample, if one exists, lives on one.
   - What is missing is a lower bound on Bernoulli Rokhlin entropy (INF). No
     property (T) mechanism for one is known.
   - INF passes to subgroups (`bernoulli-rokhlin-maximality-passes-to-subgroups`),
-    so INF for every group also reduces to this class.
+    so INF for every group also reduces to this class. That reduction is the
+    route `rokhlin-maximality-via-fg-simple-kazhdan-hosts`, into the hole
+    `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups`.
+  - `sofic-radical-localizes-bernoulli-deficit-witnesses` folds every deficit
+    witness on a sofic-invisible element. On a simple nonsofic host the sofic
+    radical is the whole group, so this constrains only the subgroup a witness
+    generates.
 - **Bernoulli rigidity.** Dead. `compressed-coset-shifts-carry-strict-equivariant-embeddings`
   gives a simple Kazhdan group with a Bernoulli coset shift that has every
   Kazhdan and simplicity property of the full shift and still carries a strict

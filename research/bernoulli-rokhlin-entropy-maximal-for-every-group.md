@@ -60,3 +60,14 @@ finiteness conjecture over finite fields.
   to imply INF, and no lower bound is known for any nonsofic group.
 * **One group suffices.** `rokhlin-maximality-on-tester-covers-every-group` shows
   that the fixed tester host decides this claim.
+* **Localization (2026-09-12).** `sofic-radical-localizes-bernoulli-deficit-witnesses`:
+  every witness has two points that differ by a sofic-invisible element of the
+  subgroup it generates. The proof is a direct count on permutation models:
+  - it reproves maximality over sofic groups without sofic entropy;
+  - it forces every deficit into a nonsofic subgroup;
+  - over a Kun--Thom wreath, a witness must fold on lamps.
+
+  On a simple nonsofic host it constrains nothing beyond that.
+* **Simple Kazhdan hosts.** `rokhlin-maximality-via-fg-simple-kazhdan-hosts`
+  reduces this claim to `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups`,
+  by the container embedding and subgroup heredity.
