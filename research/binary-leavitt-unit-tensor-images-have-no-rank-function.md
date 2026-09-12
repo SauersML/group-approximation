@@ -35,3 +35,12 @@ artifacts:
   - **So:** products of opposite symmetrized roots give no idempotents. A replacement has to use the quadratic
     part `Q(a) = e(a) ⊗ e(a)` in `Δ_2(x(a)) - 1 = e(a) ⊗ 1 + 1 ⊗ e(a) + Q(a)`. `Q` is additive only modulo
     symmetrized roots, `Q(a + b) = Q(a) + Q(b) + Sym(e(a), e(b))`, and it is untested.
+- **2026-09-12, `w4-tensor-rankfn`: survivors localized** (`binary-tensor-square-rank-functions-live-on-diagonal-norms`,
+  artifact Section 2).
+  - **Off-diagonal norms are null:** `Sym(p_X, p_Y)` has rank `0` for disjoint clopens. Here the isometry
+    argument works with no factor `2`, because the slots carry different sets.
+  - **Localization:** `rk z = rk(Q_P z Q_P)` for every clopen partition with at least 3 pieces.
+  - **Tate–Frobenius:** `B_2/(B_2 ∩ N) ≅ R`, so a rank function must be positive on some diagonal-block norm
+    `Sym(p_i a p_j, p_i b p_j)`.
+  - **Next test:** whether diagonal-block norms of distinct parallel partial isometries can be nulled at
+    finer scales. `Sym(u, u) = 0` in characteristic two.

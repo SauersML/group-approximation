@@ -86,3 +86,61 @@ set is an ideal ([DI] Remark 1.2).
 - **Binary square:** in characteristic two `T_a S_a = 2 P_2 = 0`, and Step 2 dies exactly at the scalar `n!`.
   That case is the open claim `binary-leavitt-unit-tensor-images-have-no-rank-function`.
 - **Degrees `n >= p`:** in odd characteristic these are open for the same reason.
+
+## 2. Characteristic two: where a rank function on the tensor square must live
+
+Throughout `K = F_2`, `n = 2`, and `B_2` is the image of `Δ_2`.
+- `Sym(x, y) = x ⊗ y + y ⊗ x`.
+- `N = {Sym-sums}` is the image of `1 + flip` on `R ⊗ R`. It is an ideal of the flip-fixed algebra
+  `(R ⊗ R)^(S_2)`, which contains `B_2`.
+- For nonempty clopens `X`, `Y`, `u_(XY)` is a partial isometry of `R` with source `Y` and range `X`: a sum
+  of monomials `s_γ t_δ` over a matching of cylinders. It satisfies `u_(XY) u_(YX) = p_X`.
+
+**Lemma 2.1 (Tate–Frobenius quotient).** `x -> [x ⊗ x]` is a unital injective ring homomorphism
+`Φ : R -> T(R) = (R ⊗ R)^(S_2)/N`. The image of `B_2` in `T(R)` is `Φ(R)`, so `B_2/(B_2 ∩ N) ≅ R`.
+
+*Proof.*
+- **Ring map:** `(x + y)^(⊗2) = x^(⊗2) + y^(⊗2) + Sym(x, y)`, so `Φ` is additive modulo `N`. It is exactly
+  multiplicative and unital.
+- **Image:** `Σ a_g [g ⊗ g] = Φ(Σ a_g g)`, and the evaluation `F_2[Γ] -> R` is onto.
+- **`T(R)` has a basis:** take an `F_2`-basis `{b_i}` of `R` containing `1`. The flip permutes the basis
+  `b_i ⊗ b_j`, so `T(R)` has basis `[b_i ⊗ b_i]`, and `Φ(1) != 0`.
+- **Injectivity:** `R` is simple, so `Φ` is injective. ∎
+
+**Proposition 2.2 (off-diagonal cylinder norms are null).** Let `X`, `Y` be disjoint nonempty clopens whose
+union is proper. Then `E_(X,Y) = Sym(p_X, p_Y)` lies in `B_2`, and it has rank `0` under every Sylvester
+matrix rank function on every ring receiving a unital map from `B_2`.
+
+*Proof.*
+- **Norms of commuting square-zero pairs:** suppose `u, v in R` satisfy `u^2 = v^2 = uv = vu = 0`. Then `1 + u`,
+  `1 + v` and `1 + u + v = (1 + u)(1 + v)` lie in `Γ`, and `Σ_(x in {0, u, v, u+v}) (1 + x)^(⊗2) = Sym(u, v)`.
+  So `Sym(u, v)` lies in `B_2`.
+- **Setup:** take `X = [00]`, `Y = [01]`, `X' = [10]`, `Y' = [11]`, and split `X = X_0 ⊔ X_1`,
+  `Y = Y_0 ⊔ Y_1`. Put
+  - `S_(ab) = Sym(u_(X_a X'), u_(Y_b Y'))`;
+  - `T_(ab) = Sym(u_(X' X_a), u_(Y' Y_b))`.
+  All four sets involved are pairwise disjoint, so these lie in `B_2`.
+- **Products:** `Sym(u, v) Sym(u', v') = Sym(uu', vv') + Sym(uv', vu')`, so
+  - `T_(ab) S_(cd) = [a = c][b = d] Sym(p_(X'), p_(Y'))`;
+  - `S_(ab) T_(ab) = Sym(p_(X_a), p_(Y_b)) = E_(ab)`.
+  The cross terms vanish because they compose partial isometries between disjoint sets. No scalar `2`
+  appears, because the two slots carry different sets.
+- **Rank:** the `E_(ab)` are orthogonal idempotents below `E = Sym(p_X, p_Y)`, and each has rank at least
+  `rk Sym(p_(X'), p_(Y'))`. Let `g in V` swap the first letter. Then
+  `Δ_2(g) Sym(p_(X'), p_(Y')) Δ_2(g)^-1 = E`, so `rk E >= 4 rk E` and `rk E = 0`.
+- **All pairs:** `V` acts transitively on ordered pairs of disjoint nonempty clopens with nonempty complement
+  of the union (standard). Conjugation carries the model pair to every such pair. ∎
+
+**Corollary 2.3 (diagonal localization).** Let `rk` be a Sylvester matrix rank function on a ring receiving
+`B_2`, and let `P = (A_1, ..., A_m)` be a clopen partition with `m >= 3`.
+1. **Norm idempotents:** `O_P = Σ_(i<j) Sym(p_(A_i), p_(A_j))` is a null idempotent, and
+   `Q_P = 1 - O_P = Σ_i p_(A_i)^(⊗2)` lies in `B_2` with `rk Q_P = 1`.
+2. **Localization:** `rk z = rk(Q_P z Q_P)` for every `z in B_2`. Here
+   `Q_P Sym(a, b) Q_P = Σ_(i,j) Sym(p_(A_i) a p_(A_j), p_(A_i) b p_(A_j))`.
+3. **Positivity:** `rk` is positive on some element of `B_2 ∩ N`. Otherwise it descends through Lemma 2.1
+   to `R`, which has no rank function.
+
+So a binary tensor-square rank function, if one exists, is carried by diagonal-block norm elements
+`Sym(p_i a p_j, p_i b p_j)` at every scale. The two-root defect `Sym(e_23, e_12)` is off-diagonal in the
+three-leaf partition, so its rank equals that of its diagonal part at finer partitions. Nothing here decides
+whether such a function exists.
