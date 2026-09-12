@@ -23,8 +23,9 @@ of that statement to the manuscript's use of property (T).
        Hyperbolic.LatticeRouteInput
    theorem sharpExistence_of_ghb7KazhdanLeaves (same binders) : Hyperbolic.SharpExistence
    ```
-   Extension, pending probe: the same module spends `h3`, `h4` through `card_U3_seven_le`,
-   `card_U4_seven_le` (Kazhdan/UnipotentSylowCounts, root-wired) and names the Fournier-Facio input.
+   Extension, landed 8085b58cd, green probe 0912-093109-89237: the same module spends `h3`, `h4`
+   through `card_U3_seven_le`, `card_U4_seven_le` (Kazhdan/UnipotentSylowCounts, root-wired) and names
+   the Fournier-Facio input.
    ```lean
    theorem sharpExistence_of_ghb7ConjHyp (hconj : CCKWFiniteOrderConjugateIntoVertex)
        (hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)) : Hyperbolic.SharpExistence
@@ -72,7 +73,8 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
 - Kazhdan/EJZAngleSylowFourGram: a b^m = b^m a w^m z^{m(m-1)/2}; Gram-sum bound for U4(p).
 - Kazhdan/EJZAngleSylowFour: movingAngleLE_sylowFour (√(2/p), CCKW Prop 7.3(ii), character-free).
 - Kazhdan/EJZAngleGHB: hasKazhdanPropertyT_ghb7.
-- Kazhdan/GHBLatticeRouteKazhdan: PrintedGHB7PropertyT, sharpExistence_of_ghb7KazhdanLeaves.
+- Kazhdan/GHBLatticeRouteKazhdan: PrintedGHB7PropertyT, sharpExistence_of_ghb7KazhdanLeaves,
+  sharpExistence_of_ghb7ConjHyp, kotowskiOllivierStatement_of_ghb7ConjHyp.
 
 ## TRAPS
 - `omit [..] in` must precede the docstring, not sit between docstring and theorem.
