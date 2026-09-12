@@ -4748,3 +4748,4 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
+import GroupApproximation.KunThom.RelativeFunctorImprove
