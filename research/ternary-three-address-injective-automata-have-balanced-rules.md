@@ -92,3 +92,8 @@ refutes Gottschalk's conjecture.
   - **Proposition 5.** On a constant background, several patches leave a finite absorbed-translate
     residue.
   - **Seed.** `(x_1 - x_a + x_b) + [(0,1,2)] + [(1,2,0)]`, with two patch symbols at every address. Open.
+  - **Seed closed** (w5-two-patch, `ternary-two-patch-seed-rule-is-never-injective`).
+    - **Why.** `{0, 1}` is blind in all three coordinates, and one- or two-site collisions cover every
+      nonamenable placement. So the seed is not injective over any group.
+    - **Next rigid seed.** `(x_1 + x_a - x_b) + [(0,0,2)] + [(1,2,0)]`. Artifact
+      `two-patch-seed-relation-moves-2026-09-12.md`, Section 4.

@@ -36,3 +36,22 @@ automata. A counterexample refutes Gottschalk's conjecture.
   - vary the background near the support.
 - **Where it stops.** No collision is known for the seed over a group where `1 - a + b` is a unit and its
   inverse support absorbs single-address translates. No obstruction to such a collision is known either.
+- **Seed closed** (w5-two-patch, `ternary-two-patch-seed-rule-is-never-injective`, artifact
+  `two-patch-seed-relation-moves-2026-09-12.md`).
+  - **Not rigid.** `{0, 1}` is a blind pair of all three coordinates.
+  - **Nonamenable placements.** One-site collisions work unless `a^2 = 1`, `b^2 = 1`, `ab = 1`, `b = a^2`
+    or `a = b^2`, and two-site moves cover `a^2 = 1` and `b^2 = 1`.
+  - **Amenable placements.** The Garden of Eden theorem and measure preservation force a balanced rule.
+  - **Net.** The seed is not injective over any group, unit case included. The entry "Where it stops"
+    above is superseded for the seed.
+- **Blind-pair criterion** (same artifact, Proposition 4).
+  - **Statement.** For patches at distance two or more, coordinate `i` with `c_i != 0` is blind exactly
+    for the pairs `F_3 \ {r_i - t_r c_i^-1}`, `r` in `Pi`.
+  - **Non-rigid rules.** They are excluded on Sidon placements by census Proposition 5.1. Their relation
+    cases are open beyond the seed.
+  - **Classes.** Augmentation-0 coefficient classes never reach the unit case, and rules with one nonzero
+    coefficient are never rigid.
+- **Next seed.** `(x_1 + x_a - x_b) + [(0,0,2)] + [(1,2,0)]`.
+  - **Data.** Rigid, with two patch symbols at every address, augmentation 1 and counts `8, 9, 10`.
+  - **Where the methods stop.** Proposition 5 has no background `0`. Backgrounds `1` and `2` leave
+    residues at `{a, b}` and `{1}`.

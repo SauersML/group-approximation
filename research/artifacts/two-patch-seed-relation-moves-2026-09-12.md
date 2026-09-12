@@ -169,3 +169,69 @@ QED
 
 **Consequence for the two-patch claim.** The seed gives no counterexample over any group, unit case
 included. In particular it needs no linear strict automaton.
+
+## 4. Blind pairs of patched affine rules, and the next seed
+
+**Proposition 4 (blind-pair criterion).** Let `mu = lambda + sum_(r in Pi) t_r [y = r]` over `F_3` on three
+addresses. Here `lambda = sum_i c_i y_i + c_0`, the weights `t_r` are nonzero, and distinct patches differ
+at two or more addresses.
+- **Nonzero coefficient.** At an address `i` with `c_i != 0`, the blind pairs of coordinate `i` are
+  exactly `F_3 \ {r_i - t_r c_i^-1}` for `r` in `Pi`.
+- **Zero coefficient.** At an address with `c_i = 0`, every pair is blind.
+- **Criterion.** `mu` has a common blind pair iff the intersection `N` of the sets
+  `N_i = {r_i - t_r c_i^-1 : r in Pi}`, over the addresses with `c_i != 0`, is nonempty. The common pairs
+  are then `F_3 \ {n}` for `n` in `N`.
+
+*Proof.* Coordinate `i` is blind for `{v, v + e}` at a context `u` iff `mu(y + e e_i) = mu(y)`, where
+`y = (u, v)`. The affine part changes by `e c_i`.
+- **Case `c_i != 0`.** The patch part must change by `-e c_i != 0`. So exactly one of `y` and `y + e e_i`
+  is a patch; both would be two patches at distance one.
+  - **`y = r`.** The change is `-t_r`, so `e = t_r c_i^-1`. The pair is `{r_i, r_i + t_r c_i^-1}`, which
+    is `F_3 \ {r_i - t_r c_i^-1}`.
+  - **`y + e e_i = r`.** The change is `+t_r`, so `e = -t_r c_i^-1` and `v = r_i + t_r c_i^-1`. This is the
+    same pair.
+  - **Realization.** Each pair occurs at the context `r` restricted to the other two addresses, because
+    the neighbour of `r` along `e_i` is not a patch.
+- **Case `c_i = 0`.** Each patch rules out at most one of the nine contexts. So for `|Pi| <= 8` some context
+  has neither `y` nor `y + e e_i` a patch.
+
+QED
+
+**Check on the seed.** `N_1 = {2, 0}`, `N_a = {2, 0}` and `N_b = {1, 2}`, so `N = {2}` and the common pair
+is `{0, 1}`.
+
+**Which coefficient classes matter.** Put `S = c_1 + c_2 + c_3`.
+- **All coefficients nonzero.** Up to address permutation and global sign, `c` is `(1,1,1)` with `S = 0`,
+  or `(1,1,-1)` with `S = 1`.
+- **`S = 0`.** `sum_i c_i m_i` has augmentation `0`, so it is never a unit. A two-patch rule sharing a
+  symbol then reduces to linear strictness by the transfer.
+- **One nonzero coefficient.** Only one `N_i` constrains, so the rule always has a common blind pair.
+- **Where the unit case lives.** `c = (1,1,-1)`, and `c` with exactly one zero coefficient.
+
+**Rigid two-patch rules.** Take `c = (1,1,-1)`, weights `+1`, and `A_i = {p_i, q_i}`. Then
+`N_1 = A_1 - 1`, `N_2 = A_2 - 1` and `N_3 = A_3 + 1`. So the rule is rigid iff
+`A_1 ∩ A_2 ∩ (A_3 - 1)` is empty. With two patch symbols at every address this forces `A_1 ∩ A_2 = {w}` and
+`A_3 = F_3 \ {w + 1}`.
+
+**Next seed.** `mu_3 = (x_1 + x_a - x_b) + [y = (0,0,2)] + [y = (1,2,0)]`.
+- **Rigid.** `N_1 = {2,0}`, `N_a = {2,1}` and `N_b = {0,1}` have empty intersection.
+- **Blind pairs by hand.**
+  - Coordinate `1`: `{0,1}` at `(·,0,2)`, since `mu_3(0,0,2) = 2 = mu_3(1,0,2)`; and `{1,2}` at `(·,2,0)`,
+    since `mu_3(1,2,0) = 1 = mu_3(2,2,0)`.
+  - Coordinate `a`: `{0,1}` at `(0,·,2)`, and `{0,2}` at `(1,·,0)`.
+  - Coordinate `b`: `{1,2}` at `(0,0,·)`, and `{0,2}` at `(1,2,·)`.
+- **Linear part and transfer.** Both patches contain `0` and `2`, so the transfer applies. The linear part
+  `1 + a - b` has augmentation `1`.
+- **Diagonal and counts.** The diagonal is the identity. The value counts are `8, 9, 10`.
+- **What the known methods leave.**
+  - Every address carries two patch symbols: `{0,1}`, `{0,2}`, `{0,2}`, so Proposition 4 of
+    `distinct-symbol-patch-collision-2026-09-12.md` blocks the one-coordinate breaker.
+  - Its Proposition 5 has no background `0` (`P_0 = M`). Background `1` leaves the residue at `{a, b}`,
+    and background `2` at `{1}`.
+  - A single flip is invisible nowhere, since the rule is rigid.
+
+**Relation cases for non-rigid rules.** Census Proposition 5.1 excludes every non-rigid rule on Sidon
+placements. A nonamenable placement that is not Sidon has exactly one involution among `a`, `b` and
+`a^-1 b`, because two involutions generate a dihedral group and the remaining coincidences make `H`
+cyclic. Sections 1 and 2 settle these cases for `mu_2` only. For other non-rigid rules they are open, and
+the moves of Section 2 are the template.
