@@ -21,7 +21,7 @@ These are the only results that carry the full quantifier "every Cayley graph".
 | Class | Source | Scope | In Cairn |
 | --- | --- | --- | --- |
 | Nonamenable Gromov-hyperbolic | Hutchcroft arXiv:1804.10191 | every quasi-transitive graph in the class | `fpbs-hyperbolic-and-nonunimodular-nonuniqueness` |
-| Not of fixed price one | Lyons arXiv:1109.5418 | every Cayley graph | `fpbs-non-fixed-price-one-has-nonuniqueness` |
+| Not of fixed price one | Lyons arXiv:1109.5418 (abstract: groups without fixed price), strengthened to "not of fixed price one" by the archive's quantitative cost bound | every Cayley graph | `fpbs-non-fixed-price-one-has-nonuniqueness` |
 | Acylindrically hyperbolic | Choi–Seo arXiv:2508.08932v2, Theorem A | every Cayley graph | `fpbs-sc-choi-seo` |
 
 * **Choi–Seo, abstract (verified):** "Let G be an acylindrically hyperbolic
