@@ -726,3 +726,41 @@ Both checks above missed this node.
     agree when `1 ∈ F`.
   * Restriction `M_- -> M_-^P` is surjective, so identities of functions factoring through it are identities
     on the finite set `M_-^P`.
+
+## 20. Torsion spectra of rank models of V (w4-gate-v2; df1cadf7ed, 3e77da95d3)
+
+### 20.1 `v-rank-models-are-trivial-plus-free-on-odd-cycle-trees` (Theorem 1.3): PASS
+
+* **Lemma 1.1.**
+  * `h = g'^k phi g^-k` on `A_k`, and `psi` on `D`, maps the pieces onto the pieces and is piecewise a prefix
+    replacement.
+  * On `A'_k`, `h g h^-1 = g'^(k+1) phi g^-(k+1) g g^k phi^-1 g'^-k = g'`.
+  * At `k = p−1` the wrap uses `g^p = g'^p = 1`.
+* **Tree groups.**
+  * `tau_w = tau_(w0) tau_(w1)`.
+  * For `w' = wv`, `tau_w` permutes the cylinders `[c_k wv]` in the same cycle, so it commutes with `tau_(w')`.
+  * Disjoint generators give `(Z/p)^(2^n)`.
+* **Lemma 1.2.** `k -> k eps_w` permutes `Z/p`, so the `A_k` are disjoint and `g` shifts them. Words with
+  `eps_w = 0` lie in `D`.
+* **Theorem 1.3.**
+  * **(1)** `|P| = p^m` is invertible, so the `e_chi` are orthogonal idempotents.
+  * **(2)** `e_(g,zeta) = sum over chi(g) = zeta of e_chi`.
+  * **(3)** Conjugation and Lemma 1.1 make `m_zeta(g)` global.
+  * **(4)** Reindexing `k' = jk` gives `e_(g^j, zeta^j) = e_(g,zeta)`, and `g^j` is a clopen `p`-cycle. So `m_zeta` is
+    constant on `zeta != 1`, since `(Z/p)^x` is transitive on primitive roots.
+  * **(5)** `sum_(zeta != 1) zeta = −1`, so the transform is `c − (1−c)/(p−1) = a` off the identity, and inversion
+    holds on `P^`.
+  * **(6)** Positivity at `chi != 1` and at `chi = 1`, with `|E_n| -> ∞`, gives `0 <= a <= 1`.
+  * **(7)** `sigma(tau) − 1 = sum_(zeta != 1)(zeta − 1) e_(tau,zeta)` has rank `1 − c = (1−a)(p−1)/p`.
+* **Corollary 1.4.** Simplicity of `V`.
+
+### 20.2 Calibration and slopes (Sections 2–3): PASS
+
+* **Proposition 2.1.** `F[K]` restricted to `<g>` is `|K|/o` copies of `F[t]/(t^o − 1)`. There `P(t)` has kernel of
+  dimension `deg gcd(P, t^o − 1)`, and on the trivial summand the rank is `[P(1) != 0]`. The limit depends only on `a`,
+  `P` and `o`.
+* **Proposition 3.1.** Length changes along `h^-1`, `g`, `h` cancel. The second `h` is applied at `g x = x`.
+* **Example 3.2.**
+  * `x_0` fixes `0^∞` (slope `|00| − |0| = +1`) and `1^∞` (slope `|1| − |11| = −1`), and no other point.
+  * `x_0` lies in `F` and has no non-fixed periodic points, so `Fix(x_0^k) = Fix(x_0)`, with slopes `±k`.
+* **Scope.** The revealing-pair remark is correctly marked unverified and unused.

@@ -6,6 +6,7 @@ title: Conjugacy of clopen p-cycles and Fourier inversion force a trivial-plus-r
 target: v-rank-models-are-trivial-plus-free-on-odd-cycle-trees
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-models-torsion-spectra-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ The proof is Section 1 of the artifact.
   - The Fourier transform of the measure is therefore constant off the identity, and Fourier inversion
     gives `a delta_1 + (1 - a) uniform`.
   - Positivity over tree groups of unbounded order gives `0 <= a <= 1`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 20.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed Lemma 1.1, including the wrap at k = p−1; the tree-group commutation; and Lemma 1.2. In Theorem 1.3, recomputed steps 1–7: e_(g^j, zeta^j) = e_(g,zeta), the transform c − (1−c)/(p−1) = a off the identity, 0 <= a <= 1 from |E_n| unbounded, and rank (1−a)(p−1)/p. Proposition 2.1 and the slope invariant (Section 20.2) also PASS.*
