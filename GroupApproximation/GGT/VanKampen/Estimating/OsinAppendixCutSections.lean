@@ -61,8 +61,8 @@ theorem partsCut_mono {α : Type*} (parts : List (List α)) {a b : ℕ} (hab : a
 theorem partsCut_succ {α : Type*} (parts : List (List α)) {j : ℕ} (hj : j < parts.length) :
     partsCut parts (j + 1) = partsCut parts j + parts[j].length := by
   unfold partsCut
-  rw [List.take_add, List.drop_eq_getElem_cons hj]
-  simp
+  rw [List.take_succ_eq_append_getElem hj, List.flatten_append, List.flatten_singleton,
+    List.length_append]
 
 /-- Part `j` sits in `parts.flatten` at position `partsCut parts j`. -/
 theorem flatten_drop_partsCut_take {α : Type*} (parts : List (List α)) {j : ℕ}
@@ -243,7 +243,7 @@ def SectionCuts.ofParts {G : Type u} [Group G] {Lambda : Type w}
     show IsLambdaCQuasiGeodesicWord D lambda c
       ((word.drop (CutSections.partsCut parts (j.castSucc : ℕ))).take
         (CutSections.partsCut parts (j.succ : ℕ) - CutSections.partsCut parts (j.castSucc : ℕ)))
-    rw [Fin.coe_castSucc, Fin.val_succ, CutSections.partsCut_succ parts hj,
+    rw [Fin.val_castSucc, Fin.val_succ, CutSections.partsCut_succ parts hj,
       Nat.add_sub_cancel_left, hword, CutSections.flatten_drop_partsCut_take parts hj]
     exact hquasi _ (List.getElem_mem hj)
 
@@ -267,7 +267,7 @@ theorem SectionCuts.ofParts_cut_sub {G : Type u} [Group G] {Lambda : Type w}
       = (parts.get (j.cast (SectionCuts.ofParts_count parts hword hpos hle hquasi))).length := by
   have hj : (j : ℕ) < parts.length := j.isLt
   show CutSections.partsCut parts (j.succ : ℕ) - CutSections.partsCut parts (j.castSucc : ℕ) = _
-  rw [Fin.coe_castSucc, Fin.val_succ, CutSections.partsCut_succ parts hj,
+  rw [Fin.val_castSucc, Fin.val_succ, CutSections.partsCut_succ parts hj,
     Nat.add_sub_cancel_left]
   simp [List.get_eq_getElem]
 
@@ -285,7 +285,7 @@ theorem SectionCuts.ofParts_part {G : Type u} [Group G] {Lambda : Type w}
   show (parts.flatten.drop (CutSections.partsCut parts (j.castSucc : ℕ))).take
       (CutSections.partsCut parts (j.succ : ℕ) - CutSections.partsCut parts (j.castSucc : ℕ))
       = _
-  rw [Fin.coe_castSucc, Fin.val_succ, CutSections.partsCut_succ parts hj,
+  rw [Fin.val_castSucc, Fin.val_succ, CutSections.partsCut_succ parts hj,
     Nat.add_sub_cancel_left, CutSections.flatten_drop_partsCut_take parts hj]
   simp [List.get_eq_getElem]
 
