@@ -49,6 +49,23 @@ tree; nothing unlanded, nothing in the attic.  `ParityPAxiomGuard` is compiled o
   field, and `SplitStepDData.gamma_top_eq_zero : γ ((∑ j ∈ u, d j) + (n + 1)) = 0` for `p ∣ n`,
   `p ∣ d_j` — the index order of the rank-generic `F₂` bridge `Gen.stepD_of_wu`.
 
+## Scope 2 (lead's ruling, 09-11 23:00): the splitting principle over `K`, prefix `ChernSplittingOf*`
+
+| module | probe | jobs | what |
+|---|---|---|---|
+| `ChernSplittingOfPowers` | lix-c, BUILT | 2321+ | `SplittingDataOf` (even parts), `SplittingDataOf.powerData`, `hasSplittingP_of_splittingDataOf`, `HasSplittingP.elim` |
+| `ChernSplittingOfInjective` | lix-c, BUILT | 3421 | `totalHOf_map_id/comp`, `totalHOf_component_map`, `totalHOf_map_injective`, `flagProj_map_injective_of_proj` over any `CommRing K` |
+| `ChernSplittingOfWhitney` | lix-c, BUILT | 3461 | on `LerayHirschDataEvenOf`: `chern_eq_coeff`, `chern_split_of_splitPoly`, `splittingDataOf_of_splitPoly`, `aeval_taut_map`, `splitPoly_of_splitRelation`, **`hasSplittingP_of_splitRelation`** |
+
+Open inputs for the flag assembly (lix-lh / lix-coeff by the lead's ruling): compact Leray–Hirsch over
+`K` and its `of_graded` into `LerayHirschDataEvenOf`; `tautEulerOf_comapOf`; the split relation at the
+flag `∏_{l<r}(ξ' + π'^* e_K(flagLineFlat p r l)) = 0` in the even part.  The reduced powers on the flag
+space are lix-steenrod's export.
+
+Traps: `esymmOn` needs `CommRing`, so every splitting statement lives in `Gen.evenPart`; `map_mul`
+applied to a ring hom coercion does not unify through `evenRestrictAdd` — pass the factors explicitly;
+`cmap` lives in `CohomologyBridge`, which `BundleFlagStage` does not import.
+
 ## AUTHORED, UNVERIFIED
 
 Nothing.  Every file this lane owns is compiled on main.
