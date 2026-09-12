@@ -14,17 +14,18 @@ Lemma 4.2 with the standing choices of their §4 as
 
 This module proves it: `H = ⟨y⟩` with `H ↪_h (G, X)` for a symmetric `X ⊇ F`,
 and the intersection condition in its two-sided form
-(`GGT.CyclicTwoSided.exists_cyclic_hypEmbedded_twoSided`).  The proof is one
-product of deep powers of four detectors and DGO Lemma 4.21(a).  It replaces
-Gerasimova--Osin's free subgroup from DGO Theorem 6.14 and its transfer through
-DGO Proposition 4.35.
+(`GGT.CyclicTwoSided.exists_cyclic_hypEmbedded_twoSided`).
+
+Route note: one product of deep powers of four detectors and DGO Lemma 4.21(a),
+in place of Gerasimova--Osin's free subgroup (DGO Theorem 6.14, Proposition 4.35).
 
 ## Manuscript status
 
-The hyperbolically embedded input of *"Gerasimova and Osin give density of the
-invertible elements, which is stable rank one"* (`cor:regular-nonmf-algebra`).
-The printed route runs through Gerasimova--Osin's own proof, so the census
-status is `partial` (different route), not `formalized`.
+The hyperbolically embedded input of Gerasimova--Osin's Theorem 1.1, which
+`cor:regular-nonmf-algebra` cites (*"Gerasimova and Osin give density of the
+invertible elements, which is stable rank one"*).  Lemma 4.2 is internal to that
+cited proof, so it carries no census row of its own.  The row for the printed
+sentence follows the closed `GerasimovaOsinTheorem11Printed` producer.
 -/
 
 namespace GroupApproximation
