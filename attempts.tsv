@@ -324,3 +324,4 @@
 34647215700	2026-09-11T21:01:51Z	GroupApproximation/Sofic/DoubleSoficTransfer.lean	isSofic_freeLamp_flip_of_isSofic_symmetricDouble
 34657560241	2026-09-12T00:56:41Z	GroupApproximation/Sofic/ExactCoronaNegativeCorner.lean	that
 34665297439	2026-09-12T02:17:22Z	GroupApproximation/Sofic/CliffordWitnessHSRemark.lean	manuscriptSentence_soficPermutationModelsHS
+34678387343	2026-09-12T08:48:44Z	GroupApproximation/Algebra/FinitaryLinearBinarySLUnion.lean	manuscriptSentence_binarySLUnionInfiniteSimpleLocallyFinite
