@@ -35,7 +35,7 @@ theorem μinv_pow_mul_pow (k : ℕ) : R.μinv ^ k * R.μ ^ k = 1 := by
 theorem ptotOf_apply (X : TopCat.{0}) (q : ℕ) (x : Hmod (ZMod p) X q) :
     ptotOf R.D X q x = ∑ j ∈ Finset.range (p * q + 1),
       if j % 2 = 0 then TotalHOf.of (ZMod p) X (p * q - j) (R.D X q j x) else 0 := by
-  rw [ptotOf, AddMonoidHom.finset_sum_apply]
+  rw [ptotOf, AddMonoidHom.finsetSum_apply]
   refine Finset.sum_congr rfl fun j _ => ?_
   by_cases hj : j % 2 = 0
   · rw [if_pos hj, if_pos hj]; rfl

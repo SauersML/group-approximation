@@ -72,7 +72,7 @@ def toEven (hp : 2 ≤ p) : EvenReducedPowers p where
     rwa [coe_Ptot, coe_evenOf, R.totalPtot_of, R.piecePtot_apply, if_pos hd2] at hc
   cartan X i u v hu hv := by
     apply Subtype.ext
-    rw [Subring.coe_mul, AddSubmonoidClass.coe_finset_sum]
+    rw [Subring.coe_mul, AddSubmonoidClass.coe_finsetSum]
     simp only [Subring.coe_mul, Gen.coe_evenRestrictAdd]
     exact R.totalP_cartan X hp u.2 v.2 hu hv i
   mul_single X q hq z ν hz := by

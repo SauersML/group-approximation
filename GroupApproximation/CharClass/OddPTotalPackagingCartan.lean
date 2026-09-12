@@ -46,8 +46,8 @@ theorem sum_rect_ite {M : Type*} [AddCommMonoid M] (A B i : ℕ) (F : ℕ → �
   have hright : ∑ j ∈ Finset.range (i + 1), F j (i - j)
       = ∑ j ∈ Finset.range (i + 1), (if j ≤ i then F j (i - j) else 0) :=
     Finset.sum_congr rfl fun j hj => by rw [if_pos (by rw [Finset.mem_range] at hj; omega)]
-  rw [hright, Finset.sum_subset (Finset.range_subset.mpr (by omega : A + 1 ≤ A + i + 1)),
-    Finset.sum_subset (Finset.range_subset.mpr (by omega : i + 1 ≤ A + i + 1))]
+  rw [hright, Finset.sum_subset (Finset.range_subset_range.mpr (by omega : A + 1 ≤ A + i + 1)),
+    Finset.sum_subset (Finset.range_subset_range.mpr (by omega : i + 1 ≤ A + i + 1))]
   · intro j _ hj
     rw [Finset.mem_range] at hj
     rw [if_neg (by omega)]
