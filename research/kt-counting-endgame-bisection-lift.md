@@ -11,6 +11,7 @@ artifacts:
   - GroupApproximation/KunThom/CountingEndgameLift.lean
   - GroupApproximation/KunThom/CountingEndgameWeights.lean
   - GroupApproximation/KunThom/CountingEndgameRestrict.lean
+  - GroupApproximation/KunThom/CountingEndgameSelection.lean
 ---
 
 **ESTABLISHED in Lean.** This is the finite step of the counting in Kun and
@@ -32,7 +33,9 @@ Suppose that at every `X ∈ S`:
 
 Then every transported arrow of `a` has a preimage `g : X ⟶ sel X`, and some
 total bisection of `C` carries `J g` at every `J X`. This is
-`CountingEndgame.exists_bisection_lift`.
+`CountingEndgame.exists_bisection_lift`. With `S` taken to be the objects where the
+target condition and both counts hold (`CountingEndgame.selected`), it needs no
+per-object hypothesis (`exists_bisection_lift_selected`).
 
 Supporting finite facts, all in namespace `GroupApproximation.CountingEndgame`:
 - `Ω₁ = Ω₂` (`nonempty_hom_of_card_orbit_lt_add`) and the Hom-set bijection
