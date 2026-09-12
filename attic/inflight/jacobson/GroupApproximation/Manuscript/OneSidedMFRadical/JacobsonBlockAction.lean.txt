@@ -83,7 +83,7 @@ theorem matUnitJ_mul (u v w x : ℕ) :
 /-- Matrices over `J` act on `V^n` by `(m x)_i = Σ_j m_{ij}(x_j)`. -/
 noncomputable def matrixAct (n : ℕ) :
     Matrix (Fin n) (Fin n) ↥jacobsonAlgebra →+* Module.End (ZMod 2) (BinaryPower n) :=
-  ((Matrix.endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm :
+  ((endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm :
       Matrix (Fin n) (Fin n) (Module.End (ZMod 2) JacobsonSpace) →+*
         Module.End (ZMod 2) (Fin n → JacobsonSpace)).comp
     jacobsonAlgebra.subtype.mapMatrix
@@ -95,9 +95,8 @@ theorem matrixAct_apply (n : ℕ) (m : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra
 theorem matrixAct_injective (n : ℕ) : Function.Injective (matrixAct n) := by
   intro m m' h
   have h2 : jacobsonAlgebra.subtype.mapMatrix m = jacobsonAlgebra.subtype.mapMatrix m' :=
-    (Matrix.endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm.injective h
-  ext i j
-  exact Subtype.ext (congrFun (congrFun h2 i) j)
+    (endVecRingEquivMatrixEnd (Fin n) (ZMod 2) JacobsonSpace).symm.injective h
+  exact Matrix.ext fun i j ↦ Subtype.ext (congrFun (congrFun h2 i) j)
 
 /-- **`EL_n(J)` acting on `V^n`.** -/
 noncomputable def blockAct (n : ℕ) :
@@ -183,9 +182,9 @@ theorem blockAct_commutator_matUnit (n : ℕ) {i k : Fin n} (hik : i ≠ k) {u v
   set A : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := Matrix.single i k (matUnitJ u v) with hA
   set B : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := Matrix.single k i (matUnitJ v v) with hB
   have hAA : A * A = 0 := by
-    rw [hA, Matrix.single_mul_single_of_ne _ _ _ hik.symm]
+    rw [hA, Matrix.single_mul_single_of_ne (c := matUnitJ u v) i k i hik.symm (matUnitJ u v)]
   have hBB : B * B = 0 := by
-    rw [hB, Matrix.single_mul_single_of_ne _ _ _ hik]
+    rw [hB, Matrix.single_mul_single_of_ne (c := matUnitJ v v) k i k hik (matUnitJ v v)]
   have hAB : A * B = Matrix.single i i (matUnitJ u v) := by
     rw [hA, hB, Matrix.single_mul_single_same, matUnitJ_mul, if_pos rfl]
   have hBA : B * A = 0 := by
