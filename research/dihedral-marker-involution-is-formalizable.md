@@ -43,3 +43,10 @@ formalization of `tau_Z x tau_Z` over `Z`.
 - **Scope.** A refutation through the finite dihedral quotients `D_n` refutes this claim, but not
   `thompson-v-marker-involution-is-formalizable`. A formalization here induces one over `V`
   (`dihedral-marker-formalization-induces-to-thompson-v`).
+- **Stable version is downstream of the integer marker (w4-dihedral-marker, df52dd862d).** Allowing
+  identity ancilla tracks, `tau = (tau_Z x id) o (id x tau_Z)`, and composition of formal pairs with
+  disjoint ancilla sets gives a fully `D`-equivariant formalization from the integer-marker instance of
+  `injective-binary-automata-are-stably-formalizable` (`dihedral-marker-involution-is-stably-formalizable`,
+  route `dihedral-marker-stable-formalizability-from-integer-marker`). Stable formalizability already
+  gives the Kaplansky payoff, so the open full-`D`-equivariance content above is only needed for the
+  plain (ancilla-free) target.

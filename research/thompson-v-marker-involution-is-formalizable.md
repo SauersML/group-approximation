@@ -39,3 +39,8 @@ does not supply. Corrected after `w3-vf-nonlinear`, Section 14 of its verificati
   units of `F_2[V]` realize `tau_g` is open.
 - **Smallest arena.** Over `<g, s>` the object is `tau_Z x tau_Z` over `Z` with reflection symmetry
   (`dihedral-marker-involution-is-formalizable`). Artifact Section 5.
+- **Stable version reduces to the integer marker (w4-dihedral-marker, df52dd862d).** With ancilla
+  tracks, `thompson-v-marker-involution-is-stably-formalizable` follows from the dihedral stable marker,
+  hence from the integer-marker instance of `injective-binary-automata-are-stably-formalizable`, and the
+  reflection symmetry the induction needs comes for free from disjoint commuting ancillas. So the `V`
+  marker is not an independent test object; only the plain (ancilla-free) target stays separate.

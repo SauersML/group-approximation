@@ -142,3 +142,10 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
     neither witnesses against this claim.
   - **Where a witness must live.** Formal cancellation on infinite hosts, not one-track rigidity on
     finite groups.
+- **The V marker test object is downstream of the Z warm-up (w4-dihedral-marker, df52dd862d).** The
+  dihedral/V marker is `tau_Z x tau_Z`, so `tau = (tau_Z x id) o (id x tau_Z)`; composing formal pairs
+  with disjoint ancilla sets (which commute as polynomial maps, giving full `D`-equivariance) shows
+  `thompson-v-marker-involution-is-stably-formalizable` follows from the integer-marker instance of this
+  claim (`dihedral-marker-stable-formalizability-from-integer-marker`,
+  `thompson-v-marker-stable-formalizability-from-dihedral`). So the V marker cannot refute this claim
+  unless the integer marker already does: simple hosts add no difficulty to this test object beyond Z.
