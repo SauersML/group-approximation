@@ -7,6 +7,7 @@ target: amenable-extensions-of-uqs-groups-are-surjunctive
 requires: []
 artifacts:
   - research/artifacts/amenable-extension-surjunctivity-transfer-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Theorem B, Proposition 3.1 and Corollary 3.2, Section 3 of the artifact.
@@ -21,3 +22,5 @@ Theorem B, Proposition 3.1 and Corollary 3.2, Section 3 of the artifact.
    - Over a two-ended quotient `|F \ F^-|` stays bounded, contradicting AQS.
 5. **Heredity.** Extend coset by coset for subgroups, and restrict to a coset for directed unions.
 6. **Ascending HNN extensions.** Their kernel onto `Z` is a directed union of copies of `N`.
+
+**Verification.** `w3-vf-positive` passed this route (Sections 19.1–19.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`). Scope note: heredity to directed unions needs one UQS constant, or one AQS threshold, shared by all stages. The isomorphic stages of Corollary 3.2 have that.

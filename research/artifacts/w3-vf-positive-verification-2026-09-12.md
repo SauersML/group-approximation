@@ -910,3 +910,89 @@ cannot fire.
   without normalizing `pi_1`. The author recorded exactly this justification, and it is correct.
 - **Corollary C.1.** The label-set scope note from 15.2 is now in the artifact.
 - **Status.** No status changes.
+
+## 19. Amenable extensions of uniformly quantitatively surjunctive groups (w5-free-pos-c, `8e52ae695d`)
+
+Verdict: **PASS** for `amenable-extensions-of-uqs-groups-are-surjunctive` (Theorem B, Proposition 3.1 and
+Corollary 3.2). There is one scope note, on heredity to directed unions.
+- **Open claims.** `surjunctive-groups-are-uniformly-quantitatively-surjunctive` and
+  `surjunctive-by-amenable-extensions-are-surjunctive` correctly read OPEN.
+- **The conditional route.** `surjunctive-by-amenable-via-uniform-quantitative-deficit` requires the OPEN UQS
+  claim, so it cannot fire.
+- **Theorems A and C** of the same artifact were passed by `w4-vf-positive-b`, in Sections 6.1–6.2 of
+  `gk-vf-positive-b-verification-2026-09-12.md`. My pass agrees (19.5).
+
+### 19.1 Theorem B. PASS.
+
+- **Tiles.** Take a maximal disjoint family `q_i Wbar` inside `F`. Every `q` in `F'` has `q Wbar` meeting some
+  `q_i Wbar`, so `q` lies in `q_i Wbar Wbar^-1`. Hence `n >= |F'| / |Wbar Wbar^-1|`.
+- **Transplant.** `sigma(y)_q(n)` reads `y_(q dbar)(n n_(q,d))` for `d` in `S`. For `q` in `F^-` every `q dbar`
+  lies in `F`, so `tau_F(x)` determines `x_q` there. Storing `F^+ ∖ F^-` gives injectivity. Since `e` lies in both
+  `S` and `M`, `F^- <= F <= F^+`.
+- **Image.** `X` misses `p` at every translate `n s_(q_i) W`.
+  - `s_(q_i) w = n_(i,w) s_(q_i wbar)` places `w` at coordinate `(q_i wbar, n n_(i,w))`.
+  - `w -> (q_i wbar, n_(i,w))` is injective, so `Z_i` is proper and misses a pattern on `|W|` sites of `N`.
+  - `B = A^(Wbar)` and `|W|` do not depend on `F`, so neither does `delta(B, |W|)`.
+- **Bookkeeping.** `j = |F^+| - n|Wbar|` and `j' = (|F| - n|Wbar|) + (|F^+| - |F^-|)`, so `j' - j = |F ∖ F^-|`.
+- **Part 1.**
+  - Each `q` in `F ∖ F^-` has some `s` in `Sbar` with `qs` outside `F`.
+  - `q -> (s, qs)` is injective, so `|F ∖ F^-| <= |Sbar| · |FK ∖ F| <= |Sbar| eps |F|`.
+  - Likewise `|F ∖ F'| <= |Wbar| eps |F|`.
+  - For small `eps` this gives `(j' - j) log|A| < delta n`.
+- **Part 2.**
+  - A two-ended `Q` has a finite-index infinite cyclic `<t>`. Take a right transversal `R` and
+    `F = { t^k r : 0 <= k < L, r in R }`.
+  - Writing `r s = t^(c(r,s)) r'` gives `|Fs ∖ F| <= sum_r |c(r,s)|`, which does not depend on `L`.
+  - So `|F ∖ F^-|` and `|F ∖ F'|` stay bounded while `n -> infinity`. AQS applies with `K = C log|A|`.
+- **UQS implies AQS**, with `n_0 > K / delta`.
+
+### 19.2 Proposition 3.1. PASS, one scope note.
+
+- **Subgroups.**
+  - A forbidden map over `H` with memory in `H` acts independently on left cosets `gH`. Its product over a
+    transversal is injective over `N`.
+  - `Y~_i` is closed and `N`-invariant. Different representatives of one coset give the same condition, because
+    `Y_i` is `H`-invariant. `Y~_i` misses the same pattern.
+  - The constants come from `N`.
+- **Directed unions.** A forbidden map over `N^` has its memory and its pattern windows inside some `N_k`.
+  - Its restriction to the coset `N_k` is injective, as a factor of an injective product map.
+  - That restriction lands in the restrictions `Y_i|_(N_k)`. These are closed and `N_k`-invariant, and they miss
+    the same pattern at every `N_k`-translate.
+- **Scope note.**
+  - The contradiction needs stage `k` to have a UQS constant at least `delta`, or an AQS threshold at most `n`.
+  - So "directed unions, with the same constants" holds when all stages share one constant, or one threshold
+    `n_0(B, w, K)`.
+  - For a directed union whose stage constants tend to `0`, nothing is proved.
+  - Corollary 3.2 is unaffected: its stages are isomorphic copies of `N`.
+
+### 19.3 Corollary 3.2. PASS.
+
+- `t N t^-1 = phi(N) <= N` gives `N <= t^-1 N t`, so the conjugates `t^-k N t^k` form an ascending chain.
+- Their union is the kernel of `N *_phi -> Z`, `t -> 1`.
+- The stages are isomorphic to `N`, so the constants are uniform. Theorem B part 2 applies with `Q = Z`.
+
+### 19.4 Remarks and wiring
+
+- **Sofic UQS remark.** In the per-track count of `product-fibre-garden-of-eden-filter-2026-09-12.md` Section 3,
+  track `i` misses `r_i` on `|W_i| <= w` sites. That gives density `c >= (1 - eps')/(w^2 + 1)` and a factor
+  `1 - |B|^(-w)` per track, so `delta = -log(1 - |B|^(-w)) / (w^2 + 1)`. The remark is correct, and nothing
+  consumes it.
+- **Direct products.** For `G = N x Q` with `s_q = (e, q)`, `n_(i,w) = n_w` for every `i`. So all tiles carry the
+  same pattern, and QS suffices for Part 1.
+- **Calibration.** Sofic-by-amenable groups are sofic (`sofic-kernel-amenable-quotient-permanence`).
+- **Wiring note.** `complex-lamplighter-linearization-proof` has `requires: []`, but its (a) ⇒ (b) step consumes
+  the ESTABLISHED `bijective-ca-preserve-uniform-bernoulli-measure`, as the route body itself says. The edge should
+  be added. No status changes.
+
+### 19.5 Theorems A and C: concurrence
+
+- **Theorem A.**
+  - By normality the decoder memory on coordinate `q` is `s_q S s_q^-1 <= N`.
+  - `Psi` is a map between full shifts over `N` with alphabet size `|A|^(|F^+|)`.
+  - Its image is proper, by injectivity of `w -> (wbar, n_w)`.
+  - The contradiction uses surjunctivity of `N` over the alphabet `A^(F^+)`.
+- **Theorem C.**
+  - (c) ⇒ (d): the normal extension agrees with `Phi_tau` on clopen indicators, `1_(C_k)` decreases to `0` in
+    `L^infinity(lambda)`, and `tr` is normal.
+  - (d) ⇒ (a): uses ergodicity of `lambda`, which holds for infinite `G`.
+  - The Consequence is an interpretation, as `w4-vf-positive-b` recorded.
