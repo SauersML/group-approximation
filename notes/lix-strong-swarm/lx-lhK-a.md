@@ -61,9 +61,20 @@ Red: `LerayHirschProductOf` (missing import `LerayHirschColumnPack`, fixed), `Co
 
 ## NEXT (this lane, authoring now)
 
-`CohomologyChartTowerOf` (`peelTowerOf`, `exists_peelTowerOf`), `TowerFreeOf`, `TowerCollapseOf`, `TowerTopOf`,
-`FreenessOf` (`peelFreeAtOf K hring d`), then the glue and `LerayHirschLadderClosedOf` over
-`CPn.cupPowE_ne_zeroOf` (lx-lhK-b, `ProjectiveSpaceRingClosedOf`).
+(11:45) All fourteen files LANDED UNVERIFIED at 3c6fbec99 (parent 933f34a60).  Spellings consumed by lx-local2a
+(`peelTowerOf`, `exists_peelTowerOf`, `cupPowE_pull_eq_zeroOf`) and lx-stablyfinite (`CPRingOf`, `PeelFreeAtOf`,
+`peelFreeAtOf K hring d`) checked against the landed bytes.  Probe 4 (tag 0912-113840-34864, cs-endpoint, base
+2e6e6c1c0 = restored tree, 6235 sources, NM_CPUS=16) covers ProductOf, InductionOf, LowDegreeOf, PeelUniqOf,
+KunnethClosedOf, TowerOf, TowerFreeOf, TowerCollapseOf, TowerTopOf, FreenessOf.  Then: fix reds in one batch (proof-only
+fixes land at once; a statement change is announced to lx-local2a / lx-stablyfinite first), land compiled bytes.
+Probe 4 result: PROBE FAILED.  BUILT/COMPILED: ProductOf, InductionOf, LowDegreeOf, KunnethClosedOf, plus TautClassOf,
+RankTwoInterfaceOf, SplitOf, GenHypOf.  Red: `CohomologyChartPeelUniqOf:41` unknown `cpSliceGen_comp_cpPrCP` (declared
+in the F₂ `CohomologyChartPeelUniq:66`); TowerOf…FreenessOf not reached.  Purge cleared 2447 artifact sets (mtime reset
+by the restore sync).  Fix (import only) landed 577568a3a.  Cross-check: that lemma is the only F₂ chain name the Of
+files use; none is redeclared.  Probe 5 (tag in `lx-lhK-a-probe5.out`) covers PeelUniqOf, TowerOf, TowerFreeOf,
+TowerCollapseOf, TowerTopOf, FreenessOf.
+The glue is NOT this lane's: `LH.lerayHirschGraded_compactOf` is lx-lhK-b's `LerayHirschCompactClosedOf` (on origin),
+over lx-stablyfinite's `LerayHirschLadderClosedOf.hasFreeTuple_cpProdOf`, over lx-local2a's S1/S2 and this lane's tower.
 
 ## NEEDS
 
@@ -100,3 +111,13 @@ S3. `CharClass/LerayHirschColSumOf.lean`: `colTowerOf`, `colTower_ofOf`, `colTow
 (F₂ `LerayHirschColTower/ColRead/ColSum` verbatim).  Inputs: S2, `peelFreeAtOf`.
 S4. `CharClass/LerayHirschLadderClosedOf.lean`: `hasFreeTuple_cpProdOf K U d hd hfib hfib0` from S2, S3 and
 `CPn.cupPowE_ne_zeroOf`.
+
+## PROBE 5 GREEN (12:16)
+
+Probe 0912-120703-48079 (acn112 slot 0, base 8a88f9ab6 + this lane's overlay, bytes = origin at 577568a3a / 3c6fbec99):
+PROBE GREEN, 8985 jobs.  BUILT: PeelUniqOf, TowerOf, TowerFreeOf, TowerCollapseOf, TowerTopOf, FreenessOf.  The compiled
+record `lanes/lx-lhK-a.green.0912-120703-48079` covers all fourteen files (probe 4 carries the BUILT lines of ProductOf,
+InductionOf, LowDegreeOf, KunnethClosedOf).  `#audit` lines in the fourteen files: 0.
+Unimported on disk at landing (wiring tops for lx-integrator):.
+Consumers: lx-lhK-b `ProjectiveSpaceRingClosedOf` (ProductOf); lx-local2a S1/S2 (TowerOf, TowerTopOf); lx-stablyfinite
+S3/S4 (FreenessOf); then lx-lhK-b `LerayHirschCompactClosedOf` = `LH.lerayHirschGraded_compactOf`.
