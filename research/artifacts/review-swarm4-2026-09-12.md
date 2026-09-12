@@ -194,3 +194,134 @@ Checked `component-space-sizes-miss-cover-defect-proof` steps 1–9.
   `eps_u(Out_M(Γ_s))`, and the compression of `Q_s(p)` is strict at every corner.
 - **Step 9 and scope.** Both are correct. This is an obstruction to a method, and it claims nothing about
   soficity.
+
+## 9. `leavitt-tensor-powers-are-not-left-coherent` (4ee11a356): PASS
+
+This claim refutes `leavitt-tensor-powers-are-left-coherent`. That claim was the open input of the
+coherence route to `K_1 = K_2 = 0` for three or more Leavitt factors, so every step was checked.
+- **Step 1 (strong grading).**
+  - `(y_1⊗1)(x_1⊗1) = 1` and `Σ(x_i⊗1)(y_i⊗1) = 1` put `1` in `A_(-1)A_1` and in `A_1A_(-1)`.
+  - Take homogeneous generators `a_i` of `ann_A(f)`. Then `ann_T(f) = Σ A_(-d_i) a_i`.
+  - From `1 = Σ p_k q_k`, `A_(-d) = Σ_k T q_k`.
+  - So left coherence of `A` makes `ann_T(f)` finitely generated.
+- **Step 2 (the Bernoulli shift).**
+  - `uv = vu = 1`.
+  - The shift formula uses `y_i x_γ = δ_(iγ_1) x_(γ')` and `y_δ x_j = δ_(δ_1 j) y_(δ')` under the stated
+    convention `y_β = y_(β_m)⋯y_(β_1)`.
+  - Every tensor position moves down by one.
+- **Step 3.** `u^n e = σ^n(e) u^n` gives `g f = Σ_n (g_n - g_(n-1)) σ^n(e) u^n`. `T` is free over `T_0` on
+  the `u^n`, which gives `(*)`.
+- **Steps 4–6.**
+  - On `V_x`, `Θ e^(p)_(ab) Θ^(-1) = e^(p-1)_(ab)`.
+  - An annihilator of width `w` is constant on blocks, the runs with `x_(-n) = 1`, so it vanishes on
+    blocks longer than `w`.
+  - For `c u^j g`, the blocks of `τ^(-j)x` are the blocks of `x` translated by `-j`. So a finite
+    generating set of width `<= W` kills `ξ_x` on every block longer than `W`.
+- **Step 7.** `g^[ℓ] = Σ_(n=0..ℓ) P_ℓ u^n` satisfies `(*)`: the differences are `±P_ℓ` at `n = 0` and
+  `n = ℓ+1`, and `P_ℓ` carries `e_22` at positions `0` and `-ℓ-1`. On the `x` with block `[0, ℓ]`,
+  `P_ℓ ξ_x = ξ_x`.
+- **Step 9 (`d >= 3`).**
+  - The node's argument works. The grading by the first two factors is strong over `T ⊗ R`, and
+    `V_x ⊗_k R` satisfies (a), (b) and Step 7.
+  - An independent second argument also works. `ann_(A⊗R)(f⊗1) = ann_A(f) ⊗ R`, because `-⊗_k R` is
+    exact. Expanding finitely many generators in a `k`-basis of `R` yields finitely many elements of
+    `ann_A(f)` that generate it.
+  - Either way, coherence of `L^(⊗d)` would make `ann_T(f)` finitely generated.
+- **Right coherence.** `x_i ↔ y_i` in every factor is an anti-automorphism.
+- **Not checked here.** The by-product that `C(X,k) ⋊ Z` for the full two-shift is not coherent.
+- **Consequences in Cairn.**
+  - The invalidations of `leavitt-tensor-powers-k-theory-via-coherence` and
+    `prime-field-leavitt-powers-k-theory-via-coherence` are sound.
+  - `K_1 = K_2 = 0` for `d >= 3` stays OPEN and now needs a direct computation of the twisted Nil groups.
+
+## 10. `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf` and `deligne-lattice-embeds-in-no-rover-nekrashevych-group` (16c1601f5): PASS
+
+- **Marking set.** `f∘β_(u_i w) = β_(v_i h_i(w)) ∘ h_i|_w`, so only the finitely many proper prefixes of code
+  words leave `M`. So `M` is commensurated.
+- **Transfixing.** Property (T) gives (FH), hence (FW), and so a `G`-invariant `M'` with `M Δ M'` finite.
+- **Finite cover.**
+  - A ball below level `N` lies strictly inside its level-`N` prefix ball.
+  - Only finitely many members of `I` contain a given level-`N` ball.
+  - So `P` is finite, `G`-invariant, and covers `X^ω`.
+- **Embedding.**
+  - On the kernel `G_0` of `G -> Sym(P)`, `g∘φ = φ∘ρ_φ(g)` defines homomorphisms to `H`.
+  - They separate points, because the images cover `X^ω`. So `G_0 ↪ H^P`.
+  - `H <= Aut(T_d)` is residually finite.
+- **Deligne's lattice.**
+  - A central `Z`-extension of a finitely presented group is finitely presented, by the standard argument.
+  - The word-problem algorithm is correct: decide in `Sp_4(Z)`, then enumerate consequences `w = z^c`.
+  - Property (T) and non-residual-finiteness are classical (Bekka–de la Harpe–Valette §1.7; Deligne
+    1978). Their quotes were not re-extracted.
+- **Invalidation.** `boone-higman-via-rover-nekrashevych-hosts` requires
+  `decidable-groups-embed-in-rover-nekrashevych-hosts`, and the lattice refutes that claim.
+  `boone-higman-conjecture` is untouched, as the node says.
+
+## 11. `stable-permutation-hnn-of-type-a-actor-is-type-a` (6b70fc6bf): PASS
+
+- **Pair orbits.** Every `L`-orbit of pairs is a union of `Γ`-orbits.
+- **Stabilizers.**
+  - `P\T` has vertex set `Γ\L/P`, which indexes the `Γ`-orbits on `L.x`, and edge set `D_2\L/P`.
+  - Both are finite, because `Γ`, `D_1` and `D_2 = πD_1π^(-1)` have finitely many orbits on `X`.
+  - The vertex groups `g Stab_Γ(g^(-1)x) g^(-1)` are finitely generated, so `P` is finitely generated.
+- **(b).** The Britton pinch argument for `<A, t> = A*_φ` is the standard HNN subgroup theorem.
+- **(c).**
+  - `ρ(γ t^m) = 1` iff `π^m = ρ(γ)^(-1)`.
+  - In the non-injective case `u = γ_0^(-1) t^n` centralizes `Γ`, so `Γ × <u>` has index `n`. It embeds in
+    `Γ × Γ` when `Γ` has an element of infinite order.
+- **Scope.** The three "where it stops" items are correctly stated, and they carry the open part of the
+  permanence.
+
+## 12. `unimodular-averaging-loses-determinant-integrality` (41a03cfe5): PASS, one framing remark
+
+- **Finite example.** `B = [[2,1],[1,3]]` has determinant `5` and trace `5`. With the uniform root,
+  `det = 5^(1/2)` and `N_1 = 5/2`.
+- **Ergodic example.**
+  - `K = |1+z|^2` has `det K = exp(2m(1+z)) = 1`.
+  - `det(T + εM_g^2) = 4^p det(K + ε)`.
+  - `T + ε <= T + εM_g^2 <= T + 4ε`, so monotone convergence gives `det T = 4^p`.
+  - `N_1 = 2E g_0^2 = 2(1 + 3p)`.
+- **Framing.**
+  - Fuglede–Kadison determinants of integral group-ring elements are already non-integers: over `Z[Z]` they
+    are Mahler measures, such as Lehmer's.
+  - The new content is that averaging makes the moments `N_1` non-integers and gives the determinant a
+    continuum of values in `(1,4)`.
+  - The bullets are accurate as worded. The title reads more strongly than they do.
+- **Not checked here.** The "not a counterexample" sentence, that both networks obey every Serre inequality,
+  is asserted in the node, not derived.
+
+## 13. `bc-kun-thom-gap-labels-on-bc-subgroups-pass-trace-test` (86c407b21): PASS
+
+- **Setup.** By the coset decomposition, `C*_r H ⊂ C*_r G` is a unital subalgebra with the same norm.
+  Spectral permanence keeps `c` in a gap, and the canonical traces agree.
+- **Trace theorem.** Lück's theorem puts `τ(χ)` in `Λ^H ⊆ Λ^G = Z[1/P]` whenever `A_FIN` is surjective for
+  `H`. Higson–Kasparov gives surjectivity for a-T-menable `H`.
+- **The listed supports are a-T-menable.**
+  - Borel subgroups are solvable.
+  - Lamplighters are amenable.
+  - `E_2(F_q[x^(±1)])` is `S`-arithmetic for `S = {0, ∞}`, so it acts properly on the product of two
+    Bruhat–Tits trees.
+  - `SL_2(Z)` acts properly on a tree.
+- The quotes of (I1) and (I2) were not re-extracted.
+
+## 14. `toms-doubling-ah-trace-simplex-is-poulsen` (2f4fa5e60): PASS on the abstract theorem; application to Toms's systems not checked
+
+- **Extreme traces.** Suppose `μ_N({x_N}) -> 1`. The dual connecting maps contract total variation, so any
+  convex summand agrees with the trace at every stage.
+- **Branch traces.** (D) makes `α_N δ_(y_N) + (1-α_N)ν` the restriction of `δ_(d_N(y_N))`. So branch traces
+  are Cauchy, with a summable tail.
+- **Density.** (F) realizes every leaf labelling at depth `N - m'`, and uniform empirical measures are weak*
+  dense. Lindenstrauss–Olsen–Sternfeld then gives the Poulsen simplex.
+- **Not checked.** That Toms's two systems (arXiv:2606.12188v2) satisfy (D), (F) and summable contamination.
+
+## 15. `strict-comparison-bundle-certificate-vanishes` (2f4fa5e60): PASS, conditional on its prerequisite
+
+- `Q - vv^*` is a projection that vanishes on every limit trace. The uniform 2-norm on `A^ω` is attained
+  along limit traces, so `vv^* = Q`.
+- Lifting `v` to contractions and cutting by `Q` and `P` gives `W`.
+- This rests on `strict-comparison-compares-ultrapower-projections`, which was not reviewed here.
+
+## 16. `component-measure-size-separates-compressor-images` (d95872c38): correctly REFUTED
+
+Its `refuted_by` is `component-space-sizes-miss-leavitt-cover-defect` (§8). Items 1–3 of that claim are
+exactly its three refutation bullets. So it inherits the §8 dependency on
+`kazhdan-kernel-blocks-invariant-under-sofic-invisible-quotient`.
