@@ -74,6 +74,21 @@ the standard of an established claim.
   slowly varying, ungapped almost-central observable of the actor that the compressors
   shift.
 
+**Update (2026-09-12, lane `hs-s4-assembly`).**
+- **S4 is written, and the corrected conditional is ESTABLISHED** as
+  `hs-rounding-and-actor-gap-force-ccr` (artifact `hs-s4-assembly-2026-09-12.md`).
+- **Two changes from the sketch above.**
+  - Item 4's transport is uniform in `a` only globally. So it is not used block by block. The
+    compressor step instead uses an exact inequality through the intertwiner, valid for all `a`
+    at once, whose error factors through `vQ - 1`.
+  - (H2) must ask almost commutation with block-dependent central contractions of
+    `pi_n(Gamma)'`, not with one `F_a(zeta_A)` at a time.
+- **Open inputs**, now separate claims routed into `kt-centralizer-normalization-hs` by
+  `hs-normalization-via-vertex-rounding-and-actor-gap`:
+  - `hs-stable-vertex-rounding-for-every-model` (H1);
+  - `hs-coarse-actor-gap-at-compressor-generators` (H2').
+- This node stays OPEN: its (H2) at an unspecified generating set is weaker than (H2').
+
 ## Attempts
 
 - **Literal-commutant rounding.** Dead: `hs-literal-commutant-profile-rounding-is-false`.
