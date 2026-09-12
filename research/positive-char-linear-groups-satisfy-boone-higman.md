@@ -30,8 +30,12 @@ needs exactly `leavitt-power-projective-elementary-groups-finitely-presented`.
    `d >= 3`.
 2. **Projective elementary hosts.**
    - `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` puts
-     every such `H` in the simple group `E_m(L_p^(⊗d)) / Z` with no `K`-theory,
-     through the Whitehead embedding `X |-> diag(X, X^-1, 1)`.
+     every such `H` of transcendence degree `d` in the simple group
+     `E_M(L_p^(⊗(d+1))) / Z` with no `K`-theory hypothesis. It stabilizes by
+     `X |-> diag(X, I)`, and one extra factor kills the `K_1` classes by the
+     corner swindle.
+   - The Whitehead map `X |-> diag(X, X^-1, 1)` is dead: it is not a
+     homomorphism (`whitehead-diagonal-map-is-not-multiplicative`).
    - *Stops* at finite presentation of that group, which is finite normal
      generation of the unstable Steinberg kernel. `K_1` is not needed.
 3. **Fewer tensor factors.** No commutative domain of transcendence degree 3

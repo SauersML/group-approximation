@@ -14,10 +14,10 @@ artifacts:
 This is artifact Theorem D. Let `H <= GL_n(K)` be finitely generated, with
 `char K = p > 0` and entry field of transcendence degree `d`.
 
-1. `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` gives `N`.
-   For every `m >= 2N+1`, `H` embeds in the simple group
-   `P_m = E_m(L_p^(⊗d)) / Z`.
-2. `leavitt-power-projective-elementary-groups-finitely-presented` gives
-   infinitely many `m` with `P_m` finitely presented. Choose one with
-   `m >= max(2N+1, 3)`.
-3. `H` embeds in the finitely presented simple group `P_m`.
+1. `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` gives `M_0`.
+   For every `M >= M_0`, `H` embeds in the simple group
+   `P_M = E_M(L_p^(⊗(d+1))) / Z`.
+2. `leavitt-power-projective-elementary-groups-finitely-presented`, at
+   `d+1` factors, gives infinitely many `M` with `P_M` finitely presented.
+   Choose one with `M >= max(M_0, 3)`.
+3. `H` embeds in the finitely presented simple group `P_M`.

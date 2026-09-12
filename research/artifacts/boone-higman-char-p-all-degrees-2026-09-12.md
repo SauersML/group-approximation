@@ -8,9 +8,9 @@ Write `L_p = L_(F_p)(1,2)`, `R_d = L_p^(⊗d)`, and
 `P_m(R) = E_m(R) / Z(E_m(R))`.
 
 **Results.**
-1. **Theorem C (unconditional).** Let `K` be a field of characteristic `p > 0`, and `H <= GL_n(K)` finitely generated with entry field of transcendence degree at most `d >= 1`. There is `N` such that for every `m >= 2N+1`, `H` embeds in `P_m(R_d)`. That group is simple for `m >= 3`.
+1. **Theorem C (unconditional, corrected).** Let `K` be a field of characteristic `p > 0`, and `H <= GL_n(K)` finitely generated with entry field of transcendence degree at most `d >= 1`. There is `M_0` such that for every `M >= M_0`, `H` embeds in `P_M(R_(d+1))`, which is simple.
 2. **Theorem D (conditional).** If `P_m(R_d)` is finitely presented for infinitely many `m`, then every such `H` satisfies Boone–Higman. So the full positive-characteristic class needs only `leavitt-power-projective-elementary-groups-finitely-presented`.
-3. **Sufficient condition.** `K_1(R_d) = K_2(R_d) = 0` implies that premise, through `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`(2,3). By `projective-elementary-fp-kernel-criterion`, the premise is equivalent to finite normal generation of `ker(St_m(R_d) -> E_m(R_d))`, and `K_1` plays no role.
+3. **Sufficient condition.** `K_1(R_d) = K_2(R_d) = 0` implies that premise, through `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`(2,3). By `projective-elementary-fp-kernel-criterion`, the premise is equivalent to finite normal generation of `ker(St_m(R_d) -> E_m(R_d))`. `K_1` does not enter that criterion. It enters only the embedding of Theorem C, where the corner swindle of Lemma S kills it with one extra tensor factor.
 4. **Odd `p`.** The scalar centre `F_p^x` needs no special treatment. The Whitehead embedding already meets the centre trivially, and the quotient by a finite central subgroup preserves finite presentation.
 
 Novelty is not claimed. The swarm's literature lane `bh-lit-map` has not reported yet.
@@ -61,21 +61,33 @@ in `GL_(2N)(R)`. The first three factors multiply to `[[0, X],[-X^-1, 0]]`, the 
 
 For `R = R_d`, `Z(R_d) = Z(L_p)^(⊗d) = F_p` (centres of tensor products over a field, and `leavitt-center-is-coefficient-field`). So `Z(E_m(R_d)) ⊆ F_p^x I`, a finite group.
 
-**Theorem C.** In the setting above, `X |-> diag(X, X^-1, 1, ..., 1)` is an injective homomorphism `H -> E_m(R_d)` for every `m >= 2N+1`, meeting `Z(E_m(R_d))` trivially. So `H` embeds in `P_m(R_d)`, and `P_m(R_d)` is simple for `m >= 3`.
+**Correction (2026-09-12, bh-reviewer).** The first version of Theorem C used `X |-> diag(X, X^-1, 1, ..., 1)` as an injective homomorphism `H -> E_m(R_d)`. It is not one: `w(X) w(Y) = diag(XY, X^-1 Y^-1)`, while `w(XY) = diag(XY, Y^-1 X^-1)`. It fails for every nonabelian `H`; see `whitehead-diagonal-map-is-not-multiplicative`. Lemma B is true for single elements, but it does not give a subgroup. The corrected theorem below uses one more tensor factor.
+
+**Lemma S (corner swindle, classical).** Let `B` be a unital `k`-algebra and `R = B ⊗ L_k(1,2)`. Every `X ∈ GL_N(B ⊗ 1)` has trivial class in `K_1(R)`.
+
+*Proof.* `φ(r) = s_0 r t_0 + s_1 r t_1`, with `s_0 = 1 ⊗ e` and so on, is a unital ring endomorphism that fixes `B ⊗ 1`.
+- With `S = (s_0 I, s_1 I)` and `T = (t_0 I ; t_1 I)`, `ST = I_N`, `TS = I_(2N)` and `φ(X) = S diag(X,X) T`.
+- `U = [[S,0],[0,T]]` is invertible in `M_(3N)(R)` with inverse `[[T,0],[0,S]]`, and conjugates `diag(X, X, I_N)` to `diag(φ(X), I_(2N))`.
+- So `[φ(X)] = 2[X]`. For `X` over `B ⊗ 1`, `φ(X) = X`, hence `[X] = 2[X]` and `[X] = 0`. `∎`
+
+This is `leavitt-tensor-kills-k1-of-coefficient-matrices`, the swindle already recorded as Attempt 3 on `leavitt-tensor-powers-have-trivial-k-theory`.
+
+**Theorem C (corrected).** In the setting above, there is `M_0` such that for every `M >= max(M_0, 3)`, `X |-> diag(X, I_(M-N))` is an injective homomorphism `H -> E_M(R_(d+1))` meeting `Z(E_M(R_(d+1)))` trivially. So `H` embeds in the simple group `P_M(R_(d+1))`.
 
 *Proof.*
-- **Into `E_m`.** Lemma B and block inclusion.
+- **One more factor.** `H <= GL_N(R_d ⊗ 1) <= GL_N(R_(d+1))`.
+- **Into `E_M`.** By Lemma S with `B = R_d`, each of the finitely many generators has a stabilization in some `E_(N+j)(R_(d+1))`. Take `M_0` past all of them. Stabilization is a homomorphism, and `E_(N+j) <= E_M`.
 - **Injective.** The first block recovers `X`.
 - **Centre.** A scalar `cI` with last entry `1` has `c = 1`, so `X = I`.
-- **Simplicity.** `R_d = R_(d-1) ⊗ L_p`, and `R_(d-1)` is central simple over `F_p`. By induction, a tensor product of a central simple algebra and a simple algebra over a field is simple with the other factor's centre, and `L_p` is simple with centre `F_p`. So part 4 of `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` applies with `B = R_(d-1)`. `∎`
+- **Simplicity.** `R_d` is central simple over `F_p`: a tensor product of a central simple algebra and a simple algebra over a field is simple with the other factor's centre, and `L_p` is simple with centre `F_p`. So part 4 of `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` applies with `B = R_d`. `∎`
 
-This uses no `K`-theory and no hypothesis on `p`.
+This uses no `K`-theory hypothesis and no hypothesis on `p`.
 
 ## 4. What finite presentation needs
 
 **Theorem D.** Suppose that for every `d >= 1` there are infinitely many `m` with `P_m(R_d)` finitely presented. Then every finitely generated linear group over a field of positive characteristic satisfies Boone–Higman.
 
-*Proof.* Given `H`, take `d` and `N` from Section 2, choose such an `m >= 2N+1`, and apply Theorem C. `∎`
+*Proof.* Given `H`, take `d` from Section 2 and `M_0` from Theorem C. Choose `M >= max(M_0, 3)` with `P_M(R_(d+1))` finitely presented, and apply Theorem C. `∎`
 
 **Where the premise stands.**
 1. **`d <= 2`: known.** `K(R_1) = 0` and `K(R_2) = 0` (Ara–Brustenga–Cortiñas; Ara–Cortiñas over `F_p`, as used in `odd-leavitt-unit-groups-mod-scalars-are-fp-simple`). Parts 2 and 3 of the prime-field host claim then give `E_m(R_d) = GL_m(R_d) ≅ R_d^x`, finitely presented.
@@ -84,7 +96,7 @@ This uses no `K`-theory and no hypothesis on `p`.
    - This recovers `positive-char-surface-linear-groups-satisfy-boone-higman`, with the host `P_m(R_2)` in place of `R_2^x / F_p^x`.
 2. **Sufficient for every `d`.** `K_1(R_d) = K_2(R_d) = 0`, the open `prime-field-leavitt-tensor-powers-have-trivial-k-theory`. For `p = 2` this is `leavitt-tensor-powers-have-trivial-k-theory`.
 3. **Equivalent form.** `R_d` is a finitely presented ring, as a tensor product of finitely presented algebras over a field. `St_m(R_d)` is finitely presented for `m >= 4` (Krstić–McCool). So `projective-elementary-fp-kernel-criterion` makes `P_m(R_d)` finitely presented iff `ker(St_m(R_d) -> E_m(R_d))` is finitely normally generated, since the centre is finite.
-   - `K_1(R_d)` never enters.
+   - `K_1(R_d)` does not enter this criterion. For the embedding it is killed by Lemma S.
    - In a stable range where this kernel is central and equals `K_2(R_d)`, finite generation of `K_2(R_d)` suffices. Its vanishing is not required.
 
 ## 5. The `K`-theory input over `F_p`
@@ -101,4 +113,4 @@ So a characteristic-free proof of the `F_2` claim settles the `F_p` claim.
 - **Transcendence degree without tensor powers.** One or two Leavitt factors are not known to contain a commutative domain of transcendence degree 3.
   - In one factor, two commuting Thompson units with disjoint supports satisfy `(u-1)(v-1) = 0`; see the Attempts on `char-two-linear-groups-satisfy-boone-higman`.
   - Not disproved: a unital embedding `F_p[t_1, t_2, t_3] -> R_2` would bypass the premise at `d = 3`.
-- **Trust.** The simplicity input is a paper argument reading the Lean root-detection proof. It was reviewed, not formalized. The `d <= 2` finite presentation rests on Khanh arXiv:2609.08428v1, which is unrefereed. Theorem C and Lemmas A–C are elementary and unreviewed.
+- **Trust.** The simplicity input is a paper argument reading the Lean root-detection proof. It was reviewed, not formalized. The `d <= 2` finite presentation rests on Khanh arXiv:2609.08428v1, which is unrefereed. Lemmas A, C and S and the corrected Theorem C are elementary. bh-reviewer failed the first version of Theorem C, and the corrected version has not been reviewed yet.
