@@ -28,3 +28,13 @@ Then there are `m in G` and `eps in F_2` with `tau(x)(g) = x(gm) + eps`.
 
 The one-track hypothesis is essential. On several tracks, shears between tracks are formal
 involutions.
+
+**Every finite field.** The same proof works on `F_q^G` for every prime power `q`:
+formalizable one-track pairs are `tau(x)(g) = a x(gm) + b`, with `a in F_q^×`. The marker
+involution, which swaps `0` and `1` at marked cells, is a non-affine witness over every `F_q`.
+Artifact, Section 3A.
+
+**Scope: equivariance over `G` itself.** The representatives here are `G`-equivariant.
+After regrouping along a finite-index subgroup, the alphabet has several tracks and the theorem does
+not apply. gk-free-neg's `marker-involution-is-formalizable-after-regrouping` shows the marker
+involution does become formalizable along `4Z`.

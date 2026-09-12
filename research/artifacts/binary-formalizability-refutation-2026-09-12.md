@@ -147,6 +147,31 @@ representatives exist (Theorem B), while the first-order defect can always be re
   every pair, whatever the representatives. So "formalizable after adding a track" always holds and
   carries no content for the linearization argument.
 
+## 3A. Every finite field, one track
+
+Asked by gk-fz-alphabets. Theorems A and B hold over every finite field `F_q`, on one track.
+
+**Theorem A over `F_q`.** Let `G` be bi-orderable, and let `tau`, `sigma` be automata on `F_q^G`
+with `sigma o tau = id`, formalizable by `F_q`-polynomial representatives. Then
+`tau(x)(g) = a x(gm) + b`, with `a in F_q^×`, `b in F_q` and `m in G`.
+- **Step 1.** The leading-term argument makes `F_q[G]` a domain.
+- **Step 2.** `formal-polynomial-strict-pairs-need-unstable-linearization` holds for any field `k`.
+- **Step 3.** The degree count only uses that the polynomial ring is a domain.
+- **Step 4.** In `F_q[t]`, an identity `nu~(mu~(t)) = t` forces `mu~ = at + b` with `a ≠ 0`.
+
+**Theorem B over `F_q`.** Swap the values `0` and `1` of cell `i`, leaving every other value fixed,
+exactly when the six-cell marker `(0, 0, 1, 1, 0, 0)` holds around `i`.
+- **Lemma 2.1 and Proposition 2.2 carry over.** They only compare the required values `0` and `1` at
+  the cells `i ± 1`, which never change. So the marked set is invariant, and `tau` is an involution.
+- **Not affine.** `tau` fixes the configuration with a single `1`. An affine translation that fixes
+  it has `b = 0`, `m = 0` and `a = 1`, so it is the identity, and `tau` is not.
+
+**Consequence.** Over bi-orderable groups, one-track formalizability is rigid at every prime power.
+Formalizable pairs there are the affine translations, and non-affine reversible automata are never
+formalizable. On one track, stabilization by extra tracks is essential at every characteristic.
+This matches gk-fz-alphabets' result on constants, which sees `q >= 4` over every group but says
+nothing at `q = 2`.
+
 ## 4. Effect on the graph
 
 - `binary-left-inverse-pairs-need-not-be-formalizable` (established) is the negation of
