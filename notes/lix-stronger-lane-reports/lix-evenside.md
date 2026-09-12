@@ -5,6 +5,108 @@ Predecessor report: `notes/lix-stronger-lane-reports/sp-evenside.md` (deliverabl
 infrastructure, all on main and green).  Clone: `lix-c` (shared with lix-evenside-n, lix-steenrod;
 rule 20).  Owns `CharClass/ParityP*`, `CharClass/StepDModP*`.
 
+## STOPPED 2026-09-12 ~09:35 CDT (wind-down; ruling recorded in `notes/nm-swarm/LIX_LANES.md`)
+
+No new authoring and no probes.  Nothing was in flight.  All twelve owned modules on `origin/main` are
+byte-identical to the shared tree, and each one compiled on lix-c (last green record
+`0912-004214-2389`).  Nothing was deleted.
+
+**GREEN, on main** (last landing sha): `ParityPTwistSymm`, `ParityPWuValue` 5929e3699;
+`ParityPDecomposable` b1467418a; `ParityPWuComponent` 251dd56c0; `ParityPWuTransport` 924c01f0c;
+`ParityPSplitStepD` 02d0df66c; `ParityPWuAxiomGuard` 2be49495a; `ChernSplittingOfPowers` 9d422f49d;
+`ChernSplittingOfInjective` 9c15285d0; `ChernSplittingOfWhitney` fff335f17; `ChernSplittingOfFlag`,
+`ChernSplittingOfAxiomGuard` 62de870b7.
+
+**UNVERIFIED / attic:** none.
+
+### RESIDUAL: input (d) of `ChernSplittingOf.hasSplittingP_flag` (never authored)
+
+This is the `K`-form of `ChernSplitFactor` and `ChernSplitRelation`, planned as
+`CharClass/ChernSplittingOfFlagRelation.lean`.  The file does not exist.
+
+Context: `{X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] [DecidableEq ι] (K : Type) [Field K]
+(hgen : Hmod K (CPtop (1 + tautCardOf ι)) 2)`.
+
+```lean
+-- (i) the root, at the index of LH.tautEulerOfK
+def lineEulerOfK (q : Bundle X ι) (hq : ∀ x, (q x).trace = 1) : Hmod K (TopCat.of X) 2 :=
+  eulerOfBundleOf K hgen (pushforward (tautEmbOf ι) (tautEmbOf_injective ι) q)
+    (trace_pushforward_one (tautEmbOf ι) (tautEmbOf_injective ι) q hq)
+
+-- (ii) proof: CPn.eulerOfBundle_eq_of_bundleIsoOf K (show 1 ≤ 1 + tautCardOf ι by omega) hgen _ _ _ _
+--        (pushforwardBundleIso (tautEmbOf ι) (tautEmbOf_injective ι) (tautLineIsoSummand p q hq))
+theorem eulerOf_restrict_eqOf (p q : Bundle X ι) (hq : ∀ x, (q x).trace = 1) :
+    lineEulerOfK K hgen (Bundle.restrictTo (tautLine p) (lineOpenSet p q))
+        (fun y => trace_tautLine p (y : Proj p))
+      = lineEulerOfK K hgen (Bundle.restrictTo (comap (projPi p) q) (lineOpenSet p q))
+        (fun y => hq (projPi p (y : Proj p)))
+
+-- (iii) proof: pull_add; unfold LH.tautEulerDualK; map_neg (pullLinear (K := K) _ 2); both summands
+--        by eulerOfBundle_comapOf (the second after ← pull_comp); rw (ii); neg_add_cancel
+theorem pull_factor_eq_zeroOf (p q : Bundle X ι) (hq : ∀ x, (q x).trace = 1) :
+    pull (opIncl (lineOpens p q)) 2
+        (LH.tautEulerDualK K hgen p + pull (cmap (projPi p)) 2 (lineEulerOfK K hgen q hq)) = 0
+
+-- (iv) induction on r: Finset.prod_range_succ, List.range_succ, List.map_append, List.prod_append
+theorem coe_prod_range_evenPart {Y : TopCat} (f : ℕ → Gen.evenPart K Y) (g : ℕ → TotalHOf K Y)
+    (hfg : ∀ l, (f l : TotalHOf K Y) = g l) (r : ℕ) :
+    ((∏ l ∈ Finset.range r, f l : Gen.evenPart K Y) : TotalHOf K Y) = ((List.range r).map g).prod
+
+-- (v) proof: Subtype.ext; (iv) with g l := TotalHOf.of K _ 2 (factor l) (TotalHOf.map_of, map_add);
+--        prod_eq_zero_of_coverOf K (fun l => lineOpens p (qf l)) r (by omega)
+--          (coverSup_lineOpens p r qf hsum) 2 (by omega) _ (fun l => pull_factor_eq_zeroOf K hgen p (qf l) (hq l))
+theorem splitRelation_of_sumOf (p : Bundle X ι) (r : ℕ) (hr1 : 1 ≤ r)
+    (qf : ℕ → Bundle X ι) (hq : ∀ l x, (qf l x).trace = 1)
+    (hsum : ∀ x, p x = ∑ l ∈ Finset.range r, qf l x) :
+    ∏ l ∈ Finset.range r,
+      (evenTautOf K (LH.tautEulerDualK K hgen p)
+        + Gen.evenMap K (cmap (projPi p)) (evenTautOf K (lineEulerOfK K hgen (qf l) (hq l)))) = 0
+
+-- (vi) (v) at p := Wu.flagPullback E r (abbrev for Bundle.comap (Bundle.flagProj E r) E),
+--        qf := Wu.flagLineFlat E r, hq := Wu.trace_flagLineFlat E r hr1, hsum := Wu.sum_flagLineFlat E r hrank
+theorem splitRelation_flagOf (E : Bundle X ι) (r : ℕ) (hr1 : 1 ≤ r) (hrank : ∀ x, E.rank x = r) :
+    ∏ l ∈ Finset.range r,
+      (evenTautOf K (LH.tautEulerDualK K hgen (Wu.flagPullback E r))
+        + Gen.evenMap K (cmap (projPi (Wu.flagPullback E r)))
+            (evenTautOf K (lineEulerOfK K hgen (Wu.flagLineFlat E r l) (Wu.trace_flagLineFlat E r hr1 l)))) = 0
+
+-- (vii) hasSplittingP_flag E r (LerayHirschDataEvenOf.of_graded L) rfl rfl (LerayHirschDataEvenOf.of_graded L') rfl rfl
+--        (by rw [TotalHOf.map_of, LH.tautEulerDual_comapOf]) hstage
+--        (fun l => lineEulerOfK K hgen (Wu.flagLineFlat E r l) (Wu.trace_flagLineFlat E r hr1 l))
+--        (splitRelation_flagOf K hgen E r hr1 hrank) PN hPN PF hPF hzero hcartan m hone hhigh hnat
+theorem hasSplittingP_flag_ofGraded {p : ℕ} (E : Bundle X ι) (r : ℕ) (hr1 : 1 ≤ r) (hrank : ∀ x, E.rank x = r)
+    [Nontrivial (Gen.evenPart K (TopCat.of X))]
+    [Nontrivial (Gen.evenPart K (TopCat.of (Bundle.Flag E r)))]
+    (L : LerayHirschGraded (cmap (projPi E)) (LH.tautEulerDualK K hgen E) r)
+    (L' : LerayHirschGraded (cmap (projPi (Wu.flagPullback E r)))
+      (LH.tautEulerDualK K hgen (Wu.flagPullback E r)) r)
+    -- hstage PN hPN PF hPF hzero hcartan m hone hhigh hnat: verbatim as in hasSplittingP_flag
+    : ParityP.HasSplittingP p (LerayHirschDataEvenOf.of_graded L).chern
+        (fun i => Gen.evenRestrictAdd (PN i) (hPN i)) m
+```
+
+Peer declarations consumed, all on main:
+* lix-lh `CPn.eulerOfBundle_eq_of_bundleIsoOf` (`ChernEulerIsoOf`, 77c5176d3, UNVERIFIED, never probed).
+  It holds for every `hgen`, so there is no stability hypothesis.
+* lix-lh `LH.tautEulerDualK` and `LH.tautEulerDual_comapOf` (`LerayHirschChartClassGenK`, green).
+* lix-coeff `LerayHirschDataEvenOf.of_graded` (`CohomologyLHRingDataOf`), whose `proj`, `rank` and
+  `taut` are `rfl`.
+* lix-cupone `prod_eq_zero_of_coverOf` (`CupVanishIterateOf`).
+* The `F₂` geometry, green: `lineOpens`, `coverSup_lineOpens`, `tautLineIsoSummand`,
+  `pushforwardBundleIso`, `trace_pushforward_one`, `Wu.flagLineFlat`, `Wu.sum_flagLineFlat`.
+
+Still open beyond (d), and none of it was delivered:
+* `L` and `L'`, the compact Leray–Hirsch over `K` with `taut = tautEulerDualK` (lix-lh).
+* `hstage`, injectivity of `pull (cmap (projPi (flagRest E n)))` at each stage.
+* The reduced powers `PN`/`PF` and their fields (lix-steenrod).
+
+Traps for (d):
+* `D'.taut = −tautEulerOfK`, so each factor is `−a + a` and closes by `neg_add_cancel`, not by
+  `two_smul` as over `F₂`.
+* `TotalHOf` is not commutative and `prod_eq_zero_of_coverOf` is stated with `List.prod`, so the
+  product has to go through (iv).
+* The coercions of `Gen.evenMap` and of `*`, `+`, `1` in `evenPart` are `rfl`.
+
 ## STEP 0
 
 All thirteen `ParityP*` files of `sp-evenside` were already on origin byte-identical to the shared
