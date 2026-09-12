@@ -34,8 +34,9 @@ theorem sum_card_conjFailure_words_negligible {G K J : Type} [Group G] [Group K]
       ((∑ s : ↥C.generatorsΓ, ∑ X, (RelativeFunctorEstimate.conjFailure (E n) (S.map n q) (B n)
         (RelativeFunctorEstimate.wordBlockAction (B n) (compressorWords C q)) X s).card : ℕ) :
           ℝ) :=
-  ConjugationFailureVanishing.negligible_sum_card_conjFailure S (fun l ↦ C.embedΓ (l : K))
-    (compressorWords C q) q (compressorWords_prod C hq) E B hB
+  ConjugationFailureVanishing.negligible_sum_card_conjFailure (L := ↥C.generatorsΓ) S
+    (fun l : ↥C.generatorsΓ ↦ C.embedΓ (l : K)) (compressorWords C q) q
+    (compressorWords_prod C hq) E B hB
 
 /-- The conjugation failures of the inverse of a compressor for the chosen words are
 negligible. -/
@@ -48,8 +49,9 @@ theorem sum_card_conjFailure_inv_words_negligible {G K J : Type} [Group G] [Grou
       ((∑ s : ↥C.generatorsΓ, ∑ X, (RelativeFunctorEstimate.conjFailure (E n) (S.map n q)⁻¹
         (RelativeFunctorEstimate.wordBlockAction (B n) (compressorWords C q)) (B n) X s).card :
           ℕ) : ℝ) :=
-  ConjugationFailureVanishing.negligible_sum_card_conjFailure_inv S (fun l ↦ C.embedΓ (l : K))
-    (compressorWords C q) q (compressorWords_prod C hq) E B hB
+  ConjugationFailureVanishing.negligible_sum_card_conjFailure_inv (L := ↥C.generatorsΓ) S
+    (fun l : ↥C.generatorsΓ ↦ C.embedΓ (l : K)) (compressorWords C q) q
+    (compressorWords_prod C hq) E B hB
 
 /-- The majorant of a compressor has negligible density. -/
 theorem compressorMajorant_negligible {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]

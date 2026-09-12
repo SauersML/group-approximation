@@ -29,6 +29,8 @@ error at the threshold (Markov's inequality).
 
 *Good objects of a frame.*
 
+* `frameScale` and `frameScale_eq`: `(F.system n).scale`, stated once with the instances of the
+  frame.
 * `IsGoodObject`, `goodObjects`, `badObjects` (the complement of `goodObjects`) and
   `matchedObjects = domain ∩ goodObjects`.
 * `goodObjects_hbridge`, `goodObjects_herr`, `goodObjects_hscale` and `matchInjOn`: the
@@ -156,6 +158,18 @@ theorem markov_div_le {S B W N τ m : ℝ} (hN : 0 ≤ N) (hτ : 0 < τ)
 open Classical
 open CompressorNormalizationAssembly CompressorNormalizationAssembly.ClusterFrame
 
+/-- The scale of an object of a cluster frame, `(F.system n).scale X`, with the instances of the
+frame. -/
+abbrev frameScale {G : Type} [Group G] {A : SoficApproximation G} {K : Type} [Group K]
+    {ι : K →* G} {R : RetainedComponents A K ι} (F : ClusterFrame R) (n : ℕ) (X : F.Obj n) :
+    ℕ :=
+  (F.system n).scale X
+
+theorem frameScale_eq {G : Type} [Group G] {A : SoficApproximation G} {K : Type} [Group K]
+    {ι : K →* G} {R : RetainedComponents A K ι} (F : ClusterFrame R) (n : ℕ) (X : F.Obj n) :
+    frameScale F n X = Fintype.card ((F.embedding n).model X) / 18 :=
+  (F.system n).scale_eq X
+
 /-- The three bounds of `frameRelativeFunctorOfGood` at an object and its match. -/
 def IsGoodObject {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
     {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
@@ -165,14 +179,14 @@ def IsGoodObject {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
       (D.toLocal.compressorMatch (matchingParent D F) q n X)).sourceDefect +
     ((F.embedding n).bridge (A.map n q) X
       (D.toLocal.compressorMatch (matchingParent D F) q n X)).targetDefect) ≤
-      (F.system n).scale (D.toLocal.compressorMatch (matchingParent D F) q n X) ∧
+      frameScale F n (D.toLocal.compressorMatch (matchingParent D F) q n X) ∧
     40 * ((RelativeFunctorImprove.inError (F.embedding n) (F.action n) (A.map n q)⁻¹
         (compressorWords C q) (D.toLocal.compressorMatch (matchingParent D F) q n X) X +
       RelativeFunctorImprove.outError (F.embedding n) (F.action n) (A.map n q)⁻¹
         (compressorWords C q) (D.toLocal.compressorMatch (matchingParent D F) q n X) X :
         ℕ) : ℝ) ≤
-      F.threshold n * (F.system n).scale (D.toLocal.compressorMatch (matchingParent D F) q n X) ∧
-    400 ≤ (F.system n).scale (D.toLocal.compressorMatch (matchingParent D F) q n X)
+      F.threshold n * frameScale F n (D.toLocal.compressorMatch (matchingParent D F) q n X) ∧
+    400 ≤ frameScale F n (D.toLocal.compressorMatch (matchingParent D F) q n X)
 
 /-- The good objects of a compressor. -/
 noncomputable def goodObjects {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
@@ -203,7 +217,7 @@ theorem goodObjects_hbridge {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥
           (D.toLocal.compressorMatch (matchingParent D F) q n i)).sourceDefect +
         ((F.embedding n).bridge (A.map n q) i
           (D.toLocal.compressorMatch (matchingParent D F) q n i)).targetDefect) ≤
-        (F.system n).scale (D.toLocal.compressorMatch (matchingParent D F) q n i) :=
+        frameScale F n (D.toLocal.compressorMatch (matchingParent D F) q n i) :=
   fun _ hi ↦ And.left (Finset.mem_filter.mp hi).2
 
 theorem goodObjects_herr {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
@@ -216,14 +230,14 @@ theorem goodObjects_herr {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
           (compressorWords C q) (D.toLocal.compressorMatch (matchingParent D F) q n i) i :
           ℕ) : ℝ) ≤
         F.threshold n *
-          (F.system n).scale (D.toLocal.compressorMatch (matchingParent D F) q n i) :=
+          frameScale F n (D.toLocal.compressorMatch (matchingParent D F) q n i) :=
   fun _ hi ↦ And.left (And.right (Finset.mem_filter.mp hi).2)
 
 theorem goodObjects_hscale {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
     {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
     (D : CompressorDecomposition C A) (F : ClusterFrame D.retained) (q : G) (n : ℕ) :
     ∀ i ∈ goodObjects D F q n,
-      400 ≤ (F.system n).scale (D.toLocal.compressorMatch (matchingParent D F) q n i) :=
+      400 ≤ frameScale F n (D.toLocal.compressorMatch (matchingParent D F) q n i) :=
   fun _ hi ↦ And.right (And.right (Finset.mem_filter.mp hi).2)
 
 /-- The matching of a compressor is injective on its retained domain. -/
@@ -242,7 +256,7 @@ theorem matchInjOn {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
 theorem frame_scale_eventually {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
     {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
     (D : CompressorDecomposition C A) (F : ClusterFrame D.retained) (M : ℕ) :
-    ∃ N₀ : ℕ, ∀ n ≥ N₀, ∀ X : F.Obj n, M ≤ (F.system n).scale X := by
+    ∃ N₀ : ℕ, ∀ n ≥ N₀, ∀ X : F.Obj n, M ≤ frameScale F n X := by
   obtain ⟨N₀, hN₀⟩ := D.retained.data.family.size_tendsTo (18 * M)
   refine ⟨N₀, fun n hn X ↦ ?_⟩
   have h := hN₀ n hn X.1
@@ -306,7 +320,7 @@ theorem badWeight_negligible {G : Type} [Group G] {Γ : Subgroup G} [Infinite �
           (mul_nonneg (div_nonneg (by norm_num) hτ.le) (Nat.cast_nonneg _))
       · exact weight_le_of_not_good ((F.embedding n).bridge (A.map n q) X
           (D.toLocal.compressorMatch (matchingParent D F) q n X))
-          ((F.system n).scale_eq (D.toLocal.compressorMatch (matchingParent D F) q n X))
+          (frameScale_eq F n (D.toLocal.compressorMatch (matchingParent D F) q n X))
           (Nat.cast_nonneg _) hτ
           (hN₀ n hn (D.toLocal.compressorMatch (matchingParent D F) q n X)) hgood
     have hsum := Finset.sum_le_sum hterm
