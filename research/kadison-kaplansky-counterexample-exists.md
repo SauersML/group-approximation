@@ -42,3 +42,13 @@ two-sided reduced mass is the part that uses the regular representation.
     nonsofic groups.
   In each case the attempt dies at the same point: nothing forces a gap in
   `supp mu_a`.
+- **Small-capacity witnesses are algebraic (2026-09-12).** By
+  `small-capacity-kk-witnesses-are-algebraic-idempotents`, a witness `a` with
+  `cap(sigma(a)) < 1` has finite spectrum. Its spectral projections are then
+  idempotents of `Qbar[G]`, so such a witness already refutes Kaplansky's
+  idempotent conjecture in characteristic zero. A counterexample that is not
+  already algebraic needs spectral capacity at least `1`: spread at least `4`,
+  and `b^2 - a^2 >= 4` for a symmetric spectrum `[-b,-a] ⊔ [a,b]`. Integer masses
+  are NOT forced for disconnected spectra, even over torsion-free groups: the
+  two-atom measure `(delta_2 + delta_(-2))/2` passes every moment and
+  zeta-integrality test on main.
