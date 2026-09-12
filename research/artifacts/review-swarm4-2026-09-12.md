@@ -1127,3 +1127,56 @@ statements of the four premises at 200b50c18.
 - `non-hyperlinear-group` is OPEN.
 - The same run printed `requires is mandatory` errors for two route files of other lanes:
   `leavitt-ternary-frame-tree-uniformization-proof` and `locally-finite-hnn-regular-rank-model-proof`.
+
+## 32. K-theory of Leavitt tensor powers through Farrell–Jones, and linear Boone–Higman in positive characteristic (2b19d1c07, d34e26446)
+
+**What this settles in Cairn.** The cascade establishes two claims:
+- `positive-char-linear-groups-satisfy-boone-higman`: every finitely generated linear group over a field of
+  positive characteristic embeds in a finitely presented simple group;
+- `char-two-linear-groups-satisfy-boone-higman`.
+
+Both depend on the unrefereed Khanh criteria.
+
+### 32.1 `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`: PASS, conditional on four standard imports
+
+- **Bartels–Reich form.**
+  - `(c u^λ)(c′ u^μ) = c α_λ(c′) τ_(λ,μ) u^(λ+μ)`.
+  - `α_g α_h = Ad(τ_(g,h)) α_(gh)` and the cocycle identity follow from associativity, and `u^0 = 1`
+    normalizes.
+- **Cyclic pieces.** `u^(mλ)(u^λ)^-m` is a unit of degree 0, so it lies in `C^×`. The restricted crossed
+  product is the skew Laurent ring `C_φ[t, t^-1]`, and its module category does not depend on the section.
+- **Laurent regular coherence.**
+  - Localize centrally at monomials. Finitely presented modules descend by clearing monomial denominators, and
+    finite projective resolutions survive flat base change. The anti-automorphism handles sides.
+  - This step is needed: Bartels–Lück need `C[Z^m]` for every `m`, and they record that Laurent inheritance of
+    regular coherence is open for general rings.
+- **Nil vanishing.** Bartels–Lück for `A = C_⊕`, translated to rings through their rings-versus-categories
+  corollary and Lück–Steimle's idempotent completion. The mapping torus of a self-map of a contractible spectrum
+  is contractible.
+- **Assembly source.** An `Or`-spectrum homology theory that vanishes on every orbit vanishes on every `Λ`-CW
+  complex, by skeleta, the five lemma and the colimit.
+- **Sanity check.** At `d = 2` this recovers Ara–Cortiñas.
+- **Independent check.** It agrees with `research/artifacts/leavitt-fj-crossed-product-check-2026-09-12.md`
+  (PASS, no gap). The imports were read from arXiv TeX sources by the lanes and were not re-extracted here.
+
+### 32.2 The Boone–Higman cascade: PASS on the wiring
+
+- **`prime-field-leavitt-powers-k-theory-via-all-degree-vanishing`.** Quillen and non-connective K-theory agree
+  in degrees `>= 1`.
+- **`leavitt-power-projective-e-fp-from-trivial-k-theory`.**
+  - `R_(d-1)` is central simple and finitely presented.
+  - `M_m(R_d) ≅ R_d`, because `M_m(L(1,2)) ≅ L(1,2)` for every `m`.
+  - The centre of `E_m` is finite, so the quotient stays finitely presented.
+- **`positive-char-linear-groups-via-leavitt-projective-elementary`.** The embedding claim (review-backlog §16,
+  PASS) together with finite presentation at `d+1` factors.
+- **`char-two-linear-groups-via-leavitt-tensor-powers`.** The host claims passed in
+  `review-boone-higman-leavitt-tensor-hosts-2026-09-12`.
+- **Trust surfaces.**
+  - Khanh, arXiv:2609.08428v1: unrefereed. Its statements were checked, and reviewer-2 read the proofs, but it
+    has not been refereed.
+  - Bartels–Farrell–Lück, Bartels–Reich, Bartels–Lück and Lück–Steimle, as quoted.
+  - The part-4 simplicity argument is on paper, not in Lean.
+  - `boone-higman-conjecture` is untouched.
+- **Novelty.** The frontier artifact on main records no published positive-characteristic linear class, and the
+  BBMZ list has no item for it. So this is a new class, not an answer to a posed question. It covers the finitely
+  presented metabelian groups of Problem 5.3(7) that are linear in positive characteristic.
