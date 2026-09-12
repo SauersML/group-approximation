@@ -74,6 +74,7 @@ theorem monomial_eq_shift_mul_balanced (w α β : List ι) :
       = (F.wordT w * F.wordS w) * (F.wordS α * F.wordT β) from by noncomm_ring,
     F.wordT_mul_wordS_self, one_mul]
 
+omit [Fintype ι] [DecidableEq ι] in
 /-- The bracketed factor of `monomial_eq_balanced_mul_shift` is balanced exactly
 when `w` takes up the length defect. -/
 theorem length_bracket_left (w α β : List ι)
@@ -82,6 +83,7 @@ theorem length_bracket_left (w α β : List ι)
   rw [List.length_append]
   exact h
 
+omit [Fintype ι] [DecidableEq ι] in
 /-- The bracketed factor of `monomial_eq_shift_mul_balanced` is balanced exactly
 when `w` takes up the length defect. -/
 theorem length_bracket_right (w α β : List ι)
