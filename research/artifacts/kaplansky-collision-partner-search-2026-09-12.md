@@ -63,6 +63,7 @@ The evaluation is completed to `s_0` (or `t_0`) by an even correction.
 | FIVE_T0 (5) | right | 1 | 76 | 0 | no partner |
 | FIVE_T0 (5) | right | 2 | 1,058 | 0 | no partner |
 | FIVE_T0 (5) | right | 3 | 14,639 | 0 | no partner |
+| FIVE_T0 (5) | right | 4 | 202,193 | 0 | no partner (sbatch 531540, 11 min) |
 | defect-anchored s0 (13) | left | 1 | 1,343 | 0 | no partner |
 | defect-anchored t0 (13) | right | 1 | 1,260 | 0 | no partner |
 
