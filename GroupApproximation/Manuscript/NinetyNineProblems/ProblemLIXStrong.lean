@@ -35,7 +35,9 @@ over several modules:
   of sections.  Owner `sp-oddside` (Step C with `k` zeros) and `sp-evenside` (Step D mod `p`),
   under `sp-design`'s uniform theorem.  The section family is a **parameter** rather than the
   named suspension `Σψ_k`, so that this file fixes the vocabulary without waiting for that
-  name; the instance the programme wants is `b k = fun j m => bVec n (Σψ_k m)`.
+  name.  The agreed family is `b k := fun j => CharClass.KGen.bVecK n (k - 1)`
+  (`ProblemLIXStrongAssembly.powersSections`): `KGen.psiVec n (k - 1)` has degree `k`, and
+  `b 0` is never consulted because every prime divides `0`.
 * `Corollary4Powers n b` — the arrow between them, which is `sp-tower`'s deliverable.  It is a
   hypothesis of the `_data` forms below exactly as `LIX.lixLimit_hasK1InjWitness_of` was a
   hypothesis in `ProblemLIX.lean` while it landed, and for the same reason: the assembly is
@@ -159,30 +161,42 @@ the constant section are not Murray--von Neumann equivalent as continuous fields
 `M = S^{2n+1} × ∏_{i<j} ℂP^{dᵢ}` with `dᵢ = LIX.Gen.lixDD n j i = 2 ^ i · n`.
 
 At `b j = CharClass.Gen.bVec n` this is `LIX.Gen.LemmaTwoHolds n`, the input of the rank-`n`
-answer at `k = 1`.  The `k`-indexed instance is the programme note's `b = x ∘ Σψ_k`, which in
-this vocabulary is
+answer at `k = 1`.  The `k`-indexed instance is the programme note's `b = x ∘ Σψ_k`, and the
+agreed family in this vocabulary is
 
-    b k j := fun m => LIX.Powers.joinPowNeg e₁ e₂ k (CharClass.Gen.bVec n m)
+    b k j := CharClass.KGen.bVecK n (k - 1)     -- = KGen.psiVec n (k - 1) ∘ (tautological point)
 
-and `sp-design`'s `LemmaTwoHoldsPow n k` is exactly `LemmaTwoHoldsForSections n (b k)` for that
-family.  **The composition order matters**: the suspension is applied to the SPHERE VECTOR
-`bVec n m`, not to the base point `m`, because `b = x ∘ Σψ_k` means `b m = Σψ_k (x m)`.  The
-other order is the slip that cost a correction in the programme note's §1.3.2.  `Σψ_k`
-preserves the norm, so the zero-locus lemma still fires on the composed section; `sp-powers`
-and `sp-tower` own the `norm_suspPsi` that says so, beside their definition of the family.
+(`ProblemLIXStrongAssembly.powersSections`), for which `sp-design`'s `LemmaTwoHoldsPow n k` is
+exactly `LemmaTwoHoldsForSections n (b k)`.
 
-The section family is passed as DATA here rather than named, so that this file does not wait
-for the name the shape layer gives `Σψ_k` or for the choice of the two vectors spanning its
-plane.
+**The index is shifted by one.**  `LIX.Powers.joinC k` has degree `k + 1`, and
+`Analysis/LIXPowersHomotopy.lean` gives `ũ ^ (k + 1) ≃ ũ ∘ joinPowNeg k`, so the exponent `k`
+needs the section of degree `k`, which is `KGen.psiVec n (k - 1)`; at `k = 1` it is `Ψ_0 = id`
+and the family is `Gen.bVec n` (`KGen.bVecK_zero_eq`).  `b 0` is never consulted: every prime
+divides `0`.  An earlier version of this docstring wrote the family as
+`LIX.Powers.joinPowNeg e₁ e₂ k (CharClass.Gen.bVec n m)`, which is ill-typed (`joinPowNeg` is a
+map of `E`, `bVec n m` a vector of `ℂ^{n+1}`) and carried the unshifted index.  The two
+vocabularies meet through `lix-powers`' bridge `equatorEmb n (Ψ_k a) = KGen.psiVec n k
+(equatorEmb n a)` at `e₁ := −ε(0,0)`, `e₂ := −ε(0,1)`.
 
-Owners: `sp-oddside` for Step C with `k` zeros, `sp-evenside` for Step D mod `p`, under
-`sp-design`'s uniform theorem at `p ∣ n`. -/
+**The composition order matters**: the `k`-fold map is applied to the SPHERE VECTOR `m.1`, not
+to the base point, because `b = x ∘ Σψ_k` means `b m = Σψ_k (x m)`.  `Ψ_k` preserves every
+coordinate's modulus, so the zero-locus lemma still fires on the composed section
+(`KGen.bVecK_normSq`, `KGen.psiVec_eq_neg_eZero_iff`).
+
+The section family is passed as DATA here rather than named, so that this file stays below the
+shape layer that names it.
+
+Owners: `lix-oddside` / `lix-oddside-n` for Step C with `k` zeros, `lix-evenside` /
+`lix-evenside-n` for Step D mod `p`, under `sp-design`'s uniform theorem at `p ∣ n`. -/
 def LemmaTwoHoldsForSections (n : ℕ)
     (b : ∀ j : ℕ, CharClass.Gen.baseM n (LIX.Gen.lixDD n j) → Fin (n + 1) → ℂ) : Prop :=
   ∀ j : ℕ, LIX.Gen.LemmaTwoFor n (LIX.Gen.lixDD n j) (b j)
 
-/-- **The arrow `sp-tower` owes**: Lemma 2 at every stage, for every exponent no prime dividing
-`n` divides, gives the climbed power witness.
+/-- **The arrow `lix-tower` owes** (successor of `sp-tower`): Lemma 2 at every stage, for every
+exponent no prime dividing `n` divides, gives the climbed power witness.  `lix-tower` proves it
+at the agreed family `fun k j => CharClass.KGen.bVecK n (k - 1)`; the endpoint assembly over
+exactly that family is `ProblemLIXStrongAssembly`.
 
 A named `Prop` rather than a hypothesis spelled out at each use, so that the day it becomes a
 theorem the `_data` forms below lose an argument and nothing else changes. -/
