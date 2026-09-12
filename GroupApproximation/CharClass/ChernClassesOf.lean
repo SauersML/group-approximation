@@ -112,7 +112,8 @@ theorem chernPolynomial_monic : @Polynomial.Monic (TotalHOf K X) _ D.chernPolyno
 
 /-- **The defining relation** `ξ^r + γ_1 ξ^{r-1} + ⋯ + γ_r = 0`. -/
 theorem aeval_taut_chernPolynomial :
-    @Polynomial.aeval (TotalHOf K X) (TotalHOf K P) _ _ D.algebra
+    @Polynomial.aeval (TotalHOf K X) (TotalHOf K P) D.commRing.toCommSemiring inferInstance
+      D.algebra
       (TotalHOf.of K P 2 D.taut) D.chernPolynomial = 0 :=
   @aeval_gen_chernPoly (TotalHOf K X) (TotalHOf K P) D.commRing inferInstance D.algebra
     D.powerBasis
