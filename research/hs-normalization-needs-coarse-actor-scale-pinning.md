@@ -10,6 +10,7 @@ distinct_from:
   hs-one-level-expander-block-decomposition: that asks for a one-level block decomposition of one Kazhdan group; this is a conditional normalization statement that uses such a decomposition of the actor as one of three hypotheses.
 artifacts:
   - research/artifacts/hs-median-assembly-audit-2026-09-12.md
+  - research/artifacts/hs-scale-pinning-2026-09-12.md
 ---
 
 **OPEN.** Let `Gamma < G` be an infranormal pair of Kazhdan groups, `t` a strict
@@ -47,6 +48,31 @@ The intended proof follows Kun--Thom's two median arguments.
 
 The steps and their uniformity checks are in the artifact. None is verified to
 the standard of an established claim.
+
+**Update (2026-09-12, lane `hs-scale-pinning`).**
+- **(H3) is redundant.** In the multiplicative, all-scales form the median step
+  consumes, (H3) follows from (H1) and property (T) of `Lambda`. The ESTABLISHED
+  `vertex-rounding-reduces-ccr-to-commutant-excess` proves
+  `sup_(a>0) ||F_a(zeta_B) - sigma_n(t) F_a(zeta_A) sigma_n(t)^*||_2 -> 0`, with
+  `F_a(x) = x/(x+a)`.
+- **The additive `L^1` form of (H3), as stated above, is too weak.** It is vacuous at
+  large irreducible dimension: for an irreducible of dimension `n` splitting in halves,
+  `||zeta_B - zeta_A||_1 = 1/n`, while the excess is `1/2`.
+- **(CCR) is a finite-dimensional quantity.** The same claim shows that under (H1), (CCR)
+  is the vanishing of the finite commutant excess of `pi_n(Gamma)' <= pi_n(Lambda)'`.
+  `commutant-excess-bounded-by-aspect-ratio-jump-mass` (ESTABLISHED) bounds that excess
+  by `4 tau(zeta_B >= (1+c) zeta_A)^(1/2) + 2c`. The last step of the intended proof is
+  therefore proved.
+- **The corrected conditional is (H1) + (H2') implies (CCR).**
+  - (H2') is (H2) stated at a generating set `F_Gamma cup {t_i^(+-1)}` whose `t_i` are all
+    strict compressors. A generator that is not a compressor has no supplied almost
+    invariance of the median observable.
+  - The only unwritten step is the mass-weighted block functional calculus (S4 in the
+    scale-pinning artifact).
+- **Cascades refute (H2'), not the assembly.** Under (H1), a cascade with order-one jump mass
+  contradicts (CCR) through the excess lemma, so it forces (H2') to fail. A cascade needs a
+  slowly varying, ungapped almost-central observable of the actor that the compressors
+  shift.
 
 ## Attempts
 
