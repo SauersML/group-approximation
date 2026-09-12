@@ -148,10 +148,8 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
       EdgeDeletion.value_injective M b₁ (hv.trans hvα.symm)
     rw [← hhead]
     exact (List.cons_head_tail hlSne).symm
-  have htailS : lS.tail.map (EdgeDeletion.value M b₁) = ws := by
-    have h := hlS
-    rw [hlScons, List.map_cons] at h
-    exact (List.cons.inj h).2
+  have htailS : lS.tail.map (EdgeDeletion.value M b₁) = ws :=
+    (List.cons.inj ((congrArg (List.map (EdgeDeletion.value M b₁)) hlScons).symm.trans hlS)).2
   have hface₂ : (EdgeDeletion.toCombMap M b₁).faceOf b₂N ≠
       (EdgeDeletion.toCombMap M b₁).faceOf ((EdgeDeletion.toCombMap M b₁).alpha b₂N) := by
     intro h
