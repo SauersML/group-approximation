@@ -9,6 +9,9 @@ artifacts:
   - GroupApproximation/KunThom/CentralizerBisectionRepresentationPieces.lean
   - GroupApproximation/KunThom/CentralizerBisectionRepresentationMass.lean
   - GroupApproximation/KunThom/CentralizerBisectionRepresentationMassSum.lean
+  - GroupApproximation/KunThom/CentralizerBisectionRepresentationCharges.lean
+  - GroupApproximation/KunThom/CentralizerBisectionRepresentationScaled.lean
+  - GroupApproximation/KunThom/CentralizerBisectionRepresentationScaledPatch.lean
 distinct_from:
   kt-almost-centralizer-represented-by-cluster-bisection: that claim is the forward half of Kun--Thom Lemma 4.2(4) on the global-scale PartialClusterSystem, where the mass of bad objects is not bounded; this one works on ScaledPartialClusterSystem with per-object scales, patches the Quotient.out representatives, and bounds bad objects through the pieces of the blocks.
   kt-patched-bisection-commutation-vanishes-with-threshold: that claim is the converse half, that patched bisections almost commute with the labels; this one is the forward half, that a permutation is Hamming-close to a patched bisection.
@@ -17,8 +20,9 @@ distinct_from:
 **ESTABLISHED, finite form.**  These are the finite ingredients of the forward half
 of Kun--Thom, arXiv:2608.06222v3, Lemma 4.2(4), on the frame of the Theorem 4.1
 chain.  The frame is a `ScaledPartialClusterSystem` placed disjointly in a model `Y`,
-with an ambient labelled action and a permutation `q` of `Y`.  The sequential `hrep`
-of `CompressorNormalizationAssembly` is not yet assembled from them.
+with an ambient labelled action and a permutation `q` of `Y`.
+`kt-almost-centralizer-close-to-frame-bisection-patches` assembles the sequential
+`hrep` of `CompressorNormalizationAssembly` from them.
 
 Namespace `GroupApproximation.BlockPatching`.  The arrow of `q` from block `C` into
 block `D` is the landed `BlockEmbedding.bridge E q C D`.
@@ -56,6 +60,22 @@ block `D` is the landed `BlockEmbedding.bridge E q C D`.
   * It has a majority piece that is at most half of its target.  This is charged to
     the target's pieces under `q⁻¹`.
   * It has a two-sided majority.  The pair scale and the missing masses then bound it.
+* **Charge totals** (`...MassSum`, `...Charges`).
+  * `BlockAction.pieceCharge q c C` is `c` times the off-block points of `C` plus the
+    boundaries of its pieces.  `obstructionMass q C` is its local obstructions summed
+    over the labels.
+  * `mul_sum_card_model_le_of_not_selected` bounds `c h` times the mass of the
+    unselected blocks by the charges of `q` and `q⁻¹`.
+  * `sum_pieceCharge_le` and `sum_obstructionMass_le` bound the charges by the
+    uncovered mass, `BlockAction.commutationMass q` and `compatMass`.
+* **The master inequality** (`...Scaled`, `...ScaledPatch`).
+  * A block whose bridge into `X` has a majority piece has size at most `38` times
+    the pair scale (`card_model_le_of_two_mul_card_bridgeSource_scaled`).
+  * The `Quotient.out` arrows have total defect at most `h/36 · |Y|`
+    (`sum_card_equivarianceDefect_scaledBisectionArrows_le`).
+  * `mul_card_hammingDisagreement_scaledBisectionPatch_le` bounds `c² h` times the
+    distance between the patch and `q`.  The bound is in terms of the uncovered mass,
+    `h |Y|`, and the charges of `q` and `q⁻¹`.
 
 **Why the representative patch needs a fixed expansion constant.**  The distance gap
 only puts the `Quotient.out` representative within `2 · scale` of the bridge.

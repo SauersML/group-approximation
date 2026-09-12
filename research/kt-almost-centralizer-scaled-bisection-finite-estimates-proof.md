@@ -11,6 +11,9 @@ artifacts:
   - GroupApproximation/KunThom/CentralizerBisectionRepresentationPieces.lean
   - GroupApproximation/KunThom/CentralizerBisectionRepresentationMass.lean
   - GroupApproximation/KunThom/CentralizerBisectionRepresentationMassSum.lean
+  - GroupApproximation/KunThom/CentralizerBisectionRepresentationCharges.lean
+  - GroupApproximation/KunThom/CentralizerBisectionRepresentationScaled.lean
+  - GroupApproximation/KunThom/CentralizerBisectionRepresentationScaledPatch.lean
 ---
 
 Proved in Lean and root-imported.  Every module was built with warnings as errors
@@ -49,6 +52,16 @@ through the shared Bowen--Chapman probe, lane kt41-bisection-rep, before it land
   `BlockEmbedding.IsMajorityPair`, `BlockAction.pieceCharge`, `obstructionMass`,
   `mul_card_model_le_of_not_majority_pair`, `mul_card_model_le_of_majority_pair`,
   `mul_sum_card_model_le_of_not_selected`, `sum_comp_le_sum_of_injOn`.
+* `KunThom/CentralizerBisectionRepresentationCharges.lean`:
+  `BlockAction.commutationMass`, `compatMass`, `commutationMass_inv`,
+  `sum_obstructionMass_le`, `sum_pieceCharge_le`.
+* `KunThom/CentralizerBisectionRepresentationScaled.lean`:
+  `card_model_le_of_two_mul_card_bridgeSource_scaled`,
+  `sum_card_equivarianceDefect_scaledBisectionArrows_le`,
+  `mul_card_equivarianceDefect_bridge_selected_le`.
+* `KunThom/CentralizerBisectionRepresentationScaledPatch.lean`: `separationScale`,
+  `separationScale_nonneg`, `mul_separationScale`,
+  `mul_card_hammingDisagreement_scaledBisectionPatch_le`.
 
 No hypothesis stands for a literature result.  The expansion hypotheses are tagged
 expansion of the block actions at scale `1`.  The component family supplies them from
