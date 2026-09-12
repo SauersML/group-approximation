@@ -4787,3 +4787,5 @@ import GroupApproximation.KunThom.StepNineHammingProducer
 import GroupApproximation.KunThom.RelativeDataErrors
 import GroupApproximation.KunThom.RelativeDataGood
 import GroupApproximation.KunThom.RelativeDataErrorsVanishing
+import GroupApproximation.KunThom.CompressorNormalizationAssemblyRelativeData
+import GroupApproximation.KunThom.CompressorNormalizationCore
