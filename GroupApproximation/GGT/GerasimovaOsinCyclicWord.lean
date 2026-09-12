@@ -218,6 +218,7 @@ theorem listVal_powWord (a : Fin 4 → G) (e : ℤ) :
     congr 1
     omega
 
+omit [Group G] in
 theorem length_posWord (a : Fin 4 → G) (n : ℕ) : (posWord a n).length = 4 * n := by
   rw [posWord, length_blockWord]
   simp only [posPre, List.length_cons, List.length_nil]
@@ -236,6 +237,7 @@ theorem length_powWord (a : Fin 4 → G) (e : ℤ) :
     omega
   · rw [length_negWord]
 
+omit [Group G] in
 theorem posPre_ne_base (a : Fin 4 → G) (j : ℕ) (y : G) :
     (posPre a)[j]? ≠ some (RelLetter.base y) := by
   rcases j with _ | _ | _ | j <;> simp [posPre]
@@ -251,6 +253,7 @@ theorem powWord_ne_base (a : Fin 4 → G) (e : ℤ) (i : ℕ) (x : G) :
   · exact getElem?_blockWord_ne_base 3 (posPre_ne_base a) (a 3) _ i x
   · exact getElem?_blockWord_ne_base 0 (negPre_ne_base a) (a 0)⁻¹ _ i x
 
+omit [Group G] in
 theorem isWOne_posWord (a : Fin 4 → G) (n : ℕ) : WWord.IsWOne (posWord a n) :=
   isWOne_blockWord_of_noBase 3 (posPre_ne_base a) (a 3) n
 
@@ -264,7 +267,7 @@ theorem isLetter_posWord (D : RelGenSet G (Fin 4)) {a : Fin 4 → G}
     (ha : ∀ i, a i ∈ D.fam i) (n : ℕ) : ∀ c ∈ posWord a n, D.IsLetter c := by
   refine isLetter_of_mem_blockWord D 3 ?_ (ha 3) n
   intro c hc
-  simp only [posPre, List.mem_cons, List.mem_singleton] at hc
+  simp [posPre] at hc
   rcases hc with rfl | rfl | rfl
   · exact ha 0
   · exact ha 1
@@ -274,7 +277,7 @@ theorem isLetter_negWord (D : RelGenSet G (Fin 4)) {a : Fin 4 → G}
     (ha : ∀ i, a i ∈ D.fam i) (n : ℕ) : ∀ c ∈ negWord a n, D.IsLetter c := by
   refine isLetter_of_mem_blockWord D 0 ?_ ((D.fam 0).inv_mem (ha 0)) n
   intro c hc
-  simp only [negPre, List.mem_cons, List.mem_singleton] at hc
+  simp [negPre] at hc
   rcases hc with rfl | rfl | rfl
   · exact (D.fam 3).inv_mem (ha 3)
   · exact (D.fam 2).inv_mem (ha 2)

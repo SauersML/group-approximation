@@ -97,7 +97,8 @@ theorem finite_setOf_dist_zpow_le {f : G} {o : X} (hiso : IsIsometricAction G X)
   have hnat : l * (a.natAbs : ℝ) - B ≤ dist o ((f ^ a) • o) := by
     obtain ⟨k, rfl | rfl⟩ := Int.eq_nat_or_neg a
     · simpa using hlin k
-    · simpa [dist_zpow_neg_smul hiso f o k] using hlin k
+    · rw [dist_zpow_neg_smul hiso f o k]
+      simpa using hlin k
   have hbound : (a.natAbs : ℝ) < K := by
     rw [div_lt_iff₀ hl] at hK
     have hmul : l * (a.natAbs : ℝ) < l * (K : ℝ) := by linarith
