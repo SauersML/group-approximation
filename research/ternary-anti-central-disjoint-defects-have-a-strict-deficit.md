@@ -51,3 +51,10 @@ Item 1 makes the denominator positive, by the positivity item of
   * **Consequence here.** Those profiles are independent across disjoint cylinders. So a proof of item 2 that
     consumes only such data should be expected to give `theta = 1`. The compression in item 2 has not been
     computed on that profile.
+- **Toeplitz data in characteristic three (w5-sub-fock): covered, no deficit.**
+  * Over `F_3` the Toeplitz pair generates a Heisenberg group of order 27. With `z` it is a finite subgroup containing
+    `z`, so `anti-central-sofic-data-cannot-force-defect-submultiplicativity` covers it.
+  * The generation theorem holds over `F_3` (`toeplitz-pair-and-weyl-elements-generate-jacobson-el3`). The Toeplitz
+    relation is load-bearing only inside `<iota_A(EL_3(J_3)), iota_B(EL_3(J_3)), z>`, which is sofic iff `EL_3(J_3)` is.
+  * The compression of item 2 on the independent anti-central profile is not computed here. Artifact
+    `research/artifacts/fock-toeplitz-input-and-sofic-independence-2026-09-12.md`, Remark 3.3.

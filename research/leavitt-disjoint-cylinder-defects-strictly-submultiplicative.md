@@ -134,3 +134,18 @@ than vanishing.
   central idempotent gives `rho = d_3/2 + rk(a q_3)`. With the unitriangular data these roots generate a copy of
   `R^x`, so no firewall applies, but no identity forcing a deficit was found (artifact Section 5).
 - **Scope (w4-upg-audit).** The route's other inputs hold for homomorphisms into every faithful von Neumann regular rank ring of characteristic two (`leavitt-defect-descent-chain-holds-in-regular-rank-rings`), and the route's argument goes through there (`research/artifacts/rank-gate-axiom-audit-2026-09-12.md`, Consequence 3.2). So a `theta < 1` proof that avoids matrix-level steps excludes nontrivial homomorphisms into all such rings. With `sylvester-rank-functions-on-leavitt-units-are-regular` it would also decide `binary-leavitt-units-carry-nonaugmentation-rank-function` negatively.
+- **Exact Toeplitz commutators and sofic-subgroup data (w5-sub-fock): firewall, no deficit.**
+  * **Toeplitz data are finite-subgroup data.** `x_12(t0)`, `x_23(s0)`, `x_12(1)`, `x_23(1)` generate a unitriangular
+    group of order 128, whose regular module realizes `[x_12(t0), x_23(s0)] = x_13(1)` exactly with `theta = 1`. The
+    quarter of `natural-fock-quantized-compressors-miss-toeplitz-by-a-quarter` measures truncated-shift realizations,
+    not rank models.
+  * **Every sofic subgroup is inert.** `sofic-subgroups-carry-independent-cylinder-defects`: a sofic subgroup containing
+    both frames carries a free, fixed-point-free rank model with `rk(D_A D_B) = (3/8)^2`. So a relation-only proof must
+    use a nonsofic subgroup containing both frames, and proves it nonsofic.
+  * **Where the Toeplitz relation bites.** With the constant Weyl group the Toeplitz pair generates `EL_3(J)`, and with
+    the constant root groups all of `R^x` (`toeplitz-pair-and-weyl-elements-generate-jacobson-el3`). So a relation-only
+    deficit from Toeplitz and constant-Weyl data at two disjoint cylinders would prove `EL_3(J)` nonsofic; its soficity
+    (locally finite kernel over a residually finite linear quotient) is not decided on main.
+  * **Moving levels.** Compressor corrections commute with each fixed level group and `D_A D_B` lies in the level
+    algebra, so a correction never enters the product as a factor. No mechanism found. Artifact
+    `research/artifacts/fock-toeplitz-input-and-sofic-independence-2026-09-12.md`.
