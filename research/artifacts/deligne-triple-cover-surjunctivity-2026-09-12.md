@@ -151,3 +151,66 @@ This includes the block `SL_2(Z) <= Sp_4(Z)`, which is virtually free.
 By `surjectivity-descends-to-centralized-coset-quotients`, `tau` acts on `z`-invariant configurations as an
 injective automaton over `Gamma`. `Gamma` is residually finite, hence surjunctive, so that restriction is
 bijective. Every configuration missed by a strict `tau` therefore has trivial `C_3`-stabilizer.
+
+## 4. Characteristic prime to three, and where each approach stops
+
+**Lemma 4.1 (character splitting).** Let `p != 3`, `q = p^f` with `3 | q - 1`, and `w in F_q` a primitive
+cube root of unity.
+- The elements `e_j = (1/3) sum_(i=0..2) w^(-ij) z^i`, for `j = 0, 1, 2`, are orthogonal central
+  idempotents of `F_q[E_3]` with sum `1`, and `z e_j = w^j e_j`.
+- Choose a set section `s : Gamma -> E_3` with `s(1) = 1` and write `s(g)s(h) = z^(a(g,h)) s(gh)`. Then
+  `e_j F_q[E_3]` has basis `e_j s(g)`, with `(e_j s(g))(e_j s(h)) = w^(j a(g,h)) e_j s(gh)`.
+- So `e_0 F_q[E_3] = F_q[Gamma]`, and for `j = 1, 2` the factor `e_j F_q[E_3]` is the twisted group
+  algebra `F_q^(w^(j a))[Gamma]`.
+
+**Consequence.** `F_p[E_3]` is stably finite iff both twisted algebras are.
+- Stable finiteness of `F_p[G]` and `F_q[G]` agree, since `F_p[G] <= F_q[G] <= M_f(F_p[G])`.
+- A finite product of rings is stably finite iff each factor is.
+- `e_0 F_q[E_3] = F_q[Gamma]` is stably finite because `Gamma` is LEF.
+
+**Why the twisted factors are the residue.** The class of `a` in `H^2(Gamma; Z/3)` is not inflated from
+any finite quotient `Q` of `Gamma`. An inflated class would give a central extension of `Q` by `Z/3`
+receiving `E_3` injectively on `C_3`, a finite quotient of `E_3` separating `z`. No theorem on main decides
+stable finiteness of twisted group algebras with such a cocycle.
+
+**4.2 No exact finite models.** `E_3` is finitely presented and `z in Res_fin(E_3)`. If every finite
+subset of `E_3` had an injective partial homomorphism into a finite group, `E_3` would be LEF, hence
+residually finite, which it isn't. So some presentation ball has no exact finite model, and the counting
+behind Gromov–Weiss needs approximate models that separate `z`. Those are sofic approximations of `E_3`.
+
+**4.3 Soficity.** `Rad_sofic(E_3)` is `1` or `C_3` (Section 0).
+- If `E_3` is sofic, it is surjunctive (`deligne-triple-cover-surjunctive-from-soficity`).
+- Sofic groups are hyperlinear, and hyperlinearity of `E_3` is itself open, with exact reformulations
+  (`deligne-sector-gap-is-exactly-nonhyperlinearity`). A non-hyperlinearity proof would kill the soficity
+  route but would not decide surjunctivity.
+
+**4.4 What a strict automaton on E_3 would have to be.**
+- It would refute `finite-normal-subgroups-do-not-affect-surjunctivity`, since `Gamma` is residually finite,
+  and it would refute Gottschalk.
+- It would prove `E_3` nonsofic.
+- In characteristic three: no linear automaton, no formalizable pair over `F_3^n`, degree product at
+  least `q` over `F_q^m` (Corollary 2.2).
+- Its memory group `H` contains `z` with `z in Res_fin(H)`, `H` is nonsofic, and `H/<z>` is neither
+  virtually free nor amenable (Corollary 3.3).
+- It is bijective on `z`-invariant configurations (Remark 3.4).
+
+**4.5 Where the finite residual really obstructs.** Let `N` be a finite central subgroup of `E` with `E/N`
+surjunctive and `F_q[E/N]` stably finite, and write `N = N_p x N_(p')`.
+- **Linear, characteristic `p`.** Theorem 1.4 removes `N_p`. The idempotent splitting of Lemma 4.1 over the
+  characters of `N_(p')` leaves `F_q[E/N]`, which is stably finite, and the nontrivial-character twisted
+  algebras. So linear automata in characteristic `p` can fail only through those twisted algebras. When
+  `N` lies in the finite residual, their cocycles are not inflated from finite quotients.
+- **Nonlinear.** Any strict automaton also meets Theorem 3.2.
+
+Deligne's triple cover is the first natural instance with residually finite quotient.
+- **Linear residue:** the two twisted algebras of `Sp_4(Z)` in characteristics other than three.
+- **Nonlinear residue:** pairs that are non-formalizable at every stabilization over `3`-power alphabets,
+  and arbitrary pairs over other alphabets, all on nonsofic memory groups holding `z` in their finite
+  residual.
+
+The Kun–Thom Clifford cover `E_S` (lane w3-free-neg) is a second instance, with surjunctive nonsofic
+quotient `W`. There Theorem 1.4 settles `p = 2`, and the odd-`p` anti-central factors are the linear
+residue (w3-free-neg, b8b797c4a9).
+
+**4.6 Products.** If `E_3` is shown surjunctive, then `E_3 x K` is surjunctive for every `K` in the LEF
+permanence closure (lane w3-products, df56c017aa).

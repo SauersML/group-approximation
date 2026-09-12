@@ -1,0 +1,31 @@
+---
+rg: 2
+id: deligne-triple-cover-nonsurjunctive
+kind: claim
+title: Deligne's triple cover of Sp4(Z) carries an injective non-surjective cellular automaton
+refuted_by:
+  - deligne-triple-cover-surjunctive
+artifacts:
+  - research/artifacts/deligne-triple-cover-surjunctivity-2026-09-12.md
+---
+
+**OPEN.** Some finite alphabet `A` carries an injective non-surjective cellular automaton on `A^(E_3)`,
+where `E_3` is Deligne's connected triple cover of `Sp_4(Z)`.
+
+**Payoff.**
+- **Gottschalk.** It refutes Gottschalk's surjunctivity conjecture.
+- **Finite normal subgroups.** It refutes `finite-normal-subgroups-do-not-affect-surjunctivity`, since
+  `Sp_4(Z)` is residually finite and so surjunctive.
+- **Soficity.** It proves `E_3` nonsofic.
+
+**Constraints on a witness** (artifact Section 4.4):
+- **Characteristic three.** It is not linear and not formalizable over `F_3^n`, and over `F_q^m` with `q` a
+  power of `3` its degree product is at least `q`
+  (`deligne-triple-cover-ternary-group-algebras-are-stably-finite`).
+- **Memory group.** Its memory group `H` contains the central `z`, has `z in Res_fin(H)`, and is nonsofic;
+  `H/<z>` is neither virtually free nor amenable
+  (`strict-automata-memory-keeps-finite-normal-kernel-residual`).
+- **Missed configurations.** It is bijective on `z`-invariant configurations, so it misses only
+  configurations with trivial `C_3`-stabilizer.
+- **Linear route.** The only linear route is a one-sided inverse pair in one of the two twisted group
+  algebras of `Sp_4(Z)` in a characteristic `p != 3` (artifact Lemma 4.1).

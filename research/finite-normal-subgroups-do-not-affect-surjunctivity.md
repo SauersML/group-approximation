@@ -3,6 +3,8 @@ rg: 2
 id: finite-normal-subgroups-do-not-affect-surjunctivity
 kind: claim
 title: For every finite normal subgroup, a group is surjunctive exactly when its quotient is
+refuted_by:
+  - deligne-triple-cover-nonsurjunctive
 distinct_from:
   separated-finite-normal-subgroups-preserve-surjunctivity: that is the proved case where the finite normal subgroup injects into a finite quotient; this is the unrestricted statement, whose open residue is finite normal subgroups inside the finite residual.
 artifacts:
@@ -39,3 +41,18 @@ artifacts:
   ternary split of the Leavitt unit group (`ternary-leavitt-swap-problem-splits-at-central-involution`)
   is an instance of this summand structure, where the anti-central summand is itself a counterexample
   target.
+- **Linear, characteristics dividing the kernel: settled** (lane w3-deligne, artifact
+  `deligne-triple-cover-surjunctivity-2026-09-12.md`). A finite normal `p`-subgroup never affects
+  stable finiteness of characteristic-`p` group algebras, because its augmentation kernel is nilpotent
+  (`finite-normal-p-subgroups-preserve-modular-stable-finiteness`). This holds inside the finite residual.
+  So in characteristic `p` no strict linear automaton appears when `k[E/N]` is stably finite, and for
+  central `N` the linear residue is exactly the nontrivial-character twisted algebras over `N_(p')`.
+- **Memory filter** (lane w3-deligne). A strict automaton over `E` with `E/N` surjunctive has a memory
+  group `H` with `N cap Res_fin(H) != 1`, and `H` is nonsofic
+  (`strict-automata-memory-keeps-finite-normal-kernel-residual`).
+- **The test instance now has its own nodes.** `deligne-triple-cover-surjunctive` is open, with the soficity
+  route. `deligne-triple-cover-nonsurjunctive` is open, and would refute this claim.
+  `k[E_3]` is stably finite in characteristic three
+  (`deligne-triple-cover-ternary-group-algebras-are-stably-finite`). A second instance with a surjunctive
+  nonsofic quotient is the Kun–Thom Clifford cover (`kun-thom-clifford-cover-nonsurjunctive`, lane
+  w3-free-neg).
