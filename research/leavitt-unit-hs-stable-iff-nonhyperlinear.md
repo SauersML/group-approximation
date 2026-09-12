@@ -19,6 +19,9 @@ equivalent.
 2. Every homomorphism from `Q` into the unitary group of a tracial matrix
    ultraproduct `prod_omega (M_(d_n), tr_(d_n))` is trivial.
 3. `Q` is not hyperlinear.
+4. `Q` is flexibly normalized-HS stable in the Dogon--Vigdorovich sense:
+   asymptotic representations are close to corners `P_n lambda_n P_n` of
+   genuine representations on larger spaces of any size.
 
 Moreover
 
@@ -61,6 +64,12 @@ Fix a finite presentation `<S | R>` of `Q`.
   many vanishing relator defects make `phi` a homomorphism
   `Q -> prod_omega U(d_n)`, and it is nontrivial on some generator. This
   contradicts 2.
+* **1 => 4** is immediate: take `lambda_n = rho_n` and `P_n = 1`.
+* **4 => 2.** Lift `pi` as in 1 => 2. Flexible stability, with the same
+  epsilon-delta repair along `omega`, gives genuine representations
+  `lambda_n : Q -> U(D_n)`, `D_n >= d_n`, with
+  `max_s ||phi_n(s) - P_n lambda_n(s) P_n||_(2,d_n) -> 0` along `omega`. Each
+  `lambda_n` is trivial, so `P_n lambda_n(s) P_n = 1` and `pi(s) = 1`.
 * **Identifications.**
   * `leavitt-steinberg-map-iso-from-rank-three` (Khanh, Theorem 5.4) gives
     `St_5(L) = GL_5(L)`.
@@ -74,6 +83,10 @@ Fix a finite presentation `<S | R>` of `Q`.
 * A proof of `leavitt-steinberg-hs-stable` is exactly a proof that `Q` is the
   first known nonhyperlinear group. An unstable almost-representation sequence
   of `Q` is exactly a hyperlinear approximation of `Q`.
+* Strict and flexible stability coincide for `Q`. So
+  `flexible-hs-stability-passes-to-kazhdan-kernel-quotients` applies:
+  flexible HS stability of any cover of `Q` with a property (T) kernel, such
+  as a Belegradek--Osin hyperbolic Kazhdan cover, makes `Q` nonhyperlinear.
 * This is the stable-branch counterpart of the deliberate route cycle
   `leavitt-unit-hyperlinear-from-steinberg-instability` /
   `steinberg-instability-from-leavitt-unit-hyperlinear`, which identifies the
