@@ -4617,6 +4617,7 @@ import GroupApproximation.KunThom.ComponentCountingRelativeFunctorPresentation
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorDefects
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorWords
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorBridges
+import GroupApproximation.KunThom.ComponentCountingRelativeFunctorRealization
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
