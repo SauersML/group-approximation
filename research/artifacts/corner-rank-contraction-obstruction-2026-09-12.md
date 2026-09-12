@@ -7,7 +7,9 @@ Lane `w3-gate-bridge-a`. Target: `N_23 N_12 = 0` for characteristic-two rank mod
 The directive was to look for a rank identity pushing that product into a corner whose rank
 **halves** under the self-embedding `iota_0`, since halving plus invariance gives zero. The answer is
 negative and the reason is exact: the rank function is blind to the halving, because `R ~= R^2`.
-What survives is a two-part route, recorded as Sections 4-5.
+Section 3a (after `gk-vf-linear`, Section 56) shows the branch deviation is constant at every positive
+level. Section 5 records that the level form of the gate is then a restatement of the binary gate,
+not a reduction of it.
 
 ## 0. Notation
 
@@ -73,16 +75,49 @@ a unit of `R`, and `W = diag(w, w, w)` lies in `GL_3(R) = EL_3(R)`
 This generalizes Proposition 2(4) of the self-similarity artifact from `k = 1` to every level, and it
 makes `delta(k) := delta_gamma` (`|gamma| = k`) a well-defined function of the level alone.
 
+## 3a. Constancy at positive levels
+
+This extension is due to `gk-vf-linear`, Section 56 of its verification artifact, and was re-derived
+here. An earlier version of this artifact said the conjugation of Section 3 does not cross levels.
+That is false for nonempty words.
+
+**Proposition.** For nonempty words `gamma`, `gamma'` of any lengths, `delta_gamma = delta_gamma'`.
+So `delta(k) = delta(1)` for every `k >= 1`.
+
+*Proof.* Let `|gamma| = m >= 1`. Then `1 - e_gamma = sum_{i=1..m} S[c_i]T[c_i]`, where `c_i` agrees
+with `gamma` before its `i`-th letter and differs there. Choose a complete prefix code
+`d_1, ..., d_m`, for instance `d_i = 1^(i-1) 0` for `i < m` and `d_m = 1^(m-1)`, and put
+`Z = sum_i S[c_i]T[d_i]`. Distinct words of a prefix code are incomparable, so
+`T[c_j]S[c_i] = delta_ij = T[d_j]S[d_i]`. Hence
+
+```text
+Z*Z = sum_i e_(d_i) = 1,     ZZ* = 1 - e_gamma,     t_gamma Z = 0 = Z* s_gamma .
+```
+
+Build `Z'` likewise for `gamma'`, and put `w = s_gamma' t_gamma + Z'Z*` and `w' = s_gamma t_gamma' + ZZ'*`.
+All cross products vanish, so `w w' = e_gamma' + Z'Z'* = 1`, `w' w = e_gamma + ZZ* = 1`, and
+`w e_gamma w' = e_gamma'`. As in Section 3, `diag(w, w, w)` lies in `EL_3(R)`, and conjugation by its
+image carries `P_gamma` to `P_gamma'`. QED
+
+**What it cannot reach.** No unit carries `e_gamma` to `e_(empty) = 1`. So this compares every
+positive level with level one, and never with `delta(0) = rk(N_23 N_12)`.
+
+**Calibration.** Over `D = colim M_(2^k)(F_2)` there is no such unit, since `s_gamma' t_gamma` does not
+lie in `D` when the lengths differ. In the tensor-square model of
+`rank-modelled-coefficients-violate-two-root-identities`, `delta(k) = 2 . 4^(-k) / 9` is not constant.
+So constancy across levels genuinely uses the Leavitt units.
+
 ## 4. The one contraction that would work, and why corner data do not supply it
 
 The Cuntz relation gives `1 = sum_{|gamma| = k} e_gamma`, so level `k` carries `2^k` branch products
-`P_gamma`, all of the same rank `delta(k)` by Section 3. **If** their ranks were additive, that is
+`P_gamma`, all of the same rank `delta(k) = delta(1)` by Sections 3-3a. **If** their ranks were
+additive, that is
 
 ```text
 sum_{|gamma| = k} rk(P_gamma) <= 1 ,
 ```
 
-then `delta(k) <= 2^(-k) -> 0`, which with Section 5 would force `delta(0) = 0` and prove the gate.
+then `delta(1) <= 2^(-k)` for every `k`, so `delta(1) = 0`, and by Section 5 the model is trivial.
 
 Corner data do not supply this inequality. The natural route to it would be orthogonality of the
 root branch defects `a_gamma`, `b_gamma` for distinct words, and that orthogonality fails: in the
@@ -95,28 +130,43 @@ said additivity is *refuted*. That overstates. In the tensor-square model
 `P_gamma = Y_gamma (x) X_gamma + X_gamma (x) Y_gamma` has image in independent blocks
 `phi(e_gamma) V (x) phi(e_gamma) V`, so `sum_gamma rk(P_gamma) = 2^(1-k)/9 <= 1` and the calibration
 **satisfies** the displayed inequality. It refutes only orthogonality of `a_gamma`, `b_gamma`. In a
-Leavitt rank model the displayed inequality implies the open vanishing half, so no calibration over
+Leavitt rank model the displayed inequality implies triviality of the model, so no calibration over
 another ring can refute it; it is simply not available from corner data.
 
 Proposition 2(5) of the self-similarity artifact remains an upper bound with no companion lower bound.
 
-## 5. What survives: a two-part route into the gate
+## 5. The level form is a restatement of the binary gate
 
-By Section 3, `delta(k)` is well defined. The gate follows from the conjunction of two open claims:
+By Section 3a, `delta(k) = delta(1) = rk(n_23(e_0) n_12(e_0))` for every `k >= 1`, while
+`delta(0) = rk(N_23 N_12)` is the unit pair itself. By Lemma 2.3 of the mechanism artifact,
+`(iota_0(x_12(1)), iota_0(x_23(1)))` is simultaneously conjugate to `(x_12(e_0), x_23(e_0))`. So corner
+locality (`two-root-identity-is-corner-local-for-leavitt-rank-models`, condition 3 with `P = 0`) gives
 
-* `leavitt-corner-deviations-are-level-independent`: `delta(k) = delta(0)` for every `k`;
-* `leavitt-corner-deviations-vanish-along-levels`: `delta(k) -> 0`.
+```text
+delta(1) = 0   iff   sigma is trivial   iff   delta(0) = 0 .
+```
 
-Together they give `delta(0) = 0`. The empty word has `e_(empty) = 1`, so `delta(0) = rk(N_23 N_12)`
-is the unit pair itself and `delta(0) = 0` is `N_23 N_12 = 0` directly. (By contrast
-`rk(n_23(e_0) n_12(e_0))` is `delta(1)`.) Route: `two-root-identity-via-level-contraction`.
+The two open claims therefore stand as follows (`gk-vf-linear`, Section 56):
 
-Level-independence is not automatic: Corollary 2.4 of the mechanism artifact records that the
-shifted pair is **not** conjugate to the unit pair, so the conjugation of Section 3 does not cross
-levels. Vanishing is not automatic either, by Section 4. Neither half is known.
+* `leavitt-corner-deviations-vanish-along-levels`, `delta(k) -> 0`, is equivalent to `delta(1) = 0`.
+  Quantified over all models, it is exactly: every characteristic-two rank model of
+  `EL_3(L_(F_2)(1,2))` is trivial. It is the binary gate, not half of it.
+* `leavitt-corner-deviations-are-level-independent`, `delta(k) = delta(0)`, reduces to
+  `delta(1) = delta(0)` and follows from the vanishing claim.
+
+The route `two-root-identity-via-level-contraction` now targets `non-linear-sofic-group`. It requires
+this artifact's claim, the vanishing claim and corner locality, and is marked as a restatement. An
+earlier version targeted `rank-models-of-el3-satisfy-the-two-root-identities`, the statement for every
+simple characteristic-`p` algebra without a rank model. A binary-only argument overshoots that target.
+The earlier version also required the redundant level-independence claim.
+
+What remains is the gate itself, and Section 4 says what it cannot be proved by: corner data do not
+supply additivity, and root displacements are constant. Neither route to vanishing is known.
 
 ## 6. Scope
 
-Sections 1-3 are proved here. Section 4's refutation is quoted from the landed calibration and is
-not re-derived. Section 2 uses parts 1 and 4 of the displacement claim as landed. Nothing here
-decides the gate.
+Sections 1-3 are proved here. Section 3a is `gk-vf-linear`'s extension, re-derived here. Section 4
+quotes from the landed calibration, without re-deriving it, the failure of orthogonality and the
+level-`k` sum. Section 5 uses Lemma 2.3 of the mechanism artifact and corner locality as landed and
+verified. Section 2 uses parts 1 and 4 of the displacement claim as landed. Nothing here decides the
+gate.
