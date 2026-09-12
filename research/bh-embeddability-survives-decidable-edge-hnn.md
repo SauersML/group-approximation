@@ -70,3 +70,25 @@ only through a proof that does not pass through the conjecture.
    under `chi`. Being finitely generated, it then contains a hyperbolic element
    (Serre, *Trees*, §I.6.5). No such stabilizer with finitely many double cosets
    has been found, and the actor must also be finitely presented. *Open.*
+6. **Extend an existing type (A) action by a stable permutation.** By
+   `stable-permutation-hnn-of-type-a-actor-is-type-a`, `A*_phi` embeds in a
+   finitely presented simple group under four conditions:
+   - `A` lies in a group `Gamma` acting on `X` of type (A);
+   - `phi` extends to `psi : D_1 -> D_2`, with `D_i <= Gamma` finitely generated,
+     `A ∩ D_i = C_i`, and `D_1` having finitely many orbits on `X`;
+   - some permutation `pi` of `X` realizes `psi`;
+   - `<Gamma, pi>` is the HNN extension `Gamma*_psi` itself.
+
+   On this path finite presentation and pair-orbit finiteness are free, unlike
+   Attempts 1 and 5. It breaks at three clauses:
+   1. an actor containing `A` must exist, which is
+      `permutational-boone-higman-conjecture` for `A` and is open even when `A`
+      embeds in a finitely presented simple group;
+   2. the edges must be enlarged to permutation-isomorphic `D_i` with finitely
+      many orbits that still meet `A` exactly in `C_i`;
+   3. `pi` must satisfy a Britton-type ping-pong condition, which no
+      construction here supplies.
+
+   For `C_1 = C_2 = A` the claim's case (c) covers mapping tori `A ⋊_phi Z` in
+   which `phi` is induced by a permutation normalizing an actor. This is the
+   case Attempt 4 leaves open. *Partial.*
