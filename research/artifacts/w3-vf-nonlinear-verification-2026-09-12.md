@@ -1164,3 +1164,33 @@ findings.
   - Two equal symbols: Section 19's claim, after relabelling addresses.
   - Constant patch: the diagonal `c' -> S c' + c_0` is a bijection or constant, and changing one value leaves a non-injective map on constant configurations.
   - In the constant and two-equal abelian sub-cases the conclusion is vacuous: no injective rule exists.
+
+## 25. Higman's group as a swap-twisted double (w5-free-neg-c)
+
+Claim `higman-group-is-the-swap-twisted-double-of-a-bs-amalgam`, route `higman-swap-twisted-double-proof`.
+Artifact `research/artifacts/higman-group-gottschalk-host-2026-09-12.md`, Section 4. **PASS.** Found in a sweep of pushed records; no verification request had come in.
+
+1. **Twisted double.**
+   - `psi : a -> c, b -> d, c -> a` sends `b^a b^-2` and `c^b c^-2` to `d^c d^-2` and `a^d a^-2`, and the reverse relabelling inverts it.
+   - On `F`, `psi` is `theta`.
+   - In `G_1 *_F G_2`, `f` in copy 1 equals `f` in `G_2`, and `f = psi(theta f)`. So `f ~ theta(f)'`.
+2. **`alpha`.** It maps `b^a=b^2 -> d^c=d^2 -> b^a=b^2` and `c^b=c^2 -> a^d=a^2 -> c^b=c^2`, and `alpha^2 = id`. `alpha != id` because `a != c` in the free `F`.
+3. **Presentation.**
+   - Put `c = tat` and `d = tbt`.
+   - `t(b^a)t = d^c` and `t b^2 t = d^2`.
+   - `t(c^b)t = a^d` and `t c^2 t = a^2`.
+   - What remains is `<a,b,t | t^2, b^a=b^2, (tat)^b=(tat)^2>`.
+   - `G_1 *_F (F x|_theta <t>)` has relators `rel(G_1)`, `t^2`, `tat = c`, which is the same presentation. `F` embeds in both factors.
+4. **Surjunctivity.** `H` has index 2. `surjunctivity-is-a-commensurability-invariant` holds: `x -> (h -> (x(h r_i))_i)` intertwines the `H`-shifts, so the alphabet is `A^n`. Together with passage to subgroups this gives the equivalence.
+5. **Sign character.**
+   - `tat -> 1`, so every relator maps to `1`.
+   - `chi((1+t)/2) = 0`, and the trivial character kills `(1-t)/2`.
+   - A ring homomorphism, entrywise on matrices, turns `c e b = 1` into `0 = 1`.
+   - **Scope (not blocking).** The proof names only `t`, but the conclusion covers every finite subgroup.
+     - `H` is torsion-free, being an amalgam of torsion-free factors, so finite subgroups of `E` have order at most 2.
+     - Every involution has the form `ht`, `h in H`.
+     - `chi|_H` is trivial (`chi(c) = chi(tat) = 1`, `chi(d) = 1`). So `chi(ht) = -1` and `(1 + ht)/2` is killed too.
+6. **Twist remarks.**
+   - Suppose `beta` extends `theta`. From `c^b = c^2`, `beta` gives `a^(beta(b)) = a^2`. But `G_1^ab = Z = <a>`, where `a` maps to 1 and `a^2` to 2.
+   - Every double `G_1 *_K G_1` retracts onto `G_1` and so maps onto `Z`, while `H` has no finite quotients.
+   - `doubles-of-surjunctive-groups-are-surjunctive` is cited only for the untwisted remark. The route does not need it, and it is not re-derived here. It carries no verifier verdict on main.

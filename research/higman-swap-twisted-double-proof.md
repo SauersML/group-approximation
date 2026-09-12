@@ -9,6 +9,7 @@ requires:
   - surjunctivity-is-a-commensurability-invariant
 artifacts:
   - research/artifacts/higman-group-gottschalk-host-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 ## Why sufficient
@@ -23,3 +24,11 @@ Artifact Section 4, Theorem 4.1.
 * `H` has index two in `E`, so `surjunctivity-is-a-commensurability-invariant` gives the equivalence.
 * The sign character `t -> -1`, `a, b -> 1` respects the relators, and it or the trivial character sends each of
   `(1 +- t)/2` to 0, so `c e b = 1` maps to `0 = 1`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently.
+- `psi` restricts to `theta`, which gives the transport.
+- `alpha` permutes the relators.
+- The eliminated relators are `t`-conjugates of the remaining ones.
+- The commensurability step holds via the `A^n` alphabet.
+- Scope note: the sign character kills `(1+g)/2` for every involution `g = ht`, because `chi|_H` is trivial and `H` is torsion-free. So the corner conclusion covers every finite subgroup of `E`, not only `<t>`.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 25.)
