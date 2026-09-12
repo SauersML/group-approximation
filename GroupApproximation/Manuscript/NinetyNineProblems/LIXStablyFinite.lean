@@ -57,6 +57,12 @@ theorem lixLimit_isStablyFiniteMatrices (n : ℕ) [NeZero n] :
   · exact cstarMatrix_fin_zero_eq _ _
   · exact LIX.Gen.lixLimit_mul_star_eq_one_of_star_mul_eq_one n (Fin (k + 1)) ⟨0⟩ hv
 
+/-- The same with the size restricted to `0 < m`, the shape of the challenge's inline conjunct. -/
+theorem lixLimit_isStablyFiniteMatrices_pos (n : ℕ) [NeZero n] :
+    ∀ m : ℕ, 0 < m → ∀ v : CStarMatrix (Fin m) (Fin m) (LIX.Gen.LIXLimit n),
+      star v * v = 1 → v * star v = 1 :=
+  fun m _ v hv => lixLimit_isStablyFiniteMatrices n m v hv
+
 /-- The same in the repository's vocabulary. -/
 theorem lixLimit_isStablyFiniteCStarAlgebra (n : ℕ) [NeZero n] :
     IsStablyFiniteCStarAlgebra (LIX.Gen.LIXLimit n) :=
