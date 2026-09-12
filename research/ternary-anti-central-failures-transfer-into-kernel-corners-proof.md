@@ -6,6 +6,7 @@ title: Amplify onto level-two cylinders and multiply by the commuting Klein idem
 target: ternary-anti-central-failures-transfer-into-kernel-corners
 requires: [ternary-anti-central-kernel-has-klein-idempotents]
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-kernel-normal-forms-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ Section 4 of the artifact.
 * `pi(E) = 0` gives `pi mu = 0`.
 * The pair `((eps_- - q) + mu(a), (eps_- - q) + mu(c))` has vanishing cross terms, because `mu`
   lands in `q S_- q`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 8 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

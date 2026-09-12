@@ -178,3 +178,221 @@ Items checked:
 - **Exotic idempotents.** `e = alpha beta` satisfies `e^2 = alpha (beta alpha) beta = e` and
   `e != 1`. It is also nonzero, because `beta e alpha = 1`. So a scalar one-sided pair in `k[G]`
   exhibits a nontrivial idempotent and zero divisors.
+
+## 8. Ternary anti-central kernel normal forms (ab42f3cff, lane gk-l3-kernel): PASS
+
+Items checked: `ternary-anti-central-kernel-has-klein-idempotents`,
+`ternary-anti-central-pairs-visible-or-invisible` and
+`ternary-anti-central-failures-transfer-into-kernel-corners`, with their proof routes. The
+pressure points (1) to (4) were each re-derived.
+
+- **Klein idempotent.** `h1 = s0 t0 - s1 t1` and `h2 = -q_00 - q_01 + q_10 - q_11` are ±1
+  combinations of the orthogonal cylinder idempotents `q_gamma` (`|gamma| = 2`), so they are
+  commuting involutions. The sign patterns on `(q_00, q_01, q_10, q_11)` are `(++++)` for 1,
+  `(++--)` for `h1`, `(--+-)` for `h2` and `(---+)` for `h1 h2`. None is `(----) = z`, so `|H| = 4`
+  and `z` is not in `H`.
+  - `E^2 = 4E = E`.
+  - `pi(E) = (1 + h1)(1 + h2) = (2q_00 + 2q_01)(2q_10) = 0`.
+  - `q = 2(E - [z]E)` has coefficient 2 on `[1]`, because `[z]E` is supported on `zH`, which misses
+    1. So `q != 0` and `tau(q) = 2`.
+  - Side check: over `F_3`, `g = 1 + s0 t1` has order 3, and `n = (1 - [g])^2` satisfies
+    `n^2 = (1 - [g^3])(1 - [g]) = 0`. So the binary kernel idempotent really does become nilpotent.
+- **Visibility, Theorem 2.** `pi(p) y' pi(p) = 1` forces `pi(p) = 1`. `pi(e_-) = 2(1 + w) != 1`,
+  since otherwise `w = 1`. For a separated pair, `pi(p) = 1` would force `pi(w) = 0`. Both hold.
+- **Orbit theorem over `F_3`.** In Lemma 1 of the binary normal-form artifact, the only change is
+  that `y = sum c_alpha S[alpha]` with `c_alpha` in `{1, 2}`. Then
+  `T[w] T[alpha*] x S[gamma] S[w] = c_(alpha*)`, a nonzero scalar, and one divides by it. Lemma 2
+  and Theorem 3 use only the Leavitt relations and module isomorphisms, with no characteristic.
+  - The involution `1 + s0 gamma t1` becomes the unit `v = 1 + s0 gamma t1` with inverse
+    `1 - s0 gamma t1`, because `t1 s0 = 0`.
+  - `v s0 = s0`, and `(t0 + gamma t1)(1 - s0 gamma t1) = t0`.
+  - The translates `[v] a` and `c [v^-1]` preserve `c a = eps_-`.
+- **Dichotomy.** Translation by `[w]` or `[r]` fixes `ca` and conjugates `ac`, and `eps_-` is
+  central, so `a'c' != eps_-`. The images `s0, t0` in (V3) and `1, 1` in (I3) follow from 3.1 and
+  from `pi(c) = pi(a)^-1`.
+- **Trace.** `tau(delta) = tau(eps_-) - tau(ca) = 0 != 2`, and equivalent idempotents have equal
+  trace.
+- **Kernel-corner transfer, Theorem 4.**
+  - `delta4(g) delta4(g') = sum_gamma S[gamma] g g' T[gamma]` and `delta4(1) = sum q_gamma = 1`, so
+    `delta4` is a homomorphism. `T[00] delta4(g) S[00] = g`, so it is injective.
+  - For `h = sum lambda(gamma) q_gamma`, `q_gamma S[gamma'] = delta_(gamma gamma') S[gamma]` gives
+    `h delta4(g) = delta4(g) h`. So `E` commutes with `delta4_*(S)`, and `mu` is multiplicative.
+  - `delta4(-1) = -1`, so `mu(eps_-) = q`, and `pi mu = 0`.
+  - Injectivity: `delta4(x)` in `H` gives `x = T[gamma] delta4(x) S[gamma] = lambda(gamma)`, a
+    scalar, which is 1 since `-1` is not in `H`. So the products `delta4(g) h` are distinct group
+    elements.
+  - The padded pair: `CA = (eps_- - q) + mu(ca) = eps_-`, and
+    `AC = (eps_- - q) + mu(ac) != eps_-` by injectivity. Both `A - eps_-` and `C - eps_-` lie in
+    `K_-`.
+- **Corollary 4a.** `K_-^+` is a unital subring of `S_-` with the same identity. A separated pair
+  has `ac != eps_-`, because `eps_- [w] eps_- != 0`. The equivalences hold.
+
+## 9. Scalar-character splitting and the cyclic twist (22e71610d, lane gk-lp-hosts): PASS, one scope remark
+
+Items checked: `leavitt-unit-group-algebras-split-over-scalar-characters` and
+`cyclic-twist-makes-leavitt-visible-factor-a-matrix-algebra`, with their proof routes.
+
+- **Splitting.**
+  - `Z = F_q^x . 1` is central of order `q - 1`, which is prime to `p`, and `F_q^x` contains the
+    `(q-1)`-th roots of unity. Character orthogonality then gives central orthogonal idempotents
+    `eps_chi`, summing to 1, with `[lambda] eps_chi = chi(lambda) eps_chi`.
+  - `pi(eps_chi) = delta_(chi, iota)`.
+  - On `A_iota`, `[zeta^k]` acts as `zeta^k`, which is pressure point 1.
+  - The padding gives `CA' = 1 != A'C`.
+  - `sum_(lambda in F_q^x) lambda^-1 = 0` for `q > 2`, so the augmentation kills `A_iota`.
+- **Permutation units.**
+  - `u_sigma u_tau = u_(sigma tau)`, and `t_(sigma(i)) u_sigma s_i = 1` gives injectivity.
+  - `u_sigma b = b` and `c b = (1/m) m = 1` need `p` not dividing `m`, which transitivity supplies.
+  - The `m`-ary families come from substituting `s_k -> s_k s_1, ..., s_k s_d`, and the relations
+    check.
+  - In characteristic two, `pi(1 + g + g^2)` is a nonzero idempotent equivalent to 1, while
+    `pi(1 + g0 + g0^2) = 0`. So `g` and `g0` are not conjugate.
+- **Twist.**
+  - `delta g = sum_k zeta^(k+1) s_(k+1) t_k = zeta g delta`, so `[delta][g^k][delta^-1] = [zeta^k][g^k]`,
+    which is `zeta^k [g^k]` on `A_iota`.
+  - The `m` isotypic idempotents exist because `p` does not divide `m` and `mu_m` lies in `F_q`
+    (pressure point 2). Conjugation by `[delta]` sends `psi` to `psi zeta^-1`, a single cycle, so
+    they are pairwise equivalent and `A_iota ~= M_m(T)`.
+  - Morita: `1 <= E_11` in `M_m(T)` iff `T^m` is a summand of `T`, iff a unital `m`-pair Cohn family
+    `gamma_i beta_j = delta_ij e_1` exists.
+- **Ascent.**
+  - `eps_iota(q) eps_iota(q^r) = eps_iota(q^r)`, because `[lambda]` acts as `lambda` on
+    `A_iota(q^r)` for `lambda` in `F_q^x`. The field ascent holds.
+  - The arity and prime-field statements are scoped correctly.
+- **Scope remark on Theorem 3(5).** "`pi` maps `T` onto `pi(e_H) L pi(e_H)`" needs `pi` onto. The
+  recorded claim `leavitt-unit-group-algebra-surjects-onto-leavitt` proves spanning by units in
+  rings carrying a *binary* Leavitt family. That covers `d = 2`. For `d >= 3`, `L_(F_q)(1,d)` has
+  no unital binary family, since admissible arities are `1 + j(d-1)`, so "onto" is unrecorded
+  there.
+  - Nothing else depends on it. Theorem 2's image equation, Theorem 3(1) to (4), and the corner
+    equivalence `pi(e_H) ~ 1` all hold without surjectivity.
+  - Read (5) as "into, containing `pi(e_H) G pi(e_H)`" for `d >= 3`, or record the `d`-ary spanning
+    claim. For `q = 2`, the image solution with `m = 3` holds, while the twist needs `F_4`, as the
+    artifact says.
+
+## 10. Support no-go for swap-separated pairs (10fcc9563, lane gk-kdf-structure): PASS
+
+Items checked: artifact `ternary-swap-separated-pairs-2026-09-12.md`, Sections 3 and 4; claim
+`swap-separated-pairs-avoid-finitely-represented-supports`.
+
+- **Cross-term form.**
+  - `c(1 + [w]) e_- a = 2c(1 + [w])^2 a = c(1 + [w]) a`.
+  - If `u = c(1 + [w]) a` is a unit, `u^-1 c(1 + [w])` solves (C). Conversely, (C) gives the unit
+    `eps_-` with `c' = 2c`.
+  - `eps_- - m^2 = (eps_- - m)(eps_- + m)`, and the factors commute. So invertibility under (X)
+    implies `eps_- + m` invertible, and the new form is weaker, as stated.
+- **Theorem 3.**
+  - `rho(eps_-) = 2(1 - (-1)) = 1` in characteristic three.
+  - (1) `rho(c) rho(a) = 1` for square matrices makes `rho(a)` invertible, so `rho(c)rho(w)rho(a) = 0`
+    forces `rho(w) = 0`, which is impossible.
+  - (2) `rho(e_-) = 2(1 + rho(w))` must be invertible, which excludes the eigenvalue `-1`.
+- **Cantor module.** With `(s_i f)(x) = f(sigma x)` on `[i]` and `(t_i f)(y) = f(iy)`:
+  - `t_j s_i f = delta_ij f` and `sum_i s_i t_i f = f`;
+  - `w 1 = 1`, and every Thompson element, a sum of `S[alpha] T[beta]` over a partition, fixes 1;
+  - `w v_- = s0(-1) + s1(1) = -v_-` for `v_- = 1_[0] - 1_[1]`;
+  - `s0 x t0 + s1 y t1` fixes `v_-`, and `s0 x t1 + s1 y t0` negates it, whenever `x` and `y` fix 1.
+  So the finite orbits are `{+-1}` and `{+-v_-}`, which span one-dimensional representations with
+  `z = -1`, and in the second `w = -1`.
+- **Finite quotients.**
+  - `zbar` is central of order two, so `2(1 - zbar) F_3[Q] != 0` carries `z = -1`.
+  - If `wbar != 1`, then `x = (1 - zbar)(1 - wbar) != 0`: if `wbar = zbar` this is `2 - 2zbar`, and
+    otherwise `1, zbar, wbar, zbar wbar` are distinct. `wbar x = -x`, so `w` has eigenvalue `-1`
+    on that summand.
+- **Summary conditions.** "`z` lies in every finite-index subgroup" follows from the normal core.
+  Statement fidelity holds: supports lie in `eps_- F_3[H]` with `z, w` in `H`.
+
+## 11. Invariant census of the anti-central summand (cca468753, lane gk-l3-obstruct): PASS
+
+Items checked: artifact `ternary-anti-central-invariant-census-2026-09-12.md`, Theorems A, B(ii)
+and C; the claims `anti-central-state-obstruction-equals-stable-finiteness`,
+`ternary-anti-central-summand-has-no-finite-dimensional-images` and
+`ternary-corner-witnesses-need-non-linear-sofic-support`.
+
+- **A(a).**
+  - `f = (e_- b)(c e_-)` is idempotent, `f <= e_-` and `f ~ eps_-`, so `[e_-] = u + [h]`.
+  - `e_- ~ eps_- - e_-` through `[d]`, so `u = 2[e_-]`. Then `[h] = -[e_-]` is in the cone, and
+    `-u = 2[h]` is in the cone. So `u <= 0` with `k = 1`, and no state exists.
+- **A(b), the state criterion, proved in place.** `p(x) = inf{m/n : n x <= m u}` has these
+  properties:
+  - it is finite;
+  - it is bounded below, since `(m + nN) u >= 0` with `m + nN <= -1` is excluded;
+  - it is subadditive, by cross-multiplying the inequalities, and positively `Q`-homogeneous;
+  - it vanishes on torsion, since `r t = 0 <= 0 . u`.
+  Also `p(u) = 1` and `p(-u) = -1`. Hahn–Banach over `Q` with a real-valued functional below a
+  sublinear `p` works by one-dimensional extension and Zorn. `p(-x) <= 0` on the cone gives
+  positivity.
+- **A(c).** `[Q] + k u = 0` gives `Q + S_-^k + S_-^N ~= S_-^N`. That is an isomorphism onto a proper
+  summand, hence `BA = 1 != AB` in `M_N(S_-)`. Padding by `eps_+` gives the matrix failure, and the
+  matrix version of `stable-finiteness-failure-refutes-surjunctivity` applies.
+- **Corollary (i).** `f' = [d] f [d] <= eps_- - e_-` is orthogonal to `f`, and both are equivalent
+  to `eps_-`.
+- **B(ii).**
+  - The normal subgroups of `G` are `1`, `<z>` and `G`: if `N<z> = G`, then
+    `G = [G,G] = [N,N] <= N`.
+  - A finite-dimensional image is finitely generated linear, hence residually finite.
+  - `G` and `PG` are infinite with no proper finite-index normal subgroup, so the representation is
+    trivial.
+  - A ring homomorphism `S_- -> M_n(k)` forces characteristic three, and `z = -1` acting trivially
+    on `p k^n` forces `p = 0`.
+- **C.**
+  - The equation lives in `F_3[H]` for `H = <z, w, supp b, supp c>`, where `e_- != eps_-`.
+  - Padding gives a direct-finiteness failure of `F_3[H]`, so `H` is not `F_3`-linear sofic.
+  - It follows that `H` is not sofic, not amenable, and, being finitely generated, neither residually
+    finite nor linear.
+
+## 12. No exact equivariant lift of the Leavitt isometries (f78aaf852, lane gk-l3-corner): PASS
+
+Items checked: `self-similar-leavitt-intertwiners-have-no-exact-lift`, Section 1 of
+`leavitt-self-similarity-exactness-2026-09-12.md`.
+
+- **The endomorphisms and intertwinings.**
+  - `Theta : M_2(R) -> R` is a unital isomorphism. `delta = Theta(g I_2)` and
+    `iota = Theta(diag(g, 1))` are injective, since `t0 delta(g) s0 = t0 iota(g) s0 = g`.
+  - `u = 1 + s0 t1 = Theta(I + E_01)` is neither scalar nor diagonal, so neither map is onto.
+  - The intertwinings `delta(r) s_i = s_i r`, `t_i delta(r) = r t_i`, `iota(g) s0 = s0 g` and
+    `t0 iota(g) = g t0` all follow from `t_i s_j = delta_ij`.
+- **Lemma 1.1.**
+  - The normal core `N` of a finite-index subgroup maps to `1` or `PG`.
+  - `1` would make `G` finite.
+  - Otherwise `G/N` is a quotient of the abelian `F_p^x`, and perfectness forces `N = G`.
+  - Trust surface: simplicity of `PG` is imported from `odd-leavitt-unit-groups-mod-scalars-are-fp-simple`,
+    as the author says.
+- **Theorem 1.2.**
+  - `V[g] = sum_x v(x g^-1)[x]` and `[phi(g)]V = sum_x v(phi(g)^-1 x)[x]` give
+    `v(y) = v(phi(g)^-1 y g)`.
+  - `g . y = phi(g) y g^-1` is an action, since `(gh) . y = g . (h . y)`, and `v` is constant on
+    orbits.
+  - A finite support forces finite orbits, and then a stabilizer `{g : phi(g) = y g y^-1}` of
+    finite index. That stabilizer is `G`, so `phi = Ad(y)` is onto, a contradiction.
+  - The right-handed version is symmetric. The anti-central statement holds because `S_-` is a
+    subset of `k[G]` and the equations are the same.
+
+## 13. Binary kernel-corner transfer (6579f5176, lane gk-l2-invisible; canonical claims of gk-l2-visible): PASS
+
+Items checked: artifact `leavitt-invisible-corner-transfer-2026-09-12.md`, route
+`kernel-unitization-df-from-unit-group-algebra-df`, and the canonical claims
+`leavitt-unit-group-algebra-embeds-in-kernel-corner` and
+`leavitt-kaplansky-failures-have-invisible-witnesses`.
+
+- **Pressure point 1.**
+  - `Theta(q I_2) Theta(M) = Theta(qM) = Theta(Mq)` for `M` in `M_2(F_2)`, whose entries are central.
+    So `delta(Q)` commutes with `H = Theta(GL_2(F_2)) ~= S_3`.
+  - `Theta(q I_2) = Theta(M_h)` forces `M_h` scalar, hence `I_2`, because `Z(GL_2(F_2)) = 1`.
+  - So `Q x H` embeds in `Q`, and `J` is injective.
+- **Pressure point 2.**
+  - `M_g = [[1,1],[0,1]][[1,0],[1,1]] = [[0,1],[1,1]]`, and `M_g^2 = [[1,1],[1,0]] = M_g + I_2`.
+    So `I + M_g + M_g^2 = 0` and `pi(z) = 0`.
+  - `e_0^2 = 3 e_0 = e_0`, and `e_0` is central because `<g>` is normal in `S_3`.
+- **Pressure point 3.** `mu(a) = J(a (x) e_0)`, the tensor `a (x) e_0` is nonzero over a field, and
+  `J` is injective. So `mu` is injective on all of `S`, and `mu(a) mu(b) = J(ab (x) e_0^2)`.
+- **The padded pair and the equivalences.** Same computation as Section 8. `Phi(x) = delta(x) z + e`
+  is unital and multiplicative because `z e = 0`, and `1 - Phi(ab) = delta(1 - ab) z` lies in `K`.
+- **Pressure point 4, level one over `F_3`.** The `3'`-subgroups of `GL_2(F_3)` are 2-groups, and
+  a scalar-free 2-group without fixed vectors does not exist:
+  - a cyclic group of order at least 4 contains `g^2` with eigenvalues `+-i` squared, so it contains
+    `-I`;
+  - a Klein group of commuting reflections contains their product `-I`;
+  - generalized quaternion groups contain `-I` as their unique involution;
+  - a single reflection fixes a line.
+  So the averaging idempotent of any scalar-free `3'`-subgroup is not killed by `rho_2`, as claimed.
+  The level-two Klein constants of Section 8 avoid `-I_4`.

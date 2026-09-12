@@ -8,6 +8,7 @@ requires:
   - ternary-leavitt-swap-problem-splits-at-central-involution
   - stable-finiteness-failure-refutes-surjunctivity
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md
 ---
 
@@ -32,3 +33,5 @@ artifacts:
   - The stable-finiteness lemma then yields a strict automaton.
 
 Sections 1–3 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 11 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

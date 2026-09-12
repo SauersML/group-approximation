@@ -10,6 +10,7 @@ requires:
   - finitely-generated-linear-groups-are-residually-finite
   - d-ary-leavitt-groups-nonsofic-over-finite-fields
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ artifacts:
   homomorphism is zero.
 
 Section 3(ii) of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 11 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

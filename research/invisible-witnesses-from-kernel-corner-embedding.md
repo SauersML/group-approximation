@@ -7,6 +7,7 @@ target: leavitt-kaplansky-failures-have-invisible-witnesses
 requires:
   - leavitt-unit-group-algebra-embeds-in-kernel-corner
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/scalar-corner-kernel-embedding-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ For the listed consequences:
 - A (V*) witness is a failure of `S`, since `ab = 1` would make `s_0` a unit of `R`.
 - `K^+` is a unital subring of `S`, which gives the reverse implication of item 1.
 (Artifact Corollary 4.)
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 13 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

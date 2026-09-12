@@ -7,6 +7,7 @@ target: leavitt-evaluation-kernel-unitization-directly-finite
 requires:
   - leavitt-unit-group-algebra-is-directly-finite
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-invisible-corner-transfer-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ of `leavitt-kaplansky-failures-have-invisible-witnesses` (landed by `gk-l2-visib
 direct finiteness of `K^+` gives direct finiteness of the group algebra. The cycle warning
 between this route and that one is correct and informational. Neither completes without an
 open claim, so nothing is established through the cycle.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 13 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

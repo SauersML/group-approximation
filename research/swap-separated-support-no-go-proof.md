@@ -7,6 +7,7 @@ target: swap-separated-pairs-avoid-finitely-represented-supports
 requires:
   - ternary-leavitt-swap-problem-splits-at-central-involution
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-swap-separated-pairs-2026-09-12.md
 ---
 
@@ -26,3 +27,5 @@ artifacts:
 * **Finite quotients.** Take the regular representation of the quotient, cut by
   `2(1 - zbar)`. It is nonzero when `zbar != 1`. When `wbar != 1` as well,
   `2(1 - zbar) . 2(1 - wbar) != 0`, so `w` has eigenvalue `-1` there.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 10 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

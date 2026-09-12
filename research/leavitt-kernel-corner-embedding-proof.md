@@ -6,6 +6,7 @@ title: Cut the scalar copy of the group algebra by the constant C_3 averaging id
 target: leavitt-unit-group-algebra-embeds-in-kernel-corner
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/scalar-corner-kernel-embedding-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ Sections 1–3 of the artifact.
    `F_2[delta(G)] (x) F_2[H]`. So `j` is an injective unital ring map into `zSz`,
    which lies in `K`.
 4. Padding by `e = 1 - z` gives `Phi`, with `Phi(x) - 1 = (delta(x) - 1) z` in `K`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 13 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

@@ -7,6 +7,7 @@ target: cyclic-twist-makes-leavitt-visible-factor-a-matrix-algebra
 requires:
   - leavitt-unit-group-algebras-split-over-scalar-characters
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-host-survey-scalar-characters-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ Sections 2 and 3 of the artifact.
   pairwise equivalent idempotents summing to `1` give `M_m(T)`.
 - **Cohn form.** `1 <= E_11` in `M_m(T)` becomes `T^m` embedding as a summand of `T` under Morita
   equivalence, which is the Cohn relations.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 9 (scope remark on Theorem 3(5): the onto statement for d >= 3 is unrecorded and not load-bearing) of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

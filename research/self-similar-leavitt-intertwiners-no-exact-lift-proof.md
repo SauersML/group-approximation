@@ -8,6 +8,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - odd-leavitt-unit-groups-mod-scalars-are-fp-simple
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-self-similarity-exactness-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ Section 1 of the artifact.
    `g . y = g y phi(g)^-1`.
 3. **Contradiction.** A nonzero finitely supported invariant `v` has a finite orbit. Its stabilizer
    has finite index, so it is `G`. Then `phi = Ad(y)` is onto, contradicting the hypothesis.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 12 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

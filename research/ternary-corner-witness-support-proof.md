@@ -8,6 +8,7 @@ requires:
   - linear-sofic-group-algebra-is-stably-finite
   - sofic-implies-linear-sofic-over-every-field
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md
 ---
 
@@ -22,3 +23,5 @@ artifacts:
   `F_3`-linear sofic. Sofic groups are linear sofic over every field, so `H` is not sofic.
 
 Section 4 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 11 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
