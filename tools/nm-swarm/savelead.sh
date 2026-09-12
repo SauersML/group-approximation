@@ -16,7 +16,7 @@ put() {  # put <src> <repo-dest>
 for f in COMMON_RULES.md LIX_LANES.md wire-queue.txt wave1.mods wave2.mods census-notes.md WORKLIST.md landed.log atrisk.txt deprecated-at-pin.txt; do put "$NM/$f" "notes/nm-swarm/$f"; done
 for f in "$NM"/rows/*.tsv; do put "$f" "metadata/nm-census-rows/$(basename "$f")"; done
 for f in "$NM"/reports/*.md; do put "$f" "notes/nm-swarm/reports/$(basename "$f")"; done
-for f in nmprobe.sh nmland.sh nmwire.sh nmwirelist.sh closure.sh savelead.sh palomar-verify.sh; do put "$NM/$f" "tools/nm-swarm/$f"; done
+for f in nmprobe.sh nmland.sh nmwire.sh nmwirelist.sh closure.sh savelead.sh palomar-verify.sh dupcheck.py; do put "$NM/$f" "tools/nm-swarm/$f"; done
 for f in "$NM"/remote/*.sh "$NM"/remote/*.py; do put "$f" "tools/nm-swarm/remote/$(basename "$f")"; done
 for f in "$NM"/census/*.sh "$NM"/census/*.py; do put "$f" "tools/nm-swarm/census/$(basename "$f")"; done
 for lf in "$NM"/lanes/*.files "$NM"/lanes/*.clone; do put "$lf" "notes/nm-swarm/lanes/$(basename "$lf")"; done

@@ -307,3 +307,12 @@ GroupApproximation.Kazhdan.GHWArchimedeanSeparation
 GroupApproximation.Kazhdan.GHWArchimedeanBound
 GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeRegions
 GroupApproximation.GGT.SystolicDiscMovesChord
+# 09-12 09:52 root build 0912-093924-26528 (33 modules, base 64b5cb016) FAILED only on duplicate
+#   EdgeInsertion.embed_injective (EdgeInsertionFaceCycles:164 vs rooted CombMapEdgeKeptFaces:18). kh-torsion asked to rename/remove.
+# 09-12 ~10:05 wave 4 launched (40 modules = wave 2 minus EdgeInsertionFaceCycles and its dependent SystolicDiscMovesChord,
+#   plus CCKWTitsGHB SurgeryPinchSplitExtremal GHWArchimedeanSeparation GHWArchimedeanBound SurgeryGFaceMergeRegions
+#   GHBHyperbolic GHBHyperbolicFilling LIXPowersEquatorChart); dupcheck.py predicted 0 collisions at cd999fec9
+# pending kh-torsion's embed_injective fix (NM_ATTIC + green probe):
+GroupApproximation.GGT.VanKampen.EdgeInsertionFaceCycles
+GroupApproximation.GGT.SystolicDiscMovesChord
+# kh-hyperbolic: GHBHyperbolicDiscCounts waits on go-sr1's red SystolicDiscFilling/SystolicDiscCounts
