@@ -7,6 +7,7 @@ target: z3-equivariant-automorphisms-have-constant-normal-rotation
 requires: []
 artifacts:
   - research/artifacts/z3-normal-rotation-and-eigen-hyperplane-rigidity-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 1.
@@ -16,3 +17,7 @@ Artifact Section 1.
 3. The Jacobian at `(c, 0, 0)` is `diag(d_s T_s, lambda(c), lambdabar(c))`, with constant nonzero
    determinant. So `lambda` has no root in `F_2bar`, and is a constant.
 4. The chain rule gives multiplicativity.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: weights `0, 1, 2` of
+`s, u, ubar`, the diagonal Jacobian along the fixed line, and `lambda lambdabar = 1` in `F_4[s]`
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 4.1).

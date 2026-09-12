@@ -8,6 +8,7 @@ requires:
   - z3-equivariant-automorphisms-have-constant-normal-rotation
 artifacts:
   - research/artifacts/z3-normal-rotation-and-eigen-hyperplane-rigidity-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Section 2.
@@ -19,3 +20,8 @@ Artifact Section 2.
 3. **`T_u = lambda u` ⇒ triangular.** `(s, lambda^-1 v) o T` fixes `F_2[V]` pointwise. Its action on
    `s` is an `F_2[V]`-algebra automorphism of `F_2[V][s]`, hence `s -> s + c(v)` with `c` invariant.
 4. **Triangular ⇒ cone.** It multiplies `u` by `lambda`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently. The swap exclusion in
+step 1 uses Frobenius conjugation, `u | T_ubar` ⇒ `ubar | T_u`. The shadow group `K` has order 12 and index
+3 in the order-36 group, and it is not normal
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Sections 4.2–4.3).

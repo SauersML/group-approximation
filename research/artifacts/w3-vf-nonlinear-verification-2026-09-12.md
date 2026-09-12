@@ -194,3 +194,66 @@ Kun–Thom Theorem E pair `Gamma < G` (G residually finite), `X = G/Gamma` infin
 
 **Decision status.** Nothing decision-level. `kun-thom-clifford-cover-nonsurjunctive` and
 `clifford-cover-anti-half-skew-ring-not-directly-finite` stay OPEN.
+
+**Follow-ups landed by authors.**
+- w3-v-linear (0daab32073): the `T` remark was reworded as recommended.
+- w3-free-neg (a1fc94a048): the splitting route now requires `kun-thom-wreath-stably-finite`.
+- w3-measurable (10ee1dfb45): the Proposition E consequence was reworded as recommended.
+
+## 4. Z_3 normal rotation and the eigen-hyperplane stabilizer (w3-nonformal, b9667076bd)
+
+Artifact: `research/artifacts/z3-normal-rotation-and-eigen-hyperplane-rigidity-2026-09-12.md`.
+Setting: `(Rx)_i = x_(i-1)` on `A^3` over `F_2`, `s = x_0 + x_1 + x_2`, `u = x_0 + w x_1 + w^2 x_2`
+over `F_4 = F_2(w)`, and `ubar` its conjugate.
+
+### 4.1 `z3-equivariant-automorphisms-have-constant-normal-rotation`. Verdict: PASS.
+
+- `u o R = x_2 + w x_0 + w^2 x_1 = w u`. `T o R = R o T` gives `R^* T^* = T^* R^*`, so `T_u` has weight 1:
+  every monomial `s^k u^a ubar^b` in it has `a - b = 1 mod 3`.
+- `Fix(R)` is the diagonal `{u = ubar = 0}`. Adding the two equations over `F_4` gives `x_1 = x_2`,
+  then `x_0 = x_1`. `T` and `T^-1` preserve it, so `T` acts there by an automorphism of `A^1` over `F_2`,
+  which is `s -> s + b`.
+- Degree-one terms of `T_u` in `(u, ubar)`: `s^k u` has weight 1 and is allowed, `s^k ubar` has weight 2
+  and is excluded, and there is no weight-0 term. So along the line
+  `J = diag(d_s T_s, lambda(s), lambdabar(s))`, since `T_s` has weight 0 and no degree-one terms.
+- `det J` is a unit of `F_2[x]`, hence `1`. So `lambda lambdabar = 1` in `F_4[s]`, and `lambda` is a
+  constant in `F_4^x`. The chain rule at points of the line gives multiplicativity.
+
+### 4.2 `z3-eigen-hyperplane-stabilizer-is-the-triangular-group`. Verdict: PASS.
+
+- `N = u ubar = sum x_i^2 + sum_(i<j) x_i x_j`, using `w + w^2 = 1` and `w^3 = 1`, is defined over `F_2`,
+  and `C = H ∪ Hbar`.
+- **(i) ⇒ (ii), the pressure point.**
+  - `T(H)` is closed, irreducible and two-dimensional inside `H ∪ Hbar`, so it equals `H` or `Hbar`.
+  - If `T(H) = Hbar`, then `T_ubar` vanishes on `H`, so `u | T_ubar`. `T` is defined over `F_2`, and
+    Frobenius on coefficients sends `T_ubar` to `T_u` and `u` to `ubar`, so `ubar | T_u`.
+  - Then `d T_u / du = ubar d_u beta` vanishes on the diagonal, contradicting `lambda(T) != 0`. Correct.
+- (ii) ⇒ (iii): `u` is prime, so `u | T_u` and `u | (T^-1)_u`. `u = (u beta')(T) = u beta (beta' o T)`,
+  so `beta` is a unit, hence the constant `lambda(T)`.
+- (iii) ⇒ (iv): `T_ubar = lambdabar ubar` by conjugation. `(s, lambda^-1 v) o T` fixes `F_2[V]`, and an
+  `F_2[V]`-automorphism of `F_2[V][s]` is `s -> s + c(v)`, since `F_2[V]^x = {1}`. Equivariance makes `c`
+  invariant. (iv) ⇒ (i): `N o T = lambda lambdabar N = N`.
+
+### 4.3 Shadow group and Section 3. Verdict: correct.
+
+- **Index 3, the pressure point.**
+  - `E = C_2 x (C_3 wr C_2)` has order 36: a swap of `000, 111`, then a swap of the free orbits `O_1, O_2`,
+    and rotations `(r_1, r_2)`.
+  - The triangular shadows are `(s + f(v), R^k v)`. `f` takes one value at `v = 0` and one on `v != 0`, and
+    `k` is uniform. So `K = C_2 x (Delta x <sigma>) = C_2 x C_6` has order 12.
+  - `K` is not normal: `(a, b) sigma (a, b)^-1 = (a - b, b - a) sigma` lies outside `K` when `a != b`.
+  - Index 3 is prime, so a subgroup containing `K` is `K` or `E`. The weight-one rotation has
+    `(r_1, r_2) = (1, 0)`, which is outside `K`.
+- **Shape on `H`:** the monomials `s^k ubar^b` with `-b = 1 mod 3` give `T_u|_H = ubar^2 g(s, ubar^3)`.
+- **Line crossing.** `gamma(t) = (t, t+1, t+1)` has `(s, u, ubar) = (t, 1, 1)`. `u` is unchanged by
+  complementation, so after normalizing `p(0) = w^(r_2)` and `p(1) = w^(r_1)`. A nonconstant `p` is
+  nonzero at `0, 1`, so its roots lie outside `F_2`. The monodromy description is consistent with this.
+- **Section 4 and the Attempts entries.**
+  - The two-track shear `(s, v_1 + s v_2, v_2)` is an equivariant automorphism whose normal block
+    derivative has determinant 1.
+  - The corrected scope on `non-surjunctive-group-with-stably-finite-group-algebras` is right:
+    `tau x id` is strict iff `tau` is, and stable finiteness of `F_2[G]` passes to finite-index subgroups,
+    so both stable and virtual formalizations would force Kaplansky failure.
+
+**Decision status.** Nothing decision-level. `z3-weight-one-rotation-is-not-an-automorphism-shadow` stays
+OPEN.
