@@ -58,3 +58,19 @@ refutes Gottschalk's conjecture.
     diagonal; counts `10, 9, 8`.
   - **Coverage.** Its pattern uses every symbol with augmentation `1`. The distinct-pairs corollary misses it,
     and Theorem 13' covers it.
+- **Patches repeating a symbol reduce to linear strictness** (w4-bal-rigid,
+  `single-patch-ternary-rules-reduce-to-linear-strictness`, artifact
+  `single-patch-ternary-rules-linear-reduction-2026-09-12.md`).
+  - **Result.** Let an affine rule be patched at one pattern `(s_0, s, s)`, on any placement
+    `{1, a, b}`. If `a` and `b` do not commute and the linear part `L` is surjective, the automaton is
+    not injective. If `L` is bijective, it is not even pre-injective.
+  - **Method.** A preimage of `-epsilon delta_h` is filled greedily. `s` is kept off every site except
+    `hM`, and in the involution case `(a^-1 b)^2 = 1` one extra site stays off `s_0`. Then the
+    pattern occurs only at `h`.
+  - **For `R`.** The unit case and its absorbed-translate residue are closed. `R` is injective over
+    `G` only if `x - y + z` is a linear strict automaton over `G`.
+  - **What remains.**
+    - Single patches with three distinct symbols. The collision attempt dies only when the preimage
+      is a constant `kappa` on `M` with `kappa (c_1 + c_2 + c_3) = -epsilon`, and only under further
+      value coincidences (artifact 2.2).
+    - Rules at distance at least 2 from every affine rule.

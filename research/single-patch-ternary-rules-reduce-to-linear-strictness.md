@@ -5,6 +5,7 @@ kind: claim
 title: A ternary three-address rule that differs from an affine rule at one pattern with a repeated symbol is injective only where its linear part is a linear strict automaton
 distinct_from:
   avoidable-patches-of-affine-rules-inherit-linear-injectivity: that transfers injectivity from a patched rule to its linear part; this also rules out a surjective linear part, through a collision built from a preimage of a delta, so the unit case dies and only linear strictness remains.
+  constant-background-kills-unit-linear-defect-rules: that kills the unit case on a constant background, leaving a residue of absorbed memory translates inside M and N^-1; this fills the background greedily, keeping the repeated symbol out, so for patches that repeat a symbol the residue is empty over non-commuting memory.
 artifacts:
   - research/artifacts/single-patch-ternary-rules-linear-reduction-2026-09-12.md
 ---

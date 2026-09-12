@@ -107,3 +107,57 @@ QED
 - **Literature (not re-read).** Linear surjunctivity over a field `K` is equivalent to stable
   finiteness of `K[G]` (Ceccherini-Silberstein–Coornaert). So an injective `R` would make `F_3[G]`
   not stably finite. No node here depends on this.
+
+## 2. Where it stops
+
+### 2.1 Covered
+
+Every affine three-address ternary rule patched at one pattern that repeats a symbol, on every
+placement, over every group. For these rules `ternary-three-address-injective-automata-have-balanced-rules`
+reduces to linear surjunctivity over `F_3`.
+
+### 2.2 Patches with three distinct symbols
+
+- **The setup.** Let `p = (p_1, p_2, p_3)` have three distinct symbols. The avoidable-patch
+  proposition still applies, with `s` any symbol of `p`: a pattern that avoids `s` is never `p`. So
+  an injective rule again forces `L` to be injective.
+- **The collision attempt.** Let `L` be bijective, let `d_0` be the preimage `L(d_0) = -epsilon delta_1`,
+  and let `d(g) = d_0(h^-1 g)`. Pick a symbol `sigma = p_i`. Fill `x` with `x + d = p` on `hM`, and keep
+  `sigma` out of both configurations at every other site.
+  - **`x + d`.** Its `sigma`-sites are exactly `{h m_i}`, so it shows `p` only at `h`.
+  - **`x` at `h`.** It cannot show `p` there, because `L(d)(h) != 0`.
+  - **`x` elsewhere.** It can show `p` only at `g = h m_beta m_i^-1` with `beta != i`. That needs
+    `x(h m_beta) = p_i`, which means `d_0(m_beta) = p_beta - p_i`.
+- **When some choice of `sigma` has no danger.** Write `e_beta = p_beta - d_0(m_beta)`, the values of
+  `x` on `hM`.
+  - **The collision holds** unless, for every `i`, some `beta != i` has `e_beta = p_i`.
+  - **What that forces.** Then `e = p o pi` for a 3-cycle `pi`. The differences
+    `p_beta - p_(pi(beta))` are three nonzero elements of `F_3` summing to `0`, so they are equal.
+    So `d_0` is a constant `kappa != 0` on `M`, and `kappa (c_1 + c_2 + c_3) = -epsilon`.
+- **The danger case.** Here `x` can show `p` at `h m_beta m_i^-1` only if both other sites of that
+  translate of `M` carry the right symbols.
+  - **Generic sites.** Where `d = 0`, two symbols avoid `sigma` and one of them avoids the required
+    symbol, so the occurrence can be broken.
+  - **Forced sites.** Where `d != 0`, or on `hM`, the symbol is forced. The occurrence survives only
+    under value coincidences of `d_0` on `M m_i^-1 M`.
+- **Status.** No uniform way to break these is known. **Open.**
+- **Relation to `constant-background-kills-unit-linear-defect-rules`** (w3-bal-design, Theorems 13
+  and 13').
+  - **Their method.** A constant background kills the unit case, except for absorbed memory
+    translates inside `M ∪ N^-1` that show `p`.
+  - **For patches repeating a symbol.** Theorem 1.1 empties that residue over non-commuting memory.
+  - **For patches with three distinct symbols.** Their residue (for every symbol `c`, an absorbed
+    translate of `M \ P_c`) and the danger case above are two residues of the same unit case.
+    Whether a group can meet both at once is not checked here.
+
+### 2.3 Rules far from affine
+
+A rule at Hamming distance at least 2 from every affine rule has no canonical linear part, and
+both the avoidable-patch transfer and Theorem 1.1 lose their input. **Open.**
+
+### 2.4 What remains of the census claim
+
+Beyond linear strictness over `F_3`, `ternary-three-address-injective-automata-have-balanced-rules`
+now reduces to two classes:
+- single patches with three distinct symbols, in the danger case of 2.2;
+- rules at distance at least 2 from every affine rule.
