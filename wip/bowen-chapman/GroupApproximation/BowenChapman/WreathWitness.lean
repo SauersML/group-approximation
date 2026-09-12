@@ -49,8 +49,8 @@ theorem cosetWreath_isSurjunctive : Surjunctivity.IsSurjunctive CosetWreath := b
 /-- The coset wreath witness is not sofic. -/
 theorem cosetWreath_not_isSofic : ¬ IsSofic CosetWreath := by
   obtain ⟨t, γ, hγ, hesc⟩ := exists_escape_of_not_normal peripheral_not_normal
-  exact not_isSofic_wreath_of_centralizerNormalization Peripheral
-    (hasSoficCentralizerNormalization_of_kazhdan_infranormal
+  exact not_isSofic_wreath_of_sequentialNormalization Peripheral
+    (hasSequentialCentralizerNormalization_of_kazhdan_infranormal
       ambient_hasKazhdanPropertyT peripheral_hasKazhdanPropertyT
       peripheral_isInfranormal)
     hγ hesc
