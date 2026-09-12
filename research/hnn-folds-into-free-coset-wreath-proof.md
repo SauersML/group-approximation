@@ -4,7 +4,7 @@ id: hnn-folds-into-free-coset-wreath-proof
 kind: route
 title: Push the stable letter through the coset lamps and read reduced forms
 target: hnn-folds-into-free-coset-wreath
-requires: [gkp-free-generalized-wreath-soficity]
+requires: [gkp-free-wreath-permanence]
 artifacts:
   - research/artifacts/hnn-fold-free-coset-wreath-2026-09-11.md
 ---
