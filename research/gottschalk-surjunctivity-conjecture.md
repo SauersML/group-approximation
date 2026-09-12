@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - strict-automaton-on-lattice-in-product-of-trees
   - some-finite-field-leavitt-unit-group-nonsurjunctive
   - projective-ternary-leavitt-group-nonsurjunctive
   - ternary-leavitt-unit-group-nonsurjunctive
@@ -614,3 +615,33 @@ strict pair escapes Kaplansky
 (`infinite-field-polynomial-strict-pairs-need-kaplansky-failure`), and in
 characteristic 0 none exists at all. Open target:
 `non-surjunctive-group-with-stably-finite-group-algebras`.
+
+**Direct arguments on simple hosts (2026-09-12).** One-site Hilbert hotels are
+strict only on stabilizers properly conjugated into themselves, so never on the
+regular action (`site-pullbacks-strict-iff-stabilizer-self-compressed`). Host
+conjugation, endomorphism transport (the commuting Leavitt copies), composition
+and products all preserve strictness
+(`strict-automata-closed-under-host-manipulations`), so host structure alone
+yields no contradiction. What is needed is a size that drops on proper retracts,
+that is, direct finiteness of the automaton monoid
+(`surjunctivity-iff-automaton-monoid-directly-finite`). Centralized symmetry
+only passes strictness up from central quotients of the memory group
+(`surjectivity-descends-to-centralized-coset-quotients`), and invariant-output
+symmetries must be core-free (`invariant-output-symmetry-must-be-core-free`).
+Artifact: `research/artifacts/simple-host-direct-attack-2026-09-12.md`.
+
+**Low-degree nonlinearity is linear in disguise (2026-09-12).** Take an automaton
+over `F_q^m` whose left inverse satisfies `deg sigma * deg tau < q`. Under that
+bound formal and functional composites agree, and the lowest homogeneous part of
+the pullback on `F[x_u : u in G]` is its linear part. If the linear parts form a
+unit, the automaton is surjective
+(`unipotent-automata-over-finite-fields-are-surjective`). A strict low-degree
+automaton forces `C A = I != A C` over `F_q[G]`, and over `F_p` at size `mk`
+(`low-degree-strict-automata-force-matrix-kaplansky-failure`). Low-degree
+invariant-output designs die when `p | |H|`, and otherwise are matrix
+corner-fullness equations for the averaging idempotent
+(`low-degree-invariant-output-reduces-to-corner-fullness`). Words in square linear
+automata and reversible automata are strict only through a strict linear factor.
+So on hosts where `F_p[G]` is stably finite, only designs with degree product at
+least `q`, whose decoder identity uses `x^q = x` (every binary design), can refute
+Gottschalk. The cube-root pair on `F_8` shows the bound is sharp in kind.
