@@ -7,6 +7,7 @@ target: strict-automaton-lowers-bernoulli-rokhlin-entropy
 requires: []
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete direct proof, Section 1 of the artifact.
@@ -23,3 +24,8 @@ Complete direct proof, Section 1 of the artifact.
 Amplification is essential. The marker cost `log 3` is fixed while the saving
 grows with `k`, so the proof never needs almost perfect tilings, which may not
 exist.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 14 of the
+verification artifact). One normalization was added to the artifact: translate
+the null pattern so that `1 in Omega`. This leaves `delta` and `D` unchanged and
+gives `C ⊆ B`, which the entropy count uses.

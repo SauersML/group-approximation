@@ -7,6 +7,7 @@ target: bernoulli-rokhlin-deficit-has-a-finitary-witness
 requires: []
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete direct proof, Theorem 3 and Corollary 3.1 of the artifact.
@@ -21,3 +22,6 @@ Complete direct proof, Theorem 3 and Corollary 3.1 of the artifact.
 * **Colimits.** The finitely many coincidences of a witness hold at some finite
   stage of any directed system mapping to `G`, and non-coincidences are never
   created.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 14 of the
+verification artifact).

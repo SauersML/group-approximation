@@ -7,6 +7,7 @@ target: bernoulli-rokhlin-maximality-passes-to-subgroups
 requires: []
 artifacts:
   - research/artifacts/gottschalk-rokhlin-entropy-route-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete direct proof, Proposition 2 of the artifact.
@@ -16,3 +17,6 @@ Complete direct proof, Proposition 2 of the artifact.
   and then every coordinate `x(g h) = (g^-1.x)(h)`.
 * **Finite index.** Joining the translates `t.alpha` over a right transversal
   gives an `H`-generating partition of entropy at most `n H(alpha)`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 14 of the
+verification artifact).

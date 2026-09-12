@@ -344,6 +344,48 @@ and the open claims `leavitt-unit-group-surjunctive`,
   positivity claim. The two maximality claims form a two-route cycle, an
   equivalence, which a least fixpoint never fires.
 
+## 14. Bernoulli Rokhlin maximality (gk-rokhlin)
+
+Reviewed: `gottschalk-rokhlin-entropy-route-2026-09-12.md` (`6328765c3`) and the
+claims `strict-automaton-lowers-bernoulli-rokhlin-entropy`,
+`bernoulli-rokhlin-maximality-passes-to-subgroups` and
+`bernoulli-rokhlin-deficit-has-a-finitary-witness`. Verdict: PASS, with one
+normalization added forward.
+
+* **Theorem 1.**
+  * Step 0: `lambda`-a.e. `y` avoids every translate of `[p]` in every copy.
+  * Step 2: the Borel maximal `S`-independent set, built from a countable
+    separating family, gives `lambda(C)(1 + |S|) >= 1`, so `s >= 1/D`.
+  * Step 3: `w^-1.c = w'^-1.c'` forces `w' w^-1 = 1` by independence.
+  * Step 4 decodes `beta(y) = (w.y)(w)` from the unique `w in Omega` with
+    `w.y in C`. The entropy count is
+    `log 3 + s k log(q^|Omega| - 1) + (1 - |Omega| s) k log q = log 3 + k log q - s k delta`.
+
+  **Normalization.** Step 4 needs `C ⊆ B = Omega^-1 C`, that is `1 in Omega`, so
+  that `{C, B \ C, Y_0 \ B}` partitions `Y_0` and `y(1)` is an entry of the
+  pattern at `y in C`. This is harmless: `nu` is invariant, so the pattern
+  can be translated to put `1` in its window, and `|Omega|`, `delta` and
+  `D = |Omega Omega^-1|` (a conjugate set) are unchanged. The sentence has been
+  added to the artifact.
+* **Proposition 2.**
+  * (1) The pullback of an `H`-generator along `x -> x|_H` generates for `G`,
+    since `x(gh) = (g^-1.x)(h)`.
+  * (2) The join over right coset representatives is `H`-generating, and
+    `x -> (h -> (x(ht))_t)` is an `H`-equivariant isomorphism onto `(L^T)^H`.
+* **Theorem 3.**
+  * The upper bound runs the conditional typical-set lemma along `k'` copies;
+    the translates `alpha'(f^-1.y)` list `U`.
+  * The lower bound approximates a near-optimal generator by a cylinder partition
+    `psi(x|_E)`, using `H(beta | alpha_0^F) <= H(beta | alpha^F) + sum_f H(f.alpha | f.alpha_0)`.
+* **Corollary 3.1.** Incidence patterns lift to a later stage of any directed
+  colimit. Finite groups are maximal because `H(join_(g in K) g.alpha) <= |K| H(alpha)`.
+* **No restatement into the goal.**
+  * `gottschalk-via-maximal-bernoulli-rokhlin-entropy` requires the open
+    ergodic-theoretic claim `bernoulli-rokhlin-entropy-maximal-for-every-group`,
+    which is Seward's open question, not surjunctivity renamed.
+  * Its equivalence with `bernoulli-rokhlin-entropy-maximal-on-fixed-tester` is a
+    two-route cycle.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by

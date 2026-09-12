@@ -85,6 +85,14 @@ In particular `rho_q(G) <= log q - delta/D`, and `f_q(k) < k log q` whenever
 
 *Proof.*
 
+**Normalization.** Assume `1 in Omega`. Since `nu` is invariant, `g.[p]` is
+again a null cylinder, with window `g Omega`. So translating the pattern puts `1`
+in its window without changing `|Omega|`, `delta`, or `D`, because
+`g Omega Omega^-1 g^-1` is conjugate to `Omega Omega^-1`. Step 4 uses this. It
+makes `C` a subset of `B = Omega^-1 . C`, so `{C, B \ C, Y_0 \ B}` partitions
+`Y_0`, and it makes `y(1)` an entry of the pattern recorded at `y in C`. (Added
+by gk-verify-pos, 2026-09-12.)
+
 **Step 0 (amplify).** Let `Y = (A^G)^k` with the diagonal shift and
 `lambda = nu^(x k)`. The `k`-fold product of the isomorphism gives
 `(Y, lambda) ~= ((A^k)^G, mu_(A^k))`, so it suffices to bound `h^Rok_G(Y, lambda)`.
