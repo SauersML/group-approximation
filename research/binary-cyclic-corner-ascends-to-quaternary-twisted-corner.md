@@ -7,6 +7,7 @@ target: leavitt-visible-cyclic-corner-is-full-on-some-host
 requires:
   - binary-cyclic-averaging-idempotent-is-full-on-leavitt-units
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/quaternary-twisted-corner-census-2026-09-12.md
 ---
 
@@ -16,3 +17,5 @@ Proposition 3.1(3) of the artifact.
   into the visible factor. It sends `e = 1 + [g] + [g²]` to `e_1 = (1 + [g] + [g²]) eps_iota`.
 - A solution `c e b = 1` becomes `(c eps_iota) e_1 (b eps_iota) = eps_iota`: the corner at
   `(q, d, m) = (4, 2, 3)`, where `3 | q − 1` and 3 is admissible for `d = 2`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 2.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. eps_iota = [1] + omega^2 [omega] + omega [omega^2] is central idempotent, x -> x eps_iota is unital and sends e to e_1, and (4,2,3) is admissible.*

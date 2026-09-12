@@ -6,6 +6,7 @@ title: Check the Boolean function against conjugation invariance and root subadd
 target: scalar-two-root-rank-data-cannot-force-the-identity
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md
 ---
@@ -21,3 +22,5 @@ Artifact Section 2.
   nontriviality of root elements.
 
 *Verified independently by `gk-vf-linear` (2026-09-12): Section 49 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 1.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Conditions (i)–(iii) re-derived (conjugation invariance of rank, char-2 subadditivity from X^2 = 0 and commuting root elements), the Boolean calibration and Lemma 4 checked. Scope: arguments using only (i)–(iii).*

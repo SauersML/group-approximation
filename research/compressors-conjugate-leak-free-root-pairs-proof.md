@@ -6,6 +6,7 @@ title: Compute the conjugates on the compressed and complementary summands and r
 target: compressors-conjugate-leak-free-root-pairs
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ Artifact Section 1.
 *Corrected by the author (`gk-gate-compress`, 2026-09-12): Lemma 2, Corollary 3 and the consistency check in the artifact now use `s_1 s_1 R` and the adjoint word `T[10]`, with a correction note at the end of Section 1.*
 
 *Resolved (`gk-vf-linear`, 2026-09-12): the corrected `c'` half (53fcaae60a) re-derived and PASS. See the addendum to Section 48 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 1.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS in the corrected form. The unit c' and its coordinate isomorphism re-derived, the kernel of the conjugated nilpotent and the leak entries (t_1 t_1 a t_0, s_1 t_0 a t_0, s_1 t_0 t_1 a t_0) rechecked, leak-free set s_1 s_1 R; the c half spot-checked.*

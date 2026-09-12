@@ -7,6 +7,7 @@ target: star-compression-designs-need-weight-four-colliding-columns
 requires:
   - thompson-action-on-odd-measures-is-essentially-free
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/odd-measure-star-compression-designs-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ Sections 2 and 4 of the artifact (Lemma 2.1, Theorem 4.1).
   they share at least two points, hence `c >= 2`, hence `c >= 4`.
 * **Transport.** Counting pairs `(g, mu)` with `g mu` in the collision set bounds that mass by
   `∫_(c >= 4) c`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 3.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS against the artifact at 2ec8fa09e, which removes the V-invariant null set N = union over all k != 1 in V of Fix(k). The earlier set, only k in F^-1 F, was too small, since the proof also uses g' g^-1 and trivial stabilizers at the points g^-1 nu; the author and this verifier found this independently. Corollary 5.0 (|F| >= 4) and the corrected Proposition 5.1 also PASS.*
