@@ -116,7 +116,46 @@ test, while staying compatible with
 `rational-regular-shell-actions-require-virtually-cyclic-input`, since the
 spiral action is not rational. Not attempted in full here.
 
-## 5. Next steps for this lane
+## 5. The Leavitt container, after Khanh
+
+Lane `lit-groups` imported Khanh, arXiv:2609.08428v1, Theorem 6.1: `R^x` is
+finitely presented for `R = L_(F_2)(1,2)`. That is claim
+`leavitt-unit-group-finitely-presented`, unreviewed preprint. With
+`binary-leavitt-unit-group-is-simple`, `R^x` is a finitely presented simple
+container. Landed consequences:
+
+* `leavitt-subalgebra-linear-groups-satisfy-boone-higman` (f2b36666c): an
+  `n`-leaf complete prefix code gives a unital isomorphism `M_n(R) ≅ R`, so
+  `GL_n(A) <= R^x` for every unital subalgebra `A <= R`.
+* `char-two-laurent-linear-groups-satisfy-boone-higman` (f2b36666c): prefix
+  monomials give the free algebras; the Thompson unit
+  `g = s_0 t_0 t_0 + s_1 s_0 t_1 t_0 + s_1 s_1 t_1` (inverse
+  `s_0 s_0 t_0 + s_0 s_1 t_0 t_1 + s_1 t_1 t_1`, checked by expansion) gives
+  `F_2[g,g^-1]`, since its powers move the basis vector `10000...` of the
+  eventually-zero test module to distinct basis vectors.
+* `char-two-curve-linear-groups-satisfy-boone-higman` (22cb987f5): every
+  finitely generated linear group over a characteristic-two field of
+  transcendence degree at most one. `F_2[t,1/f] ≅ F_2[g^±][T]/(f(T)-g)` is
+  free of rank `deg f` over `F_2[g^±]`, so it sits in `M_d(F_2[g^±])`.
+
+The container is one fixed group, so by the complexity wall it is not
+universal. It supplies a positive-characteristic family that is not in the
+BBMZ survey's list, where the only linear results are `GL_n(Z)` and
+Zaremsky's `GL_n(Q)`.
+
+## 6. A reduction worth recording later (not noded yet)
+
+`B ⊗ L_(F_2)(1,2)` contains `GL_n(B)` through the same prefix codes. So
+Boone--Higman would follow from two algebra statements: (i) every finitely
+generated `F_2`-algebra with solvable word problem, in particular every group
+algebra `F_2[H]` of a decidable group, embeds unitally in a finitely presented
+simple `F_2`-algebra `B`; (ii) for such `B`, the unit group of `B ⊗ L` modulo
+its centre is finitely presented and simple (Khanh's theorem is the case
+`B = F_2`). Evans--Mandelberg--Neff (Logic Colloquium '73) prove
+"Boone--Higman type theorems" for rings of characteristic p. Their exact
+statement could not be read (403), so whether (i) is known was not verified.
+
+## 7. Next steps for this lane
 
 1. Decide (b) for `Z^2`. This is a finite amount of piecewise-translation
    combinatorics and settles whether the shell germ gate is passable beyond

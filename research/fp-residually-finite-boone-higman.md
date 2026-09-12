@@ -53,8 +53,10 @@ algorithmically complex word problem are not covered by any of these classes.
    construction for complex residually finite inputs must output groups with
    complex word problem.
 5. **Linear inputs in characteristic two.** Settled for every finitely
-   generated subgroup of `GL_n(F_q[t,t^-1])` and `GL_n(F_q<x_1..x_m>)` with `q`
-   a power of two, by `char-two-laurent-linear-groups-satisfy-boone-higman`.
+   generated subgroup of `GL_n(K)` with `K` of characteristic two and
+   transcendence degree at most one, by
+   `char-two-curve-linear-groups-satisfy-boone-higman`, and for
+   `GL_n(F_q<x_1..x_m>)`, by `char-two-laurent-linear-groups-satisfy-boone-higman`.
    Those groups embed in the finitely presented simple group
    `L_(F_2)(1,2)^x`. This is a positive family, not a route for all inputs.
 4. **The profinite translation action.** `G` acts faithfully by translation
