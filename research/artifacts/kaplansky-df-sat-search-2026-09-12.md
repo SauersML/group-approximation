@@ -189,10 +189,20 @@ clause on each side.
   only pairs whose translated supports lie in the stated balls. Invisible defects,
   where `pi(beta alpha) = 1` but `beta alpha != 1`, are outside this mode.
 
-**Running.**
-- sbatch `kdf-sat-b9`: atlas (3,4) and (2,5) with `pi(beta) = s0`, and (4,3) and (5,2)
-  with `pi(alpha) = t0`. These use the prunes plus the all-ones clause of 63eeb5e54,
-  with 2,400 s each.
+**Pruned one-sided reruns (sbatch `kdf-sat-b9`).** Every instance is UNKNOWN at about
+2,430 s. The instances are atlas (3,4) and (2,5) with `pi(beta) = s0`, and (4,3) and
+(5,2) with `pi(alpha) = t0`. All use the prunes and the all-ones clause of 63eeb5e54,
+and each has 463,000 to 470,000 AND variables.
+
+The same radii are UNSAT in two-sided mode in 490 to 981 s. So the search is cut by the
+second target row together with its all-ones clause, not by the prunes and a single
+all-ones clause alone.
+
+**Ball sizes on the atlas generators.** `|B_2| = 53`, `|B_3| = 293`, `|B_4| = 1,603` and
+`|B_5| = 8,741`, growing about 5.5x per radius. The AND variable count is `|A| |B|`, so a
+two-sided instance at (4,4) or (3,5) has about 2.6 million. That is 5.5 times the largest
+instance solved. Full-ball search is saturated here, and further SAT runs should encode
+structured candidate supports instead of balls.
 
 ## Trust surface
 
