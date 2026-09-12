@@ -5,6 +5,20 @@ This is a lane of `notes/LIX_STRONGER_PROGRAM_2026-09-10.md`. The lead (nonsofic
 - Owned files: `GroupApproximation/CharClass/LIXKGen*.lean`.
 - Namespace: `GroupApproximation.CharClass.KGen`.
 
+## STOPPED 2026-09-12 (lead STOP ORDER: the user ruled LIX strengthenings too low impact)
+
+- This lane does no more authoring and no more probes. No probe of this lane was running when the stop came.
+- All 21 modules on this lane's list, from `LIXKGenSect` to `LIXKGenLocalNbhd`, are GREEN and landed normally. Each is byte-identical on origin/main, checked against ee76f51ca. The last green was probe 0912-092212-18558, landed at 416ff8bad.
+- Nothing is unverified and nothing is in flight, so nothing went through NM_UNVERIFIED or the attic.
+- **Residual and unauthored: `LIXKGenLocalLegs` and `LIXKGenLocalSquare`.**
+  - lix-oddside handed these two to this lane on 09-12, and the stop came before any code was written.
+  - lix-oddside's exact declaration list for them never arrived, so no Lean spelling is recorded here.
+  - The intended content is the rank-`n` port of `LIXHsqLegs` / `LIXHsq`, over `lixKU`, with `B := lixKTrivBall` and no base excision:
+    - **Left leg:** `v ↦ lixKBC (lixKFC.symm v)` into `B`, then `sInclusion B`, then `cmap (lixKSectionTotal n k hGc hGu hGe)`.
+    - **Right leg:** `lixKShrinkMap ≫ sInclusion (lixKFC n k dd i).target ≫ RelativeSupport.sliceMap (lixKZeroInBall n k dd i hGc hGu) _ ≫ (TopCat.isoOfHomeo (Bundle.totalTrivStdOn …)).inv ≫ cmap (Bundle.totalInclOn (lixBundle n G hGc hGu) (lixKTrivBall n k dd i hGc hGu))`.
+    - **Homotopy:** cut over `lixI` with `lixKULine`; `relPullback_lixKGHomeo_eq_id` removes the linear far end.
+  - In the rank-two route this square is what turns the `hres` result (here `lixKLocalPairIsoClosed_lixKRes_ne_zero`, GREEN) into `hx`. Leaves (3) and (4) under REMAINING LEAVES stay open.
+
 ## Deliverable (lead rulings 21:35, 22:10, 22:45)
 
 The deliverable is `Gen.StepCHalf n (LIX.Gen.lixDD n j) (KGen.bVecK n (e-1)) topClass` for every stage `j` and every exponent `e` with `p ∤ e`. It comes first at `p = 2`.
@@ -49,7 +63,7 @@ Main declarations, by module:
 
 ## Local square at p = 2: this lane's half of the split with lix-oddside (2026-09-12)
 
-lix-oddside owns `LIXKGenLocalEta`, `Linear`, `Homotopy`, `Legs`, `Square` and `Nonzero`. This lane owns the three files below. The convention is `(n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1)) {G} (hGc) (hGu)`, with `dd` explicit.
+lix-oddside owns `LIXKGenLocalEta`, `Linear`, `Homotopy` and `Nonzero`. On 09-12 `Legs` and `Square` passed to this lane; they were never authored (see STOPPED). This lane owns the three compiled files below. The convention is `(n k : ℕ) (dd : Fin ℓ → ℕ) (i : Fin (k + 1)) {G} (hGc) (hGu)`, with `dd` explicit.
 
 | module | state | main declarations |
 |---|---|---|
