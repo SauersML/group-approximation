@@ -278,13 +278,6 @@ theorem matchingError_nonneg {G : Type} [Group G] {Γ : Subgroup G} [Infinite �
     (D : CompressorDecomposition C A) (n : ℕ) : 0 ≤ matchingError D n :=
   div_nonneg (Finset.sum_nonneg fun q _ ↦ compressorMajorant_nonneg D q n) (Nat.cast_nonneg _)
 
-/-- **The matching error vanishes.** -/
-theorem matchingError_vanishing {G : Type} [Group G] {Γ : Subgroup G} [Infinite ↥Γ]
-    {C : CompressionSetup G ↥Γ PUnit.{1}} {A : SoficApproximation G}
-    (D : CompressorDecomposition C A) : Vanishing (matchingError D) :=
-  Negligible.sum C.compressors (fun q n ↦ compressorMajorant D q n)
-    fun _ hq ↦ compressorMajorant_negligible D hq
-
 /-! ### Localized errors of a frame -/
 
 /-- **Localized errors of a frame are at most the majorant.** -/
