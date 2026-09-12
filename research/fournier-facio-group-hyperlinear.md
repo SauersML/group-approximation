@@ -42,3 +42,45 @@ in the linked artifact shows that the recorded witness fences use `G` only
 through nonsoficity and torsion-freeness.  It also recommends an
 infinite-component witness in which `t_1` acts as a bilateral tensor shift,
 built on the self-similar tail `Gamma >= J_1 x t_1 Gamma t_1^-1`.
+
+**Positive-side gates (2026-09-11, second pass).**  That construction was
+attempted.  It stops at three gates, and none of them is a gap in the tensor
+bookkeeping.
+
+1. *Slot geometry.*  Both compressors build the binary-tree lamp group
+   `(+)_(w in {1,2}^*) S_w` inside `Gamma`
+   (`fournier-facio-compression-tree-lamp-group`).  `S_2` commutes with every
+   `J_k`, so a Z-indexed slot model has no room for it, and any model has to
+   be indexed by the rooted binary tree.
+2. *The simple factor.*  A witness restricts to a hyperlinear model of `S`.
+   The graph knows of no hyperlinear finitely presented infinite simple group,
+   torsion-free or not (`fp-simple-nonsofic-group` lists every Thompson-like
+   group as open; `leavitt-hyperlinear-branch-implies-thompson-v-hyperlinear`
+   records the same gate for `V`).  The soft permanence theorems cannot
+   supply one.
+   - A finitely presented simple group is isolated in the space of marked
+     groups: near it lie only its marked quotients in which a fixed
+     nontrivial word survives, and by simplicity that is the group itself.
+     So a marked limit of hyperlinear groups gives nothing new.
+   - A residually amenable infinite simple group is amenable.
+   - The one live permanence route is an amalgam or graph of hyperlinear
+     groups over infinite amenable edge groups (Brown--Dykema--Jung for
+     `R^omega` embeddings over amenable subalgebras).  No finitely presented
+     infinite simple torsion-free group with such a splitting is recorded
+     here.
+3. *The Kazhdan subgroup.*  `Gamma = pi(P)` is an image of the Osin
+   small-cancellation Kazhdan group containing a universal finitely presented
+   torsion-free group `U`, and Hull's theorem controls the kernel only on
+   finite sets.  So the elements of `Gamma` outside
+   `pi(S) alpha_1(Gamma) alpha_2(Gamma)` are not given by any explicit
+   self-similar formula.  A witness has to model `Gamma` itself, which gates
+   through `fournier-facio-compression-subgroup-not-hyperlinear`, now owned by
+   a separate lane.  A model would also need unitaries `v_1,v_2` in `R^omega`
+   whose conjugations compress `N = u(Gamma)''` onto commuting subalgebras
+   with `N >= L(S) tensor Ad(v_1)(N) Ad(v_2)(N)`, compatible with all extra
+   relations of `G`.  Here `G` is a proper quotient of the double ascending
+   HNN extension of `Gamma`, since `G` is Kazhdan and that extension maps onto
+   `F_2`.  The existence of such a self-similar embedding in `R^omega` is
+   exactly the open question, not a construction step.
+
+So the positive tensor model is on hold behind gates 2 and 3.
