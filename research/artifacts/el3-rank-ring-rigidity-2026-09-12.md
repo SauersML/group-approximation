@@ -425,6 +425,36 @@ QED
   `s_0`-type coefficients and Thompson `V`. There Kraft's inequality breaks every trace on the
   locally matricial part, and Proposition 5 already makes root displacement trace-blind.
 
+**Proposition 12 (equidistant root displacement on the locally matricial part).** Let
+`R = L_(F_2)(1,2)`, `A_k = span{ s_w t_v : |w| = |v| = k } ~= M_(2^k)(F_2)` and
+`A_inf = union A_k`. Let `sigma : EL_3(R) -> M^x` be any homomorphism into a rank
+ultraproduct. For every `i != j` and every nonzero `a` in `A_inf`,
+
+```text
+rk(sigma(x_ij(a)) - 1) = rho = rk(sigma(x_12(1)) - 1).
+```
+
+*Proof.*
+* Take `a` in `A_k` of rank `r >= 1` as a `2^k x 2^k` matrix. Then `a = g_1 e_S g_2` with
+  `g_1, g_2` in `GL(A_k)` and `e_S` a sum of `r` distinct level-`k` idempotents `s_w t_w`.
+* `diag(g_1, g_2^-1, 1)` lies in `GL_3(A_k) = SL_(3 2^k)(F_2) = EL_3(A_k)`, inside
+  `EL_3(R)`, and conjugates `x_12(e_S)` to `x_12(a)`.
+* `x_12(e_S) ~ x_12(1)` by Proposition 5, which uses
+  `GL_3(R) = EL_3(R)` (`leavitt-gl-equals-el-and-perfect-unit-group`).
+* Weyl elements of `SL_3(F_2)` move the other roots to `x_12`.
+QED
+
+**Consequence.**
+* The restriction of `sigma` to each elementary abelian `2`-group
+  `U_12(A_k) ~= (Z/2)^(4^k)` is *equidistant*: every nonzero element has displacement `rho`.
+* Equidistance does not quantize `rho`. Free modules give `rho = 1/2`, and uniform sums of
+  permutation modules `F_2[U/Q]` over all subgroups `Q` of codimension `c` give
+  `rho ~ (1 - 2^-c)/2`. Both occur in regular models of level groups.
+* So level-group structure alone, even with doubling, compressor corners and idempotent
+  conjugacy, cannot separate the Leavitt instance from the locally matricial example.
+  Any contradiction has to use coefficients outside `A_inf`, such as `s_0` and the units of
+  Thompson `V`.
+
 **The Leavitt instance.** Following `gk-vf-linear`'s recommendation, the payoff is carried by
 the instance claim `leavitt-el3-rank-models-over-finite-fields-are-trivial`, with its own route
 `non-linear-sofic-via-leavitt-el3-rank-triviality`. The class statement of Section 5 implies it

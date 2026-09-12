@@ -3,6 +3,8 @@ rg: 2
 id: leavitt-el3-rank-models-over-finite-fields-are-trivial
 kind: claim
 title: Rank models of EL_3 over a Leavitt algebra over a finite field are trivial in the field's characteristic
+refuted_by:
+  - binary-leavitt-unit-group-is-f2-linear-sofic
 distinct_from:
   el3-rank-models-factor-through-ring-rank-models: that is the class statement over every simple characteristic-p ring without a ring rank model, which one linear sofic EL_3 over any such ring would refute; this is the single Leavitt instance over a finite field, where self-similarity R ~= R^n and known nonsoficity are available.
   matrix-unit-root-rank-models-of-simple-el3-are-trivial: that kills only the characteristic-two models whose unit root elements are block supported; this asserts that every model of the Leavitt instance is trivial.
@@ -34,6 +36,14 @@ is trivial.
 
 ## Attempts
 
+- **Root identities decide (lane `gk-rk-unipotent`, 685d99751a).**
+  - `N_12^2 = 0` and `N_23 N_12 = 0`, with `N_ij = sigma(x_ij(1)) - 1`, already build the
+    matrix units, so the matrix-unit theorems apply.
+  - In characteristic two `N_12^2 = 0` is automatic. So for `K = F_2` this claim is
+    equivalent to: every characteristic-two rank model of `EL_3(L_(F_2)(1,2))` satisfies
+    `(sigma(x_23(1)) - 1)(sigma(x_12(1)) - 1) = 0`.
+  - Free content on `SL_3(F_2)` is exactly where that identity fails
+    (`free-rank-models-on-sl3-admit-no-block-support`), and it is the family's target.
 - **Excluded in every characteristic (established).**
   - Block support of the six unit root elements on orthogonal idempotents:
     `matrix-unit-root-rank-models-of-simple-el3-are-trivial` (char 2) and
@@ -54,8 +64,19 @@ is trivial.
   - The level subgroups `SL_(3 n^k)(K)`.
   - The doubling identity `g = g (x) I_n` and the compressor corner `g ~ g (+) I`, which give
     `f(2r) = f(r)` on involution types for `n = 2`.
-  - Conjugacy `x_12(e) ~ x_12(1)` for nonzero sums `e` of level idempotents, and
-    `x_12(1)` as a product of `n^k` commuting conjugates of itself.
+  - `x_12(1)` as a product of `n^k` commuting conjugates of itself, for every `n`.
+  - Conjugacy `x_12(e_S) ~ x_12(1)` for a sum `e_S` of `|S|` distinct level idempotents holds
+    exactly when `|S| ≡ 1 mod (n-1)`, since `Im(x_12(e_S) - 1) ~= e_S R ~= R^|S|` and
+    `R^m ~= R` iff `m ≡ 1 mod (n-1)`. So it holds for every nonzero `S` only when `n = 2`
+    (scope correction by `gk-vf-linear`, Section 34).
+- **Equidistance on the locally matricial part (binary case, artifact Proposition 12).**
+  - Every nonzero root element with coefficient in `A_inf = union M_(2^k)(F_2)` has the same
+    displacement `rho`, so the model is equidistant on each `U_ij(A_k) ~= (Z/2)^(4^k)`.
+  - Free modules and uniform permutation modules are equidistant too, and regular models of
+    level groups meet every level-group constraint (doubling, compressor corners, idempotent
+    conjugacy).
+  - So a contradiction must use coefficients outside `A_inf`: `s_0`-type coefficients and
+    Thompson `V`.
 - **Surviving shapes to cover.** Nontrivial complements. Natural and dual pieces together.
   Other composition factors (adjoint, Steinberg, projectives). Non-split extensions. Free or
   projective content on finite subgroups, glued through level-changing units such as `s_0`

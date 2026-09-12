@@ -3,6 +3,8 @@ rg: 2
 id: binary-leavitt-unit-group-is-f2-linear-sofic
 kind: claim
 title: The binary Leavitt unit group is linear sofic over F_2
+refuted_by:
+  - leavitt-el3-rank-models-over-finite-fields-are-trivial
 distinct_from:
   non-linear-sofic-group: that asks for some group that is not linear sofic over some field; this asks that one specific group be linear sofic over F_2, which would make it no such witness in characteristic two and would settle Kaplansky positively for it.
   openai-leavitt-unit-nonsofic: that is nonsoficity of the same group in the Hamming metric; this is the rank-metric approximation property, which nonsoficity does not exclude.
@@ -60,3 +62,22 @@ a Kaplansky pair in `F_2[R^x]` refutes this claim
   factor two (`monomial-rank-models-are-hamming-models`), and `R^x` is nonsofic. A
   surviving model is neither module-type nor monomial; the remaining class is recorded in
   Section 7 of `research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md`.
+* **Steinberg ring rigidity (2026-09-12, family R, lead lane gk-l-gate-neg).**
+  * The refuter is `leavitt-el3-rank-models-over-finite-fields-are-trivial` (open).
+    `EL_3(R) <= R^x`, so trivial characteristic-two rank models of `EL_3(R)` make `R^x` not
+    `F_2`-linear sofic.
+  * **Excluded, established.**
+    * Block support of the six unit root elements, in every characteristic
+      (`matrix-unit-root-rank-models-of-simple-el3-are-trivial`,
+      `matrix-unit-root-rank-models-of-odd-char-simple-el3-are-trivial`).
+    * Dual natural pieces, through transpose-inverse.
+    * Finite triangular extensions (`filtered-matrix-unit-rank-models-of-simple-el3-are-trivial`,
+      lane `gk-rk-extensions`).
+  * **The remaining target.** In characteristic two, the single identity
+    `(sigma(x_23(1)) - 1)(sigma(x_12(1)) - 1) = 0` forces triviality (lane
+    `gk-rk-unipotent`). So a positive model must have that wrong-order product rank-positive,
+    as free content on `SL_3(F_2)` does (`free-rank-models-on-sl3-admit-no-block-support`).
+  * **What level groups cannot decide.** Level-group constraints cannot separate `R^x` from
+    locally matricial examples (artifact `el3-rank-ring-rigidity-2026-09-12.md`,
+    Proposition 12). A model must glue free content along coefficients such as `s_0` and
+    Thompson `V`.
