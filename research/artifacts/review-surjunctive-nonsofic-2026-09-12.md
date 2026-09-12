@@ -45,3 +45,57 @@ Checked line by line.
   independent of `k`. So `Psi` is a genuine automaton over `K`. Injectivity
   of `Psi` follows from injectivity of `rho` by a common extension off
   `R ⊔ E`; ontoness and the finite-memory form of `rho^-1` follow as stated.
+
+### Proposition 4.1 (peeling), the step most likely to break
+
+* **(c).** Slicewise extensions of maps commuting with `G_(U')` commute with
+  `G_U`, which is contained in `G_(U')`. So `rho_U` is an injective
+  finite-memory map commuting with left `G_U`-translation.
+* **(b), choice of `V`.** `g not in Q_U` gives some `s in U` with
+  `g F_U` missing `Z_s`, so `V != U`.
+* **(b) step 1.** For `U'` not inside `V`, a point `h in gP` in `Q_(U')`
+  would give `h F_(U')` meeting `Z_s` for some `s in U'\V`, but
+  `gP F_(U')` lies in `g F_U`. The inverse of a bijection that fixes a
+  coordinate for every input also fixes it.
+* **(b) steps 2-3.** Lemma 2.3 applies at every window point, because all
+  windows lie inside `gP` (each `P_i` contains `1`). Nested slicing is
+  associative.
+* **(b), the induction on stages.** Since the order refines cardinality,
+  every proper subset of `V` precedes `V` and no later subset lies in `V`.
+  On the shrinking windows the partial composite equals the slicewise
+  extension of the `V`-setting composite, which is `rho_V` at stage
+  `j_V - 1`. Stage `j_V` returns `y`, and every later stage is the identity
+  at `g`.
+* **Bijectivity.** An intersection of right cosets of the `G_s`, `s in U`, is
+  empty or a right coset of `G_U`, so `Q_U` is a finite union of right
+  `G_U`-cosets. Commuting with `G_U` gives left-invariant rules. Lemma 3.1
+  applies with `K = G_U` and the finite alphabet `B^(Abar^U)`.
+* **Degenerate cases.** `Q_U = empty` gives `rho_U = id`; `G_U` of finite
+  index is allowed; stabilizers may be infinite and the action need not be
+  faithful or transitive. None of these affects the argument.
+
+## 2. Theorem 0 and the doubles
+
+* **Theorem 0.** The only points where the proof is not literally the
+  wreath proof were checked:
+  * `H_U = ker(q iota_(U,S) p_U)` gives `H_U\W ~= Q_U x G`, with (T) the
+    correct transplant;
+  * (A2) applied to the pair `(V, U)`, together with compatibility of the
+    `iota`, gives `c^U_m(g) = c^V_m(g)` off the strata of `U\V`;
+  * (A3) at `U` gives left `G_U`-equivariance;
+  * slices over left cosets `c Q_V` do not depend on representatives,
+    because every map in the induction commutes with left `Q_V`-translation.
+* **Instance (I1).** (A1)-(A3) hold for `p_S` = restriction.
+* **Lemma 5.1.** Checked:
+  * `alpha` is an action;
+  * `Phi` agrees on the two copies of `Gamma`;
+  * `Psi` respects the conjugation relation;
+  * `Psi Phi(ghat) = ghat` and `Phi Psi(e_(g x_0)) = e_(g x_0)`.
+
+  Independently, the kernel of the fold map meets every vertex stabilizer
+  trivially, so it acts freely on the Bass--Serre tree. The quotient graph
+  has two vertices and `|G/Gamma|` edges, so the kernel is free of rank
+  `|G/Gamma| - 1`, consistent with the basis `{e_x : x != x_0}`.
+* **Instance (I2).** Letters of `alpha_g(w)` lie in `g(letters(w) ∪ {x_0})`,
+  which gives (A2). A pointwise stabilizer of `S` preserves `X \ S`, which
+  gives (A3).
