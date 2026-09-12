@@ -111,3 +111,19 @@ prime quotient, and applies even when the original finite kernel is
 noncentral. This supplies no such group and no treatment of an arbitrary
 infinite residual. The full proof and the correction to the explanatory
 finite-index inclusion are recorded in the new artifact.
+
+**2026-09-11: this root and Lück's virtual torsion-freeness root are one
+question.** [[hyperbolic-rf-question-equals-vtf-question]] proves that a
+non-residually-finite hyperbolic group exists iff a non-virtually-torsion-free
+one does; a deep Dehn filling of a residual element of infinite order turns it
+into invisible torsion. The routes
+`non-vtf-hyperbolic-via-residual-cyclic-filling`,
+`non-rf-hyperbolic-from-non-vtf-hyperbolic`,
+`residual-prime-torsion-via-free-factor` and
+`non-rf-hyperbolic-from-residual-prime-torsion` record the equivalence cycle.
+The strongest equivalent shape is
+[[hyperbolic-group-trivial-radical-residual-prime-torsion]]: trivial finite
+radical, prime-order torsion in the finite residual, and hence a non-elementary
+finite residual. In particular, excluding persistent degree-two classes (the
+finite-residual shape above) would not settle this root: a free factor `Z`
+converts a finite residual into an infinite one.
