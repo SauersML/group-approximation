@@ -6,6 +6,7 @@ title: Pull any nontrivial model back along the corner embedding, compress to th
 target: ternary-leavitt-rank-models-move-z-iff-nontrivial
 requires: [leavitt-units-embed-in-their-scalar-quotient, odd-leavitt-unit-groups-mod-scalars-are-fp-simple, leavitt-gl-equals-el-and-perfect-unit-group]
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md
 ---
 
@@ -24,3 +25,5 @@ artifacts:
   with the injective `π∘ι` gives an injective model of `G`.
 
 The cycle of implications is written out in artifact Section 2.
+
+*Second independent derivation by `gk-vf-linear` (2026-09-12), Section 53 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS, including the tensor-square rank lemma with threshold `1/3`. The assigned verifier remains `w3-vf-linear`.*

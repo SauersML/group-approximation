@@ -1876,3 +1876,35 @@ second derivation from the rank-gate family verifier.
 - **Corollary 1.3.** `q sigma(u) P sigma(u)^-1 q != 0` and `P = qP`, so `q sigma(u) q != 0`.
 - **Remark 1.4.** The nested defect pieces lie inside `Q` because of the left factor `q`. The descent has no uniform bound,
   and the artifact says so accurately.
+
+## 53. Characteristic-three rank models of the ternary Leavitt units: moving z iff nontrivial (lane w3-gate-char3): PASS, second derivation
+
+Items checked: `ternary-leavitt-rank-models-move-z-iff-nontrivial`, route `ternary-leavitt-rank-models-move-z-proof`, the OPEN gate
+`ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`, and `ternary-leavitt-char-three-rank-model-gate-2026-09-12.md`
+Sections 1 to 3. The assigned verifier is `w3-vf-linear`; this is a second derivation.
+
+- **Lemma 1.1.** As in Sections 11 and 46: `PG` is simple, `G` is perfect, and `z` is central.
+- **Lemma 1.2(a).** `A (x) A - A' (x) A' = (A - A') (x) A + A' (x) (A - A')` and `rank(X (x) Y) <= n rank X`, so the squaring map is
+  well defined, multiplicative and unit-preserving on rank ultraproducts.
+- **Lemma 1.2(b).**
+  - Under `v (x) w -> v w^T`, `ker(A (x) A - I) = {X : AX = XB}` with `B = A^-T`. That is the intertwiner space, of dimension
+    `sum_nu sum_(i,j) min(a_i(nu), b_j(nu)) <= sum_nu g(nu) m(nu^-1)`, because `B` has the Jordan types of `A^-1`.
+  - The sum is at most `n max g`, so `g(nu*) >= (1 - delta) n`, and `rk(A - nu*) <= delta n`.
+  - If `nu* != nu*^-1`, then `m(nu*^-1) <= delta n` and `sum_(nu != nu*) g <= delta n`, so the sum is at most `2 delta n^2`.
+    That is less than `(1 - delta) n^2` exactly when `delta < 1/3`, a contradiction.
+  - So `nu* = +-1`, which lies in `k` (characteristic not two).
+- **Lemma 1.2(c).** Representatives of a unit have corank `o(n_i)`, so they can be made invertible within rank `o(n_i)`, and the
+  squared defect stays rank-null. Then (b) gives the signs, which are omega-almost constant.
+- **Theorem 2.1.**
+  - *(2) implies (3).* `ker sigma <= <z>`, and `iota^-1(<z>) = 1` by the established embedding claim.
+  - *(1) implies (6).* `f = 2(1 - sigma(z))` is a nonzero central idempotent, and `z` maps to `-f` in the renormalized corner.
+  - *(6) implies (4).* `T = sigma (x) sigma` has `T(z) = 1`. If `T` were trivial, (c) would make `sigma` a homomorphism into
+    `{+-1}`, which perfection kills, contradicting `sigma(z) = -1`.
+  - *(4) implies (5).* Simplicity of `PG`.
+  - *(5) implies (3).* `pi o iota` is injective, since `iota(G)` meets `<z>` trivially.
+- **Corollary 3.1.** `G` contains `w` and `d`, so `anti-central-rank-models-kill-ternary-corner-witnesses` with `Gamma = G` applies
+  (Section 46).
+- **The gate node's `refuted_by`.** The corner claim refutes existence, by the contrapositive of Corollary 3.1. The instance claim
+  at `K = F_3`, `n = 2` refutes it through `G = GL_3(R) = EL_3(R)`. Both are correct.
+- **Remark 3.4.** `ker sigma >= iota_P(G)`, which is not inside `<z>`, forces `ker sigma = G`. The extraction needs both identities
+  in odd characteristic. Correct.
