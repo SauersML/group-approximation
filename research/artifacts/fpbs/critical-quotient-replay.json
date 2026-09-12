@@ -1,9 +1,0 @@
-{
-  "status": "passed",
-  "sprinkling_configurations": 1674,
-  "palm_partitions": 15,
-  "layer_cut_count_vectors": 4589,
-  "bipartite_cut_count_vectors": 12360,
-  "finite_disconnection_configurations": 520,
-  "scope": "Exact finite identities only; not verification of the infinite percolation theorems."
-}

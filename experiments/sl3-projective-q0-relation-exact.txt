@@ -1,1 +1,0 @@
-support=4 residual=2 exact_rational=true matching=t->2-t fixed=2 decoder_squared_norm=2

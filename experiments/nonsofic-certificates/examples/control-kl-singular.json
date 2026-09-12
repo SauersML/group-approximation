@@ -1,8 +1,0 @@
-{
-  "type": "kl-equation",
-  "expect": "FAIL",
-  "note": "Control: the same derivation, rejected as a KL certificate because the exponent sum of x is 0.",
-  "equation": "x @g x^-1",
-  "coefficient": "@g",
-  "factors": [{"conj": "x^-1", "sign": 1}]
-}
