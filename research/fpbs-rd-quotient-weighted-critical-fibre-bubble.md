@@ -41,10 +41,19 @@ needed on this route.
 * **Differential inequality.** Russo plus BK push forward to weighted fibre sums,
   but the growth rate is an L2-type operator norm of `S_p`. **Where it dies:** the
   same barrier as the unweighted bubble.
-* **One-ended quotients.** For surface-group bases, as in the Seifert-fibred
-  case, no fibre separates the Cayley graph. BK does not factor `sigma` through
-  intermediate fibres, and no submultiplicativity of sphere bubbles is
-  available. **Where it stops:** no replacement for the cut structure.
+* **One-ended quotients (corrected 2026-09-12).** For surface-group bases, as in
+  the Seifert-fibred case, no single fibre separates the Cayley graph. But the
+  fibre saturation `pi^(-1)(S_Q(R))` of a sphere separates every Cayley graph over
+  every quotient.
+  * BK at the first crossing gives `T_{R+m} <= ||lambda(sigma_R)||^2 T_m`
+    (`fpbs-sphere-cut-fibre-tails-decay-exponentially`).
+  * So this premise is equivalent to one finite-radius condition,
+    `||lambda_Q(sigma_{p_c} 1_{S_Q(R_0)})|| < 1` for some `R_0`, and to exponential
+    decay of critical fibre tails
+    (`fpbs-rd-weighted-bubble-iff-sphere-fibre-operator-below-one`).
+
+  **Where it stops:** that single-radius condition is the open
+  `fpbs-critical-sphere-fibre-operator-below-one`.
 * **Upgrading the unweighted bubble.** For amenable `H` the unweighted bubble is
   necessary for the L2 gap (`fpbs-amenable-kernel-l2-gap-forces-fibre-bubble`),
   and this weighted bubble is sufficient. **Where it stops:** no mechanism turns
