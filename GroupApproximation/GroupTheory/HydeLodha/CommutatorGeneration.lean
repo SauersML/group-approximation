@@ -1,3 +1,5 @@
+import Mathlib.Algebra.Group.Subgroup.ZPowers.Basic
+import Mathlib.Data.Fintype.EquivFin
 import GroupApproximation.GroupTheory.HydeLodha.HigmanEpstein
 import GroupApproximation.Meta.AxiomGuard
 
