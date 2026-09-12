@@ -86,7 +86,7 @@ noncomputable def addVal : AddValuation K (WithTop ℤ) :=
     (addValFun_mul w)
 
 theorem addVal_apply (x : K) : addVal w x = addValFun w x :=
-  AddValuation.of_apply _ _ _ _ _ _
+  rfl
 
 theorem addVal_of_ne_zero {x : K} (hx : x ≠ 0) :
     addVal w x = ((-log (w x) : ℤ) : WithTop ℤ) := by

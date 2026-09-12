@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol
+import Mathlib.Algebra.Polynomial.Basis
 
 /-!
 # `JeJ` is the ring of finite matrices, and `J/JeJ ≅ F_2[z, z^{-1}]`
@@ -52,7 +53,6 @@ theorem shiftDown_pow_X_pow (v N : ℕ) :
         · rw [if_pos hN, if_neg (by omega)]
         · rw [if_neg hN, if_pos (by omega)]
           congr 1
-          omega
       · rw [if_neg hv, if_neg (by omega), map_zero]
 
 /-- **Printed:** `e = 1 - st` is the projection onto the first basis vector. -/
@@ -135,13 +135,14 @@ theorem eq_sum_matUnit {T : Module.End (ZMod 2) JacobsonSpace} {M : ℕ}
       (T (Polynomial.X ^ v)).coeff u • matUnit u v := by
   classical
   refine (Polynomial.basisMonomials (ZMod 2)).ext fun n ↦ ?_
-  rw [Polynomial.coe_basisMonomials, ← Polynomial.X_pow_eq_monomial, LinearMap.sum_apply]
+  simp only [Polynomial.coe_basisMonomials]
+  rw [← Polynomial.X_pow_eq_monomial, LinearMap.sum_apply]
   simp only [LinearMap.sum_apply, LinearMap.smul_apply, matUnit_X_pow, smul_ite, smul_zero]
   by_cases hn : n < M
   · have hinner : ∀ u ∈ Finset.range M,
         (∑ v ∈ Finset.range M,
-          if n = v then (T (Polynomial.X ^ v)).coeff u • Polynomial.X ^ u else 0) =
-          (T (Polynomial.X ^ n)).coeff u • Polynomial.X ^ u := by
+          if n = v then (T (Polynomial.X ^ v)).coeff u • (Polynomial.X ^ u : JacobsonSpace) else 0) =
+          (T (Polynomial.X ^ n)).coeff u • (Polynomial.X ^ u : JacobsonSpace) := by
       intro u _
       rw [Finset.sum_eq_single n (fun v _ hv ↦ if_neg (Ne.symm hv))
         (fun hn' ↦ absurd (Finset.mem_range.mpr hn) hn'), if_pos rfl]
@@ -158,7 +159,7 @@ theorem eq_sum_matUnit {T : Module.End (ZMod 2) JacobsonSpace} {M : ℕ}
   · rw [h0 n (by omega)]
     symm
     refine Finset.sum_eq_zero fun u _ ↦ Finset.sum_eq_zero fun v hv ↦ ?_
-    rw [if_neg (fun h ↦ hn (h ▸ Finset.mem_range.mp hv))]
+    rw [if_neg (fun h : n = v ↦ hn (h ▸ Finset.mem_range.mp hv))]
 
 theorem mem_defectIdeal_of_isFiniteMatrix {x : ↥jacobsonAlgebra}
     (hx : IsFiniteMatrix (x : Module.End (ZMod 2) JacobsonSpace)) : x ∈ defectIdeal := by
@@ -168,12 +169,12 @@ theorem mem_defectIdeal_of_isFiniteMatrix {x : ↥jacobsonAlgebra}
       (((x : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ v)).coeff u).val • matUnitJ u v := by
     apply Subtype.ext
     conv_lhs => rw [hsum]
-    simp only [AddSubmonoidClass.coe_finset_sum, AddSubmonoidClass.coe_nsmul, coe_matUnitJ]
+    simp only [AddSubmonoidClass.coe_finsetSum, AddSubmonoidClass.coe_nsmul, coe_matUnitJ]
     refine Finset.sum_congr rfl fun u _ ↦ Finset.sum_congr rfl fun v _ ↦ ?_
     rw [← Nat.cast_smul_eq_nsmul (ZMod 2), ZMod.natCast_zmod_val]
   rw [hJ]
-  exact Finset.sum_mem fun u _ ↦ Finset.sum_mem fun v _ ↦
-    nsmul_mem (matUnitJ_mem_defectIdeal u v) _
+  exact sum_mem fun u _ ↦ sum_mem fun v _ ↦
+    _root_.nsmul_mem (matUnitJ_mem_defectIdeal u v) _
 
 /-! ## The kernel of the symbol -/
 
@@ -198,7 +199,7 @@ theorem defectIdeal_ne_top : defectIdeal ≠ ⊤ := by
   intro h
   have h1 : (1 : ↥jacobsonAlgebra) ∈ TwoSidedIdeal.ker symbol := by
     rw [ker_symbol, h]
-    exact TwoSidedIdeal.mem_top
+    exact TwoSidedIdeal.mem_top _
   rw [TwoSidedIdeal.mem_ker, map_one] at h1
   exact one_ne_zero h1
 
