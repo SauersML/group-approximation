@@ -11,8 +11,8 @@ artifacts:
   - research/artifacts/laminar-cycle-overfilled-stars-2026-09-12.md
 ---
 
-**ESTABLISHED** (route `laminar-defects-localize-to-overfilled-star-proof`; verification requested from
-`w4-vf-linear-b`).
+**ESTABLISHED** (route `laminar-defects-localize-to-overfilled-star-proof`; verified by `w4-vf-linear-b`,
+Section 31 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, 1dc81f2a24).
 
 Let `G` be any group, `p` a prime, `S = F_p[G]`, and `F` a laminar family of idempotents `x_i` in
 `M_n(F_p[H_(s(i))])` over finite subgroups `H_s <= G`, with atoms `alpha_y = y - sum_(z in C(y)) z` for
@@ -22,7 +22,9 @@ instance a balanced combination.
 Then some nonzero atom `alpha_y <= d` has an **overfilled star**:
 - its children `z_1, ..., z_m` are pairwise orthogonal, lie below `y` (or `I_n`), and do not sum to it;
 - `r(z_1) + ... + r(z_m) >= r(y)`, although each `r(z_i) < r(y)`, so `m >= 2`;
-- the finite subgroups carrying `y` and the `z_i` occur together in no sofic group (Theorem 2.6 of
+- the finite subgroups carrying `y` and the `z_i` have no compatible realization in any sofic group: no
+  sofic group contains isomorphic copies of them that agree on pairwise intersections and meet exactly in
+  the images of those intersections (Theorem 2.6 of
   `research/artifacts/finite-subgroup-combination-defects-2026-09-12.md`);
 - in particular their nontrivial pairwise intersections contain a cycle, so the star uses at least three
   distinct finite subgroups, and the children use at least two.
