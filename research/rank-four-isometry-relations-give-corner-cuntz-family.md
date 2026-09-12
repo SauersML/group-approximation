@@ -89,3 +89,14 @@ four distinct root pairs of `EL_4(R)`, available because `R^x = EL_4(R)` with no
   - **Every finite `K`.** The endpoint needs no simplicity and no field hypothesis. This matters because
     `leavitt-algebra-has-no-unital-rank-model`, which `leavitt-el3-triviality-via-rank-four-cuntz-family`
     requires, is stated only for `L_(F_2)(1,2)`.
+- **Positive-root data cannot carry checks (a)-(c) (w4-heisenberg, 2026-09-12).** The `S_i`, `T_j`
+  and `e` described above are built from `sigma` on `UT_4(R)`, which is locally finite. Its regular
+  rank model has `rk(N_23 N_12) = 3/8`, and it satisfies every relation of `UT_4(R)` (the two associator
+  readings of `x_14` included), the ring structure of a rank ultraproduct, and every rank equality
+  from isomorphisms of finite subgroups. If `T_i S_j = delta_ij e` and `rk(e) = rk(N_23 N_12)` followed
+  from these, the regular model would give idempotents `S_i T_i`, each of rank at least `rk(e) = 3/8`.
+  With completeness they are orthogonal and `rk(e) >= 2 rk(e)`. Even without completeness,
+  `T_0 S_0 = e = T_1 S_1`, `T_1 S_0 = 0` already make `S_0 T_0`, `S_1 T_1` orthogonal subidempotents of
+  `e` of rank at least `rk(e)`. So at least one check must use `sigma` on negative root elements or
+  torus units, jointly on a nonsofic subgroup
+  (`unitriangular-data-cannot-assemble-corner-leavitt-families`, artifact Section 3).
