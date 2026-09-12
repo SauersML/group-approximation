@@ -151,3 +151,52 @@ every rank model of `G_3` (or of `R^x`) is trivial must use at least one of:
   `[x_12(t0), x_23(s0)] = x_13(1)`.
 
 No single model realizing (R1)–(R4) together with the full-domain partial conjugations is known.
+
+## 3. The compressor pair and where locality stops
+
+**Proposition 3.1 (natural Fock quantization of the compressors).** Take the forced solution of
+Proposition 7 of `research/artifacts/el3-rank-model-compressor-extension-2026-09-12.md` on `W_N = V_N^3`:
+`X^ = 1 + T_N E_12`, `Y^ = 1 + S_N E_23`, `Z^ = 1 + E_13`, with `Z^^(−1)[X^, Y^] = u_13(N−1, N−1)`. Then
+`Λ(Z^)^(−1) [Λ(X^), Λ(Y^)] = Λ(u_13(N−1, N−1))` on `Λ(W_N)`, and
+`rk(Λ(u_13(N−1,N−1)) − 1) = dim Λ(W_N) / 4`. The same proportion `1/4` holds on `Λ^even` and `Λ^odd`.
+
+*Proof.*
+1. **Functoriality.** `Λ : GL(W) -> GL(Λ(W))` is a homomorphism, so it carries the commutator identity
+   over unchanged.
+2. **Transvections.** Let `u = 1 + v ⊗ φ` with `φ(v) = 0`. On `w_1 ∧ ... ∧ w_k`,
+   `Λ(u) = ∧_i (w_i + φ(w_i) v)`. Terms containing `v` twice vanish, so `Λ(u) − 1 = v ∧ i_φ`, where `i_φ` is
+   contraction.
+3. **Rank.** Choose a basis `e_1 = v`, `e_2` with `φ(e_2) = 1`, and `e_3, ..., e_n` spanning the rest of
+   `ker φ`. Then `v ∧ i_φ` sends `e_2 ∧ ω'` to `e_1 ∧ ω'` for `ω' ⊆ {e_3, ..., e_n}` and kills every other
+   basis monomial. Its rank is `2^(n−2)`, and it preserves parity. On `Λ^odd` the rank is
+   `2^(n−3) = dim Λ^odd / 4` for `n >= 3`. QED
+
+**Reading.**
+- **The error does not decay.** Second-quantizing the forced truncated shifts turns the one-transvection
+  defect of Corollary 8 there into a Fock defect of normalized rank exactly `1/4`, at every `N`.
+- **Such models are excluded anyway.** They factor through `Λ(GL)`, where transvections are displaced by
+  `1/4`. So `transvection-displacement-forces-exact-local-embedding` (characteristic two) and
+  `char-three-level-factoring-models-of-leavitt-units-are-trivial` rule them out.
+- **What the compressors need.** They must be abstract non-level letters. Their supports overlap, so
+  Theorem 2.2 gives them nothing, and the Toeplitz commutator is a relation of type (c).
+
+**3.2 Where the construction stops.**
+* **Coherence is untouched.** On an asymptotically free factor, each local intertwiner is unique up to
+  the commutant of `ρ'(Γ_i)`. That commutant is rank-close to `GL_c(F_qΓ_i^op)`, which is large. The
+  cocycle `X_g X_h X_(gh)^(−1)` for overlapping supports lies approximately in it, and locality says
+  nothing about it.
+* **Tensor factors do not dilute errors.** An error `E` on a factor `S_A` has
+  `rk(E ⊗ 1)/dim S_j = rk(E)/dim S_A`.
+  - So a relation that can only be resolved on factors of bounded dimension costs a fixed proportion of
+    rank. At stage `j` those are pieces at the finest depth.
+  - Example: `τ_(A,B) = τ_(A0,B0) τ_(A1,B1)` for a transposition of cylinders of different depths. The
+    deepest pieces are not resolved at depth `j`.
+  - Letters built as `X ⊗ 1` over coarse supports avoid this. Letters built by refining down to the
+    resolution do not.
+* **Exact equivariant locality is impossible.** Suppose finite-dimensional factors `S(A)` satisfied
+  `S(A ⊔ B) ≅ S(A) ⊗ S(B)` and `S(gA) ≅ S(A)` for `g ∈ V`. Since `V` moves `c` onto `c0`,
+  `dim S(c) = dim S(c)^2`, so every factor is trivial. Letters therefore have to be abstract intertwiners
+  over coarse supports, as in Theorem 2.2, never second quantizations of one-particle maps.
+* **Not reached.** No rank model of `G_3` or `R^x` is built. The gate
+  `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model` is still open, and so is the binary
+  gate.

@@ -69,3 +69,22 @@ injective model, an anti-central model, or a nontrivial model of `PG = G/{±1}`.
   - **Fock locality, unfinished:** letters could act on the tensor factors of `Λ` over clopen pieces,
     which would give disjoint-support commutation. It needs asymptotic freeness of `Λ(U)^(⊗m)` over
     3-subgroups, which is not proved.
+- **Fock locality, finished as far as it goes** (lane `w4-fock-model`, 880518ac50 and 6edb22616b; artifact
+  `research/artifacts/fock-local-rank-models-2026-09-12.md`).
+  - **Asymptotic freeness is proved** in every characteristic (`exterior-tensor-powers-are-asymptotically-free`).
+    `Λ(W)^(⊗m)` is free over any finite `Γ ≤ GL(W)` up to proportion `(1−η)^⌊m/r⌋`. The regular module
+    splits off a tensor power through a free orbit and polynomial interpolation.
+  - **Local letters exist** (`fock-local-letters-extend-level-models-with-disjoint-commutation`). The Fock
+    tower, injective on `L` and anti-central on `Λ^odd`, extends to letters `X ⊗ 1` on single Fock
+    factors. They satisfy support-preserving partial conjugations, and exact commutation for disjoint
+    supports and for level elements off the support.
+  - **What a "no" proof must use.** It cannot rest on those relations. It needs one of:
+    - a multiplication-table relation on overlapping supports;
+    - a partial conjugation moving mass across a support;
+    - a Steinberg commutator of non-level root elements.
+  - **Compressors.** Second-quantizing the forced truncated shifts misses the Toeplitz commutator by rank
+    exactly `1/4` (`natural-fock-quantized-compressors-miss-toeplitz-by-a-quarter`). The compressors must
+    be abstract letters.
+  - **Where it stops.** Coherence of overlapping letters is untouched: the cocycle lies in a large
+    commutant. Errors on small tensor factors are not diluted, and exact equivariant locality forces
+    trivial factors. No model of `G` is built.
