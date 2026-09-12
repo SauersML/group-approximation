@@ -148,3 +148,51 @@ group.
 - *Quaternary host `(4, 2, 3)`.* Let `Ψ` be the `F_4`-linear extension of coefficientwise Frobenius on `L`.
   It swaps `eps_iota` and `eps_(iota²)`. Averaging `rk` with `rk o Ψ` gives `rk(eps_iota) > 0` whenever
   `rk(1 - [ω]) > 0`, because `1 - [ω] = (1 - [ω])(eps_iota + eps_(iota²))`.
+
+## 3. Finite-subgroup classes and where the lift stops
+
+**3.1 The nine-cylinder group.**
+- Let `D(h) = Σ_i s_i h t_i`. `D` is an injective endomorphism of `G`, and `D(G)` commutes with every
+  permutation unit `π` of the ternary family, since `π D(h) π^(-1) = Σ_i s_(π i) h t_(π i)`.
+- `A_9 = ⟨g, D(g)⟩ ≅ C_3²` acts on the nine cylinders `s_i s_j` by `(i, j) -> (i + a, j + b)`. Every
+  nontrivial element is fixed-point free.
+- The permutation units realizing `GL_2(F_3)` on these cylinders normalize `A_9` and act transitively
+  on its four subgroups `K` of order three.
+
+`F_2[A_9]` is semisimple. Its primitive idempotents are `e_(A_9)` and, for each `K`, `f_K = e_K − e_(A_9)`,
+because the two characters with kernel `K` are Galois conjugate. So `1 = e_(A_9) + Σ_K f_K` and
+`e = e_(K_1) = e_(A_9) + f_(K_1)`. The `f_K` are conjugate in `G`, so
+
+    [1 − e] = 3 [e − e_(A_9)]    in K_0(F_2[G]).
+
+**3.2 The halving map.**
+- `ψ(x) = e D(x)` is a unital ring homomorphism `F_2[G] -> e F_2[G] e`, because `e` commutes with `D(G)`.
+- Followed by the corner inclusion, it acts on `K_0` by `[e_H] -> [e D(e_H)]`.
+- For `C_3^k = ⟨g, D(g), ..., D^(k−1)(g)⟩`, which acts freely on the `3^k` cylinders of length `k`, it
+  sends `[e_(C_3^k)]` to `[e_(C_3^(k+1))]`.
+- Applying it to 3.1, the differences `d_k = [e_(C_3^k)] − [e_(C_3^(k+1))]` satisfy `d_k = 3 d_(k+1)`,
+  and `[1] = [e_(C_3^k)] + ((3^k − 1)/2) d_(k−1)`.
+
+**3.3 Consistency.** Every relation above holds for the rational measure `μ(e_(C_3^k)) = 3^(−k)`, which is
+what the lifted trace gives (`lifted-trace-detects-finite-subgroup-projectives`). A witness needs
+`[e] = [1] + [X]` with lifted trace `t(X) = −2/3`, so `X` is never a finite-subgroup projective. This is
+census item 4 of `research/artifacts/quaternary-twisted-corner-census-2026-09-12.md`, seen at the binary
+level. Lane `w4-kap-join` reports a sharper filter on candidate defects: laminar combinations of
+finite-subgroup idempotents with sofic intersection amalgam have strictly positive lifted trace
+(`sofic-amalgam-finite-subgroup-idempotent-traces-are-strict`). So the complement `1 − (e b)(c e)`,
+whose class is `0`, cannot be such a combination.
+
+**3.4 Where the lift stops.**
+- *Normal form.* Replace `b` by `e b` and `c` by `c e`; the equation becomes `w e z = 1`. Here `e z` is a
+  unimodular vector of `F_2[⟨g⟩\G]` and `w e ·` is its retraction. Neither `w` nor `z` can be a single
+  group element (Proposition 0.1).
+- *Image level.* `b = s_1 + s_2 + s_3` and `c = t_1 + t_2 + t_3` satisfy `π(e) = bc`. In the ternary
+  picture `R ≅ M_3(R)` this is the all-ones matrix, and `π(g) b = b`. The kernel of `π` is where every
+  correction lives.
+- *Support.* By Corollary 1.4, `g` dies in every finite, sofic or linear sofic quotient of
+  `Γ = ⟨g, supp w, supp z⟩`. So a candidate built inside a residually finite or virtually free subgroup
+  containing `g` is excluded from the start. Compare `leavitt-rank-three-lift-has-no-one-sided-inverse`,
+  where the support-three lifts die for the same kind of reason.
+- *Open.* No candidate `w, z` is known whose support subgroup passes this filter. The kill direction is
+  exactly `binary-leavitt-units-carry-nonaugmentation-rank-function`, and no characteristic-two rank
+  function other than the augmentation is known on any simple nonsofic group algebra.
