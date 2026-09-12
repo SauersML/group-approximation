@@ -82,40 +82,33 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
 - **Where it stops.** No `Z`-equivariant ancilla construction is known for the marker involution, and
   no invariant is known that survives cancellation between components. A negative answer must
   measure the growth in degree or memory of the corrections; a positive theorem must bound it.
-- **The obstruction splits into three finiteness conditions, and regrouping only buys the
-  first two (gk-fz-catalyst).** By `formalizability-is-a-boolean-ideal-cokernel-class` Theorem 5,
-  `tau x id` has a unique formal correction series `delta = sum_k delta_k`, each `delta_k`
-  equivariant of finite memory, solving the identity in every graded layer. Formalizability is the
-  conjunction of three separate conditions on this series:
-  1. **degree termination:** `delta_k = 0` for `k` large;
-  2. **bounded memory:** the memories of the `delta_k` do not grow without bound;
-  3. **period one:** the truncation is invariant under the full shift, not merely under a
-     finite-index subgroup.
-  The Boolean-adic solvability result gives the layers for free; it says nothing about (1)-(3).
-- **Regrouping and ancilla stabilization differ exactly in condition (3).**
-  `marker-involution-is-formalizable-after-regrouping` realizes the marker involution over `4Z` as
-  the word `S_3 S_2 S_1 S_0`, one track shear per residue class mod 4. That word is `4Z`-equivariant
-  but not `1`-shift-equivariant: it is a **period-4** bounded, degree-terminating correction. Ancilla
-  stabilization keeps the group `Z` and demands a **period-1** correction. So over `Z` the gap
-  between regroup-formalizability (settled, and enough for the Kaplansky payoff over `Z` through
-  `virtual-formalizability-reduces-surjunctivity-to-kaplansky`) and stable formalizability is exactly
-  a symmetry gap: a bounded degree-terminating correction of some finite period `p` versus one of
-  period `1`. The marker involution being regroup-formalizable therefore cannot settle the ancilla
-  question either way. (The period-`p`-over-`Z` reading of a regrouped word is a heuristic
-  correspondence, not a theorem: regrouping also changes the alphabet.)
-- **Where a proof must live, sharpened.** A negative answer must be a **period-1 (full-shift)
-  equivariance invariant** that the period-4 solution evades. This is exactly the multi-track
-  generalization of gk-fz-bennett's one-track Theorem A
-  (`formalizable-binary-pairs-over-biorderable-groups-are-affine`), which is a period-1 bi-order
-  argument; the two-track cancellation that defeats the naive extension is the same phenomenon as a
-  correction of period `> 1`. A positive answer must exhibit a period-1 bounded-memory catalytic
-  word, whose data offset is `Y`-free on points (forced by `U = tau(X)` for all `Y`) while its
-  ancilla offset is a nonzero element of `I` recovered through the data output.
+- **What termination means for the stabilized pair (gk-fz-catalyst; corrected after gk-vf-nonlinear,
+  Section 33 of its verification artifact).** By Theorem 5 of
+  `formalizability-is-a-boolean-ideal-cokernel-class`, with a Lemma C encoder representative every
+  graded layer of the correction problem for `tau x id` is solvable by equivariant finite-memory
+  `delta_k`, each extended under the full group `G`, so every layer is already `G`-invariant. The
+  solution is unique only when the encoder is bijective. For strict `tau` the layer maps are onto
+  but not injective, so there are choices. Formalizability of the stabilized pair is the
+  **existence of some choice** whose series terminates: finite degree and finite total memory.
+- **Regrouping relaxes equivariance, not termination.** Regrouping along a finite-index `H <= G`
+  keeps the variables `X_g` and asks only for `H`-equivariant finite-memory representatives on the
+  regrouped alphabet. `marker-involution-is-formalizable-after-regrouping` is such a formalization
+  with `H = 4Z`, one track shear per residue class mod 4. So over `Z` the marker involution already
+  has a terminating formalization with `4Z`-equivariant representatives, and the ancilla question is
+  whether identity tracks let a `Z`-equivariant one exist. The regrouped solution does not decide
+  that either way.
+- **Where a proof must live.** A negative answer over `Z` must obstruct `Z`-equivariant
+  representatives with identity tracks while not obstructing the `4Z`-equivariant formalization,
+  for instance a multi-track generalization of gk-fz-bennett's one-track Theorem A
+  (`formalizable-binary-pairs-over-biorderable-groups-are-affine`); identity tracks defeat its naive
+  extension through cancellation between components. A positive answer must exhibit a terminating
+  `G`-equivariant catalytic word: data output `Y`-free on points (forced by `U = tau(X)` for all
+  `Y`), ancilla offset a nonzero element of `I` recovered through the data output.
 - **Scope: the load-bearing test object is not on `Z` (gk-fz-catalyst).** The Kaplansky payoff is
   needed on finitely generated simple hosts (`gottschalk-reduces-to-fg-simple-kazhdan-groups`), which
-  have no proper finite-index subgroup, so regrouping is unavailable and only period-1 corrections
-  exist. The marker involution lives on `Z`, which has finite-index subgroups, so it is a warm-up
-  whose regroup-formalizability already yields the payoff over `Z`. The genuine open ancilla test
-  object is a reversible binary cellular automaton over a finitely generated simple group (for
-  instance a first-letter-swap involution inside Thompson's `V` or the Leavitt unit group acting on
-  Cantor space), where period-1 is the only option; none is on record.
+  have no proper finite-index subgroup, so regrouping is unavailable and only `G`-equivariant
+  representatives exist. The marker involution lives on `Z`, which has finite-index subgroups, so it
+  is a warm-up whose regroup-formalizability already yields the payoff over `Z`. The genuine open
+  ancilla test object is a reversible binary cellular automaton over a finitely generated simple
+  group (for instance a first-letter-swap involution inside Thompson's `V` or the Leavitt unit group
+  acting on Cantor space); none is on record.
