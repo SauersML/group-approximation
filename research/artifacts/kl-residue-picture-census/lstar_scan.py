@@ -45,6 +45,40 @@ def units():
     return inv, gen
 
 
+def units_big(limit=24):
+    """Larger lists: conjugates of basic involutions, and short products of units."""
+    inv0, gen0 = units()
+    T = L.thompson_unit
+    inv0['swap10-11'] = T(['0', '10', '11'], ['0', '11', '10'])
+    inv0['swap0-10'] = T(['0', '10', '11'], ['10', '0', '11'])
+    conj = dict(gen0)
+    conj.update({'u': inv0['u'], 'v': inv0['v'], 'w': inv0['w']})
+    inv, seen = {}, set()
+    for an, a in list(inv0.items()):
+        for cn, c in [('', None)] + sorted(conj.items()):
+            b = a if c is None else c * a * c.inverse()
+            if b.is_identity() or b.key in seen or b.order(4) != 2:
+                continue
+            seen.add(b.key)
+            inv[an if c is None else '%s^%s' % (an, cn)] = b
+            if len(inv) >= limit:
+                break
+        if len(inv) >= limit:
+            break
+    gen, seen = {}, set()
+    base = sorted(gen0.items())
+    cands = base + [('%s*%s' % (an, bn), a * b) for an, a in base for bn, b in base]
+    cands += [('%s*%s' % (an, bn), a * b) for an, a in base for bn, b in sorted(inv0.items())]
+    for name, a in cands:
+        if a.is_identity() or a.key in seen:
+            continue
+        seen.add(a.key)
+        gen[name] = a
+        if len(gen) >= limit:
+            break
+    return inv, gen
+
+
 def evaluate(word, gens, cache):
     """Product of a word in R^x, extending the longest cached prefix."""
     k = len(word)
@@ -60,7 +94,10 @@ def evaluate(word, gens, cache):
 
 def main():
     start = time.time()
-    inv, gen = units()
+    big = len(sys.argv) > 2 and sys.argv[2] == 'big'
+    inv, gen = units_big() if big else units()
+    print('involutions %d: %s' % (len(inv), ' '.join(sorted(inv))))
+    print('labels g %d: %s' % (len(gen), ' '.join(sorted(gen))))
     shapes = []
     for cls in (0, 1):
         faces = {area: load_faces(cls, area) for area in (2, 4)}
@@ -84,6 +121,7 @@ def main():
     triples = [(gname, xname, yname) for gname in gen for xname in inv for yname in inv]
     stats = {(c, s): [0, None, 0] for c, s, _, _ in shapes}   # triples done, min nontrivial, hits
     hits = []
+    templates = {}
     done = 0
     for gname, xname, yname in triples:
         if time.time() - start > TIME_LIMIT:
@@ -98,7 +136,11 @@ def main():
             st[0] += 1
             for area, fs, ids in pairings:
                 k = sum(not trivial[i] for i in ids)
-                st[1] = k if st[1] is None else min(st[1], k)
+                if st[1] is None or k < st[1]:
+                    st[1] = k
+                    templates[(cls, shape)] = (gname, xname, yname, area,
+                                               [wordlist[i] for i in ids if not trivial[i]],
+                                               [wordlist[i] for i in ids if trivial[i]])
                 if k <= 1:
                     st[2] += 1
                     hits.append((cls, shape, gname, xname, yname, area, fs))
@@ -111,6 +153,12 @@ def main():
     for (cls, shape), (n, mn, h) in sorted(stats.items()):
         print('  %s %s: triples %d, min nontrivial faces %s, candidate hits %d'
               % (NAMES[cls], shape, n, mn, h))
+        tpl = templates.get((cls, shape))
+        if tpl:
+            gname, xname, yname, area, bad, good = tpl
+            print('    first minimizer g=%s x=%s y=%s area %d' % (gname, xname, yname, area))
+            print('      nontrivial in R^x:', ['.'.join('%s%+d' % t for t in wd) for wd in bad])
+            print('      trivial in R^x but not in U:', ['.'.join('%s%+d' % t for t in wd) for wd in good])
     if hits:
         L.set_dual(True)
         for cls, shape, gname, xname, yname, area, fs in hits[:20]:
