@@ -4767,3 +4767,4 @@ import GroupApproximation.KunThom.CountingEndgamePropsMedian
 import GroupApproximation.KunThom.CountingEndgamePropsOneSided
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyWords
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyCore
+import GroupApproximation.KunThom.ComponentCountingFrameObjects
