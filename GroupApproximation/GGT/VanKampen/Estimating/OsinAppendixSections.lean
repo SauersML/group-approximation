@@ -1,0 +1,355 @@
+import GroupApproximation.GGT.VanKampen.Estimating.RegionGlobalSelection
+import GroupApproximation.GGT.VanKampen.Estimating.RegionPartition
+import GroupApproximation.GGT.VanKampen.Estimating.UnboundParameters
+import GroupApproximation.GroupTheory.NormalClosureProduct
+
+/-!
+# Osin's Appendix Lemma 9.7 at up to four boundary sections: the statements
+
+Osin, *Small cancellations over relatively hyperbolic groups and embedding
+theorems*, arXiv:math/0411039v3, §9 (the Appendix; "all results of this section
+should be credited to Olshanskii").  Lemma 9.7 is proved by ONE induction on the
+number of `R`-cells, for diagrams whose boundary is `q_1 ⋯ q_r` with
+`1 ≤ r ≤ 4` quasi-geodesic sections, and its two clauses are used together:
+clause (a) (condition `(∗)`) is proved from clause (b) at subdiagrams bounded by
+four sections `s_1 t_1 s_2 t_2`, and clause (b) is proved from (a) and the
+counting Lemmas 9.3–9.5 at the same stage.  This module states the objects and
+the lemmas of that induction.  Nothing here is proved except one small
+constructor.
+
+## Two model-level findings behind this module (2026-09-11)
+
+**The historical estimating leaves are not reachable along Osin's route.**
+`EstimatingGraphData.planarEdgeBound` is `HasHereditaryPlanarEdgeBound`, and
+`hereditaryPlanarEdgeBound_iff_no_incidence` with
+`EstimatingGraphData.no_interiorEdge` (`Estimating/HereditaryPlanarRefutation.lean`,
+issue #204) show that it holds exactly when the distinguished family has no
+cell-to-cell region at all.  So `EstimatingSelectionConstructionStatement`, and
+`EstimatingUnboundOutputStatement` which consumes and returns the same
+certificate, ask for an O-equivalent diagram whose Definition-M family has an
+EMPTY interior graph.  Osin's Lemma 9.5 charges the interior arcs through
+Lemma 9.1 precisely because `Φ_M` has edges.  Neither statement is refuted
+here, but no step of §9 produces what they ask for.  The corrected waist is
+Osin's Lemma 4.4, the case `r = 1` of Lemma 9.7(b), stated at least-area
+diagrams (`RelativeGreendlingerQuasiGeodesicLeastAreaStatement` below; see the
+third finding).  Its historical form `RelativeGreendlingerQuasiGeodesicStatement`
+is what the Hull chain consumes through
+`HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_greendlinger` and
+`HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_greendlinger`.
+
+**Exterior uniqueness is not a consequence of `(∗)`.**  The two-gon half of
+`(∗)` says only that inside every `2`-gon of `Φ'_M` there is a vertex of
+`Φ_M`: two regions of one cell to one section merge when NO relator cell lies
+between them.  `Embedded.ExteriorMergeAvailable` (every pair of selected
+exterior regions at a cell merges) and `GeometricCandidate.ExteriorUnique` (at
+most one exterior region per cell) are stronger, and a cell touching one section
+twice around another cell violates both while satisfying `(∗)`.  In Osin, a
+single region per section appears only at the cell minimizing `m(Π)` in the
+proof of clause (b).  So clause (a) is recorded below by what the counting
+consumes, the Euler count of `Φ'_M`, and clause (b) keeps "some of them may be
+absent" and one region per section.  This is also not refuted in Lean yet.
+
+**Osin's "reduced" is least area, and the algebraic `DiscDiagram.Reduced` is a
+risk.**  Lemma 9.5 charges every selected cell-to-cell region at both ends
+through O52, and Osin's proof of O52 reads: "If the third condition is not,
+then `φ(s_1) φ(∂Π) φ(s_1)⁻¹ = φ(∂Σ)` … we can cut the subdiagram … and fill the
+obtained hole with a diagram without `R`-cells reducing the number of `R`-cells
+by 2.  This contradicts the assumption that `Δ` is reduced."  There "reduced"
+means a MINIMAL number of `R`-cells for the boundary label.  On main the O52
+charge (`Contiguity.whole_ne_of_reduced`) uses `DiscDiagram.Reduced`, which is
+the pairwise algebraic no-cancellation of cells in their stored order, together
+with the region's `o52Certificate`, which aligns the region with that stored
+order and the stored conjugators.  A genuine region carries no such alignment,
+and a `DiscDiagram` ties its conjugators to its planar structure only through
+`boundary_product`.  So O52 for an actual region is not derivable from
+`DiscDiagram.Reduced` along Osin's route.  A counterexample to the waist with
+algebraic reducedness would need conjugators inconsistent with the planar
+structure while every ordered pair stays algebraically non-cancelling; none is
+constructed, so this is a risk, not a refutation.  The statements below
+therefore take `DiscDiagram.LeastArea`, which is Osin's notion, is what
+`HullSC.Lemma44RelatorDiagramBoundary.area_minimal` supplies to the Hull chain,
+and implies `DiscDiagram.Reduced` (`DiscDiagram.reduced_of_leastArea`).  It is
+inherited by every O-equivalent diagram (same cell count, same boundary value),
+so each diagram of the O-class optimum below is reduced as well.
+
+## Design
+
+* **Sections live on the boundary word**, as cut positions (`SectionCuts`).  An
+  O-equivalence preserves `boundaryWord`, and `Embedded.dartWord_outerDarts`
+  identifies the positions of `outerDarts` with the positions of that word, so
+  one set of cuts serves every O-equivalent diagram.  The landed
+  `Embedded.BoundarySections` is dart-based and belongs to one diagram.
+* **Definition 9.2 over all O-equivalent diagrams.**  `M` consists of
+  `ε`-contiguity subdiagrams of cells to cells or to sections, pairwise
+  disjoint, of maximal total arc length and then minimal cardinality.  The
+  candidates are `Embedded.RegionCandidate` (the actual geometric witness,
+  self-contiguities allowed, as in Osin before Lemma 9.7(a) excludes loops),
+  restricted to regions whose outer arc lies inside one section.  The optimum
+  is taken over every reduced O-equivalent diagram at once, as in
+  `RegionGlobalSelection`, so Osin's "passing to an O-equivalent diagram if
+  necessary" never leaves the class: a surgery that keeps the relator cells and
+  the selected regions yields another optimum, and one that enlarges the family
+  contradicts `weight_maximal`.
+* **The split.**  `OsinLemma94SectionStatement` is Lemma 9.4 (the unbound arcs),
+  with `(∗)` entering only through Lemma 9.3's count `e ≤ 3(v − 1)` for `Φ'_M`,
+  `v = n + r`.  `OsinLemma97SectionStatement` is Lemma 9.7: clause (a) as that
+  count at every optimum, clause (b) verbatim.  Every `W` satisfying the
+  `C`-condition is allowed: Lemma 9.7 assumes no finiteness of the relator set.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded
+
+/-! ## Osin's reducedness -/
+
+/-- **Least area**, Osin's reducedness: no relator product of the boundary value
+uses fewer relator conjugates than the diagram has relator cells.  Spelled as
+`HullSC.Lemma44RelatorDiagramBoundary.area_minimal`. -/
+def DiscDiagram.LeastArea {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} (Delta : DiscDiagram.{u, w, v} W) : Prop :=
+  ∀ {m : ℕ}, RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
+    Delta.boundaryValue → Delta.rCellCount ≤ m
+
+/-- **Osin's Lemma 4.4 at least-area diagrams**: the Greendlinger waist with
+Osin's reducedness in place of the algebraic `DiscDiagram.Reduced`.  Otherwise
+verbatim `RelativeGreendlingerQuasiGeodesicStatement`. -/
+def RelativeGreendlingerQuasiGeodesicLeastAreaStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+      ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+        ∃ eps rho : ℕ, 0 < rho ∧
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+              ∀ Delta : DiscDiagram.{u, w, v} W,
+                Delta.LeastArea → 0 < Delta.rCellCount →
+                IsLambdaCQuasiGeodesicWord D lambda c Delta.boundaryWord →
+                  ∃ Delta' : DiscDiagram.{u, w, v} W,
+                    Nonempty (OEquivalentDiscDiagram Delta Delta') ∧
+                      ∃ (faces : Finset Delta'.toCombMap.Face)
+                        (Gamma : Contiguity D eps Delta' faces),
+                        Gamma.target = none ∧
+                          (1 - 13 * mu) *
+                              ((cell Delta' Gamma.source).word.length : ℝ) <
+                            (Gamma.sourceArc.length : ℝ)
+
+/-! ## Boundary sections on the boundary word -/
+
+/-- **Osin's `∂Δ = q_1 ⋯ q_r`, `1 ≤ r ≤ 4`, on the boundary word.**  Section `j`
+occupies the positions `[cut j, cut (j+1))` of `word`, and its word is
+`(λ, c)`-quasi-geodesic. -/
+structure SectionCuts {G : Type u} [Group G] {Lambda : Type w}
+    (D : RelGenSet G Lambda) (lambda c : ℝ)
+    (word : List (RelLetter G Lambda)) where
+  /-- The number `r` of sections. -/
+  count : ℕ
+  count_pos : 0 < count
+  count_le : count ≤ 4
+  /-- The cut positions `0 = cut 0 ≤ cut 1 ≤ ⋯ ≤ cut r = |word|`. -/
+  cut : Fin (count + 1) → ℕ
+  cut_zero : cut 0 = 0
+  cut_last : cut (Fin.last count) = word.length
+  cut_mono : Monotone cut
+  /-- Each section is `(λ, c)`-quasi-geodesic. -/
+  quasiGeodesic : ∀ j : Fin count,
+    IsLambdaCQuasiGeodesicWord D lambda c
+      ((word.drop (cut j.castSucc)).take (cut j.succ - cut j.castSucc))
+
+namespace SectionCuts
+
+/-- The word of section `j`. -/
+def part {G : Type u} [Group G] {Lambda : Type w}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {word : List (RelLetter G Lambda)}
+    (cuts : SectionCuts D lambda c word) (j : Fin cuts.count) :
+    List (RelLetter G Lambda) :=
+  (word.drop (cuts.cut j.castSucc)).take (cuts.cut j.succ - cuts.cut j.castSucc)
+
+/-- **One section**, the whole boundary word, which is the case `r = 1` of
+Osin's Lemma 4.4. -/
+def whole {G : Type u} [Group G] {Lambda : Type w}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {word : List (RelLetter G Lambda)}
+    (hword : IsLambdaCQuasiGeodesicWord D lambda c word) :
+    SectionCuts D lambda c word where
+  count := 1
+  count_pos := Nat.one_pos
+  count_le := by omega
+  cut := fun k => if k = 0 then 0 else word.length
+  cut_zero := if_pos rfl
+  cut_last := if_neg (by decide)
+  cut_mono := by
+    intro a b hab
+    by_cases ha : a = 0
+    · simp [ha]
+    · have hb : b ≠ 0 := by
+        rintro rfl
+        exact ha (Fin.le_zero_iff.mp hab)
+      simp [ha, hb]
+  quasiGeodesic := by
+    intro j
+    have hj : j = 0 := Subsingleton.elim j 0
+    subst hj
+    simpa [Fin.succ_ne_zero] using hword
+
+end SectionCuts
+
+/-! ## Regions to sections -/
+
+namespace Embedded.RegionCandidate
+
+/-- A region is a contiguity **to section `j`**: its target is the outer
+boundary and its outer arc sits inside the positions of section `j`, without
+wrapping around the base point. -/
+def TargetsSectionIndex {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {lambda c : ℝ} {word : List (RelLetter G Lambda)}
+    (cuts : SectionCuts D lambda c word) (j : Fin cuts.count)
+    (a : RegionCandidate D eps Delta) : Prop :=
+  a.2.target = none ∧
+    cuts.cut j.castSucc ≤ a.2.targetArc.start.1 ∧
+      a.2.targetArc.start.1 + a.2.targetArc.length ≤ cuts.cut j.succ
+
+/-- **Definition 9.2's admissible regions**: of a cell to a cell, or of a cell to
+a section of `∂Δ`. -/
+def RespectsSections {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {lambda c : ℝ} {word : List (RelLetter G Lambda)}
+    (cuts : SectionCuts D lambda c word) (a : RegionCandidate D eps Delta) : Prop :=
+  a.2.target = none → ∃ j : Fin cuts.count, TargetsSectionIndex cuts j a
+
+/-- **The contiguity degree** `(Π, Γ, q) = l(q_1) / l(∂Π)` of a region, read on
+its source cell. -/
+noncomputable def contiguityDegree {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    (a : RegionCandidate D eps Delta) : ℝ :=
+  (a.2.sourceArc.length : ℝ) / ((cell Delta a.2.source).word.length : ℝ)
+
+end Embedded.RegionCandidate
+
+/-! ## Definition 9.2 over all O-equivalent diagrams, with sections -/
+
+/-- One actual compatible family of section-respecting regions on a reduced
+O-equivalent diagram.  The cuts are positions of `Delta.boundaryWord`, which is
+the boundary word of every O-equivalent diagram. -/
+structure RealizedSectionFamily {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord)
+    extends RealizedRegionFamily D eps Delta where
+  respects : ∀ a ∈ family, RegionCandidate.RespectsSections cuts a
+
+/-- Total arc length of a realized section family. -/
+def RealizedSectionFamily.weight {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : RealizedSectionFamily D lambda c eps Delta cuts) : ℕ :=
+  S.toRealizedRegionFamily.weight
+
+/-- **Osin's distinguished system `M`** (Definition 9.2), taken over every
+reduced O-equivalent diagram: maximal total contiguity-arc length, then minimal
+number of regions. -/
+structure GloballyDistinguishedSectionFamily {G : Type u} [Group G]
+    {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord)
+    extends RealizedSectionFamily D lambda c eps Delta cuts where
+  weight_maximal : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
+    other.weight ≤ toRealizedSectionFamily.weight
+  card_minimal : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
+    other.weight = toRealizedSectionFamily.weight →
+      family.card ≤ other.family.card
+
+/-! ## The lemmas of the induction -/
+
+/-- **Osin's Lemma 9.4, at up to four sections.**  (Owner: lane `hull-unbound`.)
+
+"Suppose that `Δ` satisfies `(∗)`.  Let `S` denote the sum of lengths of all
+unbound arcs of type (A1) in `Δ`.  Then `S < n √ρ`."  The parameters are
+chosen as in (36) and "`ρ` sufficiently large"; the thresholds are monotone
+(`ε ≥ ε₀`, then `ρ ≥ ρ₀`) so that they combine with the other lemmas by taking
+maxima.  Condition `(∗)` enters the proof only through Lemma 9.3, whose Euler
+count is `e ≤ 3(v − 1)` for `Φ'_M` with `v = n + r` vertices and `e = |M|`
+edges; that count is the hypothesis here.  The unbound arcs of type (A1) are
+the darts of the relator cells covered by no selected region.
+
+The conclusion is on the optimum `S` itself.  Osin's "passing to an
+O-equivalent diagram if necessary" is available inside the proof: `S` is optimal
+over every reduced O-equivalent diagram, so a surgery that enlarges the family
+contradicts `weight_maximal`, and a surgery that keeps the relator cells and the
+selected regions (a `Surgery.GRegionReplacement`, through
+`OEquivalentDiscDiagram.ofGRegionReplacement` and `replacement.reduced`) lands in
+the same class.  No symmetry of `D.base` is assumed: `RelGenSet` makes
+`base ∪ ⋃ H_λ` symmetric, so every alphabet element is one legal letter. -/
+def OsinLemma94SectionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) →
+                  (∑ i : Fin S.diagram.rCellCount,
+                      ((RegionCandidate.unboundDarts S.family i).card : ℝ)) <
+                    (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
+
+/-- **Clause (b) of Lemma 9.7, verbatim.**  "There is an `R`-cell `Π` of `Δ` and
+disjoint `ε`-contiguity subdiagrams `Γ_j` of `Π` to sections `q_j`,
+`j = 1, …, r`, of `∂Δ` (some of them may be absent) such that
+`∑_j (Π, Γ_j, q_j) > 1 − 13μ`."  The regions are members of the distinguished
+family, hence pairwise disjoint, and distinct sections use distinct regions. -/
+def OsinLemma97bConclusion {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (mu : ℝ) (S : RealizedSectionFamily D lambda c eps Delta cuts) : Prop :=
+  ∃ (source : Fin S.diagram.rCellCount)
+    (present : Finset (Fin cuts.count))
+    (region : Fin cuts.count → RegionCandidate D eps S.diagram),
+    (∀ j ∈ present, region j ∈ S.family) ∧
+      (∀ j ∈ present, (region j).2.source = source) ∧
+      (∀ j ∈ present, RegionCandidate.TargetsSectionIndex cuts j (region j)) ∧
+      (∀ j ∈ present, ∀ k ∈ present, j ≠ k → region j ≠ region k) ∧
+      1 - 13 * mu < ∑ j ∈ present, (region j).contiguityDegree
+
+/-- **Osin's Lemma 9.7, at up to four sections.**  (Owner: lane `hull-select`.)
+
+For every hyperbolic relative alphabet and `λ ∈ (0, 1]`,
+`c ≥ 0`, `μ ∈ (0, 1/16]` there is `ε₀` such that for every `ε ≥ ε₀` there is
+`ρ₀ > 0` such that for every `ρ ≥ ρ₀`, every symmetrized family satisfying
+`C(ε, μ, λ, c, ρ)` and every reduced diagram with at least one `R`-cell and
+boundary sections:
+
+* clause (a), recorded by what the counting consumes: every distinguished system
+  satisfies the Euler count of `Φ'_M` that `(∗)` gives, `|M| ≤ 3(n + r − 1)`;
+* clause (b), verbatim, at some distinguished system. -/
+def OsinLemma97SectionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+                (∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                    S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) ∧
+                  ∃ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                    OsinLemma97bConclusion mu S.toRealizedSectionFamily
+
+end GroupApproximation.GGT.VanKampen
