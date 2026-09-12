@@ -57,18 +57,19 @@ theorem naiveFreeProduct_of_isAcylindricallyHyperbolic (G : Type) [Group G]
           (cond b (Subgroup.zpowers y) (Subgroup.zpowers f)).subtype) := by
   classical
   obtain ⟨A⟩ := CyclicEmbeddedChoice.nonempty_hullGeneratingSet G
-  set o : Cayley A.alphabet := Cayley.base A.alphabet with hodef
   have hδ : IsHyperbolicSpace A.delta (Cayley A.alphabet) := A.hyperbolic
-  have hδ0 : 0 ≤ A.delta := Elementary.nonneg_of_isHyperbolicSpace hδ o
+  have hδ0 : 0 ≤ A.delta :=
+    Elementary.nonneg_of_isHyperbolicSpace hδ (Cayley.base A.alphabet)
   have hacy : IsAcylindrical G (Cayley A.alphabet) := A.acylindrical
   have hiso : IsIsometricAction G (Cayley A.alphabet) := isIsometricAction_cayley A.alphabet
-  have hind : Elementary.IndependentOfNoCommonZpow G o :=
+  have hind : Elementary.IndependentOfNoCommonZpow G (Cayley.base A.alphabet) :=
     ElementaryMorse.independentOfNoCommonZpow_cayley_of_hyperbolic A.alphabet hδ hacy
   -- the partner's root
   obtain ⟨y, hylox, hycyc, havoid, _hyemb⟩ :=
     CyclicEmbeddedChoice.exists_loxodromic_cyclic_avoiding A hrad F
   obtain ⟨k₀, hk₀, hgap₀⟩ :=
     exists_power_local_backtracking_gap hiso (add_nonneg hδ0 hδ0) hylox
+  set o : Cayley A.alphabet := Cayley.base A.alphabet
   set h₀ : G := y ^ k₀ with hh₀def
   set C₀ : ℝ := gromovProduct (h₀ • o) (h₀⁻¹ • o) o with hC₀def
   have hloc : gromovProduct (h₀ • o) (h₀⁻¹ • o) o ≤ C₀ := le_refl _
@@ -111,10 +112,10 @@ theorem naiveFreeProduct_of_isAcylindricallyHyperbolic (G : Type) [Group G]
     exact exists_uniform_regimes hδ hδ0 hiso hacy hind hloc hC₀ hgap (hdich f)
       (hnot f hf)
   choose! Ef Df If M₀f hEf hDf hIf hreg using hconst
-  set E : ℝ := ∑ f ∈ F, Ef f with hEdef
-  set D : ℝ := ∑ f ∈ F, Df f with hDdef
-  set I : ℝ := ∑ f ∈ F, If f with hIdef
-  set M₀ : ℕ := ∑ f ∈ F, M₀f f with hM₀def
+  set E : ℝ := ∑ f ∈ F, Ef f
+  set D : ℝ := ∑ f ∈ F, Df f
+  set I : ℝ := ∑ f ∈ F, If f
+  set M₀ : ℕ := ∑ f ∈ F, M₀f f
   have hEle : ∀ f ∈ F, Ef f ≤ E := fun f hf =>
     Finset.single_le_sum (fun g hg => hEf g hg) hf
   have hDle : ∀ f ∈ F, Df f ≤ D := fun f hf =>
@@ -127,7 +128,7 @@ theorem naiveFreeProduct_of_isAcylindricallyHyperbolic (G : Type) [Group G]
   have hD0 : 0 ≤ D := Finset.sum_nonneg hDf
   have hI0 : 0 ≤ I := Finset.sum_nonneg hIf
   -- the ping-pong constant and the power
-  set C : ℝ := max (C₀ + 2 * A.delta) (max D I) with hCdef
+  set C : ℝ := max (C₀ + 2 * A.delta) (max D I)
   have hCturn : C₀ + 2 * A.delta ≤ C := le_max_left _ _
   have hCD : D ≤ C := le_trans (le_max_left D I) (le_max_right _ _)
   have hCI : I ≤ C := le_trans (le_max_right D I) (le_max_right _ _)
@@ -136,18 +137,17 @@ theorem naiveFreeProduct_of_isAcylindricallyHyperbolic (G : Type) [Group G]
   obtain ⟨M₁, hM₁⟩ := exists_nat_gt (K / (dist o (h₀ • o) - 2 * (C₀ + A.delta)))
   set M : ℕ := M₀ + M₁ + 1 with hMdef
   have hM1 : 1 ≤ M := by omega
-  set h : G := h₀ ^ M with hhdef
+  set h : G := h₀ ^ M
   have hstep : K < dist o (h • o) := by
-    have hprog := le_dist_pow_smul hδ hδ0 hiso hloc hC₀ hgap M
+    have hprog : (dist o (h₀ • o) - 2 * (C₀ + A.delta)) * (M : ℝ) ≤ dist o (h • o) :=
+      le_dist_pow_smul hδ hδ0 hiso hloc hC₀ hgap M
     have h1 : K < (dist o (h₀ • o) - 2 * (C₀ + A.delta)) * (M₁ : ℝ) := by
       rw [div_lt_iff₀ hκ] at hM₁
       linarith
     have h2 : (dist o (h₀ • o) - 2 * (C₀ + A.delta)) * (M₁ : ℝ) ≤
         (dist o (h₀ • o) - 2 * (C₀ + A.delta)) * (M : ℝ) := by
       refine mul_le_mul_of_nonneg_left ?_ hκ.le
-      rw [hMdef]
-      push_cast
-      linarith
+      exact_mod_cast (by omega : M₁ ≤ M₀ + M₁ + 1)
     linarith
   have hlocM : gromovProduct (h • o) (h⁻¹ • o) o ≤ C :=
     le_trans (gromovProduct_turn_pow_le hδ hδ0 hiso hloc hC₀ hgap hM1) hCturn

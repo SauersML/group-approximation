@@ -35,6 +35,8 @@ Infrastructure for `cor:regular-nonmf-algebra` through property `P_naive`;
 certifies no printed sentence on its own.
 -/
 
+open scoped Pointwise
+
 namespace GroupApproximation
 namespace GGT
 namespace PNaive
@@ -101,11 +103,11 @@ theorem injective_lift_cyclicPair {δ C : ℝ} (hδ : IsHyperbolicSpace δ X)
       (fun n : ℤ => (⟨h ^ n, Subgroup.zpow_mem_zpowers h n⟩ : Subgroup.zpowers h)) ?_
     intro a b hab
     exact hinj (congrArg Subtype.val hab)
-  have hcard : 3 ≤ Cardinal.mk Bool ∨
-      ∃ i : Bool, 3 ≤ Cardinal.mk (cond i (Subgroup.zpowers h) (Subgroup.zpowers f)) := by
+  let S : Bool → Subgroup G := fun b => cond b (Subgroup.zpowers h) (Subgroup.zpowers f)
+  have hcard : 3 ≤ Cardinal.mk Bool ∨ ∃ i : Bool, 3 ≤ Cardinal.mk ↥(S i) := by
     refine Or.inr ⟨true, ?_⟩
-    show 3 ≤ Cardinal.mk (Subgroup.zpowers h)
-    have h3 : ((3 : ℕ) : Cardinal) < Cardinal.aleph0 := Cardinal.nat_lt_aleph0 3
+    show 3 ≤ Cardinal.mk ↥(Subgroup.zpowers h)
+    have h3 : ((3 : ℕ) : Cardinal) < Cardinal.aleph0 := Cardinal.natCast_lt_aleph0
     have hal : Cardinal.aleph0 ≤ Cardinal.mk (Subgroup.zpowers h) :=
       Cardinal.aleph0_le_mk _
     exact_mod_cast h3.le.trans hal
@@ -126,14 +128,13 @@ theorem injective_lift_cyclicPair {δ C : ℝ} (hδ : IsHyperbolicSpace δ X)
       linarith
     · rw [mem_shadow] at hx
       linarith
-  have hXdisj : Pairwise (Disjoint on Xs) := by
+  have hXdisj : Pairwise (Function.onFun Disjoint Xs) := by
     rintro (_ | _) (_ | _) hij
     · exact absurd rfl hij
     · exact hdisj_tf.symm
     · exact hdisj_tf
     · exact absurd rfl hij
-  have hpp : Pairwise fun i j => ∀ a : cond i (Subgroup.zpowers h) (Subgroup.zpowers f),
-      a ≠ 1 → (cond i (Subgroup.zpowers h) (Subgroup.zpowers f)).subtype a • Xs j ⊆ Xs i := by
+  have hpp : Pairwise fun i j => ∀ a : ↥(S i), a ≠ 1 → (S i).subtype a • Xs j ⊆ Xs i := by
     rintro (_ | _) (_ | _) hij
     · exact absurd rfl hij
     · -- a nontrivial element of `⟨f⟩` sends `Xt` into `Xf`
@@ -154,7 +155,8 @@ theorem injective_lift_cyclicPair {δ C : ℝ} (hδ : IsHyperbolicSpace δ X)
       rw [← hn]
       exact zpow_smul_mem_shadows hδ hiso hloc hgap hpos hneg hn0
     · exact absurd rfl hij
-  exact Monoid.CoprodI.lift_injective_of_ping_pong _ hcard Xs hXne hXdisj hpp
+  exact Monoid.CoprodI.lift_injective_of_ping_pong (fun b => (S b).subtype) hcard Xs hXne
+    hXdisj hpp
 
 end PNaive
 end GGT
