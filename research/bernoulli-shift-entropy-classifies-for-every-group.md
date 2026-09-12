@@ -26,16 +26,31 @@ over every countably infinite group, so this claim is exactly the missing half
 of the classification. It holds for sofic groups, so a counterexample must be
 nonsofic. Nonsofic groups now exist (`openai-leavitt-unit-nonsofic`).
 
-**Relation to `every-group-has-positive-rokhlin-entropy-action`.** Under that
-hypothesis Seward's Krieger II (arXiv:1501.03367) gives Bernoulli Rokhlin
-entropy equal to base entropy. Rokhlin entropy is an isomorphism invariant, so
-the hypothesis implies this claim. The route stays unwired until the per-group
-form is read.
+**Relation to `every-group-has-positive-rokhlin-entropy-action`.** The route
+`bernoulli-classification-via-positive-rokhlin-entropy` derives this claim from
+that hypothesis and `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`:
+- INF(G) follows for each group through products `P × G`, by Seward Theorem 1.11;
+- INF(G) then gives Bernoulli Rokhlin entropy equal to base entropy;
+- Rokhlin entropy is an isomorphism invariant.
+
+Per group, the scope is narrower:
+- INF(G) alone gives this claim for `G`;
+- for one pair of finite base entropies `h_1 < h_2`, the weaker bound
+  `h^Rok_sup(G) > h_1` suffices.
+
+Necessary conditions on a counterexample group are recorded in
+`bernoulli-entropy-counterexample-constraints`.
 
 ## Attempts
 
-- None run. The strategy lane `opportunity-mapper` opened this claim; see item
-  2 of `research/artifacts/opportunity-map-2026-09-12.md`.
+- **Origin and wiring.** The strategy lane `opportunity-mapper` opened this
+  claim (item 2 of `research/artifacts/opportunity-map-2026-09-12.md`). Lane
+  `bernoulli-entropy-classification` read the per-group statements of Seward
+  II, wrote the route above and the counterexample constraints, and was merged
+  into lane `rokhlin-entropy` on 2026-09-12.
+- **No lower bound.** Every lower bound for Rokhlin entropy used here comes
+  from sofic entropy or amenability. The attempts toward one without sofic
+  models are recorded on `every-group-has-positive-rokhlin-entropy-action`.
 - Weak isomorphism gives no obstruction. Every nonsofic group known here
   contains a nonabelian free subgroup, and over such groups every pair of
   nontrivial Bernoulli shifts is weakly isomorphic (Bowen, arXiv:0812.2718). A
