@@ -1,7 +1,6 @@
 import GroupApproximation.CharClass.ThomHabs
 import GroupApproximation.CharClass.ThomChernDegreewiseOf
 import GroupApproximation.CharClass.ThomDataOf
-import GroupApproximation.CharClass.CohomologyKunnethHemiOf
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -41,6 +40,7 @@ coefficient equivalence `lhTopEquivOf` of the top absolute group is built from
 set_option autoImplicit false
 
 open CategoryTheory
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 namespace GroupApproximation.CharClass
 
@@ -105,7 +105,8 @@ theorem absToSub_sum_lhTermOf (Z : Set P)
   have hlast : lhTerm π' ξ' (2 * r) ((Fin.last r : Fin (r + 1)) : ℕ) (a (Fin.last r))
       = ∑ i : Fin r, lhTerm π' ξ' (2 * r) (i : ℕ) (chernMulOf L' i (a (Fin.last r))) :=
     lhTerm_top_eq_sumOf L' (a (Fin.last r))
-  rw [absToSub_eq_cohPullbackOf, cohPullbackK_apply_eq, pull_sum]
+  show pull (sInclusion Z) (2 * r) (∑ i : Fin (r + 1), lhTerm π ξ (2 * r) (i : ℕ) (a i)) = _
+  rw [pull_sum]
   simp only [hterm]
   rw [Fin.sum_univ_castSucc, hlast, ← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl (fun i _ => ?_)

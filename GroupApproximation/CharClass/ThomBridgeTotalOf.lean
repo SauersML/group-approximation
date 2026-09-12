@@ -36,6 +36,7 @@ here depends on which class is used.
 set_option autoImplicit false
 
 open CategoryTheory
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 namespace GroupApproximation.CharClass
 
