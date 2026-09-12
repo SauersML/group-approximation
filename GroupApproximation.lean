@@ -4627,6 +4627,7 @@ import GroupApproximation.KunThom.CentralizerNormalizationParameters
 import GroupApproximation.KunThom.CentralizerNormalizationCrossingRepair
 import GroupApproximation.KunThom.CentralizerNormalizationSumApproximation
 import GroupApproximation.KunThom.CentralizerNormalizationImprove
+import GroupApproximation.KunThom.NormalizationFromCriterionClosure
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
