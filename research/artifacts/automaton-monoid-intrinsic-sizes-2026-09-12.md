@@ -85,7 +85,7 @@ So `(Ret(G;A), ⊆, ≅)` is isomorphic to `↓tau(A^G)`, with the top `A^G` goi
    its image, and the other statements follow.
 3. Let `Y = g(A^G)` be a retract image inside `tau(A^G)`. The idempotent `e = tau sigma` fixes
    `tau(A^G)` pointwise, so `e g = g`. Then `sigma g tau` is idempotent:
-   `(sigma g tau)^2 = sigma g (tau sigma) g tau = sigma (e g) g tau = sigma g tau`. Its image is
+   `(sigma g tau)^2 = sigma g (tau sigma) g tau = sigma g (e g) tau = sigma g tau`. Its image is
    `sigma(g(tau(A^G)))`, and `g(tau(A^G)) = Y` because `g` fixes `Y` and `Y <= tau(A^G)`. So
    `sigma(Y)` is a retract image, and `tau(sigma(Y)) = e(Y) = Y`. The same computation inside `↓X`
    gives the general statement. []
