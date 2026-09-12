@@ -106,9 +106,10 @@ variable (U ι) in
 def lift1 (X : Module.End k V) : Module.End k (U × (ι → V)) :=
   (1 : Module.End k U).prodMap (piMap ι X)
 
-variable (U ι V) in
-/-- `1 × 0`, the projection onto the finite-dimensional part. -/
-def projU : Module.End k (U × (ι → V)) :=
+/-- `1 × 0`, the projection onto the finite-dimensional part.  (Its own binders, in the
+order `U ι V` used at every call site.) -/
+def projU (U ι V : Type*) [AddCommGroup U] [Module k U] [AddCommGroup V] [Module k V] :
+    Module.End k (U × (ι → V)) :=
   (1 : Module.End k U).prodMap 0
 
 theorem lift1_eq (X : Module.End k V) : lift1 U ι X = sep U ι X + projU U ι V :=
@@ -144,7 +145,7 @@ theorem sep_mul_projU (X : Module.End k V) : sep U ι X * projU U ι V = 0 :=
 theorem lift1_sub_one (X : Module.End k V) : lift1 U ι X - 1 = sep U ι (X - 1) :=
   LinearMap.ext fun p => Prod.ext (by simp [lift1, sep]) (funext fun i => by simp [lift1, sep])
 
-theorem finiteRank_projU [FiniteDimensional k U] : FiniteRank (projU U ι V) := by
+theorem finiteRank_projU [FiniteDimensional k U] : FiniteRank (projU (k := k) U ι V) := by
   refine FiniteRank.of_range_le (S := LinearMap.range (LinearMap.inl k U (ι → V))) ?_
   rintro _ ⟨p, rfl⟩
   exact ⟨p.1, by simp [projU]⟩
@@ -188,7 +189,8 @@ def Tame (X : Module.End k V) : Prop :=
 theorem defect_mul (X Y : Module.End k V) :
     defect e (X * Y) = defect e X * e.conj Y + sep U ι X * defect e Y := by
   simp only [defect, conj_mul, sep_mul]
-  noncomm_ring
+  rw [sub_mul, mul_sub]
+  abel
 
 theorem defect_add (X Y : Module.End k V) : defect e (X + Y) = defect e X + defect e Y := by
   simp only [defect, map_add, sep_add]
@@ -296,9 +298,9 @@ theorem regDet_mul [FiniteDimensional k U] {g h : (Module.End k V)ˣ}
             lift1 U ι ((h⁻¹ : (Module.End k V)ˣ) : Module.End k V)) *
           (e.conj ((g⁻¹ : (Module.End k V)ˣ) : Module.End k V) * e.conj (g : Module.End k V)) *
             lift1 U ι ((g⁻¹ : (Module.End k V)ˣ) : Module.End k V) := by
-          rw [hgg]
-          noncomm_ring
-      _ = _ := by noncomm_ring
+          rw [hgg, mul_one]
+          simp only [mul_assoc]
+      _ = _ := by simp only [mul_assoc]
   have hconjrank : FiniteRank ((conjUnit e g : Module.End k (U × (ι → V))) * regOp e h *
       (((conjUnit e g)⁻¹ : (Module.End k (U × (ι → V)))ˣ) : Module.End k (U × (ι → V))) - 1) := by
     have hrw : (conjUnit e g : Module.End k (U × (ι → V))) * regOp e h *
@@ -358,7 +360,8 @@ theorem regDet_eq_one_of_sq_zero {g : (Module.End k V)ˣ} {Y : Module.End k V}
     rw [regOp, hgY, hginv, hconj, hlift]
     have hexp : (1 + sep U ι Y + defect e Y) * (1 - sep U ι Y)
         = 1 + defect e Y - sep U ι Y * sep U ι Y - defect e Y * sep U ι Y := by
-      noncomm_ring
+      rw [mul_sub, mul_one, add_mul, add_mul, one_mul]
+      abel
     rw [hexp, hsq, h1]
     abel
   rw [regDet]
