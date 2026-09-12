@@ -44,6 +44,16 @@ pattern on `{1,h}` with distinct symbols.
 
 - *Linear rules.* Dead for `|H|` even over `F_2` by augmentation. For odd
   `|H|` they are the corner compression `c e b = 1` of the Kaplansky lane.
+- *Linear decoders.* Dead for even `|H|` over `F_2`, whatever the encoder, by
+  `invariant-output-automata-have-only-nonlinear-decoders`. The degree-one part
+  of the decoder identity would be a one-sided inverse with augmentation zero.
+- *Route through a Hilbert-hotel orbit.* The equivariant self-surjections of
+  `G/Gamma` for the infranormal Kazhdan subgroup of the nine-leaf configuration,
+  and the Cantor boundary orbit of Thompson's `V`, have infinite stabilizers. By
+  `full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant`, no
+  continuous equivariant map from the full shift into those coset shifts is
+  nonconstant, so this route is dead. The codomain must be a finite-stabilizer
+  coset shift, which is exactly the invariant-output form.
 - *Symmetrize a bijective automaton.* Take `Pi` bijective and
   `Sym(z)(g) = s(z(g), z(gw))` with `s` symmetric. Then `Sym o Pi` sends
   `Pi^-1(z)` and `Pi^-1(z o R_w)` to the same output, and these are distinct
