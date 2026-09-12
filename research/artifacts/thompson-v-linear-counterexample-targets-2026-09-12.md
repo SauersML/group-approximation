@@ -181,3 +181,31 @@ and the tables, and the tables with the rules decide strictness. A descent proof
   nonsofic. A decision of `thompson-v-surjunctive` that avoids soficity would need a mechanism
   that none of the landed tools provide: not permanence, coset peeling, Cantor encodings,
   self-similar rewrites, or (T)-compression.
+
+## 9. The binary target
+
+Let `h` be the element with codes `(00, 01, 1) -> (01, 1, 00)`. It has order three, and
+`e_h = 1 + h + h^2` is an idempotent of `F_2[V]` (Proposition 2.1).
+
+**Proposition 9.1.** In `F_2[V]` the following are equivalent:
+1. `c e_h b = 1` for some `b, c`;
+2. some left-invertible `a` satisfies `h a = a`.
+
+Every such `a` is a one-sided unit that is not a unit.
+
+*Proof.*
+- (1) => (2): `a = e_h b` has left inverse `c e_h`, and `h e_h = h + h^2 + h^3 = e_h`, so
+  `h a = a`.
+- (2) => (1): if `d a = 1` and `h a = a`, then `e_h a = a + h a + h^2 a = 3a = a`, so
+  `d e_h a = 1`.
+- A two-sided unit `a` with `h a = a` would force `h = 1`. QED
+
+**Consistency checks.**
+- The augmentation gives `epsilon(e_h) = 3 = 1`.
+- The identity-coefficient trace gives `tau(e_h) = 1`. With `a = e_h b` and `d = c e_h`,
+  `tau(e_h - a d) = 1 - 1 = 0`. A nonzero idempotent of trace zero is allowed in characteristic
+  2 (for instance `h + h^2 = 1 - e_h`).
+- Finite-dimensional representations and densities are vacuous exactly as in Section 4.
+
+**Ascent.** `F_2[V]` is a unital subalgebra of `F_2[R^x]`, so a solution gives
+`leavitt-unit-group-algebra-not-directly-finite`.
