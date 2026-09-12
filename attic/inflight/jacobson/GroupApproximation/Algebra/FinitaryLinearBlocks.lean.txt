@@ -131,7 +131,8 @@ theorem blockLin_coeffMatrix {g : M ≃ₗ[F] M} (hg : IsSupportedOn B g T) :
     have hsupp' : (B.repr (g (B b))).support ⊆ T := by exact_mod_cast hsupp
     conv_rhs => rw [← B.linearCombination_repr (g (B b))]
     rw [Finsupp.linearCombination_apply,
-      Finsupp.sum_of_support_subset _ hsupp' _ (fun _ _ ↦ zero_smul F _)]
+      Finsupp.sum_of_support_subset (B.repr (g (B b))) hsupp' (fun i a ↦ a • B i)
+        (fun i _ ↦ zero_smul F (B i))]
     rw [← Finset.sum_coe_sort]
     rfl
   · rw [blockLin_basis_not_mem B T _ hb]
