@@ -63,3 +63,14 @@ evidence here until it has been scope-checked for abstract rank algebras in char
   - **Where it stops.** That prerequisite makes `V` nonsofic, which is open and at least as hard. A proof of this
     claim that does not settle `V` must use elements of `G` outside `E ⋊ V`: the Hadamard unit `h`, root elements
     `x_12(r)`, compressors, or the `SD16` and `GL_2(F_3)` blocks.
+- **Sofic subgroups and locally finite HNN data carry anti-central rank functions (w5-c3-submult, 5281756de8;
+  `anti-central-sofic-data-cannot-force-defect-submultiplicativity`).**
+  - **Sofic subgroups.** Every sofic `S <= G` containing `z` has an anti-central rank model over `F_3`. Linearize a
+    sofic approximation and compress by `f = 2(1 - tau(z))`. On finite subgroups it realizes the regular profile
+    `rk(alpha) = dim(alpha F_3[K] eps_-)/(|K|/2)`, with `rk(1 - [z]) = 1`.
+  - **HNN data.** The same holds for every HNN datum over a locally finite base containing `z`, with letters for
+    arbitrary units.
+  - **Consequence.** A proof of this claim that consumes only `F_3[S]` for one sofic `S`, or only relations of a
+    locally finite subgroup plus single conjugations, fails. On the cylinder frames these models have
+    `rk(D_A) = 5/9` and exactly multiplicative disjoint defects, so the descent route through
+    `ternary-disjoint-cylinder-defects-strictly-submultiplicative` must also use a nonsofic configuration.

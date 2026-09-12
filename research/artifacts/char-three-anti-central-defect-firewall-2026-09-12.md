@@ -160,3 +160,51 @@ follows only from:
 Because the models are abstract rank algebra models, the same holds for rank functions. In particular, a proof of
 `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one` that uses `F_3[S]` for a sofic `S` containing
 `z` fails on Theorem 2.2, where `rk(1 - [z]) = 1`.
+
+## 3. Where it stops
+
+**Remark 3.1 (tensor squares are not a shrinking operation) [mat].**
+- **The operation.** The one characteristic-three operation on models is `sigma -> sigma (x) sigma`
+  (Lemma 1.2 of the gate artifact). It sends anti-central models to models of `PG`, and they return through
+  `iota` and compression.
+- **On the profile it changes nothing.** For a `3`-group `H`, `F_3[H] (x) W` with the diagonal action is free of
+  rank `dim W`, through `g (x) w -> g (x) g^-1 w`. So on the frames the tensor square of a model realizing `rk^-`
+  again realizes the regular ranks, with `rho(D_A) = 5/9`.
+- **Scope.** It is also matricial only: Kronecker products at matrix level, and Jordan forms in Lemma 1.2(b).
+  Section 7 of the gate artifact records that no abstract tensor square is available. So it cannot be the
+  shrinking operation of Section 5 of the descent artifact for abstract rank functions.
+
+**Remark 3.2 (the commutant constraint).**
+- **The char-2 result.** `near-minimal-defects-are-rank-independent-of-cylinder-commutants` pins
+  `rk(D_(AP) X) = delta rk(X)` at near-minimal defect, for every `X` commuting with `sigma(iota_A(R^x))`.
+- **Its char-3 port** belongs to `w5-c3-descent`, and should pin the same products.
+- **What it pins in char 3.** `z` is central, so it lies in every such commutant, and the anti-central sign cannot
+  enter a deficit as a factor. Torus units on disjoint cylinders and the complementary model are in the commutant
+  too.
+- **What is left.** A deficit must come from sums across `iota_A` and its commutant, or from factors that do not
+  commute with `sigma(iota_A(G))`, inside a nonsofic subgroup containing `z`.
+
+**Remark 3.3 (what the payoff ports must cover).** `ternary-disjoint-cylinder-defects-strictly-submultiplicative`
+pays off through characteristic-three versions of the defect gap and near-minimal multiplicativity. In the binary
+artifact they use:
+- **Regular-ring facts** (Fact 1.1(a),(b),(d)): annihilators and images as principal right ideals, and a modular
+  dimension function. These need a regular ring. Whether every Sylvester matrix rank function on `F_3[G]` factors
+  through a regular rank ring is not settled here, and I have not read a source on it.
+- **Compactness over finite matrix stages** (Lemma 2.3): relations at finite stages, a common field, and an
+  ultraproduct. This is [mat].
+- **Corner locality** in characteristic three: Remark 3.4 of the gate artifact names the two odd identities, and
+  Remark 0.2 here reduces them to one.
+
+So the matricial No branch is the natural first endpoint. The abstract endpoint
+`sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one` needs abstract versions of these three inputs.
+
+**Remark 3.4 (the smallest escaping configuration is not pinned).**
+- **What must escape.** By Theorems 2.1 and 2.2, a deficit argument must use a subgroup containing `z` and the
+  frames that is neither sofic nor covered by locally finite HNN data.
+- **What is known to be nonsofic.** `d-ary-leavitt-groups-nonsofic-over-finite-fields` gives nonsoficity of
+  `EL_(m+1)(A)` for algebras carrying a Leavitt family. That covers `G` and its elementary groups, not a finite
+  configuration of units.
+- **What is not known.** No finite configuration of frames plus infinite-order units, such as the right-child
+  Thompson `F` generator or `x_12(s_0) x_21(1)`, is known to generate a nonsofic group.
+- **Consequence.** A proof along this line must either use an identity from all of `EL_3(R)`, or first exhibit
+  such a nonsofic configuration.
