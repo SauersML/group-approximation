@@ -2052,3 +2052,15 @@ displacement of `g` is at least `n/2`.
 - Normal subgroups of `E` inside the simple `L = GL_fin(F_2)` are `1` or `L`.
 - Residual finiteness of the Laurent quotient puts the radical inside `L`.
 - The payoff through `J <= R` and simplicity is correct as stated.
+
+**Section 55 addendum (68553d2f4: Attempts entry and wording fix).** The "odd order" wording in Remark 7 is now fixed. I spot-checked the new
+Attempts entry on the OPEN `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`. It is prose, not an established claim.
+- **Criterion.** If `psi : a -> a^-1`, `c -> c` extends to an endomorphism of `E`, the truncations `E_N` are exact on bounded words at
+  both ends. That makes `E` LEF, hence sofic. A sofic approximation linearizes to a head-retaining rank model, so the claim would be
+  false. The logic is sound as a conditional criterion.
+- **Partial check.**
+  - A root-form lift needs `[x_12(S+f), x_23(T+h)] = x_13(1)`, that is `(S+f)(T+h) = 1`. On the Fock module this makes `S + f`
+    surjective.
+  - `S` is injective with one-dimensional cokernel, so it has index `-1`, and finite-rank `f` preserves the index.
+  - A surjective operator has index `dim ker >= 0`, so this is impossible. Correct.
+- The general finitary corrections are correctly recorded as undecided.
