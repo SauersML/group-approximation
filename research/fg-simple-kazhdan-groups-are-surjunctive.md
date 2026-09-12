@@ -115,3 +115,24 @@ counterexample, if one exists, lives on one.
     and compact parts, so it can never contradict a strict pair.
   - These hosts are minimally almost periodic
     (`fg-infinite-simple-groups-are-minimally-almost-periodic`).
+- **Direct host features (gk-p-simple-direct, 2026-09-12).** Artifact
+  `research/artifacts/simple-host-direct-attack-2026-09-12.md`.
+  - *Site-level Hilbert hotels.* A one-site equivariant self-map of a coset shift is strict exactly
+    when a stabilizer is properly conjugated into itself. So it is never strict on the regular
+    action, nor on any finite-stabilizer coset shift
+    (`site-pullbacks-strict-iff-stabilizer-self-compressed`). The compressed coset witness is the
+    self-compressed case, and a strict automaton must read at least two sites essentially.
+  - *Host manipulations.* Conjugation, transport along injective endomorphisms (the commuting
+    Leavitt copies and the doubling), composition and products all preserve strictness
+    (`strict-automata-closed-under-host-manipulations`). Simplicity, self-copies and compression
+    alone therefore cannot turn a strict automaton into a contradiction.
+  - *Where it dies.* A proof has to supply a size that drops on proper retracts `tau o sigma != id`.
+    That is direct finiteness of the automaton monoid
+    (`surjunctivity-iff-automaton-monoid-directly-finite`), and no such size is known on a nonsofic
+    host.
+  - *Centralized symmetry.* It only moves strictness up from central quotients of the memory group
+    to injective lifts, and surjectivity down (`surjectivity-descends-to-centralized-coset-quotients`).
+  - *Counting on the host.* This needs Følner sets, even for two-cell windows on infinite-order
+    elements (Section 5 of the artifact).
+  - *Invariant-output filter.* The symmetry must be core-free in the memory group
+    (`invariant-output-symmetry-must-be-core-free`).
