@@ -60,7 +60,7 @@ theorem fract_perFun {f : Equiv.Perm ℚ} (hf : f ∈ compactF m 1) (t : ℚ) :
   obtain ⟨h0, h1⟩ := compactF_mem_Ico hf (Int.fract_nonneg t) (Int.fract_lt_one t)
   rw [perFun, Int.fract_intCast_add, Int.fract_eq_self.mpr ⟨h0, h1⟩]
 
-theorem perFun_mul {f g : Equiv.Perm ℚ} (hf : f ∈ compactF m 1) (hg : g ∈ compactF m 1)
+theorem perFun_mul {f g : Equiv.Perm ℚ} (_hf : f ∈ compactF m 1) (hg : g ∈ compactF m 1)
     (t : ℚ) : perFun (f * g) t = perFun f (perFun g t) := by
   have h1 : perFun f (perFun g t) = ⌊t⌋ + f (g (Int.fract t)) := by
     rw [perFun, floor_perFun hg, fract_perFun hg]
@@ -161,7 +161,7 @@ theorem perHom_mem_commutator_perCore {x : ↥(compactF m 1)}
     rw [Subgroup.commutator_le]
     intro a ha b hb
     refine ⟨⁅(⟨a, compactCore_le ha⟩ : ↥(compactF m 1)), ⟨b, compactCore_le hb⟩⁆, ?_, rfl⟩
-    rw [Subgroup.mem_comap, map_commutatorElement]
+    rw [SetLike.mem_coe, Subgroup.mem_comap, map_commutatorElement]
     exact Subgroup.commutator_mem_commutator (perHom_mem_perCore m ha) (perHom_mem_perCore m hb)
   obtain ⟨y, hy, hyx⟩ := hle hx
   have hyx' : y = x := Subtype.ext hyx
@@ -233,7 +233,7 @@ theorem exists_commutator_compactCore_apply {x y : ℚ} (hx : ∃ M, x ∈ Grid 
     linarith [h.1]
   rw [commutatorElement_def]
   simp only [Equiv.Perm.mul_apply]
-  rw [hkW _ hzx, Equiv.apply_symm_apply z x, hkx]
+  rw [hkW.inv _ hzx, show z (z⁻¹ x) = x from Equiv.apply_symm_apply z x, hkx]
 
 #audit_axioms GroupApproximation.HydeLodha.perHom_injective
 #audit_axioms GroupApproximation.HydeLodha.commutator_perCore_le
