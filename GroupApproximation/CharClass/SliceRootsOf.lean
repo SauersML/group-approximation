@@ -150,32 +150,60 @@ theorem vRootOf_inr (hgen : Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2) (β :
     (evalFactor dd β.1)
   exact h1.trans (h2.trans ((eulerOfBundleOf_congr K hgen h3 _ _).trans h4))
 
+/-- The injection of the block `β` into `tautEulerOfK`'s index. -/
+def blockTautEmb (β : HBlk dd) : Fin (dd β.1 + 1) → Fin (1 + tautCardOf (VIdx n dd) + 1) :=
+  tautEmbOf (VIdx n dd) ∘ blockEmb n β
+
+theorem blockTautEmb_injective (β : HBlk dd) : Function.Injective (blockTautEmb n β) :=
+  (tautEmbOf_injective (VIdx n dd)).comp (blockEmb_injective n β)
+
+/-- The class of the tautological line of the factor of `β`, pushed into the block `β` at
+`tautEulerOfK`'s index, pulled back along the projection to the factor. -/
+def blockClassOf (hgen : Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2) (β : HBlk dd) :
+    Hmod K (TopCat.of (baseY dd)) 2 :=
+  pull (cmap (evalFactor dd β.1)) 2
+    (eulerOfBundleOf K hgen
+      (pushforward (blockTautEmb n β) (blockTautEmb_injective n β) (cpTaut (dd β.1)))
+      (trace_pushforward_one (blockTautEmb n β) (blockTautEmb_injective n β) (cpTaut (dd β.1))
+        (trace_cpTaut (dd β.1))))
+
+/-- The root of a block line is its block class. -/
+theorem vRootOf_inr_eq_blockClassOf (hgen : Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2)
+    (β : HBlk dd) : vRootOf K n hgen (Sum.inr β) = blockClassOf K n hgen β :=
+  vRootOf_inr K n hgen β
+
+/-- **Over `K` the block class does not see which block over the factor it is taken in.** -/
+theorem blockClassOf_congr (hgen : Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2) (j : Fin ℓ)
+    (i i' : Fin (dd j)) :
+    blockClassOf K n hgen (⟨j, i⟩ : HBlk dd) = blockClassOf K n hgen (⟨j, i'⟩ : HBlk dd) :=
+  congrArg (pull (cmap (evalFactor dd j)) 2)
+    (eulerOfBundle_pushforward_congrOf K (show 1 ≤ 1 + tautCardOf (VIdx n dd) by omega) hgen
+      (cpTaut (dd j)) (cpTaut (dd j))
+      (blockTautEmb_injective n (⟨j, i⟩ : HBlk dd)) (blockTautEmb_injective n (⟨j, i'⟩ : HBlk dd))
+      (trace_pushforward_one (blockTautEmb n (⟨j, i⟩ : HBlk dd))
+        (blockTautEmb_injective n (⟨j, i⟩ : HBlk dd)) (cpTaut (dd j)) (trace_cpTaut (dd j)))
+      (trace_pushforward_one (blockTautEmb n (⟨j, i'⟩ : HBlk dd))
+        (blockTautEmb_injective n (⟨j, i'⟩ : HBlk dd)) (cpTaut (dd j)) (trace_cpTaut (dd j)))
+      (BundleIso.refl _))
+
 /-- **The generator of the `j`-th projective factor over `K`**: the Euler class of the tautological
 line of `ℂP^{dd j}`, pushed into the first block over `j`, pulled back to the base.  Zero when
 `dd j = 0`: there is no block over `j`, and the slice polynomial reads `gen j` only through the
 power `dd j`. -/
 def sliceGenOf (hgen : Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2) (j : Fin ℓ) :
     Gen.evenPart K (TopCat.of (baseY dd)) :=
-  if h : 0 < dd j then
-    evenTautOf K (pull (cmap (evalFactor dd j)) 2
-      (eulerOfBundleOf K hgen
-        (pushforward (tautEmbOf (VIdx n dd) ∘ blockEmb n (⟨j, ⟨0, h⟩⟩ : HBlk dd))
-          ((tautEmbOf_injective (VIdx n dd)).comp (blockEmb_injective n _)) (cpTaut (dd j)))
-        (trace_pushforward_one _
-          ((tautEmbOf_injective (VIdx n dd)).comp (blockEmb_injective n _))
-          (cpTaut (dd j)) (trace_cpTaut (dd j)))))
-  else 0
+  if h : 0 < dd j then evenTautOf K (blockClassOf K n hgen (⟨j, ⟨0, h⟩⟩ : HBlk dd)) else 0
 
 /-- **Every block line over the factor `j` has root `sliceGenOf K n hgen j`**: the Euler class over
 `K` does not see which block the line is pushed into. -/
 theorem evenTautOf_vRootOf_inr (hgen : Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2)
     (β : HBlk dd) :
     evenTautOf K (vRootOf K n hgen (Sum.inr β)) = sliceGenOf K n hgen β.1 := by
-  have hpos : 0 < dd β.1 := Fin.pos β.2
-  rw [sliceGenOf, dif_pos hpos, vRootOf_inr]
-  exact congrArg (fun c => evenTautOf K (pull (cmap (evalFactor dd β.1)) 2 c))
-    (eulerOfBundle_pushforward_congrOf K (by omega) hgen (cpTaut (dd β.1)) (cpTaut (dd β.1))
-      _ _ _ _ (BundleIso.refl _))
+  obtain ⟨j, i⟩ := β
+  have hpos : 0 < dd j := Fin.pos i
+  show evenTautOf K (vRootOf K n hgen (Sum.inr ⟨j, i⟩)) = sliceGenOf K n hgen j
+  rw [sliceGenOf, dif_pos hpos, vRootOf_inr_eq_blockClassOf,
+    blockClassOf_congr K n hgen j i ⟨0, hpos⟩]
 
 /-- The roots, indexed by a natural, reading the index modulo the rank.  This is
 `lineEulerOfK K hgen (vLineFlatBundle n dd l) _` by definition. -/
@@ -276,30 +304,63 @@ theorem vRootPushOf_inr (u : VIdx n dd → κ) (hu : Function.Injective u)
     (evalFactor dd β.1)
   exact h1.trans (h2.trans ((eulerOfBundleOf_congr K hgen h3 _ _).trans h4))
 
+/-- The injection of the block `β`, pushed along `u`, into `tautEulerOfK`'s index. -/
+def blockPushEmb (u : VIdx n dd → κ) (β : HBlk dd) : Fin (dd β.1 + 1) → Fin (1 + tautCardOf κ + 1) :=
+  tautEmbOf κ ∘ u ∘ blockEmb n β
+
+theorem blockPushEmb_injective (u : VIdx n dd → κ) (hu : Function.Injective u) (β : HBlk dd) :
+    Function.Injective (blockPushEmb n u β) :=
+  (tautEmbOf_injective κ).comp (hu.comp (blockEmb_injective n β))
+
+/-- The class of the tautological line of the factor of `β`, pushed into the block `β` and along
+`u`, pulled back along the projection to the factor. -/
+def blockClassPushOf (u : VIdx n dd → κ) (hu : Function.Injective u)
+    (hgen : Hmod K (CPtop (1 + tautCardOf κ)) 2) (β : HBlk dd) : Hmod K (TopCat.of (baseY dd)) 2 :=
+  pull (cmap (evalFactor dd β.1)) 2
+    (eulerOfBundleOf K hgen
+      (pushforward (blockPushEmb n u β) (blockPushEmb_injective n u hu β) (cpTaut (dd β.1)))
+      (trace_pushforward_one (blockPushEmb n u β) (blockPushEmb_injective n u hu β)
+        (cpTaut (dd β.1)) (trace_cpTaut (dd β.1))))
+
+/-- The root of a pushed block line is its block class. -/
+theorem vRootPushOf_inr_eq_blockClassPushOf (u : VIdx n dd → κ) (hu : Function.Injective u)
+    (hgen : Hmod K (CPtop (1 + tautCardOf κ)) 2) (β : HBlk dd) :
+    vRootPushOf K n u hu hgen (Sum.inr β) = blockClassPushOf K n u hu hgen β :=
+  vRootPushOf_inr K n u hu hgen β
+
+/-- Over `K` the pushed block class does not see which block over the factor it is taken in. -/
+theorem blockClassPushOf_congr (u : VIdx n dd → κ) (hu : Function.Injective u)
+    (hgen : Hmod K (CPtop (1 + tautCardOf κ)) 2) (j : Fin ℓ) (i i' : Fin (dd j)) :
+    blockClassPushOf K n u hu hgen (⟨j, i⟩ : HBlk dd)
+      = blockClassPushOf K n u hu hgen (⟨j, i'⟩ : HBlk dd) :=
+  congrArg (pull (cmap (evalFactor dd j)) 2)
+    (eulerOfBundle_pushforward_congrOf K (show 1 ≤ 1 + tautCardOf κ by omega) hgen
+      (cpTaut (dd j)) (cpTaut (dd j))
+      (blockPushEmb_injective n u hu (⟨j, i⟩ : HBlk dd))
+      (blockPushEmb_injective n u hu (⟨j, i'⟩ : HBlk dd))
+      (trace_pushforward_one (blockPushEmb n u (⟨j, i⟩ : HBlk dd))
+        (blockPushEmb_injective n u hu (⟨j, i⟩ : HBlk dd)) (cpTaut (dd j)) (trace_cpTaut (dd j)))
+      (trace_pushforward_one (blockPushEmb n u (⟨j, i'⟩ : HBlk dd))
+        (blockPushEmb_injective n u hu (⟨j, i'⟩ : HBlk dd)) (cpTaut (dd j)) (trace_cpTaut (dd j)))
+      (BundleIso.refl _))
+
 /-- **The generator of the `j`-th factor after pushing along `u`**: the class every pushed block
 line over `j` carries.  Zero when `dd j = 0`. -/
 def sliceGenPushOf (u : VIdx n dd → κ) (hu : Function.Injective u)
     (hgen : Hmod K (CPtop (1 + tautCardOf κ)) 2) (j : Fin ℓ) :
     Gen.evenPart K (TopCat.of (baseY dd)) :=
-  if h : 0 < dd j then
-    evenTautOf K (pull (cmap (evalFactor dd j)) 2
-      (eulerOfBundleOf K hgen
-        (pushforward (tautEmbOf κ ∘ u ∘ blockEmb n (⟨j, ⟨0, h⟩⟩ : HBlk dd))
-          ((tautEmbOf_injective κ).comp (hu.comp (blockEmb_injective n _))) (cpTaut (dd j)))
-        (trace_pushforward_one _
-          ((tautEmbOf_injective κ).comp (hu.comp (blockEmb_injective n _)))
-          (cpTaut (dd j)) (trace_cpTaut (dd j)))))
+  if h : 0 < dd j then evenTautOf K (blockClassPushOf K n u hu hgen (⟨j, ⟨0, h⟩⟩ : HBlk dd))
   else 0
 
 /-- Every pushed block line over the factor `j` has root `sliceGenPushOf K n u hu hgen j`. -/
 theorem evenTautOf_vRootPushOf_inr (u : VIdx n dd → κ) (hu : Function.Injective u)
     (hgen : Hmod K (CPtop (1 + tautCardOf κ)) 2) (β : HBlk dd) :
     evenTautOf K (vRootPushOf K n u hu hgen (Sum.inr β)) = sliceGenPushOf K n u hu hgen β.1 := by
-  have hpos : 0 < dd β.1 := Fin.pos β.2
-  rw [sliceGenPushOf, dif_pos hpos, vRootPushOf_inr]
-  exact congrArg (fun c => evenTautOf K (pull (cmap (evalFactor dd β.1)) 2 c))
-    (eulerOfBundle_pushforward_congrOf K (by omega) hgen (cpTaut (dd β.1)) (cpTaut (dd β.1))
-      _ _ _ _ (BundleIso.refl _))
+  obtain ⟨j, i⟩ := β
+  have hpos : 0 < dd j := Fin.pos i
+  show evenTautOf K (vRootPushOf K n u hu hgen (Sum.inr ⟨j, i⟩)) = sliceGenPushOf K n u hu hgen j
+  rw [sliceGenPushOf, dif_pos hpos, vRootPushOf_inr_eq_blockClassPushOf,
+    blockClassPushOf_congr K n u hu hgen j i ⟨0, hpos⟩]
 
 /-- The pushed roots, indexed by a natural, reading the index modulo the rank.  This is
 `lineEulerOfK K hgen (pushforward u hu (vLineFlatBundle n dd l)) _` by definition. -/
