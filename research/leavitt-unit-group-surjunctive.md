@@ -12,11 +12,12 @@ distinct_from:
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
   - research/artifacts/gottschalk-sofic-radical-localization-2026-09-11.md
+  - research/artifacts/thompson-v-coset-peeling-circularity-2026-09-12.md
 ---
 
 **OPEN.** For `U = L_(F_2)(1,2)^x` and every finite alphabet `A`, every injective cellular automaton `A^U -> A^U` is surjective.
 
-*Marked `root` because it is the positive side of an external question: does the first nonsofic group satisfy Gottschalk's conjecture? It is refuted exactly when `leavitt-unit-group-nonsurjunctive` is established.* Thompson's group `V <= U` would inherit it.
+*Marked `root` because it is the positive side of an external question: does the first nonsofic group satisfy Gottschalk's conjecture? It is refuted exactly when `leavitt-unit-group-nonsurjunctive` is established.* Thompson's group `V <= U` would inherit it (`thompson-v-surjunctive-from-leavitt-units`).
 
 ## Attempts
 
@@ -24,6 +25,9 @@ artifacts:
   * `rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive`, `finitary-split-extension-surjunctivity-permanence`, `doubles-of-surjunctive-groups-are-surjunctive` and `lef-lamp-graph-wreaths-are-surjunctive` all prove surjunctivity of an extension with a residually finite or LEF kernel over a surjunctive quotient.
   * Direct limits of surjunctive groups are surjunctive.
   * These tools cannot reach `U` without assuming the conclusion for a group containing `U`. A finitely generated simple nonsofic subgroup of such a group meets the kernel trivially and embeds in the quotient, or lies in one stage of the limit.
+  * The general closure statements are `gottschalk-counterexamples-lie-outside-the-permanence-closure` and `fixed-host-outside-sofic-permanence-closure`.
 * **Marked limits.** Nonsurjunctivity is an open condition in the space of marked groups. But `U` is finitely presented and simple, hence finitely discriminable and isolated (Cornulier–Guyot–Pitsch). So nothing approximates it.
 * **Counting.** Gromov–Weiss counting along permutation models is vacuous here, because `U` has full sofic radical (Theorem D of the radical-localization artifact).
 * **Entropy, 2026-09-12.** `positive-rokhlin-entropy-makes-leavitt-units-surjunctive` reduces this claim to one free ergodic action of `U` with positive Rokhlin entropy. That is the open claim `leavitt-unit-group-has-positive-rokhlin-entropy-action`. No lower bound for Rokhlin entropy is known without sofic models.
+* **Coset peeling through the Cantor action, 2026-09-12.** Any proof here proves `V <= U` surjunctive. For `V` the separating stabilizer families of the Cantor action all contain copies of `V`, and the rigid-stabilizer transplant has an infinite compact alphabet (`thompson-v-coset-stabilizers-contain-copies-of-v`). So marked-site peeling extended from lamp sites to Cantor points and cylinders is circular (dead route `thompson-v-surjunctive-via-coset-peeling`).
+* **Linear automata.** A strict linear automaton is a one-sided inverse in `M_n(F_2[U])` (`stable-finiteness-failure-refutes-surjunctivity`), and for this group the matrix case reduces to the scalar case (`leavitt-stable-finiteness-equals-direct-finiteness`). The positive answer on linear automata is direct finiteness of `F_2[U]`, which is open.
