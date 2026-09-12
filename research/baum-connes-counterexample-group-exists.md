@@ -92,10 +92,26 @@ Property (T) closes the Higson--Kasparov route for both.
     `a ∈ M_n(C[G])` with infinite spectrum. For integral coefficients its
     spectrum has capacity at least 1 (`integral-spectra-of-small-capacity-are-finite`).
   - Its trace is the limit, over large primes `p'`, of the eigenvalue fractions
-    of `a` in the congruence quotients `G/N_(p')` below the gap. The gap mass of
-    those quotients tends to 0.
+    of `a` in the congruence quotients `G/N_(p')` below the gap
+    (`bc-kun-thom-gap-label-is-congruence-eigenvalue-limit`, established).
+    That claim is a reduction only. The artifact's Section 4 display carries an
+    extra factor `1/n`.
   - A refutation needs this limit to leave `Z[1/P]`. Nothing in the graph
     controls such limits.
+- **Supports inside a-T-menable subgroups.** Dead.
+  - `bc-kun-thom-gap-labels-on-bc-subgroups-pass-trace-test` (established;
+    imports Lück--Reich arXiv:math/0402405, Theorems 3.22 and 5.1, quoted from
+    the extracted text). If `a` is supported on a subgroup `H` with surjective
+    assembly, the gapped projection's trace lies in `Lambda^H`, inside `Z[1/P]`.
+  - This rules out Borel, unipotent and lamplighter supports, corner blocks
+    `E_2(F_q[x_1^(+-1)])` (which act properly on products of trees),
+    `SL_2(Z)`, and finite products of these. These are exactly the test
+    operators that can actually be computed.
+  - So a refuting `a` needs support generating a subgroup that lies in no
+    subgroup with surjective assembly, for example one containing `SL_3(Z)`.
+- **Congruence numerics.** Infeasible. For `(q,r,d) = (2,3,3)` and `p' = 3`
+  the quotient index is `168 · 60480^13 · 5616`, about `10^68`. See
+  `research/artifacts/bc-gap-label-subgroup-support-2026-09-12.md`, Section 4.
 - **Extension permanence is no shortcut.** Meyer, arXiv:2508.05726 (abstract
   read, not imported), shows that the Chabert--Echterhoff hypotheses cannot be
   weakened to Baum--Connes for the normal subgroup alone.
