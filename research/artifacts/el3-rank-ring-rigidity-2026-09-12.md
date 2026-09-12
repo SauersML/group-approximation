@@ -449,7 +449,10 @@ QED
   `U_12(A_k) ~= (Z/2)^(4^k)` is *equidistant*: every nonzero element has displacement `rho`.
 * Equidistance does not quantize `rho`. Free modules give `rho = 1/2`, and uniform sums of
   permutation modules `F_2[U/Q]` over all subgroups `Q` of codimension `c` give
-  `rho ~ (1 - 2^-c)/2`. Both occur in regular models of level groups.
+  `rho ~ (1 - 2^-c)/2`, independent of the element (`gk-vf-linear`, Section 36). Only the
+  free case is shown to occur in a model of the level groups: the regular models of
+  Example 11 restrict freely to `U_12(A_k)`. Whether the permutation sums occur in some model
+  is not checked, and nothing rests on it.
 * So level-group structure alone, even with doubling, compressor corners and idempotent
   conjugacy, cannot separate the Leavitt instance from the locally matricial example.
   Any contradiction has to use coefficients outside `A_inf`, such as `s_0` and the units of
