@@ -41,8 +41,11 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
     with commuting factors conjugate to `pi`, so `N = N_0 + N_1 + N_0 N_1`, and `rk N <= 2 rk N`.
   - Trivial-plus-free displacement data satisfy every such inequality, just as for the Leavitt roots
     (`dyadic-root-displacement-data-admit-trivial-plus-free-models`).
-  - Where it stops: whether the relation `h pi_(a0<->b0) h^(-1) = pi_(a<->b)` together with
-    commutation forces `rk(N_0 N_1) = 0` is untested.
+  - Calibrated dead end: conjugacy of `pi_(a0<->b0)` to `pi_(a<->b)`, commutation, `N^2 = 0` and equal
+    displacement do not force `rk(N_0 N_1) = 0`. The regular Klein four-group in `Sym(4)` satisfies all
+    of them with `N_0 N_1 != 0` (artifact 5.2). A proof must use the depth-changing elements of `V`.
+- **Verification.** `gk-vf-linear` passed the covariance obstruction independently (Section 50 of its
+  verification artifact). `w3-vf-linear` has the request.
 - **The root identity lives outside V.** Root elements `1 + E_ij` of `EL_3(R)` are not in `V`, so
   `rank-models-of-el3-satisfy-the-two-root-identities` does not specialize to `V`. This claim is the
   stronger target.

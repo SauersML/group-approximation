@@ -184,10 +184,15 @@ refutes only the binary target `thompson-v-order-three-averaging-idempotent-is-f
   `N = N_0 + N_1 + N_0 N_1`, all three have one rank `r`, and `r <= 2r + rk(N_0 N_1)`.
 - Trivial-plus-free displacement data satisfy all of this, so displacement alone decides nothing, as for
   the Leavitt roots (`dyadic-root-displacement-data-admit-trivial-plus-free-models`).
-- **Untested.** Whether the conjugating element `h` with `h pi_0 h^(-1) = pi`, together with the
-  commutation, forces `rk(N_0 N_1) = 0`. If it did, `rk(N) = rk(N_0 + N_1)`. Even then additivity would
-  need independence of the images of `N_0` and `N_1`, which is exactly what covariance would supply and
-  Theorem 2.3 forbids.
+- **Calibrated: these relations do not force `rk(N_0 N_1) = 0`.** Take the regular Klein four-group
+  inside `Sym(4)`: `x = (12)(34)`, `y = (13)(24)`, `xy = (14)(23)`.
+  - All three are conjugate in `Sym(4)`, `x` and `y` commute, and each permutation matrix minus `1`
+    has rank 2 over `F_2`.
+  - `(x - 1)(y - 1) = xy - x - y + 1` is nonzero.
+  - So conjugacy, commutation, `N^2 = 0` and equal displacement are all consistent with
+    `N_0 N_1 != 0`, already in a finite group.
+  - A proof has to use more of `V`: the infinite-order elements that change depth, whose covariant use
+    Theorem 2.3 forbids.
 
 **5.3. Positive direction.** No construction is known. What survives Section 5.1: non-monomial,
 non-covariant models whose cylinder swaps displace a positive rank uniformly on each conjugacy class.
