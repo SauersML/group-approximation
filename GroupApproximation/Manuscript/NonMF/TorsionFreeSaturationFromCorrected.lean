@@ -51,17 +51,33 @@ with `hHull` replaced by `hsat : PrintedSaturation` and the single call
 than reused because the originals bind the printed bundle in their types, and
 the point of this module is precisely that they do not have to.
 
+## The printed shape, added after the tex was re-read
+
+`HullSmallCancellationPrinted` and `PrintedSaturation` both quantify over a
+finite set the manuscript no longer prints; the section below states
+`HullSmallCancellationTorsionFreePrinted` and `PrintedSaturationNoOmega` at the
+current print instead, proves the older propositions imply them, and re-derives
+the endpoints from the printed shapes.  Nothing landed is weakened: the
+implications run from the stronger, finite-set-carrying propositions to the
+printed ones.
+
+`Saturation.saturation` cannot be reused at the printed shape, because its Hull
+field is asked at *every* finite set and the printed theorem supplies it at
+none.  `saturationNoOmega` therefore runs the printed proof of `lem:saturation`
+here, over `thm:hull` alone — Osin's Lemma 7.1 is applied inside rather than
+assumed, since `GGT.OsinPrinted.osinLemma71Printed` is a theorem.
+
 ## What the section rests on after this module
 
-`thm:torsion-free`, in both printed forms, from the Fournier-Facio paragraph
-together with `HullSC.HullOneStepStatement` — Hull's Theorem 7.1 in the
-one-relator construction form, which `TheoremCAssembly.TorsionFree.hullOneStep`
+`thm:torsion-free`, in both printed forms, from the Fournier-Facio paragraph and
+one of: the printed `thm:hull` at a torsion-free ambient group, or
+`HullSC.HullOneStepStatement`, which `TheoremCAssembly.TorsionFree.hullOneStep`
 already proves modulo the four §5/§6 admissions.  No `HullSmallCancellationPrinted`
-and no `OsinLemma71Printed` occur in any hypothesis below: the latter is a
-theorem (`GGT.OsinPrinted.osinLemma71Printed`) and is applied here.
+and no `OsinLemma71Printed` occur in any hypothesis below.
 
 `HullSmallCancellationPrinted` stays where it is, as the record of what the
-paper cites.  What it stops being is a hypothesis of the section's endpoints.
+paper used to print.  What it stops being is a hypothesis of the section's
+endpoints.
 -/
 
 namespace GroupApproximation
@@ -69,10 +85,163 @@ namespace Manuscript
 namespace NonMF
 namespace TorsionFreePrinted
 
+open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.Manuscript.NonMF.TheoremC
 
 universe u
+
+/-! ## `thm:hull` as the manuscript now prints it
+
+The printed theorem, `non_mf_groups_exist.tex` line 1636, `\label{thm:hull}`:
+
+> Let `G` be acylindrically hyperbolic, let `N ≤ G` be suitable with respect to
+> `A`, and let `g₁,…,g_m ∈ G`.  Then there is a surjective homomorphism
+> `φ : G → Q` such that `Q` is acylindrically hyperbolic, `φ(gᵢ) ∈ φ(N)` for all
+> `i`, and every element of finite order in `Q` is the image of an element of
+> the same order in `G`.
+
+followed by the remark that `ker φ` is the normal closure of `m` elements.
+
+**There is no finite set and no injectivity clause in that sentence.**
+`TorsionFreePrinted.HullSmallCancellationPrinted` returns
+`HullQuotientNG N g Ω` for every finite `Ω`, whose `injOn` field is exactly the
+clause the print does not carry, and its docstring quotes a sentence containing
+*"and a finite subset `Ω ⊆ G` be given"* and *"`φ|_Ω` is injective"* that the tex
+does not contain; the same cut shows in `lem:saturation`, whose printed
+statement at line 1650 has no finite set either while `PrintedSaturation` still
+quantifies over one.  Both older propositions are **strictly stronger than the
+print**, and they are left exactly as they are: `hullSmallCancellationPrinted`
+implies the proposition below, and nothing here weakens a landed statement.
+
+The proposition below is the printed sentence at a torsion-free ambient group,
+which is the only case `lem:saturation` uses.  `F = ∅` is how "no finite set"
+is written against the existing `HullQuotientNG`: the `injOn` field is then the
+empty statement, and the four printed conclusions and the kernel remark are what
+remains.  Clause (e) of Hull's theorem is the `finiteOrder_lift` field, and over
+a torsion-free `G` it is exactly *"`Q` is torsion-free"*, by
+`torsionFree_of_finiteOrder_lift`. -/
+def HullSmallCancellationTorsionFreePrinted : Prop :=
+  ∀ {G : Type u} [Group G] [IsAcylindricallyHyperbolic G],
+    IsPowerTorsionFree G → ∀ (A : HullGeneratingSet G) {N : Subgroup G},
+      Suitable A.alphabet N → ∀ {m : ℕ} (g : Fin m → G),
+        Nonempty (HullCorrectedInputs.HullQuotientNG N g (∅ : Set G))
+
+/-- **The printed citation implies the printed torsion-free case.**  Instantiate
+the finite set at `∅` and forget the torsion-freeness hypothesis, which the
+older proposition does not carry. -/
+theorem hullSmallCancellationTorsionFreePrinted_of_printed
+    (h : HullSmallCancellationPrinted.{u}) :
+    HullSmallCancellationTorsionFreePrinted.{u} := by
+  intro G _ _ _hG A N hN m g
+  exact h A hN g Set.finite_empty
+
+/-- **Hull's one-relator construction implies it too**, through the induction on
+`m` of `HullSC.hullBallFormNG_of_oneStep` and the finite-set form of
+`HullCorrectedInputs.smallCancellation_of_ballFormNG`.  This is the direction
+that matters: the printed proposition is now reachable from a statement this
+repository proves modulo the four §5/§6 admissions. -/
+theorem hullSmallCancellationTorsionFreePrinted_of_oneStep
+    (hOne : HullSC.HullOneStepStatement.{0}) :
+    HullSmallCancellationTorsionFreePrinted.{0} := by
+  intro G _ _ hG A N hN m g
+  exact HullCorrectedInputs.smallCancellation_of_ballFormNG
+    (HullSC.hullBallFormNG_of_oneStep hOne) hG A hN g Set.finite_empty
+
+/-! ## `lem:saturation` as it is now printed -/
+
+/-- **`lem:saturation` at the printed shape**, with no finite set.
+
+> Let `G` be finitely presented, torsion-free, and acylindrically hyperbolic,
+> and let `N ⊴ G` be nontrivial.  Then there is a surjective homomorphism
+> `φ : G → Q` such that `Q` is two-generated, finitely presented, torsion-free,
+> and acylindrically hyperbolic, and `φ(N) = Q`.
+
+`non_mf_groups_exist.tex` line 1650, `\label{lem:saturation}`.  `PrintedSaturation`
+carries a finite set the sentence does not; this is the same lemma without
+it. -/
+def PrintedSaturationNoOmega : Prop :=
+  ∀ (G : Type u) [Group G] [Group.IsFinitelyPresented G]
+    [IsAcylindricallyHyperbolic G], IsPowerTorsionFree G →
+      ∀ (N : Subgroup G) [N.Normal], N ≠ ⊥ →
+        Nonempty (SaturationQuotient N (∅ : Set G))
+
+/-- The stronger, finite-set-carrying form implies the printed one. -/
+theorem printedSaturationNoOmega_of_printedSaturation
+    (h : PrintedSaturation.{u}) : PrintedSaturationNoOmega.{u} := by
+  intro G _ _ _ hG N _ hN
+  exact h G hG N hN Set.finite_empty
+
+/-- **`lem:saturation` from the printed `thm:hull` alone.**
+
+`Saturation.saturation` takes `HullInputsCorrected`, whose small-cancellation
+field is asked at *every* finite set; the printed theorem supplies it at none,
+so the printed lemma cannot be routed through it and the printed proof is run
+here instead.  It is Osin's Lemma 7.1 free as well:
+`GGT.OsinPrinted.osinLemma71Printed` is a theorem, so the whole of
+`lem:saturation` now rests on `thm:hull` and nothing else.
+
+Every step is the printed one, in the printed order, and each is already a
+theorem of this repository: `isSNormal_of_torsionFree`, `osinLemma71Printed`,
+`suitable_of_torsionFree`, `exists_pair_suitable_of_torsionFree` (Hull's
+Corollary 5.7 with Lemma 5.8, which over a torsion-free group is proved rather
+than cited), `exists_finite_generating_family`, then the display
+`Q = ⟨q(t₁),…,q(t_m)⟩ ≤ q(N₀) ≤ q(N) ≤ Q`, then
+`torsionFree_of_finiteOrder_lift` and finite presentation from the kernel
+datum. -/
+theorem saturationNoOmega {G : Type u} [Group G] [Group.IsFinitelyPresented G]
+    [IsAcylindricallyHyperbolic G]
+    (hHull : HullSmallCancellationTorsionFreePrinted.{u})
+    (hG : IsPowerTorsionFree G) (N : Subgroup G) [N.Normal] (hN : N ≠ ⊥) :
+    Nonempty (SaturationQuotient N (∅ : Set G)) := by
+  classical
+  obtain ⟨A⟩ := exists_hullGeneratingSet G
+  have hsn : HullSuitable.IsSNormal N := isSNormal_of_torsionFree hG N hN
+  have hnonelem : ActsNonElementarily N (Cayley.base A.alphabet) :=
+    osinNonElementary_of_printed GGT.OsinPrinted.osinLemma71Printed A hG N hsn
+  have hsuit : Suitable A.alphabet N := suitable_of_torsionFree hG hnonelem
+  obtain ⟨h₁, hh₁, h₂, hh₂, hsuit₀⟩ :=
+    exists_pair_suitable_of_torsionFree hG hsuit
+  have hN₀le : Subgroup.closure ({h₁, h₂} : Set G) ≤ N := by
+    rw [Subgroup.closure_le]
+    intro x hx
+    simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
+    rcases hx with rfl | rfl
+    · exact hh₁
+    · exact hh₂
+  obtain ⟨m, t, htop⟩ := exists_finite_generating_family G
+  obtain ⟨⟨H, hkerNG⟩⟩ := hHull hG A hsuit₀ t
+  have hN₀top : (Subgroup.closure ({h₁, h₂} : Set G)).map H.q = ⊤ :=
+    map_eq_top_of_generators_mem H.q H.surjective htop H.mem_map
+  have hNtop : N.map H.q = ⊤ := map_eq_top_of_le H.q hN₀le hN₀top
+  have hgen : Subgroup.closure ({H.q h₁, H.q h₂} : Set H.Q) = ⊤ := by
+    rw [← closure_pair_map H.q h₁ h₂]
+    exact hN₀top
+  have htf : IsPowerTorsionFree H.Q :=
+    torsionFree_of_finiteOrder_lift hG H.q H.finiteOrder_lift
+  obtain ⟨S, -, hker⟩ := hkerNG
+  have hfp : Group.IsFinitelyPresented H.Q :=
+    Group.IsFinitelyPresented.of_surjective H.q H.surjective
+      ⟨(S : Set G), S.finite_toSet, hker.symm⟩
+  exact ⟨{ Q := H.Q
+           group := H.group
+           q := H.q
+           surjective := H.surjective
+           generatorOne := H.q h₁
+           generatorTwo := H.q h₂
+           twoGenerated := hgen
+           finitelyPresented := hfp
+           torsionFree := htf
+           acylindricallyHyperbolic := H.acylindricallyHyperbolic
+           injOn := H.injOn
+           map_eq_top := hNtop }⟩
+
+/-- **`lem:saturation` at the printed shape, from the printed `thm:hull`.** -/
+theorem manuscriptSaturationNoOmega_of_torsionFreePrinted
+    (hHull : HullSmallCancellationTorsionFreePrinted.{u}) :
+    PrintedSaturationNoOmega.{u} := by
+  intro G _ _ _ hG N _ hN
+  exact saturationNoOmega hHull hG N hN
 
 /-! ## The corrected bundle gives `lem:saturation` -/
 
@@ -118,8 +287,8 @@ over the saturation lemma rather than over the printed citation bundle.
 This is `exists_saturatedQuotient` with its literature hypothesis replaced by
 the statement that hypothesis was only ever used to produce.  The proof is the
 printed one, unchanged. -/
-theorem exists_saturatedQuotient_of_saturation (hFFF : FournierFacioParagraph)
-    (hsat : PrintedSaturation.{0}) :
+theorem exists_saturatedQuotient_of_saturationNoOmega
+    (hFFF : FournierFacioParagraph) (hsat : PrintedSaturationNoOmega.{0}) :
     ∃ (Q : Type) (_ : Group Q), IsTwoGenerated Q ∧
       Group.IsFinitelyPresented Q ∧ IsPowerTorsionFree Q ∧
         IsAcylindricallyHyperbolic Q ∧ HasKazhdanPropertyT.{0, 0} Q ∧
@@ -135,10 +304,9 @@ theorem exists_saturatedQuotient_of_saturation (hFFF : FournierFacioParagraph)
   -- nontrivial because `S` is."
   have hNne : Subgroup.normalClosure (F.conjFactor : Set G₀) ≠ ⊥ :=
     normalClosure_conjFactor_ne_bot F
-  -- "By Lemma `lem:saturation` applied to `G₀`, `N`, and `Ω = ∅` …"
+  -- "By Lemma `lem:saturation` applied to `G₀` and `N` …"
   obtain ⟨SQ⟩ := hsat G₀ htf
     (Subgroup.normalClosure (F.conjFactor : Set G₀)) hNne
-    (Ω := (∅ : Set G₀)) Set.finite_empty
   haveI : Countable SQ.Q := SQ.surjective.countable
   -- "…and it has property (T) as a quotient of `G₀`."
   have hQT : HasKazhdanPropertyT.{0, 0} SQ.Q :=
@@ -153,16 +321,29 @@ theorem exists_saturatedQuotient_of_saturation (hFFF : FournierFacioParagraph)
   rw [← Subgroup.map_map, SQ.map_eq_top]
   exact Subgroup.map_top_of_surjective r hr
 
+/-- The same over the finite-set-carrying form of the lemma, which is stronger
+and which the earlier declarations of this module produce. -/
+theorem exists_saturatedQuotient_of_saturation (hFFF : FournierFacioParagraph)
+    (hsat : PrintedSaturation.{0}) :
+    ∃ (Q : Type) (_ : Group Q), IsTwoGenerated Q ∧
+      Group.IsFinitelyPresented Q ∧ IsPowerTorsionFree Q ∧
+        IsAcylindricallyHyperbolic Q ∧ HasKazhdanPropertyT.{0, 0} Q ∧
+          Countable Q ∧
+            ∀ (L : Type) (_ : Group L) (r : Q →* L), Function.Surjective r →
+              manuscriptCoronaMFResidual L = ⊤ :=
+  exists_saturatedQuotient_of_saturationNoOmega hFFF
+    (printedSaturationNoOmega_of_printedSaturation hsat)
+
 /-! ## The printed theorem, over `lem:saturation` -/
 
 /-- **`thm:torsion-free`, from the Fournier-Facio paragraph and the saturation
 lemma.**  The printed proof, with the printed citation bundle removed from the
 hypotheses. -/
-theorem manuscriptTorsionFreeTheorem_of_saturation
-    (hFFF : FournierFacioParagraph) (hsat : PrintedSaturation.{0}) :
+theorem manuscriptTorsionFreeTheorem_of_saturationNoOmega
+    (hFFF : FournierFacioParagraph) (hsat : PrintedSaturationNoOmega.{0}) :
     PrintedTorsionFreeTheorem := by
   obtain ⟨Q, instQ, hgen, hfp, htf, hacyl, hQT, hcount, hmain⟩ :=
-    exists_saturatedQuotient_of_saturation hFFF hsat
+    exists_saturatedQuotient_of_saturationNoOmega hFFF hsat
   letI := instQ
   haveI := hcount
   have hQtop : manuscriptCoronaMFResidual Q = ⊤ :=
@@ -180,12 +361,19 @@ theorem manuscriptTorsionFreeTheorem_of_saturation
   obtain ⟨x, rfl⟩ := hr y
   exact hy (hkill L instL hMF r x)
 
-/-- **`thm:torsion-free` in the radical form**, from the same two. -/
-theorem manuscriptTorsionFreeFullMFRadical_of_saturation
+/-- The same over the finite-set-carrying form of `lem:saturation`. -/
+theorem manuscriptTorsionFreeTheorem_of_saturation
     (hFFF : FournierFacioParagraph) (hsat : PrintedSaturation.{0}) :
+    PrintedTorsionFreeTheorem :=
+  manuscriptTorsionFreeTheorem_of_saturationNoOmega hFFF
+    (printedSaturationNoOmega_of_printedSaturation hsat)
+
+/-- **`thm:torsion-free` in the radical form**, from the same two. -/
+theorem manuscriptTorsionFreeFullMFRadical_of_saturationNoOmega
+    (hFFF : FournierFacioParagraph) (hsat : PrintedSaturationNoOmega.{0}) :
     TheoremC.PrintedTorsionFreeFullMFRadical := by
   obtain ⟨Q, instQ, hgen, hfp, htf, hacyl, hQT, hcount, hmain⟩ :=
-    exists_saturatedQuotient_of_saturation hFFF hsat
+    exists_saturatedQuotient_of_saturationNoOmega hFFF hsat
   letI := instQ
   haveI := hcount
   have hQtop : manuscriptCoronaMFResidual Q = ⊤ :=
@@ -209,6 +397,35 @@ theorem manuscriptTorsionFreeFullMFRadical_of_saturation
     rw [hbot] at hmem
     simpa using hmem
 
+/-- The same over the finite-set-carrying form of `lem:saturation`. -/
+theorem manuscriptTorsionFreeFullMFRadical_of_saturation
+    (hFFF : FournierFacioParagraph) (hsat : PrintedSaturation.{0}) :
+    TheoremC.PrintedTorsionFreeFullMFRadical :=
+  manuscriptTorsionFreeFullMFRadical_of_saturationNoOmega hFFF
+    (printedSaturationNoOmega_of_printedSaturation hsat)
+
+/-! ## The section over `thm:hull` as it is printed -/
+
+/-- **`thm:torsion-free` from the Fournier-Facio paragraph and the printed
+`thm:hull` at a torsion-free ambient group, and nothing else.**
+
+No finite set, no injectivity clause, and no Osin Lemma 7.1: the section's whole
+Hull dependence is the sentence the manuscript prints. -/
+theorem manuscriptTorsionFreeTheorem_of_torsionFreePrinted
+    (hFFF : FournierFacioParagraph)
+    (hHull : HullSmallCancellationTorsionFreePrinted.{0}) :
+    PrintedTorsionFreeTheorem :=
+  manuscriptTorsionFreeTheorem_of_saturationNoOmega hFFF
+    (manuscriptSaturationNoOmega_of_torsionFreePrinted hHull)
+
+/-- **`thm:torsion-free` in the radical form, from the same two.** -/
+theorem manuscriptTorsionFreeFullMFRadical_of_torsionFreePrinted
+    (hFFF : FournierFacioParagraph)
+    (hHull : HullSmallCancellationTorsionFreePrinted.{0}) :
+    TheoremC.PrintedTorsionFreeFullMFRadical :=
+  manuscriptTorsionFreeFullMFRadical_of_saturationNoOmega hFFF
+    (manuscriptSaturationNoOmega_of_torsionFreePrinted hHull)
+
 /-! ## The section over Hull's one-relator theorem -/
 
 /-- **`thm:torsion-free` from the Fournier-Facio paragraph and Hull's Theorem
@@ -221,15 +438,15 @@ not occur. -/
 theorem manuscriptTorsionFreeTheorem_of_oneStep
     (hFFF : FournierFacioParagraph) (hOne : HullSC.HullOneStepStatement.{0}) :
     PrintedTorsionFreeTheorem :=
-  manuscriptTorsionFreeTheorem_of_saturation hFFF
-    (manuscriptSaturation_of_oneStep hOne)
+  manuscriptTorsionFreeTheorem_of_torsionFreePrinted hFFF
+    (hullSmallCancellationTorsionFreePrinted_of_oneStep hOne)
 
 /-- **`thm:torsion-free` in the radical form, from the same two.** -/
 theorem manuscriptTorsionFreeFullMFRadical_of_oneStep
     (hFFF : FournierFacioParagraph) (hOne : HullSC.HullOneStepStatement.{0}) :
     TheoremC.PrintedTorsionFreeFullMFRadical :=
-  manuscriptTorsionFreeFullMFRadical_of_saturation hFFF
-    (manuscriptSaturation_of_oneStep hOne)
+  manuscriptTorsionFreeFullMFRadical_of_torsionFreePrinted hFFF
+    (hullSmallCancellationTorsionFreePrinted_of_oneStep hOne)
 
 /-- **`thm:torsion-free` over the printed citations of the construction of
 `G₀`**, with `thm:hull` traded for the one-relator form.  This is
@@ -266,3 +483,13 @@ end GroupApproximation
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeFullMFRadical_of_oneStep
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem_of_citations_of_oneStep
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeFullMFRadical_of_citations_of_oneStep
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.hullSmallCancellationTorsionFreePrinted_of_printed
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.hullSmallCancellationTorsionFreePrinted_of_oneStep
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.printedSaturationNoOmega_of_printedSaturation
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.saturationNoOmega
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptSaturationNoOmega_of_torsionFreePrinted
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.exists_saturatedQuotient_of_saturationNoOmega
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem_of_saturationNoOmega
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeFullMFRadical_of_saturationNoOmega
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem_of_torsionFreePrinted
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeFullMFRadical_of_torsionFreePrinted
