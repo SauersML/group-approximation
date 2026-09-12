@@ -3,6 +3,7 @@ rg: 2
 id: discriminant-obstruction-dies-in-multiplicity-towers
 kind: claim
 title: The discriminant obstruction to full square-zero elements dies along unital multiplicity towers
+invalidates: [homogeneous-tower-via-discriminant-obstruction]
 distinct_from:
   full-square-zero-forces-discriminant-power-vanishing: that proves the obstruction for one bundle; this shows it cannot hold at infinitely many stages of a diagonal tower with unbounded rank, so it cannot produce a limit counterexample.
 ---
