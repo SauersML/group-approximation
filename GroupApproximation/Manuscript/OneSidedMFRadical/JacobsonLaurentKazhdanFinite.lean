@@ -3,6 +3,7 @@ import GroupApproximation.Kazhdan.BruhatTitsTwoTree
 import GroupApproximation.Kazhdan.AmenableKazhdanFinite
 import GroupApproximation.Sofic.SoficByAmenablePermanence
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwoInert
+import GroupApproximation.Algebra.LaurentBinaryHaagerup
 
 /-!
 # Kazhdan subgroups of `GL_2(F_2[z, z^{-1}])` are finite
@@ -135,8 +136,9 @@ theorem finite_of_hasKazhdanPropertyT (L : Subgroup (GL (Fin 2) BinaryLaurent))
 /-- **Printed (tex 1146--1151), for the printed target.**  For every homomorphism from
 a group into `GL_2(F_2[z,z^{-1}])` with locally finite kernel, every Kazhdan subgroup
 of the source has finite image, a locally finite subgroup of finite index, and is
-finite.  The finiteness of Kazhdan subgroups of the target is proved above rather than
-cited. -/
+finite.  The image is finite along the printed route: it has the Haagerup property
+(`JacobsonLaurent.hasHaagerupProperty_binaryLaurentGL`, proved rather than cited) and
+property `(T)`, so Delorme's theorem makes it finite. -/
 theorem manuscriptSentence_kazhdanSubgroupFiniteLaurent :
     ∀ (G : Type) [Group G] (φ : G →* GL (Fin 2) BinaryLaurent), IsLocallyFiniteGroup φ.ker →
       ∀ L : Subgroup G, HasKazhdanPropertyT.{0, 0} L →
@@ -145,7 +147,8 @@ theorem manuscriptSentence_kazhdanSubgroupFiniteLaurent :
   intro G _ φ hker L hL
   have hTM : HasKazhdanPropertyT.{0, 0} (L.map φ) :=
     HasKazhdanPropertyT.of_surjective (φ.subgroupMap L) (φ.subgroupMap_surjective L) hL
-  haveI hfinM : Finite (L.map φ) := finite_of_hasKazhdanPropertyT (L.map φ) hTM
+  haveI hfinM : Finite (L.map φ) :=
+    JacobsonLaurent.finite_of_hasKazhdanPropertyT_of_haagerup (L.map φ) hTM
   haveI : Finite (φ.subgroupMap L).range :=
     Finite.of_injective (fun x : (φ.subgroupMap L).range ↦ (x : L.map φ)) Subtype.val_injective
   haveI hfi : (φ.subgroupMap L).ker.FiniteIndex := inferInstance
