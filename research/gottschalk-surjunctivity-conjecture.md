@@ -559,7 +559,7 @@ injective automata (`every-injective-ca-preserves-uniform-bernoulli-measure`) is
 equivalent to the conjecture by two routes. The tree calibration
 (`end-fixing-tree-symmetries-carry-strict-automata`) shows that a proof must use
 that the index set is a group. No lower bound on Bernoulli Rokhlin entropy is
-known for any nonsofic group. Artifact:
+known for any nonsofic group. The zero side over the Leavitt units is `leavitt-units-have-zero-rokhlin-entropy-supremum`, a measurable target weaker than a strict automaton. Artifact:
 `research/artifacts/gottschalk-tree-calibration-and-bernoulli-preservation-2026-09-12.md`.
 
 **Ternary host settled as nonsofic (2026-09-12).** The corner homomorphism
