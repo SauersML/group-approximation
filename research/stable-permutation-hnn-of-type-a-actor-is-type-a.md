@@ -44,9 +44,10 @@ do not:
 
 1. an actor `Gamma` containing the given vertex group must exist, which for that
    group is `permutational-boone-higman-conjecture`;
-2. the edge groups must be enlarged inside `Gamma` to `D_i` that meet the vertex
-   group exactly in the old edges, have finitely many orbits on `X`, and are
-   permutation-isomorphic through `psi`;
+2. the edge groups must be enlarged inside `Gamma` to `D_i` that have finitely
+   many orbits on `X` and are permutation-isomorphic through `psi`. For (b) as
+   stated they must also meet the vertex group exactly in the old edges. Any
+   other enlargement needs its own proof that `<A, t> = A*_phi`;
 3. `rho` must be injective, a Britton-type ping-pong condition on `pi` that
    nothing here supplies except in case (c).
 

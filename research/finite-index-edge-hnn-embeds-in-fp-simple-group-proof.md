@@ -42,7 +42,18 @@ finite index, which is proper and nontrivial. So an infinite simple `A` forces
 `C_1 = C_2 = A` and `phi in Aut(A)`. Then `A <| K`, the valence is `2`, and
 `A` lies in every conjugate of `A`, hence in the kernel.
 
-*(L3).* If `A ∩ D_i = C_i`, then `aC_i -> aD_i` injects `A/C_i` into `B/D_i`.
+*(L3).*
+* **Index bound.** `A` fixes the vertex `B` of the tree of `B*_psi`. It permutes
+  the `[B : D_2]` edges `bD_2` leaving that vertex, and the orbit of `D_2` has
+  `[A : A ∩ D_2]` elements. The `[B : D_1]` arriving edges `b D_1 s^-1` bound
+  `[A : A ∩ D_1]` the same way.
+* **Containment.** By Britton's lemma in `B*_psi`,
+  `f(C_2) = s f(C_1) s^-1 <= B ∩ sBs^-1 = D_2`. Symmetrically `f(C_1) <= D_1`.
+* **The example.** `u = b^-1 s` centralizes `F(a,b)`, so
+  `F(a,b)*_psi = F(a,b) x <u>`. The projection to `F(a,b)` sends `a -> a` and
+  `s = bu -> b`, which form a free basis. So `<a, s>` is free on `a, s`, and `f`
+  is injective. `F(a,b)` is normal, because `D_1 = D_2 = F(a,b)`, so it lies in
+  every vertex stabilizer and hence in the kernel of the tree action.
 
 *(L4).* A group with a residually finite subgroup of finite index is residually
 finite (intersect the finitely many conjugates of a finite-index subgroup that

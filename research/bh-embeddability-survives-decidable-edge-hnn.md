@@ -57,9 +57,10 @@ only through a proof that does not pass through the conjecture.
    Faithfulness forces `A` to be residually finite. For `A` an infinite finitely
    presented simple group, the only finite-index case is the mapping torus
    `A ⋊_phi Z`: its tree is a line with `A` in the kernel, so the case Attempt 2
-   leads to is not covered. And the HNN subgroup theorem cannot turn an
-   infinite-index edge into a finite-index one, so that tree stays locally
-   infinite. *Partial.*
+   leads to is not covered. Embedding into an HNN extension with finite-index
+   edges enlarges an infinite-index edge `C_i` to `A ∩ D_i != C_i`. The HNN
+   subgroup theorem does not apply to such an embedding, so injectivity needs a
+   different argument. *Partial.*
 5. **Other actions of `A*_phi` of type (A).** Attempt 1 extends to every action
    of `K = A*_phi` itself. On an orbit `K/P`, the orbits of two-element subsets
    correspond to the double cosets `PgP` with `g notin P`, up to `g ~ g^-1`. If `P`
@@ -85,7 +86,8 @@ only through a proof that does not pass through the conjecture.
       `permutational-boone-higman-conjecture` for `A` and is open even when `A`
       embeds in a finitely presented simple group;
    2. the edges must be enlarged to permutation-isomorphic `D_i` with finitely
-      many orbits that still meet `A` exactly in `C_i`;
+      many orbits, which either meet `A` exactly in `C_i` or come with another
+      proof that `<A, t> = A*_phi`;
    3. `pi` must satisfy a Britton-type ping-pong condition, which no
       construction here supplies.
 

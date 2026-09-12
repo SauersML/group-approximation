@@ -40,11 +40,15 @@ kernel, so the theorem says nothing. Attempt 2 of
 finitely presented simple groups, and the finite-index case among those is
 exactly this one.
 
-(L3) **Infinite-index edges cannot be converted.** The HNN subgroup theorem
-puts `A*_phi` inside `B*_psi` when `A <= B`, `D_1, D_2 <= B`, `A ∩ D_i = C_i` and
-`psi` extends `phi`. Then `[A : C_i] <= [B : D_i]`. So an HNN extension with an
-infinite-index edge cannot be embedded stable letter to stable letter into one
-with finite-index edges, and its tree stays locally infinite.
+(L3) **Infinite-index edges get enlarged, and the subgroup theorem cannot do
+it.** Suppose `f : A*_phi -> B*_psi` is injective, `f(A) <= B`, `f(t)` is the
+stable letter `s`, and each `[B : D_i]` is finite. Then `A ∩ D_i` contains `C_i`
+and has index at most `[B : D_i]` in `A`. So when `[A : C_i]` is infinite,
+`A ∩ D_i != C_i`. The hypothesis `A ∩ D_i = C_i` of the HNN subgroup theorem
+then fails, and injectivity needs a different argument. Such embeddings do
+exist. `Z *_1 = Z * Z = F_2` embeds in `F(a,b)*_psi` with
+`D_1 = D_2 = F(a,b)` and `psi` conjugation by `b`. There the vertex group lies
+in the kernel of the tree action, so Theorem 10.5 says nothing.
 
 (L4) **The non-faithful repair needs residual finiteness again.** The
 enlargement in Theorem 11.1 of
