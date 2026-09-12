@@ -1092,6 +1092,8 @@ These are Attempts entries on the OPEN `binary-jacobson-el3-rank-radical-is-the-
   * Parity-preserving letters exist. Take `z_A ∈ Γ_i`, which acts by parity on `S_A` and is central with
     `φ_g(z_A) = z_A`, and choose parity-stable complements as in Remark 2.3.
   * In characteristic two the sign is `1`, so no repair is needed.
+* **Status.** Both repairs are applied at `3951b78c90`. The claim now defines `B_g^A` through `LC(A)` and
+  `LC(A^c)`, and states even letters in odd characteristic. Checked.
 
 ### 28.3 `natural-fock-quantized-compressors-miss-toeplitz-by-a-quarter` (Proposition 3.1): PASS
 
@@ -1150,3 +1152,94 @@ These are Attempts entries on the OPEN `binary-jacobson-el3-rank-radical-is-the-
   * All transvections of `GL_fin(F_2)` are conjugate in `L`, so each has displacement `c_0`. They generate `L`,
     so the normal closure of the head is `L`.
   * Since `x_13(Q) = [ucu^-1, x_23(1)]`, the model kills the head iff `σ(x_12(Q))` commutes with `σ(x_23(1))`.
+
+## 30. Rank functions on V: fixed rank and wandering freeness (w5-v-infinite-order; 4b35997134, artifact at 84d0bda2e)
+
+### 30.1 Section 0 and the abstract torsion law: PASS
+
+* **Scalar extension.** `res : F'[V] -> M_d(F[V])` comes from the regular representation of `F'`. It is a
+  unital ring map compatible with products, blocks and triangular blocks. So `rk(res ·)/d` is Sylvester, and it
+  extends `rk` because `res A = A ⊗ I_d`.
+* **(S3).** `diag(e, e') = (e; e')(e + e')(e, e')` when `e e' = e' e = 0`.
+* **(S4).** Recomputed from `diag(col Y_1, col Y_2)`: add block columns, reorder rows, and subtract the row
+  `(c_0 | 0)` from `(c_0 | c_0)`. This gives `[[col(Y_1 ∪ Y_2), B],[0, c_0]]`, and the triangular axiom finishes.
+* **(S5), (S6), and independence of `phi_H` from `S`.** They follow from `1 − [gh] = (1−[g]) + [g](1−[h])` and
+  `1 − [g^-1] = −[g^-1](1 − [g])`.
+* **`phi_P = rk e_P`.** `(1 − [s]) e_P = 0` gives `1 − [s] = (1−[s])(1 − e_P)`, and `1 − e_P = |P|^-1 sum (1 − [g])`.
+* **Answer to the audit question: [TS] Theorem 1.3 holds for abstract Sylvester rank functions.**
+  * **Exact idempotents.** The `e_chi` are exact idempotents of `F'[V]`, since `|P|` is invertible. There is no
+    eigenvalue rounding.
+  * **Abstract substitutes.**
+    * Step 1's additivity is (S3).
+    * Step 3's conjugation invariance is (S1).
+    * Steps 5–6 are arithmetic.
+    * Step 7 uses `(sum c_i e_i)(sum c_i^-1 e_i) = sum e_i` for units `c_i`.
+  * **The one matricial sentence.** "Matrix rank is field-independent" is replaced by the scalar extension above.
+
+### 30.2 `v-rank-torsion-constant-equals-global-fixed-rank` (Lemma 1.1, Theorem 1.2, Corollary 1.3): PASS
+
+* **Lemma 1.1.**
+  * Clopen transpositions normally generate the simple `V`.
+  * **Fragmentation.** Pieces inside the depth-two cylinders give commuting `t_i`.
+  * **The case `A_i ⊆ [00]`, `C ⊆ [11]`.** `r r' r` recomputed pointwise:
+    * on `A_i` it is `φψ = t`;
+    * on `C` it is `ψ^-1 φ^-1 = t`;
+    * on `D` it is the identity.
+    * `r` is supported in `[0] ⊆ W`, and `r'` is supported in `[01] ∪ [11] ⊆ U`.
+  * **Generators.** `V_O ≅ V` is simple and finitely generated. Its clopen `p`-cycles normally generate it, so
+    finitely many generate.
+* **Upper bound.** Adding rows cannot lower rank, and (S5) applies, so `phi_V <= phi_P = a + (1−a)/|P|`.
+* **Clopen-cycle subgroups.** Disjoint cycles leaving a nonempty complement generate clopen-cycle subgroups,
+  products included, as in [TS] Lemma 1.2. So `T_k`, `T'_k`, `T_k x T'_k` and `<s> x T_k` qualify, since `s` is
+  supported in `U`, disjoint from `[00]`.
+* **Step 1.** `{1 − e_(T_k), 1 − [s]}` and the augmentation elements of `<s> x T_k` generate the same left ideal,
+  because `1 − [t] = (1 − [t])(1 − e_(T_k))`. The loss is `(1−a)p^-k(1 − 1/p) <= p^-k`. (S4) in the form
+  `phi(Y_1 ∪ Y_2) >= phi(Y_1) + phi(Y_2) − phi(Y_0)` iterates to `a − m p^-k`.
+* **Steps 2–3.** The bounds are recomputed as
+  `(a − m p^-k) + (a + (1−a)p^-2k) − (a + (1−a)p^-k) >= a − (m+1)p^-k` and
+  `(a − (m+1)p^-k) + (a − (m'+1)p^-k) − (a + (1−a)p^-2k) >= a − (m+m'+3)p^-k`.
+* **Corollary 1.3.**
+  * **(2)** `phi_V <= phi_(V_O)` because the rows of `V_O` lie in the left ideal of the rows of `V`. Also
+    `phi_(V_O) <= a` from its tree groups.
+  * **(3)** This is DI Theorem 1.1(3)–(4).
+  * **(5)** Correctly marked matricial.
+
+### 30.3 `v-rank-models-act-freely-by-wandering-elements` (Lemma 2.1, Setup 2.2, Theorem 2.3): PASS
+
+* **Lemma 2.1.**
+  * **Period one, negative slope.** `u` is a proper prefix of `u'`, so `x[u] = [u'] ⊊ [u]`. The forward
+    annuli lie in `[u]`, and the backward annuli of the increasing chain lie outside `[u]`.
+  * **Period `r`.** For `k = mr + i` with `0 < i < r`:
+    * if `m >= 0`, `x^k W ⊆ x^i[u]`, which misses `[u]`;
+    * if `m < 0`, `−k = (−m−1)r + (r−i)` reduces to that case.
+  * **Positive slope.** It passes to `x^-1`, which has the same translates.
+* **Setup 2.2.**
+  * The lamps `g_j` have disjoint supports, and their union misses the periodic point, so every `B_J` is a
+    clopen-cycle subgroup.
+  * `e_ψ = sum over extensions of ψ of e_(ψ')`, so `S -> e_S` is a Boolean homomorphism with `e_C = 1`.
+  * `rk e_S = a[1 ∈ S] + (1−a) μ(S)`: the torsion law on cylinders, with `μ = 1/|B_J|`, and (S3) on unions.
+  * **Covariance.** Reindexing gives `[x] e_ψ [x]^-1 = e_(ψ o Ad x^-1)` on `B_(J+1)`, which is `e_(TS)`.
+* **Theorem 2.3.**
+  * **Towers.** The first-return sets `S_h` are clopen, and the levels `L_(h,i)` are disjoint.
+  * **Uncovered set.** `1 ∉ S` and `T1 = 1`, so `1 ∈ Z_R`. Two-sided recurrence of the ergodic Bernoulli shift
+    gives `μ(Z_R) -> 0`, and `μ(Bot) <= d p^-l`.
+  * **Recursion.** Covariance gives `e_L [x]^k = [x]^k e_(T^-k L)`, so for `d <= i < h`,
+    `e_(L_(h,i)) q([x]) = sum_k c_k [x]^k e_(L_(h,i−k))`, with `c_0 = q(0) != 0`.
+  * **Left ideal.** The base levels satisfy `e_L = e_L e_Bot`, and induction puts every level in
+    `R' q([x]) + R' e_Bot`.
+  * **Count.** `1 = sum e_L + e_(Z_R)`, and (S6) with `rk e_Bot <= (1−a) d p^-l` and
+    `rk e_(Z_R) = a + (1−a) μ(Z_R)` give the bound. Here `rk'` extends `rk`, and `q` has coefficients in `F`.
+
+### 30.4 Section 3 (audit and calibration): consistent
+
+* **Section 3.1.** It matches Section 30.1. Uniform displacement is abstract: `rk([g,h] − 1) <= 2 rk(g − 1)` and
+  normality of `N_rk`. The covariance theorem, the `1/4` and `1/32` forms, and the symmetric-group stage theorem
+  are correctly marked matricial or vacuous on `F[V]`.
+* **Proposition 3.1.**
+  * A Følner sofic approximation gives an almost free action, so finite subgroups are regular.
+  * An infinite-order `h` has long cycles on most points. A cyclic shift `P_N` has
+    `rk q(P_N) >= N − deg q`, so `rk_H q([h]) = 1`.
+* **Proposition 3.2.** Elek–Szabó uniqueness is imported at statement level, as marked, and not re-derived. The
+  inertness conclusions hold given it.
+* **Section 3.3.** Correct: a proof of either gate would show `V` is not sofic, via
+  `sofic-implies-linear-sofic-over-every-field`.

@@ -7,6 +7,7 @@ target: v-rank-torsion-constant-equals-global-fixed-rank
 requires:
   - v-rank-models-are-trivial-plus-free-on-odd-cycle-trees
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-models-fixed-rank-and-wandering-freeness-2026-09-12.md
 ---
 
@@ -30,3 +31,5 @@ marked there.
     `phi_V >= a - (m + m' + 3) p^(-k)`.
 - **Corollary 1.3.** The dichotomy with `simple-group-rank-functions-are-augmentation-or-detecting`, and the
   reduced torsion law. The matricial compression uses block-triangular idempotent ranks and perfection of `V`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Sections 30.1–30.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS for abstract Sylvester rank functions. Recomputed: (S3)–(S6), including column submodularity from the triangular axiom; phi_P = rk e_P; Lemma 1.1, with r r' r = t_i checked pointwise and the supports of r, r' in W, U; Steps 1–3 with the constants (m+m'+3)p^-k; and Corollary 1.3. [TS] Theorem 1.3 holds abstractly: exact idempotents, scalar extension by restriction of scalars, no eigenvalue rounding.*

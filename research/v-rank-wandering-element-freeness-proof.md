@@ -8,6 +8,7 @@ requires:
   - v-rank-models-are-trivial-plus-free-on-odd-cycle-trees
   - v-rank-torsion-constant-equals-global-fixed-rank
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-models-fixed-rank-and-wandering-freeness-2026-09-12.md
 ---
 
@@ -28,3 +29,5 @@ The proof is Section 2 of the artifact. It uses only Sylvester axioms.
     so `1` lies in that ideal plus `e_(Z_R)`.
   - (S6) gives `rk q([x]) >= 1 - d p^(-l) - a - mu(Z_R)`, and letting `R`, then `l`, tend to infinity gives the
     bound.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 30.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS for abstract Sylvester rank functions. Recomputed: the period-r disjointness cases of Lemma 2.1; the Boolean homomorphism S -> e_S with rk e_S = a[1∈S] + (1−a)μ(S); covariance e_L[x]^k = [x]^k e_(T^-k L); clopen disjoint Kakutani levels with 1 ∈ Z_R and μ(Z_R) -> 0; the induction into R'q([x]) + R'e_Bot; and (S6). Elek–Szabó in Section 3.2 is imported at statement level, as marked.*
