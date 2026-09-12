@@ -32,3 +32,17 @@ Marked `root` because it heads a counterexample lane of its own.
   (`clifford-cover-anti-half-skew-ring-not-directly-finite`).
 - **Nonlinear case.** Not attempted yet. Any strict automaton must fold its Garden of Eden on
   sofic-invisible elements, and `eps` is invisible to every finite quotient.
+- **Surjunctive direction, via local embeddings (observation from w3-products, checked here).**
+  - E_S is surjunctive if every finite piece of E_S embeds as an injective partial multiplication table
+    into W x F with F finite and eps sent to (1, f0), f0 != 1. W x F is surjunctive
+    (products-with-lef-factors-preserve-surjunctivity), and strict tables transfer to realizations.
+  - The W-coordinate already carries the site action exactly. So the F-coordinate needs only the sign:
+    a finite extraspecial group on the window's sites, with each group element acting by a permutation
+    of those sites.
+  - Exactness of the table forces those permutations to compose exactly on the whole window. That is an
+    exact finite model of the coset action on the window.
+  - By coordinate-action-not-sofic, such models cannot exist for all windows, so this proves nothing
+    uniformly.
+  - It stays live for any specific strict pair whose tables need only a window that admits an exact
+    finite model. So a counterexample on E_S needs tables whose window has no exact finite model of the
+    coset action.
