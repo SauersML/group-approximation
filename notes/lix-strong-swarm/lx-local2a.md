@@ -35,8 +35,27 @@ Declarations (namespace `GroupApproximation.CharClass.KGen`, binders `(n k : ℕ
   `lixKTrivInv_apply`, `lixKGRmap_eq`, `lixKFarMap_apply`.
 - **Ends as legs:** `lixKHomotopy_end_one`, `lixKHomotopy_end_zero`.
 
-## AUTHORED, UNVERIFIED
-- none
+## AUTHORED, UNVERIFIED (task 2, 09-12: lx-lhK-a's SPLIT S1 and S2)
+- `GroupApproximation/CharClass/LerayHirschTowerSumOf.lean` (S1, namespace `LH`).
+  - Over `{K} [CommRing K]`: `lhTerm_index_congrOf`, `sum_cup_rightOf`, `lhTerm_succ_rightOf`.
+  - `peelTower_eq_sumOf K U d h m a k : KnCP.peelTowerOf K U d h m a k = ∑ i : Fin (k+1), lhTerm (KnCP.cpPrU U d)
+    (pull (KnCP.cpPrCP U d) 2 h) (m + 2*k) (k - i) (cohCast _ (a i))`.
+  - Imports `LerayHirschTowerSum`, `CohomologyChartTowerOf`.
+  - Proofs are the F₂ file verbatim with `Hmod2 → Hmod K`, `cpGen (d+1) hd → h`, `peelTower U d hd → peelTowerOf K U d h`.
+- `GroupApproximation/CharClass/LerayHirschFreeTupleOf.lean` (S2, namespace `LH`).
+  - This is lx-lhK-a's draft, adopted; lx-lhK-a no longer edits it.
+  - Declarations: `sum_lhTerm_range_leOf`, `towerCoeffOf`, `towerCoeff_of_leOf`, `towerCoeff_of_gtOf`, `towerSumFunOf`,
+    `towerSumFun_eq_zero_of_gtOf`, `lhTerm_eq_zero_of_rankOf`, `towerSumFun_eq_zero_of_rankOf`, `tower_index_congrOf`,
+    `towerCoeff_revOf`, `peelTower_eq_range_sumOf`, `sum_towerSumFun_range_leOf`.
+  - `exists_freeTupleOf K U d hring h h0 n z`.
+  - Added: the AxiomGuard import and three `#audit_axioms`.
+- LANDED (unverified): both files are on origin through the lead's wave 60eceb761 (11:50), with blobs = disk (`9b99e1d563f6`, `50a6e795b8fd`).
+  Attic copies went up earlier at 8db017184, while the tower chain was absent from origin after the becc912bd restore.
+- lx-lhK-a's tower chain is on origin at 3c6fbec99.  Its bytes equal disk, and `peelTowerOf`, `exists_peelTowerOf`,
+  `cupPowE_pull_eq_zeroOf` and `CPRingOf` match the spellings S1/S2 use.
+- The group probe (S1+S2, one probe on lix-b) is HELD until lx-lhK-a's probe 5 ends.  Probe 4 (0912-113840-34864) was red on
+  an import-only defect in `CohomologyChartPeelUniqOf` below the tower chain.  Probing first would compile the same chain
+  twice and inherit the red.
 
 ## SPLIT (independent sub-tasks for helpers)
 - None open in this lane.  The coefficient-free geometry of the rank-n local square is complete and green, and
