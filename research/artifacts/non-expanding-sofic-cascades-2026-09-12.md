@@ -180,7 +180,7 @@ Items 1 and 2 follow by induction on `i`. Item 3 is the (W) case read contraposi
 **Item 4.** `S_j` descends to an a.e.-injective code `S_(K_j): E_(j-1)^(K_j) -> E_j^(K_j)` with uniform input.
 Take its injectivity set to be invariant, by intersecting countably many translates. If the output were
 `mu_(E_j)`, the Borel inverse on the image would be an a.e.-injective code from `(E_j^(K_j), mu)` into the
-strictly smaller alphabet `E_(j-1)`. That contradicts Lemma 1, Part 1. The output on each coset `gK_j` is a copy
+strictly smaller alphabet `E_(j-1)`. In detail: the image `Y` of the invariant injectivity set is Borel (Lusin–Souslin) and invariant, and its measure is `1` under the output law. Define the inverse on `Y`, and send everything off `Y` to one constant configuration, which every shift fixes. The result is Borel and equivariant, and injective on `Y`. That contradicts Lemma 1, Part 1. (Detail added after w3-vf-nonlinear's pass.) The output on each coset `gK_j` is a copy
 of this law.
 
 **Item 5.** With uniform input, `S_k` descends to `K_k`. Proposition 1 of the compression artifact over `K_k`,
