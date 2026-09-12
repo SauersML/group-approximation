@@ -146,3 +146,19 @@ payoff is `non-linear-sofic-group`.
   - Where it dies: compression never shrinks rank. A proof needs a lower bound from orthogonality, or
     operator identities beyond rank data (artifact
     `research/artifacts/el3-compressor-root-pair-calculus-2026-09-12.md`).
+- Lane `w3-gate-bridge-b` (input (ii), no finite-dimensional representations; artifact
+  `research/artifacts/two-root-defect-piece-and-fd-representations-2026-09-12.md`):
+  - `leavitt-two-root-defect-piece-carries-a-nontrivial-rank-model`. In a nontrivial model, the
+    defect piece of the `[1000]` corner pair is never fixed by the nine-leaf `Gamma`. `Gamma` acts on
+    it by an injective rank model of `R^x`, whose corner products compress nontrivially onto the
+    piece, and a compressor carrying the pair into `Gamma` has `q sigma(u) q != 0`. So globality
+    (degree `(1,0)`) is already used in full. The invariant case reproduces the problem on nested
+    corners with weakly decreasing ranks.
+  - `kazhdan-groups-without-fd-reps-violate-two-root-identity`. `EL_3(C(X,F_2) x| Z)` over the
+    period-doubling Toeplitz subshift is finitely generated, Kazhdan, and has no finite-dimensional
+    representation. Yet it has a violating rank model (`rk = 2/9`), a diffuse relative commutant,
+    and a defect piece fixed by a Kazhdan centralizer. So absence of finite-dimensional
+    representations, even with (T), forces nothing.
+  - Where it dies: no uniform bound `delta_(k+1) >= c · delta_k` on the nested defect pieces, and no
+    ring map from `R` into a defect corner built from the restricted model. A proof must use that
+    `R` has no rank model, or the compression relation.
