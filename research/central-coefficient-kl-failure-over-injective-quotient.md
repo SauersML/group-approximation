@@ -26,6 +26,9 @@ arithmetic groups, can be tested.
    multiplier. That is `sp4-schur-kernel-meets-the-deligne-triple-class`,
    open. Even if that holds, only the centralized quotient is decided.
    Survival in the plain quotient still has to fail.
-2. **Leavitt unit group.** It does not fit this shape. The unit group is
-   perfect with trivial center, and its Kervaire--Laudenbach status is being
-   decided in its own lane (`kl-violating-equation-over-leavitt-unit-group`).
+2. **Leavitt unit group.** It does not fit this shape. The unit group has
+   trivial center, and Khanh (arXiv:2609.08428v1, a preprint not verified here)
+   proves it is acyclic, with `St_r(L) -> GL_r(L)` an isomorphism for
+   `r >= 3`. So it has no nontrivial central extension at all, and the
+   Steinberg covers of `L_(F_2)(1,2)` add none. Its Kervaire--Laudenbach status
+   is decided in its own lane (`kl-violating-equation-over-leavitt-unit-group`).

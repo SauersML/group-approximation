@@ -24,6 +24,17 @@ non-hyperlinear. By `central-extension-kl-schur-criterion` it is also the
 only way Kervaire--Laudenbach can fail over `E_3`. The certificate is
 finite.
 
+**Also closes the MF-radical goal.** The same certificate excludes both
+operator-norm Maslov sectors (`deligne-opnorm-sectors-empty-via-sp4-schur-kernel`),
+and with them `deligne-triple-cover-exact-mf-radical`.
+
+**Exact reformulation.** By `central-extension-kl-schur-criterion`, this claim
+holds exactly when some nonsingular `w~ in E_3 * <t>` has `z = 1` in
+`(E_3 * <t>)/<<w~, [z, t]>>`. Such an identity can be checked exactly: write
+elements of `E_3` as pairs `(gamma, k mod 3)` and multiply with Meyer's
+cocycle. By `schur-kernel-is-relation-module-homology`, the killed class comes
+from the first homology of the relation module of the adjunction.
+
 ## Attempts
 
 1. **Finite quotients and known projective representations.** They do not
@@ -41,11 +52,16 @@ finite.
    whose `Sp_4(Z)`-regions carry Maslov content.
 3. **Small or amenable coefficient packets.** Dead by
    `amenable-coefficients-have-zero-schur-kernel`. Localization sends the
-   killed class back to the coefficient subgroup \`B\`, which must be
-   non-amenable with non-Connes-embeddable \`L_(alpha|B)(B)\`, and the class
-   must be invisible to every finite quotient of \`B\`. Packets inside
-   unipotent or solvable subgroups, or inside \`SL_2(Z) x SL_2(Z)\` (Schur
+   killed class back to the coefficient subgroup `B`, which must be
+   non-amenable with non-Connes-embeddable `L_(alpha|B)(B)`, and the class
+   must be invisible to every finite quotient of `B`. Packets inside
+   unipotent or solvable subgroups, or inside `SL_2(Z) x SL_2(Z)` (Schur
    multiplier seen by its finite abelianization), are excluded.
-4. **Direct search.** Not started. A search needs a free-group identity
-   `r in [F', R_Y][F', <<w~>>]` for a presentation of `Sp_4(Z)`, plus
-   evaluation of Meyer's signature cocycle modulo three on `r`.
+4. **Direct search.** Not started, and no invariant can prune it. Finite
+   quotients, finite-dimensional projective representations, and amenable or
+   Connes-embeddable coefficient packets are all blind to the class, by
+   `projective-unitary-classes-vanish-on-schur-kernel`,
+   `amenable-coefficients-have-zero-schur-kernel` and Deligne's theorem. A
+   search is only worth running with a structural candidate in hand: an
+   adjunction whose relation module has first homology meeting Meyer's class
+   modulo three.
