@@ -1,3 +1,4 @@
+import Mathlib.GroupTheory.OrderOfElement
 import GroupApproximation.Kazhdan.KMSGroupPresentation
 
 /-!
@@ -15,9 +16,9 @@ below.  It is an open leaf of the lattice route (`Kazhdan/GHBLatticeRoute.lean`)
 consumed only as an explicit hypothesis of intermediate lemmas, never as a binder of
 an endpoint.
 
-Its proof, as a lemma list, is recorded in the lane report of `kh-cckw`
-(`notes/lix-stronger-lane-reports/` is not the place; `$NM/reports/kh-cckw.md`, landed
-with the next batch).
+Its proof is combinatorial nonpositive curvature on the coset complex of the triangle of
+groups: the complex is simply connected, its vertex links have girth at least six, so a
+finite cyclic group fixes a vertex (`GGT/Systolic*`).
 -/
 
 namespace GroupApproximation
