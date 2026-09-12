@@ -28,5 +28,14 @@ G-face merge for Osin Lemma 9.4, Case 2 (edge deletion between two G-faces)
    `exists_unselectedGFacesMerged` (same card and total unbound darts, by strong induction on
    the face count). Landed 8f7a8f1e1, probe 0912-100330-38574 green (md5
    7379104203e2c360a0fda7d935cc87a4). Orphan; consumed by hull-unbound's OsinUnboundCaseTwo.
+6. GGT/VanKampen/Estimating/OsinUnboundReduced.lean (statement agreed with hull-unbound):
+   `PinchSplit.transportDistinguished_sum_unboundDarts_card`, `_faceCount_add_one`;
+   `GloballyDistinguishedSectionFamily.UnselectedPinchesSplit` (two corners at one vertex whose
+   faces are unselected G-faces lie on one face); `exists_unselectedGFacesReduced(_of_faceCount)`
+   (merge G-faces and split pinches until neither applies, with the same card and total unbound
+   darts, by strong induction on the face count). Landed 11850391a, probe 0912-102241-17531 green
+   (base 8e11cd326, md5 f414c24b7651027f56e7b665dfa08433). Orphan; consumed by hull-unbound's
+   OsinUnboundCaseTwo (every vertex corner of an unselected G-face across an unbound dart meets
+   no other unselected G-face).
 
 The avoidance hypothesis everywhere is `∀ a ∈ family, R.first ∉ a.1 ∧ R.second ∉ a.1`.
