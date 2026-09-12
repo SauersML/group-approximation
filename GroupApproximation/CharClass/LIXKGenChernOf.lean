@@ -52,17 +52,23 @@ open scoped Classical in
 /-- **The degreewise Chern classes at rank `n`, over a field `K`.**  For a projection family `P`
 on `N = S¹ × S^{2n+1} × ∏ⱼ ℂP^{dⱼ}` whose projectivisation satisfies Leray–Hirsch over `K` at rank
 `lixRank n dd` with the dual tautological class of the generator `hgen`, the `k`-th Chern class of
-the even-part Leray–Hirsch data, read in degree `2k`; `0` otherwise. -/
+the even-part Leray–Hirsch data, read in degree `2k`; `0` otherwise.
+
+The class is read through `Subtype.val` rather than a coercion ascribed at `TotalHOf K (lixN n dd)`:
+`lixN` is a `def`, and coercion search does not unfold it. -/
 def lixChernDegOf (K : Type) [Field K] (n : ℕ) (dd : Fin ℓ → ℕ)
     (hgen : Hmod K (CPtop (1 + tautCardOf (Gen.VIdx n dd ⊕ Gen.VIdx n dd))) 2) :
     LixFamily n dd → ∀ k : ℕ, Hmod K (lixN n dd) (2 * k) :=
   fun P k =>
     if h : ∃ (hc : Continuous P) (hp : ∀ p, IsStarProjection (P p)),
-        LerayHirschGraded (projMapOf (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
-          (LH.tautEulerDualK K hgen (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd))) (lixRank n dd)
+        LerayHirschGraded
+          (projMapOf
+            (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
+          (LH.tautEulerDualK K hgen
+            (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
+          (lixRank n dd)
     then TotalHOf.component K (lixN n dd) (2 * k)
-      ((LerayHirschDataEvenOf.of_graded h.choose_spec.choose_spec).chern k :
-        TotalHOf K (lixN n dd))
+      ((LerayHirschDataEvenOf.of_graded h.choose_spec.choose_spec).chern k).1
     else 0
 
 open scoped Classical in
@@ -71,14 +77,22 @@ Leray–Hirsch data's Chern class of `L`. -/
 theorem lixChernDegOf_eq_of_graded (K : Type) [Field K] (n : ℕ) (dd : Fin ℓ → ℕ)
     (hgen : Hmod K (CPtop (1 + tautCardOf (Gen.VIdx n dd ⊕ Gen.VIdx n dd))) 2)
     (P : LixFamily n dd) (hc : Continuous P) (hp : ∀ p, IsStarProjection (P p))
-    (L : LerayHirschGraded (projMapOf (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
-      (LH.tautEulerDualK K hgen (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd))) (lixRank n dd)) (k : ℕ) :
+    (L : LerayHirschGraded
+      (projMapOf
+        (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
+      (LH.tautEulerDualK K hgen
+        (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
+      (lixRank n dd)) (k : ℕ) :
     lixChernDegOf K n dd hgen P k
       = TotalHOf.component K (lixN n dd) (2 * k)
-          ((LerayHirschDataEvenOf.of_graded L).chern k : TotalHOf K (lixN n dd)) := by
+          ((LerayHirschDataEvenOf.of_graded L).chern k).1 := by
   have hex : ∃ (hc : Continuous P) (hp : ∀ p, IsStarProjection (P p)),
-      LerayHirschGraded (projMapOf (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
-        (LH.tautEulerDualK K hgen (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd))) (lixRank n dd) :=
+      LerayHirschGraded
+        (projMapOf
+          (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
+        (LH.tautEulerDualK K hgen
+          (⟨P, hc, hp⟩ : Bundle (↥sphereOne × Gen.baseM n dd) (Gen.VIdx n dd ⊕ Gen.VIdx n dd)))
+        (lixRank n dd) :=
     ⟨hc, hp, L⟩
   exact dif_pos hex
 
@@ -91,7 +105,7 @@ theorem lixChernDegOf_mappingTorus (K : Type) [Field K] (n : ℕ) (dd : Fin ℓ 
       (LH.tautEulerDualK K hgen (lixBundle n G hGc hGu)) (lixRank n dd)) (k : ℕ) :
     lixChernDegOf K n dd hgen (mappingTorus (Gen.Vmat n) G circHoriz circHeight) k
       = TotalHOf.component K (lixN n dd) (2 * k)
-          ((LerayHirschDataEvenOf.of_graded L).chern k : TotalHOf K (lixN n dd)) :=
+          ((LerayHirschDataEvenOf.of_graded L).chern k).1 :=
   lixChernDegOf_eq_of_graded K n dd hgen _ (continuous_mappingTorus_lix n hGc)
     (isStarProjection_mappingTorus_lix n hGu) L k
 
