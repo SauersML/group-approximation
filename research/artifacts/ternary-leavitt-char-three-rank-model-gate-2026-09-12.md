@@ -208,8 +208,7 @@ be the joint eigen-idempotents of `σ(T_3)`, `N = σ(x_12(1)) − 1`, and `A = �
 
 ## 7. Scope: abstract Sylvester rank functions
 
-Answers the (U2) question of `ternary-anti-central-states-force-nontrivial-rank-models`. This is a scope
-extension, and its verification is requested.
+Answers the (U2) question of `ternary-anti-central-states-force-nontrivial-rank-models`. This is a scope extension, PASS by `w3-vf-linear`, Section 24 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`.
 
 An *abstract rank algebra* is an `F_3`-algebra `M` with a Sylvester matrix rank function `ρ` that is positive
 on nonzero idempotents, as in Section 2 of `ternary-corner-state-sources-2026-09-12.md`. An *abstract rank
