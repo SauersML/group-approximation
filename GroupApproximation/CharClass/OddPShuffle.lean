@@ -72,7 +72,7 @@ theorem tupPre_eq_sum_ite (t : TupAll X r) (a : Fin r) :
   rw [← h, tupPre]
   refine Finset.sum_congr ?_ fun _ _ => rfl
   ext l
-  simp only [Finset.mem_Iio, Finset.mem_filter, Finset.mem_univ, true_and]
+  simp
 
 /-- The prefix of the permuted tuple, over new positions. -/
 theorem tupPre_permTup (π : Equiv.Perm (Fin r)) (t : TupAll X r) (i : Fin r) :
@@ -139,7 +139,7 @@ def permExp (π : Equiv.Perm (Fin r)) (t : TupAll X r) : ℕ :=
   ∑ i : Fin r, ∑ j : Fin r, if i < j ∧ π j < π i then (t (π i)).1 * (t (π j)).1 else 0
 
 theorem permExp_one (t : TupAll X r) : permExp X (1 : Equiv.Perm (Fin r)) t = 0 :=
-  Finset.sum_eq_zero fun i _ => Finset.sum_eq_zero fun j _ => if_neg fun h => lt_asymm h.1 h.2
+  Finset.sum_eq_zero fun _ _ => Finset.sum_eq_zero fun _ _ => if_neg fun h => lt_asymm h.1 h.2
 
 /-- **Differentiating one slot moves the exponent by the slots reordered with it.** -/
 theorem permExp_update (π : Equiv.Perm (Fin r)) (t : TupAll X r) (i : Fin r) (τ : TagSimp X)
@@ -270,13 +270,15 @@ theorem finRotate_reorders_iff (m : ℕ) (i j : Fin (m + 1)) :
   have hj := j.2
   have hri := finRotate_val_eq_ite i
   have hrj := finRotate_val_eq_ite j
-  rw [Fin.lt_iff_val_lt_val, Fin.lt_iff_val_lt_val, Fin.ext_iff, Fin.val_last]
+  rw [Fin.lt_def, Fin.lt_def, Fin.ext_iff, Fin.val_last]
   split_ifs at hri hrj <;> constructor <;> rintro ⟨h1, h2⟩ <;> exact ⟨by omega, by omega⟩
 
 theorem finRotate_castSucc_eq (m : ℕ) (i : Fin m) :
     finRotate (m + 1) (Fin.castSucc i) = Fin.succ i := by
   apply Fin.ext
-  rw [finRotate_val_eq_ite, Fin.val_castSucc, Fin.val_succ, if_neg (by have := i.2; omega)]
+  have hi := i.2
+  rw [finRotate_val_eq_ite, Fin.val_castSucc, Fin.val_succ,
+    if_neg (show ¬ ((i : ℕ) + 1 = m + 1) by omega)]
 
 theorem permExp_finRotate_succ (m : ℕ) (t : TupAll X (m + 1)) :
     permExp X (finRotate (m + 1)) t = (∑ i : Fin m, (t i.succ).1) * (t 0).1 := by
@@ -539,9 +541,14 @@ def blockRotEquiv (m : ℕ) : Equiv.Perm (Fin (2 * m)) where
   left_inv i := by
     apply Fin.ext
     show blockRotTgt m (blockRotSrc m (i : ℕ)) = (i : ℕ)
-    have := i.2
-    unfold blockRotTgt blockRotSrc
-    split_ifs <;> omega
+    have hi := i.2
+    -- name the inner value first: an `if` inside a condition hides its case facts from `omega`
+    have hs : blockRotSrc m (i : ℕ)
+        = if (i : ℕ) < m then (if (i : ℕ) + 1 = m then 0 else (i : ℕ) + 1)
+          else (if (i : ℕ) + 1 = 2 * m then m else (i : ℕ) + 1) := rfl
+    generalize blockRotSrc m (i : ℕ) = s at hs ⊢
+    unfold blockRotTgt
+    split_ifs at hs <;> split_ifs <;> omega
   right_inv j := by
     apply Fin.ext
     show blockRotSrc m (blockRotTgt m (j : ℕ)) = (j : ℕ)
@@ -559,9 +566,17 @@ theorem blockRotEquiv_mul_riffleEquiv (m : ℕ) :
       = riffleEquiv m * (finRotate (2 * m) * finRotate (2 * m)) := by
   refine Equiv.ext fun i => Fin.ext ?_
   have hi := i.2
-  simp only [Equiv.Perm.mul_apply, riffleEquiv_val, blockRotEquiv_val, finRotate_val_eq_ite]
-  unfold riffleSrc blockRotSrc
-  split_ifs <;> omega
+  have hr1 := finRotate_val_eq_ite i
+  have hr2 := finRotate_val_eq_ite (finRotate (2 * m) i)
+  have hs : riffleSrc m (i : ℕ) = if (i : ℕ) % 2 = 0 then (i : ℕ) / 2 else m + (i : ℕ) / 2 := rfl
+  show blockRotSrc m (riffleSrc m (i : ℕ))
+    = riffleSrc m ((finRotate (2 * m) (finRotate (2 * m) i) : Fin (2 * m)) : ℕ)
+  -- name every inner value, so that no `if` sits inside a condition `omega` has to read
+  generalize riffleSrc m (i : ℕ) = s at hs ⊢
+  generalize ((finRotate (2 * m) (finRotate (2 * m) i) : Fin (2 * m)) : ℕ) = r2 at hr2 ⊢
+  generalize ((finRotate (2 * m) i : Fin (2 * m)) : ℕ) = r1 at hr1 hr2
+  unfold blockRotSrc riffleSrc
+  split_ifs at hs hr1 hr2 <;> split_ifs <;> omega
 
 variable (K : Type) [CommRing K] (X : TopCat.{0})
 
