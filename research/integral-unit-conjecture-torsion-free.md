@@ -37,6 +37,20 @@ support (`rational-units-rescale-to-integral-units`).
   at Case A, units congruent mod 2 to a trivial unit. Bartholdi constructs
   approximate units modulo every `n` (Tabei, Remark 3.3), so no finite list
   of congruences closes Case A.
+* **Gardam's support pair.** Fix both supports to Gardam's 21-element pair
+  `(S,T)` (`research/artifacts/gardam-support-pair-rational-units-2026-09-12.md`).
+  - Its `F_2`-points are the 17 trivial units and Gardam's unit, and
+    Gardam's unit has no lift modulo 4.
+  - Eight trivial residues are Hensel-isolated. The other nine are singular
+    in every characteristic, with kernel dimension
+    `#(S cap g_i T g_i) - 1 in {8, 12}`, and solution counts modulo `2^k`
+    grow.
+  - By z3, every nontrivial unit on the pair has `u_1, u_2 != 0`.
+
+  The attack stops at those nine singular trivial residues. The missing step
+  is an exact Groebner basis over `Q` of the localized system
+  (`gardam-support-pair-gb-easy.py`). Singular's `std` over `Q` had not
+  finished within its first hour on MSI.
 * **Untwisting Gardam's unit.** Every coefficient of Gardam's unit in
   `R[P]`, `R = Z[s,t]/(s^4+1, t^4+1)`, is a signed monomial `+-s^i t^j`
   (rechecked exactly in `research/artifacts/gardam-support-pair-gsp.py`).
