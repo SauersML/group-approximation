@@ -7,6 +7,7 @@ distinct_from:
   injective-binary-automata-have-formalizable-left-inverses: that asks for a formalizable left inverse on the original alphabet, which fails for one-track non-affine automata on bi-orderable groups; this allows identity ancilla tracks, where components reading the top cell can cancel and the leading-term obstruction no longer applies.
   binary-left-inverse-pairs-are-formalizable: that asks every pair on the original alphabet to be formalizable; this asks only for some left inverse of the stabilized automaton.
   sitewise-pairs-over-prime-fields-are-stably-formalizable: that treats sitewise pairs over prime fields; this asks for every injective binary automaton with arbitrary memory.
+  prime-field-left-inverse-pairs-are-stably-formalizable: that is the prime-field form of stable formalizability, landed first by gk-fz-alphabets; this is the binary form that asks only for some left inverse of the stabilized automaton, which that claim implies at p = 2 and which already gives the binary Kaplansky payoff.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
 ---
