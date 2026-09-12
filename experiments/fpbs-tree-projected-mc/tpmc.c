@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
   hkey = calloc(1L << hb, 8); hused = malloc(cap * 16 + 64); qx = malloc(cap * 4 + 16); qh = malloc(cap * 8 + 16);
   int32_t *l1n = malloc(cap * 4 + 16), *l1c = malloc(cap * 4 + 16);
   if (!par || !child || !hkey || !l1c) { fprintf(stderr, "alloc failed\n"); return 3; }
-  static double acc[NB][NQ], shA[NB][33], shB[NB][33]; long capped_total = 0, perb = N / NB;
+  static double acc[NB][NQ], shA[NB][33], shB[NB][33], bRb[NB][33]; long capped_total = 0, perb = N / NB;
   for (int b = 0; b < NB; b++) for (long it = 0; it < perb; it++) {
     int cp; tree_reset();
     long K = explore(cap, -1, &cp); capped_total += cp;
@@ -120,7 +120,11 @@ int main(int argc, char **argv) {
       if (first[c] == 2) for (int D = 1; D <= Dmax && D <= run[c]; D++) shB[b][D] += cnt[c];
     }
     explore(cap, -1, &cp); capped_total += cp;
-    double B = 0; for (long i = 0; i < n1; i++) B += (double)l1c[i] * cnt[l1n[i]];
+    double B = 0;
+    for (long i = 0; i < n1; i++) {
+      double v = (double)l1c[i] * cnt[l1n[i]]; B += v;
+      if (depth[l1n[i]] <= 32) bRb[b][depth[l1n[i]]] += v;   /* sphere bubble b_R = sum_{|q|=R} sig(q)^2 */
+    }
     acc[b][6] += B;
     for (int s = 0; s < 4; s++) { explore(cap, s ^ 1, &cp); capped_total += cp; acc[b][7 + s] += cnt[0]; }
   }
@@ -142,6 +146,12 @@ int main(int argc, char **argv) {
     for (int b = 0; b < NB; b++) { ra[b] = shA[b][D] / acc[b][0]; rb[b] = shB[b][D] / acc[b][0]; ma += ra[b] / NB; mb += rb[b] / NB; }
     for (int b = 0; b < NB; b++) { va += (ra[b] - ma) * (ra[b] - ma) / (NB - 1); vb += (rb[b] - mb) * (rb[b] - mb) / (NB - 1); }
     printf("shareA %d %.6g %.3g shareB %d %.6g %.3g\n", D, ma, sqrt(va / NB), D, mb, sqrt(vb / NB));
+  }
+  for (int Rr = 0; Rr <= Dmax; Rr++) {
+    double m = 0, v = 0, bm[NB];
+    for (int b = 0; b < NB; b++) { bm[b] = bRb[b][Rr] / perb; m += bm[b] / NB; }
+    for (int b = 0; b < NB; b++) v += (bm[b] - m) * (bm[b] - m) / (NB - 1);
+    printf("bR %d %.6g %.3g\n", Rr, m, sqrt(v / NB));
   }
   return 0;
 }
