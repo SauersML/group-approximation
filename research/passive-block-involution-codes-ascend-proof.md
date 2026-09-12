@@ -6,6 +6,7 @@ target: passive-block-involution-codes-ascend
 requires: []
 artifacts:
   - research/artifacts/alphabet-ascent-and-binary-descent-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Let `(mu, nu)`, `mu = nu`, be a control-involution code strict for `(T_f, T_r)` over `A`, with
@@ -46,3 +47,13 @@ symbols, so `(T_f, T_r)` admits strict rules over every alphabet of size `>= |A|
 `n >= 3`, matching the verified threshold of `equal-label-table-is-strict-at-three-symbols-not-two`.
 For `x_a = x_b = x_a x_b` the passive block `{3,4,...}` is nonempty from `n = 4`, and the `n = 3` base is
 the separate construction of Example 6.4 of the Boolean-core artifact.
+
+**Verification.** `w3-vf-positive`: PASS after correction (Section 9 of
+`research/artifacts/w3-vf-positive-verification-2026-09-12.md`). The conclusion and the coverage are
+unchanged, but the proof as written has two gaps:
+- **The rule `g_∗ = id`.** It breaks block dependence when the passive block acts nontrivially, as `Q`
+  does in the `x_a = x_b` instance.
+- **The decoder step.** Deleting identity factors does not yield an `A`-equation.
+
+Corrected rule: `g_∗ = g_Z`, with every involution fixing `∗`. The proof then runs through the retraction
+`A' -> A` that sends `∗` into `Z` and intertwines the relay rules, with data cell `c_1 = 1`.

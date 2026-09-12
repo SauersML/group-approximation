@@ -436,3 +436,60 @@ Verdict: **PASS** for all three claims and Corollaries 2.2 and 3.3. Nothing here
   - an amenable co-amenable subrelation of a nonamenable orbit relation is impossible by composing means;
   - the withdrawn Kazhdan assertion was unproved, and removing it is right.
   No claim consumes this.
+
+## 9. Passive-block involution codes ascend (w3-alphabet, `191d4ce5ae`)
+
+Verdict: **PASS after correction.** The conclusion of `passive-block-involution-codes-ascend` holds, and
+so does the coverage of the classified tables. The extension rule in the claim and its proof route is
+wrong as written, and the argument given does not prove the decoder step. The corrected construction and
+proof are below. The two Attempts merges (`689e28b764`, `63235efdfa`) are pointers.
+
+### 9.1 What is wrong
+
+- **The rule.** The claim adjoins `∗` to the passive block `Z` and sets `g_∗ = id`. A control-involution
+  code must have `g_v` depending only on the block of `v`. When `g_Z != id`, the symbols `∗` and those of
+  `Z` then get different involutions. This is exactly the listed `x_a = x_b` instance, where `Z = Q` and
+  `g_Q = (0 1)`. So the extended data are not a control-involution code with passive block `Z ⊔ {∗}`, as
+  the route asserts.
+- **The decoder step.** The route says: "the factor it indexes is `g_∗ = id`; deleting identity factors
+  leaves a word whose controls are in `A`". That does not produce an `A`-equation. No `A`-symbol need both
+  act as `id` and be fixed by every involution: in the `x_a = x_b` code the passive symbols act as
+  `(0 1)`. Also, the sink's control is a computed relay output, not a raw source symbol.
+
+For the `x_a = x_b` table itself, the `g_∗ = id` extension happens to satisfy the decoder identity. A
+direct computation shows `g'_(g'_v(w)) = g'_w` there. So the instance survives, but the argument given
+is not a proof.
+
+### 9.2 Corrected construction and proof
+
+Put `A' = A ⊔ {∗}` with `∗` in `Z`.
+- For every `v` in `A`, extend `g_v` by `g_v(∗) = ∗`.
+- Set `g_∗ = g_z` for `z` in `Z`, the involution of the block `Z`, also extended by fixing `∗`.
+
+Each extended map is an involution, `g` still depends only on the block, and `Z ⊔ {∗}` is passive.
+
+- **Retraction.** Let `phi: A' -> A` fix `A` and send `∗` to a fixed `z` in `Z`. Then
+  `phi(g'_v(a)) = g_(phi v)(phi a)` for all `v, a` in `A'`:
+  - for `a = ∗`, both sides are `z`, because `Z` is passive;
+  - for `v = ∗`, `g'_∗ = g_z` by definition.
+
+  So `phi` intertwines the extended relay rule with the original one, cell by cell. For every
+  `T_f`-consistent assignment, `phi(C'(x')) = C(phi(x'))`, where `C` is the forward composite.
+- **Data cell.** Take `c_1 = 1`, so relay `1` reads the demanded cell `(1,1)` as data. Both listed
+  instances have this. The involutions preserve `A` and fix `∗`, so `C'(x') = ∗` iff `x'(1,1) = ∗`.
+- **Decoder identity.**
+  - If `x'(1,1) = ∗`, then `C'(x') = ∗`.
+  - Otherwise `C'(x')` lies in `A`, and `C'(x') = phi(C'(x')) = C(phi(x')) = x'(1,1)` by the
+    `A`-identity.
+- **Reverse failure.** Strictness over `A` gives a reverse witness whose symbols lie in `A`. The extended
+  involutions agree with the old ones on `A`, so the witness persists.
+- **Iteration** gives every size of at least `|A|`.
+
+### 9.3 Coverage. PASS.
+
+- **`x_a = x_b`.** `g_P = id` on `P = {0,1}` and `g_Q = (0 1)` on `Q = A ∖ P`, with `Q` passive. The
+  corrected rule gives each new symbol `g_Q`, which is exactly the classified code at the next size. So
+  the threshold `n = 3` ascends.
+- **The triple.** The passive block `{3, 4, ...}` has `h_w = id`, so the two rules agree and nothing
+  changes.
+- **Reverse witnesses** lie in `A` in both instances.
