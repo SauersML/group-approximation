@@ -62,16 +62,20 @@ theorem tupEvalAll_tupIncl (φ : Fin r → ∀ n : ℕ, singularCochainGroup K X
 def IsHomogFun (φ : Fin r → ∀ n : ℕ, singularCochainGroup K X n) (d : Fin r → ℕ) : Prop :=
   ∀ j n, n ≠ d j → φ j n = 0
 
+open Classical in
 /-- **The indicator cochain of a tagged simplex**: `1` on that simplex and `0` on every other
-simplex of every degree. -/
+simplex of every degree.  Singular simplices have no decidable equality, so the test is
+classical. -/
 def tagIndicator (τ : TagSimp X) : ∀ n : ℕ, singularCochainGroup K X n :=
   fun n => cochainOfFun n (fun σ => if (⟨n, σ⟩ : TagSimp X) = τ then (1 : K) else 0)
 
+open Classical in
 theorem tagEvalG_tagIndicator (τ τ' : TagSimp X) :
     tagEvalG K (tagIndicator K τ) τ' = if τ' = τ then 1 else 0 := by
   unfold tagEvalG tagIndicator
   rw [cochainEval_cochainOfFun]
 
+open Classical in
 /-- The indicators of a tuple's slots are concentrated in that tuple's degrees. -/
 theorem isHomogFun_tagIndicator (t : TupAll X r) :
     IsHomogFun K (fun j => tagIndicator K (t j)) (fun j => (t j).1) := by
@@ -87,14 +91,15 @@ theorem isHomogFun_tagIndicator (t : TupAll X r) :
 /-- Evaluating against the indicators of a tuple's slots reads off that tuple's coefficient. -/
 theorem tupEvalAll_tagIndicator (t : TupAll X r) (z : tupAllMod K X r) :
     tupEvalAll K X r (fun j => tagIndicator K (t j)) z = z t := by
+  classical
   induction z using Finsupp.induction_linear with
   | zero => rw [map_zero, Finsupp.zero_apply]
   | add x y hx hy => rw [map_add, hx, hy, Finsupp.add_apply]
   | single s a =>
     have hs : Finsupp.single s a = a • Finsupp.single s (1 : K) := by
       rw [Finsupp.smul_single, smul_eq_mul, mul_one]
-    rw [hs, map_smul, tupEvalAll_single, Finsupp.smul_apply, smul_eq_mul, Finsupp.single_apply]
-    simp only [tagEvalG_tagIndicator]
+    rw [hs, map_smul, tupEvalAll_single, Finsupp.smul_apply, Finsupp.single_apply]
+    simp only [tagEvalG_tagIndicator, smul_eq_mul]
     by_cases hst : s = t
     · subst hst
       simp
