@@ -288,6 +288,62 @@ into a sofic graph product. I re-derived it: PASS. The two claims are distinct:
 
 Neither carries `distinct_from` on the other.
 
+## 13. The Rokhlin entropy self-copy dichotomy (gottschalk-positive-host)
+
+Reviewed: `rokhlin-entropy-self-copy-dichotomy-2026-09-12.md`, the claims
+`rokhlin-supremum-dichotomy-with-centralized-self-copies`,
+`positive-rokhlin-entropy-makes-leavitt-units-surjunctive` and
+`positive-rokhlin-entropy-on-one-host-proves-gottschalk`, the Seward imports,
+and the open claims `leavitt-unit-group-surjunctive`,
+`leavitt-unit-group-has-positive-rokhlin-entropy-action`,
+`tester-host-has-positive-rokhlin-entropy-action` and
+`every-group-has-positive-rokhlin-entropy-action`. Verdict: PASS.
+
+* **Theorem A.** Take `G <= Gamma` with `h_sup(G) < infinity`, and finite `T`
+  commuting with `G` with `T ∩ G = 1`.
+  * Independence of the `G`-translates of `Q` needs only `T ∩ G = 1`:
+    `gt = g't'` forces `g'^-1 g in G ∩ T`.
+  * `xi` is a partition, because `M` is a transversal. Each `C_pi` is
+    `T`-invariant, and `xi` refines `Q`, since `C_pi` lies in the union of the
+    `D_(s.pi)`.
+  * `R_l = union over s, pi with pi(s^-1) = l of (C_pi ∩ s.M)`: for
+    `x = s.y` with `y in D_pi ∩ M`, `x(1) = y(s^-1)`.
+  * `sigma_G(xi)` is `T`-invariant because `G` commutes with `T`, so every atom of
+    the `k`-piece generator `beta` is `T`-invariant and `beta` lies in
+    `sigma_Gamma(alpha)`.
+  * `H(alpha | F) <= mu(M) log k = log(k)/|T|`, since `M in F` and `alpha` is
+    trivial off `M`.
+  * With subadditivity (S2) and the small free factor (S1), this gives
+    `h^Rok_Gamma(L^Gamma) < 2 eps`, and (S4) gives `h_sup(Gamma) = 0`.
+* **Corollary A1.** `Gamma_1 ~= Gamma` carries the same supremum, and the finite
+  subgroups of `Gamma_2` commute with `Gamma_1` and meet it trivially. A2
+  follows from (S4)--(S7).
+* **Lemma 2.1.** `iota_0(a) iota_0(a') = s_0 a a' t_0 + s_1 t_1` and
+  `t_0 iota_0(a) s_0 = a`. `iota_0(a) iota_1(b) = s_0 a t_0 + s_1 b t_1` is
+  symmetric in the two factors. So `U x U <= U`.
+* **Lemma 2.2.** `s_u t_v` are matrix units summing to `1`. Simplicity of
+  `M_(2^n)(F_2)` gives `GL_(2^n)(F_2) <= U`.
+* **Section 3.** `Gamma_U x Gamma_U` embeds in `Gamma_U` along the even and odd
+  indices. `Sym_fin(N)` supplies unbounded finite subgroups, so POS(`Gamma_U`)
+  gives surjunctivity of `U_*`, hence of every group.
+* **Citation fidelity.** A grep of the MSI text
+  `review-lit/entropy/1501.03367.txt` finds:
+  * Theorem 1.11 ("Let P be a countable group containing arbitrarily large
+    finite sub[groups]", line 252);
+  * the chain `INF⇒RBS⇒INV+CPE+GOT+KAP` (line 294);
+  * Corollary 4.1 (line 725).
+
+  The other quoted statements were not re-read.
+* **No premature establishment.** On main at `d3fefdbc63`,
+  `leavitt-unit-group-surjunctive` is open. Its routes need
+  `leavitt-unit-group-has-positive-rokhlin-entropy-action` (open) or
+  `every-group-has-positive-rokhlin-entropy-action` (open, no route). The goal
+  routes `gottschalk-via-positive-rokhlin-entropy-host`,
+  `gottschalk-via-maximal-bernoulli-rokhlin-entropy` and
+  `fixed-tester-surjunctive-via-rokhlin-entropy` each need an open maximality or
+  positivity claim. The two maximality claims form a two-route cycle, an
+  equivalence, which a least fixpoint never fires.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by
