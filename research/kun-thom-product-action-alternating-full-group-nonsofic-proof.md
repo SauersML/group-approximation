@@ -8,6 +8,7 @@ requires:
   - kun-thom-nonsofic-wreath
 artifacts:
   - research/artifacts/kun-thom-alternating-full-group-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 1. **Rigid stabilizers.** If `q in A(Y)` moves a clopen `U` off itself, then `[[Y]]_U' <= A(Y)`, since
@@ -19,3 +20,5 @@ artifacts:
 4. **Finite index.** `K` has (T), so `[G : [K,K]]` is finite.
 5. **Nonsofic.** The image of `W` is a Kun--Thom wreath over `(G/Z, Gamma/Z)`, `Z = core_G(Gamma) ∩ K`, and is
    nonsofic by Theorem A. Soficity passes to finite extensions, so its finite-index subgroup inside `A(Y)` is nonsofic.
+
+**Verification.** `w3-vf-positive` passed this route (Section 12 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`). Theorem A hypotheses for the quotient pair `(G/Z, Gamma/Z)` are checked in 12.1.

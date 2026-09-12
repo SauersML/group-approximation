@@ -617,3 +617,64 @@ Verdict: **PASS** for `formal-pairs-push-along-quotients-of-the-encoder-memory-g
   - no affine-rigidity or pushforward refutation reaches a finitely generated simple host;
   - over `F_2` the constant level is covered by tame maps;
   - torsion in `L_(F_2)(1,2)^x` and `V` gives zero divisors, so step 1 of the affine rigidity proof is unavailable.
+
+## 12. Alternating full group of a Kun–Thom product action (w4-simple-q, `438b54402e`)
+
+Verdict: **PASS** for `kun-thom-product-action-alternating-full-group-is-nonsofic`. Its only external input is
+Kun–Thom Theorem A (`kun-thom-nonsofic-wreath`), applied to a quotient pair whose hypotheses are checked in
+12.1. Simplicity and finite generation rest on recalled Nekrashevych statements. They sit in a separate OPEN
+node, and no established node depends on them.
+
+### 12.1 Lemmas 1.1 and 1.2. PASS.
+
+- **Minimality, expansivity, infinite orbits.** Lamps change any finite set of coordinates, so orbits are dense.
+  `G` is transitive on `G/K`. Translates of the time-zero partition separate points.
+- **The kernel on `Y`.** `n = 0` (test at `x = 0`), `g` fixes every site, and `g` fixes every `p`. So the kernel
+  is `Z = core_G(Gamma) ∩ K <= Gamma`, normal in `G`.
+- **Theorem A for `(G/Z, Gamma/Z)`.**
+  - Property (T) passes to quotients.
+  - The image of `P_Gamma` lies in `P_(Gamma/Z)` and generates `G/Z`.
+  - `Gamma/Z` normal would make its preimage `Gamma` normal.
+  - The coset space is unchanged, so `W/Z = (Z/2) wr_(G/Gamma) (G/Z)` is nonsofic.
+
+### 12.2 Lemma 2.1, rigid stabilizers (pressure point 1). PASS.
+
+- **Normality of `A(Y)` (fact E).** Conjugating a multisection by `h` in `[[Y]]` gives the multisection
+  `h(U_i)`, `h F_ij h^-1`. So `A(Y)` is normal in `[[Y]]`.
+- **The commutator identity.** Let `a, b` be supported in `U` and `q(U) ∩ U = ∅`.
+  - `c = q b^-1 q^-1` is supported in `q(U)`, so it commutes with `a` and `b`, and `[b,q] = bc` lies in `A(Y)`.
+  - `[a, bc] = a b c a^-1 c^-1 b^-1 = [a,b]`, which lies in `A(Y)` by normality.
+
+### 12.3 Lemma 2.2, lamps (pressure point 2). PASS.
+
+- **The 3-cycle.** The cylinders `[00], [01], [10]` at `(t,u)`, with pieces `delta_u`, `delta_t` and
+  `delta_t delta_u`, satisfy `F_ij F_jk = F_ik`. Their 3-cycle moves each cylinder off itself.
+- **The lamp as a commutator.** On a cylinder `V`, the four subcylinders at `(s,v)` with lamp pieces carry all of
+  `Sym(4)` inside `[[C]]_V`. `delta_s|_V` swaps `[0d]` with `[1d]`, a double transposition, so it lies in
+  `[Alt(4), Alt(4)] = V_4`, hence in `[[C]]_V'`.
+- **Conclusion.** Lemma 2.1 puts `delta_s|_V` in `A(C)`, and `delta_s` is the product of the four restrictions.
+
+### 12.4 Lemma 2.3 and Proposition 2.5. PASS.
+
+- **Lemma 2.3.**
+  - `G_s` preserves `[a]_s`, restriction is a homomorphism into `[[C]]_([a]_s)`, and `delta_s` swaps the two
+    cylinders.
+  - `G_s = h Gamma h^-1` is perfect for `r >= 3`.
+  - Monomial generators `x_ij(c x^v)` are conjugates `A x_ij(c x^w) A^-1`, where `v = k v_0` with `v_0` primitive,
+    `w = k e_1`, and `A e_1 = v_0`. So `EL_r(R) <= A(C)`.
+- **Proposition 2.5.**
+  - Stabilizers of sites lie in the normal `EL_r(R)`.
+  - If `g^k` fixed a site, the image of `g` would have finite order. So every `<g>`-orbit is infinite, and an
+    invariant clopen has an empty determining set.
+
+### 12.5 Proposition 3.1 (pressure points 3–6). PASS.
+
+- **Moving layers.** Pieces `g'`, `g''` and `g'' g'^-1` on three layers satisfy the multisection identity, and
+  the 3-cycle moves a layer off itself.
+- **Lamps.** Section 12.3 runs inside each layer.
+- **The normal subgroup (3).** `K` is normal, so it fixes every point of `G/K`, preserves each layer, and
+  restricts homomorphically. Lemma 2.1 gives `[K,K] <= A(Y)`.
+- **Finite index (4).** `G` is Kazhdan, so is `K`, and `K^ab` is finite. So `[G : [K,K]] = [G:K] |K^ab|`.
+- **Nonsofic (5, 6).** Suppose the image `H` of `N ⋊ [K,K]` were sofic. Its normal core in `W/Z` has finite index
+  and is sofic. Sofic-by-finite groups are sofic (the amenable-quotient direction of Elek–Szabó), so `W/Z` would be
+  sofic, contradicting 12.1. Soficity passes to subgroups, so `A(Y)` is nonsofic.
