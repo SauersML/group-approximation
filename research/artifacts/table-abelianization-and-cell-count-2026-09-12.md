@@ -168,6 +168,29 @@ surjection `Hol_M(E) -> Z` sending every memory letter to `1`. Consequently:
 descends. It is onto because `M \ {1}` is nonempty in any nontrivial design. A
 subgroup with finite abelianization has trivial image in `Z`. QED
 
+**Corollary 3.2 (free factor).** If every identification of `E` is balanced, then
+
+```text
+Hol_M(E)  ~=  Z * Q,       Q = < d_m : m in M \ {1, m_0} | the same relators >,
+```
+
+where `m_0 in M \ {1}` is any fixed address, `t = x_(m_0)` and
+`d_m = x_m x_(m_0)^(-1)`. Consequently every Kazhdan subgroup of the host is
+conjugate into `Q`, and every two-cell window difference lies in `Q`.
+
+*Proof.* The set `{t} u {d_m}` is a free basis of the free group on the memory
+letters. A balanced edge label is `x_(m') x_m^(-1) = d_(m') d_m^(-1)` with
+`d_(m_0) = 1`, a word in the `d`'s alone, and every relator is a product of edge
+labels, so no relator involves `t`. Hence the presentation splits as a free
+product with `<t> = Z`. A group with property (T) fixes a point of the Bass-Serre
+tree of a free product, so it is conjugate into a factor, and an infinite
+subgroup of `Z` is not Kazhdan. A window difference `x_(m_1) x_(m_2)^(-1)` equals
+`d_(m_1) d_(m_2)^(-1) in Q`. QED
+
+So an unanchored design carries a free `Z` factor that no realization can use:
+the whole question descends to `Q`, one generator smaller. Anchoring is what
+lets a table present anything else.
+
 An anchored edge is a concrete statement about the addresses: an identification
 `(s,1) ~_E (s',m')` says `s = s'm'` with `m' != 1`, that is, the cell sitting at
 the decoder address `s` is also read by the output at `s'` through a nontrivial
