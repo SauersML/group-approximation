@@ -41,6 +41,7 @@ least as far from `x` as `v` is. -/
 theorem not_mem_support_of_length_eq_dist {x v u : V} (p : H.Walk x v)
     (hp : p.length = H.dist x v) (huv : u ≠ v) (hdist : H.dist x v ≤ H.dist x u) :
     u ∉ p.support := by
+  classical
   intro hu
   have hlt := Walk.length_takeUntil_lt_length hu huv
   have hle : H.dist x u ≤ (p.takeUntil u hu).length := dist_le _
@@ -65,7 +66,7 @@ theorem edge_mem_edges_of_separated (hT : H.IsTree) {u v x y : V} (hadj : H.Adj 
     rw [Sym2.eq_swap]
     exact edge_not_mem_edges_of_length_eq_dist q₂ hq₂ hadj.ne.symm hy
   have hbridge : H.IsBridge s(u, v) :=
-    isAcyclic_iff_forall_isBridge.mp hT.isAcyclic (mem_edgeSet.mpr hadj)
+    isAcyclic_iff_forall_isBridge.mp hT.isAcyclic (by simpa using hadj)
   have hmem :=
     isBridge_iff_forall_walk_mem_edges.mp hbridge ((q₂.reverse.append p.reverse).append q₁)
   simp only [Walk.edges_append, Walk.edges_reverse, List.mem_append, List.mem_reverse] at hmem
@@ -103,7 +104,7 @@ theorem dist_smul (hconn : H.Connected) (hG : IsGraphAction G H) (g : G) (x y : 
   rwa [inv_smul_smul, inv_smul_smul] at h
 
 /-- The induced action on darts. -/
-def dartSMul (hG : IsGraphAction G H) : MulAction G H.Dart where
+abbrev dartSMul (hG : IsGraphAction G H) : MulAction G H.Dart where
   smul g d := ⟨(g • d.fst, g • d.snd), (hG g _ _).mpr d.adj⟩
   one_smul d := Dart.ext _ _ (Prod.ext (one_smul G d.fst) (one_smul G d.snd))
   mul_smul g h d := Dart.ext _ _ (Prod.ext (mul_smul g h d.fst) (mul_smul g h d.snd))

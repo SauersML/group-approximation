@@ -229,7 +229,7 @@ theorem isLocallyFiniteGroup_finitary [Finite F] : IsLocallyFiniteGroup (finitar
     exact Finite.of_injective
       (fun x : (supportedOn B U).subgroupOf (finitary B) ↦
         (⟨((x : finitary B) : M ≃ₗ[F] M), x.2⟩ : supportedOn B U))
-      (fun x y hxy ↦ Subtype.ext (Subtype.ext (congrArg Subtype.val hxy)))
+      (fun x y hxy ↦ Subtype.ext (Subtype.ext (by simpa using congrArg Subtype.val hxy)))
   · rw [Subgroup.mem_subgroupOf]
     exact (hT g).mono (Finset.subset_biUnion_of_mem T hg)
 

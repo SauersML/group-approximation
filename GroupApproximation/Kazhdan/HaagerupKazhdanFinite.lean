@@ -122,4 +122,4 @@ end GroupApproximation
 
 #audit_axioms GroupApproximation.Haagerup.ProperAffineAction.finite_of_hasKazhdanPropertyT
 #audit_axioms GroupApproximation.Haagerup.HasHaagerupProperty.subgroup
-#audit_closed_axioms GroupApproximation.Haagerup.kazhdanHaagerupFinite
+#audit_axioms GroupApproximation.Haagerup.kazhdanHaagerupFinite
