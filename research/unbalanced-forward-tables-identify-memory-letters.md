@@ -49,3 +49,9 @@ This is equivalent to the goal (Theorem 3 of the artifact), through two routes t
     (`formal-polynomial-strict-pairs-need-unstable-linearization`,
     `disjoint-footprint-decoders-force-kaplansky-failure`);
   - the rule screens of Section 2 of the artifact.
+- **Small memory (w4-bal-census).**
+  - **Two symbols, three addresses: holds.** Every forward-sufficient table group of an unbalanced
+    design collides two memory letters (`binary-three-address-injective-automata-have-balanced-rules`).
+  - **Two symbols, any memory size.** Even when the letters are distinct, a sufficient table group
+    must satisfy a relator `x_m^-1 x_m' = x_n^-1 x_n'` with `(m, m') != (n, n')`
+    (`binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`).
