@@ -13,12 +13,14 @@ artifacts:
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyDecomposition.lean
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyWords.lean
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyCore.lean
+  - GroupApproximation/KunThom/CompressorNormalizationAssemblyRelativeData.lean
+  - GroupApproximation/KunThom/CompressorNormalizationCore.lean
 ---
 
 A derivation in Lean. The modules are imported by `GroupApproximation.lean`. The
 Bowen–Chapman probe built them green with `-DwarningAsError=true`, under tags
-0912-131722-77584, 0912-141325-36664, 0912-143243-61752, 0912-144538-31975 and
-0912-145645-61789.
+0912-131722-77584, 0912-141325-36664, 0912-143243-61752, 0912-144538-31975,
+0912-145645-61789, 0912-150908-69163, 0912-152805-9090 and 0912-173131-95122.
 
 1. **Skeleton.** `seqNormalizes_of_compressor_of_steps` argues by contradiction.
    `seqNormalizes_of_forall_not_uniform_lower_bound` turns a failure into a uniform
@@ -53,5 +55,13 @@ Bowen–Chapman probe built them green with `-DwarningAsError=true`, under tags
    `compressorRepairFactor` is `2 (1 + |S| k) + 4`.
 6. **Concrete core.** `normalizedSetup` replaces the embedding by `Γ.subtype`, so the
    retained components live over `Γ.subtype` definitionally.
-   `seqNormalizes_distinguished_of_steps` instantiates the skeleton and discharges
+   `seqNormalizes_distinguished_of_guardedSteps` instantiates the skeleton and discharges
    `hdecomp`, `hkazhdan`, `hdefect`, `honesided`, `hmedian` and `hcounting`.
+7. **Relative data.** `exists_compressorRelativeData_of_good` builds the relative data from
+   a domain, a matching injective on it, and a good family satisfying the pointwise bounds
+   of `frameRelativeFunctorOfGood`. It takes estimate (7) from
+   `RelativeFunctorImproveEstimate`.
+8. **Final core.** `seqNormalizes_distinguished_of_kazhdan` supplies `hrep`, `hhamming`,
+   the matching error and `hfunctor` from the landed producers.
+   `hasSequentialCentralizerNormalization_of_kazhdan_infranormal` spreads it to all of `G`
+   through `hasSequentialCentralizerNormalization_of_kazhdan_infranormal_of_core`.

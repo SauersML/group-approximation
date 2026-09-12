@@ -2,10 +2,10 @@
 rg: 2
 id: kt-per-compressor-assembly-over-cluster-frames
 kind: claim
-title: The Lean assembly of Kun--Thom 4.1 for one compressor reduces it to four hypotheses
+title: The Lean assembly of Kun--Thom 4.1 proves its sequential form for infranormal Kazhdan pairs
 distinct_from:
-  kun-thom-sofic-centralizer-normalization: that is Theorem 4.1 itself, imported by citation; this is the Lean assembly of its proof for one compressor, which still takes four hypotheses and so does not derive the theorem.
-  kt-counting-props-producers: that proves three hypotheses of this assembly from the relative data; this is the assembly that consumes them together with frames, the joint scale choice, decompositions and words.
+  kun-thom-sofic-centralizer-normalization: that is Theorem 4.1 itself, in the universal sofic group and imported by citation; this is the Lean derivation of its sequential form, over sofic approximations and sequences of permutations.
+  kt-counting-props-producers: that proves three hypotheses of this assembly from the relative data; this is the assembly that consumes them together with frames, the joint scale choice, decompositions, words and the other producers.
 artifacts:
   - GroupApproximation/KunThom/CompressorNormalizationAssembly.lean
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyFrame.lean
@@ -14,69 +14,61 @@ artifacts:
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyDecomposition.lean
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyWords.lean
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyCore.lean
+  - GroupApproximation/KunThom/CompressorNormalizationAssemblyRelativeData.lean
+  - GroupApproximation/KunThom/CompressorNormalizationCore.lean
 ---
 
-**ESTABLISHED in Lean, as a reduction.** This is the forward direction of Kun--Thom,
-arXiv:2608.06222v3, Theorem 4.1, for one compressor. Namespace
-`GroupApproximation.CompressorNormalizationAssembly`.
+**ESTABLISHED in Lean.** This is Kun--Thom, arXiv:2608.06222v3, Theorem 4.1, in sequential
+form, proved with no literature hypotheses.
 
-**Statement.** Let `G` be a countable group and `Γ ≤ G` an infinite subgroup, with
-`G` and `Γ` both Kazhdan. Let `C : CompressionSetup G ↥Γ PUnit` have the inclusion
-as its embedding. `seqNormalizes_distinguished_of_steps` proves
-`SeqNormalizes Γ C.distinguished` from four hypotheses. They are stated over:
-- the decompositions `CompressorDecomposition (normalizedSetup C hembed) A`;
-- the cluster frames `ClusterFrame D.retained`;
-- the relative data `CountingEndgame.CompressorRelativeData C.distinguished F`.
+**Statement.** Let `G` be a countable group and `Γ` an infranormal subgroup, with both `G`
+and `Γ` having property `(T)`. Then
+`hasSequentialCentralizerNormalization_of_kazhdan_infranormal` proves
+`HasSequentialCentralizerNormalization Γ`. For every sofic approximation `A` of `G` and every
+sequence `v` of permutations that almost commutes with `A(γ)` for all `γ ∈ Γ`, the sequence
+`A(g) v A(g)⁻¹` almost commutes with `A(γ)` for all `g ∈ G` and `γ ∈ Γ`.
 
-The four hypotheses:
-- **`hmatching`.** A nonnegative, vanishing `matchingError D`.
-- **`hrep`.** Take a frame with repair factor `compressorRepairFactor` and a vanishing
-  threshold, and a sequence `v` almost commuting with `Γ` whose `generatorDefect` is
-  `o(threshold)`. Then `v` is Hamming-close to `F.patch a` for some bisection
-  sequence `a`.
-- **`hfunctor`.** Under the same guards, if `matchingError D` is `o(threshold)`, then
-  relative data exist.
-- **`hhamming`.** For relative data `M` and bisection sequences with
-  `M.Transported a b`, `F.patch b` is Hamming-close to `A(t) · F.patch a · A(t)⁻¹`.
+The per-compressor core is `seqNormalizes_distinguished_of_kazhdan`. It gives
+`SeqNormalizes Γ C.distinguished` for every criterion setup `C` whose embedding is the
+inclusion. `hasSequentialCentralizerNormalization_of_kazhdan_infranormal_of_core`
+(`KunThom/NormalizationProducer`) spreads it to all of `G`.
 
-The skeleton's other hypotheses are all discharged:
-- `hframe`, by the joint scale choice `exists_clusterFrame`, which gives `ρ = o(h)` by
-  prescribing `√ρ`;
-- `hconv`, by `ClusterFrame.almostCommutes_patch`;
-- the wrapper, by `seqNormalizes_of_forall_not_uniform_lower_bound`;
-- `hdecomp` and `hkazhdan`, from property `(T)`;
-- `hdefect`, by `generatorDefect_vanishing`;
-- `honesided`, `hmedian` and `hcounting`, by the producers of
-  `kt-counting-props-producers`.
+**The assembly.** `seqNormalizes_of_compressor_of_steps` argues by contradiction along a
+subsequence, and it runs over cluster frames (`seqNormalizes_of_compressor_of_frameSteps`).
+Its hypotheses are discharged as follows.
+- `hframe`: the joint scale choice `exists_clusterFrame`, which prescribes `√ρ` and so gets
+  `ρ = o(threshold)`.
+- `hconv`: `ClusterFrame.almostCommutes_patch`.
+- `hdecomp`, `hkazhdan`, `hdefect`: from property `(T)` (`exists_compressorDecomposition`,
+  `exists_kazhdanPair_retained`, `generatorDefect_vanishing`).
+- `hrep`: `ClusterFrame.exists_bis_patch_close_of_retained`, the forward half of
+  Lemma 4.2(4).
+- `hmatching`: `RelativeDataMarkov.matchingError`, with `matchingError_nonneg` and
+  `matchingError_vanishing`.
+- `hfunctor`: `exists_compressorRelativeData_of_good`. It uses the retained domain and
+  matching of every compressor, the good objects of `RelativeDataGood` (Markov deletion
+  at a vanishing threshold), `frameRelativeFunctorOfGood`, and estimate (7) from
+  `RelativeFunctorImproveEstimate`.
+- `honesided`, `hmedian`, `hcounting`: the producers of `kt-counting-props-producers`.
+- `hhamming`: `StepNineHammingProducer.vanishing_hammingDistance_patch_of_transported`, with
+  `compressorWords` and the estimate fields of the relative data.
 
-**A defect in the plan (2026-09-12): `hhamming` is false as stated.** Quantified over
-`CompressorRelativeData` as landed in `7a1461b61`, it fails.
-- The field `functor` records a matching `π`, a faithful morphism of restricted
-  presentations and `obj_π`, and nothing ties its arrow map to `A(t)`.
-- Twisting the functor by automorphisms `φ_X` of the matched objects keeps every field.
-  But the lift `b` of `Transported` then approximates `t · (φ-twisted a) · t⁻¹`, not
-  `t · a · t⁻¹`.
-- Cluster objects have automorphisms that move a macroscopic fraction of points, for
-  example the right translations of a finite quotient.
-- Step 9 needs estimate (7) along the functor. This is the hypothesis `h7` of
-  `BlockPatching.card_disagreement_sandwich_lt_of_lift`, and no field supplies it.
-
-The fix is a field carrying `h7` for the distinguished compressor, with the error bound
-that the near and room conditions of step 9 need. It was sent to the owners of the
-relative data and of step 9. `seqNormalizes_distinguished_of_steps` needs no change,
-because it passes the relative data type through unchanged.
-
-**Two earlier corrections.**
-- A partial cluster system with one uniform scale cannot carry the representation of
-  almost centralizers. The frame uses per-object scales `|C| / 18`, with pair scales the
-  minimum.
-- Repair factor `4` does not survive transport through words for `q s q⁻¹`. The
+**Defects found and repaired along the way.**
+- *`hhamming` is false over relative data without estimate (7).* The field `functor`
+  recorded only a matching, a faithful morphism and `obj_π`. Twisting the functor by
+  automorphisms of the matched objects keeps every field, but then the lift of `Transported`
+  approximates a twisted conjugate. `CompressorRelativeData` now carries `estimate`,
+  `estimateError` and `estimateError_le` for the distinguished compressor.
+- *`hhamming` needs the frame guards.* At a frame with constant threshold `h`, arrow
+  defects of order `h · scale` put the step-9 budget at order `h |Y|`. So the hypothesis is
+  required only at frames with the setup's repair factor and a vanishing threshold
+  (`seqNormalizes_distinguished_of_guardedSteps`).
+- *Per-object scales.* A partial cluster system with one uniform scale cannot carry the
+  representation of almost centralizers. The frame uses per-object scales `|C| / 18`, with
+  pair scales the minimum.
+- *Repair factor.* Factor `4` does not survive transport through words for `q s q⁻¹`, so the
   factor is `compressorRepairFactor = 2 (1 + |S| k) + 4`.
-
-**What this does not give.** Until `hmatching`, `hrep`, `hfunctor` and `hhamming` are
-produced, this node does not derive `kun-thom-sofic-centralizer-normalization`. Once
-they are, `hasSequentialCentralizerNormalization_of_kazhdan_infranormal_of_core`
-(`KunThom/NormalizationProducer`) turns the per-setup statement into normalization by
-every element of `G`.
+- *Coerced words.* `compressorWords_prod` reads a word through the list coercion, so
+  consumers bridge it with `RelativeDataMarkov.prod_map_bind_coe`.
 
 Derivation: `kt-per-compressor-assembly-over-cluster-frames-proof`.
