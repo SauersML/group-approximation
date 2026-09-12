@@ -2,22 +2,23 @@
 rg: 2
 id: k0-hahn-banach-from-traces-and-boundary
 kind: route
-title: Unitize, make all traces quasidiagonal, kill sign changes, and settle the boundary
+title: Boundary classes after stabilized unitization give the universal Hahn-Banach property (a restatement, not a reduction)
 target: every-separable-nuclear-qd-algebra-has-k0-hahn-banach
-requires: [amenable-traces-on-exact-cstar-algebras-are-quasidiagonal, stw07-sign-changing-qd-trace-values-kill-class, stw07-singular-classes-change-sign-or-sit-on-boundary, k0-hahn-banach-for-boundary-singular-classes]
+requires: [k0-hahn-banach-for-boundary-singular-classes, stw07-trace-invisible-classes-carry-hahn-banach]
 artifacts:
   - research/artifacts/stw07-k0-hahn-banach-trace-sign-2026-09-11.md
 ---
 
-1. **Unital reduction.**  For nonunital `A`, `K_0(A)` embeds split-injectively
-   in `K_0(A~)`.  If `nx = [p]` with `p in M_N(A~)`, the scalar image of `p` is
-   a rank-zero projection, so `p in M_N(A)`.  Thus a singular class stays
-   singular in `A~`, and faithful models of `A~` killing `x` restrict to
-   faithful models of `A` killing `x`.
-2. **All traces quasidiagonal.**  `A~` is separable, nuclear and
-   quasidiagonal; its traces are amenable, and by the exact X(1) residual they
-   are quasidiagonal.
-3. **Sign pattern.**  By the boundary theorem, a singular class is not strictly
-   one-signed on traces.  If it takes both strict signs, the sign-changing
-   theorem kills it; otherwise it is a boundary class (after replacing `x` by
-   `-x`), and the boundary claim kills it.
+Given a separable nuclear quasidiagonal `A` and singular `x`, pass to
+`E=(A tensor K)~`.  Its only trace is a character vanishing on `x`, so `x` is
+a boundary class of an algebra whose traces are all quasidiagonal.  The
+boundary claim kills `x` in `E`, and the transfer claim returns the kill to
+`A`.
+
+**Warning, recorded 2026-09-11.**  The boundary prerequisite is equivalent to
+the target: the target trivially implies it.  This route therefore renames
+the problem.  The earlier version of this route also required the exact X(1)
+residual and the sign-change theorem.  Those prerequisites were redundant and
+were removed when `stw07-trace-invisible-classes-carry-hahn-banach` was
+proved.  The trace-sign theorems remain genuine results about classes some
+trace detects, but they are not steps of this route.
