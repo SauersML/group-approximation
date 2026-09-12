@@ -207,7 +207,7 @@ theorem exists_germ_decomposition {g : Equiv.Perm ℚ} (hg : g ∈ compactF m 1)
   have hF1 : ∀ t : ℚ, 1 ≤ t → g t = t := fun t ht => compactF_fix_one hg ht
   have hz₀ : germLeft m N ζ ∈ compactF m 1 :=
     ⟨germLeft_mem m N hζgrid, fun t ht => germLeft_of_nonpos N hζ ht, fun t ht =>
-      germLeft_of_ge N hζ (by have h : (1 : ℚ) ≤ t := by exact_mod_cast ht; linarith)⟩
+      germLeft_of_ge N hζ (by have h : (1 : ℚ) ≤ t := (by exact_mod_cast ht); linarith)⟩
   have hz₁ : germRight m N ζ ∈ compactF m 1 :=
     ⟨germRight_mem m N hζgrid, fun t ht => germRight_of_le N hζ (by linarith), fun t ht =>
       germRight_of_ge N hζ (by exact_mod_cast ht)⟩
@@ -353,13 +353,13 @@ theorem commutator_compactF_eq :
   have hζε : ((m : ℚ) + 3) * (((m : ℚ) + 2) ^ 3)⁻¹ ≤ ζ := le_of_eq hζdef.symm
   have hζhalf : ζ ≤ 1 / 2 := by
     rw [hζdef, ← div_eq_mul_inv, div_le_iff₀ (pow_pos hn 3)]
-    nlinarith
+    nlinarith [mul_nonneg hm0 hm0, mul_nonneg hm0 (mul_nonneg hm0 hm0)]
   have hζpos : 0 < ζ := by
     rw [hζdef]
     exact mul_pos (by linarith) (inv_pos.mpr (pow_pos hn 3))
   have hz₀ : germLeft m 3 ζ ∈ compactF m 1 :=
     ⟨germLeft_mem m 3 hζgrid, fun t ht => germLeft_of_nonpos 3 hζε ht, fun t ht =>
-      germLeft_of_ge 3 hζε (by have h : (1 : ℚ) ≤ t := by exact_mod_cast ht; linarith)⟩
+      germLeft_of_ge 3 hζε (by have h : (1 : ℚ) ≤ t := (by exact_mod_cast ht); linarith)⟩
   have hz₁ : germRight m 3 ζ ∈ compactF m 1 :=
     ⟨germRight_mem m 3 hζgrid, fun t ht => germRight_of_le 3 hζε (by linarith), fun t ht =>
       germRight_of_ge 3 hζε (by exact_mod_cast ht)⟩

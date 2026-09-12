@@ -77,8 +77,9 @@ theorem compE_block_mem (j : ℕ) : compE m r ((r : ℚ) - 1 + j) ∈ Grid (m + 
       ((j % (m + 1) : ℕ) : ℚ) := by
     rw [hj]
     ring
+  generalize hρ : j % (m + 1) = ρ at hρ0 hρm e2
   rw [e2, compE_block m r (j / (m + 1)) hρ0 hρm]
-  refine ⟨(r : ℤ) * ((m : ℤ) + 2) ^ (j / (m + 1) + 1) - ((m : ℤ) + 2) + (j % (m + 1) : ℕ), ?_⟩
+  refine ⟨(r : ℤ) * ((m : ℤ) + 2) ^ (j / (m + 1) + 1) - ((m : ℤ) + 2) + (ρ : ℤ), ?_⟩
   have hcastn : (((m + 2 : ℕ) : ℚ)) = (m : ℚ) + 2 := by push_cast; ring
   rw [hcastn]
   have e3 : (((m : ℚ) + 2) ^ (j / (m + 1)))⁻¹ * ((m : ℚ) + 2) ^ (j / (m + 1) + 1) = (m : ℚ) + 2 := by
@@ -87,7 +88,7 @@ theorem compE_block_mem (j : ℕ) : compE m r ((r : ℚ) - 1 + j) ∈ Grid (m + 
   have e4 : (((m : ℚ) + 2) ^ (j / (m + 1) + 1))⁻¹ * ((m : ℚ) + 2) ^ (j / (m + 1) + 1) = 1 :=
     inv_mul_cancel₀ (pow_pos hp _).ne'
   push_cast
-  linear_combination (-1 : ℚ) * e3 + ((j % (m + 1) : ℕ) : ℚ) * e4
+  linear_combination (-1 : ℚ) * e3 + (ρ : ℚ) * e4
 
 /-- The truncation of `compE` beyond `r - 1 + J`. -/
 noncomputable def compET (J : ℕ) (u : ℚ) : ℚ :=
@@ -108,10 +109,10 @@ theorem compET_of_ge {J : ℕ} {u : ℚ} (h : (r : ℚ) - 1 + J ≤ u) :
 
 theorem compET_strictMono (J : ℕ) : StrictMono (compET m r J) := by
   intro u u' huu'
-  rcases le_or_lt u' ((r : ℚ) - 1 + J) with h' | h'
+  rcases le_or_gt u' ((r : ℚ) - 1 + J) with h' | h'
   · rw [compET_of_le m r h', compET_of_le m r (le_trans huu'.le h')]
     exact compE_strictMono m r huu'
-  rcases le_or_lt u ((r : ℚ) - 1 + J) with h | h
+  rcases le_or_gt u ((r : ℚ) - 1 + J) with h | h
   · rw [compET_of_le m r h, compET_of_ge m r h'.le]
     have h1 := (compE_strictMono m r).monotone h
     linarith
@@ -124,7 +125,7 @@ noncomputable def compEinvT (J : ℕ) (t : ℚ) : ℚ :=
     (r : ℚ) - 1 + J + (t - compE m r ((r : ℚ) - 1 + J))
 
 theorem compEinvT_compET (J : ℕ) (u : ℚ) : compEinvT m r J (compET m r J u) = u := by
-  rcases le_or_lt u ((r : ℚ) - 1 + J) with h | h
+  rcases le_or_gt u ((r : ℚ) - 1 + J) with h | h
   · rw [compET_of_le m r h]
     have hle : compE m r u ≤ compE m r ((r : ℚ) - 1 + J) := (compE_strictMono m r).monotone h
     simp only [compEinvT, if_pos hle]
@@ -138,7 +139,7 @@ theorem compEinvT_compET (J : ℕ) (u : ℚ) : compEinvT m r J (compET m r J u) 
     ring
 
 theorem compET_compEinvT (J : ℕ) (t : ℚ) : compET m r J (compEinvT m r J t) = t := by
-  rcases le_or_lt t (compE m r ((r : ℚ) - 1 + J)) with h | h
+  rcases le_or_gt t (compE m r ((r : ℚ) - 1 + J)) with h | h
   · simp only [compEinvT, if_pos h]
     have ht : t < r := lt_of_le_of_lt h (compE_lt m r _)
     have hle : compEinv m r t ≤ (r : ℚ) - 1 + J := by
@@ -151,8 +152,156 @@ theorem compET_compEinvT (J : ℕ) (t : ℚ) : compET m r J (compEinvT m r J t) 
     rw [compET_of_ge m r (by linarith)]
     ring
 
+theorem inv_pow_mem_grid {i B : ℕ} (h : i ≤ B) : (((m : ℚ) + 2) ^ i)⁻¹ ∈ Grid (m + 2) B := by
+  have hp : (0 : ℚ) < (m : ℚ) + 2 := mTwo_pos
+  refine ⟨((m : ℤ) + 2) ^ (B - i), ?_⟩
+  have hcastn : (((m + 2 : ℕ) : ℚ)) = (m : ℚ) + 2 := by push_cast; ring
+  have e : ((m : ℚ) + 2) ^ B = ((m : ℚ) + 2) ^ i * ((m : ℚ) + 2) ^ (B - i) := by
+    rw [← pow_add, Nat.add_sub_of_le h]
+  rw [hcastn, e, ← mul_assoc, inv_mul_cancel₀ (pow_pos hp _).ne', one_mul]
+  push_cast
+  ring
+
+theorem powSlopes_inv_pow (i : ℕ) : (((m : ℚ) + 2) ^ i)⁻¹ ∈ powSlopes m :=
+  ⟨-(i : ℤ), by rw [zpow_neg, zpow_natCast]⟩
+
+theorem powSlopes_pow (i : ℕ) : ((m : ℚ) + 2) ^ i ∈ powSlopes m :=
+  ⟨(i : ℤ), by rw [zpow_natCast]⟩
+
+/-- Each level-`N` grid interval lies in a unit interval. -/
+theorem exists_unit_bracket (N : ℕ) (k : ℤ) : ∃ k₀ : ℤ,
+    (k₀ : ℚ) ≤ gridPt (m + 2) N k ∧ gridPt (m + 2) N (k + 1) ≤ (k₀ : ℚ) + 1 := by
+  obtain ⟨k₀, h1, h2⟩ := exists_bracket_of_no_grid (m := m + 2) (M := 0)
+    (u := gridPt (m + 2) N k) (v := gridPt (m + 2) N (k + 1))
+    (fun q hq => not_between_consecutive (grid_mono (Nat.zero_le N) hq))
+  refine ⟨k₀, ?_, ?_⟩
+  · simpa [gridPt] using h1
+  · simpa [gridPt] using h2
+
+/-- On each level-`N` grid interval (`N = J / (m+1) + 1`) the truncation is affine with slope
+`1` or `n^{-i}` (`i ≤ N`), and its value at the left end lies in `Grid (2N)`. -/
+theorem compET_piece (J : ℕ) (k : ℤ) : ∃ s : ℚ,
+    (s = 1 ∨ ∃ i : ℕ, i ≤ J / (m + 1) + 1 ∧ s = (((m : ℚ) + 2) ^ i)⁻¹) ∧
+    AffineOn (compET m r J) (gridPt (m + 2) (J / (m + 1) + 1) k)
+      (gridPt (m + 2) (J / (m + 1) + 1) (k + 1)) s ∧
+    compET m r J (gridPt (m + 2) (J / (m + 1) + 1) k) ∈ Grid (m + 2) (2 * (J / (m + 1) + 1)) := by
+  have hN : J / (m + 1) + 1 ≤ 2 * (J / (m + 1) + 1) := by omega
+  obtain ⟨k₀, hk1, hk2⟩ := exists_unit_bracket m (J / (m + 1) + 1) k
+  have hab : gridPt (m + 2) (J / (m + 1) + 1) k ≤ gridPt (m + 2) (J / (m + 1) + 1) (k + 1) := by
+    have h := floor_bracket (m := m + 2) (J / (m + 1) + 1) (gridPt (m + 2) (J / (m + 1) + 1) k)
+    have e : gridPt (m + 2) (J / (m + 1) + 1) (k + 1) * (((m + 2 : ℕ) : ℚ)) ^ (J / (m + 1) + 1) =
+        ((k + 1 : ℤ) : ℚ) := by
+      unfold gridPt
+      exact div_mul_cancel₀ _ (mPow_pos (m := m + 2) _).ne'
+    rw [gridPt_le_iff, e]
+    have e2 : gridPt (m + 2) (J / (m + 1) + 1) k * (((m + 2 : ℕ) : ℚ)) ^ (J / (m + 1) + 1) =
+        ((k : ℤ) : ℚ) := by
+      unfold gridPt
+      exact div_mul_cancel₀ _ (mPow_pos (m := m + 2) _).ne'
+    push_cast
+    linarith [e2]
+  have hmemN := gridPt_mem (m := m + 2) (J / (m + 1) + 1) k
+  by_cases hi : (k₀ : ℚ) + 1 ≤ (r : ℚ) - 1
+  · refine ⟨1, Or.inl rfl, fun x hx1 hx2 => ?_, ?_⟩
+    · have hx : x ≤ (r : ℚ) - 1 := by linarith
+      have ha : gridPt (m + 2) (J / (m + 1) + 1) k ≤ (r : ℚ) - 1 := by linarith
+      have hJ : (0 : ℚ) ≤ J := Nat.cast_nonneg J
+      rw [compET_of_le m r (by linarith), compET_of_le m r (by linarith), compE_of_le m r hx,
+        compE_of_le m r ha]
+      ring
+    · have ha : gridPt (m + 2) (J / (m + 1) + 1) k ≤ (r : ℚ) - 1 := by linarith
+      have hJ : (0 : ℚ) ≤ J := Nat.cast_nonneg J
+      rw [compET_of_le m r (by linarith), compE_of_le m r ha]
+      exact grid_mono hN hmemN
+  by_cases hii : (r : ℚ) - 1 + J ≤ k₀
+  · refine ⟨1, Or.inl rfl, fun x hx1 hx2 => ?_, ?_⟩
+    · rw [compET_of_ge m r (by linarith), compET_of_ge m r (by linarith)]
+      ring
+    · rw [compET_of_ge m r (by linarith)]
+      refine grid_add (grid_mono hN (compE_block_mem m r J)) (grid_sub (grid_mono hN hmemN) ?_)
+      have e : (r : ℚ) - 1 + J = (((r : ℤ) - 1 + J : ℤ) : ℚ) := by push_cast; ring
+      rw [e]
+      exact int_mem_grid _ _
+  · have hlow : (r : ℤ) - 1 ≤ k₀ := by
+      have h : ¬ ((k₀ : ℚ) + 1 ≤ (r : ℚ) - 1) := hi
+      have h' : ((r : ℚ) - 1) < (k₀ : ℚ) + 1 := not_le.mp h
+      have h'' : ((r : ℤ) - 1 : ℤ) < k₀ + 1 := by exact_mod_cast h'
+      omega
+    have hhigh : k₀ < (r : ℤ) - 1 + J := by
+      have h' : (k₀ : ℚ) < (r : ℚ) - 1 + J := not_le.mp hii
+      exact_mod_cast h'
+    set j : ℕ := (k₀ - ((r : ℤ) - 1)).toNat with hjdef
+    have hjk : (k₀ : ℚ) = (r : ℚ) - 1 + j := by
+      have h1 : ((j : ℕ) : ℤ) = k₀ - ((r : ℤ) - 1) := Int.toNat_of_nonneg (by omega)
+      have h2 : ((j : ℕ) : ℚ) = (k₀ : ℚ) - ((r : ℚ) - 1) := by exact_mod_cast h1
+      linarith
+    have hjJ : j < J := by omega
+    have hblk := compE_affine_block m r j
+    have hiN : j / (m + 1) + 1 ≤ J / (m + 1) + 1 := by
+      have := Nat.div_le_div_right (c := m + 1) hjJ.le
+      omega
+    refine ⟨(((m : ℚ) + 2) ^ (j / (m + 1) + 1))⁻¹, Or.inr ⟨_, hiN, rfl⟩, fun x hx1 hx2 => ?_, ?_⟩
+    · have hJ1 : (k₀ : ℚ) + 1 ≤ (r : ℚ) - 1 + J := by
+        have h' : k₀ + 1 ≤ (r : ℤ) - 1 + J := by omega
+        exact_mod_cast h'
+      rw [compET_of_le m r (by linarith), compET_of_le m r (by linarith)]
+      exact (hblk.restrict (by rw [← hjk]; exact hk1) (by rw [← hjk]; exact hk2)) x hx1 hx2
+    · have hJ1 : (k₀ : ℚ) + 1 ≤ (r : ℚ) - 1 + J := by
+        have h' : k₀ + 1 ≤ (r : ℤ) - 1 + J := by omega
+        exact_mod_cast h'
+      rw [compET_of_le m r (by linarith)]
+      have hval := hblk (gridPt (m + 2) (J / (m + 1) + 1) k) (by rw [← hjk]; exact hk1)
+        (by rw [← hjk]; linarith)
+      rw [hval]
+      refine grid_add (grid_mono (by omega) (compE_block_mem m r j)) ?_
+      have hmul := grid_mul (inv_pow_mem_grid m (le_refl (j / (m + 1) + 1)))
+        (grid_sub hmemN (show (r : ℚ) - 1 + j ∈ Grid (m + 2) (J / (m + 1) + 1) by
+          rw [← hjk]; exact int_mem_grid _ _))
+      exact grid_mono (by omega) hmul
+
+theorem compET_gridAffine (J : ℕ) :
+    GridAffine (m + 2) (powSlopes m) (compET m r J) (J / (m + 1) + 1) (2 * (J / (m + 1) + 1)) := by
+  refine ⟨fun k => ?_, fun k => ?_⟩
+  · obtain ⟨s, hs, haff, -⟩ := compET_piece m r J k
+    refine ⟨s, ?_, ?_, haff⟩
+    · rcases hs with rfl | ⟨i, -, rfl⟩
+      · exact (powSlopes m).one_mem
+      · exact powSlopes_inv_pow m i
+    · rcases hs with rfl | ⟨i, hi, rfl⟩
+      · simpa using int_mem_grid (m := m + 2) (2 * (J / (m + 1) + 1)) 1
+      · exact inv_pow_mem_grid m (by omega)
+  · obtain ⟨-, -, -, hval⟩ := compET_piece m r J k
+    exact hval
+
+theorem compEinvT_gridAffine (J : ℕ) :
+    GridAffine (m + 2) (powSlopes m) (compEinvT m r J) (2 * (J / (m + 1) + 1))
+      (J / (m + 1) + 1 + 0 + 2 * (J / (m + 1) + 1)) := by
+  refine (compET_gridAffine m r J).inverse (compET_strictMono m r J) (compEinvT_compET m r J)
+    (compET_compEinvT m r J) (fun k s hs => ?_)
+  obtain ⟨s₀, hs₀, haff, -⟩ := compET_piece m r J k
+  have hlt : gridPt (m + 2) (J / (m + 1) + 1) k < gridPt (m + 2) (J / (m + 1) + 1) (k + 1) := by
+    rw [gridPt_lt_iff]
+    have e : gridPt (m + 2) (J / (m + 1) + 1) (k + 1) * (((m + 2 : ℕ) : ℚ)) ^ (J / (m + 1) + 1) =
+        ((k + 1 : ℤ) : ℚ) := by
+      unfold gridPt
+      exact div_mul_cancel₀ _ (mPow_pos (m := m + 2) _).ne'
+    rw [e]
+    push_cast
+    linarith
+  have hss : s = s₀ := AffineOn.slope_unique hs haff hlt
+  subst hss
+  rcases hs₀ with rfl | ⟨i, -, rfl⟩
+  · refine ⟨by simp, by simpa using int_mem_grid (m := m + 2) 0 1⟩
+  · rw [inv_inv]
+    refine ⟨powSlopes_pow m i, ?_⟩
+    have e : ((m : ℚ) + 2) ^ i = ((((m : ℤ) + 2) ^ i : ℤ) : ℚ) := by push_cast; ring
+    rw [e]
+    exact int_mem_grid _ _
+
 #audit_axioms GroupApproximation.HigmanThompson.compE_affine_block
 #audit_axioms GroupApproximation.HigmanThompson.compET_strictMono
+#audit_axioms GroupApproximation.HigmanThompson.compET_gridAffine
+#audit_axioms GroupApproximation.HigmanThompson.compEinvT_gridAffine
 
 end HigmanThompson
 end GroupApproximation
