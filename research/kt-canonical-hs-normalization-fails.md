@@ -58,3 +58,10 @@ intermediate `K` suffices.
   endomorphism.  The model shape is the one-sided Bernoulli shift: in the lamp
   model of `W`, the lamps at the cosets `t^(-k) Gamma`, `k >= 0`, span such a
   summand, and `Ad sigma(t)^*` shifts `k -> k+1`.
+- **Fell models and Haagerup coefficients.** Dead as a source of walls.
+  `fell-models-inherit-walls-from-coefficients` (q34-free) shows a canonical
+  Fell model `lambda (tensor) pi` has a wall exactly when its coefficient `pi`
+  does, because `Gamma` is icc.  `kt-fell-models-over-haagerup-coefficients-are-wall-free`
+  and `haagerup-targets-carry-no-relative-wall` exclude coefficients with
+  Haagerup `pi(Gamma)''`.  A witness therefore needs a coefficient with
+  non-Haagerup `pi(Gamma)''`, or a canonical model that is not of Fell type.
