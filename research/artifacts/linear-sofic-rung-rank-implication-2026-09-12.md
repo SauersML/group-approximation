@@ -136,3 +136,52 @@ The transfer needs `4 theta < delta(eps)`. So a tuple that witnesses failure of 
 monomial tuple, generator by generator. Unipotent tuples are the natural far-from-monomial family. For instance the
 upper-unitriangular model of `U_4(R)` in `unipotent-frame-relations-cannot-assemble-corner-cuntz-family` carries a
 nonzero two-root defect while satisfying every relation of the rank-four frame.
+
+## 3. Nonlinear rules do not run on rank models
+
+Section 1 says the rung is about tuples and words only. The obvious way to use the rules anyway is the Gromov–Weiss
+one: evaluate `mu` and `nu` coordinatewise on a model and count. On a Hamming model the coordinates are the points.
+This section shows that on a rank model the coordinatewise structure is not stable under small rank errors.
+
+Let `F` be a field, `D_n = F^n` with the coordinatewise product `v * w`, and `m: D_n ⊗ D_n -> D_n` the
+multiplication. A rule with a product term, for example `mu(x_(m1), x_(m2)) = x_(m1) x_(m2)`, is evaluated on a model
+through `m`. It commutes with the model's operator `a` only up to the *multiplicativity defect*
+
+```text
+E(a) = a ∘ m  -  m ∘ (a ⊗ a) :  D_n ⊗ D_n  ->  D_n ,      E(a)(e_i ⊗ e_j) = delta_ij a e_i - (a e_i) * (a e_j).
+```
+
+**Proposition 3.1.** Let `a` be in `GL_n(F)`.
+- **(a)** `E(a) = 0` iff `a` is a permutation matrix.
+- **(b)** `rk E(a) = dim span{ (a e_i) * (a e_j) - delta_ij a e_i : 1 <= i, j <= n }`.
+- **(c)** Let `n >= 3` with `n + 1 != 0` in `F`, and `a = I + J`, `J` the all-ones matrix. Then `a` is invertible
+  and `rk(a - I) = 1`, while `rk E(a) = n - 1` if `F` has characteristic two and `rk E(a) = n` otherwise.
+
+*Proof.* **(b)** is the formula for `E(a)` on the basis `e_i ⊗ e_j`.
+
+**(a).** `E(a) = 0` says `(a e_i) * (a e_i) = a e_i` and `(a e_i) * (a e_j) = 0` for `i != j`.
+- The first makes every entry of the column `a e_i` idempotent in `F`, so `0` or `1`.
+- The second makes the supports of distinct columns disjoint.
+- Invertibility makes every column nonzero, so the `n` supports partition `{1, ..., n}` into `n` nonempty sets,
+  hence singletons, and `a` is a permutation matrix.
+- Conversely permutation matrices are algebra automorphisms of `D_n`.
+
+**(c).** `det(I + J) = 1 + n != 0`, and `J` has rank one. The columns are `a e_i = e_i + 1`, where `1` is the
+all-ones vector.
+- For `i != j`: `(e_i + 1) * (e_j + 1) = e_i + e_j + 1`.
+- For `i = j`: `(e_i + 1) * (e_i + 1) - (e_i + 1) = 2 e_i`.
+- **Characteristic not two.** The vectors `2 e_i` span `D_n`, so `rk E(a) = n`.
+- **Characteristic two.** Here `n` is even. Each `e_i + e_j + 1` has coordinate sum `n = 0`, so the span lies in
+  the sum-zero hyperplane. For distinct `j, k` pick `i` outside `{j, k}` (as `n >= 3`); the difference of
+  `e_i + e_j + 1` and `e_i + e_k + 1` is `e_j + e_k`, and these span the hyperplane. So `rk E(a) = n - 1`. QED
+
+**Consequence 3.2 (interpretation, not a theorem).**
+- **Discontinuity.** The permutation `I` has `E(I) = 0`. A perturbation of normalized rank `1/n` gives normalized
+  defect at least `(n - 1)/n`. So the multiplicativity defect is not continuous in normalized rank. An argument that
+  runs nonlinear rules on a rank model with small rank errors has no control of the evaluation.
+- **Where evaluation works.** The rules run exactly on models whose generators preserve the coordinate algebra,
+  that is, permutation-like generators. Those are the monomial and near-monomial tuples of Section 2, which reach
+  only sofic groups.
+- **So.** A proof of the rung for nonlinear automata must linearize on the group side before it touches models,
+  as the recorded route does through stable formalizability and `linear-sofic-group-algebra-is-stably-finite`, or
+  find a rank-visible invariant of the pair `(mu, nu)` that is not a coordinatewise evaluation.
