@@ -4655,6 +4655,7 @@ import GroupApproximation.KunThom.RelativeFunctorEstimateMatching
 import GroupApproximation.KunThom.SequentialComponentFamilyPruning
 import GroupApproximation.KunThom.SequentialComponentFamilyCompletion
 import GroupApproximation.KunThom.SequentialComponentFamilyLevels
+import GroupApproximation.KunThom.CountingEndgameWeights
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
