@@ -16,12 +16,12 @@ import GroupApproximation.Dynamics.SurjunctivityTransfer
 
 The symmetric double `SymmetricDouble Ambient Peripheral` is finitely generated,
 surjunctive and not sofic, provided sequential centralizer normalization holds
-for `Peripheral ≤ Ambient`.  Every other input is a landed proof: finite
-generation, countability, residual finiteness, non-normality, and surjunctivity
-of doubles of surjunctive groups.
+for `Peripheral ≤ Ambient`.  Every other input is proved: finite generation,
+countability, residual finiteness, non-normality, and surjunctivity of doubles
+of surjunctive groups.
 
-`GroupApproximation.BowenChapman.Endpoint` supplies the remaining hypothesis
-from Kun–Thom, arXiv:2608.06222, Theorem 4.1, proved in `GroupApproximation.KunThom`.
+The remaining hypothesis is Kun–Thom's Theorem 4.1 (arXiv:2608.06222) in
+sequential form at this pair.  This module does not prove it.
 -/
 
 namespace GroupApproximation.BowenChapman

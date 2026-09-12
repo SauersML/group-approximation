@@ -26,10 +26,11 @@ hypothesis:
   `Γ` still asymptotically commutes with `Γ` after conjugation by any element
   of `G` (Kun–Thom, arXiv:2608.06222, Theorem 4.1, in sequential form).
 
-The hypotheses are stated exactly as the declarations that discharge them, so a
-mismatch between a statement and its consumer is an elaboration error here.
-`GroupApproximation.BowenChapman.Endpoint` makes the same derivation with every
-hypothesis replaced by its proof.
+Each of the first five hypotheses has the type of a declaration in
+`GroupApproximation.BowenChapman` that proves it.
+`GroupApproximation.BowenChapman.EndpointOfNormalization` proves this conclusion,
+together with finite generation and surjunctivity, with normalization at this
+pair as its only hypothesis.
 -/
 
 namespace GroupApproximation.BowenChapman
