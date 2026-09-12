@@ -56,7 +56,7 @@ theorem respectsSections_of_sameTargetProfile {D : RelGenSet G Lambda} {eps : �
   refine ⟨j, hnone, ?_, ?_⟩
   · rw [hab.2.1]
     exact h1
-  · rw [hab.2.1, hab.2.2]
+  · rw [hab.2.1, hab.2.2.1]
     exact h2
 
 end Embedded.RegionCandidate
@@ -73,10 +73,11 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
     (ha : a ∈ R.regionFamily family havoid) :
     ∃ b ∈ family, RegionCandidate.SameTargetProfile a b := by
   obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
-  refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ ?_)⟩
+  refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ (And.intro ?_ ?_))⟩
   · exact Option.map_eq_none_iff
   · exact CyclicArc.mapTo_start b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
   · exact CyclicArc.mapTo_length b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
+  · exact CyclicArc.mapTo_length b.val.2.sourceArc R.keep (R.cellDarts_eq b.val.2.source)
 
 /-- No region of a family carried through the collapse contains the merged face. -/
 theorem regionFamily_avoid_merged {D : RelGenSet G Lambda} {eps : ℕ}
@@ -95,8 +96,8 @@ namespace RealizedSectionFamily
 /-- **Lemma 9.4, Case 1.**  Let `S` be a section family with legal labels and maximal
 weight among legal section families.  Let `R` be a region of G-cells of its diagram that
 meets no selected region.  After the collapse of `R`, suppose that the merged face reads
-`X ++ q ++ Y ++ p⁻¹`, where `p` is a nonempty arc of a relator cell and `q` is an arc of a
-relator cell or of a boundary section, and that `s_1`, `s_2` are legal words of length and
+`X ++ q ++ Y ++ p⁻¹`, where `p` is a nonempty arc of a relator cell and `q` is a nonempty arc
+of a relator cell or of a boundary section, and that `s_1`, `s_2` are legal words of length and
 norm at most `ε` with the values of `X` and `Y`.  Then there is a contradiction. -/
 theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
@@ -112,7 +113,7 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
     (X Y : List R.diagram.toCombMap.Dart)
     (htrav : (R.diagram.faceBoundary R.merged).darts =
       X ++ targetBoundaryDarts R.diagram target targetArc ++ Y ++ sourceArc.reverseDarts)
-    (hsource : 0 < sourceArc.length)
+    (hsource : 0 < sourceArc.length) (htarget : 0 < targetArc.length)
     (hsection : target = none → ∃ j : Fin cuts.count,
       cuts.cut j.castSucc ≤ targetArc.start.val ∧
         targetArc.start.val + targetArc.length ≤ cuts.cut j.succ)
@@ -157,6 +158,17 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
       obtain ⟨c, hc, hbc⟩ := R.regionFamily_profile S.family havoid hb
       exact RegionCandidate.respectsSections_of_sameTargetProfile cuts (hab.trans hbc)
         (S.respects c hc)
+  have hnondegenerate : ∀ a ∈ Finset.cons (⟨{Q}, H⟩ : RegionCandidate D eps Xi) family2
+      (RegionCandidate.singleton_not_mem_of_avoid H havoid2),
+      0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length := by
+    intro a ha
+    rcases Finset.mem_cons.mp ha with rfl | ha2
+    · exact ⟨hpositive, lt_of_lt_of_eq htarget hHtarget.symm⟩
+    · obtain ⟨b, hb, hab⟩ := hprofile2 a ha2
+      obtain ⟨c, hc, hbc⟩ := R.regionFamily_profile S.family havoid hb
+      have hac := hab.trans hbc
+      obtain ⟨hs, ht⟩ := S.nondegenerate c hc
+      exact ⟨lt_of_lt_of_eq hs hac.2.2.2.symm, lt_of_lt_of_eq ht hac.2.2.1.symm⟩
   have hle : EstimatingSelection.familyWeight RegionCandidate.weight
       (Finset.cons (⟨{Q}, H⟩ : RegionCandidate D eps Xi) family2
         (RegionCandidate.singleton_not_mem_of_avoid H havoid2)) ≤
@@ -168,7 +180,8 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
         family := Finset.cons (⟨{Q}, H⟩ : RegionCandidate D eps Xi) family2
           (RegionCandidate.singleton_not_mem_of_avoid H havoid2)
         pairwise := RegionCandidate.cons_singleton_pairwise H havoid2 hpair2
-        respects := hrespects }
+        respects := hrespects
+        nondegenerate := hnondegenerate }
       hlabelXi
   have heq := hweight2.trans (R.regionFamily_weight S.family havoid)
   omega
