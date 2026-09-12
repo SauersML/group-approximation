@@ -74,3 +74,27 @@ A unital counterexample to Toms--Winter would be such an algebra, by
     infinite-dimensional.
   - Mommaerts's uniform spectral gap obstruction (arXiv:2606.12134) concerns
     non-Gamma fibres and gives nothing here.
+- **Support gap: an invariant beyond projections (2026-09-12, lane
+  `tw-invisible-gamma-failure`).**
+  - **Definition.** For a positive contraction `a`, `γ_A(a)` is the infimum,
+    over near projections `b` in the hereditary subalgebra of `a`, of the larger
+    of the defect `sup τ(b − b²)` and the deficit `sup (τ(a) − τ(b))`.
+  - **It detects Gamma failure.** Uniform Gamma forces `γ_A ≡ 0` and division of
+    ultrapower projections
+    (`uniform-gamma-iff-tracial-support-projections-and-division`, part (a)). So
+    `γ_A(a) > 0` certifies failure of Gamma. It is an existence gap under one
+    element, so the argument of `strict-comparison-bundle-certificate-vanishes`
+    does not rule it out.
+  - **It is complete on one locus.** Suppose `A` has tracially locally finite
+    nuclear dimension and bounded rank density. Then a witness to this claim is
+    exactly an algebra with projection comparison in the ultrapower and some
+    `γ_A(a) > 0`.
+    - Comparison and bounded rank density give division
+      (`ultrapower-comparison-with-rank-density-divides-projections`).
+    - Part (b) gives Gamma from support projections plus division.
+    - The positive side on that locus is the open
+      `comparison-forces-tracial-support-projections`.
+  - **The suggested positive case is covered.** Poulsen-simplex AH algebras with
+    doubling maps and strict comparison are Z-stable already, by
+    `simple-ah-strict-comparison-is-z-stable`, whatever their simplex. The same
+    holds for any AH witness with strict comparison.

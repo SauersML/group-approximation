@@ -53,3 +53,18 @@ conjecture (`stw18-unital-toms-winter-via-tracial-comparison`).
   projection comparison: neither a Villadsen Euler-class gap nor a Toms
   degeneracy locus, since both produce non-subequivalent projections with
   dominated traces.
+- **Reduction to one element on the lfnd locus (2026-09-12, lane
+  `tw-invisible-gamma-failure`).**  Restrict to algebras with tracially locally
+  finite nuclear dimension and bounded rank density. There this claim is
+  `tracial-comparison-gives-gamma-on-lfnd-rank-density-locus`, and it is
+  equivalent to `comparison-forces-tracial-support-projections`.
+  - **Which properties.** Gamma is equivalent to two ultrapower properties:
+    support projections under single positive contractions, and division of
+    projections (`uniform-gamma-iff-tracial-support-projections-and-division`).
+  - **What comparison gives.** Comparison with bounded rank density already
+    gives division (`ultrapower-comparison-with-rank-density-divides-projections`).
+  - **What is missing.** Existence under one element: for each positive
+    contraction `a`, near projections in its hereditary subalgebra with trace at
+    least `τ(a) − ε`.
+  - **What this replaces.** It is weaker than real rank zero of the ultrapower,
+    which the real rank zero route above consumes twice.
