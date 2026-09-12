@@ -4,10 +4,11 @@ import GroupApproximation.KunThom.CompressorNormalizationAssemblyCore
 /-!
 # The per-compressor core with the forward half of Kun--Thom Lemma 4.2(4)
 
-`seqNormalizes_distinguished_of_steps` leaves `hrep` open.  It is
+`seqNormalizes_distinguished_of_guardedSteps` leaves `hrep` open.  It is
 `ClusterFrame.exists_bis_patch_close_of_retained`, so
 `seqNormalizes_distinguished_of_representation` drops it.  Its open hypotheses are the
-matching error and `hmatching`, `hfunctor` and `hhamming`.
+matching error and `hmatching`, `hfunctor` and `hhamming`.  Like `hfunctor`, `hhamming`
+is needed only at frames with the repair factor of the setup and a vanishing threshold.
 -/
 
 namespace GroupApproximation
@@ -30,13 +31,15 @@ theorem seqNormalizes_distinguished_of_representation {G : Type} [Group G] [Coun
             (Vanishing fun n ↦ matchingError D n / F.threshold n) →
               Nonempty (CountingEndgame.CompressorRelativeData C.distinguished F))
     (hhamming : ∀ (A : SoficApproximation G)
-      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained)
-      (M : CountingEndgame.CompressorRelativeData C.distinguished F) (a b : ∀ n, F.Bis n),
-        M.Transported a b →
-          Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
-            (A.map n C.distinguished * F.patch n (a n) * (A.map n C.distinguished)⁻¹)) :
+      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained),
+        F.repairFactor = compressorRepairFactor (normalizedSetup C hembed) →
+          Vanishing F.threshold →
+            ∀ (M : CountingEndgame.CompressorRelativeData C.distinguished F)
+              (a b : ∀ n, F.Bis n), M.Transported a b →
+                Vanishing fun n ↦ hammingDistance (A.model n) (F.patch n (b n))
+                  (A.map n C.distinguished * F.patch n (a n) * (A.map n C.distinguished)⁻¹)) :
     SeqNormalizes Γ C.distinguished :=
-  seqNormalizes_distinguished_of_steps hTG hTΓ C hembed matchingError hmatching
+  seqNormalizes_distinguished_of_guardedSteps hTG hTΓ C hembed matchingError hmatching
     (fun _ _ F _ hthr v _ hdom ↦ F.exists_bis_patch_close_of_retained hthr v hdom)
     hfunctor hhamming
 
