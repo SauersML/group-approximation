@@ -238,3 +238,47 @@ the uniform Gibbs specification the node names.
   tree. What fails there is right cancellation of reads (Sections 1.4 and 2).
 - **Not verified here.** The "What remains" bullet on the uniform Gibbs specification cites a 09-08 bridge artifact. No node
   consumes that bullet.
+- **Follow-up.** `w4-window-boundary` fixed both wording points at `b3ef22443b`.
+
+### 3.8 Theorem 6, the projection measure (`b3ef22443b`). PASS.
+
+Setup: `M` and `N` generate nonamenable subgroups, `theta = max(theta_N, theta_(M^-1))`, and `q = r^k` with `theta <= 1 - 1/k`.
+The measure `nu` is iid and uniform on the `r^(k-1)` symbols of `B^(k-1) x {b_0}`.
+
+- **R1, R2, R4.** Product measure, so R1 holds. `c_E(p) = r^(k|EM| - (k-1)|E|)` is an integer because `|EM| >= |E|`.
+  Independence holds for all disjoint sets. A symbol outside the allowed set is null.
+- **R3.** `nu[p]_E <= r^(-(k-1)|E|) = q^(-(1 - 1/k)|E|) <= q^(-theta_N |E|) <= q^(-|int_N E|)`, by Lemma 2.
+- **Pressure point 1: `I_E`.** The input site `g` is read by the outputs at `g M^-1`, so the bridge's `I_E = {g : g M^-1 ⊆ E}` is
+  `int_(M^-1) E`. `M^-1` contains `e` and generates `<M>`, so Lemma 2 applies with `theta_(M^-1)`.
+- **G1.** `Y` is the full shift on the allowed symbols, an SFT with memory `{e}`.
+  - Every exterior has the whole of `(allowed)^E` as its completion set, and `nu` is uniform on it.
+  - A Gibbs measure for this specification has uniform marginals on every finite set, so it equals `nu`.
+- **G2.** For every `V` inside `E`, the fraction of completions extending `v` is `r^(-(k-1)|V|) = nu(Y_V = v)`.
+- **G3.** `N_Y(E, c) = r^((k-1)|E|)`, `q^|I_E| = r^(k|I_E|)`, and `k|I_E| <= (k-1)|E|` by Lemma 2 for `M^-1`. So
+  `b_E = r^((k-1)|E| - k|I_E|)` is a positive integer.
+- **G4.** Both bounds hold. The upper bound in the bridge is `|B_out|^|E| = q^|E|`.
+- **Bridge relations not listed as G1–G4.** Two more hold.
+  - The bridge derives `b_E(c) = |B_E(c)|` with `B_E(c)` a set of assignments on `D_E \ I_E`, where `D_E = E N^-1`. That gives
+    `N_Y(E, c) <= q^|E N^-1|`, and `r^((k-1)|E|) <= r^(k|E N^-1|)` holds.
+  - The entropy identity (4), `H(Y_E | exterior) = |I_E| log q + log b_E`, reads `(k-1)|E| log r` on both sides.
+- **Site law.** The disallowed symbols are null, so the site law is not uniform.
+
+### 3.9 The squeeze (artifact Section 5, claim "What remains", Attempts entry). The rows pass; the "must" sentences are heuristic.
+
+- **The rows.** Each row of the table rests on a proved or verified result:
+  - Theorems 3 and 6;
+  - the corrected tree fact;
+  - `measure-conjugacy-invariants-cannot-certify-surjectivity`;
+  - the INF factorization sketch (Section 1.5 above).
+- **The "must therefore either" sentences are not a theorem.** This covers artifact Section 5 and the Attempts entry "What a proof must
+  use". "Numerical relations" means the specific lists R1–R4 and G1–G4, together with R5 at `q = 4` (Section 3.6), not every
+  consequence of injectivity. So the correct form is: "every input examined so far that avoids both of these fails".
+- **The Attempts entry drops `h_fin`.** The artifact's second alternative is "maximal Bernoulli Rokhlin entropy, or at least a lower
+  bound on `h_fin`". The Attempts entry keeps only INF, but `h_fin` is an intermediate target (Proposition 3 of the single-site
+  artifact).
+- **Unconditional scope in the Attempts entry.** "cannot remove `q^(|d_N E|)` on any nonamenable decoder group" is proved only at
+  large alphabets, and at `q = 2` when the decoder contains a free radius-2 ball. The qualifier is missing.
+- **A gap in the squeeze.** It does not cover a numerical proof at small alphabets combined with alphabet descent.
+  - `surjunctivity-failure-descends-to-binary-alphabet` is OPEN. If it held, binary surjunctivity would give the goal.
+  - The binary case over decoders without a free radius-2 ball is exactly what Proposition 4 leaves out. Section 5 lists that case
+    as not reached, but the "must" sentences should mention the descent escape.

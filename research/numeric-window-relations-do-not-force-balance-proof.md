@@ -48,3 +48,6 @@ A complete direct proof is in the artifact.
 - There are two wording points: the title's "exactly when", and the tree `distinct_from`.
 - At `q = 4`, with decoder memory containing a free radius-2 ball, the merge measure also satisfies both pushforward relations
   (Section 3.6).
+- Theorem 6, the projection measure, passes in Section 3.8. I checked G1–G4, the bridge bound `N_Y(E, c) <= q^|E N^-1|`, and the
+  entropy identity (4).
+- The rows of the Section 5 squeeze pass, but its "must" sentences are a heuristic, not a theorem (Section 3.9).
