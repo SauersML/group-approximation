@@ -58,8 +58,12 @@ p_m(g) = ( nu_(n_m)(g)|_U , g_m )  in Lambda_U.
 
 Each `nu_(n_m)(g)|_U` takes values in the finite set of values of `n_m` together
 with `1`. So `P_U = { p_m(g) : m in M, g in G } u {1}` is finite, and `tau_U` is a
-finite-memory map on `B^(Lambda_U)` in the sense of [W, Conventions]. Its memory
-is `P_U` and its rule at `lambda` depends on `lambda`. `tau_U` is injective by
+finite-memory map on `B^(Lambda_U)`: its memory is `P_U`, and its rule at `lambda`
+depends on `lambda`. [W, Conventions] defines finite-memory maps only on `C^G`,
+over the base group with a finite alphabet `C`. Here the same definition is read
+over the group `Lambda_U` with the finite alphabet `B`. This is forced: `A^U` may be
+infinite, so folding it into the alphabet, as [W] does with `C = B^(Abar^U)`, is
+not available. `tau_U` is injective by
 [W, Lemma 1.1].
 
 **4. Invariance.** Put `K_U = A^U x G_U`, a subgroup of `Lambda_U`. For
@@ -75,17 +79,28 @@ Nothing here uses finiteness of `A`.
 
 **6. Peeling.** [W, Proposition 4.1] holds with `Lambda_U` in place of `Omega_U`, and
 with (c) reading "commuting with left translations by `K_U`". The slicewise
-extension of `rho_(U')^-1` commutes with `A^U x G_(U')`, which contains `K_U`. The
+extension of `rho_(U')^-1` commutes with `A^U x G_(U')`, which contains `K_U`: for
+`k = ((c,d),h)` with `c in A^(U')`, `d in A^(U\U')` and `h in G_(U')`, one has
+`(k.y)_lambda = (c,h).y_(d^-1 lambda)`, and `rho_(U')^-1` commutes with
+`A^(U') x G_(U')`. In the window argument for (b), the memories are finite subsets of
+`Lambda_U`, and every condition used there (a point lying in some `Z_s` or in some
+`Q_(U')`) concerns only the `G` coordinate. So `F_U` is built from the
+`G`-projections of the memories `P_k`, and (b) reads `rho_U(y)(a,g) = y(a,g)` for
+every `a` and every `g` not in `Q_U = intersection_(s in U) Z_s F_U^-1`. The
 exceptional region is `A^U x Q_U`. If `Q_U = G_U h_1 u ... u G_U h_r`, then
 `A^U x Q_U = K_U (1,h_1) u ... u K_U (1,h_r)` is a finite union of right cosets of
 `K_U`.
 
-**7. Coset-region lemma.** Apply [W, Lemma 3.1] inside `Lambda_U` with `K = K_U`,
-which is surjunctive by hypothesis, `R = A^U x Q_U`, alphabet `B` and memory `P_U`.
-At `lambda = k (1,h_i)` with `k = (b,h)` in `K_U`, the `G` coordinate of `lambda` is
-`h h_i`, and the memory elements selected are `p_m(h h_i) = p_m(h_i)`. By step 4
-they depend only on `i`. So the map `Psi` of that lemma
-is a cellular automaton over `K_U` with alphabet `B^(r+q)`, and `rho_U` is bijective
+**7. Coset-region lemma.** [W, Lemma 3.1] is stated for `K <= G` and finite-memory
+maps on `C^G`. Its proof uses only that `K` is a subgroup of the ambient group and
+that the alphabet is finite. So it holds verbatim for a subgroup `K` of any group
+`Lambda` and finite-memory maps on `B^Lambda`. Apply it inside `Lambda_U` to `rho_U`,
+with `K = K_U`, which is surjunctive by hypothesis, `R = A^U x Q_U`, and alphabet `B`.
+The rules of `rho_U` are left-`K_U`-invariant on `R`. `rho_U` commutes with left
+translations by `K_U` (step 6), and a finite-memory map `rho` commuting with left
+translation by `k` satisfies `mu_(k lambda) = mu_lambda`, because the points
+`lambda p`, `p in P`, are distinct and `y` is arbitrary. The map `Psi` of that lemma
+is then a cellular automaton over `K_U` with alphabet `B^(r+q)`, and `rho_U` is bijective
 with a finite-memory inverse commuting with `K_U`. For `U = empty`, `Lambda_empty = G`,
 `K_empty = G`, and `tau_empty` is an injective automaton over `G`, which is
 surjunctive by hypothesis.
@@ -105,14 +120,19 @@ surjunctive by hypothesis.
   surjunctive. Closure under finite direct products is open.
 - **Sofic lamps.** If `A` and `G` are sofic, every `A^U x G_U` is sofic, hence
   surjunctive, so `A wr_X G` is surjunctive for every action, even when `W` is not
-  sofic. This extends `rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive` from
-  residually finite to sofic lamps over sofic bases. The residually finite theorem
-  needs only a surjunctive base, so neither statement contains the other.
+  sofic. The residually finite and LEF lamp theorems
+  (`rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive`,
+  `lef-lamp-graph-wreaths-are-surjunctive`) need only a surjunctive base. This case
+  allows sofic lamps that are not LEF but needs a sofic base. Neither statement
+  contains the other.
 - **Inside the Fournier--Facio group.** The simple wreath shift `S wr Z`
   (`fournier-facio-group-contains-simple-wreath-shift`) is surjunctive iff every
   finite power `S^n` is. `Z` is residually finite, and the regular action has
   trivial stabilizers.
-- **Compatibility.** The residually finite theorem together with the "only if"
-  direction shows that `A^n x K` is surjunctive for residually finite `A` and every
-  surjunctive `K` that is a stabilizer intersection. That is consistent with,
-  though not implied by, the present proof.
+- **Compatibility.** For LEF `A` and surjunctive `G`, every `A^U x G_U` is
+  surjunctive by `products-with-lef-factors-preserve-surjunctivity` and heredity. So
+  the present theorem reproves the permutational case of
+  `lef-lamp-graph-wreaths-are-surjunctive` from that product theorem.
+- **Closure.** Closure of surjunctivity under permutational wreath products is the
+  open `permutational-wreaths-of-surjunctive-groups-are-surjunctive` (gk-p-products).
+  By this theorem it is equivalent to closure under binary direct products.
