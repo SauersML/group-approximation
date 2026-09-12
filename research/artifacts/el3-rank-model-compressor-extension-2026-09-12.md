@@ -1,8 +1,10 @@
 # Extending level-group models of EL_3(L_(F_2)(1,2)) over the compressor pair
 
 Lane `w3-gate-construct`, 2026-09-12, wave 3, gates. It supports the claims
-`transvection-displacement-forces-exact-local-embedding` and
-`natural-compressor-extension-fails-at-toeplitz-commutator`.
+`transvection-displacement-forces-exact-local-embedding`,
+`natural-compressor-extension-fails-at-toeplitz-commutator` and
+`rank-models-are-exact-representations-at-moving-finite-levels`. It also records attempts on the
+open claim `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`.
 
 ## 0. Setting
 
@@ -191,3 +193,63 @@ This is the explicit forced error. Theorem 4 shows that moving it elsewhere does
   * `w3-gate-v`: no model represents the cylinder idempotents covariantly under `V`.
   * `w3-gate-char3`: the char-3 gate for `G_3` is a single question, and anti-central models force
     uniform weights on the signed-cylinder diagonal.
+
+## 4. Normal form at moving levels
+
+Claim `rank-models-are-exact-representations-at-moving-finite-levels`.
+
+**Lemma 9 (finite subgroups are rank stable).** Let `H` be finite and `s : H -> GL_n(F)` a map with
+`rk(s(g)s(h) − s(gh)) <= εn` for all `g, h ∈ H`. Then there is a representation `ρ` of `H` with
+`rk(ρ(h) − s(h)) <= (|H|+1)|H|² εn` for all `h`.
+
+*Proof.*
+1. `V_0 := ∩_(g,h) ker(s(g)s(h) − s(gh))` has codimension `<= |H|² εn`.
+2. `U := V_0 ∩ ∩_h s(h)^(−1)V_0` has codimension `<= (|H|+1)|H|² εn`.
+3. **Invariance.** For `v ∈ U` and `k, h ∈ H`: `s(k)v ∈ V_0`, and `s(h)s(k)v = s(hk)v ∈ V_0`. So
+   `s(k)v ∈ U`, and `s(k)` restricts to a bijection of `U`.
+4. **Exactness.** `s(g)s(h) = s(gh)` on `U`. In particular `s(1)` is an invertible idempotent on `U`,
+   hence the identity.
+5. Put `ρ(h) = s(h)|_U ⊕ id_C` for a complement `C`. It is a representation agreeing with `s` on `U`.
+
+QED
+
+**Proposition 10 (moving levels).** Let `σ = lim_ω σ_k` be a rank model of a group `G`, and
+`H_1 <= H_2 <= ...` finite subgroups. There are `N_k -> ∞` along ω and representations `ρ_k` of
+`H_(N_k)` with `max_(h ∈ H_(N_k)) rk(σ_k(h) − ρ_k(h))/n_k -> 0` along ω.
+
+*Proof.*
+1. For fixed `N`, `ε_(k,N) := max_(g,h ∈ H_N) rk(σ_k(g)σ_k(h) − σ_k(gh))/n_k -> 0` along ω.
+2. Put `C_N = (|H_N|+1)|H_N|²` and `K_N = {k : C_N ε_(k,N) <= 1/N} ∈ ω`.
+3. Take `N_k = max{N <= k : k ∈ K_1 ∩ ... ∩ K_N}`. Then `{k : N_k >= N_0}` contains
+   `K_1 ∩ ... ∩ K_(N_0) ∩ [N_0, ∞) ∈ ω`.
+4. Apply Lemma 9 at level `N_k`, with error `<= 1/N_k`.
+
+QED
+
+**Corollary 11 (normal form for `G = R^x`).** Let `σ` be a nontrivial characteristic-two model, and
+`H_N ≅ GL(W_N)` the finitary level subgroups.
+* **(a)** The `ρ_k` of Proposition 10 have transvection displacement `-> c_0 > 0`. So every
+  nontrivial element of `H_(N_k)` has `ρ_k`-displacement `>= c_0/4 − o(1)`, by Lemma 3.
+* **(b)** Some generator `g` of `G` has `lim_ω dist_rk(σ_k(g), ρ_k(H_(N_k))) > 0`.
+  * Otherwise pick `τ_k` on the generators with `σ_k(g) ≈ ρ_k(τ_k(g))`, and extend `τ_k` along
+    fixed words.
+  * The model `σ'_k = ρ_k ∘ τ_k` has the same limit, factors through `H_(N_k)`, and has transvection
+    displacement `-> c_0`.
+  * Theorem 4 then makes `G` LEF, which is impossible.
+* **(c) The compressor is locally inner, with corrections at every level.**
+  * For fixed `M`, put `γ_M = 1 + T_(M+1)E_12 ∈ GL(W_(M+1))`.
+  * `D = (1 + T E_12)γ_M^(−1) = 1 + (T − T_(M+1))E_12` maps component-2 indices `>= M+1` to
+    component-1 indices `>= M`, so it commutes with `H_M`. Hence `x_12(t0) h x_12(t0)^(−1) = γ_M h γ_M^(−1)`
+    for `h ∈ H_M`.
+  * So `c^X_(k,M) := ρ_k(γ_M)^(−1) σ_k(x_12(t0))` almost commutes with `ρ_k(H_M)`, and likewise
+    `c^Y`, `c^Z` for `x_23(s0)` and `x_13(1)`, using `1 + S_(M+1)E_23` and `1 + E_13`.
+  * If all three corrections were `o(1)`, Proposition 7 at level `M + 1` would make the Toeplitz
+    commutator fail by `ρ_k(u_13(M,M))`, of displacement `c_0`.
+  * So at every level `M`, some correction is not negligible.
+
+**Reading.**
+* A nontrivial model is an exact, uniformly displacing representation on the moving finitary level.
+* The compressor images are locally inner on each fixed level, through the truncated shifts.
+* Globally they stay away from the level group, with corrections that cannot all vanish at any
+  level.
+* Constructing a model means building those corrections coherently in `M`.
