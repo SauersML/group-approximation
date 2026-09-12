@@ -314,7 +314,7 @@ def main():
     ap.add_argument("--ra", type=int, default=1)
     ap.add_argument("--rb", type=int, default=1)
     ap.add_argument("--no-strict", action="store_true")
-    ap.add_argument("--target", choices=["none", "beta-S0", "alpha-T0"], default="none",
+    ap.add_argument("--target", choices=["none", "beta-S0", "alpha-T0", "both"], default="none",
                     help="replace the strictness clause by the linear condition pi(beta) = s0 "
                          "(or pi(alpha) = t0); strictness is then automatic, since s0 and t0 "
                          "are not units of R")
@@ -341,11 +341,15 @@ def main():
     ab, ba, ident = build(L, A, B, group_mode)
     rows, strict = [], not args.no_strict
     if args.target != "none" and group_mode:
-        side, units, target = ("y", B, L.s0) if args.target == "beta-S0" else ("x", A, L.t0)
-        erows, missing = evaluation_rows(units, target)
-        rows = [(side, ks, rhs) for ks, rhs in erows] + ([(side, [], True)] if missing else [])
-        report["target"], report["evaluation_rows"] = args.target, len(erows)
-        report["target_in_span"] = (not missing) and span_contains(erows, len(units))
+        specs = {"beta-S0": [("y", B, L.s0)], "alpha-T0": [("x", A, L.t0)],
+                 "both": [("y", B, L.s0), ("x", A, L.t0)]}[args.target]
+        report["target"], report["evaluation_rows"], in_span = args.target, 0, True
+        for side, units, target in specs:
+            erows, missing = evaluation_rows(units, target)
+            rows += [(side, ks, rhs) for ks, rhs in erows] + ([(side, [], True)] if missing else [])
+            report["evaluation_rows"] += len(erows)
+            in_span = in_span and (not missing) and span_contains(erows, len(units))
+        report["target_in_span"] = in_span
         strict = False
     report["build_seconds"] = round(time.time() - t0, 3)
     if report.get("target_in_span") is False:
@@ -373,12 +377,13 @@ def main():
                         elif acc != 1:
                             return False
                     return True
-                star = args.target == "alpha-T0"
-                side, units = ("x", A) if star else ("y", B)
-                outside = [k for k, u in enumerate(units) if not fixes_all_ones(u, star)]
-                prune_or.append((side, outside))
-                report["prune"].append({"subgroup": "all-ones stabilizer" + (" (starred)" if star else ""),
-                                        "outside": len(outside)})
+                sides = {"beta-S0": [(False, "y", B)], "alpha-T0": [(True, "x", A)],
+                         "both": [(False, "y", B), (True, "x", A)]}[args.target]
+                for star, side, units in sides:
+                    outside = [k for k, u in enumerate(units) if not fixes_all_ones(u, star)]
+                    prune_or.append((side, outside))
+                    report["prune"].append({"subgroup": "all-ones stabilizer" + (" (starred)" if star else ""),
+                                            "outside": len(outside)})
         status, model, stats = encode_and_solve(A, B, ab, ba, ident, strict, args.time_limit,
                                                 rows + prune_x, prune_or)
     report.update(stats)
