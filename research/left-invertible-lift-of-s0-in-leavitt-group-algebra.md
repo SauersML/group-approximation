@@ -181,3 +181,26 @@ certify nothing. Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12
   In every instance peeling removes all columns: each candidate partner element makes
   a product that nothing else in the universe reproduces. These are fences, not
   no-gos. Details: `research/artifacts/kaplansky-collision-partner-search-2026-09-12.md`.
+
+**2026-09-12, two-piece lifts through Thompson-type units (lane `w3-kap-visible`).**
+
+* **Binary honest lifts.** In characteristic two, `[1] + [1+n]` lifts a nilpotent `n`. The swap group
+  `<1+s0t1, 1+s1t0> = S_3` lifts the depth-one matrix units, with kernel gap `z`, and it gives exact idempotent
+  lifts of `s0t0` and `s1t1` (`binary-swap-group-lifts-leavitt-matrix-units-with-kernel-gap`).
+* **Two-piece ansatz.** Put `a = [g1]E^ + [g2](1-E^)` and `b = E^[g1^(-1)] + (1-E^)[g2^(-1)]`, where `E^` lifts
+  `s0t0` and `g1, g2` push the two cylinders into `00` and `01`
+  (`two-piece-s0-lifts-telescope-to-a-corner`).
+  - `b a = 1 + X + Y`, with square-zero kernel pieces.
+  - `b a` is a unit exactly when a product `C'C` is a unit in the corner over `s1t1`.
+  - `b a - 1` is nilpotent exactly when `YX` is.
+  - The corner pair lifts a proper isometry again, so the ansatz only passes the visible problem one corner down.
+* **Obstructions.** Let `h = g1^(-1) g2`.
+  - Any two-piece witness makes `F_2[<supp E^, h>]` not directly finite, so that group is not sofic.
+  - The triangular shortcut, `X = 0` or `Y = 0`, is open as
+    `two-piece-s0-lift-with-triangular-defect-exists`, with route
+    `triangular-two-piece-lift-gives-left-invertible-s0-lift`.
+  - That shortcut is dead for both swap-group lifts of `s0t0` and every `h`. This follows from the double-coset
+    tensor test: `D = 1`, `C_2`, `C_3` and `S_3` fail by injectivity, parity, the `F_4` block and dimension.
+* **Where it dies.** A two-piece witness must stop the corner recursion, needs `E^` supported off the swap group,
+  and needs `<supp E^, h>` non-sofic. Details:
+  `research/artifacts/binary-visible-lift-two-piece-telescoping-2026-09-12.md`.

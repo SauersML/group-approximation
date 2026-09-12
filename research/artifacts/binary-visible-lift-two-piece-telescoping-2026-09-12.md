@@ -134,3 +134,95 @@ if and only if `E1^ + C'C` is nilpotent in `E1^ A E1^`.
 - **Stopping the recursion.** This is the recursive-corner transport of
   `research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md` Section 6 made explicit. A finite witness
   of this shape must stop the recursion, and Corollary 2.3 is the one-step stop.
+
+## 3. Obstructions
+
+**Lemma 3.1 (double-coset tensor form).** Let `F <= G` be a subgroup, `h` in `G`, and `D = F ∩ h F h^(-1)`.
+- **The map.** `mu : F_2[F] ⊗_(F_2[D]) F_2[F] -> A`, `x ⊗ y |-> x [h] y`, is well defined and injective.
+- **The actions.** `D` acts on the first factor by right multiplication, and on the second factor by
+  `d . y = [h^(-1) d h] y`.
+
+*Proof.*
+- **Well defined.** `(x[d])[h]y = x[h][h^(-1)dh]y`.
+- **Basis.** `D` acts freely on `F x F` by `(f1, f2) . d = (f1 d, h^(-1) d^(-1) h f2)`, so the tensor product has basis
+  the orbit set `F x_D F`.
+- **Injectivity.** `mu` sends the orbit of `(f1, f2)` to `f1 h f2`. If `f1 h f2 = f1' h f2'`, then
+  `d = f1^(-1) f1' = h f2 f2'^(-1) h^(-1)` lies in `D`, and `(f1', f2') = (f1, f2) . d`. So distinct basis vectors go
+  to distinct group elements. QED
+
+**Corollary 3.2.** Let `E^` lie in `F_2[F]` with `E^ != 0, 1`.
+- `X = E^[h]E1^ = 0` exactly when `E^ ⊗ E1^ = 0` over `F_2[D]`.
+- `Y = E1^[h^(-1)]E^ = 0` exactly when `E1^ ⊗ E^ = 0` over `F_2[h^(-1) D h]`.
+- If `D = 1`, both tensors are tensors of nonzero vectors over `F_2`, so `X != 0` and `Y != 0`.
+
+**Lemma 3.3 (rigidity).** In Data 2.0, if `b a` is a unit, then `F_2[H']` is not directly finite, where
+`H' = <supp E^, h>`. In particular `H'` is not sofic, since group algebras of sofic groups are directly finite
+(Elek–Szabó).
+
+*Proof.*
+- **Everything lives on `H'`.** `ba = 1 + X + Y` and `T = 1 + X + YX` lie in `F_2[H']`.
+- **Inverses stay on `H'`.** If an element of `F_2[H']` is a unit of `A`, its inverse lies in `F_2[H']`, because the
+  projection onto `H'`-supported coefficients is an `F_2[H']`-bimodule map.
+- **The corner inverse.** `w = E1^ T^(-1) E1^` therefore lies in `F_2[H']` and inverts `C'C` in the corner. Put
+  `C'' = w C'`; then `C'' C = E1^`.
+- **Not two-sided.** `pi(w) = P_1`, so `pi(C C'') = pi(C) pi(C') = q != P_1` by Remark 2.5.
+- **Conclusion.** `(C'' + E^)(C + E^) = 1`, while `(C + E^)(C'' + E^) = CC'' + E^ != 1`. QED
+
+**Remark 3.4 (never both pieces).** Suppose `E^` is supported on a finite subgroup `F`, and `X = Y = 0`.
+- `X = 0` gives `E1^ f = f`, and `Y = 0` gives `f E1^ = f`, where `f = [h]E1^[h^(-1)]`.
+- `f != E1^`, since `pi(f) = q`, and `f` is supported on `h F h^(-1)`.
+- `f` and `E1^` are conjugate, so they have equal normalized ranks. That contradicts
+  `nested-two-finite-subgroup-idempotents-have-strict-rank`.
+
+**Computation 3.5 (natural Thompson units, `D = 1`).**
+- **The units.** `g1 = S[00]T[0] + S[01]T[10] + S[1]T[11]` and `g2 = S[01]T[1] + S[00]T[00] + S[1]T[01]`
+  satisfy Data 2.0.
+- **Their quotient.** `h = g1^(-1) g2 = S[10]T[1] + S[0]T[00] + S[11]T[01]`, that is `1w |-> 10w`, `00w |-> 0w`,
+  `01w |-> 11w`.
+- **The action of `F`.** `F = <u, v>` acts on each `V_x = span{delta_0x, delta_1x}` of the point module by one
+  matrix `M_f` in `GL_2(F_2)`, and `f` is determined by `M_f`.
+- **Step 1.** Suppose `h f = f' h` with `f, f'` in `F`, and let `y != 0^infinity`. On `delta_00y`,
+  - `h f delta_00y = (M_f)_00 delta_0y + (M_f)_10 delta_100y`;
+  - `f' h delta_00y = (M_f')_00 delta_0y + (M_f')_10 delta_1y`.
+
+  The points `0y`, `100y` and `1y` are distinct, so both matrices are upper unitriangular.
+- **Step 2.** On `delta_10x`, with `x != 0^infinity`,
+  - `h f delta_10x = (M_f)_01 delta_0x + delta_100x`;
+  - `f' h delta_10x = (M_f')_01 delta_000x + delta_100x`.
+
+  So `M_f = M_f' = 1`, and `D = 1`. By Corollary 3.2, `X != 0` and `Y != 0` for every nontrivial idempotent
+  `E^` of `F_2[F]`.
+
+**Proposition 3.6 (swap-group lifts, every `h`).** Let `F = <u, v>`, and let `h` be as in Data 2.0.
+1. The idempotents of `F_2[F]` over `P_0` are exactly `xy` and `P0^ = xy + z`.
+2. For both of them, `X != 0` and `Y != 0`.
+
+*Proof.*
+- **(1).** `z` is central, so `F_2[F] = F_2[F](1+z) (+) F_2[F]z`.
+  - The first block is `M_2(F_2)`, spanned by `x, y, xy, yx`, and `pi` is injective on it.
+  - The second block is `F_2[C_2]`, which is local with idempotents `0` and `z`, and `pi` kills it.
+- **Supports.** `xy = 1+u+v+g`, `1+xy = u+v+g`, `P0^ = u+v+g^2` and `1+P0^ = 1+u+v+g^2`. In each case one of
+  `E^` and `E1^` has three elements in its support.
+- **`D = 1`.** Corollary 3.2.
+- **`D = <f>` of order two.** Let `f' = h^(-1) f h`, and put `S1 = supp E^`, `S2 = supp E1^`.
+  - The orbit of `(f1, f2)` has coefficient `[f1 in S1][f2 in S2] + [f1 f in S1][f' f2 in S2]` in `E^ ⊗ E1^`.
+  - If all of these vanish, then `S1 f = S1` and `f' S2 = S2`. So both supports have even size, which is a
+    contradiction.
+  - `Y` is handled the same way.
+- **`D = <g>` of order three.** `D` is normal in `F`, so the twist fixes `z`, and the tensor product splits along the
+  central idempotents `z` and `1+z` of `F_2[D]`.
+  - The `1+z` component is a tensor over the field `F_2[D](1+z) ~= F_4`.
+  - There `E^(1+z) ⊗ (1+z)E1^` equals `xy ⊗ yx != 0` for both choices of `E^`. The case of `Y` gives
+    `yx ⊗ xy != 0`.
+- **`D = F`.** Then `h` normalizes `F`, and `mu(x ⊗ y) = x (h y h^(-1)) [h]`.
+  - **`X = 0`.** It gives `h E1^ h^(-1) F_2[F] ⊆ E1^ F_2[F]`. Conjugation preserves dimension, so the two are equal.
+    Evaluating, `qR = P_1 R` with `q <= P_1`, so `q = P_1`, against Remark 2.5.
+  - **`Y = 0`.** It gives `h^(-1) E^ h F_2[F] = E^ F_2[F]`. But `pi(h)^(-1) P_0 pi(h) = P_0 - pi(h)^(-1)(P_1 - q) pi(h)`
+    is strictly below `P_0`. QED
+
+**Remark 3.7 (where the ansatz stands).**
+- **Non-sofic support group.** Any two-piece witness needs `<supp E^, h>` to be non-sofic (Lemma 3.3).
+- **Swap group excluded.** A triangular witness needs `E^` supported off the swap-group algebra (Proposition 3.6).
+  The next finite candidates are idempotent lifts of `P_0` on the depth-two constants `GL_4(F_2)` (Remark 1.3). There
+  the parity case of Proposition 3.6 no longer applies automatically.
+- **Nilpotent criterion untested.** The criterion of Proposition 2.4, `YX` nilpotent, has not been tested for any `h`.
