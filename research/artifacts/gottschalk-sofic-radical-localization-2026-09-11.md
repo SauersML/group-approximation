@@ -219,3 +219,52 @@ Gromov--Weiss counting run along models with collisions, plus the
 disjoint-union and product amplification. No novelty is claimed for that method.
 Nothing here constructs a strict automaton or proves surjunctivity of any group
 not already known to be sofic.
+
+## 5. The composition tables themselves must present an invisible window difference
+
+**Theorem F.** Let tau, sigma be automata over any group G, with local rules
+f, d on memories M, S (both containing 1) and sigma tau = id. Let p in A^Omega
+be a Garden of Eden for tau. Let U be the group with generators x_a,
+a in M union S union Omega (x_1 = 1), and relators
+
+    x_s x_m = x_s' x_m'      whenever  sm = s'm'  in G   (s,s' in S; m,m' in M),
+    x_w x_m = x_w' x_m'      whenever  wm = w'm'  in G   (w,w' in Omega; m,m' in M).
+
+Then some distinct w, w' in Omega have x_w^-1 x_w' in Rad(U). In particular U is
+a finitely presented nonsofic group with relators of length at most four.
+
+*Proof.* The map x_a -> a defines a homomorphism pi from U to G. Products in
+S x M, and in Omega x M, coincide in U exactly when they coincide in G: one
+direction is imposed, the other follows by applying pi. Also pi separates the
+x_w. Over U put tau_U, sigma_U with the same local rules.
+
+- At the identity, sigma_U tau_U reads the positions x_s x_m. Any assignment
+  there transports bijectively to an assignment on SM with the same
+  coincidences. Extend it to A^G and apply sigma tau = id. Translation gives
+  sigma_U tau_U = id, so tau_U is injective.
+- The pattern of tau_U(x) on x_Omega depends only on x at the positions
+  x_w x_m. These carry the coincidence pattern of Omega M, so the pattern equals
+  tau(z)|_Omega for some z in A^G. It therefore differs from p: p is a Garden of
+  Eden for tau_U on x_Omega.
+
+U is countable, so Theorem A gives the invisible difference. It is nontrivial
+because pi maps it to w^-1 w' != 1. QED.
+
+For the reverse-defect window Omega = MS the second family of relators records
+the triple products MSM.
+
+**Reading.** Theorem F sharpens `forward-memory-lifts-exclude-strict-cellular-sections`,
+whose presentation U_SM must be nonsurjunctive. Any certificate refuting
+Gottschalk carries, inside its own finite product tables, a finite
+presentation with an explicit nontrivial sofic-invisible element on a window
+difference. So a short certificate over R^x would hand over a short
+nonsofic presentation: at most |S||M| + |Omega||M| relators of length at most
+four. The only nonsoficity mechanism currently known is the one-sided
+compression criterion (Kazhdan subgroup, compressors, commuting non-LEF
+factor), and its presentations are large. Within current knowledge, then, a
+certificate's decoder window must realize such a configuration in its product
+table. Small truth-table windows can succeed only if they realize a small
+nonsofic presentation. The theorem does not rule them out.
+
+**Invariant outputs.** With H x M relators x_h x_m = x_m' (hm = m') added, the
+same proof over the table group places each x_h in its sofic radical.
