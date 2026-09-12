@@ -15,8 +15,14 @@ artifacts:
 `g(1w) = 1 a^(-1)(w)`, `s(0w) = 1w`, `s(1w) = 0w`. Then `<g, s>` is infinite dihedral. On `{0,1}^V` let
 `tau_g` flip cell `h` exactly when
 `(x(hg^(-3)), x(hg^(-2)), x(hg^(-1)), x(hg), x(hg^2), x(hg^3)) = (0, 0, 1, 1, 0, 0)`.
-Then some polynomial representative `tau~` of `tau_g`, on a finite memory, satisfies `tau~ o tau~ = id`
-formally. `tau_g` is its own unique left inverse.
+Then `tau_g` has a formalizable left inverse. That is, some polynomial representatives `tau~` and `sigma~`
+of `tau_g`, on finite memories and possibly different as polynomials, satisfy `sigma~ o tau~ = id`
+formally. `tau_g` is its own unique left inverse, so this is the pair `(tau_g, tau_g)` of
+`binary-left-inverse-pairs-over-fg-simple-groups-are-formalizable`.
+
+**Pair form.** A single representative with `tau~ o tau~ = id` gives such a pair, but the converse is not
+known. The first version asked for a single involutive representative, which the specialization route
+does not supply. Corrected after `w3-vf-nonlinear`, Section 14 of its verification artifact.
 
 `V <= L_(F_2)(1,2)^x`, so a formalization here induces one over the binary Leavitt unit group.
 

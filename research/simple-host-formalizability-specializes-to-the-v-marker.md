@@ -13,6 +13,13 @@ artifacts:
 1. **`V` is a finitely generated simple group.** This is classical (Higman; Thompson), imported at
    statement level.
 2. **The pair.** `tau_g` is an involution on `{0,1}^V`, so `(tau_g, tau_g)` is a binary left-inverse pair.
-3. **Specialize.** The prerequisite gives representatives with `tau~ o tau~ = id` formally.
+3. **Specialize.** The prerequisite gives representatives `tau~` and `sigma~` of `tau_g`, possibly
+   different polynomials, with `sigma~ o tau~ = id` formally. That is the target, which is stated in
+   pair form.
 
 A refutation of the target therefore refutes the prerequisite.
+
+**Correction** (after `w3-vf-nonlinear`, Section 14 of its verification artifact). The target first
+asked for a single representative with `tau~ o tau~ = id`. The prerequisite does not give that, so as
+first stated this route was invalid. The target is now in pair form, and the route is re-submitted for
+verification.

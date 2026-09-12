@@ -207,10 +207,16 @@ induces up to the binary Leavitt unit group.
 left coset `h<g>` as the integer marker involution, so it is a bijective involution and its own unique
 left inverse.
 - **Open:** `thompson-v-marker-involution-is-formalizable`, and the smaller
-  `dihedral-marker-involution-is-formalizable`.
-- **Passing up.** A formalization over `D` induces one over `V`, with the same polynomials.
+  `dihedral-marker-involution-is-formalizable`. Both are stated in pair form.
+  - **Pair form:** some representatives `tau~` and `sigma~` of `tau_g`, possibly different polynomials,
+    satisfy `sigma~ o tau~ = id` formally.
+  - **Relation to the single form:** a single representative with `tau~ o tau~ = id` gives such a pair,
+    but the converse is not known.
+  - **Correction:** the first version asked for the single form, which the specialization below does not
+    reach. Corrected after `w3-vf-nonlinear`, Section 14 of its verification artifact.
+- **Passing up.** A formal pair over `D` induces one over `V`, with the same polynomials.
 - **Specialization.** The restricted target `binary-left-inverse-pairs-over-fg-simple-groups-are-formalizable`
-  specializes to the `V` object, so a refutation of the `V` object refutes it.
+  specializes to the pair form of the `V` object, so a refutation of that pair form refutes it.
 
 **What is known about the object.**
 1. **Where the encoder memory must go.** By Corollary 3, every bi-orderable quotient of the encoder memory

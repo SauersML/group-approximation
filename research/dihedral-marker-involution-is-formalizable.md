@@ -12,7 +12,12 @@ artifacts:
 
 **OPEN.** Let `D = <g, s | s^2, sgs = g^(-1)>`. On `{0,1}^D` let `tau` flip cell `h` exactly when
 `(x(hg^(-3)), x(hg^(-2)), x(hg^(-1)), x(hg), x(hg^2), x(hg^3)) = (0, 0, 1, 1, 0, 0)`. Then some
-polynomial representative `tau~` of `tau` satisfies `tau~ o tau~ = id` formally.
+polynomial representatives `tau~` and `sigma~` of `tau`, possibly different as polynomials, satisfy
+`sigma~ o tau~ = id` formally.
+
+**Pair form.** A single representative with `tau~ o tau~ = id` gives such a pair, but the converse is not
+known. The claim is stated in pair form to match `thompson-v-marker-involution-is-formalizable`
+(corrected after `w3-vf-nonlinear`, Section 14 of its verification artifact).
 
 **Reformulation.** In coordinates `a(k) = x(g^k)` and `b(k) = x(g^k s)`, one-track `D`-automata are
 exactly the two-track `Z`-automata whose `b`-rule is the `a`-rule reflected, with the tracks swapped.
