@@ -14,8 +14,17 @@ artifacts:
   - research/artifacts/boone-higman-nonsofic-envelope-2026-09-11.md
 ---
 
-**OPEN.** There exists a group `K` that is finitely presented, simple, and
-not sofic.
+**ESTABLISHED (2026-09-11).** There exists a group `K` that is finitely
+presented, simple, and not sofic.
+
+Witness: the binary Leavitt unit group `L_(F_2)(1,2)^x`, through
+`fp-simple-nonsofic-via-leavitt-unit-group`. Its finite presentation is Khanh,
+arXiv:2609.08428v1, Theorem 6.1, read in full and verified by the literature
+lane: Krstić--McCool makes `St_4` of a finitely presented ring finitely
+presented, Khanh's Theorem 5.4 identifies it with `GL_4`, and leaf coordinates
+give `GL_4 ≅ R^x`. With that verification the preprint caveat recorded below
+is discharged. The Boone--Higman route stays as a second, independent
+derivation.
 
 ## What is already known, and what exactly is missing
 
@@ -59,16 +68,16 @@ be carried by one witness because `H` satisfies both hypotheses.
 
 ## Relation to Boone--Higman
 
-Stated once in prose, because rg:2 records a refutation as an established
-negation claim and no such claim exists:
+The route `fp-simple-nonsofic-from-boone-higman` proves that the conjecture
+implies this claim. When it was written, the contrapositive looked usable: a
+proof that every finitely presented simple group is sofic would refute
+Boone--Higman.
 
-> a proof that **every** finitely presented simple group is sofic would refute
-> the Boone--Higman conjecture.
-
-Combined with the same remark in `fp-simple-full-mf-radical-group`, this gives
-two independent approximation-theoretic attacks on the negative side of a
-fifty-year-old conjecture, neither of which passes through a decidability or
-embedding argument.
+**That attack is now closed.** The claim is true, witnessed by `R^x`, so its
+negation is false and can refute nothing. What survives is the weaker
+observation that Boone--Higman forces nonsoficity into the envelope of every
+nonsofic admissible input, which constrains proposed universal constructions
+but no longer offers a refutation.
 
 ## September 11: a literature route that may close this outright
 
