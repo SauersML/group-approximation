@@ -109,3 +109,12 @@ is the Borel inverse of `tau` on its image.
   - **Still open.** Decoder rows with three or more terms.
 
   Artifact: `research/artifacts/ornstein-weiss-decoder-sections-2026-09-12.md`.
+- **Linear decoders (2026-09-12, w4-measurable-2).** A section of a linear decoder into a larger alphabet is exactly
+  a compression.
+  - **Dead cases** (`linear-decoders-with-coboundary-functionals-admit-no-section`):
+    - an output functional pulls back to a coboundary along one element with a nonzero coset sum, which includes
+      annihilators and every two-term row;
+    - the kernel is finite and nonzero.
+  - **Zero kernel.** A section would need a stable finiteness failure over `F_p[U]`.
+  - **Open.** The rest of the class is `linear-decoders-over-leavitt-units-admit-no-measurable-section`. It is
+    implied by maximality and is the measurable relaxation of a linear one-sided inverse. Artifact Sections 5–6.
