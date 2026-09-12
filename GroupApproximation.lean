@@ -4563,6 +4563,19 @@ import GroupApproximation.Manuscript.NonMFSentences.NormalKazhdanUltrafilterRout
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonFiniteMatrices
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonLaurentKazhdanFinite
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol
+import GroupApproximation.GroupTheory.HydeLodha.QTwoBrownTriangle
+import GroupApproximation.GroupTheory.HydeLodha.QTwoFinitelyPresented
+import GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationShort
+import GroupApproximation.CharClass.LIXLemmaTwoGenTwo
+import GroupApproximation.CharClass.LIXKGenOfStepC
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52LeastArea
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssemblyDescent
+import GroupApproximation.Kazhdan.CCKWCosetCliques
+import GroupApproximation.Kazhdan.EJZAngleSylowFour
+import GroupApproximation.Kazhdan.EJZAngleGHB
+import GroupApproximation.CharClass.OddPAcyclicZero
+import GroupApproximation.CharClass.OddPAcyclicZeroAug
+import GroupApproximation.CharClass.CohomologyTotalNontrivialOf
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
