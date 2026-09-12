@@ -35,7 +35,7 @@ theorem isFinitelyGeneratedRing_int : IsFinitelyGeneratedRing ℤ := by
   refine ⟨∅, ?_⟩
   rw [Subring.eq_top_iff']
   intro x
-  simpa using intCast_mem (Subring.closure ((∅ : Finset ℤ) : Set ℤ)) x
+  exact intCast_mem (Subring.closure ((∅ : Finset ℤ) : Set ℤ)) x
 
 /-- `EL₃(𝔽₂[ℤ³])` has property `(T)`. -/
 theorem laurentElementary_hasKazhdanPropertyT :
