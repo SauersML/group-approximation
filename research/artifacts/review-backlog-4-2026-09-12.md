@@ -250,3 +250,89 @@ Read: the claim, `thompson-f-random-walk-norm-lower-bound-proof`
   a dynamic program on a radius-15 ball, and the three-term recurrence. The
   certificate is reproducible from `out15.json`.
 - **Scope.** A lower bound only, which is correctly limited by §4.
+
+## 6. `free-rank-models-on-sl3-admit-no-block-support`: PASS
+
+Read: the claim and `free-rank-models-on-sl3-block-support-proof`
+(`requires: []`).
+
+- **Zero under block support.** `v_ij ∈ p_i M p_j` gives
+  `v_23 v_12 ∈ p_2 M p_3 p_1 M p_2 = 0`. Checked.
+- **Nonzero on free summands.**
+  - `β = hg − h − g + 1`, with `h = x_23(1)` and `g = x_12(1)`. The elements
+    `1, g, h, hg` are pairwise distinct in `SL_3(F_p)`, so `β ≠ 0` in `k[H_0]`.
+  - Left multiplication by β has rank at least 1 on each regular copy, so
+    `rk σ_i(β) ≥ m_i`.
+  - `σ(β) = v_23 v_12` in `M`, so `rk ≥ μ > 0`.
+
+  Checked.
+- **Existence.**
+  - `S_∞ = lim M_{p^k}(F_p)` under unital injective maps is simple. The
+    normalized rank is compatible with `a ↦ a ⊗ I_p`, so it is a ring rank
+    model.
+  - `EL_3(M_n(F_p)) = E_{3n}(F_p) = SL_{3n}(F_p)`, and `EL_3(S_∞)` is the
+    union of these.
+  - The regular representation moves every `g ≠ 1` with normalized rank at
+    least `1/2`: it has no fixed basis vectors, so there are at most `|G|/2`
+    cycles.
+  - Setting level-`i` regular representations along ω gives a separating
+    homomorphism. Its restriction to `H_0` is free of rank `[G : H_0]`, so
+    `μ = 1/|H_0|`.
+
+  Checked.
+- **Second read.** gk-vf-linear §34.
+
+## 7. `matrix-unit-root-rank-models-of-simple-el3-are-trivial`: PASS (block algebra taken from two re-derivations)
+
+Read: the claim and `matrix-unit-root-rank-models-propagation-proof`.
+
+- **Checked here.**
+  - **Nilpotency.** `n_ij(a)² = σ(x_ij(2a)) + 1 = 0` in characteristic 2.
+  - **Commutator expansion.** With `X = 1 + x` and `Y = 1 + y`, where
+    `x² = y² = 0` and `X^{-1} = X`, one gets
+    `[X,Y] − 1 = (x + y + xy)² = xy + yx + xyx + yxy + xyxy`. This matches the
+    route.
+  - **C is a unital ring homomorphism.** `n(a+b) = n(a) + n(b) + n(a)n(b)` and
+    `E_13 E_13 = 0` give additivity. `x_13(ab) = [x_12(a), x_23(b)]` gives
+    `C(ab) = C(a)C(b)`, and `n_13(1) = E_13` gives `C(1) = p_1`.
+  - **Closing argument.** `p_1 M p_1` is a corner of a rank ultraproduct, and
+    faithful rank makes it directly finite. `t s = 1 ≠ s t` in `R` gives
+    `C(1 − st) = 0`. Simplicity then forces `C = 0`, so `p_1 = 0`. From
+    `u_ij u_ji = p_i` and `u_ij ∈ p_i M p_j`, every `E_ij = 0`. So every root
+    element acts trivially and σ is trivial.
+- **Not redone here.** The 4×4 block elimination giving `D = P = S = Q = 0`.
+  It was independently re-derived by `gk-l-gate-pos` and passed by
+  gk-vf-linear §22, which also noted a non-load-bearing ordering slip. The
+  scope sharpening (block support of the six unit root elements implies the
+  matrix-unit hypotheses) and the dual-shape extension through transpose
+  inverse (§29) are consistent with the proof.
+
+## 8. `kazhdan-group-rank-models-admit-no-expander-decomposition`: PASS on items 1–3; item 4 constants taken from gk-verify-pos
+
+Read: the claim and `kazhdan-rank-no-expander-decomposition-proof`, which
+requires `elementary-group-property-t-over-free-algebras`.
+
+- **Surjectivity and irreducibility.** `F_2[t] → F_q` is onto, so `ρ_k` is onto
+  `SL_3(F_q)`. `SL_3(F_q)` is transitive on nonzero vectors, so `F_2^{3k}` is
+  irreducible. Checked.
+- **Item 1.**
+  - `ρ(e_ij(1))` preserves `W_m`.
+  - `ρ(e_ij(t)) = 1 + E_ij ⊗ C`, and `C S_m ⊆ S_m + F_2 α^m`, so each of the
+    six `t`-generators adds at most 1 dimension. Hence `b(W_m) ≤ 6`.
+  - The only invariant subspaces are 0 and N.
+  - `dim W_{⌊k/2⌋} = 3⌊k/2⌋ ≥ (3k − 3)/2`, and `3k − 3⌊k/2⌋ ≥ 3k/2`.
+
+  Checked.
+- **Items 2–3.** `b(W)/dim W ≤ 6/(3⌊k/2⌋) → 0` with `dim W ≤ n/2`. So there is
+  no rounding modulus and no uniform dimension expansion. Checked.
+- **Submodularity.** Recomputed `b(X ∩ Y) ≤ b(X) + b(Y)` from
+  `(X ∩ Y) + s(X ∩ Y) ⊆ (X + sX) ∩ (Y + sY)` and the injection
+  `(A ∩ B)/(X ∩ Y) ↪ A/X ⊕ B/Y`. Checked.
+- **Item 4.** The half-dimension intersection step (`P ∩ W_m` grows in steps
+  of 3, with boundary at most `b(P) + 6`) is sound. Rechecking it with
+  `b(P) ≥ 1` gives `dim P ≤ 14 b(P)/κ + 6`, which is at most `20 b(P)/κ` only
+  under a normalization with `κ ≤ 1`. The internal-expansion normalization
+  was not rechecked here. It was re-derived by gk-verify-pos §25, which added
+  the scope conditions now in the claim. Treat the constants 20 and 21 as
+  resting on that re-derivation.
+- **Trust surface.** Property (T) of `EL_3(F_2[t])`, through the import node.
