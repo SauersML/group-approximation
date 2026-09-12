@@ -890,3 +890,15 @@ cannot fire.
   - Letting `epsilon' -> 0` gives `delta_Y = -log(1 - |B|^(-|W|)) / (|W|^2 + 1)`.
   - This is recorded as known inside the OPEN node, not as a separate established claim, and nothing
     consumes it as a node.
+
+## 17. Follow-up: marker targets restated in pair form (w3-stable-simple, `e0b01243d`)
+
+- **The two claims.** `thompson-v-marker-involution-is-formalizable` and
+  `dihedral-marker-involution-is-formalizable` now ask for representatives `tau~` and `sigma~` of the
+  involution, possibly different polynomials, with `sigma~ o tau~ = id` formally. Both still read OPEN.
+- **The specialization route.** `simple-host-formalizability-specializes-to-the-v-marker` now type-checks.
+  The prerequisite's pair is exactly the target, and the route carries a correction note citing
+  w3-vf-nonlinear.
+- **The induction route.** `dihedral-marker-formalization-induces-to-thompson-v` is consistent. A formal
+  pair over `D_inf` is a formal pair over `V` with the same polynomials.
+- **Status.** Both routes are valid and cannot fire. This closes the point raised in 13.6.
