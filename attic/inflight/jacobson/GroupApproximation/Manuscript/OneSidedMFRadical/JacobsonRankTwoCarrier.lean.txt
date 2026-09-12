@@ -1,0 +1,154 @@
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonKernelFinitary
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonLaurentKazhdanFinite
+
+/-!
+# Kazhdan subgroups of `GL_2(J)` are finite
+
+`non_mf_groups_exist.tex`, the remark after `prop:torsion-defect-ring`
+(tex lines 1146--1151):
+
+> … and the kernel of `GL_2(J) → GL_2(F_2[z,z^{-1}])` is locally finite, so a Kazhdan
+> subgroup of `GL_2(J)` has finite image in `GL_2(F_2(z))` and a locally finite subgroup
+> of finite index, and is finite.
+
+`GL_n(J)` acts faithfully on `V^n` (`glAct`).  An invertible matrix whose symbol is the
+identity differs from the identity by finite matrices, so it acts with finite matrix
+support (`glAct_mem_binaryGLfs`); the kernel of the symbol map therefore embeds in
+`GL_fs(V^n)`, which is locally finite over `F_2`.  With the finiteness of Kazhdan subgroups
+of `GL_2(F_2[z,z^{-1}])` (`JacobsonLaurentKazhdan`), every Kazhdan subgroup of `GL_2(J)` has
+finite image, a locally finite subgroup of finite index, and is finite.
+-/
+
+namespace GroupApproximation
+namespace Manuscript
+namespace OneSidedMFRadical
+namespace JacobsonSymbol
+
+open TorsionComplementaryIdempotents FinitaryLinear JacobsonLaurent
+
+/-- **`GL_n(J)` acting on `V^n`.** -/
+noncomputable def glAct (n : ℕ) :
+    GL (Fin n) ↥jacobsonAlgebra →* (BinaryPower n ≃ₗ[ZMod 2] BinaryPower n) :=
+  (LinearMap.GeneralLinearGroup.generalLinearEquiv (ZMod 2) (BinaryPower n)).toMonoidHom.comp
+    (Units.map (matrixAct n).toMonoidHom)
+
+theorem glAct_apply (n : ℕ) (g : GL (Fin n) ↥jacobsonAlgebra) (x : BinaryPower n) :
+    glAct n g x = matrixAct n (g : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) x := rfl
+
+theorem glAct_injective (n : ℕ) : Function.Injective (glAct n) := by
+  intro g h hgh
+  apply Units.ext
+  apply matrixAct_injective n
+  refine LinearMap.ext fun x ↦ ?_
+  have := congrArg (fun e : BinaryPower n ≃ₗ[ZMod 2] BinaryPower n ↦ e x) hgh
+  simpa [glAct_apply] using this
+
+/-- The symbol map `GL_n(J) → GL_n(F_2[z,z^{-1}])`. -/
+noncomputable abbrev glSymbolMap (n : ℕ) : GL (Fin n) ↥jacobsonAlgebra →* GL (Fin n) BinaryLaurent :=
+  Matrix.GeneralLinearGroup.map symbol
+
+/-- An invertible matrix over `J` with identity symbol acts with finite matrix support. -/
+theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
+    (hg : g ∈ (glSymbolMap n).ker) : glAct n g ∈ binaryGLfs n := by
+  classical
+  have hent : ∀ i j : Fin n, symbol ((g : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) i j) =
+      (1 : Matrix (Fin n) (Fin n) BinaryLaurent) i j := by
+    intro i j
+    have h := congrArg (fun y : GL (Fin n) BinaryLaurent ↦
+      (y : Matrix (Fin n) (Fin n) BinaryLaurent) i j) (MonoidHom.mem_ker.mp hg)
+    simpa [Matrix.GeneralLinearGroup.map_apply] using h
+  set G : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra := (g : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) with hG
+  have hfin : ∀ i j : Fin n,
+      IsFiniteMatrix ((G i j - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) i j : ↥jacobsonAlgebra) :
+        Module.End (ZMod 2) JacobsonSpace) := by
+    intro i j
+    apply isFiniteMatrix_of_symbol_eq_zero
+    rw [map_sub, hent i j, symbol_one_apply, sub_self]
+  choose M hM0 hMc using hfin
+  set Mx : ℕ := ∑ i, ∑ j, M i j with hMx
+  have hbound : ∀ i j, M i j ≤ Mx := by
+    intro i j
+    calc M i j ≤ ∑ j', M i j' := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ j)
+      _ ≤ Mx := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ i)
+  have hsplit : ∀ (k l : Fin n) (p : JacobsonSpace),
+      ((G k l : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) p =
+        ((G k l - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) k l : ↥jacobsonAlgebra) :
+          Module.End (ZMod 2) JacobsonSpace) p +
+        (((1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) k l : ↥jacobsonAlgebra) :
+          Module.End (ZMod 2) JacobsonSpace) p := by
+    intro k l p
+    rw [← LinearMap.add_apply, ← Subring.coe_add, sub_add_cancel]
+  have hbasis : ∀ (l : Fin n) (w : ℕ) (k : Fin n),
+      glAct n g (binaryPowerBasis n ⟨l, w⟩) k =
+        ((G k l : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ w) := by
+    intro l w k
+    rw [glAct_apply, matrixAct_apply, binaryPowerBasis_apply,
+      Finset.sum_eq_single l (fun m _ hm ↦ by rw [Pi.single_eq_of_ne hm, map_zero]) (by simp),
+      Pi.single_eq_same]
+  have hone : ∀ (k l : Fin n) (w : ℕ),
+      (((1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) k l : ↥jacobsonAlgebra) :
+        Module.End (ZMod 2) JacobsonSpace) (Polynomial.X ^ w) =
+        if k = l then Polynomial.X ^ w else 0 := by
+    intro k l w
+    rw [Matrix.one_apply]
+    by_cases h : k = l
+    · rw [if_pos h, if_pos h, Subring.coe_one, Module.End.one_apply]
+    · rw [if_neg h, if_neg h, Subring.coe_zero, LinearMap.zero_apply]
+  refine (mem_finitary (binaryPowerBasis n)).mpr
+    ⟨Finset.univ.sigma fun _ ↦ Finset.range Mx, IsSupportedOn.of_basis (fun b hb ↦ ?_) fun b hb ↦ ?_⟩
+  · obtain ⟨l, w⟩ := b
+    have hw : Mx ≤ w := by
+      by_contra h
+      exact hb (by simp [Finset.mem_sigma]; omega)
+    funext k
+    rw [hbasis, hsplit, hM0 k l w ((hbound k l).trans hw), zero_add, hone, binaryPowerBasis_apply]
+    by_cases h : k = l
+    · subst h
+      rw [if_pos rfl, Pi.single_eq_same]
+    · rw [if_neg h, Pi.single_eq_of_ne h]
+  · obtain ⟨l, w⟩ := b
+    have hw : w < Mx := by simpa [Finset.mem_sigma] using hb
+    refine mem_blockSpan_of_coeff fun k m hm ↦ ?_
+    rw [hbasis, hsplit, Polynomial.coeff_add, hMc k l w m ((hbound k l).trans hm), zero_add, hone]
+    by_cases h : k = l
+    · rw [if_pos h, Polynomial.coeff_X_pow, if_neg (by omega)]
+    · rw [if_neg h, Polynomial.coeff_zero]
+
+/-- The kernel of `GL_n(J) → GL_n(F_2[z,z^{-1}])`, into `GL_fs(V^n)`. -/
+noncomputable def kerToBinaryGLfs (n : ℕ) : (glSymbolMap n).ker →* binaryGLfs n where
+  toFun g := ⟨glAct n g, glAct_mem_binaryGLfs g.2⟩
+  map_one' := Subtype.ext (map_one (glAct n))
+  map_mul' g h := Subtype.ext (map_mul (glAct n) g h)
+
+theorem kerToBinaryGLfs_injective (n : ℕ) : Function.Injective (kerToBinaryGLfs n) := by
+  intro g h hgh
+  apply Subtype.ext
+  apply glAct_injective n
+  exact congrArg (fun z : binaryGLfs n ↦ (z : BinaryPower n ≃ₗ[ZMod 2] BinaryPower n)) hgh
+
+/-- **The kernel of `GL_n(J) → GL_n(F_2[z,z^{-1}])` is locally finite.** -/
+theorem isLocallyFiniteGroup_ker_glSymbolMap (n : ℕ) : IsLocallyFiniteGroup (glSymbolMap n).ker :=
+  (isLocallyFiniteGroup_finitary (binaryPowerBasis n)).comap (kerToBinaryGLfs n)
+    (kerToBinaryGLfs_injective n)
+
+/-- **Printed (tex 1146--1151).**  The kernel of `GL_2(J) → GL_2(F_2[z,z^{-1}])` is locally
+finite, and every Kazhdan subgroup of `GL_2(J)` has finite image in `GL_2(F_2[z,z^{-1}])`, a
+locally finite subgroup of finite index, and is finite. -/
+def PrintedJacobsonRankTwoKazhdanFinite : Prop :=
+  IsLocallyFiniteGroup (glSymbolMap 2).ker ∧
+    ∀ L : Subgroup (GL (Fin 2) ↥jacobsonAlgebra), HasKazhdanPropertyT.{0, 0} L →
+      Finite (L.map (glSymbolMap 2)) ∧ ((glSymbolMap 2).subgroupMap L).ker.FiniteIndex ∧
+        IsLocallyFiniteGroup ((glSymbolMap 2).subgroupMap L).ker ∧ Finite L
+
+theorem manuscriptSentence_jacobsonRankTwoKazhdanFinite : PrintedJacobsonRankTwoKazhdanFinite :=
+  ⟨isLocallyFiniteGroup_ker_glSymbolMap 2, fun L hL ↦
+    JacobsonLaurentKazhdan.manuscriptSentence_kazhdanSubgroupFiniteLaurent _ (glSymbolMap 2)
+      (isLocallyFiniteGroup_ker_glSymbolMap 2) L hL⟩
+
+end JacobsonSymbol
+end OneSidedMFRadical
+end Manuscript
+end GroupApproximation
+
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.isLocallyFiniteGroup_ker_glSymbolMap
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonRankTwoKazhdanFinite

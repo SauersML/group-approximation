@@ -70,13 +70,13 @@ theorem blockHom_elementaryUnit_one {i j : T} (hij : i ≠ j) :
       rw [Finset.sum_eq_single ⟨c, hc⟩ (fun a _ ha ↦ by rw [Matrix.one_apply_ne ha, zero_smul])
         (by simp), Matrix.one_apply_eq, one_smul]
       congr 1
-      rw [Finset.sum_eq_single i (fun a _ ha ↦ by simp [Matrix.single_apply, Ne.symm ha])
+      rw [Finset.sum_eq_single i (fun a _ ha ↦ by simp [Ne.symm ha])
         (by simp)]
       by_cases hjc : j = ⟨c, hc⟩
       · subst hjc
         rw [Matrix.single_apply_same, one_smul, coord_basis_self, one_smul]
       · rw [coord_basis_of_ne B (b := c) (c := (j : β)) (fun h ↦ hjc (Subtype.ext h.symm))]
-        simp [Matrix.single_apply, hjc]
+        simp [hjc]
     · rw [blockLin_basis_not_mem B T _ hc,
         coord_basis_of_ne B (b := c) (c := (j : β)) (fun h ↦ hc (h ▸ j.2)), zero_smul, add_zero]
   exact congrArg (fun f : M →ₗ[ZMod 2] M ↦ f x) key
