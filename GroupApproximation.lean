@@ -846,6 +846,7 @@ import GroupApproximation.Sofic.DoubleSoficTransfer
 import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import GroupApproximation.Sofic.WreathCentralizerNormalization
 import GroupApproximation.Sofic.WreathCentralizerNormalizationSequential
+import GroupApproximation.BowenChapman.WreathWitness
 import GroupApproximation.Sofic.FreeLampRigidity
 import GroupApproximation.Sofic.ProfiniteClosure
 import GroupApproximation.Sofic.CentralFreeLampCover
