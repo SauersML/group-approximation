@@ -6,6 +6,7 @@ title: Fourier-transform the reflection group and read the evaluation at Dirac m
 target: signed-thompson-algebra-is-odd-measure-crossed-product
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -32,3 +33,5 @@ artifacts:
   `S[alpha] T[beta] = pi([g] q_[beta])`.
 
 Theorem 2 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 20 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

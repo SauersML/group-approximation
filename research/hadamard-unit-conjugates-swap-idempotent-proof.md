@@ -6,6 +6,7 @@ title: Compute the Hadamard conjugation in the two-by-two matrix picture of the 
 target: hadamard-unit-conjugates-swap-idempotent-to-cylinder
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -18,3 +19,5 @@ artifacts:
 * `w` swaps the two cylinders, so `w tau_[0] w = tau_[1]`.
 
 Section 1 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 20 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

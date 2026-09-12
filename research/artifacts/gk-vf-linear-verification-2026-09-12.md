@@ -564,3 +564,83 @@ Item checked: `cyclic-separated-one-sided-pairs-equal-full-corners`.
   - So `c [g^i] a = (sum_j zeta^(-ij)) eps_iota = 0` for `0 < i < m`, as a sum of the `m`-th roots of
     unity.
 - At `q = 3`, `m = 2` this recovers Theorem 1 of Section 1.
+
+## 20. Signed Thompson crossed product (29a08d6fe, df61852de, ffc56b117, lane gk-l3-free): PASS, one wording remark
+
+Items checked:
+- `hadamard-unit-conjugates-swap-idempotent-to-cylinder`;
+- `signed-thompson-algebra-is-odd-measure-crossed-product`;
+- `odd-measure-space-has-no-honest-thompson-compression`;
+- `odd-measure-crossed-product-carries-mod-three-trace`;
+- `signed-thompson-group-has-no-finite-dimensional-representations`;
+- the route `odd-measure-compression-gives-anti-invariant-corner`, and the open target
+  `odd-measure-crossed-product-unit-below-cylinder-idempotent`.
+
+- **Hadamard conjugation.**
+  - With `M(x) = (t_i x s_j)`, `M(h) = [[1,1],[1,-1]]`, so `M(h)^2 = 2I = -I` and `h^2 = z`.
+  - `M(h) M(w) M(h)^-1 = [[1,1],[-1,1]] [[-1,-1],[-1,1]] = [[-2,0],[0,2]] = [[1,0],[0,-1]]`, so
+    `h w h^-1 = s0 t0 - s1 t1 = P_[0] - P_[1] = tau_[1] = z tau_[0]`.
+  - `[h] e_- [h]^-1 = eps_- 2(1 + [z][tau_[0]]) = q_[0]`.
+  - `q_[0] + q_[1] = 4 eps_-` and `q_[0] q_[1] = 4 eps_- (1 - [tau_[0]]^2) = 0`. `[w]` swaps them,
+    so `S_- ~= M_2(q_[0] S_- q_[0])`.
+- **Reflections.**
+  - `tau_C tau_D = 1 - 2P_C - 2P_D + 4P_(C cap D) = tau_(C triangle D)`.
+  - `V` normalizes `E`, and `E cap V = 1`.
+  - The characters of `E_P = F_2^P` over `F_3` are the finitely additive `F_2`-measures.
+  - `eps_-` maps to `4[mu(X) = 1] = 1_(M_-)`, and `q_C` to `1_(U_C)`.
+  - `pi(q_C) = 4P_C = P_C`.
+  - `S[alpha] T[beta] = pi([g] q_[beta])` for proper cylinders, so `pi(B) = R`, and a kernel clopen
+    idempotent avoids the Dirac measures.
+  - Cross-check: the Klein kernel idempotent of Section 8 is the indicator of
+    `{mu([1]) = 0, mu([11]) = 1}`, which contains no Dirac measure.
+- **No honest compression.** `V` acts on the compact group `M` by automorphisms and preserves Haar
+  measure, and nonempty clopens have positive measure. So `lambda(U) >= sum lambda(A_i) = 1`
+  forces `U = M_-`. For the naive Hilbert-hotel lift, `q_[00] + q_[01] - q_[0] = 2 . 1_(mu(00) = mu(01) = 1)`,
+  checked case by case on `(mu(00), mu(01))`.
+- **Mod-3 trace.**
+  - Refining one atom doubles the count of odd vectors, and 2 is invertible mod 3, so the average is
+    well defined and `V`-invariant.
+  - `Tr(f[g] f'[g^-1]) = tau(f . f' o g^-1) = tau((f o g) . f')`, so it is a trace.
+  - Values:
+    - `Tr(q_[0]) = 1/2 = -1`, from one of the two odd vectors on `{[0],[1]}`.
+    - `Tr(q_[0] q_[00]) = 1/4 = 1`, from the single odd vector `(1,0,0)` on `{00, 01, 1}`.
+    - `Tr(eps_-) = 1`.
+  - So `Tr` separates `q_[0]` from `q_[0] q_[00]` but does not obstruct `eps_- <= q_[0]`.
+- **No finite-dimensional representations.**
+  - `rho(V)` is finitely generated linear, hence residually finite, and `V` is simple, infinite and
+    not residually finite. So `rho(V) = 1`.
+  - `V` is transitive on proper nonempty clopens, so `rho(tau_C) = sigma` is constant.
+  - `tau_[00] tau_[01] = tau_[0]` gives `sigma = 1`, and `tau_[0] tau_[1] = -1 = z` gives `rho(z) = 1`.
+- **Route.** `B` is a subset of `S_-` containing `q_[0]`, and conjugating by `[h]` gives the
+  corner solution. The route is valid, and its target claim is correctly OPEN.
+- **Wording remark on artifact Section 7(b).** "a finite-index stabilizer, hence all of `G`, since
+  `G` is simple" is inaccurate: `L_(F_3)(1,2)^x` has centre `{±1}`. The correct justification is that
+  `G` has no proper finite-index subgroup, because it is perfect and `PG` is simple (Lemma 1.1 of
+  `leavitt-self-similarity-exactness-2026-09-12.md`, Section 12 above). The conclusion stands.
+
+## 21. Natural-lift defect, absorption no-go and Thompson V linear targets (12dfc8778, 012225c36, 86a10e7e9, 8ef1f79d9): PASS
+
+- **Lemma 3.3 of `ternary-anti-central-cohn-reformulation-2026-09-12.md`.**
+  - Over `F_3`, `(1 + p)^2 = 1 + 3p = 1` for an idempotent `p`, and `P_p = 2(1 - [1 + p])` has
+    `pi(P_p) = p`.
+  - For commuting `p, q`, `p + q + pq = p + q - 2pq` is their symmetric difference.
+  - `P_p + P_q + P_p P_q = 8 - 6[1+p] - 6[1+q] + 4[1+p][1+q] = 2 + [(1+p)(1+q)] = P_(p xor q)`.
+  - The examples hold: `1 + s0 t0 = -s0 t0 + s1 t1 = -d`, `1 + pi(e) = 2w = -w`, and
+    `h_H pi(e) h_H^-1 = 2(1 + d) = 4 s0 t0 = s0 t0`.
+- **The natural lift.**
+  - `g p_0 = s0 s0 t0` and `h p_1 = s0 s1 t1`, which sum to `s0`.
+  - `g^-1 p_00 = s0 t0 t0` and `h p_01 = s1 t1 t0`, which sum to `t0`.
+  - By equivariance, `g^-1 p_00 g = p_0`, `h p_01 h = p_1`, `h p_00 h = p_00` and `g^-1 p_01 g = p_10`.
+  - `(1 + p_0)(1 + p_1) = 2 = z` gives `P_0 + P_1 = 1_-` on `S_-`.
+  - So `c a = 1_- + [g^-1 h] P_00 P_1 + [hg] P_10 P_0`, with each product `P_U P_V` idempotent and
+    evaluation-killed. This is a diagnostic, correctly not stated as a theorem.
+- **Kernel-corner absorption no-go.** `S = f_11 S + f_22 S + z S`. Base change along `pi` sends
+  `zS` to 0 and `f_11 S` to `s0 t0 R ~= R`, so `zS ~= zS + f_11 S` is impossible.
+- **Thompson V routes.**
+  - `h: (00, 01, 1) -> (01, 1, 00)` has order 3, and `e_h = 1 + h + h^2` is idempotent over `F_2`.
+  - `c e_h b = 1` is equivalent to a left-invertible `a` with `ha = a`, taking `a = e_h b`, and
+    conversely `e_h a = 3a = a`.
+  - `e_h b c != 1`, because a right-invertible idempotent equals 1 and `h != 1`. So `F_2[V]` fails
+    direct finiteness.
+  - `F_2[V]` is a unital subalgebra of `F_2[R^x]` through the tower, so the ascent route is valid.
+  - The soficity route is valid and conditional, and `thompson-v-is-sofic` is open.

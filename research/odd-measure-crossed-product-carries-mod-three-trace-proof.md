@@ -6,6 +6,7 @@ title: Average over odd atom vectors, using that 2 is invertible mod three
 target: odd-measure-crossed-product-carries-mod-three-trace
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ size, relabeling coordinates.
 * On `{00, 01, 1}`, one odd vector has `mu(0) = mu(00) = 1`, so the average there is `4^-1 = 1`.
 
 Proposition 5 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 20 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

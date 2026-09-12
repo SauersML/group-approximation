@@ -9,6 +9,7 @@ requires:
   - signed-thompson-algebra-is-odd-measure-crossed-product
   - hadamard-unit-conjugates-swap-idempotent-to-cylinder
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ artifacts:
   `b = [h]^-1 b'` and `c = c' [h]` give `c e_- b = eps_-`.
 
 Corollary 3 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 20 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

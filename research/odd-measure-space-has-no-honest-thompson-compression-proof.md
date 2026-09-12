@@ -6,6 +6,7 @@ title: Integrate the translated pieces against the invariant Haar measure
 target: odd-measure-space-has-no-honest-thompson-compression
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md
 ---
 
@@ -25,3 +26,5 @@ null clopen set, hence empty.
 `1_(U_00) + 1_(U_01) - 1_(U_0) = 2 . 1_(U_00 cap U_01)`.
 
 Proposition 4 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 20 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
