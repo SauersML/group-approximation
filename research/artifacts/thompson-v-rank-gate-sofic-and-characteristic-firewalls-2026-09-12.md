@@ -1,0 +1,168 @@
+# Thompson V rank gate: sofic-configuration and characteristic-uniform firewalls
+
+Lane `w5-v-nonamenable`, 2026-09-12.
+
+**Target.** V's rank gate for abstract Sylvester rank functions: every Sylvester matrix rank function on `F[V]`,
+`char F = p > 0`, is the augmentation rank. Over `F_3` this is `thompson-v-ternary-rank-functions-are-augmentation`;
+over `F_2` it is the abstract form of `thompson-v-has-no-nontrivial-f2-rank-model`.
+
+**What this artifact does.** It decides neither gate. It proves two firewalls that say where a proof has to live,
+and it names the first configurations they leave open.
+- **Section 1:** no finitary argument confined to a sofic configuration can push `rk(1 - [g])` below `1 - 1/ord(g)`.
+  No import is needed, and free products are covered. This sharpens Proposition 3.2 of
+  `thompson-v-rank-models-fixed-rank-and-wandering-freeness-2026-09-12.md`.
+- **Section 2:** the instances inside `V`: lamp groups, free products, Thompson's `F`.
+- **Section 3:** any argument built from identities that also hold over a subring of `C` fails, because of the
+  von Neumann rank. So a proof must use a `p`-sensitive identity.
+- **Section 4:** both requirements together, and the first natural `p`-sensitive structure question: the
+  order-`char F` cycle law.
+
+## 0. Setting
+
+- **Rank functions.** A Sylvester matrix rank function on a ring `A` assigns `rk(M) >= 0` to every rectangular
+  matrix over `A`, with:
+  - (S0) `rk(1) = 1`;
+  - (S1) `rk(MN) <= min(rk M, rk N)`;
+  - (S2) `rk(M ⊕ N) = rk M + rk N`;
+  - (S3) `rk [[M, C], [0, N]] >= rk M + rk N`.
+- **Derived facts used below.**
+  - Unit invariance: `rk(UMW) = rk(M)` for invertible `U, W`.
+  - Frobenius: `rk(ABC) + rk(B) >= rk(AB) + rk(BC)`.
+    - The lower-triangular form of (S3) gives `rk [[AB, 0], [B, BC]] >= rk(AB) + rk(BC)`.
+    - Multiplying on the left by `[[1, -A], [0, 1]]` and on the right by `[[1, -C], [0, 1]]` turns this matrix into
+      `[[0, -ABC], [B, 0]]`, whose rank is `rk(ABC) + rk(B)` by (S2) and unit invariance.
+  - Pullback: a rank function on `F[V]` restricts to one on `F[K]` for every `K <= V`.
+- **Terms.**
+  - The augmentation rank is the one induced by `F[V] -> F`.
+  - A rank function is detecting if `rk(1 - [g]) > 0` for all `g != 1`.
+  - By `simple-group-rank-functions-are-augmentation-or-detecting`, every rank function on `F[V]` is one or the
+    other, because `V` is simple.
+
+**Confined arguments.** Fix a finite set `S ⊆ V` and put `K = <S>`. An argument about a rank function `rk` on
+`F[V]` is *confined to `S`* if its conclusion is a statement about values of `rk` on matrices over `F[K]`, and each
+premise is of one of three kinds:
+- (P1) an instance of (S0)–(S3), or a consequence of them, applied to matrices over `F[K]`;
+- (P2) an equality between matrices over `F[K]` that holds in `F[K]` (equivalently in `F[V]`);
+- (P3) single-element conjugacy data: `rk(q([g])) = rk(q([g']))` for `g, g'` in `K` that are conjugate in `V`,
+  and `q` in `F[t]`.
+
+The conjugator in (P3) may lie outside `K`. Using that `h` in `V` conjugates a *tuple* of `K` to another tuple is a
+(P2) premise once `h` is put into `S`; otherwise it is not confined.
+
+## 1. Sofic configurations are inert
+
+**Lemma 1.1 (sofic rank functions; standard, proof included).** Let `K` be a countable sofic group, `F` any field.
+Then `F[K]` carries a Sylvester matrix rank function `rk_K` such that, for `g` in `K` and nonzero `q` in `F[t]`:
+- `rk_K(q([g])) = 1 - deg gcd(q, t^n - 1)/n` if `g` has finite order `n`;
+- `rk_K(q([g])) = 1` if `g` has infinite order.
+
+In particular `rk_K(1 - [g]) = 1 - 1/ord(g)`, read as `1` for infinite order, and `rk_K` is detecting.
+
+*Proof.*
+1. **The approximations.** Take maps `sigma_k : K -> Sym(n_k)` with `d_H(sigma_k(gh), sigma_k(g)sigma_k(h)) -> 0`
+   and `d_H(sigma_k(g), 1) -> 1` for `g != 1`. Extend `sigma_k` linearly to `F[K]`, sending `g` to its permutation
+   matrix, and entrywise to matrices.
+2. **The rank function.** Put `rk_K(M) = lim_omega rank(sigma_k(M))/n_k` along a free ultrafilter.
+   - (S0), (S2) and (S3) hold at every `k`.
+   - For (S1): `sigma_k(MN) - sigma_k(M)sigma_k(N)` is a finite combination of differences
+     `P_(sigma(gh)) - P_(sigma(g))P_(sigma(h))`. Each difference has rank at most the number of points where the two
+     permutations differ, so the normalized rank of the whole combination tends to `0`, and (S1) passes to the
+     limit by subadditivity of rank.
+3. **Cycle structure.** If `g^j != 1`, then `sigma_k(g)^j` is Hamming-close to `sigma_k(g^j)`, which moves almost
+   every point. So the proportion of points on `sigma_k(g)`-cycles of length `l` tends to `0`:
+   - for every `l` below the order of `g`;
+   - for every bounded `l`, when `g` has infinite order.
+
+   For finite order `n`, `sigma_k(g)^n` is close to the identity, so almost every point lies on an `n`-cycle.
+4. **Ranks on a cycle.** On one `n`-cycle, `q(C_n)` is multiplication by `q` on `F[t]/(t^n - 1)`. Its kernel is the
+   ideal generated by `(t^n - 1)/gcd(q, t^n - 1)`, of dimension `deg gcd(q, t^n - 1)`.
+   - On an `l`-cycle, `rank q(C_l) >= l - deg q`. Averaging over the cycles gives the two formulas.
+   - For `q = 1 - t`, `gcd(q, t^n - 1) = t - 1` has degree `1`. ∎
+
+**Theorem 1.2 (sofic configurations are inert).** Let `S ⊆ V` be finite with `K = <S>` sofic. Then no argument
+confined to `S` concludes any of the following, for any `g` in `K`:
+- `rk(1 - [g]) < 1 - 1/ord(g)`;
+- `rk(q([g])) < 1 - deg gcd(q, t^n - 1)/n` for some `q != 0`, where `n = ord(g)`;
+- that `rk` is the augmentation rank on `F[K]`.
+
+*Proof.* Restrict attention to matrices over `F[K]`; every premise and the conclusion only mention those.
+- **(P1) and (P2)** hold for `rk_K`, since it is a rank function on `F[K]`.
+- **(P3)** holds for `rk_K`: by Lemma 1.1, `rk_K(q([g]))` depends only on `q` and `ord(g)`, and elements conjugate
+  in `V` have equal order.
+
+So `rk_K` satisfies every premise, and by Lemma 1.1 it violates each conclusion. ∎
+
+**Remark 1.3 (partial progress is blocked too).** A confined argument over a sofic configuration can't even prove
+an upper bound `rk(1 - [g]) <= theta` with `theta < 1 - 1/ord(g)`. Every step of a gate proof that lowers
+`rk(1 - [g])` below the sofic value has to go through a configuration that is not known to be sofic.
+
+**Remark 1.4 (comparison with Proposition 3.2 of the fixed-rank artifact).**
+- **That proposition:** covers amenable `H` together with tuple-level `V`-conjugacy premises for tuples in `H`,
+  whose conjugators lie outside `H`. It imports Elek–Szabó uniqueness of sofic approximations of amenable groups.
+- **Theorem 1.2:** needs no import, covers every sofic configuration, and allows single-element conjugacy with any
+  conjugator.
+- **Not covered by either:** tuple-level `V`-conjugacy of a non-amenable tuple whose conjugator, once added to `S`,
+  makes `<S>` not known to be sofic.
+
+**Remark 1.5 (the established V gate tools are sofic-shaped).** With `a_p = phi_V = 0`, `rk_K` satisfies on `K` the
+conclusions of:
+- the torsion law `v-rank-models-are-trivial-plus-free-on-odd-cycle-trees`, since finite subgroups act regularly;
+- uniform displacement;
+- `v-rank-models-act-freely-by-wandering-elements`, since infinite-order elements are free.
+
+So quoting these theorems as premises doesn't escape Theorem 1.2 either, as long as the quoted instances concern
+elements of `K`.
+
+## 2. Instances inside V
+
+### 2.1 Lamp configurations
+
+**Proposition 2.1.** Let `x` in `V` have a nonempty clopen `W` with `x^j W`, `j` in `Z`, pairwise disjoint. Let `L`
+be any subgroup of the rigid stabilizer `Rist_V(W)`, the elements supported in `W`. Then `<x, L> ≅ L wr Z`, the
+restricted wreath product.
+
+*Proof.*
+- **The lamps.** `L_j = x^j L x^(-j)` is supported in `x^j W`. The supports are pairwise disjoint, so the `L_j`
+  commute pairwise and generate their direct sum `⊕_j L_j`.
+- **Normality.** `x` permutes the `L_j` by the shift, so this sum is normal in `<x, L>`, and
+  `<x, L> = (⊕_j L_j)<x>`.
+- **Trivial intersection.** Every element of the sum preserves each `x^j W`, while `x^k` with `k != 0` moves `W`
+  off itself. So `<x>` meets the sum trivially.
+- **Infinite order.** `x` has infinite order because the translates are disjoint. ∎
+
+**Consequences.**
+- **Finite or amenable `L`:** `L wr Z` is amenable, hence sofic, and Theorem 1.2 applies with no import. This covers
+  every "mixed element of the lamp group `<x, g>`" with `g` supported in `W`, and every lamp configuration built
+  from a finite subgroup of `Rist_V(W)`.
+- **Sofic `L`:** `L wr Z` is sofic. This is imported at statement level, not re-read: Hayes–Sale, wreath products of
+  a sofic group by an amenable group are sofic.
+
+### 2.2 Free products and residually finite configurations
+
+- **Sofic by standard facts:** residually finite implies LEF, and LEF implies sofic.
+- **Free products:** by Gruenberg's theorem, free products of finite groups are residually finite. This is standard
+  and was not re-read.
+- **Consequence:** if `<S>` is isomorphic to `P_1 * ... * P_r` with finite `P_i`, or is residually finite or LEF,
+  then Theorem 1.2 applies. Examples are pairs of clopen `p`-cycles that generate a free product, and depth-changing
+  torsion pairs that do.
+- **What stays uncovered** (Remark 1.4): using that a free-product tuple is `V`-conjugate to another tuple, through
+  a conjugator that isn't in `S`.
+
+### 2.3 Thompson's F
+
+- **The subgroup:** `F = <x_0, x_1> <= V`.
+- **If `F` is amenable** (`thompson-f-is-amenable`, OPEN): `F` is sofic, so every configuration inside `F` is inert,
+  and so is every configuration inside an amenable extension of `F` in `V`.
+- **So:** an argument confined to `F` that proves either gate would show that `F` is not sofic, which is stronger
+  than non-amenability.
+
+### 2.4 Live configurations after Section 1
+
+A gate proof must contain a finitary step confined to some `S` with `<S>` not known to be sofic. Examples:
+- `F` itself;
+- Thompson's `T` and `V`;
+- groups generated by `F` together with one clopen `p`-cycle;
+- the two generators of `T`. By Lochak–Schneps, `T` is generated by an element of order `4` and one of order `3`;
+  this presentation was not re-read.
+
+Section 3 adds a second requirement that any such step must meet.
