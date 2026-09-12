@@ -61,12 +61,11 @@ theorem guessPath_in_letter (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     fun a ha => (geodWord_spec J x y).1 a (List.take_subset k _ ha)
   unfold guessPath guessWord
   rw [expWord_take_append g (geodWord J x y) k, expWord_drop_eq_cons g (geodWord J x y) hk,
-    List.take_append_eq_append_take, List.take_of_length_le (by omega),
-    List.take_append_eq_append_take, List.take_of_length_le (l := expLetters g _) (by omega),
-    Nat.add_sub_cancel_left]
-  have hzero : s - (expLetters g ((geodWord J x y)[k]'hk)).length = 0 := by omega
-  rw [List.take_of_length_le (l := expLetters g _) hs, hzero, List.take_zero, List.append_nil,
-    List.prod_append, prod_expWord J g hg _ hlet, vertex_eq_mul_listVal_take, mul_assoc]
+    List.take_append,
+    List.take_of_length_le (l := expWord g ((geodWord J x y).take k)) (Nat.le_add_right _ s),
+    Nat.add_sub_cancel_left, List.take_append, Nat.sub_eq_zero_of_le hs, List.take_zero,
+    List.append_nil, List.prod_append, prod_expWord J g hg _ hlet, vertex_eq_mul_listVal_take,
+    mul_assoc]
 
 /-- **Every index of the expansion is at a letter boundary or strictly inside one letter.** -/
 theorem exists_letter_block (g : I → Q) :
