@@ -52,3 +52,39 @@ the rank count of reduced `H₀(S⁰; K)` and, in cohomology, through `kronecker
 - A binder-shift hazard: proving `def P : Prop := ∀ (K : Type) [Field K] (n : ℕ), …` by
   `fun K _ n => …` relies on how the elaborator matches an explicit `_` against an instance-implicit
   expected binder.  Prove such endpoints with `intro K _ n` instead.
+
+## Scope 2 (2026-09-11 evening): lix-steenrod's block OddPAcyclic* (plan §3.4 route (A)) — COMPILED
+
+| file | contents | evidence |
+|---|---|---|
+| `OddPAcyclicAlgebra` | ring algebra: recursive contraction `contrOp`, `eAll`; `sum_mul_contrOp_add` (`d S + S d = 1 − eAll E` from five slot relations); `eAll_eq_zero`, `contrOp_mem` | 0911-232214-2678 |
+| `OddPAcyclicSimplex` | signed exactness of `singFreeR K` on Δⁿ over any CommRing: `free K ≅ sigmaConst K` by `Adjunction.leftAdjointUniq`, `alternatingFaceMapComplex.mapIso`, homotopy invariance at `K`; no unsigned face sum; `printedSignedSimplexExact` | 0911-233328-58765, landed 8739ca3a8 |
+| `OddPAcyclicTag` | `chainS`, `chainE` from the splitting; one-slot contraction and `∂e = 0`, `e∂ = 0` on tags | 0911-232214-2678 |
+| `OddPAcyclicSlot` | generic `slotOp`, `slotS`, `slotE`, the five relations with input-prefix Koszul signs, `tupDAll_mul_contrOp_add` | 0911-232214-2678 |
+| `OddPAcyclic` | grading, assembly; EXPORT `tupD_exists_preimage_stdSimplexTop`; `printedTupleAcyclicOnModels` | 0911-234129-25726, landed 9b8b95eee |
+| `OddPAcyclicZero`, `OddPAcyclicZeroAug` | (E0) degree 0: `Sigma.desc lsingle` intertwines the signed differentials at 1→0, vendored `H0Gen.chainGenerator_sub_mem_range` transports; telescoping over slots; EXPORT `tupD_exists_preimage_zero_stdSimplexTop` against `tupAug`; `printedTupleAcyclicZeroOnModels` | 0912-001526-78604, landed c74ce78c3 |
+
+Sign model test (`backup/lix-cupone/oddp_acyclic_signs.py`, acn112, seconds): chains of the 2-simplex, r = 1, 2, 3, two
+contraction data, GREEN; negative control (unsigned slotS) fails the slot relations H1/H2 but not the composite
+identity — the composite is sign-insensitive on its support, confirming §3.4(A).
+
+## Scope 3 (2026-09-12): odd-p Chern layer inputs over K (UNVERIFIED, probing)
+
+`CupVanishRepOf` (`exists_cocycle_vanishing_onOf`, `cocycleClassK_eq_zero_of_mem_smallAnnOf(_pos)`,
+`cup_eq_zero_of_absToSub_eq_zeroOf`), `CupVanishIterateOf` (`pull_cup_eq_zero_of_supOf`,
+`prod_eq_zero_of_coverOf` with the ORDERED `List` product, since `TotalHOf K X` is not commutative),
+`CohomologyTotalNontrivialOf` (`one_ne_zero_cohZeroOf`, `nontrivial_totalHOf` + instance).
+
+Also compiled this session: `CohomologyLHDegreewiseOf` (lix-coeff's file, handed over), no edits needed.
+
+## TRAPS (added)
+
+- A CharClass-level `singularBoundary : SingularBoundaryData` shadows the vendored
+  `AffineBarycentricSubdivision.singularBoundary`; qualify the vendored names.
+- `rw [← Category.assoc]` across `singularChainGroup K X (0+1)` and the coproduct object is not type-correct at
+  instances transparency; compare on a generator with `change` instead.
+- `Set.range_coe_subtype` is `Subtype.range_coe_subtype` at the pin.
+- `Finset.single_le_sum` needs `(f := …)` when the summand is a projection; `split_ifs` needs a `show` to beta-reduce a
+  lambda-built tuple first.
+- `TotalHOf K X` is a `DirectSum.GRing`, not a `CommRing`: `∏ l ∈ Finset.range r` does not typecheck; use
+  `((List.range r).map f).prod` and `List.prod_range_succ`.
