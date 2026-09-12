@@ -220,3 +220,33 @@ the linear part, where it is exactly a matrix direct-finiteness failure.
 `deg sigma * deg tau >= q`: every binary design, and every larger-field design whose decoder
 identity uses `x^q = x`, like the cube-root pair of Example 4. On hosts where `F_p[G]` is stably
 finite at every matrix size, only such high-degree designs can refute Gottschalk.
+
+## 8. Proposition 8 (words in linear and reversible automata)
+
+Let `tau = W_1 W_2 ... W_n` be a composite of automata over a group `G`, acting on `F_q^m`
+configurations. Each `W_j` is either a **square** linear automaton over some `F_q^r` or a
+bijective automaton of any degree, such as a cellwise permutation like `x -> x^3` on `F_8` or a
+reversible rule. If `tau` is injective and not surjective, then some linear factor `W_j` is
+injective and not surjective. So `M_r(F_q[G])` is not directly finite for its size `r`, and
+`M_(rk)(F_p[G])` is not directly finite either.
+
+*Proof.* Put `S_j = W_j ... W_n` and `S_(n+1) = id`. Suppose `S_(j+1)` is surjective. Since
+`tau` is injective, `S_j` is injective, so `W_j` is injective on the image of `S_(j+1)`, which
+is the whole configuration space.
+
+- If `W_j` is bijective, then `S_j` is surjective.
+- If `W_j` is a square linear automaton, it is injective, so it is either surjective, and then
+  `S_j` is surjective, or injective and not surjective.
+
+If no linear factor is injective and not surjective, induction from `j = n` down gives `S_1 = tau`
+surjective, a contradiction. So some square linear factor `tau_A` is injective and not
+surjective. It has a linear left inverse `tau_C`
+(`certificate-linear-automata-have-local-linear-decoders`), so `C A = I`. If `A C = I`, then
+`tau_A` would be bijective, so `C A = I != A C`. Restriction of scalars gives the failure over
+`F_p`. QED
+
+**Scope.** With rectangular factors, `gather` (the linear map copying window values into a larger
+alphabet) followed by the local rule presents *every* automaton. So Proposition 8 cannot extend
+to arbitrary rectangular words without being the whole conjecture. The content is that
+nonlinearity which is either reversible or low degree never helps. A new mechanism needs a
+non-bijective nonlinear step whose decoder degree product is at least `q`.
