@@ -75,7 +75,13 @@ candidate whose `t`-exponents are all `+-1` must have same-sign corner labels
 that are not free, or a sign-change coefficient absorbed by them
 (`kl-unit-exponent-words-inject-when-same-sign-corners-are-free`).  This covers
 all window cyclic-cover words and settles the length-six classes `+++-+-` and
-`++-++-` generically (`kl-length-six-four-sign-change-words-inject`).
+`++-++-` generically (`kl-length-six-four-sign-change-words-inject`).  After
+splitting powers of `t`, a candidate with at least four same-sign corners must
+repeat a same-sign label or pair a P-label with the inverse of an N-label.
+Otherwise it is aspherical over every group, involution loops included
+(`kl-four-same-sign-corner-words-inject`, 2026-09-12).  This settles `+++++-`
+and `++++--` generically and fences `(L6.1)` directly.  The census residue is
+therefore made of coincidence words.
 
 What remains is the conjunction of two independent problems.  The analytic
 problem is the stable branch: `R^x` must have full hyperlinear radical.  The
