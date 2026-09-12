@@ -236,7 +236,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 * A proof must use `sigma` on opposite root, Weyl or torus elements, jointly on a nonsofic subgroup,
   together with the rank of `M`.
 * The Heisenberg plan dies the same way on `U_3(R)`.
-* **Later results from other families** (both established; verifier record af46d53387).
+* **Later results from other families** (both established; verified in `gk-vf-gate-verification-2026-09-12.md`).
   * **`binary-locally-finite-hnn-models-violate-two-root-identity`.**
     * **Result.** HNN extensions of a locally finite subgroup along single-letter partial conjugations
       carry characteristic-two rank models that violate the identity.
@@ -312,7 +312,7 @@ route `el3-rank-triviality-via-defect-piece-covariance`. w4-r4-adversary has bee
   orthogonality must use `sigma` outside that locally finite subgroup (L7), most likely on the
   prefix replacements that do not preserve measure. That is also where the endpoint gets its
   contradiction.
-* **Audit** (w4-r4-adversary, ca519f534e; artifact `covariant-diagonal-plan-adversarial-audit-2026-09-12.md`).
+* **Audit** (w4-r4-adversary; artifact `covariant-diagonal-plan-adversarial-audit-2026-09-12.md`).
   The claim is not refuted, and its route stays valid.
   * **Joins exist.** In a rank ultraproduct, every countable family of principal right ideals has a
     join in the lattice of principal right ideals, with rank equal to the supremum of its finite joins.
@@ -356,3 +356,20 @@ statements say. It is not a re-verification.
   So in characteristic two these mechanisms no longer depend on matrix ultraproducts.
 * **What still holds.** The ternary route needs characteristic three, and none of these mechanisms has a
   characteristic-three counterpart yet. So (U2) is still open there.
+* **Characteristic three, later landings** (another family; verified in `gk-vf-gate-verification-2026-09-12.md`).
+  * **Established.** `signed-thompson-z-moving-rank-functions-match-v-rank-functions`: the signed Thompson
+    group algebra has a rank function moving `-1` if and only if `V` has a non-augmentation rank function.
+  * **Open target.** `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one` is the Sylvester
+    form of the ternary gate.
+    * **Route.** `ternary-units-kill-minus-one-via-thompson-v-augmentation` derives it from the OPEN
+      `thompson-v-ternary-rank-functions-are-augmentation`.
+    * **Strength.** That input is at least as strong as `V` failing to be sofic.
+    * **Consequence.** A proof that does not settle `V` must use elements of `G_3` outside `E x| V`.
+  * **Open.** `thompson-v-carries-ternary-nonaugmentation-rank-function` follows from `thompson-v-is-sofic`.
+    If `V` is sofic, the augmentation route dies, but its target does not.
+  * **Established firewall.** `anti-central-sofic-data-cannot-force-defect-submultiplicativity` is the
+    characteristic-three counterpart of the L5 firewalls. Anti-central regular ranks give ternary cylinder
+    defects of rank `5/9`, and those defects multiply exactly on every sofic subgroup and every locally
+    finite HNN datum.
+  * **Unchanged.** The gap, descent and positivity mechanisms still have no characteristic-three
+    counterpart.
