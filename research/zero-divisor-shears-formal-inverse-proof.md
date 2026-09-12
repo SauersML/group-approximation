@@ -7,6 +7,7 @@ target: zero-divisor-shears-are-formal-automorphisms
 requires: []
 artifacts:
   - research/artifacts/stable-formalizability-on-simple-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Section 3, Theorem 5.
@@ -15,3 +16,5 @@ Artifact, Section 3, Theorem 5.
 2. **Controls are unchanged.** `L_B(X + L_A W) = L_B X + L_(BA) W = L_B X` for any polynomial vector `W`.
 3. **Telescoping.** `T'(T(X)) = T(X) − L_A Gamma~(L_B T(X)) = X + L_A Gamma~(L_B X) − L_A Gamma~(L_B X)
    = X`, and `T(T'(X)) = X` in the same way.
+
+**Verification.** `w3-vf-positive` passed this route (Section 13.1 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

@@ -7,6 +7,7 @@ target: injective-automata-restrict-to-schreier-graph-automata
 requires: []
 artifacts:
   - research/artifacts/subgroup-fixed-configuration-transfer-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 1 of the artifact.
@@ -18,3 +19,5 @@ Section 1 of the artifact.
 - A left-invertible map is onto iff it is bijective, iff its left inverse is injective.
 - For normal `H`, `Hgm = (gH)(mH)`.
 - Filter: a pattern constant on the classes `E cap Hg` extends to a configuration in `Fix_H`.
+
+**Verification.** `w3-vf-positive` passed this route (Section 14 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

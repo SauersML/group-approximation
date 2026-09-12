@@ -8,6 +8,7 @@ requires:
   - zero-divisor-shears-are-formal-automorphisms
 artifacts:
   - research/artifacts/stable-formalizability-on-simple-hosts-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Artifact, Section 3, Corollary 6.
@@ -18,3 +19,5 @@ Artifact, Section 3, Corollary 6.
 3. **Distinct cells.** Coincidences among `hm, hms, hsm, hsms`, or with `h, hs`, force `m = 1`, `m = s`
    or `sm = ms`. Each of these contradicts `m^(-1) s m ≠ s`.
 4. **Non-affine.** A multilinear representative over `F_2` is unique, and this one has degree two.
+
+**Verification.** `w3-vf-positive` passed this route (Section 13.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).
