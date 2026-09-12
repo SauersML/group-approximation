@@ -113,7 +113,8 @@ Let `R = L_(F_2)(1,2)` and `m = 2^k`. The level-`k` matrix units `s_a t_b` with
   * *When not (correction, 2026-09-12).* An earlier version attributed this conjugacy to the
     nine-leaf compressor, which is wrong. At the maximal type `r = 3m/2` there is no trivial
     summand, and `T = ker(g-1) / (ker(g-1) ∩ Im(g-1))` is `0` for `g` but `R` for `g (+) I`.
-    So they are not conjugate there.
+    So they are not conjugate there. `gk-vf-linear` re-derived the corrected statement: they are
+    conjugate iff `W` has a `J_1` summand (verification artifact Section 45, 56bc1424c2).
 * **Involution classes.** In `SL_N(F_2)` the involutions `1 + N` with `N^2 = 0` and
   `rank N = r` form one conjugacy class. Put `f_(k+1)(r) = rk(sigma(g_r) - 1)` for such an
   element `g_r` of `H_(k+1)`. It is well defined because conjugation inside `H_(k+1)` is
@@ -498,6 +499,7 @@ Check `x_12` on the three pieces of this decomposition:
 * on `c(e_2 r) = e_2 s_0 r` both sides give `e_2 s_0 r + e_1 s_0 a r`;
 * on `c(e_3 R)` both sides are the identity, because `s_0 a t_0 s_1 = 0`.
 The `GL_2` statement is the same computation on the first two coordinates. QED
+(Passed by `gk-vf-linear`, Section 45, 56bc1424c2.)
 
 **The subgroup.** `c U_12(R) c^-1 = U_12(s_0 R t_0)`, a proper subgroup of `U_12(R)`. So
 `H = <U_12(R), c>` is `B semidirect <c>`, where `B = union_k c^-k U_12(R) c^k` is an
