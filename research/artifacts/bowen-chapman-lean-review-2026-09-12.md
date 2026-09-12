@@ -631,6 +631,9 @@ C4, 0912-123010-42120.**
   `[propext, Classical.choice, Quot.sound]`, for the ten declarations listed
   below. The driver's md5 is still `642406c4…`, and it has ten `#print axioms`
   lines, which matches the recorded count.
+* **The closures still hold on main.** The driver's repository import closure
+  has 315 modules, and none of them changed between the C4 base e8868748d and
+  origin/main fe7446d1d. The base is an ancestor of main.
 * **Provenance correction.** The first pass (0912-122205-6338) was read by
   `bc-infra`, which grepped the MSI build log and relayed the lines.
   `bc-assembly` did not read the log. Only C4's record makes the closure
