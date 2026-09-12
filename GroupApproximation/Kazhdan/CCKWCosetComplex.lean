@@ -67,8 +67,8 @@ theorem rep_smulVertex {g k : GHB 7} {x : Vertex} (h : CCKWTits.Rep vertexGroup 
   rfl
 
 theorem smulVertex_mul (g h : GHB 7) (x : Vertex) :
-    smulVertex (g * h) x = smulVertex g (smulVertex h x) := by
-  simp only [smulVertex, mul_smul]
+    smulVertex (g * h) x = smulVertex g (smulVertex h x) :=
+  congrArg (Sigma.mk x.1) (mul_smul g h x.2)
 
 theorem smulVertex_one (x : Vertex) : smulVertex 1 x = x := by
   obtain ⟨i, y⟩ := x
