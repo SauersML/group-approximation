@@ -85,6 +85,29 @@ the K-theory of `Q`, and that a variant of Blackadar 23.15.12 reduces the proble
 to crossed products of `O_2` by certain circle actions.  Not wired: it is another
 restatement with no new attack surface for this lane.
 
+# 3b. Barlak--Szabó, arXiv:1403.7312 (Trans. Amer. Math. Soc. 369 (2017))
+
+*Rokhlin actions of finite groups on UHF-absorbing C\*-algebras.*  Read: Remark
+4.13 through the start of the proof of Theorem 4.17 (pp. 25--26).
+
+* **Proposition 4.14.**  For a natural number `p ≥ 2` there is a locally UCT
+  Kirchberg-representable action `γ : Z_p ↷ O_2` with `O_2 ⋊_γ Z_p` KK-equivalent
+  to `M_(p^∞)^(φ(p))`.
+* **Proposition 4.16.**  "Let A be a separable C*-algebra, and let p, q ≥ 2 be two
+  relatively prime natural numbers.  If both M_(p^∞) ⊗ A and M_(q^∞) ⊗ A satisfy
+  the UCT, then so does A."  Proof: `Z_(p^∞,q^∞) ⊗ A` is an extension of
+  `M_(p^∞) ⊗ A ⊕ M_(q^∞) ⊗ A` by `C_0(0,1) ⊗ M_(p^∞) ⊗ M_(q^∞) ⊗ A`, and the
+  Jiang--Su algebra is a stationary inductive limit of `Z_(p^∞,q^∞)`.
+* **Theorem 4.17.**  For two primes `p, q` the following are equivalent: (1) every
+  separable nuclear C*-algebra satisfies the UCT; (2) every unital Kirchberg
+  algebra does; (3) for pointwise outer, locally Kirchberg-representable actions
+  of `Z_p` and of `Z_q` on `O_2`, both crossed products satisfy the UCT; (4) the
+  same for `Z_(pq)`.
+
+**Credit correction.**  `coprime-uhf-stabilizations-detect-uct` said no source
+read states (CU1).  Proposition 4.16 is its forward direction for UHF types `p^∞`
+and `q^∞`, by the same dimension-drop argument.  The node's credit is corrected.
+
 # 4. What this lane wired
 
 * `barlak-li-p-half-iff-zp-actions-fix-cartan` (literature, with `-citation`):
@@ -92,6 +115,32 @@ restatement with no new attack surface for this lane.
 * `uct-three-half-via-z3-actions-on-o2`: route into
   `uct-for-three-infinity-absorbing-nuclear-algebras`, the twin of
   `uct-two-half-via-z2-actions-on-o2`.
+* `bootstrap-class-zp-actions-on-o2-fix-a-cartan` (derivation, with `-proof`):
+  an outer strongly approximately inner `Z_(p^n)`-action on `O_2` that is
+  equivariantly KK-equivalent to an action on a type I algebra fixes a Cartan
+  subalgebra (descent, type I crossed products, Corollary 4.15).  So every action
+  that equivariant K-theoretic classification can describe is harmless, and a
+  counterexample lies outside the equivariant bootstrap class.
+* `o2-zp-cartan-fixing-all-primes-or-at-most-one` (derivation, with `-proof`):
+  Cartan-fixing holds at all primes or at most one, and any two primes decide
+  Problem II.  Item 1 is Barlak--Szabó Theorem 4.17 in Cartan form.
+* Stale text corrected in `uct-for-three-infinity-absorbing-nuclear-algebras`,
+  `o2-z3-actions-fix-a-cartan-subalgebra` and
+  `coprime-uhf-stabilizations-detect-uct`.
 
-The derivations `o2-zp-cartan-fixing-all-primes-or-at-most-one` and
-`bootstrap-class-zp-actions-on-o2-fix-a-cartan` are recorded in their own nodes.
+# 5. Assessment
+
+No attack in this lane has traction on either side of Problem II.
+
+* **Negative side.**  A witness must be an outer strongly approximately inner
+  `Z_p`-action on `O_2` outside the equivariant bootstrap class, at all primes but
+  at most one.  The repository's rigidity mechanisms do not reach it.  The
+  compression results behind the non-MF and nonsofic theorems live on
+  non-amenable groups, whose group C\*-algebras are not nuclear.  Ozawa's
+  Kazhdan-projection construction (arXiv:2609.08892) yields an MF algebra with
+  only non-faithful tracial states, not a faithful non-quasidiagonal trace on a
+  nuclear algebra as `stw99-ii-implies-ix1` would need.
+* **Positive side.**  Every reduction ends at the same coherence step, with no
+  new input: the intersection algebra for complexity rank one, a Cartan
+  subalgebra invariant under an exotic automorphism, or `[id_A] = 0` from
+  `K_*(A) = 0`.
