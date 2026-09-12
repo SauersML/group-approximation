@@ -147,7 +147,87 @@ sofic. QP implies RDD, through the absolute criterion applied to `H/M`.
    give sofic approximations of `G` in which `R^x` is invisible. This is
    consistent with both answers.
 
-## 7. Relation to other lanes
+## 7. THEOREM 6 (block invariance)
+
+**Setting.**
+
+- `1 -> N -> G -> Q -> 1`, with `N` infinite Kazhdan and finite symmetric
+  generating set `S`.
+- Every homomorphism `Q -> S_U` is trivial.
+- `sigma_n : G -> Sym(X_n)` is a sofic approximation.
+
+**Conventions.**
+
+- `f_n = o(X)` means `f_n / |X_n| -> 0` along `U`.
+- By Kun's theorem (`kun-expander-decomposition-formalized`, on the prescribed
+  generating set `S`), editing `o(X)` edges of the `S`-graphs of `sigma_n|N`
+  makes them a disjoint union of blocks `B`, each with Cheeger constant at least
+  `h > 0`: `|E_S(A, B \ A)| >= h |A|` for `A ⊂ B` with `|A| <= |B|/2`.
+- Put `L = max over s in S of the word length of g^-1 s g` and of `g s g^-1`,
+  and `K = max over s of |{x : sigma(g)sigma(s)x != sigma(gsg^-1) sigma(g) x}|`
+  summed appropriately. All these defects are `o(X)`.
+
+**Claim.** For every `g` and `eps > 0`, the blocks with
+`|sigma(g)B Δ B| > eps|B|` have total size `o(X)`.
+
+*Step 1 (almost invariance of images).* For `s in S`, write `g^-1 s g` as a
+word `w_s` of length at most `L`. Since `sigma` is an asymptotic homomorphism,
+`sigma(s)sigma(g)x = sigma(g) sigma(w_s) x` off `o(X)` points. Letter by letter,
+`sigma(w_s)` moves at most `L` times the edited boundary of `B`, plus
+approximation error. Summing over blocks, the total `S`-boundary
+`e(B) = sum_s |sigma(s)A Δ A|` of `A = sigma(g)B` is `o(X)`.
+
+*Step 2 (almost invariant sets are unions of blocks).* Let `C` have `S`-boundary
+`e(C)` in the edited graph, and let `B'` be a block. The boundary of `C cap B'`
+inside `B'` is at most the part of `e(C)` in `B'`. Cheeger then gives
+
+```text
+min(|C cap B'|, |B' \ C|) <= e_(B')(C) / h.
+```
+
+*Step 3 (one block).* `A = sigma(g)B` with generators `gSg^-1` is isomorphic,
+through `sigma(g)` and off `o(X)` points, to `B` with generators `S`. So it has
+Cheeger constant about `h` for `gSg^-1`. Let `C = A cap B'` for a block `B'`
+that `A` meets in at least half of `B'`. By Step 2, `C` is almost `S`-invariant.
+Each element of `gSg^-1` is a word of length at most `L` in `S`, so the
+`gSg^-1`-boundary of `C` is at most `L` times its `S`-boundary, plus
+approximation error. Expansion of `A` then forces `|C| ≈ 0` or `|C| ≈ |A|`.
+Both approximations are relative to `|A|`, with total error `o(X)` by a Markov
+count over blocks. So on most blocks, one block `B' = beta_g(B)` satisfies
+`|sigma(g)B Δ B'| <= eps|B|`, and `||B'| - |B|| <= eps|B|`.
+
+*Step 4 (the quotient representation).*
+
+- `beta_(gn)(B) = beta_g(B)` for `n in N` on most blocks, since `sigma(n)B ≈ B`
+  by Step 2 applied to words in `S`.
+- `beta_(gh) = beta_g beta_h` on most blocks.
+- Fix an ordering of each block. Define `tau_n(q)` for `q = gN` by sending the
+  `k`-th point of `B` to the `k`-th point of `beta_g(B)` for
+  `k <= min(|B|, |beta_g(B)|)`, and complete arbitrarily to a permutation.
+- Off `o(X)` points, `tau_n(q q')` agrees with `tau_n(q) tau_n(q')`: both send
+  `B` to the same block, and order-preserving maps compose. So `tau` is a
+  homomorphism `Q -> S_U`.
+
+*Step 5.* By hypothesis `tau` is trivial, so `tau_n(q)` fixes all but `o(X)`
+points. A point of `B` is fixed only if `beta_g(B) = B`. Hence
+`|sigma(g)B Δ B| <= eps|B|` on most blocks. ∎
+
+**Fixed-algebra form.** Kun--Thom Lemma 2.3 identifies `D_U^(sigma(N))` with the
+block algebra, and Theorem 6 says `sigma(G)` fixes it. So
+`D_U^(sigma(G)) = D_U^(sigma(N))`.
+
+**For the Leavitt cover.** `Q = R^x` is simple, so a nontrivial homomorphism
+`R^x -> S_U` is injective. For `q != 1`, the element `tau(q)` then has trace
+less than `1`, and tensor amplification gives a trace-zero embedding, so `R^x`
+would be sofic. So `tau` is trivial.
+
+**Consequence for OPEN A.** Every G-invariant partition or orbit datum of a
+sofic approximation of the cover is already N-invariant. The relative defect
+`[u_hat z u_hat^-1, gamma] not in N` has to be detected inside one
+N-expander block, where elements of `N` and of `G \ N` alike act freely and `N`
+is ergodic.
+
+## 8. Relation to other lanes
 
 - `hyperbolic-rf`: Theorem 1 gives a hyperbolic Kazhdan group all of whose
   finite images are already images of a Kazhdan normal subgroup of infinite

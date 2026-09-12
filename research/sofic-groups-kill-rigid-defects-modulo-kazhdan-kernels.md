@@ -56,6 +56,13 @@ hyperbolic group is sofic, the Leavitt cover
   where `H/M` acts. That factor action need not be free: in any finite-quotient
   model of the Leavitt cover, `R^x` acts on it trivially. So no Corollary D
   conclusion follows. Dead as stated.
+- **Blocks cannot see the defect (established obstruction).** For the Leavitt
+  cover, every sofic approximation preserves the expander blocks of `N`
+  (`kazhdan-kernel-blocks-invariant-under-sofic-invisible-quotient`). Inside a
+  single block, `N`, the compressors and the relative centralizing elements
+  all act freely, with `N` ergodic. A proof has to see
+  `[g z g^-1, gamma] not in M` from inside one block. Partition, orbit and
+  fixed-algebra data carry nothing.
 - **Canonical trace sees nothing of `H/M`.** At canonical trace the spectral
   measure of `M`'s Laplacian is that of the regular representation. That has
   a gap at `0` and no kernel, so the Kazhdan projection of `M` has trace `0` in
