@@ -45,7 +45,6 @@ theorem not_dyadic6_gridPt_add_fifth (N : ℕ) (k : ℤ) :
       rw [pow_succ, Int.mul_emod, ih]
       norm_num
   have hmod := congrArg (fun z : ℤ => z % 5) hZ
-  simp only at hmod
   rw [Int.mul_emod, h6M, mul_assoc, Int.mul_emod_right] at hmod
   omega
 

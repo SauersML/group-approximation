@@ -146,8 +146,7 @@ theorem perHom_hlCond (f : ↥(compactF 4 1)) : HLCond (perHom 4 f) := by
     by_contra h
     have h1 : ((1 : ℤ) : ℚ) ∈ Grid (4 + 2) N := int_mem_grid N 1
     refine not_between_consecutive (k := ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋) h1 ⟨?_, ?_⟩
-    · push_cast
-      linarith [hfr.2]
+    · exact lt_of_le_of_lt hp (by exact_mod_cast hfr.2)
     · push_cast
       exact not_le.mp h
   obtain ⟨s, ⟨i, rfl⟩, -, haff⟩ := hA.slope ⌊Int.fract x * (((4 + 2 : ℕ) : ℚ)) ^ N⌋
