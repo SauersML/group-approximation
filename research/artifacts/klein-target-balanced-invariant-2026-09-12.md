@@ -150,8 +150,9 @@ analogue `(delta, Psi)` is not. This is recorded as the open claim
   `C rho(e_K) B = 1 (x) 1`, lie in the adjoint image? No further linear invariant was found. The
   image contains `n (x) n^op` and `n (x) 1 - 1 (x) n^op` for every `n` with `n^2 = 0`, from
   `rho(1 + n) +- rho(1 - n)`, and it contains every product of these. For `R` there is no trace to
-  give a `sl_n`-type invariant: `R = [R, R]` because `HH_0(L_k(1,2)) = k/(1 - 2)k = 0`. In the matrix
-  analogue `M_n(k)` with `n` invertible, the span of `Ad(GL_n)` is exactly the balanced algebra.
+  give a `sl_n`-type invariant: `R = [R, R]` because `HH_0(L_k(1,2)) = k/(1 - 2)k = 0`. Heuristic only:
+  in the matrix analogue `M_n(k)`, when the adjoint module `k 1 (+) sl_n` is a sum of two absolutely
+  irreducible pieces (checked for `n = 2`, `k = F_3`), the span of `Ad(GL_n)` is the balanced algebra.
 - **The lift.** `rho` is not injective on `k[PG]`. The units `GL_2(k) <= R^x` (level-one matrices)
   give `24` classes in `PG`, whose images lie in the `16`-dimensional span of the `e_ij (x) e_kl`.
   So a splitting inside `rho(k[PG])` is necessary for the Klein target but not sufficient. Exact
@@ -217,3 +218,45 @@ then `Psi^2 delta^2 = 1`. If `Psi^2 T = 1` with `T in A`, then
 isometry pair `b = e_K b`, `c = c e_K` with `c b = 1`. A unital subring of the corner is not such a
 pair. The same self-similarity holds in `R` itself, where `delta` is the partial isometry. In
 `k[PG]` no element plays `delta`'s role, and in `A` none is known.
+
+## 8. The membership equations at level two
+
+Write `r_(beta gamma) = T[beta] r S[gamma]` for `|beta| = |gamma| = 2`. For a unit `g` put
+`g_(alpha beta) = T[alpha] g S[beta]`, and `h = g^-1` with entries `h_(gamma alpha)`.
+
+**Lemma 10 (coordinates on `Q`).** Every `Y in Q` is uniquely
+`Y = sum_(beta, gamma) Y_(beta gamma) (T[beta] (x) S[gamma]^op)`, with
+`Y_(beta gamma) = Y (S[beta] (x) T[gamma]^op)`. For `Y = 1 (x) 1`, `Y_(beta gamma) = S[beta] (x) T[gamma]^op`.
+
+*Proof.*
+- `(T[beta] (x) S[gamma]^op)(S[beta'] (x) T[gamma']^op) = delta_(beta beta') delta_(gamma gamma') 1 (x) 1`.
+- `sum_(beta,gamma) (S[beta] (x) T[gamma]^op)(T[beta] (x) S[gamma]^op) = 1 (x) 1`, by completeness of the level-two code.
+QED
+
+**Proposition 11 (membership equations).** For `T = sum_g lambda_g rho(g)`, `Psi^2 T = 1 (x) 1` iff,
+for all `beta, gamma in {0,1}^2`,
+
+```text
+X_(beta gamma) := sum_g lambda_g sum_alpha g_(alpha beta) (x) h_(gamma alpha)^op = S[beta] (x) T[gamma]^op.
+```
+
+By Corollary 9, these sixteen tensor equations are exactly the condition `delta^2 in rho(k[PG])`.
+
+*Proof.* `Psi^2 = sum_alpha T[alpha] (x) S[alpha]^op`, `T[alpha] g = sum_beta g_(alpha beta) T[beta]` and
+`g^-1 S[alpha] = sum_gamma S[gamma] h_(gamma alpha)`. So
+`Psi^2 rho(g) = sum_(beta,gamma) (sum_alpha g_(alpha beta) (x) h_(gamma alpha)^op)(T[beta] (x) S[gamma]^op)`.
+Lemma 10 then compares coefficients. QED
+
+**Corollary 12 (units that never change level cannot help).** Grade `R` by `deg s_i = 1`,
+`deg t_i = -1`. `S[beta] (x) T[gamma]^op` has bidegree `(2, -2)`. Suppose every unit in the support of
+`T` has level-two entries `g_(alpha beta)` and `h_(gamma alpha)` of degree `0`. Examples are the finite
+level-two sign-and-permutation group `K_4`, and `GL_4` over the degree-zero core. Then every
+`X_(beta gamma)` has bidegree `(0, 0)`, and Proposition 11 fails. So `delta^2` needs units whose
+entries genuinely shift degree, paired with inverse entries of the opposite degree.
+
+*Proof.* The grading on `R` induces one on `Q`, and the equation compares bidegree components. QED
+
+**Where it dies.** No combination of degree-shifting units is known to satisfy Proposition 11.
+Thompson units `sum S[p_i] T[q_i]` do shift degree. Their level-two entries are partial prefix
+replacements, and the equations ask that those replacements sum, over the support, to the single
+level shift `S[beta] (x) T[gamma]` in every one of the sixteen coordinates at once.

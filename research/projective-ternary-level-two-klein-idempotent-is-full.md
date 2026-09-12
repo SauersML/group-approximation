@@ -41,3 +41,9 @@ target and a Gottschalk counterexample on `PG`.
   self-similarity: `delta T Psi` is in it for every `T` in it, and `F_3[PG]` embeds unitally in the
   corner `e_K F_3[PG] e_K` (`klein-corner-contains-unital-copy-of-projective-group-algebra`). It dies
   at a partial isometry: a unital copy inside the corner is not a pair `c e b = 1`.
+- *Membership equations.* `delta^2` lies in the adjoint image iff some finite `sum lambda_g rho(g)`
+  satisfies sixteen tensor equations
+  `sum_g lambda_g sum_alpha g_(alpha beta) (x) (g^-1)_(gamma alpha) = S[beta] (x) T[gamma]` in the
+  level-two entries of the units. Units whose level-two entries all have degree `0` can never
+  satisfy them, the finite sign-and-permutation group `K_4` included. It dies at a degree-shifting
+  support: none is known. Section 8 of the artifact.
