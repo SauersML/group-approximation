@@ -32,6 +32,14 @@ This is equivalent to the goal (Theorem 3 of the artifact), through two routes t
   letters in a pattern that balances `mu`. So a design refuting the claim needs a table group whose
   memory letters are separated only by nonsofic structure. For a robustly unbalanced rule this means
   the letters die in every sofic quotient.
+- **Binary rules, 2026-09-12 (w3-bal-design).** A refuting binary design needs:
+  - **at least four effective memory elements.** With three, the rectangle relation glues two blocks
+    through an involution, and an invisible double flip kills injectivity
+    (`three-address-binary-injective-rules-are-balanced`);
+  - **a non-monotone rule** (`monotone-binary-injective-rules-are-copies`).
+
+  These screens are local: they read only `mu` and coincidences among `M^-1 M M^-1 M`, never the
+  decoder.
 - **Where a construction must live.** A refuting design needs:
   - a nonsofic memory group, which gives at least two independent cycles in `Gamma_E` unless it is
     a non-sofic one-relator group;
