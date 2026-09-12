@@ -7,6 +7,7 @@ target: finite-normal-p-subgroups-preserve-modular-stable-finiteness
 requires: []
 artifacts:
   - research/artifacts/deligne-triple-cover-surjunctivity-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 1 of the artifact.
@@ -23,3 +24,5 @@ Section 1 of the artifact.
    - a pair `abar bbar = 1` in `R/I` lifts to `ab = 1 + i`, a unit, so `b' = b (ab)^(-1)` is a right
      inverse of `a` with image `bbar` (Lemma 1.3).
 4. Apply step 3 to `R = k[E]` and `I = J`, with `J^|N| = 0` from steps 1 and 2.
+
+**Verification.** `w3-vf-positive` passed this route (Section 7.1 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

@@ -10,6 +10,7 @@ requires:
   - finitely-generated-linear-groups-are-residually-finite
 artifacts:
   - research/artifacts/deligne-triple-cover-surjunctivity-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 2 of the artifact, Theorem 2.1.
@@ -21,3 +22,5 @@ Section 2 of the artifact, Theorem 2.1.
 3. The center `C_3` of `E_3` is a normal subgroup of order `3` with quotient `Sp_4(Z)`. For
    `char k = 3`, the modular transfer across finite normal `3`-subgroups gives that `k[E_3]` is stably
    finite.
+
+**Verification.** `w3-vf-positive` passed this route (Section 7.2 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

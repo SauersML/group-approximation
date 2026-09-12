@@ -10,6 +10,7 @@ requires:
   - sofic-groups-are-surjunctive
 artifacts:
   - research/artifacts/deligne-triple-cover-surjunctivity-2026-09-12.md
+  - research/artifacts/w3-vf-positive-verification-2026-09-12.md
 ---
 
 Section 3 of the artifact.
@@ -24,3 +25,5 @@ Section 3 of the artifact.
    with `K cap N = 1`, so `H cap N` injects into `H/K`. Conversely an injection into `H/K` gives
    `Res_fin(H) cap N <= K cap N = 1`.
 4. **Nonsofic.** A sofic `H` is surjunctive by Gromov–Weiss, against step 1.
+
+**Verification.** `w3-vf-positive` passed this route (Section 7.3 of `research/artifacts/w3-vf-positive-verification-2026-09-12.md`).

@@ -350,3 +350,69 @@ Verdict: **PASS** for all four claims, with one typo in Theorem 2.1's displayed 
   `(g^-1.x)(omega) = x(g omega) = z(omega)` puts `g^-1.x` in `X_2`.
 - **Conclusion.** Invariance puts `x` in both pieces, a contradiction.
 - **Consequence 4.2.** Correct as prose.
+
+## 7. Deligne's triple cover and finite normal p-subgroups (w3-deligne, `c2617bfb3d`, `593822494c`)
+
+Verdict: **PASS** for all three claims and Corollaries 2.2 and 3.3. Nothing here decides surjunctivity of
+`E_3`. All dependencies exist on main.
+
+### 7.1 `finite-normal-p-subgroups-preserve-modular-stable-finiteness`. PASS.
+
+- **Lemma 1.1.** Every `x` is uniquely `sum_t t a_t` over a left transversal, with `a_t in k[N]`, and
+  `pi(x) = sum_t eps(a_t) tN`. So `x in J` iff every `a_t in omega`, and `J = k[E] omega`.
+  - Conjugation preserves `N` and the augmentation, so `g omega = omega g`, and `k[E] omega = omega k[E]`.
+  - Then `J^(j+1) = omega^j k[E] omega k[E] = omega^(j+1) k[E]`.
+- **Lemma 1.2.** A nontrivial `p`-group has a central `c` of order `p`. `u = c - 1` is central with
+  `u^p = c^p - 1 = 0` in characteristic `p`.
+  - `c^j - 1 = u(1 + ... + c^(j-1))`, so the kernel of `k[N] -> k[N/<c>]` is `u k[N]`, and its `p`-th
+    power is `0`.
+  - `omega` maps onto the augmentation ideal of `k[N/<c>]`, which by induction has `(|N|/p)`-th power
+    `0`. So `omega^(|N|/p) <= u k[N]` and `omega^|N| = 0`.
+- **Lemma 1.3.** `M_n(I)` is a nilpotent ideal with quotient `M_n(R/I)`.
+  - Down: `1 - ba` is an idempotent in `I`, hence `0`.
+  - Up: `ab = 1 + i` is a unit, `b' = b(ab)^-1` has `ab' = 1`, so `b'a = 1`, and `b'` lifts `bbar`.
+- **Theorem 1.4.** Combine the three lemmas. No finite quotient is used.
+- **Remark 1.5.** `certificate-linear-automata-have-local-linear-decoders`, with a one-letter certificate
+  alphabet, gives a linear left inverse. The involution `g -> g^-1` identifies `k[E]` with its opposite
+  ring.
+
+### 7.2 `deligne-triple-cover-ternary-group-algebras-are-stably-finite`. PASS.
+
+- **The chain.** `Sp_4(Z)` is finitely generated and linear, so residually finite
+  (`finitely-generated-linear-groups-are-residually-finite`), so LEF. Stability of `k[LEF]` is
+  `lef-group-rings-over-stably-finite-rings-are-stably-finite`, with `k` stably finite. `C_3` is a normal
+  `3`-subgroup, and Theorem 1.4 applies at every field of characteristic `3`.
+- **Corollary 2.2(b).** `formal-polynomial-strict-pairs-need-unstable-linearization` needs only
+  `M_n(k[G])` directly finite for the alphabet `k^n`. With `k = F_3` this holds at every `n`.
+- **Corollary 2.2(c).** `low-degree-strict-automata-force-matrix-kaplansky-failure` needs every
+  `M_n(F_p[G])` directly finite, here `p = 3`. So `deg sigma * deg tau >= q` for `q` a power of `3`.
+- **Corollary 2.2(d).** Stable formalizability at size `n + k` meets (b) at that size. It is correctly
+  stated as conditional.
+- Both screens are used within their stated scope.
+
+### 7.3 `strict-automata-memory-keeps-finite-normal-kernel-residual`. PASS.
+
+- **Lemma 3.1.** Memory inside `H` keeps every `gm` in `gH`. The shift decomposes over left cosets, and a
+  product of maps is injective, respectively onto, iff each factor is.
+- **Theorem 3.2, second item.**
+  - `H cap N` is a finite normal subgroup of `H`.
+  - If it injects into a finite quotient of `H`, `separated-finite-normal-subgroups-preserve-surjunctivity`
+    (passed in Section 6.3 of `gk-vf-positive-verification-2026-09-12.md`) makes `H` surjunctive iff
+    `H/(H cap N) ≅ HN/N` is.
+  - `HN/N <= E/N` is surjunctive by heredity, so `tau_H` would not be strict.
+- **The equivalence.** `N cap Res_fin(H) = (H cap N) cap Res_fin(H)`.
+  - If this is `1`, finitely many `K_x` separate the finitely many nontrivial elements. Their intersection
+    `K` has finite index and meets `H cap N` trivially.
+  - Conversely `Res_fin(H) cap N <= K cap N = 1`.
+- **Third item.** Sofic groups are surjunctive.
+- **Corollary 3.3.**
+  - `N = C_3` has prime order, so `z in Res_fin(H) <= H`.
+  - A virtual splitting (a finite-index subgroup meeting `C_3` trivially) has a normal core that injects
+    `C_3` into a finite quotient, which is excluded.
+  - Virtually free `Lambda`: central extensions of free groups split, so the preimage of a free
+    finite-index `F` contains a complement of index `3`.
+  - Amenable `Lambda`: `H` is amenable, hence sofic.
+- **Remark 3.4.** Right translation by the central `z` commutes with `tau`, so
+  `surjectivity-descends-to-centralized-coset-quotients` applies with quotient `Sp_4(Z)`, which is
+  surjunctive. Invariant configurations lie in the image, so missed configurations have trivial
+  `C_3`-stabilizer.
