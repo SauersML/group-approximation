@@ -68,7 +68,7 @@ theorem six_le_faceDegree (d : M.Dart)
       M.facePerm (M.facePerm (M.facePerm (M.facePerm d))),
       M.facePerm (M.facePerm (M.facePerm (M.facePerm (M.facePerm d))))} :
         Finset M.Dart).card = 6 := by
-    simp [h1, h2, h3, h4, h5, h1.symm, h2.symm, h3.symm, h4.symm, h5.symm]
+    simp [h1.symm, h2.symm, h3.symm, h4.symm, h5.symm]
   have hle := Finset.card_le_card hsub
   rw [hcard] at hle
   have hfibre : fibre.card = M.faceDegree (M.faceOf d) := by
@@ -124,6 +124,7 @@ theorem region_sigma (d : M.Dart) (hd : ¬ S.IsCellDart d) :
     S.region (M.sigma d) = S.region d :=
   S.region_of_vertex _ _ (fun h => hd ((S.cellDart_sigma d).mp h)) hd (M.vertexOf_sigma d)
 
+include S in
 /-- A face permutation step changes the kind of a dart, so odd iterates move every dart. -/
 theorem facePerm_ne (d : M.Dart) : M.facePerm d ≠ d := by
   intro h
@@ -131,6 +132,7 @@ theorem facePerm_ne (d : M.Dart) : M.facePerm d ≠ d := by
   rw [h] at hk
   tauto
 
+include S in
 theorem facePerm_three_ne (d : M.Dart) :
     M.facePerm (M.facePerm (M.facePerm d)) ≠ d := by
   intro h
@@ -140,6 +142,7 @@ theorem facePerm_three_ne (d : M.Dart) :
   rw [h] at h3
   tauto
 
+include S in
 theorem facePerm_five_ne (d : M.Dart) :
     M.facePerm (M.facePerm (M.facePerm (M.facePerm (M.facePerm d)))) ≠ d := by
   intro h
@@ -176,6 +179,7 @@ theorem facePerm_of_midpoint (d : M.Dart) (hd : ¬ S.IsCellDart d) :
   change S.endCell (M.sigma (M.alpha d)) = _
   rw [S.endCell_sigma _ hx, S.endCell_alpha]
 
+include S in
 /-- **No face of degree two**: a two-step face through a cell dart would join a cell to itself. -/
 theorem facePerm_two_ne (d : M.Dart) : M.facePerm (M.facePerm d) ≠ d := by
   intro h
@@ -248,6 +252,7 @@ theorem sigma_fixed_of_facePerm_four (d : M.Dart) (hd : S.IsCellDart d)
     rw [M.alpha_involutive] at h
     exact h
 
+include S in
 /-- **Every face of a connected subdivided graph with more than one region has degree at least
 six.** -/
 theorem six_le_faceDegree_of_subdividedGraph (hconnected : M.IsConnected)
@@ -350,7 +355,7 @@ theorem edgeBound_of_subdividedGraph {ρ : Type w} {C : Type z} (S : SubdividedG
   by_cases hsmall : M.dartCount ≤ 4
   · omega
   · have h := M.midpointCount_add_six_le hplanar hdarts hvertices
-      (S.six_le_faceDegree_of_subdividedGraph hplanar.1 (by omega))
+      (S.six_le_faceDegree_of_subdividedGraph (M.connected_of_planar hplanar) (by omega))
     omega
 
 end GroupApproximation.GGT.VanKampen.CombMap
