@@ -25,9 +25,12 @@ link condition holds, `X` is CAT(−1), and
 χ(K) = |V| (1 + (q^2+q+1)(q-3)/4).
 ```
 
-For `q = 3` this is `|V|`. So a Kazhdan `Γ` of this shape has `b_2 = |V| - 1`, which is
-at least one once `K` has two vertices. The existence of such finite `K`, and (T) for
-it via Żuk's spectral criterion, is recorded separately as literature to verify.
+For `q = 3` this is `|V|`. The formal conditional gives `b_2 = |V| - 1`
+under (T), but no Kazhdan instance with at least two vertices exists:
+`square-pg23-groups-cannot-be-kazhdan` proves the obstruction by assigning
+Euclidean squares and applying the CAT(0) cubical fixed-point theorem.
+The general Euler formula above remains valid; the former suggested
+application of Żuk's simplicial criterion to square links was invalid.
 
 DERIVATION
 kazhdan-two-complex-b2-euler-characteristic-proof
