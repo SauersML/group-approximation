@@ -35,6 +35,14 @@ Every Sylvester matrix rank function on `F_3[G]` has `rk(1 - [z]) = 0`.
   it gives `ternary-anti-central-unit-class-is-nonpositive`, through the route
   `ternary-counterexample-from-rank-kill-and-state-realization`.
 
+*Verification by `w3-vf-linear` (2026-09-12), Section 25 of
+`research/artifacts/w3-vf-linear-verification-2026-09-12.md` (1eec8d6307): PASS on both equivalences.
+The claim itself stays OPEN.*
+- *Normalization and extension: `X -> eps_- X` is a unital ring map because `eps_-` is central, and
+  `1 - [z] = 2 eps_-` with `2` a unit.*
+- *Abstract models: a model with `sigma(z) = -1` pulls back to a Sylvester function with value 1 on
+  `1 - [z]`; the converse is Corollary 7.2.*
+
 **Scope warning.** The landed characteristic-two triviality nodes (matrix-unit, unipotent-valued,
 flag-preserving) and the hard R4 mechanisms are matricial, in characteristic two. None of them is
 evidence here until it has been scope-checked for abstract rank algebras in characteristic three.
