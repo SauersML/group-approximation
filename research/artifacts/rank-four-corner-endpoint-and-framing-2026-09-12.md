@@ -156,3 +156,126 @@ for any lift of `D`. ∎
 possible only when `rk(D^2) = rk(D)`, and it fails whenever `D^2` has smaller rank; if `D^2 = 0` the
 least corner rank is `2 rk(D)`. The route needs neither the equality nor any support of `D`: replace
 (iii) by `e != 0`, which Corollary 4 supplies.
+
+## 3. Framing inputs
+
+### 3.1 The identification `R^x ~= EL_4(R)`: source and fidelity
+
+**The input on main.** The claim `leavitt-gl-equals-el-and-perfect-unit-group` is ESTABLISHED through
+Lean, in `GroupApproximation/KOne/AllRanksElementary.lean`:
+
+```text
+theorem glAll_eq_elementary (n : ℕ) (hn : 2 ≤ n)
+    (M : (Matrix (Fin n) (Fin n) (BinaryLeavittAlgebra k))ˣ) :
+    M ∈ elementaryGroup (Fin n) (BinaryLeavittAlgebra k)
+```
+
+- It holds for every field `k` and every `n >= 2`. The proof lifts the rank-two collapse
+  `glTwo_eq_elementary_holds` (`KOne/RefineLoopDischarge.lean`) through the prefix-code
+  equivalence `A ~= M_m(A)`.
+- A textual scan at tip 47302b98 finds no `sorry` and no `axiom` line in `AllRanksElementary.lean`
+  or `AllRanksElementaryCore.lean`. I did not rebuild them or audit their transitive imports.
+
+**What the plan actually uses.**
+- A prefix code with four leaves gives a ring isomorphism `Theta : M_4(R) -> R`. It restricts to
+  `GL_4(R) ~= R^x`, and `GL_4(R) = EL_4(R)`. So there is a group isomorphism `phi_4 : EL_4(R) -> R^x`.
+  This is an isomorphism, not an equality, and it depends on the chosen code.
+- Likewise `phi_3 : EL_3(R) = GL_3(R) ~= R^x`.
+
+**Khanh--Thanh.** Huynh Viet Khanh and Vo Hoang Thanh, *Matrix generators for the unit groups of
+`L_K(1,d)`*, arXiv:2607.10351v1 (11 July 2026). The local copy is `tmp/lit-audit/khanh-thanh.pdf`; I
+read only pages 1--2.
+- They prove `LGL_d(K) = L_d^x` for every field `K` and `d >= 2`.
+- They state that `L_d` is a purely infinite simple GE-ring, that `GL_n(L_d) = E_n(L_d) D_n(K)`, and
+  that `(L_d^x)_ab ~= K_1(L_d) ~= K^x / (K^x)^(d-1)`.
+- For `d = 2` they state `K_1(L) = 0` and `L^x = <1 + e a f*, 1 + f b e*>`.
+
+This agrees with the plan's "`R^x = GL_n(R) = EL_n(R)`" for `d = 2`. I did not read their proof that
+`GL_n = E_n D_n(K)`. The preprint is unrefereed, and nothing on main depends on it: the Lean theorem
+is the load-bearing input.
+
+**Scope.** The identification is for the binary case only. The target claim
+`leavitt-el3-rank-models-over-finite-fields-are-trivial` covers `L_K(1,n)` for all `n >= 2`. The route
+covers `n = 2`, which is all its payoff needs.
+
+### 3.2 A given `EL_3` model is not the `EL_3` block of its `EL_4` transport
+
+- **The transport.** The gate quantifies over `sigma : EL_3(R) -> M^x`. The honest `EL_4` reading of
+  `sigma` is `sigma_4 = sigma ∘ phi_3^(-1) ∘ phi_4 : EL_4(R) -> M^x`.
+- **Its block.** The upper-left `EL_3` block of `sigma_4` is `sigma ∘ psi`, where
+  `psi = phi_3^(-1) phi_4 |_block` is a self-embedding of `EL_3(R)` that is not onto, since the block is
+  a proper subgroup of `EL_4(R)`.
+- **Its defect.** The block defect `D_4 = n_23(1) n_12(1)` of `sigma_4` is
+  `(sigma(psi x_23(1)) - 1)(sigma(psi x_12(1)) - 1)`, not `sigma`'s own `N_23 N_12`.
+- **No transport fixes the block.** `phi_3^(-1) phi_4` would have to be the identity on the block, which
+  no isomorphism `EL_4(R) -> EL_3(R)` can be.
+
+**Why the route survives.** Run the case split on `sigma_4`.
+- If `D_4 = 0`, the matrix-unit claim and the extraction claim make the block `sigma ∘ psi` trivial;
+  Theorem 1 excludes `p_1 != 0` for every `K`. Then `el4-model-trivial-on-one-unit-root-element-is-trivial`
+  makes `sigma_4` trivial.
+- If `D_4 != 0`, Plan 1 together with Theorem 1 gives a contradiction.
+
+Either way `sigma_4` is trivial, so `sigma = sigma_4 ∘ phi_4^(-1) ∘ phi_3` is trivial.
+
+The route's sentence "`EL_3(R)` is a subgroup of `R^x = EL_4(R)` ... so `sigma` is a rank model of `R^x`.
+Put `D = N_23 N_12`" must therefore be read with `D` the block defect of `sigma_4`. Its `D = 0` bullet
+("So `sigma` is trivial") needs the normal-closure claim. Plan 1's own claim is stated for
+`sigma : R^x -> M^x` read as an `EL_4` model, with `D` the block defect, which is consistent.
+
+### 3.3 From approximate models to exact relations
+
+**Models and soficity.**
+- `M^x` is the metric ultraproduct of the `GL_(n_i)(k)` under normalized rank distance: a unit of `M`
+  lifts to invertible matrices up to rank-null error.
+- Maps `G -> GL_(n_i)(k)` whose rank defects tend to 0 on every pair assemble into one homomorphism
+  `G -> M^x`. Separation `rk(sigma(g) - 1) > 0` for `g != 1` is injectivity.
+- `F`-linear soficity (Arzhantseva--Paunescu) is an injective homomorphism into such an `M^x` over `F`.
+  So if every homomorphism `EL_3(R) -> M^x` is trivial over every field of characteristic `p`, the
+  infinite group `R^x` is not `F`-linear sofic for any field `F` of characteristic `p`. That settles
+  `non-linear-sofic-group`, which asks for one field.
+
+**Exact in `M`.** Every group identity of `EL_4(R)` holds exactly:
+- `x_IJ(a) x_IJ(b) = x_IJ(a+b)`;
+- `[x_ab(r), x_bc(s)] = x_ac(rs)`;
+- `[x_ab(r), x_cd(s)] = 1` for `b != c` and `a != d`;
+- consequences such as `n_IJ(a+b) = n_IJ(a) + n_IJ(b) + n_IJ(a) n_IJ(b)`, and in characteristic `p`,
+  `(1 + n_IJ(a))^p = 1`, hence `n_IJ(a)^p = 0`.
+
+**Not available.**
+- The operators `n_IJ` are neither additive nor multiplicative in the coefficient, and ring elements of
+  `R` have no operators of their own.
+- The Leavitt relations enter only as coefficients inside group identities, such as
+  `[x_12(t_i), x_23(s_j)] = x_13(delta_ij)` with `x_13(0) = 1`.
+- So a Leavitt family in `eMe` has to be assembled from group-element operators. That is exactly what
+  checks (i) and (ii) must do.
+
+### 3.4 What the no-rank-model endpoint quantifies over
+
+- **The claim.** `leavitt-algebra-has-no-unital-rank-model` says there is no unital ring homomorphism
+  `L_(F_2)(1,2) -> M` over any field (gk-vf-linear reads "F-algebra" as "ring"), and equivalently no
+  unital rank-approximate homomorphisms. Its proof: `M` is directly finite, and `R` is simple and not
+  directly finite. gk-vf-linear's scope remark adds that corners of `M` are directly finite.
+- **The route uses more than it states.** It applies the claim in both branches to `L_K(1,2)` with `K`
+  finite: to `C : R -> p_1 M p_1` when `D = 0`, and to a family in `eMe` when `D != 0`. For `K != F_2`
+  the claim's literal statement does not apply, although its proof does.
+  `nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple` covers every `K` and every characteristic in
+  both branches, with three relations and no homomorphism.
+- **Not needed.** The plan's step "`eMe` is again a rank ultraproduct" (Theorem D) is true, by
+  idempotent lifting, but nothing uses it.
+
+## 4. Verdict table (w4-r4-corner)
+
+| item | verdict |
+|---|---|
+| endpoint: a corner Leavitt family contradicts no-rank-model | correct, and sharper: three relations suffice; the configuration is impossible outright, so the plan claim is equivalent to `D = 0` model by model |
+| check (ii), completeness | not needed |
+| check (i) | only `T_0 S_0 = e`, `T_0 S_1 = 0`, and any certificate that `S_1 != 0` (for instance `T_1 S_1 = e`), with `S_0, T_0` in `eMe` and `S_1` in `eM` |
+| check (iii), `rk(e) = rk(D)` | replace by `e != 0`; that is free for any `e` absorbing `D` or a nonzero root operator on one side; the literal equality is false in general (Proposition 2) |
+| `R^x = EL_4(R)` | on main via Lean `glAll_eq_elementary` and the prefix-code isomorphism; an isomorphism that depends on the code; Khanh--Thanh arXiv:2607.10351v1 agrees, unrefereed, not load-bearing |
+| an `EL_3` model read as an `EL_4` model | not literally, since the block is `sigma ∘ psi`; the route is valid by universal quantification plus the normal-closure claim |
+| approximate to exact | group identities of `EL_4(R)` are exact in `M`; coefficient relations appear only inside commutators |
+| payoff field scope | fields of characteristic `p`; enough to settle `non-linear-sofic-group` |
+
+**Not done here.** Checks (i) and (ii) themselves. No construction of `e`, `S_i`, `T_i` has been written
+down yet, so I had nothing to evaluate.
