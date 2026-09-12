@@ -74,7 +74,7 @@ theorem vertexH_cover (hQ : qTwo ≤ Γ) (hΓ : Γ ≤ gammaTwo) :
       by_contra hn
       have hnone := cosetClass_of_not_pos hn
       rw [htc, hj] at hnone
-      exact Option.noConfusion hnone
+      exact Option.some_ne_none _ hnone
     obtain ⟨j', hj', hj'res⟩ := cosetClass_spec ht0 htG
     rw [htc, hj] at hj'
     have hjj : j = j' := Option.some_injective _ hj'
@@ -93,8 +93,8 @@ theorem vertexH_cover (hQ : qTwo ≤ Γ) (hΓ : Γ ≤ gammaTwo) :
           (t : Equiv.Perm ℚ) 0 + k := by
         push_cast
         linarith [Int.fract_add_floor ((t : Equiv.Perm ℚ) 0)]
-      rw [e2, hpx, hkdef] at e1
-      rw [e1]
+      rw [e2, hpx] at e1
+      rw [e1, hkdef]
       push_cast
       linarith [Int.fract_add_floor ((g : Equiv.Perm ℚ) 0)]
     have hainv : (perHom 4 p)⁻¹ ((g : Equiv.Perm ℚ) 0) = (t : Equiv.Perm ℚ) 0 + k :=
@@ -107,7 +107,8 @@ theorem vertexH_cover (hQ : qTwo ≤ Γ) (hΓ : Γ ≤ gammaTwo) :
       refine ⟨0, ?_⟩
       show perHom 4 p 0 = 0 + ((0 : ℤ) : ℚ)
       have h := perHom_apply_intCast p 0
-      push_cast at h ⊢
+      rw [Int.cast_zero] at h
+      rw [Int.cast_zero, add_zero]
       exact h
     have hb : t⁻¹ * a⁻¹ * g ∈ vertexH Γ := by
       rw [mem_vertexH_iff hΓ]
@@ -120,7 +121,7 @@ theorem vertexH_cover (hQ : qTwo ≤ Γ) (hΓ : Γ ≤ gammaTwo) :
       intro hpos
       obtain ⟨j, hj, -⟩ := cosetClass_spec hpos htG
       rw [htc, cosetClass_of_not_pos hg0] at hj
-      exact Option.noConfusion hj
+      exact Option.some_ne_none _ hj.symm
     have htH := mem_vertexH_of_fract_eq_zero hΓ ht0
     refine ⟨⟨g * t⁻¹, (vertexH Γ).mul_mem hgH ((vertexH Γ).inv_mem htH)⟩, 1, ?_⟩
     show g = g * t⁻¹ * t * 1
