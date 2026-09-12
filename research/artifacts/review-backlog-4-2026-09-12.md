@@ -184,3 +184,69 @@ Read: the claim, its route (`requires: []`), and Sections 0–2 of
 - **Novelty.** The rectangle two-table form and the universal axiomatization
   are presented without a priority claim. Heredity under subgroups and
   ultraproducts is classical (Gromov; Weiss).
+
+## 4. `thompson-f-moment-data-cannot-certify-nonamenability`: PASS
+
+Read: the claim and `thompson-f-moment-barrier-proof` (`requires: []`).
+
+- **Step 1.** `supp μ = σ(P)`:
+  - the trace is faithful, so every open set meeting `σ(P)` has positive
+    measure;
+  - a finite spectrum would make each Lagrange projection `E_i` a polynomial
+    in `P`, so `E_i ∈ C[F]` with `E_i(1 − E_i) = 0`;
+  - `F` is bi-orderable, so it has unique products and `C[F]` has no zero
+    divisors. Contradiction.
+
+  Checked. The scope note is also right: the argument only needs "`C[G]` has
+  no idempotent other than 0 and 1", since `E_i` is already such an idempotent.
+- **Step 2.** The pushforward under `t = x²` is at most 2-to-1, so the support
+  stays infinite. The moments are `M_j`. Checked.
+- **Step 3.** `W_N` is the convex hull of the moment curve on `[0,1]`, with
+  nonempty interior. A boundary point `m` gives a nonzero polynomial `r ≥ 0` on
+  `[0,1]` with `∫ r dμ_2 = 0`, so `μ_2` sits on finitely many zeros. That
+  contradicts Step 2. Checked.
+- **Step 4.** Put `m_ε = (m − εu)/(1 − ε)`, which stays interior for small `ε`,
+  and `ν_2 = (1 − ε)ν' + εδ_1`. This reproduces `m` exactly, with `1` in the
+  support. Symmetrizing gives `ν` on `[−1,1]` with the same even moments, zero
+  odd moments, and `±1` in the support. Checked.
+- **Step 5.** Deductions from the moment data alone hold for `ν`, and `‖P‖ =
+  sup|supp μ|`. Kesten's criterion then gives the conclusion. Checked.
+- **Positive-direction paragraph.** Slightly imprecise wording. "If
+  supp μ_2 ≤ x_k this forces μ_2 onto the k−1 zeros of q" should say: if
+  `sup supp μ_2 < x_k`, then `(x − x_k)q² ≤ 0` integrates to 0, so `μ_2` sits
+  on `Z(q)`, which has `k − 1` points. That contradicts Hankel positivity of
+  size `k`. If instead `x_k ∈ supp μ_2`, the bound `sup supp ≥ x_k` holds
+  directly. The conclusion `sup supp μ_2 ≥ x_k > θ` is correct either way.
+  This is a GAP in wording only; no graph change is needed.
+- **Trust surfaces.** Bi-orderability of F and Kesten's criterion, both
+  classical.
+
+## 5. `thompson-f-random-walk-norm-certified-lower-bound`: PASS (computer-assisted)
+
+Read: the claim, `thompson-f-random-walk-norm-lower-bound-proof`
+(`requires: []`), and the certificate logic. I did not rerun the program.
+
+- **Certificate logic.** With `<p_j, p_j> > 0` for `j < 8`, the 8×8 Hankel
+  matrix is positive definite, so `μ_2` has at least 8 support points.
+  - `p_8` is monic and `p_8(θ) < 0`, so it has a zero `x_8 > θ`.
+  - By the corrected argument in §4, `sup supp μ_2 ≥ x_8 > θ`.
+  - `‖P‖² = sup supp μ_2`, since the support of `μ` is `σ(P)`.
+  - Numerically `(0.880541)² ≈ 0.7753525 ≤ θ = 0.775353449`.
+
+  Checked.
+- **Sanity checks on the counts.**
+  - `c_2 = 4`, `c_4 = 28`, `c_6 = 232` and `c_8 = 2092` match the 4-regular
+    tree (free group `F_2`). That is expected, since F's two defining relators
+    have lengths 10 and 14.
+  - `c_10 = 19884` exceeds the free-group count 19864 by exactly 20 = 2·10:
+    the cyclic rotations of the length-10 relator and of its inverse. That is
+    what one relator of length 10 must add at length 10.
+  - The free-group values are from memory (the 4-regular tree closed-walk
+    sequence), not recomputed. This agreement is strong independent evidence
+    that the program is correct.
+  - The claim's own checks (brute force to length 8, the `binom(2j,j)²` bound,
+    log-convexity, agreement between the two runs) are consistent.
+- **Trust surface.** One unreimplemented program: exact 2-adic PL arithmetic,
+  a dynamic program on a radius-15 ball, and the three-term recurrence. The
+  certificate is reproducible from `out15.json`.
+- **Scope.** A lower bound only, which is correctly limited by §4.
