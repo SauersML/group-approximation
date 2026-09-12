@@ -28,6 +28,10 @@ any commutative C\*-algebra.  If established, this refutes
   (`o2-zp-cartan-fixing-all-primes-or-at-most-one`).  Each such action is
   `KK^(Z_r)`-equivalent to no action on a type I algebra
   (`bootstrap-class-zp-actions-on-o2-fix-a-cartan`).
+* Dually, at the same primes the UCT fails to ascend along a Rokhlin action:
+  some unital Kirchberg algebra `B` with a Rokhlin `Z_r`-action and
+  `B ⋊ Z_r ≅ O_2` fails the UCT
+  (`o2-zp-cartan-fixing-iff-rokhlin-uct-ascent`).
 * It does not decompose over nuclear UCT algebras (`willett-yu-decomposability-forces-uct`).
   As a trivial-K Kirchberg algebra it has weak complexity rank one but not
   complexity rank one.
