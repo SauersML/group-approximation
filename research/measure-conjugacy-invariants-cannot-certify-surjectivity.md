@@ -35,3 +35,5 @@ not enough.
 
 Proof: Section 1 of the linked artifact. It is elementary: `tau` is a continuous equivariant
 injection of a compact space.
+
+**Verified 2026-09-12** by gk-vf-positive: Theorem 1 and every item of Corollary 1.1 pass (Section 2.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). **Scope correction.** Read literally, the sentence "a property of invariant measures that holds for `mu` and fails for every strict image must depend on the coordinate structure" is false whenever `G` carries no strict automaton on `A`. The hypothesis is then vacuous, and ergodicity satisfies it over any amenable infinite `G`. What holds: for every isomorphism-invariant property `S` and every strict `tau`, `S(tau_* mu) = S(mu)`. So for invariant `S` holding at `mu`, "`S` fails at every strict image" is equivalent to "no strict automaton exists on `A^G`". An invariant separation step restates the conclusion and cannot be the mechanism of a proof.

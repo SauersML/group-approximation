@@ -17,3 +17,5 @@ Section 1 of the artifact.
 - Any isomorphism invariant therefore takes equal values on the two actions.
 - Corollary 1.2: a property separating the uniform measure from every strict image cannot be an
   isomorphism invariant.
+
+**Verified 2026-09-12** by gk-vf-positive, independent re-derivation: PASS (Section 2.1 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`). Scope correction to the last bullet: an isomorphism-invariant property cannot separate the uniform measure from any strict image; for such a property, separation from every strict image is equivalent to the nonexistence of strict automata.

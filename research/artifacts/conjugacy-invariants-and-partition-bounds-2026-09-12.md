@@ -160,3 +160,22 @@ Nothing here decides the conjecture. The two theorems kill every "invariant comp
 identify INF as the unavoidable lower bound of every partition-bounded invariant architecture.
 Positive lanes outside those architectures must use D4 together with D1–D3. Mass transport over
 unimodular groups is the natural candidate (lane `gk-p-bernoulli-mass`).
+
+## 5. Verification notes (gk-vf-positive, 2026-09-12)
+
+Independent re-derivation: Theorems 1 and 2 and Corollaries 1.1 and 2.1 pass. Details are in Section 2 of
+`research/artifacts/gk-vf-positive-verification-2026-09-12.md`.
+
+- **Corollary 1.2, scope correction.** Read literally the corollary is false when `G` carries no
+  strict automaton on `A`, since the hypothesis is then vacuous (ergodicity satisfies it over any
+  amenable infinite `G`). The correct form: for every isomorphism-invariant `S` and every strict
+  `tau`, `S(tau_* mu) = S(mu)`. So for invariant `S` holding at `mu`, "`S` fails at every strict
+  image" is equivalent to "no strict automaton on `A^G`". The separation step of an invariant
+  comparison restates the conclusion. Section 3's "must use data that is not an isomorphism
+  invariant" should be read in that sense.
+- **Corollary 1.1.** "Cartan subalgebra" presupposes essential freeness, which the Bernoulli action
+  has for infinite `G`. For finite `G`, the pair `(L^inf(X) ⋊ G, L^inf(X))` is still an invariant.
+- **Section 2 scope.** Seward's `h^Rok` is defined for ergodic actions, so Theorem 2(c) applies for
+  infinite `G`. Sofic entropy can be `-infinity` and the f-invariant negative, so the examples need
+  values in `[-infinity, infinity]`. The f-invariant remark also needs Bowen's monotonicity of
+  `F(Q^{B_n})`, which gives `f <= F(Q) <= H(Q)`. Nothing consumes the examples.
