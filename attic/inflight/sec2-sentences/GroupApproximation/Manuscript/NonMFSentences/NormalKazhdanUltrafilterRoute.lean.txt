@@ -314,8 +314,10 @@ def complementRestrictCLM {L : Type} [Group L] (X : ℕ → FiniteModel)
   toLinearMap := (coronaRestrictAlg X φ hφ).toAlgHom.toLinearMap.comp
     ((LinearMap.mulLeft ℂ ((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p)).comp
       f.toAlgHom.toLinearMap)
-  cont := (map_continuous (coronaRestrictAlg X φ hφ)).comp
-    (continuous_const.mul (map_continuous f))
+  cont := by
+    have h1 : Continuous (coronaRestrictAlg X φ hφ) := map_continuous (coronaRestrictAlg X φ hφ)
+    have h2 : Continuous f := map_continuous f
+    exact h1.comp (continuous_const.mul h2)
 
 open scoped CStarAlgebra in
 /-- A `⋆`-homomorphism out of a maximal group `C*`-algebra, as a continuous
