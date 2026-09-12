@@ -34,6 +34,20 @@ No witness has been constructed. Every witness must meet these constraints (arti
   in one of the two twisted group algebras of `Sp_4(Z)` in a characteristic `p != 3` (artifact Lemma 4.1).
   Their multiplier class is not inflated from any finite quotient, and no construction or obstruction is
   known.
+- **Table-level filter** (idea from lane w4-clifford-nonlinear, argued here; not a claim). A strict pair
+  reads finitely many products of a finite window of `E_3`, hence finitely many values `a(g,h)` of a
+  section cocycle.
+  - Suppose some finite quotient `Q` of `Sp_4(Z)`, injective on the images of those products, carries a
+    cocycle `b in Z^2(Q; Z/3)` agreeing with `a` on the read pairs, after changing the section on the
+    window.
+  - Then the window embeds with the same coordinates into the finite group `Q x_b Z/3`. Forward
+    coincidences survive, and no reverse coincidence is created, because images are distinct in `Q` and
+    `Z/3`-coordinates are computed from the same values.
+  - By `strict-pairs-transfer-to-table-realizations` that finite group would carry a strict pair, which is
+    impossible.
+  - So a witness's read partial cocycle is the restriction of no finite-quotient cocycle. Such partial
+    cocycles exist because `E_3` is finitely presented and not LEF, and every witness table must contain
+    one. No witness has been found.
 - **Where it stops.** No mechanism is known that uses a non-inflated multiplier to produce a one-sided
   inverse pair. The known strict-pair designs on main (invariant output, table groups, Leavitt corners) all
   live on hosts built from compression, and `E_3` has none.
