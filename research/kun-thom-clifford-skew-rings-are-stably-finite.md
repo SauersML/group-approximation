@@ -29,10 +29,13 @@ cover carries a linear Gottschalk counterexample over `F_3`.
   (`clifford-skew-ring-rank-models-give-linear-sofic-wreath`).
 - **Oriented graphs.** All of them sit in one algebra, the matrix-lamp wreath, so
   `oriented-kun-thom-clifford-skew-rings-are-stably-finite` needs only
-  `matrix-lamp-wreath-algebras-are-stably-finite`. The complete graph is not covered there.
-  - Pairwise anticommuting finitely supported elements with a common infinite Delta-system would have to
-    anticommute through a finite kernel algebra.
-  - No equivariant local realization is known.
+  `matrix-lamp-wreath-algebras-are-stably-finite`.
+- **Complete graph: not reachable that way.** Route `kun-thom-clifford-skew-rings-sf-from-matrix-lamp-wreath`
+  is invalidated by `infinite-clique-clifford-algebras-have-no-bounded-spin-models`. Over finite fields,
+  pairwise anticommuting involutions with bounded supports in an infinite tensor product of matrix algebras
+  form only finite families, so no local spin embedding of the complete-graph cover exists.
+- **Monomial witnesses: excluded.** Honest monomial pairs, meaning clopen partial translations of the
+  flip-permutation form, are excluded by the invariant Bernoulli measure (artifact Section 4).
 - **Filters any witness must pass.**
   - **Nonsofic support.** Its support generates `H <= G` with `Vtilde_S semidirect H` nonsofic, so `H` is
     nonamenable (Clifford cover artifact, Section 4.1).
