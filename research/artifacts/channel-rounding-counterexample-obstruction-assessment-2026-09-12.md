@@ -11,23 +11,30 @@ This assessment concerns the open claim `bistochastic-channel-rounding-fails`
 counterexample side is not settleable by a direct construction, and where the
 one live route actually is.
 
-## 1. The counterexample is equivalent to the whole hyperlinearity question
+## 1. What a counterexample would and would not settle
 
-The route `channel-rounding-fails-on-the-unstable-branch` derives
-`bistochastic-channel-rounding-fails` from `leavitt-steinberg-hs-unstable`, and
-`leavitt-channel-rounding-forces-nonhyperlinearity` is the established
-conditional theorem in the other direction. Together they make the two-sided
-statement:
+Main has one direction only. `leavitt-channel-rounding-forces-nonhyperlinearity`
+is the established conditional theorem:
 
-    dimension-free rounding holds  <=>  L_(F_2)(1,2)^x is nonhyperlinear.
+    dimension-free rounding holds  ==>  L_(F_2)(1,2)^x is nonhyperlinear.
 
-So a family witnessing `bistochastic-channel-rounding-fails` is exactly a proof
-that `L_(F_2)(1,2)^x` is hyperlinear, and a proof of rounding is exactly a proof
-that it is not. A "counterexample hunt" in the matrix category is therefore not
-a shortcut: any honest counterexample family is a solution of the full problem.
-This matches the stable lane's own reading that the statement is out of reach as
-posed. The productive framing is to prove rounding (a positive theorem), not to
-hunt a counterexample.
+The route `channel-rounding-fails-on-the-unstable-branch`, which derives
+`bistochastic-channel-rounding-fails` from `leavitt-steinberg-hs-unstable`, is
+the contrapositive of that implication. It is not its converse. So:
+
+- a proof of rounding would prove `L_(F_2)(1,2)^x` nonhyperlinear;
+- a family witnessing `bistochastic-channel-rounding-fails` would only refute
+  this route to nonhyperlinearity. It would not prove `L_(F_2)(1,2)^x`
+  hyperlinear, because the converse implication is not on main.
+
+A counterexample is therefore cheaper than the full problem and still useful: it
+closes a route. A proof of rounding remains the productive target for the stable
+branch.
+
+*Correction, 2026-09-12:* an earlier version of this section claimed the
+two-sided equivalence "rounding <=> nonhyperlinear" and concluded that any
+counterexample family solves the hyperlinearity question. That was wrong. Only
+the forward implication is established. Sections 2–5 are unaffected.
 
 ## 2. The vanishing-perturbation route is closed in every dimension
 
