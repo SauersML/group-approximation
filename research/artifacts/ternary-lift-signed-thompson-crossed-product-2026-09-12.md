@@ -208,8 +208,11 @@ Section 4 is false. `H` contains `V`, and soficity of `V` is open, so this decid
 In `S_-` no nonzero `v` satisfies `v [g] = eps_- [iota(g)] v` for all `g`.
 * Coefficients of such `v` are constant on orbits of `x -> iota(g) x g^-1`, up to sign, on
   `PG = G/<z>`.
-* A finite orbit has a finite-index stabilizer, hence all of `G`, since `G` is simple. The sign is
-  then a homomorphism `G -> +-1`, hence trivial.
+* A finite orbit has a finite-index stabilizer. `G` has no proper subgroup of finite index, because
+  it is perfect and `PG = G/<z>` is simple (Lemma 1.1 of
+  `research/artifacts/leavitt-self-similarity-exactness-2026-09-12.md`). So the stabilizer is all of
+  `G`. `G` itself is not simple, since its centre is `+-1`. The sign is then a homomorphism
+  `G -> +-1`, which is trivial because `G` is perfect.
 * So `iota = Ad(x)` on `G`, contradicting `iota(z) = tau_[0] != z`.
 
 So any lift of `s0` is not an intertwiner.
