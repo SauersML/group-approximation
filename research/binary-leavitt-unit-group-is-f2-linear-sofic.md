@@ -81,3 +81,17 @@ a Kaplansky pair in `F_2[R^x]` refutes this claim
     locally matricial examples (artifact `el3-rank-ring-rigidity-2026-09-12.md`,
     Proposition 12). A model must glue free content along coefficients such as `s_0` and
     Thompson `V`.
+  * **Assembly from finitely represented coefficients: dead (lane `gk-ri-counter`).**
+    * Suppose a model's value at `x_12(1 - s0 t0)` comes from a unital coefficient map of a subring
+      containing `s0`, `t0` into a directly finite ring. Then the model is trivial
+      (`toeplitz-coefficient-factoring-kills-leavitt-el3-rank-models`).
+    * Every residually finite image of `EL_3(S)` with `S` containing `s0`, `t0` kills that element
+      (`toeplitz-defect-dies-in-every-finite-quotient-of-el3`).
+    * So the left-regular models of `fd-represented-coefficients-violate-two-root-identities`, and
+      tensor or natural⊗natural pieces over rank-represented coefficients, never assemble into a
+      nontrivial model.
+    * **Necessary conditions.** A nontrivial model is faithful on the finitary `SL_fin(F_2)`
+      spanned by the matrix units `s0^a (1 - s0 t0) t0^b`, with every transvection displaced by
+      one positive rank. Its root maps are neither algebra-like nor monomial. The positive rank of
+      `sigma(x_12(1 - s0 t0)) - 1` must come from a piece that factors through no directly finite
+      coefficient ring (artifact `el3-rank-model-toeplitz-assembly-2026-09-12.md`, Section 5).
