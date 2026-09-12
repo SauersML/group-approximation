@@ -2,6 +2,7 @@
 rg: 2
 id: mixed-finite-subgroup-defects-need-infinite-generation-proof
 kind: route
+title: Separate the difference by the additive lifted trace inside one finite group algebra
 target: mixed-finite-subgroup-defects-need-infinite-generation
 requires:
   - lifted-trace-detects-finite-subgroup-projectives

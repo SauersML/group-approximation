@@ -2,6 +2,7 @@
 rg: 2
 id: mixed-finite-subgroup-defects-need-infinite-generation
 kind: claim
+title: Nested finite-subgroup idempotent defects need two subgroups generating an infinite group
 distinct_from:
   lifted-trace-detects-finite-subgroup-projectives: that proves the lifted trace is positive on projectives induced from ONE finite subgroup, so a defect is not such a projective; this treats a defect built as a difference of nested idempotents drawn from TWO finite subgroups, and locates the only surviving case.
   leavitt-nested-idempotent-corner-module-equivalence: that asks for a module isomorphism between two explicitly constructed nested corners over the torsion-free group Q, refuted by cocenter coefficients; this is a general obstruction over the Leavitt unit group R^x, ruling out difference-of-nested-idempotent defects whenever the two finite subgroups generate a finite group.
