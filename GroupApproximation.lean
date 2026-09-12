@@ -4672,6 +4672,7 @@ import GroupApproximation.KunThom.StepNineHammingSums
 import GroupApproximation.KunThom.CentralizerToBisectionBound
 import GroupApproximation.KunThom.CentralizerNormalizationUniformSelection
 import GroupApproximation.KunThom.CountingEndgameSelection
+import GroupApproximation.KunThom.CentralizerNormalizationUniformCore
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
