@@ -10,6 +10,7 @@ artifacts:
   - experiments/zero-divisor-tf/zd_sat.py
   - experiments/zero-divisor-tf/runs/e33-p2-r22.json
   - experiments/zero-divisor-tf/runs/e33-p3-r22.json
+  - experiments/zero-divisor-tf/runs/e33-p2-r23.json
   - experiments/zero-divisor-tf/runs/e33-p2-r11-control.json
   - experiments/zero-divisor-tf/runs/e33-p3-r11-control.json
 ---
@@ -27,6 +28,16 @@ coefficient rings:
    product cells, 5268 of them singletons.
 2. `Q`, and every number field with a prime of residue degree one above 2
    or 3. This follows by reduction.
+
+Over `F_2`, and hence over `Q`, there is also no such pair with one support
+in `B(2)` and the other in `B(3)`, in either order.
+- The census `e33-p2-r23.json` is UNSAT, with `|B(3)| = 1045` and 126445
+  pairs.
+- The reverse order follows from the anti-automorphism `g -> g^-1`, which
+  preserves the symmetric balls and sends `alpha beta = 0` to
+  `beta^* alpha^* = 0`.
+
+The `F_3` instance at radii (2,3) exceeded a 420-second cap.
 
 **Controls.** Adjoining `t = diag(-1,-1,1)`, of order 2, the same encoder
 answers SAT at radius one over `F_2` and `F_3`, and the returned zero-divisor
