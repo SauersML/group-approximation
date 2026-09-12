@@ -9,6 +9,7 @@ requires:
 artifacts:
   - research/artifacts/gottschalk-small-window-screen-2026-09-12.md
   - experiments/gottschalk-small-presentations/window_table_screen.py
+  - experiments/gottschalk-small-presentations/nine_leaf_corner_rep.py
 ---
 
 1. **Build the relators exactly.**
@@ -24,6 +25,11 @@ artifacts:
    of the ORIGINAL generators as permutations of degree `n` at most 7. GAP checks every
    relator under `MappedWord`. `--verify` then recomputes the relators independently
    and checks, in Python, that every relator maps to the identity and `x_h` does not.
+   For `eld-full-order2` at `1:1`, `nine_leaf_corner_rep.py` writes the witness in
+   the same format instead. It lists the images of the original generators under the
+   GL(6,2) corner representation of the claim, as permutations of the 63 nonzero row
+   vectors. The script checks every relator in Python, and GAP 4.14 (sage 10.7)
+   checks them under `MappedWord`, before the witness is written.
 4. **Transfer.** A homomorphism `psi: U -> K` with `psi(x_h) != 1`:
    - realizes the products of `S x M` and `<h> x M`, which are exactly its relators;
    - keeps `1` and `h` apart;
@@ -38,5 +44,6 @@ checker at `LEAVITT_LIB`:
 
     python window_table_screen.py --verify runs/res-a.json --gap-dir runs/wit
     python window_table_screen.py --verify runs/res-b.json --gap-dir runs/wit
+    python window_table_screen.py --verify runs/res-c.json --gap-dir runs/wit
 
-Both exited 0 on MSI on 2026-09-12: 32 and 12 windows, all OK.
+All three exited 0 on MSI on 2026-09-12: 32, 12 and 1 windows, all OK.

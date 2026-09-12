@@ -95,13 +95,20 @@ pattern on `{1,h}` with distinct symbols.
   refutes as a byproduct.
 - *Small ball windows are dead (2026-09-12).*
   `small-leavitt-invariant-output-windows-have-finite-separations` runs the table
-  filter on 44 ball windows:
-  - Thompson units, low-depth transvections, the GL(4,2) atlas charts, and the
-    nine-leaf `E_ij(1)` with compressors;
+  filter on 45 ball windows:
+  - Thompson units, low-depth transvections, the GL(4,2) atlas charts, the
+    nine-leaf `E_ij(1)` with compressors, and the full nine-leaf window with all 30
+    `E_ij(r)`;
   - radii up to `2:2`, and `h` of order 2 or 3.
 
-  In every window a finite image of the table group keeps `x_h != 1`: a character
-  to `Z/2` or `Z/3`, or a permutation image of degree at most 7 (PSL(3,2) for the
-  nine-leaf windows). So a certificate needs memories outside these balls, or a
-  window whose table group kills `x_h` in PSL(3,2) and in every small image. The
-  full nine-leaf window with all 30 `E_ij(r)` at radius `1:1` is still unresolved.
+  In every window a finite image of the table group keeps `x_h != 1`:
+  - a character to `Z/2` or `Z/3`;
+  - a permutation image of degree at most 7, PSL(3,2) for the nine-leaf `E_ij(1)` windows;
+  - for the full nine-leaf window, an image onto GL(4,2).
+
+  The full window survives every nilpotent image, and no finite ring realizes its
+  Leavitt products `t_k s_m = delta_km`. The GL(4,2) image uses block elementary
+  matrices over `M_2(F_2)` whose coefficients depend on the position, and it realizes
+  those products in a rank-one corner. So a certificate needs memories outside these
+  balls. A candidate window's table group must also kill `x_h` under such
+  position-dependent corner representations, not only in small simple groups.

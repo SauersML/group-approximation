@@ -75,11 +75,13 @@ Radii are `r_m:r_s`. Every verdict below was replayed in Python from the checker
 | eld1-compressors-order3 | 1:1 | 13, 33 | character to `Z/3` |
 | eld1-compressors-order2 | 1:1, 1:2, 2:1 | up to 93, 160 | no character, no coset image of index at most 6; epimorphism onto PSL(3,2), degree 7 |
 | eld1-compressors-order3 | 1:2, 2:1 | up to 123, 303 | no character, no coset image of index at most 6; epimorphism onto PSL(3,2), degree 7 |
-| eld-full-order2 | 1:1 | 35, 68 | unresolved: no character; no 2-quotient of class at most 3 separates (orders 2^140 and 2^1435); the PSL(3,2) quotient search on the Tietze form (22 generators, 200 relators) did not finish in 45 minutes |
+| eld-full-order2 | 1:1 | 35, 68 | no character; no 2-quotient of class at most 3 (orders 2^140 and 2^1435); the PSL(3,2) search did not finish in 45 minutes; linear image onto GL(4,2), degree 63, from `nine_leaf_corner_rep.py` |
 
-So 44 of the 45 windows are dead. In each nine-leaf window the separating image is
-PSL(3,2): the table group sees the corner `GL(3,2)` of the `E_ij(1)`, and the
-compressors do not force enough coincidences to kill `x_h` there.
+So all 45 windows are dead. In the nine-leaf `E_ij(1)` windows the separating image
+is PSL(3,2): the table group sees the corner `GL(3,2)` of the `E_ij(1)`, and the
+compressors do not force enough coincidences to kill `x_h` there. The full nine-leaf
+window dies in GL(4,2) instead (last reading below). Its witness is
+`runs/wit/eld-full-order2-1-1.witness.json`, and `--verify runs/res-c.json` replays it.
 
 ## Reading
 
@@ -99,3 +101,31 @@ compressors do not force enough coincidences to kill `x_h` there.
   with `x_h` in its finite residual. By
   `strict-automaton-tables-present-an-invisible-window-difference` that group is
   also nonsofic.
+- **The full nine-leaf window dies in GL(4,2).** Written over the 32 original
+  generators, its 546 relators reduce to 375 distinct words:
+  - every `E_ij(r)` is an involution;
+  - `E_ij(a), E_kl(b)` commute at positions that are not adjacent (`j != k`, `l != i`);
+  - `E_ij(t_k), E_jl(s_m)` commute for `k != m`, since `t_k s_m = 0` in `L_2`;
+  - Steinberg relations appear only with `h = E_01(1)`: `[h, E_12(r)] = E_02(r)`,
+    `[E_20(r), h] = E_21(r)`, and `[E_02(a), E_21(b)] = h` for `ab in {1, t0 s0, t1 s1}`;
+  - `cu, cv` occur only in 4 relators with `h`, so they can be sent to `1`.
+
+  Two natural kinds of image fail:
+  - *Nilpotent images.* The relators give `h = [[h, E_12(1)], [E_20(1), h]]`, so
+    `x_h` lies in every term of the lower central series. This explains the
+    2-quotient failures.
+  - *Position-independent elementary matrices over a finite ring `R`.* With
+    `p = rho(1)`, the relators force `ps = s = sp`, `pt = t = tp` and
+    `t_k s_m = delta_km p` in the finite ring `pRp`. There `t_0 s_0 = p` gives
+    `s_0 t_0 = p`, so `t_1 = t_1 s_0 t_0 = 0` and `p = t_1 s_1 = 0`.
+
+  The relators never tie coefficients at different positions together, and they ask
+  for `t_k s_k = p` only at the triple `(0,2,1)`. Take `rho_ij(1) = e_00` for
+  `(i,j) != (1,0)`, `rho_02(t_k) = rho_12(t_k) = e_0k`,
+  `rho_21(s_k) = rho_20(s_k) = e_k0`, and `rho = 0` otherwise, over `M_2(F_2)`. Then
+  `E_ij(r) -> 1 + e_ij (x) rho_ij(r)` in `GL_6(F_2)` satisfies all 546 relators, checked
+  in Python and in GAP, with `x_h != 1`. The matrices fix `e_1, e_3` and act on the
+  span of `e_0, e_2, e_4, e_5`. The image has order 20160, so it is GL(4,2) = A_8.
+  At radius `1:1`, then, the Leavitt products are visible at one position triple
+  only, and a rank-one corner realizes them. A window protected by Dedekind-finiteness
+  would need relators that tie several triples together.
