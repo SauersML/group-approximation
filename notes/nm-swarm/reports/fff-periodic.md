@@ -129,9 +129,16 @@ d ∈ l) h)`.  `CyclicArc.mapTo_darts _ id _` cannot infer its equation argument
 
 ## Residual
 
-* hull-select and dgo-analytic were asked which maximality or minimality statement their waist or
-  pocket induction consumes.  No reply had arrived when Extremal landed.  If one of them needs a
-  different spelling, it goes in a new declaration in Extremal.
+* hull-select and dgo-analytic both answered that neither consumes `weight_maximal` or `card_minimal`
+  after a pinch split.  hull-select's induction (`Estimating/OsinAppendixSectionInduction`) reads only
+  `S.family` and `S.diagram` through five input Props: MultipleEdgeCutInput and LoopCutInput
+  (go-lemma42), EulerCountInput (hull-euler), UnboundInput (hull-unbound), DescentInput (dgo-analytic).
+  dgo-analytic's pocket induction takes a fresh `exists_globallyDistinguishedSectionFamily` on each
+  pocket.  Extremality is used inside the producers: the merge in `SectionPocketCutInput` (hull-respell)
+  and the Case 2 argument of UnboundInput (hull-unbound).  On main (grep at 9b29a2730) no landed file
+  reads these fields of `GloballyDistinguishedSectionFamily`.  `OsinUnboundCaseOne:36` and
+  `UnboundScaledDecomposition:39–40` mention them only in docstrings.  `transportDistinguished` is
+  the spelling for any producer that carries S across a split.  Lane handed back for reassignment.
 * No census row: these are intermediate carriers in the proof of Lemma 9.4, Case 2, and close no
   manuscript sentence by themselves.
 * Spellings sent to hull-select and dgo-analytic (least-area waist) and to the lead.
