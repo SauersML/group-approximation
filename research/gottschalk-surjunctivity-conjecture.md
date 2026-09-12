@@ -619,8 +619,7 @@ involution), so `binary-left-inverse-pairs-are-formalizable` is refuted. The sur
 Kaplansky reduction is stable formalizability with identity ancilla tracks
 (`injective-binary-automata-are-stably-formalizable`), which would give
 `stable-finiteness-forces-binary-surjunctivity`; the broader target is
-which would give `stable-finiteness-forces-binary-surjunctivity`; the broader
-target is `non-surjunctive-group-with-stably-finite-group-algebras`.
+`non-surjunctive-group-with-stably-finite-group-algebras`.
 
 **Direct arguments on simple hosts (2026-09-12).** One-site Hilbert hotels are
 strict only on stabilizers properly conjugated into themselves, so never on the
