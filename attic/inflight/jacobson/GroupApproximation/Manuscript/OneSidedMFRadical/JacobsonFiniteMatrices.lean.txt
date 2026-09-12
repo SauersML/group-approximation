@@ -135,7 +135,8 @@ theorem eq_sum_matUnit {T : Module.End (ZMod 2) JacobsonSpace} {M : ℕ}
       (T (Polynomial.X ^ v)).coeff u • matUnit u v := by
   classical
   refine (Polynomial.basisMonomials (ZMod 2)).ext fun n ↦ ?_
-  rw [Polynomial.coe_basisMonomials, ← Polynomial.X_pow_eq_monomial, LinearMap.sum_apply]
+  simp only [Polynomial.coe_basisMonomials]
+  rw [← Polynomial.X_pow_eq_monomial, LinearMap.sum_apply]
   simp only [LinearMap.sum_apply, LinearMap.smul_apply, matUnit_X_pow, smul_ite, smul_zero]
   by_cases hn : n < M
   · have hinner : ∀ u ∈ Finset.range M,
