@@ -98,11 +98,11 @@ theorem corner_walk_step (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
     have h1 := wordDist_vertex_succ_le_one_of_not_inr J g hg hbaseInv (f := vertex X W₁ k) hu.1
       hj hinr
     omega
-  push_neg at hinr
+  push Not at hinr
   obtain ⟨i₀, e, he⟩ := hinr
   have hc : IsComp (Sum.inr i₀) u j (j + 1) :=
     isComp_succ_of_isCompOf_geodesic J hu hj (by rw [he]; exact rfl)
-  have hcos₊ : (QuotientGroup.mk (vertex (vertex X W₁ k) u j) : Q ⧸ J.fam (Sum.inr i₀))
+  have hcosOut : (QuotientGroup.mk (vertex (vertex X W₁ k) u j) : Q ⧸ J.fam (Sum.inr i₀))
       = QuotientGroup.mk (vertex (vertex X W₁ k) u (j + 1)) :=
     mk_vertex_eq_of_isComp J (vertex X W₁ k) hu.1 hc
   have hA₀ := isGeodesicWord_take J hW₁ hk
@@ -170,14 +170,14 @@ theorem corner_walk_step (J : RelGenSet Q (Sum Lambda I)) (g : I → Q)
       omega
     · -- the component is short and the second side misses the coset: the letter is short
       refine Or.inr ?_
-      have hp := geodesicWord_drop J hu (Nat.succ_le_of_lt hj)
+      have hp := geodesicWord_drop J hu (show j + 1 ≤ u.length by omega)
       have hap := avoidsCosetFrom_drop_of_isComp J hu hc
-      rw [hcos₊] at hap
+      rw [hcosOut] at hap
       have hq := isGeodesicWord_revWord J hbaseInv hB₀
       have hK : (QuotientGroup.mk (vertex X W₁ t) : Q ⧸ J.fam (Sum.inr i₀))
           = QuotientGroup.mk (vertex (vertex X W₁ k) u (j + 1)) := by
         rw [← hvt]
-        exact hcost.trans hcos₊
+        exact hcost.trans hcosOut
       have haq := ((avoidsCosetFrom_of_noComp J hW₂.1 hno).take kst).revWord
         (fun a ha => hW₂.1 a (List.take_subset kst _ ha))
       rw [← vertex_eq_mul_listVal_take W₂ X kst, hK] at haq
