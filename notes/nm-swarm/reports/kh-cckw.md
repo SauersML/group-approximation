@@ -145,13 +145,13 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   `sharpExistence_ghb7_of_fixedCliqueTitsHyp hT6 hsc hconn hhyp : Hyperbolic.SharpExistence`.
 - Connectivity: leavitt-ge's CCKWTitsGHB compiled (probe 0912-094055-42831, 8836fadca), so T2 is spent. My scratchpad fallback
   `CCKW.cosetComplex_connected` is dropped.
-- 0939c64d8 (orphan, landed unverified; batched probe with SystolicDismantlable running): `Kazhdan/GHBSharpExistenceSystolic` adds
+- 0939c64d8 (orphan; PROBE GREEN 0912-102253-20691 with SystolicDismantlable, base 7e02deb55, BUILT): `Kazhdan/GHBSharpExistenceSystolic` adds
   `cckwFiniteOrderConjugateIntoVertex_of_fixedClique hT6 : CCKWFiniteOrderConjugateIntoVertex` and
   `sharpExistence_ghb7_of_fixedCliqueHyp hT6 hhyp : Hyperbolic.SharpExistence`, feeding
   `CCKWTits.cckwCosetComplex_simplyConnected`, `CCKWTits.cckwCosetComplex_connected`.
 - T6 split (agreed with sec4-sentences, 09-12): sec4 owns the disc lemmas, BFS ⇒ dismantlable, and the assembly
   `Systolic.exists_invariantClique_of_neighborSet_finite` (`GGT/SystolicInvariantClique`). I own the pure graph theory.
-- c30c31d46 (orphan, landed unverified; probe running): `GGT/SystolicDismantlable`, namespace `GroupApproximation.Systolic` —
+- c30c31d46 (orphan; PROBE GREEN 0912-102253-20691, BUILT; bytes on main = green record): `GGT/SystolicDismantlable`, namespace `GroupApproximation.Systolic` —
   `inductive Dismantlable [DecidableEq V] (G : SimpleGraph V) : Finset V → Prop` (`single v`; `erase hu hw hwu hdom h`: `u ∈ s` is
   dominated inside `s` by `w ≠ u`, and `s.erase u` is dismantlable);
   `Dismantlable.erase_of_dominated`, `Dismantlable.sdiff_of_dominated`, `Dismantlable.isClique_of_dominated_symm`;
