@@ -1,179 +1,198 @@
 # Formalizability of a binary left-inverse pair is a Boolean-ideal cokernel class
 
 Lane `gk-fz-obstruction`, 2026-09-12. Supports
-`formalizability-is-a-boolean-ideal-cokernel-class` and
-`formalizability-conormal-obstruction-is-jacobian-cokernel`, and bears on the open
-target `binary-left-inverse-pairs-are-formalizable` and its consumer
-`stable-finiteness-forces-binary-surjunctivity`.
+`formalizability-is-a-boolean-ideal-cokernel-class`,
+`formalizability-conormal-obstruction-is-jacobian-cokernel` and
+`binary-left-inverse-pairs-are-boolean-adically-formalizable`. Bears on the refuted
+`binary-left-inverse-pairs-are-formalizable`, its negation
+`binary-left-inverse-pairs-need-not-be-formalizable`, and gk-fz-bennett's Lemma C
+(`research/artifacts/binary-formalizability-refutation-2026-09-12.md`, Section 3).
 
-This lane sets up formalizability, in the sense of
-`binary-left-inverse-pairs-are-formalizable`, as the vanishing of an obstruction
-class, reduces the infinite nonlinear search for representatives to one linear
-equation over the Boolean ideal, and identifies the leading part of that class
-with a Jacobian cokernel over `F_2[G]` — the same object `Theorem 1` of
-`formal-polynomial-strict-pairs-2026-09-12.md` linearizes to. Nothing here
-decides formalizability or Gottschalk.
+**Revision note (after 67b22531e2).**
+- (a) The encoder lift acts on `I/I^2` `tau^*`-semilinearly, not `B`-linearly. Since
+  `tau^*` is onto, its image is still the `B`-span of the Jacobian rows, so the
+  cokernel is a `B`-module quotient (Section 3).
+- (b) The first version said that on a host with `M_n(F_2[G])` directly finite "the
+  constant slice is a split epimorphism". That was unjustified for a fixed encoder
+  representative and is withdrawn. The correct statement is Lemma C: some encoder
+  representative kills the whole leading part (Section 3.3).
+- (c) Whether the class vanishes in general is decided negatively by
+  `binary-left-inverse-pairs-need-not-be-formalizable` (gk-fz-bennett, cf99b38215).
+  Section 5 is new: with a Lemma C representative every graded layer of the obstruction
+  vanishes, so the obstruction is exactly termination.
 
 ## 1. Coordinate-algebra setting
 
-Work over `k = F_2`, alphabet `A = F_2^n`. Let `H = G x {1,...,n}` index the
-coordinates, `R = F_2[X_h : h in H]` the polynomial ring, `I = (X_h^2 + X_h : h)`
-the Boolean ideal, and `B = R/I`. `B` is the algebra of finite-memory functions
-`A^G -> F_2`: it is `colim_F Fun(A^F, F_2)`, a commutative Boolean ring, and it
-carries the shift action of `G`.
+Work over `F_2`, alphabet `A = F_2^n`. Let `H = G x {1,...,n}`,
+`R = F_2[X_h : h in H]`, `u_h = X_h^2 + X_h`, `I = (u_h : h in H)` the Boolean ideal,
+and `B = R/I`. `B` is the algebra of finite-memory functions `A^G -> F_2`, a Boolean
+ring with the shift action of `G`.
 
-A cellular map `tau : A^G -> A^G` of finite memory pulls back to a `G`-equivariant
-`F_2`-algebra endomorphism `tau^* : B -> B` of finite memory. `tau` is injective
-iff `tau^*` is surjective; `tau` is surjective iff `tau^*` is injective.
+A cellular map `tau` of finite memory pulls back to a `G`-equivariant algebra
+endomorphism `tau^*` of `B`. If `sigma o tau = id` then `tau^* sigma^* = id_B`, so
+`tau^*` is onto.
 
-**Representatives are lifts.** A polynomial representative of `tau`'s local rule is
-a choice, for each `i`, of `hat mu_i in F_2[X_m : m in M]` (finite memory `M`)
-reducing to `tau(x)_{1,i}` in `B`. Extended equivariantly, `X_{g,i} -> g . hat mu_i`,
-this is a `G`-equivariant `F_2`-algebra map `hat tau^* : R -> R` lifting `tau^*`
-along `R -> R/I = B`. Conversely every such lift is a representative.
+**Representatives are lifts.** A polynomial representative of `tau` is a
+`G`-equivariant finite-memory `F_2`-algebra map `hat tau^* : R -> R` lifting `tau^*`,
+determined by the local polynomials `hat mu_i`. Conversely every such lift is a
+representative.
 
-**Every lift preserves `I`.** For any lift, `hat tau^*(X_h^2 + X_h) = hat mu_h^2 +
-hat mu_h`, whose image in `B` is `y^2 + y` for `y = tau^*(bar X_h)`. `B` is Boolean,
-so `y^2 = y` and the image is `0`. Hence `hat tau^*(I) subseteq I`. No hypothesis on
-`tau` is used.
+**Every lift preserves `I`.** `hat tau^*(u_h) = hat mu_h^2 + hat mu_h` reduces to
+`y^2 + y = 0` in the Boolean ring `B`. Hence `hat tau^*(I^k) subseteq I^k` for all `k`.
 
-**Formalizability.** As functions `(sigma o tau)^* = tau^* sigma^*`, so
-`sigma o tau = id` means `tau^* sigma^* = id_B`, i.e. `hat tau^* hat sigma^* = id`
-modulo `I` on generators. The pair is *formalizable* when some lifts satisfy
-`hat tau^* hat sigma^* = id_R` exactly. Coordinatewise this is the artifact
-convention "`sigma o tau = id` as a formal polynomial identity", since the
-substituted polynomial for coordinate `(g,i)` is `hat tau^* hat sigma^*(X_{g,i})`.
+**Formalizability.** The formal composite at coordinate `h` is
+`hat tau^* hat sigma^*(X_h)`. The pair is *formalizable* when some lifts give
+`hat tau^* hat sigma^* = id_R`.
 
 ## 2. The exact linear reformulation
 
-Fix a lift `hat tau^*` of `tau^*` and any lift `hat sigma_0^*` of `sigma^*`. Both
-lift `tau^*, sigma^*` with `tau^* sigma^* = id_B`, so on each generator
+Fix `hat tau^*` and any decoder lift `hat sigma_0^*`, and write
+`hat tau^* hat sigma_0^*(X_h) = X_h + eps_h` with `eps_h in I`. Correcting the decoder
+on generators, `hat sigma^*(X_h) = hat sigma_0^*(X_h) + delta_h` with `delta_h in I`,
+gives another lift, and
 
 ```text
-hat tau^* hat sigma_0^*(X_h) = X_h + eps_h,   eps_h in I.
+hat tau^* hat sigma^*(X_h) = X_h + eps_h + hat tau^*(delta_h).
 ```
 
-Replace `hat sigma_0^*` by the lift `hat sigma^*` with
-`hat sigma^*(X_h) = hat sigma_0^*(X_h) + delta_h`, `delta_h in I` (finite memory,
-equivariant). This is again an algebra map lifting `sigma^*`, because an assignment
-of generators extends uniquely to an algebra map and `delta_h in I` does not change
-the reduction mod `I`. Since `hat tau^*` is an algebra map, hence additive,
+No higher-order terms appear, because an algebra map is determined by its values on
+generators and `hat tau^*` is additive.
 
-```text
-hat tau^* hat sigma^*(X_h) = hat tau^* hat sigma_0^*(X_h) + hat tau^*(delta_h)
-                           = X_h + eps_h + hat tau^*(delta_h).
-```
+> **Proposition 1.** With `hat tau^*` fixed, the pair is formalizable iff
+> `hat tau^*(delta_h) = eps_h` is solvable with finite-memory equivariant
+> `delta_h in I`, i.e. iff `[eps] = 0` in `coker(hat tau^*|_I)`. By equivariance this
+> is `n` equations, one per track.
 
-There are **no higher-order corrections**: `hat sigma^*` is determined by its values
-on generators, so agreement on generators is agreement as algebra maps. Therefore
+- **Decoder-side independence.** Another decoder lift shifts `eps` by an element of
+  `hat tau^*(I)`, so `[eps]` depends only on `tau, sigma` once `hat tau^*` is fixed.
+- **Sitewise pairs vanish.** For memory `{1}`, `tau` is a composite of edge shears,
+  each a formal involution, so `hat tau^*` is an automorphism of `R` and `[eps] = 0`.
+- **A nonvanishing witness.** For the marker involution of
+  `binary-left-inverse-pairs-need-not-be-formalizable` (`G = Z`, `n = 1`), no
+  representatives satisfy the formal identity. With Proposition 1, its class `[eps]`
+  is nonzero for **every** encoder representative.
 
-> **Proposition 1.** With `hat tau^*` fixed, the pair is formalizable iff the linear
-> equations `hat tau^*(delta_h) = eps_h` are solvable with `delta_h in I`. Since
-> `hat tau^*(I) subseteq I` and `eps_h in I`, this is vanishing of the class
-> `[eps] = ([eps_h])_h` in `coker(hat tau^*|_I)`, one coordinate per `i` after
-> quotienting by equivariance.
+## 3. The conormal layer
 
-Equivariance reduces the `H`-indexed system to `n` equations
-`hat tau^*(delta_i) = eps_i` (`i = 1,...,n`) in the finite-memory part of `I`:
-applying `g` to a solution of the `i`-th equation gives the `(g,i)` equation, since
-`hat tau^*` and `eps` are equivariant.
+### 3.1 The conormal module is free
 
-**Representative independence (`sigma` side).** Changing `hat sigma_0^*` within its
-function class replaces `hat sigma_0^*(X_h)` by `hat sigma_0^*(X_h) + delta'_h`,
-`delta'_h in I`, hence `eps_h` by `eps_h + hat tau^*(delta'_h)`. That lies in the
-same coset of `hat tau^*(I)`. So `[eps] in coker(hat tau^*|_I)` depends only on the
-functions `tau, sigma`, once `hat tau^*` is fixed. Formalizability is
-`[eps] = 0` for some choice of `tau`-lift `hat tau^*`.
+> **Lemma 2.** `I/I^2` is a free `B`-module on the classes `[u_h]`, and
+> `d : I/I^2 -> Omega_{R/F_2} (x)_R B = (+)_h B dX_h` is an isomorphism with
+> `[u_h] -> dX_h`.
 
-**Sitewise pairs vanish.** For memory `{1}` over `F_2^n`, `tau` is a permutation of
-`F_2^n` and (Section 6.2 of `formal-polynomial-strict-pairs-2026-09-12.md`) is a
-composite of edge shears `x_i -> x_i + f(x_{-i})`, each a formal involution. So
-`hat tau^*` is an automorphism of `R`, `hat tau^*|_I` is bijective,
-`coker(hat tau^*|_I) = 0`, and `[eps] = 0`. This recovers formalizability of every
-sitewise pair from the cokernel picture.
+*Proof.* `I` is generated by the `u_h`, so `I/I^2` is generated over `B` by the
+`[u_h]`. The map `d` is `B`-linear on `I/I^2`: for `r in R`, `i in I`,
+`d(ri) = r di + i dr == r di` modulo `I`. In characteristic `2`,
+`d(u_h) = (2X_h + 1) dX_h = dX_h`, and the `dX_h` are a `B`-basis of
+`(+)_h B dX_h`. So the generators `[u_h]` are linearly independent, `I/I^2` is free on
+them, and `d` is an isomorphism. QED
 
-The content of the reformulation: the search over enlarged memories and all
-representatives collapses to solving **one** `F_2`-linear equation
-`hat tau^*(delta) = eps` inside `I`, for a single fixed representative of `tau`.
+### 3.2 The encoder acts by the reduced Jacobian, semilinearly
 
-## 3. The conormal quotient is free, and `hat tau^*` acts by the Jacobian
+> **Proposition 3.** The map induced by `hat tau^*` on `I/I^2` is `tau^*`-semilinear:
+> `[r u_h] -> tau^*(bar r) sum_{h'} J_{h h'} [u_{h'}]`, with
+> `J_{h h'} = (partial hat mu_h / partial X_{h'}) mod I`.
 
-Filter `I` by the `I`-adic filtration. The conormal module `I/I^2` is where the
-leading part of the obstruction lives, and it is computable.
+*Proof.* `hat tau^*(r u_h) = hat tau^*(r) hat tau^*(u_h)`, and
+`hat tau^*(r) == tau^*(bar r)` modulo `I`. Also `hat tau^*(u_h) = hat mu_h^2 + hat mu_h`
+and `d(hat mu_h^2 + hat mu_h) = (2 hat mu_h + 1) d hat mu_h =
+sum_{h'} (partial hat mu_h/partial X_{h'}) dX_{h'}`. Transport by `d^{-1}`. QED
 
-> **Lemma 2.** The de Rham differential `d : I/I^2 -> Omega_{R/F_2} (x)_R B` is an
-> isomorphism onto the free `B`-module `(+)_h B dX_h`, sending `u_h := X_h^2 + X_h`
-> to `dX_h`.
+> **Corollary 4.** Since `tau^*` is onto, the image of the induced map is the `B`-span
+> of the rows `J_h = sum_{h'} J_{h h'} [u_{h'}]`. The leading obstruction is the image
+> of `[eps mod I^2]` in `C = ((+)_h B [u_h]) / (B-span of the rows)`. Its vanishing is
+> necessary for formalizability with this encoder representative.
 
-*Proof.* For the surjection `R -> B = R/I` the cotangent sequence gives an exact
-`I/I^2 --d--> Omega_R (x) B -> Omega_B -> 0`. `B` is etale-trivial over `F_2` in the
-sense that `Omega_{B/F_2} = 0`: every element of `B` is idempotent, so
-`0 = d(y^2) = 2y\,dy = 0` gives no relation directly, but `y = y^2` gives
-`dy = d(y^2) = 2y\,dy = 0` in characteristic `2`; hence `Omega_B = 0`. So `d` is
-onto the free module `(+)_h B dX_h`. On generators
-`d(u_h) = d(X_h^2 + X_h) = (2X_h + 1) dX_h = dX_h` in characteristic `2`. These are a
-free basis, so `d` is injective on the classes `u_h` and `I/I^2` is free on `{u_h}`,
-with `d` the stated isomorphism. QED
+**Constant slice.** Base change along evaluation `B -> F_2` at a constant configuration
+`c` is right exact. Using equivariance to identify the row at `(g,i)` with the
+`g`-translate of row `i`, `C (x) F_2 = F_2[G]^n / (row module of J_tau(c))`, where
+`J_tau(c) in M_n(F_2[G])` is the linearization of Theorem 1 of
+`formal-polynomial-strict-pairs-2026-09-12.md`. It is `0` iff `X J_tau(c) = 1` for some
+`X in M_n(F_2[G])`.
 
-> **Proposition 3.** Under the isomorphism of Lemma 2, the map induced by `hat tau^*`
-> on `I/I^2` is the reduced Jacobian: in the basis `{u_h}`,
-> `hat tau^*(u_h) = sum_{h'} (partial hat mu_h / partial X_{h'} mod I) u_{h'}`.
+### 3.3 The leading part is not an invariant (Lemma C)
 
-*Proof.* `hat tau^*(u_h) = hat mu_h^2 + hat mu_h`. Apply `d` and Lemma 2:
-`d(hat mu_h^2 + hat mu_h) = (2 hat mu_h + 1) d hat mu_h = d hat mu_h =
-sum_{h'} (partial hat mu_h/partial X_{h'}) dX_{h'}`, and reduce coefficients mod `I`.
-Transport back along `d^{-1}`. QED
+gk-fz-bennett's Lemma C: adding `u_h P` to an encoder rule changes its partial in
+`X_h` at every Boolean point `c` by `P(c)`, and leaves the rule unchanged on points. So
+some representative has Jacobian `I` at every `{0,1}`-configuration. A `B`-element is
+determined by its values on points, so `J_B = I` in `M(B)`. For such a representative
+the rows are the basis, `C = 0`, and the leading obstruction vanishes. So the conormal
+class depends on the encoder representative and can always be killed. It does not
+detect non-formalizability. This replaces the withdrawn "directly finite, hence split
+epimorphism" sentence of the first version.
 
-So on the conormal quotient `hat tau^*` is the `B`-linear operator with matrix the
-Boolean-reduced Jacobian `J_B = (partial hat mu_h/partial X_{h'} mod I)`, an
-equivariant finite-memory element of `M_n(B rtimes G)` (`n` tracks, `G`-translation).
+## 4. Higher layers
 
-**Constant specialization is the Kaplansky matrix.** Evaluating the Boolean entries
-at a constant configuration `c in F_2^n`, and using equivariance, `J_B` specializes
-to `J_tau(c) = sum_m (partial mu / partial X_m)(c) delta_m in M_n(F_2[G])`, the exact
-linearization of Theorem 1 of `formal-polynomial-strict-pairs-2026-09-12.md`. In
-particular the `c = 0` (or any constant) specialization of the conormal map is the
-matrix whose one-sided invertibility is a direct-finiteness / Kaplansky statement for
-`M_n(F_2[G])`.
+The `u_h` form a regular sequence in every finite set of variables, so
+`gr_I R = (+)_k I^k/I^{k+1}` is the polynomial ring `B[U_h]`. Since `hat tau^*`
+preserves every `I^k`, it induces a graded map `gr(hat tau^*)`, `tau^*` in degree `0`,
+Proposition 3 in degree `1`, and hence the symmetric powers of that semilinear map in
+degree `k`.
 
-> **Corollary 4 (leading obstruction).** The image of `[eps]` in
-> `coker(hat tau^*|_{I/I^2}) = coker(J_B on (+)_h B dX_h)` is the leading part of the
-> formalizability obstruction. It vanishes if `J_B` is surjective as a
-> `B rtimes G`-operator. Its constant specialization is
-> `coker(J_tau(c) : F_2[G]^n -> F_2[G]^n)`, which is `0` exactly when `J_tau(c)` is a
-> split epimorphism over `F_2[G]` — the linear/Kaplansky layer.
+## 5. With a Lemma C representative the obstruction is termination
 
-This is the precise sense in which the formalizability obstruction *meets* Kaplansky:
-its top graded piece is a Jacobian cokernel over the Boolean group ring, and the
-constant slice of that is the matrix `M_n(F_2[G])` cokernel of Theorem 1. Higher
-`I`-adic pieces are corrections layered on top, governed by the same operator
-`hat tau^*` restricted to `I^k/I^{k+1}`, each a free `B`-module by the same de Rham
-computation applied to symmetric powers (not carried out here).
+> **Theorem 5** (`binary-left-inverse-pairs-are-boolean-adically-formalizable`). Let
+> `sigma o tau = id` on `(F_2^n)^G`. Choose an encoder representative with `J_B = I`
+> (Lemma C). Then:
+> 1. `gr_k(hat tau^*)` on `I^k/I^{k+1}` is onto for every `k >= 1`, and bijective when
+>    `tau` is bijective.
+> 2. The correction equation `hat tau^*(delta) = eps` has a solution in the `I`-adic
+>    completion `hat I`, as an `I`-adically convergent sum `delta = sum_k delta_k` of
+>    equivariant finite-memory `delta_k in I^k`. The solution is unique when `tau` is
+>    bijective.
+> 3. The pair is formalizable with this encoder representative iff some such solution
+>    is a finite-memory polynomial.
 
-## 4. What is and is not decided
+*Proof.*
+1. With `J_B = I`, `hat tau^*(u_h) == u_h` modulo `I^2`, so `hat tau^*(u^alpha) ==
+   u^alpha` modulo `I^{k+1}` for every degree-`k` monomial. Hence `gr_k(hat tau^*)` sends
+   `b [u^alpha]` to `tau^*(b) [u^alpha]`. It is onto because `tau^*` is onto, and
+   bijective when `tau^*` is, i.e. when `tau` is bijective.
+2. Put `eps_1 = eps`. If `eps_k in I^k`, its class at the base cell is a finite sum
+   `sum_alpha b_alpha [u^alpha]`. Take `delta_k = sum_alpha r_alpha u^alpha`, with
+   `r_alpha` any finite-memory lift of `sigma^*(b_alpha)`, extended equivariantly. Since
+   `tau^* sigma^* = id`, part 1 gives
+   `eps_{k+1} := eps_k - hat tau^*(delta_k) in I^{k+1}`. The algebra map `hat tau^*`
+   preserves the filtration, so it is `I`-adically continuous. Hence
+   `hat tau^*(sum_k delta_k) = sum_k (eps_k - eps_{k+1}) = eps`. When `tau` is
+   bijective, `gr(hat tau^*)` is injective in every degree, so `hat tau^*` is injective
+   on `hat I` and the solution is unique.
+3. This is Proposition 1, restricted to solutions that are polynomials. QED
+
+**Consequences.**
+- **Every binary left-inverse pair is formalizable Boolean-adically.** No graded
+  obstruction class exists once the encoder representative is chosen by Lemma C. The
+  entire obstruction to formalizability is **termination**: whether the degree-by-degree
+  correction can stop at finite degree and finite memory. Each `delta_k` has finite
+  memory, but the memories may grow with `k`.
+- **The marker involution.** Its encoder `tau` is bijective, so for each Lemma C
+  representative the Boolean-adic decoder correction is unique. By
+  `binary-left-inverse-pairs-need-not-be-formalizable`, that unique correction is not a
+  finite-memory polynomial, for any Lemma C representative. This upgrades the heuristic
+  Remark after Lemma C in gk-fz-bennett's artifact from "no strategy of this kind
+  terminates" to "the unique Boolean-adic solution is not polynomial".
+- **For the Kaplansky route.** A positive formalization theorem has to bound the growth
+  of memory and degree of the `delta_k`. A negative invariant has to see that growth.
+  Graded (associated-graded) cohomology is blind to it, because every graded piece
+  vanishes.
+
+## 6. What is and is not decided
 
 **Decided.**
-- Formalizability is exactly `[eps] = 0` in `coker(hat tau^*|_I)`, a single linear
-  solvability question over `I` for one fixed representative of `tau` (Prop 1).
-- The class depends only on the functions once `hat tau^*` is fixed; sitewise pairs
-  give `0` (Section 2).
-- The conormal quotient is free on `{u_h}` and `hat tau^*` acts by the reduced
-  Jacobian; the leading obstruction is a Jacobian cokernel over `B rtimes G` whose
-  constant slice is the `M_n(F_2[G])` Kaplansky cokernel (Lemma 2, Prop 3, Cor 4).
+- Formalizability with a fixed encoder representative is one cokernel class
+  (Proposition 1). The class is decoder-independent, zero for sitewise pairs, and nonzero
+  for every representative of the marker involution.
+- The conormal layer is free, the encoder acts on it by the reduced Jacobian
+  semilinearly, and the constant slice is `coker(J_tau(c))` over `F_2[G]` (Section 3).
+- The leading part is not an invariant: Lemma C kills it (Section 3.3).
+- With a Lemma C representative every graded layer vanishes and the correction always
+  exists Boolean-adically, uniquely for bijective pairs. Formalizability is exactly
+  termination (Theorem 5).
 
-**Not decided.**
-- Whether `[eps] = 0` for every left-invertible pair, i.e.
-  `binary-left-inverse-pairs-are-formalizable`. Prop 1 turns this into: is
-  `eps_h in hat tau^*(I)` for some `tau`-lift? A negative instance is a pair whose
-  leading class in `coker(J_B)` is nonzero and stays nonzero under every change of
-  `tau`-representative — equivalently a Boolean-Jacobian cokernel that no lift kills.
-- Whether the obstruction depends on the `tau`-representative or only on the tables.
-  Section 2 fixes independence on the `sigma` side; the `tau` side is open, because a
-  different `tau`-lift changes both `hat tau^*|_I` and `eps`.
-
-**Handoff.** The nonvanishing hunt is now a concrete `F_2[G]`-module computation:
-exhibit a finite-memory injective non-surjective `tau` whose reduced Jacobian `J_B`
-has `eps` outside its image in `coker(J_B on (+) B dX)`. On a host with `M_n(F_2[G])`
-directly finite the constant slice is not enough (it is a split epi there), so any
-witness must live in the higher `I`-adic layers — exactly the collapse-essential
-regime of Section 4 of `formal-polynomial-strict-pairs-2026-09-12.md`.
+**Open.**
+- An invariant that measures non-termination (growth of memory or degree of the
+  `delta_k`) and detects the marker involution directly, without the degree argument
+  of `formalizable-binary-pairs-over-biorderable-groups-are-affine`.
+- Whether such an invariant survives adding ancilla tracks
+  (`injective-binary-automata-are-stably-formalizable`), where the top variable can
+  cancel between components.
