@@ -19,7 +19,7 @@ of the base point, and every input now exists over `K`:
 * the chart is contractible, `ChernEulerBundleOf.hasPointCohomology_of_contractibleOf`;
 * the complement retracts onto `ℂP^d`, by homotopy invariance over `K`
   (`KroneckerContractible.pullEquivOfHomotopyEquivOf`);
-* the intersection is `S^{2d+1}`, by the sphere over `K` (`GysinSphereOf.hasSphereCohomologyOf_sphere`);
+* the intersection is `S^{2d+1}`, by the sphere over `K` (`Gysin.hasSphereCohomologyOf_sphere`);
 * the degree-zero hypothesis from the line structure alone,
   `ProjectiveSpaceComputation.exists_sum_eq_of_lines`, which was generic over a field already.
 
@@ -55,7 +55,7 @@ theorem hasSphereCohomologyOf_interSpace (K : Type) [Field K] (d : ℕ) :
     HasSphereCohomologyOf K (interSpace d) (2 * d + 1) := by
   refine HasSphereCohomologyOf.of_linearEquiv
     (fun k => (pullEquivOfHomotopyEquivOf K (interSphereHomotopyEquiv d) k).symm) ?_
-  exact hasSphereCohomologyOf_sphere K (2 * d + 1) (by omega)
+  exact Gysin.hasSphereCohomologyOf_sphere K (2 * d + 1) (by omega)
 
 /-- The punctured projective space has the `K`-cohomology of `ℂP^d` once `ℂP^d` does. -/
 theorem hasCPCohomologyOf_punctSpace (K : Type) [Field K] (d : ℕ)
