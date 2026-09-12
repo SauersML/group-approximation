@@ -24,10 +24,11 @@ audits the mathematics:
 | R1 | `SeqNormalizes`, `HasSequentialCentralizerNormalization` vs Theorem 4.1 | faithful: implied by 4.1 at the pair |
 | R2 | producer skeleton `0365e49a5` | correct reduction; `hcore` asks no more than 4.1; pinned core file absent |
 | R3 | step-9 summation `462e29bd5` | sound; fits the intended instance |
-| R4 | gap-1 improvement `2458bbc45` | statement shape right; **F2 (new): no threshold lowering**; F1 known (L2) |
+| R4 | gap-1 improvement `2458bbc45` | statement shape right; F2: no threshold lowering; F1 known (L2). Both fixes in flight on disk (R8) |
 | R5 | counting modules `b30597455` | match the counting and Lemma 4.4; a fixed clamp level suffices |
 | R6 | relative-functor finite lemmas | match the sentences of the proof of Lemma 4.3 |
 | R7 | scale-defect fix | real on both halves, conditional on L1, F1 and F2 |
+| R8 | in-flight modules on disk, 13:00–13:17, unlanded | pre-landing review: no defect; they resolve F1 and F2 |
 
 ## R1. The sequential Prop against Theorem 4.1
 
@@ -145,15 +146,24 @@ distance gap gives `q_n = 2ε_n / h_Γ`.
 - The blocks are `Q_{π i}`. The retained arrow is `b_{π i}`. The reference is
   `a_{n,i}` sandwiched through the two `u`-bridges; `realizesOn_sandwich_bridge`
   gives `RealizesOn` exactly.
-- Both arrows are almost equivariant for the word labels `α(w_s)` of `t s t⁻¹`, not
-  for `α(s)`. The reference comes from `u a u⁻¹`, and `u a u⁻¹` is equivariant for the
-  transported labels.
-- So `actY C` must be the word labels, and `hexp` is tagged expansion of the
-  word-labelled graph on `Q_{π i}`.
-- That expansion follows from the Cheeger bound of `P_i = u Q_i` with transported
-  labels, minus the edit budget `δ + ξ`. It holds at scales above a multiple of
-  budget/`h_Γ`, which is why `x C` carries `2·editBudget`. The exact Cheeger input is
-  kt41-g1-alt's L1.
+- With blocks `Q_{π i}`, both arrows are almost equivariant for the word labels
+  `α(w_s)` of `t s t⁻¹`, not for `α(s)`. The reference comes from `u a u⁻¹`, and
+  `u a u⁻¹` is equivariant for the transported labels.
+- On that block choice `actY C` must be the word labels, and `hexp` is tagged
+  expansion of the word-labelled graph on `Q_{π i}`. It follows from the Cheeger bound
+  of `P_i = u Q_i` minus the edit budget `δ + ξ`, at scales above a multiple of
+  budget/`h_Γ`.
+- **Correction, 13:20.** The block choice is not forced. The in-flight
+  `StepNineHammingReference` pulls back through `u` using
+  `card_hammingDisagreement_conj_swap`, i.e. `#{b̂ ≠ u â u⁻¹} = #{â ≠ u⁻¹ b̂ u}`.
+  - It then compares `a_i` with `transportArrow u β (π i) i` on `Q_i`, with the
+    S-labels.
+  - `hexp` there is tagged expansion of the S-labelled block action at constant
+    cheeger/4 above the edit budget. That is the shape of the landed
+    `componentCompletedAction_taggedExpansion`.
+  - The word length enters only the defect budget, through
+    `card_equivarianceDefect_transportArrow_le`.
+  - That route is cleaner. The exact Cheeger input is still kt41-g1-alt's L1.
 
 **Verdict.** Sound. The conclusion feeds `vanishing_hammingDistance_of_card_le`.
 
@@ -262,6 +272,18 @@ So one theorem also covers the inverse half of F1.
 **Consumers.** kt41-functor (the Lemma 4.3 functor on representatives), and
 `symm_mem` at per-object scale.
 
+**Status, 13:20: fix in flight, matching the proposal.** The on-disk
+`CentralizerNormalizationPairImprove` proves:
+- `PairRepairAt K₀ h' d n`, repair of single arrows whose defects are below
+  `K₀·h'·min(scale i, scale l)/2`;
+- `eventually_pairRepairAt`, with `K₀·η < ζ`, `k²·K₀·η < ζ`, and `K₀·η` in the
+  linear term of the numerical condition;
+- `pairImproveCloseAt_of_pairRepairAt` at `K₀ ≥ 4`;
+- `exists_joint_pairRepair`, which gives both statements along one diagonal.
+
+The functor lane chooses `K₀ ≥ 1.21·(1 + |S|·k)` plus bridge and label slack. Review
+continues when it lands.
+
 ## R5. Counting modules `b30597455`
 
 **`ComponentCountingNormalizationGroupoid` against the proof of Theorem 4.1.**
@@ -321,6 +343,72 @@ Cheeger constant.
 **Verdict.** The fix is real on both halves. Both halves still need:
 - L1, for tagged expansion at small scales;
 - F1 and F2, to populate the groupoid with `h_n`-candidates.
+
+## R8. Pre-landing review of in-flight modules
+
+These files were read on disk at 13:00–13:17. They are unlanded, and bc-review will
+audit the evidence when they land.
+
+- **`CentralizerNormalizationClusterSystem`: `ScaledPartialClusterSystem`.**
+  - Per-object `scale X = |X|/18`, with the pair scale `min` on arrows.
+  - `improveExists` and `repairExists`, the latter with slack `K₀`.
+  - `expands` at scale 1 with constant `h ≤ cheeger`.
+  - `scale_comparable : 10·scale X ≤ 11·scale Y` for any candidate `X → Y`.
+  - Checks:
+    - `f.symm` stays a candidate at the same `min`, so inverses work.
+    - Near transitivity: `< 4m < 16m` gives `< 2m`.
+    - Composition congruence: `2m_XY + 2m_YZ + O(d)` is at most
+      `≈ 4.84·m_XZ + O(d) < 16·m_XZ`.
+    - `repairExists` has no `selfSmall` hypothesis, but
+      `|L|·sourceDefect ≤ defect < K₀·h·m/2` supplies it.
+  - Model test, empty `I`: vacuous and harmless.
+  - `expands` at scale 1 forces the labels to be expanders. That is the exact Cheeger
+    input of L1, which the on-disk `SequentialComponentFamilyPruning` and
+    `SequentialComponentFamilyCompletion` build (`completion_hasCheegerLowerBound`,
+    `h/(8|T|)` after pruning).
+- **`CentralizerNormalizationPairImprove`.** See F2 above. It is the Lemma 4.2(2)
+  shape.
+  - With `F([b]) := [repair(transportArrow u β (π i) i (ā i))]`, the functor lives in
+    `𝒞_n` itself: `u⁻¹ b u` is S-equivariant up to
+    `card_equivarianceDefect_transportArrow_le`.
+  - So no separate transported groupoid is needed, and `U_n` is implicit.
+- **`StepNineHammingReference`, `StepNineHammingDefects`, `StepNineHammingEstimate`.**
+  - These give step 9 through the pull-back correction in R3.
+  - The budget is the actual defect of `a_i`, the missing mass of the bridges,
+    compatibility failures, localized label failures and the defects of `b_{π i}`.
+    Each sums to `o(|Y|)` once the arrows are `h_n`-candidates.
+  - `hnear` comes from the cluster identity plus `repair` within `d_n|Q_i|`.
+  - `hroom` holds when `d_n` and `h_n` are small.
+- **`BisectionActualDefect`.**
+  - Per-block scale `m C` with `17·m C ≤ |C|`.
+  - The commutation term is at most `3(h/34)|Y|`.
+  - The sequential form needs `Vanishing h`.
+  - Model test, no blocks: the uncovered mass is all of `Y`, so `huncovered` fails
+    visibly.
+- **`MedianVertexForm`, `MedianVertexFormLocal`.**
+  - Object-to-vertex transfer for Lemma 4.4, with a log observable cut at 1.
+  - `(1 − ζ)a ≤ b` becomes drift `2ζ`.
+  - The hypotheses hold for every compressor over `ambientGenerators`.
+  - `localRatio_negligible` is equation (4) in component-weight measure.
+- **`CompressorMatching`.** The Proposition 3.1 matching is exported for every
+  compressor over one pair of decompositions (`withDistinguished`). This is the
+  multi-compressor use in the proof of 4.1.
+- **`CentralizerNormalizationUniformMarkov`, `CentralizerNormalizationUniformGood`.**
+  - Diagonal Markov selection over countably many error kinds.
+  - Uniform over good objects for each fixed kind, with a negligible bad mass.
+  - Freeness is consumed through the ambient collision counts, and `[Infinite K]`
+    through the small components.
+- **`NormalizationFromCriterionClosure`.** `almostCommutes_of_generators` carries
+  generator-level commutation of `b̂_n` to all of `Γ`, as the conclusion of
+  `SeqNormalizes` needs.
+
+**Not yet seen anywhere:**
+- a presentation of the per-pair-radius groupoid, i.e. `FinitePartialClusterData`
+  with the radius indexed by pairs;
+- the Lemma 4.2(4) forward representation of an arbitrary almost-commuting `v` by a
+  patched bisection;
+- the `GroupoidPresentation.Morphism` instance of the functor;
+- the assembly into `seqNormalizes_distinguished_of_kazhdan`.
 
 ## Named statements in the chain without a producer
 
