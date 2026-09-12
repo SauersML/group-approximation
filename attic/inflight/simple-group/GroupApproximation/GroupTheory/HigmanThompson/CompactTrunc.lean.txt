@@ -77,8 +77,9 @@ theorem compE_block_mem (j : ℕ) : compE m r ((r : ℚ) - 1 + j) ∈ Grid (m + 
       ((j % (m + 1) : ℕ) : ℚ) := by
     rw [hj]
     ring
+  generalize hρ : j % (m + 1) = ρ at hρ0 hρm e2
   rw [e2, compE_block m r (j / (m + 1)) hρ0 hρm]
-  refine ⟨(r : ℤ) * ((m : ℤ) + 2) ^ (j / (m + 1) + 1) - ((m : ℤ) + 2) + (j % (m + 1) : ℕ), ?_⟩
+  refine ⟨(r : ℤ) * ((m : ℤ) + 2) ^ (j / (m + 1) + 1) - ((m : ℤ) + 2) + (ρ : ℤ), ?_⟩
   have hcastn : (((m + 2 : ℕ) : ℚ)) = (m : ℚ) + 2 := by push_cast; ring
   rw [hcastn]
   have e3 : (((m : ℚ) + 2) ^ (j / (m + 1)))⁻¹ * ((m : ℚ) + 2) ^ (j / (m + 1) + 1) = (m : ℚ) + 2 := by
@@ -87,7 +88,7 @@ theorem compE_block_mem (j : ℕ) : compE m r ((r : ℚ) - 1 + j) ∈ Grid (m + 
   have e4 : (((m : ℚ) + 2) ^ (j / (m + 1) + 1))⁻¹ * ((m : ℚ) + 2) ^ (j / (m + 1) + 1) = 1 :=
     inv_mul_cancel₀ (pow_pos hp _).ne'
   push_cast
-  linear_combination (-1 : ℚ) * e3 + ((j % (m + 1) : ℕ) : ℚ) * e4
+  linear_combination (-1 : ℚ) * e3 + (ρ : ℚ) * e4
 
 /-- The truncation of `compE` beyond `r - 1 + J`. -/
 noncomputable def compET (J : ℕ) (u : ℚ) : ℚ :=
@@ -290,7 +291,7 @@ theorem compEinvT_gridAffine (J : ℕ) :
   have hss : s = s₀ := AffineOn.slope_unique hs haff hlt
   subst hss
   rcases hs₀ with rfl | ⟨i, -, rfl⟩
-  · refine ⟨by simpa using (powSlopes m).one_mem, by simpa using int_mem_grid (m := m + 2) 0 1⟩
+  · refine ⟨by simp, by simpa using int_mem_grid (m := m + 2) 0 1⟩
   · rw [inv_inv]
     refine ⟨powSlopes_pow m i, ?_⟩
     have e : ((m : ℚ) + 2) ^ i = ((((m : ℤ) + 2) ^ i : ℤ) : ℚ) := by push_cast; ring
