@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.CohomologyChartLowDegreeOf
+import GroupApproximation.CharClass.CohomologyChartPeelUniq
 
 /-!
 # One peel over a field: the base coefficient is determined
