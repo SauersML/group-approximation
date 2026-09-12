@@ -39,5 +39,7 @@ close up in the cycle `a -> b -> c -> d -> a` that kills finite quotients.
   single copying map gives a strict automaton.
 * **Linear case (artifact Section 3).** Over one track, unique products (imported from left-orderability, not
   re-read) make `F_p[H]` a domain, so linear automata are surjunctive. Over several tracks the question is
-  stable finiteness of `F_p[H]`, which is open; the known division-ring embedding is in characteristic zero only.
+  `higman-group-algebra-not-stably-finite` (route `higman-stable-finiteness-failure-gives-nonsurjunctivity`),
+  which is open. The known division-ring embedding is in characteristic zero only; a characteristic-`p` embedding
+  through a Cohn coproduct of vertex skew fields stops at identifying the two division closures of `F_p[<a,c>]`.
 * **Where it stops.** No candidate design reading all four pieces through free edge groups is known.

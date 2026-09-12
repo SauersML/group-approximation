@@ -118,9 +118,23 @@ groups.
 * **One track.** If `H` has unique products, `F_p[H]` is a domain, so `ab = 1` forces `ba = 1`, and every
   linear automaton on `(F_p)^H` is surjunctive. Left-orderable groups are unique-product groups; this is a
   standard import (Passman's book) that this lane did not re-read, and it is recorded here, not as a node.
-* **Several tracks.** Stable finiteness of `F_p[H]` is open. The division-ring embedding of
+* **Several tracks.** Stable finiteness of `F_p[H]` is open (`higman-group-algebra-not-stably-finite`, with route
+  `higman-stable-finiteness-failure-gives-nonsurjunctivity`). The division-ring embedding of
   Fisher--Sanchez-Peralta is stated only in characteristic zero, and finite alphabets live in characteristic
-  `p`. A one-sided inverse pair in `M_n(F_p[H])`, `n >= 2`, would refute Gottschalk.
+  `p`. A one-sided inverse pair in `M_n(F_p[H])`, `n >= 2`, would refute Gottschalk. Its supports must generate a
+  nonsofic subgroup (sofic group algebras are stably finite, Elek--Szabo, imported), so Theorem 1.2 applies.
+* **A division-ring route to stable finiteness, and where it stops.** Write `H = G_1 *_F G_2`. Suppose `F_p[G_i]`
+  embeds in a skew field `D_i` such that (i) the division closure of `F_p[F]` in `D_1` and in `D_2` is one and the
+  same `F_p[F]`-field `U`, and (ii) elements of `G_i` in distinct right cosets of `F` are left linearly independent
+  over `U`. Then normal forms give an embedding of `F_p[H] = F_p[G_1] *_(F_p[F]) F_p[G_2]` into the ring coproduct
+  `D_1 *_U D_2`, which is a fir by Cohn's coproduct theorem and embeds in its universal field of fractions. So
+  `F_p[H]` would embed in a skew field and be stably finite. For the vertex groups, `F_p[BS(1,2)]` is an Ore domain
+  (torsion-free amenable with a domain group algebra), and `D_i` could be built as a Cohn coproduct of two such
+  Ore skew fields over `F_p(b)`. Step (i) is where this stops: a free group algebra has many fields of fractions,
+  and identifying both closures with the universal one needs Hughes-freeness for `F` inside `D_i`, which is not
+  established for these constructions. `H` itself is perfect, hence not locally indicable, so Hughes' theory does
+  not apply to `H` directly. None of the imports in this paragraph (Cohn, Tamari's Ore criterion, Hughes) was
+  re-read by this lane.
 * **Where it stops.** No candidate strict automaton is known. What is known is where one must live: a memory
   mixing all four Baumslag--Solitar pieces through nonabelian free edge groups in both splittings, with
   strictness not coming from any single copying map.
