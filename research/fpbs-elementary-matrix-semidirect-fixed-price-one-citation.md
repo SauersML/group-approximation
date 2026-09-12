@@ -9,7 +9,23 @@ requires: []
 
 Citation import, not a reproof.
 
-**Source.** D. Gaboriau, *Around the orbit equivalence theory, measure
+**Primary source.** D. Gaboriau, *Coût des relations d'équivalence et des
+groupes*, Invent. Math. 139 (2000) 41–98,
+<https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/Cout/Cout.pdf>. The lane
+`lit-scout` extracted the text on MSI on 2026-09-12. Critères VI.24(3),
+verbatim:
+
+> si Γ est une réunion croissante de groupes infinis Γ_n où Γ_1 est à prix
+> fixe de coût 1, par exemple moyennable, et si Γ_{n+1} est engendré par Γ_n
+> et des éléments γ ∈ Γ tels que γ^{-1}Γ_nγ ∩ Γ_n soit infini alors Γ est à
+> prix fixe de coût 1.
+
+Gaboriau attributes (3) to a suggestion of Alex Furman, "avec la même preuve".
+VI.26(b) treats `SL(n,Z)`, `n >= 3`, by commuting transvections. This claim is
+that argument over an arbitrary infinite commutative ring, extended by ring
+automorphisms.
+
+**Restatement used for the quotation below.** D. Gaboriau, *Around the orbit equivalence theory, measure
 equivalence, cost and L2-Betti numbers*, lecture notes,
 <https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf>.
 The text was extracted on MSI with ghostscript on 2026-09-12. Section 2.5 says

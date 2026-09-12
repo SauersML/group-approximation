@@ -18,9 +18,9 @@ G = EL_r(R) semidirect H
 ```
 
 has fixed price one: every essentially free p.m.p. action of `G` has cost one.
-It follows from Gaboriau's Theorem 2.45: increasing unions through infinite
-commensurations, from [Gab00, Lemme V.3] and in the spirit of Critere VI.24. The
-theorem is imported by `fpbs-elementary-matrix-semidirect-fixed-price-one-citation`
+It is exactly Gaboriau's Critères VI.24(3) (Invent. Math. 139 (2000), a
+generalization he credits to a suggestion of Furman), resting on his Lemme V.3.
+It is restated as Theorem 2.45 of his lecture notes. The theorem is imported by `fpbs-elementary-matrix-semidirect-fixed-price-one-citation`
 and applied to the root-subgroup chain written out in
 `fpbs-elementary-matrix-semidirect-fixed-price-one-proof`. The case `R = Z` with `H`
 trivial is Gaboriau's `SL(n,Z)`, `n >= 3` (his Corollary 2.44).
