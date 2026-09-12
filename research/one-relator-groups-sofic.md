@@ -26,6 +26,11 @@ claim [[nonsofic-one-relator-group]].
 
 ## What is already settled
 
+- [[peelable-extreme-one-relator-groups-are-sofic]] — if some zero-exponent
+  Magnus rewriting has an extreme letter forming one syllable, or two
+  syllables of equal absolute exponent, the group is sofic. The remainder is
+  [[unpeelable-extreme-one-relator-groups-sofic]], routed through
+  `tf-two-generator-sofic-via-extreme-peeling`.
 - [[berlai-mixed-conjugator-example-is-sofic]] — a cyclic-amalgam
   construction now proves the asymmetric example `w=b^(-1)ab^2` sofic.
   [[single-block-conjugator-one-relator-groups-are-sofic]] covers every
