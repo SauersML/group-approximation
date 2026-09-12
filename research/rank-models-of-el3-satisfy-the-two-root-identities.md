@@ -190,3 +190,25 @@ payoff is `non-linear-sofic-group`.
   - **Why they die.** `U_4(R)` has an explicit model with `rk(N_23 N_12) = (p-1)^2/p^2` in every
     characteristic (`unipotent-frame-relations-cannot-assemble-corner-cuntz-family`).
   - **What escapes.** One opposite unit root element already generates a copy of `R^x`.
+- **Nested defect descent: bounded on both sides, and it cannot close the gate by itself**
+  (w4-gate-descent; artifact `research/artifacts/two-root-defect-descent-gap-2026-09-12.md`).
+  - **Gap** (`leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`). A universal
+    `c_0 > 0` gives `c_0 rk(1-f) <= rk((1-f) D_A) <= rk(1-f)/2` in every characteristic-two
+    rank model of `R^x`.
+    - Every nontrivial model has a nontrivial fixed-point-free quotient.
+    - Its four generators displace at least `1/4` in total.
+    - Compactness and corner locality then bound the defect below.
+  - **Descent** (`nested-two-root-defect-pieces-decay-geometrically-both-ways`).
+    - On fixed-point-free models, products of disjoint cylinder defects shrink per step by a factor
+      in `[c_*, 1/2]`. This is the uniform bound the defect-piece claim asked for.
+    - The nested pieces at least halve in every model, so there is no limit corner of positive rank.
+      The planned "limit-corner" contradiction does not exist.
+  - **Near-minimal models** (`near-minimal-defect-models-have-multiplicative-cylinder-defects`).
+    - At near-minimal defect, `rk(D_(A_1)...D_(A_k)) = delta^k + O(eps delta)`, the ranks of
+      independent tensor factors.
+    - Range and kernel restrictions are borderline, so they never lower the defect.
+  - **Where it dies.** A contradiction needs a strict deficit from independence
+    (`leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, open, route
+    `leavitt-rank-triviality-via-strict-defect-submultiplicativity`), or some other operation that
+    lowers fixed-point-free defects by a fixed factor. The natural input is the halving relation
+    `iota_A(x_12(1)) = (1 + S[A00]T[A100])(1 + S[A01]T[A101])`. No bound is extracted yet.

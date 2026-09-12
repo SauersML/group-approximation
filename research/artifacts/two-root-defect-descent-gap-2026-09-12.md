@@ -275,3 +275,48 @@ ranks `delta_k`.
 * **The pattern.** The ranks `f(k) = delta^k + O(eps delta)` are those of a tensor product of `k`
   independent factors, each of defect `delta`.
 * **Consequence.** No iterate of range and kernel restrictions lowers the defect by a fixed factor.
+
+## 5. Where it stops
+
+**What is proved.** Sections 2 to 4 settle the descent step that Remark 1.4 left open.
+* **Gap.** It exists: `c_* >= c_0 > 0`.
+* **Descent.** The descent is geometric, with per-step ratio in `[c_*, 1/2]`.
+* **No limit corner.** No positive-rank limit corner exists.
+* **Near-minimal models.** At near-minimal defect, disjoint cylinder defects multiply like independent
+  tensor factors.
+
+**What a contradiction needs.** Any one of the following.
+* **Strict submultiplicativity** (`leavitt-disjoint-cylinder-defects-strictly-submultiplicative`,
+  open). This is a `theta < 1` with `rk(D_A D_B) <= theta rk(D_A) rk(D_B)` on nontrivial
+  fixed-point-free models.
+  * With Proposition 4.1 at `eps < 1/theta - 1`, it excludes near-minimal models.
+  * So no nontrivial fixed-point-free model exists.
+  * By Lemma 2.1 every model is then trivial, and `R^x` is not `F_2`-linear sofic.
+* **A shrinking operation.** Any construction taking a nontrivial fixed-point-free model `sigma` to
+  another whose normalized defect is at most `theta · delta(sigma)`, with `theta < 1`. Range and
+  kernel restrictions of commuting defects are not such operations (Remark 4.2).
+* **An explicit gap above an explicit ceiling.** A quantitative corner locality whose constant
+  exceeds the best upper bound on fixed-point-free defects. The only explicit ceiling known is
+  `1/2`, from square zero, and the gap constant cannot exceed it when models exist.
+
+**Inputs not yet used.**
+* **Halving.**
+  * Inserting `1 = s_0 t_0 + s_1 t_1` gives
+    `iota_A(x_12(1)) = (1 + S[A00]T[A100]) (1 + S[A01]T[A101])`: two commuting transvections on
+    disjoint child pairs.
+  * So `N^A_12 = a + b + ab`, with `a` and `b` commuting and square-zero, and similarly
+    `N^A_23 = c + d + cd`.
+  * Hence `D_A` expands into two child-triple defects `ca` and `db`, plus cross terms `cb` and `da`
+    on four disjoint cylinders, plus higher products.
+  * This is the natural relation between cylinder defects at different depths, and the natural
+    source of a strict deficit. I found no bound from it.
+* **The compressor collision** `q sigma(u) q != 0` and property (T) of `Gamma`. Neither enters
+  Sections 2 to 4, and I found no way to turn either into an upper bound.
+
+**Calibration.**
+* **The gap needs corner locality.** The Toeplitz group `H` has fixed-point-free models with
+  defect `0` (Remark 2.6), so Section 2 fails there.
+* **What a proof must exclude.** Independent tensor factors realize `theta = 1`: if two commuting
+  groups act through `rho_1 (x) rho_2`, then `rk(D_1 (x) D_2) = rk(D_1) rk(D_2)`. A proof of strict
+  submultiplicativity must therefore show that the cylinder subgroups of `R^x`, which are
+  `V`-conjugate inside a simple group, cannot act as independent tensor factors in a rank model.
