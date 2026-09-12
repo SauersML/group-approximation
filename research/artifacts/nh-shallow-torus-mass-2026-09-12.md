@@ -103,6 +103,45 @@ So case (ii) of `theorem-e-vertex-rounds-to-unit-type-representations` is closed
   `δ_n^2 log n` does not tend to 0;
 - (iii) mixed constituents, nontrivial on both `A_u` and `A_nu`.
 
+## §4 Components: mixed shallow characters and the only surviving regime
+
+`nonunit-component-root-mass-is-log-scale-folner` (landed while this lane ran) splits a character
+`χ` killing a finite-index ideal as `χ = χ_u · χ_nu`, with `χ_u(f) = χ(e_u f)` and `χ_nu(f) = χ(e_nu f)`,
+and defines `depth_nu(χ) = min{k : χ_nu trivial on z^k R_+}`. It proves
+`μ_n(depth_nu > 1) <= η_n(1 + log_d(r(r-1)n'))`, leaving `μ_n(depth_nu = 1)`. That set contains mixed
+characters: the evaluation-at-origin factors tensored with unit-type factors that
+`vertex-rounding-non-unit-mass-at-origin` leaves open.
+
+**Test sets.** For `ψ ∈ F_q^` put `M_ψ = {χ : χ_nu = ψ_0}`. `M_1` is the unit-type set, and every `M_ψ` lies in
+`{depth_nu <= 1}`. At each finite stage `μ_n` is finitely supported, so every set is measurable.
+
+1. **Lemma D′.**
+   - **Transport.** By item 1 of that claim, `(D_A χ)_nu = χ_nu ∘ φ_A`.
+   - **Collapse.** If `depth_nu(χ) <= 1` and `χ_nu|_1 = ψ`, then §1 item 2 applied to `χ_nu` gives
+     `(D_A χ)_nu = ψ_0`. So `Sh′_ψ := {depth_nu <= 1, χ_nu|_1 = ψ} ⊆ D_A^(-1)(M_ψ)`, and `M_ψ ⊆ Sh′_ψ`.
+   - **Bound.** Lemma A gives `μ_n(Sh′_ψ \ M_ψ) <= η_n`. Summing over `ψ`:
+     `μ_n({depth_nu <= 1} \ ∪_ψ M_ψ) <= q·η_n`.
+2. **Lemma E′.**
+   - **Componentwise.** Multiplication by `x_1^3` commutes with the local idempotents of `R_+/I`, so
+     `(D_t χ)_u = χ_u(x_1^3 ·)` and `(D_t χ)_nu = χ_nu(x_1^3 ·)`.
+   - **Unit part survives.** `x_1^3` is invertible on `A_u`, so `(D_t χ)_u ≠ 1` iff `χ_u ≠ 1`.
+   - **Non-unit part dies.** For `χ ∈ M_ψ` with `ψ ≠ 1`, `(D_t χ)_nu = ψ_0(x_1^3 ·) = 1`, so `D_t χ ∈ M_1`.
+   - **Inclusion.** `D_t(M_1) ⊆ M_1`, hence `D_t^(-1)(M_1) ⊇ M_1 ⊔ ∪_(ψ≠1) M_ψ`.
+   - **Bound.** §2 item 5 with `E = M_1`, plus the Weyl transfer (the component split is invariant
+     under `f -> -f`), gives `μ_n(∪_(ψ≠1) M_ψ) <= η_n^t`.
+3. **Shallow component mass.**
+   `μ_n(depth_nu = 1) = μ_n({depth_nu <= 1} \ M_1) <= q·η_n + η_n^t`.
+4. **Corollary.** Item 5 of `nonunit-component-root-mass-is-log-scale-folner` gives
+
+   ```text
+   τ(1 - P_n)  <=  r(r-1) · [ (q + 1 + log_d(r(r-1)n'))·η_n + η_n^t ].
+   ```
+
+   So under (H1), unit-type rounding (`τ(1 - P_n) -> 0`) holds whenever `δ_n^2 log n -> 0` along `U`.
+   The only surviving regime of `theorem-e-vertex-rounds-to-unit-type-representations` is (i):
+   non-unit mass spread over at least `1/η_n` d-adic depth scales, when the compressor defect
+   decays more slowly than `(log n)^(-1/2)`.
+
 ## Remarks
 
 - **Where (T) enters.** Lemma A uses property (T) of `Γ` for the compressor. Lemma E uses relative
