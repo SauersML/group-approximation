@@ -43,8 +43,10 @@ noncomputable section
 
 /-! ## The seam -/
 
-/-- **A Step C half transports along a map of classes that reflects zero.**  If `g W = 0` whenever
-`f W = 0` and the class `g` does not vanish on the mapping tori Step C concerns, neither does `f`. -/
+/-- **A Step C half transports along a map of classes that reflects zero on mapping tori.**  If
+`g` vanishes on the mapping torus of a continuous corner unitary whenever `f` does, and `g` does
+not vanish on the mapping tori Step C concerns, neither does `f`.  Only mapping tori of continuous
+corner unitaries are asked about, because those are the only arguments a Step C half evaluates. -/
 theorem stepCHalf_of_eq_zero_imp {n ℓ : ℕ} {dd : Fin ℓ → ℕ}
     {b : CharClass.Gen.baseM n dd → Fin (n + 1) → ℂ} {K₁ K₂ : Type*} [Zero K₁] [Zero K₂]
     {f : (↥CharClass.sphereOne × CharClass.Gen.baseM n dd →
@@ -53,9 +55,16 @@ theorem stepCHalf_of_eq_zero_imp {n ℓ : ℕ} {dd : Fin ℓ → ℕ}
     {g : (↥CharClass.sphereOne × CharClass.Gen.baseM n dd →
       Matrix (CharClass.Gen.VIdx n dd ⊕ CharClass.Gen.VIdx n dd)
         (CharClass.Gen.VIdx n dd ⊕ CharClass.Gen.VIdx n dd) ℂ) → K₂}
-    (hfg : ∀ W, f W = 0 → g W = 0) (h : CharClass.Gen.StepCHalf n dd b g) :
+    (hfg : ∀ (G : CharClass.Gen.baseM n dd →
+        Matrix (CharClass.Gen.VIdx n dd) (CharClass.Gen.VIdx n dd) ℂ), Continuous G →
+      (∀ m, CharClass.IsCornerUnitary (CharClass.Gen.Vmat n m) (G m)) →
+      f (CharClass.mappingTorus (CharClass.Gen.Vmat n) G CharClass.circHoriz
+          CharClass.circHeight) = 0 →
+        g (CharClass.mappingTorus (CharClass.Gen.Vmat n) G CharClass.circHoriz
+          CharClass.circHeight) = 0)
+    (h : CharClass.Gen.StepCHalf n dd b g) :
     CharClass.Gen.StepCHalf n dd b f :=
-  fun G hGc hGu hGe hf => h G hGc hGu hGe (hfg _ hf)
+  fun G hGc hGu hGe hf => h G hGc hGu hGe (hfg G hGc hGu hf)
 
 /-- **The count's unit.**  For an exponent `k` the prime `p` does not divide, `k ≠ 0`, so
 `(k - 1) + 1 = k`, and `k` is nonzero in `ZMod p`. -/
@@ -75,7 +84,9 @@ theorem natCast_sub_one_add_one_ne_zero {p k : ℕ} (hk : ¬ p ∣ k) :
   exponent characteristic `p` on the even part of `H^*(Y j; F_p)`;
 * ring-valued Chern classes `γfun j W : ℕ → TotalHOf (ZMod p) (lixN n (lixDD n j))` carrying the
   bundle data `Gen.RealBundleModP` on the mapping torus of every corner unitary;
-* the top class `topClass j W` in `H^{2 · lixRank}` with `γfun j W (lixRank) = of (topClass j W)`;
+* the top class `topClass j W` in `H^{2 · lixRank}` with `γfun j W (lixRank) = of (topClass j W)` at
+  the mapping torus `W` of every continuous corner unitary (the only arguments Step C evaluates; with
+  `γfun j W k := TotalHOf.of _ _ (2k) (c_k W)` and `topClass j W := c_{lixRank} W` it is `rfl`);
 * the open Step C data `KGen.KZeroStepCDataOf` at every exponent `k` with `p ∤ k`, for the
   degree-`k` section, at `gamma := topClass j (mapping torus of G)`.
 
@@ -108,9 +119,16 @@ def LemmaTwoPowersModPData (n p : ℕ) [Fact p.Prime] : Prop :=
       Nonempty (CharClass.Gen.RealBundleModP p (LIX.Gen.lixDD n j) (T j)
         (γfun j (CharClass.mappingTorus (CharClass.Gen.Vmat n) G CharClass.circHoriz
           CharClass.circHeight)))) ∧
-    (∀ (j : ℕ) W, γfun j W ((∑ i, LIX.Gen.lixDD n j i) + (n + 1))
-      = CharClass.TotalHOf.of (ZMod p) (CharClass.KGen.lixN n (LIX.Gen.lixDD n j))
-          (2 * CharClass.KGen.lixRank n (LIX.Gen.lixDD n j)) (topClass j W)) ∧
+    (∀ (j : ℕ) (G : CharClass.Gen.baseM n (LIX.Gen.lixDD n j) →
+        Matrix (CharClass.Gen.VIdx n (LIX.Gen.lixDD n j))
+          (CharClass.Gen.VIdx n (LIX.Gen.lixDD n j)) ℂ), Continuous G →
+      (∀ m, CharClass.IsCornerUnitary (CharClass.Gen.Vmat n m) (G m)) →
+      γfun j (CharClass.mappingTorus (CharClass.Gen.Vmat n) G CharClass.circHoriz
+          CharClass.circHeight) ((∑ i, LIX.Gen.lixDD n j i) + (n + 1))
+        = CharClass.TotalHOf.of (ZMod p) (CharClass.KGen.lixN n (LIX.Gen.lixDD n j))
+            (2 * CharClass.KGen.lixRank n (LIX.Gen.lixDD n j))
+            (topClass j (CharClass.mappingTorus (CharClass.Gen.Vmat n) G CharClass.circHoriz
+              CharClass.circHeight))) ∧
     (∀ k : ℕ, ¬ p ∣ k → ∀ (j : ℕ) (G : CharClass.Gen.baseM n (LIX.Gen.lixDD n j) →
         Matrix (CharClass.Gen.VIdx n (LIX.Gen.lixDD n j))
           (CharClass.Gen.VIdx n (LIX.Gen.lixDD n j)) ℂ)
@@ -138,11 +156,11 @@ theorem lemmaTwoHoldsForSections_powersSections_of_modPData (n p : ℕ) [Fact p.
   refine CharClass.Gen.lemmaTwoFor_powers_of_stepC_realModP n p Fact.out hn hpn T γfun
     (fun j G hc hu => Classical.choice (hdata j G hc hu)) ?_
   intro k hk j
-  refine stepCHalf_of_eq_zero_imp (g := topClass j) (fun W hW => ?_)
+  refine stepCHalf_of_eq_zero_imp (g := topClass j) (fun G hGc hGu hW => ?_)
     (CharClass.KGen.stepCHalf_of_kZeroStepCDataOf (ZMod p) n (k - 1)
       (natCast_sub_one_add_one_ne_zero hk) (LIX.Gen.lixDD n j) (LIX.Gen.lixDD_pos n j)
       (topClass j) (hC k hk j))
-  rw [htop j W] at hW
+  rw [htop j G hGc hGu] at hW
   exact (CharClass.TotalHOf.of_eq_zero_iff (ZMod p) _ _ _).mp hW
 
 /-- **`LemmaTwoHoldsAtPowers n` from the inputs at every prime dividing `n`**: the prime-`2` inputs
