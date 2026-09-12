@@ -62,7 +62,7 @@ theorem nullMatrixSequenceIdeal_le_seqOpTrace_ker
   have hnull : IsNullMatrixSequence (fun n ↦ X n) cofinite a := ha
   have hmk0 : normMatrixCStarCoronaMk (fun n ↦ X n) a
       = normMatrixCStarCoronaMk (fun n ↦ X n) 0 := by
-    rw [map_zero]
+    rw [RingHom.map_zero (normMatrixCStarCoronaMk (fun n ↦ X n))]
     exact (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) a).mpr hnull
   rw [manuscriptSentence_ultrafilterNormalizedTraceWellDefined X ω hω hmk0]
   exact TracialUltraproduct.seqUltratrace_zero X ω
@@ -126,11 +126,10 @@ theorem norm_ultrafilterNormalizedTraceAdd_le (hω : (ω : Filter ℕ) ≤ cofin
       normMatrixCStarCoronaMk (fun n ↦ X n) a = x ∧ ‖a‖ < ‖x‖ + ε := by
     unfold NormMatrixCStarCorona at x
     unfold normMatrixCStarCoronaMk NormMatrixCStarCorona
-    obtain ⟨a, ha_eq, ha_lt⟩ := Submodule.Quotient.norm_mk_lt
-      (p := nullMatrixSequenceIdeal (fun n ↦ X n) cofinite) (x := x) hε
+    obtain ⟨a, ha_eq, ha_lt⟩ := Submodule.Quotient.norm_mk_lt x hε
     exact ⟨a, ha_eq, ha_lt⟩
-  obtain ⟨a, ha_eq, ha_lt⟩ := hrep
-  rw [← ha_eq, ultrafilterNormalizedTraceAdd_mk]
+  obtain ⟨a, rfl, ha_lt⟩ := hrep
+  rw [ultrafilterNormalizedTraceAdd_mk]
   exact (TracialUltraproduct.norm_seqUltratrace_le X ω a).trans ha_lt.le
 
 /-- **`τ` on `𝒬_r`, as a continuous linear functional.**  The printed `τ`, at

@@ -251,6 +251,9 @@ theorem manuscriptSentence_blockSumFamily : PrintedBlockSumFamily := by
       have hkey : (1 : Matrix (blockListModel (blockSumStage A stage k))
           (blockListModel (blockSumStage A stage k)) ℂ) - W = star W * (W - W * W) := by
         rw [mul_sub, ← mul_assoc, hunit, one_mul]
+      haveI : Nonempty (blockListModel (blockSumStage A stage k)) :=
+        Fintype.card_pos_iff.mp (card_blockListModel_pos_of_mem
+          (hBmem (le_of_max_le_left hk)) ((A i).modelNonempty (stage i k)))
       have hstarnorm : ‖star W‖ = 1 := by
         rw [norm_star]
         exact CStarRing.norm_of_mem_unitary hWmem
@@ -268,9 +271,12 @@ theorem manuscriptSentence_blockSumFamily : PrintedBlockSumFamily := by
 /-- **The printed quotient has trivial residual**: every nontrivial element of
 `G / Rad_MF(G)` (`normMFQuotient G`) is separated by an MF model, so
 `manuscriptSentence_blockSumFamily` applies to it. -/
-theorem manuscriptSentence_mfRadicalQuotientResidualTrivial
-    (G : Type) [Group G] [Countable G] :
-    normMFResidual (normMFQuotient G) = ⊥ := by
+def PrintedMFRadicalQuotientResidualTrivial : Prop :=
+  ∀ (G : Type) [Group G] [Countable G], normMFResidual (normMFQuotient G) = ⊥
+
+theorem manuscriptSentence_mfRadicalQuotientResidualTrivial :
+    PrintedMFRadicalQuotientResidualTrivial := by
+  intro G _ _
   haveI : Countable (normMFQuotient G) :=
     Function.Surjective.countable (QuotientGroup.mk'_surjective (normMFResidual G))
   exact normMFResidual_eq_bot_of_isOperatorMF normMFQuotient_isOperatorMF
