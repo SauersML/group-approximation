@@ -528,6 +528,22 @@ Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
 - **Tools and results.** `experiments/nonsofic-certificates/kaplansky-df/screen/` and
   `research/artifacts/kaplansky-df-table-screen-2026-09-12.md`, which lists the windows screened
   and the class-SAT verdicts.
+- **Exact exclusions.** No one-sided inverse pair has both supports in any of these balls:
+  - `B_1(V)`, in the Cannon–Floyd–Parry generators;
+  - `B_1` and `B_2` in the four atlas chart generators, which generate `L^x`.
+
+  Each exclusion is a replayable certificate in `experiments/nonsofic-certificates/kaplansky-df/screen/certs/`.
+  A certificate is a set of stored characters together with a few finite images of the table
+  group, onto A5, A6 and PSL(2,11), that are jointly injective on `BA u {1}`. For `B_2` in the
+  atlas generators this is the first strict-mode exclusion: `kdf-sat` only ever ran target mode
+  on that ball.
+- **Where it stops.** The finite images found leave the following windows surviving:
+  - V at radius `2:2` and `2:3`;
+  - V together with the nine-leaf generators at `1:1` and `2:2`;
+  - the nine-leaf windows at `1:1`, `1:2` and `2:1`.
+
+  From radius 2 on no character separates any cell. That fits the table covers approaching the
+  simple hosts, where the screen goes blind (Corollary 3).
 
 ## Cross-atlas affine update (2026-09-07)
 
