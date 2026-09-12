@@ -10,6 +10,11 @@ the new positions whose sources are reordered.  Slot `i` of the new tuple holds 
 `tupPermAll π * tupPermAll ρ = tupPermAll (ρ * π)`.  σ_r (t ↦ t ∘ π⁻¹) = `tupPermAll K X p (π⁻¹)`.
 
 ## GREEN (probe tags)
+* **Probe 0912-110111-36369 (lix-f, acn112 slot 2, base b9399390e): PROBE GREEN, `BUILT
+  GroupApproximation.CharClass.OddPShuffle`, 2164 jobs, no errors; every `#audit_axioms` line (tupPermAll_mul_tupDAll,
+  tupPermAll_mul, tupTAll_eq_tupPermAll, tupPerm_tupD, tupRiffleAll_conj, tupRiffle_conj) passed the allowlist
+  `[propext, Classical.choice, Quot.sound]`.**  Green record `lanes/lx-cartan-a.green.0912-110111-36369`; the bytes equal
+  main at fd4a04e29 (landed with the Unverified label, bytes unchanged since, so a normal re-land is NOTHING TO LAND).
 * Probe 0912-104044-26988 (lix-f, SLURM, base 0f7748100): everything elaborated except the spots below.
   `#audit_axioms` printed `[propext, Classical.choice, Quot.sound]` for `tupPermAll_mul_tupDAll`, `tupPermAll_mul`,
   `tupTAll_eq_tupPermAll`, `tupPerm_tupD`.  Not yet a green record: the probe failed on five errors (two unused
