@@ -4,7 +4,7 @@ id: binary-four-address-injective-automata-have-balanced-rules
 kind: claim
 title: Over every group, an injective two-symbol automaton with four memory elements has a balanced rule
 distinct_from:
-  binary-three-address-injective-automata-have-balanced-rules: that settles three memory elements, where every relation blocking a flip makes the memory group amenable; this is four elements, where placements such as {1, a, b, ab} force coincidences among memory quotients in every group.
+  three-address-binary-injective-rules-are-balanced: that settles three memory elements, where every relation blocking a flip makes the memory group amenable; this is four elements, where placements such as {1, a, b, ab} force coincidences among memory quotients in every group.
 artifacts:
   - research/artifacts/small-memory-balance-census-2026-09-12.md
 ---

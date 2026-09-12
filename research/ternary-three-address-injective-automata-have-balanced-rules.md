@@ -4,7 +4,7 @@ id: ternary-three-address-injective-automata-have-balanced-rules
 kind: claim
 title: Over every group, an injective three-symbol automaton with three memory elements has a balanced rule
 distinct_from:
-  binary-three-address-injective-automata-have-balanced-rules: that settles two symbols, where every unbalanced rule has a blind coordinate to flip; this is the three-symbol case, where blind pairs of different coordinates can disagree and single-site changes are never invisible.
+  three-address-binary-injective-rules-are-balanced: that settles two symbols, where every unbalanced rule has a blind coordinate to flip; this is the three-symbol case, where blind pairs of different coordinates can disagree and single-site changes are never invisible.
 artifacts:
   - research/artifacts/small-memory-balance-census-2026-09-12.md
 ---
@@ -36,3 +36,12 @@ refutes Gottschalk's conjecture.
     filter does not decide `R`.
   - **Open.** `R` over a nonsofic 2-generated group in which `1 - a + b` is a unit. A collision must
     use the patched pattern, either in a closed finite perturbation or in an infinite one.
+- **Pre-injective on free memory** (w3-bal-design, `pair-distinct-ternary-rules-pre-injective-on-free-memory`).
+  - **Their result.** Suppose each address has one fixed blind pair and the three pairs are distinct.
+    Then the automaton is pre-injective whenever `a, b` generate a free group.
+  - **`R` qualifies,** with pairs `{0,1}`, `{1,2}` and `{0,2}`, each at a single context.
+  - **Consequence.** Free groups are sofic, so `R` is not injective there. But any two configurations
+    with the same image differ at infinitely many sites. So a finite-perturbation exclusion of `R`
+    has to use relations among `a, b`.
+  - **Pressure point.** Their example `x + y + z + [x = (0,1,2)]` sends all three constants to `0`.
+    So it is only a pre-injectivity example, never a candidate for injectivity.

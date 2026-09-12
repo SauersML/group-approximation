@@ -3,13 +3,16 @@ rg: 2
 id: binary-three-address-balance-census-proof
 kind: route
 title: Constant tests leave four rule classes, and prescribed flips exclude each of them outside cyclic, dihedral and abelian memory groups
-target: binary-three-address-injective-automata-have-balanced-rules
+target: three-address-binary-injective-rules-are-balanced
 requires:
   - sofic-groups-are-surjunctive
   - bijective-ca-preserve-uniform-bernoulli-measure
 artifacts:
   - research/artifacts/small-memory-balance-census-2026-09-12.md
 ---
+
+This is a second, independent proof of w3-bal-design's claim, which uses the rectangle relation and
+an involution-glued double flip. This route runs a different case analysis (artifact, Section 6).
 
 Section 4 of the artifact, with the reductions of Section 1.
 - **Two addresses.** `M = {1, a}` generates a cyclic group. Cyclic groups are sofic, so an

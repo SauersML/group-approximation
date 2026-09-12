@@ -2,7 +2,7 @@
 
 Lane `w4-bal-census`, 2026-09-12. Handwritten, nothing was run. Supports
 `binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective` and
-`binary-three-address-injective-automata-have-balanced-rules`, and records where
+`three-address-binary-injective-rules-are-balanced`, and records where
 `every-injective-ca-has-uniform-single-site-output-law` is still open for small memory.
 
 Every exclusion here uses the group law pointwise. It builds two configurations that differ at
@@ -238,3 +238,15 @@ coordinates.
   - Constraints: the single flip needs blind patterns with `r_1(b) = r_a(ab)` and
     `r_ab(a) = r_b(1)`. Rules whose blind patterns violate these need double flips or more.
 - **Open claim.** This is `binary-four-address-injective-automata-have-balanced-rules`.
+
+## 6. Consolidation note
+
+Section 4 first landed as its own claim, `binary-three-address-injective-automata-have-balanced-rules`
+(9aaae6d677). The same statement had landed six minutes earlier as
+`three-address-binary-injective-rules-are-balanced` (w3-bal-design, 5a73418397, artifact
+`unbalanced-design-memory-collisions-2026-09-12.md`, Section 2). The duplicate claim was deleted.
+Section 4 stays as a second, independent proof of that claim, through the route
+`binary-three-address-balance-census-proof`.
+- **Their proof:** the rectangle relation, one glued involution, and a double flip.
+- **This proof:** constant tests leave four rule classes, prescribed flips exclude each class, and a
+  double flip settles the class `{000, 110, 101}`.
