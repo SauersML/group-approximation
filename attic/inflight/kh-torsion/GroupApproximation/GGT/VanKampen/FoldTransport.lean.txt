@@ -1,0 +1,234 @@
+import GroupApproximation.GGT.VanKampen.FoldFaceCycles
+import GroupApproximation.Meta.AxiomGuard
+
+set_option linter.unusedSectionVars false
+
+/-!
+# Face boundaries across a fold
+
+Folding the consecutive darts `d e` (`FoldMap`) deletes the darts `e` and `alpha e`
+and lets `d` take the place of `alpha e`.  A face cycle of the original map
+transports to a face cycle of the folded map by one list operation, `foldList`:
+drop `d` and `e`, and relabel `alpha e` as `d`.
+
+* `foldList_rotate`: transport commutes with rotation, up to a rotation.
+* `isFaceCycle_of_rotate_lift`: lifts of rotations of a lifted face cycle are face
+  cycles.
+* The four cases (`FoldFaceCycles`): the face of the pair without `alpha e`
+  (`isFaceCycle_foldList_pair`), with `alpha e` (`isFaceCycle_foldList_pair_alpha`),
+  the face of `alpha e` off the pair face (`isFaceCycle_foldList_alpha`), and every
+  other face (`isFaceCycle_foldList_off`).
+-/
+
+namespace GroupApproximation.GGT.VanKampen.FoldMap
+
+open Equiv
+
+universe u
+
+variable {M : CombMap.{u}} [DecidableEq M.Dart]
+
+section Lists
+
+variable (M) (d e : M.Dart)
+
+/-- The fate of one dart under the fold: `d` and `e` disappear, `alpha e` becomes `d`. -/
+def foldImage (x : M.Dart) : Option M.Dart :=
+  if x = d ∨ x = e then none else if x = M.alpha e then some d else some x
+
+/-- Transport a list of darts across the fold. -/
+def foldList (l : List M.Dart) : List M.Dart := l.filterMap (foldImage M d e)
+
+variable {M d e}
+
+theorem foldList_append (l₁ l₂ : List M.Dart) :
+    foldList M d e (l₁ ++ l₂) = foldList M d e l₁ ++ foldList M d e l₂ :=
+  List.filterMap_append
+
+theorem foldList_cons_d (l : List M.Dart) : foldList M d e (d :: l) = foldList M d e l := by
+  simp [foldList, foldImage]
+
+theorem foldList_cons_e (l : List M.Dart) : foldList M d e (e :: l) = foldList M d e l := by
+  simp [foldList, foldImage]
+
+theorem foldList_cons_alpha (hd : M.alpha e ≠ d) (he : M.alpha e ≠ e) (l : List M.Dart) :
+    foldList M d e (M.alpha e :: l) = d :: foldList M d e l := by
+  simp [foldList, foldImage, hd, he]
+
+theorem foldList_cons_of_ne {x : M.Dart} (hd : x ≠ d) (he : x ≠ e) (hαe : x ≠ M.alpha e)
+    (l : List M.Dart) : foldList M d e (x :: l) = x :: foldList M d e l := by
+  simp [foldList, foldImage, hd, he, hαe]
+
+/-- A list avoiding `d`, `e` and `alpha e` is unchanged. -/
+theorem foldList_of_avoid {l : List M.Dart} (h : ∀ x ∈ l, x ≠ d ∧ x ≠ e ∧ x ≠ M.alpha e) :
+    foldList M d e l = l := by
+  induction l with
+  | nil => rfl
+  | cons x l ih =>
+      have hx := h x List.mem_cons_self
+      rw [foldList_cons_of_ne hx.1 hx.2.1 hx.2.2, ih fun y hy => h y (List.mem_cons_of_mem x hy)]
+
+/-- **Transport commutes with rotation**, up to a rotation. -/
+theorem foldList_rotate (l : List M.Dart) (n : ℕ) :
+    ∃ k, foldList M d e (l.rotate n) = (foldList M d e l).rotate k := by
+  rcases Nat.eq_zero_or_pos l.length with h0 | hpos
+  · have hl : l = [] := List.eq_nil_of_length_eq_zero h0
+    subst hl
+    exact ⟨0, by simp [foldList]⟩
+  · have hle : n % l.length ≤ l.length := (Nat.mod_lt _ hpos).le
+    have hsplit : foldList M d e l =
+        foldList M d e (l.take (n % l.length)) ++ foldList M d e (l.drop (n % l.length)) := by
+      rw [← foldList_append, List.take_append_drop]
+    refine ⟨(foldList M d e (l.take (n % l.length))).length, ?_⟩
+    rw [← List.rotate_mod l n, List.rotate_eq_drop_append_take hle, foldList_append, hsplit,
+      List.rotate_append_length_eq]
+
+end Lists
+
+variable {p d e : M.Dart}
+
+/-- Every dart of a transported list survives the deletion of the edge of `e`. -/
+theorem foldList_avoid (h : IsFoldable M p d e) (l : List M.Dart) :
+    ∀ y ∈ foldList M d e l, y ≠ e ∧ y ≠ M.alpha e := by
+  intro y hy
+  obtain ⟨x, _, hxy⟩ := List.mem_filterMap.mp hy
+  unfold foldImage at hxy
+  split_ifs at hxy with h1 h2
+  · cases hxy
+  · cases hxy
+    exact ⟨h.ne_next, h.ne_alpha_next⟩
+  · cases hxy
+    exact ⟨fun hx => h1 (Or.inr hx), h2⟩
+
+/-- A transported list lifts to the folded map. -/
+theorem exists_lift_foldList (h : IsFoldable M p d e) (l : List M.Dart) :
+    ∃ l' : List (EdgeDeletion.Dart (joined M p e) e),
+      l'.map (EdgeDeletion.value (joined M p e) e) = foldList M d e l :=
+  EdgeDeletion.exists_map_value_eq (joined M p e) e _ (foldList_avoid h l)
+
+/-- If some lift of a list is a face cycle, every lift of a rotation of that list is. -/
+theorem isFaceCycle_of_rotate_lift {L : List M.Dart} {k : ℕ}
+    {l₀ : List (EdgeDeletion.Dart (joined M p e) e)}
+    (h₀ : (toCombMap M p e).IsFaceCycle l₀)
+    (hl₀ : l₀.map (EdgeDeletion.value (joined M p e) e) = L)
+    {l' : List (EdgeDeletion.Dart (joined M p e) e)}
+    (hl' : l'.map (EdgeDeletion.value (joined M p e) e) = L.rotate k) :
+    (toCombMap M p e).IsFaceCycle l' := by
+  have heq : l' = l₀.rotate k := by
+    apply List.map_injective_iff.mpr (EdgeDeletion.value_injective (joined M p e) e)
+    rw [hl', List.map_rotate, hl₀]
+  rw [heq]
+  exact h₀.rotate k
+
+/-- **Every other face.**  A face cycle off the pair face and off the face of `alpha e`
+transports unchanged. -/
+theorem isFaceCycle_foldList_off (h : IsFoldable M p d e) {B : List M.Dart}
+    (hB : M.IsFaceCycle B)
+    (hoff1 : M.faceOf (B.head hB.ne_nil) ≠ M.faceOf d)
+    (hoff2 : M.faceOf (B.head hB.ne_nil) ≠ M.faceOf (M.alpha e))
+    {l' : List (EdgeDeletion.Dart (joined M p e) e)}
+    (hl' : l'.map (EdgeDeletion.value (joined M p e) e) = foldList M d e B) :
+    (toCombMap M p e).IsFaceCycle l' := by
+  have havoid : ∀ x ∈ B, x ≠ d ∧ x ≠ e ∧ x ≠ M.alpha e := by
+    intro x hx
+    have hfx := (hB.mem_iff x).mp hx
+    refine ⟨fun hxd => hoff1 (hfx.symm.trans (by rw [hxd])),
+      fun hxe => hoff1 (hfx.symm.trans (by rw [hxe]; exact h.faceOf_next)),
+      fun hxαe => hoff2 (hfx.symm.trans (by rw [hxαe]))⟩
+  rw [foldList_of_avoid havoid] at hl'
+  exact isFaceCycle_of_off h hB hoff1 hoff2 hl'
+
+/-- **The face of `alpha e` off the pair face**: `alpha e` is relabelled `d`. -/
+theorem isFaceCycle_foldList_alpha (h : IsFoldable M p d e) {ys : List M.Dart}
+    (hY : M.IsFaceCycle (M.alpha e :: ys)) (hoff : M.faceOf (M.alpha e) ≠ M.faceOf d)
+    {l' : List (EdgeDeletion.Dart (joined M p e) e)}
+    (hl' : l'.map (EdgeDeletion.value (joined M p e) e) = foldList M d e (M.alpha e :: ys)) :
+    (toCombMap M p e).IsFaceCycle l' := by
+  have hface : ∀ x ∈ M.alpha e :: ys, M.faceOf x = M.faceOf (M.alpha e) :=
+    fun x hx => (hY.mem_iff x).mp hx
+  have hp : p ∉ M.alpha e :: ys :=
+    fun hmem => hoff ((hface p hmem).symm.trans h.faceOf_prev)
+  have he : e ∉ M.alpha e :: ys :=
+    fun hmem => hoff ((hface e hmem).symm.trans h.faceOf_next)
+  have hJ := joined_isFaceCycle_of_avoid hY hp he
+  have hys_avoid : ∀ x ∈ ys, x ≠ d ∧ x ≠ e ∧ x ≠ M.alpha e := by
+    intro x hx
+    have hfx := hface x (List.mem_cons_of_mem _ hx)
+    refine ⟨fun hxd => hoff (hfx.symm.trans (by rw [hxd])),
+      fun hxe => he (hxe ▸ List.mem_cons_of_mem _ hx),
+      fun hxαe => (List.nodup_cons.mp hY.nodup).1 (hxαe ▸ hx)⟩
+  rw [foldList_cons_alpha (fun hd => hoff (by rw [hd])) (M.alpha_fixedPointFree e),
+    foldList_of_avoid hys_avoid] at hl'
+  exact isFaceCycle_merged h hJ hl'
+
+/-- **The pair face without `alpha e`**: the pair is removed. -/
+theorem isFaceCycle_foldList_pair (h : IsFoldable M p d e) {rest : List M.Dart}
+    (hR : M.IsFaceCycle (d :: e :: rest)) (hαe : M.alpha e ∉ rest)
+    {l' : List (EdgeDeletion.Dart (joined M p e) e)}
+    (hl' : l'.map (EdgeDeletion.value (joined M p e) e) = foldList M d e (d :: e :: rest)) :
+    (toCombMap M p e).IsFaceCycle l' := by
+  have hnd := hR.nodup
+  have havoid : ∀ x ∈ rest, x ≠ d ∧ x ≠ e ∧ x ≠ M.alpha e := fun x hx =>
+    ⟨fun hxd => (List.nodup_cons.mp hnd).1 (List.mem_cons_of_mem e (hxd ▸ hx)),
+      fun hxe => (List.nodup_cons.mp (List.nodup_cons.mp hnd).2).1 (hxe ▸ hx),
+      fun hxαe => hαe (hxαe ▸ hx)⟩
+  rw [foldList_cons_d, foldList_cons_e, foldList_of_avoid havoid] at hl'
+  exact isFaceCycle_rest h hR hαe hl'
+
+/-- **The pair face through `alpha e`**: the pair is removed and `alpha e` is
+relabelled `d`. -/
+theorem isFaceCycle_foldList_pair_alpha (h : IsFoldable M p d e) {s1 s2 : List M.Dart}
+    (hR : M.IsFaceCycle (d :: e :: (s1 ++ M.alpha e :: s2)))
+    {l' : List (EdgeDeletion.Dart (joined M p e) e)}
+    (hl' : l'.map (EdgeDeletion.value (joined M p e) e) =
+      foldList M d e (d :: e :: (s1 ++ M.alpha e :: s2))) :
+    (toCombMap M p e).IsFaceCycle l' := by
+  have hJ := joined_isFaceCycle_rest h hR
+  have hJrot : (joined M p e).IsFaceCycle (M.alpha e :: (s2 ++ s1)) := by
+    have hrot := hJ.rotate s1.length
+    rwa [List.rotate_append_length_eq, List.cons_append] at hrot
+  have hnd := hR.nodup
+  have hmem_rest : ∀ x, x ∈ s1 ∨ x ∈ s2 → x ∈ s1 ++ M.alpha e :: s2 := by
+    intro x hx
+    rcases hx with hx | hx
+    · exact List.mem_append.mpr (Or.inl hx)
+    · exact List.mem_append.mpr (Or.inr (List.mem_cons_of_mem _ hx))
+  have hd_rest : d ∉ s1 ++ M.alpha e :: s2 :=
+    fun hmem => (List.nodup_cons.mp hnd).1 (List.mem_cons_of_mem e hmem)
+  have he_rest : e ∉ s1 ++ M.alpha e :: s2 := (List.nodup_cons.mp (List.nodup_cons.mp hnd).2).1
+  have hnd_rest : (s1 ++ M.alpha e :: s2).Nodup := (List.nodup_cons.mp (List.nodup_cons.mp hnd).2).2
+  have hαe_s1 : M.alpha e ∉ s1 :=
+    fun hmem => (List.nodup_append.mp hnd_rest).2.2 _ hmem _ List.mem_cons_self rfl
+  have hαe_s2 : M.alpha e ∉ s2 := (List.nodup_cons.mp (List.nodup_append.mp hnd_rest).2.1).1
+  have havoid1 : ∀ x ∈ s1, x ≠ d ∧ x ≠ e ∧ x ≠ M.alpha e := fun x hx =>
+    ⟨fun hxd => hd_rest (hxd ▸ hmem_rest x (Or.inl hx)),
+      fun hxe => he_rest (hxe ▸ hmem_rest x (Or.inl hx)), fun hxαe => hαe_s1 (hxαe ▸ hx)⟩
+  have havoid2 : ∀ x ∈ s2, x ≠ d ∧ x ≠ e ∧ x ≠ M.alpha e := fun x hx =>
+    ⟨fun hxd => hd_rest (hxd ▸ hmem_rest x (Or.inr hx)),
+      fun hxe => he_rest (hxe ▸ hmem_rest x (Or.inr hx)), fun hxαe => hαe_s2 (hxαe ▸ hx)⟩
+  have hfold : foldList M d e (d :: e :: (s1 ++ M.alpha e :: s2)) =
+      (d :: (s2 ++ s1)).rotate (s2.length + 1) := by
+    rw [foldList_cons_d, foldList_cons_e, foldList_append,
+      foldList_cons_alpha (fun hd => h.ne_alpha_next hd.symm) (M.alpha_fixedPointFree e),
+      foldList_of_avoid havoid1, foldList_of_avoid havoid2]
+    have h' : d :: (s2 ++ s1) = (d :: s2) ++ s1 := rfl
+    rw [h', show s2.length + 1 = (d :: s2).length from rfl, List.rotate_append_length_eq]
+  rw [hfold] at hl'
+  obtain ⟨l₀, hl₀⟩ := EdgeDeletion.exists_map_value_eq (joined M p e) e (d :: (s2 ++ s1)) (by
+    intro x hx
+    rcases List.mem_cons.mp hx with rfl | hx
+    · exact ⟨h.ne_next, h.ne_alpha_next⟩
+    · rcases List.mem_append.mp hx with hx | hx
+      · exact ⟨(havoid2 x hx).2.1, (havoid2 x hx).2.2⟩
+      · exact ⟨(havoid1 x hx).2.1, (havoid1 x hx).2.2⟩)
+  exact isFaceCycle_of_rotate_lift (isFaceCycle_merged h hJrot hl₀) hl₀ hl'
+
+end GroupApproximation.GGT.VanKampen.FoldMap
+
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.foldList_rotate
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.foldList_avoid
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.isFaceCycle_of_rotate_lift
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.isFaceCycle_foldList_off
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.isFaceCycle_foldList_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.isFaceCycle_foldList_pair
+#audit_axioms GroupApproximation.GGT.VanKampen.FoldMap.isFaceCycle_foldList_pair_alpha
