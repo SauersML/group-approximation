@@ -169,6 +169,26 @@ By `leavitt-inverse-defects-are-visible-or-invisible`, every pair whose defect
 survives evaluation is such a pair after translating by one group element, so that
 mode covers the visible-defect case at slightly larger radii.
 
+**Two-sided target mode (sbatch `kdf-sat-b10`, encoder 76ae78544).** `--target both`
+imposes `pi(beta) = s0` and `pi(alpha) = t0`. It adds the prunes, and the all-ones
+clause on each side.
+- **Exact, by Gaussian elimination.** At (3,3) both targets are in span, so `s0` and
+  `t0` both lie in the span of `pi(B_3)`. The span check fails at (1,3), (2,5) and
+  (5,2). Balls are nested, so the failing side is `alpha` at (1,3) and (2,5), and
+  `beta` at (5,2). Hence neither `s0` nor `t0` lies in the span of `pi(B_2)`, and
+  those three instances are UNSAT without a solver call.
+- **Solver UNSAT, CryptoMiniSat without proof logs.**
+  - (3,3) in 0.19 s, with 85,849 AND variables.
+  - (3,4) in 981 s and (4,3) in 490 s, each with 469,679 AND variables. The
+    one-sided unpruned runs of `kdf-sat-b7` were UNKNOWN at 2,400 s on these radii.
+  - The pruned one-sided reruns in `kdf-sat-b9` separate the effect of the prunes
+    from that of the second target.
+- **Scope.** By `leavitt-inverse-defects-are-visible-or-invisible`, a pair whose
+  defect survives evaluation becomes a two-sided target pair after translation by one
+  group element. The translation shifts the support radii, so these instances exclude
+  only pairs whose translated supports lie in the stated balls. Invisible defects,
+  where `pi(beta alpha) = 1` but `beta alpha != 1`, are outside this mode.
+
 **Running.**
 - sbatch `kdf-sat-b9`: atlas (3,4) and (2,5) with `pi(beta) = s0`, and (4,3) and (5,2)
   with `pi(alpha) = t0`. These use the prunes plus the all-ones clause of 63eeb5e54,
