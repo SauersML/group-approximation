@@ -837,6 +837,39 @@ So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domina
 - **L1 is closed** for packaging. The remaining L1-adjacent step is instantiating
   `ScaledPartialClusterSystem` at each index through `ComponentFamily.clusterSystem`.
 
+## R21. `a4963c9dd` (kt41-functor): bundled relative functor and scaled numerics. No defect
+
+- **The bundle.** `RelativeClusterFunctor P R D` bundles:
+  - a bijection `π` from `D` onto `R`;
+  - `F : (P.restrict R).Morphism (P.restrict D)` with `F(π i) = i`;
+  - faithfulness.
+
+  It is built by `relativeMorphism MP MP`, one presentation for source and target. So
+  the functor lives inside `𝒞_n` through `u⁻¹`-bridges, and `U_n` is implicit, as R8
+  anticipated.
+- **The numerics, rechecked.** Write `s` for scales, `m = min(s_X, s_Y)`,
+  `M = min(s_obj X, s_obj Z)`, and use:
+  - `100·β X ≤ s_X` and `100·ρ X Y ≤ m`;
+  - comparability `11/10` along representatives (`scale_comparable_of_rep`) and along
+    the matching (`hobj`).
+
+  Then:
+  - **`hrespects`.** Left side `≤ 0.02m + 0.022m + 2m ≈ 2.04·m`; right side
+    `16·min(s_obj X, s_obj Y) ≥ 16·(10/11)·m ≈ 14.5·m`.
+  - **`hcomp`.** Two steps give `s_X, s_Z ≤ 1.331·M`. The left side is
+    `≈ 2.2M + 2.66M + 2.66M + 2M + 0.12M ≈ 9.6·M ≤ 16·M`.
+  - **`hfaithful`.** Left side `≈ 0.02m + 0.11m + 4m + 2.2m ≈ 6.3·m ≤ 16·m`.
+- **Inputs at the instance.**
+  - **`hβ` and `hρ` are per-object uniform, not sums.** The objects whose relative
+    matching error, or `d_n`, exceeds `1/1800` must be deleted from `R`. Markov makes
+    their mass negligible. This is the paper's "delete further component families of
+    weight `o(1)`".
+  - **`himprove`** comes from `repair_spec` with a fixed `K₀`. Its bound `d_n·|model|`
+    is `≤ min scale/100` once `d_n ≤ 1/1800`.
+  - **Defect smallness.** `repairExists` needs per-object `δ_i + ξ_i ≲ h_n`, which is
+    again a Markov deletion at the threshold. It is negligible because `hframe` makes
+    the matching error `o(threshold)`.
+
 ## Named statements in the chain without a producer
 
 - `seqNormalizes_distinguished_of_kazhdan`: pinned name only; its file is absent.
