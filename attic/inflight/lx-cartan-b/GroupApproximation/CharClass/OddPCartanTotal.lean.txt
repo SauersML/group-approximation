@@ -296,6 +296,7 @@ section Evaluate
 variable {X : TopCat.{0}} (q q' : ℕ) (u : singularCochainGroup (ZMod p) X q)
   (v : singularCochainGroup (ZMod p) X q')
 
+omit [NeZero p] [Fact p.Prime] in
 /-- **The coefficient of `D_a u ⌣ D_b v` in `D_i(u ⌣ v)`**: the riffle sign, the reduced coproduct
 coefficient, and the regrouping sign. -/
 def cartanCoeffP (a b : ℕ) : ZMod p :=
