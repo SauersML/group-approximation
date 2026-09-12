@@ -100,6 +100,14 @@ conjugate in `G`, and the image equation above uses `g`, not `g_0`.
    `gamma_i beta_j = delta_ij e_1` (`i, j = 1, ..., m`).
 5. `pi` maps `T` onto the corner `pi(e_H) L pi(e_H)`, which is equivalent to `L` by Theorem 2 and so
    contains unital `m`-pair Cohn families.
+   - *Why onto, for every `d`* (scope remark of `gk-vf-linear`, 2026-09-12): `pi(T) = pi(e_H) pi(A_iota) pi(e_H)`, and
+     `pi(A_iota) = pi(A) = L`, because units span `L` for every `d >= 2`
+     (`leavitt-units-span-every-d-ary-leavitt-algebra`).
+   - *The spanning argument:* for `i != j`, `s_i a t_j` is square-zero and so a difference of units;
+     `s_i a t_i = (s_i a t_j)(s_j t_i)` is a product of two square-zero elements; and
+     `a = sum_(i,k) s_i t_i a s_k t_k`.
+   - *Before this was recorded:* surjectivity was on record only through a binary family, that is for
+     `d = 2`. Parts (1)–(4) and the image equation never used it.
 
 *Proof.*
 - (1): `delta g = sum_i zeta^(i+1) s_(i+1) t_i` and `g delta = sum_i zeta^i s_(i+1) t_i`, so
