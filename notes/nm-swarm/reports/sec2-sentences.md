@@ -31,8 +31,8 @@ to jacobson, except step (4), which sec2 wrote.
 | module | carries | state |
 |---|---|---|
 | Kazhdan/GHWArchimedeanWedge | wedge geometry at the archimedean places | compiled (4197466c8) |
-| Kazhdan/GHWArchimedeanSeparation | spectral reduction; `SeparationFinite` for every g; κ·\|log a\| ≤ μ(Δ) with κ = 2φ(1) | on main (82942cbb9), not compiled: imports Minkowski, which was red at probe 0911-235228-11830 |
-| Kazhdan/GHWArchimedeanBound | adapters `archimedeanAffineBound_places(_fin)` compiled; `separationFinite`, `ghwArchimedeanAffineBound` not compiled | on main (7087bee54); imports Walls, red at dgo-geometric probe 0912-092049-2822 |
+| Kazhdan/GHWArchimedeanSeparation | spectral reduction; `SeparationFinite` for every g; κ·\|log a\| ≤ μ(Δ) with κ = 2φ(1) | compiled: probe 0912-093859-21657 BUILT at 448d1bf45 (base 0ac9f4538) |
+| Kazhdan/GHWArchimedeanBound | adapters `archimedeanAffineBound_places(_fin)` compiled; `separationFinite`, `ghwArchimedeanAffineBound` not yet compiled | on main (6d8971521). Probe 0912-093859-21657 was red at one rewrite (`norm_smul` across the `comapHom` carrier); fixed at 6d8971521, re-probe running |
 | Algebra/GHWFrobeniusSeparable | step (4): `GroupApproximation.GHW.exists_separable_frobenius_embedding` | compiled: probe 0912-092155-16446 GREEN at base 87ab7e225; axioms propext, Classical.choice, Quot.sound |
 
 Step (4), exact statement:
@@ -42,7 +42,9 @@ Algebra.IsSeparable L K' ∧ ∀ x : K, ((φ x : K') : K) = x ^ p ^ e`.
 The proof takes K' := separableClosure L K and e := the exponent of K / K'.  The map φ is
 `IsPurelyInseparable.iterateFrobenius`.
 
-Next: when dgo-geometric reports Minkowski and Walls green, probe Separation and Bound as one batch, fix, and land.
+Next: re-probe Bound at 6d8971521. Targets: `GroupApproximation.GHW.separationFinite : Walls.SeparationFinite` and
+`GroupApproximation.GHW.ghwArchimedeanAffineBound : GHWArchimedeanAffineBound`. Algebra/GHWFrobeniusSeparable is in the
+root-wiring wave; edits to it land with NM_ATTIC until a probe is green.
 
 ## Census
 
@@ -55,4 +57,7 @@ Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no 
 - `map_continuous` on `→⋆ₐ[ℂ]` into a norm matrix corona finds no ContinuousMapClass even under
   `open scoped CStarAlgebra`; `LinearMap.mkContinuous` with `NonUnitalStarAlgHom.norm_apply_le` compiles.
 - `•` on `BoundedMatrixSequence (fun n ↦ cornerModel …)` times out; Nonempty binders plus type ascriptions fix it.
+- After `rw [comapHom_b, wallAction_b]` the norm is still taken at the carrier `(A.comapHom ρ).E`, so `rw [norm_smul]` finds
+  no occurrence.  Prove the identity in `Lp ℝ 2 shellMeasure` and close with `exact`.
+- `push_neg` is deprecated at the pin, and warningAsError makes it an error; use `push Not at h`.
 - `#audit_closed_axioms` rejects any theorem whose type starts with a binder: wrap endpoints as named Props.
