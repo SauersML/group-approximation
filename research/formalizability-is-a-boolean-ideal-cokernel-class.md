@@ -10,6 +10,7 @@ distinct_from:
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that shows the canonical multilinear Jacobian defect is not an invariant of the automata; this gives the representative-independent class that governs formalizability instead.
 artifacts:
   - research/artifacts/formalizability-obstruction-class-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be any group, `A = F_2^n`, `R = F_2[X_h : h in G x {1..n}]`, `I` the Boolean

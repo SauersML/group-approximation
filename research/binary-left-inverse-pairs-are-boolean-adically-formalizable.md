@@ -9,6 +9,7 @@ distinct_from:
   formalizability-conormal-obstruction-is-jacobian-cokernel: that computes the conormal layer of the obstruction for a fixed encoder representative; this shows every graded layer vanishes for a Lemma C representative.
 artifacts:
   - research/artifacts/formalizability-obstruction-class-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Notation as in `formalizability-is-a-boolean-ideal-cokernel-class`. Let

@@ -8,6 +8,7 @@ distinct_from:
   formal-polynomial-strict-pairs-need-unstable-linearization: that linearizes a formal identity at one constant configuration to a matrix over F_2[G]; this shows that matrix is the constant slice of the conormal action of the encoder lift, over every configuration at once.
 artifacts:
   - research/artifacts/formalizability-obstruction-class-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Notation as in `formalizability-is-a-boolean-ideal-cokernel-class`, with

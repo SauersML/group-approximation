@@ -30,6 +30,7 @@ not by rereading the author's argument. Nothing was run.
 | `cf99b3821` (gk-fz-bennett) | `formalizable-binary-pairs-over-biorderable-groups-are-affine`, `binary-left-inverse-pairs-need-not-be-formalizable`, Lemma C; wiring of both refuted claims and both invalidated routes; the stable targets and their routes | PASS, decision on family F (Section 24) |
 | `1b608cf1e`, `08916adad` (gk-fz-alphabets) | `formalizable-pairs-induce-polynomial-automorphisms-on-constants`, `tame-maps-induce-every-permutation-of-prime-field-cubes`, `sitewise-pairs-over-prime-fields-are-stably-formalizable`, `formalizable-strict-pairs-certify-non-linear-soficity` | PASS (Section 25) |
 | gk-free-neg (Section 6.5) | `marker-involution-is-formalizable-after-regrouping` | PASS (Section 26) |
+| `ca9996a1e` (gk-fz-obstruction) | `formalizability-is-a-boolean-ideal-cokernel-class`, the corrected `formalizability-conormal-obstruction-is-jacobian-cokernel`, `binary-left-inverse-pairs-are-boolean-adically-formalizable` | PASS (Section 27) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1073,3 +1074,85 @@ Checked with maximal care, because it refutes the family's original reduction.
   Theorem A, and here it does so concretely.
 - The one-ancilla word in the same section is recorded as a dead attempt, and the specialization
   remarks carry no claim. I did not verify them.
+
+## 27. Formalizability as a Boolean-ideal class (`ca9996a1e`, gk-fz-obstruction): PASS
+
+**Section 1 setting.**
+- `B = R/I` is the algebra of finite-memory functions `A^G -> F_2`, so an element of `B` is
+  determined by its values on configurations. That is used twice below.
+- *Every lift preserves `I`.* `hat tau^*(u_h) = hat mu_h^2 + hat mu_h` reduces to `y^2 + y = 0` in the
+  Boolean ring `B`. No hypothesis on `tau`.
+- `tau` injective iff `tau^*` onto, and `tau` surjective iff `tau^*` injective. So `tau` bijective iff
+  `tau^*` is.
+
+**Proposition 1 (the exact linear reformulation).**
+- An algebra map is determined by its values on generators, so changing `hat sigma_0^*` by
+  `delta_h in I` changes the composite on `X_h` by exactly `hat tau^*(delta_h)`, with no
+  higher-order terms. That is the "correction is EXACT" point, and it is right: the composite is
+  `hat tau^*` applied to a generator value, and `hat tau^*` is additive.
+- `hat sigma_0^* + delta` still lifts `sigma^*`, because `delta_h` lies in `I`.
+- *Decoder independence.* A different `hat sigma_0^*` shifts `eps_h` by `hat tau^*(delta'_h)`, inside
+  the same coset of `hat tau^*(I)`.
+- *Equivariance.* Applying `g` to a solution of the `i`-th equation solves the `(g,i)`-th, since
+  `hat tau^*` and `eps` are equivariant.
+- *Sitewise pairs vanish.* `hat tau^*` is then an automorphism of `R` carrying `I` onto `I`, so the
+  cokernel is `0`.
+
+**Lemma 2 (the conormal module is free).**
+- `d` is well defined on `I/I^2`, since `d(I^2) ⊆ I · Omega` dies in `Omega (x) B`.
+- It is `B`-linear: `d(ri) = r di + i dr`, and the second term's coefficient `i` lies in `I`.
+- `d(u_h) = (2X_h + 1) dX_h = dX_h` in characteristic 2, and the `dX_h` are a `B`-basis. So the
+  generators `[u_h]` are independent and `d` is an isomorphism.
+- The author's earlier route to `Omega_B = 0` was a muddled derivation; this version does not need
+  it, and the direct basis argument is correct.
+
+**Proposition 3 and Corollary 4: the correction is right.**
+- `hat tau^*(r u_h) = hat tau^*(r) hat tau^*(u_h)` and `hat tau^*(r) == tau^*(bar r)` mod `I`. Since
+  `tau^*(bar r) != bar r` in general, the induced map is `tau^*`-semilinear, not `B`-linear. I agree
+  with the correction.
+- `d(hat mu_h^2 + hat mu_h) = (2 hat mu_h + 1) d hat mu_h = d hat mu_h`, giving the reduced Jacobian
+  rows.
+- The image is the `B`-span of the rows because `tau^*` is onto: for `b` in `B` pick `r` with
+  `tau^*(bar r) = b`.
+- The constant slice uses right exactness of base change along the ring homomorphism `B -> F_2`,
+  evaluation at a constant configuration. It is not load-bearing, since Section 3.3 withdraws the
+  conclusion that rested on it.
+
+**Section 3.3 (Lemma C kills the leading part): correct, and the withdrawal is right.**
+- `J_tau` at a Boolean configuration depends on finitely many cells, so the needed correction is a
+  finite-memory Boolean function, and adding `u_h P` realizes it while changing nothing on points.
+- A `B`-element is determined by its values on points, so `J_B = I` exactly.
+- Then every row is a basis vector, the span is everything, and `C = 0`. So the conormal class is not
+  an invariant, and the first version's "directly finite host, hence split epimorphism" sentence was
+  indeed wrong for a fixed encoder representative.
+
+**Section 4 (`gr_I R = B[U_h]`).**
+- In `F_2[X_1..X_N]`, quotienting successively by `X_i^2 + X_i` leaves a finite product of polynomial
+  rings, in each of which the next `X_j^2 + X_j` is monic in `X_j`, hence a nonzerodivisor. So the
+  `u_h` are a regular sequence, and the associated graded ring is `B[U_h]`. The infinite variable set
+  is the colimit of the finite ones.
+
+**Theorem 5 (Boolean-adic formalizability).**
+- *Item 1.* With `J_B = I`, `hat tau^*(u_h) = u_h + i_h` with `i_h` in `I^2`. For a degree-`k`
+  monomial, expanding `prod_j (u_(h_j) + i_(h_j))` leaves `u^alpha` plus terms of `I`-order at least
+  `k+1`. So `hat tau^*(u^alpha) == u^alpha` mod `I^(k+1)`, and
+  `gr_k(hat tau^*)(b [u^alpha]) = tau^*(b) [u^alpha]`.
+  - Onto because `tau^*` is onto, coefficient by coefficient in the free `B`-module `B[U]_k`;
+    bijective when `tau` is bijective.
+- *Item 2.* `tau^* sigma^* = id` is the function identity `sigma o tau = id` pulled back. So
+  `gr_k` applied to `delta_k` returns the class of `eps_k`, and `eps_(k+1) = eps_k - hat tau^*(delta_k)`
+  lies in `I^(k+1)`. Each `delta_k` has finite memory, from finitely many `b_alpha` at the base cell.
+  - `hat tau^*(I^k) ⊆ I^k` for a ring map with `hat tau^*(I) ⊆ I`, so `hat tau^*` is `I`-adically
+    continuous and the telescoping sum converges to `eps`.
+  - Uniqueness for bijective `tau`: a nonzero element of `hat I` has a least order `k`, its image has
+    the same order by injectivity of `gr_k`, so `hat tau^*` is injective on `hat I`.
+- *Item 3.* Proposition 1, restricted to polynomial solutions.
+- *The marker consequence.* `tau` is bijective, so for each Lemma C representative the correction is
+  unique, and by `binary-left-inverse-pairs-need-not-be-formalizable` (Section 24) no representatives
+  at all formalize it, in particular none with `J_B = I`. So that unique Boolean-adic solution is not
+  a finite-memory polynomial. The upgrade of gk-fz-bennett's heuristic remark is justified.
+
+**Reading.** With a Lemma C representative every graded layer vanishes, so the whole obstruction is
+termination: whether the degree-by-degree correction stops at finite degree and memory. A graded
+invariant cannot see it. Nothing here decides
+`injective-binary-automata-are-stably-formalizable` or Gottschalk.
