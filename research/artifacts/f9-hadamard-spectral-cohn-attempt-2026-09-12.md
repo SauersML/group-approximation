@@ -112,11 +112,13 @@ lift.**
   terms are the ones computed there. On `G_3` the conjugator `c` is unavailable, because it has
   irrational entries.
 
-**3.2 Over `G_3` with `F_9` coefficients, spectral designs are 2x2 designs over `F_3`.**
+**3.2 Over `G_3` with `F_9` coefficients, spectral designs give 2x2 designs over `F_3`.**
 - **Image of `f_+`.** Under `rho (x) id`, `f_+ = 2(1 + i[h])` maps to the idempotent
   `P = 2 [[1, -[h]], [[h], 1]]` of `M_2(S_-)`. It is a half of `I_2`, conjugate to its complement.
-- **Reduction.** A design `c f_+ b = 1_-` over `F_9` is the same as a design `C P B = I_2` over `F_3`
-  whose entries are supported on the elements `g` and `gh`, for `g` in the original supports.
+- **Reduction.** A design `c f_+ b = 1_-` over `F_9` gives a design `C P B = I_2` over `F_3` whose
+  entries are supported on the elements `g` and `gh`, for `g` in the original supports. The converse
+  needs entries commuting with `rho(F_9)`, so this is one direction only (correction from w3-vf-linear,
+  Section 6 of its verification artifact). Either kind of design yields a Cohn family in `S_-`.
 - **Consequence.** F_9 adds no room beyond `M_2(S_-)`, and `S_-` already contains that unitally.
   "Non-monomial at depth one" is available over `F_3` through `P`, and at depth two through the
   Hadamard involution `H_2` already recorded on the quaternary claim.
@@ -135,8 +137,8 @@ on the left.
 - **General case.** Lifts with `F_9` coefficients `alpha + beta i` split into rational identities
   among `g_k` and `g_k h`. That is 3.2 again.
 
-**3.4 Where it dies.** Every spectral design is a two-by-two `F_3` design with supports closed under
-right multiplication by `h`. No candidate `b, c` is known. Any witness must meet three conditions:
+**3.4 Where it dies.** Every spectral design gives a two-by-two `F_3` design with supports closed
+under right multiplication by `h`. No candidate `b, c` is known. Any witness must meet three conditions:
 - its support uses non-constant units (constants live in locally finite subgroups);
 - at least two group elements on some half (3.3);
 - a support subgroup containing `z`, `h` and `u` with no characteristic-three rank model moving `z`

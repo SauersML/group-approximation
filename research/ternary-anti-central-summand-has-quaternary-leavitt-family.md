@@ -57,8 +57,8 @@ a counterexample to Gottschalk's conjecture on `G`.
   - **Spectral halves.** `f_(+/-) = 2(1 +/- i[h])` are conjugate halves through
     `u = s0 t0 + s1 t0 - s1 t1`, and fullness of `f_+` gives the Cohn family
     (`f9-hadamard-spectral-idempotent-is-full`).
-  - **Collapse.** On the host `G_9` they conjugate to cylinder lifts. Over `G_3` they are 2x2 `F_3`
-    designs supported on `{g, gh}`. By Galois density no lift uses one group element per half. The
+  - **Collapse.** On the host `G_9` they conjugate to cylinder lifts. Over `G_3` each gives a 2x2 `F_3`
+    design supported on `{g, gh}`, not conversely. By Galois density no lift uses one group element per half. The
     rank-model state filter carries over.
   - **Status.** No witness. The only new content is that `h` in the support escapes the monomial
     crossed product.

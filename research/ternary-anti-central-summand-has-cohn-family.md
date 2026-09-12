@@ -71,8 +71,8 @@ trace-compatible and sufficient (`ternary-anti-central-summand-has-quaternary-le
       (`f9-cohn-family-descends-to-anti-central-summand`).
     - **Spectral halves.** The depth-one spectral halves `2(1 +/- i[h])` are conjugate through a
       constant unit, and their fullness gives this claim (`hadamard-spectral-fullness-gives-f9-cohn-family`).
-    - **Collapse.** They reduce to 2x2 `F_3` designs on supports closed under right multiplication by
-      `h`, and admit no one-element-per-half lift. No witness.
+    - **Collapse.** Each gives a 2x2 `F_3` design on supports closed under right multiplication by
+      `h`, not conversely, and there is no one-element-per-half lift. No witness.
 - *Mixed-depth monomial lifts, exact defect* (lane w3-corner-cohn-a,
   `natural-leavitt-pair-lifts-have-partial-symmetry-defect`).
   - Take any Thompson units `g_0, g_1` extending `s_0` on the first-letter cylinders, and the lifts
