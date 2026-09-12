@@ -18,14 +18,22 @@ where `E_3` is Deligne's connected triple cover of `Sp_4(Z)`.
   `Sp_4(Z)` is residually finite and so surjunctive.
 - **Soficity.** It proves `E_3` nonsofic.
 
-**Constraints on a witness** (artifact Section 4.4):
-- **Characteristic three.** It is not linear and not formalizable over `F_3^n`, and over `F_q^m` with `q` a
-  power of `3` its degree product is at least `q`
+## Attempts
+
+No witness has been constructed. Every witness must meet these constraints (artifact Section 4.4):
+- **Characteristic three: linear witnesses are dead.** It is not linear and not formalizable over `F_3^n`,
+  and over `F_q^m` with `q` a power of `3` its degree product is at least `q`
   (`deligne-triple-cover-ternary-group-algebras-are-stably-finite`).
 - **Memory group.** Its memory group `H` contains the central `z`, has `z in Res_fin(H)`, and is nonsofic;
   `H/<z>` is neither virtually free nor amenable
   (`strict-automata-memory-keeps-finite-normal-kernel-residual`).
-- **Missed configurations.** It is bijective on `z`-invariant configurations, so it misses only
-  configurations with trivial `C_3`-stabilizer.
-- **Linear route.** The only linear route is a one-sided inverse pair in one of the two twisted group
-  algebras of `Sp_4(Z)` in a characteristic `p != 3` (artifact Lemma 4.1).
+- **Missed configurations.** It is bijective on `z`-invariant configurations
+  (`surjectivity-descends-to-centralized-coset-quotients`), so it misses only configurations with trivial
+  `C_3`-stabilizer.
+- **Linear route in other characteristics: open.** The only linear route left is a one-sided inverse pair
+  in one of the two twisted group algebras of `Sp_4(Z)` in a characteristic `p != 3` (artifact Lemma 4.1).
+  Their multiplier class is not inflated from any finite quotient, and no construction or obstruction is
+  known.
+- **Where it stops.** No mechanism is known that uses a non-inflated multiplier to produce a one-sided
+  inverse pair. The known strict-pair designs on main (invariant output, table groups, Leavitt corners) all
+  live on hosts built from compression, and `E_3` has none.
