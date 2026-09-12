@@ -66,6 +66,11 @@ not been examined.  **Update 2026-09-12:** those two classes are settled
 generically by `kl-length-six-four-sign-change-words-inject`, over every
 coefficient group: they inject unless the quotient of the two same-sign
 coefficients has finite order or absorbs a sign-change coefficient.  The
+other two classes, `+++++-` and `++++--`, have four same-sign corners.
+`kl-four-same-sign-corner-words-inject` settles them generically, torsion
+allowed: they inject unless two same-sign labels coincide or a P-label is
+inverse to an N-label.  So every length-six violation needs a coefficient
+coincidence.  The
 Evangelidou length-five input is cited from its
 published abstract and has not been read at source in this repository;
 what must be confirmed there is that the length-five theorem is
