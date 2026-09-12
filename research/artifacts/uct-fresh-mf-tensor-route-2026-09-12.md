@@ -1,0 +1,94 @@
+# UCT problem, fresh pass: an MF-tensor certificate and the corrected Ozawa fence
+
+Lane `uct-fresh`, 2026-09-12. Target: `stw99-problem-ii-nuclear-uct` and its
+negation `nuclear-algebra-without-uct-exists`.
+
+## 1. Angles checked and where they stand
+
+- **Groupoid models (Tu, Barlak--Li).** Every nuclear twisted étale groupoid
+  algebra satisfies the UCT, so a witness has no Cartan subalgebra. Nothing new
+  beyond the recorded constraint.
+- **Trivial-K Kirchberg algebras other than `O_2`.** This is Kirchberg's
+  equivalent restatement (`kirchberg-uct-reduces-to-trivial-k-kirchberg-algebras`).
+  It adds no leverage.
+- **Izumi-type `Z_p` actions outside the bootstrap class.** Fenced by
+  `bootstrap-class-zp-actions-on-o2-fix-a-cartan` and
+  `o2-zp-cartan-fixing-all-primes-or-at-most-one`. No construction of an action
+  outside the equivariant bootstrap class is known.
+- **K-theoretic obstruction (Skandalis).** Dead: it works by failure of
+  K-nuclearity, and every nuclear algebra is K-nuclear.
+- **NEW: an MF-tensor certificate** (§2), together with a precise version of the
+  Ozawa fence (§3).
+
+## 2. The certificate
+
+**Lemma** (`mf-min-tensor-exact-mf-is-mf`). If A is a separable MF algebra and C
+is a separable exact MF algebra, then `A ⊗_min C` is MF, hence stably finite.
+
+**Proof.**
+- **Step 1, embed A.** A embeds in `Q = ∏ M_{k_n} / ⊕ M_{k_n}`. The min tensor
+  product is injective, so `A ⊗_min C ⊂ Q ⊗_min C`.
+- **Step 2, use exactness of C.** Exactness gives
+  `Q ⊗_min C = (∏M ⊗_min C)/(⊕M ⊗_min C)`.
+- **Step 3, pass to the product.** Spatially, `∏M ⊗_min C ⊂ ∏(M_{k_n} ⊗ C)`.
+  Elements whose components tend to 0 lie in `⊕M ⊗_min C`: truncate with the
+  central block projections. So `Q ⊗_min C` embeds in
+  `∏(M_{k_n}⊗C)/⊕(M_{k_n}⊗C)`.
+- **Step 4, conclude MF.** The factors `M_{k_n} ⊗ C` are MF. Separable
+  subalgebras of `∏B_n/⊕B_n` with every `B_n` MF are MF, by the local
+  characterization (Blackadar--Kirchberg Thm 3.2.2): take direct sums of local
+  approximations at finitely many indices that realize the norms. MF algebras
+  are stably finite.
+
+**Consequence** (route `nuclear-non-uct-via-infinite-mf-tensor`). Suppose C is
+separable and nuclear, has a faithful trace, and `A ⊗_min C` is infinite for some
+MF algebra A. Then C is not MF.
+- **Why C fails the UCT:** a UCT algebra of this kind would embed in a simple AF
+  algebra (`tww-gabe-schafhauser-af-embedding-theorem`), hence be MF.
+- **Result:** C witnesses `nuclear-algebra-without-uct-exists`.
+- **What remains open:** the existence of such a pair, recorded as
+  `nuclear-factor-with-infinite-mf-tensor-exists`.
+
+Credit: the lemma is standard permanence of MF algebras and is very likely
+already known. No novelty is claimed.
+
+## 3. Ozawa's example, precisely
+
+Ozawa (arXiv:2609.08892v1) builds a separable MF algebra A with `A ⊗_min R`
+infinite.
+
+- **Correction to the recorded fence.** The existing fence said the example
+  "dies at faithfulness", but the non-quasidiagonal trace there is `τ_R`, which
+  is faithful. What actually fails is exactness: R is not exact.
+- **Which subalgebras can carry the example.** A proper isometry v in
+  `A ⊗_min R` lies in `A ⊗_min C` for a separable `C ⊂ R` containing the right
+  slices of v. By the lemma, no such C is exact and MF.
+- **Why a nuclear C would suffice.** C carries the faithful trace `τ_R|_C`, so a
+  nuclear such C would already witness the negation (§2).
+- **The natural leg algebra is not nuclear.** Ozawa's right legs use
+  `π̄ = ⊕_k π̄_k`, the block representation of `G = SL(3,Z)` on
+  `ℓ²(P²(F_{p_k})) ⊖ ℂ` (p_k the k-th prime). Let D be the C*-algebra it
+  generates. Then D is not nuclear
+  (`ozawa-leg-algebra-carries-non-amenable-trace`):
+  - a non-scalar element of `GL_3(F_p)` fixes at most `p+2` points of `P²(F_p)`;
+  - every `g ≠ 1` in SL(3,Z) is non-scalar mod p for all large p;
+  - so the normalized block characters satisfy `(fix − 1)/(p²+p) → 0`;
+  - a limit of block traces is a trace τ on D with `τ(π̄(g)) = δ_{g,1}`;
+  - its GNS closure therefore contains `L(G)`, which is not injective, while a
+    nuclear D would have injective GNS closures.
+- **What stays open.** A nuclear `C ⊂ R` containing D would force D to be exact.
+  Exactness of `D = C*(⊕_k π_k(SL(3,Z)))` is not decided here.
+  - Heuristic only: its blocks come from an expander family, and uniform Roe
+    algebras of box spaces of Kazhdan groups are not exact.
+  - The slices of v need not generate all of D, so the minimal leg algebra is
+    also undecided.
+
+## 4. What to attack next
+
+- Decide exactness of D, or of the slice algebra of Ozawa's proper isometry.
+- Rebuild the Kazhdan-projection argument with a nuclear second factor that has
+  a faithful trace. The blocks with weights `c^{-k}` and the partial isometries
+  `b_i` must live in a nuclear algebra, while `σ ⊗ π̄` keeps its isolated
+  spectral point. Property (T) is needed only for G, not for C. So the only
+  obstruction located so far is exactness of the algebra generated by the block
+  representation.
