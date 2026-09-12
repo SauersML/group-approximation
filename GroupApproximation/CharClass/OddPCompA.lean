@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.OddPProductAW
+import GroupApproximation.CharClass.OddPProductAWDiag
 import GroupApproximation.CharClass.OddPDiagonal
 
 /-!
