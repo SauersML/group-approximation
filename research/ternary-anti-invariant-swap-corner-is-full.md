@@ -37,3 +37,17 @@ the summand `x(gz) = -x(g)`. The route is `anti-invariant-swap-corner-refutes-te
 - *Obstruction that binds.* A solution makes `F_3[G]` not stably finite, so `G` must not be linear
   sofic over `F_3` (`linear-sofic-group-algebra-is-stably-finite`). `G` is nonsofic
   (`d-ary-leavitt-groups-nonsofic-over-finite-fields`), so this does not exclude the target.
+- *Exact reformulation, with no idempotent (2026-09-12, lane `gk-kdf-structure`).* This claim is
+  equivalent to `ternary-twisted-algebra-has-swap-separated-one-sided-pair`: `a, c` in
+  `S_- = F_3[G]/(1 + [z])` with `c a = 1` and `c [w] a = 0`. The two routes are
+  `swap-separated-pair-gives-anti-invariant-corner` and
+  `anti-invariant-corner-gives-swap-separated-pair`.
+  - *Idempotent form.* An idempotent `p ~ 1` with `p [w] p = 0`.
+  - *Cross-term form.* A one-sided pair `c a = 1` with `1 - m^2` invertible, where `m = c [w] a`.
+    So a nilpotent swap cross term suffices.
+  - *Consequences.* A solution need not lift the image solution `(s0 + s1, 2(t0 + t1))`: any
+    one-sided pair of `S_-` whose swap cross term is controlled will do. The lift therefore
+    splits into two sub-problems:
+    - a direct-finiteness failure of `S_-`;
+    - one cross term, which lies in the evaluation kernel when the pair lies over `(s0, t0)`.
+  - Research artifact: `research/artifacts/ternary-swap-separated-pairs-2026-09-12.md`.
