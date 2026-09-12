@@ -345,7 +345,9 @@ theorem sum_mergeCode [Nonempty ι] (τ σ : AryPrefixCode κ ι) (g : ι → κ
   rw [sum_merge_split g hginj (fun j ↦ F.wordS (τ.word j) * F.wordT (σ.word j))]
   simp only [hτg, hσg]
   rw [← F.wordS_mul_wordT_split v w, Fintype.sum_sum_type]
-  refine congrArg₂ (· + ·) (Fintype.sum_unique _).symm ?_
+  refine congrArg₂ (· + ·)
+    (Fintype.sum_unique fun a₁ : PUnit.{uκ + 1} ↦ F.wordS ((mergeCode τ g v hτg).word (Sum.inl a₁)) *
+      F.wordT ((mergeCode σ g w hσg).word (Sum.inl a₁))).symm ?_
   rfl
 
 omit [DecidableEq ι] in

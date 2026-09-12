@@ -93,7 +93,6 @@ theorem splitCode_isComplete {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Fu
     Finset.sum_add_sum_compl]
   exact F.sum_cylinder_ofFn M
 
-omit [DecidableEq ι] in
 theorem splitCode_length {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e)
     (p : SplitIndex M s e) :
     M ≤ ((splitCode e he).word p).length ∧ ((splitCode e he).word p).length ≤ M + 1 := by
