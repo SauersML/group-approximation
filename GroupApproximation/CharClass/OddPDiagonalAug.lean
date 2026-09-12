@@ -251,13 +251,31 @@ theorem tgtAug_ε_hom_apply (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0})
     (y : tupMod (ZMod p) X r 0) : ((tgtAug p r s hs).ε X).hom y = tupAug (ZMod p) X r y := by
   rfl
 
+/-- The differential of the target, as the named morphism.  Propositional, not definitional:
+`ChainComplex.of` guards its differential by a `dite` on `k + 1 = k + 1`, which does not reduce for
+a variable `k`. -/
+theorem oddTgt_obj_d (r s : ℕ) (hs : r ∣ s * p) (X : TopCat.{0}) (k : ℕ) :
+    ((oddTgt p r s hs).obj X).d (k + 1) k = tupDHom p X r k s hs :=
+  tupCx_d p X r s hs k
+
+omit [NeZero p] in
+/-- lix-cupone's export, stated at the commutative-ring structure of `ZMod p` the target uses. -/
+theorem tupD_exists_preimage_stdSimplexTop_zmod [Fact p.Prime] (n r k : ℕ)
+    (y : tupMod (ZMod p) (stdSimplexTop n) r (k + 1))
+    (hy : tupD (ZMod p) (stdSimplexTop n) r k y = 0) :
+    ∃ z : tupMod (ZMod p) (stdSimplexTop n) r (k + 2),
+      tupD (ZMod p) (stdSimplexTop n) r (k + 1) z = y :=
+  tupD_exists_preimage_stdSimplexTop (ZMod p) n r k y hy
+
 /-- **The target is acyclic on the models.** -/
 theorem oddTgt_acyclicOnModels [Fact p.Prime] (r s : ℕ) (hs : r ∣ s * p) :
     AcyclicOnModels stdSimplexTop (GroupRingZMod p) (oddTgt p r s hs) where
   exists_preimage n k y hy := by
-    have hy' : tupD (ZMod p) (stdSimplexTop n) r k y = 0 := hy
-    obtain ⟨z, hz⟩ := tupD_exists_preimage_stdSimplexTop (ZMod p) n r k y hy'
-    exact ⟨z, hz⟩
+    rw [oddTgt_obj_d p r s hs (stdSimplexTop n) k] at hy
+    obtain ⟨z, hz⟩ := tupD_exists_preimage_stdSimplexTop_zmod p n r k y hy
+    refine ⟨z, ?_⟩
+    rw [oddTgt_obj_d p r s hs (stdSimplexTop n) (k + 1)]
+    exact hz
 
 end Target
 
