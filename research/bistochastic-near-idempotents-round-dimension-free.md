@@ -3,6 +3,7 @@ rg: 2
 id: bistochastic-near-idempotents-round-dimension-free
 kind: claim
 title: Near-idempotent self-adjoint bistochastic channels are uniformly close to matrix-algebra expectations
+refuted_by: [bistochastic-channel-rounding-fails]
 distinct_from:
   leavitt-channel-rounding-forces-nonhyperlinearity: that is the proved implication from this premise to nonhyperlinearity of the binary Leavitt unit group; this is the premise itself, a statement about matrices with no group in it.
   ucp-factorizations-round-to-matrix-expectations: that rounds under a supplied completely bounded UCP factorization, as Kitaev supplies from a cb idempotence defect; this assumes only the mixed infinity-to-2 defect.
