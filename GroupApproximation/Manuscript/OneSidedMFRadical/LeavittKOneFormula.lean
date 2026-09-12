@@ -137,20 +137,23 @@ exponent relation, and the clause that needs an invariant of `K₁(R)`.  Open fo
 def ScalarKernel : Prop := (alpha k d).ker ≤ unitPowSubgroup k (d - 1)
 
 /-- **Every central unit of `L_k(1,d)` is a scalar.**  True for `d ≥ 2`,
-because the centre of `L_k(1,d)` is `k`; not proved on the tree.
+because the centre of `L_k(1,d)` is `k`.
 
-**What blocks it is a basis theorem, not the arity.**  `AryNormalForm` gives
-*spanning* by the monomials `s_α t_β`, and forcing a central element to be a
-scalar means killing coefficients, which needs *linear independence*.  The
-reduced basis is nowhere established: `Manuscript/MFRecognition/LeavittSeedPresentation.lean`
-carries it as a cited input ("Bergman, the diamond lemma for ring theory,
-together with the standard reduced basis of the Leavitt algebra.  Stated, never
-established here"), and a tree-wide search finds no `LinearIndependent` result
-about Leavitt monomials at any arity.  So this proposition is equally out of
-reach at `d = 2`; generalising the `d`-ary normal form would not move it, and
-establishing the reduced basis would give every arity at once.  (Reported by
-lane `nonmf-formalize`; verified here against the cited-input comment and the
-absent search hit.) -/
+**This is now a theorem**: `KOne/AryCentralUnitsAreScalars.centralUnitsAreScalars`
+discharges it at every field and every `d ≥ 2`, from
+`Leavitt/LeavittCenter.eq_smul_one_of_central` (a central element is `a • 1`)
+together with the fact that `0` is not invertible.
+
+The paragraph that stood here said the opposite, and both of its claims have
+since become false.  It said the proposition was out of reach at every arity
+because it needed the reduced monomial basis, which the tree carried only as a
+cited input and for which no `LinearIndependent` result existed.  Neither is
+true now: the statement never needed the basis, only the centre computation;
+and `Leavitt/AryLeavittBasis.lean` does prove independence for the degree-zero
+monomials, which is the layer every `K₁` argument here uses.  The correction is
+recorded rather than deleted, because the false claim was load-bearing — it is
+why `scalarSurjective_of_scalarReduction` below was described as a dead
+reduction, and it is not. -/
 def CentralUnitsAreScalars : Prop :=
   ∀ c : (AryLeavittAlgebra k d)ˣ,
     (∀ x : AryLeavittAlgebra k d,

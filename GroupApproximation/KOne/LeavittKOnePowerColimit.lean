@@ -156,6 +156,63 @@ theorem powBijective : Function.Bijective (fun z : PowColim G d ↦ z ^ d) := by
       rw [show n + 1 - n = 1 from by omega, pow_one]
     rw [hstep, ofStage_step G d (show n ≤ n + 1 by omega) x]
 
+/-! ### `1 - φ_*` and its image -/
+
+/-- The `d`-th power map as an automorphism. -/
+noncomputable def powEquiv : PowColim G d ≃* PowColim G d :=
+  MulEquiv.ofBijective (powMonoidHom d) (powBijective G d)
+
+/-- **The corner endomorphism `φ_*`**: the inverse of the `d`-th power
+automorphism.  In the Ara--Brustenga--Cortiñas sequence for
+`L = L₀[t₊,t₋;φ]` this is the map induced on `K₁(L₀)` by the corner
+isomorphism. -/
+noncomputable def shiftHom : PowColim G d →* PowColim G d :=
+  (powEquiv G d).symm.toMonoidHom
+
+theorem shiftHom_pow (v : PowColim G d) : shiftHom G d (v ^ d) = v := by
+  show (powEquiv G d).symm ((powEquiv G d) v) = v
+  exact (powEquiv G d).symm_apply_apply v
+
+/-- **`1 - φ_*`**, written multiplicatively as `z ↦ z · φ_*(z)⁻¹`. -/
+noncomputable def oneSubShift : PowColim G d →* PowColim G d where
+  toFun z := z * (shiftHom G d z)⁻¹
+  map_one' := by rw [map_one, inv_one, mul_one]
+  map_mul' x y := by
+    show x * y * (shiftHom G d (x * y))⁻¹
+      = (x * (shiftHom G d x)⁻¹) * (y * (shiftHom G d y)⁻¹)
+    rw [map_mul, mul_inv, mul_mul_mul_comm]
+
+theorem oneSubShift_apply (z : PowColim G d) :
+    oneSubShift G d z = z * (shiftHom G d z)⁻¹ := rfl
+
+/-- **The image of `1 - φ_*` is the subgroup of `(d-1)`-st powers.**
+
+This is the step the printed exponent comes from, and it is why
+`coker(1 - φ_*)` is the group `ofStageQuotientEquiv` computes.  Both inclusions
+are the same one-line substitution: `φ_*` inverts the `d`-th power, so
+`z · φ_*(z)⁻¹` at `z = v^d` is `v^d · v⁻¹ = v^{d-1}`. -/
+theorem range_oneSubShift (hd : 1 ≤ d) :
+    (oneSubShift G d).range
+      = (powMonoidHom (d - 1) : PowColim G d →* PowColim G d).range := by
+  have hd1 : d - 1 + 1 = d := by omega
+  have hkey : ∀ v : PowColim G d, v ^ d * v⁻¹ = v ^ (d - 1) := by
+    intro v
+    have h1 : v ^ (d - 1) * v = v ^ d := by
+      rw [← pow_succ, hd1]
+    rw [← h1, mul_inv_cancel_right]
+  ext z
+  constructor
+  · rintro ⟨w, rfl⟩
+    obtain ⟨v, rfl⟩ := (powBijective G d).2 w
+    refine ⟨v, ?_⟩
+    rw [powMonoidHom_apply, ← hkey v]
+    show v ^ d * v⁻¹ = (v ^ d) * (shiftHom G d (v ^ d))⁻¹
+    rw [shiftHom_pow]
+  · rintro ⟨v, rfl⟩
+    refine ⟨v ^ d, ?_⟩
+    show (v ^ d) * (shiftHom G d (v ^ d))⁻¹ = powMonoidHom (d - 1) v
+    rw [shiftHom_pow, powMonoidHom_apply, hkey v]
+
 /-! ### The `(d-1)`-st power quotient -/
 
 /-- **The comparison map** `G → PowColim G d → PowColim G d / (…)^{d-1}`. -/
@@ -242,6 +299,8 @@ end GroupApproximation
 #audit_axioms GroupApproximation.PowerColimit.mk_pow_pow_eq_mk
 #audit_axioms GroupApproximation.PowerColimit.ofStage_step
 #audit_axioms GroupApproximation.PowerColimit.powBijective
+#audit_axioms GroupApproximation.PowerColimit.shiftHom_pow
+#audit_axioms GroupApproximation.PowerColimit.range_oneSubShift
 #audit_axioms GroupApproximation.PowerColimit.toQuotient_surjective
 #audit_axioms GroupApproximation.PowerColimit.toQuotient_ker
 #audit_axioms GroupApproximation.PowerColimit.ofStageQuotientEquiv
