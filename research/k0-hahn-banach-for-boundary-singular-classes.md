@@ -38,6 +38,16 @@ K_0-Hahn--Banach property for such `A`.  That covers infinitesimal classes
   Brown--Dadarlat), the suspension flip `t -> -t` negating values on
   `K_0(SB)`, and Moutzouris' classification-based maps for the class `Y`.
   No general mechanism is recorded.
+- **Sharpened residual (2026-09-11).**
+  `stw07-quotient-trace-zero-nontorsion-class-is-killed` kills `x` whenever
+  some zero trace has a UCT kernel quotient in which `x` is non-torsion.
+  Under UCT for trace-kernel quotients, what survives is exactly (artifact
+  Section 8): a class supported on the ideal `J_F`, the intersection of the
+  zero-face kernels, which is positive on every bounded trace that sees `J_F`
+  and nonpositive only on unbounded or corner traces of `J_F`.  Negative
+  models exist on corners of `J_F`.  The open step is extending ideal models
+  to asymptotically multiplicative models of `A`, as in Moutzouris
+  Propositions 3.1--3.2.
 - **Next attack: K-homology realisation.**  Under the UCT a positive local
   rank functional lifts to a K-homology class.  The hinge is then whether
   classes positive on `K_0^+` are realised by discrete asymptotic

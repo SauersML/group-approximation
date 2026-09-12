@@ -185,3 +185,53 @@ So on every finite window the rank data needed to kill, or even to negate, a
 singular class exist.  What can fail is only their realisation by an actual
 model, and for boundary classes `(V1)` allows values of size `o(k_n)` of either
 sign.  That realisation problem is the open hinge.
+
+## 7. Theorem G: quotient models supply the missing signs
+
+**Theorem B'.**  The balancing in Theorem B only needs models of either sign;
+they need not track traces or be faithful.  So `x` is killed as soon as
+some models, faithful or not, have eventually positive values and others
+eventually negative ones.  A faithful model contributes any sign and is
+balanced against the opposite side.
+
+**Theorem G.**  Let `A` be separable, unital, nuclear and quasidiagonal, and
+`tau` a tracial state with `tau^(x)=0`.  If `A/J_tau` satisfies the UCT and
+the image of `x` in `K_0(A/J_tau)` is non-torsion, then `x` is killed by a
+faithful model.
+
+*Proof.*  Moutzouris Proposition 4.3 applies to the faithful trace on the
+quotient.  It gives faithful unital maps `A/J_tau -> B_1, B_2` into AF
+algebras with values `>0` and `<0` on the image of `x`.  A nonzero positive
+element of `K_0` of an AF algebra is a nonzero positive vector at some finite
+stage, so faithful stage representations give eventually positive ranks, and
+negative values likewise.  Compose with the quotient map and apply
+Theorem B'. QED
+
+## 8. The sharpened residual
+
+Assume every trace-kernel quotient of `A` satisfies the UCT (for example `A`
+of type I, or all quotients in the bootstrap class) and all traces are QD.
+Combining Theorems B, C and G, a singular `x` survives only if, up to
+replacing `x` by `-x`:
+
+1. `x^ >= 0` on `T(A)` with nonempty zero face `F`;
+2. for every `tau in F`, the image of `x` in `K_0(A/J_tau)` is torsion.
+
+Put `J_F = J_(tau_F)`, where `tau_F` is a countable convex combination of a
+dense sequence in `F`, so that `J_F` is the intersection of the kernels over
+`F`.  Replacing `x` by a multiple, `x` comes from `K_0(J_F)`, since the
+six-term sequence is exact and torsion is killed by a multiple.  Every trace
+of `A` nonzero on `J_F` lies outside `F`, so it is strictly positive on `x`.
+When `J_F` has a full projection `e`, Lemma 2 applied to `eJ_Fe` (its states
+are Blackadar--Rordam--Haagerup traces of the corner) shows some corner trace
+is `<= 0` on the class.  Otherwise the class `y` with `mx = iota_*(y)` would be
+positive in `K_0(J_F)`, and then `x` would be positive.  Without a full
+projection this last step is only a heuristic.
+
+The residual is therefore: **a class supported on an ideal, positive on
+every bounded trace of `A` that sees the ideal, and nonpositive only on
+unbounded or corner traces of the ideal.**  Models of corners of `J_F` with
+negative values exist in the UCT setting, but models of an ideal do not
+extend to asymptotically multiplicative models of `A`.  Extending ideal
+models, as in Moutzouris Propositions 3.1--3.2 through absorbing extensions
+and Ext-triviality, is the precise open step.
