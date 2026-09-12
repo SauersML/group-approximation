@@ -45,3 +45,8 @@ artifacts:
   Even then, `[d S^n] = 0` asks for more than the trace. Nothing has been constructed. The
   existence of a zero-trace laminar combination is intrinsic to the amalgam; see Section 3 of the
   artifact.
+- **Cost of a candidate.** A trace-balanced laminar configuration is checkable on finite data:
+  the rectangles `(H_i x H_j)/D_ij`, the union of the `H_i`, and a rational identity. Any such
+  configuration, in any group, certifies that its intersection amalgam is not sofic (artifact
+  Section 3.5). So this route cannot give a cheap candidate. It needs a finite certificate of
+  nonsoficity for a colimit of finite groups, with modular cancellation in its table.

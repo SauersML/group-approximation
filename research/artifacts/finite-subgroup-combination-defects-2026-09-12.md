@@ -277,3 +277,31 @@ Suppose one wants to show that cyclic configurations never balance, in every gro
 - The second is an Atiyah-type positivity statement for laminar forests of idempotents over a
   2-complex of finite groups. No approach was found. Soficity of `A` is the only mechanism
   available.
+
+### 3.5 A finite certificate of nonsoficity
+
+Fix a group `G` (for instance `R^x`) and `n`. A *balanced configuration in `G`* consists of:
+- finite subgroups `H_0, ..., H_k <= G`;
+- a laminar family `x_i in M_n(F_p[H_i])`;
+- a nonzero combination `d = c 1 + sum c_i x_i` that is an idempotent with
+  `m n + sum m_i r(x_i) = 0`.
+
+Given the finite subgroups and their intersections, every condition is a computation in the
+finite groups:
+- the laminar table is checked on the rectangles `(H_i x H_j)/D_ij`;
+- idempotence of `d` follows from the table;
+- `d != 0` is checked on the union of the `H_i`;
+- the balance is a rational identity.
+
+By Lemma 2.2 the same data give a nonzero zero-trace laminar combination in `F_p[A]`. So, by
+Theorem 2.1:
+
+> A balanced configuration in any group certifies that its intersection amalgam `A` is not sofic.
+
+**Consequences.**
+- A search for S2 candidates is automatically a search for finite certificates of nonsoficity of
+  colimits of finite groups. A candidate therefore cannot be cheap.
+- If the table lifts exactly to finite-support idempotents over `Z_p`, characteristic-zero trace
+  positivity kills the configuration (Section 8.1 of the ternary normal-forms artifact). So a
+  certificate needs modular cancellation in the table.
+- A balanced configuration in `R^x` gives no defect by itself: `[d S^n] = 0` is still required.
