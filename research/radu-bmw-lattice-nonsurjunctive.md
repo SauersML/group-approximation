@@ -52,3 +52,9 @@ The claim is equivalent to the same statement for `pi_1(S_R)`.
   is `radu-bmw-lattice-group-algebra-not-stably-finite`: a one-sided inverse over `M_n(F_p[Gamma_R])`
   supported on such a subgroup. Odd-characteristic averaging idempotents are
   killed by characters, so the corner-idempotent targets of the Leavitt hosts have no analogue here.
+* **Edge-group filter (w4-radu-f2, 2026-09-12).** The memory of a strict factor generates a finitely
+  generated nonsofic subgroup. By `nonsofic-subgroups-of-radu-lattice-have-nonamenable-edge-groups`, that
+  subgroup fixes no vertex or end of either tree, splits over a nonamenable edge group in both tree
+  directions, and meets a conjugate of `A` and a conjugate of `V` in nonabelian free groups. The
+  letter-subgroup screen above is the special case where the memory meets `V` amenably. The splittings
+  used are `radu-bmw-lattice-splits-as-amalgams-of-virtually-free-groups`.

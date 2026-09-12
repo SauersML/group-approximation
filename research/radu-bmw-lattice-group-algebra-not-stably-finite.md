@@ -41,3 +41,28 @@ automaton on `(F_p^n)^(Gamma_R)`, that is `radu-bmw-lattice-nonsurjunctive`
   `(1+a)(1+a) = 0`. Characters into `F_2^x` are trivial, so no character obstruction applies.
 * **Where it stops.** No candidate pair is known. Any witness needs entries whose supports mix `y`
   with `x` or `z` in their vertical normal-form parts, and generate a nonsofic subgroup.
+* **Splittings, edge-group filter and finite-subgroup defects (w4-radu-f2, 2026-09-12).**
+  Artifact: `research/artifacts/radu-lattice-binary-algebra-splittings-2026-09-12.md`.
+  - **Splittings.** `Gamma_R = P_y *_(A_ev) E_x = V *_(V_a) E_a`
+    (`radu-bmw-lattice-splits-as-amalgams-of-virtually-free-groups`). So `F_p[Gamma_R]` is an
+    amalgamated coproduct of group algebras of virtually free groups over a virtually free base. In
+    characteristic two the base `F_2[A_ev]` contains `F_2[t]/(t^2)` and is not semisimple.
+  - **Support filter.** The support group of a witness splits over a nonamenable edge group on both
+    trees, and it meets a conjugate of `A` and a conjugate of `V` in nonabelian free groups
+    (`nonsofic-subgroups-of-radu-lattice-have-nonamenable-edge-groups`). This contains the
+    letter-subgroup filter above as the case where the support group meets `V` amenably.
+  - **No finite-subgroup starting data.** For every `p`, an idempotent matrix over the algebra of a
+    finite subgroup that is full at its own size is the identity. The defect `I - AB` is never
+    conjugate into such an algebra (`radu-lattice-defect-idempotents-avoid-finite-subgroups`). Finite
+    subgroups have order at most four and inject into `(Z/2)^3`. So at `p = 2` the torsion supplies
+    square-zero elements `1 + t` but no idempotents, and the two-piece corner telescoping of the Leavitt
+    hosts has nothing to start from.
+  - **Where it stops.**
+    - *Witness.* A witness is a nonzero projective `P` with `P ⊕ F_2[Gamma_R]^n ≅ F_2[Gamma_R]^n`. Its
+      idempotent has infinite support that is not a basis change of a finite-subgroup idempotent, over
+      supports that split nonamenably in both directions. No candidate is known.
+    - *Positive direction.* This needs a Sylvester rank function on `F_2[Gamma_R]`. Its restrictions to
+      `F_2[P_y]` and `F_2[E_x]` must agree on `F_2[A_ev]`, and rank functions on algebras of nonamenable
+      virtually free groups over `F_2` are not unique. Matching them over the base is exactly where the
+      two embeddings of `A_ev` disagree. No construction is known, and neither is a gluing theorem over
+      a nonamenable base.
