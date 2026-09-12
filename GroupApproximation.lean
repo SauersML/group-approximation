@@ -4589,6 +4589,7 @@ import GroupApproximation.Dynamics.SurjunctivityTransfer
 import GroupApproximation.BowenChapman.ResiduallyFiniteSubstitution
 import GroupApproximation.Kazhdan.SemidirectProductKazhdan
 import GroupApproximation.BowenChapman.LaurentPair
+import GroupApproximation.BowenChapman.LaurentPairInfranormal
 import GroupApproximation.Dynamics.CosetRegion
 import GroupApproximation.Dynamics.StratifiedPeeling
 import GroupApproximation.Dynamics.FinitarySite
