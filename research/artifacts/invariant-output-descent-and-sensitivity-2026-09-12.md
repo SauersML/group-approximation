@@ -381,3 +381,35 @@ multiplication by `g` sends `x` to `(lambda x, t1 g x)`. It misses `(0, y)` for
 padded by the unit of the other factor, is a direct-finiteness failure of `F_3[G]`, as in
 7.4(e). `F_3`-linear soficity of `PG` implies that of `G`, because `G` embeds in `PG`
 (Lemma 8.1) and linear soficity passes to subgroups.
+
+## 9. Which screens survive over larger alphabets
+
+Let `A = F_q`, `H` a finite subgroup acting freely on the memory by `m -> hm`, and `tau`
+injective with right-`H`-invariant output.
+
+- **Norm rules die over every field.** If every monomial of the reduced rule involves at
+  least two variables, then `f(b e_m) = f(0)` for every `m` and `b`, so
+  `tau(b e_1) = tau(0)`. A rule built from products over unions of orbits
+  `{m, hm, ...}` is of this kind. This extends Proposition 3(3) from `F_2`.
+- **The parity screen needs characteristic two.** Proposition 3(2) compares
+  `f(1, ..., 1)` with `f(0, ..., 0)`. A free orbit of monomials contributes `|H|` times
+  one coefficient, which vanishes over `F_2`. For odd `q` with `q` not dividing `|H|`
+  that contribution is nonzero. Only the permutation condition on constants remains:
+  `c -> f(c, ..., c)` must permute `F_q`.
+- **The one-orbit decoder kill needs the alphabet size to divide the symmetry's order.**
+  Theorem 4 excludes a sensitivity profile with a right symmetry `c` only when `q`
+  divides `ord(c)`. The one-orbit profile `k + hk` is right-invariant under the
+  involution `k^-1 h k`. Over `F_3` Theorem 4 does not exclude it, so Section 4's
+  one-orbit kill has no characteristic-three analogue for involution symmetries.
+- **Linear designs are corner equations.** For `q` not dividing `|H|` they are exactly
+  `c e_H b = 1` (Proposition C(3)), and an `F_q`-linear sofic host forbids them
+  (Remark 8.6).
+- **Nonlinear designs and the rank gate.** Linear soficity is not known to exclude
+  nonlinear designs. The team's formal-identity screen (gk-free-neg) narrows the room: a
+  pair whose left-inverse identity holds for polynomial representatives, without using
+  `x^q = x`, is bijective over any host with stably finite `M_n(F_q[G])`. A nonlinear
+  design that escapes the rank gate must use the collapse `x^q = x` in its decoder
+  identity.
+- **Alphabet-independent screens.** Descent through normalizing memory (Proposition 2),
+  the canonical table groups, the triangular filter and the nonsofic forward core all
+  hold over every finite alphabet.
