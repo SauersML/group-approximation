@@ -1271,6 +1271,12 @@ proper restriction and Theorem 2.1 is sharp.
 - *Application.* A sitewise gate reads only `S` and `w_g = X_g - d_g`, and a clean, data or identity
   output lies in `k[S]`. With `d_g` involving a variable outside `S`, Theorem 3.2 says the gate cannot
   read `w_g`.
+- *Scope narrowing (`4da35cb05e`), correct and necessary.* Theorem 3.2 has one extra variable `w`, so
+  the application covers only gate components whose inputs are `S` and `w_g`. A gate that also reads
+  another already-modified track at the same cell, say `U_g = tau~(X)_g`, is outside it: if `d_g` is
+  algebraically dependent on `U_g` over `k(S)`, the two can cancel and the transcendence argument does
+  not apply. My own wording above carried that hypothesis implicitly, and the narrowed claim states
+  it. The theorem itself is unchanged.
 
 **Remark 3.3 (scope).** Correct. Regrouping turns blocks into sites, so a block-local remainder stops
 being nonlocal, matching `marker-involution-is-formalizable-after-regrouping`. A finitely generated
