@@ -30,6 +30,17 @@ Consequently every approximation-theoretic obstruction whose hypotheses hold
 for one compressor and the compressed subgroup, with no property (T) of the
 group they generate, is an obstruction for `Gamma` itself.  This applies to
 every compression triple in the graph: OpenAI's Leavitt configuration, the
-Kun--Thom pairs, and the Fournier--Facio skeleton.
+Kun--Thom pairs, and the Fournier--Facio skeleton.  How much it says depends
+on the triple.
+
+* **Leavitt.**  The Kazhdan subgroup is isomorphic to the ambient group
+  through prefix-code self-similarity:
+  `EL_3(R) = GL_3(R) ~= R^x ~= EL_D(R)`, using
+  `leavitt-gl-equals-el-and-perfect-unit-group` and `R ~= M_n(R)`.  So the
+  reduction loses nothing, and one compressor is already as hard as the whole
+  group (point raised by the `hs-stable` lane).
+* **Kun--Thom pairs and Fournier--Facio.**  `Gamma` is not known to contain
+  the ambient group, so the reduction genuinely separates one-compressor
+  arguments from two-compressor ones.
 
 Proof: `compressor-subgroup-directed-union-proof`.
