@@ -242,7 +242,7 @@ theorem continuous_concatW (n j : ℕ) {f : ℝ → STW59.Gen.StageAlgebra n j} 
   have e2 : (2 : ℝ) * (1 / 2) - 1 = 0 := by norm_num
   show evalW n j f (2 * r.1) r.2.1 r.2.2
     = Matrix.fromBlocks (H (2 * r.1 - 1) r.2.1) 0 0 (evalC n j c r.2.2)
-  rw [hr, e1, e2]
+  rw [hr, e2, e1]
   exact hagree _ _
 
 end Concat
@@ -271,10 +271,10 @@ theorem continuousMvNEquiv_of_unitary_field {b : CharClass.Gen.baseM n dd → Fi
     (hG : Continuous G) (hu : ∀ m, (G m)ᴴ * G m = 1)
     (hconj : ∀ m, G m * CharClass.Gen.EHmat n m * (G m)ᴴ = FHmatOf n b m) :
     CharClass.ContinuousMvNEquiv (FHmatOf n b) (CharClass.Gen.EHmat n) := by
-  have hEs : ∀ m, (CharClass.Gen.EHmat n m)ᴴ = CharClass.Gen.EHmat n m :=
+  have hEs : ∀ m : CharClass.Gen.baseM n dd, (CharClass.Gen.EHmat n m)ᴴ = CharClass.Gen.EHmat n m :=
     fun m => STW59.conjTranspose_eq_of_isStarProjection (isStarProjection_EHmat m)
   refine ⟨fun m => (G m * CharClass.Gen.EHmat n m)ᴴ,
-    (hG.matrix_mul (continuous_EHmat n)).matrix_conjTranspose, fun m => ?_, fun m => ?_⟩
+    (hG.matrix_mul (continuous_EHmat (dd := dd) n)).matrix_conjTranspose, fun m => ?_, fun m => ?_⟩
   · rw [Matrix.conjTranspose_conjTranspose]
     calc G m * CharClass.Gen.EHmat n m * (G m * CharClass.Gen.EHmat n m)ᴴ
         = G m * (CharClass.Gen.EHmat n m * CharClass.Gen.EHmat n m) * (G m)ᴴ := by
