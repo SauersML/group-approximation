@@ -7,6 +7,7 @@ target: jacobson-compression-cell-is-a-commuting-lamplighter
 requires:
   - binary-jacobson-mark-dichotomy-holds-from-rank-two
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/jacobson-rank-radical-support-bound-and-symbol-firewall-2026-09-12.md
 ---
 
@@ -25,3 +26,5 @@ Artifact Section 2, Proposition 2.
   with `K_j`. The identity for `u^(-1) x_23(1) u` is the cell identity `u x_23(1) u^(-1) = x_23(ST)`.
 - **Finitary kernel.** The symbol map kills `Q`, so every `K_j` lies in its kernel
   (`binary-jacobson-mark-dichotomy-holds-from-rank-two`).
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 29.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: Q·SaT = SaT·Q = 0 from TS = 1; K_j <= C(H) for j <= 0 through H <= u^j H u^-j; pairwise commutation by u^-i-conjugation; and u^-1 x_23(1) u = w_0 x_23(1) from x_23(1) = x_23(Q) x_23(ST). The cell identities are cited.*

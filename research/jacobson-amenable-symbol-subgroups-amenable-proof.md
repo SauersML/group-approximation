@@ -7,6 +7,7 @@ target: jacobson-amenable-symbol-subgroups-are-amenable
 requires:
   - binary-jacobson-mark-dichotomy-holds-from-rank-two
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/jacobson-rank-radical-support-bound-and-symbol-firewall-2026-09-12.md
 ---
 
@@ -30,3 +31,5 @@ Artifact Section 3.
 - **Faithful models.** A permutation matrix `P` with at most `eps n` fixed points has
   `rk(P - 1) = n - #cycles >= (1 - eps) n/2`. Sofic approximations give approximately multiplicative
   permutation matrices, hence injective rank models over any field.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 29.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the locally finite finitary kernel, and L = GL_fin(F_2) via [x_ik(e_ac), x_ki(e_cb)] = 1 + E_((i,a),(i,b)); π(u) scalar on coordinates 1–3; tilted constants by d = diag(z, z^2, z^3); and rk(P−1) >= (1−ε)n/2. Artifact Proposition 1 also passes (Section 29.3), with the cited unitary support-gap theorem read as its rank analogue only.*

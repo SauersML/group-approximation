@@ -991,3 +991,162 @@ These are Attempts entries on the OPEN `binary-jacobson-el3-rank-radical-is-the-
   * `σ(c)` commutes with `σ(H)`, and `x_23(1) ∈ H` fixes `F` pointwise.
   * So `[u c u^-1, x_23(1)] = x_13(Q)` is the identity on `F`.
 * **Blocks 1–2.** Prose, consistent.
+
+## 27. Diagonal tensor images carry no rank function (w4-tensor-rankfn; artifact at d595e11a8)
+
+### 27.1 `odd-char-leavitt-unit-tensor-images-have-no-rank-function` (Theorem 1, `2 <= n < p`): PASS
+
+* **Step 1.**
+  * `(1 + sum_(k∈T) e_ij(a_k))^(⊗n)` expands over slot maps `f : [n] -> {0} ∪ T`.
+  * `sum_(T ⊇ im f) (−1)^(n−|T|) = [im f = [n]]`. With `n` slots, `f` must be a bijection onto the indices, which
+    gives `Sym_ij`.
+  * `B_n` is a `K`-subalgebra, so it contains `Sym_ij`.
+* **Step 2.**
+  * `e_21(t) e_12(s) = e_22(ts)`, and `t_γ s_δ = [γ = δ]` for incomparable words.
+  * For `a = b` only `σ = τ` survives, giving `n!` copies of `P_2`, so `T_a S_a = P_2`. This uses `n!` invertible,
+    that is, `n < p`.
+  * For `a != b` all terms vanish. Then `f_a^2 = S_a P_2 T_a = f_a`, `f_0 f_1 = 0`, and `f_a <= P_1`.
+* **Step 3.**
+  * `rk f_a >= rk(T_a f_a S_a) = rk P_2`, so `rk P_1 >= rk f_0 + rk f_1 >= 2 rk P_2`.
+  * `w = [[0,1,0],[−1,0,0],[0,0,1]]` has determinant `1`, and `w e_22 w^-1 = e_11`, so `rk P_1 = rk P_2 = 0`.
+* **Step 4.**
+  * `V`-transitivity on proper nonempty clopens (Section 7.1) makes every `p_A^(⊗n)` null.
+  * Möbius inversion `Π_S = sum_(T ⊆ S)(−1)^(|S|−|T|) p_(A_T)^(⊗n)` and `1 = sum_(1 <= |S| <= n) Π_S` give `rk 1 = 0`.
+* **The two forms.** A rank function vanishing on `ker Δ_n` descends to a quotient of `B_n`, and a map out of
+  `B_n` pulls back.
+* **Scope.** This is a no-go for one construction handle. The binary case and the degrees `n >= p` are open, as
+  stated.
+
+### 27.2 Binary tensor squares (artifact Section 2 at 1fe572ead): PASS
+
+* **Lemma 2.1.**
+  * `N = (1 + flip)(R ⊗ R)` is an ideal of the flip-fixed algebra, because `z (1+flip)(w) = (1+flip)(z w)` for
+    flip-fixed `z`.
+  * `(x+y)^(⊗2) = x^(⊗2) + y^(⊗2) + Sym(x,y)`, so `Φ` is a ring map mod `N`.
+  * The flip permutes `b_i ⊗ b_j`, and `N` is spanned by `Sym(b_i, b_j)` for `i != j`. So `T(R)` has basis
+    `[b_i ⊗ b_i]` and `Φ(1) != 0`.
+  * `R` is simple, so `Φ` is injective, and `B_2/(B_2 ∩ N) ≅ R`.
+* **Proposition 2.2.**
+  * **Norms.** Summing `(1+x)^(⊗2)` over `{0, u, v, u+v}` kills the `1⊗1` and linear terms and leaves `Sym(u,v)`.
+  * **Square-zero isometries.** The ranges `X_a`, `Y_b` and sources `X'`, `Y'` are pairwise disjoint, so
+    `u^2 = v^2 = uv = vu = 0`.
+  * **Products.** `Sym(u,v) Sym(u',v') = Sym(uu', vv') + Sym(uv', vu')`, so `T_ab S_cd = [a=c][b=d] Sym(p_(X'), p_(Y'))`
+    and `S_ab T_ab = Sym(p_(X_a), p_(Y_b))`.
+  * **Idempotents.** The `E_ab` are orthogonal idempotents with sum `E = Sym(p_X, p_Y)`, which is an idempotent in
+    `B_2`.
+  * **Rank.** `rk E_ab >= rk(T_ab E_ab S_ab) = rk Sym(p_(X'), p_(Y'))`, and conjugating by the first-letter swap
+    gives `rk E >= 4 rk E`.
+  * **All pairs.** `V` is transitive on ordered disjoint pairs with nonempty complement, by the Lemma 2.2
+    refinement argument.
+* **Corollary 2.3.**
+  * `1 ⊗ 1 = Q_P + O_P`, with `O_P ∈ B_2` null and `Q_P ∈ B_2`.
+  * `z − Q_P z Q_P = Q_P z O_P + O_P z Q_P + O_P z O_P` has rank `0`.
+  * A rank function vanishing on the ideal `B_2 ∩ N` of `B_2` descends to `R`, which has none.
+* **Theorem 2.4.**
+  * `Δ_2(N_23) Δ_2(N_12) = e_12 ⊗ e_23 + e_23 ⊗ e_12`, recomputed with `e_23 e_12 = 0`.
+  * `Sym(p_[10], p_[0]) Δ_2(D) = Δ_2(D)`, since `p_[10] e_12 = p_[0] e_23 = 0`. The union `[0] ∪ [10]` misses `[11]`,
+    so `rk Δ_2(D) = 0`.
+  * The pullback is `rk_ε` by Section 23.1 (characteristic two).
+* **Remark on `B_2`.** A rank function on `B_2` pulls back to `rk_ε`, so it exists iff `ker Δ_2 ⊆ ker ε`.
+* **Scope.** Degrees `n >= 3` in characteristic two stay open, as stated.
+
+## 28. Fock-local rank models (w4-fock-model; artifact Sections 1–2)
+
+### 28.1 `exterior-tensor-powers-are-asymptotically-free` (Lemma 1.1, Theorem 1.2, Corollaries 1.3–1.4): PASS
+
+* **Free seed.**
+  * The stabilizer of a dual basis tuple is trivial.
+  * Every function on the finite `Z` is a polynomial of degree `<= w^2(q−1)`.
+  * Restriction onto the orbit's permutation module `F_qΓ` is equivariant and onto. A surjection onto a
+    projective module splits.
+  * `F_q ⊕ W^(⊕w)` is the degree-`<= 1` summand of `(F_q ⊕ W)^(⊗w)`, and `F_q ⊕ W = Λ^0 ⊕ Λ^1` is a graded summand
+    of `Λ(W)`.
+* **Theorem 1.2.** `F_qΓ ⊗ Y ≅ F_qΓ^(dim Y)`, so every term with a free factor is free. The rest has dimension
+  `(1−η)^s 2^(wm)`.
+* **Corollary 1.3.** Both free parts have `c|Γ| >= (1−δ)D`. `X` intertwines on the free part, so the difference
+  vanishes there and its rank is at most `δD`.
+* **Corollary 1.4.**
+  * `U_j` restricted to `L_i` is `U_i ⊗ F_q^(2^(j−i))`, so `Λ(U_j) = Λ(U_i)^(⊗2^(j−i))`.
+  * Injectivity: left multiplication by `a != 1` on `F_qΓ` has fixed space of dimension `|Γ|/ord a`.
+
+### 28.2 `fock-local-letters-extend-level-models-with-disjoint-commutation` (Theorem 2.2): PASS after two precision repairs
+
+* **Checked.**
+  * The exhaustion and `i(j) -> ∞`.
+  * Both actions factor through `Γ_i/K` with the same `K`.
+  * The non-free bounds and the local intertwiners of Corollary 1.3.
+  * (R3) is exact, because `Λ(a) = 1 ⊗ Λ(a|_(A^c))`.
+  * Faithfulness of `G` on `U_∞`, since `R` is simple.
+* **Repair 1: `B_g^A` must preserve both `LC(A)` and `LC(A^c)`.**
+  * An invertible level element preserving only `LC(A)` is block upper triangular. An example is
+    `a = 1 + δ_(c1) ⊗ δ*_(c2)` with `c1 ⊆ A`, `c2 ⊆ A^c`.
+  * For `g ∈ V` supported on `A`, `g a g^-1 = 1 + δ_(g c1) ⊗ δ*_(c2) ∈ L`, so `a ∈ B_g^A` as written.
+  * For such `a`, "φ_g(a) agrees with `a` on `LC(A^c)`" is false, and `Λ(a) = ρ(a) ⊗ Λ(a|)` fails. So step 4 does not
+    cover it.
+  * With `B_g^A` restricted to block-diagonal level elements, step 4 holds as written. This matches Consequence
+    2.4(b), where elements moving mass across the support are excluded.
+* **Repair 2: in odd characteristic the letters must be parity-preserving.**
+  * `X_g ⊗ 1` is defined through the `A_g`-first identification `ω_A ∧ ω_(A^c) -> ω_A ⊗ ω_(A^c)`.
+  * Passing to the `A_h`-first identification costs the sign `(−1)^(|ω_g||ω_h|)`. So `1 ⊗ X_h ⊗ 1` in step 6 is
+    `X_h ⊗ 1` only when `X_h` preserves parity.
+  * Parity-preserving letters exist. Take `z_A ∈ Γ_i`, which acts by parity on `S_A` and is central with
+    `φ_g(z_A) = z_A`, and choose parity-stable complements as in Remark 2.3.
+  * In characteristic two the sign is `1`, so no repair is needed.
+
+### 28.3 `natural-fock-quantized-compressors-miss-toeplitz-by-a-quarter` (Proposition 3.1): PASS
+
+* **Transvections.** `Λ(1 + v⊗φ)` expands with `v` at most once, and `v ∧ i_φ` reproduces the terms with signs
+  `(−1)^(i−1)`. So `Λ(u) − 1 = v ∧ i_φ`.
+* **Rank.** In the basis `e_1 = v`, `φ(e_2) = 1` and `e_3, ..., e_n ∈ ker φ`, the map sends `e_2 ∧ ω'` to `e_1 ∧ ω'`
+  for `ω' ⊆ {3..n}`, and kills every other monomial. So its rank is `2^(n−2) = dim/4`, it preserves degree, and
+  it has `2^(n−3)` monomials on each parity.
+* **Section 3.2.**
+  * If `S(c) ≅ S(c0) ⊗ S(c1)` with all three conjugate under `V`, then `dim S(c) = dim S(c)^2`.
+  * `rk(E ⊗ 1)/dim S_j = rk E/dim S_A`.
+* **Reading.** Models factoring through `Λ(GL)` have transvection displacement `1/4`, so Section 13.1 and
+  Section 21.1 exclude them.
+
+## 29. Jacobson rank radical: support bound, lamplighter cell, symbol firewall (w4-jacobson-radical; e62fcb1db2, f0b171892f)
+
+### 29.1 `jacobson-compression-cell-is-a-commuting-lamplighter` (Proposition 2): PASS
+
+* **(1)**
+  * The `x_ij(Q)` are the elementary matrices on `span{δ_0^(1), δ_0^(2), δ_0^(3)}`, so they generate `GL_3(F_2)`.
+  * `Q·SaT = SaT − S(TS)aT = 0` and `SaT·Q = 0`. So the root elements commute and `K_1` commutes with `uHu^-1`.
+* **(2)** Conjugation gives `K_0 ⊆ C(H)`, and `ucu^-1 = x_12(Q)` gives `c ∈ K_0`.
+* **(3)**
+  * `u^(j−1) x_ik(Q) u^(1−j) = x_ik(e_(j−1,j−1))`.
+  * For `j <= 0`, `H <= u^j H u^-j` gives `K_j <= C(H)`.
+  * Conjugating by `u^-i` reduces pairwise commutation to `K_0` against `K_(j−i) <= H`.
+* **(4)**
+  * `x_ik(1) = x_ik(e) x_ik(1 − e)` with `(1−e)e = e(1−e) = 0`.
+  * `x_23(1) = x_23(Q) x_23(ST) = x_23(Q)·u x_23(1) u^-1` gives `u^-1 x_23(1) u = w_0 x_23(1)`.
+* **(5)** `GL_3(F_2)` is simple and `x_13(Q) ∈ K_1`.
+* **Cited, not re-derived.** The cell identities (manuscript Lemma `lem:ring-compression-cell`).
+
+### 29.2 `jacobson-amenable-symbol-subgroups-are-amenable` (Theorem 3, Corollaries 4–5): PASS
+
+* **Kernel.** `ker pi ⊆ {g : g − 1 ∈ M_n(F)}` consists of finitary matrices, so it is locally finite.
+* **Finitary elementary matrices in `L`.** `[x_ik(e_ac), x_ki(e_cb)] = 1 + E_((i,a),(i,b))` for `a != b`. It uses
+  `X^2 = Y^2 = 0` and `YX = E_kk ⊗ e_cb e_ac = 0`, so `[1+X, 1+Y] = 1 + XY`. Hence `L = GL_fin(F_2)`.
+* **Corollary 4.** `pi(u)` is scalar `z` on coordinates `1–3`, so `pi(B_Λ)` is a quotient of `Z x pi(Λ)`.
+* **Tilted constants.** Conjugation by `d = diag(z, z^2, z^3)` sends `x_12(1)`, `x_23(1)`, `x_21(1)`, `x_32(1)` to
+  `x_12(z^-1)`, `x_23(z^-1)`, `x_21(z)`, `x_32(z)`, and those four generate `SL_3(F_2)`.
+* **Corollary 5.** A permutation with at most `εn` fixed points has at most `εn + (1−ε)n/2` cycles, so
+  `rk(P − 1) >= (1−ε)n/2`.
+* **Smallest nonamenable set.** The constants with `x_12(T)` give symbol image `EL_3(F_2[z^-1])`, by Weyl
+  transport, commutators and additivity.
+* **Scope.** This is a subsystem statement. It does not claim `E_4` amenable.
+
+### 29.3 Artifact Proposition 1: PASS, scope remark
+
+* **(1)** The rank form of the support bound is trivial: `rk(1 − e_K) <= 1 <= (κ c_0)^-1 rk(σ(b) − 1)`.
+* **Not applied.** The cited `uniform-finite-support-rank-gap-upgrades-compression-collapse` is the unitary
+  theorem, with the unnormalized `dim Fix^⊥` against `rank(σ(a) − I)` over finite-dimensional representations. It
+  is not applied here, and "hypothesis (1) holds" should be read as its rank analogue.
+* **(3)** Tautological: `σ([g,h]) = 1` iff the images commute.
+* **(4)**
+  * `κ = 1/4` by Lemma 3 inside some `GL_m(F_2)`, `m >= 4`.
+  * All transvections of `GL_fin(F_2)` are conjugate in `L`, so each has displacement `c_0`. They generate `L`,
+    so the normal closure of the head is `L`.
+  * Since `x_13(Q) = [ucu^-1, x_23(1)]`, the model kills the head iff `σ(x_12(Q))` commutes with `σ(x_23(1))`.

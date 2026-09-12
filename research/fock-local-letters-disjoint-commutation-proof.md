@@ -7,6 +7,7 @@ target: fock-local-letters-extend-level-models-with-disjoint-commutation
 requires:
   - exterior-tensor-powers-are-asymptotically-free
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/fock-local-rank-models-2026-09-12.md
 ---
 
@@ -23,3 +24,5 @@ Section 2 of the artifact: Definition 2.1, Theorem 2.2, Remark 2.3, Consequence 
    other tensor factors, so they commute with `X_(g,j) ⊗ 1` exactly.
 5. **Characteristic three.** `z_A` is central in `Γ_i` and fixed by `φ_g`. Graded matching makes `X` even,
    so the model restricts to `Λ^odd` with `z -> −1`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 28.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS after two precision repairs. (1) B_g^A must consist of level elements preserving both LC(A) and LC(A^c): for block-triangular a such as 1 + δ_c1⊗δ*_c2 (c1 ⊆ A, c2 ⊆ A^c), which g conjugates into L, the factorization Λ(a) = ρ(a)⊗Λ(a|) in step 4 fails. (2) In odd characteristic the letters must be parity-preserving for exact (R4), because reordering wedge factors costs (−1)^(|ω_g||ω_h|); such letters exist via z_A, as in Remark 2.3.*

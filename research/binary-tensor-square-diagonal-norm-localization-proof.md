@@ -7,6 +7,7 @@ target: binary-tensor-square-rank-functions-live-on-diagonal-norms
 requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/diagonal-tensor-rank-functions-2026-09-12.md
 ---
 
@@ -19,3 +20,5 @@ Artifact Section 2.
      four orthogonal idempotents below a Thompson conjugate of `E'`. So the rank is `0`.
    - The two slots carry different sets, so no factor `2` appears.
 3. **Corollary 2.3.** `1 = Q_P + O_P` with `O_P` null, so `rk z = rk(Q_P z Q_P)`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 27.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: N is an ideal of the flip-fixed algebra, and B_2/(B_2∩N) ≅ R; Sym(u,v) ∈ B_2 by the four-term norm; the four isometries S_ab, T_ab with T_ab S_cd = [a=c][b=d] Sym(p_X', p_Y') and no factor 2; rk E >= 4 rk E; and the localization z − Q z Q null.*

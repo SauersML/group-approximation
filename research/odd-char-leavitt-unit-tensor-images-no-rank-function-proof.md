@@ -7,6 +7,7 @@ target: odd-char-leavitt-unit-tensor-images-have-no-rank-function
 requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/diagonal-tensor-rank-functions-2026-09-12.md
 ---
 
@@ -24,3 +25,5 @@ Artifact Theorem 1.
    clopen `A`. Partition the Cantor set into `n + 1` clopen pieces and expand `1^(⊗n)`; by inclusion–exclusion
    it is a signed sum of `p_(A_T)^(⊗n)` over unions of at most `n` pieces. All of these are null, so
    `rk 1 = 0`, a contradiction.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 27.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the inclusion–exclusion isolating Sym_ij; T_a S_b = [a=b] P_2 with the (n!)^-1 normalization; rk P_1 >= 2 rk P_2 = 2 rk P_1 via w = [[0,1,0],[−1,0,0],[0,0,1]]; and Möbius inversion of 1^(⊗n) over unions of at most n of the n+1 pieces.*
