@@ -711,3 +711,145 @@ The same three checks as §17.
     boundary to delete, and it is a subsurface only of itself. So the full group has no nontrivial map to a
     bordered or punctured target of genus `<= 2g-1`.
   - Finite-index subgroups are untouched, as the node says.
+
+## 27. The 16:40–16:42 landings (8eaac4437, cbc0cacb1, a442c4975, 34e7a8c0b, 272475ab8): eleven established claims PASS
+
+### 27.1 `rsg-kazhdan-rf-obstruction-implies-hyperbolic-rf`: PASS, conditional on its imports
+
+- **A quotientless hyperbolic group.** By Kapovich–Wise there is a nontrivial hyperbolic group with no
+  nontrivial finite quotient. It is non-elementary, since infinite elementary groups are residually finite.
+- **Trivial finite radicals in `H = G_1 * K`.**
+  - Edge stabilizers of the Bass–Serre tree are trivial. So a nontrivial finite subgroup normalized by `G_1`
+    fixes exactly one vertex, `G_1` fixes that vertex too, and the subgroup is a finite normal subgroup of
+    `G_1`, which is trivial.
+  - So `E_H(G_1) = E_H(K) = E(H) = 1`.
+- **Common quotient.** In the characterization of `olshanskii-g-subgroup-quotient-theorem`, `K(X) = X`
+  when `E(X) = 1`. So both factors are G-subgroups, and they surject onto one non-elementary hyperbolic `Q`.
+- **Properties of `Q`.** `Q` has (T) as a quotient of `K`. A finite quotient of `Q` restricts to one of
+  `G_1`, so `Q` has none. `Q` is infinite, so it is not residually finite.
+- **Host.** BBMZ Theorem 1.4 (§27.3) puts `Q` in a contracting rational similarity group.
+- **Imports.** `kapovich-wise-rf-iff-finite-quotients`, `torsion-free-hyperbolic-kazhdan-partner-exists`
+  and `olshanskii-g-subgroup-quotient-theorem` have been on main since 2026-09-11. They are outside this
+  review.
+- **Reading.** This limits what an obstruction method can reach. It says nothing about residual finiteness
+  of hyperbolic groups in either direction, as the node says.
+
+### 27.2 `fw-subgroups-of-eventually-similar-groups-virtually-embed`: PASS
+
+The route (§§1–6) was read in full. It is the argument of §10 with the self-similar group replaced by a
+groupoid, and the changes check:
+- The classes `φ∘H` are well defined because `H` is a groupoid, and `[β_v∘n] = [β_v]`.
+- Out-degree `>= 2` makes deep cones strictly smaller, so `P` is finite and its images cover `X`.
+- `g∘φ_p = φ_p∘n` forces `n` into the vertex group `H_(s(p))`.
+- **Part 3.** A synchronous vertex group permutes the level-`k` paths for each `k`. An element in every
+  kernel fixes every point, so the vertex group is residually finite.
+- **Scope.** The rational similarity group discussion correctly places the break at non-surjective nuclear
+  maps.
+
+### 27.3 `hyperbolic-groups-embed-in-contracting-rsgs`: PASS as a citation
+
+It agrees with BBMZ, arXiv:2309.06224: hyperbolic groups embed in full contracting rational similarity
+groups, the first step of their Boone–Higman theorem. The TeX quote was not re-extracted here.
+
+### 27.4 `leavitt-tensor-powers-are-twisted-crossed-products`: PASS, one wording remark
+
+- **Crossed product.**
+  - `u_j u_j' = u_j' u_j = 1`, and `u_j` has degree `e_j - e_(j+1)`.
+  - `A_v = u^λ A_(c e_d)`, so `A = ⊕_λ u^λ C`.
+  - Conjugation by homogeneous units preserves `C`.
+  - `ω(λ,μ)` is a degree-zero unit, so it lies in `C^×`, and the multiplication formula checks.
+- **Sanity check at `d = 2`.** `L ⊗ L = C[t, t^-1; α]` with `C = L_0 ⊗ L` regular supercoherent and
+  K-trivial (§27.5). Waldhausen's theorem then gives `K_*(L ⊗ L) = 0`, which is the known Ara–Cortiñas case.
+- **Wording.** "The cocycle is not trivial" is shown only for the chosen units, through `u_1 u_2 ≠ u_2 u_1`.
+  Cohomological nontriviality is not proved, and nothing uses it.
+- **Scope.** `K_*(L^(⊗d)) = 0` for `d >= 3` is not established, as the node says. Iterating Waldhausen
+  fails after one step, because the intermediate ring `C ∗ Z` is again not coherent.
+
+### 27.5 `leavitt-crossed-product-coefficient-ring-is-k-trivial`: PASS
+
+- **Colimit.** `L_0` is the union of the `M_(2^m)(k)` along `a ↦ a ⊗ 1_2`. So
+  `C = colim M_(2^(m(d-1)))(L)` along free extensions.
+- **Semihereditary.** `L` is hereditary. A finitely generated left ideal is `C ⊗_(C_m) I_m` with `I_m`
+  projective, by flatness.
+- **Regular supercoherent.** Finitely generated ideals and finite resolutions come from some stage and
+  survive base change.
+- **K-theory.** `K_n` commutes with filtered colimits and with matrices. `K_n(L_k(1,2)) = 0` for regular `k`,
+  because multiplication by `1 - 2` on `K_*(k)` is invertible.
+
+### 27.6 `rational-units-rescale-to-integral-units`: PASS
+
+- **Gauss's lemma.** `u'v' = N ∈ Z`. A prime `p` dividing `N` would give a zero divisor in `F_p[G]`.
+- **Transfer.** The units with one-element support are the `λg`, so nontriviality transfers in both
+  directions.
+- **Promislow group.** It is torsion-free and virtually `Z^3`, and Kropholler–Linnell–Moody covers
+  torsion-free elementary amenable groups.
+- The two new roots are correctly OPEN, and the route from `Q` to `Z` checks.
+
+### 27.7 `coherent-flat-group-algebra-hosts-force-fp-infinity`: PASS, conditional on Chase and Bieri–Eckmann
+
+- **Reduction.** Flatness and the summand pass to `K[H]` through the free extension `K[H] ⊂ K[S]`.
+- **FP_∞.**
+  - Flat base change gives `Tor^(K[S])_k(ΠB, K) = Tor^B_k(ΠB, M)`, which vanishes because `ΠB` is flat
+    (Chase).
+  - The summand then kills `Tor^(K[S])_k(ΠK[S], K)`, and the Bieri–Eckmann criterion applies.
+- **Part 2.** Shapiro through the flat extension, and coinduction when `K[S]` is a bimodule summand.
+- **`Z wr Z`.** The spectral sequence has two columns, so `H_0(Z; Λ^2 K^(Z)) ↪ H_2`. Shift orbits on the
+  `e_i ∧ e_j` are indexed by `j - i`, so the coinvariants are infinite-dimensional.
+
+### 27.8 `nekrashevych-completions-contain-their-coefficients`: PASS
+
+- **(1).** `Ψ` is a unital homomorphism, so the set where it agrees with the inclusion is a subalgebra.
+- **(2).**
+  - `α_(n+1) φ_n = φ_(n+1) α_n`, and `α` identifies `B_∞` with the corner `E_11 B_∞ E_11`.
+  - In the corner skew Laurent ring, `t_- t_+ = p_0`, `t_+ t_- = [p]_0` and `t_+ c t_- = α(c)`.
+  - The defining relation maps to `ψ(b) = [b]_0`.
+- **(3) and strong grading.** Both check.
+
+### 27.9 `saturated-invariant-ideals-block-completion-simplicity`: PASS
+
+`ψ(I) ⊆ M_d(I)`, and saturation makes `ψ̄` injective. `O_ψ/J = O_ψ̄` together with §27.8(2) gives
+`J ∩ B = I`.
+
+### 27.10 `simple-monomial-completions-kill-the-tree-action-kernel`: PASS
+
+- `N` is closed under restriction, so the recursion descends to `P/N`.
+- The boundary representation on `K[X^ω]` satisfies `g = Σ_x s_(π_g x) g|_x s_x^*` on basis words. So
+  `O_ψ̄ ≠ 0`, and `J` is proper.
+- A subgroup without finite quotients acts trivially on every level, so it lies in `N`.
+
+### 27.11 `fpbs-relative-gap-along-any-subgroup-separates`: PASS
+
+- **`p_u(I;G) <= p_u(G)`.** Long-range order on `Γ` at some `p′ ∈ [p_u, p)` restricts to `I` and increases
+  with `p`. Hutchcroft–Pan with `H = I` then gives uniqueness along `I`.
+- **(2 ⟹ 1).** Left multiplication by `h ∈ I` preserves the law and `I`. So no cluster meets `I` infinitely
+  often at `p`, and monotonicity gives `p <= p_c(I;G)`.
+- **(1 ⟹ 2).** Uses `fpbs-hp-relative-sharpness`, an established import on main.
+- **Import.** `fpbs-hp-uniqueness-and-long-range-order` (Hutchcroft–Pan, Theorem 1.4) was not re-extracted
+  here.
+- The OPEN claims of 272475ab8 are correctly OPEN: Choi–Seo Question 1.2, the Juschenko–Nagnibeda question,
+  and the residual class.
+
+## 28. Cairn state on MSI
+
+`cairn why` ran as a detached job at tip 44c847dd5 (16:44). It finished with its DONE sentinel.
+- **REFUTED:** `leavitt-tensor-powers-are-left-coherent`, `decidable-groups-embed-in-rover-nekrashevych-hosts`,
+  `nuclear-factor-with-infinite-mf-tensor-exists`.
+- **INVALIDATED routes:** `leavitt-tensor-powers-k-theory-via-coherence`,
+  `prime-field-leavitt-powers-k-theory-via-coherence`, `boone-higman-via-rover-nekrashevych-hosts`.
+- **ESTABLISHED:** `fpbs-tree-projected-reversible-letter-nonunimodular`,
+  `fpbs-tree-projected-letter-exchange-nonunimodular`, `sl3z-ozawa-block-corona-has-unique-trace`,
+  `thompson-v-sofic-iff-not-permutation-stable`, `finite-index-edge-hnn-embeds-in-fp-simple-group`.
+- **OPEN:** `boone-higman-conjecture`, `char-two-linear-groups-satisfy-boone-higman`,
+  `leavitt-tensor-powers-have-trivial-k-theory`, `fpbs-tree-projected-cayley-graphs-strict-thresholds`,
+  `nuclear-algebra-without-uct-exists`, `relative-normalization-modulo-kazhdan-kernel`, `nonsofic-hyperbolic-group`,
+  `non-hyperlinear-group`, `kazhdan-edge-coproduct-rank-is-inner-rank`, `stw99-problem-i-quasitraces-are-traces`,
+  `thompson-v-not-sofic`.
+
+So the refutations and invalidations reviewed in §§6, 9 and 10 took effect as their nodes say, and no root
+checked here was falsely established.
+
+## Scope from 16:43
+
+For commits after 8987f4ea6, `swarm5-reviewer` covers Thompson groups and full groups, Strong Atiyah,
+Baum–Connes and Kadison–Kaplansky, quasitraces, weak soficity, and Gottschalk and direct finiteness. This
+artifact continues with the other topics.
