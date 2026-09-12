@@ -94,3 +94,18 @@ is the Borel inverse of `tau` on its image.
   - **Continuous case.** A compression with continuous encoder and decoder is a strict automaton.
 
   Artifact: `research/artifacts/non-expanding-sofic-cascades-2026-09-12.md`.
+- **Inverting Ornstein–Weiss codes (2026-09-12, w4-measurable-2).** Dead:
+  `ornstein-weiss-type-decoders-admit-no-measurable-section`.
+  - **The design.** The Ornstein–Weiss map carries the 2-shift onto the 4-shift. Ascended to `U`, its fiber is
+    `(Z/2)^(U/F_2)`, so an equivariant section would choose the primitive on each free-subgroup coset from other
+    data, for instance along the rigid defect.
+  - **Why it dies.** No such section exists over any group. More generally, a decoder with a two-term difference
+    row along one element has no section, because the section equation is a coboundary equation. That equation
+    gives a nonconstant invariant function of an ergodic skew product, which is a Bernoulli shift after taking
+    partial sums.
+  - **As an encoding stage** an Ornstein–Weiss map is never injective on uniform input, since it kills coset
+    indicators.
+  - **As a parallel track** it is only an enlarging stage.
+  - **Still open.** Decoder rows with three or more terms.
+
+  Artifact: `research/artifacts/ornstein-weiss-decoder-sections-2026-09-12.md`.
