@@ -56,6 +56,8 @@ tree; nothing unlanded, nothing in the attic.  `ParityPAxiomGuard` is compiled o
 | `ChernSplittingOfPowers` | lix-c, BUILT | 2321+ | `SplittingDataOf` (even parts), `SplittingDataOf.powerData`, `hasSplittingP_of_splittingDataOf`, `HasSplittingP.elim` |
 | `ChernSplittingOfInjective` | lix-c, BUILT | 3421 | `totalHOf_map_id/comp`, `totalHOf_component_map`, `totalHOf_map_injective`, `flagProj_map_injective_of_proj` over any `CommRing K` |
 | `ChernSplittingOfWhitney` | lix-c, BUILT | 3461 | on `LerayHirschDataEvenOf`: `chern_eq_coeff`, `chern_split_of_splitPoly`, `splittingDataOf_of_splitPoly`, `aeval_taut_map`, `splitPoly_of_splitRelation`, **`hasSplittingP_of_splitRelation`** |
+| `ChernSplittingOfFlag` | lix-c, BUILT | 3463 | `flag_square`, **`hasSplittingP_flag`** (the bundle-level assembly) |
+| `ChernSplittingOfAxiomGuard` | lix-c, BUILT | 3463 | `#audit_axioms` over the four modules |
 
 Open inputs for the flag assembly (lix-lh / lix-coeff by the lead's ruling): compact Leray–Hirsch over
 `K` and its `of_graded` into `LerayHirschDataEvenOf`; `tautEulerOf_comapOf`; the split relation at the
