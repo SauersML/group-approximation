@@ -231,3 +231,36 @@ been reviewed.
   beyond `F_2[t_1, t_2]`-type commutative pieces. That is
   `bh-decidable-algebra-hosts`'s premise and `leavitt-tensor-k-theory`'s tensor
   powers, not graph algebras.
+
+## 6. The full conjecture: universal host families (redirect of 2026-09-12)
+
+Main already carries the two pieces this lane would otherwise have written:
+- `leavitt-tensor-elementary-host-criterion` (established): for `B` fp central
+  simple and `S <= B^x` perfect, `E_n(B ⊗ L)` is an fp simple host once one
+  unstable Steinberg kernel is finitely normally generated. No `K_1` hypothesis.
+- `complexity-bounded-host-classes-are-not-universal` (established): no class
+  with one recursive word-problem time bound is universal.
+
+**Consequences for Steinberg and full-group hosts.**
+1. **No fixed-algebra family is universal.** Unit and elementary groups of a
+   fixed Leavitt path algebra, of its tensor powers, or of any fixed Steinberg
+   algebra have word problems uniformly bounded by evaluation in a path or
+   bisection basis. Topological full groups of rational or contracting groupoids
+   also have bounded word problems (`rational-homeomorphism-subgroups-have-exponential-wp`).
+   So a universal family must have the form `B ⊗ A`, with `B` of unbounded
+   word-problem complexity carrying the input and `A` a Leavitt- or Steinberg-type
+   factor supplying simplicity and finite presentation.
+2. **The best factor is `L_2`.** For regular supercoherent `B`,
+   `K_*(B ⊗ L_(F_2)(E))` is the cofibre of `1 - N_E^t` on `K_*(B)^V`. It vanishes
+   for all such `B` only when `det(1 - N_E^t) = ±1`, i.e. for `L_2` or its Cuntz
+   splice. Graph factors with `D = -2`, for instance, fail on any `B` whose
+   `K_*` has 2-torsion.
+3. **Exact criterion.** With `leavitt-tensor-steinberg-kernel-is-stable-k2`
+   (open), the kernel hypothesis becomes "`K_2(B ⊗ L)` finitely generated".
+   Since `KH(B ⊗ L) = 0` for every `B` (ABC Theorem 8.6), this is a twisted Nil
+   `K_2` statement. It vanishes when `B ⊗ L` is `K_2`-regular, which is
+   `bh-leavitt-coherence`'s target.
+4. **The wall.** Everything reduces to the existence of fp central simple `B`
+   containing a given infinite computably presented simple `S` in its units
+   (`simple-inputs-have-fp-elementary-leavitt-tensor-hosts`). That is the algebra
+   form of Boone--Higman, owned by `bh-decidable-algebra-hosts`.
