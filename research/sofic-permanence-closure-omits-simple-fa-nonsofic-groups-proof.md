@@ -7,6 +7,7 @@ target: sofic-permanence-closure-omits-simple-fa-nonsofic-groups
 requires: []
 artifacts:
   - research/artifacts/fixed-host-permanence-closure-obstruction-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 3 of the artifact gives the complete proof. It uses only standard
@@ -26,3 +27,8 @@ Each clause uses exactly one property of `Sigma`:
 Corollary 3.2 of the artifact checks that every landed surjunctivity
 permanence construction is an instance of these operations over sofic or
 residually finite kernels.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 12 of the
+verification artifact). The colimit clause needs no injectivity of the
+structure maps: a finite presentation lifts the embedding to one stage, and the
+lift is injective because its composite is.

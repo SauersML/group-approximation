@@ -13,6 +13,7 @@ requires:
   - fp-simple-nonsofic-group
 artifacts:
   - research/artifacts/gottschalk-table-realization-and-evasion-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Derivation: Section 3 of the linked artifact.
@@ -42,3 +43,8 @@ group `W` built from groups of an earlier stage.
 
 An infinite simple group is not residually finite. It is not free. Being nonsofic,
 it lies in no sofic group. The Leavitt consequence uses `fp-simple-nonsofic-group`.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 12 of the
+verification artifact). This FA-free form covers the landed operations. The FA
+form in `sofic-permanence-closure-omits-simple-fa-nonsofic-groups` also covers
+arbitrary extensions and arbitrary graphs of groups.

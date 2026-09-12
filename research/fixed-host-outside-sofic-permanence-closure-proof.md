@@ -7,6 +7,7 @@ target: fixed-host-outside-sofic-permanence-closure
 requires: [sofic-permanence-closure-omits-simple-fa-nonsofic-groups, leavitt-unit-group-finitely-presented, binary-leavitt-unit-group-is-simple, openai-leavitt-unit-nonsofic, leavitt-gl-equals-el-and-perfect-unit-group, rank-twelve-leavitt-simple-non-mf, whitehead-universal-finitely-presented-container]
 artifacts:
   - research/artifacts/fixed-host-permanence-closure-obstruction-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Put `Sigma = R^x`.
@@ -24,3 +25,8 @@ group containing `Sigma`. `R^x` is finitely presented, hence recursively
 presented, so it embeds in `U` by
 `whitehead-universal-finitely-presented-container`. Section 4 of the artifact
 gives the details.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 12 of the
+verification artifact). The load-bearing external input is finite presentation
+of `R^x`, imported from Khanh, arXiv:2609.08428v1, Theorem 6.1. Its proof has
+not been reviewed in this repository.
