@@ -170,3 +170,108 @@ defect-piece artifact, and the honest model `EL_3(phi)`.
 
 So the analogue of Theorem 2.4 fails for `H`, and it fails at Lemma 2.3, because corner locality
 fails when the coefficient ring has a rank model. The upper bound `1/2` holds there too.
+
+## 3. The descent is geometric in both directions
+
+Throughout this section `sigma` is nontrivial and fixed-point-free, normalized so that
+`rk(1) = 1`. Let `c_*` be the infimum of `rk(D_1000)` over nontrivial fixed-point-free models. By
+Theorem 2.4, `c_0 <= c_* <= 1/2`.
+
+**Lemma 3.0 (globality on cylinders).** For every proper cylinder `A`,
+`Fix_r(sigma(iota_A(R^x))) = Fix_r(sigma(R^x))`.
+
+*Proof.*
+* **A = 0.** This is `leavitt-rank-models-kazhdan-fixed-ideals-are-global` in degree `(1,0)`,
+  because `iota_0(R^x)` equals the nine-leaf `EL_alpha(R)` as a set (Section 52 of
+  `research/artifacts/gk-vf-linear-verification-2026-09-12.md`).
+* **Other A.** Fact 1.2 gives `u` in `V` with `u iota_0(g) u^-1 = iota_A(g)`. So the fixed ideal of
+  `sigma(iota_A(R^x))` is `sigma(u) fM = fM`. QED
+
+**Theorem 3.1 (two-sided descent).** Let `A_1, ..., A_(k+1)` be pairwise disjoint proper cylinders
+with proper union. Put `f(k) = rk(D_(A_1) ... D_(A_k))` and `f(0) = 1`. Then
+
+```text
+c_* f(k)  <=  f(k+1)  <=  f(k) / 2 ,        hence        c_*^k  <=  f(k)  <=  2^-k .
+```
+
+*Proof.* Put `Q_k = D_(A_1) ... D_(A_k) M = q_k M` and `B = A_(k+1)`. By Fact 1.2 each
+`sigma(iota_B(g))` and each `N^B_ab` commutes with every `D_(A_i)`. So `Q_k` is invariant under
+them, and `X q_k = q_k X q_k` for each such element `X`.
+* **Upper bound.** `(q_k N^B_12 q_k)^2 = q_k (N^B_12)^2 q_k = 0` (Fact 1.3). By Fact 1.1(c),
+  `rk(N^B_12 q_k) <= f(k)/2`. Then `f(k+1) = rk(D_B q_k) <= rk(N^B_12 q_k)`.
+* **Lower bound.**
+  * **The corner model.** `tau(g) = q_k sigma(iota_B(g)) q_k` is a homomorphism
+    `R^x -> (q_k M q_k)^x` (Lemma 1.1 of the defect-piece artifact).
+  * **Fixed-point-free.** A vector of `Q_k` fixed by `tau` is fixed by `sigma(iota_B(R^x))`, hence
+    by `sigma(R^x)` (Lemma 3.0), hence it is `0`.
+  * **Nontrivial,** because `f(k) > 0` by induction.
+  * **Its defect.** The `[1000]` defect of `tau` is `D_(B1000) q_k`. Its rank is
+    `rk(D_(B1000) D_(A_1) ... D_(A_k))`, which equals `f(k+1)` by Fact 1.2.
+  * **Conclusion.** Normalizing by `rk(q_k) = f(k)` gives `f(k+1) >= c_* f(k)`. QED
+
+**Corollary 3.2 (the nested pieces of Remark 1.4).** Let `sigma` be any nontrivial model, and let
+`Q = Q_1 ⊇ Q_2 ⊇ ...` be the nested defect pieces of Remark 1.4 of the defect-piece artifact, of
+ranks `delta_k`.
+1. `Q_k = D_(A_k) ... D_(A_1) M` with `A_j = 0^(j-1) 1000`. These cylinders are pairwise disjoint,
+   with proper union.
+2. `delta_(k+1) <= delta_k / 2`. So `delta_k <= 2^(1-k) delta_1`, and every principal right ideal
+   inside all the `Q_k` has rank `0`.
+3. On the fixed-point-free quotient, `(1-f) Q_k` has rank `rk(1-f) f_W(k)`, with
+   `c_* <= f_W(k+1) / f_W(k) <= 1/2`. In `sigma` itself,
+   `c_*^k rk(1-f) <= delta_k <= 2^(1-k) rk(1-f)`.
+
+*Proof.*
+1. By Lemma 1.1 of the defect-piece artifact, `(sigma(gamma) - 1) q = q (sigma(gamma) - 1) q` for
+   `gamma` in `Gamma`. So `q D_(0P') q = D_(0P') q`, and its image is `D_(0P') D_1000 M`. The iterated
+   model `tau_(Q_k) o iota_0` has cylinder pairs `iota_(0^k P)`, so the next piece uses
+   `A_(k+1) = 0^k 1000`.
+2. The upper bound in Theorem 3.1 uses only commutation and square zero, so it holds in `sigma`
+   directly.
+3. Each `D` kills `f`, so `(1-f) D_(A_k) ... D_(A_1)` is the product of the defects of `sigma_W`.
+   Apply Theorem 3.1 to `sigma_W`. Then `delta_k >= rk((1-f) Q_k)`, and `delta_1 <= rk(1-f)`. QED
+
+**Remark 3.3 (the payoff attached to Remark 1.4 is dead).**
+* **The hope.** Remark 1.4, and the family plan built on it, hoped that a uniform bound
+  `delta_(k+1) >= c · delta_k`, together with `R ~= R^2`, would give a unital approximately
+  multiplicative map from `R` into a limit corner.
+* **What holds.** Theorem 3.1 proves that bound on the fixed-point-free quotient, with `c = c_*`.
+  Corollary 3.2(2) shows that in every model the limit corner has rank `0`.
+* **Why this is no contradiction.** A per-step ratio between `c_*` and `1/2` is consistent for every
+  `c_* <= 1/2`. The descent bound is a theorem, not a contradiction. A contradiction needs an upper
+  bound that the lower bound `c_*` cannot meet.
+
+## 4. Near-minimal models look like tensor products
+
+**Proposition 4.1.** Let `sigma` be nontrivial and fixed-point-free with
+`delta = rk(D_1000) <= (1+eps) c_*`, and let `A_1, ..., A_(k+1)` be as in Theorem 3.1. Then
+
+```text
+| f(k+1) - delta f(k) |  <=  eps delta ,        hence        | f(k) - delta^k |  <=  2 eps delta   (k >= 1).
+```
+
+*Proof.* Put `B = A_(k+1)` and `P = D_(A_1) ... D_(A_k)`. Let `K = kM` be the right annihilator of
+`P`; it has rank `1 - f(k)`.
+* **Lower bound.** Theorem 3.1 gives `f(k+1) >= c_* f(k) >= delta f(k)/(1+eps)`, so
+  `delta f(k) - f(k+1) <= eps delta`.
+* **Kernel corner.** `P` commutes with `sigma(iota_B(R^x))`, so `K` is invariant, and
+  `k sigma(iota_B(.)) k` is a model on `kMk`.
+  * It is fixed-point-free by Lemma 3.0.
+  * It is nontrivial because `rk(k) >= 1/2`.
+  * So `rk(D_(B1000) k) >= c_* (1 - f(k))`.
+* **Triangular count.** `T = D_(B1000)` maps `K` into `K`. Put `J = TM + K`.
+  * `TM` surjects onto `J/K` with kernel containing `TK`, so `rk(TM) >= rk(TK) + rk(J) - rk(K)`.
+  * By Fact 1.1(d), `rk(J) - rk(K) = rk(PJ) = rk(PTM) = rk(TPM) = f(k+1)`.
+  * With `rk(TM) = delta`, this gives `delta >= c_*(1 - f(k)) + f(k+1)`.
+* **Upper bound.**
+  `f(k+1) <= delta - c_*(1 - f(k)) <= (eps delta + delta f(k))/(1+eps) <= delta f(k) + eps delta`.
+* **Iterate.** `|f(k) - delta^k| <= eps delta (1 + delta + delta^2 + ...) <= 2 eps delta`, since
+  `delta <= 1/2`. QED
+
+**Remark 4.2 (both restrictions are borderline).**
+* **The two restrictions.** A commuting defect offers two: the range corner `Q_k` and the kernel
+  corner `K`.
+* **Their defects.** At a near-minimal model, the restricted models have normalized defects
+  `f(k+1)/f(k)` and `rk(D_(B1000) k)/(1 - f(k))`. Both are within `O(eps)` of `delta`.
+* **The pattern.** The ranks `f(k) = delta^k + O(eps delta)` are those of a tensor product of `k`
+  independent factors, each of defect `delta`.
+* **Consequence.** No iterate of range and kernel restrictions lowers the defect by a fixed factor.
