@@ -218,10 +218,13 @@ local test; a deficit has to break tensor type through structure that finite sub
   with `theta = 1` (Theorem 3.2).
 * **What remains.** A proof of `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` must use at
   least one of:
-  * an operator identity in which a unit of infinite order appears as a *factor*, not a conjugator:
-    the isometry-coefficient root elements `n_12(t_i)`, `n_23(s_j)` of
-    `leavitt-isometry-commutators-constrain-el3-rank-models`, or a measure-changing unit of `V` inside a
-    product with defects;
+  * an operator identity in which `sigma` of a subgroup that is not locally finite enters as *factors*,
+    not only as conjugators: opposite root elements with non-constant coefficients together (for
+    instance `x_12(r)` and `x_21(r')` whose product has infinite order), or torus units and prefix
+    replacements of infinite order inside products with defects. The isometry-coefficient root
+    elements `n_12(t_i)`, `n_23(s_j)` of `leavitt-isometry-commutators-constrain-el3-rank-models` are
+    *not* of this kind: they lie in `UT_3(R)`, which is locally finite (w4-r4-orth, Proposition 2), so
+    Theorem 3.2 covers them;
   * a global input (corner locality, globality, displacement, compactness) turned into an *upper* bound.
     Theorem 2.1 is the global tool on products; nothing known bounds sums such as `D^rho` against
     commutant independence.
@@ -230,8 +233,19 @@ local test; a deficit has to break tensor type through structure that finite sub
   * compressors used as conjugators: covered by invariance;
   * the nine-leaf configuration enters through globality, a global input: not covered;
   * block root groups `x_12(r)`, `r` in `R`, of `GL_2(R)` normalized by the torus
-    `iota_0(R^x) x iota_1(R^x)`: their coefficient groups are not locally finite, so not covered. This is
-    the live mechanism of the "infinite-order factor" kind.
+    `iota_0(R^x) x iota_1(R^x)`. The group `{x_12(r)}` is `(R, +)`, an elementary abelian 2-group, and a finite
+    subgroup of the torus conjugates `x_12(r)` to `x_12(g r h^-1)`. So finitely many block root elements
+    together with a finite part of the torus generate a finite group: covered. Not covered: opposite
+    block roots `x_12(r)`, `x_21(r')` together when they generate an infinite dihedral group, and torus
+    elements of infinite order used as factors. That is the live mechanism of the "infinite-order
+    factor" kind. (The first landing of this bullet at 01aa418e41 said the block root groups themselves
+    are not locally finite; that was wrong and is corrected here.)
+* **Sibling firewall.** w4-sub-adversary (`locally-finite-hnn-data-allow-independent-cylinder-defects`,
+  artifact `research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md`) builds a
+  fixed-point-free rank model on HNN data over a locally finite subgroup, which is stronger than
+  Theorem 3.2 on single conjugations. Its first escapes, the frame product
+  `b = iota_A(w_23) iota_(A1)(w_12)` of infinite order and `x^A_12(s_0) x^A_21(1)`, are exactly configurations
+  outside every locally finite subgroup, consistent with the corrected list above.
 * **Most concrete next test.** At a model with `delta = c_*`, Theorem 2.1 says both corners of every
   invariant decomposition of `iota_A` carry defect exactly `c_*`. A contradiction would follow from one
   `sigma(iota_A(R^x))`-invariant summand whose normalized defect differs from `c_*`. Such a summand must be
