@@ -22,13 +22,14 @@ compatible family of the collapse with the same card and weight (`regionFamily`,
 `regionFamily_card`, `regionFamily_weight`, `regionFamily_pairwise`).  This is what
 keeps a distinguished family alive across the merge surgery of Osin's Appendix
 (arXiv:math/0411039v3, Lemma 9.4 Case 1 and the merges of Lemma 9.7(a)): the family
-survives, and the collapsed face can then carry a new region
+survives, and the merged face can then carry a new region
 (`Estimating/SingletonFaceRegion.lean`).
 -/
 
 namespace GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion
 
-open HullSC MapCollapse Embedded
+open MapCollapse
+open GroupApproximation.GGT.VanKampen.Embedded
 
 universe u w v
 variable {G : Type u} [Group G] {Lambda : Type w}
@@ -37,24 +38,19 @@ variable {G : Type u} [Group G] {Lambda : Type w}
 
 /-! ## Face sets -/
 
-open scoped Classical in
-theorem faceMap_mem_faceSet {s : Finset Delta.toCombMap.Face} {g : Delta.toCombMap.Face}
-    (hg : g ∈ s) : R.faceMap g ∈ R.faceSet s := by
-  unfold faceSet
-  exact Finset.mem_image_of_mem _ hg
+theorem face_mem_faceSet {s : Finset Delta.toCombMap.Face} {g : Delta.toCombMap.Face}
+    (hg : g ∈ s) : R.face g ∈ R.faceSet s :=
+  R.mem_faceSet.mpr ⟨g, hg, rfl⟩
 
-open scoped Classical in
 theorem mem_faceSet_iff {s : Finset Delta.toCombMap.Face} (hs : Disjoint s R.faces)
     {F : R.diagram.toCombMap.Face} :
-    F ∈ R.faceSet s ↔ ∃ g, ∃ hg : g ∈ s,
-      F = keptFace Delta.toCombMap R.faces R.region g (Finset.disjoint_left.mp hs hg) := by
-  unfold faceSet
-  rw [Finset.mem_image]
+    F ∈ R.faceSet s ↔ ∃ g, ∃ hg : g ∈ s, F = R.kept g (Finset.disjoint_left.mp hs hg) := by
+  rw [R.mem_faceSet]
   constructor
   · rintro ⟨g, hg, rfl⟩
-    exact ⟨g, hg, R.faceMap_of_not_mem _⟩
+    exact ⟨g, hg, R.face_of_not_mem _⟩
   · rintro ⟨g, hg, rfl⟩
-    exact ⟨g, hg, R.faceMap_of_not_mem _⟩
+    exact ⟨g, hg, R.face_of_not_mem _⟩
 
 theorem faceSet_disjoint_iff {s t : Finset Delta.toCombMap.Face}
     (hs : Disjoint s R.faces) (ht : Disjoint t R.faces) :
@@ -62,11 +58,11 @@ theorem faceSet_disjoint_iff {s t : Finset Delta.toCombMap.Face}
   simp only [Finset.disjoint_left]
   constructor
   · intro h g hgs hgt
-    exact h (R.faceMap_mem_faceSet hgs) (R.faceMap_mem_faceSet hgt)
+    exact h (R.face_mem_faceSet hgs) (R.face_mem_faceSet hgt)
   · intro h F hFs hFt
     obtain ⟨g, hg, rfl⟩ := (R.mem_faceSet_iff hs).mp hFs
     obtain ⟨g', hg', hgg'⟩ := (R.mem_faceSet_iff ht).mp hFt
-    have hgg := keptFace_inj Delta.toCombMap R.faces R.region _ _ _ _ hgg'
+    have hgg := R.kept_inj hgg'
     subst hgg
     exact h hg hg'
 
@@ -77,21 +73,18 @@ theorem faceSet_inj {s t : Finset Delta.toCombMap.Face}
   by_cases hg : g ∈ R.faces
   · exact ⟨fun hgs => (Finset.disjoint_left.mp hs hgs hg).elim,
       fun hgt => (Finset.disjoint_left.mp ht hgt hg).elim⟩
-  · rw [← R.keptFace_mem_faceSet_iff hs hg, ← R.keptFace_mem_faceSet_iff ht hg, h]
+  · rw [← R.kept_mem_faceSet_iff hs hg, ← R.kept_mem_faceSet_iff ht hg, h]
 
-theorem diagram_faceWord_keptFace (g : Delta.toCombMap.Face) (hg : g ∉ R.faces) :
-    R.diagram.faceWord (keptFace Delta.toCombMap R.faces R.region g hg) =
-      Delta.faceWord g :=
+theorem faceWord_kept (g : Delta.toCombMap.Face) (hg : g ∉ R.faces) :
+    R.diagram.faceWord (R.kept g hg) = Delta.faceWord g :=
   R.keptFace_word g hg
 
-theorem faceBoundary_keptFace_darts (g : Delta.toCombMap.Face) (hg : g ∉ R.faces) :
-    (R.diagram.faceBoundary (keptFace Delta.toCombMap R.faces R.region g hg)).darts =
-      (Delta.faceBoundary g).darts.map R.keep := by
-  apply List.map_injective_iff.mpr Subtype.val_injective
+theorem faceBoundary_kept_darts (g : Delta.toCombMap.Face) (hg : g ∉ R.faces) :
+    (R.diagram.faceBoundary (R.kept g hg)).darts = (Delta.faceBoundary g).darts.map R.keep := by
+  apply List.map_injective_iff.mpr R.val_injective
   rw [R.map_keep_val fun d hd => R.not_internal_of_faceOf_not_mem
     (by rw [((Delta.faceBoundary g).mem_iff d).mp hd]; exact hg)]
-  exact replaceGRegionFaceBoundary_keptFace_map_val Delta.toCombMap R.faces R.region
-    Delta.faceBoundary g hg
+  exact R.faceBoundary_kept_map_val g hg
 
 /-! ## Boundaries -/
 
@@ -135,13 +128,12 @@ noncomputable def transportBoundary {s : Finset Delta.toCombMap.Face}
     FaceSetBoundary R.diagram (R.faceSet s) where
   faces_nonempty := by
     obtain ⟨g, hg⟩ := B.faces_nonempty
-    exact ⟨_, R.faceMap_mem_faceSet hg⟩
+    exact ⟨_, R.face_mem_faceSet hg⟩
   all_gCells := by
     intro F hF
     obtain ⟨g, hg, rfl⟩ := (R.mem_faceSet_iff hs).mp hF
-    refine ⟨fun heq => (B.all_gCells g hg).1
-      (keptFace_inj Delta.toCombMap R.faces R.region _ _ _ _ heq), ?_⟩
-    rw [R.diagram_faceWord_keptFace]
+    refine ⟨fun heq => (B.all_gCells g hg).1 (R.kept_inj (heq.trans R.outerFace_eq)), ?_⟩
+    rw [R.faceWord_kept]
     exact (B.all_gCells g hg).2
   cycle := B.cycle.map R.keep
   cycle_nonempty := fun h => B.cycle_nonempty (List.map_eq_nil_iff.mp h)
@@ -155,10 +147,10 @@ noncomputable def transportBoundary {s : Finset Delta.toCombMap.Face}
       have hb := (B.cycle_mem_iff d).mp hd
       exact (R.isBoundaryDart_keep_iff hs (R.not_internal_of_boundaryDart hs hb)).mpr hb
     · intro hx
-      have hkeep : R.keep x.1 = x := Subtype.ext (R.keep_val x.2)
+      have hkeep : R.keep (R.val x) = x := R.keep_val x
       rw [← hkeep] at hx
-      have hb := (R.isBoundaryDart_keep_iff hs x.2).mp hx
-      exact List.mem_map.mpr ⟨x.1, (B.cycle_mem_iff _).mpr hb, hkeep⟩
+      have hb := (R.isBoundaryDart_keep_iff hs (R.val_not_internal x)).mp hx
+      exact List.mem_map.mpr ⟨R.val x, (B.cycle_mem_iff _).mpr hb, hkeep⟩
   cycle_chain := by
     rw [List.isChain_map]
     exact B.cycle_chain.imp fun _ _ h => R.boundaryStep_keep hs h
@@ -176,7 +168,7 @@ noncomputable def transportBoundary {s : Finset Delta.toCombMap.Face}
 theorem shelling {s : Finset Delta.toCombMap.Face} (hs : Disjoint s R.faces)
     {l : List Delta.toCombMap.Face} {cycle : List Delta.toCombMap.Dart}
     (H : FaceShelling Delta s l cycle) :
-    FaceShelling R.diagram (R.faceSet s) (l.map R.faceMap) (cycle.map R.keep) := by
+    FaceShelling R.diagram (R.faceSet s) (l.map R.face) (cycle.map R.keep) := by
   induction H with
   | empty => exact FaceShelling.empty
   | @step l before arc after exposed g hg k hrot rest ih =>
@@ -190,9 +182,8 @@ theorem shelling {s : Finset Delta.toCombMap.Face} (hs : Disjoint s R.faces)
         exact List.mem_append_right _ (List.mem_map.mpr ⟨d, List.mem_reverse.mpr hd, rfl⟩)
       rw [((Delta.faceBoundary g).mem_iff _).mp (List.mem_rotate.mp hmem)]
       exact hgR
-    refine FaceShelling.step (arc := arc.map R.keep) (R.faceMap g)
-      (R.faceMap_mem_faceSet hg) k ?_ ih
-    rw [R.faceMap_of_not_mem hgR, R.faceBoundary_keptFace_darts g hgR, ← List.map_rotate,
+    refine FaceShelling.step (arc := arc.map R.keep) (R.face g) (R.face_mem_faceSet hg) k ?_ ih
+    rw [R.face_of_not_mem hgR, R.faceBoundary_kept_darts g hgR, ← List.map_rotate,
       hrot, List.map_append, R.invDarts_map harc]
 
 /-! ## Contiguity geometry -/
@@ -241,7 +232,7 @@ noncomputable def contiguityGeometry {D : RelGenSet G Lambda} {eps : ℕ}
     exact H.leftSide_norm_le
   pasting := by
     obtain ⟨l, hl⟩ := H.pasting
-    exact ⟨l.map R.faceMap, R.shelling hs hl⟩
+    exact ⟨l.map R.face, R.shelling hs hl⟩
 
 theorem contiguityGeometry_source_length {D : RelGenSet G Lambda} {eps : ℕ}
     {s : Finset Delta.toCombMap.Face} (hs : Disjoint s R.faces)
@@ -317,7 +308,8 @@ theorem regionCandidate_injective :
 
 /-- The collapse embedding of a family avoiding the collapsed faces. -/
 noncomputable def regionFamilyEmbedding (family : Finset (RegionCandidate D eps Delta))
-    (havoid : ∀ a ∈ family, Disjoint a.1 R.faces) : family ↪ RegionCandidate D eps R.diagram where
+    (havoid : ∀ a ∈ family, Disjoint a.1 R.faces) :
+    family ↪ RegionCandidate D eps R.diagram where
   toFun a := R.regionCandidate ⟨a.val, havoid a.val a.property⟩
   inj' a b h := by
     apply Subtype.ext
