@@ -80,8 +80,40 @@ From norm 1 on, descent lands on the same plateau as from Haar starts.
 
 ## 5. Basin hopping
 
-Results pending: jobs `q34-v-models-hop-planted` and `q34-v-models-hop-V` (`hop_hs.py`,
-`eps = 0.7`, 40 hops, `d = 6, 12, 24`, 3 seeds). This section will be filled when they finish.
+`hop_hs.py`: descend 1500 iterations from a Haar start. Then run 40 hops; each hop perturbs the
+best model by `exp(0.7 A)` and re-descends 400 iterations. A run is solved when the max HS defect
+drops below 0.05. Three seeds per cell.
+
+| d | planted: solved, max HS defect, mean sq | V: solved, max HS defect, mean sq |
+| --- | --- | --- |
+| 6 | 0/3, 0.69--1.32, 0.24--0.42 | 0/3, 1.06--1.21, 0.61--0.68 |
+| 12 | 0/3, 0.84--1.28, 0.49--0.62 | 0/3, 1.06--1.10, 0.65--0.72 |
+| 24 | 0/3, 0.92--1.22, 0.55--0.65 | 0/3, 1.09--1.17, 0.74--0.83 |
+
+- **No run solved the planted control,** so hopping at this strength is still uncalibrated.
+- **Hopping lowers the planted defect** at `d = 6` (mean squared 0.66 to 0.24--0.42) but does not
+  reach the basin of the exact solution.
+- **`V` barely moves.** That difference is too weak to read as evidence in either direction:
+  the planted words are longer, and some of them hold in `S_5` with power 1.
+
+## 6. Permutation (Hamming) calibration
+
+`calibrate_perm.py` uses the same annealer as `perm_probe.py`, with relators reversed to match
+the matrix convention. The left regular action of `S_5` solves the planted set exactly at
+`n = 120` (checked: cost 0.0). Best cost is the mean fraction of points moved by the five
+relators, over 60000 annealing steps and 2 seeds per cell:
+
+| n | planted | V | null |
+| --- | --- | --- | --- |
+| 120 | 0.84--0.91 | 0.57--0.58 | 0.93 |
+| 240 | 0.90--0.91 | 0.72--0.73 | 0.95 |
+
+- **The annealer never finds the exact planted permutation model.** Its cost there is close to
+  the null floor.
+- **`V` scores lower than both,** matching `perm_probe.py`: `(u^3 v)^4` and the length-25 relator
+  are easy to satisfy exactly. This is not evidence of sofic models of `V`.
+- **So the earlier permutation costs for `V`** (0.54--0.70 at `n = 36..144`) carry no information
+  about soficity.
 
 ## Scope
 
