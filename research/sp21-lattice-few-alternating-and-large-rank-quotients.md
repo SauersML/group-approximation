@@ -56,6 +56,21 @@ groups of unbounded Lie rank.
 
   So under universal residual finiteness, omnipotence of `Γ` lives entirely in
   non-congruence finite quotients of the fillings `Γ/<<g^K>>`.
+- **(T) and hyperbolicity are not enough.**
+  `caprace-kassabov-hyperbolic-kazhdan-alternating-quotients` gives explicit
+  hyperbolic Kazhdan groups that surject onto infinitely many alternating groups.
+  Any proof of this claim has to use arithmeticity, not only property (T) and
+  hyperbolicity.
+- **A weaker hypothesis suffices.** `sp21-noncongruence-simple-kernels-separate-points`
+  asks only that each nontrivial element lie in finitely many kernels of
+  alternating or large-rank simple quotients. This claim implies it, and route
+  `quotientless-hyperbolic-via-sp21-noncongruence-separation` gets a hyperbolic
+  group without finite quotients from it. That route replaces the
+  congruence-density step with one preliminary Olshanskii quotient.
+- **Random relators.** `random-relators-kill-small-simple-quotients-of-kazhdan-groups`
+  kills the alternating quotients of order at most `λ^(-L)`. The large ones
+  survive exactly when their kernels contain every relator.
 - **Status boundary.** No source deciding whether a cocompact `Sp(n,1)`
-  lattice has infinitely many alternating quotients was checked in this pass.
-  No construction of such quotients is recorded here.
+  lattice has infinitely many alternating quotients was found. lit-scout-2 ran a
+  bounded 2025–26 search on 2026-09-12. No construction of such quotients is
+  recorded here.
