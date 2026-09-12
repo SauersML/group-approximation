@@ -251,41 +251,34 @@ Section 4 stays as a second, independent proof of that claim, through the route
 - **This proof:** constant tests leave four rule classes, prescribed flips exclude each class, and a
   double flip settles the class `{000, 110, 101}`.
 
-## 7. Constant backgrounds for one moved entry (check of w3-bal-design's witness)
+## 7. Constant backgrounds for one moved entry (check and application)
 
-This section checks the witness of `constant-background-kills-unit-linear-defect-rules` (w3-bal-design), applies
-it to `R`, and records a weaker exception for patterns that use every symbol.
+The witness is Theorems 13 and 13' of `unbalanced-design-memory-collisions-2026-09-12.md` (w3-bal-design,
+node `constant-background-kills-unit-linear-defect-rules`). This section records an independent check of
+Theorem 13 and applies both theorems to the census rules.
 
-**Setting.**
-- `A = F_q`, `ell = sum_m c_m x_m` linear, `L = sum_m c_m m` in `F_q[G]`.
-- `mu(w) = ell(w) + t [w = p]` with `t != 0`, so `tau_mu(x) = tau_ell(x) + t D(x)`, where `D(x)` is the
-  indicator of the sites whose window shows `p`.
-- `L` is a unit with inverse `K` supported on `N`. Put `y = tau_K(delta_1)`. Then `y(g) = k_(g^-1)`, so `y` is
-  supported on `N^-1`, and `tau_ell(y) = tau_(LK)(delta_1) = delta_1`.
+**Check of Theorem 13.** Notation as there: `ell` linear with unit `L`, inverse `K` supported on `N`, moved
+pattern `p` with amount `t`.
+- `y = tau_K(delta_1)` has `y(g) = k_(g^-1)`, so it is supported on `N^-1`, and `tau_ell(y) = tau_(LK)(delta_1) = delta_1`.
+- So `ell(y|_M) = 1`, hence `y|_M != 0` and `x|_M = p + t y|_M != p`, while `x'|_M = p`.
+- Write `D(z)` for the indicator of the sites whose window shows `p`. Then `tau_mu(z) = tau_ell(z) + t D(z)`,
+  so `tau_mu(x) = tau_mu(x')` iff `D(x') - D(x) = delta_1`.
+- When `p` omits `c`, `x` equals `c` off `M`, so it shows `p` only at translates with `hM = M`. With `1 in M`
+  and `|M| = 3` that forces `M = {1, h, h^2}` and a cyclic memory group. Only `x'` can carry exceptions. This
+  agrees with Theorem 13'.
 
-**Witness.** Fix a symbol `c`. Let `x = p + t y` on `M` and `x = c` off `M`, and put `x' = x - t y`. Then:
-- `x'|_M = p`, and `x|_M != p`, because `ell(y|_M) = tau_ell(y)(1) = 1`, so `y|_M != 0`;
-- `tau_mu(x) = tau_mu(x')` iff `D(x') - D(x) = delta_1`;
-- `x != x'`, and they differ only on `N^-1`, so a collision also refutes pre-injectivity.
-
-**Which windows can show `p`.** `x` equals `c` off `M`, and `x'` equals `c` off `M ∪ supp(y)`. A translate `hM`
-can show `p` only if `p_m = c` at every address `m` whose site `hm` lies outside that set.
-- **`p` omits `c`.** Only translates inside the set can show `p`. For `x` this forces `hM = M`. With `1 in M` and
-  `|M| = 3`, `hM = M` for `h != 1` forces `M = {1, h, h^2}`, so `<M>` is cyclic. So outside the amenable case
-  `D(x) = 0`, and the only exceptions are translates `hM`, `h != 1`, lying in `M ∪ supp(y)` with
-  `x'|_(hM) = p`.
-- **`p` has distinct entries.** At most one address has `p_m = c`. So only translates with at most one site
-  outside `M ∪ supp(y)`, at that address, can show `p`. Each of the `q` choices of `c` gives its own finite
-  exception set, and any empty one gives a collision.
-
-**For `R = x - y + z` with `(0,2,2)` moved to `1`.** Here `p` omits `1`, `t = 1`, and `L = 1 - a + b`.
+**For `R = x - y + z` with `(0,2,2)` moved to `1`.** Here `L = 1 - a + b`.
 - **Non-unit.** By `avoidable-patches-of-affine-rules-inherit-linear-injectivity`, an injective `R` makes
   `tau_ell` injective and not surjective. So `G` already carries a linear strict automaton.
-- **Unit.** `R` is not injective unless some translate of `{1, a, b}` other than itself lies in
-  `M ∪ supp(y)` and shows `(0,2,2)` in `x'`.
+- **Unit.** `R` is not injective unless, for every symbol `c`, Theorem 13' leaves a nontrivial absorbed
+  translate that shows `p`.
 
-**Rigid rules with repeated pairs.** w3-bal-design's corollary covers distinct pairs. If two pairs coincide,
-the moved pattern can use every symbol while the augmentation stays nonzero.
-- **Example.** `x + y + 2z` with the value at `(0,1,2)` moved from `2` to `0`.
-- **Its data.** Pairs `{0,1}`, `{1,2}`, `{1,2}`; identity diagonal; counts `10, 9, 8`; augmentation `1`.
-- **What applies.** The distinct-entries case above, not the omitted-symbol case.
+**Rigid rules with repeated pairs.**
+- **Example.** `x + y + 2z` with the value at `(0,1,2)` moved from `2` to `0`. Pairs `{0,1}`, `{1,2}`, `{1,2}`;
+  identity diagonal; counts `10, 9, 8`; augmentation `1`.
+- **Coverage.** Its pattern uses every symbol, so the distinct-pairs corollary of Theorem 13 does not reach
+  it. Theorem 13' does.
+
+**Correction note.** The first version of this section (3fee81a031) restated the used-symbol background as
+an observation of this lane. That is Theorem 13' (1dfb84d2a1), which landed first and is more general. This
+version cites it.
