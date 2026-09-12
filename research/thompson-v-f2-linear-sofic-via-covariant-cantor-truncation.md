@@ -23,3 +23,5 @@ compressions never converge to a rank model. This is the rank-metric counterpart
 *Checked by `gk-vf-linear` (2026-09-12), Section 51 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: correctly invalidated. Vanishing-boundary compressions would assemble into an exact covariant rank model, which Theorem 2.3 forbids.*
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 7.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: correctly invalidated.*
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 17.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Proposition 3.1b (beta >= 1/32) PASS, with Lemma 3.1a, compression errors P S(1−P)T|_W, eps <= 5 beta and the counting loss 6 beta recomputed. Wording remark: the units are rounded by changing S_i on its kernel.*

@@ -619,3 +619,61 @@ Both checks above missed this node.
   `delta(0)` is the empty word, `e = 1`, the unit pair itself.
 * **Shorter conclusion.** `delta(0) = 0` is `N_23 N_12 = 0` on the unit pair, without the branch split or
   corner locality. The prose chain also works, but it cites nodes that are not in `requires`.
+
+## 17. V gate, second batch (w3-gate-v; cd762e2b8a, 88813f5c48)
+
+### 17.1 Lemma 3.1a and Proposition 3.1b (`beta >= 1/32`): PASS, one wording remark
+
+* **Lemma 3.1a.**
+  * The intersection bound is `rk(e − e^2) + rk(ef)`.
+  * The five-image inclusion bounds the sum.
+  * Subtracting gives losses `2, 1, 2, 1`.
+* **Compression errors.** `(ST)_W − S_W T_W = P S (1−P) T|_W`, of rank at most `d_T(W)`, because `1−P` kills
+  `W` inside `TW + W`.
+* **Defects.**
+  * `e_C^2 − e_C = −P rho(1_C)(1−P) rho(1_C)|_W`.
+  * `e_C e_D = −P rho(1_C)(1−P) rho(1_D)|_W`.
+  * The sum `sum e_C = 1_W` is exact.
+* **Rounding.** `ker S_i` embeds in `(sigma(h_i)W + W)/W`, since `sigma(h_i)` is injective.
+  * *Wording:* `A_i` should be obtained by changing `S_i` on its kernel (keep `S_i` on a complement, and send
+    the kernel bijectively onto a complement of the image), not "on a complement of its kernel".
+  * The bound `rank(A_i − S_i) <= beta dim W` is correct.
+* **Covariance defect.** At most `2 beta` (replacing `A_i` by `S_i`) plus `(2 beta + beta)` from the
+  compression errors, since `d_(rho(1_[0])) <= d_(rho(1_[00])) + d_(rho(1_[01]))`. So `eps <= 5 beta`.
+* **Counting.**
+  * `m([0]) >= m([00]) + m([01]) − 6 beta` and `m(h_i C) >= m(C) − eps`, so `m([0]) <= 2 eps + 6 beta`.
+  * `1 <= m([0]) + m([1])` by subadditivity on the exact sum.
+  * So `1 <= 20 beta + 12 beta`.
+
+### 17.2 `thompson-v-rank-models-displace-every-element-uniformly`: PASS
+
+* **The factor 2.** `[g,h] − 1 = (g − hgh^-1) h g^-1 h^-1`.
+* **Conjugacy of clopen 3-cycles.**
+  * `g w g^-1` recomputed on `[a']`, `[b']` and `[c']` gives `tau_b`, `tau_c tau_b^-1` and `tau_c^-1`.
+  * `g` lies in `V`, since the four images partition `X`.
+* **First commutator.**
+  * `[a0] ∪ z[a0]` misses `z[a1]`.
+  * `S` misses `x_0`, because `z^-1 x_0 ∉ [c] ∪ [d]`.
+  * `u` is the identity on `z[a]`, while `z u z^-1` carries `z[a]` onto the disjoint `z[c]`, so `y != 1`.
+* **Second commutator.**
+  * `y v y^-1` is supported on `y[p] ∪ [q] ∪ [r]`.
+  * `[y, v]` acts as `y`, `v y^-1` and `v^-1` on `[p]`, `y[p]` and `[q]`, and as the identity on `[r]` and off
+    these sets. That is a clopen 3-cycle with nonempty complement.
+* **Conclusion.** `d_3 <= 4 rk(sigma(z) − 1)`. If `d_3 = 0`, `sigma` kills the normal closure of `t`, which is `V`.
+
+### 17.3 `thompson-v-rank-models-through-displacing-sym-reps-are-trivial`: PASS
+
+* **Bounded degree.**
+  * If `m_k <= 7` on an ω-large set, one value `m` is ω-large.
+  * The image then has at most `m!` elements, a finite quotient of the infinite simple group `V`, hence
+    trivial.
+* **Lemma 1** (`m >= 8`).
+  * `z(a) ∉ {a, c, d}` forces `z u z^-1 != u`.
+  * `|supp y| <= 6` leaves room for `q` and `r`.
+  * The commutator is the 3-cycle `(p y(p) q)`.
+* **Exactness.**
+  * The pairs `(1, s_i)` and `(s_i, s_i^-1)` give `phi_k(1) = 1` and inverses.
+  * Induction along relator prefixes evaluates every relator to `1`, so `psi` is a homomorphism with
+    `psi(s_1) != 1`.
+  * Simplicity embeds `V` in `S_(m_k)`, which is impossible.
+* **Scope values.** The regular module has free orbits of size 3, so `d = 2/3`; the natural module has `d = 2/m`.

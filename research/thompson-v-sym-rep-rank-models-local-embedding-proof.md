@@ -6,6 +6,8 @@ title: 3-cycle commutators force exactness, and exact local embeddings of V do n
 target: thompson-v-rank-models-through-displacing-sym-reps-are-trivial
 requires:
   - thompson-v-finitely-presented-infinite-simple
+artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
 ---
 
 **Bounded degree.** If `m_k = m` for ω-most `k`, then `phi(g) = lim_omega phi_k(g)` lies in the finite set
@@ -39,3 +41,5 @@ quotient of the infinite simple group `V` is trivial. From now on assume `m_k >=
   define a homomorphism `psi : V -> S_(m_k)` with `psi(s_1) = phi_k(s_1) != 1`.
 - `ker psi` is a proper normal subgroup, so it is trivial and `V` embeds in `S_(m_k)`. That is impossible
   since `V` is infinite. QED
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 17.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the bounded-degree case (image of at most m! elements), Lemma 1 at m >= 8 with commutator (p y(p) q), and relator-prefix induction giving a homomorphism psi with psi(s_1) != 1.*

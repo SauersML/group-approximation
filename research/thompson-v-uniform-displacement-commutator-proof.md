@@ -6,6 +6,8 @@ title: Two commutators turn any nontrivial element of V into a clopen 3-cycle co
 target: thompson-v-rank-models-displace-every-element-uniformly
 requires:
   - thompson-v-finitely-presented-infinite-simple
+artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
 ---
 
 **Rank inequality.** In any unital ring with a rank function, `[g,h] - 1 = ((g - 1) - (h g h^(-1) - 1)) h g^(-1) h^(-1)`.
@@ -43,3 +45,5 @@ By conjugacy and the rank inequality, `d_3 = rk(sigma([y,v]) - 1) <= 2 rk(sigma(
 
 **Nontriviality.** If `d_3 = 0` then `sigma(t) = 1`. The normal closure of `t` is `V` by simplicity,
 so `sigma` is trivial. The converse is clear. QED
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 17.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Recomputed: the commutator rank identity, g w g^-1 = t on all three cylinders, S missing x_0 via z^-1 x_0 outside [c] ∪ [d], and [y,v] acting as y, v y^-1, v^-1 on [p], y[p], [q] with [r] fixed.*
