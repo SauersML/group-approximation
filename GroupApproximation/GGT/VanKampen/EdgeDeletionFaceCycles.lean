@@ -34,7 +34,7 @@ universe u
 /-- The last entry of a nonempty list with a given head, read through `getLast?`. -/
 theorem getLast_cons_eq_getD {α : Type u} (x : α) (l : List α) (h : x :: l ≠ []) :
     (x :: l).getLast h = l.getLast?.getD x :=
-  Option.some.inj ((List.getLast?_eq_getLast h).symm.trans List.getLast?_cons)
+  Option.some.inj ((List.getLast?_eq_some_getLast h).symm.trans List.getLast?_cons)
 
 namespace EdgeDeletion
 
@@ -109,9 +109,9 @@ theorem isFaceCycle_of_map_value {l : List (Dart M a)} {L : List M.Dart}
   have hl : l ≠ [] := by simpa using hne
   refine (isFaceCycle_iff M a l).mpr ⟨hl, hnd, hch, ?_⟩
   refine hcl _ ?_ _ ?_
-  · rw [List.getLast?_map, List.getLast?_eq_getLast hl]
+  · rw [List.getLast?_map, List.getLast?_eq_some_getLast hl]
     exact rfl
-  · rw [List.head?_map, List.head?_eq_head hl]
+  · rw [List.head?_map, List.head?_eq_some_head hl]
     exact rfl
 
 /-- **A face cycle of the deleted map that never steps onto the deleted edge is a
@@ -402,8 +402,9 @@ theorem faceOf_value_eq (hne : C.xs ++ C.ys ≠ []) {l : List (Dart M a)}
   have hM := C.isFaceCycle_map_value_of_ne hne hl hx₀ hl' hoff
   have hy : y ∈ l' := (hl'.mem_iff y).mpr (by rw [hhead]; exact hxy.symm)
   have hmem := (hM.mem_iff (value M a y)).mp (List.mem_map.mpr ⟨y, hy, rfl⟩)
-  rw [List.head_map, hhead] at hmem
-  exact hmem.symm
+  have hx' : M.faceOf ((l'.map (value M a)).head hM.ne_nil) = M.faceOf (value M a x) :=
+    congrArg M.faceOf ((List.head_map hM.ne_nil).trans (congrArg (value M a) hhead))
+  exact (hmem.trans hx').symm
 
 /-- Conversely, surviving darts off the merged face with values on one face lie on
 one face. -/
@@ -417,10 +418,9 @@ theorem faceOf_eq_of_faceOf_value_eq (hne : C.xs ++ C.ys ≠ []) {l : List (Dart
     rw [hhead]
     exact hx
   have hM := C.isFaceCycle_map_value_of_ne hne hl hx₀ hl' hoff
-  have hmem : value M a y ∈ l'.map (value M a) := by
-    refine (hM.mem_iff _).mpr ?_
-    rw [List.head_map, hhead]
-    exact hxy.symm
+  have hmem : value M a y ∈ l'.map (value M a) :=
+    (hM.mem_iff _).mpr (hxy.symm.trans (congrArg M.faceOf
+      ((congrArg (value M a) hhead).symm.trans (List.head_map hM.ne_nil).symm)))
   obtain ⟨z, hz, hzy⟩ := List.mem_map.mp hmem
   rw [value_injective M a hzy] at hz
   have hface := (hl'.mem_iff y).mp hz
