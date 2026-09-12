@@ -35,6 +35,10 @@ answer at the word level.
 The same counting works for conjugate charts on `k`-subsets for every fixed
 `k>=3`, since adjacent charts share an edge and `J(N,k)` has diameter `k`.
 This includes charts named per five-set whose cross-context comparisons are
-all bounded. It does not decide averaged synchronization over most adjacent
-pairs, where a giant component of the good graph may have diameter of order
-`log N`, or matrix inequalities that are not area bounds.
+all bounded.
+
+**Averaged form.** Averaging does not help at the word level. For suitable
+`c>0` and `c'`, more than one eighth of all adjacent pairs `S,S'` have every
+shared-edge comparison of area at least `c n - c'`. So word-level averaged
+synchronization fails as well, and only matrix estimates that are not area
+bounds remain undecided.
