@@ -62,7 +62,7 @@ theorem Surgery.MapCollapse.faceCount_replaceGRegion (M : CombMap.{v})
       Nat.card {f : M.Face // f ∉ faces} + 1 := by
   rw [CombMap.faceCount,
     Nat.card_congr (Surgery.MapCollapse.replaceGRegionFaceEquiv M faces region),
-    Nat.card_sum, Nat.card_unique]
+    Nat.card_sum, Nat.card_unique (α := PUnit)]
 
 section Generic
 
@@ -326,8 +326,8 @@ theorem cubeTable_generator_ne_one :
     (PresentedGroup.of () : TriangularHodgeLayer.Presented cubeTable) ≠ 1 := by
   intro h
   have h2 := congrArg (PresentedGroup.toGroup cubeTable_character_relators) h
-  rw [PresentedGroup.toGroup.of, map_one] at h2
-  exact absurd h2 (by decide)
+  rw [PresentedGroup.toGroup.of] at h2
+  exact absurd (h2.trans (map_one _)) (by decide)
 
 /-- **`CactusBaseCellDeletionProducer` is false.**  At the table `x x x` it would
 make `ℤ/3` torsion-free. -/

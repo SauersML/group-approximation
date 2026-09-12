@@ -149,6 +149,7 @@ theorem project_value (hM : M.IsConnected) (ha : M.sigma a = a) (d₀ : Dart M a
     (d : Dart M a) : project M a hM ha d₀ (value M a d) = d := by
   unfold project
   rw [dif_pos ⟨value_ne M a d, value_ne_reverse M a d⟩]
+  exact Subtype.ext (Subtype.ext rfl)
 
 theorem project_of_ne (hM : M.IsConnected) (ha : M.sigma a = a) (d₀ : Dart M a)
     {x : M.Dart} (h1 : x ≠ a) (h2 : x ≠ M.alpha a) :
@@ -213,7 +214,10 @@ theorem project_adjacent (hM : M.IsConnected) (ha : M.sigma a = a) (d₀ : Dart 
       right
       apply Subtype.ext
       apply Subtype.ext
-      have hv := value_sigma_of_fixed M a ha ⟨⟨x, hxa⟩, fun h' => hxb (congrArg Subtype.val h')⟩
+      have hv : value M a ((toCombMap M a).sigma
+          ⟨⟨x, hxa⟩, fun h' => hxb (congrArg Subtype.val h')⟩) =
+          if M.sigma x = M.alpha a then M.sigma (M.alpha a) else M.sigma x :=
+        value_sigma_of_fixed M a ha ⟨⟨x, hxa⟩, fun h' => hxb (congrArg Subtype.val h')⟩
       rw [if_pos hyb] at hv
       exact hv
     · have hy1 : y ≠ a := by
@@ -226,7 +230,10 @@ theorem project_adjacent (hM : M.IsConnected) (ha : M.sigma a = a) (d₀ : Dart 
       right
       apply Subtype.ext
       apply Subtype.ext
-      have hv := value_sigma_of_fixed M a ha ⟨⟨x, hxa⟩, fun h' => hxb (congrArg Subtype.val h')⟩
+      have hv : value M a ((toCombMap M a).sigma
+          ⟨⟨x, hxa⟩, fun h' => hxb (congrArg Subtype.val h')⟩) =
+          if M.sigma x = M.alpha a then M.sigma (M.alpha a) else M.sigma x :=
+        value_sigma_of_fixed M a ha ⟨⟨x, hxa⟩, fun h' => hxb (congrArg Subtype.val h')⟩
       rw [if_neg hyb] at hv
       exact hv.trans hy
 
