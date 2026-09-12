@@ -1,5 +1,6 @@
 import GroupApproximation.CharClass.CupOneTotal
 import GroupApproximation.CharClass.BundleFlagStage
+import GroupApproximation.CharClass.CohomologyBridge
 
 /-!
 # The splitting principle over `K`, layer 2, item 1: injectivity of the flag pullback
