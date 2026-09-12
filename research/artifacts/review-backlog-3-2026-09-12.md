@@ -168,3 +168,62 @@ Agrees with the independent check in §6 of `gk-vf-linear-verification-2026-09-1
   - For an idempotent `p` and `a, b ∈ pMp`, `1 − ab = (1 − p) + (p − ab)`, and the two summands live on complementary supports. So ranks add, and `pMp` is directly finite.
   - That covers non-unital elementary-matrix models, as the route's scope remark says.
 - **Characteristic.** `R` has characteristic two, so ring homomorphisms exist only into targets of characteristic two. Over other fields "any field" makes the statement vacuous, and the route says so.
+
+## 8. `fournier-facio-group-carries-rigid-defect` (ba967bc03): PASS
+
+Checked against `fournier-facio-rigid-defect-proof`, and against the import `fournier-facio-torsion-free-skeleton` (Fournier-Facio arXiv:2608.02025, Section 2).
+
+- **Hypotheses from the skeleton.**
+  - `Γ = π(P)` and `G` have (T), and `G = <Γ, t_1, t_2>` with `t_iΓt_i^(-1) <= Γ`.
+  - `π|_S` is injective.
+  - `J = t_1^(-1)π(S)t_1` satisfies `[Γ, J] = 1`, `Γ ∩ J = 1` and `t_1Jt_1^(-1) = π(S) <= Γ`.
+
+  The last inclusion is the one step 2 needs, because `γ` is taken in `π(S)`.
+- **Step 1.** `Γ`, `t_1` and `t_2` lie in the compression semigroup and generate `G`, so `Γ` is infranormal.
+- **Step 2.**
+  - `J <= C_G(Γ)`.
+  - For `1 ≠ s ∈ S`, put `z = t_1^(-1)π(s)t_1 ∈ J`, so that `t_1zt_1^(-1) = π(s)`.
+  - `π(S) ≅ S` is infinite, simple and nonabelian, hence centreless. So some `γ ∈ π(S) <= Γ` has `[π(s), γ] ≠ 1`.
+  - With `g = t_1`, this is a nontrivial generator of `D_G(G, Γ)`.
+- **Step 3.** `D_G(G, Γ)` is normal in `G`. So its intersection with `π(S)` is a normal subgroup of `π(S)`; it is nontrivial, hence all of `π(S)`.
+- **Step 4.** If `Γ` were normal, `C_G(Γ)` would be normal. Every `gzg^(-1)` would then centralize `Γ`, and every generator would be trivial.
+- **Consequence bullets.** The two bullets are the two directions of one implication, and both are correctly scoped. If `G` is hyperlinear, it refutes `hyperlinear-groups-kill-rigid-compression-defects` as a universal statement.
+
+Trust surface: the Fournier-Facio preprint (unrefereed), through the skeleton import.
+
+## 9. `cckw-ghb2-kms-group-structure` (7c34249c7): PASS as an import; the CCKW proofs were not re-read
+
+These are the consistency checks the repo text allows.
+
+- **Vertex groups.**
+  - The relators `[a,b,a]`, `[a,b,b]` give the Heisenberg group of order `7^3`.
+  - The relators `[c,b,c]`, `[c,b,b,c]`, `[c,b,b,b]` give a class-3 group with basis `c, b, [c,b], [c,b,b]`, so of order `7^4 = 2401`. Both orders match the claim.
+  - "`U_4(7)`" is CCKW's name for that order-`7^4` group. It is not the 4×4 unitriangular group, whose order is `7^6`.
+- **Curvature.** Half-girth type `(3,4,4)` has `1/3 + 1/4 + 1/4 < 1`. That is consistent with the CAT(−1) development and with hyperbolicity (items 1 and 3).
+- **Item 4.** This is the standard fixed-point consequence of a proper cocompact action on a CAT(0) complex with a strict fundamental domain. Finite subgroups fix a point, and point stabilizers lie in conjugates of vertex groups.
+- **Lean corroboration.** The citation route says items 1 and 5 are corroborated by compiled Lean on main: `hasKazhdanPropertyT_ghb7`, the relator checks, and vertex injectivity. I did not rebuild them.
+- **Source.** Not re-read in this pass. The route records an MSI extraction, and lists what it did not re-read.
+
+## 10. `ghb7-congruence-kernel-hyperbolic-kazhdan-with-large-b2` (7c34249c7): PASS
+
+Checked against `ghb7-congruence-kernel-b2-euler-count-proof`.
+
+- **Freeness.**
+  - Every simplex stabilizer lies in a conjugate of a vertex group.
+  - `H ∩ gX_ig^(-1) = g(H ∩ X_i)g^(-1) = 1`, because `H` is normal and `ψ` is injective on `X_i`.
+- **Cell count.**
+  - Take `H` normal with `H ∩ G_σ = 1`. The `H`-orbits on `Gσ` are the orbits of `G_σ` acting on `G/H` by right multiplication. That action is free, so there are `[G:H]/|G_σ|` orbits.
+  - The strict fundamental domain has:
+    - three vertices, with stabilizers of orders `343`, `2401` and `2401`;
+    - three edges, with stabilizers of order 7;
+    - one face, with trivial stabilizer.
+  - So `χ(H\Y) = [G:H](9 − 1029 + 2401)/2401 = [G:H]·1381/2401`. I re-did the arithmetic.
+- **Betti numbers.** `H\Y` is a finite 2-dimensional `K(H,1)`, and `b_1 = 0` by (T). So `b_2 = χ − 1`.
+- **Index.** `[G:H] = |ψ(G)|` is divisible by `|ψ(X_1)| = 2401`, so `b_2 >= 1381 − 1 = 1380`.
+- **`G` itself.** A proper cocompact action on a contractible complex gives `H^*(G;Q) = H^*(G\Y;Q)`. That is the cohomology of a triangle, so `b_2(G) = 0`.
+
+Inherits §9.
+
+## Overlap noted after landing
+
+§4 and §5 are also discussed in `review-kazhdan-hyperbolic-hs-2026-09-12.md`, and §4 in `review-major-swarm-2026-09-12.md`. Their headers did not name those ids, so the queue filter kept them. These sections are independent second reads.
