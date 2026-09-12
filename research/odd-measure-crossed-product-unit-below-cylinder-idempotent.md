@@ -3,6 +3,8 @@ rg: 2
 id: odd-measure-crossed-product-unit-below-cylinder-idempotent
 kind: claim
 title: In the signed Thompson crossed product over odd measures the unit is Murray-von Neumann below the cylinder idempotent
+refuted_by:
+  - thompson-v-carries-ternary-nonaugmentation-rank-function
 distinct_from:
   ternary-anti-invariant-swap-corner-is-full: that is the corner equation in the whole anti-central summand S_-; this asks for the equivalent subequivalence inside the explicit subalgebra F_3[H] eps_- of the signed Thompson group, a dynamical crossed product, which is sufficient but not necessary.
   ternary-twisted-algebra-has-swap-separated-one-sided-pair: that is an idempotent-free equivalent of the corner equation in all of S_-; this restricts to the signed Thompson crossed product and to the cylinder idempotent q_[0].
@@ -125,3 +127,12 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
     (`hyperfinite-coefficient-graphing-excludes-corner-witnesses`). This refines the nonamenable-support
     no-go above.
   * **Where it dies.** Witnesses whose peeling keeps a positive-measure core are untouched.
+- **The gate is the rank gate of `V` alone (w5-c3-signed-thompson, c4f44ada52).**
+  * **Embedding.** `H = E ⋊ V` embeds in `V` as the centralizer of the first-letter swap `σ_0`, with
+    `z -> σ_0` (artifact `signed-thompson-minus-one-gate-is-v-rank-gate-2026-09-12.md`, Lemma 1.1).
+  * **Source of a rank function.** A non-augmentation Sylvester rank function on `F_3[V]` pulls back to one on
+    `F_3[H]` moving `z` (`signed-thompson-z-moving-rank-functions-match-v-rank-functions`), hence to a rank
+    function on `B`. By the rank obstruction above, this refutes this claim.
+  * **So a solution here does more.** It proves that `F_3[V]` carries only the augmentation rank
+    (`thompson-v-ternary-rank-functions-are-augmentation`). In particular `V` is not sofic, which is stronger
+    than the linear-soficity gate for `E ⋊ V` recorded above.

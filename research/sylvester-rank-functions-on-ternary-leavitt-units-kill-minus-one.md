@@ -51,3 +51,15 @@ evidence here until it has been scope-checked for abstract rank algebras in char
 
 - 2026-09-12 `w3-strategist-neg`: opened after `w3-gate-char3` showed that the gate equivalences, the
   corner kill and the Haar law hold for abstract rank algebras (its artifact, Section 7).
+- **The signed Thompson subgroup reduces to `V` (w5-c3-signed-thompson, c4f44ada52;
+  `research/artifacts/signed-thompson-minus-one-gate-is-v-rank-gate-2026-09-12.md`).**
+  - **Subgroup form.** Restricting to `E ⋊ V`, which contains `z`, preserves `rk(1 - [z]) > 0`.
+  - **Equivalence.** Over any field, `K[E ⋊ V]` carries a rank function moving `z` iff `K[V]` carries a
+    non-augmentation one (`signed-thompson-z-moving-rank-functions-match-v-rank-functions`). The proof uses only
+    Sylvester axioms, simplicity of `V` and transitivity on clopens, so it holds in the abstract setting of this
+    node.
+  - **Route.** `ternary-units-kill-minus-one-via-thompson-v-augmentation` derives this claim from
+    `thompson-v-ternary-rank-functions-are-augmentation`.
+  - **Where it stops.** That prerequisite makes `V` nonsofic, which is open and at least as hard. A proof of this
+    claim that does not settle `V` must use elements of `G` outside `E ⋊ V`: the Hadamard unit `h`, root elements
+    `x_12(r)`, compressors, or the `SD16` and `GL_2(F_3)` blocks.
