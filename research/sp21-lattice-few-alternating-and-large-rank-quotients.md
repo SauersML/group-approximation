@@ -39,6 +39,23 @@ groups of unbounded Lie rank.
   is a metric approximation (Hamming, or normalized rank), not a linear
   representation. So `sp21-lattice-positive-characteristic-images-finite` and
   the Galois-conjugate step have no purchase on them.
+- **Omnipotence calibration.** Suppose every hyperbolic group is residually finite.
+  Then every independent pair `g, h` of `Γ` is omnipotent in Wise's sense:
+  - by `hyperbolic-group-relative-to-maximal-elementary-subgroup`, `Γ` is
+    hyperbolic relative to `{E(g), E(h)}`;
+  - by `relatively-hyperbolic-dehn-filling`, deep fillings `<g^(Kn_1)>, <h^(Kn_2)>`
+    are hyperbolic and keep both orders exact;
+  - residual finiteness of the filling then detects those orders.
+
+  Compare Sisto's Theorem 2.8 in Wilton, arXiv:2410.00556, for mapping class
+  groups. No quotient that factors through the congruence completion `Γ̄`
+  realizes this:
+  - if `ord(g) = K`, the quotient kills `closure(<<g^K>>)`, which is open by
+    `normal-subgroups-of-arithmetic-lattices-are-congruence-open`;
+  - so the order of `h` there is bounded independently of `n_2`.
+
+  So under universal residual finiteness, omnipotence of `Γ` lives entirely in
+  non-congruence finite quotients of the fillings `Γ/<<g^K>>`.
 - **Status boundary.** No source deciding whether a cocompact `Sp(n,1)`
   lattice has infinitely many alternating quotients was checked in this pass.
   No construction of such quotients is recorded here.
