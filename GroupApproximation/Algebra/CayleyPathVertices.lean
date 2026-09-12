@@ -115,7 +115,7 @@ theorem mem_listPoints_revList (b : Q) (l : List Q) (q : Q) :
         rw [prod_revList, List.prod_cons]
         group
       rw [revList_cons, listPoints_append_singleton, e, List.prod_cons, ← mul_assoc,
-        List.mem_append, ih (b * x), listPoints_cons, List.mem_cons, List.mem_singleton]
+        List.mem_append, ih (b * x), listPoints_cons, List.mem_singleton, List.mem_cons]
       exact or_comm
 
 /-! ## Distances from the endpoints -/
