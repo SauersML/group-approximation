@@ -2,6 +2,7 @@ import GroupApproximation.CharClass.OddPCompare
 import GroupApproximation.CharClass.OddPProductConcat
 import GroupApproximation.CharClass.OddPRedPow
 import GroupApproximation.CharClass.OddPTotalInterface
+import GroupApproximation.CharClass.OddPTotalProducer
 
 /-!
 # The Cartan formula for the odd-primary reduced powers, at class level
@@ -502,6 +503,14 @@ theorem ptotOf_mul (hp : Odd p)
 
 end
 
+/-- **The producer of `OddPTotal.PtotMulOddP`**, lane `lx-pzero`'s named proposition: the total reduced
+power of the additive classes `oddDAdd` is multiplicative on even classes. -/
+theorem OddPTotal.ptotMulOddP (p : ℕ) [Fact p.Prime] (hp : Odd p) : OddPTotal.PtotMulOddP p hp := by
+  haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
+  intro X q q' hq hq' x y
+  exact ptotOf_mul p hp (OddPTotal.oddDAdd p hp)
+    (fun X q j hj x => OddPTotal.oddDAdd_apply p hp X q j hj x) X hq hq' x y
+
 end GroupApproximation.CharClass
 
 open GroupApproximation.CharClass
@@ -509,3 +518,4 @@ open GroupApproximation.CharClass
 #audit_axioms totalClass_oddD_cup
 #audit_axioms totalOf_oddDClass_cup
 #audit_axioms ptotOf_mul
+#audit_axioms OddPTotal.ptotMulOddP
