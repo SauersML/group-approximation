@@ -135,5 +135,39 @@ most four needs extra coefficient relations: at least
 - `2` or more in every other case;
 - `5` for `(g,1,g)`.
 
+**Control.** With the dipole test switched off (`pairings <class> 2 keep`), area
+two has 17 planar pairings for `+++++-` and 23 for `++++--`. For every shape
+exactly one has all faces trivial: the complete gluing of `w` to `w^-1`. So the
+corner and orientation conventions reproduce the one picture that must exist
+(`CONTROL_PASS`).
+
 This is a finite enumeration, landed as an orientation document, not a Cairn
-claim.
+claim. The full output is `kl-residue-picture-census/census-output-2026-09-12.txt`.
+
+## 5. Scan over the binary Leavitt unit group
+
+`lstar_scan.py` evaluates, in `R^x = L_(F_2)(1,2)^x`, every face label of every
+reduced planar pairing of area two and four. It uses the shared exact normal
+form `experiments/nonsofic-certificates/leavitt.py`, with the dual check off for
+the search and on for rechecking hits. It runs for the 13 shapes still open with
+involution loops. Face words are first reduced in `Z(g) * C_2(x) * C_2(y)`,
+which is valid in any group where `x` and `y` are involutions, so that side
+costs nothing.
+
+**First pass** (acn112, 12 seconds):
+- involutions `x, y in {u, v, w, u^g, v^g, swap(00,01)}`;
+- labels `g in {g3, x0, x1, uw, vw, rot3}`.
+
+Here `u = 1+s0t1`, `v = 1+s1t0`, `w = s0t1+s1t0`, `g3 = uv`; `x0`, `x1` are
+Thompson `F` generators and `rot3` the order-three Thompson rotation. That is
+216 triples per shape, 3,616 pairings (`+++++-`) or 5,670 (`++++--`).
+
+- **Candidate hits:** none. No pairing has at most one nontrivial face in `R^x`.
+- **Fewest nontrivial faces:** 2 for `(1,1,1,g)`, `(1,1,g,g)` and `(g,1,1,1)`;
+  4 for the other ten shapes.
+
+So over these coefficients a violation needs area at least six.
+
+**Larger pass.** Launched with 24 involutions (conjugates of the basic ones by
+the listed units) and 24 labels (products of pairs), capped at 1200 seconds;
+results below when complete.

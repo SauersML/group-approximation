@@ -100,3 +100,33 @@ of the one-coincidence or four-sign-change exceptions. A violation over
   - With involution loops, the case of the Leavitt search, the open shapes are:
     the seven `+++++-` shapes other than `(1,1,1,1)`, outside the four sub-cases
     above; and all six `++++--` shapes.
+- **Weight regimes and involution-loop curvature (2026-09-12, lane
+  `kl-curvature-redistribution`, 2cf7bde45, a63352293).**
+  - `kl-three-coincidence-residue-words-inject-with-room-for-loops`: the seven
+    three-coincidence shapes inject whenever some `alpha in [0,1]` has
+    `alpha k_y >= 2` and `(1 - alpha) k_x >= 2`, and `g` avoids the short loop
+    words (C1)-(C2). In particular they inject:
+    - when one loop has infinite order and `g` is outside its cyclic subgroup;
+    - when both loops have order at least four, under small relations.
+  - The two-pair shapes leave no weight room for any torsion loop.
+  - `kl-involution-loop-residue-with-interior-light-label-injects`:
+    `(1,1,g,1)` and `(1,g,1,1)` with involution loops inject when `g` is neither
+    `x` nor `y`, `g x g^(-1) != y`, `g != y x` and `g^2 x g^(-1) y != 1`. Each loop
+    square hands its curvature `pi` to its two neighbours.
+  - Still open with involution loops:
+    - `(1,1,1,g)` and `(g,1,1,1)`: one loop square's neighbours sit at the light
+      corner, and a region like `g x^2 g^(-1) y^2` can take two transfers at
+      weight two;
+    - the three two-pair `+++++-` shapes;
+    - all six `++++--` shapes: the receivers are same-sign pairs `(a_3, n)` and
+      `(n, a_1)`, and the N-corner can lie in two of them.
+- **Small-picture census and Leavitt scan (2026-09-12, 2823e4c7d; see
+  `research/artifacts/kl-curvature-redistribution-2026-09-12.md`).**
+  - **Census.** Every dipole-free planar pairing of two or four discs has at
+    least two nontrivial faces in `Z(g) * C_(k_y)(y) * C_(k_x)(x)`. This holds for
+    all fourteen shapes and twelve loop-order settings. A control with dipoles
+    kept recovers the gluing of `w` to `w^(-1)`.
+  - **Leavitt scan.** Over `L_(F_2)(1,2)^x`, 216 coefficient triples (six
+    involutions, six labels) for the thirteen involution-open shapes give no
+    pairing of area at most four with at most one nontrivial face. A larger pass
+    is recorded in the artifact.
