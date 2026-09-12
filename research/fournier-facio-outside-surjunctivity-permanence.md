@@ -79,6 +79,10 @@ here.
   - The structured subgroups `S wr Z`, `Gamma x (+)_(k<=0) J_k` and the tree lamp
     group are covered by no permanence theorem: `S` is simple and not residually
     finite, and closure under finite direct products is open.
+  - `wreath-surjunctivity-reduces-to-stabilizer-products`: the embedded `S wr Z` is
+    surjunctive iff every finite power `S^n` is. So on this subgroup the question is
+    exactly surjunctivity of the powers of the simple factor, and whether surjunctivity
+    is closed under finite direct products is the missing input.
   - `sofic-permanence-closure-omits-simple-fa-nonsofic-groups` bears on `G` only
     through a finitely presented simple nonsofic FA subgroup, and none is recorded.
   - Details: `research/artifacts/fournier-facio-torsion-free-host-constraints-2026-09-12.md`.
