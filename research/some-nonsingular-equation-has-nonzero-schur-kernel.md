@@ -2,6 +2,7 @@
 rg: 2
 id: some-nonsingular-equation-has-nonzero-schur-kernel
 kind: claim
+refuted_by: [universal-schur-injectivity-for-nonsingular-adjunctions]
 title: Some nonsingular one-variable equation kills a nonzero Schur multiplier class of its coefficient group
 distinct_from:
   kervaire-laudenbach-nonsingular-conjecture: that asserts coefficient injectivity for every nonsingular adjunction, degree-one information; this asks for failure of injectivity in second integral homology, which needs no coefficient to die and already refutes hyperlinearity of a central extension.
