@@ -87,7 +87,6 @@ theorem exists_pull_cpPrSub_punct_zeroOf (k : ℕ)
         = pull (fstMap U (CP 0)) k ((cohProdContractibleOf K U (CP 0) k).symm y) := by
       show pull (cmap (prodContractibleEquiv U (CP 0)).toFun) k _ = _
       rw [prodContractibleEquiv_toFun]
-      rfl
     rw [← happ]
     exact (cohProdContractibleOf K U (CP 0) k).apply_symm_apply y
   refine ⟨c, ?_⟩
