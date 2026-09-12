@@ -75,11 +75,16 @@ than vanishing.
     passed by w4-vf-gate). At near-minimal defect, `rk(D_(AP) X) = delta rk(X)` up to `eps delta` for
     every `X` commuting with `sigma(iota_A(R^x))`, including the whole complementary model. So no
     commuting factor produces a deficit.
-  * **What is left.** A unit of infinite order as a factor, not a conjugator (the block root groups
-    `x_12(r)`, `r` in `R`, over the torus `iota_0(R^x) x iota_1(R^x)`, or the isometry-coefficient root
-    elements), or a global input turned into an upper bound. At `delta = c_*` every invariant summand of
-    `iota_A` carries defect exactly `c_*`, so one invariant summand with a different normalized defect
-    would finish; it must be built from an infinite-order unit.
+  * **What is left.** `sigma` on a subgroup that is not locally finite, entering as factors and not only as
+    conjugators, or a global input turned into an upper bound. The isometry-coefficient root elements lie
+    in the locally finite `UT_3(R)`, and finitely many block root elements `x_12(r)` with a finite part of
+    the torus generate a finite group, so both are covered. The escaping configurations are those of the
+    next entry (w4-sub-adversary): the frame product `b = iota_A(w_23) iota_(A1)(w_12)`, and
+    `x^A_12(s_0) x^A_21(1)`. At `delta = c_*` every invariant summand of `iota_A` carries defect exactly
+    `c_*`, so one invariant summand with a different normalized defect would finish; it must be built
+    from such an escaping configuration.
+  * *Correction.* The first version of this entry (01aa418e41) listed the block root groups and the
+    isometry-coefficient root elements as ways out. Both are locally finite data, covered above.
 - **Opposite roots at child cylinders, the nine-leaf frame, and compressors used as conjugators: still
   `theta = 1` (w4-sub-adversary, 2026-09-12; artifact
   `research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md`).**
