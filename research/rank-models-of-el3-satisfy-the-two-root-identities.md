@@ -49,3 +49,20 @@ payoff is `non-linear-sofic-group`.
   escape, so uniform displacement does not force the identity (artifact Section 5).
 - **Same-row and same-column identities first: dies.** From the squares, `N_12 N_13 = 0` and
   `N_12 N_32 = 0` leave the residual `N_12 N_21 N_32 (1 + N_21)`, which they do not force.
+- **Isometry commutator relations: new handle, not yet connected (gk-ri-nofd, 2026-09-12).**
+  `leavitt-isometry-commutators-constrain-el3-rank-models` records, from `t_i s_j = delta_ij`,
+  the reversed identities on `A_i = n_12(t_i)`, `B_j = n_23(s_j)`:
+  `i != j` gives `A_iB_j + B_jA_i + A_iB_jA_i + B_jA_iB_j + A_iB_jA_iB_j = 0`, and `i = j` gives
+  the same expression equal to `n_13(1)`. These use coefficients with no finite-dimensional
+  representation, the input required by `fd-represented-coefficients-violate-two-root-identities`,
+  and were unused by the dead attempts. Open bridge: the target `N_23 N_12` carries coefficient
+  `1`; `1 = e_0 + e_1` with `e_i = s_i t_i` gives
+  `1 + N_12 = (1+n_12(e_0))(1+n_12(e_1))`, but `1` is not an additive combination of the `t_i`
+  and `x_12` of a product is not a commutator, so no group-relational bridge is known.
+- **Extraction is a corner Leavitt family; single-corner route circular (gk-ri-nofd).** A unital
+  `R -> eMe` is an order-two Leavitt family in the corner `eMe`; by [TR] Theorem D that corner is
+  a rank ultraproduct, so `leavitt-algebra-has-no-unital-rank-model` already forbids it
+  (impossibility half established). Telescoping the four partial isometries in one Peirce corner
+  needs the block form, i.e. `N_23 N_12 = 0`, so that route assumes its conclusion. A
+  non-circular assembly of the four partial isometries from a model with `N_23 N_12 != 0` is the
+  open content. Artifact `research/artifacts/leavitt-isometry-commutator-relations-2026-09-12.md`.
