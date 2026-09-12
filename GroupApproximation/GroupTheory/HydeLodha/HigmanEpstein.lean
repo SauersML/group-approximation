@@ -273,8 +273,9 @@ theorem commutator_le_of_normal_commutator (G N : Subgroup (Equiv.Perm X))
 which `⁅G, G⁆` has room. -/
 theorem isSimpleGroup_commutator (G : Subgroup (Equiv.Perm X)) (hne : ⁅G, G⁆ ≠ ⊥)
     (hdisp : ∀ f ∈ ⁅G, G⁆, f ≠ 1 → ∃ U : Set X, Disjoint (f '' U) U ∧ CommutatorRoom G U) :
-    IsSimpleGroup ⁅G, G⁆ := by
-  refine isSimpleGroup_iff.mpr ⟨(Subgroup.nontrivial_iff_ne_bot _).mpr hne, fun H hH => ?_⟩
+    IsSimpleGroup ↥⁅G, G⁆ := by
+  have hnt : Nontrivial ↥⁅G, G⁆ := (Subgroup.nontrivial_iff_ne_bot _).mpr hne
+  refine { toNontrivial := hnt, eq_bot_or_eq_top_of_normal := fun H hH => ?_ }
   by_cases hbot : H = ⊥
   · exact Or.inl hbot
   right

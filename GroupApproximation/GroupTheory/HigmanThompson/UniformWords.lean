@@ -66,7 +66,7 @@ theorem vword_apply (k c : ℕ) (t : ℚ) :
         xg_fix (show t ≤ ((k + c : ℕ) : ℚ) by rw [hcast]; linarith [(Nat.cast_nonneg c : (0 : ℚ) ≤ c)])]
       exact (ih t).1 h1
     · rw [vword, posMap_cons, Equiv.Perm.mul_apply]
-      rcases le_or_lt t ((k : ℚ) + c) with h4 | h4
+      rcases le_or_gt t ((k : ℚ) + c) with h4 | h4
       · rw [xg_fix (show t ≤ ((k + c : ℕ) : ℚ) by rw [hcast]; exact h4)]
         exact (ih t).2.1 h1 h4
       · have h2' : t ≤ ((k + c : ℕ) : ℚ) + 1 := by push_cast at h2 ⊢; linarith
@@ -168,10 +168,11 @@ theorem wword_apply (ds : List ℕ) (k : ℕ) (t : ℚ) :
         have hpj : (0 : ℚ) ≤ ((m : ℚ) + 2) ^ (ds.getD j 0) := (pow_pos hm _).le
         have hge : ((k : ℚ) + 1) ≤ posMap m (wword m (k + 1) ds) t := by
           rw [hw]
-          have h0 : (0 : ℚ) ≤ t - ((((k + 1 : ℕ) : ℚ)) + j) := by push_cast at h1 ⊢; linarith
+          have h0 : (0 : ℚ) ≤ t - ((k : ℚ) + 1 + j) := by push_cast at h1; linarith
           have h00 : (0 : ℚ) ≤ (psum m ds j : ℚ) := Nat.cast_nonneg _
+          have hprod := mul_nonneg hpj h0
           push_cast
-          nlinarith
+          linarith
         rw [(uword_apply m k d _).2.2 hge, hw]
         simp only [psum, List.getD_cons_succ]
         push_cast
