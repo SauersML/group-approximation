@@ -104,3 +104,14 @@ counterexample, if one exists, lives on one.
   - *gk-defect-automaton:* does some known surjunctive nonsofic group contain a nonsofic Kazhdan
     subgroup? A yes would show that nonsofic Kazhdan cores by themselves force nothing on the
     negative side.
+- **Superrigidity on extensions (gk-p-inf-kazhdan, 2026-09-12).** Artifact
+  `research/artifacts/kazhdan-superrigidity-bernoulli-extensions-2026-09-12.md`.
+  - Over every finitely generated infinite simple Kazhdan host, every ergodic finite-to-one
+    extension of a Bernoulli action is an isomorphism
+    (`kazhdan-map-bernoulli-finite-extensions-are-trivial`). So a strict design cannot use an
+    invariant lift on which its decoder is finite-to-one.
+  - Every strict pair, over any group, carries relatively weakly mixing positive-entropy lifts
+    (`strict-pair-flip-lifts-are-relatively-weakly-mixing`). Superrigidity collapses only finite
+    and compact parts, so it can never contradict a strict pair.
+  - These hosts are minimally almost periodic
+    (`fg-infinite-simple-groups-are-minimally-almost-periodic`).

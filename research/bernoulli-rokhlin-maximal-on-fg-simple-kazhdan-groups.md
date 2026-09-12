@@ -105,3 +105,20 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
     conjugacy across alphabet sizes over a host would give both a strict automaton and a Bernoulli
     deficit certificate.
   - Artifact: `research/artifacts/gk-p-inf-wild-borel-and-topological-2026-09-12.md`.
+- **Property (T) and superrigidity, tested on extensions (gk-p-inf-kazhdan, 2026-09-12).** Artifact
+  `research/artifacts/kazhdan-superrigidity-bernoulli-extensions-2026-09-12.md`.
+  - For the Bernoulli base, what superrigidity gives is that finite extensions are trivial:
+    `kazhdan-map-bernoulli-finite-extensions-are-trivial`, via
+    `popa-bernoulli-cocycle-superrigidity`. Compact extensions are trivial too if Zimmer's
+    structure theorem is added (artifact Remark 4.3).
+  - Every strict pair carries positive-entropy extensions of the base that are relatively weakly
+    mixing, being relative factors of i.i.d. product extensions
+    (`strict-pair-flip-lifts-are-relatively-weakly-mixing`). They carry no cocycle into a finite
+    or compact group, so superrigidity can never contradict a strict pair.
+  - In-group counting certifies only
+    `H(P) >= (log q - eps) sup_{F'} |F'|/|F'F|`. The supremum is `1` for every `F` exactly on
+    amenable groups. Kazhdan expansion `|F'S^r| >= (1+c)^r |F'|` drives the certified bound to
+    `0` as the approximation window grows (artifact Section 5.4).
+  - Where it dies: a lower bound must control the relative Rokhlin entropy of relatively weakly
+    mixing extensions of the base. Spectral gap, strong ergodicity and superrigidity are
+    orthogonal to it.
