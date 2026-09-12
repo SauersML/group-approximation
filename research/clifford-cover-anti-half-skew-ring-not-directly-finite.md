@@ -45,3 +45,4 @@ group ring `A_S` of `clifford-cover-group-algebra-splits-into-wreath-and-skew-ri
   - So Hamming-small defects of the site permutations become rank-large defects in the model.
   - Rank models of `A_S` would need a different carrier than spinor modules of finite site pieces. This is
     where linear soficity of the Clifford cover itself is undecided.
+- **Only odd characteristic can carry a witness.** Over `F_2` the kernel `(1 + eps)F_2[E_S]` is square-zero, so `F_2[E_S]` is stably finite with `F_2[W]`. For each odd prime `p` the central idempotents `(1 +- eps)/2` give `F_p[E_S] = F_p[W] x A_S^(p)`. So the linear question is this anti-central factor at some odd `p`, and `F_3` is the first case.

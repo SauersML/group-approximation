@@ -46,3 +46,8 @@ Marked `root` because it heads a counterexample lane of its own.
   - It stays live for any specific strict pair whose tables need only a window that admits an exact
     finite model. So a counterexample on E_S needs tables whose window has no exact finite model of the
     coset action.
+- **The binary linear case is dead.** This is w3-deligne's p-subgroup argument from its Deligne artifact, re-derived here.
+  - In characteristic 2 the kernel of `F_2[E_S] -> F_2[W]` is `(1 + eps) F_2[E_S]`, and it squares to zero, since `eps` is central and `(1 + eps)^2 = 0`.
+  - Direct finiteness lifts modulo a nilpotent ideal at every matrix size: if `b a = 1` modulo `J`, then `b a` is invertible.
+  - `F_2[W]` is stably finite, so `F_2[E_S]` is too.
+  - So no binary Kaplansky pair exists on `E_S`. Linear counterexamples there can live only in odd characteristic, in the anti-central factor.
