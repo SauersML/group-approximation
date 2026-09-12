@@ -32,6 +32,7 @@ audits the mathematics:
 | R9 | landings 13:08–13:26 | per-pair groupoid: laws check out and compose with the cluster system; (A) no `ClusterMetric` for the per-pair presentation, **resolved by `514dba1a6`** (R11); **(B) the assembly's `Rel F` must cover every compressor** |
 | R10 | landings 13:29–13:32 | no defect |
 | R11 | `514dba1a6`, `08e96b025` | pair-radius metric resolves (A); single median application correct |
+| R12 | `563dcd0dc`, `13382096b`, `cd55e0d7d` | **(C) the Lemma 4.2(4) forward half is at the global-scale `PartialClusterSystem`: no composition, no mass bound**; the rest no defect |
 
 ## R1. The sequential Prop against Theorem 4.1
 
@@ -608,6 +609,48 @@ paper's steps:
 The paper applies Lemma 4.4 twice, to `o_n` and to `k_n`. The product version needs
 only the two one-sided inequalities the paper already has, so it is a genuine
 simplification.
+
+## R12. Landings 13:36–13:38
+
+### `563dcd0dc` (kt41-bisection-rep-b): Lemma 4.2(4), forward half. Composition defect (C)
+
+**Sound as finite mathematics.**
+- **`overlapObject_unique`.** Two candidate overlap arrows out of `X`, each missing
+  `< 2m` source points, with `|X| ≥ 4m`, have the same target.
+- **Injectivity on targets.** Via `targetDefect`, symmetrically.
+- **`exists_perm_of_isClusterCandidate`.** A class-preserving permutation extending
+  the targets.
+- **`card_hammingDisagreement_representingPatch_le`.** The patch differs from `v`
+  only off the glued domain and on objects outside `overlapGood`.
+
+**Defect (C): the wrong frame.** `variable (D : PartialClusterSystem I L)`, the
+global-scale system with `D.h`, `D.scale` and `D.size`.
+- **No composition.** The chain's frame is `ScaledPartialClusterSystem`: repair,
+  groupoid, functor metric, converse half and the assembly's single `Frame`.
+  `hrep` must return bisections of that presentation.
+- **No producer.** `PartialClusterSystem.improveExists` is produced only for exact
+  transitive actions.
+- **The mass bound fails.** `card_compl_overlapGood_mul_le` bounds
+  `(#bad objects)·h·scale/2` by the total defects. At one global scale this does not
+  bound the bad mass `Σ_{bad} |X|`, because components can be far larger than
+  `scale`. This is F1's size-spread example.
+
+**Fix, sent to the owner.** Restate for `ScaledPartialClusterSystem`, testing overlap
+arrows at `min(scale X, scale Z)`. A bad object `X` with dominant target `Z` then
+carries defect `≥ c·h·|X|`:
+- if `|Z| < |X|/2`, the source defect is `≥ |X|/2`;
+- otherwise the pair scale is `≳ scale X/2`.
+
+So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domination.
+
+### Other landings. No defect
+
+- **`13382096b` `FixedPointNormalizationScaledBisection`.** The converse half at pair
+  scales. `τ X = h·(|X|/18)/2`, so `Σ τ ≤ (h/36)|Y|`.
+- **`cd55e0d7d` `ComponentCountingRetainedMatchingNegligible`.** Shifted-index
+  asymptotics of the retained matching error and the unmatched weight, from negligible
+  removed and empty-component mass. With `withDistinguished` it applies to every
+  compressor.
 
 ## Named statements in the chain without a producer
 
