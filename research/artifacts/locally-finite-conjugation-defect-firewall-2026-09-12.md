@@ -156,3 +156,99 @@ Then the argument fails. The model `sigma` of Theorem 1.1, with `U` the conjugat
 * **Breaking the target outright is out of reach.** The target is equivalent to the `F_2` gate, as its
   node records, so a break needs a nontrivial rank model of `R^x`. This lane maps which relational
   inputs are inert.
+
+## 3. Which Leavitt frames sit in one locally finite subgroup
+
+For a cylinder `P`, `iota_P(GL_3(F_2))` is the finite group of units `S[P] g T[P] + (1 - S[P]T[P])`,
+where `g` is a `3 x 3` matrix over `F_2` in the code `(0, 10, 11)`. It is spanned by the units
+`S[Px]T[Py]` with `x, y` in `{0, 10, 11}`, and it contains:
+* the unit roots of both signs;
+* the Weyl elements;
+* the `F_2`-torus.
+
+`R_0 = union_n M_(2^n)(F_2)` is the span of `S[P]T[Q]` with `|P| = |Q|`. A unit of `R` lying in
+`M_(2^n)(F_2)` is invertible there: a left inverse in `R` rules out right zero divisors. So
+`R_0 cap R^x = union_n GL_(2^n)(F_2)`, which is locally finite.
+
+**Proposition 3.1 (the ternary frame tree).** Let `A` be a proper cylinder and `k >= 1`. There is a
+prefix replacement `w` in `V` that conjugates into `R_0^x` all of the following:
+* `iota_(Ac)(GL_3(F_2))`, for every word `c` of length `< k` over the ternary code `{0, 10, 11}`,
+  the empty word included;
+* for `k >= 2`, the nine-leaf group `GL_9(F_2)` on the leaves `A c'`, with `c'` in `{0,10,11}^2`.
+
+In particular the frames at `A0`, `A10` and `A11` (opposite roots, Weyl elements and torus included),
+the frame at `A`, and every halving unit `S[A0x]T[A10x]` lie in the locally finite subgroup
+`w^-1 R_0^x w`. That subgroup is an admissible `L` for Theorem 1.1.
+
+*Proof.*
+* **Leaves.** The cylinders `A c'`, with `c'` in `{0,10,11}^k`, form a prefix code of `3^k` leaves
+  covering `A`.
+* **Refinement.** Let `c` have length `< k` and `x, y` lie in `{0,10,11}`. Then
+  `S[Acx]T[Acy] = sum_(c'') S[Acxc'']T[Acyc'']`, summed over the complete code
+  `{0,10,11}^(k-1-|c|)`. Every cylinder in every summand is a leaf. The same holds for
+  `S[Ac]T[Ac] = sum S[leaf]T[leaf]`, and for the nine-leaf units once `k >= 2`.
+* **The replacement.** Choose `l >= |A| + 2k`, so that `3^k` disjoint cylinders of length `l` fit
+  inside `A` with room to spare. Let `w` send the leaves to such cylinders `beta(leaf)`, and send
+  `X \ A` onto the rest of `X` by any prefix replacement, which exists because both are nonempty
+  clopen sets.
+* **Conjugation.** With `w = sum_i S[beta_i]T[alpha_i]`, `w S[alpha_a]T[alpha_b] w^-1 = S[beta_a]T[beta_b]`.
+  So every leaf unit becomes `S[beta]T[beta']` with `|beta| = |beta'| = l`, a degree-zero matrix unit.
+  Every element listed is a sum of leaf units plus the identity away from `A`, so its conjugate lies
+  in `R_0` and is a unit. QED
+
+## 4. The first inputs that escape
+
+**Proposition 4.1.** Let `A` be a proper cylinder.
+1. **The right-child frame.** Let `tau = iota_A(w_23)` exchange `A10` and `A11`, and let
+   `sigma = iota_(A1)(w_12)` exchange `A10` and `A110`.
+   * Then `b = tau sigma` satisfies `b S[A10] = S[A10] s_0`, so `b` has infinite order.
+   * As a prefix replacement, `b` sends `A10, A110, A111` onto `A100, A11, A101`: a first generator
+     of Thompson's `F` on the region `A1`.
+2. **A coefficient root with an opposite root.** `m = x^A_12(s_0) x^A_21(1)` has infinite order,
+   where `x^A_12(r) = 1 + S[A0] r T[A10]` and `x^A_21(1) = 1 + S[A10]T[A0]`.
+3. **Positive roots only.** The positive unit roots of the frames at `A` and at `A1` generate a
+   finite group.
+
+So the frames at `A` and `A1` (any opposite root or Weyl element included), and root groups with
+coefficients of nonzero degree together with an opposite root, lie in no locally finite subgroup
+of `R^x`.
+
+*Proof.*
+1. **The right-child frame.**
+   * **`sigma S[A10] = S[A110]`.** The two exchange terms give `S[A110]T[A10]S[A10] = S[A110]` and
+     `S[A10]T[A110]S[A10] = 0`. The identity part `1 - S[A10]T[A10] - S[A110]T[A110]` kills `S[A10]`.
+   * **`tau S[A110] = S[A100]`.** `S[A110] = S[A11]s_0`. The exchange term `S[A10]T[A11]` sends
+     `S[A11]` to `S[A10]`, the term `S[A11]T[A10]` kills it, and `(1 - S[A1]T[A1]) S[A11] = 0`.
+     So `tau S[A11] s_0 = S[A10] s_0 = S[A100]`.
+   * **Infinite order.** By induction `b^n S[A10] = S[A10] s_0^n`. If `b^n = 1` with `n >= 1`,
+     multiplying by `T[A10]` gives `s_0^n = 1`. Then `t_1 = t_1 s_0^n = 0`, which is false.
+   * **The images.** `sigma` sends `A110 -> A10` and fixes `A111`. `tau` sends `A10 -> A11` and
+     `A111 = A11.1 -> A10.1`. So `b` sends `A110y -> A11y` and `A111y -> A101y`.
+2. **The coefficient root.** Put `e_1 = S[A00]T[A10]`, of degree 0, and `e_2 = S[A10]T[A0]`, of
+   degree `+1`, in the grading `deg s_i = 1`, `deg t_i = -1`.
+   * `m = 1 + e_1 + d_1` with `d_1 = (1 + e_1) e_2` homogeneous of degree 1. So the degree-`n`
+     component of `m^n` is `d_1^n`.
+   * `d_1 S[A10] = 0`, since `T[A0]S[A10] = 0`. And `d_1 S[A0] = (1 + e_1) S[A10] = S[A10] + S[A0]s_0`.
+   * By induction `d_1^n S[A0] = S[A10] s_0^(n-1) + S[A0] s_0^n`, which is nonzero because `T[A0]`
+     times it is `s_0^n`.
+   * So `m^n` has a nonzero component of degree `n >= 1`, and `m^n != 1`.
+3. **Positive roots only.** Give the regions potentials `q(A0) = 1`, `q(A10) = 2`, `q(A11) = 3`, and
+   inside `A1` the second coordinate `q'(A10) = 1`, `q'(A110) = 2`, `q'(A111) = 3`.
+   * Each positive unit root, `S[A0]T[A10]`, `S[A10]T[A11]`, `S[A10]T[A110]` or `S[A110]T[A111]`, maps
+     its source region to a region of strictly smaller lexicographic potential.
+   * So a nonzero product of such units has length at most 9. The algebra they generate is
+     nilpotent and finite, and the group `1 + (that algebra)` is finite. QED
+
+**Where it stops.**
+* **What the escaping configurations contain.** Those of Proposition 4.1(1)–(2) contain units of
+  infinite order. Theorem 1.1 still accepts `b` or `m` as conjugators of a locally finite `L`, but not
+  identities such as `b = tau sigma`, which express them through two frames that fit in no common
+  locally finite subgroup.
+* **The first live inputs.**
+  * The group generated by the frames at `A` and `A1`. It contains a first generator of Thompson's
+    `F` on `A1`, and its soficity is not settled by anything on main.
+  * Root groups with coefficients of nonzero degree together with an opposite root.
+* **What a proof of strict submultiplicativity needs** is an identity from one of these, used beyond
+  single conjugation, or a global input about all rank models of `R^x`.
+* **What an honest `theta = 1` model needs** is a rank model of such a group with the free profile
+  on its finite subgroups. That is exactly the kind of linear soficity question the gate asks.

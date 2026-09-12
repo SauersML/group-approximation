@@ -80,3 +80,28 @@ than vanishing.
     elements), or a global input turned into an upper bound. At `delta = c_*` every invariant summand of
     `iota_A` carries defect exactly `c_*`, so one invariant summand with a different normalized defect
     would finish; it must be built from an infinite-order unit.
+- **Opposite roots at child cylinders, the nine-leaf frame, and compressors used as conjugators: still
+  `theta = 1` (w4-sub-adversary, 2026-09-12; artifact
+  `research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md`).**
+  * **Frame tree** (`leavitt-right-child-frames-generate-infinite-order-units`, item 1). One prefix
+    replacement conjugates the following into `union_n GL_(2^n)(F_2)`, which is locally finite:
+    * the frames at `A`, `A0`, `A10` and `A11` (roots of both signs, Weyl elements, `F_2`-torus);
+    * the nine-leaf `GL_9(F_2)` at `A`;
+    * every halving unit.
+  * **Single conjugations** (`locally-finite-hnn-data-allow-independent-cylinder-defects`). Take a
+    locally finite subgroup `L` and an HNN letter for every unit, acting on `L cap u^-1 L u`. This
+    covers compressors, torus units and the `V`-conjugacies of Fact 1.2.
+    * It has a fixed-point-free rank model with the free profile on the finite subgroups of `L`.
+    * There `delta = 3/8` and `f(k) = (3/8)^k`.
+  * **First escapes** (same claim, items 2–3). These configurations lie in no locally finite
+    subgroup:
+    * the frames at `A` and at the right child `A1` give `b = iota_A(w_23) iota_(A1)(w_12)` of
+      infinite order, a first generator of Thompson's `F` on `A1`;
+    * `x^A_12(s_0) x^A_21(1)` has infinite order, so the `GL_2(R)` block root groups with
+      coefficients of nonzero degree, together with an opposite root, are not locally finite.
+  * **Torus normalization.** Single conjugations by units of `iota_0(R^x) x iota_1(R^x)` are covered.
+    Identities multiplying torus units, or expressing `b` through the two frames (`b = tau sigma`),
+    are not.
+  * **Where a `theta < 1` argument must live.** It has to use identities from the escaping
+    configurations beyond single conjugation, or a global input: the defect gap through corner
+    locality, globality, or compactness.
