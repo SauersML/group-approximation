@@ -1,0 +1,119 @@
+---
+rg: 2
+id: compressor-cycles-block-central-projection-rounding-proof
+kind: route
+title: Split the congruence group algebra, induce a character, and take an arc of each compressor cycle
+target: compressor-cycles-block-central-projection-rounding
+requires: []
+artifacts:
+  - research/artifacts/fd-compressor-commutant-and-cycle-rounding-2026-09-12.md
+---
+
+Normalized trace `tr` on `M_D`, `||x||_2 = tr(x*x)^(1/2)`.
+
+# 1. The model
+
+Choose a prime `m` with `q = 1 mod m` (Dirichlet). Let
+`R_m = F_q[(Z/m)^d]` be the congruence quotient of the Laurent ring by
+`x_i^m = 1`. Since `q = 1 mod m` and `gcd(m,q) = 1` the group algebra splits
+completely,
+
+```text
+R_m = prod_(psi in X) F_q,       X = Hom((Z/m)^d, F_q^*) = (Z/m)^d,
+```
+
+so `E := EL_r(R_m) = prod_(psi in X) EL_r(F_q)`, one factor per character. The map
+`G ->> Q_m := E semidirect S`, `S = SL_d(Z/m)`, is well defined because `SL_d(Z)`
+permutes the relations `x_i^m = 1`; `S` acts linearly on `X` and so permutes the
+factors of `E`. Both `Gamma` and `t Gamma t^(-1)` surject onto `E`, because
+elementary matrices lift and `F_q[x_1,...,x_d] ->> R_m`; so the image of `Gamma`
+in `Q_m` is exactly `E`.
+
+Fix a nontrivial irreducible `rho` of `EL_r(F_q)`, e.g. Steinberg. For `psi` in
+`X` let `W_psi` be the irreducible representation of `E` that is `rho` on the
+`psi`-factor and trivial on the others. Distinct characters give non-isomorphic
+`W_psi`, since the supports differ, and `s . W_psi = W_(s . psi)`. Fix `chi != 0`
+and put `pi := Ind_E^(Q_m)(W_chi)`, pulled back to `G`.
+
+# 2. Commutant, centre, and the compressor permutation
+
+As an `E`-representation `pi|_E = (+)_(s in S) W_(s . chi)`, so exactly the
+`W_psi` with `psi` in the orbit `S . chi` occur, each with multiplicity
+`k = |Stab_S(chi)|`. Hence
+
+```text
+pi(Gamma)' = pi(E)' = (+)_(psi in S.chi) M_k(C),
+Z(pi(Gamma)') = span{z_psi : psi in S.chi} = C^N,      N = |S . chi|,
+```
+
+with `z_psi` the `W_psi`-isotypic projection. The action of `S` permutes the
+`W_psi` transitively, and it is trace preserving, so all the `z_psi` have the same
+trace and `tr(z_psi) = 1/N`. Since `pi(s)` carries the `psi`-isotypic subspace
+onto the `(s . psi)`-isotypic subspace,
+
+```text
+Ad pi(s)(z_psi) = z_(s . psi).
+```
+
+# 3. The cycle structure of the compressor
+
+`m` is prime, so `S = SL_d(Z/m)` is transitive on `X \ {0}`; thus
+`S . chi = X \ {0}` and `N = m^d - 1`. For `t = E_12(1)` we have `(t-1)^2 = 0` on
+`X`, hence `t^j - 1 = j(t-1)`, so a character `psi` is fixed by `t` iff
+`(t-1)psi = 0`, and otherwise `t^j psi = psi` iff `m | j`, i.e. its `t`-orbit has
+length exactly `m`. The fixed set is `ker(t-1) \ {0}`, of size `m^(d-1) - 1`.
+Write `F` for it and `c = (N - |F|)/m` for the number of length-`m` cycles, so
+
+```text
+|F|/N = (m^(d-1) - 1)/(m^d - 1) < 1/m,      c/N = (1 - |F|/N)/m <= 1/m.
+```
+
+# 4. The projection and the two estimates
+
+In each length-`m` cycle fix a cyclic order and let its arc be the first
+`floor(m/2)` members; take nothing from the fixed characters. Let `A` be the
+union of the arcs and `p := sum_(psi in A) z_psi`, an element of
+`Z(pi(Gamma)')`, with `tr(p) = c floor(m/2)/N`.
+
+**Invariance defect.** `Ad pi(t)(p) = sum_(psi in A) z_(t . psi)`. Shifting an arc
+of length `floor(m/2)` (which is at least `1` and at most `m-1`) by one step in a
+cycle of length `m` changes exactly two members, the head leaving and the
+successor of the tail entering. The `z_psi` are projections with pairwise
+orthogonal ranges, so
+
+```text
+||Ad pi(t)(p) - p||_2^2 = 2c/N <= 2/m.
+```
+
+**Distance to invariant central projections.** A projection of `Z(pi(Gamma)')` is
+`q = sum_(psi in B) z_psi`, and `Ad pi(t)(q) = q` iff `B` is `t`-invariant, i.e. a
+union of whole cycles and fixed characters. For such `B`,
+
+```text
+||p - q||_2^2 = tr(p) + tr(q) - 2 tr(pq)
+             = tr(p) + sum_(psi in B \ A) tr(z_psi) - sum_(psi in A ∩ B) tr(z_psi).
+```
+
+Each cycle contained in `B` contributes `floor(m/2)` members to `A ∩ B` and
+`m - floor(m/2)` to `B \ A`, so its net contribution is
+`(m - 2 floor(m/2))/N >= 0`; fixed characters in `B` contribute `>= 0`; and no
+member of `A` lies outside a cycle. Hence `||p - q||_2^2 >= tr(p)`. With `m` an
+odd prime, `floor(m/2)/m = (m-1)/(2m)` and `|F|/N < 1/m`, so
+
+```text
+||p - q||_2^2 >= tr(p) = (1 - |F|/N)(m-1)/(2m) >= (1/2)(1 - 1/m)^2,
+```
+
+that is `dist_2(p, invariant central projections) >= (1 - 1/m)/sqrt(2)`. QED
+
+# 5. Remarks
+
+- Both estimates are unchanged by amplification `pi (x) 1`, which acts
+  componentwise and multiplies no trace.
+- `tr(p) -> 1/2`, so the construction is macroscopic and is not the
+  o(1)-dimension block gluing fenced off on `kt-centralizer-normalization-hs`.
+- Nothing here contradicts `ccr-holds-for-all-genuine-fd-coordinate-models`: in
+  this same model `Ad pi(t)` is an automorphism of `pi(Gamma)'` and permutes its
+  atoms, which is exactly what produces the cycles.
+- The failure is a Folner phenomenon for the amenable group generated by
+  `Ad pi(t)`, not a defect of the `Gamma`-direction, where `p` is exactly central.
