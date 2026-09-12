@@ -204,9 +204,10 @@ theorem wordNorm_mul_omega_le {b ω₁ ω₂ : G} (hω₁ : ω₁ ∈ goOmega D 
         ≤ wordNorm D.alphabet.carrier b + goOmegaM D F t C hfin ∧
       wordNorm D.alphabet.carrier b
         ≤ wordNorm D.alphabet.carrier (b * ω₁ * ω₂) + goOmegaM D F t C hfin := by
-  have hM : wordNorm D.alphabet.carrier (ω₁ * ω₂) ≤ goOmegaM D F t C hfin :=
-    Finset.le_sup (f := fun p : G × G => wordNorm D.alphabet.carrier (p.1 * p.2))
-      (Finset.mem_product.mpr ⟨hω₁, hω₂⟩)
+  have hM : wordNorm D.alphabet.carrier (ω₁ * ω₂) ≤ goOmegaM D F t C hfin := by
+    unfold goOmegaM
+    exact Finset.le_sup (f := fun p : G × G => wordNorm D.alphabet.carrier (p.1 * p.2))
+      (b := (ω₁, ω₂)) (Finset.mem_product.mpr ⟨hω₁, hω₂⟩)
   have hS := D.alphabet.symmetricGenerating
   constructor
   · have h := wordNorm_mul_le hS b (ω₁ * ω₂)
