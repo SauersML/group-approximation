@@ -106,3 +106,63 @@ delta(a, b' t_1 t_1) = delta(s_0 a t_0, s_0 b') ,     delta(s_1 a', b) = delta(t
 * Via `c'`: `[x_12(t_1 a' t_0), x_23(s_0 b t_0)] = x_13(t_1 a' b t_0)`, and `c' x_13(beta) c'^-1 - 1`
   has column 3 equal to `(t_1 t_1 beta t_0, s_1 t_0 beta t_0, s_1 t_1 t_0 beta t_0)`, which for
   `beta = s_1 a' b` is `(t_1 a' b t_0, 0, 0)`.
+
+## 2. Where the compressor bridge fails
+
+**Unit moves.** For units `g_1, g_2, g_3` of `R`, `diag(g_1, g_2, g_3)` conjugates
+`(x_12(a), x_23(b))` to `(x_12(g_1 a g_2^-1), x_23(g_2 b g_3^-1))`. So
+`delta(a, b) = delta(g_1 a g_2^-1, g_2 b g_3^-1)`, and `delta(u, v) = delta(1,1)` for all units `u, v`.
+
+**Lemma 4 (the compressor moves never meet the unit pair).** Call the moves of Corollary 3 and the
+unit moves *elementary*. Under elementary moves the pair `(1,1)` is equivalent only to pairs of
+units.
+
+*Proof.* Unit moves send units to units.
+* **`c` needs a non-unit input.** It applies to `b = b' t_1 t_1`. Such a `b` satisfies
+  `b s_0 = 0`, so it is not a unit.
+* **`c` produces non-units.** Its outputs are `s_0 a t_0`, killed on the right by `s_1`, and
+  `s_0 b'`, killed on the left by `t_1`.
+* **`c'` is the same.** It applies to `a = s_1 a'`, which satisfies `t_0 a = 0`. Its outputs
+  `t_1 a' t_0` and `s_0 b t_0` are both killed on the right by `s_1`.
+
+So no chain of elementary moves starting from a unit pair can use a compressor move. QED
+
+**Subadditivity.** Root subgroups are abelian and `n^2 = 0` in characteristic two, so
+`n_12(a + a') = X + X' + X X'` with `X = n_12(a)`, `X' = n_12(a')` commuting. Hence, with `Y = n_23(b)`,
+
+```text
+Y n_12(a+a') = Y X (1 + X') + Y X' ,          so  delta(a + a', b) <= delta(a, b) + delta(a', b) ,
+n_23(b+b') X = Y X + (1 + Y) n_23(b') X ,      so  delta(a, b + b') <= delta(a, b) + delta(a, b') .
+```
+
+The Cuntz relation `1 = e_0 + e_1` therefore gives only upper bounds such as
+`delta(1,1) <= delta(e_0, 1) + delta(e_1, 1) = 2 delta(e_0, 1)`. Here a unit swapping `e_0` and `e_1`
+gives the last equality.
+
+**Proposition 5 (scalar calibration).** Let `Delta : R x R -> [0,1]` satisfy:
+* (i) `Delta(a,b) = Delta(a',b')` whenever some `g` in `GL_3(R)` conjugates `(x_12(a), x_23(b))` to
+  `(x_12(a'), x_23(b'))`;
+* (ii) subadditivity in each argument;
+* (iii) `Delta(0,b) = Delta(a,0) = 0`.
+
+Then `Delta_eps(a,b) = eps [a != 0][b != 0]` satisfies (i)–(iii) for every `eps` in `[0,1]`. So
+`Delta(1,1) = 0` does not follow from (i)–(iii).
+
+*Proof.* Conjugation sends a nontrivial root element to a nontrivial one, which gives (i). If
+`a + a' != 0` then `a != 0` or `a' != 0`, which gives (ii), and similarly in `b`. (iii) is immediate.
+QED
+
+**Consequence.** The moves of Section 1, unit invariance, Weyl symmetry, and the Cuntz decomposition
+of the root elements all produce relations of type (i)–(iii) among delta-values. None of them can
+bridge `delta(1,1)` to the isometry-coefficient values `delta(t_i, s_i)`, or force `delta(1,1) = 0`.
+Compressor conjugacies preserve rank, so compression never shrinks a size. A contraction needs a
+**lower** bound, superadditivity of `delta` over an orthogonal decomposition, which is exactly the
+orthogonality that block (matrix-unit) models have and free-type models lack. A proof of the gate
+must use operator identities beyond scalar rank data. Examples:
+* the joint isometry commutator relations of `leavitt-isometry-commutators-constrain-el3-rank-models`;
+* the operator-level defect factorization;
+* an additive size conserved on invariant subspaces.
+
+This agrees with the landed calibrations `finite-subgroup-rank-data-cannot-force-two-root-identity`,
+`sofic-subgroups-carry-rank-models-violating-two-root-identity` and
+`dyadic-root-displacement-data-admit-trivial-plus-free-models`.
