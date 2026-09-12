@@ -56,3 +56,17 @@ artifacts:
     no nontrivial characteristic-two rank model. Neither arrow is known to reverse.
   - **Completeness.** It is load-bearing for the binary gate exactly when `EL_3(C_2)` is
     characteristic-two linear sofic.
+- **Compression, V and LEF (w5-cohn-lef, 2026-09-12; artifact
+  `research/artifacts/cohn-elementary-group-compressions-and-lef-2026-09-12.md`).**
+  - **Compression.** The Cohn pair compresses `EL_(2n)(C_2)` into `EL_n(C_2)`
+    (`cohn-pair-compression-embeds-el-2n-into-el-n`). So every `EL_n(C_2)`, `n >= 2`, has the same
+    injective-model question, every `EL_m(J)` lies in `EL_3(C_2)`, and `V` lies in `EL_3(C_2)`, meeting
+    `K` trivially.
+  - **V gate implies this claim** (route `cohn-coefficient-el3-two-root-identity-from-v-gate`). The
+    ordering sharpens to: V gate ⇒ this claim ⇒ binary gate. Linear soficity of `EL_3(C_2)` sits
+    between `R^x` (above) and `V` (below).
+  - **The LEF route is dead.** `EL_3(C_2)` is not LEF (`cohn-elementary-group-is-not-lef`), so no
+    refutation can come from local embeddings. Soficity would make `V` sofic.
+  - **Displacement.** Transvection displacement is constant and positive in nontrivial models (a
+    proof), but it forces nothing on its own: middle exterior powers displace by about `1/4`.
+  - **Still open:** soficity and linear soficity of `EL_3(C_2)`.
