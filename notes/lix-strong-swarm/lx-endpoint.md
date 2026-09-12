@@ -3,56 +3,48 @@
 Clone lix-a. Owns `Manuscript/NinetyNineProblems/ProblemLIXStrong*`, `CharClass/LIXLemmaTwoGen*`, the Palomar LIX-strong surface,
 Palomar scripts/workflows, `formalization.yaml`.
 
-## Design (09-12)
+## LANDED AND COMPILED
 
-* `ProblemLIXStrongAssemblyTwo.lean`: named Props `LemmaTwoPowersTwoLocalData n` (binder `hloc` of
-  `CharClass.Gen.lemmaTwoFor_powers_two_lixChernOf`) and `LemmaTwoPowersTwoWuData n` (∃ spaces, maps, sphere data, with
-  `Nonempty (Gen.WuStepDData …)` at every stage and corner unitary); `eq_two_of_prime_dvd_two_pow`,
-  `lemmaTwoHoldsForSections_powersSections_two`, `lemmaTwoHoldsAtPowers_two_pow`.
-* `ProblemLIXStrongAssemblyOddP.lean`: `stepCHalf_of_eq_zero_imp` (restricted to mapping tori of continuous corner unitaries),
-  `natCast_sub_one_add_one_ne_zero`, named Prop `LemmaTwoPowersModPData n p [Fact p.Prime]` over `K = ZMod p`
-  (∃ spaces/maps/sphere pieces, `T : ∀ j, RealTorusModP`, `∀ j, ExpChar (evenPart (ZMod p) (Y j)) p`, `γfun`,
-  `topClass : … → Hmod (ZMod p) (lixN) (2·KGen.lixRank)`, with (i) `Nonempty RealBundleModP` at every mapping torus,
-  (ii) htop at mapping tori of continuous corner unitaries (rfl for `γfun W k := of (2k) (c_k W)`), (iii)
-  `KGen.KZeroStepCDataOf (ZMod p) n (k-1) (lixDD n j) … (topClass j (mapping torus))` for `p ∤ k`);
-  `lemmaTwoHoldsForSections_powersSections_of_modPData`, `lemmaTwoHoldsAtPowers_of_twoData_of_modPData`,
-  `lemmaTwoHoldsAtPowers_of_modPData` (odd rank).
-* Planned `ProblemLIXStrongFinal.lean`: `lemmaTwoHoldsAtPowers n hn := lemmaTwoHoldsAtPowers_of_twoData_of_modPData n hn …`.
-* D4 (ratified with lx-stablyfinite): inline conjunct after separability in the three strong challenge theorems,
-  `(∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1) ∧`; solution bridge
-  `NinetyNineProblems.lixLimit_isStablyFiniteMatrices n` (`Manuscript/NinetyNineProblems/LIXStablyFinite.lean`).  Applied
-  only once that module is green.
+| sha | module | evidence |
+|---|---|---|
+| e1cd56947 | `ProblemLIXStrongAssemblyTwo` (named Props `LemmaTwoPowersTwoLocalData n`, `LemmaTwoPowersTwoWuData n`; `lemmaTwoHoldsForSections_powersSections_two`, `lemmaTwoHoldsAtPowers_two_pow`) | probe 0912-101459-43218 BUILT, md5 610d4232… = origin |
+| 890a5989f | `ProblemLIXStrongAssemblyOddP` (named Prop `LemmaTwoPowersModPData n p` over `ZMod p`; `stepCHalf_of_eq_zero_imp` and htop restricted to mapping tori of continuous corner unitaries, per lx-review (a); `lemmaTwoHoldsAtPowers_of_twoData_of_modPData`, `lemmaTwoHoldsAtPowers_of_modPData`) | probe 0912-102827-68823 BUILT, md5 614f7dba… = origin |
+| 650084c64 | D4: `Palomar/LIXStrongChallenge.lean` + `LIXStrongSolution.lean` gain `(∀ (m : ℕ) (x : CStarMatrix (Fin m) (Fin m) A), star x * x = 1 → x * star x = 1)` after separability in all three theorems; solution discharges it via `exists_isSimpleRing_separable_stablyFinite_hasK1InjPowerWitness_of`; shared block byte-identical (also to `LIXChallenge.lean`) | palverify 0912-105804-22079 (SLURM acn91, base 63eeb5e54): build rc=0 (4 LIX Palomar libs), strong axioms rc=0 ([propext, Classical.choice, Quot.sound] ×3), strong statement drivers rc=0, self-test rc=0; the plain submission check has one infra finding (job clone is not a git checkout).  Bytes f54b36b5… / c972e386… = origin |
+| 2648d3624 | challenge docstring: "one nontrivial element" (lx-review (c)) | docstring only |
+| (reports) | `notes/lix-strong-swarm/lx-endpoint.md` | 16637bbc4, 988016fbc |
 
-## GREEN
+All five verified on the restored tip 3ba3746c8 (after becc912bd wiped main at 11:10 and 3f71a3a50 restored it at 11:20).
 
-* probe 0912-101459-43218 (lix-a, acn112 slot 3, base 4b9f8144d, PROBE GREEN, 9458 jobs): `BUILT ProblemLIXStrongAssemblyTwo`,
-  `BUILT ProblemLIXStrongAssemblyOddP`; origin bytes (6c003072f) = green-record md5. Landed e1cd56947.
-* Palomar job 0912-102309-23751 (SLURM acn30, base 6c003072f, LIX libs only, `$LX/palverify.sh`): build rc=0
-  (PalomarLIXChallenge, PalomarLIXSolution, PalomarLIXStrongChallenge, PalomarLIXStrongSolution); strong axioms driver
-  rc=0 with closure `[propext, Classical.choice, Quot.sound]` for each of the three `_of` stand-ins; strong statement
-  drivers rc=0; submission self-test rc=0.  The plain submission check has ONE finding, "could not read the git index, so
-  submodules could not be checked": the job runs in a clone that is not a git checkout, so this is infra, not a surface defect.
+## AUTHORED, NOT LANDED (HALT file in $LX; both on disk, copies in $LX/backup/d4/)
 
-## AUTHORED, UNVERIFIED
+* `ProblemLIXStrongAssemblyTwoLocal.lean`: `lemmaTwoPowersTwoLocalData_holds n := CharClass.KGen.kZeroLocalData_powers n`;
+  `lemmaTwoHoldsAtPowers_of_wuData_of_modPData`; `lemmaTwoHoldsAtPowers_two_pow_of_wuData`.  Waits on lx-local2b's
+  `LIXKGenLocalNonzero` compiling (one `rw [map_zero]` red, fix landing).
+* `ProblemLIXStrongAssemblyTwoWu.lean`: `lemmaTwoPowersTwoWuData_holds n [NeZero n]` (baseY, Sphere 1 / 2n+1, KnLix.prY/prS1/prSodd,
+  hasSphereCohomology_sphere, sphereTopClass, `Gen.nonempty_wuStepDData_lixN`); **`lemmaTwoHoldsAtPowers_two_pow_holds m`** and
+  **`exists_isSimpleRing_separable_hasK1InjPowerWitness_two_pow m`** — the stronger theorem at ranks 2^m, unconditional once the two
+  producers compile.  Waits on lx-slice2's `LIXStepDGenWuData` (red on a missing `open scoped Matrix`).
 
-* `ProblemLIXStrongAssemblyOddP.lean` at 890a5989f (htop weakened to mapping tori, lx-review finding (a)); re-probe queued on lix-a.
-* `Palomar/LIXStrongChallenge.lean` docstring: "one element of order two" → "one nontrivial element" (lx-review finding (c)).
+## OPEN (odd primes; `LemmaTwoPowersModPData n p`)
 
-## NEEDS / producer names announced
+* T: `Gen.realTorusModP_lixStage ops n j` (lx-torusP), needs a producer of `OddPTotal.EvenReducedPowers p` (lx-pzero; none on main).
+* bundle data: lx-bundleP's `Gen.nonempty_realBundleModP_lixChernDegOf_stages` (not on main at 8cbc0c5fa), binders hgen, LE/LV
+  (lx-lhK-b), hhomE, hwu (lx-splitK).
+* ExpChar: `Gen.expChar_evenPart_baseY p dd` (GREEN).  γfun/topClass via `KGen.lixChernDegOf` (htop rfl).
+* Step C over K: `KGen.kZeroStepCDataOf_of_localNonzeroOf K n k dd … u hlocal hclass` (on main); needs `KGenLocalNonzeroOf` at the
+  Thom class and `hclass` over K (lx-stepcK-local/agree).
+* `ProblemLIXStrongFinal.lean` not authored: odd-prime producer spellings still moving.
 
-* p = 2 local: lx-local2b `CharClass.KGen.kZeroLocalData_powers n : LemmaTwoPowersTwoLocalData n` (body identical), in
-  `CharClass/LIXKGenLocalNonzero.lean` (not compiled yet).
-* p = 2 Wu: lx-slice2 `CharClass.Gen.wuStepDData_lixN n [NeZero n] j G hGc hGu` over lx-kunneth's `KnLix.prY/prS1/prSodd`,
-  `sphereTopClass`, `hasSphereCohomology_sphere` (`CharClass/LIXStepDGenWuData.lean`, not compiled yet).
-* odd p: lx-bundleP `Gen.realBundleModP_stages(_deg)` (`CharClass/LIXStepDGenBundlePLix.lean`, unverified),
-  `Gen.expChar_evenPart_baseY` (GREEN 0912-102525-49371); γfun/topClass via lx-stepcK-local's planned degreewise
-  `KGen.lixChernDegOf K n dd hgen W k` (htop rfl); lx-torusP `T`; lx-stepcK-local/agree `KZeroStepCDataOf`.
-* D4: lx-stablyfinite `lixLimit_isStablyFiniteMatrices` (probe launched on lix-a).
+## PALOMAR, when D1 lands
+
+Add the three unsuffixed wrappers to `LIXStrongSolution.lean`; rename the axioms/solution drivers' names (drop `_of`, move the
+boundary to the end); move `comparator-lix-strong.json` to `PALOMAR_CONFIGS`; formalization.yaml rows from the axioms run; Cairn text;
+dispatch the real Comparator.  `$LX/palverify.sh` (+ `remote/palverify.template.sh`) runs the surface job on lix-a via SLURM.
 
 ## TRAPS
 
-* zsh: `"$B:path"` loses the colon suffix; write `"${B}:path"`.
-* The Palomar job's summary error grep also collects the self-test's PLANTED findings (`::error::` lines inside planted
-  copies).  Read the `=== STEP submission` block of the log, not the summary grep.
-* lxland clobber guard on a non-probed path (Palomar docstring): the guard needs `NM_BASE=<origin sha the copy was read at>`
-  when the last origin commit on the path is not your own landing.
+* zsh: `"$B:path"` loses the colon suffix; `path` is zsh's PATH array — a loop variable named `path` kills every command.
+* The palverify summary grep also shows the self-test's PLANTED findings; read the `=== STEP submission` block.
+* lxland clobber guard on a path last changed by another lane: pass `NM_BASE=<origin sha the copy was read at>`.
+* lxland exits 6 silently under a filtering grep when `$LX/HALT` exists; read unfiltered output.
+* ENOSPC on the Mac (11:05–11:20) made git plumbing fail mid-landing; a commit built from an empty index wiped main (becc912bd).
