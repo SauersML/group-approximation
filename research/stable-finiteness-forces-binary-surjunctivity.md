@@ -34,6 +34,15 @@ The converse direction is `stable-finiteness-failure-refutes-surjunctivity`.
 - **Live route:** `stable-formalization-reduces-surjunctivity-to-kaplansky`, through
   `injective-binary-automata-are-stably-formalizable` (identity ancilla tracks). With ancillas the
   extreme variable can cancel between components, so the one-track obstruction does not apply.
+- **Second escape, recorded only, with no node: regrouping** (gk-fz-bennett).
+  - **The move.** Regroup along a finite-index subgroup `H`, so the alphabet becomes `A^T` for a
+    transversal `T`, and ask for formal pairs over `H`.
+  - **Why it pays off.** `M_N(F_2[H])` sits inside `M_N(F_2[G])`, so stable finiteness over `G`
+    passes to `H`, and a formal pair over `H` still yields the payoff
+    (`structurally-reversible-automata-are-formalizable` uses the same regrouping).
+  - **Why Theorem A doesn't reach it.** The degree argument needs one track.
+  - **First test.** Does the marker involution become formalizable over `4Z`, where Lemma 2.1's
+    markers occupy disjoint blocks?
 - **Where it stops.** No ancilla construction is known for any one-track non-affine automaton on a
   bi-orderable group. The first test is the marker involution with one ancilla (artifact,
   Section 6.4).
