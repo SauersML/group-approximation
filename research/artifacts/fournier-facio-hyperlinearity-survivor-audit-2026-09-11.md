@@ -200,7 +200,11 @@ the two child shifts.
    extension of `Gamma`, because it is Kazhdan and that extension surjects
    onto `F_2`.  The double HNN kernel is a tree of groups amalgamated over
    the Kazhdan group `Gamma`, so amenable-amalgam permanence does not apply
-   even when `Gamma` is hyperlinear.
+   even when `Gamma` is hyperlinear.  This concerns the pre-quotient
+   extension only.  Whether that amalgam
+   `t_1^-1 Gamma t_1 *_Gamma t_2^-1 Gamma t_2` embeds in `G` is unverified,
+   because Hull's theorem controls the kernel only on a finite ball.  Do not
+   use it as a subgroup of `G` until that is checked.
 
 `L(Gamma) >= L(S) tensor L(Gamma) tensor L(Gamma)` exists as an abstract
 inclusion of II_1 factors, because the group inclusion exists.  So the only
