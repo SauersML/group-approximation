@@ -716,6 +716,75 @@ Proposition 7.4(d) FAILS and has been corrected forward.
     `ternary-swap-fullness-projects-to-anti-invariant-half` and
     `projective-swap-corner-refutes-ternary-surjunctivity`.
 
+## 24. The scalar quotient, the Klein target and zero Rokhlin supremum (gk-invariant-output, gk-rokhlin)
+
+Reviewed on main at `5edf273bee`.
+* Landing `aad8009fa`: `leavitt-units-embed-in-their-scalar-quotient`,
+  `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`,
+  `ternary-unit-nonsurjunctivity-ascends-to-scalar-quotient`,
+  `projective-ternary-klein-idempotent-is-full` and `klein-fullness-gives-swap-fullness`.
+* Landing `10d9b0bf1`: `leavitt-units-have-zero-rokhlin-entropy-supremum` and
+  `leavitt-zero-rokhlin-supremum-from-strict-automaton`.
+* The SHA `ee05d55a60` in the lead's queue is the HS profile-rounding commit. The Klein claim
+  landed in `aad8009fa`.
+
+Verdict: PASS, with one gap in the refuted_by wiring, now fixed.
+
+* **Corner embedding, over every field.**
+  * `iota(g) iota(h) = s0 g h t0 + s1 t1`, because `t0 s1 = t1 s0 = 0`.
+  * `t0 iota(g) s0 = g`.
+  * `iota(g) = lambda` gives `lambda s1 = s1`, so `lambda = 1` by `t1 s1 = 1`.
+  * Neither finiteness of `k` nor its characteristic is used.
+* **Nonsoficity of `L_k(1,2)^x / k^x`.**
+  * `units_not_isSofic` in `Leavitt/AryEndpoints` holds for every nontrivial countable algebra
+    over a finite field that carries a `d`-ary family. So it applies to `A = L_(F_3)(1,2)`
+    itself, which is countable, nontrivial and carries the binary family, independently of the
+    universal presentation built in the development.
+  * Subgroups of sofic groups are sofic.
+  * Ascent of nonsurjunctivity from the unit group to `PG` is subgroup heredity along the same
+    embedding.
+* **Klein operators.** Write `R ~= M_2(R)` with `r = sum s_i a_ij t_j`, `d = diag(1,-1)`, and `w`
+  the swap.
+  * `2(1 + Ad d)` deletes the off-diagonal entries, and `2(1 + Ad w)` sends `diag(a, b)` to
+    `2(a + b) I`. So `rho(e_K) = delta Psi`, with `a_ii = t_i r s_i`.
+  * `Psi delta(r) = 2(r + r) = r`.
+  * `Ad(w)` fixes `delta(x) = diag(x, x)`, so `rho(ebar) delta = delta`.
+  * `delta(1) = Psi(1) = 1`, and `Ad(g)(1) = 1` gives `T(1) = eps(T) 1` on the image.
+  * `wbar` and `dbar` commute in `PG`, because `d w = -w d`.
+  * `klein-fullness-gives-swap-fullness` holds: `ebar e_K = e_K ebar = e_K`, so `c e_K b = 1`
+    gives `(c e_K) ebar (e_K b) = 1`.
+  * The refuted_by direction on the Klein claim is right.
+* **No single conjugation, in scope.**
+  * Put `a = t0 g` and `b = g^-1 s0`. If `a r b = r` for all `r`, then `ab = 1`, then `a r' = r' a`
+    for all `r'`. So `a` is central, `a = lambda in F_3^x`.
+  * In the coordinates `R ~= R (+) R`, `g x = (lambda x, t1 g x)` misses `(0, y)`, so `g` is not a
+    unit.
+  * This excludes splittings of the shape `t0 Ad(g)(.) s0` only, and the claim should be read in
+    that scope.
+* **Zero Rokhlin supremum.**
+  * The three forms agree. POS gives `h_sup > 0` (Seward 7.7), and Seward 1.10 gives
+    `h^Rok(A^U) = min(log|A|, h_sup)`. A deficit makes `h_sup` finite. Since `U` contains
+    `U x U` and `GL_(2^n)(F_2)`, the self-copy dichotomy then forces `h_sup = 0`.
+  * By Theorem 3, a deficit at some amplification is equivalent to a configuration with
+    `Phi < log q`.
+  * The certificate is finite. Its incidence pattern is decided through the decidable word
+    problem. Its inequality is strict between finite sums of `p log p` with rational `p`, which
+    interval arithmetic certifies.
+  * The route from `leavitt-unit-group-nonsurjunctive` is the contrapositive of part 3 of the
+    established Leavitt entropy claim.
+* **Refuted_by wiring.**
+  * `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups` and
+    `bernoulli-rokhlin-entropy-maximal-for-every-group` correctly carry
+    `refuted_by: leavitt-units-have-zero-rokhlin-entropy-supremum`: `U` is finitely generated,
+    infinite, simple and Kazhdan.
+  * The exact negation pair was not wired: `leavitt-unit-group-has-positive-rokhlin-entropy-action`
+    listed only `leavitt-unit-group-nonsurjunctive`. I added
+    `leavitt-units-have-zero-rokhlin-entropy-supremum` there, and the symmetric
+    `refuted_by: [leavitt-unit-group-has-positive-rokhlin-entropy-action]` on the zero-supremum
+    claim, following the surjunctive/nonsurjunctive pair.
+* **Container reduction** (`a03dd1b0c8`): passed already in Section 18. Its trust surfaces are
+  Schupp, Hull 7.1, 5.7, 3.5 and 5.8, Osin 7.1, and Dahmani--Guirardel--Osin.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by

@@ -7,6 +7,7 @@ target: projective-ternary-swap-idempotent-is-full
 requires: [projective-ternary-klein-idempotent-is-full]
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 `K` contains `wbar`, so `e_K = ebar e_K = e_K ebar`. From `c e_K b = 1` put
@@ -14,3 +15,6 @@ artifacts:
 
 This is a strengthening, not a rename. `e_K` is a proper subidempotent of `ebar`,
 and fullness of `ebar` does not imply fullness of `e_K` by any argument here.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 24 of the verification
+artifact). `wbar` and `dbar` commute in `PG` because `d w = -w d`, so `ebar e_K = e_K ebar = e_K`.

@@ -5,6 +5,7 @@ kind: claim
 title: The binary Leavitt unit group admits a free ergodic action of positive Rokhlin entropy
 refuted_by:
   - leavitt-unit-group-nonsurjunctive
+  - leavitt-units-have-zero-rokhlin-entropy-supremum
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
 ---

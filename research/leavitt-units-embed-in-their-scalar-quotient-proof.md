@@ -7,9 +7,13 @@ target: leavitt-units-embed-in-their-scalar-quotient
 requires: []
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 `s0 R t0` is a copy of `R` with identity `s0 t0`, so `g -> s0 g t0 + s1 t1` is
 multiplicative and injective. It acts as the identity on the complementary
 cylinder, `iota(g) s1 = s1`. A scalar `lambda != 1` moves `s1` because `s1 != 0`.
 So the image meets the scalars only in `1`. Section 8 of the artifact.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 24 of the verification
+artifact). The argument works over every field.

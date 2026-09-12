@@ -3,6 +3,8 @@ rg: 2
 id: leavitt-units-have-zero-rokhlin-entropy-supremum
 kind: claim
 title: Every free ergodic action of the binary Leavitt unit group has zero Rokhlin entropy
+refuted_by:
+  - leavitt-unit-group-has-positive-rokhlin-entropy-action
 distinct_from:
   leavitt-unit-group-has-positive-rokhlin-entropy-action: that asks for one free ergodic action of positive Rokhlin entropy; this is its negation, the zero side of the dichotomy.
   leavitt-unit-group-nonsurjunctive: that asks for an injective nonsurjective automaton, a topological object; this is the measurable statement such an automaton forces, and no converse is known.
