@@ -71,23 +71,59 @@ generators of `V`, the six `E_ij(1)` of the nine-leaf corner, and the compressor
 
 ## 4. Results
 
-Run `r1` on acn112, started 2026-09-12 16:36 CDT. Radii are `ra:rb` and the windows are
-balls. At radius `1:1` the table group is the cover `G_4`. The cells are all of `B_2`, and
-every cell lies in `BA u {1}`. The class columns count classes of at least two cells.
+Runs `r1` (radius 1) and `r2` (radius 2) on acn112, 2026-09-12, 16:36–17:15 CDT. Windows
+are balls. Every cell lies in `BA u {1}`, because the balls are symmetric and contain `1`.
+- **classes:** the classes of at least two cells that no character separates.
+- **singletons:** the cells separated from all others.
+- **characters:** the number of stored characters that refined the partition.
+- **compact:** the generators and relators of the GAP input.
 
-| window | `|A|`, `|B|` | cells | relators | classes after stage 1 | compact presentation | stage 2 and verdict |
-|---|---|---|---|---|---|---|
-| v 1:1 | 8, 8 | 44 | 64 | 10 (sizes 2–8) | 6 generators, 10 relators | pending |
-| atlas 1:1 | 9, 9 | 53 | 81 | 20 (all of size 2) | 4 generators, 8 relators | pending |
-| v-eld1 1:1 | 18, 18 | 259 | 324 | 81 (sizes 2–8) | 16 generators, 45 relators | pending |
-| eld 1:1 | 35, 35 | 933 | 1,225 | 338 | see run log | pending |
+| window | `|A|`, `|B|` | cells | relators | characters | classes | merged cells | singletons | largest class | compact | stage 2 and verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| v 1:1 | 8, 8 | 44 | 64 | 4 | 10 | 42 | 2 | 8 | 6, 10 | pending |
+| atlas 1:1 | 9, 9 | 53 | 81 | 4 | 20 | 40 | 13 | 2 | 4, 8 | pending |
+| v-eld1 1:1 | 18, 18 | 259 | 324 | 12 | 81 | 239 | 20 | 8 | 16, 45 | pending |
+| eld 1:1 | 35, 35 | 933 | 1,225 | 33 | 338 | 676 | 257 | 2 | 34, 258 | pending |
+| v 2:2 | 44, 44 | 978 | 1,936 | 2 | 4 | 978 | 0 | 275 | 6, 290 | pending |
+| atlas 2:2 | 53, 53 | 1,603 | 2,809 | 3 | 27 | 1,603 | 0 | 99 | 4, 112 | pending |
+| v 2:3 | 44, 211 | 4,410 | 16,632 | 0 | 1 | 4,410 | 0 | 4,410 | 6, 1,962 | pending |
+| v-eld1 2:2 | 259, 259 | 46,724 | 67,081 | 2 | 4 | 46,724 | 0 | 16,626 | 16, 5,597 | pending |
+| eld 1:2 | 35, 933 | 23,382 | 64,085 | 4 | 14 | 23,382 | 0 | 13,420 | 34, 9,981 | pending |
+| eld 2:1 | 933, 35 | 23,382 | 64,085 | 4 | 14 | 23,382 | 0 | 13,420 | 34, 9,981 | pending |
 
-Every window survives stage 1. That is expected. A character of `G_4` sees only the
-abelianization, and the products in `B_2` have many abelian coincidences, so stage 1
-separates only the cells with distinct abelian images. Separating the rest needs the
-nonabelian images of stage 2.
+**Reading of stage 1.**
+- Characters see only the abelianization of the table group.
+- At radius 1 the table group of a ball window is the cover `G_4`. It still has enough
+  abelian images to split off some cells: 257 of the 933 cells of the nine-leaf window.
+- From radius 2 on, no cell is separated in any window, and `v 2:3` has no separating
+  character at all.
+- This fits Corollary 3. As the radius grows, the table group approaches the host (`V`, or
+  `L^x` for the atlas and nine-leaf generators), and both hosts are simple, so the abelian
+  images die.
+- Only nonabelian finite images, from stage 2 or an explicit representation (Section 5), can
+  certify anything beyond radius 1.
+## 5. An explicit representation: the nine-leaf corner
 
-## 4. Trust surface
+Lane `gottschalk-nine-leaf-window` (af84d0ffe) built a map in
+`experiments/gottschalk-small-presentations/nine_leaf_corner_rep.py`:
+- `E_ij(r)` goes to the block matrix `1 + e_ij (x) rho_ij(r)` in `GL_6(F_2)`;
+- the compressors go to `1`.
+
+That lane checked it against the table groups of invariant-output windows. Those are
+different tables, so here it is replayed against the direct-finiteness tables with
+`experiments/nonsofic-certificates/kaplansky-df/screen/kdf_rep_witness.py` (MSI, 2026-09-12).
+
+| window | relators | realization? | alone: singletons, classes, largest class |
+|---|---|---|---|
+| eld 1:1 | 1,225 | yes, every relator holds | 16, 46, 372 |
+| eld 1:2 | 64,085 | no, at least one relator fails | not used |
+| eld 2:1 | 64,085 | no, at least one relator fails | not used |
+
+On eld 1:1 the witness file is `runs/gap_r1/eld-1-1--rep.witness.jsonl` on MSI, and verify
+combines it with the characters and the GAP images. On the radius-2 tables the witness was
+rejected and removed.
+
+## 6. Trust surface
 
 - A **DEAD** verdict is an exact certificate: replayable characters and permutation images of
   the table group, jointly injective on `BA u {1}`.
