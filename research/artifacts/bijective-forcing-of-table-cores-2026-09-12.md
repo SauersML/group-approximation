@@ -208,6 +208,27 @@ translations and the same shear. Candidate sources of non-consequence:
 
 These are open design directions, not results.
 
+**Status of the transposition direction.** `gk-n-defect` computed the transposition exactly
+(`transposed-hinges-are-conjugated-commutators`, b7fef0670e). If `s m = s' m' = c`, the
+transposed hinge is `s'^(-1) [m'^(-1) m, c] s'`. I re-derived it: with `s = c m^(-1)` and
+`s' = c m'^(-1)`, both sides expand to `m' c^(-1) m'^(-1) m c m^(-1)`. Three consequences
+for designs:
+- **Marked-class identifications.** There `c = 1`, so their transposes hold in every
+  group. The Hilbert-hotel design of the canonical-table artifact dies at exactly this
+  case. The decisive reverse coincidences of a strict design are transposes of
+  identifications on unmarked classes, or reverse coincidences whose forward pair is
+  not identified at all.
+- **Shift–shear designs.** They leave the transposed hinges `[u_r^(-1), v_r]` alive in `P`,
+  and they are still bijective, because their reverse sufficiency never needs those
+  transposes. A failed transpose counts only if reverse sufficiency needs it.
+- **Linear rules over `F_2`.** Every sufficiency condition is a parity count, so the
+  minimal reverse partitions pair cells. Whether the needed transposed pairings hold in
+  `U_E` is direct finiteness of `F_2[U_E]` at that pair, as recorded in the Kaplansky
+  region.
+
+No rule pair whose reverse sufficiency needs the transpose of a forward-needed
+identification is known.
+
 ## 7. Injectivity over a surjunctive cover forces bijectivity everywhere
 
 Section 5 shows the relators forced in Theorem F come only from the decoder's choice of
