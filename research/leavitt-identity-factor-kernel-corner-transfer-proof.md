@@ -6,6 +6,7 @@ title: Amplify onto level-k cylinders and multiply by a diagonal-constant charac
 target: leavitt-identity-factor-failures-transfer-into-kernel-corners
 requires: [leavitt-unit-group-algebras-split-over-scalar-characters]
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-kernel-normal-forms-2026-09-12.md
 ---
 
@@ -18,3 +19,5 @@ Section 7 of the artifact.
 * The level criterion counts `(q-1)^(d^k - 1)` characters of `{lambda : lambda(0^k) = 1}` against at
   most `d^k` coordinate characters. The case `(3,2)` at level `1` is checked by listing subgroups.
 * Base change: `eps' = ((q-1)/(q'-1)) sum_t t^(-1)[t] eps_iota` over disjoint cosets `t G_q`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 18 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

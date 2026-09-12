@@ -6,6 +6,7 @@ title: Scalar-free constants with a representation-killed idempotent cut the sca
 target: leavitt-invisible-half-universal-over-every-finite-field
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/leavitt-invisible-corner-transfer-2026-09-12.md
 ---
 
@@ -27,3 +28,5 @@ Propositions 8 and 9, Corollary 10) of the artifact.
    * `d >= 3`: Zsigmondy primitive prime divisors of `q^d - 1`, citing Zsigmondy (1892) as a
      classical theorem, with blocks for `(2, 6)`.
    * `(3, 2)`: the level-two Klein group, after Proposition 9 shows level one is empty.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 18 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

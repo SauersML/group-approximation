@@ -10,6 +10,7 @@ requires:
   - leavitt-gl-equals-el-and-perfect-unit-group
   - binary-leavitt-unit-group-is-simple
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
@@ -35,3 +36,5 @@ artifacts:
 - **A prerequisite that can fail.** The open prerequisite is a class statement about all
   simple characteristic-`p` rings without ring rank models, and it does not mention the
   Leavitt algebra. A linear sofic `EL_3` over any such ring refutes it.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 17 (route valid; it establishes nothing while its prerequisite el3-rank-models-factor-through-ring-rank-models is open) of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

@@ -490,3 +490,77 @@ and `no-s0-lift-from-kernel-unitization-df`.
     multiplication table is exact, and `f_11 + f_22 = [g] + [g^2] = e`.
   - `pi(delta(x) f_ij) = s_i pi(x) t_j`.
 - **Routes.** All three are valid: the conversion is exhaustive, and a lift of `s0` is never a unit.
+
+## 17. Steinberg ring rigidity record (a9e3cf539, lane gk-l-gate-neg): proved parts PASS, claim correctly OPEN
+
+Items checked: `el3-rank-models-factor-through-ring-rank-models` (OPEN), route
+`non-linear-sofic-via-el3-ring-rank-rigidity`, artifact `el3-rank-ring-rigidity-2026-09-12.md`
+Sections 1 and 4.
+
+- **Lemma 1.** `x_ij(a)^p = x_ij(pa) = 1`. In characteristic `p`, `(1 + n)^p = 1 + n^p`, so
+  `n_ij(a)^p = 0` exactly, and root subgroups are abelian.
+- **Proposition 2.**
+  - The level-`k` matrix units give a unital `M_m(F_2)` inside `R`, so `SL_(3m)(F_2) = EL_3(M_m(F_2))`
+    lies in `EL_3(R)`.
+  - `s_a t_b = s_(a0) t_(b0) + s_(a1) t_(b1)` makes `g = g (x) I_2` an identity of elements, so the
+    type doubles from `r` to `2r`.
+  - The compressor sends coefficients to `s0 a t0 = s_(0a) t_(0b)`, which is `g (+) I` of type `r`,
+    and it is conjugate to `g` in `R^x`.
+  - Unipotent involutions of a fixed rank form one class in `GL_N(F_2) = SL_N(F_2)`, and exact
+    conjugation preserves `rk(sigma(.) - 1)`.
+  - So `f(2r) = f(r)`. The calibration is right: free modules satisfy it, so it cannot refute alone.
+- **Route validity.** Given the open prerequisite, the Leavitt no-rank-model theorem (Section 6,
+  characteristic two), `EL_3(R) = R^x`, and simplicity of `R^x`, a linear sofic approximation gives
+  a nontrivial homomorphism into a characteristic-two rank ultraproduct. The route is valid. It
+  establishes nothing while `el3-rank-models-factor-through-ring-rank-models` is open, and the
+  compiler status on main agrees.
+
+## 18. Kernel-corner criterion over every field and host (4b3f811f4, lane gk-l2-invisible; 2b72dd6f1): PASS
+
+Items checked: `leavitt-invisible-half-universal-over-every-finite-field` and
+`leavitt-identity-factor-failures-transfer-into-kernel-corners`, with their proof routes.
+
+- **Theorem 6.** `delta_n(q) = Theta_n(h)` forces `h = q I_n`, so a scalar-free `H` embeds
+  `Q x H` in `Q`.
+  - `z = J(1 (x) e)` with `pi(z) = Theta_n(rho_n(e)) = 0`.
+  - `mu(a) = J(a (x) e)` is injective because the tensor is nonzero over a field.
+  - `z mu(a) z = J(a (x) e^3) = mu(a)`, because the two tensor factors commute. Centrality of `e`
+    is not needed, as the author says.
+  - The three rings `S`, `K^+` and `zSz` are directly finite together, by padding in both directions.
+- **Existence at level one, `(q, d) != (3, 2)`.**
+  - For `d = 2`: `diag(lambda, lambda^-1)` with `lambda` of odd order `r | q - 1` is scalar-free
+    and has no fixed vectors. So is a non-split torus element of odd prime order `r | q + 1`, since
+    its eigenvalues are Galois conjugates and `gcd(r, q - 1) = 1`.
+  - Both `q - 1` and `q + 1` are powers of two only for `q = 3`. For `q = 2`, `r = 3` works.
+  - For `d >= 3`, a Zsigmondy primitive divisor of `q^d - 1` gives an irreducible, scalar-free
+    element, and `(2, 6)` is covered by `diag(g, g, g)`.
+- **Proposition 9, `(3, 2)` at level one.**
+  - A scalar-free subgroup of `GL_2(F_3)` contains no `-I`. So it has no elements of order 4 or 8,
+    whose powers give `-I`, and no element of order 6, since no reflection centralizes a
+    transvection. The subgroups are `1`, `C_2 = <reflection>`, `C_3 = <transvection>` and `S_3`.
+  - `C_2` idempotents project onto nonzero eigenspaces. `F_3[C_3]` is local.
+  - `F_3[S_3]` has the two simple modules, trivial and sign, both composition factors of the natural
+    module, so no nonzero idempotent is killed.
+  - Level two has the Klein constants, or an element of order 5 in `GL_4(F_3)`.
+- **Identity-factor form.**
+  - The level-`k` diagonal constants commute with `delta_k` and meet it only in scalars.
+  - `pi(E) = sum_(ev_gamma|H = psi) q_gamma = 0` when `psi` avoids every coordinate character.
+  - Counting characters of `{lambda : lambda(0^k) = 1}` gives `(q - 1)^(d^k - 1)` against at most
+    `d^k` coordinate characters.
+    - At `(3, 2)`, level one gives `2` against `2`, and every character is coordinate. Level two
+      gives `8 > 4`.
+    - At `(3, 3)`, level one gives `4 > 3`, and for `q >= 4`, `(q - 1)^(d-1) >= 3^(d-1) > d`.
+  - The level criterion holds, and `q = 2` has no diagonal constants.
+
+## 19. Cyclically separated pairs and full cyclic corners (4da43c652, lane gk-lp-hosts): PASS
+
+Item checked: `cyclic-separated-one-sided-pairs-equal-full-corners`.
+
+- **Sufficiency.** `(mc) e_H a = sum_k c [g^k] a = c a = eps_iota`.
+- **Converse under the twist.**
+  - `delta^m = sum zeta^(im) s_i t_i = 1`, and `[delta]^r e_1 [delta]^(-r) = e_(psi zeta^(-r))`, so
+    `e_H [delta]^r e_H = 0` for `r` not divisible by `m`. Hence `c a = (1/m) sum_j c' e_H b' = eps_iota`.
+  - `[g^i][delta]^l = zeta^(-il) [delta]^l [g^i]` on `A_iota`, and `[g^i] e_H = e_H`.
+  - So `c [g^i] a = (sum_j zeta^(-ij)) eps_iota = 0` for `0 < i < m`, as a sum of the `m`-th roots of
+    unity.
+- At `q = 3`, `m = 2` this recovers Theorem 1 of Section 1.
