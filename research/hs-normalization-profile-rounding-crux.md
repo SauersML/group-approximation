@@ -39,16 +39,43 @@ is a genuine partition of a point set; this asks for the same object as an
 exactly-central projection with a controlled dimension profile, extracted from
 an approximate unitary representation.
 
-**Why it is the crux.** With this lemma in hand, the positive branch of
-`hyperlinear-groups-kill-rigid-compression-defects` closes:
-`median-poincare-concentration` and `tracial-median-concentration` turn the
-rounded profile, made almost `G`-invariant by property (T) of `G`, into an
-asymptotically compressor-conserved size; monotonicity of the commutant along a
-compressor (`Ad sigma(t)` grows `A` one-sidedly) plus a conserved strictly
-monotone size forces `Ad sigma(t)` to preserve the center, which is
-normalization. The reduction skeleton is artifact Section 11; only this lemma
-and the concentration step remain open, so it is posed here as a standalone
-target rather than asserted as a proof route.
+**Why it is the crux.** This lemma is one of the two missing inputs of the
+positive branch of `hyperlinear-groups-kill-rigid-compression-defects`. The
+other is compressor conservation of the size. The intended chain:
+
+1. Round the approximate commutant center (this lemma).
+2. Form the size observable `M = sum_j size(z_j) z_j` over the rounded minimal
+   central projections, where `size` is the normalized block dimension.
+3. Make `M` almost conserved along each compressor. Property (T) does not supply
+   this; it is the mass-weighted matching clause `(MW)` of
+   `hs-per-atom-compressor-clause-is-vacuous`, and it is open.
+4. Use property (T) of `G` as a Poincare inequality
+   (`median-poincare-concentration`, `tracial-median-concentration`) to
+   concentrate `M`.
+5. The commutant grows one-sidedly along a compressor
+   (`A <= Ad sigma(t)(A)`), and a conserved strictly monotone size forces
+   equality, which is normalization.
+
+The skeleton is artifact Section 11. It is posed as a standalone target, not as
+a proof route.
+
+**What the chain does not consume.** It never asks an individual almost
+`t`-invariant central projection to be near an exactly `t`-invariant one, and it
+could not. `Ad sigma(t)` alone generates a cyclic, hence amenable, action, so
+there is no spectral gap in the compressor direction.
+
+- The finite-model fence `compressor-cycles-block-central-projection-rounding`
+  (hs-normalization-hunter, 2026-09-12) gives, in the congruence model, exactly
+  `Gamma`-central projections of order-one trace. They are `sqrt(2/m)`-almost
+  `t`-invariant and order-one far from every invariant central projection.
+- This is compatible with normalization. There `Ad pi(t)` cycles the minimal
+  central projections of `pi(Gamma)'` but restricts to an automorphism of
+  `pi(Gamma)'` (`ccr-holds-for-all-genuine-fd-coordinate-models`). The size
+  observable depends only on block dimension, so it is exactly invariant.
+
+So the admissible observables are dimension-valued functions of the profile, not
+arbitrary central projections. Normalization asks `Ad sigma(t)` to preserve the
+commutant as a set, not to fix its central projections.
 
 ## Attempts
 
