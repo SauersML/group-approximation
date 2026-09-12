@@ -35,22 +35,22 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
     [DecidableEq M.Dart] (hM : M.IsPlanar) {label : M.Dart → RelLetter G Lambda}
     (hlabel : ∀ d, label (M.alpha d) = RelWord.inv (label d)) (V : VanKampenData R M label)
     {b₁ b₂ : M.Dart} {xs us zs ws : List M.Dart}
-    (cycΠ : M.IsFaceCycle (b₁ :: xs)) (cycγ : M.IsFaceCycle (M.alpha b₁ :: (us ++ b₂ :: zs)))
-    (cycΣ : M.IsFaceCycle (M.alpha b₂ :: ws))
-    (hΠrel : M.faceOf b₁ ∈ V.relFaces) (hγrel : M.faceOf (M.alpha b₁) ∉ V.relFaces)
-    (hΣrel : M.faceOf (M.alpha b₂) ∈ V.relFaces)
-    (hΠO : M.faceOf b₁ ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
+    (cycP : M.IsFaceCycle (b₁ :: xs)) (cycγ : M.IsFaceCycle (M.alpha b₁ :: (us ++ b₂ :: zs)))
+    (cycS : M.IsFaceCycle (M.alpha b₂ :: ws))
+    (hPrel : M.faceOf b₁ ∈ V.relFaces) (hγrel : M.faceOf (M.alpha b₁) ∉ V.relFaces)
+    (hSrel : M.faceOf (M.alpha b₂) ∈ V.relFaces)
+    (hPO : M.faceOf b₁ ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
     (hγO : M.faceOf (M.alpha b₁) ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
-    (hΣO : M.faceOf (M.alpha b₂) ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
-    (hΠγ : M.faceOf b₁ ≠ M.faceOf (M.alpha b₁))
-    (hΣΠ : M.faceOf (M.alpha b₂) ≠ M.faceOf b₁)
-    (hΣγ : M.faceOf (M.alpha b₂) ≠ M.faceOf (M.alpha b₁))
+    (hSO : M.faceOf (M.alpha b₂) ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
+    (hPg : M.faceOf b₁ ≠ M.faceOf (M.alpha b₁))
+    (hSP : M.faceOf (M.alpha b₂) ≠ M.faceOf b₁)
+    (hSg : M.faceOf (M.alpha b₂) ≠ M.faceOf (M.alpha b₁))
     (hval : RelLetter.listVal ((zs ++ xs ++ us ++ ws).map label) = 1) :
     IsRelatorProduct R (V.relFaces.card - 2) (RelLetter.listVal (V.outer.map label)) := by
   classical
   -- the first merge: `Π` and `γ`
   obtain ⟨C₁, hC₁x, hC₁y⟩ : ∃ C : EdgeDeletion.MergeCycles M b₁,
-      C.xs = xs ∧ C.ys = us ++ b₂ :: zs := ⟨⟨xs, us ++ b₂ :: zs, cycΠ, cycγ, hΠγ⟩, rfl, rfl⟩
+      C.xs = xs ∧ C.ys = us ++ b₂ :: zs := ⟨⟨xs, us ++ b₂ :: zs, cycP, cycγ, hPg⟩, rfl, rfl⟩
   have hb₂C : b₂ ∈ C₁.xs ++ C₁.ys := by
     rw [hC₁x, hC₁y]
     simp
@@ -70,7 +70,7 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
     have h := congrArg ((label b₁).val * ·) htriv
     simpa using h
   have hrelF₁ : IsSignedConjugate R (RelLetter.listVal ((C₁.xs ++ C₁.ys).map label)) := by
-    have hsc := V.rel _ cycΠ hΠrel
+    have hsc := V.rel _ cycP hPrel
     rw [List.map_cons, RelWord.listVal_cons] at hsc
     have hval₁ : RelLetter.listVal ((C₁.xs ++ C₁.ys).map label) =
         ((label b₁).val)⁻¹ * ((label b₁).val * RelLetter.listVal (xs.map label)) *
@@ -79,10 +79,10 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
       group
     rw [hval₁]
     exact hsc.conj _
-  obtain ⟨V₁, hV₁outer, hV₁mem, hV₁card⟩ := V.exists_merge C₁ hne₁ hl₁ hl₁ne hΠO hγO True
+  obtain ⟨V₁, hV₁outer, hV₁mem, hV₁card⟩ := V.exists_merge C₁ hne₁ hl₁ hl₁ne hPO hγO True
     (fun _ => hrelF₁) (fun h => absurd trivial h)
   have hcard₁ : V₁.relFaces.card = V.relFaces.card := by
-    simp only [if_pos hΠrel, if_neg hγrel, if_pos trivial] at hV₁card
+    simp only [if_pos hPrel, if_neg hγrel, if_pos trivial] at hV₁card
     omega
   -- the dart `b₂` survives
   have hb₂avoid := C₁.avoid hb₂C
@@ -111,12 +111,10 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
     simp at hl₁rot
   have hl₁cons : l₁.rotate (xs.length + us.length) =
       b₂N :: (l₁.rotate (xs.length + us.length)).tail := by
-    have hhead : (l₁.rotate (xs.length + us.length)).head hl₁rne = b₂N := by
-      apply EdgeDeletion.value_injective M b₁
-      rw [hb₂N]
-      have h := congrArg List.head? hl₁rot
-      rw [List.head?_map, List.head?_eq_some_head hl₁rne] at h
-      exact Option.some.inj h
+    have hv : EdgeDeletion.value M b₁ ((l₁.rotate (xs.length + us.length)).head hl₁rne) = b₂ :=
+      head_eq_of_map_eq hl₁rot hl₁rne (List.cons_ne_nil _ _)
+    have hhead : (l₁.rotate (xs.length + us.length)).head hl₁rne = b₂N :=
+      EdgeDeletion.value_injective M b₁ (hv.trans hb₂N.symm)
     rw [← hhead]
     exact (List.cons_head_tail hl₁rne).symm
   have htail₁ : (l₁.rotate (xs.length + us.length)).tail.map (EdgeDeletion.value M b₁) =
@@ -125,37 +123,33 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
     rw [hl₁cons, List.map_cons] at h
     exact (List.cons.inj h).2
   -- the face `Σ` lifts
-  have havoidΣ : ∀ x ∈ M.alpha b₂ :: ws, x ≠ b₁ ∧ x ≠ M.alpha b₁ ∧ M.facePerm x ≠ b₁ ∧
+  have havoidS : ∀ x ∈ M.alpha b₂ :: ws, x ≠ b₁ ∧ x ≠ M.alpha b₁ ∧ M.facePerm x ≠ b₁ ∧
       M.facePerm x ≠ M.alpha b₁ := by
     intro x hx
-    have hfx : M.faceOf x = M.faceOf (M.alpha b₂) := (cycΣ.mem_iff x).mp hx
+    have hfx : M.faceOf x = M.faceOf (M.alpha b₂) := (cycS.mem_iff x).mp hx
     have hfpx : M.faceOf (M.facePerm x) = M.faceOf (M.alpha b₂) := by
       rw [M.faceOf_facePerm]
       exact hfx
-    refine ⟨fun h => hΣΠ ?_, fun h => hΣγ ?_, fun h => hΣΠ ?_, fun h => hΣγ ?_⟩
+    refine ⟨fun h => hSP ?_, fun h => hSg ?_, fun h => hSP ?_, fun h => hSg ?_⟩
     · rw [← hfx, h]
     · rw [← hfx, h]
     · rw [← hfpx, h]
     · rw [← hfpx, h]
-  obtain ⟨lΣ, hlΣ⟩ := EdgeDeletion.exists_map_value_eq M b₁ (M.alpha b₂ :: ws) fun x hx =>
-    ⟨(havoidΣ x hx).1, (havoidΣ x hx).2.1⟩
-  have hcycΣ := EdgeDeletion.isFaceCycle_of_avoid cycΣ havoidΣ hlΣ
-  have hlΣne : lΣ ≠ [] := by
+  obtain ⟨lS, hlS⟩ := EdgeDeletion.exists_map_value_eq M b₁ (M.alpha b₂ :: ws) fun x hx =>
+    ⟨(havoidS x hx).1, (havoidS x hx).2.1⟩
+  have hcycS := EdgeDeletion.isFaceCycle_of_avoid cycS havoidS hlS
+  have hlSne : lS ≠ [] := by
     rintro rfl
-    simp at hlΣ
-  have hlΣcons : lΣ = (EdgeDeletion.toCombMap M b₁).alpha b₂N :: lΣ.tail := by
-    have hhead : lΣ.head hlΣne = (EdgeDeletion.toCombMap M b₁).alpha b₂N := by
-      apply EdgeDeletion.value_injective M b₁
-      rw [hvα]
-      have h := congrArg List.head? hlΣ
-      rw [List.head?_map, List.head?_eq_some_head hlΣne] at h
-      exact Option.some.inj h
+    simp at hlS
+  have hlScons : lS = (EdgeDeletion.toCombMap M b₁).alpha b₂N :: lS.tail := by
+    have hv : EdgeDeletion.value M b₁ (lS.head hlSne) = M.alpha b₂ :=
+      head_eq_of_map_eq hlS hlSne (List.cons_ne_nil _ _)
+    have hhead : lS.head hlSne = (EdgeDeletion.toCombMap M b₁).alpha b₂N :=
+      EdgeDeletion.value_injective M b₁ (hv.trans hvα.symm)
     rw [← hhead]
-    exact (List.cons_head_tail hlΣne).symm
-  have htailΣ : lΣ.tail.map (EdgeDeletion.value M b₁) = ws := by
-    have h := hlΣ
-    rw [hlΣcons, List.map_cons] at h
-    exact (List.cons.inj h).2
+    exact (List.cons_head_tail hlSne).symm
+  have htailS : lS.tail.map (EdgeDeletion.value M b₁) = ws :=
+    (List.cons.inj ((congrArg (List.map (EdgeDeletion.value M b₁)) hlScons).symm.trans hlS)).2
   have hface₂ : (EdgeDeletion.toCombMap M b₁).faceOf b₂N ≠
       (EdgeDeletion.toCombMap M b₁).faceOf ((EdgeDeletion.toCombMap M b₁).alpha b₂N) := by
     intro h
@@ -165,15 +159,15 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
         C₁.xs ++ C₁.ys := by
       rw [← hl₁]
       exact List.mem_map.mpr ⟨_, hmemα, rfl⟩
-    rw [hvα] at hv
-    rcases C₁.faceOf_of_mem_append hv with h' | h'
-    · exact hΣΠ h'
-    · exact hΣγ h'
+    have hv' := (congrArg (fun z => z ∈ C₁.xs ++ C₁.ys) hvα).mp hv
+    rcases C₁.faceOf_of_mem_append hv' with h' | h'
+    · exact hSP h'
+    · exact hSg h'
   obtain ⟨C₂, hC₂x, hC₂y⟩ : ∃ C : EdgeDeletion.MergeCycles (EdgeDeletion.toCombMap M b₁) b₂N,
-      C.xs = (l₁.rotate (xs.length + us.length)).tail ∧ C.ys = lΣ.tail :=
-    ⟨⟨(l₁.rotate (xs.length + us.length)).tail, lΣ.tail,
+      C.xs = (l₁.rotate (xs.length + us.length)).tail ∧ C.ys = lS.tail :=
+    ⟨⟨(l₁.rotate (xs.length + us.length)).tail, lS.tail,
       (congrArg (EdgeDeletion.toCombMap M b₁).IsFaceCycle hl₁cons).mp (hcyc₁.rotate _),
-      (congrArg (EdgeDeletion.toCombMap M b₁).IsFaceCycle hlΣcons).mp hcycΣ, hface₂⟩, rfl, rfl⟩
+      (congrArg (EdgeDeletion.toCombMap M b₁).IsFaceCycle hlScons).mp hcycS, hface₂⟩, rfl, rfl⟩
   -- the outer face is off both merges
   have hheadO₁ : EdgeDeletion.value M b₁ (V₁.outer.head V₁.outer_cycle.ne_nil) =
       V.outer.head V.outer_cycle.ne_nil :=
@@ -189,7 +183,7 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
       exact List.mem_map.mpr ⟨_, hmemO, rfl⟩
     have hv' := (congrArg (fun z => z ∈ C₁.xs ++ C₁.ys) hheadO₁).mp hv
     rcases C₁.faceOf_of_mem_append hv' with h' | h'
-    · exact hΠO h'.symm
+    · exact hPO h'.symm
     · exact hγO h'.symm
   have hoffα : (EdgeDeletion.toCombMap M b₁).faceOf ((EdgeDeletion.toCombMap M b₁).alpha b₂N) ≠
       (EdgeDeletion.toCombMap M b₁).faceOf (l₁.head hl₁ne) := fun h' =>
@@ -198,7 +192,7 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
       (EdgeDeletion.toCombMap M b₁).faceOf (V₁.outer.head V₁.outer_cycle.ne_nil) := by
     intro h
     have hMf := C₁.faceOf_value_eq hne₁ hl₁ hx₀₁ h hoffα
-    exact hΣO ((congrArg M.faceOf hvα).symm.trans (hMf.trans (congrArg M.faceOf hheadO₁)))
+    exact hSO ((congrArg M.faceOf hvα).symm.trans (hMf.trans (congrArg M.faceOf hheadO₁)))
   have hN₁planar := EdgeDeletion.planar_of_neFace M b₁ hM (l₁.head hl₁ne) C₁.face_ne
   by_cases hne₂ : C₂.xs ++ C₂.ys = []
   · -- the merged face would be empty: the remaining edge carries the outer face
@@ -237,7 +231,7 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
       exact htail₁
     have e2 : C₂.ys.map (EdgeDeletion.value M b₁) = ws := by
       rw [hC₂y]
-      exact htailΣ
+      exact htailS
     exact List.map_append.trans (congrArg₂ (· ++ ·) e1 e2)
   have htrivF₂ : RelLetter.listVal
       ((C₂.xs ++ C₂.ys).map fun e => label (EdgeDeletion.value M b₁ e)) = 1 := by
@@ -260,7 +254,7 @@ theorem VanKampenData.isRelatorProduct_sub_two {R : Set G} {M : CombMap.{v}}
           (EdgeDeletion.toCombMap M b₁).faceOf ((EdgeDeletion.toCombMap M b₁).alpha b₂N) :=
       Quotient.out_eq _
     have hMf := C₁.faceOf_value_eq hne₁ hl₁ hx₀₁ hq (fun h => hoffα (hq.symm.trans h))
-    exact (congrArg (fun z => z ∈ V.relFaces) (hMf.trans (congrArg M.faceOf hvα))).mpr hΣrel
+    exact (congrArg (fun z => z ∈ V.relFaces) (hMf.trans (congrArg M.faceOf hvα))).mpr hSrel
   have hcard₂ : V₂.relFaces.card + 2 = V₁.relFaces.card := by
     simp only [if_pos hb₂rel, if_pos hαb₂rel, if_neg not_false] at hV₂card
     omega
