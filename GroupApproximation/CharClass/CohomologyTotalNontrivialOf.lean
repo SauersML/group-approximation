@@ -37,7 +37,7 @@ theorem cocycleClassK_zero_injectiveOf (K : Type) [CommRing K] (X : TopCat.{0})
       ((cochainCxK K X).shape 0 0 (by simp))
   have hinj : Function.Injective ((cochainCxK K X).homologyπ 0).hom :=
     (ModuleCat.mono_iff_injective _).1 inferInstance
-  have hcyc : (cochainCxK K X).cyclesMk φ (0 + 1) (by simp [ComplexShape.next]) hφ = 0 :=
+  have hcyc : (cochainCxK K X).cyclesMk φ (0 + 1) (ComplexShape.next_eq' _ rfl) hφ = 0 :=
     hinj (by rw [map_zero]; exact h)
   have h2 := iCycles_cyclesMkK K X 0 φ hφ
   rw [hcyc, map_zero] at h2
