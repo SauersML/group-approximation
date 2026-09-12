@@ -29,7 +29,11 @@ in `rho(F_+)`, and `rho(b''_j) != 1`.
    quotient of `G`. If the Linton radical meets `B_0`, every rationally solvable
    quotient kills that intersection
    ([[rational-solvable-weinbaum-visibility-boundary]]). So amenable targets
-   must be genuinely non-solvable, as in the Weinbaum packet problem.
+   must be genuinely non-solvable, as in the Weinbaum packet problem. This is
+   now exact: by [[magnus-piece-meets-nontrivial-linton-radical]], whenever
+   `R != 1` the radical meets `B_0` and dies in every target with trivial
+   rationally perfect radical. So free targets never work, and amenable targets
+   must have a nontrivial rationally perfect radical.
 3. **`H = G`.** *Circular.* It needs `G` sofic and the coset action
    `G action G/F_-` sofic, which is at least the target.
 4. **Virtually special hyperbolic pieces.** *Defined on the wrong group.* Then
