@@ -39,3 +39,39 @@ distinct_from:
   stop (`universal-torsion-free-hosts-not-sofic-or-locally-indicable`), but
   nonsoficity produces no matrix and no kernel projection.  No candidate
   matrix over the Fournier--Facio group has been computed.
+* **Supports built from one compressor.**  *Dead unless `Gamma` already
+  fails*.
+  - If `t Gamma t^-1` is a proper subgroup of `Gamma`, then `<Gamma, t>` is
+    an extension of a directed union of copies of `Gamma` by `Z`
+    (`one-compressor-support-atiyah-reduces-to-base`).  The same holds for a
+    left Ore compressor family with torsion-free elementary amenable quotient.
+    So a matrix supported there has integral kernel dimensions whenever
+    `Gamma` satisfies Strong Atiyah.
+  - Every positive Fournier--Facio compressor word is of this kind, and the
+    two letters admit no common left multiple.
+  - A counterexample over a compression host therefore needs a non-Ore
+    two-letter pattern.  Its normal closure contains amalgams of copies of
+    `Gamma` along compressed Kazhdan edge groups.  Strong Atiyah permanence is
+    known there only for finite edge groups (Sanchez-Peralta,
+    arXiv:2409.12268v2).
+* **Finite spectrum.**  *Dead* as a source of torsion-free counterexamples
+  independent of the Kadison--Kaplansky problem.
+  - If `A^* A` has finite spectrum, its kernel projection is a polynomial in
+    `A^* A`, so it is a projection in `M_n(Qbar[G])`.
+  - Its trace is rational by Zalesskii's theorem (see
+    `finite-spectrum-integral-elements-obey-determinant`).  A non-integral
+    value is a nontrivial idempotent trace, which refutes the
+    Kadison--Kaplansky conjecture for `G`.
+  - A counterexample not of that kind must have spectrum accumulating at `0`.
+* **Percolation coins, as in the lamplighter constructions.**  *Dies* at
+  torsion-freeness.  The Z/2 constructions multiply by the algebraic
+  idempotents `(1 + a_x)/2` of rank `1/2`.
+  - Over a torsion-free lamp group `L` that satisfies Strong Atiyah, the
+    division closure `D(L)` is a skew field.  It has no idempotents except 0
+    and 1, so a coin at fixed matrix size `1` does not exist.
+  - Coins in `M_2(D(L))`, such as the rank-one kernel projection of
+    `(1 - a, 1 - b)` over a free lamp group, commute across slots only after
+    tensoring.  That forces the matrix size to grow with the number of sites.
+  - Rational expressions in a fixed matrix size give no commuting independent
+    family of non-integral-rank projections.  This is a recorded reason, not a
+    theorem: no percolation mechanism over torsion-free lamps is known.
