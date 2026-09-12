@@ -116,6 +116,17 @@ Strictness is then automatic, since `s_0` is not a unit of `R`. Results so far:
   Without prune clauses, pairs with `supp a` in `B_4` and `supp b` in `B_3`, or
   `supp a` in `B_5` and `supp b` in `B_2`, were UNKNOWN at 2,400 s (about 470,000 AND
   variables). Pruned reruns are running.
+* **Exact span bound on the atlas charts**, by Gaussian elimination. Neither `s_0` nor
+  `t_0` lies in the span of `pi(B_2)`, and `s_0` lies in the span of `pi(B_3)`. So
+  every lift of `s_0` over these generators has support radius at least 3, and 3 is
+  attained.
+* **Two-sided mode on the atlas charts.** Also impose `pi(b) = t_0`.
+  - Every witness can be corrected to this form, by the Exhaustiveness item above.
+    The correction changes supports, so these runs restrict the search rather than
+    decide the one-sided instances.
+  - With prunes, the solver finds no pair with `(supp a, supp b)` in `(B_3, B_3)`
+    (0.19 s, 85,849 AND variables), `(B_4, B_3)` (981 s) or `(B_3, B_4)` (490 s), the
+    last two with 469,679 AND variables each.
 
 Where it dies: every support tried so far is too small. The UNSAT verdicts are
 CryptoMiniSat outputs without proof logs, so they record where nothing was found and
