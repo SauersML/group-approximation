@@ -69,17 +69,32 @@ DGO's Theorem 2.35 does assert both (d) and (e), so
 is correct and needs no change.  See the header of `OsinTheorem12NonDegenerate`,
 which quotes 2.35 in full and retracts an earlier claim to the contrary.
 
-## The prerequisite the Powers step will meet first
+## The prerequisite the Powers step will meet first, and it is already built
 
 `PowersFreeGroupCStarSimple` is stated for any group that *is* free of rank at
 least two, which is how the theorem reads, rather than for `FreeGroup X`.  A
-proof will therefore need `C*_r` to transport along a group isomorphism, and
-**that functoriality does not exist in this repository**: there is no
-`reducedGroupCStar` congruence along a `MulEquiv`.  `IsSimpleCStar` already
-transports along a ⋆-isomorphism (`IsSimpleCStar.of_starAlgEquiv`), so what is
-missing is exactly the ⋆-isomorphism `C*_r(G) ≃⋆ₐ[ℂ] C*_r(H)` induced by
-`G ≃* H`.  That is the first thing to build, and it is reusable well beyond
-this lane.
+proof will therefore need `C*_r` to transport along a group isomorphism.
+
+An earlier version of this paragraph said that functoriality does not exist in
+this repository.  **It does.**  `Analysis/ReducedGroupCStarCongr` supplies the
+⋆-isomorphism `reducedGroupCStarCongr (φ : G ≃* H) : C*_r(G) ≃⋆ₐ[ℂ] C*_r(H)`
+and, ready-made for this slice, the corollary
+`isSimpleCStar_reducedGroupCStar_congr`, which is exactly *"a proof of Powers'
+theorem for `FreeGroup X` reaches every group that is free of that rank"*.
+Nothing has to be built before the Powers step.
+
+## A cheaper route than the three C⋆ citations below
+
+`Manuscript/NonMF/DGO235UniqueTraceFromAveraging` replaces this whole slice by a
+single hypothesis.  Powers *averaging* — the estimate
+`ReducedGroupCStarTrace.PowersAveragingEstimate` — gives simplicity
+(`isSimpleCStar_of_powersAveragingEstimate`, landed) **and** uniqueness of the
+trace (`tracialState_eq_canonical_of_powersAveragingEstimate`), so
+`BKKOUniqueTraceOfCStarSimple` below is not needed at all: a tracial state is
+invariant under conjugation by the canonical unitaries, hence under averaging,
+and averaging drives `ker τ₀` into arbitrarily small balls.  The three citations
+below remain the faithful transcription of *DGO's own* proof, which is why they
+are kept; they are not the shortest path to the theorem.
 
 ## What the repository already supplies for steps 1--3
 
