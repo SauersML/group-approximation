@@ -310,6 +310,13 @@ ranks `delta_k`.
     on four disjoint cylinders, plus higher products.
   * This is the natural relation between cylinder defects at different depths, and the natural
     source of a strict deficit. I found no bound from it.
+  * **Later: halving by itself cannot give it** (w4-r4-orth, f25ccc5958; Section 5 of
+    `research/artifacts/rank-four-orthogonality-check-2026-09-12.md`). Every halving relation, the
+    swap included, lives in the locally finite group
+    `(iota_(A0)(UT_3(R)) x iota_(A1)(UT_3(R))) x| <iota_A(w)>`. Its regular rank model satisfies all
+    of them, with `delta = 3/8` and `f(2) = delta^2`, so `theta = 1`. A strict deficit must use
+    relations outside a locally finite group, such as opposite roots, the compressors, or corner
+    locality itself.
 * **The compressor collision** `q sigma(u) q != 0` and property (T) of `Gamma`. Neither enters
   Sections 2 to 4, and I found no way to turn either into an upper bound.
 

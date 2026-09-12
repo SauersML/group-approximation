@@ -212,3 +212,6 @@ payoff is `non-linear-sofic-group`.
     `leavitt-rank-triviality-via-strict-defect-submultiplicativity`), or some other operation that
     lowers fixed-point-free defects by a fixed factor. The natural input is the halving relation
     `iota_A(x_12(1)) = (1 + S[A00]T[A100])(1 + S[A01]T[A101])`. No bound is extracted yet.
+  - **Later: halving by itself cannot give theta < 1** (w4-r4-orth, f25ccc5958). Halving relations
+    live in a locally finite group whose regular rank model has `theta = 1`. A strict deficit must
+    use relations outside a locally finite group.
