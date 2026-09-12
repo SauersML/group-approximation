@@ -4650,6 +4650,7 @@ import GroupApproximation.KunThom.CentralizerNormalizationUniformMarkov
 import GroupApproximation.KunThom.CentralizerNormalizationUniformGood
 import GroupApproximation.KunThom.RetainedComponentExpansion
 import GroupApproximation.KunThom.BisectionActualDefect
+import GroupApproximation.KunThom.ComponentCountingRetainedMatchingSums
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
