@@ -69,7 +69,10 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
   have hbound : ∀ i j, M i j ≤ Mx := by
     intro i j
     calc M i j ≤ ∑ j', M i j' := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ j)
-      _ ≤ Mx := Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ i)
+      _ ≤ Mx := by
+        rw [hMx]
+        exact Finset.single_le_sum (f := fun i ↦ ∑ j', M i j') (fun _ _ ↦ Nat.zero_le _)
+          (Finset.mem_univ i)
   have hsplit : ∀ (k l : Fin n) (p : JacobsonSpace),
       ((G k l : ↥jacobsonAlgebra) : Module.End (ZMod 2) JacobsonSpace) p =
         ((G k l - (1 : Matrix (Fin n) (Fin n) ↥jacobsonAlgebra) k l : ↥jacobsonAlgebra) :
@@ -99,7 +102,7 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
   · obtain ⟨l, w⟩ := b
     have hw : Mx ≤ w := by
       by_contra h
-      exact hb (by simp [Finset.mem_sigma]; omega)
+      exact hb (by simp; omega)
     funext k
     rw [hbasis, hsplit, hM0 k l w ((hbound k l).trans hw), zero_add, hone, binaryPowerBasis_apply]
     by_cases h : k = l
@@ -107,7 +110,7 @@ theorem glAct_mem_binaryGLfs {n : ℕ} {g : GL (Fin n) ↥jacobsonAlgebra}
       rw [if_pos rfl, Pi.single_eq_same]
     · rw [if_neg h, Pi.single_eq_of_ne h]
   · obtain ⟨l, w⟩ := b
-    have hw : w < Mx := by simpa [Finset.mem_sigma] using hb
+    have hw : w < Mx := by simpa using hb
     refine mem_blockSpan_of_coeff fun k m hm ↦ ?_
     rw [hbasis, hsplit, Polynomial.coeff_add, hMc k l w m ((hbound k l).trans hm), zero_add, hone]
     by_cases h : k = l
