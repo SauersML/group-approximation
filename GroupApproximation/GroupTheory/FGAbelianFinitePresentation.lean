@@ -5,6 +5,8 @@ import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.Subgroup.Centralizer
 import Mathlib.RingTheory.Noetherian.Basic
+import Mathlib.RingTheory.PrincipalIdealDomain
+import Mathlib.Algebra.EuclideanDomain.Int
 import Mathlib.RingTheory.Finiteness.Defs
 import Mathlib.Algebra.Module.Submodule.Lattice
 import Mathlib.Data.Set.Finite.Basic
@@ -100,7 +102,8 @@ theorem isFinitelyPresented_of_commGroup (G : Type*) [CommGroup G] [Group.FG G] 
       rw [Subgroup.closure_le]
       rintro _ ⟨t, rfl⟩
       rw [SetLike.mem_coe, Subgroup.mem_centralizer_iff]
-      rintro _ rfl
+      intro m hm
+      rw [Set.mem_singleton_iff.mp hm]
       exact (hcentral t a).symm
     have hb := hle (hclosure b)
     rw [Subgroup.mem_centralizer_iff] at hb
