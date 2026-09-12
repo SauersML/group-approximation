@@ -22,11 +22,38 @@ loop separation is free, since `Embedded.Contiguity.target_ne_source` rules out
 the self-contiguous candidates that `SelfIncidenceSeparated` constrains.  See
 `Estimating/SelectionSelfIncidence.lean`.
 
-The drop branch is where the missing map-level surgery sits.
-`SurgeryMap.replaceGRegion` builds the collapsed `CombMap` and proves it planar
-and connected, but nothing describes its *faces*, so the retyped `DiscDiagram`,
-and hence `Surgery.GRegionReplacement`, cannot yet be constructed.  That is the
-single cross-lane gap behind this statement.
+The drop branch below is stated with `Surgery.GRegionReplacement`, and that is
+now known to be the wrong datatype for it.  **Prefer
+`Estimating/SelectionOrderedDichotomy.lean`**, which states the same dichotomy
+with `Surgery.OrderedGRegionReplacement` and closes the construction from it;
+`lemma65aOrderedDichotomy_of_lemma65aDichotomy` there shows the ordered form is
+the weaker of the two, so nothing proved here is lost.
+
+Two earlier sentences of this header have stopped being true and are corrected
+rather than deleted, because the reasons matter.
+
+* *"nothing describes the faces of the collapsed map."*  `SurgeryFacePartition`
+  and `SurgeryReclosedFaces` now classify them completely
+  (`replaceGRegionFaceEquiv`, with the two computation rules on retained darts
+  and the face count), `SurgeryFaceKept` and `SurgeryFaceNew` build an ordered
+  boundary for each kind, and `SurgeryFaceDiagram.replaceGRegionFaceBoundary`
+  assembles a choice for every face.  `SurgeryCutDiagram.RegionCutData.diagram`
+  retypes the collapse as a `DiscDiagram` for the complementary cut, and
+  `SurgeryGCellCollapse.InteriorGCellRegion.collapseDiagram` does it for an
+  interior region, which is the case this drop branch needs.
+* *"`Surgery.GRegionReplacement` is what the drop branch should produce."*  Its
+  `cells` field is a `Surgery.RCellEquiv`, a bijection between the two maps'
+  full potential-relator-record types, and
+  `SurgeryRCellEquivCounterexample.no_historical_transport` refutes that
+  requirement at two explicit discs with the same boundary and empty relator
+  lists.  A collapse that drops faces is exactly where the two record types
+  differ, so the branch as written below asks for a datatype the counterexample
+  rules out.  `Surgery.OrderedRCellTransport` asks instead only for the ordered
+  word and value lists, which a collapse preserves on the nose (issue #205).
+
+So the residue behind the ordered dichotomy is geometry, not a missing
+datatype: producing the disc region, and the word of value one that its
+boundary cycle must read, which is Osin's elimination of his condition `(∗)`.
 -/
 
 set_option linter.unusedVariables false
