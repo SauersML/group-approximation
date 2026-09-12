@@ -32,3 +32,15 @@ was known.  Now the candidates are the known nonsofic groups:
   retain the rank metric.
 - **Leavitt unit group.** Not attempted here.  A characteristic-two Kaplansky
   failure would push it the other way; see [[non-linear-sofic-group]].
+- **The complex-linear row of the defect criterion (2026-09-12, lane
+  `weakly-sofic-extension`).**
+  - A `C`-linear sofic group carrying a nontrivial rigid defect is nonsofic,
+    which answers Question 8.5 ([[linear-sofic-nonsofic-via-c-rank-row-defect]],
+    needing [[c-linear-sofic-group-carries-nontrivial-rigid-defect]]).
+  - The opposite outcome, [[c-linear-sofic-groups-kill-rigid-compression-defects]],
+    settles [[non-linear-sofic-group]] over `C` instead.
+  - Algebraic models of localization pairs normalize, so a witness needs
+    non-algebraic rank models.
+  - Property (T) forces no rank rounding over `C`
+    ([[kazhdan-rank-rounding-fails-over-every-field]]), so such models are not ruled
+    out.

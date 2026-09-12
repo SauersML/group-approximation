@@ -33,3 +33,16 @@ A non-weakly-sofic group would close this root for every field at once, by
 - **Kaplansky for the Kun--Thom wreath.** Dead: its group algebras are stably
   finite over every field ([[kun-thom-wreath-stably-finite]]), so the rank
   obstruction there must be genuinely metric.
+- **Transcribing the nonsoficity proof: dead in every rank row (2026-09-12, lane
+  `weakly-sofic-extension`).**
+  - Both permutation-specific steps of Kun--Thom 4.1 fail in normalized rank
+    over every field:
+    - rounding from property (T) ([[kazhdan-rank-rounding-fails-over-every-field]]);
+    - one-piece transport (`research/artifacts/rank-row-compression-audit-2026-09-12.md`,
+      Section 3).
+  - The criterion itself remains a win--win. Over `C` it is
+    [[c-linear-sofic-groups-kill-rigid-compression-defects]], and if it holds it gives
+    this root with `F = C` through [[non-linear-sofic-via-c-rank-row-defect]].
+  - Non-weak-soficity cannot be reached this way at all: the Kun--Thom wreath is weakly
+    sofic and carries a rigid defect ([[weakly-sofic-groups-can-carry-rigid-defects]]).
+  - See `research/artifacts/weakly-sofic-extension-metric-scope-2026-09-12.md`.
