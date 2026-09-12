@@ -172,7 +172,8 @@ theorem compConjInv_mem_geoF (hr : 1 ≤ r) {h : Equiv.Perm ℚ} (hh : h ∈ com
   obtain ⟨N, B, hA⟩ := compConjInvFun_gridAffine m r hh J hfix
   obtain ⟨Ni, Bi, hAi⟩ := compConjInvFun_gridAffine m r hhinv J hfix'
   have hr' : (1 : ℚ) ≤ r := by exact_mod_cast hr
-  obtain ⟨⟨hhm, -, -⟩, hh0, -⟩ := hh
+  have hparts := hh
+  obtain ⟨⟨hhm, -, -⟩, hh0, -⟩ := hparts
   refine ⟨⟨fun u u' huu' => ?_, ⟨N, B, hA⟩, ⟨Ni, Bi, hAi⟩⟩, fun u hu => ?_, r + J, 0,
     fun u hu => ?_⟩
   · show compEinv m r (h (compE m r u)) < compEinv m r (h (compE m r u'))
