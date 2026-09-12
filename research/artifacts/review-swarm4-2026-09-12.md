@@ -985,3 +985,63 @@ Checked against artifact Theorem A.
 
 **Import gap.** Both proofs rest on the Ahmad–Al-Mulla–Edjvet restatement of the Bogley–Pride weight test and
 on standard picture calculus. The lanes record this themselves, and it was not re-read here.
+
+## 30. `vertex-rounding-deep-nonunit-root-mass-vanishes` (66253a5d8, 3396c3df5, efe6ca919): PASS
+
+This is the highest-impact item in this artifact. It closes the fifth premise of
+`theorem-e-vertex-unit-type-via-deep-root-mass`, so unit-type rounding of the Theorem E vertex now follows from
+(H1) alone. The whole of `research/artifacts/nh-deep-mass-2026-09-12.md` §§1–5 was checked against the exact
+statements of the four premises at 200b50c18.
+
+- **Premises used within scope.**
+  - Item 1 of `unit-type-vertex-rounding-forces-compressor-commutant-rigidity`: finite Steinberg images, with
+    `R_+ -> B_n` onto.
+  - Item 1 of `vertex-rounding-non-unit-mass-at-origin`: intermediate places carry trace `<= 12η_n`.
+  - Item 3 of `nonunit-component-root-mass-is-log-scale-folner`: `η_n` per `d`-adic scale.
+  - Items 1 and 3 of `compressor-transport-exactifies-under-vertex-rounding`. These hold for every compressor
+    with all entries `>= 1`, so for `A^k` and for `B^k = P A^k P^-1` with `k` fixed. `A = L L^T` gives
+    `det A = 1`. Each `Ad M` maps `Γ` into `Γ` by fixed words, so `δ_n -> 0` for each fixed `M`.
+- **Lemma 1, exact invariance.**
+  - `h_31(u)` is a genuine element of `St_r(B_n)`, hence of `π_n(Γ)`. Conjugation by it scales `x_12(f)` by
+    `u^(±1)`, so `μ_n` is invariant under `χ -> χ(u·)`. This is exact, not approximate.
+  - Invariance under the finite group `U_0` gives the orbit disintegration.
+  - `Sh` is orbit-invariant because `u x^a A_0 = x^a A_0`.
+- **Lemma 2.**
+  - (a) `φ_M(x^(cw) R_+) ⊆ x^(cMw) R_+`.
+  - (b) The event is `u ∈ ker Λ`. `λ_0` factors through the local ring `A_0`, so a relation among the
+    `h_j = x^(cMw) y^j` gives `g R_+ ⊆ ker λ_0`, so `g ∈ J(χ_0)`. `y` is nilpotent there, so
+    `h_(j_0) ∈ J(χ_0)`, which contradicts `j_0 <= ℓ`.
+  - The rank count over `A_0` with residue field `F_q` gives `2q^-(ℓ+1)` over units. A uniform element of the
+    group pushes forward to the uniform measure on the orbit.
+- **Lemma 3.**
+  - `|E_k e_i|_j <= Cθ^k <= γ_k ℓ_i v_j`.
+  - `{t : ⌊tv⌋ ∈ Sh} = [0, s)`, by right-continuity of `⌊tv⌋` and down-closedness.
+  - `s >= depth` because `v <= 1`.
+  - Both inequalities for `c_i` check, the lower one because an integer vector below `x` lies below `⌊x⌋`.
+- **Parameters.** The order is `L`, then `k` (with `log((1+γ_k)/(1-γ_k)) < β/4`), then `K`, all independent
+  of `n`.
+  - `c_i >= L` follows from `ε < 1`.
+  - `c_i - L >= (1-ε)s/((1+γ_k)ℓ_iΛ)` from `s >= K`.
+  - `c^(1) >= ⌊(K-1)/N⌋` from `M1 <= N·1`.
+  - Three uses of Lemma 2(b) give `6q^-(L+1)`.
+  - Transported origin characters stay at the origin, since `φ_M(x_i)` is nilpotent in `R_+/J`, and unit
+    components stay unit type (item 1 of the Følner claim).
+- **Ratio and counting.**
+  - For `M_+`, `ρ > β - β/4 - β/4`. For `M_-`, the mirror bound uses `ℓ_B = Pℓ_A`, and the Perron vector of
+    `min(i,j)` increases, since `λ(v_d - v_1) = Σ(j-1)v_j > 0`.
+  - `E_+` and `E_-` are disjoint, and both lie in `{depth >= K′}` with `2 <= K′ <= K`. So
+    `μ_n(E_+) + μ_n(E_-) <= μ_n(depth >= K) + μ_n(K′ <= depth < K)`.
+  - Combined with `μ_n(E_±) >= μ_n(depth >= K) - 6q^-(L+1) - η_n^±`, this gives
+    `μ_n(depth >= K) <= μ_n(K′ <= depth < K) + 12q^-(L+1) + η_n^+ + η_n^-`, and the displayed conclusion follows.
+- **Limit.** For fixed `L`, every term except `12q^-(L+1)` tends to 0 along `U`. So the limit is `<= 12q^-(L+1)`
+  for every `L`, hence 0.
+- **Not re-derived.** The Milnor §9 conjugation formula for `h_31(u)` was used as stated, and it agrees with
+  conjugation by `diag(u^-1, 1, u)` in `GL_r`.
+
+**Reading.**
+- Together with §3 and item 5 of the shallow claim, every (H1) rounding of a trace-preserving representation of
+  the Theorem E actor becomes unit type after its non-unit constituents are trivialized.
+- `theorem-e-vertex-rounds-to-unit-type-representations` and `non-hyperlinear-group` stay OPEN. What remains is
+  (H1), `hs-stable-vertex-rounding-for-every-model`, a flexible Hilbert–Schmidt stability statement for the
+  higher-rank Kazhdan group `EL_r(F_q[x_1..x_d])`, together with the other premises of the Theorem A endgame.
+- Strict HS stability is impossible there (Becker–Lubotzky), and flexible HS stability of such groups is open.
