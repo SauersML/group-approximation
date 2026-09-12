@@ -3,6 +3,7 @@ rg: 2
 id: tracial-projection-comparison-forces-uniform-gamma
 kind: claim
 title: Projection comparison in the tracial ultrapower forces uniform property Gamma for nuclear algebras
+refuted_by: [gamma-failure-invisible-to-projection-comparison]
 distinct_from:
   stw99-problem-xix-uniform-gamma-stably-finite-nuclear: that universal assertion has no comparison hypothesis and is refuted by Toms; this adds comparison of projections by limit traces in every matrix amplification of the tracial ultrapower, which Toms's algebra fails.
   stw99-problem-xxi-tracial-rr0-implies-gamma: that assumes real rank zero of the tracial ultrapower, an existence property of projections; this assumes comparison of projections, a uniqueness property, and nothing about their existence.

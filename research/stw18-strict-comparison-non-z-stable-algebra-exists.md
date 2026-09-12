@@ -39,3 +39,18 @@ Known strata where no such algebra exists:
 - **Uniform property Gamma.** Toms's AH algebra without uniform property Gamma
   cannot serve: it fails strict comparison
   (`toms-gamma-counterexample-fails-strict-comparison`).
+- **Tracial shadow of a witness (2026-09-12).** In the unital case a witness
+  lacks uniform Gamma (`uniform-gamma-algebras-satisfy-toms-winter`).  Yet by
+  `strict-comparison-compares-ultrapower-projections` its uniform tracial
+  ultrapower compares projections by limit traces in every matrix amplification,
+  as a CPoU algebra would.
+  - So no certificate of the form "projections with dominated traces that are
+    not subequivalent" can exhibit a witness.  That excludes Villadsen
+    Euler-class gaps and Toms's Thom--Porteous degeneracy loci in every class of
+    building blocks.
+  - The obstruction must be invisible to projection comparison:
+    `gamma-failure-invisible-to-projection-comparison`.
+  - With locally finite nuclear dimension it must also fail rank density, so its
+    tracial ultrapower lacks projections of some continuous trace profile while
+    comparing all the projections it has.
+  See `research/artifacts/toms-winter-tracial-ultrapower-comparison-2026-09-12.md`.
