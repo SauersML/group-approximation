@@ -189,7 +189,7 @@ theorem cheeger_mul_sourceDefect_extractCrossing_le [Fintype L] [DecidableEq L]
           ext y
           have hy := congrArg
             (fun τ : Equiv.Perm (sumModel X Z) ↦ τ (Sum.inl y)) hσ
-          simpa using hy
+          exact Sum.inl_injective hy
         refine Prod.ext ?_ (Sum.inl_injective hx)
         calc q₁.1 = actX (Classical.choose hex₁) := (Classical.choose_spec hex₁).symm
           _ = actX (Classical.choose hex₂) := hact
@@ -298,7 +298,7 @@ theorem cheeger_mul_targetDefect_extractCrossing_le [Fintype L] [DecidableEq L]
           ext w
           have hw := congrArg
             (fun τ : Equiv.Perm (sumModel X Z) ↦ τ (Sum.inr w)) hσ
-          simpa using hw
+          exact Sum.inr_injective hw
         refine Prod.ext ?_ (Sum.inr_injective hz)
         calc q₁.1 = actZ (Classical.choose hex₁) := (Classical.choose_spec hex₁).symm
           _ = actZ (Classical.choose hex₂) := hact

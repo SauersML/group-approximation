@@ -1,6 +1,7 @@
 import GroupApproximation.KunThom.CentralizerNormalizationCrossingRepair
 import GroupApproximation.Matching.PartialEquivarianceComposition
 import GroupApproximation.Sofic.MultiplicativeApproximation
+import Mathlib.Algebra.Group.PUnit
 
 /-!
 # Two component models as one multiplicative approximation
@@ -202,7 +203,7 @@ theorem injOn_sumApproximation_map
   ext w
   have hw := congrArg
     (fun τ : Equiv.Perm (sumModel (modelX n) (modelZ n)) ↦ τ (Sum.inl w)) hxy
-  simpa [sumApproximation] using hw
+  exact Sum.inl_injective hw
 
 end Combined
 
