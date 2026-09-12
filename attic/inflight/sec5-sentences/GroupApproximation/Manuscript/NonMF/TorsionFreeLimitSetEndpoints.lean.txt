@@ -18,6 +18,13 @@ The endpoints of `TorsionFreeLimitSetNotion`, fed by the section's leaves:
   `TorsionFreePrinted.GerasimovaOsinTheorem11Printed`, the C⋆-algebraic inputs of
   `cor:regular-nonmf-algebra`;
 * for `lem:saturation` only, the hard direction of Osin's Theorem 1.1 (`hhard`).
+
+## Status: the residual hypotheses and who owns them
+
+The first six are those of `TorsionFreeLiteratureInputsLeastArea`, with their
+owners listed there.  `hhard` is
+`GGT.OsinClassification.isAcylindricallyHyperbolicOsin_of_limitSet`, in lane
+dgo-geometric (`OsinLimitSetSpelling`).
 -/
 
 namespace GroupApproximation

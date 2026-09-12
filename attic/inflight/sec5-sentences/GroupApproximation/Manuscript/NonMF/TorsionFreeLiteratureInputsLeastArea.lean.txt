@@ -51,6 +51,23 @@ Kotowski–Kotowski / Ollivier–Wise is the named hypothesis `hKO`.
 group (`hW`, the Hyde–Lodha slot), through
 `TorsionFreePrinted.fournierFacioParagraph_of_literatureInputs`.  The section's
 endpoints over the least-area leaves then need no paragraph hypothesis.
+
+## Status: the residual hypotheses and who owns them
+
+1. `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, the
+   least-area Greendlinger waist: lanes hull-select and hull-unbound.
+2. `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`, the embedded
+   bridge (Dahmani–Guirardel–Osin 4.24 in derivation form, letter pullback): lanes
+   hull-bridge and hull-component.
+3. `TheoremC.KotowskiOllivierStatement`: lanes kh-hyperbolic, kh-torsion, kh-ejz,
+   kh-cckw.
+4. `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`, the Hyde–Lodha
+   group: lanes simple-group, fff-periodic, fff-quotient.
+5. `TorsionFreePrinted.SimpleUniqueTraceAtHypEmbedded`: lane dgo-analytic; DGO 2.35
+   rests only on `NaiveFreeProductAtAcylindricallyHyperbolic` (lane dgo-geometric),
+   through `dgoTheorem235Printed_of_naiveFreeProduct`.
+6. `TorsionFreePrinted.GerasimovaOsinTheorem11Printed`: lane go-sr1, with
+   `exists_cyclic_hypEmbedded_twoSided` (lane dgo-geometric).
 -/
 
 namespace GroupApproximation
