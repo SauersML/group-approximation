@@ -26,3 +26,15 @@ an exact positive-rank tower if the rule is strict. No bound on those
 windows is known here that forces its seed to vanish. A universal
 sublinear-rank hypothesis is already false for a reversible rule over Z;
 the quantitative criterion cannot simply be applied to every rule.
+
+No permanence argument can supply it (2026-09-12). `U` contains the binary
+Leavitt unit group, which is finitely presented, simple, nonsofic and
+Kazhdan. `fixed-host-outside-sofic-permanence-closure` shows that no group
+built from sofic groups by subgroups, directed colimits, extensions, graphs
+of groups or marked limits contains such a group. Every landed
+surjunctivity permanence theorem is an instance of those operations, so the
+route `fixed-host-surjunctive-via-sofic-permanence` is dead. A proof here
+must handle automata on a simple nonsofic Kazhdan group directly. The same
+day the tester reduction was re-derived; it holds for each finite alphabet
+separately (Section 2 of
+`research/artifacts/fixed-host-permanence-closure-obstruction-2026-09-12.md`).
