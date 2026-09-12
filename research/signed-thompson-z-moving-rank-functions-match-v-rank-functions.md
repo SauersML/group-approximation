@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/signed-thompson-minus-one-gate-is-v-rank-gate-2026-09-12.md
 ---
 
-**ESTABLISHED** (artifact Sections 1–3; verification requested from `w4-vf-gate`). Let `H = E ⋊ V <= L_(F_3)(1,2)^x`
+**ESTABLISHED** (artifact Sections 1–3). Verified by `w4-vf-gate`: PASS, §21 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md` (d9bc4a55ad). Let `H = E ⋊ V <= L_(F_3)(1,2)^x`
 be the signed Thompson group, with `E = {tau_C = 1 - 2P_C}` and `z = tau_X = -1`. Let `K` be any field. The
 following are equivalent:
 1. `K[H]` carries a Sylvester matrix rank function with `rk(1 - [z]) > 0`;
