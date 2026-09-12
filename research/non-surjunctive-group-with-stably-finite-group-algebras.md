@@ -8,13 +8,15 @@ distinct_from:
   gottschalk-surjunctivity-conjecture: that is the universal positive statement; this is a sharper negation that excludes counterexamples coming from one-sided inverses in group algebras.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/z3-normal-rotation-and-eigen-hyperplane-rigidity-2026-09-12.md
 ---
 
 **OPEN.** There is a group `G` with `F_p[G]` stably finite for every prime `p`, and a finite alphabet,
 carrying an injective cellular automaton that is not surjective.
 
 **Why it is a separate target.** By `formal-polynomial-strict-pairs-need-unstable-linearization`, on
-such a host every strict pair over an alphabet `F_q^n` is **non-formalizable**: no representatives of
+such a host every strict pair over an alphabet `F_q^n` is **non-formalizable**, even after adding
+identity ancilla tracks, since `tau x id` is strict iff `tau` is. No representatives of
 the local rules make the left-inverse identity hold without `x^q = x`. No one-sided inverse in a group
 algebra can witness it.
 
@@ -35,10 +37,27 @@ algebra can witness it.
   (`multilinear-collapse-defect-does-not-obstruct-bijectivity`). So forcing `D(c) = 0` cannot close
   this target. The representative-independent property is formalizability, and sitewise binary pairs
   are always formalizable (artifact, Section 6.2).
-- **Binary-power alphabets.** `binary-left-inverse-pairs-are-formalizable` (open) would exclude
-  every alphabet of size `2^n` on hosts with stably finite `F_2[G]`, through
-  `stable-finiteness-forces-binary-surjunctivity`. A counterexample of this type over such an
-  alphabet is exactly a non-formalizable strict pair.
+- **Binary-power alphabets** (corrected by w3-nonformal).
+  - Plain formalizability is refuted (`binary-left-inverse-pairs-need-not-be-formalizable`).
+  - The live exclusions are stable and virtual: `injective-binary-automata-are-stably-formalizable`
+    and `injective-automata-over-fg-groups-are-virtually-formalizable`, both open. Each gives
+    `stable-finiteness-forces-binary-surjunctivity`.
+  - So a counterexample over an alphabet of size `2^n` on such a host must be an injective,
+    non-surjective automaton `tau` with two properties:
+    - for no `m` does `tau x id_m` have a left inverse forming a formalizable pair;
+    - no left inverse formalizes after regrouping along a finite-index subgroup of the memory group.
+- **One-track rigidity does not feed this target** (w3-nonformal).
+  - The `Z_3` obstructions concern one track: `z3-level-preserving-automorphisms-rotate-uniformly`,
+    `z3-equivariant-automorphisms-have-constant-normal-rotation`,
+    `z3-eigen-hyperplane-stabilizer-is-the-triangular-group`, and the open test
+    `z3-weight-one-rotation-is-not-an-automorphism-shadow`.
+  - With a second track, `(s, v_1 + s v_2, v_2)` is an equivariant automorphism with a non-uniform
+    shadow. Its normal derivative along the fixed plane has determinant 1. So neither the cone nor the
+    normal rotation survives stabilization.
+  - A decoder that needs a non-formalizable local rule must therefore be obstructed by an invariant
+    that survives identity tracks and regrouping.
+  - `marker-involution-over-rationals-is-not-virtually-formalizable` does not bear on this: it is
+    bijective, and the Kaplansky payoff localizes to the finitely generated memory subgroup.
 - **Candidate hosts.** Main has nonsofic groups whose characteristic-two group algebras are stably
   finite (`kun-thom-binary-wreaths-stably-finite-in-characteristic-two`). Main also has permanence
   results making related Kun–Thom wreaths and doubles surjunctive

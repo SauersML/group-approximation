@@ -99,3 +99,50 @@ equivalent:
 things: level-preserving automorphisms lie in G_tri, and G_tri has uniform shadows. Theorem B
 identifies G_tri as the full stabilizer of C. That stabilizer contains maps that do not preserve the
 level, such as (s + N, v).
+
+## 3. What a realization must do
+
+- **Index three.**
+  - The equivariant permutations of the eight Boolean points form a group E of order 36: swap 000
+    and 111 or not, then pick one of 18 equivariant bijections of O_1 ∪ O_2.
+  - K has index 3 in E and is not normal. The realized shadows form a subgroup S with K ⊆ S ⊆ E, so
+    S = K or S = E.
+  - So ρ is realizable iff some equivariant automorphism has a shadow outside K. After composing with
+    complementation, this means it rotates O_1 and O_2 by different powers R^(r_1) and R^(r_2).
+- **Normalization.** Composing with a power of R normalizes a realization to λ(T) = 1. No link
+  between λ(T) and r_1, r_2 is known.
+- **Shape on H.** On H, weight bookkeeping gives T_u|_H = ū²·g(s, ū³). A realization needs g ≠ 0.
+- **Line crossing.**
+  - Let γ(t) = (t, t+1, t+1), the rational line from 011 ∈ O_2 to 100 ∈ O_1. In coordinates
+    (s, u, ū) it is (t, 1, 1).
+  - Put p(t) = T_u(γ(t)) ∈ F_4[t]. Then p(0) = ω^(r_2) and p(1) = ω^(r_1).
+  - So r_1 ≠ r_2 forces p to be nonconstant. Then p has a root in F̄_2 ∖ F_2, and γ meets T^(−1)(H) at
+    a point outside A³(F_2).
+- **Monodromy form.**
+  - π: A³ ∖ Λ → Y_0 = (A³ ∖ Λ)/Z_3 is a Z_3-torsor.
+  - The curves π∘γ and π∘T∘γ share their endpoints [011] and [100], so together they form a rational
+    loop in Y_0.
+  - Lift π∘γ from 011 to 100. Then lift π∘T∘γ backwards from 100 by R^(−r_1)∘T∘γ, which ends at
+    R^(r_2 − r_1)·011. So the loop has monodromy r_2 − r_1.
+  - A realization is exactly an equivariant automorphism for which this loop has nontrivial
+    monodromy.
+- **Where it stops.** No structure theorem is known for equivariant automorphisms that move C. No
+  invariant is known that computes r_2 − r_1 outside G_tri.
+
+## 4. Scope for the counterexample target
+
+- **The reduction.** Suppose F_2[G] is stably finite. By
+  `stable-formalization-reduces-surjunctivity-to-kaplansky` and
+  `virtual-formalizability-reduces-surjunctivity-to-kaplansky`, a strict automaton over (F_2^n)^G is a
+  counterexample to both open claims `injective-binary-automata-are-stably-formalizable` and
+  `injective-automata-over-fg-groups-are-virtually-formalizable`.
+- **One-track invariants do not stabilize.**
+  - Theorems A and B, and `z3-level-preserving-automorphisms-rotate-uniformly`, use that V has
+    multiplicity one.
+  - With two tracks, T(s, v_1, v_2) = (s, v_1 + s v_2, v_2) is equivariant, with a non-uniform shadow
+    at level s = 1 (Section 5 of `formalizability-finite-levels-and-z3-rigidity-2026-09-12.md`).
+  - Its normal derivative along the fixed plane is the block matrix [[I, sI], [0, I]] on V², with
+    determinant 1. So the analogue of λ does not see its shadow, and there is no invariant cone.
+- **Consequence.** A decoder that needs a non-formalizable local rule on a stably finite host must be
+  obstructed by an invariant that survives identity tracks and regrouping. The multiplicity-one
+  rigidity of this artifact and its predecessor is not such an invariant.
