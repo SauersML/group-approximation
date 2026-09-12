@@ -143,3 +143,187 @@ Value (eabf84751).  WIRE top: `GroupApproximation.CharClass.OddPDescentValue`.
   Quot.sound]` throughout.
 * WIRE tops: `GroupApproximation.CharClass.OddPEvalNatural`, `GroupApproximation.CharClass.OddPEvalMultilinear`
   (both import `OddPEval`).
+
+## SCOPE 3 (2026-09-12, relaunch; routed from lix-steenrod): odd-primary operations. STOPPED BEFORE AUTHORING
+
+* On 2026-09-12 the lead's stop order ended the LIX-stronger program (user ruling: LIX strengthenings are below the
+  bar). It came before any `CharClass/OddPCochain*`, `OddPClasses*` or `OddPAdditive*` file was written, so nothing in
+  this block was authored, probed or landed. Nothing was in flight: the tree copies of `OddPEval`, `OddPEvalNatural`
+  and `OddPEvalMultilinear` are byte-identical to main, and `attic/inflight/lix-descent/` does not exist.
+* Interface on main the block would use:
+  * lix-steenrod's Δ0–Δ6: `OddPDiagonal.lean`, landed 7e2fb5081 but NEVER COMPILED. Its import
+    `OddPDiagonalAug` (93494e31f) is red at probe 0912-092529-64114: a heartbeat timeout in
+    `tupD_exists_preimage_stdSimplexTop_zmod`. So `OddPDiagonalSrc` (b07f2e96c) and `OddPDiagonal` were never
+    built. A restart has to make those three modules green before R1 can compile. The candidate fix is in
+    `notes/lix-stronger-lane-reports/lix-steenrod.md` under RED.
+  * E1–E8 from `OddPEval*` (above).
+  * `oddDiff`, `oddDiffW_castSucc`, `oddDiffS_succ`: `OddPSource`.
+  * `altCoeff`: `OddPResolution`.
+  * `grNorm_eq`, `grNorm_eq_grS_mul`: `OddPNorm`.
+  * `cochainOfFun`, `cochainEval_cochainOfFun`: `SteenrodCochain`.
+  * `cocycleClassK`, `classReprK`, `classReprK_isCocycle`, `cochainPullback_cochainCoboundaryK`,
+    `cohPullbackK_cocycleClassK`: `CoeffCohomology`.
+  * `cocycleClassK_add`: `CupOneComm`.
+  * `Hmod`, `cohCast`, `pull`: `CohomologyBasic`.
+  * `pull_eq_of_homotopyOf`: `KroneckerContractible`.
+* A grep of main at tip 15fdb7443 finds none of these: `oddD`, `redPow`, or a cochain-level exactness lemma (equal
+  classes ⇒ the cochains differ by a coboundary).
+
+### Residual statements (design shapes, NEVER ELABORATED; binders may change at first compile)
+
+Namespace `GroupApproximation.CharClass`, with the opens of `OddPDiagonal.lean`. `p` is an odd prime:
+`(p : ℕ) [Fact p.Prime] (hp : Odd p)`. Degrees are `ℕ`. The generator `e_j ⊗ σ` of `W ⊗ C(X)` in degree `k` is
+`Finsupp.single (⟨⟨k − j, _⟩, simplexEquiv X (k − j) σ⟩ : WSIndex k X) 1`.
+
+**R1** (`OddPCochain`): the cochain `D_j(u) ∈ C^{pq−j}(X; F_p)`.
+
+```lean
+noncomputable def oddD (p : ℕ) [Fact p.Prime] {X : TopCat.{0}} (q j : ℕ)
+    (u : singularCochainGroup (ZMod p) X q) : singularCochainGroup (ZMod p) X (p * q - j) :=
+  cochainOfFun (p * q - j) fun σ =>
+    tupEval (ZMod p) X p (p * q) (fun _ => Pi.single q u)
+      (oddDiagApp p X (p * q)
+        (Finsupp.single (⟨⟨p * q - j, Nat.lt_succ_of_le (Nat.sub_le _ _)⟩,
+          simplexEquiv X (p * q - j) σ⟩ : WSIndex (p * q) X) (1 : GroupRingZMod p)))
+```
+
+**R2** (the cocycle property):
+
+```lean
+theorem oddD_cocycle (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q j : ℕ) (hj : j ≤ p * q)
+    (u : singularCochainGroup (ZMod p) X q) (hu : cochainCoboundary (ZMod p) X q u = 0) :
+    cochainCoboundary (ZMod p) X (p * q - j) (oddD p q j u) = 0
+```
+
+Route: evaluate at a `(pq − j + 1)`-simplex `σ'`, with `x = e_j ⊗ σ'` in degree `pq + 1`.
+* By Δ1, `tupD (Δ x) = Δ (oddDiff x)`.
+* `tupEval (u^{⊗p}) (tupD (Δ x)) = 0` by E4'. This needs `gCoboundary (Pi.single q u) = 0`, which follows from `hu`.
+* The W-half `altCoeff (grS p) (grNorm p) _ • (e_{j−1} ⊗ σ')` dies:
+  * a `grS` coefficient by Δ5 and E5;
+  * a `grNorm` coefficient by Δ4 and E6, since `(p : ZMod p) = 0`.
+* The S-half `(−1)^j • (e_j ⊗ ∂σ')` evaluates to `(−1)^j · δ(oddD p q j u)(σ')`.
+
+Pushing finite sums through needs the helper
+`oddEvalHom p X k φ : OddWTensor p k X →+ ZMod p := AddMonoidHom.mk' (fun x => tupEval (ZMod p) X p k φ (oddDiagApp p X k x)) (by intro x y; rw [oddDiagApp_add, map_add])`.
+It works at the Finsupp, not at the ModuleCat carrier.
+
+**R3** (naturality; no `hp`):
+
+```lean
+theorem oddD_natural (p : ℕ) [Fact p.Prime] {X Y : TopCat.{0}} (f : X ⟶ Y) (q j : ℕ)
+    (u : singularCochainGroup (ZMod p) Y q) :
+    cochainPullback f (p * q - j) (oddD p q j u) = oddD p q j (cochainPullback f q u)
+```
+
+Route: `cochain_ext`, `cochainPullback_eval`, Δ2, E7 (`tupEval_tupMap`), `srcMapIdx` on the generator, and `Pi.single`
+commuting with the pullback (`cochainPullback_zeroOf` off degree `q`).
+
+**R4** (a coboundary change of `u` changes the class of `D_j(u)` by nothing):
+
+```lean
+theorem oddD_coboundary (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (m j : ℕ)
+    (hj : j ≤ p * (m + 1)) (u : singularCochainGroup (ZMod p) X (m + 1))
+    (hu : cochainCoboundary (ZMod p) X (m + 1) u = 0) (w : singularCochainGroup (ZMod p) X m)
+    (hu' : cochainCoboundary (ZMod p) X (m + 1) (u + cochainCoboundary (ZMod p) X m w) = 0) :
+    cocycleClassK (ZMod p) X (p * (m + 1) - j) (oddD p (m + 1) j u)
+        (oddD_cocycle p hp (m + 1) j hj u hu)
+      = cocycleClassK (ZMod p) X (p * (m + 1) - j)
+          (oddD p (m + 1) j (u + cochainCoboundary (ZMod p) X m w))
+          (oddD_cocycle p hp (m + 1) j hj _ hu')
+```
+
+Route: a cylinder. The direct telescoping primitive `Σ_k ± tupEval(u'^k, w, u^{p−k−1})` is not `T`-invariant, so its
+W-term does not die.
+* Set `Y = TopCat.of (X × unitInterval)`, with `pr`, `i₀` and `i₁`.
+* The homotopy `i₀ ≃ i₁` is `(t, x) ↦ (x, t)`; `map_zero_left` and `map_one_left` hold by `rfl`.
+* `V = cochainOfFun (fun σ => if simplexEquiv σ = simplexEquiv (pr σ) ≫ i₁ then w (pr σ) else 0)`, and
+  `U = pr^* u + δV`.
+* Then `δU = 0`, `i₁^* U = u + δw`, and `i₀^* U = u`, since `Δ^m` is nonempty (`stdSimplexTop_contractibleSpace`)
+  and `0 ≠ 1` in `I`.
+* Conclude by R3, `cohPullbackK_cocycleClassK` and `pull_eq_of_homotopyOf`.
+
+**R5** (`OddPClasses`): exactness, any `K`.
+
+```lean
+theorem exists_eq_add_coboundary_of_cocycleClassK_eq (K : Type) [CommRing K] (X : TopCat.{0}) (m : ℕ)
+    {φ ψ : singularCochainGroup K X (m + 1)} (hφ : cochainCoboundary K X (m + 1) φ = 0)
+    (hψ : cochainCoboundary K X (m + 1) ψ = 0)
+    (h : cocycleClassK K X (m + 1) φ hφ = cocycleClassK K X (m + 1) ψ hψ) :
+    ∃ w : singularCochainGroup K X m, φ = ψ + cochainCoboundary K X m w
+
+theorem eq_of_cocycleClassK_eq_deg_zero (K : Type) [CommRing K] (X : TopCat.{0})
+    {φ ψ : singularCochainGroup K X 0} (hφ : cochainCoboundary K X 0 φ = 0)
+    (hψ : cochainCoboundary K X 0 ψ = 0)
+    (h : cocycleClassK K X 0 φ hφ = cocycleClassK K X 0 ψ hψ) : φ = ψ
+```
+
+Route: the kernel of `homologyπ` is the range of `toCycles`. Mathlib at the pin has `homologyIsCokernel`
+(`ShortComplex/HomologicalComplex.lean:207`), `exact_of_g_is_cokernel` and `moduleCat_exact_iff_ker_sub_range`. Combine
+them with `cocycleClassK_add` and `iCycles_cyclesMkK`.
+
+**R6** (the reduced power `P^i : H^q → H^{q+2i(p−1)}`, index `j = (q − 2i)(p − 1)`, zero when `2i > q`):
+
+```lean
+theorem redPow_deg (p : ℕ) [Fact p.Prime] (q i : ℕ) (h : 2 * i ≤ q) :
+    p * q - (q - 2 * i) * (p - 1) = q + 2 * i * (p - 1)
+
+theorem redPow_index_le (p q i : ℕ) : (q - 2 * i) * (p - 1) ≤ p * q
+
+noncomputable def redPow (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q i : ℕ)
+    (x : Hmod (ZMod p) X q) : Hmod (ZMod p) X (q + 2 * i * (p - 1)) :=
+  if h : 2 * i ≤ q then
+    cohCast (redPow_deg p q i h)
+      (cocycleClassK (ZMod p) X (p * q - (q - 2 * i) * (p - 1))
+        (oddD p q ((q - 2 * i) * (p - 1)) (classReprK (ZMod p) X q x))
+        (oddD_cocycle p hp q ((q - 2 * i) * (p - 1)) (redPow_index_le p q i)
+          (classReprK (ZMod p) X q x) (classReprK_isCocycle (ZMod p) X q x)))
+  else 0
+```
+
+**R7** (instability), by `dif_neg`:
+
+```lean
+theorem redPow_eq_zero_of_lt (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q i : ℕ)
+    (h : q < 2 * i) (x : Hmod (ZMod p) X q) : redPow p hp q i x = 0
+```
+
+**R8** (the computation rule on any cocycle representative):
+
+```lean
+theorem redPow_mk (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q i : ℕ) (h : 2 * i ≤ q)
+    (u : singularCochainGroup (ZMod p) X q) (hu : cochainCoboundary (ZMod p) X q u = 0) :
+    redPow p hp q i (cocycleClassK (ZMod p) X q u hu)
+      = cohCast (redPow_deg p q i h)
+          (cocycleClassK (ZMod p) X (p * q - (q - 2 * i) * (p - 1))
+            (oddD p q ((q - 2 * i) * (p - 1)) u)
+            (oddD_cocycle p hp q ((q - 2 * i) * (p - 1)) (redPow_index_le p q i) u hu))
+```
+
+Route: `classReprK` of the class differs from `u` by a coboundary (R5; its degree-0 form when `q = 0`), then R4.
+
+**R9** (`OddPAdditive`): additivity.
+
+```lean
+theorem redPow_add (p : ℕ) [Fact p.Prime] (hp : Odd p) {X : TopCat.{0}} (q i : ℕ)
+    (x y : Hmod (ZMod p) X q) : redPow p hp q i (x + y) = redPow p hp q i x + redPow p hp q i y
+```
+
+Route:
+* Expand `(u + v)^{⊗p} = Σ_S φ_S` with `Finset.prod_add` and E8 (`tupEval_add_slot`).
+* Rotation permutes the mixed `S` freely, since `p` is prime. The sign is `+1`: every slot is in degree `q` and
+  `p − 1` is even.
+* This needs a new rotated-slot E5: `tupEval (ZMod p) X p k φ (tupT (ZMod p) X p k x) = tupEval (ZMod p) X p k (φ ∘ finRotate p) x`
+  for `φ` with every slot concentrated in degree `q`. The rotation direction is fixed at first compile.
+* Each orbit sums to `tupEval φ_{S₀} (Δ (grNorm p • (e_j ⊗ σ)))`.
+* The W differential is `d e_{j+1} = altCoeff (grS p) (grNorm p) j • e_j`. So `grNorm • e_j = d e_{j+1}` for odd `j`,
+  and `grNorm • e_j = d (grS^{p−2} • e_{j+1})` for even `j` (`grNorm_eq_grS_mul`).
+* By Δ1 and E4' the mixed part is therefore a coboundary.
+* Conclude with R8 and `cocycleClassK_add`.
+
+Closed endpoints (`def Printed… : Prop` + `theorem printed…` under `#audit_closed_axioms`) were not stated either.
+
+### GREEN at wind-down
+
+* SCOPE 1: all seven `OddPDescent*` modules are compiled on main (Domino 1a28ab8df, Value eabf84751).
+* SCOPE 2: `OddPEval`, `OddPEvalNatural` and `OddPEvalMultilinear` are compiled on main.
+* SCOPE 3: nothing. Every statement R1–R9 is open.

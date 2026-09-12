@@ -3,3 +3,4 @@ GroupApproximation/GGT/HullSCLemma51LetterFacts.lean
 GroupApproximation/GGT/HullSCLemma51LetterPullbackAtoms.lean
 GroupApproximation/GGT/HullSCLemma51LetterPullbackClose.lean
 GroupApproximation/GGT/HullSCLemma51LetterPullbackRotate.lean
+GroupApproximation/GGT/HullSCLemma51LetterPullbackInduction.lean

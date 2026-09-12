@@ -1,8 +1,52 @@
 # Lane `lix-cupone` — signed cup-1 over `K`, and the Kronecker/UCT + sphere port over a field
 
 Successor of `sp-cupone` (report `notes/lix-stronger-lane-reports/sp-cupone.md`, read in full).
-Clone `lix-l`.  Owns `CharClass/CupOne*`, `SteenrodCupOne*`, `Kronecker*`, `CohomologySphere*` and
+Clone `lix-d`.  Owns `CharClass/CupOne*`, `SteenrodCupOne*`, `Kronecker*`, `CohomologySphere*` and
 `CohomologyContractible*`.
+
+## STOPPED (2026-09-12 ~09:35)
+
+Stopped by the user ruling of 09-12, relayed by the lead: "LIX is too low impact. we should only do things
+HIGHER impact than non-MF".  No new authoring and no new probes.  At the stop no lix-cupone probe was running,
+and no lix-cupone file was unlanded or in the attic.  Nothing was deleted.
+
+GREEN on main (each module has its own compiled line, and the md5 on main matches):
+- Scope 1: `KroneckerSphereHomology`, `KroneckerSphere` (19c641d25), `CupOneTotal` (75844be91).
+- Scope 2: `OddPAcyclicAlgebra`, `OddPAcyclicSimplex` (8739ca3a8), `OddPAcyclicTag`, `OddPAcyclicSlot`,
+  `OddPAcyclic` (9b8b95eee), `OddPAcyclicZero`, `OddPAcyclicZeroAug` (c74ce78c3).
+- Scope 3: `CupVanishRepOf` (8f8fc1ab8), `CupVanishIterateOf` (9b557a363), `CohomologyTotalNontrivialOf`
+  (1e3038157).
+- The lead's wiring build already includes `OddPAcyclicZero`, `OddPAcyclicZeroAug` and
+  `CohomologyTotalNontrivialOf`.
+
+UNVERIFIED from this lane: none.
+
+Last target, not started.  The lead assigned the local K-gen chain after `LIXKGenLocalPair/Res/Nbhd/Linear`
+(`LIXKGenLocalHomotopy`, `…Legs`, `…Nonzero`).  lix-cupone sent a claim to lix-oddside at ~09:31, read the four
+building blocks and the specs (`sp-oddside.md` ~l.522, `sp-oddside-n.md` ~l.244), and authored nothing before
+the stop.  The claim is withdrawn.
+
+Residual.  lix-cupone owns no residual.  The open statement next to this last target belongs to lix-oddside and
+lix-oddside-n: it is the hypothesis `hlocal` of `KGen.kZeroStepCData_of_localNonzero`
+(`CharClass/LIXKGenLocalSplit.lean`), namely
+```
+def KGenLocalNonzero (n k : ℕ) {dd : Fin ℓ → ℕ}
+    {G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ}
+    (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Gen.Vmat n m) (G m))
+    (hGe : ∀ m, G m *ᵥ Sum.elim (aVecK n m) 0 = Sum.elim (bVecK n k m) 0)
+    (u : relCohomology (ZMod 2) (lixTotalPair n hGc hGu) (lixPuncturedInTotal n hGc hGu)
+      (2 * lixRank n dd)) : Prop :=
+  ∀ i : Fin (k + 1), ∃ B : Set (↥sphereOne × Gen.baseM n dd),
+    (∀ j, j ≠ i → lixKZero n k dd j ∉ B) ∧
+      (LIXKRelMV.restrictTo (ZMod 2) (X := lixN n dd) B
+          ((lixKZeroSet n k dd)ᶜ : Set (↥sphereOne × Gen.baseM n dd)) (2 * lixRank n dd)).hom
+        ((lixKSRel n k hGc hGu hGe (2 * lixRank n dd)).hom u) ≠ 0
+```
+The compiled inputs are the ball `lixKTrivBall`, the isomorphism `lixKLocalPairIsoClosed` (LocalPair),
+`lixKRes_lixThomClassTerm_ne_zero` (LocalRes), `injective_lixKShrink` (LocalNbhd) and
+`relPullback_lixKGHomeo_eq_id` (LocalLinear).  The lead's remaining modules are `LIXKGenLocalHomotopy`,
+`LIXKGenLocalLegs` and `LIXKGenLocalNonzero`.  None of them exists on main at the stop.  Their specification is the
+`KLocalNonzero` section of `sp-oddside.md` (~l.522, the kSect chart) and `sp-oddside-n.md` (~l.244).
 
 ## STEP 0 (2026-09-11 ~21:30)
 
@@ -43,7 +87,7 @@ the rank count of reduced `H₀(S⁰; K)` and, in cohomology, through `kronecker
 
 ## NEEDS
 
-- Clone `lix-l` (lixclone2, started 21:19; 8 of 12 clone directories exist at ~21:55).
+- None.  (The 09-11 ~21:55 wait for a clone ended when clone `lix-d` came up.)
 
 ## TRAPS
 

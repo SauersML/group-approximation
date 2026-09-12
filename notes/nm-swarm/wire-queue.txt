@@ -306,3 +306,4 @@ GroupApproximation.GGT.VanKampen.SurgeryPinchSplitExtremal
 GroupApproximation.Kazhdan.GHWArchimedeanSeparation
 GroupApproximation.Kazhdan.GHWArchimedeanBound
 GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeRegions
+GroupApproximation.GGT.SystolicDiscMovesChord
