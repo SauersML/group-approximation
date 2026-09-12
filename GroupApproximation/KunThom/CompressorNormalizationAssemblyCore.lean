@@ -1,7 +1,7 @@
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyDecomposition
 import GroupApproximation.KunThom.CompressorNormalizationAssemblyWords
 import GroupApproximation.KunThom.CountingEndgamePropsMedian
-import GroupApproximation.KunThom.CountingEndgamePropsOneSided
+import GroupApproximation.KunThom.CountingEndgamePropsCounting
 
 /-!
 # The per-compressor core over concrete data
@@ -21,13 +21,14 @@ whose embedding is the inclusion, which is the shape of the core consumed by
   `exists_compressorDecomposition`, `exists_kazhdanPair_retained` with
   `four_le_compressorRepairFactor`, and `generatorDefect_vanishing`.
 * Relative data are `CountingEndgame.CompressorRelativeData`, with its Props
-  `OneSided`, `Concentrated` and `Transported`.  `honesided` and `hmedian` are
-  discharged by `CountingEndgame.CompressorRelativeData.oneSided` and
-  `CountingEndgame.CompressorRelativeData.concentrated_of_oneSided`.
+  `OneSided`, `Concentrated` and `Transported`.  `honesided`, `hmedian` and `hcounting`
+  are discharged by `CountingEndgame.CompressorRelativeData.oneSided`,
+  `CountingEndgame.CompressorRelativeData.concentrated_of_oneSided` and
+  `CountingEndgame.CompressorRelativeData.transported`.
 
 `seqNormalizes_distinguished_of_steps` is the result.  Its open hypotheses are the
-matching error and `hmatching`, `hrep`, `hfunctor`, `hcounting` and `hhamming`, all
-stated over these concrete types.
+matching error and `hmatching`, `hrep`, `hfunctor` and `hhamming`, all stated over
+these concrete types.
 -/
 
 namespace GroupApproximation
@@ -97,10 +98,6 @@ theorem seqNormalizes_distinguished_of_steps {G : Type} [Group G] [Countable G]
           Vanishing F.threshold →
             (Vanishing fun n ↦ matchingError D n / F.threshold n) →
               Nonempty (CountingEndgame.CompressorRelativeData C.distinguished F))
-    (hcounting : ∀ (A : SoficApproximation G)
-      (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained)
-      (M : CountingEndgame.CompressorRelativeData C.distinguished F), M.Concentrated →
-        ∀ a : ∀ n, F.Bis n, ∃ b : ∀ n, F.Bis n, M.Transported a b)
     (hhamming : ∀ (A : SoficApproximation G)
       (D : CompressorDecomposition (normalizedSetup C hembed) A) (F : ClusterFrame D.retained)
       (M : CountingEndgame.CompressorRelativeData C.distinguished F) (a b : ∀ n, F.Bis n),
@@ -122,7 +119,7 @@ theorem seqNormalizes_distinguished_of_steps {G : Type} [Group G] [Countable G]
       exists_kazhdanPair_retained hTΓ D.retained (normalizedSetup C hembed).generatorsΓ_symmetric⟩)
     (fun _ D v hv ↦ generatorDefect_vanishing D.retained v fun s _ ↦ hv (s : G) s.2)
     hmatching hrep hfunctor (fun _ _ _ M ↦ M.oneSided) (fun _ _ _ M h ↦ M.concentrated_of_oneSided h)
-    hcounting hhamming
+    (fun _ _ _ M h a ↦ M.transported h a) hhamming
 
 end CompressorNormalizationAssembly
 end GroupApproximation
