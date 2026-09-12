@@ -83,6 +83,26 @@ refute this root.
   reduced spectral mass on both sides of the gap. For the Laplacian of a
   non-amenable group, the reduced spectrum sits entirely above the Ozawa gap
   (Kesten).
+- **Both dead ends are in the graph as an established claim:**
+  `subgroup-average-projections-give-no-reduced-bc-obstruction`
+  (baum-connes-leavitt, 5c522cf99). Kazhdan projections of infinite subgroups
+  vanish in `C*_r(G)`, compression relations collapse to equality under the
+  faithful trace, and averages over finite subgroups are trivial for
+  torsion-free groups.
+- **Lattice transfer: a live shape, but for the matrix trace form only.**
+  - *Setup.* Suppose `G` and a torsion-free `Gamma` act freely and cocompactly
+    on one complex `X`.
+  - *Transfer.* A gap projection `P = chi_[0,c](Delta_k)` of the combinatorial
+    Laplacian lies in both `M_n(C*_r(G))` and `M_m(C*_r(Gamma))`. Because its
+    diagonal is `Aut(X)`-invariant, `tau_Gamma(P) = r tau_G(P)` with
+    `r = |Gamma\X_0| / |G\X_0|`. This extends the proof of
+    `free-cocompact-lattices-proportional-l2-betti`, as observed by the
+    atiyah-computability lane.
+  - *Conclusion.* A non-integer `r tau_G(P)` refutes the torsion-free trace
+    conjecture for `Gamma`. It does not by itself give a 1x1 counterexample to
+    this root.
+  - *Existence.* The complex, which needs non-discrete `Aut(X)`, is the open
+    `complex-with-irrational-and-torsion-free-lattices`.
 - **Torsion-free Kazhdan hosts, no mechanism yet.**
   - Fournier--Facio's torsion-free nonsofic group (`fournier-facio-group-is-nonsofic`).
   - Torsion-free finite-index subgroups of `EL_3(Z[x_1,...,x_d])`: Kazhdan by
