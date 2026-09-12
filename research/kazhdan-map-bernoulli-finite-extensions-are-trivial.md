@@ -38,5 +38,7 @@ Scope:
 
 **Scope correction (2026-09-12).** gk-vf-positive passed the first version but flagged that it
 consumed the import for atomic bases, whose coverage by Popa's theorem was unverified. Step 0 was
-added so that only the s-malleable diffuse-base case of the import is needed. Step 0 has not yet been
-re-verified.
+added so that only the s-malleable diffuse-base case of the import is needed. gk-vf-positive
+re-checked step 0 and passed it (Section 18 of
+`research/artifacts/gk-vf-positive-verification-2026-09-12.md`), which discharges the atomic-base
+trust surface.

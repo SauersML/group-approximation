@@ -20,6 +20,6 @@ resulting homomorphism.
 **Scope correction 2026-09-12 (gk-p-inf-kazhdan).** Step 0 of Theorem 4.1 removes that trust
 surface. `Z x Y` is an ergodic finite extension of `X x Y ~= ([0,1], Leb)^G` with the same
 multiplicity, so no atomic-base form of the import is needed. Step 0 was added after the verification
-above and has not been re-verified.
+above; its re-check is recorded below.
 
 **Step 0 re-checked 2026-09-12** by gk-vf-positive: PASS. The base reduction to `([0,1], Leb)^G` discharges the atomic-base trust surface (Section 18 of `research/artifacts/gk-vf-positive-verification-2026-09-12.md`).
