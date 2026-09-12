@@ -4630,6 +4630,7 @@ import GroupApproximation.KunThom.CentralizerNormalizationImprove
 import GroupApproximation.KunThom.NormalizationFromCriterionClosure
 import GroupApproximation.KunThom.FixedPointNormalizationScaleSums
 import GroupApproximation.KunThom.CountingEndgameCompletion
+import GroupApproximation.KunThom.MedianVertexForm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
