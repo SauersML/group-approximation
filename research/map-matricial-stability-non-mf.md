@@ -32,20 +32,14 @@ has a name in the graph.
 
 ## Ideas
 
-**Stronger unconditional criterion, now source-checked.**  Two statements in
-Dadarlat, arXiv:2007.12655v2, combine directly:
+**The proposed unconditional Kazhdan strengthening is not certified.**
+Ozawa--Thom obstruct weak quasidiagonality for infinite Kazhdan groups
+without infinite residually finite quotients. Applying that theorem to MF
+requires an extra passage to completely positive approximations. The
+2026-09-11 audit records this missing premise in
+`research/artifacts/hyperbolic-four-statements-audit-2026-09-11.md`.
 
-- MF implies weak quasidiagonality;
-- Proposition 3.19, attributed to Ozawa--Thom: an infinite property-(T)
-  group that is weakly quasidiagonal has an infinite residually finite
-  quotient.
-
-Chained, these give: *an infinite Kazhdan group with no infinite residually
-finite quotient is not MF*.  Both statements and the proof of Proposition
-3.19 were checked in the primary PDF; no `gamma`-element, stability or
-linearity hypothesis enters this implication.  The simple-group consequence
-and its full-radical upgrade are recorded in
-`simple-kazhdan-groups-have-full-mf-radical`.  This strictly strengthens the
-present stability criterion on infinite simple Kazhdan groups, while the
-present criterion remains useful for minimally almost periodic groups
-without property `(T)`.
+The present criterion remains valid: the explicit matricial-stability
+assumption turns an MF approximation into genuine finite-dimensional
+representations, contradicting minimal almost periodicity. It does not
+use the disputed MF-to-weak-quasidiagonality implication.

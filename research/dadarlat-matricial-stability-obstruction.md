@@ -29,8 +29,12 @@ Schatten norm.  So it is point-norm in the intended sense.
 maps `phi_n : G -> M_(k_n)` satisfying his condition (1), there are
 homomorphisms `pi_n^(0), pi_n^(1)` with
 `lim ||phi_n(s) ⊕ pi_n^(0)(s) - pi_n^(1)(s)|| = 0` for all `s in G`.
-Matricial stability implies weak matricial stability; MF implies weak
-quasidiagonality.
+Matricial stability implies weak matricial stability. The introduction also
+prints an MF-to-weak-quasidiagonality arrow, but the 2026-09-11 source audit
+does not certify it: weak quasidiagonality requires completely positive
+maps, which raw MF approximations do not supply. That arrow is excluded
+from this imported claim. See
+`research/artifacts/hyperbolic-four-statements-audit-2026-09-11.md`.
 
 ## 2. The cohomological conclusion is rational cohomology, all nonzero even degrees
 
@@ -48,7 +52,7 @@ group, not of an almost-flat part.  The MAP conclusion comes along with it.
 
 ## 3. Which classes — Kazhdan groups are neither blanket-in nor blanket-out
 
-Two hypotheses carry the theorems: **weak quasidiagonality** (implied by MF)
+Two hypotheses carry the theorems: **weak quasidiagonality** (an extra completely positive approximation hypothesis)
 and existence of a **`gamma`-element** (satisfied by uniformly embeddable
 groups, so in practice rarely the binding one).  The binding constraint is
 weak quasidiagonality, and for Kazhdan groups it is governed by:

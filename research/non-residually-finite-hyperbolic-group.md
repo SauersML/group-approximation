@@ -128,11 +128,15 @@ finite residual. In particular, excluding persistent degree-two classes (the
 finite-residual shape above) would not settle this root: a free factor `Z`
 converts a finite residual into an infinite one.
 
-**2026-09-11: this root is also the MF question for hyperbolic groups.**
-[[hyperbolic-rf-question-equals-non-mf-question]] proves that a
-non-residually-finite hyperbolic group exists iff a non-MF hyperbolic group
-exists iff an infinite hyperbolic **Kazhdan** group without nontrivial finite
-quotients exists (Kapovich--Wise, Olshanskii's common hyperbolic quotients with
-a Kazhdan partner, Ozawa--Thom). So a counterexample may be assumed to have
-property (T) and no finite quotients at all, and it is automatically a non-MF
-group: [[non-mf-hyperbolic-group]] is this root's MF-program twin.
+**2026-09-11 audit: the first three hyperbolic assertions are equivalent;
+the MF extension is unresolved.**
+[[hyperbolic-rf-vtf-kazhdan-equivalence]] proves that a non-residually-finite
+hyperbolic group exists iff a non-virtually-torsion-free one exists iff an
+infinite hyperbolic Kazhdan group without nontrivial finite quotients exists.
+A non-MF hyperbolic group would imply all three, because residually finite
+groups are MF. The former reverse implication used an unsupported passage
+from MF to weak quasidiagonality. Therefore
+[[hyperbolic-rf-question-equals-non-mf-question]] is an open four-way target,
+not an established extension of this equivalence. The full audited proofs
+and the exact MF gap are in
+`research/artifacts/hyperbolic-four-statements-audit-2026-09-11.md`.

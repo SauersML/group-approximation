@@ -9,7 +9,12 @@ requires:
   - mf-kazhdan-group-without-finite-quotients-is-trivial
 ---
 
-An infinite Kazhdan group with no nontrivial finite quotient is not MF
-(Ozawa--Thom, through `mf-kazhdan-group-without-finite-quotients-is-trivial`).
-Applied to the word-hyperbolic group supplied by the input claim, this gives a
-word-hyperbolic group that is not MF.
+Assume `mf-kazhdan-group-without-finite-quotients-is-trivial`. Let `G` be the
+infinite hyperbolic Kazhdan group supplied by the other prerequisite. If `G`
+were operator MF, the first assumption would force `G=1`, contradicting
+infinitude. Hence `G` is a word-hyperbolic group that is not MF.
+
+This is a conditional implication. The 2026-09-11 audit
+`mf-to-weak-qd-citation-has-unproved-lifting-step` invalidates the old
+Ozawa--Thom justification for the first prerequisite: its actual theorem
+assumes weak quasidiagonality, with completely positive approximations.
