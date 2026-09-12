@@ -845,6 +845,48 @@ PASS. Two statement scopes were tightened forward.
 * **Section 5.** `x_l -> alpha` sends every `e_ij(x_l)` to `e_ij(alpha)`. Every `EL_r(F_q)` is
   transitive, the bound becomes `b <= r(r-1)d`, and the steps are `r`.
 
+## 26. Median matching has no Bernoulli entropy analogue (gk-rokhlin, f2817e87b)
+
+Reviewed: `median-matching-entropy-translation-2026-09-12.md` (`d9b77c760`), the established
+`median-matching-has-no-bernoulli-entropy-analogue` with its `-proof` route, the refuted
+`median-matching-transfers-to-bernoulli-partitions`, the invalidated route
+`leavitt-zero-supremum-via-median-matching`, and the canonical-host paragraph added to
+`bernoulli-rokhlin-deficit-has-a-finitary-witness`. Verdict: PASS. The refutation is sound, and
+the invalidation sits on the right route.
+
+* **Theorem 1.**
+  * The product basis `b_omega` is permuted by the shift, with no signs.
+  * The stabilizer of a nonzero name fixes the finite set `supp omega`, so it lies in
+    `supp(omega) f_0^-1` and is finite.
+  * `l^2(G/K)` embeds isometrically and equivariantly in `l^2(G)`. Restricted to `Gamma`,
+    `l^2(G)` is a sum of copies of `l^2(Gamma)` over right cosets.
+  * The Kesten gap passes to direct sums, and `s.(f - c) - (f - c) = s.f - f`.
+* **Proposition 2.**
+  * `SP \ P` splits over right cosets as `(S Q_c \ Q_c) c`, and Følner gives `h_S |P|`.
+  * The drift identity follows from `sum_(P ∩ s^-1 P) f(sz) = sum_P f - sum_(P \ sP) f`, with
+    `|P \ s^-1 P| = |P \ sP| = |sP \ P|`.
+* **The refuted disjunction.** `Gamma = EL_alpha(R)` is finitely generated, infinite and Kazhdan,
+  hence nonamenable.
+  * (1): a nonconstant `Gamma`-invariant observable contradicts Theorem 1.
+  * (2): a finite nonempty `P` with `SP = P` contradicts `|SP \ P| >= h_S |P| > 0`. Even more
+    simply, left translation is free, so a `Gamma`-invariant subset is infinite.
+* **Not killing a live route.** The invalidated route
+  `leavitt-zero-supremum-via-median-matching` requires the refuted claim, and nothing else
+  requires it. A route whose prerequisite has an established negation can never complete, so the
+  invalidation removes no viable implication. The target `leavitt-units-have-zero-rokhlin-entropy-supremum`
+  stays open, with its strict-automaton route intact.
+* **Scope.**
+  * Theorem 1 also covers almost-invariant observables, which are within `kappa_S^-1` times the
+    defect of their mean. So variants with vanishing defect die too.
+  * Non-free generalized Bernoulli shifts are correctly excluded; they do not bear on a free-action
+    deficit.
+  * Other certificate mechanisms are untouched. Section 3 of the artifact says so.
+* **Proposition 3.**
+  * Injectivity on `P = FE ∪ {1}` forces injectivity on `E` and `F`, and preserves coincidences
+    and equalities with `1`.
+  * The square presentation maps onto the pattern without extra coincidences.
+  * Free groups are sofic, hence maximal, so merging points is not monotone.
+
 ## 9. Trust surfaces not verified here
 
 * Kun--Thom, arXiv:2608.06222v3, Theorems A and E: the statements were read by

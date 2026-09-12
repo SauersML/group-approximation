@@ -7,6 +7,7 @@ target: median-matching-has-no-bernoulli-entropy-analogue
 requires: []
 artifacts:
   - research/artifacts/median-matching-entropy-translation-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Sections 1 and 2 of the artifact give complete proofs.
@@ -16,3 +17,5 @@ Sections 1 and 2 of the artifact give complete proofs.
   criterion gives the gap.
 * **Proposition 2.** Splitting `P` along right cosets of `Gamma` gives the Følner bound, and a direct
   rearrangement gives the boundary formula.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 26 of the verification artifact).

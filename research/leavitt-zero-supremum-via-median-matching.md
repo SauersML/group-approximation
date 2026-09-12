@@ -7,6 +7,7 @@ target: leavitt-units-have-zero-rokhlin-entropy-supremum
 requires: [openai-bounded-median-component-matching, leavitt-units-carry-nested-rigid-defect, median-matching-transfers-to-bernoulli-partitions]
 artifacts:
   - research/artifacts/median-matching-entropy-translation-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 **Dead.** The plan was to rebuild the step that sees the nonsoficity of `U` as partition counting over
@@ -24,3 +25,7 @@ of `U` the boundary has the order of its size.
 The device's usable output, invisibility of the defect in finite models, is necessary for a deficit and
 is already on record. No step of the device constructs a partition. Section 3 of the artifact says what
 a construction would still need.
+
+Verified 2026-09-12 by gk-verify-pos (Section 26 of the verification artifact). The refutation of the
+third prerequisite is sound. This route is the only node requiring it, so invalidating it removes no
+viable implication. The target stays open.
