@@ -142,27 +142,26 @@ theorem exists_germLeft {c d : ℚ} (hc : ∃ M, c ∈ Grid (m + 2) M) {f : Equi
   obtain ⟨⟨-, ⟨N, B, hA⟩, -⟩, hf0, -⟩ := hf
   obtain ⟨Mc, k, hk⟩ := hc
   have hcast : (((m + 2 : ℕ) : ℚ)) = (m : ℚ) + 2 := by push_cast; ring
-  let L := max N Mc
-  have hpos : (0 : ℚ) < ((m : ℚ) + 2) ^ L := pow_pos mTwo_pos L
-  have hinv : ((m : ℚ) + 2) ^ L * (((m : ℚ) + 2) ^ L)⁻¹ = 1 := mul_inv_cancel₀ hpos.ne'
-  obtain ⟨k', hk'⟩ : ∃ k' : ℤ, c * ((m : ℚ) + 2) ^ L = k' := by
-    refine ⟨k * ((m : ℤ) + 2) ^ (L - Mc), ?_⟩
-    have e : ((m : ℚ) + 2) ^ L = ((m : ℚ) + 2) ^ Mc * ((m : ℚ) + 2) ^ (L - Mc) := by
+  have hpos : (0 : ℚ) < ((m : ℚ) + 2) ^ (max N Mc) := pow_pos mTwo_pos (max N Mc)
+  have hinv : ((m : ℚ) + 2) ^ (max N Mc) * (((m : ℚ) + 2) ^ (max N Mc))⁻¹ = 1 := mul_inv_cancel₀ hpos.ne'
+  obtain ⟨k', hk'⟩ : ∃ k' : ℤ, c * ((m : ℚ) + 2) ^ (max N Mc) = k' := by
+    refine ⟨k * ((m : ℤ) + 2) ^ ((max N Mc) - Mc), ?_⟩
+    have e : ((m : ℚ) + 2) ^ (max N Mc) = ((m : ℚ) + 2) ^ Mc * ((m : ℚ) + 2) ^ ((max N Mc) - Mc) := by
       rw [← pow_add, Nat.add_sub_of_le (le_max_right N Mc)]
     rw [hcast] at hk
     rw [e, ← mul_assoc, hk]
     push_cast
     ring
   obtain ⟨s, ⟨i, rfl⟩, -, haff⟩ := hA.affine_fine (le_max_left N Mc) k'
-  have hg0 : gridPt (m + 2) L k' = c := by
+  have hg0 : gridPt (m + 2) (max N Mc) k' = c := by
     simp only [gridPt, hcast]
     rw [← hk', mul_div_assoc, div_self hpos.ne', mul_one]
-  have hg1 : gridPt (m + 2) L (k' + 1) = c + (((m : ℚ) + 2) ^ L)⁻¹ := by
+  have hg1 : gridPt (m + 2) (max N Mc) (k' + 1) = c + (((m : ℚ) + 2) ^ (max N Mc))⁻¹ := by
     simp only [gridPt, hcast, div_eq_mul_inv]
     push_cast
     rw [← hk']
     linear_combination c * hinv
-  refine ⟨i, (((m : ℚ) + 2) ^ L)⁻¹, inv_pos.mpr hpos, fun t ht1 ht2 => ?_⟩
+  refine ⟨i, (((m : ℚ) + 2) ^ (max N Mc))⁻¹, inv_pos.mpr hpos, fun t ht1 ht2 => ?_⟩
   have h := haff t (by rw [hg0]; exact ht1) (by rw [hg1]; exact ht2)
   rw [hg0, hf0 c le_rfl] at h
   exact h
@@ -172,29 +171,28 @@ theorem exists_germRight {c d : ℚ} (hd : ∃ M, d ∈ Grid (m + 2) M) {f : Equ
   obtain ⟨⟨-, ⟨N, B, hA⟩, -⟩, -, hf1⟩ := hf
   obtain ⟨Md, k, hk⟩ := hd
   have hcast : (((m + 2 : ℕ) : ℚ)) = (m : ℚ) + 2 := by push_cast; ring
-  let L := max N Md
-  have hpos : (0 : ℚ) < ((m : ℚ) + 2) ^ L := pow_pos mTwo_pos L
-  have hinv : ((m : ℚ) + 2) ^ L * (((m : ℚ) + 2) ^ L)⁻¹ = 1 := mul_inv_cancel₀ hpos.ne'
-  obtain ⟨k', hk'⟩ : ∃ k' : ℤ, d * ((m : ℚ) + 2) ^ L = k' := by
-    refine ⟨k * ((m : ℤ) + 2) ^ (L - Md), ?_⟩
-    have e : ((m : ℚ) + 2) ^ L = ((m : ℚ) + 2) ^ Md * ((m : ℚ) + 2) ^ (L - Md) := by
+  have hpos : (0 : ℚ) < ((m : ℚ) + 2) ^ (max N Md) := pow_pos mTwo_pos (max N Md)
+  have hinv : ((m : ℚ) + 2) ^ (max N Md) * (((m : ℚ) + 2) ^ (max N Md))⁻¹ = 1 := mul_inv_cancel₀ hpos.ne'
+  obtain ⟨k', hk'⟩ : ∃ k' : ℤ, d * ((m : ℚ) + 2) ^ (max N Md) = k' := by
+    refine ⟨k * ((m : ℤ) + 2) ^ ((max N Md) - Md), ?_⟩
+    have e : ((m : ℚ) + 2) ^ (max N Md) = ((m : ℚ) + 2) ^ Md * ((m : ℚ) + 2) ^ ((max N Md) - Md) := by
       rw [← pow_add, Nat.add_sub_of_le (le_max_right N Md)]
     rw [hcast] at hk
     rw [e, ← mul_assoc, hk]
     push_cast
     ring
   obtain ⟨s, ⟨j, rfl⟩, -, haff⟩ := hA.affine_fine (le_max_left N Md) (k' - 1)
-  have hg0 : gridPt (m + 2) L (k' - 1) = d - (((m : ℚ) + 2) ^ L)⁻¹ := by
+  have hg0 : gridPt (m + 2) (max N Md) (k' - 1) = d - (((m : ℚ) + 2) ^ (max N Md))⁻¹ := by
     simp only [gridPt, hcast, div_eq_mul_inv]
     push_cast
     rw [← hk']
     linear_combination d * hinv
-  have hg1 : gridPt (m + 2) L (k' - 1 + 1) = d := by
+  have hg1 : gridPt (m + 2) (max N Md) (k' - 1 + 1) = d := by
     rw [sub_add_cancel]
     simp only [gridPt, hcast]
     rw [← hk', mul_div_assoc, div_self hpos.ne', mul_one]
-  have hεpos : (0 : ℚ) < (((m : ℚ) + 2) ^ L)⁻¹ := inv_pos.mpr hpos
-  refine ⟨j, (((m : ℚ) + 2) ^ L)⁻¹, hεpos, fun t ht1 ht2 => ?_⟩
+  have hεpos : (0 : ℚ) < (((m : ℚ) + 2) ^ (max N Md))⁻¹ := inv_pos.mpr hpos
+  refine ⟨j, (((m : ℚ) + 2) ^ (max N Md))⁻¹, hεpos, fun t ht1 ht2 => ?_⟩
   have h := haff t (by rw [hg0]; exact ht1) (by rw [hg1]; exact ht2)
   have hb := haff d (by rw [hg0]; linarith) (le_of_eq hg1.symm)
   rw [hg0] at h hb
