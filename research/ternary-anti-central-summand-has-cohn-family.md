@@ -66,3 +66,10 @@ trace-compatible and sufficient (`ternary-anti-central-summand-has-quaternary-le
   - Over `F_9` the order-four Hadamard unit (`h_H^2 = z`) has spectral idempotents
     `(1 + zeta^-1 x + zeta^-2 x^2 + zeta^-3 x^3)/4`. These are non-monomial honest idempotents
     outside any cylinder partition, which is the kind of escape the dichotomy leaves open.
+  - Tested (lane w3-corner-cohn-b, `f9-hadamard-spectral-cohn-attempt-2026-09-12.md`).
+    - **Coefficients.** F_9 families are equivalent to F_3 families: `Phi = J o (rho (x) id)` is unital
+      (`f9-cohn-family-descends-to-anti-central-summand`).
+    - **Spectral halves.** The depth-one spectral halves `2(1 +/- i[h])` are conjugate through a
+      constant unit, and their fullness gives this claim (`hadamard-spectral-fullness-gives-f9-cohn-family`).
+    - **Collapse.** They reduce to 2x2 `F_3` designs on supports closed under right multiplication by
+      `h`, and admit no one-element-per-half lift. No witness.

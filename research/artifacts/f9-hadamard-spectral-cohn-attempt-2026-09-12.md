@@ -95,3 +95,53 @@ positive on nonzero idempotents. Then `c f_+ b != 1_-`.
 This is `anti-central-rank-models-kill-ternary-corner-witnesses` with `(h, u)` in place of
 `(w, d)`. F_9 does not relax the filter: the support subgroup must have no characteristic-three rank
 model that moves `z`.
+
+## 3. Collapse audit: what F_9 does and does not add
+
+**3.1 Changing the host to `G_9 = L_(F_9)(1,2)^x` collapses the spectral idempotent to a cylinder
+lift.**
+- **Characteristic polynomial.** `ih` is a depth-one involution: `tr(ih) = 0` and
+  `det(ih) = i^2 det(h) = -1`, so its characteristic polynomial is `x^2 - 1`.
+- **Conjugating constant.** Hence some constant unit `c` in `u(GL_2(F_9))`, a member of `G_9`,
+  satisfies `c (ih) c^(-1) = d = s0 t0 - s1 t1`.
+- **Cylinder lift.** In the identity-character factor of `F_9[G_9]`, where scalar group elements act
+  by their values, `i[h] = [ih]`. So `[c] f_+ [c]^(-1) = 2(1 + [d])`. Since `d = 1 + s1 t1` in
+  characteristic three, this is `1 - P_(s1 t1)`, the complement of an honest cylinder lift
+  (Section 3 of `ternary-anti-central-cohn-reformulation-2026-09-12.md`).
+- **Consequence.** On `G_9` every spectral design is a conjugate of a cylinder design, and its cross
+  terms are the ones computed there. On `G_3` the conjugator `c` is unavailable, because it has
+  irrational entries.
+
+**3.2 Over `G_3` with `F_9` coefficients, spectral designs are 2x2 designs over `F_3`.**
+- **Image of `f_+`.** Under `rho (x) id`, `f_+ = 2(1 + i[h])` maps to the idempotent
+  `P = 2 [[1, -[h]], [[h], 1]]` of `M_2(S_-)`. It is a half of `I_2`, conjugate to its complement.
+- **Reduction.** A design `c f_+ b = 1_-` over `F_9` is the same as a design `C P B = I_2` over `F_3`
+  whose entries are supported on the elements `g` and `gh`, for `g` in the original supports.
+- **Consequence.** F_9 adds no room beyond `M_2(S_-)`, and `S_-` already contains that unitally.
+  "Non-monomial at depth one" is available over `F_3` through `P`, and at depth two through the
+  Hadamard involution `H_2` already recorded on the quaternary claim.
+
+**3.3 Lemma (twisted halves are Galois-dense).** Let `R_9 = L_(F_9)(1,2) = R (+) iR` as an
+`F_3`-space. If `x, y` in `R` satisfy `x (1 + ih) = y (1 + ih)` in `R_9`, then `x = y`. The same holds
+on the left.
+
+*Proof.* `(x - y)(1 + ih) = (x - y) + i (x - y) h`. The rational part vanishes, so `x = y`. QED
+
+- **Consequence: no spectral monomial lift.** Take `a = lambda_+ [g_+] f_+ + lambda_- [g_-] f_-` with
+  `g_(+/-)` in `G_3` and `lambda_(+/-)` in `F_3^x`. Its evaluation is
+  `(lambda_+ g_+ + lambda_- g_-)/2 + i (lambda_+ g_+ - lambda_- g_-) h / 2`. For this to be `s0`, the
+  irrational part must vanish, which forces `lambda_+ g_+ = lambda_- g_-`. Then `s0` equals a unit,
+  which is false. So no lift of `s0` or `t0` uses one group element per spectral half.
+- **General case.** Lifts with `F_9` coefficients `alpha + beta i` split into rational identities
+  among `g_k` and `g_k h`. That is 3.2 again.
+
+**3.4 Where it dies.** Every spectral design is a two-by-two `F_3` design with supports closed under
+right multiplication by `h`. No candidate `b, c` is known. Any witness must meet three conditions:
+- its support uses non-constant units (constants live in locally finite subgroups);
+- at least two group elements on some half (3.3);
+- a support subgroup containing `z`, `h` and `u` with no characteristic-three rank model moving `z`
+  (Proposition 2.3).
+
+The only surviving content of the F_9 idea is that `h` in the support escapes the signed Thompson
+crossed product `C(M_-, F_3) (x| V`. Its Haar obstruction (`odd-measure-space-has-no-honest-thompson-compression`)
+covers monomial units only.

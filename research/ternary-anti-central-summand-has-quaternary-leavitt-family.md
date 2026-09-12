@@ -49,3 +49,16 @@ a counterexample to Gottschalk's conjecture on `G`.
   Hadamard constants combined with non-constant Thompson units. Inside the signed Thompson crossed
   product, the Thompson projection of the support must be nonamenable
   (`odd-measure-corner-witnesses-need-nonamenable-thompson-support`).
+- *The F_9 Hadamard idea, tested* (lane w3-corner-cohn-b, 2026-09-12,
+  `f9-hadamard-spectral-cohn-attempt-2026-09-12.md`).
+  - **Coefficients.** F_9 families are equivalent to F_3 families
+    (`ternary-anti-central-cohn-family-over-f9`): the regular representation followed by the
+    matrix-ring embedding is a unital map `S_-^(9) -> S_-`.
+  - **Spectral halves.** `f_(+/-) = 2(1 +/- i[h])` are conjugate halves through
+    `u = s0 t0 + s1 t0 - s1 t1`, and fullness of `f_+` gives the Cohn family
+    (`f9-hadamard-spectral-idempotent-is-full`).
+  - **Collapse.** On the host `G_9` they conjugate to cylinder lifts. Over `G_3` they are 2x2 `F_3`
+    designs supported on `{g, gh}`. By Galois density no lift uses one group element per half. The
+    rank-model state filter carries over.
+  - **Status.** No witness. The only new content is that `h` in the support escapes the monomial
+    crossed product.
