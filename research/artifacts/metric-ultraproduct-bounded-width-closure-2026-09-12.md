@@ -169,3 +169,77 @@ The last inclusion holds because `F/N_bar` is residually finite, hence LEF.
 
 Every positive theorem on record reaches at most `N_sof`. Every open positive statement in this region is one step
 of this ladder.
+
+## 3. Consequences, test hosts, and the rank calibration
+
+### 3.1 The linear sofic rung
+
+By `linear-sofic-implies-weakly-sofic-over-every-field`, `N_ws ⊆ N_lin(F)`, so the claim implies
+`linear-sofic-groups-are-surjunctive` (route `linear-sofic-surjunctivity-from-weak-sofic-case`). A proof of the claim
+therefore proves that groups linear sofic over a prime field are surjunctive over every alphabet. The only recorded
+route to that, `linear-sofic-surjunctivity-via-formalizability-and-ascent`, needs stable formalizability and
+alphabet ascent, and both are open.
+
+### 3.2 Does the rank calibration generalize?
+
+The linear calibration `linear-sofic-group-algebra-is-stably-finite` runs through a ring.
+- **Rank bound.** In a rank ultraproduct, `ba = 1 + e` with `rk e <= r` gives `dim ker a <= r`. So some invertible
+  `a'` has `rk(a - a') <= r`, and `b a' = 1 + e'` with `rk e' <= 2r`.
+- **Conclusion.** Then `ab - 1 = a' e' a'^-1 + (a - a')(1 + e') a'^-1` has rank at most `3r`.
+- **What it uses.** A Sylvester rank on an ambient matrix algebra that is small on the defects `d - 1` and bounded
+  below on `g - 1` for separated `g`.
+
+A finite group with a length carries no rank of this kind. The transfer works exactly when representation ranks
+dominate the lengths in both directions.
+
+**Proposition 3.1.** Let `(H_i, l_i)` define `Q`. Suppose there are representations `rho_i: H_i -> GL_(d_i)(F)` and
+constants `C, c, c' > 0` with:
+- `rk(rho_i(h) - 1) <= C d_i l_i(h)` for all `h`;
+- `rk(rho_i(h) - 1) >= c' d_i` whenever `l_i(h) >= c`.
+
+Then every countable subgroup of `Q` whose nontrivial elements have limit length at least `c` is `F`-linear sofic,
+and its group algebra over `F` is stably finite.
+
+*Proof.* Compose each weakly sofic approximation `phi_i` with `rho_i`.
+- **Defects.** `rk(rho_i(phi_i(a)phi_i(b)) - rho_i(phi_i(ab))) = rk(rho_i(phi_i(a)phi_i(b)phi_i(ab)^-1) - 1)`, which
+  is at most `C d_i eps_i`.
+- **Separation.** `rk(rho_i(phi_i(g)) - 1) >= c' d_i`.
+
+Stable finiteness follows from `linear-sofic-group-algebra-is-stably-finite`. QED
+
+So along invariant lengths, the direct-finiteness proof reaches exactly what representations make linear sofic, the
+rung `N_lin`. Beyond that rung the method has nothing to act on.
+
+The linear shadow of the claim is `weakly-sofic-group-algebras-are-stably-finite`: `F_q[G]` is stably finite for
+every finite field `F_q` and every weakly sofic `G`.
+- It follows from the claim through `stable-finiteness-failure-refutes-surjunctivity` (route
+  `weak-sofic-stable-finiteness-from-surjunctivity`).
+- No argument on record proves it without linear soficity.
+
+### 3.3 Test hosts
+
+- **The Kun–Thom Clifford cover `E_S`.**
+  - `kun-thom-clifford-cover-weakly-sofic` makes it weakly sofic. The permanence argument recorded there uses only
+    local finiteness of the kernel and residual finiteness of the quotient.
+  - So `kun-thom-clifford-cover-nonsurjunctive` refutes the claim.
+  - `clifford-cover-anti-half-skew-ring-not-directly-finite` refutes the linear shadow, because
+    `F_3[E_S] = F_3[W] x A_S` (`clifford-cover-group-algebra-splits-into-wreath-and-skew-ring`) and a one-sided
+    inverse in one factor, padded by `1` in the other, is one in the product.
+- **Leavitt unit groups.** If the claim and `leavitt-unit-group-nonsurjunctive` both hold, then `R^x` is not weakly
+  sofic, which would be a first non-weakly-sofic group. Read the other way: a strict automaton on `R^x`, together
+  with weak soficity of `R^x` (for instance `binary-leavitt-unit-group-is-f2-linear-sofic`), refutes the claim.
+- **The Deligne triple cover `E_3`** (from w4-deligne-twisted). Its central `z` lies in the finite residual, hence
+  in `cl(N)`. At `z`, `E_3` is weakly sofic exactly when `z` avoids every `cl(Cons_n(R))`: for each `n` some finite
+  quotient of the free group has `z` outside the products of `n` relator conjugates. No finite model has to separate
+  `z` itself.
+
+### 3.4 Where it stops
+
+- **Positive direction.** A proof must bound the conjugacy width of one reverse word over the forward relators,
+  uniformly over all finite quotients of `F(D)`.
+  - Finite surjunctivity gives membership in each normal closure, with no bound.
+  - Hamming transports give membership in `N_sof` only.
+  - No width bound on record applies to normal closures of relators in arbitrary finite quotients.
+- **Negative direction.** A counterexample is a Gottschalk counterexample whose weakly sofic reflection still
+  realizes it. The recorded weakly sofic nonsofic hosts are the Kun–Thom wreath, which is surjunctive, and `E_S`,
+  which is open.
