@@ -34,6 +34,15 @@ No witness has been constructed. Every witness must meet these constraints (arti
   in one of the two twisted group algebras of `Sp_4(Z)` in a characteristic `p != 3` (artifact Lemma 4.1).
   Their multiplier class is not inflated from any finite quotient, and no construction or obstruction is
   known.
+- **Linear route for p != 3, wired** (lane w4-deligne-twisted, `deligne-twisted-group-algebras-2026-09-12.md`).
+  - **Route:** a one-sided pair in a twisted algebra is `deligne-twisted-group-algebra-is-not-stably-finite`,
+    and it reaches this claim through `deligne-cover-nonsurjunctive-from-twisted-algebra-failure`.
+  - **Cost:** by `deligne-cover-linear-soficity-is-rank-projective-approximation`, such a pair also proves
+    `E_3` not `F_p`-linear sofic, so it is at least as hard as a rank-metric sector gap for the Deligne
+    multiplier.
+  - **Filter:** its support must keep `z` in the finite residual of its preimage (artifact Lemma 4.1).
+  - **Positive side:** rank-approximate projective representations kill the whole linear route in every
+    characteristic (`deligne-cover-stable-finiteness-from-rank-projective-models`).
 - **Table-level filter** (idea from lane w4-clifford-nonlinear, argued here; not a claim). A strict pair
   reads finitely many products of a finite window of `E_3`, hence finitely many values `a(g,h)` of a
   section cocycle.

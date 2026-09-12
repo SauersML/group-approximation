@@ -204,3 +204,64 @@ has a Folner truncation.
 - **Relation to the tracial fence:** this is the characteristic-`p` coordinate analogue of
   `deligne-fixed-projective-representation-folner-compression-no-go`. That one is for HS compressions of
   unitary projective representations and goes through amenable traces.
+
+## 4. Where it stops
+
+### 4.1 Virtually split supports are harmless
+
+**Lemma 4.1.** Let `Lambda <= Gamma` be finitely generated with preimage `H <= E_3`, and suppose
+`z notin Res_fin(H)`. Then `M_n(A_j(Lambda))` is directly finite for every `n`, where
+`A_j(Lambda) = F^(w^(ja))[Lambda]` is the subalgebra spanned by `s(Lambda)`.
+
+*Proof.*
+1. **A split finite-index subgroup.** Some finite-index normal `K <= H` misses `z`, so `K cap <z> = 1` and `K`
+   maps isomorphically onto a finite-index `Lambda' <= Lambda`. The inverse `Lambda' -> K` is a homomorphic
+   section, so `w^(ja)` restricted to `Lambda'` is the coboundary of a function `c : Lambda' -> <w>`, and
+   rescaling the basis by `c` gives `A_j(Lambda') = F[Lambda']`.
+2. **A matrix embedding.** `A_j(Lambda)` is a free right `A_j(Lambda')`-module on `s(t)` for a transversal `t`,
+   of rank `d = [Lambda : Lambda']`. Left multiplication gives a unital embedding
+   `A_j(Lambda) -> M_d(F[Lambda'])`.
+3. **Stable finiteness.** `Lambda'` is a finitely generated linear group, hence residually finite, hence LEF,
+   so `F[Lambda']` is stably finite (`lef-group-rings-over-stably-finite-rings-are-stably-finite`). Unital
+   subrings of stably finite rings are stably finite.
+
+So a witness for `deligne-twisted-group-algebra-is-not-stably-finite` has support `Lambda` with `z` in the finite
+residual of its preimage. This is the algebra form of w3-deligne's Theorem 3.2, and it excludes virtually
+free and amenable `Lambda`. Deligne's theorem gives the condition for every finite-index `Lambda`. For thin
+subgroups it depends on the subgroup, and nothing on main decides it.
+
+### 4.2 Positive side
+
+Stable finiteness of the twisted algebras needs rank-approximate projective representations
+(Theorem 2.1), or a direct argument that is not a rank model.
+- **Dead:** exact and bounded-dimension models (Lemma 1.1); coordinate truncations of fixed monomial modules
+  (Proposition 3.1); traces.
+- **Not killed by property (T):** non-monomial subspace truncations of one exact module, which must not be
+  locally finite, and intrinsically varying models.
+- **HS certificates:** `sp4-schur-kernel-meets-the-deligne-triple-class` would put `z` in the hyperlinear
+  radical through `schur-kernel-lies-in-hyperlinear-radical`. I have not checked whether that mechanism
+  constrains rank models over finite fields. Nothing on main says it does.
+
+### 4.3 Negative side
+
+A one-sided pair in some `M_n(A_j)` would be at once:
+- a strict linear automaton on `E_3`;
+- a proof that `E_3` is not `F_p`-linear sofic, the first non-linear-sofic group;
+- a rank-metric sector gap for the Deligne multiplier.
+
+Its support must keep `z` in the finite residual of its preimage (Lemma 4.1). No mechanism is known that
+turns a non-inflated multiplier into a one-sided inverse. The strict-pair designs on main all use a
+compression `R = R^2`, which `Sp_4(Z)` lacks.
+
+### 4.4 Literature status, honestly
+
+- **What main records:**
+  - hyperlinearity of `E_3` is open, with exact reformulations
+    (`deligne-sector-gap-is-exactly-nonhyperlinearity`);
+  - the MF radical is `1` or `C_3` (`deligne-triple-cover-exact-mf-radical` and its Attempts);
+  - soficity is open (`deligne-triple-cover-is-sofic`).
+- **Frobenius stability:** the de Chiffre--Glebsky--Lubotzky--Thom theorem, as recorded in
+  `notes/NOTEPAD.md`, concerns unnormalized Frobenius stability of `2`-Kazhdan groups. It is not about
+  normalized rank over finite fields.
+- **Unverified:** I read no source on soficity or linear soficity of Deligne's extensions. Any claim that
+  they are known to be sofic, linear sofic or non-approximable in rank is unverified here.

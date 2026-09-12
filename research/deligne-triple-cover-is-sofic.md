@@ -26,3 +26,13 @@ artifacts:
 - **Characteristic three.** `k[E_3]` is stably finite for `char k = 3`
   (`deligne-triple-cover-ternary-group-algebras-are-stably-finite`), consistent with soficity. It only
   proves what linear soficity in characteristic three would give.
+- **Characteristic p != 3** (lane w4-deligne-twisted, `deligne-twisted-group-algebras-2026-09-12.md`).
+  - Soficity would make `E_3` `F_p`-linear sofic (`sofic-implies-linear-sofic-over-every-field`).
+  - By `deligne-cover-linear-soficity-is-rank-projective-approximation`, that is exactly rank-approximate
+    projective representations of the Deligne multiplier in characteristic `p`.
+  - A one-sided pair in a twisted group algebra of `Sp_4(Z)` would therefore refute this claim.
+- **Truncating a fixed monomial module: dead.** A sofic approximation obtained by truncating one exact
+  monomial twisted module along coordinate Folner sets, such as a twisted induced module, does not exist.
+  Property (T) forces a finite orbit, whose line character separates `z` in a finite quotient
+  (`deligne-monomial-twisted-modules-have-no-folner-truncations`). Sofic approximations of `E_3`, if they
+  exist, must vary intrinsically with the ball.
