@@ -8,6 +8,7 @@ distinct_from:
   injective-ca-admit-countable-transitive-decoder-fiber: that seeks one countable classical decoder fiber; this seeks a multiplicative extension of a diagonal observable map.
 artifacts:
   - research/artifacts/gottschalk-quantum-compression-2026-09-07.md
+  - research/artifacts/gottschalk-product-trace-zero-one-law-2026-09-12.md
 ---
 
 For every infinite group G, finite nonempty alphabet A, and injective
@@ -36,3 +37,22 @@ homomorphism extension, through the finite matrix-unit identities.
 Existence of such an extension therefore cannot be asserted without
 settling the original surjectivity question. Lattice quantum-reversibility
 results do not provide that all-group existence theorem.
+
+**This criterion is the goal restated (2026-09-12).** For each automaton,
+Section 4 of the compression artifact gives onto => extension and Section 5
+gives extension => onto. The converse route
+`matrix-observable-extension-from-surjunctivity` closes the cycle with
+`gottschalk-via-matrix-observable-extension`. That cycle is the house
+encoding of an equivalence, so this claim renames the goal rather than
+reducing it.
+
+**Trace-level weakenings are restatements too (2026-09-12).** By
+`injective-ca-product-trace-zero-one-law`, for each injective automaton the
+image measure either equals the uniform measure or is singular to it. Every
+state extending the product trace takes the range projection to 0 or 1, and
+the compression is tracial, or multiplicative, exactly in the onto case.
+Tracial compatibility, positivity of the range projection, and absolute
+continuity of the image measure are each equivalent to surjectivity. No trace
+inequality can be an intermediate step. A replacement has to count at
+per-site logarithmic scale, where the square-alphabet hypothesis acts, and
+rectangular sections pass every structural test here without being onto.

@@ -20,3 +20,11 @@ the encoder is onto. This proves the goal conditionally.
 
 The extension premise is still open. The local completely positive
 compression constructed in the artifact does not discharge it.
+
+The route is valid, but its open premise is equivalent to the target
+(2026-09-12). The converse route is
+`matrix-observable-extension-from-surjunctivity`, and the two routes form
+a deliberate cycle. `injective-ca-product-trace-zero-one-law` shows the same
+for every trace-level weakening of the premise, automaton by automaton.
+Progress here therefore needs a per-site logarithmic invariant, not a
+different operator extension.
