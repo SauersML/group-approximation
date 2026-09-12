@@ -72,6 +72,18 @@ presentation of the witness.  The criterion lets the basis be chosen, so a
 universal no-go cannot be a statement about one face; it has to be
 basis-free.
 
+**Calibration of face (S2)** (`fournier-facio-dimension-face-holds-every-approximation`).
+Take any ordinary normalized-HS approximation `phi_n:G -> U(d_n)`.  Rotate
+each block by a Haar unitary whose columns concentrate (Levy), and put the
+ultralimit of uniform block charges on the disjoint union of the bases.  This
+gives a Kahl--Schneider witness on face (S2) with trivial block action.  So
+face (S2) contains every hyperlinear approximation.  Its recorded laws (block
+dimension escape, spectral escape, Haar fixed-sector law) cost an actual
+approximation nothing beyond the regular character.  No combinatorial fence on
+(S2) can close the positive branch without proving nonhyperlinearity outright.
+The exotic face is (S1); a universal no-go has to act on (S2), that is, on
+ordinary normalized-HS approximations.
+
 ## 3. New core: a wreath shift inside `G`
 
 Put `J_k=t^k J t^-k` for `k in Z`.  The following are proved in
