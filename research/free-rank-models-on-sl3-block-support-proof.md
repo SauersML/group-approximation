@@ -6,6 +6,7 @@ title: The wrong-order product of two unit root elements is nonzero on free modu
 target: free-rank-models-on-sl3-admit-no-block-support
 requires: []
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
@@ -28,3 +29,5 @@ Complete proof: artifact Section 4e, Proposition 10 and Example 11.
     separating model.
   - Its restriction to `H_0` is free of rank `[SL_(3 p^k)(F_p) : H_0]`, so
     `mu = 1/|H_0|`.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 34 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

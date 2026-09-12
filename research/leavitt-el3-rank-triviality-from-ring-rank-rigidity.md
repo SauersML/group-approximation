@@ -7,6 +7,7 @@ target: leavitt-el3-rank-models-over-finite-fields-are-trivial
 requires:
   - el3-rank-models-factor-through-ring-rank-models
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ artifacts:
     contradicts `C(1) = 1`.
 - So `R` meets the hypothesis of `el3-rank-models-factor-through-ring-rank-models`, which then
   makes every characteristic-`p` rank model of `EL_3(R)` trivial.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 34 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

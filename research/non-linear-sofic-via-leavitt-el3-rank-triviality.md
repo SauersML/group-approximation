@@ -7,6 +7,7 @@ target: non-linear-sofic-group
 requires:
   - leavitt-el3-rank-models-over-finite-fields-are-trivial
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/el3-rank-ring-rigidity-2026-09-12.md
 ---
 
@@ -29,3 +30,5 @@ artifacts:
   sofic `EL_3` over any other simple ring.
 - It runs parallel to `non-linear-sofic-via-el3-ring-rank-rigidity`, whose prerequisite is the
   class statement.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 34 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

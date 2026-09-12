@@ -1092,3 +1092,48 @@ Section 25 of that artifact tightens the scope of the last two.
   `leavitt-one-sided-pairs-unit-translates-via-projective-monoid`. The elementary route through Lemmas 1 to 3
   of `leavitt-inverse-defect-normal-forms-2026-09-12.md` (verified in Sections 8 and 13) carries the same
   conclusion with no import. No Gottschalk decision rests on this citation alone.
+
+## 34. Leavitt instance claim, its routes, and free content (e53fe8884, lane gk-l-gate-neg): PASS, one scope remark
+
+Items checked: `leavitt-el3-rank-models-over-finite-fields-are-trivial` (OPEN), routes
+`non-linear-sofic-via-leavitt-el3-rank-triviality` and `leavitt-el3-rank-triviality-from-ring-rank-rigidity`, the
+established `free-rank-models-on-sl3-admit-no-block-support` with its route, and artifact Section 4e.
+
+- **Instance claim.** The statement is faithful. It is correctly OPEN, and it carries the payoff on its own route,
+  which answers the Section 29 recommendation.
+  - Payoff: `R ~= R^2` gives `R ~= R^3`, so `EL_3(R) <= GL_3(R) ~= R^x`. Linear soficity passes to subgroups, and
+    `R^x` embeds in `PG` for `K = F_3`.
+- **Route `non-linear-sofic-via-leavitt-el3-rank-triviality`: valid.**
+  - `EL_3(L_(F_2)(1,2))` is countable and infinite, since the `x_12(a)` are distinct.
+  - An `F_2`-linear sofic approximation of a countable group gives an injective homomorphism into the units of an
+    `F_2` rank ultraproduct (Arzhantseva–Paunescu). The instance claim forbids a nontrivial one.
+  - The target root asks for a countable `G` and a field `F` with `G` not `F`-linear sofic, so this is exactly the
+    root. The route fires iff the instance claim is established.
+- **Route `leavitt-el3-rank-triviality-from-ring-rank-rigidity`: valid.**
+  - `L_K(1,n)` is simple.
+  - `C(t_0)C(s_0) = 1` gives `C(s_0)C(t_0) = 1` in a directly finite `M`, so `C(1 - s_0 t_0) = 0`.
+  - `(1 - s_0 t_0)s_1 = s_1 != 0`, so simplicity makes `C = 0`, contradicting `C(1) = 1`.
+  - So the class hypothesis holds.
+- **`free-rank-models-on-sl3-admit-no-block-support`: PASS.**
+  - `beta = hg - h - g + 1` uses four distinct elements (`h, g != 1`, `h != g^-1`), so `beta . 1 != 0`, and
+    `sigma_i(beta)` has rank at least `m_i` on the free summand with invariant complement.
+  - Block support gives `v_23 v_12` in `p_2 M p_3 p_1 M p_2 = 0`.
+  - *Example 11.*
+    - `S_inf` is a unital direct limit of simple algebras, hence simple, and `a -> (a (x) I_(p^(j-k)))_j` is a
+      unital ring rank model.
+    - `EL_3(M_m(F_p)) = SL_(3m)(F_p)`: cross-block transvections give same-block ones through a third block.
+    - Each `g` lies in the level groups for `omega`-almost all `k`, so the regular representations assemble into
+      an exact homomorphism. It separates, since `rk(lambda(g) - 1)/N = 1 - 1/ord(g) >= 1/2`.
+    - The restriction to `H_0` is free with `mu = 1/|H_0|`.
+- **Artifact Section 4e.**
+  - Free content is monomial in its own basis on each finite subgroup. For a nonsofic host, gluing along infinite
+    subgroups must be non-monomial (Section 14). PASS.
+  - The Kraft-inequality remark is not load-bearing and was not re-derived.
+- **Scope remark on the instance claim's Attempts.** "Conjugacy `x_12(e) ~ x_12(1)` for nonzero sums `e` of level
+  idempotents" holds as stated only for `n = 2`.
+  - For `L_K(1,n)`, `e_S R ~= R^(|S|)` is the image of `x_12(e_S) - 1`. Conjugate elements have isomorphic images,
+    and `R^m ~= R` iff `m ≡ 1 mod (n - 1)`. So the conjugacy holds iff `|S| ≡ 1 mod (n - 1)`.
+  - Then `B' ~= R^(2(n^k - |S|) + 1) ~= R` as well, so the condition is also sufficient.
+  - The product decomposition into `n^k` conjugates uses `|S| = 1` and holds for every `n`.
+- **Wiring suggestion.** `binary-leavitt-unit-group-is-f2-linear-sofic` does not yet list the instance claim under
+  `refuted_by`, although its negation follows through `EL_3(R) <= R^x`. Consider recording that link.
