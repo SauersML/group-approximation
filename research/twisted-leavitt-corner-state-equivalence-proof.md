@@ -9,6 +9,7 @@ requires:
   - leavitt-unit-group-algebras-split-over-scalar-characters
   - stable-finiteness-failure-refutes-surjunctivity
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md
 ---
 
@@ -44,3 +45,5 @@ In the monoid `V(A)` of finitely generated projective classes, write `a <= b` wh
   one-sided pair in `M_N(F_q[G])`, and the stable-finiteness lemma gives the automaton.
 
 Section 7 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 25 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*

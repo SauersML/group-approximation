@@ -9,6 +9,7 @@ requires:
   - twisted-leavitt-corner-fullness-equals-absence-of-k0-states
   - cyclic-twist-makes-leavitt-visible-factor-a-matrix-algebra
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md
 ---
 
@@ -36,3 +37,5 @@ artifacts:
     `m`-th root of unity, and apply 4 => 1 there.
 
 Section 8 of the artifact.
+
+*Verified independently by `gk-vf-linear` (2026-09-12): Section 25 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`.*
