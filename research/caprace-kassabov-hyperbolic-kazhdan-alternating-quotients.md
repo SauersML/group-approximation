@@ -39,9 +39,14 @@ route for how it was read):
   hyperbolicity and property (T) of the lattice. It has to use arithmeticity or
   superrigidity, which bounded-rank families already exploit.
 - **Scope of the fence.** The KMS examples have torsion, since their generators
-  have order `p`. So they say nothing about the torsion-free separation form
-  `sp21-noncongruence-simple-kernels-separate-points`. Whether some element of
-  infinite order in them has bounded order along infinitely many of their
-  alternating quotients was not checked.
+  have order `p`. This does not rescue the torsion-free separation form
+  `sp21-noncongruence-simple-kernels-separate-points`:
+  - all these alternating quotients factor through `G_(F_p,(1,1,2))`;
+  - the kernel of `G_HC(1)(p) ->> G_(F_p,(1,1,2))` is infinite and contains
+    elements of infinite order;
+  - pulling back along a torsion-free Belegradek–Osin cover gives a torsion-free
+    hyperbolic Kazhdan group where separation fails.
+
+  See `tf-kazhdan-hyperbolic-alternating-kernels-not-separating`.
 
 Imported; see `caprace-kassabov-hyperbolic-kazhdan-alternating-citation`.
