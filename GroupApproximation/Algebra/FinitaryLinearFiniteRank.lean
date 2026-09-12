@@ -40,7 +40,7 @@ theorem finiteDimensional_range_sub_id_of_mem_finitary {g : M ≃ₗ[F] M} (hg :
       rw [B.span_eq]
       exact Submodule.mem_top
     refine Submodule.span_induction (p := fun x _ ↦
-      ((g : M →ₗ[F] M) - LinearMap.id) x ∈ blockSpan B T) ?_ ?_ ?_ ?_ hx
+      (((g : M →ₗ[F] M) - LinearMap.id : M →ₗ[F] M) x) ∈ blockSpan B T) ?_ ?_ ?_ ?_ hx
     · rintro _ ⟨b, rfl⟩
       by_cases hb : b ∈ T
       · simp only [LinearMap.sub_apply, LinearEquiv.coe_coe, LinearMap.id_apply]
@@ -79,13 +79,19 @@ theorem wideFunctional_firstVector : wideFunctional n (firstVector n) = 0 := by
 noncomputable def wideLin : BinaryPower n →ₗ[ZMod 2] BinaryPower n :=
   LinearMap.id + (wideFunctional n).smulRight (firstVector n)
 
+theorem wideLin_apply (x : BinaryPower n) :
+    wideLin n x = x + wideFunctional n x • firstVector n :=
+  rfl
+
+theorem wideFunctional_wideLin (x : BinaryPower n) :
+    wideFunctional n (wideLin n x) = wideFunctional n x := by
+  rw [wideLin_apply, map_add, map_smul, wideFunctional_firstVector, smul_zero, add_zero]
+
 theorem wideLin_comp_self : wideLin n ∘ₗ wideLin n = LinearMap.id := by
   refine LinearMap.ext fun x ↦ ?_
   have hc : ∀ c : ZMod 2, c + c = 0 := by decide
-  simp only [wideLin, LinearMap.comp_apply, LinearMap.add_apply, LinearMap.id_apply,
-    LinearMap.smulRight_apply, map_add, map_smul, wideFunctional_firstVector, smul_eq_mul,
-    mul_zero, add_zero]
-  rw [add_assoc, ← add_smul, hc, zero_smul, add_zero]
+  rw [LinearMap.comp_apply, wideLin_apply n (wideLin n x), wideFunctional_wideLin, wideLin_apply,
+    add_assoc, ← add_smul, hc, zero_smul, add_zero, LinearMap.id_apply]
 
 /-- **A transvection with infinite matrix support.** -/
 noncomputable def binaryWideTransvection : BinaryPower n ≃ₗ[ZMod 2] BinaryPower n :=
@@ -112,13 +118,15 @@ theorem finiteDimensional_range_binaryWideTransvection :
   exact Submodule.finiteDimensional_of_le hle
 
 theorem binaryPowerBasis_apply_zero (j : ℕ) :
-    binaryPowerBasis n ⟨0, j⟩ = Pi.single 0 (Polynomial.monomial j 1) := by
+    binaryPowerBasis n ⟨0, j⟩ =
+      (Pi.single (0 : Fin n) (Polynomial.monomial j (1 : ZMod 2)) : BinaryPower n) := by
   simp [binaryPowerBasis, Polynomial.coe_basisMonomials]
 
 /-- The entries `((0,0),(0,j))`, `j ≥ 1`, of `g - I` are nonzero. -/
 theorem wideTransvection_entry (j : ℕ) :
     (binaryPowerBasis n).repr
-      (((binaryWideTransvection n : BinaryPower n →ₗ[ZMod 2] BinaryPower n) - LinearMap.id)
+      (((binaryWideTransvection n : BinaryPower n →ₗ[ZMod 2] BinaryPower n) - LinearMap.id :
+          BinaryPower n →ₗ[ZMod 2] BinaryPower n)
         (binaryPowerBasis n ⟨0, j + 1⟩)) ⟨0, 0⟩ = 1 := by
   rw [binaryWideTransvection_sub_id, LinearMap.smulRight_apply, map_smul,
     binaryPowerBasis_apply_zero]
@@ -135,9 +143,7 @@ theorem binaryWideTransvection_not_mem_binaryGLfs :
   refine Set.infinite_of_injective_forall_mem
     (f := fun j : ℕ ↦ ((⟨0, 0⟩ : Σ _ : Fin n, ℕ), (⟨0, j + 1⟩ : Σ _ : Fin n, ℕ)))
     (fun a b h ↦ by simpa using h) fun j ↦ ?_
-  show (binaryPowerBasis n).repr
-      (((binaryWideTransvection n : BinaryPower n →ₗ[ZMod 2] BinaryPower n) - LinearMap.id)
-        (binaryPowerBasis n ⟨0, j + 1⟩)) ⟨0, 0⟩ ≠ 0
+  simp only [matrixSupport, Set.mem_setOf_eq]
   rw [wideTransvection_entry]
   exact one_ne_zero
 
@@ -163,4 +169,4 @@ theorem manuscriptSentence_finiteSupportStrongerThanFiniteRank :
 end FinitaryLinear
 end GroupApproximation
 
-#audit_closed_axioms GroupApproximation.FinitaryLinear.manuscriptSentence_finiteSupportStrongerThanFiniteRank
+#audit_axioms GroupApproximation.FinitaryLinear.manuscriptSentence_finiteSupportStrongerThanFiniteRank
