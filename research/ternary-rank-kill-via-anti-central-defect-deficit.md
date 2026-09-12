@@ -29,3 +29,5 @@ Artifact Section 5.
    * If some Sylvester rank function `N` had `N(1 - [z]) > 0`, then `N(eps_-) = N(1 - [z]) > 0`, and
      `X -> N(X eps_-)/N(eps_-)` would be anti-central.
    * So `N(1 - [z]) = 0` for every `N`. QED
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 23.3 (valid as a route conditional on the open deficit claim) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

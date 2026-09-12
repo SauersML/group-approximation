@@ -1109,3 +1109,31 @@ which contradicts `delta >= c_0'`.
    - **Import.** `St_4(J)` is finitely presented. That is imported at statement level from
      `steinberg-finite-presentation-and-kazhdan-theorem`, and I did not re-derive it.
 5. **Subgroups.** LEF passes to subgroups, and `EL_4(J) <= EL_m(C_2)` by Section 24.1.
+
+### 23.3 `ternary-cylinder-defect-products-descend-in-sign-sectors`: PASS
+
+1. **Upper bound.** `N^B_12` commutes with `P_k`, since the cylinders are disjoint, and has cube `0`.
+   Lemma 1.1.4 gives `f(k+1) = N(N^B_23 N^B_12 P_k) <= N(N^B_12 P_k) <= (2/3) f(k)`.
+2. **Lower bound.**
+   - `Q_B` is central in `F_3[iota_B(G)]`, so `D_B Q_B P_k = Q_B D_B P_k`.
+   - `E = Q_B P_k` commutes with `F_3[iota_B(G)]`.
+   - Compressing along `E` gives `N'(eps_-) = N(Q_B Q_B P_k)/h_k = 1` and `N'(D) = N(D_B Q_B P_k)/h_k >= c_3`.
+3. **Sector half.**
+   - `tau_C = z prod tau_(A_i)`, and `[tau_(A_i)] R_s = s_i R_s`, so `[tau_C] Y = -pi(s) Y = -Y` when `pi(s) = +1`.
+   - Then `Q_(C\B) Y = 2(1 + [tau_B]) Y = (1 - Q_B) Y`.
+   - `u` in `V` is the identity on every `A_i` and exchanges the nonempty clopens `B` and `C\B`.
+   - So `u` commutes with `P_k`, `R_s` and `eps_-`, and `u Q_B u^-1 = Q_(C\B)`.
+   - Lemma 1.1.3 splits along `Q_B`, giving equal halves. Summing over orthogonal `R_s` gives
+     `h_k >= N(R_+ P_k)/2`.
+4. **Positivity.**
+   - `h_k = 0` gives `N(Q_(Bw) P_k) = 0`, by configuration invariance.
+   - `iota_B(tau_w) = tau_(Bw)`, so `N^(iota_B)_(P_k)` kills `1 - [tau_w] = 2 Q_w`.
+   - `tau_w` is not in `<z>`, so the null normal subgroup is `G` and the compressed function is augmentation.
+   - Hence `f(k+1) = f(k) N''(D_(w')) = 0`.
+   - Conversely `f(k+1) >= c_3 h_k`.
+
+**The open route `ternary-rank-kill-via-anti-central-defect-deficit`.** It is valid as a conditional route.
+- **The mechanism.** At a minimizer `N_0`, compressing along `Q_B D_A` is anti-central (item 2), with
+  defect at least `c_3` (item 2). An open deficit bound `N_0'(D) <= theta N_0(D)` would contradict it.
+- **Where the gap is.** The route's validity rests entirely on that open claim delivering the bound for the
+  compressed function, as the route states.

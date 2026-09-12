@@ -34,3 +34,5 @@ Artifact Section 3, Theorem 3.1.
    * Its null normal subgroup contains `tau_w`, which is not in `<z>`. So it is `G`, and the function is the
      augmentation rank.
    * Hence `f(k+1) = f(k) · 0 = 0`. QED
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 23.3 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
