@@ -105,3 +105,45 @@ Theorem 2.1. QED
 So the binary corner `binary-cyclic-averaging-idempotent-is-full-on-leavitt-units` is a genuinely binary
 Kaplansky target, sitting below both `leavitt-unit-group-algebra-not-directly-finite` and the
 quaternary twisted corner.
+
+## 4. Explicit lifts at (4, 2, 3): phase lifts and the Haar obstruction
+
+This is the characteristic-two analogue of the ternary signed-Thompson picture
+(`research/artifacts/ternary-lift-signed-thompson-crossed-product-2026-09-12.md`). Findings, not
+claims.
+
+**Phase lifts of idempotents.** Characteristic three lifted an idempotent `p` of `L` through the
+involution `1 − 2p`. In characteristic two that is `1`, so use the order-three phase unit
+`u_p = 1 + ω² p` (it acts by `ω` on the range of `p` and by `1` on its kernel). The idempotent
+`E_p = 1 + ω² [u_p] + ω [u_p²]` of `F_4[⟨u_p⟩]` has `pi(E_p) = (1 − p)(1 + ω² + ω) + p(1 + 1 + 1) = p`, so
+`P_p = E_p eps_iota` is an idempotent of `A_iota` lifting `p`. For orthogonal `p, q`,
+`u_p u_q = u_(p+q)`.
+
+**The phase crossed product.** Let `E` be the group of units `Σ_C ω^(f(C)) P_C` over finite cylinder
+partitions, i.e. locally constant `f : X -> Z/3` on Cantor space, and `H = E ⋊ V`. The dual of `E` is the
+space of finitely additive `Z/3`-valued measures on clopen sets. The scalar `ω` is the constant
+function 1, so the visible part is `M_iota = {μ : μ(X) = 1}`, and
+`F_4[H] eps_iota ≅ C(M_iota, F_4) ⋊ V` with `V` acting by pushforward. Here `P_p` is the indicator of
+`{μ(C_p) = 1}`.
+
+**The corner becomes a clopen of measure 1/3.** `g` lies in `V`. The Fourier unit
+`h = Σ_(i,j) ω^(ij) s_i t_j` (the character table of `Z/3`, invertible because `3` is invertible) conjugates
+`g` to `δ^(±1)`, and `δ = u_f` with `f = (1, 2, 0)` on the cylinders of `s_1, s_2, s_3`. So
+`[h] e_1 [h]^(-1) = (1 + [δ] + [δ²]) eps_iota` is the indicator `Q` of
+`{μ ∈ M_iota : μ(C_1) + 2 μ(C_2) = 0}`, a clopen of Haar measure `1/3`. The target is
+`eps_iota ≲ Q` in `A_iota`.
+
+**What dies.**
+- *Honest compressions.* The Haar probability on `M_iota` is `V`-invariant. A partition of `M_iota` into
+  clopens moved by elements of `V` onto disjoint pieces inside `{Q = 1}` would compress measure `1` into
+  measure `1/3`. So no witness inside `C(M_iota, F_4) ⋊ V` built from clopen indicators and `V`-translates
+  exists. This covers every monomial lift of `s_i, t_i` from phase lifts and Thompson units.
+- *Traces.* The Haar integral reduced mod 2 (`1/3 -> 1`) is a trace on the crossed product, with
+  `Tr(eps_iota) = Tr(Q) = 1`. It allows a complement of trace `0`, so it obstructs nothing.
+
+**What survives.** A witness must use non-function idempotents equivalent to `eps_iota` with mod-2
+cancellations inside the crossed product, or units outside `E ⋊ V` (for example `h` itself, or units with
+coefficients in `F_4 \ F_2` off the diagonal). Essential freeness of the `V`-action should transfer
+verbatim from the ternary case (lane `w3-corner-crossed`): the fixed set of a nontrivial element is Haar-null.
+The ternary weight-four column counting does not transfer, because over `F_4` the column norm `Σ a²` is not
+a count.
