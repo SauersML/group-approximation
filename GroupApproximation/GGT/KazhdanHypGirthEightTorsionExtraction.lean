@@ -4,14 +4,29 @@ import GroupApproximation.GGT.KazhdanHypGQLinkIdentification
 /-!
 # Huebschmann finite-order extraction for girth-eight triangle tables
 
+**Correction (2026-09-11): the extraction below has no published source.**
+Duda, *Torsion subgroups of small cancellation groups*, arXiv:2112.01912
+(`all3.tex`, lines 1237–1253), proves Theorem A by quoting two results of
 Huebschmann, *Cohomology theory of aspherical groups and of small cancellation
-groups*, Theorem 3, is quoted in Duda, *Torsion subgroups of small cancellation
-groups*, arXiv:2112.01912, `all3.tex`, in the proof of Theorem A.  The printed
-argument first takes a word `w` for a finite-order element, chooses a least-area
-disc whose boundary is the power `w^n`, and uses the cyclic partition of that
-boundary to glue `n` copies.  A mirror pair in the least disc would admit a
-strictly smaller cancellation, so the glued sphere is reduced.  The girth-eight
-link estimate then gives the triangular spherical curvature contradiction.
+groups*, J. Pure Appl. Algebra 14 (1979), as black boxes: Theorem 4 (a
+`C(6)`, `C(4)`–`T(4)` or `C(3)`–`T(6)` presentation is aspherical) and Theorem 3
+(in a group with an aspherical presentation an element of order `1 < s < ∞` is
+conjugate to `z ^ (q / s)` for some relator `z ^ q` with `s ∣ q`).  Huebschmann's
+Theorem 3 is cohomological (the identity theorem; a two-dimensional `K(G,1)`).
+Neither paper contains a least-area power disc or a gluing of copies of it.
+An earlier version of this header attributed to Duda an argument that chooses a
+least-area disc for `w ^ n` and glues `n` copies along the cyclic partition of
+its boundary; that argument is not in the source, and `n` cyclic copies of a disc
+do not form a sphere for `n ≥ 3` (the universal cover of the pseudo-projective
+plane attaches `n` discs to a single circle).
+
+The three input operations of this file are moreover refuted or circular as
+stated: `GGT/KazhdanHypCactusDeletionCounting.lean` proves that the cactus
+producer is false (`not_cactusBaseCellDeletionProducer`) and that per table it is
+equivalent to torsion-freeness (`cactusBaseCellDeletionForPower_iff`), so
+`ExtractionInputs` already carries the conclusion in its `filling` field
+(`isPowerTorsionFree_of_extractionInputs`).  Torsion-freeness of checked tables
+is owed as a theorem (`GirthEightTorsionFree`), not through these inputs.
 
 This file proves the extraction after the three genuinely cellular operations
 are supplied.  The filling operation is stated with the literal signed word
