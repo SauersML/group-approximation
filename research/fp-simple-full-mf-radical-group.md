@@ -13,7 +13,13 @@ artifacts:
   - research/artifacts/boone-higman-mf-radical-bridge-2026-09-11.md
 ---
 
-**OPEN.** There exists a finitely presented simple group `K` with
+**ESTABLISHED (2026-09-11)** via `fp-simple-full-mf-radical-via-leavitt-unit-group`.
+The witness is the binary Leavitt unit group, whose finite presentation (Khanh,
+arXiv:2609.08428v1, Theorem 6.1) the literature lane verified from the whole
+paper. That discharges the preprint caveat recorded below. The two other
+routes stay open as independent derivations.
+
+There exists a finitely presented simple group `K` with
 
 ```text
 Rad_MF(K) = K,                                               (FPS1)
@@ -61,17 +67,13 @@ models and must not be upgraded to a soficity statement.
 ## Relation to Boone--Higman
 
 `fp-simple-full-mf-radical-from-boone-higman` proves that the Boone--Higman
-conjecture implies this claim. The contrapositive is the usable direction and
-is stated once here, in prose, because rg:2 records a refutation as an
-established negation claim and no such claim exists:
+conjecture implies this claim. When it was written the contrapositive looked
+like a negative attack: a proof that no finitely presented simple group has
+full MF radical would refute the conjecture.
 
-> a proof that **no** finitely presented simple group has full MF radical
-> would refute the Boone--Higman conjecture.
-
-That is a genuine negative attack on Boone--Higman expressed entirely in this
-repository's own vocabulary, and it does not pass through any decidability or
-embedding argument. It is recorded so that the MF-radical machinery here is
-understood to bear on Boone--Higman, not merely to sit beside it.
+**That attack is closed.** The claim is true, so its negation is false and can
+refute nothing. What survives is the constraint that any universal envelope
+must carry full MF radical on the envelopes of full-radical inputs.
 
 ## September 11: a literature route that may close this outright
 
