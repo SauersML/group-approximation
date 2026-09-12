@@ -15,7 +15,8 @@ Outline.
 1. If Problem I fails, Gow's Theorem A gives a type `II_1` AW*-factor `M` that is not
    W*.
 2. Its canonical quasitrace `tau` is not additive. Otherwise it would be a faithful
-   state, and Wright 1975 would make `M` W*.
+   state that is completely additive on projections, and Gow Corollary 3.10 would
+   make `M` W*.
 3. Norm continuity, density of finite-spectrum elements, and telescoping give a
    witness `tau(y + beta q) != tau(y) + beta tau(q)`, with `y >= 0` of finite
    spectrum, `q` a projection and `beta > 0`.

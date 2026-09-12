@@ -48,8 +48,18 @@ Problem I.
 - **(I3)** Blackadar–Handelman, Corollary II.1.10, quoted by Gow §2.3. Every
   1-quasitrace on an AW*-algebra is a 2-quasitrace, hence an `n`-quasitrace. So
   there is a quasitrace `tau_4` on `M_4(M)` with `tau_4(z (x) e_11) = tau(z)`.
-- **(I4)** Wright, J. London Math. Soc. (2) 12 (1975/76), quoted by Gow §1. A type
-  `II_1` AW*-factor admitting a faithful state is a W*-factor.
+  *Possible alternative, not relied on (reviewer suggestion):* if `M_2(M)` and
+  `M_4(M)` are finite AW*-factors, uniqueness in (I2) forces
+  `2 tau_(2)(z (+) 0) = tau(z)` and `2 tau_(4)(w (x) e_11) = tau_(2)(w)`, which
+  gives the 2-quasitrace without Corollary II.1.10. That path needs finiteness of
+  `M_n(M)` and the exact uniqueness axioms of Gow 2.22 / Fehlker 1.27, neither
+  checked here.
+- **(I4)** Gow arXiv:2601.04431v2, Corollary 3.10 (after Pedersen, *C*-algebras and
+  Their Automorphism Groups*, Theorem 3.9.4), read with its proof: an AW*-algebra
+  admitting a separating family of CAP states (states completely additive on
+  projections) is a W*-algebra. Gow §2.3 (after Definition 2.23) shows that the
+  canonical quasitrace of a finite AW*-factor is completely additive on
+  projections, since it equals the dimension function there.
 - **(I5)** Every self-adjoint element of an AW*-algebra lies in a MASA `C(X)` with
   `X` Stonean, so totally disconnected. Positive elements with finite spectrum are
   therefore norm-dense in `M_+`.
@@ -68,8 +78,8 @@ D(x, z) = tau(x + z) - tau(x) - tau(z).
 
 **Step 0: some defect is nonzero.** Suppose `D` vanished on `M_+`. Then `tau` would
 be additive and homogeneous on `M_+`, hence linear on `M_sa` via `x = x_+ - x_-`,
-and linear on `M` by (I2). So `tau` would be a faithful state, and `M` would be W*
-by (I4). So `D(a, b) != 0` for some `a, b in M_+`.
+and linear on `M` by (I2). So `tau` would be a faithful state, completely additive on projections by (I2)
+and the normality remark in (I4), and `M` would be W* by Gow Corollary 3.10 (I4). So `D(a, b) != 0` for some `a, b in M_+`.
 
 **Step 1: continuity.** If `x, x' in M_+` and `||x - x'|| <= eps`, then
 `x <= x' + eps 1`. Monotonicity and linearity on `C*(1, x')` give
@@ -91,8 +101,9 @@ and `q = q_j` a projection.
 
 **Step 3: finite spectrum, then shift.** By Step 1, replace `x` by a finite-spectrum
 `y_0 = sum_(i=1)^k gamma_i e_i` with `D(y_0, beta q) != 0`. Here the `e_i` are
-nonzero pairwise orthogonal projections summing to `1`, and `gamma_k` is the least
-eigenvalue. Since `D(c 1, beta q) = 0`, we have `k >= 2`. Put
+nonzero pairwise orthogonal projections summing to `1`, and the eigenvalues are
+distinct, `gamma_1 > gamma_2 > ... > gamma_k`. So `gamma_k` is the least one, and
+`delta_i = gamma_i - gamma_k > 0` for `i < k`. Since `D(c 1, beta q) = 0`, we have `k >= 2`. Put
 
 ```text
 y = y_0 - gamma_k 1 = sum_(i<k) delta_i e_i,     delta_i > 0.
@@ -161,8 +172,13 @@ element with finite spectrum.
 
 ## Trust surfaces
 
-- Blackadar–Handelman Corollary II.1.10 and Wright 1975, read as quoted by Gow, not
-  from the primary sources.
+- Blackadar–Handelman Corollary II.1.10, read as quoted by Gow, not from the
+  primary source. Step 0 uses Gow Corollary 3.10, whose proof was read, and does
+  not depend on Wright 1975.
+- **Review, 2026-09-12 (lane `reviewer`, on 8b7b1fa7):** the mathematics passes
+  line by line, Steps 0–5 and the sharpness remarks. The primary-source check was
+  blocked: Wiley refused Wright, and ScienceDirect returned unparsed HTML for
+  Blackadar–Handelman.
 - Gow Theorem 2.22, which collects the standard properties of the canonical
   quasitrace.
 - Nothing here is in Lean.

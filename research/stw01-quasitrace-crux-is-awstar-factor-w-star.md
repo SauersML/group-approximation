@@ -29,11 +29,14 @@ AW*-algebras). So a `II_1` AW*-factor is W* iff it has a large W*-corner, giving
 - *Some nonzero W*-corner suffices.* In a factor every nonzero projection `p` is
   faithful. If `tau(p) >= 1/n`, then `M` is a corner of `M_n(pMp)`. So `M` is W*
   iff some nonzero corner `pMp` is W*.
-- *A faithful state suffices.* A type `II_1` AW*-factor with a faithful state is
-  W* (Wright, J. London Math. Soc. (2) 12 (1975/76)). Conversely a `II_1`
-  W*-factor has a faithful normal trace. So 2Q is equivalent to every type `II_1`
-  AW*-factor admitting a faithful state, which is the open question recorded in
-  Gow's introduction.
+- *A faithful CAP state suffices.* An AW*-algebra with a separating family of
+  states completely additive on projections is W* (Gow arXiv:2601.04431v2,
+  Corollary 3.10, after Pedersen Theorem 3.9.4, read with its proof). Conversely
+  a `II_1` W*-factor has a faithful normal trace. So 2Q is equivalent to every
+  type `II_1` AW*-factor admitting a faithful CAP state. Gow's introduction quotes
+  Wright (J. London Math. Soc. (2) 12 (1975/76)) for the stronger form with a
+  faithful state, not assumed normal. That hypothesis was not checked against
+  Wright's paper.
 
 The problem also splits into monotone completeness plus exclusion of wild `II_1`
 factors: `stw01-problem-i-via-monotone-complete-ii1-factors`.

@@ -17,8 +17,11 @@ By Gow arXiv:2601.04431v2, Corollary 4.10, a type `II_1` AW*-factor is a W*-fact
 iff it is a *-homomorphic retract of its bidual. So this claim is exactly the type
 `II_1` factor case of Gow Question 6.3 ("is every monotone complete C*-algebra a
 retract of its bidual?"). Gow Proposition 6.2 gives the easy converse: a retract of
-the bidual is monotone complete. Wright (J. London Math. Soc. 1975/76) proved that
-a type `II_1` AW*-factor with a faithful state is W*.
+the bidual is monotone complete. An AW*-algebra with a separating family of states completely
+additive on projections is W* (Gow Corollary 3.10). Gow's introduction quotes
+Wright (J. London Math. Soc. 1975/76) for a faithful state, not assumed normal, on
+a type `II_1` AW*-factor. That hypothesis was not checked against the primary
+source.
 
 Context: the known non-W* AW*-factors (Dyer 1970, Takenouchi 1970, Hamana 2001,
 Saitô–Wright generic dynamics) are all type III, and no non-W* type II AW*-factor
