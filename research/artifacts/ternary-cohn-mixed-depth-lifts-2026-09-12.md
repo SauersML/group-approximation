@@ -123,14 +123,15 @@ orthogonal, since a non-Dirac measure can charge both. One could hope to replace
 that respect intersections as well. The next theorem says that no uniform scheme does.
 
 **Theorem 3.1** (`no-equivariant-lattice-lift-of-cylinder-idempotents`). There is no map `Phi` from
-`Clopen(X)` to `Clopen(M_-)` that is (1) a Boolean algebra homomorphism, (2) `V`-equivariant,
-`Phi(gC) = g Phi(C)`, and (3) Dirac compatible, `delta_x in Phi(C)` iff `x in C`.
+`Clopen(X)` to `Clopen(M_-)` that is (1) a Boolean algebra homomorphism and (2) `V`-equivariant,
+`Phi(gC) = g Phi(C)`. So there is none that is also (3) Dirac compatible, `delta_x in Phi(C)` iff
+`x in C`, as a lift of the evaluation would have to be.
 
 *Proof.*
 - *Stone duality.* A Boolean homomorphism `Phi : Clopen(X) -> Clopen(M_-)` is `r^-1` for a unique
   continuous `r : M_- -> X`. Put `r(mu)` the point of the ultrafilter `{ C : mu in Phi(C) }`.
-- *Compatibility.* Item 3 says the ultrafilter of `delta_x` is the ultrafilter of `x`, so
-  `r(delta_x) = x`. Item 2 gives `mu in Phi(gC)` iff `g^-1 mu in Phi(C)`, so `r(g mu) = g r(mu)`.
+- *Equivariance.* Item 2 gives `mu in Phi(gC)` iff `g^-1 mu in Phi(C)`, so `r(g mu) = g r(mu)`.
+  Item 3 would add `r(delta_x) = x`, but the proof does not use it (remark of w3-vf-linear).
 - *Haar invariance.* At a prefix code `P`, the restriction of a measure `mu` to the algebra generated
   by `P` is an odd `F_2`-function on the atoms of `P`. The Haar measure `lambda` of `M_-` restricts to
   the uniform distribution on these functions: refine `P` to a common depth, where `lambda` is uniform
@@ -142,6 +143,13 @@ that respect intersections as well. The next theorem says that no uniform scheme
   replacements `{0, 10, 11} -> {00, 01, 1}` and `{0, 10, 11} -> {01, 00, 1}` are elements of `V` mapping
   `0` onto `00` and onto `01`. So `nu(0) = nu(00) = nu(01)`, and `nu(0) = nu(00) + nu(01)` forces
   `nu(0) = 0`. The first-letter swap gives `nu(1) = nu(0) = 0`, contradicting `nu(X) = 1`. QED
+
+**Remark 3.2 (maps into all of `B`).** The same obstruction holds for maps into `B`, not only into
+`C(M_-, F_3)`. This is remark (b) of w3-vf-linear. Let `Phi : Clopen(X) -> B` be additive on disjoint
+unions, with `Phi(X) = eps_-` and `Phi(gC) = [g] Phi(C) [g]^-1`. The `F_3`-valued Haar trace
+`Tr([g] f) = delta_(g,1) ∫ f dlambda` is invariant under conjugation. So `Tr ∘ Phi` is a `V`-invariant, finitely
+additive `F_3`-valued measure of total mass `1`, and the halving argument above gives
+`Tr Phi(0) = Tr Phi(1) = 0`, a contradiction. No multiplicativity is used.
 
 **Scope.** The theorem is about uniform schemes defined on all clopens at once. A Cohn-family witness
 involves finitely many elements, so it may still use lifts that are lattice compatible on finitely many
