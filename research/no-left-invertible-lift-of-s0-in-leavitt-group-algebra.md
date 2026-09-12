@@ -36,3 +36,10 @@ evaluation. It also closes the one linear architecture that reads
 * **Completing the family.** A witness can never be completed to a lift of all
   four Leavitt generators, by the augmentation argument (Proposition 6 of the
   artifact). This restricts the witness's shape but does not exclude it.
+* **Reduction to the invisible negation (2026-09-12, `gk-l2-visible`).** This claim
+  follows from `leavitt-evaluation-kernel-unitization-directly-finite` alone
+  (`no-s0-lift-from-kernel-unitization-df`, through
+  `leavitt-kaplansky-failures-have-invisible-witnesses`). A proof of this claim that
+  does not also exclude invisible pairs has to use that the defect survives
+  evaluation. None of location rigidity, augmentation or finite-dimensional detection
+  can see that distinction.

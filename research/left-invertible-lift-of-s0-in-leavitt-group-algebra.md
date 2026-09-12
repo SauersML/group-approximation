@@ -132,3 +132,28 @@ Strictness is then automatic, since `s_0` is not a unit of `R`. Results so far:
 Where it dies: every support tried so far is too small. The UNSAT verdicts are
 CryptoMiniSat outputs without proof logs, so they record where nothing was found and
 certify nothing. Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
+
+**2026-09-12, collapse onto the invisible problem (lane `gk-l2-visible`).**
+
+* **This claim is downstream of the invisible problem.** The padded kernel-corner map
+  `Phi(x) = delta(x) z + e` of `leavitt-unit-group-algebra-embeds-in-kernel-corner`
+  turns any witness here into a failure of `K^+`
+  (`leavitt-kaplansky-failures-have-invisible-witnesses`).
+  - Every obstruction to `leavitt-evaluation-kernel-unitization-not-directly-finite`
+    therefore also excludes this claim, and direct finiteness of `K^+` alone suffices
+    (`no-s0-lift-from-kernel-unitization-df`).
+  - No conversion from an invisible pair to a visible one is known.
+* **No algebraic `K_1` index obstruction.** `GL_2(R) = EL_2(R)`, and elementary
+  matrices lift. So the dilation `U = [[s_0, s_1 t_1],[0, t_0]]` lifts exactly.
+  - For any lifts `a, b` of `s_0, t_0`,
+    `V = e_12(a) e_21(b) e_12(a) [[0,1],[1,0]] = [[aba, 1 + ab],[1 + ba, b]]` lies in
+    `EL_2(F_2[R^x])` and `pi(V) = U`.
+  - Its first column and the first row of `V^(-1)` give only `(ba)^2 + (1 + ba)^2 = 1`.
+  - So nothing on the K-theory side obstructs this claim. What is left is exactly the
+    unit reformulation above: some product `b a` of lifts, which lies in `1 + K`, must
+    be a unit.
+* **Finite-dimensional invariant subspaces.** Location condition: for a witness pair,
+  `<supp a, supp b>` cannot preserve a finite-dimensional subspace `W` of an `R`-module
+  with `t_1 W != 0`. On `W`, `t_0 s_0 = 1` forces `s_0` bijective, hence `s_1 t_1 = 0`,
+  hence `t_1 = t_1 s_1 t_1 = 0`. Without `t_1 W != 0` there is no contradiction, as
+  `W = span{0^infinity}` in `F_2^(X)` shows.
