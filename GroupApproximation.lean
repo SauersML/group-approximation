@@ -4663,6 +4663,7 @@ import GroupApproximation.KunThom.CentralizerToBisectionDefect
 import GroupApproximation.KunThom.CentralizerToBisectionExtension
 import GroupApproximation.KunThom.CentralizerToBisection
 import GroupApproximation.KunThom.ComponentCountingRetainedMatchingNegligible
+import GroupApproximation.KunThom.ComponentFamilyUniformFields
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
