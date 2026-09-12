@@ -121,7 +121,7 @@ theorem distGL_le_reducedTwoNorm
         AllSupportedHaveL2SpectralRadiusProperty ((fun x ↦ t * x) '' (F : Set G)))
     (x : ReducedGroupCStar G) : distGL x ≤ reducedTwoNorm x := by
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   have hεpos : 0 < (distGL x - reducedTwoNorm x) / 3 := by linarith
   obtain ⟨m, c, γ, happrox⟩ := exists_translationSum_approx G x.property hεpos
   have hxy : ‖x - ∑ i : Fin m, c i • reducedLeftRegular G (γ i)‖
@@ -141,59 +141,70 @@ theorem distGL_le_reducedTwoNorm
   rw [norm_sub_rev] at h3
   linarith
 
+/-- **A contraction whose faithful trace is one on `b*b` and `bb*` is unitary.**  Stated
+over an ordered C⋆-algebra, so that the spectral order is used only inside. -/
+theorem mem_unitary_of_faithful_trace {A : Type*} [CStarAlgebra A] [PartialOrder A]
+    [StarOrderedRing A] (τ : A → ℂ) (hsub : ∀ x y : A, τ (x - y) = τ x - τ y) (hone : τ 1 = 1)
+    (hfaith : ∀ x : A, τ (star x * x) = 0 → x = 0) {b : A} (hb : ‖b‖ ≤ 1)
+    (h1 : τ (star b * b) = 1) (h2 : τ (b * star b) = 1) : b ∈ unitary A := by
+  have hkill : ∀ P : A, 0 ≤ P → τ P = 0 → P = 0 := by
+    intro P hP hτP
+    have hsq : star (CFC.sqrt P) * CFC.sqrt P = P := by
+      rw [(CFC.sqrt_nonneg P).isSelfAdjoint.star_eq, CFC.sqrt_mul_sqrt_self P hP]
+    have hz : CFC.sqrt P = 0 := hfaith _ (by rw [hsq]; exact hτP)
+    rw [← hsq, hz, star_zero, zero_mul]
+  have hnn : ∀ r : ℝ, 0 ≤ r → 0 ≤ algebraMap ℝ A r := by
+    intro r hr
+    have e : algebraMap ℝ A r
+        = star (algebraMap ℝ A (Real.sqrt r)) * algebraMap ℝ A (Real.sqrt r) := by
+      rw [← algebraMap_star_comm, star_trivial, ← map_mul, Real.mul_self_sqrt hr]
+    rw [e]
+    exact star_mul_self_nonneg _
+  have hr0 : 0 ≤ 1 - ‖b‖ ^ 2 := by nlinarith [norm_nonneg b]
+  have hbb : star b * b = 1 := by
+    have hP : 0 ≤ 1 - star b * b := by
+      have hsum : 1 - star b * b = algebraMap ℝ A (1 - ‖b‖ ^ 2)
+          + (algebraMap ℝ A (‖b‖ ^ 2) - star b * b) := by
+        rw [map_sub, map_one]
+        abel
+      rw [hsum]
+      exact add_nonneg (hnn _ hr0) (sub_nonneg.mpr CStarAlgebra.star_mul_le_algebraMap_norm_sq)
+    have hτP : τ (1 - star b * b) = 0 := by rw [hsub, hone, h1, sub_self]
+    exact (sub_eq_zero.mp (hkill _ hP hτP)).symm
+  have hbbs : b * star b = 1 := by
+    have hP : 0 ≤ 1 - b * star b := by
+      have hsum : 1 - b * star b = algebraMap ℝ A (1 - ‖b‖ ^ 2)
+          + (algebraMap ℝ A (‖b‖ ^ 2) - b * star b) := by
+        rw [map_sub, map_one]
+        abel
+      rw [hsum]
+      exact add_nonneg (hnn _ hr0) (sub_nonneg.mpr CStarAlgebra.mul_star_le_algebraMap_norm_sq)
+    have hτP : τ (1 - b * star b) = 0 := by rw [hsub, hone, h2, sub_self]
+    exact (sub_eq_zero.mp (hkill _ hP hτP)).symm
+  exact Unitary.mem_iff.mpr ⟨hbb, hbbs⟩
+
 /-- **Step 3: a contraction with `‖b‖₂ ≥ 1` is unitary**, through the canonical faithful
 trace. -/
 theorem mem_unitary_of_norm_le_one_of_one_le_reducedTwoNorm {b : ReducedGroupCStar G}
     (hb : ‖b‖ ≤ 1) (h2 : 1 ≤ reducedTwoNorm b) : b ∈ unitary (ReducedGroupCStar G) := by
   have hnorm2 : ‖(b : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)‖ = 1 :=
     le_antisymm ((reducedTwoNorm_le_norm b).trans hb) h2
-  have hkill : ∀ P : ReducedGroupCStar G, 0 ≤ P → canonicalCoefficientAtOne G P = 0 →
-      P = 0 := by
-    intro P hP hτP
-    have hsq : star (CFC.sqrt P) * CFC.sqrt P = P := by
-      rw [(CFC.sqrt_nonneg P).isSelfAdjoint.star_eq, CFC.sqrt_mul_sqrt_self P hP]
-    have hz : CFC.sqrt P = 0 :=
-      (canonicalFaithfulTracialState G).eq_zero_of_map_star_mul_self_eq_zero (by
-        change canonicalCoefficientAtOne G (star (CFC.sqrt P) * CFC.sqrt P) = 0
-        rw [hsq]
-        exact hτP)
-    rw [← hsq, hz, star_zero, zero_mul]
-  have hnn : ∀ r : ℝ, 0 ≤ r → 0 ≤ algebraMap ℝ (ReducedGroupCStar G) r := by
-    intro r hr
-    have e : algebraMap ℝ (ReducedGroupCStar G) r
-        = star (algebraMap ℝ (ReducedGroupCStar G) (Real.sqrt r))
-          * algebraMap ℝ (ReducedGroupCStar G) (Real.sqrt r) := by
-      rw [← algebraMap_star_comm, star_trivial, ← map_mul, Real.mul_self_sqrt hr]
-    rw [e]
-    exact star_mul_self_nonneg _
-  have hr0 : 0 ≤ 1 - ‖b‖ ^ 2 := by nlinarith [norm_nonneg b]
   have htrace1 : canonicalCoefficientAtOne G 1 = 1 := (canonicalFaithfulTracialState G).map_one
-  have hbb : star b * b = 1 := by
-    have hP : 0 ≤ 1 - star b * b := by
-      have hsum : 1 - star b * b = algebraMap ℝ (ReducedGroupCStar G) (1 - ‖b‖ ^ 2)
-          + (algebraMap ℝ (ReducedGroupCStar G) (‖b‖ ^ 2) - star b * b) := by
-        rw [map_sub, map_one]
-        abel
-      rw [hsum]
-      exact add_nonneg (hnn _ hr0) (sub_nonneg.mpr CStarAlgebra.star_mul_le_algebraMap_norm_sq)
-    have hτP : canonicalCoefficientAtOne G (1 - star b * b) = 0 := by
-      rw [map_sub, canonicalCoefficientAtOne_star_mul_self, hnorm2, htrace1]
-      simp
-    exact (sub_eq_zero.mp (hkill _ hP hτP)).symm
-  have hbbs : b * star b = 1 := by
-    have hP : 0 ≤ 1 - b * star b := by
-      have hsum : 1 - b * star b = algebraMap ℝ (ReducedGroupCStar G) (1 - ‖b‖ ^ 2)
-          + (algebraMap ℝ (ReducedGroupCStar G) (‖b‖ ^ 2) - b * star b) := by
-        rw [map_sub, map_one]
-        abel
-      rw [hsum]
-      exact add_nonneg (hnn _ hr0) (sub_nonneg.mpr CStarAlgebra.mul_star_le_algebraMap_norm_sq)
-    have hτP : canonicalCoefficientAtOne G (1 - b * star b) = 0 := by
-      rw [map_sub, canonicalCoefficientAtOne_mul_comm G b (star b),
-        canonicalCoefficientAtOne_star_mul_self, hnorm2, htrace1]
-      simp
-    exact (sub_eq_zero.mp (hkill _ hP hτP)).symm
-  exact Unitary.mem_iff.mpr ⟨hbb, hbbs⟩
+  have hfaith : ∀ x : ReducedGroupCStar G,
+      canonicalCoefficientAtOne G (star x * x) = 0 → x = 0 := fun x hx =>
+    (canonicalFaithfulTracialState G).eq_zero_of_map_star_mul_self_eq_zero (by
+      change canonicalCoefficientAtOne G (star x * x) = 0
+      exact hx)
+  have hτ1 : canonicalCoefficientAtOne G (star b * b) = 1 := by
+    rw [canonicalCoefficientAtOne_star_mul_self, hnorm2]
+    simp
+  have hτ2 : canonicalCoefficientAtOne G (b * star b) = 1 := by
+    rw [canonicalCoefficientAtOne_mul_comm G b (star b), canonicalCoefficientAtOne_star_mul_self,
+      hnorm2]
+    simp
+  exact @mem_unitary_of_faithful_trace (ReducedGroupCStar G) _ (CStarAlgebra.spectralOrder _)
+    (CStarAlgebra.spectralOrderedRing _) (canonicalCoefficientAtOne G)
+    (fun x y => map_sub (canonicalCoefficientAtOne G) x y) htrace1 hfaith b hb hτ1 hτ2
 
 /-- **Dykema–de la Harpe, Theorem 1.4** (Gerasimova–Osin's Theorem 5.4), proved. -/
 theorem dykemaDeLaHarpeTheorem14 : DykemaDeLaHarpeTheorem14 := by
