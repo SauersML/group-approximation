@@ -28,3 +28,5 @@ Artifact Section 2, Theorem 2.1.
 
 The descent artifact's Proposition 4.1 is the instance `X = D_(B_1)...D_(B_k)`; this route reruns its
 argument for an arbitrary commuting `X`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 11.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

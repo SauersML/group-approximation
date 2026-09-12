@@ -567,3 +567,43 @@ No node was added; this section covers an Attempts entry on
 
 **Scope.** A `theta < 1` has to use `sigma` beyond this locally finite group. That agrees with the
 Section 3 and Section 5 firewalls.
+
+## 11. Family SUB: w4-sub-weyl (b3baccede9)
+
+### 11.1 `near-minimal-defects-are-rank-independent-of-cylinder-commutants`: PASS
+
+1. **Invariance.** `X` commutes with `sigma(iota_A(.))`.
+   - So `XM` is invariant: `sigma(iota_A(g)) X M = X sigma(iota_A(g)) M`.
+   - `K = r.ann(X)` is invariant too: `X sigma(iota_A(g)) y = sigma(iota_A(g)) X y = 0`.
+   - The ranks are `rk X` and `1 - rk X` (Fact 1.1(a)).
+2. **The range corner.** Put `eM = XM`.
+   - `e sigma(iota_A(.)) e` is a model on `eMe`.
+   - A fixed vector lies in `Fix_r(sigma(iota_A(R^x))) = Fix_r(sigma(R^x)) = 0` (Lemma 3.0).
+   - `iota_A o iota_P = iota_(AP)` and invariance give defect `D_(AP) e`, whose rank is
+     `rk(D_(AP) X M) = rk(D_(AP) X)`.
+   - Fact 1.2 makes the normalized defect at every proper prefix the same number, which is at least
+     `c_*`.
+3. **The kernel corner.** Same argument on `kMk`: `rk(D_(AP) k) >= c_*(1 - rk X)`.
+4. **Triangular count.** Put `T = D_(AP)`, which lies in the image of `F_2[iota_A(R^x)]`.
+   - `T` commutes with `X`, so `TK` lies in `K`.
+   - With `J = TM + K`: `rk TM >= rk TK + rk J - rk K`.
+   - By Fact 1.1(d), `rk J - rk K = rk(XJ) = rk(XTM) = rk(TX)`.
+   - `rk TM = delta`.
+   - Hence `delta >= c_*(1 - rk X) + rk(D_(AP) X)`.
+5. **Near-minimal case.** Put `c_* >= delta/(1+eps)`.
+   - Lower side: `delta rk X - rk(DX) <= delta rk X · eps/(1+eps) <= eps delta`.
+   - Upper side: `rk(DX) <= (eps delta + delta rk X)/(1+eps) <= delta rk X + eps delta`.
+   - At `delta = c_*` both sides meet.
+6. **Special cases.**
+   - `X` a product of disjoint defects recovers Proposition 4.1.
+   - Idempotents of invariant decompositions carry defect exactly `c_*` at the infimum.
+
+### 11.2 Artifact Section 3 (finite-subgroup data firewall): PASS as a remark
+
+- **Consistency.** Regular ranks on `F_2[Q]` for finite `Q`, extended to finite `Q' ⊇ Q`, agree with
+  those on `F_2[Q]`, because `F_2[Q']` is free over `F_2[Q]`.
+- **Invariance.** They are invariant under conjugation by any unit.
+- **The defect product.** `D_A D_B` lies in `F_2[D_8 x D_8]` for disjoint `A` and `B`, so its rank is
+  `(3/8)^2`.
+- **Consequence.** Any argument that sees only relations and ranks inside finite subgroups realizes
+  `theta = 1`. This matches Sections 5.1 and 10.
