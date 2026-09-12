@@ -62,7 +62,9 @@ counterexample beyond linear ones.
     - `(ha, hb)` holds, with `g = h`.
     - `(hb, ha)` holds iff `(a^-1 b)^2 = 1`, and then `g = g*`.
     - `(h, ha)` gives `b = a^2`. `(hb, h)` gives `a = b^2`. `(h, g*)` and `(g*, h)` give `ta = at`.
-      `(g*, hb)` gives `t = a^2`, so `b = a^3`. Each of these makes `a` and `b` commute.
+      `(g*, hb)` gives `(g*)^-1 hb = a = a^-1 b`, so `b = a^2` and `t = a`. Each of these makes `a`
+      and `b` commute. (Corrected forward after w3-vf-nonlinear's pass: the first version said
+      `t = a^2`, `b = a^3`. The conclusion is unchanged.)
     - `(ha, h)`, `(h, hb)`, `(hb, g*)`, `(ha, g*)` and `(g*, ha)` force `a = 1` or `b = 1`, which is
       impossible.
 - **Occurrences.**
