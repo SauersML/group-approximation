@@ -34,3 +34,5 @@ Artifact Section 2, Lemmas 2.1 to 2.3 and Theorem 2.4.
      simplicity, and `tau o iota` with `iota : G -> EL_3(R)` is injective on `G`, which contradicts
      the radical being `K`.
    - So a model with kernel `K` yields an injective model as well.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 14.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

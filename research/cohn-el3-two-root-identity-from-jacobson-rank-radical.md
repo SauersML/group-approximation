@@ -23,3 +23,5 @@ Artifact Section 3, Corollary 3.2.
    (`two-root-identity-in-all-models-iff-no-nontrivial-model`, the easy direction).
 
 This route is live but does not discharge the target: the Jacobson claim is OPEN.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 14.3 (conditional on the open Jacobson claim) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

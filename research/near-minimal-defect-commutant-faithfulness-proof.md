@@ -26,3 +26,5 @@ Artifact Section 2, Lemma 2.0 and Theorem 2.1.
    `rk(J) - rk(K) = rk(ZTM) = rk(TZ)`, so `delta >= c_*(1 - rk(Z)) + rk(TZ)`.
 6. **Near-minimality** `c_* >= delta/(1+eps)` turns 3 and 5 into the two-sided bound. Matrices follow from
    `sigma (x) 1_n`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 13.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

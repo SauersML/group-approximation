@@ -19,3 +19,5 @@ Artifact Proposition 2.3(2).
   `f(2) <= theta delta^2`.
 * So `delta rk(Z) - rk(D_(B0) Z) >= (1 - theta) delta^2`. The gap gives `delta >= c_0` on nontrivial
   fixed-point-free models, so the distortion is at least `kappa delta` with `kappa = (1 - theta) c_0`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 13.2 (conditional on the open strict submultiplicativity claim) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

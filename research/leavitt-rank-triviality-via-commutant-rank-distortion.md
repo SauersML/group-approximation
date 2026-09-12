@@ -23,3 +23,5 @@ Artifact Proposition 2.3(1).
 3. **Contradiction** with `some-commutant-element-distorts-defect-range-rank`. So every model is trivial.
 4. **Payoff.** An `F_2`-linear sofic approximation of the infinite group `R^x` gives a nontrivial model,
    so `R^x` is not `F_2`-linear sofic.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 13.2 (conditional on the open distortion claim) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

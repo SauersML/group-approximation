@@ -650,3 +650,89 @@ Section 3 and Section 5 firewalls.
 6. **Consequence.** Corollary 3 gives no orthogonal covariant diagonal in any rank model or nonzero
    corner. So `leavitt-two-root-defect-piece-forces-covariant-diagonal` is model by model equivalent to
    the gate.
+
+## 13. Family SUB: w4-sub-halving (3897962264)
+
+### 13.1 `near-minimal-defect-ranges-are-rank-faithful-for-the-commutant`: PASS
+
+1. **Clopen groups.** `V` is transitive on proper nonempty clopen sets. So `v U = C` for a proper
+   cylinder `C`, `v G_U v^-1 = iota_C(R^x)`, and `Fix_r(sigma(G_U)) = sigma(v)^-1 fM = 0` by Lemma 3.0.
+2. **Corner models.** An invariant `kM` with `k != 0` carries a nontrivial fixed-point-free model.
+   - `V ∩ G_U` is transitive on frame triples with proper union inside `U`, and it preserves `kM`.
+   - So `rk(D_Theta k) >= c_* rk k`.
+3. **Two-sided bound.**
+   - **Lower.** The range corner gives `rk(TZ) >= c_* rk Z >= delta rk Z/(1+eps)`, so
+     `rk(TZ) - delta rk Z >= -eps delta rk Z/(1+eps)`.
+   - **Upper.** The kernel corner and the triangular count give
+     `rk(TZ) - delta rk Z <= (delta - c_*)(1 - rk Z) <= eps delta (1 - rk Z)/(1+eps)`.
+4. **Matrices.** `sigma (x) 1_n` is a nontrivial fixed-point-free model with the same `delta`. Its
+   `G_U`-commutant contains `M_n(C_U)`.
+
+This sharpens Section 11.1.
+
+### 13.2 The distortion routes: PASS as conditional routes
+
+- **`commutant-distortion-from-strict-defect-submultiplicativity`.**
+  - **Setup.** Take `U = B`, `Theta` the triple of `B0` (union `B0`, a proper subset of `B`), and
+    `Z = D_A` with `A` disjoint from `B` and `A ∪ B` proper.
+  - **Distortion.** `rk(D_(B0) D_A) = f(2) <= theta delta^2` and `rk Z = delta`, so the distortion is at
+    least `(1 - theta) delta^2`.
+  - **Constant.** `delta >= c_0` gives `kappa = (1 - theta) c_0`, independent of the model.
+- **`leavitt-rank-triviality-via-commutant-rank-distortion`.**
+  - **Near-minimal model.** Take one with `eps < kappa`.
+  - **Faithfulness bound.** `|rk(D_Theta Z) - delta rk Z| <= eps delta/(1+eps) < kappa delta`, which
+    contradicts the open distortion claim, since it fixes `kappa`, `U`, `Theta` and `n` uniformly.
+  - **Payoff.** It is as in Section 4.2.
+
+## 14. Family SUB: w4-cohn-el3 (550f005762)
+
+### 14.1 `two-root-identity-in-all-models-iff-no-nontrivial-model`: PASS
+
+1. **The tensor square is a model.**
+   - `rk(AB (x) AB - C (x) C) <= rk(AB (x) (AB - C)) + rk((AB - C) (x) C) <= 2 rk(AB - C)`.
+   - Normalized rank is multiplicative on tensors, and the characteristic stays two.
+2. **Matrix units.** `u_ij u_ji = p_i` and `u_ij ∈ p_i M p_j` give `rk u_ij = rk p_i = rk p_j = rk N_12`.
+3. **The product.** Each of the nine terms of `N'_23 N'_12` except `u_23 (x) u_12` and `u_12 (x) u_23`
+   contains `u_23 u_12 = u_23 p_3 p_1 u_12 = 0` in some factor.
+4. **Additivity.** The two summands have orthogonal left supports, `p_2 (x) p_1` and `p_1 (x) p_2`, and
+   orthogonal right supports, `p_3 (x) p_2` and `p_2 (x) p_3`.
+   - So `(X+Y) g = X`, `(X+Y) h = Y`, `e(X+Y) = X` and `f(X+Y) = Y`.
+   - Hence `rk(X+Y) = rk X + rk Y = 2 rk(N_12)^2`.
+5. **(a) implies (b).** Apply (a) to `sigma (x) sigma`. Then `rk N_12 = 0`, and `x_12(1)` normally
+   generates `EL_3(S)` through Weyl conjugates and `[x_ac(1), x_cb(r)] = x_ab(r)`.
+
+### 14.2 `cohn-elementary-group-rank-radical-is-trivial-or-everything`: PASS
+
+1. **Embeddings.**
+   - `J -> C_2`: `S^i T^j |-> s_0^i t_0^j` sends normal-form basis to basis.
+   - `C_2 -> L(1,3)`: words over `{0,1}` never end in the special edge, so they stay basis words.
+   - `L(1,3) -> R` through the code `{0, 10, 11}`: `s_0 t_0 + s_1 s_0 t_0 t_1 + s_1 s_1 t_1 t_1 = 1`, and
+     the map is injective because `L(1,3)` is simple.
+   - Injective ring maps give injective `EL_3` maps.
+2. **The kernel.**
+   - `(q)` is spanned by the matrix units `s_mu q t_nu = E_(mu,nu)` of the faithful Toeplitz
+     representation, so `ker pi <= GL_fin`.
+   - Row-changing transvections are `x_ab(s_mu q t_nu)`, and same-row ones are commutators through a
+     third row. So `K <= ker pi`.
+   - `SL_fin(F_2)` is a directed union of the simple `SL_n(F_2)`, `n >= 3`, so it is simple.
+   - Commuting with every `E_(x,y)` forces a scalar, and the only scalar over `F_2` is `1`. So
+     `C_G(K) = 1`.
+3. **Normal subgroups.**
+   - `N ∩ K` is `1` or `K`.
+   - If it is `1`, then `[N, K] = 1`, so `N <= C_G(K) = 1`.
+   - Otherwise `N/K` is normal in `pi(G) = EL_3(R)`, which is onto and `~= R^x`, a simple group.
+4. **The radical.**
+   - Kernels of models are `1`, `K` or `G`.
+   - If every model killed `K` and some model `tau o pi` were nontrivial, then `tau` would be injective,
+     and `tau o iota` with the embedding `iota` of item 1 would be an injective model. That contradicts
+     radical `K`.
+   - So the radical is `1` or `G`. A trivial radical forces some kernel to be `1`, since intersections
+     of `K`'s and `G`'s contain `K`.
+
+### 14.3 Route `cohn-el3-two-root-identity-from-jacobson-rank-radical`: PASS as a conditional route
+
+- **The head survives the embedding.** The Jacobson head `x_13(1 - ST)` maps to
+  `x_13(1 - s_0 t_0) != 1` in `G`.
+- **The radical is `G`.** If every model of `EL_3(J)` kills that head (the open Jacobson claim), then no
+  model of `G` is injective, so the radical is `G`.
+- **Conclusion.** Every model is trivial, and the identity follows.

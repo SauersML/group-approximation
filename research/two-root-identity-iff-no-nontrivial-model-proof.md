@@ -25,3 +25,5 @@ Artifact Section 1, Proposition 1.1 and Corollary 1.2.
    `sigma (x) sigma`: `rk(N_12) = 0`, so `sigma(x_12(1)) = 1`. The element `x_12(1)` normally
    generates `EL_3(S)`, through Weyl conjugates and `[x_ac(1), x_cb(r)] = x_ab(r)`, so `sigma` is
    trivial.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 14.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
