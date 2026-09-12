@@ -36,3 +36,16 @@ Q3.4 candidate rather than another instance of the blocked pattern.
 Conservatively modeled as OPEN and explicitly conjectural: no source claims
 such a group exists.  The one route recorded below is conditional on an
 unproved probabilistic estimate.
+
+**2026-09-11 precision (read from the PDF).** Chapman--Peled Theorem 1.1
+assumes only `h_1(Y,Sym) = ω(n^(-2-η))`, not a constant lower bound. The exact
+record is `nonsofic-hyperbolic-via-cheeger-threshold` with premise
+`random-complex-cocycle-cheeger-beats-triangle-count`.
+
+The soficity-free half of their proof is now the established
+`finite-quotient-caps-cocycle-cheeger-constant`: any finite quotient of `π_1(Y)`
+that detects a missing triangle caps the Cheeger constant at `O(1/|Y(2)|)`. So the
+premise is a statement about the finite quotients of random Kazhdan hyperbolic
+groups. It already forces a non-residually-finite hyperbolic group
+(`non-rf-hyperbolic-via-cheeger-threshold`), and residual finiteness of those
+groups would refute it (`random-complex-cheeger-capped-by-triangle-count`).
