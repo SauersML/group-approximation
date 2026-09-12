@@ -62,3 +62,29 @@ with a large normal subgroup carrying a small length.
 **Where it stands.** The route survives only through the last case. That is
 where `glebsky-rivera-w-sofic-criterion` locates the content of weak soficity,
 and no argument here reaches it.
+
+**That last case dies too, as a counting method (lane `w3-weaksofic`).**
+- **Normal fibres.** Counting on `H/N` with defects absorbed in the fibres uses
+  the Hamming length `[z not in N]`. It needs exact local embeddings into `H/N`,
+  whatever `l` does on `N`.
+- **Every finite action.** More generally, every finite action of a weakly sofic
+  model is a permutation model. Uniform transports (small defects and fixed
+  separation on every finite set) exist exactly for sofic groups, by
+  `hamming-transports-of-weak-sofic-models-are-soficity`. So the Kun--Thom wreath
+  admits none, and the route `weakly-sofic-surjunctivity-via-hamming-transport`
+  is dead.
+- **Not killed.** Transports on the finite set of one strict automaton. These
+  are bounded by the sofic radical localization; see artifact
+  `weak-sofic-hamming-transport-is-soficity-2026-09-12.md`, Section 3.
+
+**Exact reformulation.** This claim is equivalent to
+`metric-ultraproducts-of-finite-groups-are-surjunctive`, through the routes
+`weak-sofic-surjunctivity-from-metric-ultraproducts` and
+`metric-ultraproduct-surjunctivity-from-weak-sofic-case`, which form an intended
+cycle. Two equivalent forms:
+- metric stability of rectangle clauses on finite groups with invariant lengths;
+- quotient closure of surjunctivity for the infinitesimal kernel of a Łoś
+  ultraproduct.
+
+Normal-subgroup lengths give ordinary ultraproducts of finite quotients, which
+are surjunctive. A proof must use the length itself, not a finite action.

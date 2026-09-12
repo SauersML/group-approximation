@@ -116,3 +116,64 @@ So a window-level transport would have to be a permutation model of a finite
 partial table that separates elements invisible to every permutation model of
 the table's own group. No mechanism for that is known. Section 4 recasts what is
 left without transports.
+
+## 4. What is left: metric ultraproducts
+
+Let `(H_i, l_i)` be finite groups with invariant lengths and `omega` a
+nonprincipal ultrafilter. Put `Q = prod_i H_i / N_omega`, where `N_omega` is the
+normal subgroup of sequences whose lengths tend to `0` along `omega`.
+
+**Proposition 4.1.** Every countable weakly sofic group is surjunctive iff every
+such `Q` is surjunctive.
+
+*Proof.* (If.) A countable weakly sofic group embeds in some `Q`:
+- exhaust by finite sets `F_n`, and take models with defects `eps_n -> 0`;
+- rescale lengths to `min(1, l_n / c_n)`, which is again an invariant length, to
+  make separation `1`;
+- send `g` to the class of `(phi_n(g))`.
+
+Surjunctivity passes to subgroups (`surjunctivity-passes-to-subgroups`).
+
+(Only if.) A strict automaton over `Q` with memory `M` is strict over `<M>`, by
+the two-way coset transfer. For finite `F` in `<M>`, choose representatives with
+`h_i(1) = 1`. Finitely many products agree modulo `N_omega`, and finitely many
+nontrivial elements have positive limit length. So for `omega`-many `i` the map
+`g -> h_i(g)` is a weakly sofic approximation on `F`. Hence `<M>` is weakly sofic
+and not surjunctive. QED
+
+**Remark 4.2 (rectangle clauses).** By
+`surjunctivity-is-axiomatized-by-rectangle-clauses`, surjunctivity is a set of
+sentences `for all x (AND forward equations -> OR reverse equations)`. A clause
+fails in `Q` exactly when there are tuples in the `H_i` whose forward words have
+lengths tending to `0` along `omega` while every reverse word keeps length above
+a fixed `c > 0`. So Proposition 4.1 says the claim is *metric stability* of
+rectangle clauses on finite groups with invariant lengths. The exact clauses
+hold in finite groups, because finite groups are surjunctive.
+
+**Remark 4.3 (a quotient of an ultraproduct).** `Q` is the abstract ultraproduct
+`U = prod_omega H_i` modulo the image of `N_omega`. `U` satisfies every rectangle
+clause by Łoś's theorem. So the claim is quotient closure for one special kind
+of kernel, the infinitesimal subgroup. General quotient closure is equivalent to
+Gottschalk's conjecture (`surjunctivity-passes-to-quotients`).
+
+**Remark 4.4 (normal-subgroup lengths are harmless).** If `l_i` equals `eps_i`
+on a normal subgroup `N_i` and `1` elsewhere, with `eps_i -> 0`, then `Q` is the
+abstract ultraproduct of the finite groups `H_i/N_i`, which satisfies every
+clause. So normal-subgroup lengths, the starting point of this lane, never
+produce a strict clause. The remaining content is lengths whose small balls
+generate the group: simple factors by [WS] Theorem B, and more generally factors
+where the infinitesimal subgroup is not a limit of normal subgroups.
+
+## 5. Where it stops
+
+- **Settled.**
+  - Counting on finite actions of weakly sofic models is soficity (Theorem 2.2).
+  - Normal fibres give local embeddings (Section 1).
+  - The chart-transport route is dead for nonsofic weakly sofic groups
+    (Corollary 2.3).
+  - The claim is equivalent to metric stability of rectangle clauses
+    (Proposition 4.1, Remark 4.2).
+- **Open.** A mechanism that uses the length itself, not a finite action, to
+  force reverse equations from approximate forward equations. No such mechanism
+  is known. `metric-ultraproducts-of-finite-groups-are-surjunctive` records the
+  question.
