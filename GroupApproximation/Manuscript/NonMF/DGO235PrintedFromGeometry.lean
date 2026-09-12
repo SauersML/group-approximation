@@ -98,9 +98,7 @@ theorem exists_elementaryClosure_isHypEmbedded
     (HullSC.isHypEmbeddedOf_coneOff X (elementaryClosure D.elt) hX).isHypEmbedded,
     ?_, ?_⟩
   · have hne := hproper G D hvc
-    by_contra hall
-    push_neg at hall
-    exact hne (Subgroup.eq_top_iff'.mpr hall)
+    exact not_forall.mp fun hall ↦ hne (eq_top_iff.mpr fun a _ ↦ hall a)
   · intro k hk
     exact zpow_ne_one_of_isLoxodromic D.loxodromic hk
 

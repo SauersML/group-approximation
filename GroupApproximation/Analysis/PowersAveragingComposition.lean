@@ -42,7 +42,7 @@ theorem conj_reducedLeftRegular_comp (a : ReducedGroupCStar G) (g h : G) :
         (reducedLeftRegular G g * a * star (reducedLeftRegular G g)) *
         star (reducedLeftRegular G h)
       = reducedLeftRegular G (h * g) * a * star (reducedLeftRegular G (h * g)) := by
-  simp only [star_reducedLeftRegular, mul_inv_rev, reducedLeftRegular_mul, mul_assoc]
+  simp only [reducedLeftRegular_mul, star_mul, star_reducedLeftRegular, mul_assoc]
 
 /-- The family that averages twice at once: `hⱼ gᵢ`, indexed by `Fin (m · n)`.
 
