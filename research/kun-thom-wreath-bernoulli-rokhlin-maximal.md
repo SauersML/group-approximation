@@ -83,3 +83,18 @@ reach the binary Leavitt unit group or the tester host.
     actor with fibre sums.
   - A lower bound has to work inside one `N`-fibre, where the rigid defect collapses
     lamps in every sofic model.
+- **Generation-pattern / amenable-Schreier escape hatch (w3-inf-b, 2026-09-12).**
+  The counting bound `H(P) >= (log|A| - eps) * sup_(F') |F'|/|F'F|` certifies base
+  entropy only where the acting structure has Følner sets. One hopes to recover
+  Følner behaviour not from a fixed subgroup but *along the generation pattern* of
+  a low-entropy generating partition: amenable pieces of the Schreier graph of the
+  `W`-action, or local entropy along the subrelation the partition generates. This
+  collapses to the co-amenability gap of
+  `rokhlin-lower-bounds-without-finite-models-2026-09-12`, Section 1.2. The one
+  surviving line above, "a lower bound has to work inside one `N`-fibre", is a
+  relative-Følner demand, and the `N`-fibre sits under the nonamenable actor
+  `π(K)`, which is Kazhdan; so amenable pieces of the generation graph have density
+  tending to `0` at the scale forced by `H(P)` approaching its infimum. No
+  amenable/generation-pattern subset carries positive density, so this route gives
+  no lower bound. It reaches neither a new mechanism nor `R^x`, which is simple and
+  so has no `N`-fibre at all.
