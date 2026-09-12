@@ -6,6 +6,7 @@ title: Keep only the weight components the torus allows, then compare conjugatio
 target: ternary-rank-model-root-element-torus-normal-form
 requires: [leavitt-gl-equals-el-and-perfect-unit-group, anti-central-rank-models-see-haar-measure-on-signed-diagonal]
 artifacts:
+  - research/artifacts/gk-vf-linear-verification-2026-09-12.md
   - research/artifacts/ternary-leavitt-char-three-rank-model-gate-2026-09-12.md
 ---
 
@@ -21,3 +22,5 @@ artifacts:
   pattern and nothing on even ones.
 
 Details: artifact Section 5.
+
+*Second independent derivation by `gk-vf-linear` (2026-09-12), Section 54 of `research/artifacts/gk-vf-linear-verification-2026-09-12.md`: PASS. The assigned verifier remains `w3-vf-linear`.*

@@ -1908,3 +1908,38 @@ Sections 1 to 3. The assigned verifier is `w3-vf-linear`; this is a second deriv
   at `K = F_3`, `n = 2` refutes it through `G = GL_3(R) = EL_3(R)`. Both are correct.
 - **Remark 3.4.** `ker sigma >= iota_P(G)`, which is not inside `<z>`, forces `ker sigma = G`. The extraction needs both identities
   in odd characteristic. Correct.
+
+## 54. Haar law on the signed diagonal and the characteristic-three root normal form (6601af31f, lane w3-gate-char3): PASS, second derivation
+
+Items checked: `anti-central-rank-models-see-haar-measure-on-signed-diagonal`, `ternary-rank-model-root-element-torus-normal-form`,
+routes `anti-central-haar-diagonal-proof` and `ternary-root-element-torus-normal-form-proof`, and artifact Sections 4 and 5. The
+assigned verifier is `w3-vf-linear`; this is a second derivation.
+
+- **Theorem 4.1, half split.**
+  - `tau_X tau_C = tau_(X Δ C) = tau_(X∖C)`, and `sigma(z) = -1` gives `phi(eps_-) = 4 = 1`.
+  - `phi(Q_C) = 2(1 - sigma(tau_C))` and `phi(Q_(X∖C)) = 2(1 + sigma(tau_C))` are orthogonal idempotents summing to 1.
+  - `V`, which lies in `H` and so in `Gamma`, carries `C` onto `X∖C`, and `[g] Q_C [g]^-1 = Q_(gC)` (Section 20).
+  - Equal ranks summing to 1 give `1/2` each.
+- **Theorem 4.1, atoms.**
+  - `mu(c_S) = sum_(i in S) eps_i` makes `Q_(c_S)` the sum of `1_(A_eps)` over `chi_S(eps) = -1`.
+  - Additivity gives `hat a(S) = 1 - 2 rho(phi(Q_(c_S)))`.
+  - The three cases: `hat a(empty) = 1`, since `Q_empty = 0`. `hat a([n]) = -1`, since `Q_X = 4 eps_- = eps_-`. Every other
+    `S` gives 0 by the half split.
+  - Inversion gives `a_eps = 2^-n(1 - (-1)^|eps|)`, which is `2^(1-n)` for odd `eps`, equal to `lambda(A_eps)`.
+  - Clopens of `M_-` are finite unions of atoms at a single code. PASS.
+- **Proposition 5.1.**
+  - *The torus.* `tau_0 = diag(-1,1,1)` under the code `(0,10,11)`. The elements `tau_11 = diag(1,1,-1)` and
+    `tau_0 tau_10 = diag(-1,-1,1)` commute with `1 + E_12`. So `P_eta N P_eps = 0` unless `eta` is `eps` or `eps'`, and
+    `N = D + A`.
+  - *The reflection.* `tau_0 x_12(1) tau_0 = x_12(-1)`, and `x_12(1)^3 = x_12(3) = 1` gives `N^3 = 0` in characteristic
+    three, with `(1+N)^-1 - 1 = -N + N^2`. Conjugation by `sigma(tau_0)` multiplies `P_eta N P_eps` by `eta_1 eps_1`,
+    which is `+1` on `D` and `-1` on `A`. So `D - A = -D - A + N^2`, and `D = 2N^2 = -N^2`.
+  - *Squares.* `N^2` is weight-preserving, so its flipping part `DA + AD` vanishes. `D^2 = N^4 = 0`, so `N^2 = A^2`,
+    `N = A - A^2`, and `0 = DA + AD = -2A^3 = A^3`.
+  - *(b).* `N^2 = 0` iff `A^2 = 0` iff `D = 0`.
+  - *(c).* By Theorem 4.1 at the code `(0,10,11)`, the odd sign patterns `(-,+,+)`, `(+,-,+)`, `(+,+,-)` and `(-,-,-)` each
+    have rank `1/4`, and `eps -> eps'` pairs them as stated.
+  - Parts (a) and (b) hold for every rank model, not only anti-central ones.
+- **Remark 5.2.** On a free `F_3[Z/3]`-module, `(x - 1)^2 != 0`, because `F_3[x]/(x^3 - 1) = F_3[x]/((x-1)^3)`. So projective
+  content of level groups violates `A^2 = 0`. The claim about the twisted regular representation's Haar law is prose and was not
+  re-derived.
