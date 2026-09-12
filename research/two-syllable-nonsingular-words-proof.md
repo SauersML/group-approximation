@@ -4,7 +4,9 @@ id: two-syllable-nonsingular-words-proof
 kind: route
 title: Twisted 2-cycle and the AB=BA=L construction solve c0 t c1 t c2
 target: two-syllable-nonsingular-words-are-exactly-solvable
-requires: []
+requires:
+  - rgr-p-reduces-to-cyclic-twist-system
+  - scalar-target-power-words-have-exact-roots
 artifacts:
   - research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md
 ---

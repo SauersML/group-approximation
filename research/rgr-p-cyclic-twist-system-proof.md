@@ -4,7 +4,8 @@ id: rgr-p-cyclic-twist-system-proof
 kind: route
 title: Proof that the twisted cyclic shift makes w(t) block-diagonal with cyclic-rotation blocks
 target: rgr-p-reduces-to-cyclic-twist-system
-requires: []
+requires:
+  - rank-ultraproduct-unit-groups-solve-nonsingular-equations
 artifacts:
   - research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md
 ---

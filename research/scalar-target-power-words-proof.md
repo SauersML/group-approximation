@@ -4,7 +4,8 @@ id: scalar-target-power-words-proof
 kind: route
 title: Companion matrix gives an exact e-th root of any scalar
 target: scalar-target-power-words-have-exact-roots
-requires: []
+requires:
+  - rgr-p-reduces-to-cyclic-twist-system
 artifacts:
   - research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md
 ---

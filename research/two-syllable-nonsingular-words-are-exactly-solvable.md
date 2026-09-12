@@ -3,9 +3,6 @@ rg: 2
 id: two-syllable-nonsingular-words-are-exactly-solvable
 kind: claim
 title: The two-syllable word c0 t c1 t c2 is exactly solvable, and the equal-exponent two-syllable word reduces to power words
-requires:
-  - rgr-p-reduces-to-cyclic-twist-system
-  - scalar-target-power-words-have-exact-roots
 artifacts:
   - research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md
 ---

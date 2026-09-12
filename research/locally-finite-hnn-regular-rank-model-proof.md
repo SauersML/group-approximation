@@ -4,6 +4,7 @@ id: locally-finite-hnn-regular-rank-model-proof
 kind: route
 title: Regular representations of finite exhausting subgroups with permutation intertwiners for every conjugation, and the D_8 rank count
 target: locally-finite-hnn-data-allow-independent-cylinder-defects
+requires: []
 artifacts:
   - research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md
 ---

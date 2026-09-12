@@ -4,6 +4,7 @@ id: leavitt-ternary-frame-tree-uniformization-proof
 kind: route
 title: Refine frame units to ternary leaves and send the leaves to cylinders of one length; compute the right-child exchange product and a graded top component
 target: leavitt-right-child-frames-generate-infinite-order-units
+requires: []
 artifacts:
   - research/artifacts/locally-finite-conjugation-defect-firewall-2026-09-12.md
 ---

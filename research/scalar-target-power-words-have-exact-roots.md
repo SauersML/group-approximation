@@ -3,8 +3,6 @@ rg: 2
 id: scalar-target-power-words-have-exact-roots
 kind: claim
 title: Scalar-target power words t^e = lambda 1 have exact roots in every characteristic, with no p-subtlety
-requires:
-  - rgr-p-reduces-to-cyclic-twist-system
 artifacts:
   - research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md
 ---

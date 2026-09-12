@@ -3,8 +3,6 @@ rg: 2
 id: rgr-p-reduces-to-cyclic-twist-system
 kind: claim
 title: RGR_p at amplification by the total exponent is exactly a cyclic scalar system in e matrix unknowns
-requires:
-  - rank-ultraproduct-unit-groups-solve-nonsingular-equations
 artifacts:
   - research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md
 ---
