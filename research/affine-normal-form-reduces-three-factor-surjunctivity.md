@@ -8,6 +8,7 @@ requires:
   - recipient-affine-three-factor-ca-are-surjunctive
 artifacts:
   - research/artifacts/gottschalk-recipient-affine-normal-form-and-fiber-obstruction-2026-09-08.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 For a CA F on a finite block of R-tracks, add an identity copy of

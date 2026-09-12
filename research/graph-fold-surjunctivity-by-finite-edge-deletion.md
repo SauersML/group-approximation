@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/surjunctivity-graph-folds-2026-09-11.md
   - research/artifacts/finitary-split-extension-surjunctivity-2026-09-11.md
   - research/artifacts/rf-lamp-wreath-surjunctivity-2026-09-11.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 The linked proof gives the complete argument. Sections 4--5 embed the
@@ -34,3 +35,6 @@ finishes the proof for the original fundamental group.
 The finite-memory peeling theorem is inherited from the earlier shared
 artifacts; the new proof contribution is the vertex-fixed graph kernel
 and its application to arbitrary compatible graph-of-groups diagrams.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 4 of
+the verification artifact).

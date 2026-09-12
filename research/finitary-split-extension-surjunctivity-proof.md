@@ -8,6 +8,7 @@ requires: []
 artifacts:
   - research/artifacts/finitary-split-extension-surjunctivity-2026-09-11.md
   - research/artifacts/rf-lamp-wreath-surjunctivity-2026-09-11.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete direct proof. The permutational wreath artifact supplies:
@@ -30,3 +31,8 @@ uses:
 
 Standard background: Curtis--Hedlund--Lyndon over arbitrary groups, subgroup
 heredity of surjunctivity, and compactness.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 2 of
+the verification artifact). The slice identity needs (A2) at the pair
+`(V,U)`, which the axiom supplies because it is quantified over every finite
+`S`.

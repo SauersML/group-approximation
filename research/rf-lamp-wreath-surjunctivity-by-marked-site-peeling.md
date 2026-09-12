@@ -7,6 +7,7 @@ target: rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive
 requires: []
 artifacts:
   - research/artifacts/rf-lamp-wreath-surjunctivity-2026-09-11.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete direct proof, Sections 1--5 of the linked artifact.
@@ -37,3 +38,6 @@ The converse direction is subgroup heredity of surjunctivity. The standard
 background used is Curtis--Hedlund--Lyndon over arbitrary groups (the inverse
 of a bijective automaton is an automaton), subgroup heredity, and
 compactness.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 1 of
+the verification artifact).

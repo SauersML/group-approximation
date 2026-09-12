@@ -6,6 +6,8 @@ title: Transport the finite injectivity detector and missing cylinder through no
 target: gottschalk-surjunctivity-fixed-two-generator-tester
 requires:
   - universal-all-group-subgroup-colimit-class-tester
+artifacts:
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Let `S` be the class of surjunctive groups. We prove both permanence

@@ -8,6 +8,7 @@ requires:
   - three-factor-finite-alphabet-ca-are-surjunctive
 artifacts:
   - research/artifacts/gottschalk-stable-three-factor-reduction-2026-09-08.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Identify a q-symbol alphabet with Z/qZ. Expand each local rule as

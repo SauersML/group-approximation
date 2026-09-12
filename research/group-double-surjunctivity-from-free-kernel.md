@@ -7,6 +7,7 @@ target: doubles-of-surjunctive-groups-are-surjunctive
 requires: [finitary-split-extension-surjunctivity-permanence]
 artifacts:
   - research/artifacts/finitary-split-extension-surjunctivity-2026-09-11.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Lemma 5.1 of the linked artifact identifies `G *_Gamma G` with
@@ -20,3 +21,6 @@ explicit mutually inverse homomorphisms. Section (I2) verifies the axioms of
 * (A3): pointwise stabilizers of `S` preserve `X\S`.
 
 The converse is subgroup heredity.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 3 of
+the verification artifact).
