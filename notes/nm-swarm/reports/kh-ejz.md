@@ -57,10 +57,20 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
 - `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` (CCKW Theorem 3.1(i)): kh-hyperbolic.
   `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold (hzip : Systolic.ZipSpurStatement CCKW.cosetComplex)
   (hfold : Systolic.MirrorFoldStatement CCKW.cosetComplex) : Hyperbolic.IsHyperbolicGroup (GHB 7)`
-  (Kazhdan/GHBHyperbolicDiscCounts, b049d3faf over 0ac9f4538, kh-hyperbolic's probe pending) has exactly
-  the type of the `hhyp` binder. Main has no producer of `ZipSpurStatement` or `MirrorFoldStatement`.
-  kh-ejz has asked kh-torsion (disc moves) and go-sr1 (SystolicDisc) whether either owns them. Nothing
-  claimed.
+  (Kazhdan/GHBHyperbolicDiscCounts, glue landed 6827a8024 unverified; waits on go-sr1's SystolicDiscFilling
+  and SystolicDiscCounts) has exactly the type of the `hhyp` binder. Owners (lead ruling 2026-09-12):
+  - `hzip`: `Systolic.zipSpur X : Systolic.ZipSpurStatement X` (GGT/SystolicDiscZip.lean), kh-torsion.
+    It was briefly assigned to kh-ejz, which wrote no Lean and handed over its case analysis: pendant
+    edge, fold of two edges at distinct vertices, and a cut vertex through
+    `restrict_planar_of_euler_four`, with the `[u]` branch at outer degree 2.
+  - `hfold`: `Systolic.mirrorFold X : Systolic.MirrorFoldStatement X`, fff-periodic.
+
+## Current assignment (2026-09-12)
+Hyde–Lodha Proposition 4.7, alongside fff-quotient:
+`HydeLodha.StabKFinitelyPresented Γ` (GroupTheory/HydeLodha/QTwoFinitelyPresented.lean). kh-ejz takes one
+separable sub-lemma that fff-quotient is not writing; the statement and path are agreed before any Lean is
+written. Edits to the rooted Q2 modules (QTwoFinitelyPresented, QTwoFinitePresentationShort,
+QTwoBrownTriangle, QTwoFinitePresentationLong) land NM_ATTIC until green.
 
 ## Landing rule
 Edits to EJZAngleGHB, EJZAngleSylowFour and GHBLatticeRouteKazhdan land with NM_ATTIC until a probe is
