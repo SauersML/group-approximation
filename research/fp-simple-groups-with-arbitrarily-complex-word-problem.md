@@ -30,6 +30,20 @@ different form.
 It is a root because it is independently well posed, strictly weaker than the
 conjecture, and not implied by any established node here.
 
+## What is known
+
+Every finitely presented simple group whose word-problem complexity has been
+determined is easy. The hardest known case is due to Birget, *The word problem
+of the Brin--Thompson group is coNP-complete*, arXiv:1902.03852, read from the
+abstract 2026-09-11: "the word problem of the Brin--Thompson group nV over a
+finite generating set is coNP-complete for every n >= 2". Each `nV` is infinite,
+finitely presented and simple. coNP lies inside `2^(n^O(1))` time, so the whole
+known Thompson-like family sits under one recursive bound. By
+`complexity-bounded-host-classes-are-not-universal`, or its finitely presented
+residually finite form `uniform-wp-bound-excludes-bh-universal-targets`, that
+family is non-universal for Boone--Higman. (This paragraph was carried over from
+the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
+
 ## Attempts
 
 1. **Twisted Brin--Thompson groups over complex actors.** A finitely
