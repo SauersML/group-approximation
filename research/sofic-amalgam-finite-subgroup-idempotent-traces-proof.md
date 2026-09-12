@@ -56,3 +56,10 @@ The complete proof is Section 2 of the attached artifact. Outline:
 
 Section 1 of the artifact gives an amalgam-free cross-check of the two-subgroup case: a coset
 dimension count, `r(e) >= dim V / |D| >= r(f)`, with equality forcing `e S^n = f S^n`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 11 and its addendum in `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the embedding of each `H_i` in `A`, through `A -> G`, and `ι_i(H_i) ∩ ι_j(H_j) = ι(D_ij)`;*
+- *rectangle injectivity, and transfer of the table;*
+- *the lift through atoms, needed because members may be dependent in `G` and independent in `A`, as step 2 now says;*
+- *the density-one free orbits, with `rk(I_n) = n`;*
+- *the sofic realizations of step 5, and the forest case.*

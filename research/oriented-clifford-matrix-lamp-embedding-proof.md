@@ -28,3 +28,8 @@ The proofs are Propositions 1.1–1.4 and Example 1.2 of the artifact.
   - `{x1,x2}` and `{x2,x3}` meet once.
   - Quaternions split over finite fields.
 - **Commutative form.** Fourier transform on the `s`-lamps turns the `p`-lamps into coordinate flips.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 14 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the sign count per site, `(ps)^2 = -1`, and injectivity through Pauli strings of distinct `p`-support;*
+- *for the compressor graph, that `u ∉ Γ` and `u^2 ∉ Γ`, and the child argument for nondegeneracy;*
+- *the even-subset form, and the uniform quaternion split giving an equivariant injective map into the complete-graph ring.*

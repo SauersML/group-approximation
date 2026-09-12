@@ -26,12 +26,17 @@ For the Kun--Thom pair it decides the linear case of every oriented Clifford cov
 
 ## Attempts
 
-- **Sofic base: true.**
+- **Sofic extension: true.**
   - `B_X` is the anti-central factor of `k[H_X semidirect G]`, where `H_X` is the central product of copies
     of `D_8` over `X`, and `(1 +- z)/2` split it off.
-  - `H_X` is locally finite. So when `G` is sofic, `H_X semidirect G` is amenable-by-sofic, hence sofic,
-    hence has a stably finite group algebra (`linear-sofic-group-algebra-is-stably-finite`).
+  - When `H_X semidirect G` is sofic, for example when `G` is amenable (sofic-by-amenable is sofic), its group
+    algebra is stably finite (`linear-sofic-group-algebra-is-stably-finite`), and so is `B_X`.
   - So a counterexample needs an action whose extension is nonsofic, as for the Kun--Thom pair.
+  - **Correction (w4-vf-linear-b, 2026-09-12).** An earlier version said "when `G` is sofic, `H_X semidirect G`
+    is amenable-by-sofic, hence sofic". That implication is false. The Kun--Thom wreath `F_2 wr_X G` has
+    abelian lamps and a residually finite base, and it is not sofic. It sits inside `(H_X/Z) semidirect G`,
+    and the false step would have settled this open claim for the Kun--Thom pair.
+    (`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, Section 14.)
 - **Marked-site induction: dies at the first step.**
   - That proof separates `k[W]` by maps into `(C^(tensor r)) semidirect G`, using evaluation at infinity,
     which is a character of the lamp algebra.

@@ -22,3 +22,5 @@ The proofs are Proposition 2.1 and Corollaries 2.2–2.3 of the artifact.
   - Group algebras have the augmentation.
   - Marked-site rings evaluate at infinity onto `k[A^j x H]` or `k[F semidirect H]`, then onto a finite
     group algebra.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 16.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently: the minimal-support reduction, with coefficient `2 lambda_(v1) != 0` since `char k != 2`, and the simple-plus-infinite-dimensional argument. Scope: only unital maps are excluded.*

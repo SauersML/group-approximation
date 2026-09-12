@@ -16,3 +16,8 @@ Section 1 of the artifact (Theorem 1.1).
   lifts of one matrix have equal rank and `rk` factors through the quotient.
 - When `N_rk = Γ` the quotient is `K`, whose only Sylvester matrix rank function is the normalized rank.
 - A simple group has no other normal subgroups.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 10 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *normality of `N_rk` from subadditivity and unit invariance;*
+- *descent through the rank-zero left ideal spanned by `[y](1 - [n])`, with matrix entries handled by subadditivity;*
+- *uniqueness of the rank function over `K`, and the consequence `c e_H b = 1 => h ∈ N_rk`.*

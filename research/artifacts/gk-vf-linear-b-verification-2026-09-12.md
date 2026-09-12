@@ -364,6 +364,16 @@ finite-subgroup idempotents is never a defect, at any join.
 for two subgroups. A literal laminar defect needs three or more finite subgroups whose intersection graph has
 a cycle, and a non-sofic amalgam.
 
+**Addendum (be33019479).**
+- The lane's revised step 2 now lifts `d` through its atoms and says why the coefficient expression can fail. This
+  is the precision above, already incorporated.
+- **New Theorem 2.6 (sofic realizations): PASS.** Let `A -> Γ` be a homomorphism to a sofic group that is injective
+  on `U = ∪ H_s`.
+  - It induces a ring map, which carries the table and the atoms.
+  - It is injective on each `H_s`, so each `r(x_i)` is unchanged.
+  - `d_A` is supported on `U`, so its image is nonzero.
+  - The faithful sofic rank of `Γ` then gives `t_p([d S^n]) > 0`.
+
 ## 12. `anti-central-k0-states-equal-lifted-trace-on-signed-thompson` (w4-hadamard-f3): PASS
 
 **Part 1.**
@@ -409,3 +419,181 @@ a cycle, and a non-sofic amalgam.
 - A linear sofic embedding into a rank ultraproduct, with `rho(1 - g) >= κ > 0` for `g != 1`, pulls back to a
   Sylvester matrix rank function on `F_2[R^x]` with `rk(1 - [x]) >= κ`.
 - The augmentation rank of `1 - [x]` is 0, so the pulled-back rank is not the augmentation rank.
+
+## 14. `oriented-clifford-skew-rings-embed-in-matrix-lamp-wreath` (w4-clifford-df): PASS; one false Attempts line corrected
+
+**Spin embedding.** Take `s_x = diag(1,-1)` and `p_x = [[0,1],[1,0]]` at each site, so `s^2 = p^2 = 1` and `sp = -ps`.
+- **Square.** `iota(c_x)^2 = (p_x s_x^q)^2 · prod s_y^2 = (-1)^(q(x))`, since `(ps)^2 = -1`.
+- **Signs.** `iota(c_x)` and `iota(c_x')` anticommute at site `x` iff `x ∈ N+(x')`, and at site `x'` iff
+  `x' ∈ N+(x)`. So the total sign is `(-1)^(b_S(x,x'))`, because each edge is oriented exactly once.
+- **Equivariance.** It follows from the invariance of the orientation and of `q`. `G` acts on the lamps by
+  `c_x -> c_(gx)`, and this is well defined because the relations are invariant.
+- **Injectivity.** `iota(c_T)` is, up to sign, a Pauli string whose `p`-support is exactly `T`. Pauli strings
+  form a basis of `tensor M_2`, and both crossed products are free over their lamp algebras.
+
+**Compressor graph.** `psi(gΓ) = g u^-1 Γ` is well defined because `uΓu^-1 ⊆ Γ`.
+- `u ∉ Γ`, since otherwise `uΓu^-1 = Γ`.
+- `u^2 ∉ Γ`, since `u^2 Γ u^-2 ⊆ uΓu^-1 ⊊ Γ`.
+- So there are no fixed points and no 2-cycles, and the orientation is invariant with out-degree 1.
+- **Nondegeneracy.** Let `T` be finite and nonempty, and `t ∈ T`. Then `t` has infinitely many children, and at
+  most `|T|` points are parents of points of `T`. So some child `c ∉ T` has no child in `T`, and
+  `N(c) ∩ T = {t}` is odd.
+
+**Matching and complete graph.**
+- `tensor_X M_2(k)` is the Clifford algebra of the perfect matching on `X × {s,p}`.
+- Over the complete graph, even subsets pair by `|v ∩ w| mod 2`. So `c_(x1)c_(x2)` and `c_(x2)c_(x3)` generate a
+  quaternion algebra at each `x`, commuting across different `x`.
+- Quaternion algebras over finite fields split. A uniform choice of anticommuting involutions inside each copy
+  gives an equivariant unital map `tensor M_2 -> C_K`. It is injective because the source is simple.
+
+**Commutative form.** `M_2(k) = k^2 x| Z/2` when `char k != 2`.
+
+**Route `oriented-clifford-skew-rings-sf-from-matrix-lamp-wreath`: PASS.**
+- The Kun–Thom `G` is residually finite, so `F_p[G]` is stably finite.
+- A unital subring of a stably finite ring is stably finite.
+
+**Correction to `matrix-lamp-wreath-algebras-are-stably-finite` (OPEN), `## Attempts`, "Sofic base".**
+- **What main says.** "`H_X` is locally finite. So when `G` is sofic, `H_X semidirect G` is amenable-by-sofic,
+  hence sofic".
+- **Why it is false.** Amenable-by-sofic does not imply sofic.
+  - The Kun–Thom wreath `F_2 wr_X G` has abelian lamps and residually finite `G`, and it is not sofic.
+  - It is a subgroup of `(H_X/Z) x| G`, since `H_X/Z = (F_2^2)^(X)` contains the `s`-lamps.
+  - A quotient of a sofic group need not be sofic, but the bullet's conclusion would make `B_X` stably finite
+    for the Kun–Thom pair. That would settle the open claim, contradicting the lane's own next sentence.
+- **Correct form.** `B_X` is stably finite whenever `H_X x| G` is sofic, for example when `G` is amenable
+  (sofic-by-amenable is sofic). For the Kun–Thom pair this gives nothing.
+- Landed forward on the node with a correction line. The open status is unchanged.
+
+## 15. `anti-central-k0-states-can-be-chosen-transpose-invariant` (w4-hadamard-f3): PASS
+
+**Item 1.** Put `alpha(g) = (g*)^-1`, with `s_i* = t_i`. This is an automorphism of `G`.
+- A monomial unit `sum S[α_i]T[β_i]` has `g* = g^-1`, so `alpha(g) = g`.
+- `tau_C* = tau_C = tau_C^-1`, so `alpha(tau_C) = tau_C`.
+- `delta(g)* = delta(g*)` and `delta` is a homomorphism, so `alpha∘delta = delta∘alpha`.
+
+**Item 2.** On constants `*` is the transpose.
+- `h` is symmetric, so `alpha(h) = h^-1 = h^3 = zh`.
+- `alpha(wh) = w·zh = z wh` and `alpha(dh) = z dh`, so `[wh] -> -[wh]` and `[dh] -> -[dh]` in `S_-`.
+- `c_2 = -eps_-(1 + [wh] + [dh])` goes to `-eps_-(1 - [wh] - [dh]) = eps_-(2 + [wh] + [dh]) = eps_- - c_2 = c_1`.
+
+**Item 3.**
+- `s -> s∘alpha_*` and `s -> 2 s∘F_*` map states to states. They commute because `alpha_*` commutes with `F_*`,
+  as it fixes `e_-` and `[d]` and commutes with `delta_*`.
+- The state space is compact and convex, so Markov–Kakutani gives a common fixed point.
+- Invariance gives `s(c_1) = s(c_2)`, and `c_1 + c_2 = eps_-` gives the values `1/2`.
+
+## 16. Further Clifford landings (w4-clifford-df) and binary-cyclic Section 2.2: PASS
+
+### 16.1 `nondegenerate-clifford-skew-rings-have-no-finite-dim-reps`: PASS
+
+- **Simplicity.** Take `a = sum lambda_v c_v` of minimal support in a nonzero ideal, with `v0 != v1` in its
+  support.
+  - Nondegeneracy gives `w` with `b(v0 + v1, w) = 1`.
+  - `a - (-1)^(b(v0,w)) c_w a c_w^-1` has coefficient `lambda_v (1 - (-1)^(b(v0,w) + b(v,w)))`. That is `0` at
+    `v0` and `2 lambda_(v1) != 0` at `v1`, which contradicts minimality.
+  - So `a` is a unit monomial, and the ideal is everything.
+- **No finite-dimensional representations.** A unital map `C_S -> M_n(L)` extends `L`-linearly to
+  `C_S tensor L`. It is injective because the source is simple, which is impossible because the source is
+  infinite-dimensional.
+- **Targets.** Algebras with a character, and marked-site rings over residually finite bases, have
+  finite-dimensional representations.
+- **Scope.** Only unital maps are excluded. A non-unital map into a corner killed by the augmentation is not
+  addressed, and the claim does not assert it.
+
+### 16.2 `clifford-skew-ring-rank-models-give-linear-sofic-wreath`: PASS
+
+**Doubling.**
+- `(c_x tensor c_x^op)^2 = 1`.
+- In `c_x c_y tensor (c_y c_x)^op` the two signs `(-1)^b` cancel, so different lamps commute.
+- `u_g tensor (u_(g^-1))^op` is a homomorphism, and conjugation sends `c_x tensor c_x^op` to
+  `c_(gx) tensor c_(gx)^op`.
+- Distinct `vg` give distinct first tensor factors, so the map is injective.
+
+**Gate.**
+- `X tensor X^-T` acts on `M_n` by `M -> X M X^-1`, so its `±1`-eigenspace is `{M : XM = ±MX}`.
+- That space has dimension at most `n max_λ g_X(λ)`, so the normalized rank distance is at least
+  `min_λ rho(X - λ)`.
+- If this tends to 0, `c_v u_g` is rank-central, hence central in `A_S` by injectivity. That is impossible
+  for `vg != 1`: faithfulness handles `g != 1`, and nondegeneracy handles `g = 1, v != 0`.
+
+**Converse.** It relies on the linear-sofic group algebra embedding recorded in
+`linear-sofic-group-algebra-is-stably-finite`, which was not re-checked here, then compression by `(1 - eps)/2`.
+
+### 16.3 binary-cyclic artifact Section 2.2 (no detecting maps into `M_n(D)`): PASS
+
+- A detecting `rk` makes `φ` injective on `R^x`.
+- For `x` of order `2^k > 2n`, `N = φ(x) - 1` is nilpotent, so `N^n = 0`.
+- With `2^(j-1) < n <= 2^j`, `φ(x)^(2^j) = 1 + N^(2^j) = 1` in characteristic 2. So `x` has order at most
+  `2^j < 2n < 2^k`, a contradiction.
+- Section 2.1 (no rank function on `R`) is the standard `[1] = 2[1]`.
+
+## 17. HNN transfer for triangular lifts (w4-kap-triangular; a43847b206, a9a225b5d6): PASS
+
+### 17.1 `finite-subgroup-idempotent-ideals-admit-no-proper-group-shift`: PASS
+
+- **Equivalences.** `[g]eB ⊆ eB` iff `e[g]e = [g]e` iff `(I - e)[g]e = 0`.
+- **Transfer.**
+  - In `G`, `agb = a'gb'` iff `a'^-1 a ∈ g K g^-1 ∩ K = D`, so `k[K] tensor_(k[D]) k[K] -> k[KgK]` is injective.
+    The matrix tensor `(I - e) tensor e` therefore vanishes in the tensor product.
+  - In the HNN extension `H`, the same linear map to `k[KtK]` is well defined. (By Britton's lemma it identifies
+    exactly `D`.) So `(I - e)[t]e = 0` in `M_n(k[H])`.
+- **Invertibility.** With `x = [t]e + (I - e)` and `y = e[t^-1] + (I - e)`, `yx = I + N`, where
+  `N = e[t^-1](I - e)` satisfies `N^2 = 0`. Direct finiteness makes `x` invertible, so `xB_H = B_H`.
+- **Modular law.** `[t]eB_H ⊆ eB_H` gives `eB_H = [t]eB_H + (eB_H ∩ (I - e)B_H) = [t]eB_H`.
+- **Back to `G`.** Push `e = [t]e b` down to `G`.
+- **Corollary B.** An HNN extension of a finite group is virtually free, so its matrix algebras are directly finite.
+
+### 17.2 `finite-support-triangular-two-piece-s0-lifts-do-not-exist`: PASS
+
+- **First case.** If `Ê[h](1 - Ê) = 0`, then `[h](1 - Ê)A ⊆ (1 - Ê)A`, and Corollary B makes it an equality.
+  Evaluation gives `q R = P_1 R` for `q = P_(h(1))`, which forces `q = P_1`. But `h(1) = g_1^-1(01)` is a proper
+  subset of `1`, because `g_1` maps `1` onto `01 ∪ 1`.
+- **Second case.** `P_(h^-1(0)) = P_(g_2^-1(00))` is a proper subset of `P_0`.
+- These are the strict containments of `[TP]` Remark 2.5. They were re-derived here from the cylinder data, not
+  read from the source.
+
+### 17.3 `triangular-piece-lifts-need-non-directly-finite-shift-group`: PASS
+
+- **Left inverse.** `b = sum E_i[g_i^-1]` gives `ba = I + N`, with `N = sum_(i != j) X_ij` supported on an acyclic
+  digraph. Path products vanish after `m` steps, so `a` is left invertible.
+- **Transfer.** Each `X_ij = 0` with `(i,j) ∈ Z` lives on one double coset and transfers to `H`, as in 17.1. Then
+  `a_H = sum [t_i]E_i` is left invertible in `F_2[H]`.
+- **Contradiction.** If `F_2[H]` were directly finite, `a_H` would be invertible, and its image `s_0` would be
+  invertible in `R`, which is false.
+- **Forest corollary.** Change the letters along a spanning forest of `Γ`. Relations for `(i,j)` and `(j,i)`
+  coincide, and each remaining relation is an HNN relation with a finite associated subgroup. So `H_Z` is
+  virtually free.
+- The cycle case, "one 2-cell per cycle", is descriptive and was not re-derived.
+
+## 18. Peeling and hyperfinite graphings (w4-cohn-gram): PASS
+
+### 18.1 `triangular-crossed-product-elements-are-units-or-zero-divisors`: PASS for parts 1–2
+
+- **Back-substitution.** A point removed in round `s` is the one live point of a unique column `k_s`. So `δ_p` is
+  `x_mu δ_(k_s)` minus terms on earlier points, and by induction every vector on removed points is in the image of
+  earlier columns.
+- **Stops.**
+  - A dead column gives the kernel vector `δ_k - η`.
+  - Two columns sharing their one live point, with entries `d` and `d'`, give `d' δ_k - d δ_(k') - η`.
+  - Both vectors are nonzero, and Theorem 2.1 finishes.
+- **Termination.**
+  - `D` has `c_D = 1`. It also has `n_D <= 1`, since a shared removal point would have stopped the peeling. Haar
+    balance gives `n_D = 1`, so `D` is a signed permutation unit.
+  - `D^-1 N` maps each round-`r` column to earlier columns, so it is nilpotent in every fibre. The fibres are
+    faithful, so it is nilpotent in `B`.
+- **Not re-derived.** Part 3 (equal live measures) and Example 4.3 (the three-piece lift stops in round two).
+
+### 18.2 `hyperfinite-coefficient-graphing-excludes-corner-witnesses`: PASS
+
+- **Expansion.** Left inverses in `B` act on every orbit module, so the columns at `J` are injective:
+  `2|J| <= |N_1(J) ∪ N_2(J)|` in case 1, and `|J| <= |N_x(J) ∩ U_[0]|` in case 2.
+- **Exhaustion.** Suppose `R_Γ = ∪ R_n`. The degree is bounded, so `lambda(∂_n) -> 0`. Interior points have all
+  their column points in their class.
+- **Transport.** `R_n` is a finite measure-preserving subrelation of the `V`-orbit relation. So
+  `lambda(interior) = ∫ |C°|/|C| <= 1/2`, which contradicts `lambda(∂_n) < 1/2`.
+- **Case 2 graphing.** The graphing of `x = q_[0] b'` is a subgraph of that of `b'`.
+- **Degree two.**
+  - A finite component `K` gives `2|K| <= |K|`, and a segment of `m >= 3` points has at most `m + 2 < 2m` column
+    points.
+  - In case 2, every infinite class meets `U_[1]` in at most two points, so `U_[1]` is null. That contradicts
+    `lambda(U_[1]) = 1/2`.

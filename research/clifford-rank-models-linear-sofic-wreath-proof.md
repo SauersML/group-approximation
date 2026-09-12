@@ -26,3 +26,10 @@ The proofs are Propositions 3.1–3.3 of the artifact.
 - **Converse.** Linear soficity gives a rank embedding of `F_3[E_S]`
   (`linear-sofic-group-algebra-is-stably-finite`). Compressing by the central idempotent `(1 - eps)/2` gives
   one of `A_S`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 16.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the doubling signs, the homomorphism `u_g tensor (u_(g^-1))^op`, and injectivity;*
+- *`X tensor X^-T` acting as `M -> X M X^-1`, and the eigenspace bound;*
+- *rank-central implies central, via faithfulness and nondegeneracy.*
+
+*The group-algebra embedding used in the converse was not re-checked.*
