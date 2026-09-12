@@ -105,8 +105,14 @@ timeout 10800 nice -n 5 $TS lake build $MODS >> "$LOG" 2>&1; RC=$?
 echo "EXIT=$RC" >> "$LOG"
 echo "===== SUMMARY"
 echo "lane $LANE tag $TAG host $(hostname -s) cores ${CORES:-slurm} base ${SHA:0:9} seconds $(( $(date +%s) - T0 )) log $LOG"
-echo "--- errors (first 80 lines)"
-grep -n -E '^error|error:|✖|declaration uses .sorry.|sorryAx' "$LOG" | head -80
+echo "--- errors (full blocks: each error: line through the next error:, ✖ or Some required targets line; trace lines dropped; first 150 lines)"
+awk '
+  /^trace: / { next }
+  /error:/ { inblk = 1; print; next }
+  /^✖/ || /^Some required targets/ { inblk = 0; print; next }
+  inblk { print; next }
+  /declaration uses .sorry.|sorryAx/ { print }
+' "$LOG" | head -150
 echo "--- per-module"
 for m in $MODS; do
   if grep -qF "Built $m " "$LOG" || grep -qE "Built ${m//./\\.}\$" "$LOG"; then echo "BUILT $m"
