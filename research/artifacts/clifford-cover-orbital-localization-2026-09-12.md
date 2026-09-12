@@ -288,7 +288,22 @@ profinitely saturated, then `E_S` is surjunctive.
    surjunctive. Its quotient `E_(S_cross) / <eps>` is the surjunctive wreath `W`. This settles one instance
    of the residue of `finite-normal-subgroups-do-not-affect-surjunctivity`, in the predicted direction.
 
-**What stays open.** The complete-graph cover over the Kun--Thom pair is not saturated: its edges inside
-`Gammabar`-fibres are inseparable. The same holds for every finite-degree graph once `Gammabar != Gamma`,
-and for every graph carrying the radical-phase edge. Soficity of `E_(S_cross)` is not decided here. If it
-were sofic, Theorem C would add nothing new there.
+**Remark 4.1 (finite degree over infranormal pairs).** Let `Gamma` be infranormal and not normal. Then
+`|Gammabar : Gamma| = ∞`, and no finite-degree graph with an edge is profinitely saturated.
+
+*Proof.*
+- **Infinite index.** Some `t in P_Gamma` has `t Gamma t^(-1) != Gamma`; otherwise the generating set
+  `P_Gamma` would normalize `Gamma`. Then `Gamma < t^(-1) Gamma t < t^(-2) Gamma t^2 < ...` strictly, and
+  every term lies in `Gammabar` by Lemma 2.2. An infinite strictly increasing chain between `Gamma` and
+  `Gammabar` forces infinite index.
+- **Non-saturation.** Let `g` be an edge orbital. If `g in Gammabar`, condition 1 fails. Otherwise the
+  profinite closure of `Gamma g Gamma` contains `Gammabar g Gammabar = g Gammabar`, because multiplication
+  is continuous in the profinite topology. It therefore contains the infinitely many distinct sites
+  `g gammabar o`, `gammabar in Gammabar/Gamma`. Saturation would make all of them neighbours of `o`, which
+  contradicts finite degree. QED
+
+**What stays open.**
+- **Non-saturated graphs.** The complete-graph cover over the Kun--Thom pair is not saturated: its edges
+  inside `Gammabar`-fibres are inseparable. Every graph carrying the radical-phase edge fails too, and by
+  Remark 4.1 so does every finite-degree graph.
+- **Soficity of `E_(S_cross)`.** Not decided here. If it were sofic, Theorem C would add nothing new there.

@@ -51,3 +51,30 @@ Marked `root` because it heads a counterexample lane of its own.
   - Direct finiteness lifts modulo a nilpotent ideal at every matrix size: if `b a = 1` modulo `J`, then `b a` is invertible.
   - `F_2[W]` is stably finite, so `F_2[E_S]` is too.
   - So no binary Kaplansky pair exists on `E_S`. Linear counterexamples there can live only in odd characteristic, in the anti-central factor.
+- **Nonlinear case: orbital localization** (lane w4-clifford-nonlinear, artifact
+  `clifford-cover-orbital-localization-2026-09-12.md`).
+  - **The filter.** A strict pair reads adjacency on finitely many site pairs. Suppose one finite quotient
+    `K\X` separates every read edge from the read non-edges. Then the pair transfers, with the same
+    coordinates, to the cover over the graph pulled back from `K\X`. That cover is separated and hence
+    surjunctive. So every witness reads a profinitely invisible adjacency
+    (`clifford-cover-strict-pairs-read-invisible-adjacency`).
+  - **Complete graph, Kun--Thom pair.** The witness's products must force a holonomy subgroup at some read
+    site whose profinite closure contains the difference of two read sites. Those two sites lie in one fibre
+    of `G/Gamma -> G/Gammabar` (`infranormal-subgroups-have-normal-profinite-closure`).
+    - The radical-phase table is such a configuration: moves by `Gamma` at `o` and the path
+      `o -> t o -> gamma t o -> h o`.
+    - So a witness must contain the Kun--Thom phase pattern, which is also where nonsoficity lives.
+  - **Binary alphabets add three screens.**
+    - `F_2[E_S]` is stably finite, so the pair is non-formalizable at every stabilization.
+    - Some decoder monomial violates the disjoint-footprint condition.
+    - The decoder memory is nonamenable.
+  - **Where it stops.** No design meeting all four conditions is known. The phase pattern supplies
+    invisibility, but no mechanism for non-surjectivity.
+- **Surjunctive side: graphs already settled** (same artifact).
+  - **Separated covers.** The center survives a finite quotient exactly for finite-pullback graphs
+    (`clifford-cover-center-separable-iff-graph-is-finite-pullback`).
+  - **Saturated covers.** Covers over profinitely saturated graphs are surjunctive
+    (`profinitely-saturated-clifford-covers-are-surjunctive`). This includes the cross graph over the Kun--Thom
+    pair, whose center lies in the finite residual.
+  - **Where a counterexample can live.** Only on non-saturated graphs: the complete graph, every graph
+    carrying the radical-phase edge, and every finite-degree graph (artifact Remark 4.1).

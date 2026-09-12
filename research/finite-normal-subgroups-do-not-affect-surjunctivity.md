@@ -56,3 +56,16 @@ artifacts:
   (`deligne-triple-cover-ternary-group-algebras-are-stably-finite`). A second instance with a surjunctive
   nonsofic quotient is the Kun–Thom Clifford cover (`kun-thom-clifford-cover-nonsurjunctive`, lane
   w3-free-neg).
+- **Clifford covers: one residue instance settled, in the predicted direction** (lane w4-clifford-nonlinear,
+  artifact `clifford-cover-orbital-localization-2026-09-12.md`). Take a `G`-invariant graph `S` on
+  `G/Gamma` and its cover `E_S`.
+  - **Separated covers.** The center injects into a finite quotient exactly when `S` is pulled back from a
+    finite quotient of the site set (`clifford-cover-center-separable-iff-graph-is-finite-pullback`).
+  - **Beyond the separated case.** If `G` is surjunctive and `S` is profinitely saturated, `E_S` is surjunctive
+    (`profinitely-saturated-clifford-covers-are-surjunctive`), by local embeddings into separated covers.
+  - **An instance inside the residue.** Take the Kun--Thom pair and the cross graph, which joins sites
+    lying in different fibres of `G/Gamma -> G/Gammabar`. Its center lies in the finite residual, and the
+    cover is surjunctive.
+  - **What local re-choice cannot reach.** The method re-chooses only the extension data read by finitely
+    many products. The analogous cocycle re-choice for Deligne's triple cover is recorded on
+    `deligne-triple-cover-nonsurjunctive`.
