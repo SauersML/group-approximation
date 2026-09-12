@@ -10,28 +10,36 @@ and a precise reformulation of descent with its obstruction.
 
 See `passive-block-involution-codes-ascend` and its proof route.
 
-A **control-involution code** over `A` has `mu = nu` and relay rule `mu(x) = g_{x(c_2)}(x(c_1))` for a
-data cell `c_1` and a control cell `c_2`, where `v |-> g_v` sends `A` to involutions of `A`, `g_v`
-depends only on a partition block of `v`. A block `Z` is **passive** when every `g_v` fixes `Z`
-pointwise.
+A **control-involution code** over `A` has `mu = nu` and relay rule `mu(x) = g_{x(c)}(x(1))`, with the
+data read at the identity label `1` and the control at one other label `c`, where `v |-> g_v` sends `A`
+to involutions of `A` and `g_v` depends only on a partition block of `v`. A block `Z` is **passive** when
+every `g_v` fixes `Z` pointwise; write `g_Z` for the common involution of its symbols.
 
-**Lemma.** A control-involution code strict for `(T_f, T_r)` over `A` with a nonempty passive block
-extends, by adjoining a new symbol to the passive block and fixing it under every `g_v`, to a strict
-code over `A ⊔ {∗}`. Hence the admissible sizes of `(T_f, T_r)` are upward closed above the first size
-carrying such a code.
+**Lemma.** A control-involution code strict for `(T_f, T_r)` over `A` with a nonempty passive block `Z`
+extends to a strict code over `A ⊔ {∗}`: adjoin `∗` to `Z`, let every `g_v` fix `∗`, and set
+`g_∗ = g_Z`. Hence the admissible sizes of `(T_f, T_r)` are upward closed above the first size carrying
+such a code.
 
-The decoder identity is a conjunction of equations "(word in the `g`'s)(demanded symbol) = demanded
-symbol"; a symbol fixed by every `g_v`, placed in a pointwise-fixed block, satisfies every such
-equation (identity factors drop out, and the new symbol is a global fixed point), and the `T_r` witness
-stays inside `A`. Full argument in the proof route.
+**Proof sketch** (full argument in the proof route). The retraction `phi : A ⊔ {∗} -> A` fixing `A` and
+sending `∗` to some `z_0 in Z` intertwines the relay rules, because `Z` is passive and `g_∗ = g_{z_0}`.
+So the forward composite over `A ⊔ {∗}` maps under `phi` to the forward composite over `A`, which returns
+the demanded symbol. The data path from cell `(1,1)` passes through two involutions, each preserving `A`
+and fixing `∗`, so the composite is `∗` exactly when the demanded symbol is `∗`, and `phi` is injective
+on `A`. The `T_r` witness stays inside `A`, where the rules are unchanged.
+
+**Correction.** The first landed version set `g_∗ = id` and argued by deleting identity factors. That rule
+breaks block dependence whenever `g_Z != id` (the `x_a = x_b` instance, `g_Q = (0\,1)`), and deleting
+identity factors does not give an `A`-equation. w3-vf-positive caught both (its Section 9); the rule and
+the proof above are the corrected ones, and the conclusion is unchanged.
 
 **Coverage of the classified tables.**
 - Copy-code tables (`O ~ X`, `O ~ B`, `O ~ A`) are not involution codes but are defined over every
   `n >= 2` directly.
-- `x_a = x_b` (`B ~ A`): `g_P = id` on `P = {0,1}`, `g_Q = (0\,1)` on `Q = A \ P`. `Q` is passive.
-  Threshold `n = 3`, ascends to all `n >= 3`.
+- `x_a = x_b` (`B ~ A`): `g_P = id` on `P = {0,1}`, `g_Q = (0\,1)` on `Q = A \ P`. `Q` is passive, and
+  adjoined symbols get `g_∗ = (0\,1)`. Threshold `n = 3`, ascends to all `n >= 3`.
 - `x_a = x_b = x_a x_b` (`B ~ A ~ X`): `h_0 = id`, `h_1 = (0\,2)`, `h_2 = (0\,1)`, `h_w = id` for
-  `w >= 3`. Passive block `{3,4,...}`, nonempty from `n = 4`; `n = 3` is the separate base.
+  `w >= 3`. Passive block `{3,4,...}`, nonempty from `n = 4`, with `g_∗ = id`; `n = 3` is the separate
+  base.
 
 So all three admissible-size patterns recorded in the Boolean-core artifact (Section 6) come from this
 one mechanism, rather than from three separate computations.
@@ -39,17 +47,18 @@ one mechanism, rather than from three separate computations.
 ## 2. General ascent reduces to this form
 
 `strict-rule-pairs-ascend-to-larger-alphabets` asks for ascent of an arbitrary strict rule pair. Section
-1 gives ascent whenever the pair is a copy code or a control-involution code with a passive block. So:
+1 gives ascent whenever the pair is a copy code or a control-involution code with a passive block and data
+at label `1`. So:
 
 **Reduction.** General ascent holds if every strict rule pair is equivalent, over its alphabet and for
-its tables, to a copy code or to a control-involution code with a passive block.
+its tables, to a copy code or to such a control-involution code.
 
 Two cautions on trying to prove the reduction.
 - **The obstruction to naive extension is real.** Adjoining an *absorbing* symbol (`∗` swallows every
   relay that reads it) breaks the decoder identity exactly as the erasure symbol does (Boolean artifact,
   Section 5): a demanded `A`-symbol adjacent to a `∗` is lost. The passive-block mechanism works only
-  because `∗` is a *fixed point* of involutions, not a sink. A general strict pair has no canonical
-  fixed-point extension, which is why the general statement is open.
+  because `∗` is a *fixed point* of the involutions, retracting onto a passive symbol, not a sink. A
+  general strict pair has no canonical fixed-point extension, which is why the general statement is open.
 - **Monotonicity is not automatic.** Solvability of a single-demand network code need not be monotone in
   alphabet size in general; whether the uniform-relay, transpose-failing restriction here forbids
   non-monotone behaviour is exactly the open question. This is a heuristic pointer, not a cited theorem;
