@@ -49,3 +49,63 @@ N·[x_{2i},x_{2j}]=0, and the order is exactly N. □
 
 Examples: N(2,·)=2 and N(3,2)=6=3!, so the commutator coming from S³×S³
 generates the whole group π_6U(3). Also N(5,3)=30 and N(4,2)=12.
+
+## 2. Wedged odd-sphere arms
+
+Fix a finite list (n_α,i_α), α=1..s, with n_α>=2 and 1<=i_α<=n_α, and
+put j_α=n_α+1−i_α and N_α=N(n_α,i_α). Let R=max n_α and e_α=R−n_α, and set
+
+    M_α = S^{2i_α−1} × S^{2j_α−1} × CP^{e_α},
+    E_α = 1^{n_α} ⊕ L_α^{⊕e_α}.
+
+Wedge the arms at based zero-cells to get X_0. Glue the bundles at the
+wedge point by unitary identifications, exactly as in §3 of the
+finite-abelian proof. Then set X=X_0×Y, E=pr^*E_0⊕H, r=R+m, and
+G(E)=U(Γ(End E)).
+
+**Theorem B.**
+
+(a) There is an exact sequence 1 → ⊕_α Z/n_α! → π_0G(E) → K^1(X) → 1, whose
+kernel is central. The coordinate α of the kernel is detected by
+restriction to M_α×Y.
+
+(b) Let u_α and v_α be a_{i_α}∘pr and a_{j_α}∘pr on arm α, direct sum
+1_H, and the identity on every other arm. Their commutator has order N_α,
+and it lies in coordinate α of the kernel. For α≠β, both u_α and v_α
+commute pointwise with both u_β and v_β.
+
+(c) Adding a tautological block by extension by the identity is injective
+on π_0, an isomorphism on kernels, and pr^* on K^1.
+
+**Proof.**
+
+*(a)* Top cohomology H^{2r}(X;Z) ≅ ⊕_α H^{2r}(M_α×Y) ≅ Z^s through the arm
+inclusions. The reduced cohomology of a wedge is the sum over the arms, and
+Y has free cohomology in even degrees.
+
+As in NCG Theorem 3(a), the gauge sequence gives
+Z^s → π_0G(E) → K^1(X) → 0. The map on K^1 is onto because
+π_0S(F)=0 in this dimension.
+
+The Euler image is computed armwise. On each arm the pair restricts to the
+NCG Theorem 3 pair over S^{2i−1}×S^{2j−1}×(CP^{e_α}×Y). There the collapse
+to S^{2n_α} has degree one and the image is n_α!Z, by §3 below. This gives
+the inclusion im ⊆ ⊕ n_α!Z.
+
+For equality, take the attaining class q^*κ on M_α. It has virtual rank
+zero. Collapse the other arms to the wedge point, pull the class back to
+X_0×Y, and call the result β̂_α. It vanishes on every other arm, so
+Λ(β̂_α) = (0,..,±n_α!,..,0). As in the finite-abelian proof §4, this
+excludes hidden relations. Centrality is the argument of NCG 3(a), now
+with s top-cell integers.
+
+*(b)* Pointwise, the commutator on arm α is the NCG commutator map. It
+factors through the collapse to ⟨a_{i_α},a_{j_α}⟩∘pr⊕1. Restricting to
+M_α×Y maps the kernel onto its coordinate α, and by §3 below the class
+there has order N_α. On every other arm the commutator is the identity.
+Pointwise commutation across arms holds because distinct arms meet only
+at the wedge point, where every generator is 1.
+
+*(c)* A product zero count multiplies each coordinate by ±1, as in §5 of
+the finite-abelian proof. The five-lemma argument of NCG 3(d) then applies
+verbatim. □
