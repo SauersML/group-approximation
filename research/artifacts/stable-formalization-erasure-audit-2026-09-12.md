@@ -139,6 +139,12 @@ over `k(S)` by Lemma 3.1. So `P = 0`, and `F(w) = F(c + d)` lies in `k[S]`. ∎
   is the original problem. Alternatively the remainder can be sent into the identity-track outputs,
   which Section 2 constrains.
 
+**Remark 3.2a (scope: which gates).** The application covers gate components that read only the
+untouched local variables `S` and the copy `w_g`. A sitewise gate that also reads another modified
+track at cell `g`, such as `U_g = τ~(X)_g`, falls outside Theorem 3.2. `d_g` may be algebraically
+dependent on `U_g` over `k(S)`, and then a local output can depend on `w_g`. So the obstruction is to
+erasing from the copy and the untouched local variables alone.
+
 **Remark 3.3 (scope: regrouping).** Theorem 3.2 is algebraic and holds for every group, but "sitewise"
 is relative to the sites.
 - **With a finite-index subgroup.** If `G` has a proper finite-index subgroup `H`, one may regroup

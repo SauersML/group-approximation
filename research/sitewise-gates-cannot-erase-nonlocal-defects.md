@@ -29,6 +29,10 @@ depend on `w`.
 
 **Scope.** The algebraic statement holds verbatim over every group. "Sitewise" is relative to the
 chosen sites.
+- **Which gates.** The conclusion covers gate components that read only `S` and the copy `w_g`.
+  A gate that also reads other modified tracks at cell `g`, for instance the output track `U_g`, is
+  not covered. The remainder may be algebraically dependent on those values over `k(S)`, and then the
+  transcendence argument does not apply.
 - **After regrouping.** If `G` has a proper finite-index subgroup `H`, the automaton can be regrouped
   along `H`. A site is then a block of cells, `S` is the variables of a block, and only remainders
   involving variables outside the block are nonlocal. Regrouping can therefore escape this obstruction,
