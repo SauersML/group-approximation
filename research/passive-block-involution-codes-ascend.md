@@ -1,4 +1,5 @@
 ---
+rg: 2
 id: passive-block-involution-codes-ascend
 kind: claim
 title: A control-involution strict rule pair with a passive block admits strict rules over every larger alphabet

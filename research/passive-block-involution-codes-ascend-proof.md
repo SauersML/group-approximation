@@ -1,4 +1,5 @@
 ---
+rg: 2
 id: passive-block-involution-codes-ascend-proof
 kind: route
 title: Adjoining a symbol to a passive block preserves strictness of a control-involution code
