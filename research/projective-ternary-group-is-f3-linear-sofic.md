@@ -44,3 +44,13 @@ idempotent refutes this claim (`non-linear-sofic-via-projective-ternary-swap-ful
   Hamming proof's step where (T) rounds the models of the Kazhdan subgroup. This does
   not decide the gate. `PG` has no nontrivial finite-dimensional representations, and
   perturbed models with sublinear pieces are not covered.
+- *Module-type models.* Dead at every block dimension (gk-l-gate-pos). Restricted to
+  `EL_3` of the ternary Leavitt algebra, which sits inside `PG` through the corner
+  embedding, a model whose root subgroups act by block unipotents between blocks of
+  arbitrary ranks is trivial (`block-unipotent-rank-models-of-leavitt-el3-are-trivial`).
+  The Steinberg triples produce a unital corner homomorphism of `L_(F_3)(1,2)`, and direct
+  finiteness of rank-ultraproduct corners kills it.
+- *Permutation-type models.* Dead. Monomial rank models over `F_3` are Hamming models up
+  to a factor two (`monomial-rank-models-are-hamming-models`), and `PG` is nonsofic. The
+  remaining class is recorded in Section 7 of
+  `research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md`.

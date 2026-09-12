@@ -48,3 +48,15 @@ a Kaplansky pair in `F_2[R^x]` refutes this claim
   not is excluded.
 * **Natural Cantor truncation.** Dead: length-changing prefix replacements lose rank
   (recorded on `f2-linear-sofic-groups-kill-rigid-compression-defects`).
+* **Module-type models (2026-09-12, gk-l-gate-pos).** Dead at every block dimension. A
+  model of `R^x = EL_3(R)` whose root subgroups act by block unipotents `1 + psi_ij(a)`,
+  with `psi_ij(a)` in block `(i,j)`, is trivial for arbitrary, even unequal, block ranks
+  (`block-unipotent-rank-models-of-leavitt-el3-are-trivial`). The Steinberg triples make
+  `psi_ij(1)` matrix units between equal-rank corners, and `psi_12(a) psi_21(1)` is then
+  a unital corner homomorphism of `R`, which direct finiteness of corners kills, as in
+  `leavitt-algebra-has-no-unital-rank-model`. So every model built from approximate
+  `R`-modules is excluded.
+* **Permutation-type models.** Dead. Monomial rank models are Hamming models up to a
+  factor two (`monomial-rank-models-are-hamming-models`), and `R^x` is nonsofic. A
+  surviving model is neither module-type nor monomial; the remaining class is recorded in
+  Section 7 of `research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md`.
