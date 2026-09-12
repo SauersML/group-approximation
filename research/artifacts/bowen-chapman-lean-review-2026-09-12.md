@@ -10,7 +10,8 @@ delivered through a Palomar challenge.
 
 **Status: resolved in the plan, pending landing.** Sent to `kt-norm-paper`,
 `kt-norm-repo`, `bc-assembly`, `bc-wreath`; the sequential free form below was
-approved in reply to `kt-norm-repo`.
+approved in reply to `kt-norm-repo`, and `kt-norm-paper` confirmed that all four
+Theorem 4.1 lanes now target it.
 
 Kun–Thom, arXiv:2608.06222v3, Definition 2.1 (HTML, read 2026-09-12): "A
 homomorphism σ:G→𝒮𝒰 is a *sofic representation* if tr(σ(g))=0 for every
@@ -59,7 +60,8 @@ commutators with `A.map n γ` vanish along `atTop`, separately for each
   `asymptoticallyFaithful`. Taking `v n` to be the image of the lamp, separation
   on the nontrivial commutator gives the contradiction.
 * **Follow-up.** The double reduction on main consumes the injective Prop, so a
-  sequential reduction has to be added (`bc-assembly`, `bc-wreath`).
+  sequential reduction has to be added. `kt-norm-repo` owns
+  `not_isSofic_symmetricDouble_of_sequentialNormalization`.
 
 **Background read for this finding.**
 * No sentence of Kun–Thom's Lemmas 2.3, 4.2 or 4.3 uses `tr(σ(g))=0`
@@ -169,14 +171,61 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 * This matches Kun–Thom §5. The representation it uses comes from a sofic
   approximation, so it is free, which fits F1.
 
-## F4. Landed code
+## F4. Landed code and early drafts
 
-As of `origin/main` 8a1a183c9, only WIP snapshots under `wip/bowen-chapman/`
-exist: the Dynamics library and the endpoint scaffolds. No campaign module has
-landed at its final path. Lanes still to review as they land: `bc-pair`,
-`bc-kazhdan`, `bc-rf`, `bc-dynamics` / `bc-dynamics-upper`, `bc-double-surj`,
-`bc-wreath`, `kt-norm-paper`, `kt-norm-repo`, `kt-norm-fixedpoint`,
-`kt-norm-counting`, `bc-assembly`, `bc-palomar`.
+As of `origin/main` 7db678817 no campaign module has landed at its final path;
+only WIP snapshots under `wip/bowen-chapman/` exist.
+
+**(a) Endpoint scaffolds, WIP at cdd4b82df. Status: fixed by `bc-assembly` at
+958615284 (WIP snapshots).** Verified by reading both snapshots on origin/main
+2648d3624: they import `KunThom.NormalizationFromCriterionConsumer`, use
+`HasSequentialCentralizerNormalization`,
+`hasSequentialCentralizerNormalization_of_kazhdan_infranormal` and
+`not_isSofic_symmetricDouble_of_sequentialNormalization`, and no longer mention
+the injective Prop. The header now attributes the sequential form to Kun–Thom
+Theorem 4.1. The original findings were:
+* The statements of `symmetricDouble_fg_surjunctive_not_isSofic` and
+  `exists_fg_surjunctive_not_isSofic` match the pinned interface.
+* The Theorem 4.1 input is still the injective
+  `HasSoficCentralizerNormalization`, which no lane will prove after F1. It has
+  to switch to `HasSequentialCentralizerNormalization` and
+  `not_isSofic_symmetricDouble_of_sequentialNormalization`.
+* The header of `EndpointOfInputs` ascribes the faithful-representation form to
+  Kun–Thom Theorem 4.1. The theorem is for sofic representations.
+* The surjunctivity and finite-generation calls agree with the Dynamics
+  signatures: `symmetricDouble_finitelyGenerated (G) [Group.FG G] (Γ)` and
+  `isSurjunctive_of_residuallyFinite [Group.ResiduallyFinite G]`.
+
+**(b) Local drafts read early: unlanded and unbuilt, so these are notes, not
+verdicts.**
+* **`BowenChapman/LaurentPair.lean` (`bc-pair`).** Matches the pinned
+  definitions:
+  * `substitution M` is `mapDomainRingEquiv` along `v ↦ M *ᵥ v`, and it is
+    covariant (`exponentAction_mul`);
+  * `actorAction` acts entrywise;
+  * `Peripheral` is the range of `inl ∘ elementaryGroupMap polyToLaurent`.
+  The Mathlib names check at 81a5d257: `mapDomainRingEquiv_single` takes the
+  equivalence, then the coefficient, then the exponent, as the draft calls it.
+  The docstring's "SL₃(ℤ) replaced by EL₃(ℤ), the same group" is true, and it
+  is used only as prose.
+* **`BowenChapman/LaurentPairKazhdan.lean` (`bc-kazhdan`).** It calls
+  `peripheralEmbedding_injective`, which does not exist; LaurentPair defines
+  `peripheralHom_injective`. Sent. The (T) inputs are sound:
+  `finitelyGeneratedRingGeneralRankElementaryPropertyT` is root-imported at
+  7db678817, carries a closed-axioms audit line in
+  `PropertyT/IntegralColumnPlaneClosure.lean`, and covers every finitely
+  generated unital ring in `Type`, including ℤ, `Laurent` and `Poly`.
+* **`Kazhdan/SemidirectProductKazhdan.lean` (`bc-kazhdan`).** The statement
+  matches the pinned permanence theorem. The proof goes through a per-vector
+  moving-projection estimate, as F3(c) requires.
+* **`Sofic/WreathCentralizerNormalization.lean` (`bc-wreath`).** The algebraic
+  core `wreath_conj_mem_of_commute` involves no representation, so swapping in
+  the sequential Prop only touches the consumer.
+
+**Still to review as they land:** `bc-pair`, `bc-kazhdan`, `bc-rf`,
+`bc-dynamics` / `bc-dynamics-upper`, `bc-double-surj`, `bc-wreath`,
+`kt-norm-paper`, `kt-norm-repo`, `kt-norm-fixedpoint`, `kt-norm-counting`,
+`bc-assembly`, `bc-palomar`.
 
 An informal pass of the permanence chain by another team is not a Lean
 verification; the Lean is reviewed here independently.
