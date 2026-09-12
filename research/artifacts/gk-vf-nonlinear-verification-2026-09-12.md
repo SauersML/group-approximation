@@ -36,6 +36,7 @@ not by rereading the author's argument. Nothing was run.
 | `d2fb445ab`, `91ef83465` (gk-fz-counter) | `finite-group-formalizability-equals-equivariant-automorphism`, `formalizable-pairs-restrict-to-finite-quotients`, `order-three-equivariant-plane-automorphisms-are-linear`, `z3-level-preserving-automorphisms-rotate-uniformly` | PASS (Section 30) |
 | `77278f6fd` (gk-fz-kari) | partition lemma F1 and F2, route `kari-words-give-virtual-formalizability-over-integers`, the re-derivations of Sections 2.1–2.4 | PASS (Section 31) |
 | `382ec7a73` (gk-fz-strict) | `garbage-output-tracks-formalize-every-left-inverse-pair`, `invertible-ancilla-outputs-collapse-stable-formalization`, `sitewise-gates-cannot-erase-nonlocal-defects` | PASS (Section 32) |
+| `8edd19c01` (gk-fz-catalyst) | Attempts prose on `injective-binary-automata-are-stably-formalizable`: three finiteness conditions and the symmetry gap | no claim; two prose corrections (Section 33) |
 | `86a10e7e9` (gk-n-thompson-v) | routes `thompson-v-df-failure-from-order-three-averaging-fullness`, `thompson-v-binary-df-failure-ascends-to-leavitt-units` | PASS (Section 18) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
@@ -1286,6 +1287,38 @@ nontrivial finite quotient, so there sites are single cells.
 **Reading.** The conclusion that identity tracks must act as nonlinear catalysts follows from the
 three results, and the sitewise `p >= 5` stabilizations show catalysis occurs. Nothing here decides
 `injective-binary-automata-are-stably-formalizable` or Gottschalk.
+
+## 33. Audit of the three-condition split of stable formalizability (`8edd19c01`, gk-fz-catalyst)
+
+The landing is Attempts prose on the OPEN claim `injective-binary-automata-are-stably-formalizable`. It
+adds no claim and no route, and the claim's status is unchanged, so there is no verdict to give. Two
+statements do not match Theorem 5 of `binary-left-inverse-pairs-are-boolean-adically-formalizable`
+as verified in Section 27, and I sent both to the author.
+
+1. **Uniqueness is only for bijective encoders.** The entry says `tau x id` "has a unique formal
+   correction series". Theorem 5 item 2 gives uniqueness when the encoder is bijective, because then
+   `gr(hat tau^*)` is injective in every degree. For a strict `tau`, `tau x id` is not bijective, so
+   `gr_k` is onto but need not be injective, and the correction series need not be unique. So for the
+   automata the target is about, formalizability is the existence of **some** correction series
+   meeting the finiteness conditions, not a property of one series. For bijective automata such as the
+   marker involution the uniqueness reading is right.
+2. **Condition (3), period one, is automatic for the Theorem 5 series.** Each `delta_k` is built from
+   lifts of `sigma^*(b_alpha)` at the base cell and "extended equivariantly" under the full group, so
+   every layer is already invariant under the full shift. Over `G` the obstruction on that series is
+   only termination: finite degree and finite total memory. Period greater than one enters only after
+   regrouping, and a regrouped formalization solves a different problem, with a different alphabet
+   and `H`-equivariant representatives. The entry flags that correspondence as heuristic, which is
+   right; it should not also be listed as a third condition on the `G`-series.
+
+**What stands.**
+- Regrouping and ancilla stabilization do differ in the equivariance the representatives must carry.
+  Over `Z` the marker involution is formalizable after regrouping along `4Z` (Section 26) and has no
+  `Z`-equivariant plain formalization (Section 24), consistent with the entry's reading.
+- The scope bullet is correct. Finitely generated simple hosts have no proper finite-index subgroup,
+  so regrouping is unavailable, and the marker involution over `Z` is a warm-up, not the load-bearing
+  test. Thompson's `V` is simple, and so is the binary Leavitt unit group by the landed simplicity
+  input.
+- `injective-binary-automata-are-stably-formalizable` stays OPEN.
 
 ## 31. Kari-type blocks and regrouping (`77278f6fd`, gk-fz-kari): PASS
 
