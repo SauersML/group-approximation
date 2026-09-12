@@ -17,15 +17,20 @@ even cohomology lives in degrees `0` and `2n + 2` only (`Gen.sphereProd_coh_eq_z
 
 * the degree-`0` component of `Ptot z₀` vanishes: restricted to a point `z₀` is `0` (it contains a
   circle class), so by naturality the restriction of the component is `0`, and restriction to a
-  point is injective on `H⁰`, which is the line spanned by the unit class;
+  point is injective on `H⁰`, which is the line spanned by the unit class
+  (`Gen.sphereProd_coh_zero_eq_zero_of_pull`);
 * the degree-`(2n+2)` component lies on the line spanned by `z₀` (`Gen.sphereProd_top_eq_smul`).
 
 Naturality along the projection `N → S^{2n+1} × S¹` carries this to `N`.
+
+The cohomological lemmas are stated over an arbitrary field `K` and used at `ZMod p` only as terms,
+so no proof compares the two ring structures of `ZMod p`.
 
 ## Main results
 
 * `Gen.totalHOf_of_smul`.
 * `Gen.sphereProd_top_eq_smul` — `H^{2n+2}(S^{2n+1} × S¹; K)` is spanned by `z₀`.
+* `Gen.pull_point_zSphereProd`, `Gen.sphereProd_coh_zero_eq_zero_of_pull` — the point restriction.
 * `Gen.ptot_sphereProd_component_zero`, `Gen.ptot_sphereProd` — `Ptot z₀ = ν • z₀`.
 * `Gen.z_mul_zero_of_sphereFactor` — `P^i r = 0 → P^i (z · pY^* r) = 0`.
 * `Gen.RealTorusModP.ofEven` — the torus data from the reduced powers.
@@ -47,7 +52,7 @@ namespace Gen
 /-- `TotalHOf.of` is `K`-linear. -/
 theorem totalHOf_of_smul (K : Type) [CommRing K] (X : TopCat.{0}) (d : ℕ) (s : K)
     (c : TotalPieceOf K X d) : TotalHOf.of K X d (s • c) = s • TotalHOf.of K X d c :=
-  DirectSum.of_smul d s c
+  DirectSum.of_smul (R := K) (M := fun n : ℕ => TotalPieceOf K X n) (i := d) (c := s) (x := c)
 
 /-! ## 1. The top degree of `S^{2n+1} × S¹` -/
 
@@ -76,56 +81,85 @@ theorem sphereProd_top_eq_smul (K : Type) [Field K] (n : ℕ)
   congr 1
   field_simp
 
-/-! ## 2. The total power of `z₀` -/
+/-! ## 2. The point restriction -/
+
+/-- **`z₀` restricts to `0` at a point**, because it contains the circle class and a constant map
+kills every class of positive degree. -/
+theorem pull_point_zSphereProd (K : Type) [Field K] (n : ℕ) (q : Sphere (2 * n + 1) × Sphere 1)
+    (σ₁ : TotalPieceOf K (TopCat.of (Sphere 1)) 1)
+    (σodd : TotalPieceOf K (TopCat.of (Sphere (2 * n + 1))) (2 * n + 1)) :
+    pull (cmap (ContinuousMap.const Unit q)) (1 + (2 * n + 1)) (zSphereProd K n σ₁ σodd) = 0 := by
+  have hf1 : cmap (ContinuousMap.const Unit q) ≫ knPrS (Sphere (2 * n + 1)) 1
+      = cmap (ContinuousMap.const Unit q.2) := rfl
+  rw [zSphereProd, pull_cup,
+    ← pull_comp (cmap (ContinuousMap.const Unit q)) (knPrS (Sphere (2 * n + 1)) 1) 1 σ₁, hf1,
+    pull_const_eq_zeroOf K Unit q.2 1 le_rfl σ₁, zero_cup]
+
+/-- **Restriction to a point is injective on `H⁰(S^{2n+1} × S¹; K)`**: a class of degree `0` is pulled
+back from `S^{2n+1}`, where it is a multiple of the unit class, and the unit class restricts to the
+unit class of the point, which is not zero. -/
+theorem sphereProd_coh_zero_eq_zero_of_pull (K : Type) [Field K] (n : ℕ)
+    (q : Sphere (2 * n + 1) × Sphere 1)
+    (c : TotalPieceOf K (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) 0)
+    (h : pull (cmap (ContinuousMap.const Unit q)) 0 c = 0) : c = 0 := by
+  obtain ⟨a, ha⟩ := KnHemi.kunneth_lowOf K (Sphere (2 * n + 1)) 1 0 (by omega) c
+  haveI : Nonempty (TopCat.of (Sphere (2 * n + 1))) := sphere_nonempty (2 * n + 1) (by omega)
+  haveI : Nonempty (TopCat.of Unit) := ⟨()⟩
+  let e := sphereCohZeroEquivOf K (2 * n + 1) (by omega)
+  have h1 : e (one (TopCat.of (Sphere (2 * n + 1)))) ≠ 0 := fun h0 =>
+    one_ne_zero_of_nonempty K (TopCat.of (Sphere (2 * n + 1)))
+      (e.injective (h0.trans (map_zero e).symm))
+  have hs : a = (e a * (e (one (TopCat.of (Sphere (2 * n + 1)))))⁻¹)
+      • one (TopCat.of (Sphere (2 * n + 1))) := by
+    apply e.injective
+    rw [map_smul, smul_eq_mul, mul_assoc, inv_mul_cancel₀ h1, mul_one]
+  rw [ha, hs, pull_smul, pull_smul, pull_one, pull_one] at h
+  rw [ha, hs, pull_smul, pull_one]
+  rcases smul_eq_zero.mp h with h0 | h0
+  · rw [h0, zero_smul]
+  · exact absurd h0 (one_ne_zero_of_nonempty K (TopCat.of Unit))
+
+/-! ## 3. The total power of `z₀` -/
 
 /-- **The degree-`0` component of the total power of `z₀` vanishes.**  At a point `z₀` restricts to
-`0`, since it contains a circle class; so does its total power, by naturality; and restriction to a
-point is injective on `H⁰(S^{2n+1} × S¹)`, a line spanned by the unit class. -/
+`0`, so does its total power, by naturality; and restriction to a point is injective on
+`H⁰(S^{2n+1} × S¹)`. -/
 theorem ptot_sphereProd_component_zero {p : ℕ} [Fact p.Prime] (ops : OddPTotal.EvenReducedPowers p)
     (n : ℕ) (σ₁ : TotalPieceOf (ZMod p) (TopCat.of (Sphere 1)) 1)
     (σodd : TotalPieceOf (ZMod p) (TopCat.of (Sphere (2 * n + 1))) (2 * n + 1)) :
-    (ops.Ptot _ (OddPTotal.evenOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) (even_zDeg n)
-        (zSphereProd (ZMod p) n σ₁ σodd)) : TotalHOf (ZMod p) _) 0 = 0 := by
+    TotalHOf.component (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) 0
+      (ops.Ptot (TopCat.of (Sphere (2 * n + 1) × Sphere 1))
+          (OddPTotal.evenOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) (even_zDeg n)
+            (zSphereProd (ZMod p) n σ₁ σodd)) :
+        TotalHOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1))) = 0 := by
   obtain ⟨po⟩ := sphere_nonempty (2 * n + 1) (by omega)
   obtain ⟨p1⟩ := sphere_nonempty 1 le_rfl
-  let f : TopCat.of Unit ⟶ TopCat.of (Sphere (2 * n + 1) × Sphere 1) :=
-    cmap (ContinuousMap.const Unit (po, p1))
-  have hzf : evenMap (ZMod p) f (OddPTotal.evenOf (ZMod p) _ (even_zDeg n)
-      (zSphereProd (ZMod p) n σ₁ σodd)) = 0 := by
+  have hzf : pull (cmap (ContinuousMap.const Unit (po, p1))) (1 + (2 * n + 1))
+      (zSphereProd (ZMod p) n σ₁ σodd) = 0 :=
+    pull_point_zSphereProd (ZMod p) n (po, p1) σ₁ σodd
+  have hx : evenMap (ZMod p) (cmap (ContinuousMap.const Unit (po, p1)))
+      (OddPTotal.evenOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) (even_zDeg n)
+        (zSphereProd (ZMod p) n σ₁ σodd)) = 0 := by
     apply Subtype.ext
-    show TotalHOf.map (ZMod p) f
-      (TotalHOf.of (ZMod p) _ (1 + (2 * n + 1)) (zSphereProd (ZMod p) n σ₁ σodd)) = 0
-    rw [TotalHOf.map_of, zSphereProd, pull_cup, ← pull_comp f (knPrS (Sphere (2 * n + 1)) 1) 1 σ₁,
-      show f ≫ knPrS (Sphere (2 * n + 1)) 1 = cmap (ContinuousMap.const Unit p1) from rfl,
-      pull_const_eq_zeroOf (ZMod p) Unit p1 1 le_rfl σ₁, zero_cup, map_zero]
-  have hnat := ops.ptot_natural f (OddPTotal.evenOf (ZMod p) _ (even_zDeg n)
-    (zSphereProd (ZMod p) n σ₁ σodd))
-  rw [hzf, map_zero] at hnat
-  have hc : TotalHOf.component (ZMod p) (TopCat.of Unit) 0 0
-      = TotalHOf.component (ZMod p) (TopCat.of Unit) 0 (TotalHOf.map (ZMod p) f
-          (ops.Ptot _ (OddPTotal.evenOf (ZMod p) _ (even_zDeg n)
-            (zSphereProd (ZMod p) n σ₁ σodd)) : TotalHOf (ZMod p) _)) :=
-    congrArg (fun w : evenPart (ZMod p) (TopCat.of Unit) =>
-      TotalHOf.component (ZMod p) (TopCat.of Unit) 0 (w : TotalHOf (ZMod p) (TopCat.of Unit))) hnat
-  rw [map_zero, componentOf_map] at hc
-  change 0 = pull f 0 ((ops.Ptot _ (OddPTotal.evenOf (ZMod p) _ (even_zDeg n)
-      (zSphereProd (ZMod p) n σ₁ σodd)) : TotalHOf (ZMod p) _) 0) at hc
-  obtain ⟨a, ha⟩ := KnHemi.kunneth_lowOf (ZMod p) (Sphere (2 * n + 1)) 1 0 (by omega)
-    ((ops.Ptot _ (OddPTotal.evenOf (ZMod p) _ (even_zDeg n)
-      (zSphereProd (ZMod p) n σ₁ σodd)) : TotalHOf (ZMod p) _) 0)
-  haveI : Nonempty (TopCat.of (Sphere (2 * n + 1))) := sphere_nonempty (2 * n + 1) (by omega)
-  haveI : PathConnectedSpace (TopCat.of (Sphere (2 * n + 1))) :=
-    sphere_pathConnectedSpace (2 * n + 1) (by omega)
-  haveI : Nonempty (TopCat.of Unit) := ⟨()⟩
-  obtain ⟨s, hs⟩ := (finrank_eq_one_iff_of_nonzero' _
-    (one_ne_zero_of_nonempty (ZMod p) (TopCat.of (Sphere (2 * n + 1))))).mp
-      (cohZero_finrankOf (ZMod p) (TopCat.of (Sphere (2 * n + 1)))) a
-  rw [ha, ← hs, ← pull_comp, pull_smul, pull_one] at hc
-  have hs0 : s = 0 := by
-    rcases smul_eq_zero.mp hc.symm with h | h
-    · exact h
-    · exact absurd h (one_ne_zero_of_nonempty (ZMod p) (TopCat.of Unit))
-  rw [ha, ← hs, hs0, zero_smul, pull_zero]
+    show TotalHOf.map (ZMod p) (cmap (ContinuousMap.const Unit (po, p1)))
+      (TotalHOf.of (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) (1 + (2 * n + 1))
+        (zSphereProd (ZMod p) n σ₁ σodd)) = 0
+    rw [TotalHOf.map_of, hzf, map_zero]
+  have hnat := ops.ptot_natural (cmap (ContinuousMap.const Unit (po, p1)))
+    (OddPTotal.evenOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) (even_zDeg n)
+      (zSphereProd (ZMod p) n σ₁ σodd))
+  rw [hx, map_zero] at hnat
+  have h1 := congrArg (fun w : evenPart (ZMod p) (TopCat.of Unit) =>
+    TotalHOf.component (ZMod p) (TopCat.of Unit) 0 (w : TotalHOf (ZMod p) (TopCat.of Unit))) hnat
+  have hpt : pull (cmap (ContinuousMap.const Unit (po, p1))) 0
+      (TotalHOf.component (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) 0
+        (ops.Ptot (TopCat.of (Sphere (2 * n + 1) × Sphere 1))
+            (OddPTotal.evenOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)) (even_zDeg n)
+              (zSphereProd (ZMod p) n σ₁ σodd)) :
+          TotalHOf (ZMod p) (TopCat.of (Sphere (2 * n + 1) × Sphere 1)))) = 0 := by
+    rw [← componentOf_map]
+    exact h1.symm
+  exact sphereProd_coh_zero_eq_zero_of_pull (ZMod p) n (po, p1) _ hpt
 
 /-- **The total power of `z₀` is a multiple of `z₀`**, for nonzero sphere classes.  Its odd
 components vanish because it is even; its components in even degrees other than `0` and `2n + 2`
@@ -159,7 +193,7 @@ theorem ptot_sphereProd {p : ℕ} [Fact p.Prime] (ops : OddPTotal.EvenReducedPow
     · exact mem_evenPart.mp (ops.Ptot _ (OddPTotal.evenOf (ZMod p) _ (even_zDeg n)
         (zSphereProd (ZMod p) n σ₁ σodd))).2 e he
 
-/-! ## 3. The product field at `N` -/
+/-! ## 4. The product field at `N` -/
 
 /-- **`P^i r = 0 → P^i (z · pY^* r) = 0`**, whenever the circle and odd-sphere projections factor
 through a map to `S^{2n+1} × S¹`: the total power of `z` is a multiple of `z` by naturality and
@@ -202,7 +236,7 @@ theorem z_mul_zero_of_sphereFactor {p : ℕ} [Fact p.Prime] (ops : OddPTotal.Eve
     (pull g (1 + (2 * n + 1)) (zSphereProd (ZMod p) n σ₁ σodd)) * 0) = 0
   rw [mul_zero, smul_zero]
 
-/-! ## 4. The torus data -/
+/-! ## 5. The torus data -/
 
 /-- **The torus data from the reduced powers.**  The operations, naturality and instability come
 from `ops`; `H²(S¹) = 0`, Künneth uniqueness for `z` and the product field are the three statements
@@ -247,6 +281,8 @@ end Gen
 
 #audit_axioms Gen.totalHOf_of_smul
 #audit_axioms Gen.sphereProd_top_eq_smul
+#audit_axioms Gen.pull_point_zSphereProd
+#audit_axioms Gen.sphereProd_coh_zero_eq_zero_of_pull
 #audit_axioms Gen.ptot_sphereProd_component_zero
 #audit_axioms Gen.ptot_sphereProd
 #audit_axioms Gen.z_mul_zero_of_sphereFactor
