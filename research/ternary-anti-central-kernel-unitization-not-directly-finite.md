@@ -24,6 +24,16 @@ being directly finite. Each implies that `G` is not surjunctive
 * **Defect.** `d = eps_- - (eps_- + u)(eps_- + v)` is an idempotent of `K_-` with Kaplansky trace
   `0`. It is not a single Klein kernel idempotent, whose trace is `2`.
 * **No nilpotent parts.** `eps_- + n` with `n` nilpotent is a unit.
+* **Not a finite-subgroup projective.** The defect is an idempotent `d` of `F_3[G]` with
+  `F_3[G] ~= F_3[G] (+) d F_3[G]`.
+  * By `lifted-trace-detects-finite-subgroup-projectives` (stated for every prime `p`), the lifted
+    trace `t_3` is additive with `t_3(d) = 0`.
+  * Every nonzero finite direct sum of projectives induced from finite subgroups has
+    `t_3 = dim/|H| != 0`. So the Klein idempotent `q`, sums of orthogonal kernel character
+    idempotents of finite sign-constant groups at deeper levels, and `q - mu(q)` are all excluded
+    as defects, although the mod-3 trace allows sums of three of them.
+  * What survives has to mix finite subgroups, for example `d = e - f` with `f < e` induced from
+    different finite subgroups with equal lifted trace.
 * **No finite-dimensional detection.** `G` is finitely generated, simple and infinite. So every
   finite-dimensional representation of `F_3[G]` factors through the augmentation, where `eps_-`
   acts as `0`. `S_-` has no nonzero finite-dimensional representation.
@@ -35,6 +45,12 @@ being directly finite. Each implies that `G` is not surjunctive
 * **Radical perturbation.** Dead by `ternary-anti-central-kernel-has-klein-idempotents`: `K_-` is
   not in the radical.
 * **Traces mod 3.** They do not separate kernel idempotents from `eps_-`; only evaluation does.
+  The 3-adic lifted trace separates every finite-subgroup projective from a defect (see
+  Necessary conditions).
+* **Proper corner self-embedding.** Dead as a shortcut. `mu` embeds `S_-` unitally into the proper
+  corner `q S_- q`, but a proper corner self-embedding does not make a ring directly infinite: the
+  telescoping tail `mu^m(error)` stays nonzero at every finite depth. This is the same failure
+  recorded on `leavitt-recursive-kernel-idempotents` over `F_2`.
 * **Visible route.** The lift of `(s0 + s1, 2(t0 + t1))` feeds this claim through
   `anti-central-corner-gives-invisible-kernel-pair`. The unit criterion there asks the kernel for
   a unit in `eps_- + K_-`.

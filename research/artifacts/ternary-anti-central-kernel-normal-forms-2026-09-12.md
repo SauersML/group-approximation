@@ -176,13 +176,26 @@ these.
   generated linear groups are residually finite. So every finite-dimensional representation of `S`
   factors through the augmentation, where `[z]` acts as `1` and `eps_-` as `0`. `S_-` has no nonzero
   finite-dimensional representation at all.
+* **Not a finite-subgroup projective.** The defect `d` satisfies `F_3[G] ~= F_3[G] (+) d F_3[G]`.
+  * The additive 3-adic lifted trace of `lifted-trace-detects-finite-subgroup-projectives`, which
+    is stated for every prime, gives `t_3(d) = 0`.
+  * Every nonzero finite sum of finite-subgroup projectives has `t_3 = dim/|H| != 0`.
+  * So `q`, `q - mu(q)`, and sums of orthogonal kernel character idempotents of the finite
+    sign-constant groups at deeper levels are all excluded as defects. The mod-3 trace allows
+    sums of three of them; the lifted trace does not.
+  * A surviving defect must mix finite subgroups, for example `e - f` with `f < e` induced from
+    different finite subgroups with equal lifted trace.
 
 **Attempts.**
 * **Kernel corners.** Via Theorem 4 they are universal, so they are exactly as hard as the whole
   problem; no easier sub-case is gained. No strict pair in any corner is known.
 * **Radical perturbation.** Dead, by Theorem 1.
 * **Traces mod 3.** They do not separate: `tau(q) = tau(eps_-) = 2`. Only the evaluation forbids
-  `q >= eps_-`.
+  `q >= eps_-`. The lifted trace separates finite-subgroup projectives from defects.
+* **Proper corner self-embedding.** Dead as a shortcut. `mu` is a unital embedding of `S_-` into
+  the proper corner `q S_- q`, but directly finite rings can have proper corner self-embeddings,
+  and the telescoping tail `mu^m(error)` is nonzero at every finite depth. This is the same failure
+  as over `F_2`, recorded on `leavitt-recursive-kernel-idempotents`.
 
 ## 6. What the kernel must contribute
 
