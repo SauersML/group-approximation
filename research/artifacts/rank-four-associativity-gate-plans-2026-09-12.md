@@ -159,7 +159,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 |---|---|---|
 | (i) three relations | w4-r4-orth | placement fixed and circular (L3); redirected to L5 |
 | (ii) completeness | w4-r4-complete | not needed. Transport formula `leavitt-completeness-transport-formula-for-root-data` established and firewalled (it lives in `U_3(R)`). Opened L8 (b09f639b5d) |
-| (iii) positivity | w4-r4-corner | free for exact relations; route framing merged (b0d955566e); finished |
+| (iii) positivity | w4-r4-corner | free for exact relations; for w4-r4-orth's placement, established in characteristic two by `opposite-unit-root-product-vanishes-only-for-trivial-models` (ef454c9283; lead spot-check of the braid step passes); only the L3 deviation terms remain open; route framing merged (b0d955566e) |
 | endpoint | w4-r4-approx | canonical form established; verifier PASS |
 | block to whole group | w4-r4-corner | `el4-model-trivial-on-one-unit-root-element-is-trivial`; verifier PASS; required by the route |
 | odd characteristic | w4-r4-adversary | `reversed-root-pair-identity-forces-root-squares-to-vanish` (9fd9898e8e); verifier PASS; used by the route |
