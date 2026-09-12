@@ -47,10 +47,11 @@ support (`rational-units-rescale-to-integral-units`).
     grow.
   - By z3, every nontrivial unit on the pair has `u_1, u_2 != 0`.
 
-  The attack stops at those nine singular trivial residues. The missing step
-  is an exact Groebner basis over `Q` of the localized system
-  (`gardam-support-pair-gb-easy.py`). Singular's `std` over `Q` had not
-  finished within its first hour on MSI.
+  An exact Groebner basis over `Q` closes those residues and the whole pair.
+  No nontrivial unit of `Z[P]` or `Q[P]` lives on it, and a characteristic-zero
+  field carries one only if it contains `zeta_8`
+  (`gardam-support-pair-has-no-rational-units`). The attack dies at the choice
+  of support, because no other support pair is covered.
 * **Untwisting Gardam's unit.** Every coefficient of Gardam's unit in
   `R[P]`, `R = Z[s,t]/(s^4+1, t^4+1)`, is a signed monomial `+-s^i t^j`
   (rechecked exactly in `research/artifacts/gardam-support-pair-gsp.py`).

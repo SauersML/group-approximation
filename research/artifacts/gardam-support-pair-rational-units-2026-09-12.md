@@ -19,7 +19,7 @@ normalization `sum u = sum v = 1`.
 | `gardam-support-pair-lift.py` | Jacobian ranks and 2-adic lifting at every `F_2`-point | `89871eb0a295e1319cc60440409bcfad` |
 | `gardam-support-pair-kernel-formula.py` | checks `kappa_i = #(S cap g_i T g_i) - 1` at the 17 trivial units | `c07d4ca8bc4bdae691eb869429d4532f` |
 | `gardam-support-pair-z3-subsets.py` | characteristic-free sub-support check | `9bd1081d08c5c2e1c143a163b8c73d71` |
-| `gardam-support-pair-gb-easy.py` | exact Groebner basis over `Q` of the localized system | `11feb3a005a35fe748c9c5cb36993d92` |
+| `gardam-support-pair-gb-easy.py` | exact Groebner basis over `Q` of the localized system | `a519c334f919c69da12c839936674d9f` |
 
 ## 2. Theorem A, rechecked exactly
 
@@ -102,3 +102,53 @@ sanity, no restriction: {'result': 'sat', "S'": [0, ..., 20], "T'": [0, ..., 20]
 
 So every nontrivial unit on `(S,T)`, over any field, has `u_1, u_2 != 0`.
 This is Gardam's case `(1,2)`.
+
+## 6. Exact Groebner basis over Q
+
+`gardam-support-pair-gb-easy.py` builds the localized system from the product
+table: `uv = 1`, `u_1 = 1` and `u_2 w = 1` in
+`Q[u_1..u_21, v_1..v_21, w]`, 123 equations in all. It runs under Sage 10.7
+(MSI module `sagemath/10.7`) as Slurm job 561405.
+
+An earlier version of the script (md5 `11feb3a005a35fe748c9c5cb36993d92`)
+confirmed that the generated system equals the zenodo `easy.ms`. It then
+stalled, because Sage's ideal methods recomputed the basis with the default
+`std`. The current version reads everything off the one computed basis.
+
+```text
+equations: 123  [0.0s]
+GB over QQ (libsingular:slimgb): 83 elements  [2.0s]
+Buchberger criterion over QQ (is_groebner): True
+every input equation reduces to 0 mod G: True
+max |coefficient| in G: 1
+equals zenodo groebner_basis.txt (as sets): True
+wrote gb_easy2_qq.json  [3.0s]
+dimension: 0  [3.0s]
+vector_space_dimension: 16  [3.0s]
+elimination ideal in u7, u10: [u10^4 + 1, u7^4 + 1]  [3.0s]
+rational points: []  [4.1s]
+real algebraic points: 0  [4.6s]
+DONE
+```
+
+## 7. Conclusion
+
+Let `K` be a field of characteristic zero and `u` a nontrivial unit on
+`(S,T)` over `K`. By Section 5, `u_1, u_2 != 0`. Rescaling gives a `K`-point
+of the localized ideal `I`. Every point of `I` has `u_7^4 = -1`, so `K`
+contains a primitive eighth root of unity. So `Q[P]`, `R[P]`, `Q_2[P]` and
+`Z[P]` have no nontrivial unit on `(S,T)`.
+
+Over `Qbar`, `V(I)` maps onto the 16 points of `V(u_7^4+1, u_10^4+1)`, and
+`dim_Q Q[x]/I = 16`. So `V(I)` is exactly 16 reduced points, Gardam's family,
+and his "bad prime" caveat is removed.
+
+This agrees with Section 4. The nontrivial residue does not lift mod 4, and
+the eight nonsingular trivial residues contain only trivial units.
+
+*Trust surface.* Singular `slimgb` over `Q` is exact. Buchberger's criterion
+and the reduction of the generators were checked in the same run. The
+inclusion `<G> in I` rests on Singular. The z3 `unsat` verdict of Section 5
+has no proof certificate.
+
+Recorded in Cairn as `gardam-support-pair-has-no-rational-units`.
