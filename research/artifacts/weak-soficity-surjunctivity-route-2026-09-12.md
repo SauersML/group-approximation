@@ -210,3 +210,43 @@ The route stays open only through models with large normal subgroups on which
 the length is small. That is the same place `glebsky-rivera-w-sofic-criterion`
 locates the content of weak soficity, and it is where a future attempt should
 start.
+
+## 5. The chart search is a linear program over the subgroup lattice
+
+Section 1 leaves the route needing a finite `H`-set `V`. That search can be
+made finite and explicit.
+
+**Lemma 5.1.** Let `V` be a finite `H`-set with orbits `V_1, ..., V_r` and
+point stabilizers `L_i`. Then `l_V = sum_i p_i l_{H/L_i}` with
+`p_i = |V_i|/|V|` a probability vector.
+
+*Proof.* Orbits are invariant, so `fix_V(z) = sum_i fix_{V_i}(z)`. Each orbit
+is `H`-isomorphic to `H/L_i`, and an isomorphism of `H`-sets preserves
+fixed-point counts. Divide by `|V|` and regroup. QED
+
+Conversely a rational convex combination is realized by a disjoint union of
+coset spaces with the corresponding multiplicities. So the achievable Hamming
+lengths on `H` are exactly the convex hull of `{ l_{H/L} : L <= H }`.
+
+**Corollary 5.2.** A weakly sofic approximation `(H, l, phi)` supports a
+Gromov--Weiss transport if and only if the linear program
+
+```text
+sum_L lambda_L l_{H/L}(k)      <= delta      for every defect k,
+sum_L lambda_L l_{H/L}(phi(g)) >= c'         for every g != 1 in F,
+lambda >= 0,  sum_L lambda_L = 1
+```
+
+is feasible over the subgroup lattice of `H`.
+
+The two extreme points are the failures already recorded: `L = 1` gives the
+discrete length, maximal on defects (Theorem A), and `L = H` gives the zero
+length, which separates nothing. Feasibility asks for an intermediate mixture
+that separates `phi(F)` while nearly fixing the defects. The given length `l`
+enters only by declaring which elements are defects and which must be
+separated, which is why no argument in Sections 2 and 3 could use `l` itself.
+
+This is the same shape as the character-simplex linear program recorded for
+the Hilbert-embeddable witness question, with coset lengths in place of
+normalized characters, and it is the concrete form in which
+`weakly-sofic-groups-are-surjunctive` should next be attacked.
