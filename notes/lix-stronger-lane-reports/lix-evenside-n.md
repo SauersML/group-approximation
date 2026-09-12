@@ -92,6 +92,63 @@ through `KnTwo.tx_inj_degree_of_ne_zeroOf`), `Gen.circle_two_torusOf`.  `CharCla
 Remaining torus fields: the reduced powers only (lix-steenrod).  A trap: `refine DirectSum.ext fun c => ?_` on
 `TotalHOf` leaves `(i : ?) → AddCommMonoid ?` stuck; use `ext c` (probe 0911-235748-53450).
 
+## STOPPED 2026-09-12 (lead's stop ruling, `LIX_LANES.md` "STOPPED"): residual (b) of the p = 2 composition
+
+The lead's target was the binder `data` of `Gen.lemmaTwoFor_powers_two_lixChernOf` (`CharClass/LIXLemmaTwoGenTwo`):
+
+```lean
+(data : ∀ j G, Continuous G → (∀ m, IsCornerUnitary (Vmat n m) (G m)) →
+  WuStepDData n (LIX.Gen.lixDD n j) (pY j) (q₁ j) (qodd j) (σ₁ j) (σodd j)
+    (KGen.lixChernOf n (KGen.lixChern n (LIX.Gen.lixDD n j))
+      (mappingTorus (Vmat n) G circHoriz circHeight)))
+```
+
+The lead split the work: `sq_b`, `split`, `slice` and `hC` belong to this lane, and `tx_inj`, `gamma_eq`, `hS₁`/`hSodd` and the projections belong to lix-coeff.
+
+**Green.** No new green this session. Every earlier module is still COMPILED with origin bytes: `LIXStepDGenModP`, `LIXStepDGenHalf`, `LIXLemmaTwoGenStepA`, `LIXLemmaTwoGenGlue`, `LIXStepDGenRealEven`, `LIXStepDGenReal`, `LIXStepDGenRealTorus`, `LIXStepDGenRealTorusModel`, `LIXLemmaTwoGenTwo`. The shared-tree copies match the green record `0912-000930-45207`, so nothing of this lane is in flight.
+
+**Landed unverified: 84b833ac2.** `CharClass/LIXStepDGenSplit.lean` (not compiled, not wired):
+
+```lean
+theorem Gen.hasSplitting_lixN (n : ℕ) (G : baseM n dd → Matrix (VIdx n dd) (VIdx n dd) ℂ)
+    (hGc : Continuous G) (hGu : ∀ m, IsCornerUnitary (Vmat n m) (G m)) :
+    Wu.HasSplitting (KGen.lixN n dd)
+      (KGen.lixChernOf n (KGen.lixChern n dd) (mappingTorus (Vmat n) G circHoriz circHeight))
+```
+
+This is the rank-two `Wu.hasSplitting_lix` proof over `KGen.lixN n dd` with the KGen API: `KGen.lixChernOf_mappingTorus`, `KGen.lixChern_mappingTorus`, `KGen.one_le_lixRank`, `KGen.rank_lixBundle`, `Wu.hasSplitting_flag`, `Wu.hasSplitting_of_component`. It is the field `split`.
+
+**Closed by existing declarations.** `hC : Wu.CartanTotal` is `Wu.cartanTotal` (ParityEvenTransport).
+
+**lix-coeff's announced objects** (message of 2026-09-12, module `CharClass/CohomologyKunnethLixN.lean`, namespace `KnLix`; this lane has not checked them against origin):
+* `Y := TopCat.of (baseY dd)`, `S₁ := TopCat.of (Sphere 1)`, `Sodd := TopCat.of (Sphere (2 * n + 1))`.
+* `KnLix.lixIso n dd : KGen.lixN n dd ≅ TopCat.of (KnTwo.torusBaseOf (baseY dd) n)`.
+* `pY := KnLix.prY n dd`, `q₁ := KnLix.prS1 n dd`, `qodd := KnLix.prSodd n dd`, each `(lixIso n dd).hom ≫ KnTwo.pr*Of`.
+* `σ₁ := sphereTopClass 1 _`, `σodd := sphereTopClass (2 * n + 1) _`.
+* `hS₁`/`hSodd` from `hasSphereCohomology_sphere`.
+* Field `tx_inj` is `KnLix.tx_inj n dd`.
+* `KnLix.chern_split_mappingTorus n dd hGc hGu k : ∃ α β, (2 * k < 2 * n + 2 → β = 0) ∧ KGen.lixChernOf n (KGen.lixChern n dd) (mappingTorus (Gen.Vmat n) G circHoriz circHeight) k = TotalH.map pY (TotalH.of _ (2 * k) α) + Wu.tClass q₁ σ₁ * Gen.sphereClass qodd σodd * TotalH.map pY (TotalH.of _ (2 * k - (2 * n + 2)) β)`.
+
+**Unfinished (exact field statements at `N := KGen.lixN n dd`, `γ := KGen.lixChernOf n (KGen.lixChern n dd) (mappingTorus (Vmat n) G circHoriz circHeight)`):**
+* `gamma_eq : ∀ k : ℕ, γ k = TotalH.map pY (a k) + Wu.tClass q₁ σ₁ * sphereClass qodd σodd * TotalH.map pY (b k)`
+  * Obtained by `choose` on `KnLix.chern_split_mappingTorus`, with `a k := TotalH.of Y (2 * k) (α k)` and `b k := TotalH.of Y (2 * k - (2 * n + 2)) (β k)`.
+  * The planned wrapper `Gen.ChernSplitN` (alpha, beta, beta_low, split) and `Gen.WuStepDData.ofChernSplitN` in `CharClass/LIXStepDGenChernSplit.lean` were NOT written.
+* `sq_b : ∀ k j : ℕ, 2 * k < j + (2 * n + 2) → Steenrod.SqH Y j (b k) = 0`
+  * Route: `Gen.sq_b_of_grading n b hlow hdeg`.
+  * `hlow k` comes from `β k = 0` when `2 * k < 2 * n + 2`.
+  * `hdeg k c hc` is `⟨cohCast (show 2 * k - (2 * n + 2) = c by omega) (β k), (totalH_of_cohCast _ _).symm⟩`.
+  * Template: `KnTwo.hgamma_and_hsq_b` (CohomologyParityKunneth), with 6 replaced by 2n+2.
+  * NOT written.
+* `slice : ∀ q : ℕ, a q = (sliceClass Finset.univ gen dd).coeff q`
+  * NOT written. Planned file `CharClass/LIXStepDGenSlice.lean`.
+  * Route, step 1: take a section `s : Y ⟶ N` of `pY` at a constant circle coordinate. Then `TotalH.map s (Wu.tClass q₁ σ₁) = 0` by `pull_const_eq_zero`, which gives `a q = TotalH.map s (γ q)`, following `KnTwo.alpha_eq_pull_nSlice`.
+  * Route, step 2: naturality along a rank-`n` `lixSliceMapN n dd p1 u : C(baseY dd, ↥sphereOne × Gen.baseM n dd)` via `LH.chern_comap`, following `pull_lixChern_lixSlice`.
+  * Remaining leaf: the rank-`n` slice value `∀ q, TotalH.of Y (2 * q) (LH.chernOf (comap (lixSliceMapN n dd p1 u) ⟨P, hcont, hproj⟩) (lixRank n dd) _ _ q) = (sliceClass Finset.univ gen dd).coeff q` at `gen := sliceGen dd hdd`.
+  * The rank-two leaf `vSliceValue_sliceGen` (SliceValueV) is closed. But `SliceVFlat`, `SliceVLinesY`, `SliceSplitV` and `SliceValueV` (about 370 lines) index lines by `Fin 3 ⊕ HBlk dd`. They must be generalized to `Fin (n + 1)`, or replaced by a trivial-summand invariance of `LH.chernOf`. A grep found no such invariance.
+* `hS₁`, `hSodd`, `tx_inj`: lix-coeff (above).
+
+**Census.** No census rows. This lane's declarations formalize no sentence of the non-MF manuscript.
+
 ## NEEDS
 
 * lix-oddside-n: `StepCHalf n (lixDD n j) (KGen.bVecK n (k − 1)) topClass` at the top mod-`p` class.
