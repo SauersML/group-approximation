@@ -7,6 +7,7 @@ distinct_from:
   invariant-output-automata-have-only-nonlinear-decoders: that excludes linear decoders by augmentation; this excludes decoders of every degree whenever the encoder's single-site sensitivity profile is right-invariant under an element of order divisible by the alphabet size.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be any group, `A = Z/n`, and `tau(x)(g) = f((x(gm))_(m in M))`. For
@@ -26,3 +27,5 @@ part is one orbit `k + hk` is right-invariant under `k^-1 h k`, so it has no
 decoder of any degree. A candidate for
 `leavitt-units-carry-injective-invariant-output-automaton` needs linear support
 spread over at least two left orbits. Proof: Section 4 of the artifact.
+
+**Verification (gk-vf-nonlinear, 2026-09-12).** Passes. The order hypothesis is not needed: a right symmetry of `p_b` by any `c != 1` already gives `tau(b e_(kc)) = tau(b e_k)`, so `tau` is not injective (`sensitivity-profile-right-symmetry-forces-noninjectivity`).

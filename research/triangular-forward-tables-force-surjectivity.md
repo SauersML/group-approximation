@@ -8,6 +8,7 @@ distinct_from:
   forward-memory-lifts-exclude-strict-cellular-sections: that needs a surjunctive cover to be supplied; this produces the cover, a free group, combinatorially from the partition.
 artifacts:
   - research/artifacts/canonical-table-groups-for-automaton-designs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `D = (A, S, M, nu, mu)` be a design and `E` a forward-sufficient marked

@@ -9,6 +9,7 @@ distinct_from:
   gottschalk-surjunctivity-fixed-two-generator-tester: that reduces every group to one fixed host through marked limits; this fixes the rule pair and reduces every group to finitely many explicit table presentations.
 artifacts:
   - research/artifacts/canonical-table-groups-for-automaton-designs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 A **design** is a finite alphabet `A`, finite address sets `S` and `M` with

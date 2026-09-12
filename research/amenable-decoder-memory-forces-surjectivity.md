@@ -9,6 +9,7 @@ distinct_from:
   surjunctivity-is-axiomatized-by-rectangle-clauses: that records a small-memory exclusion when both memories have size two; this excludes every design whose decoder memory group is amenable in the table group, any encoder memory and any rules included.
 artifacts:
   - research/artifacts/table-group-holonomy-normal-form-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `amenable-decoder-memory-surjectivity-proof`.

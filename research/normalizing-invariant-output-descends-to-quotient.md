@@ -7,6 +7,7 @@ distinct_from:
   invariant-output-injective-automata-need-invisible-symmetry: that places the symmetry in the sofic radical of the memory group by permutation-model counting; this is an exact descent that turns the automaton itself into an injective non-surjective automaton on the quotient when the memory normalizes the symmetry.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `tau` be an injective cellular automaton over a group `G` with effective

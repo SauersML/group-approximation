@@ -8,6 +8,7 @@ distinct_from:
   linear-invariant-output-automata-fail-augmentation: that classifies the linear encoders; this is a necessary condition on every nonlinear encoder of the same shape.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be any group, `H` a finite subgroup of even order, `h in H` an

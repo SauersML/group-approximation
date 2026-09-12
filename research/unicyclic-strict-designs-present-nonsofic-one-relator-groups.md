@@ -8,6 +8,7 @@ distinct_from:
   triangular-forward-tables-force-surjectivity: that excludes forward partitions whose relators peel one letter at a time, where the table group is free; this concerns partitions with one independent cycle, where the table group is a one-relator group that need not be free.
 artifacts:
   - research/artifacts/table-group-holonomy-normal-form-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `unicyclic-strict-design-one-relator-proof`.

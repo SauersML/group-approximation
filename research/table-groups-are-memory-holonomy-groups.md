@@ -9,6 +9,7 @@ distinct_from:
   surjunctivity-is-axiomatized-by-rectangle-clauses: that identifies the class of surjunctive groups by universal sentences and peels the relator hypergraph to a 2-core; this gives a normal form of the canonical host itself.
 artifacts:
   - research/artifacts/table-group-holonomy-normal-form-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `table-group-holonomy-elimination-proof`.
