@@ -267,3 +267,64 @@ and a clopen partition `(C_i)`, form a group `E_q ~= C(X, mu_(q-1))`. `V` normal
 What changes with `q` is only the arithmetic of the trace values. So the same boundary appears on
 every character factor: witnesses must use non-function idempotents, or units outside the phase
 Thompson group.
+
+## 11. Where the kernel's Haar mass sits
+
+Let `P_n` be the partition of `X` into the `2^n` cylinders of length `n`. Restriction maps `M_-` onto
+the odd vectors `O_n = {v in F_2^(P_n) : sum v = 1}`, of which there are `2^(2^n - 1)`, and `lambda`
+pushes forward to the uniform measure on `O_n`. A Dirac measure restricts to a vector of weight one.
+
+**Proposition 7.**
+1. `U_n = {mu : mu|P_n has weight at least 3}` is clopen and contains no Dirac measure, so `1_(U_n)`
+   is a kernel idempotent.
+2. `lambda(U_n) = 1 - 2^(n + 1 - 2^n)`: `0`, `1/2` and `15/16` for `n = 1, 2, 3`.
+3. `delta(X) = intersection_n (M_- \ U_n)`, and this closed set is `lambda`-null.
+
+*Proof.*
+1. This is Theorem 2(4).
+2. `O_n` has `2^n` weight-one vectors.
+3. If `mu|P_n` has weight one for every `n`, additivity nests the atoms carrying the `1`. They define
+   a point `x` with `mu = delta_x`. QED
+
+**Consequence for diagnostics.** The kernel's mass is not at infinite depth. Half of all Haar mass
+is already kernel at depth two, and fifteen sixteenths at depth three. What sits at infinite depth
+is the null set of Dirac measures, which is the spectrum of the quotient `R`.
+
+Every element of `F_3[G]` is finitely supported. So "a witness needs infinite support" is not a
+weaker no-go; it is the statement that no witness exists. The provable form of a support no-go is a
+condition on the subgroup the support generates, as in Section 12.
+
+## 12. Witnesses need a nonamenable Thompson projection
+
+Let `pi_V : H -> V` be the quotient map with kernel `E`.
+
+**Proposition 8.** Suppose `b', c' in B` satisfy `c' q_[0] b' = eps_-`. Let `L <= H` be generated
+by the supports of `b'` and `c'` together with `z` and `tau_[0]`, and put `K = pi_V(L)`. Then `K`
+is nonamenable.
+
+*Proof.*
+* **Sofic.** `L cap E` is a subgroup of `E ~= C(X, F_2)`, an elementary abelian `2`-group, so it is
+  locally finite. A locally finite group is sofic: a finite subgroup containing a given finite set
+  acts freely on itself by left translation. `L cap E` is normal in `L` with `L/(L cap E) ~= K`. If
+  `K` is amenable, then `L` is sofic by `sofic-kernel-amenable-quotient-permanence`.
+* **Directly finite.** By `sofic-implies-linear-sofic-over-every-field` and
+  `linear-sofic-group-algebra-is-stably-finite`, `F_3[L]` is directly finite.
+* **Contradiction.** `b'`, `c'`, `q_[0]` and `q_[1]` lie in `eps_- F_3[L]`, and `eps_(+-)` are
+  central in `F_3[L]`. Put `x = q_[0] b' + eps_+` and `y = c' q_[0] + eps_+`. The cross terms vanish,
+  so `y x = eps_- + eps_+ = 1`. Direct finiteness gives `x y = 1`, that is `q_[0] b' c' q_[0] = eps_-`.
+  Multiplying on the left by `q_[1]` gives `0 = q_[1]`, which is false. QED
+
+**Reading.**
+* **Invisible to the obstruction.** The reflection group `E` is invisible to it: a witness may use
+  any amount of `E`. Only the Thompson projection is constrained.
+* **Excluded projections.** Projections that are finite, locally finite, abelian, solvable, or of
+  subexponential growth are all excluded.
+* **Relation to the finite clutching wall.** This is the signed Thompson analogue of the finite
+  clutching wall in Section 4 of `research/artifacts/ternary-anti-central-cohn-reformulation-2026-09-12.md`
+  (gk-l3-units). There the whole support group is finite; here the reflections are free and only the
+  projection to `V` must be nonamenable.
+* **Consequence for F.** A witness whose Thompson projection lies in `F` would prove `F`
+  nonamenable.
+* **Relation to the gate.** It does not decide the target. It is the unconditional part of the gate
+  in Section 7(a): linear soficity of all of `H` would refute the target; amenability of the
+  projection refutes a given witness.
