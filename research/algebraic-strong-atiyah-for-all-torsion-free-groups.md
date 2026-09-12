@@ -3,6 +3,8 @@ rg: 2
 id: algebraic-strong-atiyah-for-all-torsion-free-groups
 kind: claim
 title: Every torsion-free group satisfies Strong Atiyah over the algebraic numbers
+refuted_by:
+  - algebraic-strong-atiyah-counterexample-exists
 distinct_from:
   strong-atiyah-torsion-free: that is the conjecture over the complex numbers; this is the algebraic-coefficient case, which it implies, and where the determinant conjecture supplies colimit permanence.
 ---

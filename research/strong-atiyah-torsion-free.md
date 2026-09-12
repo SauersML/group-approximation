@@ -4,6 +4,8 @@ id: strong-atiyah-torsion-free
 kind: claim
 title: The Strong Atiyah Conjecture for torsion-free groups
 root: true
+refuted_by:
+  - algebraic-strong-atiyah-counterexample-exists
 distinct_from:
   whitehead-vanishing-torsion-free: that is vanishing of a K_1 quotient of the integral group ring; this is integrality of von Neumann ranks of matrices over K[G]. Both are open conjectures about all torsion-free groups and both were attacked against this repository on 2026-08-17, but neither is known to imply the other.
   torsion-free-countable-non-mf: that asks for a torsion-free group failing an operator-algebraic approximation property; this asserts an exact arithmetic property of kernels of finite matrices. Section 7 of the audit records why no implication runs between them.
@@ -106,3 +108,15 @@ point.  The audit artifact traces each.
    not the kernel dimension of one finite matrix.  A transfer would need an
    explicit identity `dim ker Atilde = dim ker A` across a torsion-free
    replacement, which no presentation-level embedding theorem supplies.
+7. **Reduce to one universal host (2026-09-11).**  Live, conditional.
+   `algebraic-atiyah-with-determinant-closed-under-colimits` supplies the
+   colimit permanence Strong Atiyah lacks, under the determinant conjecture, so
+   `algebraic-atiyah-and-determinant-one-group-tester` reduces Strong Atiyah
+   over `Qbar` for all torsion-free groups to Strong Atiyah plus the determinant
+   conjecture for the two-generator master tester `E`.  The route
+   `strong-atiyah-torsion-free-via-algebraic-base-change` still needs the base
+   change to `C`.  `E` contains the Fournier--Facio group, so it is nonsofic and
+   not locally indicable, and every standard proof dies at it
+   (`universal-torsion-free-hosts-not-sofic-or-locally-indicable`).  Strong
+   Atiyah for `E` alone already gives division-ring embeddings for every
+   torsion-free group algebra (`division-ring-embedding-torsion-free-one-group-tester`).
