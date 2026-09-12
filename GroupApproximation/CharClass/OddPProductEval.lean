@@ -31,6 +31,11 @@ open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
 
 noncomputable section
 
+-- `TagSimp X` and `TupAll X r` carry no decidable equality (a simplex is a continuous map), so the
+-- indicator's `if` and `Finsupp.single_apply` need the classical instance.  It is `low` priority, so
+-- the `Fin` instances used by `Function.update` and the prefix sums still win.
+open scoped Classical
+
 variable (K : Type) [CommRing K] {X : TopCat.{0}} {r : ℕ}
 
 /-! ## 1. The evaluation -/
