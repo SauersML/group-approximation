@@ -69,3 +69,69 @@ an elementary abelian 3-group when `K = F_3`. Every nonidentity element of `A` i
 `rk(([g] - 1)^j)` for `j = 1, 2` are the same for all nonidentity `g` in every such `A`. These are
 single-conjugation and locally-finite facts, so by `anti-central-sofic-data-cannot-force-defect-submultiplicativity`
 (parts 3–4) they cannot by themselves force `rk(1 - [z]) = 0`.
+
+## 2. Conjugacy of semisimple torsion units by spectral support
+
+**Theorem 2.1.** Let `char K ∤ m`, and let `g, g' in R^x` with `g^m = g'^m = 1`. For each irreducible factor `q`
+of `x^m - 1` over `K`, let `e_q(g) in K[g]` be the spectral idempotent, and put `S(g) = {q : e_q(g) != 0}`. Then
+`g` and `g'` are conjugate in `R^x` iff `S(g) = S(g')`.
+
+*Proof.*
+1. **Necessity.** Conjugation carries `e_q(g)` to `e_q(ugu^-1)`.
+2. **Decomposition.** `x^m - 1` is separable, so the Chinese remainder theorem gives orthogonal idempotents
+   `e_q(g) in K[g]` summing to 1, and `R_R = ⊕_q P_q` with `P_q = e_q(g)R`.
+3. **Module structure.** Let `K_q = K[x]/(q)` act on `P_q` by left multiplication by `g`. This commutes with the
+   right `R`-action, so `P_q` is a right module over `R_q = K_q ⊗_K R ≅ L_(K_q)(1,2)`.
+   - `P_q` is a finitely generated projective `R`-module, being a summand of `R_R`.
+   - `K_q/K` is finite separable, so `R_q` is a separable `R`-algebra. The separability idempotent of
+     `K_q ⊗_K K_q` splits the multiplication map, so `R`-projective `R_q`-modules are `R_q`-projective.
+4. **Freeness.** `binary-leavitt-nonzero-projectives-are-free` over the field `K_q` gives `P_q ≅ R_q` whenever
+   `P_q != 0`. The same holds for `P'_q = e_q(g')R`.
+5. **Conjugation.** Choose `R_q`-isomorphisms `φ_q : P_q -> P'_q` for `q in S(g) = S(g')`. Each is right
+   `R`-linear with `φ_q(gp) = g'φ_q(p)`. The sum `φ` is an automorphism of `R_R`, so it is left multiplication
+   by `u = φ(1) in R^x`, and `ug = g'u`. ∎
+
+**Corollaries** (`K = F_3`, `G_3 = R^x`).
+1. **Square roots of `z`.** Any `g` with `g^2 = z` has support `{x^2 + 1}`, which is irreducible over `F_3`.
+   So all square roots of `z` are conjugate, in particular `h ~ wd in E ⋊ V`. The Hadamard unit adds no new
+   conjugacy class.
+2. **Involutions.** Any involution `g != 1, z` has support `{x - 1, x + 1}`, so every non-central involution is
+   conjugate to `τ_([0])`. This extends the V-transitivity used for the Haar law to non-monomial involutions.
+3. **Order 8.** Put `p_± = x^2 ± x - 1`, so that `x^4 + 1 = p_+ p_-`.
+   - A signed permutation unit whose fourth power is `z` has a spectrum closed under negation, so it has
+     support `{p_+, p_-}`.
+   - A level-one Singer element of `GL_2(F_3)` has support `{p_+}` or `{p_-}`.
+   - So the order-8 elements of `SD16`, the Sylow 2-subgroup of `GL_2(F_3)`, are not conjugate into `E ⋊ V`.
+     This agrees with `w4-hadamard-f3`: `hw` is not conjugate to its negative.
+4. **Rank functions.** For semisimple torsion `g`, `rk(f([g]))` depends only on `S(g)`. These are single
+   conjugations, so they are covered by the anti-central HNN firewall.
+
+**What this changes for the gate.** Semisimple torsion outside `E ⋊ V` differs from `E ⋊ V` only through
+supports like `{p_+}`. On any finite subgroup the rank data are the regular profile of
+`anti-central-sofic-data-cannot-force-defect-submultiplicativity`, which is consistent with every support
+symmetry. The unipotent `x` is not semisimple, so Theorem 2.1 says nothing about it. Its uniformity comes
+from Proposition 1.3.
+
+## 3. Extending detecting rank functions from V to G_3 (open)
+
+`v-detecting-rank-functions-extend-to-ternary-leavitt-units` asks whether a detecting Sylvester rank function on
+`F_3[V]` yields one on `F_3[G_3]` moving `z`. If so, link 1 is equivalent to the V gate, through route
+`v-augmentation-from-minus-one-gate-and-extension` and the existing route in the other direction.
+
+**Dead attempts.**
+1. **Pullback along a homomorphism `G_3 -> V`.** `G_3` has property (T) for every finite field
+   (`leavitt-gl-equals-el-and-perfect-unit-group`). `V` has the Haagerup property (Farley; literature, not re-read
+   locally). So the image of `G_3` in `V` is finite, and it is trivial because `G_3` is perfect and has no
+   nontrivial finite quotients, by simplicity modulo the center. Nothing can be pulled back.
+2. **Permutation model for `x`.** The signed Thompson transfer works because signed permutations have a permutation
+   model on `X × {±1}`. `x` is unipotent of order `char F_3`. Permutation modules give it only the free and
+   trivial Jordan profiles, and its natural evaluation profile is not V-invariant.
+3. **Local data.** Proposition 1.3 and Theorem 2.1 give only single-conjugation symmetries. Every sofic subgroup
+   containing `z`, and every locally finite HNN datum, carries an anti-central model. So a failure of extension
+   would have to live on a nonsofic configuration of `x` with depth-changing elements of `V`.
+
+**The first escaping configurations.** A same-code set of transvections generates a finite `SL_n(F_3)` over one
+prefix code. Pairs whose words refine incompatibly do not. An example is `T_(0,1)` together with `T_(1,00)`: their
+product contains `1 + s_0 t_00`, which is not square-zero and has infinite order. These are the configurations of
+`w4-sub-adversary` (`x_12(s_0) x_21(1)`). Any proof of link 1 that avoids the V gate must use one of them as a
+factor, not only as a conjugator.
