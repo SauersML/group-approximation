@@ -42,4 +42,11 @@ close up in the cycle `a -> b -> c -> d -> a` that kills finite quotients.
   `higman-group-algebra-not-stably-finite` (route `higman-stable-finiteness-failure-gives-nonsurjunctivity`),
   which is open. The known division-ring embedding is in characteristic zero only; a characteristic-`p` embedding
   through a Cohn coproduct of vertex skew fields stops at identifying the two division closures of `F_p[<a,c>]`.
+* **Girth and Sidon memories (artifact Section 5).** `higman-group-has-girth-five-in-its-standard-generators`:
+  no nontrivial relation of length at most 4, so every subset of `{1,a,b,c,d}` is Sidon, and binary unbalanced
+  rules on it are never injective (`binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`). The natural
+  "one step in each direction" binary designs are dead.
+* **Twisted double (artifact Section 4).** `higman-group-is-the-swap-twisted-double-of-a-bs-amalgam`: `H` is the
+  double of `<a,b,c>` over `<a,c>` twisted by the swap, and is not a double of that group over any subgroup, so the
+  doubles permanence theorem does not reach it. Its index-two overgroup adds 2-torsion but no averaging corners.
 * **Where it stops.** No candidate design reading all four pieces through free edge groups is known.

@@ -15,8 +15,12 @@ Let `G_1 = <a,b,c | b^a = b^2, c^b = c^2>`, let `F = <a,c>` (free of rank two), 
 * `alpha : a -> c, b -> d, c -> a, d -> b` is an order-two automorphism of `H`, and
   `E = H x|_alpha Z/2 = <a, b, t | t^2, b^a = b^2, (tat)^b = (tat)^2> = G_1 *_F (F x|_theta Z/2)`;
 * `H` is surjunctive iff `E` is;
-* the sign character `t -> -1` of `E` kills one of `(1 +- t)/2` in every odd characteristic, so averaging-idempotent
-  corner witnesses do not exist over `E`.
+* every finite subgroup of `E` has order at most 2 (`H` is torsion-free), every involution is `ht` with `h in H`, and the
+  sign character `t -> -1` (trivial on `H`) or the trivial character kills each of `(1 +- ht)/2` in every odd
+  characteristic, so averaging-idempotent corner witnesses do not exist over `E`.
+
+Verified by w3-vf-nonlinear (Section 25 of its verification artifact), which supplied the extension from `t` to every
+involution.
 
 So the extra room `E` offers over `H`, namely 2-torsion and its idempotents, adds no averaging-corner designs.
 

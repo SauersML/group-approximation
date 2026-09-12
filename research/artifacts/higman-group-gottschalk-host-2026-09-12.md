@@ -150,9 +150,10 @@ groups.
 3. `E = H x|_alpha Z/2` has the presentation `E = < a, b, t | t^2, b^a = b^2, c^b = c^2 >` with `c = t a t`,
    and `E = G_1 *_F (F x|_theta Z/2)`.
 4. `H` is surjunctive iff `E` is (`surjunctivity-is-a-commensurability-invariant`).
-5. The sign character `chi : E -> {+-1}`, `t -> -1`, `a, b -> 1`, exists. For odd `p`, the averaging idempotents
-   `(1 +- t)/2` of `F_p[E]` are killed by `chi` or by the trivial character, so no averaging-idempotent corner
-   witness `c e b = 1` exists over `E`.
+5. The sign character `chi : E -> {+-1}`, `t -> -1`, `a, b -> 1`, exists. `H` is torsion-free, so every finite
+   subgroup of `E` has order at most 2 and every involution has the form `ht` with `h in H`. For odd `p`, each
+   averaging idempotent `(1 +- ht)/2` of `F_p[E]` is killed by `chi` or by the trivial character, so no
+   averaging-idempotent corner witness `c e b = 1` exists over `E`.
 
 *Proof.*
 1. `psi : G_1 -> G_2 = <c,d,a>`, `a -> c`, `b -> d`, `c -> a`, sends the relators `b^a b^(-2)`, `c^b c^(-2)` to
@@ -167,8 +168,10 @@ groups.
    presentation. The amalgam `G_1 *_F (F x|_theta <t>)` is presented by the relators of `G_1`, `t^2` and `tat = c`
    (`tct = a` follows), which is the same presentation.
 4. `H` is the kernel of `E -> Z/2`, of index two.
-5. The relators map to 1 under `chi`, because `tat -> 1`. `chi((1+t)/2) = 0` and the trivial character kills
-   `(1-t)/2`; applying the character to `c e b = 1` gives `0 = 1`. QED
+5. The relators map to 1 under `chi`, because `tat -> 1`. A finite subgroup meets the torsion-free `H` trivially,
+   so it injects into `E/H = Z/2`. `chi` is trivial on `H`, so `chi(ht) = -1`, and `chi((1+ht)/2) = 0` while the
+   trivial character kills `(1-ht)/2`. Applying the character to `c e b = 1` gives `0 = 1`. (w3-vf-nonlinear
+   supplied the extension from `t` to every involution.) QED
 
 **What the twist does.** The untwisted double `G_1 *_F G_1` is surjunctive by
 `doubles-of-surjunctive-groups-are-surjunctive`, since `G_1` is sofic. Higman's group is the same construction
@@ -182,3 +185,39 @@ with the identification twisted by `theta`, and the twist cannot be undone:
 
 So the twist is exactly what separates Higman's group from the doubles permanence theorem, and it is what closes
 the pieces up into the doubling cycle.
+
+## 5. Girth five, and Sidon memories
+
+**Lemma 5.1.** In `B(x,y) = <x,y | y^x = y^2>` every nonempty freely reduced word of length at most 4 in
+`x^(+-1), y^(+-1)` is nontrivial.
+
+*Proof.* In `Z[1/2] x| Z` with `y = (1,0)` and `x` the generator of `Z`, a trivial word has `x`-exponent sum 0. With
+no `x`-letter it is `y^k`, `k != 0`. Otherwise it has one `x` and one `x^(-1)` and at most two `y`-letters, so up to
+cyclic permutation it is `x^(-1) y^k x y^l = y^(2k+l)` or `x y^k x^(-1) y^l = y^(k/2+l)` with `k != 0` and
+`|k| + |l| <= 2`. The first vanishes only for `l = -2k`, the second only for `k` even and `l = -k/2`; both need
+`|k| + |l| >= 3`. QED
+
+**Theorem 5.2.** Every nonempty freely reduced word of length at most 4 in `a^(+-1), b^(+-1), c^(+-1), d^(+-1)` is
+nontrivial in `H`. So `H` has girth 5 in its standard generators (the relators have length 5).
+
+*Proof.* Use `H = G_1 *_F G_2`, `F = <a,c>`, and inside `G_1 = B(a,b) *_<b> B(b,c)` the facts `F cap B(a,b) = <a>`,
+`F cap B(b,c) = <c>` (normal forms).
+1. **No `d` (and symmetrically no `b`).** The word lies in `G_1`. If it avoids `a` or `c` it lies in one
+   Baumslag--Solitar piece and Lemma 5.1 applies. If it contains both, factor it into syllables over `{a,b}` and
+   `{b,c}`, attaching each `b` to a neighbouring syllable. A trivial word needs a syllable in `<b>`. A
+   `{b,c}`-syllable of length at most 4 containing `c` is never in `<b>`: its `Z[1/2]`-coordinate is
+   `+-1 +- 2^(-m)` or a single `+-2^j`, never 0. An `{a,b}`-syllable containing `a` lies in `<b>` only as
+   `a^(-1) b^(+-1) a` (length 3) or length-4 patterns; length 4 leaves no room for `c`, and the length-3 one leaves
+   one letter `c^(+-1)`, giving `b^(+-2) c^(+-1) != 1`.
+2. **Both `b` and `d`.** Factor into `G_1`-syllables containing `b` and `G_2`-syllables containing `d`, each of length
+   at most 3. The only such syllables lying in `F` are `b^(-1) c^(+-1) b = c^(+-2)` and `d^(-1) a^(+-1) d = a^(+-2)`:
+   every other short word containing `b` either has nonzero `b`-exponent in `B(b,c)`, or a nonzero `Z[1/2]`-part
+   in `B(a,b)`, or normal-form length 2 with a factor outside `F`. If one of the two appears, the remaining
+   letter is `d^(+-1)` (resp. `b^(+-1)`), and `c^(+-2) d^(+-1)` is not 1 since `d` is not in `F`. Otherwise every
+   syllable avoids `F`, there are at least two, and the normal form theorem gives `w != 1`. QED
+
+**Corollary 5.3.** Every subset `M` of `{1, a, b, c, d}` is a Sidon memory: the quotients `m^(-1) m'` (`m != m'`) are
+pairwise distinct. A coincidence `m^(-1) m' = n^(-1) n'` is a word of length at most 4 equal to 1, hence freely
+trivial, which forces `(m, m') = (n, n')`. By `binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`, no
+binary automaton on `H` with such a memory and an unbalanced rule is injective. A binary unbalanced witness on `H`
+needs memory elements realizing a relation of length at least 5.
