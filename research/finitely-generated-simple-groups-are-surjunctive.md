@@ -7,6 +7,7 @@ distinct_from:
   gottschalk-surjunctivity-conjecture: that asserts surjunctivity of every group; this is the restriction to finitely generated simple groups, which is equivalent to it by localization and embedding into a finitely generated simple overgroup.
   gottschalk-surjunctivity-fixed-two-generator-tester: that reduces the conjecture to one fixed finitely presented host, which is not simple; this reduces it to the whole class of finitely generated simple groups, where no proper normal subgroup or finite quotient is available to peel.
   leavitt-unit-group-nonsurjunctive: that seeks a counterexample on one simple nonsofic group; this is the positive assertion for all finitely generated simple groups at once.
+  fg-simple-kazhdan-groups-are-surjunctive: that is the Kazhdan subclass of finitely generated simple groups; this is the whole class. Both are equivalent to Gottschalk, and that one is the sharper reduction.
 artifacts:
   - research/artifacts/gottschalk-kazhdan-direct-attack-2026-09-12.md
 ---
