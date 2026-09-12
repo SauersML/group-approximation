@@ -129,7 +129,8 @@ def gramInv : Matrix (Fin 4) (Fin 4) ℝ :=
 
 theorem gram_mul_gramInv : gram * gramInv = 1 := by
   ext i j
-  fin_cases i <;> fin_cases j <;> norm_num [gram, gramInv, Matrix.mul_apply, Fin.sum_univ_four]
+  fin_cases i <;> fin_cases j <;>
+    norm_num [gram, gramInv, Matrix.mul_apply, Fin.sum_univ_succ, Matrix.one_apply]
 
 theorem det_gram_ne_zero : gram.det ≠ 0 :=
   Matrix.det_ne_zero_of_right_inverse gram_mul_gramInv
