@@ -25,7 +25,7 @@ BC=__SCRATCHPAD__/bc
 REPO=/Users/user/nonsofic_existence
 MSI=/Users/user/msi-node/msi
 P=/projects/standard/__MSI_GROUP__/__MSI_USER__; BCR=$P/bc; CLONE=$P/bc_clones/bc
-ROSTER=" bc-pair bc-kazhdan bc-rf kt-norm-paper kt-norm-repo kt-norm-fixedpoint kt-norm-counting bc-dynamics bc-dynamics-upper bc-double-surj bc-wreath bc-assembly bc-palomar bc-review bc-infra kt41-g1-build kt41-g1-uniform kt41-g1-alt kt41-scale kt41-seq-decomp kt41-matching kt41-bisection-rep kt41-bisection-rep-b kt41-functor kt41-functor-estimate kt41-median-vertex kt41-counting-endgame kt41-hamming kt41-assembly kt41-seq-wrapper kt41-review kt41-alt-route "
+ROSTER=" bc-pair bc-kazhdan bc-rf kt-norm-paper kt-norm-repo kt-norm-fixedpoint kt-norm-counting bc-dynamics bc-dynamics-upper bc-double-surj bc-wreath bc-assembly bc-palomar bc-review bc-infra kt41-g1-build kt41-g1-uniform kt41-g1-alt kt41-scale kt41-seq-decomp kt41-matching kt41-bisection-rep kt41-bisection-rep-b kt41-functor kt41-functor-estimate kt41-median-vertex kt41-counting-endgame kt41-hamming kt41-assembly kt41-seq-wrapper kt41-review kt41-alt-route kt41-cluster-scale kt41-block-near "
 SYNC_PATHS="GroupApproximation GroupApproximation.lean Palomar lakefile.toml lake-manifest.json lean-toolchain"
 usage() { echo "usage: bcprobe.sh <lane> <overlay files...> -- <Module.Name...>"; exit 2; }
 LANE=${1:-}; [ -n "$LANE" ] || usage; shift

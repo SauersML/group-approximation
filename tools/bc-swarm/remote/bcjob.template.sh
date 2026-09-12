@@ -24,8 +24,14 @@ ccomm() { LC_ALL=C comm "$@"; }
 summary_fail() { echo "===== SUMMARY"; echo "lane $LANE tag $TAG"; echo "$1"; echo "REAL_EXIT=${2:-4}"; exit "${2:-4}"; }
 sync_fail() { touch "$CLONE/.nm/PREP_PENDING"; summary_fail "$1; clone marked PREP_PENDING until infra re-verifies its sources (infra)"; }
 exec 9>"$CLONE/.lake/laneprobe.lock"
+# Lock contention record: a waiting marker while the job waits, then one row (tag, lane, job start, lock acquired)
+# appended under the lock; tools/bc-swarm/remote/lockstats.sh reads both.
+TJ0=$(date +%s); echo "$TJ0 $LANE" > "$CLONE/.nm/waiting-$TAG"
 echo "[job] $(date +%T) $(hostname -s) lane=$LANE waiting for clone lock"
-flock -w 14400 9 || summary_fail "PROBE FAILED: clone lock not free after 4 h (infra)" 3
+flock -w 14400 9 || { rm -f "$CLONE/.nm/waiting-$TAG"; summary_fail "PROBE FAILED: clone lock not free after 4 h (infra)" 3; }
+TJL=$(date +%s); rm -f "$CLONE/.nm/waiting-$TAG"
+printf '%s\t%s\t%s\t%s\n' "$TAG" "$LANE" "$TJ0" "$TJL" >> "$CLONE/.nm/lockwait.tsv"
+echo "[job] $(date +%T) clone lock acquired after $((TJL - TJ0)) s"
 [ -e "$CLONE/.nm/PREP_PENDING" ] && summary_fail "PROBE DEFERRED: clone preparation in progress; retry later" 5
 exec 8>"$NMR/mirror.lock"; flock -w 900 8 || summary_fail "PROBE FAILED: mirror lock busy (infra)"
 git -C "$MIR" fetch -q origin 2>/dev/null
