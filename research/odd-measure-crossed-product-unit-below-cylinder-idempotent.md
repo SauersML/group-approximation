@@ -35,6 +35,14 @@ By `hadamard-unit-conjugates-swap-idempotent-to-cylinder`, a solution solves
 - **Finite-dimensional support no-gos do not bind.** Every finite-dimensional representation of
   `H = E ⋊ V` is trivial (`signed-thompson-group-has-no-finite-dimensional-representations`). No
   obstruction needing a representation with `z -> -1` can exclude witnesses in `B`.
+- **More roots of unity give no room against honest compression.**
+  * Over `F_q`, the phase units `sum zeta_i P_(C_i)` with `zeta_i in mu_(q-1)`, together with `V`, give
+    `C(M_chi, F_q) ⋊ V` on each scalar character factor `A_chi`.
+  * Here `M_chi` is the coset of finitely additive `Z/(q-1)`-valued measures fixed by `chi`.
+  * Haar measure on that compact group is again `V`-invariant, so Proposition 4 persists for every `q`
+    and every `chi`.
+  * `#M_chi^P = (q-1)^(|P|-1)` is prime to `p`, so the mod-`p` average of Proposition 5 exists too.
+  * Section 10 of the artifact.
 - **Gate.** If the signed Thompson group `E ⋊ V` is `F_3`-linear sofic, this claim is false
   (`linear-sofic-group-algebra-is-stably-finite`). Soficity of `V` is open.
 - **Where it dies.** A witness needs a cover of `M_-` compressible only modulo 3: multiplicities

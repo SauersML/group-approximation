@@ -240,3 +240,27 @@ is trivial.
 a subgroup with a finite-dimensional characteristic-3 representation sending `z` to `-1`. That no-go
 never excludes witnesses inside `B = F_3[H] eps_-`. Proposition 6 explains why the invariants that do
 bind on `B` must be infinite-dimensional, like the Haar measure of Section 5.
+
+In particular `H` passes `swap-separated-pairs-avoid-finitely-represented-supports`. That filter
+assumes a finite-dimensional characteristic-3 representation of the support subgroup with `z -> -1`,
+and `H` has none.
+
+## 10. Other finite fields and scalar characters
+
+Over `F_q` with `q = p^r`, the diagonal phase units `sum_i zeta_i P_(C_i)`, with `zeta_i in mu_(q-1)`
+and a clopen partition `(C_i)`, form a group `E_q ~= C(X, mu_(q-1))`. `V` normalizes it.
+
+* **The crossed product.** `F_q[E_q] ~= C(Hom(E_q, F_q^x), F_q)`, and the characters are the
+  finitely additive `Z/(q-1)`-valued measures. The scalars `mu_(q-1)` sit inside `E_q` as constant
+  functions. On the factor where the scalars act through a character `chi`, one gets
+  `C(M_chi, F_q) ⋊_alg V`, with `M_chi` the corresponding coset of total values.
+* **Haar measure.** Normalized Haar measure on the compact group of measures restricts to each coset.
+  `V` acts by automorphisms, so it preserves it, and Proposition 4 holds verbatim. More roots of unity
+  therefore give no room against honest compressions.
+* **Mod-`p` average.** `#M_chi^P = (q-1)^(|P|-1)` is prime to `p`. Refining an atom multiplies the
+  count by `q-1`, which is invertible mod `p`, so the average of Proposition 5 is well defined and
+  `V`-invariant.
+
+What changes with `q` is only the arithmetic of the trace values. So the same boundary appears on
+every character factor: witnesses must use non-function idempotents, or units outside the phase
+Thompson group.
