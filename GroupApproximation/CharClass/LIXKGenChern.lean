@@ -74,6 +74,7 @@ def lixChern (n : ℕ) (dd : Fin ℓ → ℕ) : LixChernDeg n dd :=
             h.choose h.choose_spec.2 h.choose_spec.1)).chern k)
     else 0
 
+open scoped Classical in
 /-- **The branch is taken** whenever the bundle has constant positive rank. -/
 theorem lixChern_eq_of_rank (n : ℕ) (P : LixFamily n dd) (hcont : Continuous P)
     (hproj : ∀ p, IsStarProjection (P p)) (s : ℕ) (hs1 : 1 ≤ s)
