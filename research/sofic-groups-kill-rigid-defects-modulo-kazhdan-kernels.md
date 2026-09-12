@@ -81,3 +81,19 @@ hyperbolic group is sofic, the Leavitt cover
   every trace-preserving model. Hence `H/M` has no representation on a nonzero
   corner of the tracial ultraproduct, and a proof has to work on the diagonal
   (Koopman) side.
+- **Algebraic core: established (lane `rnorm-kazhdan-kernel`).**
+  `relative-defect-iff-surjective-compressor-endomorphisms`: in a sofic host,
+  put `Z = {z : [z, Gamma] <= M}` and `K = M . C_H(Gamma)`. The absolute
+  criterion makes `G` normalize `K`, and each compressor `t` induces an
+  injective endomorphism of `Q = Z/K`.
+  - The relative defect of the configuration vanishes iff all these
+    endomorphisms are surjective.
+  - It holds whenever `Q` is co-Hopfian, in particular finite. This repairs the
+    refuted splitting in finite-index form (transpose-inverse: `Q = Z/2`).
+    Property (T) of `M` is not needed.
+  - A counterexample needs `Q` infinite and properly self-embedded by a
+    compressor.
+  - For the Leavitt cover `Q = C_(R^x)(EL_alpha(R))`, which contains a copy of
+    Thompson's `V` and is properly self-embedded by the compressor `u`. So the
+    cover is not excluded, and the question is whether a sofic host can realize
+    that strict self-embedding over a Kazhdan kernel.

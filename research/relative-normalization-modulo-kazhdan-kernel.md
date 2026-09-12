@@ -57,3 +57,32 @@ automatically, so only strict compressors matter.
   gives `d in M`. Caveat: `sigma(L(M))` is not the block algebra of the finite
   groups `sigma(M)|_B`. A lower bound for the conditional expectation onto the
   larger block algebra does not suffice.
+- **Relativizing the Kun--Thom cluster counting: dead as a direct transfer
+  (lane `rnorm-kazhdan-kernel`).**
+  - **What powers Theorem 4.1:** the cluster groupoid of the `Gamma`-expander
+    components is finite. The compressor functor is faithful, and orbit sizes
+    `o_n` and isotropy sizes `k_n` are one-sided monotone under it. The median
+    argument with (T) of `G` makes them almost invariant, so the index of the
+    induced isotropy inclusion is an integer below 2, hence 1, and the functor
+    is bijective on Hom-sets.
+  - **Relative arrows** are approximate bijections between components that
+    intertwine the `Gamma`-actions up to a twist `phi in Aut(Gamma)` trivial
+    modulo `M`. For a fixed twist they form a torsor over the `Gamma`-isotropy,
+    and the distance gap still holds.
+  - **Twists are unbounded.** For distinct `m, m'` in the infinite group `M`,
+    `sigma(m)|_B` and `sigma(m')|_B` are relative arrows with twists `Ad m` and
+    `Ad m'`, and trace zero puts them at relative distance `1 - o(1)` on most
+    components. So relative Hom-sets are unbounded along `U`, and there is no
+    integer index to compare.
+  - **Modulo inner twists,** the realized outer twist classes on a component
+    contain the image of `Q = Z/(M . C_H(Gamma))`. Compressors act on `Q` by
+    injective endomorphisms, which are strict exactly when the defect is
+    nontrivial (`relative-defect-iff-surjective-compressor-endomorphisms`).
+    For the Leavitt cover `Q = C_(R^x)(EL_alpha(R))`, which contains a copy of
+    Thompson's `V` and is not co-Hopfian.
+  - **So a proof must supply a new size.** It needs a size on realized outer
+    twists that is one-sided monotone under compressors, like `o_n` and `k_n`,
+    and that no strict self-embedding can preserve. Cardinality cannot do this
+    for infinite `Q`. A measure-type size, such as the support proportion
+    that corner embeddings of `V` halve, is the natural candidate; none is
+    constructed. **This is where it stops.**
