@@ -9,6 +9,7 @@ requires:
   - formal-pairs-push-along-quotients-of-the-encoder-memory-group
 artifacts:
   - research/artifacts/dihedral-marker-composition-reduction-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 1. **Dihedral subgroup.** `g(0w) = 0 a(w)`, `g(1w) = 1 a^(-1)(w)` and the first-letter swap `s`
@@ -21,3 +22,10 @@ artifacts:
    direction of `formal-pairs-push-along-quotients-of-the-encoder-memory-group`). The ancilla tracks,
    carried along, keep the identity on their own cells. So a stable formalization over `D` gives one
    over `V`.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): valid.** Re-derived independently.
+- `<g, s>` is dihedral: `s g s = g^-1` on first letters.
+- The formal identity at cell `1` uses only cells of `<g, s>`.
+- The ancilla tracks stay the identity.
+- The route cannot fire while `dihedral-marker-involution-is-stably-formalizable` is OPEN.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 20.)

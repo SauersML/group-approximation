@@ -8,6 +8,7 @@ requires:
   - injective-binary-automata-are-stably-formalizable
 artifacts:
   - research/artifacts/dihedral-marker-composition-reduction-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 1. **Coordinates.** Over `D = <g, s>`, `{0,1}^D` splits into the cosets `a(k) = x(g^k)` and
@@ -28,3 +29,10 @@ artifacts:
    variable sets, so the factors commute as polynomial maps and `s E s = F_1 o F_2 = E` (extending `s`
    to permute `A1 <-> A2`). Each factor is `<g>`-equivariant, so `E` is `D`-equivariant with finite
    memory. Hence `tau x id` over `D`, with ancilla set `A1 ∪ A2`, is formalizable.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): valid.** Re-derived independently.
+- The integer instance of the general claim, transported to the `b`-coset, is `<g>`-equivariant.
+- `s F_1 s` is equivariant under `s g s = g^-1`.
+- Disjoint variable sets and `s^2 = id` give `s E s = E`.
+- The route cannot fire while its prerequisite is OPEN.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 20.)

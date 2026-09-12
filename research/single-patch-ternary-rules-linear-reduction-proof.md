@@ -8,6 +8,7 @@ requires:
   - avoidable-patches-of-affine-rules-inherit-linear-injectivity
 artifacts:
   - research/artifacts/single-patch-ternary-rules-linear-reduction-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 1 of the artifact.
@@ -26,3 +27,8 @@ Section 1 of the artifact.
   - Abelian memory groups are amenable, and Gromov–Weiss applies there.
   - `avoidable-patches-of-affine-rules-inherit-linear-injectivity` makes `L` injective.
   - Theorem 1.1 makes `L` non-surjective.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS.** Re-derived independently: all twelve site pairs, the
+occurrence analysis, the collision, and the three cases of the corollary. There is one arithmetic slip in the artifact:
+for `(g*, hb)` the condition gives `b = a^2`, not `b = a^3`. Either way `a` and `b` commute
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 19).

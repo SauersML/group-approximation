@@ -880,3 +880,136 @@ Artifact: `research/artifacts/clifford-cover-phase-barrier-2026-09-12.md`, Secti
 
 **Decision status.** Nothing decision-level. `kun-thom-wreath-lamp-quotient-nonsurjunctive` and
 `kun-thom-clifford-cover-nonsurjunctive` stay OPEN.
+
+**Follow-ups landed by authors.**
+- w4-free-neg-b (0a7ca7dae3): Lemma 3.1 now uses the coordinate images `B_y`, as recommended.
+- w4-clifford-complete (d7f44c4647): the phase window now spells `gamma = v(b)` in the generators, as recommended.
+
+## 19. Single-patch ternary rules reduce to linear strictness (w4-bal-rigid, 29aa6a4511, 8b45123bf8)
+
+Claim `single-patch-ternary-rules-reduce-to-linear-strictness`. Artifact:
+`research/artifacts/single-patch-ternary-rules-linear-reduction-2026-09-12.md`, Sections 0–2. Verdict: PASS,
+with one arithmetic slip that leaves the conclusion unchanged.
+
+- **Setup.** `tau_mu = tau_lambda + epsilon P`, and `tau_lambda(x + d) = tau_lambda(x) + L(d)`. Normalization by
+  address permutation and right translation is legitimate.
+- **Choice of `x`.** Each step forbids at most two of the three symbols.
+  - So `x' = x + d` equals `p` on `hM`.
+  - Step 2 keeps `s_0` off `g*` in both configurations, and step 3 keeps `s` off every other site in both.
+  - So `Sigma(x')` lies in `{ha, hb, g*}` and `Sigma(x)` in `{h, ha, hb, g*}`.
+- **Site lemma, the pressure point.** An occurrence at `g` needs the ordered pair `(ga, gb) = (u, v)` with
+  `u^-1 v = a^-1 b`. I recomputed all twelve pairs.
+  - `(ha, hb)` holds, with `g = h`.
+  - `(hb, ha)` holds iff `(a^-1 b)^2 = 1`, with `g = h b a^-1 = g*`.
+  - These pairs force commuting: `(h, ha)` gives `b = a^2`, `(hb, h)` gives `a = b^2`, and `(h, g*)` and
+    `(g*, h)` give `ta = at`, with `t = b a^-1`, `t^2 = 1`.
+  - **Slip.** For `(g*, hb)`, `(g*)^-1 hb = a`, so the condition reads `a = a^-1 b`, giving `b = a^2`, that is
+    `t = a`. The artifact writes `t = a^2`, `b = a^3`. Either way `a` and `b` commute, so nothing downstream changes.
+  - These pairs are impossible: `(ha, h)` gives `b = 1`, `(h, hb)` gives `a = 1`, and `(ha, g*)`, `(g*, ha)` and
+    `(hb, g*)` give `a = 1` or `b = 1`, using `t^2 = 1`.
+- **Occurrences.**
+  - `x'` shows `p` at `h`, and at `g*` it has `x'(g*) != s_0`.
+  - `x` at `h` would need `d = 0` on `hM`, contradicting `L(d)(h) = -epsilon`. `x` at `g*` has `x(g*) != s_0`.
+  - No other pair holds. So `P(x) = 0`, `P(x') = delta_h`, and `tau_mu(x') = tau_mu(x)`.
+  - When `L` is bijective, `d` has finite support, so `tau_mu` is not pre-injective.
+- **Corollary 1.2.**
+  - Restrict to `H = <a, b>`.
+  - If `lambda_0 = 0`, avoidable patches give a collision, since `p` uses `s`.
+  - Otherwise `lambda` is balanced and the patch gives counts `(10, 9, 8)`.
+  - Abelian `H` is amenable, so injective means bijective means balanced, a contradiction.
+  - For nonabelian `H`, avoidable patches make `L` injective and Theorem 1.1 forbids surjective `L`. The
+    product over cosets carries this to `G`.
+- **Section 2.2 (open).** Three nonzero elements of `F_3` summing to `0` are equal, so `d_0` is constant on `M`
+  and `kappa(c_1 + c_2 + c_3) = -epsilon`. Correct as recorded.
+- **Status.** `ternary-three-address-injective-automata-have-balanced-rules` stays OPEN on the two residual
+  classes of Section 2.4.
+- **Follow-up.** The author fixed the `(g*, hb)` slip forward at f0727b72d6. The line now reads
+  `(g*)^-1 hb = a = a^-1 b`, so `b = a^2` and `t = a`, with a note on the first version. Conclusion unchanged.
+
+## 20. The dihedral marker reduces to the integer marker (w4-dihedral-marker, df52dd862d, 6748f55819)
+
+Artifact: `research/artifacts/dihedral-marker-composition-reduction-2026-09-12.md`. Open claims
+`dihedral-marker-involution-is-stably-formalizable` and `thompson-v-marker-involution-is-stably-formalizable`, with
+routes `dihedral-marker-stable-formalizability-from-integer-marker` and
+`thompson-v-marker-stable-formalizability-from-dihedral`. Verdict: both routes are valid, and nothing is premature.
+
+- **Lemma 1, coset split.**
+  - The automaton reads right translates. `g^k g^j = g^(k+j)` and `g^k s g^j = g^(k-j) s`, so each flip reads only
+    its own coset.
+  - On the `b`-coset the window is read in reverse, and the palindrome `(0,0,1,1,0,0)` makes the rule the same
+    integer marker.
+  - Left multiplication by `s` gives `(s.x)(g^k) = x(g^(-k) s)`, that is `a(k) <-> b(-k)`. Correct.
+- **Lemma 2.** Substitution is functorial, so `G_1(G_2(F_2(F_1 X))) = G_1(F_1 X) = X`. Correct.
+- **Load-bearing step.**
+  - The general stable claim, specialized to `Z`, gives a `Z`-equivariant formal pair for `tau_Z x id_m`.
+    Transported by `k -> b(k)`, with ancilla values at the `b`-cells, it involves only `{b-coset, A1}`. It is
+    `<g>`-equivariant, since left multiplication by `g` shifts `b(k)` to `b(k+1)`.
+  - `F_2 = s F_1 s` is equivariant under `s g s = g^-1`, hence under `<g>`. By `s tau s = tau` it formalizes
+    `tau_Z x id` on `{a-coset, A2}`.
+  - Disjoint variable sets make `F_1` and `F_2` commute exactly as polynomial maps. `s^2 = id` gives
+    `s E s = F_1 o F_2 = E`, so `E` is `D`-equivariant with finite memory. The decoder is the same.
+- **Induction to `V`.** The formal identity at cell `1` reads only cells of `<g, s>`, and ancilla tracks over `V`
+  stay identity on their own cells. So the pair passes up with the same polynomials.
+- **Scope.** Only stable formalizability of a bijective object is claimed. No surjunctivity of `V` is asserted.
+  Both claims are OPEN, conditional on `injective-binary-automata-are-stably-formalizable`.
+
+## 21. Coset-parity closure of the commutator generator (w4-lamp-closure, 330d3b39cb)
+
+Claim `lamp-commutator-coset-closure-is-subgroup-membership`. Artifact:
+`research/artifacts/lamp-commutator-coset-closure-2026-09-12.md`. Verdict: **the equivalence is FALSE as stated.**
+The direction that is used holds, and so do Lemma 0.1 and Lemma 2.1.
+
+**Setting.** `v = e_Gamma + e_(a Gamma) + e_(b Gamma) + e_(ab Gamma)`, `w = e_Gamma + e_(b Gamma) + e_(a Gamma) + e_(ba Gamma)`,
+`m = b^-1 a^-1 b a`, so `ba = (ab) m`. Also `pi_S(U) = 0` iff `pi_S(v) = 0`.
+
+**The pairings.** The multiset `{S, aS, bS, abS}` is even iff one of three pairings holds.
+- **(i) `S = bS` and `aS = abS`, i.e. `b` in `S`.** Then `pi_S(w) = e_(aS) + e_(baS)`, which is `0` iff `a^-1 b a` is
+  in `S`.
+- **(ii) `S = aS` and `bS = abS`, i.e. `a` in `S` and `b^-1 a b` in `S`.** Then `pi_S(w) = 0`. The artifact's type (II)
+  omits the condition `b^-1 a b` in `S`, since `bS = abS` needs it, but the conclusion `pi_S(w) = 0` is unaffected.
+- **(iii) `S = abS` and `aS = bS`, i.e. `ab` and `a^-1 b` in `S`.** Then `pi_S(w) = e_S + e_(baS)`, which is `0` iff `m`
+  is in `S`. Correct as written.
+
+The artifact asserts that (i) gives `pi_S(w) = 0` directly. That is false.
+
+**Counterexample.** `G = S_3`, `Gamma = 1`, `a = (12)`, `b = (13)`, `S = <b>`.
+- `ab` is a 3-cycle, so `S_0 = <ab, a^-1 b> = A_3`. It contains `m`, since commutators are even.
+- `pi_S(v) = e_S + e_(aS) + e_S + e_(aS) = 0`.
+- But `pi_S(w) = e_(aS) + e_(baS)`, and `baS != aS` because `(13)(12) != (12)(13)`. So `w` is not in `U^c` although
+  `m` is in `S_0`.
+
+**Corrected statement.**
+
+    w in U^c   <=>   m in <Gamma, ab, a^-1 b>   and   a^-1 b a in <Gamma, b>.
+
+- **(<=).** Every `S >= Gamma` with `pi_S(v) = 0` falls under (i), (ii) or (iii). The minimal subgroups for (i) and
+  (iii) are `<Gamma, b>` and `S_0`.
+- **(=>).** Take `S = <Gamma, b>` and `S = S_0`.
+
+**What stands.**
+- **The implication used.** `m` not in `S_0` implies `w` not in `U^c`, hence `w` not in `U-bar`, by the sandwich
+  `U <= U-bar <= U^c`. So the negative resolution of Example 5.4 for free generators with
+  `<a,b> cap S_0 = <ab, a^-1 b>` is correct.
+- **A second separation.** If `a^-1 b a` is not in `<Gamma, b>`, then `w` is not in `U-bar`, independently of `m`.
+- **Where the residue sits.** "Exactly `m` in `S_0`" is not the residue. Both memberships are.
+- **Lemma 0.1.** The common kernel of the `pi_S` is `U^c`. If that equals `U`, then `P/U` embeds in the product of the
+  `F_2[G/S]`, so it is residually permutational, and Theorem B applies. `U^c` is idempotent. Correct.
+- **Lemma 2.1, Stallings.**
+  - The petals `* -a-> x -b-> *` and `y -a-> *`, `y -b-> *` fold at the two `b`-edges into `*`, giving `u = {x, y}`.
+  - The result has `a`-edges `* -> u` and `u -> *` and one `b`-edge `u -> *`.
+  - Reading `b^-1 a^-1 b a` from `*` goes `* -> u -> *`, and then `*` has no outgoing `b`-edge. Correct.
+- **Free-generator assumption.** The assumption `<a,b> cap S_0 = <ab, a^-1 b>` is correctly flagged by the author as
+  the residue, not proved.
+
+**Status: fixed forward at 297ace12af.** The author landed the corrected statement.
+- **Title and statement.** The claim now has both memberships, and the S_3 example appears as Example 1.3.
+- **The route, Steps 2–4.** It lists the pairings (P_a) `a, b^-1 a b in S`, (P_b) `b in S`, and (P_ab) `ab, a^-1 b in S`.
+- **Re-checked.**
+  - The minimal (P_b) and (P_ab) subgroups are `S_1` and `S_0`.
+  - (P_a) gives `aS = S` and `baS = bS`, so it never obstructs.
+  - The Stallings read `b^-1, a^-1` goes `* -> u -> *`, and `b` then has no edge.
+  - The free-subgroup intersection hypothesis is flagged as unproved.
+
+  **PASS** on the corrected statement.
+- **Root bullet.** The Attempts bullet of `kun-thom-wreath-lamp-quotient-nonsurjunctive` names both memberships.
+- **Scope.** No other node cites the claim.

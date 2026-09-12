@@ -8,6 +8,7 @@ requires:
   - residually-permutational-lamp-extensions-are-surjunctive
 artifacts:
   - research/artifacts/lamp-commutator-coset-closure-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact `lamp-commutator-coset-closure-2026-09-12.md`, Sections 0--2. Corrected forward after
@@ -49,3 +50,14 @@ Also `a^-1 b a notin <b>` (reduced, not a power of `b`). Choosing `a, b in N = E
 subgroup with `<a,b> cap S_0 = <ab, a^-1 b>` gives `m notin S_0`, hence `w notin U-bar`.
 
 No compute was run.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): PASS on the corrected statement (297ace12af).**
+- **First version wrong.** It claimed "`w in U^c` iff `m in S_0`", which is false: pairing (P_b) needs
+  `a^-1 b a in S`, and `S_3` with `S = <(13)>` breaks it.
+- **Corrected version checked.**
+  - Three pairings.
+  - Minimal subgroups `S_1` and `S_0`.
+  - (P_a) never obstructs.
+  - Stallings fold of `<ab, a^-1 b>`.
+- **Hypothesis.** The free-subgroup intersection is correctly left as a hypothesis.
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 21.)
