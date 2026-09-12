@@ -214,3 +214,116 @@ against it.
   which shows the subshift embedding exists over free groups too. Theorem B shows
   instead that the full shift cannot reach the subshift at all. It says nothing
   about kernels of one-sided linear automata, or about nonlinear subshifts.
+
+## 3. The permanence closure and what it cannot reach
+
+**Definition.** Let `S*` be the smallest class of groups that contains every sofic
+group and is closed under the following operations.
+
+- (O1) Subgroups.
+- (O2) Groups whose finitely generated subgroups all lie in `S*`.
+- (O3) Groups locally embeddable into `S*`: every finite subset embeds as a partial
+  multiplication table into some group of `S*`.
+- (O4) Split extensions `N ⋊ G`, with `G` in `S*`, carrying a finitary site
+  structure as in `finitary-split-extension-surjunctivity-permanence`. This
+  includes permutational wreath products with residually finite lamps, and group
+  doubles `G *_Gamma G`.
+- (O5) Fundamental groups of graphs of groups that admit a homomorphism into a
+  group of `S*` injective on vertex groups
+  (`graph-folds-over-surjunctive-groups-are-surjunctive`).
+- (O6) Graph wreath products `Lambda(A) ⋊ G`, with `A` LEF and `G` in `S*`
+  (`lef-lamp-graph-wreaths-are-surjunctive`).
+- (O7) Split extensions `N ⋊ G`, with `N` finitely generated and residually finite
+  and `G` in `S*` (Arzhantseva--Gal, Ann. Math. Blaise Pascal 27 (2020), Theorem 1).
+
+**Every group in `S*` is surjunctive.**
+- Sofic groups are surjunctive by Gromov--Weiss; see
+  `sofic-radical-localizes-garden-of-eden-windows`.
+- For (O1) and (O2): an automaton with memory `M` runs separately on the right
+  cosets of `<M>`. So it is injective, or surjective, over any group containing `M`
+  iff it is so over `<M>`.
+- (O3) is Corollary A1, and (O4) to (O7) are the cited theorems.
+
+**Theorem C.** Let `Q` be an infinite, finitely presented, simple, nonsofic group.
+No group in `S*` has a subgroup isomorphic to `Q`.
+
+*Proof.* Build `S*` in stages:
+- `S_0` is the class of sofic groups;
+- `S_(alpha+1)` adds every group obtained from groups of `S_alpha` by one operation;
+- limit stages take unions.
+
+We show by induction that no group of any stage contains `Q`. At stage `0`,
+subgroups of sofic groups are sofic. Limit stages are immediate. For a successor
+stage, let `W` be obtained from groups of `S_alpha`, and suppose `Q <= W`.
+
+- **(O1)** `W` is a subgroup of a group of `S_alpha`, and so is `Q`.
+- **(O2)** `Q` is finitely generated, so it is one of the finitely generated
+  subgroups of `W`, all of which lie in `S_alpha`.
+- **(O3)** Write `Q = <X | R>` with `X` and `R` finite. Let `B` consist of `X`,
+  `X^-1` and all prefixes of relators. An injective partial multiplication table
+  `phi: B -> K`, with `K` in `S_alpha`, defines a homomorphism `Q -> K`: each relator
+  evaluates, through its prefixes, to `phi(1) = 1`. The homomorphism is nontrivial
+  because `phi` is injective on `X`. A nontrivial homomorphism from a simple group is
+  injective, so `Q <= K`, which the induction hypothesis excludes.
+- **(O4) and (O7)** The image of `Q` in `G = W/N` is either trivial or a copy of
+  `Q`, and the induction hypothesis excludes a copy. So `Q <= N`.
+  - In (O7), `N` is residually finite.
+  - In (O4), detection (A1) gives a site projection `p_S: N -> N_S`, onto a
+    residually finite group, with `p_S(q) != 1` for some `q` in `Q`. The restriction
+    of `p_S` to `Q` is then injective.
+
+  Either way `Q` embeds in a residually finite group, which an infinite simple group
+  cannot do.
+- **(O5)** As before, `Q` lies in the kernel of the homomorphism `f` into a group of
+  `S_alpha`. Since `f` is injective on vertex groups, `ker f` meets every conjugate
+  of every vertex group trivially. So `ker f` acts freely on the Bass--Serre tree and
+  is free. No free group is infinite and simple.
+- **(O6)** `Q <= Lambda(A)`.
+  - Graph products of sofic groups are sofic (Ciobanu--Holt--Rees, *Sofic groups:
+    graph products and graphs of groups*, Pacific J. Math. 271 (2014); statement not
+    re-read in this lane).
+  - For an infinite graph, `Lambda(A)` is the directed union of the graph products
+    over finite subgraphs, so it is sofic.
+  - Then `Q` is sofic, a contradiction.
+
+QED.
+
+**Consequences.**
+- **The Leavitt unit group is outside `S*`.** `L_(F_2)(1,2)^x` is infinite,
+  finitely presented (Khanh, through `fp-simple-nonsofic-group`), simple and
+  nonsofic. So neither it nor any group containing it lies in `S*`. No combination
+  of the permanence results in the graph or in the cited literature decides whether
+  such a group is surjunctive.
+- **The known surjunctive nonsofic groups are inside `S*`.** These are:
+  - the Kun--Thom wreaths and doubles;
+  - every LEF graph wreath over a Theorem E pair;
+  - the free-lamp amalgams `G *_Gamma (Gamma × K)` with `K` LEF.
+
+  The amalgams are graph wreaths with empty graph. The retraction onto `G` has as
+  kernel the free product of copies of `K` indexed by `G/Gamma`, and `G` permutes
+  those factors without twisting.
+- **Where a counterexample lives.** The memory group and the table group of any
+  strict pair lie outside `S*`. Theorem C gives one sufficient reason for a group to
+  lie outside. It does not claim that `S*` contains every surjunctive group, nor that
+  the Leavitt unit group fails to be surjunctive.
+
+## 4. What remains for a counterexample over the Leavitt unit group
+
+The architecture of `leavitt-units-carry-injective-invariant-output-automaton` has
+output constant on right cosets of a finite subgroup `H`. It survives all three
+theorems, with sharper requirements.
+
+- **Table filter (Corollary A3).** Let `U` be the table group with relators from
+  `S x M` and `H x M`. Every homomorphism from `U` into a group of `S*` must kill
+  `x_h`. That includes every finite quotient of `U`, every sofic quotient, and every
+  quotient onto a Kun--Thom wreath, double or graph wreath. The test involves only
+  products of units. A search should therefore compute the product tables of
+  candidate windows in `R^x`, and discard any window whose table group has a small
+  finite quotient with `x_h != 1`, before it tries a single rule.
+- **No quotient-ring dynamics (Theorem B).** The coset-invariant output must come
+  from a nonlinear rule reading the full shift. It cannot pass through the dual of
+  the Leavitt algebra, or of any quotient of `F_2[G]`.
+- **The host is right (Theorem C).** `R^x` evades every permanence theorem, so
+  nothing already excludes it. The windows must realize a table outside `S*`. Within
+  current knowledge that means a table carrying the one-sided compression
+  configuration, as Section 5 of the localization artifact predicted.
