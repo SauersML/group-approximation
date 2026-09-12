@@ -53,9 +53,12 @@ every `p in A^Omega`, where `M` is the memory,
   - Any other proof must use coordinate data together with the group structure of the index set:
     window laws, completion counts, and block-code radii in both directions. Section 3 of
     `research/artifacts/conjugacy-invariants-and-partition-bounds-2026-09-12.md`.
-  - The functional asked for by gk-decoder-fibers handoff (at most `log |A|`, equal at the uniform
-    measure, strictly monotone under strict automata) therefore cannot be an isomorphism invariant.
-    It must read the coordinate partition, as Shannon window entropies do.
+  - The functional asked for in gk-decoder-fiber's handoff is at most `log |A|`, equal at the
+    uniform measure, and strictly smaller at every strict image. An isomorphism invariant takes
+    equal values at the uniform measure and at every strict image. So for an invariant, "strictly
+    smaller at every strict image" is equivalent to "no strict automaton exists", and proving it
+    restates the conclusion (scope as corrected by gk-vf-positive). A useful functional must read
+    the coordinate partition, as Shannon window entropies do.
 * **Digest (gk-archive, 2026-09-12).** **Proved:**
   - preservation forces surjectivity, automaton by automaton
     (`injective-measure-preserving-ca-is-surjective`);
