@@ -161,12 +161,12 @@ theorem closes_right (hab : a ≠ b) :
   rw [List.getLast_append_singleton, facePerm_some_none hab]
   rfl
 
-theorem embed_injective : Function.Injective (embed M) :=
+theorem embed_injective_faceCycles : Function.Injective (embed M) :=
   fun _ _ h => Option.some.inj (Option.some.inj h)
 
 theorem nodup_map_append (zs : List M.Dart) (hnd : zs.Nodup) (n : Dart M)
     (hn : ∀ z, embed M z ≠ n) : (zs.map (embed M) ++ [n]).Nodup := by
-  refine List.nodup_append.mpr ⟨hnd.map embed_injective, List.nodup_singleton n, ?_⟩
+  refine List.nodup_append.mpr ⟨hnd.map embed_injective_faceCycles, List.nodup_singleton n, ?_⟩
   intro x hx y hy hxy
   rw [List.mem_singleton] at hy
   obtain ⟨z, _, rfl⟩ := List.mem_map.mp hx
