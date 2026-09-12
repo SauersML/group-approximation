@@ -52,6 +52,25 @@ fibre-sphere bubble, `lim_R b_R(p_c)^(1/R) < 1`. By
   quantity of finite sets. That quantity is at least 1 for every `p >= p_c`. So
   this criterion certifies nothing above `p_c`, and the finite-volume check
   cannot separate the thresholds.
+* **Fibre renewal closure (lane bs-critical-bubble).**
+  * *The inequality.* A first-excursion BK decomposition through the cut fibres
+    gives `chi^H_p <= c_p + c_p p^2 W (chi^H_p)^2`. Here `c_p` is the
+    susceptibility of the fibre graph, e.g. `(1+p)/(1-p)` for vertical steps
+    `±1`, and `W = sum_t m_t^2` over letters.
+  * *What it would give.* By continuity in `p`, `chi^H_p` stays on the lower
+    root while `4 c_p^2 p^2 W < 1`, and then
+    `rho(N_(p_c)) <= 4 c_(p_c)^2 p_c^2 W < 1`.
+  * **Where it dies:** this has the same strength as the adjacency-norm
+    criterion `fpbs-tree-projected-large-rank-strict-thresholds`, which needs
+    large rank. On `(a,0),(a,1),(b,0),(1,1)` at `p = 0.16`, `c ≈ 1.38`,
+    `W = 10` and `4 c^2 p^2 W ≈ 1.95`.
+* **One-sided branching cannot close it.**
+  `fpbs-tree-projected-half-graph-factors-not-small` shows that at `p_c` either
+  `chi^H = infinity` or the unsquared transfer matrix `M` has `rho(M) >= 1`. With
+  uniform factors, the target `rho(N_(p_c)) < 1` sits in the window
+  `lambda in [1/(2n-1), 1/sqrt(2n-1))`. **Where it dies:** any argument that
+  makes linear tree branching strictly subcritical at `p_c` is impossible, so a
+  proof must use the squaring in `b_R`.
 * **Evidence, not proof.** Lane bs-pc-pu-2 ran Monte Carlo (N=4000, cap 2e6,
   ±1 SE) at the largest capped-free `p` just below the estimated `p_c`. The
   artifact is `research/artifacts/fpbs/docs/tree-projected-branching-numerics-2026-09-12.md`.

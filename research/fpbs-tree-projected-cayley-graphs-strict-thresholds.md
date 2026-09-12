@@ -36,6 +36,14 @@ checked. The fibres are cut sets, which gives an exact criterion.
   tree automorphisms preserving labels, orientations and height sets reduce to
   the free group itself. **Where it dies:** there is no nonunimodular
   quasi-transitive subgroup to use.
+* **Large rank.** `fpbs-tree-projected-large-rank-strict-thresholds` settles the
+  claim whenever `v + 2 m sqrt(2n-1) < 2n-1`, where `v` counts the vertical
+  generators and `m` is the largest multiplicity over a letter. It uses the tree
+  lift `p_c <= 1/(2n-1)` and a Schur-block adjacency norm. Examples: `n >= 5` for
+  one decoration per letter, `n >= 11` for two.
+  **Where it stops:** rank two is out of reach of this criterion, even for
+  `T_4 □ Z`, where `p_c ||A|| ≈ 1.16`. The asymmetric example
+  `(a,0),(a,1),(b,0),(1,1)` stays open.
 * **Relative susceptibility.** `fpbs-bs-iff-finite-relative-susceptibility`
   applies with `H` central or normal cyclic. By
   `fpbs-relative-susceptibility-tube-excursion-bound`, divergence can only come
