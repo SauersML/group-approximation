@@ -17,7 +17,10 @@ simple group.
 **OPEN.** By `bh-embeddability-forces-decidable-edge-membership`, the
 decidability hypothesis is necessary, and without it the statement is false.
 With it, `A*_phi` has solvable word problem by Britton's reduction, so no
-decidability obstruction remains.
+decidability obstruction remains. So the claim is a special case of
+`boone-higman-conjecture`. It cannot be refuted without refuting that
+conjecture, and it serves the route `boone-higman-via-decidable-edge-towers`
+only through a proof that does not pass through the conjecture.
 
 ## Attempts
 
@@ -26,7 +29,7 @@ decidability obstruction remains.
    subsets, and it takes infinitely many values. So the tree action has
    infinitely many orbits of two-element subsets, and
    `twisted-brin-thompson-finite-presentation-criterion` does not apply to it.
-   *Dies* for this action. Other faithful actions of `A*_phi` are untried.
+   *Dies* for this action. Attempt 5 extends this to every action of `A*_phi`.
 2. **Pass to the envelope first.** Embed `A <= S` with `S` finitely presented
    simple, and form `S*_phi`. It is finitely presented because `C_1, C_2` are
    finitely generated, and it contains `A*_phi`. Two gaps remain. Membership of
@@ -34,8 +37,36 @@ decidability obstruction remains.
    for example, `A` has decidable membership in `S`. And `S*_phi` is not simple:
    a finitely presented simple overgroup of it is Boone--Higman for HNN
    extensions of finitely presented simple groups, no easier than the claim.
-   *Deferred.*
+   The first gap does occur. Take `N <| G <= S` from
+   `bh-embeddability-forces-decidable-edge-membership` (ii), with `G`
+   hyperbolic, `N` two-generated and `S` finitely presented simple. The input
+   `A = C_1 = C_2 = N`, `phi = id` meets every hypothesis. But `S*_phi` contains
+   `<G, t>`, which is `G*_N` by the HNN subgroup theorem since `G ∩ N = N`, and
+   by (ii) no finitely presented simple group contains `G*_N`. *Dies* for an
+   arbitrary envelope `S`. Envelopes chosen so that `C_1, C_2` are decidable in
+   them are untried.
 3. **Iteration cannot reach FA inputs.** By
    `fa-subgroups-of-graph-towers-lie-in-base-pieces`, iterating this permanence
    along a tower reaches an input with property FA only through the base group.
    This does not refute the claim; it limits what iterating it can prove.
+4. **Finite-index edges.** Suppose `A` is finitely presented, each `[A : C_i]`
+   is finite, and `A*_phi` acts faithfully on its Bass--Serre tree. Then the
+   claim holds without using the envelope of `A`, by
+   `finite-index-edge-hnn-embeds-in-fp-simple-group` (Theorem 10.5 of
+   Bux--Llosa Isenrich--Wu). That claim records where the method stops.
+   Faithfulness forces `A` to be residually finite. For `A` an infinite finitely
+   presented simple group, the only finite-index case is the mapping torus
+   `A ⋊_phi Z`: its tree is a line with `A` in the kernel, so the case Attempt 2
+   leads to is not covered. And the HNN subgroup theorem cannot turn an
+   infinite-index edge into a finite-index one, so that tree stays locally
+   infinite. *Partial.*
+5. **Other actions of `A*_phi` of type (A).** Attempt 1 extends to every action
+   of `K = A*_phi` itself. On an orbit `K/P`, the orbits of two-element subsets
+   correspond to the double cosets `PgP` with `g notin P`, up to `g ~ g^-1`. If `P`
+   fixes a vertex `v` of the Bass--Serre tree, then `d(v, gv)` is constant on
+   `PgP` and unbounded. If `P` lies in the kernel of `chi : K -> Z` with
+   `chi(t) = 1` and `chi(A) = 0`, then `chi` is constant on `PgP`. So every point
+   stabilizer of a type (A) action of `K` fixes no vertex and has nonzero image
+   under `chi`. Being finitely generated, it then contains a hyperbolic element
+   (Serre, *Trees*, §I.6.5). No such stabilizer with finitely many double cosets
+   has been found, and the actor must also be finitely presented. *Open.*
