@@ -178,8 +178,10 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` 017bdb868 nineteen landings touch the campaign (the
-nineteenth is the witness given normalization at the pair, F4(t)): the Palomar
+As of `origin/main` c7f794109 twenty-two landings touch the campaign. The four
+most recent are the witness given normalization at the pair (F4(t)), the coset
+wreath witness (F4(u)), and two component-counting batches for Theorem 4.1
+(F4(v), F4(w)). The earlier eighteen are: the Palomar
 challenge (6ae077316), solution (1ad7aa663) and pending gate registration
 (73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
 (0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
@@ -562,6 +564,44 @@ Content: no defect. Docstring: one overclaim, sent to `bc-assembly`.**
   28b2f31cd carries `# PROBE GREEN`, names the module, and holds the landed md5
   `11a5bccd…`. The 296-module import closure did not change between the record
   base and the landing parent.
+* One root import is added. Nothing is deleted.
+
+**(u) Landed: `BowenChapman/WreathWitness`, db1d74e04, root-wired. Content: no
+defect. Docstring: one overclaim, sent to `bc-wreath`.**
+* `cosetWreath_fg`, `cosetWreath_isSurjunctive` and
+  `cosetWreath_not_isSofic_of_sequentialNormalization` give the backup witness
+  `(ℤ/2ℤ) ≀_{G/Γ} G` over the explicit pair. Nonsoficity takes
+  `HasSequentialCentralizerNormalization Peripheral` as its one hypothesis.
+* **Docstring overclaim.** The header ends "`BowenChapman/WreathWitnessEndpoint`
+  supplies that normalization from property (T) and infranormality". That
+  module exists only in the WIP (7d220e568), and nothing on main produces
+  `HasSequentialCompressorNormalization`. Same class as F4(t).
+* Probe evidence: record `bc-wreath.green.0912-121350-70616` at base 28b2f31cd
+  carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `d158483e…`. The 287-module import closure did not change.
+* One root import is added. The only deletion is the WIP snapshot.
+
+**(v) Landed: `KunThom/ComponentCountingNormalizationGroupoid`, `…Median`,
+`…RelativeFunctorPresentation`, b30597455, root-wired. No defect.**
+* These are finite statements for the end of the proof of Theorem 4.1:
+  * orbit counting for an injective, connectedness-preserving object map on a
+    large set of objects;
+  * the finite vertex form of the median amplification of Kun–Thom Lemma 4.4;
+  * functors between presented groupoids, with faithfulness.
+  No module claims Theorem 4.1.
+* Probe evidence: record `kt-norm-counting.green.0912-121111-62127` at base
+  d97e3986d carries `# PROBE GREEN`, names all three modules, and holds all three
+  landed md5s. The 36-module import closure did not change.
+* Three root imports are added. The only deletions are the two WIP snapshots
+  that existed.
+
+**(w) Landed: `KunThom/ComponentCountingRelativeFunctorDefects`, c7f794109,
+root-wired. No defect.**
+* This is finite counting behind the transported-arrow defect bound in the proof
+  of Kun–Thom Lemma 4.3. It claims no endpoint.
+* Probe evidence: record `kt-norm-counting.green.0912-121434-73415` at base
+  a34857837 carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `225b5cb9…`. The 6-module import closure did not change.
 * One root import is added. Nothing is deleted.
 
 **Landing evidence required from here on**, per the coordinator's rule:
