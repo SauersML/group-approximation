@@ -499,3 +499,66 @@ corrected forward at `e37e1df9b` before this pass. The verdicts below concern th
 - Other left inverses are not controlled. Lemma 3.1 is the only general lower bound.
 
 **Recommendation.** Restate the claim for strict `tau` whose missing patterns all need at least two sites, or record the exception.
+
+## 6. Surjunctive normal subgroups and the lamplighter linearization (w5-free-pos-c, `84c543c4a`)
+
+Verdicts:
+
+- **`normal-surjunctive-decoder-memory-forces-surjectivity`: PASS.**
+- **`complex-lamplighter-linearizations-are-normal-iff-surjective`: PASS.** Its "exact reach" consequence is interpretation
+  (Section 6.2).
+- **`surjunctive-by-amenable-extensions-are-surjunctive`:** OPEN, not decision-level, not reviewed beyond its route
+  bookkeeping.
+
+### 6.1 Theorem A. PASS.
+
+**Coordinates.**
+- `(n' . x)_q(n) = x(n'^-1 n s_q) = x_q(n'^-1 n)`, so left translation by `N` is the shift in each coordinate.
+- **Lemma 2.1.** `n s_q m = n n_(q,m) s_(q mbar)`, so `tau(x)_q(n) = mu((x_(q mbar)(n n_(q,m)))_m)`. This is `N`-equivariant, and
+  for `q in F` it reads only coordinates in `F^+ = F Mbar`.
+- **The decoder acts coordinatewise.** For `d in S`, `s_q d = (s_q d s_q^-1) s_q` with `s_q d s_q^-1 in N`. So `sigma(y)_q` is an
+  automaton `sigma_q` over `N` with memory `s_q S s_q^-1`, and `x_q = sigma_q(tau(x)_q)`.
+
+**The map `Psi`.**
+- `Psi(x) = (tau_F(x), x|_(F^+ \ F))` recovers `x_q` for `q in F` through `sigma_q`, and copies the other coordinates. So it is
+  injective.
+- Its domain alphabet `A^(F^+)` and codomain alphabet `A^F × A^(F^+ \ F)` have the same size.
+
+**The image is proper.**
+- Write `w = n_w s_(wbar)`. The pattern of `tau(x)` on `nW` is `(tau_F(x)_(wbar)(n n_w))_w`. It is never `p`, because `X` is
+  `G`-invariant and misses `p` at every translate.
+- The map `w -> (wbar, n_w)` is injective, so `p` can be placed at `n = e` and the avoiding subshift is proper.
+- So `Psi` is strict over `N`, which contradicts surjunctivity of `N` at alphabet size `|A|^|F^+|`.
+
+**Remarks.**
+- Remark 2 (the filter) follows: the normal closure of the decoder memory of a strict pair is not surjunctive, hence nonsofic
+  and outside `S*`.
+- Remark 3 is correct: when `S != {e}` over a simple group, the normal closure is the whole group.
+
+### 6.2 Theorem C. PASS.
+
+1. **The endomorphism.** `(g.f) o tau = g.(f o tau)` because `tau` is equivariant. So `Phi_tau` respects the covariance relation
+   `u_g f u_g^* = g.f`, and it is a unital *-endomorphism.
+   - The characters `chi_xi` span `LC(A^G)`, and the shift permutes them, so `LC(A^G) x|_alg G = C[Z/q wr G]`.
+   - The coefficient of `chi_0` is `integral f d lambda`.
+2. **Injective and surjective.** Both statements hold.
+   - A clopen subset of the closed set `X` extends to a clopen set of `A^G`, since compact disjoint sets in a zero-dimensional
+     space are separated by clopens. Finitely many disjoint extensions can be chosen.
+   - `A^G \ X` is open, so it contains a cylinder whenever `X` is proper.
+3. **Trace and rank.** `L(L) = L^infinity(A^G, lambda)` with the canonical trace. The support projection of `f o tau` is
+   `1_(tau^-1(supp f))`, whose trace is `nu(supp f)`.
+4. **The four conditions.**
+   - (a) ⇒ (b): bijective automata preserve `lambda`.
+   - (b) ⇒ (c): a trace-preserving unital *-homomorphism is isometric on `L^2(tr)` and extends normally.
+   - (c) ⇒ (d): inner regularity of `nu` gives a compact `lambda`-null `K` with `nu(K) > 0`. Take clopens `C_k` decreasing to
+     `K`. The projections `1_(C_k)` decrease to `0` in the finite algebra, a normal extension preserves decreasing limits, and
+     so `nu(C_k) = tr(1_(tau^-1 C_k)) -> 0`. That contradicts `nu(C_k) >= nu(K) > 0`.
+   - (d) ⇒ (a): `d nu / d lambda` is invariant, hence constant because Bernoulli shifts over infinite groups are ergodic. So
+     `nu = lambda`, and the closed set `X` of full measure is `A^G`.
+
+**Wording point.** The claim's Consequence says that every characteristic-zero argument from traces, Sylvester rank functions
+of `L(H)`, or normal structure "proves surjectivity exactly when it proves `nu << lambda`", and that Kaplansky-type positivity
+"gives no independent access". These sentences interpret Theorem C; they are not a theorem.
+- Only the canonical trace and the von Neumann rank are computed.
+- Other Sylvester rank functions on `C[H]` are not addressed.
+- The claim node should label the paragraph as interpretation.

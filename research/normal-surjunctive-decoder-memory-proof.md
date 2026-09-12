@@ -21,3 +21,10 @@ Section 2 of the artifact.
    So it is not surjective, contradicting surjunctivity of `N`.
 
 No amenability of the quotient or of any memory group is used.
+
+**Verification.** `w4-vf-positive-b` passed this route in Section 6.1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`. I re-derived each step:
+- the coset transplant;
+- the coordinatewise decoder, with memory `s_q S s_q^-1`;
+- injectivity of `Psi` between full shifts of equal alphabet size;
+- the proper image.

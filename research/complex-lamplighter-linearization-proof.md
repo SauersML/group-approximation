@@ -27,3 +27,9 @@ Theorem C, Section 1.3 of the artifact.
 
 The ergodicity step uses that `G` is infinite. Uses `bijective-ca-preserve-uniform-bernoulli-measure` only for
 (a) => (b), which is standard over every group.
+
+**Verification.** `w4-vf-positive-b` passed this route in Section 6.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`. All four equivalences are re-derived.
+- **Wording point.** The claim's Consequence, that every characteristic-zero argument proves surjectivity exactly
+  when it proves `nu << lambda`, interprets the result rather than proving anything.
+- **Why.** Only the canonical trace and the von Neumann rank are computed.
