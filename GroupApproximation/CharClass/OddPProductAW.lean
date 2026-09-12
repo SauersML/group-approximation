@@ -633,7 +633,258 @@ theorem tupDAll_awTupAll (r : ℕ) (x : tupAllMod K X r) :
 
 end ChainMap
 
--- PIECE 3
+/-! ## 7. The cyclic operator becomes its square -/
+
+section Rotation
+
+variable {X : TopCat.{0}}
+
+theorem rot_sign_arith (a b N : ℕ) (h : a + b ≤ N) :
+    a * (N - a) + b * (N - b) = (a + b) * (N - (a + b)) + 2 * (a * b) := by
+  obtain ⟨R, rfl⟩ : ∃ R, N = a + b + R := ⟨N - (a + b), by omega⟩
+  rw [show a + b + R - a = b + R by omega, show a + b + R - b = a + R by omega,
+    show a + b + R - (a + b) = R by omega]
+  ring
+
+/-- Two rotations of an interleaved tuple are one rotation of the source, on the rotated cut. -/
+theorem tupRot_iterate_two_awTupOf {r : ℕ} (t : TupAll X r) (c : Fin r → ℕ) :
+    tupRot^[2] (awTupOf t c) = awTupOf (tupRot t) (fun j => c (finRotate r j)) := by
+  funext s
+  have hs := s.isLt
+  rw [tupRot_iterate_apply]
+  have key : ∀ (m : ℕ) (hm : m < 2 * r), m % 2 = s.val % 2 → m / 2 = (s.val / 2 + 1) % r →
+      awTupOf t c ⟨m, hm⟩ = awTupOf (tupRot t) (fun j => c (finRotate r j)) s := by
+    intro m hm hpar hdiv
+    have hrot : (⟨m / 2, by omega⟩ : Fin r) = finRotate r ⟨s.val / 2, by omega⟩ :=
+      Fin.ext (by rw [finRotate_val_eq]; exact hdiv)
+    simp only [awTupOf, tupInterleave, hpar]
+    split_ifs
+    · rw [tupRot_apply, ← hrot]
+    · rw [tupRot_apply, ← hrot]
+  by_cases hlt : s.val + 2 < 2 * r
+  · refine key _ _ ?_ ?_
+    · rw [Nat.mod_eq_of_lt hlt]
+      omega
+    · rw [Nat.mod_eq_of_lt hlt, Nat.mod_eq_of_lt (show s.val / 2 + 1 < r by omega)]
+      omega
+  · have hge : 2 * r ≤ s.val + 2 := by omega
+    have hsub : s.val + 2 - 2 * r < 2 * r := by omega
+    refine key _ _ ?_ ?_
+    · rw [Nat.mod_eq_sub_mod hge, Nat.mod_eq_of_lt hsub]
+      omega
+    · rw [Nat.mod_eq_sub_mod hge, Nat.mod_eq_of_lt hsub,
+        show s.val / 2 + 1 = r by omega, Nat.mod_self]
+      omega
+
+variable (K : Type) [CommRing K]
+
+/-- The accumulated sign of two rotations of an interleaved tuple is the sign of one rotation of
+the source. -/
+theorem awTupOf_rotExp {r : ℕ} (hr : 0 < r) (t : TupAll X r) {c : Fin r → ℕ}
+    (hc : c ∈ awCuts t) :
+    (-1 : K) ^ (∑ s ∈ Finset.range 2, rotExp X (tupRot^[s] (awTupOf t c)))
+      = (-1 : K) ^ rotExp X t := by
+  have hr2 : 1 < 2 * r := by omega
+  have hN : ∑ s, (awTupOf t c s).1 = ∑ j, (t j).1 := sum_awTupOf t hc
+  have hN' : ∑ s, (tupRot (awTupOf t c) s).1 = ∑ j, (t j).1 :=
+    (tupTot_tupRot (awTupOf t c)).trans hN
+  have ha : tupDeg (awTupOf t c) 0 = c ⟨0, hr⟩ := by
+    have h := tupDeg_val (awTupOf t c) (awSlot r (⟨0, hr⟩, 0))
+    rw [awTupOf_even] at h
+    exact h
+  have hb : tupDeg (tupRot (awTupOf t c)) 0 = (t ⟨0, hr⟩).1 - c ⟨0, hr⟩ := by
+    have h := tupDeg_val (tupRot (awTupOf t c)) ⟨0, by omega⟩
+    have he : finRotate (2 * r) ⟨0, by omega⟩ = awSlot r (⟨0, hr⟩, 1) :=
+      Fin.ext (by rw [finRotate_val_eq]; exact Nat.mod_eq_of_lt hr2)
+    rw [tupRot_apply, he, awTupOf_odd] at h
+    exact h
+  have ht0 : tupDeg t 0 = (t ⟨0, hr⟩).1 := tupDeg_val t ⟨0, hr⟩
+  have hc0 : c ⟨0, hr⟩ ≤ (t ⟨0, hr⟩).1 :=
+    Nat.le_of_lt_succ (Finset.mem_range.mp (Fintype.mem_piFinset.mp hc _))
+  have hle : (t ⟨0, hr⟩).1 ≤ ∑ j, (t j).1 :=
+    Finset.single_le_sum (f := fun j => (t j).1) (fun _ _ => Nat.zero_le _) (Finset.mem_univ _)
+  rw [Finset.sum_range_succ, Finset.sum_range_one, Function.iterate_zero_apply,
+    Function.iterate_one]
+  refine (neg_one_pow_eq_of_add_two_mul (c ⟨0, hr⟩ * ((t ⟨0, hr⟩).1 - c ⟨0, hr⟩)) ?_).symm
+  unfold rotExp
+  rw [ha, hb, hN, hN', ht0]
+  have key := rot_sign_arith (c ⟨0, hr⟩) ((t ⟨0, hr⟩).1 - c ⟨0, hr⟩) (∑ j, (t j).1) (by omega)
+  rw [show c ⟨0, hr⟩ + ((t ⟨0, hr⟩).1 - c ⟨0, hr⟩) = (t ⟨0, hr⟩).1 by omega] at key
+  exact key.symm
+
+variable (X)
+
+/-- **The slotwise Alexander–Whitney map intertwines `T` with `T²`.** -/
+theorem awTupAll_tupTAll (r : ℕ) (x : tupAllMod K X r) :
+    awTupAll K X r (tupTAll K X r x) = (tupTAll K X (2 * r) ^ 2) (awTupAll K X r x) := by
+  have h : (awTupAll K X r).comp (tupTAll K X r)
+      = (tupTAll K X (2 * r) ^ 2).comp (awTupAll K X r) := by
+    apply Finsupp.lhom_ext'
+    intro t
+    apply LinearMap.ext_ring
+    simp only [LinearMap.comp_apply, Finsupp.lsingle_apply]
+    rcases Nat.eq_zero_or_pos r with hr | hr
+    · subst hr
+      have h1 : ∀ m, m = 0 → tupTAll K X m = 1 := by
+        intro m hm
+        subst hm
+        apply Finsupp.lhom_ext'
+        intro u
+        apply LinearMap.ext_ring
+        simp only [LinearMap.comp_apply, Finsupp.lsingle_apply, Module.End.one_apply]
+        rw [tupTAll_single]
+        have h0 : rotExp X u = 0 := by
+          unfold rotExp
+          rw [tupDeg_of_le u (le_refl 0), zero_mul]
+        rw [h0, pow_zero, one_smul]
+        congr 1
+        exact Subsingleton.elim _ _
+      rw [h1 0 rfl, h1 (2 * 0) rfl, one_pow, Module.End.one_apply, Module.End.one_apply]
+    · rw [tupTAll_single, map_smul, awTupAll_single, awTupAll_single, map_sum]
+      simp only [tupTAll_pow_single]
+      rw [Finset.smul_sum]
+      let e : (Fin r → ℕ) ≃ (Fin r → ℕ) :=
+        { toFun := fun c j => c (finRotate r j)
+          invFun := fun c j => c ((finRotate r).symm j)
+          left_inv := fun c => funext fun j => by simp
+          right_inv := fun c => funext fun j => by simp }
+      have hst : ∀ c, c ∈ awCuts t ↔ e c ∈ awCuts (tupRot t) := by
+        intro c
+        simp only [awCuts, Fintype.mem_piFinset]
+        constructor
+        · intro hc j
+          exact hc (finRotate r j)
+        · intro hc j
+          have h' : c (finRotate r ((finRotate r).symm j))
+              ∈ Finset.range ((t (finRotate r ((finRotate r).symm j))).1 + 1) :=
+            hc ((finRotate r).symm j)
+          rwa [Equiv.apply_symm_apply] at h'
+      refine (Finset.sum_equiv e hst fun c hc => ?_).symm
+      show _ = _ • Finsupp.single (awTupOf (tupRot t) (fun j => c (finRotate r j))) (1 : K)
+      rw [awTupOf_rotExp K hr t hc, tupRot_iterate_two_awTupOf]
+  exact LinearMap.congr_fun h x
+
+end Rotation
+
+/-! ## 8. Naturality -/
+
+section Natural
+
+variable (K : Type) [CommRing K] {X Y : TopCat.{0}}
+
+theorem tupPush_awTupOf (f : X ⟶ Y) {r : ℕ} (t : TupAll X r) (c : Fin r → ℕ) :
+    tupPush f (awTupOf t c) = awTupOf (tupPush f t) c := by
+  funext s
+  simp only [tupPush, awTupOf, tupInterleave]
+  split_ifs
+  · exact TopPow.tagPush_awFront f _ _
+  · exact TopPow.tagPush_awBack f _ _
+
+/-- **The slotwise Alexander–Whitney map is natural in the space.** -/
+theorem tupAllMap_awTupAll (f : X ⟶ Y) (r : ℕ) (x : tupAllMod K X r) :
+    tupAllMap K f (2 * r) (awTupAll K X r x) = awTupAll K Y r (tupAllMap K f r x) := by
+  have h : (tupAllMap K f (2 * r)).comp (awTupAll K X r)
+      = (awTupAll K Y r).comp (tupAllMap K f r) := by
+    apply Finsupp.lhom_ext'
+    intro t
+    apply LinearMap.ext_ring
+    simp only [LinearMap.comp_apply, Finsupp.lsingle_apply]
+    rw [awTupAll_single, map_sum, tupAllMap_single, awTupAll_single]
+    refine Finset.sum_congr rfl fun c _ => ?_
+    rw [tupAllMap_single, tupPush_awTupOf]
+  exact LinearMap.congr_fun h x
+
+end Natural
+
+/-! ## 9. The degree-`k` twin -/
+
+section DegreeK
+
+variable (K : Type) [CommRing K] (X : TopCat.{0})
+
+/-- **The slotwise Alexander–Whitney map on the degree-`k` carrier.** -/
+def awTup (r k : ℕ) : tupMod K X r k →ₗ[K] tupMod K X (2 * r) k :=
+  Finsupp.linearCombination K fun t : TupIdx X r k =>
+    ∑ c ∈ awCuts t.1, if h : ∑ s, (awTupOf t.1 c s).1 = k then
+      Finsupp.single (⟨awTupOf t.1 c, h⟩ : TupIdx X (2 * r) k) (1 : K) else 0
+
+theorem tupIncl_comp_awTup (r k : ℕ) :
+    (tupIncl K X (2 * r) k).comp (awTup K X r k) = (awTupAll K X r).comp (tupIncl K X r k) := by
+  apply Finsupp.lhom_ext'
+  intro t
+  apply LinearMap.ext_ring
+  simp only [LinearMap.comp_apply, Finsupp.lsingle_apply]
+  rw [awTup, Finsupp.linearCombination_single, one_smul, map_sum, tupIncl_single, awTupAll_single]
+  refine Finset.sum_congr rfl fun c hc => ?_
+  have hdeg : ∑ s, (awTupOf t.1 c s).1 = k := (sum_awTupOf t.1 hc).trans t.2
+  rw [dif_pos hdeg, tupIncl_single]
+
+theorem awTup_tupD (r k : ℕ) (y : tupMod K X r (k + 1)) :
+    tupD K X (2 * r) k (awTup K X r (k + 1) y) = awTup K X r k (tupD K X r k y) := by
+  apply tupIncl_injective K X k
+  have h1 := LinearMap.congr_fun (tupIncl_comp_tupD K X k) (awTup K X r (k + 1) y)
+  have h2 := LinearMap.congr_fun (tupIncl_comp_awTup K X r (k + 1)) y
+  have h3 := LinearMap.congr_fun (tupIncl_comp_awTup K X r k) (tupD K X r k y)
+  have h4 := LinearMap.congr_fun (tupIncl_comp_tupD K X k) y
+  simp only [LinearMap.comp_apply] at h1 h2 h3 h4
+  rw [h1, h2, h3, h4, tupDAll_awTupAll]
+
+theorem awTup_tupT (r k : ℕ) (y : tupMod K X r k) :
+    awTup K X r k (tupT K X r k y) = (tupT K X (2 * r) k ^ 2) (awTup K X r k y) := by
+  apply tupIncl_injective K X k
+  have h1 := LinearMap.congr_fun (tupIncl_comp_awTup K X r k) (tupT K X r k y)
+  have h2 := LinearMap.congr_fun (tupIncl_comp_tupT K X k) y
+  have h3 := LinearMap.congr_fun (tupIncl_comp_awTup K X r k) y
+  simp only [LinearMap.comp_apply] at h1 h2 h3
+  rw [h1, h2, tupIncl_tupT_pow, h3, awTupAll_tupTAll]
+
+variable {X}
+
+theorem awTup_tupMap {Y : TopCat.{0}} (f : X ⟶ Y) (r k : ℕ) (y : tupMod K X r k) :
+    tupMap K f (2 * r) k (awTup K X r k y) = awTup K Y r k (tupMap K f r k y) := by
+  apply tupIncl_injective K Y k
+  have h1 := LinearMap.congr_fun (tupIncl_comp_tupMap K f k) (awTup K X r k y)
+  have h2 := LinearMap.congr_fun (tupIncl_comp_awTup K X r k) y
+  have h3 := LinearMap.congr_fun (tupIncl_comp_awTup K Y r k) (tupMap K f r k y)
+  have h4 := LinearMap.congr_fun (tupIncl_comp_tupMap K f k) y
+  simp only [LinearMap.comp_apply] at h1 h2 h3 h4
+  rw [h1, h2, h3, h4, tupAllMap_awTupAll]
+
+variable (X)
+
+/-- **The degree-`0` value**: the constant tuple of a point goes to the constant tuple of that
+point, at twice the arity. -/
+theorem awTup_diagPt (r : ℕ) (x : stdSimplexTop 0 ⟶ X) :
+    awTup K X r 0 (Finsupp.single (diagPt X r x) (1 : K))
+      = Finsupp.single (diagPt X (2 * r) x) (1 : K) := by
+  apply tupIncl_injective K X 0
+  have h := LinearMap.congr_fun (tupIncl_comp_awTup K X r 0) (Finsupp.single (diagPt X r x) 1)
+  simp only [LinearMap.comp_apply] at h
+  rw [h, tupIncl_single, tupIncl_single, awTupAll_single]
+  have hcuts : awCuts (diagPt X r x).1 = {fun _ => 0} := by
+    show (Fintype.piFinset fun _ : Fin r => Finset.range (0 + 1)) = {fun _ => 0}
+    rw [zero_add, Finset.range_one]
+    exact Fintype.piFinset_singleton (fun _ => 0)
+  rw [hcuts, Finset.sum_singleton]
+  congr 1
+  funext s
+  simp only [awTupOf, tupInterleave]
+  split_ifs
+  · exact vtx_id_self _
+  · exact (TopPow.vtx_congr _ _ monotone_id (by rfl) fun j _ => by simp).trans (vtx_id_self _)
+
+end DegreeK
+
+#audit_axioms gCupFun_piSingle
+#audit_axioms gCoboundary_gCupFun
+#audit_axioms tupEvalAll_awTupAll
+#audit_axioms tupDAll_awTupAll
+#audit_axioms awTupAll_tupTAll
+#audit_axioms tupAllMap_awTupAll
+#audit_axioms awTup_tupD
+#audit_axioms awTup_tupT
+#audit_axioms awTup_tupMap
+#audit_axioms awTup_diagPt
 
 end
 
