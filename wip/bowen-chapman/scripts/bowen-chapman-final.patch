@@ -1,0 +1,347 @@
+Bowen-Chapman Palomar FINAL gate, workflow, lakefile and metadata hunks (lane bc-palomar). NOT LANDED.
+Base: origin/main 9f3e9a8393edd01036a2b3165e28a1d940fa6f9a. Rebuild on fresh blobs at landing; land only after the endpoint
+(GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic) is on main, after a green
+probe of the final solution, a completed PalomarBowenChapmanAxioms run confirming the
+main_results axiom rows, a statement-match run, and one gate self-test in the shared clone.
+
+diff --git a/.github/workflows/palomar-check.yml b/.github/workflows/palomar-check.yml
+index d566d558d..3771952f3 100644
+--- a/.github/workflows/palomar-check.yml
++++ b/.github/workflows/palomar-check.yml
+@@ -191,8 +191,7 @@ jobs:
+         if: always()
+         run: lake env lean scripts/PalomarLIXStrongAxioms.lean
+ 
+-      # The pending Bowen-Chapman surface gates its `_of` forms the same way:
+-      # they carry the endpoint statement as a hypothesis, not as a hole.
++      # The Bowen-Chapman surface: the two compared theorems, from the endpoint.
+       - name: Palomar axiom closure (Bowen-Chapman)
+         id: axioms-bowen-chapman
+         continue-on-error: true
+diff --git a/.github/workflows/palomar-comparator.yml b/.github/workflows/palomar-comparator.yml
+index c7afd4820..b83ec0223 100644
+--- a/.github/workflows/palomar-comparator.yml
++++ b/.github/workflows/palomar-comparator.yml
+@@ -25,6 +25,7 @@ name: Palomar Comparator
+ #   Palomar/comparator.json              the sofic-not-MF group (the default)
+ #   Palomar/comparator-lix.json          the three STW Problem LIX theorems
+ #   Palomar/comparator-lix-strong.json   the three strengthened LIX theorems
++#   Palomar/comparator-bowen-chapman.json  the two Bowen-Chapman Problem 1.1 theorems
+ #
+ # The three values are the entries of `PALOMAR_CONFIGS` and
+ # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
+@@ -150,7 +151,8 @@ jobs:
+         run: |
+           lake build PalomarChallenge PalomarSolution \
+                      PalomarLIXChallenge PalomarLIXSolution \
+-                     PalomarLIXStrongChallenge PalomarLIXStrongSolution
++                     PalomarLIXStrongChallenge PalomarLIXStrongSolution \
++                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution
+ 
+       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
+       # Two things about the path, both learned the hard way: the module is
+diff --git a/formalization.yaml b/formalization.yaml
+index ec5b99bfd..529b61ee0 100644
+--- a/formalization.yaml
++++ b/formalization.yaml
+@@ -252,6 +252,105 @@ sources:
+       Independent solution of Problem LIX, posted 2026-09-08, by a different
+       method; not used here.
+ 
++  - title: Surjunctivity does not characterize cosoficity of invariant random subgroups
++    authors: [Lewis Bowen, Michael Chapman]
++    year: 2025
++    type: paper
++    id: https://arxiv.org/abs/2511.06586
++    relationship: background
++    note: >-
++      Poses Problem 1.1, whether all surjunctive groups are sofic, and answers
++      the analogous question for invariant random subgroups of free groups.
++
++  - title: Some general dynamical notions
++    authors: [Walter Gottschalk]
++    year: 1973
++    type: paper
++    id: https://doi.org/10.1007/BFb0061728
++    relationship: background
++    note: >-
++      Recent Advances in Topological Dynamics, Lecture Notes in Mathematics,
++      120-125. Introduces surjunctivity.
++
++  - title: Endomorphisms of symbolic algebraic varieties
++    authors: [Misha Gromov]
++    year: 1999
++    type: paper
++    id: https://doi.org/10.1007/PL00011162
++    relationship: background
++    note: >-
++      J. Eur. Math. Soc. 1(2):109-197. Sofic groups are surjunctive.
++
++  - title: Sofic groups and dynamical systems
++    authors: [Benjamin Weiss]
++    year: 2000
++    type: paper
++    relationship: background
++    note: >-
++      Sankhya Ser. A 62(3):350-359. Names sofic groups and proves that they
++      are surjunctive.
++
++  - title: Nonsofic wreath products of residually finite groups
++    authors: [Gabor Kun, Andreas Thom]
++    year: 2026
++    type: paper
++    id: https://arxiv.org/abs/2608.06222
++    relationship: background
++    note: >-
++      Theorem A (v3, 2026-08-20): for an infranormal, non-normal pair of
++      Kazhdan groups, the generalized wreath product and the group double are
++      nonsofic. The centralizer normalization theorem it rests on (Theorem 4.1)
++      is proved in this development at the explicit pair used here.
++
++  - title: Inapproximability of actions and Kazhdan's property (T)
++    authors: [Gabor Kun, Andreas Thom]
++    year: 2019
++    type: paper
++    id: https://arxiv.org/abs/1901.03963
++    relationship: background
++    note: >-
++      The expander-centralizer theorem, proved in this development.
++
++  - title: Property (T) for noncommutative universal lattices
++    authors: [Mikhail Ershov, Andrei Jaikin-Zapirain]
++    year: 2010
++    type: paper
++    id: https://doi.org/10.1007/s00222-009-0218-2
++    relationship: background
++    note: >-
++      Invent. Math. 179(2):303-347. Property (T) for elementary groups of rank
++      at least three over finitely generated rings, proved in this development.
++
++  - title: On approximation properties of semidirect products of groups
++    authors: [Goulnara Arzhantseva, Światosław R. Gal]
++    year: 2020
++    type: paper
++    id: https://doi.org/10.5802/ambp.386
++    relationship: background
++    note: >-
++      Ann. Math. Blaise Pascal 27(1):125-130. A split extension with a finitely
++      generated residually finite kernel and a surjunctive quotient is
++      surjunctive.
++
++  - title: Cellular Automata and Groups
++    authors: [Tullio Ceccherini-Silberstein, Michel Coornaert]
++    year: 2010
++    type: book
++    id: https://doi.org/10.1007/978-3-642-14034-1
++    relationship: background
++    note: >-
++      Springer Monographs in Mathematics. The Curtis-Hedlund-Lyndon theorem
++      and the textbook facts on surjunctivity used here.
++
++  - title: Nonsofic groups exist
++    authors: [OpenAI]
++    year: 2026
++    type: paper
++    id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
++    relationship: background
++    note: >-
++      The first nonsofic group, whose mechanism Kun and Thom analyze.
++
+ automation:
+   methods:
+     - method: agent
+@@ -287,7 +386,8 @@ related_formalizations:
+ 
+ status:
+   # Axiom closures computed by scripts/PalomarAxioms.lean and
+-  # scripts/PalomarLIXAxioms.lean, checked by .github/workflows/palomar-check.yml.
++  # scripts/PalomarLIXAxioms.lean and scripts/PalomarBowenChapmanAxioms.lean,
++  # checked by .github/workflows/palomar-check.yml.
+   scope: >-
+     Palomar/LIXChallenge.lean states that not every nontrivial simple unital
+     C*-algebra is K1-injective, that the counterexample can be taken separable,
+@@ -312,6 +412,18 @@ status:
+       axioms: [propext, Classical.choice, Quot.sound]
+       comparator_config: Palomar/comparator-lix.json
+ 
++    - declaration: BowenChapman.not_all_surjunctive_groups_sofic
++      file: Palomar/BowenChapmanSolution.lean
++      sorry_count: 0
++      axioms: [propext, Classical.choice, Quot.sound]
++      comparator_config: Palomar/comparator-bowen-chapman.json
++
++    - declaration: BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
++      file: Palomar/BowenChapmanSolution.lean
++      sorry_count: 0
++      axioms: [propext, Classical.choice, Quot.sound]
++      comparator_config: Palomar/comparator-bowen-chapman.json
++
+ fidelity:
+   divergences: >-
+     Simplicity is Mathlib's IsSimpleRing, which asks
+@@ -329,6 +441,14 @@ fidelity:
+     statement fixes it and does not prove uniqueness. All algebras range over
+     Type 0, and the counterexample is in Type 0.
+ 
++    For Bowen-Chapman Problem 1.1, a cellular automaton is Bowen and Chapman's
++    local rule, Phi(c)(x) = phi(c(x gamma_1), ..., c(x gamma_n)), and a group is
++    surjunctive when every injective automaton over every finite palette in
++    Type 0 is surjective. Soficity is stated in the finite-set
++    normalized-Hamming form. Finite generation is the existence of a finite
++    subset generating the whole group. All groups range over Type 0, and the
++    counterexample is in Type 0.
++
+ 
+ alignment:
+   statements:
+@@ -355,6 +475,21 @@ alignment:
+       module: Palomar.LIXChallenge
+       status: proved
+ 
++    - source: >-
++        Bowen-Chapman Problem 1.1 (are all surjunctive groups sofic?), in their
++        setting of finitely generated groups and finite palettes: no, some
++        finitely generated group is surjunctive and not sofic.
++      lean: BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
++      module: Palomar.BowenChapmanChallenge
++      status: proved
++
++    - source: >-
++        Bowen-Chapman Problem 1.1 without finite generation: not every
++        surjunctive group is sofic.
++      lean: BowenChapman.not_all_surjunctive_groups_sofic
++      module: Palomar.BowenChapmanChallenge
++      status: proved
++
+ acknowledgements: >-
+   Built on Lean 4 and Mathlib. The mod-2 singular cohomology layer is a port
+   of akopjan/HamSandwich (Apache-2.0).
+diff --git a/lakefile.toml b/lakefile.toml
+index 359bbcef5..19dec35d8 100644
+--- a/lakefile.toml
++++ b/lakefile.toml
+@@ -1,6 +1,6 @@
+ name = "GroupApproximation"
+ version = "0.1.0"
+-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution"]
++defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution"]
+ 
+ [[require]]
+ name = "mathlib"
+@@ -91,9 +91,9 @@ roots = ["Palomar.LIXStrongSolution"]
+ # Bowen-Chapman Problem 1.1 (is every surjunctive group sofic?).  Same protocol
+ # as the pairs above: `Palomar/BowenChapmanChallenge.lean` imports Mathlib only
+ # and states the two theorems with deliberate holes; `Palomar/BowenChapmanSolution.lean`
+-# proves them in their `_of` form from the development endpoint's statement.  Neither
+-# library is in `defaultTargets`; both join it when the
+-# solution proves the selected theorems without hypotheses.
++# proves them from the development endpoint
++# `GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`.  Both
++# libraries are in `defaultTargets`.
+ 
+ [[lean_lib]]
+ name = "PalomarBowenChapmanChallenge"
+diff --git a/scripts/check_palomar_statement_match.sh b/scripts/check_palomar_statement_match.sh
+index 262c3b456..145630ed5 100755
+--- a/scripts/check_palomar_statement_match.sh
++++ b/scripts/check_palomar_statement_match.sh
+@@ -64,7 +64,7 @@ trap 'rm -rf "$work"' EXIT
+ 
+ status=0
+ 
+-for prefix in "" LIX; do
++for prefix in "" LIX BowenChapman; do
+   # A label for the messages: the empty prefix is the original non-MF pair.
+   label="${prefix:-non-MF}"
+   pair_ok=1
+@@ -120,7 +120,7 @@ done
+ # gated -- and the part of the report before `pending-boundary:` must match.
+ # The part after it is printed and not gated, because the solution's theorems
+ # still carry the outstanding hypothesis.
+-for prefix in LIXStrong BowenChapman; do
++for prefix in LIXStrong; do
+   label="$prefix"
+   pair_ok=1
+ 
+diff --git a/scripts/check_palomar_submission.py b/scripts/check_palomar_submission.py
+index 453280f8f..fb19c7563 100644
+--- a/scripts/check_palomar_submission.py
++++ b/scripts/check_palomar_submission.py
+@@ -156,6 +156,7 @@ class Findings:
+ # tree and each has to hold on its own.
+ PALOMAR_CONFIGS = (
+     "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
++    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
+ )
+ 
+ # Configurations whose SOLUTION is still a skeleton.
+@@ -185,11 +186,6 @@ PALOMAR_CONFIGS = (
+ # summary line says so.
+ PALOMAR_PENDING_CONFIGS = (
+     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
+-    # `Palomar/BowenChapmanSolution.lean` proves each selected statement in its
+-    # `_of` form from the development endpoint's statement
+-    # (`GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`),
+-    # which is not in its import closure yet.
+-    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
+ )
+ 
+ # The files `copy_surface` copies and `--self-test` plants defects into.  The
+@@ -818,25 +814,28 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
+      "does not declare `exists_simple_separable_order_six_witness_of`"),
+     ("strong comparator permitting a fourth axiom",
+      "Palomar/comparator-lix-strong.json: permitted_axioms"),
+-    # The pending Bowen-Chapman surface, under the same four rules.
++    # The Bowen-Chapman surface.
+     ("bowen-chapman challenge with a project-local import",
+      "Palomar/BowenChapmanChallenge.lean:1:"),
+     ("bowen-chapman shared block edited on one side",
+      "Palomar/comparator-bowen-chapman.json: shared block diverges"),
+-    ("bowen-chapman solution missing an `_of` form",
+-     "does not declare `exists_finitelyGenerated_surjunctive_not_sofic_of`"),
++    ("bowen-chapman signature edited on one side",
++     "`exists_finitelyGenerated_surjunctive_not_sofic`: the compared signature diverges"),
+     ("bowen-chapman comparator permitting a fourth axiom",
+      "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
+     ("tracked compiled artifact", "is a compiled artifact"),
+     ("three arXiv classes", "one or two distinct official arXiv"),
+     ("original result with a substantive source", "the two alternatives are exclusive"),
+     ("LIX result dropped from the metadata", "is not listed in status.main_results"),
++    ("bowen-chapman result dropped from the metadata",
++     "BowenChapman.not_all_surjunctive_groups_sofic is not listed in status.main_results"),
+ )
+ 
+ YAML_CALIBRATIONS = {
+     "three arXiv classes",
+     "original result with a substantive source",
+     "LIX result dropped from the metadata",
++    "bowen-chapman result dropped from the metadata",
+ }
+ 
+ 
+@@ -903,11 +902,11 @@ def plant(name: str, root: Path) -> None:
+         path.write_text(path.read_text().replace(
+             "def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=",
+             "def hammingDist' (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=", 1))
+-    elif name == "bowen-chapman solution missing an `_of` form":
++    elif name == "bowen-chapman signature edited on one side":
+         path = root / "Palomar" / "BowenChapmanSolution.lean"
+         path.write_text(path.read_text().replace(
+-            "theorem exists_finitelyGenerated_surjunctive_not_sofic_of",
+-            "theorem exists_finitelyGenerated_surjunctive_not_sofic_renamed", 1))
++            "theorem exists_finitelyGenerated_surjunctive_not_sofic :",
++            "theorem exists_finitelyGenerated_surjunctive_not_sofic : True →", 1))
+     elif name == "bowen-chapman comparator permitting a fourth axiom":
+         _edit_config(root, "Palomar/comparator-bowen-chapman.json",
+                      lambda c: c["permitted_axioms"].append("sorryAx"))
+@@ -915,6 +914,10 @@ def plant(name: str, root: Path) -> None:
+         _edit_metadata(root,
+                        "    - declaration: ProblemLIX.not_all_simple_unital_k1Injective",
+                        "    - declaration: ProblemLIX.renamed_and_not_republished")
++    elif name == "bowen-chapman result dropped from the metadata":
++        _edit_metadata(root,
++                       "    - declaration: BowenChapman.not_all_surjunctive_groups_sofic",
++                       "    - declaration: BowenChapman.renamed_and_not_republished")
+     elif name == "second licence file at the root":
+         (root / "COPYING").write_text("copy\n")
+     elif name == "toolchain below the minimum":
