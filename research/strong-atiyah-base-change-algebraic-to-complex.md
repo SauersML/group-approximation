@@ -27,5 +27,10 @@ conjecture over C".
   argument gives nothing over `C`.
 * **Central variables.**  Replacing transcendental coefficients by central
   generators, `G x Z^r`, computes an average of kernel dimensions over a torus
-  of specializations.  This does not give the dimension at one transcendental
-  point, so it is not a proof.
+  of specializations.  On its own this does not give the dimension at one
+  transcendental point.  With Galois invariance it does: generic
+  specializations are Galois conjugates, and restriction of scalars along two
+  functions of coprime degrees (Riemann--Roch) removes the leftover
+  denominator.  This is `strong-atiyah-base-change-from-galois-invariance`, and
+  the live route `strong-atiyah-base-change-via-galois-invariance` needs only
+  `vn-rank-galois-invariant-for-torsion-free-groups`.
