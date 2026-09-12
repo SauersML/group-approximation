@@ -6,7 +6,7 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Why the answer is `k^×/(k^×)^{d-1}`: the determinant on the degree-zero part
 
-`non_mf_groups_exist.tex`, `cor:leavitt-mf-quotient` (tex line 1249):
+`non_mf_groups_exist.tex`, `cor:leavitt-mf-quotient` (tex line 1302):
 
 > `H/EL_d(R) ≅ K₁(R) ≅ k^×/(k^×)^{d-1}`
 
@@ -15,7 +15,7 @@ isomorphism to two propositions.  One of them, `ScalarKernel` --- that a scalar
 killed by `κ` is a `(d-1)`-st power --- is the half that needs an *invariant*
 of `K₁(L_k(1,d))`: nothing else can distinguish two scalar classes.  This
 module builds that invariant on the part of the algebra where it is elementary,
-and isolates exactly what is missing.
+and records what extending it along this route would take.
 
 ## The mechanism
 
@@ -41,7 +41,7 @@ the scalar `c` at a single slot to the class of `c`
 the presentation; it is the discrepancy between `det` and the inclusion of one
 matrix stage in the next.
 
-## What is missing, exactly
+## What extending it along this route would take
 
 Nothing here reaches `K₁(L_k(1,d))`, because a unit of `L_k(1,d)` need not lie
 in `L₀`.  Extending `detMod` from `L₀` to `L` is the Bass--Heller--Swan step for
@@ -51,10 +51,14 @@ Ara--Brustenga--Cortiñas sequence
     `K_n(k) --(1-d)--> K_n(k) → K_n(L_k(E)) → K_{n-1}(k)`
 
 at the `d`-petal rose.  Both need `K₀` and `K₁` of a colimit of matrix algebras
-together with a fundamental theorem, neither of which is on the tree.  So
-`ScalarKernel` stays open, and this module is deliberately *not* a proof of it:
-it is the invariant on the part of the ring where it exists, with the printed
-exponent already visible.
+together with a fundamental theorem, neither of which is on the tree.  So this
+module is deliberately *not* a proof of `ScalarKernel`: it is the invariant on
+the part of the ring where it exists, with the printed exponent already visible.
+
+`ScalarKernel` is proved in `KOne/LeavittKOneScalarKernel.lean` along a
+different route that needs neither input: a regularized determinant on the
+Toeplitz space of words, through which the whole of `L_k(1,d)` acts modulo
+finite rank.
 
 ## Nothing here is about the Leavitt algebra
 

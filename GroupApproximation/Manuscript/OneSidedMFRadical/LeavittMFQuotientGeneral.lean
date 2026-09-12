@@ -38,10 +38,14 @@ The printed proof runs `EL_d(R) ≤ ⋂_ρ ker ρ ≤ [H,H] ≤ EL_d(R)`:
 the tree, for every `d`.
 
 The identification of the quotient with `K₁(R)` and with `k^×/(k^×)^{d-1}` is
-**not** carried.  It is the second half of the same Khanh--Thanh citation, and
+**not** carried here.  It is the second half of the same Khanh--Thanh citation, and
 naming the quotient is not needed for any of the three inclusions; the
 corollary's group-theoretic content is exactly `⋂ ker ρ = [H,H] = EL_d(R)`,
-which is what `PrintedLeavittMFQuotientGeneral` states.
+which is what `PrintedLeavittMFQuotientGeneral` states.  Both identifications
+are proved elsewhere without the citation:
+`LeavittMFQuotientSentences.manuscriptSentence_quotientByCommutatorIsKOne` with
+`K₁(R)`, and `LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula` with
+`k^×/(k^×)^{d-1}`.
 
 At `d = 2` none of this is needed: `LeavittMFQuotient` proves the whole
 corollary outright, because `K₁(L_k(1,2)) = 0` makes the quotient trivial, so

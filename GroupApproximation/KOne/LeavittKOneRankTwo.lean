@@ -8,8 +8,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # `cor:leavitt-mf-quotient`'s `K₁` identification, closed at `d = 2`
 
-`non_mf_groups_exist.tex`, `cor:leavitt-mf-quotient` (tex line 1249) and the
-sentence after it (tex line 1267):
+`non_mf_groups_exist.tex`, `cor:leavitt-mf-quotient` (tex line 1302) and the
+sentence after it (tex line 1320):
 
 > `H/EL_d(R) ≅ K₁(R) ≅ k^×/(k^×)^{d-1}`
 
@@ -30,7 +30,7 @@ same algebra, but nothing on the tree said so.  `aryBinaryAlgEquiv` supplies the
 missing isomorphism, from the two universal properties (`AryLeavitt.lift` and
 `BinaryLeavitt.lift`) and a generator check on each side.
 
-With it, `K₁` transports along `AlgebraicK.algebraicKOneCongr`, and the two open
+With it, `K₁` transports along `AlgebraicK.algebraicKOneCongr`, and the two
 propositions collapse: `K₁` is trivial, so every class is a scalar class, and
 `k^×/(k^×)^{2-1}` is the whole group, so the kernel condition is vacuous.
 
@@ -41,8 +41,9 @@ Both propositions hold here for the *degenerate* reason and neither is tested:
 `c = e^1`, true with `e = c` because `(k^×)^{2-1} = k^×`
 (`LeavittScalarQuotient.range_powMonoidHom_one`).  The first informative case is
 `d = 3` over a field with a non-square unit.  Nothing here should be read as
-evidence about the general identification, which remains open through
-`ScalarKernel`.
+evidence about the general identification, which is proved at every `d ≥ 2` by
+other arguments: `KhanhThanhDiagonal.scalarSurjective_holds` and
+`LeavittKOneFormula.scalarKernel`.
 -/
 
 namespace GroupApproximation
@@ -173,7 +174,7 @@ theorem subsingleton_algebraicKOne :
 
 end AryLeavittRankTwo
 
-/-! ### The two open propositions, at `d = 2` -/
+/-! ### The two propositions, at `d = 2` -/
 
 namespace LeavittKOneRankTwo
 

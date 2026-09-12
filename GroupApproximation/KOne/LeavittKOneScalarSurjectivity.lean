@@ -61,12 +61,12 @@ So a diagonal matrix, being a product of single-slot diagonals, has
 None of this is special to the Leavitt algebra: the general-ring section holds
 for any ring with single-sandwich division carrying a complete matrix family.
 
-## What remains open
+## The kernel clause
 
 `ScalarKernel` --- that a scalar killed by `κ` is a `(d-1)`-st power --- is
-untouched here and is the only residue of `cor:leavitt-mf-quotient` after this
-module and `LeavittMFQuotientKhanhThanhFree.lean`.  It needs an invariant of
-`K₁(R)`, which nothing on the tree supplies.
+untouched here.  It needs an invariant of `K₁(R)`.  `KOne/LeavittKOneScalarKernel.lean`
+supplies one, the regularized determinant on the Toeplitz space of words, and
+proves the clause at every field and every `d ≥ 2`.
 -/
 
 namespace GroupApproximation

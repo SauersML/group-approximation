@@ -32,10 +32,11 @@ halves now exist and only had to be put together:
 * `AryLeavitt.isPurelyInfiniteSimpleRing` says `L_k(1,d)` is such an `S`, for
   every field and every `d ≥ 2`.
 
-Taking `S = L_k(1,d)` and `n = d` gives the printed display.  What remains
-uncarried from the printed sentence is only the *second* isomorphism,
-`K_1(R) ≅ k^×/(k^×)^{d-1}`, which is the other half of the Khanh--Thanh
-citation.
+Taking `S = L_k(1,d)` and `n = d` gives the printed display.  The *second*
+isomorphism, `K_1(R) ≅ k^×/(k^×)^{d-1}`, the other half of the Khanh--Thanh
+citation, is not stated in this module.  It is proved in
+`LeavittKOneFormulaSentences`, which also states the corollary with every clause
+(`manuscriptLeavittMFQuotientFull`).
 
 ## Why the quotient is stated three ways
 
@@ -52,7 +53,8 @@ The printed proof cites Khanh--Thanh for two things.  The one the chain
 consumes, `[GL_d(R), GL_d(R)] ≤ EL_d(R)`, is a theorem —
 `LeavittMFQuotientGeneral.printedKhanhThanhCommutatorInElementary`, from pure
 infiniteness alone, with no reference to the Leavitt presentation.  The other,
-`K_1(R) ≅ k^×/(k^×)^{d-1}`, is open, so the sentence carrying it is `partial`.
+`K_1(R) ≅ k^×/(k^×)^{d-1}`, is `LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula`,
+from `KhanhThanhDiagonal.scalarSurjective_holds` and `LeavittKOneFormula.scalarKernel`.
 -/
 
 namespace GroupApproximation
@@ -222,9 +224,10 @@ theorem manuscriptSentence_quotientByElementaryIsKOne (hd : 2 ≤ d) :
 > `H = R^×`.  Then `H ≅ GL_d(R)`, and under this identification
 > `Rad_MF(H) = [H,H] = EL_d(R)` and `H/EL_d(R) ≅ K_1(R)`.
 
-The printed statement ends `≅ k^×/(k^×)^{d-1}`.  That last isomorphism is the
-open half of the Khanh--Thanh citation and is not asserted here; everything
-before it is. -/
+The printed statement ends `≅ k^×/(k^×)^{d-1}`.  That last isomorphism is not
+asserted here; everything before it is.  The statement with every clause is
+`LeavittKOneFormulaSentences.PrintedLeavittMFQuotientFull`, proved by
+`manuscriptLeavittMFQuotientFull`. -/
 def PrintedLeavittMFQuotientWithKOne : Prop :=
   ∀ (k : Type) [Field k] [Countable k] (d : ℕ), 2 ≤ d →
     Nonempty ((AryLeavittAlgebra k d)ˣ ≃*
