@@ -104,6 +104,18 @@ The latter, for a QMA-hardness reduction with exactly implementable term
 measurements, also places QMA inside QMA_1, which Aaronson's quantum oracle
 (arXiv:0806.0450) rules out for quantumly relativizing proofs.
 
+**2026-09-11 Dinur iteration route.** The first half of Dinur's template is
+proved and iterable: `bmvz-iterable-tensor-gap-amplification`
+(arXiv:2510.01333) multiplies layered ground energy by order `sqrt(t/log t)`
+per round, at locality cost `2t`, and keeps the layer weights. The route
+`qpcp-by-dinur-iteration` proves that this, together with one open claim,
+gives this root. That claim is `locality-reduction-with-amplifier-independent-loss`,
+a constant-locality reducer on amplified instances whose soundness loss does
+not depend on `t`. Unlike the anchored route's margin claim, it is not
+equivalent to this root by any known instance transformation. The natural
+reducer, splitting clauses into factors, is dead
+(`unfolding-tensor-clauses-returns-the-original-gap`).
+
 ## Attempts
 
 - **Ordinary energy gap amplification.**  Killed for this target by
