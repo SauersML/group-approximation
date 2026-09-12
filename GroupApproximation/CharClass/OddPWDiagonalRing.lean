@@ -1,6 +1,8 @@
 import Mathlib.Algebra.BigOperators.Intervals
 import Mathlib.Algebra.Group.Nat.Even
 import Mathlib.Data.ZMod.Basic
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Tactic.Ring
 import Mathlib.Tactic.LinearCombination
 import GroupApproximation.Meta.AxiomGuard
 
@@ -150,7 +152,7 @@ theorem wdChain_identity (m : ℕ) {T₁ T₂ : S} (h₂ : T₂ ^ m = 1) (a b : 
 
 /-- The augmentation of `Q_m` is `Σ_{v<m} v`. -/
 theorem wdQSum_one_one (m : ℕ) : wdQSum m (1 : S) 1 = ((∑ v ∈ range m, v : ℕ) : S) := by
-  simp [wdQSum]
+  simp [wdQSum, Nat.cast_sum]
 
 end Ring
 
