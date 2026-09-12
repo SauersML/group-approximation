@@ -1,0 +1,66 @@
+# census2: what still blocks a verbatim, unconditional non-MF manuscript
+
+Snapshot: origin/main cea5e8a44 (2026-09-12 10:06).
+- `metadata/NON_MF_SENTENCE_CENSUS.tsv` was last merged at 4888c563f (09-11 23:32). It has 498 rows: 474 done, 19 partial, 5 unassigned.
+- The unconditional-badge baseline is empty.
+- The conditional baseline still accepts 7 findings outside section 5 (item U6).
+
+The four top endpoints in `Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean` (root-imported) share exactly four open binders:
+
+```lean
+(hgreendlinger : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
+(hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
+(hKO : TheoremC.KotowskiOllivierStatement)          -- abbrev for Hyperbolic.SharpExistence
+(hW : FinitelyPresentedInfiniteSimpleStatement)
+```
+
+- `literatureInputs_of_leastAreaLeaves` already closes `chiodo` and `minasyanOsin` inside.
+- `manuscriptRegularNonMFAlgebra_of_hullLeaves` also takes `hDGO` and `hGO`. Both are closed on main: `simpleUniqueTraceAtHypEmbedded_closed` and `gerasimovaOsinTheorem11Printed`.
+
+## A. UNOWNED, by unblock impact
+
+| # | target | exact Lean statement / Prop | file(s) | depends on | owner | new lane | size |
+|---|---|---|---|---|---|---|---|
+| U1 | KO closed endpoint. This is `hKO` of every top endpoint and the `TheoremCAssembly:653` sorry. | `theorem isHyperbolicGroup_ghb7 : Hyperbolic.IsHyperbolicGroup (GHB 7) := isHyperbolicGroup_ghb7_of_zipFold hzip hfold`, then `theorem kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement := kotowskiOllivierStatement_of_ghb7ConjHyp (cckwFiniteOrderConjugateIntoVertex_of_fixedCliqueTits hT6 cckwCosetComplex_simplyConnected cckwCosetComplex_connected) isHyperbolicGroup_ghb7`. Alternative route: `isHyperbolicGroup_ghb7_of_discInputs hfill hfold hcount hsum` with `hfill := fillingStatement_of_simplyConnected cckwCosetComplex_simplyConnected ha hb hc hd`. | new `Kazhdan/KotowskiOllivierClosed.lean` over `Kazhdan/GHBHyperbolicDiscCounts.lean:84`, `GHBSharpExistenceSystolic.lean:25`, `GHBLatticeRouteKazhdan.lean:70`, `CCKWTitsGHB.lean:113/117` | hzip (kh-torsion), hfold (fff-periodic), hT6 (sec4, kh-cckw), go-sr1's red SystolicDiscCounts | UNOWNED in practice: kh-hyperbolic lists it under NEXT but is not running, and no lane owns the hT6 → KO composition | ko-closed | S; it can be authored now as `kotowskiOllivier_of_leaves hzip hfold hT6` |
+| U2 | Remove the 5 sorries in root-imported `TheoremCAssembly.lean` (`GroupApproximation.lean:2049`). These are the only sorries in the non-MF area, and they are in the root closure. | Delete or reprove `estimatingSelectionConstruction` (:387), `estimatingUnboundOutput` (:410), `relativeIsoperimetricBridgeQuasiGeodesic` (:443), `hullRelatorRespelling : HullSC.HullRelatorRespellingStatement` (:469) and `kotowskiOllivier : KotowskiOllivierStatement` (:653). Re-point the sole importer `Manuscript/MFRecognition/SeedFromTheoremC.lean` at the least-area route. | `Manuscript/NonMF/TheoremCAssembly.lean`, `Manuscript/MFRecognition/SeedFromTheoremC.lean`, `GroupApproximation.lean` | :653 needs U1. The other four have 0 consumers in `NON_MF_SENTENCE_MAP.tsv`, so deleting them needs nothing. | UNOWNED | theoremc-retire | M |
+| U3 | Census re-merge and stale re-grades | Run `census_run.sh` on MSI and re-grade four groups of rows (see Notes below). | `metadata/NON_MF_SENTENCE_CENSUS.tsv`, `metadata/nm-census-rows/*.tsv` | nothing | UNOWNED: the census lane is idle, and its clone `census` is now cite-agp's | census-merge | S |
+| U4 | GHW Theorem 4 at printed generality (rows b6d1590be7ab L1145; jacobson LINE:1146/1147) | No Prop exists on main. Proposed: `def PrintedGHWTheorem4 : Prop := ∀ (K : Type) [Field K] (Γ : Subgroup (GL (Fin 2) K)), Countable Γ → HasHaagerupProperty.{0, 0} Γ` and `theorem printedGHWTheorem4 : PrintedGHWTheorem4` | new `Kazhdan/GHWTheorem4.lean` over `GHWPlaces` (`hasHaagerupProperty_of_places`, `hasHaagerupProperty_of_closure_finset`), `ghwArchimedeanAffineBound`, `ghwComplexEmbeddingExtension` | places for finitely generated fields: GHWCountablePlaces (sec2), GHWCharP (jacobson, ghw-charp2), GHWCharZeroFiniteness (dgo-geometric) | UNOWNED: four lanes build pieces and none owns the assembly | ghw-assembly | M |
+| U5 | Intro trace footnote L187 (61827aea7807) | A closed `NormalKazhdanPrintedRoute.manuscriptPrintedNormalKazhdan` with no `HSVanishes` binder (open-predicate finding). Also an in-repo producer of `HSVanishes` for the printed K (carrier-data finding, row c36b6021a802). | `NormalKazhdanPrintedRoute.lean`, `CompressionCriterionSentences.lean` | unknown | UNOWNED (sec2 is on GHW) | normal-kazhdan-hs | M |
+| U6 | Hidden conditionals behind rows graded done (`NON_MF_CENSUS_CONDITIONAL_BASELINE.txt`) | (a) open-predicate `NonMFSentences.FullDefectCornerRemark.manuscriptSentence_cornerPassesUp` (row a4b5b1a0504a is graded formalized). (b) carrier-data `IsStronglyOperatorMF` (row 837b7cffa562) and open-predicate `IsStronglyOperatorMF.isOperatorMF`. (c) inlined-statement `TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial`. (d) open-predicate `ReducedGroupCStarTrace.powersAveragingEstimate_of_naiveFreeProductProperty`. (d) can now be discharged with the closed, rooted `naiveFreeProductAtAcylindricallyHyperbolic`. | the files of those decls | (d) nothing; (a)–(c) unknown | UNOWNED (sec3 is not running) | baseline-debt | S–M |
+| U7 | Closed top endpoints and their rows | `printedTorsionFreeTheorem : PrintedTorsionFreeTheorem`; `printedRegularNonMFAlgebra : PrintedRegularNonMFAlgebra` via `manuscriptRegularNonMFAlgebra_of_hullLeaves_closedGO`; `fournierFacioParagraph : FournierFacioParagraph`; `literatureInputs : TheoremC.LiteratureInputs`; closed saturation and thm:hull forms. Rows: L66 a16637da7249, L285 0f22bdbc4184, L291 dce7a9ff4e83, and L1637–L1719 (11 rows). Also the carrier-debt `TheoremC.Configuration` (dab2f2bfe084). | `TorsionFreeLiteratureInputsLeastArea.lean`, `TorsionFreeSectionAssembly.lean` | U1, hgreendlinger, hbridge, hW | UNOWNED successor (sec5 is overloaded) | nm-endpoints | S each once the leaves land |
+| U8 | Wire closed modules into the root closure | These are not directly imported by `GroupApproximation.lean` (transitive closure unchecked): TorsionFreeSectionAssembly (holds `simpleUniqueTraceAtHypEmbedded_closed`), CCKWTitsGHB, GHBHyperbolicFilling, GHBHyperbolicDiscCounts, GHBSharpExistenceSystolic, GHBLatticeRouteKazhdan, SystolicDiscFilling, SystolicDiscCounts, SystolicDiscZip, SystolicDismantlable, GHWArchimedeanBound, GHWArchimedeanSeparation | `GroupApproximation.lean`, wire-queue | green probes | lead-wire queue, no lane | (lead) | S |
+| U9 | Clone collisions | `thm-d` has three lanes: hull-count94 (running), cite-korchagin (running) and kh-hyperbolic (idle). `thm-e` has jacobson and ghw-charp2 (both running) and is also claimed by the LIX session. `census` is used by cite-agp. | `$NM/lanes/*.clone` | none | lead | none | S |
+
+Notes on U3, the rows to re-grade:
+- f2bf6328169e L1725: the go-sr1 and dgo-geometric rows say formalized, and both producers are closed.
+- a9dd4b90e479 L1629: the sec5 row is still partial although `isAcylindricallyHyperbolicOsin_of_limitSet` landed in 6b5a5f75e.
+- The 4 unassigned L1122 rows: jacobson.tsv already has LINE:1122 formalized.
+- c149d33e8f7e L1145.
+- Line drift: lane rows use LINE:1728 where the TSV has L1725, so the merge must match rows by sentence, not by line number.
+
+## B. Owned open targets
+
+| target | exact Prop | file(s) | depends on | owner(s) | size |
+|---|---|---|---|---|---|
+| h94 | `GGT.VanKampen.OsinLemma94SectionStatement` | `GGT/VanKampen/Estimating/OsinAppendixSections.lean:303` | OsinLemma94RunInput, OsinUnboundCaseTwo (PinchSplit.transportDistinguished), OsinUnboundMerged | hull-unbound, hull-count94, sec5 (3 lanes; name one integrator) | L |
+| hin | `OsinSection97InputsStatement` = `MultipleEdgeCutInput ∧ LoopCutInput ∧ EulerCountInput ∧ DescentInput` | `OsinAppendixAssembly.lean:52`; `OsinAppendixSectionInduction.lean:75/85/96/120` | none | Cuts: hull-select and go-lemma42 (OsinAppendixCutSections). Euler count: hull-euler. Descent: dgo-analytic (`OsinDescentMergeInput`/`OsinDescentStepInput` at `OsinAppendixAssemblyDescent.lean:67/94`; `SectionPocketCutInput` at `OsinAppendixDescentCut.lean:71`). | L |
+| hgreendlinger | `relativeGreendlingerQuasiGeodesicLeastArea_of_inputs o52LeastArea h94 hin : RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (`o52LeastArea` is closed at `OsinAppendixO52LeastArea.lean:31`) | `OsinAppendixSections.lean:120` | h94, hin | hull-respell | S |
+| hbridge | `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` from `QuotientPeripheralLetterPullbackStatement` | `GGT/HullSCLemma51EmbeddedBridge.lean:110`, `HullSCLemma51EmbeddedProducer.lean:122` | the Rotate red fix | hull-component, hull-bridge | M |
+| hzip | `Systolic.ZipSpurStatement CCKW.cosetComplex` | `GGT/SystolicDisc.lean:421`, `GGT/SystolicDiscZip.lean` | none | kh-torsion | M |
+| hfold | `Systolic.MirrorFoldStatement CCKW.cosetComplex` | `GGT/SystolicDisc.lean:432` | none | fff-periodic | M |
+| disc counts | red `GGT/SystolicDiscCounts`; `fillingStatement_of_simplyConnected hsc ha hb hc hd` | `GGT/SystolicDiscFilling.lean:126` | none | go-sr1, systolic-counts | M |
+| hT6 | `CCKW.SystolicInvariantCliqueStatement` | `Kazhdan/GHBSharpExistence.lean:34`, `GGT/SystolicDismantlable.lean`, `GGT/SystolicGraphConditions.lean` | none | sec4, kh-cckw | M |
+| hW | `FinitelyPresentedInfiniteSimpleStatement` via `finitelyPresentedInfiniteSimpleStatement_of_stabK (h47 : StabKFinitelyPresented qTwo)` | `Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:353`; `GroupTheory/HydeLodha/QTwoFinitelyPresented.lean:25/68` | HL Prop 4.7, L4.6 | fff-quotient, kh-ejz (PiFinitePresentation), simple-group, hl-lemma46b | L |
+| GHW places | pieces for U4 | GHWCountablePlaces, GHWCharP, GHWCharZeroFiniteness | none | sec2; jacobson and ghw-charp2; dgo-geometric | M |
+| L1122 rows (4 unassigned) | Toeplitz–Jacobson J; JeJ = finite matrices; ker(EL_n(J) → EL_n(F2[z,z^-1])) ≤ GL_fs(V^n) | JacobsonSymbol, JacobsonFiniteMatrices, JacobsonKernelFinitary | none | toeplitz, jacobson | S–M |
+| L1145 c149d33e8f7e | "The two results are complementary…" | JacobsonComplementarySentence | U4 | jacobson | S |
+| L1307 7916c8696def | R ≅ R^d, so R ≅ M_d(R) and H ≅ GL_d(R): `LeavittMFQuotientSentences.manuscriptSentence_unitsEquivGL` | LeavittMFQuotientUnitsGL (in draft) | none | leavitt-units | S |
+| Hull/FFF cite rows L1629, L1644, L1659, L1675 (×2) | Hull Thm 3.12, Cor 5.7, Lemma 5.8, Cor 7.4; the FFF paragraph | TorsionFreeLimitSetNotion, TorsionFreeHullPrinted* | hgreendlinger, hbridge, hKO, hW | cite-hull, sec5, kh-ejz (LINE:1675) | S–M |
+| literature rows | Joining `\cite` keys to row status: every AGP (6), Khanh–Thanh (3), Korchagin (5), Elek–Szabó (2), BK (4), Menal–Moncasi (1) and Preusser (1) row is graded done. The only open cite rows are GHW, Hull, FFF and DGO/GO (DGO/GO is stale, see U3). | none | none | cite-agp, cite-korchagin, cite-sofic, cite-cstar, cite-kazhdan, cite-ejz, cite-osin, cite-hull (report-only, no .files) | S |
+
+## C. Overloaded lanes and duplicate-producer risk
+
+- sec5 (32 files): G-face merge, OsinUnboundMerged for h94, and the L1629–L1719 rows. Move the endpoint rows to U7.
+- jacobson (33 files): GHWCharP, the L1122/1145/1146/1147 rows, and the `thm-e` collision.
+- hull-select (29 files), dgo-geometric (29), kh-torsion (27; now landing as kh-torsion-attic).
+- Leaves with several producer lanes and no integrator: h94 (3 lanes), hW (4), GHW (4 piece lanes and no assembler).
