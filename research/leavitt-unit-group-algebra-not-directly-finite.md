@@ -4,6 +4,8 @@ id: leavitt-unit-group-algebra-not-directly-finite
 kind: claim
 title: The modular group algebra of the Leavitt unit group is not directly finite
 root: true
+refuted_by:
+  - leavitt-unit-group-surjunctive
 distinct_from:
   binary-leavitt-algebra-not-directly-finite: that is the established defect in the Leavitt algebra, which is not a group algebra; this is the same failure demanded of F_2[R^x], which is one, and the gap between them is exactly direct-finiteness-not-inherited-by-quotients.
   kl-violating-equation-over-leavitt-unit-group: that is an equation-solving question over the same group, aimed at hyperlinearity through Kervaire--Laudenbach; this is a ring-theoretic question about its modular group algebra, aimed at Kaplansky, and neither is known to imply the other.
@@ -491,6 +493,22 @@ There is also an exact bound for recursion with a fixed identity:
 can contain a unital binary matrix block of size two but not four.
 The existing arbitrarily large matrix embeddings use changing identities;
 they do not supply unbounded coherent matrix capacity at the fixed e.
+
+**2026-09-12, SAT on bounded supports with the strictness clause (lane `kdf-sat`).**
+`experiments/nonsofic-certificates/kaplansky-df/sat/dfsat.py` encodes two conditions
+as native XORs over shared AND variables `x_a y_b`:
+- `alpha beta = 1`;
+- `beta alpha != 1`, as one clause over XOR-defined difference bits.
+
+The solver finds no strict pair with `(supp alpha, supp beta)` inside the following
+balls:
+- Thompson `V`: `(B_2, B_2)` and `(B_2, B_3)`, the latter 9,284 AND variables, UNSAT in 147 s;
+- the nine-leaf `EL_D` generators: `(B_1, B_1)`, `(B_1, B_2)` and `(B_2, B_1)`, 32,655 variables each, UNSAT in about 250 s.
+
+`V (B_3, B_3)` timed out at 600 s. These are solver outputs without proof logs, so
+they record where nothing was found and certify nothing. The target-mode results for
+lifts of `s_0` are recorded on `left-invertible-lift-of-s0-in-leavitt-group-algebra`.
+Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
 
 ## Cross-atlas affine update (2026-09-07)
 
