@@ -117,3 +117,75 @@ finite order in `H^ab`. So the encoder memory must leave `<g>`, and every subgro
 - **Torsion.** The canonical hosts `L_(F_2)(1,2)^x` and Thompson's `V` contain torsion. So `F_2[G]` has
   zero divisors, and step 1 of the affine rigidity proof (domain, hence direct finiteness, hence
   algebraic independence of the encoder translates) is not available either.
+
+## 3. Zero divisors give one-track formal automorphisms
+
+For `u in M_(r x n)(k[G])`, write `L_u : (k^n)^G -> (k^r)^G`, `L_u(x)(h) = sum_m u_m x(hm)`. As
+polynomial maps these compose exactly: `L_u L_v = L_(uv)`.
+
+**Theorem 5 (zero-divisor shears).** Let `A in M_(n x r)(k[G])` and `B in M_(r x n)(k[G])` satisfy
+`BA = 0`, and let `Gamma` be any automaton `(k^r)^G -> (k^r)^G` with any representative `Gamma~`. Then
+`T(x) = x + L_A(Gamma(L_B x))` and `T'(x) = x − L_A(Gamma(L_B x))` form a two-sided formal pair.
+
+*Proof.* Formally, `L_B(x ± L_A w) = L_B x ± L_(BA) w = L_B x`. So
+`T'(T(x)) = x + L_A Gamma~(L_B x) − L_A Gamma~(L_B x) = x`, and symmetrically. ∎
+
+**Remarks.**
+- **Track shears are a special case.** `track shear x_i += f(x_j, j != i)` is `A = e_i`, `B` the
+  projection off track `i`, with `BA = 0` by matrix units. So Theorem 5 extends
+  `structurally-reversible-automata-are-formalizable` from matrix-unit zero divisors to zero divisors
+  of the group algebra itself.
+- **Odd characteristic.** If `s` has order `p = char k`, then `N = 1 − s` has `N^p = 0`, so
+  `A = N^(p−1)`, `B = N` qualify.
+- **Always bijective.** Words in these gates and units of `M_n(k[G])` are bijections. A strict automaton
+  is never such a word.
+
+**Corollary 6 (non-affine one-track formal involutions).** Let `s in G` have order two and let `m in G`
+with `m^(-1) s m ≠ s`. On `{0,1}^G` put `S(h) = x(h) + x(hs)` and
+`tau(x)(h) = x(h) + S(h)·(S(hm) + S(hsm))`. Then `tau` is a formal involution that is not affine.
+
+*Proof.*
+1. **It is a zero-divisor shear.** Take `N = 1 + s`, so `N^2 = 0`, and `Gamma(z)(h) = z(h) z(hm)`.
+   Then `L_N(x) = S`, `Gamma(S)(h) = S(h) S(hm)`, and `L_N(Gamma(S))(h) = S(h)S(hm) + S(hs)S(hsm)`,
+   which equals `S(h)(S(hm) + S(hsm))` because `S(hs) = S(h)`. So `tau = T` with `A = B = N`, and
+   Theorem 5 applies; in characteristic two `T' = T`.
+2. **The cells are distinct.** `S(hm) + S(hsm) = x(hm) + x(hms) + x(hsm) + x(hsms)`. The hypothesis
+   `m^(-1) s m ≠ s` makes `hm, hms, hsm, hsms` pairwise distinct, and distinct from `h` and `hs`.
+3. **Not affine.** The rule is a multilinear polynomial of degree two in distinct cell variables. Over
+   `F_2` the multilinear representative of a function is unique, so `tau` is not affine. ∎
+
+**Worked case: the infinite dihedral group.** Take `D_inf = <g, s | s^2, sgs = g^(-1)>` and `m = g`.
+Write `a(k) = x(g^k)`, `b(k) = x(g^k s)` and `S = a + b`. Then
+`tau(a, b) = (a + c, b + c)` with `c(k) = S(k)(S(k−1) + S(k+1))`.
+
+**Where these gates live.**
+- **Every finitely generated simple host with 2-torsion** has trivial centre, so every involution is
+  non-central. This covers Thompson's `V` and `L_(F_2)(1,2)^x`, whose swap `w = s0 t1 + s1 t0` is an
+  involution. By induction to overgroups, non-affine one-track formal involutions exist on those hosts.
+- **Consistency with Corollary 2.** If `s` is central, `S(hm) + S(hsm) = 0` and `tau = id`. On a host
+  such as `Z x Z/2`, which retracts onto `Z`, the pushforward of any zero-divisor shear to `Z` is affine,
+  as Corollary 2 requires.
+- **One-track affine rigidity is a torsion-free phenomenon.** It holds over bi-orderable groups and
+  fails on every group with a non-central involution.
+
+## 4. The restricted formalizability target and its payoff
+
+**Open claim** `binary-left-inverse-pairs-over-fg-simple-groups-are-formalizable`: every binary
+left-inverse pair `(tau, sigma)` over a finitely generated simple group admits representatives with
+`sigma~ o tau~ = id` formally.
+
+- **Payoff.** By `formal-polynomial-strict-pairs-need-unstable-linearization`, it gives
+  `stably-finite-simple-hosts-are-binary-power-surjunctive`: a finitely generated simple `S` with
+  `F_2[S]` stably finite is surjunctive over every alphabet of size `2^n`.
+  - **Every group.** Together with stable finiteness of `F_2[S]` for every such `S`, and
+    `gottschalk-reduces-to-fg-simple-kazhdan-groups`, this gives Gottschalk over binary-power alphabets.
+  - **Per host.** For instance, stable finiteness of `F_2[L_(F_2)(1,2)^x]` would make that unit group
+    surjunctive over binary-power alphabets.
+- **Not refuted by any landed result:**
+  - the marker refutations live on bi-orderable groups (Theorem 4);
+  - finite quotients reach only constants, where every permutation is tame over `F_2`;
+  - Corollary 2 is void for encoder memory generating the host;
+  - one-track rigidity fails on these hosts (Corollary 6).
+- **What a proof for strict pairs must supply.** A strict pair needs a formal pair whose encoder pullback
+  `tau~*` on `k[X_(G x [n])]` is surjective but not injective. No word in formal automorphisms has this
+  property, so gate constructions, including zero-divisor shears, cannot produce one.
