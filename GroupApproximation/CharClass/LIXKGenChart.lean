@@ -132,15 +132,18 @@ def eulerLinearModel (n : ℕ) : ChartSrc n →ₗ[ℝ] (Fin (n + 1) → ℂ) wh
     funext i
     refine Fin.cases ?_ (fun j => ?_) i
     · simp only [Fin.cons_zero, Prod.fst_add, Prod.snd_add, Pi.add_apply, Complex.ofReal_add]
-        <;> ring
-    · simp only [Fin.cons_succ, Prod.fst_add, Prod.snd_add, Pi.add_apply] <;> ring
+      ring
+    · simp only [Fin.cons_succ, Prod.fst_add, Prod.snd_add, Pi.add_apply]
+      ring
   map_smul' r p := by
     funext i
     refine Fin.cases ?_ (fun j => ?_) i
     · simp only [Fin.cons_zero, Prod.smul_fst, Prod.smul_snd, Pi.smul_apply, smul_eq_mul,
-        Complex.ofReal_mul, Complex.real_smul, RingHom.id_apply] <;> ring
+        Complex.ofReal_mul, Complex.real_smul, RingHom.id_apply]
+      ring
     · simp only [Fin.cons_succ, Prod.smul_fst, Prod.smul_snd, Pi.smul_apply,
-        Complex.real_smul, RingHom.id_apply] <;> ring
+        Complex.real_smul, RingHom.id_apply]
+      ring
 
 @[simp]
 theorem eulerLinearModel_apply (n : ℕ) (p : ChartSrc n) :

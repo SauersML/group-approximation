@@ -69,7 +69,6 @@ theorem natCast_mul_kSectAngle (k : ℕ) (j : Fin (k + 1)) (w : ℂ) :
   rw [kSectAngle]
   push_cast
   field_simp
-  ring
 
 /-- **`κ_j(w)^{k+1} = ‖w‖^k · w`, at every `w`.** -/
 theorem kSect_pow (k : ℕ) (j : Fin (k + 1)) (w : ℂ) :

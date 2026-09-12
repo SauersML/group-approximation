@@ -43,14 +43,16 @@ def chartLinearMap (n : ℕ) : ChartBase n →ₗ[ℝ] (Fin (n + 1) → ℂ) whe
   map_add' p q := by
     funext i
     refine Fin.cases ?_ (fun j => ?_) i
-    · simp only [Fin.cons_zero, Prod.fst_add, Pi.add_apply, Complex.ofReal_add] <;> ring
-    · simp only [Fin.cons_succ, Prod.snd_add, Pi.add_apply] <;> rfl
+    · simp only [Fin.cons_zero, Prod.fst_add, Pi.add_apply, Complex.ofReal_add]
+      ring
+    · simp only [Fin.cons_succ, Prod.snd_add, Pi.add_apply]
   map_smul' r p := by
     funext i
     refine Fin.cases ?_ (fun j => ?_) i
     · simp only [Fin.cons_zero, Prod.smul_fst, Pi.smul_apply, smul_eq_mul, Complex.ofReal_mul,
-        Complex.real_smul, RingHom.id_apply] <;> ring
-    · simp only [Fin.cons_succ, Prod.smul_snd, Pi.smul_apply, RingHom.id_apply] <;> rfl
+        Complex.real_smul, RingHom.id_apply]
+      ring
+    · simp only [Fin.cons_succ, Prod.smul_snd, Pi.smul_apply, RingHom.id_apply]
 
 /-- The linear part, as a continuous linear map. -/
 def chartLinearCLM (n : ℕ) : ChartBase n →L[ℝ] (Fin (n + 1) → ℂ) :=
@@ -177,8 +179,10 @@ theorem hasStrictFDerivAt_trivialBlockChart (n : ℕ) :
   refine ContinuousLinearMap.ext fun p => ?_
   funext i
   refine Fin.cases ?_ (fun j => ?_) i
-  · simp [eZero, sphereChartVec_zero, Complex.real_smul] <;> ring
-  · simp [eZero, sphereChartVec_zero, Complex.real_smul] <;> ring
+  · simp [eZero, sphereChartVec_zero, Complex.real_smul]
+    ring
+  · simp [eZero, sphereChartVec_zero, Complex.real_smul]
+    ring
 
 end KGen
 
