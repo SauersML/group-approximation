@@ -14,10 +14,18 @@ distinct_from:
 Let `Gamma(3) = ker(SL_3(Z) -> SL_3(Z/3))` and
 `E_3(3) = <e_ij(3) : i != j> <= Gamma(3)`. Then:
 
-1. `Gamma(3)` and every subgroup of it, in particular every finite-index
-   subgroup and `E_3(3)`, is infinite, torsion-free and has property (T);
-2. each satisfies the Strong Atiyah Conjecture over `C`;
-3. for each, `k[H]` is a domain over every field `k` of characteristic `0` or `3`.
+1. `Gamma(3)`, every finite-index subgroup of it, and `E_3(3)` are infinite,
+   torsion-free and have property (T). Every subgroup of `Gamma(3)` is
+   torsion-free, but infiniteness and property (T) do not pass to arbitrary
+   subgroups (for example infinite cyclic subgroups);
+2. every subgroup `H <= Gamma(3)` satisfies the Strong Atiyah Conjecture over `C`;
+3. for every subgroup `H <= Gamma(3)`, `k[H]` is a domain over every field `k` of
+   characteristic `0` or `3`.
+
+*Review correction, 2026-09-12 (`swarm5-reviewer`):* item 1 previously said
+that every subgroup of `Gamma(3)` is infinite and has property (T), which is
+false. Items 2 and 3 do hold for every subgroup, and are now stated that way.
+See `research/artifacts/review-swarm5-2026-09-12.md`.
 
 The same holds for `Gamma(p)` in `SL_d(Z)` with `d >= 3` and `p` odd, and for
 `Gamma(4)`, with characteristic `p` in part 3.

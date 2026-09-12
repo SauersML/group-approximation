@@ -52,6 +52,18 @@ of `W`. Then:
 By Linnell's theorem a division ring between `Qbar[G]` and `U(G)` gives Strong
 Atiyah over `Qbar`. Subgroups inherit both Strong Atiyah and being a domain.
 
+*Review note, 2026-09-12 (`swarm5-reviewer`, from the arXiv PDFs):* Theorems 1.2
+and 1.3 of Farkas--Linnell are stated only for `Gamma = CS(u,d,p)` itself. For a
+`W` that properly contains `CS(u,d,p)` with finite index, part 2 needs two more
+inputs:
+- **Characteristic `p`:** Farkas--Linnell Theorem 6.1, that `k[[W]]` is a
+  noetherian domain, together with the inclusion `k[H] <= k[[W]]`. Fisher--Ng
+  restate it as Theorem 2.10.
+- **Characteristic `0`:** part 1, since Strong Atiyah over `C` gives no zero
+  divisors (Fisher--Ng, Section 2).
+
+The conclusion stands. See `research/artifacts/review-swarm5-2026-09-12.md`.
+
 Trust surface: Farkas--Linnell was read at theorem-statement level from source,
 not line by line; the base change to `C` is Jaikin-Zapirain as quoted by
 Fisher--Ng.
