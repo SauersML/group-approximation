@@ -344,3 +344,57 @@ injective and separable, hence embeds in `R^omega`. ∎
   Maslov-type class invisible to every finite quotient. Subgroups such as
   `SL_2(Z) x SL_2(Z)`, whose Schur multiplier `Z/12` is detected through the
   finite abelianization, are excluded.
+
+---
+
+## S8. Every Kervaire--Laudenbach failure yields a Schur kill
+
+**Claim.** Let `G` be countable, `w in G * <t>` nonsingular, and `1 != a in G`
+with `a -> 1` in `G_w`. Put `C = <a>`, `P = C x <b>` with `b` of infinite
+order, and `Q = G *_C P`. Let `x` be a generator of
+`H_1(C) (x) H_1(<b>) = H_2(P)`, i.e. the torus class of `(a, b)`. Then
+`x != 0` in `H_2(Q)`, and `x in K_2(Q, w)`.
+
+*Proof.* `C` injects into `G` and into `P`, so `Q` is a genuine amalgam, and
+`H_2(C) = 0` since `C` is cyclic. The Mayer--Vietoris sequence
+`H_2(C) -> H_2(G) (+) H_2(P) -> H_2(Q)` makes `H_2(P) -> H_2(Q)` injective.
+By Kuenneth, `H_2(C x Z) = H_1(C) (x) Z`, and `H_1(C) = C != 0`, so `x != 0`
+in `H_2(Q)`. The composite `P -> Q -> Q_w` kills `a`, so it factors through
+`P/C = <b>`, and `H_2(<b>) = 0`. Hence `x -> 0` in `H_2(Q_w)`. (In fact
+`Q_w = G_w * <b>`.) ∎
+
+**Consequences.**
+
+* A violating equation at any nonzero degree gives a nonzero Schur kernel with
+  the same equation. So the degree-two instrument
+  `some-nonsingular-equation-has-nonzero-schur-kernel` is **implied by** the
+  degree-one instrument.
+* Schur injectivity for every nonsingular adjunction over every countable group
+  implies the Kervaire--Laudenbach conjecture.
+* **Correction to §6.** The "Not claimed" item said that passing from a
+  coefficient kill to a Schur kill needs a simple envelope with nonzero Schur
+  multiplier. It does not: the amalgam above does it directly. What remains
+  open is the converse, whether the conjecture implies universal Schur
+  injectivity. By S5(ii), a Schur kill is a centralized failure over a central
+  extension, and the conjecture controls only the plain quotient.
+
+## S9. The Sp4 target also empties the operator-norm Maslov sectors
+
+A point-norm `alpha`-projective asymptotic representation of `Gamma = Sp_4(Z)`
+becomes, in the norm matrix corona `Q`, an exact projective unitary
+homomorphism `phi : Gamma -> U(Q)/U(1)` with multiplier `alpha`. S2 applies with
+`N = N_op`, so `alpha_H` vanishes on `K_2(Gamma, w)` for every nonsingular `w`.
+The same holds for `alpha^2`, since `2 alpha_H(x) != 0` whenever
+`alpha_H(x) != 0` in `Z/3`.
+
+So `sp4-schur-kernel-meets-the-deligne-triple-class` implies
+`deligne-nontrivial-maslov-opnorm-sectors-are-empty`. Through the existing route
+`deligne-central-radical-from-opnorm-sector-emptiness` and
+`deligne-triple-cover-exact-mf-radical-proof`, it closes the goal
+`deligne-triple-cover-exact-mf-radical`. It also gives the Hilbert--Schmidt
+collapse (S4b). One finite algebraic certificate settles both the MF radical
+and the non-hyperlinearity of `E_3`.
+
+More generally, for a **finite** central `Z` the cut-down of S4 is exact in the
+corona: `p_chi = |Z|^(-1) sum_z chi(z)^(-1) psi(z)`. Then S2 with `N = N_op`
+gives `alpha_H(K_2(Q, w)) <= Rad_MF(E)`.
