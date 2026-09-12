@@ -137,3 +137,16 @@ and no MSI job was submitted for this step: the content is a four-line
 functoriality argument and a normal-form algorithm, and neither gives signal
 from a computer. Section 1's grading is a reading of nodes on `origin/main` at
 the time of writing, not a proof that no other obstruction applies.
+
+## Addendum, same day: both targets established, contrapositive attacks closed
+
+Khanh, arXiv:2609.08428v1, Theorem 6.1, which the literature lane verified from
+the full paper, makes the binary Leavitt unit group finitely presented. It is
+already simple, nonsofic and full-MF-radical here, so it witnesses both
+`fp-simple-full-mf-radical-group` and `fp-simple-nonsofic-group` directly. The
+Boone--Higman routes recorded above remain valid second derivations.
+
+This record called the contrapositive the usable direction. That is withdrawn.
+Both statements are true, so their negations cannot refute Boone--Higman. What
+survives is only that a universal construction must carry these properties on
+the envelopes of inputs that have them.

@@ -95,3 +95,16 @@ deduction are written proofs landed today. No Lean certificate is claimed for
 the new nodes, and no computation was run for this step: the content is a
 permanence lemma and a specialization, neither of which gives signal from a
 computer.
+
+## Addendum, same day: both targets established, contrapositive attacks closed
+
+Khanh, arXiv:2609.08428v1, Theorem 6.1, which the literature lane verified from
+the full paper, makes the binary Leavitt unit group finitely presented. It is
+already simple, nonsofic and full-MF-radical here, so it witnesses both
+`fp-simple-full-mf-radical-group` and `fp-simple-nonsofic-group` directly. The
+Boone--Higman routes recorded above remain valid second derivations.
+
+This record called the contrapositive the usable direction. That is withdrawn.
+Both statements are true, so their negations cannot refute Boone--Higman. What
+survives is only that a universal construction must carry these properties on
+the envelopes of inputs that have them.
