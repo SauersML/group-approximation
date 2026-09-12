@@ -44,3 +44,11 @@ artifacts:
     `Sym(p_i a p_j, p_i b p_j)`.
   - **Next test:** whether diagonal-block norms of distinct parallel partial isometries can be nulled at
     finer scales. `Sym(u, u) = 0` in characteristic two.
+- **2026-09-12, `w4-tensor-rankfn`: the target-relevant half is settled**
+  (`binary-tensor-square-rank-functions-kill-two-root-defect`, artifact Theorem 2.4).
+  - **The defect dies:** `Δ_2(D)` has off-diagonal left support `Sym(p_[10], p_[0])`, which is null. So every
+    rank function through `B_2` pulls back to the augmentation rank, and the tensor-square handle cannot give
+    a detecting function.
+  - **What stays open here:** whether `B_2` carries any rank function at all. It does iff `ker Δ_2 ⊆ ker ε`,
+    and then it is `x -> [ε(x) != 0]`. This no longer bears on the averaging targets.
+  - **Degree `n >= 3` over `F_2`:** open. Supports with a repeated set bring back the scalar `2`.

@@ -141,6 +141,32 @@ matrix rank function on every ring receiving a unital map from `B_2`.
    to `R`, which has no rank function.
 
 So a binary tensor-square rank function, if one exists, is carried by diagonal-block norm elements
-`Sym(p_i a p_j, p_i b p_j)` at every scale. The two-root defect `Sym(e_23, e_12)` is off-diagonal in the
-three-leaf partition, so its rank equals that of its diagonal part at finer partitions. Nothing here decides
-whether such a function exists.
+`Sym(p_i a p_j, p_i b p_j)` at every scale.
+
+**Theorem 2.4 (the defect is off-diagonal, so it is null).** Every Sylvester matrix rank function on a ring
+receiving a unital map from `B_2` kills `Δ_2(D)`. So every Sylvester matrix rank function on `F_2[R^x]` that
+factors through `Δ_2` is the augmentation rank.
+
+*Proof.*
+- **The defect:** `Δ_2(D) = Δ_2(N_23) Δ_2(N_12) = e_23 ⊗ e_12 + e_12 ⊗ e_23` ([SG] Section 3.4).
+- **Left support:** its left support is off-diagonal, since `e_23 = p_[10] e_23` and `e_12 = p_[0] e_12`. So
+  `Sym(p_[10], p_[0]) · Δ_2(D) = e_23 ⊗ e_12 + e_12 ⊗ e_23 = Δ_2(D)`, because the cross products
+  `p_[10] e_12` and `p_[0] e_23` vanish.
+- **Rank:** `[0]` and `[10]` are disjoint and their union misses `[11]`, so Proposition 2.2 gives
+  `rk Sym(p_[10], p_[0]) = 0` and hence `rk Δ_2(D) = 0`.
+- **Pullback:** a rank function on the receiving ring pulls back along `Δ_2` to a Sylvester matrix rank
+  function on `F_2[R^x]` with `rk(D) = 0`. By [SG] Theorem 1 it is `rk_ε`. ∎
+
+**Remarks.**
+- **The handle is dead at degree two:** diagonal tensor squares over `F_2` can never give the detecting rank
+  function that `binary-leavitt-units-carry-nonaugmentation-rank-function` asks for, whatever `W` and
+  whatever normalization. The same argument works in every characteristic. In odd characteristic, Theorem 1
+  already gives more.
+- **Degree `n >= 3` in characteristic two is open.**
+  - Why the argument stops: `Δ_n(D)` contains terms such as `e_23 ⊗ e_12 ⊗ 1`. Splitting the idle slot
+    `1 = p_[0] + p_[10] + p_[11]` produces supports with a repeated set, for example
+    `p_[10] ⊗ p_[0] ⊗ p_[10]`.
+  - Why Proposition 2.2 doesn't cover them: nulling those with norms has to symmetrize two slots carrying
+    the same set. That brings back the scalar `2`.
+- **Whether `B_2` carries a rank function at all:** still open. By Theorem 2.4 such a function would satisfy
+  `rk_B(x) = [ε(x) != 0]`, so it exists iff `ker Δ_2 ⊆ ker ε`.
