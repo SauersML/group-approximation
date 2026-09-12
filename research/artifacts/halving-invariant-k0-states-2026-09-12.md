@@ -27,7 +27,11 @@ Let `V(A)` be the monoid of finitely generated projective right `A`-modules, `u 
 `K_0(A)` its Grothendieck group with positive cone `K_0^+ = image of V(A)`.
 
 Census §7.2 gives a monoid homomorphism `F: V(A) -> V(A)`, induced by `Phi = M_m(psi)` followed by
-`M_m(T) ~= A` and the Morita identification, with `F(mu) = u`. Put `x = F(u)`; then `mx = u`.
+`M_m(T) ~= A` and the Morita identification, with `F(m·u) = u` (census §7.2 writes this as `F(mu) = u`).
+Put `x = F(u)`; then `m·x = u`.
+
+Verified: `w3-vf-linear` passed the theorem at 71bbad41b1 (Section 8.1 of
+`w3-vf-linear-verification-2026-09-12.md`).
 
 A *state* on `(K_0(A), u)` is an additive map `s: K_0(A) -> R` with `s(K_0^+) >= 0` and `s(u) = 1`.
 

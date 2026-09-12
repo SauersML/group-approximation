@@ -12,7 +12,7 @@ artifacts:
 
 In the Theorem E setting of `twisted-leavitt-corner-fullness-equals-absence-of-k0-states` (a Leavitt-visible
 factor `A` of `F_q[L_(F_q)(1,d)^x]` with twist order `m`, unit class `u`, and the halving monoid map
-`F: V(A) -> V(A)` induced by `Phi = M_m(e_H D(.))` with `F(mu) = u`): if `(K_0(A), u)` admits a state, it
+`F: V(A) -> V(A)` induced by `Phi = M_m(e_H D(.))` with `F(m·u) = u`): if `(K_0(A), u)` admits a state, it
 admits a state `s` with `s o F_* = s/m`. Such a state takes the value `m^(-k)` on `F_*^k(u)`.
 
 Consequences:
