@@ -62,3 +62,13 @@ binary averaging target. It implies that every characteristic-two rank model of 
   - Følner compressions of permutation modules are Hamming, so they would make `R^x` sofic.
   - Diagonal tensor powers of `R`-modules remain a handle: `D` acts by `e_23 (x) e_12 + e_12 (x) e_23`,
     and `V` has no invariant density on `X^n`.
+- **Diagonal tensor powers: dead at degree two, and in odd characteristic below `p`** (lane
+  `w4-tensor-rankfn`, `research/artifacts/diagonal-tensor-rank-functions-2026-09-12.md`).
+  - **Characteristic two, degree two** (`binary-tensor-square-rank-functions-kill-two-root-defect`): `Δ_2(D)`
+    has off-diagonal left support `Sym(p_[10], p_[0])`. That idempotent is null for every rank function
+    through `g -> g ⊗ g`, because norms of commuting square-zero partial isometries give orthogonal
+    isometries into a Thompson-conjugate corner. So every such rank function is the augmentation rank.
+  - **Odd `p`, `2 <= n < p`** (`odd-char-leavitt-unit-tensor-images-have-no-rank-function`): the image
+    admits no rank function at all.
+  - **Still open for this handle:** degrees `n >= 3` over `F_2`, where supports with a repeated set bring back
+    the scalar `2`.
