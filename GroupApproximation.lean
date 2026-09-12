@@ -844,6 +844,7 @@ import GroupApproximation.Sofic.SymmetricDoubleFlip
 import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
 import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
+import GroupApproximation.Sofic.WreathCentralizerNormalization
 import GroupApproximation.Sofic.FreeLampRigidity
 import GroupApproximation.Sofic.ProfiniteClosure
 import GroupApproximation.Sofic.CentralFreeLampCover
