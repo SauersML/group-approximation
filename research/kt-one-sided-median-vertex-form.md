@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - GroupApproximation/KunThom/MedianVertexForm.lean
   - GroupApproximation/KunThom/MedianVertexFormLocal.lean
+  - GroupApproximation/KunThom/MedianVertexFormBlocks.lean
 ---
 
 **ESTABLISHED, proved here.** Modules `KunThom/MedianVertexForm` and
@@ -41,6 +42,25 @@ artifacts:
 The generic form over any expander decomposition and any vertex-to-object map is
 `failingWeight_negligible`. It keeps the clamped label hypothesis on the ambient
 generators.
+
+**Endgame form** (`MedianVertexFormBlocks.blockRatio_negligible`). This is the shape
+the counting endgame consumes.
+- The objects are embedded blocks `E n : BlockEmbedding (A.model n) (index n)`, and
+  an object `i` weighs `|E.model i|`.
+- The ambient decomposition is any expander decomposition of `A` for a symmetric
+  generating set `T`. The label estimates extend from `C.ambientGenerators` to `T`
+  by closure.
+- **Inputs.** For every compressor `q`:
+  - `f (π q n i) ≤ (1 + κ q n) f i` on `Dom q n` off a family `Bad q n` of
+    negligible total weight, with `κ q` vanishing;
+  - negligible weight outside `Dom q n`;
+  - negligible missing source mass `Σ_{i ∈ Dom q n} sourceDefect (E.bridge (A.map n q) i (π q n i))`.
+
+  Also negligible `E.uncovered`, and, for every embedded generator `s` of `Γ`,
+  negligible `Σ_i sourceDefect (E.bridge (A.map n (embedΓ s)) i i)`.
+- **Conclusion.** For `0 < η` with `2η < 1`, the objects `i ∈ Dom t n` with
+  `¬ ((1 - 2η)² f (π i) ≤ (1 + 2η)² f i ∧ (1 - 2η)² f i ≤ (1 + 2η)² f (π i))` have
+  negligible total weight.
 
 ## Findings
 

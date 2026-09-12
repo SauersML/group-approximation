@@ -8,6 +8,7 @@ requires: []
 artifacts:
   - GroupApproximation/KunThom/MedianVertexForm.lean
   - GroupApproximation/KunThom/MedianVertexFormLocal.lean
+  - GroupApproximation/KunThom/MedianVertexFormBlocks.lean
 ---
 
 ## Direct proof, machine-checked
@@ -34,9 +35,24 @@ artifacts:
   the drop set plus the leak. `le_exp_mul_of_abs_logCut_sub_le` turns bounded
   logarithmic changes into ratio bounds.
 
+- **Embedded blocks.**
+  - `blockObject` reads a vertex through its block, and `none` means uncovered.
+  - The observable is `f` on blocks and `1` on uncovered vertices.
+  - The vertex exceptional sets are at most the object weights, `E.uncovered`, and
+    the missing bridge source mass: `card_outsideVertices_image_some_le`,
+    `card_matchLeak_image_some_le` and `card_blockObject_change_le`.
+  - `sum_card_le_card_objectVertices_image_some` turns the vertex conclusion into
+    total object weight.
+  - `logCut_le_add_of_le_mul` converts `a ≤ (1 + κ) b` into drift `κ`.
+  - `sq_mul_le_of_abs_logCut_sub_le` converts a logarithmic change of at most
+    `2 (log (1 + 2η) - log (1 - 2η))` into the two squared ratio bounds.
+  - `sum_abs_sub_negligible_of_closure` extends the label estimates from
+    `C.ambientGenerators` to every element of `T`.
+
 Probes GREEN:
 - `MedianVertexForm`: base d886a82ec, tag 0912-130712-18586;
-- `MedianVertexFormLocal`: base ec41b9400, tag 0912-131953-87648.
+- `MedianVertexFormLocal`: base ec41b9400, tag 0912-131953-87648;
+- `MedianVertexFormBlocks`: base d465300a3, tag 0912-134145-48087.
 
 The axiom driver at base 2b72dd6f1, tag 0912-132240-12953, prints five closures.
 All five are `[propext, Classical.choice, Quot.sound]`:
@@ -45,3 +61,11 @@ All five are `[propext, Classical.choice, Quot.sound]`:
 - `localRatio_negligible`;
 - `card_vertexExceptional_le`;
 - `card_objectVertices_failing_le`.
+
+The axiom driver at base 426690471, tag 0912-134543-65349, prints five more closures.
+All five are `[propext, Classical.choice, Quot.sound]`:
+- `blockRatio_negligible`;
+- `blockCompressorLabel_negligible`;
+- `blockInvariantLabel_negligible`;
+- `card_matchLeak_image_some_le`;
+- `sq_mul_le_of_abs_logCut_sub_le`.
