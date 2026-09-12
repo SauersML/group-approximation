@@ -298,3 +298,4 @@ GroupApproximation.CharClass.ChernClassesEvenOf
 GroupApproximation.CharClass.ChernGammaBridgeOf
 GroupApproximation.CharClass.OddPEvalNatural
 GroupApproximation.CharClass.OddPEvalMultilinear
+GroupApproximation.Algebra.GHWFrobeniusSeparable

@@ -10,3 +10,5 @@ GroupApproximation/Manuscript/NonMFSentences/HSNullNormalSubgroupSentences.lean
 GroupApproximation/Manuscript/NonMFSentences/DyadicReductionSeparation.lean
 GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB.lean
 GroupApproximation/Algebra/GHWFrobeniusSeparable.lean
+GroupApproximation/Kazhdan/GHWArchimedeanSeparation.lean
+GroupApproximation/Kazhdan/GHWArchimedeanBound.lean
