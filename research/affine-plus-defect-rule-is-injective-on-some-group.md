@@ -51,9 +51,13 @@ surjunctive.
   pair is a constant background plus the inverse correction creating one defect. The only exception
   is when a nontrivial translate `hM` lies in `M ∪ N^-1` and shows `p`
   (`constant-background-kills-unit-linear-defect-rules`). Over `F_3` on three addresses with distinct
-  pairs, every rule falls into this case or into augmentation zero. What is left:
-  - units whose inverse support absorbs memory translates;
-  - patterns using every symbol, which needs `|M| >= q`.
+  pairs, every rule falls into this case or into augmentation zero.
+- **Backgrounds at used symbols.** The same holds when `p` uses every symbol. For each symbol `c`
+  the witness fails only through a nontrivial translate carrying `M \ P_c` into `M ∪ N^-1` and
+  showing `p` (Theorem 13' of the artifact).
+- **Where it stops.** What is left is units whose inverse support absorbs, for every symbol, a
+  translate of the memory minus that symbol's addresses. No such unit is known. Its coincidences
+  would come from finite subgroups or from relations linking `N` to `M^-1`.
 - **Correction witnesses.** Write `L` for the linear part and `D(x) = t 1[x|_(gM) = p]` for the
   defect field.
   - If `x` has defects only on a set `B`, and `x + L^-1(D(x))` has none, the two configurations

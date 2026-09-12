@@ -388,3 +388,20 @@ hence `t sum_m c_m^-1 = 0`. In `F_3` this gives `sum_m c_m = 0`, since `c^-1 = c
   live on such coincidences.
 - **Net.** Up to linear strict automata, the architecture needs a unit `ell` whose inverse support
   absorbs translates of the memory, or a pattern using every symbol. Neither is excluded.
+
+**Theorem 13' (backgrounds at a used symbol).** Keep the notation of Theorem 13. Let `c` be any symbol
+and `P_c = {m in M : p_m = c}`, and define `x` and `x'` as there. Suppose every `h != 1` with
+`h(M \ P_c) ⊆ M ∪ N^-1` shows `p` in neither configuration. Then `tau(x) = tau(x')` and `x != x'`.
+
+*Proof.* Let `h != 1` be a window with a site `hm` outside `M ∪ N^-1` at an address `m` outside
+`P_c`. Both configurations read `c != p_m` there, since `k_((hm)^-1) = 0`. The windows left over are
+exactly those with `h(M \ P_c) ⊆ M ∪ N^-1`, and they are covered by the hypothesis. The rest is the
+proof of Theorem 13. QED
+
+**Consequence.** Take an injective single-defect rule whose linear part is a unit. For every symbol
+`c` there must be a nontrivial translate carrying `M \ P_c` into `M ∪ N^-1` that shows `p` in `x` or
+`x'`.
+- **`p` omits a symbol.** Then `P_c` is empty for that symbol, and the translate must carry all of `M`.
+- **What is left.** Up to linear strict automata, the architecture now stands on one kind of
+  coincidence: the inverse support of the unit absorbs a translate of `M \ P_c`, one for each
+  symbol `c`. So patterns using every symbol no longer escape the witness.

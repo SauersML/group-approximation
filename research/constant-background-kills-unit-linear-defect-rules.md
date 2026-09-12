@@ -33,7 +33,10 @@ Then the automaton is not injective.
     linear strict automaton (`avoidable-patches-of-affine-rules-inherit-linear-injectivity`).
   - Or `p` omits a symbol, and the theorem applies.
 - **The ternary example.** `x_1 + x_a + x_b + [x = (0,1,2)]` is of the first kind.
-- **What is left of the architecture.** Units whose inverse support absorbs memory translates, or
-  patterns using every symbol (`|M| >= q`).
+- **Backgrounds at a used symbol (Theorem 13').** For any symbol `c` with `P_c = {m : p_m = c}`, the
+  same witness works unless some `h != 1` carries `M \ P_c` into `M ∪ N^-1` and shows `p` there.
+- **What is left of the architecture.** Take an injective single-defect rule with a unit linear part.
+  It needs, for every symbol `c`, a nontrivial translate of `M \ P_c` absorbed into `M ∪ N^-1` that
+  shows `p`. Patterns using every symbol do not escape.
 
 Artifact, Section 4.
