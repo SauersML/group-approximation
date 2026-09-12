@@ -315,3 +315,30 @@ are excluded from the `F_3` gate as well. So in every characteristic a surviving
 restricts to `SL_3(F_p)` as something other than `(natural (x) W) (+) trivial`: a
 complement on which `SL_3(F_p)` acts nontrivially, composition factors other than the
 natural one, or a non-split extension between natural and trivial factors.
+
+## 8. Tensor-type shapes
+
+**Calibration.** The honest rank models of `EL_3(F_q[t])` include representations that
+are not modules over the ring itself: natural (x) dual, `g |-> rho_k(g) (x) rho_k(g)^(-T)`,
+and symmetric, exterior and tensor powers. Their unit root elements are not block
+supported. In characteristic two, natural (x) dual sends `x_ij(1)` to `1 + N` with
+
+```text
+N = E (x) 1 + 1 (x) E' + E (x) E',     E = E_ij,   E' = E_ji,     N^2 = 0,
+```
+
+with no trivial summand to split off. Suppose an argument for block support of
+`sigma(x_ij(1)) - 1` uses only the characteristic, `N^p = 0`, ranges and kernels in the
+regular ring, and the Steinberg relations. Then it applies verbatim to
+`EL_3(F_2[t])`, where its conclusion is false. Any such argument has to use simplicity
+and non-direct-finiteness of `R` at some step.
+
+**The literal tensor constructions die for `R`.** They are assembled from approximate
+modules over tensor algebras `R^(x a) (x) (R^op)^(x b)`; for instance, the conjugation
+action on `M_3(B)` for an approximate `R`-bimodule `B`. `L_K(1,n)` is central simple, so
+each such tensor algebra is simple. It is not directly finite, because
+`(t_0 (x) 1)(s_0 (x) 1) = 1 != s_0 t_0 (x) 1`. By the argument of Section 1 and Step 4 of
+Section 5, it has no unital homomorphism into a rank ultraproduct or into any corner of
+one. So a surviving model may look like a natural (x) dual, symmetric, exterior or
+Steinberg shape on `SL_3(F_p)`, but it cannot be assembled from a module over any
+tensor algebra of `R` and `R^op`.
