@@ -32,6 +32,9 @@ a bounded-use consequence of R1--R5, let alone of R2, R4 and R5 alone: the
 S4-chart audit of `thompson-v-r5-coherent-alternating-packet` has a negative
 answer at the word level.
 
-It does not decide contextual charts named per five-set, averaged
-synchronization over most adjacent pairs, or matrix inequalities that are not
-area bounds.
+The same counting works for conjugate charts on `k`-subsets for every fixed
+`k>=3`, since adjacent charts share an edge and `J(N,k)` has diameter `k`.
+This includes charts named per five-set whose cross-context comparisons are
+all bounded. It does not decide averaged synchronization over most adjacent
+pairs, where a giant component of the good graph may have diameter of order
+`log N`, or matrix inequalities that are not area bounds.
