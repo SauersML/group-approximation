@@ -21,8 +21,8 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
   most `H(y(e))` for the automaton amplified by
   `strict-automata-give-injective-ca-with-skewed-site-marginals`. When the image of `tau` avoids a symbol
   (`Omega = {e}`), the amplified `kappa` keeps the three-point left inverse, so the reduction runs for such `tau`
-  (w4-three-point, §5.4 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`). For larger `Omega` it
-  is unchecked.
+  (w4-vf-positive-b, §5.4 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`). For larger `Omega`, see
+  the amplification-step entry below.
 - **Where group structure enters.** The conditionings live at the seven sites
   `{s, t, s^-1, s^-1 t, t^-1, t^-1 s, e}`. Relations of `<s, t>` make some of these sites coincide. The joint law of `y`
   there also depends on the encoder windows, so relations of `G` outside `<s, t>` enter too. (Corrected at the second
@@ -38,11 +38,16 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
   differ. A proof has to use the three conditionings jointly. No Shannon-type proof was found, and none has been shown
   impossible. (Corrected at the second landing: the first entry said the per-term bound is tight and that a proof
   must use realizability; both are withdrawn.)
-- **Amplification step: open** (`skewed-marginal-amplification-enlarges-decoder-memory`, OPEN). The decoder built in
-  the skewed construction reads `N_tau ∪ W_anchor ∪ W_block`. The only proved lower bound is that any left inverse of
-  the amplified `kappa` restricts to a left inverse of `tau` with contained memory (artifact Lemma 3.1). So the
-  reduction above is not known to work: it needs a three-point left inverse of `kappa`, and whether one exists is
-  open. (Corrected at the second landing: the first entry asserted the enlargement as established.)
+- **Amplification step** (artifact Section 3; memory formula and cases from w4-vf-positive-b). The constructed left
+  inverse of the amplified `kappa` has memory `N_tau Omega^(-1)(Omega Omega^(-1) ∪ Omega)`.
+  - **`tau` avoiding a symbol:** take `Omega = {e}`. The constructed left inverse has memory `N_tau`, three points, and
+    the site law is still skewed. So for these `tau` the reduction above runs as stated.
+  - **Every missing pattern needs at least two sites:** the constructed memory exceeds three points when `<s,t>` is
+    nonamenable. The only lower bound for every left inverse is artifact Lemma 3.1. Whether some left inverse keeps
+    three points is open (`skewed-marginal-amplification-enlarges-decoder-memory`).
+
+  (Corrected twice. The first entry asserted the enlargement as established. The second said the reduction is not
+  known to work for any `tau`.)
 - **Caution on the free case.** "The free case `<s,t> = F_2` is sofic, hence already true" is about soficity of the
   decoder memory group, not of the host `G`. Two gaps:
   - the amenable mechanism reduces the free case to pre-injectivity of a surjective automaton over `F_2`, where

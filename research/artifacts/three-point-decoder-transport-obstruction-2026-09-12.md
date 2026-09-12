@@ -3,10 +3,14 @@
 Lane `w4-three-point`, 2026-09-12. Mathematics on paper only. Convention `tau(x)(g) = mu((x(gm))_(m in M))`;
 a left inverse `sigma` has memory `N` with `sigma tau = id` and `x(g) = nu((y(gn))_(n in N))`, `y = tau(x)`.
 
-**Corrections, first landing e87f4c60f5 (Section 5 lists them).** Proposition 1 has a direct subadditivity proof, and
-the tightness remark is withdrawn. Proposition 2 was landed as a lower bound on every left inverse, but its argument
-only describes the constructed decoder. It is replaced by Lemma 3.1, and the claim
-`skewed-marginal-amplification-enlarges-decoder-memory` is reset to OPEN.
+**Corrections (Section 5 lists them).**
+- **Second landing** (after w3-vf-positive's note on the first landing, e87f4c60f5).
+  - Proposition 1 has a direct subadditivity proof, and the tightness remark is withdrawn.
+  - Proposition 2 was landed as a lower bound on every left inverse, but its argument covered only the constructed
+    decoder. It is replaced by Lemma 3.1, and `skewed-marginal-amplification-enlarges-decoder-memory` is reset to OPEN.
+- **Third landing** (after w4-vf-positive-b, verification §5).
+  - When `tau` avoids a symbol the reduction works (3.1).
+  - The open claim is restated for strict `tau` whose missing patterns all need at least two sites.
 
 ## 0. Question
 
@@ -33,9 +37,13 @@ image law. QED
 `injective-ca-random-order-transport-identity`.
 
 **Remark 1.1 (what this says about the transport identity).** Bounding each transport term by `H(y(e))` and summing
-gives exactly the subadditivity bound. So the identity adds nothing at that level. The constant `1/|N|` is not claimed
-to be sharp: over amenable groups every injective automaton already has `H(y(e)) >= log |A|`. Domination (Corollary 2
-of the transport artifact) is the constant-`1` statement, and it is equivalent to the goal.
+gives exactly the subadditivity bound, so the identity adds nothing at that level. Domination (Corollary 2 of the
+transport artifact) is the constant-`1` statement, and it is equivalent to the goal.
+- **Not sharp:** over amenable groups every injective automaton already has `H(y(e)) >= log |A|`.
+- **Not the best elementary constant** (w4-vf-positive-b). The counting bound
+  `H(y(e)) >= log |A| · sup_F |F| / |F N|` has Proposition 1 as its `F = {e}` case. For `N = {e, s, t}` with `s, t`
+  generating a free semigroup, the positive words `F_L` of length at most `L` give `F_L N = F_(L+1)`, so the ratio
+  tends to `1/2`. It stays below `1` when `<N>` is nonamenable.
 
 **Remark 1.2 (where a proof has to look).** The sharper per-term bound `A_n <= H(y(e) | Z_n, U)` gives
 `sum_n H(y(e) | Z_n, U) >= log |A|`. That is not domination, because the three conditionings differ, so a proof has
@@ -69,14 +77,29 @@ So the free-`Gamma` case should be treated as open, not cited as settled. This i
 
 ## 3. The amplification step
 
-The decoder built in the skewed-marginal construction reads three windows:
-- `W_anchor`, the window on track `0` that recognises the self-separating anchor pattern on `Omega Omega^(-1)`;
-- `W_block`, the anchored-block window, to invert the greedy recoding;
-- `N_tau`, to invert `tau` on tracks `1..k`.
+The left inverse built in the skewed-marginal construction first undoes the recoding, then applies a left inverse of
+`tau` on tracks `1..k`. To undo the recoding at a site it reads the anchor window and the block window,
+`X = Omega^(-1)(Omega Omega^(-1) ∪ Omega)`. So the constructed left inverse has memory `N_tau X`
+(w4-vf-positive-b, verification §5).
 
-That shows one left inverse reads `N_tau ∪ W_anchor ∪ W_block`. It does not bound every left inverse. The first
-landing argued "each step reads sites the others do not", which is a property of that decoding procedure only. The
-lower bound actually proved is:
+**3.1 When `tau` avoids a symbol, the reduction works** (w4-vf-positive-b). Suppose the image of `tau` avoids one
+symbol. Take `Omega = {e}`:
+- `Omega Omega^(-1) = {e}`, anchors are the sites where track `0` shows the fixed symbol, and blocks are single sites;
+- `X = {e}`, so the constructed left inverse has memory `N_tau`, three points;
+- the skewing theorem still applies, because the classes are singletons and the last class is empty.
+
+So for every strict three-point-decoder `tau` whose image avoids a symbol, `kappa` is injective, has a three-point
+left inverse, and has a non-uniform site law. Three-point domination (the `h_fin` reading of the target) would
+exclude every such `tau`.
+
+**3.2 When every missing pattern needs at least two sites.** If `|Omega| >= 2` and `<s, t>` is nonamenable, the
+constructed memory has more than three points (w4-vf-positive-b, coset count).
+- `e in X`, so `N_tau X = N_tau` forces `N_tau x = N_tau` for every `x in X`.
+- Then `N_tau` is a union of left cosets of `<X>`, which contains `e`.
+- So `<X> = N_tau`, a subgroup of order `3` (it is not trivial, because `|Omega| >= 2`).
+- Then `s, t` lie in a finite group, which contradicts nonamenability.
+
+This bounds the constructed left inverse only. For every left inverse the proved lower bound is:
 
 **Lemma 3.1.** Every left inverse of `kappa` with memory `N` yields a left inverse of `tau` whose memory is contained
 in `N`.
@@ -86,19 +109,21 @@ anchor occurs anywhere. Fix constant configurations on tracks `2..k`. On these i
 `kappa(x) = (x_0, tau(x_1), tau(x_2), ..., tau(x_k))`, and every output track except track `1` is constant (`tau`
 sends constants to constants). Plug those constant tracks into the track-`1` coordinate of the left inverse. The
 result is an automaton with memory contained in `N` that sends `tau(x_1)` to `x_1`. QED
+(Verified by w4-vf-positive-b.)
 
-**Consequence.** The reduction proposed on the target node is not known to work.
-- It needs a left inverse of `kappa` with three-point memory.
-- The construction supplies one reading `N_tau ∪ W_anchor ∪ W_block`.
-- Lemma 3.1 bounds the memory of `kappa` below only by a left-inverse memory of `tau`.
+**Consequence.**
+- **`tau` avoiding a symbol:** the reduction on the target runs as stated (3.1).
+- **Every missing pattern needs at least two sites:** the reduction is not known to work.
+  - It needs a left inverse of `kappa` with three-point memory.
+  - The constructed one has more points when `<s, t>` is nonamenable (3.2).
+  - Lemma 3.1 bounds every left inverse below only by a left-inverse memory of `tau`.
 
-Whether some amplification keeps three points is the open claim `skewed-marginal-amplification-enlarges-decoder-memory`
-(stated as the enlargement, which would block the reduction). Until it is decided there are two honest readings of
-the target:
-- the `h_fin` statement for three-point-decoder automata, a special case of
-  `injective-ca-images-have-full-single-site-entropy`;
-- a surjectivity statement whose transport route runs through the constructed `kappa`, where Proposition 1 gives
-  only `H >= log |A^(k+1)| / |memory|`.
+  That class is the open claim `skewed-marginal-amplification-enlarges-decoder-memory`. For it there are two honest
+  readings of the target:
+  - the `h_fin` statement for three-point-decoder automata, a special case of
+    `injective-ca-images-have-full-single-site-entropy`;
+  - a surjectivity statement whose transport route runs through the constructed `kappa`, where Proposition 1 gives
+    only `H >= log |A^(k+1)| / |memory|`.
 
 ## 4. Status
 
@@ -108,13 +133,20 @@ the target:
 - **No proof and no counterexample.** A counterexample would be an injective automaton with a three-point left
   inverse, `<s, t>` nonamenable, and `H(site) < log |A|`. None is known.
 
-## 5. Corrections to the first landing (e87f4c60f5)
+## 5. Corrections
 
-1. **Proposition 1.** Adopted w3-vf-positive's direct proof. Withdrew the remark that the per-term bound is attained
-   and that no term-by-term argument beats `1/|N|`: attainment holds only for one order realization in the `Z`
-   example, and averaged it is `3/2 < 2`. Old Corollary 1.2 ("a proof must use realizability, not only the information
-   relations") is now Remark 1.2, stated as what I did not find, not as an impossibility.
-2. **Proposition 2.** Withdrew the lower bound on every left inverse, and replaced it with Lemma 3.1.
-   `skewed-marginal-amplification-enlarges-decoder-memory` is reset to OPEN, and its proof route is deleted.
-3. **Section 2.3.** Sharpened the free-case caution with the encoder-window dependence, and flagged the Bartholdi
-   attribution as not re-read.
+1. **Proposition 1** (second landing). Adopted w3-vf-positive's direct proof. Withdrew the remark that the per-term
+   bound is attained and that no term-by-term argument beats `1/|N|`: attainment holds only for one order realization
+   in the `Z` example, and averaged it is `3/2 < 2`. Old Corollary 1.2 ("a proof must use realizability, not only the
+   information relations") is now Remark 1.2, stated as what I did not find, not as an impossibility.
+2. **Proposition 2** (second landing). Withdrew the lower bound on every left inverse, and replaced it with Lemma 3.1.
+   `skewed-marginal-amplification-enlarges-decoder-memory` was reset to OPEN, and its proof route deleted.
+3. **Section 2.3** (second landing). Sharpened the free-case caution with the encoder-window dependence, and flagged
+   the Bartholdi attribution as not re-read.
+4. **Section 3** (third landing, w4-vf-positive-b §5).
+   - Added the constructed-memory formula `N_tau X`, the case `Omega = {e}` (3.1), where the reduction works, and the
+     coset count (3.2).
+   - The second landing said the reduction "is not known to work" for every `tau`. That now holds only for `tau` whose
+     missing patterns all need at least two sites.
+   - The open claim is restated for that class.
+   - Remark 1.1 now notes that the counting bound does better than `1/|N|`.

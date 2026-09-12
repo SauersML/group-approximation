@@ -2,20 +2,27 @@
 rg: 2
 id: skewed-marginal-amplification-enlarges-decoder-memory
 kind: claim
-title: Skewed-marginal amplifications of three-point-decoder strict automata have no three-point left inverse
+title: Skewed-marginal amplifications of symbol-complete three-point-decoder strict automata have no three-point left inverse
 distinct_from:
   strict-automata-give-injective-ca-with-skewed-site-marginals: that builds the amplified injective automaton and bounds its single-site entropy; this asks whether every left inverse of that automaton needs more than three points, which decides whether three-point domination can feed the three-point-decoder surjectivity claim.
 artifacts:
   - research/artifacts/three-point-decoder-transport-obstruction-2026-09-12.md
+  - research/artifacts/gk-vf-positive-b-verification-2026-09-12.md
 ---
 
-**OPEN.** Let `tau` be a strict automaton over `G` with a left inverse of memory `N_tau = {e, s, t}`, and let `kappa` on
-`(A^(k+1))^G` be an injective automaton given by the construction of
+**OPEN.** Let `tau` be a strict automaton over `G` with a left inverse of memory `N_tau = {e, s, t}`, `<s, t>`
+nonamenable. Suppose every pattern missing from the image of `tau` needs at least two sites, so every symbol occurs in
+the image. Let `kappa` on `(A^(k+1))^G` be an injective automaton given by the construction of
 `strict-automata-give-injective-ca-with-skewed-site-marginals`. Then no left inverse of `kappa` has three-point memory.
 
 **If true**, the reduction proposed on `three-point-decoder-memory-injective-ca-are-surjective` (amplify, then dominate
-the transport for three-point decoders) cannot run as stated. **If false**, three-point domination would give
-surjectivity for three-point-decoder strict pairs.
+the transport for three-point decoders) cannot run for this class. **If false**, three-point domination would give
+surjectivity for these strict pairs too.
+
+**Restated at the third landing** (after w4-vf-positive-b §5). The earlier statement covered every strict `tau`. It
+fails whenever the image of `tau` avoids a symbol: there `Omega = {e}`, the constructed left inverse has memory
+`N_tau`, and the reduction runs (artifact 3.1). So the claim is now stated only for strict `tau` whose missing
+patterns all need at least two sites.
 
 ## Attempts
 - **The constructed decoder reads more.** The left inverse built in the construction reads `N_tau ∪ W_anchor ∪ W_block`:

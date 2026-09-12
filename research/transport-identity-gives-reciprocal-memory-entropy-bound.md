@@ -30,3 +30,8 @@ case, equivalent to the goal) needs the conditionings used jointly.
   attainment holds only for one order realization in the `Z` example, and the average there is `3/2 < 2`.
 - **Sharper per-term form.** `A_n <= H(y(e) | Z_n, U)` gives `sum_n H(y(e) | Z_n, U) >= log |A|`. That is not
   domination, because the conditionings differ. See `three-point-decoder-memory-injective-ca-are-surjective`.
+- **Not the best elementary constant** (w4-vf-positive-b, verification §5). This is the `F = {e}` case of the counting
+  bound `H(y(e)) >= log |A| · sup_F |F| / |F N|`, proved the same way: `x|_F` is a function of `y|_(FN)`. The counting
+  bound can do better on nonamenable decoders. Take `N = {e, s, t}` with `s, t` generating a free semigroup, and let
+  `F_L` be the positive words of length at most `L`. Then `F_L N = F_(L+1)`, so the ratio tends to `1/2 > 1/3`. It
+  stays below `1` whenever `<N>` is nonamenable, as recorded on `injective-ca-images-have-full-single-site-entropy`.
