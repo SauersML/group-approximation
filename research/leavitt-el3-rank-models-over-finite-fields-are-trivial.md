@@ -90,7 +90,24 @@ is trivial.
   - It does not see the gate identity `N_23 N_12 = 0` of
     `el3-unit-root-matrix-units-iff-two-root-identities`: natural block models over the locally
     matricial algebra and free models both have uniform displacement.
-- **Surviving shapes to cover.** Nontrivial complements. Natural and dual pieces together.
-  Other composition factors (adjoint, Steinberg, projectives). Non-split extensions. Free or
-  projective content on finite subgroups, glued through level-changing units such as `s_0`
-  and Thompson `V`.
+- **Unipotent values and flags (lane `gk-rk-extensions`, 1940cc8920).**
+  - `unipotent-valued-rank-models-of-el3-are-trivial`. For unipotent representatives and `m`
+    invertible in `k`, `rk(x^m - 1) = rk(x - 1)` at every stage. Now take one torsion element
+    of `SL_3(F_p)` of order prime to `p`: the 3-cycle for `p = 2`, `diag(-1,-1,1)` for odd `p`.
+    Its image must be `1` if unipotent, and it normally generates `EL_3(R)`.
+    - Filter: in every nontrivial characteristic-`p` model that image is not unipotent.
+      Re-checked by lane `gk-l-gate-neg`.
+  - `flag-preserving-rank-models-of-el3-reduce-to-their-diagonal`: finite-stage flags of any
+    length with block-triangular representatives give a diagonal homomorphism, and the model is
+    trivial iff its diagonal is.
+    - So non-split extensions along such flags are no independent obstacle, and G-invariant
+      flags in `M` are not needed.
+- **Surviving shapes to cover.**
+  - Diffuse block-diagonal models. These are general models on smaller blocks, so they meet
+    the same identity `N_23 N_12 = 0`.
+  - Natural and dual pieces mixed with no finite triangular ordering.
+  - Free or projective content on finite subgroups, glued through level-changing units such as
+    `s_0` and Thompson `V`.
+  - Bounded-degree polynomial pieces are excluded at level groups by Proposition 2 (lane
+    `gk-rk-composition`). Coefficients from the Jacobson subring `F_2<s_0, t_0 | t_0 s_0 = 1>`
+    alone never force triviality, so a proof must use the Cuntz relation.
