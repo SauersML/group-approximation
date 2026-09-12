@@ -25,7 +25,7 @@ hypothesis is one named Leray–Hirsch input, `CompactLerayHirschDualOf`, and th
 ## Main declarations
 
 * `SplittingDataOf.powerDataN`, `hasSplittingPN_of_splittingDataOf` — the producer on even parts.
-* `nontrivial_evenPartOf` — the even part of a nonempty space is nontrivial.
+* `nontrivial_evenPartOf_of_nonempty` — the even part of a nonempty space is nontrivial.
 * `ChernSplittingOf.flagRootOf` — the roots at the flag.
 * `ChernSplittingOf.hasSplittingPN_flag_ofGraded` — the flag assembly.
 * `ChernSplittingOf.CompactLerayHirschDualOf` — the named Leray–Hirsch input.
@@ -107,7 +107,7 @@ theorem hasSplittingPN_of_splittingDataOf {K : Type} [CommRing K] {p : ℕ} {N F
     exact (hnat i).symm
 
 /-- **The even part of a nonempty space is nontrivial**, over every nontrivial ring. -/
-theorem nontrivial_evenPartOf (K : Type) [CommRing K] [Nontrivial K] (Y : TopCat.{0})
+theorem nontrivial_evenPartOf_of_nonempty (K : Type) [CommRing K] [Nontrivial K] (Y : TopCat.{0})
     [Nonempty Y] : Nontrivial (Gen.evenPart K Y) := by
   refine ⟨⟨1, 0, fun h => ?_⟩⟩
   have h' : (1 : TotalHOf K Y) = 0 := congrArg Subtype.val h
@@ -233,9 +233,9 @@ theorem hasSplittingPN_of_compact (K : Type) [Field K]
   haveI hflag : Nonempty (Bundle.Flag E r) := Wu.flag_nonempty E r hrank r le_rfl
   haveI : Nonempty (TopCat.of X) := ‹Nonempty X›
   haveI : Nonempty (TopCat.of (Bundle.Flag E r)) := hflag
-  haveI : Nontrivial (Gen.evenPart K (TopCat.of X)) := nontrivial_evenPartOf K (TopCat.of X)
+  haveI : Nontrivial (Gen.evenPart K (TopCat.of X)) := nontrivial_evenPartOf_of_nonempty K (TopCat.of X)
   haveI : Nontrivial (Gen.evenPart K (TopCat.of (Bundle.Flag E r))) :=
-    nontrivial_evenPartOf K (TopCat.of (Bundle.Flag E r))
+    nontrivial_evenPartOf_of_nonempty K (TopCat.of (Bundle.Flag E r))
   exact hasSplittingPN_flag_ofGraded K hgen E r hr1 hrank (hLH X E r hrank hr1)
     (hLH (Bundle.Flag E r) (Wu.flagPullback E r) r (Wu.rank_flagPullback E r hrank) hr1)
     (flagRest_pull_injectiveOf K hgen hLH E r hrank) PN PF hzero_root hzero_one hone_pos hcartan
@@ -247,7 +247,7 @@ end
 
 #audit_axioms SplittingDataOf.powerDataN
 #audit_axioms hasSplittingPN_of_splittingDataOf
-#audit_axioms nontrivial_evenPartOf
+#audit_axioms nontrivial_evenPartOf_of_nonempty
 #audit_axioms ChernSplittingOf.flagRootOf
 #audit_axioms ChernSplittingOf.hasSplittingPN_flag_ofGraded
 #audit_axioms ChernSplittingOf.CompactLerayHirschDualOf
