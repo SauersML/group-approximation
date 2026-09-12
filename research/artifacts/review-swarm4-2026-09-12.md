@@ -1256,3 +1256,95 @@ element $b\in R$, the equation $(1-x_1)u=bv$ has a non-zero solution in $R$?" Th
 - This answers a published question in the positive.
 - It does not touch amenability of `F`. `C_+` and `O_1` contain only one-bump elements, and a non-Ore pair must
   avoid the product class of item 3 of the rescaled-binomial claim.
+
+## 34. UCT permanence, central relative thresholds, relative PBH products and Sp(n,1) torsion (d2ed3c4b6, 45edbd4de, 36402f028, c48a38ab6)
+
+### 34.1 `gardella-rokhlin-actions-preserve-uct` (d2ed3c4b6): PASS as a citation
+
+- It agrees with Gardella, arXiv:1408.1946, Theorem 3.13: a Rokhlin action of a compact group on a separable simple
+  nuclear UCT algebra has UCT fixed-point algebra and crossed product.
+- The bridge between definitions (Hirshberg–Winter, Izumi, Barlak–Li Definition 2.6) is stated for finite groups and
+  unital algebras, as needed.
+- The "passes down, asks whether it passes up" reading is consistent with §29.5.
+- The quote was not re-extracted here.
+
+### 34.2 `fpbs-central-amenable-relative-threshold-is-pu` (45edbd4de): PASS
+
+- **Monotonicity.** For `I <= J`, an `I`-infinite cluster is `J`-infinite, so `p_c(J;G) <= p_c(I;G)`.
+- **`J = AC` is amenable and wq-normal.**
+  - `J` is a quotient of `A × C`, so it is amenable.
+  - Take any `J <= I′ < Γ` and `g ∉ I′`. Then `g I′ g^-1 ∩ I′ ⊇ C`, which is infinite.
+  - This uses the intermediate-subgroup definition recorded in `fpbs-hp-wq-normal-uniqueness-transfer`.
+- **Squeeze.** `p_u = p_c(J;G) <= p_c(A;G) <= p_u`. The last inequality is §27.11.
+- **Reading.** Correctly scoped as an obstruction to a method: on central extensions, a relative gap along a
+  subgroup is no easier than `p_c < p_u`.
+
+### 34.3 `relative-pbh-closed-under-finite-direct-products` (36402f028): PASS
+
+- **Type [A_2].**
+  - `Stab_G(s) = Stab_(G_1)(s) × G_2` is finitely generated.
+  - The four blocks of `S × S` have finitely many orbits.
+  - The kernel is `K_1 × K_2`, because both `S_i` are nonempty.
+- **Sharp embeddings and removability.** Both pass coordinatewise. The normal closure of `F_1 × 1` in
+  `G_1′ × G_2′` is `K_1′ × 1`.
+- **Route `bh-product-closure-via-a2-kernel-removal`.** It checks as a conditional:
+  - `j(S_1×S_2) ∩ K′ = j((S_1×S_2) ∩ K) = 1`;
+  - `G′/K′` is finitely presented and acts faithfully with type (A);
+  - Zaremsky's Corollary B applies.
+- `boone-higman-closed-under-finite-direct-products` is correctly OPEN.
+
+### 34.4 Sp(n,1) torsion and pro-p kernels (c48a38ab6): four PASS, one correctly OPEN
+
+- **`sp21-congruence-tower-p-torsion-grows-at-least-linearly`: PASS.**
+  - For uniform `U`, `U_m = P_(m+1)(U)`, so `[U_m,U_m] <= P_(2m+2) = U_(2m+1)`. Then
+    `|U_m^ab| >= |U_m : U_(2m+1)| = p^(D(m+1)) = p^D [Δ:Δ_m]`.
+  - (T) makes `H_1(Δ_m;Z)` finite, with p-part `P_m^ab`, which maps onto `U_m^ab` with kernel the image of `N`.
+- **`sp21-p-series-betti-stabilizes-iff-finite-pro-p-kernel`: PASS.**
+  - If `d(Φ^i(P)) = D`, the map of Frattini quotients onto `U^(p^i)/U^(p^(i+1))` is an isomorphism, so
+    `N ∩ Φ^i(P) ⊆ Φ^(i+1)(P)`.
+  - Stabilization and `∩_i Φ^i(P) = 1`, valid for finitely generated pro-p groups, embed `N` in a finite quotient.
+- **`sp21-gs-certificate-shape-at-uniform-levels`: PASS, with (iii) conditional on Lazard.**
+  - (ii) The presentation complex has `χ = 1 - |X| + |R| = 1 - d + dim H^2(K;F_p)`, and `H^2(Δ) -> H^2(K)` is
+    injective.
+  - (iv) A lift `s : Δ -> E` whose image misses `F_p` would be a complement, forcing `c̄ = 0`. So `s` is onto and not
+    congruence.
+- **`sp21-pro-p-kernel-invisible-to-local-linear-reps`: PASS, conditional on (SR) and (V) in the residue-characteristic
+  `p` case.**
+  - Positive characteristic: finite images.
+  - Residue characteristic `ℓ ≠ p`: a pro-p subgroup meets the open pro-ℓ congruence subgroup trivially, so the
+    image is finite.
+  - Residue characteristic `p`: Theorem A (review-backlog-2 §14) runs on the graph `P_2`. It uses only finite rank,
+    density of `Δ` and the surjection `pr_1`, and `ker pr_1 ≅ ρ(N)`.
+- **`kazhdan-group-with-golod-shafarevich-mod-p-cohomology`: correctly OPEN.** `dim H^2 >= d` from the Ext term, so a
+  certificate needs `d > 4`.
+
+## 35. The Leavitt pair and (H1), and rank rounding over fields (5c0603721, 9919a5637, 8a6eff4cc)
+
+### 35.1 `leavitt-pair-vertex-rounding-is-nonhyperlinearity`: PASS; it corrects the scope of (H1)
+
+- **Identification.** `GL_n(R) = EL_n(R)` and `M_k(R) ≅ R` identify both `Γ` and `G_L` with `Q = R^×`. `Q` is simple,
+  infinite and not residually finite, so every finite-dimensional unitary representation is trivial.
+- **3 ⟹ 1.** A trace-preserving `σ` is a hyperlinear embedding, so if `Q` is not hyperlinear, (H1) holds vacuously.
+- **1 ⟹ 2.** Rounding representations are trivial, while `||σ(s) - 1||_2 = √2` for every `s ≠ 1` in the Kazhdan set.
+- **Consequence for the chain.** `hs-stable-vertex-rounding-for-every-model`, read over every infranormal non-normal
+  Kazhdan pair, already implies that `Q` is not hyperlinear. Consumers must instantiate (H1) at the Theorem E pair.
+  The 9919a5637 note records exactly that. With §30, (H1) at the Theorem E pair is the one open existence input of the
+  non-hyperlinear chain.
+- `kun-thom-wreath-embeds-in-leavitt-unit-group` is correctly OPEN.
+
+### 35.2 `kazhdan-rank-rounding-fails-over-every-field`: PASS
+
+- **Invariant subspaces.** The matrix units `E_ij ⊗ x^k` generate `M_3(A)`, so the invariant subspaces are the
+  `I^3` with `I = gA`.
+- **Almost invariance.** `W = S_m^3` gains at most one dimension under each generator.
+- **Distance.** With `e = deg g`, `dim(S_m ∩ gA) = max(0, m-e)`, so
+  `d(W, I^3) = 3[m + N - e - 2max(0, m-e)] >= 3min(m, N-m)`.
+- **Irreducibility.** Eisenstein makes `A` a field for `f = x^N - 2`.
+- **Commutator bound.** The truncation projections commute with the generators up to rank 2.
+- **Input.** Ershov–Jaikin-Zapirain supplies (T) for `EL_3(Z[t])`.
+- **Reading.** Correctly scoped: property (T) gives no rank-metric rounding over any field, and what is missing is
+  Hilbert structure.
+- **The win–win pair.** `c-linear-sofic-groups-kill-rigid-compression-defects` and
+  `c-linear-sofic-group-carries-nontrivial-rigid-defect` are correctly OPEN, and they refute each other. Exactly one
+  of the routes `non-linear-sofic-via-c-rank-row-defect` (existence of a non-linear-sofic group) and
+  `linear-sofic-nonsofic-via-c-rank-row-defect` (Arzhantseva–Paunescu Question 8.5) has a true prerequisite.
