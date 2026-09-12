@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md
   - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
+  - research/artifacts/leavitt-kaplansky-pair-dichotomy-2026-09-12.md
 ---
 
 Let `R = L_(F_2)(1,2)`, `Q = R^x`, `S = F_2[Q]`, `pi : S ->> R` the evaluation,
@@ -41,3 +42,11 @@ field, a defect `1 - ab` is never equivalent to `1`, since that would put a
 unital binary Leavitt family in `k[G]`. In case (V) the defect lifts `s_1 t_1`,
 which is equivalent to `1` in `R`. So a witness to (V*) lifts the pair
 `(s_0, t_0)` exactly but cannot be completed to a lift of the whole family.
+
+**Two proofs.** The orbit theorem this rests on has two routes. The elementary one
+is `leavitt-one-sided-pairs-unit-translates-proof`, through monomial pure
+infiniteness. The imported one is
+`leavitt-one-sided-pairs-unit-translates-via-projective-monoid`, through Bergman's
+projective monoid. The gk-kdf-lift lane proved this classification independently
+the same day. Its copy was merged into this node, and its artifact records the
+mapping of ids.

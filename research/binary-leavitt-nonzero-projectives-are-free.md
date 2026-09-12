@@ -18,5 +18,7 @@ constructions*, Trans. AMS 200 (1974), Theorem 6.1). For `n = 2` the monoid is `
 graph-algebra form is Ara--Moreno--Pardo, *Nonstable K-theory for graph algebras*, Algebr.
 Represent. Theory 10 (2007), Theorem 3.5, for one vertex with two loops.
 
-Its consumer is `leavitt-kaplansky-pairs-split-kernel-local-or-s0-lift` (Lemma 1 of the artifact):
-every left-invertible non-unit `x` of `L_(F_2)(1,2)` equals `u s_0` for a unit `u`.
+Its consumer is the route `leavitt-one-sided-pairs-unit-translates-via-projective-monoid` (Lemma 1
+of the artifact): every left-invertible non-unit `x` of `L_(F_2)(1,2)` equals `u s_0` for a unit
+`u`. That route is the imported second proof of `leavitt-one-sided-pairs-are-unit-translates-of-s0-t0`,
+beside the elementary route through `binary-leavitt-algebra-is-purely-infinite-by-monomials`.

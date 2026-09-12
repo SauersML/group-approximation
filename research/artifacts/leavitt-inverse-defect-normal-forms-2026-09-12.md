@@ -284,7 +284,38 @@ along `pi`.
   `P (x)_S R ~= R`; (I*) asks for one with `P (x)_S R = 0`. Direct sums of
   copies stay in their class, since `R (+) R ~= R`.
 
-## 7. Scope
+## 7. Merge with the gk-kdf-lift region (2026-09-12)
+
+`research/artifacts/leavitt-kaplansky-pair-dichotomy-2026-09-12.md` proves Theorem 4 and
+Corollary 5 through Bergman's monoid `V(L_K(1,2)) = {0, [R]}`
+(`binary-leavitt-nonzero-projectives-are-free`), with the explicit unit
+`u = alpha t_0 + z t_1`, inverse `s_0 beta + s_1 w`. Its duplicate nodes were retired in favour of
+the ids here:
+
+* `leavitt-kaplansky-pairs-split-kernel-local-or-s0-lift` (and `-proof`) became
+  `leavitt-inverse-defects-are-visible-or-invisible`;
+* `leavitt-kernel-unitization-not-directly-finite` became
+  `leavitt-evaluation-kernel-unitization-not-directly-finite`;
+* `leavitt-df-failure-from-kernel-local-pair` became `kaplansky-failure-from-invisible-kernel-defect`.
+
+Its Lemma 1 is kept as the second route `leavitt-one-sided-pairs-unit-translates-via-projective-monoid`.
+
+Content only that region carried, now folded into the surviving nodes:
+
+* **Kernel corners.** A strict pair `b a = q != a b` in `qSq`, for an idempotent `q` in `K`, gives
+  the pair `(1 - q) + a`, `(1 - q) + b` over `1`.
+* **No nilpotent parts.** `1 + n` with `n` nilpotent is a two-sided unit.
+* **Invisible-defect invariants.** An invisible defect has augmentation-zero factors, zero class in
+  `K_0` and zero lifted trace.
+
+Two new points, recorded on `left-invertible-lift-of-s0-in-leavitt-group-algebra`:
+
+* **Unit reformulation.** The visible problem asks for lifts `a` of `s_0` and `b` of `t_0` with
+  `b a` a unit; `b a - 1` nilpotent suffices.
+* **Linear-sofic gate.** `binary-leavitt-unit-group-is-f2-linear-sofic` implies
+  `leavitt-unit-group-algebra-is-directly-finite`.
+
+## 8. Scope
 
 Nothing here decides either problem, and nothing is claimed about whether
 `S` is directly finite. The content is exact normalization: a search or a proof

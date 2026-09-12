@@ -1,9 +1,24 @@
 # Kaplansky pairs over the binary Leavitt unit group: kernel-local or a lift of (s_0, t_0)
 
-Lane `gk-kdf-lift`, 2026-09-12. Supports the Cairn claims
-`leavitt-kaplansky-pairs-split-kernel-local-or-s0-lift`,
-`binary-leavitt-nonzero-projectives-are-free` and
-`leavitt-kernel-unitization-not-directly-finite`.
+Lane `gk-kdf-lift`, 2026-09-12.
+
+**Merged 2026-09-12.** Lane `gk-kdf-structure` landed the same classification seven minutes
+earlier, through an elementary monomial lemma instead of the Bergman import. The two regions
+were merged without losing content, and the duplicate ids were retired in favour of the earlier
+ones:
+
+* `leavitt-kaplansky-pairs-split-kernel-local-or-s0-lift` and its `-proof` route became
+  `leavitt-inverse-defects-are-visible-or-invisible` and its proof route;
+* `leavitt-kernel-unitization-not-directly-finite` became
+  `leavitt-evaluation-kernel-unitization-not-directly-finite`, which now carries this artifact's
+  kernel-corner, nilpotent-part, augmentation and `K_0` observations;
+* `leavitt-df-failure-from-kernel-local-pair` became `kaplansky-failure-from-invisible-kernel-defect`.
+
+Lemma 1 below survives as the route `leavitt-one-sided-pairs-unit-translates-via-projective-monoid`
+into `leavitt-one-sided-pairs-are-unit-translates-of-s0-t0`. `binary-leavitt-nonzero-projectives-are-free`
+is kept. The claims supported here are therefore `binary-leavitt-nonzero-projectives-are-free`,
+`leavitt-inverse-defects-are-visible-or-invisible` and
+`leavitt-evaluation-kernel-unitization-not-directly-finite`.
 
 ## Setting
 

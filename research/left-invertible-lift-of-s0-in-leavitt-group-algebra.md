@@ -70,6 +70,27 @@ kernel elements `alpha, beta` so that `(b + beta)(a + alpha) = 1`, that is
 
 ## Attempts
 
+**2026-09-12, normal form and unit reformulation (lane `gk-kdf-structure`).**
+
+* **Exhaustiveness.** By `leavitt-inverse-defects-are-visible-or-invisible`, every
+  Kaplansky pair in `F_2[R^x]` whose defect survives evaluation is a translate, by
+  one group element, of a witness to this claim. The partner can then be taken
+  over `t_0`. If `pi(b) = t_0 + gamma t_1`, the involution `1 + s_0 gamma t_1` fixes
+  `s_0` on the left and turns `pi(b)` into `t_0` on the right. The only other kind
+  of pair is `leavitt-evaluation-kernel-unitization-not-directly-finite`.
+* **Unit reformulation.** This claim holds exactly when some lifts `a` of `s_0` and
+  `b` of `t_0` have `b a` a unit of `F_2[R^x]`. Then `b' = (b a)^(-1) b` satisfies
+  `b' a = 1` and still lies over `t_0`, since `pi(b a) = 1`. In particular
+  `b a - 1` nilpotent is sufficient. Trivial units over `1` are only `[1]`, so a
+  nontrivial correction needs a nontrivial unit of the group algebra in `1 + ker(pi)`.
+* **Completion is impossible.** A witness never extends to lifts of `(s_1, t_1)` that
+  complete a Leavitt family, because the augmentation forbids a unital binary Leavitt
+  family in any group algebra over a field. So the defect `1 - a b` lifts `s_1 t_1`
+  but is not equivalent to `1` (Proposition 6 of
+  `research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md`).
+* **Gate.** If `R^x` is linear sofic over `F_2`
+  (`binary-leavitt-unit-group-is-f2-linear-sofic`), this claim is false.
+
 **2026-09-12, SAT on bounded supports (lane `kdf-sat`).** The encoder
 `experiments/nonsofic-certificates/kaplansky-df/sat/dfsat.py`, in target mode,
 imposes two conditions:
