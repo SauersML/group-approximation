@@ -20,9 +20,17 @@ torsion-free group produces an explicit integral matrix over a nonsofic
 subgroup of `E` with Fuglede--Kadison determinant below `1`
 (`algebraic-atiyah-and-determinant-one-group-tester`, consequence 2).
 
+The universal form is `determinant-conjecture`, which implies this claim by
+specialization (`master-host-determinant-from-determinant-conjecture`).  The
+determinant region's Serre-class reformulation
+(`determinant-conjecture-iff-serre-class-spectra`) applies to `E` verbatim.
+
 ## Attempts
 
 * **Sofic groups.**  Dead: `master-host-determinant-via-elek-szabo`, killed
-  by `universal-torsion-free-hosts-not-sofic-or-locally-indicable`.
+  by `universal-torsion-free-hosts-not-sofic-or-locally-indicable`.  The sofic
+  theorem itself is `determinant-conjecture-holds-for-sofic-groups`; the same
+  obstruction at the level of all groups is
+  `nonsoficity-blocks-sofic-determinant-transfer`.
 * No approximation-free proof of the determinant conjecture for any nonsofic
   group is recorded in this graph.
