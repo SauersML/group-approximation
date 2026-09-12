@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.SystolicDismantlable
 import GroupApproximation.GGT.SystolicGraphConditions
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Combinatorics.SimpleGraph.Metric
@@ -28,6 +29,8 @@ or five-cycles.  Let `H` be a finite intersection of balls `B_R(s)`, `s ∈ S`.
 * `exists_dismantlingRank_of_forall_dist_le`: every vertex of `H` that is not ranked first is
   dominated by an earlier vertex (its parent) within the vertices ranked no later than it.  So
   deleting the vertices of `H` from the last-ranked one down dismantles `H` onto one vertex.
+* `dismantlable_of_forall_dist_le`: so `H` is `Dismantlable` in the sense of
+  `GGT/SystolicDismantlable`.
 
 ## Manuscript status
 
@@ -436,9 +439,61 @@ theorem exists_dismantlingRank_of_forall_dist_le {V : Type*} {G : SimpleGraph V}
   exact ⟨fu, hfuH, (hρ fu hfuH u hu (hK fu hfuH) (hK u hu)).2.1 (by omega),
     dominated_by_parent hconn hF1 hF2 hC4 hC5 hlow hρ hK hu hfu⟩
 
+/-- **Finite intersections of balls are dismantlable.**  Let `G` be a connected graph with
+projection cliques, the triangle condition, and no induced four- or five-cycles.  Then every
+nonempty finite intersection `H` of balls `B_R(s)`, `s ∈ S`, is `Dismantlable`.  Delete the
+vertices of `H` in decreasing breadth-first rank; each is dominated by its parent among the
+vertices that remain. -/
+theorem dismantlable_of_forall_dist_le {V : Type*} [DecidableEq V] {G : SimpleGraph V}
+    (hconn : G.Connected) (hF1 : ProjectionClique G) (hF2 : TriangleCondition G)
+    (hC4 : NoInducedFourCycle G) (hC5 : NoInducedFiveCycle G)
+    {S : Finset V} {R : ℕ} {H : Finset V} (hH : ∀ x, x ∈ H ↔ ∀ s ∈ S, G.dist s x ≤ R)
+    (hne : H.Nonempty) : Dismantlable G H := by
+  obtain ⟨ρ, hinj, hdom⟩ := exists_dismantlingRank_of_forall_dist_le hconn hF1 hF2 hC4 hC5 hH hne
+  -- every nonempty initial segment of the ranking is dismantlable
+  have key : ∀ (n : ℕ) (P : Finset V), P.card = n + 1 → P ⊆ H →
+      (∀ x ∈ P, ∀ y ∈ H, ρ y ≤ ρ x → y ∈ P) → Dismantlable G P := by
+    intro n
+    induction n with
+    | zero =>
+      intro P hP _ _
+      obtain ⟨v, rfl⟩ := Finset.card_eq_one.mp (by omega : P.card = 1)
+      exact Dismantlable.single v
+    | succ n ih =>
+      intro P hP hPH hPlow
+      obtain ⟨u, hu, hmax⟩ := Finset.exists_max_image P ρ (Finset.card_pos.mp (by omega))
+      obtain ⟨y, hy, hyu⟩ := Finset.exists_mem_ne (s := P) (by omega) u
+      have hρyu : ρ y < ρ u := by
+        have h1 := hmax y hy
+        have h2 : ρ y ≠ ρ u := fun h => hyu (hinj y (hPH hy) u (hPH hu) h)
+        omega
+      obtain ⟨w, hwH, hρwu, hdomw⟩ := hdom u (hPH hu) ⟨y, hPH hy, hρyu⟩
+      have hwu : w ≠ u := fun h => by
+        rw [h] at hρwu
+        omega
+      refine Dismantlable.erase hu (hPlow u hu w hwH hρwu.le) hwu
+        (fun x hx hxu => hdomw x (hPH hx) (hmax x hx) hxu) ?_
+      refine ih (P.erase u) ?_ (Finset.Subset.trans (Finset.erase_subset u P) hPH) ?_
+      · rw [Finset.card_erase_of_mem hu]
+        omega
+      · intro x hx z hz hzx
+        have hxP := Finset.mem_of_mem_erase hx
+        have hxu : x ≠ u := Finset.ne_of_mem_erase hx
+        refine Finset.mem_erase.mpr ⟨fun hzu => ?_, hPlow x hxP z hz hzx⟩
+        have h1 := hmax x hxP
+        have h2 : ρ x ≠ ρ u := fun h => hxu (hinj x (hPH hxP) u (hPH hu) h)
+        rw [hzu] at hzx
+        omega
+  obtain ⟨n, hn⟩ : ∃ n, H.card = n + 1 :=
+    ⟨H.card - 1, by
+      have := Finset.card_pos.mpr hne
+      omega⟩
+  exact key n H hn (Finset.Subset.refl H) fun _ _ _ hy _ => hy
+
 end Systolic
 end GroupApproximation
 
 /-! ### Axiom audit -/
 
 #audit_axioms GroupApproximation.Systolic.exists_dismantlingRank_of_forall_dist_le
+#audit_axioms GroupApproximation.Systolic.dismantlable_of_forall_dist_le
