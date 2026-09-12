@@ -1,4 +1,5 @@
 import GroupApproximation.CharClass.LIXKGenPunctured
+import GroupApproximation.CharClass.LIXKGenSection
 import GroupApproximation.CharClass.ThomProjectivePuncturedOf
 import GroupApproximation.CharClass.ThomToolkitInstanceOf
 import GroupApproximation.CharClass.KroneckerSphere
@@ -31,7 +32,7 @@ namespace GroupApproximation.CharClass
 
 namespace KGen
 
-open CategoryTheory
+open CategoryTheory Limits
 open GroupApproximation.STW59
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
