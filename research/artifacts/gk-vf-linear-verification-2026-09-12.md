@@ -1064,3 +1064,31 @@ Items checked: `perfect-groups-have-no-triangular-models-with-trivial-diagonal`,
   transposed or trivial pieces. Two-sided mixing, other composition factors, and diffuse flags of unbounded
   length remain open, as the artifact says. The restatement trap S4 is correctly not landed as a route.
   `el3-rank-models-factor-through-ring-rank-models` stays OPEN.
+
+## 33. Coverage audit of family L claims; binary Leavitt projective monoid citation
+
+**Coverage.** Every ESTABLISHED claim pushed by the family L and family R lanes now has an independent verdict,
+either here or in `gk-verify-pos-permanence-chain-2026-09-12.md`. Five `gk-kdf-structure` claims from before
+the swarm were verified there, not here:
+- `rank-ultraproduct-compressors-conserve-fixed-right-ideals`;
+- `leavitt-rank-models-kazhdan-fixed-ideals-are-global`;
+- `linear-scale-rank-conservation-does-not-kill-defects`;
+- `kazhdan-group-rank-models-admit-no-expander-decomposition`;
+- `kazhdan-rank-ultraproducts-can-have-diffuse-commutants`.
+Section 25 of that artifact tightens the scope of the last two.
+
+**`binary-leavitt-nonzero-projectives-are-free`: PASS as a citation, with a consistency check.**
+- *The import.* Bergman's monoid `V(L_K(1,n)) = <x | x = nx>`. At `n = 2` it is `{0, x}`, so a nonzero finitely
+  generated projective is isomorphic to `R_R`. This was not rechecked against the source PDF, since this lane
+  runs no local PDF reads; it is the trust surface.
+- *Consistency.*
+  - `R ~= R^2` gives `x = 2x`.
+  - Pure infiniteness by monomials (Lemma 1 of the normal-form artifact, re-derived in Section 8) gives
+    `1 = b e a` for every nonzero idempotent `e`, so `x <= [eR]`.
+  - Every `[eR]` lies below some `nx = x`.
+  - These agree with `V \ {0} = {x}`. Equality of `[eR]` and `x` itself needs the cited cancellation for
+    purely infinite simple rings.
+- *Consumers.* The only consumer is the second, imported route
+  `leavitt-one-sided-pairs-unit-translates-via-projective-monoid`. The elementary route through Lemmas 1 to 3
+  of `leavitt-inverse-defect-normal-forms-2026-09-12.md` (verified in Sections 8 and 13) carries the same
+  conclusion with no import. No Gottschalk decision rests on this citation alone.
