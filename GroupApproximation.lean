@@ -4605,6 +4605,9 @@ import GroupApproximation.BowenChapman.LaurentPairGeneration
 import GroupApproximation.KunThom.NormalizationFromCriterion
 import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
 import GroupApproximation.BowenChapman.EndpointOfInputs
+import GroupApproximation.KunThom.FixedPointNormalizationPatching
+import GroupApproximation.KunThom.FixedPointNormalizationBisection
+import GroupApproximation.KunThom.FixedPointNormalizationComparison
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
