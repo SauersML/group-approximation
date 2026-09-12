@@ -303,29 +303,41 @@ theorem cornerCoronaEmbedCLM_apply (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y
 
 /-! ## `π(e_K) = 0` in `𝒬_r` -/
 
-open scoped CStarAlgebra in
 /-- The map `a ↦ (q Θ(a))` restricted to the retained coordinates, with
-`q = 1 − p`, as a continuous linear map on `C*_max(L)`. -/
+`q = 1 − p`, as a continuous linear map on `C*_max(L)`.  Continuity is the
+bound `‖(q f(a))|‖ ≤ ‖q‖ ‖a‖`, from the contractivity of the two
+`⋆`-homomorphisms. -/
 def complementRestrictCLM {L : Type} [Group L] (X : ℕ → FiniteModel)
     [∀ n, Nonempty (X n)] (φ : ℕ → ℕ) (hφ : StrictMono φ)
     (p : NormMatrixCStarCorona (fun n ↦ X n))
     (f : MaximalGroupCStar L →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) :
-    MaximalGroupCStar L →L[ℂ] NormMatrixCStarCorona (fun k ↦ X (φ k)) where
-  toLinearMap := (coronaRestrictAlg X φ hφ).toAlgHom.toLinearMap.comp
-    ((LinearMap.mulLeft ℂ ((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p)).comp
-      f.toAlgHom.toLinearMap)
-  cont := by
-    have h1 : Continuous (coronaRestrictAlg X φ hφ) := map_continuous (coronaRestrictAlg X φ hφ)
-    have h2 : Continuous f := map_continuous f
-    exact h1.comp (continuous_const.mul h2)
+    MaximalGroupCStar L →L[ℂ] NormMatrixCStarCorona (fun k ↦ X (φ k)) :=
+  LinearMap.mkContinuous
+    ((coronaRestrictAlg X φ hφ).toAlgHom.toLinearMap.comp
+      ((LinearMap.mulLeft ℂ ((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p)).comp
+        f.toAlgHom.toLinearMap))
+    ‖(1 : NormMatrixCStarCorona (fun n ↦ X n)) - p‖
+    (fun x ↦ by
+      show ‖coronaRestrictAlg X φ hφ
+          (((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p) * f x)‖
+        ≤ ‖(1 : NormMatrixCStarCorona (fun n ↦ X n)) - p‖ * ‖x‖
+      calc ‖coronaRestrictAlg X φ hφ
+            (((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p) * f x)‖
+          ≤ ‖((1 : NormMatrixCStarCorona (fun n ↦ X n)) - p) * f x‖ :=
+            NonUnitalStarAlgHom.norm_apply_le (coronaRestrictAlg X φ hφ) _
+        _ ≤ ‖(1 : NormMatrixCStarCorona (fun n ↦ X n)) - p‖ * ‖f x‖ := norm_mul_le _ _
+        _ ≤ ‖(1 : NormMatrixCStarCorona (fun n ↦ X n)) - p‖ * ‖x‖ :=
+            mul_le_mul_of_nonneg_left (NonUnitalStarAlgHom.norm_apply_le f x)
+              (norm_nonneg _))
 
-open scoped CStarAlgebra in
 /-- A `⋆`-homomorphism out of a maximal group `C*`-algebra, as a continuous
-linear map. -/
+linear map (a `⋆`-homomorphism of `C*`-algebras is contractive). -/
 def starAlgHomCLM {L : Type} [Group L] {A : Type} [CStarAlgebra A]
-    (π : MaximalGroupCStar L →⋆ₐ[ℂ] A) : MaximalGroupCStar L →L[ℂ] A where
-  toLinearMap := π.toAlgHom.toLinearMap
-  cont := map_continuous π
+    (π : MaximalGroupCStar L →⋆ₐ[ℂ] A) : MaximalGroupCStar L →L[ℂ] A :=
+  LinearMap.mkContinuous π.toAlgHom.toLinearMap 1
+    (fun x ↦ by
+      rw [one_mul]
+      exact NonUnitalStarAlgHom.norm_apply_le π x)
 
 @[simp] theorem starAlgHomCLM_apply {L : Type} [Group L] {A : Type} [CStarAlgebra A]
     (π : MaximalGroupCStar L →⋆ₐ[ℂ] A) (x : MaximalGroupCStar L) :
