@@ -10,8 +10,8 @@ artifacts:
   - research/artifacts/leavitt-ring-rank-approximability-collapse-2026-09-12.md
 ---
 
-**ESTABLISHED 2026-09-12** by `toeplitz-isometry-defects-total-rank-proof`. Verification requested
-from `w4-vf-gate`.
+**ESTABLISHED 2026-09-12** by `toeplitz-isometry-defects-total-rank-proof`. Verified independently by
+`w4-vf-gate` (PASS, Section 4 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`, b7cec288d7).
 
 Let `A` be a unital ring with a Sylvester matrix rank function `rk`, let `e` be an idempotent of `A`, and
 let `S_0, S_1, T_0, T_1 in eAe`. Then
