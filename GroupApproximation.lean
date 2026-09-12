@@ -4637,6 +4637,7 @@ import GroupApproximation.KunThom.SequentialContradiction
 import GroupApproximation.KunThom.CountingEndgameLift
 import GroupApproximation.KunThom.ArrowCountMedian
 import GroupApproximation.KunThom.RelativeFunctorEstimate
+import GroupApproximation.KunThom.BlockLocalDefects
 import GroupApproximation.KunThom.StepNineHammingReference
 import GroupApproximation.KunThom.StepNineHammingEstimate
 import GroupApproximation.KunThom.CompressorNormalizationAssembly
