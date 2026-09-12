@@ -7,18 +7,25 @@ Non-MF verbatim formalization swarm, 2026-09-12.  Clone nm-c.
 Osin (arXiv:math/0411039v3, §9), Lemma 9.4, Case 2 splits a vertex of a disc diagram at a pinch
 between two complementary G-faces.  A realized section family whose regions avoid both pinch faces
 survives the split with the same weight, the same number of regions, the same unbound darts on
-every relator cell, and legal labels.  Four modules, all compiled:
+every relator cell, and legal labels.  A distinguished family stays distinguished.  Five modules,
+all compiled:
 
 | module | last landing | evidence |
 |---|---|---|
 | `GGT/VanKampen/SurgeryPinchSplitMap` | 33bae46eb | compiled at base 44c6bab14 (imported by Sections) |
 | `GGT/VanKampen/SurgeryPinchSplitDiagram` | 0c40dd430 | compiled at base 44c6bab14 (imported by Sections) |
-| `GGT/VanKampen/SurgeryPinchSplitRegions` | a6fb37e10 | probe 0912-092950-86238, COMPILED (cache restore) |
-| `GGT/VanKampen/SurgeryPinchSplitSections` | 556c54a9c | probe 0912-092950-86238, BUILT |
+| `GGT/VanKampen/SurgeryPinchSplitRegions` | a6fb37e10 | probes 0912-092950-86238 and 0912-093903-22668, COMPILED (cache restore) |
+| `GGT/VanKampen/SurgeryPinchSplitSections` | 556c54a9c | probe 0912-092950-86238, BUILT; 0912-093903-22668, COMPILED |
+| `GGT/VanKampen/SurgeryPinchSplitExtremal` | c48fbb6c7 | probe 0912-093903-22668, BUILT |
 
-Probe 0912-092950-86238: base 44c6bab14, 5010 jobs, `PROBE GREEN`.  Every audited declaration
-depends on `[propext, Classical.choice, Quot.sound]` only.  The earlier probe 0912-003931-85645 was
-red only on the unbound-dart block of Sections; 556c54a9c rewrote it.
+Probe 0912-092950-86238: base 44c6bab14, 5010 jobs, `PROBE GREEN`.  Probe 0912-093903-22668: base
+c48fbb6c7, 5011 jobs, `PROBE GREEN`; a normal land of Extremal then reports `NOTHING TO LAND`.  Every
+audited declaration depends on `[propext, Classical.choice, Quot.sound]` only.  The earlier probe
+0912-003931-85645 was red only on the unbound-dart block of Sections; 556c54a9c rewrote it.
+
+Wiring: the lead's next root-wiring wave takes `SurgeryPinchSplitSections` (with Regions) at the green
+bytes.  Edits to those two land `NM_ATTIC` until a probe is green, never `NM_UNVERIFIED`.  Extremal is
+still an orphan.
 
 ## Statements
 
@@ -83,6 +90,34 @@ Outside `Input`, with `{lambda c : ℝ} {cuts : SectionCuts D lambda c Delta.bou
 * `transportSection_diagram : (transportSection S I havoid).diagram = I.diagram` (rfl)
 * `transportSection_family : (transportSection S I havoid).family = I.regionFamily S.family havoid` (rfl)
 
+Extremal (`SurgeryPinchSplitExtremal`), with the same outer binders and every declaration taking
+`(S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) [DecidableEq S.diagram.toCombMap.Dart]
+(I : Input S.diagram) (havoid : ∀ b ∈ S.family, I.Avoids b.1)`:
+
+* `noncomputable def transportDistinguished S I havoid : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts`
+  (toRealizedSectionFamily := transportSection S.toRealizedSectionFamily I havoid)
+* `transportDistinguished_weight : (transportDistinguished S I havoid).toRealizedSectionFamily.weight =
+  S.toRealizedSectionFamily.weight`
+* `transportDistinguished_card : (transportDistinguished S I havoid).family.card = S.family.card`
+* `transportDistinguished_avoid_merged : ∀ a ∈ (transportDistinguished S I havoid).family, I.merged ∉ a.1`
+* `transportDistinguished_toRealizedSectionFamily : (transportDistinguished S I havoid).toRealizedSectionFamily =
+  transportSection S.toRealizedSectionFamily I havoid` (rfl)
+* `transportDistinguished_diagram : (transportDistinguished S I havoid).diagram = I.diagram` (rfl)
+* `transportDistinguished_family : (transportDistinguished S I havoid).family = I.regionFamily S.family havoid` (rfl)
+
+## Why no reverse transport
+
+`GloballyDistinguishedSectionFamily.weight_maximal` and `card_minimal`
+(`Estimating/OsinAppendixSections.lean`) compare against every `RealizedSectionFamily D lambda c eps
+Delta cuts` with legal labels.  Such a family lives on any reduced diagram O-equivalent to `Delta`,
+so the competitors do not depend on which diagram carries the optimum.  The design contract at
+lines 89–93 of that file says a surgery that keeps the relator cells and the selected regions yields
+another optimum.  `transportSection` keeps the weight, the card and the legal labels, and it stays in
+the same class (`equiv := S.equiv.trans I.oEquivalent`).  So `weight_maximal` is
+`S.weight_maximal other hother` followed by the weight equation, and `card_minimal` is
+`S.card_minimal` read through the card and weight equations.  No map from families on `I.diagram`
+back to `Delta` is needed.
+
 ## Lean trap
 
 `I.diagram.toCombMap.Dart` is `Delta.toCombMap.Dart` only at default transparency.  A membership
@@ -94,8 +129,9 @@ d ∈ l) h)`.  `CyclicArc.mapTo_darts _ id _` cannot infer its equation argument
 
 ## Residual
 
-* Not built: `weight_maximal` / `card_minimal` (`GloballyDistinguishedSectionFamily`) over the split
-  diagram.  They need the reverse transport, from families on `I.diagram` to families on `Delta`.
+* hull-select and dgo-analytic were asked which maximality or minimality statement their waist or
+  pocket induction consumes.  No reply had arrived when Extremal landed.  If one of them needs a
+  different spelling, it goes in a new declaration in Extremal.
 * No census row: these are intermediate carriers in the proof of Lemma 9.4, Case 2, and close no
   manuscript sentence by themselves.
 * Spellings sent to hull-select and dgo-analytic (least-area waist) and to the lead.
