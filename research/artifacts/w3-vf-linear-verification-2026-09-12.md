@@ -711,3 +711,18 @@ Both checks above missed this node.
 * **Payoff.** It follows from injectivity of `EL_3(J) -> EL_3(R)` and simplicity of `R^x`.
 * **Partial check on `psi`.** Finite-rank perturbations keep index `−1`, so `S + f` cannot be surjective.
 * **Status.** Open, and not decided here.
+
+## 19. Star designs as a finite certificate (w3-corner-crossed; e79006d8a2, 2ec8fa09e)
+
+### 19.1 `star-compression-design-solves-odd-measure-target`: valid, conditional on the open design claim
+
+* **Why `x*` lies in `B`.** `[g] -> [g^-1]` is an anti-automorphism fixing `eps_-`, which is central. So
+  `(y eps_-)* = eps_- y* = y* eps_-`.
+* **The conclusion.** With `b' = x`, `c' = x*` and `q_[0] x = x`, we get `c' q_[0] b' = x* x = eps_-`.
+* **Precision remark on the finite certificate.**
+  * The component of `x* x` at `k` is a sum of the functions `mu -> a_g(g mu) a_h(g mu)`, which read the clopens
+    `g^-1 C` for `g ∈ F`.
+  * So the partition `P` must refine the translates of the read clopens by `F^-1`, not only by `F^-1 F`. These
+    agree when `1 ∈ F`.
+  * Restriction `M_- -> M_-^P` is surjective, so identities of functions factoring through it are identities
+    on the finite set `M_-^P`.
