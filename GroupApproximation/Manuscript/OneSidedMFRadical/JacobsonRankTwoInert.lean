@@ -107,7 +107,7 @@ def kerSubgroupMapToKer {G K : Type*} [Group G] [Group K] (φ : G →* K) (L : S
 
 theorem kerSubgroupMapToKer_injective {G K : Type*} [Group G] [Group K] (φ : G →* K)
     (L : Subgroup G) : Function.Injective (kerSubgroupMapToKer φ L) :=
-  fun _ _ h ↦ Subtype.ext (Subtype.ext (congrArg Subtype.val h))
+  fun _ _ h ↦ Subtype.ext (Subtype.ext (congrArg (fun z : φ.ker ↦ (z : G)) h))
 
 /-- **The printed deduction at rank two, in its group-theoretic form.**  Let
 `φ : G → K` have locally finite kernel, and let every countable subgroup of `K`
@@ -201,5 +201,5 @@ end GroupApproximation
 
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.finite_of_hasKazhdanPropertyT_of_finiteIndex_locallyFinite
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.finite_image_and_finite_of_kazhdan
-#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.manuscriptSentence_finiteSubgroupAdmitsNoProperCompression
-#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.manuscriptSentence_kazhdanSubgroupFinite
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.manuscriptSentence_finiteSubgroupAdmitsNoProperCompression
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.manuscriptSentence_kazhdanSubgroupFinite
