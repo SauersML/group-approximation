@@ -66,7 +66,7 @@ theorem isPowerTorsionFree_of_foxD₂_injective
 /-- Model test: with no relators, `∂₂` is injective. -/
 theorem foxD₂_injective_of_isEmpty [IsEmpty ρ] :
     Function.Injective (foxD₂ (PresentedGroup.of : X → Presented rel) rel) :=
-  fun f g _ ↦ Finsupp.ext fun q ↦ (IsEmpty.false q.1).elim
+  fun _ _ _ ↦ Finsupp.ext fun q ↦ (IsEmpty.false q.1).elim
 
 end Resolution
 

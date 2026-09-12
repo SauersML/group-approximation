@@ -48,7 +48,7 @@ theorem potential_mem (g : Presented rel) (w : FreeGroup X) :
     rw [map_mul, map_mul, map_inv, mk_secP, mk_secP, mul_inv_cancel])
 
 /-- The Schreier potential `σ(g) · w · σ(g w̄)⁻¹ ∈ N`. -/
-def potential (g : Presented rel) (w : FreeGroup X) : Subgroup.normalClosure (relSet rel) :=
+noncomputable def potential (g : Presented rel) (w : FreeGroup X) : Subgroup.normalClosure (relSet rel) :=
   ⟨_, potential_mem rel g w⟩
 
 theorem potential_one (g : Presented rel) : potential rel g 1 = 1 := by
