@@ -4,7 +4,7 @@ id: ternary-leavitt-swap-problem-splits-at-central-involution
 kind: claim
 title: The central involution splits the ternary swap corner into a Leavitt-visible Cohn half and a Leavitt-invisible half on the scalar quotient
 distinct_from:
-  ternary-leavitt-swap-idempotent-is-full: that is the open corner equation c e b = 1 in the group algebra of the ternary unit group; this is the established splitting of that equation along the central involution, which shows the Leavitt evaluation sees only the half that refutes nothing.
+  ternary-leavitt-swap-idempotent-is-full: that is the open corner equation c e b = 1 in the group algebra of the ternary unit group; this is the established splitting of that equation along the central involution into two halves, each of which alone refutes Gottschalk, with the Leavitt evaluation seeing only the anti-central one.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md
   - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md

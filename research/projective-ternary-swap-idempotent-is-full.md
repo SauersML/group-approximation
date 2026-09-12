@@ -5,7 +5,7 @@ kind: claim
 title: The swap-averaging idempotent of the ternary Leavitt unit group modulo scalars is full in its group algebra over F_3
 refuted_by: [projective-ternary-swap-idempotent-is-not-full]
 distinct_from:
-  ternary-leavitt-swap-idempotent-is-full: that is the corner equation on the ternary unit group itself, which implies this one by projecting to a central summand; this is the equation on the quotient by the scalars F_3^x, which is the only half an automaton needs and on which the Leavitt evaluation vanishes.
+  ternary-leavitt-swap-idempotent-is-full: that is the corner equation on the ternary unit group itself, which implies this one by projecting to a central summand; this is the equation on the quotient by the scalars F_3^x, one of two halves that each suffice for a counterexample, and the one on which the Leavitt evaluation vanishes.
   leavitt-unit-group-algebra-not-directly-finite: that is the scalar Kaplansky question for the binary unit group over F_2; this is a corner equation for an honest averaging idempotent of a different simple group in characteristic three.
 artifacts:
   - research/artifacts/invariant-output-descent-and-sensitivity-2026-09-12.md

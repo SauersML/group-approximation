@@ -22,9 +22,13 @@ Gottschalk's conjecture (`gottschalk-surjunctivity-conjecture`).
 
 - *Linear invariant output.* Reduced to `projective-ternary-swap-idempotent-is-full`.
   That equation is implied by the unit-group equation
-  `ternary-leavitt-swap-idempotent-is-full`, and it is the only part of that
-  equation the full shift sees. It holds in the adjoint image algebra; the witnesses
-  are open.
+  `ternary-leavitt-swap-idempotent-is-full`. It holds in the adjoint image algebra,
+  and the witnesses are open.
+- *The anti-central half also suffices.* A solution of the corner equation on the
+  anti-central summand of `F_3[L_(F_3)(1,2)^x]` makes that group algebra not
+  directly finite, so the unit group is nonsurjunctive, and so is `PG` by the ascent
+  route (`ternary-anti-invariant-swap-corner-is-full`, correction by gk-verify-pos).
+  That half is where the Leavitt image equation already holds.
 - *Host soficity, settled.* A sofic `PG` would be surjunctive by Gromov--Weiss, but
   `PG` is nonsofic (`projective-leavitt-unit-groups-mod-scalars-are-nonsofic`): it
   contains the unit group through the corner homomorphism.

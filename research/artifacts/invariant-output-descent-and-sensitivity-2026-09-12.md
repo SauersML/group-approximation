@@ -374,3 +374,10 @@ witness fullness of `rho(ebar)` there. Since `e_K <= ebar`, fullness of `e_K` in
 `g = lambda s0 + s1 t1 g`, and under `x -> (t0 x, t1 x)`, `R ~= R (+) R`, left
 multiplication by `g` sends `x` to `(lambda x, t1 g x)`. It misses `(0, y)` for
 `y != 0`, so `g` is not a unit.
+
+**Remark 8.6 (one rank gate covers both halves).** If `G = L_(F_3)(1,2)^x` is
+`F_3`-linear sofic, `F_3[G] = S_+ x S_-` is stably finite. So neither `c e_- b = 1_-` in
+`S_-` nor `cbar ebar bbar = 1` in `S_+ = F_3[PG]` has a solution: a solution of either,
+padded by the unit of the other factor, is a direct-finiteness failure of `F_3[G]`, as in
+7.4(e). `F_3`-linear soficity of `PG` implies that of `G`, because `G` embeds in `PG`
+(Lemma 8.1) and linear soficity passes to subgroups.

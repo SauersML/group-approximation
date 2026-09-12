@@ -17,7 +17,11 @@ Arzhantseva--Paunescu.
 so `projective-ternary-swap-idempotent-is-not-full` holds
 (`f3-linear-soficity-refutes-projective-swap-fullness`). The swap-invariant linear
 architecture and its Klein strengthening both die, and every injective `F_3`-linear
-automaton over `PG` is surjective. In the other direction, fullness of the swap
+automaton over `PG` is surjective. Through the corner embedding the unit group
+`L_(F_3)(1,2)^x` is then `F_3`-linear sofic too. So its group algebra
+`S_+ x S_-` is stably finite, and the anti-central half
+`ternary-anti-invariant-swap-corner-is-full` dies as well. Either half, padded by
+the unit of the other factor, would be a direct-finiteness failure there. In the other direction, fullness of the swap
 idempotent refutes this claim (`non-linear-sofic-via-projective-ternary-swap-fullness`).
 
 ## Attempts
