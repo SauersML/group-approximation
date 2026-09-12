@@ -54,3 +54,12 @@ idempotent refutes this claim (`non-linear-sofic-via-projective-ternary-swap-ful
   to a factor two (`monomial-rank-models-are-hamming-models`), and `PG` is nonsofic. The
   remaining class is recorded in Section 7 of
   `research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md`.
+- *What the gate cannot touch.* If this claim holds, linear designs die. Nonlinear designs
+  escape only through the collapse `x^3 = x` in the decoder identity:
+  - formally polynomial strict pairs linearize to Kaplansky
+    (`formal-polynomial-strict-pairs-need-unstable-linearization`, gk-free-neg);
+  - pairs with `deg sigma . deg tau < 3` force a matrix Kaplansky pair
+    (`low-degree-strict-automata-force-matrix-kaplansky-failure`, gk-n-highalpha, pending
+    verification).
+  Over `PG` the gate leaves only decoders whose degree product is at least three and which
+  use `x^3 = x`.

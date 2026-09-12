@@ -81,24 +81,22 @@ tau(Fix_K)  proper subset of  tau(A^K)  contained in  Fix_K,
 
 that is, `taubar` is not surjective. QED.
 
-**Reading.** When the memory normalizes the symmetry, the invariant output buys
-nothing: the automaton is a strict automaton on the quotient memory group in
-disguise, and whoever holds it already holds a Gottschalk counterexample on
-`K/H`. Only the forward direction is proved. A strict automaton on `Q` does not
-give an invariant output on an extension, since that needs halving the
-information per coset. The same applies to any nontrivial `H' <= H` normalized
-by `M`, since the output is invariant under `H'` too.
+**Correction: the hypothesis is never met.** This is gk-p-simple-direct's core-free
+filter. With `H` normal in `K`, for `n in H` and `k in K`,
+`tau(n^-1 . x)(k) = tau(x)(n k) = tau(x)(k (k^-1 n k)) = tau(x)(k)`. So
+`tau(n^-1 . x) = tau(x)` on `A^K`, and injectivity forces `n = 1`. Proposition 2 is true
+but vacuous: memory that normalizes a nontrivial symmetry is fatal outright. The earlier
+reading of this section, that such an automaton is a strict automaton on `K/H` in
+disguise, is withdrawn. More generally, any nontrivial `N <= H` normal in `K` kills
+injectivity (`invariant-output-symmetry-must-be-core-free`).
 
 **Over the binary Leavitt unit group.** Identify `R = L_(F_2)(1,2)` with
 `M_2(R)`, so `R^x = GL_2(R)` and `w = s0 t1 + s1 t0` is `[[0,1],[1,0]]`. Then
 `N(<w>) = C(w) = { [[a,b],[b,a]] }`, the units of `R[x]/(x^2 - 1) = R[eps]/(eps^2)`
 with `eps = 1 + x`. So `C(w) = R^x semidirect (R, +)`, where `a` acts on `R` by
 conjugation and `w = 1 + eps` corresponds to `1 in R`. Designs with `H = <w>`
-whose memory commutes with `w` therefore yield strict automata on subgroups of
-`C(w)/<w> = R^x semidirect (R / F_2 1)`. That group contains `R^x`, so this is a
-reduction, not a kill: such designs are exactly as hard as a strict automaton on
-their quotient memory group. A design that genuinely uses the symmetry must have
-memory outside `C(w)`.
+whose memory commutes with `w` are therefore not injective. A design needs memory
+outside `C(w)`, and more precisely `<w>` must be core-free in the memory group.
 
 ## 3. Algebraic normal form constraints over `F_2`
 
@@ -163,7 +161,8 @@ Theorem 4 is its right-symmetry analogue for decoders of every degree.
 A candidate for `leavitt-units-carry-injective-invariant-output-automaton`
 with an involution symmetry over `F_2` must have:
 
-- effective memory not normalizing `H` (Proposition 2), for `H = <w>` memory outside `C(w)`;
+- `H` core-free in the effective memory group (the correction in Section 2), in particular
+  memory outside `C(w)` for `H = <w>`;
 - nonzero linear part of even support, spread over at least two left `H`-orbits,
   with no even-order right symmetry (Proposition 3, Theorem 4);
 - an odd number of `h`-invariant monomials of degree at least two (Proposition 3);
