@@ -10,6 +10,7 @@ requires:
   - infinite-rokhlin-supremum-forces-surjunctivity
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete proof in Section 2 of the artifact.
@@ -21,3 +22,5 @@ Complete proof in Section 2 of the artifact.
   * POS iff `h^Rok_sup > 0`: Seward's Corollary 7.7, recorded as `positive-rokhlin-entropy-action-gives-positive-supremum`.
   * INF gives RBS, surjunctivity and direct finiteness: `infinite-rokhlin-supremum-forces-surjunctivity`.
   * RBS gives POS through the Bernoulli 2-shift.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 13 of the verification artifact), including the corner computations and the matrix-unit embedding.

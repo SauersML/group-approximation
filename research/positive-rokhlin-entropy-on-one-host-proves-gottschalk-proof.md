@@ -11,6 +11,7 @@ requires:
   - gottschalk-surjunctivity-fixed-two-generator-tester
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Section 3 of the artifact.
@@ -21,3 +22,5 @@ Section 3 of the artifact.
 * **Down to the host.** Surjunctivity passes to subgroups, so `U_*` is surjunctive.
 * **All groups.** The tester equivalence of `gottschalk-surjunctivity-fixed-two-generator-tester` then makes every group surjunctive.
 * **Kaplansky.** Gottschalk's conjecture implies Kaplansky's direct finiteness conjecture, as Seward records with his reference [8, Section I.5].
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 13 of the verification artifact). This is a genuine reduction: its open prerequisite, `tester-host-has-positive-rokhlin-entropy-action`, is an ergodic-theoretic statement about one group, not a restatement of surjunctivity.

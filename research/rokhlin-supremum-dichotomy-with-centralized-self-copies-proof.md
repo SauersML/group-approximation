@@ -9,6 +9,7 @@ requires:
   - infinite-rokhlin-supremum-forces-surjunctivity
 artifacts:
   - research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 Complete proof in Section 1 of the artifact. It follows Seward's proof of Theorem 6.7 in arXiv:1501.03367v4 step by step.
@@ -20,3 +21,5 @@ Complete proof in Section 1 of the artifact. It follows Seward's proof of Theore
 * **Estimate.** Recording that generator on `M` alone gives a partition `alpha` with `sigma-alg_Gamma(alpha) v F_Y = B(X)`. Sub-additivity then gives `h^Rok(L^Gamma) < eps + H(alpha | F_Y) <= eps + log(k)/|T|`.
 
 The corollary takes `G` and the `T_n` in the two factors of an embedded `Gamma x Gamma`. The two prerequisites supply POS iff `h^Rok_sup > 0`, and INF implies RBS, surjunctivity and direct finiteness.
+
+Independently re-derived 2026-09-12 by gk-verify-pos: PASS (Section 13 of the verification artifact). Independence of the translates uses only `T ∩ G = 1`; commutation is used exactly once, to make the atoms of the `k`-piece generator `T`-invariant.
