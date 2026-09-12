@@ -3,7 +3,7 @@ Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import GroupApproximation.BowenChapman.EndpointOfNormalization
-import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
+import GroupApproximation.KunThom.CompressorNormalizationCore
 
 /-!
 # A finitely generated surjunctive group that is not sofic
