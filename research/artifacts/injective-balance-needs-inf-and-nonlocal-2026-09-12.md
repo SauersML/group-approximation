@@ -37,10 +37,18 @@ The h_fin slack does not help this argument. We know
 `h^{Rok}_lambda`, never by `h_fin`: the quantity it transports across the conjugacy is the entropy
 *rate*, not the finite-radius invariant. **To beat INF one must lower-bound the one-site entropy of
 the specific image measure `nu` directly, not through the entropy rate of the conjugate system.** No
-such direct bound is known; equivalently, whether `h_fin = h^{Rok}` on Bernoulli shifts is open, and
-a positive answer would collapse the slack and make balance exactly INF-hard.
+such direct bound is known.
 
-Where finite models enter, concretely. Estimating `H(p)` by counting the window map
+A separate open question, not equivalent to the sentence above (wording point 1 of
+`w4-vf-positive-b`): is `h_fin = h^{Rok}` on Bernoulli shifts? A positive answer would make FIN and INF
+the same statement.
+
+**Heuristic, not a theorem (wording point 2 of `w4-vf-positive-b`). No node should consume the next
+paragraph.** The proved counting statement is only the one already on main: with decoder memory `E`,
+`H(p) >= log|A| sup_F |F|/|FE|`. When `<E>` is amenable, the stronger conclusion, surjectivity, is
+`amenable-decoder-memory-forces-surjectivity`.
+
+Where finite models seem to enter. Estimating `H(p)` by counting the window map
 `tau_F^+ : A^{FM} -> A^F` factorises into the per-site contributions of `mu` only up to the overlap
 among the translates `gM`, `g in F`; the error is a boundary term of size `|FM setminus F|`. The
 factorised count gives `H(p) = log|A|` exactly when `|FM setminus F|/|F| -> 0`, i.e. along a Folner
