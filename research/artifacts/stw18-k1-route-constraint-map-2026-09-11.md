@@ -282,6 +282,21 @@ these. Concretely the design problem is "a strict-comparison counterexample
 to the Rank Problem whose unit carries a persistent characteristic-class
 obstruction".
 
+## 8a. Non-type-I addendum (2026-09-12)
+
+- Li--Niu, arXiv:2008.03361v2 (read from the PDF on MSI). Theorem 7.8,
+  Corollaries 7.9 and 7.11: free minimal actions with (URP) and (COS), which
+  include every free minimal `Z^d`-action, give stable rank one and
+  `U(A)/U_0(A) ~= K_1(A)`. Corollary 7.14: with (URP), strict comparison
+  gives Z-stability. STW v2 cites exactly this as the crossed-product case of
+  Problem XVIII ([270, Corollary 7.14], [317] Niu, [1] Alboiu--Lutley for d=1).
+- New elementary permanence: unital injective inductive limits with
+  infinitely many K1-injective stages are K1-injective. Proposition D is its
+  homogeneous special case.
+- The split with `lix-toms-winter-2` (2026-09-12): it owns ASH building
+  blocks, through `simple-unital-ash-strict-comparison-is-z-stable`; this
+  lane owns everything non-type-I or not ASH.
+
 ## 9. Graph wiring
 
 Established imports: `z-stable-unital-algebras-are-k1-bijective`,
