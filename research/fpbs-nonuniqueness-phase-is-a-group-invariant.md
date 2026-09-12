@@ -7,6 +7,7 @@ distinct_from:
   fpbs-benjamini-schramm-universal: that asserts a nonuniqueness phase on every Cayley graph of every nonamenable group; this asserts only that the property does not depend on the generating set, and it is vacuous for a group none of whose Cayley graphs has the phase.
 artifacts:
   - research/artifacts/fpbs/docs/benjamini-schramm-frontier-map.md
+  - research/artifacts/fpbs-choi-seo-q12-invariance-2026-09-12.md
 ---
 
 **OPEN.** Let `Gamma` be a finitely generated group. Suppose some finite
@@ -32,3 +33,23 @@ multigraph powers, so the existence input actually needed is
   positive kernel on a quotient. **Where it dies:** that kernel is built from the
   graph's own two-point function. It is not the two-point function of any other
   Cayley graph, so it compares nothing across generating sets.
+* **Threshold comparison across generating sets (2026-09-12).**
+  `fpbs-generating-set-threshold-comparison` does compare two Cayley graphs.
+  - **Coupling.** Each edge of `G'` gets private randomness along a fixed word
+    path in `G`, which gives `tau^{G'}_{phi(p)} <= tau^G_p` with
+    `phi(p) = (1-(1-p)^{1/M})^L`.
+  - **Consequences.** `p_u(G') >= phi(p_u(G))`, `p_c(G') >= phi(p_c(G))`, and
+    for `S ⊆ S'` also `p_c(G') <= p_c(G)` and `p_u(G') <= p_u(G)`.
+  - **Where it dies:** it transfers a gap only with a margin, roughly
+    `p_c(G) < (p_u(G)/M)^L`. The power loss comes from buying independence
+    along fixed paths.
+* **Reduction to one move (2026-09-12).** By
+  `fpbs-generating-sets-connected-by-product-moves`, any two generating sets are
+  joined by moves that add or remove one product `uv` of two current generators.
+  So this claim is equivalent to `fpbs-gap-survives-product-generator-moves`,
+  wired through `fpbs-group-invariance-via-product-moves`. **Where it dies:** a
+  counterexample needs a single move that pushes `p_u` down to `p_c`, inside the
+  windows `phi(p_c(G)) <= p_c(G⁺) <= p_c(G)` and
+  `phi(p_u(G)) <= p_u(G⁺) <= p_u(G)`. The comparison rules this out only when
+  the windows are disjoint. Details are in
+  `research/artifacts/fpbs-choi-seo-q12-invariance-2026-09-12.md`.
