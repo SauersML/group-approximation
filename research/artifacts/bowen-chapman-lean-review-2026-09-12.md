@@ -178,10 +178,11 @@ the restriction on the closed subspace `H^N⊥`. The needed estimate
 
 ## F4. Landed code and early drafts
 
-As of `origin/main` c7f794109 twenty-two landings touch the campaign. The four
-most recent are the witness given normalization at the pair (F4(t)), the coset
-wreath witness (F4(u)), and two component-counting batches for Theorem 4.1
-(F4(v), F4(w)). The earlier eighteen are: the Palomar
+As of `origin/main` c56628087 twenty-three campaign modules or batches have
+landed, plus two docstring fixes (d4c4f667e, 2f01a8ac1). The five most recent
+are the witness given normalization at the pair (F4(t)), the coset wreath
+witness (F4(u)), and three component-counting batches for Theorem 4.1 (F4(v),
+F4(w), F4(y)). The earlier eighteen are: the Palomar
 challenge (6ae077316), solution (1ad7aa663) and pending gate registration
 (73f646f13), the Dynamics base layer (5e2c62ed1), the site-strata leaves
 (0bfc073cd), semidirect (T) (3d4569114), the Laurent pair (031156388), residual
@@ -643,6 +644,20 @@ root-wired. No defect.**
   `bc-assembly` read the log. The record does not contain the `#print axioms`
   lines. I asked `bc-infra` to append them to such records and to fail the probe
   on any other axiom.
+
+**(y) Landed: `KunThom/ComponentCountingRelativeFunctorWords`, f4e8971f1,
+root-wired. No defect.**
+* Finite counting for the word step in the proof of Kun–Thom Lemma 4.3:
+  * `wordAct` is the permutation of a word of labels;
+  * `wordDefect` is the set of points where a partial bijection fails to
+    intertwine two word actions;
+  * `card_wordDefect_le` bounds its size by the source defect plus `|w|` times
+    the generator defect.
+  The module claims no endpoint.
+* Probe evidence: record `kt-norm-counting.green.0912-122227-7674` at base
+  241f6fc6b carries `# PROBE GREEN`, names the module, and holds the landed md5
+  `76559343…`. The 7-module import closure did not change.
+* One root import is added. Nothing is deleted.
 
 **Landing evidence required from here on**, per the coordinator's rule:
 * the pinned v4.32.0 toolchain with `-DwarningAsError=true`;
