@@ -114,7 +114,7 @@ theorem eq_sum_components (x : TotalHOf K X) (T : Finset ℕ)
       rw [dif_neg hb]
     · intro h
       exact absurd he h
-  · rw [Finset.sum_eq_zero fun b hb => dif_neg (fun h => he (h ▸ hb))]
+  · rw [Finset.sum_eq_zero fun b hb => dif_neg (fun h => he (by subst h; exact hb))]
     exact hT e he
 
 /-- The projection onto one degree. -/
