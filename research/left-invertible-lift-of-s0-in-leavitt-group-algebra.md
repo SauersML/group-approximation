@@ -174,8 +174,10 @@ certify nothing. Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12
     partners, depth 2 (universe 92,585);
   - the five-term `t_0` lift of `eleven-term-s0-lift-has-no-radius-four-left-inverse`,
     right partners, depth 4 (universe 202,193);
-  - new defect-anchored lifts of `s_0` and `t_0` of support 13, carrying `u`, `j`,
-    `u j u^(-1)`, `gamma` and the rigid defect `[u j u^(-1), gamma] != 1`, at depth 1.
+  - new defect-anchored lifts of `s_0` and `t_0` of support 13, at depth 2 (universes
+    127,107 and 109,608). They carry `j`, `u j u^(-1)`, `gamma` and the rigid defect
+    `[u j u^(-1), gamma] != 1`; the evaluation correction cancels the compressor `u`
+    itself.
   In every instance peeling removes all columns: each candidate partner element makes
   a product that nothing else in the universe reproduces. These are fences, not
   no-gos. Details: `research/artifacts/kaplansky-collision-partner-search-2026-09-12.md`.
