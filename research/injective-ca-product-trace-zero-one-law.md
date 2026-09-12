@@ -30,6 +30,8 @@ trace compatible with the encoder has no quantitative intermediate step: every
 such quantity is exactly `0` for a strict encoder and exactly `1` for an onto
 one. The Gromov--Weiss contradiction lives at logarithmic scale (entropy per
 site), which a trace collapses. The square-alphabet hypothesis can enter a proof
-only through a per-site logarithmic count.
+only through a per-site logarithmic count. On the measure side that count is
+`strict-automaton-lowers-bernoulli-rokhlin-entropy`, and the open statement it
+needs is `bernoulli-rokhlin-entropy-maximal-for-every-group`.
 
 **ESTABLISHED 2026-09-12** by `injective-ca-product-trace-zero-one-law-proof`.

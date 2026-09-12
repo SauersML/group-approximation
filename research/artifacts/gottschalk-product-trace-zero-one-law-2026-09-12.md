@@ -196,9 +196,12 @@ structure of the image measure recorded in
 
 5. **Where entropy arguments plug in.** A strict encoder is an isomorphism of
    p.m.p. `G`-systems from `(X, mu)` onto `(A^G, nu)`, with `nu` carried by a proper
-   subshift and singular to `mu` (Theorem 2(b)). This is the input Seward-type
-   arguments consume; see `every-group-has-positive-rokhlin-entropy-action`, from
-   which Seward's Krieger II derives surjunctivity.
+   subshift and singular to `mu` (Theorem 2(b)). That is the hypothesis of
+   `strict-automaton-lowers-bernoulli-rokhlin-entropy`, which pays for the missing
+   cylinder at per-site logarithmic scale through Rokhlin entropy. The remaining
+   open statement on that side is `bernoulli-rokhlin-entropy-maximal-for-every-group`.
+   Seward's positive-entropy hypothesis `every-group-has-positive-rokhlin-entropy-action`
+   also implies surjunctivity.
 
 6. **Linearization in characteristic zero.** Put `V_0` for the mean-zero
    functions on `A` and `W_S = ⊗_(g in S) V_0`. The local functions decompose as
