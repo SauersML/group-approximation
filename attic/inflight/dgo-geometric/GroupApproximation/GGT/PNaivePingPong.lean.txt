@@ -35,6 +35,8 @@ Infrastructure for `cor:regular-nonmf-algebra` through property `P_naive`;
 certifies no printed sentence on its own.
 -/
 
+open scoped Pointwise
+
 namespace GroupApproximation
 namespace GGT
 namespace PNaive
