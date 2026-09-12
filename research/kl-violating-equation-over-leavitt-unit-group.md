@@ -67,4 +67,18 @@ the negation `kl-holds-over-binary-leavitt-unit-group`).  Coefficient packets
 whose entries generate a residually finite-dimensional subalgebra of `L`
 inject at every length (`leavitt-rfd-entry-packets-satisfy-kl`), so a
 candidate must carry non-residually-finite-dimensional entry behaviour such as
-a one-sided inverse pair.
+a one-sided inverse pair.  From ten variable occurrences on, a candidate must
+also be nearly periodic: a word without an exact repeated block of about a
+sixth of its length satisfies relative `C'(1/6)` and injects every coefficient
+group (`kl-small-cancellation-words-inject-every-coefficient-group`).
+
+What remains is the conjunction of two independent problems.  The analytic
+problem is the stable branch: `R^x` must have full hyperlinear radical.  The
+combinatorial problem is a collapse mechanism.  Even over a coefficient group
+with no nontrivial tracial approximations nothing forces a nonsingular word to
+normally generate the degree kernel.  Whatever the certificate does, it must
+interleave old relators between uses of `w`.  Every equality or conjugacy
+between coefficient words derived from `w` alone already holds in the free
+group on the coefficient letters: free groups satisfy the conjecture, their
+finite-dimensional unitary representations extend across the equation, and
+free groups are conjugacy separable.
