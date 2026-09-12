@@ -13,6 +13,17 @@ the attic.  rescue-lix's compiled records cover `KroneckerEquiv` and `KroneckerC
 `CupOne*` files and `KroneckerClassifier`/`KroneckerMap` were green on thm-e on 09-10 and have not been
 re-verified at the current tip; they are in this lane's overlay so the first probe records evidence.
 
+## GREEN
+
+Probe 0911-215042-37708 (clone lix-d, acn112, base 2e9a9873e): `BUILT KroneckerSphereHomology`,
+`BUILT KroneckerSphere`, both COMPILED, first probe.  Landed normally at 19c641d25.  The table below
+records their contents.
+
+Probe 0911-215835-86270 (lix-d, base d0f2cc746, 2073 jobs, PROBE GREEN): `BUILT CupOneTotal`;
+`evenClassesCommute` depends on `[propext, Classical.choice, Quot.sound]`.  Landed normally at 75844be91.
+Scope (1)–(3) of sp-cupone is now compiled on main: the signed cup-1 layer (09-10), the Kronecker/UCT and
+sphere port over a field, and `TotalHOf.IsEven` / `mul_comm_of_isEven_left/_right`.
+
 ## AUTHORED, UNVERIFIED (landed per rule 18)
 
 | file | contents | landed |
@@ -35,6 +46,8 @@ the rank count of reduced `H₀(S⁰; K)` and, in cohomology, through `kronecker
 - Clone `lix-l` (lixclone2, started 21:19; 8 of 12 clone directories exist at ~21:55).
 
 ## TRAPS
+
+- `even_zero` does not exist at the pin: `Even (0 : α)` is `Even.zero` (to_additive of `IsSquare.one`).
 
 - A binder-shift hazard: proving `def P : Prop := ∀ (K : Type) [Field K] (n : ℕ), …` by
   `fun K _ n => …` relies on how the elaborator matches an explicit `_` against an instance-implicit
