@@ -2,12 +2,14 @@
 rg: 2
 id: fpbs-elementary-matrix-semidirect-fixed-price-one-proof
 kind: route
-title: Climb from one infinite root subgroup through commuting root subgroups, paying each new generator on a sparse section
+title: Check Gaboriau's commensurated-chain theorem along commuting root subgroups
 target: fpbs-elementary-matrix-semidirect-fixed-price-one
 requires: []
 ---
 
-Written proof. For a subgroup `S <= G` and a fixed free p.m.p. action of `G` on
+Written check. The lemma below restates Gaboriau's Theorem 2.45, with its
+proof, for the reader; see `fpbs-elementary-matrix-semidirect-fixed-price-one-citation`.
+The chain is the only step specific to these groups. For a subgroup `S <= G` and a fixed free p.m.p. action of `G` on
 `(X,mu)`, write `R_S` for the orbit relation of `S`, and `C(R_S)` for its cost.
 
 **Lemma (commensurated step).** Let `K <= G`, and let `g_1, g_2, ...` be
