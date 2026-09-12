@@ -7,6 +7,7 @@ distinct_from:
   forward-memory-lifts-exclude-strict-cellular-sections: that forbids a surjunctive cover matching the decoder-encoder product rectangle; this forbids an almost-multiplicative permutation model, with collisions allowed, that separates the cells of a Garden-of-Eden window, and names the normal subgroup where the window must fold.
 artifacts:
   - research/artifacts/gottschalk-sofic-radical-localization-2026-09-11.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 Let `G` be a countable group and `A` a finite alphabet with `|A| >= 2`. Define

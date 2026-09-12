@@ -7,6 +7,7 @@ distinct_from:
   order-three-axis-feedback-surjunctivity-iff-corner-finiteness: that reduces one quadratic feedback family on order-three blocks to direct finiteness of a corner ring; this is a necessary condition on every nonlinear or linear automaton whose output is constant on right cosets of a finite subgroup, phrased through permutation models.
 artifacts:
   - research/artifacts/gottschalk-sofic-radical-localization-2026-09-11.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 Let `G` be countable, `A` finite with `|A| >= 2`, and `H` a finite subgroup.

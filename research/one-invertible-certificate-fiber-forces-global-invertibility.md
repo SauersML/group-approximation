@@ -4,6 +4,7 @@ id: one-invertible-certificate-fiber-forces-global-invertibility
 kind: claim
 artifacts:
   - research/artifacts/finite-rank-literature-and-section-audit-2026-09-07.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 title: One invertible fiber of a locally split linear family forces every full-shift certificate fiber to be invertible
 distinct_from:
   certificate-linear-automata-have-local-linear-decoders: that constructs a local left inverse; this proves that a globally split family cannot mix invertible and strictly one-sided fibers.

@@ -8,6 +8,8 @@ distinct_from:
   chart-comparison-must-fuse-torus-classes: that constrains the finite images of the actor subgroup that are injective on the chart; this constrains the actor subgroup itself, including actor subgroups with no nontrivial finite images.
   subgroup-supported-one-sided-inverse-rigidity: that concerns a one-sided inverse of an element of a corner of a directly finite subgroup algebra; this concerns a split embedding between two different idempotents of equal regular rank, and consumes the faithful regular rank function of a sofic subgroup rather than direct finiteness alone.
   linear-sofic-group-algebra-is-stably-finite: that makes the support of a complete one-sided inverse pair non-linear-sofic; this is the sharper statement for the comparison stage, whose support can be small, and it needs a rank function regular on the chart, which linear sofic approximations do not provide.
+artifacts:
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 **ESTABLISHED.** Let `k` be a field, `G` a group, `K <= G` a finite

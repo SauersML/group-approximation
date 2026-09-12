@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/kaplansky-torus-fusion-brauer-balance-2026-09-11.md
   - research/artifacts/kaplansky-half-corner-feedback-and-projective-defects-2026-09-08.md
+  - research/artifacts/gottschalk-negative-side-verification-2026-09-12.md
 ---
 
 Let `Q = L_(F_2)(1,2)^x`, `S = F_2[Q]`, and let `K = GL_2(F_4)` be the half-corner
