@@ -4644,6 +4644,8 @@ import GroupApproximation.KunThom.CentralizerNormalizationPairImprove
 import GroupApproximation.KunThom.CentralizerNormalizationClusterSystem
 import GroupApproximation.KunThom.CompressorMatching
 import GroupApproximation.KunThom.MedianVertexFormLocal
+import GroupApproximation.KunThom.RelativeFunctorMetric
+import GroupApproximation.KunThom.RelativeFunctorAssembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
