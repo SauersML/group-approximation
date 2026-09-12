@@ -11,8 +11,9 @@ artifacts:
   - research/artifacts/lifted-trace-state-extension-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof: route `anti-central-state-lifted-trace-extension-proof`; verification requested from
-`w4-vf-linear-b`).
+**ESTABLISHED** (proof: route `anti-central-state-lifted-trace-extension-proof`). **Verified** by `w4-vf-linear-b`,
+Section 24 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md` (2a9f7771d2), with no corrections. Not
+re-derived there: Theorem E of the census, and the census Morita step `F_*([p]) = [psi(p)]`.
 
 Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = -1`, `S_- = eps_- F_3[G]`, `u = [eps_-]` and `H = E x| V`.
 - For a finite subgroup `K` containing `z` and an idempotent matrix `p` over `eps_- F_3[K]`, put
@@ -33,7 +34,8 @@ Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = -1`, `S_- = eps_- F_3[G]`, `u = [eps_-]`
    `trl(P) < trl(Q)`. A witness `c e_- b = eps_-` supplies `P = e_- S_-`, `Q = eps_- S_-` and `X = h S_-`, where
    `h = e_- - (e_- b)(c e_-)`, and `s_3([h]) = -1/2`.
 
-Parts 4 and 5 use `anti-central-k0-states-equal-lifted-trace-on-signed-thompson`, which is not yet verified.
+Parts 4 and 5 use `anti-central-k0-states-equal-lifted-trace-on-signed-thompson`, which is now verified (Sections 12
+and 23.1 of the same verification artifact). An earlier version of this node said it was not yet verified.
 
 The condition in part 4 is the open claim `anti-central-lifted-trace-is-relatively-positive`. Its truth refutes the
 swap corner, and its failure is the swap corner.
