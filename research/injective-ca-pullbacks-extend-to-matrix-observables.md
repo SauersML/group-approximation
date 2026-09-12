@@ -56,3 +56,13 @@ continuity of the image measure are each equivalent to surjectivity. No trace
 inequality can be an intermediate step. A replacement has to count at
 per-site logarithmic scale, where the square-alphabet hypothesis acts, and
 rectangular sections pass every structural test here without being onto.
+
+**The logarithmic-scale replacement (gk-rokhlin, 2026-09-12).**
+`strict-automaton-lowers-bernoulli-rokhlin-entropy` counts at exactly that
+scale. A strict encoder with a missing window `Omega` gives the amplified uniform
+Bernoulli shifts `(A^k)^G` Rokhlin entropy at most
+`k(log q - delta/|Omega Omega^-1|) + log 3`. A per-site saving of order
+`q^-|Omega|` at markers beats the fixed marker cost once `k` is large. The
+open step is the lower bound: `bernoulli-rokhlin-entropy-maximal-for-every-group`,
+equivalently `every-group-has-positive-rokhlin-entropy-action`. No trace-level
+premise can replace it.

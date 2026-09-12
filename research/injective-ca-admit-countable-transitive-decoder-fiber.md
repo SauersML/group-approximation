@@ -63,3 +63,14 @@ automaton over `Z` lifts uniform Bernoulli with conditional entropy `log 2`
 contradicts the alphabet bound. Over `F_2` the Ornstein–Weiss block map shows
 no average without the section `tau` can work. See
 `research/artifacts/decoder-fiber-flip-lifts-2026-09-12.md`.
+
+*The monotone invariant, conditionally (gk-rokhlin, 2026-09-12).* Rokhlin
+entropy is at most `log|A|` for every invariant measure on `A^G`, is unchanged by
+injective automata, and uses the section `tau` only through the conjugacy
+`tau_* mu`. `strict-automaton-lowers-bernoulli-rokhlin-entropy` shows that a
+missing window, coded at independent markers over `k` independent copies, lowers
+the Rokhlin entropy of `(A^k)^G` below `k log|A|`. So the missing invariant exists
+exactly under the lower bound `bernoulli-rokhlin-entropy-maximal-for-every-group`,
+equivalently `every-group-has-positive-rokhlin-entropy-action`. The flip lift and
+the decorated subshift add nothing beyond that, because Theorem 1 already applies
+to `tau_* mu` directly.
