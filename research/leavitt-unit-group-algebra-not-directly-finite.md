@@ -510,6 +510,25 @@ they record where nothing was found and certify nothing. The target-mode results
 lifts of `s_0` are recorded on `left-invertible-lift-of-s0-in-leavitt-group-algebra`.
 Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
 
+**2026-09-12, host triage and a rule-free table screen (lane `kdf-l-times-search`).**
+- **Kun–Thom hosts carry no pair.**
+  - The actors `EL_r(F_q[x^(+-1)]) semidirect SL_d(Z)` are split extensions of finitely
+    generated linear groups by residually finite groups. They are therefore residually finite,
+    and their `F_2` group algebras are directly finite.
+  - The wreaths are stably finite over every field (`kun-thom-wreath-stably-finite`).
+- **Belegradek–Osin covers are out of reach.** No explicit presentation is on main, so there
+  are no products to search.
+- **Screen.** `one-sided-inverse-pairs-transfer-to-table-realizations` turns finite images of
+  the table group `U(A, B)` into exact exclusions of support windows. A window is dead when the
+  images are jointly injective on `BA u {1}`. A surviving window still gives XOR rows for the
+  SAT encoding.
+- **Where the screen stops.** On ball windows `U(B_r, B_r)` is the cover `G_(4r)`, which equals
+  `<X>` once `4r` reaches the relator lengths of a presentation. For the finitely presented
+  simple groups here the screen is blind from that radius on.
+- **Tools and results.** `experiments/nonsofic-certificates/kaplansky-df/screen/` and
+  `research/artifacts/kaplansky-df-table-screen-2026-09-12.md`, which lists the windows screened
+  and the class-SAT verdicts.
+
 ## Cross-atlas affine update (2026-09-07)
 
 An additional computational translation is now available, with a change

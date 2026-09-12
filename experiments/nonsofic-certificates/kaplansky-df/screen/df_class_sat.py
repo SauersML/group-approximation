@@ -51,7 +51,9 @@ def main():
     assert set(in_class) <= set(ba), "class cells must lie in BA u {1}"
     prune_x, prune_or, report["prune"] = dfsat.prune_rows(L, A, B, gens, fam)
     report["build_seconds"] = round(time.time() - t0, 3)
-    if not in_class:
+    if ident not in ab:
+        report.update(status="UNSAT", reason="identity not in AB")
+    elif not in_class:
         report.update(status="UNSAT", reason="screen dead: no class survives")
     elif any(not idx for side, idx in prune_or):
         report.update(status="UNSAT", reason="a support is forced inside a directly finite subgroup")

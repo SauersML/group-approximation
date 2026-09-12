@@ -47,9 +47,31 @@ radius where `4r` reaches the relator lengths of a presentation of `<X>`. Thomps
    Each image is written as permutations of the compact generators, replayed in Python against
    all relators of `U(A, B)`, and used to refine the partition of `BA u {1}`.
 
-## 3. Results
+## 3. Hosts
 
-(pending: filled from the MSI runs below)
+The lane brief named three families of nonsofic hosts. Only one of them can carry a pair
+that computation might find.
+
+- **Kun–Thom actors** `G = EL_r(F_q[x_1^(+-1), ..., x_d^(+-1)]) semidirect SL_d(Z)`, with
+  `r >= 3`, contain no pair. `EL_r` of a finitely generated commutative ring is finitely
+  generated for `r >= 3` and linear, hence residually finite (Mal'cev). A split extension of a
+  finitely generated residually finite group by a residually finite group is residually finite.
+  So `G` is residually finite, and `F_2[G]` is directly finite by the second paragraph of
+  `subgroup-supported-one-sided-inverse-rigidity-proof`.
+- **Kun–Thom wreaths** `C_2 wr_(G/Gamma) G` contain no pair either. Their group algebras are
+  stably finite over every field (`kun-thom-wreath-stably-finite`, through
+  `rf-lamp-permutational-wreaths-satisfy-stable-finiteness`).
+- **Belegradek–Osin covers** `G -> L^x` are hyperbolic with property (T), and their soficity is
+  open. No explicit presentation is on main (checked `experiments/` at 0ccfbb0f1), so there are
+  no products to screen. A strict pair over `L^x` also need not lift to a cover. They are
+  recorded as out of computational reach.
+
+So the search runs on `L^x` windows. The new family is `v-eld1`: the four Cannon–Floyd–Parry
+generators of `V`, the six `E_ij(1)` of the nine-leaf corner, and the compressors `u, v`.
+
+## 4. Results
+
+(pending: filled from the MSI runs)
 
 ## 4. Trust surface
 
