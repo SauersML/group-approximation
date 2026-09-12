@@ -154,13 +154,14 @@ has holonomy `0` on every plaquette, since each letter occurs twice in each dire
 | shift lift `R` of the copying rule | `{s}`, `pi(s) = t^(-1)` | `{s^(-1)}` | none | bijective; also `amenable-decoder-memory-forces-surjectivity` (cyclic decoder group) |
 | tree-style sibling decoder `min` over children | `{s}` | `{s k_j}` | needs `e k_j s = e s` for distinct `k_j` | not an automaton over any group (Theorem 1.3) |
 | Schreier copy "odd one out" on `H\E_S` | several letters | several letters | coincidence partition varies with the vertex | bijective if `eps in H` (Theorem 1.4); needs `H cap <eps> = 1` and infinite-codimension lamp part |
-| self-dual sector designs | must generate a group containing `eps` as a product of squares and commutators | nonamenable | holonomy `omega` on the relators the memory spans | only open case; bijective whenever a character of `<M>` detects `eps` (Theorem 2.5) |
+| self-dual sector designs | must generate a group containing `eps` as a product of squares and commutators, when `<M>/<eps>` is surjunctive | nonamenable | holonomy `omega` on the relators the memory spans | only open case; bijective whenever a character of `<M>` detects `eps` (Theorem 2.5) |
 
 **Screens a sector witness on the complete-graph Kun--Thom cover must pass**, collected:
 - memory group containing `eps` in its own finite residual and nonsofic
   (`strict-automata-memory-keeps-finite-normal-kernel-residual`);
 - `eps` a product of squares and commutators in the memory group (Theorem 2.5), when the image misses part of the
-  sector;
+  sector. Theorem 2.5 applies here because `<M>/<eps>` is a subgroup of the surjunctive `W`; on a cover with
+  non-surjunctive quotient this screen is not available;
 - a profinitely invisible read adjacency (`clifford-cover-strict-pairs-read-invisible-adjacency`);
 - nonamenable decoder memory; non-formalizable at every stabilization, since `F_2[E_S]` is stably finite;
 - a Garden of Eden taking different values at `e` and `eps e`.

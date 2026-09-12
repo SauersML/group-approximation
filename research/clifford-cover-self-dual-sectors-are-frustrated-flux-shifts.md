@@ -34,7 +34,10 @@ self-dual: `mu(a + 1) = mu(a) + 1`. The sector is `Tw = { x : x(eps e) = x(e) + 
 automata are bijective on it. On the complete-graph Kun--Thom cover the Clifford twist enters this sector only as the
 frustration `omega = 1` on lamp plaquettes. A self-dual strict automaton on `E_S` whose image misses a configuration
 of the sector exists iff some self-dual automaton is injective on `F_2^(E_S)` while its induced map misses part of
-`Z_omega`. Design filter: for such an automaton the memory group must contain `eps` as a product of squares and
-commutators.
+`Z_omega`. Design filter (part 5 read backwards, so it needs `<M>/<eps>` surjunctive, which holds on `E_S` whenever
+`W` is surjunctive): for such an automaton the memory group must contain `eps` as a product of squares and commutators.
+
+**Verification.** PASS by `w3-vf-nonlinear` (Section 22 of its verification artifact), with the scope note on the
+design filter recorded above.
 
 Open: whether `Z_omega` and the flat shift are conjugate as `W`-subshifts, compatibly with induced automata.
