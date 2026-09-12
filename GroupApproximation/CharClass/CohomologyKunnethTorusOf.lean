@@ -29,9 +29,11 @@ reading of it.
 ## Main declarations
 
 * `KnHemi.kunnethSecondInjective_of_ne_zeroOf` — one sphere factor, any nonzero top class.
-* `KnTorusOf.midBaseOf`, `KnTorusOf.torusBaseOf`, `KnTorusOf.prY`, `KnTorusOf.prS1`,
-  `KnTorusOf.prSodd` — the model and its three projections.
-* `KnTorusOf.tx_inj_degreeOf` — **the degreewise Künneth uniqueness for `z = t x`**.
+* `KnTwo.midBaseOf`, `KnTwo.torusBaseOf`, `KnTwo.prYOf`, `KnTwo.prS1Of`, `KnTwo.prSoddOf` — the
+  model and its three projections; `KnTwo.sig1Of`, `KnTwo.sigOddOf` — the two sphere classes.
+* `KnTwo.tx_inj_degree_of_ne_zeroOf` — the degreewise statement for any nonzero sphere classes.
+* `KnTwo.tx_inj_degreeOf` — **the degreewise Künneth uniqueness for `z = t x`**, at the
+  fundamental classes.
 -/
 
 open CategoryTheory Limits TopologicalSpace
@@ -64,53 +66,65 @@ theorem kunnethSecondInjective_of_ne_zeroOf (K : Type) [Field K] (Y : Type) [Top
 
 end KnHemi
 
-namespace KnTorusOf
+namespace KnTwo
 
-variable (Y : Type) [TopologicalSpace Y] (n : ℕ)
-
-/-! ## 1. The model and its projections -/
+/-! ## 1. The model, its projections and its two sphere classes -/
 
 /-- The intermediate base `Y × S^{2n+1}`. -/
-abbrev midBaseOf : Type := Y × Sphere (2 * n + 1)
+abbrev midBaseOf (Y : Type) [TopologicalSpace Y] (n : ℕ) : Type := Y × Sphere (2 * n + 1)
 
 /-- The mapping-torus base, left-nested as `(Y × S^{2n+1}) × S¹`. -/
-abbrev torusBaseOf : Type := midBaseOf Y n × Sphere 1
+abbrev torusBaseOf (Y : Type) [TopologicalSpace Y] (n : ℕ) : Type := midBaseOf Y n × Sphere 1
 
 /-- The projection to `Y`. -/
-def prY : TopCat.of (torusBaseOf Y n) ⟶ TopCat.of Y :=
+def prYOf (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    TopCat.of (torusBaseOf Y n) ⟶ TopCat.of Y :=
   knPrY (midBaseOf Y n) 1 ≫ knPrY Y (2 * n + 1)
 
 /-- The projection to the circle factor. -/
-def prS1 : TopCat.of (torusBaseOf Y n) ⟶ TopCat.of (Sphere 1) := knPrS (midBaseOf Y n) 1
+def prS1Of (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    TopCat.of (torusBaseOf Y n) ⟶ TopCat.of (Sphere 1) :=
+  knPrS (midBaseOf Y n) 1
 
 /-- The projection to the odd sphere factor. -/
-def prSodd : TopCat.of (torusBaseOf Y n) ⟶ TopCat.of (Sphere (2 * n + 1)) :=
+def prSoddOf (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    TopCat.of (torusBaseOf Y n) ⟶ TopCat.of (Sphere (2 * n + 1)) :=
   knPrY (midBaseOf Y n) 1 ≫ knPrS Y (2 * n + 1)
+
+/-- The degree-one class `t` on the base, over `K`. -/
+def sig1Of (K : Type) [Field K] (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    Hmod K (TopCat.of (torusBaseOf Y n)) 1 :=
+  pull (prS1Of Y n) 1 (sphereTopClassOf K 1 (by omega))
+
+/-- The degree-`(2n+1)` class `x` on the base, over `K`. -/
+def sigOddOf (K : Type) [Field K] (Y : Type) [TopologicalSpace Y] (n : ℕ) :
+    Hmod K (TopCat.of (torusBaseOf Y n)) (2 * n + 1) :=
+  pull (prSoddOf Y n) (2 * n + 1) (sphereTopClassOf K (2 * n + 1) (by omega))
 
 /-! ## 2. The degreewise statement -/
 
 set_option maxHeartbeats 1000000 in
-/-- **Künneth uniqueness for `z = t x` over a field, in a single degree.**  For nonzero top
-classes `σ₁` of `S¹` and `σodd` of `S^{2n+1}`, if
+/-- **Künneth uniqueness for `z = t x` over a field, in a single degree, for any nonzero sphere
+classes.**  For nonzero top classes `σ₁` of `S¹` and `σodd` of `S^{2n+1}`, if
 `pr_Y^* α + pr_{S¹}^* σ₁ ⌣ (pr_{S^{2n+1}}^* σodd ⌣ pr_Y^* β) = 0` then `β = 0`. -/
-theorem tx_inj_degreeOf (K : Type) [Field K]
+theorem tx_inj_degree_of_ne_zeroOf (K : Type) [Field K] (Y : Type) [TopologicalSpace Y] (n : ℕ)
     (σ₁ : Hmod K (TopCat.of (Sphere 1)) 1) (hσ₁ : σ₁ ≠ 0)
     (σodd : Hmod K (TopCat.of (Sphere (2 * n + 1))) (2 * n + 1)) (hσodd : σodd ≠ 0)
     (c : ℕ) (α : Hmod K (TopCat.of Y) (1 + ((2 * n + 1) + c))) (β : Hmod K (TopCat.of Y) c)
-    (h : pull (prY Y n) (1 + ((2 * n + 1) + c)) α
-      + cup (pull (prS1 Y n) 1 σ₁)
-          (cup (pull (prSodd Y n) (2 * n + 1) σodd) (pull (prY Y n) c β)) = 0) :
+    (h : pull (prYOf Y n) (1 + ((2 * n + 1) + c)) α
+      + cup (pull (prS1Of Y n) 1 σ₁)
+          (cup (pull (prSoddOf Y n) (2 * n + 1) σodd) (pull (prYOf Y n) c β)) = 0) :
     β = 0 := by
   have hslice : ∀ (k : ℕ) (a : Hmod K (TopCat.of Y) k),
       pull (knSlice (midBaseOf Y n) 1
           (GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.northPole 0)) k
-          (pull (prY Y n) k a)
+          (pull (prYOf Y n) k a)
         = pull (knPrY Y (2 * n + 1)) k a := by
     intro k a
-    rw [prY, pull_comp, pull_knSlice_knPrYOf]
+    rw [prYOf, pull_comp, pull_knSlice_knPrYOf]
   have hs1 : pull (knSlice (midBaseOf Y n) 1
         (GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.northPole 0)) 1
-        (pull (prS1 Y n) 1 σ₁) = 0 :=
+        (pull (prS1Of Y n) 1 σ₁) = 0 :=
     pull_knSlice_knPrSOf K (midBaseOf Y n) 1 (by omega)
       (GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.northPole 0) σ₁
   -- the circle slice kills the `t x` term, so the first summand vanishes
@@ -120,16 +134,16 @@ theorem tx_inj_degreeOf (K : Type) [Field K]
         (1 + ((2 * n + 1) + c))) h
     rw [pull_add, pull_zero, hslice, pull_cup, hs1, zero_cup, add_zero] at hh
     exact hh
-  have h2 : cup (pull (prS1 Y n) 1 σ₁)
-      (cup (pull (prSodd Y n) (2 * n + 1) σodd) (pull (prY Y n) c β)) = 0 := by
-    have hz : pull (prY Y n) (1 + ((2 * n + 1) + c)) α = 0 := by
-      rw [prY, pull_comp, hU, pull_zero]
+  have h2 : cup (pull (prS1Of Y n) 1 σ₁)
+      (cup (pull (prSoddOf Y n) (2 * n + 1) σodd) (pull (prYOf Y n) c β)) = 0 := by
+    have hz : pull (prYOf Y n) (1 + ((2 * n + 1) + c)) α = 0 := by
+      rw [prYOf, pull_comp, hU, pull_zero]
     rwa [hz, zero_add] at h
-  have h4 : cup (pull (prSodd Y n) (2 * n + 1) σodd) (pull (prY Y n) c β)
+  have h4 : cup (pull (prSoddOf Y n) (2 * n + 1) σodd) (pull (prYOf Y n) c β)
       = pull (knPrY (midBaseOf Y n) 1) ((2 * n + 1) + c)
           (cup (pull (knPrS Y (2 * n + 1)) (2 * n + 1) σodd)
             (pull (knPrY Y (2 * n + 1)) c β)) := by
-    rw [pull_cup, prSodd, prY, pull_comp, pull_comp]
+    rw [pull_cup, prSoddOf, prYOf, pull_comp, pull_comp]
   -- peel the circle factor, then the odd sphere
   have h5 : cup (pull (knPrS Y (2 * n + 1)) (2 * n + 1) σodd)
       (pull (knPrY Y (2 * n + 1)) c β) = 0 := by
@@ -139,13 +153,25 @@ theorem tx_inj_degreeOf (K : Type) [Field K]
     exact h2
   exact KnHemi.kunnethSecondInjective_of_ne_zeroOf K Y (2 * n + 1) (by omega) σodd hσodd c β h5
 
-end KnTorusOf
+/-- **Künneth uniqueness for `z = t x` over a field, in a single degree.**  If
+`pr_Y^* uu + t ⌣ (x ⌣ pr_Y^* vv) = 0` on `(Y × S^{2n+1}) × S¹` then `vv = 0`. -/
+theorem tx_inj_degreeOf (K : Type) [Field K] (Y : Type) [TopologicalSpace Y] (n c : ℕ)
+    (uu : Hmod K (TopCat.of Y) (1 + ((2 * n + 1) + c))) (vv : Hmod K (TopCat.of Y) c)
+    (h : pull (prYOf Y n) (1 + ((2 * n + 1) + c)) uu
+        + cup (sig1Of K Y n) (cup (sigOddOf K Y n) (pull (prYOf Y n) c vv)) = 0) :
+    vv = 0 :=
+  tx_inj_degree_of_ne_zeroOf K Y n (sphereTopClassOf K 1 (by omega))
+    (sphereTopClassOf_ne_zero K 1 (by omega)) (sphereTopClassOf K (2 * n + 1) (by omega))
+    (sphereTopClassOf_ne_zero K (2 * n + 1) (by omega)) c uu vv h
+
+end KnTwo
 
 end
 
 /-! Audited on every build. -/
 
 #audit_axioms KnHemi.kunnethSecondInjective_of_ne_zeroOf
-#audit_axioms KnTorusOf.tx_inj_degreeOf
+#audit_axioms KnTwo.tx_inj_degree_of_ne_zeroOf
+#audit_axioms KnTwo.tx_inj_degreeOf
 
 end GroupApproximation.CharClass
