@@ -91,3 +91,16 @@ counterexample, if one exists, lives on one.
 
   **Live positive targets:** `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups` and
   `every-injective-ca-preserves-uniform-bernoulli-measure`.
+- **Untested ideas reported by lanes, not yet nodes (gk-archive, 2026-09-12).**
+  - *gk-logic:*
+    - **Boolean core.** For a fixed realizable forward and reverse table, does any alphabet admit
+      strict rules? It looks like uniform network coding. Deciding it for small tables would either
+      supply design candidates or exclude table shapes.
+    - **Finite direct products.** It is open whether surjunctivity passes to them: the rectangle
+      clauses are disjunctive, not Horn.
+    - **Two-generator bridge.** Test whether the bridge in
+      `second-level-rice-theorem-for-local-approximation-properties` works for surjunctivity. That is
+      open cell 8 of `arithmetical-complexity-table-of-group-properties`.
+  - *gk-defect-automaton:* does some known surjunctive nonsofic group contain a nonsofic Kazhdan
+    subgroup? A yes would show that nonsofic Kazhdan cores by themselves force nothing on the
+    negative side.
