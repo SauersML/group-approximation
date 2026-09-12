@@ -1,0 +1,511 @@
+import GroupApproximation.CharClass.OddPCompare
+import GroupApproximation.CharClass.OddPProductConcat
+import GroupApproximation.CharClass.OddPRedPow
+import GroupApproximation.CharClass.OddPTotalInterface
+
+/-!
+# The Cartan formula for the odd-primary reduced powers, at class level
+
+`OddPCompare.lean` shows that the first composite's cochain `D_i(u ⌣ v)` and the second composite's
+cochain have the same class.  This file evaluates the second composite.
+
+* The riffle turns the functional `u ⊗ v ⊗ u ⊗ v ⊗ ⋯` into `u^{⊗p} ⊗ v^{⊗p}`, with the Koszul sign
+  `(−1)^{q q' p(p−1)/2}`.
+* The realization `compBSum` evaluates to a sum over the bidegrees `(a, b)` of `ψ_W(e_i)`.  Each term
+  is the reduced coproduct coefficient `c̄_{a,b} = wdPhi p a b 1 1`, times the regrouping sign
+  `(−1)^{b(pq−a)}`, times `D_a u ⌣ D_b v` (`tupEvalAll_compBSum`, lane `lx-compbreal`).
+
+The result is the **D-form Cartan formula** at class level, in every degree:
+
+```text
+[D_i(u ⌣ v)] = Σ_{a+b=i, a ≤ pq, b ≤ pq'} κ(a,b) · [D_a u] ⌣ [D_b v],
+κ(a,b) = (−1)^{q q' p(p−1)/2} · c̄_{a,b} · (−1)^{b(pq−a)}.
+```
+
+Read at even degrees and summed over the even indices, `κ = 1` on the even–even pairs and `κ = 0` on
+the odd–odd ones.  So the total reduced power `ptotOf = Σ_{j even} [D_j]` is multiplicative on classes
+of even degree (`ptotOf_mul`).  That is the field `ptot_mul` of `OddPTotal.TotalReducedPowers`, and it
+needs neither the vanishing of the bad residues nor the vanishing above the range.
+
+All degree casts are absorbed by a proof-free class map `totalClass N φ`, the class of `φ` in the
+total ring if `φ` is a cocycle and `0` otherwise.
+
+## Main results
+
+* `riffle_exp_eq` — the Koszul exponent of the riffle against the functional is `q' q · p(p−1)/2`.
+* `totalClass_oddD_cup` — **the D-form Cartan formula**, cast-free.
+* `totalOf_oddDClass_cup` — the same for `oddDClass`, the signature `lx-cartantorus` consumes.
+* `ptotOf_mul` — **the total reduced power is multiplicative on even classes.**
+-/
+
+namespace GroupApproximation.CharClass
+
+open CategoryTheory
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
+
+noncomputable section
+
+variable (p : ℕ) [NeZero p] [Fact p.Prime]
+
+/-! ## 1. The riffle against the evaluating functional -/
+
+section Riffle
+
+variable {X : TopCat.{0}} (q q' : ℕ) (u : singularCochainGroup (ZMod p) X q)
+  (v : singularCochainGroup (ZMod p) X q')
+
+omit [NeZero p] [Fact p.Prime] in
+/-- The slot degrees of the evaluating functional `u ⊗ v ⊗ u ⊗ v ⊗ ⋯`. -/
+def cartanDeg (j : Fin (2 * p)) : ℕ := if j.val % 2 = 0 then q else q'
+
+omit [Fact p.Prime] in
+theorem isHomogFun_cartanFun : IsHomogFun (ZMod p) (cartanFun p q q' u v) (cartanDeg p q q') := by
+  intro j n hn
+  rw [cartanFun_apply]
+  unfold cartanDeg at hn
+  split_ifs with h
+  · rw [if_pos h] at hn
+    exact Pi.single_eq_of_ne hn u
+  · rw [if_neg h] at hn
+    exact Pi.single_eq_of_ne hn v
+
+omit [NeZero p] [Fact p.Prime] in
+theorem riffleEquiv_symm_leftIdx (a : Fin p) :
+    (((riffleEquiv p).symm (leftIdx p a) : Fin (2 * p)) : ℕ) = 2 * a.val := by
+  show riffleTgt p (leftIdx p a : ℕ) = 2 * a.val
+  unfold riffleTgt
+  rw [leftIdx_val, if_pos a.2]
+
+omit [NeZero p] [Fact p.Prime] in
+theorem riffleEquiv_symm_rightIdx (b : Fin p) :
+    (((riffleEquiv p).symm (rightIdx p b) : Fin (2 * p)) : ℕ) = 2 * b.val + 1 := by
+  show riffleTgt p (rightIdx p b : ℕ) = 2 * b.val + 1
+  unfold riffleTgt
+  rw [rightIdx_val, if_neg (by omega)]
+  omega
+
+omit [Fact p.Prime] in
+/-- **The riffled functional is the concatenated one**: `u^{⊗p} ⊗ v^{⊗p}`. -/
+theorem cartanFun_comp_riffleEquiv_symm :
+    cartanFun p q q' u v ∘ ⇑(riffleEquiv p).symm
+      = tupAppendSq p (fun _ => Pi.single q u) (fun _ => Pi.single q' v) := by
+  refine fin_two_mul_funext (fun a => ?_) (fun b => ?_)
+  · rw [Function.comp_apply, cartanFun_apply, riffleEquiv_symm_leftIdx, tupAppendSq_leftIdx,
+      if_pos (by omega)]
+  · rw [Function.comp_apply, cartanFun_apply, riffleEquiv_symm_rightIdx, tupAppendSq_rightIdx,
+      if_neg (by omega)]
+
+omit [NeZero p] [Fact p.Prime] in
+/-- Twice the number of ordered pairs `a < b` below `m` is `m (m − 1)`. -/
+theorem two_mul_sum_range_lt (m : ℕ) :
+    2 * ∑ a ∈ Finset.range m, ∑ b ∈ Finset.range m, (if a < b then 1 else 0) = m * (m - 1) := by
+  induction m with
+  | zero => simp
+  | succ m ih =>
+    have h1 : ∀ a ∈ Finset.range m, ∑ b ∈ Finset.range (m + 1), (if a < b then 1 else 0)
+        = ∑ b ∈ Finset.range m, (if a < b then 1 else 0) + 1 := by
+      intro a ha
+      rw [Finset.sum_range_succ, if_pos (Finset.mem_range.mp ha)]
+    have h2 : ∑ b ∈ Finset.range (m + 1), (if m < b then 1 else 0) = 0 := by
+      refine Finset.sum_eq_zero fun b hb => if_neg ?_
+      have := Finset.mem_range.mp hb
+      omega
+    rw [Finset.sum_range_succ, Finset.sum_congr rfl h1, h2, add_zero, Finset.sum_add_distrib,
+      Finset.sum_const, Finset.card_range, smul_eq_mul, mul_one, mul_add, ih]
+    cases m with
+    | zero => simp
+    | succ m =>
+      simp only [Nat.add_sub_cancel]
+      ring
+
+omit [NeZero p] [Fact p.Prime] in
+/-- **The Koszul exponent of the riffle** against the slot degrees `q, q', q, q', …`: only an odd new
+slot before an even one is out of order, and each such pair contributes `q' q`. -/
+theorem riffle_exp_eq :
+    (∑ i : Fin (2 * p), ∑ j : Fin (2 * p),
+        if i < j ∧ riffleEquiv p j < riffleEquiv p i then cartanDeg p q q' i * cartanDeg p q q' j
+        else 0)
+      = q' * q * ∑ a ∈ Finset.range p, ∑ b ∈ Finset.range p, (if a < b then 1 else 0) := by
+  let G : ℕ → ℕ → ℕ := fun a b =>
+    if a < b ∧ riffleSrc p b < riffleSrc p a then
+      (if a % 2 = 0 then q else q') * (if b % 2 = 0 then q else q') else 0
+  have hG : ∀ i j : Fin (2 * p),
+      (if i < j ∧ riffleEquiv p j < riffleEquiv p i then cartanDeg p q q' i * cartanDeg p q q' j
+        else 0) = G i.val j.val := by
+    intro i j
+    simp only [G, Fin.lt_def, riffleEquiv_val, cartanDeg]
+  rw [Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => hG i j]
+  rw [Finset.sum_congr rfl fun i _ => Fin.sum_univ_eq_sum_range (fun b => G i.val b) (2 * p),
+    Fin.sum_univ_eq_sum_range (fun a => ∑ b ∈ Finset.range (2 * p), G a b) (2 * p),
+    sum_range_two_mul, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun l hl => ?_
+  have hlp := Finset.mem_range.mp hl
+  rw [sum_range_two_mul, sum_range_two_mul, ← Finset.sum_add_distrib, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun m hm => ?_
+  have hmp := Finset.mem_range.mp hm
+  have e1 : riffleSrc p (2 * l) = l := by unfold riffleSrc; rw [if_pos (by omega)]; omega
+  have e2 : riffleSrc p (2 * l + 1) = p + l := by unfold riffleSrc; rw [if_neg (by omega)]; omega
+  have e3 : riffleSrc p (2 * m) = m := by unfold riffleSrc; rw [if_pos (by omega)]; omega
+  have e4 : riffleSrc p (2 * m + 1) = p + m := by unfold riffleSrc; rw [if_neg (by omega)]; omega
+  simp only [G, e1, e2, e3, e4]
+  have p1 : (2 * l) % 2 = 0 := by omega
+  have p2 : ¬ (2 * l + 1) % 2 = 0 := by omega
+  have p3 : (2 * m) % 2 = 0 := by omega
+  have p4 : ¬ (2 * m + 1) % 2 = 0 := by omega
+  rw [if_neg (by omega : ¬ (2 * l < 2 * m ∧ m < l)), if_neg (by omega : ¬ (2 * l < 2 * m + 1 ∧ p + m < l)),
+    if_neg (by omega : ¬ (2 * l + 1 < 2 * m + 1 ∧ p + m < p + l)), if_pos p2.elim, if_pos p3,
+    if_neg p2, if_neg p4]
+  by_cases hlm : l < m
+  · rw [if_pos (by omega : 2 * l + 1 < 2 * m ∧ m < p + l), if_pos hlm]
+    ring
+  · rw [if_neg (by omega : ¬ (2 * l + 1 < 2 * m ∧ m < p + l)), if_neg hlm]
+    ring
+
+omit [NeZero p] [Fact p.Prime] in
+/-- The riffle sign, in closed form. -/
+theorem neg_one_pow_riffle_exp :
+    (-1 : ZMod p) ^ (∑ i : Fin (2 * p), ∑ j : Fin (2 * p),
+        if i < j ∧ riffleEquiv p j < riffleEquiv p i then cartanDeg p q q' i * cartanDeg p q q' j
+        else 0)
+      = (-1 : ZMod p) ^ (q * q' * (p * (p - 1) / 2)) := by
+  rw [riffle_exp_eq]
+  have h := two_mul_sum_range_lt p
+  have hS : ∑ a ∈ Finset.range p, ∑ b ∈ Finset.range p, (if a < b then 1 else 0) = p * (p - 1) / 2 :=
+    (Nat.div_eq_of_eq_mul_left (by norm_num) (by rw [← h]; ring)).symm
+  rw [hS, mul_comm q' q]
+
+end Riffle
+
+/-! ## 2. A proof-free class map into the total ring -/
+
+section TotalClass
+
+variable {X : TopCat.{0}}
+
+omit [NeZero p] [Fact p.Prime] in
+/-- **The class of a cochain in the total ring**, `0` when the cochain is not a cocycle. -/
+def totalClass (N : ℕ) (φ : singularCochainGroup (ZMod p) X N) : TotalHOf (ZMod p) X :=
+  if h : cochainCoboundary (ZMod p) X N φ = 0 then
+    TotalHOf.of (ZMod p) X N (cocycleClassK (ZMod p) X N φ h)
+  else 0
+
+omit [NeZero p] [Fact p.Prime] in
+theorem totalClass_of_cocycle {N : ℕ} {φ : singularCochainGroup (ZMod p) X N}
+    (h : cochainCoboundary (ZMod p) X N φ = 0) :
+    totalClass p N φ = TotalHOf.of (ZMod p) X N (cocycleClassK (ZMod p) X N φ h) :=
+  dif_pos h
+
+omit [NeZero p] [Fact p.Prime] in
+theorem cochainCoboundary_zero' (N : ℕ) :
+    cochainCoboundary (ZMod p) X N (0 : singularCochainGroup (ZMod p) X N) = 0 := by
+  unfold cochainCoboundary
+  exact map_zero _
+
+omit [NeZero p] [Fact p.Prime] in
+theorem totalClass_zero (N : ℕ) : totalClass p N (0 : singularCochainGroup (ZMod p) X N) = 0 := by
+  rw [totalClass_of_cocycle p (cochainCoboundary_zero' p N), cocycleClassK_zero, map_zero]
+
+omit [NeZero p] [Fact p.Prime] in
+theorem totalClass_add {N : ℕ} {φ ψ : singularCochainGroup (ZMod p) X N}
+    (hφ : cochainCoboundary (ZMod p) X N φ = 0) (hψ : cochainCoboundary (ZMod p) X N ψ = 0) :
+    totalClass p N (φ + ψ) = totalClass p N φ + totalClass p N ψ := by
+  have hsum : cochainCoboundary (ZMod p) X N (φ + ψ) = 0 := by
+    rw [cochainCoboundary_add' p N φ ψ, hφ, hψ, add_zero]
+  rw [totalClass_of_cocycle p hsum, totalClass_of_cocycle p hφ, totalClass_of_cocycle p hψ,
+    CupOneLocal.cocycleClassK_add (ZMod p) X N φ ψ hφ hψ hsum, map_add]
+
+omit [NeZero p] [Fact p.Prime] in
+theorem totalClass_smul {N : ℕ} (c : ZMod p) {φ : singularCochainGroup (ZMod p) X N}
+    (hφ : cochainCoboundary (ZMod p) X N φ = 0) :
+    totalClass p N (c • φ) = c • totalClass p N φ := by
+  have hs : cochainCoboundary (ZMod p) X N (c • φ) = 0 := by
+    rw [CupOneLocal.cochainCoboundary_smul, hφ, smul_zero]
+  rw [totalClass_of_cocycle p hs, totalClass_of_cocycle p hφ,
+    CupOneLocal.cocycleClassK_smul (ZMod p) X N c φ hφ hs]
+  exact map_smul (DirectSum.lof (ZMod p) ℕ (fun n : ℕ => TotalPieceOf (ZMod p) X n) N) c _
+
+omit [NeZero p] [Fact p.Prime] in
+theorem totalClass_ite {N : ℕ} (c : Prop) [Decidable c] (φ : singularCochainGroup (ZMod p) X N) :
+    totalClass p N (if c then φ else 0) = if c then totalClass p N φ else 0 := by
+  split_ifs
+  · rfl
+  · exact totalClass_zero p N
+
+omit [NeZero p] [Fact p.Prime] in
+theorem totalClass_finset_sum {ι : Type} (N : ℕ) (s : Finset ι)
+    (f : ι → singularCochainGroup (ZMod p) X N)
+    (hf : ∀ i ∈ s, cochainCoboundary (ZMod p) X N (f i) = 0) :
+    totalClass p N (∑ i ∈ s, f i) = ∑ i ∈ s, totalClass p N (f i) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => rw [Finset.sum_empty, Finset.sum_empty, totalClass_zero]
+  | insert a s ha ih =>
+    have hfa := hf a (Finset.mem_insert_self a s)
+    have hfs : ∀ i ∈ s, cochainCoboundary (ZMod p) X N (f i) = 0 :=
+      fun i hi => hf i (Finset.mem_insert_of_mem hi)
+    have hsum : cochainCoboundary (ZMod p) X N (∑ i ∈ s, f i) = 0 := by
+      clear ih
+      induction s using Finset.induction_on with
+      | empty => rw [Finset.sum_empty, cochainCoboundary_zero']
+      | insert b t hb ih' =>
+        rw [Finset.sum_insert hb, cochainCoboundary_add' p N, hfs b (Finset.mem_insert_self b t),
+          ih' (fun i hi => hf i (Finset.mem_insert_of_mem (Finset.mem_insert_of_mem hi)))
+            (fun hat => ha (Finset.mem_insert_of_mem hat))
+            (fun i hi => hfs i (Finset.mem_insert_of_mem hi)), add_zero]
+    rw [Finset.sum_insert ha, Finset.sum_insert ha, totalClass_add p hfa hsum, ih hfs]
+
+omit [NeZero p] [Fact p.Prime] in
+/-- A single cochain placed in its own degree, read at that degree. -/
+theorem totalClass_piSingle_self {e N : ℕ} (h : e = N) (w : singularCochainGroup (ZMod p) X e) :
+    totalClass p N (Pi.single e w N) = totalClass p e w := by
+  subst h
+  rw [Pi.single_eq_same]
+
+omit [NeZero p] [Fact p.Prime] in
+theorem cochainCoboundary_piSingle_apply {e : ℕ} (N : ℕ) {w : singularCochainGroup (ZMod p) X e}
+    (hw : cochainCoboundary (ZMod p) X e w = 0) :
+    cochainCoboundary (ZMod p) X N (Pi.single e w N) = 0 := by
+  by_cases h : N = e
+  · subst h
+    rw [Pi.single_eq_same, hw]
+  · rw [Pi.single_eq_of_ne h, cochainCoboundary_zero']
+
+omit [NeZero p] [Fact p.Prime] in
+/-- **The class of a cup of cocycles is the product of the classes.** -/
+theorem totalClass_cochainCup {d d' : ℕ} {w : singularCochainGroup (ZMod p) X d}
+    {w' : singularCochainGroup (ZMod p) X d'} (hw : cochainCoboundary (ZMod p) X d w = 0)
+    (hw' : cochainCoboundary (ZMod p) X d' w' = 0) :
+    totalClass p (d + d') (cochainCup d d' w w') = totalClass p d w * totalClass p d' w' := by
+  rw [totalClass_of_cocycle p (cochainCup_respects_cocycles d d' w w' hw hw'),
+    totalClass_of_cocycle p hw, totalClass_of_cocycle p hw', ← cup_mkOf w hw w' hw',
+    TotalHOf.of_mul]
+
+end TotalClass
+
+/-! ## 3. The second composite, evaluated -/
+
+section Evaluate
+
+variable {X : TopCat.{0}} (q q' : ℕ) (u : singularCochainGroup (ZMod p) X q)
+  (v : singularCochainGroup (ZMod p) X q')
+
+/-- **The coefficient of `D_a u ⌣ D_b v` in `D_i(u ⌣ v)`**: the riffle sign, the reduced coproduct
+coefficient, and the regrouping sign. -/
+def cartanCoeffP (a b : ℕ) : ZMod p :=
+  (-1 : ZMod p) ^ (q * q' * (p * (p - 1) / 2)) * wdPhi p a b (1 : ZMod p) 1
+    * (-1 : ZMod p) ^ (b * (p * q - a))
+
+omit [NeZero p] [Fact p.Prime] in
+theorem cochainEval_finset_sum' {ι : Type} (N : ℕ) (s : Finset ι)
+    (f : ι → singularCochainGroup (ZMod p) X N) (σ : singularSimplices X N) :
+    cochainEval N (∑ i ∈ s, f i) σ = ∑ i ∈ s, cochainEval N (f i) σ := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => rw [Finset.sum_empty, Finset.sum_empty, cochainEval_zero]
+  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, cochainEval_add, ih]
+
+/-- **The second composite's cochain**, as the D-form sum of cup products. -/
+theorem cartanCochainB_eq_sum (K N : ℕ) (hN : N < K + 1) :
+    cartanCochainB p q q' u v K N hN
+      = ∑ ab ∈ Finset.antidiagonal (K - N),
+          if ab.1 ≤ p * q ∧ ab.2 ≤ p * q' then
+            cartanCoeffP p q q' ab.1 ab.2 •
+              Pi.single (p * q - ab.1 + (p * q' - ab.2))
+                (cochainCup (p * q - ab.1) (p * q' - ab.2) (oddD p q ab.1 u) (oddD p q' ab.2 v)) N
+          else 0 := by
+  apply cochain_ext
+  intro σ
+  rw [cochainEval_finset_sum']
+  simp only [cartanCochainB, cartanEvalB, cochainEval_cochainOfFun]
+  rw [compB_app_f_apply, compBLin_single, ← tupEvalAll_tupIncl, tupIncl_compBGen, compBAll]
+  show tupEvalAll (ZMod p) X (2 * p) (cartanFun p q q' u v)
+      (tupPermAll (ZMod p) X (2 * p) (riffleEquiv p)
+        (compBSum p X N ((simplexEquiv X N).symm (simplexEquiv X N σ)) (psiW p (K - N) 1))) = _
+  rw [Equiv.symm_apply_apply,
+    tupEvalAll_tupPermAll (ZMod p) (riffleEquiv p) (cartanFun p q q' u v) (cartanDeg p q q')
+      (isHomogFun_cartanFun p q q' u v),
+    neg_one_pow_riffle_exp, cartanFun_comp_riffleEquiv_symm, tupEvalAll_compBSum, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun ab _ => ?_
+  split_ifs with h
+  · rw [cochainEval_smul, gCupFun_piSingle]
+    simp only [cartanCoeffP, tagEvalG]
+    ring
+  · rw [mul_zero, cochainEval_zero]
+
+end Evaluate
+
+/-! ## 4. The D-form Cartan formula at class level -/
+
+section ClassLevel
+
+variable {X : TopCat.{0}} (q q' : ℕ) (u : singularCochainGroup (ZMod p) X q)
+  (v : singularCochainGroup (ZMod p) X q')
+
+/-- In total degree `0` the two composites' cochains are equal: the composites agree in degree `0`. -/
+theorem cartanCochainA_K_zero (hN : 0 < 0 + 1) :
+    cartanCochainA p q q' u v 0 0 hN = cartanCochainB p q q' u v 0 0 hN := by
+  apply cochain_ext
+  intro σ
+  simp only [cartanCochainA, cartanCochainB, cartanEvalA, cartanEvalB, cochainEval_cochainOfFun]
+  rw [compA_f_zero_eq_compB p X]
+
+/-- The two composites' cochains have the same class in the total ring, at any total degree. -/
+theorem totalClass_cartanCochainA (hp : Odd p) (hu : cochainCoboundary (ZMod p) X q u = 0)
+    (hv : cochainCoboundary (ZMod p) X q' v = 0) (K N : ℕ) (hN : N < K + 1)
+    (hA : cochainCoboundary (ZMod p) X N (cartanCochainA p q q' u v K N hN) = 0) :
+    totalClass p N (cartanCochainA p q q' u v K N hN)
+      = totalClass p N (cartanCochainB p q q' u v K N hN) := by
+  rcases Nat.eq_zero_or_pos K with hK | hK
+  · subst hK
+    have hN0 : N = 0 := by omega
+    subst hN0
+    rw [cartanCochainA_K_zero p q q' u v hN]
+  · rw [totalClass_of_cocycle p hA,
+      totalClass_of_cocycle p (cartanCochainB_cocycle p q q' u v hp hu hv K N hK hN hA),
+      cocycleClassK_cartanCochainA p q q' u v hp hu hv K N hK hN hA]
+
+/-- **The D-form Cartan formula**, cast-free: for cocycles `u`, `v`, the class of `D_i(u ⌣ v)` is the
+sum over the bidegrees `(a, b)` of `ψ_W(e_i)` of `κ(a, b)` times the product of the classes of
+`D_a u` and `D_b v`. -/
+theorem totalClass_oddD_cup (hp : Odd p) (hu : cochainCoboundary (ZMod p) X q u = 0)
+    (hv : cochainCoboundary (ZMod p) X q' v = 0) (i : ℕ) (hi : i ≤ p * (q + q')) :
+    totalClass p (p * (q + q') - i) (oddD p (q + q') i (cochainCup q q' u v))
+      = ∑ ab ∈ Finset.antidiagonal i,
+          if ab.1 ≤ p * q ∧ ab.2 ≤ p * q' then
+            cartanCoeffP p q q' ab.1 ab.2 •
+              (totalClass p (p * q - ab.1) (oddD p q ab.1 u)
+                * totalClass p (p * q' - ab.2) (oddD p q' ab.2 v))
+          else 0 := by
+  have hcup := cochainCup_respects_cocycles q q' u v hu hv
+  have hA : cochainCoboundary (ZMod p) X (p * (q + q') - i)
+      (cartanCochainA p q q' u v (p * (q + q')) (p * (q + q') - i)
+        (Nat.lt_succ_of_le (Nat.sub_le _ _))) = 0 := by
+    rw [cartanCochainA_eq_oddD]
+    exact oddD_cocycle p hp (q + q') i hi _ hcup
+  rw [← cartanCochainA_eq_oddD p q q' u v i, totalClass_cartanCochainA p q q' u v hp hu hv _ _ _ hA,
+    cartanCochainB_eq_sum]
+  have hKN : p * (q + q') - (p * (q + q') - i) = i := by omega
+  have hmul : p * (q + q') = p * q + p * q' := mul_add p q q'
+  rw [hKN, totalClass_finset_sum]
+  · refine Finset.sum_congr rfl fun ab hab => ?_
+    rw [totalClass_ite]
+    split_ifs with h
+    · have hab' : ab.1 + ab.2 = i := Finset.mem_antidiagonal.mp hab
+      have hDa := oddD_cocycle p hp q ab.1 h.1 u hu
+      have hDb := oddD_cocycle p hp q' ab.2 h.2 v hv
+      have hcc := cochainCup_respects_cocycles _ _ _ _ hDa hDb
+      rw [totalClass_smul p _ (cochainCoboundary_piSingle_apply p _ hcc),
+        totalClass_piSingle_self p (by omega) _, totalClass_cochainCup p hDa hDb]
+    · rfl
+  · intro ab hab
+    split_ifs with h
+    · have hDa := oddD_cocycle p hp q ab.1 h.1 u hu
+      have hDb := oddD_cocycle p hp q' ab.2 h.2 v hv
+      have hcc := cochainCup_respects_cocycles _ _ _ _ hDa hDb
+      rw [CupOneLocal.cochainCoboundary_smul, cochainCoboundary_piSingle_apply p _ hcc, smul_zero]
+    · exact cochainCoboundary_zero' p _
+
+end ClassLevel
+
+/-- **The D-form Cartan formula for `oddDClass`**, the class-level signature for lane
+`lx-cartantorus`. -/
+theorem totalOf_oddDClass_cup (hp : Odd p) (X : TopCat.{0}) (q q' i : ℕ) (hi : i ≤ p * (q + q'))
+    (x : Hmod (ZMod p) X q) (y : Hmod (ZMod p) X q') :
+    TotalHOf.of (ZMod p) X (p * (q + q') - i) (oddDClass p hp (q + q') i hi (cup x y))
+      = ∑ ab ∈ Finset.antidiagonal i,
+          if h : ab.1 ≤ p * q ∧ ab.2 ≤ p * q' then
+            cartanCoeffP p q q' ab.1 ab.2 •
+              (TotalHOf.of (ZMod p) X (p * q - ab.1) (oddDClass p hp q ab.1 h.1 x)
+                * TotalHOf.of (ZMod p) X (p * q' - ab.2) (oddDClass p hp q' ab.2 h.2 y))
+          else 0 := by
+  obtain ⟨u, hu, rfl⟩ := cocycleClassK_surjective (ZMod p) X q x
+  obtain ⟨v, hv, rfl⟩ := cocycleClassK_surjective (ZMod p) X q' y
+  rw [cup_mkOf, oddDClass_mk, ← totalClass_of_cocycle p, totalClass_oddD_cup p q q' u v hp hu hv i hi]
+  refine Finset.sum_congr rfl fun ab _ => ?_
+  split_ifs with h
+  · rw [oddDClass_mk, oddDClass_mk, ← totalClass_of_cocycle p, ← totalClass_of_cocycle p]
+  · rfl
+
+/-! ## 5. The total reduced power is multiplicative on even classes -/
+
+omit [NeZero p] [Fact p.Prime] in
+theorem cartanCoeffP_even_even {q q' a b : ℕ} (hq : Even q) (ha : Even a) (hb : Even b) :
+    cartanCoeffP p q q' a b = 1 := by
+  unfold cartanCoeffP
+  rw [(Even.mul_right (Even.mul_right hq q') _).neg_one_pow, wdPhi_one_one_even p ha,
+    (Even.mul_right hb _).neg_one_pow, one_mul, one_mul]
+
+omit [NeZero p] [Fact p.Prime] in
+theorem cartanCoeffP_odd_odd (hp : Odd p) {q q' a b : ℕ} (ha : ¬ Even a) (hb : ¬ Even b) :
+    cartanCoeffP p q q' a b = 0 := by
+  unfold cartanCoeffP
+  rw [wdPhi_one_one_odd_odd hp ha hb, mul_zero, zero_mul]
+
+/-- **The total reduced power `Σ_{j even} [D_j]` is multiplicative on classes of even degree**, for
+any additive family `D` agreeing with `oddDClass`.  This is the field `ptot_mul` of
+`OddPTotal.TotalReducedPowers`. -/
+theorem ptotOf_mul (hp : Odd p)
+    (D : ∀ (X : TopCat.{0}) (q j : ℕ), Hmod (ZMod p) X q →+ Hmod (ZMod p) X (p * q - j))
+    (hD : ∀ (X : TopCat.{0}) (q j : ℕ) (hj : j ≤ p * q) (x : Hmod (ZMod p) X q),
+      D X q j x = oddDClass p hp q j hj x)
+    (X : TopCat.{0}) {q q' : ℕ} (hq : Even q) (hq' : Even q') (x : Hmod (ZMod p) X q)
+    (y : Hmod (ZMod p) X q') :
+    OddPTotal.ptotOf D X (q + q') (cup x y) = OddPTotal.ptotOf D X q x * OddPTotal.ptotOf D X q' y := by
+  obtain ⟨u, hu, rfl⟩ := cocycleClassK_surjective (ZMod p) X q x
+  obtain ⟨v, hv, rfl⟩ := cocycleClassK_surjective (ZMod p) X q' y
+  have hptot : ∀ (r : ℕ) (w : singularCochainGroup (ZMod p) X r)
+      (hw : cochainCoboundary (ZMod p) X r w = 0),
+      OddPTotal.ptotOf D X r (cocycleClassK (ZMod p) X r w hw)
+        = ∑ j ∈ Finset.range (p * r + 1),
+            if j % 2 = 0 then totalClass p (p * r - j) (oddD p r j w) else 0 := by
+    intro r w hw
+    simp only [OddPTotal.ptotOf, AddMonoidHom.finset_sum_apply]
+    refine Finset.sum_congr rfl fun j hj => ?_
+    split_ifs with h
+    · rw [AddMonoidHom.comp_apply, hD X r j (Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)),
+        oddDClass_mk, ← totalClass_of_cocycle p]
+    · rfl
+  rw [cup_mkOf, hptot, hptot, hptot, Finset.sum_mul_sum, ← Finset.sum_product']
+  have hmaps : ∀ ab ∈ Finset.range (p * q + 1) ×ˢ Finset.range (p * q' + 1),
+      ab.1 + ab.2 ∈ Finset.range (p * (q + q') + 1) := by
+    intro ab hab
+    rw [Finset.mem_product, Finset.mem_range, Finset.mem_range] at hab
+    rw [Finset.mem_range, mul_add]
+    omega
+  rw [← Finset.sum_fiberwise_of_maps_to hmaps]
+  refine Finset.sum_congr rfl fun i hi => ?_
+  have hiK : i ≤ p * (q + q') := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
+  have hfib : (Finset.range (p * q + 1) ×ˢ Finset.range (p * q' + 1)).filter
+        (fun ab => ab.1 + ab.2 = i)
+      = (Finset.antidiagonal i).filter (fun ab => ab.1 ≤ p * q ∧ ab.2 ≤ p * q') := by
+    ext ab
+    simp only [Finset.mem_filter, Finset.mem_product, Finset.mem_range, Finset.mem_antidiagonal]
+    omega
+  rw [hfib]
+  split_ifs with hev
+  · rw [totalClass_oddD_cup p q q' u v hp hu hv i hiK, ← Finset.sum_filter]
+    refine Finset.sum_congr rfl fun ab hab => ?_
+    have hab' : ab.1 + ab.2 = i := Finset.mem_antidiagonal.mp (Finset.mem_filter.mp hab).1
+    by_cases ha : ab.1 % 2 = 0
+    · have hb : ab.2 % 2 = 0 := by omega
+      rw [cartanCoeffP_even_even p hq (Nat.even_iff.mpr ha) (Nat.even_iff.mpr hb), one_smul,
+        if_pos ha, if_pos hb]
+    · have hb : ¬ ab.2 % 2 = 0 := by omega
+      rw [cartanCoeffP_odd_odd p hp (fun h => ha (Nat.even_iff.mp h))
+          (fun h => hb (Nat.even_iff.mp h)), zero_smul, if_neg ha, zero_mul]
+  · refine (Finset.sum_eq_zero fun ab hab => ?_).symm
+    have hab' : ab.1 + ab.2 = i := Finset.mem_antidiagonal.mp (Finset.mem_filter.mp hab).1
+    by_cases ha : ab.1 % 2 = 0
+    · rw [if_neg (by omega : ¬ ab.2 % 2 = 0), mul_zero]
+    · rw [if_neg ha, zero_mul]
+
+end
+
+end GroupApproximation.CharClass
+
+open GroupApproximation.CharClass
+
+#audit_axioms totalClass_oddD_cup
+#audit_axioms totalOf_oddDClass_cup
+#audit_axioms ptotOf_mul
