@@ -65,6 +65,13 @@ Property (T) closes the Higson--Kasparov route for both.
     `L^x` controls only the `g = 1` summand. The centralizers of torsion
     elements are not controlled, and nothing in the graph computes the
     right-hand side.
+  - **On the Kun--Thom actors the trace test is live.**
+    `kun-thom-actor-finite-subgroup-ring-has-finitely-many-primes` confines
+    `Lambda^G` to finitely many inverted primes `P(q,r,d)`. So a projection in
+    `M_n(C*_r G)` with a rational trace outside `Z[1/l : l in P(q,r,d)]`
+    would already refute surjectivity of `mu_r` for a Theorem E actor. On
+    `L^x` no rational target exists. The difficulty is unchanged: no mechanism
+    produces a projection in `C*_r G` that is not built from subgroup averages.
 - **Extension permanence is no shortcut.** Meyer, arXiv:2508.05726 (abstract
   read, not imported), shows that the Chabert--Echterhoff hypotheses cannot be
   weakened to Baum--Connes for the normal subgroup alone.
