@@ -11,8 +11,8 @@ artifacts:
   - research/artifacts/commutant-distortion-product-firewall-2026-09-12.md
 ---
 
-**ESTABLISHED** (route `commuting-subgroup-witness-product-model-proof`; artifact Section 2; independent
-re-derivation requested from `w4-vf-gate`).
+**ESTABLISHED** (route `commuting-subgroup-witness-product-model-proof`; artifact Section 2; independently
+re-derived by `w4-vf-gate`, Section 25 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`, PASS).
 
 **Statement.** In `R^x = L_(F_2)(1,2)^x`, let `U` be clopen proper, `Theta` a frame triple with union a proper
 subset of `U`, `L <= G_U` a countable infinite locally finite subgroup containing the two transvections of
@@ -26,11 +26,18 @@ rk(D_Theta Z) = delta rk(Z)      for every n and every Z in M_n(sigma(F_2[Lambda
 
 Every invariant summand built from such `Z` has normalized defect exactly `delta`.
 
+**Scope (verifier remark).** The identity holds for every `rho`, including the trivial model, where every witness
+is a scalar. Its firewall content comes from a `rho` that **separates** `Lambda` (a faithful rank model): then the
+witnesses are genuinely non-scalar operators, and they still do not distort. Separating models exist for infinite
+cyclic groups (cyclic permutation stages) and for every sofic, amenable, residually finite or `F_2`-linear sofic
+`Lambda`. For `Lambda = G_(U^c)`, isomorphic to `R^x`, a separating `rho` is the gate itself (artifact Section 3,
+item 2).
+
 **Consequence.** The escaping units `b = iota_A(w_23) iota_(A1)(w_12)` and `x^A_12(s_0) x^A_21(1)`, placed off `U`,
-generate infinite cyclic groups, which have rank models. So as commuting witnesses they cannot supply
+generate infinite cyclic groups, which have separating rank models. So as commuting witnesses they cannot supply
 `some-commutant-element-distorts-defect-range-rank`. A distortion proof has to use straddling units of `R^x` as
-factors (not only as conjugators), properties of `Lambda` that no rank model has, or global inputs (corner
-locality, globality, compactness). Artifact Section 3.
+factors (not only as conjugators), properties of `Lambda` that no separating rank model has, or global inputs
+(corner locality, globality, compactness). Artifact Section 3.
 
 ## Attempts
 
