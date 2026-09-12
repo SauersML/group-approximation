@@ -1,4 +1,5 @@
 import GroupApproximation.KOne.AryPrefixCodes
+import GroupApproximation.Leavitt.AryKillWord
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -22,6 +23,7 @@ variable (F : CompleteMatrixFamily A ι)
 def fullCode (M : ℕ) : AryPrefixCode (Fin M → ι) ι :=
   ⟨fun f ↦ List.ofFn f, fun f g hfg hp ↦ hfg (List.ofFn_inj.mp (hp.eq_of_length (by simp)))⟩
 
+omit [Fintype ι] [DecidableEq ι] in
 @[simp] theorem fullCode_word (M : ℕ) (f : Fin M → ι) :
     (fullCode (ι := ι) M).word f = List.ofFn f := rfl
 
@@ -42,7 +44,7 @@ theorem exists_exact_depth_code (M : ℕ) {κT : Type*} [Fintype κT]
 
 /-- The index type of a split code: `s` chosen words replaced by their children. -/
 abbrev SplitIndex (M s : ℕ) (e : Fin s → (Fin M → ι)) : Type _ :=
-  (Fin s × ι) ⊕ {x : Fin M → ι // x ∉ Finset.univ.image e}
+  (Fin s × ι) ⊕ ((Finset.univ.image e)ᶜ : Finset (Fin M → ι))
 
 /-- The words of a split code. -/
 def splitWords {M s : ℕ} (e : Fin s → (Fin M → ι)) : SplitIndex M s e → List ι :=
@@ -50,9 +52,10 @@ def splitWords {M s : ℕ} (e : Fin s → (Fin M → ι)) : SplitIndex M s e →
 
 theorem splitWords_free {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
     ∀ ⦃p q : SplitIndex M s e⦄, p ≠ q → ¬ splitWords e p <+: splitWords e q := by
-  have hout : ∀ (x : {x : Fin M → ι // x ∉ Finset.univ.image e}) (a : Fin s), x.1 ≠ e a := by
+  have hout : ∀ (x : ((Finset.univ.image e)ᶜ : Finset (Fin M → ι))) (a : Fin s),
+      x.1 ≠ e a := by
     intro x a hxa
-    exact x.2 (Finset.mem_image.mpr ⟨a, Finset.mem_univ a, hxa.symm⟩)
+    exact Finset.mem_compl.mp x.2 (Finset.mem_image.mpr ⟨a, Finset.mem_univ a, hxa.symm⟩)
   rintro (⟨a, z⟩ | x) (⟨a', z'⟩ | x') hne h
   · simp only [splitWords, Sum.elim_inl] at h
     have hlen : (List.ofFn (e a) ++ [z]).length = (List.ofFn (e a') ++ [z']).length := by simp
@@ -79,22 +82,18 @@ def splitCode {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injectiv
 
 theorem splitCode_isComplete {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
     F.IsComplete (splitCode e he) := by
-  classical
   unfold IsComplete
   rw [Fintype.sum_sum_type, Fintype.sum_prod_type]
   simp only [splitCode, splitWords, Sum.elim_inl, Sum.elim_inr]
   have hchildren : ∀ a : Fin s, ∑ z : ι, F.cylinder (List.ofFn (e a) ++ [z]) =
       F.cylinder (List.ofFn (e a)) := fun a ↦ (F.cylinder_split _).symm
-  rw [Finset.sum_congr rfl fun a _ ↦ hchildren a]
-  have himage : ∑ a : Fin s, F.cylinder (List.ofFn (e a)) =
-      ∑ x : {x // x ∈ Finset.univ.image e}, F.cylinder (List.ofFn x.1) := by
-    rw [← Finset.sum_subtype (Finset.univ.image e) (fun x ↦ Iff.rfl)
-      (fun x ↦ F.cylinder (List.ofFn x)),
-      Finset.sum_image (fun x _ y _ hxy ↦ he hxy)]
-  rw [himage, Fintype.sum_subtype_add_sum_subtype (fun x ↦ x ∈ Finset.univ.image e)
-    (fun x ↦ F.cylinder (List.ofFn x))]
+  rw [Finset.sum_congr rfl fun a _ ↦ hchildren a,
+    ← Finset.sum_image (f := fun x ↦ F.cylinder (List.ofFn x)) (fun x _ y _ hxy ↦ he hxy),
+    Finset.sum_coe_sort (Finset.univ.image e)ᶜ (fun x ↦ F.cylinder (List.ofFn x)),
+    Finset.sum_add_sum_compl]
   exact F.sum_cylinder_ofFn M
 
+omit [DecidableEq ι] in
 theorem splitCode_length {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e)
     (p : SplitIndex M s e) :
     M ≤ ((splitCode e he).word p).length ∧ ((splitCode e he).word p).length ≤ M + 1 := by
@@ -104,13 +103,13 @@ theorem splitCode_length {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Functi
 
 theorem card_splitIndex {M s : ℕ} (e : Fin s → (Fin M → ι)) (he : Function.Injective e) :
     Fintype.card (SplitIndex M s e) + s = s * Fintype.card ι + Fintype.card ι ^ M := by
-  classical
-  have h1 := Fintype.card_congr (Equiv.sumCompl (fun x : Fin M → ι ↦ x ∈ Finset.univ.image e))
-  rw [Fintype.card_sum, Fintype.card_fun, Fintype.card_fin] at h1
-  have h2 : Fintype.card {x // x ∈ Finset.univ.image e} = s := by
-    rw [Fintype.card_coe, Finset.card_image_of_injective _ he, Finset.card_univ,
-      Fintype.card_fin]
-  rw [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin]
+  have hle : s ≤ Fintype.card ι ^ M := by
+    have h := Finset.card_le_univ (Finset.univ.image e)
+    rwa [Finset.card_image_of_injective _ he, Finset.card_univ, Fintype.card_fin,
+      Fintype.card_fun, Fintype.card_fin] at h
+  rw [Fintype.card_sum, Fintype.card_prod, Fintype.card_fin, Fintype.card_coe,
+    Finset.card_compl, Finset.card_image_of_injective _ he, Finset.card_univ, Fintype.card_fin,
+    Fintype.card_fun, Fintype.card_fin]
   omega
 
 /-- **Codes of controlled depth**: on an index type of size `d^M + s·(d - 1)` with `s ≤ d^M`
@@ -123,7 +122,6 @@ theorem exists_depth_code [Nonempty ι] {M s : ℕ} (hs : s ≤ Fintype.card ι 
   classical
   have hs' : s ≤ Fintype.card (Fin M → ι) := by rw [Fintype.card_fun, Fintype.card_fin]; exact hs
   set e : Fin s → (Fin M → ι) := fun a ↦ (Fintype.equivFin (Fin M → ι)).symm (Fin.castLE hs' a)
-    with he
   have heinj : Function.Injective e := by
     intro a b hab
     have h := (Fintype.equivFin (Fin M → ι)).symm.injective hab
@@ -132,13 +130,12 @@ theorem exists_depth_code [Nonempty ι] {M s : ℕ} (hs : s ≤ Fintype.card ι 
   have hsplit := card_splitIndex e heinj
   have hcardeq : Fintype.card κT = Fintype.card (SplitIndex M s e) := by
     obtain ⟨d', hd'⟩ : ∃ d', Fintype.card ι = d' + 1 := ⟨Fintype.card ι - 1, by omega⟩
-    rw [hd', Nat.add_sub_cancel, Nat.mul_succ] at hsplit
+    rw [hd', mul_add, mul_one] at hsplit
     rw [hcard, hd', Nat.add_sub_cancel]
     omega
-  set eq : κT ≃ SplitIndex M s e := Fintype.equivOfCardEq hcardeq with heq
-  refine ⟨(splitCode e heinj).reindex eq, F.reindex_isComplete _ (F.splitCode_isComplete e heinj) eq,
-    fun j ↦ ?_⟩
-  exact splitCode_length e heinj (eq j)
+  refine ⟨(splitCode e heinj).reindex (Fintype.equivOfCardEq hcardeq),
+    F.reindex_isComplete _ (F.splitCode_isComplete e heinj) _, fun j ↦ ?_⟩
+  exact splitCode_length e heinj _
 
 end CompleteMatrixFamily
 end GroupApproximation
@@ -146,6 +143,7 @@ end GroupApproximation
 /-! ### Axiom audit -/
 
 #audit_axioms GroupApproximation.CompleteMatrixFamily.fullCode_isComplete
+#audit_axioms GroupApproximation.CompleteMatrixFamily.exists_exact_depth_code
 #audit_axioms GroupApproximation.CompleteMatrixFamily.splitWords_free
 #audit_axioms GroupApproximation.CompleteMatrixFamily.splitCode_isComplete
 #audit_axioms GroupApproximation.CompleteMatrixFamily.card_splitIndex
