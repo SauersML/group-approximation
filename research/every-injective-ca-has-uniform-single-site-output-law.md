@@ -30,3 +30,18 @@ The two routes form an intended cycle through the goal, so neither establishes a
   therefore certifies only `H >= log |A| sup_F |F|/|F E|`, which is below `log |A|` on nonamenable groups.
 - **What the criterion adds.** On a simple Kazhdan host a proof must control one marginal of one image
   process, not the whole image measure. No mechanism for that is known on nonsofic hosts.
+- **Small memory (w4-bal-census, artifact `small-memory-balance-census-2026-09-12.md`).**
+  - **Settled.** Two memory elements over every alphabet, because the memory group is cyclic. Two
+    symbols with at most three memory elements, over every group
+    (`binary-three-address-injective-automata-have-balanced-rules`). The proof uses constant tests,
+    prescribed flips and a double flip, and no finite models.
+  - **Sidon memory.** On two symbols, if the quotients `m^-1 m'` are distinct, an unbalanced rule
+    has an invisible single flip (`binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`).
+    So a counterexample needs a relation `m^-1 m' = n^-1 n'`.
+  - **Stops at rigid three-symbol rules**, where no pair is blind in every coordinate
+    (`ternary-three-address-injective-automata-have-balanced-rules`).
+    - Smallest instance: `x - y + z` patched at `(0,2,2)`.
+    - By `avoidable-patches-of-affine-rules-inherit-linear-injectivity`, it needs `1 - a + b` to be a
+      unit of `F_3[G]`.
+  - **Stops at two symbols with placements that are Sidon in no group**
+    (`binary-four-address-injective-automata-have-balanced-rules`).
