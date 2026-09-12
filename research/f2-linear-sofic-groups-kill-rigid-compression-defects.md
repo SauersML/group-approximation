@@ -123,12 +123,38 @@ normalizes `C_U(sigma(Gamma))`.
     pieces, `sum_l |d_l - sum_(tau(j)=l) d_j| <= 2 sum_j leak_j`. Also the
     more-than-half collision, since independent subspaces add dimensions.
   - *Fail.* Rounding into expanding pieces: almost invariant subspaces do not round,
-    as in the cyclic `F_2^(2^m)` example.
+    as in the cyclic `F_2^(2^m)` example, and property (T) does not repair this (next
+    item).
   - *Fail.* One-piece transport, which consumes monomiality. A compressor
     `rho(t) (x) B` with non-monomial `B` sends `W (x) e_1` to the graph
     `{ w (x) e_1 + w (x) e_2 }`, which lies inside no single piece. The
     Hilbert--Schmidt row fails at the same step
     ([[nonmonomial-multiplicity-obstructs-hs-compressor-transport]]).
-  - So a proof needs finite-stage multiplicity coordinates on which compressors act
-    monomially up to rank `o(n)`, and a rank-expansion input for Kazhdan groups.
-    Neither is known.
+  - So a proof along these lines would need finite-stage multiplicity coordinates on
+    which compressors act monomially up to rank `o(n)`, plus a rank-expansion input for
+    Kazhdan groups. Neither is known, and the second cannot come from property (T).
+- **Rank rounding from property (T): refuted (2026-09-12, lane `gk-kdf-structure`).**
+  - [[kazhdan-group-rank-models-admit-no-expander-decomposition]]: `EL_3(F_2[t])` is
+    Kazhdan, yet its representations over `F_(2^k)`, viewed over `F_2`, are irreducible
+    and still carry almost-invariant subspaces.
+    - Multiplication by a field generator is a companion-matrix shift, and the degree
+      truncations have boundary at most `6` in every dimension.
+    - So there is no rounding modulus, and no uniform dimension expansion.
+    - Every decomposition into internally `kappa`-expanding pieces leaks linearly:
+      `lambda > kappa/21`.
+    - Linear-size pieces stay non-expanding under `o(n)` rank perturbations of the models.
+  - [[kazhdan-rank-ultraproducts-can-have-diffuse-commutants]]: in the rank ultraproduct
+    the relative commutant carries a continuous chain of idempotents, and invariant
+    right ideals have no atoms. In Hamming and Hilbert--Schmidt the uniform spectral gap
+    forbids both.
+  - Over `C` the conclusion is the opposite: the unitary argument gives
+    `sum_s e_s(W) >= kappa^2 dim W/4` for irreducible representations. The obstruction
+    is specific to finite coefficient fields and holds over every `F_p`.
+  - The same models exist for the Theorem E subgroup `EL_r(F_2[x_1..x_d])`.
+  - Consequence: step (K) of the Hamming normalization proof has no rank-metric form
+    available from property (T) of `Gamma`. A proof of this claim must use a different
+    input: property (T) of the compressor group jointly with the compression, or a size
+    that does not come from atoms.
+  - Not covered: pieces of sublinear dimension in perturbed models, and whether some
+    other size on the (possibly commutative) relative commutant forbids strict
+    compression. This claim stays OPEN in both directions.

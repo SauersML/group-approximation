@@ -204,6 +204,16 @@ on `f2-linear-sofic-groups-kill-rigid-compression-defects`) shows higher-rank la
 are not strictly C-stable in rank. Lemma 1 rounds pointwise-fixed subspaces, which is a
 different object.
 
+*Later the same day: property (T) does not supply (K).*
+`research/artifacts/kazhdan-rank-rounding-counterexample-2026-09-12.md`.
+* The shift obstruction reappears inside a Kazhdan group. `EL_3(F_2[t])` acts on
+  `F_(2^k)^3` irreducibly over `F_2`, and multiplication by a field generator is a
+  companion-matrix shift, so degree truncations have bounded boundary.
+* So no rounding modulus exists, and every expander decomposition leaks linearly
+  (`kazhdan-group-rank-models-admit-no-expander-decomposition`).
+* The rank ultraproduct has a diffuse relative commutant
+  (`kazhdan-rank-ultraproducts-can-have-diffuse-commutants`).
+
 **(T1) fails, and it is the permutation-specific step.**
 
 * **Sets versus subspaces.** Pieces are subsets in the Hamming row, and every model
