@@ -105,8 +105,27 @@ So the sharp lift problem needs supports whose evaluations reach `s0`. The atlas
 family below does: the predecessor's seven-term lift of `s0` lives in a
 radius-three atlas ball.
 
-Running: `v` (3,3) in strict mode; the `atlas` family in target mode, (1,3)/(3,1)
-and then (2,3)/(3,2).
+**Atlas family: the target is in the span, so these are genuine bilinear UNSATs.**
+The generators are the two `GL(4,2)` charts on `D_1 = (01,1,000,001)` and
+`D_2 = (00,1,010,011)`, two generators per chart as in `four_generator_atlas()`,
+and they generate all of `R^x`. The per-factor rigidity therefore kills nothing
+here. Sizes: `|B_1| = 9`, `|B_2| = 53`, `|B_3| = 293`.
+
+| (ra, rb) | target | span check | AND vars | status | solve time |
+|---|---|---|---|---|---|
+| (1,3) | `pi(beta) = s0` | in span | 2,637 | UNSAT | 0.006 s |
+| (3,1) | `pi(alpha) = t0` | in span | 2,637 | UNSAT | 0.014 s |
+| (2,3) | `pi(beta) = s0` | in span | 15,529 | UNSAT | 2.1 s |
+| (3,2) | `pi(alpha) = t0` | in span | 15,529 | UNSAT | 2.9 s |
+
+In words: no `beta` supported in the radius-3 atlas ball evaluates to `s0` and
+has a left inverse supported in the radius-2 ball, and dually for `t0`.
+
+Running:
+- `v` (3,3), strict mode;
+- atlas (3,3), (2,4), (1,5), (4,2) in target mode, and (2,3), (3,2) with the
+  strict clause;
+- sbatch `kdf-sat-b7`: atlas (3,4), (4,3), (2,5), (5,2) in target mode.
 
 ## Trust surface
 
