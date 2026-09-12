@@ -53,6 +53,7 @@ namespace KGen
 open scoped Matrix
 open CategoryTheory Limits
 open GroupApproximation.STW59
+open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
 set_option linter.unusedSectionVars false
 

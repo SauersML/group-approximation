@@ -43,11 +43,9 @@ def kZeroAngle (k : ℕ) (j : Fin (k + 1)) : ℝ :=
 /-- The centre of the sector is the `j`-th root. -/
 theorem exp_kZeroAngle (k : ℕ) (j : Fin (k + 1)) :
     Complex.exp ((kZeroAngle k j : ℂ) * Complex.I) = kRoot k j := by
-  have hk : ((k : ℂ) + 1) ≠ 0 := Nat.cast_add_one_ne_zero k
   rw [kRoot, kUnity, kBase, ← Complex.exp_nat_mul, ← Complex.exp_add, kZeroAngle]
   congr 1
   push_cast
-  field_simp
   ring
 
 /-- `joinC k` in polar coordinates. -/

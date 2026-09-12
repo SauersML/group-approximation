@@ -124,7 +124,6 @@ theorem kSect_mem_kSector (k : ℕ) (j : Fin (k + 1)) {w : ℂ} (hw : -w ∈ Com
     kSect k j w ∈ kSector k j := by
   have hk : (0 : ℝ) < (k : ℝ) + 1 := by positivity
   have hkne : ((k : ℝ) + 1) ≠ 0 := hk.ne'
-  have hkC : ((k : ℂ) + 1) ≠ 0 := Nat.cast_add_one_ne_zero k
   have hk1 : (1 : ℝ) ≤ (k : ℝ) + 1 := by
     have : (0 : ℝ) ≤ (k : ℝ) := Nat.cast_nonneg k
     linarith
@@ -143,11 +142,9 @@ theorem kSect_mem_kSector (k : ℕ) (j : Fin (k + 1)) {w : ℂ} (hw : -w ∈ Com
     congr 2
     rw [kSectAngle, kZeroAngle, ha]
     push_cast
-    field_simp
     ring
   have hapos : a * ((k : ℝ) + 1) = Complex.arg (-w) := by
-    rw [ha]
-    field_simp
+    rw [ha, div_mul_cancel₀ _ hkne]
   have habs : |a| < Real.pi / ((k : ℝ) + 1) := by
     rw [lt_div_iff₀ hk, ← abs_of_pos hk, ← abs_mul, hapos]
     exact abs_lt.mpr ⟨hgt, hltpi⟩
