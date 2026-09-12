@@ -62,5 +62,27 @@ representative `T0 = diag(G, G^2)` exactly to `T1 = diag(I_2, G^2)`. Here `sigma
 
 ## 4. Rescreen of nonuniform survivors
 
-Pending: window `m = 3`, degrees 2 and 3. This section is updated when the run
-finishes.
+Fork `kdf-leavitt-certificate`, 2026-09-12. MSI job 505753 (msismall, 45 s) ran
+the tool at commit `8a3807d14` with `--window 3 --rescreen` on the 144 survivors
+of Section 3.
+
+* **Classification of the 144.**
+  * 8 are uniform on the chart, dead by torus fusion.
+  * 24 are non-nesting, including the 8 uniform ones, dead by
+    `non-nesting-transporters-cannot-install-chart-comparison`.
+  * 120 nest with, or split, a chart leaf.
+* **Window `m = 3`, degree 2.** The `f_0`-sector has rank 128 and the `P_0`-sector
+  rank 56. None of the 120 nesting transporters has a kernel, so all 120
+  survive. The controls reproduce: `Z_phi`, `Z_(phi^-1)`, `Z_mu`, the four dressed
+  `phi` and both sums have kernels. `Z_(mu lambda)` has none on this window.
+* **The nesting survivors fall into five domain codes:**
+  `0 10 110 111` (12 range permutations), `0 100 101 11` (12), `00 01 10 11` (24),
+  `00 010 011 1` (36) and `000 001 01 1` (36). The full list is in the run output
+  `/projects/standard/hsiehph/sauer354/kdf-leavitt/runs/rescreen_w3_d2.json`.
+* **Structural filter.** By `sofic-support-cannot-install-half-corner-comparison`,
+  a survivor can install the comparison only if `<K, h>` is nonsofic. Any
+  survivor with `<K, h>` finite, amenable or residually finite is dead, whatever
+  the screen says.
+
+Pending: degree 3 on window 3 for the 120 (job 506462), and a group-order test of
+`<K, h>`. This section is updated when those finish.
