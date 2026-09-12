@@ -29,3 +29,20 @@ such stability or LLP theorem is known for this group.  Its operator-norm and
 unnormalized-Frobenius stability do not imply weak ucp-stability, and the
 compression defect alone is trace-blind in normalized HS.  Thus the direct
 attack is deferred to a genuinely normalized-HS/ucp argument.
+
+**One compressor reduces to `Gamma` (2026-09-11).**
+`fournier-facio-one-compressor-subgroup-reduces-to-gamma` puts the whole
+compression triple into `<Gamma, t_1>`: `J`, every `J_k`, `S wr Z`, and the
+proper commutant shift of `fournier-facio-regular-models-carry-commutant-shift`.
+That subgroup has no property (T) and is hyperlinear exactly when `Gamma` is.
+So an obstruction using one compressor and not property (T) of `G` proves the
+stronger `fournier-facio-compression-subgroup-not-hyperlinear`, and the route
+through it is `fournier-facio-no-go-via-compression-subgroup`.  A no-go that
+does not pass through `Gamma` must spend property (T) of `G` on both
+compressors.  In OpenAI's permutation proof that is the median size-matching
+step, which needs a component-size function monotone along the compressors.
+In normalized HS the missing object is a finite-level positive element of the
+approximate `Gamma`-commutant that is almost monotone under `Ad pi(t_i)^*` and
+encodes a component frame.  The charged-basis fences already forbid taking it
+from a normalized basis.  Details:
+`research/artifacts/fournier-facio-one-compressor-reduction-2026-09-11.md`.
