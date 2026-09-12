@@ -125,7 +125,10 @@ def main():
         fixed_keys = list(support)
         assert len(fixed_keys) % 2 == 1
         assert equal(evaluate_sum([from_key(k) for k in fixed_keys]), target_value)
-        record.update({"correction_support": len(chosen), "lift_support": len(fixed_keys)})
+        record.update({"correction_support": len(chosen), "lift_support": len(fixed_keys),
+                       "lift_words": [support[k][0] for k in fixed_keys],
+                       "surviving_defect_labels": sorted(name for name, value, _ in defect
+                                                         if key(value) in support)})
         if len(fixed_keys) > args.max_support:
             record["status"] = "LIFT_TOO_LARGE"
         else:
