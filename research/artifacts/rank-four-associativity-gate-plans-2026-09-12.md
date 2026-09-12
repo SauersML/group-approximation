@@ -207,3 +207,42 @@ without completeness.
 * **If the node is true,** it gives the binary gate.
 * **If it is false,** completeness must enter any construction. It cannot enter through root data, since
   the transport formula lives in `U_3(R)`. It has to enter through units outside `U_4(R)`.
+
+### L9. Adjacent plans from w3-strategist-neg (tracked here; not an R4 lane)
+
+Source artifact: `strategist-neg-counterexample-plans-2026-09-12.md`.
+
+**(a) Covariant diagonal on the defect piece.** Node `leavitt-two-root-defect-piece-forces-covariant-diagonal`,
+route `el3-rank-triviality-via-defect-piece-covariance`. w4-r4-adversary has been asked to attack it.
+* **The endpoint is sound.** Suppose there were a `V`-covariant family of orthogonal idempotents with
+  `e_w = e_(w0) + e_(w1)` and some `rk(e_w) > 0`. Then all proper cylinders would share one rank `c`,
+  with `c = 2c`. `thompson-v-cantor-system-has-no-covariant-rank-model` excludes that. So, as in L2, the
+  claim is equivalent to the gate, and its content is the construction.
+* **The first lemma points away from orthogonality** (lead). Suppose the spans `V_(w,w')` have ranks.
+  Transitivity gives them all one rank `c`. In a regular rank ring, `V_(w0,w') <= V_(w,w')` together
+  with equal rank forces `V_(w0,w') = V_(w,w')`. So image spans are refinement-invariant and cannot be
+  the `e_w`. Orthogonality is block support under another name, which is the L3 shape.
+* **Kill test** (lead). Root elements at `(w0,w')` and `(w1,w')` commute, because `t_(w') s_(w1) = 0`.
+  Finitely many of them generate an elementary abelian 2-group `H_0 x H_1`. In its regular rank model
+  the two augmentation images meet in normalized rank `(1 - 1/|H_0|)(1 - 1/|H_1|) > 0`. So a proof of
+  orthogonality must use `sigma` outside that locally finite subgroup (L7), most likely on the
+  prefix replacements that do not preserve measure. That is also where the endpoint gets its
+  contradiction.
+
+**(b) Abstract Sylvester rank functions and characteristic three.** This bears on step (U2) of
+`ternary-counterexample-from-rank-triviality-and-state-upgrade`. The table records what the landed
+statements say. It is not a re-verification.
+
+| node | abstract Sylvester rank function | characteristic three |
+|---|---|---|
+| `toeplitz-isometry-defects-have-total-rank-at-least-one` | stated for every Sylvester matrix rank function | yes |
+| `el4-model-trivial-on-one-unit-root-element-is-trivial` | group-theoretic | yes |
+| `reversed-root-pair-identity-forces-root-squares-to-vanish` | ring identity | yes |
+| `opposite-unit-root-product-vanishes-only-for-trivial-models` | identity holds whenever `2 = 0`; positivity needs a faithful rank | no; characteristic two only |
+| firewalls of L7 | counter-models into matrix algebras, so they bind in any rank setting | via the abelian model, stated for every `p` |
+| defect gap, descent, near-minimal multiplicativity | use compactness over rank ultraproducts, regularity and faithfulness | no; characteristic two only |
+
+The endpoints, identities and firewalls transfer. Every mechanism that uses the rank structure (gap,
+descent, positivity) is stated only for faithful rank ultraproducts in characteristic two. So nothing
+R4 has established removes (U2), and none of these mechanisms has a characteristic-three counterpart
+yet.
