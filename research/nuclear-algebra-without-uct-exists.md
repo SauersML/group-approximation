@@ -93,3 +93,15 @@ any commutative C\*-algebra.  If established, this refutes
   attack dies at exactness for every nuclear second factor with a faithful trace,
   not only for second factors containing the block representation of
   `SL(3,Z)`.  The refutation uses no UCT input.
+* **Cartan certificates.**  For a unital Kirchberg algebra with trivial K-theory,
+  the UCT, `A ≅ O_2` and having a Cartan subalgebra are the same property
+  (`uct-cartan-trivial-k-kirchberg-uct-iff-cartan`).  So a witness is exactly a
+  Cartan-free such algebra: open certificate
+  `uct-cartan-trivial-k-kirchberg-without-cartan-exists`, routed here by
+  `nuclear-non-uct-via-cartan-free-trivial-k-kirchberg`.  Absence of a Cartan
+  subalgebra proves nothing by itself: a nontrivial `M_2`-bundle algebra over
+  `S^4` is type I and satisfies the UCT but has no Cartan subalgebra
+  (`uct-cartan-nontrivial-m2-bundle-over-s4-has-no-cartan`, after Li--Renault).
+  Neither known Cartan obstruction reaches a Kirchberg algebra.  The topological
+  one needs a nontrivial centre.  The von Neumann one needs a trace and
+  non-amenable rigidity.  Open as a certificate shape, with no mechanism.
