@@ -63,6 +63,22 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   completion is `prod_c F_2[[X - c]]` over the Boolean points `c`. So non-termination is either
   unbounded memory of the corrections, or bounded memory with an infinite local power series at some
   Boolean point. Neither has been checked for `tau x id`.
+- **Right-invertible ancilla outputs collapse** (gk-fz-strict,
+  `invertible-ancilla-outputs-collapse-stable-formalization`).
+  - **The collapse.** Suppose `(X, Y) -> (X, Y + e)` has a finite-memory formal right inverse
+    `(X, θ(X, Y'))`. Substituting `Y = θ(X, Y')` and then `Y' = 0` gives a plain formalization.
+  - **Absorption is dead.** Adding the Bennett remainder, or any data polynomial, into the identity
+    tracks never works.
+  - **Directly finite hosts.** If `M_(n+m)(F_2[G])` is directly finite, recovering the identity tracks
+    from `V` alone collapses too.
+  - **The marker involution over `Z`.** Every stable realization must recover the identity tracks
+    through the data output, nonlinearly. The dirty-at-`y = 0` entry above is the case where `θ` is
+    the identity.
+  - **Calibrations.** Output-only extra tracks always formalize but certify nothing
+    (`garbage-output-tracks-formalize-every-left-inverse-pair`).
+  - **Erasure.** No sitewise gate clears a nonlocal remainder onto a clean track
+    (`sitewise-gates-cannot-erase-nonlocal-defects`). That applies on hosts without proper
+    finite-index subgroups, since regrouping escapes it.
 - **Where it stops.** No `Z`-equivariant ancilla construction is known for the marker involution, and
   no invariant is known that survives cancellation between components. A negative answer must
   measure the growth in degree or memory of the corrections; a positive theorem must bound it.
