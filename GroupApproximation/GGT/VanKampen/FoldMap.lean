@@ -45,13 +45,13 @@ structure IsFoldable : Prop where
   distinct_ends : ¬ M.sigma.SameCycle (M.alpha p) (M.alpha e)
 
 /-- The map with the two ends of the pair joined. -/
-def joined : CombMap.{u} := VertexJoin.toCombMap M (M.alpha p) (M.alpha e)
+abbrev joined : CombMap.{u} := VertexJoin.toCombMap M (M.alpha p) (M.alpha e)
 
 instance joinedDecidableEq : DecidableEq (joined M p e).Dart :=
   inferInstanceAs (DecidableEq M.Dart)
 
 /-- The folded map. -/
-def toCombMap : CombMap.{u} := EdgeDeletion.toCombMap (joined M p e) e
+abbrev toCombMap : CombMap.{u} := EdgeDeletion.toCombMap (joined M p e) e
 
 variable {M p d e}
 

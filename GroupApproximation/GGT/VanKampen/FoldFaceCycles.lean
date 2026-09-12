@@ -34,12 +34,11 @@ theorem joined_isFaceCycle_of_avoid {l : List M.Dart} (hl : M.IsFaceCycle l)
     (hp : p ∉ l) (he : e ∉ l) : (joined M p e).IsFaceCycle l := by
   have hkey : ∀ x ∈ l, (joined M p e).facePerm x = M.facePerm x := by
     intro x hx
-    rw [joined_facePerm_apply, Equiv.swap_apply_of_ne_of_ne (fun h => hp (h ▸ hx))
-      (fun h => he (h ▸ hx))]
+    rw [joined_facePerm_apply, Equiv.swap_apply_of_ne_of_ne (fun h => hp (by rw [← h]; exact hx))
+      (fun h => he (by rw [← h]; exact hx))]
   refine ⟨hl.ne_nil, hl.nodup, hl.chain.imp_of_mem_imp fun x y hx _ hxy => (hkey x hx).trans hxy,
     ?_⟩
-  rw [hkey _ (List.getLast_mem hl.ne_nil)]
-  exact hl.closes
+  exact (hkey _ (List.getLast_mem hl.ne_nil)).trans hl.closes
 
 /-- **The pair becomes a digon** in the joined map. -/
 theorem joined_isFaceCycle_digon (h : IsFoldable M p d e) :
@@ -80,9 +79,9 @@ theorem joined_isFaceCycle_rest (h : IsFoldable M p d e) {rest : List M.Dart}
     rw [joined_facePerm_apply, Equiv.swap_apply_of_ne_of_ne hxp hxe, hxy]
   refine ⟨hrest_ne, (List.nodup_cons.mp (List.nodup_cons.mp hnd).2).2,
     hrest_chain.imp_of_mem_imp fun x y hx hy hxy => hstep x hx y hy hxy, ?_⟩
-  rw [hp_last, joined_facePerm_prev]
-  obtain ⟨y, t, rfl⟩ := List.exists_cons_of_ne_nil hrest_ne
-  exact hhead y rfl
+  have hhd : M.facePerm e = rest.head hrest_ne := hhead _ (List.head?_eq_some_head hrest_ne)
+  exact (congrArg (joined M p e).facePerm hp_last).trans
+    ((joined_facePerm_prev (M := M) (p := p) (e := e)).trans hhd)
 
 /-- **The deletion data of the fold.**  In the joined map the edge of `e` separates
 the digon `[e, d]` from the face of `alpha e`. -/
@@ -145,12 +144,13 @@ theorem isFaceCycle_of_off (h : IsFoldable M p d e) {L : List M.Dart} (hL : M.Is
   refine EdgeDeletion.isFaceCycle_of_map_value (joined M p e) e hl hL.ne_nil hL.nodup
     (hL.chain.imp_of_mem_imp fun x y hx _ hxy => (hnext x hx).trans hxy) ?_
   intro u hu v hv
-  rw [List.getLast?_eq_some_getLasthL.ne_nil, Option.mem_def, Option.some.injEq] at hu
-  rw [List.head?_eq_some_headhL.ne_nil, Option.mem_def, Option.some.injEq] at hv
-  subst hu
-  subst hv
-  rw [hnext _ (List.getLast_mem hL.ne_nil)]
-  exact hL.closes
+  have hu' : L.getLast? = some u := hu
+  have hv' : L.head? = some v := hv
+  rw [List.getLast?_eq_some_getLast hL.ne_nil] at hu'
+  rw [List.head?_eq_some_head hL.ne_nil] at hv'
+  obtain rfl := Option.some.inj hu'
+  obtain rfl := Option.some.inj hv'
+  exact (hnext _ (List.getLast_mem hL.ne_nil)).trans hL.closes
 
 /-- **The rest of the pair face keeps its cycle** when it avoids `alpha e`. -/
 theorem isFaceCycle_rest (h : IsFoldable M p d e) {rest : List M.Dart}
@@ -174,12 +174,13 @@ theorem isFaceCycle_rest (h : IsFoldable M p d e) {rest : List M.Dart}
   refine EdgeDeletion.isFaceCycle_of_map_value (joined M p e) e hl' hJ.ne_nil hJ.nodup
     (hJ.chain.imp_of_mem_imp fun x y hx _ hxy => (hnext x hx).trans hxy) ?_
   intro u hu v hv
-  rw [List.getLast?_eq_some_getLasthJ.ne_nil, Option.mem_def, Option.some.injEq] at hu
-  rw [List.head?_eq_some_headhJ.ne_nil, Option.mem_def, Option.some.injEq] at hv
-  subst hu
-  subst hv
-  rw [hnext _ (List.getLast_mem hJ.ne_nil)]
-  exact hJ.closes
+  have hu' : rest.getLast? = some u := hu
+  have hv' : rest.head? = some v := hv
+  rw [List.getLast?_eq_some_getLast hJ.ne_nil] at hu'
+  rw [List.head?_eq_some_head hJ.ne_nil] at hv'
+  obtain rfl := Option.some.inj hu'
+  obtain rfl := Option.some.inj hv'
+  exact (hnext _ (List.getLast_mem hJ.ne_nil)).trans hJ.closes
 
 end GroupApproximation.GGT.VanKampen.FoldMap
 

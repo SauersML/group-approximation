@@ -27,7 +27,7 @@ universe u
 variable (M : CombMap.{u}) [DecidableEq M.Dart] (x y : M.Dart)
 
 /-- The map with the vertices of `x` and `y` joined after these darts. -/
-def toCombMap : CombMap.{u} := { M with sigma := M.sigma * Equiv.swap x y }
+abbrev toCombMap : CombMap.{u} := { M with sigma := M.sigma * Equiv.swap x y }
 
 theorem sigma_apply (z : M.Dart) :
     (toCombMap M x y).sigma z = M.sigma (Equiv.swap x y z) := rfl
