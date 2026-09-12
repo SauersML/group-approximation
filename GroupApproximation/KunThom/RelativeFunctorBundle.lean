@@ -71,7 +71,7 @@ noncomputable def relativeClusterFunctor (MP : P.ClusterMetric) {R D : Finset I}
     (hmaps : Set.MapsTo π D R) (hinj : Set.InjOn π D) (hsurj : Set.SurjOn π D R)
     (bridge : ∀ X : (R : Set I),
       FinitePartialBijection (MP.model X.1) (MP.model (matchingInverse π hsurj X).1))
-    (β : (R : Set I) → ℕ) (ρ : (R : Set I) → (R : Set I) → ℕ)
+    (β : ↥(R : Set I) → ℕ) (ρ : ↥(R : Set I) → ↥(R : Set I) → ℕ)
     (hbridge : ∀ X : (R : Set I), (bridge X).sourceDefect + (bridge X).targetDefect ≤ β X)
     (himprove : ∀ (X Y : (R : Set I)) (b : P.Rep X.1 Y.1),
       ∃ r : P.Rep (matchingInverse π hsurj X).1 (matchingInverse π hsurj Y).1,
