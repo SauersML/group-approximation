@@ -141,17 +141,23 @@ theorem exists_quotientMove_of_leastAreaCertificates
       · exact val_mem_alphabet_of_revInv D C.contiguity.leftSide_admissible x hx
       · exact val_mem_alphabet_of_revInv D hremAdm x hx
       · exact val_mem_alphabet_of_revInv D C.contiguity.rightSide_admissible x hx
-    · show GGT.RelLetter.listVal (RelWord.revInv C.contiguity.leftSide) *
-          GGT.RelLetter.listVal C.contiguity.exterior *
-          GGT.RelLetter.listVal (RelWord.revInv C.contiguity.rightSide) =
-        C.contiguity.boundaryArc.prod
-      rw [RelWord.listVal_revInv, RelWord.listVal_revInv, C.contiguity.exterior_value]
+    · have e : ((RelWord.revInv C.contiguity.leftSide).map GGT.RelLetter.val ++
+          C.contiguity.exterior.map GGT.RelLetter.val ++
+            (RelWord.revInv C.contiguity.rightSide).map GGT.RelLetter.val).prod =
+          GGT.RelLetter.listVal (RelWord.revInv C.contiguity.leftSide) *
+            GGT.RelLetter.listVal C.contiguity.exterior *
+            GGT.RelLetter.listVal (RelWord.revInv C.contiguity.rightSide) := by
+        simp only [List.prod_append, GGT.RelLetter.listVal]
+      rw [e, RelWord.listVal_revInv, RelWord.listVal_revInv, C.contiguity.exterior_value]
       group
-    · show q C.contiguity.replacementWord.prod =
-        q (GGT.RelLetter.listVal (RelWord.revInv C.contiguity.leftSide) *
-          GGT.RelLetter.listVal C.contiguity.exterior *
-          GGT.RelLetter.listVal (RelWord.revInv C.contiguity.rightSide))
-      rw [C.contiguity.replacementWord_prod]
+    · have e : ((RelWord.revInv C.contiguity.leftSide).map GGT.RelLetter.val ++
+          C.contiguity.exterior.map GGT.RelLetter.val ++
+            (RelWord.revInv C.contiguity.rightSide).map GGT.RelLetter.val).prod =
+          GGT.RelLetter.listVal (RelWord.revInv C.contiguity.leftSide) *
+            GGT.RelLetter.listVal C.contiguity.exterior *
+            GGT.RelLetter.listVal (RelWord.revInv C.contiguity.rightSide) := by
+        simp only [List.prod_append, GGT.RelLetter.listVal]
+      rw [e, C.contiguity.replacementWord_prod]
       simp only [RelWord.listVal_revInv, map_mul, map_inv, hext_rem]
     · have hrl : C.contiguity.exterior.length + C.contiguity.remainder.length ≤ L := by
         have h := hL C.relator C.relator_mem
@@ -214,11 +220,11 @@ theorem exists_linearStokes_mapSurjective_of_leastAreaCertificates
   obtain ⟨δ, hδ⟩ := GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hD
   obtain ⟨L, hL⟩ := hsc.lengthBounded
   have hG := linearStokes_of_isFourPointHyperbolic D.alphabet.symmetricGenerating hδ
-  refine ⟨_, ?_⟩
-  rw [GGT.RelGenSet.alphabet_carrier_mapSurjective]
-  exact linearStokes_image_of_steps D.alphabet.symmetricGenerating q hq hG
+  have h := linearStokes_image_of_steps D.alphabet.symmetricGenerating q hq hG
     (exists_quotientMove_of_leastAreaCertificates D hsc.toIsLemma44Input hL hmu hrho q hker
       hcert)
+  rw [← GGT.RelGenSet.alphabet_carrier_mapSurjective D q hq] at h
+  exact ⟨_, h⟩
 
 /-- **Clause (a) of hyperbolic embeddedness for the image family**: the quotient
 relative Cayley graph is hyperbolic. -/
