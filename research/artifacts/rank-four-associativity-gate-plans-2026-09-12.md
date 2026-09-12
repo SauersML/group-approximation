@@ -18,8 +18,25 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
 * **Endpoint.** Completeness is not needed, and approximate relations suffice (L1).
 * **Calibration corrected.** An exact family inside `F_2[R^x]` would give a Gottschalk counterexample. It
   would not be an absurdity (L4a, corrected by w4-vf-gate).
-* **Two live questions.** An operation that lowers the defect by a fixed factor (L5), and rank models
-  over Cohn coefficients (L8).
+* **Live questions (current).**
+  * **Strict deficit, both characteristics.**
+    * **What is established.** The defect gap and two-sided descent hold for abstract Sylvester rank
+      functions: in characteristic two for all of them, and in characteristic three for the anti-central
+      ones (L9b).
+    * **What would close the gate.** A strict deficit `theta < 1`. In characteristic two this is
+      `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` (L5); in characteristic three it is
+      `ternary-anti-central-disjoint-defects-have-a-strict-deficit` (L9b). In characteristic two the weaker
+      distortion input of L5 would also do.
+  * **Constraints on any proof** (L5, L7). It cannot come from any of these:
+    * relations of locally finite subgroups;
+    * single conjugations of locally finite data;
+    * finite-subgroup rank calculus;
+    * witnesses from rank-modelled subgroups off the cylinder set.
+
+    It has to use relations beyond those shapes: straddling units as factors, properties that no rank
+    model has, or global inputs such as corner locality.
+  * **Cohn coefficients** (L8). This question lies between the V gate and the binary gate, so it adds no
+    new decisive input.
 
 Commit hashes below are the ones reported by the landing lanes. Node ids are the stable references.
 
@@ -61,7 +78,8 @@ sofic".
 
 ## Ranking (lead pass)
 
-1. The live questions of L5 and L8, under the constraints of L4 and L7.
+1. The strict deficit `theta < 1`, in characteristic two (L5) and characteristic three (L9b), under the
+   constraints of L4, L5 and L7. The Cohn question (L8) lies between the V gate and the binary gate.
 2. The Plan 1 route: valid and equivalent to the gate. Its mechanism and placement are dead.
 3. Plans 2 and 3: dead or collapsed.
 
