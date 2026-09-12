@@ -1,5 +1,4 @@
 import GroupApproximation.KunThom.ComponentCountingRelativeFunctorRealization
-import GroupApproximation.KunThom.StepNineHammingDefects
 import GroupApproximation.Matching.PartialClusterCandidates
 
 /-!
@@ -125,6 +124,50 @@ theorem mul_scale_le_of_not_isClusterCandidate {L : Type*} [Fintype L] {X Z : Fi
 
 namespace BlockEmbedding
 
+/-! ### Counting over disjoint blocks -/
+
+/-- Block points whose image under `p` lies in `K`, summed over the blocks, number at most
+`|K|`. -/
+theorem sum_card_filter_perm_embed_mem_le [Fintype I] (E : BlockEmbedding Y I)
+    (p : Equiv.Perm Y) (K : Finset Y) :
+    ∑ C, (Finset.univ.filter fun x : E.model C ↦ p (E.embed C x) ∈ K).card ≤ K.card := by
+  have hsigma : (Finset.univ.sigma fun C ↦
+      Finset.univ.filter fun x : E.model C ↦ p (E.embed C x) ∈ K).card =
+      ∑ C, (Finset.univ.filter fun x : E.model C ↦ p (E.embed C x) ∈ K).card :=
+    Finset.card_sigma _ _
+  rw [← hsigma]
+  refine Finset.card_le_card_of_injOn (fun d : Σ C, E.model C ↦ p (E.embed d.1 d.2)) ?_ ?_
+  · rintro ⟨C, x⟩ hd
+    have hd' := Finset.mem_sigma.mp (Finset.mem_coe.mp hd)
+    exact Finset.mem_coe.mpr (Finset.mem_filter.mp hd'.2).2
+  · rintro ⟨C, x⟩ - ⟨C', x'⟩ - hxx
+    have h₁ : E.embed C x = E.embed C' x' := p.injective hxx
+    have hCC : C = C' := E.embed_disjoint C C' x x' h₁
+    subst hCC
+    have hx : x = x' := E.embed_injective C h₁
+    subst hx
+    rfl
+
+/-- Block points lying in `K`, summed over the blocks, number at most `|K|`. -/
+theorem sum_card_filter_embed_mem_le [Fintype I] (E : BlockEmbedding Y I) (K : Finset Y) :
+    ∑ C, (Finset.univ.filter fun x : E.model C ↦ E.embed C x ∈ K).card ≤ K.card := by
+  have hsigma : (Finset.univ.sigma fun C ↦
+      Finset.univ.filter fun x : E.model C ↦ E.embed C x ∈ K).card =
+      ∑ C, (Finset.univ.filter fun x : E.model C ↦ E.embed C x ∈ K).card :=
+    Finset.card_sigma _ _
+  rw [← hsigma]
+  refine Finset.card_le_card_of_injOn (fun d : Σ C, E.model C ↦ E.embed d.1 d.2) ?_ ?_
+  · rintro ⟨C, x⟩ hd
+    have hd' := Finset.mem_sigma.mp (Finset.mem_coe.mp hd)
+    exact Finset.mem_coe.mpr (Finset.mem_filter.mp hd'.2).2
+  · rintro ⟨C, x⟩ - ⟨C', x'⟩ - hxx
+    have h₁ : E.embed C x = E.embed C' x' := hxx
+    have hCC : C = C' := E.embed_disjoint C C' x x' h₁
+    subst hCC
+    have hx : x = x' := E.embed_injective C h₁
+    subst hx
+    rfl
+
 /-! ### Uniqueness of candidate bridges -/
 
 /-- Bridges out of one block into distinct blocks have disjoint sources. -/
@@ -239,25 +282,8 @@ theorem sum_card_localObstruction_le [Fintype I] [Fintype L] (A : BlockAction E 
       ∑ s, ((A.commutationFailure q s).card + 2 * ∑ C, (A.compatFailure C s).card) := by
   rw [Finset.sum_comm]
   refine Finset.sum_le_sum fun s _ ↦ ?_
-  have hK : (Finset.univ.filter fun y : Y ↦ y ∈ A.commutationFailure q s).card ≤
-      (A.commutationFailure q s).card := by
-    refine Finset.card_le_card ?_
-    intro y hy
-    exact (Finset.mem_filter.mp hy).2
-  have hG : (Finset.univ.filter fun y : Y ↦ q y ∈ A.globalCompatFailure s).card ≤
-      (A.globalCompatFailure s).card := by
-    refine Finset.card_le_card_of_injOn q ?_ ?_
-    · intro y hy
-      rw [Finset.mem_coe] at hy ⊢
-      exact (Finset.mem_filter.mp hy).2
-    · intro y _ y' _ hyy
-      exact q.injective hyy
-  have h₁ : ∑ C, (Finset.univ.filter fun x : E.model C ↦
-      E.embed C x ∈ A.commutationFailure q s).card ≤ (A.commutationFailure q s).card :=
-    (E.sum_card_filter_embed_le fun y ↦ y ∈ A.commutationFailure q s).trans hK
-  have h₂ : ∑ C, (Finset.univ.filter fun x : E.model C ↦
-      q (E.embed C x) ∈ A.globalCompatFailure s).card ≤ (A.globalCompatFailure s).card :=
-    (E.sum_card_filter_embed_le fun y ↦ q y ∈ A.globalCompatFailure s).trans hG
+  have h₁ := E.sum_card_filter_embed_mem_le (A.commutationFailure q s)
+  have h₂ := E.sum_card_filter_perm_embed_mem_le q (A.globalCompatFailure s)
   have h₃ := A.card_globalCompatFailure_le s
   have h₄ : ∑ C, (A.localObstruction q C s).card ≤
       ∑ C, ((Finset.univ.filter fun x : E.model C ↦
