@@ -160,6 +160,19 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
   * **Untested sources.** Opposite roots at a child cylinder, the compressors, the nine-leaf
     configuration, and the block root groups of `GL_2(R)` normalized by the torus
     `iota_0(R^x) x iota_1(R^x)`.
+  * **Commutant independence** (w4-sub-weyl, family SUB, 6ecf8dd0a;
+    `near-minimal-defects-are-rank-independent-of-cylinder-commutants`; verifier PASS §11.1). In a
+    nontrivial fixed-point-free model, let `X` commute with `sigma(iota_A(R^x))`. Then
+    `c_* rk(X) <= rk(D_(AP) X) <= delta - c_*(1 - rk X)` for every proper prefix `P`. So near-minimal
+    defects are rank-independent of the whole cylinder commutant.
+    * Lead spot-check of the triangular count: pass. `rk(TM) >= rk(TK) + rk(J) - rk(K)`, with
+      `K = r.ann(X)` and `J = TM + K`, and `rk(J) - rk(K) = rk(TX)`.
+    * **Constraint for L5.** A deficit cannot come from elements of that commutant, and defects on
+      disjoint cylinders lie inside it. Any proof of
+      `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` therefore has to pass through
+      operators outside the commutant of `sigma(iota_A(R^x))`. All four untested sources above lie
+      outside it: the compressors, the nine-leaf configuration and the `GL_2` block root groups
+      straddle cylinder boundaries, and child-cylinder opposite roots lie inside `iota_A(R^x)` itself.
 
 ### L6. Status
 
