@@ -85,12 +85,24 @@ theorem VanKampenData.isRelatorProduct {R : Set G} {M : CombMap.{v}} (hM : M.IsP
   isRelatorProduct_of_planar R M.dartCount M rfl hM label hlabel V.relFaces V.outer
     V.outer_cycle V.outer_not_mem V.rel V.triv
 
+/-- Relabelling through a map commutes with rotation. -/
+theorem listVal_map_rotate_comp {D E : Type*} (f : D → E) (label : E → RelLetter G Lambda)
+    (l : List D) (k : ℕ) :
+    RelLetter.listVal ((l.rotate k).map fun e => label (f e)) =
+      RelLetter.listVal (((l.map f).map label).rotate k) := by
+  rw [List.map_rotate, List.map_map]
+  rfl
+
+open scoped Classical in
 /-- **Merging two inner faces.**  Deleting an edge between two distinct inner faces
-transports van Kampen data: the merged face is a relator face exactly when `P`, every
-other face keeps its status, and the outer cycle lifts. -/
+transports van Kampen data: the merged face (enumerated by the lift `l` of
+`xs ++ ys`) is a relator face exactly when `P`, every other face keeps the status of
+the original face of its darts, and the outer cycle lifts. -/
 theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.Dart]
     {label : M.Dart → RelLetter G Lambda} (V : VanKampenData R M label) {a : M.Dart}
     (C : EdgeDeletion.MergeCycles M a) (hne : C.xs ++ C.ys ≠ [])
+    {l : List (EdgeDeletion.Dart M a)} (hl : l.map (EdgeDeletion.value M a) = C.xs ++ C.ys)
+    (hlne : l ≠ [])
     (hOa : M.faceOf a ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
     (hOg : M.faceOf (M.alpha a) ≠ M.faceOf (V.outer.head V.outer_cycle.ne_nil))
     (P : Prop) [Decidable P]
@@ -99,20 +111,16 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
     ∃ V' : VanKampenData R (EdgeDeletion.toCombMap M a)
         (fun e => label (EdgeDeletion.value M a e)),
       V'.outer.map (EdgeDeletion.value M a) = V.outer ∧
+        (∀ f, f ∈ V'.relFaces ↔
+          (f ≠ (EdgeDeletion.toCombMap M a).faceOf (l.head hlne) ∧
+            M.faceOf (EdgeDeletion.value M a (Quotient.out f)) ∈ V.relFaces) ∨
+          (f = (EdgeDeletion.toCombMap M a).faceOf (l.head hlne) ∧ P)) ∧
         V'.relFaces.card + (if M.faceOf a ∈ V.relFaces then 1 else 0) +
             (if M.faceOf (M.alpha a) ∈ V.relFaces then 1 else 0) =
           V.relFaces.card + (if P then 1 else 0) := by
   classical
-  obtain ⟨l, hl⟩ := EdgeDeletion.exists_map_value_eq M a (C.xs ++ C.ys) fun d hd => C.avoid hd
-  have hlne : l ≠ [] := by
-    rintro rfl
-    exact hne hl.symm
   have hcyc := C.isFaceCycle_lift hne hl
   have hx₀ : l.head hlne ∈ l := List.head_mem hlne
-  have hval : RelLetter.listVal (l.map fun e => label (EdgeDeletion.value M a e)) =
-      RelLetter.listVal ((C.xs ++ C.ys).map label) := by
-    rw [← hl]
-    exact congrArg RelLetter.listVal List.map_map.symm
   -- the outer face lifts
   have havoidO : ∀ x ∈ V.outer, x ≠ a ∧ x ≠ M.alpha a ∧ M.facePerm x ≠ a ∧
       M.facePerm x ≠ M.alpha a := by
@@ -160,7 +168,7 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
         (Quotient.out ((EdgeDeletion.toCombMap M a).faceOf x)) =
           (EdgeDeletion.toCombMap M a).faceOf x :=
       Quotient.out_eq _
-    exact C.faceOf_value_eq hne hl hx₀ hq (by rw [hq]; exact hx)
+    exact C.faceOf_value_eq hne hl hx₀ hq (fun h => hx (hq.symm.trans h))
   -- the kept relator faces
   obtain ⟨filt, hfilt⟩ : ∃ s : Finset (EdgeDeletion.toCombMap M a).Face, ∀ f,
       f ∈ s ↔ (f ≠ (EdgeDeletion.toCombMap M a).faceOf (l.head hlne) ∧
@@ -181,29 +189,28 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
     refine Finset.card_nbij (fun f => M.faceOf (EdgeDeletion.value M a (Quotient.out f)))
       ?_ ?_ ?_
     · intro f hf
-      obtain ⟨hoff, hin⟩ := (hfilt f).mp hf
+      obtain ⟨hoff, hin⟩ := (hfilt f).mp (Finset.mem_coe.mp hf)
       have hq : (EdgeDeletion.toCombMap M a).faceOf (Quotient.out f) = f := Quotient.out_eq f
-      have hne' := C.faceOf_value_ne hne hl hx₀ (x := Quotient.out f) (by rw [hq]; exact hoff)
-      exact Finset.mem_erase.mpr ⟨hne'.2, Finset.mem_erase.mpr ⟨hne'.1, hin⟩⟩
+      have hne' := C.faceOf_value_ne hne hl hx₀ (x := Quotient.out f)
+        (fun h => hoff (hq.symm.trans h))
+      exact Finset.mem_coe.mpr
+        (Finset.mem_erase.mpr ⟨hne'.2, Finset.mem_erase.mpr ⟨hne'.1, hin⟩⟩)
     · intro f₁ hf₁ f₂ _ heq
-      obtain ⟨hoff₁, -⟩ := (hfilt f₁).mp hf₁
+      obtain ⟨hoff₁, -⟩ := (hfilt f₁).mp (Finset.mem_coe.mp hf₁)
       have hq₁ : (EdgeDeletion.toCombMap M a).faceOf (Quotient.out f₁) = f₁ := Quotient.out_eq f₁
       have hq₂ : (EdgeDeletion.toCombMap M a).faceOf (Quotient.out f₂) = f₂ := Quotient.out_eq f₂
-      have hN := C.faceOf_eq_of_faceOf_value_eq hne hl hx₀ (by rw [hq₁]; exact hoff₁) heq
-      rw [hq₁, hq₂] at hN
-      exact hN
+      exact hq₁.symm.trans ((C.faceOf_eq_of_faceOf_value_eq hne hl hx₀
+        (fun h => hoff₁ (hq₁.symm.trans h)) heq).trans hq₂)
     · intro f hf
-      obtain ⟨hne_g, hf'⟩ := Finset.mem_erase.mp hf
+      obtain ⟨hne_g, hf'⟩ := Finset.mem_erase.mp (Finset.mem_coe.mp hf)
       obtain ⟨hne_a, hin⟩ := Finset.mem_erase.mp hf'
       obtain ⟨d, rfl⟩ := Quotient.exists_rep f
       obtain ⟨x, hxd, hxoff⟩ := C.exists_value_eq_of_faceOf_ne hne hl hx₀ hne_a hne_g
-      refine ⟨(EdgeDeletion.toCombMap M a).faceOf x, (hfilt _).mpr ⟨hxoff, ?_⟩, ?_⟩
-      · rw [hout x hxoff, hxd]
-        exact hin
-      · show M.faceOf (EdgeDeletion.value M a
-          (Quotient.out ((EdgeDeletion.toCombMap M a).faceOf x))) = _
-        rw [hout x hxoff, hxd]
-        rfl
+      refine ⟨(EdgeDeletion.toCombMap M a).faceOf x,
+        Finset.mem_coe.mpr ((hfilt _).mpr ⟨hxoff, ?_⟩), ?_⟩
+      · exact (congrArg (fun z => z ∈ V.relFaces)
+          ((hout x hxoff).trans (congrArg M.faceOf hxd))).mpr hin
+      · exact (hout x hxoff).trans (congrArg M.faceOf hxd)
   have hcardErase : ((V.relFaces.erase (M.faceOf a)).erase (M.faceOf (M.alpha a))).card +
       (if M.faceOf a ∈ V.relFaces then 1 else 0) +
         (if M.faceOf (M.alpha a) ∈ V.relFaces then 1 else 0) = V.relFaces.card := by
@@ -233,59 +240,60 @@ theorem VanKampenData.exists_merge {R : Set G} {M : CombMap.{v}} [DecidableEq M.
     outer_cycle := hOcyc
     outer_not_mem := ?_
     rel := ?_
-    triv := ?_ }, hlO, ?_⟩
+    triv := ?_ }, hlO, fun f => (hmemR f).trans (or_congr_left (hfilt f)), ?_⟩
   · intro h
     rcases (hmemR _).mp h with hf | ⟨hf, _⟩
     · obtain ⟨_, hin⟩ := (hfilt _).mp hf
-      rw [hout _ hOoff, hheadO] at hin
-      exact V.outer_not_mem hin
+      exact V.outer_not_mem
+        ((congrArg (fun z => z ∈ V.relFaces) ((hout _ hOoff).trans hheadO)).mp hin)
     · exact hOoff hf
   · intro l' hl' h
     rcases (hmemR _).mp h with hf | ⟨hf, hP⟩
     · obtain ⟨hoff, hin⟩ := (hfilt _).mp hf
       have hM' := C.isFaceCycle_map_value_of_ne hne hl hx₀ hl' hoff
       have hface' : M.faceOf ((l'.map (EdgeDeletion.value M a)).head hM'.ne_nil) ∈
-          V.relFaces := by
-        rw [List.head_map, ← hout _ hoff]
-        exact hin
+          V.relFaces :=
+        (congrArg (fun z => z ∈ V.relFaces)
+          ((congrArg M.faceOf (List.head_map hM'.ne_nil)).trans (hout _ hoff).symm)).mpr hin
       have hsc := V.rel _ hM' hface'
       rwa [List.map_map] at hsc
     · obtain ⟨k, hk, hrot⟩ := hcyc.exists_rotate_eq hl' hf.symm
-      rw [← hrot, List.map_rotate]
-      refine isSignedConjugate_rotate _ (by rw [List.length_map]; exact hk) ?_
-      rw [hval]
-      exact hrelF hP
+      subst hrot
+      have hk' : k ≤ ((C.xs ++ C.ys).map label).length := by
+        rw [List.length_map, ← hl, List.length_map]
+        exact hk
+      exact (congrArg (IsSignedConjugate R) (listVal_map_rotate_comp (EdgeDeletion.value M a)
+        label l k)).mpr ((congrArg (fun L => IsSignedConjugate R
+          (RelLetter.listVal ((L.map label).rotate k))) hl).mpr
+          (isSignedConjugate_rotate _ hk' (hrelF hP)))
   · intro l' hl' hoffO hnot
     by_cases hF : (EdgeDeletion.toCombMap M a).faceOf (l'.head hl'.ne_nil) =
         (EdgeDeletion.toCombMap M a).faceOf (l.head hlne)
     · have hP : ¬ P := fun hP => hnot ((hmemR _).mpr (Or.inr ⟨hF, hP⟩))
       obtain ⟨k, hk, hrot⟩ := hcyc.exists_rotate_eq hl' hF.symm
-      rw [← hrot, List.map_rotate]
-      refine listVal_rotate_eq_one _ (by rw [List.length_map]; exact hk) ?_
-      rw [hval]
-      exact htrivF hP
+      subst hrot
+      have hk' : k ≤ ((C.xs ++ C.ys).map label).length := by
+        rw [List.length_map, ← hl, List.length_map]
+        exact hk
+      exact (listVal_map_rotate_comp (EdgeDeletion.value M a) label l k).trans
+        ((congrArg (fun L => RelLetter.listVal ((L.map label).rotate k)) hl).trans
+          (listVal_rotate_eq_one _ hk' (htrivF hP)))
     · have hM' := C.isFaceCycle_map_value_of_ne hne hl hx₀ hl' hF
       have hnotin : M.faceOf ((l'.map (EdgeDeletion.value M a)).head hM'.ne_nil) ∉
-          V.relFaces := by
-        rw [List.head_map, ← hout _ hF]
-        exact fun h => hnot ((hmemR _).mpr (Or.inl ((hfilt _).mpr ⟨hF, h⟩)))
+          V.relFaces := fun h => hnot ((hmemR _).mpr (Or.inl ((hfilt _).mpr ⟨hF,
+            (congrArg (fun z => z ∈ V.relFaces)
+              ((congrArg M.faceOf (List.head_map hM'.ne_nil)).trans (hout _ hF).symm)).mp h⟩)))
       have hneO : M.faceOf ((l'.map (EdgeDeletion.value M a)).head hM'.ne_nil) ≠
-          M.faceOf (V.outer.head V.outer_cycle.ne_nil) := by
-        rw [List.head_map, ← hheadO]
-        intro h
-        exact hoffO (C.faceOf_eq_of_faceOf_value_eq hne hl hx₀ hF h)
+          M.faceOf (V.outer.head V.outer_cycle.ne_nil) := fun h =>
+        hoffO (C.faceOf_eq_of_faceOf_value_eq hne hl hx₀ hF
+          ((congrArg M.faceOf (List.head_map hM'.ne_nil)).symm.trans (h.trans hheadO.symm)))
       have hone := V.triv _ hM' hneO hnotin
       rwa [List.map_map] at hone
   · have hFnot : (EdgeDeletion.toCombMap M a).faceOf (l.head hlne) ∉ filt :=
       fun h => ((hfilt _).mp h).1 rfl
-    generalize (if M.faceOf a ∈ V.relFaces then 1 else 0) = ia at hcardErase ⊢
-    generalize (if M.faceOf (M.alpha a) ∈ V.relFaces then 1 else 0) = ig at hcardErase ⊢
-    by_cases hP : P
-    · simp only [if_pos hP]
-      rw [Finset.card_insert_of_notMem hFnot]
-      omega
-    · simp only [if_neg hP]
-      omega
+    have hins := Finset.card_insert_of_notMem hFnot
+    dsimp only
+    split_ifs at hcardErase ⊢ <;> omega
 
 end Data
 
