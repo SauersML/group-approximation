@@ -53,9 +53,11 @@ All sources below were read from arXiv TeX sources on MSI
 version as a question or answers it. Our web-search budget was exhausted before
 we could search further, so the attribution is still open: who asked this, and
 where, is not recorded. The finitely generated version is Kourovka 15.5. Every
-finitely presented infinite simple group recorded in this graph (Thompson,
-Higman--Thompson, Brin--Thompson, Röver--Nekrashevych, SFT full groups, the
-Leavitt unit groups) contains Thompson's `V`, and hence `F_2`. The root is
+finitely presented infinite simple group recorded in this graph or in the sources
+above is non-amenable. The Thompson, Higman--Thompson, Brin--Thompson and
+Röver--Nekrashevych groups, the SFT full groups and the Leavitt unit groups
+contain `V`. Torsion-free lattice examples such as the Burger--Mozes groups,
+which cannot contain `V` because `V` has torsion, contain `F_2`. The root is
 therefore recorded as OPEN, on this limited check.
 
 ## 2. Theorem 1: an amenable full group forces an invariant measure
