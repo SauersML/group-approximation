@@ -12,7 +12,9 @@ distinct_from:
 ---
 
 **Established by citation.**  Dogon--Vigdorovich, arXiv:2506.20843v2,
-Theorem 1.1 (`thm:main-non-hyperlinear` in the source):
+Theorem 1.3 of the arXiv PDF (`thm:main-non-hyperlinear` in the source;
+re-read from the v2 PDF on 2026-09-12, see
+`research/artifacts/review-kazhdan-hyperbolic-hs-2026-09-12.md`):
 
 > Let `Gamma` be a group with property (T;FD).  Assume `Gamma` has a central
 > extension of the form

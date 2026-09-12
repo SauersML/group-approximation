@@ -2,7 +2,7 @@
 rg: 2
 id: hs-stability-forces-nonhyperlinear-central-ext-citation
 kind: route
-title: Import Dogon-Vigdorovich Theorem 1.1
+title: Import Dogon-Vigdorovich Theorem 1.3 (thm:main-non-hyperlinear)
 target: hs-stability-forces-nonhyperlinear-central-extension
 requires: []
 ---
