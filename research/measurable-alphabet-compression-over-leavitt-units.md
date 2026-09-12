@@ -54,3 +54,14 @@ is the Borel inverse of `tau` on its image.
 - **Ascent.** Compressions over a subgroup induce compressions over the whole group through left
   cosets (Section 6). A compression over Thompson's `V` would give one over `U`, and would prove `V`
   nonsofic.
+- **Compressor codes (2026-09-12).** The minimal ansatz is a nonlinear `f` on a window
+  `W_0 ∪ t W_0`, with `W_0` in a Kazhdan `Gamma` and `t Gamma t^-1 < Gamma` strict. Where it dies
+  (Section 7 of the artifact):
+  - `bernoulli-codes-descend-to-window-subgroup` reduces it to the subgroup the window generates.
+  - `Gamma`-invariant observables are constant, and strictness lives only on `U/Gamma`, which
+    Theorems A and B keep out of reach.
+  - `strict-kazhdan-compression-gives-no-bernoulli-deficit`: the Kun--Thom actor carries a strict
+    Kazhdan compression and is Rokhlin-maximal, so the saving cannot come from compression plus (T).
+  - The code must use a relation failing in that actor, such as the rigid defect. The test case is
+    whether a Kun--Thom LEF-lamp wreath (surjunctive, nonsofic, with nontrivial defects) is
+    Rokhlin-maximal. That is open.

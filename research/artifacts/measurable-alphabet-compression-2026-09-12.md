@@ -206,3 +206,76 @@ replaces `x_g` by the left shift `k'^-1.x_g`, and equivariance of `tau_K` makes 
 compressions ascend along subgroups. This matches `bernoulli-rokhlin-maximality-passes-to-subgroups`.
 A compression over Thompson's `V` would transfer to `U` and, by the localization theorem, prove `V`
 nonsofic.
+
+## 7. The compressor code: minimal ansatz and where strictness fails to reach the measure
+
+### 7.1 Ansatz
+
+Take the nine-leaf data in `U`: a Kazhdan subgroup `Gamma`, a compressor `t` with `t Gamma t^-1` a
+proper subgroup of `Gamma`, and `z` centralizing `Gamma`. The minimal compressor code has a finite
+window `W = W_0 ∪ t W_0` with `W_0` in `Gamma` (optionally adding `z`), alphabets `|B| < |A|`, and a
+nonlinear `f: A^W -> B`, with
+
+    tau(x)(g) = f( x(gw) : w in W ).
+
+By Sections 2 and 5 it must mix symbols nonlinearly at one site: routing preserves the measure and
+homomorphic codes collide. The question is whether strictness of `t Gamma t^-1 < Gamma` can make such
+a `tau` injective on a conull set.
+
+### 7.2 Descent to the window subgroup
+
+**Lemma 7.2.** Let `K <= G` and let `f` read `(g^-1.x)|_K`. Then `tau` is injective almost everywhere
+exactly when the induced code `tau_K(z)(k) = f(k^-1.z)` on `A^K` is.
+
+*Proof.* `((gk)^-1.x)(k') = x(gkk')`, so the output on the left coset `gK` reads the input only on
+`gK`. With `z(k) = x(gk)`, that output is `tau_K(z)`. Fubini over the countably many cosets gives
+both directions. QED
+
+So the ansatz is a problem over `K = <W>` alone. If `K` is sofic there is no compression, because sofic
+groups are Rokhlin-maximal.
+
+### 7.3 Conditional structure on Gamma-orbits
+
+`tau` commutes with the shift by `Gamma`. The shift restricted to the infinite Kazhdan group `Gamma` is
+ergodic with spectral gap, so every `Gamma`-invariant observable is constant (Theorem 1 of the median
+artifact). There is no nontrivial `Gamma`-orbit structure to condition on.
+
+Strictness lives on the coset space. `psi(g Gamma) = g t^-1 Gamma` is infinite-to-one, and on `U/Gamma`
+the modular function of the Schlichting completion is `Delta(t) = [Gamma : t Gamma t^-1] > 1`. That
+non-unimodular space is where a Hilbert hotel exists. The free shift over `U` reaches it only through
+factors into coset shifts, which are constant (Theorem B), or through moving symbols along `t`, which
+the unimodular transport on `U` conserves (Theorem A). So the strictness is not visible to the measure
+through orbits, cosets or routing.
+
+### 7.4 Pattern level: strict Kazhdan compression is sofic-realizable
+
+**Proposition 7.4.** Let `Gamma = EL_r(F_q[x_1..x_d]) < G` be the Kun--Thom Theorem E pair
+(`kun-thom-actor-is-rf-but-neither-rfd-nor-llp`), with a strict compressor `t` in `G`. Every uniform
+Bernoulli shift over `G` has Rokhlin entropy `log q`, and `G` has no measurable alphabet compression.
+
+*Proof.* `G` is residually finite, so its finite quotients give exact permutation models and `G` is
+sofic. `sofic-radical-localizes-bernoulli-deficit-witnesses` excludes every configuration with
+`Phi < log q`, so `G` is Rokhlin-maximal. Proposition 1 turns a compression into a deficit. QED
+
+Since `Phi` depends only on the incidence pattern, a configuration over `U` whose pattern is realized
+injectively in `G` has `Phi >= log q`. A compressor code over `U` therefore cannot draw its saving from
+the Kazhdan property, the strict compression, or both. Every good finite approximation of it must have
+a coincidence among its products that fails in the Kun--Thom actor.
+
+### 7.5 The exact step
+
+What is left is the relation the nonsoficity proof adds: a rigid defect `d = [t z t^-1, gamma]` with
+`z` centralizing `Gamma`, together with nesting (`leavitt-units-carry-nested-rigid-defect`).
+
+* **Surjunctive carriers.** Kun--Thom LEF-lamp wreaths `W = Lambda(A) ⋊ G` carry nontrivial rigid
+  defects and are surjunctive (`surjunctive-groups-carry-invisible-rigid-defects`, part 2;
+  `kt-lef-graph-wreaths-surjunctive-and-nonsofic`). Whether they are Rokhlin-maximal is open.
+* **Test host.** `W` is a cleaner test host than `U`. Its actor is residually finite, it has finite
+  subgroups of unbounded order, and every deficit witness over it folds on invisible lamps.
+  * If `W` is Rokhlin-maximal, the defect alone does not reach the measure either, and a code over `U`
+    must use nesting or relations beyond the defect.
+  * If `W` has a deficit, `W` is the first group with a Bernoulli Rokhlin entropy deficit, a
+    surjunctive nonsofic one.
+* **Missing mechanism.** No mechanism is known that turns an invisible element into a saving on
+  partitions. Every known lower bound runs through models where the defect is trivial, and every
+  known upper-bound device on the free shift (routing, coset factors, linear codes) is excluded above.
