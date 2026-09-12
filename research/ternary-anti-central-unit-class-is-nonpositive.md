@@ -62,3 +62,14 @@ that is, `k[eps_-] <= 0` in `K_0(S_-)`. Equivalent forms:
   rank model moving `z` on each finitely generated subgroup containing `z`, `w`, `d`
   (`anti-central-rank-models-kill-ternary-corner-witnesses`). By compactness local models suffice, and
   their existence is as open as this claim.
+- *Module route audited again; halving-invariant states* (lane w3-corner-module, artifact
+  `halving-invariant-k0-states-2026-09-12.md`).
+  - The module-isomorphism start gives nothing beyond census §9: stabilization reduces to one Cohn
+    family, the lift orbits reduce to two rows, and a lift that is both left and right invertible would
+    give `S_- ~= S_-^2`, excluded by the trace.
+  - New normalization: if `(K_0(S_-), [eps_-])` admits any state, it admits one with `s o F_* = s/2`,
+    where `F` is the halving map of census §7.2. Proof by Markov–Kakutani, or Cesàro averaging along
+    `F_*` (`twisted-leavitt-k0-states-can-be-chosen-halving-invariant`).
+  - So this claim holds iff no halving-invariant state exists. Such a state is forced to take the value
+    `2^(-k)` on the tower `F_*^k([eps_-])`, and any state source can be averaged into one.
+  - Where it stops: no state and no Cohn family is known.
