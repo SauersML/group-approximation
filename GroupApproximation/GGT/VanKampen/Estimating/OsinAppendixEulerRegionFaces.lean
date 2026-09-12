@@ -347,9 +347,9 @@ theorem collapsedMap_connected
   have hrep_keep : ∀ x (hx : ¬ RegionInternal family x), rep x = ⟨x, hx⟩ := by
     intro x hx
     simp only [rep, dif_pos hx]
-  have hrep_internal : ∀ x, ∀ a ∈ family, Delta.toCombMap.faceOf x ∈ a.1 →
+  have hrep_internal : ∀ x, ∀ a, ∀ ha : a ∈ family, Delta.toCombMap.faceOf x ∈ a.1 →
       Delta.toCombMap.faceOf (Delta.toCombMap.alpha x) ∈ a.1 →
-      rep x = ⟨a.2.boundary.cycle.head a.2.boundary.cycle_nonempty, hhead a ‹a ∈ family›⟩ := by
+      rep x = ⟨a.2.boundary.cycle.head a.2.boundary.cycle_nonempty, hhead a ha⟩ := by
     intro x a ha h1 h2
     have hint : RegionInternal family x := ⟨a, ha, h1, h2⟩
     have hchoose := Classical.choose_spec hint
