@@ -21,6 +21,11 @@ The observable is centred at its componentwise median and clamped to `[-M, M]`
   observable is invariant off an exceptional set.
 * `card_deviation_mul_le`: the vertices at distance at least `M` from their
   componentwise median are counted by the clamped deviation.
+* `sum_abs_sub_le_of_close`, `sum_abs_sub_mul_le`, `sum_abs_sub_inv_eq`: the label
+  variation of a bounded observable is stable under Hamming-close permutations,
+  subadditive along products and invariant under inversion.  So
+  `sum_abs_sub_negligible_of_closure` passes negligible label variation from a
+  generating set to every element of an asymptotic homomorphism.
 
 `deviation_negligible` and `drop_negligible` assemble these estimates along the
 approximation.  The clamp keeps every estimate independent of the range of
@@ -169,7 +174,7 @@ theorem clampedDeviation_isMedian_on_block (Q : BlockStructure Y) (m : BlockInde
     isMedian_comp_monotone hmed hmono
   rw [sub_self, clampTo_zero hM] at h
   have hfun : (fun x : indexedBlockModel Q B ↦ clampedDeviation Q m φ M (x : Y)) =
-      fun x ↦ clampTo M (φ (x : Y) - m B) := by
+      fun x : indexedBlockModel Q B ↦ clampTo M (φ (x : Y) - m B) := by
     funext x
     unfold clampedDeviation
     rw [blockIndexOf_of_mem Q B x]
@@ -360,6 +365,104 @@ theorem unitNormalize_le_one {M : ℝ} (hM : 0 < M) {f : Y → ℝ} (hf : ∀ y,
   rw [half_scale hM] at h₁
   unfold unitNormalize
   linarith
+
+/-! ### Label variation along words -/
+
+/-- Replacing a permutation by a Hamming-close one changes the label variation
+of an observable bounded by `M` by at most `2M` per disagreement. -/
+theorem sum_abs_sub_le_of_close (ψ : Y → ℝ) {M : ℝ} (hψ : ∀ y, |ψ y| ≤ M)
+    (a c : Equiv.Perm Y) :
+    ∑ x : Y, |ψ (c x) - ψ x| ≤
+      ∑ x : Y, |ψ (a x) - ψ x| + 2 * M * ((hammingDisagreement c a).card : ℝ) := by
+  have hterm : ∀ x : Y, |ψ (c x) - ψ x| ≤
+      |ψ (a x) - ψ x| + if x ∈ hammingDisagreement c a then 2 * M else 0 := by
+    intro x
+    by_cases hx : x ∈ hammingDisagreement c a
+    · rw [if_pos hx]
+      have h₁ := abs_sub_le (ψ (c x)) (ψ (a x)) (ψ x)
+      have h₂ := abs_sub_le (ψ (c x)) 0 (ψ (a x))
+      rw [sub_zero, zero_sub, abs_neg] at h₂
+      linarith [hψ (c x), hψ (a x)]
+    · rw [if_neg hx, add_zero]
+      have hcx : c x = a x := by
+        by_contra hne
+        exact hx (by simpa [hammingDisagreement] using hne)
+      exact le_of_eq (by rw [hcx])
+  calc ∑ x : Y, |ψ (c x) - ψ x|
+      ≤ ∑ x : Y, (|ψ (a x) - ψ x| + if x ∈ hammingDisagreement c a then 2 * M else 0) :=
+        Finset.sum_le_sum fun x _ ↦ hterm x
+    _ = ∑ x : Y, |ψ (a x) - ψ x| + 2 * M * ((hammingDisagreement c a).card : ℝ) := by
+        rw [Finset.sum_add_distrib, Finset.sum_ite_mem, Finset.univ_inter, Finset.sum_const,
+          nsmul_eq_mul]
+        ring
+
+/-- Label variation is subadditive along products of permutations. -/
+theorem sum_abs_sub_mul_le (ψ : Y → ℝ) (a b : Equiv.Perm Y) :
+    ∑ x : Y, |ψ ((a * b) x) - ψ x| ≤
+      ∑ x : Y, |ψ (a x) - ψ x| + ∑ x : Y, |ψ (b x) - ψ x| := by
+  have hre : ∑ x : Y, |ψ (a (b x)) - ψ (b x)| = ∑ x : Y, |ψ (a x) - ψ x| :=
+    Equiv.sum_comp b (fun y ↦ |ψ (a y) - ψ y|)
+  rw [← hre, ← Finset.sum_add_distrib]
+  refine Finset.sum_le_sum fun x _ ↦ ?_
+  rw [Equiv.Perm.mul_apply]
+  exact abs_sub_le (ψ (a (b x))) (ψ (b x)) (ψ x)
+
+/-- Label variation is invariant under inversion of the permutation. -/
+theorem sum_abs_sub_inv_eq (ψ : Y → ℝ) (a : Equiv.Perm Y) :
+    ∑ x : Y, |ψ (a⁻¹ x) - ψ x| = ∑ x : Y, |ψ (a x) - ψ x| := by
+  have hre : ∑ x : Y, |ψ (a⁻¹ (a x)) - ψ (a x)| = ∑ x : Y, |ψ (a⁻¹ x) - ψ x| :=
+    Equiv.sum_comp a (fun y ↦ |ψ (a⁻¹ y) - ψ y|)
+  rw [← hre]
+  refine Finset.sum_congr rfl fun x _ ↦ ?_
+  have hx : a⁻¹ (a x) = x := by simp
+  rw [hx, abs_sub_comm (ψ x) (ψ (a x))]
+
+/-- **Label variation along an asymptotic homomorphism.**  When the model maps
+are asymptotically multiplicative, unital and inverse-preserving in normalized
+Hamming distance, negligible label variation of a bounded observable passes from
+a generating set to every group element.  This supplies the labels of an ambient
+generating set that are not compressors. -/
+theorem sum_abs_sub_negligible_of_closure {G : Type} [Group G]
+    (X : ℕ → FiniteModel) (σ : ∀ n, G → Equiv.Perm (X n))
+    (hmul : ∀ g h : G, Vanishing fun n ↦
+      hammingDistance (X n) (σ n (g * h)) (σ n g * σ n h))
+    (hone : Vanishing fun n ↦ hammingDistance (X n) (σ n 1) 1)
+    (hinv : ∀ g : G, Vanishing fun n ↦ hammingDistance (X n) (σ n g⁻¹) (σ n g)⁻¹)
+    (ψ : ∀ n, X n → ℝ) {M : ℝ} (hψ : ∀ n y, |ψ n y| ≤ M)
+    {s : Set G} (hs : Subgroup.closure s = ⊤)
+    (hgen : ∀ t ∈ s, Negligible (fun n ↦ (Fintype.card (X n) : ℝ)) fun n ↦
+      ∑ x : X n, |ψ n (σ n t x) - ψ n x|)
+    (g : G) :
+    Negligible (fun n ↦ (Fintype.card (X n) : ℝ)) fun n ↦
+      ∑ x : X n, |ψ n (σ n g x) - ψ n x| := by
+  have hN : ∀ n, (0 : ℝ) ≤ Fintype.card (X n) := fun n ↦ Nat.cast_nonneg _
+  have hclose : ∀ p q : ∀ n, Equiv.Perm (X n),
+      (Vanishing fun n ↦ hammingDistance (X n) (p n) (q n)) →
+      Negligible (fun n ↦ (Fintype.card (X n) : ℝ))
+        (fun n ↦ ∑ x : X n, |ψ n (q n x) - ψ n x|) →
+      Negligible (fun n ↦ (Fintype.card (X n) : ℝ))
+        (fun n ↦ ∑ x : X n, |ψ n (p n x) - ψ n x|) := by
+    intro p q hpq hq
+    have hcount : Negligible (fun n ↦ (Fintype.card (X n) : ℝ))
+        (fun n ↦ ((hammingDisagreement (p n) (q n)).card : ℝ)) := hpq
+    exact Negligible.mono_nonneg hN
+      (fun n ↦ Finset.sum_nonneg fun x _ ↦ abs_nonneg _)
+      (fun n ↦ sum_abs_sub_le_of_close (ψ n) (hψ n) (q n) (p n))
+      (hq.add (Negligible.const_mul (2 * M) hcount))
+  refine Subgroup.closure_induction
+    (p := fun k _ ↦ Negligible (fun n ↦ (Fintype.card (X n) : ℝ)) fun n ↦
+      ∑ x : X n, |ψ n (σ n k x) - ψ n x|)
+    (fun t ht ↦ hgen t ht) ?_ ?_ ?_ (by rw [hs]; exact Subgroup.mem_top g)
+  · refine hclose (fun n ↦ σ n 1) (fun _ ↦ 1) hone ?_
+    exact Negligible.zero.congr fun n ↦ by simp
+  · intro k l _ _ hk hl
+    refine hclose (fun n ↦ σ n (k * l)) (fun n ↦ σ n k * σ n l) (hmul k l) ?_
+    exact Negligible.mono_nonneg hN
+      (fun n ↦ Finset.sum_nonneg fun x _ ↦ abs_nonneg _)
+      (fun n ↦ sum_abs_sub_mul_le (ψ n) (σ n k) (σ n l)) (hk.add hl)
+  · intro k _ hk
+    refine hclose (fun n ↦ σ n k⁻¹) (fun n ↦ (σ n k)⁻¹) (hinv k) ?_
+    exact hk.congr fun n ↦ (sum_abs_sub_inv_eq (ψ n) (σ n k)).symm
 
 variable {G : Type} [Group G] {S : SoficApproximation G} {T : Finset G}
 

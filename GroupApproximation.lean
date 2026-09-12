@@ -4611,6 +4611,9 @@ import GroupApproximation.KunThom.FixedPointNormalizationPatching
 import GroupApproximation.KunThom.FixedPointNormalizationBisection
 import GroupApproximation.KunThom.FixedPointNormalizationComparison
 import GroupApproximation.BowenChapman.EndpointOfNormalization
+import GroupApproximation.KunThom.ComponentCountingNormalizationMedian
+import GroupApproximation.KunThom.ComponentCountingNormalizationGroupoid
+import GroupApproximation.KunThom.ComponentCountingRelativeFunctorPresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

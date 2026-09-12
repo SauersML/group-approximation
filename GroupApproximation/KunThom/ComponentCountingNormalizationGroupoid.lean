@@ -1,6 +1,8 @@
 import GroupApproximation.Matching.FiniteGroupoidCounting
 import Mathlib.GroupTheory.Coset.Card
 import Mathlib.Algebra.Group.Subgroup.Ker
+import Mathlib.Data.Real.Basic
+import Mathlib.Tactic.Linarith
 
 /-!
 # Finite counting for the relative cluster functor
