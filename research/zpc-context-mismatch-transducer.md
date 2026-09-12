@@ -132,3 +132,12 @@ additional odd selector characters.
   provide local commutation, not one global readable algebra.  The transducer
   should glue decoded unreadable observables across contexts rather than
   assume all remote selectors commute.
+- **Matrix-specific gluing is circular.**
+  `zpc-transducer-is-exact-gluing-identity-or-nonhyperlinear` evaluates
+  `D_glue` in canonical microstates of the output solution group. If the
+  decoded copies are fixed words, `(CTX')` forces either an exact identity
+  `(U_c-U_d)(1-J)=0` in the marked group algebra, or a nonhyperlinear solution
+  group with no use of the source gap. So a non-circular transducer needs an
+  exact projective central-sign gluing identity. A lock that holds only in
+  finite matrices (type (b)) is already nonhyperlinearity-strength. Screen
+  candidates in the left regular representation first.
