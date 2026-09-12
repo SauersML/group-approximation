@@ -258,7 +258,8 @@ theorem osinLemma97bConclusion_of_region {W : Set (List (RelLetter G Lambda))}
   · intro k hk l hl hkl
     rw [Finset.mem_singleton] at hk hl
     exact absurd (hk.trans hl.symm) hkl
-  · simpa only [Finset.sum_singleton] using hdeg
+  · rw [Finset.sum_singleton]
+    exact hdeg
 
 end GroupApproximation.GGT.VanKampen
 

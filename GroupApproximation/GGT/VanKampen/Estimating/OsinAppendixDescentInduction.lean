@@ -167,11 +167,27 @@ theorem OsinSectionPocketCut.exists_large_region
         hrho hlarge hlea S.toRealizedSectionFamily i h11 hunique j3 hj3
       have hpos : (0 : ℝ) < ((cell S.diagram i).word.length : ℝ) :=
         cellWord_length_pos hcondition.toIsSmallCancellation hrho i
-      by_cases huniq3 : ∀ a ∈ RegionCandidate.exteriorAt S.family i,
-          ∀ b ∈ RegionCandidate.exteriorAt S.family i,
-            RegionCandidate.TargetsSectionIndex cut.sections j3 a →
-              RegionCandidate.TargetsSectionIndex cut.sections j3 b → a = b
+      by_cases hdup : ∃ a ∈ RegionCandidate.exteriorAt S.family i,
+          ∃ b ∈ RegionCandidate.exteriorAt S.family i,
+            RegionCandidate.TargetsSectionIndex cut.sections j3 a ∧
+              RegionCandidate.TargetsSectionIndex cut.sections j3 b ∧ a ≠ b
+      · -- Two regions to `t_2`: a smaller pocket.
+        obtain ⟨a, ha, b, hb, hta, htb, hab⟩ := hdup
+        obtain ⟨cut'⟩ := hpocket cut.enclosed cut.sections cut.leastArea S i j3 a ha b hb hab
+          hta htb
+        have hlt' := cut'.rCellCount_lt
+        obtain ⟨Y', b', ⟨EY'⟩, hbY', hdeg'⟩ := ih cut'.enclosed.rCellCount (by omega)
+          cut.enclosed cut.sections j3 cut.leastArea cut' rfl (by omega)
+        obtain ⟨Y, b'', hEY, hbY, hdegb⟩ := cut.sectionTransport j3 hj3 Y' EY' b' hbY'
+        exact ⟨Y, b'', hEY, hbY, by rw [hdegb]; exact hdeg'⟩
       · -- One region to `t_2`: its degree is above `1 − 13μ`.
+        have huniq3 : ∀ a ∈ RegionCandidate.exteriorAt S.family i,
+            ∀ b ∈ RegionCandidate.exteriorAt S.family i,
+              RegionCandidate.TargetsSectionIndex cut.sections j3 a →
+                RegionCandidate.TargetsSectionIndex cut.sections j3 b → a = b := by
+          intro a ha b hb hta htb
+          by_contra hab
+          exact hdup ⟨a, ha, b, hb, hta, htb, hab⟩
         by_contra hnone
         have hB : (0 : ℝ) ≤ (1 - 13 * mu) * ((cell S.diagram i).word.length : ℝ) :=
           (mul_pos (by linarith) hpos).le
@@ -197,16 +213,6 @@ theorem OsinSectionPocketCut.exists_large_region
               cut.sectionTransport j3 hj3 S.diagram S.equiv a ha'.2
             exact ⟨Y, b, hEY, hbY, by rw [hdegb]; exact hdeg⟩
         linarith
-      · -- Two regions to `t_2`: a smaller pocket.
-        push_neg at huniq3
-        obtain ⟨a, ha, b, hb, hta, htb, hab⟩ := huniq3
-        obtain ⟨cut'⟩ := hpocket cut.enclosed cut.sections cut.leastArea S i j3 a ha b hb hab
-          hta htb
-        have hlt' := cut'.rCellCount_lt
-        obtain ⟨Y', b', ⟨EY'⟩, hbY', hdeg'⟩ := ih cut'.enclosed.rCellCount (by omega)
-          cut.enclosed cut.sections j3 cut.leastArea cut' rfl (by omega)
-        obtain ⟨Y, b'', hEY, hbY, hdegb⟩ := cut.sectionTransport j3 hj3 Y' EY' b' hbY'
-        exact ⟨Y, b'', hEY, hbY, by rw [hdegb]; exact hdeg'⟩
 
 /-! ## `DescentInput` from the pocket producer -/
 
@@ -230,20 +236,25 @@ theorem descentInput_of_sectionPocketCut
     (hpocket : SectionPocketCutInput.{u, w, v} D lambda c eps W) :
     DescentInput.{u, w, v} D lambda c mu eps W := by
   rintro Delta cuts hlea _hcells hbelow S _hloopsS _hmultiS ⟨i, h11⟩
-  by_cases huniq : S.toRealizedSectionFamily.ExteriorUniqueAt i
-  · exact ⟨S.toRealizedSectionFamily,
-      osinLemma97bConclusion_of_exteriorUniqueAt S.toRealizedSectionFamily i
-        (RealizedSectionFamily.exteriorLarge_of_gt_eleven S.toRealizedSectionFamily i
-          hmu.le h11)
-        huniq hmuUpper (cellWord_length_pos hcondition.toIsSmallCancellation hrho i)⟩
-  · unfold RealizedSectionFamily.ExteriorUniqueAt at huniq
-    push_neg at huniq
-    obtain ⟨j, a, ha, b, hb, hta, htb, hab⟩ := huniq
+  by_cases hdup : ∃ j : Fin cuts.count, ∃ a ∈ RegionCandidate.exteriorAt S.family i,
+      ∃ b ∈ RegionCandidate.exteriorAt S.family i,
+        RegionCandidate.TargetsSectionIndex cuts j a ∧
+          RegionCandidate.TargetsSectionIndex cuts j b ∧ a ≠ b
+  · obtain ⟨j, a, ha, b, hb, hta, htb, hab⟩ := hdup
     obtain ⟨cut⟩ := hpocket Delta cuts hlea S i j a ha b hb hab hta htb
     obtain ⟨Y, r, ⟨EY⟩, hr, hdeg⟩ := OsinSectionPocketCut.exists_large_region hcondition
       hlambda hmu hmuUpper hrho hlarge hthreshold hO52 hmulti hloop heuler h94 hpocket hbelow
       cut.enclosed.rCellCount Delta cuts j hlea cut rfl cut.rCellCount_lt
     exact osinLemma97bConclusion_of_region hlea EY j r hr hdeg
+  · have huniq : S.toRealizedSectionFamily.ExteriorUniqueAt i := by
+      intro j a ha b hb hta htb
+      by_contra hab
+      exact hdup ⟨j, a, ha, b, hb, hta, htb, hab⟩
+    exact ⟨S.toRealizedSectionFamily,
+      osinLemma97bConclusion_of_exteriorUniqueAt S.toRealizedSectionFamily i
+        (RealizedSectionFamily.exteriorLarge_of_gt_eleven S.toRealizedSectionFamily i
+          hmu.le h11)
+        huniq hmuUpper (cellWord_length_pos hcondition.toIsSmallCancellation hrho i)⟩
 
 end GroupApproximation.GGT.VanKampen
 
