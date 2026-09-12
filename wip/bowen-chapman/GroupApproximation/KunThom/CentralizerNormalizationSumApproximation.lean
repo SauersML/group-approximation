@@ -173,13 +173,15 @@ theorem multiplicativeProductLabels_sumApproximation
         (sumApproximation modelX modelZ actX actZ hposX hposZ hcard hmulX hmulZ) n S =
       Finset.univ.image
         (sumAction (fun t : S ↦ actX n t.1) (fun t : S ↦ actZ n t.1)) := by
+  unfold multiplicativeProductLabels
   ext σ
-  simp only [multiplicativeProductLabels, Finset.mem_image, Finset.mem_univ, true_and]
   constructor
-  · rintro ⟨k, hk, rfl⟩
-    exact ⟨⟨k, hk⟩, rfl⟩
-  · rintro ⟨t, rfl⟩
-    exact ⟨t.1, t.2, rfl⟩
+  · intro hσ
+    obtain ⟨k, hk, rfl⟩ := Finset.mem_image.mp hσ
+    exact Finset.mem_image.mpr ⟨⟨k, hk⟩, Finset.mem_univ _, rfl⟩
+  · intro hσ
+    obtain ⟨t, -, rfl⟩ := Finset.mem_image.mp hσ
+    exact Finset.mem_image.mpr ⟨t.1, t.2, rfl⟩
 
 /-- Distinct labels on the left summand stay distinct on the union. -/
 theorem injOn_sumApproximation_map
