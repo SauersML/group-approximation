@@ -25,3 +25,10 @@ Artifact Section 4: Lemma 4.1, Theorem 4.2 and Corollary 4.3.
   - `psi(c)psi(x) = 1` becomes two-sided downstairs, by Elek–Szabó.
   - `1 - xc` is supported on `S`, so it is `0` upstairs.
   - So `a` is invertible, and `pi(a) = s0` would be too.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 17.3 and 21 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the acyclic nilpotent part and the double-coset transfer of the `Z` relations;*
+- *invertibility of `a_H` forcing `s_0` invertible;*
+- *the forest change of letters, and Theorem 5.1.*
+
+*Not re-derived: the phrase "one 2-cell per cycle", which describes `H_Z` and is not used.*

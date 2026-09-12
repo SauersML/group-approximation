@@ -32,3 +32,8 @@ functions on the column points, and `tau_i` recovers `xi_i`. Case 2 uses `c'` as
 - *Case 2.* Finite components lie in `U_[0]`, and each infinite component meets `U_[1]` in at most two
   points. A Borel set meeting every infinite class finitely is null by mass transport, but
   `lambda(U_[1]) = 1/2`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 18.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *injective columns on orbit modules;*
+- *vanishing boundary for bounded degree, and mass transport on finite measure-preserving subrelations;*
+- *the subgraph relation for case 2, and both degree-two counts.*

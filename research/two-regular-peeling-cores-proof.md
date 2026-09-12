@@ -31,3 +31,8 @@ way.
   - A singular cycle block gives a finite kernel vector.
   - If every block is invertible, the diagonal of earlier rounds plus the live blocks is a unit `D`.
     `D^-1 (x - D)` is nilpotent, so `x` is a unit, which is excluded.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 20 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the bimodule projection, with `eps_-` central;*
+- *finite-radius identities holding on all functions;*
+- *Haar balance forcing `mult = 2`, line propagation with locally finite back-substitution, and bounded cycles.*

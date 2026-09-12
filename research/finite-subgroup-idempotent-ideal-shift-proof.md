@@ -20,3 +20,8 @@ Artifact Sections 1–2.
 - **Finite `K`.** `H -> Sym(K)` is injective on `K`, and its kernel acts freely on the Bass–Serre tree, so it is free.
   `M_n(k[H])` then embeds in matrices over a Malcev–Neumann division ring.
 - **Push forward** along `H -> G`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 17.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *the one-coset transfer (injective in `G`, well defined in `H`);*
+- *`yx = I + N` with `N^2 = 0`, and the modular law;*
+- *HNN extensions of finite groups being virtually free.*

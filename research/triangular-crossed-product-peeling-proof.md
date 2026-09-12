@@ -31,3 +31,9 @@ each of its points, then repeat.
 - *The nilpotent part.* `N = x - D` sends round-`r` columns to earlier points, so `D^-1 N` lowers the round
   and is nilpotent in every fibre. Fibres are faithful, so it is nilpotent in `B`.
 - *Conclusion.* `x = D(1 + D^-1 N)` is a unit.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Sections 18.1 and 23.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS, including part 3 and Example 4.3. Re-derived independently:*
+- *back-substitution, and both stop types;*
+- *termination with `c_D = 1`, `n_D <= 1` and Haar balance, then nilpotent `D^-1 N`;*
+- *equal live measures, through disjoint translates of the removal sets;*
+- *Example 4.3 type by type: round one removes exactly six odd types, and round two stops at type `(1,1,0,1)`.*

@@ -20,3 +20,5 @@ Artifact Proposition 3.1.
    abelianization is finite and `ker chi` has finite index.
 5. The normal core of `ker chi` is a finite-index normal subgroup missing `z`, against
    `deligne-triple-cover-finite-residual-is-center`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 22 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently: Følner vectors plus (T) give a finite orbit, and the line character on a finite-index (T) subgroup has finite-index kernel missing `z`.*

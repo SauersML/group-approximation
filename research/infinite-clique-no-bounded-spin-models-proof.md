@@ -19,3 +19,8 @@ The proof is Proposition 1.6 of the artifact.
   element squares to `0`, and `Pi` generates a nilpotent algebra `N`.
 - **Contradiction.** The square of either member lies in `M_(petal) tensor N`, which is nilpotent, but the
   square is invertible.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 19 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Re-derived independently:*
+- *disjoint supports force `ab = 0` and hence a contradiction;*
+- *the nonempty Δ-system kernel, and elementwise anticommutation of the kernel spaces through independent petal tensors;*
+- *pigeonhole over the finite `M_K`, the nilpotent `N` in odd characteristic, and the nilpotent-invertible contradiction.*
