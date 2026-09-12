@@ -48,3 +48,24 @@ witnesses `left-invertible-lift-of-s0-in-leavitt-group-algebra`.
   - a unit `h` with `<supp E^, h>` non-sofic.
 
   No such candidate has been examined.
+
+**2026-09-12, HNN transfer (lane `w4-kap-triangular`).** Artifact
+`research/artifacts/triangular-lift-hnn-transfer-2026-09-12.md`.
+
+* **Dead: every finite-subgroup idempotent, every `h`** (`finite-support-triangular-two-piece-s0-lifts-do-not-exist`).
+  - A vanishing piece says that a group element shifts a finite-subgroup idempotent right ideal into itself.
+  - That equation lives on one double coset, so it also holds in the HNN extension of the support group along
+    conjugation by `h`.
+  - That extension is virtually free, so its group algebra is directly finite, and the shift must be an equality
+    (`finite-subgroup-idempotent-ideals-admit-no-proper-group-shift`).
+  - Evaluation refutes the equality.
+  - This covers the constants `GL_(2^k)(F_2)` (including `GL_4(F_2)`), dyadic permutation constants, Klein constants
+    and odd cyclic constants. It replaces the case split of Proposition 3.6.
+* **General supports.** With `K = <supp E^>`, a triangular witness makes the group algebra of
+  `HNN(K, K ∩ hKh^(-1))` not directly finite.
+* **What survives.**
+  - supports generating an infinite subgroup whose HNN extension has a non-directly-finite group algebra;
+  - finite-subgroup idempotents conjugated by units of `A`: `h` becomes a unit, and the one-coset transfer fails;
+  - non-triangular unit products;
+  - lifts with three or more pieces whose zero pattern carries a cycle of nontrivial partial conjugations, recorded in
+    `finite-support-multi-piece-triangular-s0-lift-exists`. Two pieces never carry such a cycle.

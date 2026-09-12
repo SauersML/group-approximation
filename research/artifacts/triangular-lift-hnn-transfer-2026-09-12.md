@@ -120,3 +120,80 @@ Then for every choice of `g1, g2` (so for every `h`), `X != 0` and `Y != 0`.
   - finite-subgroup idempotents conjugated by units of `A`, where `h` becomes a unit (Remark 1.1);
   - the non-triangular unit criterion of [TP] Theorem 2.2, where `X != 0` and `Y != 0`;
   - multi-piece triangular lifts (Section 4).
+
+## 4. Multi-piece lifts: the transfer needs a cycle
+
+**Data 4.0.**
+- `beta_1, ..., beta_m` is a complete prefix code, so `P_(beta_1) + ... + P_(beta_m) = 1`.
+- `E_1, ..., E_m` are orthogonal idempotents of `A` summing to `1`, with `pi(E_i) = P_(beta_i)`.
+- `g_i` in `R^x` satisfy `g_i s_(beta_i) = s_0 s_(beta_i)` and `g_i P_(beta_i) g_i^(-1) = P_(0 beta_i)`.
+- `h_ij = g_i^(-1) g_j`, `a = sum_i [g_i]E_i` and `b = sum_i E_i[g_i^(-1)]`.
+
+For `m = 2` this is [TP] Data 2.0.
+
+**Lemma 4.1.** `pi(a) = s_0` and `pi(b) = t_0`. Also `b a = 1 + sum_(i != j) X_ij`, where `X_ij = E_i[h_ij]E_j` lies in
+the kernel. If the defect digraph `{(i,j) : X_ij != 0}` is acyclic, then `b a - 1` is nilpotent, `b a` is a unit, and
+`a` witnesses `left-invertible-lift-of-s0-in-leavitt-group-algebra`.
+
+*Proof.*
+- `pi(a) = sum_i s_(0 beta_i) t_(beta_i) = s_0 sum_i P_(beta_i) = s_0`, and likewise `pi(b) = sum_i s_(beta_i) t_(0 beta_i) = t_0`.
+- For `i != j`, `pi(X_ij) = g_i^(-1) P_(0 beta_i) P_(0 beta_j) g_j = 0`.
+- In Peirce form along the `E_i`, an acyclic digraph makes `sum X_ij` strictly triangular after reordering, so its
+  `m`-th power is `0`. QED
+
+**Theorem 4.2 (transfer to a shift group).**
+- **Hypotheses.**
+  - Every `E_i` lies in `k[K]` for one subgroup `K`, with `k = F_2`.
+  - `Z` is the set of pairs `(i,j)` with `i != j` and `X_ij = 0`, and `D_ij = K ∩ h_ij K h_ij^(-1)`.
+  - `H` is a group with a homomorphism `phi : H -> R^x`, a homomorphism `K -> H` lifting the inclusion, and elements
+    `t_i` with `phi(t_i) = g_i`.
+  - For every `(i,j)` in `Z` and `d` in `D_ij`, `H` satisfies
+    `(t_i^(-1) t_j)^(-1) d (t_i^(-1) t_j) = h_ij^(-1) d h_ij`.
+- **Conclusion.** If the defect digraph is acyclic, `k[H]` is not directly finite.
+
+*Proof.*
+- **Transfer.** Take `(i,j)` in `Z`.
+  - `X_ij = mu(E_i ⊗ E_j)`, with `mu` injective on `k[K] ⊗_(k[D_ij]) k[K]` ([TP] Lemma 3.1). So `E_i ⊗ E_j = 0`.
+  - `x ⊗ y |-> x[t_i^(-1) t_j]y` is well defined on the same tensor product, because the relations hold in `H`.
+  - So `E_i[t_i^(-1) t_j]E_j = 0` in `k[H]`. Injectivity in `H` is never needed.
+- **Left inverse in `H`.** Put `x = sum_i [t_i]E_i` and `y = sum_i E_i[t_i^(-1)]`. Then `yx = 1 + sum X^H_ij` over
+  the pairs outside `Z`. That digraph is acyclic, so `yx` is a unit and `x` has a left inverse.
+- **Contradiction.** If `k[H]` were directly finite, `x` would be invertible. Then `phi(x) = a` is invertible, and so
+  is `pi(a) = s_0`. But `s_0 t_0 != 1`. QED
+
+**The universal shift group.** Take `H_Z = (K * F(t_1, ..., t_m)) / <<relations along t_i^(-1) t_j, (i,j) in Z>>`.
+Relations along `w` and along `w^(-1)` coincide. So only the undirected graph `Gamma` matters: it has an edge `{i,j}`
+when `(i,j)` or `(j,i)` lies in `Z` and `D_ij != 1`.
+
+**Corollary 4.3 (a cycle is necessary).** Suppose `K` is finite and `Gamma` is a forest. Then `k[H_Z]` is directly
+finite. So no finite-support `m`-piece lift with this `Gamma` has an acyclic defect digraph.
+
+*Proof.*
+- **Change of letters.** In each component, keep the root letter and, along each tree edge `{i,j}` directed away from
+  the root, replace `t_j` by `s_ij = t_i^(-1) t_j`. This is a change of free basis.
+- **Graph of groups.** Every relation is now an HNN relation along a single letter. So `H_Z` is a multiple HNN
+  extension of the finite group `K` along finite subgroups, free product a free group: the fundamental group of a
+  finite graph of finite groups.
+- **Direct finiteness.** Such a group is virtually free, by the argument of Corollary B with one permutation `sigma`
+  per letter, so its group algebra is stably finite. QED
+
+**Consequences.**
+- **`m = 2`.** `Gamma` has at most one edge, which recovers Corollary C.
+- **Terminating the recursion.** A finite-support termination of the corner recursion by group-element pieces needs
+  `m >= 3` and a cycle in `Gamma`. That means at least three pieces, pairwise one-sidedly orthogonal after shifting,
+  with every relative shift `g_i^(-1) g_j` along the cycle conjugating a nontrivial subgroup of `K` back into `K`.
+- **A testable necessary condition.** `H_Z` is then the fundamental group of a finite 2-complex of finite groups, and
+  by Elek–Szabó it must be non-sofic. This finitely presented necessary condition can be tested on paper before any
+  group-ring computation.
+- **Open claim:** `finite-support-multi-piece-triangular-s0-lift-exists`.
+
+**Remark 4.4 (the nilpotent criterion of [TP] Proposition 2.4).**
+- **Not triangular.** `b a - 1 = X + Y` is nilpotent exactly when `YX` is. `(YX)^r` spreads over words of length `2r`
+  in `h`, so no one-coset transfer reaches it.
+- **What a witness needs.** By [TP] Lemma 3.3, a witness on data `(F, h)` with finite `F` needs `<F, h>` non-sofic.
+  So `HNN(F, D) -> <F, h>` must have a kernel: some relation among `F` and `h` in `R^x` beyond conjugation along `D`.
+  For the natural `h` of [TP] Computation 3.5, `D = 1`, so a witness there needs `<F, h> != F * <h>`.
+- **Filter (Frobenius trace).**
+  - For `x` in `F_2[G]`, `x^2 ≡ sum_g x_g g^2` modulo commutators, so `tau(x^(2^k)) = sum_(g^(2^k) = 1) x_g`.
+  - Hence a nilpotent `x` has `sum_(g a 2-element) x_g = 0`, and so does each of its powers.
+  - This filters candidates for `YX`, but it decides none of the data examined here.
