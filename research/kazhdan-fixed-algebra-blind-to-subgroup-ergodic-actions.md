@@ -3,6 +3,7 @@ rg: 2
 id: kazhdan-fixed-algebra-blind-to-subgroup-ergodic-actions
 kind: claim
 title: The fixed diagonal algebra of a Kazhdan subgroup sees nothing of a sofic action on which that subgroup acts ergodically
+invalidates: [mixing-nonsofic-action-via-fixed-algebras]
 distinct_from:
   kun-thom-nonsofic-wreath: that imports Theorem C, which derives nonsoficity from a non-invariant fixed algebra; this proves that the same fixed algebra carries no information at all once the subgroup acts ergodically
   kazhdan-projection-is-norm-limit-of-finite-averages: that is the approximation fact for the Kazhdan projection; this applies it to a sofic embedding of a crossed product
