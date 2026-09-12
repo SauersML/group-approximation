@@ -652,6 +652,55 @@ So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domina
   removed and empty-component mass. With `withDistinguished` it applies to every
   compressor.
 
+## R13. Landings 13:40–13:41. No defect
+
+- **`db9f4260c` `CentralizerNormalizationPrunedCore`.** Checked by specializing
+  `retained_completion_directedCheeger`:
+  - The additive inequality from `additiveCheeger_of_edit` has constant
+    `γ = cheeger/2` and error `E = b/2`.
+  - The cut constant is `c = cheeger/4`.
+  - `hsmall` becomes `b·(8·cheeger + 32·|T|) ≤ cheeger²·|C|`, as stated.
+  - The core constant is `c/|T| = cheeger/(4|T|)`.
+  - The removed mass is `E/(γ − c) = 2b/cheeger`, as in `prunedCore_removed_le`.
+- **`9d89ca20e` `ComponentFamilyUniformFields`.** Three transfers to retained sets:
+  - `size_tendsTo`, with at most half removed;
+  - `locallyMultiplicative`, since a product failure is an ambient failure or an
+    image outside `V`, and the removed proportion vanishes uniformly;
+  - `labelsInjective`, with collisions at most a quarter and removal at most an
+    eighth.
+
+  Freeness is consumed through the collision counts.
+- **Coordination note, not a defect.** Two L1 producer routes are on main:
+  - kt41-seq-decomp: `9105379d6` Pruning, Completion and Levels, constant `h/(8|T|)`;
+  - kt41-g1-alt with kt41-seq-wrapper: `5f364e5f1`, `db9f4260c` and `9d89ca20e`,
+    constant `cheeger/(4|T|)`.
+
+  Both are consistent, and one producer suffices.
+
+## R14. Landings 13:42–13:43. No defect
+
+- **`91713c5f5` `SequentialComponentFamilyObjects`** (kt41-seq-decomp).
+  - The objects are the components good at the diagonal level, restricted to their
+    pruned cores, with completed labels.
+  - Four statements fill the `ComponentFamily` fields:
+    - `objectAction_expands`: exact directed Cheeger bound `cheeger/(8|T|)`;
+    - `objectModel_size`;
+    - `objectAction_locallyMultiplicative`, uniform over objects;
+    - `objectAction_injOn`, eventually.
+  - Inputs: `[Infinite K]`, a symmetric generating `T` and a surjective enumeration.
+  - `card_objectAction_disagreement_le` charges label failures to completion
+    disagreement plus pruned mass. That is the compatibility-failure count the block
+    actions need.
+- **`9a752011f` `CountingEndgameRestrict`** (kt41-counting-endgame).
+  - The inclusion of a restricted presentation is full, faithful and injective on
+    objects.
+  - **(2).** `(1 − ζ)·|orbit(J X)| ≤ |orbit(J X) ∩ im J| ≤ |orbit X| ≤ |orbit(F X)|`.
+    The last orbit is taken in the restricted target, so it is `≤` the ambient
+    `o_n(i)`, which implies the paper's (2).
+  - **(3).** `k(J X) = k(X) ≤ k(F X)`, by full-and-faithful `J` and faithful `F`.
+  - Together these give the count hypotheses of `exists_bisection_lift` from ambient
+    cleanliness and ratio bounds.
+
 ## Named statements in the chain without a producer
 
 - `seqNormalizes_distinguished_of_kazhdan`: pinned name only; its file is absent.
