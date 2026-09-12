@@ -81,7 +81,9 @@ So `V` acts essentially freely on `(M_-, lambda)`: off a null set, every orbit i
    Each `supp a_g` lies in `U_[0]`.
 2. Since `c >= 1`, `∫_(U_[0]) n >= 1`. Off `A`, `n <= 1`, so `∫_(U_[0] \ A) n <= lambda(U_[0]) = 1/2`.
    Hence `∫_A n >= 1/2`.
-3. Remove the null set `union_(k in F^-1 F, k != 1) Fix(k)` (Proposition 3.1). Put `mu = g^-1 nu`
+3. Remove the null set `N = union_(k in V, k != 1) Fix(k)`. It is a countable union of null sets
+   (Proposition 3.1), and it is `V`-invariant, so every point of an orbit off `N` satisfies Lemma 2.1.
+   Put `mu = g^-1 nu`
    and `mu' = g'^-1 nu`. They are distinct, since `mu = mu'` would put `nu` in `Fix(g' g^-1)`. Both
    columns contain `nu`, and by Lemma 2.1 their pairing is `0`. A single shared point would give a
    product of two nonzero elements of `F_3`, which is nonzero. So they share at least two points.
@@ -119,13 +121,17 @@ Supports the open claim `odd-measure-crossed-product-has-star-compression-design
   the `a_g` on `M_-^P`. Checking it is a finite computation inside `H`, whose word problem is
   decidable. This fits the one-decidable-host rule.
 
-**Proposition 5.1 (difference-free designs are dead).** Suppose the differences `g^-1 g'` for
-distinct `g, g' in F` are pairwise distinct. Then `F` carries no star design.
+**Corollary 5.0 (small memory sets are dead).** Every star design has `|F| >= 4`. This holds because
+`c <= |F|` and Theorem 4.1(4) needs `lambda(c >= 4) > 0`. So designs with two or three terms are dead,
+including those whose differences are involutions.
+
+**Proposition 5.1 (difference-free designs are dead).** Suppose the map `(g, g') -> g^-1 g'` on
+ordered pairs of distinct elements of `F` is injective. In particular no difference is an involution,
+since `(g, g')` and `(g', g)` have inverse differences. Then `F` carries no star design.
 
 *Proof.* The component of `x* x` at `k = g^-1 g'` has the single term `(a_g a_(g')) o g`, so it
 vanishes iff `a_g a_(g') = 0`. So the coefficient supports are pairwise disjoint, `n <= 1`
 everywhere, and Theorem 4.1(2) fails. QED
-* In particular two-term designs are dead.
 * **Reading.** In group terms, Theorem 4.1(3) says a collision at the base point `mu` needs the
   difference `k` for at least two pairs `(h, hk)` contributing at `mu`. So memory sets must contain
   repeated differences, not merely nonamenable projections.

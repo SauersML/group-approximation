@@ -23,9 +23,11 @@ Gottschalk on `L_(F_3)(1,2)^x`. A star design is a finite certificate: all condi
 
 - **Honest and cancellation-free designs, dead.** `star-compression-designs-need-weight-four-colliding-columns`
   and `odd-measure-space-has-no-honest-thompson-compression`.
-- **Two-term designs and difference-free memory sets, dead.** If the pairwise differences
-  `g^-1 g'` of the memory set are all distinct, every off-identity component has one term, the
-  coefficient supports are pairwise disjoint, and there are no collisions. Artifact Section 5.
+- **Memory sets with at most three elements, dead.** The column weight is at most `|F|`, and weight
+  four must carry positive mass. This includes involutive differences. Artifact Corollary 5.0.
+- **Difference-free memory sets, dead.** If `(g, g') -> g^-1 g'` is injective on ordered pairs of
+  distinct elements, every off-identity component has one term, the coefficient supports are pairwise
+  disjoint, and there are no collisions. Artifact Proposition 5.1.
 - **Necessary shape.**
   * columns of weight at least four carry half the Haar mass;
   * colliding columns share at least two points with cancelling signs, equivalently the collision
