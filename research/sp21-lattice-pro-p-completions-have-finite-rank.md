@@ -37,9 +37,13 @@ infinitely many alternating quotients (see the transvection bullet of
     `fpbs-lackenby-derived-p-series-largeness` force
     `liminf d_p(D_i)/[Δ:D_i] = 0` along every derived p-series. So a certificate
     needs sublinear mod-p `H_1` growth, with mod-p `H^2` below the square.
-  - **Not excluded.** Ershov and Jaikin-Zapirain give Golod–Shafarevich Kazhdan
-    groups, and `fpbs-power-p-deficiency-excludes-property-t` excludes only power
-    p-deficiency.
+  - **Not excluded.**
+    - Ershov and Jaikin-Zapirain give Golod–Shafarevich Kazhdan groups, and
+      `fpbs-power-p-deficiency-excludes-property-t` excludes only power
+      p-deficiency.
+    - Their examples satisfy only *weighted* inequalities. A certificate here needs
+      the unweighted one on mod-p cohomology; see
+      `kazhdan-group-with-golod-shafarevich-mod-p-cohomology`.
 - **Computation.** Not run. No explicit presentation of a cocompact arithmetic
   `Sp(2,1)` lattice was available here. The Kazhdan hyperbolic presentations on
   main (`GHB(7)`, Caprace–Kassabov) are not arithmetic `Sp(2,1)` lattices, so
@@ -47,7 +51,32 @@ infinitely many alternating quotients (see the transvection bullet of
 - **Betti numbers do not decide it.**
   - The real `b_2(Δ)/[Γ:Δ]` tends to `0` along residual chains, because the
     L²-Betti numbers of `Sp(2,1)` vanish outside degree `4`.
-  - Everything therefore hinges on p-torsion growth in `H_1(Δ;Z)` along towers,
-    which nothing in Cairn controls.
+  - What matters is p-torsion in `H_1` and `H_2`
+    (`sp21-gs-certificate-shape-at-uniform-levels` (i)).
+  - Growth rates cannot decide a single-cover certificate. Since
+    `δ(Sp(n,1)) = 0`, Bergeron–Venkatesh (arXiv:1004.1083, Conjecture 1.3, read
+    from the PDF) predict `o(index)` torsion, and no theorem for trivial
+    coefficients was found.
   - Serre's rank-one philosophy predicts failure of the full congruence subgroup
     property. It does not predict which primes carry the kernel.
+- **Exact p-series signature** (2026-09-12, lane `hyperbolic-rf-torsion-growth`,
+  artifact `research/artifacts/sp21-torsion-growth-certificate-shape-2026-09-12.md`).
+  - By `sp21-p-series-betti-stabilizes-iff-finite-pro-p-kernel`, for `Δ` with
+    uniform closure of dimension `D`, this claim at `Δ` holds iff
+    `d_p(D_i(Δ)) = D` for all large `i`. It fails iff the excess is positive at
+    infinitely many levels.
+  - `sp21-congruence-tower-p-torsion-grows-at-least-linearly` gives the matching
+    bounds on p-torsion in `H_1`.
+  - Neither is a finite check.
+- **No linear witness.** By `sp21-pro-p-kernel-invisible-to-local-linear-reps`, a
+  continuous local-field representation of `Δ̂_p` sees only a finite part of the
+  kernel. So infinite rank cannot be exhibited through a linear quotient.
+- **Can the certificate fire at all?**
+  - `sp21-gs-certificate-shape-at-uniform-levels` gives necessary conditions:
+    `d_p >= 5`, small `H_2` torsion, and at uniform levels `d_p > sqrt(2D(D-1))`
+    unless cup products of congruence characters die (which already yields a
+    non-congruence p-quotient).
+  - A certificate is an instance of the open claim
+    `kazhdan-group-with-golod-shafarevich-mod-p-cohomology`. The homological form
+    of the Lubotzky–Zelmanov GS-τ conjecture (Lackenby arXiv:math/0509036,
+    Conjecture 1.5) predicts that claim is false.

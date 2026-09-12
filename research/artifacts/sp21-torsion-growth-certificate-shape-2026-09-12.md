@@ -283,6 +283,17 @@ finite.
      - the kernel ideal vanishes.
    - So `ker(pr_1) = {(1, ρ(n))} ≅ ρ(N)` is finite. ∎
 
+**Trust surface of case 3.** Case 3 inherits Theorem A's conditions.
+- `research/artifacts/review-backlog-2-2026-09-12.md` §14 passes Theorem A
+  conditional on (SR): Margulis's arbitrary-field superrigidity with no boundedness
+  hypothesis.
+- That form is needed because Step 3 applies (SR) to a representation with bounded
+  image in a p-adic group.
+- The adjoint image of an open uniform subgroup of `P_2` is again compact, so case 3
+  needs the same form.
+- Case 2 uses no superrigidity. Case 1 uses only
+  `sp21-lattice-positive-characteristic-images-finite`.
+
 **Consequences.**
 - An infinite `N` has no faithful continuous linear representation over a local
   field.
