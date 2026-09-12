@@ -1,129 +1,119 @@
-# Rank-four plan, check (ii): completeness is dispensable
+# Rank-four plan, check (ii): completeness, and how the Leavitt relation reaches root data
 
-Lane `w4-r4-complete` (family R4), 2026-09-12. This artifact addresses Plan 1 of
-`research/artifacts/rank-four-associativity-gate-plans-2026-09-12.md`, recorded as the node
-`rank-four-isometry-relations-give-corner-cuntz-family`. That plan asks for a corner Leavitt family
-in a rank ultraproduct `M`, subject to three checks:
+Lane `w4-r4-complete` (family R4), 2026-09-12.
 
-- (i) `T_i S_j = delta_ij e`;
-- (ii) `S_0 T_0 + S_1 T_1 = e`;
-- (iii) `rk(e) = rk(D) > 0`, where `D = N_23 N_12`.
+Plan 1 of `research/artifacts/rank-four-associativity-gate-plans-2026-09-12.md` (node
+`rank-four-isometry-relations-give-corner-cuntz-family`) listed check (ii): the completeness relation
+`S_0 T_0 + S_1 T_1 = e` for a corner Leavitt family in a rank ultraproduct `M`.
 
-This lane owns check (ii). The answer is structural. In a rank ultraproduct the contradiction never
-uses completeness, check (i) only has to hold up to a rank budget, and check (iii) is automatic once
-the corner is supported in `D` itself. Section 2 records how the Leavitt relation reaches the root
-data, for test rings where completeness still means something. Section 3 is a strength filter for
-purely relational assemblies. Section 4 is the open calibration: whether completeness has to enter
-the construction at all.
+This artifact covers four things:
+1. why check (ii) drops out;
+2. the exact form in which `s_0 t_0 + s_1 t_1 = 1` reaches root data;
+3. the open question of whether completeness has to enter the construction at all;
+4. a scope note on reading `EL_3` models as `EL_4` models.
 
-## 0. Setting and conventions
+## 1. Completeness is not needed (credited)
 
-`M = prod_omega M_(n_k)(F) / d_omega`, where `F` is any field, `d_omega` is the ideal of
-normalized-rank-null sequences, and `rk(x) = lim_omega rank(x_k)/n_k`. For a rectangular matrix
-`X in M_(p x q)(M)` put `rk(X) = lim_omega rank(X_k)/n_k`, with `X_k` a `p n_k x q n_k` matrix
-over `F`. This is well defined, because a null perturbation of an entry changes the rank by a null
-amount. Matrix rank over a field gives:
+Three lanes found this independently, and each landed before this lane's c22ebb8e32. Their nodes
+are canonical:
 
-- (P1) `rk(XY) <= min(rk X, rk Y)`;
-- (P2) `rk(X + Y) <= rk X + rk Y`;
-- (P3) the rank of a block matrix is at most the sum of the ranks of its blocks;
-- (P4) `rk(diag(x, x)) = 2 rk(x)`;
-- (P5) `rk(x) = 0` implies `x = 0` in `M`.
+* `toeplitz-isometry-defects-have-total-rank-at-least-one` (w4-r4-approx, b7b0e9d38). For any
+  Sylvester matrix rank function, an idempotent `e`, and `S_j, T_i in eAe`:
+  `rk(e) <= rk(e - T_0 S_0) + rk(e - T_1 S_1) + rk(T_1 S_0)`.
+* `nonzero-rank-corner-cannot-hold-a-cohn-toeplitz-triple` (w4-r4-corner, 5d14c96d8).
+* Lead integration, Sections L1 and L2 of the plan artifact (322f1b031).
 
-`M` is von Neumann regular, since `prod_omega M_(n_k)(F)` is regular and so is every quotient of a
-regular ring. So every `x in M` has a left projection: an idempotent `e` with `eM = xM`, and then
-`rk(e) = rk(x)`.
+**The retired variant.** c22ebb8e32 landed a four-relation variant:
+`rk(x) <= sum_ij rk(delta_ij x - T_i S_j)` for `S_j in xM` with `x` arbitrary and `T_i`
+unconstrained. The proof counts rank through the row `[S_0 S_1] = x [y_0 y_1]`. That landing also
+carried a relaxed open target and a route. All of it duplicated L1–L2, and it is retired in the
+following landing. The variant follows from the toeplitz node:
+1. Replace `x` by its left projection `e`. `M` is von Neumann regular, `eM = xM` and `rk(e) = rk(x)`.
+2. Replace `S_j` by `S_j e` and `T_i` by `e T_i e`.
+3. None of the defect ranks increases.
 
-## 1. The Cohn rank inequality
+**What check (ii) can still mean.** In a rank ultraproduct, nothing. Every construction is a proof
+by contradiction, and no family with `rk(e) > 0` exists on which completeness could be tested.
+Completeness still has content only in test rings without a faithful rank function, such as
+`End_F(V)` for infinite-dimensional `V`, or group algebras. Section 2 is about those.
 
-**Theorem 1.** Let `x in M`, `S_0, S_1 in xM` and `T_0, T_1 in M`. Then
+## 2. How completeness reaches the root data (characteristic two)
 
-```text
-rk(x)  <=  sum over i, j in {0,1} of  rk(delta_ij x - T_i S_j) .
-```
+**Setting.**
+- `K` has characteristic two, `R = L_K(1,2)` and `e_i = s_i t_i`.
+- `M` is any unital `K`-algebra.
+- `sigma : EL_n(R) -> M^x` is a homomorphism, `n >= 3`, and `n_ab(r) = sigma(x_ab(r)) - 1`.
+- For distinct `a, b, c`: `A_i = n_ab(s_i)`, `B_i = n_bc(t_i)`, `E_i = n_ac(e_i)`, `N = n_ac(1)`.
 
-The same bound holds when instead `T_0, T_1 in Mx` and `S_0, S_1` are arbitrary. It also holds for
-square matrices over `F` with normalized rank, with the same proof, so it can be used at a finite
-level before passing to the ultraproduct.
-
-*Proof.* Write `S_j = x y_j`. Form the row `S = [S_0  S_1] = x [y_0  y_1]` and the column
-`T = [T_0 ; T_1]`.
-1. By (P1), `rk(TS) <= rk(S) <= rk(x)`.
-2. `TS` is the `2 x 2` matrix with entries `T_i S_j`, so `diag(x, x) = TS + Delta`, where
-   `Delta_ij = delta_ij x - T_i S_j`.
-3. By (P4), (P2) and (P3):
-
-   ```text
-   2 rk(x) = rk(diag(x, x)) <= rk(TS) + rk(Delta) <= rk(x) + sum rk(Delta_ij) .
-   ```
-
-For the dual version, use `rk(TS) <= rk(T) <= rk(x)` instead. QED
-
-**Corollary 2 (corner Cohn families vanish).** If `S_j in xM` and `T_i S_j = delta_ij x` for all
-`i, j`, then `x = 0`. In particular, if `e` is an idempotent and `S_j, T_i in eMe` satisfy
-`T_i S_j = delta_ij e`, then `e = 0`. The proof uses no completeness relation, no idempotency of `x`,
-and no condition on where `T_i` lives.
-
-This is the rank count `rank(TS) <= n < 2n` that
-`leavitt-isometry-commutators-constrain-el3-rank-models` uses for finite-dimensional
-representations. What is new here is its form: a defect inequality with left support in an
-arbitrary element.
-
-Taking `x = 1` recovers the fact that the Cohn algebra `C_2 = <s_0, s_1, t_0, t_1 | t_i s_j = delta_ij>`
-has no unital homomorphism into any rank ultraproduct.
-
-## 1.1 Consequences for Plan 1
-
-**(a) Completeness is dispensable.** The `D != 0` branch of
-`leavitt-el3-triviality-via-rank-four-cuntz-family` already reaches its contradiction from check (i)
-together with `rk(e) > 0`, by Corollary 2. That branch needs none of the following:
-- the unital homomorphism `R -> eMe`;
-- Theorem D on corners;
-- `leavitt-algebra-has-no-unital-rank-model`.
-
-**(b) Check (i) relaxes to a rank budget.** Suppose `D != 0`. It is enough to find `x in M` with
-`rk(x) > 0`, `S_0, S_1 in xM` and `T_0, T_1 in M` such that
+**Proposition 3.**
 
 ```text
-sum over i, j of rk(delta_ij x - T_i S_j)  <  rk(x) .
+(a)  N = E_0 + E_1 + E_0 E_1,   E_0 E_1 = E_1 E_0,   N^2 = E_i^2 = 0 ;
+(b)  E_i = A_i B_i + B_i A_i + A_i B_i A_i + B_i A_i B_i + A_i B_i A_i B_i ;
+(c)  A_0 B_0 + A_1 B_1 = N + E_0 E_1 + rho_0 + rho_1,
+     rho_i = B_i A_i + A_i B_i A_i + B_i A_i B_i + A_i B_i A_i B_i .
 ```
 
-The relations need not be exact: the four defects may be anything whose total rank is below
-`rk(x)`.
+*Proof.*
+- **(a)** `e_0 + e_1 = 1`, and the root subgroup is additive, so
+  `x_ac(1) = x_ac(e_0) x_ac(e_1)`, the two factors commute, and `1 + N = (1 + E_0)(1 + E_1)`. In
+  characteristic two `x_ab(r)^2 = 1`, so `n_ab(r)^2 = sigma(x_ab(r))^2 - 1 = 0`.
+- **(b)** Use the Steinberg relation `[x_ab(s_i), x_bc(t_i)] = x_ac(s_i t_i)`. With `X = 1 + A`,
+  `Y = 1 + B`, `X^(-1) = X`, `Y^(-1) = Y` and `A^2 = B^2 = 0`, we get `XY = 1 + A + B + AB`.
+  Squaring modulo two gives `XYXY - 1 = AB + BA + ABA + BAB + ABAB`.
+- **(c)** Sum (b) over `i` and substitute (a). QED
 
-**(c) Check (iii) is automatic for the right support.** Take `x = D`, or its left projection `e`
-(`eM = DM`, `rk(e) = rk(D)`). Then `rk(x) > 0` whenever `D != 0`, with nothing to prove. With this
-choice, all of Plan 1 comes down to one task: produce `S_j in DM` and `T_i in M` whose total
-two-pair defect rank is below `rk(D)`. This is landed as the open claim
-`two-root-defect-gives-small-defect-corner-cohn-family`, with the route
-`leavitt-el3-triviality-via-cohn-rank-inequality`. By Theorem 1 the conclusion of that claim can
-never hold, so the claim is equivalent to the identities for the models in scope. Its content is the
-construction, exactly as for the exact Plan 1 node.
+**Reading.**
+1. **Natural models.** Take `n_ab(r) = rho(r) E_ab` for a unital ring homomorphism `rho : R -> P`.
+   Every reversed product contains `E_bc E_ab = 0` or `E_ac E_ab = 0`, and `E_0 E_1` contains
+   `E_ac E_ac = 0`. So (c) reads `sum rho(s_i) rho(t_i) = 1` at position `(a, c)`. These models have
+   `D = 0`.
+2. **General models.** The root-level completeness defect is exactly `E_0 E_1 + rho_0 + rho_1`. The
+   term `E_0 E_1 = N - E_0 - E_1` is the failure of the root map to be additive on the two halves
+   of `1`, and `rho_0 + rho_1` are the reversed-order terms. Among the Steinberg relations, the ring
+   enters only through additivity of each root map and the commutator formula. Relations of `EL_n(R)`
+   beyond Steinberg are not analyzed here.
+3. **Return operators.** `N` is square-zero, so no root-level completeness sum is a nonzero
+   idempotent. In a regular ring, take `W` with `N W N = N`. Then `e = N W` is idempotent, and for the
+   placement `S_i = A_i`, `T_i = B_i W` the completeness defect is exactly
+   `(E_0 E_1 + rho_0 + rho_1) W`. This is an illustration of the mechanism only; check (i) for this
+   placement sits in a different corner. The lead's baseline candidate (L3) behaves the same way:
+   each defect is `sigma` of a nonzero element of `ker pi`.
 
-**(d) What check (ii) can still mean.** In a rank ultraproduct no family satisfying (i) with
-`rk(e) > 0` exists. So completeness can be neither verified nor refuted for such a family: any
-construction is a proof by contradiction, and completeness never enters it. The largest subcorner on
-which completeness holds is the zero corner. Completeness keeps a meaning only in test rings with no
-faithful rank function, such as `End_F(V)` for an infinite-dimensional `V`, or group algebras.
-Sections 2 and 3 treat those.
+Node: `leavitt-completeness-transport-formula-for-root-data`, with route
+`leavitt-completeness-transport-formula-proof`.
 
-**(e) Where the Leavitt input still enters.** The final contradiction uses the Cohn relations
-`t_i s_j = delta_ij` through both pairs, and nothing else. This is consistent with
-`fd-represented-coefficients-violate-two-root-identities`, since the subring generated by both pairs
-has no unital rank model (Theorem 1 with `x = 1`). The one-pair Toeplitz subring does have one, so
-both pairs are needed. Whether the construction of the relaxed data has to use completeness is the
-open calibration in Section 4.
+## 3. Must completeness enter the construction? (open)
 
-**(f) A scope note on the existing route.** The route
-`leavitt-el3-triviality-via-rank-four-cuntz-family` says a model `sigma` of `EL_3(R)` "is" a model
-of `R^x = EL_4(R)`. The abstract isomorphism `EL_4(R) ~= R^x ~= EL_3(R)` does not map the block
-`EL_3(R) <= EL_4(R)` onto itself, so the block restriction of `sigma o phi` is a different `EL_3`
-model. The route's conclusion survives:
-1. Apply the argument to the `R^x` model `tau = sigma o phi`, for an isomorphism
-   `phi : EL_4(R) -> EL_3(R)`. Both branches make `tau` trivial on the block.
-2. The normal closure of the block in `EL_4(R)` is all of `EL_4(R)`. For example
-   `x_14(r) = [x_12(r), x_24(1)]`, `x_24(r) = [x_21(r), x_14(1)]` and `x_34(r) = [x_31(r), x_14(1)]`,
-   and each commutator of a block element with an arbitrary element lies in the normal closure.
-3. So `tau` is trivial, and therefore `sigma = tau o phi^(-1)` is trivial.
+Let `C_2 = <s_0, s_1, t_0, t_1 | t_i s_j = delta_ij>` be the Cohn algebra over `F_2`, and put
+`q = 1 - s_0 t_0 - s_1 t_1`, so `C_2 / (q) = R`. Every rank model of `EL_3(R)` pulls back to a model
+of `EL_3(C_2)` with the same `N_23 N_12`. So an argument that uses only the Cohn relations proves
+`N_23 N_12 = 0` for every rank model of `EL_3(C_2)`.
 
-The defect `D` that Plan 1 has to handle is the block defect of `tau`, not that of `sigma`.
+**Open:** `cohn-coefficient-el3-rank-models-satisfy-two-root-identity`.
+- **If true,** it gives the binary gate.
+- **If false,** completeness has to enter the construction of the corner data for any proof of the
+  binary gate. The final contradiction needs only the three Toeplitz relations.
+
+**What is known.**
+- `C_2` has no unital rank model: take the toeplitz node with `e = 1`.
+- `q` is a minimal idempotent: `t_i q = 0 = q s_j` and `q C_2 q = F_2 q`. So `g -> 1 + q(g - 1)`
+  embeds `SL_3(F_2)` in `EL_3(C_2)`.
+- The models trivial on `ker(EL_3(C_2) -> EL_3(R))` are exactly the pulled-back ones.
+
+**Relation to L4b.** L4b asks whether a proof of (iii) must use the Leavitt relations. This asks the
+same thing for the completeness relation specifically, with the Cohn algebra as the test ring.
+
+## 4. Scope note: reading an `EL_3` model as an `EL_4` model
+
+This is compatible with w4-r4-adversary's frame note (9fd9898e8e): `D` has to be read in the block
+frame throughout, and the audit found no frame error.
+
+One further point. The abstract isomorphism `phi : EL_4(R) -> EL_3(R)` does not carry the block
+`EL_3(R) <= EL_4(R)` onto itself, so the plan runs on the `R^x` model `tau = sigma o phi` and handles
+its block defect. Triviality still transfers back to `sigma`:
+- the normal closure of the block is all of `EL_4(R)`;
+- for example `x_14(r) = [x_12(r), x_24(1)]`, `x_24(r) = [x_21(r), x_14(1)]` and
+  `x_34(r) = [x_31(r), x_14(1)]` are each a commutator of a block element with another element, so
+  each lies in that closure;
+- so `tau` trivial on the block gives `tau` trivial, and hence `sigma` trivial.
