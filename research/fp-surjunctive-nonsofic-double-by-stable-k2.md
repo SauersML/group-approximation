@@ -10,8 +10,10 @@ requires:
   - kt-pair-group-double-is-nonsofic
   - kun-thom-nonsofic-wreath
   - residually-finite-groups-are-surjunctive
+  - three-laurent-f2-k2-rank-six-kernel-is-three-symbols
 artifacts:
   - research/artifacts/fp-surjunctive-nonsofic-double-2026-09-11.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
 ---
 
 The artifact fixes `q=2`, matrix rank six, and three Laurent
@@ -33,3 +35,8 @@ graph-of-groups theorem makes the double surjunctive. Kun--Thom
 Theorem A makes this same double nonsofic. All stability bounds,
 kernel identifications, and finite-presentation steps are
 specified in the linked proof.
+
+The kernel control is the claim
+`three-laurent-f2-k2-rank-six-kernel-is-three-symbols`. It was added
+2026-09-12, after an independent re-derivation of this route, so that the
+stability and Laurent K2 inputs are visible in the graph.
