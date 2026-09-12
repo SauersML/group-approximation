@@ -4,7 +4,8 @@ id: prime-field-left-inverse-pairs-are-stably-formalizable
 kind: claim
 title: Every left-inverse automaton pair over an F_p^n alphabet becomes formalizable after adding identity tracks
 distinct_from:
-  binary-left-inverse-pairs-are-formalizable: that is the characteristic-two statement without stabilization, which implies the p = 2 case here with no extra tracks; this is every prime, and stabilization is necessary for p >= 5 because some one-track sitewise pairs are not formalizable.
+  binary-left-inverse-pairs-are-formalizable: that is the characteristic-two statement without stabilization, now refuted over bi-orderable groups; this is every prime with stabilization, which is necessary for every prime by that refutation and by the constant-configuration obstruction.
+  injective-binary-automata-are-stably-formalizable: that is the binary instance with an existential left inverse on ancilla tracks, owned by lane gk-free-neg; this is every prime with every left inverse stabilized, and at p = 2 it implies that claim through prime-field-stable-formalizability-specializes-to-binary.
   sitewise-pairs-over-prime-fields-are-stably-formalizable: that settles the sitewise case; this asks for arbitrary memories.
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
@@ -24,9 +25,15 @@ artifacts:
 
 ## Attempts
 
-- **Stabilization is necessary for `p >= 5`.** Over one track, a formalizable pair acts affinely on
-  constant configurations (`formalizable-pairs-induce-polynomial-automorphisms-on-constants`). So a
-  sitewise non-affine permutation of `F_p` has no formalizing representatives.
+- **Stabilization is necessary, for every prime.**
+  - For `p >= 5`: over one track, a formalizable pair acts affinely on constant configurations
+    (`formalizable-pairs-induce-polynomial-automorphisms-on-constants`), so a sitewise non-affine
+    permutation of `F_p` has no formalizing representatives.
+  - For `p = 2`: over bi-orderable groups a formalizable one-track binary pair is a shift plus a constant
+    (`formalizable-binary-pairs-over-biorderable-groups-are-affine`), so the marker involution on
+    `{0,1}^Z` is not formalizable without tracks (`binary-left-inverse-pairs-need-not-be-formalizable`).
+  - The binary stabilized case is lane gk-free-neg's `injective-binary-automata-are-stably-formalizable`,
+    whose first test is the marker involution with one ancilla. This claim adds the odd primes.
 - **Sitewise pairs.** Formalizable after one identity track, for every prime
   (`sitewise-pairs-over-prime-fields-are-stably-formalizable`), since formally invertible maps induce every
   permutation of `F_p^n`, `n >= 2` (`tame-maps-induce-every-permutation-of-prime-field-cubes`).

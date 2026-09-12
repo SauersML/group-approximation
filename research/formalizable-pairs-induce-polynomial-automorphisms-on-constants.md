@@ -7,6 +7,7 @@ distinct_from:
   formal-polynomial-strict-pairs-need-unstable-linearization: that linearizes a formal pair at a constant configuration and concludes bijectivity from direct finiteness; this specializes all site variables diagonally and concludes that the constant-configuration map is a polynomial automorphism, which obstructs formalizability itself.
   multilinear-collapse-defect-does-not-obstruct-bijectivity: that shows canonical representatives can fail to be formal for a formalizable pair; this shows some bijective pairs have no formalizing representatives at all.
   binary-left-inverse-pairs-are-formalizable: that asks whether every pair over F_2^n alphabets is formalizable; this proves that over one track F_q with q >= 4 some sitewise bijective pairs are not, so the prime-field analogue needs stabilization.
+  formalizable-binary-pairs-over-biorderable-groups-are-affine: that is a leading-term argument over bi-orderable groups forcing binary one-track formal pairs to be a shift plus a constant; this is diagonal specialization over every group and every finite field, constraining only the constant-configuration map.
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
 ---
