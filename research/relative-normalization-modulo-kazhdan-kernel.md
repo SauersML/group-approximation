@@ -118,3 +118,24 @@ automatically, so only strict compressors matter.
       quantity must be a relative index bounded by the (T)-rigidity of
       components.
     - None is constructed. **This is where it stops.**
+- **Relative indices bounded by cluster-type finiteness: blind on the cover
+  (lane `rnorm-relative-index`).**
+  `finite-orbit-indices-miss-twists-without-finite-quotients`:
+  - **Finite orbits.** Any cluster type distribution with invariant masses
+    summing to at most 1 has finite `Q_s`-orbits on its positive-mass types.
+    This finiteness is exactly what (T)-rigidity of components supplies.
+  - **Blindness.** Every subgroup of `Q_s` without nontrivial finite quotients
+    acts trivially on such data. So any index read from it, including the
+    stabilizer-versus-`eps_t`-image comparison, constrains only the finite
+    image `pi(Q_s)` and says nothing inside `ker pi`.
+  - **The cover.** The defect witness lies in `A = <eps_u^k(V_(1000))>`, which
+    has no finite quotients (Thompson's `V` is infinite simple) and on which
+    `eps_u` is a strict self-embedding. So no finite-orbit index sees the
+    cover's defect.
+  - **Red-flag check.** The obstruction uses no property (T) and no soficity,
+    and proves nothing about Thompson's `V`.
+  - **Surviving shape.** The size must read infinite-orbit data relative to
+    `sigma(Gamma)`: the action of `Q_s` on the measure space of
+    `Gamma_s`-components, with the compressor refinement factor and its fibre
+    counts, i.e. the Kun--Thom orbit and isotropy sizes with counting replaced
+    by measure. None is constructed. **This is where it stops.**
