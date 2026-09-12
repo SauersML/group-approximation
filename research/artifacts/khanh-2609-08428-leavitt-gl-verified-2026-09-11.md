@@ -65,9 +65,61 @@ ee* + ff* = 1)` is this repository's `L_(F_2)(1,2)` under `s_0 = e`, `s_1 = f`,
   relative presentation `<L^×, x | w>` becomes an ordinary finite presentation,
   and `H_2(L^×; Z) = 0`.
 
+## Second pass: the proof chain, read in full (2026-09-11)
+
+The whole PDF text of v1 (17 pages, primary class math.KT) was read after the
+statements above were landed. Field, algebra and ranks are as stated: `R` is
+the binary Leavitt algebra over `F_2`, Theorem 4.4 covers every rank `r >= 1`,
+Theorem 5.4 every `r >= 3`, Theorem 6.1 the unit group itself. There are no
+further hypotheses. What each result rests on:
+
+- **Theorem 4.4** comes from the acyclicity criterion Theorem 2.2, whose two
+  hypotheses are Proposition 3.2 and Corollary 4.3.
+  - *Proposition 3.2* (standard inclusions are zero on positive homology) uses
+    the published K-theory computation of Ara–Brustenga–Cortiñas (Münster J.
+    Math. 2009, Theorem 7.6): all `K_i(R)` vanish, so `BGL_∞(R)^+` is
+    contractible. The compression `c(u) = e u e* + f f*` satisfies
+    `w c(u) w^(-1) = c(c(u))`, hence `c_*` is an idempotent that is locally
+    nilpotent, hence zero.
+  - *Corollary 4.3* (ordered frame complexes are highly connected) comes from a
+    common transverse vector, Lemma 4.1 and Proposition 4.2, proved in the
+    paper from Leavitt word reduction.
+  - *Theorem 2.2* runs the stabilizer spectral sequence with scalar actions of
+    `F_(2^m)^×` and Quillen's weight lemma, by induction on degree; the proof
+    is given in full.
+- **Theorem 5.4.**
+  - At rank 4 it follows from the criterion Theorem 5.1, which uses Brown's
+    presentation theorem (JPAA 1984) and lifts the relations into `St_4`. The
+    criterion's hypotheses are Lemma 5.3, the five-term sequence with
+    `H_2(GL_3) = 0` and perfectness of `St_3` together with the centrality
+    Lemma 5.2, and simple connectivity of `|X_4(R)|` from Proposition 4.2.
+  - The other ranks `r >= 3` follow by Voronetsky's refinement isomorphism
+    (JPAA 225 (2021), §4 Proposition 1, used through arXiv:2004.08551v2), which
+    this lane did not re-read.
+- **Lemma 5.3** (`GL_m = E_m`) quotes Ara–Goodearl–Pardo and a remark of
+  Menal–Moncasi. It is independently established here as
+  `leavitt-gl-equals-el-and-perfect-unit-group`.
+- **Theorem 6.1** uses Krstić–McCool (JPAA 141 (1999), Theorem 3: `St_n(B)` is
+  finitely presented for every finitely presented ring `B` and every `n >= 4`),
+  applied at rank 5 with Theorem 5.4. The same conclusion also follows at
+  **rank 4**, from Theorem 5.1 alone together with the four-leaf coordinates;
+  that path avoids Voronetsky.
+
+References cited only for context are [7] (in press), [8] (Khanh–Thanh,
+arXiv:2607.10351), [15] (Palmer–Wu, arXiv) and [16] (Preusser, arXiv). No step
+of the proofs uses an unpublished result. Proposition 6.2's explicit
+presentation has `20(4^195 - 1)/3` generators (`m = 194`); it is a proof of
+existence, not a usable relator list.
+
+**Verdict.** The quoted statements match the source. The proof chain is
+complete, and its external inputs are all published theorems. No gap was found,
+and the citation routes stand as direct imports. This is a reading, not a
+refereeing: the spectral-sequence details of Theorem 2.2 were followed but not
+re-derived line by line.
+
 ## Caveats
 
-- v1 preprint, three days old when read, not refereed; proof not reviewed here.
-  The graph imports it through citation routes, the same practice as
+- v1 preprint, three days old when read, not refereed. The graph imports it
+  through citation routes, the same practice as
   `kun-thom-nonsofic-wreath-citation`.
 - Only the statements quoted above are imported.
