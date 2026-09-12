@@ -23,3 +23,15 @@ surjectivity on A^G. Section 6 gives the details and the converse.
 
 The universal countable-fiber prerequisite remains open. This route
 records a rigorous conditional implication and does not close the goal.
+
+**Restatement, not reduction (2026-09-12).** The converse route
+`countable-transitive-decoder-fiber-from-gottschalk` derives the open
+prerequisite from the goal: a bijective automaton's inverse is a decoder with
+singleton fibers. The two routes form a deliberate cycle, and this route is an
+exact reformulation of Gottschalk's conjecture. What it adds is the zero-one law
+of `split-decoders-have-generic-cantor-fibers`. Its established measure form is
+`strict-split-pairs-carry-positive-entropy-flip-lifts`. The single-site bound
+there is not contradictory by itself
+(`xor-lift-of-bernoulli-has-positive-fiber-entropy`), so progress along this
+line needs an averaged fiber-entropy bound that uses the section `tau`. See
+`research/artifacts/decoder-fiber-flip-lifts-2026-09-12.md`.

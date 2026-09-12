@@ -38,3 +38,22 @@ measure inference, while leaving this equal-alphabet claim unresolved.
 The guard construction does not provide a cellular choice of packing
 centers or an embedding of an extra full alphabet. Neither extra step may
 be assumed when trying to remove the present prerequisite.
+
+*Equivalence recorded (2026-09-12).* The converse route
+`countable-transitive-decoder-fiber-from-gottschalk` derives this claim from the
+goal, so proving or refuting it is exactly as hard as Gottschalk's conjecture.
+
+*Equivariant measure repair (2026-09-12).* A measurable, factor-of-iid choice of
+packing centers is available where a cellular one is not. Keep the guard
+occurrences whose i.i.d. label is a local minimum, and flip their licensed
+collisions on independent fair bits. The result is an invariant lift of uniform
+Bernoulli through the decoder with conditional entropy at least
+`log 2 / (|A|^|W| |WW^-1|)` at the identity
+(`strict-split-pairs-carry-positive-entropy-flip-lifts`). This repairs the
+point-mass-conditional defect of the section measure. It does not remove the
+prerequisite, since single-site fiber entropy is not contradictory: the XOR
+automaton over `Z` lifts uniform Bernoulli with conditional entropy `log 2`
+(`xor-lift-of-bernoulli-has-positive-fiber-entropy`). Only a per-site average
+contradicts the alphabet bound. Over `F_2` the Ornstein–Weiss block map shows
+no average without the section `tau` can work. See
+`research/artifacts/decoder-fiber-flip-lifts-2026-09-12.md`.
