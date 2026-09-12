@@ -4586,6 +4586,7 @@ import GroupApproximation.Dynamics.CosetSlice
 import GroupApproximation.Dynamics.SurjunctivityResiduallyFinite
 import GroupApproximation.Dynamics.SurjunctivityTransfer
 import GroupApproximation.BowenChapman.ResiduallyFiniteSubstitution
+import GroupApproximation.Kazhdan.SemidirectProductKazhdan
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
