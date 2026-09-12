@@ -172,12 +172,14 @@ theorem hasInvariantMean_of_translationSum_almost_maximal
     refine ⟨F.equivFin ⟨g, hg⟩, ?_⟩
     rw [he]
     simp
-  have hterm := le_of_sum_le_card_sub _ hle hsum (0, k.succ)
+  have hterm : 1 - ε ≤ (starInner (lTrans (s 0) ξ) (lTrans (s k.succ) ξ)).re :=
+    le_of_sum_le_card_sub _ hle hsum (0, k.succ)
   have hval : (starInner (lTrans (s 0) ξ) (lTrans (s k.succ) ξ)).re
       = (coeffFn ξ g).re := by
     have h0 : s 0 = (1 : G) := by rw [hs]; simp
     have hk' : s k.succ = g := by rw [hs]; simpa using hk
     rw [h0, hk', lTrans_one]
+    rfl
   rw [hval] at hterm
   exact hterm
 
