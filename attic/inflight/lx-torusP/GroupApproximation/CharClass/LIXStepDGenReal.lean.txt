@@ -49,7 +49,6 @@ consequence of those inputs:
 * `Gen.RealTorusModP`, `Gen.RealBundleModP`, `Gen.RealBundleModP.toModPStepDDataN` — **the
   instance**.
 * `Gen.RealBundleModP.gamma_top_eq_zero` — Step D mod `p` at the real mapping torus.
-* `Gen.realWu_of_splitting` — the field `wu`, from `lix-evenside`'s split-family transport.
 * `Gen.stepDHalf_of_realModP` — the Step D half of Lemma 2 at rank `n`, at the real objects.
 * `Gen.lemmaTwoFor_powers_of_stepC_realModP` — Lemma 2 for the degree-`k` family at every
   stage, from the Step C half and the real mod-`p` data.
@@ -257,27 +256,6 @@ theorem gamma_top_eq_zero (B : RealBundleModP p dd T γ) (hp : 2 ≤ p) (hn : 1 
 
 end RealBundleModP
 
-/-! ## 4. The Wu field from a splitting -/
-
-/-- **The field `wu` of `Gen.RealBundleModP`**, from `lix-evenside`'s transport of the
-diagonal Wu relation along a splitting `ρ` of the even part of `N`, with leading coefficient
-`m^i · wuCoeff p i`.  Its unit property is `ParityP.isUnit_wuLeading`.  The narrowed transport,
-with `hP` asked only where it is used, is `lx-bundleP`'s `Gen.realWu_of_splittingN`. -/
-theorem realWu_of_splitting {n : ℕ} {K : Type} [CommRing K] {N Y S₁ Sodd : TopCat.{0}}
-    {pY : N ⟶ Y} {q₁ : N ⟶ S₁} {qodd : N ⟶ Sodd}
-    {σ₁ : TotalPieceOf K S₁ 1} {σodd : TotalPieceOf K Sodd (2 * n + 1)}
-    (T : RealTorusModP n K pY q₁ qodd σ₁ σodd) {p : ℕ} (hp : 2 ≤ p) {γ : ℕ → TotalHOf K N}
-    (hγe : ∀ k, TotalHOf.IsEven (γ k)) {σ A : Type*} [CommRing A] [DecidableEq σ]
-    (D : PowerData σ A p) (ρ : evenPart K N →+* A) (hρ : Function.Injective ρ)
-    (hγ : ∀ k, ρ (⟨γ k, hγe k⟩ : evenPart K N) = D.gamma k)
-    (hP : ∀ (i : ℕ) (x : evenPart K N), ρ (T.PN i x) = D.P i (ρ x))
-    (m : ℤ) (hκ : D.κ = (m : A)) (i : ℕ) :
-    IsDecomposable (fun k => (⟨γ k, hγe k⟩ : evenPart K N)) (i * p + 1)
-      (T.PN i (⟨γ (i + 1), hγe (i + 1)⟩ : evenPart K N)
-        - evenMap K pY ((m ^ i * wuCoeff p i : ℤ) : evenPart K Y)
-          * (⟨γ (i * p + 1), hγe (i * p + 1)⟩ : evenPart K N)) :=
-  wu_field_of_splitting hp (evenMap K pY) D ρ hρ (fun k => ⟨γ k, hγe k⟩) hγ T.PN hP m hκ i
-
 /-! ## 5. The Step D half of Lemma 2 at the real objects -/
 
 variable {ℓ : ℕ}
@@ -335,7 +313,6 @@ end Gen
 #audit_axioms Gen.RealBundleModP.instability_b
 #audit_axioms Gen.RealBundleModP.toModPStepDDataN
 #audit_axioms Gen.RealBundleModP.gamma_top_eq_zero
-#audit_axioms Gen.realWu_of_splitting
 #audit_axioms Gen.stepDHalf_of_realModP
 #audit_axioms Gen.lemmaTwoFor_powers_of_stepC_realModP
 
