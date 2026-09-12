@@ -36,6 +36,7 @@ artifacts:
   - research/artifacts/gottschalk-controlled-symmetry-linear-code-extension-and-complement-collision-2026-09-08.md
   - research/artifacts/gottschalk-finite-support-reversible-completion-of-invariant-code-2026-09-08.md
   - research/artifacts/gottschalk-prefix-symmetry-group-elementary-amenability-2026-09-08.md
+  - research/artifacts/rf-lamp-wreath-surjunctivity-2026-09-11.md
 ---
 
 For every group G and every finite nonempty alphabet A, every injective
@@ -53,6 +54,24 @@ reduction settles it. Its negative Leavitt lane remains separate; a
 counterexample there would refute this claim.
 
 ## Attempts
+
+**Positive permanence beyond soficity (2026-09-11).**
+`rf-lamp-wreaths-over-surjunctive-bases-are-surjunctive` proves that
+`A wr_X G` is surjunctive for every residually finite lamp `A`, every
+`G`-set `X` and every surjunctive `G`. Its proof transplants an injective
+automaton to the coset spaces that remember lamp classes at finitely many
+marked sites. There the rule is uniform off strata that are right cosets of
+point stabilizers. Composing with slicewise inverses in order of cardinality
+leaves the identity off finitely many right cosets of one stabilizer
+intersection. A coset-region lemma turns that remainder into an automaton over
+the intersection, which is a surjunctive subgroup.
+
+Consequences: `kun-thom-nonsofic-wreaths-are-surjunctive`, and the root
+`surjunctive-nonsofic-group-exists`, a negative answer to Bowen--Chapman's
+question whether surjunctivity characterizes soficity. This is a class
+theorem, not the universal goal. The binary Leavitt unit group is not in the
+class. Any counterexample must avoid permutational wreath products with
+residually finite lamps over a surjunctive base.
 
 The finite-observable approach now yields the quantitative criterion
 split-ca-defects-force-linear-observable-rank: a strict encoder has a
