@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GFaceSplitCorners
 import GroupApproximation.GGT.VanKampen.Estimating.SingletonFaceRegion
+import GroupApproximation.GGT.VanKampen.Estimating.Assembly
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -30,6 +31,30 @@ the retention of every compatible family avoiding `f`, whose regions avoid `Q`. 
 `RegionCandidate.familyWeight_lt_cons_singleton` this is the weight contradiction.
 -/
 
+namespace GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate
+
+universe u w v v' v''
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda} {eps : ℕ}
+
+/-- Two regions, possibly on different diagrams, target the exterior together, and
+their target arcs start at the same position and have the same length.  Whether a
+region is a contiguity to a boundary section depends only on this profile. -/
+def SameTargetProfile {Delta : DiscDiagram.{u, w, v} W} {Xi : DiscDiagram.{u, w, v'} W}
+    (a : RegionCandidate D eps Xi) (b : RegionCandidate D eps Delta) : Prop :=
+  (a.2.target = none ↔ b.2.target = none) ∧
+    a.2.targetArc.start.val = b.2.targetArc.start.val ∧
+      a.2.targetArc.length = b.2.targetArc.length
+
+theorem SameTargetProfile.trans {Delta : DiscDiagram.{u, w, v} W}
+    {Xi : DiscDiagram.{u, w, v'} W} {Theta : DiscDiagram.{u, w, v''} W}
+    {a : RegionCandidate D eps Theta} {b : RegionCandidate D eps Xi}
+    {c : RegionCandidate D eps Delta}
+    (hab : SameTargetProfile a b) (hbc : SameTargetProfile b c) : SameTargetProfile a c :=
+  And.intro (hab.1.trans hbc.1) (And.intro (hab.2.1.trans hbc.2.1) (hab.2.2.trans hbc.2.2))
+
+end GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate
+
 namespace GroupApproximation.GGT.VanKampen.DiscEmbeddingAway
 
 open GroupApproximation.GGT.VanKampen.Embedded
@@ -47,6 +72,22 @@ theorem faceOf_darts (E : DiscEmbeddingAway Delta Xi f) {d : Delta.toCombMap.Dar
   rw [E.face_boundary _ hd]
   exact List.mem_map.mpr ⟨d, ((Delta.faceBoundary _).mem_iff d).mpr rfl, rfl⟩
 
+/-- Every region of a transported family has the target profile of the region it came
+from. -/
+theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
+    (E : DiscEmbeddingAway Delta Xi f) (C : Surgery.OrderedRCellMap Delta Xi E.faces)
+    (hcells : ∀ cell ∈ Delta.relatorCells, cell.face ≠ f) (hf : f ≠ Delta.outerFace)
+    (family : Finset (RegionCandidate D eps Delta)) (havoid : ∀ a ∈ family, f ∉ a.1)
+    {a : RegionCandidate D eps Xi} (ha : a ∈ E.regionFamily C hcells hf family havoid) :
+    ∃ b ∈ family, RegionCandidate.SameTargetProfile a b := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ ?_)⟩
+  · exact Option.map_eq_none_iff
+  · exact CyclicArc.mapTo_start b.val.2.targetArc E.darts
+      (E.targetDarts_eq C hcells hf b.val.2.target)
+  · exact CyclicArc.mapTo_length b.val.2.targetArc E.darts
+      (E.targetDarts_eq C hcells hf b.val.2.target)
+
 end GroupApproximation.GGT.VanKampen.DiscEmbeddingAway
 
 namespace GroupApproximation.GGT.VanKampen.GFaceWordInsertion
@@ -55,14 +96,6 @@ open GroupApproximation.GGT.VanKampen.Embedded
 universe u w v
 variable {G : Type u} [Group G] {Lambda : Type w}
   {W : Set (List (RelLetter G Lambda))}
-
-/-- O-equivalence composes. -/
-def oEquivTrans {Delta₁ Delta₂ Delta₃ : DiscDiagram.{u, w, v} W}
-    (first : OEquivalentDiscDiagram Delta₁ Delta₂)
-    (second : OEquivalentDiscDiagram Delta₂ Delta₃) : OEquivalentDiscDiagram Delta₁ Delta₃ where
-  boundaryWord_eq := second.boundaryWord_eq.trans first.boundaryWord_eq
-  cellIndex := first.cellIndex.trans second.cellIndex
-  cellWord_eq i := (second.cellWord_eq (first.cellIndex i)).trans (first.cellWord_eq i)
 
 theorem forwardOffset_of_le {M : CombMap.{v}} {g : M.Face} (B : FaceBoundary M g)
     {start finish : Fin B.darts.length} (h : start.val ≤ finish.val) :
@@ -96,6 +129,7 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
       (Delta.Reduced → Xi.Reduced) ∧ (∀ d, E.IsLetter (Xi.label d)) ∧
       ∃ (Q : Xi.toCombMap.Face) (H : ContiguityGeometry D eps Xi {Q}),
         H.sourceArc.length = sourceArc.length ∧ H.targetArc.length = targetArc.length ∧
+        (H.target = none ↔ target = none) ∧ H.targetArc.start.val = targetArc.start.val ∧
         ∀ family : Finset (RegionCandidate D eps Delta), (∀ a ∈ family, f ∉ a.1) →
           EstimatingSelection.PairwiseCompatible RegionCandidate.Compatible family →
           ∃ family' : Finset (RegionCandidate D eps Xi),
@@ -103,7 +137,8 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
             family'.card = family.card ∧
             EstimatingSelection.familyWeight RegionCandidate.weight family' =
               EstimatingSelection.familyWeight RegionCandidate.weight family ∧
-            ∀ a ∈ family', Q ∉ a.1 := by
+            (∀ a ∈ family', Q ∉ a.1) ∧
+            ∀ a ∈ family', ∃ b ∈ family, RegionCandidate.SameTargetProfile a b := by
   have hPlen : sourceArc.reverseDarts.length = sourceArc.length := by
     simp only [CyclicArc.reverseDarts, List.length_map, List.length_reverse,
       CyclicArc.darts_length]
@@ -128,7 +163,8 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
   obtain ⟨R1⟩ := exists_split_corner_output E Delta hlabel f hf hcells start1 finish1 s1 hne1
     hadm1 hinv1 hvalue1
   let E1 := CornerOutput.originalEmbedding R1.toCellOutput
-  let C1 := CornerOutput.originalCellMap R1.toCellOutput
+  let C1 : Surgery.OrderedRCellMap Delta R1.diagram E1.faces :=
+    CornerOutput.originalCellMap R1.toCellOutput
   have hS : (R1.diagram.faceBoundary R1.suffixSide).darts =
       R1.darts ++ (targetBoundaryDarts Delta target targetArc ++
         (Y ++ sourceArc.reverseDarts)).map E1.darts := by
@@ -163,21 +199,18 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
   let start2 : Fin (R1.diagram.faceBoundary R1.suffixSide).darts.length := ⟨_, hstart2⟩
   let finish2 : Fin (R1.diagram.faceBoundary R1.suffixSide).darts.length := ⟨_, hfinish2⟩
   have hoff2 : (R1.diagram.faceBoundary R1.suffixSide).forwardOffset start2 finish2 = Y.length :=
-    (forwardOffset_of_le _ (Nat.le_add_right _ _)).trans (Nat.add_sub_cancel_left)
+    (forwardOffset_of_le _ (Nat.le_add_right _ _)).trans (Nat.add_sub_cancel_left _ _)
   have hrot2 : (R1.diagram.faceBoundary R1.suffixSide).darts.rotate start2.val =
       Y.map E1.darts ++ (sourceArc.reverseDarts.map E1.darts ++
         (R1.darts ++ (targetBoundaryDarts Delta target targetArc).map E1.darts)) := by
-    rw [hS]
+    change (R1.diagram.faceBoundary R1.suffixSide).darts.rotate
+      (R1.darts.length + (targetBoundaryDarts Delta target targetArc).length) = _
     have hsplit : R1.darts ++ (targetBoundaryDarts Delta target targetArc ++
         (Y ++ sourceArc.reverseDarts)).map E1.darts =
           (R1.darts ++ (targetBoundaryDarts Delta target targetArc).map E1.darts) ++
             (Y.map E1.darts ++ sourceArc.reverseDarts.map E1.darts) := by
       simp only [List.map_append, List.append_assoc]
-    rw [hsplit]
-    change ((R1.darts ++ (targetBoundaryDarts Delta target targetArc).map E1.darts) ++
-      (Y.map E1.darts ++ sourceArc.reverseDarts.map E1.darts)).rotate
-        (R1.darts.length + (targetBoundaryDarts Delta target targetArc).length) = _
-    rw [show R1.darts.length + (targetBoundaryDarts Delta target targetArc).length =
+    rw [hS, hsplit, show R1.darts.length + (targetBoundaryDarts Delta target targetArc).length =
         (R1.darts ++ (targetBoundaryDarts Delta target targetArc).map E1.darts).length by
       simp only [List.length_append, List.length_map],
       List.rotate_append_length_eq, List.append_assoc]
@@ -190,7 +223,8 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
   obtain ⟨R2⟩ := exists_split_corner_output E R1.diagram R1.label_admissible R1.suffixSide hf2
     hcells2 start2 finish2 s2 hne2 hadm2 hinv2 hvalue2
   let E2 := CornerOutput.originalEmbedding R2.toCellOutput
-  let C2 := CornerOutput.originalCellMap R2.toCellOutput
+  let C2 : Surgery.OrderedRCellMap R1.diagram R2.diagram E2.faces :=
+    CornerOutput.originalCellMap R2.toCellOutput
   have hQ : (R2.diagram.faceBoundary R2.suffixSide).darts =
       R2.darts ++ (sourceArc.reverseDarts.map E1.darts ++
         (R1.darts ++ (targetBoundaryDarts Delta target targetArc).map E1.darts)).map E2.darts := by
@@ -291,23 +325,56 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
       ((targetArc.mapTo E1.darts (E1.targetDarts_eq C1 hcells hf target)).mapTo E2.darts
         (E2.targetDarts_eq C2 hcells2 hf2 (target.map C1.indexEquiv)))
       (R1.darts.map E2.darts) R2.darts hdecomp hright hleft hrightNorm hleftNorm
+  have hHsource : H.sourceArc.length = sourceArc.length :=
+    (CyclicArc.mapTo_length (sourceArc.mapTo E1.darts (E1.cellDarts_eq C1 hcells source))
+      E2.darts (E2.cellDarts_eq C2 hcells2 (C1.indexEquiv source))).trans
+      (CyclicArc.mapTo_length sourceArc E1.darts (E1.cellDarts_eq C1 hcells source))
+  have hHtarget : H.targetArc.length = targetArc.length :=
+    (CyclicArc.mapTo_length (targetArc.mapTo E1.darts (E1.targetDarts_eq C1 hcells hf target))
+      E2.darts (E2.targetDarts_eq C2 hcells2 hf2 (target.map C1.indexEquiv))).trans
+      (CyclicArc.mapTo_length targetArc E1.darts (E1.targetDarts_eq C1 hcells hf target))
+  have hHstart : H.targetArc.start.val = targetArc.start.val :=
+    (CyclicArc.mapTo_start (targetArc.mapTo E1.darts (E1.targetDarts_eq C1 hcells hf target))
+      E2.darts (E2.targetDarts_eq C2 hcells2 hf2 (target.map C1.indexEquiv))).trans
+      (CyclicArc.mapTo_start targetArc E1.darts (E1.targetDarts_eq C1 hcells hf target))
+  have hHnone : H.target = none ↔ target = none := by
+    change (target.map C1.indexEquiv).map C2.indexEquiv = none ↔ target = none
+    simp only [Option.map_eq_none_iff]
   refine ⟨R2.diagram,
-    ⟨oEquivTrans (CornerOutput.originalReplacement R1.toCellOutput).oEquivalent
+    ⟨OEquivalentDiscDiagram.trans (CornerOutput.originalReplacement R1.toCellOutput).oEquivalent
       (CornerOutput.originalReplacement R2.toCellOutput).oEquivalent⟩,
     fun hred => (CornerOutput.originalReplacement R2.toCellOutput).reduced
       ((CornerOutput.originalReplacement R1.toCellOutput).reduced hred),
-    R2.label_admissible, R2.suffixSide, H, ?_, ?_, ?_⟩
-  · exact (CyclicArc.mapTo_length _ _ _).trans (CyclicArc.mapTo_length _ _ _)
-  · exact (CyclicArc.mapTo_length _ _ _).trans (CyclicArc.mapTo_length _ _ _)
-  · intro family havoid hpairwise
-    obtain ⟨family1, hpair1, hcard1, hweight1, havoid1⟩ :=
-      R1.retained_regionFamily D eps family havoid hpairwise
-    obtain ⟨family2, hpair2, hcard2, hweight2, havoid2⟩ :=
-      R2.retained_regionFamily D eps family1 (fun a ha => (havoid1 a ha).2) hpair1
-    exact ⟨family2, hpair2, hcard2.trans hcard1, hweight2.trans hweight1,
-      fun a ha => (havoid2 a ha).2⟩
+    R2.label_admissible, R2.suffixSide, H, hHsource, hHtarget, hHnone, hHstart, ?_⟩
+  intro family havoid hpairwise
+  have havoid1 : ∀ a ∈ E1.regionFamily C1 hcells hf family havoid, R1.suffixSide ∉ a.1 := by
+    intro a ha hmem
+    obtain ⟨b, hb, hab⟩ := E1.regionFamily_faces C1 hcells hf family havoid ha
+    rw [hab] at hmem
+    obtain ⟨g, hg, hgeq⟩ := Finset.mem_map.mp hmem
+    exact R1.suffixSide_not_kept g (fun h => havoid b hb (h ▸ hg)) hgeq
+  refine ⟨E2.regionFamily C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid) havoid1,
+    E2.regionFamily_pairwise C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid) havoid1
+      (E1.regionFamily_pairwise C1 hcells hf family havoid hpairwise),
+    (E2.regionFamily_card C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
+      havoid1).trans (E1.regionFamily_card C1 hcells hf family havoid),
+    (E2.regionFamily_weight C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
+      havoid1).trans (E1.regionFamily_weight C1 hcells hf family havoid), ?_, ?_⟩
+  · intro a ha hmem
+    obtain ⟨b, hb, hab⟩ := E2.regionFamily_faces C2 hcells2 hf2
+      (E1.regionFamily C1 hcells hf family havoid) havoid1 ha
+    rw [hab] at hmem
+    obtain ⟨g, hg, hgeq⟩ := Finset.mem_map.mp hmem
+    exact R2.suffixSide_not_kept g (fun h => havoid1 b hb (h ▸ hg)) hgeq
+  · intro a ha
+    obtain ⟨b, hb, hab⟩ := E2.regionFamily_profile C2 hcells2 hf2
+      (E1.regionFamily C1 hcells hf family havoid) havoid1 ha
+    obtain ⟨c, hc, hbc⟩ := E1.regionFamily_profile C1 hcells hf family havoid hb
+    exact ⟨c, hc, hab.trans hbc⟩
 
 end GroupApproximation.GGT.VanKampen.GFaceWordInsertion
 
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.SameTargetProfile.trans
 #audit_axioms GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.faceOf_darts
+#audit_axioms GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_profile
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_quadrilateral_region

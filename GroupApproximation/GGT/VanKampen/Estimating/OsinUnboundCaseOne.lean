@@ -75,8 +75,8 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
   refine ⟨b.val, b.property, And.intro ?_ (And.intro ?_ ?_)⟩
   · exact Option.map_eq_none_iff
-  · exact CyclicArc.mapTo_start _ _ _
-  · exact CyclicArc.mapTo_length _ _ _
+  · exact CyclicArc.mapTo_start b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
+  · exact CyclicArc.mapTo_length b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
 
 /-- No region of a family carried through the collapse contains the merged face. -/
 theorem regionFamily_avoid_merged {D : RelGenSet G Lambda} {eps : ℕ}
