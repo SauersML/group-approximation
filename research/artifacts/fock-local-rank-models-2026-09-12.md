@@ -86,8 +86,14 @@ holds. Section 2 builds the letters. Section 3 shows what locality does not give
 
 **Support.** `g ∈ G` is *supported on* a clopen `A` if `g` preserves `LC(A)` and acts as the identity on
 `LC(A^c)`. Examples: elements of `V` fixing `A^c` pointwise, and level elements that mix only
-cylinders inside `A`. For such `g` put `B_g^A = {a ∈ L : a preserves LC(A), g a g^(−1) ∈ L}` and
-`φ_g(a) = g a g^(−1)`. Then `φ_g(a)` also preserves `LC(A)`, and it agrees with `a` on `LC(A^c)`.
+cylinders inside `A`. For such `g` put `B_g^A = {a ∈ L : a preserves LC(A) and LC(A^c), g a g^(−1) ∈ L}` and
+`φ_g(a) = g a g^(−1)`. Then `φ_g(a)` also preserves both, and it agrees with `a` on `LC(A^c)`.
+- *Correction 2026-09-12 from w3-vf-linear (Section 28).* The first version only required that `a`
+  preserve `LC(A)`. That admits block upper triangular level elements such as
+  `a = 1 + δ_(c1) ⊗ δ_(c2)*` with `c1 ⊆ A` and `c2 ⊆ A^c`.
+  - For `g ∈ V` supported on `A`, `g a g^(−1) = 1 + δ_(g c1) ⊗ δ_(c2)* ∈ L`.
+  - But `φ_g(a)` does not agree with `a` on `LC(A^c)`, and `Λ(a)` is not a product `ρ(a) ⊗ Λ(a|)`.
+  - Such elements move mass across the support. They belong to case (b) of Consequence 2.4.
 
 **Definition 2.1.** Let `I ⊆ G` be countable, and fix a support `A_g` for each `g ∈ I`. The group
 `𝒢_loc(I)` has generators `L ∪ {t_g : g ∈ I}` and relations:
@@ -101,7 +107,9 @@ act blockwise on `LC(A) ⊕ LC(A^c)` and commute. `G` acts faithfully on `U_∞`
 
 **Theorem 2.2 (Fock-local extension).** For every countable `I`, the Fock tower `σ_Λ` of Corollary 1.4
 extends to a homomorphism `𝒢_loc(I) -> M^x`, injective on `L`, with `σ(t_g) = [X_(g,j) ⊗ 1]_ω` and
-`X_(g,j) ∈ GL(Λ(U_(A_g)^(j)))`. The relations (R3) and (R4) hold exactly at every stage.
+`X_(g,j) ∈ GL(Λ(U_(A_g)^(j)))`. The relations (R3) and (R4) hold exactly at every stage. In odd
+characteristic each `X_(g,j)` is even, meaning it preserves the parity grading of `Λ(U_(A_g)^(j))`, and
+(R4) needs this.
 
 *Proof.* Fix `g ∈ I`, `A = A_g`, and stages `j` at least the depth of `A`, so that
 `S_j = S_A^(j) ⊗ S_(A^c)^(j)` with `S_A^(j) = Λ(U_A^(j))`.
@@ -119,6 +127,14 @@ extends to a homomorphism `𝒢_loc(I) -> M^x`, injective on `L`, with `σ(t_g) 
    `rk(X ρ(a) X^(−1) − ρ'(a)) <= δ_(i,j) · dim S_A^(j)` for all `a ∈ Γ_i`.
    - Choose `i(j) = max{i <= j : c(i) <= j, δ_(i,j) <= 1/i}`, or `0` if there is none, with `X_(g,j) = 1`
      in that case. For fixed `i_0` both conditions hold once `j` is large, so `i(j) -> ∞`.
+   - **Even letters in odd characteristic.**
+     - `z_A` (`−1` on `LC(A)`, `+1` on `LC(A^c)`) is a level element preserving `LC(A)` and `LC(A^c)`, and
+       it commutes with `g`. So `z_A ∈ Γ_i` for large `i`.
+     - It is central in `Γ_i`, because every element of `Γ_i` is block diagonal.
+     - `ρ(z_A) = ρ'(z_A)` is the parity operator.
+     - Matched free parts of equal rank are `z_A`-stable, with equal parity eigenspace dimensions. Since
+       `p` is odd, `z_A`-stable complements exist, and they have equal eigenspace dimensions too.
+     - Matching inside each parity makes `X_(g,j)` even.
 4. **(R2).** Let `a ∈ B_g^A`. For `ω`-almost all `j`, `a ∈ Γ_(i(j))`, and
    `Λ(a) = ρ(a) ⊗ Λ(a|_(U_(A^c)))`, `Λ(φ_g(a)) = ρ'(a) ⊗ Λ(a|_(U_(A^c)))`. So
    `(X ⊗ 1) Λ(a) (X ⊗ 1)^(−1) − Λ(φ_g(a)) = (X ρ(a) X^(−1) − ρ'(a)) ⊗ Λ(a|)`, of normalized rank
@@ -126,14 +142,17 @@ extends to a homomorphism `𝒢_loc(I) -> M^x`, injective on `L`, with `σ(t_g) 
 5. **(R3).** If `a ∈ L` is supported on `A^c`, then `Λ(a) = 1 ⊗ Λ(a|)`, which commutes with `X ⊗ 1` exactly.
 6. **(R4).** If `A_g ∩ A_h = ∅`, then `S_j = S_(A_g) ⊗ S_(A_h) ⊗ S_rest` through one associative wedge
    isomorphism, and `X_(g,j) ⊗ 1 ⊗ 1` commutes with `1 ⊗ X_(h,j) ⊗ 1` exactly.
+   - Each letter was defined in its own identification, with its support first. Reordering wedge
+     factors multiplies `ω_g ∧ ω_h` by `(−1)^(|ω_g||ω_h|)`, which commutes with even operators.
+   - So in odd characteristic the even letters of step 3 are `X_(g,j) ⊗ 1 ⊗ 1` and `1 ⊗ X_(h,j) ⊗ 1` in
+     one identification. In characteristic two the sign is `1`.
+   - (Precision added after w3-vf-linear, Section 28.)
 7. **Injectivity** on `L` is Corollary 1.4. QED
 
 **Remark 2.3 (characteristic three, anti-central).** Restrict to `S_j^odd`, the `−1`-eigenspace of
 `σ_Λ(z)` (parity). The letters can be chosen even, so they preserve `S_j^odd`.
-- `z_A` (`−1` on `LC(A)`, `+1` on `LC(A^c)`) lies in `Γ_i` for large `i`, is central there, and
-  `φ_g(z_A) = z_A`.
-- In Corollary 1.3, choose `z_A`-stable complements inside each parity eigenspace. The matched free parts
-  have equal eigenspace dimensions, so `X` preserves the parity grading.
+- The letters are even by step 3 of the proof, and even `X` commutes with the global parity
+  `parity_A ⊗ parity_(A^c)`.
 - So `𝒢_loc(I)` has an injective-on-`L` anti-central rank model, with the Haar law up to vanishing error.
 - In characteristic two no grading is needed.
 
