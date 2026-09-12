@@ -8,13 +8,15 @@
 #
 # Overlay sources: BC_SRCROOT is a colon-separated list of roots; each overlay path is read from the one root that has
 # it (a path found under no root, or under several, is refused). An overlay entry `<path>=<root>` names its root
-# explicitly and must exist there. So a batch can take files from several scratch roots, e.g. your own code plus a
-# peer's unlanded bytes. Without BC_SRCROOT the shared checkout is the only root.
+# explicitly and must exist there. Without BC_SRCROOT the shared checkout is the only root.
 # Rules: run it with Bash run_in_background: true; ONE probe per lane at a time; BATCH (one probe builds every
 # module you land together); never kill a running probe (the remote build holds the clone lock). Probes of all
 # lanes serialize on the clone lock, so a probe may wait for others first.
-# MSI blips: when the msi wrapper cannot reach MSI, the probe retries every 60 s for up to 12 minutes, printing one line
-# per retry, before failing with exit 4.
+# MSI blips: the reachability check and the overlay upload (idempotent per tag) retry every 60 s for up to 12 minutes,
+# one line per retry. Dispatch is never repeated for a job that reached MSI: the dispatch command touches
+# .nm/dispatch-<tag> before running dispatch.sh, and when the hop is lost the probe asks MSI whether that marker, the out
+# file or the SLURM submission file exists. If none does, the job never started and it is dispatched again; otherwise
+# the probe polls .nm/out-<tag>.txt for the job's summary. Both are bounded by 12 minutes from the lost hop.
 # Base: the tip is resolved ONCE with `git ls-remote` (no local ref is written and no lock is taken), and every later
 # git read names that SHA; its objects are fetched by SHA with --no-write-fetch-head.
 # Evidence: the md5 of every overlay file that COMPILED is recorded with the base SHA, module list, PROBE line and each
@@ -129,10 +131,46 @@ for n in 0 1 2 3 4 5 6 7 8 9 10 11 12; do
 done
 [ $msiok = 1 ] || { echo "PROBE FAILED: msi unreachable for 12 minutes (infra, not Lean)"; cleanup; exit 4; }
 tar czf "$OVL.tgz" -C "$OVL" .
-OUT0=$("$MSI" "mkdir -p $CLONE/.nm/ov-$TAG && tar xzf - -C $CLONE/.nm/ov-$TAG && sed -e 's|__TAG__|$TAG|' -e 's|__SHA__|$SHA|' -e 's|__MODS__|$MODS|' -e 's|__LANE__|$LANE|' $BCR/bcjob.template.sh > $CLONE/.nm/job-$TAG.sh && echo UPLOAD_OK" < "$OVL.tgz" 2>&1)
-printf '%s\n' "$OUT0" | grep -q UPLOAD_OK || { echo "PROBE FAILED: overlay upload (infra): $OUT0"; cleanup; exit 4; }
+TEMPLATE=${BC_TEMPLATE:-$BCR/bcjob.template.sh}   # BC_TEMPLATE exists for infra calibration only
+OUT0=""; upok=0
+for n in 0 1 2 3 4 5 6 7 8 9 10 11 12; do
+  OUT0=$("$MSI" "mkdir -p $CLONE/.nm/ov-$TAG && tar xzf - -C $CLONE/.nm/ov-$TAG && sed -e 's|__TAG__|$TAG|' -e 's|__SHA__|$SHA|' -e 's|__MODS__|$MODS|' -e 's|__LANE__|$LANE|' $TEMPLATE > $CLONE/.nm/job-$TAG.sh && echo UPLOAD_OK" < "$OVL.tgz" 2>&1)
+  if printf '%s\n' "$OUT0" | grep -q UPLOAD_OK; then upok=1; break; fi
+  [ "$n" -lt 12 ] || break
+  echo "overlay upload failed at $(date +%T); retrying in 60 s ($((n + 1))/12)"
+  sleep 60
+done
+[ $upok = 1 ] || { echo "PROBE FAILED: overlay upload did not succeed within 12 minutes (infra): $(printf '%s\n' "$OUT0" | tail -2 | tr '\n' ' ')"; cleanup; exit 4; }
 echo "probe lane=$LANE tag=$TAG base=${SHA:0:9} overlay=$(wc -l < "$PEND" | tr -d ' ') files from $(cut -d' ' -f2- "$SRCMAP" | sort -u | wc -l | tr -d ' ') root(s) mods: $MODS"
-OUT=$("$MSI" "bash $P/nm/dispatch.sh $CLONE/.nm/job-$TAG.sh $CLONE/.nm/out-$TAG.txt bc-$LANE ${BC_CPUS:-8}" </dev/null 2>&1); RC=$?
+DCMD="touch $CLONE/.nm/dispatch-$TAG && bash $P/nm/dispatch.sh $CLONE/.nm/job-$TAG.sh $CLONE/.nm/out-$TAG.txt bc-$LANE ${BC_CPUS:-8}"
+OUT=$("$MSI" "$DCMD" </dev/null 2>&1); RC=$?
+if ! printf '%s\n' "$OUT" | grep -qE '^PROBE (GREEN|FAILED|DEFERRED)'; then
+  DEADLINE=$(( $(date +%s) + 720 )); polled=0
+  while :; do
+    ST=$("$MSI" "if [ -f $CLONE/.nm/out-$TAG.txt ] && grep -q '^REAL_EXIT=' $CLONE/.nm/out-$TAG.txt; then echo DONE; sed -n '/^===== SUMMARY/,/^REAL_EXIT=/p' $CLONE/.nm/out-$TAG.txt; elif [ -e $CLONE/.nm/dispatch-$TAG ] || [ -e $CLONE/.nm/out-$TAG.txt ] || [ -e $CLONE/.nm/out-$TAG.txt.sbatch ]; then echo STARTED; else echo ABSENT; fi" </dev/null 2>&1)
+    STATE=$(printf '%s\n' "$ST" | grep -m1 -xE 'DONE|STARTED|ABSENT')
+    delay=60
+    case "$STATE" in
+      DONE)
+        OUT=$(printf '%s\n' "$ST" | awk 'f { print } /^DONE$/ { f = 1 }')
+        RC=$(printf '%s\n' "$OUT" | sed -n 's/^REAL_EXIT=\([0-9][0-9]*\)$/\1/p' | tail -1); RC=${RC:-4}
+        echo "result read from $CLONE/.nm/out-$TAG.txt after the dispatch hop was lost (the job was not dispatched again)"
+        break ;;
+      STARTED)
+        [ $polled = 1 ] || echo "dispatch hop lost at $(date +%T), but the job reached MSI: it is never dispatched again; polling $CLONE/.nm/out-$TAG.txt"
+        polled=1; delay=20 ;;
+      ABSENT)
+        echo "dispatch hop lost at $(date +%T) before the job reached MSI (no dispatch marker, out file or submission file): dispatching again"
+        OUT=$("$MSI" "$DCMD" </dev/null 2>&1); RC=$?
+        if printf '%s\n' "$OUT" | grep -qE '^PROBE (GREEN|FAILED|DEFERRED)'; then break; fi
+        delay=5 ;;
+      *)
+        echo "msi unreachable at $(date +%T) while checking on the dispatched job; retrying in 60 s" ;;
+    esac
+    [ "$(date +%s)" -lt "$DEADLINE" ] || { echo "PROBE FAILED: no probe result within 12 minutes of losing the dispatch hop (infra). If the job reached MSI, its result will be in $CLONE/.nm/out-$TAG.txt"; cleanup; exit 4; }
+    sleep $delay
+  done
+fi
 printf '%s\n' "$OUT"
 COMP=$(printf '%s\n' "$OUT" | sed -n 's/^COMPILED //p')
 PL=$(printf '%s\n' "$OUT" | grep -m1 -E '^PROBE (GREEN|FAILED|DEFERRED)')
