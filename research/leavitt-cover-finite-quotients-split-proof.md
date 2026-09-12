@@ -52,4 +52,9 @@ infinite Kazhdan, and every finite image of `G` equals the image of `N`.
   These maps are inverse to each other.
 - Finite quotients of `G` are therefore the groups `N/L` with the projections
   `G -> N/L`. The inverse limit is `N^_G`, and injectivity of
-  `G -> N^_G` is residual finiteness by definition. ∎
+  `G -> N^_G` is residual finiteness by definition.
+- **Every finite-index normal `L` of `N` qualifies.** `N` is finitely
+  generated, so for each `k` it has finitely many normal subgroups of index `k`.
+  `G` permutes them by conjugation, and `N` acts trivially, so the action
+  factors through `Q`. A permutation action of `Q` on a finite set is trivial,
+  because `Q` has no nontrivial finite quotient. So `N^_G = N^`. ∎

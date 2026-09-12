@@ -31,6 +31,9 @@ of `hyperbolic-kazhdan-cover-of-leavitt-unit-group`, with `G` torsion-free.
      to the subgroups `L` of item 2, with `G/K ~= N/L`.
    - Hence the profinite completion of `G` is the completion `N^_G` of `N` with
      respect to these `L`.
+   - Every normal subgroup of finite index in `N` is `G`-invariant (observed by
+     lane `hyperbolic-rf`). So `N^_G` is the full profinite completion `N^`,
+     and `G^ ~= N^`.
    - `G` is residually finite exactly when the homomorphism `G -> N^_G`, sending
      `g` to its `N/L`-coordinates, is injective.
 
