@@ -69,3 +69,34 @@ makes the explicit Kun–Thom wreath non-hyperlinear (route
     - (iii) mixed constituents, nontrivial on both `A_u` and `A_nu`, which depth cannot see.
   - **Not done.** No model realizes (i)–(iii), and nothing here is reviewed. See
     `research/artifacts/nh-unit-type-rounding-2026-09-12.md`.
+- **Mixed constituents merge into (i) and (ii) (lane nh-mixed-constituents).** Regime (iii) is gone.
+  - **The claim.** `nonunit-component-root-mass-is-log-scale-folner` uses the depth of the non-unit component
+    `χ_nu(f) = χ(e_nu f)`. That depth is finite for every character.
+  - **Why the old depth missed them.** Whole-character depth is infinite on mixed characters.
+  - **The transport step.** The compressor transport acts componentwise: `φ_A^(-1)` preserves the type of every
+    maximal ideal, because all entries of `A` are `>= 1`. It also divides non-unit depth by `d`.
+  - **The bound.** Pure and mixed non-unit mass above non-unit depth one is at most
+    `η_n(1 + log_d(r(r-1)n'))`.
+  - **No entanglement.** Mixed irreducibles are tensor products `τ_u ⊗ τ_nu` of the two Steinberg factors.
+  - **What remains.** Only (i), the slow-rate spread, and (ii), shallow non-unit mass
+    `μ_n(depth_nu = 1)`, which now includes mixed characters whose non-unit component is killed by `zR_+`.
+- **Local types under compression (lane nh-unit-type-counterexample, 61450aafd).** Partial: the
+  survivors are confined to the origin. `vertex-rounding-non-unit-mass-at-origin`.
+  - **Method.** Match two roundings of `Λ = AΓA^(-1)`: the restriction and the transport. Every
+    local factor at a maximal ideal `m` has a type `S(m) = {i : x_i ∈ m}`.
+  - **Restriction saturates types.** For an all-positive `A`, restriction sends every nonempty type
+    to the full type. Transport keeps types.
+  - **Intermediate places.** Mass on constituents with an intermediate factor (`∅ ≠ S(m) ≠ {1..d}`)
+    is at most `12η_n`. This cuts regimes (ii) and (iii) down to factors at the origin
+    `m_0 = (x_1..x_d)`.
+  - **Depth.** If `A_jj >= 2`, the origin depth `o_j` of each variable obeys
+    `P_n(o_j >= t) <= P_n(o_j >= 2t-1) + 24η_n`.
+  - **Fixed quotients.** Constituents factoring through a fixed finite quotient carry mass tending
+    to 0 (Kazhdan projection of the finite-index congruence kernel).
+  - **What survives, all at the origin:**
+    - deep origin mass spread over `>= 1/η_n` dyadic depth scales in every direction;
+    - evaluation-at-origin factors;
+    - origin factors tensored with unit-type factors at growing levels.
+  - **Counterexample shapes killed:** truncations in some but not all variables, and single-scale
+    `R_+/m_0^n`. No counterexample model was built. See
+    `research/artifacts/nh-unit-type-counterexample-2026-09-12.md`.
