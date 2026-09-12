@@ -177,3 +177,64 @@ images or makes `<M>` amenable. QED
   realization over `U_E` would be injective with an unbalanced rule, contradicting Theorem 4.1. So
   the letters collide. This is the case `q = 2`, `|M| = 3` of
   `unbalanced-forward-tables-identify-memory-letters`.
+
+## 5. Where the method stops
+
+### 5.1 Common blind pairs and affine patches
+
+**Proposition 5.1 (common blind pair).** Let `q >= 3` and let `M` be Sidon in `G`. Suppose some
+pair `{c, d}` is a blind pair of every coordinate. Then `tau` is not pre-injective.
+
+*Proof.* As in Theorem 3.2, with `x(h)` changed from `c` to `d`. QED
+
+**Proposition 5.2 (avoidable patches).** Let `A = F_q` with `q >= 3`. Let
+`lambda_0(x) = sum_m c_m x_m` be linear and `lambda = lambda_0 + c_0` affine, and let `mu` agree
+with `lambda` on every pattern in which a fixed symbol `s` does not occur. If `tau_mu` is injective
+over `G`, then the linear automaton `tau_(lambda_0)` is injective over `G`. So either:
+- `tau_(lambda_0)` is a linear strict automaton over `G`; or
+- it is bijective, and `sum_m c_m m` is a unit of `F_q[G]`.
+
+*Proof.*
+- **Collision from a kernel element.** Let `d != 0` with `tau_(lambda_0)(d) = 0`. Because `q >= 3`,
+  we can choose `x(g)` outside `{s, s - d(g)}` for every `g`. Then neither `x` nor `x + d` takes the
+  value `s`, so `tau_mu = tau_lambda` on both. Also
+  `tau_lambda(x + d) = tau_lambda(x) + tau_(lambda_0)(d) = tau_lambda(x)`, so `tau_mu` is not
+  injective.
+- **The dichotomy.** A bijective linear automaton has a linear automaton as inverse. With
+  `tau_C tau_A = tau_(CA)`, both composites give `CA = AC = 1`.
+
+QED
+
+Over two symbols there is no room to avoid a symbol, and Proposition 5.2 says nothing.
+
+### 5.2 The smallest open rules
+
+**Three symbols, three addresses.** Call a rule **rigid** if no pair is blind in all three
+coordinates.
+- **What is excluded.** By Proposition 5.1, a rule that is not rigid is excluded on Sidon
+  placements.
+- **Example.** The rule `R` of Remark 3.4 is rigid and passes the constant tests, and no single-site
+  change of any configuration is invisible for it.
+- **What Proposition 5.2 gives.** Its only patched pattern contains the symbol `2`. So an
+  injective realization of `R` over `G` needs one of two things:
+  - `1 - a + b` is a unit of `F_3[G]`; or
+  - `G` carries a linear strict automaton.
+- **The filter alone does not decide `R`.** Units of this shape exist. Over `Z x Z/3` with
+  `b = ac` and `c^3 = 1`, `1 - a + ac = 1 - a(1 - c)` and `(a(1 - c))^3 = 0`. That group is
+  amenable, so `R` is not injective there, but the unit shows that Proposition 5.2 cannot exclude
+  `R` by itself.
+- **What stays open.** `R` over a nonsofic 2-generated group in which `1 - a + b` is a unit. There,
+  any collision must use the patched pattern in a closed finite perturbation or an infinite one.
+  No mechanism is known. This is the claim `ternary-three-address-injective-automata-have-balanced-rules`.
+
+**Two symbols, four addresses.**
+- **What is excluded.**
+  - Theorem 3.2 excludes Sidon placements.
+  - The constant tests of Section 4 apply.
+  - Parity patched at one cell dies. If the patched cell is not constant, both constants map to
+    `0`. If it is `0000`, a flip of the constant `0` is invisible, and `1111` is symmetric.
+- **Where a census starts.** At placements that are Sidon in no group, such as `{1, a, b, ab}`.
+  - Coincidences: `a^-1 (ab) = b` and `(ab)^-1 a = b^-1`.
+  - Constraints: the single flip needs blind patterns with `r_1(b) = r_a(ab)` and
+    `r_ab(a) = r_b(1)`. Rules whose blind patterns violate these need double flips or more.
+- **Open claim.** This is `binary-four-address-injective-automata-have-balanced-rules`.
