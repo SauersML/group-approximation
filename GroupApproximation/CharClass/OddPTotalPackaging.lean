@@ -76,13 +76,13 @@ Step D producers consume. -/
 def toEven (hp : 2 ≤ p) : EvenReducedPowers p where
   P X i := Gen.evenRestrictAdd (R.totalP X i) (fun x _ => R.totalP_isEven X i x)
   natural f i x := Subtype.ext (R.totalP_map f i x)
-  shift X i d hd c := R.totalP_of_homogeneous X d i c
-  unstable X i d hd c h :=
+  shift X i d _ c := R.totalP_of_homogeneous X d i c
+  unstable X i d _ c h :=
     Subtype.ext (R.totalP_of_eq_zero X i (fun h' => by have := h'.2; omega) c)
   Ptot X := R.Ptot X
   ptot_natural f x := Subtype.ext (R.totalPtot_map f x)
   Good X := R.good X
-  good_natural f x hx := R.isGood_map f hx
+  good_natural f _ hx := R.isGood_map f hx
   good_two X c := R.isGood_of X c (R.isGoodPiece_two X c hp)
   good_of_components X d hd c h := by
     refine R.isGood_of X c fun e he hg => ?_
