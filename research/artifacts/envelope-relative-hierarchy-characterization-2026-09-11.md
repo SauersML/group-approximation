@@ -10,10 +10,16 @@ Let `F <= B`. An **amenable envelope** of `(B, F)` is an injective
 * `Y -> Y *_E X`, with `E` amenable and `X` sofic;
 * HNN extensions of `Y` over amenable associated subgroups;
 
-together with directed unions of such constructions. Directed unions change
-nothing in the transport lemma (§2 of the envelope artifact): pushouts commute
-with directed colimits, amalgam monotonicity keeps the embedding, and directed
-unions of sofic groups are sofic.
+A **finite envelope** uses finitely many moves. A **leveled envelope** uses
+finitely many levels. Each level is a countable sequence of moves applied to the
+union of the previous level, and its result is the directed union of the
+partial results. The transport lemma (§2 of the envelope artifact) holds for
+leveled envelopes by induction on levels, for three reasons:
+* pushouts `S *_F (-)` commute with directed unions;
+* amalgam monotonicity keeps the embedding;
+* directed unions of sofic groups are sofic.
+
+So leveled envelopes also make `G` sofic.
 
 A **relative amenable hierarchy** of `(B, F)` is a finite chain
 
@@ -27,14 +33,17 @@ which:
 
 ## 2. Theorem
 
-**Theorem.** `(B, F)` has an amenable envelope if and only if it has a relative
-amenable hierarchy.
+**Theorem.** For `F <= B`:
 
-**Corollary (recursion).** If `B` is sofic, the soficity condition on side
-vertex stabilizers holds automatically, since they are subgroups of `B`. So for
-sofic `B`, an envelope exists exactly when `B` has a finite chain of tree
-actions with amenable edge stabilizers, each step passing to the vertex
-stabilizer containing `F` and the chain ending at `F`.
+    finite envelope  =>  relative amenable hierarchy  =>  leveled envelope.
+
+All three hypotheses make the Magnus group `G` sofic. The middle one is purely
+geometric: tree actions and vertex stabilizers.
+
+**Corollary (recursion).** If `B` is sofic, the side vertex stabilizers are
+sofic automatically, being subgroups of `B`. A hierarchy is then just a finite
+chain of tree actions with amenable edge stabilizers, each step passing to the
+vertex stabilizer containing `F`, and the chain ending at `F`.
 
 For a Magnus piece `B_0` of `G = <a,t | w>`, the relator `W_0` has fewer letters
 than `w`. Under the inductive hypothesis "every one-relator group with a
@@ -51,13 +60,12 @@ vertex and enumerate its vertices so that each is adjacent to an earlier one.
 Adjoining a vertex group `X` along its tree edge is a move `Y *_E X`; the edge
 group already lies in `Y` and is amenable. Each edge outside the tree is an HNN
 move over amenable associated subgroups that already lie in the partial group.
-Finite subgraphs give finitely many moves, and `V_i` is their directed union.
-Composing the steps `i = 1, ..., k` builds `B` from `F`, so the identity is an
-envelope.
+The quotient graph is countable, so these moves form a countable sequence whose
+directed union is `V_i`. So level `i` builds `V_i` from `V_(i-1)`, and the identity
+of `B` is a leveled envelope with `k` levels.
 
-**Envelope gives hierarchy.** Let `iota(F) = Y_0 <= Y_1 <= ... <= Y_r = B'` list the
-moves, treating a directed union as its final stage; the argument below never
-uses finiteness of `r`. Identify `B` with `iota(B)` and put `V_i = B ∩ Y_i`. Then
+**Finite envelope gives hierarchy.** Let `iota(F) = Y_0 <= Y_1 <= ... <= Y_r = B'`
+list the finitely many moves. Identify `B` with `iota(B)` and put `V_i = B ∩ Y_i`. Then
 `V_0 = F` and `V_r = B`. Each `Y_i` acts on the Bass--Serre tree `T_i` of its
 move:
 * edge stabilizers are conjugates of the amenable edge groups;
