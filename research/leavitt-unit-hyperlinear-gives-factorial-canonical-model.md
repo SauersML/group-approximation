@@ -27,11 +27,27 @@ simplex, hyperlinearity of `H` is exactly embeddability of `N`.
     Question 1.1 calls it "open for the class of property (T) factors".
     Kunnawalkam Elayavalli, arXiv:2511.20377v3, Problem 37.
   - The withdrawn Brown--Capraro preprint arXiv:1010.6033 is not a source.
-- **Finite-dimensional irreducible representations.** Trivial-commutant
-  embeddings of `L(SL_3(Z))` into matrix ultraproducts come from its
-  high-dimensional finite irreducible representations. `H` has no nontrivial
-  finite-dimensional representations
-  (`binary-leavitt-unit-group-is-minimally-almost-periodic`). Dead for `H`.
+- **Character rigidity plus finite-dimensional irreducible representations.**
+  Popa, arXiv:1308.3982, Section 1, uses Bekka's operator-algebraic
+  superrigidity. For `PSL(n,Z)`, `n >= 3`, irreducible representations of
+  unbounded dimension generate a copy of the group factor with trivial
+  relative commutant in `prod_omega M_(k_m)`.
+  - `H` has the character rigidity (`binary-leavitt-full-character-simplex`).
+  - It has no nontrivial finite-dimensional representations
+    (`binary-leavitt-unit-group-is-minimally-almost-periodic`), so no such
+    sequence exists.
+  - Dead for `H`.
+- **The trivial-commutant form is also open.** Kunnawalkam Elayavalli,
+  arXiv:2511.20377v3, Problem 2, the ergodic Connes embedding problem
+  credited to Ioana and Popa, asks for `N' cap prod_U M_n = C` for every
+  embeddable non-Gamma II_1 factor `N`. Property (T) factors are full
+  (standard, Connes; not re-read at source). A positive answer for `L(H)`
+  would imply this claim.
+- **Free group factor targets.** Peterson, arXiv:2605.16669v1, Theorem 1.3:
+  a property (T) subfactor of `(LF_n)^U` with factorial relative commutant
+  lies in an ultraproduct of finite-dimensional subfactors. The target is
+  different, and the result gives neither existence nor internality in
+  `prod_omega M_n`.
 - **Positive 1-bounded entropy.** The trivial-commutant constructions of
   Jekel and of Hayes--Jekel--Kunnawalkam Elayavalli need `h(N) > 0`. Kazhdan
   factors are strongly 1-bounded. Dead for `H`.
