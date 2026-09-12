@@ -5,6 +5,7 @@ kind: claim
 title: A probability measure with all moments integers can have negative log determinant
 invalidates:
   - determinant-conjecture-via-integer-trace-moments
+  - integral-limits-via-moment-quadrature
 distinct_from:
   integral-spectral-limits-satisfy-serre-inequalities: that proves the Serre inequalities for limits of integer matrix spectra; this exhibits a measure with integer moments that fails the simplest one, so integer moments are strictly weaker than being such a limit
 artifacts:
