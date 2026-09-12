@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - deligne-triple-cover-nonsurjunctive
   - kun-thom-clifford-cover-nonsurjunctive
   - strict-automaton-on-lattice-in-product-of-trees
   - some-finite-field-leavitt-unit-group-nonsurjunctive
