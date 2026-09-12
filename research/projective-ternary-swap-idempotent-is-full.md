@@ -3,6 +3,7 @@ rg: 2
 id: projective-ternary-swap-idempotent-is-full
 kind: claim
 title: The swap-averaging idempotent of the ternary Leavitt unit group modulo scalars is full in its group algebra over F_3
+refuted_by: [projective-ternary-swap-idempotent-is-not-full]
 distinct_from:
   ternary-leavitt-swap-idempotent-is-full: that is the corner equation on the ternary unit group itself, which implies this one by projecting to a central summand; this is the equation on the quotient by the scalars F_3^x, which is the only half an automaton needs and on which the Leavitt evaluation vanishes.
   leavitt-unit-group-algebra-not-directly-finite: that is the scalar Kaplansky question for the binary unit group over F_2; this is a corner equation for an honest averaging idempotent of a different simple group in characteristic three.
@@ -48,3 +49,9 @@ conjecture.
   must generate a nonamenable group
   (`amenable-decoder-memory-forces-surjectivity`). The forward table must have a
   nonsofic two-core (`forward-relations-of-a-counterexample-have-a-nonsofic-core`).
+- *The gate.* If `PG` is `F_3`-linear sofic (`projective-ternary-group-is-f3-linear-sofic`),
+  `F_3[PG]` is stably finite and this claim is false
+  (`f3-linear-soficity-refutes-projective-swap-fullness`). Conversely, establishing
+  this claim exhibits a group that is not linear sofic over `F_3`
+  (`non-linear-sofic-via-projective-ternary-swap-fullness`). The decisive question is
+  the rank-metric one that `binary-leavitt-unit-group-is-f2-linear-sofic` asks over `F_2`.
