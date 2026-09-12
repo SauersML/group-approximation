@@ -12,6 +12,9 @@ not by rereading the author's argument. Nothing was run.
 | `6be1b3b31` (gk-design-group) | `strict-automata-live-on-canonical-table-groups`, `triangular-forward-tables-force-surjectivity` | PASS |
 | `a1b4a47cc` (gk-three-factor) | `table-groups-are-memory-holonomy-groups`, `amenable-decoder-memory-forces-surjectivity`, `unicyclic-strict-designs-present-nonsofic-one-relator-groups` | PASS |
 | `de231f8c9` (gk-n-ff) | `invariant-output-injective-ca-need-torsion`, `leavitt-tower-does-not-embed-in-torsion-free-hosts`, `torsion-free-scalar-df-failure-gives-exotic-idempotents` | PASS (Section 5) |
+| `2fdd8cc75` (gk-free-neg) | `formal-polynomial-strict-pairs-need-unstable-linearization` and its corollaries | PASS (Section 7) |
+| `54ab1d134` (gk-n-twocycle) | `bijective-designs-force-every-finite-presentation` | PASS (Section 8) |
+| `5b6ac9c99` (gk-n-klein) | `ternary-adjoint-image-is-balanced`, `klein-level-one-splitting-is-outside-adjoint-image`, `klein-expectation-splits-in-balanced-algebra`, route `level-two-klein-fullness-gives-klein-fullness` | PASS (Section 9) |
 | `02e8d9a28`, `73e17dbd7` (gk-n-ae-decoder) | `measurable-certificate-routing-preserves-bernoulli-measure`, `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial`, `homomorphic-codes-cannot-compress-bernoulli-shifts`, route `leavitt-zero-supremum-via-measurable-compression` | PASS (Section 6) |
 
 Section 6 of `invariant-output-descent-and-sensitivity-2026-09-12.md` (the ternary form) was
@@ -252,3 +255,136 @@ Sections 4–5 of that artifact are status prose, and no established claim rests
 - *Ascent along subgroups.* Coset-wise extension is well defined by equivariance, and Fubini keeps
   injectivity almost everywhere.
 - The Bartholdi–Kielak calibration is quoted.
+
+## 7. Formal polynomial strict pairs (`2fdd8cc75`, gk-free-neg): PASS
+
+**Step 0: translation.**
+- `T_(-d) o tau` and `sigma o T_d` compose to `sigma o tau`, formally, because formal composition
+  is associative.
+- `tau o sigma = id` is equivalent before and after the translation.
+- `sigma(0) = sigma(tau(0))` gives `0` under the formal identity evaluated at `0`.
+
+**Step 1: linear parts compose.**
+- With the convention `L_a(x)(g) = sum_m a_m x(gm)`,
+  `L_b o L_a (x)(g) = sum_(s,m) b_s a_m x(gsm) = L_(ba)(x)`, since `delta_s delta_m = delta_(sm)`.
+- In `sigma o tau = L_sigma o (L_tau + N_tau) + N_sigma(tau)`, both correction terms lie in `I^2`.
+- So `J_sigma(0) J_tau(0) = 1`, and `L_a = id` iff `a = 1`.
+
+**Step 2: direct finiteness.** It gives the two-sided inverse `J_tau(0)^-1`, with finite support.
+
+**Step 3: the monoid `P`.**
+- *Composition is well defined.* The degree-`j` part of `phi o psi` uses only parts of degree at
+  most `j` of both maps, because `psi` has no constant term. That is finitely many terms, each
+  with finite memory.
+- *Tangent-to-identity form.* `phi = L_a o (id + Q)` with `Q = L_(a^-1) o N_phi` of order at
+  least 2. This uses linearity of `L_a`.
+- *Right inverse.* `psi = id - Q o psi` is solved degree by degree. The degree-`j` part of
+  `Q o psi` reads only degrees below `j` of `psi`.
+- *Two-sided.* Build `chi` with `psi o chi = id`. Then `id + Q = (id + Q) o psi o chi = chi`.
+
+**Step 4: uniqueness.**
+- `sigma = sigma o (tau o psi) = (sigma o tau) o psi = psi`, so `tau o sigma = id` in `P`.
+- Both sides are polynomial, so the identity is formal.
+
+**Corollaries.**
+- *Infinite fields.* A polynomial vanishing on all `k`-points is zero.
+- *Characteristic `p`.* Use the prime-field reduction of stable finiteness.
+- *Characteristic 0.* Use Kaplansky.
+- *Specialization.* A formal identity over a finitely generated coefficient ring specializes.
+
+**Section 4 (collapse defect).** `d(X^2 - X)/dX = 2c - 1 = 1` at `c in F_2`, so
+`J_sigma(tau(c)) J_tau(c) = 1 + D(c)`. It is stated as an open direction and not wired as
+established.
+
+## 8. Bijective forcing of table cores (`54ab1d134`, gk-n-twocycle): PASS
+
+**Lemma 1: holonomy shape.**
+- `x 1^-1 = 1 xbar^-1` gives `xbar = x^-1`.
+- The prefix letters `p_i` follow the word, and `p_n = 1` closes it.
+- Eliminating the new letters is a Tietze move back to `P`.
+
+**The composite reads exactly these cells.**
+- Key tracks at `(abar_r, v_r)` and `(bbar_r, z_r)`.
+- The data track at `(1_S,1_M)`.
+- The key tracks inside the data term at `(1_S,u_r)`, `(1_S,w_r)`, `(h_r,v_r)` and `(h_r,z_r)`.
+  - For example, `sigma_d` reads `y_(a_r)(g h_r) = x_(a_r)(g h_r v_r)`.
+
+**Lemma 2.**
+- *Sufficiency.* The two products for relator `r` coincide on `E_P` and cancel over `F_2`.
+- *Domination, key tracks.* Distinct classes receive distinct key symbols.
+- *Domination, data track.* The assignment `a_r = 1/0` on the two classes and `b_r = 1` on both
+  `b`-classes adds `1` to the data output.
+  - Assignments on different tracks never conflict.
+  - Other relators' tracks are set to `0`.
+  - This holds even when `(1_S,u_r)` is the marked class.
+
+**Lemma 3.** The private letters `x_(abar_r)`, `x_(bbar_r)` and `x_(h_r) = x_(u_r) x_(v_r)^-1`
+eliminate. The last relator then becomes `u_r v_r^-1 z_r = w_r`.
+
+**Lemma 4.** `tau = gamma o beta` in every group.
+- `beta` translates the key tracks.
+- `gamma`, over the translated tracks `y = beta(x)`, adds
+  `y_(a_r)(g u_r v_r^-1) y_(b_r)(g w_r z_r^-1) = x_(a_r)(g u_r) x_(b_r)(g w_r)`.
+  It is an involution over `F_2`.
+
+**Corollary 3.** Composing with a bijective automaton preserves injectivity and non-surjectivity.
+
+## 9. The balanced invariant of the ternary adjoint image (`5b6ac9c99`, gk-n-klein): PASS
+
+**Setup.** In `Q = R (x) R^op` with `(a (x) b)(a' (x) b') = aa' (x) (b'b)`:
+- `rho(g) = g (x) g^-1` is multiplicative and unital;
+- `(-g) (x) (-g)^-1 = g (x) g^-1`.
+
+**Theorem 1 and Lemma 2.**
+- `mu(rho(g)) = mu'(rho(g)) = 1` and both maps are linear.
+- For `T = sum a_i (x) b_i` and `T'`:
+  - `mu(TT') = sum_i a_i mu(T') b_i`, which is `mu(T')mu(T)` when `mu(T')` is scalar;
+  - `mu'(TT') = sum_j b'_j mu'(T) a'_j`, which is `mu'(T)mu'(T')` when `mu'(T)` is scalar.
+- So `N` is a unital subalgebra with character `mu`.
+
+**Proposition 3.**
+- *The group K.* `wd = e_10 - e_01` and `dw = -wd`, so `K ~= C_2 x C_2` in `PG`. Also `w^2 = d^2 = 1`.
+- *Expansion.* `rho(e_K) = 1 (x) 1 + w (x) w + d (x) d - wd (x) wd`. In the 16 basis tensors the
+  coefficients are:
+  - `2` on `e_00 (x) e_00`, `e_11 (x) e_11`, `e_01 (x) e_10` and `e_10 (x) e_01`;
+  - `0` on `e_00 (x) e_11`, `e_11 (x) e_00`, `e_01 (x) e_01` and `e_10 (x) e_10`;
+  - no term at all on the other eight.
+- *Factorization.* `delta Psi = 2 sum_(i,j) e_ij (x) e_ji` matches, and `Psi delta = 2 sum_i 1 (x) 1 = 1`.
+
+**Proposition 4.**
+- Completeness gives `mu(delta_C) = 1`, and `T[alpha] S[alpha] = 1` gives `mu'(delta_C) = |C|`.
+- The same for `Psi_C` with `|C|^-1`.
+- The prefix-code property gives `Psi_C delta_C = 1`.
+- For `C = {0,1}`, `mu' = 2 != 1`, so `delta` and `Psi` lie outside `N`, which contains the image.
+
+**Proposition 5.**
+- `delta^2 = sum s_i s_j (x) t_j t_i = delta_(C_2)`, and `Psi^2 = 4 sum T (x) S = Psi_(C_2)`.
+- `|C_2| = 4 = 1`, so both lie in `N`.
+- `Psi^2 rho(e_K) delta^2 = Psi^2 delta^2 = Psi (Psi delta) delta = 1`.
+
+**Proposition 6.**
+- *The group K_4.*
+  - `D ~= C_2^4` contains `-1`, so `|Dbar| = 8`.
+  - `V_4` permutes the level-two prefixes regularly, normalizes `D`, and meets `±D` only in `1`.
+  - So `|K_4| = 32`, and `32 = 2` is invertible.
+- *Containment.* `w = u_(10)` flips the first bit, and `d` has signs `(+,+,-,-)` at level two.
+- *The D-average.* `rho(d_eps) = d_eps (x) d_eps`, and averaging `eps_alpha eps_gamma` gives
+  `delta_(alpha gamma)`. So the average is `sum_alpha e_(alpha alpha) (x) e_(alpha alpha)`.
+- *The V_4-average.* Multiplying by `rho(u_x) = u_x (x) u_x`, with `u_x^-1 = u_x`, gives
+  `e_(alpha, alpha xor x) (x) e_(alpha xor x, alpha)`, and the sum is `sum e_(alpha beta) (x) e_(beta alpha)`.
+- *Normalization.* `2 . 32 = 1` in `F_3`, and the result equals `delta^2 Psi^2`.
+- *Level-two transfer.* `c e_(K_4) b = 1` gives `(c e_(K_4)) e_K (e_(K_4) b) = 1`.
+
+**Section 6 remark.** `GL_2(F_3)` has order 48, which gives 24 classes in `PG`. Their images lie in
+a 16-dimensional span, so `rho` has a nontrivial kernel.
+
+**Section 7.**
+- *Proposition 7.*
+  - `delta(g) w = s_0 g t_1 + s_1 g t_0 = w delta(g)` and `delta(g) d = d delta(g)`.
+  - For injectivity, `delta(h)` is in `K` exactly when `diag(h,h) = ±1`, because
+    `±d = diag(±1, ∓1)` would force `1 = -1`.
+- *Proposition 8.*
+  - `delta rho(g) = sum s_i g (x) g^-1 t_i = rho(delta(g)) delta`, using `delta(g) s_i = s_i g`.
+  - `Psi rho(delta(g)) = rho(g) Psi`.
+- *Corollary 9.* The flip is an anti-automorphism with `sigma(rho(g)) = rho(g^-1)` and
+  `sigma(delta^2) = Psi^2`. That closes the three-way equivalence.

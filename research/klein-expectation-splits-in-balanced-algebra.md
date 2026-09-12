@@ -8,6 +8,7 @@ distinct_from:
   projective-ternary-klein-idempotent-is-full: that asks for witnesses in the group algebra; this gives witnesses only in the balanced subalgebra of R (x) R^op, a necessary condition, not the claim.
 artifacts:
   - research/artifacts/klein-target-balanced-invariant-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 With `delta`, `Psi` as in `klein-level-one-splitting-is-outside-adjoint-image`,

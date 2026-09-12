@@ -8,6 +8,7 @@ distinct_from:
   projective-ternary-klein-idempotent-is-full: that is the corner equation itself; this only excludes one candidate pair of image-level witnesses.
 artifacts:
   - research/artifacts/klein-target-balanced-invariant-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `k = F_3`, `R = L_k(1,2)`, `PG = R^x/{±1}`, and `rho : k[PG] -> R (x) R^op` the adjoint evaluation.

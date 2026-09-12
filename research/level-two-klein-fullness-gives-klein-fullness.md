@@ -8,6 +8,7 @@ requires:
   - projective-ternary-level-two-klein-idempotent-is-full
 artifacts:
   - research/artifacts/klein-target-balanced-invariant-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 `K = <wbar, dbar>` lies in `K_4`: `w = u_(10)`, and `d` is the level-two sign unit with signs

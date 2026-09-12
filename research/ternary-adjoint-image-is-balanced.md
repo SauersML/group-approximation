@@ -7,6 +7,7 @@ distinct_from:
   projective-ternary-klein-idempotent-is-full: that asks for a corner equation in the group algebra; this is a linear invariant of that algebra's image in R (x) R^op, which every witness must respect.
 artifacts:
   - research/artifacts/klein-target-balanced-invariant-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `k = F_3`, `R = L_k(1,2)`, `PG = R^x/{±1}` and `Q = R (x)_k R^op`, and let

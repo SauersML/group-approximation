@@ -7,6 +7,7 @@ distinct_from:
   formal-polynomial-strict-pairs-need-unstable-linearization: that assumes the left-inverse identity is formal and concludes bijectivity from direct finiteness of the matrix group algebra; this is the infinite-field consequence, where functional identities are automatically formal, stated through the prime-field reduction and including the characteristic-zero case.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `k` be an infinite field and `tau`, `sigma` polynomial automata on `(k^n)^G` with

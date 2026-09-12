@@ -9,6 +9,7 @@ distinct_from:
   triangular-forward-tables-force-surjectivity: that is a condition on product coincidences making the table group free; this is a condition on how the left-inverse identity uses the arithmetic of the alphabet, with no hypothesis on the table.
 artifacts:
   - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Let `G` be a group, `k` a field, `n >= 1`, and let `tau`, `sigma` be polynomial automata on

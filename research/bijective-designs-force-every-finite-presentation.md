@@ -9,6 +9,7 @@ distinct_from:
   table-groups-are-memory-holonomy-groups: that computes the table group as memory letters modulo cycle holonomies; this realizes an arbitrary set of holonomy relators u v^-1 = w z^-1 through shared decoder addresses of a shift–shear design.
 artifacts:
   - research/artifacts/bijective-forcing-of-table-cores-2026-09-12.md
+  - research/artifacts/gk-vf-nonlinear-verification-2026-09-12.md
 ---
 
 **ESTABLISHED** by `bijective-designs-force-presentations-proof`.
