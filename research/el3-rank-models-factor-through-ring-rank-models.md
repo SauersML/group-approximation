@@ -97,5 +97,28 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
     and a torus weight vector of weight `eps_i - eps_j`. It is not additive in `a`, and for
     `p = 3` root weights coincide with natural weights, so this alone does not extract matrix
     units (artifact Section 4d).
+- **Finite triangular extensions: killed (2026-09-12, lane `gk-rk-extensions`).**
+  - `filtered-matrix-unit-rank-models-of-simple-el3-are-trivial`: suppose `sigma` preserves
+    a finite flag split by idempotents, and each graded piece is a matrix-unit piece, a
+    transposed piece (such as the dual natural module) or a trivial piece. Then `sigma` is
+    trivial.
+    - The graded pieces die by the two matrix-unit corollaries; transposed pieces go through
+      `R^op`.
+    - `perfect-groups-have-no-triangular-models-with-trivial-diagonal` kills the extension
+      terms: a perfect group acting upper triangularly with trivial diagonal lies in a
+      nilpotent unipotent group.
+  - Covered: the non-split extensions `0 -> trivial -> W -> natural -> 0` and
+    `0 -> natural -> W -> trivial -> 0`, finite towers, and complements whose extension terms
+    run in one direction.
+  - In coordinates each extension term is a product with a block term,
+    `d_ik(ab) = d_ij(a) v_jk(b)`.
+  - Surviving shapes (artifact `research/artifacts/el3-rank-model-extensions-2026-09-12.md`,
+    Section 3):
+    - two-sided mixing with no finite triangular ordering;
+    - composition factors of Steinberg, projective or regular type, or pieces with no block
+      form;
+    - diffuse flags of unbounded length at finite stages, where the nilpotency bound fails.
+  - Not landed as a route: "every model admits such a flag" is equivalent to triviality
+    given the theorem.
 - **Hamming analogue: open.** That a sofic approximation of `EL_3(R)` yields a rank model
   of `R` would reprove nonsoficity of `R^x` with no property (T).
