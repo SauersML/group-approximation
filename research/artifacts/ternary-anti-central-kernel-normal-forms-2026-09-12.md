@@ -213,6 +213,15 @@ This answers a relayed question: do the extra roots of unity in the hosts of
 `leavitt-unit-group-algebras-split-over-scalar-characters`, such as `(q,d) = (4,2)` or the colimit
 over finite fields, give the kernel normal forms more room?
 
+*Reconciliation.* Lane `gk-l2-invisible` landed the general criterion in the same minute, as
+`leavitt-invisible-half-universal-over-every-finite-field`: every field, every type `(1,d)`, cuts by
+matrix constants, and existence at level one for every `(q,d) != (3,2)`, including `q = 2`, through
+torus elements. That node is the Cairn claim. Theorem 7.1 below is its diagonal-constant instance,
+kept here for its proof and its level count. Proposition 7.3 (base change) and the answer are what
+this section adds. The Cairn claim `leavitt-identity-factor-failures-transfer-into-kernel-corners`
+(verified by `gk-vf-linear`) is kept for Proposition 7.3 and the diagonal level count, and is keyed
+`distinct_from` that node.
+
 **Setting.**
 * `q = p^r >= 3`, `d >= 2`, `L = L_(F_q)(1,d)`, `G = L^x`, `A = F_q[G]` and `pi : A -> L` the
   evaluation.
@@ -261,8 +270,10 @@ So `A_iota` is not directly finite iff `F_q eps_iota + K_iota` is not directly f
   terms vanish. `C'A' = eps_iota - q_iota + mu(ca) = eps_iota`. `A'C' != eps_iota` because
   `mu(ac) != mu(eps_iota)`. Finally `pi(A') = pi(C') = 1`. QED
 
-**Theorem 7.2 (level criterion).**
-* A triple `(k, H, psi)` as in 7.1 exists iff `q >= 3`.
+**Theorem 7.2 (level criterion, diagonal constants only).**
+* A triple `(k, H, psi)` with `H` diagonal, as in 7.1, exists iff `q >= 3`. Matrix constants do
+  more: `leavitt-invisible-half-universal-over-every-finite-field` gives level-one cuts for every
+  `(q,d) != (3,2)`, including `q = 2`.
 * The least level is `k = 1` iff `q >= 4`, or `q = 3` and `d >= 3`.
 * For `(q, d) = (3, 2)` the least level is `2`, and Theorem 4 is that instance.
 
@@ -289,15 +300,16 @@ This extends gk-lp-hosts' extension-field statement for corner solutions to arbi
 to kernel pairs.
 
 **Answer.**
-* **No extra room.** On every host with `q >= 3` the invisible form is universal for `A_iota`. The
-  kernel problem on a host is exactly that host's direct-finiteness question for `A_iota`, neither
-  easier nor harder.
-* **What extra roots of unity do.** They lower the amplification level from `2` to `1` (Theorem
-  7.2). That is cosmetic.
+* **No extra room.** On every finite-field host the invisible form is universal
+  (`leavitt-invisible-half-universal-over-every-finite-field`), and for `A_iota` by Theorem 7.1.
+  The kernel problem on a host is exactly that host's direct-finiteness question for `A_iota`,
+  neither easier nor harder.
+* **What extra roots of unity do.** They lower the diagonal amplification level from `2` to `1`
+  (Theorem 7.2). That is cosmetic.
 * **The colimit.** Its only extra room is host monotonicity (Proposition 7.3), which the
   extension-field statement already records.
-* **F_2.** There are no diagonal constants. The binary transfer uses the permutation constants
-  `F_2[S_3]` instead (lane `gk-l2-invisible`).
+* **F_2.** There are no diagonal constants. The binary transfer uses matrix constants instead
+  (lane `gk-l2-invisible`).
 * **Scope.** The dichotomy of Section 3 is not claimed for `d >= 3`. There `V(L) = {0} u Z/(d-1)`,
   so defect classes need not be free, which is why the cyclic twist requires `m = 1 mod (d-1)`.
   Theorem 7.1 uses no orbit theorem and holds for every `d`.
@@ -312,3 +324,95 @@ factors `A_chi`.
 * **Its kernel corners.** Theorem 7.1 transfers into the kernel of that evaluation whenever `psi`
   is not a product `ev_gamma ev_gamma'`.
 * **Not examined.** Whether a corner equation has an image solution in `L (x) L`.
+
+## 8. Mixed-subgroup defect candidates
+
+The lead's unit: build idempotents `f < e` in `K_-` from different finite subgroups of `G`, with
+equal lifted traces, and test whether `e - f` can be the defect of a pair over `eps_-`; or exclude
+such defects.
+
+**8.0 The exact test.** For idempotents `f < e` of `S_-`, put `d = e - f`.
+* **Criterion.** `d` is the defect of a pair over `eps_-` iff `eps_- - d ~ eps_-`.
+* **Sufficient.** `e ~ f`. Then `eps_- - d = (eps_- - e) + f ~ (eps_- - e) + e = eps_-`, as sums
+  of orthogonal idempotents.
+* **Necessary.** `[d] = 0` in `K_0(F_3[G])`. So `t_3(d) = 0`, and the Hattori–Stallings class sums
+  `sum_(g in C) d(g)` vanish in `F_3` for every conjugacy class `C`. These are additive invariants.
+  They are inert on the target itself (Theorem B(i) of lane `gk-l3-obstruct`'s
+  `research/artifacts/ternary-anti-central-invariant-census-2026-09-12.md`), but they do filter a
+  proposed defect.
+
+**8.1 Theorem (no characteristic-zero lift).** Let `G` be any group, `p` a prime, and `d` a nonzero
+idempotent of `M_n(F_p[G])`. Suppose `d` is the coefficientwise reduction of an idempotent
+`D` of `M_n(Z_p[G])` with finite support. Then:
+* `t_p([d]) = T(D)` is a nonzero element of `Z_p`, so `[d] != 0` in `K_0(F_p[G])`;
+* for every `m >= 0`, `d (+) 0_m` is not the defect `1 - ac` of any pair `ca = 1` in
+  `M_(n+m)(F_p[G])`.
+
+In particular, no defect over `eps_-` in `S_-` (padded by `eps_+`), and no difference `e - f` for an
+infinite idempotent `e ~ f < e`, has a finite-support idempotent lift over `Z_3`.
+
+*Proof.*
+* **The complete ring.** Work in `C = c_0(G, Z_p)`, with the continuous cyclic trace `T`, the sum
+  of diagonal identity coefficients (`lifted-trace-finite-subgroup-proof`). Elements of `1 + pM(C)`
+  are invertible. Two idempotent lifts `E, E'` of one idempotent are conjugate by
+  `W = E'E + (1 - E')(1 - E)`, so `T(E) = T(E')`. By that route, `t_p([d])` is `T` of any idempotent
+  lift of `d`, and here `D` is one.
+* **Direct check for defects.** Suppose `ca = 1` and `1 - ac = d (+) 0_m`. Choose finite-support
+  lifts `A0, C0`. `C0 A0 = 1` modulo `p`, so it is invertible. Put `X = (C0 A0)^(-1)` and
+  `P = A0 X C0`, an idempotent lifting `ac`. Then `1 - P` lifts `d (+) 0_m`, and
+  `T(1 - P) = (n + m) - T(X C0 A0) = 0`. `D (+) 0_m` is another lift, so `T(D) = 0`.
+* **Kaplansky positivity.** The coefficients of `D` generate a finitely generated field inside
+  `Q_p`, and it embeds in `C`. The image of `D` is an idempotent `x` of `M_n(C[G])`, with `T(x)` the
+  image of `T(D)`.
+  * In `M_n(C*_r(G))` the trace `T` is positive and faithful. `T(y*y) = sum ||y_ij delta_1||^2`, and
+    `y_ij delta_1 = 0` forces `y_ij = 0`, because right translations commute with left convolution.
+  * The projection `p = x x* (1 + (x - x*)(x* - x))^(-1)` satisfies `x p = p` and `p x = x`
+    (Blackadar, *K-Theory for Operator Algebras*, Proposition 4.6.2).
+  * So `T(x) = T(p x) = T(x p) = T(p) = T(p* p) >= 0`, with equality only if `p = 0`, and then
+    `x = p x = 0`.
+* **Conclusion.** `T(D) = 0` would force `D = 0`, hence `d = 0`. So `T(D) != 0`, and neither
+  conclusion can fail. QED
+
+*Trust surface.* Blackadar's similarity proposition and faithfulness of the canonical trace on
+`C*_r(G)`; the latter is proved inline. This is the classical route to Kaplansky's theorem
+(Kaplansky 1969; Montgomery 1969) that `0 < tau(e)` for nonzero idempotents of `C[G]`.
+
+**8.2 Constants at every level form one locally finite group.**
+* `Theta_(2^k) : GL_(2^k)(F_3) -> G` satisfies `Theta_(2^(k+1))(a (x) I_2) = Theta_(2^k)(a)`, because
+  `S[gamma] T[gamma'] = S[gamma 0] T[gamma' 0] + S[gamma 1] T[gamma' 1]`.
+* So finitely many constants from any levels lie in one finite subgroup `Theta(GL_(2^K)(F_3))`. That
+  covers the Klein groups at different prefix levels, `D_8` and `Q_8` inside `GL_2(F_3)`, `z`, `w`,
+  `d = s0 t0 - s1 t1`, and the idempotents `eps_-`, `e_-`, `q`.
+* Every candidate built from constants alone is supported in a finite subgroup. There, for `f < e`,
+  `[e] - [f]` has positive lifted trace (`lifted-trace-detects-finite-subgroup-projectives`), so it
+  is excluded.
+* A mixed candidate needs a finite subgroup outside the constants, such as `u H u^(-1)` for a
+  non-constant unit `u`, for instance from Thompson's group `V`.
+
+**8.3 Linear characters are ordered only by containment.** Let `H1, H2` be finite subgroups of `G`
+of order prime to `p`, let `psi_i : H_i -> F_p^x` be linear characters, and put
+`e = E_(psi1)`, `f = E_(psi2)` in `F_p[G]`. Then `f e = f` iff `H1 <= H2` and `psi2|H1 = psi1`. In
+that case `e, f` lie in `F_p[H2]` and are excluded as in 8.2.
+
+*Proof.*
+* Lift by Teichmüller characters to `E`, `F` in `Z_p[G]`, and put `K = H1 n H2`.
+* The representations of `g = ab` (`a` in `H2`, `b` in `H1`) as `h2 h1` are `(ak, k^(-1) b)` for `k`
+  in `K`. So the coefficient of `F E` at `g` is `psi2(a)^(-1) psi1(b)^(-1) |K| / (|H1||H2|)` when
+  `psi1|K = psi2|K`, and `F E = 0` otherwise.
+* These coefficients are units of `Z_p`, so `f e` is `0` or has support exactly `H2 H1`.
+* `f e = f != 0` forces `H2 H1 = H2`, hence `H1 <= H2` and `psi1 = psi2|H1`. The converse is direct.
+  QED
+
+**8.4 What survives.** A defect `e - f` built from finite subgroups must:
+* use a finite subgroup outside the constants (8.2);
+* not be a pair of linear-character idempotents (8.3);
+* have no finite-support idempotent lift over `Z_3` (8.1). So `f < e` must hold modulo `3` for no
+  pair of characteristic-zero lifts that satisfies it exactly. That needs cancellation modulo `3` in
+  the coefficients of `F E - F`: sums of values of a non-linear irreducible character, or a subgroup
+  of order divisible by `3`, where `F_3[H]` is not semisimple;
+* satisfy `e ~ f`, or more generally `eps_- - d ~ eps_-` (8.0).
+
+No such candidate was constructed. Mixed-subgroup defects are not excluded in general. By Theorem 4
+every failure lives in a kernel corner, and a genuinely modular defect, one with no
+characteristic-zero lift, is exactly what a failure would need. Equal lifted traces restrict nothing
+further once 8.1 applies.

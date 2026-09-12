@@ -33,7 +33,7 @@ In particular `ternary-anti-invariant-swap-corner-is-full` implies
 `ternary-anti-central-kernel-unitization-not-directly-finite`. This is the ternary analogue of
 the binary universality of the invisible half, which lane `gk-l2-invisible` proved over `F_2`.
 
-This is the instance `(q,d) = (3,2)` of `leavitt-identity-factor-failures-transfer-into-kernel-corners`.
-Level two is the least level for this host.
+It is an instance of `leavitt-invisible-half-universal-over-every-finite-field` (lane
+`gk-l2-invisible`), which also proves that level one is empty over `F_3`.
 
 Proof: Section 4 of the artifact.

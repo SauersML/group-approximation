@@ -34,6 +34,9 @@ being directly finite. Each implies that `G` is not surjunctive
     as defects, although the mod-3 trace allows sums of three of them.
   * What survives has to mix finite subgroups, for example `d = e - f` with `f < e` induced from
     different finite subgroups with equal lifted trace.
+* **No characteristic-zero lift.** The defect has no finite-support idempotent lift to `Z_3[G]`.
+  Such a lift has lifted trace `T(D) > 0` by Kaplansky positivity
+  (`char-zero-liftable-idempotents-are-never-inverse-defects`).
 * **No finite-dimensional detection.** `G` is finitely generated, simple and infinite. So every
   finite-dimensional representation of `F_3[G]` factors through the augmentation, where `eps_-`
   acts as `0`. `S_-` has no nonzero finite-dimensional representation.
@@ -47,9 +50,17 @@ being directly finite. Each implies that `G` is not surjunctive
 * **Traces mod 3.** They do not separate kernel idempotents from `eps_-`; only evaluation does.
   The 3-adic lifted trace separates every finite-subgroup projective from a defect (see
   Necessary conditions).
+* **Mixed-subgroup defects** (Section 8 of the artifact). Neither constructed nor excluded in general.
+  * Constants from all prefix levels, including the Klein groups, `D_8`, `Q_8`, `eps_-`, `e_-` and
+    `q`, lie in one finite subgroup `Theta(GL_(2^K)(F_3))`, so candidates built from them alone are
+    dead.
+  * Linear-character idempotents of different finite `3'`-subgroups are ordered only by containment.
+  * A surviving `e - f` needs a finite subgroup outside the constants, cancellation modulo `3` (from
+    non-linear characters or `3`-singular subgroups), no characteristic-zero lift, and
+    `eps_- - d ~ eps_-`.
 * **Larger fields.** They give no extra room.
-  `leavitt-identity-factor-failures-transfer-into-kernel-corners` makes the invisible form universal
-  on every host with `q >= 3`. Extra roots of unity only lower the amplification level to one, and
+  `leavitt-invisible-half-universal-over-every-finite-field` makes the invisible form universal on
+  every finite-field host. Extra roots of unity only lower the amplification level to one, and
   base change carries kernel pairs up. So a kernel pair over `F_3` exists iff the ternary host fails,
   and it is no easier to find over `F_9` than the corresponding host question there.
 * **Proper corner self-embedding.** Dead as a shortcut. `mu` embeds `S_-` unitally into the proper

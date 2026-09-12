@@ -2,8 +2,9 @@
 rg: 2
 id: leavitt-identity-factor-failures-transfer-into-kernel-corners
 kind: claim
-title: On every finite-field Leavitt host with q at least 3, failures of direct finiteness in the Leavitt-visible factor transfer into kernel corners
+title: Diagonal constants cut the Leavitt-visible factor into its kernel on every host with q at least 3, and pairs and kernel pairs pass up field extensions
 distinct_from:
+  leavitt-invisible-half-universal-over-every-finite-field: that is the general cut criterion by matrix constants over any field, with level-one existence for every (q,d) != (3,2) through torus elements; this is the diagonal-constant instance on the Leavitt-visible character factor, with its least diagonal level, and adds base change of pairs and kernel pairs along F_q <= F_q'.
   ternary-anti-central-failures-transfer-into-kernel-corners: that is the instance q = 3, d = 2 with the level-two Klein constants; this is every prime power q >= 3 and every arity d, with the exact least amplification level.
   leavitt-unit-group-algebras-split-over-scalar-characters: that splits the group algebra over scalar characters and identifies the Leavitt-visible factor; this embeds that factor into the corner of a kernel idempotent, so its invisible normal form is universal.
 artifacts:
@@ -29,6 +30,8 @@ of `H` different from every coordinate character. Put
 
 **Consequence.** Extra roots of unity lower the amplification level; they add no room to the
 kernel normal forms. On each host the invisible problem is exactly that host's direct-finiteness
-question for `A_iota`, and the colimit over finite fields gains only host monotonicity.
+question for `A_iota` (the general criterion is
+`leavitt-invisible-half-universal-over-every-finite-field`). The colimit over finite fields gains
+only host monotonicity, item 4.
 
 Proof: Section 7 of the artifact.
