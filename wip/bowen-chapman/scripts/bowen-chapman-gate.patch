@@ -1,0 +1,144 @@
+Bowen-Chapman Palomar gate hunks (lane bc-palomar). NOT LANDED.
+Base: origin/main 2162aa6643d5d61e9154622ed7c2c3e8c5ea3326
+  scripts/check_palomar_submission.py      blob f1c8184e8870c6b1227e0c9db2e41534a7f27aac
+  scripts/check_palomar_statement_match.sh blob 4e05420e5c7e3d7b8c8d1ab7eb3f920219999659
+  .github/workflows/palomar-check.yml      blob 62847a9929fc88b9f423891f94134e7bf5e3776e
+Adds Palomar/comparator-bowen-chapman.json to PALOMAR_PENDING_CONFIGS and
+SURFACE_FILES, four calibrations with planters, BowenChapman in the pending
+statement-match loop, and the palomar-check paths, build targets and axiom step.
+Before landing: apply in the shared campaign clone on MSI and run
+`python3 scripts/check_palomar_submission.py --self-test` and the plain gate
+(never locally); then land as origin blob plus these hunks, rebuilt on fresh blobs.
+
+diff --git a/.github/workflows/palomar-check.yml b/.github/workflows/palomar-check.yml
+index 62847a992..d566d558d 100644
+--- a/.github/workflows/palomar-check.yml
++++ b/.github/workflows/palomar-check.yml
+@@ -54,6 +54,9 @@ on:
+       - 'scripts/PalomarLIXStrongChallengeType.lean'
+       - 'scripts/PalomarLIXStrongSolutionType.lean'
+       - 'scripts/PalomarLIXStrongAxioms.lean'
++      - 'scripts/PalomarBowenChapmanChallengeType.lean'
++      - 'scripts/PalomarBowenChapmanSolutionType.lean'
++      - 'scripts/PalomarBowenChapmanAxioms.lean'
+       - 'formalization.yaml'
+       - 'lakefile.toml'
+       - 'lean-toolchain'
+@@ -145,7 +148,8 @@ jobs:
+         run: |
+           lake build PalomarChallenge PalomarSolution \
+                      PalomarLIXChallenge PalomarLIXSolution \
+-                     PalomarLIXStrongChallenge PalomarLIXStrongSolution
++                     PalomarLIXStrongChallenge PalomarLIXStrongSolution \
++                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution
+ 
+       # The check that reproduces Comparator's comparison, for all three
+       # pairs; the script loops over the configurations and fails if a
+@@ -187,19 +191,29 @@ jobs:
+         if: always()
+         run: lake env lean scripts/PalomarLIXStrongAxioms.lean
+ 
++      # The pending Bowen-Chapman surface gates its `_of` forms the same way:
++      # they carry the endpoint statement as a hypothesis, not as a hole.
++      - name: Palomar axiom closure (Bowen-Chapman)
++        id: axioms-bowen-chapman
++        continue-on-error: true
++        if: always()
++        run: lake env lean scripts/PalomarBowenChapmanAxioms.lean
++
+       - name: Reject a run whose axiom closures were not all clean
+         if: always()
+         run: |
+           nonmf='${{ steps.axioms-nonmf.outcome }}'
+           lix='${{ steps.axioms-lix.outcome }}'
+           strong='${{ steps.axioms-lix-strong.outcome }}'
++          bc='${{ steps.axioms-bowen-chapman.outcome }}'
+           echo "non-MF closure: $nonmf"
+           echo "LIX closure: $lix"
+           echo "LIX strengthened closure: $strong"
++          echo "Bowen-Chapman closure: $bc"
+           # `skipped` counts as a failure: the closure was not computed, and a
+           # check that did not run must not read like one that passed.
+           if [ "$nonmf" != success ] || [ "$lix" != success ] \
+-             || [ "$strong" != success ]; then
++             || [ "$strong" != success ] || [ "$bc" != success ]; then
+             echo "::error::an axiom-closure driver did not report success"
+             exit 1
+           fi
+diff --git a/scripts/check_palomar_statement_match.sh b/scripts/check_palomar_statement_match.sh
+index 4e05420e5..262c3b456 100755
+--- a/scripts/check_palomar_statement_match.sh
++++ b/scripts/check_palomar_statement_match.sh
+@@ -120,7 +120,7 @@ done
+ # gated -- and the part of the report before `pending-boundary:` must match.
+ # The part after it is printed and not gated, because the solution's theorems
+ # still carry the outstanding hypothesis.
+-for prefix in LIXStrong; do
++for prefix in LIXStrong BowenChapman; do
+   label="$prefix"
+   pair_ok=1
+ 
+diff --git a/scripts/check_palomar_submission.py b/scripts/check_palomar_submission.py
+index f1c8184e8..453280f8f 100644
+--- a/scripts/check_palomar_submission.py
++++ b/scripts/check_palomar_submission.py
+@@ -185,6 +185,11 @@ PALOMAR_CONFIGS = (
+ # summary line says so.
+ PALOMAR_PENDING_CONFIGS = (
+     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
++    # `Palomar/BowenChapmanSolution.lean` proves each selected statement in its
++    # `_of` form from the development endpoint's statement
++    # (`GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`),
++    # which is not in its import closure yet.
++    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
+ )
+ 
+ # The files `copy_surface` copies and `--self-test` plants defects into.  The
+@@ -196,6 +201,8 @@ SURFACE_FILES = (
+     "Palomar/comparator-lix.json",
+     "Palomar/LIXStrongChallenge.lean", "Palomar/LIXStrongSolution.lean",
+     "Palomar/comparator-lix-strong.json",
++    "Palomar/BowenChapmanChallenge.lean", "Palomar/BowenChapmanSolution.lean",
++    "Palomar/comparator-bowen-chapman.json",
+     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
+     "formalization.yaml",
+ )
+@@ -811,6 +818,15 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
+      "does not declare `exists_simple_separable_order_six_witness_of`"),
+     ("strong comparator permitting a fourth axiom",
+      "Palomar/comparator-lix-strong.json: permitted_axioms"),
++    # The pending Bowen-Chapman surface, under the same four rules.
++    ("bowen-chapman challenge with a project-local import",
++     "Palomar/BowenChapmanChallenge.lean:1:"),
++    ("bowen-chapman shared block edited on one side",
++     "Palomar/comparator-bowen-chapman.json: shared block diverges"),
++    ("bowen-chapman solution missing an `_of` form",
++     "does not declare `exists_finitelyGenerated_surjunctive_not_sofic_of`"),
++    ("bowen-chapman comparator permitting a fourth axiom",
++     "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
+     ("tracked compiled artifact", "is a compiled artifact"),
+     ("three arXiv classes", "one or two distinct official arXiv"),
+     ("original result with a substantive source", "the two alternatives are exclusive"),
+@@ -879,6 +895,22 @@ def plant(name: str, root: Path) -> None:
+     elif name == "strong comparator permitting a fourth axiom":
+         _edit_config(root, "Palomar/comparator-lix-strong.json",
+                      lambda c: c["permitted_axioms"].append("sorryAx"))
++    elif name == "bowen-chapman challenge with a project-local import":
++        path = root / "Palomar" / "BowenChapmanChallenge.lean"
++        path.write_text("import GroupApproximation.Sofic.Sofic\n" + path.read_text())
++    elif name == "bowen-chapman shared block edited on one side":
++        path = root / "Palomar" / "BowenChapmanSolution.lean"
++        path.write_text(path.read_text().replace(
++            "def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=",
++            "def hammingDist' (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=", 1))
++    elif name == "bowen-chapman solution missing an `_of` form":
++        path = root / "Palomar" / "BowenChapmanSolution.lean"
++        path.write_text(path.read_text().replace(
++            "theorem exists_finitelyGenerated_surjunctive_not_sofic_of",
++            "theorem exists_finitelyGenerated_surjunctive_not_sofic_renamed", 1))
++    elif name == "bowen-chapman comparator permitting a fourth axiom":
++        _edit_config(root, "Palomar/comparator-bowen-chapman.json",
++                     lambda c: c["permitted_axioms"].append("sorryAx"))
+     elif name == "LIX result dropped from the metadata":
+         _edit_metadata(root,
+                        "    - declaration: ProblemLIX.not_all_simple_unital_k1Injective",
