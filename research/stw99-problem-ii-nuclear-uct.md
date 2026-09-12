@@ -81,10 +81,12 @@ Dead ends on the negative side (uct-problem lane, 2026-09-12; details in
 * **Ozawa's Kazhdan projections** (arXiv:2609.08892,
   `hyperfinite-factor-not-quasidiagonal`).  Corrected 2026-09-12: the
   non-quasidiagonal trace there is `τ_R`, which is faithful, so faithfulness is
-  not what fails; exactness is (R is not exact).  The surviving attack is the
-  MF-tensor certificate `nuclear-factor-with-infinite-mf-tensor-exists`
-  (route `nuclear-non-uct-via-infinite-mf-tensor`, lemma
-  `mf-min-tensor-exact-mf-is-mf`).  The natural right-leg algebra of Ozawa's
-  isometry is not nuclear (`ozawa-leg-algebra-carries-non-amenable-trace`), and
-  whether it is exact is open.  Details:
-  `research/artifacts/uct-fresh-mf-tensor-route-2026-09-12.md`.
+  not what fails; exactness is (R is not exact).  The MF-tensor certificate
+  `nuclear-factor-with-infinite-mf-tensor-exists` (route
+  `nuclear-non-uct-via-infinite-mf-tensor`) is refuted (2026-09-12) by
+  `mf-min-tensor-exact-stably-finite-is-stably-finite`: an MF algebra tensored
+  with any exact algebra with stably finite unitization is stably finite, so no
+  nuclear second factor with a faithful trace can carry the proper isometry.
+  The refutation uses no UCT input.  Dies at exactness.  Details:
+  `research/artifacts/uct-fresh-mf-tensor-route-2026-09-12.md` and
+  `research/artifacts/uct-nuclear-proper-isometry-2026-09-12.md`.
