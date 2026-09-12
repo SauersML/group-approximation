@@ -68,8 +68,8 @@ theorem eq_mul_of_additive_monotoneOn {φ : ℝ → ℝ}
       have hkx : 0 ≤ (k : ℝ) * x := mul_nonneg (Nat.cast_nonneg k) hx
       rw [Nat.cast_succ, add_mul, one_mul, hadd _ _ hkx hx, ih, add_mul, one_mul]
   have h1 : 0 ≤ φ 1 := by
-    have h := hmono (show (0 : ℝ) ∈ Ici 0 from le_rfl) (show (1 : ℝ) ∈ Ici 0 from zero_le_one)
-      zero_le_one
+    have h := hmono (Set.mem_Ici.mpr (le_refl (0 : ℝ))) (Set.mem_Ici.mpr (zero_le_one' ℝ))
+      (zero_le_one' ℝ)
     rwa [h0] at h
   have hbound : ∀ n : ℕ, (n : ℝ) * |φ u - u * φ 1| ≤ φ 1 := by
     intro n
@@ -83,16 +83,15 @@ theorem eq_mul_of_additive_monotoneOn {φ : ℝ → ℝ}
       have h := hnat (⌊(n : ℝ) * u⌋₊ + 1) 1 zero_le_one
       rw [mul_one, Nat.cast_succ, add_mul, one_mul] at h
       exact h
-    have hm1 : ((⌊(n : ℝ) * u⌋₊ : ℝ)) ∈ Ici (0 : ℝ) := Nat.cast_nonneg _
-    have hm2 : ((⌊(n : ℝ) * u⌋₊ : ℝ) + 1) ∈ Ici (0 : ℝ) := by
-      show (0 : ℝ) ≤ _
-      positivity
+    have hm1 : ((⌊(n : ℝ) * u⌋₊ : ℝ)) ∈ Ici (0 : ℝ) := Set.mem_Ici.mpr (Nat.cast_nonneg _)
+    have hm2 : ((⌊(n : ℝ) * u⌋₊ : ℝ) + 1) ∈ Ici (0 : ℝ) := Set.mem_Ici.mpr (by positivity)
+    have hnu' : (n : ℝ) * u ∈ Ici (0 : ℝ) := Set.mem_Ici.mpr hnu
     have hA : (⌊(n : ℝ) * u⌋₊ : ℝ) * φ 1 ≤ n * φ u := by
       rw [← em, ← hnat n u hu]
-      exact hmono hm1 hnu hlo
+      exact hmono hm1 hnu' hlo
     have hB : (n : ℝ) * φ u ≤ ⌊(n : ℝ) * u⌋₊ * φ 1 + φ 1 := by
       rw [← em1, ← hnat n u hu]
-      exact hmono hnu hm2 hhi.le
+      exact hmono hnu' hm2 hhi.le
     have hC : (⌊(n : ℝ) * u⌋₊ : ℝ) * φ 1 ≤ (n * u) * φ 1 := mul_le_mul_of_nonneg_right hlo h1
     have hD : ((n : ℝ) * u) * φ 1 ≤ ⌊(n : ℝ) * u⌋₊ * φ 1 + φ 1 := by
       have h := mul_le_mul_of_nonneg_right hhi.le h1
