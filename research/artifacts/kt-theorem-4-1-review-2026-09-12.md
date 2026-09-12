@@ -794,6 +794,26 @@ So the bad mass is `≤ C·defects/h`, which is negligible under `hrep`'s domina
   and good-component routes stay on main, unused by this producer. The packaging
   `componentFamily` and the `BlockEmbedding` companion are still open.
 
+## R19. Landings 13:53–13:54. No defect
+
+- **`20b7c3985` `CentralizerNormalizationPrunedCoreMultiplicative`** (kt41-g1-alt). A
+  product failure of the re-completed core labels is an ambient product failure or one
+  of three images leaving the core. Each leaving set injects into the removed set, so
+  the error is `≤ component error + 3·removed`. That matches R10's
+  `card_completion_multiplicationError_le`.
+- **`636d59821` `CentralizerNormalizationUniformCore`** (kt41-g1-uniform).
+  - Core components are good components whose edit budget satisfies the pruned-core
+    inequality.
+  - The exact directed Cheeger bound is `cheeger/(4|T|)`.
+  - Non-core mass is negligible.
+  - The removed mass is negligible, since removed `≤ 2b/cheeger` and `Σ b` is
+    negligible.
+  - Cores are uniformly large.
+- **Coordination note, not a defect.** `e15257dda` names kt41-seq-decomp's
+  `SequentialComponentFamilyObjects` as the `ComponentFamily` producer, yet the
+  pruned-core route (kt41-g1-alt, kt41-g1-uniform) keeps landing. Both routes are
+  consistent, and one suffices.
+
 ## Named statements in the chain without a producer
 
 - `seqNormalizes_distinguished_of_kazhdan`: pinned name only; its file is absent.
