@@ -82,9 +82,48 @@ Landings: 100539f34, 460831be0, 04cc4aa44, 2a711b6bd, d748a8d40, 14914dfd2,
 * Repair 948130d79: the wired pocket module after eb4bc56f4 changed the
   signature of `contiguityDegree_lt_mu_of_o52` (the root was red until then).
 
-Residual of G6: the two named producers, `OsinDescentMergeInput` (merge through
-`R`-cell-free pockets) and `OsinDescentStepInput` (pocket, Corollary 9.6 at the
-pocket, uniqueness to `s_1, t_1, s_2`, glue-back with smaller measure).
+Residual of G6 on route F2: the two named producers, `OsinDescentMergeInput`
+(merge through `R`-cell-free pockets) and `OsinDescentStepInput` (pocket,
+Corollary 9.6 at the pocket, uniqueness to `s_1, t_1, s_2`, glue-back with
+smaller measure).
+
+### Finding 3: route F2's step producer is circular; replaced by the pocket cut
+
+`OsinDescentStepInput` carries the `11μ` cell of Corollary 9.6 at the pocket.
+Producing it needs clause (a) of Lemma 9.7 at the smaller diagram, and
+`OsinLemma97Below` does not carry clause (a).  So any producer of the step would
+have to run Lemma 9.7 itself.  The approved replacement (lead, 09-12) keeps
+`OsinAppendixAssemblyDescent` unchanged.  It runs Corollary 9.6 at each pocket
+directly from `OsinLemma97Below` and a fresh globally distinguished section
+system of the pocket, with strong induction on the pocket's `R`-cell count.  No
+extremality transport is needed.  The only leaf is the planar cut.
+
+* `GGT/VanKampen/Estimating/OsinAppendixDescentCut.lean` (4f3d38859, 08381ed21):
+  the leaf `OsinSectionPocketCut` (extends `OsinExteriorDoubleCut` with
+  `sectionTransport` to section `j` of `Δ` at part 3),
+  `SectionPocketCutInput`, `OsinLemma97Below.mono`,
+  `OsinSectionPocketCut.false_of_inner`, `RealizedSectionFamily.emptyOfLeastArea`,
+  `osinLemma97bConclusion_of_region`.
+* `GGT/VanKampen/Estimating/OsinAppendixDescentInduction.lean` (f82dfe0c3,
+  08381ed21): `exists_elevenCell_of_below` (Corollary 9.6 at a least-area diagram
+  below the induction measure), `OsinSectionPocketCut.exists_large_region` (the
+  pocket induction, conclusion `1 − 13μ` towards section `j`), and
+  `descentInput_of_sectionPocketCut : … → SectionPocketCutInput → DescentInput`.
+  Both modules compiled in probe 0912-100628-69222 (base 08381ed21), classical
+  axioms only.
+* `GGT/VanKampen/Estimating/OsinAppendixLemma97Pocket.lean` (4b9f8144d; compiled
+  in probe 0912-101449-41267, base 4b9f8144d, classical axioms only):
+  `OsinSection97PocketInputsStatement` (cut producers, Euler count,
+  `SectionPocketCutInput`), `osinSection97Inputs_of_pocketInputs`,
+  `osinLemma97Section_of_pocketInputs` and
+  `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`, with O52 given by
+  `Embedded.o52LeastArea`.
+
+Residual of G6 on this route: `SectionPocketCutInput` only.  hull-respell
+produces it (Estimating/OsinAppendixPocketCutProducer; the empty-side pinch
+case goes through PinchSplit).  The transport fields `cellTransport` and
+`sectionTransport` are the two targets of go-lemma42's
+`DiscDiagram.regionPiece_transport` on hull-select's `DiscDiagram.regionPiece`.
 
 ## Fleet traps found here
 
@@ -99,3 +138,8 @@ pocket, uniqueness to `s_1, t_1, s_2`, glue-back with smaller measure).
   length.
 * `Monoid.CoprodI.of m` over `fun b ↦ ↥(S b)` infers the family as `Subtype`
   over `G → Prop`; state letters over an `abbrev` family.
+* `simpa … using h` compares the final types at reducible transparency, so it
+  fails when an implicit argument is a def projection (`(emptyOfLeastArea …).diagram`
+  against `Y`); use `rw` then `exact`.
+* `nmprobe.sh` refuses when a file listed in the lane's `.files` is missing
+  locally; write the file before listing it.
