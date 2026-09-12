@@ -38,7 +38,7 @@ theorem isAcyclic_of_level (lvl : V → ℕ)
   obtain ⟨w, hw, hmax⟩ := c.support.toFinset.exists_max_image lvl ⟨v, by simp⟩
   have hwc : w ∈ c.support := List.mem_toFinset.mp hw
   let c' := c.rotate w hwc
-  have hc' : c'.IsCycle := IsCycle.rotate hwc hc
+  have hc' : c'.IsCycle := Walk.IsCycle.rotate hwc hc
   have hnil : ¬ c'.Nil := hc'.not_nil
   have h1 : G.Adj w c'.snd := Walk.adj_snd hnil
   have h2 : G.Adj w c'.penultimate := (Walk.adj_penultimate hnil).symm
