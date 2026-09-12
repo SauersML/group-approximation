@@ -1,0 +1,42 @@
+---
+rg: 2
+id: higman-group-nonsurjunctive
+kind: claim
+title: Higman's four-generator group carries an injective non-surjective cellular automaton
+distinct_from:
+  radu-bmw-lattice-nonsurjunctive: that names a non-residually-finite lattice in a product of trees with 2-torsion and a finite abelianization; this names Higman's torsion-free perfect group with no finite quotients, built from four Baumslag--Solitar pieces.
+artifacts:
+  - research/artifacts/higman-group-gottschalk-host-2026-09-12.md
+---
+
+**OPEN.** Let `H = <a,b,c,d | b^a = b^2, c^b = c^2, d^c = d^2, a^d = a^2>` be Higman's group. Exhibit a finite
+alphabet `A` and a cellular automaton on `A^H` that is injective and not surjective.
+
+**Consequences.** It refutes Gottschalk's conjecture. By `sofic-groups-are-surjunctive` it makes `H`
+nonsofic, which would be the first group known not to be sofic.
+
+**Why this host.** `H` is finitely presented, torsion-free, perfect and left-orderable, has no nontrivial
+finite quotient, and every finite-dimensional representation over every field is trivial
+(`linear-sterility-does-not-obstruct-division-embedding`). No landed surjunctivity theorem reaches it: it is
+not LEF, its soficity is open, and every permanence device that uses finite quotients or residually finite
+kernels is void on it. Its four Baumslag--Solitar pieces are non-unimodular, and their expansion directions
+close up in the cycle `a -> b -> c -> d -> a` that kills finite quotients.
+
+## Attempts
+
+* **Edge-group filter (w5-free-neg-c, 2026-09-12; artifact Section 1).**
+  `higman-group-splits-as-amalgams-over-free-subgroups` gives `H = <a,b,c> *_<a,c> <c,d,a> = <b,c,d> *_<b,d> <d,a,b>`
+  with sofic factors and rank-two free amalgamated subgroups. By
+  `nonsofic-subgroups-of-higman-group-have-free-edge-groups`, the memory of a strict factor
+  (`strict-composites-have-strict-factors`) fixes no vertex or end of either Bass--Serre tree and meets a
+  conjugate of `<a,c>` and a conjugate of `<b,d>` in nonabelian free groups. Automata reading three consecutive
+  pieces are surjunctive.
+* **Copying maps (artifact Section 2).** Each piece gives an exactly two-to-one equivariant map
+  `g<x> -> g x' <x>` on `H/<x>`, so the generalized shifts `A^(H/<x>)` carry strict equivariant maps. Where it
+  dies: each is the restriction of right translation by `x'`, a bijection of `A^H`, to the right
+  `<x>`-invariant configurations. The copying defect is absorbed by the non-invariant configurations, so no
+  single copying map gives a strict automaton.
+* **Linear case (artifact Section 3).** Over one track, unique products (imported from left-orderability, not
+  re-read) make `F_p[H]` a domain, so linear automata are surjunctive. Over several tracks the question is
+  stable finiteness of `F_p[H]`, which is open; the known division-ring embedding is in characteristic zero only.
+* **Where it stops.** No candidate design reading all four pieces through free edge groups is known.
