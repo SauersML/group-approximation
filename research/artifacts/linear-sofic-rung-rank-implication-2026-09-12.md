@@ -95,3 +95,44 @@ and group words only.
 - **The converse is not automatic.** Adding trivial blocks lowers normalized defects, so a tuple whose forward
   relators and reverse words both have rank `o(n)`, with the reverse word much larger, cannot be amplified into a
   realization. Whether (c) implies linear control is open.
+
+## 2. Gromov–Weiss is the monomial case
+
+Let `F` be a finite field and `Mon_n(F) <= GL_n(F)` the monomial matrices. A *monomial tuple* takes values in
+`Mon_n(F)`.
+
+**Theorem 2.1.** For every strict datum `D` there is `w` in `W_r(D)` such that for every `eps > 0` there is
+`delta > 0` with: every monomial tuple `rho: F(D) -> Mon_n(F)` whose forward relators all have rank at most
+`delta n` has `rk(rho(w) - 1) <= eps n`.
+
+*Proof.* Suppose not. Run the proof of Theorem 1.2, (b) ⇒ (c), with monomial failing tuples. By Lemma 1.1 the
+amplified direct sums `sigma_j` are monomial, so `lambda` realizes `D` in
+`Q_mon = prod_omega Mon_(N'_j)(F) / (N_omega ∩ prod Mon)`, where `N'_j = |W_r| N_j`.
+
+By `monomial-rank-models-are-hamming-models`, the faithful action `j` of `Mon_N(F)` on
+`X_N = F^x × {1, ..., N}` satisfies `(1/2) d_H(j(A), j(B)) <= rk(A - B)/N <= d_H(j(A), j(B))`.
+- So a sequence has normalized rank distance tending to `0` along `omega` iff its image has Hamming distance
+  tending to `0`.
+- Hence `j` induces an injective homomorphism from `Q_mon` into the Hamming ultraproduct
+  `prod_omega Sym(X_(N'_j)) / N^H_omega`.
+- Countable subgroups of Hamming ultraproducts of finite symmetric groups are sofic.
+
+So `lambda(F(D))` is a sofic group realizing `D`. By [RC] it is not surjunctive, contradicting
+`sofic-groups-are-surjunctive`. QED
+
+**Corollary 2.2 (what the rung adds).** Over `F_p`, every `F_p`-linear sofic group is surjunctive iff for every
+strict `D` the implication of Theorem 2.1, which holds on monomial tuples for some reverse word, holds on all
+invertible tuples for some possibly different reverse word. Over `F_2` the monomial tuples are the permutation
+tuples.
+
+**Remark 2.3 (near-monomial tuples add nothing).** Let `rho` and `rho'` be tuples with
+`rk(rho(x_a) - rho'(x_a)) <= theta n` for every generator, and `rho'` monomial.
+- For a word `u` of length `|u|`, telescoping gives `rk(rho(u) - rho'(u)) <= |u| theta n`.
+- So forward relator and reverse word ranks move by at most `L theta n`, with `L` the longest relator or word.
+- Theorem 2.1 therefore transfers to tuples within rank `theta n` of monomial ones, with `delta` and `eps` shifted
+  by `4 theta` (every relator and reverse word of a strict datum has length at most `4`).
+
+The transfer needs `4 theta < delta(eps)`. So a tuple that witnesses failure of the rung must stay far from every
+monomial tuple, generator by generator. Unipotent tuples are the natural far-from-monomial family. For instance the
+upper-unitriangular model of `U_4(R)` in `unipotent-frame-relations-cannot-assemble-corner-cuntz-family` carries a
+nonzero two-root defect while satisfying every relation of the rank-four frame.
