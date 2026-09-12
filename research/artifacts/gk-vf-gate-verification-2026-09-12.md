@@ -1287,3 +1287,13 @@ row-plus-column bound is attained: `3/4 + 3/4 = 3 · (1/2)`.
   contradicts the open minus-one gate.
 - **Attempts section.** Its "no homomorphism `G_3 -> V`" step imports the Haagerup property of `V` from the
   literature, as the node states.
+
+**Addendum to 27.2, corollary (3), now re-derived.** Take a signed permutation unit `a = tau v`, with `tau` in `E` and
+`v` in `V`, such that `a^4 = z`.
+1. **Every orbit has length 4.** `a^4` lies in `E`, so `v^4 = 1`. On a `v`-orbit of length 1 or 2 the sign of
+   `a^4` is a square, hence `+1`, while `z` acts by `-1`. So every point has orbit length exactly 4.
+2. **Choice of `A`.** The free action of `<v>` on the Cantor set has a clopen fundamental domain `B`. Put
+   `A = B ∪ v^2 B`. Then `vA = X \ A`.
+3. **Conjugation.** `tau_A a tau_A = tau tau_A tau_(vA) v = tau z v = -a`.
+4. **Conclusion.** `S(a)` is closed under `x |-> -x`, which exchanges `p_+` and `p_-`. So `S(a) = {p_+, p_-}`,
+   and the corollary holds.
