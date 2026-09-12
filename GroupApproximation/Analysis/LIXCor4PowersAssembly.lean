@@ -160,7 +160,7 @@ include hn in
 theorem isCapDatum_psiCap (m : ℕ) : IsCapDatum n (psiCap n m) where
   continuous := (CharClass.KGen.continuous_psiVec n m).comp continuous_subtype_val
   mem x := CharClass.KGen.psiVec_mem_unitVectors x.2
-  last x := CharClass.KGen.psiVec_apply_last n m hn _
+  last _ := CharClass.KGen.psiVec_apply_last n m hn _
 
 /-! ## 3. The equator -/
 
