@@ -24,8 +24,12 @@ mismatch confined to normalized dimension `O(delta_n^2)`.
 * **Equal or conjugate Kazhdan marginals**, e.g. both vertices from one
   representation of `G`.  Dead: the constraint claim gives an exact model of
   the non-MAP group `D` with the same limiting traces.
-* **Non-permutation finite-image vertex representations with an
-  `O(delta_n^2)` Kazhdan multiplicity mismatch.**  The only shape left.  No
-  construction yet.  It needs a mismatch that no `o(d_n)`-dimensional pair of
-  representations of `G` can cancel, since cancelling it would again produce an
-  exact model.
+* **Mismatch on extendable Clifford orbits, or any mismatch cancellable at
+  cost `o(d_n)`.**  Dead: `vertex-mismatch-needs-nonextendable-clifford-orbits`.
+  The Kun--Thom `Gamma` is infranormal, so its closed image is normal in every
+  vertex image, and extendable orbits cancel at cost at most
+  `2 (delta_n/epsilon)^2 d_n`.
+* **Mismatch carried by irreducibles with a nontrivial Clifford extension class
+  in `H^2(S/L_n, U(1))`, not cancellable at cost `o(d_n)`.**  The only shape
+  left.  No construction yet.  Deciding whether the Theorem E vertex images
+  admit such classes on inertia groups is the next test.
