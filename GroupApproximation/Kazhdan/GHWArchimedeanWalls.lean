@@ -187,8 +187,9 @@ theorem norm_wallCocycle_sq (hfin : SeparationFinite) (g : GL (Fin 2) ℂ) :
       (halfSpace origin ∆ halfSpace (conjAct g origin)).indicator 1 := by
     filter_upwards [coeFn_wallCocycle hfin g] with v hv
     rw [hv, Real.inner_apply]
+    simp only [Set.indicator_apply, Set.mem_symmDiff, Pi.one_apply]
     by_cases hO : v ∈ halfSpace origin <;> by_cases hX : v ∈ halfSpace (conjAct g origin) <;>
-      simp [Set.indicator_apply, Set.mem_symmDiff, hO, hX]
+      simp [hO, hX]
   rw [integral_congr_ae hae, integral_indicator_one hsep]
   rfl
 
