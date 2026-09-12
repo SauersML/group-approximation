@@ -143,9 +143,13 @@ representatives exist (Theorem B), while the first-order defect can always be re
 - **Why it doesn't terminate.** Each step enlarges the memory of `tau~` by the memory of `sigma~`.
   Theorem B shows that no strategy of this kind can end at finite degree and finite memory for the
   marker involution.
-- **The stable version is no better.** The Bennett map `V` on two tracks is formally invertible for
-  every pair, whatever the representatives. So "formalizable after adding a track" always holds and
-  carries no content for the linearization argument.
+- **The Bennett map does not decide the stable claims** (corrected after gk-vf-nonlinear,
+  Section 24).
+  - `V` is formally invertible for every pair, but `V` agrees with `tau × id` only functionally,
+    and only on `X_0`. It is not a representative of `tau × id`.
+  - So this says nothing about gk-free-neg's `injective-binary-automata-are-stably-formalizable`,
+    which asks for formal pairs representing `tau × id` with identity ancilla tracks. That claim
+    stays open.
 
 ## 3A. Every finite field, one track
 
