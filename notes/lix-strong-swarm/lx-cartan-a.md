@@ -47,7 +47,9 @@ the new positions whose sources are reordered.  Slot `i` of the new tuple holds 
 * `CharClass/OddPShuffleSign.lean` (if a consumer needs the explicit riffle sign): `permExp_riffleEquiv (m) (t) :
   permExp X (riffleEquiv m) t = ∑ j : Fin m, |t (m+j)| · ∑ l with j < l < m, |t l|`, by the pointwise reorder test
   `i < i' ∧ riffleSrc i' < riffleSrc i ↔ (i odd, i' even, i/2 < i'/2)`.  Inputs: OddPShuffle.
-* `CharClass/OddPShufflePrimRoot.lean` (lx-cartanvanish's σ_r): `mulPerm (p r) (hr : Nat.Coprime r p) :
+* TAKEN by lx-redpow (coordinator, 09-12 ~11:10; lx-redpow owns the file, names checked clash-free against OddPShuffle
+  at e0d8365e0; OddPShuffle will not add `tupPermAll_pow`, `tupPerm_one`, `tupPerm_pow`, `mulPerm*`, `finRotate_pow*`).
+  `CharClass/OddPShufflePrimRoot.lean` (lx-cartanvanish's σ_r): `mulPerm (p r) (hr : Nat.Coprime r p) :
   Equiv.Perm (Fin p)`, `i ↦ r·i mod p`, and `finRotate p * mulPerm p r hr = mulPerm p r hr * finRotate p ^ r`
   (or the inverse form), then `tupTAll ^ r * tupPermAll (mulPerm ..) = tupPermAll (mulPerm ..) * tupTAll` from P2/P3.
   Inputs: OddPShuffle.
