@@ -141,8 +141,11 @@ intersection of the kernels of all rank models) is `L`.
     `binary-finitary-transvection-uniformly-controls-active-rank` only confines the active part to
     rank `C·r_n`, so that Hilbert norms rescaled by `r_n` stay bounded. In normalized rank a
     head-retaining model has displacement `c_0 > 0`. Every nontrivial finitary element displaces
-    `>= c_0/4`, so the support bound holds with `C = 4/c_0` at every stage, whatever the
-    natural-module content. The cutoffs `e_n` become `1`, and all error terms vanish in `M`.
+    `>= c_0/4`, so the rank analogue of the support bound holds with `C = 4/c_0` at every stage,
+    whatever the natural-module content. That analogue is trivial, since `rk <= 1`, and it is not the
+    unitary hypothesis of `uniform-finite-support-rank-gap-upgrades-compression-collapse`. What it
+    shows is that the rescaling that hypothesis served is not needed. The cutoffs `e_n` become `1`,
+    and all error terms vanish in `M`. Passed by w3-vf-linear (Section 29), with this scope remark.
   * **What is left.** `σ` kills the head iff `σ(u c u^(−1)) = σ(x_12(Q))` commutes with `σ(x_23(1))`.
     That is commutant transport along `u` for the cell's own data. It is Theorem 10 of the ladder
     artifact with `A(L) = C_U(L)`, where (A3) and rounding are absent.

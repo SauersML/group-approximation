@@ -55,8 +55,11 @@ some `kappa > 0`.
 
 1. **Support bound.** For every finite `K <= A` and every `b in K \ {1}`,
    `rk(1 - e_K) <= (kappa c_0)^(-1) rk(sigma(b) - 1)`, where `e_K M = Fix_r(sigma(K))`. So
-   hypothesis (1) of `uniform-finite-support-rank-gap-upgrades-compression-collapse` holds in `sigma`
-   with `C = (kappa c_0)^(-1)`, uniformly over all finite stages.
+   the rank analogue of hypothesis (1) of `uniform-finite-support-rank-gap-upgrades-compression-collapse` holds in `sigma`
+   with `C = (kappa c_0)^(-1)`, uniformly over all finite stages. *Scope (w3-vf-linear, Section 29):*
+   that node's hypothesis is the unitary bound `dim Fix^⊥ <= C rank` over finite-dimensional unitary
+   representations, which is not claimed here. The rank analogue is trivial because `rk <= 1`. Its
+   point is only that the rescaling the unitary bound served is not needed in normalized rank.
 2. **No cutoffs.** With `q(g) := rk(sigma(g) - 1)`: `q` is subadditive, inverse-invariant and
    conjugation-invariant, `{q = 0} = ker sigma`, and `q(a) = c_0 > 0`. These are the rank forms of
    steps (5)-(10) of `research/artifacts/rank-weighted-locally-finite-compression-2026-09-08.md`,
