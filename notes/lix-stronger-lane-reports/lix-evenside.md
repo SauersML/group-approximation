@@ -20,6 +20,7 @@ tree; nothing unlanded, nothing in the attic.  `ParityPAxiomGuard` is compiled o
 | `ParityPWuComponent` | 0911-223415-30104 | 1655 | 251dd56c0 |
 | `ParityPWuTransport` | 0911-223415-30104 | 1655 | 924c01f0c (identical re-land) |
 | `ParityPSplitStepD` | 0911-224342-96729 | 1684 | 02d0df66c (identical re-land) |
+| `ParityPWuAxiomGuard` | latest lix-c probe | 1686 | 2be49495a (identical re-land) |
 
 ## What is proved
 
@@ -50,8 +51,7 @@ tree; nothing unlanded, nothing in the attic.  `ParityPAxiomGuard` is compiled o
 
 ## AUTHORED, UNVERIFIED
 
-* `ParityPWuAxiomGuard` — `#audit_axioms` over every declaration above.  Probe blocked by an MSI
-  connection outage at 22:45; retry when the link is up.
+Nothing.  Every file this lane owns is compiled on main.
 
 ## NEEDS (for the real-object bridge; none blocks the algebra)
 
