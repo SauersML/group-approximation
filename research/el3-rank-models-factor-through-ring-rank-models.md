@@ -49,10 +49,34 @@ nontrivial rank model in characteristic two and is not `F_2`-linear sofic
   exact doubling identity `g = g (x) I_2` and the compressor corner `g ~ g (+) I`. Regular
   modules satisfy it, so finite-subgroup counting is consistent with free models and gives
   no contradiction (artifact Section 4, Proposition 2).
+- **Uniform displacement and root self-similarity: proved, not enough.**
+  - The commutator expansion gives `Im n_13(a) <= Im n_23(1) + n_12(a) Im n_23(1)`. So every
+    root element has displacement rank at most `2 rho`, with `rho = rk(n_12(1))`.
+  - Over `L_(F_2)(1,2)`, `x_12(1)` is a product of `2^k` commuting conjugates of itself.
+    Additive models then give `rho = 2^k rho = 0`, recovering the block-unipotent theorem.
+  - Free modules and hyperplane-uniform modules over `(Z/2)^(2^k)` meet every such count, so
+    the extraction must use Steinberg relations across root subgroups.
+  - Artifact Section 4b.
 - **Monomial models.** They are sofic approximations
   (`monomial-rank-models-are-hamming-models`). So a counterexample to this claim could be a
   sofic `EL_3` over a simple characteristic-`p` ring with no ring rank model. None is known.
   Finitely generated purely infinite simple rings carry the nonsoficity mechanism; rings
   that are not finitely generated are the risk.
+- **Calibrations from lane `gk-l-gate-pos` (2026-09-12).**
+  - *Scope.* Every simple ring that is not directly finite meets the hypothesis
+    (`leavitt-algebra-has-no-unital-rank-model`'s argument needs only simplicity and
+    `ts = 1 != st`). So the claim says `EL_3(S)` is never linear sofic in characteristic `p`
+    for such `S`, whenever `EL_3(S)` is infinite. One such `S` with a sofic `EL_3(S)` refutes
+    the claim. Over infinite fields the Leavitt unit group contains Thompson's `V`, whose
+    soficity is open, so those are the riskiest instances.
+  - *Not a counterexample.* A locally finite simple ring always has a rank model (left
+    multiplication on finite unital subrings), so it cannot violate the hypothesis.
+  - *Shape the extraction must handle.* The hybrid of
+    `research/artifacts/leavitt-unit-rank-model-construction-audit-2026-09-12.md`
+    Section 7: block unipotent on the root subgroups of a polynomial subring, non-additive on
+    the rest. The matrix units `u_ij = n_ij(1)` and equal-rank corners `p_i` still exist
+    there. The open step is propagating block support from `x_ij(1)` to every `x_ij(a)`. The
+    two expansions `x_13(a) = [x_12(a), x_23(1)] = [x_12(1), x_23(a)]` constrain the images
+    of `n_13(a)` from both sides (artifact Lemma 3).
 - **Hamming analogue: open.** That a sofic approximation of `EL_3(R)` yields a rank model
   of `R` would reprove nonsoficity of `R^x` with no property (T).

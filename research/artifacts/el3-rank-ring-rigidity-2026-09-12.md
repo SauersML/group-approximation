@@ -132,6 +132,64 @@ So counting ranks on finite subgroups, even with the exact identities that come 
 contradiction by itself. Any extraction has to use the Steinberg relations across all of
 `R`, including elements of infinite order.
 
+## 4b. Uniform displacement bounds and root self-similarity
+
+**Lemma 3 (commutator images).** Let `p = 2`, `x = n_12(a)` and `y = n_23(1)`. Then
+
+```text
+n_13(a) = xy + yx + xyx + yxy + xyxy
+        = y (x + xy)  +  x y (1 + x + xy),
+Im n_13(a)  is contained in  Im n_23(1) + n_12(a) (Im n_23(1)).
+```
+
+*Proof.* `x_13(a) = [x_12(a), x_23(1)]`. With `g = 1 + x` and `h = 1 + y`, `x^2 = y^2 = 0`
+and characteristic two give `g^-1 = g` and `h^-1 = h`. So
+`ghg^-1h^-1 = ((1+x)(1+y))^2 = 1 + (x + y + xy)^2`. Expanding with `x^2 = y^2 = 0` gives the
+five terms, and the factorization is direct. QED
+
+**Corollary 4.** Put `rho = rk(n_12(1))`. Weyl elements of `EL_3(F_2)` conjugate all
+`x_ij(1)` to one another, so every `n_ij(1)` has rank `rho`, and `rk(n_ij(a)) <= 2 rho` for
+every `i != j` and every `a` in `R`. A model is trivial on the root subgroups exactly when
+`rho = 0`.
+
+**Proposition 5 (self-similarity of root elements over `L_(F_2)(1,2)`).** For every `k` and
+every word `w` of length `k`, the elements `x_12(1)` and `x_12(s_w t_w)` are conjugate in
+`GL_3(R) = R^x`. Also
+
+```text
+x_12(1) = product over |w| = k of x_12(s_w t_w),
+```
+
+a product of `2^k` commuting conjugates of `x_12(1)`.
+
+*Proof.* The product is additivity of the root subgroup together with
+`sum_(|w|=k) s_w t_w = 1`. For conjugacy, write `e = s_w t_w`, `N = E_12` and `N' = e E_12`
+on `R^3`.
+* `N` maps `C = e_2 R` isomorphically onto `A = e_1 R` and kills `B = e_1 R + e_3 R`
+  modulo `A`. More precisely, `R^3 = A (+) B (+) C` with `B = e_3 R`.
+* `N'` maps `C' = e_2 e R` onto `A' = e_1 e R` and kills
+  `B' = e_1 (1-e) R (+) e_2 (1-e) R (+) e_3 R`.
+* Left multiplication by `s_w` gives `R ~= eR`, hence `C ~= C'` and `A ~= A'` compatibly
+  with `N` and `N'`.
+* `B ~= B'`, because every nonzero finitely generated free right `R`-module is isomorphic
+  to `R`.
+The resulting automorphism `g` of `R^3` satisfies `g N g^-1 = N'`. QED
+
+**Counting.**
+* **Additive models die at once.** When root actions are additive with orthogonal images,
+  `rho = 2^k rho` forces `rho = 0`. This recovers the rank form of
+  `block-unipotent-rank-models-of-leavitt-el3-are-trivial`.
+* **Free-type modules survive.** Take `P_k = < x_12(s_w t_w) : |w| = k > = (Z/2)^(2^k)`.
+  Every nontrivial element is `x_12(e_S)` for an idempotent `e_S = sum_(w in S) s_w t_w`, and
+  `e_S R ~= R`, so every nontrivial element of `P_k` is conjugate to `x_12(1)`. So every model
+  has all nontrivial elements of `P_k` at the same displacement rank `rho`. Two families meet
+  that: free modules over `F_2[P_k]`, with `rho = 1/2` on the free part, and the uniform sum
+  `(+)_H F_2[P_k / H]` over all hyperplanes `H`, with `rho ~ 1/4`.
+
+So root self-similarity rules out every additive model and constrains the rest only to
+uniform displacement. The extraction step must still use the Steinberg relations between
+different root subgroups, which is where Lemma 3 enters.
+
 ## 5. The claim
 
 **Claim `el3-rank-models-factor-through-ring-rank-models` (open).** Let `p` be a prime and
