@@ -11,6 +11,22 @@ distinct_from:
 `G`-C\*-algebra with `Res^G_1 D ≃_KK 0` and `D ⋊ G ≃_KK 0`, is
 `D ≃_(KK^G) 0`?
 
+**Equivalent forms (lane ex-uct-detection-phantom, 2026-09-13, unreviewed).**
+* **Literature.** By `zp-detection-equals-meyer-nadareishvili-sufficiency`, this
+  is the prime-order case of a question Meyer–Nadareishvili
+  (arXiv:2406.11787v2) state they cannot decide. Their converse asks: does
+  `Res A ∈ B` and `A ⋊ G ∈ B` force `A ∈ B^G`? It is equivalent for all
+  separable algebras and for nuclear ones. So this claim is open in the
+  literature. Also `UCT_G ⟺ UCT ∧ Det(nuclear)`.
+* **Dynamics.** By `zp-restriction-trivial-splits-cellular-plus-phantom`, this
+  claim holds iff every `(E, α)` with `Res E ≃_KK 0` has `[α_ω] = 1` in
+  `KK^G(E, E)`.
+  - Every such `E` splits canonically as `eE ⊕ (1 − e)E`, with
+    `e = N([α_ω])/p`. The first summand is a retract of `τ(E ⋊ G)`, the second
+    an equivariant phantom.
+  - An equivariant phantom is exactly an object on which
+    `(1 − χ)(1 − [α_ω])` is invertible.
+
 **Why it matters.**  Let `α : G ↷ O_2` be any action.
 `bootstrap-zp-actions-realize-every-cyclotomic-k-module` gives `A ∈ B^G` and
 `x ∈ KK^G(A, (O_2, α))` inducing an isomorphism of Köhler invariants, with cone
