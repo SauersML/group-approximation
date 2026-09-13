@@ -40,3 +40,15 @@ see `zaremsky-4-07-type-f-groups-have-contractible-rips`.
   left-invariant metric. Two things to check: whether sets of diameter `t` lie in balls of
   radius `J t + O(1)` with `J < 1`, and whether the centre-compatibility clause holds with
   distorted centres.
+- **A direct construction for `H_3(Z)`, unfinished.** In coordinates `(a,b,c)`, left
+  multiplication is affine on `R^3`, `y` acts as a translation in `b`, and `x, z` preserve
+  each plane `b = n`. So an invariant triangulation of `R^3` with vertex set `Z^3` can be
+  assembled from translates of one slab `0 ≤ b ≤ 1`. The bottom face carries the hexagonal
+  lattice triangulation with edge vectors `x, z, xz`; in plane coordinates
+  `(a, c − b a)` the top face carries its flip `(1,0), (0,1), (1,−1)`. The slab itself can be
+  triangulated by the Cayley trick, with Delaunay heights
+  `ξ_1^2 − ξ_1ξ_2 + ξ_2^2` below and `ξ_1^2 + ξ_1ξ_2 + ξ_2^2` above, perturbed. Such a
+  complex is contractible (it is `R^3`) and `H_3(Z)` acts simply transitively on its vertices.
+  The missing step is flagness: a crossing edge exists iff two hexagons from different
+  tilings meet, and these hexagons are of comparable size. That suggests 5-cliques and
+  hence a non-flag complex. The check is finite and periodic, and has not been done.
