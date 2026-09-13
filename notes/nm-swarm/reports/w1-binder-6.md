@@ -72,6 +72,22 @@ every thickening above.
 | `val_ne e hab` | distinct regions stay distinct |
 | `exists_exteriorPair e he ha hb hab hja hjb` | the pair `a ≠ b` of `exists_pocketFaceSet_of_exteriorAt_of_value`, on the copy |
 
+## Module `GGT/VanKampen/SurgeryOuterDoublingTransport.lean` (probe 0913-180428-94428 GREEN; LANDED 3374bf4ed; wire-queued)
+
+Namespace `...VanKampen.OuterDoublingTransport`. The spur module's transport, with `alpha w_j ∉ H.targetArc.darts` in place of
+`faceOf (alpha w_j) ∉ s`: `contiguityGeometry H htgt`, `Transportable`, `regionCandidate`, `regionCandidate_sides` (the sides are the
+images under `embed`), `mem_regionFamily`, `regionFamily`, `_profile`, `_noLoop`, `_card`, `_weight`, `_pairwise`,
+`regionFamilyEquiv`, `_profile`, `_source`. Producers: `not_mem_targetArc_of_avoid` (old hypothesis) and
+`alpha_dart_not_mem_targetArc_of_side` (side dart of its own region).
+
+## Module `GGT/VanKampen/SurgeryOuterSideThickening.lean` (under probe; attic a22b1a4c8)
+
+Namespace `...VanKampen.OuterSideThickening`:
+- `IsOuterSideDart Delta family x` holds when `faceOf x` is the exterior and `alpha x ∈ a.2.rightSide ++ a.2.leftSide` for some
+  `a ∈ family`.
+- `side_outer_of_noOuterSideDart` gives `CopyClean.side_outer`.
+- Closed `outerSideThickening : OuterSideThickeningStatement` has the `OuterCellThickeningStatement` output plus no outer side dart.
+
 ## Plan for `side_outer`
 
 - Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
