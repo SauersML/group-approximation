@@ -31,12 +31,13 @@ field of characteristic zero (`ghwFinitelyGeneratedCharZero`), the residual Prop
   for every entry `x` of `s`, so every entry of the subgroup is integral over `B` after
   multiplication by a power of `M`.
 * Let `L = Frac B` and `K = L(entries)`, a finite extension; the subgroup lies in `GL_2(K)`.
-* The non-archimedean places are those of `exists_places_minpoly_coeff`: bounded valuation makes
-  the scaled coefficients of the minimal polynomial integer polynomials of bounded degree.
+* The non-archimedean places are those of `exists_places_minpoly_coeff`: if `a` has bounded
+  valuation, the coefficients of the minimal polynomial of `M^N a` are integer polynomials of
+  bounded degree.
 * The archimedean places are the embeddings `K → ℂ` above the grid evaluations
-  `L → ℂ, t_i ↦ z_i(k_i)` (`GridPlace`).  Bounded at all of them, those integer polynomials are
-  bounded on a grid, so there are finitely many (`IntegerGridFinite`), and so finitely many
-  minimal polynomials and roots (`finite_of_minpoly_coeff`).
+  `L → ℂ, t_i ↦ z_i(k_i)` (`GridPlace`).  If `a` is bounded at all of them, those integer
+  polynomials are bounded on a grid, so there are finitely many (`IntegerGridFinite`), and so
+  finitely many minimal polynomials and roots (`finite_of_minpoly_coeff`).
 * `hasHaagerupProperty_of_countable_places` concludes.
 -/
 
@@ -133,14 +134,13 @@ theorem countable_gridPlace (d : ℕ) (K : Type*) [Field K] [Algebra (RatFun d) 
   haveI : ∀ k, Finite (GridFiber d K k) := fun k ↦ finite_ringHomOver (K := K) (gridEval d k)
   infer_instance
 
-/-- Elements whose scaled minimal polynomial coefficients are integer polynomials of bounded
+/-- Elements whose minimal polynomial coefficients are integer polynomials of bounded total
 degree, and which are bounded at every grid place, form a finite set. -/
 theorem finite_of_minpoly_coeff {d : ℕ} {K : Type*} [Field K] [Algebra (RatFun d) K]
-    [FiniteDimensional (RatFun d) K] (M N : ℕ) (hM : 0 < M) {n : ℕ}
-    (hn : Module.finrank (RatFun d) K = n) (T : Set K)
-    (hcoeff : ∀ a ∈ T, ∀ i, ∃ G : IntPoly d, G.totalDegree ≤ N * n ∧
-      algebraMap (IntPoly d) (RatFun d) G =
-        (M : RatFun d) ^ (N * n) * (minpoly (RatFun d) a).coeff i)
+    [FiniteDimensional (RatFun d) K] (D : ℕ) {n : ℕ} (hn : Module.finrank (RatFun d) K = n)
+    (T : Set K)
+    (hcoeff : ∀ a ∈ T, ∀ i, ∃ G : IntPoly d, G.totalDegree ≤ D ∧
+      algebraMap (IntPoly d) (RatFun d) G = (minpoly (RatFun d) a).coeff i)
     (C : GridPlace d K → ℝ) :
     {a : K | a ∈ T ∧ ∀ i : GridPlace d K, ‖(i.2 : K →+* ℂ) a‖ ≤ C i}.Finite := by
   classical
@@ -148,25 +148,18 @@ theorem finite_of_minpoly_coeff {d : ℕ} {K : Type*} [Field K] [Algebra (RatFun
     @Fintype.ofFinite _ (finite_ringHomOver (K := K) (gridEval d k))
   -- a bound at each grid point, uniform over the places above it
   let Bd : (Fin d → ℕ) → ℝ := fun k ↦ max 1 (∑ τ : GridFiber d K k, |C ⟨k, τ⟩|)
-  -- the integer polynomials that occur as scaled coefficients
-  let Gs : Set (IntPoly d) := {G | G.totalDegree ≤ N * n ∧ ∀ k : Fin d → Fin (N * n + 1),
+  -- the integer polynomials that occur as coefficients
+  let Gs : Set (IntPoly d) := {G | G.totalDegree ≤ D ∧ ∀ k : Fin d → Fin (D + 1),
     ‖MvPolynomial.eval₂ (Int.castRingHom ℂ) (fun j ↦ gridPoint d j (k j)) G‖ ≤
-      (M : ℝ) ^ (N * n) * (Bd (fun j ↦ (k j : ℕ)) ^ n * 2 ^ n)}
+      Bd (fun j ↦ (k j : ℕ)) ^ n * 2 ^ n}
   have hGs : Gs.Finite := IntegerGridFinite.finite_setOf_totalDegree_le_norm_eval_le
-    (gridPoint d) (gridPoint_injective d) (N * n)
-    (fun k ↦ (M : ℝ) ^ (N * n) * (Bd (fun j ↦ (k j : ℕ)) ^ n * 2 ^ n))
-  have hM0 : (M : RatFun d) ^ (N * n) ≠ 0 := by
-    refine pow_ne_zero _ fun h ↦ hM.ne' ?_
-    have h2 := congrArg (gridEval d 0) h
-    rw [map_natCast, map_zero] at h2
-    exact_mod_cast h2
+    (gridPoint d) (gridPoint_injective d) D (fun k ↦ Bd (fun j ↦ (k j : ℕ)) ^ n * 2 ^ n)
   -- the candidate minimal polynomials
   let Ps : Set (RatFun d)[X] := {P | P.natDegree ≤ n ∧ ∀ i, ∃ G ∈ Gs,
-    algebraMap (IntPoly d) (RatFun d) G = (M : RatFun d) ^ (N * n) * P.coeff i}
+    algebraMap (IntPoly d) (RatFun d) G = P.coeff i}
   have hPs : Ps.Finite := by
     refine Set.Finite.of_finite_image
-      (f := fun (P : (RatFun d)[X]) (i : Fin (n + 1)) ↦ (M : RatFun d) ^ (N * n) * P.coeff i)
-      ?_ ?_
+      (f := fun (P : (RatFun d)[X]) (i : Fin (n + 1)) ↦ P.coeff i) ?_ ?_
     · refine (Set.Finite.pi (t := fun _ : Fin (n + 1) ↦ algebraMap (IntPoly d) (RatFun d) '' Gs)
         fun _ ↦ hGs.image _).subset ?_
       rintro _ ⟨P, ⟨-, hP⟩, rfl⟩
@@ -175,7 +168,7 @@ theorem finite_of_minpoly_coeff {d : ℕ} {K : Type*} [Field K] [Algebra (RatFun
       exact ⟨G, hG, hGeq⟩
     · intro P hP Q hQ hPQ
       refine (Polynomial.ext_iff_natDegree_le hP.1 hQ.1).mpr fun i hi ↦ ?_
-      exact mul_left_cancel₀ hM0 (congrFun hPQ ⟨i, Nat.lt_succ_of_le hi⟩)
+      exact congrFun hPQ ⟨i, Nat.lt_succ_of_le hi⟩
   -- every element of the set is a root of a candidate
   refine (hPs.biUnion fun P _ ↦ P.rootSet_finite K).subset ?_
   rintro a ⟨ha, hC⟩
@@ -186,8 +179,7 @@ theorem finite_of_minpoly_coeff {d : ℕ} {K : Type*} [Field K] [Algebra (RatFun
   obtain ⟨G, hGdeg, hGeq⟩ := hcoeff a ha i
   refine ⟨G, ⟨hGdeg, fun k ↦ ?_⟩, hGeq⟩
   have hk := (gridEval_algebraMap d (fun j ↦ (k j : ℕ)) G).symm
-  rw [hk, hGeq, map_mul, map_pow, map_natCast, norm_mul, norm_pow, Complex.norm_natCast]
-  refine mul_le_mul_of_nonneg_left ?_ (pow_nonneg (Nat.cast_nonneg M) _)
+  rw [hk, hGeq]
   refine norm_coeff_minpoly_le (gridEval d fun j ↦ (k j : ℕ)) a
     (R := Bd fun j ↦ (k j : ℕ)) (le_max_left _ _) (fun τ hτ ↦ ?_) hn i
   have h1 : |C ⟨fun j ↦ (k j : ℕ), τ, hτ⟩| ≤
@@ -370,17 +362,28 @@ theorem hasHaagerupProperty_closure_of_charZero {F : Type} [Field F] [CharZero F
     (fun j ↦ ValuationWithTopInt.addVal_eq_one (u j) (hϖ j)) (ι := GridPlace d K)
     (fun i ↦ (i.2 : K →+* ℂ)) {x : K | ∃ e : ℕ, IsIntegral B ((M : K) ^ e * x)} hS ?_
   intro C N
-  refine (finite_of_minpoly_coeff M N hM rfl
-    {x : K | (∃ e : ℕ, IsIntegral B ((M : K) ^ e * x)) ∧ ∀ j, u j x ≤ exp (N : ℤ)}
-    (fun x hx i ↦ ?_) C).subset ?_
-  · obtain ⟨⟨e, he⟩, hux⟩ := hx
+  -- scaling by `M^N` is injective, and the scaled elements have integral minimal polynomials
+  have hMK : (M : K) ^ N ≠ 0 := by
+    refine pow_ne_zero _ fun h ↦ (Nat.cast_ne_zero.mpr hM.ne' : (M : F) ≠ 0) ?_
+    have h2 := congrArg (K.val : K →+* F) h
+    rwa [map_natCast, map_zero] at h2
+  refine Set.Finite.of_finite_image (f := fun x : K ↦ (M : K) ^ N * x) ?_
+    fun x _ y _ (hxy : (M : K) ^ N * x = (M : K) ^ N * y) ↦ mul_left_cancel₀ hMK hxy
+  refine (finite_of_minpoly_coeff (N * Module.finrank (RatFun d) K) rfl
+    {y : K | ∃ x : K, ((∃ e : ℕ, IsIntegral B ((M : K) ^ e * x)) ∧ ∀ j, u j x ≤ exp (N : ℤ)) ∧
+      (M : K) ^ N * x = y}
+    (fun y hy i ↦ ?_) (fun i ↦ (M : ℝ) ^ N * C i)).subset ?_
+  · obtain ⟨x, ⟨⟨e, he⟩, hux⟩, rfl⟩ := hy
     exact hcoeff N e x he hux i
-  · rintro x ⟨hx, hC, hv⟩
-    refine ⟨⟨hx, fun j ↦ ?_⟩, hC⟩
-    by_cases hx0 : x = 0
-    · rw [hx0, Valuation.map_zero]
-      exact zero_le
-    · exact (ValuationWithTopInt.neg_le_addVal_iff (u j) hx0 (N : ℤ)).mp (hv j)
+  · rintro _ ⟨x, ⟨hx, hC, hv⟩, rfl⟩
+    refine ⟨⟨x, ⟨hx, fun j ↦ ?_⟩, rfl⟩, fun i ↦ ?_⟩
+    · by_cases hx0 : x = 0
+      · rw [hx0, Valuation.map_zero]
+        exact zero_le
+      · exact (ValuationWithTopInt.neg_le_addVal_iff (u j) hx0 (N : ℤ)).mp (hv j)
+    · show ‖(i.2 : K →+* ℂ) ((M : K) ^ N * x)‖ ≤ (M : ℝ) ^ N * C i
+      rw [map_mul, map_pow, map_natCast, norm_mul, norm_pow, Complex.norm_natCast]
+      exact mul_le_mul_of_nonneg_left (hC i) (pow_nonneg (Nat.cast_nonneg M) _)
 
 /-- **GHW Theorem 4 for finitely generated subgroups in characteristic zero.** -/
 theorem ghwFinitelyGeneratedCharZero : GHWFinitelyGeneratedCharZero := by
