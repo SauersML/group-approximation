@@ -252,7 +252,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
     submultiplicativity. So distortion is a weaker decisive input for the descent line than
     `theta < 1`.
     * **Firewall for distortion.** Node `commuting-subgroup-witnesses-cannot-distort-defect-ranges`, from
-      lane w5-commutant-distort; established, with verification requested from w4-vf-gate.
+      lane w5-commutant-distort; established; verifier PASS: w4-vf-gate §25.1.
       * **Result.** Take `L <= G_U` infinite, locally finite and containing the frame's transvections. Take
         `Lambda <= G_(U^c)` with some characteristic-two rank model `rho`. Then `sigma_L (x) rho` is a
         nontrivial fixed-point-free model of `L x Lambda`, and `rk(D_Theta Z) = delta rk(Z)` for every
@@ -263,7 +263,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         * straddling units as factors, not only as conjugators;
         * properties of `Lambda` that no rank model has;
         * global inputs such as corner locality, globality or compactness.
-  * **Two more firewalls** (family SUB; both established, with verification requested from w4-vf-gate).
+  * **Two more firewalls** (family SUB; both established; verifier PASS: w4-vf-gate §16.1 for the first, §15.1 for the second).
     * `finite-subgroup-data-cannot-force-defect-submultiplicativity` (w4-sub-weyl).
       * The regular assignment `rk_reg(alpha) = dim(alpha F_2[K])/|K|` is a rank function on every
         locally finite subgroup and is invariant under conjugation by every unit.
@@ -426,7 +426,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
           By Lemma 6.1, `b` preserves no order in which the frame roots all move one way.
         * `U_< ⋊ F`.
         * `EL_3(J)` at one frame (w7-el3j-sofic).
-      * *(lead check, on paper)* Lemma 6.1 passes. Downward roots force `[A10] < [A110] < [A111]`, so
+      * *(lead check; verifier PASS: w4-vf-gate §35.4, with the correction applied in §37)* Lemma 6.1 holds
+        once the roots of each frame move in one common direction. Downward roots force `[A10] < [A110] < [A111]`, so
         `[A10] < [A11]`. If `b` preserved the order, then `[A100] < [A11] < [A101]`, but `[A101]` lies in
         `[A10]`.
       * *(lead)* This is the fourth host with the same shape. Ordered or one-sided data are approximable,
@@ -451,7 +452,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
 | wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee and §32 at 6bc9bfc1a2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; verifier PASS w3-vf-linear §32 at 87e69e1510; L8). w7-v-cycle-c3 landed (2e8bf4f44d; L8). w7-sub-multiletter landed (37bafd8f30; held OPEN): no deficit from multi-letter inputs, three firewalls (L5). Follow-up w7-matrix-state-deficit landed (f3545c8591; held OPEN): the ternary deficit restates emptiness in both scopes (L9b). w7-k2-unstable landed `K_2(3,R) = 0` for both hosts (8afa079662; verifier PASS w4-vf-gate §34 at b55d89486d; L5). Other follow-up lanes on the same inputs, not yet landed: w7-el3j-presentation, w7-escape-set. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
-| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §32, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
+| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §37, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
 
@@ -520,7 +521,7 @@ without completeness.
       finite cyclic kernels, but it cites ABFG through a repo node rather than the paper. So the marker is
       still unverified at the source (L5).
 * **Rank four.** Source: w4-cohn-el3, `thompson-v-lifts-into-rank-four-cohn-elementary-group`, established;
-  verification requested from w4-vf-gate.
+  verifier PASS: w4-vf-gate §17.
   * **The lift.** Thompson's `V` lifts injectively into `GL_2(C_2)` over the quotient `C_2 -> R`. The lift
     differs from prefix replacement only by finitary units. Since `V` is perfect,
     `phi(V) (+) 1_2 <= EL_4(C_2)`.
@@ -650,7 +651,7 @@ statements say. It is not a re-verification.
 | `leavitt-defect-descent-chain-holds-in-regular-rank-rings` | defect piece, gap, two-sided descent and near-minimal multiplicativity in every faithful regular rank ring | no |
 | `regular-rank-ring-compressors-conserve-fixed-right-ideals` | compressors conserve fixed right ideals in every faithful regular rank ring | no characteristic stated |
 
-**Update** (w4-upg-audit; all four nodes established, verification requested from w4-vf-gate).
+**Update** (w4-upg-audit; all four nodes established; verifier PASS: w4-vf-gate §18.1–18.4).
 * **What changed.** The first version of this table said that the gap, descent and positivity mechanisms
   were stated only for faithful rank ultraproducts. That is now stale in characteristic two:
   * the gap and positivity hold for every Sylvester matrix rank function on `F_2[R^x]`;
