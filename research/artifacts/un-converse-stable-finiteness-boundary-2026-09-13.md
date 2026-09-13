@@ -9,6 +9,12 @@ proved below. **None of it has been reviewed.** Credits:
 - The step-3.3 argument of `research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md`
   is the finite-field case of Theorem C.
 - Reduction of the Weyl algebra mod p (Example D) is classical folklore.
+- **Overlap.** Theorem A and Corollary B were found at the same time by `un-paradox`
+  (`stably-infinite-ring-elementary-groups-have-no-mf-quotient`, landed first) and `un-middle`
+  (`paradoxical-ring-el-n-full-mf-radical-from-twice-level`, `simple-ring-stably-finite-iff-unit-not-paradoxical`),
+  who phrase the hypothesis as a paradox in `V(R)`. Example D is also row F1 of `un-calibration`
+  (`weyl-algebra-over-q-is-lef-ring-not-matricial-over-q`). Printed Prop l.1072 already gives, in positive
+  characteristic and without simplicity, that `EL_4(R)` MF implies `R` directly finite.
 
 Conventions: rings are unital and associative; `e_ij(r) = 1 + r E_ij`; `E_N(R) = EL_N(R)`; the commutator is
 `[g,h] = g h g^-1 h^-1`; `X_ij = {e_ij(r) : r ∈ R}` is a root subgroup. An algebraic ultraproduct is

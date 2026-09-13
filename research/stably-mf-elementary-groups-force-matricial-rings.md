@@ -31,6 +31,13 @@ for simple rings: exactly matricial ⟺ all `EL_N(R)` LEF ⟺ all `EL_N(R)` MF.
 - **Through coordinatization (dies).** Finite images of Steinberg windows need not be linear groups. The
   coordinatization theorem for groups with Steinberg relations in rank `>= 3` recovers a ring only from an
   EXACT group, which gives `R` back and no matricial model.
+- **Evidence from Z-subshift rings (positive, non-simple class).** The peer root
+  `subshift-elementary-mf-iff-word-edges-lie-on-cycles` states `EL_n(LC(X,F_q) ⋊ Z)` MF ⟺ LEF (`n >= 4`), and in
+  the positive case `GL_m` is LEF for every `m`. In that class MF already forces the LEF, tower-type side.
+- **Test object (see `stably-finite-simple-rings-have-mf-elementary-groups`, Attempts).** For a free minimal
+  aperiodic Z^2 SFT `Ω`, the ring `LC(Ω,F_q) ⋊ Z^2` is simple and stably finite, with Kazhdan linear-sofic
+  elementary groups, but exact matricial models are open. If it is not exactly matricial and its elementary
+  groups are MF, the strong form of this claim fails.
 - **Calibration that any converse must survive.** The Weyl algebra `A_1(Q)` has no finite-dimensional
   representations yet is exactly matricial (`weyl-algebra-is-exactly-matricial`). So a converse cannot pass
   through finite-dimensional representations of `R` in characteristic 0; characteristic-p models are needed.

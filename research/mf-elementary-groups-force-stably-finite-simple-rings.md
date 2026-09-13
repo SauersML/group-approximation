@@ -6,6 +6,8 @@ title: Over a simple ring, an MF quotient of EL_N forces M_m directly finite for
 distinct_from:
   full-defect-in-m-by-m-kills-mf-quotients-of-el-2m: that is the ring-level criterion with an explicit full defect in M_m(R); this is its contrapositive for simple rings, where every infinite amplification has a full defect
   stably-finite-simple-rings-have-mf-elementary-groups: that is the open converse, asking whether stable finiteness suffices; this proves only that it is necessary
+  simple-ring-stably-finite-iff-unit-not-paradoxical: that is the ring-level equivalence stably finite <=> no paradox <=> a state on V(R) (un-middle, via KMP's Tarski theorem); this is the group-level consequence, that stably MF elementary groups force those conditions
+  stably-infinite-ring-elementary-groups-have-no-mf-quotient: that is the paradox-side criterion for any ring, with its simple-ring corollary (un-paradox); this is the contrapositive read on the measure side, with the explicit rank window m <= N/2
 artifacts:
   - research/artifacts/un-converse-stable-finiteness-boundary-2026-09-13.md
 ---

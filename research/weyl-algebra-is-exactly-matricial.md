@@ -3,6 +3,8 @@ rg: 2
 id: weyl-algebra-is-exactly-matricial
 kind: claim
 title: The rational Weyl algebra has no finite-dimensional representations but embeds unitally in an ultraproduct of the matrix algebras M_p(F_p)
+distinct_from:
+  weyl-algebra-over-q-is-lef-ring-not-matricial-over-q: that is un-calibration's row for the same algebra, a LEF ring that is not matricial over any characteristic-0 field; this is the explicit unital embedding into the ultraproduct of M_p(F_p), which is exact matricial embeddability over varying fields in the sense of exactly-matricial-rings-have-lef-general-linear-groups
 artifacts:
   - research/artifacts/un-converse-stable-finiteness-boundary-2026-09-13.md
 ---
