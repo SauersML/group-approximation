@@ -729,8 +729,9 @@ fidelity:
     replaces it. The Lean theorem is about SymmetricDouble G Γ; at the trivial
     subgroup that group is the free product G * G, an identification the
     development carries out as GroupApproximation.Surjunctivity.doubleBotEquiv,
-    which gives isSurjunctive_coprodI_double. All groups range
-    over Type 0, and the counterexample is in Type 0.
+    with the free product taken as Monoid.CoprodI of two copies of G, which
+    gives GroupApproximation.Surjunctivity.isSurjunctive_coprodI_double. All
+    groups range over Type 0, and the counterexample is in Type 0.
 
 
 alignment:
