@@ -777,3 +777,29 @@ memory of any strict factor must split over nonabelian free edge groups in both
 splittings (`nonsofic-subgroups-of-higman-group-have-free-edge-groups`). Its four
 two-to-one copying maps on `H/<x>` are restrictions of right translations, so they carry
 no strictness of the full shift. Open root: `higman-group-nonsurjunctive`.
+
+**Amenable extensions and uniform quantitative surjunctivity (2026-09-12,
+w5-free-pos-c).** It is open whether a group `G` with a surjunctive normal subgroup `N`
+and amenable `G/N` is surjunctive (`surjunctive-by-amenable-extensions-are-surjunctive`).
+A yes would cover ascending HNN extensions of surjunctive groups, where no operation of
+the permanence closure applies once the directed union of copies of `N` is not
+residually finite. Restricted to finitely many `N`-cosets, an automaton over `G` becomes
+one over `N`. When the decoder reads inside `N`, plain surjunctivity of `N` forces
+surjectivity (`normal-surjunctive-decoder-memory-forces-surjectivity`). A decoder that
+reads across cosets leaves a boundary loss, and only a deficit that grows with the
+number of subshift tracks pays for it. Verified transfer: if `N` is uniformly
+quantitatively surjunctive (UQS), then `G` is surjunctive, and over a two-ended quotient
+an asymptotic deficit suffices, which covers ascending HNN extensions
+(`amenable-extensions-of-uqs-groups-are-surjunctive`). Maximal Bernoulli Rokhlin entropy
+gives UQS with explicit constants (`maximal-bernoulli-rokhlin-entropy-makes-groups-uqs`,
+w7-quant-residue), but every group known to have it is sofic. The missing input,
+`surjunctive-groups-are-uniformly-quantitatively-surjunctive`, is not known for any
+nonsofic group, so no new surjunctive group follows. In the other direction,
+`leavitt-units-are-not-quantitatively-surjunctive` (open, no candidate built) asks less
+than a strict automaton on the binary Leavitt unit group, and the root
+`leavitt-unit-group-nonsurjunctive` implies it with one track and zero margin. It would
+force zero Rokhlin supremum there (route
+`leavitt-zero-rokhlin-supremum-from-sub-threshold-injection`), refuting
+`bernoulli-rokhlin-entropy-maximal-for-every-group`. Artifacts:
+`research/artifacts/amenable-extension-surjunctivity-transfer-2026-09-12.md`,
+`research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`.
