@@ -71,10 +71,20 @@ None in this range.
 | module | contents | status |
 |---|---|---|
 | `Algebra/ZCrossedProductLift` | `unitPowHom`, `covariant_zpow`, `liftOfUnit` (`_single`, `_C`, `_unit_zpow`, `_unit`, `_sum_C_mul_unit_zpow`), `ringHom_ext` | LANDED 8c0e01a29 (probe 0913-174102-15223 GREEN) |
-| `Algebra/ZCrossedProductDegree` | `DegreesGE`/`DegreesLE`, closure under sums, products and powers, monomials, degree-zero readout | red on section-variable lints (fixed); re-probing |
-| `Dynamics/ReturnRingLift` | `extendCorner`, `returnCoeffHom`, `returnUnit_mul_returnCoeffHom`, `returnRingHom` (θ), `coe_returnRingHom_coeff` / `_unit` / `_unit_inv` / `_unit_zpow` | BUILT in probe 0913-180618-99791 (overall red on Degree); lands with the next green |
-| `Dynamics/ReturnRingInjective` | `cellCoeff_zero`, `degreesGE_one_returnV`, `degreesLE_neg_one_returnW`, `coeff_one_coe_returnRingHom`, `returnRingHom_injective` | first probe pending (blocked on Degree) |
-| `Dynamics/ReturnRingCrossedProduct` | `returnRingHom_surjective` (via `surjective_of_generators`), `returnRingEquiv`, closed `returnRingCrossedProductStatement_holds` | waits for ct-return-tower's `ReturnCornerGeneration` |
+| `Algebra/ZCrossedProductDegree` | `DegreesGE`/`DegreesLE`, closure under sums, products and powers, monomials, degree-zero readout | LANDED 69cfc53ff (probe 0913-182552-29572 GREEN) |
+| `Dynamics/ReturnRingLift` | `extendCorner`, `returnCoeffHom`, `returnUnit_mul_returnCoeffHom`, `returnRingHom` (θ), `coe_returnRingHom_coeff` / `_unit` / `_unit_inv` / `_unit_zpow` | LANDED 69cfc53ff |
+| `Dynamics/ReturnRingInjective` | `cellCoeff_zero`, `degreesGE_one_returnV`, `degreesLE_neg_one_returnW`, `coeff_one_coe_returnRingHom`, `returnRingHom_injective` | LANDED 69cfc53ff |
+| `Dynamics/ReturnRingCrossedProduct` | `returnRingHom_surjective` (via ct-return-tower's `surjective_of_generators`, 2acee7950), `returnRingEquiv`, closed `returnRingCrossedProductStatement_holds` | LANDED 69cfc53ff; `#audit_closed_axioms` passes |
+
+All four modules are queued in `wire-queue.txt`. ct-return-tower adds the census rows for tex 1723 and 1726.
+
+Lean traps:
+- On `ClopenCrossedProduct T k`, the field notation `x.coeff` resolves to the coefficient embedding
+  `ClopenCrossedProduct.coeff`. Write `SkewMonoidAlgebra.coeff x g` for Laurent coefficients.
+- `ReturnRingCrossedProductStatement` spells the corner at `coeff T k (charFn k hC.isClopen)`, while the return ring lemmas
+  are stated at `ReturnCorner k hC` (`returnP`). `rw` cannot build a type-correct motive across them, so use `exact`, which
+  checks definitional equality.
+- `rw [h]` with `h : single g a = …` also rewrites inside a right-hand `coeff (single g a) 1`. Apply `coeff_single_apply` first.
 
 ## Notes for the owners (relayed through main)
 
