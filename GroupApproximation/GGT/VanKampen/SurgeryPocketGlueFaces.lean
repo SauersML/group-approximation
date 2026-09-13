@@ -86,11 +86,8 @@ theorem glueMap_facePerm_glueEmbedding (x : X.Dart) (hx : X.faceOf x ≠ S.outer
   have hx' : X.faceOf (X.facePerm x) ≠ S.outer := by
     rw [CombMap.faceOf_facePerm]
     exact hx
-  calc S.glueMap.facePerm (S.glueEmbedding x)
-      = S.glueMap.facePerm (Sum.inr ⟨x, hx⟩ : S.GlueDart) :=
-        congrArg (fun z => S.glueMap.facePerm z) (S.glueEmbedding_of_ne x hx)
-    _ = (Sum.inr ⟨X.facePerm x, hx'⟩ : S.GlueDart) := S.glueMap_facePerm_inr ⟨x, hx⟩
-    _ = S.glueEmbedding (X.facePerm x) := (S.glueEmbedding_of_ne (X.facePerm x) hx').symm
+  exact (congrArg (fun z => S.glueMap.facePerm z) (S.glueEmbedding_of_ne x hx)).trans
+    ((S.glueMap_facePerm_inr ⟨x, hx⟩).trans (S.glueEmbedding_of_ne (X.facePerm x) hx').symm)
 
 /-! ## Boundaries of the faces in `faces` -/
 
@@ -99,17 +96,22 @@ theorem faceOf_mem_of_mem_darts (g : M.Face) (hg : g ∈ S.faces) (B : FaceBound
   fun d hd => (congrArg (· ∈ S.faces) ((B.mem_iff d).1 hd)).mpr hg
 
 /-- A dart of `M` on `faces`, as a glued dart. -/
-def leftDart (d : M.Dart) (hd : M.faceOf d ∈ S.faces) : S.glueMap.Dart :=
+def faceDart (d : M.Dart) (hd : M.faceOf d ∈ S.faces) : S.glueMap.Dart :=
   (Sum.inl ⟨d, hd⟩ : S.GlueDart)
+
+theorem faceDart_congr {d e : M.Dart} (hde : d = e) (hd : M.faceOf d ∈ S.faces)
+    (he : M.faceOf e ∈ S.faces) : S.faceDart d hd = S.faceDart e he := by
+  subst hde
+  rfl
 
 /-- The darts of an ordered boundary of a face in `faces`, as glued darts. -/
 def leftDarts (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
     List S.glueMap.Dart :=
-  B.darts.pmap S.leftDart (S.faceOf_mem_of_mem_darts g hg B)
+  B.darts.pmap S.faceDart (S.faceOf_mem_of_mem_darts g hg B)
 
 theorem leftDarts_ne_nil (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
     S.leftDarts g hg B ≠ [] :=
-  (List.pmap_ne_nil_iff S.leftDart (S.faceOf_mem_of_mem_darts g hg B)).2 B.nonempty
+  (List.pmap_ne_nil_iff S.faceDart (S.faceOf_mem_of_mem_darts g hg B)).2 B.nonempty
 
 theorem leftDarts_nodup (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
     (S.leftDarts g hg B).Nodup := by
@@ -121,50 +123,39 @@ theorem leftDarts_nodup (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g)
 theorem mem_leftDarts_iff (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g)
     (e : S.GlueDart) :
     e ∈ S.leftDarts g hg B ↔ S.glueMap.faceOf e = S.leftFace ⟨g, hg⟩ := by
-  rewrite [leftFace, Equiv.eq_symm_apply, leftDarts, List.mem_pmap]
-  rcases e with d | x
-  · rewrite [S.glueFaceEquiv_faceOf_inl d]
-    constructor
-    · rintro ⟨a, ha, hmem⟩
-      have h' : (Sum.inl ⟨a, S.faceOf_mem_of_mem_darts g hg B a ha⟩ : S.GlueDart) =
-          Sum.inl d := hmem
-      have had : a = d.1 := congrArg Subtype.val (Sum.inl_injective h')
-      exact congrArg Sum.inl (Subtype.ext
-        ((congrArg M.faceOf had).symm.trans ((B.mem_iff a).1 ha)))
-    · intro hface
-      have hf : M.faceOf d.1 = g := congrArg Subtype.val (Sum.inl_injective hface)
-      exact ⟨d.1, (B.mem_iff d.1).2 hf, rfl⟩
-  · rewrite [S.glueFaceEquiv_faceOf_inr x]
-    constructor
-    · rintro ⟨a, ha, hmem⟩
-      have h' : (Sum.inl ⟨a, S.faceOf_mem_of_mem_darts g hg B a ha⟩ : S.GlueDart) =
-          Sum.inr x := hmem
-      exact absurd h' Sum.inl_ne_inr
-    · intro hface
-      exact absurd hface Sum.inr_ne_inl
+  refine ⟨fun hmem => ?_, fun hface => ?_⟩
+  · obtain ⟨a, ha, rfl⟩ := List.mem_pmap.1 hmem
+    have hga : M.faceOf a ∈ S.faces := S.faceOf_mem_of_mem_darts g hg B a ha
+    have key : (⟨M.faceOf a, hga⟩ : {f : M.Face // f ∈ S.faces}) = ⟨g, hg⟩ :=
+      Subtype.ext ((B.mem_iff a).1 ha)
+    exact (S.faceOf_inl ⟨a, hga⟩).trans (congrArg S.leftFace key)
+  · rcases e with d | x
+    · have hf : M.faceOf d.1 = g :=
+        congrArg Subtype.val (S.leftFace_injective ((S.faceOf_inl d).symm.trans hface))
+      exact List.mem_pmap.2 ⟨d.1, (B.mem_iff d.1).2 hf, rfl⟩
+    · exact absurd ((S.faceOf_inr x).symm.trans hface).symm (S.leftFace_ne_rightFace _ _)
 
 theorem leftDarts_chain (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
     (S.leftDarts g hg B).IsChain fun d e => S.glueMap.facePerm d = e := by
   refine List.isChain_pmap_of_isChain ?_ B.chain _
   intro a b ha hb hab
-  exact (S.glueMap_facePerm_inl ⟨a, ha⟩).trans
-    (congrArg (fun z => (Sum.inl z : S.GlueDart)) (Subtype.ext hab))
+  exact (S.glueMap_facePerm_inl ⟨a, ha⟩).trans (S.faceDart_congr hab _ hb)
 
 theorem leftDarts_closes (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
     S.glueMap.facePerm ((S.leftDarts g hg B).getLast (S.leftDarts_ne_nil g hg B)) =
       (S.leftDarts g hg B).head (S.leftDarts_ne_nil g hg B) := by
   have hlast : (S.leftDarts g hg B).getLast (S.leftDarts_ne_nil g hg B) =
-      S.leftDart (B.darts.getLast B.nonempty)
+      S.faceDart (B.darts.getLast B.nonempty)
         (S.faceOf_mem_of_mem_darts g hg B _ (List.getLast_mem B.nonempty)) :=
     List.getLast_pmap _ _
   have hhead : (S.leftDarts g hg B).head (S.leftDarts_ne_nil g hg B) =
-      S.leftDart (B.darts.head B.nonempty)
+      S.faceDart (B.darts.head B.nonempty)
         (S.faceOf_mem_of_mem_darts g hg B _ (List.head_mem B.nonempty)) :=
     List.head_pmap _ _
   rewrite [hlast, hhead]
   exact (S.glueMap_facePerm_inl ⟨B.darts.getLast B.nonempty,
       S.faceOf_mem_of_mem_darts g hg B _ (List.getLast_mem B.nonempty)⟩).trans
-    (congrArg (fun z => (Sum.inl z : S.GlueDart)) (Subtype.ext B.closes))
+    (S.faceDart_congr B.closes _ _)
 
 /-- The ordered boundary of the glued face carrying a face in `faces`. -/
 def leftFaceBoundary (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
@@ -197,29 +188,18 @@ theorem rightDarts_nodup (h : X.Face) (B : FaceBoundary X h) : (S.rightDarts h B
 theorem mem_rightDarts_iff (h : X.Face) (hh : h ≠ S.outer) (B : FaceBoundary X h)
     (e : S.GlueDart) :
     e ∈ S.rightDarts h B ↔ S.glueMap.faceOf e = S.rightFace ⟨h, hh⟩ := by
-  rewrite [rightFace, Equiv.eq_symm_apply, rightDarts, List.mem_map]
-  rcases e with d | x
-  · rewrite [S.glueFaceEquiv_faceOf_inl d]
-    constructor
-    · rintro ⟨a, ha, hmem⟩
-      have h' : (Sum.inr ⟨a, S.faceOf_ne_of_mem_darts h hh B a ha⟩ : S.GlueDart) =
-          Sum.inl d :=
-        (S.glueEmbedding_of_ne a (S.faceOf_ne_of_mem_darts h hh B a ha)).symm.trans hmem
-      exact absurd h' Sum.inr_ne_inl
-    · intro hface
-      exact absurd hface Sum.inl_ne_inr
-  · rewrite [S.glueFaceEquiv_faceOf_inr x]
-    constructor
-    · rintro ⟨a, ha, hmem⟩
-      have h' : (Sum.inr ⟨a, S.faceOf_ne_of_mem_darts h hh B a ha⟩ : S.GlueDart) =
-          Sum.inr x :=
-        (S.glueEmbedding_of_ne a (S.faceOf_ne_of_mem_darts h hh B a ha)).symm.trans hmem
-      have hax : a = x.1 := congrArg Subtype.val (Sum.inr_injective h')
-      exact congrArg Sum.inr (Subtype.ext
-        ((congrArg X.faceOf hax).symm.trans ((B.mem_iff a).1 ha)))
-    · intro hface
-      have hf : X.faceOf x.1 = h := congrArg Subtype.val (Sum.inr_injective hface)
-      exact ⟨x.1, (B.mem_iff x.1).2 hf, S.glueEmbedding_of_ne x.1 x.2⟩
+  refine ⟨fun hmem => ?_, fun hface => ?_⟩
+  · obtain ⟨a, ha, rfl⟩ := List.mem_map.1 hmem
+    have hna : X.faceOf a ≠ S.outer := S.faceOf_ne_of_mem_darts h hh B a ha
+    have key : (⟨X.faceOf a, hna⟩ : {f : X.Face // f ≠ S.outer}) = ⟨h, hh⟩ :=
+      Subtype.ext ((B.mem_iff a).1 ha)
+    exact (congrArg (fun z => S.glueMap.faceOf z) (S.glueEmbedding_of_ne a hna)).trans
+      ((S.faceOf_inr ⟨a, hna⟩).trans (congrArg S.rightFace key))
+  · rcases e with d | x
+    · exact absurd ((S.faceOf_inl d).symm.trans hface) (S.leftFace_ne_rightFace _ _)
+    · have hf : X.faceOf x.1 = h :=
+        congrArg Subtype.val (S.rightFace_injective ((S.faceOf_inr x).symm.trans hface))
+      exact List.mem_map.2 ⟨x.1, (B.mem_iff x.1).2 hf, S.glueEmbedding_of_ne x.1 x.2⟩
 
 theorem rightDarts_chain (h : X.Face) (hh : h ≠ S.outer) (B : FaceBoundary X h) :
     (S.rightDarts h B).IsChain fun d e => S.glueMap.facePerm d = e := by
@@ -336,7 +316,8 @@ theorem glueLabel_alpha (inv : L → L) (hM : ∀ d, labM (M.alpha d) = inv (lab
 
 theorem leftDarts_map_glueLabel (g : M.Face) (hg : g ∈ S.faces) (B : FaceBoundary M g) :
     (S.leftDarts g hg B).map (S.glueLabel labM labX) = B.darts.map labM :=
-  (List.map_pmap (g := S.glueLabel labM labX) (S.faceOf_mem_of_mem_darts g hg B)).trans
+  (List.map_pmap (g := S.glueLabel labM labX) (f := S.faceDart)
+    (S.faceOf_mem_of_mem_darts g hg B)).trans
     (List.pmap_eq_map (f := labM) (S.faceOf_mem_of_mem_darts g hg B))
 
 theorem rightDarts_map_glueLabel (h : X.Face) (hh : h ≠ S.outer) (B : FaceBoundary X h) :
