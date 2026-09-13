@@ -17,8 +17,8 @@ degree bookkeeping for the algebraic crossed products `A ⋊ ℤ = SkewMonoidAlg
 of `Pestov91.CrossedProduct`:
 
 * `DegreesGE n x`: `x` has no coefficients in degrees `< n`; `DegreesLE n x`: none in degrees `> n`;
-* closure under `0`, addition, finite sums, products (`DegreesGE.mul`: degrees add) and powers
-  (`DegreesGE.pow_of_one`, `DegreesLE.pow_of_neg_one`);
+* closure under `0`, addition, monotonicity (`DegreesGE.mono`), finite sums, products
+  (`DegreesGE.mul`: degrees add) and powers (`DegreesGE.pow_of_one`, `DegreesLE.pow_of_neg_one`);
 * the monomials: `degreesGE_single`, `degreesLE_single`, `degreesGE_C`, `degreesLE_C`,
   `degreesGE_unit_zpow`, `degreesLE_unit_zpow`;
 * reading degree zero: `coeff_one_of_degreesGE_one`, `coeff_one_of_degreesLE_neg_one`,
@@ -32,7 +32,7 @@ namespace CrossedProduct
 open SkewMonoidAlgebra (single)
 open Multiplicative (ofAdd toAdd)
 
-variable {A : Type*} [Ring A] [MulSemiringAction (Multiplicative ℤ) A]
+variable {A : Type*} [Ring A]
 
 /-- `x` has no coefficients in degrees `< n`. -/
 def DegreesGE (n : ℤ) (x : SkewMonoidAlgebra A (Multiplicative ℤ)) : Prop :=
@@ -42,7 +42,7 @@ def DegreesGE (n : ℤ) (x : SkewMonoidAlgebra A (Multiplicative ℤ)) : Prop :=
 def DegreesLE (n : ℤ) (x : SkewMonoidAlgebra A (Multiplicative ℤ)) : Prop :=
   ∀ g : Multiplicative ℤ, n < toAdd g → x.coeff g = 0
 
-section Closure
+section Additive
 
 variable {m n : ℤ} {x y : SkewMonoidAlgebra A (Multiplicative ℤ)}
 
@@ -58,6 +58,28 @@ theorem DegreesGE.add (hx : DegreesGE n x) (hy : DegreesGE n y) : DegreesGE n (x
 theorem DegreesLE.add (hx : DegreesLE n x) (hy : DegreesLE n y) : DegreesLE n (x + y) :=
   fun g hg => by rw [SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, hx g hg, hy g hg, add_zero]
 
+theorem DegreesGE.mono (hx : DegreesGE n x) (h : m ≤ n) : DegreesGE m x :=
+  fun g hg => hx g (lt_of_lt_of_le hg h)
+
+theorem DegreesLE.mono (hx : DegreesLE n x) (h : n ≤ m) : DegreesLE m x :=
+  fun g hg => hx g (lt_of_le_of_lt h hg)
+
+theorem degreesGE_single {g : Multiplicative ℤ} (hg : n ≤ toAdd g) (a : A) :
+    DegreesGE n (single g a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
+  classical
+  intro g' hg'
+  rw [SkewMonoidAlgebra.coeff_single_apply, if_neg]
+  rintro rfl
+  omega
+
+theorem degreesLE_single {g : Multiplicative ℤ} (hg : toAdd g ≤ n) (a : A) :
+    DegreesLE n (single g a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
+  classical
+  intro g' hg'
+  rw [SkewMonoidAlgebra.coeff_single_apply, if_neg]
+  rintro rfl
+  omega
+
 theorem degreesGE_sum {ι : Type*} (s : Finset ι) (f : ι → SkewMonoidAlgebra A (Multiplicative ℤ))
     (h : ∀ i ∈ s, DegreesGE n (f i)) : DegreesGE n (∑ i ∈ s, f i) :=
   Finset.sum_induction _ (DegreesGE n) (fun _ _ ha hb => ha.add hb) (degreesGE_zero n) h
@@ -65,6 +87,21 @@ theorem degreesGE_sum {ι : Type*} (s : Finset ι) (f : ι → SkewMonoidAlgebra
 theorem degreesLE_sum {ι : Type*} (s : Finset ι) (f : ι → SkewMonoidAlgebra A (Multiplicative ℤ))
     (h : ∀ i ∈ s, DegreesLE n (f i)) : DegreesLE n (∑ i ∈ s, f i) :=
   Finset.sum_induction _ (DegreesLE n) (fun _ _ ha hb => ha.add hb) (degreesLE_zero n) h
+
+/-- An element with no coefficients below degree `1` has degree-zero coefficient `0`. -/
+theorem coeff_one_of_degreesGE_one (hx : DegreesGE 1 x) : x.coeff 1 = 0 :=
+  hx 1 (by simp)
+
+/-- An element with no coefficients above degree `-1` has degree-zero coefficient `0`. -/
+theorem coeff_one_of_degreesLE_neg_one (hx : DegreesLE (-1) x) : x.coeff 1 = 0 :=
+  hx 1 (by simp)
+
+end Additive
+
+section Mul
+
+variable [MulSemiringAction (Multiplicative ℤ) A] {m n : ℤ}
+  {x y : SkewMonoidAlgebra A (Multiplicative ℤ)}
 
 /-- **Degrees add under multiplication.** -/
 theorem DegreesGE.mul (hx : DegreesGE m x) (hy : DegreesGE n y) : DegreesGE (m + n) (x * y) := by
@@ -102,26 +139,6 @@ theorem DegreesLE.mul (hx : DegreesLE m x) (hy : DegreesLE n y) : DegreesLE (m +
   rw [toAdd_mul] at hsum
   omega
 
-end Closure
-
-section Monomials
-
-theorem degreesGE_single {n : ℤ} {g : Multiplicative ℤ} (hg : n ≤ toAdd g) (a : A) :
-    DegreesGE n (single g a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
-  classical
-  intro g' hg'
-  rw [SkewMonoidAlgebra.coeff_single_apply, if_neg]
-  rintro rfl
-  omega
-
-theorem degreesLE_single {n : ℤ} {g : Multiplicative ℤ} (hg : toAdd g ≤ n) (a : A) :
-    DegreesLE n (single g a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
-  classical
-  intro g' hg'
-  rw [SkewMonoidAlgebra.coeff_single_apply, if_neg]
-  rintro rfl
-  omega
-
 theorem degreesGE_C (a : A) : DegreesGE 0 (C a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
   rw [C_apply]
   exact degreesGE_single (by simp) a
@@ -147,12 +164,6 @@ theorem coeff_one_C (a : A) : (C a : SkewMonoidAlgebra A (Multiplicative ℤ)).c
   classical
   rw [C_apply, SkewMonoidAlgebra.coeff_single_apply, if_pos rfl]
 
-end Monomials
-
-section Powers
-
-variable {x : SkewMonoidAlgebra A (Multiplicative ℤ)}
-
 theorem DegreesGE.pow_of_one (hx : DegreesGE 1 x) (j : ℕ) : DegreesGE (j : ℤ) (x ^ j) := by
   induction j with
   | zero =>
@@ -172,15 +183,7 @@ theorem DegreesLE.pow_of_neg_one (hx : DegreesLE (-1) x) (j : ℕ) :
     rw [pow_succ, Nat.cast_succ, neg_add]
     exact ih.mul hx
 
-/-- An element with no coefficients below degree `1` has degree-zero coefficient `0`. -/
-theorem coeff_one_of_degreesGE_one (hx : DegreesGE 1 x) : x.coeff 1 = 0 :=
-  hx 1 (by simp)
-
-/-- An element with no coefficients above degree `-1` has degree-zero coefficient `0`. -/
-theorem coeff_one_of_degreesLE_neg_one (hx : DegreesLE (-1) x) : x.coeff 1 = 0 :=
-  hx 1 (by simp)
-
-end Powers
+end Mul
 
 end CrossedProduct
 end Pestov91
