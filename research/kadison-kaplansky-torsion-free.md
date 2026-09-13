@@ -139,6 +139,12 @@ group `G * Z`.
     - spectral capacity at least `1`;
     - a support generating a subgroup without (RD);
     - a spectrum in every unconditional completion that crosses the reduced gap.
+  - *Trace form on the group itself (2026-09-12):* `selfless-projection-traces-equal-k0-trace-image`.
+    `C*_r(Γ(3))` is selfless (Ozawa, via Zariski density), so its projection traces are
+    exactly `τ_*(K_0(C*_r Γ(3))) ∩ [0,1]`. So Kadison--Kaplansky for `Γ(3)` holds iff every
+    class of `K_0(C*_r Γ(3))` has integer trace. Integrality is known on the assembly image
+    and on the image of `K_0` of unconditional completions. A witness is a `K_0` class
+    outside both, and a matrix witness over `Γ(3)` already refutes the conjecture on `Γ(3)`.
   - *Where it stops:* `sl3z-has-no-spectral-unconditional-completion` (Lafforgue). No
     unconditional completion is spectral in `C*_r(SL_3(Z))`. The obstruction already
     sits on the amenable subgroup `Z^2 ⋊ Z`.
