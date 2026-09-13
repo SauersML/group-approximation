@@ -12,6 +12,18 @@ artifacts:
 **UNREVIEWED** (lane `ex2-tw-unsplittable-tails`, 2026-09-13). An `ex-verify-analysis` review is
 requested before this is described as settling BBSTWW Question 3.14.
 
+**Statement fidelity.**
+- **Source.** Read from arXiv:1506.03974 (MSI copy, text extracted locally): "Question 3.14. Does there
+  exist a nontrivial strictly-separable bundle M over a compact metrizable space K all of whose fibres
+  are copies of R?"
+- **Where triviality is already known.** BBSTWW list two conditions:
+  - `K` of finite covering dimension (Ozawa);
+  - `M = B^st` for a separable unital nuclear Z-stable `B` with Bauer simplex.
+
+  The witness below meets neither: its base is infinite-dimensional, and its algebra is not Z-stable.
+- **Status as recently recorded.** Mommaerts, arXiv:2606.12134, Remark 4.7 (verbatim): "The
+  (non)-existence of such a bundle is not known."
+
 1. **The witness.** The prerequisite gives a strictly separable continuous W*-bundle `M` over the
    compact metrizable space `X̂ = Π_k (RP^{4^{k−1}} × RP^{2·4^{k−1}})`, every fibre `R`. It is the
    uniform tracial completion of a unital separable nuclear `C(X̂)`-algebra with `M_{2^∞}` fibres

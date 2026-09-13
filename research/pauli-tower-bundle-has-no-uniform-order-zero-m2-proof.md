@@ -2,14 +2,28 @@
 rg: 2
 id: pauli-tower-bundle-has-no-uniform-order-zero-m2-proof
 kind: route
-title: The image of a minimal projection under a large order zero M_2 has variance at least 1/4 − ε everywhere
+title: A scalar point of a − b kills one of two orthogonal positive elements, and equivalent pieces of an order zero map vanish together
 target: pauli-tower-bundle-has-no-uniform-order-zero-m2
 requires: [pauli-tower-bundle-has-scalar-point-property]
 artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md
+  - research/artifacts/tw-pauli-tower-scalar-point-bundle-part2-2026-09-13.md
 ---
 
-Section 5, C2 of the artifact. Unreviewed.
+Part 2, Section 1 (Theorem C, Corollaries C1–C2); the first-proved `1/4` bound is part 1, C2.
+Unreviewed.
+
+**Theorem C.** Let `a, b ≥ 0` with `ab = 0`, and take `λ` with `π_λ(a − b) = μ1` (prerequisite).
+- `μ > 0`: `π_λ(a) ≥ μ1` is invertible, so `π_λ(b) = 0`.
+- `μ < 0`: `π_λ(a) = 0`.
+- `μ = 0`: `π_λ(a) = π_λ(b)` and `π_λ(a)² = π_λ(a)π_λ(b) = 0`.
+
+**Corollary C1.** Apply Theorem C to `φ(e_{11}) ⊥ φ(e_{22})`. In the fibre,
+`φ(e_{ii}) = π(e_{i1})φ(e_{11})π(e_{1i})` (Winter–Zacharias), so all pieces vanish together.
+
+**Corollary C2.** Apply Theorem C to `p ⊥ 1 − p`.
+
+**First-proved bound, kept for the record.**
 
 1. **Setup.**
    - Let `φ: M_2 → M` be c.p.c. order zero, `c = φ(1)`, with `ε_λ = τ_λ(1 − c) < 1/4` for every `λ`.

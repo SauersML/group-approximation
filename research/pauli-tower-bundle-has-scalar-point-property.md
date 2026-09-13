@@ -36,6 +36,8 @@ the uniform tracial completion of `A`.
   `nontrivial-w-star-bundle-with-r-fibres-exists`.
 - **No uniform `M_2`.** `pauli-tower-bundle-has-no-uniform-order-zero-m2` refutes
   `r-fibre-w-star-bundles-divide-the-unit-uniformly`.
+  - Sharper form: of two orthogonal positive elements, one vanishes in some fibre.
+  - So every order zero `M_N → M` (`N ≥ 2`) vanishes in some fibre (part 2, Theorem C).
 - **No Z-stability, no projections.** `A` is not Z-stable, and it has no projections other than
   `0` and `1`.
 - **Consistency with the localization theorems.** `X̂` contains a Hilbert cube, and every point has

@@ -2,17 +2,24 @@
 rg: 2
 id: pauli-tower-bundle-has-no-uniform-order-zero-m2
 kind: claim
-title: The Pauli tower's R-fibre W*-bundle admits no order zero M_2 whose unit has trace above 3/4 at every point
+title: Every order zero copy of M_2 in the Pauli tower's R-fibre W*-bundle vanishes in some fibre
 distinct_from:
   r-fibre-w-star-bundles-divide-the-unit-uniformly: that asserts uniformly large order zero M_N in every R-fibre bundle for every N; this is a counterexample at N = 2.
-  pauli-tower-bundle-has-scalar-point-property: that is the scalar point property; this is its consequence for order zero maps, through the variance of the image of a minimal projection.
+  pauli-tower-bundle-has-scalar-point-property: that is the scalar point property; this is its consequence for orthogonal pairs and order zero maps.
 artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md
+  - research/artifacts/tw-pauli-tower-scalar-point-bundle-part2-2026-09-13.md
 ---
 
 **Statement (unreviewed).** Let `M` be the W*-bundle of `pauli-tower-bundle-has-scalar-point-property`,
-over `X̂` with conditional expectation `E`. There is no c.p.c. order zero map `φ: M_2 → M` with
-`‖E(1 − φ(1))‖ < 1/4`. Equivalently, the reduced power `M^U` contains no unital copy of `M_2`.
+over `X̂` with conditional expectation `E`.
+- **Orthogonal pairs.** For positive `a, b ∈ M` with `ab = 0`, some `λ ∈ X̂` has `π_λ(a) = 0` or
+  `π_λ(b) = 0`.
+- **Order zero maps.** Every c.p.c. order zero `φ: M_N → M` with `N ≥ 2` has a point `λ` with
+  `π_λ ∘ φ = 0`. So `min_λ τ_λ(φ(1)) = 0`.
+- **Projections.** Every projection of `M` is `0` or `1` in some fibre.
+- **Reduced power.** `M^U` contains no unital copy of `M_2`. The weaker form proved first was:
+  no `φ` with `‖E(1 − φ(1))‖ < 1/4`.
 
 **So `r-fibre-w-star-bundles-divide-the-unit-uniformly` is false.**
 
