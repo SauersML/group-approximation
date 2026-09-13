@@ -12,15 +12,15 @@ import Mathlib.LinearAlgebra.UnitaryGroup
 import GroupApproximation.Kazhdan.KazhdanComplex
 import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.LEFSofic
-import GroupApproximation.Pestov91.Assembly
+import GroupApproximation.Pestov91.WitnessAssembly
 
 /-!
 # Proof of the Pestov Open Question 9.1 theorems
 
 This file repeats the challenge's shared block byte for byte, translates the
 development's vocabulary into it, and derives the statements
-`Palomar/comparator-pestov91.json` selects from any infinite simple LEF group
-of the development with property `(T)`.
+`Palomar/comparator-pestov91.json` selects from the development's infinite
+simple LEF group with property `(T)`.
 
 * `hasPropertyT_of_hasKazhdanPropertyTComplex` and
   `hasKazhdanPropertyTComplex_of_hasPropertyT`: the challenge's `HasPropertyT`
@@ -45,13 +45,15 @@ of the development with property `(T)`.
   `exists_infinite_simple_propertyT_sofic_of` carry any infinite simple LEF
   group of the development with property `(T)` into the challenge's two
   statements.
+* `exists_infinite_simple_propertyT_hyperlinear` and
+  `exists_infinite_simple_propertyT_sofic`: the challenge's two statements.
 
-The development endpoints have the shapes of
-`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of` and
-`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of_elementary`
-in `GroupApproximation/Pestov91/Assembly.lean`: `EL₃(A)/Z(EL₃(A))`, respectively
-`EL₃(A)`, for a finitely generated ring `A`, once that group is simple and LEF
-and the quotient is infinite.
+The development endpoint is
+`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef` in
+`GroupApproximation/Pestov91/WitnessAssembly.lean`.  Its group is `EL₃(A)` for
+the finitely generated ring `A = LC(X, 𝔽₂) ⋊ ℤ` over the Toeplitz subshift `X`,
+through `GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of_elementary`
+in `GroupApproximation/Pestov91/Assembly.lean`.
 
 The prose of this module was written by Claude (Anthropic).
 -/
@@ -226,6 +228,22 @@ theorem exists_infinite_simple_propertyT_sofic_of
   obtain ⟨E, _, hinf, hsimple, hT, hlef⟩ := h
   exact ⟨E, inferInstance, hinf, hsimple, hasPropertyT_iff_hasKazhdanPropertyT.mpr hT,
     isSoficGroup_of_isLEF hlef⟩
+
+/-- **Open question 9.1 has a positive answer**: some infinite simple group
+with Kazhdan's property `(T)` is hyperlinear. -/
+theorem exists_infinite_simple_propertyT_hyperlinear :
+    ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
+      IsHyperlinearGroup G :=
+  exists_infinite_simple_propertyT_hyperlinear_of
+    GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef
+
+/-- **The sofic form of question 9.1 has a positive answer**: some infinite
+simple group with Kazhdan's property `(T)` is sofic. -/
+theorem exists_infinite_simple_propertyT_sofic :
+    ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
+      IsSoficGroup G :=
+  exists_infinite_simple_propertyT_sofic_of
+    GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef
 
 end
 
