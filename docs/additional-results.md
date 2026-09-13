@@ -186,6 +186,14 @@ algebra result puts every finite part of the transient ideal into
 a finite product of matrix algebras, using finite wandering clopen
 covers. These are written proofs, not Lean formalizations.
 
+The [full low-rank reflection](../research/artifacts/pestov91-return-core-full-low-rank-radical-2026-09-13.md)
+extends this exact cycle-core formula to rank two when there are no
+fixed points, and to units when periods one, two and three are absent.
+A full return section preserves the core and normally generates the
+whole transient kernel. Thus the earlier low-rank invisible witness
+is strengthened to a complete radical and LEF quotient description,
+including for every aperiodic subshift.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
