@@ -30,3 +30,5 @@ Then `R` embeds unitally in an algebraic ultraproduct of matrix algebras over fi
 nonzero finite-dimensional modules at every scale?
 
 Route: `torus-quantum-tilings-decide-matriciality-of-sft-rings-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Induction, restriction, specialization (Łoś plus the Nullstellensatz over F_p) and the equivalence re-derived. Item 1 of `matricial-aperiodic-sft-rings-are-not-quantum-rigid` reviewed PASS as part of this; families-to-matricial is PASS (part 1 §M6). No conflict in the subsumption scan. See `research/artifacts/un-review-measure-2026-09-13-part3.md` §L1.

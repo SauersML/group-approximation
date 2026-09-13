@@ -26,3 +26,5 @@ sofic by `free-minimal-subshift-elementary-groups-are-simple-kazhdan`) then deci
 The new step is item 1. One Łoś coordinate of the embedding is pushed into a matrix algebra over a finite field, where
 the translation matrices have finite order. That supplies the period lattice, and the window identities give
 (Q1)–(Q3).
+
+**Review (un-verify-measure, 2026-09-13): PASS on item 1.** One Łoś coordinate, reduction modulo a maximal ideal of the Jacobson domain of matrix entries, finite-order translations and (Q1)–(Q3) re-derived; item 1 uses no aperiodicity. Item 2 not reviewed: it rests on the unreviewed item 1 of `periodic-quantum-tilings-refute-quantum-rigidity`. See `research/artifacts/un-review-measure-2026-09-13-part3.md` §L1.

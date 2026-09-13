@@ -41,3 +41,11 @@ sup-diameter `> 2D`. No fixed dimension, algebra or torus works at all large sca
   constant configuration. Such modules exist only for SFTs with a fixed point.
 
 Route: `sft-tiling-module-dimensions-and-periods-must-diverge-proof`.
+
+**Definition (added at review).** The *sup-diameter* of `Z^2/Λ` is `max_(t ∈ Z^2/Λ) min { |w|_∞ : w ∈ t }`.
+
+**Credit (review).** Item 1 is a quantitative form of item 1 of `periodic-quantum-tilings-refute-quantum-rigidity`: a small torus forces commutation, which that node forbids for aperiodic SFTs after induction to a covariant family.
+
+**Model-test note (review).** The first model test concerns Markov approximations of infinite minimal `Z`-subshifts, which are not themselves SFTs. It is an analogue of the growth phenomenon, not an instance of the hypotheses.
+
+**Review (un-verify-measure, 2026-09-13): PASS, with a display fix.** The common-eigenvector period bound and the rank-measure dimension argument re-derived; the missing definition of sup-diameter added. See `research/artifacts/un-review-measure-2026-09-13-part3.md` §L2.
