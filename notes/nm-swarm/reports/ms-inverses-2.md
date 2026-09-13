@@ -153,9 +153,9 @@ Ownership check 09-13 ~18:25: no rotation lemma for `IsNoncrossingClosedWalk` an
 - CLAIM L1a GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:
   `IsNoncrossingClosedWalk.rotate` and `append_comm`, and the decomposition walk of two ordered exterior regions is
   noncrossing at least area under the edge conditions, with the arc bounds of `TwoGonEitherFollowsPocketInput`.
-- CLAIM L1b GroupApproximation/GGT/VanKampen/SurgeryRegionEdgeThickening.lean (provisional): the `regions` clause, a G-digon on
-  every edge joining faces of two distinct selected regions. Model test first; `FaceEdgeDoubling.regionFamily` transports only
-  regions avoiding the doubled face, so the region holding it needs a new transport.
+- L1b CLAIM WITHDRAWN (09-13 ~18:35): the `regions` clause is ms-intro-2's (`SurgeryRegionPairThickening` and its `decide`
+  model, unlanded at 18:21; agreed with w1-binder-5 and listed in w1-binder-6's clause table). This lane builds nothing there and
+  consumes `regionPairThickening` when it lands.
 
 ## Progress log
 
