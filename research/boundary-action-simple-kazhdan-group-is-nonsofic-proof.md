@@ -16,7 +16,7 @@ artifacts:
 
 1. `R_∂` is a nontrivial countable `k`-algebra carrying a unital `d`-ary Leavitt family
    (`boundary-crossed-product-carries-leavitt-family`). By `d-ary-leavitt-groups-nonsofic-over-finite-fields`
-   (Lean `LeavittFamily.elementary_not_isSofic`), `EL_N(R_∂)` is nonsofic for `N >= 2`.
+   (Lean `GroupApproximation.CompleteMatrixFamily.elementary_not_isSofic` in `Leavitt/AryEndpoints.lean`), `EL_N(R_∂)` is nonsofic for `N >= 2`.
 2. **Corner copy.** Put `e = s_1 t_1`; since `d >= 2`, `1 - e != 0`.
    - `theta(x) = s_1 x t_1` is a unital ring isomorphism `R_∂ -> e R_∂ e`, with inverse `y ↦ t_1 y s_1`.
    - `Phi(X) = X + (1-e) I_N` is an injective homomorphism `EL_N(eR_∂e) -> EL_N(R_∂)`, sending `e_ij(r)` to `e_ij(r)`.

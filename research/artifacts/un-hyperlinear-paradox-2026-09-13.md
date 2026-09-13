@@ -1,7 +1,7 @@
 # Soficity and hyperlinearity on the paradox side of the UN program
 
 Lane `un-hyperlinear-paradox`, 2026-09-13. Written proofs, unreviewed. Credits: the nonsoficity input is the
-established Lean theorem `LeavittFamily.elementary_not_isSofic` (`GroupApproximation/Leavitt/AryEndpoints.lean`,
+established Lean theorem `GroupApproximation.CompleteMatrixFamily.elementary_not_isSofic` (`GroupApproximation/Leavitt/AryEndpoints.lean`,
 node `d-ary-leavitt-groups-nonsofic-over-finite-fields`); the corner trick is the one in
 `projective-leavitt-units-nonsofic-by-corner-embedding` and `halvable-corner-makes-elementary-groups-nonsofic`.
 
