@@ -85,6 +85,37 @@ statement matches the printed sentence at the printed generality.
   are MF", raised by ms-core-1) now reach the printed notion by `.mp`. Rows 88e8012cb87e and 8d0b87a46a51 name it; the
   module is queued for wiring.
 
+## W1 binder 3 help (main, ~17:40): OsinLemma94CaseOneSameCellStatement
+
+- Proposed to w1-binder-3: A = the pinch split of the pocket walk, B = the empty windows. Its turn ended with no overlap
+  and a tip: `not_mem_sideFaces_or_of_barrier_noncrossing` (e3843182e) serves lobes.
+- CLAIM value split of a closed dart walk at a repeated vertex (lobes are closed, their values multiply along the rotation,
+  so a walk reading ≠ 1 has a lobe reading ≠ 1) — `GroupApproximation/GGT/VanKampen/ClosedWalkPinchSplit.lean`.
+  Path and names are free on origin, in the shared tree and in every `lanes/*.files` (checked ~17:45).
+
+### Finding: pinched lobes break hnorm (route check before building)
+
+Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson in flight, and
+`false_of_pocketRegion_of_below`):
+- Under R1 the loop cut needs `hin` and `hout`. `PocketRegion.isSimpleClosedWalk_invDarts_outer`
+  (OsinPocketRegionVertexSimple:268) makes the pocket walk simple, so the loop cut takes only simple pocket walks.
+- `nonempty_osinLoopCut_of_pocketRegion` (OsinPocketLoopCut:201) also needs `invDarts P.outer.cycle = s ++ invDarts A.darts`
+  with `‖val s‖ ≤ ε`.
+- Case 1 X-pocket walk `invDarts X ++ invDarts B`, where X runs along the polygon face from a' to b' and B along ∂Π from b'
+  to a'. Pendant removal takes out spurs but not pinches, and three pinch shapes arise:
+  1. v twice on X (the face pinches, a bubble of f): excise the lobe L. If L reads 1, the X-part keeps its value, so the
+     norm stays < ε, but the face-walk rotation hypothesis is lost. If L reads ≠ 1 it is a bubble with relator cells.
+  2. v twice on B (∂Π pinches): the analogous bubble of Π.
+  3. v on X and on B (f touches Π at a vertex; this is not a side, since sides are made of darts): the lobes are
+     `X₁ B₂` and `X₂ B₁` with `X = X₁ X₂`. Each lobe's side is a sub-segment `X₁` or `X₂` of X. Only ‖val X‖ < ε is
+     controlled (`wordNorm_lt_of_end_connector`), because X runs along other polygon sides between a' and b'. So neither
+     lobe meets hnorm, and route A cannot feed the loop cut on shape 3.
+- Empty windows (B): `X = []` with `B ≠ []` makes B a closed arc of ∂Π reading ≠ 1, which is shape 2 again, so B is not
+  a separate cheap leaf.
+- Consequence for the producer: the relator-cell branch needs a named statement for shapes 1–3, or an argument that least
+  area, DartMinimal or Maximal excludes shape 3. Nothing on origin states either. sec5-sentences' hair-opening and
+  bubble un-pinch Props are not on origin (only `SurgeryHairOpening.IsHair`).
+
 ## State
 
 Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The exceptions:
