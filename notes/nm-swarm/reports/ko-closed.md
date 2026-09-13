@@ -3,6 +3,29 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~16:10): pick (a) confirmed; cell-free branch of binder 3 offered to jacobson
+- hull-unbound landed option (a) as `OsinLemma94PinchedQuadrilateralStatement`, d463383fa (probe 0913-160048-79943
+  GREEN, queued).  It is the pick (i) below, so ko-closed confirmed it as final.
+  - Scope: a different target cell or a boundary target (`target ≠ some source`).
+  - The same-cell pairs stay with binder 3.
+  - Its `(side, gap)` pieces carry the gap-reads-1 identities that the OneCellWindow kills take.
+- main 15:50: offer jacobson a split of its binder 3 producer (`OsinLemma94CaseOneSameCellStatement`).
+  - ko-closed would take the cell-free branch in a new module.
+  - jacobson keeps the pocket construction and the R-cell branch (loop cut, `hin` kept under R1).
+  - Offer sent 16:00.  Before it went out: no Lean file outside this lane's four modules uses the kills, and
+    jacobson's files are unchanged since 13:53.
+- Draft `$NM/backup/ko-closed/OsinLemma94SameCellCellFree.draft.lean` (127 lines).  It is not in the tree and not
+  probed.
+  - `PocketRegion.outer_isRotated_of_decomposition`: `invDarts Q.outer.cycle = invDarts s ++ invDarts A` gives
+    `Q.outer.cycle ~r s ++ A`.
+  - `false_of_sameCell_cellFree_pocketRegion_X` / `_Y`: the loop-cut spelling, over `osinLemma94CaseOneWalk_sameCell`,
+    with `T.darts = q ++ A ++ p`.  They apply the OneCellFace kills.
+  - Waiting on jacobson's answers:
+    - (a) whether it already wrote this branch;
+    - (b) whether the pocket is over `S.diagram` or another O-equivalent copy;
+    - (c) decomposition or rotation input.
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~15:25): the Morse kill through windows GREEN (0913-150725-78874), queued; pinched-window pick (i)
 - hull-unbound's model test (roster l.935), on audit-intro's pinched cell:
   - on class words, every long window contains a pinch junction;
