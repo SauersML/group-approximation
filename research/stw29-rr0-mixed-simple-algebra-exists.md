@@ -55,8 +55,12 @@ Any such algebra would simultaneously give negative answers to:
   coefficients carrying a state-ordered dense `K_0` is always dichotomous
   (`simple-coefficient-crossed-products-dichotomy`,
   `simple-af-integer-crossed-products-dichotomy`).  Non-simple AF coefficients
-  with minimal actions remain open.  Lexicographic `Z`-chains of ideals give
-  pure infiniteness, so only twisted orders could help.
+  without elementary subquotients are dichotomous too, for any ideal lattice
+  (`nowhere-scattered-af-crossed-products-dichotomy`,
+  `nowhere-scattered-af-integer-crossed-products-dichotomy`, unreviewed).
+  The surviving design is `stw29-mixed-rr0-af-crossed-product-exists`.  Its
+  normal form requires an elementary subquotient, a non-amenable group and a
+  non-separative coefficient type semigroup.
 * **Limits of separative blocks.**  These are never mixed
   (`stw29-separative-projection-monoid-dichotomy`).  A counterexample needs
   non-separative building blocks cofinally.

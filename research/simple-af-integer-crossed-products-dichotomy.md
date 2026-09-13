@@ -48,3 +48,9 @@ zero-dimensional coefficients can never produce the mixed phenomenon.
   `alpha` with lexicographic order, every element is directly infinite
   (moving one piece up the chain has a strictly positive top term), so the
   obstruction can only come from non-lexicographic twisted orders.
+  Resolved for `D` without elementary subquotients
+  (`nowhere-scattered-af-integer-crossed-products-dichotomy`, unreviewed).
+  The margin is taken from minimality (a sum of translates of `e` dominates
+  `x`), and the division error is bounded in the order, which needs no states.
+  What remains is AF `D` with an elementary subquotient, where the division
+  step fails (`af-k0-order-divisible-iff-no-elementary-subquotient`).

@@ -58,8 +58,11 @@ ideal lattice (`nowhere-scattered-af-crossed-products-dichotomy`).  The lemma
 of `coinvariant-tarski-lemma-simple-dimension-groups` handled only simple
 coefficients, and its attempt notes only lexicographic chains of ideals.  The
 division step is exactly what fails at elementary subquotients
-(`coinvariant-division-fails-at-elementary-subquotients`).  There the problem
-contains Rainone's open question for minimal Cantor systems.
+(`af-k0-order-divisible-iff-no-elementary-subquotient`).  There the problem
+contains Rainone's open question for minimal Cantor systems
+(`measure-free-minimal-cantor-action-with-finite-clopen-type`).  The lemma
+still reaches that regime when a normal subgroup smooths `K_0` first
+(`minimal-normal-cyclic-subgroup-cantor-dichotomy`).
 
 Status: proved in the route below, unreviewed.  Novelty is recorded in the
 dichotomy node.

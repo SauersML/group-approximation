@@ -100,3 +100,22 @@ subalgebra" the exact pure-infiniteness criterion.
   finiteness obstruction is invisible to a dense state-ordered `K_0`.  This
   matches Rordam's `D rtimes Z`, whose coefficient algebra is non-simple and
   carries Euler data.
+* Non-simple zero-dimensional coefficients (unreviewed).
+  * `coinvariant-tarski-lemma-minimal-nowhere-scattered` extends the lemma to
+    minimal actions on dimension groups whose positive elements divide with
+    order-small remainders.  The margin comes from minimality, and the division
+    error is controlled in the order, with no states.
+  * `K_0` of an AF algebra has this property iff the algebra has no elementary
+    subquotient (`af-k0-order-divisible-iff-no-elementary-subquotient`).
+  * Hence the dichotomy holds for unital AF coefficients and any countable
+    group (`nowhere-scattered-af-crossed-products-dichotomy`), and for
+    non-unital AF coefficients and `Z`
+    (`nowhere-scattered-af-integer-crossed-products-dichotomy`).
+  * `af-crossed-product-counterexample-normal-form` records what
+    a zero-dimensional crossed-product counterexample must still have: an
+    elementary subquotient, a non-amenable group, and a non-separative
+    coefficient type semigroup with a finite class that has a paradoxical
+    multiple.
+  * The design is `stw29-mixed-rr0-af-crossed-product-exists`.  Its commutative
+    core is `measure-free-minimal-cantor-action-with-finite-clopen-type`, a
+    sharpened form of Rainone's page-33 question.
