@@ -9,9 +9,11 @@ requires: []
 
 Write `Gamma = Gamma_D`, `G = SL_3(R)`.
 
-1. **Bundles.**  `Gamma` is a cocompact lattice, and torsion-free: the
-   predecessor artifact records that a finite-order element would generate a
-   cyclotomic subfield of degree at most 3 with no quadratic subfield.  Fix a
+1. **Bundles.**  `Gamma` is a cocompact lattice, and it is torsion-free.  A
+   torsion element `zeta` of order `n` generates a subfield `Q(zeta) <= D`.
+   Its degree `phi(n)` divides 3 and is even for `n >= 3`, so `zeta = +-1`, and
+   `Nrd(-1) = -1`.  So `M_p` is a manifold; parts 1 and 2 would not need this.
+   Fix a
    relatively compact Borel fundamental domain `F` for the left
    `Gamma`-action on `G`.  For a unitary representation `(pi, V)`, let
    `W_pi` be the space of `phi: G -> V` with `phi(gamma x) = pi(gamma) phi(x)` and
