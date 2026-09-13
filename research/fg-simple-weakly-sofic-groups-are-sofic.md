@@ -114,3 +114,9 @@ nonsofic group refutes it.
   group that is linear sofic over finite fields and not sofic. So this claim, restricted to finitely presented groups,
   is equivalent to *every finitely presented simple group linear sofic over finite fields is sofic*. No construction
   is known.
+- **Finitely generated case: kind (b) is empty for every finitely generated simple group (2026-09-13, lane
+  `ex3-weak-sofic-fg-dichotomy`, unreviewed).** By `fg-simple-weakly-sofic-groups-are-finite-field-linear-sofic`, a
+  finitely generated simple group is weakly sofic iff it is linear sofic over finite fields. So this claim is equivalent
+  to *every finitely generated simple group linear sofic over finite fields is sofic*, a finite-field, simple-group form
+  of Arzhantseva--Paunescu Question 8.5. The simple Kazhdan envelope of the Kun--Thom wreath is weakly sofic iff it is
+  linear sofic over finite fields.

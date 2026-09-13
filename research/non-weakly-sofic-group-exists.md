@@ -47,5 +47,11 @@ quotients.
     So this claim follows from one finitely presented simple group, such as `R^x` or Thompson's `V`, that embeds in no
     rank-metric ultraproduct of groups `GL_n(F_q)`. Conversely, for simple candidates nothing weaker can work: every
     certificate over finite groups is a non-linear-soficity certificate over finite fields.
+  - *Finitely generated case, and the equivalence (2026-09-13, lane `ex3-weak-sofic-fg-dichotomy`, unreviewed).* The same
+    dichotomy holds for every finitely generated simple group (`fg-simple-weakly-sofic-groups-are-finite-field-linear-sofic`,
+    two routes, from the proof of Nikolov--Schneider--Thom Theorem 4 and from its statement). With Schupp's embedding
+    this claim is **equivalent** to `non-finite-field-linear-sofic-group-exists`
+    (`non-weakly-sofic-iff-non-finite-field-linear-sofic-group`, route `non-weakly-sofic-group-from-non-finite-field-linear-sofic`).
+    So a certificate for this root is exactly a group that embeds in no rank-metric ultraproduct of groups `GL_n(F_q)`.
 - **Concrete candidate.** The binary Leavitt unit group (`binary-leavitt-unit-group-is-weakly-sofic`),
   finitely presented, simple, Kazhdan and nonsofic.
