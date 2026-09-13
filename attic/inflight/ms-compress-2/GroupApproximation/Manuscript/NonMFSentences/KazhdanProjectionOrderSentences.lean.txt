@@ -47,7 +47,7 @@ universe u v
 abbrev ZeroHilbertSpace : Type := EuclideanSpace ℂ (Fin 0)
 
 instance : Subsingleton ZeroHilbertSpace :=
-  ⟨fun x y ↦ WithLp.ext_iff.mpr (funext fun i ↦ i.elim0)⟩
+  (WithLp.equiv 2 (Fin 0 → ℂ)).injective.subsingleton
 
 /-- The unital `⋆`-homomorphism of any unital C*-algebra into the operators on the zero Hilbert
 space.  It is faithful exactly when the algebra is trivial. -/
