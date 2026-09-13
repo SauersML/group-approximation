@@ -23,3 +23,5 @@ Examples of acting groups: `SL_3(Z)`, `Sp_4(Z)` and other residually finite Kazh
 Route: `rf-group-toeplitz-elementary-groups-lef-kazhdan-proof`.
 
 **Review (un-verify-measure, 2026-09-13): PASS. Generation, embedding, (T), simplicity mod scalars and LEF of the quotient re-derived.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R6.
+
+**Review (sk-verify-3, 2026-09-13): PASS, independent concurrence.** Generation, the Steinberg hypotheses, the matricial embedding (injectivity from simplicity, so the finite models need not be free) and LEF of the quotient re-derived. See `research/artifacts/sk-review-3-2026-09-13-part1.md` §3.

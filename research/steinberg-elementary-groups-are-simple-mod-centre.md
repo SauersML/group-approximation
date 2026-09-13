@@ -33,3 +33,5 @@ nor Vaserstein's stable-range criteria are known to hold for these algebras. See
 `research/artifacts/un-stepanov-credit-2026-09-13.md`.
 
 **Review (un-verify, 2026-09-13): PASS.** All five requires are present and established; the Lean criterion has exactly the cited hypotheses; the (T) clause is gated on finite `k` and finitely generated `R`, as EJZ needs. Subsumption scan and display check clean. See `research/artifacts/un-review-2026-09-13-part1.md` §§4–6.
+
+**Review (sk-verify-3, 2026-09-13): PASS, second independent concurrence.** Local annihilation, the centre and the assembly re-derived; the Lean `LocalAnnihilation` definition and theorem signature checked at source (`SimpleModCentre.lean` l.43–45, l.327–329). The column-extraction case `w_l = 0` rests on the kernel check. See `research/artifacts/sk-review-3-2026-09-13-part1.md` §1.

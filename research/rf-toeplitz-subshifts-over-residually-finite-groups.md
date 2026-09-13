@@ -28,3 +28,5 @@ Applications: `residually-finite-group-toeplitz-elementary-groups-lef-kazhdan`.
 Route: `rf-toeplitz-subshifts-over-residually-finite-groups-proof`.
 
 **Review (un-verify-measure, 2026-09-13): PASS. Class count (unique non-constant coset per level) and covering choice of M (bijection with Γ_M/Γ_(M+1), union bound 2|B_M| < d_(M+1)) re-derived; not covered by Kerr–Nowak's examples.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R1.
+
+**Review (sk-verify-3, 2026-09-13): PASS, independent concurrence.** Well-definedness (∩C_m = ∅), minimality, freeness through the unique non-constant coset, and the union bound re-derived, with Proposition S (⇐). See `research/artifacts/sk-review-3-2026-09-13-part1.md` §3.

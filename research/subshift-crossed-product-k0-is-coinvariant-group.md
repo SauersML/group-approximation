@@ -16,3 +16,5 @@ Let `X` be a Cantor set, `T` a homeomorphism, `q` a prime power and `R_X = LC(X,
 For minimal `T`, the right side is the group underlying the Herman–Putnam–Skau dimension group `K^0(X,T)`. The order
 is NOT claimed here. Identifying `K_0^+(R_X)` with `K^0(X,T)^+` still owes the HPS cone description (see the open
 claim's Attempts). Proof in the `-proof` route and artifact part 2 §2.
+
+**Review (sk-verify-3, 2026-09-13): PASS at group level, independent concurrence.** Supercoherence of `LC(X,F_q)`, the ABC hypotheses, `K_(−1) = 0` and the identification of `1 − σ_*` re-derived; the positive cone stays unclaimed. See `research/artifacts/sk-review-3-2026-09-13-part1.md` §4.

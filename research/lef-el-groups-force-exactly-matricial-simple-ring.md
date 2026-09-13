@@ -51,3 +51,5 @@ ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone i
 **Review (un-verify-3, 2026-09-13): PASS.** The route `lef-el-groups-matricial-via-lef-ring` is re-derived (rank four gives a LEF ring; simple LEF rings are exactly matricial over finite fields). The UN root stays open, since (Σ⇒) and (M⇐) are open. Display note: the title is still phrased as a question; restate it as the theorem. `research/artifacts/un-review3-2026-09-13-part3.md` §2.
 
 **Review (un-verify-measure, 2026-09-13): PASS, with a display fix.** The route requires both reviewed claims; over finite fields (c) ⇒ (d) is elementary and needs no Malcev input. Title replaced by a declarative one matching the established body; id unchanged. See `research/artifacts/un-review-measure-2026-09-13-part4.md` §F3.
+
+**Review (sk-verify-3, 2026-09-13): PASS, independent concurrence.** Prefix induction, the level-ideal cycle link by link, and injectivity by simplicity re-derived; rank 3 alone stays uncovered. See `research/artifacts/sk-review-3-2026-09-13-part1.md` §2.
