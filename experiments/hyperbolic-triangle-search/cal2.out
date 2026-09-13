@@ -1,0 +1,51 @@
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+CAL2 twisted n=7 homs=2 transitive=2 |Hom|=10080 ms=3
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+CAL2 twisted n=15 homs=9 transitive=4 |Hom|=7846111072800 ms=37
+    HOM alpha=[ 21 ] beta=[ 21 ] orbits=[ 21 ]
+    HOM alpha=[ 21 ] beta=[ 21 ] orbits=[ 21 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+CAL2 twisted n=22 homs=23 transitive=0 |Hom|=12739622732888624939520 ms=767
+  #alpha classes=2 #beta classes=2
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 15 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 15 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 15 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 15 ]
+CAL2 twisted L5_2 homs=4 |Hom|=39997440
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+  #alpha classes=1 #beta classes=1
+    HOM alpha=[ 24 ] beta=[ 24 ] orbits=[ 7 ]
+    HOM alpha=[ 24 ] beta=[ 24 ] orbits=[ 7 ]
+CAL2 |Hom(G,S11)| SearchSn=3326400 SearchAmb=3326400
+CAL2_DONE
+EXIT=0

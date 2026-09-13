@@ -1,0 +1,34 @@
+CAND1 eA=0 eB=0 eC=0 :: charpoly(p^e3) != charpoly(y_C)
+CAND1 eA=0 eB=0 eC=1 :: trace ideal = (1): no hom
+CAND1 eA=0 eB=1 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND1 eA=0 eB=1 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND1 eA=1 eB=0 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND1 eA=1 eB=0 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND1 eA=1 eB=1 eC=0 :: trace ideal = (1): no hom
+CAND1 eA=1 eB=1 eC=1 :: charpoly(p^e3) != charpoly(y_C)
+CAND2 eA=0 eB=0 eC=0 :: charpoly(r^e2) != charpoly(x_C)
+CAND2 eA=0 eB=0 eC=1 :: charpoly(p^e3) != charpoly(y_C)
+CAND2 eA=0 eB=1 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND2 eA=0 eB=1 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND2 eA=1 eB=0 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND2 eA=1 eB=0 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND2 eA=1 eB=1 eC=0 :: charpoly(p^e3) != charpoly(y_C)
+CAND2 eA=1 eB=1 eC=1 :: charpoly(r^e2) != charpoly(x_C)
+CAND3 eA=0 eB=0 eC=0 :: trace ideal = (1): no hom
+CAND3 eA=0 eB=0 eC=1 :: charpoly(p^e3) != charpoly(y_C)
+CAND3 eA=0 eB=1 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND3 eA=0 eB=1 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND3 eA=1 eB=0 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND3 eA=1 eB=0 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND3 eA=1 eB=1 eC=0 :: charpoly(p^e3) != charpoly(y_C)
+CAND3 eA=1 eB=1 eC=1 :: trace ideal = (1): no hom
+CAND4 eA=0 eB=0 eC=0 :: charpoly(p^e3) != charpoly(y_C)
+CAND4 eA=0 eB=0 eC=1 :: charpoly(r^e2) != charpoly(x_C)
+CAND4 eA=0 eB=1 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND4 eA=0 eB=1 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND4 eA=1 eB=0 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAND4 eA=1 eB=0 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAND4 eA=1 eB=1 eC=0 :: charpoly(r^e2) != charpoly(x_C)
+CAND4 eA=1 eB=1 eC=1 :: charpoly(p^e3) != charpoly(y_C)
+LIN4_DONE 1.2s
+EXIT=0

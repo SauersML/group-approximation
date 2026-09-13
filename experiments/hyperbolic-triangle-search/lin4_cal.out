@@ -1,0 +1,19 @@
+CAL triple [(1,5,2,4,7,6,8), (1,6,4,7,2,5,3), (1,5,4,8,2,3,7)]
+CAL literal A8 triple eA=0 eB=0 eC=0 :: 0-dim trace ideal, 1 points (mult), checked over GF(2^k): [(3, True)]
+CAL literal A8 triple eA=0 eB=0 eC=1 :: charpoly(p^e3) != charpoly(y_C)
+CAL literal A8 triple eA=0 eB=1 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A8 triple eA=0 eB=1 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A8 triple eA=1 eB=0 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A8 triple eA=1 eB=0 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A8 triple eA=1 eB=1 eC=0 :: charpoly(p^e3) != charpoly(y_C)
+CAL literal A8 triple eA=1 eB=1 eC=1 :: 0-dim trace ideal, 1 points (mult), checked over GF(2^k): [(3, True)]
+CAL literal A7 triple twisted e=(3,5,2) eA=0 eB=0 eC=0 :: 0-dim trace ideal, 2 points (mult), checked over GF(2^k): [(3, True), (3, True)]
+CAL literal A7 triple twisted e=(3,5,2) eA=0 eB=0 eC=1 :: charpoly(p^e3) != charpoly(y_C)
+CAL literal A7 triple twisted e=(3,5,2) eA=0 eB=1 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A7 triple twisted e=(3,5,2) eA=0 eB=1 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A7 triple twisted e=(3,5,2) eA=1 eB=0 eC=0 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A7 triple twisted e=(3,5,2) eA=1 eB=0 eC=1 :: charpoly(q^e1) != charpoly(x_B)
+CAL literal A7 triple twisted e=(3,5,2) eA=1 eB=1 eC=0 :: charpoly(p^e3) != charpoly(y_C)
+CAL literal A7 triple twisted e=(3,5,2) eA=1 eB=1 eC=1 :: 0-dim trace ideal, 2 points (mult), checked over GF(2^k): [(3, True), (3, True)]
+LIN4_DONE 3.1s
+EXIT=0

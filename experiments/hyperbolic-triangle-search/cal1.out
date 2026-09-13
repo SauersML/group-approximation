@@ -1,0 +1,129 @@
+A7 transitive degrees <= 30: [ 21, 15, 15, 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+C1 n=7 alpha=[ 7 ] cls=[ 39 ] dc-count=2 naive=2 true
+C1 n=7 stats=rec(
+  dcs := 7,
+  homs := 2,
+  ordpass := 2,
+  pairs := 1 ) |Hom|=10080 ms=11
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+C1 n=8 alpha=[ 7 ] cls=[ 39 ] dc-count=2 naive=2 true
+C1 n=8 stats=rec(
+  dcs := 7,
+  homs := 2,
+  ordpass := 2,
+  pairs := 1 ) |Hom|=80640 ms=51
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+C1 n=9 alpha=[ 7 ] cls=[ 39 ] dc-count=2 naive=2 true
+C1 n=9 stats=rec(
+  dcs := 7,
+  homs := 2,
+  ordpass := 2,
+  pairs := 1 ) |Hom|=362880 ms=426
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+C1 n=10 alpha=[ 7 ] cls=[ 39 ] dc-count=2 naive=2 true
+C1 n=10 stats=rec(
+  dcs := 7,
+  homs := 2,
+  ordpass := 2,
+  pairs := 1 ) |Hom|=1209600 ms=3476
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+C2 n=15 stats=rec(
+  dcs := 623,
+  homs := 9,
+  ordpass := 9,
+  pairs := 10 ) transitive-found=4 ms=24
+    HOM alpha=[ 21 ] beta=[ 21 ] orbits=[ 21 ]
+    HOM alpha=[ 21 ] beta=[ 21 ] orbits=[ 21 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+C2 n=21 stats=rec(
+  dcs := 3843,
+  homs := 15,
+  ordpass := 15,
+  pairs := 14 ) transitive-found=2 ms=273
+    HOM alpha=[ 21 ] beta=[ 21 ] orbits=[ 21 ]
+    HOM alpha=[ 21 ] beta=[ 21 ] orbits=[ 21 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 15, 7 ] beta=[ 15, 7 ] orbits=[ 15, 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7 ] beta=[ 7 ] orbits=[ 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7 ] beta=[ 7, 7 ] orbits=[ 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+    HOM alpha=[ 7, 7, 7 ] beta=[ 7, 7, 7 ] orbits=[ 7, 7, 7 ]
+C2 n=22 stats=rec(
+  dcs := 21679,
+  homs := 23,
+  ordpass := 23,
+  pairs := 26 ) transitive-found=0 ms=583
+C3 triple [ (1,5,2,4,7,6,8), (1,6,4,7,2,5,3), (1,5,4,8,2,3,7) ]
+A8 transitive degrees <= 30: [ 28, 15, 15, 8 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 8 ] beta=[ 8 ] orbits=[ 8 ]
+C3 n=15 stats=rec(
+  dcs := 406,
+  homs := 3,
+  ordpass := 3,
+  pairs := 5 ) transitive-found=2 ms=19
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 8 ] beta=[ 8 ] orbits=[ 8 ]
+    HOM alpha=[ 8, 8 ] beta=[ 8, 8 ] orbits=[ 8, 8 ]
+C3 n=16 stats=rec(
+  dcs := 1246,
+  homs := 4,
+  ordpass := 4,
+  pairs := 10 ) transitive-found=0 ms=71
+    HOM alpha=[ 28 ] beta=[ 28 ] orbits=[ 28 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15, 8 ] beta=[ 15, 8 ] orbits=[ 15, 8 ]
+    HOM alpha=[ 15 ] beta=[ 15 ] orbits=[ 15 ]
+    HOM alpha=[ 15, 8 ] beta=[ 15, 8 ] orbits=[ 15, 8 ]
+    HOM alpha=[ 8 ] beta=[ 8 ] orbits=[ 8 ]
+    HOM alpha=[ 8, 8 ] beta=[ 8, 8 ] orbits=[ 8, 8 ]
+    HOM alpha=[ 8, 8, 8 ] beta=[ 8, 8, 8 ] orbits=[ 8, 8, 8 ]
+C3 n=28 stats=rec(
+  dcs := 136752,
+  homs := 8,
+  ordpass := 8,
+  pairs := 20 ) transitive-found=1 ms=11637
+CAL1_DONE
+EXIT=0

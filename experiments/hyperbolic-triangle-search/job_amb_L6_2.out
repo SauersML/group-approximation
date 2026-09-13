@@ -1,0 +1,36 @@
+TARGET L6_2 |S|=20158709760 degree=63 classes=60 ms=919
+  #alpha classes=3 #beta classes=3
+    HOM alpha=[ 6 ] beta=[ 6 ] orbits=[ 15, 15, 15, 15 ]
+    HOM alpha=[ 6 ] beta=[ 6 ] orbits=[ 15, 15, 15, 15 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 35, 28 ]
+CAL L6_2 literal (A8,A8,A8): stats=rec(
+  dcs := 147,
+  homs := 3,
+  ordpass := 3,
+  pairs := 3 ) homs=3 ms=52456
+  #alpha classes=3 #beta classes=3
+CAND1 L6_2 stats=rec(
+  dcs := 147,
+  homs := 0,
+  ordpass := 0,
+  pairs := 3 ) homs=0 ms=30627
+  #alpha classes=3 #beta classes=3
+CAND2 L6_2 stats=rec(
+  dcs := 147,
+  homs := 0,
+  ordpass := 0,
+  pairs := 3 ) homs=0 ms=49256
+  #alpha classes=3 #beta classes=3
+CAND3 L6_2 stats=rec(
+  dcs := 147,
+  homs := 0,
+  ordpass := 0,
+  pairs := 3 ) homs=0 ms=66187
+  #alpha classes=3 #beta classes=3
+CAND4 L6_2 stats=rec(
+  dcs := 147,
+  homs := 0,
+  ordpass := 0,
+  pairs := 3 ) homs=0 ms=47783
+RUN_AMB_DONE
+EXIT=0
