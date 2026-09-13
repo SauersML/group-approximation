@@ -58,3 +58,11 @@ extensions.
    `F_v x Z` realized by point-pushing subgroups and multitwists? That would put
    it in `B_A` through `punctured-surface-mcgs-satisfy-permutational-boone-higman`.
    The literature searched records no such embedding.
+   - **Context.** AFW arXiv:1205.0202, l.3341--3344: "Bridson [Brd12, Corollary
+     5.2] [...] showed that if a group has a subgroup of finite index that embeds
+     in a RAAG, then it embeds in the mapping class group for infinitely many
+     closed surfaces. [...] 'Most' 3-manifold groups thus can be viewed as
+     subgroups of mapping class groups."
+   - **Why it doesn't transfer.** That route goes through RAAGs. Groups in this
+     class are not virtually special, and the closed-surface targets are not
+     known to be in `B_A` (`closed-surface-mapping-class-groups-satisfy-boone-higman`).
