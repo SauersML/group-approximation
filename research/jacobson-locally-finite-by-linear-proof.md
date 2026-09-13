@@ -39,3 +39,5 @@ artifacts:
    - Torsion-free groups have no nontrivial locally finite normal subgroup.
 5. **Monolith.** `C_E(L) = 1`, by the argument of `binary-jacobson-self-centralizing-kernel-proof` in rank three.
    Since `L` is simple, every nontrivial normal subgroup contains `L`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 31.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

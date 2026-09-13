@@ -28,3 +28,5 @@ artifacts:
    groups.
    - Amenable Kazhdan groups are finite, so a limit of amenable marked groups is a limit of finite ones.
 4. **Rank at least four.** `EL_n(J)` is not LEF (`cohn-elementary-group-is-not-lef`), so it is not LEA.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 31.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
