@@ -40,14 +40,16 @@ contractible for every `t ≥ n`, where `n` is the size of a largest clique in
   `k+1` for l^1-balls (`raag-salvetti-covers-have-the-jensen-helly-property`).
   The proof of the products-of-trees case uses exactly these two properties plus
   rounding (`jensen-helly-graphs-have-contractible-rips-complexes`).
-- **Next obstacle.** The smallest uncovered graph is the triangle with a
-  pendant vertex, `A_Γ = Z × (Z^2 * Z)`. The criterion argument needs a
-  barycentre with the Jensen bound `d_1(x,b) ≤ ∫ d_1(x,y) dμ` in the Salvetti
-  cover. For products of trees it comes coordinatewise from Lemma J. For
-  `Z^2 * Z` (a tree of l^1 planes and lines glued at vertices) a candidate is
-  the barycentre in the tree-graded CAT(0) realization, with Jensen proved by
-  the same first-variation argument across the gluing points. That is not
-  checked yet.
+- **2026-09-13, cographs (UNREVIEWED).** Every P4-free `Γ` gives type R with
+  `r_0 = k(k+1) − 1` (`cograph-raags-are-rips-type-r`), including
+  `Z × (Z^2 * Z)`.
+- **Next obstacle.** Graphs containing a triangle and an induced P4. The
+  smallest is the cone `K_1 * P4`, with `A_Γ = Z × A_{P4}` and
+  `A_{P4} = Z^2 *_Z Z^2 *_Z Z^2`. The Jensen centre must now be built across
+  gluings along lines. The wedge lemma's gate is a single vertex; along a line
+  the gate is a nearest-point projection, and moments must balance along the
+  whole line. The 2-dimensional case `P4` itself is type R by Li–Sánchez
+  Saldaña, but through metric gluings rather than Jensen centres.
 - **Where the imported methods stop.** Li–Sánchez Saldaña glue Rips-contractible
   pieces along sets of diameter ≤ 1 around a point (their Corollary 2.5), which
   is how squares assemble into a two-dimensional Salvetti cover. They call the

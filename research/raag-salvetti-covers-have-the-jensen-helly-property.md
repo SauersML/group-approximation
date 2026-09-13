@@ -19,6 +19,14 @@ Problem 4.5 affirmatively, with `r_0 = k(k+1) − 1`.
 - **Products of trees (done).** Complete multipartite `Γ` satisfy it
   (Lemmas J, H, R in
   `research/artifacts/zp-raag-rips-products-of-trees-2026-09-13.md`).
+- **Cographs (done 2026-09-13, UNREVIEWED).** Every P4-free `Γ` satisfies it
+  (`cograph-salvetti-covers-have-the-jensen-helly-property`): (J) and convex
+  bicombings pass to products and to one-vertex wedges. The wedge centre
+  (Lemma W in `research/artifacts/zp-raag-rips-cographs-2026-09-13.md`) repairs
+  the naive projected-mean counterexample below. The remaining graphs are those
+  with an induced P4 that contain a triangle. Their Salvetti covers glue pieces
+  along lines and higher convex subcomplexes, not along single vertices. The
+  smallest is `K_1 * P4`.
 - **(R) holds in general.** A point of a cube is within `k/2` of a corner.
 - **(H) through topological Helly.** It suffices that nonempty finite
   intersections of l^1-balls, taken inside a compact contractible subcomplex

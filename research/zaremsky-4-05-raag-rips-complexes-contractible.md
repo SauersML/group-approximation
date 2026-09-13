@@ -62,9 +62,16 @@ intersect and have no common point.
   (`complete-multipartite-raags-are-rips-type-r`). Combined with free products:
   `raags-with-multipartite-or-triangle-free-components-type-r`.
 
-Open as of 2026-09-13: every connected `Γ` that contains a triangle and is not
-complete multipartite. The smallest is the triangle with a pendant vertex,
-`A_Γ = Z × (Z^2 * Z)`.
+- P4-free `Γ` (cographs, built by joins and disjoint unions), e.g.
+  `Z × (Z^2 * Z)`: contractible for `t ≥ k(k+1) − 1`, proved on this graph
+  2026-09-13, UNREVIEWED (`cograph-raags-are-rips-type-r`). It rests on
+  `jensen-helly-graphs-have-contractible-rips-complexes` and
+  `cograph-salvetti-covers-have-the-jensen-helly-property`.
+
+Open as of 2026-09-13: graphs containing both a triangle and an induced path on
+four vertices, outside the free-product closure of the classes above. The
+smallest is the cone `K_1 * P4`, with `A_Γ = Z × A_{P4}`. The whole problem
+reduces to `raag-salvetti-covers-have-the-jensen-helly-property`.
 
 ## Attempts
 
