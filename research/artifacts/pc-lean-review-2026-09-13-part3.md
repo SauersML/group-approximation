@@ -123,6 +123,43 @@ says so.
   - The only Pestov91 root import on main is `RingFinitelyGenerated` (622570981), which also brings `CrossedProduct`
     and `CrossedProductFG` into the root closure.
 
+## 16. Literature and docstring items on the Palomar surface (routed by pc-lit-background; not blocking)
+
+Sources for these items: pc-lit-background's `research/artifacts/pestov91-literature-background-2026-09-13*.md`
+(part 3 §E). I checked at main 9ea934117 what I could.
+
+- **E1: open on main, verified.** `Palomar/Pestov91Challenge.lean` l.16–17 cites "(arXiv:0804.3968), Section 9,
+  page 21 of the arXiv PDF" without a version. Page 21 is where Question 9.1 sits in **v8**, which I read. Page
+  numbers depend on the version, so the citation should say v8. fz's in-flight Palomar probe (0913-023600-15975) does
+  not touch this line.
+- **E2: open on main, verified; a fix is in flight.**
+  - The problem: l.57–60 ("Taking `F` to run over an increasing exhaustion …") assumes a sequence, which exists only
+    for countable groups, and cites no theorem.
+  - The survey itself says uncountable groups add nothing (p. 9, "an apparent greater generality … is an illusion"),
+    and its Theorem 3.5 proof indexes the ultraproduct by pairs `(F, 1/n)` over all finite `F`. So the mathematics
+    holds for every `G : Type`; only the paragraph is imprecise.
+  - fz's in-flight probe replaces these lines with a paragraph citing Definitions 3.1–3.2 and Theorems 3.5–3.6. That
+    matches pc-lit-background's proposal.
+  - Their implication argument, with `ε' = min(ε²/2, 1/2)`, agrees with part 1 §2.2–2.3.
+- **E4: credits, optional.**
+  - `Pestov91/Kazhdan.lean` (l.18, l.69) and `Pestov91/CrossedProductFG.lean` (l.7) name "the Ershov--Jaikin-Zapirain
+    theorem" with no reference.
+  - Verified at the source: arXiv:0809.4095v2, p. 1, **Theorem 1.1**, "Let R be a finitely generated (associative)
+    ring with 1 and n ≥ 3. Let G = EL_n(R) … Then G has Kazhdan's property (T)." This is exactly the form of
+    `FinitelyGeneratedRingGeneralRankElementaryPropertyT`.
+  - The journal reference (Invent. Math. 179 (2010)) is reported, not verified here.
+  - `LEFHyperlinear.lean` could credit Elek–Szabó, Math. Ann. 332 (2005): LEF ⇒ sofic "is known" (p. 422), and
+    Theorem 2 (p. 423), countable sofic ⇒ hyperlinear. Those page numbers are reported, not verified here; the Lean
+    proofs need no countability (part 3 §10).
+- **Already verified, no change needed:** the verbatim quote (part 1 §1); Bekka–de la Harpe–Valette Definition 1.1.3
+  (part 1 §2.1); "Bull. Symbolic Logic 14 (2008) 449–480", confirmed by pc-lit-background from the arXiv abstract page
+  and not re-read by me.
+- **Status of the question (reported, not checked by this lane):** no earlier answer to 9.1 was found. Pestov and
+  Kwiatkowska (2012) still list it as open.
+
+Owners: p91-palomar for E1 and E2, and the p91-kazhdan, p91-ring-fg and p91-lef-hyperlinear modules for E4. The fz
+lanes cannot be messaged from here; main can relay these.
+
 ## 15. Blocking findings
 
 None, so no message to main.
