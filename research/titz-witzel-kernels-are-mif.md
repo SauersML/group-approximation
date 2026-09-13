@@ -29,3 +29,26 @@ Boone--Higman class.
 2. **Mixed identities from micro-supported actions, not applicable.** No
    micro-supported action of `Γ̌` on a Hausdorff space is known. The natural
    boundary action is on the chamber space at infinity of the building.
+3. **Ping-pong on the chambers at infinity: reduced to three building premises
+   (2026-09-13).**
+   - **Two ESTABLISHED lemmas.**
+     - `opposition-ping-pong-criterion-gives-mixed-identity-freeness`: proximal
+       elements whose poles are opposite to all their translates by finitely
+       many constants force MIF.
+     - `opposition-general-position-from-nowhere-domestic-dense-poles`: that
+       general position follows from nowhere-dense domestic sets and dense pole
+       pairs.
+   - **Route.** `titz-witzel-kernel-mif-via-opposition-ping-pong` needs three
+     OPEN premises:
+     - `strongly-regular-building-elements-are-opposition-proximal`, i.e.
+       uniform contraction. Caprace--Ciobotaru Prop. 2.10 gives it only
+       pointwise.
+     - `cocompact-building-lattices-have-dense-strongly-regular-poles`.
+       Caprace--Ciobotaru Thm. 1.2 gives existence only.
+     - `titz-witzel-kernel-elements-are-nowhere-domestic-at-infinity`, the crux.
+       Collineations of quadrangles fixing an ovoid or spread map no chamber to
+       an opposite one (Neyt--Parkinson--Van Maldeghem), so this must use the
+       lattice.
+   - **Rank-one methods are out.** Every geodesic line of `X` lies in an
+     apartment, so no isometry is rank one. That rules out Rybak's curtain-model
+     route.
