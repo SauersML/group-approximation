@@ -549,3 +549,66 @@ No source read for this note gives `p_c<p_{2->2}` for such graphs. The EJP remar
 proposes infinitely-ended transitive graphs as "a modest first step". The Theorem
 settles the special case of free-product Cayley graphs on union generating sets,
 not that question.
+
+## 4. Consequences, limits and caveats
+
+### 4.1 Consequences
+
+Let `X` be a graph as in the Theorem.
+
+- **Nonamenability.** A transitive graph `G` with `||T_{p_c}||_{2->2}<infinity` is
+  nonamenable.
+  - Suppose `G` is amenable. Fix `R` and `eps>0`, and let `F` be a finite set
+    whose `R`-interior `F_R` has `|F_R| >= (1-eps)|F|`.
+  - By transitivity, `<T_p 1_F, 1_F> >= |F_R| sum_{d(o,v)<=R} tau_p(o,v)`. So
+    `||T_p||_{2->2} >= chi_p`.
+  - By (S), `chi_{p_c} = infinity`.
+
+  For `X` this is not new, since `X` has infinitely many ends. It confirms that
+  the hypotheses of the results below hold.
+- **Results that apply.** By Section 1.2, the following hold for `X`:
+  - GAFA Proposition 2.3: `p_c < p_{q->q}` for every `q in (1,infinity)`;
+  - the triangle condition at `p_c`, with `nabla_{p_c} <= lambda^3`;
+  - EJP `thm:ext_radius`, `thm:qtoq_exponents` and `cor:logbound`;
+  - the slightly supercritical estimates in the abstracts of arXiv:2002.02916
+    and arXiv:2207.00701.
+- **What is not new.**
+  - `X` has infinitely many ends, so `p_u(X)=1`, and `p_c<p_u` was already known
+    (Section 1.4).
+  - GAFA notes that Schonmann proved several mean-field exponents on every
+    infinitely-ended unimodular transitive graph, without the triangle condition.
+
+  The verified sources do not give the triangle condition or the quantitative
+  results above for these graphs.
+
+### 4.2 Where the method stops
+
+The proof uses the three items of Section 2.6.
+
+- **Finite separators without cut vertices.** Examples are Cayley graphs of
+  amalgamated products over nontrivial finite groups, and free products on
+  generating sets that are not unions of factor generating sets. These graphs
+  have finite separators but need not have cut vertices. A connection through a
+  separator of two or more vertices is not a product of block events. So
+  Lemma 2.1 fails, and items 1 and 3 fail with it.
+- **Transitive graphs with a cut vertex.** Items 1 and 2 still hold: the block–cut
+  tree gives the product formula along geodesics, and `alpha<1` whenever `p_c<1`.
+  Item 3 is different.
+  - Blocks need not be vertex-transitive. So the down-path sums would need a
+    matrix indexed by orbits of pairs (block, vertex), with spectral radius at
+    most 1 at `p_c`.
+  - Step 1 of Lemma 2.2 used that each `m_i` does not depend on the entry vertex.
+  - This note does not prove the analogue.
+- **One-ended graphs.** There is no cut vertex, and the method gives nothing.
+
+### 4.3 Caveats
+
+- Kozáková already proved the formulas for `chi_p` and `p_c` on free products
+  (Section 1.4). Section 2 reproves them in matrix form, because the proof needs
+  the inequality `rho(Q(p_c)) <= 1` and the down-path bound.
+- The Theorem covers only union generating sets `S = S_1 ⊔ ... ⊔ S_n`.
+- The imports (S) and (C) are used as black boxes.
+- The perturbative papers [MR1756965], [MR1833805] and [MR3005730] were not
+  re-read. The statement that they "implicitly yield" `p_c<p_{2->2}` is EJP's.
+- Novelty is judged against the sources of Section 1 and the titles of citing
+  papers. The texts of the citing papers were not read.
