@@ -139,3 +139,15 @@ Residuals of the route, so the final assembly can be planned:
 4. `CellPocketCopyCleanStatement` (T1, T2, T3), as before.
 
 Next: the ε = 0 model (`OsinPocketCellPinchModel`, probing).
+
+### LANDED 52eb75920 (probe 0913-182326-14568 GREEN, BUILT and COMPILED)
+
+`Estimating/OsinPocketCellPinchModel` is new and unwired, and is queued for wiring. It adds no census row.
+- `CellPocketWrap.not_simple_of_monogon_cells`: at ε = 0, a cell pocket face set whose two cells each have one dart is never
+  simple. The sides are empty, the cycle is `[alpha x, alpha y]`, and the loop `x` puts both cycle darts at one vertex.
+- `CellPocketWrap.no_simple_of_oEquivalent_monogon_cells` and `pinchConclusion_fails_of_monogon_cells`: an O-equivalence
+  keeps word lengths, so on one-letter relator words the conclusion of the cell pinch fails at ε = 0.
+- This is a calibration of the `0 < eps` binder of `CellPocketPinchPosStatement`, not a refutation: no diagram carrying a
+  cell pocket face set in walk order on monogon cells is built. No false-as-stated Prop was found.
+
+Next in this item: ready for the next leaf. The open residuals are 1–4 above.
