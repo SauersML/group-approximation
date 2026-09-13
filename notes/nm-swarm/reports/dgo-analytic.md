@@ -52,7 +52,10 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
   * The shared tree's copy carries ghw-charp2's staged patch 06a (`(T.respects a …).2` at l.199), which needs ruling (A) in `RespectsSections`. Until (A) lands, the file is out of this lane's probe overlay (probe 0913-141323-26359 failed there, before this lane's module).
 * `Estimating/OsinPocketRegionNoncrossingWalk.lean` (8bbf0a9c8, probe 0913-140151-74557, unwired, wire-queued): `PocketRegion.ofNoncrossingClosedWalk`.
 * `Estimating/OsinPocketCutResiduals.lean` (1b4053286, probe 0913-141538-35582, unwired, wire-queued): `sectionPocketCutInput_of_residuals` and `osinSectionPocketCutSection_of_residuals`, which pass the three closed pieces.
-  * Restated after go-lemma42's `pocketCellTransport` (874a332a2; probe 0913-141750-43433 green, md5 equal to main). `hcell` is dropped, so both theorems pass four closed pieces. The two theorems had no Lean users. Probe 0913-142350-67007 green at base 538afe1ed.
+  * Restated after go-lemma42's `pocketCellTransport` (874a332a2; probe 0913-141750-43433 green, md5 equal to main). `hcell` is dropped, so both theorems pass four closed pieces. The two theorems had no Lean users. Probe 0913-142350-67007 green at base 538afe1ed, landed 5ef75ffa7.
+* `Estimating/OsinDescentResiduals.lean` (probe 0913-142842-93848 green at base b8231e36d, unwired): `osinDescentSection_of_residuals h94 hloop hcount hregion hfaces hpinch hgeodesic : OsinDescentSectionStatement`, and `relativeGreendlingerQuasiGeodesicLeastArea_of_residuals` with the same arguments.
+  * It composes `osinDescentSection_of_pocketParts` with `osinMultipleEdgeCutSection_of_pieces hregion hgeodesic pocketCellTransport` and `osinSectionPocketCutSection_of_residuals hfaces hpinch hgeodesic`.
+  * So the collar insertion is passed once, and nothing about the cell transport is left open.
 
 ### The pieces, in the order of the assembly
 
@@ -230,6 +233,13 @@ New with the ruled order:
   * hull-select's `pocketOuterTransport` (`Estimating/OsinPocketGlueOuterTransport`, 71d59592c).
   * `Estimating/OsinPocketCutResiduals` passes both, together with `pocketRegionOfSimple` and the collar from `GeodesicCollarStatement`.
 * Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (ruling (A) final), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
+* Uniformly in the parameters (`Estimating/OsinDescentResiduals`), `OsinDescentSectionStatement` takes exactly seven Props:
+  * `OsinLemma94SectionStatement` (hull-unbound, hull-count94);
+  * `OsinLoopCutSectionStatement` (G2 loops; jacobson's `nonempty_osinLoopCut_of_pocketRegion` is a piece, and main has no uniform producer; ruling (A) is held);
+  * `OsinPhiPrimeCountSectionStatement` (hull-euler, `osinPhiPrimeCountSection_of_pieces`);
+  * `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz);
+  * the three pocket residuals: `OsinSectionPocketFaceSetSectionStatement`, `PocketPinchLabelledStatement`, `GeodesicCollarStatement`.
+  * O52 is `Embedded.o52LeastArea`, and the cell and outer transports are closed.
 
 Closed here:
 
