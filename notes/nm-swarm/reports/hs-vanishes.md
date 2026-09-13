@@ -209,8 +209,15 @@ Open, as read from origin:
 
 The lead reports that debt-conditional and leavitt-units each hold one of CutOutcome, Cut and Holds.
 `CutMove` (hull-component) and `CutLift` (hull-bridge) carry nearly the same data.  hs-vanishes asked
-hull-bridge once for one unstarted piece.  The lead then reported that hull-bridge has no W2 piece
-left, so this lane wrote no Lean on W2.
+hull-bridge once for one unstarted piece.  hull-bridge answered that none is left:
+
+* Item 1 is hull-component's.  `outcome_left` is on main at `27f56e14b`, and `outcome_right` is in
+  the unlanded `GGT/HullSCLemma51LetterPullbackCutOutcomeRight`.
+* Items 2 and 4 are hull-bridge's `GGT/HullSCLemma51LetterPullbackHolds`, already written.
+  `CutLift.toCutMove` turns each `CutLift` into a `CutMove`, and the proof splits into four cases.
+* Item 3 is debt-conditional's, green at `457c543a8`.
+
+The pieces are stated on `CutMove`.  So this lane wrote no Lean on W2.
 
 ## W1 C5 of `PhiPrimeCountInput` (lead assignment, 2026-09-13)
 
