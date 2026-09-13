@@ -6,6 +6,7 @@ title: The Baumslag--Solitar group BS(1,2) embeds in some Brin--Thompson group n
 distinct_from:
   bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets: that is a proved necessary condition on any image of BS(k,l) in nV; this is the open existence question.
   almost-automorphism-conjugate-to-proper-power-is-equicontinuous: that excludes BS(k,l) with |k| ≠ |l| from V_{d,r}; this asks about the higher-dimensional groups, where that argument does not apply.
+  bs12-images-in-nv-have-logarithmic-table-length: that is a proved necessary condition (logarithmic table lengths of powers); this is the open existence question.
 ---
 
 **OPEN.** Is there an element of some `nV`, `n ≥ 2`, of infinite order and
@@ -37,13 +38,17 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
   - has an open periodic set on which powers act as the identity locally;
   - has a nonempty closed invariant set with no periodic points;
   - has exponent sums bounded by `c (log N)^2`.
+- By `bs12-images-in-nv-have-logarithmic-table-length`, `L(g^N) ≤ c (1 + log N)`
+  for all `N ≥ 1`, and so do the exponent sums. So `g^N` rewrites only prefixes of
+  length `O(log N)`.
 - Undistortedness does not exclude a witness. Callard--Salo (arXiv:2208.00685v3,
   Theorem E) give an element of `mV`, `m ≥ 2`, with `|f^N| = O(log^4 N)`. Their
   Lemma 6.4 embeds the groups of reversible Turing machines `RTM(n,k)` in `mV`.
   Both were checked against the extracted text.
 - The same authors pose the analogous question for automorphism groups of
   subshifts (Question 7.2: "can we embed … the Baumslag-Solitar group
-  BS(1, n)?"). They add "We believe the SMART machine does not have this property
+  BS(1, n)?"; §7, second question, numbered with the section-level theorem
+  counter, rechecked against the v3 source 2026-09-13). They add "We believe the SMART machine does not have this property
   … but we have not proved this."
 - Not used: X. Sheng, arXiv:2209.11982, claimed exclusions of some
   Baumslag--Solitar groups from `SV` and `SV_G`. The arXiv abstract page records
@@ -70,7 +75,14 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
      would require `id × f` to have the same tower structure as `h_1`. No
      conjugator was found, and none of the finite-level roots of that
      construction is conjugate to a power of itself by construction.
-   - *Verdict.* Unclear, not pursued further.
+   - *Verdict.* Dead for any base `f` with a periodic point of nonzero exponent.
+     - If `u h_1 u^-1 = h_1^2`, then `u h_1^2 u^-1 = (h_1^2)^2`, so `id × f`
+       would be conjugate to its own square with infinite order.
+     - Item 1 of `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets`
+       then forbids periodic points of nonzero exponent in `id × f`.
+     - For the self-test `f` (`0 ↦ 00`, `10 ↦ 01`, `11 ↦ 1`) the point
+       `(x, 0^∞)` is fixed with exponent `(0, +1)`. Attempt 4's classifier reports
+       `h_1` as `hyp` at `p = 2`.
 3. **Exhaustive small-table search** (2026-09-13,
    `research/artifacts/bs12-2v-search-2026-09-13.md`).
    - *Setup.* Take every table of `2V` with at most 5 bricks, sides of length at
@@ -85,3 +97,22 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
      with at most 3 bricks against every `g` with at most 4 bricks, all sides at
      most 3: 14,075,554 pairs. It found 608 solutions with `g` of finite order
      and no witness.
+4. **Small tables against every conjugator** (2026-09-13,
+   `research/artifacts/bs12-2v-survivors-2026-09-13.md`).
+   - *Setup.* Take every table of `2V` with at most 5 bricks and sides of length
+     at most 4: 5,429,915 tables. Classify each `g`, for all powers `p ≤ 48`, as:
+     - `torsion` (`g^p = id`);
+     - `hyp` (`g^p` has a fixed point with nonzero exponent), which item 1 of
+       `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets` excludes
+       for **every** conjugator `f`;
+     - `survivor` otherwise.
+   - *Result.* The runs were MSI jobs 713316 (sides `≤ 3`) and 713317
+     (sides `≤ 4`).
+     - Sides `≤ 4`: 5,328,644 `hyp`, 101,255 `torsion`, 0 undecided, 16
+       survivors.
+     - Exact reduction (job 713880) shows that all 16 survivors have order 70.
+   - *Verdict.* No element of `2V` with such a table is the image of `s` in any
+     embedding `BS(1,2) → 2V`, whatever the size of the conjugator.
+     - Attempt 3 only bounded `f`.
+     - The gap is untouched: a witness needs an aperiodic core with `L(g^N)` of
+       order `log N`, and no small table has one.
