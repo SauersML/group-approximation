@@ -1,6 +1,9 @@
 # The closing letter of the Leavitt hexagon: what `t = 1` costs in stage models
 
-Lane `w7-hexagon-closing`, 2026-09-12. On paper. Every decision is held OPEN until `w4-vf-gate` re-derives it.
+Lane `w7-hexagon-closing`, 2026-09-12, on paper.
+
+`w4-vf-gate` passed Sections 1–6 with no mathematical corrections (§38 of
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, 427f2bfa50). Its advisories 38.5 are applied here.
 Premise: `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (verified by `w4-vf-gate` §34, b55d89486d), point 4:
 `G = R^x ≅ π_1(Y_hex)/<<t>>`.
 
@@ -9,11 +12,11 @@ Premise: `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (verified by `w
 * **Section 1: the letter.** `t` is not a word in the radicals. It maps to a generator of `π_1(hexagon) = Z`, acts
   hyperbolically on the Bass–Serre tree and has infinite order. Killing it is the same as killing the closing words
   `W_12(r)` and `W_13(r)` in the tree amalgam. In the Theorem 1.1 model the forest data fix only a coset
-  `π_n^0 C_n`, where `C_n ≅ K_n wr Sym(r_n)` is the permutation form of the free external holonomy of
+  `π_n^0 Z_n`, where `Z_n ≅ K_n wr Sym(r_n)` is the permutation form of the free external holonomy of
   `isolated-regular-a2-hexagon-has-free-external-holonomy`.
 * **Section 2 (elementary): no exact closing.** `G` is finitely presented and has no nontrivial finite quotient. So by
   Łoś, every homomorphism of `π_1(Y_hex)` into an algebraic ultraproduct of finite groups that kills `t` is trivial.
-  Per stage: at all large stages the finite six-piece colimit `C_n` has no finite quotient in which `x_12(1)` survives.
+  Per stage: at all large stages the six-piece colimit `C_n` of finite pieces has no finite quotient in which `x_12(1)` survives.
   So in every Theorem 1.1 model on `Y_hex`, no choice of forest bijections makes the letter permutation the identity.
 * **Section 3: no rank-null closing.** If `rk(σ(t) - 1) = 0`, then `σ` descends to a nontrivial homomorphism of `G`
   into a universal sofic group (`monomial-rank-models-are-hamming-models`), which contradicts nonsoficity. There is a
@@ -59,9 +62,9 @@ Premise: `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (verified by `w
    tree.
 4. **The model.** In Theorem 1.1 of `research/artifacts/mismatched-factor-graph-of-groups-firewall-2026-09-12.md` on
    `Y_hex` (`p = 2`), let `λ_π = λ_(n,π)` and `K_n = K_(n,e_6)`.
-   * The valid letter permutations at stage `n` form the coset `π_n^0 C_n`, where `C_n` is the centralizer of
+   * The valid letter permutations at stage `n` form the coset `π_n^0 Z_n`, where `Z_n` is the centralizer of
      `λ_132(K_n)` in `Sym(Ω_n)`.
-   * `K_n` is abelian and acts freely with `r_n = N_n/|K_n|` orbits, so `C_n ≅ K_n wr Sym(r_n)`.
+   * `K_n` is abelian and acts freely with `r_n = N_n/|K_n|` orbits, so `Z_n ≅ K_n wr Sym(r_n)`.
    * Only this coset is determined by the forest data. The order of `σ(t)` is a choice, not an invariant.
 
 *Proof.*
@@ -70,12 +73,12 @@ Premise: `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (verified by `w
 * **(2).** Read off the table in Proposition 5.1 of `research/artifacts/leavitt-unstable-k2-steinberg-reduction-2026-09-12.md`.
 * **(3).** The graph-of-groups map to the graph's `π_1` sends vertex groups to `1` and the non-forest letter to the
   generator.
-* **(4).** An intertwiner is unique up to right multiplication by `C_n`. The centralizer of a free action of an
+* **(4).** An intertwiner is unique up to right multiplication by `Z_n`. The centralizer of a free action of an
   abelian group `K` on `K × [r]` is `K wr Sym(r)`. ∎
 
 **Remark 1.2 (external versus forced).** In IRH, `1_E ⊗ Z` is removable because one coherent finite realization
-exists: the six radicals over `F_q` sit in `SL_3(F_q)`. In the permutation model `C_n` plays the role of `U(K)`. The
-question is whether `π_n^0 C_n` contains `id`, or elements near it. Sections 2 and 3 answer no at all large stages,
+exists: the six radicals over `F_q` sit in `SL_3(F_q)`. In the permutation model `Z_n` plays the role of `U(K)`. The
+question is whether `π_n^0 Z_n` contains `id`, or elements near it. Sections 2 and 3 answer no at all large stages,
 for all forest choices.
 
 ## 2. No exact closing
@@ -124,7 +127,7 @@ where `x_12(1)` acts freely, `id ∉ π_n^0 C_n` for all `n >= n_1`, whatever fo
   `w -> 1`, and `x_12(1) -> 1`.
 * **The model.** Actions agreeing on all six edges are a homomorphism `C_n -> Sym(Ω)`. ∎
 
-**Remark 2.5.** For `n >= n_1` the finite six-piece colimit `C_n` is not residually finite. This is the finite-stage
+**Remark 2.5.** For `n >= n_1` the six-piece colimit `C_n` of finite pieces is not residually finite. This is the finite-stage
 face of the fact that the radius-`r` hexagon colimit is freer than `St_3(R)`
 (`research/artifacts/leavitt-defect-floor-experiment-2026-08-26.md`). What fails here is the hypothesis of IRH: there
 is no coherent finite realization.
@@ -222,7 +225,7 @@ conditional as `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` is.
 
   The next class is non-monomial `F_2`-linear rank models, i.e. `binary-leavitt-unit-group-is-f2-linear-sofic`. A
   model there that closes `t` would make `G` linear sofic but not sofic. To my knowledge no group separating these is
-  known (question of Arzhantseva–Păunescu; literature from memory, not re-checked).
+  known. I attributed this question to Arzhantseva–Păunescu from memory, without checking the source (advisory 38.5.5).
 * **Where a proof must bite.** Corollary 1.3 of the firewall artifact says a relation-only proof must use `t = 1`.
   For arguments whose conclusions are checked only in ultraproduct targets this is automatic, and it gives no
   information about the gate.
@@ -236,15 +239,17 @@ conditional as `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` is.
 
 ## 8. Cairn
 
-* **Claim.** `stage-models-cannot-close-the-leavitt-hexagon`, OPEN.
-* **Attempts entry.** On `binary-complement-corner-has-no-weakly-finite-image`.
-* **After verification.** Once `w4-vf-gate` passes Sections 1–5, a route should require:
-  * `leavitt-unit-groups-have-no-unstable-k2-at-rank-three`;
-  * `leavitt-unit-group-finitely-presented`;
-  * `binary-leavitt-unit-group-is-simple`;
+* **Claim.** `stage-models-cannot-close-the-leavitt-hexagon`. Proof verified by `w4-vf-gate` §38.
+* **Attempts entry.** Added to `binary-complement-corner-has-no-weakly-finite-image`, which stays OPEN.
+* **Route.** `stage-models-cannot-close-the-leavitt-hexagon-proof` requires the following (advisory 38.5.3):
+  * `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` and `steinberg-group-is-glued-over-the-permutohedron`;
+  * `graphs-of-locally-finite-groups-carry-regular-rank-models`;
+  * `leavitt-unit-group-finitely-presented`, `binary-leavitt-unit-group-is-simple`;
+  * `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` (ternary);
   * `openai-leavitt-unit-nonsofic`;
-  * `monomial-rank-models-are-hamming-models`;
-  * `graphs-of-locally-finite-groups-carry-regular-rank-models`.
+  * `d-ary-leavitt-groups-nonsofic-over-finite-fields` and `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`
+    (ternary);
+  * `monomial-rank-models-are-hamming-models`.
 * **Cited lanes** (tip edb8c69cc). All complementary; nothing duplicated.
   * `w7-sub-multiletter` (37bafd8f3): multi-letter defect firewalls, not the closing letter.
   * `w7-escape-set` (45282c214): the four-transvection escape invariant and weakly finite models on depth-monotone
