@@ -103,3 +103,21 @@ algebras over `Q`. The existence of cocompact lattices in `SL_3(R)` is not impor
 * **Stability route (conditional).** Route `sl3z-cocompact-nonsofic-from-stability-and-no-finite-approx`
   needs `sl3z-is-stable-in-finite-actions` and the defect-tolerant exclusion
   `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`. Both are open.
+* **Update (ex2-sl3z-cocompact-weak-containment, 2026-09-13; all unreviewed).**
+  - *Every cocompact `Λ`.* Margulis superrigidity makes every homomorphism from a finite-index subgroup
+    of `SL_3(Z)` into a cocompact lattice finite (`sl3z-maps-to-cocompact-lattices-have-finite-image`).
+    So uniform distance from finite actions holds for every cocompact `Λ`
+    (`sl3z-every-cocompact-quotient-far-from-finite-actions`), with no division-algebra hypothesis.
+  - *Homogeneous form of the exclusion.* `SL_3(Z) ↷ G/Λ` is weakly contained in finite actions iff
+    `G ↷ G/Λ` is weakly contained in the congruence quotients `G ↷ G/Γ(N)`
+    (`sl3z-cocompact-wc-iff-weak-limit-of-congruence-quotients`).
+  - *Separable models separate nothing.* `G/Λ` is not a factor of Bernoulli times any free ergodic
+    profinite action (`sl3z-cocompact-not-factor-of-bernoulli-times-profinite`). The same argument also
+    excludes the Hecke action, which is weakly contained, so only ultraproducts matter.
+  - *Marks-free reduction.* The exclusion follows from the open rounding claim
+    `sl3z-lambda-almost-cocycles-round-to-flat-ones`, through route
+    `sl3z-cocompact-exclusion-from-almost-cocycle-rounding`.
+  - *Spectrally invisible.* By Jacquet--Langlands (recalled), the Koopman representation is weakly
+    contained in finite-image representations.
+  - *Undecided lattices.* The non-uniform lattices outside the `SL_3(Z)` class remain, posed in
+    `sl3z-nonuniform-outer-form-quotient-wc-in-finite-actions`.
