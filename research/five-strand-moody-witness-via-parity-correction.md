@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/zp-burau-n4-verification-2026-09-13-part1.md
 ---
 
-Let `1 != Phi` be in `Brun_4`. Take `y`, `Gamma` in `K_5`, `Phi_1 = y Phi y^{-1}`,
+Let `1 != Phi` be in `Brun_4`. Take `k >= 1`, `y`, `Gamma` in `K_5`, `Phi_1 = y Phi^k y^{-1}`,
 `A = (beta_*^3) f(Phi_1) Gamma` and `B = (beta_*^3) Gamma`, with transverse
 representatives as in `brunnian-four-braids-admit-parity-correcting-push`.
 
@@ -32,7 +32,7 @@ representatives as in `brunnian-four-braids-admit-parity-correcting-push`.
    `|A ∩ alpha| != |B ∩ alpha|`, so the two coefficient sums differ. Multiplying by
    a unit `+-t^k` preserves that sum. So
    `M_{f(Phi_1).Gamma} != M_Gamma`, even up to units, and `Phi_1` is a conjugate of
-   `Phi` in `B_4`.
+   `Phi^k` in `B_4`, as the witness claim requires.
 
 This route replaces an earlier faithfulness route of this lane (landed
 5c5c59481a, retired; see the verification artifact, part 2). That route

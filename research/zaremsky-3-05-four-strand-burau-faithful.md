@@ -64,7 +64,9 @@ whether this homomorphism is injective for `n = 4`.
     `brunnian-four-braids-admit-parity-correcting-push`. It feeds
     `brunnian-four-braids-have-five-strand-moody-witness` through the route
     `five-strand-moody-witness-via-parity-correction`.
-- **The No side.** A bounded kernel search in the free point-pushing
-  subgroup `K_4` (lane z3-05-burau-search, MSI) is running. Its result lands
-  as its own claim.
+- **The No side.** An exhaustive meet-in-the-middle search in the free
+  point-pushing subgroup `K_4` (lane z3-05-burau-search, MSI) found no Burau
+  kernel element of free length at most 24 in the basis `A_{14}, A_{24},
+  A_{34}`: `burau-kernel-avoids-short-point-pushing-braids`, established by
+  machine computation with exact re-checking and controls.
 - Neither answer route is complete.

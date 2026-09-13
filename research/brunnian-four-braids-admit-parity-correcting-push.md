@@ -13,15 +13,18 @@ artifacts:
 Let `alpha` be the arc from `p1` to `p2`, `beta_*^3` the standard arc from the
 boundary basepoint to `p3`, `f: B_4 -> B_5` the standard inclusion, and `K_5` the
 point-pushing subgroup of `p5` in `B_5`. For every nontrivial `Phi` in the Brunnian
-subgroup `Brun_4` there are `y` in `B_4` and `Gamma` in `K_5` with the following
-property. Write `Phi_1 = y Phi y^{-1}`, `A = (beta_*^3) f(Phi_1) Gamma` and
+subgroup `Brun_4` there are `k >= 1`, `y` in `B_4` and `Gamma` in `K_5` with the
+following property. Write `Phi_1 = y Phi^k y^{-1}`, `A = (beta_*^3) f(Phi_1) Gamma` and
 `B = (beta_*^3) Gamma`. Then some transverse representatives of `A` and `B` both
 satisfy the **parity condition**: a disk in the disk sequence is sign-changing iff it
 contains an odd number of marked points. Moreover, `|A ∩ alpha| != |B ∩ alpha|` for
 those representatives.
 
 This packages Proposition 6.4 and the conjugation step of Theorem 6.6 of
-arXiv:2607.05283v1 (Bharathram–Birman–Brendle).
+arXiv:2607.05283v1 (Bharathram–Birman–Brendle), which state the case `k = 1`.
+Allowing powers means a proof may assume `iota(alpha, (beta_*^3)Phi_1) > 0`, by
+`brunnian-four-braid-powers-cross-the-base-arc` (lane z3-05-burau-theory). That
+repairs gap G6.
 
 - Route `five-strand-moody-witness-via-parity-correction`: this claim implies
   `brunnian-four-braids-have-five-strand-moody-witness`.

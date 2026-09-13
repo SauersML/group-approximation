@@ -101,6 +101,11 @@ gives the verdict.
   proof: one given arc can be carried into the complement of alpha. A fix by
   a further conjugation is plausible but not given. Corollary 6.5 assumes
   iota > 0.
+  - Repaired up to powers by lane z3-05-burau-theory (landed 602a2b8963).
+    `brunnian-four-braid-powers-cross-the-base-arc` proves
+    iota(alpha, (beta_*^3)Phi^k) → ∞ for 1 ≠ Phi in Brun_4, by FLP growth
+    for the pseudo-Anosov Phi. Kernel membership passes to powers, so it is
+    enough to treat some power. This lane has not re-checked that proof.
 - **Text inconsistency.** Section 6 opens by saying Theorem 6.6 is
   faithfulness on K_4; Theorem 6.6 states Brun_4.
 
