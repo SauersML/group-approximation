@@ -16,13 +16,22 @@ distinct_from:
 `G/K` has `mu(G \ H) >= (N - 1) delta` when `delta = N^-2`. The failure is in
 freeness, not in the value: a permutable subgroup still rounds.
 
-**The sharper form for normal `K` holds over M-groups.**
+**The sharper form for normal `K` is true.**
 `normal-fibre-galois-games-round-linearly-over-m-groups`: if `K` is normal and
 the irreducibles carrying the certificate are monomial (every nilpotent group,
 in particular every `p`-group), some `L` with `L cap K = {e}` has
 `mu(G \ L) <= 3 eps log_q k/(1 - cos(2 pi/m))`. That is the abelian constant,
 with no dimension factor. Large irreducibles of `p`-groups are no obstruction.
-Artifact: `research/artifacts/ugc-rounding-normal-fibres-2026-09-13.md`.
+`normal-fibre-galois-games-round-linearly-over-all-groups` removes the monomial
+hypothesis using `primitive-projective-representations-have-a-trace-gap`. The
+constant becomes `3/min(1 - cos(2 pi/m), 1 - gamma(G))`, where
+`gamma(G) = 2^(-1/2)` for solvable `G`, and in general `gamma(G) < 1` is
+uniform in `m` by CFSG. For arbitrary `K`, free rounding costs exactly the extra
+factor `[G : N_G(K)]` (`free-rounding-pays-the-number-of-fibre-conjugates`).
+The value-only question for non-normal `K` is open:
+`galois-games-round-linearly-for-every-fibre-at-bounded-exponent`.
+Artifacts: `research/artifacts/ugc-rounding-normal-fibres-2026-09-13.md` and
+`research/artifacts/ugc-rounding-normal-fibres-part2-2026-09-13.md`.
 
 The original statement and attempts are kept below as history.
 
