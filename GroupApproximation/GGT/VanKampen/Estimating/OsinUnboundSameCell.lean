@@ -96,7 +96,7 @@ theorem listVal_flatMap_eq_listVal_keptLetters
       cases b
       · have hv : RelLetter.listVal v = 1 := hone (v, false) List.mem_cons_self rfl
         rw [List.flatMap_cons, OsinComponents.listVal_append, hv, one_mul, ih']
-        simp [keptLetters, List.filter_cons]
+        simp [keptLetters]
       · rw [List.flatMap_cons, OsinComponents.listVal_append, ih']
         simp [keptLetters, List.flatMap_cons, OsinComponents.listVal_append]
 
