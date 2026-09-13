@@ -54,11 +54,19 @@ such an amenable `Q`:
 - yet makes the coset action `(F x F) curvearrowright (F x F)/M_Q` sofic by the
   consequence above.
 
-So the edge-base contribution to the positive-branch obstruction can be
-**removed by design**.  What remains is exactly the free-`Z`-lamp step over an
-already-sofic coset action — the perturbed-edge Britton lemma
-[[centralizing-hnn-perturbed-edge-separation]], equivalently a free-wreath
-analogue of the Gao--Kunnawalkam Elayavalli--Patchell direct-sum wreath
-theorem.  Whether the compiler's INF/FIN switch and negative branch can be
-carried with an amenable Mikhailova base is a separate check; (TS) and the
-amenable-base soficity are unconditional.
+For such an amenable `Q` the free-`Z`-lamp step is not open. GKP Theorem 3.7
+([[gkp-free-generalized-wreath-soficity]]) is the free-wreath analogue of their
+direct-sum theorem. So `< F x F, v | [v, M_Q] = 1 >` is sofic, and it stays
+sofic for every residually amenable `Q`
+([[separating-sofic-quotient-sets-make-an-action-sofic]], (C3)).
+
+*Correction (2026-09-13, lane `ex2-free-wreath-amenable-sofic`).* An earlier
+version said the edge-base obstruction "can be removed by design", leaving the
+free-lamp step. The "separate check" that version deferred fails. The
+compiler's Mikhailova base is the Higman host `H_e`, which contains the free
+group `F(x,y)` on every branch. A benign witness of a non-amenable switch
+group never has an amenable core quotient, and the compiler's edge is not
+co-amenable ([[compiler-rope-edge-is-not-co-amenable]]). An amenable base
+therefore cannot carry the INF/FIN switch. The first rope needs instead the
+two-sided action of `H_e`, pulled back to `F(X_e)^2`, to be sofic (R3 there).
+(TS) and the amenable-base soficity remain unconditional.

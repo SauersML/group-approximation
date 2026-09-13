@@ -25,24 +25,28 @@ DERIVATION [[amenable-base-mikhailova-co-amenable-proof]].
 
 ## Consequence for the compiler crux
 
-By [[centralizer-hnn-is-free-generalized-wreath]] the compiler's inner rope is
-the centralizing HNN `H *_M (M x Z) = Z wr^*_(H/M) H`.  With an amenable
-Mikhailova base ([[mikhailova-coset-action-is-two-sided-q-action]]) the edge
-`M` is co-amenable in `H`, i.e. the coset action `H curvearrowright H/M` is an
-**amenable action**, and the lamps of the wreath are indexed by an amenable
-`H`-set.  This is exactly the setting in which Følner sets exist in the lamp
-index space `X = H/M`:
+*Corrected 2026-09-13 (lane `ex2-free-wreath-amenable-sofic`).*  An earlier
+version of this section had three errors. It said "an amenable action is
+sofic", which is false ([[amenable-action-of-a-sofic-group-need-not-be-sofic]]).
+It called the free lamps "the only remaining gap", although that gap is closed
+in the literature. And it read the design as settling the compiler's positive
+branch, although the compiler cannot use an amenable base. What is true:
 
-- for **abelian (direct-sum) lamps** it already gives soficity via the
-  Gao--Kunnawalkam Elayavalli--Patchell wreath theorem (an amenable action is
-  sofic), so `(bigoplus_(H/M) Z) x| H` is sofic;
-- the **free lamps** of the actual rope (`(*_(H/M) Z) x| H`) are the only
-  remaining gap: keeping the free-lamp syllables unreduced in the finite
-  models is the sofic analogue of Ueda's reduced HNN normal form
-  ([[centralizing-hnn-perturbed-edge-separation]]).
-
-Thus, once the base is chosen amenable, the compiler's positive branch is not
-"soficity over a non-amenable non-separable edge" but "soficity of a free-lamp
-wreath over an amenable coset action" — a strictly cleaner target, with the
-non-amenability and non-separability of `M` no longer able to obstruct the
-approximation (they obstruct only residual finiteness).
+- **The amenable-base rope is sofic.** `H *_M (M x Z) = Z wr^*_(H/M) H`
+  ([[centralizer-hnn-is-free-generalized-wreath]]). The action
+  `H curvearrowright H/M` factors through the amenable group `Q x Q`, so it is
+  sofic (GKP Theorem 2.17 and Proposition 2.15(1)). GKP Theorem 3.7
+  ([[gkp-free-generalized-wreath-soficity]]) already covers free lamps. So the
+  rope is sofic, and so is its direct-sum companion (GKP Theorem 3.6). The
+  same holds for every residually amenable base
+  ([[separating-sofic-quotient-sets-make-an-action-sofic]], (C3)).
+- **Co-amenability is not the reason.** Co-amenability of an edge does not by
+  itself give a sofic coset action. The correct general statement also needs
+  the stabilizer's action on the coset space to be sofic
+  ([[co-amenable-induction-of-sofic-actions]]).
+- **The compiler cannot use this design.** Its Mikhailova base is the Higman
+  host `H_e`, which contains a free group on every branch. So the compiler's
+  edge is never co-amenable and never has an amenable core quotient
+  ([[compiler-rope-edge-is-not-co-amenable]]). There the first rope reduces to
+  soficity of the two-sided action of `H_e`, pulled back to a product of free
+  groups, and the second, twisted rope is a separate open step.

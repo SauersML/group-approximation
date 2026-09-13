@@ -58,12 +58,16 @@ residual-finiteness obstruction, not an approximation one.
   Elayavalli--Patchell, *Soficity for group actions on sets*, Def. 2.1), then
   the abelian-lamp companion `Z wr_X K_e = (bigoplus_X Z) x| K_e` is sofic by
   GKP Theorem A (with `K_e` sofic).  The rope is the **free**-lamp wreath
-  `(*_X Z) x| K_e`, not the direct-sum one; the gap between free and abelian
-  lamps over the same sofic action is exactly the correlated Britton estimate
-  isolated by [[centralizing-hnn-perturbed-edge-separation]] (the free-lamp
-  syllables must stay unreduced in the approximation).  So a free-wreath
-  analogue of GKP Theorem A, or the perturbed-edge lemma, closes the branch;
-  the coset-action input is obstruction-free by the paragraph above.
+  `(*_X Z) x| K_e`, and it is sofic under the same hypothesis by GKP Theorem
+  3.7 ([[gkp-free-generalized-wreath-soficity]]).  *Corrected 2026-09-13 (lane
+  `ex2-free-wreath-amenable-sofic`):* an earlier version said the gap between
+  free and abelian lamps "is exactly the correlated Britton estimate", and
+  that "a free-wreath analogue of GKP Theorem A ... closes the branch". That
+  analogue is Theorem 3.7, already published. So the first rope needs exactly
+  a sofic coset action. By [[compiler-rope-edge-is-not-co-amenable]] (R3),
+  that action reduces to the two-sided action of the Higman host, pulled back
+  to `F(X_e)^2`. The action is free of (T)-obstructions by the paragraph above,
+  but it is not amenable ((R2) there), so no amenability tool applies.
 - **Why the (T)-free setting matters.**  It separates the two roles of the edge
   `L_e`: its non-separability (a residual-finiteness failure, the reason the
   compiler exists) versus a nonsoficity mechanism (which needs (T), absent
