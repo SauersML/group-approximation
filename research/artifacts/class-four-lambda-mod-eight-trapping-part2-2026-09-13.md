@@ -159,4 +159,9 @@ modulo U_0(M_2(A)), so diag(c, 1) is in U_0(M_2(A)). □
   pi_12^s = 0. Every trapped bordism class is the image of the stable
   preimage class under a unit map S -> MG. So no trapping detector sees
   depth four for such seeds. Class five needs larger protected blocks,
-  non-spherical seeds, or an unstable detector.
+  non-spherical seeds, or an unstable detector. *Correction (later on
+  13 Sep 2026):* the peer landing 344f59a964
+  (`rank-two-trapping-blind-to-depth-four-brackets`) shows that the stable
+  fivefold commutator map of U(2) is null. So non-spherical rank-two seeds
+  are dead as well. Only larger protected blocks, or detectors that are not
+  homology classes of the locus, remain.

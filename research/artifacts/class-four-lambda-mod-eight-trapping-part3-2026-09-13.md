@@ -108,8 +108,12 @@ Each such product vanishes. eta^4 = 0. eta^3·y = 12 nu·y is a multiple of
 
 For fourfold commutators (a + b = 3) the product eta^3 survives, and
 Parts 1–2 detect it. So for sphere-product seeds, rank-two trapping is sharp
-at class four. Class five needs protected rank p >= 3, non-spherical seeds,
-or detection that is not a bordism class.
+at class four. The peer result
+`rank-two-trapping-blind-to-depth-four-brackets` (344f59a964) proves that
+the stable fivefold commutator map of U(2) is null. That covers every seed
+manifold, and it contains this proposition as the sphere-product case. So
+class five needs protected rank p >= 3, or detection that is not a
+homology class of the locus.
 
 **First data at rank p >= 3.** Bott's brackets are
 <a_i, a_j> = (i−1)!(j−1)!·g in pi_{2p} U(p) ≅ Z/p! for i + j = p + 1. The

@@ -21,8 +21,10 @@ a + b = 4. Here y is the stable image of <omega, omega> in pi_3^s. Every
 such product is 0. At fourfold commutators (a + b = 3), eta^3 survives, and
 the lambda-mod-8 tower detects it
 (simple-ah-algebra-with-class-four-component-group). So rank-two trapping is
-sharp at class four for these seeds. Class five by trapping needs protected
-rank at least three, non-spherical seeds with a non-spin detector, or a
-different detector.
+sharp at class four for these seeds. The peer result
+rank-two-trapping-blind-to-depth-four-brackets extends the blindness to every
+seed manifold, so non-spherical rank-two seeds are dead too. Class five by
+trapping needs protected rank at least three, or a detector that is not a
+homology class of the locus.
 
 Complete argument. Not independently reviewed.
