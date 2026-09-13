@@ -1,0 +1,57 @@
+---
+rg: 2
+id: sl3z-lambda-almost-cocycles-round-to-flat-ones
+kind: claim
+title: Bounded Λ-labellings of finite SL3(Z)-sets with few non-flat relator cells are close, with small norm budget, to flat labellings
+distinct_from:
+  sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions: that is the dynamical exclusion with marks in SL3(R)/Λ; this is a marks-free rounding statement about Λ-valued 1-cochains on Schreier complexes, which implies the exclusion
+  sl3z-is-stable-in-finite-actions: that asks for weak containment of limits of almost-actions of SL3(Z); here the action on V is honest and only the Λ-labels are repaired
+---
+
+**OPEN.** Let `Γ = SL_3(Z)` with generators `S = {e_ij^(±1)}` and a finite presentation `⟨S | R⟩`. Let `Λ` be
+a finitely generated subgroup of `SL_3(R)`, and write `||·||` for the operator norm. For a finite
+`Γ`-set `V` and a labelling `λ : V × S → Λ`, a *relator cell* is a pair `(v, r)` with `r = s_m···s_1 ∈ R`.
+It is *flat* if `λ(v_0,s_1)λ(v_1,s_2)···λ(v_(m−1),s_m) = 1`, where `v_0 = v` and `v_i = s_i v_(i−1)`. The
+labelling is *flat* if every cell is flat.
+
+**Claim (DTR).** For every finite `Σ ⊂ Λ` there is `f_Σ : (0,1] → [0,∞)` with `f_Σ(δ) → 0` as `δ → 0` such
+that the following holds. Let `V` be a transitive finite `Γ`-set and `λ : V × S → Σ` a labelling with at
+most `δ|V|` non-flat cells. Then there is a flat `λ' : V × S → Λ` with
+
+```text
+#{(v,s) : λ'(v,s) != λ(v,s)}  +  Σ_(λ'(v,s) != λ(v,s)) log( ||λ'(v,s)|| · ||λ'(v,s)^(−1)|| )   <=   f_Σ(δ) |V|.
+```
+
+**Why it matters.** For `Λ` satisfying (R) of `sl3z-cocompact-quotient-uniformly-far-from-finite-actions`,
+DTR implies `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`, by route
+`sl3z-cocompact-exclusion-from-almost-cocycle-rounding`. Flat labellings have finite holonomy there
+(Bass--Milnor--Serre), so DTR says: *a near-flat bounded labelling is near one with finite holonomy*. It
+is the defect-tolerant superrigidity named in that node's Attempts, stated without marks and with the
+weakest budget norm drift can use. The changed labels may be large, but only on average.
+
+**What it is about.** Flat labellings are `Λ`-covers of the presentation complex of `V`. DTR is a
+nonabelian, infinite-coefficient cosystolic-expansion statement for the Schreier 2-complexes of
+`SL_3(Z)`, with a non-effective rate.
+
+**Warning, not an argument.** `SL_3(Z)` has exponential Dehn function (Epstein--Thurston; recalled, not
+imported), coming from the exponentially distorted unipotent subgroup under `SL_2(Z)`. In the universal
+cover some loops of length `ℓ` need area `e^(cℓ)`. Any rounding along such loops is therefore far from
+local. Whether this defeats DTR is not known.
+
+## Attempts
+
+* **Loeb limit and measurable superrigidity.** A counterexample sequence gives, on the ultraproduct `Z`
+  of the `V_k`, a genuine cocycle `w : Γ × Z → Λ` on an ergodic (Kazhdan) Loeb space. For a group acting
+  freely on a tree in place of `Λ`, Adams--Spatzier (recalled, not imported) makes `w` a coboundary, and
+  internal approximation of the gauge rounds the labellings. So the tree analogue of DTR holds, with
+  bounded changed labels. For `Λ <= SL_3(R)`, Zimmer's measurable superrigidity (recalled) allows `w` to be
+  cohomologous in `SL_3(R)` to the identity homomorphism, and then `z ↦ φ(z)Λ` is an equivariant map
+  `Z → SL_3(R)/Λ`. **Dies at:** the limit object is consistent exactly when weak containment holds, so a
+  measurable limit argument cannot prove DTR. The finiteness of each `V_k` must be used before the limit,
+  as norm drift uses it in `sl3z-cocompact-quotient-uniformly-far-from-finite-actions`.
+* **Zooming (Ioana).** Localizing the cocycle to fibres of a nonstandard level lands on single points of
+  `V_k`. There the cocycle identity fails exactly at the defects, which returns the problem unchanged
+  (`sl3z-cocompact-not-factor-of-bernoulli-times-profinite`).
+* **Fixed-point properties.** `Λ` acts properly on the symmetric space of `SL_3(R)`, and `Γ` acts there with
+  no fixed point. So no property (T) or FH-type argument with CAT(0) coefficients can force finite
+  holonomy: the obstruction has to be arithmetic (Bass--Milnor--Serre) or dynamical (norm drift).

@@ -57,3 +57,25 @@ stability of `SL_3(Z)` in finite actions.
 * **Kazhdan projections.** Build an almost-invariant vector in `ℓ^2(V) ⊗ L^2(SL_3(R)/Λ)` from bumps at the
   marks, and use that invariant vectors are constants. Dies at: left translations distort bumps by
   `Ad(s)`, which has no invariant shapes, so the vector is never almost invariant.
+* **Koopman representation (ex2-sl3z-cocompact-weak-containment; recalled, not imported).** Weak containment
+  would put `L^2_0(SL_3(R)/Λ)|_Γ` inside the closure of the finite-image representations. Take `D` of
+  prime degree `3`. By Jacquet--Langlands every irreducible constituent `π` of `L^2_0(SL_3(R)/Λ)` is the
+  archimedean part of a cuspidal representation of `GL_3`, so `π` occurs in `L^2(SL_3(R)/Γ(N))` for some
+  `N`. `Γ ↷ SL_3(R)/Γ(N)` has infinitely many finite orbits, and they equidistribute
+  (`hecke-orbits-make-lattice-quotient-actions-sofic`). That action is weakly contained in finite
+  actions, hence so is its Koopman representation, and with it `π|_Γ`. Dies at: the action is spectrally
+  invisible, so any obstruction must be non-spectral. In particular, the route through property FD
+  cannot detect it. That route uses MD ⇒ FD, item (6) of Section 5 in Burton--Kechris, arXiv:1611.07921,
+  read from the PDF. The survey also lists as open whether MD ⇒ ¬(T).
+* **Separable models (proved; ex2-sl3z-cocompact-weak-containment).** Popa product superrigidity followed
+  by Ioana profinite superrigidity shows that `SL_3(R)/Λ` is not a factor of Bernoulli times any free
+  ergodic profinite action (`sl3z-cocompact-not-factor-of-bernoulli-times-profinite`). Dies at: the same
+  argument, with superrigidity and Borel density, also excludes the Hecke action on
+  `SL_3(R)/SL_3(Z)`, which *is* weakly contained. So the question lives only in ultraproducts.
+* **Rounding route (conditional; ex2-sl3z-cocompact-weak-containment).** The first Attempt's missing
+  ingredient is posed as the marks-free open claim `sl3z-lambda-almost-cocycles-round-to-flat-ones`.
+  Its conclusion is weakened to a vanishing Hamming distance plus a vanishing log-norm budget on the
+  repaired labels. Route `sl3z-cocompact-exclusion-from-almost-cocycle-rounding` proves that it implies
+  this claim: flat labels have finite holonomy, and norm drift on the resulting finite orbits prices the
+  repairs. Measurable limits cannot supply the rounding, since Zimmer superrigidity permits the identity
+  homomorphism (see that claim's Attempts).
