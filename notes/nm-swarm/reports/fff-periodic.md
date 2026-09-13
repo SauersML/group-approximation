@@ -39,7 +39,11 @@ A same-cell edge is a bridge.  The component `C2` behind it sits inside cell `i`
 
 Options sent to the lead:
 - (a) Respell `Covers` with a factor `⌈1/λ⌉` on the sides and `L` depending on `λ, c`.  This lane
-  proves (T) in a new module, and (C) stays a named binder.
+  proves (T) in a new module, and (C) stays a named binder.  The consumer carries over:
+  `dense_of_covers` uses `Covers` only through `linarith`, so a factor `M` on the sides gives
+  density at `⌊ρ / (4 M²)⌋`, and `unbound_lt_of_pieces` then asks `4 M² ρₘ ≤ ρ`.  The (T) word
+  lemma (a stretch `i..j` of a quasi-geodesic word with a same-value admissible respelling `alt`
+  has `λ (j − i) − c ≤ |alt|`) is drafted outside the repo; it is neither landed nor probed.
 - (b) Change PlanarPieces so a cell side may carry value-one same-cell excursions (Osin's 0-refinement).
 - (c) Use a `DartMinimal` measure that keeps spurs unfolded.  The cost is digon polygons, which raise
   `SideBudget`.
