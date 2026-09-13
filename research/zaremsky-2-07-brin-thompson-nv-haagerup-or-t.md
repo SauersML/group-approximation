@@ -50,13 +50,26 @@ Known, with sources to be quoted verbatim before any citation route:
 - `nV` is finitely presented and simple (Brin), of type `F_infinity`
   (Kochloukova–Martínez-Pérez–Nucinkis; Fluch–Marschler–Witzel–Zaremsky), and
   has Serre's property FA (Kato, arXiv:1504.06680).
-- Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687 (v of Aug 24, 2026), prove that
-  abstract twisted Brin–Thompson groups have property `FW_infinity` (every
-  action on a finite-dimensional CAT(0) cube complex fixes a point). Their
-  Definition 2.12 and Remark 2.14 appear to cover `nV` as `SV_G` with
-  `S = {1,...,n}` and trivial `G`; to be checked against the text. So any
-  proper cubical action of `nV` must be on an infinite-dimensional complex, as
-  for `V`.
+- Genevois, arXiv:1804.01791, proves that `V` is hyperbolically elementary and
+  has property `FW_infinity`: every action on a finite-dimensional CAT(0) cube
+  complex fixes a point, while `V` acts properly on an infinite-dimensional one.
+- Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687 (Theorem 6.5 in v2, via
+  Genevois's criterion and property NL), prove `FW_infinity` for abstract
+  twisted Brin–Thompson groups `SV_G` (Definition 2.12). The paper does not say
+  explicitly whether untwisted `nV`, `n >= 2`, is covered; to be checked in the
+  text. If it is, any proper cubical action of `nV` must be on an
+  infinite-dimensional complex, as for `V`.
+- Callard–Salo, arXiv:2208.00685 (ETDS 44, 2024), abstract: "the
+  higher-dimensional Brin-Thompson groups mV admit distortion elements; in
+  particular, 2V (unlike V) does not admit a proper action on a CAT(0) cube
+  complex". As quoted by lane z2-19-glnz-q-2v, Theorem E gives
+  `|f^n| = O(log^4 n)`. So the Haagerup part cannot be settled "yes" by any
+  proper cubical action, finite- or infinite-dimensional: a proof must use
+  non-cubical walls or Hilbert-space methods.
+- Kojima–Sheng, arXiv:2603.18410: `nV` contains continuum many copies of
+  `(Q, +)` for `n >= 2`, which gives the same cubical conclusion. `Q` is
+  amenable, so this does not obstruct the Haagerup property.
+- Neither result touches the (T) part.
 
 Open status: a bounded search on 2026-09-13 (web search, the arXiv HTML of
 2603.24687, the abstracts of Kato 1504.06680 and Cornulier, Annales Henri

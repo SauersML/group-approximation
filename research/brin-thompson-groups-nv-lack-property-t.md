@@ -27,4 +27,20 @@ subgroups or overgroups, so the claim is per `n`.
   fraction. No amenable candidate yet.
 - **Unbounded commensurating action.** Any commensurated subset with unbounded
   `|gA Δ A|` would do (no FW, hence no (T)). The action must be
-  infinite-dimensional, by `FW_infinity`.
+  infinite-dimensional, by `FW_infinity`. Constraint: in a commensurating
+  action every cyclic subgroup has `|f^n A Δ A|` either bounded or linear in
+  `n`, so the distortion element of Callard–Salo (arXiv:2208.00685) is elliptic
+  in every such action.
+- **Maharam extension (dies).** `nV` preserves the Lebesgue class on `C^n` with
+  Jacobians in `2^Z`. On `C^n x Z` with the invariant measure `μ ⊗ 2^k` and
+  `g(x, k) = (gx, k - log_2 J_g(x))`, the half-space `{k >= 0}` is
+  commensurated, but its complement has finite measure. So the cocycle is
+  bounded. Per-coordinate extensions on `C^n x Z^n` with half-spaces
+  `{k_1 >= 0}` are not commensurated, because the transverse sums
+  `Σ_{k_2} 2^{k_2}` diverge.
+- **Finite-set sums (die).** `ψ = Σ_k w_k |g S_k Δ S_k|` over finite brick
+  families `S_k` is bounded unless the `S_k` are almost invariant, and the
+  chart action contains free orbits and scales depth by constant fractions.
+- **Codimension-one objects.** Bricks, slabs, horizontal or vertical lines, and
+  point orbits `D^n` all have infinitely many broken objects per element,
+  because one coordinate can be short while the other is arbitrary.

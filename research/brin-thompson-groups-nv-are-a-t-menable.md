@@ -33,8 +33,21 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
   piece in direction 1 and then both halves in direction 2 gives the same
   vertex as the other order, a 6-cycle in the 1-skeleton that no cube corner
   or pair of squares fills. So its 1-skeleton is not a median graph.
-- **Next.** A wall structure whose walls are codimension-one objects counted
-  finitely: maximal break segments of `g` along brick faces, with charts that
-  record the transverse extent. Any proper cubical action must be
-  infinite-dimensional, by `FW_infinity` (Fournier-Facio–Wu–Zaremsky,
-  arXiv:2603.24687).
+- **No cubical proof at all.** `2V` has a distortion element with
+  `|f^n| = O(log^4 n)` and admits no proper action on any CAT(0) cube complex
+  (Callard–Salo, arXiv:2208.00685). This supersedes the two route-specific
+  obstructions above. A Haagerup proof must be non-cubical: measured walls with
+  an invariant measure, or a direct proper cocycle. Any proper conditionally
+  negative definite `ψ` grows at most like `O(log^8 n)` along `⟨f⟩`, since
+  `√ψ` is subadditive.
+- **Coupled objects fail too.** Diagonal-type curve charts
+  `u ↦ (αu, βu)` couple the tails, so breaks happen only when both prefixes
+  are short. But canonical maps shift the imbalance `|α| - |β|` by the
+  piecewise cocycle `δ_x - δ_y`, so balanced curves are not commensurated. Every
+  object tried breaks by codimension-one faces (uncoupled objects) or by
+  anisotropic scaling (coupled objects).
+- **Local similarities.** Hughes (arXiv:0804.0610) proves a-T-menability for
+  locally finitely determined groups of local similarities of compact
+  ultrametric spaces. Brick maps scale the coordinates by independent powers of
+  2, so they are not similarities of the max ultrametric on `C^n`. The theorem
+  does not apply as stated (paper not read in full).
