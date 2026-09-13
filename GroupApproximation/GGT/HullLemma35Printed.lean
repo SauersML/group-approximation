@@ -27,8 +27,8 @@ and Osin's Definition 4.25.
 
 `HullSC.FreeProductUnionGeometryStatement` and the `HullSCUnionGeometry*` modules give the free
 product only the manuscript's union alphabet over `Type`. `GGT/HullLemma35FreeFactors.lean`
-proves `PrintedFreeFactorsHypEmbedded` (`printedFreeFactorsHypEmbedded`). `PrintedHullLemma35` is
-not proved yet.
+proves `PrintedFreeFactorsHypEmbedded` (`printedFreeFactorsHypEmbedded`).
+`GGT/HullLemma35Closed.lean` proves `PrintedHullLemma35` (`printedHullLemma35`).
 -/
 
 namespace GroupApproximation
