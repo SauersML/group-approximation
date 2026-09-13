@@ -75,13 +75,14 @@ theorem commute_closure_of_commute {G : Type*} [Group G] {s : Set G}
 theorem map_top_le_of_closure_eq_top {H G : Type*} [Group H] [Group G] {s : Set H}
     (hs : Subgroup.closure s = ⊤) (f : H →* G) (W : Subgroup G) (hf : ∀ x ∈ s, f x ∈ W) :
     (⊤ : Subgroup H).map f ≤ W := by
-  rw [← hs, Subgroup.map_closure, Subgroup.closure_le]
+  rw [← hs, MonoidHom.map_closure, Subgroup.closure_le]
   rintro _ ⟨x, hx, rfl⟩
   exact hf x hx
 
 theorem map_eq_one_of_mem_commutator_top {H G : Type*} [Group H] [Group G] {s : Set H}
     (hs : Subgroup.closure s = ⊤) (f : H →* G) (W : Subgroup G) (hW : ⁅W, W⁆ = ⊥)
-    (hf : ∀ x ∈ s, f x ∈ W) {y : H} (hy : y ∈ ⁅(⊤ : Subgroup H), ⊤⁆) : f y = 1 := by
+    (hf : ∀ x ∈ s, f x ∈ W) {y : H} (hy : y ∈ ⁅(⊤ : Subgroup H), (⊤ : Subgroup H)⁆) :
+    f y = 1 := by
   have hle := map_top_le_of_closure_eq_top hs f W hf
   have hmem : f y ∈ ⁅W, W⁆ := Subgroup.commutator_mono hle hle
     (by rw [← Subgroup.map_commutator]; exact Subgroup.mem_map_of_mem f hy)
@@ -92,7 +93,7 @@ theorem map_eq_one_of_mem_commutator_top {H G : Type*} [Group H] [Group G] {s : 
 isomorphic": twisting an embedding `φ` of the presented group by commuting `w_i` that commute with `φ`
 and meet its range trivially. -/
 theorem exists_mulEquiv_closure_mul {G α : Type*} [Group G] {rels : Set (FreeGroup α)}
-    (hrels : ∀ r ∈ rels, r ∈ ⁅(⊤ : Subgroup (FreeGroup α)), ⊤⁆)
+    (hrels : ∀ r ∈ rels, r ∈ ⁅(⊤ : Subgroup (FreeGroup α)), (⊤ : Subgroup (FreeGroup α))⁆)
     (φ : PresentedGroup rels →* G) (hφ : Function.Injective φ) (w : α → G) (W : Subgroup G)
     (hwW : ∀ i, w i ∈ W) (hWcomm : ∀ g₁ ∈ W, ∀ g₂ ∈ W, Commute g₁ g₂)
     (hWφ : ∀ g ∈ W, ∀ x, Commute g (φ x)) (hdisj : ∀ x, φ x ∈ W → φ x = 1) :
@@ -114,7 +115,8 @@ theorem exists_mulEquiv_closure_mul {G α : Type*} [Group G] {rels : Set (FreeGr
   have hχW : ∀ x, χ x ∈ W := fun x =>
     map_top_le_of_closure_eq_top (PresentedGroup.closure_range_of rels) χ W hχgen
       (Subgroup.mem_map_of_mem χ (Subgroup.mem_top x))
-  have hχ1 : ∀ y ∈ ⁅(⊤ : Subgroup (PresentedGroup rels)), ⊤⁆, χ y = 1 := fun y hy =>
+  have hχ1 : ∀ y ∈ ⁅(⊤ : Subgroup (PresentedGroup rels)), (⊤ : Subgroup (PresentedGroup rels))⁆,
+      χ y = 1 := fun y hy =>
     map_eq_one_of_mem_commutator_top (PresentedGroup.closure_range_of rels) χ W hWbot hχgen hy
   have hχcomm : ∀ x y : PresentedGroup rels, Commute (χ x) (φ y) := fun x y => hWφ _ (hχW x) y
   let ψ : PresentedGroup rels →* G := MonoidHom.mk' (fun x => χ x * φ x) fun x y => by
@@ -136,17 +138,19 @@ theorem exists_mulEquiv_closure_mul {G α : Type*} [Group G] {rels : Set (FreeGr
       show ψ (PresentedGroup.of i) = w i * φ (PresentedGroup.of i)
       rw [hψ, hχof]
   have hrange : ψ.range = Subgroup.closure (Set.range fun i => w i * φ (PresentedGroup.of i)) := by
-    rw [MonoidHom.range_eq_map, ← PresentedGroup.closure_range_of rels, Subgroup.map_closure,
+    rw [MonoidHom.range_eq_map, ← PresentedGroup.closure_range_of rels, MonoidHom.map_closure,
       ← Set.range_comp, hψof]
   have hcomm : ⁅ψ.range, ψ.range⁆ = ⁅φ.range, φ.range⁆ := by
     rw [MonoidHom.range_eq_map, MonoidHom.range_eq_map, ← Subgroup.map_commutator,
       ← Subgroup.map_commutator]
     ext g
     constructor
-    · rintro ⟨x, hx, rfl⟩
+    · intro hg
+      obtain ⟨x, hx, rfl⟩ := Subgroup.mem_map.mp hg
       refine Subgroup.mem_map.mpr ⟨x, hx, ?_⟩
       rw [hψ, hχ1 x hx, one_mul]
-    · rintro ⟨x, hx, rfl⟩
+    · intro hg
+      obtain ⟨x, hx, rfl⟩ := Subgroup.mem_map.mp hg
       refine Subgroup.mem_map.mpr ⟨x, hx, ?_⟩
       rw [hψ, hχ1 x hx, one_mul]
   refine ⟨⟨(MonoidHom.ofInjective hψinj).trans (MulEquiv.subgroupCongr hrange)⟩, ?_⟩
@@ -158,7 +162,8 @@ theorem exists_mulEquiv_closure_mul {G α : Type*} [Group G] {rels : Set (FreeGr
 /-- Brown's relators `x_i x_j x_i⁻¹ x_{j+m+1}⁻¹` are products of commutators, since
 `x_{j+m+1} = x_0 x_j x_0⁻¹`. -/
 theorem brownRels_le_commutator (m : ℕ) :
-    ∀ r ∈ brownRels m, r ∈ ⁅(⊤ : Subgroup (FreeGroup (Fin (m + 2)))), ⊤⁆ := by
+    ∀ r ∈ brownRels m,
+      r ∈ ⁅(⊤ : Subgroup (FreeGroup (Fin (m + 2)))), (⊤ : Subgroup (FreeGroup (Fin (m + 2))))⁆ := by
   have key : ∀ a b c : FreeGroup (Fin (m + 2)),
       a * b * a⁻¹ * (c * b * c⁻¹)⁻¹ = ⁅a, b⁆ * ⁅b, c⁆ := by
     intro a b c
@@ -210,7 +215,8 @@ theorem exists_twisted_generators {c d : ℚ} (hc : ∃ M, c ∈ Grid 6 M) (hd :
   have hu : ∀ x, SupportedIn (φ x) (perIoo c d) := fun x => (mem_upsilon.mp (hφmem x)).2
   refine ⟨⇑φ ∘ PresentedGroup.of, ?_, ?_⟩
   · rw [← hφrange, MonoidHom.range_eq_map, ← PresentedGroup.closure_range_of (brownRels 4),
-      Subgroup.map_closure, Set.range_comp]
+      MonoidHom.map_closure]
+    exact congrArg Subgroup.closure (Set.range_comp _ _)
   · intro s hs1 hs2
     let w : Fin 6 → Equiv.Perm ℚ := fun i => s i * (φ (PresentedGroup.of i))⁻¹ * (s i)⁻¹
     have hwV : ∀ i, SupportedIn (w i) (s i '' perIoo c d) := fun i =>
