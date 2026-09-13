@@ -19,6 +19,12 @@ is the restriction of a point of `X`.
 Equivalently, every Garden of Eden pattern of a strict automaton over `G x K` involves two sites with
 different `G`-coordinates.
 
+**The hypothesis on `G` is not needed (w5-quant-surj, 2026-09-12).** The conclusion holds for every group `G`
+whenever `K` is surjunctive. A pattern on `{g} x F` extends to a configuration not depending on the
+`G`-coordinate. Such configurations lie in the image because the automaton restricts to an injective automaton
+over the quotient `K` (`product-automata-images-contain-fibre-invariant-configurations`). The sofic transplant
+below is a correct proof of a weaker statement, and the filter carries no information about `G`.
+
 **Proof idea.**
 - Transplant `tau` and its decoder to automata over `G` with alphabet `A^V`, for a sofic model `V` of `K`.
 - Store the input on the `epsilon |V|` bad points in an extra track. The transplant becomes injective.

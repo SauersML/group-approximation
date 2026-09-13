@@ -30,3 +30,14 @@ and all `n >= 1`, `j, j' >= 0` with `(j' - j) log|D| < delta_Y n`, no injective 
 - **Known surjunctive nonsofic groups.** They lie in the LEF permanence closure. Whether its operations
   preserve the property is not recorded. A proof along the finitary split-extension peeling would have
   to carry the deficit through each peeled stratum. That has not been attempted.
+- **Restriction to invariant configurations (w5-quant-surj).** It settles every subshift missing a configuration
+  invariant under a normal subgroup with sofic quotient (`quantitative-surjunctivity-constants-lift-from-quotients`).
+  - **Constants.** Over every group, a subshift with `c_Y < |B|` constant configurations has constant `log(|B| / c_Y)`.
+  - **Residually finite groups.** Periodic points give `-log(1 - |B|^(-|W|)) / |W|^2` with no sofic models.
+  - **Where it stops.** The residue is the proper subshifts containing `Fix_N` for every normal `N` with sofic
+    quotient. For groups with no nontrivial sofic quotient, finitely generated simple nonsofic groups included,
+    that is every proper subshift containing all constant configurations. Restriction and fixed-point counts
+    give nothing there.
+  - **Theorem Q meets only the residue.** A Garden of Eden pattern whose subshift misses an `N`-invariant point is
+    realized (`product-automata-images-contain-fibre-invariant-configurations`).
+  - Artifact `research/artifacts/quantitative-surjunctivity-residue-2026-09-12.md`, Sections 1–2.

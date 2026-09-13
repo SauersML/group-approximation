@@ -28,3 +28,12 @@ artifacts:
     full shift larger by `q^(epsilon |V|)`. It closes exactly under quantitative surjunctivity of `G`
     (`sofic-factor-products-via-quantitative-surjunctivity`).
   - **Where it dies.** Plain surjunctivity of `G` constrains only maps between equal full shifts.
+- **Invariant configurations (w5-quant-surj).**
+  - **Single fibres.** That case needs no hypothesis on `G`.
+  - **Invariant patterns.** Every Garden of Eden candidate extending to a configuration invariant under `N x 1`,
+    for a normal `N` of `G` with sofic quotient, is realized
+    (`product-automata-images-contain-fibre-invariant-configurations`).
+  - **What a counterexample needs.** Its patterns give subshifts `Y` containing `Fix_N` for all such `N`. That is
+    exactly the residue of `quantitative-surjunctivity-constants-lift-from-quotients`.
+  - **Where it dies.** For `G` with no nontrivial sofic quotient, `Y` contains all constant configurations, and no
+    known count gives a constant.
