@@ -1,0 +1,25 @@
+PSL(2,8) |A|=504 #ord7=216 rec(
+  girth4_genfalse := 20,
+  girth4_gentrue := 38 )
+A7 |A|=2520 #ord7=720 rec(
+  girth4_genfalse := 7,
+  girth4_gentrue := 31,
+  girth6_gentrue := 21 )
+PSL(2,13) |A|=1092 #ord7=468 rec(
+  girth4_gentrue := 54,
+  girth6_gentrue := 5 )
+A8 |A|=20160 #ord7=5760 rec(
+  girth4_genfalse := 10,
+  girth4_gentrue := 7,
+  girth6_genfalse := 5,
+  girth6_gentrue := 28,
+  girth8_gentrue := 10 )
+PSL(2,27) |A|=9828 #ord7=2106 rec(
+  girth4_gentrue := 22,
+  girth6_gentrue := 18 )
+PSL(2,29) |A|=12180 #ord7=2610 rec(
+  girth4_genfalse := 2,
+  girth4_gentrue := 17,
+  girth6_gentrue := 9,
+  girth8_gentrue := 2 )
+DONE

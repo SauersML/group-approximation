@@ -1,0 +1,12 @@
+CALIBRATION2 literal (A7,A7,A7) into larger S e=[ 1, 1, 1 ] girths=
+[ 6, 6, 6 ] sizes=[ 2520, 2520, 2520 ]
+    hom: |image| = 2520
+    hom: |image| = 2520
+  |S|=181440 homs(up to conj)=2 ms=106
+    hom: |image| = 2520
+    hom: |image| = 2520
+  |S|=1814400 homs(up to conj)=2 ms=1639
+    hom: |image| = 2520
+    hom: |image| = 2520
+  |S|=19958400 homs(up to conj)=2 ms=1239
+DONE

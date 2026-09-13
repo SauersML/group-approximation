@@ -45,6 +45,12 @@ nontrivial finite quotient, nor some member having none.
   gives `PSp_6(p)` quotients, and it is virtually torsion-free (their Remark 5.16).
   A simple-vertex analogue of their unresolved cases is exactly a candidate for this
   claim.
+- **Explicit candidates (2026-09-12).**
+  `research/artifacts/simple-vertex-triangle-quotient-search-2026-09-12.md` gives four
+  hyperbolic `(A_7, A_7, A_8)` triangles with `Z/7` edge groups and half-girth type
+  `(3,3,4)`, as explicit presentations. None maps nontrivially into `Sp_6(2)`. The zeros
+  for `A_8` through `A_13` hold for the whole family by a support argument, so they are
+  not evidence. Informative alternating targets start at degree 15.
 - **Closest literature.** Lubotzky–Manning–Wilton, arXiv:1702.08200v2, build k-fold
   triangle groups from LPS Ramanujan graphs. Their vertex groups are finite quotients
   of free groups, and the edge groups meeting `G_0` are trivial, so the Lemma does not

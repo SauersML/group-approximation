@@ -60,3 +60,19 @@ separation problem.
   (`good-cocompact-proper-groups-are-virtually-torsion-free`), and
   `every-hyperbolic-group-is-good` would settle this root positively through
   `hyperbolic-vtf-via-universal-goodness`. Unreviewed.
+- **2026-09-12, three reductions and one dead start (lane ex-hyperbolic-vtf).**
+  (i) `non-vtf-hyperbolic-counterexample-may-be-one-ended`: finite graphs of
+  groups with finite edge groups preserve virtual torsion-freeness. So this root
+  holds iff it holds for one-ended hyperbolic groups.
+  (ii) `simple-vertex-groups-vtf-iff-some-finite-quotient`: for hyperbolic
+  triangles of finite simple groups, virtual torsion-freeness is having one
+  nontrivial finite quotient. So a single quotientless member,
+  `hyperbolic-simple-triangle-group-without-finite-quotients`, decides this root
+  and Gromov's. Explicit candidates and the Caprace–Conder–Kaluba–Witzel search
+  data are recorded there.
+  (iii) `lattice-forced-torsion-dies-in-hyperbolic-quotients`: consider torsion
+  forced invisible through a quotientless subgroup, such as a simple lattice in a
+  product of trees. It survives a hyperbolic quotient only if that quotient is
+  already non-residually finite, and never when the subgroup is simple and
+  contains `Z^2`. That kills the route
+  `non-vtf-hyperbolic-via-lattice-forced-torsion-quotient`. Unreviewed.

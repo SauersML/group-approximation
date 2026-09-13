@@ -1,0 +1,25 @@
+CAND1 (A7,A7,A8) (3,3,4) run2 e=[ 4, 2, 4 ] girths=[ 6, 6, 8 ] sizes=
+[ 2520, 2520, 20160 ]
+  |S|=1451520 homs(up to conj)=0 ms=2508
+  |S|=19958400 homs(up to conj)=0 ms=811
+  |S|=239500800 homs(up to conj)=0 ms=1918
+  |S|=3113510400 homs(up to conj)=0 ms=4172
+CAND2 (A7,A7,A8) (3,3,4) run2 e=[ 1, 3, 3 ] girths=[ 6, 6, 8 ] sizes=
+[ 2520, 2520, 20160 ]
+  |S|=1451520 homs(up to conj)=0 ms=1674
+  |S|=19958400 homs(up to conj)=0 ms=805
+  |S|=239500800 homs(up to conj)=0 ms=1911
+  |S|=3113510400 homs(up to conj)=0 ms=4138
+CAND3 (A7,A7,A8) (3,3,4) run2 e=[ 4, 3, 3 ] girths=[ 6, 6, 8 ] sizes=
+[ 2520, 2520, 20160 ]
+  |S|=1451520 homs(up to conj)=0 ms=1655
+  |S|=19958400 homs(up to conj)=0 ms=805
+  |S|=239500800 homs(up to conj)=0 ms=1911
+  |S|=3113510400 homs(up to conj)=0 ms=4178
+CAND4 (A7,A7,A8) (3,3,4) run2 e=[ 3, 3, 6 ] girths=[ 6, 6, 8 ] sizes=
+[ 2520, 2520, 20160 ]
+  |S|=1451520 homs(up to conj)=0 ms=1710
+  |S|=19958400 homs(up to conj)=0 ms=828
+  |S|=239500800 homs(up to conj)=0 ms=1927
+  |S|=3113510400 homs(up to conj)=0 ms=4175
+DONE
