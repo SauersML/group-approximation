@@ -133,3 +133,71 @@ Consumers can drop hzip:
 
 Residual in this lane: none.  hKO still waits on hfold (`MirrorFoldDistinct` with ko-closed,
 `MirrorFoldPinched` with theoremc-retire).
+
+## 2026-09-13: the weighted planar van Kampen lemma (W1 cut core)
+
+Lead's assignment, ~03:35.  The W1 pocket carrier is an `IsDiscRegion` face set, and least area
+needs a weighted planar van Kampen lemma on `Δ` with the pocket collapsed.  The consumers are
+hull-select, kh-ejz and go-lemma42.  The new module is `GGT/VanKampen/PlanarVanKampenWeighted`;
+`PlanarVanKampen.lean` is unchanged.
+
+```lean
+namespace GroupApproximation.GGT.VanKampen
+
+theorem isRelatorProduct_of_planar_weighted {R : Set G} (M : CombMap.{v}) (hplanar : M.IsPlanar)
+    (label : M.Dart → RelLetter G Lambda)
+    (label_alpha : ∀ d, label (M.alpha d) = RelWord.inv (label d))
+    (relFaces : Finset M.Face) (wt : M.Face → ℕ) (lO : List M.Dart) (hO : M.IsFaceCycle lO)
+    (hOrel : M.faceOf (lO.head hO.ne_nil) ∉ relFaces)
+    (hrel : ∀ l (hl : M.IsFaceCycle l), M.faceOf (l.head hl.ne_nil) ∈ relFaces →
+      IsRelatorProduct R (wt (M.faceOf (l.head hl.ne_nil))) (RelLetter.listVal (l.map label)))
+    (htriv : ∀ l (hl : M.IsFaceCycle l), M.faceOf (l.head hl.ne_nil) ≠ M.faceOf (lO.head hO.ne_nil) →
+      M.faceOf (l.head hl.ne_nil) ∉ relFaces → RelLetter.listVal (l.map label) = 1) :
+    IsRelatorProduct R (∑ f ∈ relFaces, wt f) (RelLetter.listVal (lO.map label))
+
+theorem planarVanKampenWeighted {R : Set G} (M : CombMap.{v}) (hplanar : M.IsPlanar) (label)
+    (label_alpha) (O : M.Face) (FB : ∀ f, FaceBoundary M f) (relFaces : Finset M.Face)
+    (wt : M.Face → ℕ) (hOrel : O ∉ relFaces)
+    (hrel : ∀ f ∈ relFaces, IsRelatorProduct R (wt f) (RelLetter.listVal ((FB f).darts.map label)))
+    (htriv : ∀ f, f ≠ O → f ∉ relFaces → RelLetter.listVal ((FB f).darts.map label) = 1) :
+    IsRelatorProduct R (∑ f ∈ relFaces, wt f) (RelLetter.listVal ((FB O).darts.map label))
+
+open scoped Classical in
+theorem DiscDiagram.isRelatorProduct_filter_add_of_discRegion (Delta : DiscDiagram.{u, w, v} W)
+    (faces : Finset Delta.toCombMap.Face) (region : IsDiscRegion Delta.toCombMap faces)
+    (hout : Delta.outerFace ∉ faces) {m : ℕ}
+    (hm : IsRelatorProduct (RelLetter.listVal '' W) m
+      (RelLetter.listVal (Embedded.dartWord Delta region.toBoundaryCycle.cycle))) :
+    IsRelatorProduct (RelLetter.listVal '' W)
+      ((Delta.relatorCells.filter (fun C => C.face ∉ faces)).length + m) Delta.boundaryValue
+
+-- same hypotheses; index `Delta.rCellCount - (filter (· ∈ faces)).length + m`
+theorem DiscDiagram.isRelatorProduct_rCellCount_sub_add_of_discRegion
+```
+
+The file also contains `isRelatorProduct_rotate` (rotation keeps the budget) and
+`isRelatorProduct_of_planar_unweighted` (the case `wt ≡ 1`, index `relFaces.card`).
+
+Route.
+* Weighted lemma: `exists_cellFactors_of_planar` writes the outer word as a product of signed
+  conjugates of face words, one for each relator face.  Each factor inherits the budget of its
+  face, and `RelatorDefectBudget.isRelatorProduct_prod_map_sum` adds them.  `List.sum_toFinset`
+  on the nodup face list turns the sum into `∑ f ∈ relFaces, wt f`.
+* Disc corollary: apply `planarVanKampenWeighted` to `replaceGRegion`, with relator faces
+  `insert newFace S`, where `S` is the set of kept faces of relator cells outside the region.
+  The weights are `m` on `newFace` and `1` elsewhere.  `S.card` is the length of the filtered
+  cell list, by `keptFace_inj` and `relatorCell_faces_nodup`.
+
+Relation to dgo-analytic's `Estimating/OsinPocketOuterPart` (c0a1c1bee).  That module proves the
+at-most form `∃ n ≤ m + #outside, …` and the least-area consequence
+`DiscDiagram.LeastArea.length_filter_mem_le`.  This lane does not restate either.  The exact
+index here is stronger, because `IsRelatorProduct` is not monotone in its index.  This module
+imports `OsinPocketOuterPart` and reuses its helper lemmas: the list budget sum and the words of
+the collapsed faces.
+
+Evidence: probe 0913-042411-97479 (base bb5b595bb) is PROBE GREEN with
+`BUILT GroupApproximation.GGT.VanKampen.PlanarVanKampenWeighted`, an empty errors section and a
+successful build.  The six `#audit_axioms` lines pass.  The module is unwired: no endpoint
+imports it yet, and hull-select, kh-ejz and go-lemma42 will consume it through the W1 cut sections.
+
+Residual in this lane: none.  Next: whatever index form hull-select asks for.
