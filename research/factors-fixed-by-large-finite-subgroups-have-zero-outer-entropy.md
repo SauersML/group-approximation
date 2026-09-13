@@ -16,18 +16,26 @@ subgroups `T_n` with `|T_n| -> infinity`, each acting trivially on `F`. Then:
 - the outer Rokhlin entropy of `F` is `0`;
 - `h^Rok_W(X) = h^Rok_W(X | F)`.
 
+**Credit and generality (corrected 2026-09-12, same lane).** The vanishing is a special case of
+`alpeev-seward-stabilizer-growth-kills-outer-entropy` (Alpeev–Seward, arXiv:1705.09707, Theorem 1.11(ii)).
+- Along the factor, the stabilizer of a point of a free action grows from `1` to a group containing every
+  `T_n`, so its index is infinite.
+- Their theorem needs neither finite subgroups nor a finite-entropy generator. Any infinite subgroup acting
+  trivially on the factor suffices, for example an infinite normal subgroup.
+- The first landing of this node presented it without that attribution. The transversal proof in the
+  route is a self-contained re-derivation of this special case, not a new result.
+
 **Proof idea.** Record `beta` only on a Borel transversal `M` of the `T_n`-orbits. Since `beta` is
 `T_n`-invariant, the partition `{X \ M} ∪ (beta ∩ M)` still generates `F`, and its entropy is
 `H(1/|T_n|) + H(beta)/|T_n|`. Seward's subadditivity gives the equality.
 
-**Consequences** (Section 2 of the artifact).
-- **Normal subgroups.** Let `N ◁ W` have finite subgroups of unbounded order. Joining a free ergodic
-  `W`-action with a finite-entropy action of `W/N` never raises Rokhlin entropy.
-- **Kun–Thom wreaths.** `Rad_sof(W)` is the fibre-even lamp group, which is locally finite with finite
-  subgroups of unbounded order. So information on which the sofic radical acts trivially, which is the
-  only information sofic methods see, has zero outer Rokhlin entropy in every free ergodic `W`-action.
-  Any positive Rokhlin entropy lives in information on which the invisible lamps act nontrivially. This
-  is the action-level form of the witness localization.
+**Consequences** (Section 2 of the artifact, in the general form given by Theorem 1.11(ii)).
+- **Normal subgroups.** Let `N ◁ W` be infinite. Joining a free ergodic `W`-action with an action of `W/N`
+  never raises Rokhlin entropy.
+- **Kun–Thom wreaths.** `Rad_sof(W)`, the fibre-even lamp group, is infinite. So information on which the
+  sofic radical acts trivially, which is the only information sofic methods see, has zero outer Rokhlin
+  entropy in every free ergodic `W`-action. Any positive Rokhlin entropy lives in information on which the
+  invisible lamps act nontrivially. This is the action-level form of the witness localization.
 
 **Limits.**
 - The uniform Bernoulli shift over `W` has no nontrivial factor fixed by the radical, so this does not

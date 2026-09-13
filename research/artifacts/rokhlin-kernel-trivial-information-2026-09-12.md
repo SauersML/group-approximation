@@ -61,6 +61,14 @@ partition `alpha` satisfies `sigma-alg_W(alpha) v F = B(X)` and `H(alpha | F) <=
 `h_W(X | F) <= h^Rok_W(X)`. QED
 
 **Remarks.**
+0. **Credit (correction added the same day).** Part 1 is a special case of Alpeev–Seward, arXiv:1705.09707,
+   Theorem 1.11(ii), imported as `alpeev-seward-stabilizer-growth-kills-outer-entropy`.
+   - Their statement: "If |Stab_G(f(x)) : Stab_G(x)| = ∞ for µ-almost-every x ∈ X then hRok_(G,µ)(Y,ν) = 0."
+   - It needs only an aperiodic action and infinite-index stabilizer growth along the factor: no finite
+     subgroups and no finite-entropy generator.
+   - The first version of this artifact did not cite it. The transversal proof above is a re-derivation of
+     the special case, and Sections 2 and 3 hold with "finite subgroups of unbounded order" replaced by
+     "an infinite subgroup acting trivially on the factor".
 1. **Relation to Seward's Theorem 6.7.** Step 4 of the proof of Theorem A in
    `research/artifacts/rokhlin-entropy-self-copy-dichotomy-2026-09-12.md` uses the same transversal.
    - There, the atoms are made `T`-invariant through a subgroup `G` that commutes with `T`, and the input
