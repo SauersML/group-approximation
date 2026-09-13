@@ -52,3 +52,5 @@ group with no finitely presented simple MIF overgroup would refute PBH.
 **Open test case.** Per BFFHZ (l.762--765) the only known source of finitely
 presented infinite simple groups for which PBH remains open is non-affine
 Kac--Moody groups over finite fields: `fp-simple-kac-moody-lattices-are-highly-transitive`.
+
+**Update (2026-09-13).** Rybak (arXiv:2605.14159v3, Proposition A) shows these non-affine finitely presented simple Kac--Moody groups are MIF, so by BFFHZ Theorem C they satisfy PBH (`fp-simple-kac-moody-lattices-satisfy-pbh`). The statement above that they are the only known family where PBH is open is therefore out of date; only their high transitivity (part one of BFFHZ Question 3.6) remains open.
