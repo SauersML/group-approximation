@@ -38,6 +38,29 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   `TorsionFree.hullTheorem71_of_leastAreaLeaves` and the surviving
   `GGT.VanKampen.Estimating*Statement`s.
 - The ten census rows are re-graded at origin 6fd3d7a55 (section "Census rows").
+- `93cb4e04f`: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMergeRegion.lean`, the
+  value half of the zero-cell pocket merge, built with no shelling (section below). Probe
+  0913-062000-78681 was green on the bytes of main. The module is queued for wiring.
+
+## Zero-cell pocket merge: the value half (lead ruling ~05:00)
+
+This is the shared producer for the R-cell-free pocket of MultipleEdgeCut and of
+SectionPocketCut, and for C6. hull-select owns the statement, the FaceSetBoundary on the union,
+the merged ContiguityGeometry, `hweight` and the assembly (`Estimating/OsinPocketZeroCellMerge.lean`).
+This lane owns the value.
+- `PocketRegion.diagram_relatorCells_eq_nil`: a pocket with no relator cell among its faces has
+  no relator cell as a diagram (`diagram_rCellCount_le`).
+- `PocketRegion.isRelatorProduct_zero_inner`: so its boundary value is a budget-0 relator
+  product, moved onto `P.inner.cycle` by `isRelatorProduct_inner_of_diagram`.
+- `PocketRegion.listVal_inner_eq_one` and `PocketRegion.listVal_eq_one_of_isRotated`: the word
+  on the pocket cycle, and on every cyclic permutation of it, reads `1`.
+- `Surgery.InnerGRegion.ofPocketRegion P hcells boundary (hrot : boundary.cycle ~r P.inner.cycle)`
+  sets `value_one` from the above, with no `ofShelling`. `ofPocketRegion_faces` and
+  `ofPocketRegion_boundary_cycle` hold by `rfl`.
+- Interface link. If hull-select builds the pocket with `inner := B.toDiscRegion`, then
+  `P.inner.cycle` is `B.cycle` definitionally and `hrot := List.IsRotated.refl _`. Otherwise
+  the link is a uniqueness lemma (two boundary walks of one face set are rotations of each
+  other), which this lane has offered to take.
 
 ## Residual statements (exact, at origin 6fd3d7a55)
 
@@ -174,6 +197,8 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 
 ## Next
 
+- The value half of the zero-cell merge is on main and green. Next is to agree `hrot` with
+  hull-select, and to build the boundary-walk uniqueness lemma if that half is handed over.
 - `OsinDescentStepInput` is RETIRED as off route (lead, 2026-09-13; audit-sec5 and
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
