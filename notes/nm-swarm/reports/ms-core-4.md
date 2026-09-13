@@ -57,5 +57,25 @@ Twelve sentences, twelve keys, every one owned. No sentence of the range is miss
 
 ## Claims
 
-None. No piece of the range is unowned, so this lane builds nothing here and appends no census rows, which would
-duplicate chain-reflection's keys.
+No piece of tex 1516–1540 is unowned, so this lane builds nothing there and appends no census rows for that range,
+which would duplicate chain-reflection's keys.
+
+Next item (lead ruling 09-13 ~17:00): chain-core S1 items 3, 4 and 7, which the 16:00–16:17 ruling gave to
+hull-bridge. The ownership check at origin a2cb17f58 found no hull-bridge in-flight file, no shared-tree draft, no
+landing on them since the ruling, and no mention in hull-bridge.md.
+
+CLAIM item-3 GroupApproximation/Algebra/LEFRingStablyFinite.lean
+- tex 1358–1359: "Finite inverse-pair tables show that LEF rings are stably finite."
+- LEF ⇒ directly finite ⇒ stably finite, by way of `Pestov91.IsLEFRing.matrix`.
+- Also discharges chain-reflection's `LEFStablyFiniteInterface`.
+
+CLAIM item-4 GroupApproximation/Algebra/LEFRingStablyFinite.lean
+- tex 1359–1362: "Entrywise finite ring models, including the entries of inverse matrices, show that their general
+  linear groups are LEF. Countable LEF groups are MF".
+- GL_n of an LEF ring is LEF; countable GL_n is MF through `isOperatorMF_of_isLEF`.
+
+CLAIM item-7 GroupApproximation/Dynamics/ClopenCrossedProductCountable.lean
+- tex 1647–1649: "Its countability hypothesis holds because X has a countable clopen basis and each clopen subset is a
+  finite union of basis sets."
+- Producer of ct-bilateral-mf's `ClopenCrossedProductCountableStatement` (BilateralThreeStatement, 816a6b699) and of
+  ct-rank-budget's `CountableCrossedProductStatement`.
