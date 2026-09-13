@@ -51,6 +51,14 @@ general graphs.
   example Paddock--Slofstra Section 4 or `A(Hom(K_5,K_4))`.  Where it dies:
   the `MIP*=RE` separating algebra is not excluded by this, and no equivalence
   for it is known.
+- **Closure-safe bisynchronous sources.**  By
+  `closure-safe-support-is-exactly-the-colored-iso-rung`, a bisynchronous game
+  with a perfect trace, no `R^U` model, and support closed under linking gives
+  a colored-digraph pair of this kind.  Where it dies:
+  - independent-set games (Lin via Mančinska--Spaas--Spirig--Vernooij) are
+    automatically closure-safe but not square, so the missing step is
+    completing a quantum injection to a quantum bijection;
+  - no colored-to-plain reduction preserving both `qc` and `qa` is landed.
 - **Recursion-theoretic compiler.**
   - `A(Iso(X,Y)) = 0` is recursively enumerable, so `qc`-isomorphism is coRE.
   - Suppose `M |-> (X_M, Y_M)` is computable, with halting machines giving

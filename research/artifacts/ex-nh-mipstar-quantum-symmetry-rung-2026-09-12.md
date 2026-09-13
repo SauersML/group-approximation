@@ -171,6 +171,22 @@ non-Connes-embeddable Kac quantum group by the coloured corner argument of §2.
    - Kac free wreath products over amenable amalgams of hyperlinear duals
      (`generalized-free-wreath-hyperlinearity-permanence`).
 
+5. **Support closure versus squareness.**
+   `closure-safe-support-is-exactly-the-colored-iso-rung` gives the exact
+   boundary for colored digraphs.  A bisynchronous game with a perfect trace
+   and no `R^U` model feeds the rung iff every linked component of its pair
+   support is allowed.  That condition plays the role of affine safety for
+   linear systems.
+   - Independent-set games pass it for free, since their rule sees only
+     whether the two questions are equal.
+   - They fail squareness instead: a perfect strategy is a quantum injection
+     `[t] -> V`, and the rung needs a quantum bijection.
+   - Classically this is where independent set (NP-complete) and graph
+     isomorphism (quasipolynomial) part ways.
+   - Completing the qc injection to a bijection is the open step for the
+     independent-set sources of
+     `perfect-qc-separation-yields-finite-bcs-with-no-matrix-model`.
+
 ## 6. Literature check (bounded)
 
 - **Read at source.**
