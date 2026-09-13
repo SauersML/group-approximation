@@ -63,7 +63,7 @@ theorem isFaceCycle_digon (hmono : (Delta.faceBoundary f).darts.length = 1) :
     (map Delta f).IsFaceCycle [embed Delta.toCombMap (dart Delta f), some none] :=
   { ne_nil := List.cons_ne_nil _ _
     nodup := List.nodup_cons.mpr
-      ⟨fun h => by cases List.mem_singleton.mp h, List.nodup_singleton _⟩
+      ⟨(fun h => by cases List.mem_singleton.mp h), List.nodup_singleton _⟩
     chain := List.isChain_pair.mpr (facePerm_embed_dart Delta f hmono)
     closes := facePerm_some_none Delta f }
 

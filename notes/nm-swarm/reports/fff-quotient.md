@@ -62,10 +62,20 @@ length > 1, so stage 1 of the strip cannot run there.  kh-torsion was asked for 
 consumes (family, unboundSum, dart count, pocket faces).  The construction does not depend on that
 shape: `EdgeInsertion.splitMap` at index zero turns the monogon `[d]` into a monogon `[none]` (the new
 dart, labelled like `d`, standing in the place of `d`) and a value-one digon `[some none, d]`.
-- `GGT/VanKampen/SurgeryMonogonDoubling` (new, probe 0913-111910-27612 GREEN, unwired):
-  `MonogonDoubling.diagram`, `boundary_cellFace_darts`, `boundary_digon`, `boundary_digon_value`,
-  `oEquivalent`, `reduced`, `rCellCount_eq`, `label_admissible`, `embedding : DiscEmbeddingAway`.
-- The statement kh-torsion consumes lands after its answer, then its proof.
+- `GGT/VanKampen/SurgeryMonogonDoubling` (75d0892a2, probe 0913-111910-27612 GREEN, queued for
+  wiring): `MonogonDoubling.diagram`, `boundary_cellFace_darts`, `boundary_digon`,
+  `boundary_digon_value`, `oEquivalent`, `reduced`, `rCellCount_eq`, `label_admissible`,
+  `embedding : DiscEmbeddingAway`.
+- The shape stage 1 consumes is in kh-torsion's `SurgeryGeodesicCollarAssembly` (a89b55a0d): a
+  `GeodesicCollar.Transport D S Δ' S'` and a `Strip Δ' S' (s.map T.embedding) (rest.map T.embedding)`.
+  It carries no family, unboundSum, dart count or pocket faces.
+- `GGT/VanKampen/SurgeryMonogonDoublingStrip` (landed unverified 579226054, then fixed and landed with
+  this report, probe 0913-131547-23242 GREEN, queued for wiring): `MonogonStripStatement` is
+  `StripStatement` at `s = [d]`, `rest = []`, with
+  `(Δ.faceBoundary (faceOf d)).darts.length = 1` and without the walk hypothesis, and
+  `monogonStrip` proves it.  The strip is the digon `[d, some none]` (`collarStrip`), the face set
+  is the image of `S` with the digon (`faceSet`), and `collarTransport` keeps the outer darts, the
+  cell darts outside `S` and the side of every cell.
 
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
