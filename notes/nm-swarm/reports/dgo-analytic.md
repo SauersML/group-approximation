@@ -19,6 +19,7 @@ Rulings (lead, 09-13):
   * LoopCut ruling (A) is final: `RespectsSections` gains `target ≠ some source` as its first conjunct.
   * ghw-charp2's patch 06a edits `OsinAppendixAssemblyDescent` lines 199-200 (`T.respects a …` becomes `(T.respects a …).2`); this lane holds edits on that file until ghw-charp2 reports landed.
   * hl-lemma46's `PocketRegion.exists_twoCollars_of_ne_or` (7eb17a3e9) covers the collar, modulo kh-torsion's `GeodesicCollarStatement`.
+* ~10:15 (this lane, escalated to the lead): hull-respell's pinch obstructions, configurations A and B, with options R1 and R2 (see "The pinch obstructions" below). Awaiting the ruling and kh-torsion's answer on inner `FollowsBoundary`.
 
 Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 (`Estimating/OsinAppendixDescentInduction`).
@@ -31,7 +32,7 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
   * First statement, collar before pinch: 9cb70824c, probe 0913-073133-62116.
   * Restated in the ruled order: a032ab802, probe 0913-085713-52794, with the census row and the earlier report.
   * Nondegeneracy as the collar hypothesis, with `nondegenerate_of_leastArea`: b34e788e8.
-* `Estimating/OsinPocketCollarOfGeodesic.lean`: `pocketCollarStatement_of_geodesicCollar : GeodesicCollarStatement → PocketCollarStatement`, probe 0913-100702-85407, landed with this report.
+* `Estimating/OsinPocketCollarOfGeodesic.lean`: `pocketCollarStatement_of_geodesicCollar : GeodesicCollarStatement → PocketCollarStatement`, probe 0913-100702-85407, 6cb3014e6 (unwired, wire-queued).
 * `Estimating/OsinPocketRegionOfSimple.lean`:
   * The carrier `PocketFaceSet.toPocketCarrier`: a032ab802.
   * `pocketRegionOfSimple : PocketRegionOfSimpleStatement`, closed: c03054996, probe 0913-090829-84396.
@@ -108,6 +109,33 @@ The fix:
   * That contradicts `diagram_rCellCount_pos` at the kept cell.
 * The assembly applies it at `(S.equiv.trans E₁).leastArea hlea`, so no residual Prop is added.
 
+### The pinch obstructions (hull-respell, escalated ~10:15)
+
+hull-respell's analysis is in `notes/nm-swarm/reports/hull-respell.md`, section "Pocket pinch". Neither configuration below is a proof or a refutation, and neither is model-tested yet.
+
+* Side norms. A lobe that cuts a loop out of a side keeps `length ≤ ε` but not `wordNorm ≤ ε`. The fix is the binder `hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)`, after which `wordNorm_le_length` and `symmetricLabelAlphabet.carrier_eq` give norm ≤ length.
+  * Accepted by this lane. The consumer supplies it as `S.label_admissible` (`OsinAppendixSections.lean:272`, `RealizedRegionFamily.LabelLegal`).
+  * Plan: add a labelled Prop to `OsinPocketPieces` with a weakening lemma from `PocketPinchStatement`, and switch `sectionPocketCutInput_of_pieces` to it. No peer file breaks, and each lane lands only its own files. This waits for the ruling, so the statement changes once.
+* Configuration A, a notch. `∂Π` touches itself at a vertex `v` inside the source arc `t_1`, or `∂X` does at a cut vertex inside `t_2`, and the notch holds no relator cell.
+  * In the lobe that holds the relator cells, `t_1` with the loop removed is not a `CyclicArc`.
+  * A vertex split at `v` adds a letter to `Π`, which `OEquivalentDiscDiagram` forbids.
+* Configuration B, a lake. The source cell lies in a lake. `K.faces` is an annulus pinched at `v`, and the only simple lobe has no cell arc and contains `Π`.
+
+What the carriers use:
+
+* `PocketCarrier.inner_follows` is used only by the collar, as both a hypothesis and an output of `GeodesicCollarStatement` and `exists_twoCollars_of_ne_or`.
+* `nonempty_osinSectionPocketCut` and the transports use only `outer_follows`.
+* Elsewhere, hull-select's zero-cell merge (`OsinPocketZeroCellMerge`) and kh-ejz's `MultipleEdgePocketRegionInput` also use inner `FollowsBoundary`, but outside this cut.
+
+Options put to the lead:
+
+* R1: keep the carrier, and land A and B as named residual Props (`PocketNotchStatement`, `PocketLakeSourceStatement`) once dgo-geometric has model-tested them.
+* R2: drop `inner_follows` and weaken `PocketFaceSet.Simple` to match, so that A goes away.
+  * This restates `PocketRegionOfSimpleStatement`, `PocketCarrier`, `pocketCollarStatement_of_geodesicCollar`, kh-torsion's `GeodesicCollarStatement` and hl-lemma46's `exists_twoCollars_of_ne_or`.
+  * It works only if kh-torsion's insertion does not need inner `FollowsBoundary`; kh-torsion has been asked.
+* B stays a residual under either option.
+* Recommendation: R2 if kh-torsion confirms, otherwise R1.
+
 ### Truth caveats sent to dgo-geometric for model tests
 
 The earlier list covers:
@@ -128,7 +156,7 @@ New with the ruled order:
 ### Residual Props of `DescentInput` on this route
 
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
-* `PocketPinchStatement` (hull-respell).
+* `PocketPinchStatement` (hull-respell). kh-cckw reduced it to `PocketPinchPinchedStatement` (33951a5b6). Configurations A and B are escalated, and the label binder is pending.
 * `GeodesicCollarStatement` (kh-torsion, `SurgeryGeodesicCollar.lean:67`), in place of `PocketCollarStatement`.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
 * Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (ruling (A) final), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
