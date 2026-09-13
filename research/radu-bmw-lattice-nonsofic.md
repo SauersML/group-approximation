@@ -29,3 +29,14 @@ A mixing witness would also need `radu-bmw-lattice-embeds-in-infinitely-transiti
   quantitative.  The published exact input is [Rad20, Proposition 5.4] (via
   Titz Mite--Witzel Proposition 3.4(3)--(4)).  It is a profinite-closure
   statement, and whether its proof survives sparse defects is unread.
+* **What a proof would produce (ex-tree-lattice-mixing, 2026-09-13; unreviewed).**
+  - `Gamma_R` is a marked limit of `Gamma_R/gamma_k(Lambda_v)`, extensions of free nilpotent groups
+    by a cocompact arithmetic lattice in `PGL_2(Q_2)^2`
+    (`radu-lattice-is-limit-of-nilpotent-by-arithmetic-groups`).
+  - So nonsoficity of `Gamma_R` would make one of them a nonsofic amenable-by-residually-finite
+    group, refuting amenable-by-sofic permanence (open even for finite cyclic kernels).
+  - Radu's published mechanism (arXiv:1712.01091v1 Prop. 5.1, pp. 41–42, read for `Gamma_(4,4)`)
+    picks elements of `ker φ` fixing a ball and moving a neighbour. Almost actions have no such
+    kernel elements, so a different finite-structure input is needed.
+  - The linear quotient supplies explicit congruence models and super-strong approximation
+    (`radu-horizontal-quotient-is-arithmetic-lattice`).
