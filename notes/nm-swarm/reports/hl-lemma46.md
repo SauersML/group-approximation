@@ -68,3 +68,8 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
   - The only leaves no lane owns are `EstimatingJointConstructionStatement` and `PrefixKernelConeCutInductionStatement`, on the dead `_of_reduced` route. Taking either would duplicate W1.
   - Stale owner: C6′ `TwoGonHoldsInput` (`Estimating/OsinAppendixEulerSmallFaces:94`). The roster names debt-conditional, but that lane has no module and no report entry for it.
   - Proposed pick: C6′ in a new module `Estimating/OsinAppendixEulerTwoGonHolds`, if the lead reassigns it. Nothing is probed until the lead rules.
+  - Risk on the docstring route of C6′: `PocketRegion.ofSimpleClosedWalk` needs the merged walk (source arc reversed, right side of `a`, target arc, left side of `b`) to be simple. dgo-geometric's `OsinPocketPinchedTwoGonRegion` (`not_isSimpleClosedWalk`) shows a pinched pocket, so the route needs a no-pinch lemma for the optimum or a producer for pinched pockets.
+- In progress for hull-select (team-lead: "hl-lemma46 joins as your helper"): `Estimating/OsinPocketMultipleEdgeTransport`, landed unverified at 1d177113c; probe running.
+  - `PocketRegion.fourSectionCuts_cellTransport`, with the statement hull-select specified: regions to sections `1` and `3` of the four-part multiple-edge pocket cut glue back into cell-to-cell regions. It is the `htransport` argument of `OsinMultipleEdgeCut.ofPocketRegion`.
+  - Proof: `PocketCellTransportStatement` (go-lemma42) at `pre = s₁` and at `pre = s₁ t₁ s₂`, as in `hcellT` and `hsecT` of `PocketCarrier.nonempty_osinSectionPocketCut`. The four `partsCut` evaluations are re-proved locally, because the originals are private.
+  - Residual: `PocketCellTransportStatement`, a binder standing for go-lemma42's Prop.
