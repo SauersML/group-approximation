@@ -16,7 +16,7 @@ artifacts:
 Let `k` be a countable field, `𝒢` a Hausdorff ample second countable **minimal** groupoid with compact
 unit space `X`, `R = A_k(𝒢)` the Steinberg algebra, `S(𝒢)` the type semigroup and `θ = [X]`. Then
 
-1. if `R` carries a nonzero Sylvester matrix rank function, `R` is stably finite;
+1. if `R` carries a faithful Sylvester matrix rank function, `R` is stably finite (every nonzero one is faithful when `𝒢` is effective, see below);
 2. if `R` is stably finite, `θ` is completely non-paradoxical;
 3. `θ` is completely non-paradoxical **iff** `X` carries a `𝒢`-invariant Borel probability measure.
 
@@ -51,3 +51,5 @@ statement. Whether the ring-level paradox conversely descends to `S(𝒢)` is th
   conditions hold, as they must for the Pestov 9.1 group to be LEF.
 
 **Review (un-verify-3, 2026-09-13): PASS.** Re-derived: Lemma 2.1 (the rank-zero set is a two-sided ideal of each `M_n(R)`), Lemma 2.2 (`rk(e)+rk(1−e)=n`, since `diag(e,1−e)` is equivalent to `I_n ⊕ 0` by invertible matrices), Theorem 2.3 (padding to `M_(n+1)(R)`), Theorem 2.4 (minimality gives `θ ≤ m[U]`; ABBL extension), and that `ι : S(𝒢) → V(R)` respects the ABBL relations. Rainone–Sims Thm 6.2 (TeX label `Tarski`) and ABBL Lemma 2.3 (label `lem:RS-forgroupoids`) match the arXiv TeX sources verbatim. No established node conflicts. Details: `research/artifacts/un-review3-2026-09-13-part1.md` §1.
+
+**Scope repair (un-verify, 2026-09-13).** Item 1 said "nonzero" rank function for minimal `𝒢`, but the proof (route Step 1; un-verify-3 review §1, Lemma 2.1) uses faithfulness, which is automatic only when `R` is simple, i.e. when `𝒢` is also effective. For a minimal non-effective `𝒢` a nonzero rank function gives an invariant probability measure (`rk(1_U)` is invariant and additive) but stable finiteness from it is the open `invariant-measure-gives-rank-function-any-field` direction in characteristic `p`. Item 1 now says "faithful". See `research/artifacts/un-review-2026-09-13-part6.md` §4.

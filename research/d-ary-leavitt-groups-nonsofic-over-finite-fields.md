@@ -44,3 +44,5 @@ Note what is *not* asserted: the accompanying finite-generation, infiniteness
 and property-`(T)` clauses of Theorem A are not restated here, and these
 statements are about the universal algebras built in the development rather
 than about a presented `L_k(1,d)`.
+
+**Review (un-verify, 2026-09-13): PASS.** Probe GREEN on MSI (tag 0913-150110-6922, base 4179e5714, record `pc/lanes/pc-review.green.0913-150110-6922`): `#print axioms` of `GroupApproximation.CompleteMatrixFamily.elementary_not_isSofic` and of `FamilyRankFour.elementary_not_isSofic` are `[propext, Classical.choice, Quot.sound]`. Hypotheses are instance arguments only (finite field, countable nontrivial algebra, complete matrix family `t_i s_j = δ_ij`, `Σ s_i t_i = 1`); `IsSofic` is the standard local permutation definition. See `research/artifacts/un-review-2026-09-13-part6.md` §1.
