@@ -42,10 +42,20 @@ Khot--Vishnoi, for any fibre.
   `SDP = 1 - delta/2`. `L = W x <(c_0, t)>`, with `W` a hyperplane of `V` omitting
   `c_0 in V`, meets `K` trivially, is centralized by `K`, and has
   `mu(L) = 1 - delta/2`. So `val = SDP`. No gap.
-* **Non-subgroup transversals.** For `L cap K = {e}` without permutability, every
-  `L`-coset meets every `K`-coset at most once. A labeling would be an exact cover
-  of the `K`-cosets by `L`-cosets. This exists when `KL` is a subgroup, and in
-  general it is a combinatorial condition that was not analyzed.
+* **Abelian normal closure: yes.** `abelian-normal-closure-fibres-round-linearly`.
+  If `K` lies in an abelian normal `A`, every irreducible is induced from a
+  primitive representation of a subgroup containing `A`, so every conjugated
+  primitive kernel is normalized by `K`. The permutable-kernel attempt above then
+  works, with constant `3/c(G,m)`. This covers the wreath-product family and the
+  translation-fibre test above. Open: fibres whose conjugates do not all commute.
+* **Transversals made of `L`-cosets reduce to permutable subgroups when `k = 2`.**
+  Let `K = <a>` and `L cap K = {e}`. A transversal that is a union of left
+  `L`-cosets is one colour class of the graph on `G/L` with edges
+  `gL -- gaL`. That graph is bipartite iff `a` is not in the normal closure
+  `M_0 = <L, aLa>` of `L` in `<L, a>`. Then `M_0 cap K = {e}`, `M_0 K` is a
+  subgroup, and `mu(M_0) >= mu(L)`. So coset-structured labelings give nothing
+  beyond permutable rounding, and a counterexample must defeat unstructured
+  transversals.
 * **Where a counterexample would live.** Certificates carried by representations
   induced from subgroups on whose cosets `K` acts freely, with `[G : N_G(K)]` large,
   while every `L` permuting with `K` misses a fixed fraction of `mu`. No candidate
