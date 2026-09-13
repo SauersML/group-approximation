@@ -20,6 +20,13 @@ regime `eps log k -> infinity`. A no would be an explicit group whose
 large-dimensional representations carry SDP certificates that no free subgroup
 matches: a genuinely non-abelian symmetric gap phenomenon.
 
+**Sharper form for normal `K`.** By part 5 of
+`galois-games-round-through-free-subgroups`, for normal `K` it suffices to find
+`L` with `L cap K = {e}` and `mu(L) >= 1 - C(m) eps log k`. This is a stability
+statement about positive-definite functions: does an admissible `phi` with
+`sum mu phi >= 1 - eps` force a subgroup-indicator certificate `1_L` of nearly
+the same value?
+
 ## Attempts
 
 * **Irreducible-kernel rounding**

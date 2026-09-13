@@ -29,6 +29,11 @@ artifacts:
 4. **Every finite abelian group.** `val >= 1 - 3 eps log_2 k/(1 - cos(2 pi/m))`.
    Some dependence on `m` is necessary: the odd cycle, as `Z_(2n)`, loses
    `sqrt(eps)`.
+5. **Subgroup certificates and permutable rounding.** Let `mu` be
+   conjugation-invariant and `L cap K = {e}`. Then `1_L` is an admissible SDP
+   certificate, so `SDP >= mu(L)`. If also `KL = LK`, then `val >= mu(L)`, by
+   choosing one `L`-coset per `KL`-coset. For normal `K`, therefore,
+   `val >= max { mu(L) : L cap K = {e} }`.
 
 The dimension factor is where large representations escape. For `S_N`
 transposition noise, the standard representation certifies `1 - O(eps)` but is

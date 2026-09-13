@@ -140,3 +140,56 @@ Tests.
    groups. A counterexample would be a bounded-exponent group whose SDP-optimal
    certificates live in large representations while no free subgroup carries
    most of `mu`.
+
+## 5. Theorem 10: subgroup-indicator certificates and permutable rounding
+
+For conjugation-invariant `mu`, subgroups give certificates as well as
+labelings, and the two sides differ by exactly one hypothesis.
+
+**Theorem 10.** Let `mu` be symmetric and conjugation-invariant, and `L <= G`
+with `L cap K = {e}`.
+
+* (a) **Certificate.** `phi = 1_L` is admissible in (3.1), so
+  `SDP Gal(G,K,mu) >= mu(L)`.
+* (b) **Rounding.** If moreover `KL = LK`, that is, `KL` is a subgroup, then
+  `val Gal(G,K,mu) >= mu(L)`.
+* (c) In particular, if `K` is normal in `G`, then
+  `val >= max { mu(L) : L cap K = {e} }`, and the same bound holds for `SDP`.
+
+*Proof.* (a) `1_L(g) = <delta_(gL), delta_L>` is a matrix coefficient of the
+permutation representation on `l^2(G/L)`, so it is positive definite. It
+equals `1` at `e` and vanishes on `K \ {e}`, and `sum mu 1_L = mu(L)`. Apply
+Theorem 3.
+
+(b) Put `M = KL`. Since `K cap L = {e}`, `M` is the disjoint union of the `k`
+cosets `aL`, `a in K`. So each left coset `gM` contains exactly `k` left
+`L`-cosets, namely `gaL` for `a in K`. Let `D subset G/L` contain one `L`-coset
+from each `M`-coset, and put `T = { g : gL in D }`. For a coset `gK`, the
+`L`-cosets `gaL` (`a in K`) are the `k` distinct `L`-cosets inside `gM`, and
+exactly one lies in `D`, so `T` is a left transversal of `K`. If `t in T` and
+`t^-1 s t in L`, then `s t L = t L in D`, so `s t in T`. Hence
+`Phi_mu(T) <= E_(t in T) mu(G \ t L t^-1) = mu(G \ L)`, by conjugation
+invariance. Theorem 1 finishes.
+
+(c) If `K` is normal, then `KL = LK` for every `L`. `square`
+
+**Relation to Theorem 8.** Theorem 8 needs `L` to meet *every* conjugate of
+`K` trivially, but allows any symmetric `mu`. Theorem 10 needs only
+`L cap K = {e}` plus permutability, but uses conjugation invariance. For normal
+`L`, both reduce to `L cap K = {e}`.
+
+**The open question, sharpened.** For normal `K` and conjugation-invariant
+`mu`, Theorem 10(c) makes
+`free-subgroup-rounding-is-universal-at-bounded-exponent` a statement about
+positive-definite functions alone. Does every admissible `phi` with
+`sum mu phi >= 1 - epsilon` on a group of exponent `m` yield `L` with
+`L cap K = {e}` and `mu(L) >= 1 - C(m) epsilon log k`? Theorem 4 is the abelian
+case, where `L` is the common kernel of `log_p k` characters. Proposition 5 shows
+that some dependence on `m` is necessary.
+
+**Example: `S_N`.** Take `K = <(1 2)>` and transposition noise. `K` is not
+normal. `L = Stab(1) cap Stab(2)` satisfies `L cap K = {e}` and is normalized
+by `K`, so `KL` is a subgroup. Theorem 10(b) gives `val >= mu(L) = 1 - O(epsilon)`,
+realized by the transversal `{ sigma : sigma(1) < sigma(2) }`. By contrast,
+`L' = Stab(1)` meets `K` trivially, but `KL'` is not a subgroup, and (b) does
+not apply to it.
