@@ -126,7 +126,7 @@ theorem exists_of_isOuterSideDart {D : RelGenSet G Lambda} {eps : ℕ}
   · rw [FaceEdgeDoubling.dartImage, if_pos hdd] at hdx
     subst hdx
     change some (some e) = none at hex
-    exact Option.noConfusion hex
+    exact (Option.some_ne_none _ hex).elim
   · rw [FaceEdgeDoubling.dartImage, if_neg hdd] at hdx
     subst hdx
     change embed Delta.toCombMap e = embed Delta.toCombMap (Delta.toCombMap.alpha d) at hex
