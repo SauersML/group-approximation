@@ -59,6 +59,9 @@ algebra with a nonzero fivefold commutator.
   kappa-bar, but it needs lambda(TX − W_R) = 0 exactly. Quaternionic steps
   have defect k·q_1 with k >= 1, and complex Grassmannians carry a c_1^2
   term. No step family with defect zero and odd Euler count is known.
+  Quaternionic partial flag manifolds with tautological Q never give one,
+  whatever the protected rank
+  (quaternionic-flag-trapping-steps-are-never-string).
 - *Witnesses that mix the protected block with Q.* Unexplored. The trapped
   invariant is only constant on components, not a homomorphism. A commutator
   with a unitary that is not block diagonal is not computed by the seed
