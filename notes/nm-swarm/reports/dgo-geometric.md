@@ -33,7 +33,9 @@ has stopped its char-0 modules.
   - sec2-sentences' probe 0912-093859-21657 built Separation;
   - probe 0912-094259-57545 was green for Bound, where `separationFinite` and
     `ghwArchimedeanAffineBound` pass `#audit_closed_axioms`;
-  - a re-verification probe on the 09-13 base is running.
+  - re-verification probe 0913-025429-71955 (base c3cfee844) is PROBE GREEN. Both modules were
+    replayed from cache (inputs unchanged, 0 rebuilt), and Minkowski, Walls and Interfaces are
+    recorded COMPILED.
 - `GHWArchimedeanMinkowski` and `GHWArchimedeanWalls`: origin/main equals the green landings
   b5e5abc13 and 896416980, and both are wired.
 
