@@ -17,3 +17,5 @@ Then there is a nonempty clopen `V` with `V ∩ T^j V = ∅` for `0 < |j| ≤ 2w
 Mechanism: choose `V` so small that every coefficient `f` of an entry of `g^(±1)` has `f∘T^i` constant on `V` for `|i| ≤ w`. Then every product `f u^i e_V f' u^j` is `0` or a tower matrix unit. So `k = [g, e_ij(e_V)]` already lies in `H_V`, and simplicity of `GL_d(F_2) = PSL_d(F_2)` gives `H_V ⊆ N`. Two commutators then spread `e_V` to all of `R`, because finitely many translates of `V` cover `X`.
 
 The proof is the note-ready replacement for the simplicity section of `simple_kazhdan_sofic_group.tex`. It is 47 lines shorter than the version of 2026-09-13 16:46.
+
+Credit: the same constant-tower mechanism was found concurrently and landed three minutes earlier, as the all-q route `subshift-elementary-group-simple-constant-tower-proof` (sk-simplicity-short-a). This binary node adds two things. Two commutators spread `e_V`, and the covering by translates writes `1`. So the note needs neither the ring-simplicity lemma nor a level ideal.

@@ -204,6 +204,22 @@ That is a credit call for the user. Default: delete, since nothing in the note u
 - Claim `binary-subshift-normal-subgroups-contain-tower-gl-copy`, route `binary-subshift-normal-subgroups-contain-tower-gl-copy-proof` (`requires: []`): unreviewed. The review line is appended to `$SK/queue/sk-referee-1.txt`.
 - It sits beside the on-main `subshift-elementary-group-is-simple-modulo-centre` (every q, modulo the centre, with a scalar case) and does not replace it.
 
+## Relation to sk-simplicity-short-a (concurrent, independent)
+sk-simplicity-short-a landed the same core mechanism three minutes earlier (ff9262ef69, 18:51) as the route `subshift-elementary-group-simple-constant-tower-proof`, covering all q. It makes the coefficients constant on the tower levels, so that one commutator lands in a single finite GL_d. Credit both.
+
+Differences for the note (q = 2):
+
+| | sk-simplicity-short-a part 1 | this proposal |
+|---|---|---|
+| simplicity section l.154-227 | 47 lines | 48 lines |
+| ring simplicity l.104-109 | kept | deleted; the covering identity sits inside the last paragraph |
+| centre l.110-116 | deleted | deleted |
+| partition remark l.78-82 | kept | deleted; "small" includes it |
+| level ideal | J defined, then "R simple" | not defined: two commutators spread e_V, and the covering writes 1 |
+| net change | −34 (340 → 306) | −47 (340 → 293) |
+
+By the brief's rule (keep the shorter), this text is proposed for the note. sk-simplicity-short-a's part 2 §2 remains the all-q derivation on main.
+
 ## Checks a verifier should redo
 1. **E_ab E_cd = δ_bc E_ad.** u^{a−b} e_{T^cV} = e_{T^{a−b+c}V} u^{a−b}, so the product is e_{T^aV ∩ T^{a−b+c}V} u^{a−b+c−d}. For b = c it is E_ad. For b ≠ c the set is T^a(V ∩ T^{c−b}V) = ∅, since 0 < |c−b| ≤ 2w.
 2. **Absorption.** u^i f' = (f'∘T^{−i}) u^i with the note's convention u f u^{−1} = f∘T^{−1}. The coefficient f · 1_{T^iV} · (f'∘T^{−i}) takes the value f(T^ix) f'(x) at T^ix, for x ∈ V. Both factors are constant on V, so it is 0 or 1_{T^iV}. This gives 0 or e_{T^iV}u^{i+j} = E_{i,−j}, with |−j| ≤ w.
