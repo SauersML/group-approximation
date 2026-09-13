@@ -397,3 +397,11 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - Limit of use: `htgt` fails when the K-dart beside the exterior corner lies on `t_2`. If `x ∈ t_2` and the corner after
   `x` is exterior, thickening `w_j = α x` gives `α w_j = x ∈ t_2`. The only repair puts the digon into K, and then
   `I.Avoids` fails. `htgt` holds when that dart lies in a side, or when its face is not in K.
+- Model test: audit-sec3's labelled rose (`OsinPocketLakeLabelledModel`, 494dc3249), configuration B. Both hypotheses fail
+  at `pinchedK`, whose pinch corner after dart 2 is exterior (`corner_two`).
+  - `hlen`: the exterior face has boundary `[3]`, so `1 < 1` fails and `OuterSpurThickening.diagram` does not exist.
+  - `htgt`: `roseDiagram_outerDarts = [2]` gives α 3 = 2, and `pinchedK.targetArc` has darts `[2]`. So w_j = 3 and
+    α w_j = 2 ∈ t_2, the caveat case above.
+  - The model's conclusion comes from `petalK` instead. That is the pocket at Π, with the source and kept cells swapped
+    (`pinchedPocketPetal_conclusion`). So configuration B needs that branch, and thickening followed by a split does not
+    reach it.
