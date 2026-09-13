@@ -135,17 +135,37 @@ correspond to the `<xz>`-cosets `{1, xz}`, `{xyx, xyz}`, `{zyx, zyz}`. The autom
 to itself under `a, b, c`. On these three pairs, `a` and `b` fix all three, while `c` fixes
 `{1, xz}` and swaps the other two (`c·xyx = zyx`, `c·xyz = zyz`).
 
-**Hypothesis (not checked).** `C` fixes `p`. This holds iff the `W`-equivariant map
-`w·o ↦ ρ(w)p` is also `C`-equivariant. It is plausible, because `C` preserves the fibre `S_3·o`,
-but that alone does not prove it. A direct check needs `ρ(a), ρ(b), ρ(c)` at `𝔮'`.
+**Verified (2-adic check, `radu-h4-star-check.py`; output in
+`radu-h4-star-check-output-2026-09-13.txt`).** `C` fixes `p`.
+* `d(p, M_h p) = 0` for `h = a, b, c`.
+* Index the neighbours of `p` so that `[p, xp] = [p, zp]` is neighbour 0, `[p, xy·p]` is
+  neighbour 2 and `[p, zy·p]` is neighbour 1.
+* Then `a` and `b` act on the neighbours as the identity, and `c` acts as `(1 2)`.
+* As sanity checks: `M_c ~ M_y M_b M_y`, `a, b, c` are involutions, and `v_2(tr^2/det) = 2` for
+  `ab, bc, ca`.
+* Within radius 5, the vertices fixed by `a, b, c` lie at distances `0, 1, 2, 2` from `p`.
 
-Under this hypothesis, `χ` is the local action of `C` on the star of `p` in `T'`:
+So `χ` is the local action of `C` on the star of `p` in `T'`:
 
 ```text
 C_χ = C ∩ Fix_Q(star of p in T').                                                     (H4)
 ```
 
-So the parity carrying Radu's mark in `G_2` would be a `𝔮'`-adic congruence condition on the
-horizontal lattice `C`. `𝔮'` lies in the set of places inverted in `Q`, so the profinite completion
-of `Q` cannot see it, and Theorem 2 is the finite-set shadow of that blindness. `(H4)` is not used in
-any proof above.
+So the parity carrying Radu's mark in `G_2` is a `𝔮'`-adic congruence condition on the horizontal
+lattice `C`. `𝔮'` lies in the set of places inverted in `Q`, so the profinite completion of `Q`
+cannot see it, and Theorem 2 is the finite-set shadow of that blindness. `(H4)` is not used in any
+proof above.
+
+**Framed vertices.** Put `K = Fix_Q(star of p)`.
+* *Structure of `K`.* Write `k = wh` with `w ∈ W` and `h ∈ C`. Then `w` fixes `p` and acts on the star
+  as `h^(−1)` does. The only element of `S_3` that fixes edge 0 and swaps the other two is `xz`.
+  So `K = C_χ ⊔ xz·c·C_χ`.
+* *Action on `T_h`.* `K ∩ W = 1`, so `K` acts freely on `V(T_h)`. `xz` acts on `T_h` as the global
+  `a ↔ b` swap, so `xzc·v_h = c·v_h` lies in the second `C_χ`-orbit. Hence `K` is simply transitive
+  on `V(T_h)`.
+* *The coset spaces.* `Q` is transitive on vertices of `T'`, and `Stab_Q(p)` maps onto `S_3` on the
+  star. So `Q/K` is the set of **framed vertices** of `T'`: vertices together with a labelling of
+  their three edges. `Q/C_χ` is a double cover of `Q/K`, embedded diagonally in `V(Y) × Q/K`.
+* *Consequence.* Soficity passes to equivariant quotients with finite fibres: take as colour of
+  `x'` the set of colours of its fibre. So `radu-edge-coset-action-is-sofic` implies that the
+  action of `Q` on the framed vertices of its second tree is sofic.

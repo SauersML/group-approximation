@@ -44,8 +44,10 @@ itself on most points.
     in `codense-tau-coset-soficity-forces-permutation-instability`.
   - So a model must be an almost action of `Q` that is far from every genuine action. It exists only
     if `Q` is not flexibly permutation-stable.
-* **Local meaning.** If `C` fixes the `S_3`-vertex `p` of the second tree, then
-  `C_χ = C ∩ Fix(star of p)` (artifact, Section 4). The coset space would then be essentially the
-  horizontal tree times local flags at `p`: a `𝔮'`-adic structure that finite quotients of `Q` cannot
-  see, because `𝔮'` is inverted in `Q`. A model would have to "see the second prime" approximately,
-  without any genuine finite action doing so. Not pursued further.
+* **Local meaning (verified).** `C` fixes the `S_3`-vertex `p` of the second tree, and
+  `C_χ = C ∩ Fix_Q(star of p)` (`radu-horizontal-sign-is-local-action-on-second-tree`).
+  - So `Q/C_χ` is a double cover of the framed vertices of `T'`, a `𝔮'`-adic structure. Finite
+    quotients of `Q` cannot see it, because `𝔮'` is inverted in `Q`.
+  - A model has to see the second prime approximately, although no genuine finite action does.
+  - A necessary condition: the action of `Q` on the framed vertices of its second tree must itself
+    be sofic.
