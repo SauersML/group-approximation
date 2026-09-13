@@ -128,7 +128,8 @@ a hard family cannot be any of the following:
   (`commuting-hamiltonians-on-small-set-expanders-in-np`);
 - built from Pauli projectors or stabilizer code-space constraints with YES energy
   below `b/(2+sqrt2)` (`pauli-projector-hamiltonians-are-stabilizer-approximable`,
-  an elementary theorem of 2026-09-12, unreviewed).
+  an elementary theorem of 2026-09-12, unreviewed), or on prime-dimensional qudits
+  below `b sin^2(pi/d)/8` (`qudit-stabilizer-rounding-for-code-constraint-hamiltonians`).
 
 An energy-monotone map that amplifies degree at locality two would put
 constant-gap estimation in NP (`two-local-degree-amplification-gives-np-witnesses`);
