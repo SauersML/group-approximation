@@ -41,11 +41,14 @@ any commutative C\*-algebra.  If established, this refutes
   therefore a `Z[ζ_r, 1/r]`-algebra (`o2-zp-crossed-products-invert-p-in-kk`).
   `C` is KK-equivalent to `C ⊗ M_(r^∞)`, and isomorphic to it for outer actions
   (`o2-zp-crossed-products-absorb-uhf-p-without-uct`).  All of this holds for
-  every action on `O_2`, UCT or not.  So a K-theoretic certificate cannot come
-  from `r`-divisibility or from invariant or coinvariant classes of the dual
-  action.  It must come from finer structure: which `Z[ζ_r, 1/r]`-modules UCT
-  crossed products realize, Künneth failure, or central sequences.  That realized
-  range was not determined here.
+  every action on `O_2`, UCT or not.  The realized range is everything.  Every
+  countable Z/2-graded `Z[ζ_r, 1/r]`-module is `K_*(A ⋊ Z_r)` for a
+  bootstrap-class `A` with contractible restriction.  For every action on `O_2`
+  there is a class from such a model inducing an isomorphism on Köhler's complete
+  equivariant K-theoretic invariant
+  (`bootstrap-zp-actions-realize-every-cyclotomic-k-module`).  So the witness is
+  an equivariant phantom: the cone of that class, which has contractible
+  restriction and zero invariant.  No K-theoretic test can detect it.
 * It does not decompose over nuclear UCT algebras (`willett-yu-decomposability-forces-uct`).
   As a trivial-K Kirchberg algebra it has weak complexity rank one but not
   complexity rank one.
