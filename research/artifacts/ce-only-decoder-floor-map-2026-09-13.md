@@ -167,11 +167,28 @@ Ji--Natarajan--Vidick--Wright--Yuen, arXiv:2001.04383v3, TeX
    needed.
    - Main has no such decoder, and the published one is sharp at `1/|beta|`
      (PCM13).
-   - One untested idea: consistent-hashing selection. For each edge the
+   - **Decoder-independent check for the tailored-mask test.** Pins:
+     Definition `def:folding`, Lemma `lem:folding` (l.308--320),
+     Definition `def:conditioning` (l.325--327) and the combined
+     `A_(true,C,f)` (l.341--345).
+     - Take masks supported on `H_S = {mu : mu|_S = 1}` and odd sets
+       `beta_W subseteq S_W` whose odd-count projections
+       `pi_2(beta_W)` agree on every test edge.
+     - The folded, conditioned tables `A(W,g) = chi_(beta_W)(g)` and
+       `A(U,f) = chi_(pi_2(beta_W))(f)` satisfy every equation of
+       `def:longcodetest`:
+       `chi_alpha(f) chi_beta(g) chi_beta(f g mu) = chi_(alpha + pi_2(beta))(f) chi_beta(mu) = 1`.
+     - That is a classical perfect strategy, so no decoder can be sound.
+     - Soundness therefore needs this `F_2`-linear parity relaxation over `S`
+       to be unsolvable at every nonhalting input. This is the
+       Taller--Vidick instance of `linear-encoding-lcs-admits-odd-subset-cheats`,
+       whose unrestricted form is refuted by
+       `odd-subset-relaxation-needs-local-extendability`; the derivation here
+       uses only the explicit test equation.
+   - **Untested idea: consistent-hashing selection.** For each edge the
      W-player can compute `pi_2(beta)` itself and hash-select an element. It
-     is exact on a single edge, but it fails on odd parity families where one
-     `phi` must serve every neighbour (clause example `C_W` of size 7 with
-     positive literals).
+     is exact on a single edge, but it fails when one `phi` must serve every
+     neighbour, as in the parity families above.
 3. **(iii-c) Constant-gap affine readout.** Here near-perfect models give
    source value at least `s < 1`. (CE) on the canonical trace of a hyperlinear
    target gives a CE strategy of value at least `s` with context supports
