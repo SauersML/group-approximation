@@ -3,7 +3,6 @@ rg: 2
 id: gl3-f3-alpha-invariant-states-keep-three-free-spectral-weights
 kind: claim
 title: On the constant GL_3(F_3) the finite-subgroup data force a K_0 state only on binomial classes and leave three real spectral weights free after transpose-inverse averaging, so the GL_2 forcing argument stops at n = 2
-requires: [anti-central-states-are-forced-exactly-on-binomial-spectra]
 distinct_from:
   gl2-f3-anti-central-states-are-forced-by-semidihedral-blocks: that forces transpose-invariant states to the lifted trace on the constant GL_2(F_3); this shows the same inputs leave three real parameters on GL_3(F_3) and a free direction on every GL_n with n >= 3.
   anti-central-lifted-trace-is-relatively-positive: that is the positivity problem on the finite subgroups of the signed Thompson group; this measures what the constant GL_3(F_3) adds, and shows finite data add no relation.
@@ -12,7 +11,8 @@ artifacts:
 ---
 
 **OPEN** (candidate proof in Attempts; re-derivation requested from `w4-vf-linear-b`). Whether some state, or every
-state, equals the lifted trace on `H_fin(GL_3(F_3))` also stays OPEN.
+state, equals the lifted trace on `H_fin(GL_3(F_3))` also stays OPEN. Depends on
+`anti-central-states-are-forced-exactly-on-binomial-spectra`; no route is wired until the re-derivation lands.
 
 Notation of `anti-central-states-are-forced-exactly-on-binomial-spectra`. Embed `GL_3(F_3)` in `G` by constants.
 There is one conjugacy class of unital `M_3(F_3) -> R`, and `alpha` restricts to transpose-inverse. So `z = -I_3` and

@@ -3,7 +3,6 @@ rg: 2
 id: anti-central-states-are-forced-exactly-on-binomial-spectra
 kind: claim
 title: A K_0 state of the ternary anti-central summand is one spectral weight on minimal polynomials; it is forced to the lifted trace exactly at binomial spectra, and transpose-inverse acts by inversion
-requires: [three-prime-leavitt-units-classified-by-minimal-polynomial]
 distinct_from:
   anti-central-k0-states-equal-lifted-trace-on-signed-thompson: that forces states on finite subgroups conjugate into the signed Thompson group; this forces them on every finite subgroup whose three-regular elements have binomial minimal polynomials, and shows no finite-subgroup datum forces the rest.
   anti-central-k0-states-can-be-chosen-transpose-invariant: that normalizes one semidihedral split; this computes the action of transpose-inverse on all finite-subgroup data and says exactly which weights invariance kills.
@@ -11,7 +10,8 @@ artifacts:
   - research/artifacts/gl3-f3-anti-central-spectral-states-2026-09-12.md
 ---
 
-**OPEN** (candidate proof in Attempts; re-derivation requested from `w4-vf-linear-b`).
+**OPEN** (candidate proof in Attempts; re-derivation requested from `w4-vf-linear-b`). Depends on
+`three-prime-leavitt-units-classified-by-minimal-polynomial`; no route is wired until the re-derivation lands.
 
 Notation of `anti-central-state-exists-iff-lifted-trace-relatively-positive`. Let `s` be a state on
 `(K_0(S_-), [eps_-])`.
