@@ -8,6 +8,7 @@ requires:
   - hyperbolic-group-relative-to-maximal-elementary-subgroup
   - osin-isolated-components-bounded-by-relative-area
   - fpbs-twisted-level-graph-generates-cyclic-extension
+  - fpbs-twisted-level-percolation-disconnected-at-low-density
 artifacts:
   - research/artifacts/fpbs/docs/cross-line-transport-sets-finite-windows.md
   - research/artifacts/fpbs/docs/twisted-level-percolation-low-density-disconnection.md
@@ -15,9 +16,11 @@ artifacts:
 
 Written derivation. Details are in the first artifact, Sections 2 and 3.
 
-1. **Deterministic steps, unchanged.** Steps 1, 3 and 4 of `research/artifacts/fpbs/docs/twisted-level-percolation-low-density-disconnection.md`, Section 4, use no probability:
+1. **Deterministic steps, unchanged.** Steps 1 and 3 of `research/artifacts/fpbs/docs/twisted-level-percolation-low-density-disconnection.md`, Section 4, use no probability:
    - each edge has at most `2|S|` witness pairs;
-   - the self-avoiding path count `P_l(s) <= |S|^l 2^((K+2)(l+1))`, from isolated `<t>`-components, (I1) and (I2) of that artifact, which are the two imported claims above.
+   - the self-avoiding path count `P_l(s) <= |S|^l 2^((K+2)(l+1))`, from isolated `<t>`-components and (I1) and (I2) of that artifact. These are imported through `hyperbolic-group-relative-to-maximal-elementary-subgroup` and `osin-isolated-components-bounded-by-relative-area`.
+
+   Step 4 there is probabilistic: it sums the per-path bound over paths and fixes `delta_0`. This route takes the path count and `delta_0` from `fpbs-twisted-level-percolation-disconnected-at-low-density`, and item 3 redoes Step 4 with a new per-path bound.
 
 2. **Disjoint windows.**
    - The pair `(u, m)` is the point `g = t^m u`, and `omega(g) = 1_A(g.x)` depends only on `x|_(W g)`.
