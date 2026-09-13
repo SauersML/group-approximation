@@ -108,7 +108,7 @@ Let F = {δx, δ⁻³x, δ⁻²x, δ²x} = {xzx, zxzxz, zxz, xzxzx} and R = {δ�
   - j = 3 and |g| = 3: ω = xzx, so g = xzx and h = zxzxz.
   - j = 4 and |g| = 4: g = zxzx = δ⁻² and h = δ².
   - j = 5 and |g| = 5: g = xzxzx and h = zxz.
-  - j = 4 and |g| = 5: ω ends in zxzx, and the letter before it, if any, is neither z (cancellation stops) nor x (reduced). So either ω = zxzx and α ∈ {a, b, c}, or ω = yzxzx and α = 1. So g = tδ⁻² and h = tδ². ∎
+  - j = 4 and |g| = 5: ω ends in zxzx, and the letter before it, if any, is neither z (ω is reduced) nor x (then ω ends in xzxzx and j ≥ 5). So either ω = zxzx and α ∈ {a, b, c}, or ω = yzxzx and α = 1. So g = tδ⁻² and h = tδ². ∎
 
 ### 4.2 Theorem C
 
@@ -116,7 +116,10 @@ Let F = {δx, δ⁻³x, δ⁻²x, δ²x} = {xzx, zxzxz, zxz, xzxzx} and R = {δ�
 - yδ^{±4}y lies in Γ_0 whenever δ⁴ does. Its unique geodesic word (Lemma 1.1) splits as (yxzxz)(xzxzy) and (yzxzx)(zxzxy), which gives the pair {δ²y, δ⁻²y}.
 - **(H10)** Γ_0 ∩ S_10 ⊆ {yδ⁴y, yδ⁻⁴y}.
 
-Under H10, C_5 ⊆ S := {1, a, b, c}·Ω, where Ω = F ∪ R ∪ yR ∪ Ry.
+Under H10, C_5 ⊆ S := {1, a, b, c}·Ω, where Ω = F ∪ R ∪ yR ∪ Ry. Take g ≠ h in B_5 with g⁻¹h ∈ Γ_0, so 2 ≤ |g⁻¹h| ≤ 10.
+- Every relator has even length, so length parity is a homomorphism Γ → ℤ/2. It is a finite quotient, so Γ_0 lies in its kernel and |g⁻¹h| is even.
+- If |g⁻¹h| ≤ 8, the Remark 3.6 import (§0) gives g⁻¹h = δ^{±4}. Lemma 4.1 then puts g and h in F ∪ R ∪ {a, b, c, y}·R ⊆ S.
+- If |g⁻¹h| = 10, H10 gives g⁻¹h = yδ^{±4}y. The first bullet above gives {g, h} = {δ²y, δ⁻²y} ⊆ Ry.
 
 **Lemma 4.2.** S·S ∩ S = ∅.
 
@@ -196,3 +199,7 @@ This corrects the [AG] sentence "blind from r+s=4 on". The coincidence screen al
 2. r + s = 6: the coefficient equations of D = D² on C_6.
 3. δ⁴ ∉ [Γ_0, Γ_0] (row 7 of §5), or H_1(Γ_0; F_p) ≠ 0 (row 8).
 4. A pair at any size (unchanged).
+
+## Errata (2026-09-12)
+
+After w4-vf-linear-b (d03b2885b6, Section 45): in Lemma 4.1's last case the reasons for excluding z and x were swapped, and the proof of "Under H10, C_5 ⊆ S" in §4.2 is now written out. No statement changed.
