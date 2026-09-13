@@ -74,8 +74,10 @@ Per the attached artifact:
    - *Works for every spherical type, in the plain form* (2026-09-12).
      - `char-zero-linear-groups-satisfy-boone-higman` is now established, and so
        is `spherical-artin-groups-satisfy-boone-higman`.
-     - Both rest on `polynomial-linear-groups-satisfy-boone-higman`, whose review
-       is pending (lane `bh-poly-linear-review`).
+     - Both rest on `polynomial-linear-groups-satisfy-boone-higman`~~, whose review
+       is pending (lane `bh-poly-linear-review`)~~. *Reviewed (lane
+       `bh-poly-linear-review`, 2026-09-12):* that claim stands, with one corrected
+       step, and no step of the spherical chain uses Digne.
      - Zaremsky's `GL_n(Q)` theorem alone does not reach these groups.
    - *Does not reach this root.* Linearity is used here only for spherical types.
 3. **Groups acting on locally finite trees** (BLIW Theorem C over F_2).
