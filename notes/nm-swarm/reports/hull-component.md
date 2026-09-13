@@ -70,7 +70,8 @@ The lead assigned the uncollared pocket carrier with both FollowsBoundary over
 The lead assigned the word-metric respelling lemma inside hull-unbound's split of
 `OsinLemma94PolygonRealizationInput`. The earlier item, `SeparatingPathRemovalInput`, was stood off because
 hull-unbound had started it; hull-unbound proved it at 7d4a2515f.
-- GGT/VanKampen/Estimating/OsinLemma94WordRespelling (GREEN 0913-101505-99170; the lead approved the word form):
+- GGT/VanKampen/Estimating/OsinLemma94WordRespelling (6b5a1f7d1; GREEN 0913-101505-99170; in the wire queue; the lead
+  approved the word form):
   `exists_shorter_respelling_of_not_isLambdaCQuasiGeodesicWord`, with the binders of hull-unbound's
   `QuasiGeodesicRespellInput` (Estimating/OsinLemma94PolygonRealization). Take a violating subword with n letters
   and value g, so |g| + 2 < n. If g ≠ 1, a geodesic spelling is shorter. If g = 1, then n ≥ 3, and without its last
@@ -78,4 +79,4 @@ hull-unbound had started it; hull-unbound proved it at 7d4a2515f.
 - Consumer: hull-unbound's `OsinLemma94CuttingChainsInput`, with `ChainRespellInput` and `PendantPathRemovalInput`.
 
 ## Next
-Probe the respelling module, land it, and send hull-unbound the SHA.
+hull-unbound closes `QuasiGeodesicRespellInput` with this theorem. Asking the lead for the next item.
