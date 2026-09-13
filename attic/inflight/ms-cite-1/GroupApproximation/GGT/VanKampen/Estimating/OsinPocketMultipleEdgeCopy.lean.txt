@@ -1,4 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeAssembly
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellFaceSet
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyWalk
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkColour
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -22,11 +25,18 @@ diagram carries no recorded equivalence to `S.diagram`.
 * `MultipleEdgePocketRegionInput.copyInput`: the form on `S.diagram` gives the copy form, so the
   copy form asks for no more.
 * `multipleEdgeCutInput_of_copyPieces`: the copy form, the collar and the cell transport give
-  `MultipleEdgeCutInput`, through `nonempty_osinMultipleEdgeCut_of_pocketRegion`, which already
-  takes an O-equivalent copy of the least-area diagram.
-* `OsinMultipleEdgePocketRegionCopySectionStatement`, `OsinMultipleEdgePocketRegionSectionStatement.copySection`
-  and `osinMultipleEdgeCutSection_of_copyPieces`: the same, uniformly in the parameters, with the
-  thresholds `ε ≥ ε₀` and then `ρ ≥ ρ₀` of `OsinMultipleEdgeCutSectionStatement`.
+  `MultipleEdgeCutInput`, through `nonempty_osinMultipleEdgeCut_of_pocketRegion`.
+* `multipleEdgePocketRegionCopyInput_of_pinch`: the copy form from the binder-5 route.
+  `CellPocketWalk.exists_clean_of_copy` gives a clean pair of regions and their cell pocket walk on
+  another optimal family, `CellPocketWalkColour.walk_orient` orients the walk,
+  `CellPocketWalk.exists_cellPocketFaceSet_closedWalk_of_orient` makes it a cell pocket face set in
+  walk order, and `CellPocketFaceSet.copyRegion_of_pinch` gives the region data on a copy.  The
+  named residuals are `CellPocketCopyCleanStatement`, `CellPocketWalkOuterOffSideStatement` (the
+  exterior is off the side of the walk), `CellPocketWalkSideRelatorCellStatement` (a relator cell is
+  on it) and `CellPocketPinchPosStatement`.
+* `OsinMultipleEdgePocketRegionCopySectionStatement` and its producers, uniformly in the
+  parameters, with the thresholds `ε ≥ ε₀` and then `ρ ≥ ρ₀` of `OsinMultipleEdgeCutSectionStatement`.
+  The pinch producer takes `ε₀ = 1`, since the pinch needs `0 < ε`.
 
 ## Manuscript status
 
@@ -47,9 +57,9 @@ variable {G : Type u} [Group G] {Lambda : Type w}
 /-- **The multiple-edge pocket region on an O-equivalent copy.**  Two distinct selected regions
 joining the distinct cells `i` and `j` of the optimal diagram give an O-equivalent copy `X` of the
 least-area diagram `Δ` with letter labels, and a pocket region of `X` with a relator cell inside and
-two cells outside.  The inverse of its complement cycle reads a side, a reversed arc of the first cell, a side
-and a reversed arc of the second, the side values of word norm at most `ε`.  Both cycles of the
-pocket follow the face-set boundary. -/
+two cells outside.  The inverse of its complement cycle reads a side, a reversed arc of the first
+cell, a side and a reversed arc of the second, the side values of word norm at most `ε`.  Both
+cycles of the pocket follow the face-set boundary. -/
 def MultipleEdgePocketRegionCopyInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
@@ -99,6 +109,99 @@ theorem multipleEdgeCutInput_of_copyPieces (hcollar : GeodesicCollarStatement.{u
 
 end CopyInput
 
+/-! ## The residuals of the binder-5 route -/
+
+/-- **The exterior is off the side of the cell pocket walk** (named residual of binder 5).  Let `a`,
+`b` be distinct regions of an optimal family over a least-area diagram, joining the distinct cells
+`i` and `j` under the edge conditions, and let `K` be their cell pocket walk, a nonempty closed walk
+with no repeated dart and no dart with its reverse.  Then the exterior face is not on the side of the
+walk. -/
+def CellPocketWalkOuterOffSideStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord},
+    Delta.LeastArea →
+      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+        {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
+        a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
+          CellPocketWalk.CopyClean a b i j →
+          ∀ K : CellPocketWalk D eps S.diagram i j,
+            K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+            (∃ G₁ : CyclicArc (cellDarts S.diagram i),
+              K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i) →
+            (∃ G₂ : CyclicArc (cellDarts S.diagram j),
+              K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j) →
+            ∀ hne : K.walk ≠ [],
+              (K.walk.IsChain fun d e => S.diagram.toCombMap.vertexOf
+                (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.vertexOf e) →
+              S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha (K.walk.getLast hne)) =
+                S.diagram.toCombMap.vertexOf (K.walk.head hne) →
+              K.walk.Nodup → (∀ d ∈ K.walk, S.diagram.toCombMap.alpha d ∉ K.walk) →
+                S.diagram.outerFace ∉ SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K.walk
+
+/-- **A relator cell is on the side of the cell pocket walk** (named residual of binder 5), with the
+data of `CellPocketWalkOuterOffSideStatement`. -/
+def CellPocketWalkSideRelatorCellStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord},
+    Delta.LeastArea →
+      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+        {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
+        a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
+          CellPocketWalk.CopyClean a b i j →
+          ∀ K : CellPocketWalk D eps S.diagram i j,
+            K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+            (∃ G₁ : CyclicArc (cellDarts S.diagram i),
+              K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i) →
+            (∃ G₂ : CyclicArc (cellDarts S.diagram j),
+              K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j) →
+            ∀ hne : K.walk ≠ [],
+              (K.walk.IsChain fun d e => S.diagram.toCombMap.vertexOf
+                (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.vertexOf e) →
+              S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha (K.walk.getLast hne)) =
+                S.diagram.toCombMap.vertexOf (K.walk.head hne) →
+              K.walk.Nodup → (∀ d ∈ K.walk, S.diagram.toCombMap.alpha d ∉ K.walk) →
+                ∃ kept : Fin S.diagram.rCellCount,
+                  (cell S.diagram kept).face ∈
+                    SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K.walk
+
+section Pinch
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+
+/-- **The multiple-edge pocket region on a copy, from the binder-5 route**, at `0 < ε`: the clean
+pair on another optimal family (`CellPocketWalk.exists_clean_of_copy`), the orientation
+(`CellPocketWalkColour.walk_orient`), the cell pocket face set in walk order
+(`CellPocketWalk.exists_cellPocketFaceSet_closedWalk_of_orient`) and the pinch
+(`CellPocketFaceSet.copyRegion_of_pinch`), composed with the O-equivalence of the other family. -/
+theorem multipleEdgePocketRegionCopyInput_of_pinch
+    (hcopy : CellPocketCopyCleanStatement.{u, w, v})
+    (hout : CellPocketWalkOuterOffSideStatement.{u, w, v})
+    (hkept : CellPocketWalkSideRelatorCellStatement.{u, w, v})
+    (hpinch : CellPocketPinchPosStatement.{u, w, v})
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} (heps : 0 < eps) :
+    MultipleEdgePocketRegionCopyInput.{u, w, v} D lambda c eps W := by
+  intro Delta cuts hlea S a ha b hb hab i j hij hai hbi
+  obtain ⟨S', a', b', i', j', K, ha', hb', hab', hij', hai', hbi', hclean, hfirst, hsecond, h₁, h₂,
+      hne, hchain, hcloses, hnodup, halpha⟩ :=
+    CellPocketWalk.exists_clean_of_copy hcopy hlea S ha hb hab hij hai hbi
+  obtain ⟨F, -, hF⟩ := K.exists_cellPocketFaceSet_closedWalk_of_orient hne hnodup halpha hchain
+    hcloses
+    (fun _ hcol => CellPocketWalkColour.walk_orient S'.toRealizedSectionFamily ha' hb' hab' hai'
+      hbi' K hfirst hsecond h₁ h₂ hcol)
+    (hout hlea S' ha' hb' hab' hij' hai' hbi' hclean K hfirst hsecond h₁ h₂ hne hchain hcloses
+      hnodup halpha)
+    (hkept hlea S' ha' hb' hab' hij' hai' hbi' hclean K hfirst hsecond h₁ h₂ hne hchain hcloses
+      hnodup halpha)
+  obtain ⟨X, ⟨E⟩, hlabel, hrest⟩ :=
+    CellPocketFaceSet.copyRegion_of_pinch hpinch heps (fun d => S'.label_admissible d) F hF
+  exact ⟨X, ⟨S'.equiv.trans E⟩, hlabel, hrest⟩
+
+end Pinch
+
+/-! ## Uniformly in the parameters -/
+
 /-- **The multiple-edge pocket region on a copy, uniformly in the parameters**, with the quantifier
 prefix of `OsinMultipleEdgeCutSectionStatement`: `ε` at least a threshold `ε₀`, then `ρ` at least a
 threshold `ρ₀`, for every family satisfying `C(ε, μ, λ, c, ρ)`. -/
@@ -123,6 +226,17 @@ theorem OsinMultipleEdgePocketRegionSectionStatement.copySection
   exact ⟨rho0, hrho0, fun rho hrho' W hcondition =>
     MultipleEdgePocketRegionInput.copyInput (hrho rho hrho' W hcondition)⟩
 
+/-- **The binder on a copy from the binder-5 route**, with `ε₀ = 1` and `ρ₀ = 1`. -/
+theorem osinMultipleEdgePocketRegionCopySection_of_pinch
+    (hcopy : CellPocketCopyCleanStatement.{u, w, v})
+    (hout : CellPocketWalkOuterOffSideStatement.{u, w, v})
+    (hkept : CellPocketWalkSideRelatorCellStatement.{u, w, v})
+    (hpinch : CellPocketPinchPosStatement.{u, w, v}) :
+    OsinMultipleEdgePocketRegionCopySectionStatement.{u, w, v} := by
+  intro _ _ _ _ _ _ _ _ _ _ _ _ _
+  exact ⟨1, fun _ heps => ⟨1, Nat.one_pos, fun _ _ _ _ =>
+    multipleEdgePocketRegionCopyInput_of_pinch hcopy hout hkept hpinch heps⟩⟩
+
 /-- **G2, multiple edges, uniformly in the parameters, from the pocket pieces on a copy.**  The
 thresholds are those of the copy producer. -/
 theorem osinMultipleEdgeCutSection_of_copyPieces
@@ -143,6 +257,10 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionCopyInput
 #audit_axioms GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionInput.copyInput
 #audit_axioms GroupApproximation.GGT.VanKampen.multipleEdgeCutInput_of_copyPieces
+#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOuterOffSideStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkSideRelatorCellStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinch
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionCopySectionStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionSectionStatement.copySection
+#audit_axioms GroupApproximation.GGT.VanKampen.osinMultipleEdgePocketRegionCopySection_of_pinch
 #audit_axioms GroupApproximation.GGT.VanKampen.osinMultipleEdgeCutSection_of_copyPieces
