@@ -25,10 +25,9 @@ X = G/Gamma,     H = (direct_sum_X Z/2) x| G.                            (NRK1)
 2. `H` is sofic.
 3. `H` has a nontrivial compression defect over the pair. `z = e_Gamma` centralizes `Gamma`,
    but `[t z t^-1, (e_1, I)] != 1`. So `G` does not normalize `C_H(Gamma)`.
-**Remark (conditional, not part of the established statement).** If
-`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` is established (items 1 and 5),
-the centralizer HNN group `G *_Gamma (Gamma x Z)` is hyperlinear, and its stable letter is a
-subgroup-central unitary that is not central for `G`.
+4. The centralizer HNN group `G *_Gamma (Gamma x Z)` is hyperlinear, by
+   `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` (items 1 and 5). Its stable
+   letter is a subgroup-central unitary that is not central for `G`.
 
 ## Calibration for family D at n = 2
 

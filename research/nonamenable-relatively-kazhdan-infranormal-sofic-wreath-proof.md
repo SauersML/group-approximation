@@ -4,7 +4,8 @@ id: nonamenable-relatively-kazhdan-infranormal-sofic-wreath-proof
 kind: route
 title: Split the wreath over the amenable normal subgroup and amalgamate along SL2(Z) = Z/4 *_(Z/2) Z/6
 target: nonamenable-relatively-kazhdan-infranormal-sofic-wreath
-requires: []
+requires:
+  - binary-free-and-ordinary-coset-wreaths-share-hyperlinearity
 artifacts:
   - research/artifacts/free-nonsofic-action-sources-verified-2026-09-11.md
 ---
@@ -54,9 +55,6 @@ and `(v,g)(w,h) = (v + g w, g h)`.
   `gamma t o = t o` iff `t^-1 gamma t in Gamma` iff `(e_1/2, I) in Gamma`, which fails.
 - So `[t z t^-1, gamma] = e_(t o) + e_(gamma t o) != 0` in the lamp group.
 
-Items 1–3 are proved. ∎
-
-**Remark (not used above).** `H` is the ordinary binary coset wreath of `Gamma <= G`, sofic and
-hence hyperlinear. The hyperlinearity of `G *_Gamma (Gamma x Z)` would follow from
-`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` (1 iff 5). That node has its own
-route with open requirements, so this route does not consume it.
+**4. The HNN group.** `H` is the ordinary binary coset wreath of `Gamma <= G`. It is sofic,
+hence hyperlinear. By `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` (1 iff 5),
+`G *_Gamma (Gamma x Z)` is hyperlinear. ∎
