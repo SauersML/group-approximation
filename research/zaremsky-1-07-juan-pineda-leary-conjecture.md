@@ -77,8 +77,20 @@ in the artifact):
   Barnea–Camina–Ershov–Lewis paper settles residually finite groups. No resolution of
   either conjecture was found (bounded search: arXiv metadata, general web search; no
   MathSciNet or zbMATH).
-- Strategy in progress: prove BVC implies virtually cyclic for new classes (elementary
-  amenable groups beyond the virtually solvable case, which 1607.03790 Remark (b) records
-  as unknown; finitely presented groups with positive first Betti number via
-  Bieri–Strebel splittings), and record exact obstructions. Peer lane z1-07-vc-counter
-  works the counterexample side.
+- Partial results (lane z1-07-vc-proof, 2026-09-13; unreviewed, review requested):
+  - `elementary-amenable-finite-hirsch-length-bvc-groups-are-vc`: extends Proposition 1.12
+    from virtually solvable groups to elementary amenable groups of finite Hirsch length. The
+    elementary amenable remainder is `bvc-elementary-amenable-groups-have-finite-hirsch-length`
+    (route `ea-bvc-vc-via-finite-hirsch-length` into `elementary-amenable-bvc-groups-are-virtually-cyclic`).
+  - `fp-bvc-group-mapping-onto-z-is-ascending-hnn-extension`: finitely presented BVC groups with
+    positive virtual first Betti number are virtually cyclic or have a finite-index ascending
+    HNN extension of an infinite finitely generated base.
+  - `bvc-bounds-conjugacy-classes-in-fibers-of-maps-to-z`: `R(alpha^m) <= m·C`.
+  - `osin-group-times-z-has-bvc`: finite presentation is needed even with infinite
+    abelianization.
+- Where it stops: (1) elementary amenable groups of infinite Hirsch length, where Lemma 1.13(c)
+  bounds the number but not the rank of non-torsion normal factors; (2) ascending HNN
+  extensions of infinite finitely generated groups, where finite presentation must be used
+  beyond conjugacy counting; (3) finitely presented BVC groups all of whose finite-index
+  subgroups have finite abelianization, the few-conjugacy-class monster shape. Peer lane
+  z1-07-vc-counter works the counterexample side.
