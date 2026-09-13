@@ -4,7 +4,9 @@ id: zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation-proof
 kind: route
 title: Complementary pair for (Res, crossed product), Köhler's UCT for the bootstrap form, and Gabe--Szabó existence plus conjugacy for the dynamical form
 target: zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation
-requires: []
+requires:
+  - bootstrap-zp-actions-realize-every-cyclotomic-k-module
+  - kohler-uct-for-zp-equivariant-bootstrap
 ---
 
 **Sources (read 2026-09-13 from ghostscript text extractions on MSI).**
