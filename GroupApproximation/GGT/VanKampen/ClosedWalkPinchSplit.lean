@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.VanKampen.FaceShellingValue
-import GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
+import GroupApproximation.GGT.VanKampen.ClosedWalkFaceColouring
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -141,9 +141,39 @@ theorem pinchSplit (Delta : DiscDiagram.{u, w, v} W) {walk : List Delta.toCombMa
   rw [List.length_take]
   omega
 
+/-- **Excising a front lobe that reads `1`.**  If the first `k` darts read `1`, the remaining darts
+read the value of the walk.  Together with `IsClosedDartWalk.drop` this removes a lobe; to excise a
+lobe elsewhere, rotate it to the front first (`ClosedWalkFaceColouring.closedChain_append_comm`,
+through `isClosedDartWalk_iff_closedChain`). -/
+theorem listVal_dartWord_drop_eq_of_take_eq_one (Delta : DiscDiagram.{u, w, v} W)
+    (walk : List Delta.toCombMap.Dart) (k : ℕ)
+    (htake : GGT.RelLetter.listVal (Embedded.dartWord Delta (walk.take k)) = 1) :
+    GGT.RelLetter.listVal (Embedded.dartWord Delta (walk.drop k)) =
+      GGT.RelLetter.listVal (Embedded.dartWord Delta walk) := by
+  rw [listVal_dartWord_eq_mul_lobes Delta walk k, htake, one_mul]
+
 end Values
 
+/-- **A closed dart walk is a nonempty closed chain.**  The chain-level split and rotation are on
+main as `ClosedWalkFaceColouring.closedChain_split` and `closedChain_append_comm`, so the
+combinatorial half of `IsClosedDartWalk.take` and `.drop` is subsumed there.  This module adds the
+values. -/
+theorem isClosedDartWalk_iff_closedChain {M : CombMap.{v}} {walk : List M.Dart} :
+    IsClosedDartWalk M walk ↔
+      walk ≠ [] ∧
+        ClosedWalkFaceColouring.ClosedChain (fun d e => M.vertexOf (M.alpha d) = M.vertexOf e)
+          walk := by
+  constructor
+  · rintro ⟨hne, hc, hclose⟩
+    exact ⟨hne, (ClosedWalkFaceColouring.closedChain_iff hne).mpr ⟨hc, hclose⟩⟩
+  · rintro ⟨hne, h⟩
+    obtain ⟨hc, hclose⟩ := (ClosedWalkFaceColouring.closedChain_iff hne).mp h
+    exact ⟨hne, hc, hclose⟩
+
 end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.listVal_dartWord_drop_eq_of_take_eq_one
+#audit_axioms GroupApproximation.GGT.VanKampen.isClosedDartWalk_iff_closedChain
 
 #audit_axioms GroupApproximation.GGT.VanKampen.IsSimpleClosedWalk.isClosedDartWalk
 #audit_axioms GroupApproximation.GGT.VanKampen.IsClosedDartWalk.take
