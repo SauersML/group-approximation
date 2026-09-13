@@ -20,6 +20,20 @@ arXiv:1108.0352v3, page 8, checked against the PDF on 2026-09-13. The paper work
 So this claim is the case `k = F_2`, and it is equivalent to the absence of any nonzero homomorphism
 `L ⊗ L -> L`.
 
+**Status (bounded check, 2026-09-13, lane `ex2-q34-commuting-units`).** The question is recorded as open over
+fields in B. Bilich, R. Hazrat and T. G. Nam, *Embedding k-algebras into Leavitt algebra L_k(1,2)*,
+arXiv:2512.09241v2 (22 Dec 2025), page 6, Question 2.8, read from the PDF:
+- "It is not yet known whether Kumjian-Pask algebras can be embedded into L_k(1,2)."
+- "If affirmative, this in particular answers the question whether L_k(1,2) ⊗_k L_k(1,2) embeds into
+  L_k(1,2) as L_k(1,2) ⊗_k L_k(1,2) can be realized as the Kumjian-Pask algebra of the 2-graph".
+- Their bibliography lists N. Brownlowe and A. P. W. Sørensen, "L_{2,Z} ⊗ L_{2,Z} does not embed in
+  L_{2,Z}", J. Algebra 456 (2016) 1–22. That paper was not read, so its exact hypotheses (coefficient ring `Z`,
+  type of homomorphism) are unverified. Nothing over `F_2` follows from its title.
+- Their Weyl-algebra obstruction (Theorem 3.5) passes through a C*-norm and needs characteristic zero. It says
+  nothing over `F_2`.
+
+No other source was searched (web search budget exhausted; arXiv API rate-limited).
+
 **What it would change.**
 - A positive answer, a unital embedding, would put the Brin--Thompson-type unit group `(L ⊗ L)^x`, which contains
   `V × V`, inside `L^x`.
@@ -35,3 +49,30 @@ So this claim is the case `k = F_2`, and it is equivalent to the absence of any 
 **Commuting units.** A unital map sends `c ⊗ 1` and `1 ⊗ c`, for the north--south unit `c`, to algebraically
 independent commuting units. An obstruction to such pairs in `L` therefore decides the question; see the route
 above. No such obstruction is proved.
+
+**Relative commutants (proved reformulation, lane `ex2-q34-commuting-units`).** Put `R = L` and
+`phi(z) = s_0 z t_0 + s_1 z t_1`, a unital endomorphism.
+1. *Unital endomorphisms are units.* Every unit `u` gives the Leavitt family `(u s_i, t_i u^(-1))`, hence a
+   unital endomorphism `rho_u`. Conversely, for unital `rho` put `u = rho(s_0) t_0 + rho(s_1) t_1` and
+   `u' = s_0 rho(t_0) + s_1 rho(t_1)`. Then `u u' = Σ_i rho(s_i) rho(t_i) = 1`, `u' u = Σ_i s_i t_i = 1`,
+   `u s_i = rho(s_i)` and `t_i u' = rho(t_i)`, so `rho = rho_u`.
+2. *The question is about commutants.* A unital `f : L ⊗ L -> L` is `f(x ⊗ y) = rho_u(x) psi(y)` with
+   `u` as in 1 and `psi = f(1 ⊗ -)` a unital map into `C_u = C_R(rho_u(R))`. Conversely such a `psi` defines `f`.
+   So a unital map exists iff some `C_u` contains a unital homomorphic image of `L`.
+3. *Formula.* `C_u = { z : z u s_i = u s_i z, i = 0, 1 } = { z : u phi(z) u^(-1) = z }`.
+   - Commuting with `u s_j` gives commuting with `t_i u^(-1)`:
+     `t_i u^(-1) z = Σ_j t_i u^(-1) z u s_j t_j u^(-1) = Σ_j t_i s_j z t_j u^(-1) = z t_i u^(-1)`.
+   - If `z u s_i = u s_i z`, then `u^(-1) z u = Σ_i u^(-1) z u s_i t_i = Σ_i s_i z t_i = phi(z)`.
+     Conversely `u phi(z) u^(-1) = z` gives `z u s_i = u phi(z) s_i = u s_i z`.
+4. *Controls.* `u = 1` gives the center `F_2`. The flip `u = s_00 t_00 + s_10 t_01 + s_01 t_10 + s_11 t_11`
+   gives `rho_u = phi`. Under `R ≅ M_2(R)`, `phi(R)` is the diagonal, so `C_u = M_2(F_2) = span{ s_i t_j }`.
+
+**Exact screen (MSI, `relcomm.py` in `/projects/standard/hsiehph/sauer354/ex/ex2-q34-commuting-units/`).**
+`dim(C_u ∩ R_N)` was computed by linear algebra for `N = 1, 2, 3`.
+- Controls: `1`, the Thompson units `A` (north--south) and `C`, and the transvection words `X`, `Z`, `XY`,
+  `ZR` give `1` at every `N <= 4`, and the flip gives `4`.
+- 843 distinct random units (words of length 2–10 in the thirteen generators of the predecessor's squaring
+  screen, depth `<= 4`): 842 give `[1, 1, 1]`, and `PBa` gives `[2, 2, 2]`. None grows with `N`.
+
+A positive answer needs a unit whose relative commutant is infinite-dimensional. Random short words do not
+produce one.
