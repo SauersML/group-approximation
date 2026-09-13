@@ -72,5 +72,5 @@ Here `F = F_2`, so `λ ∈ {0, 1}`. Let `g ∈ U_n`.
 ## 5. Conclusion
 
 `U_n <= GL(M)` satisfies (E) and (R) over the finite field `F_2`, and `M` is
-infinite-dimensional. By `linearly-transitive-groups-without-finite-rank-elements-are-mif`,
+infinite-dimensional. (Z) holds because the only invertible scalar over `F_2` is `1`. By `linearly-transitive-groups-without-finite-rank-elements-are-mif`,
 `U_n` is mixed-identity-free. ∎

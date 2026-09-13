@@ -8,7 +8,7 @@ requires: []
 ---
 
 Notation as in the target: `F` finite with `q` elements, `dim M = ∞`, and
-`G <= GL(M)` satisfying (E) and (R).
+`G <= GL(M)` satisfying (E), (R) and (Z).
 
 ## Lemma 1 (avoidance)
 
@@ -45,9 +45,8 @@ reduced form
 w = g_0 x^(ε_1) g_1 x^(ε_2) ... g_(n-1) x^(ε_n) g_n,   n >= 1, ε_i = ±1, g_i ∈ G,
 ```
 
-with `g_i != 1` whenever `ε_i = -ε_(i+1)` (`1 <= i <= n-1`). No `g_i` in such a
-position is a scalar `λ != 1`, since otherwise `w` would not be reduced; this is where
-the scalar clause of (R) enters. Evaluation reads right to left:
+with `g_i != 1` whenever `ε_i = -ε_(i+1)` (`1 <= i <= n-1`). By (Z), no such `g_i`
+is a scalar, which is what Lemma 2 needs. Evaluation reads right to left:
 `w(x)v = g_0 x^(ε_1)(g_1 x^(ε_2)(... x^(ε_n)(g_n v)))`.
 
 Fix `v != 0`. For `i = n, n-1, ..., 1` we choose vectors `y_i` and keep a partial
