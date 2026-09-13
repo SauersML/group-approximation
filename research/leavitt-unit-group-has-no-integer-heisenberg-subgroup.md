@@ -52,6 +52,11 @@ lower bound.
 - The route needs `lambda(u) > 0` for every unit of infinite order. No argument
   controls cancellation among the monomials of a general linear unit, so this is
   not proved.
+- Numerical screen (`research/artifacts/leavitt-unit-depth-growth-experiment-2026-09-12.md`).
+  About 550 short random words in four Thompson generators and three transvections
+  were checked in exact normal form. Every unit without a detected finite order had
+  linearly growing depth, with rational late slopes between `1/4` and `4`, or had
+  bounded depth and order `31`. No sublinear growth was seen. This is evidence only.
 
 **Thompson flows cannot be split by units (argument outline, unreviewed, lane
 `ex-q34-leavitt-hs`).** Let `u, z` be elements of `V` with disjoint clopen
