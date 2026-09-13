@@ -982,3 +982,129 @@ For EVERY census row in your range with status formalized or definition, and eve
   - Corrected: Insert belongs to simple-group (fifth notice) and Join is done (ce39bca65).
   - kh-torsion agrees with hull-bridge which of Pinch or the induction each takes. R1/R2 decision requested.
 - Wave 14 building: tag 0913-141703-40545, base 80df00345. 12 modules: EulerTwoGonFaceClass, GlueOuterArc, GlueOuterTransport, QuasiGeodesicValueOneGap, ShortSides, FaceSetCircuitNoncrossing, KeptCell, OneCellValue, LoopCut, RegionNoncrossingWalk, OuterSpurThickening, BudgetFilter.
+
+## Rulings 09-13 ~14:25–14:49
+
+- Roster cad3f1f06 records the rulings from 14:07 to 14:22.
+
+## Closed and landed
+- **PocketCellTransportStatement: CLOSED** by go-lemma42 (`pocketCellTransport` 874a332a2, probe 0913-141750-43433).
+  - dgo-analytic passed it to the section pocket cut (5ef75ffa7, probe 0913-142350-67007).
+  - The producer is now `osinSectionPocketCutSection_of_residuals hfaces hpinch hgeodesic`, with three open Props: OsinSectionPocketFaceSetSectionStatement (kh-ejz), PocketPinchLabelledStatement (hull-respell) and GeodesicCollarStatement (kh-torsion).
+  - The hcell-free wrappers are declined: ghw-assembly's top composition supplies hcell.
+- **OuterSpurThickeningStatement: proved** by hs-vanishes (`outerSpurThickening`, 36ff632cd).
+- **kh-cckw:** OsinPocketPinchSplit landed d66a22202; OsinPocketPinchUnpinched is wire-queued.
+- **ko-closed:** OsinLemma94OneCellMorse 5063f177b, GREEN 0913-142447-72008.
+  - It kills a cell-free pocket at the printed threshold. Contents: `exists_morse_threshold_of_fourPoint`, `false_of_cellFree_pocket_X_morse` and `_Y_morse`.
+  - Wire-queued after OneCellValue 36524dbf0.
+  - Composing case (a) waits on the OsinLemma94CaseOneOneCellInput text from theoremc-retire.
+  - hull-unbound's OsinLemma94DenseOneCellDraft.lean stays unlanded, since Dense is cancelled.
+- **hull-respell:** OsinPocketLakeAbsorption 49feec035 (probe 0913-141726-41707).
+  - Contents: the absorbed face set, `isBoundaryDart_absorbed_iff`, `PocketFaceSet.absorb`.
+  - Part 3, the walk-order listing, is open.
+  - Trap: an overlay that lists OsinAppendixGreendlingerParts.lean goes red on ghw-charp2's unlanded `loopCutInput` edit until (A) lands.
+- **Wave 14:** ROOT GREEN, LANDED ROOT 80007c036 (14:28, 12 modules, base 80df00345, build 0913-141703-40545).
+  - root-wire released five modules against the letter of the hold rule: TwoGonFaceClass, GlueOuterArc, GlueOuterTransport, ShortSides and TorsionFreeSectionAssemblyClosedGO.
+  - Its reason: the only red probe was ghw-charp2's (A) co-probe, built on unlanded patches, with errors elsewhere. The closures were byte-identical to green builds. The root build confirmed the call.
+- **kh-ejz:** ClosedWalkFaceColouring c5cb8e691 (probe 0913-142740-85270): (B) `exists_faceColouring`, plus map-level (D) `boundaryCycleOfColouring`.
+  - hl-lemma46, which holds (D), waits for kh-ejz's reply and builds only the sub-step kh-ejz names.
+  - Hand model: the pinched two-gon has no pocket face set, because U holds no relator cell; in the lake rose, ∂U = the walk.
+- **hull-count94:** OsinLemma94PolygonClasses 6db79cea7; it consumes hull-component's BudgetFilter.
+- **dgo-analytic:** OsinDescentResiduals 5be777f16 assembles the Lemma 9.7 descent from its residual pieces.
+- **kh-cckw** a8cc132c8: no pinch consumer needs the simple pocket to keep the old faces.
+- **census merge 19** (6457b79e5):
+  - 347 formalized, 15 partial, 498 total;
+  - baseline 244;
+  - `--verify-unconditional` 380/380;
+  - `--verify-decls` 0 missing of 1229.
+  - The Lean Prover CI push runs were cancelled, so the census step is unverified in CI.
+
+## Rulings
+- **Pinch route (hull-respell's proposal): approved.** PocketPinchStepStatement replaces the named A and B.
+  - Input: a pocket whose walk is a boundary cycle with a repeated vertex.
+  - Output: an O-equivalent step that keeps the labels, ClosedWalk and the boundary-cycle form, and strictly lowers the repeated-visit count.
+  - `pocketPinchLabelled_of_step` takes no other binders. Until the step is proved this is a reshape, not a discharge.
+  - No residual (iii).
+    - `turn_mem` puts the first walk-edge dart after `alpha d` in the walk. If the successor of d is that dart, as for a boundary cycle, every passage uses rotation-adjacent darts, so no two passages cross and one split moves exactly one passage.
+    - (iii) is named only if dgo-geometric finds a pocket walk whose successor is not the rotation-first dart.
+  - dgo-geometric model-tests the step on the rose, the notch and a vertex passed three times before it lands.
+  - Owners:
+    - kh-cckw: E4 (a)–(c);
+    - go-lemma42: (ii), transporting K across a split that merges corners inside K;
+    - (i), making corners into G-digons: hull-respell checks SurgeryFaceEdgeDoublingRegions and outerSpurThickening first, and main assigns what is missing.
+  - The route never uses FollowsBoundary, so it doesn't wait on R1/R2.
+- **(A) co-probe 0913-135734-55169 was RED.**
+  - 2 foreign reds, both already fixed on origin: OneCellValue 36524dbf0 and PinchSplit d66a22202.
+  - 3 consumers needed fixes. Approved to co-land them in the one (A) landing, after a green re-probe (178 modules) and a per-file origin-blob check at push:
+    - (1) OsinAppendixEulerTwoGonLabels l.201 (debt-conditional);
+    - (2) OsinPocketKeptCell l.142 (sec2-sentences);
+    - (3) SurgeryOuterSpurThickening l.627 (hs-vanishes).
+  - audit-sec5's LoopCutCap rewrite rides in this probe.
+  - Correction to 14:21: main told ghw-charp2 that this probe had passed, citing `lanes/ghw-charp2.green.0913-135734-55169`. That record's verdict line reads `# PROBE FAILED rc=1`.
+  - nmprobe.sh writes a `.green.<tag>` file of per-file compiled evidence even when the probe fails. Read the `# PROBE` line (line 4), not the filename.
+- **audit-sec5 model tests:**
+  - Site 5: same-cell unbound darts exist, so `hsame` in `covers_of_regionFacing_le` and `sum_card_unboundOffRegions_le` is false in general. Neither lemma has a caller.
+    - Per run, |T_R| ≤ ((1−λ)N_R + c)/λ, with #runs ≤ n + 2|S.family|, which is option (a)'s ⌈1/λ⌉. Routed to fff-periodic and hull-count94.
+  - Case 1 with i = j: no counterexample model, but the proof needs hbelow. This confirms T.
+  - Next item: a truth audit of kh-ejz's OsinSectionPocketFaceSetSectionStatement and OsinMultipleEdgePocketRegionSectionStatement.
+- **Raw-id resumes:**
+  - hs-vanishes (C6′ premise transport, as a new module; hold on SurgeryOuterSpurThickening until the (A) SHA);
+  - hull-select (four-facts module).
+  - Both had been idle since 14:16, and the by-name sends had not woken them.
+- **baseline-debt:** asks debt-conditional directly for its C6′ piece and sends hs-vanishes the premise list.
+- **(A) re-probe 0913-143304-32295: GREEN** over 179 modules on base b590ad02a. Verdict line checked.
+  - 27 files: 23 patched, audit-sec5's LoopCutCap rewrite, and the three consumer fixes.
+  - Main confirmed that all 27 land in one nmland, with a per-file origin-blob check.
+- **InsertStatement, sixth dispute.** At 14:34 hull-bridge wrote SurgeryGeodesicCollarInsert.lean over simple-group's unlanded draft at the same path.
+  - Ruled (a), on simple-group's recommendation: hull-bridge keeps InsertStatement and the file; simple-group sends its proofs as text.
+    - vertex-Nodup;
+    - the IsBoundaryDart iff;
+    - IsSimpleClosedWalk for r = [] and r ≠ [];
+    - the assembly.
+  - The Strip sub-module that had been hull-bridge's (pinch step or induction) goes to simple-group, which asks kh-torsion which one is open.
+  - hull-bridge was warned: before writing a path that is not on origin, check the disk and `$NM/lanes/*.files`.
+- **W1 waist LANDED** by ghw-assembly: 8a07ad7d0, Estimating/OsinGreendlingerOpenResiduals, probe 0913-143433-44532, unwired.
+  - `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals` consumes dgo-analytic's OsinDescentResiduals 5be777f16.
+    - h94 := `osinLemma94Section_of_residuals`;
+    - hcount := `osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection htwogon` (C4 closed at 0c42391c2).
+  - **The 8 residual binders:**
+    1. OsinLemma94PolygonCountInput (hull-count94)
+    2. OsinLemma94CaseOneInput (theoremc-retire; ko-closed case (a), jacobson case (b))
+    3. OsinLoopCutSectionStatement (closed by (A) patch 07)
+    4. OsinTwoGonHoldsSectionStatement C6′ (debt-conditional; baseline-debt, hs-vanishes). No producer exists on main or in the tree.
+    5. OsinMultipleEdgePocketRegionSectionStatement (kh-ejz)
+    6. OsinSectionPocketFaceSetSectionStatement (kh-ejz; cite-hull (C), hl-lemma46 (D), sec2-sentences havoid, hull-select four facts, hull-euler heuler)
+    7. PocketPinchLabelledStatement (hull-respell; kh-cckw E4, go-lemma42 (ii), dgo-geometric audit)
+    8. GeodesicCollarStatement (kh-torsion; hull-bridge Insert, simple-group Strip sub-module; Join done)
+  - Next for ghw-assembly, after (A): drop binder 3 and replace binders 1–2 with their leaf producers.
+- **hull-count94:** OsinLemma94PolygonClasses 6db79cea7 (probe 0913-143205-28136).
+  - Proved: `OsinLemma94ClassPolygons`, `ClassBudget`, `ClassCovers`, `unbound_lt_of_classes` (this one consumes BudgetFilter), and the `ofSides` model.
+  - Residual: `OsinLemma94ClassCountInput` (∃K after ε; ∀ maximal P, ∃ Q, ClassBudget K ∧ ClassCovers (24ε + 2(K+24)⌈(c+2)/λ⌉)). It supersedes SideBudgetInput once the Case 1 users move to class words.
+  - Split:
+    - audit-intro: the run lemma `exists_cyclicRuns` (Estimating/OsinLemma94ClassRuns), first; it folds in the budget check;
+    - sec5-sentences: the kind-level transition count ≤ K n;
+    - hull-component: bubble accounting, Covers (24ε) → ClassCovers L;
+    - hull-count94: the producer of Q, and the ClassCountInput assembly.
+  - Class-level Case 1/2 Props and the Rule 22 co-probe of the Case 1 users: not started.
+- **hull-respell** 8a7d46d90, OsinPocketPinchStep (probe 0913-143717-61429).
+  - Contents: `repeatedVisits`, `simple_of_closedWalk_of_unpinched` (no FollowsBoundary), `PocketPinchStepStatement` and `pocketPinchLabelledStatement_of_step` (strong induction).
+  - The step Prop is no stronger than a label-keeping pinch. Its hypotheses are ClosedWalk and ¬Unpinched, and its conclusion keeps ClosedWalk and lowers repeatedVisits.
+- **audit-intro:** the order is reversed. hull-count94's `exists_cyclicRuns` comes first, with the budget check folded in.
+- **(A) re-probe 0913-144048-88101: GREEN**, verdict line checked. ghw-charp2 is landing.
+- **hull-unbound gap model test** (3b4f613a3):
+  - Q1: yes. Case 1 on class words meets gap-containing pairs on audit-intro's pinched cell. At a junction, P.Maximal gives facePerm(alpha e') ≠ alpha e, so the window is never a `CyclicArc.reverseDarts`.
+  - Q2: gap-free endpoints lose nothing. |gap| ≤ ⌈(c+2)/λ⌉₊ (a3169d05f), so M = 1 + ⌈(c+2)/λ⌉₊ and density at ⌊ρ/(4M²)⌋. Only `unbound_lt_of_classes` changes.
+  - Remaining obstruction: on a pinched class, every long gap-free window contains a junction.
+  - Ruled: hull-unbound owns the pinched-window item. It writes one model-tested Prop, either (a) a quadrilateral member that accepts a window crossing a junction, or (b) the l.850 un-pinch, after checking whether hull-respell's PocketPinchStepStatement is (b) under other names. ko-closed makes the final pick. The Dense draft stays unlanded; it is backed up.
+- **Manuscript moved at 45483f699** (14:29, peer session): sec:chain-core at 1336–1590 (lem:chain-core-models, lem:transient-matrices, thm:core-ring-reflection, thm:core-mf-radical) and an Introduction paragraph at 249–258.
+  - census holds merge 20 and carries LINE:<n> keys forward by line diff from a8cc132c8. The resolved sentence is checked against the row evidence, failing closed. WORKLIST is keyed by 12-hex.
+  - Lanes use the 12-hex key, not LINE:<n>. There is no broadcast.
+  - New fork lane **chain-core** owns the section: it scopes into ≤6 sub-items, reports, then formalizes the leaves.
+- **Raw-id resumes:**
+  - go-lemma42: pinch-step (ii). The by-name send at 14:33 hadn't woken it.
+  - systolic-counts: read its calib, CI-mode and census-mode runs directly, then land the GFaceMerge verifier fix.
+- **C6′ routing (debt-conditional):** no new pinched-walk Prop.
+  - Unpinched: hw := `simple_of_closedWalk_of_unpinched`.
+  - Pinched: consume binder 7 PocketPinchLabelledStatement, then O-transport back.
+  - hno and havoid on S′ come from hs-vanishes and sec2-sentences. baseline-debt writes whichever piece debt-conditional names.
+- **nm-endpoints:** it doesn't write OsinAppendixGreendlingerLoopClosed, which would duplicate the waist at a less reduced level. It re-grades the ten TorsionFreeGreendlingerLeaf rows over the waist's binder list after (A).
