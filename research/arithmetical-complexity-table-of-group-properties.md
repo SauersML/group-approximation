@@ -37,7 +37,9 @@ enumerated presentations.
 property           fp                          rec2 / rec                    enum
 -------------------------------------------------------------------------------------
 trivial            Sigma^0_1-complete (folk.)  Pi^0_2-complete (folk.)       Pi^0_2-complete
-abelian            Pi^0_2 (folk.)              Pi^0_2-complete (folk.)       Pi^0_2-complete
+abelian            Sigma^0_1-complete [PT]     Pi^0_2-complete (folk.)       Pi^0_2-complete
+nilpotent <= c,    Sigma^0_1-complete [PT]     see [PS]                      see [PS]
+polycyclic, finite
 torsion-free       Pi^0_2-complete [TF]        Pi^0_2-complete               Pi^0_2-complete
 sofic              Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [S]
@@ -51,7 +53,8 @@ finitely           --                          Sigma^0_2-hard, in Sigma^0_3  Sig
 presentable                                    [FP]
 amenable           Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [A]
-metabelian         Pi^0_2 (complete OPEN)      Pi^0_2-complete               Pi^0_2-complete
+metabelian         Pi^0_2, Sigma^0_1-hard;     Pi^0_2-complete               Pi^0_2-complete
+                   exact level OPEN [MB]
 contains F_2       Sigma^0_2 (lower: Pi^0_1-h) Sigma^0_2-complete            Sigma^0_2-complete
 residually finite  Pi^0_2-complete [RF]        Pi^0_3-complete               Pi^0_3-complete
 residually p       Pi^0_2 \ Pi^0_1 (as RF)     Pi^0_3-complete               Pi^0_3-complete
@@ -67,6 +70,13 @@ Legend.  `[S]` = [[sofic-safe-finite-presentation-compiler]];
 `[H]` = [[approximation-property-recognition-dichotomy]], side (B) iff a
 non-hyperlinear group exists;
 `[A]` = [[amenability-of-finite-presentations-is-pi2-complete]];
+`[PT]` = [[polycyclic-type-classes-of-fp-groups-are-sigma1-complete]]
+(the abelian `fp` cell was previously listed only as `Pi^0_2`; finitely many
+commutators of generators certify it);
+`[PS]` = [[perfectness-and-bounded-solvability-are-pi2-complete]], nilpotency
+rows only;
+`[MB]` = [[metabelianity-of-finite-presentations-is-recursively-enumerable]],
+conjectured `Sigma^0_1`-complete;
 `[W]` = [[weak-soficity-recognition-has-a-pi2-upper-bound]],
 [[linear-soficity-recognition-has-a-pi2-upper-bound]] (side (B) iff some
 group fails the property);

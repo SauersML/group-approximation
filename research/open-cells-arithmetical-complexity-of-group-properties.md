@@ -73,7 +73,12 @@ them fills one cell.
    [[linear-soficity-recognition-has-a-pi2-upper-bound]]. No displayed horn
    is decided here.
 7. **`METABELIAN_fp`, `CONTAINS-F2_fp` exact levels**
-   (`Pi^0_2`, `Sigma^0_2` upper bounds; first-level hardness only).
+   (`Pi^0_2`, `Sigma^0_2` upper bounds; first-level hardness only). For
+   `METABELIAN_fp` the conjectured answer is level one, not level two:
+   [[metabelianity-of-finite-presentations-is-recursively-enumerable]]. The
+   neighbouring laws abelian, nilpotent of bounded class, polycyclic and finite
+   are `Sigma^0_1`-complete on finite presentations
+   ([[polycyclic-type-classes-of-fp-groups-are-sigma1-complete]]).
 8. **`SURJ_fp` `Pi^0_2`-complete, and `SURJ_rec2` `Pi^0_2`-hard, when
    Gottschalk's conjecture fails?** Known on side (B) of
    [[surjunctivity-recognition-dichotomy]]: `SURJ_fp` lies in
