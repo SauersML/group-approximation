@@ -8,6 +8,22 @@ hs-vanishes and sec2-sentences. This lane never edits their files.
 
 - CLAIM C6′ uniform noncrossing route `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean`
 - CLAIM C6′ merge-disc route `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean`
+- CLAIM C6′ either-follows assembly `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollows.lean`
+
+## Correction (2026-09-13 ~18:05): the lake still has a PocketRegion
+
+The finding below overclaimed. `PocketRegion.outer` is an `IsDiscRegion` of the complement: the reclosing is connected
+and preserves the Euler characteristic. It is not a following condition.
+- Reclosing both complement components as one face splits the pinch vertex.
+- Hand count on the lake rose: vertex orbits {0,3} and {1,2}, 2 edges, 2 faces, so χ = 2.
+- So a PocketRegion exists in the lake, and `EmptyTwoGonInput` can fire there. Only the builder asks for outer
+  following.
+- The correction went to main before any relay.
+
+Handoff:
+- ms-torsionfree takes the inner-following builder, which covers L2's inner branch and L3.
+- This lane consumes it through the named Prop `PocketRegionOfInnerFollowsStatement`, in the either-follows assembly.
+- The shared-edge case, where `alpha_not_mem` fails, is still open. It is sec2-sentences' options (i) or (ii).
 
 ## Landed
 
