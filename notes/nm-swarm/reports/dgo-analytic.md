@@ -204,7 +204,10 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
 * dgo-geometric's 67e5b2f9c (`Estimating/OsinPocketLakeModel`, probe 0913-140543-86239 green, md5 equal to main) confirms Configuration B on a two-petal rose. The walk `[0,2]` is noncrossing but not simple, the inner cycle follows and the outer does not. So A and B are both model-tested.
 * R1 evidence from kh-torsion's own report ("Proof route" of the geodesic collar, on main). The sector lemma uses inner and outer `FollowsBoundary` with `invDarts outer ~r inner` to show that the circuit revisits no vertex. That is a step using inner `FollowsBoundary`, so the ~11:55 ruling gives R1. kh-torsion is asked to confirm.
   * Under R1, `Simple` stays `IsSimpleClosedWalk`, `PocketCarrier` keeps `inner_follows`, and no restatement co-probe runs. A and B stay in the pinch Prop.
-  * `PocketRegion.ofNoncrossingClosedWalk` still serves the kept cell of a pinched walk (Q2 above), and jacobson's loop cut when spurs make the walk non-simple.
+  * `PocketRegion.ofNoncrossingClosedWalk` still serves the kept cell of a pinched walk (Q2 above).
+  * It does not serve jacobson's loop cut under R1. `nonempty_osinLoopCut_of_pocketRegion` (`Estimating/OsinPocketLoopCut`, 70f8cd913) takes `hin : P.inner.FollowsBoundary` (:209) for `exists_twoCollars_of_ne_or` (:228), and the builder supplies only outer following. So under R1 a non-simple Case 1 walk reaches the loop cut only through a pinch (jacobson, ~14:35).
+* R2 co-probe list, if R2 is ruled. `exists_twoCollars_of_ne_or` has four users: `OsinPocketCollarOfGeodesic`, `OsinPocketMultipleEdgeAssembly`, `OsinPocketTwoCollars` and `OsinPocketLoopCut`.
+  * jacobson writes its own hunk at co-probe time, deleting the binder at :209 and the argument at :228. Nothing is staged on disk before then.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
