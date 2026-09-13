@@ -43,6 +43,19 @@ Lane `fp-simple-amenable-z2-sft`, 2026-09-12.
   - Definition `defn: residually finite action` (line 1191, after Kerr–Nowak): for every finite `F ⊆ G` and `epsilon > 0` there is a finite `E ⊆ X` with a `G`-action `beta` such that `E` is `epsilon`-dense and `d(alpha(s) z, beta(s) z) < epsilon` for all `z` in `E` and `s` in `F`.
   - Theorem C (line 405): minimal topologically free residually finite actions on the Cantor set have LEF full groups.
 - **Juschenko–Nekrashevych–de la Salle, arXiv:1305.2637** (`amenable.tex`), Theorem `th:amenhomeo1` (lines 104–117). If `[[H]]` is amenable, every `g` in `G` coincides locally with `H` off a finite set, all orbital Schreier graphs of `G` are recurrent, and germ groups are amenable, then `[[G]]` is amenable.
+- **Sources for the finite presentation question** (lane `labbe-full-group-finite-presentation`, TeX in `/scratch.global/sauer354/fpsa/src/`).
+  - Xin Ma was re-read from `/scratch.global/sauer354/lfp-cgp/ma/ma.tex`, because the `fpsa/src/main.tex` copy named above is gone.
+  - **Grigorchuk–Medynets, arXiv:1105.0719** (`1105.0719/main.tex`):
+    - Theorem `IntroMainResult` (line 159): `[[T]]` is LEF for minimal `Z`-subshifts.
+    - The proof (lines 523–545) factors an element uniquely as a permutation of Kakutani–Rokhlin atoms times a rotation.
+    - Lines 174–176: finitely presented and LEF give residually finite, so `[[T]]'` is infinitely presented.
+  - **Matui, math/0404117** (`matui0404117/main.tex`):
+    - Lemma (line 1070): a minimal subshift embeds into an irreducible SFT of period `p` iff its entropy is smaller and `[1_X]` is divisible by `p` in `K^0` (Lind–Marcus Corollary 10.1.9).
+    - The theorem after line 1104: `D([[phi]]_0)` is never finitely presented for a minimal subshift.
+  - **Matui, arXiv:1210.5800** (`1210.5800/main.tex`):
+    - Theorem `iso` (line 888): for minimal essentially principal étale groupoids with Cantor unit space, isomorphic groups between `D([[G_i]])` and `[[G_i]]` give isomorphic groupoids.
+    - Theorem `finite` (line 3245): the one-sided SFT case, via Brown's criterion (line 2706) on a complex of expansions (lines 2708–2834).
+  - **arXiv:1508.04454** (`RelationsFullGroupsUber.tex`), Theorem `IntroMain` (lines 70–96): an infinite presentation of the derived full group of a minimal subshift, with generators indexed by words, and a solvable word problem iff the language is recursive.
 
 ## 2. Theorem A: SFTs without finite orbits carry no residually finite action
 
