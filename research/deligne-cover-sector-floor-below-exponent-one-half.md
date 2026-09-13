@@ -5,6 +5,7 @@ kind: claim
 title: At genus g >= 3 every nontrivial-sector tuple of a finite Deligne cover has normalized relator defect at least c d^(-b) for some b < 1/2
 artifacts:
   - research/artifacts/deligne-hs-metric-ladder-2026-09-13.md
+  - research/artifacts/deligne-sector-floor-2026-09-13.md
 distinct_from:
   deligne-symplectic-covers-are-not-schatten-approximated: that proves the floor with exponent b = 1/2 from Frobenius stability; this asks for any exponent strictly below 1/2, which needs an input beyond dimension-free Frobenius stability.
   deligne-stable-triple-cover-is-not-hyperlinear: that is the floor with exponent b = 0 (a dimension-free normalized gap) at some genus; this asks only for a polynomial floor with a better exponent than the Frobenius one, and does not decide hyperlinearity.
