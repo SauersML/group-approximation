@@ -63,8 +63,16 @@ retire only the `_of_fourLeaves` findings of these two modules.
 Residual Prop: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` only
 (the Hull 7.1 chain).  Once it has a closed producer, each endpoint above is closed by applying it.
 
-Census: rows at the keys of these endpoints are in `rows/fff-periodic.tsv`.  The census lane has the
-old → new names for each retired baseline line.
+Census: rows at the keys of these endpoints are in `rows/fff-periodic.tsv`, corrected to this
+ownership at 84cf2efbb.  They retire the 46 open-predicate and buried-conditional findings of the
+23 `_of_fourLeaves` theorems.  They do not retire the 4 carrier-data findings on the sentence Props
+`PrintedHullProofParagraph`, `PrintedSaturationPairAndHullAgain`, `PrintedSaturationApplyHull` and
+`PrintedTheoremApplySaturation`, because those defs are unchanged.  The census lane has the old → new
+names for each retired line.
+
+hull-bridge's `TorsionFreeGreendlingerSentences` (2aa98f8cc) covers the tex sentences at lines 1662,
+1665, 1698 and 1680 too.  It uses the `_of_leastAreaLeaves` producers with their own Props, and this
+module uses the `_of_fourLeaves` producers.  Neither module repeats a name from the other.
 
 ## 09-13: hfold (HC6, the mirror fold), CLOSED
 
