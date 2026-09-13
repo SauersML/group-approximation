@@ -70,9 +70,10 @@ whether such a group is already known is open here.
    read off from large coordinates, and step 2 of
    `cycle-transposition-lef-group-proof` shows that this is a well-defined
    homomorphism with kernel `K`. That quotient is Houghton's `H_2`. It is not
-   finitely presented, as the first fact confirms. Whether `H_2` is `FP_2` over
-   `Q` was not checked here, so finite presentation of the group itself is not
-   excluded.
+   finitely presented, as the first fact confirms. It is not `FP_2` over `Q`
+   either (`houghton-h2-is-not-fp2-over-q`), so the group itself is not
+   finitely presented (`cycle-transposition-lef-group-is-not-finitely-presented`,
+   2026-09-13).
 
    A finitely presented residually finite overgroup would suffice. That is the
    route `unbounded-prime-torsion-via-rf-higman-embedding`, whose open clause
