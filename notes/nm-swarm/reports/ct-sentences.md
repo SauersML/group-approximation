@@ -147,3 +147,19 @@ were not recomputed here.
     `PrintedFinitaryShiftLEF : Prop := Sofic.IsLEF (FinitaryGL.FinitaryShift (ZMod 2))`, and the tail-symbol Prop over
     `FinitaryGL.GLfin (ZMod 2)` and `FinitaryGL.shiftGL`.
   - Waiting on ct-two-ended's reply; nothing authored for this piece.
+- 09-13 ~17:25: ct-two-ended declined the split; tex 1774–1792 stays its brief, and ct-sentences builds nothing there. New item:
+  (1) closed models of the codimension count (tex 1781–1785) and the no-wraparound window (tex 1786–1791); (2) census rows
+  naming ct lanes' landed declarations.
+- Rows LANDED 9aef9cddf: eleven rows for ct-bilateral-cell's carriers (5d90422ea). Each status was set after reading the
+  declaration's statement.
+  - definition: 331807e9e898, b98536a82318, 732be542bd63, 4a0223a24da4
+  - formalized: 30e2f83b735e, 8a69e48d6382, 4f649a2dcbfa
+  - partial: 7753d17ede98 (S in flight), f60fa6d3b787 (no matrix-level centralizer statement), 4a343ef108b1 (stability
+    of the printed S waits for cellRing), e94a87793eb1 (order char k in flight)
+  - Skipped: the sentences ct-bilateral-mf keys (tex 1541, 1556, 1583, 1587, 1589, 1594, 1598–1600). ct-return-tower
+    writes its own rows (its report, item 3), and ct-two-ended has no landed Lean yet.
+- `Dynamics/TwoEndedTailModels` probe 0913-173058-72869 FAILED, from two defects of the MODEL, not of the tex:
+  - `window`: the binder ascription made the lambda `Int → Int`, and everything below it stuck.
+  - The line model lived on ℕ, so after the shift a transvection with j = 0 changes the source column −1, which the
+    half-line cannot see. `windowCheck 11` then disagreed with the cycle.
+  - Fix: supports offset to [5, 9], line columns 0..11. Re-probing.
