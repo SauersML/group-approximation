@@ -52,3 +52,17 @@ artifacts:
     blocks, or both with one padding block. Separated steps are removable
     (`separated-triangular-steps-flatten-to-minors`), and no mixed certificate is known over any ring with
     the rank condition.
+- 2026-09-12 `w6-upg-separate` (artifact `research/artifacts/two-root-certificates-separate-2026-09-12.md`).
+  - **Census: no mixing step.** [TRI] Theorem A and D.2, [RR] Propositions 6, 8 and Corollary 9,
+    push-through and the rank-gate counting step contain no triangular step. The only triangular steps in the
+    two-root defect arguments are the Frobenius steps behind the commuting Jordan bound. Those flatten on
+    idempotent minors (`commuting-jordan-certificates-flatten-to-minors`).
+  - **Transfer.** The gate criterion and the characteristic-three lower bounds hold for matrix states
+    (`two-root-gate-lower-bounds-hold-for-matrix-states`), and matrix states exist iff the rank condition
+    holds.
+  - **Why this does not decide (U1b).** A rank function on `W` must also obey Jordan upper bounds on the values
+    of non-idempotents such as `D`, `N_12` and `P_k`. Matrix states can break those bounds (Example 3.3:
+    `d(u) = 1` on `F_3[u]/(u^3)`), and idempotent-minor flattening does not reach values. Still OPEN.
+  - **Next test.** Does `D` have a nonzero idempotent minor over `W`? If not, no state bounds the rank of `D`
+    from below.
+  - **Rank condition without rank functions.** No such ring is recorded locally. The literature was not read.

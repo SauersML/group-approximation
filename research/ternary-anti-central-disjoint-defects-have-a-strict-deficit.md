@@ -58,3 +58,14 @@ Item 1 makes the denominator positive, by the positivity item of
     relation is load-bearing only inside `<iota_A(EL_3(J_3)), iota_B(EL_3(J_3)), z>`, which is sofic iff `EL_3(J_3)` is.
   * The compression of item 2 on the independent anti-central profile is not computed here. Artifact
     `research/artifacts/fock-toeplitz-input-and-sofic-independence-2026-09-12.md`, Remark 3.3.
+- **2026-09-12, `w6-upg-separate`: the route runs on matrix states.**
+  * **What transfers.** Theorems 2.1.1 (positivity and attainment), 2.1.2, 3.1.2 and 3.1.4, and compression
+    along commuting elements, hold over anti-central matrix states `A_mat`
+    (`two-root-gate-lower-bounds-hold-for-matrix-states`).
+  * **Consequence.** If items 1–2 hold over `A_mat`, with compression in the matrix-state sense, the route gives
+    `A_mat = ∅`. Then `S_-` fails the rank condition and the swap corner is full
+    (`twisted-leavitt-corner-fullness-equals-absence-of-k0-states`), with no state upgrade.
+  * **Warning.** Item 2 is an upper bound, and matrix states can break upper bounds that rank functions obey
+    (artifact Example 3.3). So item 2 over `A_mat` is stronger than over `A_S`, and may fail. A proof of item 2
+    that uses the triangular axiom on non-idempotent values is where a mixing step would first appear.
+    Artifact `research/artifacts/two-root-certificates-separate-2026-09-12.md`, Section 4.2.
