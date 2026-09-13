@@ -90,3 +90,19 @@ presented infinite simple group with no free subgroups.
       periodic approximations, or are residually finite, was not checked.
     - The Penrose tiling group has the same profile, and its amenability is
       recorded open (ChJN line 95).
+- **Groups acting on the circle, and periodic groups of the line (2026-09-13,
+  z1-10-simple-amen-build).** Dead: `amenable-infinite-simple-circle-groups-fix-a-point`.
+  An amenable infinite simple group acting faithfully on the circle fixes a point, so
+  an example acting on a one-manifold acts on the line.
+  - This removes Thompson's `T`, Lodha's circle group, and every infinite simple group
+    of homeomorphisms of `R` commuting with `t -> t + 1` whose circle action has no
+    global fixed point.
+  - Hyde–Lodha's finitely presented simple `Q_2`, torsion-free and of type `F_∞`, is one
+    of them and is not amenable (`hyde-lodha-periodic-simple-groups-are-not-amenable`;
+    dead route `fp-simple-amenable-via-hyde-lodha-group`). It had escaped the earlier
+    obstructions, since it contains no `V` and is not a lattice in a product of trees.
+  - Survivors on one-manifolds: groups of homeomorphisms of the line with no periodic
+    structure, for example Hyde–Lodha's finitely generated simple groups built from
+    quasi-periodic labellings and Matte Bon–Triestino's groups of piecewise linear
+    homeomorphisms of flows. Neither source was re-read in this lane, and no finitely
+    presented member of either family is recorded.

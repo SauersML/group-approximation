@@ -17,7 +17,8 @@ Zaremsky Problem 1.10 negatively, through `zaremsky-1-10-by-nonexistence`.
 
 ## Attempts
 
-- **Partial no-gos on main.** Each removes a class of hosts; none is universal.
+- **Partial no-gos on main.** Each removes a class of groups or hosts; none is
+  universal.
   - `amenable-full-group-forces-invariant-measure`: compressible groupoids and
     every host containing Thompson's `V`.
   - `periodic-approximable-subshifts-host-no-fp-simple-group`: subgroups of full
@@ -27,6 +28,10 @@ Zaremsky Problem 1.10 negatively, through `zaremsky-1-10-by-nonexistence`.
     topologically free residually finite actions.
   - `zd-derived-full-group-fp-forces-finite-type`: derived full groups of free
     minimal `Z^d`-subshifts that are not of finite type.
+  - `amenable-infinite-simple-circle-groups-fix-a-point`: infinite simple groups
+    acting on the circle without a global fixed point. This includes 1-periodic
+    simple groups of line homeomorphisms whose circle action has no fixed point, such
+    as Hyde–Lodha's `Q_2` (`hyde-lodha-periodic-simple-groups-are-not-amenable`).
 - **Isolation.** A finitely presented infinite simple group is an isolated point
   of the space of marked groups, so it is not a limit of finite groups. Amenability
   supplies Følner sets, not marked approximants, and no contradiction between the
