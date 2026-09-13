@@ -144,15 +144,21 @@ assembly adds `osinLemma94AntiparallelMetric` and `osinLemma94CaseTwoInput`, the
   an Euler count in `n` alone (hull-count94, `OsinLemma94PolygonSideBudgetInput`).
 - The Case 1 one-cell connector pair (below).
 
-## One-cell connector pair (option (i), gated)
-A1 is ruled and A2 is false. `OsinLemma94SectionStatement` and `UnboundInput` gain
-`OsinLemma97Below … Delta.rCellCount`. PlanarPieces gains `OsinLemma94CaseOneOneCellInput`,
-concluding `Nonempty (OsinLoopCut …)`, and the consumer closes the branch with `false_of_below`.
-theoremc-retire lands the threading through `OsinAppendixSections` after (A) and F1 (lead,
-09-13), and ko-closed writes case (a) and the `OsinLoopCut` construction. theoremc-retire drafts
-the PlanarPieces statement patch (the A1 premise, the one-cell Prop, the consumer split), rebased
-after F1, and this lane lands it after ghw-charp2's co-probe of census patches 01-10 lands.
-Rule 22 users on origin at 1b6c528fa:
+## One-cell connector pair (option (2), gated)
+Ruling (lead, 09-13): option (2). The metric Prop delivers the one-cell pairs at `λ⁻¹(ε + c)`,
+and ko-closed proves case (a) by the value argument. The gate is that the metric owners confirm
+F1's quantifier order. The fallback, option (1), counts one-cell pairs separately and needs a new
+ruling with hull-count94. `OsinLemma94CaseOneSameCellStatement` has no `OsinLemma97Below` binder,
+so as spelled it is as hard as Lemma 9.7 on smaller diagrams, and no lane proves that spelling.
+- The metric Prop `OsinLemma94AntiparallelMetricStatement` (Pieces:97) and its conclusion
+  `OsinLemma94DensePolygonsAntiparallel` (Pieces:71) are in this lane's
+  `Estimating/OsinLemma94Pieces.lean`. After F1 the order is `∃ ε₀, ∀ ε ≥ ε₀, ∀ K, ∃ ρ₀ > 0,
+  ∀ ρ ≥ ρ₀`. So `λ`, `c` and `ε` are fixed before `K` and `ρ₀`, and a conjunct at length
+  `λ⁻¹(ε + c)` needs no reordering. Users: `OsinLemma94AntiparallelMetric` (sec5-sentences) and
+  `OsinLemma94PlanarPieces`.
+- `osinLemma94Section_closed` is built over the option (2) spelling once it lands.
+
+Rule 22 users of a PlanarPieces statement patch, on origin at 1b6c528fa:
 - `OsinLemma94CaseOneInput` (PlanarPieces:395): `OsinUnboundCaseOneFace`,
   `OsinUnboundCaseOneRun`, `OsinLemma94CaseOneWalk` and `OsinLemma94SectionResiduals`.
   `OsinCConditionLineModel` names it only in its docstring.
@@ -175,12 +181,13 @@ Rule 22 users on origin at 1b6c528fa:
   the exterior contradicts maximality.
 
 ## Residual Props of `osinLemma94Section_of_residuals`
-- `OsinLemma94PolygonCountInput` (hull-count94). `osinLemma94PolygonCountInput_of_sideBudget`
-  reduces it to `OsinLemma94PolygonSideBudgetInput`.
+- `OsinLemma94PolygonCountInput` (hull-count94 with sec5-sentences).
+  `osinLemma94PolygonCountInput_of_sideBudget` reduces it to `OsinLemma94PolygonSideBudgetInput`.
 - `OsinLemma94CaseOneInput` (theoremc-retire). On main `osinLemma94CaseOneInput_of_walk
-  osinLemma94CaseOneWalk` proves it, but no declaration composes them, because patch 10(f) of
-  ghw-charp2's co-probe deletes `_of_walk`. After patches 01-10 the one-cell pair is the named
-  hypothesis (option (i) above).
+  osinLemma94CaseOneWalk` proves it, but no declaration composes them. Patch 10(f) is overruled,
+  so `_of_walk` stays, but once ghw-charp2's co-probe lands ruling (A) it takes an
+  `OsinLemma94CaseOneSameCellStatement` binder, and a closure composed on today's main would
+  become conditional. The one-cell pairs go by option (2) below.
 
 Closed pieces plugged in:
 - `OsinLemma94CaseTwoInput`: sec5-sentences, `osinLemma94CaseTwoInput` in
@@ -190,9 +197,11 @@ Closed pieces plugged in:
   `OsinLemma94PolygonLists`, `PolygonKinds`, `PolygonSides` and `PolygonMaximal`.
 
 ## Next
-- Land theoremc-retire's PlanarPieces statement patch for the one-cell pair, co-probed with its
-  Rule 22 users, once ghw-charp2's co-probe lands.
-- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the count and Case 1 close.
-- Meanwhile help hull-respell with the pocket pinch, as the lead approved. hull-respell is moving
-  the proof to a local vertex explosion. kh-cckw has the PinchSplit transport, and hull-respell
-  names this lane's piece among the doubling transport, the gap analysis and the induction.
+- Land the option (2) respelling of `OsinLemma94DensePolygonsAntiparallel` in
+  `OsinLemma94Pieces.lean`, co-probed with `OsinLemma94AntiparallelMetric`, PlanarPieces and
+  `OsinLemma94SectionResiduals`, once the lead names who drafts it (asked 09-13).
+- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, over the option (2) spelling, once
+  the count and Case 1 are proved and ghw-charp2's co-probe of ruling (A) has landed.
+- Pocket pinch help (approved): ghw-assembly has the wrap case with dgo-geometric and hull-respell.
+  This lane asked hull-respell and ghw-assembly once each for a piece. If neither names one, the
+  lead gives an item.
