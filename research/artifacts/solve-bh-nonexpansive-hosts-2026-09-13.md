@@ -71,6 +71,12 @@ has to fail equicontinuity somewhere.
   homeomorphism).
 - **The host is not reached by the zero-dimensional arguments.** It contains `BS(1,2)` with `a`
   parabolic (`x ↦ x+1`, `x ↦ 2x` on `RP^1`), and that `a` is not equicontinuous.
+- **Correction (same day).** PL circle groups and `T` contain no `BS(1,2)`: by Item 2 of the
+  lemma a PL element conjugate to its square is trivial (for the interval,
+  `bs-1-n-does-not-embed-in-pl-plus-interval`). Commit 2379c90d5's message wrongly said these hosts
+  contain `BS(1,2)`. For them the new obstructions add nothing beyond `BS(1,2)`. The new cases
+  are hosts that do contain `BS(1,2)`, such as `PSL_2(R)` and Lodha's `S`
+  (arXiv:1710.06220v2, Corollary 5.3: `BB(1,2) < S`; §2.7: `BS(1,2) = < η, ν_1 ν_2 >`).
 - **Mechanism.**
   - An element `g` with a fixed point that is conjugate to `g^n` by `h` has tangency order `m` at
     every gap end `p`, and some `h^N` fixes `p` with derivative `n^(-N/m) ≠ 1`.

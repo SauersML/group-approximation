@@ -41,6 +41,10 @@ artifacts:
     homeomorphisms with finitely many pieces is trivial. This covers PL circle
     groups and piecewise-`PSL_2(R)` groups, among them Thompson's `T` and Lodha's
     finitely presented simple group `S`.
+  - For PL groups and `T` this already follows from one relation, because an
+    element of a PL group conjugate to its square is trivial. The full cycle is
+    needed for hosts that contain `BS(1,2)`, such as Lodha's `S`
+    (arXiv:1710.06220v2, Corollary 5.3).
   - It is the piecewise-analytic counterpart of Rivas--Triestino Theorem C, which
     treats `C^1` actions. By their Theorem A, `H4` does act faithfully on the line
     by homeomorphisms.

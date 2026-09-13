@@ -38,6 +38,11 @@ distinct_from:
 **Sharpness.** In `PSL_2(R)` acting on `RP^1`, `g(x) = x+1` and `h(x) = 2x`
 satisfy `h g h^-1 = g^2`. Here `Fix(g) = {∞}`, `m = 1`, and `h` has derivative
 `1/2` at `∞`. So hyperbolic conjugators occur, and `BS(1,2)` embeds in `PA_+(S^1)`.
+Lodha's finitely presented simple group `S` contains such a pair: `BB(1,2) < S`, and
+`BS(1,2) = < η, ν_1 ν_2 > ≤ BB(1,2)` (arXiv:1710.06220v2, Corollary 5.3 and §2.7,
+read from the PDF text). In a PL group, by contrast, Item 2 forces `g = 1`, because a PL piece
+of slope `1` at a fixed point is the identity near it. For the interval this is
+`bs-1-n-does-not-embed-in-pl-plus-interval`.
 The obstructions for the Baumslag--Gersten group and Higman's group
 (`baumslag-gersten-embeds-in-no-piecewise-analytic-circle-group`,
 `higman-group-embeds-in-no-piecewise-analytic-circle-group`) come from a conjugator

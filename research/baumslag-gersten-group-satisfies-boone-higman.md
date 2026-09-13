@@ -60,7 +60,12 @@ group contains it.
   (`baumslag-gersten-embeds-in-no-piecewise-analytic-circle-group`).
   - This excludes PL circle groups and piecewise-`PSL_2(R)` groups, among them
     Thompson's `T` and Lodha's finitely presented simple group `S`.
-  - These hosts contain `BS(1,2)` with `a` parabolic, so the obstruction is not
+  - For PL groups, including `T` in its PL model, this is not new: an element of
+    a PL group conjugate to its square is trivial, so they contain no `BS(1,2)`
+    (`bs-1-n-does-not-embed-in-pl-plus-interval` for the interval).
+  - The new cases are hosts that do contain `BS(1,2)` with `a` parabolic, such
+    as `PSL_2(R)` and Lodha's `S`, which contains `BB(1,2) ⊇ BS(1,2)`
+    (arXiv:1710.06220v2, Corollary 5.3). There the obstruction is not
     equicontinuity.
   - Instead, `b` is conjugate to its own square, so it is tangent to the identity
     at its fixed points. But some power of `b` fixes a gap end of `a` with
