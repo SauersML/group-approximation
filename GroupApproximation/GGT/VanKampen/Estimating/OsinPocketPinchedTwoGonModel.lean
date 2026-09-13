@@ -204,21 +204,14 @@ noncomputable def diagram : DiscDiagram W where
     · exact Or.inl ⟨relatorCell, List.mem_singleton_self _, rfl⟩
     · right
       rw [boundary_face_darts]
-      first
-        | decide
-        | (change gx⁻¹ * (gx * 1) = 1; simp)
+      decide
     · right
       rw [boundary_face_darts]
-      first
-        | decide
-        | (change gy⁻¹ * (gy * 1) = 1; simp)
+      decide
     · exact (hf rfl).elim
   boundary_product := by
     rw [boundary_face_darts]
-    first
-      | decide
-      | (change (1 : G) * (gx * (gy * (gz * 1))) * (1 : G)⁻¹ * 1 =
-            (gx⁻¹)⁻¹ * ((gy⁻¹)⁻¹ * ((gz⁻¹)⁻¹ * 1)); group)
+    decide
 
 instance : NeZero diagram.rCellCount := ⟨by decide⟩
 instance (n : ℕ) : OfNat diagram.toCombMap.Dart n := inferInstanceAs (OfNat (Fin 10) n)
@@ -236,9 +229,8 @@ instance : DecidableEq diagram.toCombMap.Dart := inferInstanceAs (DecidableEq (F
 
 /-- The merged face set of the two digons. -/
 def pinchFaces : Finset diagram.toCombMap.Face :=
-  Finset.cons (face 1) {face 2} (by
-    rw [Finset.mem_singleton, face_eq_iff]
-    decide)
+  Finset.cons (face 1) {face 2} fun h =>
+    absurd ((face_eq_iff 1 2).mp (Finset.mem_singleton.mp h)) (by decide)
 
 theorem isBoundaryDart_iff (d : Fin 10) :
     Embedded.IsBoundaryDart diagram pinchFaces d ↔ d = 3 ∨ d = 4 ∨ d = 5 ∨ d = 6 := by
@@ -291,9 +283,13 @@ theorem length_le_two_of_isChain (l : List diagram.toCombMap.Dart) (hnodup : l.N
 /-- **The merged face set of a pinched pair has no face-set boundary.** -/
 theorem no_faceSetBoundary : IsEmpty (Embedded.FaceSetBoundary diagram pinchFaces) := by
   refine ⟨fun B => ?_⟩
-  have hsub : ([3, 4, 5, 6] : List diagram.toCombMap.Dart) ⊆ B.cycle := by
-    intro d hd
-    exact (B.cycle_mem_iff d).mpr ((isBoundaryDart_iff d).mpr (by simpa using hd))
+  have hmem : ∀ d : Fin 10, (d = 3 ∨ d = 4 ∨ d = 5 ∨ d = 6) → d ∈ B.cycle := fun d hd =>
+    (B.cycle_mem_iff d).mpr ((isBoundaryDart_iff d).mpr hd)
+  have hsub : ([3, 4, 5, 6] : List (Fin 10)) ⊆ B.cycle :=
+    List.cons_subset.mpr ⟨hmem 3 (Or.inl rfl),
+      List.cons_subset.mpr ⟨hmem 4 (Or.inr (Or.inl rfl)),
+        List.cons_subset.mpr ⟨hmem 5 (Or.inr (Or.inr (Or.inl rfl))),
+          List.cons_subset.mpr ⟨hmem 6 (Or.inr (Or.inr (Or.inr rfl))), List.nil_subset _⟩⟩⟩⟩
   have hlen : 4 ≤ B.cycle.length :=
     (List.Nodup.subperm (by decide) hsub).length_le
   have hle := length_le_two_of_isChain B.cycle B.cycle_nodup B.cycle_chain
@@ -305,6 +301,6 @@ theorem no_contiguity (D' : RelGenSet G Empty) (eps : ℕ) :
   ⟨fun C => no_faceSetBoundary.false C.boundary⟩
 
 #audit_closed_axioms no_faceSetBoundary
-#audit_closed_axioms no_contiguity
+#audit_axioms no_contiguity
 
 end GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel
