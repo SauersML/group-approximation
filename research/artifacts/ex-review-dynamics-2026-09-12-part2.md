@@ -136,6 +136,87 @@ Lane `ex-verify-dynamics`, 2026-09-13.
   - Models `ν ≅ X` approach `λ^G` weak* (threshold item 1), with equal entropy `0` and the same free
     stabilizer type, while `d̄(ν, λ^G) >= c_λ/2`. So `ε = c_λ/4` defeats every `(U, δ)`.
 
+## 13b. ex-rokhlin-ascent-finite-kernel (d89291ca28, e499fdc3e3)
+
+| node | verdict |
+|---|---|
+| `rokhlin-entropy-quotient-formula-for-finite-normal-subgroups` (+ `rokhlin-entropy-quotient-formula-proof`) | PASS |
+| `rokhlin-maximality-descends-along-finite-normal-quotients` (+ `-finite-quotient-descent-proof`) | PASS, given the Seward II imports and the finitary-witness node |
+| `rokhlin-finite-kernel-ascent-iff-liftable-entropy-unbounded` (+ `rokhlin-finite-kernel-ascent-equivalence-proof`) | PASS |
+| `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift` (+ `-proof`) | PASS |
+| `seward-weak-containment-relative-entropy-equality` (import, used here) | PASS. arXiv:1602.06680 Theorem 1.2 (text line 98) matches verbatim |
+| OPEN `rokhlin-maximality-ascends-finite-normal-extensions`, `seward-direct-product-relative-rokhlin-entropy-conjecture`; routes `finite-kernel-ascent-from-amenable-kernel-ascent`, `finite-kernel-ascent-from-direct-product-conjecture` | conditional; none fires |
+
+- **Quotient formula.**
+  - `X/N` is free, because `π(w)` fixing `Nx` forces `m^-1 w` to fix `x`.
+  - The alignment `a(x,w) = τ(w p(x))` satisfies `w p(x) = a(x,w) p(wx)`, using normality of `N`, and the
+    cocycle identity.
+  - *Lower bound.* The partition `{X∖D} ∪ {D ∩ mM}` has relative cost `μ(D) log n` and recovers
+    `x = w_i^-1 τ(w_i x) p(w_i x)`. Alpeev–Seward (i), with stabilizer index `n`, bounds the outer entropy of
+    `Σ_N` by `(1/n) h^Rok_Q(X/N)`, since an action through a quotient has the same Rokhlin entropy over both
+    groups. Subadditivity finishes.
+  - *Upper bound.* `H(β) = H_(μ_M)(α_N) <= H_μ(α_N) <= n H(α)`, by concavity over `μ = (1/n) Σ μ_(mM)` and
+    `N`-invariance of `α_N`. Each `ã_j` costs `log n`. The cocycle identity gives every `a(·,w)`, and
+    `α(w p(x))` is the `a(x,w)`-coordinate of `β(wx)`.
+- **Section action.**
+  - Coset argmax is an equivariant factor map `[0,1]^W → Ω`.
+  - Freeness needs infinitely many independent `1/n` coincidences.
+  - The splitting is `(x,σ) ↦ (σ, d)` with `d(q)(m) = x(σ(q)m)`, and `W` acts by `(w.σ, π(w).d)`.
+  - (a)⇒(c) is Seward's Theorem 1.2 with `Y = Ω`, then the quotient formula. (c)⇒(b) and (b)⇒(a) use the
+    quotient formula in each direction.
+- **Weakly minimal lift.** `Y_0 × L^Q` lifts through `X_0 × L^Q`, with `W` acting through `Q`. Its entropy is
+  finite by subadditivity and `>= H(L) − c` by the relative bound. Case (i) is Theorem 1.2 with `X = L^Q`.
+
+## 13c. ex-bernoulli-zero-supremum, Thompson's V (a64112c960)
+
+| node | verdict |
+|---|---|
+| `thompson-v-has-a-rigid-free-ergodic-action` (+ `-proof`) | PASS |
+| `thompson-v-bernoulli-finitely-determined-iff-pos` (+ `-proof`) | PASS, given `rokhlin-supremum-dichotomy-with-centralized-self-copies` for `h^Rok_sup(V) ∈ {0, ∞}` |
+| OPEN `thompson-v-bernoulli-measure-finitely-determined`; route `thompson-v-positive-rokhlin-from-finite-determination` | conditional; does not fire |
+
+- **Gaussian principle.**
+  - `Sym^n(π(g_n)) → 1` strongly and uniformly boundedly, so the action is rigid.
+  - A `Γ`-invariant vector in `π ⊗ ρ` is a Hilbert–Schmidt intertwiner, whose spectral subspaces give a
+    finite-dimensional subrepresentation of `π`. So `Sym^n(π)` has no invariant vectors for `n >= 1`, and the
+    action is ergodic.
+  - On `Fix(g)`, `X_(π(g)v − v) = 0`, which is null.
+- **V.**
+  - `κ` is faithful, because a homeomorphism fixing every cylinder is the identity.
+  - A finite-dimensional invariant subspace has a finitely generated linear image, which is residually finite.
+    The kernel is `1` or `V`, and `V` is not residually finite, so the image is trivial.
+  - An invariant `f` gives `ν = f² µ` with `ν([01]) = 0`, through `0w ↦ 00w, 10w ↦ 01w, 11w ↦ 1w`. Transitivity
+    on proper cylinders then gives `ν = 0`.
+  - The transpositions `t_n` preserve `µ`, and `‖κ(t_n)f − f‖ <= 2‖f 1_([0^n])‖`.
+- **Equivalence.**
+  - 4⇒1: at supremum `0`, use the rigid action and `bernoulli-measures-not-finitely-determined-at-zero-supremum`.
+  - 2⇒3: Seward Theorem 1.10 and Corollary 1.6.
+  - 1⇒2: the dichotomy, since `V ⊇ V_[0] × V_[1]`, and the cylinder permutation groups inside `[1]` commute with
+    `V_[0]`.
+
+## 13d. Consumed dichotomy, and Bernoulli lifts (pre-EX `5a2a793cd`; ex-rokhlin-ascent-finite-kernel ac683b428b)
+
+| node | verdict |
+|---|---|
+| `rokhlin-supremum-dichotomy-with-centralized-self-copies` (+ `-proof`; artifact §1, Theorem A, Corollaries A1–A2) | PASS. Consumed by §1.6, §4, §13c and §13b. Seward II Theorem 1.10 (text line 239) matches (S4) |
+| `bernoulli-lifts-across-finite-kernels-force-virtual-splitting` (+ `-proof`) | PASS, given the diffuse-base Popa import |
+
+- **Theorem A.**
+  1. `gT ∩ g'T = ∅` for `g != g'`, because `T ∩ G = 1`. So the `T`-orbit pattern partition `Q` has independent
+     `G`-translates.
+  2. `ξ = {C_π}` is a `T`-invariant partition. It generates modulo `F`, since `(s^-1.x)(s^-1) = x(1)`, and it
+     refines `Q`, since `x ∈ C_(s^-1.π)`.
+  3. The factor along `G` has finite entropy, at most `h^Rok_sup(G) < log k`, so Krieger gives a `k`-piece
+     generator. Its atoms are `T`-invariant because `G` commutes with `T`.
+  4. Recording it on the transversal costs `log(k)/|T|`, and subadditivity with the small free factor finishes.
+- **Lifts.**
+  - `L^Q × [0,1]^Q` is diffuse and lifts freely.
+  - The torsor cocycle `c(γ,x) p_x = p_(γx)` into the countable group `W` untwists to `φ(γx) δ(γ) φ(x)^-1`.
+  - `ψ = π∘φ` pushes `μ` to a probability measure on `Q` invariant under `γ.g = γ g θ(γ)^-1`. It charges a finite
+    orbit, whose stabilizer `Q_0` has finite index.
+  - `δ'(γ) = ĝ δ(γ) ĝ^-1` satisfies `π∘δ' = id` on `Q_0`, so it splits the extension over `Q_0`.
+  - Deligne: `E_3` is not residually finite, so the extension is not virtually split.
+
 ## 14. Firing sweep (135 nodes landed by the eight original lanes; refills in §§10, 13)
 
 - **`requires: []` routes: 18.**
