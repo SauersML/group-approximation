@@ -342,6 +342,52 @@ Open.
        K.walk` and `hfollows : (hw.outerCycle S.diagram.planar).FollowsBoundary`.  hull-select produces both from
        first turns (`firstTurnWalkPocketInputs`, Estimating/OsinPocketFirstTurnWalk).
      - The conclusion is the `hkept` premise of `PocketWalk.toPocketFaceSetOfNoncrossing`.
+   - **Lead item 16:20: the FirstTurn chain for `K.walk`, to drop `hw` and `hfollows`.  Blocked (reported to main and
+     hull-select); no module written.**
+     - The shape is forced.  `exists_kept_of_pocketRegion_of_value` takes `hinner : P.inner.cycle = K.walk`, so
+       `firstTurnWalkPocketInputs` applies to `c = invDarts K.walk = inv t_2 ++ inv x.rightSide ++ K.sourceArc.darts ++
+       inv y.leftSide`, and `K.walk = c.reverse.map alpha`.
+     - Every joint of `K.walk` is of one of two kinds (from `boundary_decomposition`, `cycle_chain`, `FaceBoundary.chain` and
+       the equations of `exists_of_exteriorAt`).
+       - (i) A `BoundaryStep` of `x` or `y`: the joints inside the two sides and the four corners.  The inner sector at the
+         vertex consists of internal darts of the region.
+       - (ii) A face step of the source cell or of the exterior face: the joints inside `t_1` and `t_2`.  The outer sector
+         is a single corner.
+     - `FirstTurn` on `c` asks that the outer sector hold no kept dart.  So the (ii) joints are `FirstTurn.of_facePerm`,
+       and the (i) joints are not controlled.
+     - Obstruction, the lake.  Let `d → e` in `x.rightSide` and `d' → e'` in `y.leftSide` pass through one vertex `v`.
+       - The inner sectors are disjoint, since the regions are.  So `alpha d'` and `e'` lie in the outer sector of `x` at `v`.
+       - The first turn from `alpha e` reaches `alpha d'`, a dart of `c`, before `alpha d`.  So `FirstTurn` fails.  The
+         complement's `BoundaryStep` stops at the same dart, so `hfollows` fails for `K.walk` too.
+       - If the sides share an edge, `alpha_not_mem` fails, so `hw` fails as well.
+       - Nothing in `exists_of_exteriorAt` or the family fields rules out the touch.  They only make the regions
+         face-disjoint.
+       - This is Configuration B of `Estimating/OsinPocketLakeModel.lean`: the source cell lies in the lake, and `K.faces`
+         is an annulus pinched at `v`.  `Estimating/OsinPocketFirstTurnWalkModel.lean` (l.17-20) already records that the
+         first-turn hypotheses exclude the lake.
+     - What survives the lake.  These are hand arguments, not Lean.
+       - Passages at a vertex do not interleave.
+         - Strictly inside the inner sector of a (i) joint lie only internal darts of the region.  No walk dart is
+           internal, and neither is the reversal of one.
+         - Strictly inside the outer sector of a (ii) joint there is nothing.
+         - So `hw` holds when the sides meet only at vertices.
+       - Both reclosings keep χ.
+         - In the two-petal lake, reclosing the complement gives `sigma' = (0 3)(1 2)`, so V = 2, E = 2 and F = 2.  The
+           merge splits the pinch vertex.
+         - So `P.outer` is a disc region, but no producer builds it: `toDiscRegion_of_followsBoundary` needs `hfollows`.
+       - `hw` alone does not give χ.  The three-petal rose (`NoncrossingClosedWalkEuler.lean` l.22-24,
+         `SurgeryNoncrossingCollarStripModels.lean`) is noncrossing, and reclosing its side gives a torus.  Its passages
+         interleave.
+     - The endpoint needs `P.outer`.  `InnerDiscRegion.ofPocketRegion` takes `value_one` from `P.listVal_inner_eq_one`.
+       That lemma reads the boundary value of `P.diagram` (`OsinPocketRegion.lean:158`, `replaceGRegion … P.outside
+       P.outer`).
+     - Options put to the lead:
+       - (i) a producer that the sides of distinct regions share no vertex (a new surgery);
+       - (ii) another pocket;
+       - (iii) keep `hw` and `hfollows` as in 3e7ce7227;
+       - (iv) an Euler producer, without `FollowsBoundary`, for both reclosings of a noncrossing walk whose passages do
+         not interleave.  hull-euler owns `NoncrossingClosedWalkEuler`.  sec2-sentences would prove non-interleaving
+         for `K.walk` from the two joint kinds.  A shared edge still needs (i) or (ii).
 2. **`havoid`: removed by absorption (2026-09-13 15:10).**  Module `Estimating/OsinPocketKeptCellAbsorbed` (table
    above).
    - Notation: `t_1 = invDarts S.diagram K.sourceArc.darts` and `t_2 = K.targetArc.darts`, the source and target parts
