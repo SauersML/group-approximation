@@ -224,6 +224,16 @@ walk) and debt-conditional.
     and of its complement both follow the boundary, the face set is `Unpinched`.
   - dgo-geometric (`Estimating/OsinPocketPinchedTwoGonLobe`, 4181011af, unverified): the conclusion
     ties `K'` only to `D`, `eps`, `lo` and `hi`, so a lobe with fewer faces can serve a pinched pocket.
+  - Landed since 13:44:
+    - kh-cckw's E2 (9beb8f992);
+    - cite-hull's `FaceSetCircuitNoncrossing` (67ec49f02);
+    - dgo-analytic's builder `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`
+      (`Estimating/OsinPocketRegionNoncrossingWalk`, 8bbf0a9c8).
+  - dgo-geometric's model tests confirm both predictions.
+    - Configuration A, on the pinched two-gon (e533e5581): the inner cycle fails and the outer
+      follows.
+    - Configuration B, on a two-petal rose (`Estimating/OsinPocketLakeModel`, 67e5b2f9c): the inner
+      cycle follows and the outer fails.
 - **Rulings since 615da4f77.**
   - R2 if kh-torsion confirms that no collar stage needs inner `FollowsBoundary`, else R1. B stays a
     residual under both. dgo-geometric model-tests A and B before either lands as a named Prop. The
@@ -231,6 +241,11 @@ walk) and debt-conditional.
   - Under R2 (lead ~13:40, pending kh-torsion), `Simple` becomes `∃ hw : IsNoncrossingClosedWalk
     X.toCombMap K.boundary.cycle, (hw.outerCycle X.planar).FollowsBoundary`. A needs no pinch, and B
     stays in the pinch Prop.
+  - dgo-analytic (~14:05): the pinch hypothesis stays `K.ClosedWalk` under R1 and R2, since that is
+    what the face set producer supplies (aa2df0eaa).
+  - Evidence for R1, from dgo-analytic reading kh-torsion's collar proof route: the sector lemma
+    uses inner `FollowsBoundary`. kh-torsion is asked to confirm. Under R1, `Simple` stays
+    `IsSimpleClosedWalk`, and A and B both stay in the pinch Prop.
 - **New module `Estimating/OsinPocketClosedWalkNoncrossing`** (probe 0913-133554-56930 green,
   landed with this report, unwired).
   - `BoundaryCycle.isNoncrossingClosedWalk`: every boundary cycle in walk order is an
@@ -283,8 +298,10 @@ walk) and debt-conditional.
   - Route: collapse both sides with `FaceSetCircuits.toDiscRegion`. The doubly collapsed map has 2
     faces, so `V = E_B`, and every boundary vertex is visited once.
   - This is the no-lake base case under either form.
-- **Sub-piece E2 handed to kh-cckw** (msg 95934ab2, `Estimating/OsinPocketPinchSplit`, not landed
-  yet): split a vertex at gap corners, the splitting step of the explosion route.
+- **Sub-piece E2 handed to kh-cckw** (msg 95934ab2), landed at 9beb8f992
+  (`Estimating/OsinPocketPinchSplit`). `PocketFaceSet.pinchSplit K I hs` carries a pocket face set
+  across a vertex split whose merged faces it avoids, with the same cycle, arcs and sides.
+  `PinchSplit.Input.vertexOf_x_ne_y` puts the two split darts on different vertices.
 - **Routes to the pinch.**
   - Lake absorption, in the case outside B (Π and the outer face lie in one complement component).
     Take `K' = K ∪ lakes`.
@@ -294,25 +311,45 @@ walk) and debt-conditional.
       their lengths.
     - Then re-pair to the outer order at repeated vertices.
   - Explosion (R1).
-    - Thicken with `FaceEdgeDoubling`, `MonogonDoubling` and outer spur thickening.
+    - Thicken with `FaceEdgeDoubling`, `MonogonDoubling` and outer spur thickening (hs-vanishes,
+      `SurgeryOuterSpurThickening`, 36ff632cd).
     - Split at gap corners (E2), induct to `Unpinched`, then apply `simple_of_followsBoundary`.
     - It needs inner `FollowsBoundary`, so the wrap case is left.
-  - B stays a named residual under both.
+  - B stays a named residual under both forms. Under R1, A does too.
+- **New module `Estimating/OsinPocketLakeAbsorption`** (probe 0913-141726-41707 green, landed with
+  this report, unwired). It holds parts 1 and 2 of lake absorption.
+  - `ExteriorComponent.component M faces o` is the set of faces reachable from the face `o` by face
+    steps and by crossing edges that are off the boundary of `faces`. `absorbed M faces o` is its
+    complement. It contains `faces` (`subset_absorbed`) and every lake.
+  - `isBoundaryDart_absorbed_iff`: for `o ∉ faces`, a dart is a boundary dart of `absorbed` iff it
+    is a boundary dart of `faces` whose reversal's face lies in the component of `o`.
+  - `PocketFaceSet.absorb K hlabel hsource s₁ s₂ hs₁ hs₂ hne hnodup hmem` gives a pocket face set on
+    the absorbed faces with the same source, kept cell and arcs. It needs:
+    - the source cell in the component of the exterior face;
+    - a boundary listing `s₁ ++ invDarts sourceArc ++ s₂ ++ targetArc`;
+    - `s₁ ⊆ firstSide` and `s₂ ⊆ secondSide`.
+  - The length bounds pass to the sublists. `wordNorm_dartWord_le_length`, from the label binder,
+    bounds each side's norm by its length.
+  - Not proved: that the new listing can be taken in walk order. This is part 3, and it is open.
 
 ## Next
 - Done: `SimpleClosedWalkSides` and the `HullSCOneStepQuasiGeodesicLeaves` docstring fix landed
   normally at 4dce22f1e (sec2-sentences informed). `SimpleClosedWalkSides` is on the wire queue.
   `OsinPocketRegionSimpleWalk` is consumed by dgo-analytic's `OsinPocketRegionOfSimple`.
-- Done: `OsinPocketClosedWalkNoncrossing` (probe 0913-133554-56930), landed with this report.
+- Done: `OsinPocketClosedWalkNoncrossing` (probe 0913-133554-56930), landed at 24ff94312.
   dgo-analytic is informed.
-- Waiting on:
-  - kh-torsion's confirmation of R2;
-  - dgo-geometric's model tests of A and B;
-  - dgo-analytic's answer on the pinch hypothesis (`K.ClosedWalk` or inner `FollowsBoundary`);
-  - kh-cckw's E2.
+- Done: `OsinPocketLakeAbsorption` (probe 0913-141726-41707), landed with this report.
+- Probe trap, now fixed. This lane's overlay listed `OsinAppendixGreendlingerParts.lean`, and the
+  shared tree holds ghw-charp2's unlanded edit of that file (`loopCutInput`). Probe
+  0913-140949-521 failed there. The file is off this lane's overlay list, and the rerun is green.
+- Waiting on kh-torsion's confirmation of R1 or R2.
+- Part 3 of lake absorption (open): list the boundary darts of the absorbed face set in walk order
+  as `s₁' ++ invDarts sourceArc ++ s₂' ++ targetArc`, with `s₁' ⊆ firstSide` and
+  `s₂' ⊆ secondSide`.
 - Then land the pinch statement in the ruled form, with a Rule 22 probe of `OsinPocketPieces` and
-  `OsinPocketPinchUnpinched`. Prove it modulo the named B: by lake absorption under R2, and by the
-  explosion route with the `FaceEdgeDoubling` transport (E1) under R1.
+  `OsinPocketPinchUnpinched`. Prove it modulo the named B, and under R1 also modulo the named A:
+  - under R2, by lake absorption;
+  - under R1, by the explosion route (E2 is on main).
 - Hold edits on `OsinAppendixGreendlingerParts` until ghw-charp2 lands 07b.
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.
