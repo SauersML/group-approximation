@@ -3,6 +3,34 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~14:00): ruling option (2); case (a) pieces authored, gate still open; (b) belongs to jacobson
+- The ruling (ROSTER 778–799) is option (2):
+  - The metric Prop delivers one-cell pairs at `λ⁻¹(ε + c)`, and ko-closed proves (a) by the value argument.
+  - This is gated on the metric owners confirming F1's quantifier order. No confirmation is in the roster yet.
+- (b) belongs to jacobson: the X-pocket as a PocketRegion plus the collar step. ko-closed agreed, so it does not build (b)
+  (Rule 16).
+- New module `GGT/VanKampen/Estimating/OsinLemma94OneCellValue.lean`. Its lemmas take ordinary hypotheses and do not
+  depend on the gate:
+  - `Embedded.listVal_dartWord_eq_inv_of_isRotated`: a closed word of value one, rotated to `s ++ t`, reads `t` as
+    `s⁻¹`.
+  - `PocketRegion.listVal_outer_eq_one` and `listVal_eq_inv_of_outer_isRotated`: the outer cycle of a cell-free pocket
+    reads 1, so `M'` reads `X⁻¹`.
+  - `Embedded.listVal_dartWord_eq_of_isRotated_invDarts`: the face gives `Y = q X⁻¹ p`.
+  - `Embedded.CyclicArc.exists_darts_eq_of_rotate_eq`: a prefix of a rotated carrier is an arc.
+  - `Embedded.CyclicArc.lambda_mul_length_sub_le_wordNorm` and `false_of_wordNorm_add_lt`: a cell arc of length `L`
+    reads an element of word norm at least `λL − c`.
+  - `false_of_cellFree_pocket_X` and `false_of_cellFree_pocket_Y`: the value argument in its two cases (pocket across
+    X, or across Y).
+  - It is landed unverified; the probe comes next.
+- Not written: case (a) of theoremc-retire's `OsinLemma94CaseOneOneCellInput`. It waits on that statement's text and
+  on the gate. The consumer then supplies:
+  - the face value 1, from `inner_face` with f a G-face;
+  - the walk rotation;
+  - a PocketRegion whose outer cycle is `X ++ M'` (or `Y ++ M`);
+  - the arc `q M' p` as a rotation prefix of `cellDarts j`.
+- Open question to jacobson: who produces the PocketRegion from the Case 1 walk decomposition.
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~13:25): one-cell Case 1 (team-lead's assignment), model test FAILED at (a); no Lean written
 The assignment has two parts, both for theoremc-retire's `OsinLemma94CaseOneOneCellInput`:
 - (a) a pocket with no R-cell ⇒ False;
