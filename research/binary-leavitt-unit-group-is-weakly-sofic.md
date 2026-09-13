@@ -65,8 +65,12 @@ for any group (`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`).
   bounded relator width in every symmetric, alternating, sporadic and bounded-rank Lie type
   group. So no weak model sequence of `R^x` stays in those classes. The survivors are classical
   groups of unbounded rank and non-simple, non-symmetric finite groups.
-- **Semisimple rank models over C: reduce to linear soficity.** By the same theorem they
-  make `R^x` `C`-linear sofic, which is open (`non-linear-sofic-group`).
+- **Rank-type models over any field: exactly linear soficity.** By item 2 of the same
+  theorem, in every characteristic, weak models whose length is a monotone subadditive
+  function of `rk(rho(h) - 1)` make `R^x` linear sofic over that field. Over `F_q` they
+  exist iff `R^x` is `F_q`-linear sofic (`binary-leavitt-unit-group-is-f2-linear-sofic`
+  for `q = 2`; `leavitt-el3-rank-models-over-finite-fields-are-trivial` would exclude
+  them).
 - **Ring-unit models: dead.**
   - *The models.* Let `A_n` be finite rings, `J` a two-sided ideal of `prod A_n`, and
     `B = prod A_n / J`. The image of `prod A_n^x` in `B^x` is a quotient of a product of

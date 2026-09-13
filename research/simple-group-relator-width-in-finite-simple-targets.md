@@ -37,9 +37,14 @@ nonsofic group. For Thompson's group `V`, (A) holds and (B) is equivalent to
 not weakly sofic iff the bound of (B) holds over **all** finite groups. This theorem proves
 it over the finite simple groups except classical groups of unbounded rank, and over the
 symmetric groups. The remaining classes are:
-- classical groups of unbounded rank, where the width is bounded exactly when relator
-  values have proportional rank. That is a defining-characteristic collapse, open (Section 3
-  of `simple-group-support-and-semisimple-rank-models-collapse-proof`).
+- classical groups of unbounded rank over `F_q`. If `G` is not `F_q`-linear sofic, the
+  rank collapse (item 3 of `simple-group-support-and-semisimple-rank-models-collapse`,
+  any characteristic) gives some relator value with rank at least `delta_0` times the
+  largest generator rank. Bounded width would then follow from a covering lemma that is
+  **not** established here: products of boundedly many conjugates of an element at rank
+  distance `rho` from the center cover every element of rank `<= C rho`, uniformly in the
+  classical group. The needed input is a centralizer bound
+  `|C_Q(g)| <= q^(O(1)) q^(dim Q - 2 rho (d - rho))`.
 - non-simple finite groups with thin conjugacy classes, such as wreath products with small
   coordinate-permuting groups. This is where Glebsky's permanence room lives.
 

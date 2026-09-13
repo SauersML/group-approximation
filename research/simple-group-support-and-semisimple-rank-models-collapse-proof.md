@@ -73,45 +73,64 @@ and `(H, Omega, f, a)` a support-type model with parameter `eps`.
 **Converse.** A sofic group has permutation models with normalized Hamming defect
 tending to `0` and `g_0` moving at least half the points. Take `f(s) = 2s/|Omega|`.
 
-## 2. Semisimple rank type
+## 2. Rank type, any characteristic
 
-**Lemma 2.1 (moved subspace).** Let `rho : H -> GL(V)` with `char F` not dividing
-`|H|`, let `h_x in H` for `x in X`, and let `P = <h_x>`. Put
-`W = sum_x im(rho(h_x) - 1)`.
-1. `W = sum_(g in P) im(rho(g) - 1)`, and `W` is `P`-invariant.
-2. `V = V^P (+) W`.
-3. For `g in P`, `rk(rho(g) - 1) = rk((rho(g) - 1)|_W)`.
-4. `dim W <= sum_x rk((rho(h_x) - 1)|_W)`.
+Fix `a in GL(V)^X` over a field `F`. Put `M = max_x rk(a_x - 1)`,
+`delta M = max_r rk(r(a) - 1)`, and `U = ∩_x ker(a_x - 1)`.
+
+**Lemma 2.1 (moved quotient).** `U` is fixed pointwise by every word in the `a_x`, it is
+invariant, and `dim V/U <= sum_x rk(a_x - 1) <= |X| M`.
+
+*Proof.* Fixed by the generators and their inverses. The codimension of `ker(a_x - 1)` is
+`rk(a_x - 1)`.
+
+**Lemma 2.2 (almost abelian collapse).** `G` is perfect.
+- **Constants.** Choose integers `c_(x,r)` with `e_x = sum_r c_(x,r) e_r` in `Z^X`, where
+  `e_r` is the exponent-sum vector of `r`. Such `c_(x,r)` exist because `H_1(G) = 0`.
+  Let `L` bound the relator lengths.
+- **Statement.** If `rk_(V/U)(a_x - 1) <= eta M` for every `x`, then
+  `M <= |R| (delta + 2 L eta) M + eta M`.
 
 *Proof.*
-1. `gh - 1 = (g - 1)h + (h - 1)`, and `im((g-1)h) = im(g - 1)`. Also
-   `g^-1 - 1 = -(g - 1)g^-1`. So images of words lie in `W`, by induction on length.
-   Invariance: `gw = w + (g-1)w`.
-2. `e = |P|^-1 sum_(g in P) rho(g)` is an idempotent with image `V^P`. It kills `W`,
-   since `e(rho(g) - 1) = 0`. And `1 - e = |P|^-1 sum_g (1 - rho(g))` maps `V` into
-   `W`. So `W = (1 - e)V` and `V = eV (+) (1 - e)V`.
-3. `rho(g) - 1` vanishes on `V^P`, so by item 2 its image is `(rho(g) - 1)W`.
-4. By items 1 and 3, `dim W <= sum_x dim im(rho(h_x) - 1) = sum_x rk((rho(h_x)-1)|_W)`.
+- **Block form.** In a basis adapted to `U <= V`,
+  `a_x - 1 = [[0, N_x], [0, D_x]]` with `rk D_x <= eta M`. Put
+  `Nhat_x = [[0, N_x], [0, 0]]`. Then `a_x = 1 + Nhat_x + E_x` with `rk E_x <= eta M`.
+- **Inverses.** `a_x^-1 = 1 - Nhat_x + E'_x`, and `rk E'_x <= 2 eta M`: the lower block is
+  `-D_x(1 + D_x)^-1`, and the corner differs from `-N_x` by `N_x D_x (1+D_x)^-1`.
+- **Words.** Always `Nhat_i Nhat_j = 0`. For a word `w` of length `L_w`, expand
+  `prod_i (1 + Nhat_i + E_i)`. The difference from `prod_i (1 + Nhat_i) = 1 + sum_i Nhat_i`
+  is `sum_i (prod_(j<i) (1 + Nhat_j + E_j)) E_i (prod_(j>i) (1 + Nhat_j))`, of rank at most
+  `2 L_w eta M`. So `w(a) = 1 + sum_x e_(w,x) Nhat_x + E_w` with `rk E_w <= 2 L_w eta M`.
+- **Perfection.** `Nhat_x = sum_r c_(x,r) (r(a) - 1 - E_r)`. Integer multiples do not raise
+  rank, so `rk Nhat_x <= |R| (delta M + 2 L eta M)`.
+- **Conclusion.** `rk(a_x - 1) <= rk Nhat_x + rk E_x`. Take the maximum over `x`.
 
-**Lemma 2.2 (dichotomy).** If `G` is not `F`-linear sofic, there is `eps_0 > 0` such
-that every such `rho` and tuple satisfy `max_r rk(rho(r(h)) - 1) >= eps_0 dim W`.
+**Lemma 2.3 (dichotomy).** If `G` is not `F`-linear sofic, there is `delta_0 > 0` such that every
+tuple over `F` with `M > 0` has `delta >= delta_0`.
 
-*Proof.* This is the proof of Lemma 1.2, with the following changes.
-- Restrict to `W`. This is invariant, and by Lemma 2.1(3) it keeps all ranks.
-- Use the normalized rank `rk/dim W`. By Lemma 2.1(4) some generator has normalized
-  rank at least `1/|X|`.
-- The ultraproduct is the rank metric ultraproduct of `GL_(dim W_n)(F)`. A countable
-  group embedding in it is `F`-linear sofic, by the ultraproduct form of
-  Arzhantseva--Paunescu's definition (arXiv:1212.6780).
+*Proof.* Suppose tuples `a^(n)` with `delta_n -> 0`. Put `eta = 1/(4 |R| L + 2)`.
+- **Some generator stays moved.** For large `n`, `|R| delta_n < 1/4`, so Lemma 2.2 excludes
+  its own hypothesis. Some `x_n` has `rk_(V/U)(a_(x_n) - 1) > eta M_n`. Pass to a subsequence
+  with `x_n = x_0`.
+- **Normalize.** On `Z_n = V_n / U_n`, `dim Z_n <= |X| M_n` (Lemma 2.1). So `a_(x_0)` has
+  normalized rank at least `eta/|X|`. Relators have rank at most `delta_n M_n`, and
+  `dim Z_n > eta M_n`, so their normalized rank is below `delta_n/eta -> 0`.
+- **Ultraproduct.** Along `omega` this defines a nontrivial homomorphism from `G` into the
+  rank metric ultraproduct of the `GL(Z_n)`. It is injective by simplicity. So `G` is
+  `F`-linear sofic (ultraproduct form of Arzhantseva--Paunescu's definition,
+  arXiv:1212.6780), a contradiction.
 
-**Theorem item 2** follows from Lemma 2.2 exactly as in Section 1, with `t = rk(rho(g_0(a)) - 1)`.
-The bound `t <= dim W` holds by Lemma 2.1(3).
+**Theorem item 2.**
+- **The estimate.** Let `t = rk(rho(g_0(a)) - 1) >= 1`. Then `t <= |g_0| M`. By Lemma 2.3
+  some relator has rank at least `delta_0 M >= delta_0 t / |g_0|`. With
+  `k = ceil(|g_0| / delta_0)`, as in Section 1,
+  `1 <= f(t) <= k f(rk(r(a) - 1)) <= k eps`.
+- **Converse over finite `F`.** `F`-linear sofic models in `GL_n(F)` with normalized rank
+  give `f(s) = 2s/n`.
 
-## 3. Why the defining characteristic escapes
+## 3. Remark on an earlier version
 
-In characteristic `p` dividing `|P|`, item 2 of Lemma 2.1 fails. Take `V = U (+) V'` and
-`h - 1 = [[0, N], [0, 0]]`. Then `W = im N` lies inside `U = V^P`, the moved part is not
-a complement, and the rank `rk N` is invisible on every subquotient where `P` acts
-semisimply. A class-two refinement is recorded as an attempt on
-`binary-leavitt-unit-group-is-weakly-sofic`. It handles one unipotent layer, using
-`G = gamma_3(G)`, but not unbounded depth.
+An earlier version used the moved subspace `[P, V]` and needed `char F` coprime to `|P|`.
+The moved quotient `V/U` has the dimension bound in every characteristic. Unipotent corners
+`Hom(V/U, U)` are handled by Lemma 2.2, because a tuple that lives in the corner is almost
+abelian.
