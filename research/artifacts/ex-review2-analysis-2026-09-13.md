@@ -207,6 +207,18 @@ Filled in as each part lands.
 | `minimal-normal-cyclic-subgroup-cantor-dichotomy` | rr0-tarski-ideals | PASS | 4 §4.8 |
 | `smoothing-normal-subgroup-cantor-dichotomy` | rr0-tarski-ideals | PASS | 4 §4.9 |
 | `af-crossed-product-counterexample-normal-form` | rr0-tarski-ideals | PASS, Rainone 4.17 verbatim | 4 §4.10 |
+| `moutzouris-singular-subgroup-has-vanishing-trace` | bk-glued-uct | PASS, quotes verbatim | 5 §5.1 |
+| `moutzouris-k0-killing-is-local` | bk-glued-uct | PASS | 5 §5.1 |
+| `brown-dadarlat-ext-trivial-class-gives-qd-extension` | blackadar-kirchberg | PASS, quotes verbatim | 5 §5.1 |
+| `gabe-no-compact-open-prim-embeds-in-cone` | blackadar-kirchberg | PASS, quotes verbatim | 5 §5.1 |
+| `bk-uct-counterexample-radical-not-projection-generated` | bk-glued-uct | PASS | 5 §5.2 |
+| `bk-radical-traces-vanishing-on-boundary-are-zero` | bk-glued-uct | PASS | 5 §5.3 |
+| `bk-radical-projection-quotients-are-toeplitz-infinite` | bk-glued-uct | PASS | 5 §5.4 |
+| `bk-projection-generated-ideals-with-uct-quotients-force-qd` | bk-glued-uct | PASS | 5 §5.5 |
+| `o2-free-range-projection-homotopy-iff-halving` | k1-halving-homotopy | PASS | 5 §5.6 |
+| `o2-ideal-finite-nucdim-counterexample-unital-quotients` | k1-halving-homotopy | PASS, Robert verbatim | 5 §5.7 |
+| `o2-ideal-projection-unit-witness-fails-cancellation` | k1-halving-homotopy | PASS | 5 §5.8 |
+| `self-similar-hilbert-cx-module-has-unit-section` | k1-halving-homotopy | PASS | 5 §5.9 |
 
 ## 3. Part files
 
@@ -222,3 +234,6 @@ Filled in as each part lands.
 - `ex-review2-analysis-2026-09-13-part4.md`: the RR0 dichotomy lanes (coinvariant Tarski lemma, order divisibility
   of AF K_0, crossed-product dichotomies for AF, integer, RR0-sr1 and Cantor coefficients, the counterexample normal
   form), with Rainone 4.17, OPR 5.16, 5.17, 4.3 and Ara--Goodearl 2.3 checked verbatim.
+- `ex-review2-analysis-2026-09-13-part5.md`: the Blackadar--Kirchberg radical trace steps (Theorems 1, 5, 7, 8, 9 and
+  corollaries), and the K1 halving lanes (projection form of the halving homotopy, O_2-multiplier ideals of finite
+  nuclear dimension, cancellation, unit sections), with Moutzouris, Brown--Dadarlat, Gabe, BRR and Robert checked.
