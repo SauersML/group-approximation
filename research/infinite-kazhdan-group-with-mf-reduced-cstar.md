@@ -57,6 +57,27 @@ and the search bound are in
   (`sl3z-has-no-invariant-vector-witnesses`); Deligne's representations are
   caught by the principal `SL_2` and do not converge strongly
   (`deligne-sl3-representations-have-principal-sl2-invariants`).
+* **Structure of the `SL_3(Z)` question (2026-09-13, unreviewed).**
+  - Reformulations:
+    - the integral maximal parabolics of `SL_3(Z)` are PFF, although they carry
+      relative property (T) (`affine-sl2z-purely-matricial-field`, via
+      Gao--Kunnawalkam Elayavalli--Mj arXiv:2607.29571 Theorem 1.1);
+    - `SL_3(Z)` is PMF iff the Kazhdan group `Z^3 x| SL_3(Z)` is
+      (`sl3z-pmf-iff-affine-kazhdan-group-pmf`), and that group carries all of
+      the Magee--de la Salle mechanism except level matching
+      (`mdls-obstruction-is-affine-mechanism-plus-level-matching`).
+  - At prime levels the invariant-vector witnesses are complete: the block
+    `SL_2` and the three cube-class principal `SL_2`s catch every nontrivial
+    irreducible (`sl3z-prime-level-invariant-witnesses-are-complete`).  Two
+    consequences:
+    - a prime-level strongly convergent sequence must run over cubic-twist
+      cuspidal constituents at primes where all small integers are cubes
+      (`sl3z-prime-level-sc-needs-cubic-chebotarev-primes`);
+    - such a sequence forces the full congruence quotients of `SL_2(Z)` to
+      converge strongly (`sl3z-prime-level-sc-forces-congruence-sc-for-sl2z`),
+      which is the open `sl2z-prime-congruence-quotients-converge-strongly`
+      (numerics inconclusive).
+  - Only mixed levels escape all known witnesses.
 * **Cocompact lattices `SL_1(O_D)`, `D` a cubic division algebra.**  Live as
   `cubic-division-lattice-purely-matricial-field` (route
   `kazhdan-mf-reduced-from-cubic-division-lattice-pmf`).  Every nonamenable
