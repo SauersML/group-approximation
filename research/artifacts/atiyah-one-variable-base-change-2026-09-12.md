@@ -236,3 +236,8 @@ Jaikin-Zapirain--Lopez-Alvarez (arXiv:1810.12135v4), in Badziahin--Schleischitz
 (arXiv:1912.09013v1, read for the exponent literature), or in this graph. No
 wider search was possible: the session's web-search budget was exhausted.
 Unreviewed.
+
+
+## Continuation
+
+Theorem 4 (all coefficient fields of transcendence degree one), Corollary 5 (the strong algebraic eigenvalue and center conjectures over Qbar), and the remaining crux in transcendence degree two are in `research/artifacts/atiyah-transcendence-degree-one-base-change-2026-09-13.md`.

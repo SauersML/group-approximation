@@ -46,5 +46,7 @@ over `N(K)` and `N(H)` (Step 1 of `algebraic-atiyah-determinant-colimit-proof`).
     with Strong Atiyah over `Qbar` and the determinant conjecture, nonsofic or
     not. The proof uses companion models of small integer polynomials at `z`, not
     approximation.
+  - Continuity along curves extends invariance to every coefficient field of
+    transcendence degree one (`atiyah-base-change-in-transcendence-degree-one-under-det`).
   - Left open: invariance for coefficient fields of transcendence degree at
-    least 2, and for algebraic extensions of `Qbar(z)`.
+    least 2 (`determinant-conjecture-gives-full-atiyah-base-change`).

@@ -53,8 +53,10 @@ conjecture over C".
       Minkowski's small values contradict it.
     - So, under the determinant conjecture, the implication holds group by group
       for coefficient fields `Qbar(z)`.
+  - Algebraic extensions of `Qbar(z)` are handled as well, by continuity along
+    curves (`atiyah-base-change-in-transcendence-degree-one-under-det`).
   - What is left, under the determinant conjecture: coefficient fields of
-    transcendence degree at least 2, where the Kronecker product of companion
-    pencils loses a product of degrees; and finite extensions `F` of
-    `Qbar(z_1..z_s)`, where `D(x_1..x_s) (x) F` must stay a skew field in `U(G)`
-    (Jaikin-Zapirain--Lopez-Alvarez, arXiv:1810.12135v4, Conjecture 3).
+    transcendence degree at least 2
+    (`determinant-conjecture-gives-full-atiyah-base-change`). There the Kronecker
+    product of companion pencils loses a product of degrees, and no curve
+    defined over `Qbar` passes through the point.

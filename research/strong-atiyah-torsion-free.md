@@ -147,5 +147,10 @@ point.  The audit artifact traces each.
      polynomial values. No approximation of the group is used.
    - So attempt 7's master-host conjunction `SA(E)` and `Det(E)` gives Strong
      Atiyah over every `Qbar(z)` for every torsion-free group.
-   - What separates this from the root: transcendence degree at least 2, and
-     algebraic extensions of `Qbar(z)`.
+   - Continuity along curves extends this to every coefficient field of
+     transcendence degree one, and gives the center and algebraic eigenvalue
+     conjectures over `Qbar` (`atiyah-base-change-in-transcendence-degree-one-under-det`).
+   - What separates this from the root is transcendence degree at least 2
+     (`determinant-conjecture-gives-full-atiyah-base-change`). The route
+     `strong-atiyah-torsion-free-via-master-host-determinant` assembles
+     `SA(E)`, `Det(E)` and that crux.
