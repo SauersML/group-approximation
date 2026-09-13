@@ -606,3 +606,140 @@ For EVERY census row in your range with status formalized or definition, and eve
 - **hgreendlinger.** Ten census rows cite TorsionFreeGreendlingerLeaf (nm-endpoints, 7d2a5b28d), with hgreendlinger their only residual. Its root producer `_of_pocketParts` takes OsinLemma94SectionStatement, OsinMultipleEdgeCutSectionStatement, OsinLoopCutSectionStatement, OsinPhiPrimeCountSectionStatement and OsinSectionPocketCutSectionStatement.
 - **Census and wiring.** root-wire's 559636b4a root-imported the carrier modules. census merge 15 (de0c922ef) has 498 rows: formalized 345, partial 17; verify-unconditional 0 new; baseline 153. No row says "carrier not root-reachable".
 - **Assignments.** hl-lemma46: census of the open W1 leaf Props with owners (drafts/w1-leaves-0913.md), then the first unowned leaf. hull-component: the word-metric respelling lemma. fff-periodic: the SharedEdge same-cell case.
+
+## Rulings 09-13 ~09:40–10:20
+
+- **SectionPocketFaceSetInput: ruling (B).** The output moves to an O-equivalent copy: `∃ X', Nonempty (OEquivalentDiscDiagram S.diagram X') ∧ Nonempty (PocketFaceSet D eps X' lo hi)`.
+  - Why: on S.diagram a pocket walk can contain both darts of one edge, and then no face set has that walk as its boundary. kh-ejz found three ways:
+    - (a) A section backtrack between the two targets, allowed once c ≥ 2λ. It is a spur with the outer face on both sides.
+    - (b) An edge of the gap arc with cell i on both sides.
+    - (c) x.right sharing an edge with y.left. The manuscript's Γ₁ avoids this.
+  - The pinch and collar Props already output on O-equivalent copies (OsinPocketPieces:236, :257), so the assembly composes one more equivalence.
+  - Landing: kh-ejz lands the restatement together with dgo-analytic's assembly change (Rule 22). MultipleEdgePocketRegionInput takes the same form if it needs it, and hull-select's MultipleEdgeCut assembly composes the extra equivalence.
+  - Pieces:
+    - P2′, the sides theorem for closed walks that touch but never cross: kh-ejz, model-tested by audit-sec3.
+    - For (a), thickening an outer spur into a G-digon: hs-vanishes.
+    - For (b), SurgeryFaceEdgeDoubling on cell i's face, if it applies.
+    - hkept comes from `zeroCellPocketMerge` (hull-select, ce1028aa1, probe 0913-094902-38721).
+- **SideBudget.** Moving ∃K after ∀ε does not repair the Prop on its own. The essential part of F1 is (A2): no splits at value-one excursions.
+  - audit-sec3's instance: G = Z, alphabet {±1, ±2}, λ = 1/2, c = 3, one G-face with walk 2^(3t) (-1)^(6t) and t outward spurs "1 -1" on its 2-side. The boundary side splits t times at every eps, rho and n.
+  - hull-count94 lands (A2) together with the K move.
+- **Lemma 9.3.**
+  - C5 is proved: `cellFaceCountInput` (hs-vanishes, a6a2cadda, probe 0913-100213-68371; recorded by hull-euler in e84468da9). PhiPrimeCountInput now needs only C4 `CornerTwoGonInput` (leavitt-units) and C6′ `TwoGonHoldsInput` (debt-conditional).
+  - Wiring: hull-euler's chain is at queue lines 572–579 and ExteriorCellFaces at line 589. OsinAppendixEulerCornerTwoGon (d0a41c1da) is not queued; root-wire was told to include it.
+- **Lemma 9.4.**
+  - Case 1:
+    - `osinLemma94CaseOneWalk : OsinLemma94CaseOneWalkStatement` (ko-closed, eb9010962 and 8f0f73966, probe 0913-095509-55850).
+    - `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` proves OsinLemma94CaseOneInput. theoremc-retire lands the composed endpoint.
+    - audit-sec3: OsinLemma94CaseOneSameCellStatement is redundant, since `false_of_quadrilateral_face` and `osinLemma94CaseOne_false_of_walk` carry no kind hypothesis.
+  - Polygon realization: `osinLemma94PolygonRealizationInput_of_pieces` and `gFacesApart_of_dartMinimal` (hull-unbound, 1130c8dbc, probe 0913-095511-56070). Residuals and owners:
+    - OsinLemma94CuttingChainsInput: hull-unbound, from ChainRespellInput, PendantPathRemovalInput and QuasiGeodesicRespellInput.
+    - OsinLemma94CellArcsInput: ko-closed.
+    - OsinLemma94BoundaryArcsInput: cite-hull.
+    - OsinLemma94PolygonPartitionInput: ghw-assembly.
+  - Case 2 transports: insertion (sec2-sentences, c652fa749) and spike deletion (sec5-sentences, 14daf9b00, 31982031d, 0838416d4, ba4233ef8).
+  - audit-sec3's model tests:
+    - CornerInsertionInput and PendantPathRemovalInput have no counterexample.
+    - The C-condition line model is on main (594d1e97a): a model of OsinCCondition on the line at every eps and rho.
+- **Pocket pieces.**
+  - `pocketCollarStatement_of_geodesicCollar` (dgo-analytic, 6cb3014e6, probe 0913-100702-85407).
+  - kh-torsion builds GeodesicCollarStatement from a strip face: insert g across the strip, and for g = [] join the two ends at a vertex (hull-bridge). The monogon s = [d] needs fff-quotient's same-corner doubling.
+  - hull-select next: `multipleEdgeCutInput_of_pieces` (OsinPocketMultipleEdgeAssembly), over hl-lemma46's OsinPocketMultipleEdgeTransport (1d177113c).
+- **Hull corollaries.** `printedHullCorollary73_of_greendlinger` (cite-hull, 477777a5e). Corollary 7.3 now takes only the Greendlinger wall, as Corollary 7.4 already did.
+- **Wiring.** Wave 9 (559636b4a) is confirmed on origin: 23 modules, closure 6351, 0 dangling imports. Wave 10 sweeps from queue line 534, with 36 modules plus CornerTwoGon.
+- **Resumed lanes.** root-wire, systolic-counts and cite-hull had MSI jobs finish while they were stopped, and each was resumed once. systolic-counts' verifier run exited VERIFY_NEW=1, and the lane is triaging it.
+- **Assignments.**
+  - fff-quotient: the same-corner doubling.
+  - hs-vanishes: the outer spur thickening.
+  - ko-closed: CellArcsInput.
+  - cite-hull: BoundaryArcsInput.
+  - audit-sec3: model-test C4 and C6′, then P2′.
+
+## Rulings 09-13 ~10:20–13:05
+
+- **Wiring.**
+  - Wave 10 is ROOT GREEN at 65d0a4497 (39 modules).
+  - Wave 11 is ROOT GREEN at 9eba4d854 (5 modules: CyclicArcSub, OsinLemma94PendantRemoval, HullLemma35PieceWords, OsinPocketGlueDiagram, OsinPocketMultipleEdgeTransport).
+  - After wave 10 every census carrier module is root-reachable.
+  - OEquivalentCellFaces was held after a failed probe. sec2-sentences' re-probe is green, and its queue entry is at line 631.
+  - Wave 12 sweeps from queue line 606.
+  - simple-group's DiscEmbeddingAwayUnbound rewrite (f7538e223) removes the `DiscEmbeddingAway.regionCandidate_*` declarations that clashed with sec2-sentences' OsinLemma94InsertionTransport (c652fa749), so both modules can be wired.
+- **Census.** Merge 17 (d0aba6104) has 498 rows: 345 formalized, 17 partial, 146 baseline active. Merge 18, the first under systolic-counts' verifier fix (736f7ea44), stopped on two unclassified inline limit-set findings. CI "Sentence-level census" stays red until merge 19.
+- **Pocket pinch.**
+  - PocketRegion admits pinched pockets (dgo-geometric, 26f3e086e). The route A disc collapse needs neither FollowsBoundary nor a simple walk (4894cfceb).
+  - hull-respell's obstructions (615da4f77) are A, a notch, and B, a lake. The smallest instance of each has an O-equivalent refill.
+  - Ruling:
+    - R2 (drop inner FollowsBoundary) if kh-torsion confirms no collar stage uses it, else R1.
+    - B stays a residual under both.
+    - dgo-geometric model-tests A and B.
+    - The label binder (hlabel) is accepted.
+  - dgo-analytic:
+    - Ruling (B) landed at bdc7337fd: the face set lives on an O-equivalent copy with legal labels, with PocketPinchLabelledStatement.
+    - cb0ec2d30 adds PocketFaceSet.ClosedWalk, a chain that closes and may repeat vertices. SectionPocketFaceSetInput now ends with ∃ K, K.ClosedWalk.
+    - kh-ejz's unlanded PocketWalk.toPocketFaceSetOfNoncrossing supplies that conjunct.
+  - Under R2, Simple is IsNoncrossingClosedWalk (kh-ejz, 26a7858f2) plus FollowsBoundary of the outer cycle (dgo-analytic).
+    - At a touching vertex, A breaks the inner cycle and B breaks the outer one. So A needs no pinch, and B stays in the pinch Prop.
+    - The transports and `nonempty_osinSectionPocketCut` need the outer cycle to follow the boundary.
+    - New lemma: PocketRegion.inner is an IsDiscRegion, through `toDiscRegion_of_euler`. dgo-analytic owns it and may hand it to hull-euler.
+  - kh-cckw proved the case where both cycles follow the boundary (OsinPocketUnpinchedEuler, 74d4ebd34). PocketPinchPinchedStatement stays open (hull-respell with kh-cckw).
+- **LoopCut (A) sites.**
+  - audit-sec5's cap counterexample is landed (LoopCutCapCounterexample, 0c7a92957, over S₃ with W = y y y), correcting line 587. It will be rewritten for the post-(A) definitions, not deleted, and it joins ghw-charp2's co-probe.
+  - ghw-charp2's census (84cf5432c) swept 45 files and found no new sites.
+  - Patches 01-10 land as one co-probe in audit-sec5's form: SameLoopProfile is a separate Prop next to SameTargetProfile.
+  - Patch 10(f) is overruled. `osinLemma94CaseOneInput_of_walk` stays and gains an OsinLemma94CaseOneSameCellStatement binder.
+  - Correction to line 634: OsinLemma94CaseOneSameCellStatement is not redundant after patch 09(d).
+  - Site 5 (PolygonCovers at j = i) goes to fff-periodic under option (a).
+    - Covers takes a factor ⌈1/λ⌉ on the sides, and L depends on λ and c.
+    - fff-periodic proves case (T), where C2 has no relator cell.
+    - Case (C) is a named binder owned by fff-periodic. It can be discharged from the threaded OsinLemma97Below.
+    - It is co-probed with hull-count94. `dense_of_covers` absorbs the factor (density at ρ/(4K²)).
+  - Site 6: ZeroCellPocketMergeStatement gains `target ≠ some source`.
+- **Lemma 9.4.**
+  - F1 landed (hull-count94, 9f8779c4e).
+  - SideBudget Stage B:
+    - Sum only over polygons with an (A1) side, since a bubble model refutes the unfiltered sum.
+    - Minimality is (darts, faces) lexicographic, pending audit-intro's check.
+    - Sides stay contiguous, and the budget counts skip-arc classes.
+    - hull-component takes a sub-piece from hull-count94.
+  - One-cell connector pair: A1 accepted, A2 false.
+    - Option (i): OsinLemma94SectionStatement and UnboundInput gain `OsinLemma97Below … Delta.rCellCount`.
+    - PlanarPieces gains OsinLemma94CaseOneOneCellInput, which concludes `Nonempty (OsinLoopCut …)`.
+    - Landing order: (A), then F1, then theoremc-retire's threading.
+    - ko-closed writes case (a) and the OsinLoopCut construction.
+    - The tex does not print Lemma 9.4; it cites Hull.
+  - Realization pieces closed:
+    - CellArcsInput (ko-closed, 5e5a98049), BoundaryArcsInput (cite-hull, 1b453429f) and QuasiGeodesicRespellInput (hull-component, 6b5a1f7d1).
+    - Both inputs of ChainRespellInput: CornerInsertionInput (simple-group, f7538e223) and PendantPathRemovalInput (61c2ade8e).
+  - Face partition (PolygonPartitionInput):
+    - ghw-assembly landed OsinLemma94PolygonLists (269a91ab3) and OsinLemma94PolygonKinds (5c69ca42d). OsinLemma94PolygonSides is in flight; its last probe failed.
+    - cite-hull proposes to take P.Maximal in OsinLemma94PolygonMaximal, over PolygonKinds only.
+    - Open: the face enumeration, the walk and cutting_interior fields, and the assembly.
+  - Case 2 does not use ChainRespellInput.
+    - SpikeTransport (ba4233ef8) and SeparatedCornerInsertionInput (b52230097) are on main.
+    - sec2-sentences proves `separatedCornerInsertionInput` in OsinLemma94SeparatedInsertionProof (619b70139, unverified), over OsinLemma94CornerInsertion's helpers. simple-group does not duplicate it.
+- **Pocket pieces.**
+  - `osinMultipleEdgeCutSection_of_pieces` (hull-select, 2db85602c) takes three binders: OsinMultipleEdgePocketRegionSectionStatement (kh-ejz), GeodesicCollarStatement (kh-torsion) and PocketCellTransportStatement (go-lemma42).
+  - kh-torsion's SurgeryGeodesicCollarAssembly (a89b55a0d) reduces GeodesicCollarStatement to StripStatement, InsertStatement and JoinStatement.
+    - Landed so far: the corner join (hull-bridge, e7fa1c6ab, 336c80ccc) and the monogon doubling (fff-quotient, 75d0892a2).
+    - kh-torsion keeps Strip, hull-bridge has Join, and simple-group takes Insert.
+  - go-lemma42's glue chain ends at f914f8728 and is wired through OsinPocketGlueDiagram. hl-lemma46's multiple-edge transport (1d177113c) is wired.
+- **Lemma 9.3.** hull-euler landed `osinPhiPrimeCountSection_of_pieces` (OsinAppendixEulerSection, 6401c70a6, green, queue lines 626–627).
+  - Its two binders are OsinCornerTwoGonSectionStatement (C4, leavitt-units) and OsinTwoGonHoldsSectionStatement (C6′, debt-conditional).
+  - C5 is filled by `cellFaceCountInput`.
+- **Hull Lemma 3.5 is closed** (baseline-debt).
+  - `printedHullLemma35 : PrintedHullLemma35` (HullLemma35Closed, b5f91627e) holds for all n, all m_i and every universe, with axioms [propext, Classical.choice, Quot.sound].
+  - Pieces: 5acca195c, 28fbaaffe, 6dd556d61, 7401027ce, 1369b2bed, 520f03021, 0efcdd55c.
+  - Census row LINE:1682 is at 711c053f1. HullLemma35Letter and HullLemma35Closed are queued for wiring.
+- **Endpoints.** nm-endpoints' report (e3e3dda23) lists the four open Greendlinger slots and their leaf Props. nm-endpoints waits for ghw-charp2's patch 07, then lands `relativeGreendlingerQuasiGeodesicLeastArea_of_loopClosed`.
+- **Off-route blockers.** systolic-counts writes the list of census carriers to flip where an off-route Prop blocks them.
+- **Assignments.**
+  - hull-euler: the inner-region Euler lemma, if dgo-analytic hands it over; then the PhiPrimeCount closure once C4 and C6′ land.
+  - hl-lemma46: one piece of PocketCellTransportStatement (go-lemma42) or PocketOuterTransportStatement (hull-select).
+  - baseline-debt: the largest group of census baseline findings that no lane owns.
+  - simple-group: InsertStatement.
+  - hull-component: a Stage B sub-piece from hull-count94.
+  - cite-hull: P.Maximal, once ghw-assembly agrees.
+  - ko-closed: the one-cell Case 1 module.
+  - dgo-analytic: the R2 restatement co-probe.
+  - dgo-geometric: model tests of A and B.
+  - systolic-counts: the off-route flip list.
