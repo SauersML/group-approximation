@@ -48,6 +48,15 @@ Khot--Vishnoi, for any fibre.
   primitive kernel is normalized by `K`. The permutable-kernel attempt above then
   works, with constant `3/c(G,m)`. This covers the wreath-product family and the
   translation-fibre test above. Open: fibres whose conjugates do not all commute.
+* **`K`-cores: yes up to a factor `k`.** `galois-games-round-linearly-for-bounded-fibre-size`.
+  Replacing each conjugated primitive kernel by its `K`-core makes the chain
+  permutable at a cost factor `[K : K cap N_G(L_i)] <= k`. So
+  `val >= 1 - 3 eps min(k, [G:N_G(K)]) log_q k/c(G,m)` for every `K`: linear in
+  `eps` at fixed `k`. **The open core** is whether the factor `min(k, [G:N_G(K)])`
+  can be removed. The loss comes from `K`-orbits on `G/H_rho` for the inducing
+  subgroups `H_rho`: `K` must move most blocks of every good induced
+  representation, while the elements of `K` outside the good kernels act only by
+  permuting blocks.
 * **Transversals made of `L`-cosets reduce to permutable subgroups when `k = 2`.**
   Let `K = <a>` and `L cap K = {e}`. A transversal that is a union of left
   `L`-cosets is one colour class of the graph on `G/L` with edges
