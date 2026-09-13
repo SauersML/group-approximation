@@ -12,7 +12,7 @@ distinct_from:
 **ESTABLISHED (reviewed: PASS in `research/artifacts/ex-review-backlog-2026-09-13-part7.md` §27.1 and `research/artifacts/ex-review2-groups-2026-09-13-part2.md` §§1--5).** Let `G = <X | R>` be an infinite finitely presented simple group that is
 not linear sofic over finite fields (definition on `simple-group-psl-width-is-finite-field-linear-soficity`).
 Then there is `K = K(G)` with `w_Q(a) <= K` for every `a in Q^X` and every `Q = Q_0/Z_0`, where:
-- `Q_0` is `Sp_n(q)`, `SU_n(q)` or `Omega^+-_n(q)`, for any `n` and `q` such that `Q_0/Z(Q_0)` is a
+- `Q_0` is `Sp_n(q)`, `SU_n(q)` or `Omega^+-_n(q)` (for odd `n` the single type `Omega_n(q)`, `q` odd; case (O) of part 1 covers both parities), for any `n` and `q` such that `Q_0/Z(Q_0)` is a
   nonabelian simple group;
 - `Z_0` is central.
 
