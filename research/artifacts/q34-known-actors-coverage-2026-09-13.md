@@ -42,9 +42,12 @@ The nodes landed in 98a1b7f25, none independently reviewed:
     `(s − 1)`-multiples can flow out of `0^∞`. That still reaches the trivial germ.
   - Trivial-germ units are `g`-conjugates of `(R, +) ⋊ U`, and `R` is spanned by its
     units.
-- **Why not the aperiodic class.** On the tail class of an aperiodic point the point
-  stabilizers are increasing unions (germs are trivial), so they are not finitely
-  generated. The periodic class `0^∞` is what makes the germ group a Laurent ring.
+- **Why not the aperiodic class.** On the tail class of an aperiodic point, a unit
+  fixing the base vector already fixes a cone around the point pointwise, since distinct
+  monomials send an aperiodic tail to distinct points. So the stabilizer is an
+  increasing union of cone-fixing subgroups. It is not finitely generated as soon as that
+  union is strict, and strictness was not written out here. The periodic class `0^∞` is
+  what makes the germ group a Laurent ring.
 - **Comparison with the Cantor-module route.** That route needs finite presentation of
   the extension `C(C,F_2) ⋊ U`. This one needs only finite generation of a stabilizer,
   so it extends to every prime `p`.
