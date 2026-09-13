@@ -62,12 +62,18 @@ those whose gap is not inherited from an embedded linear system.
     affine allowed sets, which is the linear-system endpoint, whatever the
     groups and the padding.  Own-variable lifts (`ell_v = sigma_v(x_v)`) are
     a special case.
-  - What survives:
-    - hidden shared labels: blocks finer than the shared bit, i.e.
-      projections in `W*(p_c) ∩ W*(p_(c'))` that are not functions of it;
-    - multi-variable edges, where an exact label group of order up to
-      `2^|c ∩ c'|` may be nonabelian.
-  - No construction of either is known, and no firewall excludes them.
+  - Hidden shared labels are constrained too.  By
+    `hidden-labels-import-cross-context-commutation`, any refinement makes
+    each non-rectangular context split so that its variables commute with
+    the far neighbours.
+    - For a synchronous source with NAND pair contexts: on each forbidden
+      pair, `P_q^a` commutes with `P_(q')` on a piece `m`, and `P_(q')^(a')`
+      commutes with `P_q` on `1 - m`.
+    - A factor model with the relevant commutators nonzero admits no
+      refinement.
+  - What survives: perfect traces whose three-context algebras have enough
+    centre for these splittings, and multi-variable edges with nonabelian
+    exact label groups.  Whether Lin's games have such traces is not known.
 - **Gadgets and completions inside the port algebra (lane
   ex-kac-quantum-compiler).**
   - By `torsor-cfi-port-profiles-are-cosets`, scalar port profiles of torsor
