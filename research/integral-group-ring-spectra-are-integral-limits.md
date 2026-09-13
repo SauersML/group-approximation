@@ -8,6 +8,7 @@ distinct_from:
   integral-spectral-limits-satisfy-serre-inequalities: that proves the limit measures obey the Serre inequalities; this asks that group-ring spectra actually be such limits
 artifacts:
   - research/artifacts/determinant-conjecture-serre-class-2026-09-11.md
+  - research/artifacts/determinant-integer-root-limits-2026-09-12.md
 ---
 
 **OPEN.** For every group `G`, every `n`, and every self-adjoint
@@ -21,10 +22,18 @@ action or approximation of `G`, only from integer matrices whose spectra
 imitate one measure.
 
 It implies the determinant conjecture through
-`integral-spectral-limits-satisfy-serre-inequalities`. It may be strictly
-stronger. The converse would need a characterization of the Serre class as
-limits of totally real Galois orbits, plus realizing those orbits by symmetric
-integer matrices. Neither is established here.
+`integral-spectral-limits-satisfy-serre-inequalities`.
+- **It also implies Galois balance.** It implies
+  `integral-group-ring-spectra-are-integer-root-limits`
+  (route `integer-root-limits-from-symmetric-integral-limits`). That claim is
+  equivalent to the determinant conjecture together with
+  `integral-group-ring-eigenvalues-are-galois-balanced`
+  (`integer-root-limits-are-galois-balanced-serre-measures`).
+- **So it is at least as strong as that conjunction.** The converse from the
+  conjunction needs totally real orbits realized by symmetric integer matrices
+  with negligible extra spectrum, and is not established.
+- **The Serre converse is refuted** (`serre-class-admits-non-integral-atoms`),
+  so no argument through the Serre class alone can give this claim.
 
 ## Attempts
 
@@ -34,10 +43,9 @@ integer matrices. Neither is established here.
 - **Finite quotients of a Kun--Thom wreath.** Approximate a proper quotient
   trace, not `mu_A`, because the non-normal Kazhdan subgroup is not profinitely
   closed (artifact Section 4).
-- **Next attack, untried.** Build integer approximants from the spectral
-  measure alone. Truncate the moment problem of `mu_A` at order `2j`, whose
-  moments are integers. Realize a Gauss quadrature on `j` nodes by an integer
-  Jacobi-type matrix with Galois-equidistributed eigenvalues. Then let `j` grow.
-  The obstruction to watch is
-  `integer-moment-measure-with-negative-log-determinant`: quadrature nodes are
-  algebraic but their weights need not be Galois-equal.
+- **Moment quadrature.** Dead (`integral-limits-via-moment-quadrature`).
+  - The idea was to truncate the moment problem of `mu_A` at order `2j`, whose
+    moments are integers, realize a Gauss quadrature on `j` nodes by an integer
+    Jacobi-type matrix with Galois-equidistributed eigenvalues, and let `j` grow.
+  - The obstruction is `integer-moment-measure-with-negative-log-determinant`:
+    quadrature nodes are algebraic, but their weights need not be Galois-equal.
