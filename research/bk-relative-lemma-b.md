@@ -95,10 +95,14 @@ at the finiteness ideal `I` of `τ` the boundary splits:
   subgroups need not be).
 
 - **Escaping with positive detection (`π_*(G) ∩ K_0^+(A/I) ≠ 0`):** the quotient
-  detects a singular boundary class positively, `E/K` is forced infinite
-  (Theorem 9), and no faithful embedding into a *stably finite* QD algebra kills
-  `G`.  Corollary 10 shows a type I counterexample is forced into this shape at
-  its elementary points.  This is the shape the tool must avoid.
+  detects the boundary positively, `E/K` is forced infinite (Theorem 9), and the
+  *filtration/peeling route* through `A/I` is blocked (a non-singular subgroup
+  cannot be killed by a stably finite QD embedding of `A/I`).  This is not an
+  absolute impossibility of killing `H` — that needs `H ∩ K_0^+(R) ≠ 0`, and `H`
+  is singular — only a block on removing the boundary through the infinite
+  quotients.  Corollary 10 forces this shape at the elementary points of a type I
+  counterexample, so the peeling route must avoid it, leaving a single
+  ideal-equivariant embedding as the only route.
 
 So the two crisp open questions are: **(A)** in the ideal-captured case, do the
 two residual conditions (i),(ii) hold for the radical's finiteness ideal? and
