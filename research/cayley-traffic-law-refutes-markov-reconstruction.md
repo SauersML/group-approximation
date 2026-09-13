@@ -47,17 +47,18 @@ the forced limit value of `permutation-traffic-is-simultaneous-fixed-points`.
    finite set `X` and doubly stochastic `X x X` matrices `P_g` (`g in F`) with
 
    ```text
-   ||P_g P_h - P_{gh}||_2 < eps   on tested products,
+   ||P_g P_h - P_{gh}||_2 < eps   for g, h, gh in F,
    ||P_e - I||_2 < eps,
-   |tau(P_g)| < eps               for g != e.
+   |tau(P_g)| < eps               for g != e in F,
    ```
 
+   with `||.||_2` the normalized Frobenius norm and `tau` the normalized trace.
    Then **RP_G(P) holds if and only if `G` is sofic.**
 4. Say **RL_G(P)** holds when, for the same data, every law in `P` within
    `delta` of the canonical values is within `eps` of the law of some finite
-   action.  The comparison is on the cycle graphs of the tested relations
-   `gh(gh)^{-1}` and of the tested elements `g != e`.  Then RL_G(P) holds if
-   and only if `G` is sofic.
+   action.  The comparison is on the triangle graph of each relation
+   `g h = gh` with `g, h, gh in F`, and on the one-loop graph of each
+   `g != e` in `F`.  Then RL_G(P) holds if and only if `G` is sofic.
 
 For `G` the group of `finitely-presented-nonsofic-group-exists`, both
 principles are false for every such `P`.
