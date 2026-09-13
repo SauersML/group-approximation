@@ -1,0 +1,12 @@
+Verify the 2V obstruction-state profile
+
+Section 31 of the w3-vf-nonlinear verification artifact re-derives
+research/artifacts/brin-thompson-2v-obstruction-state-profile-2026-09-12.md
+(afb6eb112, 77aed2b4f, 9a375e7cd): the value gap and its profile
+(Theorem 1.1, Corollaries 1.3-1.4), the descent propositions 3.1-3.4, the
+mixed-host conjugations (Proposition 4.1), and the partial-support torsion
+count (Lemmas 6.1-6.2, Corollaries 6.3-6.4, Remark 6.5). PASS, with two
+wording notes. Nothing is decided; both 2V claim nodes stay OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

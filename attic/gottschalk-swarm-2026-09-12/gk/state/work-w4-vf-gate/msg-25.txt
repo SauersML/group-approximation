@@ -1,0 +1,7 @@
+Verify the Jacobson containment and Kazhdan firewalls (w4-vf-gate section 31)
+
+w7-el3j-sofic (58760b6ad): PASS on jacobson-elementary-subgroups-are-locally-finite-by-linear and
+jacobson-elementary-groups-are-lea-only-if-lef, re-derived independently; verdict lines on both routes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

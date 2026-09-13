@@ -1,0 +1,16 @@
+Prove amenable extensions of uniformly quantitatively surjunctive groups are surjunctive
+
+Transplanting an automaton to a normal subgroup over a Følner set of the amenable
+quotient gives an injective automaton over the kernel into products of proper
+subshift tracks, one per disjoint Garden of Eden tile, plus a full track larger by
+exactly the decoder boundary. A deficit uniform over tracks with different missing
+patterns (UQS) pays that boundary, so UQS-by-amenable groups are surjunctive; over a
+two-ended quotient the boundary is bounded and an asymptotic deficit suffices. Both
+properties pass to subgroups and directed unions, so ascending HNN extensions of such
+groups are surjunctive. The open input is recorded as
+surjunctive-groups-are-uniformly-quantitatively-surjunctive, with the conditional
+route into surjunctive-by-amenable-extensions-are-surjunctive. No nonsofic kernel is
+known to have either property.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

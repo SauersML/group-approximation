@@ -1,0 +1,18 @@
+Prove decoders in a surjunctive normal subgroup force surjectivity
+
+Lane w5-free-pos-c picks extensions with amenable quotient as its positive approach,
+landed as the open claim surjunctive-by-amenable-extensions-are-surjunctive. The
+artifact first checks the launch prompt's three ideas: amalgams and HNN extensions
+over finite edge groups collapse onto binary products, compactness is the existing
+table-group programme, and characteristic-zero linearization is inert.
+
+Two established results. Transplanting an automaton to a normal subgroup along coset
+coordinates shows that an injective automaton whose left inverse has memory inside a
+surjunctive normal subgroup is surjective, over any quotient and with arbitrary
+encoder memory. And the complex linearization of an automaton over Z/q wr G is
+surjective iff the automaton is injective, and normal iff the automaton is
+surjective, so trace and rank arguments in characteristic zero see only absolute
+continuity of the output measure.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

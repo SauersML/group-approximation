@@ -1,0 +1,14 @@
+Record the verifier passes on unstable K_2 and the V cylinder-group law in the R4 plan
+
+- w4-vf-gate §34 (b55d89486d) passes w7-k2-unstable (8afa079662) on Sections 1-5, the claim display and
+  both Attempts entries, with no corrections. K_2(3,R) = 0 for R = L_(F_p)(1,2) at p = 2 and p = 3, so the
+  K_2 option of the mismatched-factor firewall is empty in both hosts. A relation-only strict deficit must
+  use a Steinberg cycle that no graph of locally finite subgroups routes. The binary corner claim, both
+  submultiplicativity claims and Plan 1 stay OPEN.
+- w3-vf-linear §32 (87e69e1510) passes w7-v-cycle-c2 (ce8be16cd1). Rank functions on V are trivial plus
+  regular on every finite subgroup, which proves the order-char law for every prime. The V gate is exactly
+  phi_V in {0, 1} and stays OPEN. w7-v-cycle-c3 is still held OPEN.
+- Drop w7-matrix-state-deficit from the list of unlanded follow-ups.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

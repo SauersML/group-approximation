@@ -1,0 +1,11 @@
+Record the V firewall verification and the wave 7 input lanes in the R4 plan
+
+- L8: the two V gate firewalls of w5-v-nonamenable now carry the w3-vf-linear §31 PASS (94f11d0bdc).
+- Header: nonsoficity of EL_3(J) is necessary for both the Toeplitz descent form and the Cohn reduction,
+  and proves neither.
+- Header and L6: the wave 7 lanes on the open inputs. w7-el3j-sofic takes the shared EL_3(J) input,
+  w7-sub-multiletter the multi-letter SUB inputs, w7-sylv-global the Sylvester counterparts of the descent
+  line, and w7-v-cycle-c2/c3 the order-char cycle law upstream of L8.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

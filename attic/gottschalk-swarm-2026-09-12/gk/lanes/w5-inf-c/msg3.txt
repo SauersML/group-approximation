@@ -1,0 +1,9 @@
+Wire the Rokhlin window filters into the INF and simple-Kazhdan-host nodes
+
+New Attempts entries on bernoulli-rokhlin-entropy-maximal-for-every-group and
+bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups cite the three landed filters
+(difference subgroup, read degree, self-copy collapse), the mechanism audit, and where
+it dies: a lower bound on Phi that is uniform in the read degree. Both claims stay OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

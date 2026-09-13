@@ -1,0 +1,11 @@
+Show Toeplitz exactness and sofic-subgroup data keep disjoint cylinder defects independent
+
+Lane w5-sub-fock (family SUB). The Toeplitz pair x_12(t0), x_23(s0) generates a dihedral group of
+order 8 inside a unitriangular group of order 128, so exact Toeplitz commutators are finite-subgroup
+data with theta = 1, and the Fock quarter defect only measures truncated-shift realizations. Every
+sofic subgroup of the binary Leavitt unit group containing disjoint frames carries a free rank model
+with exactly multiplicative cylinder defects and no fixed vector, so a relation-only strict deficit
+must use a nonsofic subgroup containing both frames.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

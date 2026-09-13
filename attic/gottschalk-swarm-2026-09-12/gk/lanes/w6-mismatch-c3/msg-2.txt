@@ -1,0 +1,14 @@
+Firewall mismatched-depth transvections for the ternary weakly finite target (w6-mismatch-c3)
+
+T_(0,1), T_(1,00), their product, all level roots at every depth, E, level V and the depth-decreasing
+transvections lie in the units of the nonpositive-degree part of L_(F_3)(1,2). That part is stably
+finite, so the linear extension gives a weakly finite image of the anti-central summand with z -> -1,
+and no certificate confined to such a subgroup exists. The model kills the two-root defect D, so the
+defect form is not firewalled. T_(0,1) T_(1,00) has infinite order over F_3 as well, so the model
+carries a non-locally-finite subgroup with all its relations. That complements the w6-mismatch-c2
+graph-of-groups model, which keeps D nonzero but only vertex-group relations. Kraft's inequality identifies V inside each weighted part as the
+Bernoulli-measure-preserving elements, and a depth-vector table records which transvection sets escape
+every weight. Adds an Attempts entry to the target. Lands OPEN for w4-vf-gate.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

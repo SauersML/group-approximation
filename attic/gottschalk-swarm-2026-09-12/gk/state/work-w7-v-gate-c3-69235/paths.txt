@@ -1,0 +1,2 @@
+research/artifacts/ternary-v-gate-joint-configuration-2026-09-12.md
+research/thompson-v-ternary-rank-functions-are-augmentation.md

@@ -1,0 +1,23 @@
+Land the Gottschalk final synthesis and match plan citations to verifier sections
+
+The final synthesis covers the goal and the ten refuted_by roots. For each it records:
+- what is verifier-passed, with commits;
+- what is on paper only;
+- what is dead;
+- the firewalls;
+- the ranked next leads by node id.
+
+All decisions stay OPEN.
+
+The plan artifact now cites the gk-vf-gate sections that already passed:
+- §15.1, §16.1, §17, §18.1–18.4 and §25.1;
+- Lemma 6.1 at §35.4, with the correction applied in §37;
+- the index through §37.
+
+Verification requested for the paper items:
+- f3545c8591, 8fc212cf45, b54cf150e8 and 3756340b80;
+- 86e9c2b3e8 and c7fbc72300;
+- 286ccdcb36 and 9c34e9e7f5.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

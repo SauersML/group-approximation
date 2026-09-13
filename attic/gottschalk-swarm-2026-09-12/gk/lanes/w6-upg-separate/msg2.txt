@@ -1,0 +1,7 @@
+Apply the verifier's wording notes to the matrix-state gate claim
+
+Lane w6-upg-separate. Following w4-vf-linear-b (Section 42, PASS): compression needs a unital phi and
+d(P) > 0, and c_3^mat <= c_3 needs anti-central Sylvester rank functions to exist. No status change.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

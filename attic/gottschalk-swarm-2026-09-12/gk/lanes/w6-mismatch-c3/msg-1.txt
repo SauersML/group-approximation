@@ -1,0 +1,10 @@
+Prove the depth-monotone parts of the binary Leavitt algebra are stably finite (w6-mismatch-c3)
+
+For letter weights a, b > 0, the span of s_mu t_nu with weight(mu) <= weight(nu) is a unital subalgebra
+of L_K(1,2). Restricting the faithful action on locally constant functions to the finite-dimensional
+stopping-partition subspaces F_k embeds it in prod End(F_k) / sum End(F_k), which is stably finite.
+Over a finite field its finitely generated unit subgroups embed in prod GL(F_k), so they are residually
+finite. Lands OPEN for w4-vf-gate. Artifact Sections 0-2.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

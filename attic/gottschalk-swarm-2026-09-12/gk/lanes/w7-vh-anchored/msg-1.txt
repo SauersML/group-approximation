@@ -1,0 +1,10 @@
+Record unit-ball and letter-subgroup screens for pairs over Radu's lattice
+
+Lane w7-vh-anchored, linear case of strict-automaton-on-lattice-in-product-of-trees.
+Artifact sections 0-2: the square table re-derived from the p. 9 relators; unipotent
+factors give units; over F_2 at size one with unit-ball supports, beta alpha = 1 forces
+alpha = beta with alpha^2 = 1; and a set of letters generates Gamma_R exactly when it
+contains one of five triples, and is sofic otherwise. No pair is claimed.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

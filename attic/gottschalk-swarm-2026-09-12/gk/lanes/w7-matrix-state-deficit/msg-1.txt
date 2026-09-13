@@ -1,0 +1,15 @@
+Show the ternary strict deficit restates emptiness in both scopes (w7-matrix-state-deficit)
+
+Item 2 of the strict-deficit target over anti-central matrix states holds iff S_- fails the rank
+condition (the counterexample); over Sylvester rank functions it holds iff the kill claim holds. When
+S_- has the rank condition, a minimizer over A_mat violates it on the largest weakly finite image,
+through the descent lower bound and no Jordan bound.
+
+New: the open matrix-state deficit claim, equivalence routes in both scopes, the restriction route,
+and the artifact (minimizer violator, minor-certificate form of any proof, idempotent-minor dichotomy
+for D, literature). Attempts entries on the deficit target, (U1b) and the rank-condition question,
+which is Hung-Li Question 3.4 (arXiv:2201.01432); Malcolmson credit on Theorem C; equivalence line on
+the kill route. All decisions held OPEN; verification requested from w4-vf-linear-b.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

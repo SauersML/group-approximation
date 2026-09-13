@@ -1,0 +1,20 @@
+Verify the linear sofic rung as a rank implication, datum by datum
+
+w4-vf-positive-b's verdicts on w4-linsofic-surj (d0f1a8afc, 85a64ccbe, 589495a16).
+
+- linear-sofic-surjunctivity-is-a-rank-implication-per-datum: PASS. I re-derived both directions of
+  Theorem 1.2. The kernel equivalence needs only closure under subgroups and finite products, and
+  closure under finite products is re-derived with a product ultrafilter. The claim's sentence that
+  bounded width gives linear control was proved only over finite fields; it is completed over every
+  field by specialization to a finite residue field.
+- gromov-weiss-is-the-monomial-case-of-the-rank-implication: PASS. I re-derived the Hamming
+  comparison, made the transfer constants precise, and strengthened the transfer to simultaneous
+  conjugates of monomial tuples.
+- site-pullbacks-are-discontinuous-in-the-rank-metric: Proposition 3.1 PASS. E depends on a chosen
+  coordinate algebra and word ranks do not. The Interpretation paragraph is a heuristic.
+
+The commit adds verification Section 4 and a verdict line on each of the three proof routes. Nothing
+decision-level. Nothing refuted.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

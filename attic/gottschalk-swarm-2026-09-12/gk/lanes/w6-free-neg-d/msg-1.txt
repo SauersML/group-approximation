@@ -1,0 +1,10 @@
+Add the Brin-Thompson group 2V as a Gottschalk counterexample root
+
+Lane w6-free-neg-d takes 2V as its host. V sits inside 2V, so the V root and
+V's averaging-fullness target both ascend to it. The binary Theorem B transfers
+to F_2[2V], because 2V is stable under the halving D. The ternary baker unit in
+2V makes D inner on V x 1, and the tower becomes a product tower. The state
+relations this forces are consistent, so the complement-corner gate stays open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

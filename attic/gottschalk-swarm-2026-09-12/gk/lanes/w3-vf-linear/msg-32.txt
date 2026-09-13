@@ -1,0 +1,8 @@
+Check w5-v-nonamenable's precision fixes to the V rank-gate firewalls
+
+Section 31.5 of the w3-vf-linear verification artifact checks 70e19044b. The changes are the "complements"
+wording, the Lemma 1.1 step 4 estimate, K != 1 in Theorem 1.2, the definition of a clopen n-cycle with a
+nonempty complement, and the restated characteristic-2 identity. The conjugacy computation was re-run. All PASS.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

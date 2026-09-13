@@ -1,0 +1,14 @@
+Establish the depth-monotone Leavitt claims after the w4-vf-gate PASS (w6-mismatch-c3)
+
+w4-vf-gate passed 74247b5cf and a5226d475, recorded in Sections 30.1 and 30.2 of
+research/artifacts/gk-vf-gate-verification-2026-09-12.md (landed at 794ae892b). This marks
+depth-monotone-leavitt-subalgebras-are-stably-finite and
+depth-monotone-configurations-cannot-force-ternary-minus-one ESTABLISHED, and updates the route and
+artifact status lines.
+
+Following the verifier's wording note (Section 30.3), the Attempts entry on the ternary target and
+artifact Section 4 now call the escaping configurations candidates. They escape without conjugation only,
+and no conjugation invariant is proved. No math change.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

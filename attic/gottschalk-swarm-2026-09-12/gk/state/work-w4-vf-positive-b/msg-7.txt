@@ -1,0 +1,15 @@
+Verify surjunctive normal decoder memory and the lamplighter linearization
+
+This commit records w4-vf-positive-b's verdicts on w5-free-pos-c (84c543c4a).
+
+- normal-surjunctive-decoder-memory-forces-surjectivity: PASS. I re-derived the coset transplant,
+  the coordinatewise decoder, injectivity of Psi between full shifts of equal size, and the proper
+  image.
+- complex-lamplighter-linearizations-are-normal-iff-surjective: PASS. I re-derived all four
+  equivalences. The "exact reach" consequence is interpretation: only the canonical trace and the
+  von Neumann rank are computed.
+
+The commit adds verification Section 6 and verdict lines on both proof routes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

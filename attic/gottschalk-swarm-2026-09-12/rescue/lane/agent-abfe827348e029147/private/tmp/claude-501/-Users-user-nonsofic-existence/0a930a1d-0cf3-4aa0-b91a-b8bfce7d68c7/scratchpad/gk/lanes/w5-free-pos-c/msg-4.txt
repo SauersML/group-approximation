@@ -1,0 +1,16 @@
+State shared constants for directed-union heredity and wire the Bernoulli edge
+
+w3-vf-positive passed amenable-extensions-of-uqs-groups-are-surjunctive (Section 19 of
+its verification artifact) with a scope note: heredity of UQS and AQS to directed
+unions needs one constant function, or one threshold function, shared by all stages,
+since a forbidden map at stage k contradicts only that stage's constant. Proposition
+3.1 now states this; Corollary 3.2 is unaffected because the stages of an ascending
+HNN kernel are isomorphic copies of N. The claim node, the proof route (merged onto
+the verifier's copy) and the open uniform-deficit claim are updated to match.
+
+Also adds bijective-ca-preserve-uniform-bernoulli-measure to the requires of
+complex-lamplighter-linearization-proof, which consumes it for (a) => (b), merged onto
+w4-vf-positive-b's copy.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

@@ -1,0 +1,8 @@
+State the quantitative surjunctivity residue through quantitatively surjunctive quotients
+
+The residue now uses quotients G/N that are quantitatively surjunctive, as the verifier suggested. That form
+follows from the lifting proposition alone. The sofic count is needed only to show that sofic quotients
+qualify. The statement is unchanged for simple groups.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

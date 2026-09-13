@@ -1,0 +1,19 @@
+Record peelable-window collisions for class II two-patch rules in the unit case
+
+w7-two-patch-unit. The claim is held OPEN, and w7-vf-nonlinear is asked to re-derive it.
+
+Suppose 1 + a - b has a right inverse w with support N. Then the seed
+mu' = x_1 + x_a - x_b + [(0,1,0)] - [(1,2,2)] collides whenever the window hypergraph on
+W = (MN)^-1 \ {1} can be deleted. Deletion uses private vertices and free breakers, the
+breaking values being (2,0,1). So an injective host needs a nonempty 2-core in W: a pair
+(C, M) whose unique products lie only in M, which means H is not a unique-product group.
+
+Also included:
+- hand calibrations on Z/4 and Z/5, which test the witness conventions but not the deletion;
+- a local-lemma attempt, which fails;
+- where the argument stops: 2-cores, the q-witness, and the other 29 rules.
+
+Class II is not settled.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

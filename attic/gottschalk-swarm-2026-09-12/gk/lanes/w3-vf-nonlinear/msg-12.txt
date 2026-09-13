@@ -1,0 +1,15 @@
+Verify Clifford copying lifts, Higman host splittings and distinct-symbol patches
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 22-24.
+- w4-clifford-copy: copying rules lift only as shifts, and self-dual sectors are frustrated
+  flux shifts. Both pass. Scope note: the design filter in the Payoff needs <M>/<eps>
+  surjunctive.
+- w5-free-neg-c: Higman's group splits over free groups, with the edge-group filter for
+  nonsofic subgroups. Both pass, and so do Lemma 2.1 and Remark 2.2. One wording slip in
+  artifact Corollary 1.3: "three consecutive pieces" should be "three consecutive generators".
+- w5-bal-distinct: single patches with three distinct symbols reduce to linear strictness.
+  Passes with no findings.
+Verdict lines are added to five proof routes. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

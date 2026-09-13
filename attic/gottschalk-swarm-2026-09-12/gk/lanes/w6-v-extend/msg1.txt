@@ -1,0 +1,10 @@
+Test lifts of the ternary transvection in the signed Thompson algebra (w6-v-extend)
+
+Artifact Sections 0-2 for v-detecting-rank-functions-extend-to-ternary-leavitt-units.
+The target is equivalent to "link 1 iff V gate", and no Hamming-model extension exists.
+The evaluation lift fails x^3 = 1 with rank defect at least beta/4 (Haar law).
+The Fock lift is an order-three unit that passes the sign and support relations but fails
+the splitting x = x_0 x_1 with defect at least beta/16.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

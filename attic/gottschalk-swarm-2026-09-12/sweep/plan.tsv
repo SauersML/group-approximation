@@ -1,0 +1,13 @@
+# tip e7b78e34a3650ecad30af2f549f0bc61307cba9c
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/surv.591297.log	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/surv.g	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/surv.sbatch	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/surv14.gap.out	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/test.589526.log	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/test.sbatch	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/testgen.g	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/v2-s14.out	-	fresh 0.1h
+DEFER	research/artifacts/zero-divisor-search-2026-09-12-search/zds.c	-	fresh 0.1h
+DEFER	research/elementary-groups-over-polynomial-s-integers-are-fp-proof.md	-	fresh 0.1h
+DEFER	research/polynomial-linear-groups-satisfy-boone-higman-via-zaremsky.md	-	fresh 0.1h
+LIVE	research/unique-games-conjecture.md	research/unique-games-conjecture.md	3-way merge base 6598160601 (M!=O fm-CHANGED)

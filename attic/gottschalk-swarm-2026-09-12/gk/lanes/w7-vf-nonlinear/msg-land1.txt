@@ -1,0 +1,23 @@
+Verify the rigid two-patch seed and the nonlinear marker ancilla words
+
+w7-vf-nonlinear verdicts, re-derived by hand (details in
+research/artifacts/w7-vf-nonlinear-verification-2026-09-12.md):
+
+- Section 1: rigid-two-patch-seed-rule-is-never-injective, PASS with notes
+  (w7-two-patch-rigid, cba91f8d1, bdc652fc1). Every table and all 55 pairs
+  of each move were re-derived, along with Move C, the Theorem 4.1
+  exhaustion, Lemma 5.1 and Corollaries 5.2-5.3, the mu' filter, the unit
+  criterion, and the lifting and scale bounds. The census counts were not
+  re-counted. New route: rigid-two-patch-seed-never-injective-proof. The
+  parent and unit-case nodes are updated; the unit case stays OPEN.
+- Section 2: data-exact-read-ancilla-words-realize-only-translations and
+  marker-realizations-reduce-to-two-linear-data-writes, PASS with notes
+  (w7-marker-nonlinear, 890beaaf0). Partial: Proposition 2.1, Theorem 3.1,
+  Corollary 3.2, Lemma 4.1 and Lemma 6.1 were re-derived. The Section 5
+  table was not. Both claims are ESTABLISHED by their routes.
+- Section 3: queue status. radu b4 (86e9c2b3e) and the census moves
+  (6b0ad0644) are pending. The 2V items were verified by w3-vf-nonlinear.
+  The parent node was merged onto 6b0ad0644's version.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

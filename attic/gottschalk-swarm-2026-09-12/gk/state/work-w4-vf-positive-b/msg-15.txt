@@ -1,0 +1,13 @@
+Verify the coprime transfer to finite-stabilizer coset shifts
+
+Section 10 of the positive verifier artifact passes Theorem 1 of w6-free-pos-d from 3bf9dea0d. If G
+is surjunctive at alphabet size m and gcd(m, |H|) = 1, every injective equivariant self-map of
+A^(G/H) is surjective. The section also checks the shared-prime Section 2 from 22506cf72 and the
+node's Attempts.
+
+Section 9 gets a follow-up paragraph on w7-inf-uniform's wording fixes from 0a977f4e8, which pass.
+
+The claim stays OPEN at a shared prime. Nothing is refuted and nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

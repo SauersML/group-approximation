@@ -1,0 +1,8 @@
+Verify that one-sided pairs over Radu's lattice need radius five
+
+Section 45 of the w4-vf-linear-b verification artifact re-derives Sections 0-4 of the
+w7-radu-r4-linear artifact. The route radu-lattice-one-sided-pairs-need-radius-five-proof passes,
+given Remark 3.6. Theorem C stays conditional on H10.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

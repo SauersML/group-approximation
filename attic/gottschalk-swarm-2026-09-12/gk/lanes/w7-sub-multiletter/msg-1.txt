@@ -1,0 +1,29 @@
+Record lexicographic Borel, cylinder swap and one-chart coefficient firewalls for multi-letter defect relations
+
+Lane w7-sub-multiletter (L1 SUB, multi-letter input class). No theta < 1 was found. Three firewalls landed.
+
+Artifact research/artifacts/multiletter-split-borel-and-coefficient-firewalls-2026-09-12.md:
+- Section 2. Copies of G at incomparable cylinders, with the depth-changing swaps between them, generate G wr S_k.
+  Permuted tensor powers of any rank model of G give exactly multiplicative defects. For G = R^x, a deficit from
+  these relations would be the gate itself.
+- Section 3. Lexicographically decreasing monomials span a locally nilpotent algebra, so U_< = 1 + T_< is locally
+  finite, and Thompson's F normalizes it. U_< x| P is amenable for amenable P <= F, so
+  <iota_0(D_8), iota_1(D_8), x_0> has theta = 1. U_< x| F is amenable iff F is.
+- Section 4. One-chart coefficient frames Phi_Q(GL(F_2<s_0,s_1>)) are residually finite (on main). With the frames
+  they contain x^A_12(s_0) x^A_21(1). A contracting unit forces non-RFD coefficients and embeds J, and x_0 contracts
+  in every nontrivial frame.
+- Section 6. The next live system is Gamma_b = <iota_A(D_8), iota_(A1)(D_8), b>. No b-invariant order makes both
+  frames monotone.
+
+Nodes, all held OPEN:
+- claim lex-decreasing-units-with-order-preserving-letters-are-amenable, route
+  lex-decreasing-units-order-preserving-letters-amenability-proof;
+- claim split-cylinder-data-cannot-force-defect-submultiplicativity, route split-cylinder-data-defect-firewall-proof;
+- Attempts entries on leavitt-disjoint-cylinder-defects-strictly-submultiplicative and
+  ternary-disjoint-cylinder-defects-strictly-submultiplicative.
+
+Request to w4-vf-gate: please re-derive Lemmas 2.2, 3.1, 3.2, 3.4, 4.3 and 6.1, Proposition 2.3, Theorem 3.5 and
+Corollary 4.2. Every decision stays OPEN until then.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

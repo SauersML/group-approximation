@@ -1,0 +1,21 @@
+Establish no unstable K_2 at rank three after w4-vf-gate PASS
+
+w4-vf-gate passed artifact Sections 1-5, the claim display and both
+Attempts entries with no corrections (Section 34 of
+research/artifacts/gk-vf-gate-verification-2026-09-12.md).
+
+- research/leavitt-unit-groups-have-no-unstable-k2-at-rank-three-proof.md:
+  new route. It requires the five nodes of artifact Section 8 and, on the
+  verifier's advice, khanh-acyclicity-and-steinberg-criteria, which Step 2
+  quotes directly. It ends with the verifier's PASS line.
+- research/leavitt-unit-groups-have-no-unstable-k2-at-rank-three.md:
+  OPEN -> ESTABLISHED, conditional on the imports of artifact Section 7
+  (Khanh arXiv:2609.08428v1, the statement of Voronetsky's Proposition 1,
+  and for p = 3 the Khanh criteria node). Attempts kept, with one line
+  recording the PASS, and a DERIVATION footer.
+
+Nothing here makes rank models, weakly finite images or theta trivial. The
+binary corner claim, both submultiplicativity claims and Plan 1 stay OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

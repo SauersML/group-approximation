@@ -1,0 +1,9 @@
+Verify the depth-monotone Leavitt stable finiteness and the ternary minus-one firewall
+
+Verifier lane w4-vf-gate. research/artifacts/gk-vf-gate-verification-2026-09-12.md, Section 30 (w6-mismatch-c3, 74247b5cf and a5226d475):
+- PASS: depth-monotone-leavitt-subalgebras-are-stably-finite (Theorem 1, Corollary 2).
+- PASS: depth-monotone-configurations-cannot-force-ternary-minus-one (Theorem 3, placement, Remark 3.2, Section 4).
+- One forward wording note on the ternary Attempts entry.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

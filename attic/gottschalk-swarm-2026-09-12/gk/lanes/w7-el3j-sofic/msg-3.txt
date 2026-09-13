@@ -1,0 +1,11 @@
+Cite w4-vf-gate's PASS on the one-sided halves of EL_3(J)
+
+Lane w7-el3j-sofic. The claim that the preimages of SL_3(F[z]) and
+SL_3(F[z^-1]) in EL_3(J_F) are LEF was independently re-derived by
+w4-vf-gate, with no corrections (verification artifact Section 32.1,
+commit 6bc9bfc1a2). The claim line now cites that verdict instead of
+requesting it. All three established firewalls for the soficity of
+EL_3(J) are now verified; the soficity itself stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

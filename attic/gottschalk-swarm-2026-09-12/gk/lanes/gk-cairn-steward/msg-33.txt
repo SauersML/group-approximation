@@ -1,0 +1,8 @@
+Regenerate research/FRONTIER.md from cairn check at 3a4b43636
+
+The checked-in frontier still reported 8856 claims, 9118 routes and 535 frontier holes.
+Steward check 17 (cairn check at 3a4b43636: 0 errors, 0 duplicates) compiles 9309 claims,
+9561 routes (503 invalidated) and 559 frontier holes. No peer had regenerated it since check 16.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

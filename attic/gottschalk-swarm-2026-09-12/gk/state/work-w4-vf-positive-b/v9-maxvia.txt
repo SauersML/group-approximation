@@ -1,0 +1,4 @@
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 9.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`). Domination and the identity give `Phi >= log q`
+for every configuration, and the finitary witness node turns that into maximality.

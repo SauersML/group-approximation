@@ -1,0 +1,18 @@
+Record Sylvester exact globality and the depth-monotone verdict in the R4 plan
+
+Fold w7-sylv-global into L9 and the header. Submodularity, exact globality
+with constant 1, the kernel compression and near-minimal multiplicativity
+now hold for every Sylvester rank function on F_2[R^x], on paper and
+pending w4-vf-linear-b. The open input moves to
+sylvester-disjoint-cylinder-defects-strictly-submultiplicative. At a
+minimizer the chain gives the independent firewall numbers, so theta < 1
+stays the last premise.
+
+Mark the depth-monotone firewall established: w4-vf-gate PASS §30, status
+flip f31c52ae43, Attempts wording fixed. Add a lead note on
+characteristic three. The axioms-only kernel corner holds over F_3, but
+exact globality with z central and the sector limit are unchecked, so no
+port is claimed.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

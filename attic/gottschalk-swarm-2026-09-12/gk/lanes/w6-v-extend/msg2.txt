@@ -1,0 +1,12 @@
+Add unipotent classes, Fock shadow and obstruction analysis for the V extension claim (w6-v-extend)
+
+Artifact Sections 3-5 for v-detecting-rank-functions-extend-to-ternary-leavitt-units.
+T(0,1), x and the Thompson three-cycle lie in three conjugacy classes. UT_3(F_3) on the code {0,10,11}
+couples x to c_3, and finite modules meet these constraints.
+The Fock lift X_F is the functorial exterior action at depth two, and X_0 X_1 is that action at depth three.
+Splitting kills monomial lifts but not the HNN intertwiner. Under the hypothesis, an obstructing relation is a
+link-1 certificate, and it must use two or more depth-changing letters on a nonsofic configuration.
+The weakly finite version would give a weakly finite image of S_- or of F_3[PG_3]; not decided.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,6 @@
+Verify the hexagon-closing route and the section 38 advisory fixes
+
+Section 40 checks 767ec353f4: PASS. The five advisories are applied, apart from one leftover rename at artifact line 119. The route requirements are complete and the route body matches sections 38.1 to 38.4. The verifier verdict line on stage-models-cannot-close-the-leavitt-hexagon-proof now cites sections 38 and 40.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

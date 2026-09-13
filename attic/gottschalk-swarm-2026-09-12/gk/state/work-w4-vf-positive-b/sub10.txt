@@ -1,0 +1,644 @@
+title: Semi-decide stabilizer membership from both sides, pass the kernel through a finitely presented image, and encode mixed identities as transvections
+title: The three regular A4 line carriers are explicit central idempotents
+title: Average a near intertwiner over A4 and polar-correct inside the commutant
+title: Restrict the three S4 characters to A4 and a point-stabilizer S3
+title: Average placement of a regular abelian root table rounds the optimal atom normalizer
+title: Average diagonal kernel blocks and apply Markov extraction
+title: The affine active idempotent is elementary-conjugate to two diagonal copies before centralization
+title: Transfer native root collapse through one odd Heisenberg character average
+title: Realize the forbidden-point stabilizer and induce from one active character
+title: The affine stabilizer of the forbidden endpoint is an S3 permuting the three active atoms
+title: Evaluate the rational Hodge factor and average the bounded translation orbit
+title: The A4 displacement bridge gives four positive overlaps but no fixed conditional coefficient idempotent
+title: The role-packed forbidden idempotent has full reducing support on every structural carrier
+title: A quantitative two-intertwiner support row already makes its stabilizer twist non-CE
+title: A two-intertwiner support cell reduces exactly to a twisted stabilizer representation
+title: Telescope the finite Reynolds averages across the approximate stable-letter intertwiner
+title: Rule out canonical microstates by averaging distinct quotient-kernel elements
+title: Amenable coset wreaths plus component averaging build the local countermodels
+title: Cover the small-codimension Grassmannian and absorb the remaining gauge into the robust pin stabilizer
+title: Pull the rank function back along the central idempotent; its null subgroup misses minus one, so it is trivial
+title: Use an arbitrary selector-group normalizer to wordize every stabilizer corrector
+title: Combine Smith maximality with tensor stabilizer extraction and the arithmetic transfer theorem
+title: Amenable coset wreaths plus component averaging build the local countermodels
+title: STW LXXXIV checkpoint --- nonsplit commensurable stabilizers (2026-08-30)
+title: STW LXXXIV checkpoint --- split common infinite stabilizers (2026-08-30)
+title: STW LXXXIV checkpoint --- finite menu of arbitrary stabilizers (2026-08-30)
+title: Identify every iterated self-image as a site stabilizer and exhaust finite telescope windows
+title: Conjugate a level edge back and compare the growing stabilizer index
+title: Lift, average with the lazy Kazhdan operator, and read the corollary of the corner lemma
+title: Exact F2 closure identifies the rank-three subgroup, its hyperplane stabilizer, and the final C3 escape
+title: Diameter-nine packet generation plus A8 averaging gives the commutant gap
+title: Compress one C3 averaging projection to the left-coset basis of the other
+title: Diameter-seventeen telescoping and A8 averaging give the minimal transvection decoder
+title: Diameter-fifteen commutator telescoping and finite averaging give the regular-chart decoder
+title: Packet energy has no averaging principle from the full collision fiber to repeated S3 blocks
+title: Traces of a regular representation are delta functions, so both energies read off one stabilizer
+title: A surviving retraction to the direct product certifies insufficiency below length nine
+title: Compute the five degree-1632 point-stabilizer orbits and Sp6 incidences
+title: Average displacement over A8 and charge each shortest path by packet-letter congestion
+title: Average diagonal blocks and take two polar factors
+title: No stabilizer-commutant deformation of the tensor flip meets the criterion, at any multiplicity
+title: Deform the tensor flip inside the index-15 stabilizer commutant until the atlas relators die
+title: Exact integer differentiation of the atlas traces along the stabilizer slice
+title: The index-15 stabilizer slice is exactly first-order stationary at the tensor flip
+title: Closed-form traces at both classical warm starts, checked against the retraction count
+title: Retraction to the union of endpoint fibers is exactly relative ultraproduct liftability
+title: Upgrade average occurrence BLR energy before abelian rounding
+title: Vanishing averaged generator commutators do not produce an approximate abelian group table
+title: Averaged pinching channels are Lipschitz in operator row-square displacement
+title: Telescope averaged conjugations and apply weighted operator Jensen
+title: Averaged subalgebra energy controls exact bistochastic bimodule repair independently of dimension
+title: In every action of a Baumslag--Gersten group on a tree its Baumslag--Solitar base fixes a vertex, so no tree host with BS(1,n)-free vertex stabilizers contains it
+title: The order of the image of a divides 2^n - 1 for its own order n, which forces n = 1; then Malcev and level stabilizers finish
+title: Dead - build K-theory classes of C*_r(L^x) outside assembly from Leavitt idempotents and compression isometries
+title: Reduce a proper quotient to finite orbit groupoids and rank-two stabilizer tori
+title: Restrict the Bernoulli shift to the infinite stabilizer and use mixing
+title: Every Borel equivariant map from a Bernoulli shift to a coset shift with infinite stabilizers is almost everywhere constant
+title: The averaging idempotent of a ternary permutation unit is full in the binary Leavitt unit group algebra
+title: Multiply the binary corner solution by the visible scalar idempotent over F_4
+title: Cut the full averaging idempotent into a strict one-sided pair
+title: Extract S, the head idempotent, and T by conjugating constant roots
+title: Restrict the Jacobson coefficients to the four-element idempotent subring
+title: No finite matrix ring over the binary Jacobson algebra has a nonzero properly infinite idempotent
+title: The binary swap group lifts the depth-one Leavitt matrix units, and an exact lifted cylinder partition absorbs the kernel idempotent
+title: Compute in the group algebra of the swap group S_3 and read the matrix block off the kernel idempotent
+title: The tensor-square image of the defect has off-diagonal left support, which is a null norm idempotent
+title: Some near-idempotent self-adjoint bistochastic channels stay uniformly far from every matrix-algebra expectation
+title: Near-idempotent self-adjoint bistochastic channels are uniformly close to matrix-algebra expectations
+title: A group acting faithfully and cocompactly on a locally finite tree with finitely presented edge stabilizers embeds in a finitely presented simple group
+title: A block diagonal sum of pairwise Gram states averages their game coverage instead of gluing it
+title: Enlarge both the shell actor and its stabilizer to obtain a faithful type A action
+title: Present the shell envelope and use its automatically finitely generated point stabilizers
+title: Enlarge a shell envelope while retaining a core-free stabilizer of finite bi-index
+title: Uniform finite-mark centralizer fillings characterize finite stabilizers
+title: Recover average dense BLR energy from bounded-template occurrences
+title: A full order-three averaging idempotent over V stays full over the Brin–Thompson group 2V
+title: A full averaging idempotent in the binary group algebra of 2V gives a strict automaton over 2V
+title: The averaging idempotent of an order-three element of V is full in the binary group algebra of the Brin–Thompson group 2V
+title: Split the free C2 stabilizer character into trivial and sign factors
+title: Average one partial lamp intertwiner and expose its full copy commutant
+title: Average finitely many canonically orthogonal adjoint unitaries
+title: Apply marked-trace averaging, and use uniqueness for the CAR algebra
+title: Lift the sixteen-element stabilizer by elementary words and compute its scalar extension class
+title: Scalar relative embeddability is a commutation stabilizer in some Connes-embeddable target, with no trace condition on the representation
+title: Multiply the four Hecke orbit averages and polarize the two mixed maps
+title: A central stable letter averages every matrix-range obstruction into its own asymptotic commutant
+title: Separate the matrix range and take a slowly growing Cesaro average under the stable letter
+title: Central symmetric convolution near-idempotents round to normal-coset conditional expectations
+title: Expand the elementary-abelian subgroup average and cut by the negative central sector
+title: Split the subgroup average by the central sign and apply the HNN corner identity
+title: Centralize the selector packet to wordize the selected stabilizer corrector
+title: Represent local certificate predicates by finite lamp idempotents and preserve the inverse defect
+title: An idempotent of a modular group algebra with a finite-support characteristic-zero idempotent lift has nonzero class and is never an inverse defect
+title: Compose the transported character idempotents and commutant ranges
+title: Code distance upgrades averaged generator commutators to full pinching after one commuting reference exists
+title: The code Riesz inverse is an average of first-splitting martingale masks
+title: Take the host to be SL2(Z[1/pq]) with stabilizer SL2(Z[1/p])
+title: Blockwise conjugation by a Cohn pair is multiplicative and absorbs the defect idempotent, and same-block generators are commutators of cross-block ones
+title: Identify the stabilizer coordinate algebra with its faithful crossed product
+title: Farrell--Jones for a colorable HHG reduces to its proper-domain stabilizers
+title: Average the rounder cost against the combinatorial floor, then invert with a constant instrument
+title: Average one isometry over each overlap and compare the two polar parts
+title: Exact projection commutation stabilizers in canonical CE models are scalar relatively embeddable
+title: If x commutes with P and x^m = 0, then m copies of an idempotent minor of xP are a minor of m-1 copies of P
+title: Separate the two prefix idempotents along a Singer covector orbit
+title: The binary Leavitt corner idempotent stays distance two from idempotency in every complex hyperlinear model
+title: A simple Kazhdan group has a Bernoulli coset shift with a strict continuous equivariant self-embedding
+title: Fourier idempotents reduce every finite order to the projection collapse
+title: Average the approximate intertwiner over a finite quotient and take its polar part
+title: Average the cross-type unitary and truncate its polar part
+title: Apply conjugation invariance and expand the lazy A2 holonomy average
+title: Average the conjugation-invariant mark density over tensor blocks
+title: Haar-average the vector density and apply the weighted BCS gap
+title: Finite rational-set stabilizers in contracting Rover-Nekrashevych groups are finitely presented
+title: Expand both finite Fourier averages and use coprime subgroup intersection
+title: Combine the defect factorization at the shifted pair with idempotent displacement constancy, level transpositions and complement isometries
+title: Adding the complementary idempotent embeds every corner elementary group in the ambient one
+title: Finite-window averaging and spectral rounding lift countable commuting torsion families exactly
+title: Exactify finite-group lifts through Wedderburn matrix units, average intertwiners, and read off the simple-tower dichotomy
+title: Retune one chord in the commutant and conjugate the Reynolds average
+title: A cyclic conductor prefix is diluted, tracially averaged, or globally long
+title: A one-sided pair whose cyclic cross terms vanish makes the cyclic averaging idempotent full, and under the twist the converse holds
+title: Average the cross terms, and redistribute a corner solution over the twisted isotypic blocks
+title: Damped cloud averaging strictly contracts sparse energy from the exact-face sheet
+title: Damped cloud averaging followed by sign-first face return has an exact scalar fixed sheet
+title: A decidable infinite finite presentation admits an enumeration with three finitely presented shell stabilizers
+title: The decoder of an injective automaton bounds window fibers above the average by exactly the boundary patterns
+title: Singular images, the compressed coset shift and XOR factors defeat each tool of Popa's theory
+title: No canonical inner or prefix-corner retraction fences the degree-four KL gadget
+title: Factor the double product average through the coordinate square function
+title: The dense off-diagonal packet has linear-dimensional models with vanishing average Weyl defect
+title: The diagonal parity curl is a two-idempotent Hecke operator, but property tau misses its local links
+title: Keep the same group translation in every marked-site factor and induct through stabilizer corners
+title: Average a finite generalized dihedral subgroup and apply two corner Gram estimates
+title: The Dirac average is a same-model near-extra Clifford generator at inverse-square-root rank error
+title: Forward by continuity of a finite-word functional, backward by Hahn--Banach at an idempotent
+title: Both orthogonality relations invert, so the idempotent relation reads one plus one equals one
+title: Every E5 idempotent root is the center of a two-pair extraspecial cell
+title: Expand the commutator, split x_ab(1) over the Leavitt idempotents, and conjugate by the branch swap
+title: Squares and reversed composable products vanish, so commutators become products and N_ij N_ji are orthogonal idempotents
+title: Discrete torsion-free subgroups meet elliptic stabilizers trivially, so they sit discretely in the tree group
+title: Equal-difference Gram averaging fails on four free words, while every amenable chart lifts
+title: Factor components of an ergodic IRS character need not be stabilizer characters
+title: The expanding double coset has degree p times the flag count, so the wired pair averages over forty-two words
+title: Finite group quotients have explicit averaged ucp sections, relatively exact on one lifted subgroup
+title: Read the finite-quotient averaged section as a Hilbert-module matrix coefficient
+title: Linear soficity over F_3 makes the group algebra directly finite, which no full proper idempotent allows
+title: The F_9 Hadamard spectral idempotent is full in the anti-central summand of the ternary Leavitt group algebra
+title: The spectral idempotents of the depth-one Hadamard unit over F_9 are conjugate halves of the unit in the anti-central summand
+title: Polar correction, corner restriction, and almost-idempotent lifting
+title: Compile the local gauge share and its bridge through Thompson point stabilizers
+title: Realize the gauge-doubled Fanizza hard share as a point-stabilizer-local occurrence
+title: The two Fanizza endpoint tuples have exact all-sector S3 stabilizer alignments
+title: Promote skeleton-controlled microstates to congruence representations via de la Salle averaging
+title: Apply idempotent presentations and Reidemeister--Schreier to the FFGS simple examples
+title: The fiber product of a group with itself over a quotient acts transitively on the kernel with diagonal stabilizer, conjugacy-class pair orbits and diagonal-centralizer kernel
+title: The literal fine-idempotent two-sided return still closes in GL10
+title: Transplant to finite site quotients, peel stabilizer-coset strata, and close with the coset-region lemma
+title: Compare subgroup-average supports and compute the lost augmentation mass
+title: Every infinite finite-rank Kazhdan stabilizer is nonseparable and forces a non-Haagerup actor
+title: An infinite finite-bi-index pair with Kazhdan stabilizer has nonamenable ambient group
+title: Supply a stable acting group and project the lamp onto its Kazhdan stabilizer commutant
+title: Matched finite-subgroup character idempotents have exact HNN transport
+title: A one-sided finite-character stabilizer word already normalizes the whole packet
+title: Decompose stabilizer characters and induce their regular cores
+title: Make the role-packed forbidden idempotent escape the finitely many reached carriers
+title: Conjugate the central Fourier idempotents and their commutant averages
+title: Average into the regular representation and compare central character projections
+title: Average the overlap partial isometry and threshold its polar part
+title: Disintegrate over a finite invariant partition and induce the fiber stabilizer character
+title: A finite invariant partition reduces a non-CE stabilizer character to a finite-index fiber IRS, not automatically to a group
+title: Average each finite stabilizer and identify the resulting orbit-arrow representation
+title: Every fixed finite Leavitt core average stays far from the native Kazhdan average
+title: A finite multipath average pays its full Gram disagreement or escapes through the Julia complement
+title: Expand the average Gram matrix and dilate the resulting contraction
+title: Average bounded normal words onto the invariant projection
+title: A finite one-hot algebraic truth-table corner is a matrix algebra over actor stabilizers
+title: Average the second lift into the commutant of an exact torsion lift
+title: Average the intertwiner over the finite group and take its polar unitary
+title: Telescope the return, average its finite conjugacy orbit, and invert the Reynolds element on its support
+title: Exactify D8, average the context, and use the Pauli trace flip
+title: Finite permutation holonomy cannot cancel an infinite stabilizer
+title: Use positivity and finite-dimensional orthogonality on stabilizer fibers
+title: Average distinct kernel conjugations on normalized adjoint space
+title: Quotient one atom stabilizer and induce a hypothetical hyperlinear model over its finite left-coset orbit
+title: A finite Reynolds carrier has only a finite pointwise stabilizer
+title: If a group is surjunctive at alphabet size m, every injective equivariant self-map of a finite-stabilizer coset shift at size m is surjective
+title: A group element never properly shifts the right ideal of a finite-subgroup idempotent, and in general a proper shift needs a non-directly-finite HNN extension
+title: Evaluate the primitive character idempotent in canonical matrix microstates
+title: Reduce a finite-support central idempotent through its normal FC support group
+title: Average nested finite supports and cut one common threshold on the intrinsic rank scale
+title: Some lift of s0 in three or more finite-subgroup idempotent pieces has an acyclic off-diagonal defect graph
+title: Compare pointwise and normalizer stabilizers of a signed Reynolds atom
+title: A vanishing off-diagonal piece is a group shift of a finite-subgroup idempotent ideal, which must be an equality, which evaluation refutes
+title: No two-piece lift of s0 whose idempotent is supported on a finite subgroup has a vanishing off-diagonal defect
+title: Apply finite-group character orthogonality to the central block idempotent
+title: Average finite-group cocycles and then average the primitive over the actor
+title: Apply Avitzour averaging to a reduced free product containing the non-CE source
+title: Relative generator repair costs at most the average torsion-weighted connector defect
+title: The averaged Bernoulli cluster projection is bounded by an explicit graph resolvent
+title: Construct Bernoulli subrelations of cost tending to one with vanishing average torsion connector errors
+title: Retain a root geodesic through each partially present block and average over endpoints
+title: A finite cluster merger deletes a rank-one orthogonal averaging mode
+title: Critical dyadic cluster-averaging projections have summable size-weighted operator norms
+title: Critical random-walk averaged connectivity is at most the spectral radius to the walk length
+title: Complete hyperfinite low-cost Burnside subrelations with vanishing average connector defects
+title: Separate finitely many orbit points by a finite partition and average finite atom colorings
+title: Decompose finite-support Bernoulli tensors into finite-stabilizer regular subrepresentations
+title: Combine the idempotent merger loss with Hilbert-valued product variance
+title: Average finite-set kernels and repair their row and column balance
+title: Apply subgroup monotonicity or average the cyclic-gluing excess
+title: Positive averaged route tails at every fixed radius preclude uniform tightness
+title: Apply retraction rounding and bound the retained tree chains by crossing-edge energy
+title: Average nested cycle projections through equivariant disintegration
+title: A bounded path retraction gives connected rounding with residual cycle energy as its cost error
+title: Absorb the sphere cut below p_c, and run Hutchcroft's averaged complement argument on fibre sums
+title: Lift tree automorphisms with height potentials and apply the nonunimodular theorem to lifted end stabilizers
+title: Partition the free compressor tree, move each leaf inside its parent stabilizer, and audit adjoint rank
+title: One retraction proves all three facts
+title: A full averaging idempotent kills its element in every rank model
+title: Full rank of the image idempotent forces the averaged element to act trivially
+title: Clopen partition stabilizers in a full Cantor overgroup of standard V are direct powers of the group
+title: Localize group elements by prefix identifications and split partition stabilizers into their supported factors
+title: Saturate the complementary-idempotent defect through the unit ideal and apply the normal-Kazhdan criterion
+title: Elementary groups over a ring with a full complementary idempotent have full MF radical in every rank at least four
+title: Elementary groups over a ring with a full complementary idempotent have full MF radical from rank two
+title: The maximal algebra of the rank-two elementary group over a full-idempotent ring contains a proper isometry
+title: Compress every vertex word by the trivial central idempotent
+title: A full complementary idempotent is the same as a properly infinite unit
+title: Multiply through the full idempotent and permute root positions
+title: Induce the natural stabilizer permutation type and compute the native cross kernel
+title: A nontrivial adjacent-character stabilizer profile retains a native cross kernel
+title: Project onto the raw packet algebra and Haar-average its commutant
+title: Every continuous equivariant map from a full shift to the shift over a transitive set with infinite stabilizers is constant
+title: Fourier-decompose one additive family and average block overlaps
+title: A binary Leavitt family contains a full complementary idempotent
+title: Frobenius reciprocity and a dimension count identify the GL_2(F_3) projective covers with induced semidihedral blocks, and transpose averaging forces the rest
+title: Peel a vertex off a graph product and fold the amalgam into the product of its two retractions
+title: The canonical group-algebra trace separates the two Leavitt packet idempotents
+title: Haar algebraic actions have permutation Koopman spectrum and reciprocal stabilizer moments
+title: Haar two-design averaging gives the exact random-basis composition formula
+title: A full spectral half idempotent gives a unital two-pair Cohn family through its matrix units
+title: Conjugate the swap dihedral group onto the Hadamard dihedral group, then join two rank-one idempotents of M_2(F_9)
+title: The F_9 Hadamard spectral half is the swap idempotent conjugated by a constant unit of the anti-central summand
+title: The Hadamard unit conjugates the ternary swap corner idempotent to a cylinder reflection idempotent
+title: Average a state along the halving map and take a Markov–Kakutani fixed point
+title: A near-idempotent heat semigroup forces a diverging multiplicative gap in its generator, and is close to the low-band spectral projection
+title: Kazhdan pair of the completion bounds the spherical numerical range of the lazy double-coset average
+title: One lazy Hecke average contracts every subgroup-central unitary geometrically onto its full-commutant expectation
+title: Exact Hecke stabilizer averaging leaves an indefinite sector
+title: Fourier-expand a Pauli stabilizer projector and read off its affine atom support
+title: Subgroup spectral cuts in a Heisenberg spin sector are exactly affine stabilizer flats
+title: Remove bounded Kazhdan types from the finite-quotient Plancherel average
+title: Average the separator, then remove its intrinsic stable-letter Fourier component
+title: Project the stable letter onto the stabilizer commutant and let co-density make it central
+title: Pull an approximate representation across the retraction and restrict its correction
+title: HS stability of the acting group and a Kazhdan stabilizer give uniform coset-site coherence
+title: Geometric phase average and tensor assembly
+title: A trace-free commutation stabilizer for the Kun--Thom subgroup makes the double hyperlinear and nonsofic
+title: Universal hyperlinearity is exactly arbitrary-quotient permanence, equivalently the idempotent boundary of the CEP
+title: Read packet generators from the two idempotent supports
+title: Conjugate both subgroup averages and Fourier-decompose the elementary-abelian target
+title: Average Schreier edge diagrams and round the induced range projection
+title: A finite crossed product has no positive canonical corner for an infinite-index stabilizer
+title: An infinite-stabilizer coset Bernoulli shift has trivial homoclinic group
+title: An infinite stabilizer moves the finite determining set of the base coordinate off itself
+title: Keep one nontrivial coordinate visible along its infinite stabilizer
+title: Expand central idempotents at the identity coefficient and rotate regular multiplicity spaces
+title: Trivialize the square commutator word and exponentiate its CP-Green average
+title: Invariant output factors through the coset shift over G/H, which is constant when H is infinite
+title: Use commuting idempotents, then audit fixed-point trace after globalization
+title: Match the full head-parabolic profile and distinguish its larger intersection by one stabilizer trace
+title: Compare shifted finite-subgroup averages in a regular representation on a long block cycle
+title: Split the three TS conjugates and transport both finite stabilizers through the first braid
+title: Joint-PVM pinching has a sharp linear gap from averaged generator commutators
+title: A K_0 state extends to a Sylvester rank function iff it respects the triangular preorder on idempotents
+title: Define the state on idempotent classes of the triangular Grothendieck group and extend it by Zorn's lemma
+title: Lazy Kazhdan averages keep positivity and contractivity, then cut the spectrum at one half
+title: Haar-average the Kazhdan commutator inequality over the target algebra commutant
+title: Dilate the nearby matrix-range point and Kazhdan-average its finite corner
+title: Average the Gram over the actor and then over one Weyl orbit
+title: Kazhdan averaging and polar rounding produce supported gallery intertwiners with trace-controlled leakage
+title: Average an almost intertwiner and polar-round its invariant part
+title: The Kazhdan projection is a norm limit of finitely supported probability averages
+title: Powers of a lazy symmetric average converge to the Kazhdan projection
+title: The Kazhdan projection is not integrable, so averaging cannot reach the operator norm
+title: A Kazhdan stabilizer and finite orbit rank collapse the shared Pauli sign for exact actors
+title: Kazhdan-average the Stinespring corner to an exact C-invariant subspace, then polar-correct the letter inside the C-commutant
+title: Ball markings form a commensurated set, and a transfixed copy gives finitely many marked pieces with stabilizers in H
+title: Free the nonedge commutators and take a stabilizer-invariant Kesten quantile
+title: Compute the nonzero off-diagonal commutator of the two primitive support idempotents
+title: Square the one-level splitting and average signs and prefix permutations at level two
+title: Fullness of the Klein averaging idempotent gives fullness of the swap averaging idempotent
+title: Equivariant spectral sequence collapse over finite stabilizers
+title: Dead — witness the Kun--Thom stabilizer in a canonical Fell model with a Haagerup coefficient
+title: Dead — realize the Kun--Thom stabilizer inside a Haagerup target
+title: Dead — witness the Kun--Thom stabilizer by an element normalizing the group
+title: Kazhdan polar rounding of one compressor controls only the compressed stabilizer
+title: Separate every ambient stabilizer by a shifted-cone truncation
+title: Order-three averaging leaves the Kun--Thom pointed martingale wall untouched
+title: Cliffordize the finite root-stabilizer coset quotient
+title: Reduce the exponent torus and wreath the finite root-stabilizer coset space
+title: One root-stabilizer correlation does not charge the Kun--Thom marked return
+title: The Kun--Thom polynomial subgroup is an exact commutation stabilizer in some Connes-embeddable target
+title: Every idempotent in a matrix algebra over C[G] for a Kun--Thom Theorem E actor has trace in the finite-subgroup ring
+title: Push the idempotent to congruence quotients whose orders avoid a given prime outside P
+title: Rigid-stabilizer commutators put the lamps and the commutator of a finite-index normal subgroup into the alternating full group
+title: The Kun--Thom lamp stabilizer is never co-amenable, so no dividend transfers through it
+title: Place the witness subgroup in a finite-orbit wreath and separate lamps by fibre sums over closed stabilizers
+title: A Bernoulli deficit witness over a finite-lamp wreath with residually finite actor must see a profinitely non-closed stabilizer
+title: A laminar finite-subgroup idempotent with zero K_0 class is a stable finiteness failure, hence a direct finiteness failure
+title: The second branch inverts the first complementary idempotent
+title: Dimension-free rounding of near-idempotent bistochastic channels would make the binary Leavitt unit group nonhyperlinear
+title: Test the universal-gate retraction against the first exact Leavitt packet relations
+title: Compare the identity coefficients of the order-three and primitive packet idempotents
+title: Push the complementary idempotent down the recursive embedding
+title: The corner evaluation kernel is nonzero, contains an idempotent of augmentation zero, and is not inside the radical
+title: Add the complementary idempotent and apply the universal modular rank-pair bounds
+title: Apply the strict idempotent-compression criterion to e and f
+title: Copy retractions conjugate the two central holonomies in the length-thirteen template
+title: Three copy retractions forbid the length-thirteen identity-to-center transport
+title: The corrected inverse 1;412 third carrier has a four-relator retraction skeleton
+title: Split the diagonal idempotents by first letter and quotient an ascending HNN extension
+title: Amplify onto level-k cylinders and multiply by a diagonal-constant character idempotent missed by the evaluation
+title: Scalar-free constants with a representation-killed idempotent cut the scalar copy into the kernel
+title: Cut the scalar copy of the group algebra by the constant C_3 averaging idempotent
+title: In a characteristic-two rank model of EL_3 over the binary Leavitt algebra, root displacement is Weyl and unit invariant, at most 1/2, uniform on nonzero coefficients, and simultaneously conjugate on orthogonal idempotent tuples
+title: Iterate the corner embedding on the complementary idempotent
+title: The Leavitt evaluation kernel contains an infinite orthogonal family of idempotents
+title: Pad the corner pair with the complementary idempotent
+title: Some laminar combination of finite-subgroup idempotents has zero class in K_0 of the binary Leavitt unit group algebra
+title: On some finite-field Leavitt host the cyclic averaging idempotent is full in the Leavitt-visible factor
+title: Split the cone over the characters, push along the refined idempotents, and pass to the colimit through finitely supported certificates
+title: Verify finite graph retractions and then transplant LEF lamp tables
+title: The level-two averaging idempotent sits below the Klein idempotent
+title: Lift idempotents and equivalences p-adically and compute finite regular ranks
+title: Average Lin's spectral-layer row estimate relative to layer mass
+title: Average the r-fold pair products over the complement of the base pair
+title: Compare the two subgroup averages in the group basis
+title: Compare the nonzero group-basis supports of the two Fourier idempotents
+title: Restrict the ambient regular representation to each idempotent root line
+title: Invariant output makes the linear part left H-invariant, then augmentation or the averaging idempotent decides
+title: Pull back along the stabilizer map and decompose the labeled Schreier realization
+title: Dead - randomize the intermediate basis so dephased transitions compose on average
+title: Propagate block support to every root, read off the corner ring homomorphism, and lift the corner idempotent
+title: The MF radical of relations is an idempotent closure operator
+title: A Mihailova fiber product gives an effective nonseparable stabilizer in the replacement actor
+title: Compute the fibers and vertical stabilizers of the mixed coset set
+title: Nested finite-subgroup idempotent defects need two subgroups generating an infinite group
+title: Pad a properly nested equivalent pair by the complement of the larger idempotent
+title: Two finite subgroups of the binary Leavitt unit group carry properly nested equivalent idempotents
+title: Split the central involution, average the residual cyclic cocycles, and differentiate unitary exponentials
+title: Orthogonal Kraus mass gives a sharp one-third separation from the sum-of-masas idempotent
+title: The sum-minus-scalars idempotent of two orthogonal masas has exact UCP distance one third
+title: Invert the two commuting averaging projections blockwise
+title: Separate the two path average into two lamp double cosets
+title: The native A2 two-path average is not the compression of one ordinary group word
+title: Put the paid collision in the stabilizer kernel of the three-bit constant atom
+title: The native C2 Hecke corner cannot wordize the A2 two-path average
+title: Apply graph-wreath sofic permanence and check the stabilizer hypothesis
+title: Compute the five-projective-summand native actor and its source stabilizers
+title: Every mixed-depth monomial lift of the Leavitt pair has a partial-symmetry defect on one kernel idempotent
+title: A near-idempotent channel close to its twirl over a projective group basis rounds to an expectation
+title: Pad a nested-corner module isomorphism by the complement of the outer idempotent
+title: Nested equal-trace idempotents from two finite subgroups with p-regular intersection coincide
+title: Place a semisimple idempotent of the intersection between the two nested idempotents and compare lifted traces
+title: Compute the four binary determinants of the two-idempotent pairing
+title: Strict nesting between idempotents supported in two finite subgroups forces a strict rational rank gap
+title: The canonical neutral Weil torsion retraction is always double determinant neutral
+title: A simple group acting on a tree with virtually nilpotent edge stabilizers has a finite subtree fixator
+title: An idempotent certified below a nilpotent matrix of order k obeys the Jordan bound already in K_0
+title: No Thompson-equivariant Boolean lattice lift of the cylinder idempotents exists
+title: Dualize the lift to an equivariant retraction and push Haar measure onto the Cantor set
+title: Nonzero scalar idempotents in finite cyclic groups can evade any fixed lifted-trace precision
+title: Complement the averaging idempotent on a cyclic group of order one more than a prime power
+title: A full swap idempotent over F_3 makes the ternary scalar quotient non-linear-sofic in characteristic three
+title: Kazhdan averaging plus Malcev residual finiteness of finite-dimensional images, and a vacuous converse
+title: Move one endpoint inside the chart stabilizer and intersect cyclic Fourier supports
+title: Put the finite-orbit ZPC stabilizer quotient inside one fixed Higman universal group
+title: Put the profile-pure stabilizer quotient inside one fixed Higman universal group
+title: Iterate one role-packed forbidden idempotent past the marked-sector capacity
+title: Map the surviving corner to its own tracial matrix ultraproduct and use the finite average identity
+title: Pad the corner pair by the complementary idempotent and use rk(1 - ab) = rk(1 - ba)
+title: Combine property FA, normality, minimality and the amenable edge stabilizer
+title: Contradict the corner representation with one finite probability average
+title: Restrict to right-invariant configurations and read them on the quotient group
+title: Use Selberg averaging and odd-level edge fullness to repair the whole vertices
+title: Average over odd atom vectors, using that 2 is invertible mod three
+title: The odd-measure crossed product over F_3 carries an invariant mod-three average and trace that separates some idempotents but not the corner target
+title: The odd-measure crossed product carries a star compression design below the cylinder idempotent
+title: In the signed Thompson crossed product over odd measures the unit is Murray-von Neumann below the cylinder idempotent
+title: Oligomorphic GL Pauli addressing has unavoidable stabilizer filling loss
+title: Compare contextual linear transports with fixed sections at the base-vector stabilizer
+title: Rotate the two trivial point-stabilizer summands away from the fixed child
+title: The Poincare form of the lazy average plus the shared h-displacement of all coset words
+title: A one-sided inverse gives a rank-four compressor whose defect is the complementary idempotent
+title: A one-orientation shear conjugate of an equal-rank finite-chart idempotent cannot sit strictly below another chart idempotent
+title: An opposite-sign stabilizer double coset collapses the coinvariant pairing certificate
+title: The universal order-two ring has no properly infinite idempotent in any finite amplification
+title: An orthogonal idempotent sum is Steinberg-conjugate to its stabilized block sum
+title: Nontrivial spectral support of Steinberg roots is not additive on orthogonal idempotents
+title: A packet retraction evaluates every Hecke collision atlas in finite dimension
+title: Apply the packet retraction entrywise in Morita coordinates
+title: Lift through one plus p and kill a small p-adic idempotent
+title: Reynolds-average the paid contraction over the literal six-summand actor
+title: Average the paid discrepancy over the eight native Pauli character atoms
+title: Reynolds-average the localized Pauli compression before taking its spectral high cut
+title: Separate partition degrees and detect every idempotent by its leading canonical trace
+title: The coordinate Pauli average has an exact inverse-linear commutant gap
+title: Project the Paulis onto the exact stabilizer commutant, then let co-density make them central
+title: The Pauli lamplighter over an HS-stable host with a co-dense Kazhdan stabilizer is not hyperlinear
+title: Perfect decidable shell inputs admit finitely presented permutation extensions with an enlarged stabilizer
+title: Perfect decidable inputs admit a shell stabilizer of finite bi-index in a finitely presented overgroup
+title: A finitely presented shell envelope is a host with two stabilizer double cosets
+title: The retained shell stabilizer is one permissible choice of enlarged stabilizer
+title: Average over the unit powers and then over the residual three-point fibers
+title: Average permutation matrices and retain the uniform vector
+title: Use point-stabilizer invariance and the unique off-diagonal pair orbit
+title: One point-stabilizer-local hard share finitely compiles the whole prefix-preserving bridge orbit
+title: Separable positive stabilizers give Schreier approximations, then GKP Theorem A
+title: Read the prime scale from the Bass-Serre block stabilizer
+title: Product-word stabilizers cannot functorially cut out three corners of a Boolean rectangle
+title: Quotient the stabilizer of one profile-pure projection and induce over its formal coset blocks
+title: Projective-dihedral factorization has an explicit dimension-free Hilbert--Schmidt retraction
+title: A full swap-averaging idempotent on the scalar quotient gives a strict linear automaton there
+title: The averaging idempotent of the swap-sign Klein group is full in the group algebra of the ternary scalar quotient
+title: The level-two sign and prefix averaging idempotent is full in the group algebra of the ternary scalar quotient
+title: The swap-averaging idempotent of the ternary Leavitt unit group modulo scalars is full in its group algebra over F_3
+title: The swap-averaging idempotent of the ternary scalar quotient is not full in its group algebra over F_3
+title: A nonzero properly infinite idempotent makes every elementary group from rank two non-MF
+title: The unit group of a ring with a full complementary idempotent is not MF
+title: Separate the stabilizer line from the parity line and close the weak gluing
+title: Compute the transvection double coset from two affine leaf stabilizers
+title: Compare the seven dihedral matrices with the affine qutrit stabilizers
+title: Fixed points on the square complex bound finite subgroups, and augmentation or extended characters kill their idempotents
+title: Over every F_p, idempotents on finite subgroups of Radu's lattice give no corner witness and no stable-finiteness defect
+title: Sample coordinates and average collision mass plus row cost
+title: Cancel the base lamp exactly on the stabilizer event and integrate over the IRS
+title: Dead — average randomized coordinate products and apply unitary BLR self-correction
+title: Match an excluded configuration with an image configuration of the same stabilizer and translate both far away
+title: Killing class-zero idempotents keeps the rank condition, so a maximal such quotient is weakly finite
+title: Pass from rank-one Baum--Connes to algebraic idempotent vanishing
+title: Torsion-free real-rank-one lattices satisfy Kadison--Kaplansky and characteristic-zero idempotent
+title: Reach the complementary summand by an involution exchanging two equivalent idempotents
+title: Average nested finite supports and apply Kazhdan transport in the rank-weighted Hilbert spaces
+title: Mix with the regular trace to erase every nontrivial scalar stabilizer
+title: Bound covariance of a positive residual average by its trace
+title: The recursive Leavitt kernel idempotents live in a locally finite packet tower
+title: Enumerate stabilizer identifications and commuting lamp conjugates
+title: A recursively enumerable point stabilizer gives a finitely generated recursive lamp presentation
+title: Reduce locality by replacing each amplified tensor clause with the average of its factors
+title: Cut the regular MF model by the finite-kernel averaging projection
+title: Average many fixed root elements and exhibit a drifting nearest-neighbor flow
+title: Average the odd squares before spectral coarea
+title: The averaged anchor-odd square function has a dimension-free regularized cut
+title: Automorphisms of S free-producted with a free group act highly transitively on the homomorphisms to S, with finitely generated stabilizers
+title: Quotient by the exact stabilizer action and conjugate prototypes
+title: Glue preimages of a point from each piece far apart and apply the retraction
+title: Evaluate the whole returned range-idempotent language in a finite elementary group
+title: Multiply orthogonal idempotent Whiteheads in three finite packets
+title: Spectrally cut the averaged relator defect and polar-correct its compression
+title: Transplant to marked-site coset spaces and peel stabilizer-coset strata by the coset-region lemma
+title: Residually finite lamps over an action with finite stabilizers preserve direct finiteness at every matrix size
+title: Right-core-equivariant Cayley averaging produces the full relative Toeplitz window
+title: Average a right-core-equivariant gauge into a complete relative Toeplitz kernel
+title: Average right-core-equivariant Gram matrices over the finite quotient
+title: Vanishing-HS approximate stabilizers of a diffuse pin have zero quadratic covering entropy
+title: Spectrally block an approximate stabilizer and polar-correct its diagonal blocks
+title: A finite spin role packet turns the whole BCS gap into one fixed idempotent
+title: Row-square equality variance transfers the averaged pinching gap
+title: Row sums in the sequence representation are constant on the all-ones stabilizer
+title: A fixed S3 packet neither creates nor removes an infinite-stabilizer projective HS gap
+title: The fixed-configuration transfer gives only constants on simple Kazhdan hosts and nothing at point stabilizers of measure-free actions
+title: Scale a faithful class-two unitriangular model by the head and first-tail idempotents
+title: A Schur forbidden idempotent is an explicit Toeplitz defect without collapsing its packet algebra
+title: Exhaust the mark-preserving packet charts and diagonalize their exact average
+title: Self-adjoint Schur near-idempotents round to conditional expectations with a dimension-free square-root bound
+title: Sum reciprocal-dimension central idempotents sector by sector
+title: Selberg orbit retraction starts after, not before, square-free basin authentication
+title: Average the identity, polar-complete, and use equality of characters
+title: A three-cycle defeats every packet-central selected-stabilizer corrector
+title: Level stabilizers separate points, and infinite simple groups have no finite quotients
+title: Haar-average the independent multiplicity gauges
+title: A triangular step whose carried idempotent minor separates the two diagonal blocks is a minor step
+title: Put the disjoint arm in the common point stabilizer
+title: Retain the shell stabilizer as a core-free subgroup and identify the remaining double-coset condition
+title: Any finitely presented shell overgroup has a faithful induced coset action with finitely generated stabilizers
+title: Restrict stabilizer orbits to a translate of the original infinite shell orbit
+title: Recursive presentability and word-problem decidability coincide for the shell envelope and its one-singularity stabilizer
+title: Finite bi-index of a shell stabilizer forces large intersections with every conjugate of its envelope
+title: Every finitely generated input has shell groups with finitely generated finite point stabilizers
+title: Quotient by central diagonal ray translation and recover a finite-index rational stabilizer as kernel
+title: A finitely presented one-singularity shell stabilizer has a finitely presented isotropy germ group
+title: Realize germ generators independently and absorb the neighborhood kernel in the prefix stabilizer
+title: Detect identity on a specified cone by centralizing its finitely generated punctured prefix stabilizer
+title: Average the plateau projection over the Weyl involution and round spectrally
+title: Cesaro-average one marked trace and take a weak-star cluster point
+title: Signed orbit averaging compresses the full Green operator without an orbit-size gain
+title: A nonzero idempotent in a simple ring is full
+title: One lazy Hecke average is already isometric on Lambda-central unitaries of every regular-trace matrix model
+title: Columns of an algebra-preserving invertible matrix are disjoint idempotent vectors; the all-ones perturbation makes every pairwise product nonzero
+title: Equivariance pins the one read site to a coset fixed by the stabilizer, and fibres of the site map decide surjectivity
+title: A one-site equivariant self-map of a coset shift is strict exactly when a stabilizer is properly conjugated into itself
+title: Average coordinate characters over the odd-parity affine hyperplane
+title: Read the adjacent vertex stabilizers in the Bass-Serre tree
+title: Rule out the arithmetic coset atlas using one Hecke edge and Kazhdan averaging
+title: Identify finite-orbit stabilizer holonomy with a finite-index cocycle crossed product
+title: Reduce to subspaces of sl_3(F_2) avoiding the 28 rank-2 idempotents, then enumerate
+title: A lifted Sylow 2-subgroup acts on cosets with small stabilizers, and 2-subgroups of GL_2(Q_2) have order at most 8
+title: A Kadison--Kaplansky witness whose spectrum has capacity below one is a nontrivial idempotent of the algebraic group ring
+title: Laminar combinations of finite-subgroup idempotents have positive lifted trace whenever the configuration's intersection amalgam is sofic
+title: Push a simple FA subgroup through kernels, vertex stabilizers and colimit stages
+title: Sparse Clifford cycles refute generic average-commutator rounding
+title: Shift-orbit averaging erases a rank-one lamp in every commuting corner
+title: One word-visible spherical Hilbert--Schmidt average collapses the marked seed without resolving the global character PVM
+title: Localize an idempotent defect and use output guards to pack decoder alternatives
+title: Identity minors that split along the diagonal blocks survive triangular moves, and idempotent triangular moves are minor moves
+title: Two-by-two stabilization internalizes Morita branches but leaves an infinite-stabilizer coherence loss
+title: Multiply the two-by-two dilation and audit the prefix-frame stabilizer
+title: Telescope stabilizer conjugations and exhibit the two-dimensional sharpness family
+title: Finite stabilizer checks either admit an exact logical shear or carry no intrinsic payload
+title: A left corrector in the selected stabilizer makes every zero-compression payload involutive
+title: Conjugacy-compressed checks can still lose unboundedly through stabilizer naming
+title: The full stabilizer orbit of nonedge commutators has a Kesten chart carrier
+title: Inherit pair orbits from the actor and bound stabilizers by their action on the Bass-Serre tree
+title: Conjugate idempotents by the strict automaton and its left inverse
+title: Show that conjugation averaging annihilates the Kazhdan projection difference before any IRS limit
+title: Pad a strict corner equivalence by the complementary idempotent
+title: Quasitracially idempotent approximate units split bounded quasitraces
+title: One functional-calculus approximate unit is asymptotically idempotent for every bounded quasitrace
+title: Correct a quasidiagonal model by averaging its Stinespring isometry over the core
+title: Positive maximal Følner averages exactly characterize faithful invariant measures
+title: Turn positive maximal orbit averages into a countable faithful mixture
+title: Bootstrap the spectral supercarrier through degree-three Grassmannian and stabilizer control
+title: Bootstrap the spectral supercarrier through projection and stabilizer degree two
+title: Induct the Grassmannian, carrier, and stabilizer Michael indices in lockstep
+title: Bootstrap diffuse spectral supercarriers and stabilizers through degree five
+title: Lift affine increments to positive orbit averages and encode them by spectral cuts
+title: Close an equicontinuous trace island to a compact group and Haar-average its orbit
+title: Four explicit automorphism loops give an integral basis of the rotation-retraction kernel
+title: Append a basis of the retraction kernel to the two canonical rotation loops
+title: Apply the torus retraction to the canonical rotation generators and the split unit class
+title: Regroup finite-stabilizer fibers into free Bernoulli shifts and exhaust all lamps
+title: Finite-stabilizer permutation wreath products have uniformly finite nuclear dimension
+title: Arbitrary permutation stabilizers preserve finite nuclear dimension for finite-rank abelian wreath actors
+title: Average finite-group augmentation projections over long automorphism windows
+title: Resolve each nonsplit stabilizer fiber over the dual of its central core
+title: A split common infinite stabilizer preserves finite nuclear dimension of permutation wreath products
+title: Factor the common stabilizer and retain the corrected residual fiber bound
+title: Use finite coefficient crossed products and average residual unitaries into commutants
+title: Purify finitely many stabilizer lattices and resolve the central stabilizer field
+title: A finite menu of arbitrary stabilizers gives finite nuclear dimension for permutation wreath products
+title: Coordinatewise orthogonality stays one-half away from the common averaged diagonal
+title: Invariant-mean retractions have an exact finite-coset order-zero gap
+title: The Z2 uniform Roe boundary has no periodic quotient or torus retraction
+title: Compare averaging projections by their canonical traces
+title: Finite-subgroup averaging projections give an ordered-K0 obstruction to strict comparison and selflessness
+title: Convert uniform coordinatewise averaging into ambient self-commutators and identify the centrality failure
+title: Ambient averaging kills the XCIII kernel and central commutator lifting is the exact trace hinge
+title: Take the weak ideal support and average it onto the factor section
+title: Apply the ordered retraction to a perforation inequality
+title: An ordered-monoid retraction of the external Cu map transfers almost unperforation
+title: Full hereditary stabilizers and uniform polar contractions give projection-frame selection
+title: Average a kernel over the finite-dimensional CAR stages
+title: Subgroup averaging projections and compression relations give no obstruction to reduced Baum--Connes
+title: Average the HNN rows and compare subgroup fixed-space traces
+title: Support-idempotent returns give an odd native loop with a surviving gauge
+title: A unit commutator fixing a nonzero idempotent belongs to the corner-unit subgroup
+title: Shrink the fixed idempotent and return the two-coordinate Whitehead matrix
+title: Average the partner of a swap-separated pair over the swap to invert the corner idempotent
+title: An elliptic element commuting with a hyperbolic one fixes its axis pointwise, and the axis meets three explicit stabilizers
+title: Finite reversible Markov near-idempotents round to partition expectations uniformly in dimension and atom weights
+title: Average only compatible automorphisms and rule out one-face-local separators
+title: A stabilizer-normalized tagged shift cannot make both canonical row occurrences bounded-area pair charts
+title: Translation averaging and tensor closure turn the high Fourier blocks into a normal quotient
+title: Use idempotence of the zero-one stabilizer coefficient under scalar amplification
+title: The full setwise stabilizer of the initial digit fiber is finitely generated
+title: Enlarging to the full fiber stabilizer gives a faithful finite-rank action of the digit host
+title: The contracting digit host has infinitely many double cosets of the retained shell stabilizer
+title: Amplify onto level-two cylinders and multiply by the commuting Klein idempotent
+title: The anti-central evaluation kernel of the ternary Leavitt group algebra contains a Klein idempotent of trace two
+title: Sign patterns on level-two cylinders give commuting involutions whose averaging idempotent evaluates to zero
+title: The swap-averaging idempotent is full in the anti-central summand of the ternary Leavitt group algebra
+title: Bound disjoint defect products above by the cube-zero Frobenius bound and below by compressing along the anti-central sign idempotent of the next cylinder
+title: The swap-averaging idempotent of the ternary Leavitt unit group is full in its group algebra over F_3
+title: Average over the central involution and conjugate the swap by the sign unit
+title: A full swap-averaging idempotent gives an injective linear automaton with swap-invariant output over F_3
+title: Averaging and spectral-moment proof that congruence projections vanish at the regular trace
+title: Present one base occurrence and let its finitely generated stabilizer fix it
+title: A full averaging idempotent in F_2[V] makes the binary Leavitt unit group algebra not directly finite
+title: The separating stabilizer families of Thompson's V all contain copies of V, so Cantor-set coset peeling is circular
+title: Halve the rank of a cylinder idempotent with prefix replacements
+title: A full averaging idempotent gives a one-sided unit in the binary group algebra of V
+title: A full proper idempotent gives a one-sided unit in the ternary group algebra of V
+title: Push a failure into the corner of a prefix-permutation kernel idempotent along the tail-diagonal embedding
+title: Witnesses for the Thompson V linear targets generate subgroups in which every rank model kills the averaged element
+title: The averaging idempotent of an order-three element of Thompson's V is full in its binary group algebra
+title: Use the rational-point stabilizer and the unique off-diagonal orbit to present the Thompson Pauli tape
+title: Dead - peel an automaton over V through Cantor stabilizers and finish with the coset-region lemma
+title: The swap idempotent of Thompson's V is full in its ternary group algebra
+title: Apply the averaging lemma inside the support subgroup and exhibit the rank targets
+title: Brown identification, apartment retraction, and Ioana-Spaas-Wiersma Corollary D
+title: Average the central cocycle over the finite subgroup and split it inside the rationalization
+title: The product of a one-sided pair in the other order is idempotent, nonzero, and not one
+title: A scalar one-sided inverse pair in a group algebra is a nontrivial idempotent, so on torsion-free hosts it refutes the idempotent conjecture
+title: Average bounded-incidence translates and compare global and blockwise resets
+title: A tree action with locally elliptic vertex stabilizers forces rational L2-Betti numbers on the complex
+title: Cartan-Leray spectral sequence of the development with finite stabilizers
+title: A lift of s0 in idempotent pieces with an acyclic defect graph forces a non-directly-finite shift group, and finite supports need a cycle of partial conjugations
+title: A twisted Brin-Thompson group is finitely presented exactly when the base is, pair-orbits are finite and point stabilizers are finitely generated
+title: Refine brick partitions, match Boolean atoms brick by brick, and split stabilizers along the clopen partition
+title: Stinespring-dilate the generator lift, average the corner with property (T), and hit Deligne invisibility
+title: Carry finite internal automorphism actions through every stabilizer corner
+title: Split the visible unit into m conjugate isotypic idempotents and compare ranks
+title: Finite HNN quotients, Britton reducedness, and a retraction onto the MF factor
+title: Lift the two multiplication rectangles to a finite-group amalgam and separate the idempotents in a finite quotient
+title: Average over the Pauli Klein-four conjugation action
+title: For a faithful 2-transitive action the type (A) conditions collapse to finite presentation of the group and finite generation of one point stabilizer
+title: In a finite-dimensional unitary representation of a group acting 2-transitively on an infinite set, stabilizer-fixed vectors are fixed
+title: Two-transitivity gives one pair orbit and conjugate point stabilizers
+title: Telescope the cross Gram and average its spectral cuts
+title: An unbounded-depth noncentral Hecke corner wordizes the A2 two-path average
+title: Unconditional assembly plus index integrality gives integer idempotent traces, and holomorphic calculus carries them to reduced gaps
+title: Over torsion-free Lie subgroups, idempotents of unconditional completions have integer trace, and unconditional spectra cross every non-integral reduced gap
+title: Unfolding each amplified tensor clause into the average of its factors returns exactly the input ground energy
+title: Apply proper twisted-Schreier area to the whole stabilizer
+title: A uniform averaged conjugation-Kazhdan gap gives the adjoint face-Hamiltonian gap
+title: A finite presentation exposes the post-halting Pauli question oracle with constant average defect
+title: Average unitary BLR defect self-corrects to a uniform almost-action
+title: Average trace domination propagates small Hilbert--Schmidt energy without constructing conjugators
+title: Virtually cyclic inputs admit shell groups with finitely presented finite singularity stabilizers
+title: Sign weighted reflection averages and compare channels by operator Cauchy--Schwarz
+title: Average conjugation and compute its matrix-space trace by characters
+title: Finite spectral transport energy is an exact whole-module covariance average
+title: Average every occurring difference character on its finite sign quotient
+title: The fiber counts sum to the average times the number of patterns, so an upper bound at the average forces equality
+title: An automaton preserves uniform Bernoulli measure exactly when no window fiber exceeds the average size
+title: Conjugate lamp averaging by the Kazhdan projection of the non-normal subgroup
+title: Reduce a permutational wreath product to its stabilizer products and close them under products
+title: A permutational wreath product is surjunctive exactly when every lamp power times its stabilizer intersection is
+title: Clock-shift encoding and averaged decompression prove the three-operator reduction
+title: A support-three element fixing the C3 averaging idempotent cannot witness one-sided invertibility
+title: The trace of an idempotent in a group algebra over a field of characteristic zero is rational
+title: Import Zalesskii's rationality theorem for traces of group-algebra idempotents

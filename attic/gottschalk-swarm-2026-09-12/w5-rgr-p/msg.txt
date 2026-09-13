@@ -1,0 +1,19 @@
+RGR_p: propagate w4-vf-linear-b corrections (|e|, one further amplification, e < 0, in-block rank slack)
+
+Lane w5-rgr-p. Carries the Section 30 corrections of gk-vf-linear-b-verification into the
+artifact and nodes landed in a026618e23:
+- artifact rgr-p-cyclic-twist-reduction: amplification is |e|; Prop 1.2 now states sufficiency, with a
+  Correction paragraph (t (x) S equivalence; diag(u,u) is a witness that is not a shift); Prop 2.1
+  states the e < 0 case; the companion matrix is identified as the twisted shift with twists
+  1,...,1,lambda (every rotation P_m = lambda); Section 4 rank-slack bullet corrected (slack inside the
+  amplified blocks remains available).
+- rank-ultraproduct-unit-groups-solve-nonsingular-equations: Attempts bullets updated to match.
+- rgr-p-reduces-to-cyclic-twist-system: Attempts rank-slack line corrected; e -> |e|.
+- scalar-target-power-words-have-exact-roots and scalar-target-power-words-proof: e < 0 case stated,
+  PASS recorded, l = 1 description corrected.
+
+Working files were rebuilt from main at 83204067f1 after the coordinator restart; all five base blobs
+matched the recorded ones.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

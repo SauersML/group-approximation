@@ -1,0 +1,7 @@
+research/artifacts/jacobson-el3-presentation-and-amalgam-kernel-2026-09-12.md
+research/binary-jacobson-el3-is-finitely-presented.md
+research/binary-jacobson-el3-is-sofic.md
+research/jacobson-el3-amalgam-kernel-is-residually-finite.md
+research/jacobson-el3-amalgam-kernel-is-the-laurent-cone-kernel.md
+research/jacobson-el4-is-finitely-presented-steinberg-group.md
+research/toeplitz-commutators-do-not-normally-generate-amalgam-kernel.md

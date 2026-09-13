@@ -1,0 +1,9 @@
+Correct the Jacobson-versus-nonsoficity comparison in the R4 plan
+
+w4-vf-gate: the Jacobson claim (rank radical = finitary kernel) implies that EL_3(J) is nonsofic, because
+a sofic group has a faithful permutation model. Nothing on main gives the converse, since that needs a
+nonsofic EL_3(J) with a faithful F_2 rank model. So the header says "implies nonsoficity; no converse is
+known" instead of "strictly stronger".
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

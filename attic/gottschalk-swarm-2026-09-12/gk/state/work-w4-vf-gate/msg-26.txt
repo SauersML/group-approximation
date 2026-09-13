@@ -1,0 +1,10 @@
+Verify the one-sided halves of Jacobson EL3 (verification section 32)
+
+w4-vf-gate re-derives jacobson-one-sided-symbol-preimages-are-lef
+(w7-el3j-sofic, 07d43b6a3): structure and twist of the halves, the
+block-triangular embedding into GL_(3N+3)(F[S]), residual finiteness
+mod S^k, and the proper amalgam cover. PASS, no corrections, not
+decision-level. Adds the verdict line on the route.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

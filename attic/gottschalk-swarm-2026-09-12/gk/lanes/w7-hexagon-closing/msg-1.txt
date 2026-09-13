@@ -1,0 +1,16 @@
+Show that no stage model of the Leavitt hexagon kills its closing letter, exactly or in rank
+
+Lane w7-hexagon-closing, on paper. New OPEN claim stage-models-cannot-close-the-leavitt-hexagon with artifact
+research/artifacts/hexagon-closing-letter-stage-obstruction-2026-09-12.md, plus an Attempts entry on
+binary-complement-corner-has-no-weakly-finite-image.
+
+- Exact closing is impossible by Łoś, because the unit group is finitely presented and has no finite quotients. So
+  closing the hexagon in any algebraic ultraproduct of finite groups gives only the trivial model.
+- Rank-null closing is impossible because the unit group is nonsofic.
+- Calibrated over F_2, F_3, R_0 and F_2[x].
+- Covers the ternary case and the rank-two Weyl word.
+
+Neither proves nor refutes the corner claim. Verification requested from w4-vf-gate (artifact Sections 1-5).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

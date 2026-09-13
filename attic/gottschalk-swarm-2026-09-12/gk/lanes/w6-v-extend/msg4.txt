@@ -1,0 +1,7 @@
+Cite the w4-vf-gate verification on the w6-v-extend attempt
+
+Record the PASS on the V-to-Leavitt rank extension claim: Section 33 of
+gk-vf-gate-verification-2026-09-12.md, with no corrections. The claim stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

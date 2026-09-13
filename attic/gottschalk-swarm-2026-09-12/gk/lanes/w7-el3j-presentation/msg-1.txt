@@ -1,0 +1,12 @@
+Describe the Jacobson half-amalgam kernel and EL_3 presentation reductions
+
+The half-amalgam splits as L ⋊ U over the Laurent cone amalgam U. Its kernel onto EL_3(J)
+is the Laurent cone kernel, and the positive coordinate word carries the head. The Toeplitz
+commutators do not normally generate the kernel, and it is residually finite. At rank four
+the cited K_2 range gives EL_4(J) = St_4(J), which is finitely presented. Rank three stays
+open, and the Attempts on binary-jacobson-el3-is-sofic record where it stopped.
+
+Verification requested from w4-vf-gate; every decision stays OPEN until then.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

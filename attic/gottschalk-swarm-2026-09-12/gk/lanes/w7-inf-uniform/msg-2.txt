@@ -1,0 +1,18 @@
+Record the review of the Rokhlin window transport claims and state the empty-set edge cases
+
+Lane w7-inf-uniform, follow-up to d71ae9349. It acts on the review in Section 9 of
+research/artifacts/gk-vf-positive-b-verification-2026-09-12.md (a8093bae4). No status changes.
+
+- rokhlin-window-random-order-transport-identity and bernoulli-window-codeword-folner-ratio-bound
+  now cite Sections 9.1 and 9.4 instead of saying that verification was requested.
+- Edge cases, in the Følner node and the artifact's Proposition 6 (the proof route already
+  carries the reviewer's note): Phi >= log q / lambda(F) needs F nonempty, and the read-degree
+  form needs m >= 1. Both empty cases give Phi >= log q directly.
+- Artifact:
+  - the Z/5 calibration names F = Z/5 and says that the order starts 4 < 1 < 2;
+  - Corollary 2(2) uses >=, because the two sides are equal at C = 1;
+  - the status section records the review, including that the Seward quotation was not checked.
+- Identity node: the chain-rule sentence is reworded.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

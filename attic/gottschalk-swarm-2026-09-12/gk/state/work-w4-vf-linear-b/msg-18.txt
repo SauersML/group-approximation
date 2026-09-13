@@ -1,0 +1,12 @@
+Verify the two-piece corner criterion and the finite-dimensional chart filter
+
+Section 41 of the w4-vf-linear-b verification artifact re-derives Sections 1-8 of the w6-wf-stage1-a
+artifact, including the trace display of Claim D.3. Both routes pass:
+- two-piece-left-inverses-are-corner-left-inverses-proof (Theorem A, Corollary A.1, Construction C)
+- finite-dimensional-chart-reps-kill-one-transvection-lift-proof (Proposition E, Corollaries E.1 and E.2)
+
+one-transvection-ternary-s0-lift-is-left-invertible stays OPEN. No claim changes status, and none is
+decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

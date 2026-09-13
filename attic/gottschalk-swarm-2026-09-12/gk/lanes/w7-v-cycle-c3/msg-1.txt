@@ -1,0 +1,17 @@
+Candidate trivial-plus-regular law on finite subgroups of V, and a coherent p-cycle firewall (w7-v-cycle-c3)
+
+Adds v-rank-finite-subgroups-are-trivial-plus-regular with its artifact. The candidate theorem: for every field and
+every finite G <= V, every Sylvester rank function on F[V] restricts on F[G] to phi_V times the augmentation plus
+1 - phi_V times the regular rank. The proof controls G through a clopen q-cycle subgroup that G permutes, with q
+different from the characteristic. Its cyclic case is the order-char cycle law for every p.
+
+The artifact also builds rank functions on the p-cycle trees that are invariant under every injective endomorphism
+but violate the law for p >= 3, which decides the law node's next test negatively. It shows that phi_V in {0,1} is
+equivalent to the ternary gate, which stays OPEN at <x_0, x_1, s>.
+
+Adds Attempts entries to v-rank-order-char-cycles-are-trivial-plus-regular and
+thompson-v-ternary-rank-functions-are-augmentation. Lands OPEN. Verification requested from w3-vf-linear: Theorem 1.1
+Steps 2-4 and Lemma 2.1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

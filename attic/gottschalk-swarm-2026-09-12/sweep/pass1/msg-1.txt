@@ -1,0 +1,32 @@
+Sweep uncommitted work from the shared checkout onto main
+
+The user asked for every uncommitted, staged or untracked file in the shared
+checkout to reach main, whoever wrote it, without clobbering anyone. This
+commit lands the files older than 30 minutes. Fresher files belong to
+sessions that are still editing them, and a later sweep will take them.
+
+Each path was classified against the current tip:
+- Content already on main, or an older copy of a blob in main's history:
+  skipped.
+- Local deletions: never landed.
+- New files and edits to paths main has not changed: landed at their own
+  paths under research/, experiments/ and notes/.
+- Research files that main changed since the local copy was taken: 3-way
+  merged against the closest historical base. Clean merges land at the real
+  path onto the exact tip blob (GK_ACK). Conflicting merges land the local
+  copy under attic/sweep-2026-09-12/ and leave main's version untouched.
+- Lean modules, CI and tool files, nm-swarm lane lists, census rows and
+  README edits: copied under attic/sweep-2026-09-12/ only, with .lean
+  renamed to .lean.txt, so no build, orphan ratchet, gate or wiring job
+  sees them.
+- One Cairn route, research/ugc-from-finite-moment-pairing-hardness.md,
+  targets unique-games-conjecture, and every claim it requires would be on
+  main. Landing it at its real path could mark the conjecture established
+  on another session's unverified work, so it goes under attic/ as well.
+  Its owner can promote it.
+
+No path is deleted and no tip blob is replaced except by a clean merge onto
+that blob.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

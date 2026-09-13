@@ -1,0 +1,14 @@
+Record the unstable K_2 candidate and the PASS on the Jacobson halves in the R4 plan
+
+Fold two landings into the rank-four gate plan.
+
+- w4-vf-gate §32 (6bc9bfc1a2). PASS with no corrections on `jacobson-one-sided-symbol-preimages-are-lef`:
+  both one-sided halves of EL_3(J) are LEF, and EL_3(J) is a proper quotient of their amalgam.
+- w7-k2-unstable (8afa079662). Candidate proof, held OPEN until w4-vf-gate re-derives it, that
+  K_2(3,R) = 0 for the binary and ternary Leavitt hosts. So the K_2 option of the Steinberg residue is empty.
+  A relation-only proof of theta < 1 must use a Steinberg cycle that no graph of locally finite subgroups
+  routes, or a global input. Also record the hexagon presentation and its limits, and a lead note that
+  both hosts now put the load on the closing relations of a graph of approximable groups.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

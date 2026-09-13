@@ -1,0 +1,11 @@
+w7-v-cycle-c3: scope p-cycle-tree models to elementary abelian p-subgroups (w3-vf-linear §33)
+
+- p-cycle-tree-invariance-cannot-force-order-char-law: the title, distinct_from and "Why it matters" now say
+  elementary abelian p-subgroups. A new "Not covered" bullet names W = E_p ⋊ <s> with s ~ tau_1.
+- Artifact: Section 1 Step 1 now reads "orbits of nontrivial characters". The Section 2 Consequence and the Section 3
+  bullet are scoped, non-extension says |I| >= 2, and Section 4 records the §33 PASS.
+- Ternary gate entry: the cylinder-group node is cited as ESTABLISHED, and the law bullet is scoped.
+- Law node entry: the coherence remark is restricted to elementary abelian p-groups.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

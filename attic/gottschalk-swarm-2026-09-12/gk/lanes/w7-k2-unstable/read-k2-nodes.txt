@@ -1,0 +1,608 @@
+
+######## leavitt-steinberg-map-iso-from-rank-three
+---
+rg: 2
+id: leavitt-steinberg-map-iso-from-rank-three
+kind: claim
+title: Over the binary Leavitt algebra the Steinberg map is an isomorphism from rank three and every GL_r is acyclic
+distinct_from:
+  leavitt-gl-equals-el-and-perfect-unit-group: that proves GL = EL at every rank and perfectness of the unit group, i.e. vanishing first homology; this is the Steinberg comparison isomorphism and vanishing of all higher integral homology of every GL_r.
+  finite-root-algebra-forces-steinberg-triviality: that forces one class of Steinberg representations to be trivial; this identifies the Steinberg group with GL_r itself, a statement about groups with no representation in it.
+  leavitt-unit-group-finitely-presented: that is finite presentability of the unit group, which the source derives from this comparison; this is the comparison and the homology computation themselves.
+artifacts:
+  - research/artifacts/khanh-2609-08428-leavitt-gl-verified-2026-09-11.md
+---
+
+**ESTABLISHED (literature import).** Let `R = L_(F_2)(1,2)`. Then
+
+```text
+H_n(GL_r(R); Z) = 0         for every n > 0 and r >= 1,        (KH1)
+St_r(R) -> GL_r(R) is an isomorphism   for every r >= 3.        (KH2)
+```
+
+Source: H. V. Khanh, arXiv:2609.08428v1 (8 September 2026), **Theorem 4.4**
+for `(KH1)` and **Theorem 5.4** for `(KH2)`. Lemma 5.3 there gives
+`GL_m(R) = E_m(R)` for `m >= 2`, matching
+`leavitt-gl-equals-el-and-perfect-unit-group`. Statements were checked against
+the PDF text; proofs have not been reviewed here. The paper makes no assertion
+about the Steinberg kernel at rank two.
+
+## Consequences recorded in prose, for the lanes that own them
+
+- **Leavitt–Steinberg fork.** For `U = St_5(L)` and `Q = EL_4(L)`, `(KH2)` and
+  the prefix-code ring isomorphisms `M_n(L) ≅ L` give `U ≅ GL_5(L) ≅ L^x ≅ Q`.
+  The kernel called central in the unstable branch of
+  `leavitt-steinberg-hs-stability-fork` is trivial, and `U` is simple
+  (`binary-leavitt-unit-group-is-simple`). The fork therefore says that `L^x` is
+  normalized-HS stable exactly when it is nonhyperlinear.
+- **Schur multiplier.** `(KH1)` with `r = 1` gives `H_2(L^x; Z) = 0`, so `L^x`
+  is superperfect and is its own universal central extension.
+
+######## leavitt-steinberg-map-iso-from-rank-three-citation
+---
+rg: 2
+id: leavitt-steinberg-map-iso-from-rank-three-citation
+kind: route
+title: Import Khanh's acyclicity and Steinberg comparison theorems
+target: leavitt-steinberg-map-iso-from-rank-three
+requires: []
+artifacts:
+  - research/artifacts/khanh-2609-08428-leavitt-gl-verified-2026-09-11.md
+---
+
+Citation import, not a reproof. arXiv:2609.08428v1, Theorem 4.4 ("H_n(GL_r(R),
+Z) = 0 for every n > 0 and r ≥ 1") and Theorem 5.4 ("for every r ≥ 3, the
+canonical map φ_r : St_r(R) → GL_r(R) is an isomorphism"), `R = L_{F_2}(1,2)`.
+Read on 2026-09-11 from the PDF text of v1, extracted on MSI.
+
+**Verified on a second pass, whole paper read (2026-09-11).**
+
+- **Theorem 4.4** follows from the paper's criterion, Theorem 2.2.
+  - Proposition 3.2: standard inclusions are zero on homology. It uses
+    Ara–Brustenga–Cortiñas' vanishing of `K_*(R)` (Münster J. Math. 2009,
+    Theorem 7.6) and an idempotent compression `c`.
+  - Corollary 4.3: frame complexes are highly connected, by a common
+    transverse vector.
+  - The stabilizer spectral sequence with Quillen's finite-field weights, given
+    in full.
+- **Theorem 5.4** at rank 4 comes from the criterion Theorem 5.1, via Brown's
+  presentation theorem, with these inputs:
+  - `H_2(GL_3) = 0` and perfectness of `St_3` in the five-term sequence;
+  - the centrality Lemma 5.2;
+  - simple connectivity of `|X_4(R)|`;
+  - `GL_m = E_m` (Lemma 5.3).
+- The other ranks `r >= 3` use Voronetsky's refinement isomorphism (JPAA 225
+  (2021), §4 Proposition 1), which was not re-read here. So the rank-5 form used
+  for the Leavitt–Steinberg fork rests on it as well as on the rank-4 criterion.
+- Every external input is published. No gap was found.
+
+######## leavitt-steinberg-unstable-branch
+---
+rg: 2
+id: leavitt-steinberg-unstable-branch
+kind: route
+title: Select the unstable Steinberg branch
+target: hyperlinear-nonsofic-group
+requires: [leavitt-steinberg-hs-stability-fork, leavitt-steinberg-hs-unstable]
+artifacts:
+  - notes/ATLAS_HS_CRITERION.md
+---
+
+The established stability fork converts one non-correctable atlas sequence
+into a nontrivial hyperlinear central quotient of the Steinberg cover.
+Central-quotient permanence then makes the explicit nonsofic simple group
+`EL_4(L_(F_2)(1,2))` hyperlinear.
+
+######## leavitt-steinberg-stable-branch
+---
+rg: 2
+id: leavitt-steinberg-stable-branch
+kind: route
+title: Select the stable Steinberg branch
+target: non-hyperlinear-group
+requires: [leavitt-steinberg-hs-stability-fork, leavitt-steinberg-hs-stable]
+artifacts:
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+---
+
+The established stability fork turns normalized-HS stability of the
+finitely presented, minimally almost periodic Steinberg cover into an
+explicit nonhyperlinear group.
+
+######## binary-leavitt-unit-group-integrally-acyclic
+---
+rg: 2
+id: binary-leavitt-unit-group-integrally-acyclic
+kind: claim
+title: The binary Leavitt unit group is integrally acyclic
+distinct_from:
+  leavitt-unit-group-finitely-presented: that is finite presentability of the same group, from the same paper; this is its integral homology.
+  leavitt-tensor-hosts-acyclic-steinberg-and-fp: that transfers acyclicity to unit groups of B ⊗ L under K-theory hypotheses; this is the unconditional statement for L itself.
+  leavitt-square-unit-group-is-fp-simple-and-acyclic: that concerns the unit group of L ⊗ L; this concerns the unit group of L.
+artifacts:
+  - research/artifacts/khanh-2609-08428-leavitt-gl-verified-2026-09-11.md
+---
+
+**ESTABLISHED (literature import).** For `R = L_(F_2)(1,2)`,
+
+```text
+H_n(R^x; Z) = 0     for every n > 0.
+```
+
+Source: H. V. Khanh, arXiv:2609.08428v1, **Theorem 4.4**, verbatim: "The unit
+group of R = L_F2(1,2) is integrally acyclic. More generally,
+H_n(GL_r(R), Z) = 0 for every n > 0 and r ≥ 1." The statement and the proof
+chain were checked by the literature lane (artifact).
+
+**Consequence used downstream.** `R^x` is perfect and has trivial Schur
+multiplier. By universal coefficients,
+`H^2(R^x; A) = Hom(H_2, A) ⊕ Ext(H_1, A) = 0` for every abelian group `A` with
+trivial action. So every central extension of `R^x` splits as a direct
+product.
+
+######## binary-leavitt-unit-group-integrally-acyclic-citation
+---
+rg: 2
+id: binary-leavitt-unit-group-integrally-acyclic-citation
+kind: route
+title: Import Khanh Theorem 4.4
+target: binary-leavitt-unit-group-integrally-acyclic
+requires: []
+artifacts:
+  - research/artifacts/khanh-2609-08428-leavitt-gl-verified-2026-09-11.md
+---
+
+Literature import from Khanh, arXiv:2609.08428v1, Theorem 4.4. The artifact
+quotes it against the PDF text, reads the proof chain in full, and records its
+external inputs as published theorems:
+
+- Ara--Brustenga--Cortiñas vanishing of `K_*(R)`;
+- the frame-complex connectivity proved in the paper.
+
+It is a reading, not a refereeing. Only the homology statement is imported.
+
+######## khanh-acyclicity-and-steinberg-criteria
+---
+rg: 2
+id: khanh-acyclicity-and-steinberg-criteria
+kind: claim
+title: Khanh's acyclicity and Steinberg comparison criteria, with the ring-general GE, refinement and finite presentation theorems they use
+distinct_from:
+  leavitt-steinberg-map-iso-from-rank-three: that is Khanh's conclusion for the binary Leavitt algebra itself; this is the family of general criteria and cited ring-theoretic theorems his proof runs through, stated for arbitrary rings and algebras, which is what a transfer to other coefficient rings consumes.
+  steinberg-finite-presentation-and-kazhdan-theorem: that pins an imported finite-presentation and property (T) result to one Steinberg source group in the Chatterji--Kassabov construction; this bundles Khanh's homology and comparison criteria with the general ring theorems, including Krstić--McCool, as quoted in his proof.
+artifacts:
+  - research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md
+  - research/artifacts/review-boone-higman-leavitt-tensor-hosts-2026-09-12.md
+---
+
+**ESTABLISHED (literature import).** These are the general statements used by
+`leavitt-tensor-hosts-khanh-transfer-proof` and
+`prime-field-leavitt-tensor-hosts-proof`. Source: H. V. Khanh, arXiv:2609.08428v1,
+read from the PDF text on MSI (`lit-groups/khanh-clean.txt`) on 2026-09-12.
+
+1. **Theorem 2.2 (acyclicity criterion).** "Suppose that A^2 ≅ A as right
+   A-modules. Assume also that: (1) for every n > 0, the standard inclusion
+   Γ_(n+2) -> Γ_(n+3) ... induces zero on H_n(−, Z); (2) H̃_i(X_r(A), Z) = 0 for
+   0 <= i <= r−3 and r >= 4. Then H_n(A^x, Z) = 0 for every n > 0."
+   - It is stated for nonzero unital `F_2`-algebras.
+   - Its proof uses (1) only in degree `n`, through Lemma 2.4 with `k = 1`,
+     `q = n+2`, and (2) only at `r = n+3`.
+   - Lemmas 2.3 and 2.4, the scalar weight calculation, are part of this item.
+2. **Theorem 5.1 (Steinberg comparison criterion).** "Let B be a nonzero unital
+   ring of characteristic two, and fix n >= 4. Suppose that (1) GL_(n−1)(B) =
+   E_(n−1)(B) and GL_(n−2)(B) = E_(n−2)(B); (2) j_(n−1)(N_(n−1)(B)) = 1 in
+   St_n(B); (3) |X_n(B)| is simply connected. Then φ_n : St_n(B) -> GL_n(B) is
+   an isomorphism." The proof applies Brown's presentation theorem (JPAA 32,
+   1984) to the ordered frame complex.
+3. **Lemma 5.2.** "For any unital ring B and m >= 3, j_m(N_m(B)) is central in
+   St_(m+1)(B)."
+4. **GE for simple rings with strong division.** Quoted in the proof of Lemma 5.3,
+   after Menal--Moncasi (JPAA 33, 1984, Theorem 2.2 and the remark after
+   Corollary 2.3): the remark "applies to a simple ring in which each nonzero x
+   admits y, z with yxz = 1, and requires no regularity assumption". So every
+   invertible matrix over such a ring is a product of elementary and invertible
+   diagonal matrices.
+5. **Voronetsky's refinement** (JPAA 225, 2021, §4 Proposition 1, used through
+   arXiv:2004.08551v2). As applied in the proof of Theorem 5.4, it needs only
+   coordinate maps `T_r, U_r` with `U_r T_r = I`, `T_r U_r = I`, built from
+   `e, f, e*, f*`, and "requires no hypothesis on stable rank, quasi-finiteness,
+   or centrality of the kernel".
+6. **Krstić--McCool Theorem 3** (JPAA 141, 1999), as quoted in Theorem 6.1:
+   "St_n(B) is finitely presented for every finitely presented associative
+   unital ring B and every n >= 4".
+
+Scope: items 1, 2 and 4--6 were checked as statements against the source text.
+Their proofs were read in `review-boone-higman-leavitt-tensor-hosts-2026-09-12`
+and not refereed.
+
+######## leavitt-square-unit-group-is-fp-simple-and-acyclic
+---
+rg: 2
+id: leavitt-square-unit-group-is-fp-simple-and-acyclic
+kind: claim
+title: The unit group of L ⊗ L is finitely presented, simple and integrally acyclic
+distinct_from:
+  leavitt-unit-group-finitely-presented: that is finite presentability of the unit group of L itself; this is the unit group of the tensor square L ⊗ L, a ring that Ara--Cortiñas show is not Morita equivalent to L, together with its simplicity and acyclicity.
+  binary-leavitt-unit-group-is-simple: that is simplicity of L^x; this is simplicity of (L ⊗ L)^x, whose coefficient ring has Krull-dimension-two commutative subrings that L is not known to contain.
+artifacts:
+  - research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md
+---
+
+**ESTABLISHED (conditional on the imported criteria of Khanh arXiv:2609.08428v1
+and on Ara--Cortiñas arXiv:1108.0352v3).** Let `L = L_(F_2)(1,2)`.
+- The group `(L ⊗ L)^x` is finitely presented, simple, infinite and integrally
+  acyclic.
+- For every `r >= 3`, `St_r(L ⊗ L) -> GL_r(L ⊗ L)` is an isomorphism.
+
+It is a second finitely presented simple group of Leavitt type. Its point is
+the Boone--Higman class in `char-two-surface-linear-groups-satisfy-boone-higman`:
+`L ⊗ L` contains `F_2[t_1, t_2][1/h]` for every nonzero `h`.
+
+Scope: whether `(L ⊗ L)^x` is isomorphic to `L^x` is not settled.
+
+DERIVATION
+leavitt-square-unit-group-proof
+
+######## thompson-v-lifts-through-binary-leavitt-steinberg-cover
+---
+rg: 2
+id: thompson-v-lifts-through-binary-leavitt-steinberg-cover
+kind: claim
+title: The binary-Leavitt Thompson subgroup lifts uniquely through every central-rank Steinberg cover
+distinct_from:
+  thompson-v-central-extensions-split: that proves the abstract cohomological splitting theorem for every central extension of V; this applies it to the concrete Thompson subgroup inside E_20(L_2(F_2)) and produces an exact subgroup of the finitely presented Steinberg group.
+  leavitt-cylinder-swaps-generate-thompson-in-el: that embeds cylinder swaps into an elementary prefix group downstairs; this removes the possible K2 obstruction to lifting that whole subgroup upstairs.
+  leavitt-whitehead-20x20-compression-cell: that lifts one Whitehead compression word and only proves its transport identity after projection to E_20; this lifts the Thompson subgroup itself and makes no compression claim.
+---
+
+Put `R=L_2(F_2)`.  For every `n>=5`, let
+
+```text
+pi_n:St_n(R)->>E_n(R)
+```
+
+be the standard Steinberg projection.  The cylinder-swap embedding of
+Thompson's group `V` in `R^x`, followed by the block embedding
+`R^x=GL_1(R)->GL_n(R)=E_n(R)`, has a unique homomorphic lift
+
+```text
+iota_n:V->St_n(R),                pi_n o iota_n = block.    (VSL1)
+```
+
+The lift is injective.  Consequently every finite prefix permutation packet
+in `V`, including all common-pivot Carmichael families of three-cycles, occurs
+with its exact orders and multiplication relations inside each finitely
+presented group `St_n(R)`, `n>=5`.  No Schur-cover or unstable-`K_2` phase can turn an
+edge relation `(u_i u_j)^2=1` into a nontrivial central element.
+
+This is an exact existence theorem, not a bounded-area theorem.  The unique
+splitting need not send deep prefix permutations to words whose null loops
+have uniformly bounded area in a fixed finite presentation.  The rank-20
+instance is singled out because the existing Whitehead compression cell lives
+there.  Its quantitative question is isolated in
+`leavitt-steinberg-bounded-area-carmichael-lift`.
+
+######## binary-leavitt-steinberg-mf-characters-are-trivial
+---
+rg: 2
+id: binary-leavitt-steinberg-mf-characters-are-trivial
+kind: claim
+title: Every MF character of the binary Leavitt Steinberg group is trivial
+distinct_from:
+  simple-torsion-non-mf-iff-trivial-mf-characters: that is an established abstract equivalence under simplicity; simplicity of the literal Steinberg central cover is not an established input here, and the present claim is the unresolved character-rigidity statement itself.
+  surviving-leavitt-corona-character-has-infinite-parabolic-orbit: that rules out nonzero finite parabolic character orbits; diffuse invariant measures, including the Haar profile, remain possible.
+---
+
+**OPEN.**  For
+
+```text
+R=L_(F_2)(1,2),              Delta=St_20(R),
+```
+
+prove that every pointwise trace limit of operator-norm asymptotic unitary
+representations of `Delta` is the trivial character.
+
+This is the exact character form of the Property-`(T)`-free MF endpoint.
+Finite parabolic-orbit exclusion is insufficient: the row-root spectral
+measure may be diffuse, and the regular/Haar profile satisfies every fixed
+finite additive-rank window.  A proof must use operator-norm corona structure
+and coefficient-sensitive relations strongly enough to exclude that profile.
+
+This claim does not assert simplicity of `Delta` and does not identify its
+Steinberg kernel with zero.
+
+## Attempts
+
+Diracization reduces any nontrivial MF character to one whose restriction to
+a full root module is the Haar profile; see
+`binary-leavitt-haar-row-excludes-mf-characters`.  The remaining leaf is
+`binary-leavitt-haar-row-profile-is-not-mf-character-restriction`.  Generic
+compression, finite character orbits, and bounded rank windows all fail on
+the explicit countermodels in the Property-`(T)`-free audit.
+
+######## f2-leavitt-path-unit-groups-fp-simple-steinberg
+---
+rg: 2
+id: f2-leavitt-path-unit-groups-fp-simple-steinberg
+kind: claim
+title: Unit groups of F_2 Leavitt path algebras with trivial unit class and nonzero det(1 - N^t) are finitely presented and simple
+distinct_from:
+  leavitt-tensor-hosts-acyclic-steinberg-and-fp: that transfers Khanh's theorem to B tensor L_2 for simple B; this transfers it to Leavitt path algebras of other finite graphs, whose K_0 need not vanish and whose words end at several vertices.
+  central-simple-leavitt-tensor-unit-groups-are-simple: that proves simplicity for B tensor L_2 with B central simple; this targets simplicity for graph algebras L_(F_2)(E) through the same abstract root-detection theorem.
+  leavitt-square-unit-group-is-fp-simple-and-acyclic: that is the single host (L_2 tensor L_2)^x; this is a family of hosts parametrised by finite graphs, containing rings not isomorphic to L_2 such as the K_0 = Z/2 example.
+  leavitt-unit-group-finitely-presented: that is finite presentability of the one group L_2^x, imported from Khanh; this targets finite presentability for unit groups of other graph algebras, with nonzero K_0 allowed.
+  binary-leavitt-unit-group-is-simple: that is simplicity of L_2^x; this targets simplicity of L_(F_2)(E)^x for graphs E with trivial unit class, which needs the centre of a general graph algebra.
+artifacts:
+  - research/artifacts/bh-leavitt-path-steinberg-hosts-2026-09-12.md
+---
+
+**OPEN.** Let `E` be a finite graph with no sinks and no sources, cofinal, with
+condition (L). Put `L = L_(F_2)(E)` and `D = det(1 - N_E^t)`, and assume
+`[1_L] = 0` in `K_0(L)` and `D != 0`. Then:
+- `GL_m(L) = E_m(L)` for `m >= 2`, and `H_1 = H_2 = 0` for every `GL_r(L)`;
+- `St_r(L) ≅ GL_r(L)` for `r >= 3`;
+- `L^x` is finitely presented, simple, infinite and nonabelian;
+- if `D = ±2^k`, every `GL_r(L)` is integrally acyclic.
+
+**Example.** The two-vertex graph with `N = [[2,3],[1,2]]` has `K_0 = Z/2`,
+`[1] = 0` and `D = -2` (`leavitt-path-k-theory-over-finite-fields-via-det`). So it
+gives a candidate integrally acyclic finitely presented simple group whose host
+ring is not isomorphic to `L_2`.
+
+**Boone--Higman value, stated honestly.** Once cancellation holds, `[1] = 0`
+yields a unital copy of `L_2`, so `L_2^x <= L^x`. No Boone--Higman class beyond
+those of `L_2^x` and `(L_2 ⊗ L_2)^x` follows from these hosts yet. What they add
+is a family of new host candidates and the SFT full groups `[[G_E]]` as monomial
+units. Word problems in `L_(F_2)(E)^x` are uniformly elementary, so the family is
+not universal either, by `complexity-bounded-host-classes-are-not-universal`.
+
+## Attempts
+
+- **Proved inputs:**
+  - (P3), vanishing of `K_1`, `K_2` and of all higher K-groups:
+    `leavitt-path-k-theory-over-finite-fields-via-det`.
+  - (P2), the multiplier half of simultaneous division:
+    `leavitt-path-algebras-have-simultaneous-strong-division`.
+  - (P4): a finite graph gives a finite presentation of `L` over `F_2`.
+- **Missing inputs:**
+  - (P1) and the complement half of (P2):
+    `purely-infinite-leavitt-path-v-monoid-cancellation`.
+  - The central-unit hypothesis for simplicity:
+    `simple-leavitt-path-algebra-center-is-coefficient-field`.
+- **Assembly.** With both, the paper transfer of
+  `research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md` Sections
+  2--4 is expected to run line by line, with Theorem B replacing its Lemma 2.2:
+  - Prop 3.1 needs only `e, f` and `H_n(GL_∞) = 0`;
+  - Cor 2.5 needs only frame extension;
+  - Lemma 5.3 needs strong division and `K_1 = 0`;
+  - Krstić--McCool needs a finite ring presentation.
+  That transfer has not been reviewed.
+- **Not pursued.** Hosts with `[1] != 0` (for instance one vertex with `n >= 3`
+  loops). Khanh's Theorem 2.2 needs `A^2 ≅ A`, and homological stability for them
+  would need a different frame complex.
+
+######## leavitt-path-k-theory-over-finite-fields-via-det
+---
+rg: 2
+id: leavitt-path-k-theory-over-finite-fields-via-det
+kind: claim
+title: Over F_q the K-groups of a sinkless sourceless graph algebra vanish exactly when det(1 - N^t) has the right arithmetic
+distinct_from:
+  ara-cortinas-leavitt-tensor-k-theory-vanishes: that is the vanishing of every K-group of L_2 and L_2 tensor a regular supercoherent ring; this decides vanishing of K_1, K_2 and all higher K-groups for every sinkless sourceless finite graph algebra over a finite field through det(1 - N^t).
+  leavitt-tensor-powers-have-trivial-k-theory: that asks about tensor powers of L_2, which are not graph algebras; this settles graph algebras L_(F_q)(E) of one finite graph.
+artifacts:
+  - research/artifacts/bh-leavitt-path-steinberg-hosts-2026-09-12.md
+---
+
+**ESTABLISHED.** Let `q = p^f`, let `E` be a finite graph with no sinks and no
+sources and adjacency matrix `N`, and put `D = det(1 - N^t)`. Write
+`L = L_(F_q)(E)`.
+
+1. `K_1(L) = 0` iff `D != 0` and `gcd(D, q-1) = 1`.
+2. `K_2(L) = 0` iff `gcd(D, q-1) = 1`.
+3. `K_n(L) = 0` for every `n >= 1` iff `D = ±p^k` for some `k >= 0`.
+4. If `D != 0`, `K_0(L)` has order `|D|`.
+
+**Over `F_2`:**
+- `K_2(L) = 0` for every such graph;
+- `K_1(L) = 0` iff `D != 0`;
+- `L` is K-acyclic in degrees `>= 1` iff `D = ±2^k`.
+
+**Example.** Take two vertices with `N = [[2,3],[1,2]]`. Then:
+- `1 - N^t = [[-1,-1],[-3,-1]]`, `D = -2`, `K_0 = Z/2`;
+- `[1] = (1,1)` is minus the second column, so `[1] = 0`;
+- every `K_n`, `n >= 1`, vanishes over `F_2`.
+This is a K-acyclic candidate host that is not isomorphic to `L_2`, since
+`K_0(L_2) = 0`. One vertex with `n` loops is K-acyclic over `F_2` iff `n - 1` is a
+power of two, but there `[1]` generates `K_0 = Z/(n-1)`.
+
+DERIVATION
+leavitt-path-k-theory-det-proof
+
+######## leavitt-tensor-steinberg-kernel-is-stable-k2
+---
+rg: 2
+id: leavitt-tensor-steinberg-kernel-is-stable-k2
+kind: claim
+title: Over B tensor L_2 the unstable Steinberg kernel is central and equals K_2 in the stable range, so finite generation of K_2 decides the host criterion
+distinct_from:
+  leavitt-tensor-elementary-host-criterion: that assumes finite normal generation of one unstable kernel K_(2,n) and concludes that E_n(B tensor L) is finitely presented simple; this identifies that kernel with the stable group K_2(B tensor L), turning the hypothesis into a K-theory statement.
+  simple-inputs-have-fp-elementary-leavitt-tensor-hosts: that is the open existence premise for B; this is a criterion for its kernel half, stated through K_2 and twisted Nil groups.
+  leavitt-tensor-hosts-acyclic-steinberg-and-fp: that makes the kernel trivial when K_1 and K_2 vanish; this handles nonzero K_2, where the kernel is a finitely generated central subgroup exactly when K_2 is finitely generated.
+artifacts:
+  - research/artifacts/bh-leavitt-path-steinberg-hosts-2026-09-12.md
+---
+
+**OPEN.** Let `B` be a simple unital `F_2`-algebra, `L = L_(F_2)(1,2)` and
+`R = B ⊗ L`. Then there is `n_0` (expected `n_0 = 4` or `5`) such that for
+`n >= n_0`:
+1. `K_(2,n)(R) := ker(St_n(R) -> E_n(R))` is central in `St_n(R)`;
+2. the stabilization map `K_(2,n)(R) -> K_2(R)` is an isomorphism;
+3. hence `K_(2,n)(R)` is finitely normally generated in `St_n(R)` iff `K_2(R)` is a
+   finitely generated abelian group.
+
+**Criterion consequence.** With `leavitt-tensor-elementary-host-criterion`, for
+`B` finitely presented central simple and `S <= B^x` perfect, `E_n(R)` is a
+finitely presented simple host of `S` as soon as `K_2(B ⊗ L)` is finitely
+generated. `K_1` plays no role.
+
+**Where `K_2(R)` sits.** Ara--Brustenga--Cortiñas Theorem 8.6 gives
+`KH(A ⊗ L) = 0` for every ring `A`. So `K_2(R)` is the difference between
+`K`- and `KH`-theory in degree two, a twisted Nil group of the corner-skew
+Laurent structure (ABC Theorem 5.10).
+- **Vanishing:** it is `0` whenever `R` is `K_2`-regular (Weibel: `K_n`-regular
+  implies `K_m = KH_m` for `m <= n`), in particular when `B` is regular
+  supercoherent (`ara-cortinas-leavitt-tensor-k-theory-vanishes`). Regular
+  coherence of `B` already suffices in degrees `n >= 1`
+  (`regular-coherent-coefficients-kill-leavitt-tensor-k-theory`, re-derived from
+  the ABC proof in 71c5800fc). Supercoherence enters only the negative-degree
+  induction of ABC Lemma 7.2. That claim rests on Waldhausen (Ann. Math. 108,
+  1978) Theorem 4, which has not been read here. So for regular coherent `B` the
+  kernel is trivial and item 3 is automatic.
+- **Expectation:** Nil groups are typically either `0` or infinitely generated, so
+  in practice item 3 reduces to vanishing.
+
+## Attempts
+
+- **Item 1.** Khanh Lemma 5.2 states "For any unital ring B and m >= 3,
+  j_m(N_m(B)) is central", quoted in
+  `research/artifacts/boone-higman-leavitt-tensor-hosts-2026-09-12.md`. The step
+  still to write is that `j_m(N_m)` normally generates `K_(2,m)` in the ranks used.
+- **Item 2.** Stability should follow from the frame-complex connectivity
+  `H̃_d(X_r(R)) = 0` for `d <= r-3` (artifact Corollary 2.5 for `B ⊗ L`), through
+  the standard spectral sequence argument for homology stability of `GL_r`
+  (van der Kallen; Charney) in degree two, combined with the plus construction
+  `H_2(St) -> K_2`. Not written. The rank bound depends on the connectivity
+  slope, which is `r - 3` here.
+- **Graph factors do not help.** For coefficient algebras `B` with
+  `ABC Theorem 7.6` available (regular supercoherent), `K_*(B ⊗ L_(F_2)(E))` is
+  the homotopy cofibre of `1 - N_E^t` on `K_*(B)^V`. It vanishes for every such
+  `B` only if `det(1 - N_E^t) = ±1`, i.e. only for `L_2` and its Cuntz splice
+  (`leavitt-path-k-theory-over-finite-fields-via-det` covers `B = F_q`). So `L_2`
+  is already the best Leavitt factor, and universality has to come from `B`
+  (`complexity-bounded-host-classes-are-not-universal`).
+
+######## binary-gl-finite-sections-have-no-projective-k2-phase
+---
+rg: 2
+id: binary-gl-finite-sections-have-no-projective-k2-phase
+kind: claim
+title: Binary general-linear finite sections have no projective phase that separates boundary from head
+distinct_from:
+  toeplitz-folner-compressions-cannot-retain-jacobson-head: that treats ordinary unitary representations after Toeplitz truncation; this computes the Schur class and rules out a genuine projective-multiplier repair
+  torsion-symbols-exactify-by-corners-not-infinite-symbol: that constructs nontrivial Heisenberg clock-shift phases for an infinite central symbol; this proves the binary finite-section host has no corresponding central symbol
+  binary-jacobson-steinberg-cover-is-elementary: that kills the Steinberg kernel over the Jacobson ring; this kills the finite-section Steinberg kernel over F_2 itself
+---
+
+For every `N>=1`, put `m=28N). Then
+
+```text
+H_2(GL_m(F_2),Z)=0,                                     (BGP1)
+H^2(GL_m(F_2),U(1))=0.                                  (BGP2)
+```
+
+Consequently every finite-dimensional complex projective unitary
+representation of `GL_m(F_2)` is projectively equivalent to an ordinary
+unitary representation.
+
+In particular the two rank-one transvections
+
+```text
+X_ik(P_(N-1)),                   X_ab(P_0)
+```
+
+from the Toeplitz finite-section calculation cannot acquire different
+central lifts from a nontrivial Schur or stable-K-two class. After
+linearization their images are unitarily conjugate exactly.
+
+Thus a clock-shift multiplier does not repair the truncated-shift
+construction. Any chosen projective lift differs from an ordinary
+representation only by a scalar one-cochain on the finite group. If those
+scalars are used to separate the one-sided-inverse defect from the head,
+the construction has left the projective-multiplier mechanism: it is an
+explicit nonfunctorial scalar perturbation whose compatibility with every
+full-presentation relator must be proved separately.
+
+This result does not yet rule out such relator-dependent one-cochain
+perturbations, nor arbitrary perturbations of the root unitaries. It closes
+the genuine Schur/K-two and clock-shift phase route exactly.
+
+DERIVATION
+stable-steinberg-cover-kills-clock-shift-multiplier-proof
+
+######## fp-surjunctive-nonsofic-double-by-stable-k2
+---
+rg: 2
+id: fp-surjunctive-nonsofic-double-by-stable-k2
+kind: route
+title: Kill the full stable-rank Laurent kernel and fold the finitely presented double
+target: fp-surjunctive-nonsofic-group-exists
+requires:
+  - graph-folds-over-surjunctive-groups-are-surjunctive
+  - steinberg-finite-presentation-and-kazhdan-theorem
+  - kt-pair-group-double-is-nonsofic
+  - kun-thom-nonsofic-wreath
+  - residually-finite-groups-are-surjunctive
+  - three-laurent-f2-k2-rank-six-kernel-is-three-symbols
+artifacts:
+  - research/artifacts/fp-surjunctive-nonsofic-double-2026-09-11.md
+  - research/artifacts/gk-verify-pos-permanence-chain-2026-09-12.md
+---
+
+The artifact fixes `q=2`, matrix rank six, and three Laurent
+variables. Classical dimension-three K2 stability and the regular
+Laurent fundamental theorem identify the entire finite-rank kernel
+as `Z^3`. Three kernel relators therefore produce a finitely
+presented elementary group from the Steinberg source.
+
+Its semidirect product with the finitely presented `SL_3(Z)` is
+finitely presented. The positive polynomial elementary subgroup
+is finitely generated explicitly by elementary matrices whose
+coefficients are one or one of the three variables. Gluing two
+finite actor presentations along those finitely many generators
+gives a finite presentation of the double.
+
+Kun--Thom Theorem E makes the actor residually finite, hence
+surjunctive. The fold is injective on each vertex group, so the
+graph-of-groups theorem makes the double surjunctive. Kun--Thom
+Theorem A makes this same double nonsofic. All stability bounds,
+kernel identifications, and finite-presentation steps are
+specified in the linked proof.
+
+The kernel control is the claim
+`three-laurent-f2-k2-rank-six-kernel-is-three-symbols`. It was added
+2026-09-12, after an independent re-derivation of this route, so that the
+stability and Laurent K2 inputs are visible in the graph.
+
+######## leavitt-kl-violation-selects-the-stable-steinberg-branch
+---
+rg: 2
+id: leavitt-kl-violation-selects-the-stable-steinberg-branch
+kind: route
+title: A Leavitt Kervaire--Laudenbach violation selects the HS-stable Steinberg branch
+target: leavitt-steinberg-hs-stable
+requires: [kl-violating-equation-over-leavitt-unit-group, kervaire-laudenbach-holds-for-hyperlinear, leavitt-steinberg-hs-stability-fork, leavitt-gl-equals-el-and-perfect-unit-group]
+---
+
+Suppose a nonsingular equation over `R^x = L^x`, `L = L_(F_2)(1,2)`, kills a
+nontrivial coefficient.  By `kervaire-laudenbach-holds-for-hyperlinear`,
+`R^x` is not hyperlinear.  The four-leaf prefix code identifies `L` with
+`M_4(L)`, so `R^x = GL_4(L)`, and `GL_4(L) = EL_4(L)` by
+`leavitt-gl-equals-el-and-perfect-unit-group`.  Thus `Q = EL_4(L)` is not
+hyperlinear.
+
+On the unstable branch of `leavitt-steinberg-hs-stability-fork`, `Q` is
+hyperlinear.  Exactly one branch holds, so `U = St_5(L)` is normalized
+Hilbert--Schmidt stable, which is the target.
+
+## What this places on record
+
+The Kervaire--Laudenbach falsification lane is not parallel to the Steinberg
+stability fork; it lives strictly inside its stable branch.  A violation is a
+very special algebraic certificate of that branch: its old-relator identity
+supplies the linear energy inequality of
+`nonsingular-equations-preserve-matrix-certificates` for a word that is
+nontrivial in `Q`.  Stability alone supplies no equation.  In the other
+direction, any construction on `leavitt-steinberg-hs-unstable` refutes the
+whole Leavitt lane at once, through
+`kl-leavitt-holds-on-the-unstable-steinberg-branch`.

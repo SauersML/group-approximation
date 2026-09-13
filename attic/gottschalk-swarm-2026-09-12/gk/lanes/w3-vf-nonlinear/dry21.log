@@ -1,0 +1,7 @@
+attempt 1: base 0bb651f36d
+  OVERWRITE research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md (own last push)
+DRYRUN: would push cf334afc3b changing: research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md 
+Verify the 2V obstruction-state profile
+
+ .../w3-vf-nonlinear-verification-2026-09-12.md     | 88 ++++++++++++++++++++++
+ 1 file changed, 88 insertions(+)

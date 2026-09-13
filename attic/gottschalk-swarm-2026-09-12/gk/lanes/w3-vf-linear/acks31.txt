@@ -1,0 +1,4 @@
+research/sofic-configuration-v-rank-firewall-proof.md=8b35b1bcab4fc496354306fd1044094f167cda35
+research/char-uniform-v-rank-firewall-proof.md=79f9a9bca8644cefdb35ccc5c4e5a38efc81870c
+research/v-rank-order-char-cycles-are-trivial-plus-regular.md=6b85fb36445554914312fec7860882e4f6a51f16
+research/artifacts/w3-vf-linear-verification-2026-09-12.md=512f1c816ac0e57cbca80b0ad3a2df6bff8e0050

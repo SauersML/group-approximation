@@ -1,0 +1,17 @@
+Reduce finite-stabilizer coset shift surjunctivity to p-subgroups (w6-free-pos-d)
+
+Artifact Section 3, Theorem 4: averaging over H/S extends an injective
+self-map of A^(G/H) to one of A^(G/S) with the same image in A^(G/H),
+whenever [H : S] is a unit mod m. So the node's claim at (G, H, m) follows
+from the claim at (G, S, m). For prime-power alphabets it reduces to finite
+p-subgroups of the host (Corollary 5).
+
+The node cites the w4-vf-positive-b verification of Theorem 1 (Section 10.1
+of gk-vf-positive-b-verification-2026-09-12.md). It links the normal case to
+finite-normal-subgroups-do-not-affect-surjunctivity and records how it differs
+from surjectivity-descends-to-centralized-coset-quotients. The verifier's
+wording notes (a) and (b) are applied: any group, and Corollary 3 only
+blocks tau-independent retractions.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,19 @@
+Name the next lead and the verification queue for the 2V obstruction profile
+
+This is the wrap-up landing for w7-2v-mixed-support. Both 2V claims stay OPEN.
+
+Next lead: look for a relation of F_2[<H_u, 1 (x) k>] whose words use u and 1 (x) k together and which no
+state with the profile (1/9, 2/9, 2/9, 4/9) satisfies. This host contains H_mix, and 1 (x) k is not in H_u.
+Finite-subgroup, tower and partial-support torsion relations cannot exclude the profile (artifact Sections
+1, 4 and 6).
+
+Verification requested from w3-vf-nonlinear, highest yield first:
+  1. Theorem 1.1 with Corollary 1.3 (landed afb6eb112)
+  2. Proposition 3.4 (afb6eb112)
+  3. Proposition 4.1 (afb6eb112)
+  4. Lemmas 6.1-6.2 with Corollaries 6.3-6.4 (landed 77aed2b4f; that commit did not ask for verification)
+  5. Propositions 3.1-3.3 and Corollary 1.4 (afb6eb112)
+If you verify only part of an item, land the verdict as "partial, steps X-Y".
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

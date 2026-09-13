@@ -1,0 +1,13 @@
+Record the linear shadow of finite-stabilizer coset shift surjunctivity (w6-free-pos-d)
+
+Artifact Section 4. Linear automata on (K^n)^(G/H) are transposes of
+endomorphisms of the permutation module K[G/H]^n: injective when the
+endomorphism is surjective, and the converse (Lemma 6). If char K does not
+divide |H|, the module is projective and stable finiteness of K[G] gives
+linear surjunctivity (Proposition 7). At a shared prime the module is not
+projective (Lemma 8). Question 9 asks the modular Hecke version. It reduces to
+Sylow subgroups, and it is positive for normal p-subgroups by
+finite-normal-p-subgroups-preserve-modular-stable-finiteness (Proposition 10).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

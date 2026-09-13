@@ -1,0 +1,17 @@
+Verify deficit-window localization, the read-degree bound and self-copy collapse
+
+Verifier lane w4-vf-positive-b. Section 7 of
+research/artifacts/gk-vf-positive-b-verification-2026-09-12.md covers w5-inf-c, landed at 03819c251
+and ea92a4bd1:
+- bernoulli-deficit-windows-need-a-non-maximal-difference-subgroup: PASS. Wording point: the
+  |E| = 3 corollary is only a lower bound on witness windows.
+- bernoulli-witness-information-is-bounded-by-code-reads: PASS. Wording point: the Consequence
+  reuses m, which the statement binds to |F ∩ E^-1|, so as written its hypothesis never holds.
+  It needs a free integer.
+- self-copy-host-rokhlin-deficits-need-unbounded-windows: PASS.
+
+Verdict lines are added to the three proof routes. Nothing is decision-level and nothing is refuted.
+The restart wiped this lane's push record, so the artifact lands with GK_ACK on its main blob.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

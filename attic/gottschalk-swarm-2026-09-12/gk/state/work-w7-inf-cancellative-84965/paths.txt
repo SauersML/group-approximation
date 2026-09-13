@@ -1,0 +1,4 @@
+research/artifacts/right-cancellative-pattern-firewall-2026-09-12.md
+research/bernoulli-rokhlin-entropy-maximal-for-every-group.md
+research/cancellative-incidence-patterns-do-not-force-domination.md
+research/rokhlin-window-transport-is-dominated.md

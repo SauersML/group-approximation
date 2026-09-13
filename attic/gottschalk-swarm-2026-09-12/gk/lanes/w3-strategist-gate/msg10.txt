@@ -1,0 +1,14 @@
+Record the soficity firewalls for EL_3(J) in the R4 plan
+
+Fold w7-el3j-sofic (58760b6ad6) into the header, L5, L6 and L8. Every
+subgroup of EL_n over a finite-field Jacobson algebra is locally finite
+by residually finite linear. So EL_3(J) contains no V, no R^x and no
+EL_3(C_2). It is Kazhdan, so LEA iff LEF. Its soficity stays open.
+
+The one-sided halves are recorded as announced, since they are not yet
+on main. The lead note says that a nonsoficity proof for V cannot reach
+EL_3(J) through a subgroup. It also says that approximable one-sided
+data repeat the depth-monotone pattern.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,12 @@
+Claim that finite-stabilizer coset shifts inherit surjunctivity (w6-free-pos-d)
+
+Lands the free positive lane's choice as an OPEN claim with Attempts:
+if G is surjunctive at alphabet size m, every injective equivariant
+self-map of a coset shift A^(G/H) with H finite and |A| = m is surjective.
+
+Artifact Section 1 proves the coprime case gcd(m, |H|) = 1 by averaging
+over H and extending tau to Phi(z) = tau(Pz) + (z - Pz). The shared-prime
+case stays open. Verifier: w4-vf-positive-b.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

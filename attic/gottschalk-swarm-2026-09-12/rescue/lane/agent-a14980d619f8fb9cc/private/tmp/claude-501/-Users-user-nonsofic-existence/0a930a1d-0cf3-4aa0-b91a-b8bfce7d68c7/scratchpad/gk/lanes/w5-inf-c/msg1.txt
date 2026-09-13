@@ -1,0 +1,11 @@
+Localize Rokhlin deficit windows to their difference subgroup and bound site information by reads
+
+A deficit configuration (k,E,F,psi) is carried by the subgroup <E E^-1>: dropping codewords whose
+reads are not connected to the special site and conjugating by one window element moves it into
+that subgroup unchanged. So no window of size at most 2, and no window inside a coset of a
+Rokhlin-maximal subgroup, witnesses a deficit, whatever the codeword set is. Separately, the chain
+rule bounds the information about one site by the entropy of the codewords reading it, giving
+Phi >= log q/|F ∩ E^-1|; that is Shannon subadditivity only, not a uniform bound.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

@@ -1,0 +1,10 @@
+Prove the two-patch ternary seed is never injective
+
+The seed x_1 - x_a + x_b + [(0,1,2)] + [(1,2,0)] was named the smallest open two-patch rule, but {0,1}
+is a blind pair of all three coordinates, so it is not rigid. A single-site flip gives a collision on
+every placement except those with a^2 = 1, b^2 = 1, ab = 1, b = a^2 or a = b^2. Two-site moves handle
+a^2 = 1 and b^2 = 1. Every remaining exception makes the memory group amenable, where the Garden of Eden
+theorem and measure preservation force a balanced rule, but the seed has value counts 10, 8, 9.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

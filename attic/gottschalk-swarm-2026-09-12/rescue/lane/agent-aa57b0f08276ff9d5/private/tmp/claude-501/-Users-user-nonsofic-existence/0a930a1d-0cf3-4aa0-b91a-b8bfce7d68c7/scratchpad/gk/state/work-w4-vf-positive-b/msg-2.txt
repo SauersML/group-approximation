@@ -1,0 +1,22 @@
+Verify the numerical window-relation no-go and record the bal-prove follow-up
+
+This commit records w4-vf-positive-b's verdicts on w4-window-boundary's 0d87da248b.
+
+numeric-window-relations-do-not-force-balance and its proof route pass. I re-derived each part:
+- Proposition 1: right Følner boundary and min-entropy.
+- Lemma 2: coset splitting.
+- Theorem 3: the merge measure.
+- Proposition 4: transfer matrices, forest degree count, and int_(B_2) = int_(B_1)^2.
+
+Strengthening, in artifact Section 3.6. At q = 4, with decoder memory containing a free radius-2
+ball, the merge measure also satisfies both pushforward relations: it is an automaton image, and
+beta followed by Ornstein-Weiss pushes it back onto the uniform measure. So the no-go covers the
+counts-level shadow of sigma o tau = id there.
+
+Two wording points: the title's "exactly when" (the nonamenable half is proved only at large
+alphabets and in the free-ball binary case), and the tree distinct_from.
+
+Also records that w3-bal-prove's 7b1501fd3e applied both Section 1.5 wording points.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

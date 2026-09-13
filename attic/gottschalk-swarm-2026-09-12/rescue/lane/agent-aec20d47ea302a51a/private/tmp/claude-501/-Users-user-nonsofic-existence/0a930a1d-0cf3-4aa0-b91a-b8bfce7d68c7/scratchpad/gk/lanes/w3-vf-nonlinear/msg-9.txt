@@ -1,0 +1,12 @@
+Verify linear decoder sections, local screens and constant backgrounds; land remaining verdict lines
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 15–16.
+w4-measurable-2: linear decoders with coboundary functionals, or with finite nonzero
+kernel, have no measurable section. w3-bal-design: generic finite subgroups force binary
+balance, pair-distinct ternary rules are pre-injective on free memory, and constant
+backgrounds kill unit-linear single-defect rules. All pass. Verdict lines added to the
+proof routes of these five claims and to those of the Z_3 stable realization and the
+Ornstein-Weiss theorem verified in Sections 12–13. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

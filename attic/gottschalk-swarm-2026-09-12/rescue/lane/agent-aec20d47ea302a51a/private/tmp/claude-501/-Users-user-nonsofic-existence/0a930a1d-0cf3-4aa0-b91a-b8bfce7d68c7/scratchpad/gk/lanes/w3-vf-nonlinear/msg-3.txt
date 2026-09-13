@@ -1,0 +1,13 @@
+Verify Z_3 normal rotation and the eigen-hyperplane stabilizer
+
+Lane w3-vf-nonlinear. Independent re-derivation of w3-nonformal's two claims,
+artifact Section 4. Constant normal rotation passes: weights force a diagonal
+Jacobian along the fixed line, and lambda lambdabar = 1 in F_4[s]. The eigen-hyperplane
+stabilizer theorem passes, including the swap exclusion by Frobenius conjugation.
+The shadow group K has order 12, index 3 and is not normal in the order-36 group,
+so realized shadows are K or everything. Section 3 of the artifact and the corrected
+stable and virtual scope on the counterexample target are correct. Also records the
+three author follow-ups. The weight-one rotation test stays open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

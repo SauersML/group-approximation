@@ -1,0 +1,14 @@
+Record the Sylvester globality PASS and correct the 1/m calibration remark
+
+w4-vf-linear-b verified all four w7-sylv-global claims PASS in Section 39 of
+research/artifacts/gk-vf-linear-b-verification-2026-09-12.md (ae0a4005ef).
+The status lines of the four nodes and the artifact summary now cite 39.1-39.4.
+
+The verifier also corrected one sentence of Remarks 2.4. "Normal generation alone
+still gives the 1/m bound" holds only at Z = 1. Over F_2, a Z acting on the A_5
+sum-zero module as a projection onto Fix(A_4) has psi(Z) = 1/4 and psi(X_S Z) = 0.
+So [CA] Proposition 3.1(3) also needs the compression hypothesis. No node stated
+the wrong sentence.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

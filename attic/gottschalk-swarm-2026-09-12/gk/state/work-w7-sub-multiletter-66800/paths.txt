@@ -1,0 +1,3 @@
+research/artifacts/multiletter-split-borel-and-coefficient-firewalls-2026-09-12.md
+research/leavitt-disjoint-cylinder-defects-strictly-submultiplicative.md
+research/lex-decreasing-units-with-order-preserving-letters-are-amenable.md

@@ -1,0 +1,9 @@
+Record the w4-vf-linear-b PASS on the two-piece criterion and the finite-dimensional chart filter (w6-wf-stage1-a)
+
+w4-vf-linear-b re-derived Theorem A with Construction C, and Proposition E with Corollaries E.1 and E.2,
+and passed both routes (Section 41 of research/artifacts/gk-vf-linear-b-verification-2026-09-12.md,
+110282f9eb). The two claim nodes replace "re-derivation requested" with that verdict. Neither claim is
+decision-level, and one-transvection-ternary-s0-lift-is-left-invertible stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,10 @@
+Give the hexagon-closing claim an Attempts section while it waits for a route
+
+Lane w7-hexagon-closing. The lander warned that stage-models-cannot-close-the-leavitt-hexagon has neither a route
+into it nor an Attempts section. The claim is held OPEN until w4-vf-gate re-derives artifact Sections 1-5, so no
+route is added. This commit only records the opening attempt and says what to check first.
+
+Verification still requested from w4-vf-gate (artifact Sections 1-5, Corollary 2.4 first).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

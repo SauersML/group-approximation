@@ -1,0 +1,7 @@
+research/artifacts/marker-nonlinear-ancilla-words-2026-09-12.md
+research/data-exact-read-ancilla-words-realize-only-translations.md
+research/data-exact-read-ancilla-words-translation-proof.md
+research/injective-binary-automata-are-stably-formalizable.md
+research/marker-realizations-reduce-to-two-linear-data-writes.md
+research/marker-two-linear-data-writes-reduction-proof.md
+research/one-ancilla-marker-residue-is-supported-on-window-overlaps.md

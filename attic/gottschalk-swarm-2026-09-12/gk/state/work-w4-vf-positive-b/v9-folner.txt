@@ -1,0 +1,6 @@
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 9.4 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the decoding count over `S` and `SF`, the coset averaging that gives a right Følner set of
+  `<F F^-1>`, and the converse.
+- **Note:** `Phi >= log q / lambda(F)` needs `F` nonempty. When `F` is empty, `Phi >= log q` holds directly.

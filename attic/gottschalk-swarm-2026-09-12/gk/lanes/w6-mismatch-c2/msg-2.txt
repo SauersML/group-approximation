@@ -1,0 +1,17 @@
+Prove the depth-mismatched transvection pair is inert in graph-of-groups rank models
+
+A countable graph of groups whose vertex groups are locally finite subgroups of
+L_(F_2)(1,2)^x carries a weakly finite char-2 rank model. The model has the free
+profile on every finite vertex subgroup and is fixed-point-free, and disjoint
+cylinder defects in one vertex group have rank 3/8 and multiply exactly.
+
+The pair T_(0,1), T_(1,00) has a product of infinite order, yet it sits in the
+tree R_0^x - H - g^-1 R_0^x g, where H is a locally finite block-triangular group.
+So using the pair as a factor forces nothing. The single-letter HNN extension
+breaks [T_(01,00), T_(1,00)] = 1, and H repairs it. A relation-only proof must
+close a cycle of Steinberg relations that no locally finite subgroup absorbs,
+use K_2(3,R), or use a global input. Records Attempts on the strict-deficit and
+weakly-finite gate nodes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

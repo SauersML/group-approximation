@@ -1,0 +1,65 @@
+title: Amenable coset wreaths plus component averaging build the local countermodels
+title: Amenable coset wreaths plus component averaging build the local countermodels
+title: Compress one C3 averaging projection to the left-coset basis of the other
+title: A surviving retraction to the direct product certifies insufficiency below length nine
+title: Closed-form traces at both classical warm starts, checked against the retraction count
+title: Retraction to the union of endpoint fibers is exactly relative ultraproduct liftability
+title: Every Borel equivariant map from a Bernoulli shift to a coset shift with infinite stabilizers is almost everywhere constant
+title: Central symmetric convolution near-idempotents round to normal-coset conditional expectations
+title: A simple Kazhdan group has a Bernoulli coset shift with a strict continuous equivariant self-embedding
+title: Singular images, the compressed coset shift and XOR factors defeat each tool of Popa's theory
+title: No canonical inner or prefix-corner retraction fences the degree-four KL gadget
+title: The expanding double coset has degree p times the flag count, so the wired pair averages over forty-two words
+title: Transplant to finite site quotients, peel stabilizer-coset strata, and close with the coset-region lemma
+title: Quotient one atom stabilizer and induce a hypothetical hyperlinear model over its finite left-coset orbit
+title: If a group is surjunctive at alphabet size m, every injective equivariant self-map of a finite-stabilizer coset shift at size m is surjective
+title: Apply retraction rounding and bound the retained tree chains by crossing-edge energy
+title: A bounded path retraction gives connected rounding with residual cycle energy as its cost error
+title: One retraction proves all three facts
+title: Peel a vertex off a graph product and fold the amalgam into the product of its two retractions
+title: Kazhdan pair of the completion bounds the spherical numerical range of the lazy double-coset average
+title: Pull an approximate representation across the retraction and restrict its correction
+title: HS stability of the acting group and a Kazhdan stabilizer give uniform coset-site coherence
+title: An infinite-stabilizer coset Bernoulli shift has trivial homoclinic group
+title: Invariant output factors through the coset shift over G/H, which is constant when H is infinite
+title: Cliffordize the finite root-stabilizer coset quotient
+title: Reduce the exponent torus and wreath the finite root-stabilizer coset space
+title: Test the universal-gate retraction against the first exact Leavitt packet relations
+title: Copy retractions conjugate the two central holonomies in the length-thirteen template
+title: Three copy retractions forbid the length-thirteen identity-to-center transport
+title: The corrected inverse 1;412 third carrier has a four-relator retraction skeleton
+title: Verify finite graph retractions and then transplant LEF lamp tables
+title: Compute the fibers and vertical stabilizers of the mixed coset set
+title: Separate the two path average into two lamp double cosets
+title: The canonical neutral Weil torsion retraction is always double determinant neutral
+title: Dualize the lift to an equivariant retraction and push Haar measure onto the Cantor set
+title: The Poincare form of the lazy average plus the shared h-displacement of all coset words
+title: An opposite-sign stabilizer double coset collapses the coinvariant pairing certificate
+title: A packet retraction evaluates every Hecke collision atlas in finite dimension
+title: Apply the packet retraction entrywise in Morita coordinates
+title: A finitely presented shell envelope is a host with two stabilizer double cosets
+title: Quotient the stabilizer of one profile-pure projection and induce over its formal coset blocks
+title: Projective-dihedral factorization has an explicit dimension-free Hilbert--Schmidt retraction
+title: Compute the transvection double coset from two affine leaf stabilizers
+title: Glue preimages of a point from each piece far apart and apply the retraction
+title: Transplant to marked-site coset spaces and peel stabilizer-coset strata by the coset-region lemma
+title: Selberg orbit retraction starts after, not before, square-free basin authentication
+title: Retain the shell stabilizer as a core-free subgroup and identify the remaining double-coset condition
+title: Any finitely presented shell overgroup has a faithful induced coset action with finitely generated stabilizers
+title: Equivariance pins the one read site to a coset fixed by the stabilizer, and fibres of the site map decide surjectivity
+title: A one-site equivariant self-map of a coset shift is strict exactly when a stabilizer is properly conjugated into itself
+title: Rule out the arithmetic coset atlas using one Hecke edge and Kazhdan averaging
+title: A lifted Sylow 2-subgroup acts on cosets with small stabilizers, and 2-subgroups of GL_2(Q_2) have order at most 8
+title: Four explicit automorphism loops give an integral basis of the rotation-retraction kernel
+title: Append a basis of the retraction kernel to the two canonical rotation loops
+title: Apply the torus retraction to the canonical rotation generators and the split unit class
+title: Invariant-mean retractions have an exact finite-coset order-zero gap
+title: The Z2 uniform Roe boundary has no periodic quotient or torus retraction
+title: Apply the ordered retraction to a perforation inequality
+title: An ordered-monoid retraction of the external Cu map transfers almost unperforation
+title: The contracting digit host has infinitely many double cosets of the retained shell stabilizer
+title: The separating stabilizer families of Thompson's V all contain copies of V, so Cantor-set coset peeling is circular
+title: Dead - peel an automaton over V through Cantor stabilizers and finish with the coset-region lemma
+title: Brown identification, apartment retraction, and Ioana-Spaas-Wiersma Corollary D
+title: Finite HNN quotients, Britton reducedness, and a retraction onto the MF factor
+title: A permutational wreath product is surjunctive exactly when every lamp power times its stabilizer intersection is

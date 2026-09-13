@@ -1,0 +1,12 @@
+Fold the depth-monotone stable finiteness firewall into the R4 plan
+
+w6-mismatch-c3 (74247b5cff) landed OPEN, pending w4-vf-gate: for positive letter weights the span of
+s_mu t_nu with weight(mu) <= weight(nu) is a stably finite subalgebra of L_K(1,2). Over a finite field its
+unit group is locally residually finite, and it contains the depth-mismatched pair.
+- L9b: the claim, its proof sketch and scope. Also the consumer depth-monotone-configurations-cannot-force-
+  ternary-minus-one, which the artifact summary announces and which is not yet on main. A lead note pairs
+  it with the characteristic-two graph-of-groups firewall.
+- L6: a status row.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

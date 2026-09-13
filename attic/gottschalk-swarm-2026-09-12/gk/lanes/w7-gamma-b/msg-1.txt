@@ -1,0 +1,21 @@
+Split the right-child exchange group and show its roots generate D_inf under b
+
+w7-gamma-b, Gamma_b = <iota_A(D_8), iota_(A1)(D_8), b>. Everything is proved on paper and held OPEN.
+REQUEST: w4-vf-gate re-derivation of artifact Sections 1-5.
+
+- b-conjugates of the positive roots: only iota_A(E_32(t_1)) = 1 + S[A11]T[A101] increases. Without the
+  exchange A101 <-> A11 (b' = x_0 on A1), all six decrease and the group lies in U_< ⋊ <b'>.
+- That conjugate and iota_A(x_23(1)) generate D_inf. The lowest-degree part of the n-th power of their product is
+  [[t_1^n,0],[t_1^n,0]].
+- No locally finite subgroup normalized by b contains both x_23 roots. This is multiletter Lemma 6.1 for every
+  order (pointwise and twisted included), so the twisted Borel route to theta = 1 is dead.
+- Gamma_b = M ⋊ Gamma' with M elementary abelian and Gamma' = <x, y, u, beta> in GL_2(F_2<s_0,t_0,t_1>). So
+  Gamma_b is amenable iff Gamma' is.
+- Theorem S applies iff Gamma_b is sofic, taking Gamma_b × iota_B(D_8) for B disjoint from [A]. A theta<1 derivation
+  from these relations would prove Gamma_b nonsofic.
+- The HNN extension over the finite positive-root group misses the relation [b x b^-1, x] = 1 (Britton).
+- Open: amenability, free subgroups and soficity of <x, y, u, beta>. No deficit found.
+- Crux: Attempts entry added, merged onto blob da18a78a6b.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

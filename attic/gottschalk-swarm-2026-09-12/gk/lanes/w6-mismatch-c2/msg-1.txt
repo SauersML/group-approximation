@@ -1,0 +1,14 @@
+Prove graphs of locally finite unit subgroups carry weakly finite rank models
+
+Every countable graph of groups whose vertex groups are locally finite subgroups
+of L_(F_2)(1,2)^x, with amalgamation along intersections and partial conjugations
+by units, has a characteristic-two rank model with the free profile on every
+finite vertex subgroup. Free actions are transported along a maximal forest and
+intertwined on the other edges. The model is fixed-point-free and weakly finite,
+and disjoint cylinder defects in one vertex group have rank 3/8 and multiply
+exactly. So relations routed through such a graph cannot force strict
+submultiplicativity, the Sylvester gate, or the weakly finite gate. Artifact
+Section 1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

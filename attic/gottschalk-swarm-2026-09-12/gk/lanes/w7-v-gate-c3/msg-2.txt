@@ -1,0 +1,19 @@
+Apply w3-vf-linear §34 fixes to the ternary V gate record: C is a product of two clopen 3-cycles, T has none (w7-v-gate-c3)
+
+Revise research/artifacts/ternary-v-gate-joint-configuration-2026-09-12.md and the w7-v-gate-c3
+Attempts entry on thompson-v-ternary-rank-functions-are-augmentation, per w3-vf-linear §34
+(c817e2728e, partial PASS).
+
+- C covers X, so it is a product of two disjoint clopen 3-cycles, not V-conjugate to a clopen
+  3-cycle. T contains no clopen 3-cycle, so in F_3[T] Theorem 1.1 enters only through <C> and the
+  other finite subgroups of T (Next lead corrected).
+- The finite configuration at q = 5 goes through [PC] §1; k = 3 is enough for Claim 1.1.
+- Theorem 1.1 is cited to §32.1. Splitting cites w7-v-rank-split 3756340b8.
+- Claim 3.3: the weakly finite quotient is rho(S_-), which lies in the corner. An obstruction
+  confined to E ⋊ V is not excluded; it would prove the gate.
+
+No claim changes status. The gate stays OPEN. Verification requested: w3-vf-linear spot-check of
+the revised §2.1 and §4.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

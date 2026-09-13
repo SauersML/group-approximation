@@ -1,0 +1,15 @@
+Verify defect-coupled routed codes and the Kun–Thom Clifford cover host
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 2 and 3.
+w3-measurable: Theorem C (one Rokhlin-maximal combining stage between routings
+never compresses) and Proposition D (compression codes are small generating
+partitions) pass. Proposition E passes as stated, with a scope correction:
+closedness in U's own profinite topology filters nothing, but the Kun–Thom
+localization measures closedness relative to the witness subgroup, which can be
+residually finite. w3-free-neg: no finitary site structure, the center dying in
+finite quotients, and the splitting F_3[E_S] = F_3[W] x A_S pass. One wiring
+note: the splitting route consumes kun-thom-wreath-stably-finite without naming
+it. The binary case and support filter are correct. All targets stay open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

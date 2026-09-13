@@ -1,0 +1,9 @@
+Separate the weakly finite reflection from Theorem C's quotient in the deficit artifact (w7-matrix-state-deficit)
+
+Applies notes 1-2 of the w4-vf-linear-b verification (ca689d3f19, Section 43). Lemma 2.1 no longer
+cites (F3). Proposition 3.1 identifies W with S_-/J_omega from
+weakly-finite-reflection-ideal-detects-weakly-finite-images and says it is not the maximal
+rank-condition quotient of Theorem C, which is a further image of W. No status changes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

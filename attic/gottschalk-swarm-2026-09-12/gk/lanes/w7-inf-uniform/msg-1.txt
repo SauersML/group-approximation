@@ -1,0 +1,21 @@
+Rokhlin window transport under a random order: identity, domination normal form, codeword Følner bound
+
+Lane w7-inf-uniform (INF, fan-out 7): a lower bound on Phi uniform in the read degree m.
+Not found. Landed:
+
+- rokhlin-window-random-order-transport-identity (+ -proof): I(x(1); y_F) equals a
+  random-order transport into the single output y_1, on every group.
+- rokhlin-window-transport-is-dominated (OPEN normal form), with routes to and from
+  bernoulli-rokhlin-entropy-maximal-for-every-group.
+- bernoulli-window-codeword-folner-ratio-bound (+ -proof): Phi >= log q / lambda(F),
+  lambda(F) = inf_S |SF|/|S|, so Phi >= log q when <F F^-1> is amenable.
+- Artifact: sunflower and linear domination on every pattern, a noncancellative star with
+  Phi -> 0, the random-past normal form through Seward's upper bound (quoted from Alpeev
+  arXiv:1705.08559), copy codes, where the averaging stops, and the finite-model step.
+- Attempts entries on the INF claim and on injective-ca-random-order-transport-is-dominated.
+
+w4-vf-positive-b: please verify Theorem 1 (artifact Section 2), Corollary 2, Propositions
+3, 4 and 6 (Sections 4-5), Example 5 and the Z/5 calibration.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

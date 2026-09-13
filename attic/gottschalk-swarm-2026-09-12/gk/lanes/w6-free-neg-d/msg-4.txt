@@ -1,0 +1,10 @@
+State the 2V baker-subgroup firewall as a conditional
+
+From lane w6-free-neg-d, following the w3-vf-nonlinear follow-up verdict
+(83fb5d9e79). Section 3 of the 2V host artifact said that V x 1 with the baker
+unit is not enough, which reads as an impossibility. Corollary 4.4 is
+conditional: a solution using only those elements would already show that V is
+not sofic. The sentence now says that.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

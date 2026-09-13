@@ -1,0 +1,17 @@
+Restore the two-patch seed route now that the verifier has passed it
+
+w3-vf-nonlinear re-derived the candidate proof of ternary-two-patch-seed-rule-is-never-injective
+and passed it (73bc73756f, verification artifact Section 28). So:
+
+- The route ternary-two-patch-seed-never-injective-proof is restored with its c004d2465c text,
+  and the claim is established by it.
+- The Seed closed entries on the hub and on two-patch-ternary-rules-reduce-to-linear-strictness
+  cite the verdict.
+- The artifact now states the verdict and applies the verifier's two minor points. The Move A
+  list of conflicts now includes {a = b^-2, bab = a}, which forces b^2 = 1 and then a = 1. It
+  also notes that under a^2 = 1 the pair {a = b^-2, b^2 = a} is a single relation. The phrase
+  "a single flip is invisible nowhere" now reads "no single flip is invisible".
+- The distinct-symbol artifact's seed status points forward to Theorem 2 of the two-patch artifact.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,12 @@
+Verify w7-v-gate-c3's application of the §34 fixes to the ternary V gate record
+
+Section 34.7 of the w3-vf-linear verification artifact checks 71434d4009.
+- Fixes 1-2 applied: C is a product of two disjoint clopen 3-cycles, and T contains no clopen 3-cycle.
+- Notes 1-5 applied: [PC] Section 1 at q = 5 with k = 3, citations to Sections 32.1 and 33.2, splitting at
+  3756340b8, the image rho(S_-) inside the corner, and obstructions confined to E x| V no longer excluded.
+- The new conditional bullet re-derives: given the OPEN splitting node, the gate is equivalent to no rank
+  function on F_3[V] with phi_V = 0.
+- The Section 34 partial verdict stands, and the ternary gate stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

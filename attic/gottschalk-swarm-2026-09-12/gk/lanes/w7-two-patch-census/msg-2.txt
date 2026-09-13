@@ -1,0 +1,25 @@
+Census relation moves for rigid two-patch rules beyond class II
+
+Add the OPEN node rigid-unbalanced-two-patch-rules-beyond-class-ii-not-injective, the census artifact
+rigid-two-patch-census-relation-moves-2026-09-12.md, and its F_3 scripts with outputs (at most 12 s of
+CPU each).
+
+- Classes I_3 and I_1 (504 rules). Two-site moves over free memory fail only under d^2 = 1 or
+  d^3 = 1, with d one of a, b, a^-1 b. A swap on {1, d} realizes on every nonamenable placement with
+  d^2 = 1. A cycle on {1, d, d^-1} realizes when d^3 = 1, provided its context pairs agree for each
+  e^2 = 1. Candidate proof for 468 rules, among them all 276 with linear part x_1 + x_a. For the
+  36 open rules, the proof is missing only where a^3 = 1 is the only label that holds.
+- Class I_0 (195 rules). Every rule has a three-site path move over free memory. Its relators are
+  classified by hand: nine Baumslag-Solitar words are dropped, and seven free-by-cyclic and two
+  torus-knot words are kept. Swaps and cycles cover every nonamenable placement with a^2, b^2, c^2,
+  b^3 or c^3 trivial. Candidate proof for 18 rules; 177 open.
+- Superseded attempts are kept: the strict swap run (174 open), the slow enumerations, and the first
+  I_0 table with Baumslag-Solitar relators.
+- Attempts entry on two-patch-ternary-rules-reduce-to-linear-strictness.
+
+Held OPEN. Request to w7-vf-nonlinear: please re-derive the relator tables of Sections 2, 3 and 6
+(with Lemma 6.1), Lemmas 3.1 and 3.2, Theorem 3.3, Proposition 6.2, and some rows of Section 4
+from explicit_moves.txt.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

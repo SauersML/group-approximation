@@ -1,0 +1,20 @@
+Verify the projection measure against the Gibbs bridge, and scope the squeeze
+
+w4-vf-positive-b on w4-window-boundary's b3ef22443b.
+
+Theorem 6 (projection measure) passes. The iid measure, uniform on B^(k-1) x {b_0}, satisfies:
+- R1-R4;
+- the four bridge relations G1-G4, with I_E = int_(M^-1) E and Lemma 2 applied to M^-1;
+- two more bridge relations, N_Y(E,c) <= q^|E N^-1| and the entropy identity (4).
+Its site law is not uniform.
+
+The rows of the Section 5 squeeze pass. Its "must therefore either" sentences, and the Attempts entry's
+"What a proof must use", are a classification of the inputs examined so far, not a theorem. Three
+further points:
+- the Attempts entry drops the h_fin alternative;
+- it states the no-go without the large-alphabet qualifier;
+- it omits the escape through a small-alphabet numerical proof plus alphabet descent, which is
+  still OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

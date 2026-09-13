@@ -1,0 +1,13 @@
+Prove the finite-residual screen for one-sided pairs over Radu's lattice
+
+Lane w7-vh-anchored. Artifact sections 3-6: modulo the finite residual a pair becomes
+two-sided, so the defect has two support points in one coset of Gamma_0. With Remark
+3.6 this forces support radii r + s >= 4, and the screen is blind at 4 through delta^4.
+Also: letter identifications transpose linearly, so size-one unit-ball pairs are never
+strict; a candidate table; and the invariant for the smallest nonlinear anchored gadget
+(every Garden of Eden window has diameter at least eight). Adds the claim
+radu-lattice-one-sided-pairs-need-residual-coincidences with its proof route, and an
+Attempts entry on radu-bmw-lattice-group-algebra-not-stably-finite. No pair is claimed.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

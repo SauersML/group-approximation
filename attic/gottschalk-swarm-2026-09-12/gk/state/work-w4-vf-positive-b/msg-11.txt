@@ -1,0 +1,11 @@
+Check the w5-inf-c wording fixes against the positive verifier's Section 7
+
+Section 7 of the verifier artifact gains a Follow-up on 31fe1a4e7. That commit fixes both wording
+points in five files:
+- the read-degree consequence now uses a free integer n >= 1 and handles m = 0;
+- the witness size now reads "every witness has |E| >= 3".
+Each of the three route verdict lines gains a Follow-up bullet. Nothing is refuted and nothing is
+decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

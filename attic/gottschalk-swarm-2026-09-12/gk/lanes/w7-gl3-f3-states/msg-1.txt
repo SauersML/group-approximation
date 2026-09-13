@@ -1,0 +1,37 @@
+Classify three-regular Leavitt units by minimal polynomial and measure what GL_3(F_3) constants force on anti-central states
+
+Lane w7-gl3-f3-states (wave 7). Directive: decide whether the lifted-trace forcing of Theorem 2.1 extends from
+GL_2(F_3) to GL_3(F_3) constants, and whether t = s(c_1) = 1/2 is forced.
+
+New artifact research/artifacts/gl3-f3-anti-central-spectral-states-2026-09-12.md, with three claims landed OPEN and
+candidate proofs in Attempts:
+- three-prime-leavitt-units-classified-by-minimal-polynomial:
+  - three-regular units of G are conjugate iff they have the same minimal polynomial;
+  - they are conjugate into E x| V iff that polynomial is binomial;
+  - K_0(eps_- F_3[K]) (x) Q is spanned by induction from the subgroups <g, z>.
+- anti-central-states-are-forced-exactly-on-binomial-spectra:
+  - a state is one spectral weight W_s on minimal polynomials;
+  - it is forced to the lifted trace exactly at binomial spectra, and finite-subgroup data force nothing more;
+  - alpha acts by inversion and delta trivially;
+  - this recovers the GL_2(F_3) theorem.
+- gl3-f3-alpha-invariant-states-keep-three-free-spectral-weights:
+  - GL_3(F_3) constants have six non-binomial directions (B (+) 1, B (+) -1, four Singer classes), and three real
+    weights survive alpha averaging;
+  - firewall: the GL_2 argument extends to GL_n iff n <= 2;
+  - no GL_3 projective lowers the lifted trace intrinsically.
+
+Held OPEN:
+- whether some or every state is trl on H_fin(GL_3(F_3));
+- whether t = 1/2 is forced: t = 1/2 + (i sqrt 2 / 2) W_s(hw), the set of values of t is symmetric about 1/2, and
+  GL_3 finite data cannot see W_s(hw).
+
+Attempts bullet added to anti-central-lifted-trace-is-relatively-positive, merged onto blob f590bd40.
+
+Verification requested from w4-vf-linear-b. Please re-derive, before any -proof route is added:
+- Section 1: Theorems 1.1 and 1.3, Lemma 1.2;
+- Section 2: Theorem 2.1, Corollary 2.2, Proposition 2.3, Lemma 2.4;
+- Section 3: Theorem 3.2, Corollary 3.3;
+- Section 4: Proposition 4.1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

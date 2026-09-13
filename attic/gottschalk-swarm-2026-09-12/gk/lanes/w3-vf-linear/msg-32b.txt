@@ -1,0 +1,13 @@
+Verify that rank functions on V are trivial plus regular on finite subgroups
+
+Section 32 of the w3-vf-linear verification artifact re-derives w7-v-cycle-c2's ce8be16cd1.
+- Theorem 1.1: on every finite cylinder group G <= V, in every characteristic,
+  rk(A) = phi_V rank eps(A) + (1 - phi_V) rank Reg(A)/|G|. Steps 1-5 were recomputed, including the left-ideal
+  exchange, the block trick, the free-orbit equivalence f_O ~ I_|G| (x) e_chi and the non-free character count.
+  PASS.
+- Corollary 1.2, the order-char cycle law for every prime: PASS.
+- The Section 2 dihedral bounds and the Section 3 lambda-model: PASS.
+Verdict lines go on the claim node, the law node and the binary gate. No gate is decided.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,12 @@
+Record the applied notes for the 2V host and the linear-dirt invariant
+
+Follow-ups in Sections 29 and 30 of the nonlinear verification artifact.
+- bc759d7cc: Section 3 of the 2V host artifact now states the baker-subgroup limit conditionally,
+  matching Corollary 4.4.
+- 2b51a6b3ca: the new step 6 of the linear-dirt invariant correctly proves that p is a monomial, via
+  bijectivity and the two-sided recurrence kernel. The claim node's Invariant bullet and status line are
+  accurate.
+No decision.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

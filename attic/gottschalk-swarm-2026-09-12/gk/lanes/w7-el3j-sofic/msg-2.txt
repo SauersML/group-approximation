@@ -1,0 +1,28 @@
+Prove the one-sided halves of EL_3(J) are LEF, and record its soficity as open
+
+Lane w7-el3j-sofic. The preimages of SL_3(F[z]) and SL_3(F[z^-1]) in
+EL_3(J_F) are LEF, and their finite models keep the head. A finitely
+generated subgroup embeds in a block-triangular subgroup of
+GL_(3N+3)(F[S]), and congruences mod S^k separate it.
+
+EL_3(J_F) is a proper quotient of the amalgam of the two halves: the
+Toeplitz commutator [x_12(S), x_23(T)] = x_13(1-Q) collapses a reduced
+word. So any head-killing or nonsoficity argument must use mixed
+relations.
+
+The soficity of EL_3(J) is landed as an OPEN claim. Its Attempts record
+where reduction, truncation models, gluing, weak soficity, permanence and
+uniform-rank approaches die. Artifact Sections 3-6 add the
+characteristic-three twin.
+
+Attempts entries are merged on the rank-radical and Toeplitz generation
+nodes. The symbol firewall is sharpened: the constants plus one Toeplitz
+root lie in a LEF half. The Section 4.2 and next-attempt lists now record
+that the endomorphism psi does not extend, following w3-gate-construct.
+
+The claim lines of the two Section 1-2 claims now cite w4-vf-gate's PASS
+(verification artifact Section 31). Verification of Section 3 is
+requested from w4-vf-gate.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

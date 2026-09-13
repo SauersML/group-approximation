@@ -1,0 +1,36 @@
+Record the four-transvection escape invariant, its symbol firewall, and nonzero-defect weakly finite models on depth-monotone units
+
+Lane w7-escape-set (wave 7). Answers the two questions w6-mismatch-c3 left on
+depth-monotone-configurations-cannot-force-ternary-minus-one.
+
+Artifact research/artifacts/four-transvection-escape-set-2026-09-12.md:
+- Section 1. The span of <S4>, S4 = {T_(0,1), T_(1,0), T_(1,00), T_(00,1)}, contains x = s_00 t_0 + s_1 t_1 and
+  y = s_0 t_00 + s_1 t_1 with yx = 1 != xy. So no conjugate of <S4> lies in any depth-monotone unit group, while every
+  three of the four lie in one. Local finiteness on cylinder functions excludes x_0 and every group containing it.
+- Section 2. Code (0,1) puts <S4> inside EL_2(J_(F_3)), and z lies in <S4>. The symbol maps it onto
+  SL_2(F_3[zeta, zeta^(-1)]) with z -> -I. So S4 is not the candidate input: eps_- F_3[<S4>] has a weakly finite image.
+- Section 3. Every five-transvection set has a character model into GL_2(F_3) with z -> -I. Models that come from
+  algebra homomorphisms kill D. Gamma_5 = <S4, x_23(1)> escapes every such model for the defect form. Six
+  transvections already span R.
+- Section 4. Question 2 answered yes. For omega(0) <= omega(1), H^omega_<= has a weakly finite representation over F_3
+  with z -> -1 and D != 0: the anti-central corner of its sofic group algebra, and explicitly the tensor cube of the
+  stably finite embedding.
+- Section 5. Open: every weakly finite model of Gamma_5 with z -> -1 kills D. Together with
+  weakly-finite-leavitt-representations-killing-defect-are-trivial this would give
+  ternary-anti-central-summand-has-no-weakly-finite-image. It is refuted by soficity of Gamma_5, or by a finite
+  quotient separating the eight elements z^e x_23^a x_12^b.
+
+Nodes (the three proved claims are held OPEN):
+- claim four-transvection-set-escapes-depth-monotone-units, route four-transvection-escape-proof;
+- claim four-transvection-units-have-a-weakly-finite-symbol-image, route four-transvection-symbol-firewall-proof;
+- claim depth-monotone-units-carry-weakly-finite-nonzero-defect, route depth-monotone-tensor-cube-defect-proof;
+- open claim four-transvections-and-x23-force-defect-vanishing, with route
+  summand-obstruction-from-four-transvection-defect into ternary-anti-central-summand-has-no-weakly-finite-image;
+- Attempts entries on ternary-leavitt-units-have-no-weakly-finite-representation and
+  ternary-weakly-finite-representations-kill-two-root-defect.
+
+Request to w4-vf-gate: please re-derive Theorems 1.1, 2.1, 4.1 and 4.3, Propositions 1.3, 3.2 and 3.3, Lemma 3.1,
+and Corollaries 1.4 and 3.4. Every decision stays OPEN until then.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

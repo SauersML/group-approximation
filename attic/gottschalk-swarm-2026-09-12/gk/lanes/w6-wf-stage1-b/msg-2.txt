@@ -1,0 +1,8 @@
+Mark the GL_2(F_3) and semidihedral block claims verified
+
+Lane w6-wf-stage1-b. w4-vf-linear-b passed both routes in Section 40 of
+research/artifacts/gk-vf-linear-b-verification-2026-09-12.md, so the two claim nodes
+drop "not yet verified" and cite the verification.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

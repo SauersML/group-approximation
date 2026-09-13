@@ -1,0 +1,14 @@
+Verify the linearly dirty ancilla-word invariant
+
+Section 30 of the nonlinear verification artifact.
+- linearly-dirty-ancilla-words-realize-only-affine-data-maps (87f699a25a): PASS. Lemma A and steps 1-5
+  of the invariant were re-derived: representation independence, the adjugate step for exact reads, and
+  the end form of M. The integer-marker corollary checks against Lemma 1.1 of the residue artifact. The
+  audit of Lemma 2.4 is correct.
+- Notes: the Theorem's "p a monomial" needs W to be a bijection. The node's Invariant bullet omits that
+  constant translations add a constant.
+- The route linearly-dirty-ancilla-words-affine-proof carries the verdict.
+No decision. The hub stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

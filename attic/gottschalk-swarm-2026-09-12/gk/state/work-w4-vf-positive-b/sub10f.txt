@@ -1,0 +1,113 @@
+origin/main:research/bk-uct-extensions-via-k0-hahn-banach.md:title: Hahn-Banach for every ideal gives the QD extension property, hence quasidiagonality from stable finiteness
+origin/main:research/blackadar-kirchberg-counterexample-exists.md:title: Some separable nuclear stably finite C*-algebra is not quasidiagonal (negative answer to STW Problem VII)
+origin/main:research/blackadar-kirchberg-for-uct-quotient-extensions.md:title: A stably finite extension of a nuclear UCT quasidiagonal algebra by a nuclear quasidiagonal ideal is quasidiagonal
+origin/main:research/blackadar-rordam-haagerup-k0-states-are-traces.md:title: States on K_0 of a unital exact stably finite C*-algebra are induced by tracial states
+origin/main:research/central-odd-norm-quadratic-ca-are-conjugate-to-linear.md:title: Central odd-cycle quadratic norm rules are reversibly conjugate to arbitrary linear cellular automata
+origin/main:research/certificate-linear-automata-have-local-linear-decoders.md:title: Injective certificate-controlled linear automata admit certificate-local linear left inverses
+origin/main:research/continuous-fields-of-stably-finite-mf-black-holes.md:title: Every compact base carries a stably finite continuous field with no nonzero MF quotient
+origin/main:research/deligne-cover-stable-finiteness-from-rank-projective-models.md:title: Rank-approximate projective representations of Deligne's multiplier make every positive-characteristic group algebra of the cover stably finite
+origin/main:research/deligne-triple-cover-group-algebras-are-stably-finite.md:title: Group algebras of Deligne's triple cover of Sp4(Z) over fields of positive characteristic are stably finite
+origin/main:research/deligne-triple-cover-ternary-group-algebras-are-stably-finite.md:title: Group algebras of Deligne's triple cover of Sp4(Z) are stably finite in characteristic three
+origin/main:research/deligne-triple-cover-ternary-stable-finiteness-proof.md:title: Lift stable finiteness from Sp4(Z) across the order-three center in characteristic three
+origin/main:research/deligne-twisted-group-algebra-is-not-stably-finite.md:title: A twisted group algebra of Sp4(Z) with Deligne's multiplier fails stable finiteness in some characteristic other than three
+origin/main:research/depth-monotone-leavitt-subalgebras-are-stably-finite.md:title: For every positive letter weight the span of s_mu t_nu with weight(mu) <= weight(nu) is a stably finite subalgebra of the binary Leavitt algebra, with locally residually finite units over a finite field
+origin/main:research/depth-monotone-minus-one-firewall-proof.md:title: Extend the stably finite embedding linearly to the group algebra and read off the reflection ideal
+origin/main:research/exact-stably-finite-non-mf-reduced-group-algebra.md:title: Concrete exact stably finite reduced group algebra that is not MF
+origin/main:research/finite-character-fails-to-extend-after-stabilization.md:title: A finite character of the units of a countable simple stably finite ring can fail to extend to rank two
+origin/main:research/finite-collision-operator-algebras-are-stably-finite.md:title: Complex operators defined by finitely many relative collisions are stably finite over every group
+origin/main:research/finite-normal-p-subgroups-modular-stable-finiteness-proof.md:title: Nilpotent augmentation kernels carry stable finiteness across finite normal p-subgroups
+origin/main:research/finite-normal-p-subgroups-preserve-modular-stable-finiteness.md:title: A finite normal p-subgroup does not affect stable finiteness of group algebras in characteristic p
+origin/main:research/formalizable-left-inverses-reduce-surjunctivity-to-kaplansky.md:title: Formalize some left inverse of an injective binary automaton, then linearize under stable finiteness
+origin/main:research/higman-stable-finiteness-failure-gives-nonsurjunctivity.md:title: A one-sided inverse over a modular group algebra of Higman's group gives a strict linear automaton on it
+origin/main:research/hilbert-hotel-prime-stably-finite-mf-black-hole.md:title: The reduced Hilbert-hotel algebra is a primitive stably finite MF black hole
+origin/main:research/homomorphic-solvable-alphabet-ca-reduce-to-stable-finiteness.md:title: Injective homomorphic automata over finite solvable group alphabets are surjective whenever the relevant group algebras are stably finite
+origin/main:research/hs-schur-root-collapse-via-linear-sofic-kernel.md:title: Apply stable finiteness to the coefficient quotient decoded from the root kernel
+origin/main:research/infinite-field-polynomial-strict-pairs-need-kaplansky-failure.md:title: A strict polynomial automaton with a polynomial left inverse over an infinite field needs a nonstably finite prime-field group algebra
+origin/main:research/kaplansky-direct-stable-finiteness-one-universal-group.md:title: One two-generator finitely presented group tests Kaplansky direct and stable finiteness for all groups
+origin/main:research/kaplansky-torsion-free-direct-stable-master-tester.md:title: The two-generator torsion-free master separately tests direct and stable finiteness
+origin/main:research/kun-thom-clifford-skew-rings-are-stably-finite.md:title: Every anti-central Clifford skew ring of the Kun--Thom pair is stably finite over F_3
+origin/main:research/kun-thom-clifford-skew-rings-sf-from-f3-linear-soficity.md:title: F_3-linear soficity of every Clifford cover makes every anti-central skew ring stably finite
+origin/main:research/kun-thom-clifford-skew-rings-sf-from-matrix-lamp-wreath.md:title: Embed every Kun--Thom Clifford skew ring locally in a matrix-lamp wreath and use its stable finiteness
+origin/main:research/kun-thom-wreath-stably-finite.md:title: Kaplansky stable finiteness for the Kun--Thom nonsofic wreath products
+origin/main:research/laminar-finite-subgroup-defect-gives-kaplansky-failure.md:title: A laminar finite-subgroup idempotent with zero K_0 class is a stable finiteness failure, hence a direct finiteness failure
+origin/main:research/leavitt-direct-finiteness-from-f2-linear-soficity.md:title: Linear soficity over F_2 makes the Leavitt unit group algebra stably finite
+origin/main:research/leavitt-group-algebra-not-stably-finite.md:title: The group algebra of the Leavitt unit group is not stably finite
+origin/main:research/leavitt-packet-linear-sofic-kaplansky-proof.md:title: Identify the packet with R^x, then apply stable finiteness of linear sofic group algebras
+origin/main:research/leavitt-packet-linear-sofic-kills-kaplansky-target.md:title: The OpenAI nine-leaf packet is the whole Leavitt unit group, so its F_2-linear soficity would make F_2[L^x] stably finite
+origin/main:research/leavitt-stable-finiteness-equals-direct-finiteness.md:title: For the Leavitt unit group algebra stable finiteness and direct finiteness are the same statement
+origin/main:research/lef-group-rings-over-stably-finite-rings-are-stably-finite.md:title: LEF group rings preserve stable finiteness of arbitrary coefficient rings
+origin/main:research/linear-invariant-output-automata-fail-augmentation.md:title: Linear automata with right-coset-invariant output die by augmentation in modular characteristic and are corner compressions otherwise
+origin/main:research/linear-reversible-words-strict-via-strict-linear-factor.md:title: A strict composite of square linear automata and bijective automata over F_q has a strict linear factor
+origin/main:research/linear-sofic-group-algebra-is-stably-finite.md:title: A group linear sofic over a field has a stably finite group algebra over that field
+origin/main:research/linear-sofic-surjunctivity-via-formalizability-and-ascent.md:title: Linear soficity gives stable finiteness, stable formalizability gives p-power alphabets, ascent gives the rest
+origin/main:research/literal-stably-finite-non-mf-reduced-group-algebra.md:title: Literal reduced group algebra is stably finite but not MF
+origin/main:research/matricial-mautner-fixed-subspace-proof.md:title: Stable finiteness of the corona forces the two Kazhdan projections equal
+origin/main:research/matrix-lamp-wreath-algebras-are-stably-finite.md:title: Matrix-lamp wreath algebras over a stably finite base group algebra are stably finite
+origin/main:research/mf-min-tensor-exact-stably-finite-is-stably-finite.md:title: The spatial tensor product of an MF algebra with an exact algebra with stably finite unitization is stably finite
+origin/main:research/moutzouris-qd-extensions-y-class.md:title: Stably finite extensions of UCT quotients by locally ASH-or-crossed-product ideals are quasidiagonal (Moutzouris)
+origin/main:research/non-surjunctive-group-with-stably-finite-group-algebras.md:title: Some group whose prime-field group algebras are all stably finite is not surjunctive
+origin/main:research/nonlinear-certificate-fibers-are-all-surjective-or-all-strict.md:title: An injective nonlinear automaton with unchanged full-shift certificates is either surjective on every fiber or strict on every fiber
+origin/main:research/opr-cfp-rr0-dichotomy.md:title: Simple real rank zero algebras with the corona factorization property are stably finite or purely infinite (Ortega-Perera-Rordam, Zhang)
+origin/main:research/oriented-clifford-skew-rings-sf-from-matrix-lamp-wreath.md:title: Stable finiteness of the matrix-lamp wreath passes to every oriented Clifford skew ring
+origin/main:research/oriented-kun-thom-clifford-skew-rings-are-stably-finite.md:title: Clifford skew rings of orientable invariant graphs over the Kun--Thom pair are stably finite
+origin/main:research/projective-natural-source-separation-proof.md:title: Decompose the natural projective-head permutation module into signed subgroup orbits
+origin/main:research/projective-swap-corner-gives-strict-automaton.md:title: A full swap-averaging idempotent on the scalar quotient gives a strict linear automaton there
+origin/main:research/radu-bmw-stable-finiteness-failure-gives-nonsurjunctivity.md:title: A one-sided inverse over a modular group algebra of Radu's lattice gives a strict linear automaton on it
+origin/main:research/residual-lamp-quotients-handle-monomial-actions.md:title: Invariant finite lamp quotients preserve stable finiteness under monomial actions
+origin/main:research/residually-p-kernels-preserve-modular-stable-finiteness.md:title: A residually finite p-group kernel preserves stable finiteness in characteristic p
+origin/main:research/rf-lamps-preserve-stable-finiteness-for-arbitrary-actions.md:title: Residually finite lamps preserve stable finiteness over any permutation action and any stably finite base group algebra
+origin/main:research/split-local-corner-extensions-preserve-stable-finiteness.md:title: A split extension with stably finite local ideal corners is stably finite
+origin/main:research/stable-finiteness-forces-binary-surjunctivity.md:title: If F_2[G] is stably finite, every injective cellular automaton over an alphabet of size 2^n is surjective
+origin/main:research/stable-finiteness-forces-prime-power-surjunctivity.md:title: If F_p[G] is stably finite, every injective cellular automaton over an alphabet of size p^n is surjective
+origin/main:research/stable-finiteness-reduces-to-prime-field.md:title: Kaplansky stable finiteness over every field reduces to the prime fields
+origin/main:research/stable-formalizability-reduces-prime-power-surjunctivity.md:title: Take a left inverse, stabilize until the pair is formal, and linearize under stable finiteness
+origin/main:research/stably-finite-compact-cu-elements-are-projections.md:title: Compact Cuntz classes over stably finite algebras are projection classes
+origin/main:research/stably-finite-group-ring-with-non-mf-elementary-groups-proof.md:title: Embed the perfect unit group in two elementary coordinates and use the faithful trace for stable finiteness
+origin/main:research/stably-finite-group-ring-with-non-mf-elementary-groups.md:title: The integral group ring of the Leavitt unit group is stably finite although its elementary groups are not MF from rank two
+origin/main:research/stably-finite-simple-hosts-are-binary-power-surjunctive.md:title: A finitely generated simple group with stably finite binary group algebra is surjunctive over binary-power alphabets
+origin/main:research/stw01-separable-simple-reduction.md:title: Kaplansky's quasitrace problem reduces exactly to separable simple stably finite algebras
+origin/main:research/stw01-traceless-separable-simple-reduction.md:title: A Kaplansky counterexample can be separable simple stably finite and traceless
+origin/main:research/stw07-qd-trace-positive-class-kills-qd-extension.md:title: A singular K_0-class positive on all quasidiagonal traces yields a stably finite nonquasidiagonal extension
+origin/main:research/stw07-singular-classes-change-sign-or-sit-on-boundary.md:title: A singular K_0-class of a unital exact stably finite algebra is never strictly one-signed on traces
+origin/main:research/stw07-surjective-pullbacks-preserve-nuclear-qd-finiteness.md:title: Surjective pullbacks preserve nuclear quasidiagonality and force stable finiteness
+origin/main:research/stw11-lattice-coupled-cyclic-products-are-af-embeddable.md:title: Stable finiteness is equivalent to AF-embeddability for lattice-coupled products of cyclic systems
+origin/main:research/stw23-rank-problem-counterexample-exists.md:title: A unital simple separable stably finite non-elementary C*-algebra in which not all ranks occur exists
+origin/main:research/stw31-algebraic-cu-forces-closure-module-rigidity.md:title: Simple stably finite algebras with algebraic Cu have projection-exhausted closure rigidity
+origin/main:research/stw50-stably-finite-six-loop-basis.md:title: Construct six explicit generators in Aut of the stably finite irrational rotation algebra
+origin/main:research/stw59-exact-arbitrary-cyclic-unitary-component-groups.md:title: Every finite cyclic group is the entire unitary component group of a simple stably finite AH algebra with K1 zero
+origin/main:research/stw59-exact-finite-abelian-unitary-component-groups.md:title: Every finite abelian group is the entire unitary component group of a simple stably finite AH algebra with K1 zero
+origin/main:research/stw59-simple-ah-factorial-unitary-torsion.md:title: Simple nuclear stably finite AH algebras with zero K1 realize every finite cyclic unitary-component order
+origin/main:research/stw59-simple-ah-non-k1-injective.md:title: A simple unital nuclear stably finite AH algebra has K1 zero and a nontrivial order-two unitary component
+origin/main:research/stw77-quasitraces-detect-stably-finite-corner-quotients.md:title: Quasitraces on a unital corner are exactly stably finite quotient witnesses
+origin/main:research/stw81-z-stable-usc-fields-reduce-to-first-factor-map.md:title: The stably finite field seam is exactly the nonsimple Z first-factor map problem
+origin/main:research/stw83-stably-finite-graphs-dimension-one.md:title: Every stably finite graph C*-algebra has nuclear dimension at most one
+origin/main:research/stw99-lxvi-finite-index-car-envelopes-are-stably-finite.md:title: Finite-index expected envelopes of stably finite cores are stably finite
+origin/main:research/stw99-lxvi-injective-limits-cannot-create-instability.md:title: Injective unital inductive limits cannot create non-stable finiteness only at infinity
+origin/main:research/stw99-lxvi-tracial-free-constructions-are-stably-finite.md:title: Trace-preserving reduced free constructions over CAR are stably finite
+origin/main:research/stw99-lxvi-via-nonstable-finite-car-seed.md:title: Replace the prescribed infinite double by failure of stable finiteness
+origin/main:research/stw99-lxxvi-circle-fields-over-simple-pure-fibers.md:title: Circle fields over simple stably finite pure fibers are Cu-regular
+origin/main:research/stw99-lxxvi-ideal-local-k0-protection.md:title: A projection K0 difference survives Z-stabilization when the generated tensor ideal is stably finite
+origin/main:research/stw99-lxxvi-interval-fields-over-simple-pure-fibers.md:title: Interval fields over simple stably finite pure fibers are Cu-regular
+origin/main:research/stw99-problem-liii-stably-finite-dynamical-kp.md:title: Classify strongly outer amenable actions on stably finite classifiable algebras equivariantly (STW Problem LIII)
+origin/main:research/stw99-problem-liv-circle-actions-framework.md:title: A classification framework for circle actions on Kirchberg algebras with stably finite crossed products (STW Problem LIV)
+origin/main:research/stw99-problem-vii-blackadar-kirchberg.md:title: Every separable nuclear stably finite C*-algebra is quasidiagonal (STW Problem VII, Blackadar--Kirchberg)
+origin/main:research/stw99-problem-xi-zd-crossed-stably-finite-qd.md:title: Stably finite crossed products of Z^d-actions on compact spaces are quasidiagonal and AF-embeddable (STW Problem XI)
+origin/main:research/stw99-problem-xix-uniform-gamma-stably-finite-nuclear.md:title: Every unital simple separable nuclear non-elementary stably finite C*-algebra has uniform property Gamma (STW Problem XIX)
+origin/main:research/stw99-problem-xl-amenable-actions-exact-groups.md:title: Every exact nonamenable group acts amenably on a unital stably finite classifiable algebra (STW Problem XL)
+origin/main:research/stw99-problem-xliv-stable-crossed-product-models.md:title: Stable stably finite classifiable algebras are transformation groups (STW Problem XLIV)
+origin/main:research/stw99-problem-xxiii-rank-problem.md:title: All ranks occur in unital simple separable stably finite non-elementary C*-algebras (STW Problem XXIII, the Rank Problem)
+origin/main:research/stw99-problem-xxix-rr0-dichotomy.md:title: Simple real rank zero C*-algebras are stably finite or purely infinite (STW Problem XXIX, Rordam's dichotomy)
+origin/main:research/stw99-problem-xxxi-cu-algebraic-rr0.md:title: Algebraic Cuntz semigroups detect real rank zero in simple stably finite algebras (STW Problem XXXI)
+origin/main:research/stw99-problem-xxxviii-noncommutative-crossed-z-stable.md:title: Outer actions of amenable groups on Z-stable stably finite algebras give Z-stable crossed products (STW Problem XXXVIII)
+origin/main:research/stw99-vii-implies-ix1.md:title: A faithful trace forces stable finiteness
+origin/main:research/stw99-vii-implies-xiv1.md:title: Finite strongly self-absorbing algebras are stably finite nuclear, so Blackadar-Kirchberg covers them
+origin/main:research/stw99-vii-restricted-to-simple-algebras.md:title: Simple separable nuclear stably finite C*-algebras are quasidiagonal (the heart of STW Problem VII)
+origin/main:research/ternary-swap-corner-gives-strict-linear-automaton.md:title: A full swap-averaging idempotent gives an injective linear automaton with swap-invariant output over F_3
+origin/main:research/thompson-v-modular-group-algebras-are-stably-finite.md:title: Every group algebra of Thompson's V over a field of positive characteristic is stably finite
+origin/main:research/thompson-v-nonsurjunctive-from-direct-finiteness-failure.md:title: A one-sided unit in a modular group algebra of V gives a strict linear automaton over V
+origin/main:research/thompson-v-stable-finiteness-from-soficity.md:title: A sofic Thompson's V has stably finite modular group algebras
+origin/main:research/toms-ah-counterexample-to-uniform-gamma.md:title: A simple stably finite nuclear AH algebra lacks uniform property Gamma
+origin/main:research/toms-gamma-counterexample-fails-strict-comparison.md:title: Every stably finite nuclear AH counterexample to uniform property Gamma fails strict comparison and is not pure
+origin/main:research/virtual-formalizability-reduces-surjunctivity-to-kaplansky.md:title: Localize to the memory subgroup, regroup along a finite-index subgroup, formalize, and linearize under stable finiteness
+origin/main:research/weak-sofic-stable-finiteness-from-surjunctivity.md:title: Surjunctive groups have stably finite group algebras over finite fields, so weak-sofic surjunctivity gives the linear shadow
+origin/main:research/weakly-sofic-group-algebras-are-stably-finite.md:title: Weakly sofic groups have stably finite group algebras over every finite field

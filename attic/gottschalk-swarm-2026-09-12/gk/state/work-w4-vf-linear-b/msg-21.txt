@@ -1,0 +1,8 @@
+Verify that one-sided pairs over Radu's lattice need residual coincidences
+
+Section 44 of the w4-vf-linear-b verification artifact re-derives Sections 0-3 and 5 of the
+w7-vh-anchored artifact. The route radu-lattice-residual-coincidences-proof passes, given Remark 3.6
+and the cited nodes. The claim's radius bound is implied by radu-lattice-one-sided-pairs-need-radius-five.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

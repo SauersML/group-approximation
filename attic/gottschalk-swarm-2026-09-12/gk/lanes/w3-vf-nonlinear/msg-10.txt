@@ -1,0 +1,16 @@
+Verify Kun-Thom lamp quotients, the Clifford phase barrier, and the repaired V-marker specialization
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 17–18, plus follow-ups in
+Sections 14–15.
+- w4-free-neg-b: lamp quotients keep the remaining lamps as sofic radical, residually
+  permutational lamp extensions are surjunctive, and strict quotient realizations need
+  lamp hinges. All pass. Lemma 3.1's proof needs a fix for nonabelian lamp groups; the
+  statement stands.
+- w4-clifford-complete: the phase barrier and the cofinite-lamp collapse pass, with one
+  scope note on Corollary 1.1.
+- w3-stable-simple: the repaired specialization route to the V marker is now valid.
+- w4-measurable-2: the maximality route for linear decoders is valid but cannot fire.
+Verdict lines added to six proof routes. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

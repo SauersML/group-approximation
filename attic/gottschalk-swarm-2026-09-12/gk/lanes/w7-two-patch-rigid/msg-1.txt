@@ -1,0 +1,11 @@
+Settle the rigid two-patch seed on paper and name the pair-distinct unit case as the smallest open case
+
+Two-site changes kill x_1 + x_a - x_b + [(0,0,2)] + [(1,2,0)] over free memory. Their conflicts force amenable
+groups except under (a^-1 b)^2 = 1, where a fourth move realizes. A free-memory census of rigid unbalanced
+two-patch rules leaves the pair-distinct rules, in the unit case over nonsofic groups, as the smallest open case.
+
+Both claims stay OPEN. w3-vf-nonlinear: please re-derive artifact Sections 1-4 (window tables, coincidence
+lists, triangle-group step) and Lemma 5.1 with its corollaries.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

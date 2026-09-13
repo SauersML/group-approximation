@@ -1,0 +1,98 @@
+# tip 43d3818bfed0c0f50d219ed202fd15083e2d3add
+RESCUE	GroupApproximation/CharClass/OddPProductConcat.lean	attic/sweep-2026-09-12/GroupApproximation/CharClass/OddPProductConcat.lean.txt	RESCUE_DIVERGED
+RESCUE	GroupApproximation/CharClass/OddPTopPowerAWChain.lean	attic/sweep-2026-09-12/GroupApproximation/CharClass/OddPTopPowerAWChain.lean.txt	RESCUE_DIVERGED
+RESCUE	GroupApproximation/GGT/HullSCLemma51LetterPullbackShortcut.lean	attic/sweep-2026-09-12/GroupApproximation/GGT/HullSCLemma51LetterPullbackShortcut.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/GGT/HullSCLemma51LetterPullbackShortcutArcs.lean	attic/sweep-2026-09-12/GroupApproximation/GGT/HullSCLemma51LetterPullbackShortcutArcs.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/GGT/SystolicDiscZipFold.lean	attic/sweep-2026-09-12/GroupApproximation/GGT/SystolicDiscZipFold.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/GGT/SystolicProjectionClique.lean	attic/sweep-2026-09-12/GroupApproximation/GGT/SystolicProjectionClique.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/GroupTheory/HydeLodha/QTwoLemmaFourSixGenerators.lean	attic/sweep-2026-09-12/GroupApproximation/GroupTheory/HydeLodha/QTwoLemmaFourSixGenerators.lean.txt	RESCUE_DIVERGED
+RESCUE	GroupApproximation/Kazhdan/GHWCharP.lean	attic/sweep-2026-09-12/GroupApproximation/Kazhdan/GHWCharP.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Kazhdan/GHWEntries.lean	attic/sweep-2026-09-12/GroupApproximation/Kazhdan/GHWEntries.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean	attic/sweep-2026-09-12/GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean	attic/sweep-2026-09-12/GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Manuscript/NonMFSentences/KorchaginDirectLimit.lean	attic/sweep-2026-09-12/GroupApproximation/Manuscript/NonMFSentences/KorchaginDirectLimit.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Manuscript/NonMFSentences/KorchaginDyadicV.lean	attic/sweep-2026-09-12/GroupApproximation/Manuscript/NonMFSentences/KorchaginDyadicV.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Manuscript/NonMFSentences/KorchaginFullSequenceLiteral.lean	attic/sweep-2026-09-12/GroupApproximation/Manuscript/NonMFSentences/KorchaginFullSequenceLiteral.lean.txt	RESCUE_BUILD_NEW
+RESCUE	GroupApproximation/Manuscript/NonMFSentences/KorchaginShiftKernelMF.lean	attic/sweep-2026-09-12/GroupApproximation/Manuscript/NonMFSentences/KorchaginShiftKernelMF.lean.txt	RESCUE_BUILD_NEW
+RESCUE	README.md	attic/sweep-2026-09-12/README.md	RESCUE_DIVERGED
+LIVE	experiments/hyperbolic-random-models/lowindex_density_even.g	experiments/hyperbolic-random-models/lowindex_density_even.g	LAND_NEW
+LIVE	experiments/kaplansky_prefix_exterior_obstruction.py	experiments/kaplansky_prefix_exterior_obstruction.py	LAND_NEW
+RESCUE	metadata/nm-census-rows/hull-count94.tsv	attic/sweep-2026-09-12/metadata/nm-census-rows/hull-count94.tsv	LAND_NEW
+RESCUE	metadata/nm-census-rows/lix-descent.tsv	attic/sweep-2026-09-12/metadata/nm-census-rows/lix-descent.tsv	LAND_NEW
+LIVE	notes/GOTTSCHALK_IID_CHOI_DUALITY_2026-09-12.md	notes/GOTTSCHALK_IID_CHOI_DUALITY_2026-09-12.md	LAND_NEW
+LIVE	notes/gottschalk-positive-lean-witness-gap-2026-09-12.md	notes/gottschalk-positive-lean-witness-gap-2026-09-12.md	LAND_NEW
+LIVE	notes/lix-strong-swarm/lx-additive.md	notes/lix-strong-swarm/lx-additive.md	LAND_NEW
+LIVE	notes/lix-strong-swarm/tools/review_evenops_model.py	notes/lix-strong-swarm/tools/review_evenops_model.py	LAND_NEW
+RESCUE	notes/nm-swarm/landed.log	attic/sweep-2026-09-12/notes/nm-swarm/landed.log	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/census2.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/census2.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/cite-ejz.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/cite-ejz.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/cite-hull.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/cite-hull.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/cite-kazhdan.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/cite-kazhdan.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/cite-osin.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/cite-osin.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/cite-sofic.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/cite-sofic.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/dgo-analytic.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/dgo-analytic.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/fff-quotient.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/fff-quotient.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/ghw-charp2.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/ghw-charp2.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/go-lemma42.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/go-lemma42.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/hl-lemma46b.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/hl-lemma46b.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/hull-count94.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/hull-count94.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/hull-euler.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/hull-euler.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/jacobson.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/jacobson.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/kh-ejz.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/kh-ejz.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/ko-closed.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/ko-closed.files	LAND_NEW
+RESCUE	notes/nm-swarm/lanes/leavitt-ge.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/leavitt-ge.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/leavitt-units.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/leavitt-units.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/sec4-sentences.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/sec4-sentences.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/sec5-sentences.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/sec5-sentences.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/lanes/simple-group.files	attic/sweep-2026-09-12/notes/nm-swarm/lanes/simple-group.files	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/reports/leavitt-ge.md	attic/sweep-2026-09-12/notes/nm-swarm/reports/leavitt-ge.md	RESCUE_DIVERGED
+RESCUE	notes/nm-swarm/wire-queue.txt	attic/sweep-2026-09-12/notes/nm-swarm/wire-queue.txt	RESCUE_DIVERGED
+DEFER	research/almost-automorphism-exponent-pumping-proof.md	-	fresh 0.3h
+LIVE	research/artifacts/fpbs/binary-descent-entropy-tail-replay-2026-09-12.json	research/artifacts/fpbs/binary-descent-entropy-tail-replay-2026-09-12.json	LAND_NEW
+LIVE	research/artifacts/hyperbolic-finite-simple-spectrum-construction-2026-09-12.md	research/artifacts/hyperbolic-finite-simple-spectrum-construction-2026-09-12.md	LAND_NEW
+LIVE	research/artifacts/hyperbolic-image-compression-kernel-2026-09-12.md	research/artifacts/hyperbolic-image-compression-kernel-2026-09-12.md	LAND_NEW
+LIVE	research/artifacts/hyperbolic-mf-kazhdan-direct-attack-2026-09-12.md	research/artifacts/hyperbolic-mf-kazhdan-direct-attack-2026-09-12.md	LAND_NEW
+LIVE	research/artifacts/kms-hc1-marked-root-kernel-candidate-2026-09-12.md	research/artifacts/kms-hc1-marked-root-kernel-candidate-2026-09-12.md	LAND_NEW
+DEFER	research/artifacts/murray-z-only-ansatz-char0-2026-09-12.md	-	fresh 0.0h
+DEFER	research/artifacts/or-unpeelable-census-scripts-2026-09-12/census.py	-	fresh 0.3h
+DEFER	research/artifacts/or-unpeelable-census-scripts-2026-09-12/census2.py	-	fresh 0.3h
+DEFER	research/artifacts/or-unpeelable-census-scripts-2026-09-12/census3.py	-	fresh 0.3h
+DEFER	research/artifacts/or-unpeelable-census-scripts-2026-09-12/malnormal.py	-	fresh 0.3h
+DEFER	research/artifacts/or-unpeelable-extreme-2026-09-12.md	-	fresh 0.2h
+LIVE	research/artifacts/parallel-frontier-upstream-validation-2026-09-12.json	research/artifacts/parallel-frontier-upstream-validation-2026-09-12.json	LAND_NEW
+DEFER	research/artifacts/review-swarm6-groups-2026-09-12.md	-	fresh 0.1h
+LIVE	research/artifacts/rips-central-pullback-finite-image-centers-2026-09-12.md	research/artifacts/rips-central-pullback-finite-image-centers-2026-09-12.md	3-way merge base 1d2e3b8da9 (M==W fm-same)
+LIVE	research/artifacts/unique-games-finite-density-moments-2026-09-12.md	research/artifacts/unique-games-finite-density-moments-2026-09-12.md	LAND_NEW
+LIVE	research/artifacts/unique-games-finite-density-moments-replay-2026-09-12.json	research/artifacts/unique-games-finite-density-moments-replay-2026-09-12.json	LAND_NEW
+LIVE	research/artifacts/validate-parallel-frontier-2026-09-12.py	research/artifacts/validate-parallel-frontier-2026-09-12.py	LAND_NEW
+LIVE	research/artifacts/verify-ugc-finite-density-moments.py	research/artifacts/verify-ugc-finite-density-moments.py	LAND_NEW
+LIVE	research/central-prime-free-hyperbolic-from-h31.md	research/central-prime-free-hyperbolic-from-h31.md	LAND_NEW
+DEFER	research/digit-affine-hosts-with-abelian-linear-parts-proof.md	-	fresh 0.1h
+LIVE	research/finite-density-moment-tail-proof.md	research/finite-density-moment-tail-proof.md	LAND_NEW
+LIVE	research/finite-density-moments-control-noisy-tails.md	research/finite-density-moments-control-noisy-tails.md	LAND_NEW
+LIVE	research/finite-moment-hardness-from-smooth-design.md	research/finite-moment-hardness-from-smooth-design.md	LAND_NEW
+LIVE	research/finite-moment-pairing-2to1-hardness.md	research/finite-moment-pairing-2to1-hardness.md	LAND_NEW
+RESCUE	research/formalizable-binary-pairs-over-biorderable-groups-are-affine.md	attic/sweep-2026-09-12/research/formalizable-binary-pairs-over-biorderable-groups-are-affine.md	merge CONFLICT1
+LIVE	research/fpbs-gap-survives-product-generator-moves.md	research/fpbs-gap-survives-product-generator-moves.md	3-way merge base c94d39e0f4 (M==W fm-CHANGED)
+LIVE	research/fpbs-large-margin-generating-sets-exist-proof.md	research/fpbs-large-margin-generating-sets-exist-proof.md	LAND_NEW
+LIVE	research/fpbs-large-margin-generating-sets-exist.md	research/fpbs-large-margin-generating-sets-exist.md	LAND_NEW
+LIVE	research/fpbs-spectral-margin-product-move-proof.md	research/fpbs-spectral-margin-product-move-proof.md	LAND_NEW
+LIVE	research/fpbs-spectral-margin-survives-product-generator-moves.md	research/fpbs-spectral-margin-survives-product-generator-moves.md	LAND_NEW
+LIVE	research/fpbs-thom-small-spectral-radius-generating-sets-citation.md	research/fpbs-thom-small-spectral-radius-generating-sets-citation.md	LAND_NEW
+LIVE	research/fpbs-thom-small-spectral-radius-generating-sets.md	research/fpbs-thom-small-spectral-radius-generating-sets.md	LAND_NEW
+LIVE	research/h31-finite-quotients-have-no-seven-schur-class.md	research/h31-finite-quotients-have-no-seven-schur-class.md	LAND_NEW
+LIVE	research/h31-seven-central-image-criterion-proof.md	research/h31-seven-central-image-criterion-proof.md	LAND_NEW
+LIVE	research/h31-seven-central-image-criterion.md	research/h31-seven-central-image-criterion.md	LAND_NEW
+LIVE	research/kms-hc1-finite-images-kill-reflected-root-word.md	research/kms-hc1-finite-images-kill-reflected-root-word.md	LAND_NEW
+LIVE	research/kms-hc1-reflected-root-word-is-nontrivial-proof.md	research/kms-hc1-reflected-root-word-is-nontrivial-proof.md	LAND_NEW
+LIVE	research/kms-hc1-reflected-root-word-is-nontrivial.md	research/kms-hc1-reflected-root-word-is-nontrivial.md	LAND_NEW
+LIVE	research/nested-finite-subgroup-idempotents-odd-intersection-are-finite.md	research/nested-finite-subgroup-idempotents-odd-intersection-are-finite.md	LAND_NEW
+LIVE	research/non-rf-hyperbolic-via-kms-reflected-root-word.md	research/non-rf-hyperbolic-via-kms-reflected-root-word.md	LAND_NEW
+RESCUE	research/numeric-window-relations-do-not-force-balance-proof.md	attic/sweep-2026-09-12/research/numeric-window-relations-do-not-force-balance-proof.md	merge CONFLICT1
+RESCUE	research/ugc-from-finite-moment-pairing-hardness.md	attic/sweep-2026-09-12/research/ugc-from-finite-moment-pairing-hardness.md	route could establish pre-existing claim unique-games-conjecture; not asserting it on main for another session
+LIVE	research/unique-games-conjecture.md	research/unique-games-conjecture.md	3-way merge base 6598160601 (M!=O fm-CHANGED)
+LIVE	research/zpc-frozen-equation-menu-has-positive-orbitwise-class.md	research/zpc-frozen-equation-menu-has-positive-orbitwise-class.md	LAND_EDIT
+RESCUE	tools/nm-swarm/nmwire.sh	attic/sweep-2026-09-12/tools/nm-swarm/nmwire.sh	RESCUE_DIVERGED
+RESCUE	tools/nm-swarm/remote/wirejob.template.sh	attic/sweep-2026-09-12/tools/nm-swarm/remote/wirejob.template.sh	RESCUE_DIVERGED
+RESCUE	wip/bowen-chapman/GroupApproximation/KunThom/FixedPointNormalizationBisection.lean	attic/sweep-2026-09-12/wip/bowen-chapman/GroupApproximation/KunThom/FixedPointNormalizationBisection.lean.txt	RESCUE_DELETED_ON_MAIN
+RESCUE	wip/bowen-chapman/GroupApproximation/KunThom/FixedPointNormalizationComparison.lean	attic/sweep-2026-09-12/wip/bowen-chapman/GroupApproximation/KunThom/FixedPointNormalizationComparison.lean.txt	RESCUE_BUILD_NEW

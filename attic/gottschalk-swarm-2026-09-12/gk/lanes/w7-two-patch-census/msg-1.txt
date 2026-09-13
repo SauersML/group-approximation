@@ -1,0 +1,9 @@
+Record the rigid two-patch census scripts
+
+Land the tiny F_3 scripts behind rigid-two-patch-seed-relation-moves-2026-09-12.md so no work is lost:
+check_mu3.py (seed move tables and coincidence relators), search_moves.py and conflicts.py (two-site
+moves over F_2 and Z*Z/2 memory), census.py and census2.py (free-memory census of rigid unbalanced
+two-patch rules), check_classII.py (class II shape tally). Each runs in seconds.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

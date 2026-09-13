@@ -1,0 +1,12 @@
+Verify the sofic-configuration and characteristic-uniform firewalls for V's rank gate
+
+Section 31 of the w3-vf-linear verification artifact re-derives w5-v-nonamenable's two firewalls.
+- Ultraproduct permutation-module ranks along a sofic approximation are Sylvester and have the values
+  1 - deg gcd(q, t^n - 1)/n. They satisfy every premise confined to a sofic configuration.
+- The von Neumann rank satisfies every characteristic-uniform argument, and every quoted tool instance lifts.
+Both PASS. On the open order-char cycle law, Proposition 4.2 (a)-(c) passes. The j = 0 display slip and its
+upstream correction in 77400e393, including that correction's tail-average bound, were re-derived.
+Verdict lines go on both routes and on the open node.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

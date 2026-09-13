@@ -1,0 +1,1 @@
+origin/main:research/type-specific-hecke-nemeses-have-automatic-common-completeness.md:title: Type-specific subgroup-Hecke nemeses have one automatic common completion

@@ -1,0 +1,22 @@
+Correct forward the balance claim that asserted a Gottschalk counterexample
+
+w4-vf-positive-b verifies w3-bal-prove's 0ca6899d49.
+
+finite-left-inverse-identity-does-not-force-balance, as landed, asserted a group with an injective
+cellular automaton whose rule is not balanced. Over a group that is a nonsurjunctive group, because
+bijective automata preserve the uniform measure. Its witness was the end-fixing tree, a homogeneous
+space rather than a group acting on itself, and the quoted theorem is about groups. Verdict FAIL.
+
+The claim now states the tree fact, with a direct proof. A data track marks one child and the
+unmarked children copy the parent. The automaton is injective, with a radius-1 decoder, and the
+symbol (1,0) has mass 2q^-2 - q^-3 > q^-2. The route is replaced, and the artifact carries correction
+blocks in Sections 2 and 3. The tree pattern fails right cancellation of reads, so nothing about
+groups, or about nonlocality, follows.
+
+New verification artifact:
+- Section 1: the verdicts above, and PASS for artifact Section 1 as a proof sketch.
+- Section 2: an independent second pass concurring with w3-vf-positive on the single-site
+  equivalence and on window balance, plus one wording point on calibration relation (a).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

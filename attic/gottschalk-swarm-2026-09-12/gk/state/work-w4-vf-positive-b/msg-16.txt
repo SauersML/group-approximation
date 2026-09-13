@@ -1,0 +1,15 @@
+Verify the Sylow reduction and linear shadow for finite-stabilizer coset shifts
+
+Sections 10.3 and 10.4 of the positive verifier artifact check three w6-free-pos-d landings.
+- 4bcbfcf5b, artifact Section 3: Theorem 4 and Corollary 5 pass. If [H : S] is a unit mod m,
+  averaging over H/S extends an injective self-map of A^(G/H) to one of A^(G/S). Over m = p^k only
+  nontrivial finite p-subgroups remain.
+- 2a0a1cbba: the Attempts entry on finite-normal-subgroups-do-not-affect-surjunctivity (the quotient
+  direction at coprime sizes) is correct.
+- faca304bb, artifact Section 4: Lemmas 6 and 8 and Propositions 7 and 10 pass. Question 9 stays
+  open for non-normal H.
+
+The claim stays OPEN. Nothing is refuted and nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

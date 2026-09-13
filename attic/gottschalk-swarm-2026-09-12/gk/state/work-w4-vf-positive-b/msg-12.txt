@@ -1,0 +1,12 @@
+Verify quotient restriction and the quantitative surjunctivity constants
+
+Section 8 of the positive verifier artifact passes w5-quant-surj's two ESTABLISHED claims from
+b19ca5490:
+- product-automata-images-contain-fibre-invariant-configurations;
+- quantitative-surjunctivity-constants-lift-from-quotients.
+
+It also checks the prose in Sections 3–5 of bbaa36844. Both routes' pending lines become verdict
+lines. Nothing is refuted and nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,14 @@
+Prove finite-dimensional chart representations kill the one-transvection lift of s0 (w6-wf-stage1-a)
+
+Let H contain z, d1 and h = [[0,1],[-1,s0]], and suppose H has a finite-dimensional char-3 representation
+with z -> -1 in which h carries the +1-eigenspace of d1 onto the -1-eigenspace. Then P1[h]P1 has no left
+inverse supported in H. Compress h on V ⊗ V ⊗ V*: on the odd part of d1 its image misses the block
+V+ ⊗ V+ ⊗ V-*. This covers GL_2(A), and GL_C(A) for any first-letter chart, whenever the chart
+subalgebra A has a nonzero finite-dimensional representation. That includes the Jacobson algebra
+F_3<s0,t0> (the partner k and the finitary involution included), F_3<s0,t0,t1>, and the polynomial and
+free charts, with no soficity input. The chart entries of any surviving left inverse generate an algebra
+with no finite-dimensional representation, like the Thompson unit g0. The artifact gains Section 8, and
+the open claim gains the Attempts entry.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

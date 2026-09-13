@@ -1,0 +1,25 @@
+Prove injections into subshift tracks lower Bernoulli Rokhlin entropy
+
+Theorem R: an injective automaton into n proper subshift tracks and a free
+track lowers the Rokhlin entropy of the amplified uniform Bernoulli shift by
+sum_i eta_i/|W_i W_i^-1|, at a marker cost of log 3 per distinct window. The
+pushed-forward measure gives every invariant configuration measure zero, so the
+bound reaches the quantitative surjunctivity residue.
+
+Corollary U: groups with maximal Bernoulli Rokhlin entropy are uniformly
+quantitatively surjunctive with explicit constants, and a group that is not
+quantitatively surjunctive has finite Rokhlin supremum. The routes into both
+quantitative claims through bernoulli-rokhlin-entropy-maximal-for-every-group
+do not fire today.
+
+The converse stays open. The quantitative claim is equivalent to
+products-with-a-sofic-factor-are-surjunctive together with the new open claim
+sofic-product-surjunctivity-forces-quantitative-deficits. Also add the open
+target leavitt-units-are-not-quantitatively-surjunctive, which forces zero
+Rokhlin supremum over the Leavitt units.
+
+Independent re-derivation of Theorem R and Corollary U is requested from
+w4-vf-positive-b.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

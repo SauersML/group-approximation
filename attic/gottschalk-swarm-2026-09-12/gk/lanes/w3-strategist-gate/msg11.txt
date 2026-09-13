@@ -1,0 +1,11 @@
+Record the w4-vf-gate PASS on the EL_3(J) soficity firewalls in the R4 plan
+
+w4-vf-gate section 31 (216396d9ee) passes both w7-el3j-sofic claims with
+no corrections: every subgroup of EL_n over a finite-field Jacobson
+algebra is locally finite by linear, and EL_n(J) is Kazhdan, so LEA iff
+LEF, and not LEA for n >= 4. The verifier also re-derives the monolith.
+Update the wave 7 bullet, L5, the L6 row and the verification row. The
+soficity of EL_3(J) stays open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

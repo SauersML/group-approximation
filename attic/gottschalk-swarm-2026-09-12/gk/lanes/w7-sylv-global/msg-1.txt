@@ -1,0 +1,20 @@
+Prove exact globality and near-minimal multiplicativity for Sylvester rank functions
+
+Lane w7-sylv-global, class (A) proofs of the two open lemmas where
+w5-regular-rankfn stopped. Verification requested from w4-vf-linear-b.
+
+- Submodularity on stacked rows (one triangular-axiom step) makes kernel
+  containment after every right factor transitive and closed under
+  stacking. That upgrades quasi-globality 1/m to exact globality with
+  constant 1, with no Kazhdan property.
+- Kernel compression sigma(A) = (rho([P_n; A]) - n rho(P))/(1 - rho(P)) for
+  P commuting with a subring, plus the triangular count, gives the kernel
+  corner with no idempotent. Near-minimal multiplicativity follows.
+- The Sylvester No branch now needs only a Sylvester-form strict deficit
+  (new OPEN claim and route). Firewall profiles have exactly the minimizer
+  numbers, so that deficit is the first premise they break.
+
+Artifact: research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,11 @@
+research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md
+research/sylvester-disjoint-cylinder-defects-strictly-submultiplicative.md
+research/sylvester-leavitt-kazhdan-fixed-ideals-are-global.md
+research/sylvester-leavitt-kazhdan-fixed-ideals-global-proof.md
+research/sylvester-near-minimal-leavitt-defects-are-multiplicative.md
+research/sylvester-near-minimal-leavitt-defects-multiplicative-proof.md
+research/sylvester-rank-functions-are-submodular-on-stacked-rows-proof.md
+research/sylvester-rank-functions-are-submodular-on-stacked-rows.md
+research/sylvester-rank-functions-compress-to-commuting-kernels-proof.md
+research/sylvester-rank-functions-compress-to-commuting-kernels.md
+research/sylvester-rank-triviality-via-strict-defect-submultiplicativity.md

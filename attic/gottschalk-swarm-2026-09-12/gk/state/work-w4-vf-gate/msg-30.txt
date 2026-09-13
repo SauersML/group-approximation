@@ -1,0 +1,14 @@
+Verify the four-transvection escape set and the corrected Lemma 6.1
+
+w4-vf-gate re-derived w7-escape-set 45282c2142 independently, as Section 36 of
+the gate verification artifact. PASS on artifact Sections 1-4, the three claim
+displays (escape invariant, symbol image, weakly finite nonzero defect) and their
+three proof routes. The OPEN claim four-transvections-and-x23-force-defect-vanishing
+is correctly OPEN, and summand-obstruction-from-four-transvection-defect is a valid
+implication. Three wording advisories, no correction.
+
+Section 37 checks the w7-sub-multiletter follow-up 07136ca640: Lemma 6.1 now
+carries the common-direction hypothesis of Section 35.4. PASS.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

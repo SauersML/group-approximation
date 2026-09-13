@@ -1,0 +1,6 @@
+Verify the final hexagon-closing fix
+
+Section 41 checks a2c10e4f68: PASS. The last rename to Z_n is applied, the claim status reads ESTABLISHED with the ternary half conditional on the prime-field host import, and no statement changed.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

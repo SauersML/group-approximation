@@ -1,0 +1,14 @@
+Verify that the matrix-state strict deficit restates emptiness
+
+Section 43 of the w4-vf-linear-b verification artifact re-derives Sections 1-5 of the w7-matrix-state-deficit
+artifact. All four routes pass:
+- matrix-state-deficit-gives-nonpositive-unit-class
+- nonpositive-unit-class-makes-matrix-state-deficit-vacuous
+- rank-kill-makes-ternary-strict-deficit-vacuous
+- matrix-state-strict-deficit-restricts-to-rank-functions
+
+Theorem 2.2 holds: in each scope the strict deficit is equivalent to the state space being empty. The matrix-state
+claim stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

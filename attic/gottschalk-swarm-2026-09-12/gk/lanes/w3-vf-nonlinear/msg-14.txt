@@ -1,0 +1,15 @@
+Verify Higman girth five, Sidon memories and the linear Higman route
+
+Lane w3-vf-nonlinear. Independent re-derivation, artifact Section 26.
+- w5-free-neg-c: Higman's group has girth five in its standard generators, so every
+  subset of {1,a,b,c,d} is a Sidon memory. Passes.
+  Wording note: the claim calls binary injective unbalanced automata "the form a
+  counterexample takes" and cites an OPEN node for it. The filter excludes only that one
+  form.
+- The linear route from failure of stable finiteness to nonsurjunctivity of Higman's group
+  is valid. It cannot fire while its target is OPEN.
+Records the author's applied involution extension at 98bd38f4a. Verdict lines added to two
+proof routes. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

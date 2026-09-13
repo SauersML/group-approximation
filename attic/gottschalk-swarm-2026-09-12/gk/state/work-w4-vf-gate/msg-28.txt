@@ -1,0 +1,12 @@
+Verify the unstable K_2 reduction for the binary and ternary Leavitt hosts (w7-k2-unstable): PASS
+
+Section 34 of the w4-vf-gate verification artifact re-derives Sections 1-5 of the artifact
+leavitt-unstable-k2-steinberg-reduction: K_*(L_k(1,2)) = 0; Theorem 5.4 of Khanh at rank three (the
+five-term step, the refinement D_3 = F_alpha o St(alpha_3), the injectivity step); the ternary case
+through the prime-field host theorem; the Heisenberg bound p^3; and the hexagon presentation
+R^x = pi_1(Y_hex)/<<t>>, with an independent check of (SPG2) at n = 3 and of the Theorem 1.1 calibration.
+No corrections. Option 2 of the Steinberg residue is empty for both hosts. The corner and
+submultiplicativity claims stay OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,19 @@
+Record the zero-margin equivalence, dead routes and product equivalences for quantitative surjunctivity
+
+The case j' <= j of quantitative surjunctivity is equivalent to plain surjunctivity. So the property adds
+exactly linear growth of the margin in the number of copies, which in Theorem Q pays for the sofic error
+rate. Several routes die:
+- compactness, whose infinite-track limits exist over every group;
+- amplification, which keeps or increases the ratio;
+- recoding the output into a smaller full shift, which constant configurations make impossible over
+  every group;
+- the clause axiomatization;
+- Folner counting on amenable Schreier graphs, which only reaches sofic groups;
+- peeling split extensions.
+
+G x F for finite F and G x Z are surjunctive exactly when G is, so neither is equivalent to the property
+unless the target holds. The converse of "quantitatively surjunctive iff G x K surjunctive for all sofic
+K" remains open. The target stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

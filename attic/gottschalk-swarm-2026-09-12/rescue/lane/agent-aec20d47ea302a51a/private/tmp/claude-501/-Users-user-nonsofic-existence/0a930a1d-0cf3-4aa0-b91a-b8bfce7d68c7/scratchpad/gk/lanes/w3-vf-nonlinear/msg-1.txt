@@ -1,0 +1,12 @@
+Verify the Thompson V rank-support filter and kernel transfer
+
+Lane w3-vf-nonlinear. Independent re-derivation of w3-v-linear's three claims:
+the averaging idempotent lemma, the support filter for the V swap and order-three
+targets, and the transfer of direct-finiteness failures of F_2[V] and F_3[V] into
+the evaluation kernel. All three pass. pi(q) = 0 is also checked directly in the
+Leavitt algebra. One scope sharpening: the remark that T-internal witnesses pass
+the filter overstates, since the filter concerns the support subgroup H, which need
+not be T. Verdict lines added to the three proof routes. Both V targets stay open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

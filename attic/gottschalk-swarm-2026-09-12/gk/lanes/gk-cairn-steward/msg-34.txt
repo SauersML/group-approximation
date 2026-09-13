@@ -1,0 +1,9 @@
+Cite the amenable-extension and UQS transfer claims in the Gottschalk goal Attempts
+
+Merge a dated paragraph for w5-free-pos-c: the open surjunctive-by-amenable
+permanence, the verified UQS transfer with its two-ended asymptotic case, maximal
+Bernoulli Rokhlin entropy as a source of UQS, and the open Leavitt
+not-quantitatively-surjunctive target.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

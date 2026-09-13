@@ -1,0 +1,10 @@
+Locate where exact Toeplitz commutators become load-bearing for the defect deficit
+
+Lane w5-sub-fock (family SUB). The Toeplitz root pair with the constant Weyl group generates the
+Jacobson elementary group EL_3(J), and with the constant root groups it generates all Leavitt units.
+So a relation-only strict deficit from Toeplitz and constant data at two disjoint cylinders would
+prove EL_3(J) nonsofic, and the moving-level compressor corrections involve every relation of R^x.
+Adds artifact Sections 3-4 and Attempts entries on both deficit targets (characteristic two and three).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

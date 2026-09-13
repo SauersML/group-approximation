@@ -1,0 +1,1 @@
+research/artifacts/rips-central-pullback-finite-image-centers-2026-09-12.md=1d2e3b8da9d4027af80f4aa0d4fd37a936b0ecdf research/fpbs-gap-survives-product-generator-moves.md=c94d39e0f46a0a762c2537d47921a25ecc665d37 research/zpc-frozen-equation-menu-has-positive-orbitwise-class.md=369f3c3d32b61f50fdbcf979c1a6b1d27c1295d3 

@@ -1,0 +1,10 @@
+Record the coprime quotient direction for finite normal subgroups (w6-free-pos-d)
+
+Attempts entry on finite-normal-subgroups-do-not-affect-surjunctivity. Averaging
+over N passes surjunctivity at size m from E to E/N whenever gcd(m, |N|) = 1,
+with no separation hypothesis, so also inside the finite residual. This is
+Theorem 1 of finite-stabilizer-coset-shift-transfer-2026-09-12.md, verified
+by w4-vf-positive-b.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

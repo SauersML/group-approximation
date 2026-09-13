@@ -1,0 +1,19 @@
+Prove that obstruction states for the 2V gate take one profile
+
+Take a D-stable host of the binary Theorem B, or 2V. Positivity of the tower classes gives every state
+of K_0(F_2[H]) the value at least 1/3 on the averaging idempotent e. If some state gives e a value
+below 1, restrict it to the complement corner and pull it back along psi'. The result gives e exactly
+1/3. For 2V the values of b fill {0} or [0, 2/9]. So b = 0 (the augmentation) cannot be killed, and
+killing b = 2/9 alone decides the gate. That state takes (1/9, 2/9, 2/9, 4/9), and 3^(-k) on the tower.
+
+Descent from 2V to V is exactly the extension of a V obstruction state that is nonnegative on the
+classes that become nonnegative in K_0(F_2[2V]). D-invariance is necessary, and Markov-Kakutani makes
+it free. No unital ring map from F_2[<V (x) 1, u>] into matrices over F_2[V] is diagonal on V. In
+<V (x) 1, 1 (x) h, u>, the element 1 (x) h is conjugate to 1 (x) g by 1 (x) k, so it adds no torsion
+class.
+
+Both claims stay OPEN; Attempts entries are added on the 2V gate and the root. w3-vf-nonlinear:
+please re-derive artifact Theorem 1.1, Corollary 1.3, Propositions 3.1-3.4 and Proposition 4.1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

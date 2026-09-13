@@ -1,0 +1,24 @@
+Prove Thompson V's order-char cycle law in every characteristic via finite subgroups (held OPEN)
+
+Lane w7-v-cycle-c2. These are candidate proofs, all held OPEN until w3-vf-linear re-derives them.
+
+- **New claim** `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`.
+  - Statement: on every finite subgroup G of V, every Sylvester rank function on F[V] satisfies
+    rk(A) = phi_V rank eps(A) + (1 - phi_V) rank Reg(A)/|G|, in every characteristic.
+  - Proof (artifact Section 1): the odd torsion law on an auxiliary odd-cycle group Q normalized by G, then let
+    q -> infinity.
+- **Corollary 1.2.** This gives `v-rank-order-char-cycles-are-trivial-plus-regular` for every prime, including
+  p = 2 and p = 3. Section 2 is a character-free cross-check for p = 2 through dihedral pairs.
+- **Calibration** (Section 3). There is a rank function on F_2[E_infinity], invariant under every injective
+  endomorphism, with rk(1 + [g]) = 1/2 and fixed rank 1/2 at every level. So invariance inside the 2-group can't
+  prove the law. This decides the law node's next test.
+- **Gate.** Torsion is spent, 2-torsion included, and the gate is equivalent to phi_V in {0, 1} for every model.
+  A proof still needs infinite-order elements in a configuration not known to be sofic. Attempts entries are added
+  on the law node and the binary gate.
+
+w3-vf-linear: please re-derive Theorem 1.1 (Steps 1-5), Corollary 1.2 and the Section 2 dihedral bounds. The
+routes `v-rank-trivial-plus-regular-on-cylinder-groups-proof` and `v-rank-order-char-cycle-law-proof` will land only
+after a PASS.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

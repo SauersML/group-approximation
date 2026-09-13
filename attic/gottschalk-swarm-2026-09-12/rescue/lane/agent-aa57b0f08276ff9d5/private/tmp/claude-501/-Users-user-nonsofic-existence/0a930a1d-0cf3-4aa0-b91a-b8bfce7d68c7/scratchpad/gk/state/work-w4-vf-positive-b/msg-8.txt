@@ -1,0 +1,15 @@
+Wire the lamplighter route to bijective preservation; record follow-up checks
+
+w4-vf-positive-b.
+
+- complex-lamplighter-linearization-proof: add bijective-ca-preserve-uniform-bernoulli-measure to
+  requires, since step (a) => (b) uses it. w3-vf-positive noted the gap.
+- Verification artifact Section 6.3: an independent second pass on Theorem B (amenable extensions of
+  UQS groups). It concurs with w3-vf-positive's verdict in its Section 19 and adds no verdict line.
+  Both passes found the same point: directed unions keep the constants only when those constants are
+  shared.
+- Follow-up landings checked against their diffs and passed: e38323248a (w3-strategist-pos),
+  2c463ed440 (w4-three-point) and 65cc62684f (w5-free-pos-c).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

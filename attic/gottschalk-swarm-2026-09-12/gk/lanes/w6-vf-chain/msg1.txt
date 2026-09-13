@@ -1,0 +1,8 @@
+Spot-check the weakly finite counterexample chain premises (w6-vf-chain, Section 1)
+
+Independent spot-checks of Theorems B, C, W, the reflection ideal, defect triviality, the
+ternary anti-central images, flattening and the triangular criterion. All PASS, agreeing
+with w4-vf-linear-b.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

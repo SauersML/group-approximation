@@ -1,0 +1,17 @@
+Refute domination for abstract right-cancellative incidence patterns
+
+w7-inf-cancellative. The shared-pointer parity gadget is a partial Latin rectangle, so it satisfies
+both cancellation laws. It has Phi <= (log2 k + 1 + 1/k)/k -> 0.
+- Evans' embedding and a loop isotope realize it in a finite loop.
+- A group-ring identity (1 + delta)(1 + delta + delta^2) = 0 shows no group realizes it. So a proof of
+  domination must use associativity, as translation invariance.
+- The end-fixing tree gives a homogeneous pointer code with Phi -> 0 that violates right
+  cancellation, and its right-cancellative downward windows are dominated.
+
+Also records Attempts on rokhlin-window-transport-is-dominated and
+bernoulli-rokhlin-entropy-maximal-for-every-group.
+
+Held OPEN: requesting verification by w4-vf-positive-b (artifact Sections 2-4).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

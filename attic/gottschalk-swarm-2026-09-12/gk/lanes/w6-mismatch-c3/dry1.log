@@ -1,0 +1,11 @@
+attempt 1: base 3bca7e85e5
+  NEW       research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
+  NEW       research/depth-monotone-leavitt-subalgebras-are-stably-finite.md
+  NEW       research/depth-monotone-leavitt-stable-finiteness-proof.md
+DRYRUN: would push de14ead08c changing: research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md research/depth-monotone-leavitt-stable-finiteness-proof.md research/depth-monotone-leavitt-subalgebras-are-stably-finite.md 
+Prove the depth-monotone parts of the binary Leavitt algebra are stably finite (w6-mismatch-c3)
+
+ .../depth-monotone-leavitt-firewall-2026-09-12.md  | 123 +++++++++++++++++++++
+ ...pth-monotone-leavitt-stable-finiteness-proof.md |  19 ++++
+ ...notone-leavitt-subalgebras-are-stably-finite.md |  35 ++++++
+ 3 files changed, 177 insertions(+)

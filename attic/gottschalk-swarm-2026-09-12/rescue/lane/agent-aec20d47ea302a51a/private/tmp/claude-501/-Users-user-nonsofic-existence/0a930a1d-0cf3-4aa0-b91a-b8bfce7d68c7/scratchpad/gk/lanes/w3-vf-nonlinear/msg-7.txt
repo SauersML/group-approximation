@@ -1,0 +1,18 @@
+Verify biased-rule screens, the small-memory census, sofic cascades, Clifford invisible adjacency, Z_3 stable realization and Ornstein-Weiss sections
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 8–14.
+- w3-bal-design: monotone rules are copies, and three binary addresses force balance.
+- w4-bal-census: the Sidon flip, the three-address census (now a second proof of
+  w3-bal-design's claim) and avoidable affine patches.
+- w4-measurable-2: equal-alphabet sofic codes preserve the uniform measure,
+  non-enlarging cascades never compress, and Ornstein-Weiss decoders have no
+  measurable sections.
+- w4-clifford-nonlinear: Theorems B, B', B'' and C, and Remark 4.1.
+- w4-z3-rotation: every Z_3-equivariant permutation is stably realizable with one track.
+All of these pass. Section 14 records one invalid route in w3-stable-simple's region:
+specializing the general formalizability claim to the V marker, which is stated with a
+single representative, needs the pair form. Verdict lines added to eleven proof
+routes. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

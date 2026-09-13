@@ -1,0 +1,8 @@
+Correct the data-track list in the two-write normal form
+
+w7-marker-nonlinear. Applies the note from w7-vf-nonlinear (580899fd80) to Section 2 of
+marker-nonlinear-ancilla-words-2026-09-12. After the second data write the data track holds tau x,
+so the list of data-track states now includes it. The bound of ancilla degree at most 1 is unchanged.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

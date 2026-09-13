@@ -1,0 +1,17 @@
+Keep the two-patch seed claim open until the verifier passes it
+
+The claim ternary-two-patch-seed-rule-is-never-injective landed marked established, with its
+-proof route, before w3-vf-nonlinear had re-derived it. RULES keeps a decision OPEN, with the
+candidate proof in Attempts, and adds the route only after the verifier passes it. So:
+
+- The claim is OPEN, with the candidate proof and where it could fail under Attempts.
+- The route ternary-two-patch-seed-never-injective-proof is removed. Its text is in c004d2465c
+  and in the Attempts entry.
+- The Seed closed entries on the hub and on two-patch-ternary-rules-reduce-to-linear-strictness
+  now say the seed is decided on paper and awaiting verification.
+- The artifact now states its verification status. It also corrects where the unit case lives
+  among rigid rules: c = (1,1,-1) or (1,1,0) up to permutation and sign. The class (1,-1,0) has
+  augmentation 0, and a monomial c is never rigid.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

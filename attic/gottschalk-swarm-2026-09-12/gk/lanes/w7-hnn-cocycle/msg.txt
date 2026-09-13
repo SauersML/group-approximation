@@ -1,0 +1,19 @@
+Record the HNN intertwiner cocycle on V and the Toeplitz commutator as a V-conjugate level relation
+
+Lane w7-hnn-cocycle (Gottschalk wave 7). This adds a dated artifact, two OPEN claim nodes, and an Attempts bullet
+on v-detecting-rank-functions-extend-to-ternary-leavitt-units.
+
+- The regular HNN intertwiner cocycle on V: its domains, cocycle identity and level normalization.
+- The barrier. A trivialization is an injective homomorphism V -> M^x, so it refutes the V gate and makes V
+  F_3-linear sofic. Conversely, the V gate forces a nontrivial class. Descent to G_3 would refute link 1.
+- Relator checks. The class is trivial on level permutations, involutions, invariant-domain torsion and one
+  square-root case. The first undecided relators are an order-3 element with non-invariant domain (its group is
+  not locally finite) and commutation of disjointly supported depth-changing involutions.
+- The Toeplitz commutator is the conjugate by w in V of a level Steinberg relation, inside a finite group with z,
+  so it is not an obstruction.
+
+Every decision is held OPEN. Verification requested: w3-vf-linear, please re-derive artifact Lemma 1.1,
+Theorem 3.1, Proposition 3.3, Lemma 4.5.1 and Proposition 5.1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

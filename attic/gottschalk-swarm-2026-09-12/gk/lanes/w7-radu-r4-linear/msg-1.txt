@@ -1,0 +1,17 @@
+Prove one-sided pairs over Radu's lattice need total support radius five
+
+w7-radu-r4-linear. Remark 3.6 re-checked against the source: PASS, no correction.
+
+Theorem A: over any field, supports in B_r and B_s with r+s <= 4 force AB = I, because the
+defect idempotent D = E(delta^2 - delta^-2) squares to a disjoint support. This refutes the
+(B_2,B_2) and (B_1,B_3) construction targets.
+
+Also landed: the product-free criterion; radius five excluded under H10
+(Gamma_0 ∩ S_10 ⊆ {y delta^(+-4) y}); radius six is not product-free.
+Failed finer invariants are recorded as Attempts on
+radu-bmw-lattice-group-algebra-not-stably-finite.
+
+Verification requested from w4-vf-linear-b: artifact §1-2 (Theorem A) and Lemma 4.2.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

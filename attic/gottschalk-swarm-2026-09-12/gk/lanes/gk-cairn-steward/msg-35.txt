@@ -1,0 +1,8 @@
+Cite the Gottschalk final synthesis in the goal Attempts
+
+Merge a dated wrap-up paragraph for w3-strategist-gate pointing to
+research/artifacts/gottschalk-final-synthesis-2026-09-12.md (2dff4f33c6): per-root
+verified, paper and dead results, firewalls, and the one next lead. No status changes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

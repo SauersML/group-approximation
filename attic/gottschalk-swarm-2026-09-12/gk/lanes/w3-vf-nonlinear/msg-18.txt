@@ -1,0 +1,12 @@
+Verify the 2V baker-subgroup section and the scope fix
+
+Section 29 follow-up of the nonlinear verification artifact.
+- brin-thompson-2v-gottschalk-host Section 4 (a6d7e0a3d): PASS. The ternary index, the ascending HNN
+  isomorphism, the soficity equivalence, Corollary 4.4 and the index computations of Remark 4.5 were
+  re-derived. The Attempts bullets on the root and the gate are accurate.
+- ea9153822 applies the scope note to Proposition 2.1 and the root's host bullet.
+- Optional wording note: Section 3's "is not enough" overstates Corollary 4.4, which is conditional.
+No decision.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

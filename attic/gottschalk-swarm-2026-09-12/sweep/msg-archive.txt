@@ -1,0 +1,28 @@
+Archive the Gottschalk swarm's scratch files under attic
+
+The Gottschalk swarm kept its coordination files, lane working files and
+sweep tooling in a session scratchpad outside the repository. A restart
+once wiped that scratchpad, so this commit copies every scratch file whose
+content is not already somewhere on main into
+attic/gottschalk-swarm-2026-09-12/, at its scratchpad-relative path:
+
+- gk/RULES.md (roster, directives, verifier queue), gk/gkland.sh (the
+  guarded lander with its node lint) and gk/gkshow.sh.
+- gk/lanes/<lane>/: each lane's drafts, reports, small scripts and
+  outputs. Most artifacts already landed under research/; the drafts and
+  outputs that never did are here.
+- rescue/: lane files recovered after the coordinator restart, and
+  replay.py, which re-created them.
+- sweep/: classify.py, merge.py, plan.py and archive.py, with the plans,
+  logs and commit messages of the shared-checkout sweeps (8f5bd6faa1,
+  9a95dafb50).
+- fsc/, w5-rgr-p/, vfw.md, chg.txt: older coordinator drafts and messages.
+
+Left out: files whose exact content is already on main, private lander
+indexes (gk/state/), tree listings and FRONTIER copies derived from main,
+Python bytecode, and staging copies. Nothing here is wired into Cairn,
+builds or CI. attic/ is not a research/ path, so no node, route or status
+changes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

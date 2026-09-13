@@ -1,0 +1,13 @@
+Prove that exact-read ancilla words realize only affine data maps
+
+w7-marker-ancilla, Family F positive route. Every Z-equivariant word of linear track moves and exact
+reads (read values independent of the ancilla contents) that realizes F x id on 1 + k tracks has F
+affine, so tau_Z x id is not such a word for any k. The invariant is the dirt part Q = c eta of the
+data functional. The Bennett word A' B A and the 4Z word lie outside the class.
+
+The artifact also re-checks Lemma 2.4 (PASS), records why phase separation and borrowed-bit toggling
+fail as written, and checks sign_6. The hub stays OPEN and no route is invalidated. Re-derivation is
+requested from w3-vf-nonlinear.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

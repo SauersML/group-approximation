@@ -1,0 +1,5 @@
+research/anti-central-flattening-from-general-state-upgrade.md
+research/artifacts/gk-vf-linear-b-verification-2026-09-12.md
+research/no-weakly-finite-representation-from-defect-killing.md
+research/no-weakly-finite-representation-from-summand-obstruction.md
+research/summand-no-weakly-finite-image-from-no-representation.md

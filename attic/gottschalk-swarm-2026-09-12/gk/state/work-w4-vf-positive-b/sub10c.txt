@@ -1,0 +1,11 @@
+origin/main:research/finite-normal-subgroups-do-not-affect-surjunctivity.md:title: For every finite normal subgroup, a group is surjunctive exactly when its quotient is
+origin/main:research/gottschalk-via-quotient-closure.md:title: Every group is a quotient of a surjunctive free group
+origin/main:research/quantitative-surjunctivity-constants-lift-from-quotients.md:title: A subshift missing a configuration invariant under a normal subgroup inherits the quantitative surjunctivity constant of its quotient restriction
+origin/main:research/quotient-closure-from-gottschalk.md:title: If every group is surjunctive then so is every quotient
+origin/main:research/separated-finite-normal-subgroup-surjunctivity-proof.md:title: Carry surjunctivity across a finite-index subgroup that meets the finite normal subgroup trivially
+origin/main:research/separated-finite-normal-subgroups-preserve-surjunctivity.md:title: A finite normal subgroup injecting into a finite quotient does not affect surjunctivity
+origin/main:research/strict-automata-memory-keeps-finite-normal-kernel-residual.md:title: The memory group of a strict automaton over a finite normal extension with surjunctive quotient keeps the kernel in its finite residual
+origin/main:research/strict-lamp-quotient-realizations-lamp-hinge-proof.md:title: A forward-sufficient lift to the surjunctive wreath would be bijective, and coarsening would make the quotient realization surjective
+origin/main:research/surjunctive-by-amenable-extensions-are-surjunctive.md:title: A group with a surjunctive normal subgroup and amenable quotient is surjunctive
+origin/main:research/surjunctive-by-amenable-via-uniform-quantitative-deficit.md:title: Surjunctive kernels with uniform deficit transfer surjunctivity across amenable quotients
+origin/main:research/surjunctivity-passes-to-quotients.md:title: Every quotient of a surjunctive group is surjunctive

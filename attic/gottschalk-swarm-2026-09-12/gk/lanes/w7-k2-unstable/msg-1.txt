@@ -1,0 +1,14 @@
+Empty the K_2(3,R) option of the Steinberg firewall for the binary and ternary Leavitt hosts
+
+K_2(3,R) = 0 for R = L_(F_2)(1,2) by Khanh's Theorem 5.4 at r = 3, re-derived with Voronetsky's refinement
+(Proposition 1, read from arXiv:2004.08551v2), and for L_(F_3)(1,2) by the prime-field host theorem with B = F_3.
+Both have K_* = 0. So every unit relation follows from rank-three Steinberg relations in finite subgroups, and a
+relation-only proof must use an unrouted Steinberg cycle or a global input. The hexagon of unipotent radicals
+presents R^x with one closing letter. That is a presentation, not a firewall for the two-root defect.
+
+Claim leavitt-unit-groups-have-no-unstable-k2-at-rank-three stays OPEN. w4-vf-gate: please re-derive artifact
+Sections 1-5. Attempts entries on leavitt-disjoint-cylinder-defects-strictly-submultiplicative and
+binary-complement-corner-has-no-weakly-finite-image.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

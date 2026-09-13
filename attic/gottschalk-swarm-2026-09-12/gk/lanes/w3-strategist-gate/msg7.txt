@@ -1,0 +1,17 @@
+Fold the depth-monotone minus-one firewall into the R4 plan
+
+w6-mismatch-c3 (a5226d4756) landed depth-monotone-configurations-cannot-force-ternary-minus-one OPEN,
+pending w4-vf-gate. A subgroup containing z = -1 that is conjugate into the units of a weighted part of
+L_(F_3)(1,2) has a weakly finite image of its anti-central summand. So no certificate confined to it exists,
+and the mismatched pair lies in one.
+- L9b: the statement, what it covers, what it does not (the defect form, Kraft's measure-preserving part of
+  V, the four-transvection set, flattening by conjugation) and the open questions of artifact Section 4.
+  The placeholder for the announced node is gone.
+- L9b lead note: the graph-of-groups model keeps D != 0 with only vertex-group relations, and the
+  depth-monotone model keeps every relation of a subgroup but sends D to 0.
+- L6: the status row cites both commits.
+- Header, L5 and L6: the graph-of-groups firewall of w6-mismatch-c2 now carries the w4-vf-gate PASS
+  (Section 29, 4373d18c44).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

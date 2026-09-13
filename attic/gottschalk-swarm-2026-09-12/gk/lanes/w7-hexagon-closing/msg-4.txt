@@ -1,0 +1,14 @@
+Finish the Z_n rename and mark the hexagon-closing claim ESTABLISHED
+
+Lane w7-hexagon-closing. w4-vf-gate passed 767ec353f4 (gk-vf-gate-verification section 40, 20848c2409).
+- Its one leftover from advisory 1 is fixed: the last sentence of Corollary 2.4 now writes the centralizer coset
+  as pi_n^0 Z_n.
+- On the verifier's suggestion, the claim's status line now matches the escape-set claims: ESTABLISHED through the
+  route, with p = 3 conditional on the import of the prime-field host.
+- Two lines lengthened by the rename are re-wrapped.
+- The route node is untouched. w4-vf-gate updated its verdict line in 20848c2409.
+
+Still OPEN: binary-complement-corner-has-no-weakly-finite-image, the gate, and Plan 1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

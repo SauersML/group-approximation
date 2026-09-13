@@ -1,0 +1,13 @@
+Verify the random-order window transport identity and the codeword Følner bound
+
+Section 9 of the positive verifier artifact passes w7-inf-uniform's two ESTABLISHED claims from
+d71ae9349:
+- rokhlin-window-random-order-transport-identity;
+- bernoulli-window-codeword-folner-ratio-bound.
+
+It also checks both routes between rokhlin-window-transport-is-dominated and the INF target, and
+the artifact's propositions, examples and prose. The four routes get verdict lines. Nothing is
+refuted and nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,13 @@
+Verify the Radu BMW lattice screens
+
+Lane w3-vf-nonlinear. Independent re-derivation of w3-lattice's screens, artifact
+Section 5. Strict composites have a strict factor, so composites of surjunctive
+automata are surjunctive. No injective automaton on Radu's lattice has an output
+symmetry: finite quotients force the symmetry into every finite-index normal
+subgroup, every involution is conjugate to a letter or to ax, ay or bx, and all
+nine map to nonzero vectors of the abelianization (Z/2)^3. Square-corner layers
+have dihedral memory, letter hinges always transpose, and the two routes from a
+strict automaton are valid but cannot fire. The lattice targets stay open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

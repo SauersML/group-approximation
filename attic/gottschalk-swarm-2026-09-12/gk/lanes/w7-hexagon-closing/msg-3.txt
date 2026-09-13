@@ -1,0 +1,21 @@
+Route the verified hexagon-closing claim and apply w4-vf-gate's section 38 advisories
+
+Lane w7-hexagon-closing. w4-vf-gate passed artifact Sections 1-6 with no mathematical corrections
+(gk-vf-gate-verification section 38, 427f2bfa50) and allowed a route once advisory 3 is applied.
+
+- New route stage-models-cannot-close-the-leavitt-hexagon-proof. It requires the binary inputs and the ternary
+  ones: prime-field host, d-ary nonsoficity and projective nonsoficity (advisory 3).
+- Artifact changes:
+  - the centralizer is renamed Z_n, so C_n names only the stage colimit (advisory 1);
+  - that colimit is described as a colimit of finite pieces (advisory 2);
+  - the Arzhantseva-Paunescu attribution is marked unchecked (advisory 5);
+  - Section 8 lists the route requirements.
+- Claim changes: the projective node is added to the point 3 inputs,
+  leavitt-regular-atlas-asymptotic-permutation-cover is added to distinct_from, and the verification is recorded.
+- Corner entry: the rank bullet now states what is proved, with the hypothesis rk(sigma(x_12(1)) - 1) > 0
+  (advisory 4).
+
+Still OPEN: binary-complement-corner-has-no-weakly-finite-image, the gate and Plan 1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

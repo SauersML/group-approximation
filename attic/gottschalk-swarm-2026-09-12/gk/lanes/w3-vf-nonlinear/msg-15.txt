@@ -1,0 +1,8 @@
+Record the two Higman wording fixes in the nonlinear verification artifact
+
+Section 23 notes that the Corollary 1.3 wording was fixed forward at f36897eb7.
+Section 26 notes that the girth-filter parenthetical was fixed forward at 18875740d8.
+Both corrected texts were re-read on main and are correct.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

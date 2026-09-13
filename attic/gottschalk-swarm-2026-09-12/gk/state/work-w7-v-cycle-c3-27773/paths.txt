@@ -1,0 +1,4 @@
+research/artifacts/v-rank-finite-subgroups-trivial-plus-regular-2026-09-12.md
+research/thompson-v-ternary-rank-functions-are-augmentation.md
+research/v-rank-finite-subgroups-are-trivial-plus-regular.md
+research/v-rank-order-char-cycles-are-trivial-plus-regular.md

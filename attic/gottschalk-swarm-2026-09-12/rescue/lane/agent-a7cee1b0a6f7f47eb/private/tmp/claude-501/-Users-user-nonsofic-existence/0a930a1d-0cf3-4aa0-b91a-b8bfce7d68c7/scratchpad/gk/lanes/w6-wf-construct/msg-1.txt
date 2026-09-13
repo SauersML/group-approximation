@@ -1,0 +1,15 @@
+Rule out bounded-nilpotence and commutative-matrix hosts for Leavitt unit groups
+
+Construction side of the weak-finiteness counterexample routes (lane w6-wf-construct).
+
+Theorem A: in characteristic p, permutation units of p-power order map to unipotents. So a host of
+L_(F_p)(1,2)^x whose nilpotents have bounded index kills an element of order p, and the representation is
+trivial (for G_3, no representation sends z to -1). This rules out division rings, M_n(D), semisimple
+Artinian and Goldie rings, reduced rings and finite-dimensional algebras at once. Any host must contain
+nilpotents of unbounded index.
+
+Theorem B: by Malcev's residual finiteness (statement level), no nontrivial host sits inside GL_n(C) over a
+commutative ring C, including non-reduced C.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

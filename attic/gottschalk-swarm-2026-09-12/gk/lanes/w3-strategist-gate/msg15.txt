@@ -1,0 +1,20 @@
+Record the ternary deficit restatement, the multi-letter firewalls and the p-cycle tree firewall in the R4 plan
+
+Fold four wave 7 landings into the rank-four gate plan.
+
+- w7-matrix-state-deficit (f3545c8591; held OPEN until w4-vf-linear-b re-derives it). In both scopes the
+  ternary strict deficit is equivalent to emptiness: over rank functions it is the kill claim, and over
+  matrix states it is failure of the rank condition on S_-. A proof of item 2 is the same as a finite
+  certificate XY = I_n. With w7-sylv-global §4.2 in characteristic two, the deficit is the gate restated
+  locally, so the assembly closes only through a certificate for emptiness. The lead checked Lemma 2.1.
+- w7-sub-multiletter (37bafd8f30; held OPEN until w4-vf-gate re-derives it). Multi-letter inputs give no
+  deficit. The three firewalls are cylinder swaps, the lexicographic Borel group and one-chart coefficients.
+  The next live systems are Gamma_b, U_< ⋊ F and EL_3(J). The lead checked Lemma 6.1.
+- w7-v-cycle-c3 (2e8bf4f44d; held OPEN until w3-vf-linear re-derives it). The rank functions
+  rho_m([g]) = exp_m(lambda(g) u) are invariant under injective homomorphisms and realize every
+  Frobenius-allowed profile, so the order-char law needs a prime other than p. The ternary gate stays OPEN
+  at <x_0, x_1, s>. The lead checked the homomorphism, profile and coherence steps.
+- w4-vf-gate §33 (5b4dce2717): PASS on w6-v-extend Sections 1-5.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

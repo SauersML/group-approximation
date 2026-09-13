@@ -1,0 +1,12 @@
+Record the w6-v-extend attempt on the V-to-Leavitt rank extension claim
+
+Append an Attempt to v-detecting-rank-functions-extend-to-ternary-leavitt-units and cite the artifact.
+The claim stays OPEN.
+- Monomial lifts of x die at x^3 = 1 (beta/4) and at splitting (beta/16).
+- Splitting kills lifts, not extensions.
+- Under a detecting V function, an obstructing relation is a link-1 argument. It needs at least two
+  depth-changing letters generating a nonsofic subgroup with z.
+- The weakly finite version reduces to a weakly finite image of S_- or of F_3[PG_3]; not decided.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

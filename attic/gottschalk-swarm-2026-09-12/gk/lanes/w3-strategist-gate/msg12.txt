@@ -1,0 +1,18 @@
+Record the w4-vf-linear-b PASS on Sylvester exact globality in the R4 plan
+
+w4-vf-linear-b section 39 (ae0a4005ef) passes all four w7-sylv-global
+claims: submodularity on stacked rows, exact globality with constant 1,
+the kernel compression with the triangular count, and near-minimal
+multiplicativity. Update the header, the wave 7 bullet, the L6 row and L9.
+
+Fold in the verifier's correction to Remarks 2.4. Normal generation alone
+gives the 1/m bound only at Z = 1, so the bound for general Z also needs
+the compression hypothesis, which R^x has.
+
+Record that the Sylvester deficit route is outside the verifier's queue.
+Its arithmetic is checked there and by the lead. The subsumption scan
+finds nothing subsumed or refuted. The strict deficit stays the open
+input.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,12 @@
+Rebind the read-degree consequence to a free integer and fix witness-size wording
+
+Apply the fixes from verifier w4-vf-positive-b (37d2312fb6, Section 7). Before this commit,
+"Phi < log q/m implies |E| > m" used the m that the theorem binds to the configuration, and with
+that binding the hypothesis never holds. It now uses a free integer n >= 1, in the claim node,
+in artifact Corollary 2.2, in Theorem 3.1(3) and its claim node, and in the fixed-host Attempts
+entry. "Smallest witness windows have |E| = 3" becomes the lower bound |E| >= 3. The difference-
+subgroup claim's title and distinct_from now say the witness transports into <E E^-1> (after
+dropping codewords and conjugating) instead of "lives in" it. No mathematical change.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,15 @@
+Verify Sylvester exact globality and kernel compressions
+
+Section 39 of the w4-vf-linear-b verification artifact re-derives Sections 1-3 of the w7-sylv-global
+artifact. All four routes pass:
+- sylvester-rank-functions-are-submodular-on-stacked-rows-proof
+- sylvester-rank-functions-compress-to-commuting-kernels-proof
+- sylvester-leavitt-kazhdan-fixed-ideals-global-proof (constant 1)
+- sylvester-near-minimal-leavitt-defects-multiplicative-proof
+
+One correction forward, to the calibration remark: in the A_5 example, normal generation alone gives the
+1/m bound only at Z = 1. The projection onto Fix(A_4) breaks it for general Z. No claim changes status,
+and none is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,10 @@
+Prove that rank arguments confined to sofic configurations of V are inert
+
+Sylvester rank functions built from sofic approximations give rk(1 - [g]) = 1 - 1/ord(g) on F[K] for every
+sofic K <= V, and satisfy every confined premise (axioms, ring identities in F[K], single-element V-conjugacy).
+So no finitary argument confined to a sofic configuration can force V's rank gate, or even lower rk(1 - [g])
+below the sofic value. Lamp configurations <x, L> are L wr Z, and free products of finite groups are residually
+finite, so both are covered with no Elek–Szabó import. Artifact Sections 0–2.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

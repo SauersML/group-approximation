@@ -1,0 +1,6 @@
+attempt 1: base 1d9a1ceda0
+  OVERWRITE research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md (own last push)
+  NEW       research/depth-monotone-configurations-cannot-force-ternary-minus-one.md
+  NEW       research/depth-monotone-minus-one-firewall-proof.md
+  MERGED    research/ternary-leavitt-units-have-no-weakly-finite-representation.md (onto origin blob 095fde438b)
+LANDED a5226d4756 on main (attempt 1): research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md research/depth-monotone-configurations-cannot-force-ternary-minus-one.md research/depth-monotone-minus-one-firewall-proof.md research/ternary-leavitt-units-have-no-weakly-finite-representation.md 

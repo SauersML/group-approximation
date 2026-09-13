@@ -1,0 +1,13 @@
+58,59c58,60
+< - **Next seed closed on paper** (w7-two-patch-rigid, `rigid-two-patch-seed-rule-is-never-injective`, artifact
+<   `rigid-two-patch-seed-relation-moves-2026-09-12.md`; awaiting re-derivation by w3-vf-nonlinear).
+---
+> - **Next seed closed** (w7-two-patch-rigid, `rigid-two-patch-seed-rule-is-never-injective`, artifact
+>   `rigid-two-patch-seed-relation-moves-2026-09-12.md`; verified by w7-vf-nonlinear, Section 1 of
+>   `w7-vf-nonlinear-verification-2026-09-12.md`).
+64,65c65,66
+<   - **Net.** If verified, the next seed is not injective over any group, unit case included. "Where the
+<     methods stop" above is then superseded for it.
+---
+>   - **Net.** The next seed is not injective over any group, unit case included. "Where the methods stop"
+>     above is superseded for it.

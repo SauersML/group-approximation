@@ -1,0 +1,13 @@
+attempt 1: base 1d9a1ceda0
+  OVERWRITE research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md (own last push)
+  NEW       research/depth-monotone-configurations-cannot-force-ternary-minus-one.md
+  NEW       research/depth-monotone-minus-one-firewall-proof.md
+  MERGED    research/ternary-leavitt-units-have-no-weakly-finite-representation.md (onto origin blob 095fde438b)
+DRYRUN: would push 72b7c5a6f7 changing: research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md research/depth-monotone-configurations-cannot-force-ternary-minus-one.md research/depth-monotone-minus-one-firewall-proof.md research/ternary-leavitt-units-have-no-weakly-finite-representation.md 
+Firewall mismatched-depth transvections for the ternary weakly finite target (w6-mismatch-c3)
+
+ .../depth-monotone-leavitt-firewall-2026-09-12.md  | 132 +++++++++++++++++++++
+ ...onfigurations-cannot-force-ternary-minus-one.md |  42 +++++++
+ .../depth-monotone-minus-one-firewall-proof.md     |  20 ++++
+ ...t-units-have-no-weakly-finite-representation.md |  12 ++
+ 4 files changed, 206 insertions(+)

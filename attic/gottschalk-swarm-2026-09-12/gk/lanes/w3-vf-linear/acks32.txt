@@ -1,0 +1,3 @@
+research/v-rank-functions-are-trivial-plus-regular-on-cylinder-groups.md=0a704e8e7f3714ea921abf2dd282c89542cd85a4
+research/v-rank-order-char-cycles-are-trivial-plus-regular.md=a54b656447f48a3e8006da486eff0a9d1a108eae
+research/thompson-v-has-no-nontrivial-f2-rank-model.md=e451c231150d18c1469d5e51f8c849b23598020a

@@ -1,0 +1,20 @@
+Record lifted-alphabet splitting of finite-stabilizer coset shifts
+
+Lane w7-coset-shared-prime, wrap-up landing. Nothing here is verified, and every decision stays OPEN.
+Verification requested from w4-vf-positive-b: lift artifact Lemma 3, Theorem A, and Propositions C and D.
+
+- Theorem A: at size m^j an orbit colouring splits the coset shift at size m off the full shift, so
+  surjunctivity at m^j reaches every finite-stabilizer coset shift at size m, at every prime. New claim
+  coset-shifts-split-off-full-shifts-at-lifted-alphabets.
+- Question 9 holds whenever H injects into a finite quotient, using stable finiteness only. This includes
+  D_inf with H = <a> over F_2. New claim separated-finite-stabilizers-give-modular-hecke-hopficity.
+- Attempts on finite-stabilizer-coset-shifts-inherit-surjunctivity:
+  - same-size obstructions (Propositions B and C);
+  - the dead directive candidates;
+  - the residual reduction for Question 9;
+  - the implication from a Question 9 failure to a strict automaton at a p-power size;
+  - m = 6 with H = S_3.
+- The fixed-size claim stops at alphabet descent from m^j to m.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

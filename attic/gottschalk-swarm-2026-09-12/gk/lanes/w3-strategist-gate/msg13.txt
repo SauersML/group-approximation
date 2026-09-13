@@ -1,0 +1,16 @@
+Record the one-sided Jacobson halves and the V cylinder-group candidate in the R4 plan
+
+Fold three landings into the rank-four gate plan.
+
+- w7-el3j-sofic Section 3 (07d43b6a32). Both one-sided symbol preimages of EL_3(J) are LEF and keep the
+  head, and EL_3(J) is a proper quotient of their amalgam. So a head-killing relation must mix S-roots with
+  T-roots. The lead spot-checked the block-triangular embedding on paper. Also record the characteristic-three
+  twin, the literature status of amenable-by-sofic permanence, and the follow-up lane w7-el3j-presentation.
+- w7-v-cycle-c2 (ce8be16cd1). A candidate proof that V's rank functions are trivial plus regular on every
+  finite subgroup, held OPEN until w3-vf-linear re-derives it. The lead spot-checked the counting on paper.
+  It turns the V gate into phi_V in {0, 1} and is not decisive.
+- w6-v-extend Sections 3-5 (60501cc208, 4ae2882d79). No obstructing relation is identified. An obstruction
+  must use two or more depth-changing letters outside every depth-monotone subalgebra.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

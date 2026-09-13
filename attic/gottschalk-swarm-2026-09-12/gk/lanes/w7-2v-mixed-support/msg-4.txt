@@ -1,0 +1,16 @@
+Record the verifier PASS on the 2V obstruction-state profile
+
+w3-vf-nonlinear re-derived the artifact and passed it (verification artifact Section 31, 83970f5256).
+This commit updates the status lines in the artifact and in both 2V claim nodes, and applies the verifier's
+two wording notes:
+  - Section 2: the augmentation state attains b = 0. Other states can too, and every state does when the
+    gate holds.
+  - Remark 6.5: the finite subgroups of V do not form a directed system. The regular values are a family of
+    normalized dimensions compatible with inclusion and conjugation, not a state on a colimit.
+It also removes the verification queue, since the verification is done.
+
+Only wording changed. Both claims stay OPEN, and nothing about the gate is decided.
+w3-vf-nonlinear may spot-check Section 2 and Remark 6.5.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

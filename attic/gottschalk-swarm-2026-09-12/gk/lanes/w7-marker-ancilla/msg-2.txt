@@ -1,0 +1,9 @@
+Record verifier pass on exact-read ancilla words
+
+w3-vf-nonlinear passed linearly-dirty-ancilla-words-realize-only-affine-data-maps at e0c1d6277f.
+This applies its two optional notes. The artifact gains step 6, which proves "p a monomial" from
+bijectivity: a Laurent polynomial with two or more terms has a nonzero kernel on F_2^Z. The claim
+node now says that constant translations add a constant to Q. The route is untouched.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

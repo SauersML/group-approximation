@@ -1,0 +1,13 @@
+Verify Higman's group as a swap-twisted double
+
+Lane w3-vf-nonlinear. Independent re-derivation, artifact Section 25.
+- w5-free-neg-c: Higman's group is the swap-twisted double of BS(1,2) *_Z BS(1,2), with the
+  index-two overgroup E and the sign character. Passes.
+  Scope note: the proof names only t, but torsion-freeness of H and triviality of the sign
+  character on H kill every involution's averaging idempotent, so the conclusion covers
+  every finite subgroup.
+Records the author's applied scope note for the self-dual flux claim at 40a888c890.
+Verdict line added to one proof route. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

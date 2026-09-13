@@ -1,0 +1,13 @@
+attempt 1: base 8c2f470b70
+  OVERWRITE research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md (own last push)
+  MERGED    research/p-cycle-tree-invariance-cannot-force-order-char-law.md (onto origin blob 2c24481a4e)
+  MERGED    research/thompson-v-ternary-rank-functions-are-augmentation.md (onto origin blob b2a021e394)
+  MERGED    research/v-rank-order-char-cycles-are-trivial-plus-regular.md (onto origin blob f4eeef271e)
+DRYRUN: would push 69725c8977 changing: research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md research/p-cycle-tree-invariance-cannot-force-order-char-law.md research/thompson-v-ternary-rank-functions-are-augmentation.md research/v-rank-order-char-cycles-are-trivial-plus-regular.md 
+w7-v-cycle-c3: scope p-cycle-tree models to elementary abelian p-subgroups (w3-vf-linear §33)
+
+ ...tree-rank-models-and-ternary-gate-2026-09-12.md | 41 ++++++++++++----------
+ ...-tree-invariance-cannot-force-order-char-law.md | 22 +++++++-----
+ ...on-v-ternary-rank-functions-are-augmentation.md | 12 ++++---
+ ...k-order-char-cycles-are-trivial-plus-regular.md | 11 +++---
+ 4 files changed, 49 insertions(+), 37 deletions(-)

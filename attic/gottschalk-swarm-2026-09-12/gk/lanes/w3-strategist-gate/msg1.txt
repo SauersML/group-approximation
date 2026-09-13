@@ -1,0 +1,15 @@
+Fold the sofic cylinder-defect firewall and the V gate firewalls into the R4 plan
+
+Lane w3-strategist-gate (lead, families R4 and SUB). Folds the w5-sub-fock landings, which w4-vf-gate
+passed in Section 28, into L5 and L6. Every sofic subgroup containing disjoint frames carries a rank
+model with exactly multiplicative cylinder defects. So a relation-only strict deficit has to use a
+nonsofic subgroup containing both frames. The Toeplitz pair is finite-subgroup data. With EL_3(F_2) it
+generates EL_3(J), and with the constant root groups it generates R^x.
+
+Lead cross-link: the Toeplitz form of the descent line and the Cohn reduction through the Jacobson
+rank radical claim both need EL_3(J) to be nonsofic, which is undecided on main. L8 records the V gate
+firewalls from w5-v-nonamenable (sofic configurations and characteristic-uniform identities) and the
+open order-char cycle law. The header's constraint list and live questions are updated to match.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

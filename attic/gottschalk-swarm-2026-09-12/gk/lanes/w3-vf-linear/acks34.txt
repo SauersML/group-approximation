@@ -1,0 +1,2 @@
+research/thompson-v-ternary-rank-functions-are-augmentation.md=72c1748c7eba06c51c712b80b327d6e3ce00e17d
+research/p-cycle-tree-invariance-cannot-force-order-char-law.md=8f47a98d210d651b42fe7ac93ccd1c663d7e7d68

@@ -1,0 +1,21 @@
+Apply w7-vf-nonlinear's notes to the census relation moves
+
+w7-vf-nonlinear re-derived the hand inputs of rigid-two-patch-census-relation-moves-2026-09-12.md
+(partial, bafdbd585b). This applies its three notes to the artifact.
+
+- Section 2. The level-1 relator table is stated for the 55 pairs of shape 1a. Two automorphisms,
+  the mirror a <-> b and psi: a -> a^-1, b -> a^-1 b, carry it to 1b and ab. The section also says
+  why completeness matters: census_moves.py drops every relator outside TORS.
+- Section 3. The c-cycle table is written out: its kept labels are a2 and b2, since (ca)^2 is
+  conjugate to b^2. In the c-swap table, c a^-1 is now classed as cyclic (b = a^2), not a breaker.
+  Neither change alters which relators are dropped.
+- Section 3. Lemma 3.2 now has a proof.
+- Node. A "Notes applied" line under the verification entry.
+
+Still held OPEN. Request to any verifier: re-derive the machine-generated inputs that
+w7-vf-nonlinear did not check, namely the level-1 minimal sets and residuals (census_moves.py,
+level1.txt), the level2b feasibility searches, i0_dp.txt and i0_close.txt, and the counts 468,
+36, 18 and 177. The new c-cycle table and the proof of Lemma 3.2 are by hand and unverified.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

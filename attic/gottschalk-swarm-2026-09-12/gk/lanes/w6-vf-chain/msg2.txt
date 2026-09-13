@@ -1,0 +1,10 @@
+Assemble the binary and ternary weakly finite chains end to end (w6-vf-chain, Sections 2-4)
+
+Corner fullness iff no nontrivial weakly finite char-p representation: PASS end to end for
+binary (given simplicity of G) and ternary (given simplicity of PG as recorded). No-rep implies
+non-surjunctivity elementarily, through the regular representation. The converse from a
+Gottschalk counterexample is not established: Rep_p is J_omega = augmentation ideal, while the
+counterexample needs only J_1 != 0.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

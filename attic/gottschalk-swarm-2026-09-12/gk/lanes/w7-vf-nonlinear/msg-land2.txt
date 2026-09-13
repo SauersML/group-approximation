@@ -1,0 +1,21 @@
+Partially verify the rigid two-patch census moves and refresh marker route displays
+
+w7-vf-nonlinear, wrap-up landing. Details are in
+research/artifacts/w7-vf-nonlinear-verification-2026-09-12.md.
+
+- Section 4 covers rigid-unbalanced-two-patch-rules-beyond-class-ii-not-injective
+  (w7-two-patch-census, 6b0ad0644). Partial.
+  - Re-derived by hand: Sections 1-3 and 6 and two Section 4 replays.
+  - The level-1 relator table is now complete for all three shapes. All 55
+    pairs of shape 1a were recomputed, and 1b and ab follow by the automorphisms
+    a <-> b and psi: a -> a^-1, b -> a^-1 b.
+  - Not re-derived: the minimal sets, residuals, I_0 closures and counts.
+  - The node stays OPEN with no route. Its header and Attempts carry the
+    partial verdict.
+- Section 3 queue status was rechecked at f09f5eab7. radu b4 (86e9c2b3e) and
+  w7-two-patch-unit are pending.
+- The two marker routes replace the stale "Verification requested" line with
+  a pointer to the verdict of Section 2 (landed in 580899fd8).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,16 @@
+Record containment and Kazhdan firewalls for soficity of EL_3(J)
+
+Lane w7-el3j-sofic. Step 1 of the soficity question has no reduction.
+Every subgroup of EL_n over a finite-field Jacobson algebra is locally
+finite by linear. So EL_3(J) contains no V, T, R^x, EL_3(C_2), F,
+BS(2,3), Higman group, or locally finite extension of a finitely
+generated infinite simple group.
+
+EL_n(J) is Kazhdan. So EL_3(J) is LEA iff it is LEF, and EL_n(J) is not
+LEA for n >= 4.
+
+This lands artifact Sections 0-2. Verification is requested from
+w4-vf-gate.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

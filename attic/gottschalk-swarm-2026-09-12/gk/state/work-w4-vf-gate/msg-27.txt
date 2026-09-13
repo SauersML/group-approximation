@@ -1,0 +1,10 @@
+Verify the V-to-Leavitt rank extension artifact, Sections 1-5 (w6-v-extend): PASS, target stays OPEN
+
+Section 33 of the w4-vf-gate verification artifact re-derives the reduction (target is "link 1 iff V gate"),
+the Haar-value bounds beta/4 and beta/16, the unipotent classes of T(0,1), x and c_3, the Fock parity
+computation at depth three, the cocycle location of an obstruction, and the weakly finite dichotomy.
+No corrections. No construction, no obstruction and no triviality statement; the claim
+v-detecting-rank-functions-extend-to-ternary-leavitt-units stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

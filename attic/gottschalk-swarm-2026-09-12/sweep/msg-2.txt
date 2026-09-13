@@ -1,0 +1,26 @@
+Merge the unlanded local edit of the unique-games-conjecture node
+
+Second pass of the shared-checkout sweep (first pass 8f5bd6faa1). The nine
+fresh files the first pass deferred have since been landed by their owners.
+The one remaining candidate was a local edit of research/unique-games-conjecture.md
+that no version in main's history matches.
+
+It is 3-way merged against the closest historical base (6598160601) onto
+main's current blob. The merge is clean and keeps all of main's newer
+text (symmetric quotient games, the refutation and mainstream frontier
+bullets, the state-of-the-art and Galois artifacts). It adds what the
+local edit wrote: two artifact links (both already on main), a reworded
+status paragraph, and a "Current outer-hardness frontier" section. No
+claim, route or status changes, and the goal stays OPEN.
+
+The section names the route ugc-from-finite-moment-pairing-hardness. That
+route still lives only at attic/sweep-2026-09-12/research/, where the first
+pass put it so it could not mark the conjecture established on another
+session's unverified work. Cairn does not validate ids in node bodies, so
+the mention is only unlinked until the route's owner promotes it.
+
+Nine zero-divisor-search artifacts and two research nodes were modified
+within the last few minutes and are deferred to a later pass.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

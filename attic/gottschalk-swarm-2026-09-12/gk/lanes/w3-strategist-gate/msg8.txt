@@ -1,0 +1,13 @@
+Record the reduction of the V extension claim in the R4 plan
+
+w6-v-extend (0144b771c7, artifact Sections 0-2) shows that v-detecting-rank-functions-extend-to-ternary-
+leavitt-units is equivalent to "link 1 iff V gate". No Hamming-model extension exists, and V is not
+co-amenable in G_3. The evaluation lift of the transvection fails x^3 = 1. The Fock lift passes the
+local relations and fails the splitting x = x_0 x_1.
+- L9b: the reduction, the two obstructions and the two lifts.
+- L9b lead note: given link 1, the extension input of v-augmentation-from-minus-one-gate-and-extension is
+  the implication that route delivers, so the route adds no decisive input. The Fock lift fails at a
+  depth-changing relation, the same kind of relation as the multi-letter SUB inputs.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

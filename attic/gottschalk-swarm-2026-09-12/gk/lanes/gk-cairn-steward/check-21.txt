@@ -1,0 +1,35 @@
+TIP=54faf1cd6451e8e7ca533045374dd7a2b4070abe
+TREE files=30942 research=21845
+CHECK_EXIT=0  seconds=44
+ERROR lines: 0   WARNING lines: 14   duplicate lines: 0
+--- ERROR lines (first 40):
+--- duplicate lines (first 30):
+--- non-cycle WARNING lines (first 20):
+WARNING: research/finite-simple-rr0-weak-cancellation-via-stable-rank-one.md: prerequisite finite-simple-rr0-algebras-have-stable-rank-one reads like a restatement of target finite-simple-rr0-algebras-have-weak-cancellation; if the route only renames the problem, replace the prerequisite with one th
+--- cycle WARNING lines naming Gottschalk-region words:
+WARNING: dependency cycle through claims: bernoulli-rokhlin-entropy-maximal-for-every-group -> bernoulli-rokhlin-entropy-maximal-on-fixed-tester -> tester-host-has-positive-rokhlin-entropy-action -> every-group-has-positive-rokhlin-entropy-action -> bernoulli-rokhlin-entropy-maximal-for-every-group
+WARNING: dependency cycle through claims: f9-hadamard-spectral-idempotent-is-full -> ternary-anti-invariant-swap-corner-is-full -> ternary-anti-central-summand-has-cohn-family -> ternary-anti-central-cohn-family-over-f9 -> f9-hadamard-spectral-idempotent-is-full
+WARNING: dependency cycle through claims: sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one -> thompson-v-ternary-rank-functions-are-augmentation -> sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one
+WARNING: dependency cycle through claims: hs-expander-block-decomposition -> leavitt-steinberg-hs-stable -> tracial-median-concentration -> hs-expander-block-decomposition
+WARNING: dependency cycle through claims: leavitt-evaluation-kernel-unitization-directly-finite -> leavitt-unit-group-algebra-is-directly-finite -> no-left-invertible-lift-of-s0-in-leavitt-group-algebra -> leavitt-evaluation-kernel-unitization-directly-finite
+WARNING: dependency cycle through claims: products-with-a-sofic-factor-are-surjunctive -> surjunctive-groups-are-quantitatively-surjunctive -> products-with-a-sofic-factor-are-surjunctive
+compiled 9588 claims + 9854 routes -> .cairn/cache/graph.json, research/FRONTIER.md
+--- goal and refuted_by roots:
+gottschalk-surjunctivity-conjecture [OPEN] — Every group is surjunctive on every finite-alphabet full shift
+brin-thompson-2v-nonsurjunctive [OPEN] — The Brin–Thompson group 2V carries an injective non-surjective cellular automaton
+higman-group-nonsurjunctive [OPEN] — Higman's four-generator group carries an injective non-surjective cellular automaton
+kun-thom-wreath-lamp-quotient-nonsurjunctive [OPEN] — Some quotient of the Kun--Thom coset wreath by a lamp submodule of its sofic radical carries a s
+deligne-triple-cover-nonsurjunctive [OPEN] — Deligne's triple cover of Sp4(Z) carries an injective non-surjective cellular automaton
+kun-thom-clifford-cover-nonsurjunctive [OPEN] — Some Kun--Thom Clifford cover is not surjunctive
+strict-automaton-on-lattice-in-product-of-trees [OPEN] — Some lattice in a product of two trees carries an injective non-surjective cellular automaton
+some-finite-field-leavitt-unit-group-nonsurjunctive [OPEN] — Some unit group of a Leavitt algebra over a finite field is not surjunctive
+projective-ternary-leavitt-group-nonsurjunctive [OPEN] — The ternary Leavitt unit group modulo scalars is not surjunctive
+ternary-leavitt-unit-group-nonsurjunctive [OPEN] — The ternary Leavitt unit group is not surjunctive
+leavitt-unit-group-nonsurjunctive [OPEN] — The binary Leavitt unit group is not surjunctive
+--- goal routes by status:
+     15 OPEN
+      2 ✗
+SENTINEL=done
+--- requested statuses:
+ternary-anti-central-summand-has-no-weakly-finite-image [OPEN] — No quotient of the ternary Leavitt group algebra in whi
+SENTINEL=done2

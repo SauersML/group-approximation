@@ -1,0 +1,18 @@
+Prove characteristic-p hosts of Leavitt unit groups need nilpotents of unbounded index
+
+Construction side of the weak-finiteness counterexample routes (lane w6-wf-construct). No weakly
+finite host found; the census lands as obstructions.
+
+Theorem A: in characteristic p, permutation units of p-power order map to unipotents, so a host of
+L_(F_p)(1,2)^x with bounded nilpotence index kills an element of order p. This rules out division
+rings, M_n(D), semiprime Goldie, reduced and finite-dimensional hosts at once. Corollary A.2: a
+nonaugmentation Sylvester rank function on F_2[R^x] (or one on F_3[G_3] with rk(1+[z]) = 0) takes
+infinitely many values, which invalidates the discrete-rank-model route.
+
+Theorem B: Malcev over commutative rings excludes hosts inside GL_n(C), C commutative of any
+nilpotence. Proposition D: by Łoś, weakly finite hosts exist iff n-weakly finite hosts exist for
+all n, and algebraic ultraproducts only pass hosts of V down to factors. The artifact also records
+where traces, invariant measures, Ore localizations and presented algebras stop.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

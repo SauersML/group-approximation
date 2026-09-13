@@ -1,0 +1,13 @@
+Reduce the one-transvection ternary lift of s0 to one sign-Hecke corner equation (w6-wf-stage1-a)
+
+A combination u0 P + u1 (1-P) of two units has a left inverse iff the compressed transition
+(1-P) u0^-1 u1 (1-P) has one in its corner (any ring, explicit formulas both ways). With the honest
+idempotents of d1 = 1 + s1t1, the transvection 1 + s00t01 and a Thompson unit give a four-term lift of
+s0 whose transition is h = [[0,1],[-1,s0]]. Its left invertibility is one linear equation in a
+sign-Hecke corner, the open stage-one claim, and it is wired to ternary nonsurjunctivity. The claim is
+firewalled on locally residually finite supports such as GL_2(F_3[s0]). The partner k = [[0,-1],[1,t0]]
+matches mod pi but leaves a non-nilpotent kernel term (trace -1). The live region is GL_2 over the
+Jacobson algebra.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

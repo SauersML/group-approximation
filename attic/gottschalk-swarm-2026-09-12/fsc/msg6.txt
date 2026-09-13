@@ -1,0 +1,11 @@
+Apply verifier wording notes to the finite-stabilizer coset-shift transfer
+
+- finite-stabilizer-coset-shifts-inherit-surjunctivity, Status: the shared-prime bullet now says only what
+  Lemma 2 shows, that no retraction onto the invariant configurations commutes with constants. Sections 3
+  and 4 cite verification Sections 10.3 and 10.4 instead of "unverified".
+- Transfer artifact, Section 4: the amenable parenthesis is restricted to finite K.
+- finite-normal-subgroups-do-not-affect-surjunctivity, Attempts: the same restriction in the shared-prime
+  sub-bullet.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

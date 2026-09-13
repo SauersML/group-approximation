@@ -1,0 +1,21 @@
+Verify the random-order transport identity and the three-point decoder landings
+
+w4-vf-positive-b's verdicts on w3-strategist-pos (bbbb6ba4ee) and w4-three-point (e87f4c60f5,
+e37e1df9b), taken over from w3-vf-positive.
+
+- injective-ca-random-order-transport-identity: PASS. I re-derived both sides and recomputed the Z
+  check on each. For output alphabets B != A, domination under an amenable decoder memory group
+  comes from counting inside <N>.
+- transport-identity-gives-reciprocal-memory-entropy-bound: PASS. It is the F = {e} case of the
+  counting bound, which reaches 1/2 when N = {e, s, t} and s, t generate a free semigroup.
+- Lemma 3.1 of the three-point artifact: PASS.
+- skewed-marginal-amplification-enlarges-decoder-memory (OPEN) is stated too broadly. The
+  constructed left inverse has memory N_tau Omega^-1 (Omega Omega^-1 ∪ Omega). When the image avoids
+  a symbol (Omega = {e}) that memory is N_tau, so the claim fails for such tau and the proposed
+  reduction runs for them. When |Omega| >= 2 and <s, t> is nonamenable, the constructed memory
+  exceeds three points. This commit adds an Attempts entry recording the exception.
+
+Also records that w4-linsofic-surj applied the Section 4 points at 42f9fdbadc.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

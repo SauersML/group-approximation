@@ -1,0 +1,16 @@
+Prove quotient restrictions settle invariant patterns and quantitative deficits, and isolate the residue
+
+Restricting an injective automaton to configurations invariant under a normal subgroup gives an
+injective automaton over the quotient. Over G x K with N normal in G and (G/N) x K surjunctive, every
+N x 1 invariant configuration is in the image. So the single-fibre Garden of Eden theorem needs no
+hypothesis on G, only surjunctivity of K.
+
+For quantitative surjunctivity, a subshift missing an N-invariant configuration inherits the constant of
+its restriction to G/N. Constant configurations give log(|B|/c_Y) over every group, and periodic points
+make residually finite groups quantitatively surjunctive with no sofic models. The residue is the proper
+subshifts containing Fix_N for every normal N with sofic quotient. For groups with no nontrivial sofic
+quotient these are the subshifts containing all constants. Theorem Q meets only that residue. The target
+stays OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

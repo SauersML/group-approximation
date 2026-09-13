@@ -1,0 +1,21 @@
+rev-list objects 159892 secs 169
+tip e7b78e34a3 paths 4972
+{'SKIP_ONMAIN': 4366, 'SKIP_STALE': 594, 'LAND_NEW': 9, 'RESCUE_DIVERGED': 3}
+3 ('RESCUE_DIVERGED', 'research', '.md')
+2 ('LAND_NEW', 'research', '.log')
+2 ('LAND_NEW', 'research', '.g')
+2 ('LAND_NEW', 'research', '.sbatch')
+2 ('LAND_NEW', 'research', '.out')
+1 ('LAND_NEW', 'research', '.c')
+non-skip modified within 2h: 11
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/surv.591297.log
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/surv.g
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/surv.sbatch
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/surv14.gap.out
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/test.589526.log
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/test.sbatch
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/testgen.g
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/v2-s14.out
+   LAND_NEW 0.1h research/artifacts/zero-divisor-search-2026-09-12-search/zds.c
+   RESCUE_DIVERGED 0.1h research/elementary-groups-over-polynomial-s-integers-are-fp-proof.md
+   RESCUE_DIVERGED 0.1h research/polynomial-linear-groups-satisfy-boone-higman-via-zaremsky.md

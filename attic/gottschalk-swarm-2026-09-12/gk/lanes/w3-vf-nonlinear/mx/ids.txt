@@ -1,0 +1,12 @@
+binary-jacobson-el3-is-sofic
+brin-thompson-2v-averaging-fullness-ascends-from-v
+brin-thompson-2v-nonsurjunctive
+brin-thompson-2v-order-three-averaging-idempotent-is-full
+thompson-v-not-sofic
+thompson-v-order-three-averaging-idempotent-is-full
+v-rank-functions-are-trivial-plus-regular-on-cylinder-groups
+w3-vf-nonlinear
+w6-v-extend
+w7-2v-mixed-support
+w7-el3j-sofic
+w7-v-cycle-c2

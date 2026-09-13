@@ -1,0 +1,17 @@
+Verify the Brin-Thompson 2V host and record the two-patch route verdict
+
+Section 29 and a Section 28 follow-up of the nonlinear verification artifact.
+- brin-thompson-2v-gottschalk-host (4d9ce3b2d): PASS with one scope note. The unit model, Proposition 2.1,
+  Corollary 2.2, Lemma 2.3 and Propositions 2.4-2.5 were re-derived. The Scope paragraph of Theorem B covers
+  subgroups of the units of L_2, and 2V is not one. The transfer is still valid, because the proof uses only
+  identities inside V, D-stability and the commutation that the proof checks.
+- The three 2V routes are valid and carry the verdict. In the fullness ascent, phi g phi^-1 = h^-1 holds
+  under the operator product of Section 1.
+- Goal refuted_by: the 2V line follows the convention for OPEN roots. The Higman paragraph from 56770876c
+  restates claims passed in Section 23.
+- ternary-two-patch-seed-never-injective-proof: the restored route carries the Section 28 verdict. The
+  efd28946a corrections and the dcf7872d2 marker record are accurate.
+No decision.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

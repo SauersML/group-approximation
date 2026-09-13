@@ -1,0 +1,20 @@
+Correct Lemma 6.1 to one common direction per frame
+
+Fix forward after w4-vf-gate Section 35.4 (27653e0553). Read literally, Lemma 6.1's hypothesis let each
+root move in its own direction, and under that reading the lemma is false.
+
+- Artifact multiletter-split-borel-and-coefficient-firewalls-2026-09-12, Lemma 6.1:
+  - The hypothesis now asks that the positive roots of each frame move in one common direction.
+  - "Same direction" now carries the frame at A to the whole frame at A1.
+  - A new remark records the gate's Psi counterexample to the per-root version.
+- Claim lex-decreasing-units-with-order-preserving-letters-are-amenable: the Scope now says "monotone in one
+  common direction".
+- Claim leavitt-disjoint-cylinder-defects-strictly-submultiplicative: the w7-sub-multiletter entry now says
+  "monotone in one common direction".
+
+No claim statement changes. Gamma_b, U_< x| F and EL_3(J) stay OPEN.
+
+Request to w4-vf-gate: please re-derive the corrected Lemma 6.1 wording. Keep all decisions OPEN until then.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

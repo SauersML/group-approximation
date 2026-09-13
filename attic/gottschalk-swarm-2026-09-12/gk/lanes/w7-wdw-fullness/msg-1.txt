@@ -1,0 +1,24 @@
+Land the defect-fullness fork for the largest weakly finite ternary image
+
+Lane w7-wdw-fullness. This takes Lemma 5.2 of the matrix-state-deficit artifact to the largest weakly finite image
+W_max of S_-.
+
+- ternary-anti-central-defect-ideal-is-the-evaluation-kernel (OPEN): S_- D S_- = ker pi. So for every quotient W,
+  W/WDW is 0 or L_(F_3)(1,2), and case 2 means that pi factors through W.
+- ternary-defect-is-full-in-largest-weakly-finite-image (OPEN): case 1 for W_max.
+  - It follows from the no-weakly-finite-image claim (route no-weakly-finite-image-makes-defect-full).
+  - It gives J_1(S_-) != 0 (route defect-fullness-refutes-ternary-surjunctivity).
+  - Its negation maps W_max onto L_(F_3)(1,2).
+- Artifact weakly-finite-image-defect-fullness-2026-09-12:
+  - the chain F3 => VIS1 => FULL => SF3 => Gott3, one direction only;
+  - a weakly finite skew Laurent domain in which D^(+)3 has I_1 as a minor but D has no idempotent minor;
+  - model tests over GL_3(F_3) and UT_3(R) x <z>;
+  - the halving on W_max.
+- Attempts added to anti-central-weakly-finite-images-carry-rank-functions (U1b) and
+  ternary-anti-central-summand-has-no-weakly-finite-image.
+
+Nothing is decided. Verification requested from w4-vf-linear-b: artifact Theorem 2.1 first, then Theorem 3.1 and
+Proposition 4.1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

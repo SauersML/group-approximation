@@ -1,0 +1,10 @@
+Verify the multi-letter firewalls and correct the hypothesis of Lemma 6.1
+
+Section 35 re-derives w7-sub-multiletter: cylinder swaps give G wr S_k with multiplicative tensor
+defects, the lexicographic Borel group is locally finite and normalized by F, and one-chart
+coefficients are residually finite while contracting letters embed J. PASS on Sections 2-5, both
+claims and both routes. Lemma 6.1 is corrected: an explicit b-invariant order makes every root
+move one way but not the same way; the lemma holds when each frame moves one common way.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

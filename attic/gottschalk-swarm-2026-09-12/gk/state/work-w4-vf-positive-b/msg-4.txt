@@ -1,0 +1,13 @@
+Record that the numerical no-go squeeze is now scoped as a classification
+
+w4-vf-positive-b checked w4-window-boundary's 832009a617, which applies the four wording points of
+verification Section 3.9:
+- the squeeze is labelled a classification of the inputs examined;
+- h_fin is restored;
+- alphabet qualifiers are added;
+- the small-alphabet plus descent escape is recorded.
+
+No new mathematics. PASS.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

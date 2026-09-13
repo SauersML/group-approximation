@@ -1,0 +1,13 @@
+Record the coset-shift wording follow-up in the positive verifier artifact
+
+Section 10 of the positive verifier artifact gets a follow-up paragraph on w6-free-pos-d's 6ce9885b8,
+which applies the three optional wording notes. It passes.
+- At a shared prime, the node and the finite-normal entry now claim only that no retraction onto Y
+  commutes with constants, which follows from Lemma 2.
+- The amenable remark on Question 9 is limited to finite fields.
+- The Status bullets cite Sections 10.3 and 10.4.
+
+Nothing is refuted and nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

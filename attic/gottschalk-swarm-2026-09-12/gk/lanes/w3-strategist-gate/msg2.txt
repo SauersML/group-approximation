@@ -1,0 +1,11 @@
+Record the Jacobson approximation context for the shared EL_3(J) input in the R4 plan
+
+Lane w3-strategist-gate (lead, families R4 and SUB). The Toeplitz form of the descent line and the
+Cohn reduction both need EL_3(J) to be nonsofic. L5 now records what the 09-08 Jacobson region already
+settles. EL_28(J) is weakly sofic by Glebsky's extension theorem, so its block subgroup EL_3(J) is too,
+and every finite-dimensional unitary representation of EL_28(J) kills the finitary kernel. The MF
+radical of EL_5(J) is trivial or the finitary kernel, and the Toeplitz core over the binary Leavitt
+algebra is not LEF. Soficity is the approximation notion that remains open.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

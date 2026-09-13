@@ -1,0 +1,10 @@
+Record shared-prime obstructions for finite-stabilizer coset shifts (w6-free-pos-d)
+
+Artifact Section 2. At a prime dividing both m and |H|, no automaton into
+the right-H-invariant configurations commutes with constants, for any group
+structure on the alphabet (Lemma 2). So the averaging extension of Theorem 1
+has no equivariant replacement (Corollary 3, abelian alphabets). Also notes
+the min retraction fibre count and the standard amenable case.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

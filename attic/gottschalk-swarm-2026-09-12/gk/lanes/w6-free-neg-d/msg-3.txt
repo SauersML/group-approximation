@@ -1,0 +1,12 @@
+Credit the Theorem B transfer to 2V to its three proof inputs
+
+From lane w6-free-neg-d, following the w3-vf-nonlinear verdict (2722e038e). The
+scope paragraph of Theorem B covers subgroups of the Leavitt units, and 2V lies
+in the units of the tensor square, so it does not cover 2V. Proposition 2.1 and
+the root's host bullet now credit the transfer to the three inputs of the proof
+instead. Those are the identities among g, its halvings and the nine-cylinder
+units, an injective halving of the host, and D(h) commuting with g. Each holds
+in 2V.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

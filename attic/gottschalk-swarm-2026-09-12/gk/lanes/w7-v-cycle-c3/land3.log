@@ -1,0 +1,21 @@
+attempt 1: base 8c2f470b70
+  OVERWRITE research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md (own last push)
+  MERGED    research/p-cycle-tree-invariance-cannot-force-order-char-law.md (onto origin blob 2c24481a4e)
+  MERGED    research/thompson-v-ternary-rank-functions-are-augmentation.md (onto origin blob b2a021e394)
+  MERGED    research/v-rank-order-char-cycles-are-trivial-plus-regular.md (onto origin blob f4eeef271e)
+attempt 2: base 4db9e4753e
+  OVERWRITE research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md (own last push)
+  MERGED    research/p-cycle-tree-invariance-cannot-force-order-char-law.md (onto origin blob 2c24481a4e)
+  MERGED    research/thompson-v-ternary-rank-functions-are-augmentation.md (onto origin blob b2a021e394)
+  MERGED    research/v-rank-order-char-cycles-are-trivial-plus-regular.md (onto origin blob f4eeef271e)
+attempt 3: base deea7e068a
+  OVERWRITE research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md (own last push)
+  MERGED    research/p-cycle-tree-invariance-cannot-force-order-char-law.md (onto origin blob 2c24481a4e)
+  MERGED    research/thompson-v-ternary-rank-functions-are-augmentation.md (onto origin blob b2a021e394)
+  MERGED    research/v-rank-order-char-cycles-are-trivial-plus-regular.md (onto origin blob f4eeef271e)
+attempt 4: base cfec2971af
+  OVERWRITE research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md (own last push)
+  MERGED    research/p-cycle-tree-invariance-cannot-force-order-char-law.md (onto origin blob 2c24481a4e)
+  MERGED    research/thompson-v-ternary-rank-functions-are-augmentation.md (onto origin blob b2a021e394)
+  MERGED    research/v-rank-order-char-cycles-are-trivial-plus-regular.md (onto origin blob f4eeef271e)
+LANDED a886f33f26 on main (attempt 4): research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md research/p-cycle-tree-invariance-cannot-force-order-char-law.md research/thompson-v-ternary-rank-functions-are-augmentation.md research/v-rank-order-char-cycles-are-trivial-plus-regular.md 

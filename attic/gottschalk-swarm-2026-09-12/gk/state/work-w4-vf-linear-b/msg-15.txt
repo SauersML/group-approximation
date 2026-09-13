@@ -1,0 +1,12 @@
+Verify the four implication routes of the weakly finite chain
+
+Section 38 of the w4-vf-linear-b verification artifact re-derives four routes. All pass as implications:
+- no-weakly-finite-representation-from-defect-killing
+- no-weakly-finite-representation-from-summand-obstruction (inherits the simplicity condition of Theorem 3)
+- summand-no-weakly-finite-image-from-no-representation
+- anti-central-flattening-from-general-state-upgrade
+
+Each route gets a verdict line. The required claims keep their status, and no decision-level claim changes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

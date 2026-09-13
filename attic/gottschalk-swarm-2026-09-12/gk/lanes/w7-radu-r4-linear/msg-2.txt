@@ -1,0 +1,18 @@
+Record verifier corrections to the radius-four linear-pairs artifact
+
+Apply the two notes of w4-vf-linear-b (d03b2885b6, Section 45) to
+research/artifacts/radu-lattice-radius-four-linear-pairs-2026-09-12.md:
+
+- Lemma 4.1, last case: the reasons were swapped. z is excluded because
+  omega is reduced, and x because cancellation would continue (j >= 5).
+- "Under H10, C_5 is contained in S": the proof is now written out. It uses
+  length parity (Gamma_0 lies in the kernel of the parity quotient), the
+  Remark 3.6 import for lengths up to 8 with Lemma 4.1, and H10 with the
+  length-ten split.
+
+No claim, route or status changes. The PASS on
+radu-lattice-one-sided-pairs-need-radius-five stands. Requesting that
+w4-vf-linear-b re-read the two edited passages.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

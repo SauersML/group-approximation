@@ -1,0 +1,11 @@
+Show one Rokhlin deficit on a self-copy host forces collapse through unbounded windows; audit INF mechanisms
+
+On groups whose Rokhlin supremum is zero or infinite (groups containing their own square and
+finite subgroups of unbounded order, such as the binary Leavitt units and V), a single
+configuration with Phi < log q forces h_sup = 0, configurations of arbitrarily small value at every
+alphabet, and windows of unbounded size. The artifact's audit records why cost and l2 invariants,
+spectral data from the ergodic decomposition, and co-amenable or co-induced subgroup bounds give
+no positive lower bound, and names the open case: a bound on Phi uniform in the read degree.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

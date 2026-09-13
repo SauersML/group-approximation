@@ -1,0 +1,11 @@
+Verify the p-cycle tree rank models, and scope their consequence to elementary abelian groups
+
+Section 33 of the w3-vf-linear verification artifact re-derives w7-v-cycle-c3's 2e8bf4f44.
+- (S7)-(S9) and the second derivation of the cylinder-group theorem (Steps 0-5, error 3n(|G|+1)(1-phi_V)q^-k): PASS.
+- Lemmas 2.1-2.2, Proposition 2.3(1)-(4) and the wreath premise audit: PASS.
+- Scope correction: the models live only on elementary abelian p-groups, so "p-groups cannot force the law"
+  is proved only for elementary abelian p-subgroups. The wreath E_p x| <s> is where the model breaks.
+- The ternary-gate section: PASS. No gate is decided.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

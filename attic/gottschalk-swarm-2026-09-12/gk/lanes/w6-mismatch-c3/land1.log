@@ -1,0 +1,9 @@
+attempt 1: base efd28946ae
+  NEW       research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
+  NEW       research/depth-monotone-leavitt-subalgebras-are-stably-finite.md
+  NEW       research/depth-monotone-leavitt-stable-finiteness-proof.md
+attempt 2: base fdf1237ec2
+  NEW       research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
+  NEW       research/depth-monotone-leavitt-subalgebras-are-stably-finite.md
+  NEW       research/depth-monotone-leavitt-stable-finiteness-proof.md
+LANDED 74247b5cff on main (attempt 2): research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md research/depth-monotone-leavitt-stable-finiteness-proof.md research/depth-monotone-leavitt-subalgebras-are-stably-finite.md 

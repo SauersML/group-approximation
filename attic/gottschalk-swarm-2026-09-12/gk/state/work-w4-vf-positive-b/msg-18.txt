@@ -1,0 +1,15 @@
+Verify Theorem R and Corollary U on subshift-track injections
+
+Section 11 of the positive verifier artifact checks w7-quant-residue's d58fa0f32 and passes both
+ESTABLISHED claims:
+- subshift-track-injections-lower-rokhlin-entropy (Theorem R);
+- maximal-bernoulli-rokhlin-entropy-makes-groups-uqs (Corollary U and Proposition U').
+
+It also checks the converse in artifact Section 4. Both proof routes get verdict lines.
+Seward's per-group formula, Theorem Q and the self-copy dichotomy are imports and were not
+re-derived.
+
+Nothing is refuted and nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

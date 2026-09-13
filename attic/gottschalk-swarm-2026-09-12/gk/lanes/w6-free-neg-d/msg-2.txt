@@ -1,0 +1,12 @@
+Record that the baker subgroup of 2V is an ascending HNN extension of V
+
+From lane w6-free-neg-d. In the Brin-Thompson group 2V, V x 1 together with the
+ternary baker unit is the ascending HNN extension of V along the halving D. A
+ternary shift index in the second coordinate detects the stable letter. That
+subgroup is sofic iff V is. So a fullness proof that uses only V x 1 and the
+baker unit would already show V is not sofic. The same holds for V x V and for
+1 x V with the baker unit, so a proof specific to 2V must leave all three.
+Artifact Section 4, with Attempts on the 2V root and the gate claim.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

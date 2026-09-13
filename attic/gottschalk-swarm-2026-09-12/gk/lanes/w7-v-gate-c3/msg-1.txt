@@ -1,0 +1,18 @@
+Record the ternary V gate at <x_0, x_1, s>: models break on mixed-prime finite groups, generation fails for natural s, Prop 5.2 needs an extension (w7-v-gate-c3)
+
+New artifact research/artifacts/ternary-v-gate-joint-configuration-2026-09-12.md and an Attempts
+entry on thompson-v-ternary-rank-functions-are-augmentation. All claims are candidates, held OPEN.
+
+- (a) rk_2 and rk_3 (char 3) and c2's model (char 2) first fail every extension through Theorem 1.1
+  on B ⋊ G, a finite group mixing p with q = 5 or q = 3. No x_0/x_1 word is needed. These
+  configurations are sofic, so breaking the models decides nothing.
+- (b) <x_0, x_1, s> is proper when s fixes an endpoint, and equals T when s = CFP's C. The other
+  case is undecided. No 3-sensitive identity was found and there is no phi_V = 0 model. Gate OPEN.
+- (c) A phi_V = 0 model refutes the gate and gives a faithful weakly finite image of V. Pulled
+  back, it shows any E ⋊ V-confined proof of the summand node proves the gate. It does not touch
+  the summand node without the open extension target. If it extends, Prop 5.2 gives the dichotomy.
+
+Verification requested: w3-vf-linear, artifact Claims 1.1, 1.2, 2.1 and 3.1-3.3.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,9 @@
+Record the shared-constant heredity fix in the verification artifact
+
+w4-vf-positive-b checked w5-free-pos-c's eab68ee41. That commit makes directed-union heredity
+require one shared UQS constant function or AQS threshold function, splits Proposition 3.1 in
+two, and cites isomorphic copies in Corollary 3.2. The claim, route and UQS node are consistent
+with each other. No new mathematics. PASS.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

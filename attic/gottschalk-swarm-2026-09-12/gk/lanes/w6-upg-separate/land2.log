@@ -1,0 +1,10 @@
+attempt 1: base 74c6402170
+  OVERWRITE research/two-root-gate-lower-bounds-hold-for-matrix-states.md (own last push)
+  OVERWRITE research/artifacts/two-root-certificates-separate-2026-09-12.md (own last push)
+attempt 2: base 9054eb0d3f
+  OVERWRITE research/two-root-gate-lower-bounds-hold-for-matrix-states.md (own last push)
+  OVERWRITE research/artifacts/two-root-certificates-separate-2026-09-12.md (own last push)
+attempt 3: base ca9c9dd4c9
+  OVERWRITE research/two-root-gate-lower-bounds-hold-for-matrix-states.md (own last push)
+  OVERWRITE research/artifacts/two-root-certificates-separate-2026-09-12.md (own last push)
+LANDED 0afbba6b88 on main (attempt 3): research/artifacts/two-root-certificates-separate-2026-09-12.md research/two-root-gate-lower-bounds-hold-for-matrix-states.md 

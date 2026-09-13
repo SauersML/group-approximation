@@ -1,0 +1,8 @@
+Verify that stage models cannot close the Leavitt hexagon, and check the escape-set follow-up
+
+Section 38 re-derives w7-hexagon-closing (32f4345ad1, 91f646046f): the edge-group table, exact closing ruled out by Theorem 2.3 and Corollary 2.4, rank-null closing ruled out by Proposition 3.1 and Corollary 3.2, the calibrations, the ternary transfer and the rank-two kernel. All PASS with no mathematical corrections and five advisories: the C_n name clash, the colimit wording, the ternary inputs of the route, the rank bullet of the entry, and an unchecked attribution. The claim, the binary corner, the gate and Plan 1 stay OPEN.
+
+Section 39 checks the escape-set follow-up 6b94153534: PASS. The advisories are applied and no statement changed.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

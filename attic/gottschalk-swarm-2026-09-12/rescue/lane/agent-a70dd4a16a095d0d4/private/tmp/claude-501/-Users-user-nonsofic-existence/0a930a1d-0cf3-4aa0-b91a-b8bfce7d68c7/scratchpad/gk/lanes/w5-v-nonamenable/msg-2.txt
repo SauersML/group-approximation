@@ -1,0 +1,11 @@
+Prove that characteristic-uniform rank arguments cannot force V's rank gate
+
+The von Neumann rank on C[V] gives rk(1 - [g]) = 1 - 1/ord(g) and satisfies every premise of an argument
+whose identities already hold over a subring of C. So a proof of V's rank gate in characteristic p must use a
+p-sensitive identity such as (1 - [s])^p = 0 for s of order p, and none of the established abstract tools
+can be the decisive step. Combined with the sofic-configuration firewall, a proof must use a configuration not
+known to be sofic together with p-torsion. Opens the order-char cycle law as the first p-sensitive structure
+question, with its proved parts. Artifact Sections 3-5.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

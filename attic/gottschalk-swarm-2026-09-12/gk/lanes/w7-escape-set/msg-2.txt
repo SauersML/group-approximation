@@ -1,0 +1,21 @@
+Record the w4-vf-gate PASS on the four-transvection nodes and apply its wording advisories
+
+w4-vf-gate re-derived artifact Sections 1-5 of 45282c2142 with no corrections (Section 36 of
+gk-vf-gate-verification-2026-09-12.md, 89d646844c). This commit changes wording only; no statement changes.
+
+- Status lines: the escape, symbol and defect claims now read ESTABLISHED and cite Sections 36.1-36.4.
+  The artifact header and Section 5 cite the PASS.
+- Advisory 1: "every five-transvection set" now reads "S4 ∪ {T}" in the escape claim's Scope, the symbol claim's
+  distinct_from, and the w7-escape-set entry on ternary-leavitt-units-have-no-weakly-finite-representation.
+- Advisory 2: the symbol claim's consequence now speaks of obstructions ("for a set containing S4, an obstruction that
+  no algebra-level model defeats needs at least six transvections, or a relation outside the span of the group").
+- Advisory 3: Remark 4.4 no longer says z -> -1 and D != 0 "fail together only for algebra-level models". It cites
+  Lemma 3.1 and the non-additive models of Theorems 4.1 and 4.3, and says nothing more is proved.
+- Optional note: unitriangular-data-cannot-assemble-corner-leavitt-families added to distinct_from of
+  depth-monotone-units-carry-weakly-finite-nonzero-defect. "only because" dropped from its Consequence.
+
+four-transvections-and-x23-force-defect-vanishing stays OPEN, and the route
+summand-obstruction-from-four-transvection-defect stays conditional on it.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

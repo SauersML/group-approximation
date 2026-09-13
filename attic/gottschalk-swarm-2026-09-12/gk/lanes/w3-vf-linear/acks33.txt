@@ -1,0 +1,4 @@
+research/p-cycle-tree-invariance-cannot-force-order-char-law.md=f182b967dfd53751ed75beac89e08d9927ea9236
+research/v-rank-order-char-cycles-are-trivial-plus-regular.md=51110db6e2879014d7fd2e89db395fb2d796dd0f
+research/v-rank-functions-are-trivial-plus-regular-on-cylinder-groups.md=1545640057176962ba7f13ed59ba9a28ce938e81
+research/thompson-v-ternary-rank-functions-are-augmentation.md=2e05ca36233224cdd1b0d333a68ed870302db36f

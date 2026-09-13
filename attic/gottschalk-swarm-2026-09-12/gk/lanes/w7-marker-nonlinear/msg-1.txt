@@ -1,0 +1,22 @@
+Close data-exact ancilla words and reduce marker realizations to two linear data writes
+
+w7-marker-nonlinear. Whether tau_Z x id is a word of track shears with ancillas is still
+undecided. Verification requested from w7-vf-nonlinear; every new claim is held OPEN until it passes.
+
+- data-exact-read-ancilla-words-realize-only-translations (+ route): a word that reads the data
+  only while it is exact realizes only x + c. With the linear-dirt theorem, a realization needs a
+  gate that reads dirty data and a nonlinear gate whose read value depends on y.
+- marker-realizations-reduce-to-two-linear-data-writes (+ route): given k ancillas, a realization
+  with k+1 ancillas exists whose only data writes are two copies of x += y_1. So invariants that
+  count data writes or filter by ancilla degree cannot obstruct.
+- Artifact marker-nonlinear-ancilla-words-2026-09-12:
+  - range lemma: dirt cannot be kept on marker cells;
+  - sgn_d and gyr_d at periods 5-12 computed by hand: they vanish for tau x id with k >= 1, so no
+    obstruction;
+  - capacity lemma;
+  - class U left open;
+  - three refuted positive schemes.
+- Attempts on the hub and on one-ancilla-marker-residue-is-supported-on-window-overlaps.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

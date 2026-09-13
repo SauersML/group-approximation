@@ -1,0 +1,23 @@
+Establish trivial-plus-regular ranks on finite subgroups of V and the order-char cycle law
+
+w3-vf-linear re-derived the w7-v-cycle-c2 artifact (PASS, Section 32 of
+research/artifacts/w3-vf-linear-verification-2026-09-12.md, 87e69e1510).
+This lands the two routes it cleared:
+
+- v-rank-trivial-plus-regular-on-cylinder-groups-proof. On each finite
+  subgroup, every Sylvester rank function on F[V] is phi_V times the
+  augmentation rank plus (1 - phi_V) times the normalized regular rank.
+- v-rank-order-char-cycle-law-proof. This is the cyclic case: in
+  characteristic p, rk((1 - [s])^j) = (1 - phi_V)(p - j)/p, so for p = 2,
+  rk(1 + [t]) = (1 - phi_V)/2.
+
+Both claims are marked ESTABLISHED. The verifier's three precision notes
+are applied:
+- Steps 4-5 count free nontrivial orbits, with G = 1 set aside.
+- The Step 5 total is 2n|G|/p.
+- The claim node's dihedral bullet uses q.
+
+thompson-v-has-no-nontrivial-f2-rank-model and the ternary gate stay OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

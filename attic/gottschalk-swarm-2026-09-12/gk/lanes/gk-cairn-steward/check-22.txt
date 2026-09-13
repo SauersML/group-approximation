@@ -1,0 +1,64 @@
+TIP=83ff567eb693cd60162ec22f05e1f736bd7c47c9
+TREE files=31372 research=22257
+CHECK_EXIT=0  seconds=45
+ERROR lines: 0   WARNING lines: 16   duplicate lines: 0
+--- ERROR lines (first 40):
+--- duplicate lines (first 30):
+--- non-cycle WARNING lines (first 20):
+WARNING: research/finite-simple-rr0-weak-cancellation-via-stable-rank-one.md: prerequisite finite-simple-rr0-algebras-have-stable-rank-one reads like a restatement of target finite-simple-rr0-algebras-have-weak-cancellation; if the route only renames the problem, replace the prerequisite with one th
+--- cycle WARNING lines naming Gottschalk-region words:
+WARNING: dependency cycle through claims: every-group-has-positive-rokhlin-entropy-action -> bernoulli-shift-entropy-classifies-for-every-group -> every-group-has-positive-rokhlin-entropy-action
+WARNING: dependency cycle through claims: bernoulli-rokhlin-entropy-maximal-for-every-group -> bernoulli-rokhlin-entropy-maximal-on-fixed-tester -> tester-host-has-positive-rokhlin-entropy-action -> every-group-has-positive-rokhlin-entropy-action -> bernoulli-rokhlin-entropy-maximal-for-every-group
+WARNING: dependency cycle through claims: f9-hadamard-spectral-idempotent-is-full -> ternary-anti-invariant-swap-corner-is-full -> ternary-anti-central-summand-has-cohn-family -> ternary-anti-central-cohn-family-over-f9 -> f9-hadamard-spectral-idempotent-is-full
+WARNING: dependency cycle through claims: sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one -> thompson-v-ternary-rank-functions-are-augmentation -> sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one
+WARNING: dependency cycle through claims: hs-expander-block-decomposition -> leavitt-hs-block-compatibility -> leavitt-steinberg-hs-stable -> tracial-median-concentration -> hs-expander-block-decomposition
+WARNING: dependency cycle through claims: hs-expander-block-decomposition -> leavitt-hs-block-compatibility -> leavitt-steinberg-hs-stable -> hs-expander-block-decomposition
+WARNING: dependency cycle through claims: leavitt-evaluation-kernel-unitization-directly-finite -> leavitt-unit-group-algebra-is-directly-finite -> no-left-invertible-lift-of-s0-in-leavitt-group-algebra -> leavitt-evaluation-kernel-unitization-directly-finite
+WARNING: dependency cycle through claims: products-with-a-sofic-factor-are-surjunctive -> surjunctive-groups-are-quantitatively-surjunctive -> products-with-a-sofic-factor-are-surjunctive
+compiled 9754 claims + 10023 routes -> .cairn/cache/graph.json, research/FRONTIER.md
+--- goal and refuted_by roots:
+gottschalk-surjunctivity-conjecture [OPEN] — Every group is surjunctive on every finite-alphabet full shift
+brin-thompson-2v-nonsurjunctive [OPEN] — The Brin–Thompson group 2V carries an injective non-surjective cellular automaton
+higman-group-nonsurjunctive [OPEN] — Higman's four-generator group carries an injective non-surjective cellular automaton
+kun-thom-wreath-lamp-quotient-nonsurjunctive [OPEN] — Some quotient of the Kun--Thom coset wreath by a lamp submodule of its sofic radical carries a s
+deligne-triple-cover-nonsurjunctive [OPEN] — Deligne's triple cover of Sp4(Z) carries an injective non-surjective cellular automaton
+kun-thom-clifford-cover-nonsurjunctive [OPEN] — Some Kun--Thom Clifford cover is not surjunctive
+strict-automaton-on-lattice-in-product-of-trees [OPEN] — Some lattice in a product of two trees carries an injective non-surjective cellular automaton
+some-finite-field-leavitt-unit-group-nonsurjunctive [OPEN] — Some unit group of a Leavitt algebra over a finite field is not surjunctive
+projective-ternary-leavitt-group-nonsurjunctive [OPEN] — The ternary Leavitt unit group modulo scalars is not surjunctive
+ternary-leavitt-unit-group-nonsurjunctive [OPEN] — The ternary Leavitt unit group is not surjunctive
+leavitt-unit-group-nonsurjunctive [OPEN] — The binary Leavitt unit group is not surjunctive
+--- goal routes by status:
+     15 OPEN
+      2 ✗
+SENTINEL=done
+--- requested statuses:
+ternary-anti-central-summand-has-no-weakly-finite-image [OPEN] — No quotient of the ternary Leavitt group algebra in whi
+normal-surjunctive-decoder-memory-forces-surjectivity [ESTABLISHED via normal-surjunctive-decoder-memory-proof] — An inj
+amenable-extensions-of-uqs-groups-are-surjunctive [ESTABLISHED via amenable-extensions-of-uqs-groups-proof] — Extensions
+--- orphan and SCC audit (base 54faf1cd64; old non-region SCCs omitted):
+clone HEAD=83ff567eb base=54faf1cd64 graph mtime=23:21
+region ids 205 in graph 205 | added since base 335 region-added 16
+region-added unreachable: nodes 13 claims 10 by status {'OPEN': 9, 'ESTABLISHED': 1}
+ORPHAN-CLAIM OPEN cancellative-incidence-patterns-do-not-force-domination
+ORPHAN-CLAIM OPEN coset-shifts-split-off-full-shifts-at-lifted-alphabets
+ORPHAN-CLAIM OPEN leavitt-toeplitz-commutator-is-a-v-conjugate-level-relation
+ORPHAN-CLAIM OPEN radu-lattice-radius-two-pairs-force-the-mark-into-the-radical
+ORPHAN-CLAIM OPEN regular-hnn-intertwiner-coboundary-on-v-refutes-the-v-gate
+ORPHAN-CLAIM ESTABLISHED right-child-exchange-group-has-infinite-dihedral-root-closure
+ORPHAN-CLAIM OPEN rigid-unbalanced-two-patch-rules-beyond-class-ii-not-injective
+ORPHAN-CLAIM OPEN separated-finite-stabilizers-give-modular-hecke-hopficity
+ORPHAN-CLAIM OPEN stage-models-cannot-close-the-leavitt-hexagon
+ORPHAN-CLAIM OPEN ternary-anti-central-defect-ideal-is-the-evaluation-kernel
+route meta keys: ['artifacts', 'id', 'kind', 'requires', 'rg', 'target', 'title']
+nontrivial SCCs in claim graph: 40 sizes [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 6, 7, 9, 10]
+SCC NEW size 6 region 2 non-OPEN 0 : bernoulli-rokhlin-entropy-maximal-for-every-group bernoulli-rokhlin-entropy-maximal-on-fixed-tester bernoulli-shift-entropy-classifies-for-every-group every-group-has-positive-rokhlin-entropy-action rokhlin-window-transport-is-dominated tester-host-has-positive-rokhlin-entropy-action
+SCC NEW size 2 region 0 non-OPEN 0 : bk-t1-primitive-spectrum-case stw99-vii-restricted-to-simple-algebras
+SCC old size 2 region 1 non-OPEN 0 : injective-ca-images-have-full-single-site-entropy injective-ca-random-order-transport-is-dominated
+SCC old size 9 region 1 non-OPEN 0 : every-injective-ca-has-uniform-single-site-output-law every-injective-ca-preserves-uniform-bernoulli-measure gottschalk-surjunctivity-conjecture injective-ca-admit-countable-transitive-decoder-fiber injective-ca-pullbacks-extend-to-matrix-observables recipient-affine-three-factor-ca-are-surjunctive surjunctivity-passes-to-quotients three-factor-finite-alphabet-ca-are-surjunctive unbalanced-forward-tables-identify-mem
+SCC old size 2 region 2 non-OPEN 0 : ternary-anti-central-summand-has-no-weakly-finite-image ternary-leavitt-units-have-no-weakly-finite-representation
+SCC old size 10 region 3 non-OPEN 0 : f9-hadamard-spectral-idempotent-is-full sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one ternary-anti-central-cohn-family-over-f9 ternary-anti-central-disjoint-defects-have-a-strict-deficit ternary-anti-central-matrix-state-defects-have-a-strict-deficit ternary-anti-central-summand-has-cohn-family ternary-anti-central-unit-class-is-nonpositive ternary-anti-invariant-swap-corner-is-full ternary-twisted
+SCC NEW size 2 region 0 non-OPEN 0 : thompson-f-is-not-sofic thompson-f-relator-system-stable-in-permutations
+SCC old size 2 region 2 non-OPEN 0 : products-with-a-sofic-factor-are-surjunctive surjunctive-groups-are-quantitatively-surjunctive
+ORPH2-DONE
+SENTINEL=done2

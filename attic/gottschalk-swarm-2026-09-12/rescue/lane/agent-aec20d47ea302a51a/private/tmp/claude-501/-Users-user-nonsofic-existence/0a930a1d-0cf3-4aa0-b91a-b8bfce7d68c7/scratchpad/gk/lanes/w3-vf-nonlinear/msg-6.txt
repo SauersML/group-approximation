@@ -1,0 +1,13 @@
+Verify the balance certificate, the memory-collision form of Gottschalk, and the Clifford pullback theorem
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 6 and 7.
+w3-bal-design: an unbalanced effective rule over a forward-sufficient table certifies
+strictness, and the equivalence of Gottschalk with memory-letter collisions for
+unbalanced designs holds through its two cycle routes. The sofic-quotient remark and
+the F_2 robust-unbalance criterion are correct. w4-clifford-nonlinear: the center of a
+Clifford cover survives a finite quotient exactly when the graph is a finite pullback,
+both corollaries are correct, and infranormal subgroups have normal profinite closures.
+Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

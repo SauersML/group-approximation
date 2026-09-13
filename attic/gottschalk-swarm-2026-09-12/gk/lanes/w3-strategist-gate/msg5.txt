@@ -1,0 +1,14 @@
+Fold the graph-of-groups firewall for the mismatched pair into the R4 plan
+
+w6-mismatch-c2 (d0f2b3f648) established that every countable graph of locally finite subgroups of the
+binary Leavitt unit group has a weakly finite char-2 rank model with independent cylinder defects. The
+depth-mismatched pair T_(0,1), T_(1,00) sits in such a tree, so it is inert as a factor.
+- Header: the constraint list gains Steinberg relations routed through a graph of locally finite
+  subgroups. What remains for a relation-only proof is a nonsofic cycle that no such graph routes, an
+  element of K_2(3,R), or a global input.
+- L5: the firewall, the mismatched pair, the relation the single-letter HNN extension breaks, and the
+  Steinberg residue of artifact Remark 3.2, with a lead note pointing to the w7-sub-multiletter inputs.
+- L6: a status row for the firewall.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

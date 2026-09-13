@@ -1,0 +1,5 @@
+research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md
+research/bernoulli-deficit-windows-need-a-non-maximal-difference-subgroup.md
+research/bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups.md
+research/bernoulli-witness-information-is-bounded-by-code-reads.md
+research/self-copy-host-rokhlin-deficits-need-unbounded-windows.md

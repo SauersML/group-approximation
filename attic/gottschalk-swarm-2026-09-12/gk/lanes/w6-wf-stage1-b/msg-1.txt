@@ -1,0 +1,13 @@
+Prove GL_2(F_3) anti-central projectives are induced from semidihedral blocks
+
+Lane w6-wf-stage1-b. The anti-central block of F_3[GL_2(F_3)] has two simple modules,
+V and V (x) det, and their projective covers are induced from the two semidihedral blocks.
+So transpose-invariant K_0 states equal the lifted trace on GL_2(F_3), and relative
+positivity over E x| V, SD16 and GL_2(F_3) is equivalent to positivity over E x| V.
+E x| V and GL_2(F_3) generate the unit group. The transpose-twisted evaluation kills
+the evaluation block, so neither semidihedral block is full. No trace-lowering relation
+and no one-sided pair is constructed. Records the attempt on
+anti-central-lifted-trace-is-relatively-positive.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

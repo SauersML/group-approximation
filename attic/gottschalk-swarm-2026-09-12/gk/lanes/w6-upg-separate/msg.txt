@@ -1,0 +1,10 @@
+Show the two-root gate lower bounds hold for matrix states; (U1b) stays open
+
+Lane w6-upg-separate. Every certificate in the two-root defect arguments separates: the census finds no
+triangular step outside the Frobenius steps of the commuting Jordan bound, which flatten on idempotent
+minors. The gate criterion and the characteristic-three lower bounds hold for matrix states, so the
+deficit route runs under the rank condition alone. Matrix states can break Jordan upper bounds, so this
+does not decide (U1b).
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,23 @@
+Apply w3-vf-linear's precision notes to the V rank-gate firewalls
+
+The verifier passed both firewalls and Proposition 4.2(a)-(c)
+(verification artifact Section 31, 94f11d0bdc). This applies its
+precision notes:
+- Lemma 1.1 step 4 computes q(sigma_k(g)). Its difference from
+  sigma_k(q([g])) has normalized rank tending to 0, so the values stand.
+- The augmentation conclusion of Theorem 1.2 needs K != 1 (artifact and
+  claim node).
+- The artifact intro said it "sharpens" Proposition 3.2. The two results
+  are incomparable, so it now says "complements".
+- A clopen n-cycle is now defined with a nonempty clopen complement,
+  which conjugacy of clopen cycles needs (artifact Section 0 and the
+  open cycle-law node).
+- The characteristic-2 identity rk(x_1 + x_2) = rk(x_1) needs the
+  supports to leave a nonempty complement (cycle-law node and the F2
+  gate's Attempts entry).
+
+Both firewall claim nodes now record the PASS instead of the pending
+request.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

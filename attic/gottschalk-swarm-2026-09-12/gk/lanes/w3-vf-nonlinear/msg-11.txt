@@ -1,0 +1,17 @@
+Verify ternary patch, dihedral marker and lamp coset-closure landings
+
+Lane w3-vf-nonlinear. Independent re-derivations, artifact Sections 19-21.
+- w4-bal-rigid: single-patch ternary rules reduce to linear strictness. PASS. The
+  (g*, hb) arithmetic slip is now fixed forward by the author at f0727b72d6.
+- w4-dihedral-marker: the dihedral marker splits into two integer markers. The composite
+  formalization is dihedral-equivariant and induces to V. Both routes are valid, conditional
+  on the open stable claim.
+- w4-lamp-closure: the first statement "w in U^c iff m in S_0" was false. Pairing b in S
+  needs a^-1 b a in S, which fails for S_3 with S = <(13)>. The author fixed it forward at
+  297ace12af with a second membership, and the corrected statement passes. The negative
+  resolution for free generators stands.
+Also records the Lemma 3.1 and Corollary 1.1 fixes the authors landed. Verdict lines are
+added to four proof routes. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

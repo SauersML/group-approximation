@@ -1,0 +1,10 @@
+Add an Attempts section to the Toeplitz V-conjugate level relation node
+
+Lane w7-hnn-cocycle. The lander warned that leavitt-toeplitz-commutator-is-a-v-conjugate-level-relation had no
+route and no Attempts section. This records the attempt and holds the node OPEN.
+
+Verification requested: w3-vf-linear, please re-derive Proposition 5.1 of
+research/artifacts/hnn-intertwiner-cocycle-on-thompson-v-2026-09-12.md.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

@@ -1,0 +1,236 @@
+origin/main:research/a1-corner-conjugates-do-not-enlarge-native-cross-support.md:title: A1 corner conjugates and the common Hecke tail do not enlarge native cross support
+origin/main:research/almost-full-hecke-frame-corner-proof.md:title: Fill the missing Hecke-frame trace and bound the error column
+origin/main:research/almost-full-hecke-frame-gives-flexible-corner.md:title: An almost-full near-top Hecke frame gives the flexible finite corner
+origin/main:research/arithmetic-pair-group-factor-ultrapower-has-no-leak.md:title: The arithmetic Hecke pair has no relative-commutant leak in the ultrapower of its own group factor
+origin/main:research/asymmetric-prefix-signed-hecke-return-proof.md:title: Expose each external coefficient with one constant Hecke root
+origin/main:research/asymmetric-prefix-unit-misses-fixed-hecke-frame.md:title: The asymmetric prefix conjugacy leaves the fixed Hecke and Singer frames
+origin/main:research/atlas-true-criterion-baseline-proof.md:title: Closed-form traces at both classical warm starts, checked against the retraction count
+origin/main:research/aut-of-projective-module-max-mf-quotient-is-k1.md:title: The maximal MF quotient does not depend on which nonzero projective module is used
+origin/main:research/b2-b3-pair-full-hecke-four-native-sectors.md:title: The B2 and B3 arms quarter the full Hecke source into the four native sign sectors
+origin/main:research/b2-pairs-full-hecke-first-support.md:title: The B2 arm pairs the first native sign exactly on the full Hecke source
+origin/main:research/bare-one-hecke-letter-cannot-lift-s0.md:title: A bare one-letter Hecke element cannot lift the Leavitt generator s0
+origin/main:research/binary-cubic-curl-has-global-torus-hecke-blocks.md:title: Binary cubic curl has exact global right-torus Hecke blocks
+origin/main:research/binary-jacobson-residual-opposite-polar-quarter-gap-proof.md:title: Split the opposite root across Q and ST and compute the two finite Hecke compressions
+origin/main:research/binary-leavitt-nonzero-projectives-are-free.md:title: Every nonzero finitely generated projective module over the binary Leavitt algebra is free of rank one
+origin/main:research/block-encoded-acceptance-still-needs-corner-return.md:title: Fresh control qubits block-encode the acceptance compressor, but its return is still one Hecke corner moment
+origin/main:research/boone-base-group-two-generator-one-relator-proof.md:title: Two easy maps, each easy for a different reason, checked on generators
+origin/main:research/bs14-bounded-moments-cannot-extract-congruence-level.md:title: No fixed finite family of BS14 word or Hecke moments extracts the moving congruence level
+origin/main:research/canonical-iwahori-one-hecke-overlap-saturates.md:title: Every canonical liftable Iwahori projection saturates one Hecke compression overlap
+origin/main:research/center-chain-common-source-authenticates-native-covariances.md:title: Authenticate the common-source mixed Hecke maps as the two native selector covariances
+origin/main:research/center-chain-common-source-saturates-four-hecke-flags.md:title: The exact center-chain common source saturates all four numerical Hecke flags
+origin/main:research/center-chain-four-hecke-flag-proof.md:title: Compute the four center-chain Hecke flags from their affine root orbits
+origin/main:research/center-chain-four-hecke-flags-have-native-ranks.md:title: Four center-chain Hecke compressions realize the two native source and target ranks
+origin/main:research/center-chain-hecke-arms-have-native-masses.md:title: Two center-chain Hecke arm compressions have the native quarter and eighth masses
+origin/main:research/center-chain-hecke-flags-authenticate-native-occurrences.md:title: Identify the nested center-chain Hecke flags with the two native selector occurrences
+origin/main:research/center-chain-hecke-flags-to-native-cross-gram.md:title: Use the nested center-chain Hecke flags as the native two-scale transports
+origin/main:research/center-chain-hecke-polar-support-proof.md:title: Diagonalize the two center-chain Hecke arms by their affine root orbits
+origin/main:research/center-chain-hecke-polar-supports-are-nested-pauli-flags.md:title: The center-chain Hecke arms have nested polar supports and an exact Pauli gauge
+origin/main:research/center-chain-mixed-hecke-overlap-is-common-pauli-source.md:title: The mixed Hecke overlap is an exact common Pauli source with selector-factorized gauge
+origin/main:research/center-chain-mixed-hecke-polar-proof.md:title: Multiply the four Hecke orbit averages and polarize the two mixed maps
+origin/main:research/center-chain-mixed-hecke-polars-have-exact-overlap.md:title: The two mixed center-chain Hecke polars have exact relative cross-Gram mass one over 128
+origin/main:research/center-chain-mixed-hecke-polars-share-a1-tail.md:title: The mixed source-target Hecke polars have literal selector squares and a common A1 tail
+origin/main:research/center-chain-mixed-hecke-range-intersection-proof.md:title: Intersect the two transported signed Hecke subgroups
+origin/main:research/center-chain-mixed-hecke-tail-quantitative-typing.md:title: Quantitatively type the mixed center-chain Hecke polars as the two native occurrences
+origin/main:research/center-chain-mixed-hecke-tail-to-native-cross-gram.md:title: Use the four Hecke flags and their mixed polar tails to obtain the native two-scale cross-Gram
+origin/main:research/center-chain-mixed-relative-word-proof.md:title: Check every mixed Hecke root rectangle against the marked indices
+origin/main:research/central-block-hecke-predicates-force-affine-group-spectra.md:title: A unique finite central block realizes every predicate as Hecke data but forces every group-native joint spectrum to be affine
+origin/main:research/central-c2-hecke-delabeling-proof.md:title: Cancel the paired central labels both inside and outside the Hecke corner
+origin/main:research/central-c2-hecke-mask-has-an-ambient-delabeling-word.md:title: A central C2 Hecke mask recovers the payload only by exposing an ambient delabeling word
+origin/main:research/central-hecke-controlled-multipaths-remain-sectorwise.md:title: Central Hecke-controlled multipaths remain sectorwise and cannot fold the arithmetic double
+origin/main:research/central-hecke-multipath-sector-decomposition-proof.md:title: Expand every centrally controlled word over the orthogonal Hecke atoms
+origin/main:research/character-carrier-wandering-floor-proof.md:title: Split between character-Hecke leakage and a stabilized square-return floor
+origin/main:research/common-hecke-character-orbit-saturation-closes-oci4.md:title: Saturate the Hecke character source under both order-seven heads
+origin/main:research/complementary-compressed-singer-words-only-return-gauged-head.md:title: Complementary compressed Singer words transport the Hecke subgroup only as the original gauged head
+origin/main:research/complex-hecke-gap-does-not-bound-binary-syndrome.md:title: A complex Hecke gap needs an integral filling theorem before it controls binary soundness
+origin/main:research/coset-section-words-bound-raw-shell-incidence.md:title: Compare two section words for each Hecke vertex through the central base projection
+origin/main:research/cross-row-native-diamond-c2-fence-proof.md:title: Dress both native Whiteheads and both Hecke arms by one central involution
+origin/main:research/cross-whitehead-sandwiches-branch-roots-into-signed-normalizer.md:title: A repeated cross Whitehead sandwiches six branch roots into the signed Hecke normalizer
+origin/main:research/diagonal-parity-hecke-link-firewall-proof.md:title: Compute the Hecke normal blocks and a collapsing additive link character
+origin/main:research/diagonal-parity-is-hecke-but-tau-misses-local-links.md:title: The diagonal parity curl is a two-idempotent Hecke operator, but property tau misses its local links
+origin/main:research/different-opposite-root-fixed-flag-proof.md:title: Use the characteristic fixed flag to exclude a two-letter reverse-Hecke return
+origin/main:research/duplicated-arm-whitehead-hecke-closes-native.md:title: Duplicate the anchored arms and cut their selector Whitehead words by one Hecke atom
+origin/main:research/el20-order-seven-heads-force-zero-common-hecke-reducing-cut.md:title: The two EL20 order-seven heads have no positive common reducing subcut of the Hecke character source
+origin/main:research/el20-order-seven-zero-cut-block-proof.md:title: Compute the incompatible Hecke character commutator on seven equivalent Leavitt corners
+origin/main:research/endpoint-native-heads-retain-coordinate-q-s3-retract.md:title: Both native Hecke heads and B2 leave a two-coordinate q-corner S3 retract
+origin/main:research/endpoint-order-five-full-hecke-source-return-proof.md:title: Audit the endpoint actor against all ten generators of the common Hecke source
+origin/main:research/endpoint-order-five-return-leaves-full-hecke-fine-sign-free.md:title: The endpoint order-five return fixes the full Hecke source but leaves its missing fine sign free
+origin/main:research/endpoint-whitehead-signed-source-has-only-relative-hecke-overlap.md:title: An endpoint Whitehead gives a full moved source but only a relative Hecke overlap
+origin/main:research/endpoint-whitehead-signed-source-intersection-proof.md:title: Compute the endpoint-moved signed Hecke intersection and its exact Grams
+origin/main:research/endpoint-whiteheads-are-center-chain-hecke-spectators.md:title: Endpoint Whiteheads see the quarter/eighth Hecke Gram only as commuting spectators
+origin/main:research/every-fixed-hecke-window-retains-graph-product-nonedges.md:title: Every fixed Hecke window has perfectly coherent clique atoms but retains graph-product nonedges
+origin/main:research/exact-inversion-transfer-is-twisted-coboundary.md:title: Exact inversion turns the regular Hecke transfer into a twisted coboundary Laplacian
+origin/main:research/fanizza-coherent-verifier-wandering-promotion.md:title: Promote the coherent Fanizza verifier reflection to one wandering Hecke word
+origin/main:research/finite-character-hecke-intersection-formula-proof.md:title: Prove the finite character Hecke intersection formula
+origin/main:research/finite-character-hecke-intersection-formula.md:title: Finite character Hecke coefficients are exactly measured by subgroup intersections
+origin/main:research/finite-character-one-sided-stabilizer-proof.md:title: Saturate the finite-character Hecke intersection norm
+origin/main:research/finite-coordinate-el20-active-cut-inherits-order-seven-anchor.md:title: A positive EL20 active cut inherits both native Whitehead--Hecke order-seven anchors
+origin/main:research/finite-involution-corner-sylow-permutation-proof.md:title: Use odd Sylow coset representations to eliminate every odd common negative rank divisor
+origin/main:research/finite-orbital-checksum-no-go-proof.md:title: Keep unchecked double cosets noncommuting in an invariant graph product
+origin/main:research/finite-spherical-quadrature-proof.md:title: Apply joint spectral calculus and Caratheodory to the quasi-regular Hecke state
+origin/main:research/finite-subgroup-hecke-literals-cannot-block-escape.md:title: A finite-subgroup Hecke literal is either zero or remains in the finite packet
+origin/main:research/five-return-legs-cover-hecke-detectors-not-source-gauge.md:title: Five return legs cover every fenced signed-Hecke detector but do not type the moving-source gauge
+origin/main:research/fixed-center-chain-hecke-occurrence-is-regularly-impossible.md:title: A fixed exact occurrence row on the center-chain Hecke flags contradicts the regular trace
+origin/main:research/fixed-center-chain-hecke-occurrence-regular-trace-proof.md:title: Apply the two affine selector traces on the nonzero regular Hecke corner
+origin/main:research/fixed-hecke-typed-interface-has-common-c2-grading.md:title: The complete currently typed Hecke-carrier interface has a common C2 grading
+origin/main:research/fixed-spherical-polynomials-have-no-42nd-projection.md:title: No fixed spherical Hecke polynomial is a trace-one-over-forty-two projection
+origin/main:research/fixed-type-and-raw-rank-selectors-do-not-evade-hecke-firewall.md:title: Fixed type and raw-rank selectors do not evade the native Hecke firewall
+origin/main:research/four-cap-common-phase-mark-collapse-proof.md:title: Compute the four cap Hecke coboundaries and globalize their parity equations
+origin/main:research/free-root-top-boundary-reservoir-is-summable-proof.md:title: Telescope the machine-checked trivial-mass refinement identity
+origin/main:research/full-hecke-quarter-source-does-not-lock-moving-gauges.md:title: Full-Hecke four-sector support does not lock the order-seven moving gauges
+origin/main:research/full-hecke-quarter-source-equalizes-selector-ranks.md:title: Passing both native supports to the full Hecke source equalizes the affine source fractions
+origin/main:research/full-hecke-quarter-source-rank-equalization-proof.md:title: Normalize the two full-Hecke sign cuts and insert them into the affine gauge formula
+origin/main:research/full-hecke-support-plus-whitehead-sync-proves-native-cross-gram.md:title: Deduce the native cross-Gram from paid full-Hecke supports and Whitehead gauge synchronization
+origin/main:research/full-hecke-whitehead-zero-cross-gram.md:title: Paid full-Hecke native supports and synchronized Whitehead gauges still allow orthogonal ranges
+origin/main:research/full-moving-hecke-packet-retains-q-kernel-profile.md:title: The complete moving Hecke packet has an exact zero-QWQ profile
+origin/main:research/full-q-relative-word-hecke-interface-has-zero-central-block.md:title: The full-Q relative-word Hecke interface has an exact zero-cross central block
+origin/main:research/full-q-relative-word-twisted-hecke-central-support-proof.md:title: Compute the central support of the native relative Hecke element
+origin/main:research/full-signed-hecke-native-actor-is-p161-parabolic.md:title: The full signed-Hecke and native actor packet is a literal (1,6,1) binary parabolic
+origin/main:research/fused-cross-return-positive-l0-cancellation-proof.md:title: Fuse the exact branch returns and apply their positive signed-Hecke typing
+origin/main:research/gao-re-witness-carries-orthogonal-arithmetic-hecke-tower.md:title: Every Gao RE witness carries the full orthogonal arithmetic Hecke-bimodule tower
+origin/main:research/hecke-averaging-realizes-commutant-expectation.md:title: One lazy Hecke average contracts every subgroup-central unitary geometrically onto its full-commutant expectation
+origin/main:research/hecke-dilation-gram-no-go-proof.md:title: Name the Hecke unitary twice and locate the surviving source deficit
+origin/main:research/hecke-dilations-do-not-lock-capacity-gram.md:title: Elementary Steinberg and finite monomial dilations name the Hecke unitary but do not authenticate its capacity Gram
+origin/main:research/hecke-far-commutator-defect-formula.md:title: The far Hecke commutator defect of a subgroup-central unitary is an exact scalar
+origin/main:research/hecke-frame-failure-has-right-multiplier-dual.md:title: Failure of a Hecke frame has a right-multiplier dual certificate
+origin/main:research/hecke-quarter-selector-is-untyped-or-rank-preserving.md:title: A Hecke coset quarter-selector is either unauthenticated or preserved by every finite-edge transport
+origin/main:research/hecke-rank-controls-coverage-but-has-half-space-ceiling.md:title: Hecke spectral rank controls coverage but has a half-space ceiling
+origin/main:research/hecke-rank-half-space-ceiling-proof.md:title: Trace the regular Hecke transfer and compare rank with its hole dual
+origin/main:research/hecke-square-covariance-authentication.md:title: Authenticate the Hecke maps from their squares and the separate native covariance rows
+origin/main:research/hecke-stabilizer-averaging-leaves-indefinite-sector.md:title: Exact Hecke stabilizer averaging leaves an indefinite sector
+origin/main:research/hecke-stabilizer-indefinite-sector-proof.md:title: Centralize the Hecke dual and exhibit its surviving middle sector
+origin/main:research/hecke-top-spectrum-coverage-controls-window.md:title: Top Hecke-spectrum coverage controls the regular relative window
+origin/main:research/hecke-top-spectrum-coverage-proof.md:title: Turn near-top Hecke eigenvectors into a unital Kraus frame
+origin/main:research/hecke-zero-compression-has-fixed-density-bass-serre-absorber.md:title: The Hecke AND zero-compression cell has a fixed-density Bass--Serre absorber
+origin/main:research/homogeneous-quotient-has-a-quantized-hecke-dent.md:title: The homogeneous quotient leak has a quantized one-shell Hecke dent which survives Morita amplification
+origin/main:research/hyperlinear-quotient-permanence-equivalence-proof.md:title: Kernel-checked in HyperlinearReduction, from locality plus free-group soficity
+origin/main:research/incoming-lagrangian-refinement-preserves-hecke-actor-support.md:title: Incoming-Lagrangian refinement preserves the wrong Hecke actor support
+origin/main:research/index-two-reynolds-proper-section-proof.md:title: Compress the subgroup-Hecke stable letter and subtract its final support
+origin/main:research/individual-cross-whitehead-typing-proof.md:title: Expose the nonconstant Hecke image of each partial branch swap
+origin/main:research/individual-cross-whiteheads-miss-native-hecke-target.md:title: An individual cross-branch Whitehead misses both native row-one Hecke targets
+origin/main:research/inside-corner-hecke-tests-miss-the-asynchronous-mirror-exit.md:title: Every inside-corner Hecke test misses the finite mirror exit of an asynchronous prefix return
+origin/main:research/involution-hecke-corner-has-no-proper-literal-projections.md:title: An involution Hecke corner has no proper literal group projections
+origin/main:research/involutive-collapse-formalized-proof.md:title: The involutive collapse is machine-checked end to end
+origin/main:research/iwahori-cellular-degeneracy-gram-proof.md:title: Covering pullback and transfer realize the spherical Hecke star algebra on cellular harmonic cochains
+origin/main:research/iwahori-cuspidal-hecke-angle-citation.md:title: Import Deligne's Ramanujan bound through the degeneracy-map formula for the Hecke operator at two
+origin/main:research/iwahori-hecke-square-separates-cuspidal-and-eisenstein.md:title: A fixed Hecke-square operator separates the algebraic cuspidal and Eisenstein spectra by one half
+origin/main:research/iwahori-hecke-square-spectral-separation-proof.md:title: Satake-root moduli put the Hecke square on a segment and a disjoint ellipse
+origin/main:research/iwahori-projection-spherical-coefficient-proof.md:title: Center the projection and expand its Hecke compression norm
+origin/main:research/join-tree-bcs-has-explicit-signed-hecke-atlas.md:title: Every tracial running-intersection BCS has an explicit algebraic signed-Hecke corner atlas
+origin/main:research/literal-sofic-assembly-proof.md:title: Kernel-checked assembly in LiteralSoficAssembly
+origin/main:research/literal-whitehead-moving-bridge-proof.md:title: Normalize the signed Hecke source by the even heads and conjugate the Whitehead
+origin/main:research/mark-fixed-relative-word-kernel-authentication.md:title: Cut to the kernel of the mark-fixed relative word to authenticate the native Hecke maps
+origin/main:research/mark-fixed-relative-words-do-not-coerce-native-hecke-kernel.md:title: Mark-fixed relative words do not coerce a native Hecke kernel
+origin/main:research/marked-star-asymmetric-heads-have-half-quarter-sources.md:title: Asymmetric Hecke returns cut the marked star by one half and one quarter but compose their gauges
+origin/main:research/middle-pauli-probes-leave-three-hecke-classes-untyped.md:title: Literal middle-Pauli probes leave three signed-Hecke detector classes untyped
+origin/main:research/mixed-braid-gauge-cancellation-misses-signed-hecke-targets.md:title: Cancelling the mixed-braid spectator misses both signed Hecke targets
+origin/main:research/mixed-braid-relative-target-proof.md:title: Multiply the mixed braid and test its relative word on one signed Hecke root
+origin/main:research/moving-finite-type-native-hecke-authentication.md:title: Select matrix-dependent finite packet types on which the native rows equal the Hecke maps
+origin/main:research/moving-quarter-fixed-frame-distance-proof.md:title: Compare the pulled-back quarter source with the balanced Hecke half
+origin/main:research/named-odd-native-factor-rows-have-no-esb-common-carrier.md:title: The authenticated odd native-factor rows have no common Hecke carrier for ESB
+origin/main:research/native-a1-b2-hecke-triangle-has-gl7-model.md:title: The native A1-B2 Hecke triangle still has a marked GL7 model
+origin/main:research/native-bernoulli-quotient-firewall-proof.md:title: Abelianize the Hecke graph lamps and isolate the first kernel anti-relation
+origin/main:research/native-c2-hecke-corner-cannot-wordize-the-a2-average.md:title: The native C2 Hecke corner cannot wordize the A2 two-path average
+origin/main:research/native-forty-two-shell-has-a-noncommuting-pair.md:title: The native forty-two-label Hecke shell is not a Boolean lamp algebra
+origin/main:research/native-hecke-bounded-clique-proof.md:title: Count the two finite Hecke shells and bound simultaneous lamp atoms
+origin/main:research/native-hecke-edge-rank-integrality-is-bounded.md:title: The native Hecke edge gives only bounded rank divisibility because its orbital graph has bounded cliques
+origin/main:research/native-hecke-graph-action-is-the-permanence-firewall.md:title: Soficity of the arithmetic Hecke graph action would make the native candidate sofic
+origin/main:research/native-prefix-whiteheads-restrict-to-center-chain-hecke-flags.md:title: Restrict the two native prefix Whiteheads to the nested center-chain Hecke supports
+origin/main:research/native-sl3-group-is-hecke-graph-wreath-product.md:title: The native two-coordinate group is the graph wreath product of the arithmetic Hecke orbital graph
+origin/main:research/native-t00-collision-first-hecke-attachment-has-gl10-model.md:title: The first native Hecke attachment to the paid t00 collision still has a marked GL10 model
+origin/main:research/native-whitehead-corner-collapses-hecke-flags.md:title: Common native-Whitehead reduction collapses the two center-chain Hecke flags
+origin/main:research/native-whitehead-hecke-head-has-order-seven-anchor.md:title: Each native prefix Whitehead and its center-chain Hecke head have an odd order-seven occurrence anchor
+origin/main:research/native-whitehead-hecke-order-seven-proof.md:title: Compute the native Whitehead--Hecke packet on three equivalent prefix corners
+origin/main:research/near-full-hecke-quarter-profile-loss-proof.md:title: Count the discarded negative half of the balanced second Hecke sign
+origin/main:research/near-full-hecke-source-cannot-retain-quarter-native-profile.md:title: A quarter-profile subcut must discard one third of the balanced Hecke source
+origin/main:research/near-top-hecke-coverage-has-exact-hole-dual.md:title: Near-top Hecke coverage has an exact small-trace hole dual
+origin/main:research/no-ce-hecke-host-needs-an-fd-invisible-type.md:title: A no-CE finite-subgroup Hecke host must select a globally finite-dimensional-invisible type
+origin/main:research/no-finite-arithmetic-hecke-corner-can-have-shell-atom-trace.md:title: No finite arithmetic Hecke corner can have the forty-two-shell atom trace
+origin/main:research/no-spherical-leak-in-matrix-ultraproducts.md:title: Matrix ultraproducts admit no spherical leak over the arithmetic Hecke pair
+origin/main:research/nonhyperlinear-via-rowwise-hecke-crt.md:title: Convert a rowwise Hecke-CRT certificate into a finite canonical HS obstruction
+origin/main:research/odd-word-tracial-hecke-authentication.md:title: Use a literal odd occurrence word and tracial estimates to authenticate the Hecke maps
+origin/main:research/one-asymmetric-prefix-cannot-be-signed-hecke-return.md:title: One asymmetric Leavitt prefix insertion cannot return to the signed Hecke carrier
+origin/main:research/one-depth-one-cross-whitehead-return-enumeration.md:title: Enumerate one depth-one root or opposite Whitehead against the full signed Hecke signature
+origin/main:research/one-depth-one-occurrence-does-not-return-cross-whitehead.md:title: One depth-one occurrence does not return an individual cross Whitehead to either native Hecke target
+origin/main:research/one-depth-two-cross-whitehead-return-enumeration.md:title: Prefilter all depth-two monomials by the exposed Hecke row and verify the full signed signature
+origin/main:research/one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum.md:title: One Hecke multiplicity-holonomy cell cannot pay a cyclic coarse-to-fine selector sum
+origin/main:research/one-hecke-lift-up-to-units-is-two-unit-decomposition.md:title: A one-letter Hecke lift up to corner units is exactly a two-unit decomposition of s0
+origin/main:research/one-root-mixed-braid-native-target-proof.md:title: Test the first Hecke fixed-space term after one root and the native Whitehead
+origin/main:research/openai-leavitt-unit-nonsofic-from-formalized-endpoint.md:title: The same statement is a kernel-checked theorem of this development, by a different configuration
+origin/main:research/order-seven-alone-authenticates-native-hecke.md:title: Use the native Whitehead Hecke order-seven anchor alone to authenticate the common-source maps
+origin/main:research/order-seven-anchor-stops-at-whitehead-compression-leakage.md:title: The order-seven anchor reduces native Hecke coercivity to Whitehead compression leakage
+origin/main:research/order-seven-compression-telescope-proof.md:title: Telescope the seventh power across a nonreducing Hecke projection
+origin/main:research/overlap-hecke-coboundaries-have-canonical-finite-matrix-models.md:title: The full single-overlap Hecke orbit of a trace-zero coboundary has canonical finite matrix models
+origin/main:research/p13-hodge-robust-rotation-gap-proof.md:title: Sum the checked P13 replays against the exact Hodge coefficients
+origin/main:research/p13-rotation-relator-defect-219.md:title: The checked short-word substitution has robust relator cost 219
+origin/main:research/packet-retraction-evaluates-hecke-collision-atlas.md:title: A packet retraction evaluates every Hecke collision atlas in finite dimension
+origin/main:research/paid-cut-has-moving-hecke-source-or-detector.md:title: Paid Whitehead mass either pays a detector or enters one moving Hecke source row
+origin/main:research/paid-polar-bridge-does-not-type-moving-hecke-target.md:title: The paid source polar carries mass but does not type the moving Hecke target
+origin/main:research/paid-polar-moving-target-fence-proof.md:title: Realize the paid polar on an acute graph orthogonal to the Hecke target
+origin/main:research/paid-t00-carrier-can-miss-row2-source.md:title: The paid t00 carrier can miss the actual row-two signed Hecke source
+origin/main:research/paid-t00-carrier-has-signed-hecke-reynolds-dichotomy.md:title: The paid t00 carrier has a signed-Hecke Reynolds operator-norm dichotomy
+origin/main:research/paired-critical-opposite-root-return-proof.md:title: Add the two opposite-root coefficients and conjugate the critical Hecke transvection
+origin/main:research/paired-critical-opposite-roots-return-only-trivially.md:title: Two exits through the critical opposite root return to the Hecke normalizer only trivially
+origin/main:research/prefix-order-seven-pair-gl7-proof.md:title: Fold both odd Hecke heads into the authenticated prefix triangle
+origin/main:research/prime-iwahori-endpoint-transfer-is-complete-graph-hecke.md:title: The prime Iwahori endpoint transfer is the complete-graph Hecke operator
+origin/main:research/primitive-menu-odd-native-hecke-coercivity.md:title: Derive native Hecke coercivity from an odd mixed primitive relator in the fixed menu
+origin/main:research/primitive-native-hecke-relators-have-no-odd-mixed-occurrence.md:title: The primitive native and Hecke relators have no odd mixed occurrence
+origin/main:research/primitive-packet-corner-is-matrix-over-hecke-atom.md:title: A primitive packet corner is a full matrix algebra over one rank-one Hecke atom
+origin/main:research/projective-natural-source-separation-proof.md:title: Decompose the natural projective-head permutation module into signed subgroup orbits
+origin/main:research/projective-row-data-do-not-authenticate-hecke-polars.md:title: Projective native-row data do not authenticate the center-chain Hecke polars
+origin/main:research/projective-star-profile-has-zero-hecke-source.md:title: The literal projective head has a marked-star profile with zero full-Hecke source
+origin/main:research/property-t-does-not-repair-the-finite-hecke-router.md:title: Property (T) does not repair a finite Hecke router: SL3(Z) has exact congruence absorbers
+origin/main:research/property-t-sl3-congruence-hecke-absorber-proof.md:title: Realize the finite Hecke packet in the octahedral subgroup and odd congruence quotients
+origin/main:research/quarter-native-chart-pays-fixed-hecke-displacement.md:title: A moving quarter-profile native chart pays fixed Hecke-frame displacement
+origin/main:research/quarter-whitehead-source-row-audit-proof.md:title: Audit the named Pauli, Hecke, and compression covariance rows against the quarter Whiteheads
+origin/main:research/qutrit-external-cyclic-router-hidden-third-proof.md:title: Compute the signed cyclic Hecke star and its D8 carrier mass
+origin/main:research/qutrit-line-hnn-free-polar-proof.md:title: Reduce the HNN Hecke block to two free C3 projections
+origin/main:research/rank-five-rectangle-is-one-letter-hecke-element.md:title: The rank-five rectangle is corner-unit equivalent to one Hecke letter plus the corner identity
+origin/main:research/raw-rank-native-hecke-authentication.md:title: Activate the native Hecke comparison from absolute matrix rank or packet multiplicity
+origin/main:research/rectangle-adjoint-symmetry-is-an-extra-relation.md:title: Adjoint symmetry of the one-letter Hecke rectangle is an extra group relation
+origin/main:research/rectangular-hecke-polar-cycle-has-no-strict-trace-gain.md:title: A closed cycle of bounded-below Hecke compressions has no strict rectangular trace gain
+origin/main:research/regular-core-window-is-a-hecke-kraus-hull.md:title: The regular-core relative window is a finite Hecke--Kraus hull
+origin/main:research/regular-hecke-fourier-sector-lmi-proof.md:title: Fourier-decompose the right-regular symmetry of the Hecke module
+origin/main:research/regular-hecke-kraus-support-has-exact-order-dual.md:title: The regular Hecke--Kraus support has an exact commutant-order dual
+origin/main:research/regular-hecke-second-moment-is-intersection-energy.md:title: The regular Hecke second moment is intersection energy
+origin/main:research/regular-hecke-transfer-has-finite-fourier-sector-lmis.md:title: The regular Hecke transfer has finite Fourier-sector LMIs
+origin/main:research/reverse-mixed-root-has-two-positive-hecke-commutator-returns.md:title: The reverse mixed-braid root has two positive-Hecke commutator returns, both spectator-typed
+origin/main:research/reverse-mixed-root-positive-hecke-return-proof.md:title: Bracket the actual reverse root with two positive signed-Hecke generators and type the outputs
+origin/main:research/right-u-reynolds-has-torus-hecke-blocks.md:title: The right-unipotent Reynolds space decomposes into torus-character Hecke blocks
+origin/main:research/root-block-piecewise-transport-cannot-host-nonce-bcs.md:title: A signed-Hecke atlas confined to one finite root block is already a forbidden finite-dimensional BCS model
+origin/main:research/rooted-normalized-sum-linear-pcpp-needs-sqrt-n-norm.md:title: Exact rooted linear proofs of the normalized sum need square-root checker norm even on unitary leaves
+origin/main:research/rowwise-hecke-crt-certificate-for-nonce-bcs.md:title: Solve the finite rowwise Hecke interpolation system for one gapped non-CE BCS
+origin/main:research/signed-hecke-detectors-are-uniformly-mark-saturated-but-untyped.md:title: Every nontrivial signed-Hecke detector uniformly saturates the mark, but saturation loses source typing
+origin/main:research/signed-hecke-literal-pauli-probe-audit.md:title: Enumerate literal middle-Pauli probe extractions on the root-free signed-Hecke classes
+origin/main:research/signed-hecke-normalizer-has-eight-external-root-returns.md:title: The signed Hecke pair has exactly eight external constant-root normalizers
+origin/main:research/single-hecke-average-isometry-for-lambda-central-unitaries.md:title: One lazy Hecke average is already isometric on Lambda-central unitaries of every regular-trace matrix model
+origin/main:research/single-hecke-dent-is-the-expanding-commutator-defect.md:title: The one-step Hecke norm dent is quantitatively equivalent to the expanding commutator defect
+origin/main:research/single-hecke-edge-has-exact-two-sheet-atlases.md:title: Every single arithmetic Hecke edge has exact finite two-sheet atlas models
+origin/main:research/single-hecke-transport-cannot-carry-complete-context.md:title: One nonreducing Hecke transport cannot carry a complete corner PVM, and the minimal finite-anchor filter has a finite absorber
+origin/main:research/single-hecke-transport-rank-balance-proof.md:title: Compute off-corner mass and the exact finite D8-in-S4 Hecke absorber
+origin/main:research/six-shell-hecke-gap-is-blind-to-cross-chart-gram-energy.md:title: The full six-shell Hecke gap is blind to cross-chart Gram energy
+origin/main:research/sl3-coset-nonsoficity-via-one-hecke-edge.md:title: Rule out the arithmetic coset atlas using one Hecke edge and Kazhdan averaging
+origin/main:research/sl3-finite-building-label-descent-proof.md:title: Apply the deck-transformation descent criterion and compare left labels with Hecke relative positions
+origin/main:research/sl3-joint-hecke-multiplicity-has-a-majority-phase-sector.md:title: Canonical SL3 double microstates have an extensive common-phase joint Hecke-multiplicity sector
+origin/main:research/sl3-zp-open-subgroup-lcm-index-bounds-proof.md:title: A lifted Sylow 2-subgroup acts on cosets with small stabilizers, and 2-subgroups of GL_2(Q_2) have order at most 8
+origin/main:research/sl3-zp-torsion-free-index-48-proof.md:title: S_4 acts freely on cosets; Sylow 2-subgroups for odd p; an exhaustive mod-16 search at p = 2
+origin/main:research/sofic-recognition-has-a-pi2-upper-bound.md:title: Soficity is Pi-zero-two for recursive presentations, with a primitive recursive certificate checker
+origin/main:research/source-hecke-data-leave-projective-square-free.md:title: Scalar source Hecke data leave the first projective trace-square coefficient completely free
+origin/main:research/spherical-clifford-tensor-escape-proof.md:title: Tensor atomic Hecke quadrature with a conjugate-doubled coweight Folner box
+origin/main:research/steinberg-unitization-encodes-hecke-sums-but-is-trace-blind.md:title: Steinberg unitization encodes every finite Hecke sum but is blind to the non-CE trace
+origin/main:research/subgroup-hecke-hnn-is-a-regular-safe-rank-actuator.md:title: A subgroup-Hecke HNN edge is a regular-safe rank actuator
+origin/main:research/sync4-singleton-stabilizer-retains-m3-hecke-holonomy.md:title: A SYNC4 singleton equality leaves a full but verifier-blind three-by-three Hecke holonomy
+origin/main:research/term-pairing-does-not-bypass-signed-hecke-holonomy.md:title: Coefficient term-pairing preserves projections only by reintroducing signed-Hecke holonomy
+origin/main:research/three-depth-one-leavitt-roots-never-return.md:title: Three individually nonnormal depth-one Leavitt roots never return to the signed Hecke pair
+origin/main:research/torus-fourier-compressed-reynolds-proof.md:title: Square the cubic rows and Fourier transform the signed Hecke compression
+origin/main:research/tracial-projective-hilbert-hotel-cancellation.md:title: Finite projective modules over a tracial matrix ultraproduct cannot be their own double
+origin/main:research/tracial-word-authentication-is-regular-firewalled.md:title: Finite-word tracial authentication of the Hecke maps is regular-firewalled
+origin/main:research/twisted-brin-thompson-finite-presentation-criterion-citation.md:title: Import Zaremsky's criterion, cross-checked against Fournier-Facio-Wu-Zaremsky Theorem B
+origin/main:research/two-bare-reverse-hecke-roots-cancel-whitehead-gauge.md:title: Multiply two bare reverse-Hecke roots to cancel the Whitehead gauge
+origin/main:research/two-depth-one-cross-whitehead-return-enumeration.md:title: Prefilter two distinct nonnormal root channels and check every signed Hecke generator
+origin/main:research/two-depth-one-leavitt-roots-return-only-constantly.md:title: Two depth-one Leavitt roots return to the signed Hecke pair only by constant same-root collapse
+origin/main:research/two-distinct-reverse-hecke-roots-cannot-return.md:title: Two bare roots reverse to distinct Hecke arrows cannot return to the Hecke normalizer
+origin/main:research/two-positive-cross-fusion-carrier-audit-proof.md:title: Track both complementary cross fusions on their literal Hecke carriers
+origin/main:research/two-root-identities-localize-to-diagonal-blocks.md:title: For a flag-preserving rank model of EL_3 the two root identities descend to the diagonal and are checked block by block
+origin/main:research/type-specific-hecke-nemeses-have-automatic-common-completeness.md:title: Type-specific subgroup-Hecke nemeses have one automatic common completion
+origin/main:research/unbounded-noncentral-hecke-corner-wordizes-a2-average.md:title: An unbounded-depth noncentral Hecke corner wordizes the A2 two-path average
+origin/main:research/z-fixed-support-five-hecke-normal-form.md:title: Every five-term C3-fixed factor is normalizer-supported or one Hecke rectangle

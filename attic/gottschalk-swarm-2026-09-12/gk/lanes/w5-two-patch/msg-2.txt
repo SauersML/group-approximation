@@ -1,0 +1,14 @@
+Add the two-patch blind-pair criterion and the next rigid seed
+
+Section 4 of the two-patch seed artifact.
+- Criterion: for patches at distance two or more, coordinate i with c_i != 0 is blind exactly for the
+  pairs F_3 minus {r_i - t_r / c_i}. A two-patch rule has a common blind pair iff these missing symbols
+  have a common element.
+- Consequences: coefficient classes with augmentation 0 never reach the unit case, and rules with one
+  nonzero coefficient are never rigid.
+- Next seed: x_1 + x_a - x_b + [(0,0,2)] + [(1,2,0)]. It is rigid, has two patch symbols at every
+  address, augmentation 1, and counts 8, 9, 10.
+Attempts entries record the closed seed on the two-patch claim and on the ternary census hub.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

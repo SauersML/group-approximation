@@ -1,0 +1,7 @@
+Add w6-vf-chain spot-check verdict lines to the weakly finite chain routes
+
+Thirteen routes, each merged onto its current main blob with GK_ACK. Every line is PASS and
+points to research/artifacts/gk-vf-chain-verification-2026-09-12.md.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

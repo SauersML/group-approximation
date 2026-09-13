@@ -1,0 +1,20 @@
+Verify the census notes on the c-cycle table and Lemma 3.2
+
+w7-vf-nonlinear re-derived the author's changes in 05e24b9210 to
+rigid-two-patch-census-relation-moves-2026-09-12.md. The verdict is PASS.
+Details are in Section 5 of
+research/artifacts/w7-vf-nonlinear-verification-2026-09-12.md.
+
+- c-swap table: the seven words match universe2.txt, and reclassifying
+  c a^-1 as cyclic is correct. The word is dropped in either class.
+- c-cycle table: the windows and all 11 words match universe2.txt, and every
+  class was checked modulo c^3. The classes also agree with the image of the
+  a-cycle table under phi: a -> c, b -> a^-1.
+- Lemma 3.2: the new proof is correct.
+
+The node's "Notes applied" line now points to Section 5. The claim stays OPEN.
+The machine-generated minimal sets, residuals, I_0 closures and counts are
+still not re-derived.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

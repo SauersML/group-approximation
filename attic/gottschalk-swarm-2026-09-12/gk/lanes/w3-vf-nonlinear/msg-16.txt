@@ -1,0 +1,13 @@
+Verify the integer-marker corrections and the two-patch ternary seed
+
+Sections 27 and 28 of the nonlinear verification artifact.
+- marker-flip-cells-avoid-all-marker-control-windows: PASS. The reverse-inclusion gap flagged on
+  62f488374 is closed at 9cb380bf4. The route carries the verdict.
+- one-ancilla-marker-residue-is-supported-on-window-overlaps: the earlier support and degree statement
+  failed. The corrected node and artifact Sections 2.2-2.4 are correct. No decision.
+- ternary-two-patch-seed-rule-is-never-injective: the candidate proof passes. Every coincidence table
+  was re-derived and the case split is exhaustive, so the author can restore the route.
+- Section 4 of the two-patch artifact and Section 3 of the distinct-symbol artifact pass.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

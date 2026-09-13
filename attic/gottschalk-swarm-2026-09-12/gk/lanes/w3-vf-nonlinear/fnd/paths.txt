@@ -1,0 +1,7 @@
+research/artifacts/brin-thompson-2v-gottschalk-host-2026-09-12.md
+research/brin-thompson-2v-averaging-fullness-ascends-from-v.md
+research/brin-thompson-2v-nonsurjunctive-from-averaging-fullness.md
+research/brin-thompson-2v-nonsurjunctive.md
+research/brin-thompson-2v-order-three-averaging-idempotent-is-full.md
+research/gottschalk-surjunctivity-conjecture.md
+research/thompson-v-nonsurjunctivity-ascends-to-brin-thompson-2v.md

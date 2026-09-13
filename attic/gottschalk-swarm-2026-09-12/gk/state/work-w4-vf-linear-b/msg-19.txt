@@ -1,0 +1,12 @@
+Verify the matrix-state gate lower bounds and commuting Jordan flattening
+
+Section 42 of the w4-vf-linear-b verification artifact re-derives Sections 2-3 of the w6-upg-separate
+artifact. Both routes pass:
+- two-root-gate-lower-bounds-matrix-states-proof (Lemma 2.1, Theorem 2.2 and Theorem 2.3 items 2-5 on
+  paper; items 1 and 6 as a step census of the characteristic-three proofs)
+- commuting-jordan-certificates-flatten-proof (Theorem 3.1, Corollary 3.2, Example 3.3)
+
+No claim changes status, and none is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

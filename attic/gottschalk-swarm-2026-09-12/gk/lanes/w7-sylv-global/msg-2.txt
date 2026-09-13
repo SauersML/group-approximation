@@ -1,0 +1,16 @@
+Wire Sylvester exact globality and kernel compressions into the defect chain
+
+Lane w7-sylv-global. Attempts entries only.
+
+- leavitt-disjoint-cylinder-defects-strictly-submultiplicative: both
+  missing class-(A) inputs proved; the Sylvester form of the deficit;
+  minimizer structure; the first premise the firewall models break.
+- sylvester-rank-functions-on-leavitt-units-are-regular: no longer needed
+  for the submultiplicativity route.
+- perfect-group-augmentation-quotient-ranks-are-fixed-point-free: exact
+  globality now established on paper; A_5 calibration.
+- sylvester-leavitt-defect-gap-and-geometric-descent: both inputs named in
+  the Consequence proved; lower descent constant c_*^Syl.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

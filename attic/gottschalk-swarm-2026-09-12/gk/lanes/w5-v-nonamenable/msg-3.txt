@@ -1,0 +1,16 @@
+Correct the range of Thompson V's order-char cycle law to 1 <= j <= p
+
+Every rank function gives rk((1 - [s])^0) = 1. So the open law
+rk((1 - [s])^j) = (1 - phi_V)(p - j)/p fails at j = 0 whenever phi_V > 0,
+the augmentation rank included. This restates it for 1 <= j <= p
+(equivalently d_0 = phi_V + (1 - phi_V)/p and d_i = (1 - phi_V)/p for
+1 <= i < p) in three places: the open claim
+v-rank-order-char-cycles-are-trivial-plus-regular, artifact Proposition
+4.2(d) and the open law, and the F2 gate's Attempts entry.
+
+It also records the averaged upper bound
+rk(y^j) <= (1 - phi_V)(p - j)/(p - 1) from Proposition 4.2(b)-(c), and
+states precisely what is missing.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

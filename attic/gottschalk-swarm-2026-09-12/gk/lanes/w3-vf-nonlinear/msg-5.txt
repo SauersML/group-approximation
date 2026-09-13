@@ -1,0 +1,12 @@
+Verify that Radu's coordinate subgroups are sofic
+
+Lane w3-vf-nonlinear. Independent re-derivation of w3-lattice's coordinate subgroup
+theorem, artifact Section 5.4. Pushing horizontal letters fixes y and preserves {x,z}.
+P_y is the semidirect product of <a,b,c> by <y>, hence virtually free. In P_xz the
+letters a, b fix the path of {x,z}-words and c reflects it, so the kernel is the even
+c-parity subgroup and the quotient embeds in the infinite dihedral group. Both
+subgroups are sofic, and the generation cases hold. The open linear target and its
+route are correct as scoped.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018da4ZMvDEshSvGp3YdQgZQ

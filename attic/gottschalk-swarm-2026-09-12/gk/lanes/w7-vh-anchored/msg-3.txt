@@ -1,0 +1,11 @@
+Record the verifier pass and the radius-five update in the anchored-gadgets artifact
+
+Lane w7-vh-anchored. w4-vf-linear-b passed radu-lattice-one-sided-pairs-need-residual-coincidences
+given Remark 3.6 (Section 44, 1a24d8a873). This applies its notes to the artifact. Lemma 3.5 is
+the source paper's. The non-generation direction of Theorem 2.1 now says why the four subgroups are
+proper. Theorem 3.1 needs only a finite quotient, not surjunctivity. The Section 3, 4 and 6
+sentences about r + s = 4 now point to radu-lattice-one-sided-pairs-need-radius-five, which excludes
+that radius through the idempotent law. No status changes.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

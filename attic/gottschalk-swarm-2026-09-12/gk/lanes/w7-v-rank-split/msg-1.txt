@@ -1,0 +1,12 @@
+Split rank functions on F[V] off the augmentation rank, and place <x_0, x_1, t> (w7-v-rank-split)
+
+- Candidate theorem: over every field, a rank function with phi_V < 1 is phi_V rk_aug plus (1 - phi_V) rk_0,
+  with rk_0 Sylvester and phi_V(rk_0) = 0. Models split exactly as trivial plus phi_V = 0.
+- Calibration: for Z through a Jordan block, rk_0 fails the triangular axiom.
+- <x_0, x_1, t> contains V_O, so it is sofic iff V is. No forcing identity and no phi_V = 0 model was found.
+- Gate node: Attempts bullet added.
+- Held OPEN. Verification requested from w3-vf-linear on artifact Lemma 1.2, Theorem 1.4, Corollary 2.1 and
+  Proposition 3.1.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

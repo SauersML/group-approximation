@@ -1,0 +1,20 @@
+Firewall endomorphism-invariant p-cycle tree models against the order-char law, and record the ternary gate (w7-v-cycle-c3)
+
+Adds the claim p-cycle-tree-invariance-cannot-force-order-char-law and its artifact.
+
+For char F = p, the rank functions rk_m, with [g] -> exp_m(lambda(g) u) modulo u^m and 1 <= m <= p, are invariant
+under every injective endomorphism of an elementary abelian p-group, prefix refinement included. Their mixtures
+realize every Frobenius-allowed cycle profile. For p >= 3 and 2 <= m < p they violate even the single-element law,
+and rk_2 is an ultralimit of generic dimension-2 quotients of the A/m^2 models. The first premise broken is
+single-element V-conjugacy, in the induced extension to E_p x| <s>. This settles the brief's first step for p = 3: a
+level-coherent counter-model exists.
+
+The artifact's Section 1 derives w7-v-cycle-c2's Theorem 1.1 a second way (fixed q, k cycles per piece, matrix
+units). Section 3 records the ternary gate at <x_0, x_1, s>: torsion is spent, and the gate stays OPEN.
+
+Adds Attempts entries to v-rank-order-char-cycles-are-trivial-plus-regular,
+v-rank-functions-are-trivial-plus-regular-on-cylinder-groups and thompson-v-ternary-rank-functions-are-augmentation.
+Lands OPEN. w3-vf-linear: please re-derive Lemma 2.1, Lemma 2.2, Proposition 2.3 and the premise audit.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

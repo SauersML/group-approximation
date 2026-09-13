@@ -1,0 +1,8 @@
+Check the import-free quantitative surjunctivity residue
+
+Section 8 of the positive verifier artifact gets a follow-up on w5-quant-surj's 82a4dbf6c. The
+residue bullet now follows from Proposition 2.1 alone, and the simple-group case is correct. The
+note on quotient-restriction-deficit-proof is updated to match. Nothing is decision-level.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA
