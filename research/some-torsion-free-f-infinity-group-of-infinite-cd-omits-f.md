@@ -3,6 +3,8 @@ rg: 2
 id: some-torsion-free-f-infinity-group-of-infinite-cd-omits-f
 kind: claim
 title: Some torsion-free group of type F_infinity with infinite cohomological dimension contains no copy of Thompson's group F
+artifacts:
+  - research/artifacts/zp-thompson-free-infinite-dimensional-f-infinity-2026-09-13.md
 ---
 
 There is a torsion-free group `G` of type F_∞ with `cd G = ∞` such that no
@@ -26,9 +28,15 @@ This is the affirmative answer to Zaremsky Problem 2.8
   - `SL_n(Z[t])` has infinite vcd but is not FP_{n−1} (Bux–Mohammadi–Wortman).
 - **Subgroups of `F` or of PL_+(I).** Such an answer would refute the Brin–Sapir
   conjecture (Problem 2.3). Not pursued here; peer lane z2-03-brin-sapir.
-- **Open directions.**
-  - A residually finite torsion-free F_∞ group of infinite cd. It omits `F`
-    automatically, since `F` is not residually finite.
-  - Guba–Sapir diagram groups over finite complete presentations. These are
-    torsion-free, often F_∞ (Farley), and many have infinite cd. Which of them
-    contain `F` is not yet settled here.
+- **Residual finiteness (reduction landed).**
+  `tf-finf-infinite-cd-omits-f-via-residual-finiteness` derives this claim from
+  `some-rf-torsion-free-f-infinity-group-has-infinite-cd`, using the proved
+  `thompson-f-is-not-residually-finite`.
+- **Guba–Sapir diagram groups** over finite complete presentations. They are
+  torsion-free, F_∞ in Farley's setting (not re-read), and often of infinite cd.
+  - The artifact computes `D(⟨x,a,b,c | x = xa, a = b, b = c, c = a⟩, x) ≅ ⊕_N Z`.
+    That group has infinite cd but is infinitely generated, because nothing shifts
+    the spherical pieces back.
+  - The open crux: does every finite complete presentation whose diagram group is
+    finitely generated and infinite-dimensional contain the binary splitting of
+    `x = x²` that produces `F`?
