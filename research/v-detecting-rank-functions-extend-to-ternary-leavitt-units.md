@@ -9,6 +9,7 @@ distinct_from:
   sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one: that is link 1 of the ternary counterexample chain; this is the statement that link 1 costs exactly the V gate, no more.
 artifacts:
   - research/artifacts/ternary-minus-one-gate-outside-signed-thompson-2026-09-12.md
+  - research/artifacts/v-rank-extension-to-ternary-leavitt-units-2026-09-12.md
 ---
 
 **OPEN.** Let `G_3 = L_(F_3)(1,2)^x`, `z = -1`. If `F_3[V]` carries a Sylvester matrix rank function detecting
@@ -42,3 +43,24 @@ so that it also assigns consistent ranks to matrices involving `[x]`.
     configuration involving `x` and depth-changing elements of `V`. The first such configurations are
     depth-mismatched transvection pairs.
   - **Where it stops.** No construction, and no obstruction to extension.
+- 2026-09-12 `w6-v-extend` (`research/artifacts/v-rank-extension-to-ternary-leavitt-units-2026-09-12.md`).
+  - **Reduction.** The claim is equivalent to "link 1 iff V gate". When `F_3[V]` has a detecting function, the claim
+    fails iff link 1 holds (Corollary 5.1). No Hamming model of `V` extends, since `G_3` and `PG_3` are nonsofic.
+    Averaging from `V` is unavailable, since `[G_3 : V]` is infinite and `G_3` has (T).
+  - **Monomial lifts die.**
+    - `X_ev = 1 + ([τ_00] − 1)[w]` fails `x^3 = 1` by at least `β/4`.
+    - The Fock lift `X_F = 1 + [w] P_00^+ P_01^−` satisfies the sign, support and centralizer relations exactly. It
+      fails the splitting `x = x_0 x_1` by at least `β/16` in every rank function on `F_3[E ⋊ V]`.
+    - Both bounds come from Haar values on parity patterns.
+  - **Classes.** `T(0,1)`, `x` and the three-cycle `c_3` are pairwise non-conjugate (via `ker n / im n` on `R_R`). On
+    the code `{0,10,11}`, `T(0,10) T(10,11)` is conjugate to `c_3`, so an extension couples the profile of `x` to
+    `rk_V`. Finite modules meet these constraints.
+  - **Intertwiner.** `X_F` is the functorial Fock action at depth two, and `X_0 X_1` is that action at depth three.
+    Splitting is a single-letter partial conjugation, so it kills lifts, not extensions
+    (`level-unit-hnn-extensions-have-anti-central-rank-models`). For this candidate the gap is a commutant-valued
+    cocycle `c(v, v')` on V's multiplication table.
+  - **Where an obstruction must live.** At least two depth-changing letters, beyond disjoint commutation, generating
+    a nonsofic subgroup with `z`. First candidates: `{T(0,1), T(1,0), T(1,00), T(00,1)}` and the Toeplitz commutator.
+  - **Weakly finite version.** An extension injective on `V` gives either a nonzero weakly finite quotient of `S_−` or
+    a weakly finite representation of `F_3[PG_3]` injective on `PG_3` (Proposition 5.2). Not decided.
+  - **Where it stops.** No construction, and no obstructing relation identified.
