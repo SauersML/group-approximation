@@ -10,7 +10,9 @@ artifacts:
 ---
 
 **ESTABLISHED (2026-09-12)** through
-`affine-extension-of-fp-elementary-group-is-fp-proof`. Not independently reviewed.
+`affine-extension-of-fp-elementary-group-is-fp-proof`. ~~Not independently reviewed.~~
+*Reviewed (lane `bh-poly-linear-review`, 2026-09-12):* the presentation argument
+passes, and no correction was needed.
 
 **Hypotheses.**
 - `R` is a commutative ring, generated as a ring by a finite set `T`.
