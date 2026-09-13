@@ -48,7 +48,23 @@ the actor comes from evaluating its own generators, via
      aperiodic subshifts, commutator subgroups of such full groups are
      infinitely presented (Grigorchuk--Medynets, arXiv:1105.0719, abstract). The
      germ group is not literally that full group, so this is not a proof.
-4. **Rich patterns.** *Untested.* Patterns whose orbit closure is a shift of
+4. **Rich patterns.** *Dies with Attempt 5 (2026-09-13).* Patterns whose orbit closure is a shift of
    finite type, such as a hard decidable set containing every finite word,
    escape the heuristic of Attempt 3. Next test: compute the germ group of
    `< gamma_X, E_2 >` for such an `X` and decide its finite presentation.
+5. **Bounded displacement.** *Dies, for every pattern (2026-09-13).*
+   - *The theorem.* `fp-bounded-displacement-e2-envelopes-are-eventually-periodic`:
+     if every `gamma_i` moves points a bounded distance and `G` is finitely
+     presented, every `gamma_i` lies in some `E_m`, so evaluation takes linear
+     time. This covers Attempt 4 and any other bounded-displacement pattern,
+     whatever its orbit closure, including sparse hard defects and Toeplitz-type
+     non-minimal patterns. The germ group of Attempt 3 is never needed.
+   - *The mechanism.* `fp-alt-fin-envelopes-are-unique-solutions-of-their-relators`:
+     a finite presentation makes `gamma` the only tuple satisfying its relators.
+     With bounded displacement the relators are a one-sided shift of finite type
+     on fold indices, and pumping a unique solution makes it periodic.
+   - *Exact gap.* A witness needs a generator of unbounded displacement, up to
+     `gamma(x) <= 4x`. There one relator at `x` reaches points near `4^t x`, the
+     conditions couple scales and are not a one-dimensional shift of finite
+     type, so pumping fails. Uniqueness still makes each witness computable
+     (clause 2 of the rigidity claim), but gives no complexity bound.
