@@ -117,4 +117,68 @@ that way reports no invalidator for `b`. My first pass hit this on item 1. Use f
 
 ## 1. In-scope landings
 
-(Sections are added here as landings arrive.)
+### 1.1 `fractional-matrix-trace-gives-projection-in-g-star-z` (ex-kadison-kaplansky): PASS
+
+Priority (2). This reduction is what the Kadison--Kaplansky routes build on. It claims that
+Kadison--Kaplansky for all torsion-free groups is equivalent to the trace-integrality conjecture
+for all torsion-free groups. Reviewed from the lane's draft, including the proof route
+`fractional-matrix-trace-gives-projection-in-g-star-z-proof`.
+
+**Item 1 (scalarization): PASS, re-derived.** Let `A = C*_r(G * Z)` with `G ≠ 1`.
+- `Z` has at least three elements, so the Avitzour data exist. Then
+  `non-dihedral-free-products-are-completely-selfless` makes `(A, τ)` completely selfless.
+- `robert-tracial-selfless-regularity` then gives strict comparison by `τ` on `A ⊗ K`, stable rank
+  one, and `τ` as the unique 2-quasitrace.
+- Robert's definition compares only by the single state `ρ`. So strict comparison is usable even
+  when `G` is not exact, where 2-quasitraces other than traces could exist.
+- Given a projection `p` with `τ_*(p) = k + s`, `0 < s < 1`:
+  - `d_τ(1_k) = k < k + s = d_τ(p)`, so `1_k ≾ p`.
+  - For projections, Cuntz subequivalence gives Murray--von Neumann subequivalence. Take `y = p r q`,
+    `||y y^* - p|| < 1/2`, `z = (y y^*)^(-1/2) y`; then `p ~ z^* z ≤ q`. I checked this step.
+  - So `1_k ~ f ≤ p`. Put `q = p - f`, of trace `s < 1 = d_τ(1_A)`. Then `q ~ e ≤ 1_A`, and `e`
+    lies in the `(1,1)` corner, which is `A`.
+  - Since `f ⊥ q`, `p ~ 1_k ⊕ e`.
+- Cancellation, and so stable rank one, is not needed. Only strict comparison of projections by
+  the unique trace is used.
+
+Trust surfaces, not re-read by me:
+- FKOP arXiv:2510.24675v3, Theorem A (Theorem 2.7), sourced in
+  `stw91-graph-component-selflessness-audit-2026-08-30`.
+- Robert arXiv:2309.14188v3, Theorem 3.1(ii). The lane quotes it verbatim from the PDF, together
+  with the §3 definition.
+
+**Item 2 (torsion): PASS.** A free product is an amalgam over the trivial group, and
+`amalgam-torsion-permanence-needs-no-cyclic-reduction` has a Lean-backed `requires: []` route. The
+classical Magnus--Karrass--Solitar citation is supplementary.
+
+**Item 3 (selfless hosts): PASS as an import.** Every torsion-free acylindrically hyperbolic group
+has trivial finite radical. So `ozawa-php-groups-completely-selfless` (Ozawa arXiv:2508.07938,
+Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
+
+**Corollary A: PASS.**
+- (TR) ⇒ (KK): the trace is faithful, so `τ(e) ∈ (0,1)` for `e ≠ 0, 1`.
+- (KK) ⇒ (TR): Items 1 and 2 applied to `Γ * Z`.
+- The quantifier is "for every countable torsion-free group" on both sides. That is the only sense
+  in which the title's "equivalent" holds. Per group, only the direction in Corollary B is proved.
+- The idempotent remark is correct: an idempotent is similar to a projection, and similarity keeps
+  the trace.
+
+**Corollary B: PASS.** It is Items 1 and 3, read contrapositively.
+
+**Corollary C: PASS, conditional as stated.**
+- `χ_(-∞,c)(a)` and `χ_{0}(A^*A)` are continuous functions on the spectrum once `c`, respectively
+  `0`, is spectrally isolated. Their traces are `τ_*(P)` and `dim_vN ker A`.
+- The lattice instance consumes the OPEN `complex-with-irrational-and-torsion-free-lattices` together
+  with a Laplacian gap. The node says neither instance is known.
+
+**Wiring: PASS.**
+- `kk-counterexample-via-g-star-z-scalarization` and `matrix-trace-defect-from-kk-counterexample` form
+  an equivalence cycle between the two OPEN claims `torsion-free-matrix-trace-defect-exists` and
+  `kadison-kaplansky-counterexample-exists`.
+- Neither route is `requires: []`, so nothing fires.
+- All ids are at most 58 characters, and every named id exists on main.
+
+**Notes, no verdict change.**
+- The credit paragraph states the hypotheses of Dykema--Rørdam, GAFA 8 (1998) 1--16: Avitzour
+  conditions plus nuclear factors. I did not check that statement against the source.
+- Novelty is correctly marked unverified. The bounded check was two web searches.
