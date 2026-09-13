@@ -102,9 +102,9 @@ for any group (`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`).
 - **Deep towers, nilpotent-by-bounded groups, symmetric wreath products, any lengths: dead**
   (lane `ex-weak-sofic-deep-wreath`, 2026-09-13, unreviewed). `R^x` has uniformly bounded relator width
   over:
-  - iterated wreath products of bounded degree with bounded commutator width, including towers of
-    nonabelian simple groups and full-cycle towers with solvable layers
-    (`relator-width-over-towers-of-bounded-commutator-width`);
+  - every iterated wreath product of transitive groups of bounded degree, at every depth
+    (`simple-nonsofic-relator-width-over-iterated-wreath-products`, with the elementary commutator width
+    bound `transitive-wreath-towers-bounded-commutator-width`);
   - every finite group with a nilpotent normal subgroup whose quotient lies in a fixed locally finite
     variety (`relator-width-over-nilpotent-by-locally-finite-groups`). So unipotent towers
     `GL_n(F_2[t]/t^k)` with fixed `n` give no weak models, for every `k`;
@@ -115,6 +115,6 @@ for any group (`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`).
   carrying small lengths, and ranks in characteristic `2` with deep unipotent structure under an
   unbounded top. The group-theoretic room is:
   - finite groups whose Fitting quotients leave every locally finite variety;
-  - towers without a commutator width bound;
-  - subgroups of towers, where conjugators are scarce.
+  - subgroups of towers, where conjugators are scarce. These include every finite group with bounded
+    composition factors, by the Kaloujnine--Krasner embedding.
   No construction of any of these kinds is known for `R^x` or for `V`.
