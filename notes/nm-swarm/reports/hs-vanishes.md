@@ -260,6 +260,52 @@ assembly.  The module is `GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCell
 * Proof LANDED `a6a2cadda` (probe `0913-100213-68371` GREEN).  It discharges the `hcell` hypothesis
   of hull-euler's `phiPrimeCountInput_of_smallFaces`.
 
+## Outer spur thickening (lead assignment, 2026-09-13)
+
+A section word may backtrack once `c ≥ 2λ`, so `∂Δ` can carry a spur: an edge with the exterior on
+both sides.  `SurgeryFaceEdgeDoubling` needs `f ≠ outerFace`, so nothing on main removes it.
+Consumer: kh-ejz's pocket face set.
+
+Module `GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean`, namespace
+`GroupApproximation.GGT.VanKampen.OuterSpurThickening`.
+
+* `IsOuterSpur Δ x`: `x` and `α x` both lie on the exterior.  `outerSpurCount Δ` counts such darts.
+* Closed endpoint `OuterSpurThickeningStatement` / `outerSpurThickening`.  Every
+  `GloballyDistinguishedSectionFamily D λ c ε Δ cuts` `S` has a family `S'` over the same `Δ` and
+  `cuts`, and an `e : S.family ≃ S'.family`, such that:
+  * `S.diagram` and `S'.diagram` are O-equivalent;
+  * `S'.diagram` has no outer spur;
+  * the weight is unchanged;
+  * every region keeps its `SameTargetProfile` and its source cell index.
+
+  As a `GloballyDistinguishedSectionFamily`, `S'` is reduced, respects the section cuts, has
+  nondegenerate arcs and legal labels, and is weight-maximal and card-minimal.
+* Construction, modelled on `SurgeryFaceEdgeDoubling` and its Regions transport:
+  * `diagram Δ j hlen` is `FaceEdgeDoubling.map` at `f := outerFace`.  The new exterior is
+    `cellFace`, which reads the old traversal with the new dart in the place of `w_j`
+    (`boundary_cellFace_darts`).  The digon `none, w_j` is a G-cell of value one.
+  * The relator cells move literally (`cellMap`), so the boundary word, the cell words and the
+    values are unchanged: `oEquivalent`, `reduced`, `label_admissible`.
+  * `embedding : DiscEmbeddingAway Δ (diagram Δ j hlen) outerFace`.  No region contains the
+    exterior, so boundaries and shellings transport.  Source arcs and cell targets transport
+    through `embed`.  Exterior targets go through `outerImage`, which moves only `α w_j`.
+  * When the face of `α w_j` is not in a region, `α w_j` is on no target arc
+    (`alpha_dart_not_mem_targetArc`), so the region transports (`contiguityGeometry`,
+    `regionFamily`, `regionFamilyEquiv`).  At a spur that face is the exterior (`spur_avoid`).
+  * An outer spur of the thickening is an old outer spur other than `w_j`
+    (`exists_of_isOuterSpur`).  So `outerSpurCount_lt`, and strong induction gives the statement.
+* Statement LANDED `0a7715b56`.  Proof LANDED `36ff632cd`.
+  * The first proof probe, `0913-135944-64111`, FAILED in `outerDarts_eq`.  The new dart type agrees
+    with `(diagram Δ j hlen).toCombMap.Dart` only after unfolding `diagram`, so `simp only
+    [List.map_map]` did not fire on one side.  Every other error there was a sorry inherited from it.
+    The fix is an explicit `Eq.trans` chain.
+  * After the fix, probe `0913-140848-97054` GREEN on base `854abfaa8`.  `outerSpurThickening`
+    depends on axioms [propext, Classical.choice, Quot.sound].
+  * Wire queue: `GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening` at `36ff632cd`.
+  * No census rows: the module certifies no printed sentence on its own.
+* No shared core with fff-quotient's same-corner monogon doubling.  That one doubles inside an inner
+  face (`f ≠ outerFace`); this one reuses the `hf`-free pieces of `FaceEdgeDoubling` at the exterior.
+
 ## Rows (`metadata/nm-census-rows/hs-vanishes.tsv`)
 
 | key | line | status | carriers added |
@@ -295,4 +341,6 @@ assembly.  The module is `GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCell
   `hcell` hypothesis of hull-euler's `phiPrimeCountInput_of_smallFaces`
   (`OsinAppendixEulerSmallFaces.lean:123`).  `CornerTwoGonInput` (C4) and `TwoGonHoldsInput` (C6′)
   stay with their owners.
+* Outer spur thickening CLOSED.  `OuterSpurThickeningStatement` stated at `0a7715b56`, proved at
+  `36ff632cd` (probe `0913-140848-97054` GREEN), with no residual Prop.  kh-ejz consumes it.
 * Next: nothing assigned.  No Lean in flight.
