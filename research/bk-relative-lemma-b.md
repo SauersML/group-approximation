@@ -78,6 +78,17 @@ non-archimedean `K_0`) and the type I Toeplitz points of
   lets a non-split infinitesimal obstruction survive as a genuine Problem VII
   counterexample, is the crux.
 
+- **The uniqueness hypothesis excludes AF targets (2026-09-13).**
+  `relative-lemma-b-uniqueness-excludes-af-killing`: read (3) as uniqueness among
+  traces that annihilate `G` on their finiteness ideals and are finite and nonzero
+  somewhere.  If some projection over `A` lies outside `I`, then (3) rules out
+  every map into an AF algebra that is nonzero on that projection and kills `G`,
+  whether or not it respects `I`.  By Theorem A, such a map yields a trace
+  normalised at the projection.  At stably finite levels such a projection cannot
+  exist (Proposition B).  So under (3) a killing embedding needs a
+  quasidiagonal target whose quotients carry `K_1`.  In the real rank zero case
+  the open question becomes `rr0-projection-traces-give-qd-killing`.
+
 ## Resolution so far (2026-09-13)
 
 `bk-relative-boundary-descends-or-is-positively-detected` establishes that this
