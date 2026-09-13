@@ -33,7 +33,10 @@ permutational wreath product `Q = T_1 wr T_2 wr ... wr T_d` of transitive groups
   bound the width. More generally the width is bounded over any class of finite groups whose
   `|X|`-generated members have bounded order (width can only drop under quotients, and every such
   member is a quotient of one finite relatively free group). So unbounded width needs unbounded
-  exponent, which the iterated wreath products have.
+  exponent, which the iterated wreath products have. More strongly, the width is bounded over
+  every nilpotent-by-(locally finite variety) class, with no restriction on the nilpotency class
+  (`relator-width-over-nilpotent-by-locally-finite-groups`). Iterated wreath products of
+  nonabelian simple groups have trivial Fitting subgroup, so that theorem says nothing about them.
 - **Direct products and the top-level reduction.** A *template* for `x` is a fixed word in `R^(+-1)`
   whose letters can be conjugated to give `a_x`. A template valid for every tuple in a class stays
   valid over direct products of that class, with conjugators chosen coordinatewise; trivial coordinates
