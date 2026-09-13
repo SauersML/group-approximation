@@ -30,7 +30,16 @@ Introduction, and `sec:compression-radical` (One-sided compression).
   - `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean`, the cyclic run
     decomposition behind `OsinLemma94ClassPolygons`, assigned by hull-count94 (see below).
   - It imports only Mathlib and `AxiomGuard`. `#audit_axioms` follows all ten declarations.
-  - Census row `LINE:1636` (partial), the key hull-count94 uses for Lemma 9.4.
+  - Census row `4895f03fdf5f` (partial), the conclusion sentence of `thm:hull`. The row first
+    landed keyed `LINE:1636`; `aea218af1` re-keys it to the WORKLIST key.
+- `67af33ed0`: probe GREEN (tag `0913-161424-50652`, BUILT, md5 `619d3487` = landed bytes). The
+  module is on the wire queue:
+  - `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean`, the face-walk fit
+    lemmas for the class producer of `OsinLemma94ClassPolygons`, assigned by hull-count94 (see
+    below).
+  - It imports `Estimating.Embedded`, `Mathlib.Data.List.Rotate` and `AxiomGuard`.
+    `#audit_axioms` follows all six declarations.
+  - Census row `4895f03fdf5f` (partial).
 
 ## Help: the h94 count (hull-count94)
 
@@ -157,6 +166,29 @@ statement. main had no cyclic run decomposition.
   `classSides_ne_nil`.
   - The end condition gives `gap_last` once `gap s = []` for every side that fails `J`.
   - `single` holds once `J s` implies that sides `s` and `s + 1` have one (A1) or (A2) kind.
+
+### Face walks on a cell boundary (`OsinLemma94FaceArcFit`, sent to hull-count94)
+
+hull-count94 asked for six fit lemmas with fixed statements, for the class producer of
+`OsinLemma94ClassPolygons`. A class on a relator cell is read as a face walk: a dart `d`, then
+`facePerm d`, and so on. Here `B : FaceBoundary M f`.
+
+- `FaceBoundary.getElem?_add_mod_length`: `B.darts[(j + r) % length]? = some ((facePerm ^ r) B.darts[j])`.
+  Induction on `r`. The one-step case is the chain field, or `closes` at the last dart. It is
+  proved inline, so the heavy `OsinAppendixEulerCornerTwoGonCount` is not imported and its
+  `getElem?_succ_mod_length` is not redeclared.
+- `FaceBoundary.pow_length_apply`: `(facePerm ^ length) d = d` for every `d ∈ B.darts`.
+- `FaceBoundary.rotate_take_eq_map_pow`: for `m ≤ length`, `(B.darts.rotate j).take m` is the
+  face walk of length `m` from `B.darts[j]`.
+- `List.eq_map_pow_of_isChain`: a nonempty list chained by `p` is the `p`-walk from its head. It
+  is declared inside `GroupApproximation.GGT.VanKampen`, so `List.eq_map_pow_of_isChain` resolves
+  only from inside that namespace.
+- `Embedded.CyclicArc.exists_darts_eq_map_pow`: a face walk of length `m ≤ length` from a dart of
+  `cellDarts Delta i` is the dart list of a `CyclicArc`. The arc starts at the dart's index, and
+  the proof uses the previous lemma, not `exists_darts_eq_of_rotate_eq`.
+- `FaceBoundary.two_le_count_map_pow`: a face walk longer than the boundary visits its first dart
+  at steps `0` and `length`. `CombMap` has no `DecidableEq` on darts, so the lemma takes a
+  `[DecidableEq M.Dart]` binder, which a classical instance fills.
 
 ### Model tests on the landed classes (sent to hull-count94 and main)
 
@@ -357,6 +389,10 @@ Defect 4 stays `formalized`, with the new carrier.
     queue. This went to hull-count94 and main.
 - Wiring: `OsinLemma94ClassRuns` (`25aef6af9`) is on the wire queue. It imports only Mathlib and
   `AxiomGuard`.
+- Wiring: `OsinLemma94FaceArcFit` (`67af33ed0`) is on the wire queue. Its only project import,
+  `Estimating.Embedded`, is rooted.
+- hull-count94 is writing the class producer against the six `FaceArcFit` names. This lane waits
+  for the next sub-piece.
 - Lane tooling: `nmprobe.sh` refuses a lane-files entry that is not a `GroupApproximation/**/*.lean`
   path. The report path was dropped from `lanes/audit-intro.files`. On the first probe that ran,
   the only red was the deprecated `List.getLast?_eq_getLast`, replaced by
