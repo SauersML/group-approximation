@@ -35,17 +35,18 @@ This is the affirmative answer to the first part of Zaremsky's Problem 1.20
   Kurosh subgroup theorem, so it is not perfect unless trivial. If `N` meets a
   factor nontrivially it contains that factor, and the quotient is a quotient
   of the other factor.
-- **Open candidate: restriction to invariant sets.** Take `H` finitely
-  presented and acting on a Cantor space `X` through the germs of an ample
-  groupoid `G` that has uncountably many minimal closed invariant subsets `Y`.
-  Suppose restriction `H -> A(G|_Y)` is onto the alternating group of the
-  restricted groupoid with perfect kernel, and `A(G|_Y)` is simple
-  (Nekrashevych, for minimal effective groupoids). Then the quotients are
-  simple of type FP_2, and distinct `Y` give distinct kernels, hence
-  uncountably many isomorphism types. Candidate: `G = G_V × (Z ⋉ {0,1}^Z)`
-  (the Cuntz groupoid of `V` times the full two-sided shift), with `Y = C ×`
-  (a Sturmian subshift). Open: finite presentability of `A(G)`, surjectivity
-  of the restriction, and perfectness of its kernel.
+- **Open route: restriction to invariant sets.** Route
+  `uncountably-many-simple-fp2-via-v-times-shift-restrictions`. Take
+  `G = G_V × (Z ⋉ {0,1}^Z)`, Thompson's `V` groupoid times the full two-sided
+  shift.
+  - Established (`v-times-shift-alternating-group-restrictions-are-simple`):
+    `A(G)` is finitely generated and restricts onto the simple groups
+    `A(G|_{C×Y})` for the `2^aleph_0` minimal subshifts `Y`, with pairwise
+    distinct kernels.
+  - Open: the kernels are perfect (`v-times-shift-restriction-kernels-are-perfect`)
+    and `A(G)` is of type FP_2 (`v-times-shift-alternating-group-is-of-type-fp2`).
+  - Only type FP_2 of the ambient group is needed, not finite presentation,
+    since perfect kernels keep type FP_2.
 - **Open candidate: uniform relators over Leary's parameter.** Find a finite
   relator set `R'` such that `⟨X | R_0 ∪ R' ∪ {long cycle relators for n ∈ S}⟩`
   is simple for uncountably many `S`, in the style of Leary's presentations
