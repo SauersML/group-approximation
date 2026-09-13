@@ -33,8 +33,13 @@ This completes the third-level classification begun in
 [[residual-finiteness-of-enumerated-presentations-is-pi3-complete]]:
 on recursive presentations residual finiteness sits one full level above
 every approximation property and above amenability, and one
-two-generator family exhibits the gap.  The finite-presentation question
-(`Pi^0_2`-completeness of `RF_fp`) remains the residually finite Higman
-problem.
+two-generator family exhibits the gap.  The finite-presentation question,
+`Pi^0_2`-completeness of `RF_fp`, is now proved at paper level in
+[[residual-finiteness-of-finite-presentations-is-pi2-complete]], through
+machine groups rather than a Higman embedding.  That cell is framed by this
+repository.  It is not the residually finite Higman embedding question of KMS
+§1.1.7, which Rauzy answered negatively (arXiv:2002.02540).  The nearest
+topological prior art for the level-three row is Rauzy, arXiv:2605.30138,
+appendix: boldface `Pi^0_3`-completeness in the space of marked groups.
 
 **Machine-checked core.**  The computability half of the hardness argument, `Pi^0_3`-completeness of profinite closedness of `W_e` with the dyadic rows, is `ProfinitelyClosedIndexSet.pi03Complete_closedIndex`; the group-theoretic criterion is paper-level.

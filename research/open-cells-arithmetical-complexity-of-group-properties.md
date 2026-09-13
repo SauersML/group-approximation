@@ -29,7 +29,13 @@ them fills one cell.
 2. **`HYP_fp` `Pi^0_2`-complete iff a non-hyperlinear group exists?**
    Needs [[mf-compiler-positive-branch-is-hyperlinear]]: is the regular trace
    of the MF compiler's positive branch quasidiagonal?
-3. **`RF_fp` `Pi^0_2`-complete?** CLOSED 2026-09-12 (unreviewed):
+3. **`RF_fp` `Pi^0_2`-complete?** CLOSED 2026-09-12, reviewed by
+   `ex-verify-groups` and `ex-verify-logic-quantum`.  The novelty pass
+   (`ex-novelty`) found no prior statement.  This cell is framed by the
+   repository and is distinct from the residually finite Higman embedding
+   question of KMS §1.1.7, which Rauzy answered negatively (arXiv:2002.02540).
+   The non-c.e. half of the placement is Rauzy arXiv:2111.01190v2, Proposition
+   "RF not CE".  Closing claim:
    [[residual-finiteness-of-finite-presentations-is-pi2-complete]], and with
    it `LEF_fp` ([[lef-of-finite-presentations-is-pi2-complete]]).  No Higman
    compiler is used.  The reduction goes through Kharlampovich--Myasnikov--Sapir

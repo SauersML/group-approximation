@@ -87,9 +87,11 @@ conjecture fails, with membership from
 `[TF]` = [[torsion-freeness-of-finite-presentations-is-pi2-complete]], via
 [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]];
 `[RF]` = [[residual-finiteness-of-finite-presentations-is-pi2-complete]]
-and [[lef-of-finite-presentations-is-pi2-complete]] (2026-09-12, unreviewed).
-They use pumped Minsky-machine groups rather than a Higman embedding, and all
-outputs are solvable.  Rows: sofic
+and [[lef-of-finite-presentations-is-pi2-complete]] (2026-09-12; reviewed).
+They use pumped Minsky-machine groups with the KMS stop relations rather than a
+Higman embedding, and all outputs are solvable.  The non-c.e. half of the
+placement was printed earlier by Rauzy, arXiv:2111.01190v2, Proposition
+"RF not CE".  Rows: sofic
 [[sofic-recognition-two-generator-recursive-is-pi2-complete]],
 [[sofic-recognition-finite-presentations-arithmetical-position]]; MF and LEF
 [[mf-recognition-two-generator-recursive-is-pi2-complete]]; amenable,

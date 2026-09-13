@@ -63,17 +63,35 @@ the countable free product above is then no longer needed.  Two generators, the
 optimum, is [[residual-finiteness-two-generator-recursive-is-pi3-complete]]
 via the shift right-angled Artin family
 [[shift-raag-family-is-rf-iff-symmetrized-index-set-closed]]; and
-`Pi^0_2`-completeness of `RF_fp` is the residually finite Higman problem,
-open in the literature.
+`Pi^0_2`-completeness of `RF_fp` is now proved (paper level) in
+[[residual-finiteness-of-finite-presentations-is-pi2-complete]].  That proof
+uses Kharlampovich--Myasnikov--Sapir machine groups and no Higman embedding.
+
+**Framing correction (2026-09-13, from the `ex-novelty` pass).**  An earlier
+version of this node called that cell "the residually finite Higman problem,
+open in the literature".  The cell is framed by this repository.  The question
+KMS print in arXiv:1204.6506v5 §1.1.7 is different: whether every finitely
+generated residually finite group with solvable word problem embeds in a
+finitely presented residually finite group.  Rauzy answered it negatively in
+arXiv:2002.02540.
+
+**Nearest prior art for this node.**  Rauzy, arXiv:2605.30138 (May 2026),
+appendix: the set of residually finite groups is boldface `Pi^0_3`-complete in
+the space of marked groups.  Its introduction prints "Sigma^0_3-complete", a
+Σ/Π mismatch in the source.  That is a topological statement, not the lightface
+index set classified here, but it should be cited beside it.  Read by
+`ex-novelty` (`research/artifacts/ex-novelty-rf-fp-pi02-pass-2026-09-13.md`),
+not re-read by this lane.
 
 **Machine-checked boundary.**
 `Computability/RFPresentationPi02.pi02_residuallyFinite` is the `Pi^0_2`
 membership of `RF_fp`, and `rf_fp_strict_position` is the placement
 `Pi^0_2 \ Pi^0_1` / `Sigma^0_2 \ Sigma^0_1`, with Markov data seeded by the
-finitely presented nonsofic group.  The closed package
+finitely presented nonsofic group.  The non-c.e. half was printed earlier by
+Rauzy, arXiv:2111.01190v2, Proposition "RF not CE".  The closed package
 `Computability/RFRecognitionHierarchy.rf_recognition_hierarchy` connects that
 finite-code result to `Pi^0_2`/`Sigma^0_2` hardness on arbitrary enumerated
 codes, exact completeness on the canonical event-ray switch family, and an
-explicit Adian--Rabin reduction.  It intentionally does not claim
-`Pi^0_2`-hardness of `RF_fp`: crossing that final finite-output boundary is
-exactly `[RF-Higman]`.
+explicit Adian--Rabin reduction.  It does not formalize `Pi^0_2`-hardness of
+`RF_fp`.  That finite-output step is the paper-level machine-group reduction of
+[[rf-fp-completeness-via-pumped-minsky-groups]].

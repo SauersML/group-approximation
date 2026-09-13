@@ -162,10 +162,29 @@ corollaries.
 4. **Split extension.**  The residual finiteness of a split extension of a
    finite group by a residually finite group is used in B4.  Only the split
    form is needed, and it holds (argument given there).
-5. **Novelty.**  A bounded search on 2026-09-12 (two web queries, the ledger's
-   2026-08-26 literature sweep including Bilanovic--Chubb--Roven, and KMS
-   §1.1.7) found no prior statement of (T0).  KMS construct residually finite
-   finitely presented groups from sym-universally halting machines, but do not
-   discuss recognition complexity.  Darbinyan--Rauzy, arXiv:2508.11973, study
-   residual finiteness growth and computability of word problems, not the
-   index set `RF_fp`.  The check is bounded and not exhaustive.
+5. **Novelty and credit** (updated 2026-09-13 from the `ex-novelty` pass,
+   `research/artifacts/ex-novelty-rf-fp-pi02-pass-2026-09-13.md`).
+   - **Search.**  That pass read, in LaTeX source:
+     - KMS 1204.6506v5;
+     - Bridson--Wilton 1401.2273;
+     - Rauzy 2002.02540, 2002.02541, 2111.01190, 2111.01179, 2605.30138;
+     - Darbinyan--Rauzy 2508.11973.
+
+     It also checked 19 OpenAlex citers of KMS.  No earlier statement of
+     `Pi^0_2`-hardness or completeness of `RF_fp` or `LEF_fp` was found within
+     that bound.
+   - **Partial precedents to credit.**
+     - Rauzy arXiv:2111.01190v2, Proposition "RF not CE": the set of finitely
+       presented residually finite groups is not c.e., by McKinsey and KMS.
+     - Bridson--Wilton arXiv:1401.2273: no algorithm decides whether a finitely
+       presented group has a proper finite-index subgroup.
+     - Rauzy arXiv:2605.30138, appendix: residual finiteness is boldface
+       `Pi^0_3`-complete in the space of marked groups.  Its introduction
+       prints `Sigma^0_3`, a Σ/Π mismatch in the source.
+   - **What comes from KMS.**  KMS supply the groups and the sufficiency theorem
+     (sym-universal halting implies residually finite).  Lemma A, the converse
+     under divergence, is new here.
+   - **Framing.**  Do not call the cell "the residually finite Higman problem".
+     KMS §1.1.7 print a different question, the residually finite Higman
+     embedding theorem, and Rauzy (arXiv:2002.02540) answered it negatively.
+     The completeness cell is framed by this repository.

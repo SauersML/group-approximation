@@ -15,8 +15,8 @@ artifacts:
 
 ESTABLISHED.  Reviewed by `ex-verify-groups` (part 3 §3.2) and by
 `ex-verify-logic-quantum` (part 1), and corrected after both reviews.  The
-novelty check is still bounded.  For the recursive coding of finite
-group presentations,
+novelty pass by `ex-novelty` found no prior statement within its bound (see
+Prior art below).  For the recursive coding of finite group presentations,
 
 ```text
 RF_fp     is Pi^0_2-complete,
@@ -31,9 +31,43 @@ and MF, so the hardness of exact finite approximation is independent of every
 metric approximation property.
 
 This closes cell 3 of [[open-cells-arithmetical-complexity-of-group-properties]]
-(the "residually finite Higman problem" cell of
-[[arithmetical-complexity-table-of-group-properties]]), and with it the LEF
+and the residual-finiteness entry of the finite-presentation column of
+[[arithmetical-complexity-table-of-group-properties]], and with it the LEF
 cell ([[lef-of-finite-presentations-is-pi2-complete]]).
+
+**Framing.**  The completeness question is a cell framed by this repository;
+no source found by the novelty pass prints it.  It must not be called "the
+residually finite Higman problem".  The question KMS actually print in
+arXiv:1204.6506v5 §1.1.7 is different: does every finitely generated
+residually finite group with solvable word problem embed in a finitely
+presented residually finite group?  Rauzy answered that negatively in
+arXiv:2002.02540 (J. Group Theory): "There exists a finitely generated
+residually finite group with solvable word problem, that does not embed in any
+finitely presented residually finite group."
+
+**Prior art and credit** (per the `ex-novelty` pass,
+`research/artifacts/ex-novelty-rf-fp-pi02-pass-2026-09-13.md`, sources read
+there).  No earlier statement of `Pi^0_2`-hardness or completeness of `RF_fp`
+or `LEF_fp` was found within that bound.
+
+- **Rauzy, arXiv:2111.01190v2** (IJAC 2025), Proposition "RF not CE": "The set
+  of finitely presented residually finite groups is not computably enumerable
+  (for ν_FP), and furthermore it cannot be contained in a ν_FP-c.e. set of
+  finitely presented groups with uniformly solvable word problem."  It is
+  proved from McKinsey and KMS.  This is the nearest printed lower bound, the
+  `Sigma^0_1`-exclusion half of the placement.
+- **Bridson--Wilton, arXiv:1401.2273** (Invent. Math. 2015): no algorithm
+  decides whether a finitely presented group has a proper finite-index
+  subgroup.
+- **Rauzy, arXiv:2605.30138** (May 2026), appendix: residual finiteness is
+  boldface `Pi^0_3`-complete in the space of marked groups.  The paper's
+  introduction prints "Sigma^0_3-complete" for the same set.  This is
+  topological, not the lightface index set, but it is the nearest prior art for
+  [[residual-finiteness-of-enumerated-presentations-is-pi3-complete]].
+- **KMS** supply the machine groups and the sufficiency theorem
+  (sym-universal halting implies residually finite).  The converse used here,
+  that a divergent pumped configuration kills residual finiteness, is not
+  in KMS.
 
 **The reduction.**  `e |-> G_0(P(M_e))`, where:
 
