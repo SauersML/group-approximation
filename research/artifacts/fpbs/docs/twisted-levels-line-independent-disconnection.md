@@ -12,8 +12,9 @@ Lane `fixed-price-correlated-levels`, 2026-09-12. Supports
 - bases of `t`-Rokhlin towers, where openness along each orbit is periodic;
 - sets pulled back from Sturmian or odometer factors of the `t`-action.
 
-This note shows that correlation along `t`-orbits alone never helps: the same `delta_0` works for
-every such field. So a working `A` must correlate openness **across** fibre lines.
+This note shows that correlation along `t`-orbits never helps while open levels stay independent
+across fibre lines: the same `delta_0` works for every such field. So a working `A` must correlate
+openness **across** fibre lines.
 
 ## 1. Setting and notation
 
@@ -115,9 +116,28 @@ Borel sets measurable with respect to the coordinates `x|_H`, so the theorem cov
   odometers. These factors exist by Sinai's factor theorem, since `x|_H` is a Bernoulli
   `Z`-process of infinite entropy. This is cited from memory and is not needed for the theorem.
 
-**(c) Consequence for transport graphings.** By the criterion's item (1), in every co-induced
-action from a free `Z`-action, and for every line-local `A` in the Bernoulli shift, with
-`mu(A) < delta_0`, the graphing `{t} ∪ {s|_A : s in S}` does not generate the orbit relation.
+*Any one coordinate line.* Under `(g . x)(h) = x(h g)` the `t`-orbits of coordinates are the left
+cosets `v H`, `v in N`. Let `A` be measurable in `x|_(v H)` for one `v`.
+- `omega(u, m) = 1_A(t^m u . x)` reads the coordinates `v t^k u = t^k phi^-k(v) u`, `k in Z`. So
+  row `u` of `omega` reads `C_u = {t^k phi^-k(v) u : k in Z}`, which meets row `phi^-k(v) u` at
+  level `k`.
+- For `u != u'` the sets `C_u` and `C_u'` are disjoint, because at each level `k` they lie in the
+  distinct rows `phi^-k(v) u` and `phi^-k(v) u'`. Under the product measure the rows of `omega`
+  are independent.
+- (LI.2) and (LI.3) hold for every Borel `A`, with `delta = mu(A)`, by invariance of `mu`.
+
+So (LI) holds, and the theorem covers every set read off a single `t`-orbit of coordinates.
+
+*Not covered.* The `t`-action on `[0,1]^Gamma` is the product of the shifts on the lines
+`x|_(v H)`, `v in N`. A Rokhlin base, or a rotation or odometer factor, of that whole action may
+read several lines `x|_(v H)`, `v in F`, with `|F| >= 2`. Then rows `u` and `phi^-k(w^-1 v) u`
+share a coordinate for all `v != w` in `F` and all `k in Z`. So the rows need not be independent,
+and the theorem does not apply. Such sets correlate rows and belong to the open claim of Section 5.
+
+**(c) Consequence for transport graphings.** By the criterion's item (1), the graphing
+`{t} ∪ {s|_A : s in S}` does not generate the orbit relation when `mu(A) < delta_0` in either case:
+- every co-induced action from a free `Z`-action;
+- every `A` in the Bernoulli shift that is read off one coordinate line `x|_(v H)`.
 
 ## 4. Comparison: what does work
 
@@ -141,7 +161,8 @@ fibered-cover transfer, this gives fixed price one. The route is
 `fpbs-3-manifold-fixed-price-via-correlated-transport-sets`.
 
 **Attempts recorded.**
-1. *Row-local sets.* Dead by the theorem above.
+1. *Sets read off one coordinate line.* Dead by the theorem above. Sets that read several lines
+   are not covered (Section 3(b)).
 2. *Block factors across rows.* Let `A` depend on the coordinates `x|_(H F)` for a finite
    `F ⊆ N` containing `e`.
    - The field `omega(u, m)` then depends on the rows `phi^-m(v) u`, `v in F`: from

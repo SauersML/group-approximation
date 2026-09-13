@@ -22,8 +22,9 @@ Equivalently, by item (1) of `fpbs-twisted-level-graph-generates-cyclic-extensio
 
 - **Independent levels (2026-09-12).** These are dead: `fpbs-twisted-level-percolation-disconnected-at-low-density`.
 - **Correlation along `t`-orbits only (2026-09-12, lane `fixed-price-correlated-levels`).** Also dead: `fpbs-line-independent-twisted-levels-disconnected`.
-  - Every line-local `A`, measurable in `x|_<t>` with `mu(A) < delta_0`, gives a disconnected graph.
-  - That covers Rokhlin tower bases, Sturmian and odometer codings, and arbitrary stationary rows.
+  - Every `A` read off one `t`-orbit of coordinates, with `mu(A) < delta_0`, gives a disconnected graph.
+  - That covers Rokhlin tower bases, Sturmian and odometer codings of one coordinate line, and arbitrary stationary rows.
+  - Bases and factors of the whole `t`-action that read several lines correlate rows, so they are not covered.
   - It also holds in every co-induced action. So a working `A` must correlate rows.
 - **`N`-invariant sets.** These work in split actions (`fpbs-quotient-split-actions-have-cost-one`), but `b_Gamma` has no factor on which `N` acts trivially (`fpbs-quotient-split-not-bernoulli-contained`).
 - **Block factors across rows.**

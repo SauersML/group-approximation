@@ -59,6 +59,17 @@ claim is the 3-manifold case of that alternative.
   small density, for every torsion-free hyperbolic `N semidirect Z`. Relative
   hyperbolicity with respect to `<t>` charges `t`-excursions linearly, so the
   number of paths is exponential while each path costs `delta^(l/2)`. So the
-  route is invalidated. The same graphing with a set `A` whose open levels are
-  strongly correlated along `t`-orbits is not ruled out, because only the
-  probability step uses independence.
+  route is invalidated. Correlating open levels along `t`-orbits, with rows
+  independent across fibre lines, does not rescue it either (next bullet).
+* **Transport sets correlated along `t`-orbits (2026-09-12).** Route
+  `fpbs-3-manifold-fixed-price-via-correlated-transport-sets` derives this
+  claim from the open claim
+  `fpbs-cross-line-correlated-transport-set-generates`. **Where it waits:**
+  `fpbs-line-independent-twisted-levels-disconnected` reuses the path count
+  and pays `delta` once per fibre line. So a twisted return graph whose rows
+  are independent across fibre lines is almost surely disconnected at the
+  same `delta_0`, whatever the dependence along each `t`-orbit. That rules
+  out every co-induced action, and every Bernoulli set read off one coordinate
+  line, such as Rokhlin bases and rotation or odometer codings of that line.
+  A working set must correlate openness across fibre lines, and it cannot do
+  so through a factor on which `N` acts trivially.

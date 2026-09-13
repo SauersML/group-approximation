@@ -32,6 +32,6 @@ Written derivation. Details are in the first artifact, Sections 2 and 3.
    - **The field:** for `A = {f(e) in B}`, `omega(u, m) = 1_B(T^m f(u))`, which satisfies (LI) with `delta = nu(B)`.
    - **Non-generation:** item (1) of `fpbs-twisted-level-graph-generates-cyclic-extension`.
 
-5. **Bernoulli shift.** `[0,1]^Gamma` is the co-induction of the Bernoulli shift of `Z` via `f(h) = (x(t^j h))_j`. The sets `{f(e) in B}` are exactly the Borel sets measurable in `x|_<t>`.
+5. **Bernoulli shift.** `[0,1]^Gamma` is the co-induction of the Bernoulli shift of `Z` via `f(h) = (x(t^j h))_j`. The sets `{f(e) in B}` are exactly the Borel sets measurable in `x|_<t>`. For `A` read off one line `x|_(v<t>)`, row `u` reads `{t^k phi^-k(v) u : k in Z}`. These sets are disjoint for distinct `u`, so (LI) still holds.
 
 This route is bookkeeping for a written deduction, not a formal verification.

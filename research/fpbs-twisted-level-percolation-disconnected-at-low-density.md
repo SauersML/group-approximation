@@ -29,7 +29,7 @@ distinct_from:
 
 **Not settled.**
 - Fixed price itself: `fpbs-hyperbolic-3-manifold-groups-fixed-price-one` stays OPEN.
-- Transport graphings built from other Borel sets `A`. The path count in the proof is combinatorial, and only the probability step uses independence. So a set `A` whose open levels are strongly correlated along `t`-orbits is not ruled out.
+- Transport graphings built from other Borel sets `A`. The path count in the proof is combinatorial, and only the probability step uses independence. `fpbs-line-independent-twisted-levels-disconnected` extends the result, with the same `delta_0`, to open levels correlated arbitrarily along `t`-orbits but independent across fibre lines. Sets that correlate openness across fibre lines are not ruled out; see `fpbs-cross-line-correlated-transport-set-generates`.
 
 **Consistency with main.**
 - In item (4) of the criterion (`phi = id`, connected), `t` is central, so `<t>` is not malnormal and the hypothesis fails.
