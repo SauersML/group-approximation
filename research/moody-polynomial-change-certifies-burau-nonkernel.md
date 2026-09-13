@@ -16,17 +16,22 @@ Claim: if `𝕄_{Ψ·Γ} ≠ 𝕄_Γ` for some `Γ ∈ B_n`, then `Ψ ∉ ker ρ
 
 This is Theorem 2.3 of arXiv:2607.05283v1, attributed there to Moody (J. A. Moody, "The Burau
 representation of the braid group B_n is unfaithful for large n", Bull. Amer. Math. Soc. 25
-(1991)). The convention `𝕄_Γ = 𝕄(α, (β_*^3)Γ)` comes from the HTML render and has not yet been
-checked against the PDF.
+(1991)).
 
 ## Attempts
 
 - 2026-09-13 (lane z3-05-burau-theory), artifact §2.6: the direction is consistent. The cover is
   invariant under all boundary-fixing mapping classes, so `𝕄((x)g, (y)g) = 𝕄(x, y)`. If the
-  pairing factors through relative homology classes on which `B_n` acts through the unreduced
-  Burau representation, then `Ψ ∈ ker ρ_n` gives `𝕄_{Ψ·Γ} = 𝕄((α)Γ^{-1}, (β_*^3)Ψ) = 𝕄_Γ`.
-- Still to do before establishing: (a) name the relative homology module in which arcs from
-  `p_*` to a puncture define classes, and prove that `ker ρ_n` acts trivially on it. Unreduced
-  Burau is the action on `H_1` of the cover relative to the fiber over `p_*`, and the arcs end at
-  punctures, which needs a locally finite or truncated version. (b) Read Moody 1991, or
-  Long–Paton 1993, for the exact published statement.
+  pairing factors through classes on which `B_n` acts through the unreduced Burau representation,
+  then `Ψ ∈ ker ρ_n` gives `𝕄_{Ψ·Γ} = 𝕄((α)Γ^{-1}, (β_*^3)Ψ) = 𝕄_Γ`.
+- 2026-09-13 (check owner z3-05-burau-search, artifact
+  `zp-burau-n4-verification-2026-09-13-part1.md`, landed 5c5c59481a): Moody's criterion checked
+  OK.
+  - The preprint pairs `α` with the class, in `H_1(D̃, p̃_*)`, of the loop bounding a neighborhood
+    of the arc. `B_n` acts on `H_1(D̃, p̃_*)` through the unreduced Burau representation.
+  - That pairing equals `(1 − t)·𝕄` up to a unit. `Z[t, t^{-1}]` is a domain, so a change of one is
+    a change of the other.
+  - The convention `𝕄_Γ = 𝕄(α, (β_*^3)Γ)` matches the preprint's tex source.
+- Still to do before establishing: write the resulting proof as a `-proof` route (the loop class,
+  the Burau action on `H_1(D̃, p̃_*)`, and the `(1 − t)` factor), then have it reviewed. Nothing
+  about the open core (G1–G5 of the check) depends on this claim's route.
