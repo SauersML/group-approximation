@@ -116,7 +116,9 @@ theorem isLocallyFiniteGroup_elCoreKernel (T : X ≃ₜ X) (k : Type) [Ring k] (
     (((elementaryGroup (Fin n) (ClopenCrossedProduct T k)).subtype.comp
         (elCoreKernel T k n).subtype).codRestrict (glCoreKernel T k n)
       fun x ↦ MonoidHom.mem_ker.mpr (MonoidHom.mem_ker.mp x.2))
-    fun _ _ hab ↦ Subtype.ext (Subtype.ext (congrArg Subtype.val hab))
+    fun _ _ hab ↦ by
+      have h1 := congrArg Subtype.val hab
+      exact Subtype.ext (Subtype.ext h1)
 
 end Kernels
 
