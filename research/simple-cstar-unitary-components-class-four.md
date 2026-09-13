@@ -9,10 +9,20 @@ distinct_from:
 artifacts:
   - research/artifacts/class-four-stage-and-blind-spin-trapping-2026-09-12.md
   - research/artifacts/component-group-class-bound-by-excess-2026-09-12.md
+  - research/artifacts/class-four-lambda-mod-eight-trapping-2026-09-13.md
+  - research/artifacts/class-four-lambda-mod-eight-trapping-part2-2026-09-13.md
 ---
 
-**OPEN.** Find a simple unital C*-algebra A and unitaries u_1, u_2, u_3, v in
-A with [u_3, [u_2, [u_1, v]]] not in U_0(A).
+Find a simple unital C*-algebra A and unitaries u_1, u_2, u_3, v in A with
+[u_3, [u_2, [u_1, v]]] not in U_0(A).
+
+**Answered (unreviewed), 13 Sep 2026.** The route
+class-four-via-lambda-mod-eight-trapping-tower answers it with a simple
+unital AH algebra (simple-ah-algebra-with-class-four-component-group). The
+trapped class uses a structure only on TX − W_R, namely spin with lambda
+trivialized mod 8. That bordism sees eta^3. The tower steps are the
+quaternionic Grassmannians Gr_8(H^{8+2d}). The next target is class five,
+where rank-two protected blocks with sphere-collapse seeds are blind.
 
 A positive answer, iterated, points toward simple algebras whose component
 groups are not nilpotent. Any AH example needs blocks of excess at least two
@@ -30,7 +40,12 @@ cofinally (block-component-group-class-at-most-excess-plus-two).
   number <c_r(Q)^2, [X]>, and a Grassmannian-type recursion. By the Wu
   formula the parity is <v_{2r}(X) c_r(Q), [X]>. For string X this kills
   r = 2 (v_4 = 0). The Cayley plane fails at r = 4, because c_4 of a complex
-  bundle on its 8-cell is divisible by 6. No example is known.
+  bundle on its 8-cell is divisible by 6. No example is known. *Resolved by
+  relaxing*: the locus only needs a structure on the virtual bundle
+  TX − W_R, and lambda mod 8 suffices to see eta^3
+  (eta-cubed-survives-in-lambda-mod-eight-bordism). On Gr_k(H^{k+2d}) the
+  defect is k·q_1 (quaternionic-grassmannian-trapping-defect-is-rank), so
+  k = 8 works.
 - *Framed trapping.* Needs TX ≅_s (Q* (x)_C H)_R. Then the parity is χ(X) mod 2.
   Gr_2(C^4) and HP^2 fail on p_1.
 - *Other U(2) seeds under spin trapping.* Capped. Every element of
