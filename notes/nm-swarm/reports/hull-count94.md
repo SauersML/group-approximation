@@ -45,8 +45,37 @@
   `osinLemma94PolygonCountInput_of_sideBudget` are adapted.
 - Probe 0913-115846-46341 GREEN, all four modules BUILT.
 
+## Stage B: class polygons (ROSTER l.783-786, l.844-850, l.893-898)
+- `Estimating/OsinLemma94PolygonClasses.lean` (this lane), probe 0913-143205-28136 GREEN (BUILT,
+  axioms within propext, Classical.choice, Quot.sound).
+  - `OsinLemma94ClassPolygons P`: the sides of each polygon, read cyclically from `classBase`, split
+    into classes. `sides_eq : (range classCount).flatMap classSides = (range sideCount).rotate
+    classBase`.
+  - The class darts are `(classSides k i).flatMap fun s => P.sideDarts k s ++ gap k s`.
+    - A class of kind `cell j` is one reversed arc of cell `j`, and a class of kind `boundary j` one
+      arc of section `j`, gaps included.
+    - Gaps have value one, and the last gap of a class is empty.
+    - Cutting and short classes are single sides.
+  - `relatorClasses`: (A1) classes of polygons with at least two classes, so one-sided bubbles are
+    dropped. `budgetPolygons`: polygons with an (A1) class and at least two classes.
+  - `ClassBudget K : ∑ k ∈ budgetPolygons, classCount k ≤ K n`.
+    `ClassCovers L : S ≤ ∑ k, classWordLength (word k) (classCount k) (relatorClasses k) + L n`.
+  - Proved:
+    - `corner_closed`, from `P.closed`, `gap_value` and the rotation;
+    - `short_of_not_mem` (a short class is one short side);
+    - `dense_of_classCovers`;
+    - `unbound_lt_of_classes`, the fixed-parameter contradiction through hull-component's
+      `exists_of_budget_on` (`OsinLemma94BudgetFilter`, e48f35d1e);
+    - `ofSides`, the model test with every side its own class.
+  - Residual: `OsinLemma94ClassCountInput`, which ends in `∃ Q : OsinLemma94ClassPolygons P,
+    Q.ClassBudget K ∧ Q.ClassCovers (24 ε + 2 (K + 24) ⌈(c + 2) / λ⌉₊)`.
+  - Wrap pair (l.825): answered by `classBase`. A run through the face-walk base is one class.
+- Not in this module: the class-level Case 1/2 Props and the assembly over them. These go with
+  the rule 22 co-probe of the Case 1 users. ko-closed decides the gap question at l.906.
+
 ## Residual
-- `OsinLemma94PolygonSideBudgetInput` (in `OsinLemma94PolygonCount.lean`):
+- `OsinLemma94PolygonSideBudgetInput` (in `OsinLemma94PolygonCount.lean`), superseded by
+  `OsinLemma94ClassCountInput` once the Case 1 users move to class words:
   `∃ ε₀, ∀ ε ≥ ε₀, ∃ K, ∃ ρ₀ > 0, ∀ ρ ≥ ρ₀, …, P.Maximal → ∑ k, P.sideCount k ≤ K n`.
 - As stated it is over-strong. Model tests (reported to main):
   - Pockets. A region side of length at most `ε` touching a cell `s` times leaves `s` unselected
