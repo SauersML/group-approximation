@@ -45,6 +45,20 @@ If (★) holds, `SL_2(Z[t,t^{-1}])` is not finitely generated (route
   `SL_2(O_K) = U_2(O_K)`. So the analogue of (★) at level `α` is false. A proof of
   (★) must use something one-dimensional rings lack: for instance, that
   `SL_2(Z) ⊂ U_2(Z[t])` is a section of reduction, or the second dimension of `Z[t]`.
+- **Necessary condition (proved).** If (★) holds then `U_2(R) ∩ SL_2(Z[t]) = U`
+  (see the route). Since `D(t) = diag(t,t^{-1}) ∈ E_2(R) ⊂ U_2(R)` and `U_2(R)` is
+  normal, for `c ∈ Gamma_0(t^2)` the element
+  `c^{-1}·D(t) c D(t)^{-1} = (c^{-1}D(t)c)D(t)^{-1}` lies in `U_2(R) ∩ SL_2(Z[t]) = U`.
+  So every homomorphism `f` on `SL_2(Z[t])` that kills `U` satisfies
+  `f(D(t) c D(t)^{-1}) = f(c)` on `Gamma_0(t^2)`, where
+  `D(t)[[a,b],[c,d]]D(t)^{-1} = [[a, t^2 b],[t^{-2}c, d]]`. The Grunewald–Mennicke–
+  Vaserstein free quotients come from specializing `t ↦ α` into Bianchi groups. For
+  them the condition asks a cuspidal free quotient `φ` of `SL_2(O_K)` to be invariant
+  under conjugation by `diag(α,α^{-1})` on the image of `Gamma_0(t^2)`. That is a
+  Hecke-type invariance, not expected for generic cuspidal classes, and it is
+  incompatible with collapse in `SL_2(O_K[1/α]) = E_2`. Heuristic evidence that (★) is
+  false; not a proof, because the image of `Gamma_0(t^2)` under specialization has not
+  been identified.
 - **Specialization cannot refute it cheaply.** Evaluating `t ↦ α` sends both sides of
   (★) into `SL_2(O_K)`, but the images need not be all of the level-`α` intersections.
   Failure of the analogue does not transfer to `Z[t]` without a lifting argument

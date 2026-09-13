@@ -24,6 +24,17 @@ every finite set `F`, `SL_2(Z[t]) ⊄ <E_2(Z[t,t^{-1}]) ∪ F>`.
   unit-conjugation trick. So `SL_2(Z[t]) → SL_2(F_2[t])`, which shows `SL_2(Z[t])` is
   not finitely generated, has no Laurent analogue. Any obstruction must see the
   two-dimensional ring.
+- **Unipotent quotient (reduction proved, 2026-09-13).**
+  `SL_2(R)/U_2(R) ≅ SL_2(Z[t]) / (U_2(R) ∩ SL_2(Z[t]))`, with
+  `U_2(R) = <U_2(Z[t]), D U_2(Z[t]) D^{-1}>`
+  (`sl2-laurent-unipotent-quotient-is-polynomial-quotient`). Route
+  `sl2-laurent-integers-not-fg-via-fricke-compatibility` gives NO from the open
+  input `polynomial-unipotent-subgroup-fricke-compatible`: the intersection is
+  exactly `U_2(Z[t])`, whose quotient has free quotients of every rank by
+  Grunewald–Mennicke–Vaserstein. The one-dimensional analogue of that input is
+  false, and a proved necessary condition (Hecke-type invariance of the free
+  quotients) looks unlikely. So this route is more likely to die than to close.
+  Recording it fixes the exact place a NO answer has to come from.
 - **Normal closure of E_2.** Since `E_2(R)` is finitely generated, a
   non-finitely-generated quotient of `SL_2(R)` by the normal closure of `E_2(R)`
   would give NO. Every element of `E_2(R)` is a product of unipotents, which fix
