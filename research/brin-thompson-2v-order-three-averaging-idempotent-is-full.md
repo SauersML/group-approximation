@@ -26,3 +26,6 @@ Theorem B for the `D`-stable host `2V` (artifact Proposition 2.1). Then `F_2[2V]
   values `1 - 4b`, `b`, `b`, `2b` for one `b` in `[0, 1/4]`. The endpoints `b = 0` (augmentation) and `b = 2/9`
   (independent regular product) are both consistent with every relation coming from finite subgroups and `u`.
   Where it stopped: these relations do not decide whether `T` has a state.
+* **The baker subgroup is at V's level (w6-free-neg-d, 2026-09-12; artifact Section 4).** `⟨V ⊗ 1, u⟩` is the
+  ascending HNN extension of `V` along `D`, and it is sofic iff `V` is. A solution `c e b = 1` with `b` and `c`
+  supported there would already show that `V` is not sofic.

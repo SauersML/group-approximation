@@ -42,3 +42,10 @@ injective and not surjective.
   `a + 4b = 1`. Where it stopped: `b = 0` (augmentation) and `b = 2/9` (independent product of the regular
   values) satisfy every relation coming from finite subgroups and `u`. An obstruction must use elements of
   infinite order that mix the two coordinates.
+* **The baker subgroup reduces to V (w6-free-neg-d, 2026-09-12; artifact Section 4).** `H_u = ⟨V ⊗ 1, u⟩` is the
+  ascending HNN extension of `V` along `D`, and a ternary shift index in the second coordinate detects the stable
+  letter. `H_u` is sofic iff `V` is (`sofic-kernel-amenable-quotient-permanence`). Every idempotent and relation of
+  the previous attempt lies in `F_2[H_u]`. So a fullness proof built from that lever alone would show `V` is not
+  sofic. Where it stopped: `(V ⊗ 1) × (1 ⊗ V)`, `H_u` and `⟨1 ⊗ V, u⟩` each contain `g ⊗ 1` and are sofic iff `V`
+  is. A proof specific to `2V` needs `b` and `c` whose supports do not lie together in any one of them, for
+  example inside `⟨V ⊗ 1, 1 ⊗ h, u⟩`.
