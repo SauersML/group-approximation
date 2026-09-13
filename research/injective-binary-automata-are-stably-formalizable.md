@@ -160,3 +160,15 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   not give `tau x id`. In any word of data-ancilla track shears the data track is written at least
   twice, and between the writes the marker windows read `y`-dependent cells. The `4Z` residue classes
   avoid exactly this.
+- **Exact-read ancilla words are ruled out (w7-marker-ancilla).**
+  - **Class.** `Z`-equivariant words of linear track moves, plus track shears whose read value does not
+    depend on the ancilla contents.
+  - **Result.** Such a word that realizes `F x id`, with any number of ancillas, has `F` affine. Write a
+    state as `M e + eta(x)`. The dirt part `Q = c eta` of its data functional stays affine, and at a
+    realization it equals `a^(-1) F - x` (`linearly-dirty-ancilla-words-realize-only-affine-data-maps`).
+  - **Consequence.** `tau_Z x id` needs a read whose value depends on the ancillas, cancelled later.
+  - **Failed schemes.** Phase separation fails at constant phase. The borrowed-bit toggle fails because
+    dirty data writes move other markers' controls (artifact
+    `marker-ancilla-linear-dirt-invariant-2026-09-12`).
+  - **Scope.** This is a class result. The `4Z` word lies outside the class (its data are four tracks),
+    and no route is invalidated.

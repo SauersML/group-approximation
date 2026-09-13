@@ -8,6 +8,7 @@ distinct_from:
   marker-flip-cells-avoid-all-marker-control-windows: that is the Boolean disjointness fact; this is the free-ring behaviour of the Bennett word, where that fact does not hold formally.
 artifacts:
   - research/artifacts/marker-stable-formalization-residue-2026-09-12.md
+  - research/artifacts/marker-ancilla-linear-dirt-invariant-2026-09-12.md
 ---
 
 **OPEN.** Work over the free ring `F_2[X]`, with data variables `x_g` and ancilla variables `y_g`. The
@@ -61,3 +62,16 @@ one.
   while its target flips, without residue classes. Negative: an invariant of `Z`-equivariant formal
   pairs with identity ancilla tracks that `tau x id` violates and the `4Z` word does not.
 - w3-vf-nonlinear (62f488374) failed the earlier support and degree statement; this node is corrected.
+- **Exact-read words are ruled out for any number of ancillas (w7-marker-ancilla).**
+  - **Class.** Words of linear track moves, plus track shears whose read value does not depend on the
+    ancilla contents.
+  - **Invariant.** Every state is `M e + eta(x)`, and the dirt part `Q = c eta` of the data functional
+    (`c M = e_1^T`) stays affine. A realization of `F x id` has `Q = a^(-1) F - x`, so `F` is affine
+    and `tau x id` is out (`linearly-dirty-ancilla-words-realize-only-affine-data-maps`).
+  - **Escapes.** `A' B A` leaves the class at `A'`. The `4Z` word escapes because its data are four
+    tracks.
+  - **Lemma 2.4** re-checked: PASS.
+  - **Failed schemes.** Phase separation through a phase track fails at constant phase. The borrowed-bit
+    toggle fails because dirty data writes move other markers' controls (artifact
+    `marker-ancilla-linear-dirt-invariant-2026-09-12`, Sections 3–4).
+  - **Consequence.** A realization needs a read whose value depends on the ancillas, cancelled later.
