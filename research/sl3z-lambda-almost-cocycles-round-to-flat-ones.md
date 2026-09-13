@@ -63,3 +63,14 @@ local. Whether this defeats DTR is not known.
   `sl3z-abelian-lambda-labellings-round-to-flat-ones`. When all labels lie in a torsion-free abelian subgroup,
   (T) rounds them to a coboundary within budget, so the vortex count admits no construction. A refutation of
   DTR has to use non-commuting labels, e.g. a flux tube braiding two non-commuting R-regular elements of `Λ`.
+* **Short-loop torsion holonomy (ex3-sl3z-flux-tube).** If `e_12` fixes `v`, then a flat `λ'` into a torsion-free
+  cocompact `Λ` has `λ'(v, e_12) = 1`, because the holonomy has finite image. So labels `λ_0 != 1` on such loops cost one
+  change each. **Dies at:** growing transitive `SL_3(Z)`-sets. There every `g != 1` has a vanishing fraction of fixed
+  points: a limiting invariant random subgroup is finite-index or trivial (Bekka's character rigidity, recalled),
+  and by the congruence subgroup property a finite-index stabilizer on a positive fraction forces some `Γ(m)` to act
+  trivially, which bounds `|V|`. Holonomy obstructions must therefore live on long loops.
+* **Almost-equivariant double covers (ex3-sl3z-flux-tube).** For finite `Λ`, try labellings induced by an
+  almost-equivariant 2-to-1 map `p : W → V` from an honest transitive `Γ`-set `W`. **Dies at:** (T). The graph of
+  `p` is an almost-invariant vector of `ℓ²(W × V)`, so it is close to an invariant correspondence, which is the graph of an
+  honest 2-to-1 equivariant map. A finite-coefficient counterexample must come from almost-actions on `V × Λ`
+  that are far from every honest `Γ`-set. That is the `Z/2`-cosystolic question, and it stays open.
