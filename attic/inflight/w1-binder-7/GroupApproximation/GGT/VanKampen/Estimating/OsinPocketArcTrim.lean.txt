@@ -89,8 +89,12 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 /-- The reversed arc starts with the reversal of the last dart of the arc. -/
 theorem invDarts_eq_getLast_cons {t : List X.toCombMap.Dart} (hne : t ≠ []) :
     invDarts X t = X.toCombMap.alpha (t.getLast hne) :: invDarts X t.dropLast := by
-  conv_lhs => rw [← List.dropLast_concat_getLast hne]
-  simp [invDarts]
+  obtain ⟨L, z, rfl⟩ : ∃ L z, t = L ++ [z] :=
+    ⟨t.dropLast, t.getLast hne, (List.dropLast_concat_getLast hne).symm⟩
+  rw [List.getLast_concat, List.dropLast_concat]
+  show (L ++ [z]).reverse.map X.toCombMap.alpha = X.toCombMap.alpha z :: L.reverse.map X.toCombMap.alpha
+  rw [List.reverse_append, List.map_append]
+  rfl
 
 /-- **Trim the source arc into the first side.**  The first dart of the reversed source arc, the
 reversal of the last dart of the source arc, joins the first side, when the first side is shorter
@@ -112,7 +116,7 @@ noncomputable def trimSourceLast (K : PocketFaceSet D eps X lo hi)
   boundary := K.boundary
   decomposition := by
     rw [K.decomposition, CyclicArc.dropLastArc_darts, invDarts_eq_getLast_cons hne]
-    simp
+    simp only [List.append_assoc, List.singleton_append, List.cons_append]
   firstSide_length_le := by
     rw [List.length_append, List.length_singleton]
     omega
@@ -145,7 +149,7 @@ noncomputable def trimTargetHead (K : PocketFaceSet D eps X lo hi)
   decomposition := by
     rw [K.decomposition, CyclicArc.tailArc_darts]
     conv_lhs => rw [← List.cons_head_tail hne]
-    simp
+    simp only [List.append_assoc, List.singleton_append]
   firstSide_length_le := K.firstSide_length_le
   secondSide_length_le := by
     rw [List.length_append, List.length_singleton]
