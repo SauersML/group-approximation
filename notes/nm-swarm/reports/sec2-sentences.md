@@ -75,6 +75,33 @@ Exact statements:
 Weights: enumerate G by e and inject ι into ℕ by f.  Put M_i = ∑_{k ≤ f i} ‖b_i(e k)‖ and w_i = 2^{-f i}/(1 + M_i).
 Then (w_i b_i(g))_i is in ℓ².  A bound ‖b g‖ ≤ R gives ‖b_i g‖ ≤ R/w_i for every i.
 
+Wiring (2026-09-13): `GroupApproximation.Kazhdan.GHWCountablePlaces sec2-sentences 3a0808fa5` is in the wire queue.
+Nothing it imports has changed since the green base 2cc8cb4a7.  The unwired modules it imports have to be wired first:
+GHWInterfaces, GHWArchimedeanWalls and GHWArchimedeanMinkowski (dgo-geometric), GHWArchimedeanWedge, and
+GHWArchimedeanSeparation (448d1bf45) and GHWArchimedeanBound (6d8971521).
+
+## Introduction, tex 187-205 (row 61827aea7807): limiting trace and footnote
+
+Status 2026-09-13.  The row is shared with hs-vanishes, which owns `NormalKazhdanPrintedRoute`.  The previous row cited
+that route and `CompressionCriterionSentences`, and graded the row partial.  The module below carries the sentence
+along the printed ultrafilter route, and the footnote clause by clause.
+
+| module | carries | state |
+|---|---|---|
+| NonMFSentences/LimitingTraceTrivialCharacterSentence | `PrintedLimitingTraceIsTrivialCharacter`, `PrintedCompressionOutlineFootnote` and their theorems | compiled: probe 0913-014750-80072 GREEN at 0a8ef789f (base cf3dcb3fe); both endpoints pass `#audit_closed_axioms`; queued for wiring |
+
+Sentence (tex 199-201).  Hypotheses: L has (T); K ≤ 𝔇_G(L) is normal with (T); D is corner data; π : C*max(K) → 𝒬_r
+agrees with Θ̂ on K; ω is a free ultrafilter.  Conclusion: τ∘π = χ on C*max(K), K has a Kazhdan datum, and every Kazhdan
+projection e_K has χ(e_K) = 1 = τ(π(e_K)).  The step "the first step applies" is `printedDefect_le_opToHSShadowResidual_direct`,
+which is cor:defect-hs in radical form.
+
+Footnote (tex 201-205), three clauses:
+(1) Unitaries can be close in HS norm while their conjugation maps are at operator norm distance 2, and no modulus bounds
+one distance by the other (HilbertSchmidtAdjointGap).
+(2) W of sec:amenable-nonqd is sofic; the level-zero copy of Γ̄ and ⟨ε⟩ have (T); ⟨ε⟩ ≤ 𝔇_W(L) and ε ≠ 1; and a
+unitary HS asymptotic representation of W does not send ε to 1.
+(3) The sofic and hyperlinear conclusions fail (CliffordWitnessHSRemark).
+
 ## Census
 
 Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no declarations
