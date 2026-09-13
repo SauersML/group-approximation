@@ -54,8 +54,18 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - all pairs `(1 - a, 1 - c)` (`thompson-f-binomial-pairs-have-common-multiples`);
   - all pairs `(1 - h, b)` with `h` conjugate to `x_0^{+-1}`, `x_1^{+-1}` or
     `(x_1 x_0^-1)^{+-1}` (`thompson-f-one-minus-x0-is-ore-with-every-element`,
-    `thompson-f-one-minus-x1-is-ore-with-every-element`).
+    `thompson-f-one-minus-x1-is-ore-with-every-element`);
+  - every twisted binomial `1 + lambda g` with `g` one-bump, against every element
+    (`thompson-f-one-bump-binomials-have-common-multiples`); with `g` multi-bump, against
+    elements of `K[H_i × Z_i]` (`thompson-f-multibump-binomials-meet-stabilizer-ideals`)
+    and, when the bump endpoints are dyadic, against elements of the pointwise stabilizer
+    of the bump endpoints (`thompson-f-binomials-meet-bump-endpoint-stabilizer-ideals`,
+    2026-09-13, unreviewed).
 
+  The whole binomial side is the open claim
+  `thompson-f-every-twisted-binomial-is-ore-with-every-element`. It dies at multi-bump
+  binomials against elements that move bump endpoints: no common multiple of such a family
+  lies in the group ring of a point stabilizer, so the one-bump nesting argument cannot run.
   Dies at `P_(2,2)`: the survey's cardinality method needs a set with `|S Y| < 2|Y|`
   for the nine degree-two monomials `S`, and none is known. Unit-coefficient
   multiples fail outright: `Z_+[M]` is not Ore (survey Theorem 3.6).
