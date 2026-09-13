@@ -23,3 +23,15 @@ Paris (1976), which rests on the congruence subgroup property of `SL_n(Z)`,
   `x`, since `[e_ik(m), e_kj(mx)] = e_ij(m^2 x)`. Conjugation by `e_ki(1)`
   maps `e_ij(m)` to `e_ij(m) e_kj(±m)`, which lies in `E(m)`. The pairs
   `(j, i)` are where the normal-closure argument needs Tits' input.
+- 2026-09-13 (z3-04-sl3z-coherent): proved without Tits, route
+  `sl3z-congruence-elementary-generators-have-finite-index-proof`.
+  - Opposite-root case: `e_ji(c) e_ij(ab) e_ji(-c)` is a commutator of level-`m`
+    elementary products whenever `a, b ∈ mZ`.
+  - The `n = 3` generation lemma
+    (`sl3-relative-elementary-generated-by-opposite-conjugates`) turns this
+    into `E(m) >= E_3(Z, m^2 Z)`.
+  - Bass–Milnor–Serre Corollary 4.3, read from the Numdam scan
+    (`sl3z-relative-elementary-equals-principal-congruence`), gives
+    `E_3(Z, m^2 Z) = Γ(m^2)`.
+  - So `E(m) >= Γ(m^2)`, with index at most `|SL_3(Z/m^2 Z)|`. Tits's note
+    itself is still unread.
