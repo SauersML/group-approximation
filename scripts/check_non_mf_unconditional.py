@@ -252,6 +252,10 @@ class Binder:
     names: tuple[str, ...]
     type_text: str
     kind: str  # "explicit" | "implicit" | "instance" | "strict" | "arrow" | "variable"
+    #: The namespace the type was written in, when it differs from that of the
+    #: declaration being classified: set on premises unfolded out of a named
+    #: `Prop`, whose names `Corpus.resolve` must read from that definition's scope.
+    namespace: str = ""
 
     @property
     def head(self) -> str:
@@ -449,6 +453,10 @@ class Declaration:
     premises: list[Binder] = field(default_factory=list)
     variables: list[Binder] = field(default_factory=list)
     body_variables: list[Binder] = field(default_factory=list)
+    #: `A.B.foo` for `theorem foo` inside `namespace A.B`, and `A.B`, the
+    #: namespace Lean resolves the names written in the declaration against.
+    full_name: str = ""
+    namespace: str = ""
 
     @property
     def conclusion_head(self) -> str:
@@ -516,7 +524,11 @@ def produced_heads(declaration: Declaration) -> set[str]:
     open.  Refutations exhibit nothing, so they produce nothing at all --- the
     head included, which is the whole of `is_refutation`'s reason to exist.
     """
-    conclusion = _strip_premises(declaration.statement)
+    return _exhibited_heads(_strip_premises(declaration.statement))
+
+
+def _exhibited_heads(conclusion: str) -> set[str]:
+    """`produced_heads` of a conclusion as written."""
     if is_refutation(conclusion):
         return set()
     heads = {type_head(conclusion)}
@@ -525,6 +537,61 @@ def produced_heads(declaration: Declaration) -> set[str]:
     heads |= {m.group(1).rsplit(".", 1)[-1]
               for m in NONEMPTY_ARG.finditer(conclusion)}
     return {head for head in heads if head}
+
+
+LINE_COMMENT = re.compile(r"--[^\n]*")
+IN_PLACE_HAVE = re.compile(rf"(?<![\w'.])(?:have|haveI|let|letI)\s+(?:{IDENT}\s*)?:(?!=)")
+IN_PLACE_ASCRIPTION = re.compile(r"\(\s*(?=[⟨{])")
+
+
+def in_place_heads(declaration: Declaration) -> set[str]:
+    """Names a proof builds an inhabitant of in place, not in its conclusion.
+
+    `have hcl : CutLift … := { lift := hlift, … }` inside
+    `HullSC.letterStepBound_of_cutLiftOutcome` is the construction of the
+    `Prop` structure `HullSC.CutLift`, and an index of conclusions alone read
+    the structure as never produced, so the rows resting on it reported a
+    citation where the corpus has a proof.  A `have`, `let` or `(… : T)`
+    ascription whose value is an anonymous constructor, `⟨…⟩` or `{ … }`,
+    builds a `T` under the premises the declaration itself needs, so it is
+    indexed as a producer carrying the declaration's requirements and taint.
+
+    A value that is not a constructor (a hypothesis restated, a tactic block)
+    exhibits nothing this lexical pass can see.  Neither does a construction
+    inside a refutation, which builds only from the absurd hypothesis, nor one
+    inside a `def … : Prop`, whose value is a statement and not a proof.
+    """
+    conclusion = _strip_premises(declaration.statement)
+    if is_refutation(conclusion) or type_head(conclusion) in SORTS:
+        return set()
+    value = LINE_COMMENT.sub("", declaration.value or "")
+    heads: set[str] = set()
+    for match in IN_PLACE_HAVE.finditer(value):
+        cut = value.find(":=", match.end())
+        if cut == -1 or value[cut + 2:].lstrip()[:1] not in ("⟨", "{"):
+            continue
+        # The type runs to that `:=` only if it stays inside the `have`: its
+        # brackets balance, and every line it continues onto is indented
+        # deeper than the line the `have` sits on.
+        written = value[match.end():cut]
+        depths = _depths(written + " ")
+        if min(depths) < 0 or depths[-1] != 0:
+            continue
+        line = value[value.rfind("\n", 0, match.start()) + 1:match.start()]
+        indent = len(line) - len(line.lstrip())
+        if any(len(continued) - len(continued.lstrip()) <= indent
+               for continued in written.split("\n")[1:] if continued.strip()):
+            continue
+        heads |= _exhibited_heads(_strip_premises(written))
+    for match in IN_PLACE_ASCRIPTION.finditer(value):
+        close = _matching(value, match.start())
+        inner = _matching(value, match.end())
+        if close == -1 or inner == -1 or inner > close:
+            continue
+        ascribed = value[inner + 1:close].lstrip()
+        if ascribed.startswith(":") and not ascribed.startswith(":="):
+            heads |= _exhibited_heads(_strip_premises(ascribed[1:]))
+    return heads
 
 
 DECL_START = re.compile(
@@ -627,14 +694,33 @@ def scan_module(path: Path, *, qualified: bool = False) -> dict[str, Declaration
 
         declaration.variables = [b for b in open_variables if mentioned(b, statement)]
         declaration.body_variables = [b for b in open_variables if mentioned(b, body)]
-        if qualified:
-            prefix = ".".join(n for n in namespaces if n)
-            name = match.group("name")
-            key = f"{prefix}.{name}" if prefix else name
-        else:
-            key = declaration.short_name
+        prefix = ".".join(n for n in namespaces if n)
+        name = match.group("name")
+        declaration.full_name = f"{prefix}.{name}" if prefix else name
+        declaration.namespace = declaration.full_name.rpartition(".")[0]
+        key = declaration.full_name if qualified else declaration.short_name
         declarations[key] = declaration
     return declarations
+
+
+def resolve_written_name(
+    head: str, namespace: str, full_names: set[str], namespaces: set[str],
+    types: set[str], props: set[str],
+) -> str:
+    """`Corpus.resolve`, over the sets it reads."""
+    prefix, _, last = head.rpartition(".")
+    if not prefix:
+        return head
+    scope = namespace
+    while True:
+        if (f"{scope}.{head}" if scope else head) in full_names:
+            return last
+        if not scope:
+            break
+        scope = scope.rpartition(".")[0]
+    if prefix in namespaces and (last in types or last in props):
+        return last
+    return head
 
 
 @dataclass
@@ -651,27 +737,41 @@ class Corpus:
     discharged_honestly: set[str] = field(default_factory=set)
     #: Short names whose proof rests on a `sorry`, directly or transitively.
     sorry_tainted: set[str] = field(default_factory=set)
+    #: `A.B.Foo` for each corpus type or `Prop` `Foo` declared inside
+    #: `namespace A.B`: the names `resolve` completes a written name to.
+    corpus_full_names: set[str] = field(default_factory=set)
 
-    def resolve(self, head: str) -> str:
+    def resolve(self, head: str, namespace: str = "") -> str:
         """`Ns.Foo` written from outside `Ns` is the same name as `Foo`.
 
         `type_head` reports a premise or conclusion head exactly as written, so
-        one corpus name has two spellings depending on whether the writer was
-        inside its namespace.  Both sides of the discharge fixpoint compare
-        against short names, so the qualified spelling silently dropped out of
+        one corpus name has as many spellings as there are places to write it
+        from.  Both sides of the discharge fixpoint compare against short
+        names, so an unrecognized qualified spelling silently dropped out of
         *both*: a theorem concluding `HNNTorsionFree.ExistsCyclicConjugate`
         produced nothing, and a premise requiring it needed nothing.  The
         second half is the dangerous one -- it is a conditional the gate did
         not report.
 
-        Only a prefix that is really a corpus namespace is stripped.  Matching
-        on the last component alone would collide with Mathlib: the corpus
-        defines `IsComplete`, and so does Mathlib.
+        A written name is completed the way Lean completes it: against each
+        prefix of `namespace`, the namespace it was written in, innermost
+        first, and it resolves when a completion is the full name of a corpus
+        type or `Prop`.  `KotowskiOllivierClosed.kotowskiOllivier_closed`, inside
+        `GroupApproximation.KMSGroup`, concludes
+        `Manuscript.NonMF.TheoremC.KotowskiOllivierStatement`, whose prefix is
+        a partial path and not a namespace the corpus opens.  Stripping only
+        such namespaces left that producer unfiled, and every `hKO` binder read
+        as a citation the corpus had proved.  A prefix that is a corpus
+        namespace is still stripped as well, for names written under an `open`,
+        which the scan does not track.
+
+        Matching on the last component alone would merge distinct names that
+        share a tail, and would collide with Mathlib: the corpus defines
+        `IsComplete`, and so does Mathlib.
         """
-        prefix, _, last = head.rpartition(".")
-        if prefix and prefix in self.corpus_namespaces and self.is_corpus_name(last):
-            return last
-        return head
+        return resolve_written_name(head, namespace, self.corpus_full_names,
+                                    self.corpus_namespaces, self.corpus_types,
+                                    self.corpus_props)
 
     def is_corpus_name(self, head: str) -> bool:
         return head in self.corpus_types or head in self.corpus_props
@@ -700,7 +800,7 @@ class Corpus:
         current = declaration
         seen: set[str] = set()
         for _ in range(depth):
-            head = current.conclusion_head
+            head = self.resolve(current.conclusion_head, current.namespace)
             if head in seen or head not in self.corpus_props:
                 break
             target = self.by_name.get(head)
@@ -710,15 +810,19 @@ class Corpus:
             # A named `Prop` carries its content in its *value*, not its type:
             # `def S : Prop := ∀ (h : Literature), …` has type `Prop` and
             # assumes `Literature`.  The parameters of the definition itself
-            # are instantiated by the caller and are not premises.
+            # are instantiated by the caller and are not premises.  The names
+            # in that value were written in the definition's namespace, and
+            # resolve there.
             body_premises = walk_premises(target.value)
-            collected += [(binder, f"through `{head}`, ")
+            collected += [(Binder(binder.names, binder.type_text, binder.kind,
+                                  target.namespace), f"through `{head}`, ")
                           for binder in body_premises + target.variables]
             conclusions.append(_strip_premises(target.value))
             current = Declaration(
                 keyword=target.keyword, short_name=target.short_name,
                 path=target.path, line=target.line, header=[],
                 statement=target.value, premises=body_premises,
+                full_name=target.full_name, namespace=target.namespace,
             )
         return collected, "\n".join(conclusions)
 
@@ -861,22 +965,23 @@ def build_corpus(root: Path) -> Corpus:
 
     corpus_types: set[str] = set()
     corpus_props: set[str] = set()
+    corpus_full_names: set[str] = set()
     for declarations in modules.values():
         for declaration in declarations.values():
             if declaration.keyword in ("structure", "class", "inductive"):
                 corpus_types.add(declaration.short_name)
+                corpus_full_names.add(declaration.full_name)
             elif declaration.keyword in ("def", "abbrev"):
                 if type_head(_strip_premises(declaration.statement)) == "Prop":
                     corpus_props.add(declaration.short_name)
+                    corpus_full_names.add(declaration.full_name)
 
     corpus_names = corpus_types | corpus_props
 
-    def resolve(head: str) -> str:
+    def resolve(head: str, namespace: str) -> str:
         """`Corpus.resolve`, before the `Corpus` exists to carry it."""
-        prefix, _, last = head.rpartition(".")
-        if prefix and prefix in corpus_namespaces and last in corpus_names:
-            return last
-        return head
+        return resolve_written_name(head, namespace, corpus_full_names,
+                                    corpus_namespaces, corpus_types, corpus_props)
 
     # producers[head] = (producing declaration, its premise heads), one entry
     # per declaration producing `head`.  The name is kept because whether the
@@ -893,13 +998,18 @@ def build_corpus(root: Path) -> Corpus:
                 # construction: see `laundered_premises`.  It proves its
                 # conclusion only to a caller who already has the literature.
                 continue
-            heads = {resolve(head) for head in produced_heads(declaration)} & corpus_names
+            # A `Prop` structure built in place, `have hcl : CutLift … := { … }`,
+            # is produced under the same requirements and the same taint as the
+            # conclusion: see `in_place_heads`.
+            written = produced_heads(declaration) | in_place_heads(declaration)
+            heads = {resolve(head, declaration.namespace) for head in written} & corpus_names
             # A self-requirement is kept, not dropped: a transport
             # `ProperProjectionCompression A → ProperProjectionCompression B`
             # produces nothing until something produces its input.
             needs = {
-                resolve(binder.head) for binder in declaration.build_premises
-                if resolve(binder.head) in corpus_names
+                resolve(binder.head, declaration.namespace)
+                for binder in declaration.build_premises
+                if resolve(binder.head, declaration.namespace) in corpus_names
             }
             for head in heads:
                 if declaration.short_name == head:
@@ -942,7 +1052,8 @@ def build_corpus(root: Path) -> Corpus:
 
     return Corpus(modules, corpus_types, corpus_props,
                   fixed_point(all_producers), by_name, corpus_namespaces,
-                  fixed_point(honest_producers), tainted)
+                  fixed_point(honest_producers), tainted,
+                  corpus_full_names=corpus_full_names)
 
 
 # ---------------------------------------------------------------------------
@@ -1232,7 +1343,7 @@ def classify(
 
     conclusion = corpus.unfolded_conclusion(declaration)
     for binder, origin in corpus.unfolded_premises(declaration):
-        head = corpus.resolve(binder.head)
+        head = corpus.resolve(binder.head, binder.namespace or declaration.namespace)
         if not head:
             continue
         if head in roster:
@@ -1470,6 +1581,107 @@ def audit_corpus(root: Path) -> int:
             print(f"    … {len(assumers[head]) - 12} more")
     print(f"\n{len(assumers)} undischarged corpus names are assumed somewhere")
     return 0
+
+
+#: The two blind spots of the producer index, with their controls.
+#: `partialStatement_closed` concludes a `Prop` by a partial path, as
+#: `kotowskiOllivier_closed` concludes `KotowskiOllivierStatement`, and
+#: `builds_in_place` builds three `Prop` structures in place, by `{ … }`, by
+#: `⟨…⟩` and by an ascription, as `letterStepBound_of_cutLiftOutcome` builds
+#: `CutLift`: all four consumers are clean.  No completion of `Elsewhere.Paper`
+#: is a corpus namespace, so `PartialNever` stays unproduced, as a last-component
+#: match would not leave it; `hides_partial` reaches it through a named `Prop`
+#: whose premise resolves only from that definition's namespace.  A restated
+#: premise, a comment, a refutation and a statement build nothing, a construction
+#: resting on a `sorry` is debt, and one needing an unproduced input is not
+#: produced.
+PRODUCER_FIXTURE = """\
+namespace GroupApproximation
+namespace Manuscript
+namespace Paper
+def PartialStatement : Prop := True
+def PartialNever : Prop := True
+def PartialDebt : Prop := True
+end Paper
+theorem via_partial : ∀ (_h : Paper.PartialStatement), True := fun _ => trivial
+theorem via_partial_never : ∀ (_h : Paper.PartialNever), True := fun _ => trivial
+theorem via_partial_debt : ∀ (_h : Paper.PartialDebt), True := fun _ => trivial
+end Manuscript
+namespace Producers
+def PaperHidden : Prop := ∀ (_h : Manuscript.Paper.PartialNever), True
+namespace Closed
+theorem partialStatement_closed : Manuscript.Paper.PartialStatement := trivial
+theorem partialDebt_closed : Manuscript.Paper.PartialDebt := by sorry
+theorem partialNever_elsewhere : Elsewhere.Paper.PartialNever := trivial
+end Closed
+end Producers
+structure InPlaceLift : Prop where
+  seed : True
+structure InPlacePair : Prop where
+  left : True
+  right : True
+structure InPlaceTerm : Prop where
+  seed : True
+structure NeverLift : Prop where
+  seed : True
+structure DebtLift : Prop where
+  seed : True
+structure NeedyLift : Prop where
+  seed : True
+structure SortLift : Prop where
+  seed : True
+structure NeedyInput where
+  seed : Nat
+theorem builds_in_place (n : Nat) (hn : n = n) : n = n := by
+  have hcl : InPlaceLift :=
+    { seed := trivial }
+  have hpair : InPlacePair := ⟨trivial, trivial⟩
+  exact (fun (_t : InPlaceTerm) => hn) (⟨trivial⟩ : InPlaceTerm)
+theorem restates_never (hnever : NeverLift) : True := by
+  have hl : NeverLift := hnever
+  trivial
+theorem comments_never : True := by
+  -- have hl : NeverLift := { seed := trivial }
+  trivial
+theorem not_neverLift (hfalse : False) : ¬ NeverLift := fun h => by
+  have hl : NeverLift := ⟨h.seed⟩
+  exact hfalse.elim
+theorem builds_debt_in_place : True := by
+  have hl : DebtLift := { seed := by sorry }
+  trivial
+theorem builds_needing (_r : NeedyInput) : True := by
+  have hl : NeedyLift := ⟨trivial⟩
+  trivial
+def SortLiftStatement : Prop :=
+  let l : SortLift := ⟨trivial⟩
+  True
+theorem via_in_place : ∀ (_x : InPlaceLift), True := fun _ => trivial
+theorem via_in_place_anonymous : ∀ (_x : InPlacePair), True := fun _ => trivial
+theorem via_in_place_term : ∀ (_x : InPlaceTerm), True := fun _ => trivial
+theorem via_never_lift : ∀ (_x : NeverLift), True := fun _ => trivial
+theorem via_debt_lift : ∀ (_x : DebtLift), True := fun _ => trivial
+theorem via_needy_lift : ∀ (_x : NeedyLift), True := fun _ => trivial
+theorem via_sort_lift : ∀ (_x : SortLift), True := fun _ => trivial
+end GroupApproximation
+namespace Outside
+theorem hides_partial : GroupApproximation.Producers.PaperHidden := fun _ => trivial
+end Outside
+"""
+
+#: The detector each consumer in `PRODUCER_FIXTURE` must carry; `None` is clean.
+PRODUCER_FIXTURE_EXPECTED: dict[str, str | None] = {
+    "via_partial": None,
+    "via_in_place": None,
+    "via_in_place_anonymous": None,
+    "via_in_place_term": None,
+    "via_partial_never": "open-predicate",
+    "hides_partial": "open-predicate",
+    "via_never_lift": "conditional-data",
+    "via_needy_lift": "conditional-data",
+    "via_sort_lift": "conditional-data",
+    "via_partial_debt": "conditional-debt",
+    "via_debt_lift": "conditional-debt",
+}
 
 
 def self_test() -> int:
@@ -1733,6 +1945,22 @@ def self_test() -> int:
             print("self-test: a refuted structure read as discharged; "
                   f"got {refuted_struct}", file=sys.stderr)
             return 1
+
+        # A name written by a partial path is completed the way Lean completes
+        # it, and a `Prop` structure built in place is produced; neither may
+        # clear a name nothing produces or a producer resting on a `sorry`.
+        resolution_root = root / "resolution"
+        resolution = resolution_root / "GroupApproximation" / "Fake" / "Resolution.lean"
+        resolution.parent.mkdir(parents=True)
+        resolution.write_text(PRODUCER_FIXTURE, encoding="utf-8")
+        resolved = build_corpus(resolution_root)
+        for name, want in PRODUCER_FIXTURE_EXPECTED.items():
+            got = {detector for detector, _detail in classify(
+                resolved, resolved.by_name[name], set(), name)}
+            if got if want is None else want not in got:
+                print(f"self-test: {name} expected {want or 'clean'}, got "
+                      f"{got or 'clean'}", file=sys.stderr)
+                return 1
 
         # A pinned name that is no longer cited must be reported, so the roster
         # cannot outlive the problem it records.
