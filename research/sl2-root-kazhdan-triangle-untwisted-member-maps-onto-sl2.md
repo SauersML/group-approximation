@@ -30,6 +30,14 @@ since `ρ_3` already is.
   hyperbolic and Kazhdan. It is **not** a candidate for
   `hyperbolic-simple-triangle-group-without-finite-quotients`.
 
+**Model test (computed, GAP 4.14 on MSI; `experiments/sl2-root-triangle-kazhdan/untw.g`, `run3.out`).**
+- *Setup.* `Λ_0` was built as a finitely presented group on `3f` generators, from presentations of the
+  vertex groups in their edge-group bases. The group used is `s = Z(q^2)`, `P = s^{-1/2}`.
+- *The check.* `GroupHomomorphismByImages` confirms that the stated images define a homomorphism onto
+  `SL_2(q^2)` for `q = 4, 8, 16`.
+- *Calibration for later moment tests.* For `q = 4`, the kernel has index `4080` and
+  `H_1(ker;Z) = (Z/2)^11 × (Z/4)^9`.
+
 **Other gluings.** Twisting `E_23` by `x ↦ λx` with `λ ∈ k^*` is absorbed by `P = (λ/s)^{1/2}`. Candidates
 must use gluings that no such configuration absorbs; see
 `sl2-root-kazhdan-triangle-without-finite-quotients`.
