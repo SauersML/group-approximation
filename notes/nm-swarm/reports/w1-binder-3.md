@@ -62,6 +62,20 @@ CLAIM noncrossing barrier sides and the no-common-dart variant, GroupApproximati
   lands in the same commit as this entry. The 17:33 attic copy hit a ref-lock race and was not
   needed.
 
+- 17:45: main's next item is the empty-window cases (X, Y, A or B empty), where the barrier
+  conditions of `disjoint_sideFaces_of_barrier_noncrossing` fail. Split agreed directly with
+  ms-intro-1: it takes the pinch split (OsinLemma94SameCellPocketPinch); this lane takes the empty
+  windows.
+- Finding: side selection needs no split on empty windows.
+  - Every dart of either pocket walk has `f` or `Π` across it.
+  - The first edge of `p` joins `Π` to `f` and lies off both walks.
+  - A noncrossing walk keeps the face across each of its darts off its side. So `f` and `Π`, which
+    are in one face class of the walk, are both off its side, whether X, Y, A, B are empty or not.
+  - The barrier conditions then hold, and the no-common-dart variant gives disjoint sides and the
+    exterior-face dichotomy.
+
+CLAIM the pocket sides of the Case 1 same-cell walks in every window case, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean
+
 ## For the producer of the relator-cell branch (not built here)
 
 On the pocket walks `w₁ = invDarts X ++ invDarts B` and `w₂ = invDarts Y ++ invDarts A`:
