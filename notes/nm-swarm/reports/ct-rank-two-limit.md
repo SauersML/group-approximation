@@ -39,9 +39,16 @@ for `n ≥ 2` over `F_2`).
 
 - `CoreRestrictionLocallyFiniteKernelStatement`: for compact metric totally disconnected `X`, `T`, finite field `k`,
   `HasLocallyFiniteKernel (ClopenCrossedProduct.restrict T k (image_chainRecurrentSet T))`.
-  Producer: lem:transient-matrices (chain-matricial, `isLocallyMatricialIn_transientIdeal`), via
-  `hasLocallyFiniteKernel_of_isLocallyMatricialIn` in this lane's module.
-- `FixedCoreImageHaagerupStatement`, `PeriodTwoCoreUnitImageHaagerupStatement`: this lane (in progress).
+  Route: chain-matricial's `isLocallyMatricialIn_transientIdeal` (not on main at 17:25; `Dynamics/TransientIdealExact`
+  has only `transientIdeal` and exactness), then ms-compress-3's glue in `Dynamics/ClopenCrossedProductAlgebra`
+  (`Module k` on `R_X`, `TransientIdealLocallyMatricialStatement`,
+  `coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial`, through
+  `hasLocallyFiniteKernel_of_isLocallyMatricialIn`).  No `Module k` instance on `ClopenCrossedProduct T k` exists yet.
+- `FixedCoreImageHaagerupStatement`, `PeriodTwoCoreUnitImageHaagerupStatement`: this lane, `Dynamics/RankTwoCoreImageHaagerup`
+  (probing).
+
+Census keys (ct-sentences ledger): `f31fa0413ffd` `2d5721555dfe` `dd5ef3eafd48` `5e4354e1556b` (the last holds two printed
+sentences).  Rows are appended once the carriers land.
 
 ## Progress log
 
